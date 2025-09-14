@@ -11,7 +11,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gklocalplayer?language=objc)
+    /// The local player who signs in to Game Center on the device running the game.
+    ///
+    /// ## Overview
+    ///
+    /// Only one player can sign in to Game Center on a device at a time and that player is the _local player_. Before you can start a game that uses GameKit features, verify that the local player signs in to their Game Center account.
+    ///
+    /// You set the handler of the local player shared instance using the [`authenticateHandler`](https://developer.apple.com/documentation/gamekit/gklocalplayer/authenticatehandler) property. Then implement this method to handle the multiple times GameKit invokes it during the sign-in process. If the local player needs to create an account or sign in, GameKit provides a view controller that you present to the local player. If the local player successfully signs in, determine whether they have any account restrictions and adjust your game accordingly. For more information about the initialization of the local player, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    /// After the local player signs in, their account data and GameKit features are available. You can display the local player’s nickname and avatar, access their recent players and friends, and load their leaderboards and achievements. You can also register a listener object that GameKit calls when the local player sends or accepts invitations to play with others.
+    ///
+    ///
     #[unsafe(super(GKPlayer, GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
@@ -165,7 +175,13 @@ impl GKLocalPlayer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener?language=objc)
+    /// A protocol that handles events for Game Center players.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) protocol to listen for and handle a variety of Game Center events for player accounts instead of the individual [`GKChallengeListener`](https://developer.apple.com/documentation/gamekit/gkchallengelistener), [`GKInviteEventListener`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener), [`GKSavedGameListener`](https://developer.apple.com/documentation/gamekit/gksavedgamelistener), and [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocols.
+    ///
+    ///
     #[cfg(all(
         feature = "GKEventListener",
         feature = "GKGameActivityListener",
@@ -220,9 +236,14 @@ impl GKLocalPlayer {
 }
 
 extern "C" {
-    /// Notification will be posted whenever authentication status changes.
+    /// A notification that posts after GameKit initializes the local player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerauthenticationdidchangenotificationname?language=objc)
+    /// ## Discussion
+    ///
+    /// The object property for this notification is a `GKLocalPlayer` object. Passing `nil` provides standard Notification Center behavior, which is to receive the notification for any object.
+    ///
+    ///
+    /// Notification will be posted whenever authentication status changes.
     pub static GKPlayerAuthenticationDidChangeNotificationName: &'static NSNotificationName;
 }
 
@@ -310,22 +331,40 @@ impl GKLocalPlayer {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus?language=objc)
+/// Constants that indicate if the local player grants access to their friends list.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKFriendsAuthorizationStatus(pub NSInteger);
 impl GKFriendsAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/notdetermined?language=objc)
+    /// The player hasn’t choosen whether your game may access their friends list.
     #[doc(alias = "GKFriendsAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/restricted?language=objc)
+    /// Access to the player’s list of friends restricted.
+    ///
+    /// ## Discussion
+    ///
+    /// While GameKit restricts access to a player’s friends’ data, the player can’t change the authorization status. If you previously loaded the player’s friends, delete the friends’ data from your game.
+    ///
+    ///
     #[doc(alias = "GKFriendsAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/denied?language=objc)
+    /// Access to the player’s friends’ data denied.
+    ///
+    /// ## Discussion
+    ///
+    /// The local player can deny access to the friends list by disabling friends in the Game Center settings.
+    ///
+    ///
     #[doc(alias = "GKFriendsAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendsauthorizationstatus/authorized?language=objc)
+    /// The player authorized your game to access their list of friends.
+    ///
+    /// ## Discussion
+    ///
+    /// If the [`loadFriendsAuthorizationStatus:`](https://developer.apple.com/documentation/gamekit/gklocalplayer/loadfriendsauthorizationstatus(_:)) method returns `GKFriendsAuthorizationStatus.authorized`, the [`loadFriendsWithIdentifiers:completionHandler:`](https://developer.apple.com/documentation/gamekit/gklocalplayer/loadfriends(identifiedby:completionhandler:)) method passes the friends list to the completion handler.
+    ///
+    ///
     #[doc(alias = "GKFriendsAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

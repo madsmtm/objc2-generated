@@ -8,12 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object provides a bridge between your app and the JavaScript code running in the web view. Use this object to do the following:
+    ///
+    /// - Inject JavaScript code into webpages running in your web view.
+    ///
+    /// - Install custom JavaScript functions that call through to your app’s native code.
+    ///
+    /// - Specify custom filters to prevent the webpage from loading restricted content.
+    ///
+    /// Create and configure a [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object as part of your overall web view setup. Assign the object to the [`userContentController`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller) property of your [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object before creating your web view.
+    ///
+    ///
     /// A WKUserContentController object provides a way for JavaScript to post
     /// messages to a web view.
     /// The user content controller associated with a web view is specified by its
     /// web view configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkusercontentcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

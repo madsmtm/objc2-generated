@@ -6,6 +6,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The signature for the block that executes when either axis changes values.
+///
+/// Parameters:
+/// - dpad: The directional pad element that changed.
+///
+/// - xValue: A normalized value of the x-axis ranging from `-1` to `1`.
+///
+/// - yValue: A normalized value of the y-axis ranging from `-1` to `1`.
+///
 /// Set this block if you want to be notified when the value on this axis changes.
 ///
 ///
@@ -14,17 +23,20 @@ use crate::*;
 /// Parameter `xValue`: the value the x axis was set to at the time the valueChangedHandler fired.
 ///
 /// Parameter `yValue`: the value the y axis was set to at the time the valueChangedHandler fired.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpadvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerDirectionPadValueChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 
 extern_class!(
+    /// A control element associated with a directional pad or a thumbstick.
+    ///
+    /// ## Overview
+    ///
+    /// You get the input values for this element from its subelements. You can use either the [`xAxis`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/xaxis) and [`yAxis`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/yaxis) properties to get coordinates, or the [`up`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up), [`down`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down), [`left`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left), and [`right`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right) buttons that simulate directional pad buttons.
+    ///
+    ///
     /// A direction pad is a common grouping of 2 axis inputs where the input can also be interpreted as 2 sets of mutually exclusive button pairs.
     /// Only one button in each pair, {up, down} and {left, right}, can be pressed at any one time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad?language=objc)
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]

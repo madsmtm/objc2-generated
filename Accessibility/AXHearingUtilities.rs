@@ -6,23 +6,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear?language=objc)
+/// Constants that represent a hearing device ear.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXHearingDeviceEar(pub NSUInteger);
 bitflags::bitflags! {
     impl AXHearingDeviceEar: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axhearingdeviceear/axhearingdeviceearnone?language=objc)
+/// A constant that represents neither ear.
         #[doc(alias = "AXHearingDeviceEarNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear/left?language=objc)
+/// A constant that represents the left ear.
         #[doc(alias = "AXHearingDeviceEarLeft")]
         const Left = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear/right?language=objc)
+/// A constant that represents the right ear.
         #[doc(alias = "AXHearingDeviceEarRight")]
         const Right = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear/both?language=objc)
+/// A constant that represents both ears.
         #[doc(alias = "AXHearingDeviceEarBoth")]
         const Both = AXHearingDeviceEar::Left.0|AXHearingDeviceEar::Right.0;
     }
@@ -37,16 +37,34 @@ unsafe impl RefEncode for AXHearingDeviceEar {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/streamingear()?language=objc)
+    /// Returns which ears enable streaming.
+    ///
+    /// ## Return Value
+    ///
+    /// An [`AXHearingDeviceEar`](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear) constant that represents which ears enable streaming.
+    ///
+    ///
     pub fn AXMFiHearingDeviceStreamingEar() -> AXHearingDeviceEar;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/streamingeardidchangenotification?language=objc)
+    /// A notification that the system posts when there’s a change to which ears enable streaming.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification when the value of [`AXMFiHearingDeviceStreamingEar`](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/streamingear()) changes.
+    ///
+    ///
     pub static AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/supportsbidirectionalstreaming()?language=objc)
+/// Returns a Boolean value that indicates whether the iOS device supports bidirectional streaming.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the iOS device supports bidirectional streaming; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreaming() -> bool {
     extern "C-unwind" {
@@ -55,7 +73,29 @@ pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreami
     unsafe { AXSupportsBidirectionalAXMFiHearingDeviceStreaming() }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/paireddeviceidentifiers()?language=objc)
+/// Returns the UUIDs of the hearing device peripherals.
+///
+/// ## Return Value
+///
+/// An array of [`NSUUID`](https://developer.apple.com/documentation/foundation/nsuuid) objects that represent the [`Core Bluetooth`](https://developer.apple.com/documentation/corebluetooth) UUIDs of the hearing device peripherals.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns each [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) with a manufacturer that matches the manufacturer in your app’s `hearing.aid.app` entitlement. For bimodal hearing devices, specify an array of manufacturers for this entitlement.
+///
+/// Find and connect to the matching hearing device peripherals like this:
+///
+/// ```swift
+/// let uuids = AXMFiHearingDevice.pairedDeviceIdentifiers()
+/// let peripherals = bluetoothManager.retrievePeripherals(withIdentifiers: uuids)
+/// for peripheral in peripherals where peripheral.state == .connected {
+///     bluetoothManager.connect(peripheral)
+/// }
+/// ```
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSArray<NSUUID>> {
     extern "C-unwind" {
@@ -67,6 +107,12 @@ pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSAr
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/paireduuidsdidchangenotification?language=objc)
+    /// A notification that the system posts when there’s a change to the UUIDs of the hearing device peripherals.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification when the value of [`AXMFiHearingDevicePairedUUIDs`](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/paireddeviceidentifiers()) changes.
+    ///
+    ///
     pub static AXMFiHearingDevicePairedUUIDsDidChangeNotification: &'static NSNotificationName;
 }

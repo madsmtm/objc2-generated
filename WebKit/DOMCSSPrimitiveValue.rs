@@ -7,99 +7,68 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_unknown?language=objc)
 #[deprecated]
 pub const DOM_CSS_UNKNOWN: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_number?language=objc)
 #[deprecated]
 pub const DOM_CSS_NUMBER: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_percentage?language=objc)
 #[deprecated]
 pub const DOM_CSS_PERCENTAGE: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_ems?language=objc)
 #[deprecated]
 pub const DOM_CSS_EMS: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_exs?language=objc)
 #[deprecated]
 pub const DOM_CSS_EXS: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_px?language=objc)
 #[deprecated]
 pub const DOM_CSS_PX: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_cm?language=objc)
 #[deprecated]
 pub const DOM_CSS_CM: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_mm?language=objc)
 #[deprecated]
 pub const DOM_CSS_MM: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_in?language=objc)
 #[deprecated]
 pub const DOM_CSS_IN: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_pt?language=objc)
 #[deprecated]
 pub const DOM_CSS_PT: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_pc?language=objc)
 #[deprecated]
 pub const DOM_CSS_PC: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_deg?language=objc)
 #[deprecated]
 pub const DOM_CSS_DEG: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_rad?language=objc)
 #[deprecated]
 pub const DOM_CSS_RAD: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_grad?language=objc)
 #[deprecated]
 pub const DOM_CSS_GRAD: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_ms?language=objc)
 #[deprecated]
 pub const DOM_CSS_MS: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_s?language=objc)
 #[deprecated]
 pub const DOM_CSS_S: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_hz?language=objc)
 #[deprecated]
 pub const DOM_CSS_HZ: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_khz?language=objc)
 #[deprecated]
 pub const DOM_CSS_KHZ: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_dimension?language=objc)
 #[deprecated]
 pub const DOM_CSS_DIMENSION: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_string?language=objc)
 #[deprecated]
 pub const DOM_CSS_STRING: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_uri?language=objc)
 #[deprecated]
 pub const DOM_CSS_URI: c_uint = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_ident?language=objc)
 #[deprecated]
 pub const DOM_CSS_IDENT: c_uint = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_attr?language=objc)
 #[deprecated]
 pub const DOM_CSS_ATTR: c_uint = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_counter?language=objc)
 #[deprecated]
 pub const DOM_CSS_COUNTER: c_uint = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_rect?language=objc)
 #[deprecated]
 pub const DOM_CSS_RECT: c_uint = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_rgbcolor?language=objc)
 #[deprecated]
 pub const DOM_CSS_RGBCOLOR: c_uint = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_vw?language=objc)
 #[deprecated]
 pub const DOM_CSS_VW: c_uint = 26;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_vh?language=objc)
 #[deprecated]
 pub const DOM_CSS_VH: c_uint = 27;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_vmin?language=objc)
 #[deprecated]
 pub const DOM_CSS_VMIN: c_uint = 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_vmax?language=objc)
 #[deprecated]
 pub const DOM_CSS_VMAX: c_uint = 29;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domcssprimitivevalue?language=objc)
     #[unsafe(super(DOMCSSValue, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

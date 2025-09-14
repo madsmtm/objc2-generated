@@ -8,9 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A collection of GKGraphNodes that are governed by a set of extruded GKPolygonObstacles
+    /// A navigation graph for 2D game worlds that creates a minimal network for precise pathfinding around obstacles.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkobstaclegraph?language=objc)
+    /// ## Overview
+    ///
+    /// You create an obstacle graph with a collection of [`GKObstacle`](https://developer.apple.com/documentation/gameplaykit/gkobstacle) objects. To use the graph for pathfinding, you add [`GKGraphNode2D`](https://developer.apple.com/documentation/gameplaykit/gkgraphnode2d) objects representing points of interest (such as the current position of a game character and the location it needs to find a route to). Then use methods of the superclass [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph) to find routes through the graph.
+    ///
+    /// Unlike the related [`GKMeshGraph`](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph) class, an obstacle graph creates a minimal network of graph nodes, resulting in paths that are efficient but not smooth.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A collection of GKGraphNodes that are governed by a set of extruded GKPolygonObstacles
     #[unsafe(super(GKGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]

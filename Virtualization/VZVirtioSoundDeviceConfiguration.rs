@@ -8,11 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that defines a Virtio sound device configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `VZVirtioSoundDeviceConfiguration` object to configure an audio device for your VM. After creating this object, assign appropriate values to the [`streams`](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceconfiguration/streams) array property which defines the behaviors of the underlying audio streams for this audio device.
+    ///
+    /// After creating and configuring a `VZVirtioSoundDeviceConfiguration` object, assign it to the [`audioDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/audiodevices) property of your VM’s configuration.
+    ///
+    ///
     /// Virtio Sound Device Configuration.
     ///
     /// The device exposes a source or destination of sound.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceconfiguration?language=objc)
     #[unsafe(super(VZAudioDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZAudioDeviceConfiguration")]

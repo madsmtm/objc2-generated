@@ -5,8 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// The status of an asset pack.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus?language=objc)
+/// The status of an asset pack.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -14,42 +13,47 @@ pub struct BAAssetPackStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl BAAssetPackStatus: NSUInteger {
 /// A status value that indicates that the asset pack is available to download.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusdownloadavailable?language=objc)
+/// A status value that indicates that the asset pack is available to download.
         #[doc(alias = "BAAssetPackStatusDownloadAvailable")]
         const DownloadAvailable = 1<<0;
 /// A status value that indicates that an update to the asset pack is available to download.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusupdateavailable?language=objc)
+/// A status value that indicates that an update to the asset pack is available to download.
         #[doc(alias = "BAAssetPackStatusUpdateAvailable")]
         const UpdateAvailable = 1<<1;
 /// A status value that indicates that the downloaded asset pack is up to date.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusuptodate?language=objc)
+/// A status value that indicates that the downloaded asset pack is up to date.
         #[doc(alias = "BAAssetPackStatusUpToDate")]
         const UpToDate = 1<<2;
 /// A status value that indicates that the downloaded asset pack is out of date.
 ///
-/// The presence of this status value doesn’t necessarily imply that an update to the asset pack can be downloaded over the current network connection. Check for the presence of ``BAAssetPackStatus/updateAvailable`` to determine whether an update can currently be downloaded.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusoutofdate?language=objc)
+/// The presence of this status value doesn’t necessarily imply that an update to the asset pack can be downloaded over the current network connection. Check for the presence of `BAAssetPackStatus/updateAvailable` to determine whether an update can currently be downloaded.
+///
+///
+/// A status value that indicates that the downloaded asset pack is out of date.
+///
+/// The presence of this status value doesn’t necessarily imply that an update to the asset pack can be downloaded over the current network connection. Check for the presence of ``BAAssetPackStatus/updateAvailable`` to determine whether an update can currently be downloaded.
         #[doc(alias = "BAAssetPackStatusOutOfDate")]
         const OutOfDate = 1<<3;
 /// A status value that indicates that the asset pack is no longer available to download.
 ///
+/// ## Discussion
+///
 /// Obsolete asset packs can’t be updated, and they also can’t be redownloaded once removed.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusobsolete?language=objc)
+///
+/// A status value that indicates that the asset pack is no longer available to download.
+///
+/// Obsolete asset packs can’t be updated, and they also can’t be redownloaded once removed.
         #[doc(alias = "BAAssetPackStatusObsolete")]
         const Obsolete = 1<<4;
 /// A status value that indicates that the system is currently downloading the asset pack.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusdownloading?language=objc)
+/// A status value that indicates that the system is currently downloading the asset pack.
         #[doc(alias = "BAAssetPackStatusDownloading")]
         const Downloading = 1<<5;
 /// A status value that indicates that the system finished downloading the asset pack.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackstatus/baassetpackstatusdownloaded?language=objc)
+/// A status value that indicates that the system finished downloading the asset pack.
         #[doc(alias = "BAAssetPackStatusDownloaded")]
         const Downloaded = 1<<6;
     }

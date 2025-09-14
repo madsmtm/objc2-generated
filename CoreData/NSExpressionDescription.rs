@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexpressiondescription?language=objc)
+    /// An object that describes an expression to include with a fetch request.
+    ///
+    /// ## Overview
+    ///
+    /// An expression description describes a value that a fetch request returns, which doesn’t appear as an attribute or relationship on an entity. For example, expressions can aggregate data, or  transform an attribute’s value. You add expression descriptions to a fetch request using the [`propertiesToFetch`](https://developer.apple.com/documentation/coredata/nsfetchrequest/propertiestofetch) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t add expression descriptions to the [`properties`](https://developer.apple.com/documentation/coredata/nsentitydescription/properties) array of [`NSEntityDescription`](https://developer.apple.com/documentation/coredata/nsentitydescription).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPropertyDescription")]

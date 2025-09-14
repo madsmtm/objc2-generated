@@ -7,19 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action?language=objc)
+/// The text drop action styles for text views.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropAction(pub NSUInteger);
 impl UITextDropAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action/insert?language=objc)
+    /// A text drop action style specifying that text is inserted at the provided location, without altering the surrounding text.
+    ///
+    /// ## Discussion
+    ///
+    /// The action ignores any selection present in the target text view.
+    ///
+    ///
     #[doc(alias = "UITextDropActionInsert")]
     pub const Insert: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action/replaceselection?language=objc)
+    /// A text drop action style specifying that if the target text view contains a selection, dropped text replaces it.
+    ///
+    /// ## Discussion
+    ///
+    /// If the text view does not contain a selection, dropped text is inserted at the provided location, without altering the surrounding text.
+    ///
+    ///
     #[doc(alias = "UITextDropActionReplaceSelection")]
     pub const ReplaceSelection: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/action/replaceall?language=objc)
+    /// A text drop action style specifying that the dropped text replaces all text in the target text view.
     #[doc(alias = "UITextDropActionReplaceAll")]
     pub const ReplaceAll: Self = Self(2);
 }
@@ -32,16 +44,22 @@ unsafe impl RefEncode for UITextDropAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/progressmode?language=objc)
+/// The text drop progress styles for user-visible progress indication.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropProgressMode(pub NSUInteger);
 impl UITextDropProgressMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/progressmode/system?language=objc)
+    /// A text drop progress mode indicating that the system will show the progress indicator.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this progress mode to have the system show a modal progress indicator while the dropped items are being loaded.
+    ///
+    ///
     #[doc(alias = "UITextDropProgressModeSystem")]
     pub const System: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/progressmode/custom?language=objc)
+    /// A text drop progress mode that indicates that you will provide custom progress indicator during the loading of dropped items.
     #[doc(alias = "UITextDropProgressModeCustom")]
     pub const Custom: Self = Self(1);
 }
@@ -54,16 +72,40 @@ unsafe impl RefEncode for UITextDropProgressMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/performer?language=objc)
+/// The performers that are responsible for handling the drop operation.
+///
+/// ## Overview
+///
+/// A performer is responsible for:
+///
+/// - Proving a preview for the drop activity.
+///
+/// - Loading data from the item providers.
+///
+/// - Inserting the data into the text view.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropPerformer(pub NSUInteger);
 impl UITextDropPerformer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/performer/view?language=objc)
+    /// A performer type that indicates that the text view is responsible for doing the drop operation.
+    ///
+    /// ## Discussion
+    ///
+    /// This performer is the default for a [`UITextDropProposal`](https://developer.apple.com/documentation/uikit/uitextdropproposal) object. If this performer is used, the [`textDroppableView:willPerformDrop:`](https://developer.apple.com/documentation/uikit/uitextdropdelegate/textdroppableview(_:willperformdrop:)) method is called (if implemented). However, implementing the delegate method isn’t required when using this performer.
+    ///
+    ///
     #[doc(alias = "UITextDropPerformerView")]
     pub const View: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal/performer/delegate?language=objc)
+    /// A performer type that indicates the delegate object is responsible for doing the drop operation.
+    ///
+    /// ## Discussion
+    ///
+    /// If this performer is used, the delegate must implement the [`textDroppableView:willPerformDrop:`](https://developer.apple.com/documentation/uikit/uitextdropdelegate/textdroppableview(_:willperformdrop:)) method. Otherwise, the text view handles the drop operation, which is the same behavior as specifying [`UITextDropPerformerView`](https://developer.apple.com/documentation/uikit/uitextdropproposal/performer/view) as the performer.
+    ///
+    ///
     #[doc(alias = "UITextDropPerformerDelegate")]
     pub const Delegate: Self = Self(1);
 }
@@ -77,7 +119,7 @@ unsafe impl RefEncode for UITextDropPerformer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropproposal?language=objc)
+    /// A proposed configuration for the behavior of a text drop interaction.
     #[unsafe(super(UIDropProposal, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

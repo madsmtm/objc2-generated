@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerinputstate?language=objc)
+    /// A class that represents an input state for gamepads and arcade sticks.
+    ///
+    /// ## Overview
+    ///
+    /// This class implements the [`GCDevicePhysicalInputState`](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstate) protocol for gamepads and arcade sticks. Instances of this class represent the state of the controller’s inputs at a moment in time, which can be the current time.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerInputState;
@@ -39,7 +45,15 @@ impl GCControllerInputState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput?language=objc)
+    /// The input profile for a controller.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of [`GCControllerLiveInput`](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput) represent the current input state of a controller. You can save snapshots of the input state and receive callbacks when the input state changes. You can also get the elements of the controller and their current input values from [`GCControllerLiveInput`](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput) instances.
+    ///
+    /// Use the [`capture`](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/capture()) method to save a copy of the current input state. If you want Game Controller to buffer snapshots of the input states for you, use the  [`inputStateQueueDepth`](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth) property to set the buffer’s queue depth to a value other than `0`. Then use the [`nextInputState`](https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/nextinputstate()) method to get the snapshots when you’re ready to process input.
+    ///
+    ///
     #[unsafe(super(GCControllerInputState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerLiveInput;

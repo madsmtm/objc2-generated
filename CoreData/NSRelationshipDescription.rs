@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule?language=objc)
+/// Constants that determine what happens when you delete a relationship’s owning managed object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDeleteRule(pub NSUInteger);
 impl NSDeleteRule {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/noactiondeleterule?language=objc)
+    /// A rule that prevents modification of the referenced managed objects.
+    ///
+    /// ## Discussion
+    ///
+    /// If you use this delete rule, make sure you delete any referenced managed objects or nullify their inverse relationships. Otherwise, those objects will reference an object that doesn’t exist, and your persistent store will be in an inconsistent state.
+    ///
+    ///
     #[doc(alias = "NSNoActionDeleteRule")]
     pub const NoActionDeleteRule: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/nullifydeleterule?language=objc)
+    /// A rule that nullifies the inverse relationship of the referenced managed objects.
     #[doc(alias = "NSNullifyDeleteRule")]
     pub const NullifyDeleteRule: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/cascadedeleterule?language=objc)
+    /// A rule that deletes the referenced managed objects.
     #[doc(alias = "NSCascadeDeleteRule")]
     pub const CascadeDeleteRule: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeleterule/denydeleterule?language=objc)
+    /// A rule that prevents the deletion of the owning managed object if the relationship has references to other objects.
     #[doc(alias = "NSDenyDeleteRule")]
     pub const DenyDeleteRule: Self = Self(3);
 }
@@ -36,7 +42,21 @@ unsafe impl RefEncode for NSDeleteRule {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsrelationshipdescription?language=objc)
+    /// A description of a relationship between two entities.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSRelationshipDescription`](https://developer.apple.com/documentation/coredata/nsrelationshipdescription) provides additional attributes that are specific to modeling a relationship between two entities. For the common attributes of all property types, see [`NSPropertyDescription`](https://developer.apple.com/documentation/coredata/nspropertydescription).
+    ///
+    /// For example, use this class to define a relationship’s _cardinality_ — the number of managed objects the relationship can reference.
+    ///
+    /// - For a to-one relationship, set [`maxCount`](https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount) to `1`.
+    ///
+    /// - For a to-many relationship, set [`maxCount`](https://developer.apple.com/documentation/coredata/nsrelationshipdescription/maxcount) to a number greater than `1` to impose an upper limit; otherwise, use `0` to allow an unlimited number of referenced objects.
+    ///
+    /// At runtime, you can modify a relationship description until you associate its owning managed object model with a persistent store coordinator.  If you attempt to modify the model after you associate it, Core Data throws an exception. To modify a model that’s in use, create and modify a copy and then discard any objects that belong to the original model.
+    ///
+    ///
     #[unsafe(super(NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPropertyDescription")]

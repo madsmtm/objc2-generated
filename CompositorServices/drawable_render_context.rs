@@ -22,14 +22,40 @@ unsafe impl RefEncode for cp_drawable_render_context {
         Encoding::Pointer(&Encoding::Struct("cp_drawable_render_context", &[]));
 }
 
+/// An object that can render any effects associated with a drawable This is required for applications that want to render using the Progressive Immersion Style
 /// An object that can render any effects associated with a drawable
 /// This is required for applications that want to render using the
 /// Progressive Immersion Style
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_render_context_t?language=objc)
 pub type cp_drawable_render_context_t = *mut cp_drawable_render_context;
 
 impl cp_drawable_render_context {
+    /// Store the value parameter in the stencil texture in the pixels that the compositor will display onscreen.
+    ///
+    /// Parameters:
+    /// - render_context: The render context to use to present the `LayerRenderer.Drawable`.
+    ///
+    /// - value: The value to use when updating the stencil texture in the [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In full and mixed immersion styles, [`cp_drawable_render_context_draw_mask_on_stencil_attachment`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/drawmaskonstencilattachment(commandencoder:value:)-65i67) stores the full texture. The command encoder used in the render context has the following constraints:
+    ///
+    /// - The stencil texture has the same pixel format as [`cp_layer_renderer_configuration_get_drawable_render_context_stencil_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_drawable_render_context_stencil_format).
+    ///
+    /// - The [`renderTargetArrayLength`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rendertargetarraylength) is the same as the number of views in the layer renderer drawable.
+    ///
+    /// - The [`rasterizationRateMap`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rasterizationratemap) matches the one provided by the layer renderer drawable.
+    ///
+    /// - The API doesn’t support dedicated or shared layouts.
+    ///
+    /// If the render encoder has multiple color attachments, set [`supportColorAttachmentMapping`](https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/supportcolorattachmentmapping) to `true` to avoid Metal API validation errors.
+    ///
+    /// For testing performance of this method, always test your app on-device rather than in Simulator. However, if you need to iterate on your code in development, you can disable API validation in Xcode, or separate the rendering into multiple render encoders for other color attachments.
+    ///
+    /// This function modifies the depth stencil state, viewports, vertex amplification count, and some of the texture bindings in the render command encoder passed to the function. Make sure to set those values again to those expected in your app.
+    ///
+    ///
     /// Store the `value` parameter in the stencil texture in the pixels that Compositor
     /// will display on the screen.
     ///
@@ -61,8 +87,6 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/drawmaskonstencilattachment(commandencoder:value:)-65i67?language=objc)
     #[doc(alias = "cp_drawable_render_context_draw_mask_on_stencil_attachment")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -89,6 +113,33 @@ impl cp_drawable_render_context {
 
     /// Finish encoding the render context.
     ///
+    /// Parameters:
+    /// - render_context: The render context to use to present the `LayerRenderer.Drawable`.
+    ///
+    /// - command_encoder: The command encoder to use to render the Compositor effects and present the layer renderer drawable.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `endEncoding(commandEncoder:)` passes the ownership of the command encoder to the drawable render context and calls [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) on the command encoder. The command encoder used in the render context has the following constraints:
+    ///
+    /// - The `colorAttachment[0]` contains the color texture provided by the layer renderer drawable.
+    ///
+    /// - The [`depthAttachment`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/depthattachment) contains the depth texture provided by the layer renderer drawable.
+    ///
+    /// - The [`renderTargetArrayLength`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rendertargetarraylength) is the same as the number of views in the layer renderer drawable.
+    ///
+    /// - The [`rasterizationRateMap`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rasterizationratemap) matches the one provided by the layer renderer drawable.
+    ///
+    /// - The API doesn’t support dedicated and shared layouts.
+    ///
+    /// If the render encoder has multiple color attachments, set [`supportColorAttachmentMapping`](https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/supportcolorattachmentmapping) to `true` to avoid Metal API validation errors.
+    ///
+    /// For testing performance of this method, always test your app on-device rather than in Simulator. However, if you need to iterate on your code in development, you can disable API validation in Xcode, or separate the rendering into multiple render encoders for other color attachments.
+    ///
+    ///
+    /// Finish encoding the render context.
+    ///
     /// - Parameters:
     /// - render_context: The render context to use to present the drawable.
     /// - command_encoder: The command encoder to use to render the Compositor effects
@@ -115,8 +166,6 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/endencoding(commandencoder:)-4hx0m?language=objc)
     #[doc(alias = "cp_drawable_render_context_end_encoding")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -133,6 +182,33 @@ impl cp_drawable_render_context {
         unsafe { cp_drawable_render_context_end_encoding(render_context, command_encoder) }
     }
 
+    /// Store the value parameter in the stencil texture in the pixels that the Compositor displays onscreen.
+    ///
+    /// Parameters:
+    /// - render_context: The render context to use to present the `LayerRenderer.Drawable`.
+    ///
+    /// - value: The value to use when updating the stencil texture in the [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In full and mixed immersion styles, [`cp_drawable_render_context_draw_mask_on_stencil_attachment`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/drawmaskonstencilattachment(commandencoder:value:)-65i67) stores the full texture. The command encoder used in the render context has the following constraints:
+    ///
+    /// - The stencil texture has the same pixel format as [`cp_layer_renderer_configuration_get_drawable_render_context_stencil_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_drawable_render_context_stencil_format).
+    ///
+    /// - The [`renderTargetArrayLength`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rendertargetarraylength) is the same as the number of views in the layer renderer drawable.
+    ///
+    /// - The [`rasterizationRateMap`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rasterizationratemap) matches the one provided by the layer renderer drawable.
+    ///
+    /// - The API doesn’t support dedicated or shared layouts.
+    ///
+    /// If the render encoder has multiple color attachments, set [`supportColorAttachmentMapping`](https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/supportcolorattachmentmapping) to `true` to avoid Metal API validation errors.
+    ///
+    /// For testing performance of this method, always test your app on-device rather than in Simulator. However, if you need to iterate on your code in development, you can disable API validation in Xcode, or separate the rendering into multiple render encoders for other color attachments.
+    ///
+    /// This function modifies the depth stencil state, viewports, vertex amplification count, and some of the texture bindings in the render command encoder passed to the function. Make sure to set those values again to those expected in your app.
+    ///
+    ///
     /// Store the `value` parameter in the stencil texture in the pixels that Compositor
     /// will display on the screen.
     ///
@@ -164,8 +240,6 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/drawmaskonstencilattachment(commandencoder:value:)-7npim?language=objc)
     #[doc(alias = "cp_drawable_render_context_mtl4_draw_mask_on_stencil_attachment")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -190,6 +264,31 @@ impl cp_drawable_render_context {
         }
     }
 
+    /// Finish encoding the render context.
+    ///
+    /// Parameters:
+    /// - render_context: The render context to use to present the `LayerRenderer.Drawable`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `endEncoding(commandEncoder:)` passes the ownership of the command encoder to the drawable render context and calls [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) on the command encoder. The command encoder used in the render context has the following constraints:
+    ///
+    /// - The `colorAttachment[0]` contains the color texture provided by the layer renderer drawable.
+    ///
+    /// - The [`depthAttachment`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/depthattachment) contains the depth texture provided by the layer renderer drawable.
+    ///
+    /// - The [`renderTargetArrayLength`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rendertargetarraylength) is the same as the number of views in the layer renderer drawable.
+    ///
+    /// - The [`rasterizationRateMap`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rasterizationratemap) matches the one provided by the layer renderer drawable.
+    ///
+    /// - The API doesn’t support dedicated and shared layouts.
+    ///
+    /// If the render encoder has multiple color attachments, set [`supportColorAttachmentMapping`](https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/supportcolorattachmentmapping) to `true` to avoid Metal API validation errors.
+    ///
+    /// For testing performance of this method, always test your app on-device rather than in Simulator. However, if you need to iterate on your code in development, you can disable API validation in Xcode, or separate the rendering into multiple render encoders for other color attachments.
+    ///
+    ///
     /// Finish encoding the render context.
     ///
     /// - Parameters:
@@ -218,8 +317,6 @@ impl cp_drawable_render_context {
     /// # Safety
     ///
     /// `render_context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext/endencoding(commandencoder:)-2l6lk?language=objc)
     #[doc(alias = "cp_drawable_render_context_mtl4_end_encoding")]
     #[cfg(feature = "objc2-metal")]
     #[inline]

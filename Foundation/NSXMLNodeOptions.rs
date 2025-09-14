@@ -4,95 +4,182 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options?language=objc)
+/// These constants are input and output options for all `NSXMLNode` objects (unless otherwise indicated), including [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) objects. You can specify these options in the `NSXMLNode` methods [`initWithKind:options:`](https://developer.apple.com/documentation/foundation/xmlnode/init(kind:options:)) and [`XMLStringWithOptions:`](https://developer.apple.com/documentation/foundation/xmlnode/xmlstring(options:)).
+///
+/// ## Overview
+///
+/// The options with “Preserve” in their names are applicable only when external sources of XML are parsed; they have no effect on node objects that are programmatically created. Other options are used in initialization and output methods of `NSXMLDocument`; see the [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) reference documentation for details.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLNodeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSXMLNodeOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlnodeoptions/nsxmlnodeoptionsnone?language=objc)
+/// No options are requested for this input or output action.
         #[doc(alias = "NSXMLNodeOptionsNone")]
         const NodeOptionsNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeiscdata?language=objc)
+/// Specifies that a text node contains and is written out as a CDATA section.
         #[doc(alias = "NSXMLNodeIsCDATA")]
         const NodeIsCDATA = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeexpandemptyelement?language=objc)
+/// Requests that an element should be expanded when empty; for example, `<flag></flag>`. This is the default.
         #[doc(alias = "NSXMLNodeExpandEmptyElement")]
         const NodeExpandEmptyElement = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodecompactemptyelement?language=objc)
+/// Requests that an element should be contracted when empty; for example, `<flag/>`.
         #[doc(alias = "NSXMLNodeCompactEmptyElement")]
         const NodeCompactEmptyElement = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeusesinglequotes?language=objc)
+/// Requests that NSXML use single quotes for the value of an attribute or namespace node.
         #[doc(alias = "NSXMLNodeUseSingleQuotes")]
         const NodeUseSingleQuotes = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeusedoublequotes?language=objc)
+/// Requests that NSXML use double quotes for the value of an attribute or namespace node. This is the default.
         #[doc(alias = "NSXMLNodeUseDoubleQuotes")]
         const NodeUseDoubleQuotes = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeneverescapecontents?language=objc)
+///
+/// ## Discussion
+///
+/// Requests that NSXML does not escape the reserved characters `<` and `&` in text nodes.
+///
+///
         #[doc(alias = "NSXMLNodeNeverEscapeContents")]
         const NodeNeverEscapeContents = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/documenttidyhtml?language=objc)
+/// Formats HTML into valid XHTML during processing of the document.
+///
+/// ## Discussion
+///
+/// When tidying, `NSXMLDocument` adds a line break before the close tag of a block-level element (`<p>`, `<div>`, `<h1>`, and so on); it also makes the string value of `<br>` or `<hr>` a line break. These operations make the string value of the HTML `<body>` more readable. After using this option, avoid outputting the document as anything other than the default kind, `NSXMLDocumentXHTMLKind`.
+///
+/// (Input)
+///
+///
         #[doc(alias = "NSXMLDocumentTidyHTML")]
         const DocumentTidyHTML = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/documenttidyxml?language=objc)
+/// Changes malformed XML into valid XML during processing of the document.
+///
+/// ## Discussion
+///
+/// It also eliminates “pretty-printing” formatting, such as leading tab characters. It does respect the `xml:space="preserve"` attribute.
+///
+/// (Input)
+///
+///
         #[doc(alias = "NSXMLDocumentTidyXML")]
         const DocumentTidyXML = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/documentvalidate?language=objc)
+/// Validates this document against its DTD (internal or external) or XML Schema.
+///
+/// ## Discussion
+///
+/// (Input)
+///
+///
         #[doc(alias = "NSXMLDocumentValidate")]
         const DocumentValidate = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesalways?language=objc)
+/// Requests that external entities are always loaded.
+///
+/// ## Discussion
+///
+/// Requests that external entities are always loaded. You may choose only one of [`NSXMLNodeLoadExternalEntitiesAlways`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesalways), [`NSXMLNodeLoadExternalEntitiesSameOriginOnly`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiessameoriginonly), or [`NSXMLNodeLoadExternalEntitiesNever`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesnever) or none.
+///
+/// Choosing none results in the system-default behavior. For applications linked on OS X v10.6 and earlier, this is `NSXMLNodeLoadExternalEntitiesAlways`. For applications linked on macOS 10.7 or later, all entities that don’t require network access are loaded.
+///
+/// If an external entity fails to load, the document is invalid and the parse is aborted with an error.
+///
+///
         #[doc(alias = "NSXMLNodeLoadExternalEntitiesAlways")]
         const NodeLoadExternalEntitiesAlways = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiessameoriginonly?language=objc)
+/// Requests that external entities are always loaded and only applies when a URL has been provided.
+///
+/// ## Discussion
+///
+/// It loads entities with target URLs that match the host, scheme, and port of the document URL.You may choose  only one of [`NSXMLNodeLoadExternalEntitiesAlways`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesalways), [`NSXMLNodeLoadExternalEntitiesSameOriginOnly`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiessameoriginonly), or [`NSXMLNodeLoadExternalEntitiesNever`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesnever) or none.
+///
+/// Choosing none results in the system-default behavior. For applications linked on OS X v10.6 and earlier, this is `NSXMLNodeLoadExternalEntitiesAlways`. For applications linked on macOS 10.7 or later, all entities that don’t require network access are loaded.
+///
+/// If an external entity fails to load, the document is invalid and the parse is aborted with an error.
+///
+///
         #[doc(alias = "NSXMLNodeLoadExternalEntitiesSameOriginOnly")]
         const NodeLoadExternalEntitiesSameOriginOnly = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesnever?language=objc)
+/// Requests that external entities are never loaded.
+///
+/// ## Discussion
+///
+/// You may choose only one of [`NSXMLNodeLoadExternalEntitiesAlways`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesalways), [`NSXMLNodeLoadExternalEntitiesSameOriginOnly`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiessameoriginonly), or [`NSXMLNodeLoadExternalEntitiesNever`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesnever) or none.
+///
+/// Requests that external entities are never loaded. You may choose only one of [`NSXMLNodeLoadExternalEntitiesAlways`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesalways), [`NSXMLNodeLoadExternalEntitiesSameOriginOnly`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiessameoriginonly), or [`NSXMLNodeLoadExternalEntitiesNever`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesnever) or none.
+///
+/// Choosing none results in the system-default behavior. For applications linked on OS X v10.6 and earlier, this is [`NSXMLNodeLoadExternalEntitiesAlways`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeloadexternalentitiesalways). For applications linked on macOS 10.7 or later, all entities that don’t require network access are loaded.
+///
+///
         #[doc(alias = "NSXMLNodeLoadExternalEntitiesNever")]
         const NodeLoadExternalEntitiesNever = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/documentxinclude?language=objc)
+/// Replaces all XInclude nodes in the document with the nodes referred to.
+///
+/// ## Discussion
+///
+/// XInclude allows clients to include parts of another XML document within a document.
+///
+/// (Input)
+///
+///
         #[doc(alias = "NSXMLDocumentXInclude")]
         const DocumentXInclude = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodeprettyprint?language=objc)
+/// Print this node with extra space for readability. (Output)
         #[doc(alias = "NSXMLNodePrettyPrint")]
         const NodePrettyPrint = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/documentincludecontenttypedeclaration?language=objc)
+/// Includes a content type declaration for HTML or XHTML in the output of the document.
+///
+/// ## Discussion
+///
+/// (Output)
+///
+///
         #[doc(alias = "NSXMLDocumentIncludeContentTypeDeclaration")]
         const DocumentIncludeContentTypeDeclaration = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservenamespaceorder?language=objc)
+/// Requests NSXML to preserve the order of namespace URI definitions as in the source XML.
         #[doc(alias = "NSXMLNodePreserveNamespaceOrder")]
         const NodePreserveNamespaceOrder = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreserveattributeorder?language=objc)
+/// Requests that NSXMLNode preserve the order of attributes as in the source XML.
         #[doc(alias = "NSXMLNodePreserveAttributeOrder")]
         const NodePreserveAttributeOrder = 1<<21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreserveentities?language=objc)
+/// Specifies that entities (`&`_xyz_`;`) should not be resolved for XML output of this node.
         #[doc(alias = "NSXMLNodePreserveEntities")]
         const NodePreserveEntities = 1<<22;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreserveprefixes?language=objc)
+/// Requests NSXMLNode not to choose prefixes based on the closest namespace URI definition.
         #[doc(alias = "NSXMLNodePreservePrefixes")]
         const NodePreservePrefixes = 1<<23;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservecdata?language=objc)
+/// Requests that NSXMLNode preserve CDATA blocks where defined in the input XML.
         #[doc(alias = "NSXMLNodePreserveCDATA")]
         const NodePreserveCDATA = 1<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservewhitespace?language=objc)
+/// Requests NSXMLNode to preserve whitespace characters (such as tabs and carriage returns) in the XML source that are not part of node content.
         #[doc(alias = "NSXMLNodePreserveWhitespace")]
         const NodePreserveWhitespace = 1<<25;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservedtd?language=objc)
+/// Specifies that declarations in a DTD should be preserved until it the DTD is modified. For example, parameter entities are by default expanded; with this option, they are written out as they originally occur in the DTD.
         #[doc(alias = "NSXMLNodePreserveDTD")]
         const NodePreserveDTD = 1<<26;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservecharacterreferences?language=objc)
+/// Specifies that character references (`&#`_nnn_`;`) should not be resolved for XML output of this node.
         #[doc(alias = "NSXMLNodePreserveCharacterReferences")]
         const NodePreserveCharacterReferences = 1<<27;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepromotesignificantwhitespace?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that significant whitespace should be represented by text nodes. If [`NSXMLNodePreserveWhitespace`](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservewhitespace) is also specified, this option has no effect.
+///
+///
         #[doc(alias = "NSXMLNodePromoteSignificantWhitespace")]
         const NodePromoteSignificantWhitespace = 1<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreserveemptyelements?language=objc)
+/// Specifies that empty elements in the input XML be preserved in their contracted or expanded form.
         #[doc(alias = "NSXMLNodePreserveEmptyElements")]
         const NodePreserveEmptyElements = NSXMLNodeOptions::NodeExpandEmptyElement.0|NSXMLNodeOptions::NodeCompactEmptyElement.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreservequotes?language=objc)
+/// Specifies that the quoting style used in the input XML (single or double quotes) be preserved.
         #[doc(alias = "NSXMLNodePreserveQuotes")]
         const NodePreserveQuotes = NSXMLNodeOptions::NodeUseSingleQuotes.0|NSXMLNodeOptions::NodeUseDoubleQuotes.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/options/nodepreserveall?language=objc)
+///
+/// ## Discussion
+///
+/// Turns on all preservation options: attribute and namespace order, entities, prefixes, CDATA, whitespace, quotes, and empty elements. You should try to turn on preservation options selectively because turning on all preservation options significantly affects performance.
+///
+///
         #[doc(alias = "NSXMLNodePreserveAll")]
         const NodePreserveAll = NSXMLNodeOptions::NodePreserveNamespaceOrder.0|NSXMLNodeOptions::NodePreserveAttributeOrder.0|NSXMLNodeOptions::NodePreserveEntities.0|NSXMLNodeOptions::NodePreservePrefixes.0|NSXMLNodeOptions::NodePreserveCDATA.0|NSXMLNodeOptions::NodePreserveEmptyElements.0|NSXMLNodeOptions::NodePreserveQuotes.0|NSXMLNodeOptions::NodePreserveWhitespace.0|NSXMLNodeOptions::NodePreserveDTD.0|NSXMLNodeOptions::NodePreserveCharacterReferences.0|0xFFF00000;
     }

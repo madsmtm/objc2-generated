@@ -10,6 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that implements the Quick Look preview panel to display a preview of a list of items.
+    ///
+    /// ## Overview
+    ///
+    /// Every application has a single shared instance of [`QLPreviewPanel`](https://developer.apple.com/documentation/quicklookui/qlpreviewpanel) accessible through [`sharedPreviewPanel`](https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/shared()). The preview panel follows the responder chain and adapts to the first responder willing to control it. A preview panel controller provides the content through methods defined in the [`QLPreviewPanelDataSource`](https://developer.apple.com/documentation/quicklookui/qlpreviewpaneldatasource) protocol.
+    ///
+    /// You can’t subclass [`QLPreviewPanel`](https://developer.apple.com/documentation/quicklookui/qlpreviewpanel); you can, however, customize its behavior using a [`delegate`](https://developer.apple.com/documentation/quicklookui/qlpreviewpanel/delegate). See the [`QLPreviewPanelDelegate`](https://developer.apple.com/documentation/quicklookui/qlpreviewpaneldelegate) protocol for the methods to customize a preview panel’s behavior.
+    ///
+    ///
     /// A class that implements the Quick Look preview panel to display a preview of
     /// a list of items.
     ///
@@ -24,8 +33,6 @@ extern_class!(
     /// customize its behavior using a ``QuickLookUI/QLPreviewPanel/delegate``. See
     /// the ``QuickLookUI/QLPreviewPanelDelegate`` protocol for the methods to
     /// customize a preview panel’s behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewpanel?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -409,10 +416,9 @@ impl private_NSObjectQLPreviewPanelController::Sealed for NSObject {}
 unsafe impl NSObjectQLPreviewPanelController for NSObject {}
 
 extern_protocol!(
+    /// A protocol that the Quick Look preview panel uses to access the contents of its data source object.
     /// A protocol that the Quick Look preview panel uses to access the contents of
     /// its data source object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewpaneldatasource?language=objc)
     pub unsafe trait QLPreviewPanelDataSource {
         #[cfg(feature = "objc2-app-kit")]
         /// Returns the number of items that the preview panel should preview.
@@ -458,10 +464,15 @@ extern_protocol!(
 extern_protocol!(
     /// A protocol for the delegate of the Quick Look preview panel.
     ///
+    /// ## Overview
+    ///
+    /// You can implement these methods to perform custom tasks in response to events in the preview panel.
+    ///
+    ///
+    /// A protocol for the delegate of the Quick Look preview panel.
+    ///
     /// You can implement these methods to perform custom tasks in response to
     /// events in the preview panel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewpaneldelegate?language=objc)
     #[cfg(feature = "objc2-app-kit")]
     pub unsafe trait QLPreviewPanelDelegate: NSWindowDelegate {
         /// Handles an event that the preview panel receives, but doesn’t handle.

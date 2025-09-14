@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that outputs a probability distribution as attention weights.
     /// A softmax layer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

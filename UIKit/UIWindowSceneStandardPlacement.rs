@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A placement that indicates the system should present the window using the default style of the system in the space.
     /// The default placement scene placement provided by the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenestandardplacement-c.class?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]

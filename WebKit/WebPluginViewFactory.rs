@@ -9,50 +9,51 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The base URL of the document containing the plug-in’s view. _Required key_.
     /// the plug-in's view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginbaseurlkey?language=objc)
     #[deprecated]
     pub static WebPlugInBaseURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The `NSDictionary` object containing all names and values of all attributes of the plug-in’s associated HTML element, as well as all names and values of the parameters to be passed to the plug-in. For example, this dictionary will contain all `PARAM` elements within an `APPLET` element. If attribute and parameter names conflict, the attributes of an element take precedence over any of its parameters. All keys and values in this dictionary must be of type `NSString`. _Required key_.
     /// and values of all attributes of the HTML element associated with the plug-in AND
     /// the names and values of all parameters to be passed to the plug-in (e.g. PARAM
     /// elements within an APPLET element). In the case of a conflict between names,
     /// the attributes of an element take precedence over any PARAMs.  All of the keys
     /// and values in this NSDictionary must be NSStrings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginattributeskey?language=objc)
     #[deprecated]
     pub static WebPlugInAttributesKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// An object that conforms to the `WebPlugInContainer` informal protocol. This object is used for callbacks from the plug-in to the enclosing application. If `WebPlugInContainerKey` is `nil`, no callbacks will occur.
     /// WebPlugInContainer informal protocol. This object is used for
     /// callbacks from the plug-in to the app. if this argument is nil, no callbacks will
     /// occur.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainerkey?language=objc)
     #[deprecated]
     pub static WebPlugInContainerKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// If an element of the page’s Document Object Model was used to specify the plug-in, this will contain that element. Otherwise, it will be `nil`.
     /// the plug-in.  May be nil.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webplugincontainingelementkey?language=objc)
     #[deprecated]
     pub static WebPlugInContainingElementKey: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether the plug-in should load its own main resource (the `src` URL, in most cases).
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), the plug-in should load its own main resource. If [`false`](https://developer.apple.com/documentation/swift/false), the plug-in uses the data provided by WebKit and the `webPlugInMainResourceDidReceiveData:` message is sent to the plug-in when data is received. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// own main resource (the "src" URL, in most cases). If YES, the plug-in should load its own main resource. If NO, the
     /// plug-in should use the data provided by WebKit. See -webPlugInMainResourceReceivedData: in WebPluginPrivate.h.
     /// For compatibility with older versions of WebKit, the plug-in should assume that the value for
     /// WebPlugInShouldLoadMainResourceKey is NO if it is absent from the arguments dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginshouldloadmainresourcekey?language=objc)
     #[deprecated]
     pub static WebPlugInShouldLoadMainResourceKey: Option<&'static NSString>;
 }
@@ -60,8 +61,6 @@ extern "C" {
 extern_protocol!(
     /// WebPlugInViewFactory are used to create the NSView for a plug-in.
     /// The principal class of the plug-in bundle must implement this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpluginviewfactory?language=objc)
     #[deprecated]
     pub unsafe trait WebPlugInViewFactory: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]

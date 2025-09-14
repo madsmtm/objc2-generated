@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A set of numbers used to specify conditions for characteristic range threshold events.
     /// This class describes a range of numbers: [min, max]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmnumberrange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMNumberRange;

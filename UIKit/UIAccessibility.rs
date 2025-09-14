@@ -9,7 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-9ziiu?language=objc)
+/// Converts the specified rectangle from view coordinates to screen coordinates.
+///
+/// Parameters:
+/// - rect: A rectangle specified in the coordinate system of the specified `view`.
+///
+/// - view: The view that contains the specified rectangle. This parameter must not be `nil`.
+///
+///
+/// ## Return Value
+///
+/// The rectangle in screen coordinates.
+///
+///
+///
+/// ## Discussion
+///
+/// Use this function to convert accessibility frame rectangles to screen coordinates.
+///
+///
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIView",
@@ -26,7 +44,25 @@ pub extern "C-unwind" fn UIAccessibilityConvertFrameToScreenCoordinates(
     unsafe { UIAccessibilityConvertFrameToScreenCoordinates(rect, view) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-6dx4a?language=objc)
+/// Converts the specified path object to screen coordinates and returns a new path object with the results.
+///
+/// Parameters:
+/// - path: The path object that you want to convert. The coordinate values used to create this path object should be relative to the coordinate system of the specified `view`. This parameter must not be `nil`.
+///
+/// - view: The view whose coordinate system was used to define the path. This parameter must not be `nil`.
+///
+///
+/// ## Return Value
+///
+/// A new path object that has the same shape as `path` but whose points are specified in screen coordinates.
+///
+///
+///
+/// ## Discussion
+///
+/// This function adjusts the points of the path you provide to values that the accessibility system can use. You can use it to convert path objects in use by your app’s user interface before handing them to the accessibility system.
+///
+///
 #[cfg(all(feature = "UIBezierPath", feature = "UIResponder", feature = "UIView"))]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
@@ -44,76 +80,59 @@ pub extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axboolreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXBoolReturnBlock = *mut block2::DynBlock<dyn Fn() -> Bool>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXStringReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXStringArrayReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSArray<NSString>>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXAttributedStringReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSAttributedString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXAttributedStringArrayReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> *mut NSArray<NSAttributedString>>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axrectreturnblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 pub type AXRectReturnBlock = *mut block2::DynBlock<dyn Fn() -> CGRect>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpathreturnblock?language=objc)
 #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
 pub type AXPathReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut UIBezierPath>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpointreturnblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 pub type AXPointReturnBlock = *mut block2::DynBlock<dyn Fn() -> CGPoint>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axobjectreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXObjectReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut AnyObject>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXArrayReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSArray>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axvoidreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXVoidReturnBlock = *mut block2::DynBlock<dyn Fn()>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtraitsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXTraitsReturnBlock = *mut block2::DynBlock<dyn Fn() -> UIAccessibilityTraits>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axnavigationstylereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXNavigationStyleReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> UIAccessibilityNavigationStyle>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcontainertypereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXContainerTypeReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> UIAccessibilityContainerType>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtextualcontextreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXTextualContextReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> *mut UIAccessibilityTextualContext>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomactionsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
 pub type AXCustomActionsReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axuitextinputreturnblock?language=objc)
 #[cfg(all(
     feature = "UITextInput",
     feature = "UITextInputTraits",
@@ -1203,7 +1222,13 @@ pub unsafe trait NSObjectUIAccessibility:
 impl private_NSObjectUIAccessibility::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibility for NSObject {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/focusedelement(using:)?language=objc)
+/// Returns the accessibility element that’s currently in focus by the specified assistive app.
+///
+/// ## Return Value
+///
+/// The element that is currently focused by the specified assistive technology or the element that was most recently focused, if no technology is specified.
+///
+///
 #[cfg(feature = "UIAccessibilityConstants")]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityFocusedElement(
@@ -1253,28 +1278,28 @@ pub unsafe trait NSObjectUIAccessibilityFocus:
 impl private_NSObjectUIAccessibilityFocus::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityFocus for NSObject {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection?language=objc)
+/// The direction of a scrolling action.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIAccessibilityScrollDirection(pub NSInteger);
 impl UIAccessibilityScrollDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/right?language=objc)
+    /// The user is scrolling to the right.
     #[doc(alias = "UIAccessibilityScrollDirectionRight")]
     pub const Right: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/left?language=objc)
+    /// The user is scrolling to the left.
     #[doc(alias = "UIAccessibilityScrollDirectionLeft")]
     pub const Left: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/up?language=objc)
+    /// The user is scrolling up.
     #[doc(alias = "UIAccessibilityScrollDirectionUp")]
     pub const Up: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/down?language=objc)
+    /// The user is scrolling down.
     #[doc(alias = "UIAccessibilityScrollDirectionDown")]
     pub const Down: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/next?language=objc)
+    /// The user is scrolling to the next view in an ordered set of views.
     #[doc(alias = "UIAccessibilityScrollDirectionNext")]
     pub const Next: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/previous?language=objc)
+    /// The user is scrolling to the previous view in an ordered set of views.
     #[doc(alias = "UIAccessibilityScrollDirectionPrevious")]
     pub const Previous: Self = Self(6);
 }
@@ -1359,7 +1384,13 @@ impl private_NSObjectUIAccessibilityAction::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityAction for NSObject {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreadingcontent?language=objc)
+    /// Methods to implement for an object that represents content that users read, such as a book or an article.
+    ///
+    /// ## Overview
+    ///
+    /// To give VoiceOver users a superior, continuous reading experience, you can implement this protocol on an element that represents readable content, characterize it with the [`UIAccessibilityTraitCausesPageTurn`](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/causespageturn) trait, and use the [`UIAccessibilityScrollDirectionNext`](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/next) and [`UIAccessibilityScrollDirectionPrevious`](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/previous) constants to enable page turning.
+    ///
+    ///
     pub unsafe trait UIAccessibilityReadingContent: MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(accessibilityLineNumberForPoint:))]
@@ -1652,7 +1683,19 @@ impl private_NSObjectUIAccessibilityTextOperations::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityTextOperations for NSObject {}
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)?language=objc)
+    /// Posts a notification to assistive apps.
+    ///
+    /// Parameters:
+    /// - notification: The notification to post (see “Notifications” in [UIAccessibility](https://developer.apple.com/documentation/uikit/uiaccessibility-protocol) for a list of notifications).
+    ///
+    /// - argument: The argument specified by the notification. Pass `nil` unless a notification specifies otherwise.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application might need to post accessibility notifications if you have user interface components that change very frequently or that appear and disappear.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1664,7 +1707,13 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isvoiceoverrunning?language=objc)
+/// A Boolean value that indicates whether VoiceOver is in an enabled state.
+///
+/// ## Discussion
+///
+/// You can use this function to customize your app’s UI specifically for VoiceOver users. For example, you might want UI elements that usually disappear quickly to persist onscreen for VoiceOver users. Note that you can also listen for the [`UIAccessibilityVoiceOverStatusDidChangeNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/voiceoverstatusdidchangenotification) notification to determine when VoiceOver starts and stops.
+///
+///
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsVoiceOverRunning() -> bool {
     extern "C-unwind" {
@@ -1674,17 +1723,35 @@ pub extern "C-unwind" fn UIAccessibilityIsVoiceOverRunning() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvoiceoverstatuschanged?language=objc)
+    /// A notification that UIKit posts when VoiceOver starts or stops.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter.
+    ///
+    /// Use this notification to customize your application’s user interface (UI) for VoiceOver users. For example, if you display a UI element that briefly overlays other parts of your UI, you can make the display persistent for VoiceOver users, but allow it to disappear as designed for users who are not using VoiceOver. You can also use the [`UIAccessibilityIsVoiceOverRunning`](https://developer.apple.com/documentation/uikit/uiaccessibility/isvoiceoverrunning) function to determine whether VoiceOver is currently running.
+    ///
+    /// Observe this notification using the default notification center.
+    ///
+    ///
     #[deprecated]
     pub static UIAccessibilityVoiceOverStatusChanged: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/voiceoverstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when VoiceOver starts or stops.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to customize your app’s UI for VoiceOver users. For example, if you display a UI element that briefly overlays other parts of your UI, you can make the display persistent for VoiceOver users, but allow it to not appear for users who aren’t using VoiceOver. You can also use the [`UIAccessibilityIsVoiceOverRunning`](https://developer.apple.com/documentation/uikit/uiaccessibility/isvoiceoverrunning) function to determine whether VoiceOver is currently running.
+    ///
+    /// Observe this notification using the default notification center. This notification doesn’t include a parameter.
+    ///
+    ///
     pub static UIAccessibilityVoiceOverStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/ismonoaudioenabled?language=objc)
+/// A Boolean value that indicates whether the Mono Audio setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsMonoAudioEnabled() -> bool {
     extern "C-unwind" {
@@ -1694,11 +1761,17 @@ pub extern "C-unwind" fn UIAccessibilityIsMonoAudioEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/monoaudiostatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when system audio changes from stereo to mono.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityMonoAudioStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isclosedcaptioningenabled?language=objc)
+/// A Boolean value that indicates whether the Closed Captions + SDH setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
     extern "C-unwind" {
@@ -1708,12 +1781,18 @@ pub extern "C-unwind" fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/closedcaptioningstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the setting for Closed Captions + SDH changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityClosedCaptioningStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isinvertcolorsenabled?language=objc)
+/// A Boolean value that indicates whether the Classic Invert setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsInvertColorsEnabled() -> bool {
     extern "C-unwind" {
@@ -1723,11 +1802,19 @@ pub extern "C-unwind" fn UIAccessibilityIsInvertColorsEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/invertcolorsstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the settings for inverted colors change.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    /// Use the [`UIAccessibilityIsInvertColorsEnabled`](https://developer.apple.com/documentation/uikit/uiaccessibility/isinvertcolorsenabled) function to determine whether the settings for inverted colors are in an enabled state.
+    ///
+    ///
     pub static UIAccessibilityInvertColorsStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isguidedaccessenabled?language=objc)
+/// A Boolean value that indicates whether the Guided Access setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
     extern "C-unwind" {
@@ -1737,11 +1824,19 @@ pub extern "C-unwind" fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessstatusdidchangenotification?language=objc)
+    /// A notification that indicates when a Guided Access session starts or ends.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    /// Use the [`UIAccessibilityIsGuidedAccessEnabled`](https://developer.apple.com/documentation/uikit/uiaccessibility/isguidedaccessenabled) function to determine whether a Guided Access session is currently active.
+    ///
+    ///
     pub static UIAccessibilityGuidedAccessStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isboldtextenabled?language=objc)
+/// A Boolean value that indicates whether the Bold Text setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsBoldTextEnabled() -> bool {
     extern "C-unwind" {
@@ -1751,11 +1846,29 @@ pub extern "C-unwind" fn UIAccessibilityIsBoldTextEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/boldtextstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Bold Text setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/buttonshapesenabled?language=objc)
+/// A Boolean value that indicates whether the Button Shapes setting is in an enabled state.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Related Sessions from WWDC20
+///  Session 10020: [Make Your App Visually Accessible](https://developer.apple.com/wwdc20/10020)
+///
+///
+///
+/// </div>
+///
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
@@ -1766,13 +1879,25 @@ pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/buttonshapesenabledstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Button Shapes setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC20
+    ///  Session 10020: [Make Your App Visually Accessible](https://developer.apple.com/wwdc20/10020)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[deprecated]
     pub static UIAccessibilityButtonShapesEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isgrayscaleenabled?language=objc)
+/// A Boolean value that indicates whether the Color Filters and the Grayscale settings are in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsGrayscaleEnabled() -> bool {
     extern "C-unwind" {
@@ -1782,11 +1907,17 @@ pub extern "C-unwind" fn UIAccessibilityIsGrayscaleEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/grayscalestatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Grayscale setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityGrayscaleStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isreducetransparencyenabled?language=objc)
+/// A Boolean value that indicates whether the Reduce Transparency setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
     extern "C-unwind" {
@@ -1796,12 +1927,18 @@ pub extern "C-unwind" fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/reducetransparencystatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Reduce Transparency setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityReduceTransparencyStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isreducemotionenabled?language=objc)
+/// A Boolean value that indicates whether the Reduce Motion setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsReduceMotionEnabled() -> bool {
     extern "C-unwind" {
@@ -1811,11 +1948,17 @@ pub extern "C-unwind" fn UIAccessibilityIsReduceMotionEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/reducemotionstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Reduce Motion setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityReduceMotionStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/preferscrossfadetransitions?language=objc)
+/// A Boolean value that indicates whether the Reduce Motion and the Prefer Cross-Fade Transitions settings are in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
     extern "C-unwind" {
@@ -1825,12 +1968,12 @@ pub extern "C-unwind" fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/preferscrossfadetransitionsstatusdidchange?language=objc)
+    /// A notification that UIKit posts when the system’s Prefer Cross-Fade Transitions setting changes.
     pub static UIAccessibilityPrefersCrossFadeTransitionsStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isvideoautoplayenabled?language=objc)
+/// A Boolean value that indicates whether the Auto-Play Video Previews setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
     extern "C-unwind" {
@@ -1840,11 +1983,11 @@ pub extern "C-unwind" fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/videoautoplaystatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Auto-Play Video Previews setting changes.
     pub static UIAccessibilityVideoAutoplayStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isdarkersystemcolorsenabled?language=objc)
+/// A Boolean value that indicates whether the Increase Contrast setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
     extern "C-unwind" {
@@ -1854,12 +1997,18 @@ pub extern "C-unwind" fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/darkersystemcolorsstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Increase Contrast setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityDarkerSystemColorsStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isswitchcontrolrunning?language=objc)
+/// A Boolean value that indicates whether the Switch Control setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsSwitchControlRunning() -> bool {
     extern "C-unwind" {
@@ -1869,11 +2018,17 @@ pub extern "C-unwind" fn UIAccessibilityIsSwitchControlRunning() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/switchcontrolstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Switch Control setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilitySwitchControlStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isspeakselectionenabled?language=objc)
+/// A Boolean value that indicates whether the Speak Selection setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
     extern "C-unwind" {
@@ -1883,12 +2038,18 @@ pub extern "C-unwind" fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/speakselectionstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Speak Selection setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilitySpeakSelectionStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isspeakscreenenabled?language=objc)
+/// A Boolean value that indicates whether the Speak Screen setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
     extern "C-unwind" {
@@ -1898,11 +2059,17 @@ pub extern "C-unwind" fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/speakscreenstatusdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Speak Screen setting changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t include a parameter. Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilitySpeakScreenStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isshaketoundoenabled?language=objc)
+/// A Boolean value that indicates whether the Shake to Undo setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
     extern "C-unwind" {
@@ -1912,11 +2079,17 @@ pub extern "C-unwind" fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/shaketoundodidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Shake to Undo setting changes.
     pub static UIAccessibilityShakeToUndoDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isassistivetouchrunning?language=objc)
+/// A Boolean value that indicates whether AssistiveTouch is in an enabled state.
+///
+/// ## Discussion
+///
+/// The user must enable Guided Access for the correct value to return.
+///
+///
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
     extern "C-unwind" {
@@ -1926,12 +2099,18 @@ pub extern "C-unwind" fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetouchstatusdidchangenotification?language=objc)
+    /// A notification that indicates a change in the status of AssistiveTouch.
+    ///
+    /// ## Discussion
+    ///
+    /// The user must enable Guided Access for this notification to post.
+    ///
+    ///
     pub static UIAccessibilityAssistiveTouchStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/shoulddifferentiatewithoutcolor?language=objc)
+/// A Boolean value that indicates whether the Differentiate Without Color setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityShouldDifferentiateWithoutColor() -> bool {
     extern "C-unwind" {
@@ -1941,12 +2120,12 @@ pub extern "C-unwind" fn UIAccessibilityShouldDifferentiateWithoutColor() -> boo
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/differentiatewithoutcolordidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s Differentiate Without Color setting changes.
     pub static UIAccessibilityShouldDifferentiateWithoutColorDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/isonoffswitchlabelsenabled?language=objc)
+/// A Boolean value that indicates whether the On/Off Labels setting is in an enabled state.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
     extern "C-unwind" {
@@ -1956,11 +2135,27 @@ pub extern "C-unwind" fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/onoffswitchlabelsdidchangenotification?language=objc)
+    /// A notification that UIKit posts when the system’s On/Off Labels setting changes.
     pub static UIAccessibilityOnOffSwitchLabelsDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/requestguidedaccesssession(enabled:completionhandler:)?language=objc)
+/// Transitions the app to or from Single App mode asynchronously.
+///
+/// Parameters:
+/// - enable: Specify [`true`](https://developer.apple.com/documentation/swift/true) to put the device into Single App mode for this app or [`false`](https://developer.apple.com/documentation/swift/false) to exit Single App mode.
+///
+/// - completionHandler: The block that notifies your app of the success or failure of the operation. This block takes the following parameter:
+///
+/// - didSucceed: If [`true`](https://developer.apple.com/documentation/swift/true), the app transitioned to or from Single App mode successfully. If [`false`](https://developer.apple.com/documentation/swift/false), the app or device is not eligible for Single App mode or there was some other error.
+///
+///
+/// ## Discussion
+///
+/// You can use this method to lock your app into Single App mode and to release it from that mode later. For example, a test-taking app might enter this mode at the beginning of a test and exit it when the user completes the test. Entering Single App mode is supported only for devices that are supervised using Mobile Device Management (MDM), and the app itself must be enabled for this mode by MDM. You must balance each call to enter Single App mode with a call to exit that mode.
+///
+/// Because entering or exiting Single App mode might take some time, this method executes asynchronously and notifies you of the results using the `completionHandler` block.
+///
+///
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
@@ -1976,23 +2171,23 @@ pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
     unsafe { UIAccessibilityRequestGuidedAccessSession(Bool::new(enable), completion_handler) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear?language=objc)
+/// Constants that specify how a person is using a hearing device.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityHearingDeviceEar(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityHearingDeviceEar: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear/uiaccessibilityhearingdeviceearnone?language=objc)
+/// A constant that represents neither ear.
         #[doc(alias = "UIAccessibilityHearingDeviceEarNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear/left?language=objc)
+/// A constant that represents the left ear.
         #[doc(alias = "UIAccessibilityHearingDeviceEarLeft")]
         const Left = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear/right?language=objc)
+/// A constant that represents the right ear.
         #[doc(alias = "UIAccessibilityHearingDeviceEarRight")]
         const Right = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear/both?language=objc)
+/// A constant that represents both ears.
         #[doc(alias = "UIAccessibilityHearingDeviceEarBoth")]
         const Both = UIAccessibilityHearingDeviceEar::Left.0|UIAccessibilityHearingDeviceEar::Right.0;
     }
@@ -2006,7 +2201,7 @@ unsafe impl RefEncode for UIAccessibilityHearingDeviceEar {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdevicepairedear?language=objc)
+/// The current pairing status of Made for iPhone hearing devices.
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar
 {
@@ -2017,7 +2212,7 @@ pub extern "C-unwind" fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibil
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdevicepairedeardidchangenotification?language=objc)
+    /// A notification that UIKit posts when there’s a change to the currently paired hearing devices.
     pub static UIAccessibilityHearingDevicePairedEarDidChangeNotification:
         &'static NSNotificationName;
 }

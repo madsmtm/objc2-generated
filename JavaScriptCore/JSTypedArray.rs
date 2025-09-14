@@ -5,6 +5,23 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Creates a JavaScript typed array object with the specified number of elements.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - arrayType: A value that identifies the type of array to create. If `arrayType` is [`kJSTypedArrayTypeNone`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone) or [`kJSTypedArrayTypeArrayBuffer`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer), this function returns `NULL`.
+    ///
+    /// - length: The number of elements for the new typed array.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` if you don’t want to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a typed array with all elements having a value of `0`, or `NULL` if there is an error.
+    ///
+    ///
     /// Creates a JavaScript Typed Array object with the given number of elements.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -21,8 +38,6 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarray(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArray(
         ctx: JSContextRef,
@@ -33,6 +48,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript typed array object from an existing pointer.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - arrayType: A value that identifies the type of array to create. If `arrayType` is [`kJSTypedArrayTypeNone`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone) or [`kJSTypedArrayTypeArrayBuffer`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer), this function returns `NULL`.
+    ///
+    /// - bytes: A pointer to the byte buffer to use as the backing store of the typed array object.
+    ///
+    /// - byteLength: The number of bytes that `bytes` points to.
+    ///
+    /// - bytesDeallocator: The allocator to use to deallocate the external buffer when deallocating the typed array object.
+    ///
+    /// - deallocatorContext: A pointer to pass back to the deallocator.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` if you don’t want to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) typed array with a backing store that is the same as the one that `bytes` points to, or `NULL` if there is an error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the system throws an exception during this function, it always calls the `bytesDeallocator`.
+    ///
+    ///
     /// Creates a JavaScript Typed Array object from an existing pointer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -60,8 +104,6 @@ extern "C-unwind" {
     /// - `bytes_deallocator` must be implemented correctly.
     /// - `deallocator_context` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarraywithbytesnocopy(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithBytesNoCopy(
         ctx: JSContextRef,
@@ -75,6 +117,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript typed array object from an existing JavaScript array buffer object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - arrayType: A value that identifies the type of array to create. If `arrayType` is [`kJSTypedArrayTypeNone`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone) or [`kJSTypedArrayTypeArrayBuffer`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer), this function returns `NULL`.
+    ///
+    /// - buffer: An array buffer object to use as the backing store for the created JavaScript typed array object.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` if you don’t want to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a typed array, or `NULL` if there is an error. The backing store of the typed array is `buffer`.
+    ///
+    ///
     /// Creates a JavaScript Typed Array object from an existing JavaScript Array Buffer object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -92,8 +151,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `buffer` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarraywitharraybuffer(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithArrayBuffer(
         ctx: JSContextRef,
@@ -104,6 +161,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript typed array object from an existing JavaScript array buffer object with the specified offset and length.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - arrayType: A value that identifies the type of array to create. If `arrayType` is [`kJSTypedArrayTypeNone`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone) or [`kJSTypedArrayTypeArrayBuffer`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer), this function returns `NULL`.
+    ///
+    /// - buffer: An array buffer object to use as the backing store for the created JavaScript typed array object.
+    ///
+    /// - byteOffset: The byte offset for the created typed array. Align `byteOffset` with the element size of `arrayType`.
+    ///
+    /// - length: The number of elements to include in the typed array.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` if you don’t want to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a typed array, or `NULL` if there is an error. The backing store of the typed array is `buffer`.
+    ///
+    ///
     /// Creates a JavaScript Typed Array object from an existing JavaScript Array Buffer object with the given offset and length.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -125,8 +203,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `buffer` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmaketypedarraywitharraybufferandoffset(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSObjectMakeTypedArrayWithArrayBufferAndOffset(
         ctx: JSContextRef,
@@ -139,6 +215,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a temporary pointer to the backing store of a JavaScript typed array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the typed array type data pointer to obtain.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pointer that this function returns is temporary and may not remain valid across JavaScriptCore API calls.
+    ///
+    ///
     /// Returns a temporary pointer to the backing store of a JavaScript Typed Array object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -156,8 +247,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybytesptr(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayBytesPtr(
         ctx: JSContextRef,
@@ -167,6 +256,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the length of a JavaScript typed array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the typed array type data pointer to obtain.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The length of the typed array object, or `0` if the object isn’t a typed array object.
+    ///
+    ///
     /// Returns the length of a JavaScript Typed Array object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -182,8 +286,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraylength(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayLength(
         ctx: JSContextRef,
@@ -193,6 +295,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the byte length of a JavaScript typed array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the typed array type data pointer to obtain.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The byte length of the typed array object, or `0` if the object isn’t a typed array object.
+    ///
+    ///
     /// Returns the byte length of a JavaScript Typed Array object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -208,8 +325,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybytelength(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayByteLength(
         ctx: JSContextRef,
@@ -219,6 +334,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the byte offset of a JavaScript typed array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the typed array type data pointer to obtain.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The byte offset of the typed array object or `0` if the object isn’t a typed array object.
+    ///
+    ///
     /// Returns the byte offset of a JavaScript Typed Array object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -234,8 +364,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybyteoffset(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayByteOffset(
         ctx: JSContextRef,
@@ -245,6 +373,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the JavaScript array buffer object to use as the backing of a JavaScript typed array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the typed array type data pointer to obtain.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with a [`JSTypedArrayType`](https://developer.apple.com/documentation/javascriptcore/jstypedarraytype) of [`kJSTypedArrayTypeArrayBuffer`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer), or `NULL` if `object` isn’t a typed array.
+    ///
+    ///
     /// Returns the JavaScript Array Buffer object that is used as the backing of a JavaScript Typed Array object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -260,8 +403,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgettypedarraybuffer(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetTypedArrayBuffer(
         ctx: JSContextRef,
@@ -271,6 +412,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript array buffer object from an existing pointer.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - bytes: A pointer to the byte buffer to use as the backing store of the typed array object.
+    ///
+    /// - byteLength: The number of bytes that `bytes` points to.
+    ///
+    /// - bytesDeallocator: The allocator to use to deallocate the external buffer when deallocating the typed array object.
+    ///
+    /// - deallocatorContext: A pointer to pass back to the deallocator.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) array buffer with a backing store that is the same as the one that `bytes` points to, or `NULL` if there is an error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the system throws an exception during this function, it always calls the `bytesDeallocator`.
+    ///
+    ///
     /// Creates a JavaScript Array Buffer object from an existing pointer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -296,8 +464,6 @@ extern "C-unwind" {
     /// - `bytes_deallocator` must be implemented correctly.
     /// - `deallocator_context` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakearraybufferwithbytesnocopy(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeArrayBufferWithBytesNoCopy(
         ctx: JSContextRef,
@@ -310,6 +476,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a pointer to the data buffer that serves as the backing store for a JavaScript typed array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the typed array type data pointer to obtain.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The pointer that this function returns is temporary and may not remain valid across JavaScriptCore API calls.
+    ///
+    ///
     /// Returns a pointer to the data buffer that serves as the backing store for a JavaScript Typed Array object.
     ///
     /// Parameter `object`: The Array Buffer object whose internal backing store pointer to return.
@@ -325,8 +506,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetarraybufferbytesptr(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetArrayBufferBytesPtr(
         ctx: JSContextRef,
@@ -336,6 +515,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the number of bytes in a JavaScript data object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The JavaScript array buffer object with the length in bytes to return.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes in the data object.
+    ///
+    ///
     /// Returns the number of bytes in a JavaScript data object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -351,8 +545,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetarraybufferbytelength(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetArrayBufferByteLength(
         ctx: JSContextRef,

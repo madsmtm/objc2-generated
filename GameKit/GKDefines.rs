@@ -5,5 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchproperties?language=objc)
+/// A type for game-specific properties that Game Center uses to find players when using matchmaking rules.
+///
+/// ## Discussion
+///
+/// For more information, see [Matchmaking rules](https://developer.apple.com/documentation/gamekit/matchmaking-rules).
+///
+///
 pub type GKMatchProperties = NSDictionary<NSString, AnyObject>;

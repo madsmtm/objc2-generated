@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that opens Settings and navigates to the settings for configuring credential providers.
     /// A helper class to provide static utility methods for quick access to settings related to credential providers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/assettingshelper?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASSettingsHelper;

@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallobserverdelegate?language=objc)
+    /// A collection of methods the system calls when a call changes state.
     pub unsafe trait CXCallObserverDelegate: NSObjectProtocol {
         #[cfg(feature = "CXCall")]
         #[unsafe(method(callObserver:callChanged:))]
@@ -20,7 +20,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallobserver?language=objc)
+    /// A programmatic interface for an object that manages a list of active calls and observes call changes.
+    ///
+    /// ## Overview
+    ///
+    /// You can retrieve a list of active calls on an [`CXCallObserver`](https://developer.apple.com/documentation/callkit/cxcallobserver) object using the [`calls`](https://developer.apple.com/documentation/callkit/cxcallobserver/calls) property. You can also provide an object conforming to the [`CXCallObserverDelegate`](https://developer.apple.com/documentation/callkit/cxcallobserverdelegate) protocol as the call observer delegate using the [`setDelegate:queue:`](https://developer.apple.com/documentation/callkit/cxcallobserver/setdelegate(_:queue:)) method to respond to any active call changes.
+    ///
+    /// VoIP apps typically interact with the [`CXCallObserver`](https://developer.apple.com/documentation/callkit/cxcallobserver) object returned by the [`callObserver`](https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver) property of a [`CXCallController`](https://developer.apple.com/documentation/callkit/cxcallcontroller) instance. However, any app can create a new [`CXCallObserver`](https://developer.apple.com/documentation/callkit/cxcallobserver) object to be notified of any calls activity on the system.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallObserver;

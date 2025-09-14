@@ -7,7 +7,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortdescriptor?language=objc)
+    /// An immutable description of how to order a collection of objects according to a property common to all the objects.
+    ///
+    /// ## Overview
+    ///
+    /// You construct instances of [`NSSortDescriptor`](https://developer.apple.com/documentation/foundation/nssortdescriptor) by specifying the key path of the property to compare and the order of the sort (ascending or descending). Optionally, you can also specify a selector to use to perform the comparison, which allows you to specify other comparison selectors, such as [`localizedStandardCompare:`](https://developer.apple.com/documentation/foundation/nsstring/localizedstandardcompare(_:)) and [`localizedCaseInsensitiveCompare:`](https://developer.apple.com/documentation/foundation/nsstring/localizedcaseinsensitivecompare(_:)). Sorting raises an exception if the objects don’t respond to the sort descriptor’s comparison selector.
+    ///
+    /// You can use sort descriptors for the following:
+    ///
+    /// - Sorting an array (an instance of [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) or [`NSMutableArray`](https://developer.apple.com/documentation/foundation/nsmutablearray) — see [`sortedArrayUsingDescriptors:`](https://developer.apple.com/documentation/foundation/nsarray/sortedarray(using:)-82wi1) and [`sortUsingDescriptors:`](https://developer.apple.com/documentation/foundation/nsmutablearray/sort(using:)-4eh07))
+    ///
+    /// - Comparing two objects directly (see [`compareObject:toObject:`](https://developer.apple.com/documentation/foundation/nssortdescriptor/compare(_:to:)))
+    ///
+    /// - Specifying the order of objects that return from a Core Data fetch request (see [`sortDescriptors`](https://developer.apple.com/documentation/coredata/nsfetchrequest/sortdescriptors))
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSortDescriptor;

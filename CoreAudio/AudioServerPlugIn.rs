@@ -19,8 +19,6 @@ use crate::*;
 /// A UInt32 whose value indicates the data type of the data of the custom
 /// property. Constants for this value are defined in the Basic Constants
 /// section.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverplugincustompropertyinfo?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -62,8 +60,6 @@ unsafe impl RefEncode for AudioServerPlugInCustomPropertyInfo {
 /// A CFStringRef that contains the bundle ID of the main bundle of the process
 /// that contains the client. Note that the plug-in is expected to retain this
 /// string itself if the plug-in wishes to keep it around.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginclientinfo?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -92,11 +88,9 @@ unsafe impl RefEncode for AudioServerPlugInClientInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpluginobject?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioObjectPlugInObject: AudioObjectID = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioserverpluginhostclientid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioServerPlugInHostClientID: AudioObjectID = 0;
 
@@ -110,16 +104,11 @@ pub const kAudioServerPlugInHostClientID: AudioObjectID = 0;
 /// The property/qualifier data is a CFStringRef.
 ///
 /// The property/qualifier data is a CFPropertyListRef.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverplugincustompropertydatatype?language=objc)
 pub type AudioServerPlugInCustomPropertyDataType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioserverplugincustompropertydatatypenone?language=objc)
 pub const kAudioServerPlugInCustomPropertyDataTypeNone: AudioServerPlugInCustomPropertyDataType = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioserverplugincustompropertydatatypecfstring?language=objc)
 pub const kAudioServerPlugInCustomPropertyDataTypeCFString:
     AudioServerPlugInCustomPropertyDataType = 0x63667374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioserverplugincustompropertydatatypecfpropertylist?language=objc)
 pub const kAudioServerPlugInCustomPropertyDataTypeCFPropertyList:
     AudioServerPlugInCustomPropertyDataType = 0x706c7374;
 
@@ -163,41 +152,29 @@ pub const kAudioServerPlugInCustomPropertyDataTypeCFPropertyList:
 /// of the hardware. Note that this operation always happens in-place in the
 /// main buffer passed to DoIOOperation(). It is required that this operation be
 /// implemented if the AudioDevice has output streams.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioServerPlugInIOOperation(pub u32);
 impl AudioServerPlugInIOOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationthread?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationThread")]
     pub const Thread: Self = Self(0x74687264);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationcycle?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationCycle")]
     pub const Cycle: Self = Self(0x6379636c);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationreadinput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationReadInput")]
     pub const ReadInput: Self = Self(0x72656164);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationconvertinput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationConvertInput")]
     pub const ConvertInput: Self = Self(0x63696e70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationprocessinput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationProcessInput")]
     pub const ProcessInput: Self = Self(0x70696e70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationprocessoutput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationProcessOutput")]
     pub const ProcessOutput: Self = Self(0x706f7574);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationmixoutput?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationMixOutput")]
     pub const MixOutput: Self = Self(0x6d69786f);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationprocessmix?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationProcessMix")]
     pub const ProcessMix: Self = Self(0x706d6978);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationconvertmix?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationConvertMix")]
     pub const ConvertMix: Self = Self(0x636d6978);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginiooperation/kaudioserverpluginiooperationwritemix?language=objc)
     #[doc(alias = "kAudioServerPlugInIOOperationWriteMix")]
     pub const WriteMix: Self = Self(0x72697465);
 }
@@ -212,11 +189,9 @@ unsafe impl RefEncode for AudioServerPlugInIOOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycustompropertyinfolist?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioObjectPropertyCustomPropertyInfoList: AudioObjectPropertySelector = 0x63757374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyresourcebundle?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioPlugInPropertyResourceBundle: AudioObjectPropertySelector = 0x72737263;
 
@@ -232,20 +207,15 @@ pub const kAudioPlugInPropertyResourceBundle: AudioObjectPropertySelector = 0x72
 ///
 /// This clock algorithm uses a 12 point moving window average to filter the time
 /// stamps returned from GetZeroTimeStamp().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioDeviceClockAlgorithmSelector(pub u32);
 impl AudioDeviceClockAlgorithmSelector {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector/kaudiodeviceclockalgorithmraw?language=objc)
     #[doc(alias = "kAudioDeviceClockAlgorithmRaw")]
     pub const AlgorithmRaw: Self = Self(0x72617777);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector/kaudiodeviceclockalgorithmsimpleiir?language=objc)
     #[doc(alias = "kAudioDeviceClockAlgorithmSimpleIIR")]
     pub const AlgorithmSimpleIIR: Self = Self(0x69697266);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceclockalgorithmselector/kaudiodeviceclockalgorithm12ptmovingwindowaverage?language=objc)
     #[doc(alias = "kAudioDeviceClockAlgorithm12PtMovingWindowAverage")]
     pub const Algorithm12PtMovingWindowAverage: Self = Self(0x6d617667);
 }
@@ -260,12 +230,9 @@ unsafe impl RefEncode for AudioDeviceClockAlgorithmSelector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyzerotimestampperiod?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyZeroTimeStampPeriod: AudioObjectPropertySelector = 0x72696e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockalgorithm?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyClockAlgorithm: AudioObjectPropertySelector = 0x636c6f6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockisstable?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyClockIsStable: AudioObjectPropertySelector = 0x63737462;

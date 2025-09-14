@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Options to configure a command buffer before encoding work into it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandbufferoptions?language=objc)
+    /// Options to configure a command buffer before encoding work into it.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CommandBufferOptions;
@@ -71,8 +70,7 @@ impl DefaultRetained for MTL4CommandBufferOptions {
 
 extern_protocol!(
     /// Records a sequence of GPU commands.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandbuffer?language=objc)
+    /// Records a sequence of GPU commands.
     pub unsafe trait MTL4CommandBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// Returns the GPU device that this command buffer belongs to.

@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus?language=objc)
+/// Constants that represent the status of the player.
 // NS_ENUM
 #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioFilePlayerStatus(pub NSInteger);
 impl WKAudioFilePlayerStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/unknown?language=objc)
+    /// The status of the item is unknown because the player has not yet loaded the audio file for playback.
     #[doc(alias = "WKAudioFilePlayerStatusUnknown")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/readytoplay?language=objc)
+    /// The player is ready to play its item.
     #[doc(alias = "WKAudioFilePlayerStatusReadyToPlay")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const ReadyToPlay: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/failed?language=objc)
+    /// The player can no longer play the audio because of an error. Use the [`error`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer/error) property to get information about the error that occurred.
     #[doc(alias = "WKAudioFilePlayerStatusFailed")]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
     pub const Failed: Self = Self(2);
@@ -37,7 +37,17 @@ unsafe impl RefEncode for WKAudioFilePlayerStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer?language=objc)
+    /// An object that controls playback of a single audio item.
+    ///
+    /// ## Overview
+    ///
+    /// Use a player object to start and stop playback and to control the rate of playback. (The [`WKAudioFileQueuePlayer`](https://developer.apple.com/documentation/watchkit/wkaudiofilequeueplayer) subclass extends the basic behavior to support playback of more than one item.)
+    ///
+    /// The value of the player’s presentation-related properties are not valid until the underlying asset is loaded. Use the value of the [`status`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer/status) property to determine when it is valid to get the values of other properties. Specifically, wait until the status changes to [`WKAudioFilePlayerStatusReadyToPlay`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayerstatus/readytoplay) to access relevant properties.
+    ///
+    /// The [`WKAudioFilePlayer`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer) class is key-value observing compliant for the [`currentItem`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer/currentitem), [`status`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer/status), and [`rate`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer/rate) properties. You can use an observer to detect changes to those properties and react accordingly. For information on how to observe properties using key-value observing, see [Key-Value Observing Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -121,12 +131,19 @@ impl WKAudioFilePlayer {
 }
 
 extern_class!(
+    /// An object that controls playback of one or more audio items.
+    ///
+    /// ## Overview
+    ///
+    /// Items are stored in a queue and played sequentially. When playback of the current item ends, playback of the next item begins automatically.
+    ///
+    /// Because this class is a subclass of [`WKAudioFilePlayer`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer), it inherits the same playback controls and state information as its superclass. You can use the inherited methods to start and stop playback or change the playback rate. You can also get information about the current status of the player, including the elapsed playback time for the currently playing item. This method also implements the inherited [`replaceCurrentItemWithPlayerItem:`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer/replacecurrentitem(with:)) method and uses it to end playback of one item and start playback of another.
+    ///
+    ///
     /// WatchKit corollary to AVFoundation AVQueuePlayer class
     ///
     ///
     /// This class provides the functionality of AVQueuePlayer for Watch OS apps. Only file-based assets are allowed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofilequeueplayer?language=objc)
     #[unsafe(super(WKAudioFilePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]

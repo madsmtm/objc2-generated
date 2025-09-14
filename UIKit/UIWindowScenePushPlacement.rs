@@ -7,6 +7,39 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A placement that indicates the system needs to present the window by pushing it onto another window.
+    ///
+    /// ## Overview
+    ///
+    /// Use this type of placement to push a new scene in place of an existing scene. The new scene appears in the same position as the original scene, hiding it. Closing the new scene makes the original scene reappear.
+    ///
+    /// The following code shows how to launch a new scene in place of an original scene:
+    ///
+    /// ```swift
+    /// extension NSUserActivity {
+    ///     static let MyNewSceneActivityType = "com.example.my-activity-type"
+    /// }
+    ///
+    /// func presentNewScene() {
+    ///     let options = UIWindowScene.ActivationRequestOptions()
+    ///     
+    ///     // Create the placement and specify which scene session you want to target.
+    ///     options.placement = UIWindowScenePushPlacement(target: originalScene.session)
+    ///
+    ///     // Specify the activity type for the app delegate to launch the corresponding scene.
+    ///     let request = UISceneSessionActivationRequest(
+    ///         role: .windowApplication,
+    ///         userActivity: NSUserActivity(activityType: NSUserActivity.MyNewSceneActivityType),
+    ///         options: options
+    ///     )
+    ///
+    ///     UIApplication.shared.activateSceneSession(for: request) { error in
+    ///         print(error)
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
     /// Background the scene of the provided scene session and present the
     /// activated scene in its place.
     ///
@@ -17,8 +50,6 @@ extern_class!(
     /// Targeting a scene session that is currently pushed will result in an error
     /// being delivered to the `errorHandler` of
     /// ``-[UIApplication activateSceneSessionForRequest: errorHandler:]``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenepushplacement-c.class?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]

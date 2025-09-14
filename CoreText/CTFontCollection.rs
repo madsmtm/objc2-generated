@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollection?language=objc)
+/// A font collection.
+///
+/// ## Overview
+///
+/// A font collection represents a group of font descriptors taken together as a single object.
+///
+/// Font collections provide the capabilities of font enumeration, access to global and custom font collections, and access to the font descriptors comprising the collection.
+///
+///
 ///
 /// This is toll-free bridged with `NSFontCollection`.
 #[doc(alias = "CTFontCollectionRef")]
@@ -28,7 +36,13 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CTFontCollection"> for CTFontCollection {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctmutablefontcollection?language=objc)
+/// A reference to a mutable font collection.
+///
+/// ## Discussion
+///
+/// An opaque reference to a mutable font collection.
+///
+///
 ///
 /// This is toll-free bridged with `NSMutableFontCollection`.
 #[doc(alias = "CTMutableFontCollectionRef")]
@@ -49,9 +63,14 @@ cf_objc2_type!(
 unsafe impl ConcreteType for CTFontCollection {
     /// Returns the type identifier for Core Text font collection references.
     ///
-    /// Returns: The identifier for the opaque types CTFontCollectionRef or CTMutableFontCollectionRef.
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectiongettypeid()?language=objc)
+    /// The identifier for the opaque type CTFontCollection.
+    ///
+    ///
+    /// Returns the type identifier for Core Text font collection references.
+    ///
+    /// Returns: The identifier for the opaque types CTFontCollectionRef or CTMutableFontCollectionRef.
     #[doc(alias = "CTFontCollectionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -62,11 +81,24 @@ unsafe impl ConcreteType for CTFontCollection {
     }
 }
 
+/// The collection sorting callback type.
+///
+/// Parameters:
+/// - first: The first descriptor.
+///
+/// - second: The second descriptor.
+///
+/// - refCon: A pointer to contextual data from the client.
+///
+///
+/// ## Return Value
+///
+/// The matching font descriptors of a collection in sorted order.
+///
+///
 /// Collection sorting callback.
 ///
 /// This callback can be specified to obtain the matching font descriptors of a collection in sorted order. Return the appropriate comparison result of first descriptor to second descriptor.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionsortdescriptorscallback?language=objc)
 #[cfg(feature = "CTFontDescriptor")]
 pub type CTFontCollectionSortDescriptorsCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -77,13 +109,17 @@ pub type CTFontCollectionSortDescriptorsCallback = Option<
 >;
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Option key to specify filtering of duplicates.
+    ///
+    ///
     /// kCTFontCollectionRemoveDuplicatesOption
     ///
     /// Option key to specify filtering of duplicates.
     ///
     /// Specify this option key in the options dictionary with a non- zero value to enable automatic filtering of duplicate font descriptors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectionremoveduplicatesoption?language=objc)
     pub static kCTFontCollectionRemoveDuplicatesOption: &'static CFString;
 }
 
@@ -93,8 +129,6 @@ extern "C" {
     /// Option key to include disabled fonts in the matching results.
     ///
     /// Specify this option key in the options dictionary with a non-zero value to enable matching of disabled fonts. You can pass font descriptors specifying disabled fonts to CTFontManagerEnableFontDescriptors, but you cannot use such a font descriptor to query font attributes from the system database or create a CTFontRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectionincludedisabledfontsoption?language=objc)
     pub static kCTFontCollectionIncludeDisabledFontsOption: &'static CFString;
 }
 
@@ -104,12 +138,21 @@ extern "C" {
     /// Option key to avoid auto-activating fonts.
     ///
     /// Specify this option key in the options dictionary with a non-zero value to disallow searches for missing fonts (font descriptors returning no results).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectiondisallowautoactivationoption?language=objc)
     pub static kCTFontCollectionDisallowAutoActivationOption: &'static CFString;
 }
 
 impl CTFontCollection {
+    /// Returns a new font collection containing all available fonts.
+    ///
+    /// Parameters:
+    /// - options: The options dictionary. For possible values, see Constants.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new collection containing all fonts available to the current application.
+    ///
+    ///
     /// Returns a new font collection matching all available fonts.
     ///
     ///
@@ -122,8 +165,6 @@ impl CTFontCollection {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatefromavailablefonts(_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateFromAvailableFonts")]
     #[inline]
     pub unsafe fn from_available_fonts(
@@ -140,6 +181,25 @@ impl CTFontCollection {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Returns a new font collection based on the given array of font descriptors.
+    ///
+    /// Parameters:
+    /// - queryDescriptors: An array of font descriptors.
+    ///
+    /// - options: The options dictionary. For possible values, see Constants.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new font collection based on the provided font descriptors.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The contents of the returned collection are defined by matching the provided descriptors against all available font descriptors.
+    ///
+    ///
     /// Returns a new collection based on the array of font descriptors.
     ///
     ///
@@ -156,8 +216,6 @@ impl CTFontCollection {
     /// - `query_descriptors` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatewithfontdescriptors(_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateWithFontDescriptors")]
     #[inline]
     pub unsafe fn with_font_descriptors(
@@ -176,6 +234,27 @@ impl CTFontCollection {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Returns a copy of the original collection augmented with the given new font descriptors.
+    ///
+    /// Parameters:
+    /// - original: The original font collection reference.
+    ///
+    /// - queryDescriptors: An array of font descriptors to augment those of the original collection.
+    ///
+    /// - options: The options dictionary. For possible values, see Constants.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the original font collection augmented by the new font descriptors and options.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The new font descriptors are merged with the existing descriptors to create a single set.
+    ///
+    ///
     /// Returns a copy of the original collection augmented with the new font descriptors.
     ///
     ///
@@ -195,8 +274,6 @@ impl CTFontCollection {
     /// - `query_descriptors` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatecopywithfontdescriptors(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateCopyWithFontDescriptors")]
     #[inline]
     pub unsafe fn copy_with_font_descriptors(
@@ -221,6 +298,17 @@ impl CTFontCollection {
 }
 
 impl CTMutableFontCollection {
+    /// Creates a mutable copy of the original collection.
+    ///
+    /// Parameters:
+    /// - original: The original font collection reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A mutable copy of the original font collection.
+    ///
+    ///
     /// Returns a mutable copy of the original collection.
     ///
     ///
@@ -228,8 +316,6 @@ impl CTMutableFontCollection {
     ///
     ///
     /// Returns: This function creates a mutable copy of the original font collection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatemutablecopy(_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateMutableCopy")]
     #[inline]
     pub fn new_copy(original: &CTFontCollection) -> CFRetained<CTMutableFontCollection> {
@@ -246,6 +332,17 @@ impl CTMutableFontCollection {
 }
 
 impl CTFontCollection {
+    /// Retrieves the array of descriptors for font matching.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained reference to the array of descriptors for querying (matching) the system font database. The return value is undefined if you create the collection with [`CTFontCollectionCreateFromAvailableFonts`](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatefromavailablefonts(_:)).
+    ///
+    ///
     /// Returns the array of descriptors to match.
     ///
     ///
@@ -253,8 +350,6 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyquerydescriptors(_:)?language=objc)
     #[doc(alias = "CTFontCollectionCopyQueryDescriptors")]
     #[inline]
     pub fn query_descriptors(&self) -> Option<CFRetained<CFArray>> {
@@ -269,6 +364,13 @@ impl CTFontCollection {
 }
 
 impl CTMutableFontCollection {
+    /// Replaces the array of descriptors for font matching.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    /// - descriptors: An array of [`CTFontDescriptorRef`](https://developer.apple.com/documentation/coretext/ctfontdescriptor) objects. Passing in `NULL` represents an empty collection, which sets the matching descriptors to `NULL`.
+    ///
     /// Replaces the array of descriptors to match.
     ///
     ///
@@ -280,8 +382,6 @@ impl CTMutableFontCollection {
     /// # Safety
     ///
     /// `descriptors` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionsetquerydescriptors(_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionSetQueryDescriptors")]
     #[inline]
     pub unsafe fn set_query_descriptors(&self, descriptors: Option<&CFArray>) {
@@ -296,6 +396,17 @@ impl CTMutableFontCollection {
 }
 
 impl CTFontCollection {
+    /// Retrieves the array of descriptors to exclude from the match.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained reference to the array of descriptors for querying (matching) the system font database.
+    ///
+    ///
     /// Returns the array of descriptors to exclude from the match.
     ///
     ///
@@ -303,8 +414,6 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyexclusiondescriptors(_:)?language=objc)
     #[doc(alias = "CTFontCollectionCopyExclusionDescriptors")]
     #[inline]
     pub fn exclusion_descriptors(&self) -> Option<CFRetained<CFArray>> {
@@ -321,6 +430,13 @@ impl CTFontCollection {
 impl CTMutableFontCollection {
     /// Replaces the array of descriptors to exclude from the match.
     ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    /// - descriptors: An array of [`CTFontDescriptorRef`](https://developer.apple.com/documentation/coretext/ctfontdescriptor) objects. This parameter can be `NULL`.
+    ///
+    /// Replaces the array of descriptors to exclude from the match.
+    ///
     ///
     /// Parameter `collection`: The font collection reference.
     ///
@@ -330,8 +446,6 @@ impl CTMutableFontCollection {
     /// # Safety
     ///
     /// `descriptors` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionsetexclusiondescriptors(_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionSetExclusionDescriptors")]
     #[inline]
     pub unsafe fn set_exclusion_descriptors(&self, descriptors: Option<&CFArray>) {
@@ -348,13 +462,22 @@ impl CTMutableFontCollection {
 impl CTFontCollection {
     /// Returns an array of font descriptors matching the collection.
     ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained reference to an array of normalized font descriptors matching the collection definition.
+    ///
+    ///
+    /// Returns an array of font descriptors matching the collection.
+    ///
     ///
     /// Parameter `collection`: The font collection reference.
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptors(_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptors")]
     #[inline]
     pub fn matching_font_descriptors(&self) -> Option<CFRetained<CFArray>> {
@@ -367,6 +490,21 @@ impl CTFontCollection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the array of matching font descriptors sorted with the callback function.
+    ///
+    /// Parameters:
+    /// - collection: The collection reference.
+    ///
+    /// - sortCallback: The sorting callback function that defines the sort order.
+    ///
+    /// - refCon: Pointer to client data define context for the callback.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of font descriptors matching the criteria of the collection sorted by the results of the sorting callback function.
+    ///
+    ///
     /// Returns the array of matching font descriptors sorted with the callback function.
     ///
     ///
@@ -385,8 +523,6 @@ impl CTFontCollection {
     ///
     /// - `sort_callback` must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptorssortedwithcallback(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
@@ -412,6 +548,19 @@ impl CTFontCollection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an array of font descriptors that match the specified collection.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    /// - options: The options dictionary. Passing in `NULL` returns the same results as calling [`CTFontCollectionCreateMatchingFontDescriptors`](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptors(_:)), which uses the options specified during the collection’s creation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of [`CTFontDescriptorRef`](https://developer.apple.com/documentation/coretext/ctfontdescriptor) objects that match the collection definition, or `NULL` if there are none.
+    ///
+    ///
     /// Returns an array of font descriptors matching the collection.
     ///
     ///
@@ -427,8 +576,6 @@ impl CTFontCollection {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptorswithoptions(_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsWithOptions")]
     #[inline]
     pub unsafe fn matching_font_descriptors_with_options(
@@ -446,6 +593,21 @@ impl CTFontCollection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves an array of font descriptors that match the specified family, one descriptor for each style in the collection.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    /// - familyName: The font family name.
+    ///
+    /// - options: The options dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of [`CTFontDescriptorRef`](https://developer.apple.com/documentation/coretext/ctfontdescriptor) objects that match the specified family in the collection, or `NULL` if there are none.
+    ///
+    ///
     /// Returns an array of font descriptors matching the specified family, one descriptor for each style in the collection.
     ///
     ///
@@ -461,8 +623,6 @@ impl CTFontCollection {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptorsforfamily(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsForFamily")]
     #[inline]
     pub unsafe fn matching_font_descriptors_for_family(
@@ -485,27 +645,26 @@ impl CTFontCollection {
 }
 
 /// Option bits for use with CTFontCollectionCopyFontAttribute(s).
+/// Option bits for use with CTFontCollectionCopyFontAttribute(s).
 ///
 ///
 /// Passing this option indicates that the return values should be sorted in standard UI order, suitable for display to the user. This is the same sorting behavior used by NSFontPanel and Font Book.
 ///
 ///
 /// Passing this option indicates that duplicate values should be removed from the results.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontCollectionCopyOptions(pub u32);
 bitflags::bitflags! {
     impl CTFontCollectionCopyOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/kctfontcollectioncopydefaultoptions?language=objc)
+/// Passing this option indicates that defaults are to be used.
         #[doc(alias = "kCTFontCollectionCopyDefaultOptions")]
         const DefaultOptions = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/unique?language=objc)
+/// Passing this option indicates that duplicate values should be removed from the results.
         #[doc(alias = "kCTFontCollectionCopyUnique")]
         const Unique = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/standardsort?language=objc)
+/// Passing this option indicates that the return values should be sorted in standard UI order, suitable for display to the user. This is the same sorting behavior used by `NSFontPanel` and Font Book.
         #[doc(alias = "kCTFontCollectionCopyStandardSort")]
         const StandardSort = 1<<1;
     }
@@ -522,6 +681,21 @@ unsafe impl RefEncode for CTFontCollectionCopyOptions {
 }
 
 impl CTFontCollection {
+    /// Retrieves an array of font descriptor attribute values.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    /// - attributeName: The attribute to retrieve for each descriptor in the collection.
+    ///
+    /// - options: Options to alter the return value. With [`kCTFontCollectionCopyDefaultOptions`](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/kctfontcollectioncopydefaultoptions), the values appear in the same order as the results from [`CTFontCollectionCreateMatchingFontDescriptors`](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptors(_:)), and `NULL` values transform to [`kCFNull`](https://developer.apple.com/documentation/corefoundation/kcfnull). Setting [`kCTFontCollectionCopyUnique`](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/unique) removes duplicate values. Setting [`kCTFontCollectionCopyStandardSort`](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/standardsort) sorts the values in standard UI order.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array that contains one value for each descriptor.
+    ///
+    ///
     /// Returns an array of font descriptor attribute values.
     ///
     ///
@@ -535,8 +709,6 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: An array containing one value for each descriptor. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors and NULL values will be transformed to kCFNull. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyfontattribute(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCopyFontAttribute")]
     #[inline]
     pub fn font_attribute(
@@ -557,6 +729,21 @@ impl CTFontCollection {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Retrieves an array of dictionaries containing font descriptor attribute values.
+    ///
+    /// Parameters:
+    /// - collection: The font collection reference.
+    ///
+    /// - attributeNames: The attributes to retrieve for each descriptor in the collection.
+    ///
+    /// - options: Options to alter the return value. With [`kCTFontCollectionCopyDefaultOptions`](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/kctfontcollectioncopydefaultoptions), the values appear in the same order as the results from [`CTFontCollectionCreateMatchingFontDescriptors`](https://developer.apple.com/documentation/coretext/ctfontcollectioncreatematchingfontdescriptors(_:)). Setting [`kCTFontCollectionCopyUnique`](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/unique) removes duplicate values. Setting [`kCTFontCollectionCopyStandardSort`](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions/standardsort) sorts the values in standard UI order.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array that contains one [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) value for each descriptor mapping the specified attribute names.
+    ///
+    ///
     /// Returns an array of dictionaries containing font descriptor attribute values.
     ///
     ///
@@ -574,8 +761,6 @@ impl CTFontCollection {
     /// # Safety
     ///
     /// `attribute_names` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyfontattributes(_:_:_:)?language=objc)
     #[doc(alias = "CTFontCollectionCopyFontAttributes")]
     #[inline]
     pub unsafe fn font_attributes(

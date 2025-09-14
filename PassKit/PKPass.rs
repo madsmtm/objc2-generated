@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpass?language=objc)
+    /// An object that represents a single pass.
+    ///
+    /// ## Overview
+    ///
+    /// The properties of this class correspond to fields of the pass. For details about what individual fields mean, see [`Pass`](https://developer.apple.com/documentation/walletpasses/pass).
+    ///
+    ///
     #[unsafe(super(PKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKObject")]

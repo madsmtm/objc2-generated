@@ -6,34 +6,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason?language=objc)
+/// Reasons the app can’t provide results for the search.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSearchForMediaMediaItemUnsupportedReason(pub NSInteger);
 impl INSearchForMediaMediaItemUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/loginrequired?language=objc)
+    /// The user must log in to the app in order to search for media.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonLoginRequired")]
     pub const LoginRequired: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/subscriptionrequired?language=objc)
+    /// The user must have a subscription to the app’s service in order to search for media.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonSubscriptionRequired")]
     pub const SubscriptionRequired: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/unsupportedmediatype?language=objc)
+    /// The media’s type is not supported.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonUnsupportedMediaType")]
     pub const UnsupportedMediaType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/explicitcontentsettings?language=objc)
+    /// The content settings don’t allow the user to search for the media item.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonExplicitContentSettings")]
     pub const ExplicitContentSettings: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/cellulardatasettings?language=objc)
+    /// The cellular data settings don’t allow the user to search for the media item.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonCellularDataSettings")]
     pub const CellularDataSettings: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/restrictedcontent?language=objc)
+    /// The media item is restricted content.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this reason for geographic region restrictions, or when none of the other, more specific reasons apply.
+    ///
+    ///
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonRestrictedContent")]
     pub const RestrictedContent: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/serviceunavailable?language=objc)
+    /// The app couldn’t perform the search because the media service is unavailable.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonServiceUnavailable")]
     pub const ServiceUnavailable: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemunsupportedreason/regionrestriction?language=objc)
+    /// There are media items that match this request, but they aren’t available in the user’s geographic location.
     #[doc(alias = "INSearchForMediaMediaItemUnsupportedReasonRegionRestriction")]
     pub const RegionRestriction: Self = Self(8);
 }
@@ -47,7 +53,15 @@ unsafe impl RefEncode for INSearchForMediaMediaItemUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediamediaitemresolutionresult?language=objc)
+    /// A resolution result for the media item for which to search.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INSearchForMediaMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/insearchformediamediaitemresolutionresult) object when resolving parameters containing an [`INMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/inmediaitemresolutionresult) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INMediaItemResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

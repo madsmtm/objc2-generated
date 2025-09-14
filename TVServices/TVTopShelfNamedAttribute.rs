@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that represents a named attribute with a list of associated values. Instances of this class will be displayed in a stylized manner by the Top Shelf UI.
+    /// An object you use to display additional information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfnamedattribute?language=objc)
+    /// ## Overview
+    ///
+    /// Use [`TVTopShelfNamedAttribute`](https://developer.apple.com/documentation/tvservices/tvtopshelfnamedattribute) objects to specify additional information about your content, such as the names of cast or crew members associated with a movie or show. Each named attribute contains the type of information you want to include (the name) and a list of strings (the values) to display for that attribute. For example, you might set the name property to “Starring” and set the value strings to the names of the leading actors.
+    ///
+    /// Create named attributes and assign them to the [`namedAttributes`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/namedattributes) property of a [`TVTopShelfCarouselItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem) object.
+    ///
+    ///
+    /// An object that represents a named attribute with a list of associated values. Instances of this class will be displayed in a stylized manner by the Top Shelf UI.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVTopShelfNamedAttribute;

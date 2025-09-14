@@ -4,19 +4,43 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode?language=objc)
+/// Options for fitting an image’s aspect ratio to a requested size, used by the [`requestImageForAsset:targetSize:contentMode:options:resultHandler:`](https://developer.apple.com/documentation/photos/phimagemanager/requestimage(for:targetsize:contentmode:options:resulthandler:)) method.
+///
+/// ## Overview
+///
+/// With either option, the resulting image may not exactly match the target size, depending on the [`deliveryMode`](https://developer.apple.com/documentation/photos/phimagerequestoptions/deliverymode) and [`resizeMode`](https://developer.apple.com/documentation/photos/phimagerequestoptions/resizemode) properties of the image request. To serve your request more quickly, Photos may provide a slightly larger image—one that it can generate more easily or one that is already cached.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageContentMode(pub NSInteger);
 impl PHImageContentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode/aspectfit?language=objc)
+    /// Scales the image so that its larger dimension fits the target size.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when you want the entire image to be visible, such as when presenting it in a view with the [`UIViewContentModeScaleAspectFit`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfit) content mode.
+    ///
+    ///
     #[doc(alias = "PHImageContentModeAspectFit")]
     pub const AspectFit: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode/aspectfill?language=objc)
+    /// Scales the image so that it completely fills the target size.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when you want the image to completely fill an area, such as when presenting it in a view with the [`UIViewContentModeScaleAspectFill`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfill) content mode.
+    ///
+    ///
     #[doc(alias = "PHImageContentModeAspectFill")]
     pub const AspectFill: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode/default?language=objc)
+    /// Fits the image to the requested size using the default option, [`PHImageContentModeAspectFit`](https://developer.apple.com/documentation/photos/phimagecontentmode/aspectfit).
+    ///
+    /// ## Discussion
+    ///
+    /// Use this content mode when requesting a full-sized image using the [`PHImageManagerMaximumSize`](https://developer.apple.com/documentation/photos/phimagemanagermaximumsize) value for the target size. In this case, the image manager does not scale or crop the image.
+    ///
+    ///
     #[doc(alias = "PHImageContentModeDefault")]
     pub const Default: Self = Self(PHImageContentMode::AspectFit.0);
 }
@@ -29,20 +53,26 @@ unsafe impl RefEncode for PHImageContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype?language=objc)
+/// Major distinctions between kinds of collection list, used by the [`collectionListType`](https://developer.apple.com/documentation/photos/phcollectionlist/collectionlisttype) property and [`fetchCollectionListsWithType:subtype:options:`](https://developer.apple.com/documentation/photos/phcollectionlist/fetchcollectionlists(with:subtype:options:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionListType(pub NSInteger);
 impl PHCollectionListType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype/momentlist?language=objc)
+    /// A group of asset collections of type [`PHAssetCollectionTypeMoment`](https://developer.apple.com/documentation/photos/phassetcollectiontype/moment).
+    ///
+    /// ## Discussion
+    ///
+    /// Moment lists include both moment clusters and moment years. Moment clusters appear as “Collections” in the Photos app, grouping individual moments. Years group all moments containing assets created in the same calendar year.
+    ///
+    ///
     #[doc(alias = "PHCollectionListTypeMomentList")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentList: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype/folder?language=objc)
+    /// A folder containing asset collections of type [`PHAssetCollectionTypeAlbum`](https://developer.apple.com/documentation/photos/phassetcollectiontype/album) or [`PHAssetCollectionTypeSmartAlbum`](https://developer.apple.com/documentation/photos/phassetcollectiontype/smartalbum).
     #[doc(alias = "PHCollectionListTypeFolder")]
     pub const Folder: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlisttype/smartfolder?language=objc)
+    /// A smart folder synced to the device from .
     #[doc(alias = "PHCollectionListTypeSmartFolder")]
     pub const SmartFolder: Self = Self(3);
 }
@@ -55,30 +85,60 @@ unsafe impl RefEncode for PHCollectionListType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype?language=objc)
+/// Major distinctions between kinds of collection list, used by the [`collectionListSubtype`](https://developer.apple.com/documentation/photos/phcollectionlist/collectionlistsubtype) property and [`fetchCollectionListsWithType:subtype:options:`](https://developer.apple.com/documentation/photos/phcollectionlist/fetchcollectionlists(with:subtype:options:)), [`fetchMomentListsWithSubtype:containingMoment:options:`](https://developer.apple.com/documentation/photos/phcollectionlist/fetchmomentlists(with:containingmoment:options:)), and [`fetchMomentListsWithSubtype:options:`](https://developer.apple.com/documentation/photos/phcollectionlist/fetchmomentlists(with:options:)) methods.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionListSubtype(pub NSInteger);
 impl PHCollectionListSubtype {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/momentlistcluster?language=objc)
+    /// The collection list is a moment cluster, grouping several related moments.
+    ///
+    /// ## Discussion
+    ///
+    /// This subtype applies only to collection lists whose type is [`PHCollectionListTypeMomentList`](https://developer.apple.com/documentation/photos/phcollectionlisttype/momentlist).
+    ///
+    ///
     #[doc(alias = "PHCollectionListSubtypeMomentListCluster")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentListCluster: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/momentlistyear?language=objc)
+    /// The collection list is a moment year, grouping all moments from one or more calendar years.
+    ///
+    /// ## Discussion
+    ///
+    /// This subtype applies only to collection lists whose type is [`PHCollectionListTypeMomentList`](https://developer.apple.com/documentation/photos/phcollectionlisttype/momentlist).
+    ///
+    ///
     #[doc(alias = "PHCollectionListSubtypeMomentListYear")]
     #[deprecated = "Will be removed in a future release"]
     pub const MomentListYear: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/regularfolder?language=objc)
+    /// The collection list is a folder containing albums or other folders.
+    ///
+    /// ## Discussion
+    ///
+    /// This subtype applies only to collection lists whose type is [`PHCollectionListTypeFolder`](https://developer.apple.com/documentation/photos/phcollectionlisttype/folder).
+    ///
+    ///
     #[doc(alias = "PHCollectionListSubtypeRegularFolder")]
     pub const RegularFolder: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/smartfolderevents?language=objc)
+    /// The collection list is a smart folder containing one or more Events synced from iPhoto.
+    ///
+    /// ## Discussion
+    ///
+    /// This subtype applies only to collection lists whose type is [`PHCollectionListTypeSmartFolder`](https://developer.apple.com/documentation/photos/phcollectionlisttype/smartfolder).
+    ///
+    ///
     #[doc(alias = "PHCollectionListSubtypeSmartFolderEvents")]
     pub const SmartFolderEvents: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/smartfolderfaces?language=objc)
+    /// The collection list is a smart folder containing one or more Faces synced from iPhoto.
+    ///
+    /// ## Discussion
+    ///
+    /// This subtype applies only to collection lists whose type is [`PHCollectionListTypeSmartFolder`](https://developer.apple.com/documentation/photos/phcollectionlisttype/smartfolder).
+    ///
+    ///
     #[doc(alias = "PHCollectionListSubtypeSmartFolderFaces")]
     pub const SmartFolderFaces: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistsubtype/any?language=objc)
+    /// Use this value to fetch collection lists of all possible subtypes.
     #[doc(alias = "PHCollectionListSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -91,31 +151,49 @@ unsafe impl RefEncode for PHCollectionListSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation?language=objc)
+/// Values identifying possible actions that a collection can support, used by the [`canPerformEditOperation:`](https://developer.apple.com/documentation/photos/phcollection/canperform(_:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHCollectionEditOperation(pub NSInteger);
 impl PHCollectionEditOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/deletecontent?language=objc)
+    /// The collection supports deleting the items it contains.
+    ///
+    /// ## Discussion
+    ///
+    /// Deleting an item not only removes it from the collection, but permanently deletes it from the photo library.
+    ///
+    ///
     #[doc(alias = "PHCollectionEditOperationDeleteContent")]
     pub const DeleteContent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/removecontent?language=objc)
+    /// The collection supports removing the items it contains.
+    ///
+    /// ## Discussion
+    ///
+    /// Removing an item removes it from the collection, but does not permanently delete it from the photo library.
+    ///
+    ///
     #[doc(alias = "PHCollectionEditOperationRemoveContent")]
     pub const RemoveContent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/addcontent?language=objc)
+    /// The collection supports adding items that already exist elsewhere in the photo library.
     #[doc(alias = "PHCollectionEditOperationAddContent")]
     pub const AddContent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/createcontent?language=objc)
+    /// The collection supports creating new items.
+    ///
+    /// ## Discussion
+    ///
+    /// A collection that supports creating new items also supports duplicating the items it contains.
+    ///
+    ///
     #[doc(alias = "PHCollectionEditOperationCreateContent")]
     pub const CreateContent: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/rearrangecontent?language=objc)
+    /// The collection supports reordering the arrangement of items it contains.
     #[doc(alias = "PHCollectionEditOperationRearrangeContent")]
     pub const RearrangeContent: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/delete?language=objc)
+    /// The collection itself can be deleted.
     #[doc(alias = "PHCollectionEditOperationDelete")]
     pub const Delete: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectioneditoperation/rename?language=objc)
+    /// The collection itself can be renamed.
     #[doc(alias = "PHCollectionEditOperationRename")]
     pub const Rename: Self = Self(7);
 }
@@ -128,19 +206,37 @@ unsafe impl RefEncode for PHCollectionEditOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype?language=objc)
+/// Major distinctions between kinds of asset collections, used by the [`assetCollectionType`](https://developer.apple.com/documentation/photos/phassetcollection/assetcollectiontype) property and the [`fetchAssetCollectionsContainingAsset:withType:options:`](https://developer.apple.com/documentation/photos/phassetcollection/fetchassetcollectionscontaining(_:with:options:)) and [`fetchAssetCollectionsWithType:subtype:options:`](https://developer.apple.com/documentation/photos/phassetcollection/fetchassetcollections(with:subtype:options:)) methods.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetCollectionType(pub NSInteger);
 impl PHAssetCollectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype/album?language=objc)
+    /// An album in the Photos app.
+    ///
+    /// ## Discussion
+    ///
+    /// Albums can be created in the Photos app or appear on an iOS device through iTunes sync.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionTypeAlbum")]
     pub const Album: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype/smartalbum?language=objc)
+    /// A smart album whose contents update dynamically.
+    ///
+    /// ## Discussion
+    ///
+    /// The Photos app displays built-in smart albums to group certain kinds of related assets (see [`PHAssetCollectionSubtype`](https://developer.apple.com/documentation/photos/phassetcollectionsubtype)).
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionTypeSmartAlbum")]
     pub const SmartAlbum: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectiontype/moment?language=objc)
+    /// A moment in the Photos app.
+    ///
+    /// ## Discussion
+    ///
+    /// The Photos app automatically creates moments to group assets by time and location.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionTypeMoment")]
     #[deprecated = "Will be removed in a future release"]
     pub const Moment: Self = Self(3);
@@ -154,97 +250,133 @@ unsafe impl RefEncode for PHAssetCollectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype?language=objc)
+/// Minor distinctions between kinds of asset collections, used by the [`assetCollectionSubtype`](https://developer.apple.com/documentation/photos/phassetcollection/assetcollectionsubtype) property and the [`fetchAssetCollectionsWithType:subtype:options:`](https://developer.apple.com/documentation/photos/phassetcollection/fetchassetcollections(with:subtype:options:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetCollectionSubtype(pub NSInteger);
 impl PHAssetCollectionSubtype {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumregular?language=objc)
+    /// An album created in the Photos app.
     #[doc(alias = "PHAssetCollectionSubtypeAlbumRegular")]
     pub const AlbumRegular: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumsyncedevent?language=objc)
+    /// An Event synced to the device from iPhoto.
     #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedEvent")]
     pub const AlbumSyncedEvent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumsyncedfaces?language=objc)
+    /// A Faces group synced to the device from iPhoto.
     #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedFaces")]
     pub const AlbumSyncedFaces: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumsyncedalbum?language=objc)
+    /// An album synced to the device from iPhoto.
     #[doc(alias = "PHAssetCollectionSubtypeAlbumSyncedAlbum")]
     pub const AlbumSyncedAlbum: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumimported?language=objc)
+    /// An album imported from a camera or external storage.
     #[doc(alias = "PHAssetCollectionSubtypeAlbumImported")]
     pub const AlbumImported: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albummyphotostream?language=objc)
+    /// The user’s personal iCloud Photo Stream.
+    ///
+    /// ## Discussion
+    ///
+    /// This album is available only if the user has enabled My Photo Stream in the iCloud settings for Photos. The My Photo Stream setting is off by default when iCloud Photo Library is enabled.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionSubtypeAlbumMyPhotoStream")]
     pub const AlbumMyPhotoStream: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/albumcloudshared?language=objc)
+    /// An iCloud Shared Photo Stream.
     #[doc(alias = "PHAssetCollectionSubtypeAlbumCloudShared")]
     pub const AlbumCloudShared: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumgeneric?language=objc)
+    /// A Smart Album without a more-specific subtype.
+    ///
+    /// ## Discussion
+    ///
+    /// This subtype applies to smart albums synced to the iOS device from the macOS Photos app.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumGeneric")]
     pub const SmartAlbumGeneric: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumpanoramas?language=objc)
+    /// A Smart Album that groups all panorama photos in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumPanoramas")]
     pub const SmartAlbumPanoramas: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumvideos?language=objc)
+    /// A Smart Album that groups all video assets in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumVideos")]
     pub const SmartAlbumVideos: Self = Self(202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumfavorites?language=objc)
+    /// A Smart Album that groups all assets that the user marks as favorites.
+    ///
+    /// ## Discussion
+    ///
+    /// The user’s favorite assets are those whose [`favorite`](https://developer.apple.com/documentation/photos/phasset/isfavorite) property is `true`. You mark an asset as a favorite by setting the [`favorite`](https://developer.apple.com/documentation/photos/phassetchangerequest/isfavorite) property of a [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) object.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumFavorites")]
     pub const SmartAlbumFavorites: Self = Self(203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumtimelapses?language=objc)
+    /// A Smart Album that groups all time-lapse videos in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumTimelapses")]
     pub const SmartAlbumTimelapses: Self = Self(204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumallhidden?language=objc)
+    /// A Smart Album that groups all assets hidden from the Moments view in the Photos app.
+    ///
+    /// ## Discussion
+    ///
+    /// Hidden assets have an [`hidden`](https://developer.apple.com/documentation/photos/phasset/ishidden) value of `true` and the system doesn’t return them through a fetch request, by default. Hide or show an asset by setting the [`hidden`](https://developer.apple.com/documentation/photos/phassetchangerequest/ishidden) property of a [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) object.
+    ///
+    /// Beginning with iOS 16, users can require authentication to view the hidden Smart Album, and the user setting is `true` by default. When `true`, the system returns an empty Smart Album.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAllHidden")]
     pub const SmartAlbumAllHidden: Self = Self(205);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumrecentlyadded?language=objc)
+    /// A Smart Album that groups all recently added assets in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRecentlyAdded")]
     pub const SmartAlbumRecentlyAdded: Self = Self(206);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumbursts?language=objc)
+    /// A Smart Album that groups all burst photo sequences in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumBursts")]
     pub const SmartAlbumBursts: Self = Self(207);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumslomovideos?language=objc)
+    /// A Smart Album that groups all Slow-Mo videos in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSlomoVideos")]
     pub const SmartAlbumSlomoVideos: Self = Self(208);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumuserlibrary?language=objc)
+    /// A Smart Album that groups all assets that originate in the user’s own library (as opposed to assets from iCloud Shared Albums).
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUserLibrary")]
     pub const SmartAlbumUserLibrary: Self = Self(209);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumselfportraits?language=objc)
+    /// A Smart Album that groups all photos and videos captured using the device’s front-facing camera.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSelfPortraits")]
     pub const SmartAlbumSelfPortraits: Self = Self(210);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumscreenshots?language=objc)
+    /// A Smart Album that groups all images captured using the device’s screenshot function.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenshots")]
     pub const SmartAlbumScreenshots: Self = Self(211);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumdeptheffect?language=objc)
+    /// A Smart Album that groups all images captured using the Depth Effect camera mode on compatible devices.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumDepthEffect")]
     pub const SmartAlbumDepthEffect: Self = Self(212);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumlivephotos?language=objc)
+    /// A Smart Album that groups all Live Photos assets.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLivePhotos")]
     pub const SmartAlbumLivePhotos: Self = Self(213);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumanimated?language=objc)
+    /// A Smart Album that groups all image animation assets.
+    ///
+    /// ## Discussion
+    ///
+    /// Animated images can be imported to the Photos library in formats such as Animated GIF.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumAnimated")]
     pub const SmartAlbumAnimated: Self = Self(214);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumlongexposures?language=objc)
+    /// A Smart Album that groups all Live Photos assets where the Long Exposure variation is in an enabled state.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumLongExposures")]
     pub const SmartAlbumLongExposures: Self = Self(215);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumunabletoupload?language=objc)
+    /// A Smart Album that groups all assets that the system can’t upload to iCloud.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumUnableToUpload")]
     pub const SmartAlbumUnableToUpload: Self = Self(216);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumraw?language=objc)
+    /// A Smart Album that groups all RAW assets in the photo library.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumRAW")]
     pub const SmartAlbumRAW: Self = Self(217);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumcinematic?language=objc)
+    /// A Smart Album that groups all cinematic photo assets.
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumCinematic")]
     pub const SmartAlbumCinematic: Self = Self(218);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumspatial?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumSpatial")]
     pub const SmartAlbumSpatial: Self = Self(219);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/smartalbumscreenrecordings?language=objc)
     #[doc(alias = "PHAssetCollectionSubtypeSmartAlbumScreenRecordings")]
     pub const SmartAlbumScreenRecordings: Self = Self(220);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionsubtype/any?language=objc)
+    /// A bit mask representing all possible subtypes.
+    ///
+    /// ## Discussion
+    ///
+    /// When fetching asset collections, use this value to fetch collections of any subtype.
+    ///
+    ///
     #[doc(alias = "PHAssetCollectionSubtypeAny")]
     pub const Any: Self = Self(NSIntegerMax as _);
 }
@@ -257,19 +389,37 @@ unsafe impl RefEncode for PHAssetCollectionSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation?language=objc)
+/// Values identifying possible actions an asset can support, used by the [`canPerformEditOperation:`](https://developer.apple.com/documentation/photos/phasset/canperform(_:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetEditOperation(pub NSInteger);
 impl PHAssetEditOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation/delete?language=objc)
+    /// The asset can be deleted from the photo library.
+    ///
+    /// ## Discussion
+    ///
+    /// To delete one or more assets, create a change request with the [`deleteAssets:`](https://developer.apple.com/documentation/photos/phassetchangerequest/deleteassets(_:)) method inside a [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) change block.
+    ///
+    ///
     #[doc(alias = "PHAssetEditOperationDelete")]
     pub const Delete: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation/content?language=objc)
+    /// The asset’s photo or video content can be edited.
+    ///
+    /// ## Discussion
+    ///
+    /// To begin the process of editing an asset, use the [`requestContentEditingInputWithOptions:completionHandler:`](https://developer.apple.com/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)) method.
+    ///
+    ///
     #[doc(alias = "PHAssetEditOperationContent")]
     pub const Content: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasseteditoperation/properties?language=objc)
+    /// The asset’s metadata properties can be edited.
+    ///
+    /// ## Discussion
+    ///
+    /// To change an asset’s properties, create a change request with the [`changeRequestForAsset:`](https://developer.apple.com/documentation/photos/phassetchangerequest/init(for:)) method inside a [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) change block.
+    ///
+    ///
     #[doc(alias = "PHAssetEditOperationProperties")]
     pub const Properties: Self = Self(3);
 }
@@ -282,28 +432,28 @@ unsafe impl RefEncode for PHAssetEditOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum?language=objc)
+/// An enumeration of asset playback styles that dictate how to present an asset to the user.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetPlaybackStyle(pub NSInteger);
 impl PHAssetPlaybackStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/unsupported?language=objc)
+    /// An enumeration indicating that the asset has an unsupported or undefined media playback type.
     #[doc(alias = "PHAssetPlaybackStyleUnsupported")]
     pub const Unsupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/image?language=objc)
+    /// An enumeration indicating that the asset should be displayed as a still image.
     #[doc(alias = "PHAssetPlaybackStyleImage")]
     pub const Image: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/imageanimated?language=objc)
+    /// An enumeration indicating that the asset should be displayed as an animated image.
     #[doc(alias = "PHAssetPlaybackStyleImageAnimated")]
     pub const ImageAnimated: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/livephoto?language=objc)
+    /// An enumeration indicating that the asset should be displayed as a Live Photo.
     #[doc(alias = "PHAssetPlaybackStyleLivePhoto")]
     pub const LivePhoto: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/video?language=objc)
+    /// An enumeration indicating that the asset should be displayed as a video.
     #[doc(alias = "PHAssetPlaybackStyleVideo")]
     pub const Video: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum/videolooping?language=objc)
+    /// An enumeration indicating that the asset should be displayed as a looping video.
     #[doc(alias = "PHAssetPlaybackStyleVideoLooping")]
     pub const VideoLooping: Self = Self(5);
 }
@@ -316,22 +466,28 @@ unsafe impl RefEncode for PHAssetPlaybackStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype?language=objc)
+/// Identifies the general type of an asset, such as image or video.
+///
+/// ## Overview
+///
+/// You use these constants with the [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) and [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) classes to fetch specific types of assets or to identify an asset being edited.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetMediaType(pub NSInteger);
 impl PHAssetMediaType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/unknown?language=objc)
+    /// The asset’s type is unknown.
     #[doc(alias = "PHAssetMediaTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/image?language=objc)
+    /// The asset is a photo or other static image.
     #[doc(alias = "PHAssetMediaTypeImage")]
     pub const Image: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/video?language=objc)
+    /// The asset is a video file.
     #[doc(alias = "PHAssetMediaTypeVideo")]
     pub const Video: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype/audio?language=objc)
+    /// The asset is an audio file.
     #[doc(alias = "PHAssetMediaTypeAudio")]
     pub const Audio: Self = Self(3);
 }
@@ -344,47 +500,77 @@ unsafe impl RefEncode for PHAssetMediaType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype?language=objc)
+/// Constants identifying specific variations of asset media, such as panorama or screenshot photos, and time-lapse or high-frame-rate video.
+///
+/// ## Overview
+///
+/// You use these constants with the [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) and [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) classes to fetch specific types of assets or to identify an asset being edited.
+///
+/// Media subtypes are [`OptionSet`](https://developer.apple.com/documentation/swift/optionset) values, so you can combine them using set literal syntax to test for multiple subtypes.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetMediaSubtype(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetMediaSubtype: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/phassetmediasubtypenone?language=objc)
+/// The asset has no subtype.
+///
+/// ## Discussion
+///
+/// This is the default subtype for most photo and video assets.
+///
+///
         #[doc(alias = "PHAssetMediaSubtypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photopanorama?language=objc)
+/// The asset is a large-format panorama photo.
         #[doc(alias = "PHAssetMediaSubtypePhotoPanorama")]
         const PhotoPanorama = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photohdr?language=objc)
+/// The asset is a high-dynamic range photo.
         #[doc(alias = "PHAssetMediaSubtypePhotoHDR")]
         const PhotoHDR = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photoscreenshot?language=objc)
+/// The asset is an image captured with the device’s screenshot feature.
         #[doc(alias = "PHAssetMediaSubtypePhotoScreenshot")]
         const PhotoScreenshot = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photolive?language=objc)
+/// The asset is a Live Photo that includes movement and sounds from the moments just before and after its capture.
+///
+/// ## Discussion
+///
+/// To display a Live Photo asset with its associated video content, retrieve a [`PHLivePhoto`](https://developer.apple.com/documentation/photos/phlivephoto) object using the [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager) class and assign it to a [`PHLivePhotoView`](https://developer.apple.com/documentation/photosui/phlivephotoview) object.
+///
+///
         #[doc(alias = "PHAssetMediaSubtypePhotoLive")]
         const PhotoLive = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/photodeptheffect?language=objc)
+/// The asset is a photo captured with the Camera app’s Portrait mode depth effect.
         #[doc(alias = "PHAssetMediaSubtypePhotoDepthEffect")]
         const PhotoDepthEffect = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/spatialmedia?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeSpatialMedia")]
         const SpatialMedia = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videostreamed?language=objc)
+/// The asset is a video with contents that always stream over a network connection.
+///
+/// ## Discussion
+///
+/// This subtype identifies video assets that are never stored on the local device, such as shared videos in a subscribed iCloud Photo Stream.
+///
+///
         #[doc(alias = "PHAssetMediaSubtypeVideoStreamed")]
         const VideoStreamed = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videohighframerate?language=objc)
+/// The asset is a high-frame-rate video.
+///
+/// ## Discussion
+///
+/// High-frame-rate videos are created by the Slow-Mo feature in the Camera app on an iOS device.
+///
+///
         #[doc(alias = "PHAssetMediaSubtypeVideoHighFrameRate")]
         const VideoHighFrameRate = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videotimelapse?language=objc)
+/// The asset is a time-lapse video.
         #[doc(alias = "PHAssetMediaSubtypeVideoTimelapse")]
         const VideoTimelapse = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videoscreenrecording?language=objc)
         #[doc(alias = "PHAssetMediaSubtypeVideoScreenRecording")]
         const VideoScreenRecording = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype/videocinematic?language=objc)
+/// The asset is a cinematic video.
         #[doc(alias = "PHAssetMediaSubtypeVideoCinematic")]
         const VideoCinematic = 1<<21;
     }
@@ -398,20 +584,20 @@ unsafe impl RefEncode for PHAssetMediaSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype?language=objc)
+/// Bit mask values indicating whether and how an asset is marked as a favorite member of a burst photo sequence. Used by the [`burstSelectionTypes`](https://developer.apple.com/documentation/photos/phasset/burstselectiontypes) property.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetBurstSelectionType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetBurstSelectionType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype/phassetburstselectiontypenone?language=objc)
+/// The asset is not marked as a favorite member of its burst sequence or is not a member of a burst sequence.
         #[doc(alias = "PHAssetBurstSelectionTypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype/autopick?language=objc)
+/// Photos has automatically identified the asset as a potential user favorite.
         #[doc(alias = "PHAssetBurstSelectionTypeAutoPick")]
         const AutoPick = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype/userpick?language=objc)
+/// The user has marked the asset as a favorite member of its burst sequence.
         #[doc(alias = "PHAssetBurstSelectionTypeUserPick")]
         const UserPick = 1<<1;
     }
@@ -425,23 +611,41 @@ unsafe impl RefEncode for PHAssetBurstSelectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype?language=objc)
+/// The means by which an asset enters the Photos library.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetSourceType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetSourceType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/phassetsourcetypenone?language=objc)
+/// Source information is not available for the asset.
         #[doc(alias = "PHAssetSourceTypeNone")]
         const TypeNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/typeuserlibrary?language=objc)
+/// The asset is part of the user’s main Photos library.
+///
+/// ## Discussion
+///
+/// The main library contains both assets that originate on the device (such as photos and videos captured with the Camera app or screenshots) and assets synchronized through iCloud Photo Library or My Photo Stream. These assets appear in Moments collections and can be edited or deleted.
+///
+///
         #[doc(alias = "PHAssetSourceTypeUserLibrary")]
         const TypeUserLibrary = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/typecloudshared?language=objc)
+/// The asset originates from an iCloud Shared Album.
+///
+/// ## Discussion
+///
+/// Assets from shared albums cannot be edited and do not appear in Moments collections.
+///
+///
         #[doc(alias = "PHAssetSourceTypeCloudShared")]
         const TypeCloudShared = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype/typeitunessynced?language=objc)
+/// The asset originates from a Mac or PC and is present on the device through iTunes sync.
+///
+/// ## Discussion
+///
+/// iTunes-synced assets cannot be edited or deleted.
+///
+///
         #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
         const TypeiTunesSynced = 1<<2;
     }
@@ -455,49 +659,84 @@ unsafe impl RefEncode for PHAssetSourceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype?language=objc)
+/// Describes the relationship of an asset resource to its owning asset.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceType(pub NSInteger);
 impl PHAssetResourceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/photo?language=objc)
+    /// Provides the original photo data for its asset.
     #[doc(alias = "PHAssetResourceTypePhoto")]
     pub const Photo: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/video?language=objc)
+    /// Provides the original video data for its asset.
     #[doc(alias = "PHAssetResourceTypeVideo")]
     pub const Video: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/audio?language=objc)
+    /// Provides the original audio data for its asset.
     #[doc(alias = "PHAssetResourceTypeAudio")]
     pub const Audio: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/alternatephoto?language=objc)
+    /// Provides photo data that isn’t the primary form of its asset.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, a photo asset imported from an external camera may contain both a JPEG file (the primary form of the asset) and a RAW file (the alternate photo).
+    ///
+    ///
     #[doc(alias = "PHAssetResourceTypeAlternatePhoto")]
     pub const AlternatePhoto: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizephoto?language=objc)
+    /// Provides a modified version of the original photo asset.
     #[doc(alias = "PHAssetResourceTypeFullSizePhoto")]
     pub const FullSizePhoto: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizevideo?language=objc)
+    /// Provides a modified version of the original video asset.
     #[doc(alias = "PHAssetResourceTypeFullSizeVideo")]
     pub const FullSizeVideo: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentdata?language=objc)
+    /// Provides data for use in reconstructing recent edits to its asset.
+    ///
+    /// ## Discussion
+    ///
+    /// When you edit the asset, Photos provides this data in the form of a [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object.
+    ///
+    ///
     #[doc(alias = "PHAssetResourceTypeAdjustmentData")]
     pub const AdjustmentData: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasephoto?language=objc)
+    /// Provides an unaltered version of its photo asset for use in for use in reconstructing recent edits.
+    ///
+    /// ## Discussion
+    ///
+    /// When you edit an asset, you have the option of resuming the most recent edit made. This process uses a [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object to describe the edit, and an extra copy of the photo data representing the state of the asset before the edit. For details, see [`PHAsset`](https://developer.apple.com/documentation/photos/phasset).
+    ///
+    ///
     #[doc(alias = "PHAssetResourceTypeAdjustmentBasePhoto")]
     pub const AdjustmentBasePhoto: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/pairedvideo?language=objc)
+    /// Provides the original video data component of a Live Photo asset.
+    ///
+    /// ## Discussion
+    ///
+    /// This asset resource type appears when fetching the asset resources associated with a Live Photo asset.
+    ///
+    ///
     #[doc(alias = "PHAssetResourceTypePairedVideo")]
     pub const PairedVideo: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizepairedvideo?language=objc)
+    /// Provides the current video data component of a Live Photo asset.
+    ///
+    /// ## Discussion
+    ///
+    /// This asset resource type appears when fetching the asset resources associated with a Live Photo asset. This resource type represents the current rendered output, if any, for an edited Live Photo asset. The corresponding still image can be found in the [`PHAssetResourceTypeFullSizePhoto`](https://developer.apple.com/documentation/photos/phassetresourcetype/fullsizephoto) resource type.
+    ///
+    ///
     #[doc(alias = "PHAssetResourceTypeFullSizePairedVideo")]
     pub const FullSizePairedVideo: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasepairedvideo?language=objc)
+    /// Provides an unaltered version of the video data for a Live Photo asset for use in reconstructing recent edits.
+    ///
+    /// ## Discussion
+    ///
+    /// This asset resource type appears when fetching the asset resources associated with a Live Photo asset. This resource type represents the input of the most recent edit (if any), to which you can apply the changes described in a [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) to reconstruct or alter that edit. The corresponding still image can be found in the [`PHAssetResourceTypeAdjustmentBasePhoto`](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasephoto) resource type.
+    ///
+    ///
     #[doc(alias = "PHAssetResourceTypeAdjustmentBasePairedVideo")]
     pub const AdjustmentBasePairedVideo: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/adjustmentbasevideo?language=objc)
+    /// Provides an unaltered version of its video asset.
     #[doc(alias = "PHAssetResourceTypeAdjustmentBaseVideo")]
     pub const AdjustmentBaseVideo: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcetype/photoproxy?language=objc)
     #[doc(alias = "PHAssetResourceTypePhotoProxy")]
     pub const PhotoProxy: Self = Self(19);
 }
@@ -511,29 +750,24 @@ unsafe impl RefEncode for PHAssetResourceType {
 }
 
 /// The states of an upload job.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum?language=objc)
+/// The states of an upload job.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceUploadJobState(pub NSInteger);
 impl PHAssetResourceUploadJobState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/registered?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobStateRegistered")]
     pub const Registered: Self = Self(1);
     /// The job has been registered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/pending?language=objc)
+    /// The job has been registered.
     #[doc(alias = "PHAssetResourceUploadJobStatePending")]
     pub const Pending: Self = Self(2);
     /// A request has been made to send the asset resource to the destination, but has not yet been fulfilled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/failed?language=objc)
+    /// A request has been made to send the asset resource to the destination, but has not yet been fulfilled.
     #[doc(alias = "PHAssetResourceUploadJobStateFailed")]
     pub const Failed: Self = Self(3);
     /// The job has failed to send over.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum/succeeded?language=objc)
+    /// The job has failed to send over.
     #[doc(alias = "PHAssetResourceUploadJobStateSucceeded")]
     pub const Succeeded: Self = Self(4);
 }
@@ -547,19 +781,16 @@ unsafe impl RefEncode for PHAssetResourceUploadJobState {
 }
 
 /// These actions correspond with the types of fetches we can make on a PHAssetResourceUploadJob and the actions we can also take on those jobs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/action?language=objc)
+/// These actions correspond with the types of fetches we can make on a PHAssetResourceUploadJob and the actions we can also take on those jobs.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceUploadJobAction(pub NSInteger);
 impl PHAssetResourceUploadJobAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/action/acknowledge?language=objc)
     #[doc(alias = "PHAssetResourceUploadJobActionAcknowledge")]
     pub const Acknowledge: Self = Self(1);
     /// Where PHAssetResourceUploadJobState = (success OR fail).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/action/retry?language=objc)
+    /// Where PHAssetResourceUploadJobState = (success OR fail).
     #[doc(alias = "PHAssetResourceUploadJobActionRetry")]
     pub const Retry: Self = Self(2);
 }
@@ -572,19 +803,19 @@ unsafe impl RefEncode for PHAssetResourceUploadJobAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype?language=objc)
+/// Identifies the type of objects in a change request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHObjectType(pub NSInteger);
 impl PHObjectType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype/asset?language=objc)
+    /// A type that represents an asset.
     #[doc(alias = "PHObjectTypeAsset")]
     pub const Asset: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype/assetcollection?language=objc)
+    /// A type that represents a collection of assets.
     #[doc(alias = "PHObjectTypeAssetCollection")]
     pub const AssetCollection: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype/collectionlist?language=objc)
+    /// A type that represents a collection list.
     #[doc(alias = "PHObjectTypeCollectionList")]
     pub const CollectionList: Self = Self(3);
 }

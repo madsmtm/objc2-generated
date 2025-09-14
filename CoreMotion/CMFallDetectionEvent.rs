@@ -6,37 +6,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// User resolutions for fall detection events.
+///
+/// ## Overview
+///
+/// The resolution of an event reflects the user’s action in response to the fall detection notification. For example, the user might tap a button to respond inside the notification, or press the digital crown to dismiss the notification.
+///
+///
 /// Fall Detection Event Resolution
 ///
 /// See also: CMFallDetectionEvent
 ///
 ///
 /// This enumeration defines the different states in which a Fall Detection event can be resolved
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMFallDetectionEventUserResolution(pub NSInteger);
 impl CMFallDetectionEventUserResolution {
+    /// The user confirmed the event.
     /// the user confirmed the fall alert
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/confirmed?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionConfirmed")]
     pub const Confirmed: Self = Self(0);
-    /// the user dismissed the fall alert either immediately or after a sequence of haptics and chimes
+    /// The user dismissed the fall event alert, but didn’t explicitly confirm or reject the event.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/dismissed?language=objc)
+    /// ## Discussion
+    ///
+    /// The user can dismiss the alert by pressing the digital crown or tapping the close button.
+    ///
+    ///
+    /// the user dismissed the fall alert either immediately or after a sequence of haptics and chimes
     #[doc(alias = "CMFallDetectionEventUserResolutionDismissed")]
     pub const Dismissed: Self = Self(1);
+    /// The user rejected the fall event.
     /// the user rejected the fall alert, indicating that they didn't fall
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/rejected?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionRejected")]
     pub const Rejected: Self = Self(2);
+    /// The user didn’t respond to the fall event and the system hasn’t detected recovery motions.
     /// the user did not respond to the fall alert and no recovery motion was detected
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution/unresponsive?language=objc)
     #[doc(alias = "CMFallDetectionEventUserResolutionUnresponsive")]
     pub const Unresponsive: Self = Self(3);
 }
@@ -50,13 +57,12 @@ unsafe impl RefEncode for CMFallDetectionEventUserResolution {
 }
 
 extern_class!(
+    /// An object that contains data about a fall detection event.
     /// Fall Detection Event
     ///
     /// See also: CMFallDetectionEventResolution
     ///
     /// This object represents a Fall Detection event and how it was resolved
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMFallDetectionEvent;

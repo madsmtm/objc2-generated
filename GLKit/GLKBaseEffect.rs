@@ -11,7 +11,23 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkbaseeffect?language=objc)
+    /// A simple lighting and shading system for use in shader-based OpenGL rendering.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GLKBaseEffect`](https://developer.apple.com/documentation/glkit/glkbaseeffect) class provides shaders that mimic many of the behaviors provided by the OpenGL ES 1.1 lighting and shading model, including materials, lighting and texturing. The base effect allows up to three lights and two textures to be applied to a scene.
+    ///
+    /// At initialization time, your application first creates a compatible OpenGL or OpenGL ES context and makes it current. Then, it allocates and initializes a new effect object, configures its properties, and calls its [`prepareToDraw`](https://developer.apple.com/documentation/glkit/glkbaseeffect/preparetodraw()) method. Binding an effect causes a shader to be compiled and bound to the current context. The base effect also requires vertex data to be supplied by your application. To supply vertex data, create one or more vertex array objects. For each attribute required by the shader, the vertex array object should enable the attribute and point to data stored in a vertex buffer object.
+    ///
+    /// At rendering time, your application calls the effect’s [`prepareToDraw`](https://developer.apple.com/documentation/glkit/glkbaseeffect/preparetodraw()) method to prepare the effect. Then, it binds a vertex array object and submits one or more drawing commands.
+    ///
+    /// Lighting calculations for the base effect are done in eye-space coordinates.  The [`light0`](https://developer.apple.com/documentation/glkit/glkbaseeffect/light0), [`light1`](https://developer.apple.com/documentation/glkit/glkbaseeffect/light1) and [`light2`](https://developer.apple.com/documentation/glkit/glkbaseeffect/light2) properties hold the position and spot direction of the base effect’s lights. The [`transform`](https://developer.apple.com/documentation/glkit/glkbaseeffect/transform) property contains the model view matrix assigned to the scene. When a light is assigned a new position or spot direction, those values are immediately modified by the current model view matrix. Thus, it is important to sequence changes to the model view matrix and changes to the lights to achieve the desired light positioning.  Light positions that need to be transformed in a manner similar to scene geometry should be set after the model view matrix is updated.
+    ///
+    /// ### Subclassing
+    ///
+    /// Although this class can be subclassed, there are no methods your subclass can use to directly override the underlying shader generation. Instead, your subclass should implement its functionality by changing the values of existing properties declared by the base class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKBaseEffect;

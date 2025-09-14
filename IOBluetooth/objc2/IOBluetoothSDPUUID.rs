@@ -11,11 +11,16 @@ use crate::*;
 extern_class!(
     /// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
     ///
+    /// ## Overview
+    ///
+    /// The IOBluetoothSDPUUID class can represent a UUID of any valid size (16, 32 or 128 bits). It provides the ability to compare two UUIDs no matter what their size as well as the ability to promote the size of a UUID to a larger one.
+    ///
+    ///
+    /// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
+    ///
     /// The IOBluetoothSDPUUID class can represent a UUID of any valid size (16, 32 or 128 bits).
     /// It provides the ability to compare two UUIDs no matter what their size as well as the ability
     /// to promote the size of a UUID to a larger one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpuuid?language=objc)
     #[unsafe(super(NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-foundation")]

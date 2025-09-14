@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An `ODNode` object serves as a Cocoa wrapper for an Open Directory node.
     /// This class is used to work with OpenDirectory nodes.
     ///
     /// OpenDirectory uses nodes to represent different sources of directory information, via the local disk, LDAP, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODNode;

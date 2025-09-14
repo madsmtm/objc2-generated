@@ -10,42 +10,41 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Error codes returned by Core Media when working with tag collections.
 /// The OSStatus errors returned from the CMTagCollection routines.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagCollectionError(pub OSStatus);
 impl CMTagCollectionError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_paramerr?language=objc)
+    /// Indicates a parameter to a function was of the wrong type or didn’t meet a necessary condition.
     #[doc(alias = "kCMTagCollectionError_ParamErr")]
     pub const ParamErr: Self = Self(-15740);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_allocationfailed?language=objc)
+    /// Indicates an internal allocation failed.
     #[doc(alias = "kCMTagCollectionError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15741);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_internalerror?language=objc)
+    /// Indicates an error occurred inside of the Core Media framework.
     #[doc(alias = "kCMTagCollectionError_InternalError")]
     pub const InternalError: Self = Self(-15742);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtag?language=objc)
+    /// Indicates that the collection contains an invalid tag.
     #[doc(alias = "kCMTagCollectionError_InvalidTag")]
     pub const InvalidTag: Self = Self(-15743);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtagcollectiondictionary?language=objc)
+    /// Indicates that a Core Foundation dictionary instance failed to initialize a new tag collection.
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDictionary")]
     pub const InvalidTagCollectionDictionary: Self = Self(-15744);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtagcollectiondata?language=objc)
+    /// Indicates that a Core Foundation data instance failed to initialize a new tag collection.
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionData")]
     pub const InvalidTagCollectionData: Self = Self(-15745);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_tagnotfound?language=objc)
+    /// Indicates that there was no match in a collection for a tag.
     #[doc(alias = "kCMTagCollectionError_TagNotFound")]
     pub const TagNotFound: Self = Self(-15746);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_invalidtagcollectiondataversion?language=objc)
+    /// Indicates that a Core Foundation data instance failed to initialize a new tag collection due to a versioning problem.
     #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDataVersion")]
     pub const InvalidTagCollectionDataVersion: Self = Self(-15747);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_exhaustedbuffersize?language=objc)
+    /// Indicates that a buffer was smaller than the number of requested tags.
     #[doc(alias = "kCMTagCollectionError_ExhaustedBufferSize")]
     pub const ExhaustedBufferSize: Self = Self(-15748);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionerror/kcmtagcollectionerror_notyetimplemented?language=objc)
+    /// Indicates a function lacks a necessary backing implementation in Core Media.
     #[doc(alias = "kCMTagCollectionError_NotYetImplemented")]
     pub const NotYetImplemented: Self = Self(-15749);
 }
@@ -60,9 +59,8 @@ unsafe impl RefEncode for CMTagCollectionError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A reference to a tag collection.
 /// A reference to a CMTagCollection, a CF object that adheres to retain/release semantics. This value type represents an unordered collection of zero or more CMTags. This type is roughly analogous to CFSetRef in that it is unordered and has operations for Boolean set math. It is however optimized for the storage of CMTag structures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionref?language=objc)
 #[doc(alias = "CMTagCollectionRef")]
 #[repr(C)]
 pub struct CMTagCollection {
@@ -78,7 +76,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueCMTagCollection"> for CMTagCollection {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmutabletagcollectionref?language=objc)
+/// A mutable reference to a tag collection.
 #[doc(alias = "CMMutableTagCollectionRef")]
 #[repr(C)]
 pub struct CMMutableTagCollection {
@@ -95,13 +93,12 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CMTagCollection {
+    /// Retrieves the internal type ID for tag collections.
     /// Obtains the CoreFoundation type ID for the CMTagCollection type.
     ///
     /// Obtains the CoreFoundation type ID for the CMTagCollection type.
     ///
     /// Returns: Returns the CFTypeID corresponding to CMTagCollection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettypeid?language=objc)
     #[doc(alias = "CMTagCollectionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -112,16 +109,16 @@ unsafe impl ConcreteType for CMTagCollection {
     }
 }
 
+/// A type for function application over elements of a tag collection.
 /// A callback function that can be used to iterate over a CMTagCollection. The callback is passed a CMTag and a potentially NULL context reference that can be used to implement some operation for each tag.
 ///
 /// Parameter `tag`: The CMTag to evaluate.
 ///
 /// Parameter `context`: A valid pointer or NULL used by the callback implementation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionapplierfunction?language=objc)
 #[cfg(feature = "CMTag")]
 pub type CMTagCollectionApplierFunction = Option<unsafe extern "C-unwind" fn(CMTag, *mut c_void)>;
 
+/// A type for filtering of tag collections.
 /// A callback function that can be used to implement a filtering operation during iteration over a CMTagCollection. For each CMTag that satisfies the predicate, the callback should return true. Otherwise, it should return false.  The callback is passed a CMTag and a potentially NULL context reference that can be used to implement some operation for each tag.
 ///
 /// Parameter `tag`: The CMTag to evaluate.
@@ -129,13 +126,40 @@ pub type CMTagCollectionApplierFunction = Option<unsafe extern "C-unwind" fn(CMT
 /// Parameter `context`: A valid pointer or NULL used by the callback implementation.
 ///
 /// Returns: A Boolean indicating if the tag passed the callback test.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiontagfilterfunction?language=objc)
 #[cfg(feature = "CMTag")]
 pub type CMTagCollectionTagFilterFunction =
     Option<unsafe extern "C-unwind" fn(CMTag, *mut c_void) -> Boolean>;
 
 impl CMTagCollection {
+    /// Creates a new tag collection from an existing C-style array of tags.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - tags: A pointer to the first element of the tag array.
+    ///
+    /// - tagCount: The number of tags to copy from the array.
+    ///
+    /// - newCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value of `tagCount` greater than the number of elements in the array starting from `tags` causes undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates a CMTagCollectionRef described by a number of parameters.
     ///
     /// This can be used to construct a CMTagCollectionRef from zero or more CMTags.
@@ -154,8 +178,6 @@ impl CMTagCollection {
     ///
     /// - `tags` must be a valid pointer or null.
     /// - `new_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreate?language=objc)
     #[doc(alias = "CMTagCollectionCreate")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -176,6 +198,21 @@ impl CMTagCollection {
         unsafe { CMTagCollectionCreate(allocator, tags, tag_count, new_collection_out) }
     }
 
+    /// Creates a new, mutable, empty tag collection.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - capacity: The maximum number of tags the collection can contain. Pass `0` for an unbounded capacity.
+    ///
+    /// - newMutableCollectionOut: The output destination for the new mutable tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Creates a CMMutableTagCollectionRef.
     ///
     /// This can be used to construct a mutable CMTagCollectionRef with a capacity limit or without a capacity limit. A capacity greater than zero indicates a maximum number of CMTags the collection can contain. The actual number of tags may be less than this value depending upon how many tags have been added to the collection.
@@ -192,8 +229,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_mutable_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatemutable?language=objc)
     #[doc(alias = "CMTagCollectionCreateMutable")]
     #[inline]
     pub unsafe fn create_mutable(
@@ -211,6 +246,21 @@ impl CMTagCollection {
         unsafe { CMTagCollectionCreateMutable(allocator, capacity, new_mutable_collection_out) }
     }
 
+    /// Creates a copy of a tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to copy.
+    ///
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - newCollectionCopyOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Creates a duplicate CMTagCollectionRef.
     ///
     /// This can be used to construct a CMTagCollectionRef that contains all the same tags as another collection.
@@ -226,8 +276,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_collection_copy_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatecopy?language=objc)
     #[doc(alias = "CMTagCollectionCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
@@ -245,6 +293,21 @@ impl CMTagCollection {
         unsafe { CMTagCollectionCreateCopy(self, allocator, new_collection_copy_out) }
     }
 
+    /// Creates a new mutable copy from an existing tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to copy.
+    ///
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - newMutableCollectionCopyOut: The output destination for the new mutable tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Creates a duplicate mutable CMTagCollectionRef.
     ///
     /// This can be used to construct a CMMutableTagCollectionRef that contains all the same tags as another collection.
@@ -260,8 +323,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_mutable_collection_copy_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatemutablecopy?language=objc)
     #[doc(alias = "CMTagCollectionCreateMutableCopy")]
     #[inline]
     pub unsafe fn create_mutable_copy(
@@ -281,6 +342,13 @@ impl CMTagCollection {
         }
     }
 
+    /// Retrieves a copy of the tag collection’s description.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - tagCollection: The tag collection to copy the description from.
+    ///
     /// Creates a CFString with a description of a CMTagCollection.
     ///
     /// This can be used from within CFShow on a CMTagCollection object. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
@@ -290,8 +358,6 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to describe.
     ///
     /// Returns: The created CFString description.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopydescription?language=objc)
     #[doc(alias = "CMTagCollectionCopyDescription")]
     #[inline]
     pub unsafe fn description(
@@ -308,13 +374,16 @@ impl CMTagCollection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Gets the number of tags in a tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to get the count of.
+    ///
     /// Returns the number of CMTags held in the CMTagCollectionRef.
     ///
     /// Parameter `tagCollection`: CMTagCollectionRef to evaluate for the tag count.
     ///
     /// Returns: CMItemCount holding the count.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongetcount?language=objc)
     #[doc(alias = "CMTagCollectionGetCount")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -325,6 +394,19 @@ impl CMTagCollection {
         unsafe { CMTagCollectionGetCount(self) }
     }
 
+    /// Determines if a tag collection contains a specific tag.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to search for the tag.
+    ///
+    /// - tag: The tag to compare collection elements against.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `YES` if any tag in the collection is equal to `tag`.
+    ///
+    ///
     /// Checks if the tag collection contains a specific tag.
     ///
     /// Parameter `tagCollection`: CMTagCollection to check.
@@ -332,8 +414,6 @@ impl CMTagCollection {
     /// Parameter `tag`: CMTag to find.
     ///
     /// Returns: Returns true if the indicated CMTag is contained within the CMTagCollection, false otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainstag?language=objc)
     #[doc(alias = "CMTagCollectionContainsTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -345,6 +425,19 @@ impl CMTagCollection {
         ret != 0
     }
 
+    /// Determines if one collection of tags contains every tag from another collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to search.
+    ///
+    /// - containedTagCollection: The collection of tags to check for containment in `tagCollection`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `YES` if every element in `containedTagCollection` has at least one equal element in `tagCollection`.
+    ///
+    ///
     /// Checks if all the tags in a tag collection are present in another tag collection.
     ///
     /// Tests if a collection of tags specified by a CMTagCollection are contained within another tag collection in its entirety. Partial containment will report false. Complete containment will report true.
@@ -354,8 +447,6 @@ impl CMTagCollection {
     /// Parameter `containedTagCollection`: CMTagCollectionRef whose contents should be checked for containment in tagCollection.
     ///
     /// Returns: Returns true if all CMTags in a collection are contained within the specified CMTagCollection, false otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainstagsofcollection?language=objc)
     #[doc(alias = "CMTagCollectionContainsTagsOfCollection")]
     #[inline]
     pub unsafe fn contains_tags_of_collection(
@@ -373,6 +464,33 @@ impl CMTagCollection {
         ret != 0
     }
 
+    /// Determines if a tag collection contains a subset of tags.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to inspect.
+    ///
+    /// - containedTags: A pointer to the first element of a C-style array of tags to search the collection for.
+    ///
+    /// - containedTagCount: The number of tags in the `tags` array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `YES` if the tag collection contains all tags from the `containedTags` array.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value of `containedTagCount` greater than the number of elements in the array starting from `containedTags` causes undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Checks if all the specified tags are contained in a tag collection.
     ///
     /// Tests if the tags specified by a buffer of CMTags are contained within another tag collection in its entirety. Partial containment will report false. Complete containment will report true.
@@ -388,8 +506,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `contained_tags` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainsspecifiedtags?language=objc)
     #[doc(alias = "CMTagCollectionContainsSpecifiedTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -411,6 +527,19 @@ impl CMTagCollection {
         ret != 0
     }
 
+    /// Determines if a tag collection contains tags for a given category.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to inspect.
+    ///
+    /// - category: The category to search the collection for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `YES` if any tag in the collection has a category of `category`.
+    ///
+    ///
     /// Tests if a CMTagCategory is used by any CMTags within the tag container.
     ///
     /// Parameter `tagCollection`: CMTagCollectionRef to check.
@@ -418,8 +547,6 @@ impl CMTagCollection {
     /// Parameter `category`: CMTagCategory whose value should be checked for containment in tagCollection.
     ///
     /// Returns: Returns true if tagCollection contains at least one CMTag with the specified category, false otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncontainscategory?language=objc)
     #[doc(alias = "CMTagCollectionContainsCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -434,6 +561,13 @@ impl CMTagCollection {
         ret != 0
     }
 
+    /// Retrieves the number of tags in the collection matching a given category.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to search.
+    ///
+    /// - category: The category to check the collection for.
+    ///
     /// Counts an returns the number of tags in the tag collection matching the specified category.
     ///
     /// Returns the count of tags having the specified category. It will return 0 if there are no tags.
@@ -443,8 +577,6 @@ impl CMTagCollection {
     /// Parameter `category`: CMTagCategory to check for.
     ///
     /// Returns: Returns the count of tags having the specified category.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongetcountofcategory?language=objc)
     #[doc(alias = "CMTagCollectionGetCountOfCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -458,6 +590,35 @@ impl CMTagCollection {
         unsafe { CMTagCollectionGetCountOfCategory(self, category) }
     }
 
+    /// Retrieves an arbitrary number of tags from the collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to retrieve tags from.
+    ///
+    /// - tagBuffer: A pointer to a pre-allocated C-style array of tags.
+    ///
+    /// - tagBufferCount: The number of tags that the `tagBuffer` array can hold.
+    ///
+    /// - numberOfTagsCopied: The total number of tags copied from the collection to `tagBuffer`. This output value is either `0`, the number of tags in the collection, or `tagBufferCount`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value for `tagBufferCount` larger than the number of elements that `tagBuffer` can hold can cause undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Retrieve all CMTags and copy into a supplied buffer.
     ///
     /// The function retrieves a specified number of CMTags from the CMTagCollectionRef and copies them to a supplied buffer. The routine populates a provided sized buffer with each CMTag in the collection. If the provided buffer is smaller than needed to retrieve all tags, the routine will fill the buffer, return the number actually copied and return kCMTagCollectionError_ExhaustedBufferSize. If the provided buffer is larger than the number of CMTags in the collection to retrieve, the routine will fill the buffer with the number of available CMTags, return the number copied and fill the remainder of the buffer with kCMTagInvalid while returning noErr.
@@ -476,8 +637,6 @@ impl CMTagCollection {
     ///
     /// - `tag_buffer` must be a valid pointer.
     /// - `number_of_tags_copied` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettags?language=objc)
     #[doc(alias = "CMTagCollectionGetTags")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -498,6 +657,37 @@ impl CMTagCollection {
         unsafe { CMTagCollectionGetTags(self, tag_buffer, tag_buffer_count, number_of_tags_copied) }
     }
 
+    /// Retrieves a C-style array of tags with a given category from a tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to retrieve tags from.
+    ///
+    /// - category: The category to retrieve tags for.
+    ///
+    /// - tagBuffer: A pointer to a pre-allocated C-style array of tags, containing the collection’s matching tags on function return.
+    ///
+    /// - tagBufferCount: The number of tags that the `tagBuffer` array can hold.
+    ///
+    /// - numberOfTagsCopied: The total number of tags copied from the collection to `tagBuffer`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value for `tagBufferCount` larger than the number of elements that `tagBuffer` holds can cause undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Retrieve CMTags having a specified CMTagCategory and copy to a supplied buffer.
     ///
     /// Populates a provided buffer with each CMTag in the collection that has the specified CMTagCategory. If the provided buffer is smaller than needed, the routine will fill the buffer, return the number of CMTags actually copied and return kCMTagCollectionError_ExhaustedBufferSize. If the provided buffer is larger than needed, it will fill the buffer with the number of available CMTags, return the number copied and fill the remainder of the buffer with kCMTagInvalid.
@@ -518,8 +708,6 @@ impl CMTagCollection {
     ///
     /// - `tag_buffer` must be a valid pointer.
     /// - `number_of_tags_copied` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettagswithcategory?language=objc)
     #[doc(alias = "CMTagCollectionGetTagsWithCategory")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -550,6 +738,21 @@ impl CMTagCollection {
         }
     }
 
+    /// Counts the number of tags in a collection matching an evaluation function.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to inspect.
+    ///
+    /// - filterApplier: The filtering function to evaluate tags against.
+    ///
+    /// - context: A pointer passed to the `filterApplier` as a parameter on each call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of tags for which `filterApplier` returned `YES`.
+    ///
+    ///
     /// Count the number of tags satisfying a callback.
     ///
     /// Iterates over the CMTags of the tag collection calling the supplied callback and incrementing a counter for each tag satisfying the callback. Returns this counter value upon completing iteration.
@@ -566,8 +769,6 @@ impl CMTagCollection {
     ///
     /// - `filter_applier` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncounttagswithfilterfunction?language=objc)
     #[doc(alias = "CMTagCollectionCountTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -586,6 +787,39 @@ impl CMTagCollection {
         unsafe { CMTagCollectionCountTagsWithFilterFunction(self, filter_applier, context) }
     }
 
+    /// Gets all tags in a collection matching an evaluation function.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to retrieve tags from.
+    ///
+    /// - tagBuffer: A pointer to a pre-allocated C-style array of tags, containing the collection’s matching tags on function return.
+    ///
+    /// - tagBufferCount: The number of tags that the `tagBuffer` array can hold.
+    ///
+    /// - numberOfTagsCopied: The total number of tags copied from the collection to `tagBuffer`.
+    ///
+    /// - filter: The filter function to apply to the collection. When this function returns `true`, the tag passed as an argument is added to `tagBuffer`.
+    ///
+    /// - context: A pointer passed to the `filter` as a parameter on each call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value for `tagBufferCount` larger than the number of elements that `tagBuffer` holds can cause undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Retrieve CMTags satisfying a callback function and copy them to a supplied buffer.
     ///
     /// Applies a CMTagCollectionTagFilterFunction predicate and populates a provided buffer with each CMTag that for each tag when the filter returns true.  If the provided buffer is smaller than the number of tags the predicate satisfies, the routine will fill the buffer, return the copy CMTags actually copied and return kCMTagCollectionError_ExhaustedBufferSize. If the provided buffer is larger than needed, it will fill the buffer with the number of available CMTags, fill the remainder of the buffer with kCMTagInvalid and return a result of noErr.
@@ -610,8 +844,6 @@ impl CMTagCollection {
     /// - `number_of_tags_copied` must be a valid pointer or null.
     /// - `filter` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectiongettagswithfilterfunction?language=objc)
     #[doc(alias = "CMTagCollectionGetTagsWithFilterFunction")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -645,6 +877,37 @@ impl CMTagCollection {
         }
     }
 
+    /// Creates a new tag collection from an existing collection, copying all tags which match a list of categories.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - tagCollection: The tag collection to copy tags from.
+    ///
+    /// - categories: A C-style array containing the categories to match.
+    ///
+    /// - categoriesCount: The number of categories.
+    ///
+    /// - collectionWithTagsOfCategories: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value of `categoriesCount` greater than the number of elements in the array starting from `categories` causes undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies all tags belonging to a specified list of CMTagCategory from one tag collection to a newly created tag collection.
     ///
     /// This routine copies all tags belonging to a specified list of CMTagCategory from one tag collection to a newly created tag collection.
@@ -665,8 +928,6 @@ impl CMTagCollection {
     ///
     /// - `categories` must be a valid pointer.
     /// - `collection_with_tags_of_categories` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopytagsofcategories?language=objc)
     #[doc(alias = "CMTagCollectionCopyTagsOfCategories")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -697,6 +958,27 @@ impl CMTagCollection {
         }
     }
 
+    /// Applies a function to all tags in a collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to iterate over.
+    ///
+    /// - applier: The callback function to call for each tag.
+    ///
+    /// - context: A pointer passed to the `applier` as a parameter on each call.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  When applying a function to a mutable tag collection, modifying `tagCollection` in `applier` causes undefined behavior or a crash.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Iterate over a tag collection calling the provided callback.
     ///
     /// Iterates over the CMTags of the tag collection executing the callback with each tag.
@@ -711,8 +993,6 @@ impl CMTagCollection {
     ///
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionapply?language=objc)
     #[doc(alias = "CMTagCollectionApply")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -727,6 +1007,21 @@ impl CMTagCollection {
         unsafe { CMTagCollectionApply(self, applier, context) }
     }
 
+    /// Applies a Boolean function to tags in a collection, stopping when it returns true.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to apply the filter to.
+    ///
+    /// - applier: A filter function which runs over sequential elements of the collection until it returns `YES`.
+    ///
+    /// - context: A pointer passed to the `applier` as a parameter on each call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The tag for which `applier` returned `YES`.
+    ///
+    ///
     /// Iterate over a tag collection until the callback is satisfied.
     ///
     /// Function iterates over the CMTags of the tag collection until the function returns true and then returns the CMTag at that position. Once the callback is satisfied by returning true, CMTagCollectionApplyUntil() stops iteration and returns the CMTag that evaluated to true. If no CMTags satisfy the callback, the value kCMTagInvalid will be returned.
@@ -743,8 +1038,6 @@ impl CMTagCollection {
     ///
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionapplyuntil?language=objc)
     #[doc(alias = "CMTagCollectionApplyUntil")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -763,6 +1056,17 @@ impl CMTagCollection {
         unsafe { CMTagCollectionApplyUntil(self, applier, context) }
     }
 
+    /// Checks if a tag collection has no elements.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to check.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `YES` if the collection is empty.
+    ///
+    ///
     /// Reports if the tag collection contains no tags.
     ///
     /// This is a convenience name for set like use but is the same as the expression: CMTagCollectionIsEmptyGetCount() == 0.
@@ -770,8 +1074,6 @@ impl CMTagCollection {
     /// Parameter `tagCollection`: CMTagCollectionRef to iterate.
     ///
     /// Returns: True if there are no tags, false otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionisempty?language=objc)
     #[doc(alias = "CMTagCollectionIsEmpty")]
     #[inline]
     pub unsafe fn is_empty(&self) -> bool {
@@ -782,6 +1084,21 @@ impl CMTagCollection {
         ret != 0
     }
 
+    /// Creates a new tag collection containing only the tags from two existing collections which match.
+    ///
+    /// Parameters:
+    /// - tagCollection1: The first of the tag collections to intersect.
+    ///
+    /// - tagCollection2: The second of the tag collections to intersect.
+    ///
+    /// - tagCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Calculates the intersection of two tag collections to produce a new tag collection.
     ///
     /// This routine creates an intersection of two tag collection by finding common tags among two source tag collections and produces a new tag collection containing those common tags.
@@ -797,8 +1114,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateintersection?language=objc)
     #[doc(alias = "CMTagCollectionCreateIntersection")]
     #[inline]
     pub unsafe fn create_intersection(
@@ -818,6 +1133,21 @@ impl CMTagCollection {
         }
     }
 
+    /// Creates a new tag collection containing all tags from two collections without duplicates.
+    ///
+    /// Parameters:
+    /// - tagCollection1: The first of the tag collections to combine.
+    ///
+    /// - tagCollection2: The second of the tag collections to combine.
+    ///
+    /// - tagCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Calculates the union of two tag collections to produce a new tag collection.
     ///
     /// This routine creates an union of two tag collection by adding all tags from two tag collections and produces a new tag collection containing all the tags. Duplicate tags will not be added twice.  Note that if no tags are common among the source tag collections, the new tag collection will contain as many tags as the sum of the number of tags in each source tag collection. If two source tag collections contain the same tags, the resulting tag collection will have the same number of tags as each source tag collection.
@@ -833,8 +1163,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateunion?language=objc)
     #[doc(alias = "CMTagCollectionCreateUnion")]
     #[inline]
     pub unsafe fn create_union(
@@ -852,6 +1180,27 @@ impl CMTagCollection {
         unsafe { CMTagCollectionCreateUnion(tag_collection1, tag_collection2, tag_collection_out) }
     }
 
+    /// Creates a new tag collection with the difference of two existing collections.
+    ///
+    /// Parameters:
+    /// - tagCollectionMinuend: The tag collection to remove elements from.
+    ///
+    /// - tagCollectionSubtrahend: The elements to remove from `tagCollectionMinuend`, if present.
+    ///
+    /// - tagCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is non-commutative, meaning that the ordering of arguments is important. To produce a disjoint collection of tags rather than a difference, use [`CMTagCollectionCreateExclusiveOr`](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateexclusiveor).
+    ///
+    ///
     /// Calculates the difference of two tag collections to produce a new tag collection.
     ///
     /// This routine creates the difference by considering a first source tag collection and removing all tags found in the first tag collection to produce a new tag collection containing only the tags not in the second tag collection.  Note that if the second tag collection has no tags found in the first tag collection, the produced tag collection will have the same tags as the first tag collection. If the second tag collection is empty, the produced tag collection will also have the same tags as the first tag collection.  If the second tag collection contains all the tags found in the source tag collection, the produced tag collection will be empty.  The order of parameters is important. Given two tag collections 'A' and 'B', the calculaton of 'A' - 'B' is not the same as 'B' - 'A'.
@@ -867,8 +1216,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatedifference?language=objc)
     #[doc(alias = "CMTagCollectionCreateDifference")]
     #[inline]
     pub unsafe fn create_difference(
@@ -892,6 +1239,21 @@ impl CMTagCollection {
         }
     }
 
+    /// Creates a new tag collection from two existing tag collections, copying elements which are in one collection or the other, but not both.
+    ///
+    /// Parameters:
+    /// - tagCollection1: The first of the tag collections to combine.
+    ///
+    /// - tagCollection2: The second of the tag collections to combine.
+    ///
+    /// - tagCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Calculates the exclusive OR of two tag collections to produce a new tag collection.
     ///
     /// This routine determines tags that are in only one of two source tag collections and adds only those to produce a new tag collection. If both source tag collections have no tags in common, the produced tag collection will contain a union of both source tag collections. If both source tag collections have the same tags, the produced tag collection will be empty.
@@ -907,8 +1269,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `tag_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreateexclusiveor?language=objc)
     #[doc(alias = "CMTagCollectionCreateExclusiveOr")]
     #[inline]
     pub unsafe fn create_exclusive_or(
@@ -930,6 +1290,19 @@ impl CMTagCollection {
 }
 
 impl CMMutableTagCollection {
+    /// Adds a new tag to an existing collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to add a tag to.
+    ///
+    /// - tagToAdd: The tag to add.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Adds a tag to a mutable tag collection guaranteeing it is only added once.
     ///
     /// This routine adds a CMTag to a CMMutableTagCollection. If the CMTag already exists in the tag collection, the tag is not added again. If the tag doesn't exist in the tag collection, the tag collection is updated to contain the tag. Note that there is no ordering for tags within a tag collection.
@@ -939,8 +1312,6 @@ impl CMMutableTagCollection {
     /// Parameter `tagToAdd`: A CMTag to add to the tag collection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.  Returns noErr if the tag was already in the collection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionaddtag?language=objc)
     #[doc(alias = "CMTagCollectionAddTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -954,6 +1325,19 @@ impl CMMutableTagCollection {
         unsafe { CMTagCollectionAddTag(self, tag_to_add) }
     }
 
+    /// Removes a specific tag from a collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to remove the tag from.
+    ///
+    /// - tagToRemove: The tag to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Removes one tag from a mutable tag collection.
     ///
     /// This routine removes a CMTag if present from a CMMutableTagCollection. If the CMTag exists in the tag collection, the tag collection is updated to no longer contain the tag. If the tag doesn't exist in the tag collection, the tag collection is left unchanged.  The OSStatus will return kCMTagCollectionError_TagNotFound if the tag does not exist in the collection or if the tag collection is empty.
@@ -963,8 +1347,6 @@ impl CMMutableTagCollection {
     /// Parameter `tagToRemove`: A CMTag to match to the tag collection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionremovetag?language=objc)
     #[doc(alias = "CMTagCollectionRemoveTag")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -978,6 +1360,17 @@ impl CMMutableTagCollection {
         unsafe { CMTagCollectionRemoveTag(self, tag_to_remove) }
     }
 
+    /// Removes all tags from a collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to remove tags from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Removes all tags from a mutable tag collection.
     ///
     /// This routine removes all CMTags from a CMMutableTagCollection producing an empty collection.
@@ -985,8 +1378,6 @@ impl CMMutableTagCollection {
     /// Parameter `tagCollection`: CMMutableTagCollectionRef from which to remove all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionremovealltags?language=objc)
     #[doc(alias = "CMTagCollectionRemoveAllTags")]
     #[inline]
     pub unsafe fn remove_all_tags(&self) -> OSStatus {
@@ -996,6 +1387,19 @@ impl CMMutableTagCollection {
         unsafe { CMTagCollectionRemoveAllTags(self) }
     }
 
+    /// Removes all tags of a given category from a collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The collection to remove tags from.
+    ///
+    /// - category: The category to remove all tags for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Removes all tags having a specified category from a mutable tag collection.
     ///
     /// This routine removes all CMTags having a specified CMTagCategory from a CMMutableTagCollection perhaps producing an empty collection.
@@ -1005,8 +1409,6 @@ impl CMMutableTagCollection {
     /// Parameter `category`: CMTagCategory to match.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionremovealltagsofcategory?language=objc)
     #[doc(alias = "CMTagCollectionRemoveAllTagsOfCategory")]
     #[cfg(feature = "CMTag")]
     #[inline]
@@ -1020,6 +1422,19 @@ impl CMMutableTagCollection {
         unsafe { CMTagCollectionRemoveAllTagsOfCategory(self, category) }
     }
 
+    /// Add the tags contained in one collection to another.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to add tags to.
+    ///
+    /// - collectionWithTagsToAdd: The collection containing the tags to add.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Add all tags from one tag collection to a mutable tag collection.  Tags already existing in tagCollection will not be added.
     ///
     /// Parameter `tagCollection`: CMMutableTagCollectionRef to which to add tags.
@@ -1027,8 +1442,6 @@ impl CMMutableTagCollection {
     /// Parameter `collectionWithTagsToAdd`: CMTagCollectionRef from which to copy all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionaddtagsfromcollection?language=objc)
     #[doc(alias = "CMTagCollectionAddTagsFromCollection")]
     #[inline]
     pub unsafe fn add_tags_from_collection(
@@ -1044,6 +1457,33 @@ impl CMMutableTagCollection {
         unsafe { CMTagCollectionAddTagsFromCollection(self, collection_with_tags_to_add) }
     }
 
+    /// Adds the tags contained in a C-style array to a tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to add tags to.
+    ///
+    /// - tags: A pointer to the start of an array of tags to copy.
+    ///
+    /// - tagCount: The number of tags to add from the `tags` array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Using a value of `containedTagCount` greater than the number of elements in the array starting from `containedTags` causes undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Adds all tags specified in a C array to a mutable tag collection.  Tags already existing in tagCollection will not be added.
     ///
     /// Parameter `tagCollection`: CMMutableTagCollectionRef to which to add tags.
@@ -1057,8 +1497,6 @@ impl CMMutableTagCollection {
     /// # Safety
     ///
     /// `tags` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionaddtagsfromarray?language=objc)
     #[doc(alias = "CMTagCollectionAddTagsFromArray")]
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
@@ -1079,6 +1517,19 @@ impl CMMutableTagCollection {
 }
 
 impl CMTagCollection {
+    /// Creates a new Core Foundation dictionary from a tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to copy to the dictionary result.
+    ///
+    /// - allocator: The allocator to use for the new dictionary. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Convert dictionaries created by this function back to tag collections with [`CMTagCollectionCreateFromDictionary`](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatefromdictionary).
+    ///
+    ///
     /// Returns a CFDictionary representation of a CMTagCollection.
     ///
     /// This is useful when putting CMTagCollections in CF container types.
@@ -1088,8 +1539,6 @@ impl CMTagCollection {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdictionary?language=objc)
     #[doc(alias = "CMTagCollectionCopyAsDictionary")]
     #[inline]
     pub unsafe fn as_dictionary(
@@ -1106,6 +1555,21 @@ impl CMTagCollection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new tag collection from an existing Core Foundation dictionary.
+    ///
+    /// Parameters:
+    /// - dict: The dictionary to create the new tag collection from. Pass an instance created with [`CMTagCollectionCopyAsDictionary`](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdictionary).
+    ///
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - newCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Reconstitutes a CMTagCollection from a CFDictionary previously created by CMTagCollectionCopyAsDictionary.
     ///
     /// This is useful when getting CMTagCollection from CF container types.  If the CFDictionary does not have the requisite keyed values, newCollectionOut will contain NULL.
@@ -1123,8 +1587,6 @@ impl CMTagCollection {
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
     /// - `new_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatefromdictionary?language=objc)
     #[doc(alias = "CMTagCollectionCreateFromDictionary")]
     #[inline]
     pub unsafe fn create_from_dictionary(
@@ -1142,6 +1604,19 @@ impl CMTagCollection {
         unsafe { CMTagCollectionCreateFromDictionary(dict, allocator, new_collection_out) }
     }
 
+    /// Creates a new Core Foundation data instance from a tag collection.
+    ///
+    /// Parameters:
+    /// - tagCollection: The tag collection to convert to data.
+    ///
+    /// - allocator: The allocator to use for the new data instance. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Convert data instances created by this function back to tag collections with [`CMTagCollectionCreateFromData`](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatefromdata).
+    ///
+    ///
     /// Returns a CFDataRef version of a CMTagCollection.
     ///
     /// This is useful when putting CMTagCollections in CF container types.
@@ -1151,8 +1626,6 @@ impl CMTagCollection {
     /// Parameter `allocator`: CFAllocator with which to create a CFData. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdata?language=objc)
     #[doc(alias = "CMTagCollectionCopyAsData")]
     #[inline]
     pub unsafe fn as_data(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFData>> {
@@ -1166,6 +1639,21 @@ impl CMTagCollection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new tag collection from an existing Core Foundation data instance.
+    ///
+    /// Parameters:
+    /// - data: The data instance to create the new tag collection from. Pass an instance created with [`CMTagCollectionCopyAsData`](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdata).
+    ///
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - newCollectionOut: The output destination for the new tag collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tag Collection Error Codes on failure.
+    ///
+    ///
     /// Reconstitutes a CMTagCollection from a CFData previously created by CMTagCollectionCopyAsData.
     ///
     /// This is useful when getting CMTagCollection from CF container types.  If the CFData does not
@@ -1182,8 +1670,6 @@ impl CMTagCollection {
     /// # Safety
     ///
     /// `new_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectioncreatefromdata?language=objc)
     #[doc(alias = "CMTagCollectionCreateFromData")]
     #[inline]
     pub unsafe fn create_from_data(
@@ -1203,9 +1689,14 @@ impl CMTagCollection {
 }
 
 extern "C" {
-    /// CFDictionary key for a CFArray of serialized CMTag dictionaries of a CMTagCollection as used with CMTagCollectionCopyAsDictionary
+    /// A dictionary key for assigning tag collections to.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcollectiontagsarraykey?language=objc)
+    /// ## Discussion
+    ///
+    /// Avoid creating dictionaries and setting this key yourself. Call [`CMTagCollectionCopyAsDictionary`](https://developer.apple.com/documentation/coremedia/cmtagcollectioncopyasdictionary) on an existing, valid tag collection instead.
+    ///
+    ///
+    /// CFDictionary key for a CFArray of serialized CMTag dictionaries of a CMTagCollection as used with CMTagCollectionCopyAsDictionary
     pub static kCMTagCollectionTagsArrayKey: &'static CFString;
 }
 

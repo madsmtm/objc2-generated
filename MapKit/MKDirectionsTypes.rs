@@ -4,26 +4,56 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype?language=objc)
+/// Constants that specify the type of conveyance to use.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDirectionsTransportType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKDirectionsTransportType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/automobile?language=objc)
+/// Directions suitable for use while driving.
         #[doc(alias = "MKDirectionsTransportTypeAutomobile")]
         const Automobile = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/walking?language=objc)
+/// Directions suitable for a pedestrian.
         #[doc(alias = "MKDirectionsTransportTypeWalking")]
         const Walking = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/transit?language=objc)
+/// Directions suitable for public transportation.
+///
+/// ## Discussion
+///
+/// This type is only supported for estimating time of arrival.
+///
+///
         #[doc(alias = "MKDirectionsTransportTypeTransit")]
         const Transit = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/cycling?language=objc)
+/// Directions suitable for use while cycling.
+///
+/// ## Discussion
+///
+/// Use this transportation type to request cycling directions between locations.
+///
+/// The following example shows a task that requests directions between two locations.
+///
+/// ```swift
+///   // Bethesda Terrace in Central Park, New York, NY, United States
+///   let origin = MKMapItem(location: .init(latitude: 40.77396, longitude: -73.97097), address: nil)
+///
+///   // Grand Central Terminal, New York, NY, United States
+///   let destination = MKMapItem(location: .init(latitude: 40.7528, longitude: -73.97715), address: nil)
+///
+///   Task {
+///       let request = MKDirections.Request()
+///       request.transportType = .cycling
+///       request.source = origin
+///       request.destination = destination
+///       directions = try? await MKDirections(request: request).calculate()
+///   }
+/// ```
+///
+///
         #[doc(alias = "MKDirectionsTransportTypeCycling")]
         const Cycling = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionstransporttype/any?language=objc)
+/// Directions suitable for any transportation option.
         #[doc(alias = "MKDirectionsTransportTypeAny")]
         const Any = 0x0FFFFFFF;
     }

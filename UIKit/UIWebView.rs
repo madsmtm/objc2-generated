@@ -12,28 +12,28 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype?language=objc)
+/// Constant indicating the user’s action.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebViewNavigationType(pub NSInteger);
 impl UIWebViewNavigationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/linkclicked?language=objc)
+    /// User tapped a link.
     #[doc(alias = "UIWebViewNavigationTypeLinkClicked")]
     pub const LinkClicked: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/formsubmitted?language=objc)
+    /// User submitted a form.
     #[doc(alias = "UIWebViewNavigationTypeFormSubmitted")]
     pub const FormSubmitted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/backforward?language=objc)
+    /// User tapped the back or forward button.
     #[doc(alias = "UIWebViewNavigationTypeBackForward")]
     pub const BackForward: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/reload?language=objc)
+    /// User tapped the reload button.
     #[doc(alias = "UIWebViewNavigationTypeReload")]
     pub const Reload: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/formresubmitted?language=objc)
+    /// User resubmitted a form.
     #[doc(alias = "UIWebViewNavigationTypeFormResubmitted")]
     pub const FormResubmitted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype/other?language=objc)
+    /// Some other action occurred.
     #[doc(alias = "UIWebViewNavigationTypeOther")]
     pub const Other: Self = Self(5);
 }
@@ -46,25 +46,25 @@ unsafe impl RefEncode for UIWebViewNavigationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum?language=objc)
+/// The layout of content in the web view, which determines the direction that the pages flow.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebPaginationMode(pub NSInteger);
 impl UIWebPaginationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/unpaginated?language=objc)
+    /// Content appears as one long scrolling view with no distinct pages.
     #[doc(alias = "UIWebPaginationModeUnpaginated")]
     pub const Unpaginated: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/lefttoright?language=objc)
+    /// Content is broken up into pages that flow from left to right.
     #[doc(alias = "UIWebPaginationModeLeftToRight")]
     pub const LeftToRight: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/toptobottom?language=objc)
+    /// Content is broken up into pages that flow from top to bottom.
     #[doc(alias = "UIWebPaginationModeTopToBottom")]
     pub const TopToBottom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/bottomtotop?language=objc)
+    /// Content is broken up into pages that flow from bottom to top.
     #[doc(alias = "UIWebPaginationModeBottomToTop")]
     pub const BottomToTop: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum/righttoleft?language=objc)
+    /// Content is broken up into pages that flow from right to left.
     #[doc(alias = "UIWebPaginationModeRightToLeft")]
     pub const RightToLeft: Self = Self(4);
 }
@@ -77,16 +77,16 @@ unsafe impl RefEncode for UIWebPaginationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationbreakingmode-swift.enum?language=objc)
+/// The manner in which column- or page-breaking occurs.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebPaginationBreakingMode(pub NSInteger);
 impl UIWebPaginationBreakingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationbreakingmode-swift.enum/page?language=objc)
+    /// Content respects CSS properties related to page-breaking.
     #[doc(alias = "UIWebPaginationBreakingModePage")]
     pub const Page: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationbreakingmode-swift.enum/column?language=objc)
+    /// Content respects CSS properties related to column-breaking.
     #[doc(alias = "UIWebPaginationBreakingModeColumn")]
     pub const Column: Self = Self(1);
 }
@@ -100,7 +100,61 @@ unsafe impl RefEncode for UIWebPaginationBreakingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview?language=objc)
+    /// A view that embeds web content in your app.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In apps that run in iOS 8 and later, use the [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) class instead of using [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview). Additionally, consider setting the [`WKPreferences`](https://developer.apple.com/documentation/webkit/wkpreferences) property [`javaScriptEnabled`](https://developer.apple.com/documentation/webkit/wkpreferences/javascriptenabled) to [`false`](https://developer.apple.com/documentation/swift/false) if you render files that aren’t supposed to run JavaScript.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An iOS app linked on or after iOS 10.0 must include in its `Info.plist` file the usage description keys for the types of data it needs to access or it will crash. To access a user’s photo data specifically, it must include [NSPhotoLibraryUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) and [NSCameraUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW24).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use the [`loadHTMLString:baseURL:`](https://developer.apple.com/documentation/uikit/uiwebview/loadhtmlstring(_:baseurl:)) method to begin loading local HTML files or the [`loadRequest:`](https://developer.apple.com/documentation/uikit/uiwebview/loadrequest(_:)) method to begin loading web content. Use the [`stopLoading`](https://developer.apple.com/documentation/uikit/uiwebview/stoploading()) method to stop loading, and the [`loading`](https://developer.apple.com/documentation/uikit/uiwebview/isloading) property to find out if a web view is in the process of loading.
+    ///
+    /// If you allow the user to move back and forward through the webpage history, then you can use the [`goBack`](https://developer.apple.com/documentation/uikit/uiwebview/goback()) and [`goForward`](https://developer.apple.com/documentation/uikit/uiwebview/goforward()) methods as actions for buttons. Use the [`canGoBack`](https://developer.apple.com/documentation/uikit/uiwebview/cangoback) and [`canGoForward`](https://developer.apple.com/documentation/uikit/uiwebview/cangoforward) properties to disable the buttons when the user can’t move in a direction.
+    ///
+    /// By default, a web view automatically converts telephone numbers that appear in web content to Phone links. When a Phone link is tapped, the Phone app launches and dials the number. To turn off this default behavior, set the [`dataDetectorTypes`](https://developer.apple.com/documentation/uikit/uiwebview/datadetectortypes) property with a [`UIDataDetectorTypes`](https://developer.apple.com/documentation/uikit/uidatadetectortypes) bitfield that doesn’t contain the [`UIDataDetectorTypePhoneNumber`](https://developer.apple.com/documentation/uikit/uidatadetectortypes/phonenumber) flag.
+    ///
+    /// You can also use the [`scalesPageToFit`](https://developer.apple.com/documentation/uikit/uiwebview/scalespagetofit) property to programmatically set the scale of web content the first time it’s displayed in a web view. Thereafter, the user can change the scale using gestures.
+    ///
+    /// Set the [`delegate`](https://developer.apple.com/documentation/uikit/uiwebview/delegate) property to an object conforming to the [`UIWebViewDelegate`](https://developer.apple.com/documentation/uikit/uiwebviewdelegate) protocol if you want to track the loading of web content.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You shouldn’t embed [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) or [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) objects in [`UIScrollView`](https://developer.apple.com/documentation/uikit/uiscrollview) objects. If you do so, unexpected behavior can result because touch events for the two objects can be mixed up and wrongly handled.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can debug the HTML, CSS, and JavaScript contained inside a [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) with Web Inspector. Read Debugging Web Content on iOS to learn how to configure Web Inspector for iOS. Read the rest of [Safari Web Content Guide](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/Introduction/Introduction.html#//apple_ref/doc/uid/TP40002051) to learn how to create web content that’s optimized for Safari on iPhone and iPad.
+    ///
+    /// For information about basic view behaviors, see [View Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009503).
+    ///
+    /// ### Supported file formats
+    ///
+    /// In addition to HTML content, [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) objects can be used to display other content types, such as Keynote, PDF, and Pages documents. For the best rendering of plain and rich text in your app, however, you should use [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview) instead.
+    ///
+    /// ### State preservation
+    ///
+    /// In iOS 6 and later, if you assign a value to this view’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, it attempts to preserve its URL history, the scaling and scrolling positions for each page, and information about which page is currently being viewed. During restoration, the view restores these values so that the web content appears just as it did before. For more information about how state preservation and restoration works, see [App Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072).
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) class shouldn’t be subclassed.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -469,7 +523,19 @@ impl UIWebView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebviewdelegate?language=objc)
+    /// The `UIWebViewDelegate` protocol defines methods that a delegate of a [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) object can optionally implement to intervene when web content is loaded.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before releasing an instance of `UIWebView` for which you have set a delegate, you must first set the `UIWebView` delegate property to `nil` before disposing of the `UIWebView` instance. This can be done, for example, in the dealloc method where you dispose of the `UIWebView`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait UIWebViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "No longer supported."]

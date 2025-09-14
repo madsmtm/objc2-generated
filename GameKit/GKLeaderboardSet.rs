@@ -11,9 +11,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// GKLeaderboardSet represents the sets that leaderboards can be broken out into.
+    /// Organizes leaderboards into logical and coherent groups.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardset?language=objc)
+    /// ## Overview
+    ///
+    /// A [`GKLeaderboardSet`](https://developer.apple.com/documentation/gamekit/gkleaderboardset) object represents a group of leaderboards that you configure in App Store Connect. For example, if your game has different worlds or levels, you can organize the leaderboards into sets for each world or level. In the Game Center dashboard, players navigate from the leaderboard sets to the individual leaderboards. If you use leaderboard sets, you must have one or more leaderboards and then place each leaderboard in a set, which can be a mix of classic and recurring leaderboards.
+    ///
+    /// To load all the leaderboard sets for your game, use the [`loadLeaderboardSetsWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboardset/loadleaderboardsets(completionhandler:)) class method. Then use the `title`, `identifier`, and `groupIdentifier` properties to access the data for each leaderboard set. If you localize the leaderboard set in App Store Connect, the `title` property localizes. GameKit only sets the `groupIdentifier` property when your game is in a game group. To load the images you add to App Store Connect for each set, use the [`loadImageWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboardset/loadimage(completionhandler:)) method. Then use the [`loadLeaderboardsWithHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboardset/loadleaderboards(handler:)) method to get the leaderboards in each set.
+    ///
+    /// To organize leaderboards into sets, see [Configure leaderboard sets](https://developer.apple.com/help/app-store-connect/configure-game-center/configure-leaderboard-sets) in App Store Connect Help.
+    ///
+    ///
+    /// GKLeaderboardSet represents the sets that leaderboards can be broken out into.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboardSet;

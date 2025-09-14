@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentrequest?language=objc)
+    /// A class that represents a request to set up an automatic reload payment, such as a store card top-up or a prepaid account.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must set the [`automaticReloadPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/automaticreloadpaymentrequest) property on a [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) object to use the [`PKAutomaticReloadPaymentRequest`](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentrequest) class and set up an automatic reload payment.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Apple Pay issues an Apple Pay Merchant Token if the user’s payment network supports merchant-specific payment tokens. Otherwise, Apple Pay issues a device token for the payment request.
+    ///
+    /// Use a [`PKAutomaticReloadPaymentRequest`](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentrequest) object to provide the user with payment details and a way to manage payment methods for an automatic reload payment. You can optionally display a billing agreement and set up merchant token life cycle notifications for the request.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKAutomaticReloadPaymentRequest;

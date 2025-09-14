@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordzonesoperation?language=objc)
+    /// An operation that modifies one or more record zones.
+    ///
+    /// ## Overview
+    ///
+    /// After you create one or more record zones, use this operation to save those zones to the database. You can also use the operation to delete record zones and their records.
+    ///
+    /// If you assign a handler to the [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property of the operation, CloudKit calls the handler after the operation executes and returns its results. Use the handler to perform housekeeping tasks for the operation, but don’t use it to process the results of the operation. The handler you provide should manage any failures of the operation, whether due to an error or an explicit cancellation.
+    ///
+    ///
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

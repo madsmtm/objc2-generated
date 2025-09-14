@@ -7,12 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates configuration options for a tab in an extension.
+    ///
+    /// ## Overview
+    ///
+    /// This class holds various options that influence the behavior and initial state of a tab.
+    ///
+    /// The app retains the discretion to disregard any or all of these options, or even opt not to create a tab.
+    ///
+    ///
     /// A ``WKWebExtensionTabConfiguration`` object encapsulates configuration options for a tab in an extension.
     ///
     /// This class holds various options that influence the behavior and initial state of a tab.
     /// The app retains the discretion to disregard any or all of these options, or even opt not to create a tab.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

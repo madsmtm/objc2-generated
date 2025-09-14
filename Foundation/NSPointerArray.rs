@@ -7,7 +7,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerarray?language=objc)
+    /// A collection similar to an array, but with a broader range of available memory semantics.
+    ///
+    /// ## Overview
+    ///
+    /// The pointer array class is modeled after [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), but can also hold `nil` values. You can insert or remove `nil` values which contribute to the array’s [`count`](https://developer.apple.com/documentation/foundation/nspointerarray/count).
+    ///
+    /// A pointer array can be initialized to maintain strong or weak references to objects, or according to any of the memory or personality options defined by [`NSPointerFunctionsOptions`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options).
+    ///
+    /// The [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) and [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocols are applicable only when a pointer array is initialized to maintain strong or weak references to objects.
+    ///
+    /// When enumerating a pointer array with [`NSFastEnumeration`](https://developer.apple.com/documentation/foundation/nsfastenumeration) using `for...in`, the loop will yield any `nil` values present in the array. See [Fast Enumeration Makes It Easy to Enumerate a Collection](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/FoundationTypesandCollections/FoundationTypesandCollections.html#//apple_ref/doc/uid/TP40011210-CH7-SW30) in [Programming with Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSPointerArray` is not suitable for subclassing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPointerArray;

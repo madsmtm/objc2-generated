@@ -7,31 +7,33 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The attribute name for adding a text item with a specified custom tag. The value of the attribute must be an `NSString`.
+    /// The name of a custom tag associated with a text item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemtagattributename?language=objc)
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object with the tag name of a [`UITextItem`](https://developer.apple.com/documentation/uikit/uitextitem) object.
+    ///
+    ///
+    /// The attribute name for adding a text item with a specified custom tag. The value of the attribute must be an `NSString`.
     pub static UITextItemTagAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype?language=objc)
+/// Constants that describe and capture the type of content a text item represents along with a specific related value.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextItemContentType(pub NSInteger);
 impl UITextItemContentType {
+    /// A link to a resource, such as an item on a remote server or the path to a local file.
     /// The text item represents a link.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype/uitextitemcontenttypelink?language=objc)
     #[doc(alias = "UITextItemContentTypeLink")]
     pub const Link: Self = Self(0);
+    /// A text attachment, such as an image or view.
     /// The text item represents a text attachment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype/uitextitemcontenttypetextattachment?language=objc)
     #[doc(alias = "UITextItemContentTypeTextAttachment")]
     pub const TextAttachment: Self = Self(1);
+    /// A string that represents a custom tag for a topic.
     /// The text item represents a custom tag.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype/uitextitemcontenttypetag?language=objc)
     #[doc(alias = "UITextItemContentTypeTag")]
     pub const Tag: Self = Self(2);
 }
@@ -45,7 +47,13 @@ unsafe impl RefEncode for UITextItemContentType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitem?language=objc)
+    /// An object for attaching custom actions and menus to links, text attachments, or other specific text in a text view.
+    ///
+    /// ## Overview
+    ///
+    /// A text item represents a link with a URL destination, a custom tag for a topic that you specify in your app, or a text attachment in a text view. In your text view’s [`UITextViewDelegate`](https://developer.apple.com/documentation/uikit/uitextviewdelegate), implement [`textView:primaryActionForTextItem:defaultAction:`](https://developer.apple.com/documentation/uikit/uitextviewdelegate/textview(_:primaryactionfor:defaultaction:)) to provide a custom action when someone interacts with a text item. Implement [`textView:menuConfigurationForTextItem:defaultMenu:`](https://developer.apple.com/documentation/uikit/uitextviewdelegate/textview(_:menuconfigurationfor:defaultmenu:)) to provide a custom menu for a text item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -96,8 +104,6 @@ impl UITextItem {
 
 extern_class!(
     /// An object representing the preview for a text item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemmenupreview?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -132,7 +138,13 @@ impl UITextItemMenuPreview {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitem/menuconfiguration?language=objc)
+    /// An object that describes what type of menu and preview to show for a text item.
+    ///
+    /// ## Overview
+    ///
+    /// Create and return a menu configuration for a text item in [`textView:menuConfigurationForTextItem:defaultMenu:`](https://developer.apple.com/documentation/uikit/uitextviewdelegate/textview(_:menuconfigurationfor:defaultmenu:)) to provide a custom menu that the system shows when someone interacts with the text item. Provide a custom view for the item’s preview, or specify that the system displays a default preview.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

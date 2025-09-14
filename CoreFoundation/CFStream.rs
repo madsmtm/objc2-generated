@@ -11,7 +11,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerror?language=objc)
+/// The structure returned by [`CFReadStreamGetError`](https://developer.apple.com/documentation/corefoundation/cfreadstreamgeterror(_:)) and [`CFWriteStreamGetError`](https://developer.apple.com/documentation/corefoundation/cfwritestreamgeterror(_:)).
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFStreamError {
@@ -29,38 +29,43 @@ unsafe impl RefEncode for CFStreamError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CFStreamPropertyKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus?language=objc)
+/// Constants that describe the status of a stream.
+///
+/// ## Overview
+///
+/// The `CFStreamStatus` enumeration defines constants that describe the status of a stream. These values are returned by [`CFReadStreamGetStatus`](https://developer.apple.com/documentation/corefoundation/cfreadstreamgetstatus(_:)) and [`CFWriteStreamGetStatus`](https://developer.apple.com/documentation/corefoundation/cfwritestreamgetstatus(_:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStreamStatus(pub CFIndex);
 impl CFStreamStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/notopen?language=objc)
+    /// The stream is not open for reading or writing.
     #[doc(alias = "kCFStreamStatusNotOpen")]
     pub const NotOpen: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/opening?language=objc)
+    /// The stream is being opened for reading or for writing.
     #[doc(alias = "kCFStreamStatusOpening")]
     pub const Opening: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/open?language=objc)
+    /// The stream is open.
     #[doc(alias = "kCFStreamStatusOpen")]
     pub const Open: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/reading?language=objc)
+    /// The stream is being read from.
     #[doc(alias = "kCFStreamStatusReading")]
     pub const Reading: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/writing?language=objc)
+    /// The stream is being written to.
     #[doc(alias = "kCFStreamStatusWriting")]
     pub const Writing: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/atend?language=objc)
+    /// There is no more data to read, or no more data can be written.
     #[doc(alias = "kCFStreamStatusAtEnd")]
     pub const AtEnd: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/closed?language=objc)
+    /// The stream is closed.
     #[doc(alias = "kCFStreamStatusClosed")]
     pub const Closed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/error?language=objc)
+    /// An error occurred on the stream.
     #[doc(alias = "kCFStreamStatusError")]
     pub const Error: Self = Self(7);
 }
@@ -75,29 +80,35 @@ unsafe impl RefEncode for CFStreamStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype?language=objc)
+/// Defines constants for stream-related events.
+///
+/// ## Overview
+///
+/// This enumeration defines constants for stream-related events.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStreamEventType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStreamEventType: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/kcfstreameventnone?language=objc)
+/// No event has occurred.
         #[doc(alias = "kCFStreamEventNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/opencompleted?language=objc)
+/// The open has completed successfully.
         #[doc(alias = "kCFStreamEventOpenCompleted")]
         const OpenCompleted = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/hasbytesavailable?language=objc)
+/// The stream has bytes to be read.
         #[doc(alias = "kCFStreamEventHasBytesAvailable")]
         const HasBytesAvailable = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/canacceptbytes?language=objc)
+/// The stream can accept bytes for writing.
         #[doc(alias = "kCFStreamEventCanAcceptBytes")]
         const CanAcceptBytes = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/erroroccurred?language=objc)
+/// An error has occurred on the stream.
         #[doc(alias = "kCFStreamEventErrorOccurred")]
         const ErrorOccurred = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/endencountered?language=objc)
+/// The end of the stream has been reached.
         #[doc(alias = "kCFStreamEventEndEncountered")]
         const EndEncountered = 16;
     }
@@ -113,7 +124,7 @@ unsafe impl RefEncode for CFStreamEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamclientcontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a stream’s client behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -144,7 +155,16 @@ unsafe impl RefEncode for CFStreamClientContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstream?language=objc)
+///
+/// ## Overview
+///
+/// `CFReadStream` provides an interface for reading a byte stream either synchronously or asynchronously. You can create streams that read bytes from a block of memory, a file, or a generic socket. All streams need to be opened, using [`CFReadStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)), before reading.
+///
+/// Use [`CFWriteStreamRef`](https://developer.apple.com/documentation/corefoundation/cfwritestream) for writing byte streams. The CFNetwork framework defines an additional type of stream for reading responses to HTTP requests.
+///
+/// CFReadStream is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSInputStream *` parameter, you can pass in a CFReadStreamRef, and in a function where you see a CFReadStreamRef parameter, you can pass in an `NSInputStream` instance. Note, however, that you may have either a delegate or callbacks but not both. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSInputStream`.
 #[doc(alias = "CFReadStreamRef")]
@@ -162,7 +182,16 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFReadStream"> for CFReadStream {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestream?language=objc)
+///
+/// ## Overview
+///
+/// `CFWriteStream` provides an interface for writing a byte stream either synchronously or asynchronously. You can create streams that write bytes to a block of memory, a file, or a generic socket. All streams need to be opened, using [`CFWriteStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)), before writing.
+///
+/// Use [`CFReadStreamRef`](https://developer.apple.com/documentation/corefoundation/cfreadstream) for reading byte streams, and for the functions, such as [`CFStreamCreatePairWithSocketToHost`](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithsockettohost(_:_:_:_:_:)), that create socket streams).
+///
+/// `CFWriteStream` is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSOutputStream *` parameter, you can pass in a `CFWriteStreamRef`, and in a function where you see a `CFWriteStreamRef` parameter, you can pass in an `NSOutputStream` instance. Note, however, that you may have either a delegate or callbacks but not both. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSOutputStream`.
 #[doc(alias = "CFWriteStreamRef")]
@@ -180,16 +209,50 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFWriteStream"> for CFWriteStream {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclientcallback?language=objc)
+/// Callback invoked when certain types of activity takes place on a readable stream.
+///
+/// Parameters:
+/// - stream: The stream that experienced the event `eventType`.
+///
+/// - eventType: The event that caused the callback to be called. The possible events are listed in [`CFStreamEventType`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype).
+///
+/// - clientCallBackInfo: The `info` member of the [`CFStreamClientContext`](https://developer.apple.com/documentation/corefoundation/cfstreamclientcontext) structure that was used when setting the client for `stream`.
+///
+///
+/// ## Discussion
+///
+/// This callback is called only for the events requested when setting the client with [`CFReadStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetclient(_:_:_:_:)).
+///
+///
 pub type CFReadStreamClientCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFReadStream, CFStreamEventType, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamclientcallback?language=objc)
+/// Callback invoked when certain types of activity takes place on a writable stream.
+///
+/// Parameters:
+/// - stream: The stream that experienced the event `eventType`.
+///
+/// - eventType: The event that caused the callback to be called. The possible events are listed in [`CFStreamEventType`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype).
+///
+/// - clientCallBackInfo: The `info` member of the [`CFStreamClientContext`](https://developer.apple.com/documentation/corefoundation/cfstreamclientcontext) structure that was used when setting the client for `stream`.
+///
+///
+/// ## Discussion
+///
+/// This callback is called only for the events requested when setting the client with [`CFWriteStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetclient(_:_:_:_:)).
+///
+///
 pub type CFWriteStreamClientCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFWriteStream, CFStreamEventType, *mut c_void)>;
 
 unsafe impl ConcreteType for CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgettypeid()?language=objc)
+    /// Returns the type identifier the `CFReadStream` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the `CFReadStream` opaque type.
+    ///
+    ///
     #[doc(alias = "CFReadStreamGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -201,7 +264,13 @@ unsafe impl ConcreteType for CFReadStream {
 }
 
 unsafe impl ConcreteType for CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamgettypeid()?language=objc)
+    /// Returns the type identifier of all CFWriteStream objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFWriteStream opaque type.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -213,12 +282,34 @@ unsafe impl ConcreteType for CFWriteStream {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/datawritten?language=objc)
+    /// Value is a `CFData` object that contains all the bytes written to a writable memory stream. You cannot modify this value.
     pub static kCFStreamPropertyDataWritten: Option<&'static CFStreamPropertyKey>;
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcreatewithbytesnocopy(_:_:_:_:)?language=objc)
+    /// Creates a readable stream for a block of memory.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - bytes: The memory buffer to read. This memory must exist for the lifetime of the new stream.
+    ///
+    /// - length: The size of `bytes`.
+    ///
+    /// - bytesDeallocator: The allocator to use to deallocate `bytes` when the stream is deallocated. Pass kCFAllocatorNull to prevent the stream from deallocating `bytes`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new read stream, or `NULL` on failure. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must open the stream, using [`CFReadStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)), before reading from it.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -248,7 +339,29 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcreatewithbuffer(_:_:_:)?language=objc)
+    /// Creates a writable stream for a fixed-size block of memory.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - buffer: The memory buffer into which to write data. This buffer must exist for the lifetime of the stream.
+    ///
+    /// - bufferCapacity: The size of `buffer` and the maximum number of bytes that can be written.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new write stream, or `NULL` on failure. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When `buffer` is filled after writing `bufferCapacity` bytes, the stream is exhausted and its status becomes [`kCFStreamStatusAtEnd`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/atend).
+    ///
+    /// You must open the stream, using [`CFWriteStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)), before writing to it.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -272,7 +385,27 @@ impl CFWriteStream {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcreatewithallocatedbuffers(_:_:)?language=objc)
+    /// Creates a writable stream for a growable block of memory.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - bufferAllocator: The allocator to use to allocate memory for the stream’s memory buffers. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new write stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// New buffers are allocated using `bufferAllocator` as bytes are written to the stream. At any point, you can recover the bytes thus far written by asking for the property kCFStreamPropertyDataWritten with [`CFWriteStreamCopyProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyproperty(_:_:)).
+    ///
+    /// You must open the stream, using [`CFWriteStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)), before writing to it.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamCreateWithAllocatedBuffers")]
     #[inline]
     pub fn with_allocated_buffers(
@@ -291,7 +424,25 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcreatewithfile(_:_:)?language=objc)
+    /// Creates a readable stream for a file.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - fileURL: The URL of the file to read. The URL must use the file scheme.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new readable stream object, or `NULL` on failure. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must open the stream, using [`CFReadStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)), before reading from it.
+    ///
+    ///
     #[doc(alias = "CFReadStreamCreateWithFile")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -311,7 +462,27 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcreatewithfile(_:_:)?language=objc)
+    /// Creates a writable stream for a file.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - fileURL: The URL of the file to which to write. The URL must use a file scheme.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new write stream, or `NULL` on failure. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The stream overwrites an existing file unless you set the kCFStreamPropertyAppendToFile to kCFBooleanTrue with [`CFWriteStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)), in which case the stream appends data to the file.
+    ///
+    /// You must open the stream, using [`CFWriteStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)), before writing to it.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamCreateWithFile")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -331,7 +502,23 @@ impl CFWriteStream {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreateboundpair(_:_:_:_:)?language=objc)
+    /// Creates a bound pair of read and write streams.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new objects. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) or `NULL` to use the current default allocator.
+    ///
+    /// - readStream: On return, contains a readable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - writeStream: On return, contains a writable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - transferBufferSize: The size of the buffer, in bytes, used to transfer data from `readStream` to `writeStream`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The created streams are bound to one another, such that any data written to `writeStream` is received by `readStream`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -347,119 +534,229 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/appendtofile?language=objc)
+    /// Value is a `CFBoolean` value that indicates whether to append the written data to a file, if it already exists, rather than to replace its contents.
+    ///
+    /// ## Discussion
+    ///
+    /// You must set this value before opening the writable file stream. The default value is `kCFBooleanFalse`, indicating that the stream should replace any pre-existing file. You cannot read this value.
+    ///
+    ///
     pub static kCFStreamPropertyAppendToFile: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/filecurrentoffset?language=objc)
+    /// Value is a `CFNumber` object containing the current file offset.
     pub static kCFStreamPropertyFileCurrentOffset: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/socketnativehandle?language=objc)
+    /// Value is a `CFData` object that contains the native handle for a socket stream—of type [`CFSocketNativeHandle`](https://developer.apple.com/documentation/corefoundation/cfsocketnativehandle)—to which the socket stream is connected.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is only available for socket streams. You cannot modify this value. You can read this value at any time.
+    ///
+    ///
     pub static kCFStreamPropertySocketNativeHandle: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/socketremotehostname?language=objc)
+    /// Value is a `CFString` object containing the name of the host to which the socket stream is connected or `NULL` if unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot modify this value. You can read this value at any time.]
+    ///
+    ///
     pub static kCFStreamPropertySocketRemoteHostName: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/socketremoteportnumber?language=objc)
+    /// Value is a `CFNumber` object containing the remote port number to which the socket stream is connected or `NULL` if unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot modify this value. You can read this value at any time.]
+    ///
+    ///
     pub static kCFStreamPropertySocketRemotePortNumber: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamerrordomainsocks?language=objc)
+    /// The error code is a SOCKS proxy error.
     pub static kCFStreamErrorDomainSOCKS: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksproxy?language=objc)
+    /// SOCKS proxy property key.
+    ///
+    /// ## Discussion
+    ///
+    /// To set a `CFStream` object to use a SOCKS proxy, call [`CFReadStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetproperty(_:_:_:)) or [`CFWriteStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)) with the property name set to `kCFStreamPropertySOCKSProxy` and its value set to a `CFDictionary` object having at minimum a `kCFStreamPropertySOCKSProxyHost` key and a `kCFStreamPropertySOCKSProxyPort` key. For information on these keys, see [CFStream SOCKS Proxy Key Constants](https://developer.apple.com/documentation/corefoundation/cfstream-socks-proxy-key-constants). SystemConfiguration returns a CFDictionary for SOCKS proxies that is usable without modification.
+    ///
+    ///
     pub static kCFStreamPropertySOCKSProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksproxyhost?language=objc)
+    /// Constant for the SOCKS proxy host key.
+    ///
+    /// ## Discussion
+    ///
+    /// This key contains a CFString object that represents the SOCKS proxy host. Defined to match `kSCPropNetProxiesSOCKSProxy`.
+    ///
+    ///
     pub static kCFStreamPropertySOCKSProxyHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksproxyport?language=objc)
+    /// Constant for the SOCKS proxy host port key.
+    ///
+    /// ## Discussion
+    ///
+    /// This key contains a `CFNumberRef` object of type `kCFNumberSInt32Type` whose value represents the port on which the proxy listens.
+    ///
+    ///
     pub static kCFStreamPropertySOCKSProxyPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksversion?language=objc)
+    /// Constant for the SOCKS version key.
+    ///
+    /// ## Discussion
+    ///
+    /// Its value must be `kCFStreamSocketSOCKSVersion4` or `kCFStreamSocketSOCKSVersion5` to set SOCKS4 or SOCKS5, respectively. If this key is not present, SOCKS5 is used by default.
+    ///
+    ///
     pub static kCFStreamPropertySOCKSVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsocksversion4?language=objc)
+    /// Constant used in the `kCFStreamSockerSOCKSVersion` key to specify SOCKS4 as the SOCKS version for the stream.
     pub static kCFStreamSocketSOCKSVersion4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsocksversion5?language=objc)
+    /// Constant used in the `kCFStreamSOCKSVersion` key to specify SOCKS5 as the SOCKS version for the stream.
     pub static kCFStreamSocketSOCKSVersion5: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksuser?language=objc)
+    /// Constant for the key required to set a user name.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a `CFString` object containing the user’s name.
+    ///
+    ///
     pub static kCFStreamPropertySOCKSUser: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysockspassword?language=objc)
+    /// Constant for the key required to set a user’s password.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a `CFString` object containing the user’s password.
+    ///
+    ///
     pub static kCFStreamPropertySOCKSPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamerrordomainssl?language=objc)
+    /// The error code is an SSL error code as defined in `Security/SecureTransport.h`.
     pub static kCFStreamErrorDomainSSL: c_int;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketsecuritylevel?language=objc)
+    /// Socket Security Level property key.
+    ///
+    /// ## Discussion
+    ///
+    /// See [CFStream Socket Security Level Constants](https://developer.apple.com/documentation/corefoundation/cfstream-socket-security-level-constants) for specific security level constants to use.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you set this key, you must do so before setting any other SSL options, such as `kCFStreamPropertySSLSettings`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kCFStreamPropertySocketSecurityLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelnone?language=objc)
+    /// Specifies that no security level be set.
     pub static kCFStreamSocketSecurityLevelNone: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelsslv2?language=objc)
+    /// Specifies that SSL version 2 be set as the security protocol for a socket stream.
     #[deprecated]
     pub static kCFStreamSocketSecurityLevelSSLv2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelsslv3?language=objc)
+    /// Specifies that SSL version 3 be set as the security protocol for a socket stream pair.
+    ///
+    /// ## Discussion
+    ///
+    /// If SSL version 3 is not available, specifies that SSL version 2 be set as the security protocol for a socket stream.
+    ///
+    ///
     #[deprecated]
     pub static kCFStreamSocketSecurityLevelSSLv3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecurityleveltlsv1?language=objc)
+    /// Specifies that TLS version 1 be set as the security protocol for a socket stream.
     pub static kCFStreamSocketSecurityLevelTLSv1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelnegotiatedssl?language=objc)
+    /// Specifies that the highest level security protocol that can be negotiated be set as the security protocol for a socket stream.
     pub static kCFStreamSocketSecurityLevelNegotiatedSSL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyshouldclosenativesocket?language=objc)
+    /// Should Close Native Socket property key.
+    ///
+    /// ## Discussion
+    ///
+    /// If set to `kCFBooleanTrue`, the stream will close and release the underlying native socket when the stream is released. If set to `kCFBooleanFalse`, the stream will not close and release the underlying native socket when the stream is released. If a stream is created with a native socket, the default value of this property is `kCFBooleanFalse`. This property is only available for socket streams. It can be set by calling [`CFReadStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetproperty(_:_:_:)) and [`CFWriteStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)), and it can be copied by [`CFReadStreamCopyProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyproperty(_:_:)) and [`CFWriteStreamCopyProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyproperty(_:_:)).
+    ///
+    ///
     pub static kCFStreamPropertyShouldCloseNativeSocket: &'static CFString;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithsocket(_:_:_:_:)?language=objc)
+    /// Creates readable and writable streams connected to a socket.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new objects. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - sock: The pre-existing (and already connected) socket which the socket streams should use.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  By default, your app is responsible for closing this socket after you close both streams. If you want CFNetwork to take ownership of the socket, set the [`kCFStreamPropertyShouldCloseNativeSocket`](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyshouldclosenativesocket) property of the stream to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    ///
+    ///
+    /// </div>
+    /// - readStream: Upon return, a readable stream connected to the socket address in `signature`. If you pass `NULL`, this function will not create a readable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - writeStream: Upon return, a writable stream connected to the socket address in `signature`. If you pass `NULL`, this function will not create a writable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Most properties are shared by both streams. Setting a shared property for one stream automatically sets the property for the other.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -477,7 +774,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithsockettohost(_:_:_:_:_:)?language=objc)
+    /// Creates readable and writable streams connected to a TCP/IP port of a particular host.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the `CFReadStream` and `CFWriteStream` objects. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - host: The hostname to which the socket streams should connect. The host can be specified using an IPv4 or IPv6 address or a fully qualified DNS hostname.
+    ///
+    /// - port: The TCP port number to which the socket streams should connect.
+    ///
+    /// - readStream: Upon return, a readable stream connected to the socket address in `port`. If you pass `NULL`, this function will not create a readable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - writeStream: Upon return, a writable stream connected to the socket address in `port`. If you pass `NULL`, this function will not create a writable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The streams do not create a socket, resolve the hostname, or connect to the remote host until you open one of the streams.
+    ///
+    /// Most properties are shared by both streams. Setting a shared property for one stream automatically sets the property for the other.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -496,7 +813,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamcreatepairwithpeersocketsignature(_:_:_:_:)?language=objc)
+    /// Creates readable and writable streams connected to a socket.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new objects. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - signature: A [`CFSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketsignature) structure identifying the communication protocol and address to which the socket streams should connect.
+    ///
+    /// - readStream: On return, a readable stream connected to the socket address in `signature`. If you pass `NULL`, this function will not create a readable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - writeStream: On return, a writable stream connected to the socket address in `signature`. If you pass `NULL`, this function will not create a writable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The streams do not create a socket or connect to the remote host until you open one of the streams.
+    ///
+    /// Most properties are shared by both streams. Setting a shared property for one stream automatically sets the property for the other.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -515,7 +850,17 @@ extern "C-unwind" {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgetstatus(_:)?language=objc)
+    /// Returns the current state of a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current state of `stream`. See [`CFStreamStatus`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus) for the list of possible states.
+    ///
+    ///
     #[doc(alias = "CFReadStreamGetStatus")]
     #[inline]
     pub fn status(&self) -> CFStreamStatus {
@@ -527,7 +872,17 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamgetstatus(_:)?language=objc)
+    /// Returns the current state of a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current state of `stream`. See [`CFStreamStatus`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus) for the list of possible states.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamGetStatus")]
     #[inline]
     pub fn status(&self) -> CFStreamStatus {
@@ -539,7 +894,17 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyerror(_:)?language=objc)
+    /// Returns the error associated with a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFError object that describes the current problem with stream, or `NULL` if there is no error. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFReadStreamCopyError")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -553,7 +918,17 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyerror(_:)?language=objc)
+    /// Returns the error associated with a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFError object that describes the current problem with stream, or `NULL` if there is no error. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFWriteStreamCopyError")]
     #[cfg(feature = "CFError")]
     #[inline]
@@ -567,7 +942,25 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)?language=objc)
+    /// Opens a stream for reading.
+    ///
+    /// Parameters:
+    /// - stream: The stream to open.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `stream` was successfully opened, `FALSE` otherwise. If `stream` is not in the [`kCFStreamStatusNotOpen`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/notopen) state, this function returns `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Opening a stream causes it to reserve all the system resources it requires. If the stream can open in the background without blocking, this function always returns `true`. To learn when a background open operation completes, you can either schedule the stream into a run loop with [`CFReadStreamScheduleWithRunLoop`](https://developer.apple.com/documentation/corefoundation/cfreadstreamschedulewithrunloop(_:_:_:)) and wait for the stream’s client (set with [`CFReadStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetclient(_:_:_:_:))) to be notified or you can poll the stream using [`CFReadStreamGetStatus`](https://developer.apple.com/documentation/corefoundation/cfreadstreamgetstatus(_:)), waiting for a status of [`kCFStreamStatusOpen`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/open) or [`kCFStreamStatusError`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/error).
+    ///
+    /// You do not need to wait until a stream has finished opening in the background before calling the [`CFReadStreamRead`](https://developer.apple.com/documentation/corefoundation/cfreadstreamread(_:_:_:)) function. The read operation will simply block until the open has completed.
+    ///
+    ///
     #[doc(alias = "CFReadStreamOpen")]
     #[inline]
     pub fn open(&self) -> bool {
@@ -580,7 +973,23 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)?language=objc)
+    /// Opens a stream for writing.
+    ///
+    /// Parameters:
+    /// - stream: The stream to open.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `stream` was successfully opened, `false` otherwise. If `stream` is not in the [`kCFStreamStatusNotOpen`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/notopen) state, this function returns `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Opening a stream causes it to reserve all the system resources it requires. If the stream can open in the background without blocking, this function always returns `true`. To learn when a background open operation completes, you can either schedule the stream into a run loop with [`CFWriteStreamScheduleWithRunLoop`](https://developer.apple.com/documentation/corefoundation/cfwritestreamschedulewithrunloop(_:_:_:)) and wait for the stream’s client (set with [`CFWriteStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetclient(_:_:_:_:))) to be notified or you can poll the stream using [`CFWriteStreamGetStatus`](https://developer.apple.com/documentation/corefoundation/cfwritestreamgetstatus(_:)), waiting for a status of [`kCFStreamStatusOpen`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/open) or [`kCFStreamStatusError`](https://developer.apple.com/documentation/corefoundation/cfstreamstatus/error).
+    ///
+    ///
     #[doc(alias = "CFWriteStreamOpen")]
     #[inline]
     pub fn open(&self) -> bool {
@@ -593,7 +1002,17 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclose(_:)?language=objc)
+    /// Closes a readable stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to close.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function terminates the flow of bytes and releases any system resources required by the stream. The stream is removed from any run loops in which it was scheduled. Once closed, the stream cannot be reopened.
+    ///
+    ///
     #[doc(alias = "CFReadStreamClose")]
     #[inline]
     pub fn close(&self) {
@@ -605,7 +1024,17 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamclose(_:)?language=objc)
+    /// Closes a writable stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to close.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function terminates the flow of bytes and releases any system resources required by the stream. The stream is removed from any run loops in which it was scheduled. Once closed, the stream cannot be reopened.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamClose")]
     #[inline]
     pub fn close(&self) {
@@ -617,7 +1046,17 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamhasbytesavailable(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a readable stream has data that can be read without blocking.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if data can be read from `stream` without blocking, otherwise `FALSE`. If `stream` cannot tell if data is available without actually trying to read the data, this function returns `TRUE`.
+    ///
+    ///
     #[doc(alias = "CFReadStreamHasBytesAvailable")]
     #[inline]
     pub fn has_bytes_available(&self) -> bool {
@@ -628,7 +1067,27 @@ impl CFReadStream {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamread(_:_:_:)?language=objc)
+    /// Reads data from a readable stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream from which to read.
+    ///
+    /// - buffer: The buffer into which to place the data.
+    ///
+    /// - bufferLength: The size of `buffer` and the maximum number of bytes to read.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes read; `0` if the stream has reached its end; or `-1` if either the stream is not open or an error occurs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `stream` is in the process of opening, this function waits until it has completed. This function blocks until at least one byte is available; it does not block until `buffer` is filled. To avoid blocking, call this function only if [`CFReadStreamHasBytesAvailable`](https://developer.apple.com/documentation/corefoundation/cfreadstreamhasbytesavailable(_:)) returns `TRUE` or after the stream’s client (set with [`CFReadStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetclient(_:_:_:_:))) is notified of a [`kCFStreamEventHasBytesAvailable`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/hasbytesavailable) event.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -646,7 +1105,21 @@ impl CFReadStream {
         unsafe { CFReadStreamRead(self, buffer, buffer_length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgetbuffer(_:_:_:)?language=objc)
+    /// Returns a pointer to a stream’s internal buffer of unread data, if possible.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    /// - maxBytesToRead: The maximum number of bytes to read. If greater than `0`, `maxBytesToRead` limits the number of bytes read; if `0` or less, all available bytes are read.
+    ///
+    /// - numBytesRead: On return, contains the length of returned buffer. If `stream` is not open or has encountered an error, `numBytesRead` is set to `-1`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the internal buffer of unread data for `stream`, if possible; `NULL` otherwise. The buffer is good only until the next stream operation called on the stream. You should neither change the contents of the returned buffer nor attempt to deallocate the buffer; it is still owned by the stream. The bytes returned in the buffer are considered read from the stream.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -670,7 +1143,17 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcanacceptbytes(_:)?language=objc)
+    /// Returns whether a writable stream can accept new data without blocking.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if data can be written to `stream` without blocking, `false` otherwise. If `stream` cannot tell if data can be written without actually trying to write the data, this function returns `true`.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamCanAcceptBytes")]
     #[inline]
     pub fn can_accept_bytes(&self) -> bool {
@@ -681,7 +1164,27 @@ impl CFWriteStream {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamwrite(_:_:_:)?language=objc)
+    /// Writes data to a writable stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to which to write.
+    ///
+    /// - buffer: The buffer holding the data to write.
+    ///
+    /// - bufferLength: The number of bytes from `buffer` to write.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes successfully written, `0` if the stream has been filled to capacity (for fixed-length streams), or `-1` if either the stream is not open or an error occurs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `stream` is in the process of opening, this function waits until it has completed. If the stream is not full, this call blocks until at least one byte is written; it does not block until all the bytes in `buffer` is written. To avoid blocking, call this function only if [`CFWriteStreamCanAcceptBytes`](https://developer.apple.com/documentation/corefoundation/cfwritestreamcanacceptbytes(_:)) returns `true` or after the stream’s client (set with [`CFWriteStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetclient(_:_:_:_:))) is notified of a [`kCFStreamEventCanAcceptBytes`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/canacceptbytes) event.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -701,7 +1204,25 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyproperty(_:_:)?language=objc)
+    /// Returns the value of a property for a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    /// - propertyName: The name of the stream property to obtain. The available properties for standard Core Foundation streams are listed in [CFStream](https://developer.apple.com/documentation/corefoundation/cfstream).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of the property `propertyName`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each type of stream can define a set of properties that either describe or configure individual streams. A property can be any information about a stream, other than the actual data the stream handles. Examples include the headers from an HTTP transmission, the expected number of bytes, file permission information, and so on. Use [`CFReadStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetproperty(_:_:_:)) to modify the value of a property, although some properties are read-only.
+    ///
+    ///
     #[doc(alias = "CFReadStreamCopyProperty")]
     #[inline]
     pub fn property(
@@ -720,7 +1241,25 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyproperty(_:_:)?language=objc)
+    /// Returns the value of a property for a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    /// - propertyName: The name of the stream property to obtain. The available properties for standard Core Foundation streams are listed in Stream Properties.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of the property `propertyName`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each type of stream can define a set of properties that either describe or configure individual streams. A property can be any interesting information about a stream. Examples include the headers from an HTTP transmission, the expected number of bytes, file permission information, and so on. Use [`CFWriteStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)) to modify the value of a property, although some properties are read-only.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamCopyProperty")]
     #[inline]
     pub fn property(
@@ -739,7 +1278,27 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetproperty(_:_:_:)?language=objc)
+    /// Sets the value of a property for a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to modify.
+    ///
+    /// - propertyName: The name of the property to set. The available properties for standard Core Foundation streams are listed in [CFStream](https://developer.apple.com/documentation/corefoundation/cfstream).
+    ///
+    /// - propertyValue: The value to which to set the property `propertyName` for `stream`. The allowed data type of the value depends on the property being set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `stream` recognizes and accepts the given property-value pair, otherwise`FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each type of stream can define a set of properties that either describe or configure individual streams. A property can be any interesting information about a stream. Examples include the headers from an HTTP transmission, the expected number of bytes, file permission information, and so on. Properties that can be set configure the behavior of the stream and may be modifiable only at particular times, such as before the stream has been opened. (In fact, you should assume that you can set properties only before opening the stream, unless otherwise noted.) To read the value of a property use [`CFReadStreamCopyProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyproperty(_:_:)), although some properties are write-only.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -766,7 +1325,27 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)?language=objc)
+    /// Sets the value of a property for a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to modify.
+    ///
+    /// - propertyName: The name of the property to set. The available properties for standard Core Foundation streams are listed in Stream Properties.
+    ///
+    /// - propertyValue: The value to which to set the property `propertyName` for `stream`. The allowed data type of the value depends on the property being set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `stream` recognizes and accepts the given property-value pair, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each type of stream can define a set of properties that either describe or configure individual streams. A property can be any interesting information about a stream. Examples include the headers from an HTTP transmission, the expected number of bytes, file permission information, and so on. Properties that can be set configure the behavior of the stream and may be modifiable only at particular times, such as before the stream has been opened. (In fact, you should assume that you can set properties only before opening the stream, unless otherwise noted.) To read the value of a property use [`CFWriteStreamCopyProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopyproperty(_:_:)), although some properties are write-only.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -793,7 +1372,33 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetclient(_:_:_:_:)?language=objc)
+    /// Assigns a client to a stream, which receives callbacks when certain events occur.
+    ///
+    /// Parameters:
+    /// - stream: The stream to modify.
+    ///
+    /// - streamEvents: The set of events for which the client should receive callbacks. The events are listed in [`CFStreamEventType`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype). If you pass [`kCFStreamEventNone`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/kcfstreameventnone), the current client for `stream` is removed.
+    ///
+    /// - clientCB: The client callback function to be called when one of the events requested in `streamEvents` occurs. If `NULL`, the current client for `stream` is removed.
+    ///
+    /// - clientContext: A structure holding contextual information for the stream client. The function copies the information out of the structure, so the memory pointed to by `clientContext` does not need to persist beyond the function call. If `NULL`, the current client for `stream` is removed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the stream supports asynchronous notification, otherwise `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To avoid polling and blocking, you can register a client to hear about interesting events that occur on a stream. Only one client per stream is allowed; registering a new client replaces the previous one.
+    ///
+    /// Once you have set a client, you need to schedule the stream in a run loop using [`CFReadStreamScheduleWithRunLoop`](https://developer.apple.com/documentation/corefoundation/cfreadstreamschedulewithrunloop(_:_:_:)) so that the client can receive the asynchronous notifications. You can schedule each stream in multiple run loops (for example, if you are using a thread pool). It is the caller’s responsibility to ensure that at least one of the scheduled run loops is being run, otherwise the callback cannot be called.
+    ///
+    /// Although all Core Foundation streams currently support asynchronous notification, future stream types may not. If a stream does not support asynchronous notification, this function returns `false`. Typically, such streams never block for device I/O (for example, a stream reading memory) and don’t benefit from asynchronous notification.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -821,7 +1426,33 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetclient(_:_:_:_:)?language=objc)
+    /// Assigns a client to a stream, which receives callbacks when certain events occur.
+    ///
+    /// Parameters:
+    /// - stream: The stream to modify.
+    ///
+    /// - streamEvents: The set of events for which the client should receive callbacks. The events are listed in [`CFStreamEventType`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype). If you pass [`kCFStreamEventNone`](https://developer.apple.com/documentation/corefoundation/cfstreameventtype/kcfstreameventnone), the current client for `stream` is removed.
+    ///
+    /// - clientCB: The client callback function to call when one of the events requested in `streamEvents` occurs. If `NULL`, the current client for `stream` is removed.
+    ///
+    /// - clientContext: A structure holding contextual information for the stream client. The function copies the information out of the structure, so the memory pointed to by `clientContext` does not need to persist beyond the function call. If `NULL`, the current client for `stream` is removed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the stream supports asynchronous notification, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To avoid polling and blocking, you can register a client to hear about interesting events that occur on a stream. Only one client per stream is allowed; registering a new client replaces the previous one.
+    ///
+    /// Once you have set a client, you need to schedule the stream in a run loop using [`CFWriteStreamScheduleWithRunLoop`](https://developer.apple.com/documentation/corefoundation/cfwritestreamschedulewithrunloop(_:_:_:)) so that the client can receive the asynchronous notifications. You can schedule each stream in multiple run loops (for example, if you are using a thread pool). It is the caller’s responsibility to ensure that at least one of the scheduled run loops is being run, otherwise the callback cannot be called.
+    ///
+    /// Although all Core Foundation streams currently support asynchronous notification, future stream types may not. If a stream does not support asynchronous notification, this function returns `false`. Typically, such streams never block for device I/O (for example, a stream writing to memory) and don’t benefit from asynchronous notification.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -849,7 +1480,21 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamschedulewithrunloop(_:_:_:)?language=objc)
+    /// Schedules a stream into a run loop.
+    ///
+    /// Parameters:
+    /// - stream: The stream to schedule.
+    ///
+    /// - runLoop: The run loop with which to schedule `stream`.
+    ///
+    /// - runLoopMode: The run loop mode of `runLoop` in which to schedule `stream`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After scheduling `stream` with a run loop, its client (set with [`CFReadStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetclient(_:_:_:_:))) is notified when various events happen with the stream, such as when it finishes opening, when it has bytes available, and when an error occurs. A stream can be scheduled with multiple run loops and run loop modes. Use [`CFReadStreamUnscheduleFromRunLoop`](https://developer.apple.com/documentation/corefoundation/cfreadstreamunschedulefromrunloop(_:_:_:)) to later remove `stream` from the run loop.
+    ///
+    ///
     #[doc(alias = "CFReadStreamScheduleWithRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -870,7 +1515,21 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamschedulewithrunloop(_:_:_:)?language=objc)
+    /// Schedules a stream into a run loop.
+    ///
+    /// Parameters:
+    /// - stream: The stream to schedule.
+    ///
+    /// - runLoop: The run loop in which to schedule `stream`.
+    ///
+    /// - runLoopMode: The run loop mode of `runLoop` in which to schedule `stream`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After scheduling `stream` into a run loop, its client (set with [`CFWriteStreamSetClient`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetclient(_:_:_:_:))) is notified when various events happen with the stream, such as when it finishes opening, when it can accept new bytes, and when an error occurs. A stream can be scheduled into multiple run loops and run loop modes. Use [`CFWriteStreamUnscheduleFromRunLoop`](https://developer.apple.com/documentation/corefoundation/cfwritestreamunschedulefromrunloop(_:_:_:)) to later remove `stream` from the run loop.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamScheduleWithRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -891,7 +1550,15 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamunschedulefromrunloop(_:_:_:)?language=objc)
+    /// Removes a read stream from a given run loop.
+    ///
+    /// Parameters:
+    /// - stream: The stream to unschedule.
+    ///
+    /// - runLoop: The run loop from which to remove `stream`.
+    ///
+    /// - runLoopMode: The run loop mode of `runLoop` from which to remove `stream`.
+    ///
     #[doc(alias = "CFReadStreamUnscheduleFromRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -912,7 +1579,15 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamunschedulefromrunloop(_:_:_:)?language=objc)
+    /// Removes a stream from a particular run loop.
+    ///
+    /// Parameters:
+    /// - stream: The stream to remove.
+    ///
+    /// - runLoop: The run loop from which to remove `stream`.
+    ///
+    /// - runLoopMode: The run loop mode of `runLoop` from which to remove `stream`.
+    ///
     #[doc(alias = "CFWriteStreamUnscheduleFromRunLoop")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -933,8 +1608,6 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetdispatchqueue(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `q` possibly has additional threading requirements.
@@ -951,8 +1624,6 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetdispatchqueue(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `q` possibly has additional threading requirements.
@@ -969,7 +1640,6 @@ impl CFWriteStream {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopydispatchqueue(_:)?language=objc)
     #[doc(alias = "CFReadStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -985,7 +1655,6 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamcopydispatchqueue(_:)?language=objc)
     #[doc(alias = "CFWriteStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1000,19 +1669,25 @@ impl CFWriteStream {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain?language=objc)
+/// Defines constants for values returned in the domain field of the `CFStreamError` structure.
+///
+/// ## Overview
+///
+/// These constants indicate how the error code in the `error` field in the [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure should be interpreted.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStreamErrorDomain(pub CFIndex);
 impl CFStreamErrorDomain {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain/custom?language=objc)
+    /// The error code is a custom error code.
     #[doc(alias = "kCFStreamErrorDomainCustom")]
     pub const Custom: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain/posix?language=objc)
+    /// The error code is an error code defined in `errno.h`.
     #[doc(alias = "kCFStreamErrorDomainPOSIX")]
     pub const POSIX: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamerrordomain/macosstatus?language=objc)
+    /// The error is an OSStatus value defined in `MacErrors.h`.
     #[doc(alias = "kCFStreamErrorDomainMacOSStatus")]
     pub const MacOSStatus: Self = Self(2);
 }
@@ -1028,7 +1703,23 @@ unsafe impl RefEncode for CFStreamErrorDomain {
 }
 
 impl CFReadStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamgeterror(_:)?language=objc)
+    /// Returns the error status of a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The error status of `stream` returned in a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The error field is `0` if no error has occurred. If the error field is not `0`, the `domain` field contains a code that identifies the domain in which the value of the `error` field should be interpreted.
+    ///
+    ///
     #[doc(alias = "CFReadStreamGetError")]
     #[inline]
     pub fn error(&self) -> CFStreamError {
@@ -1040,7 +1731,17 @@ impl CFReadStream {
 }
 
 impl CFWriteStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamgeterror(_:)?language=objc)
+    /// Returns the error status of a stream.
+    ///
+    /// Parameters:
+    /// - stream: The stream to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The error status of `stream` returned in a CFStreamError structure.
+    ///
+    ///
     #[doc(alias = "CFWriteStreamGetError")]
     #[inline]
     pub fn error(&self) -> CFStreamError {

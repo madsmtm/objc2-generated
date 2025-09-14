@@ -8,7 +8,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontmetrics?language=objc)
+    /// A utility object for obtaining custom fonts that scale to support Dynamic Type.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIFontMetrics`](https://developer.apple.com/documentation/uikit/uifontmetrics) object to support scalable custom fonts in your app. You create a font metrics object that specifies the font style—for example, body or title—that you want to use in your app. You then pass your custom font to the [`scaledFontForFont:`](https://developer.apple.com/documentation/uikit/uifontmetrics/scaledfont(for:)) method (or one of the other methods of this class) to obtain a font object that is based on your custom font, has the appropriate style information, and automatically scales to match the current Dynamic Type settings.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFontMetrics;

@@ -6,6 +6,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A type that represents the global state of the MIDI system, that contains lists of the devices and serial port owners.
+///
+/// ## Discussion
+///
+/// Derives from MIDIObjectRef, does not have an owner object.
+///
+/// Generally, only MIDI drivers and specialized configuration editors will need to manipulate MIDISetup objects, not the average MIDI client application. As of CoreMIDI 1.1, the MIDIServer maintains a single global MIDISetupRef, stored persistently in a preference file.
+///
+///
 /// Derives from MIDIObjectRef, does not have an owner object.
 ///
 /// This represents the global state of the MIDI system,
@@ -17,12 +26,27 @@ use crate::*;
 /// average MIDI client application.  As of CoreMIDI 1.1, the
 /// MIDIServer maintains a single global MIDISetupRef, stored
 /// persistently in a preference file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupref?language=objc)
 #[cfg(feature = "MIDIServices")]
 pub type MIDISetupRef = MIDIObjectRef;
 
 extern "C-unwind" {
+    /// Queries drivers to discover what hardware is available.
+    ///
+    /// Parameters:
+    /// - outSetup: On successful return, points to a newly-created MIDISetup object. The caller is responsible for disposing it, or transferring ownership of the object back to the system, with MIDISetupInstall.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As of CoreMIDI 1.1, it is usually not necessary to call this function, as CoreMIDI manages a single persistent MIDISetup itself.
+    ///
+    ///
     /// Interrogates drivers, to discover what hardware is present.
     ///
     /// As of CoreMIDI 1.1, it is usually not necessary to call
@@ -40,14 +64,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_setup` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupcreate?language=objc)
     #[cfg(feature = "MIDIServices")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupCreate(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disposes the specified setup object.
+    ///
+    /// Parameters:
+    /// - setup: The setup object to dispose.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As of CoreMIDI 1.1, it is usually not necessary to call this function, as CoreMIDI manages a single persistent MIDISetup itself.
+    ///
+    ///
     /// Dispose a MIDISetup object.
     ///
     /// As of CoreMIDI 1.1, it is usually not necessary to call
@@ -58,14 +97,31 @@ extern "C-unwind" {
     /// Parameter `setup`: The MIDISetup to be disposed.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupdispose?language=objc)
     #[cfg(feature = "MIDIServices")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupDispose(setup: MIDISetupRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Installs a MIDISetup as the system’s current state.
+    ///
+    /// Parameters:
+    /// - setup: The MIDISetup object to install. Ownership of this object is transferred from the client to the system; the client must _not_ dispose of this MIDISetup.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A client can create a MIDISetup object using MIDISetupCreate, or MIDISetupFromData. This function will install this state as the current state of the system, possibly changing the devices visible to clients.
+    ///
+    /// As of CoreMIDI 1.1, it is usually not necessary to call this function, as CoreMIDI manages a single persistent MIDISetup itself.
+    ///
+    ///
     /// Install a MIDISetup as the system's current state.
     ///
     /// A client can create a MIDISetup object using
@@ -87,14 +143,29 @@ extern "C-unwind" {
     /// dispose of this MIDISetup.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupinstall?language=objc)
     #[cfg(feature = "MIDIServices")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupInstall(setup: MIDISetupRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns the system’s current MIDISetup.
+    ///
+    /// Parameters:
+    /// - outSetup: On successful return, points to the system’s most recently installed MIDISetup. The system retains ownership of the object; the client must _not_ dispose of this MIDISetup.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As of CoreMIDI 1.1, it is usually not necessary to call this function, as CoreMIDI manages a single persistent MIDISetup itself.
+    ///
+    ///
     /// Return the system's current MIDISetup.
     ///
     /// As of CoreMIDI 1.1, it is usually not necessary to call
@@ -115,14 +186,31 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_setup` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupgetcurrent?language=objc)
     #[cfg(feature = "MIDIServices")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupGetCurrent(out_setup: NonNull<MIDISetupRef>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Creates an XML representation of a MIDISetup object.
+    ///
+    /// Parameters:
+    /// - setup: The MIDISetup object whose XML representation is to be returned.
+    ///
+    /// - outData: On successful return, points to a newly-created CFDataRef containing the XML text. The client is responsible for releasing this CFData object when done with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As of CoreMIDI 1.1, it is usually not necessary to call this function, as CoreMIDI manages a single persistent MIDISetup itself.
+    ///
+    ///
     /// Create an XML representation of a MIDISetup object.
     ///
     /// As of CoreMIDI 1.1, it is usually not necessary to call
@@ -142,14 +230,31 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetuptodata?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Creates a MIDISetup object from an XML stream.
+    ///
+    /// Parameters:
+    /// - data: The XML text from which a MIDISetup object is to be built.
+    ///
+    /// - outSetup: On successful return, points to a newly-created MIDISetup object. The caller is responsible for disposing it, or transferring ownership of the object back to the system, with MIDISetupInstall.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As of CoreMIDI 1.1, it is usually not necessary to call this function, as CoreMIDI manages a single persistent MIDISetup itself.
+    ///
+    ///
     /// Create a MIDISetup object from an XML stream.
     ///
     /// As of CoreMIDI 1.1, it is usually not necessary to call
@@ -169,13 +274,40 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_setup` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupfromdata?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     #[deprecated = "No longer supported"]
     pub fn MIDISetupFromData(data: &CFData, out_setup: NonNull<MIDISetupRef>) -> OSStatus;
 }
 
+/// Adds a new entity to a device.
+///
+/// Parameters:
+/// - device: The device that owns the new entity.
+///
+/// - name: The name of the new entity.
+///
+/// - protocol: The MIDI protocol variant used by the sources and destinations that make up this entity.
+///
+/// - embedded: A Boolean value that indicates whether this entity is inside the device. If you specify [`false`](https://developer.apple.com/documentation/swift/false), the entity consists only of external connectors to which you can attach other devices.
+///
+/// - numSourceEndpoints: The entity’s number of source endpoints.
+///
+/// - numDestinationEndpoints: The entity’s number of destination endpoints.
+///
+/// - newEntity: On successful return, points to the newly created entity.
+///
+///
+/// ## Return Value
+///
+/// An `OSStatus` result code.
+///
+///
+///
+/// ## Discussion
+///
+/// Beginning with macOS 11 and iOS 14, non-drivers may call this function to add entities to external devices.
+///
+///
 /// Drivers call this function to specify one of the entities that
 /// comprise a device.
 ///
@@ -207,8 +339,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `new_entity` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicenewentity(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
@@ -244,6 +374,27 @@ pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
     }
 }
 
+/// Specifies one of the entities that make up a device.
+///
+/// Parameters:
+/// - device: The device to which an entity is to be added.
+///
+/// - name: The name of the new entity.
+///
+/// - embedded: True if this entity is inside the device, false if the entity simply consists of external connectors to which other devices can be attached.
+///
+/// - numSourceEndpoints: The number of source endpoints the entity has.
+///
+/// - numDestinationEndpoints: The number of destination endpoints the entity has.
+///
+/// - newEntity: On successful return, points to the newly-created entity.
+///
+///
+/// ## Return Value
+///
+/// An OSStatus result code.
+///
+///
 /// Drivers call this function to specify one of the entities that
 /// comprise a device.
 ///
@@ -270,8 +421,6 @@ pub unsafe extern "C-unwind" fn MIDIDeviceNewEntity(
 /// # Safety
 ///
 /// `new_entity` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midideviceaddentity(_:_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[deprecated]
 #[inline]
@@ -306,6 +455,25 @@ pub unsafe extern "C-unwind" fn MIDIDeviceAddEntity(
 }
 
 extern "C-unwind" {
+    /// Removes an entity from a device.
+    ///
+    /// Parameters:
+    /// - device: The device to update.
+    ///
+    /// - entity: The entity to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers call this function to remove one of a device’s entities.
+    ///
+    ///
     /// Drivers may call this function to remove one of a device's
     /// entities.
     ///
@@ -317,13 +485,32 @@ extern "C-unwind" {
     /// Parameter `entity`: The entity to be removed.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midideviceremoveentity(_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceRemoveEntity(device: MIDIDeviceRef, entity: MIDIEntityRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Adds or removes an entity’s endpoints.
+    ///
+    /// Parameters:
+    /// - entity: The entity to update.
+    ///
+    /// - numSourceEndpoints: The number of source endpoints.
+    ///
+    /// - numDestinationEndpoints: The number of destination endpoints.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers and configuration editors may call this function to add to or remove an entity’s endpoints. The [`MIDIProtocolID`](https://developer.apple.com/documentation/coremidi/midiprotocolid) of new endpoints is initially the same as that of the entity.
+    ///
+    ///
     /// Drivers and configuration editors may call this function to add to
     /// or remove an entity's endpoints.
     ///
@@ -340,8 +527,6 @@ extern "C-unwind" {
     /// Parameter `numDestinationEndpoints`: The desired new number of destination endpoints.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientityaddorremoveendpoints(_:_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEntityAddOrRemoveEndpoints(
         entity: MIDIEntityRef,
@@ -351,6 +536,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a driver-owned MIDI device to the current MIDI setup.
+    ///
+    /// Parameters:
+    /// - device: The device to add.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Only MIDI drivers may call this function.
+    ///
+    ///
     /// Adds a driver-owner MIDI device to the current MIDISetup
     ///
     ///
@@ -361,13 +563,28 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `device`: The device to be added.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupadddevice(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDISetupAddDevice(device: MIDIDeviceRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Removes a driver-owned MIDI device from the current MIDI setup.
+    ///
+    /// Parameters:
+    /// - device: The device to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Typically, only a studio-configuration editor calls this function to remove a device that’s offline and which the user has specified as permanently missing. It’s a good practice to have drivers set the deviceʼs [`kMIDIPropertyOffline`](https://developer.apple.com/documentation/coremidi/kmidipropertyoffline) to 1, instead of removing the device from the setup, so if the device reappears later, the system preserves the deviceʼs property state.
+    ///
+    ///
     /// Removes a driver-owned MIDI device from the current MIDISetup
     ///
     ///
@@ -383,13 +600,22 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `device`: The device to be added.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupremovedevice(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDISetupRemoveDevice(device: MIDIDeviceRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Adds an external MIDI device to the current MIDI setup.
+    ///
+    /// Parameters:
+    /// - device: The device to add.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Adds an external MIDI device to the current MIDISetup
     ///
     ///
@@ -397,13 +623,22 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `device`: The device to be added.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupaddexternaldevice(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDISetupAddExternalDevice(device: MIDIDeviceRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Removes an external MIDI device from the current MIDI setup.
+    ///
+    /// Parameters:
+    /// - device: The device to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Removes an external MIDI device from the current MIDISetup
     ///
     ///
@@ -411,13 +646,36 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `device`: The device to be removed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetupremoveexternaldevice(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDISetupRemoveExternalDevice(device: MIDIDeviceRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns the MIDI driver that owns a serial port.
+    ///
+    /// Parameters:
+    /// - portName: The name of a serial port.
+    ///
+    /// - outDriverName: On exit, the name of the driver owning the port, or NULL if no driver owns it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current MIDISetup tracks ownership of serial ports to one of the MIDI drivers installed in the system.
+    ///
+    /// Serial ports can be enumerated using IOServiceMatching( kIOSerialBSDServiceValue). The port’s unique name is the IOService’s kIOTTYDeviceKey property.
+    ///
+    /// New for CoreMIDI 1.1.
+    ///
+    /// A previous version of this documentation specified an incorrect key for obtaining the port’s unique name (IOTTYBaseName).
+    ///
+    ///
     /// Returns the MIDI driver that owns a serial port.
     ///
     ///
@@ -445,8 +703,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_driver_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetserialportowner?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn MIDIGetSerialPortOwner(
@@ -456,6 +712,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Specifies the MIDI driver that owns a serial port.
+    ///
+    /// Parameters:
+    /// - portName: The name of a serial port.
+    ///
+    /// - driverName: The name of the driver that owns the serial port, or NULL to specify that no driver owns it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this to assign ownership of a serial port to one of the MIDI drivers installed in the system.
+    ///
+    /// New for CoreMIDI 1.1.
+    ///
+    ///
     /// Specifies the MIDI driver that owns a serial port.
     ///
     ///
@@ -472,14 +749,31 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisetserialportowner?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn MIDISetSerialPortOwner(port_name: &CFString, driver_name: &CFString) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns a list of installed MIDI drivers for serial port MIDI devices.
+    ///
+    /// Parameters:
+    /// - outDriverNames: On exit, a CFArrayRef containing a list of CFStringRef’s which are the names of the serial port MIDI drivers. The array should be released by the caller.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this to determine which of the installed MIDI drivers are for devices which may attach to serial ports.
+    ///
+    /// New for CoreMIDI 1.1.
+    ///
+    ///
     /// Returns a list of installed MIDI drivers for serial port
     /// MIDI devices.
     ///
@@ -500,14 +794,35 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_driver_names` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetserialportdrivers?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Creates an external MIDI device.
+    ///
+    /// Parameters:
+    /// - name: The name of the device to create.
+    ///
+    /// - manufacturer: The name of the device’s manufacturer.
+    ///
+    /// - model: The model name of the device.
+    ///
+    /// - outDevice: On successful return, this points to the newly created device.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Non-drivers may call this function to create external devices.
+    ///
+    ///
     /// Create a new external MIDI device.
     ///
     ///
@@ -531,8 +846,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_device` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiexternaldevicecreate(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIExternalDeviceCreate(
         name: &CFString,

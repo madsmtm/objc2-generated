@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains information about a frame on a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of this class is a transient, data-only object; it does not uniquely identify a frame across multiple delegate method calls.
+    ///
+    ///
     /// A WKFrameInfo object contains information about a frame on a webpage.
     ///
     /// An instance of this class is a transient, data-only object;
     /// it does not uniquely identify a frame across multiple delegate method
     /// calls.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkframeinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

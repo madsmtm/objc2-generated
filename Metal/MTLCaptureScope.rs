@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturescope?language=objc)
+    /// A type that can programmatically customize a GPU frame capture.
+    ///
+    /// ## Overview
+    ///
+    /// Each capture scope instance configures what a frame capture records and methods that programmatically start and stop recording data.
+    ///
+    /// Filter the commands a frame capture records by selecting specific sources with a capture scope. By contrast, the default capture scope records all the data for a single frame when you click the Capture GPU workload button in the debug bar in Xcode. You can choose which data Metal records during a frame capture by creating your own capture scope.
+    ///
+    /// You can program exactly which Metal commands to record in a frame capture by calling the [`beginScope`](https://developer.apple.com/documentation/metal/mtlcapturescope/begin()) and [`endScope`](https://developer.apple.com/documentation/metal/mtlcapturescope/end()) methods around the Metal calls you want the capture to include. In the case of a rendering loop, your calls to [`beginScope`](https://developer.apple.com/documentation/metal/mtlcapturescope/begin()) and [`endScope`](https://developer.apple.com/documentation/metal/mtlcapturescope/end()) can capture a small part of a frame, or capture data from multiple frames.
+    ///
+    /// For more information about frame captures and capture scopes, see [Metal debugger](https://developer.apple.com/documentation/xcode/metal-debugger) and [Metal developer workflows](https://developer.apple.com/documentation/xcode/metal-developer-workflows), respectively.
+    ///
+    ///
     pub unsafe trait MTLCaptureScope: NSObjectProtocol {
         #[unsafe(method(beginScope))]
         #[unsafe(method_family = none)]

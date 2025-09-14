@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum?language=objc)
+/// Defines the device’s sensor locations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMDeviceMotionSensorLocation(pub NSInteger);
 impl CMDeviceMotionSensorLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum/default?language=objc)
+    /// The default sensor location.
     #[doc(alias = "CMDeviceMotionSensorLocationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum/headphoneleft?language=objc)
+    /// The sensor is in the left headphone.
     #[doc(alias = "CMDeviceMotionSensorLocationHeadphoneLeft")]
     pub const HeadphoneLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion/sensorlocation-swift.enum/headphoneright?language=objc)
+    /// The sensor is in the right headphone.
     #[doc(alias = "CMDeviceMotionSensorLocationHeadphoneRight")]
     pub const HeadphoneRight: Self = Self(2);
 }
@@ -32,22 +32,28 @@ unsafe impl RefEncode for CMDeviceMotionSensorLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy?language=objc)
+/// Indicates the calibration accuracy of a magnetic field estimate
+///
+/// ## Overview
+///
+/// One of the `enum` constants of the `CMMagneticFieldCalibrationAccuracy` type is the value of the accuracy field of the [`CMCalibratedMagneticField`](https://developer.apple.com/documentation/coremotion/cmcalibratedmagneticfield) structure returned from the [`magneticField`](https://developer.apple.com/documentation/coremotion/cmdevicemotion/magneticfield) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMMagneticFieldCalibrationAccuracy(pub c_int);
 impl CMMagneticFieldCalibrationAccuracy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/uncalibrated?language=objc)
+    /// The magnetic field estimate is not calibrated.
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyUncalibrated")]
     pub const Uncalibrated: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/low?language=objc)
+    /// The accuracy of the magnetic field calibration is low.
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/medium?language=objc)
+    /// The accuracy of the magnetic field calibration is medium.
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy/high?language=objc)
+    /// The accuracy of the magnetic field calibration is high.
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyHigh")]
     pub const High: Self = Self(2);
 }
@@ -60,7 +66,7 @@ unsafe impl RefEncode for CMMagneticFieldCalibrationAccuracy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmcalibratedmagneticfield?language=objc)
+/// Calibrated magnetic field data and an estimate of the accuracy of the calibration.
 #[cfg(feature = "CMMagnetometer")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -86,7 +92,15 @@ unsafe impl RefEncode for CMCalibratedMagneticField {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotion?language=objc)
+    /// Encapsulated measurements of the attitude, rotation rate, and acceleration of a device.
+    ///
+    /// ## Overview
+    ///
+    /// An application receives or samples `CMDeviceMotion` objects at regular intervals after calling the [`startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:to:withhandler:)) method, the [`startDeviceMotionUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(to:withhandler:)) method, the [`startDeviceMotionUpdatesUsingReferenceFrame:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:)) method, or the [`startDeviceMotionUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates()) method of the [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager) class.
+    ///
+    /// The accelerometer measures the sum of two acceleration vectors: gravity and user acceleration. User acceleration is the acceleration that the user imparts to the device. Because Core Motion is able to track a device’s attitude using both the gyroscope and the accelerometer, it can differentiate between gravity and user acceleration. A `CMDeviceMotion` object provides both measurements in the [`gravity`](https://developer.apple.com/documentation/coremotion/cmdevicemotion/gravity) and [`userAcceleration`](https://developer.apple.com/documentation/coremotion/cmdevicemotion/useracceleration) properties.
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

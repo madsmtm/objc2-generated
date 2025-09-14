@@ -7,27 +7,62 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum?language=objc)
+/// A tab bar’s display mode.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarControllerMode(pub NSInteger);
 impl UITabBarControllerMode {
+    /// The system sets the display mode based on the tab’s content.
+    ///
+    /// ## Discussion
+    ///
+    /// Different platforms handle the mode differently:
+    ///
+    /// - On iPad, If the [`tabs`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/tabs) array contains one or more [`UITabGroup`](https://developer.apple.com/documentation/uikit/uitabgroup) items, the system displays the content as either a tab bar or a sidebar, depending on the context. Otherwise, it only displays the content only as a tab bar.
+    ///
+    /// - On Mac Catalyst, the system displays a sidebar if the [`tabs`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/tabs) array contains one or more [`UITabGroup`](https://developer.apple.com/documentation/uikit/uitabgroup) items. Otherwise, it displays a tab bar.
+    ///
+    /// - On iPhone and Apple TV, the system displays the platform’s regular tab bar.
+    ///
+    /// - In visionOS, the system displays the platform’s regular tabs, but a [`UITabGroup`](https://developer.apple.com/documentation/uikit/uitabgroup) can display a sidebar when it displays the group’s view controller.
+    ///
+    /// For more information, see [Elevating your iPad app with a tab bar and sidebar](https://developer.apple.com/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar).
+    ///
+    ///
     /// The default tab bar controller mode.
     /// Resolves to `tabSidebar` if any of the tab elements of the tab bar controller is a group, and
     /// if the platform supports displaying a sidebar mode. Otherwise, resolves to `tabBar`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum/automatic?language=objc)
     #[doc(alias = "UITabBarControllerModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// Displays tabs in a tab bar.
+    /// The system displays the content only as a tab bar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum/tabbar?language=objc)
+    /// ## Discussion
+    ///
+    /// For more information, see [Elevating your iPad app with a tab bar and sidebar](https://developer.apple.com/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar).
+    ///
+    ///
+    /// Displays tabs in a tab bar.
     #[doc(alias = "UITabBarControllerModeTabBar")]
     pub const TabBar: Self = Self(1);
-    /// Displays tabs in a tab bar and sidebar.
+    /// The system displays the content as either a tab bar or a sidebar, depending on the context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/mode-swift.enum/tabsidebar?language=objc)
+    /// ## Discussion
+    ///
+    /// Different platforms handle the mode differently:
+    ///
+    /// - On iPad, the system displays the content as either a tab bar or a sidebar, depending on the context.
+    ///
+    /// - On Mac Catalyst, the system displays a sidebar.
+    ///
+    /// - On iPhone and Apple TV, the system displays the platform’s regular tab bar.
+    ///
+    /// - In visionOS, the system displays the platform’s regular tabs, but a [`UITabGroup`](https://developer.apple.com/documentation/uikit/uitabgroup) can display a sidebar when it displays the group’s view controller.
+    ///
+    /// For more information, see [Elevating your iPad app with a tab bar and sidebar](https://developer.apple.com/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar).
+    ///
+    ///
+    /// Displays tabs in a tab bar and sidebar.
     #[doc(alias = "UITabBarControllerModeTabSidebar")]
     pub const TabSidebar: Self = Self(2);
 }
@@ -40,31 +75,26 @@ unsafe impl RefEncode for UITabBarControllerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarMinimizeBehavior(pub NSInteger);
 impl UITabBarMinimizeBehavior {
     /// Resolves to the system default minimize behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/automatic?language=objc)
+    /// Resolves to the system default minimize behavior.
     #[doc(alias = "UITabBarMinimizeBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The tab bar does not minimize.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/never?language=objc)
+    /// The tab bar does not minimize.
     #[doc(alias = "UITabBarMinimizeBehaviorNever")]
     pub const Never: Self = Self(1);
     /// The tab bar minimizes when scrolling down, and expands when scrolling back up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/onscrolldown?language=objc)
+    /// The tab bar minimizes when scrolling down, and expands when scrolling back up.
     #[doc(alias = "UITabBarMinimizeBehaviorOnScrollDown")]
     pub const OnScrollDown: Self = Self(2);
+    /// The tab bar minimizes when scrolling up, and expands when scrolling back down. Recommended if the scroll view content is aligned to the bottom.
     /// The tab bar minimizes when scrolling up, and expands when scrolling back down.
     /// Recommended if the scroll view content is aligned to the bottom.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/minimizebehavior/onscrollup?language=objc)
     #[doc(alias = "UITabBarMinimizeBehaviorOnScrollUp")]
     pub const OnScrollUp: Self = Self(3);
 }
@@ -78,6 +108,69 @@ unsafe impl RefEncode for UITabBarMinimizeBehavior {
 }
 
 extern_class!(
+    /// A container view controller that manages a multiselection interface, where the selection determines which child view controller to display.
+    ///
+    /// ## Overview
+    ///
+    /// The tab bar interface displays tabs at the bottom of the window for selecting between the different modes and for displaying the views for that mode. This class is generally used as-is, but may also be subclassed.
+    ///
+    /// Each tab of a tab bar controller interface is associated with a custom view controller. When the user selects a specific tab, the tab bar controller displays the root view of the corresponding view controller, replacing any previous views. (User taps always display the root view of the tab, regardless of which tab was previously selected. This is true even if the tab was already selected.) Because selecting a tab replaces the contents of the interface, the type of interface managed in each tab need not be similar in any way. In fact, tab bar interfaces are commonly used either to present different types of information or to present the same information using a completely different style of interface. The following image shows the tab bar interface presented by the Clock app, each tab of which presents a type of time based information.
+    ///
+    ///
+    /// ![Four screenshots of the Clock app, showing the World Clock, Alarm, Stopwatch, and Timer tabs](https://docs-assets.developer.apple.com/published/9b792d41bfe1e8281689c4cba29bf0a0/media-2934713%402x.png)
+    ///
+    ///
+    /// You should never access the tab bar view of a tab bar controller directly. To configure the tabs of a tab bar controller, you assign the view controllers that provide the root view for each tab to the [`viewControllers`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/viewcontrollers) property. The order in which you specify the view controllers determines the order in which they appear in the tab bar. When setting this property, you should also assign a value to the [`selectedViewController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/selectedviewcontroller) property to indicate which view controller is selected initially. (You can also select view controllers by array index using the [`selectedIndex`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/selectedindex) property.) When you embed the tab bar controller’s view (obtained using the inherited [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property) in your app window, the tab bar controller automatically selects that view controller and displays its contents, resizing them as needed to fit the tab bar interface.
+    ///
+    /// Tab bar items are configured through their corresponding view controller. To associate a tab bar item with a view controller, create a new instance of the [`UITabBarItem`](https://developer.apple.com/documentation/uikit/uitabbaritem) class, configure it appropriately for the view controller, and assign it to the view controller’s [`tabBarItem`](https://developer.apple.com/documentation/uikit/uiviewcontroller/tabbaritem) property. If you don’t provide a custom tab bar item for your view controller, the view controller creates a default item containing no image and the text from the view controller’s [`title`](https://developer.apple.com/documentation/uikit/uiviewcontroller/title) property.
+    ///
+    /// As the user interacts with a tab bar interface, the tab bar controller object sends notifications about the interactions to its delegate. The delegate can be any object you specify but must conform to the [`UITabBarControllerDelegate`](https://developer.apple.com/documentation/uikit/uitabbarcontrollerdelegate) protocol. You can use the delegate to prevent specific tab bar items from being selected and to perform additional tasks when tabs are selected. You can also use the delegate to monitor changes to the tab bar that are made by the More navigation controller, which is described in more detail in [The More navigation controller](https://developer.apple.com/documentation/uikit/uitabbarcontroller#the-more-navigation-controller).
+    ///
+    /// ### The views of a tab bar controller
+    ///
+    /// Because the [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) class inherits from the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class, tab bar controllers have their own view that’s accessible through the [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property. The view for a tab bar controller is just a container for a tab bar view and the view containing your custom content. The tab bar view provides the selection controls for the user and consists of one or more tab bar items. The following image shows how these views are assembled to present the overall tab bar interface. Although the items in the tab bar and toolbar views can change, the views that manage them don’t. Only the custom content view changes to reflect the view controller for the currently selected tab.
+    ///
+    ///
+    /// ![A diagram of the views that are stacked together in a tab bar interface](https://docs-assets.developer.apple.com/published/5b64300bc1148d4c5228708f98e4fec5/media-2934714%402x.png)
+    ///
+    ///
+    /// You can use navigation controllers or custom view controllers as the root view controller for a tab. If the root view controller is a navigation controller, the tab bar controller makes further adjustments to the size of the displayed navigation content so that it doesn’t overlap the tab bar. Any views you display in a tab bar interface should therefore have their [`autoresizingMask`](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.property) property set to resize the view appropriately under any conditions.
+    ///
+    /// ### The More navigation controller
+    ///
+    /// The tab bar has limited space for displaying your custom items. If you add six or more custom view controllers to a tab bar controller, the tab bar controller displays only the first four items plus the standard More item on the tab bar. Tapping the More item brings up a standard interface for selecting the remaining items.
+    ///
+    /// The interface for the standard More item includes an Edit button that allows the user to reconfigure the tab bar. By default, the user is allowed to rearrange all items on the tab bar. If you do not want the user to modify some items, though, you can remove the appropriate view controllers from the array in the [`customizableViewControllers`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/customizableviewcontrollers) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Tab bar customization and the More interface are not available in tvOS.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### State preservation
+    ///
+    /// When you assign a value to this view controller’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, it preserves a reference to the view controller in the selected tab. At restore time, it uses the reference to select the tab with the same view controller.
+    ///
+    /// When preserving a tab bar controller, assign unique restoration identifiers to the child view controllers you want to preserve. Omitting a restoration identifier from a child view controller causes that tab to return to its default configuration. Although the tab bar controller saves its tabs in the same order that they are listed in the [`viewControllers`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/viewcontrollers) property, the save order is actually irrelevant. Your code is responsible for providing the new tab bar controller during the next launch cycle, so your code can adjust the order of the tabs as needed. The state preservation system restores the contents of each tab based on the assigned restoration identifier, not based on the position of the tab.
+    ///
+    /// For more information about how state preservation and restoration works, see [App Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072).
+    ///
+    /// ### Differences between iOS and tvOS
+    ///
+    /// Tab bar controllers serve the same purpose in tvOS as in iOS, but provide slightly different user interface features:
+    ///
+    /// - In tvOS, the tab bar interface appears at the top of the window. When focus leaves the tab bar, the tab bar remains fixed at the top of the screen by default. To create an interface where the tab bar doesn’t remain fixed, but instead scrolls with the content, set the [`tabBarObservedScrollView`](https://developer.apple.com/documentation/uikit/uiviewcontroller/tabbarobservedscrollview) property to the appropriate scroll view. In iOS, the tab bar always stays pinned at the bottom of the screen.
+    ///
+    /// - In tvOS, swiping down from the tab bar moves focus into the content view; specifically, to the first focusable view that’s visually below the selected tab. Swiping down behaves like a normal focus-changing gesture — that is, focus moves in the direction the user swiped. If nothing is focusable immediately below the selected tab, the closest focusable view is focused instead. In iOS, the tab bar always remains in focus at the bottom of the screen.
+    ///
+    /// - In tvOS, pressing the Select button while a tab is focused moves focus into the content view. Because there’s no direction associated with this change, focus moves to the most appropriate view specified in the content view’s [`preferredFocusEnvironments`](https://developer.apple.com/documentation/uikit/uifocusenvironment/preferredfocusenvironments) property. In iOS, there’s no notion of focusing between views.
+    ///
+    /// - Tab bar controllers in tvOS don’t support customization. A tab bar controller displays only the number of view controllers from its [`viewControllers`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/viewcontrollers) array that fit on the screen, and doesn’t provide the More interface seen in iOS.
+    ///
+    ///
     /// UITabBarController manages a button bar and transition view, for an application with multiple top-level modes.
     ///
     /// To use in your application, add its view to the view hierarchy, then add top-level view controllers in order.
@@ -87,8 +180,6 @@ extern_class!(
     /// The rest will be accessible under an automatically generated More item.
     ///
     /// UITabBarController is rotatable if all of its view controllers are rotatable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -441,7 +532,15 @@ impl UITabBarController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollerdelegate?language=objc)
+    /// A set of methods you implement to customize the behavior of a tab bar.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`UITabBarControllerDelegate`](https://developer.apple.com/documentation/uikit/uitabbarcontrollerdelegate) protocol when you want to augment the behavior of a tab bar. In particular, you can use it to determine whether specific tabs should be selected, to perform actions after a tab is selected, or to perform actions before or after the user customizes the order of the tabs. After implementing these methods in your custom object, you should then assign that object to the [`delegate`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/delegate) property of the corresponding [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object.
+    ///
+    /// All of the methods in this protocol are optional. For more information on how to use and configure tab bar controllers and their delegates, see [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457).
+    ///
+    ///
     pub unsafe trait UITabBarControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIResponder",

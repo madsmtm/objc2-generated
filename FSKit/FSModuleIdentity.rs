@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// An installed file system module.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmoduleidentity?language=objc)
+    /// An installed file system module.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSModuleIdentity;

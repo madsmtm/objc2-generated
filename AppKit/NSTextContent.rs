@@ -7,227 +7,233 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype?language=objc)
+/// Constants that identify the semantic meaning for a text-entry area.
+///
+/// ## Discussion
+///
+/// Use these constants with the [`contentType`](https://developer.apple.com/documentation/appkit/nstextcontent/contenttype) property.
+///
+///
 // NS_TYPED_ENUM
 pub type NSTextContentType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/username?language=objc)
+    /// A property that defines the content in a text input area as an account or login name.
     pub static NSTextContentTypeUsername: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/password?language=objc)
+    /// A property that defines the content in a text input area as a password.
     pub static NSTextContentTypePassword: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/onetimecode?language=objc)
+    /// A property that defines the content in a text input area as a one-time code.
     pub static NSTextContentTypeOneTimeCode: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/newpassword?language=objc)
+    /// A property that defines the content in a text input area as a new password.
     pub static NSTextContentTypeNewPassword: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/name?language=objc)
+    /// A property that defines the content in a text input area as a name.
     pub static NSTextContentTypeName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/nameprefix?language=objc)
+    /// A property that defines the content in a text input area as a prefix or title, such as _Dr_.
     pub static NSTextContentTypeNamePrefix: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/givenname?language=objc)
+    /// A property that defines the content in a text input area as a first name.
     pub static NSTextContentTypeGivenName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/middlename?language=objc)
+    /// A property that defines the content in a text input area as a middle name.
     pub static NSTextContentTypeMiddleName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/familyname?language=objc)
+    /// A property that defines the content in a text input area as a family name, or last name.
     pub static NSTextContentTypeFamilyName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/namesuffix?language=objc)
+    /// A property that defines the content in a text input area as a suffix, such as _Jr_.
     pub static NSTextContentTypeNameSuffix: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/nickname?language=objc)
+    /// A property that defines the content in a text input area as a nickname.
     pub static NSTextContentTypeNickname: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/jobtitle?language=objc)
+    /// A property that defines the content in a text input area as a job title.
     pub static NSTextContentTypeJobTitle: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/organizationname?language=objc)
+    /// A property that defines the content in a text input area as an organization name.
     pub static NSTextContentTypeOrganizationName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/location?language=objc)
+    /// A property that defines the content in a text input area as a location, such as a point of interest, an address, or another identifier for a location.
     pub static NSTextContentTypeLocation: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/fullstreetaddress?language=objc)
+    /// A property that defines the content in a text input area as a street address that fully identifies a location.
     pub static NSTextContentTypeFullStreetAddress: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/streetaddressline1?language=objc)
+    /// A property that defines the content in a text input area as the first line of a street address.
     pub static NSTextContentTypeStreetAddressLine1: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/streetaddressline2?language=objc)
+    /// A property that defines the content in a text input area as the second line of a street address.
     pub static NSTextContentTypeStreetAddressLine2: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/addresscity?language=objc)
+    /// A property that defines the content in a text input area as a city name.
     pub static NSTextContentTypeAddressCity: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/addressstate?language=objc)
+    /// A property that defines the content in a text input area as a state name.
     pub static NSTextContentTypeAddressState: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/addresscityandstate?language=objc)
+    /// A property that defines the content in a text input area as a city name with a state name.
     pub static NSTextContentTypeAddressCityAndState: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/sublocality?language=objc)
+    /// A property that defines the content in a text input area as a sublocality.
     pub static NSTextContentTypeSublocality: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/countryname?language=objc)
+    /// A property that defines the content in a text input area as a country or region name.
     pub static NSTextContentTypeCountryName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/postalcode?language=objc)
+    /// A property that defines the content in a text input area as a postal code.
     pub static NSTextContentTypePostalCode: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/telephonenumber?language=objc)
+    /// A property that defines the content in a text input area as a telephone number.
     pub static NSTextContentTypeTelephoneNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/emailaddress?language=objc)
+    /// A property that defines the content in a text input area as an email address.
     pub static NSTextContentTypeEmailAddress: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/url?language=objc)
+    /// A property that defines the content in a text input area as a URL.
     pub static NSTextContentTypeURL: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardnumber?language=objc)
+    /// A property that defines the content in a text input area as a credit card number.
     pub static NSTextContentTypeCreditCardNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardname?language=objc)
+    /// A property that defines the content in a text input area as a name on a credit card.
     pub static NSTextContentTypeCreditCardName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardgivenname?language=objc)
+    /// A property that defines the content in a text input area as a first name on a credit card.
     pub static NSTextContentTypeCreditCardGivenName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardmiddlename?language=objc)
+    /// A property that defines the content in a text input area as a middle name on a credit card.
     pub static NSTextContentTypeCreditCardMiddleName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardfamilyname?language=objc)
+    /// A property that defines the content in a text input area as a family name, or last name, on a credit card.
     pub static NSTextContentTypeCreditCardFamilyName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardsecuritycode?language=objc)
+    /// A property that defines the content in a text input area as a credit card security code.
     pub static NSTextContentTypeCreditCardSecurityCode: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardexpiration?language=objc)
+    /// A property that defines the content in a text input area as an expiration date on a credit card.
     pub static NSTextContentTypeCreditCardExpiration: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardexpirationmonth?language=objc)
+    /// A property that defines the content in a text input area as the month component of an expiration date on a credit card.
     pub static NSTextContentTypeCreditCardExpirationMonth: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardexpirationyear?language=objc)
+    /// A property that defines the content in a text input area as the year component of an expiration date on a credit card.
     pub static NSTextContentTypeCreditCardExpirationYear: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardtype?language=objc)
+    /// A property that defines the content in a text input area as a credit card type.
     pub static NSTextContentTypeCreditCardType: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/shipmenttrackingnumber?language=objc)
+    /// A property that defines the content in a text input area as a parcel tracking number.
     pub static NSTextContentTypeShipmentTrackingNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/flightnumber?language=objc)
+    /// A property that defines the content in a text input area as an airline flight number.
     pub static NSTextContentTypeFlightNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/datetime?language=objc)
+    /// A property that defines the content in a text input area as a date, time, or duration.
     pub static NSTextContentTypeDateTime: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdate?language=objc)
+    /// A property that defines the content in a text input area as a date of birth.
     pub static NSTextContentTypeBirthdate: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdateday?language=objc)
+    /// A property that defines the content in a text input area as the day component of a birthdate.
     pub static NSTextContentTypeBirthdateDay: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdatemonth?language=objc)
+    /// A property that defines the content in a text input area as the month component of a birthdate.
     pub static NSTextContentTypeBirthdateMonth: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdateyear?language=objc)
+    /// A property that defines the content in a text input area as the year component of a birthdate.
     pub static NSTextContentTypeBirthdateYear: &'static NSTextContentType;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontent?language=objc)
+    /// A protocol that describes specific kinds of input content types.
     pub unsafe trait NSTextContent {
         #[unsafe(method(contentType))]
         #[unsafe(method_family = none)]

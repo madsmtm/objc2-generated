@@ -6,48 +6,267 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A dictionary key whose value is the item’s class.
+    ///
+    /// ## Discussion
+    ///
+    /// Possible values for this key are listed in [Item class values](https://developer.apple.com/documentation/security/item-class-keys-and-values#item-class-values).
+    ///
+    ///
     /// Predefined key constant used to get or set item class values in
     /// a dictionary. Its value is one of the constants defined in the Value
     /// Constants for kSecClass.
     ///
     /// class code.  You use this key to get or set a value of type CFTypeRef
     /// that contains the item class code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecclass?language=objc)
     pub static kSecClass: &'static CFString;
 }
 
 extern "C" {
+    /// The value that indicates an Internet password item.
+    ///
+    /// ## Discussion
+    ///
+    /// The following keychain item attributes form the composite primary key of an Internet password item:
+    ///
+    /// - [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrAccount`](https://developer.apple.com/documentation/security/ksecattraccount)
+    ///
+    /// - [`kSecAttrAuthenticationType`](https://developer.apple.com/documentation/security/ksecattrauthenticationtype)
+    ///
+    /// - [`kSecAttrPath`](https://developer.apple.com/documentation/security/ksecattrpath)
+    ///
+    /// - [`kSecAttrPort`](https://developer.apple.com/documentation/security/ksecattrport)
+    ///
+    /// - [`kSecAttrProtocol`](https://developer.apple.com/documentation/security/ksecattrprotocol)
+    ///
+    /// - [`kSecAttrSecurityDomain`](https://developer.apple.com/documentation/security/ksecattrsecuritydomain)
+    ///
+    /// - [`kSecAttrServer`](https://developer.apple.com/documentation/security/ksecattrserver)
+    ///
+    /// - [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable)
+    ///
+    /// Calls to [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) that add an Internet password item with the same values for all of these attributes as an existing item result in [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem).
+    ///
+    /// The following keychain item attributes apply to an Internet password item, and don’t form part of its composite primary key:
+    ///
+    /// - [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) (macOS only)
+    ///
+    /// - [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrCreationDate`](https://developer.apple.com/documentation/security/ksecattrcreationdate)
+    ///
+    /// - [`kSecAttrModificationDate`](https://developer.apple.com/documentation/security/ksecattrmodificationdate)
+    ///
+    /// - [`kSecAttrDescription`](https://developer.apple.com/documentation/security/ksecattrdescription)
+    ///
+    /// - [`kSecAttrComment`](https://developer.apple.com/documentation/security/ksecattrcomment)
+    ///
+    /// - [`kSecAttrCreator`](https://developer.apple.com/documentation/security/ksecattrcreator)
+    ///
+    /// - [`kSecAttrType`](https://developer.apple.com/documentation/security/ksecattrtype)
+    ///
+    /// - [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel)
+    ///
+    /// - [`kSecAttrIsInvisible`](https://developer.apple.com/documentation/security/ksecattrisinvisible)
+    ///
+    /// - [`kSecAttrIsNegative`](https://developer.apple.com/documentation/security/ksecattrisnegative)
+    ///
+    ///
     /// Predefined item class constants used to get or set values in
     /// a dictionary. The kSecClass constant is the key and its value is one
     /// of the constants defined here. Note: on Mac OS X 10.6, only items
     /// of class kSecClassInternetPassword are supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecclassinternetpassword?language=objc)
     pub static kSecClassInternetPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecclassgenericpassword?language=objc)
+    /// The value that indicates a generic password item.
+    ///
+    /// ## Discussion
+    ///
+    /// The following keychain item attributes form the composite primary key of a generic password item:
+    ///
+    /// - [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrAccount`](https://developer.apple.com/documentation/security/ksecattraccount)
+    ///
+    /// - [`kSecAttrService`](https://developer.apple.com/documentation/security/ksecattrservice)
+    ///
+    /// - [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable)
+    ///
+    /// Calls to [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) that add a generic password item with the same values for all of these attributes as an existing item result in [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem).
+    ///
+    /// The following keychain item attributes apply to a generic password item, and don’t form part of its composite primary key:
+    ///
+    /// - [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) (macOS only)
+    ///
+    /// - [`kSecAttrAccessControl`](https://developer.apple.com/documentation/security/ksecattraccesscontrol)
+    ///
+    /// - [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrCreationDate`](https://developer.apple.com/documentation/security/ksecattrcreationdate)
+    ///
+    /// - [`kSecAttrModificationDate`](https://developer.apple.com/documentation/security/ksecattrmodificationdate)
+    ///
+    /// - [`kSecAttrDescription`](https://developer.apple.com/documentation/security/ksecattrdescription)
+    ///
+    /// - [`kSecAttrComment`](https://developer.apple.com/documentation/security/ksecattrcomment)
+    ///
+    /// - [`kSecAttrCreator`](https://developer.apple.com/documentation/security/ksecattrcreator)
+    ///
+    /// - [`kSecAttrType`](https://developer.apple.com/documentation/security/ksecattrtype)
+    ///
+    /// - [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel)
+    ///
+    /// - [`kSecAttrIsInvisible`](https://developer.apple.com/documentation/security/ksecattrisinvisible)
+    ///
+    /// - [`kSecAttrIsNegative`](https://developer.apple.com/documentation/security/ksecattrisnegative)
+    ///
+    /// - [`kSecAttrGeneric`](https://developer.apple.com/documentation/security/ksecattrgeneric)
+    ///
+    ///
     pub static kSecClassGenericPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecclasscertificate?language=objc)
+    /// The value that indicates a certificate item.
+    ///
+    /// ## Discussion
+    ///
+    /// The following keychain item attributes form the composite primary key of a certificate password item:
+    ///
+    /// - [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrCertificateType`](https://developer.apple.com/documentation/security/ksecattrcertificatetype)
+    ///
+    /// - [`kSecAttrIssuer`](https://developer.apple.com/documentation/security/ksecattrissuer)
+    ///
+    /// - [`kSecAttrSerialNumber`](https://developer.apple.com/documentation/security/ksecattrserialnumber)
+    ///
+    /// - [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) (on iOS 14 and newer, iOS 11 newer, and watchOS 7 and newer)
+    ///
+    /// Calls to [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) that add a certificate item with the same values for all of these attributes as an existing item result in [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem).
+    ///
+    /// The following keychain item attributes apply to a certificate item, and don’t form part of its composite primary key:
+    ///
+    /// - [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) (macOS only)
+    ///
+    /// - [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrCertificateEncoding`](https://developer.apple.com/documentation/security/ksecattrcertificateencoding)
+    ///
+    /// - [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel)
+    ///
+    /// - [`kSecAttrSubject`](https://developer.apple.com/documentation/security/ksecattrsubject)
+    ///
+    /// - [`kSecAttrSubjectKeyID`](https://developer.apple.com/documentation/security/ksecattrsubjectkeyid)
+    ///
+    /// - [`kSecAttrPublicKeyHash`](https://developer.apple.com/documentation/security/ksecattrpublickeyhash)
+    ///
+    ///
     pub static kSecClassCertificate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecclasskey?language=objc)
+    /// The value that indicates a cryptographic key item.
+    ///
+    /// ## Discussion
+    ///
+    /// The following keychain item attributes form the composite primary key of a cryptographic key item:
+    ///
+    /// - [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrApplicationLabel`](https://developer.apple.com/documentation/security/ksecattrapplicationlabel)
+    ///
+    /// - [`kSecAttrApplicationTag`](https://developer.apple.com/documentation/security/ksecattrapplicationtag)
+    ///
+    /// - [`kSecAttrEffectiveKeySize`](https://developer.apple.com/documentation/security/ksecattreffectivekeysize)
+    ///
+    /// - [`kSecAttrKeyClass`](https://developer.apple.com/documentation/security/ksecattrkeyclass)
+    ///
+    /// - [`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits)
+    ///
+    /// - [`kSecAttrKeyType`](https://developer.apple.com/documentation/security/ksecattrkeytype)
+    ///
+    /// - [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) (on iOS 14 and newer, iOS 11 newer, and watchOS 7 and newer)
+    ///
+    /// Calls to [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) that add a cryptographic key item with the same values for all of these attributes as an existing item result in [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem).
+    ///
+    /// The following keychain item attributes apply to a cryptographic key item, and don’t form part of its composite primary key:
+    ///
+    /// - [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) (macOS only)
+    ///
+    /// - [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) (on macOS, this key only applies if you set [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) or [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) to [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// - [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel)
+    ///
+    /// - [`kSecAttrIsPermanent`](https://developer.apple.com/documentation/security/ksecattrispermanent)
+    ///
+    /// - [`kSecAttrPRF`](https://developer.apple.com/documentation/security/ksecattrprf)
+    ///
+    /// - [`kSecAttrSalt`](https://developer.apple.com/documentation/security/ksecattrsalt)
+    ///
+    /// - [`kSecAttrRounds`](https://developer.apple.com/documentation/security/ksecattrrounds)
+    ///
+    /// - [`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt)
+    ///
+    /// - [`kSecAttrCanDecrypt`](https://developer.apple.com/documentation/security/ksecattrcandecrypt)
+    ///
+    /// - [`kSecAttrCanDerive`](https://developer.apple.com/documentation/security/ksecattrcanderive)
+    ///
+    /// - [`kSecAttrCanSign`](https://developer.apple.com/documentation/security/ksecattrcansign)
+    ///
+    /// - [`kSecAttrCanVerify`](https://developer.apple.com/documentation/security/ksecattrcanverify)
+    ///
+    /// - [`kSecAttrCanWrap`](https://developer.apple.com/documentation/security/ksecattrcanwrap)
+    ///
+    /// - [`kSecAttrCanUnwrap`](https://developer.apple.com/documentation/security/ksecattrcanunwrap)
+    ///
+    ///
     pub static kSecClassKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecclassidentity?language=objc)
+    /// The value that indicates an identity item.
+    ///
+    /// ## Discussion
+    ///
+    /// An identity is a certificate paired with its associated private key. Keychain services stores the certificate and the private key separately; it represents the pair as an identity if the certificate’s [`kSecAttrPublicKeyHash`](https://developer.apple.com/documentation/security/ksecattrpublickeyhash) attribute matches the key’s [`kSecAttrApplicationLabel`](https://developer.apple.com/documentation/security/ksecattrapplicationlabel) attribute.
+    ///
+    /// Because an identity is the combination of a private key and a certificate, this class shares attributes of both [`kSecClassKey`](https://developer.apple.com/documentation/security/ksecclasskey) and [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate). Multiple certificates can all attest the identity of the same private key, so the attributes that form an identity’s composite primary key are the same as those for a certificate.
+    ///
+    /// The set of identity items available to your app in the keychain can change without explicitly adding, updating, or deleting identity items. For example, if the keychain contains a cryptographic key item and certificate item that form an identity and you delete the key, the identity no longer exists.
+    ///
+    ///
     pub static kSecClassIdentity: &'static CFString;
 }
 
 extern "C" {
+    /// A key with a value that indicates when the keychain item is accessible.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value, one of those found in [Accessibility Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#accessibility-values), indicates when your app needs access to the data in a keychain item. Choose the most restrictive option that meets your app’s needs so that the system can protect that item to the greatest extent possible. For more information, see [Restricting keychain item accessibility](https://developer.apple.com/documentation/security/restricting-keychain-item-accessibility).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can use this attribute for macOS keychain items only if you also set a value of `true` for the [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) key, the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key, or both. For any item marked as synchronizable, the value for the [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) key may only be one whose name does not end with `ThisDeviceOnly`, as those cannot sync to another device.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The app _must_ provide the contents of the keychain item ([`kSecValueData`](https://developer.apple.com/documentation/security/ksecvaluedata)) when changing this attribute in iOS 4 and earlier.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Predefined item attribute keys used to get or set values in a
     /// dictionary. Not all attributes apply to each item class. The table
     /// below lists the currently defined attributes for each item class:
@@ -414,277 +633,712 @@ extern "C" {
     /// Currently the only available value for this attribute is
     /// kSecAttrTokenIDSecureEnclave, which indicates that item (private key) is
     /// backed by device's Secure Enclave.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessible?language=objc)
     pub static kSecAttrAccessible: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccess?language=objc)
+    /// A key with a value that indicates access control list settings for the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess) instance that describes the access control settings for this item. Create an access instance by calling the [`SecAccessCreate`](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)) method. For more information, see [Access Control Lists](https://developer.apple.com/documentation/security/access-control-lists).
+    ///
+    /// Use this attribute to set an access instance when you:
+    ///
+    /// - Create a keychain item, by adding the `kSecAttrAccess` key to the dictionary you pass to [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)).
+    ///
+    /// - Modify a keychain item, by adding the `kSecAttrAccess` key to the dictionary you pass as the second parameter to [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)).
+    ///
+    /// You can’t use this attribute to:
+    ///
+    /// - Search for an item by its access instance; for example, by adding `kSecAttrAccess` to the dictionary you pass as the first parameter to [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)). [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)) and [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) ignore this key when searching for keychain items.
+    ///
+    /// - Get an item’s access instance with [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)). To get an item’s access instance, call [`SecKeychainItemCopyAccess`](https://developer.apple.com/documentation/security/seckeychainitemcopyaccess(_:_:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This attribute is mutually exclusive with the [`kSecAttrAccessControl`](https://developer.apple.com/documentation/security/ksecattraccesscontrol) attribute. Also, it only applies to keychain items stored in macOS that don’t have one or both of the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) or [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) keys set to `true`. For information on access control for other keychain items, see [Sharing access to keychain items among a collection of apps](https://developer.apple.com/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kSecAttrAccess: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccesscontrol?language=objc)
+    /// A key with a value that’s an access control instance indicating access control settings for the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a [`SecAccessControlRef`](https://developer.apple.com/documentation/security/secaccesscontrol) instance, created with the [`SecAccessControlCreateWithFlags`](https://developer.apple.com/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)) method, containing access control conditions for the item. See [Restricting keychain item accessibility](https://developer.apple.com/documentation/security/restricting-keychain-item-accessibility) for more details.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This attribute is mutually exclusive with the [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) attribute.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kSecAttrAccessControl: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessgroup?language=objc)
+    /// A key with a value that’s a string indicating the access group the item is in.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and indicates the item’s one and only access group.
+    ///
+    /// For an app to access a keychain item, one of the groups to which the app belongs must be the item’s group. The list of an app’s access groups consists of the following string identifiers, in this order:
+    ///
+    /// - The strings in the app’s [`Keychain Access Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups)
+    ///
+    /// - The app ID string
+    ///
+    /// - The strings in the [`App Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.application-groups)
+    ///
+    /// Two or more apps that are in the same access group can share keychain items. For more details, see [Sharing access to keychain items among a collection of apps](https://developer.apple.com/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps).
+    ///
+    /// Specify which access group a keychain item belongs to when you create it by setting the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) attribute in the query you send to the [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) method. Naming a group that’s not among the creating app’s access groups—including the empty string, which is always an invalid group—generates an error. If you don’t explicitly set a group, keychain services defaults to the app’s first access group, which is either the first keychain access group, or the app ID when the app has no keychain groups. In the latter case, the item is only accessible to the app creating the item, since no other app can be in that group.
+    ///
+    /// By default, the [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)), [`SecItemDelete`](https://developer.apple.com/documentation/security/secitemdelete(_:)), and [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) methods search all the app’s access groups. Add the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) attribute to the query to limit the search to a particular group.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This attribute applies to macOS keychain items only if you also set a value of `true` for the [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) key, the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key, or both.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kSecAttrAccessGroup: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsynchronizable?language=objc)
+    /// A key with a value that’s a string indicating whether the item synchronizes through iCloud.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether the item in question is synchronized to other devices through iCloud. To add a new synchronizable item, or to obtain synchronizable results from a query, supply this key with a value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue). If the key is not supplied, or has a value of [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), then no synchronizable items are added or returned. Use [`kSecAttrSynchronizableAny`](https://developer.apple.com/documentation/security/ksecattrsynchronizableany) to query for both synchronizable and non-synchronizable results.
+    ///
+    /// A keychain item created in macOS with this attribute behaves like an iOS keychain item. For example, you share the item between apps using Access Groups instead of Access Control Lists. To create a keychain item in macOS that behaves like an iOS keychain item without making it synchronizable, use [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) instead.
+    ///
+    /// The following caveats apply when you specify the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key:
+    ///
+    /// - You can set the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key on tvOS, but tvOS doesn’t synchronize your app’s keychain items through iCloud. Items that you store on tvOS never leave the device where you create them, and items that you store on other devices don’t synchronize to tvOS devices.
+    ///
+    /// - Updating or deleting items using the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key affects all copies of the item, not just the one on your local device. Be sure that it makes sense to use the same password on all devices before making a password synchronizable.
+    ///
+    /// - Starting in iOS 14, macOS 11, and watchOS 7, the keychain synchronizes passwords, certificates, and cryptographic keys. Earlier OS versions synchronize only passwords.
+    ///
+    /// - Items stored or obtained using the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key cannot specify [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess)-based access control with [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess). If a password is intended to be shared between multiple applications, the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) key must be specified, and each application using this password must have the [`Keychain Access Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups) enabled, and a common access group specified.
+    ///
+    /// - Items stored or obtained using the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key may not also specify a [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) value that is incompatible with syncing (namely, those whose names end with `ThisDeviceOnly`).
+    ///
+    /// - Items stored or obtained using the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key cannot be specified by reference. Use only [`kSecReturnAttributes`](https://developer.apple.com/documentation/security/ksecreturnattributes) and/or [`kSecReturnData`](https://developer.apple.com/documentation/security/ksecreturndata) to retrieve results.
+    ///
+    /// - Do not use persistent references to synchronizable items. They cannot be moved between devices, and may not resolve if the item is modified on some other device.
+    ///
+    /// - When specifying a query that uses the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) key, search keys are limited to the item’s class and attributes. The only search constant that may be used is [`kSecMatchLimit`](https://developer.apple.com/documentation/security/ksecmatchlimit); other constants using the `kSecMatch` prefix are not supported.
+    ///
+    ///
     pub static kSecAttrSynchronizable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsynchronizableany?language=objc)
+    /// Specifies that both synchronizable and non-synchronizable results should be returned from a query.
+    ///
+    /// ## Discussion
+    ///
+    /// This may be used as a value for the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) dictionary key (in place of `kCFBooleanTrue` or `kCFBooleanFalse`) in a call to [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)), [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)), or [`SecItemDelete`](https://developer.apple.com/documentation/security/secitemdelete(_:)).
+    ///
+    ///
     pub static kSecAttrSynchronizableAny: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcreationdate?language=objc)
+    /// A key with a value that indicates the item’s creation date.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate) and represents the date the item was created. Read only.
+    ///
+    ///
     pub static kSecAttrCreationDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrmodificationdate?language=objc)
+    /// A key with a value that indicates the item’s most recent modification date.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate) and represents the last time the item was updated. Read only.
+    ///
+    ///
     pub static kSecAttrModificationDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrdescription?language=objc)
+    /// A key with a value that’s a string indicating the item’s description.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and specifies a user-visible string describing this kind of item (for example, “Disk image password”).
+    ///
+    ///
     pub static kSecAttrDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcomment?language=objc)
+    /// A key with a value that’s a string indicating a comment associated with the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and contains the user-editable comment for this item.
+    ///
+    ///
     pub static kSecAttrComment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcreator?language=objc)
+    /// A key with a value that indicates the item’s creator.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and represents the item’s creator. This number is the unsigned integer representation of a four-character code (for example, `'aCrt'`).
+    ///
+    ///
     pub static kSecAttrCreator: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrtype?language=objc)
+    /// A key with a value that indicates the item’s type.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and represents the item’s type. This number is the unsigned integer representation of a four-character code (for example, ‘aTyp’).
+    ///
+    ///
     pub static kSecAttrType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrlabel?language=objc)
+    /// A key with a value that’s a string indicating the item’s label.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and contains the user-visible label for this item.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to `NULL`.
+    ///
+    ///
     pub static kSecAttrLabel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrisinvisible?language=objc)
+    /// A key with a value that’s a Boolean indicating the item’s visibility.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if the item is invisible (that is, should not be displayed).
+    ///
+    ///
     pub static kSecAttrIsInvisible: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrisnegative?language=objc)
+    /// A key with a value that’s a Boolean indicating whether the item has a valid password.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether there is a valid password associated with this keychain item. This is useful if your application doesn’t want a password for some particular service to be stored in the keychain, but prefers that it always be entered by the user.
+    ///
+    ///
     pub static kSecAttrIsNegative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccount?language=objc)
+    /// A key whose value is a string indicating the item’s account name.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and contains an account name. Items of class [`kSecClassGenericPassword`](https://developer.apple.com/documentation/security/ksecclassgenericpassword) and [`kSecClassInternetPassword`](https://developer.apple.com/documentation/security/ksecclassinternetpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrAccount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrservice?language=objc)
+    /// A key whose value is a string indicating the item’s service.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) that represents the service associated with this item. Items of class [`kSecClassGenericPassword`](https://developer.apple.com/documentation/security/ksecclassgenericpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrService: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrgeneric?language=objc)
+    /// A key whose value indicates the item’s user-defined attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains a user-defined attribute. Items of class [`kSecClassGenericPassword`](https://developer.apple.com/documentation/security/ksecclassgenericpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrGeneric: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsecuritydomain?language=objc)
+    /// A key whose value is a string indicating the item’s security domain.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and represents the Internet security domain. Items of class [`kSecClassInternetPassword`](https://developer.apple.com/documentation/security/ksecclassinternetpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrSecurityDomain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrserver?language=objc)
+    /// A key whose value is a string indicating the item’s server.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and contains the server’s domain name or IP address. Items of class [`kSecClassInternetPassword`](https://developer.apple.com/documentation/security/ksecclassinternetpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrServer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocol?language=objc)
+    /// A key whose value indicates the item’s protocol.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and denotes the protocol for this item (see [Protocol Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#protocol-values)). Items of class [`kSecClassInternetPassword`](https://developer.apple.com/documentation/security/ksecclassinternetpassword) have this attribute.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For compatibility with earlier Keychain APIs, functions in [Keychain services](https://developer.apple.com/documentation/security/keychain-services) accept a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) for the protocol. The number is a 32-bit integer that encodes the protocol value as a `FourCharCode`. In your code, use a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) with one of the values from [Protocol Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#protocol-values) instead of a number.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kSecAttrProtocol: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtype?language=objc)
+    /// A key whose value indicates the item’s authentication scheme.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and denotes the authentication scheme for this item (see [Authentication Type Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#authentication-type-values)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For compatibility with earlier Keychain APIs, functions in [Keychain services](https://developer.apple.com/documentation/security/keychain-services) accept a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) for the authentication scheme. The number is a 32-bit integer that encodes the authentication scheme as a `FourCharCode`. In your code, use a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) with one of the values from [Authentication Type Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#authentication-type-values) instead of a number.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kSecAttrAuthenticationType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrport?language=objc)
+    /// A key whose value indicates the item’s port.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and represents an Internet port number. Items of class [`kSecClassInternetPassword`](https://developer.apple.com/documentation/security/ksecclassinternetpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrpath?language=objc)
+    /// A key whose value is a string indicating the item’s path attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and represents a path, typically the path component of the URL. Items of class [`kSecClassInternetPassword`](https://developer.apple.com/documentation/security/ksecclassinternetpassword) have this attribute.
+    ///
+    ///
     pub static kSecAttrPath: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsubject?language=objc)
+    /// A key whose value indicates the item’s subject name.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains the X.500 subject name of a certificate. Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrSubject: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrissuer?language=objc)
+    /// A key whose value indicates the item’s issuer.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains the X.500 issuer name of a certificate. Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrIssuer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrserialnumber?language=objc)
+    /// A key whose value indicates the item’s serial number.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains the serial number data of a certificate. Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsubjectkeyid?language=objc)
+    /// A key whose value indicates the item’s subject key ID.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains the subject key ID of a certificate. Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrSubjectKeyID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrpublickeyhash?language=objc)
+    /// A key whose value indicates the item’s public key hash.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains the hash of a certificate’s public key. Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrPublicKeyHash: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcertificatetype?language=objc)
+    /// A key whose value indicates the item’s certificate type.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and denotes the certificate type (see the `CSSM_CERT_TYPE` enumeration in cssmtype.h). Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrCertificateType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcertificateencoding?language=objc)
+    /// A key whose value indicates the item’s certificate encoding.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and denotes the certificate encoding (see the `CSSM_CERT_ENCODING` enumeration in cssmtype.h). Items of class [`kSecClassCertificate`](https://developer.apple.com/documentation/security/ksecclasscertificate) have this attribute. Read only.
+    ///
+    ///
     pub static kSecAttrCertificateEncoding: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeyclass?language=objc)
+    /// A key whose value indicates the item’s cryptographic key class.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFTypeRef`](https://developer.apple.com/documentation/corefoundation/cftyperef) and specifies a type of cryptographic key. Possible values are listed in [Key Class Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#key-class-values). Read only.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Don’t confuse this attribute with the more general [`kSecClass`](https://developer.apple.com/documentation/security/ksecclass) attribute that indicates an item’s class (for example password, certificate, or cryptographic key). The [`kSecAttrKeyClass`](https://developer.apple.com/documentation/security/ksecattrkeyclass) attribute described here applies only to items of class [`kSecClassKey`](https://developer.apple.com/documentation/security/ksecclasskey), indicating what category a cryptographic key fits into (for example, public, private, or symmetric).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kSecAttrKeyClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrapplicationlabel?language=objc)
+    /// A key whose value indicates the item’s application label.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9 and contains a label for this item. This attribute is different from the [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel) attribute, which is intended to be human-readable. Instead, this attribute is used to look up a key programmatically; in particular, for keys of class [`kSecAttrKeyClassPublic`](https://developer.apple.com/documentation/security/ksecattrkeyclasspublic) and [`kSecAttrKeyClassPrivate`](https://developer.apple.com/documentation/security/ksecattrkeyclassprivate), the value of this attribute is the hash of the public key.
+    ///
+    ///
     pub static kSecAttrApplicationLabel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrispermanent?language=objc)
+    /// A key whose value indicates the item’s permanence.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether or not this cryptographic key or key pair should be stored in the default keychain at creation time.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse).
+    ///
+    ///
     pub static kSecAttrIsPermanent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrissensitive?language=objc)
+    /// A key whose value indicates the item’s sensitivity.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). When set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), the item can only be exported in an encrypted format. Items of class [`kSecClassKey`](https://developer.apple.com/documentation/security/ksecclasskey) have this attribute.
+    ///
+    ///
     pub static kSecAttrIsSensitive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrisextractable?language=objc)
+    /// A key whose value indicates the item’s extractability.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether the item can be exported from its keychain. Items of class [`kSecClassKey`](https://developer.apple.com/documentation/security/ksecclasskey) have this attribute.
+    ///
+    ///
     pub static kSecAttrIsExtractable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrapplicationtag?language=objc)
+    /// A key whose value indicates the item’s private tag.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) and contains private tag data.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to `NULL`.
+    ///
+    ///
     pub static kSecAttrApplicationTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytype?language=objc)
+    /// A key whose value indicates the item’s algorithm.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and indicates the algorithm associated with this cryptographic key. See [Key Type Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#key-type-values) for a list of valid values.
+    ///
+    ///
     pub static kSecAttrKeyType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprf?language=objc)
+    /// A key whose value indicates the item’s pseudorandom function.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and indicates the pseudorandom function associated with this cryptographic key. See [Pseudorandom Function Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#pseudorandom-function-values) for a list of valid values.
+    ///
+    ///
     pub static kSecAttrPRF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsalt?language=objc)
+    /// A key whose value indicates the salt to use for this item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) that indicates the salt to use with this cryptographic key.
+    ///
+    ///
     pub static kSecAttrSalt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrrounds?language=objc)
+    /// A key whose value indicates the number of rounds to run the pseudorandom function.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and indicates the number of rounds to run the pseudorandom function specified by [`kSecAttrPRF`](https://developer.apple.com/documentation/security/ksecattrprf) for a cryptographic key.
+    ///
+    ///
     pub static kSecAttrRounds: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits?language=objc)
+    /// A key whose value indicates the number of bits in a cryptographic key.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and indicates the total number of bits in this cryptographic key.
+    ///
+    ///
     pub static kSecAttrKeySizeInBits: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattreffectivekeysize?language=objc)
+    /// A key whose value indicates the effective number of bits in a cryptographic key.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) and indicates the effective number of bits in this cryptographic key. For example, a DES key has a [`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits) of 64, but a [`kSecAttrEffectiveKeySize`](https://developer.apple.com/documentation/security/ksecattreffectivekeysize) of 56 bits.
+    ///
+    ///
     pub static kSecAttrEffectiveKeySize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcanencrypt?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for encryption.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to encrypt data.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for private keys and [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for public keys.
+    ///
+    ///
     pub static kSecAttrCanEncrypt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcandecrypt?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for decryption.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to decrypt data.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for private keys and [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for public keys.
+    ///
+    ///
     pub static kSecAttrCanDecrypt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcanderive?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for derivation.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to derive another key.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    ///
     pub static kSecAttrCanDerive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcansign?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for digital signing.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to create a digital signature.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for private keys and [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for public keys.
+    ///
+    ///
     pub static kSecAttrCanSign: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcanverify?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for signature verification.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to verify a digital signature.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for private keys and [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for public keys.
+    ///
+    ///
     pub static kSecAttrCanVerify: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcanwrap?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for wrapping.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to wrap another key.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for private keys and [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for public keys.
+    ///
+    ///
     pub static kSecAttrCanWrap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrcanunwrap?language=objc)
+    /// A key whose value is a Boolean that indicates whether the cryptographic key can be used for unwrapping.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) and indicates whether this cryptographic key can be used to unwrap another key.
+    ///
+    /// On key creation, if not explicitly specified, this attribute defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for private keys and [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for public keys.
+    ///
+    ///
     pub static kSecAttrCanUnwrap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrsyncviewhint?language=objc)
+    /// A key with a value that’s a string that provides a sync view hint.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring), and is included as part of the primary key of an item. It can be used to help distinguish Sync Views when defining their queries.
+    ///
+    ///
     pub static kSecAttrSyncViewHint: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrtokenid?language=objc)
+    /// A key whose value indicates that a cryptographic key is in an external store.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring), and may only be one of the constants specified in [Token ID Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#token-id-values). Presence of this key indicates that the item is backed by an external store, as uniquely identified by the value. An item without this attribute is stored as normal in the keychain database.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can’t change this attribute after creating the keychain item. It isn’t possible to migrate existing items between stores. Setting `kSecAttrTokenID` when creating a keychain item in macOS makes it behave like an iOS keychain item, as if [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) were also set.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use this attribute only in the top-level parameter dictionary during key creation and not in one of the private or public key sub-dictionaries given by [`kSecPrivateKeyAttrs`](https://developer.apple.com/documentation/security/ksecprivatekeyattrs) or [`kSecPublicKeyAttrs`](https://developer.apple.com/documentation/security/ksecpublickeyattrs), respectively. For an example, see [Protecting keys with the Secure Enclave](https://developer.apple.com/documentation/security/protecting-keys-with-the-secure-enclave).
+    ///
+    ///
     pub static kSecAttrTokenID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrpersistantreference?language=objc)
     pub static kSecAttrPersistantReference: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrpersistentreference?language=objc)
     pub static kSecAttrPersistentReference: &'static CFString;
 }
 
 extern "C" {
+    /// The data in the keychain item can be accessed only while the device is unlocked by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// This is recommended for items that need to be accessible only while the application is in the foreground. Items with this attribute migrate to a new device when using encrypted backups.
+    ///
+    /// This is the default value for keychain items added without explicitly setting an accessibility constant.
+    ///
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrAccessible constant is the key and its
     /// value is one of the constants defined here.
@@ -730,352 +1384,389 @@ extern "C" {
     /// is not recommended for anything except system use. Items with this
     /// attribute will never migrate to a new device, so after a backup is
     /// restored to a new device, these items will be missing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlocked?language=objc)
     pub static kSecAttrAccessibleWhenUnlocked: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessibleafterfirstunlock?language=objc)
+    /// The data in the keychain item cannot be accessed after a restart until the device has been unlocked once by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// After the first unlock, the data remains accessible until the next restart.  This is recommended for items that need to be accessed by background applications. Items with this attribute migrate to a new device when using encrypted backups.
+    ///
+    ///
     pub static kSecAttrAccessibleAfterFirstUnlock: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblealways?language=objc)
+    /// The data in the keychain item can always be accessed regardless of whether the device is locked.
+    ///
+    /// ## Discussion
+    ///
+    /// This is not recommended for application use. Items with this attribute migrate to a new device when using encrypted backups.
+    ///
+    ///
     #[deprecated = "Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlock"]
     pub static kSecAttrAccessibleAlways: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblewhenpasscodesetthisdeviceonly?language=objc)
+    /// The data in the keychain can only be accessed when the device is unlocked. Only available if a passcode is set on the device.
+    ///
+    /// ## Discussion
+    ///
+    /// This is recommended for items that only need to be accessible while the application is in the foreground. Items with this attribute never migrate to a new device. After a backup is restored to a new device, these items are missing. No items can be stored in this class on devices without a passcode. Disabling the device passcode causes all items in this class to be deleted.
+    ///
+    ///
     pub static kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblewhenunlockedthisdeviceonly?language=objc)
+    /// The data in the keychain item can be accessed only while the device is unlocked by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// This is recommended for items that need to be accessible only while the application is in the foreground. Items with this attribute _do not_ migrate to a new device. Thus, after restoring from a backup of a different device, these items will not be present.
+    ///
+    ///
     pub static kSecAttrAccessibleWhenUnlockedThisDeviceOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessibleafterfirstunlockthisdeviceonly?language=objc)
+    /// The data in the keychain item cannot be accessed after a restart until the device has been unlocked once by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// After the first unlock, the data remains accessible until the next restart. This is recommended for items that need to be accessed by background applications. Items with this attribute _do not_ migrate to a new device. Thus, after restoring from a backup of a different device, these items will not be present.
+    ///
+    ///
     pub static kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessiblealwaysthisdeviceonly?language=objc)
+    /// The data in the keychain item can always be accessed regardless of whether the device is locked.
+    ///
+    /// ## Discussion
+    ///
+    /// This is not recommended for application use. Items with this attribute _do not_ migrate to a new device. Thus, after restoring from a backup of a different device, these items will not be present.
+    ///
+    ///
     #[deprecated = "Use an accessibility level that provides some user protection, such as kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly"]
     pub static kSecAttrAccessibleAlwaysThisDeviceOnly: &'static CFString;
 }
 
 extern "C" {
+    /// FTP protocol.
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrProtocol constant is the key and its
     /// value is one of the constants defined here.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolftp?language=objc)
     pub static kSecAttrProtocolFTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolftpaccount?language=objc)
+    /// A client side FTP account.
     pub static kSecAttrProtocolFTPAccount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolhttp?language=objc)
+    /// HTTP protocol.
     pub static kSecAttrProtocolHTTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolirc?language=objc)
+    /// IRC protocol.
     pub static kSecAttrProtocolIRC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolnntp?language=objc)
+    /// NNTP protocol.
     pub static kSecAttrProtocolNNTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolpop3?language=objc)
+    /// POP3 protocol.
     pub static kSecAttrProtocolPOP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolsmtp?language=objc)
+    /// SMTP protocol.
     pub static kSecAttrProtocolSMTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolsocks?language=objc)
+    /// SOCKS  protocol.
     pub static kSecAttrProtocolSOCKS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolimap?language=objc)
+    /// IMAP  protocol.
     pub static kSecAttrProtocolIMAP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolldap?language=objc)
+    /// LDAP protocol.
     pub static kSecAttrProtocolLDAP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolappletalk?language=objc)
+    /// AFP over AppleTalk.
     pub static kSecAttrProtocolAppleTalk: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolafp?language=objc)
+    /// AFP over TCP.
     pub static kSecAttrProtocolAFP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocoltelnet?language=objc)
+    /// Telnet protocol.
     pub static kSecAttrProtocolTelnet: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolssh?language=objc)
+    /// SSH protocol.
     pub static kSecAttrProtocolSSH: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolftps?language=objc)
+    /// FTP over TLS/SSL.
     pub static kSecAttrProtocolFTPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolhttps?language=objc)
+    /// HTTP over TLS/SSL.
     pub static kSecAttrProtocolHTTPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolhttpproxy?language=objc)
+    /// HTTP proxy.
     pub static kSecAttrProtocolHTTPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolhttpsproxy?language=objc)
+    /// HTTPS proxy.
     pub static kSecAttrProtocolHTTPSProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolftpproxy?language=objc)
+    /// FTP proxy.
     pub static kSecAttrProtocolFTPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolsmb?language=objc)
+    /// SMB protocol.
     pub static kSecAttrProtocolSMB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolrtsp?language=objc)
+    /// RTSP protocol.
     pub static kSecAttrProtocolRTSP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolrtspproxy?language=objc)
+    /// RTSP proxy.
     pub static kSecAttrProtocolRTSPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocoldaap?language=objc)
+    /// DAAP protocol.
     pub static kSecAttrProtocolDAAP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocoleppc?language=objc)
+    /// Remote Apple Events.
     pub static kSecAttrProtocolEPPC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolipp?language=objc)
+    /// IPP protocol.
     pub static kSecAttrProtocolIPP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolnntps?language=objc)
+    /// NNTP over TLS/SSL.
     pub static kSecAttrProtocolNNTPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolldaps?language=objc)
+    /// LDAP over TLS/SSL.
     pub static kSecAttrProtocolLDAPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocoltelnets?language=objc)
+    /// Telnet over TLS/SSL.
     pub static kSecAttrProtocolTelnetS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolimaps?language=objc)
+    /// IMAP over TLS/SSL.
     pub static kSecAttrProtocolIMAPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolircs?language=objc)
+    /// IRC over TLS/SSL.
     pub static kSecAttrProtocolIRCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprotocolpop3s?language=objc)
+    /// POP3 over TLS/SSL.
     pub static kSecAttrProtocolPOP3S: &'static CFString;
 }
 
 extern "C" {
+    /// Windows NT LAN Manager authentication.
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrAuthenticationType constant is the key
     /// and its value is one of the constants defined here.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypentlm?language=objc)
     pub static kSecAttrAuthenticationTypeNTLM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypemsn?language=objc)
+    /// Microsoft Network default authentication.
     pub static kSecAttrAuthenticationTypeMSN: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypedpa?language=objc)
+    /// Distributed Password authentication.
     pub static kSecAttrAuthenticationTypeDPA: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtyperpa?language=objc)
+    /// Remote Password authentication.
     pub static kSecAttrAuthenticationTypeRPA: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypehttpbasic?language=objc)
+    /// HTTP Basic authentication.
     pub static kSecAttrAuthenticationTypeHTTPBasic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypehttpdigest?language=objc)
+    /// HTTP Digest Access authentication.
     pub static kSecAttrAuthenticationTypeHTTPDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypehtmlform?language=objc)
+    /// HTML form based authentication.
     pub static kSecAttrAuthenticationTypeHTMLForm: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrauthenticationtypedefault?language=objc)
+    /// The default authentication type.
     pub static kSecAttrAuthenticationTypeDefault: &'static CFString;
 }
 
 extern "C" {
+    /// A public key of a public-private pair.
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrKeyClass constant is the key
     /// and its value is one of the constants defined here.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeyclasspublic?language=objc)
     pub static kSecAttrKeyClassPublic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeyclassprivate?language=objc)
+    /// A private key of a public-private pair.
     pub static kSecAttrKeyClassPrivate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeyclasssymmetric?language=objc)
+    /// A private key used for symmetric-key encryption and decryption.
     pub static kSecAttrKeyClassSymmetric: &'static CFString;
 }
 
 extern "C" {
+    /// RSA algorithm.
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecAttrKeyType constant is the key
     /// and its value is one of the constants defined here.
     ///
     /// The size is specified by kSecAttrKeySizeInBits attribute. Curves are defined in FIPS PUB 186-4 standard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypersa?language=objc)
     pub static kSecAttrKeyTypeRSA: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypedsa?language=objc)
+    /// DSA algorithm.
     pub static kSecAttrKeyTypeDSA: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypeaes?language=objc)
+    /// AES algorithm.
     pub static kSecAttrKeyTypeAES: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypedes?language=objc)
+    /// DES algorithm.
     pub static kSecAttrKeyTypeDES: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytype3des?language=objc)
+    /// 3DES algorithm.
     pub static kSecAttrKeyType3DES: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytyperc4?language=objc)
+    /// RC4 algorithm.
     pub static kSecAttrKeyTypeRC4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytyperc2?language=objc)
+    /// RC2 algorithm.
     pub static kSecAttrKeyTypeRC2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypecast?language=objc)
+    /// CAST algorithm.
     pub static kSecAttrKeyTypeCAST: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypeecdsa?language=objc)
+    /// Elliptic curve DSA algorithm.
     pub static kSecAttrKeyTypeECDSA: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypeec?language=objc)
+    /// Elliptic curve algorithm.
     pub static kSecAttrKeyTypeEC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrkeytypeecsecprimerandom?language=objc)
+    /// Elliptic curve algorithm.
     pub static kSecAttrKeyTypeECSECPrimeRandom: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprfhmacalgsha1?language=objc)
+    /// Use the SHA1 algorithm.
     pub static kSecAttrPRFHmacAlgSHA1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprfhmacalgsha224?language=objc)
+    /// Use the SHA224 algorithm.
     pub static kSecAttrPRFHmacAlgSHA224: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprfhmacalgsha256?language=objc)
+    /// Use the SHA256 algorithm.
     pub static kSecAttrPRFHmacAlgSHA256: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprfhmacalgsha384?language=objc)
+    /// Use the SHA384 algorithm.
     pub static kSecAttrPRFHmacAlgSHA384: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrprfhmacalgsha512?language=objc)
+    /// Use the SHA512 algorithm.
     pub static kSecAttrPRFHmacAlgSHA512: &'static CFString;
 }
 
 extern "C" {
+    /// A key whose value indicates a policy with which a matching certificate or identity must verify.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy).
+    ///
+    ///
     /// Predefined search constants used to set values in a query
     /// dictionary. You can specify a combination of search attributes and
     /// item attributes when looking for matching items with the
@@ -1141,97 +1832,205 @@ extern "C" {
     ///
     /// may be returned; used as a value for the kSecMatchLimit dictionary
     /// key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchpolicy?language=objc)
     pub static kSecMatchPolicy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchitemlist?language=objc)
+    /// A key whose value indicates a list of items to search.
+    ///
+    /// ## Discussion
+    ///
+    /// To provide your own set of items to be filtered by a search query rather than searching the keychain, specify this search key in a call to the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) function with a value that consists of an object of type [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) where the array contains either [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity), or [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) items. The objects in the provided array must all be of the same type.
+    ///
+    /// To convert from persistent item references to normal item references, specify this search key in a call to the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) function with a value of type [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) where the array contains one or more [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) elements (the persistent references), and a return-type key of [`kSecReturnRef`](https://developer.apple.com/documentation/security/ksecreturnref) whose value is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    /// To delete an item identified by a transient reference, specify the [`kSecMatchItemList`](https://developer.apple.com/documentation/security/ksecmatchitemlist) search key in a call to the [`SecItemDelete`](https://developer.apple.com/documentation/security/secitemdelete(_:)) function with a reference returned by using the [`kSecReturnRef`](https://developer.apple.com/documentation/security/ksecreturnref) return type key in a previous call to the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) or [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) functions.
+    ///
+    /// To delete an item identified by a persistent reference, specify the [`kSecMatchItemList`](https://developer.apple.com/documentation/security/ksecmatchitemlist) search key in a call to the [`SecItemDelete`](https://developer.apple.com/documentation/security/secitemdelete(_:)) function with a persistent reference returned by using the [`kSecReturnPersistentRef`](https://developer.apple.com/documentation/security/ksecreturnpersistentref) return type key to the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) or [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) functions.
+    ///
+    ///
     pub static kSecMatchItemList: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchsearchlist?language=objc)
+    /// A key whose value indicates a list of items to search.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) of [`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain) items. If provided, the search will be limited to the keychain items contained in this list.
+    ///
+    ///
     pub static kSecMatchSearchList: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchissuers?language=objc)
+    /// A key whose value is a string to match against a certificate or identity’s issuers.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray), where the array consists of X.500 names of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). If provided, returned certificates or identities are limited to those whose certificate chain contains one of the issuers provided in this list.
+    ///
+    ///
     pub static kSecMatchIssuers: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchemailaddressifpresent?language=objc)
+    /// A key whose value is a string to match against a certificate or identity’s email address.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and contains an RFC822 email address. If provided, returned certificates or identities are limited to those that either contain the address or do not contain any email address.
+    ///
+    ///
     pub static kSecMatchEmailAddressIfPresent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchsubjectcontains?language=objc)
+    /// A key whose value is a string to look for in a certificate or identity’s subject.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). If provided, returned certificates or identities are limited to those whose subject contains this string.
+    ///
+    ///
     pub static kSecMatchSubjectContains: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchhostorsubdomainofhost?language=objc)
     pub static kSecMatchHostOrSubdomainOfHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchsubjectstartswith?language=objc)
+    /// A key whose value is a string to match against the beginning of a certificate or identity’s subject.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). If provided, returned certificates or identities are limited to those whose subject starts with this string.
+    ///
+    ///
     pub static kSecMatchSubjectStartsWith: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchsubjectendswith?language=objc)
+    /// A key whose value is a string to match against the end of a certificate or identity’s subject.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). If provided, returned certificates or identities are limited to those whose subject ends with this string.
+    ///
+    ///
     pub static kSecMatchSubjectEndsWith: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchsubjectwholestring?language=objc)
+    /// A key whose value is a string to exactly match a certificate or identity’s subject.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). If provided, returned certificates or identities are limited to those whose subject is exactly equal to this string.
+    ///
+    ///
     pub static kSecMatchSubjectWholeString: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchcaseinsensitive?language=objc)
+    /// A key whose value is a Boolean indicating whether case-insensitive matching is performed.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). If this value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), or if this attribute is not provided, then case-sensitive string matching is performed.
+    ///
+    ///
     pub static kSecMatchCaseInsensitive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchdiacriticinsensitive?language=objc)
+    /// A key whose value is a Boolean indicating whether diacritic-insensitive matching is performed.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). If this value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), or if this attribute is not provided, then diacritic-sensitive string matching is performed.
+    ///
+    ///
     pub static kSecMatchDiacriticInsensitive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchwidthinsensitive?language=objc)
+    /// A key whose value is a Boolean indicating whether width-insensitive matching is performed.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). If this value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), or if this attribute is not provided, then width-sensitive string matching is performed (for example, the ASCII character `a` does not match the UTF-8 full-width letter `a` (`U+FF41`).
+    ///
+    ///
     pub static kSecMatchWidthInsensitive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchtrustedonly?language=objc)
+    /// A key whose value is a Boolean indicating whether untrusted certificates should be returned.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). If this attribute is provided with a value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), only certificates that can be verified back to a trusted anchor are returned. If this value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) or the attribute is not provided, then both trusted and untrusted certificates may be returned.
+    ///
+    ///
     pub static kSecMatchTrustedOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchvalidondate?language=objc)
+    /// A key whose value indicates the validity date.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate). If provided, returned keys, certificates or identities are limited to those that are valid for the given date. Pass a value of [`kCFNull`](https://developer.apple.com/documentation/corefoundation/kcfnull) to indicate the current date.
+    ///
+    ///
     pub static kSecMatchValidOnDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchlimit?language=objc)
+    /// A key whose value indicates the match limit.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber). If provided, this value specifies the maximum number of results to return or otherwise act upon. For a single item, specify [`kSecMatchLimitOne`](https://developer.apple.com/documentation/security/ksecmatchlimitone). To specify all matching items, specify [`kSecMatchLimitAll`](https://developer.apple.com/documentation/security/ksecmatchlimitall). The default behavior is function-dependent.
+    ///
+    ///
     pub static kSecMatchLimit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchlimitone?language=objc)
+    /// A value that corresponds to matching exactly one item.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value with the [`kSecMatchLimit`](https://developer.apple.com/documentation/security/ksecmatchlimit) key.
+    ///
+    ///
     pub static kSecMatchLimitOne: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchlimitall?language=objc)
+    /// A value that corresponds to matching an unlimited number of items.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value with the [`kSecMatchLimit`](https://developer.apple.com/documentation/security/ksecmatchlimit) key.
+    ///
+    ///
     pub static kSecMatchLimitAll: &'static CFString;
 }
 
 extern "C" {
+    /// A key whose value is a Boolean that indicates whether or not to return item data.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). A value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) indicates that the function needs to return the item’s data as a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object.
+    ///
+    /// For keys and password items, data is secret (encrypted) and might require the user to enter a password for access. For key items, the resulting data has the same format as the return value of the function [`SecKeyCopyExternalRepresentation`](https://developer.apple.com/documentation/security/seckeycopyexternalrepresentation(_:_:)). However, the key data might not be extractable (for example, if it’s protected by the Secure Enclave), so prefer to use [`SecKeyCopyExternalRepresentation`](https://developer.apple.com/documentation/security/seckeycopyexternalrepresentation(_:_:)) for keys and check the `error` parameter if it returns `nil`.
+    ///
+    ///
     /// Predefined return type keys used to set values in a dictionary.
     /// You use these keys to specify the type of results which should be
     /// returned by the SecItemCopyMatching or SecItemAdd function. You can
@@ -1259,27 +2058,50 @@ extern "C" {
     ///
     /// is of type CFBooleanRef. A value of kCFBooleanTrue indicates that a
     /// persistent reference to an item (CFDataRef) should be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecreturndata?language=objc)
     pub static kSecReturnData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecreturnattributes?language=objc)
+    /// A key whose value is a Boolean indicating whether or not to return item attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). A value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) indicates that a dictionary of the (unencrypted) attributes of an item should be returned in the form of a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) using the keys and values defined in [Item attribute keys and values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values).
+    ///
+    ///
     pub static kSecReturnAttributes: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecreturnref?language=objc)
+    /// A key whose value is a Boolean indicating whether or not to return a reference to an item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). A value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) indicates that a reference should be returned. Depending on the item class requested, the returned references may be of type [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity), or [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata).
+    ///
+    ///
     pub static kSecReturnRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecreturnpersistentref?language=objc)
+    /// A key whose value is a Boolean indicating whether or not to return a persistent reference to an item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). A value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) indicates that a persistent reference to an item should be returned as a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object. Unlike normal references, a persistent reference may be stored on disk or passed between processes.
+    ///
+    ///
     pub static kSecReturnPersistentRef: &'static CFString;
 }
 
 extern "C" {
+    /// A key whose value is the item’s data.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata).  For keys and password items, the data is secret (encrypted) and may require the user to enter a password for access.
+    ///
+    ///
     /// Predefined value type keys used to pass values in a dictionary.
     /// You can specify zero or more of these types depending on the function
     /// you are calling.  For SecItemCopyMatching or SecItemAdd these are
@@ -1294,22 +2116,41 @@ extern "C" {
     /// is of type CFDataRef.  The bytes in this CFDataRef can be stored by
     /// the caller and used on a subsequent invocation of the application (or
     /// even a different application) to retrieve the item referenced by it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecvaluedata?language=objc)
     pub static kSecValueData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecvalueref?language=objc)
+    /// A key whose value is a reference to the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value, depending on the item class requested, is of type [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), or [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity).
+    ///
+    ///
     pub static kSecValueRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecvaluepersistentref?language=objc)
+    /// A key whose value is a persistent reference to the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). The bytes in this object can be stored by the caller and used on a subsequent invocation of the application (or even a different application) to retrieve the item referenced by it.
+    ///
+    ///
     pub static kSecValuePersistentRef: &'static CFString;
 }
 
 extern "C" {
+    /// A key whose value is an array of items to search.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray), where the array contains either [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity), or  (for persistent item references) [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) items. The items in the array must all be of the same type.
+    ///
+    /// When this attribute is provided, no keychains are searched. Instead, the specified array is treated as the set of all possible items to search (or to add if the function being called is [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:))).
+    ///
+    ///
     /// Predefined constants used to set values in a dictionary.
     ///
     /// CFArray of items. If provided, this array is treated as the set of
@@ -1349,50 +2190,117 @@ extern "C" {
     /// supported only for Certificate, Key or Identity items.
     ///
     /// indicating whether the item is shared with other personas on the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseitemlist?language=objc)
     #[deprecated = "Not implemented on this platform"]
     pub static kSecUseItemList: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecusekeychain?language=objc)
+    /// A key whose value is a keychain to operate on.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a [`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain) object that references the keychain to which [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) should add the provided items.
+    ///
+    ///
     pub static kSecUseKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseoperationprompt?language=objc)
+    /// A key whose value is an operation prompt.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and represents a string describing the operation for which the app is attempting to authenticate. When performing user authentication, the system includes the string in the user prompt. The app is responsible for text localization.
+    ///
+    ///
     #[deprecated = "Use kSecUseAuthenticationContext and set LAContext.localizedReason property"]
     pub static kSecUseOperationPrompt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecusenoauthenticationui?language=objc)
+    /// A key whose value is a Boolean indicating whether to disallow UI authentication.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). If provided with a value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), the error [`errSecInteractionNotAllowed`](https://developer.apple.com/documentation/security/errsecinteractionnotallowed) is returned when the item is attempting to authenticate with UI.
+    ///
+    ///
     #[deprecated = "Use kSecUseAuthenticationUI instead."]
     pub static kSecUseNoAuthenticationUI: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationui?language=objc)
+    /// A key whose value indicates whether the user is prompted for authentication.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and contains one of the values listed in [UI authentication values](https://developer.apple.com/documentation/security/search-attribute-keys-and-values#ui-authentication-values). The value specifies whether or not the user is prompted for authentication, if needed. A default value of [`kSecUseAuthenticationUIAllow`](https://developer.apple.com/documentation/security/ksecuseauthenticationuiallow) is assumed when this key is not present.
+    ///
+    ///
     pub static kSecUseAuthenticationUI: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationcontext?language=objc)
+    /// A key whose value indicates a local authentication context to use.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`LAContext`](https://developer.apple.com/documentation/localauthentication/lacontext), and represents a reusable local authentication context that should be used for keychain item authentication, according to the following rules:
+    ///
+    /// - If this key is not specified, and if the item requires authentication, a new context will be created, used once, and discarded.
+    ///
+    /// - If this key is specified with a context that has been previously authenticated, the operation will succeed without asking user for authentication.
+    ///
+    /// - If this key is specified with a context that has not been previously authenticated, the system attempts authentication on the context. If successful, the context may be reused in subsequent keychain operations.
+    ///
+    ///
     pub static kSecUseAuthenticationContext: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain?language=objc)
+    /// A key whose value indicates whether to treat macOS keychain items like iOS keychain items.
+    ///
+    /// ## Discussion
+    ///
+    /// Set the value for this key to `true` in the query dictionary when accessing a macOS keychain item that behaves like an iOS keychain item. For example, use the data protection key when adding, searching for, or deleting an item to which the [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) or [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) attributes apply.
+    ///
+    /// The data protection key affects operations only in macOS. Other platforms automatically behave as if the key is set to `true`, and ignore the key in the query dictionary. You can safely use the key on all platforms.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  It’s highly recommended that you set the value of this key to `true` for all keychain operations. This key helps to improve the portability of your code across platforms. Use it unless you specifically need access to items previously stored in a legacy keychain in macOS.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Items that you store or have stored in macOS with the [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) attribute set to `true` also behave like iOS keychain items. However, a `true` value for that attribute additionally causes iCloud to synchronize the item across all the user’s devices. Use [`kSecUseDataProtectionKeychain`](https://developer.apple.com/documentation/security/ksecusedataprotectionkeychain) to get the iOS behavior without synchronization.
+    ///
+    ///
     pub static kSecUseDataProtectionKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseuserindependentkeychain?language=objc)
+    /// A key with a value that indicates whether to store the data in a keychain available to anyone who uses the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). A value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) stores the item in a shared keychain that your app can access even when a different user is active. A value of [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) or omitting this key-value pair stores the item in the current user’s keychain.
+    ///
+    /// To view a sample code project that uses this key to streamline experiences like family media accounts, see [Mapping Apple TV users to app profiles](https://developer.apple.com/documentation/tvservices/mapping-apple-tv-users-to-app-profiles).
+    ///
+    ///
     pub static kSecUseUserIndependentKeychain: &'static CFString;
 }
 
 extern "C" {
+    /// A value that indicates user authentication is allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// The user may be prompted for authentication. This is the default value.
+    ///
+    ///
     /// Predefined item attribute constants used to get or set values
     /// in a dictionary. The kSecUseAuthenticationUI constant is the key and its
     /// value is one of the constants defined here.
@@ -1405,24 +2313,49 @@ extern "C" {
     ///
     /// to authenticate with UI will be silently skipped. This value can be used
     /// only with SecItemCopyMatching.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationuiallow?language=objc)
     #[deprecated = "Instead of kSecUseAuthenticationUI, use kSecUseAuthenticationContext and set LAContext.interactionNotAllowed property"]
     pub static kSecUseAuthenticationUIAllow: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationuifail?language=objc)
+    /// A value that indicates user authentication is disallowed.
+    ///
+    /// ## Discussion
+    ///
+    /// When you specify this value, if user authentication is needed, the function returns the [`errSecInteractionNotAllowed`](https://developer.apple.com/documentation/security/errsecinteractionnotallowed) error.
+    ///
+    ///
     #[deprecated = "Instead of kSecUseAuthenticationUI, use kSecUseAuthenticationContext and set LAContext.interactionNotAllowed property"]
     pub static kSecUseAuthenticationUIFail: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseauthenticationuiskip?language=objc)
+    /// A value that indicates items requiring user authentication should be skipped.
+    ///
+    /// ## Discussion
+    ///
+    /// Silently skip any items that require user authentication. Only use this value with the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) function.
+    ///
+    ///
     pub static kSecUseAuthenticationUISkip: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies an item should be stored in the device’s Secure Enclave.
+    ///
+    /// ## Discussion
+    ///
+    /// The only keychain items supported by the Secure Enclave are 256-bit elliptic curve private keys (those that have key type [`kSecAttrKeyTypeEC`](https://developer.apple.com/documentation/security/ksecattrkeytypeec)). Such keys must be generated directly on the Secure Enclave using the [`SecKeyGeneratePair`](https://developer.apple.com/documentation/security/seckeygeneratepair(_:_:_:)) function with the [`kSecAttrTokenID`](https://developer.apple.com/documentation/security/ksecattrtokenid) key set to [`kSecAttrTokenIDSecureEnclave`](https://developer.apple.com/documentation/security/ksecattrtokenidsecureenclave) in the parameters dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It is not possible to import pre-existing keys into the Secure Enclave.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Predefined item attribute constant used to get or set values
     /// in a dictionary. The kSecAttrTokenID constant is the key and its value
     /// can be kSecAttrTokenIDSecureEnclave.
@@ -1433,24 +2366,75 @@ extern "C" {
     /// SecKeyGenerateKeyPair call with kSecAttrTokenID set to
     /// kSecAttrTokenIDSecureEnclave in the parameters dictionary, it is not
     /// possible to import pregenerated keys to kSecAttrTokenIDSecureEnclave token.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattrtokenidsecureenclave?language=objc)
     pub static kSecAttrTokenIDSecureEnclave: &'static CFString;
 }
 
 extern "C" {
+    /// The access group containing items provided by external tokens.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this access group identifier as the value for the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) attribute in a keychain query to access external tokens such as smart cards. Access to this group is granted by default and does not require an explicit entry in your app’s [`Keychain Access Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups).
+    ///
+    ///
     /// which contains items provided by external token (typically smart card).
     /// This may be used as a value for kSecAttrAccessGroup attribute. Every
     /// application has access to this access group so it is not needed to
     /// explicitly list it in keychain-access-groups entitlement, but application
     /// must explicitly state this access group in keychain queries in order to
     /// be able to access items from external tokens.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecattraccessgrouptoken?language=objc)
     pub static kSecAttrAccessGroupToken: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.
+    ///
+    /// Parameters:
+    /// - query: A dictionary that describes the search. A typical `query` dictionary consists of:
+    ///
+    /// - **The item’s class.** Specify the kind of item you want, for example a password, a certificate, or a cryptographic key, using one of the class values in [Item class keys and values](https://developer.apple.com/documentation/security/item-class-keys-and-values).
+    ///
+    /// - **Attributes.** Narrow the search by indicating the attributes that the found item or items should have. The more attributes you specify, the more refined the results, but not all attributes apply to all item classes. For the attributes applicable to the keychain item you’re searching for, see the entry for the item’s class in [Item class values](https://developer.apple.com/documentation/security/item-class-keys-and-values#item-class-values).
+    ///
+    /// - **Search parameters.** Condition the search in a variety of ways. For example, you can limit the results to a specific number of items, control case sensitivity when matching string attributes, or search only among a particular set of items. See [Search attribute keys and values](https://developer.apple.com/documentation/security/search-attribute-keys-and-values) for the complete list of possible search parameters.
+    ///
+    /// - **One or more return types.** Use the keys found in [Item return result keys](https://developer.apple.com/documentation/security/item-return-result-keys) to indicate whether you seek the item’s attributes, the item’s data, a reference to the data, a persistent reference to the data, or a combination of these. When you specify more than one return type, the search returns a dictionary containing each of the types you request. When your search allows multiple results, they’re all returned together in an array of items.
+    ///
+    /// - result: On return, a reference to the found items. The exact type of the result depends on the return type values supplied in `query`, as discussed in [Item return result keys](https://developer.apple.com/documentation/security/item-return-result-keys).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, this function returns only the first match found. To obtain more than one matching item at a time, specify the search key [`kSecMatchLimit`](https://developer.apple.com/documentation/security/ksecmatchlimit) with a value greater than `1`. The `result` is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) containing up to that number of matching items.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can’t combine the [`kSecReturnData`](https://developer.apple.com/documentation/security/ksecreturndata) and [`kSecMatchLimitAll`](https://developer.apple.com/documentation/security/ksecmatchlimitall) options when copying password items (items of class [`kSecInternetPasswordItemClass`](https://developer.apple.com/documentation/security/secitemclass/internetpassworditemclass) or [`kSecGenericPasswordItemClass`](https://developer.apple.com/documentation/security/secitemclass/genericpassworditemclass)), because copying each password item could require additional authentication. Instead, request a reference or persistent reference to the items, then request the data for only the specific passwords that you actually require.
+    ///
+    ///
+    ///
+    /// </div>
+    /// By default, this function searches for items in the keychain. To instead provide your own set of items to filter with the `query`, specify the search key [`kSecMatchItemList`](https://developer.apple.com/documentation/security/ksecmatchitemlist) and provide as its value a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing items of type [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), or [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity). The objects in the provided array must all be of the same type.
+    ///
+    /// To limit a keychain search to a particular keychain or keychains, specify the search key [`kSecMatchSearchList`](https://developer.apple.com/documentation/security/ksecmatchsearchlist) and provide as its value a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing items of type [`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain) items.
+    ///
+    /// To convert from persistent item references to normal item references, specify the search key [`kSecMatchItemList`](https://developer.apple.com/documentation/security/ksecmatchitemlist) with a value that consists of an object of type [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) referencing an array containing one or more elements of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) (the persistent references), and a return-type key of [`kSecReturnRef`](https://developer.apple.com/documentation/security/ksecreturnref) whose value is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue). The objects in the provided array must all be of the same type.
+    ///
+    /// When you use Xcode to create an application, Xcode adds an `application-identifier` entitlement to the application bundle. Keychain Services uses this entitlement to grant the application access to its own keychain items. You can also add a [`Keychain Access Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups) to the application, specifying an array of keychain access groups to which the application belongs. When you call the [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) function to add an item to the keychain, you can specify the access group to which that item should belong. By default, the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) function searches all the access groups to which the application belongs. However, you can add the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) key to the search dictionary to specify which access group to search for keychain items.
+    ///
+    /// ### Performance considerations
+    ///
+    /// `SecItemCopyMatching` blocks the calling thread, so it can cause your app’s UI to hang if called from the main thread. Instead, call `SecItemCopyMatching` from a background dispatch queue or `async` function:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func findKeychainItem(attributes attrs: CFDictionaryRef, _ completion: @escaping (OSStatus, CFTypeRef?) -> Void) {", "    backgroundQueue.async {", "        var item: CFTypeRef?", "        let result = SecItemCopyMatching(attrs, &item)", "        completion(result, item)", "    }", "}", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)findKeychainItemWithAttributes:(NSDictionary *)attributes completion:(void(^)(OSStatus status, CFTypeRef item))completion {", "    dispatch_async(backgroundQueue, ^{", "        CFDictionaryRef attrs = (__bridge CFDictionaryRef)attributes;", "        CFTypeRef item = NULL;", "        OSStatus result = SecItemCopyMatching(attrs, &item);", "        completion(result, item);", "        CFRelease(item);", "    });", "}", "", ""], metadata: None }] }] })
+    ///
     /// Returns one or more items which match a search query.
     ///
     /// Parameter `query`: A dictionary containing an item class specification and
@@ -1524,12 +2508,44 @@ extern "C-unwind" {
     /// - `query` generic must be of the correct type.
     /// - `query` generic must be of the correct type.
     /// - `result` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)?language=objc)
     pub fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Adds one or more items to a keychain.
+    ///
+    /// Parameters:
+    /// - attributes: A dictionary that describes the item to add. A typical `attributes` dictionary consists of:
+    ///
+    /// - **The item’s class.** Different attributes and behaviors apply to different classes of items. You use the [`kSecClass`](https://developer.apple.com/documentation/security/ksecclass) key with a suitable value to tell keychain services whether the data you want to store represents a password, a certificate, a cryptographic key, or something else. See [Item class keys and values](https://developer.apple.com/documentation/security/item-class-keys-and-values).
+    ///
+    /// - **The data.** Use the [`kSecValueData`](https://developer.apple.com/documentation/security/ksecvaluedata) key to indicate the data you want to store. Keychain services takes care of encrypting this data if the item is secret, namely when it’s one of the password types or involves a private key.
+    ///
+    /// - **Optional attributes.** Include attribute keys that help you find the item later, indicate how your app uses the data, and how the system shares the data. You can add any number of attributes, although many are specific to a particular class of item. For the attributes applicable to the keychain item you add, see the entry for the item’s class in [Item class values](https://developer.apple.com/documentation/security/item-class-keys-and-values#item-class-values).
+    ///
+    /// - **Optional return types.** Include return type keys to indicate what data, if any, you want returned upon successful completion. You often ignore the return data from a [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) call, in which case you don’t need to include any return result key. See [Item return result keys](https://developer.apple.com/documentation/security/item-return-result-keys) for more information.
+    ///
+    /// - result: On return, a reference to the newly added items. The exact type of the result is based on the values supplied in `attributes`, as discussed in [Item return result keys](https://developer.apple.com/documentation/security/item-return-result-keys). Pass `nil` if you don’t need the result. Otherwise, your app becomes responsible for releasing the referenced object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To add multiple items to a keychain at once use the [`kSecUseItemList`](https://developer.apple.com/documentation/security/ksecuseitemlist) key in the `attributes` dictionary with an array of dictionaries (each corresponding to one of the items) as its value. This is only supported for non-password items.
+    ///
+    /// When you use Xcode to create an application, Xcode adds an `application-identifier` entitlement to the application bundle. Keychain Services uses this entitlement to grant the application access to its own keychain items. To share the new keychain item to among multiple apps, include the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) key in the `attributes` dictionary. The value of this key must be the name of a keychain access group to which all the programs that share this item belong.
+    ///
+    /// ### Performance considerations
+    ///
+    /// `SecItemAdd` blocks the calling thread, so it can cause your app’s UI to hang if called from the main thread. Instead, call `SecItemAdd` from a background dispatch queue or `async` function:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func addKeychainItem(attributes attrs: CFDictionary, _ completion: @escaping (OSStatus, CFTypeRef?) -> Void) {", "    queue.async {", "        var item: CFTypeRef?", "        let result = SecItemAdd(attrs, &item)", "        completion(result, item)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)addKeychainItemWithAttributes:(CFDictionaryRef)attrs completion:(void(^)(OSStatus status, CFTypeRef item))completion {", "    dispatch_async(backgroundQueue, ^{", "        CFTypeRef item = NULL;", "        OSStatus addResult = SecItemAdd(attrs, &item);", "        completion(addResult, item);", "        if (item) {", "            CFRelease(item);", "        }", "    });", "}"], metadata: None }] }] })
+    ///
     /// Add one or more items to a keychain.
     ///
     /// Parameter `attributes`: A dictionary containing an item class specification and
@@ -1585,12 +2601,40 @@ extern "C-unwind" {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `result` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemadd(_:_:)?language=objc)
     pub fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Modifies items that match a search query.
+    ///
+    /// Parameters:
+    /// - query: A dictionary that describes the search for the keychain items you want to update. A typical `query` dictionary consists of:
+    ///
+    /// - **The item’s class.** Specify the kind of item you want, for example a password, a certificate, or a cryptographic key, using one of the class values in [Item class keys and values](https://developer.apple.com/documentation/security/item-class-keys-and-values).
+    ///
+    /// - **Attributes.** Narrow the search by indicating the attributes that the found item or items should have. The more attributes you specify, the more refined the results, but not all attributes apply to all item classes. For the attributes applicable to the keychain item you’re updating, see the entry for the item’s class in [Item class values](https://developer.apple.com/documentation/security/item-class-keys-and-values#item-class-values).
+    ///
+    /// - **Search parameters.** Condition the search in a variety of ways. For example, you can limit the results to a specific number of items, control case sensitivity when matching string attributes, or search only among a particular set of items. See [Search attribute keys and values](https://developer.apple.com/documentation/security/search-attribute-keys-and-values) for the complete list of possible search parameters.
+    ///
+    /// - attributesToUpdate: A dictionary containing the attributes whose values should update, along with the new values. Only real keychain attributes are permitted in this dictionary (no “meta” attributes are allowed.) For the attributes applicable to the keychain item you’re updating, see the entry for the item’s class in [Item class values](https://developer.apple.com/documentation/security/item-class-keys-and-values#item-class-values).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The query dictionary for update can’t contain [Item return result keys](https://developer.apple.com/documentation/security/item-return-result-keys), because [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)) only returns a status.
+    ///
+    /// ### Performance considerations
+    ///
+    /// `SecItemUpdate` blocks the calling thread, so it can cause your app’s UI to hang if called from the main thread. Instead, call `SecItemUpdate` from a background dispatch queue or `async` function:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["private func updateKeychainItem(searchAttributes attrs: CFDictionary, update updateAttrs: CFDictionary, _ completion: @escaping (OSStatus) -> Void) {", "    queue.async {", "        let result = SecItemUpdate(attrs, updateAttrs)", "        completion(result)", "    }", "}", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)updateKeyChainItemWithAttributes:(CFDictionaryRef)attrs update:(CFDictionaryRef)update completion:(void(^)(OSStatus status))completion {", "    dispatch_async(backgroundQueue, ^{", "        OSStatus updateResult = SecItemUpdate(attrs, update);", "        completion(updateResult);", "    });", "}"], metadata: None }] }] })
+    ///
     /// Modify zero or more items which match a search query.
     ///
     /// Parameter `query`: A dictionary containing an item class specification and
@@ -1615,12 +2659,46 @@ extern "C-unwind" {
     /// - `query` generic must be of the correct type.
     /// - `attributes_to_update` generic must be of the correct type.
     /// - `attributes_to_update` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemupdate(_:_:)?language=objc)
     pub fn SecItemUpdate(query: &CFDictionary, attributes_to_update: &CFDictionary) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Deletes items that match a search query.
+    ///
+    /// Parameters:
+    /// - query: A dictionary that describes the search for the keychain items you want to delete. A typical `query` dictionary consists of:
+    ///
+    /// - **The item’s class.** Specify the kind of item you want, for example a password, a certificate, or a cryptographic key, using one of the class values in [Item class keys and values](https://developer.apple.com/documentation/security/item-class-keys-and-values).
+    ///
+    /// - **Attributes.** Narrow the search by indicating the attributes that the found item or items should have. The more attributes you specify, the more refined the results, but not all attributes apply to all item classes. For the attributes applicable to the keychain item you’re deleting, see the entry for the item’s class in [Item class values](https://developer.apple.com/documentation/security/item-class-keys-and-values#item-class-values).
+    ///
+    /// - **Search parameters.** Condition the search in a variety of ways. For example, you can limit the results to a specific number of items, control case sensitivity when matching string attributes, or search only among a particular set of items. See [Search attribute keys and values](https://developer.apple.com/documentation/security/search-attribute-keys-and-values) for the complete list of possible search parameters.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The query dictionary for delete can’t contain [Item return result keys](https://developer.apple.com/documentation/security/item-return-result-keys), because [`SecItemDelete`](https://developer.apple.com/documentation/security/secitemdelete(_:)) only returns a status.
+    ///
+    /// By default, this function deletes all items matching the specified query. You can change this behavior by specifying a key, as follows:
+    ///
+    /// - To delete an item identified by a transient reference, specify the [`kSecMatchItemList`](https://developer.apple.com/documentation/security/ksecmatchitemlist) search key with a reference returned by using the [`kSecReturnRef`](https://developer.apple.com/documentation/security/ksecreturnref) return type key in a previous call to the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) or [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) functions.
+    ///
+    /// - To delete an item identified by a persistent reference, specify the [`kSecMatchItemList`](https://developer.apple.com/documentation/security/ksecmatchitemlist) search key with a persistent reference returned by using the [`kSecReturnPersistentRef`](https://developer.apple.com/documentation/security/ksecreturnpersistentref) return type key to the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) or [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) functions.
+    ///
+    /// - If more than one of these return keys is specified, the behavior is undefined.
+    ///
+    /// ### Performance considerations
+    ///
+    /// `SecItemDelete` blocks the calling thread, so it can cause your app’s UI to hang if called from the main thread. Instead, call `SecItemDelete` from a background dispatch queue or `async` function:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["private func deleteKeychainItem(searchAttributes attrs: CFDictionary, _ completion: @escaping (OSStatus) -> Void) {", "    queue.async {", "        let result = SecItemDelete(attrs)", "        completion(result)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)deleteKeychainItemWithAttributes:(CFDictionaryRef)attrs completion:(void(^)(OSStatus status))completion {", "    dispatch_async(backgroundQueue, ^{", "        OSStatus deleteResult = SecItemDelete(attrs);", "        completion(deleteResult);", "    });", "}", ""], metadata: None }] }] })
+    ///
     /// Delete zero or more items which match a search query.
     ///
     /// Parameter `query`: A dictionary containing an item class specification and
@@ -1654,7 +2732,5 @@ extern "C-unwind" {
     ///
     /// - `query` generic must be of the correct type.
     /// - `query` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemdelete(_:)?language=objc)
     pub fn SecItemDelete(query: &CFDictionary) -> OSStatus;
 }

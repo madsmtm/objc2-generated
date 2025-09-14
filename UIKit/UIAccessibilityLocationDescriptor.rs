@@ -9,7 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitylocationdescriptor?language=objc)
+    /// An accessibility descriptor for a specific geometric point of interest within a view, for use by assistive apps.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

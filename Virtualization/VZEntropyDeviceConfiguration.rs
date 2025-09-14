@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The common configuration traits for entropy devices.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a VZEntropyDeviceConfiguration object directly. Instead, instantiate a subclass such as [`VZVirtioEntropyDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioentropydeviceconfiguration) to configure a source of entropy for your virtual machine.
+    ///
+    ///
     /// Base class for an entropy device configuration.
     ///
     /// VZEntropyDeviceConfiguration should not be instantiated directly.
@@ -14,8 +21,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioEntropyDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzentropydeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZEntropyDeviceConfiguration;

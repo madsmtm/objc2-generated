@@ -7,9 +7,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// **********        Archiving: Writing    ***************
+    /// A coder that stores an object’s data to an archive.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsarchiver?language=objc)
+    /// ## Overview
+    ///
+    /// [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver), a concrete subclass of [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder), provides a way to encode objects into an architecture-independent format that can be stored in a file. When you archive a graph of objects, the class information and instance variables for each object are written to the archive. The companion class [`NSUnarchiver`](https://developer.apple.com/documentation/foundation/nsunarchiver) decodes the data in an archive and creates a graph of objects equivalent to the original set.
+    ///
+    /// [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver) stores the archive data in a mutable data object ([`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata)). After encoding the objects, you can have the [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver) object write this mutable data object immediately to a file, or you can retrieve the mutable data object for some other use.
+    ///
+    /// In macOS 10.2 and later, [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver) and [`NSUnarchiver`](https://developer.apple.com/documentation/foundation/nsunarchiver) have been replaced by [`NSKeyedArchiver`](https://developer.apple.com/documentation/foundation/nskeyedarchiver) and [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver) respectively—see [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    ///
+    /// **********        Archiving: Writing    ***************
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -127,9 +136,16 @@ impl DefaultRetained for NSArchiver {
 }
 
 extern_class!(
-    /// **********        Archiving: Reading        ***************
+    /// A decoder that restores data from an archive.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchiver?language=objc)
+    /// ## Overview
+    ///
+    /// [`NSUnarchiver`](https://developer.apple.com/documentation/foundation/nsunarchiver), a concrete subclass of [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder), defines methods for decoding a set of Objective-C objects from an archive. Such archives are produced by objects of the [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver) class.
+    ///
+    /// In macOS 10.2 and later, [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver) and [`NSUnarchiver`](https://developer.apple.com/documentation/foundation/nsunarchiver) have been replaced by [`NSKeyedArchiver`](https://developer.apple.com/documentation/foundation/nskeyedarchiver) and [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver) respectively—see [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    ///
+    /// **********        Archiving: Reading        ***************
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]

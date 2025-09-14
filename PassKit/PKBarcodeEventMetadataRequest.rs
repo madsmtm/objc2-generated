@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventmetadatarequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKBarcodeEventMetadataRequest;
@@ -44,7 +43,6 @@ impl PKBarcodeEventMetadataRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventmetadataresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKBarcodeEventMetadataResponse;
@@ -90,7 +88,6 @@ impl PKBarcodeEventMetadataResponse {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventsignaturerequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKBarcodeEventSignatureRequest;
@@ -158,7 +155,6 @@ impl PKBarcodeEventSignatureRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventsignatureresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKBarcodeEventSignatureResponse;
@@ -203,19 +199,15 @@ impl PKBarcodeEventSignatureResponse {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKBarcodeEventConfigurationDataType(pub NSInteger);
 impl PKBarcodeEventConfigurationDataType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype/unknown?language=objc)
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype/signingkeymaterial?language=objc)
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeSigningKeyMaterial")]
     pub const SigningKeyMaterial: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype/signingcertificate?language=objc)
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeSigningCertificate")]
     pub const SigningCertificate: Self = Self(2);
 }
@@ -229,7 +221,6 @@ unsafe impl RefEncode for PKBarcodeEventConfigurationDataType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKBarcodeEventConfigurationRequest;

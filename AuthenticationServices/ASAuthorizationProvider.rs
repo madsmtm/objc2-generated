@@ -5,6 +5,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationprovider?language=objc)
+    /// An interface that authorization providers must implement.
     pub unsafe trait ASAuthorizationProvider: NSObjectProtocol {}
 );

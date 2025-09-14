@@ -9,29 +9,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory/width?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSSliderAccessoryWidth = CGFloat;
 
 extern "C" {
     /// The default width for slider accessories.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory/width/default?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth;
 }
 
 extern "C" {
     /// The standard "wide" width for slider accessories.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory/width/wide?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSliderAccessoryWidthWide: NSSliderAccessoryWidth;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslidertouchbaritem?language=objc)
+    /// A bar item that provides a slider control for choosing a value in a range.
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]

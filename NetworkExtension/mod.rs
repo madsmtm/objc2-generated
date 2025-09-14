@@ -34,42 +34,41 @@ use objc2_security::*;
 
 use crate::*;
 
+/// Error codes that the app proxy flow API declares.
 /// Flow error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppProxyFlowError(pub NSInteger);
 impl NEAppProxyFlowError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/notconnected?language=objc)
+    /// The flow is not fully opened.
     #[doc(alias = "NEAppProxyFlowErrorNotConnected")]
     pub const NotConnected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/peerreset?language=objc)
+    /// The remote peer closed the flow.
     #[doc(alias = "NEAppProxyFlowErrorPeerReset")]
     pub const PeerReset: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/hostunreachable?language=objc)
+    /// An attempt to reach the remote endpoint of the flow failed.
     #[doc(alias = "NEAppProxyFlowErrorHostUnreachable")]
     pub const HostUnreachable: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/invalidargument?language=objc)
+    /// A proxy flow method received an invalid argument.
     #[doc(alias = "NEAppProxyFlowErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/aborted?language=objc)
+    /// The flow was aborted.
     #[doc(alias = "NEAppProxyFlowErrorAborted")]
     pub const Aborted: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/refused?language=objc)
+    /// Connecting the flow to its remote endpoint failed.
     #[doc(alias = "NEAppProxyFlowErrorRefused")]
     pub const Refused: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/timedout?language=objc)
+    /// The flow timed out.
     #[doc(alias = "NEAppProxyFlowErrorTimedOut")]
     pub const TimedOut: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/internal?language=objc)
+    /// An internal error occurred while handling the flow.
     #[doc(alias = "NEAppProxyFlowErrorInternal")]
     pub const Internal: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/datagramtoolarge?language=objc)
+    /// A caller attempted to write a datagram that was larger than the socket’s receive window.
     #[doc(alias = "NEAppProxyFlowErrorDatagramTooLarge")]
     pub const DatagramTooLarge: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code/readalreadypending?language=objc)
+    /// A read operation on the flow is already pending.
     #[doc(alias = "NEAppProxyFlowErrorReadAlreadyPending")]
     pub const ReadAlreadyPending: Self = Self(10);
 }
@@ -83,18 +82,25 @@ unsafe impl RefEncode for NEAppProxyFlowError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyerrordomain?language=objc)
+    /// The domain used for app proxy errors.
     pub static NEAppProxyErrorDomain: &'static NSString;
 }
 
 extern_class!(
+    /// An abstract base class shared by NEAppProxyTCPFlow and NEAppProxyUDPFlow.
+    ///
+    /// ## Overview
+    ///
+    /// App Proxy Providers receive network connections to be proxied in the form of `NEAppProxyFlow` objects, which are passed to the App Proxy Provider via the [`handleNewFlow:`](https://developer.apple.com/documentation/networkextension/neappproxyprovider/handlenewflow(_:)) method.
+    ///
+    /// `NEAppProxyFlow` objects are initially in an unopened state. Before they can be used to transmit network data, they must be opened using the [`openWithLocalEndpoint:completionHandler:`](https://developer.apple.com/documentation/networkextension/neappproxyflow/open(withlocalendpoint:completionhandler:)) method. When you are finished with a flow, you should call [`closeReadWithError:`](https://developer.apple.com/documentation/networkextension/neappproxyflow/closereadwitherror(_:)) and [`closeWriteWithError:`](https://developer.apple.com/documentation/networkextension/neappproxyflow/closewritewitherror(_:)), and then release the `NEAppProxyFlow` object.
+    ///
+    ///
     /// The NEAppProxyFlow class is an abstract base class that declares the programmatic interface for a flow of network data.
     ///
     /// NEAppProxyFlow is part of NetworkExtension.framework.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyFlow;
@@ -166,66 +172,70 @@ impl NEAppProxyFlow {
     );
 }
 
-/// Provider stop reasons
+/// Reasons why the provider extension was stopped.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason?language=objc)
+/// ## Overview
+///
+/// `NEProviderStopReasonUserLogout` and `NEProviderStopReasonUserSwitch` are available only in macOS.
+///
+///
+/// Provider stop reasons
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEProviderStopReason(pub NSInteger);
 impl NEProviderStopReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/none?language=objc)
+    /// No specific reason.
     #[doc(alias = "NEProviderStopReasonNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/userinitiated?language=objc)
+    /// The user stopped the provider extension.
     #[doc(alias = "NEProviderStopReasonUserInitiated")]
     pub const UserInitiated: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/providerfailed?language=objc)
+    /// The provider failed to function correctly.
     #[doc(alias = "NEProviderStopReasonProviderFailed")]
     pub const ProviderFailed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/nonetworkavailable?language=objc)
+    /// No network connectivity is currently available.
     #[doc(alias = "NEProviderStopReasonNoNetworkAvailable")]
     pub const NoNetworkAvailable: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/unrecoverablenetworkchange?language=objc)
+    /// The device’s network connectivity changed.
     #[doc(alias = "NEProviderStopReasonUnrecoverableNetworkChange")]
     pub const UnrecoverableNetworkChange: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/providerdisabled?language=objc)
+    /// The provider was disabled.
     #[doc(alias = "NEProviderStopReasonProviderDisabled")]
     pub const ProviderDisabled: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/authenticationcanceled?language=objc)
+    /// The authentication process was canceled.
     #[doc(alias = "NEProviderStopReasonAuthenticationCanceled")]
     pub const AuthenticationCanceled: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/configurationfailed?language=objc)
+    /// The configuration is invalid.
     #[doc(alias = "NEProviderStopReasonConfigurationFailed")]
     pub const ConfigurationFailed: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/idletimeout?language=objc)
+    /// The session timed out.
     #[doc(alias = "NEProviderStopReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/configurationdisabled?language=objc)
+    /// The configuration was disabled.
     #[doc(alias = "NEProviderStopReasonConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/configurationremoved?language=objc)
+    /// The configuration was removed.
     #[doc(alias = "NEProviderStopReasonConfigurationRemoved")]
     pub const ConfigurationRemoved: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/superceded?language=objc)
+    /// The configuration was superceded by a higher-priority configuration.
     #[doc(alias = "NEProviderStopReasonSuperceded")]
     pub const Superceded: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/userlogout?language=objc)
+    /// The user logged out.
     #[doc(alias = "NEProviderStopReasonUserLogout")]
     pub const UserLogout: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/userswitch?language=objc)
+    /// The current console user changed.
     #[doc(alias = "NEProviderStopReasonUserSwitch")]
     pub const UserSwitch: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/connectionfailed?language=objc)
+    /// The connection failed.
     #[doc(alias = "NEProviderStopReasonConnectionFailed")]
     pub const ConnectionFailed: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/sleep?language=objc)
+    /// A stop reason indicating the configuration enabled disconnect on sleep and the device went to sleep.
     #[doc(alias = "NEProviderStopReasonSleep")]
     pub const Sleep: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/appupdate?language=objc)
     #[doc(alias = "NEProviderStopReasonAppUpdate")]
     pub const AppUpdate: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason/internalerror?language=objc)
+    /// The provider encountered an internal error.
     #[doc(alias = "NEProviderStopReasonInternalError")]
     pub const InternalError: Self = Self(17);
 }
@@ -239,13 +249,30 @@ unsafe impl RefEncode for NEProviderStopReason {
 }
 
 extern_class!(
+    /// An abstract base class for all NetworkExtension providers.
+    ///
+    /// ## Overview
+    ///
+    /// See the documentation for the `NEProvider` subclasses for details about how to create Network Extension Provider extensions.
+    ///
+    /// The `NEProvider` class and its subclasses expose methods and properties that allow Network Extension Provider extensions to participate in and affect the network data path on iOS and macOS. For example, the `handleNewFlow:` method in [`NEFilterDataProvider`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider) allows Filter Data Provider extensions to make pass/block decisions on TCP connections as the connections are established on the system.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The `NEProvider` class should not be subclassed directly. Instead, you should create subclasses of `NEProvider` subclasses (and in some cases subsubclasses).
+    ///
+    /// #### Methods to Override
+    ///
+    /// - [`sleepWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/neprovider/sleep(completionhandler:))
+    ///
+    /// - [`wake`](https://developer.apple.com/documentation/networkextension/neprovider/wake())
+    ///
+    ///
     /// The NEProvider class declares the programmatic interface that is common for all Network Extension providers.
     ///
     /// See the sub classes of NEProvider for more details. Developers of Network Extension providers should create sub classes of the sub classes of NEProvider.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEProvider;
@@ -400,21 +427,20 @@ impl NEProvider {
     );
 }
 
+/// Error codes that the tunnel provider declares.
 /// Tunnel Provider error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NETunnelProviderError(pub NSInteger);
 impl NETunnelProviderError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code/networksettingsinvalid?language=objc)
+    /// The provided tunnel network settings are invalid.
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsInvalid")]
     pub const NetworkSettingsInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code/networksettingscanceled?language=objc)
+    /// The request to set or clear the tunnel network settings was canceled.
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsCanceled")]
     pub const NetworkSettingsCanceled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code/networksettingsfailed?language=objc)
+    /// The request to set or clear the tunnel network settings failed.
     #[doc(alias = "NETunnelProviderErrorNetworkSettingsFailed")]
     pub const NetworkSettingsFailed: Self = Self(3);
 }
@@ -428,20 +454,18 @@ unsafe impl RefEncode for NETunnelProviderError {
 }
 
 /// Network traffic routing methods.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NETunnelProviderRoutingMethod(pub NSInteger);
 impl NETunnelProviderRoutingMethod {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod/destinationip?language=objc)
+    /// Route network traffic to the tunnel based on destination IP.
     #[doc(alias = "NETunnelProviderRoutingMethodDestinationIP")]
     pub const DestinationIP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod/sourceapplication?language=objc)
+    /// Route network traffic to the tunnel based on source application.
     #[doc(alias = "NETunnelProviderRoutingMethodSourceApplication")]
     pub const SourceApplication: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderroutingmethod/networkrule?language=objc)
+    /// A routing method that routes traffic based on network rule objects specified by the provider.
     #[doc(alias = "NETunnelProviderRoutingMethodNetworkRule")]
     pub const NetworkRule: Self = Self(3);
 }
@@ -455,16 +479,37 @@ unsafe impl RefEncode for NETunnelProviderRoutingMethod {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererrordomain?language=objc)
+    /// The domain used for Tunnel Provider errors.
     pub static NETunnelProviderErrorDomain: &'static NSString;
 }
 
 extern_class!(
+    /// An abstract base class shared by NEPacketTunnelProvider and NEAppProxyProvider.
+    ///
+    /// ## Overview
+    ///
+    /// Each [`NETunnelProvider`](https://developer.apple.com/documentation/networkextension/netunnelprovider) instance corresponds to a single tunneling session, with a single associated configuration.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `com.apple.developer.networking.networkextension` entitlement is required in order to use the [`NETunnelProvider`](https://developer.apple.com/documentation/networkextension/netunnelprovider) class. Enable this entitlement when creating an App ID in your developer account.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing Notes
+    ///
+    /// The `NETunnelProvider` class should not be subclassed directly. Instead, you should create subclasses of `NETunnelProvider` subclasses.
+    ///
+    /// #### Methods to Override
+    ///
+    /// - [`handleAppMessage:completionHandler:`](https://developer.apple.com/documentation/networkextension/netunnelprovider/handleappmessage(_:completionhandler:))
+    ///
+    ///
     /// The NETunnelProvider class declares the programmatic interface for an object that provides a network tunnel service.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovider?language=objc)
     #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETunnelProvider;
@@ -545,11 +590,68 @@ impl NETunnelProvider {
 }
 
 extern_class!(
+    /// The principal class for an app proxy provider app extension.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NEAppProxyProvider`](https://developer.apple.com/documentation/networkextension/neappproxyprovider) class provides access to flows of network data in the form of [`NEAppProxyFlow`](https://developer.apple.com/documentation/networkextension/neappproxyflow) objects. Each [`NEAppProxyFlow`](https://developer.apple.com/documentation/networkextension/neappproxyflow) object corresponds to a socket opened by an app that matches the app rules specified in the current App Proxy configuration. Your App Proxy Provider acts as a transparent network proxy for the flows of network data that it receives.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `com.apple.developer.networking.networkextension` entitlement is required to use the [`NEAppProxyProvider`](https://developer.apple.com/documentation/networkextension/neappproxyprovider) class. Enable this entitlement when creating an App ID in your developer account.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### DNS Handling
+    ///
+    /// In addition to flows of raw network data from applications, the App Proxy Provider also receives flows of DNS queries in the form of [`NEAppProxyUDPFlow`](https://developer.apple.com/documentation/networkextension/neappproxyudpflow) objects. DNS query flows are received only for applications that use low-level DNS resolution APIs such as [`DNSServiceGetAddrInfo`](https://developer.apple.com/documentation/dnssd/dnsservicegetaddrinfo(_:_:_:_:_:_:_:))(). The App Proxy Provider can specify the DNS resolver configuration that will be used by these applications using the [`setTunnelNetworkSettings:completionHandler:`](https://developer.apple.com/documentation/networkextension/netunnelprovider/settunnelnetworksettings(_:completionhandler:)) method.
+    ///
+    /// Applications that use higher-level networking APIs such as [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) and [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) do not generate DNS queries. Instead the destination hostname for the connection is included in the endpoint information of the [`NEAppProxyFlow`](https://developer.apple.com/documentation/networkextension/neappproxyflow) object.
+    ///
+    /// ### Creating an App Proxy Provider Extension
+    ///
+    /// App Proxy Providers run as App Extensions for the `com.apple.networkextension.app-proxy` extension point.
+    ///
+    /// To create a App Proxy Provider extension, first create a new App Extension target in your project.
+    ///
+    /// For an example of an Xcode build target for this app extension, see the [SimpleTunnel: Customized Networking Using the NetworkExtension Framework](https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140) sample code project.
+    ///
+    /// Once you have a App Proxy Provider extension target, create a sub-class of `NEAppProxyProvider`. Then, set the `NSExtensionPrincipalClass` key in the the extension’s `Info.plist` to the name of your sub-class.
+    ///
+    /// If it is not already done, set the `NSExtensionPointIdentifier` key in the extension’s `Info.plist` to `com.apple.networkextension.app-proxy`.
+    ///
+    /// Here is an example of the NSExtension dictionary in a App Proxy Provider extension’s `Info.plist`:
+    ///
+    /// ```xml
+    /// <key>NSExtension</key>
+    /// <dict>
+    ///     <key>NSExtensionPointIdentifier</key>
+    ///     <string>com.apple.networkextension.app-proxy</string>
+    ///     <key>NSExtensionPrincipalClass</key>
+    ///     <string>MyCustomAppProxyProvider</string>
+    /// </dict>
+    /// ```
+    ///
+    /// Finally, add your App Proxy Provider extension target to your app’s Embed App Extensions build phase.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// In order to create a App Proxy Provider extension, you must create a subclass of `NEAppProxyProvider` and override the methods listed below.
+    ///
+    /// #### Methods to Override
+    ///
+    /// - [`startProxyWithOptions:completionHandler:`](https://developer.apple.com/documentation/networkextension/neappproxyprovider/startproxy(options:completionhandler:))
+    ///
+    /// - [`stopProxyWithReason:completionHandler:`](https://developer.apple.com/documentation/networkextension/neappproxyprovider/stopproxy(with:completionhandler:))
+    ///
+    /// - [`handleNewFlow:`](https://developer.apple.com/documentation/networkextension/neappproxyprovider/handlenewflow(_:))
+    ///
+    ///
     /// The NEAppProxyProvider class declares the programmatic interface for an object that implements the client side of a custom network proxy solution.
     ///
     /// NEAppProxyProvider is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyprovider?language=objc)
     #[unsafe(super(NETunnelProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyProvider;
@@ -644,30 +746,53 @@ impl NEAppProxyProvider {
     );
 }
 
+/// Codes that indicate the source of an error.
 /// VPN error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNError(pub NSInteger);
 impl NEVPNError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationinvalid?language=objc)
+    /// An error code indicating the VPN configuration associated with the VPN manager object is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur in the following situations:
+    ///
+    /// - The app or extension tried to save the configuration, but the configuration has missing or invalid configuration properties.
+    ///
+    /// - The app or extension tried to use the configuration before being successfully saved to the Network Extension preferences.
+    ///
+    /// - The app or extension tried to use the configuration before being successfully loaded from the Network Extension preferences.
+    ///
+    ///
     #[doc(alias = "NEVPNErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationdisabled?language=objc)
+    /// An error code indicating the VPN configuration associated with the VPN manager isn’t enabled.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur when trying to start the VPN connection.
+    ///
+    ///
     #[doc(alias = "NEVPNErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/connectionfailed?language=objc)
+    /// The connection to the VPN server failed.
     #[doc(alias = "NEVPNErrorConnectionFailed")]
     pub const ConnectionFailed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationstale?language=objc)
+    /// An error code that indicates another process modfied the VPN configuration since the last time the app loaded the configuration.
+    ///
+    /// ## Discussion
+    ///
+    /// This error also occurs if the app tries to save the VPN configuration before loading it from the Network Extension preferences the first time after the app launches.
+    ///
+    ///
     #[doc(alias = "NEVPNErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationreadwritefailed?language=objc)
+    /// An error code that indicates an error occurred while reading or writing the Network Extension preferences.
     #[doc(alias = "NEVPNErrorConfigurationReadWriteFailed")]
     pub const ConfigurationReadWriteFailed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code/configurationunknown?language=objc)
+    /// An error code that indicates that unspecified error occurred.
     #[doc(alias = "NEVPNErrorConfigurationUnknown")]
     pub const ConfigurationUnknown: Self = Self(6);
 }
@@ -681,23 +806,27 @@ unsafe impl RefEncode for NEVPNError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerrordomain?language=objc)
     pub static NEVPNErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconfigurationchangenotification?language=objc)
+    /// Posted after the VPN configuration stored in the Network Extension preferences changes.
     pub static NEVPNConfigurationChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object to create and manage a Personal VPN configuration.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NEVPNManager`](https://developer.apple.com/documentation/networkextension/nevpnmanager) API gives apps the ability to create and manage a Personal VPN configuration on iOS and macOS. Personal VPN configurations are typically used to provide a service to users that protects their Internet browsing activity on insecure networks such as public Wi-Fi networks.
+    ///
+    ///
     /// The NEVPNManager class declares the programmatic interface for an object that manages Virtual Private Network (VPN) configurations.
     ///
     /// NEVPNManager declares methods and properties for configuring and controlling a VPN.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNManager;
@@ -850,11 +979,128 @@ impl NEVPNManager {
 }
 
 extern_class!(
+    /// An object to create and manage the tunnel provider’s VPN configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Like its superclass [`NEVPNManager`](https://developer.apple.com/documentation/networkextension/nevpnmanager), you use the [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) class to configure and control VPN connections. The difference is that [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) is used to to configure and control VPN connections that use a custom VPN protocol. The client side of the custom protocol implementation is implemented as a Packet Tunnel Provider extension. The Packet Tunnel Provider extension’s containing app uses [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) to create and manage VPN configurations that use the custom protocol, and to control the VPN connections specified by the configurations.
+    ///
+    /// The [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) class inherits most of its functionality from the [`NEVPNManager`](https://developer.apple.com/documentation/networkextension/nevpnmanager) class. The key differences to be aware of when using [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) are:
+    ///
+    /// - The [`protocolConfiguration`](https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration) property can only be set to instances of the [`NETunnelProviderProtocol`](https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol) class
+    ///
+    /// - The [`connection`](https://developer.apple.com/documentation/networkextension/nevpnmanager/connection) read-only property is set to an instance of the [`NETunnelProviderSession`](https://developer.apple.com/documentation/networkextension/netunnelprovidersession) class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `com.apple.developer.networking.networkextension` entitlement is required to use the [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) class. Enable this entitlement when creating an App ID in your developer account.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Configuration Model
+    ///
+    /// Each [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) instance corresponds to a single VPN configuration stored in the Network Extension preferences. Multiple VPN configurations can be created and managed by creating multiple [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) instances.
+    ///
+    /// Each VPN configuration is associated with the app that created it. The app’s view of the Network Extension preferences is limited to include only the configurations that were created by the app.
+    ///
+    /// VPN configurations created using [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) are classified as regular enterprise VPN configurations (as opposed to the Personal VPN configurations created by `NEVPNManager`). Only one enterprise VPN configuration can be enabled on the system at a time. If both a Personal VPN and an enterprise VPN are active on the system simultaneously, the enterprise VPN takes precedence, meaning that if the routes for the two VPNs conflict then the routes for the enterprise VPN will take precedence. The Personal VPN will remain active and connected while the enterprise VPN is active and connected, and any traffic that is routed to the Personal VPN and is not routed to the enterprise VPN will continue to traverse the Personal VPN.
+    ///
+    /// ### Profile Configuration
+    ///
+    /// It is possible to create Packet Tunnel Provider configurations using configuration profiles. See the `com.apple.vpn.managed` and `com.apple.vpn.managed.applayer` payload types in [Configuration Profile Reference](https://developer.apple.com/library/archive/featuredarticles/iPhoneConfigurationProfileRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010206). To specify that a configuration created via a profile payload is associated with a particular app (and therefore allow the app to use `NETunnelProviderManager` to manage the configuration), the app’s bundle identifier must be set as the value of the `VPNSubType` field in the profile payload.
+    ///
+    /// Credential Storage
+    ///
+    /// VPN credentials such as private keys and passwords that are imported into the system via configuration profiles are stored in the keychain in a special access group called `com.apple.managed.vpn.shared`. In order to use these credentials the app and Packet Tunnel Provider extension must have the `com.apple.managed.vpn.shared` keychain access group entitlement.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The app and Packet Tunnel Provider extension must not write to the `com.apple.managed.vpn.shared` keychain access group. When writing to the keychain, the app and Packet Tunnel Provider must target a different keychain access group.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Routing Network Data to the VPN
+    ///
+    /// There are two ways or methods by which network data is routed to the VPN:
+    ///
+    /// - By destination IP address
+    ///
+    /// - By source application (Per-App VPN)
+    ///
+    /// Routing by Destination IP
+    ///
+    /// This is the default routing method. The IP routes are specified by the Packet Tunnel Provider extension at the time that the VPN tunnel is fully established. See [`NETunnelProvider`](https://developer.apple.com/documentation/networkextension/netunnelprovider) for more details.
+    ///
+    /// Per-App VPN
+    ///
+    /// The only way to configure Per-App VPN is by enrolling the device in a Mobile Device Management (MDM) system, and then linking apps that are managed by the MDM system with a VPN configuration created from a `com.apple.vpn.managed.applayer` configuration profile payload. Here are some details about how this works:
+    ///
+    /// - The MDM server creates a configuration profile containing a `com.apple.vpn.managed.applayer` payload. The `com.apple.vpn.managed.applayer` payload contains all of the usual VPN configuration profile payload fields, and also must contain a `VPNUUID` field, containing a unique string defined by the MDM server.
+    ///
+    /// - If the VPN provider extension is a Packet Tunnel Provider extension, then the `ProviderType` field in the `com.apple.vpn.managed.applayer` payload should be set to `packet-tunnel`. If the VPN provider extension is an App Proxy Provider extension, then the `ProviderType` field in the `com.apple.vpn.managed.applayer` should be set to `app-proxy`.
+    ///
+    /// - The MDM server adds a `VPNUUID` key to the attributes dictionary of all of the managed apps that will use the VPN. The value of the `VPNUUID` key must be set to the same unique string contained in the `VPNUUID` field in the `com.apple.vpn.managed.applayer` payload.
+    ///
+    /// - The MDM server pushes the configuration profile and the managed apps to the iOS device using the MDM protocol.
+    ///
+    /// The MDM client running on the device creates one app rule in the VPN configuration for each managed app that is linked to the VPN configuration via the `VPNUUID` app attribute.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It is not possible to create app rules for Apple system apps. The one exception to this rule is Safari. In the case of Safari, the VPN can only tunnel the network traffic for web sites in certain domains, not all web sites. See the `SafariDomains` field in [Configuration Profile Reference](https://developer.apple.com/library/archive/featuredarticles/iPhoneConfigurationProfileRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010206).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Per-App VPN On Demand
+    ///
+    /// The Per-App VPN app rules serve as both routing rules and VPN On Demand rules. This is in contrast to IP destination-based routing, where the VPN On Demand rules are configured separately from the routing rules. When the `onDemandEnabled` property is set to [`true`](https://developer.apple.com/documentation/swift/true) and an app that matches the Per-App VPN rules attempts to communicate over the network, the VPN will be started automatically.
+    ///
+    /// It is possible to set regular VPN On Demand rules in a Per-App VPN configuration via the [`onDemandRules`](https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules) property, but only [`NEOnDemandRuleDisconnect`](https://developer.apple.com/documentation/networkextension/neondemandruledisconnect) rules will be used. When a `NEOnDemandRuleDisconnect` rule matches, apps which match the Per-App VPN rules will bypass the VPN.
+    ///
+    /// Testing Per-App VPN
+    ///
+    /// As described above, an MDM server is required to configure Per-App VPN for VPN apps distributed via the App Store. To make testing Per-App VPN easier, it is possible to configure Per-App VPN without an MDM server during development by using the `NETestAppMapping` `Info.plist` key.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `NETestAppMapping Info.plist` key can only be used to create app rules in apps that are signed with a Development provisioning profile. In apps that are signed with Distribution provisioning profiles the `NETestAppMapping Info.plist` key has no effect.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Here is what you need to do to make use of this capability:
+    ///
+    /// - Create a configuration profile containing a `com.apple.vpn.managed.applayer` payload as described in [Configuration Profile Reference](https://developer.apple.com/library/archive/featuredarticles/iPhoneConfigurationProfileRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010206). In addition to all of the usual VPN configuration payload fields, the payload must also contain a `VPNUUID` field, containing a unique string defined by you.
+    ///
+    /// - Add the `NETestAppMapping` key to your app’s `Info.plist`. The value of this key should be a dictionary that maps `VPNUUID` values to arrays of app bundle identifiers. Here is a sample:
+    ///
+    /// ```xml
+    ///   <key>NETestAppMapping</key
+    ///   <dict>
+    ///       <key>3D7A07D8-97D0-4E5A-BB04-1EB82DD12A35</key>
+    ///       <array>
+    ///           <string>my.greatenterprise.SuperApp</string>
+    ///       </array>
+    ///   <dict>
+    /// ```
+    ///
+    /// - Rebuild the app.
+    ///
+    /// - Install the app and the configuration profile on the device.
+    ///
+    /// The system will create one app rule in the VPN configuration for each bundle identifier listed in the array in the `NETestAppMapping` dictionary corresponding to the value of the `VPNUUID` field in the `com.apple.vpn.managed.applayer` payload.
+    ///
+    ///
     /// The NETunnelProviderManager class declares the programmatic interface for an object that is used to configure and control network tunnels provided by NETunnelProviders.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager?language=objc)
     #[unsafe(super(NEVPNManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETunnelProviderManager;
@@ -995,11 +1241,26 @@ impl NETunnelProviderManager {
 }
 
 extern_class!(
+    /// An object to create and manage the app proxy provider’s VPN configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Objects cannot be directly instantiated. Instead, App Proxy configurations are created exclusively from `com.apple.vpn.managed.applayer` payloads in configuration profiles.
+    ///
+    /// App Proxy configurations can only be used with Per-App VPN routing rules. For more details about how to create App Proxy configurations and configure Per-App VPN, see [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `com.apple.developer.networking.networkextension` entitlement is required in order to use the [`NEAppProxyProviderManager`](https://developer.apple.com/documentation/networkextension/neappproxyprovidermanager) class. Enable this entitlement when creating an App ID in your developer account.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The NEAppProxyProviderManager class declares the programmatic interface for an object that is used to configure and control network tunnels provided by NEAppProxyProviders.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyprovidermanager?language=objc)
     #[unsafe(super(NETunnelProviderManager, NEVPNManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyProviderManager;
@@ -1049,13 +1310,18 @@ impl NEAppProxyProviderManager {
 }
 
 extern_class!(
+    /// An object for reading and writing data to and from a TCP connection being proxied by the provider.
+    ///
+    /// ## Overview
+    ///
+    /// App Proxy Providers receive TCP connections to be proxied in the form of `NEAppProxyTCPFlow` objects.
+    ///
+    ///
     /// The NEAppProxyTCPFlow class declares the programmatic interface of an object that is used by NEAppProxyProvider implementations to proxy the payload of TCP connections.
     ///
     /// NEAppProxyTCPFlow is part of NetworkExtension.framework
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxytcpflow?language=objc)
     #[unsafe(super(NEAppProxyFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyTCPFlow;
@@ -1114,13 +1380,18 @@ impl NEAppProxyTCPFlow {
 }
 
 extern_class!(
+    /// An object for reading and writing data to and from a UDP conversation being proxied by the provider.
+    ///
+    /// ## Overview
+    ///
+    /// App Proxy Providers receive UDP connections to be proxied in the form of `NEAppProxyUDPFlow` objects.
+    ///
+    ///
     /// The NEAppProxyUDPFlow class declares the programmatic interface of an object that is used by NEAppProxyProvider implementations to proxy the payload of UDP datagrams.
     ///
     /// NEAppProxyUDPFlow is part of NetworkExtension.framework.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyudpflow?language=objc)
     #[unsafe(super(NEAppProxyFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppProxyUDPFlow;
@@ -1186,13 +1457,12 @@ impl NEAppProxyUDPFlow {
 }
 
 extern_class!(
+    /// The identity of an app whose traffic is to be routed through the tunnel.
     /// The NEAppRule class declares the programmatic interface for an object that contains the match conditions for a rule that is used to match network traffic originated by applications.
     ///
     /// NEAppRule is used in the context of a Network Extension configuration to specify what traffic should be made available to the Network Extension.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapprule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppRule;
@@ -1311,24 +1581,41 @@ impl NEAppRule {
     );
 }
 
-/// DNS proxy error codes
+/// The possible DNS proxy manager errors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror?language=objc)
+/// ## Overview
+///
+/// These errors appear as the parameter in the completion handler of the methods that you use to manage DNS proxy configuration: [`loadFromPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxymanager/loadfrompreferences(completionhandler:)), [`removeFromPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxymanager/removefrompreferences(completionhandler:)), and [`saveToPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxymanager/savetopreferences(completionhandler:)).
+///
+///
+/// DNS proxy error codes
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSProxyManagerError(pub NSInteger);
 impl NEDNSProxyManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationinvalid?language=objc)
+    /// Invalid DNS proxy configuration that cannot be stored.
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationdisabled?language=objc)
+    /// Disabled DNS proxy configuration.
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationstale?language=objc)
+    /// Outdated DNS proxy configuration that needs to be loaded.
+    ///
+    /// ## Discussion
+    ///
+    /// You must load the configuration with a call to [`loadFromPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxymanager/loadfrompreferences(completionhandler:)) before you can save it.
+    ///
+    ///
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanagererror/configurationcannotberemoved?language=objc)
+    /// Unremovable DNS proxy configuration.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs if you attempt to use a call to the [`removeFromPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxymanager/removefrompreferences(completionhandler:)) method to remove the DNS proxy configuration when an installed configuration profile specifies a baseline DNS proxy configuration. You can only call the removal method in a development environment where no configuration profile exists.
+    ///
+    ///
     #[doc(alias = "NEDNSProxyManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -1342,23 +1629,40 @@ unsafe impl RefEncode for NEDNSProxyManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain?language=objc)
+    /// The DNS proxy error domain.
     pub static NEDNSProxyErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyconfigurationdidchangenotification?language=objc)
+    /// A notification that is posted when the DNS proxy configuration changes.
     pub static NEDNSProxyConfigurationDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object to create and manage an DNS proxy provider’s configuration.
+    ///
+    /// ## Overview
+    ///
+    /// A DNS proxy allows your app to intercept all DNS traffic generated on a device. You can use this capability to provide services like DNS traffic encryption, typically by redirecting DNS traffic to your own server. You usually do this in the context of managed devices, such as those owned by a school or an enterprise.
+    ///
+    /// You create a DNS proxy as an app extension based on a custom subclass of the [`NEDNSProxyProvider`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider) class. You enable and configure this proxy from within your app using the singleton proxy manager instance provided by the [`sharedManager`](https://developer.apple.com/documentation/networkextension/nednsproxymanager/shared()) type method of the [`NEDNSProxyManager`](https://developer.apple.com/documentation/networkextension/nednsproxymanager) class. For example, for a proxy that performs a simple redirect, you can use the proxy manager to define and dynamically configure the destination IP address of the redirected traffic.
+    ///
+    /// Instances of the proxy manager are thread safe.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`NEDNSProxyManager`](https://developer.apple.com/documentation/networkextension/nednsproxymanager) class, you must enable the Network Extensions capability in Xcode and select the DNS Proxy capability. See [Configure network extensions](http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The NEDNSProxyManager class declares the programmatic interface for an object that manages DNS proxy configurations.
     ///
     /// NEDNSProxyManager declares methods and properties for configuring and controlling a DNS proxy.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxymanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSProxyManager;
@@ -1459,11 +1763,34 @@ impl NEDNSProxyManager {
 }
 
 extern_class!(
+    /// The principal class for a DNS proxy provider app extension.
+    ///
+    /// ## Overview
+    ///
+    /// A DNS proxy allows your app to intercept all DNS traffic generated on a device. You can use this capability to provide services like DNS traffic encryption, typically by redirecting DNS traffic to your own server. You usually do this in the context of managed devices, such as those owned by a school or an enterprise.
+    ///
+    /// You create a DNS proxy as an app extension based on a custom subclass of the [`NEDNSProxyProvider`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider) class. Once active, the proxy receives access to flows of DNS traffic in the form of [`NEAppProxyFlow`](https://developer.apple.com/documentation/networkextension/neappproxyflow) instances. Each flow corresponds to a socket opened by an app to UDP port 53 or TCP port 53. Your DNS proxy provider acts as a transparent DNS proxy for the flows of network data that it receives.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`NEDNSProxyProvider`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider) class, you must enable the Network Extensions capability in Xcode and select the DNS Proxy capability. See [Configure network extensions](http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08).
+    ///
+    ///
+    ///
+    /// </div>
+    /// When you subclass [`NEDNSProxyProvider`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider), you must provide implementations for the following methods:
+    ///
+    /// - [`startProxyWithOptions:completionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider/startproxy(options:completionhandler:))
+    ///
+    /// - [`stopProxyWithReason:completionHandler:`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider/stopproxy(with:completionhandler:))
+    ///
+    /// - [`handleNewFlow:`](https://developer.apple.com/documentation/networkextension/nednsproxyprovider/handlenewflow(_:))
+    ///
+    ///
     /// The NEDNSProxyProvider class declares the programmatic interface for an object that implements the client side of a custom DNS proxy solution.
     ///
     /// NEDNSProxyProvider is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyprovider?language=objc)
     #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSProxyProvider;
@@ -1564,11 +1891,16 @@ impl NEDNSProxyProvider {
 }
 
 extern_class!(
+    /// `NEProxyServer` contains settings for a proxy server.
+    ///
+    /// ## Overview
+    ///
+    /// `NEProxyServer` instances are used inside of [`NEProxySettings`](https://developer.apple.com/documentation/networkextension/neproxysettings) instances to configure proxy settings for VPN connections.
+    ///
+    ///
     /// The NEProxyServer class declares the programmatic interface for an object that contains settings for a proxy server.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproxyserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEProxyServer;
@@ -1669,11 +2001,18 @@ impl NEProxyServer {
 }
 
 extern_class!(
+    /// `NEProxySettings` contains HTTP proxy settings.
+    ///
+    /// ## Overview
+    ///
+    /// `NEProxySettings` is used in the context of a VPN configuration to specify the proxy that should be used for network traffic when the VPN is active.
+    ///
+    /// Instances of this class are thread safe.
+    ///
+    ///
     /// The NEProxySettings class declares the programmatic interface for an object that contains proxy settings.
     ///
     /// NEProxySettings is used in the context of a Network Extension configuration to specify the proxy that should be used for network traffic when the Network Extension is active.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproxysettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEProxySettings;
@@ -1838,13 +2177,20 @@ impl NEProxySettings {
 }
 
 extern_class!(
+    /// Settings common to both IKEv2 and IPsec VPN configurations.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NEVPNProtocol`](https://developer.apple.com/documentation/networkextension/nevpnprotocol) class is an abstract base class with one subclass for each type of supported VPN configuration. This class provides properties for configuring the VPN, authenticating network connections, and routing network traffic. You can include all network traffic, with some exceptions, and selectively exclude types of network traffic.
+    ///
+    /// Instances of this class are thread-safe.
+    ///
+    ///
     /// The NEVPNProtocol class declares the programmatic interface of an object that manages the protocol-specific portion of a VPN configuration.
     ///
     /// NEVPNProtocol is an abstract base class from which other protocol-specific classes are derived.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNProtocol;
@@ -2069,11 +2415,10 @@ impl NEVPNProtocol {
 }
 
 extern_class!(
+    /// Configuration parameters for a DNS proxy.
     /// The NEDNSProxyProviderProtocol class declares the programmatic interface for an object that contains NEDNSProxyProvider-specific configuration settings.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsproxyproviderprotocol?language=objc)
     #[unsafe(super(NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSProxyProviderProtocol;
@@ -2153,20 +2498,18 @@ impl NEDNSProxyProviderProtocol {
 }
 
 /// DNS protocol variants
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSProtocol(pub NSInteger);
 impl NEDNSProtocol {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol/cleartext?language=objc)
+    /// The DNS server uses cleartext UDP or TCP over port 53.
     #[doc(alias = "NEDNSProtocolCleartext")]
     pub const Cleartext: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol/tls?language=objc)
+    /// The DNS server uses DNS-over-TLS.
     #[doc(alias = "NEDNSProtocolTLS")]
     pub const TLS: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsprotocol/https?language=objc)
+    /// The DNS server uses DNS-over-HTTPS.
     #[doc(alias = "NEDNSProtocolHTTPS")]
     pub const HTTPS: Self = Self(3);
 }
@@ -2180,9 +2523,8 @@ unsafe impl RefEncode for NEDNSProtocol {
 }
 
 extern_class!(
+    /// The DNS resolver settings of a network tunnel or a system-wide configuration.
     /// The NEDNSSettings class declares the programmatic interface for an object that contains DNS settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSSettings;
@@ -2302,7 +2644,7 @@ impl NEDNSSettings {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsovertlssettings?language=objc)
+    /// The DNS resolver settings for a DNS-over-TLS server.
     #[unsafe(super(NEDNSSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSOverTLSSettings;
@@ -2385,7 +2727,7 @@ impl NEDNSOverTLSSettings {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednsoverhttpssettings?language=objc)
+    /// The DNS resolver settings for a DNS-over-HTTPS server.
     #[unsafe(super(NEDNSSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSOverHTTPSSettings;
@@ -2467,24 +2809,23 @@ impl NEDNSOverHTTPSSettings {
     );
 }
 
+/// Error codes specific to DNS managers.
 /// DNS Settings Manager error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEDNSSettingsManagerError(pub NSInteger);
 impl NEDNSSettingsManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationinvalid?language=objc)
+    /// An error code that indicates the DNS settings manager is invalid.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationdisabled?language=objc)
+    /// An error code that indicates the DNS settings manager isn’t enabled.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationstale?language=objc)
+    /// An error code that indicates the DNS settings manager isn’t loaded.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror/configurationcannotberemoved?language=objc)
+    /// An error code that indicates removing the DNS settings manager failed.
     #[doc(alias = "NEDNSSettingsManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -2498,23 +2839,35 @@ unsafe impl RefEncode for NEDNSSettingsManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingserrordomain?language=objc)
+    /// The domain for errors resulting from calls to the DNS settings manager.
+    ///
+    /// ## Discussion
+    ///
+    /// Match this constant to the [`domain`](https://developer.apple.com/documentation/foundation/nserror/domain) of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) encountered when calling methods on [`NEDNSSettingsManager`](https://developer.apple.com/documentation/networkextension/nednssettingsmanager). The [`NEDNSSettingsManagerError`](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror) enumeration defines possible [`code`](https://developer.apple.com/documentation/foundation/nserror/code) values for these errors.
+    ///
+    ///
     pub static NEDNSSettingsErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsconfigurationdidchangenotification?language=objc)
     pub static NEDNSSettingsConfigurationDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object you use to create and manage a DNS settings configuration.
+    ///
+    /// ## Overview
+    ///
+    /// When your app starts up, access the shared instance of the DNS settings manager, and load existing settings from the preferences using [`loadFromPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednssettingsmanager/loadfrompreferences(completionhandler:)). You can define your DNS server configuration, and persist it by calling [`saveToPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nednssettingsmanager/savetopreferences(completionhandler:)).
+    ///
+    /// In order to use your DNS settings, the user needs to enable it in the Settings app on iOS or in System Preferences on macOS.
+    ///
+    ///
     /// The NEDNSSettingsManager class declares the programmatic interface for an object that manages DNS settings configurations.
     ///
     /// NEDNSSettingsManager declares methods and properties for configuring and controlling DNS settings on the system.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nednssettingsmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEDNSSettingsManager;
@@ -2618,21 +2971,20 @@ impl NEDNSSettingsManager {
     );
 }
 
+/// A type to represent network protocols used by routing rules.
 /// IP protocols
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NENetworkRuleProtocol(pub NSInteger);
 impl NENetworkRuleProtocol {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol/any?language=objc)
+    /// A rule protocol to match TCP and UDP traffic.
     #[doc(alias = "NENetworkRuleProtocolAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol/tcp?language=objc)
+    /// A rule protocol to match TCP traffic.
     #[doc(alias = "NENetworkRuleProtocolTCP")]
     pub const TCP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol/udp?language=objc)
+    /// A rule protocol to match UDP traffic.
     #[doc(alias = "NENetworkRuleProtocolUDP")]
     pub const UDP: Self = Self(2);
 }
@@ -2645,21 +2997,20 @@ unsafe impl RefEncode for NENetworkRuleProtocol {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type to represent the direction of network traffic.
 /// The direction of network traffic
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NETrafficDirection(pub NSInteger);
 impl NETrafficDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection/any?language=objc)
+    /// A direction that matches either inbound or outbound traffic.
     #[doc(alias = "NETrafficDirectionAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection/inbound?language=objc)
+    /// The inbound traffic direction.
     #[doc(alias = "NETrafficDirectionInbound")]
     pub const Inbound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection/outbound?language=objc)
+    /// The outbound traffic direction.
     #[doc(alias = "NETrafficDirectionOutbound")]
     pub const Outbound: Self = Self(2);
 }
@@ -2673,9 +3024,8 @@ unsafe impl RefEncode for NETrafficDirection {
 }
 
 extern_class!(
+    /// A rule to match attributes of network traffic.
     /// The NENetworkRule class declares the programmatic interface of an object that contains a specification of a rule that matches the attributes of network traffic.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NENetworkRule;
@@ -2841,11 +3191,10 @@ impl NENetworkRule {
 }
 
 extern_class!(
+    /// The abstract base class for types that represent flows of network data.
     /// The NEFilterFlow class declares the programmatic interface of an object that represents a flow of network data to be filtered.
     ///
     /// NEFilterFlow is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterflow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterFlow;
@@ -2931,11 +3280,10 @@ impl NEFilterFlow {
 }
 
 extern_class!(
+    /// A flow of network data, originating from a WebKit-based browser, that the filter examines.
     /// The NEFilterBrowserFlow class declares the programmatic interface of an object that represents a flow of network data to be filtered, which is originated from NEFilterSource.
     ///
     /// NEFilterBrowserFlow is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterbrowserflow?language=objc)
     #[unsafe(super(NEFilterFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterBrowserFlow;
@@ -2994,11 +3342,10 @@ impl NEFilterBrowserFlow {
 }
 
 extern_class!(
+    /// A flow of network data that the filter examines.
     /// The NEFilterSocketFlow class declares the programmatic interface of an object that represents a flow of network data to be filtered, which is originated from the socket.
     ///
     /// NEFilterSocketFlow is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltersocketflow?language=objc)
     #[unsafe(super(NEFilterFlow, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterSocketFlow;
@@ -3076,26 +3423,60 @@ impl NEFilterSocketFlow {
 }
 
 extern "C" {
+    /// A key in the [`remediationMap`](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider/remediationmap) dictionary. The value of this key should be set to a dictionary that maps URL identifiers to remediation URLs to be inserted into the block page. The URL identifiers are defined by the Filter Control Provider app extension.
     /// Key to specify in the NSDictionary which is returned as a value in remediationMap.
     /// This key is used to indicate the Remediation URL. The URL should follow the scheme
     /// http or https to be used by the content filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationurls?language=objc)
     pub static NEFilterProviderRemediationMapRemediationURLs: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterproviderremediationmapremediationbuttontexts?language=objc)
+    /// A key in the [`remediationMap`](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider/remediationmap) dictionary. The value of this key should be set to a dictionary that maps button text string identifiers to the text to display for the remediation URL link in the block page. The button text string identifiers are defined by the Filter Control Provider app extension.
     pub static NEFilterProviderRemediationMapRemediationButtonTexts: &'static NSString;
 }
 
 extern_class!(
+    /// An abstract base class shared by content filters.
+    ///
+    /// ## Overview
+    ///
+    /// A Network Content Filter is made up of two Filter Provider extensions:
+    ///
+    /// The **Filter Data Provider extension** examines network content as it passes through the network stack on the device and decides if the network content should be blocked or allowed to pass on to its final destination.
+    ///
+    /// Because the Filter Data Provider extension has access to all of the network content flowing through the device, it runs in a very restrictive sandbox. The sandbox prevents the Filter Data Provider extension from moving network content outside of its address space by blocking all network access, IPC, and disk write operations.
+    ///
+    /// The Filter Data Provider extension is implemented by creating a custom subclass of the [`NEFilterDataProvider`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider) class.
+    ///
+    /// The **Filter Control Provider extension** is responsible for feeding information to the Filter Data Provider extension so that the Filter Data Provider extension can do its job.
+    ///
+    /// For example, the Filter Control Provider extension can be notified by the Filter Data Provider extension that it does not have enough information to make a decision about a particular flow of network content. The Filter Control Provider extension can then download more filtering rules from a server and write the rules to a location where the Filter Data Provider can access them.
+    ///
+    /// The Filter Control Provider extension is implemented by creating a custom subclass of the [`NEFilterControlProvider`](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider) class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`NEFilterProvider`](https://developer.apple.com/documentation/networkextension/nefilterprovider) class, you must enable the Network Extensions capability in Xcode and select the Content Filter capability. See [Configure network extensions](http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing Notes
+    ///
+    /// `NEFilterProvider` should not be subclassed directly. Instead, you should create subclasses of `NEFilterProvider’s` subclasses and override the following methods:
+    ///
+    /// #### Methods to Override
+    ///
+    /// - [`startFilterWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nefilterprovider/startfilter(completionhandler:))
+    ///
+    /// - [`stopFilterWithReason:completionHandler:`](https://developer.apple.com/documentation/networkextension/nefilterprovider/stopfilter(with:completionhandler:))
+    ///
+    ///
     /// The NEFilterProvider class is an abstract base class that declares the programmatic interface of an
     /// object that implements a socket filter.
     ///
     /// NEFilterProvider is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterprovider?language=objc)
     #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterProvider;
@@ -3166,24 +3547,23 @@ impl NEFilterProvider {
     );
 }
 
+/// An enumeration that represents the frequency of filter report delivery.
 /// A NEFilterReportFrequency controls the frequency of periodic reports.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterReportFrequency(pub NSInteger);
 impl NEFilterReportFrequency {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/none?language=objc)
+    /// A frequency value that indicates no report delivery.
     #[doc(alias = "NEFilterReportFrequencyNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/low?language=objc)
+    /// A low frequency of reports, about once every five seconds.
     #[doc(alias = "NEFilterReportFrequencyLow")]
     pub const Low: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/medium?language=objc)
+    /// A low frequency of reports, about once every second.
     #[doc(alias = "NEFilterReportFrequencyMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency/high?language=objc)
+    /// A low frequency of reports, about once every half-second.
     #[doc(alias = "NEFilterReportFrequencyHigh")]
     pub const High: Self = Self(3);
 }
@@ -3197,12 +3577,17 @@ unsafe impl RefEncode for NEFilterReportFrequency {
 }
 
 extern_class!(
+    /// The abstract base class for filter verdict classes.
+    ///
+    /// ## Overview
+    ///
+    /// Filter providers use instances this class to inform the system about how to handle flows of network data.
+    ///
+    ///
     /// The NEFilterVerdict class declares the programmatic interface for an object that is the verdict for a
     /// flow of network data.
     ///
     /// NEFilterVerdict is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterverdict?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterVerdict;
@@ -3263,12 +3648,11 @@ impl NEFilterVerdict {
 }
 
 extern_class!(
+    /// The result from a filter data provder after the initial examination of a flow.
     /// The NEFilterNewFlowVerdict declares the programmatic interface of an object that is the verdict for a
     /// new flow of network data before any of the flow's data has been seen by the filter.
     ///
     /// NEFilterNewFlowVerdict is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilternewflowverdict?language=objc)
     #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterNewFlowVerdict;
@@ -3405,12 +3789,11 @@ impl NEFilterNewFlowVerdict {
 }
 
 extern_class!(
+    /// The result from a filter control provider.
     /// The NEFilterControlVerdict declares the programmatic interface of an object that is the verdict for a
     /// new flow of network data by the control provider.
     ///
     /// NEFilterControlVerdict is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltercontrolverdict?language=objc)
     #[unsafe(super(NEFilterNewFlowVerdict, NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterControlVerdict;
@@ -3485,28 +3868,39 @@ impl NEFilterControlVerdict {
     );
 }
 
+/// The actions a data provider can take on a filter flow.
+///
+/// ## Overview
+///
+/// The control provider receives a filter report when the data provider issues a verdict with the [`shouldReport`](https://developer.apple.com/documentation/networkextension/nefilterverdict/shouldreport) property set to [`true`](https://developer.apple.com/documentation/swift/true). The report contains an [`action`](https://developer.apple.com/documentation/networkextension/nefilterreport/action) property set to one of the values listed here.
+///
+///
 /// A NEFilterAction represents the possible actions taken upon a NEFilterFlow that can be reported by the
 /// data provider extension to the control provider extension.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterAction(pub NSInteger);
 impl NEFilterAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/invalid?language=objc)
+    /// Invalid action used to represent an error.
     #[doc(alias = "NEFilterActionInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/allow?language=objc)
+    /// Allow the flow.
     #[doc(alias = "NEFilterActionAllow")]
     pub const Allow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/drop?language=objc)
+    /// Drop the flow.
     #[doc(alias = "NEFilterActionDrop")]
     pub const Drop: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/remediate?language=objc)
+    /// Remediate the flow.
+    ///
+    /// ## Discussion
+    ///
+    /// This action results in a “content blocked” page being displayed to the user.
+    ///
+    ///
     #[doc(alias = "NEFilterActionRemediate")]
     pub const Remediate: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction/filterdata?language=objc)
+    /// Filter data on the flow.
     #[doc(alias = "NEFilterActionFilterData")]
     pub const FilterData: Self = Self(4);
 }
@@ -3519,24 +3913,23 @@ unsafe impl RefEncode for NEFilterAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type that represents the kind of event indicated by a report.
 /// A NEFilterReportEvent represents the event that is being reported by the NEFilterReport.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterReportEvent(pub NSInteger);
 impl NEFilterReportEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/newflow?language=objc)
+    /// A type of event indicating the report is for a new flow.
     #[doc(alias = "NEFilterReportEventNewFlow")]
     pub const NewFlow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/datadecision?language=objc)
+    /// A type of event indicating the report is about a pass/block decision made after analyzing some amount of a flow’s data.
     #[doc(alias = "NEFilterReportEventDataDecision")]
     pub const DataDecision: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/flowclosed?language=objc)
+    /// A type of event indicating the report is for a flow’s closing.
     #[doc(alias = "NEFilterReportEventFlowClosed")]
     pub const FlowClosed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum/statistics?language=objc)
+    /// A type of event indicating the report is for the latest statistics of the flow.
     #[doc(alias = "NEFilterReportEventStatistics")]
     pub const Statistics: Self = Self(4);
 }
@@ -3550,12 +3943,17 @@ unsafe impl RefEncode for NEFilterReportEvent {
 }
 
 extern_class!(
+    /// The report of the data provider’s action on a flow.
+    ///
+    /// ## Overview
+    ///
+    /// The system issues a report by calling your control provider’s [`handleReport:`](https://developer.apple.com/documentation/networkextension/nefilterprovider/handle(_:)) method with a report instance when the data provider issues a verdict whose [`shouldReport`](https://developer.apple.com/documentation/networkextension/nefilterverdict/shouldreport) property is set to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// The NEFilterReport declares the programmatic interface of an object that is a report of actions taken by
     /// the data provider.
     ///
     /// NEFilterReport is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterReport;
@@ -3624,9 +4022,54 @@ impl NEFilterReport {
 }
 
 extern_class!(
-    /// The NEFilterControlProvider class declares the programmatic interface for an object that is responsible for installing filtering rules on the device.
+    /// The principal class for a filter control provider extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider?language=objc)
+    /// ## Overview
+    ///
+    /// The Filter Control Provider’s primary responsibility is to provide information to the associated Filter Data Provider so that it can perform its task of accurately filtering network content. There are several ways in which the Filter Control Provider provides data to the associated Filter Data Provider:
+    ///
+    /// - By writing information to disk. For example, the Filter Control Provider can maintain a database of filtering rules on disk in a location where the Filter Data Provider can read from the database.
+    ///
+    /// - By defining a dictionary that maps keys to sets of customization parameters to be used when generating the block page. The Filter Data Provider gives the system the key for the desired customization parameters, and the system uses that key to get the customization parameters from the Filter Control Provider and generate the customized block page.
+    ///
+    /// - By defining a dictionary that maps keys to strings to be appended to URLs. The Filter Data Provider gives the system the key for the string to be appended, and the system uses that key to get the string to be appended from the Filter Control Provider and appends the string to the URL.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`NEFilterControlProvider`](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider) class, you must enable the Network Extensions capability in Xcode and select the Content Filter capability. See [Configure network extensions](http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Creating a Filter Control Provider Extension
+    ///
+    /// Filter Control Providers run as App Extensions for the `com.apple.networkextension.filter-control` extension point.
+    ///
+    /// To create a Filter Control Provider extension, first create a new App Extension target in your project.
+    ///
+    /// For an example of an Xcode build target for this app extension, see the [SimpleTunnel: Customized Networking Using the NetworkExtension Framework](https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140) sample code project.
+    ///
+    /// Once you have a Filter Control Provider extension target, create a sub-class of `NEFilterControlProvider`. Then, set the `NSExtensionPrincipalClass` key in the the extension’s `Info.plist` to the name of your subclass.
+    ///
+    /// If it is not already, set the `NSExtensionPointIdentifier` key in the extension’s `Info.plist` to `com.apple.networkextension.filter-control`.
+    ///
+    /// Here is an example of the `NSExtension` dictionary in a Filter Control Provider extension’s `Info.plist`:
+    ///
+    /// ```xml
+    /// <key>NSExtension</key>
+    /// <dict>
+    ///     <key>NSExtensionPointIdentifier</key>
+    ///     <string>com.apple.networkextension.filter-control</string>
+    ///     <key>NSExtensionPrincipalClass</key>
+    ///     <string>MyCustomFilterControlProvider</string>
+    /// </dict>
+    /// ```
+    ///
+    /// Finally, add your Filter Control Provider extension target to your app’s Embed App Extensions build phase.
+    ///
+    ///
+    /// The NEFilterControlProvider class declares the programmatic interface for an object that is responsible for installing filtering rules on the device.
     #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterControlProvider;
@@ -3744,15 +4187,14 @@ impl NEFilterControlProvider {
     );
 }
 
+/// Attribute flags that describe the data handled by a filter.
 /// Attribute flags describing data
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterDataAttribute(pub NSInteger);
 impl NEFilterDataAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataattribute/hasipheader?language=objc)
+    /// An attribute that indicates the data includes an IP header.
     #[doc(alias = "NEFilterDataAttributeHasIPHeader")]
     pub const HasIPHeader: Self = Self(0x00000001);
 }
@@ -3766,9 +4208,78 @@ unsafe impl RefEncode for NEFilterDataAttribute {
 }
 
 extern_class!(
-    /// The NEFilterDataProvider class declares the programmatic interface for an object that evaluates network data flows based on a set of locally-available rules and makes decisions about whether to block or allow the flows.
+    /// The principal class for a filter data provider extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataprovider?language=objc)
+    /// ## Overview
+    ///
+    /// Network content is delivered to the Filter Data Provider in the form of [`NEFilterFlow`](https://developer.apple.com/documentation/networkextension/nefilterflow) objects. Each [`NEFilterFlow`](https://developer.apple.com/documentation/networkextension/nefilterflow) object corresponds to a network connection opened by an application running on the device. The Filter Data Provider can choose to pass or block the data when it receives a new flow, or it can ask the system to see more of the flow’s data in either the outbound or inbound direction before making a pass or block decision.
+    ///
+    /// In addition to passing or blocking network data, the Filter Data Provider can tell the system that it needs more information before it can make a decision about a particular flow of data. The system will then ask the Filter Control Provider to update the current set of rules and place them in a location on disk that is readable from the Filter Data Provider extension.
+    ///
+    /// When a [`NEFilterFlow`](https://developer.apple.com/documentation/networkextension/nefilterflow) object is originated from a WebKit browser object, the Filter Data Provider can affect the user experience in the following ways:
+    ///
+    /// - If the Filter Data Provider chooses to block the web page, then a special “block” page is displayed in the WebKit browser object informing the user that their attempt to access the content was blocked. The Filter Data Provider can choose to add a link to this block page, giving the user the option of requesting access to the content.
+    ///
+    /// - If the Filter Data Provider chooses to allow the web page, then it can also specify that a string be appended to the web page URL. This allows the Filter Data Provider to direct the WebKit browser object to a “safe” version of the web page.
+    ///
+    /// To protect the user’s privacy, the Filter Data Provider extension sandbox prevents the extension from moving network content outside of its address space.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`handleNewFlow:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handlenewflow(_:)) method, you must enable the Network Extensions capability in Xcode and select the Content Filter capability. See [Configure network extensions](http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Creating a Filter Data Provider Extension
+    ///
+    /// Filter Data Providers run as App Extensions for the `com.apple.networkextension.filter-data` extension point.
+    ///
+    /// To create a Filter Data Provider extension, first create a new App Extension target in your project.
+    ///
+    /// For an example of an Xcode build target for this app extension, see the [SimpleTunnel: Customized Networking Using the NetworkExtension Framework](https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140) sample code project.
+    ///
+    /// Once you have a Filter Data Provider extension target, create a subclass of `NEFilterDataProvider`. Then set the `NSExtensionPrincipalClass` key in the the extension’s `Info.plist` to the name of your subclass.
+    ///
+    /// If it is not done already, set the `NSExtensionPointIdentifier` key in the extension’s `Info.plist` to `com.apple.networkextension.filter-data`.
+    ///
+    /// Here is an example of the `NSExtension` dictionary in a Filter Data Provider extension’s `Info.plist`:
+    ///
+    /// ```xml
+    /// <key>NSExtension</key>
+    /// <dict>
+    ///     <key>NSExtensionPointIdentifier</key>
+    ///     <string>com.apple.networkextension.filter-data</string>
+    ///     <key>NSExtensionPrincipalClass</key>
+    ///     <string>MyCustomFilterDataProvider</string>
+    /// </dict>
+    /// ```
+    ///
+    /// Finally, add your Filter Data Provider extension target to your app’s Embed App Extensions build phase.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// To create a Filter Data Provider extension, you must first create a subclass of `NEFilterDataProvider` and override the methods listed below.
+    ///
+    /// #### Methods to Override
+    ///
+    /// - [`handleNewFlow:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handlenewflow(_:))
+    ///
+    /// - [`handleInboundDataFromFlow:readBytesStartOffset:readBytes:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handleinbounddata(from:readbytesstartoffset:readbytes:))
+    ///
+    /// - [`handleOutboundDataFromFlow:readBytesStartOffset:readBytes:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handleoutbounddata(from:readbytesstartoffset:readbytes:))
+    ///
+    /// - [`handleInboundDataCompleteForFlow:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handleinbounddatacomplete(for:))
+    ///
+    /// - [`handleOutboundDataCompleteForFlow:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handleoutbounddatacomplete(for:))
+    ///
+    /// - [`handleRemediationForFlow:`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handleremediation(for:))
+    ///
+    /// - [`handleRulesChanged`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider/handleruleschanged())
+    ///
+    ///
+    /// The NEFilterDataProvider class declares the programmatic interface for an object that evaluates network data flows based on a set of locally-available rules and makes decisions about whether to block or allow the flows.
     #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterDataProvider;
@@ -3926,11 +4437,16 @@ impl NEFilterDataProvider {
 }
 
 extern_class!(
+    /// The result from a filter data provder for subsequent chunks of data on a flow.
+    ///
+    /// ## Overview
+    ///
+    /// Return this verdict type from the various methods of [`NEFilterDataProvider`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider).
+    ///
+    ///
     /// The NEFilterDataVerdict class declares the programmatic interface of an object that is the verdict for a flow of network data after some of the data has been seen by the filter.
     ///
     /// NEFilterDataVerdict is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterdataverdict?language=objc)
     #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterDataVerdict;
@@ -4046,11 +4562,10 @@ impl NEFilterDataVerdict {
 }
 
 extern_class!(
+    /// The result from a filter data provider after the user requests remediation for a blocked flow.
     /// The NEFilterRemediationVerdict class declares the programmatic interface of an object that is the verdict for a flow which has been blocked by the filter, but the user has made a request for remediation.
     ///
     /// NEFilterRemediationVerdict is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterremediationverdict?language=objc)
     #[unsafe(super(NEFilterVerdict, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterRemediationVerdict;
@@ -4114,30 +4629,35 @@ impl NEFilterRemediationVerdict {
     );
 }
 
+/// Error codes specific to filter managers.
 /// Filter error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterManagerError(pub NSInteger);
 impl NEFilterManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationinvalid?language=objc)
+    /// An error code that indicates the filter configuration is invalid.
     #[doc(alias = "NEFilterManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationdisabled?language=objc)
+    /// An error code that indicates the filter configuration isn’t enabled.
     #[doc(alias = "NEFilterManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationstale?language=objc)
+    /// An error code that indicates another process modfied the filter configuration since the last time the app loaded the configuration.
+    ///
+    /// ## Discussion
+    ///
+    /// This error also occurs if the app tries to save the filter configuration before loading it from the Network Extension preferences the first time after the app launches.
+    ///
+    ///
     #[doc(alias = "NEFilterManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationcannotberemoved?language=objc)
+    /// An error code that indicates removing the configuration isn’t allowed.
     #[doc(alias = "NEFilterManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationpermissiondenied?language=objc)
+    /// An error code that indicates the configuration lacks permission.
     #[doc(alias = "NEFilterManagerErrorConfigurationPermissionDenied")]
     pub const ConfigurationPermissionDenied: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagererror/configurationinternalerror?language=objc)
+    /// An error code that indicates an internal configuration error occurred.
     #[doc(alias = "NEFilterManagerErrorConfigurationInternalError")]
     pub const ConfigurationInternalError: Self = Self(6);
 }
@@ -4151,27 +4671,44 @@ unsafe impl RefEncode for NEFilterManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltererrordomain?language=objc)
+    /// The domain for errors resulting from calls to the filter manager.
+    ///
+    /// ## Discussion
+    ///
+    /// Match this constant to the [`domain`](https://developer.apple.com/documentation/foundation/nserror/domain) of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) encountered when calling methods on [`NEFilterManager`](https://developer.apple.com/documentation/networkextension/nefiltermanager). The [`NEFilterManagerError`](https://developer.apple.com/documentation/networkextension/nefiltermanagererror) enumeration defines possible [`code`](https://developer.apple.com/documentation/foundation/nserror/code) values for these errors.
+    ///
+    ///
     pub static NEFilterErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterconfigurationdidchangenotification?language=objc)
+    /// Posted after the filter configuration stored in the Network Extension preferences changes.
     pub static NEFilterConfigurationDidChangeNotification: &'static NSString;
 }
 
+/// A type for the grade or priority of the filter.
 /// Filter grade
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEFilterManagerGrade(pub NSInteger);
 impl NEFilterManagerGrade {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.enum/firewall?language=objc)
+    /// A grade for filters that act as firewalls, blocking some network traffic.
+    ///
+    /// ## Discussion
+    ///
+    /// Firewall grade filters see network traffic before other filter grades.
+    ///
+    ///
     #[doc(alias = "NEFilterManagerGradeFirewall")]
     pub const Firewall: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.enum/inspector?language=objc)
+    /// A grade for filters that act as inspectors of network traffic.
+    ///
+    /// ## Discussion
+    ///
+    /// Inspector grade filters see network traffic after firewall grade filters.
+    ///
+    ///
     #[doc(alias = "NEFilterManagerGradeInspector")]
     pub const Inspector: Self = Self(2);
 }
@@ -4185,13 +4722,44 @@ unsafe impl RefEncode for NEFilterManagerGrade {
 }
 
 extern_class!(
+    /// An object to create and manage a content filter’s configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Each app is allowed to create a single filter configuration. The [`NEFilterManager`](https://developer.apple.com/documentation/networkextension/nefiltermanager) class has a class method ([`sharedManager`](https://developer.apple.com/documentation/networkextension/nefiltermanager/shared())) that provides access to a single [`NEFilterManager`](https://developer.apple.com/documentation/networkextension/nefiltermanager) instance. This single instance corresponds to a single filter configuration.
+    ///
+    /// The filter configuration is stored in the Network Extension preferences which are managed by the Network Extension framework. The filter configuration must be explicitly loaded into memory from the Network Extension preferences before it can be used, and any changes must be explicitly saved to the Network Extension preferences before taking effect on the system.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In product builds for distribution, Network Content Filter configurations can be created only on supervised devices. During development and testing you can temporarily override this restriction by signing your build with the `get-task-allow` entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`NEFilterManager`](https://developer.apple.com/documentation/networkextension/nefiltermanager) class, you must enable the Network Extensions capability in Xcode and select the Content Filter capability. See [Configure network extensions](http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Profile Configuration
+    ///
+    /// Filter configurations are created using configuration profiles. See [`WebContentFilter`](https://developer.apple.com/documentation/devicemanagement/webcontentfilter) for more information. To specify that a filter configuration created via a profile payload is associated with a particular app (and therefore allow the app to use `NEFilterManager` to manage the configuration), the app’s bundle identifier must be set as the value of the `PluginBundleID` field in the profile payload.
+    ///
+    /// ### Filter Provider Extensions
+    ///
+    /// Apps that use `NEFilterManager` are required to contain two Filter Provider extensions that together perform the task of examining network content and making pass and block decisions. See the [`NEFilterControlProvider`](https://developer.apple.com/documentation/networkextension/nefiltercontrolprovider) and [`NEFilterDataProvider`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider) classes for more details about these extensions.
+    ///
+    ///
     /// The NEFilterManager class declares the programmatic interface for an object that manages content filtering configurations.
     ///
     /// NEFilterManager declares methods and properties for configuring and controlling a filter.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterManager;
@@ -4316,9 +4884,8 @@ impl NEFilterManager {
 }
 
 extern_class!(
+    /// The context object provided to the filter packet handler.
     /// The NEFilterPacketContext class identifies the current filtering context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketcontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterPacketContext;
@@ -4345,21 +4912,20 @@ impl NEFilterPacketContext {
     );
 }
 
+/// The verdict returned by a packet handler indicating what the framework should do with a packet.
 /// Verdict for a packet
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterPacketProviderVerdict(pub NSInteger);
 impl NEFilterPacketProviderVerdict {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict/allow?language=objc)
+    /// A verdict to allow a packet.
     #[doc(alias = "NEFilterPacketProviderVerdictAllow")]
     pub const Allow: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict/drop?language=objc)
+    /// A verdict to drop a packet.
     #[doc(alias = "NEFilterPacketProviderVerdictDrop")]
     pub const Drop: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict/delay?language=objc)
+    /// A verdict to delay a packet until a future verdict.
     #[doc(alias = "NEFilterPacketProviderVerdictDelay")]
     pub const Delay: Self = Self(2);
 }
@@ -4373,9 +4939,8 @@ unsafe impl RefEncode for NEFilterPacketProviderVerdict {
 }
 
 extern_class!(
+    /// A filter provider that evaluates network packets and decides whether to block, allow, or delay the packets.
     /// The NEFilterPacketProvider class declares the programmatic interface for an object that evaluates network packets decisions about whether to block, allow, or delay the packets.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider?language=objc)
     #[unsafe(super(NEFilterProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterPacketProvider;
@@ -4425,9 +4990,8 @@ impl NEFilterPacketProvider {
 }
 
 extern_class!(
+    /// Configuration parameters for a content filter.
     /// The NEFilterProviderConfiguration class declares the programmatic interface of an object that configures a plugin-based content filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterProviderConfiguration;
@@ -4620,9 +5184,8 @@ impl NEFilterProviderConfiguration {
 }
 
 extern_class!(
+    /// A rule for filters that combines a rule to match network traffic and an action to take when the rule matches.
     /// The NEFilterRule class declares the programmatic interface of an object that defines a rule for matching network traffic and the action to take when the rule matches.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterRule;
@@ -4689,11 +5252,16 @@ impl NEFilterRule {
 }
 
 extern_class!(
+    /// The rules and other settings that define the operation of a filter.
+    ///
+    /// ## Overview
+    ///
+    /// [`NEFilterDataProvider`](https://developer.apple.com/documentation/networkextension/nefilterdataprovider) instances use [`NEFilterSettings`](https://developer.apple.com/documentation/networkextension/nefiltersettings) to communicate the desired settings for the filter to the framework. The framework takes care of applying the contained settings to the system.
+    ///
+    ///
     /// The NEFilterSettings class declares the programmatic interface for an object that contains filter settings.
     ///
     /// NEFilterSettings is used by NEFilterDataProviders to communicate the desired settings for the filter to the framework. The framework takes care of applying the contained settings to the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltersettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFilterSettings;
@@ -4770,9 +5338,14 @@ impl NEFilterSettings {
 }
 
 extern_class!(
-    /// The NEFlowMetaData class declares the programmatic interface for an object that contains extra information about a flow.
+    /// Additional information about data flowing through a per-app VPN provider.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neflowmetadata?language=objc)
+    /// ## Overview
+    ///
+    /// This metadata is only present for data flowing through per-app VPN providers, that is, app proxy providers and packet tunnel providers in per-app VPN mode, as indicated by the [`routingMethod`](https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod) property.
+    ///
+    ///
+    /// The NEFlowMetaData class declares the programmatic interface for an object that contains extra information about a flow.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEFlowMetaData;
@@ -4835,27 +5408,26 @@ impl NEFlowMetaData {
     );
 }
 
+/// An enumeration of constants that define Wi-Fi hotspot network security types.
 /// Wi-Fi network security type
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotNetworkSecurityType(pub NSInteger);
 impl NEHotspotNetworkSecurityType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/open?language=objc)
+    /// A security type to represent an open network with no security protocol.
     #[doc(alias = "NEHotspotNetworkSecurityTypeOpen")]
     pub const Open: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/wep?language=objc)
+    /// A security type to represent use of Wired Equivalent Privacy (WEP).
     #[doc(alias = "NEHotspotNetworkSecurityTypeWEP")]
     pub const WEP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/personal?language=objc)
+    /// A security type to represent use of Wi-Fi protected access (WPA), WPA2, and WPA3 standards using a pre-shared secret.
     #[doc(alias = "NEHotspotNetworkSecurityTypePersonal")]
     pub const Personal: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/enterprise?language=objc)
+    /// A security type to represent use of Wi-Fi protected access (WPA), WPA2, and WPA3 standards using enterprise-level seciurity.
     #[doc(alias = "NEHotspotNetworkSecurityTypeEnterprise")]
     pub const Enterprise: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype/unknown?language=objc)
+    /// A value that represents an unknown security type.
     #[doc(alias = "NEHotspotNetworkSecurityTypeUnknown")]
     pub const Unknown: Self = Self(4);
 }
@@ -4869,12 +5441,17 @@ unsafe impl RefEncode for NEHotspotNetworkSecurityType {
 }
 
 extern_class!(
+    /// Information about a Wi-Fi network associated with a command or a response.
+    ///
+    /// ## Overview
+    ///
+    /// When the Hotspot Helper app is asked to evaluate the a network or filter the Wi-Fi scan list, it annotates the  `NEHotspotNetwork` object via the `setConfidence:` method.
+    ///
+    ///
     /// The NEHotspotNetwork class provides a class method to get the SSID and BSSID of
     /// the current Wi-Fi network.
     ///
     /// NEHotspotNetwork is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetwork?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotNetwork;
@@ -4937,33 +5514,32 @@ impl NEHotspotNetwork {
     );
 }
 
+/// An enumeration of hotspot command types.
 /// The type of the NEHotspotHelperCommand object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperCommandType(pub NSInteger);
 impl NEHotspotHelperCommandType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/none?language=objc)
+    /// Placeholder for the null command.
     #[doc(alias = "kNEHotspotHelperCommandTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/filterscanlist?language=objc)
+    /// Filter the Wi-Fi scan list.
     #[doc(alias = "kNEHotspotHelperCommandTypeFilterScanList")]
     pub const FilterScanList: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/evaluate?language=objc)
+    /// Evaluate the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeEvaluate")]
     pub const Evaluate: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/authenticate?language=objc)
+    /// Authenticate to the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeAuthenticate")]
     pub const Authenticate: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/presentui?language=objc)
+    /// Present user interface.
     #[doc(alias = "kNEHotspotHelperCommandTypePresentUI")]
     pub const PresentUI: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/maintain?language=objc)
+    /// Maintain the connection to the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeMaintain")]
     pub const Maintain: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/logoff?language=objc)
+    /// Logoff the network.
     #[doc(alias = "kNEHotspotHelperCommandTypeLogoff")]
     pub const Logoff: Self = Self(6);
 }
@@ -4976,6 +5552,7 @@ unsafe impl RefEncode for NEHotspotHelperCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The result of handling a hotspot command.
 /// The result of processing the NEHotspotHelperCommand.
 ///
 /// The HotspotHelper provides the result of
@@ -5001,32 +5578,30 @@ unsafe impl RefEncode for NEHotspotHelperCommandType {
 /// This result is only valid in response to commands of type
 /// kNEHotspotHelperCommandTypeAuthenticate and
 /// kNEHotspotHelperCommandTypePresentUI.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperResult(pub NSInteger);
 impl NEHotspotHelperResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/success?language=objc)
+    /// The command was handled successfully.
     #[doc(alias = "kNEHotspotHelperResultSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/failure?language=objc)
+    /// The command failed to be handled.
     #[doc(alias = "kNEHotspotHelperResultFailure")]
     pub const Failure: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/uirequired?language=objc)
+    /// The operation requires user interaction. This result is only valid in response to a command with type [`kNEHotspotHelperCommandTypeAuthenticate`](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/authenticate).
     #[doc(alias = "kNEHotspotHelperResultUIRequired")]
     pub const UIRequired: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/commandnotrecognized?language=objc)
+    /// The helper did not recognize the command type.
     #[doc(alias = "kNEHotspotHelperResultCommandNotRecognized")]
     pub const CommandNotRecognized: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/authenticationrequired?language=objc)
+    /// The network requires authentication again. This result is only valid in response to a command with type [`kNEHotspotHelperCommandTypeMaintain`](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/maintain).
     #[doc(alias = "kNEHotspotHelperResultAuthenticationRequired")]
     pub const AuthenticationRequired: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/unsupportednetwork?language=objc)
+    /// After attempting to authenticate, the Hotspot Helper app determined that it can’t perform the authentication. This result is only valid in response to commands of type [`kNEHotspotHelperCommandTypeAuthenticate`](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/authenticate) and [`kNEHotspotHelperCommandTypePresentUI`](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/presentui).
     #[doc(alias = "kNEHotspotHelperResultUnsupportedNetwork")]
     pub const UnsupportedNetwork: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult/temporaryfailure?language=objc)
+    /// The Hotspot Helper app determined that it is temporarily unable to perform the authentication. This result is only valid in response to commands of type [`kNEHotspotHelperCommandTypeAuthenticate`](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/authenticate) and [`kNEHotspotHelperCommandTypePresentUI`](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype/presentui).
     #[doc(alias = "kNEHotspotHelperResultTemporaryFailure")]
     pub const TemporaryFailure: Self = Self(6);
 }
@@ -5039,6 +5614,7 @@ unsafe impl RefEncode for NEHotspotHelperResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type that indicates the hotspot helper’s confidence in its ability to handle the network.
 /// The HotspotHelper's confidence in its ability to handle the network.
 ///
 /// The HotspotHelper indicates its confidence in being able to handle the
@@ -5049,20 +5625,18 @@ unsafe impl RefEncode for NEHotspotHelperResult {
 /// in being able to handle the network.
 ///
 /// in being able to handle the network.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperConfidence(pub NSInteger);
 impl NEHotspotHelperConfidence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence/none?language=objc)
+    /// The helper is unable to handle the network.
     #[doc(alias = "kNEHotspotHelperConfidenceNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence/low?language=objc)
+    /// The helper has some confidence in being able to handle the network.
     #[doc(alias = "kNEHotspotHelperConfidenceLow")]
     pub const Low: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence/high?language=objc)
+    /// The helper has high confidence in being able to handle the network.
     #[doc(alias = "kNEHotspotHelperConfidenceHigh")]
     pub const High: Self = Self(2);
 }
@@ -5141,13 +5715,18 @@ impl NEHotspotNetwork {
 }
 
 extern_class!(
+    /// A command for the hotspot helper to handle.
+    ///
+    /// ## Overview
+    ///
+    /// NEHotspostHelperCommand objects are passed to the the Hotspot Helper app’s command handler block. The Hotspot Helper app processes the command, instantiates an [`NEHotspotHelperResponse`](https://developer.apple.com/documentation/networkextension/nehotspothelperresponse) object, sets the annotated `network` or `networkList` (`Evaluate` or `FilterScanList` commands only), and then delivers the response to the system.
+    ///
+    ///
     /// An NEHotspotHelperCommand object is provided to the helper's
     /// command handler block. The HotspotHelper processes the command
     /// instantiates an NEHotspotHelperResponse object, sets the annotated
     /// network or networkList (Evaluate/FilterScanList only),
     /// then delivers it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommand?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHelperCommand;
@@ -5229,10 +5808,9 @@ impl NEHotspotHelperCommand {
 }
 
 extern_class!(
+    /// The hotspot helper’s response to a command.
     /// The HotspotHelper creates an NEHotspotHelperResponse object to provide
     /// the results of running the corresponding NEHotspotHelperCommand.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHelperResponse;
@@ -5288,17 +5866,33 @@ impl NEHotspotHelperResponse {
     );
 }
 
+/// The type definition for the Hotspot Helper’s command handler block.
+///
+/// ## Discussion
+///
+/// The Hotspot Helper app provides a block of this type when it invokes the `registerWithOptions:queue:handler:` method.
+///
+/// The block is invoked every time there is a command to be processed.
+///
+///
 /// The type definition for the HotspotHelper's command handler block.
 ///
 /// The application provides a block of this type when it
 /// invokes the +[NEHotspotHelper registerWithOptions:queue:handler] method.
 /// The block is invoked every time there is a command to be processed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NEHotspotHelperHandler = *mut block2::DynBlock<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
 
 extern "C" {
+    /// The string displayed in Wi-Fi Settings for a network handled by the application.
+    ///
+    /// ## Discussion
+    ///
+    /// This key specifies the display name for the application, if an alternate name is desired. If this property is not specified, the application’s name is used.
+    ///
+    /// This name appears in Settings -> Wi-Fi underneath the Wi-Fi network name if the helper indicated that it was able to handle the network.
+    ///
+    ///
     /// The string displayed in Wi-Fi Settings for a network handled by
     /// the application.
     ///
@@ -5308,16 +5902,19 @@ extern "C" {
     ///
     /// This name appears in Settings -> Wi-Fi underneath the Wi-Fi network
     /// name if the helper indicated that it was able to handle the network.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/knehotspothelperoptiondisplayname?language=objc)
     pub static kNEHotspotHelperOptionDisplayName: &'static NSString;
 }
 
 extern_class!(
+    /// A class to register a hotspot helper.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NEHotspotHelper`](https://developer.apple.com/documentation/networkextension/nehotspothelper) API gives your app the ability to perform custom authentication for Wi-Fi Hotspots. It gives users a way to seamlessly connect to a large aggregated network of Wi-Fi Hotspots. The [`NEHotspotConfiguration`](https://developer.apple.com/documentation/networkextension/nehotspotconfiguration) API lets your app configure those hotspots.
+    ///
+    ///
     /// The NEHotspotHelper class allows an application to register itself as a
     /// HotspotHelper.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelper?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NEHotspotManager API"]
@@ -5467,24 +6064,23 @@ pub unsafe trait NSMutableURLRequestNEHotspotHelper:
 impl private_NSMutableURLRequestNEHotspotHelper::Sealed for NSMutableURLRequest {}
 unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
 
+/// The EAP types that may be specified in [`supportedEAPTypes`](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/supportedeaptypes).
 /// EAP Type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEHotspotConfigurationEAPType(pub NSInteger);
 impl NEHotspotConfigurationEAPType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eaptls?language=objc)
+    /// Network EAP type is `EAPTLS`.
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPTLS")]
     pub const EAPTLS: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eapttls?language=objc)
+    /// Network EAP type is `EAPTTLS`.
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPTTLS")]
     pub const EAPTTLS: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eappeap?language=objc)
+    /// Network EAP type is `EAPPEAP`.
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPPEAP")]
     pub const EAPPEAP: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype/eapfast?language=objc)
+    /// Network EAP type is `EAPFAST`.
     #[doc(alias = "NEHotspotConfigurationEAPTypeEAPFAST")]
     pub const EAPFAST: Self = Self(43);
 }
@@ -5497,27 +6093,26 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The TTLS Inner Authentication Types that may be specified by [`NEHotspotConfigurationTTLSInnerAuthenticationType`](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum).
 /// TTLS Inner Authentication Type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationTTLSInnerAuthenticationType(pub NSInteger);
 impl NEHotspotConfigurationTTLSInnerAuthenticationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationpap?language=objc)
+    /// Network EAPTTLS inner authentication type is PAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP")]
     pub const EAPTTLSInnerAuthenticationPAP: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationchap?language=objc)
+    /// Network EAPTTLS inner authentication type is CHAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationCHAP")]
     pub const EAPTTLSInnerAuthenticationCHAP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationmschap?language=objc)
+    /// Network EAPTTLS inner authentication type is MSCHAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAP")]
     pub const EAPTTLSInnerAuthenticationMSCHAP: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationmschapv2?language=objc)
+    /// Network EAPTTLS inner authentication type is MSCHAP, version 2.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAPv2")]
     pub const EAPTTLSInnerAuthenticationMSCHAPv2: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum/eapttlsinnerauthenticationeap?language=objc)
+    /// Network EAPTTLS inner authentication type is EAP.
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationEAP")]
     pub const EAPTTLSInnerAuthenticationEAP: Self = Self(4);
 }
@@ -5530,21 +6125,20 @@ unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The EAPTLS Version identifiers that may be specified by [`preferredTLSVersion`](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/preferredtlsversion).
 /// TLS version to use during TLS handshke.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/tlsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationEAPTLSVersion(pub NSInteger);
 impl NEHotspotConfigurationEAPTLSVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion/nehotspotconfigurationeaptlsversion_1_0?language=objc)
+    /// Network EAPTLS version 1.0.
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_0")]
     pub const Version_1_0: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion/nehotspotconfigurationeaptlsversion_1_1?language=objc)
+    /// Network EAPTLS version 1.1.
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_1")]
     pub const Version_1_1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion/nehotspotconfigurationeaptlsversion_1_2?language=objc)
+    /// Network EAPTLS version 1.2.
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_2")]
     pub const Version_1_2: Self = Self(2);
 }
@@ -5558,10 +6152,9 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPTLSVersion {
 }
 
 extern_class!(
+    /// Settings for configuring Hotspot 2.0 Wi-Fi networks.
     /// NEHotspotHS20Settings class provides a set of properties that are required
     /// to discover and negotiate Hotspot 2.0 Wi-Fi networks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoths20settings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotHS20Settings;
@@ -5677,10 +6270,9 @@ impl NEHotspotHS20Settings {
 }
 
 extern_class!(
+    /// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
     /// NEHotspotEAPSettings class provides a set of properties that are required
     /// to configure a WPA/WPA2 Enterprise or Hotspot 2.0 Wi-Fi networks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotEAPSettings;
@@ -5870,10 +6462,15 @@ impl NEHotspotEAPSettings {
 }
 
 extern_class!(
+    /// Configuration settings for a Wi-Fi network.
+    ///
+    /// ## Overview
+    ///
+    /// The `NEHotspotConfiguration` class contains configuration properties and credentials required to connect to Wi-Fi networks.
+    ///
+    ///
     /// The NEHotspotConfiguration class represents set of properties that are required
     /// to configure a Wi-Fi Network.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotConfiguration;
@@ -6058,70 +6655,67 @@ impl NEHotspotConfiguration {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain?language=objc)
+    /// The domain string for errors involving hotspot configuration.
     pub static NEHotspotConfigurationErrorDomain: &'static NSString;
 }
 
+/// Error values returned by hotspot configuration manager methods.
 /// Hotspot Configuration error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationError(pub NSInteger);
 impl NEHotspotConfigurationError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalid?language=objc)
+    /// The configuration is not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidssid?language=objc)
+    /// The SSID value is not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSID")]
     pub const InvalidSSID: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidwpapassphrase?language=objc)
+    /// The WPA passphrase is not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidWPAPassphrase")]
     pub const InvalidWPAPassphrase: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidweppassphrase?language=objc)
+    /// The WEP passphrase is not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidWEPPassphrase")]
     pub const InvalidWEPPassphrase: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalideapsettings?language=objc)
+    /// EAP settings are not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidEAPSettings")]
     pub const InvalidEAPSettings: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidhs20settings?language=objc)
+    /// The HS 2.0 settings are not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20Settings")]
     pub const InvalidHS20Settings: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidhs20domainname?language=objc)
+    /// The HS 2.0 domain name is not valid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidHS20DomainName")]
     pub const InvalidHS20DomainName: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/userdenied?language=objc)
+    /// The user has refused the network configuration.
     #[doc(alias = "NEHotspotConfigurationErrorUserDenied")]
     pub const UserDenied: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/internal?language=objc)
+    /// Internal error, otherwise undefined.
     #[doc(alias = "NEHotspotConfigurationErrorInternal")]
     pub const Internal: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/pending?language=objc)
+    /// The network configuration action has not completed.
     #[doc(alias = "NEHotspotConfigurationErrorPending")]
     pub const Pending: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/systemconfiguration?language=objc)
+    /// The system configuration is not valid.
     #[doc(alias = "NEHotspotConfigurationErrorSystemConfiguration")]
     pub const SystemConfiguration: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/unknown?language=objc)
+    /// An unknown error has occurred.
     #[doc(alias = "NEHotspotConfigurationErrorUnknown")]
     pub const Unknown: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/joinoncenotsupported?language=objc)
+    /// The join-once option isn’t support for EAP configuration.
     #[doc(alias = "NEHotspotConfigurationErrorJoinOnceNotSupported")]
     pub const JoinOnceNotSupported: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/alreadyassociated?language=objc)
+    /// The configuration is already associated with the hotspot.
     #[doc(alias = "NEHotspotConfigurationErrorAlreadyAssociated")]
     pub const AlreadyAssociated: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/applicationisnotinforeground?language=objc)
+    /// The application is not running in the foreground.
     #[doc(alias = "NEHotspotConfigurationErrorApplicationIsNotInForeground")]
     pub const ApplicationIsNotInForeground: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/invalidssidprefix?language=objc)
+    /// The SSID prefix used to create the hotspot configuration is invalid.
     #[doc(alias = "NEHotspotConfigurationErrorInvalidSSIDPrefix")]
     pub const InvalidSSIDPrefix: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/userunauthorized?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorUserUnauthorized")]
     pub const UserUnauthorized: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror/systemdenied?language=objc)
     #[doc(alias = "NEHotspotConfigurationErrorSystemDenied")]
     pub const SystemDenied: Self = Self(17);
 }
@@ -6135,10 +6729,29 @@ unsafe impl RefEncode for NEHotspotConfigurationError {
 }
 
 extern_class!(
+    /// A manager that applies and removes hotspot configurations of Wi-Fi networks.
+    ///
+    /// ## Overview
+    ///
+    /// When your app creates a new hotspot configuration using [`NEHotspotConfiguration`](https://developer.apple.com/documentation/networkextension/nehotspotconfiguration) and applies it to a Wi-Fi network or attempts to update a previously configured network, the device prompts the user for approval. Without explicit user consent, your app can’t make configuration changes.
+    ///
+    /// Your app can use [`removeConfigurationForHS20DomainName:`](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationmanager/removeconfiguration(forhs20domainname:)) or [`removeConfigurationForSSID:`](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationmanager/removeconfiguration(forssid:)) to delete a configuration that it has added, but not a configuration added by another app or user. The user can also delete configured networks using Settings > Wi-Fi.
+    ///
+    /// When your app is uninstalled, iOS removes the configurations of all networks your app has configured, including their keychain entries.
+    ///
+    /// Hotspot Configuration Manager errors are listed in [`NEHotspotConfigurationError`](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use the [`NEHotspotConfigurationManager`](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationmanager) class, you must enable the Hotspot Configuration capability in Xcode. For more information, see [`Hotspot Configuration Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.hotspotconfiguration).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The NEHotspotConfigurationManager class allows an application to
     /// Add/Update/Remove Wi-Fi Network Configuraton.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEHotspotConfigurationManager;
@@ -6261,11 +6874,16 @@ impl NEHotspotConfigurationManager {
 }
 
 extern_class!(
+    /// The IPv4 settings of an IP layer network tunnel.
+    ///
+    /// ## Overview
+    ///
+    /// To specify the IPv4 settings of a packet tunnel, set its [`NEPacketTunnelNetworkSettings`](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings).[`IPv4Settings`](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv4settings) property to an instance of this class.
+    ///
+    ///
     /// The NEIPv4Settings class declares the programmatic interface for an object that contains IPv4 settings.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv4settings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEIPv4Settings;
@@ -6377,11 +6995,10 @@ impl NEIPv4Settings {
 }
 
 extern_class!(
+    /// The settings for an IPv4 route.
     /// The NEIPv4Route class declares the programmatic interface for an object that contains settings for an IPv4 route.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv4route?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEIPv4Route;
@@ -6467,11 +7084,16 @@ impl NEIPv4Route {
 }
 
 extern_class!(
+    /// The IPv6 settings of an IP layer network tunnel.
+    ///
+    /// ## Overview
+    ///
+    /// To specify the IPv6 settings of a packet tunnel, set its [`NEPacketTunnelNetworkSettings`](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings).[`IPv6Settings`](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings/ipv6settings) property to an instance of this class.
+    ///
+    ///
     /// The NEIPv6Settings class declares the programmatic interface for an object that contains IPv6 settings.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv6settings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEIPv6Settings;
@@ -6574,11 +7196,10 @@ impl NEIPv6Settings {
 }
 
 extern_class!(
+    /// The settings for an IPv6 route.
     /// The NEIPv6Route class declares the programmatic interface for an object that contains settings for an IPv6 route.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neipv6route?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEIPv6Route;
@@ -6664,13 +7285,12 @@ impl NEIPv6Route {
 }
 
 extern_class!(
+    /// The configuration for a tunnel provider’s virtual interface.
     /// The NETunnelNetworkSettings class declares the programmatic interface for an object that contains network settings.
     ///
     /// NETunnelNetworkSettings is used by NETunnelProviders to communicate the desired network settings for the tunnel to the framework. The framework takes care of applying the contained settings to the system.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelnetworksettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETunnelNetworkSettings;
@@ -6753,13 +7373,12 @@ impl NETunnelNetworkSettings {
 }
 
 extern_class!(
+    /// The configuration for a packet tunnel provider’s virtual interface.
     /// The NEPacketTunnelNetworkSettings class declares the programmatic interface for an object that contains IP network settings.
     ///
     /// NEPacketTunnelNetworkSettings is used by NEPacketTunnelProviders to communicate the desired IP network settings for the packet tunnel to the framework. The framework takes care of applying the contained settings to the system.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelnetworksettings?language=objc)
     #[unsafe(super(NETunnelNetworkSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPacketTunnelNetworkSettings;
@@ -6866,13 +7485,20 @@ impl NEPacketTunnelNetworkSettings {
 }
 
 extern_class!(
+    /// The network settings for an ethernet-based VPN tunnel.
+    ///
+    /// ## Overview
+    ///
+    /// You use this type with [`NEEthernetTunnelProvider`](https://developer.apple.com/documentation/networkextension/neethernettunnelprovider) instances to communicate the desired network settings for the packet tunnel to the framework. The framework takes care of applying the contained settings to the system.
+    ///
+    /// Instances of this class are thread-safe.
+    ///
+    ///
     /// The NEEthernetTunnelNetworkSettings class declares the programmatic interface for an object that contains network settings.
     ///
     /// NEEthernetTunnelNetworkSettings is used by NEEthernetTunnelProviders to communicate the desired network settings for the packet tunnel to the framework. The framework takes care of applying the contained settings to the system.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neethernettunnelnetworksettings?language=objc)
     #[unsafe(super(NEPacketTunnelNetworkSettings, NETunnelNetworkSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEEthernetTunnelNetworkSettings;
@@ -6952,11 +7578,74 @@ impl NEEthernetTunnelNetworkSettings {
 }
 
 extern_class!(
+    /// The principal class for a packet tunnel provider app extension.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NEPacketTunnelProvider`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider) class gives its subclasses access to a virtual network interface via the [`packetFlow`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/packetflow) property. Use the [`setTunnelNetworkSettings:completionHandler:`](https://developer.apple.com/documentation/networkextension/netunnelprovider/settunnelnetworksettings(_:completionhandler:)) method in the Packet Tunnel Provider to specify that the following network settings be associated with the virtual interface:
+    ///
+    /// - Virtual IP address
+    ///
+    /// - DNS resolver configuration
+    ///
+    /// - HTTP proxy configuration
+    ///
+    /// - IP destination networks to be routed through the tunnel
+    ///
+    /// - IP destination networks to be routed outside the tunnel
+    ///
+    /// - Interface MTU
+    ///
+    /// By specifying IP destination networks, the Packet Tunnel Provider can dictate what IP destinations will be routed to the virtual interface. IP packets with matching destination addresses will then be diverted to Packet Tunnel Provider and can be read using the [`packetFlow`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/packetflow) property. The Packet Tunnel Provider can then encapsulate the IP packets per a custom tunneling protocol and send them to a tunnel server. When the Packet Tunnel Provider decapsulates IP packets received from the tunnel server, it can use the [`packetFlow`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/packetflow) property to inject the packets into the networking stack.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `com.apple.developer.networking.networkextension` entitlement is required in order to use the [`NEPacketTunnelProvider`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider) class. Enable this entitlement when creating an App ID in your developer account.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Creating a Packet Tunnel Provider Extension
+    ///
+    /// Packet Tunnel Providers run as App Extensions for the `com.apple.networkextension.packet-tunnel` extension point.
+    ///
+    /// To create a Packet Tunnel Provider extension, first create a new App Extension target in your project.
+    ///
+    /// For an example of an Xcode build target for this app extension, see the [SimpleTunnel: Customized Networking Using the NetworkExtension Framework](https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140) sample code project.
+    ///
+    /// Once you have a Packet Tunnel Provider extension target, create a subclass of NEPacketTunnelProvider. Then, set the `NSExtensionPrincipalClass` key in the the extension’s `Info.plist` to the name of your subclass.
+    ///
+    /// If it is not already, set the `NSExtensionPointIdentifier` key in the extension’s `Info.plist` to `com.apple.networkextension.packet-tunnel`.
+    ///
+    /// Here is an example of the NSExtension dictionary in a Packet Tunnel Provider extension’s `Info.plist`:
+    ///
+    /// ```xml
+    /// <key>NSExtension</key>
+    /// <dict>
+    ///     <key>NSExtensionPointIdentifier</key>
+    ///     <string>com.apple.networkextension.packet-tunnel</string>
+    ///     <key>NSExtensionPrincipalClass</key>
+    ///     <string>MyCustomPacketTunnelProvider</string>
+    /// </dict>
+    /// ```
+    ///
+    /// Finally, add the Packet Tunnel Provider extension target to your app’s Embed App Extensions build phase.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// In order to create a Packet Tunnel Provider extension, you must create a subclass of `NEPacketTunnelProvider` and override the methods listed below.
+    ///
+    /// #### Methods to Override
+    ///
+    /// - [`startTunnelWithOptions:completionHandler:`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/starttunnel(options:completionhandler:))
+    ///
+    /// - [`stopTunnelWithReason:completionHandler:`](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider/stoptunnel(with:completionhandler:))
+    ///
+    ///
     /// The NEPacketTunnelProvider class declares the programmatic interface of an object that implements the client side of a custom IP packet tunneling protocol.
     ///
     /// NEPacketTunnelProvider is part of NetworkExtension.framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelprovider?language=objc)
     #[unsafe(super(NETunnelProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPacketTunnelProvider;
@@ -7070,11 +7759,10 @@ impl NEPacketTunnelProvider {
 }
 
 extern_class!(
+    /// A type that implements the client side of a custom link-layer packet tunneling protocol.
     /// The NEEthernetTunnelProvider class declares the programmatic interface of an object that implements the client side of a custom link-layer packet tunneling protocol.
     ///
     /// NEEthernetTunnelProvider is part of NetworkExtension.framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neethernettunnelprovider?language=objc)
     #[unsafe(super(NEPacketTunnelProvider, NETunnelProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEEthernetTunnelProvider;
@@ -7102,23 +7790,21 @@ impl NEEthernetTunnelProvider {
 }
 
 /// On Demand rule actions
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEOnDemandRuleAction(pub NSInteger);
 impl NEOnDemandRuleAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/connect?language=objc)
+    /// Start the VPN connection for every connection attempt.
     #[doc(alias = "NEOnDemandRuleActionConnect")]
     pub const Connect: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/disconnect?language=objc)
+    /// Do not start the VPN connection, and disconnect the VPN connection if it is not currently disconnected.
     #[doc(alias = "NEOnDemandRuleActionDisconnect")]
     pub const Disconnect: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/evaluateconnection?language=objc)
+    /// Start the VPN after evaluating the destination host being accessed against the rule’s parameters.
     #[doc(alias = "NEOnDemandRuleActionEvaluateConnection")]
     pub const EvaluateConnection: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleaction/ignore?language=objc)
+    /// Do not start the VPN connection, but do not disconnect it if it is currently connected.
     #[doc(alias = "NEOnDemandRuleActionIgnore")]
     pub const Ignore: Self = Self(4);
 }
@@ -7132,23 +7818,21 @@ unsafe impl RefEncode for NEOnDemandRuleAction {
 }
 
 /// On Demand rule network interface types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEOnDemandRuleInterfaceType(pub NSInteger);
 impl NEOnDemandRuleInterfaceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/any?language=objc)
+    /// Match any interface type
     #[doc(alias = "NEOnDemandRuleInterfaceTypeAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/ethernet?language=objc)
+    /// Match wired ethernet interfaces
     #[doc(alias = "NEOnDemandRuleInterfaceTypeEthernet")]
     pub const Ethernet: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/wifi?language=objc)
+    /// Match Wi-Fi interfaces
     #[doc(alias = "NEOnDemandRuleInterfaceTypeWiFi")]
     pub const WiFi: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype/cellular?language=objc)
+    /// Match cellular data interfaces
     #[doc(alias = "NEOnDemandRuleInterfaceTypeCellular")]
     pub const Cellular: Self = Self(3);
 }
@@ -7162,13 +7846,20 @@ unsafe impl RefEncode for NEOnDemandRuleInterfaceType {
 }
 
 extern_class!(
+    /// A base class shared by all VPN On Demand rules.
+    ///
+    /// ## Overview
+    ///
+    /// Each rule is defined by a single action and a set of optional matching conditions. The action defines how the system should trigger the VPN when the conditions are met, such as connecting automatically for all connections, connecting conditionally, or disconnecting. The optional conditions describe parameters of a network. Some common rules include disconnecting the VPN on a trusted, internal network, and triggering on all other networks. When rules are defined in an array, they are evaluated in order and the action of the first rule to match all conditions is chosen.
+    ///
+    /// Instances of the `NEOnDemandRule` class should be created through one of its subclasses: [`NEOnDemandRuleConnect`](https://developer.apple.com/documentation/networkextension/neondemandruleconnect), [`NEOnDemandRuleDisconnect`](https://developer.apple.com/documentation/networkextension/neondemandruledisconnect), [`NEOnDemandRuleEvaluateConnection`](https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection), or [`NEOnDemandRuleIgnore`](https://developer.apple.com/documentation/networkextension/neondemandruleignore).
+    ///
+    ///
     /// The NEOnDemandRule class declares the programmatic interface for an object that defines an On Demand rule.
     ///
     /// NEOnDemandRule is an abstract base class from which other action-specific rule classes are derived.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRule;
@@ -7284,13 +7975,18 @@ impl NEOnDemandRule {
 }
 
 extern_class!(
+    /// A VPN On Demand rule that connects the VPN.
+    ///
+    /// ## Overview
+    ///
+    /// When rules of this class match, the system starts the VPN connection whenever an application running on the system opens a network connection.
+    ///
+    ///
     /// The NEOnDemandRuleConnect class declares the programmatic interface for an object that defines an On Demand rule with the "Connect" action.
     ///
     /// When rules of this class match, the VPN connection is started whenever an application running on the system opens a network connection.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleconnect?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleConnect;
@@ -7334,13 +8030,18 @@ impl NEOnDemandRuleConnect {
 }
 
 extern_class!(
+    /// A VPN On Demand rule that disconnects the VPN.
+    ///
+    /// ## Overview
+    ///
+    /// When rules of this class match, the VPN connection is not started, and the VPN connection is disconnected if it is not already disconnected.
+    ///
+    ///
     /// The NEOnDemandRuleDisconnect class declares the programmatic interface for an object that defines an On Demand rule with the "Disconnect" action.
     ///
     /// When rules of this class match, the VPN connection is not started, and the VPN connection is disconnected if it is not currently disconnected.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruledisconnect?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleDisconnect;
@@ -7384,13 +8085,18 @@ impl NEOnDemandRuleDisconnect {
 }
 
 extern_class!(
+    /// A VPN On Demand rule that doesn’t change the status of the VPN.
+    ///
+    /// ## Overview
+    ///
+    /// When rules of this class match, the VPN connection is not started, and the current status of the VPN connection is left unchanged.
+    ///
+    ///
     /// The NEOnDemandRuleIgnore class declares the programmatic interface for an object that defines an On Demand rule with the "Ignore" action.
     ///
     /// When rules of this class match, the VPN connection is not started, and the current status of the VPN connection is left unchanged.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleignore?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleIgnore;
@@ -7434,13 +8140,18 @@ impl NEOnDemandRuleIgnore {
 }
 
 extern_class!(
+    /// A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.
+    ///
+    /// ## Overview
+    ///
+    /// When rules of this class match, the properties of the network connection being established are matched against a set of connection rules. The action of the matched rule (if any) is used to determine whether or not the VPN will be started.
+    ///
+    ///
     /// The NEOnDemandRuleEvaluateConnection class declares the programmatic interface for an object that defines an On Demand rule with the "Evaluate Connection" action.
     ///
     /// When rules of this class match, the properties of the network connection being established are matched against a set of connection rules. The action of the matched rule (if any) is used to determine whether or not the VPN will be started.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection?language=objc)
     #[unsafe(super(NEOnDemandRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEOnDemandRuleEvaluateConnection;
@@ -7500,17 +8211,15 @@ impl NEOnDemandRuleEvaluateConnection {
 }
 
 /// Evaluate Connection rule actions
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEEvaluateConnectionRuleAction(pub NSInteger);
 impl NEEvaluateConnectionRuleAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction/connectifneeded?language=objc)
+    /// Start the VPN if connections to the matching hostname cannot be resolved.
     #[doc(alias = "NEEvaluateConnectionRuleActionConnectIfNeeded")]
     pub const ConnectIfNeeded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionruleaction/neverconnect?language=objc)
+    /// Do not start the VPN.
     #[doc(alias = "NEEvaluateConnectionRuleActionNeverConnect")]
     pub const NeverConnect: Self = Self(2);
 }
@@ -7524,11 +8233,10 @@ unsafe impl RefEncode for NEEvaluateConnectionRuleAction {
 }
 
 extern_class!(
+    /// `NEEvaluateConnectionRule` associates properties of network connections with an action.
     /// The NEEvaluateConnectionRule class declares the programmatic interface for an object that associates properties of network connections with an action.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neevaluateconnectionrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEEvaluateConnectionRule;
@@ -7615,14 +8323,13 @@ impl NEEvaluateConnectionRule {
 }
 
 extern_class!(
+    /// A network packet and its associated properties.
     /// An NEPacket object represents the data, protocol family, and metadata associated with an IP packet.
     /// These packets are used to read and write on an NEPacketTunnelFlow.
     ///
     /// NEPacket is part of NetworkExtension.framework
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepacket?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPacket;
@@ -7703,13 +8410,18 @@ impl NEPacket {
 }
 
 extern_class!(
+    /// An object you use to read and write packets to and from the tunnel’s virtual interface.
+    ///
+    /// ## Overview
+    ///
+    /// Use the `NEPacketTunnelFlow` class to implement a custom-IP tunneling protocol for your packet tunnel. For example, use the APIs in this class to read packets from the virtual interface, so you can then encapsulate these packets and send them to a packet-tunnel server. Likewise, read packets from your packet-tunnel server and use these APIs to write the packets back to the tunnel’s virtual interface.
+    ///
+    ///
     /// The NEPacketTunnelFlow class declares the programmatic interface of an object that is used by NEPacketTunnelProvider implementations to tunnel IP packets.
     ///
     /// NEPacketTunnelFlow is part of NetworkExtension.framework
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepackettunnelflow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPacketTunnelFlow;
@@ -7781,12 +8493,17 @@ impl NEPacketTunnelFlow {
 }
 
 extern_class!(
+    /// A single relay server configuration that you can chain together with other relays.
+    ///
+    /// ## Overview
+    ///
+    /// Relay servers are secure HTTP proxies that allow proxying TCP traffic using the `CONNECT` method and UDP traffic using the `connect-udp` protocol defined in [RFC 9298](https://www.rfc-editor.org/rfc/rfc9298.html).
+    ///
+    ///
     /// The NERelay class declares the programmatic interface of an object that
     /// manages the details of a relay's configuration, such as authentication and URL details.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelay?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NERelay;
@@ -7950,24 +8667,23 @@ impl NERelay {
     );
 }
 
+/// Error codes specific to relay managers.
 /// NERelay Manager error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NERelayManagerError(pub NSInteger);
 impl NERelayManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationinvalid?language=objc)
+    /// An error code that indicates the relay manager is invalid.
     #[doc(alias = "NERelayManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationdisabled?language=objc)
+    /// An error code that indicates the relay manager isn’t enabled.
     #[doc(alias = "NERelayManagerErrorConfigurationDisabled")]
     pub const ConfigurationDisabled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationstale?language=objc)
+    /// An error code that indicates the relay manager isn’t loaded.
     #[doc(alias = "NERelayManagerErrorConfigurationStale")]
     pub const ConfigurationStale: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagererror/configurationcannotberemoved?language=objc)
+    /// An error code that indicates removing the relay manager failed.
     #[doc(alias = "NERelayManagerErrorConfigurationCannotBeRemoved")]
     pub const ConfigurationCannotBeRemoved: Self = Self(4);
 }
@@ -7981,46 +8697,40 @@ unsafe impl RefEncode for NERelayManagerError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayerrordomain?language=objc)
+    /// The domain for errors resulting from calls to the relay manager.
+    ///
+    /// ## Discussion
+    ///
+    /// Match this constant to the [`domain`](https://developer.apple.com/documentation/foundation/nserror/domain) of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) encountered when calling methods on [`NERelayManager`](https://developer.apple.com/documentation/networkextension/nerelaymanager). The [`NERelayManagerError`](https://developer.apple.com/documentation/networkextension/nerelaymanagererror) enumeration defines possible [`code`](https://developer.apple.com/documentation/foundation/nserror/code) values for these errors.
+    ///
+    ///
     pub static NERelayErrorDomain: &'static NSString;
 }
 
 /// NERelay Manager error codes detected by the client while trying to use this relay
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NERelayManagerClientError(pub NSInteger);
 impl NERelayManagerClientError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/none?language=objc)
     #[doc(alias = "NERelayManagerClientErrorNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/dnsfailed?language=objc)
     #[doc(alias = "NERelayManagerClientErrorDNSFailed")]
     pub const DNSFailed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/serverunreachable?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerUnreachable")]
     pub const ServerUnreachable: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/serverdisconnected?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerDisconnected")]
     pub const ServerDisconnected: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/certificatemissing?language=objc)
     #[doc(alias = "NERelayManagerClientErrorCertificateMissing")]
     pub const CertificateMissing: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/certificateinvalid?language=objc)
     #[doc(alias = "NERelayManagerClientErrorCertificateInvalid")]
     pub const CertificateInvalid: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/certificateexpired?language=objc)
     #[doc(alias = "NERelayManagerClientErrorCertificateExpired")]
     pub const CertificateExpired: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/servercertificateinvalid?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerCertificateInvalid")]
     pub const ServerCertificateInvalid: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/servercertificateexpired?language=objc)
     #[doc(alias = "NERelayManagerClientErrorServerCertificateExpired")]
     pub const ServerCertificateExpired: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanagerclienterror/other?language=objc)
     #[doc(alias = "NERelayManagerClientErrorOther")]
     pub const Other: Self = Self(10);
 }
@@ -8034,23 +8744,26 @@ unsafe impl RefEncode for NERelayManagerClientError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayclienterrordomain?language=objc)
     pub static NERelayClientErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelayconfigurationdidchangenotification?language=objc)
     pub static NERelayConfigurationDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object you use to create and manage a network relay configuration.
+    ///
+    /// ## Overview
+    ///
+    /// When your app starts up, access the shared instance of the relay manager, and load existing settings from the preferences using [`loadFromPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nerelaymanager/loadfrompreferences(completionhandler:)). You can define your relay server configuration, and persist it by calling [`saveToPreferencesWithCompletionHandler:`](https://developer.apple.com/documentation/networkextension/nerelaymanager/savetopreferences(completionhandler:)).
+    ///
+    ///
     /// The NERelayManager class declares the programmatic interface for an object that manages relay configurations.
     ///
     /// NERelayManager declares methods and properties for configuring and controlling relay settings on the system.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nerelaymanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NERelayManager;
@@ -8254,11 +8967,10 @@ impl NERelayManager {
 }
 
 extern_class!(
+    /// An object that configures and controls transparent proxies.
     /// The NETransparentProxyManager class declares the programmatic interface for an object that is used to configure and control transparent proxies provided by NEAppProxyProviders.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxymanager?language=objc)
     #[unsafe(super(NEVPNManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETransparentProxyManager;
@@ -8298,13 +9010,18 @@ impl NETransparentProxyManager {
 }
 
 extern_class!(
+    /// A specification of what traffic to route through a transparent proxy.
+    ///
+    /// ## Overview
+    ///
+    /// A proxy network settings object contains two properties: an array of rules to include traffic ([`includedNetworkRules`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules)) and an array of rules to exclude traffic ([`excludedNetworkRules`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/excludednetworkrules)). The exclusion rules take prirority. Therefore, if a given flow matches any of the [`excludedNetworkRules`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/excludednetworkrules), evaluation ends and the flow doesn’t route to the proxy. If there’s no match, then evaluation continues and attempts to match the flow against the [`includedNetworkRules`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules).
+    ///
+    ///
     /// The NETransparentProxyNetworkSettings class declares the programmatic interface for an object that contains network settings.
     ///
     /// NETransparentProxyNetworkSettings is used by NEAppProxyProviders to communicate the desired network settings for the proxy to the framework. The framework takes care of applying the contained settings to the system.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings?language=objc)
     #[unsafe(super(NETunnelNetworkSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETransparentProxyNetworkSettings;
@@ -8407,6 +9124,19 @@ impl NETransparentProxyNetworkSettings {
 }
 
 extern_class!(
+    /// An object that implements the client side of a custom transparent network proxy solution.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NETransparentProxyProvider`](https://developer.apple.com/documentation/networkextension/netransparentproxyprovider) class has the following behavior differences from its superclass [`NEAppProxyProvider`](https://developer.apple.com/documentation/networkextension/neappproxyprovider):
+    ///
+    /// - Returning `NO` from [`handleNewFlow:`](https://developer.apple.com/documentation/networkextension/neappproxyprovider/handlenewflow(_:)) and [`handleNewUDPFlow:initialRemoteEndpoint:`](https://developer.apple.com/documentation/networkextension/neappproxyprovider/handlenewudpflow(_:initialremoteendpoint:)) causes the flow to proceed to communicate directly with the flow’s ultimate destination, instead of closing the flow with a “Connection Refused” error.
+    ///
+    /// - This provider ignores [`NEDNSSettings`](https://developer.apple.com/documentation/networkextension/nednssettings) and [`NEProxySettings`](https://developer.apple.com/documentation/networkextension/neproxysettings) specified within [`NETransparentProxyNetworkSettings`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings). Flows that match the [`includedNetworkRules`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules) within [`NETransparentProxyNetworkSettings`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings) use the same DNS and proxy settings that other flows on the system currently use.
+    ///
+    /// - Flows that are created using a “connect by name” API (such as [`Network`](https://developer.apple.com/documentation/network) framework or [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession)) that match the [`includedNetworkRules`](https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules) don’t bypass DNS resolution.
+    ///
+    ///
     /// The NETransparentProxyProvider class declares the programmatic interface for an object that implements the client side of a custom transparent network proxy solution.
     /// The NETransparentProxyProvider class has the following behavior differences from its super class NEAppProxyProvider:
     /// - Returning NO from handleNewFlow: and handleNewUDPFlow:initialRemoteEndpoint: causes the flow to proceed to communicate directly with the flow's ultimate destination, instead of closing the flow with a "Connection Refused" error.
@@ -8414,8 +9144,6 @@ extern_class!(
     /// - Flows that are created using a "connect by name" API (such as Network.framework or NSURLSession) that match the includedNetworkRules will not bypass DNS resolution.
     ///
     /// NETransparentProxyProvider is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netransparentproxyprovider?language=objc)
     #[unsafe(super(NEAppProxyProvider, NETunnelProvider, NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETransparentProxyProvider;
@@ -8442,30 +9170,35 @@ impl NETransparentProxyProvider {
     );
 }
 
-/// VPN status codes
+/// The possible states of a VPN connection.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus?language=objc)
+/// ## Overview
+///
+/// After the VPN transitions from the [`NEVPNStatusDisconnected`](https://developer.apple.com/documentation/networkextension/nevpnstatus/disconnected) to the [`NEVPNStatusDisconnecting`](https://developer.apple.com/documentation/networkextension/nevpnstatus/disconnecting) state, the system doesn’t close TCP connections, but ignores packets to and from established network connections. When the VPN transitions to another state — for example, from a Wi-Fi to a cellular network — the system ignores network traffic and the VPN client typically reconnects to the VPN server.
+///
+///
+/// VPN status codes
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNStatus(pub NSInteger);
 impl NEVPNStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/invalid?language=objc)
+    /// The associated VPN configuration doesn’t exist in the Network Extension preferences or isn’t enabled.
     #[doc(alias = "NEVPNStatusInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/disconnected?language=objc)
+    /// The VPN is disconnected.
     #[doc(alias = "NEVPNStatusDisconnected")]
     pub const Disconnected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/connecting?language=objc)
+    /// The VPN is in the process of connecting.
     #[doc(alias = "NEVPNStatusConnecting")]
     pub const Connecting: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/connected?language=objc)
+    /// The VPN is connected.
     #[doc(alias = "NEVPNStatusConnected")]
     pub const Connected: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/reasserting?language=objc)
+    /// The VPN is in the process of reconnecting.
     #[doc(alias = "NEVPNStatusReasserting")]
     pub const Reasserting: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus/disconnecting?language=objc)
+    /// The VPN is in the process of disconnecting.
     #[doc(alias = "NEVPNStatusDisconnecting")]
     pub const Disconnecting: Self = Self(5);
 }
@@ -8479,85 +9212,81 @@ unsafe impl RefEncode for NEVPNStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatusdidchangenotification?language=objc)
+    /// Posted when the status of the VPN connection changes.
     pub static NEVPNStatusDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionusername?language=objc)
     pub static NEVPNConnectionStartOptionUsername: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionstartoptionpassword?language=objc)
     pub static NEVPNConnectionStartOptionPassword: &'static NSString;
 }
 
+/// Error codes specific to VPN connections.
 /// VPN error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNConnectionError(pub NSInteger);
 impl NEVPNConnectionError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/overslept?language=objc)
+    /// An error code that indicates the system slept for an extended period of time, causing the VPN connection to terminate.
     #[doc(alias = "NEVPNConnectionErrorOverslept")]
     pub const Overslept: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/nonetworkavailable?language=objc)
+    /// An error code that indicates the VPN connection failed because the system isn’t connected to a network.
     #[doc(alias = "NEVPNConnectionErrorNoNetworkAvailable")]
     pub const NoNetworkAvailable: Self = Self(2);
+    /// An error code that indicates network conditions changed such that the VPN connection needed to terminate.
     /// way that the VPN connection could not be maintained.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/unrecoverablenetworkchange?language=objc)
     #[doc(alias = "NEVPNConnectionErrorUnrecoverableNetworkChange")]
     pub const UnrecoverableNetworkChange: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/configurationfailed?language=objc)
+    /// An error code that indicates the VPN connection failed because the configuration is invalid.
     #[doc(alias = "NEVPNConnectionErrorConfigurationFailed")]
     pub const ConfigurationFailed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/serveraddressresolutionfailed?language=objc)
+    /// An error code that indicates the VPN connection failed because the system couldn’t determine the VPN server address.
     #[doc(alias = "NEVPNConnectionErrorServerAddressResolutionFailed")]
     pub const ServerAddressResolutionFailed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servernotresponding?language=objc)
+    /// An error code that indicates the VPN connection failed because the VPN server isn’t responding.
     #[doc(alias = "NEVPNConnectionErrorServerNotResponding")]
     pub const ServerNotResponding: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/serverdead?language=objc)
+    /// An error code that indicates the VPN connection failed because the VPN server has stopped responding.
     #[doc(alias = "NEVPNConnectionErrorServerDead")]
     pub const ServerDead: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/authenticationfailed?language=objc)
+    /// An error code that indicates the VPN connection failed because the VPN server rejected the user credentials.
     #[doc(alias = "NEVPNConnectionErrorAuthenticationFailed")]
     pub const AuthenticationFailed: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/clientcertificateinvalid?language=objc)
+    /// An error code that indicates the client certfiicate is invalid.
     #[doc(alias = "NEVPNConnectionErrorClientCertificateInvalid")]
     pub const ClientCertificateInvalid: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/clientcertificatenotyetvalid?language=objc)
+    /// An error code that indicates the client certfiicate won’t be valid until some time in the future.
     #[doc(alias = "NEVPNConnectionErrorClientCertificateNotYetValid")]
     pub const ClientCertificateNotYetValid: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/clientcertificateexpired?language=objc)
+    /// An error code that indicates the client certfiicate’s validity period has passed.
     #[doc(alias = "NEVPNConnectionErrorClientCertificateExpired")]
     pub const ClientCertificateExpired: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/pluginfailed?language=objc)
+    /// An error code that indicates the VPN plugin failed unexpectedly.
     #[doc(alias = "NEVPNConnectionErrorPluginFailed")]
     pub const PluginFailed: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/configurationnotfound?language=objc)
+    /// An error code that indicates the VPN connection failed because the system couldn’t find a configuration.
     #[doc(alias = "NEVPNConnectionErrorConfigurationNotFound")]
     pub const ConfigurationNotFound: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/plugindisabled?language=objc)
+    /// An error code that indicates the VPN plugin isn’t available or needs an update.
     #[doc(alias = "NEVPNConnectionErrorPluginDisabled")]
     pub const PluginDisabled: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/negotiationfailed?language=objc)
+    /// An error code that indicates the VPN connection failed because the negotiation failed.
     #[doc(alias = "NEVPNConnectionErrorNegotiationFailed")]
     pub const NegotiationFailed: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/serverdisconnected?language=objc)
+    /// An error code that indicates the VPN connection failed because the VPN server terminated the connection.
     #[doc(alias = "NEVPNConnectionErrorServerDisconnected")]
     pub const ServerDisconnected: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servercertificateinvalid?language=objc)
+    /// An error code that indicates the server certfiicate is invalid.
     #[doc(alias = "NEVPNConnectionErrorServerCertificateInvalid")]
     pub const ServerCertificateInvalid: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servercertificatenotyetvalid?language=objc)
+    /// An error code that indicates the server certfiicate won’t be valid until some time in the future.
     #[doc(alias = "NEVPNConnectionErrorServerCertificateNotYetValid")]
     pub const ServerCertificateNotYetValid: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerror/servercertificateexpired?language=objc)
+    /// An error code that indicates the server certfiicate’s validity period has passed.
     #[doc(alias = "NEVPNConnectionErrorServerCertificateExpired")]
     pub const ServerCertificateExpired: Self = Self(19);
 }
@@ -8571,16 +9300,31 @@ unsafe impl RefEncode for NEVPNConnectionError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnectionerrordomain?language=objc)
+    /// The domain for errors resulting from VPN connection calls.
+    ///
+    /// ## Discussion
+    ///
+    /// Match this constant to the [`domain`](https://developer.apple.com/documentation/foundation/nserror/domain) of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) encountered when calling methods on [`NEVPNConnection`](https://developer.apple.com/documentation/networkextension/nevpnconnection). The [`NEDNSSettingsManagerError`](https://developer.apple.com/documentation/networkextension/nednssettingsmanagererror) enumeration defines possible [`code`](https://developer.apple.com/documentation/foundation/nserror/code) values for these errors.
+    ///
+    ///
     pub static NEVPNConnectionErrorDomain: &'static NSString;
 }
 
 extern_class!(
-    /// The NEVPNConnection class declares the programmatic interface for an object that manages VPN connections.
+    /// An object to start and stop a Personal VPN connection and get its status.
+    ///
+    /// ## Overview
+    ///
+    /// [`NEVPNConnection`](https://developer.apple.com/documentation/networkextension/nevpnconnection) objects are not instantiated directly. Instead, each `NEVPNManager` object has an associated [`NEVPNConnection`](https://developer.apple.com/documentation/networkextension/nevpnconnection) object as a read-only property.
+    ///
+    /// The [`NEVPNConnection`](https://developer.apple.com/documentation/networkextension/nevpnconnection) class provides methods for starting and stopping the VPN programmatically. The other way that the VPN can be started and stopped is through VPN On Demand. See the `onDemandRules` property in [`NEVPNManager`](https://developer.apple.com/documentation/networkextension/nevpnmanager) and [`NEOnDemandRule`](https://developer.apple.com/documentation/networkextension/neondemandrule).
     ///
     /// Instances of this class are thread safe.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnconnection?language=objc)
+    ///
+    /// The NEVPNConnection class declares the programmatic interface for an object that manages VPN connections.
+    ///
+    /// Instances of this class are thread safe.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNConnection;
@@ -8673,11 +9417,18 @@ impl NEVPNConnection {
 }
 
 extern_class!(
+    /// An object to start and stop a tunnel connection and get its status.
+    ///
+    /// ## Overview
+    ///
+    /// `NETunnelProviderSession` objects control network tunnel connections provided by Tunnel Provider extensions.
+    ///
+    /// `NETunnelProviderSession` objects are not instantiated directly. Instead, each [`NETunnelProviderManager`](https://developer.apple.com/documentation/networkextension/netunnelprovidermanager) object has an associated `NETunnelProviderSession` as a read-only property.
+    ///
+    ///
     /// This file declares the NETunnelProviderSession API. The NETunnelProviderSession API is used to control network tunnel services provided by NETunnelProvider implementations.
     ///
     /// This API is part of NetworkExtension.framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidersession?language=objc)
     #[unsafe(super(NEVPNConnection, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETunnelProviderSession;
@@ -8751,11 +9502,16 @@ impl NETunnelProviderSession {
 }
 
 extern_class!(
+    /// Configuration parameters for a VPN tunnel.
+    ///
+    /// ## Overview
+    ///
+    /// `NETunnelProviderProtocol` objects are used to specify configuration parameters for Tunnel Provider extensions.
+    ///
+    ///
     /// The NETunnelProviderProtocol class declares the programmatic interface for an object that contains NETunnelProvider-specific configuration settings.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelproviderprotocol?language=objc)
     #[unsafe(super(NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NETunnelProviderProtocol;
@@ -8835,20 +9591,19 @@ impl NETunnelProviderProtocol {
 }
 
 /// Internet Key Exchange (IKE) authentication methods used to authenticate with the IPSec server.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod?language=objc)
+/// Internet Key Exchange (IKE) authentication methods used to authenticate with the IPSec server.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEAuthenticationMethod(pub NSInteger);
 impl NEVPNIKEAuthenticationMethod {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod/none?language=objc)
+    /// Do not authenticate with the IPSec server. Note that extended authentication may still be performed if the [`useExtendedAuthentication`](https://developer.apple.com/documentation/networkextension/nevpnprotocolipsec/useextendedauthentication) property is set. This value is only valid for IKE version 2 (IKEv2)
     #[doc(alias = "NEVPNIKEAuthenticationMethodNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod/certificate?language=objc)
+    /// Use a certificate and private key as the authentication credential. The certificate and private key set in the [`identityReference`](https://developer.apple.com/documentation/networkextension/nevpnprotocol/identityreference) or [`identityData`](https://developer.apple.com/documentation/networkextension/nevpnprotocol/identitydata) property will be used.
     #[doc(alias = "NEVPNIKEAuthenticationMethodCertificate")]
     pub const Certificate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod/sharedsecret?language=objc)
+    /// Use a shared secret as the authentication credential. The shared secret set in the [`sharedSecretReference`](https://developer.apple.com/documentation/networkextension/nevpnprotocolipsec/sharedsecretreference) property will be used.
     #[doc(alias = "NEVPNIKEAuthenticationMethodSharedSecret")]
     pub const SharedSecret: Self = Self(2);
 }
@@ -8862,11 +9617,16 @@ unsafe impl RefEncode for NEVPNIKEAuthenticationMethod {
 }
 
 extern_class!(
+    /// Settings for an IPsec VPN configuration.
+    ///
+    /// ## Overview
+    ///
+    /// To configure IKE version 2 (IKEv2), use the [`NEVPNProtocolIKEv2`](https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2) subclass. Instantiating [`NEVPNProtocolIPSec`](https://developer.apple.com/documentation/networkextension/nevpnprotocolipsec) directly implies IKE version 1.
+    ///
+    ///
     /// The NEVPNProtocolIPSec class declares the programmatic interface of an object that manages the IPSec-specific portion of a VPN configuration.
     ///
     /// Instances of this class use IKE version 1 for key negotiation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocolipsec?language=objc)
     #[unsafe(super(NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNProtocolIPSec;
@@ -8970,37 +9730,36 @@ impl NEVPNProtocolIPSec {
     );
 }
 
+/// An enumeration of encryption algorithm values.
 /// IKEv2 Encryption Algorithms
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
 impl NEVPNIKEv2EncryptionAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmdes?language=objc)
+    /// Data Encryption Standard (DES)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
     #[deprecated = "DES is not supported"]
     pub const AlgorithmDES: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithm3des?language=objc)
+    /// Triple Data Encryption Algorithm (aka 3DES)
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithm3DES")]
     #[deprecated = "3DES is not supported"]
     pub const Algorithm3DES: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes128?language=objc)
+    /// Advanced Encryption Standard 256-bit (AES256).
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmAES128: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes256?language=objc)
+    /// Advanced Encryption Standard 256 bit (AES256).
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256")]
     pub const AlgorithmAES256: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes128gcm?language=objc)
+    /// Advanced Encryption Standard 128-bit Galois/Counter Mode (AES128GCM).
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128GCM")]
     #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
     pub const AlgorithmAES128GCM: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmaes256gcm?language=objc)
+    /// Advanced Encryption Standard 256-bit Galois/Counter Mode (AES256GCM).
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256GCM")]
     pub const AlgorithmAES256GCM: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm/algorithmchacha20poly1305?language=objc)
+    /// ChaCha20 and Poly1305 (ChaCha20Poly1305).
     #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmChaCha20Poly1305")]
     pub const AlgorithmChaCha20Poly1305: Self = Self(7);
 }
@@ -9014,28 +9773,26 @@ unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
 }
 
 /// IKEv2 Integrity Algorithms
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2IntegrityAlgorithm(pub NSInteger);
 impl NEVPNIKEv2IntegrityAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha96?language=objc)
+    /// SHA-1 96-bit.
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA96")]
     #[deprecated = "SHA-1 is not supported"]
     pub const SHA96: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha160?language=objc)
+    /// SHA-1 160-bit.
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA160")]
     #[deprecated = "SHA-1 is not supported"]
     pub const SHA160: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha256?language=objc)
+    /// SHA-2 256-bit.
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA256")]
     pub const SHA256: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha384?language=objc)
+    /// SHA-2 384-bit.
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA384")]
     pub const SHA384: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm/sha512?language=objc)
+    /// SHA-2 512-bit.
     #[doc(alias = "NEVPNIKEv2IntegrityAlgorithmSHA512")]
     pub const SHA512: Self = Self(5);
 }
@@ -9048,24 +9805,23 @@ unsafe impl RefEncode for NEVPNIKEv2IntegrityAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration of values for the frequency at which the IKEv2 client runs the dead peer detection algorithm.
 /// IKEv2 Dead Peer Detection Rates
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DeadPeerDetectionRate(pub NSInteger);
 impl NEVPNIKEv2DeadPeerDetectionRate {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/none?language=objc)
+    /// Do not perform dead peer detection.
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/low?language=objc)
+    /// Run dead peer detection once every 30 minutes. If the peer does not respond, retry 5 times at 1 second intervals before declaring the peer dead and terminating the session.
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateLow")]
     pub const Low: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/medium?language=objc)
+    /// Run dead peer detection once every 10 minutes. If the peer does not respond, retry 5 times at 1 second intervals before declaring the peer dead and terminating the session.
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate/high?language=objc)
+    /// Run dead peer detection once every 1 minute. If the peer does not respond, retry 5 times at 1 second intervals before declaring the peer dead and terminating the session.
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateHigh")]
     pub const High: Self = Self(3);
 }
@@ -9078,57 +9834,56 @@ unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration of Diffie-Hellman group values.
 /// IKEv2 Diffie Hellman groups
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
 impl NEVPNIKEv2DiffieHellmanGroup {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/groupinvalid?language=objc)
+    /// A value indicating the group is not a valid Diffie-Hellman group.
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
     pub const GroupInvalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group1?language=objc)
+    /// Diffie Hellman group 1 (768-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group2?language=objc)
+    /// Diffie Hellman group 2 (1024-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group5?language=objc)
+    /// Diffie Hellman group 5 (1536-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
     #[deprecated = "Diffie Hellman groups less than 14 are not supported"]
     pub const Group5: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group14?language=objc)
+    /// Diffie Hellman group 14 (2048-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
     pub const Group14: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group15?language=objc)
+    /// Diffie Hellman group 15 (3072-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup15")]
     pub const Group15: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group16?language=objc)
+    /// Diffie Hellman group 16 (4096-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup16")]
     pub const Group16: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group17?language=objc)
+    /// Diffie Hellman group 17 (6144-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup17")]
     pub const Group17: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group18?language=objc)
+    /// Diffie Hellman group 18 (8192-bit modular exponential [MODP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup18")]
     pub const Group18: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group19?language=objc)
+    /// Diffie Hellman group 19 (256-bit random elliptic curve group over GF[P] [ECP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup19")]
     pub const Group19: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group20?language=objc)
+    /// Diffie Hellman group 20 (384-bit random elliptic curve group over GF[P] [ECP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup20")]
     pub const Group20: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group21?language=objc)
+    /// Diffie Hellman group 21 (521-bit random elliptic curve group over GF[P] [ECP]).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup21")]
     pub const Group21: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group31?language=objc)
+    /// Diffie Hellman group 31 (Curve 25519).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup31")]
     pub const Group31: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup/group32?language=objc)
+    /// Diffie Hellman group 32 (Curve 448).
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup32")]
     pub const Group32: Self = Self(32);
 }
@@ -9141,21 +9896,20 @@ unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Quantum-secure key exchange methods you use with IKEv2 servers.
 /// IKEv2 post-quantum key exchange methods
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2PostQuantumKeyExchangeMethod(pub NSInteger);
 impl NEVPNIKEv2PostQuantumKeyExchangeMethod {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod/methodnone?language=objc)
+    /// Instructs the server not to use a quantum-secure key exchange method.
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethodNone")]
     pub const MethodNone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod/method36?language=objc)
+    /// Instructs the server to use the ML-KEM-768 key exchange method.
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod36")]
     pub const Method36: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod/method37?language=objc)
+    /// Instructs the server to use the ML-KEM-1024 key exchange method.
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethod37")]
     pub const Method37: Self = Self(37);
 }
@@ -9168,30 +9922,29 @@ unsafe impl RefEncode for NEVPNIKEv2PostQuantumKeyExchangeMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration of certificate type values.
 /// IKEv2 Certificate types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEVPNIKEv2CertificateType(pub NSInteger);
 impl NEVPNIKEv2CertificateType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/rsa?language=objc)
+    /// The RSA certificate type.
     #[doc(alias = "NEVPNIKEv2CertificateTypeRSA")]
     pub const RSA: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ecdsa256?language=objc)
+    /// The ECDSA with p-256 curve certificate type.
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA256")]
     pub const ECDSA256: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ecdsa384?language=objc)
+    /// The ECDSA with p-384 curve certificate type.
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA384")]
     pub const ECDSA384: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ecdsa521?language=objc)
+    /// The ECDSA with p-521 curve certificate type.
     #[doc(alias = "NEVPNIKEv2CertificateTypeECDSA521")]
     pub const ECDSA521: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/ed25519?language=objc)
+    /// The Edwards 25519 curve certificate type.
     #[doc(alias = "NEVPNIKEv2CertificateTypeEd25519")]
     pub const Ed25519: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2certificatetype/rsapss?language=objc)
+    /// The RSA-PSS certificate type.
     #[doc(alias = "NEVPNIKEv2CertificateTypeRSAPSS")]
     pub const RSAPSS: Self = Self(6);
 }
@@ -9204,24 +9957,23 @@ unsafe impl RefEncode for NEVPNIKEv2CertificateType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration of TLS Versions for use in EAP-TLS.
 /// TLS Versions for use in EAP-TLS
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2TLSVersion(pub NSInteger);
 impl NEVPNIKEv2TLSVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/versiondefault?language=objc)
+    /// A value to use the default TLS configuration.
     #[doc(alias = "NEVPNIKEv2TLSVersionDefault")]
     pub const VersionDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/version1_0?language=objc)
+    /// A value to use TLS version 1.0.
     #[doc(alias = "NEVPNIKEv2TLSVersion1_0")]
     pub const Version1_0: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/version1_1?language=objc)
+    /// A value to use TLS version 1.1.
     #[doc(alias = "NEVPNIKEv2TLSVersion1_1")]
     pub const Version1_1: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion/version1_2?language=objc)
+    /// A value to use TLS version 1.2.
     #[doc(alias = "NEVPNIKEv2TLSVersion1_2")]
     pub const Version1_2: Self = Self(3);
 }
@@ -9235,11 +9987,10 @@ unsafe impl RefEncode for NEVPNIKEv2TLSVersion {
 }
 
 extern_class!(
+    /// Parameters for an IKEv2 Security Association.
     /// The NEVPNIKEv2SecurityAssociationParameters class declares the programmatic interface of an object that manages parameters for an IPSec Security Association
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2securityassociationparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNIKEv2SecurityAssociationParameters;
@@ -9349,12 +10100,17 @@ impl NEVPNIKEv2SecurityAssociationParameters {
 }
 
 extern_class!(
+    /// A class that manages parameters of a post-quantum pre-shared key (PPK).
+    ///
+    /// ## Discussion
+    ///
+    /// Instances of this class are thread safe. The class conforms to RFC 8784.
+    ///
+    ///
     /// The NEVPNIKEv2PPKConfiguration class declares the programmatic interface of an object that manages parameters for a Post-quantum Pre-shared Key (PPK)
     ///
     /// Instances of this class conform to RFC 8784.
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNIKEv2PPKConfiguration;
@@ -9423,12 +10179,17 @@ impl NEVPNIKEv2PPKConfiguration {
 }
 
 extern_class!(
+    /// Settings for an IKEv2 VPN configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class are thread safe.
+    ///
+    ///
     /// The NEVPNProtocolIKEv2 class declares the programmatic interface of an object that manages the IKEv2-specific portion of a VPN configuration.
     ///
     /// Instances of this class use IKE version 2 for key negotiation.
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2?language=objc)
     #[unsafe(super(NEVPNProtocolIPSec, NEVPNProtocol, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEVPNProtocolIKEv2;
@@ -9674,27 +10435,26 @@ impl NEVPNProtocolIKEv2 {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppusherrordomain?language=objc)
+    /// The error domain string for local push errors.
     pub static NEAppPushErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes that the local push API declares.
 /// App Push Manager error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppPushManagerError(pub NSInteger);
 impl NEAppPushManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/configurationinvalid?language=objc)
+    /// An error code that indicates the app push configuration is invalid.
     #[doc(alias = "NEAppPushManagerErrorConfigurationInvalid")]
     pub const ConfigurationInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/configurationnotloaded?language=objc)
+    /// An error code that indicates the manager hasn’t loaded the app push configuration.
     #[doc(alias = "NEAppPushManagerErrorConfigurationNotLoaded")]
     pub const ConfigurationNotLoaded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/internalerror?language=objc)
+    /// An error code that indicates an internal error in the local push connectivity framework.
     #[doc(alias = "NEAppPushManagerErrorInternalError")]
     pub const InternalError: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code/inactivesession?language=objc)
+    /// An error code that indicates an invalid attempt to perform an operation on an inactive session.
     #[doc(alias = "NEAppPushManagerErrorInactiveSession")]
     pub const InactiveSession: Self = Self(4);
 }
@@ -9708,9 +10468,14 @@ unsafe impl RefEncode for NEAppPushManagerError {
 }
 
 extern_class!(
-    /// The NEPrivateLTENetwork class declares an object that contains the parameters of a private LTE network.
+    /// The parameters of a private LTE network.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neprivateltenetwork?language=objc)
+    /// ## Overview
+    ///
+    /// Populate your manager’s [`matchPrivateLTENetworks`](https://developer.apple.com/documentation/networkextension/neapppushmanager/matchprivateltenetworks) with an array of objects of this type. The system starts the provider when the device’s current private LTE provider matches the properties of any member of the array.
+    ///
+    ///
+    /// The NEPrivateLTENetwork class declares an object that contains the parameters of a private LTE network.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEPrivateLTENetwork;
@@ -9790,13 +10555,18 @@ impl NEPrivateLTENetwork {
 }
 
 extern_class!(
+    /// An object that configures a push provider and manages its life cycle.
+    ///
+    /// ## Overview
+    ///
+    /// Your app can create as many [`NEAppPushManager`](https://developer.apple.com/documentation/networkextension/neapppushmanager) instances as you need. Load your managers from the persistent store and set up their delegates immediately after the app launches, so they’re ready to handle incoming calls.
+    ///
+    ///
     /// The NEAppPushManager class declares a programmatic interface to configure NEAppPushProvider.
     ///
     /// NEAppPushManager declares methods and properties for configuring and managing life cycle of app push provider.
     ///
     /// Instances of this class are thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppPushManager;
@@ -9986,9 +10756,8 @@ impl NEAppPushManager {
 }
 
 extern_protocol!(
+    /// A protocol that defines how an app push manager instance interacts with the framework.
     /// Delegate for NEAppPushManager.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushdelegate?language=objc)
     pub unsafe trait NEAppPushDelegate: NSObjectProtocol {
         /// This delegate method is called when the provider reports incoming call using reportIncomingCommunicationWithUserInfo method.
         ///
@@ -10008,11 +10777,41 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that creates and maintains a persistent network connection to a local push server.
+    ///
+    /// ## Overview
+    ///
+    /// Subclass [`NEAppPushProvider`](https://developer.apple.com/documentation/networkextension/neapppushprovider) to provide the connection to your local push server. A [`NEAppPushManager`](https://developer.apple.com/documentation/networkextension/neapppushmanager) creates instances of your provider class based on the [`providerBundleIdentifier`](https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier) in the manager’s configuration. The manager then calls methods on your provider to start and stop communication with the server, and periodically check the provider’s status. When your provider receives an incoming call from your server, call the provider’s [`reportIncomingCallWithUserInfo:`](https://developer.apple.com/documentation/networkextension/neapppushprovider/reportincomingcall(userinfo:)) method to alert the manager’s [`delegate`](https://developer.apple.com/documentation/networkextension/neapppushmanager/delegate).
+    ///
+    /// ### Creating a Local Push Provider Extension
+    ///
+    /// Local Push Providers run as App Extensions for the `app-push-provider` extension point, which is a possible value the [`Network Extensions Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.networkextension).
+    ///
+    /// To create a Local Push Provider extension, first create a new App Extension target in your project.
+    ///
+    /// For an example of an Xcode build target for this app extension, see the [Receiving Voice and Text Communications on a Local Network](https://developer.apple.com/documentation/networkextension/receiving-voice-and-text-communications-on-a-local-network) sample code project.
+    ///
+    /// Once you have an extension target, create a subclass of [`NEAppPushProvider`](https://developer.apple.com/documentation/networkextension/neapppushprovider). Then set the `NSExtensionPrincipalClass` key in the extension’s `Info.plist` to the name of your subclass. Set the `NSExtensionPointIdentifier` key in the extension’s `Info.plist` to `com.apple.networkextension.app-push`, if it’s not set already.
+    ///
+    /// Here’s an example of the `NSExtension` dictionary in a Local Push Provider extension’s `Info.plist`:
+    ///
+    /// ```xml
+    /// <key>NSExtension</key>
+    /// <dict>
+    ///     <key>NSExtensionPointIdentifier</key>
+    ///     <string>com.apple.networkextension.app-push</string>
+    ///     <key>NSExtensionPrincipalClass</key>
+    ///     <string>$(PRODUCT_MODULE_NAME).MyPushProvider</string>
+    /// </dict>
+    ///
+    /// ```
+    ///
+    /// Finally, add your Local Push Provider extension target to your app’s Embed App Extensions build phase.
+    ///
+    ///
     /// The NEAppPushProvider class declares a programmatic interface to manage a life cycle of app push provider. It also allows the provider to handle outgoing
     /// communication message from the containing app, and pass incoming call message to the containing app.
     /// NEAppPushProvider is part of NetworkExtension.framework
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushprovider?language=objc)
     #[unsafe(super(NEProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEAppPushProvider;
@@ -10114,9 +10913,14 @@ impl NEAppPushProvider {
 }
 
 extern_class!(
-    /// NWEndpoint is a generic class to represent network endpoints, such as a port on a remote server.
+    /// An abstract base class, shared by [`NWHostEndpoint`](https://developer.apple.com/documentation/networkextension/nwhostendpoint) or [`NWBonjourServiceEndpoint`](https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint), that represents the source or destination of a network connection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwendpoint?language=objc)
+    /// ## Overview
+    ///
+    /// All endpoint objects are static collections of parameters that describe a network resource. They do not directly provide any resolution services, but instead must be used with other classes to be resolved and create connections.
+    ///
+    ///
+    /// NWEndpoint is a generic class to represent network endpoints, such as a port on a remote server.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_endpoint_t in Network framework instead, see deprecation notice in <NetworkExtension/NWEndpoint.h>"]
@@ -10161,10 +10965,9 @@ impl NWEndpoint {
 }
 
 extern_class!(
+    /// A network endpoint specified by DNS name (or IP address) and port.
     /// NWHostEndpoint is a subclass of NWEndpoint. It represents an endpoint backed by a
     /// hostname and port. Note that a hostname string may be an IP or IPv6 address.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwhostendpoint?language=objc)
     #[unsafe(super(NWEndpoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
@@ -10234,12 +11037,17 @@ impl NWHostEndpoint {
 }
 
 extern_class!(
+    /// A network endpoint specified as a Bonjour service name, type, and domain.
+    ///
+    /// ## Overview
+    ///
+    /// For example, the Bonjour service `MyMusicStudio._music._tcp.local.` has the name `"MyMusicStudio"`, the type `"_music._tcp"`, and the domain `"local"`.
+    ///
+    ///
     /// NWBonjourServiceEndpoint is a subclass of NWEndpoint. It represents an endpoint
     /// backed by a Bonjour service, specified with a name, type, and domain. For example, the
     /// Bonjour service MyMusicStudio._music._tcp.local. has the name "MyMusicStudio",
     /// the type "_music._tcp", and the domain "local".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint?language=objc)
     #[unsafe(super(NWEndpoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
@@ -10318,29 +11126,26 @@ impl NWBonjourServiceEndpoint {
 }
 
 /// Path status values
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus?language=objc)
 // NS_ENUM
 #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWPathStatus(pub NSInteger);
 impl NWPathStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/invalid?language=objc)
+    /// The path cannot be evaluated.
     #[doc(alias = "NWPathStatusInvalid")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/satisfied?language=objc)
+    /// The path is ready to be used for network connections.
     #[doc(alias = "NWPathStatusSatisfied")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Satisfied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/unsatisfied?language=objc)
+    /// The path for network connections is not available, either due to lack of network connectivity or being prohibited by system policy.
     #[doc(alias = "NWPathStatusUnsatisfied")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Unsatisfied: Self = Self(2);
+    /// The path is not currently satisfied, but may become satisfied upon a connection attempt. This can be due to a service, such as a VPN or a cellular data connection not being activated.
     /// a connection attempt.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpathstatus/satisfiable?language=objc)
     #[doc(alias = "NWPathStatusSatisfiable")]
     #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
     pub const Satisfiable: Self = Self(3);
@@ -10355,11 +11160,20 @@ unsafe impl RefEncode for NWPathStatus {
 }
 
 extern_class!(
+    /// The path made by a network connection, including information about its viability.
+    ///
+    /// ## Overview
+    ///
+    /// For example, if the path status is [`NWPathStatusSatisfied`](https://developer.apple.com/documentation/networkextension/nwpathstatus/satisfied), then a connection attempt will be made.
+    ///
+    /// When attached to a specific connection, a path takes all of the connection parameters into account. For example, if the route for a connection changes or is removed, the path will reflect that change. Note that every path is evaluated within the context of the process it is running in, and may be different across processes.
+    ///
+    /// [`NWPath`](https://developer.apple.com/documentation/networkextension/nwpath) is a static object, and properties of the path will never change. To monitor changing network status, use Key-Value Observing (KVO) to watch a path property on another object. For information about KVO, see [Key-Value Observing Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i).
+    ///
+    ///
     /// A network path, represented with NWPath, expresses the viability status and
     /// properties of the path that a networking connection will take on the device. For example,
     /// if the path status is NWPathStatusSatisfied, then a connection could use that path.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpath?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
@@ -10414,45 +11228,40 @@ impl NWPath {
 }
 
 /// Defined connection states. New types may be defined in the future.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate?language=objc)
+/// Defined connection states. New types may be defined in the future.
 // NS_ENUM
 #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWTCPConnectionState(pub NSInteger);
 impl NWTCPConnectionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/invalid?language=objc)
+    /// The connection is in an invalid or uninitialized state.
     #[doc(alias = "NWTCPConnectionStateInvalid")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/connecting?language=objc)
+    /// The connection is attempting to connect. This includes endpoint resolution when applicable.
     #[doc(alias = "NWTCPConnectionStateConnecting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connecting: Self = Self(1);
+    /// The connection has attempted to connect but failed. It is now waiting for better conditions before trying again.
     /// waiting for better condition(s) before trying again.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/waiting?language=objc)
     #[doc(alias = "NWTCPConnectionStateWaiting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Waiting: Self = Self(2);
+    /// The connection is established. It is now possible to transfer data. If TLS is in use, the TLS handshake has finished.
     /// to transfer data. If TLS is in use, the TLS handshake would have finished when the connection
     /// is in this state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/connected?language=objc)
     #[doc(alias = "NWTCPConnectionStateConnected")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Connected: Self = Self(3);
+    /// The connection is disconnected. It is no longer possible to transfer data. The application should call `cancel` to clean up resources.
     /// possible to transfer data. The application should call cancellation method to clean up resources
     /// when the connection is in this state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/disconnected?language=objc)
     #[doc(alias = "NWTCPConnectionStateDisconnected")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Disconnected: Self = Self(4);
+    /// The connection has been cancelled by the client calling `cancel`.
     /// the cancellation method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionstate/cancelled?language=objc)
     #[doc(alias = "NWTCPConnectionStateCancelled")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub const Cancelled: Self = Self(5);
@@ -10467,9 +11276,8 @@ unsafe impl RefEncode for NWTCPConnectionState {
 }
 
 extern_class!(
+    /// An object to manage a TCP connection, with or without TLS.
     /// Establish TCP connections to an endpoint, and send and receive data on the TCP connection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
@@ -10675,9 +11483,14 @@ impl NWTCPConnection {
 }
 
 extern_protocol!(
-    /// Allows the caller to take custom actions on some connection events.
+    /// A delegate protocol to customize the TLS authentication done by a connection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnectionauthenticationdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// A delegate is not required for an [`NWTCPConnection`](https://developer.apple.com/documentation/networkextension/nwtcpconnection) object.
+    ///
+    ///
+    /// Allows the caller to take custom actions on some connection events.
     #[deprecated = "Use `sec_protocol_options_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
     pub unsafe trait NWTCPConnectionAuthenticationDelegate: NSObjectProtocol {
         /// The caller can implement this optional protocol method to decide whether it
@@ -10768,40 +11581,36 @@ extern_protocol!(
 );
 
 /// UDP session state values
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWUDPSessionState(pub NSInteger);
 impl NWUDPSessionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/invalid?language=objc)
+    /// The session is in an invalid or uninitialized state.
     #[doc(alias = "NWUDPSessionStateInvalid")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Invalid: Self = Self(0);
+    /// The session is waiting for better conditions before attempting to make the session ready.
     /// attempting to make the session ready.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/waiting?language=objc)
     #[doc(alias = "NWUDPSessionStateWaiting")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Waiting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/preparing?language=objc)
+    /// The remote endpoint is being resolved.
     #[doc(alias = "NWUDPSessionStatePreparing")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Preparing: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/ready?language=objc)
+    /// The session is ready for reading and writing data.
     #[doc(alias = "NWUDPSessionStateReady")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Ready: Self = Self(3);
+    /// None of the currently resolved endpoints can be used at this time, either due to problems with the path or the client rejecting the endpoints.
     /// at this time, either due to problems with the path or the client rejecting the
     /// endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/failed?language=objc)
     #[doc(alias = "NWUDPSessionStateFailed")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Failed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsessionstate/cancelled?language=objc)
+    /// The session has been cancelled by the client calling `cancel`.
     #[doc(alias = "NWUDPSessionStateCancelled")]
     #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
     pub const Cancelled: Self = Self(5);
@@ -10816,9 +11625,14 @@ unsafe impl RefEncode for NWUDPSessionState {
 }
 
 extern_class!(
-    /// Open UDP datagram sessions to an endpoint, and send and receive datagrams.
+    /// An object to manage a UDP session to a network endpoint.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsession?language=objc)
+    /// ## Overview
+    ///
+    /// Since UDP does not include a handshake with the remote endpoint as part of its protocol, it is up to the client of the UDP session to provide feedback on the viability of the current endpoint. If a session is opened to a hostname, the system will resolve that hostname into potentially several IP addresses. Once the session state is `NWUDPSessionStateReady`, the client should try to write and read datagrams. If there is no response from the remote endpoint, the client can try the next address that was resolved using `tryNextResolvedEndpoint`.
+    ///
+    ///
+    /// Open UDP datagram sessions to an endpoint, and send and receive datagrams.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
@@ -10984,12 +11798,11 @@ impl NWUDPSession {
 }
 
 extern_class!(
+    /// TLS properties for creating a connection.
     /// DEPRECATION NOTICE
     ///
     /// NW object wrappers are hidden in Swift 6. To continue accessing them, you
     /// can prepend double underscores to the symbol name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtlsparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `sec_protocol_options_t` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
@@ -11081,21 +11894,26 @@ impl NWTLSParameters {
     );
 }
 
-/// URL Filter Verdicts
+/// A verdict returned by a URL filter.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict?language=objc)
+/// ## Overview
+///
+/// You receive this type as the result of calling [`verdict(for:)`](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict(for:)) on a [`NEURLFilter`](https://developer.apple.com/documentation/networkextension/neurlfilter) instance.
+///
+///
+/// URL Filter Verdicts
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEURLFilterVerdict(pub NSInteger);
 impl NEURLFilterVerdict {
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict/unknown?language=objc)
+    /// A verdict that indicates URL validation failed.
     #[doc(alias = "NEURLFilterVerdictUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict/allow?language=objc)
+    /// A verdict that indicates that accessing the URL is allowed.
     #[doc(alias = "NEURLFilterVerdictAllow")]
     pub const Allow: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict/deny?language=objc)
+    /// A verdict that indicates that accessing the URL is denied.
     #[doc(alias = "NEURLFilterVerdictDeny")]
     pub const Deny: Self = Self(3);
 }
@@ -11109,7 +11927,13 @@ unsafe impl RefEncode for NEURLFilterVerdict {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter?language=objc)
+    /// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
+    ///
+    /// ## Overview
+    ///
+    /// When using networking frameworks other than WebKit or Foundation’s [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession), use the `NEURLFilter` API to evaluate URLs before potentially connecting to a restricted or malicious site. Call the class method [`verdict(for:)`](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict(for:)) to check a URL and honor the “allow” or “deny” verdict. Don’t connect to any URL that receives a “deny” verdict.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NEURLFilter;

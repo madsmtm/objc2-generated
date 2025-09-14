@@ -15,6 +15,15 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A class that creates a new frame processor for the configured video effect.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to perform frame by frame processing on your video. Start by specifying a video effect by passing a [`VTFrameProcessorConfiguration`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorconfiguration) object to the [`startSessionWithConfiguration:error:`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/startsession(configuration:)) call. Once the session is created, [`processWithParameters:completionHandler:`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/process(parameters:completionhandler:)) is called in a loop to process your video’s frames one at a time. Once all the frames are processed, call an [`endSession`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/endsession()) to finish all pending processing.
+    ///
+    /// For successful processing, the caller needs to ensure that all buffers passed to the processWithParameters interface are unmodified (including attachments) until the function returns or the callback is received in the case of asynchronous mode.
+    ///
+    ///
     /// Provides a unified interface you can use to apply video effects to frames.
     ///
     /// The VTFrameProcessor gives access to a set of powerful video processing implementation suitable for different use cases.
@@ -31,8 +40,6 @@ extern_class!(
     ///
     /// After you call the process function, you must not modify input and output buffers (including attachments) before the
     /// function returns or the system receives the callback, in the case of asynchronous processing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

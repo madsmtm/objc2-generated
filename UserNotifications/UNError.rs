@@ -6,50 +6,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerrordomain?language=objc)
+    /// The error domain for notifications.
     pub static UNErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code?language=objc)
+/// Constants that identify notification errors.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UNErrorCode(pub NSInteger);
 impl UNErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/notificationsnotallowed?language=objc)
+    /// Notifications aren’t allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you try to submit a notification request and your app or app extension isn’t authorized to schedule notifications.
+    ///
+    ///
     #[doc(alias = "UNErrorCodeNotificationsNotAllowed")]
     pub const NotificationsNotAllowed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/attachmentinvalidurl?language=objc)
+    /// The URL for an attachment was invalid.
     #[doc(alias = "UNErrorCodeAttachmentInvalidURL")]
     pub const AttachmentInvalidURL: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/attachmentunrecognizedtype?language=objc)
+    /// The file type of an attachment isn’t supported.
     #[doc(alias = "UNErrorCodeAttachmentUnrecognizedType")]
     pub const AttachmentUnrecognizedType: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/attachmentinvalidfilesize?language=objc)
+    /// An attachment is too large.
     #[doc(alias = "UNErrorCodeAttachmentInvalidFileSize")]
     pub const AttachmentInvalidFileSize: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/attachmentnotindatastore?language=objc)
+    /// The specified attachment isn’t in the system data store.
     #[doc(alias = "UNErrorCodeAttachmentNotInDataStore")]
     pub const AttachmentNotInDataStore: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/attachmentmoveintodatastorefailed?language=objc)
+    /// An error occurred when trying to move an attachment to the system data store.
     #[doc(alias = "UNErrorCodeAttachmentMoveIntoDataStoreFailed")]
     pub const AttachmentMoveIntoDataStoreFailed: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/attachmentcorrupt?language=objc)
+    /// The file for an attachment is corrupt.
     #[doc(alias = "UNErrorCodeAttachmentCorrupt")]
     pub const AttachmentCorrupt: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/notificationinvalidnodate?language=objc)
+    /// The notification doesn’t have an associated date, but should.
     #[doc(alias = "UNErrorCodeNotificationInvalidNoDate")]
     pub const NotificationInvalidNoDate: Self = Self(1400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/notificationinvalidnocontent?language=objc)
+    /// The notification has no user-facing content, but should.
     #[doc(alias = "UNErrorCodeNotificationInvalidNoContent")]
     pub const NotificationInvalidNoContent: Self = Self(1401);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/contentprovidingobjectnotallowed?language=objc)
     #[doc(alias = "UNErrorCodeContentProvidingObjectNotAllowed")]
     pub const ContentProvidingObjectNotAllowed: Self = Self(1500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/contentprovidinginvalid?language=objc)
     #[doc(alias = "UNErrorCodeContentProvidingInvalid")]
     pub const ContentProvidingInvalid: Self = Self(1501);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unerror/code/badgeinputinvalid?language=objc)
     #[doc(alias = "UNErrorCodeBadgeInputInvalid")]
     pub const BadgeInputInvalid: Self = Self(1600);
 }

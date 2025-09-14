@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcswitchpositioninput?language=objc)
+    /// The common properties of inputs that switch between two or more positions.
     pub unsafe trait GCSwitchPositionInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the value on the switch changes.

@@ -10,7 +10,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplate?language=objc)
+    /// An abstract class that defines the base behavior for all templates.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you create instances of one of the concrete subclasses and use the resulting object to specify the data for your complication.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -59,7 +65,21 @@ impl CLKComplicationTemplate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallsimpletext?language=objc)
+    /// A template for displaying a small amount of text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/9eba8ee5b79638f2f8ff939e2cb3df97/media-2933756~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/65bced2006c421f29e6e3a5d96577ed2/media-2933756%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular small simple text complication. The diagram shows a small amount of text." src="https://docs-assets.developer.apple.com/published/9eba8ee5b79638f2f8ff939e2cb3df97/media-2933756~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -126,7 +146,26 @@ impl CLKComplicationTemplateModularSmallSimpleText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallsimpleimage?language=objc)
+    /// A template for displaying an image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cafa6d2f3409b43c7ee45474d901f22d/media-2933752~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/073d487a0daac572fa6ff050a764d473/media-2933752%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular small simple image complication. The diagram shows a single, small image." src="https://docs-assets.developer.apple.com/published/cafa6d2f3409b43c7ee45474d901f22d/media-2933752~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "52 pixels" }] }], [Paragraph { inline_content: [Text { text: "52 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "58 pixels" }] }], [Paragraph { inline_content: [Text { text: "58 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "61 pixels" }] }], [Paragraph { inline_content: [Text { text: "61 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "58 pixels" }] }], [Paragraph { inline_content: [Text { text: "58 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "64 pixels" }] }], [Paragraph { inline_content: [Text { text: "64 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "69 pixels" }] }], [Paragraph { inline_content: [Text { text: "69 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -195,7 +234,21 @@ impl CLKComplicationTemplateModularSmallSimpleImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallringtext?language=objc)
+    /// A template for displaying text encircled by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d53adcd863f1e19c0ca36020702e2ef1/media-2933755~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/c4a5ba0d520030a0d1b3fbe8afba3624/media-2933755%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular small ring text complication. The diagram shows text inside a small progress ring." src="https://docs-assets.developer.apple.com/published/d53adcd863f1e19c0ca36020702e2ef1/media-2933755~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -292,7 +345,26 @@ impl CLKComplicationTemplateModularSmallRingText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallringimage?language=objc)
+    /// A template for displaying an image encircled by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/b15c436167c7670d20b8e2375ac15471/media-2933751~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/cc28f9c6d3731f978b9a811873e1f6db/media-2933751%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular small ring image complication. The diagram shows an image inside a small progress ring." src="https://docs-assets.developer.apple.com/published/cc28f9c6d3731f978b9a811873e1f6db/media-2933751%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "38 pixels" }] }], [Paragraph { inline_content: [Text { text: "38 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "38 pixels" }] }], [Paragraph { inline_content: [Text { text: "38 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "42 pixels" }] }], [Paragraph { inline_content: [Text { text: "42 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "45 pixels" }] }], [Paragraph { inline_content: [Text { text: "45 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -389,7 +461,21 @@ impl CLKComplicationTemplateModularSmallRingImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallstacktext?language=objc)
+    /// A template for displaying two strings stacked one on top of the other.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6f56483de52577a045dd77cfd45048a3/media-2933757~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/04b07ee296113e69756cd4ec610841ec/media-2933757%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular small stack text complication. The diagram shows two small rows of text." src="https://docs-assets.developer.apple.com/published/6f56483de52577a045dd77cfd45048a3/media-2933757~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -486,7 +572,26 @@ impl CLKComplicationTemplateModularSmallStackText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallstackimage?language=objc)
+    /// A template for displaying a single image with a short line of text below it.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e4eb46bf87bababcf4dbdc1942e088c9/media-2933753~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/967c65a22885263538ee4fdeb7e859d2/media-2933753%402x.png 2x" />
+    ///     <img alt="Diagram showing the layout of a small image positioned above a short line of text." src="https://docs-assets.developer.apple.com/published/e4eb46bf87bababcf4dbdc1942e088c9/media-2933753~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "52 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "58 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "30 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "61 pixels " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "32 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "58 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "30 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "64 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "34 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "69 pixels " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -583,7 +688,21 @@ impl CLKComplicationTemplateModularSmallStackImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularsmallcolumnstext?language=objc)
+    /// A template for displaying two rows and two columns of text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/03c734bdae63bf694b4b2804d9f8b313/media-2933754~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/60de62c50d87f3b59ba3e4b73b3a4016/media-2933754%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular small columns text complication. The diagram shows two rows, each with two columns of text. " src="https://docs-assets.developer.apple.com/published/60de62c50d87f3b59ba3e4b73b3a4016/media-2933754%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -739,7 +858,26 @@ impl CLKComplicationTemplateModularSmallColumnsText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularlargestandardbody?language=objc)
+    /// A template for displaying a header row and two lines of text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularlarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/09183227a853ed3b6f8e480d9f0814fc/media-2933747~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/73935aa50a5db3e135d5a61cae9efb08/media-2933747%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular large standard body complication. The diagram shows the header row, two lines of text, and an optional header image." src="https://docs-assets.developer.apple.com/published/73935aa50a5db3e135d5a61cae9efb08/media-2933747%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size. The width of the image must be between the specified minimum and maximum (inclusive).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "22 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 64 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 74 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "25 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 78 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 74 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "28 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 84 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "29 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 88 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -917,7 +1055,21 @@ impl CLKComplicationTemplateModularLargeStandardBody {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularlargetallbody?language=objc)
+    /// A template for displaying a header row and row of tall body text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularlarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4ddf610aa4879f04f533b11d0140e787/media-2933748~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/df1c175b087cb3a4afbcd51590a6cb81/media-2933748%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular large tall body complication. The diagram shows  the header row above a single line of large body text." src="https://docs-assets.developer.apple.com/published/df1c175b087cb3a4afbcd51590a6cb81/media-2933748%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1003,7 +1155,26 @@ impl CLKComplicationTemplateModularLargeTallBody {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularlargetable?language=objc)
+    /// A template for displaying a header row and columns.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularlarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3d82ff7cf5563b5fe1e4e29a38a2861d/media-2933750~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/67e335fe5d5b361f5d28fdbd1286e265/media-2933750%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular large table complication. The diagram shows a table with a header row and two rows of text, each containing two collumns. The table can also have an optional header image." src="https://docs-assets.developer.apple.com/published/67e335fe5d5b361f5d28fdbd1286e265/media-2933750%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size. The width of the image must be between the specified minimum and maximum (inclusive).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "22 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 64 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 74 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "25 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 78 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 74 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "28 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 84 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "29 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 88 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1208,7 +1379,26 @@ impl CLKComplicationTemplateModularLargeTable {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatemodularlargecolumns?language=objc)
+    /// A template for displaying multiple columns of data.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyModularLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularlarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/eedc847b4910e5af202d065a697f6149/media-2933749~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/1dbabdd88e9966549fbe4d839e5ff002/media-2933749%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the modular large columns complication. The diagram shows two columns with three rows of text and an optional column of images." src="https://docs-assets.developer.apple.com/published/eedc847b4910e5af202d065a697f6149/media-2933749~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the images you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size. The width of each image must be between the specified minimum and maximum (inclusive).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "22 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 64 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 74 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "25 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 78 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 74 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "28 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 84 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "29 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 88 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1469,7 +1659,26 @@ impl CLKComplicationTemplateModularLargeColumns {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallsquare?language=objc)
+    /// A template for displaying a single square image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyUtilitarianSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/8b0e67b0903c8e2e7d96cd43366fd1f6/media-2933762~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e58d4252d096df8edb14a236a324d7d3/media-2933762%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the utilitarian small square complication. The diagram shows a single, small image." src="https://docs-assets.developer.apple.com/published/e58d4252d096df8edb14a236a324d7d3/media-2933762%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "47 pixels" }] }], [Paragraph { inline_content: [Text { text: "47 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "50 pixels" }] }], [Paragraph { inline_content: [Text { text: "50 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "52 pixels" }] }], [Paragraph { inline_content: [Text { text: "52 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1538,7 +1747,21 @@ impl CLKComplicationTemplateUtilitarianSmallSquare {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallringtext?language=objc)
+    /// A template for displaying text encircled by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyUtilitarianSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/1800ef1da0082f29dd39e8e5e8538a27/media-2933761~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/23016f5c798812864149cd40e009b32c/media-2933761%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the utilitarian small ring text complication. The diagram shows text inside a small progress ring." src="https://docs-assets.developer.apple.com/published/23016f5c798812864149cd40e009b32c/media-2933761%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1635,7 +1858,26 @@ impl CLKComplicationTemplateUtilitarianSmallRingText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallringimage?language=objc)
+    /// A template for displaying an image encircled by a configurable progress ring
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyUtilitarianSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/a0e8995fc2eb3afe18fa1f03e71fac1c/media-2933760~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/095b83cc4e0d8681ec0e301bb73257e5/media-2933760%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the utilitarian small ring image complication. The diagram shows an image inside a small progress ring." src="https://docs-assets.developer.apple.com/published/a0e8995fc2eb3afe18fa1f03e71fac1c/media-2933760~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "30  pixels" }] }], [Paragraph { inline_content: [Text { text: "30 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "32 pixels" }] }], [Paragraph { inline_content: [Text { text: "32 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "33 pixels" }] }], [Paragraph { inline_content: [Text { text: "33 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1732,7 +1974,26 @@ impl CLKComplicationTemplateUtilitarianSmallRingImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallflat?language=objc)
+    /// A template for displaying an image and text in a single line.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyUtilitarianSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/8ae675d050b2403d8e8d0555db5b13b7/media-2933759~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/415ed154130fdc7810590021060f7ab3/media-2933759%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the utilitarian small flat complication. The diagram shows a single row containing an image and a small amount of text." src="https://docs-assets.developer.apple.com/published/8ae675d050b2403d8e8d0555db5b13b7/media-2933759~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size. The width of the image must be between the specified minimum and maximum (inclusive).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "18 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 42 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "18 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "20 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 44 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "20 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "21 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 47 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "21 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "20 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 44 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "20 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "22 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 49 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 52 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1831,7 +2092,26 @@ impl CLKComplicationTemplateUtilitarianSmallFlat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitarianlargeflat?language=objc)
+    /// A template for displaying an image and string in a single long line.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyUtilitarianLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitarianlarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f4fbbb5ae0d0708bec95160f06f738d9/media-2933763~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/85c95c5f00fb6bffd0c3d1aaba703114/media-2933763%402x.png 2x" />
+    ///     <img alt="Diagram showing the layout of a row containing an image and text." src="https://docs-assets.developer.apple.com/published/f4fbbb5ae0d0708bec95160f06f738d9/media-2933763~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size. The width of each image must be between the specified minimum and maximum (inclusive).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "18 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 42 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "18 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "20 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 44 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "20 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "21 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 47 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "21 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "20 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 44 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "20 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "22 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 49 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels minimum " }, Image { identifier: "spacer", metadata: None }, Text { text: " 52 pixels maximum" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1930,7 +2210,21 @@ impl CLKComplicationTemplateUtilitarianLargeFlat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatecircularsmallsimpletext?language=objc)
+    /// A template for displaying a short text string.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the circularSmall family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/03ab96da2300a0303d2ba3b00619f415/media-2933738~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3017a4045b6cde9f378a10ba54aa365b/media-2933738%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the circular small simple text complication. The diagram shows three examples, each with a single line of text." src="https://docs-assets.developer.apple.com/published/3017a4045b6cde9f378a10ba54aa365b/media-2933738%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -1997,7 +2291,26 @@ impl CLKComplicationTemplateCircularSmallSimpleText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatecircularsmallsimpleimage?language=objc)
+    /// A template for displaying a single image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyCircularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4c5b5de82397daf398efb5e5cb1c1ba1/media-2933735~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/15a48345c3a1c9f364f2d68dbe51816e/media-2933735%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the small simple image complication. This diagram shows three examples, each displaying a single, small image." src="https://docs-assets.developer.apple.com/published/4c5b5de82397daf398efb5e5cb1c1ba1/media-2933735~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "32 pixels" }] }], [Paragraph { inline_content: [Text { text: "32 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "38 pixels" }] }], [Paragraph { inline_content: [Text { text: "38 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }], [Paragraph { inline_content: [Text { text: "36 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "43 pixels" }] }], [Paragraph { inline_content: [Text { text: "43 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2066,7 +2379,21 @@ impl CLKComplicationTemplateCircularSmallSimpleImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatecircularsmallringtext?language=objc)
+    /// A template for displaying a short text string encircled by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyCircularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/306731cac7e5a339edf4bdcb335509ac/media-2933737~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/c27bd51fa96a39a260f8dcc4b97c88b7/media-2933737%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the circular small ring text complication. The diagram shows three examples, each displaying text inside a small progress ring." src="https://docs-assets.developer.apple.com/published/c27bd51fa96a39a260f8dcc4b97c88b7/media-2933737%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2163,7 +2490,26 @@ impl CLKComplicationTemplateCircularSmallRingText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatecircularsmallringimage?language=objc)
+    /// A template for displaying a single image surrounded by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyCircularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0afe924ea8af2c08c9622770953f898b/media-2933734~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b6d6cb1fec43fe7089e08e28034c789d/media-2933734%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of a circular small image complication. The diagram shows three versions, each with an image inside a small progress ring." src="https://docs-assets.developer.apple.com/published/b6d6cb1fec43fe7089e08e28034c789d/media-2933734%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "47 pixels" }] }], [Paragraph { inline_content: [Text { text: "47 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "48 pixels" }] }], [Paragraph { inline_content: [Text { text: "48 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "52 pixels" }] }], [Paragraph { inline_content: [Text { text: "52 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2260,7 +2606,21 @@ impl CLKComplicationTemplateCircularSmallRingImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatecircularsmallstacktext?language=objc)
+    /// A template for displaying two text strings stacked on top of each other.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyCircularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6e3eb36dab7d79718f04b9b13b722e75/media-2933743~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/c65d0106f8b763df0c4843c10f46047a/media-2933743%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the circular small stack text complication. The diagram has two examples, each showing two small rows of text." src="https://docs-assets.developer.apple.com/published/c65d0106f8b763df0c4843c10f46047a/media-2933743%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2346,7 +2706,26 @@ impl CLKComplicationTemplateCircularSmallStackText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplatecircularsmallstackimage?language=objc)
+    /// A template for displaying an image with a line of text below it.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyCircularSmall`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/bf9b82fcfb4e92c595fb49faf56bc38a/media-2933736~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3e32e672683a07e172bb5580095f539b/media-2933736%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the circular small stack image complication. The diagram shows a small image positioned above a short line of text." src="https://docs-assets.developer.apple.com/published/bf9b82fcfb4e92c595fb49faf56bc38a/media-2933736~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "32 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "14 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "34 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "16 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "38 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "17 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "34 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "16 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "38 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "18 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "38 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "19 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2432,7 +2811,21 @@ impl CLKComplicationTemplateCircularSmallStackImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargesimpletext?language=objc)
+    /// A template for displaying a small amount of text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cca2ee791744d04c9c7090913616bf45/media-2880722~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/41b9024d6d7fe7c26ff2c2509832a978/media-2880722%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large text complication. The diagram shows a small amount of text." src="https://docs-assets.developer.apple.com/published/cca2ee791744d04c9c7090913616bf45/media-2880722~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2499,7 +2892,26 @@ impl CLKComplicationTemplateExtraLargeSimpleText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargesimpleimage?language=objc)
+    /// A template for displaying an image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/dfe91ff3841fedaa18147b61ba0e0299/media-2880769~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/32b8a6b1fe4603a06808cb7038555c94/media-2880769%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large image complication. The diagram show a single, large image." src="https://docs-assets.developer.apple.com/published/dfe91ff3841fedaa18147b61ba0e0299/media-2880769~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "182 pixels" }] }], [Paragraph { inline_content: [Text { text: "182 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "203 pixels" }] }], [Paragraph { inline_content: [Text { text: "203 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "215 pixels" }] }], [Paragraph { inline_content: [Text { text: "215 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "203 pixels" }] }], [Paragraph { inline_content: [Text { text: "203 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "224 pixels" }] }], [Paragraph { inline_content: [Text { text: "224 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "242 pixels" }] }], [Paragraph { inline_content: [Text { text: "242 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2568,7 +2980,21 @@ impl CLKComplicationTemplateExtraLargeSimpleImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargeringtext?language=objc)
+    /// A template for displaying text encircled by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d859bfbc6a177900d1e95ca3d0747cc8/media-2880719~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/72dafcab6be6b155647770d7eea15c9b/media-2880719%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large ring text complication. The diagram shows text inside a progress ring." src="https://docs-assets.developer.apple.com/published/d859bfbc6a177900d1e95ca3d0747cc8/media-2880719~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2665,7 +3091,26 @@ impl CLKComplicationTemplateExtraLargeRingText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargeringimage?language=objc)
+    /// A template for displaying an image encircled by a configurable progress ring.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c31d193c2a8f77af08f96d3b1705096c/media-2880718~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/58c879353ae4dd5af93e87d23e6d0b24/media-2880718%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large ring image complication. The diagram shows an image inside a progress ring." src="https://docs-assets.developer.apple.com/published/c31d193c2a8f77af08f96d3b1705096c/media-2880718~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "126 pixels" }] }], [Paragraph { inline_content: [Text { text: "126 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "133 pixels" }] }], [Paragraph { inline_content: [Text { text: "133 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "141 pixels" }] }], [Paragraph { inline_content: [Text { text: "141 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "133 pixels" }] }], [Paragraph { inline_content: [Text { text: "133 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "146 pixels" }] }], [Paragraph { inline_content: [Text { text: "146 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "158 pixels" }] }], [Paragraph { inline_content: [Text { text: "158 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2762,7 +3207,21 @@ impl CLKComplicationTemplateExtraLargeRingImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargestacktext?language=objc)
+    /// A template for displaying two strings stacked one on top of the other.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/9f1e9ce5f0fa274a3356dd5796b04134/media-2880724~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/6c5107a7fb743c451016593bfc6e9cba/media-2880724%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large stack text complication. The diagram shows two rows of text." src="https://docs-assets.developer.apple.com/published/9f1e9ce5f0fa274a3356dd5796b04134/media-2880724~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2859,7 +3318,26 @@ impl CLKComplicationTemplateExtraLargeStackText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargestackimage?language=objc)
+    /// A template for displaying a single image with a short line of text below it.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3bb7d0e485d8dffc797f69e12fa8d85d/media-2880768~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/26ec341b082dc58d671c01dad213be63/media-2880768%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large stack image complication. The diagram shows an image positioned above a short line of text." src="https://docs-assets.developer.apple.com/published/3bb7d0e485d8dffc797f69e12fa8d85d/media-2880768~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as `@2x` images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "38 mm" }] }], [Paragraph { inline_content: [Text { text: "156 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "84 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "174 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "90 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "192 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "95 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "42 mm" }] }], [Paragraph { inline_content: [Text { text: "174 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "90 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "192 pixels maximum " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "102 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "207 pixels " }, Image { identifier: "spacer", metadata: None }, Text { text: " (You may specify images with a smaller width.)" }] }], [Paragraph { inline_content: [Text { text: "107 pixels" }] }]]], alignments: None, metadata: None })
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -2956,7 +3434,21 @@ impl CLKComplicationTemplateExtraLargeStackImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateextralargecolumnstext?language=objc)
+    /// A template for displaying two rows and two columns of text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c79bf115410941d6ea7a54d9c83c6897/media-2919001~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/fe44aa1be2cd0afaf9d4787dbfd3020d/media-2919001%402x.png 2x" />
+    ///     <img alt="A diagram showing the layout of the extra large columns text complication. The diagram shows two rows, each containing two columns of text. " src="https://docs-assets.developer.apple.com/published/fe44aa1be2cd0afaf9d4787dbfd3020d/media-2919001%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3112,7 +3604,19 @@ impl CLKComplicationTemplateExtraLargeColumnsText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccornergaugetext?language=objc)
+    /// A template for displaying text and a gauge in the clock face’s corner.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCorner`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner) family.  shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of the outer text and a gauge with leading and trailing text.](https://docs-assets.developer.apple.com/published/eaf2f5c597a0944670d5a0d631487f84/media-3030691%402x.png)
+    ///
+    ///
+    /// The system always displays the outer text as white. The gauge’s text can be multicolored.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3255,7 +3759,24 @@ impl CLKComplicationTemplateGraphicCornerGaugeText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccornergaugeimage?language=objc)
+    /// A template for displaying an image and a gauge in the clock face’s corner.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCorner`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccornergaugeimage#3030693) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of an image and a gauge with trailing text.](https://docs-assets.developer.apple.com/published/79ef3eb287a4f7db6b49e5bbc33514cb/media-3030693%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "42 pixels" }] }], [Paragraph { inline_content: [Text { text: "42 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "48 pixels" }] }], [Paragraph { inline_content: [Text { text: "48 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3406,7 +3927,24 @@ impl CLKComplicationTemplateGraphicCornerGaugeImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccornertextimage?language=objc)
+    /// A template for displaying an image and text in the clock face’s corner.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCorner`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccornertextimage#3030694) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of text and an image.](https://docs-assets.developer.apple.com/published/d6c7bad1c0dca58a3c49960829362b49/media-3030694%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }], [Paragraph { inline_content: [Text { text: "40 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "42 pixels" }] }], [Paragraph { inline_content: [Text { text: "42 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }], [Paragraph { inline_content: [Text { text: "44 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "48 pixels" }] }], [Paragraph { inline_content: [Text { text: "48 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3492,7 +4030,19 @@ impl CLKComplicationTemplateGraphicCornerTextImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccornerstacktext?language=objc)
+    /// A template for displaying stacked text in the clock face’s corner.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCorner`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner) family.  shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of the outer and inner text.](https://docs-assets.developer.apple.com/published/e4f82129b55b2d9a2d4d7e333dec8b0e/media-3030692%402x.png)
+    ///
+    ///
+    /// The system always displays the outer text as white. The inner text can be multicolored.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3578,7 +4128,24 @@ impl CLKComplicationTemplateGraphicCornerStackText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccornercircularimage?language=objc)
+    /// A template for displaying an image in the clock face’s corner.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCorner`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccornercircularimage#3030689) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of an image.](https://docs-assets.developer.apple.com/published/6885b0cd312aede6a90203a83a298402/media-3030689%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "64 pixels" }] }], [Paragraph { inline_content: [Text { text: "64 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "68 pixels" }] }], [Paragraph { inline_content: [Text { text: "68 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "72 pixels" }] }], [Paragraph { inline_content: [Text { text: "72 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "76 pixels" }] }], [Paragraph { inline_content: [Text { text: "76 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3647,7 +4214,13 @@ impl CLKComplicationTemplateGraphicCornerCircularImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircular?language=objc)
+    /// An abstract superclass for all the circular graphic templates.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate this class. Create one of its concrete subclasses instead.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -3686,7 +4259,24 @@ impl CLKComplicationTemplateGraphicCircular {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularimage?language=objc)
+    /// A template for displaying a full-color circular image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccircularimage#3030695) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of a circular image.](https://docs-assets.developer.apple.com/published/a4348cf8f05d3e98ca2fb2663a39e6d4/media-3030695%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "84 pixels" }] }], [Paragraph { inline_content: [Text { text: "84 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "89 pixels" }] }], [Paragraph { inline_content: [Text { text: "89 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "94 pixels" }] }], [Paragraph { inline_content: [Text { text: "94 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "100 pixels" }] }], [Paragraph { inline_content: [Text { text: "100 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -3759,7 +4349,17 @@ impl CLKComplicationTemplateGraphicCircularImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularopengaugerangetext?language=objc)
+    /// A template for displaying text inside an open gauge, with leading and trailing text for the gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccircularopengaugerangetext#3030687) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of text surrounded by an open gauge with leading and trailing text.](https://docs-assets.developer.apple.com/published/380382346800e6d299fec1f588168dfe/media-3030687%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -3883,7 +4483,17 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeRangeText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularopengaugesimpletext?language=objc)
+    /// A template for displaying text inside an open gauge, with a single piece of text for the gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccircularopengaugesimpletext#3030688) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of text with an open gauge and subtext.](https://docs-assets.developer.apple.com/published/0e9d17c5ed021bd768132dfdfedbfdc4/media-3030688%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -3990,7 +4600,24 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularopengaugeimage?language=objc)
+    /// A template for displaying a full-color circular image, an open gauge, and text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccircularopengaugeimage#3030686) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of text with an open gauge and an image.](https://docs-assets.developer.apple.com/published/f3311597476f991aee2e6aa226e19dd4/media-3030686%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }], [Paragraph { inline_content: [Text { text: "22 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "23 pixels" }] }], [Paragraph { inline_content: [Text { text: "23 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "26 pixels" }] }], [Paragraph { inline_content: [Text { text: "26 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -4108,7 +4735,17 @@ impl CLKComplicationTemplateGraphicCircularOpenGaugeImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularclosedgaugetext?language=objc)
+    /// A template for displaying text inside a closed circular gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccircularclosedgaugetext#3030685) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of text surrounded by a closed gauge.](https://docs-assets.developer.apple.com/published/32f3e31d4f77dfb842d910bc37712830/media-3030685%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -4198,7 +4835,24 @@ impl CLKComplicationTemplateGraphicCircularClosedGaugeText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularclosedgaugeimage?language=objc)
+    /// A template for displaying a full-color circular image and a closed circular gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphiccircularclosedgaugeimage#3034028) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of a circular image with a closed gauge.](https://docs-assets.developer.apple.com/published/a53f82c65ffb3871744ab47980e84afd/media-3034028%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "54 pixels" }] }], [Paragraph { inline_content: [Text { text: "54 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "57 pixels" }] }], [Paragraph { inline_content: [Text { text: "57 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "62 pixels" }] }], [Paragraph { inline_content: [Text { text: "62 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "64 pixels" }] }], [Paragraph { inline_content: [Text { text: "64 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -4288,7 +4942,17 @@ impl CLKComplicationTemplateGraphicCircularClosedGaugeImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularstacktext?language=objc)
+    /// A template for displaying two rows of text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family.
+    ///
+    ///
+    /// ![Diagram showing the layout of a circular template containing two rows of text.](https://docs-assets.developer.apple.com/published/4280783e5c638fbc913ba4bfb5d59f39/media-3262158%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -4378,7 +5042,24 @@ impl CLKComplicationTemplateGraphicCircularStackText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphiccircularstackimage?language=objc)
+    /// A template for displaying a full-color circular image and text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicCircular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular) family.
+    ///
+    ///
+    /// ![Diagram showing the layout of a circular template containing an image and text.](https://docs-assets.developer.apple.com/published/cf5c80f0ab30f6f4cf3dda1898fd58e1/media-3262157%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "56 pixels" }] }], [Paragraph { inline_content: [Text { text: "28 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "59 pixels" }] }], [Paragraph { inline_content: [Text { text: "30 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "62 pixels" }] }], [Paragraph { inline_content: [Text { text: "32 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "67 pixels" }] }], [Paragraph { inline_content: [Text { text: "33 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicCircular,
         CLKComplicationTemplate,
@@ -4471,7 +5152,21 @@ impl CLKComplicationTemplateGraphicCircularStackImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicbezelcirculartext?language=objc)
+    /// A template for displaying a circular complication with text along the bezel.
+    ///
+    /// ## Overview
+    ///
+    /// The graphic bezel templates display a circular template, and text that wraps around the watch face.
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicBezel`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicbezel) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicbezelcirculartext#3030704) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of text along the bezel and the circular template.](https://docs-assets.developer.apple.com/published/b3e1d3b34f7459b04787c4cdd7f15288/media-3030704%402x.png)
+    ///
+    ///
+    /// The text is optional; this template can either display a circular template with text, or the circular template by itself.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -4571,7 +5266,28 @@ impl CLKComplicationTemplateGraphicBezelCircularText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicrectangularfullimage?language=objc)
+    /// A template for displaying a full-color image that fills the complication.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicRectangular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicrectangular) family.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/2f539dda89007cafe5645b06c28ce53c/media-3905732~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b75dd3557d6469f77b521a44992cf30f/media-3905732%402x.png 2x" />
+    ///     <img alt="A diagram of a graphic rectangular full complication. The diagram shows an image of the moon filling the complication." src="https://docs-assets.developer.apple.com/published/b75dd3557d6469f77b521a44992cf30f/media-3905732%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The table below lists the dimensions of the image you use in this template. Use images with a [`scale`](https://developer.apple.com/documentation/uikit/uiimage/scale) of `2.0` for display on Apple Watch so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "324 pixels" }] }], [Paragraph { inline_content: [Text { text: "138 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "343 pixels" }] }], [Paragraph { inline_content: [Text { text: "146 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "368 pixels" }] }], [Paragraph { inline_content: [Text { text: "156 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "386 pixels" }] }], [Paragraph { inline_content: [Text { text: "164 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Manage Assets`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -4640,7 +5356,24 @@ impl CLKComplicationTemplateGraphicRectangularFullImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicrectangularlargeimage?language=objc)
+    /// A template for displaying a large rectangle containing header text and an image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicRectangular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicrectangular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicrectangularlargeimage#3034025) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram of a watch face showing the layout of a rectangular large image template.](https://docs-assets.developer.apple.com/published/d281acd014900ada4ca9b77eae032ae3/media-3034025%402x.png)
+    ///
+    ///
+    /// The table below lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "300 pixels" }] }], [Paragraph { inline_content: [Text { text: "94 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "318 pixels" }] }], [Paragraph { inline_content: [Text { text: "100 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "342 pixels" }] }], [Paragraph { inline_content: [Text { text: "108 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "357 pixels" }] }], [Paragraph { inline_content: [Text { text: "112 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a rounded rectangle with a 8-pixel corner radius.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -4726,7 +5459,24 @@ impl CLKComplicationTemplateGraphicRectangularLargeImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbody?language=objc)
+    /// A template for displaying a large rectangle containing text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicRectangular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicrectangular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicrectangularstandardbody#3030705) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of header text and two rows of body text.](https://docs-assets.developer.apple.com/published/2d7fb5d4bf5befa1e4dee9ff87c430ab/media-3030705%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "27 pixels" }] }], [Paragraph { inline_content: [Text { text: "27 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -4904,7 +5654,24 @@ impl CLKComplicationTemplateGraphicRectangularStandardBody {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicrectangulartextgauge?language=objc)
+    /// A template for displaying a large rectangle containing text and a gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicRectangular`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicrectangular) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicrectangulartextgauge#3030706) shows the layout of the image and where the template might appear on the clock face.
+    ///
+    ///
+    /// ![Diagram showing the layout of a header image, header text, body text, and a gauge.](https://docs-assets.developer.apple.com/published/4095e05f1e6e9e5453a8180a33325f81/media-3030706%402x.png)
+    ///
+    ///
+    /// The following table lists the dimensions of the image you use in this template. All dimensions are in pixels. All images must be specified as @2x images for display on Apple Watch, so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }], [Paragraph { inline_content: [Text { text: "24 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }], [Paragraph { inline_content: [Text { text: "25 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "27 pixels" }] }], [Paragraph { inline_content: [Text { text: "27 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }], [Paragraph { inline_content: [Text { text: "29 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -5054,7 +5821,13 @@ impl CLKComplicationTemplateGraphicRectangularTextGauge {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircular?language=objc)
+    /// An abstract superclass for all the extra-large circular graphic templates.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate this class. Create one of its concrete subclasses instead.
+    ///
+    ///
     #[unsafe(super(CLKComplicationTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -5093,7 +5866,24 @@ impl CLKComplicationTemplateGraphicExtraLargeCircular {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularimage?language=objc)
+    /// A template for displaying an extra-large, full-color circular image.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularimage#3667238) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the image provider.](https://docs-assets.developer.apple.com/published/f684ad02d151608a140bd1fbeb332d7f/media-3667238%402x.png)
+    ///
+    ///
+    /// The table below lists the dimensions of the image you use in this template. Use @2x images for display on Apple Watch so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "240 pixels" }] }], [Paragraph { inline_content: [Text { text: "240 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "254 pixels" }] }], [Paragraph { inline_content: [Text { text: "254 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "264 pixels" }] }], [Paragraph { inline_content: [Text { text: "264 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "286 pixels" }] }], [Paragraph { inline_content: [Text { text: "286 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5167,7 +5957,17 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularopengaugerangetext?language=objc)
+    /// A template for displaying text inside an open gauge, with additional leading and trailing text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularopengaugerangetext#3667406) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the gauge, leading text, trailing text, and center text providers.](https://docs-assets.developer.apple.com/published/c00514f53fc3fe740b51b0b49f5ca2d1/media-3667406%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5295,7 +6095,17 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeRangeText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularopengaugesimpletext?language=objc)
+    /// A template for displaying text inside an open gauge, with additional text at the bottom of the gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularopengaugesimpletext#3667232) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the gauge, center text, and bottom text providers.](https://docs-assets.developer.apple.com/published/d84f572f7a785b12339b8ea567836953/media-3667232%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5406,7 +6216,24 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeSimpleText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularopengaugeimage?language=objc)
+    /// A template for displaying an extra-large, full-color circular image, an open gauge, and text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularopengaugeimage#3667237) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the gauge, text, and image providers.](https://docs-assets.developer.apple.com/published/d5420bc5495db3407e5d3f69196b753d/media-3667237%402x.png)
+    ///
+    ///
+    /// The table below lists the dimensions of the image you use in this template. Use @2x images for display on Apple Watch so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "62 pixels" }] }], [Paragraph { inline_content: [Text { text: "62 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "66 pixels" }] }], [Paragraph { inline_content: [Text { text: "66 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "66 pixels" }] }], [Paragraph { inline_content: [Text { text: "66 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "74 pixels" }] }], [Paragraph { inline_content: [Text { text: "74 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5525,7 +6352,17 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularOpenGaugeImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularclosedgaugetext?language=objc)
+    /// A template for displaying text inside an extra-large closed circular gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularclosedgaugetext#3667235) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the gauge and text providers.](https://docs-assets.developer.apple.com/published/54e6868ad36ec430524a6df96896c85d/media-3667235%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5616,7 +6453,24 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularclosedgaugeimage?language=objc)
+    /// A template for displaying an extra-large, full-color circular image inside a closed circular gauge.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularclosedgaugeimage#3667236) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the gauge and image providers.](https://docs-assets.developer.apple.com/published/83350eedef1d14b8ecf7c0a6f24ed7b4/media-3667236%402x.png)
+    ///
+    ///
+    /// The table below lists the dimensions of the image you use in this template. Use @2x images for display on Apple Watch so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "154 pixels" }] }], [Paragraph { inline_content: [Text { text: "154 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "163 pixels" }] }], [Paragraph { inline_content: [Text { text: "163 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "174 pixels" }] }], [Paragraph { inline_content: [Text { text: "174 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "183 pixels" }] }], [Paragraph { inline_content: [Text { text: "183 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images. The image provider automatically masks the image to a circle.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5707,7 +6561,17 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularClosedGaugeImage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularstacktext?language=objc)
+    /// A template for displaying two rows of text in an extra-large, circular complication.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularstacktext#3667233) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the text providers.](https://docs-assets.developer.apple.com/published/aa420e3195a0e71de6ef337b3923f9cd/media-3667233%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,
@@ -5798,7 +6662,24 @@ impl CLKComplicationTemplateGraphicExtraLargeCircularStackText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularstackimage?language=objc)
+    /// A template for displaying an extra-large, full-color circular image and text.
+    ///
+    /// ## Overview
+    ///
+    /// This template belongs to the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family. [Figure 1](/documentation/clockkit/clkcomplicationtemplategraphicextralargecircularstackimage#3667231) shows the layout of the complication and where it appears on the clock face.
+    ///
+    ///
+    /// ![A diagram showing the layout of the complication that calls out the content produced by the image and text providers.](https://docs-assets.developer.apple.com/published/3bd6fc9881949e92ecde9bfa743bdc55/media-3667231%402x.png)
+    ///
+    ///
+    /// The table below lists the dimensions of the image you use in this template. Use @2x images for display on Apple Watch so the point-based dimensions are half the listed size.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Apple Watch Size" }] }], [Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "Height" }] }]], [[Paragraph { inline_content: [Text { text: "40 mm" }] }], [Paragraph { inline_content: [Text { text: "160 pixels" }] }], [Paragraph { inline_content: [Text { text: "80 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "41 mm" }] }], [Paragraph { inline_content: [Text { text: "170 pixels" }] }], [Paragraph { inline_content: [Text { text: "84 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "44 mm" }] }], [Paragraph { inline_content: [Text { text: "174 pixels" }] }], [Paragraph { inline_content: [Text { text: "88 pixels" }] }]], [[Paragraph { inline_content: [Text { text: "45 mm" }] }], [Paragraph { inline_content: [Text { text: "190 pixels" }] }], [Paragraph { inline_content: [Text { text: "96 pixels" }] }]]], alignments: None, metadata: None })
+    /// This template supports full-color images.
+    ///
+    /// Instead of providing multiple images with different resolutions, you can provide a single, scaleable PDF asset. For more information, see `Supporting Multiple Watch Sizes`.
+    ///
+    ///
     #[unsafe(super(
         CLKComplicationTemplateGraphicExtraLargeCircular,
         CLKComplicationTemplate,

@@ -9,11 +9,16 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that finds the maximum pixel value in a rectangular region centered around each pixel in the source image.
+    ///
+    /// ## Overview
+    ///
+    /// If there are multiple channels in the source image, each channel is processed independently. The [`edgeMode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode) property value is assumed to always be [`MPSImageEdgeModeClamp`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp) for this filter.
+    ///
+    ///
     /// The MPSImageAreaMax kernel finds the maximum pixel value in a rectangular region centered around each pixel
     /// in the source image. If there are multiple channels in the source image, each channel is processed independently.
     /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -148,12 +153,19 @@ impl MPSImageAreaMax {
 }
 
 extern_class!(
+    /// A filter that finds the minimum pixel value in a rectangular region centered around each pixel in the source image.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageAreaMin`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin) filter has the same methods and properties as the [`MPSImageAreaMax`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax) class.
+    ///
+    /// If there are multiple channels in the source image, each channel is processed independently. The [`edgeMode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode) property value is assumed to always be [`MPSImageEdgeModeClamp`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp) for this filter.
+    ///
+    ///
     /// The MPSImageAreaMin finds the minimum pixel value in a rectangular region centered around each pixel in the
     /// source image. If there are multiple channels in the source image, each channel is processed independently.
     /// It has the same methods as MPSImageAreaMax
     /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin?language=objc)
     #[unsafe(super(MPSImageAreaMax, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -284,6 +296,26 @@ impl MPSImageAreaMin {
 }
 
 extern_class!(
+    /// A filter that finds the maximum pixel value in a rectangular region by applying a dilation function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageDilate`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedilate) filter behaves like the [`MPSImageAreaMax`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax) filter, except Metal calculates the intensity at each position relative to a different value before determining which is the maximum pixel value, allowing for shaped, nonrectangular morphological probes.
+    ///
+    /// The code example below shows pseudocode for the calculation that returns each pixel value:
+    ///
+    /// ```other
+    /// for each pixel in the filter window
+    ///     value = pixel[filterY][filterX] - filter[filterY*filter_width+filterX]
+    ///     if( value > bestValue ){
+    ///         result = value
+    ///         bestValue = value
+    ///     }
+    /// ```
+    ///
+    /// A filter that contains all zeros is identical to an [`MPSImageAreaMax`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax) filter. Metal handles the center filter element as `0` to avoid causing a general darkening of the image, and it handles the [`edgeMode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode) property  as [`MPSImageEdgeModeClamp`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp) for this filter.
+    ///
+    ///
     /// The MPSImageDilate finds the maximum pixel value in a rectangular region centered around each pixel in the
     /// source image. It is like the MPSImageAreaMax, except that the intensity at each position is calculated relative
     /// to a different value before determining which is the maximum pixel value, allowing for shaped, non-rectangular
@@ -302,8 +334,6 @@ extern_class!(
     /// is assumed to be 0 to avoid causing a general darkening of the image.
     ///
     /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedilate?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -457,6 +487,28 @@ impl MPSImageDilate {
 }
 
 extern_class!(
+    /// A filter that finds the minimum pixel value in a rectangular region by applying an erosion function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageErode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode) behaves like the [`MPSImageAreaMin`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin) filter, except that Metal calculates the intensity at each position relative to a different value before determining which is the maximum pixel value, allowing for shaped, nonrectangular morphological probes.
+    ///
+    /// The code example below shows pseudocode for the calculation that returns each pixel value:
+    ///
+    /// ```other
+    /// for each pixel in the filter window
+    ///     value =  pixel[filterY][filterX] + filter[filterY*filter_width+filterX]
+    ///     if( value < bestValue ){
+    ///         result = value
+    ///         bestValue = value
+    ///     }
+    /// ```
+    ///
+    /// The definition of the [`MPSImageErode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode) filter is different from its `vImage` counterpart (`MPSImageErode_filter_value = 1.0f-vImageErode_filter_value.`). This allows [`MPSImageDilate`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedilate) and [`MPSImageErode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode) to use the same filter, making open and close operators easier to write.
+    ///
+    /// A filter that contains all zeros is identical to an [`MPSImageAreaMin`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin) filter. Metal handles the center filter element as `0` to avoid causing a general lightening of the image, and it handles the [`edgeMode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/edgemode) property as [`MPSImageEdgeModeClamp`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp) for this filter.
+    ///
+    ///
     /// The MPSImageErode filter finds the minimum pixel value in a rectangular region centered around each pixel in the
     /// source image. It is like the MPSImageAreaMin, except that the intensity at each position is calculated relative
     /// to a different value before determining which is the maximum pixel value, allowing for shaped, non-rectangular
@@ -477,8 +529,6 @@ extern_class!(
     /// The definition of the filter for MPSImageErode is different from vImage. (MPSErode_filter_value = 1.0f-vImageErode_filter_value.)
     /// This allows MPSImageDilate and MPSImageErode to use the same filter, making open and close operators easier to write.
     /// The edgeMode property is assumed to always be MPSImageEdgeModeClamp for this filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode?language=objc)
     #[unsafe(super(MPSImageDilate, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

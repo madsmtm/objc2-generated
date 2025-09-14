@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservice?language=objc)
+/// An opaque reference representing a CFNetService.
 #[doc(alias = "CFNetServiceRef")]
 #[repr(C)]
 pub struct CFNetService {
@@ -26,7 +26,13 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFNetService"> for CFNetService {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitor?language=objc)
+/// An opaque reference for a service monitor.
+///
+/// ## Discussion
+///
+/// Service monitor references are used to monitor record changes on a CFNetServiceRef.
+///
+///
 #[doc(alias = "CFNetServiceMonitorRef")]
 #[repr(C)]
 pub struct CFNetServiceMonitor {
@@ -42,7 +48,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFNetServiceMonitor"> for CFNetServiceMonitor {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowser?language=objc)
+/// An opaque reference representing a CFNetServiceBrowser.
 #[doc(alias = "CFNetServiceBrowserRef")]
 #[repr(C)]
 pub struct CFNetServiceBrowser {
@@ -59,46 +65,46 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainmach?language=objc)
+    /// The error code is a Mach error code defined in `mach/error.h`.
     pub static kCFStreamErrorDomainMach: i32;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainnetservices?language=objc)
+    /// The error code is a `CFNetService` error code. For details, see the [`CFNetServicesError`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror) enumeration.
     pub static kCFStreamErrorDomainNetServices: i32;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror?language=objc)
+/// Error codes that may be returned by CFNetServices functions or passed to CFNetServices callback functions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNetServicesError(pub c_int);
 impl CFNetServicesError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/unknown?language=objc)
+    /// An unknown CFNetService error occurred.
     #[doc(alias = "kCFNetServicesErrorUnknown")]
     pub const Unknown: Self = Self(-72000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/collision?language=objc)
+    /// An attempt was made to use a name that is already in use.
     #[doc(alias = "kCFNetServicesErrorCollision")]
     pub const Collision: Self = Self(-72001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/notfound?language=objc)
+    /// Not used.
     #[doc(alias = "kCFNetServicesErrorNotFound")]
     pub const NotFound: Self = Self(-72002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/inprogress?language=objc)
+    /// A search is already in progress.
     #[doc(alias = "kCFNetServicesErrorInProgress")]
     pub const InProgress: Self = Self(-72003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/badargument?language=objc)
+    /// A required argument was not provided.
     #[doc(alias = "kCFNetServicesErrorBadArgument")]
     pub const BadArgument: Self = Self(-72004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/cancel?language=objc)
+    /// The search or service was canceled.
     #[doc(alias = "kCFNetServicesErrorCancel")]
     pub const Cancel: Self = Self(-72005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/invalid?language=objc)
+    /// Invalid data was passed to a CFNetServices function.
     #[doc(alias = "kCFNetServicesErrorInvalid")]
     pub const Invalid: Self = Self(-72006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/timeout?language=objc)
+    /// Resolution failed because the timeout was reached.
     #[doc(alias = "kCFNetServicesErrorTimeout")]
     pub const Timeout: Self = Self(-72007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceserror/missingrequiredconfiguration?language=objc)
+    /// A required configuration for local network access is missing.
     #[doc(alias = "kCFNetServicesErrorMissingRequiredConfiguration")]
     pub const MissingRequiredConfiguration: Self = Self(-72008);
 }
@@ -113,13 +119,13 @@ unsafe impl RefEncode for CFNetServicesError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitortype?language=objc)
+/// Record type specifier used to tell a service monitor the type of record changes to watch for.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNetServiceMonitorType(pub c_int);
 impl CFNetServiceMonitorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitortype/txt?language=objc)
+    /// Watch for TXT record changes.
     #[doc(alias = "kCFNetServiceMonitorTXT")]
     pub const TXT: Self = Self(1);
 }
@@ -134,14 +140,14 @@ unsafe impl RefEncode for CFNetServiceMonitorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregisterflags?language=objc)
+/// Options to use when registering a service on the network.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetServiceRegisterFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceRegisterFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregisterflags/noautorename?language=objc)
+/// Causes registrations to fail if a name conflict occurs.
         #[doc(alias = "kCFNetServiceFlagNoAutoRename")]
         const FlagNoAutoRename = 1;
     }
@@ -157,27 +163,58 @@ unsafe impl RefEncode for CFNetServiceRegisterFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags?language=objc)
+/// Flags that the system passes to net service browser callbacks.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetServiceBrowserFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceBrowserFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/morecoming?language=objc)
+/// A hint that the system will call the client’s callback function again soon.
+///
+/// ## Discussion
+///
+/// If set, the client shouldn’t do anything time-consuming, such as updating the screen.
+///
+///
         #[doc(alias = "kCFNetServiceFlagMoreComing")]
         const FlagMoreComing = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/isdomain?language=objc)
+/// Specifies whether the result pertains to a search for domains or services.
+///
+/// ## Discussion
+///
+/// If set, the results pertain to a search for domains. If not set, the results pertain to a search for services.
+///
+///
         #[doc(alias = "kCFNetServiceFlagIsDomain")]
         const FlagIsDomain = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/isdefault?language=objc)
+/// Specifies whether the resulting domain is the default registration or browse domain.
+///
+/// ## Discussion
+///
+/// If set, the resulting domain is the default registration or browse domain, depending on the context. For this version of the CFNetServices API, the default registration domain is the local domain.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  In previous versions of this API, this constant was `kCFNetServiceFlagIsRegistrationDomain`, which is retained for backward compatibility.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "kCFNetServiceFlagIsDefault")]
         const FlagIsDefault = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/isregistrationdomain?language=objc)
         #[doc(alias = "kCFNetServiceFlagIsRegistrationDomain")]
 #[deprecated]
         const FlagIsRegistrationDomain = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags/remove?language=objc)
+/// Specifies whether the client should remove the result instead of adding it.
+///
+/// ## Discussion
+///
+/// If set, the client should remove the result item instead of adding it.
+///
+///
         #[doc(alias = "kCFNetServiceFlagRemove")]
         const FlagRemove = 8;
     }
@@ -193,7 +230,7 @@ unsafe impl RefEncode for CFNetServiceBrowserFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcontext?language=objc)
+/// A structure provided when a CFNetService is associated with a callback function or when a CFNetServiceBrowser is created.
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -224,11 +261,53 @@ unsafe impl RefEncode for CFNetServiceClientContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcallback?language=objc)
+/// Defines a pointer to the callback function for a CFNetService.
+///
+/// Parameters:
+/// - theService: CFNetService associated with this callback function.
+///
+/// - error: Pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure whose `error` field contain may contain an error code.
+///
+/// - info: User-defined context information. The value of `info` is the same as the value of the `info` field of the [`CFNetServiceClientContext`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcontext) structure that was provided when [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) was called for the CFNetService associated with this callback function.
+///
+///
+/// ## Discussion
+///
+/// If you name your callback `MyNetServiceClientCallBack`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// Your callback function will be called when there are results of resolving a CFNetService to report or when there are registration errors to report. In the case of resolution, if the service has more than one IP address, your callback will be called once for each address.
+///
+///
 pub type CFNetServiceClientCallBack =
     Option<unsafe extern "C-unwind" fn(NonNull<CFNetService>, *mut CFStreamError, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorclientcallback?language=objc)
+/// Defines a pointer to the callback function that is to be called when a monitored record type changes.
+///
+/// Parameters:
+/// - theMonitor: CFNetServiceMonitor for which the callback is being called.
+///
+/// - theService: CFNetService for which the callback is being called.
+///
+/// - typeInfo: Type of record that changed. For possible values, see [`CFNetServiceMonitorType`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitortype).
+///
+/// - rdata: Contents of the record that changed.
+///
+/// - error: Pointer to [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure whose `error` field contains an error code if an error occurred.
+///
+/// - info: Arbitrary pointer to the user-defined data that was specified in the `info` field of the `CFNetServiceClientContext` structure when the monitor was created by [`CFNetServiceMonitorCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorcreate(_:_:_:_:)).
+///
+///
+/// ## Discussion
+///
+/// If you name your callback `MyNetServiceMonitorClientCallBack`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// The callback function will be called when the monitored record type changes or when the monitor is stopped by calling [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)).
+///
+///
 pub type CFNetServiceMonitorClientCallBack = Option<
     unsafe extern "C-unwind" fn(
         NonNull<CFNetServiceMonitor>,
@@ -240,7 +319,29 @@ pub type CFNetServiceMonitorClientCallBack = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserclientcallback?language=objc)
+/// Defines a pointer to the callback function for a CFNetServiceBrowser.
+///
+/// Parameters:
+/// - browser: The CFNetServiceBrowser associated with this callback function.
+///
+/// - flags: Flags conveying additional information. The `kCFNetServiceFlagIsDomain` bit is set if `domainOrService` contains a domain; if this bit is not set, `domainOrService` contains a CFNetService instance. For additional bit values, see `CFNetServiceBrowserClientCallBack Bit Flags`.
+///
+/// - domainOrService: A string containing a domain name if this callback function is being called as a result of calling [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)), or a CFNetService instance if this callback function is being called as a result calling [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)).
+///
+/// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure whose `error` field may contain an error code.
+///
+/// - info: User-defined context information. The value of `info` is the same as the value of the `info` field of the [`CFNetServiceClientContext`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcontext) structure that was provided when [`CFNetServiceBrowserCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)) was called to create the CFNetServiceBrowser associated with this callback function.
+///
+///
+/// ## Discussion
+///
+/// If you name your callback `MyNetServiceBrowserClientCallBack`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// The callback function for a CFNetServiceBrowser is called one or more times when domains or services are found as the result of calling [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) and [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)).
+///
+///
 pub type CFNetServiceBrowserClientCallBack = Option<
     unsafe extern "C-unwind" fn(
         NonNull<CFNetServiceBrowser>,
@@ -252,7 +353,19 @@ pub type CFNetServiceBrowserClientCallBack = Option<
 >;
 
 unsafe impl ConcreteType for CFNetService {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettypeid()?language=objc)
+    /// Gets the Core Foundation type identifier for the Network Service object.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -264,7 +377,23 @@ unsafe impl ConcreteType for CFNetService {
 }
 
 unsafe impl ConcreteType for CFNetServiceMonitor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorgettypeid()?language=objc)
+    /// Gets the Core Foundation type identifier for all CFNetServiceMonitor instances.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    /// ### Version-Notes
+    ///
+    /// Introduced in OS X v10.4.
+    ///
+    ///
     #[doc(alias = "CFNetServiceMonitorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -276,7 +405,19 @@ unsafe impl ConcreteType for CFNetServiceMonitor {
 }
 
 unsafe impl ConcreteType for CFNetServiceBrowser {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsergettypeid()?language=objc)
+    /// Gets the Core Foundation type identifier for the Network Service browser object.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceBrowserGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -288,7 +429,41 @@ unsafe impl ConcreteType for CFNetServiceBrowser {
 }
 
 impl CFNetService {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreate(_:_:_:_:_:)?language=objc)
+    /// Creates an instance of a Network Service object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - domain: The domain in which the CFNetService is to be registered; cannot be `NULL`. Call [`CFNetServiceBrowserCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)) and [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) to get the registration domain.
+    ///
+    /// - name: A unique name if the instance will be used to register a service. The name will become part of the instance name in the DNS records that will be created when the service is registered. If the instance will be used to resolve a service, the name should be the name of the machine or service that will be resolved.
+    ///
+    /// - port: Local IP port, in host byte order, on which this service accepts connections. Pass zero to get placeholder service. With a placeholder service, the service will not be discovered by browsing, but a name conflict will occur if another client tries to register the same name. Most applications do not need to use placeholder service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new net service object, or `NULL` if the instance could not be created. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the service depends on information in DNS TXT records, call `CFNetServiceSetProtocolSpecificInformation`.
+    ///
+    /// If the CFNetService is to run in asynchronous mode, call [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) to prepare the service for running in asynchronous mode. Then call [`CFNetServiceScheduleWithRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceschedulewithrunloop(_:_:_:)) to schedule the service on a run loop. Then call [`CFNetServiceRegister`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister) to make the service available.
+    ///
+    /// If the CFNetService is to run in synchronous mode, call [`CFNetServiceRegister`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister).
+    ///
+    /// To terminate a service that is running in asynchronous mode, call [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)) and [`CFNetServiceUnscheduleFromRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceunschedulefromrunloop(_:_:_:)).
+    ///
+    /// To terminate a service that is running in synchronous mode, call [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceCreate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -314,7 +489,29 @@ impl CFNetService {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatecopy(_:_:)?language=objc)
+    /// Creates a copy of a CFNetService object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - service: CFNetServiceRef to be copied; cannot be `NULL`. If `service` is not a valid CFNetServiceRef, the behavior of this function is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Copy of `service`, including all previously resolved data, or `NULL` if `service` could not be copied. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a copy of the CFNetService specified by `service`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceCreateCopy")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -334,7 +531,27 @@ impl CFNetService {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetdomain(_:)?language=objc)
+    /// Gets the domain from a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService whose domain is to be obtained; cannot be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object containing the domain of the CFNetService.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the domain from a CFNetService.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe. The function gets the data in a thread-safe way, but the data is not safe if the service is altered from another thread.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetDomain")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -348,7 +565,27 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettype(_:)?language=objc)
+    /// Gets the type from a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService whose type is to be obtained; cannot be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object containing the type from a CFNetService.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the type of a CFNetService.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe. The function gets the data in a thread-safe way, but the data is not safe if the service is altered from another thread.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetType")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -362,7 +599,27 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetname(_:)?language=objc)
+    /// Gets the name from a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService whose name is to be obtained; cannot be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object containing the name of the service represented by the CFNetService.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the name from a CFNetService.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe. The function gets the data in a thread-safe way, but the data is not safe if the service is altered from another thread.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetName")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -376,7 +633,37 @@ impl CFNetService {
         unsafe { CFRetained::retain(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregisterwithoptions(_:_:_:)?language=objc)
+    /// Makes a CFNetService available on the network.
+    ///
+    /// Parameters:
+    /// - theService: Network service to register; cannot be `NULL`. The registration will fail if the service doesn’t have a domain, a type, a name, and an IP address.
+    ///
+    /// - options: Bit flags for specifying registration options. Currently, the only registration option is `kCFNetServiceFlagNoAutoRename`. For details, see `CFNetService Registration Options`.
+    ///
+    /// - error: Pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure that will be set to an error code and the error code’s domain if an error occurs; or `NULL` if you don’t want to receive the error code and its domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if an asynchronous service registration was started; `FALSE` if an asynchronous or synchronous registration failed or if a synchronous registration was canceled.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the service is to run in asynchronous mode, you must call [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) to associate a callback function with this CFNetService before calling this function.
+    ///
+    /// When registering a service that runs in asynchronous mode, this function returns `TRUE` if the service contains all of the required attributes and the registration process can start. If the registration process completes successfully, the service is available on the network until you shut down the service by calling [`CFNetServiceUnscheduleFromRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceunschedulefromrunloop(_:_:_:)), [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)), and [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)). If the service does not contain all of the required attributes or if the registration process does not complete successfully, this function returns `FALSE`.
+    ///
+    /// When registering a service that runs in synchronous mode, this function blocks until an error occurs, in which case this function returns `FALSE`. Until this function returns `FALSE`, the service is available on the network. To force this function to return `FALSE`, thereby shutting down the service, call [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)) from another thread.
+    ///
+    /// The `options` parameter is a bit flag for specifying service registration options. Currently, `kCFNetServiceFlagNoAutoRename` is the only supported registration option. If this bit is set and a service of the same name is running, the registration will fail. If this bit is not set and a service of the same name is running, the service that is being registered will be renamed automatically by appending `(`_n_`)` to the service name, where _n_ is a number that is incremented until the service can be registered with a unique name.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -400,7 +687,37 @@ impl CFNetService {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolvewithtimeout(_:_:_:)?language=objc)
+    /// Gets the IP address or addresses for a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService to resolve; cannot be `NULL`. The resolution will fail if the service doesn’t have a domain, a type, and a name.
+    ///
+    /// - timeout: Value of type `CFTimeInterval` specifying the maximum amount of time allowed to perform the resolution. If the resolution is not performed within the specified amount of time, a timeout error will be returned. If `timeout` is less than or equal to zero, an infinite amount of time is allowed.
+    ///
+    /// - error: Pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure that will be set to an error code and the error code’s domain if an error occurs; or `NULL` if you don’t want to receive the error code and its domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if an asynchronous service resolution was started or if a synchronous service resolution updated the CFNetService; `FALSE` if an asynchronous or synchronous resolution failed or timed out, or if a synchronous resolution was canceled.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function updates the specified CFNetService with the IP address or addresses associated with the service. Call [`CFNetServiceGetAddressing`](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetaddressing(_:)) to get the addresses.
+    ///
+    /// When resolving a service that runs in asynchronous mode, this function returns `TRUE` if the CFNetService has a domain, type, and name, and the underlying resolution process was started. Otherwise, this function returns `FALSE`. Once started, the resolution continues until it is canceled by calling [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)).
+    ///
+    /// When resolving a service that runs in synchronous mode, this function blocks until the CFNetService is updated with at least one IP address, until an error occurs, or until [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)) is called.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// If the service will be used in asynchronous mode, you must call [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) before calling this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -424,7 +741,27 @@ impl CFNetService {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)?language=objc)
+    /// Cancels a service registration or a service resolution.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService, obtained by previously calling [`CFNetServiceCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreate(_:_:_:_:_:)), for which a registration or a resolution is to be canceled.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function cancels service registrations, started by [`CFNetServiceRegister`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister), thereby making the service unavailable. It also cancels service resolutions, started by [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve).
+    ///
+    /// If you are shutting down an asynchronous service, you should first call [`CFNetServiceUnscheduleFromRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceunschedulefromrunloop(_:_:_:)) and [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) with `clientCB` set to `NULL.` Then call this function.
+    ///
+    /// If you are shutting down a synchronous service, call this function from another thread.
+    ///
+    /// This function also cancels service resolutions. You would want to cancel a service resolution if your callback function has received an IP address that you’ve successfully used to connect to the service. In addition, you might want to cancel a service resolution if the resolution is taking longer than a user would want to wait or if the user canceled the operation.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceCancel")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -435,7 +772,23 @@ impl CFNetService {
         unsafe { CFNetServiceCancel(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettargethost(_:)?language=objc)
+    /// Queries a CFNetService for its target hosts.
+    ///
+    /// Parameters:
+    /// - theService: Network service to be queried.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The target host name of the machine providing the service or `NULL` is of the service’s target host is not known. (The target host will not be known if it has not been resolved.)
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe, but the target host name is not safe if the service is altered from another thread.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetTargetHost")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -447,7 +800,17 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetportnumber(_:)?language=objc)
+    /// This function gets the port number from a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService whose protocol-specific information is to be obtained; cannot be `NULL`. Note that in order to get protocol-specific information, you must resolve `theService` by calling [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve) or [`CFNetServiceResolveWithTimeout`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolvewithtimeout(_:_:_:)) before calling this function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The port number of the service.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetPortNumber")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -458,7 +821,27 @@ impl CFNetService {
         unsafe { CFNetServiceGetPortNumber(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetaddressing(_:)?language=objc)
+    /// Gets the IP addressing from a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService whose IP addressing is to be obtained; cannot be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray containing a CFDataRef for each IP address returned, or `NULL`. Each CFDataRef consists of a `sockaddr` structure containing the IP address of the service. This function returns `NULL` if the service’s addressing is unknown because [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve) has not been called for `theService`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the IP addressing from a CFNetService. Typically, the CFNetService was obtained by calling [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)). Before calling this function, call [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve) to update the CFNetService with its IP addressing.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function gets the data in a thread-safe way, but the data itself is not safe if the service is altered from another thread.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetAddressing")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -470,7 +853,27 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettxtdata(_:)?language=objc)
+    /// Queries a network service for the contents of its TXT records.
+    ///
+    /// Parameters:
+    /// - theService: Reference for the network service whose TXT record data is to be obtained; cannot be `NULL`. Note that in order to get TXT record data, you must resolve `theService` by calling [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve) or [`CFNetServiceResolveWithTimeout`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolvewithtimeout(_:_:_:)) before calling this function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// CFDataRef object containing the requested TXT data and suitable for passing to [`CFNetServiceCreateDictionaryWithTXTData`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatedictionarywithtxtdata(_:_:)), or `NULL` if the service’s TXT data has not been resolved.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the data from the service’s TXT records.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function gets the data in a thread-safe way, but the data itself is not safe if the service is altered from another thread.
+    ///
+    ///
     #[doc(alias = "CFNetServiceGetTXTData")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -482,7 +885,29 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicesettxtdata(_:_:)?language=objc)
+    /// Sets the TXT record for a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: CFNetServiceRef for which a TXT record is to be set; cannot be `NULL`.
+    ///
+    /// - txtRecord: Contents of the TXT record that is to be set. The contents must not exceed 1450 bytes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the TXT record was set; otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets a TXT record for the specified service. If the service is currently registered on the network, the record is broadcast. Setting a TXT record on a service that is still being resolved is not allowed.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceSetTXTData")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -494,7 +919,25 @@ impl CFNetService {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatedictionarywithtxtdata(_:_:)?language=objc)
+    /// Uses TXT record data to create a dictionary.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - txtRecord: TXT record data as returned by [`CFNetServiceGetTXTData`](https://developer.apple.com/documentation/cfnetwork/cfnetservicegettxtdata(_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the key/value pairs parsed from `txtRecord`, or `NULL` if `txtRecord` cannot be parsed. Each key in the dictionary is a CFString object, and each value is a CFData object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceCreateDictionaryWithTXTData")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -512,7 +955,31 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatetxtdatawithdictionary(_:_:)?language=objc)
+    /// Flattens a set of key/value pairs into a CFDataRef suitable for passing to [`CFNetServiceSetTXTData`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesettxtdata(_:_:)).
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - keyValuePairs: CFDictionaryRef containing the key/value pairs that are to be placed in a TXT record. Each key must be a CFStringRef and each value should be a CFDataRef or a CFStringRef. (See the discussion below for additional information about values that are CFStringRefs.) This function fails if any other data types are provided. The length of a key and its value should not exceed 255 bytes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFData object containing the flattened form of `keyValuePairs`, or `NULL` if the dictionary could not be flattened. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function flattens the key/value pairs in the dictionary specified by `keyValuePairs` into a CFDataRef suitable for passing to [`CFNetServiceSetTXTData`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesettxtdata(_:_:)). Note that this function is not a general purpose function for flattening CFDictionaryRefs.
+    ///
+    /// The keys in the dictionary referenced by `keyValuePairs` must be CFStringRefs and the values must be CFDataRefs. Any values that are CFStringRefs are converted to CFDataRefs representing the flattened UTF-8 bytes of the string. The types of the values are not encoded in the CFDataRefs, so any CFStringRefs that are converted to CFDataRefs remain CFDataRefs when the CFDataRef produced by this function is processed by [`CFNetServiceCreateDictionaryWithTXTData`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecreatedictionarywithtxtdata(_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -535,7 +1002,33 @@ impl CFNetService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)?language=objc)
+    /// Associates a callback function with a CFNetService or disassociates a callback function from a CFNetService.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService; cannot be `NULL`.
+    ///
+    /// - clientCB: The callback function that is to be associated with this CFNetService. If you are shutting down the service, set `clientCB` to `NULL` to disassociate from this CFNetService the callback function that was previously associated.
+    ///
+    /// - clientContext: Context information to be used when `clientCB` is called; cannot be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the client was set; otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The callback function specified by `clientCB` will be called to report IP addresses (in the case of [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve)) or to report registration errors (in the case of [`CFNetServiceRegister`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// For a CFNetService that will operate asynchronously, call this function and then call [`CFNetServiceScheduleWithRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceschedulewithrunloop(_:_:_:)) to schedule the service on a run loop. Then call [`CFNetServiceRegister`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister) or [`CFNetServiceResolve`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -560,7 +1053,27 @@ impl CFNetService {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceschedulewithrunloop(_:_:_:)?language=objc)
+    /// Schedules a CFNetService on a run loop.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService that is to be scheduled on a run loop; cannot be `NULL`.
+    ///
+    /// - runLoop: The run loop on which the service is to be scheduled; cannot be `NULL`.
+    ///
+    /// - runLoopMode: The mode on which to schedule the service; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Schedules the specified service on a run loop, which places the service in asynchronous mode. The caller is responsible for ensuring that at least one of the run loops on which the service is scheduled is being run.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// Before calling this function, call [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) to prepare a CFNetService for use in asynchronous mode.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -579,7 +1092,25 @@ impl CFNetService {
         unsafe { CFNetServiceScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceunschedulefromrunloop(_:_:_:)?language=objc)
+    /// Unschedules a CFNetService from a run loop.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService that is to be unscheduled; cannot be `NULL`.
+    ///
+    /// - runLoop: The run loop; cannot be `NULL`.
+    ///
+    /// - runLoopMode: The mode from which the service is to be unscheduled; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unschedules the specified service from the specified run loop and mode. Call this function to shut down a service that is running asynchronously. To complete the shutdown, call [`CFNetServiceSetClient`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) and set `clientCB` to `NULL`. Then call [`CFNetServiceCancel`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -600,7 +1131,43 @@ impl CFNetService {
 }
 
 impl CFNetServiceMonitor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorcreate(_:_:_:_:)?language=objc)
+    /// Creates an instance of a NetServiceMonitor object that watches for record changes.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theService: CFNetService to be monitored.
+    ///
+    /// - clientCB: Pointer to callback function that is to be called when a record associated with `theService` changes; cannot be `NULL`.
+    ///
+    /// - clientContext: Pointer to user-defined contextual information that is to be passed to the callback specified by `clientCB` when the callback is called; cannot be `NULL`. For details, see [`CFNetServiceClientContext`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcontext).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new instance of a CFNetServiceMonitor, or `NULL` if the monitor could not be created. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a CFNetServiceMonitor that watches for changes in records associated with `theService`.
+    ///
+    /// If the CFNetServiceMonitor is to run in asynchronous mode, call [`CFNetServiceMonitorScheduleWithRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorschedulewithrunloop(_:_:_:)) to schedule the monitor on a run loop. Then call [`CFNetServiceMonitorStart`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)) to start monitoring. When a change occurs, the callback function specified by `clientCB` will be called. For details, see [`CFNetServiceMonitorClientCallBack`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorclientcallback).
+    ///
+    /// If the CFNetServiceMonitor is to run in synchronous mode, call [`CFNetServiceMonitorStart`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)).
+    ///
+    /// To stop a monitor that is running in asynchronous mode, call [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)) and [`CFNetServiceMonitorUnscheduleFromRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorunschedulefromrunloop(_:_:_:)).
+    ///
+    /// To stop a monitor that is running in synchronous mode, call [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)).
+    ///
+    /// If you no longer need to monitor record changes, call [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)) to stop the monitor and then call [`CFNetServiceMonitorInvalidate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorinvalidate(_:))to invalidate the monitor so it cannot be used again. Then call `CFRelease` to release the memory associated with CFNetServiceMonitorRef.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -630,7 +1197,21 @@ impl CFNetServiceMonitor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorinvalidate(_:)?language=objc)
+    /// Invalidates an instance of a Network Service monitor object.
+    ///
+    /// Parameters:
+    /// - monitor: CFNetServiceMonitor to invalidate; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function invalidates the specified Network Service monitor so that it cannot be used again. Before you call this function, you should call [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)). If the monitor has not already been stopped, this function stops the monitor for you.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFNetServiceMonitorInvalidate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -641,7 +1222,35 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)?language=objc)
+    /// Starts monitoring.
+    ///
+    /// Parameters:
+    /// - monitor: CFNetServiceMonitor, created by calling [`CFNetServiceMonitorCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorcreate(_:_:_:_:)), that is to be started.
+    ///
+    /// - recordType: CFNetServiceMonitorType that specified the type of record to monitor. For possible values, see [`CFNetServiceMonitorType`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitortype).
+    ///
+    /// - error: Pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure. If an error occurs, on output, the structure’s `domain` field will be set to the error code’s domain and the `error` field will be set to an appropriate error code. Set this parameter to `NULL` if you don’t want to receive the error code and its domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if an asynchronous monitor was started successfully. `FALSE` if an error occurred when starting an asynchronous or synchronous monitor, or if [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)) was called for an synchronous monitor.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function starts monitoring for changes to records of the type specified by `recordType`. If a monitor is already running for the service associated with the specified CFNetServiceMonitorRef, this function returns `FALSE`.
+    ///
+    /// For synchronous monitors, this function blocks until the monitor is stopped by calling [`CFNetServiceMonitorStop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)), in which case, this function returns `FALSE`.
+    ///
+    /// For asynchronous monitors, this function returns `TRUE` or `FALSE`, depending on whether monitoring starts successfully.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -665,7 +1274,25 @@ impl CFNetServiceMonitor {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstop(_:_:)?language=objc)
+    /// Stops a CFNetServiceMonitor.
+    ///
+    /// Parameters:
+    /// - monitor: CFNetServiceMonitor, started by calling [`CFNetServiceMonitorStart`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)), that is to be stopped.
+    ///
+    /// - error: Pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure or `NULL`. For synchronous monitors, set the `error` field of this structure to the non-zero value you want to be set in the `CFStreamError` structure when [`CFNetServiceMonitorStart`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)) returns. Note that when it returns, [`CFNetServiceMonitorStart`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)) returns `FALSE.` If the monitor was started asynchronously, set the `error` field to the non-zero value you want the monitor’s callback to receive when it is called. If this parameter is `NULL`, default values for the `CFStreamError` structure are used: the domain is set to `kCFStreamErrorDomainNetServices` and the error code is set to `kCFNetServicesErrorCancel`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function stops the specified monitor. Call [`CFNetServiceMonitorStart`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorstart(_:_:_:)) if you want to start monitoring again.
+    ///
+    /// If you want to stop monitoring and no longer need to monitor record changes, call [`CFNetServiceMonitorInvalidate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorinvalidate(_:)) instead of this function.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -680,7 +1307,23 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorStop(self, error) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorschedulewithrunloop(_:_:_:)?language=objc)
+    /// Schedules a CFNetServiceMonitor on a run loop.
+    ///
+    /// Parameters:
+    /// - runLoop: The run loop on which the monitor is to be scheduled; cannot be `NULL`.
+    ///
+    /// - runLoopMode: The mode on which to schedule the monitor; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Schedules the specified monitor on a run loop, which places the monitor in asynchronous mode. The caller is responsible for ensuring that at least one of the run loops on which the monitor is scheduled is being run.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -699,7 +1342,27 @@ impl CFNetServiceMonitor {
         unsafe { CFNetServiceMonitorScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorunschedulefromrunloop(_:_:_:)?language=objc)
+    /// Unschedules a CFNetServiceMonitor from a run loop.
+    ///
+    /// Parameters:
+    /// - monitor: The CFNetServiceMonitor that is to be unscheduled; cannot be `NULL`.
+    ///
+    /// - runLoop: The run loop; cannot be `NULL`.
+    ///
+    /// - runLoopMode: The mode from which the monitor is to be unscheduled; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unschedules the specified monitor from the specified run loop and mode. Call this function to shut down a monitor that is running asynchronously.
+    ///
+    /// To change a monitor so that it cannot be scheduled and so that its callback will never be called, call [`CFNetServiceMonitorInvalidate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicemonitorinvalidate(_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -720,7 +1383,37 @@ impl CFNetServiceMonitor {
 }
 
 impl CFNetServiceBrowser {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)?language=objc)
+    /// Creates an instance of a Network Service browser object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - clientCB: Callback function that is to be called when domains and services are found; cannot be `NULL`. For details, see [`CFNetServiceBrowserClientCallBack`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserclientcallback).
+    ///
+    /// - clientContext: Context information to be used when `clientCB` is called; cannot be `NULL`. For details, see [`CFNetServiceClientContext`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceclientcontext).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new browser object, or `NULL` if the instance could not be created. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an instance of a Network Service browser object, called a CFNetServiceBrowser, that can be used to search for domains and for services.
+    ///
+    /// To use the resulting CFNetServiceBrowser in asynchronous mode, call [`CFNetServiceBrowserScheduleWithRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserschedulewithrunloop(_:_:_:)). Then call [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) and [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)) to use the CFNetServiceBrowser to search for services and domains, respectively. The callback function specified by `clientCB` is called from a run loop to pass search results to your application. The search continues until you stop the search by calling [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)).
+    ///
+    /// If you do not call [`CFNetServiceBrowserScheduleWithRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserschedulewithrunloop(_:_:_:)), searches with the resulting CFNetServiceBrowser are made in synchronous mode. Calls made to [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) and [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)) block until there are search results, in which case the callback function specified by `clientCB` is called, until the search is are stopped by calling [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)) from another thread, or an error occurs.
+    ///
+    /// To shut down a CFNetServiceBrowser that is running in asynchronous mode, call [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)), followed by [`CFNetServiceBrowserUnscheduleFromRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserunschedulefromrunloop(_:_:_:)), and then [`CFNetServiceBrowserInvalidate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserinvalidate(_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -747,7 +1440,21 @@ impl CFNetServiceBrowser {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserinvalidate(_:)?language=objc)
+    /// Invalidates an instance of a Network Service browser object.
+    ///
+    /// Parameters:
+    /// - browser: The CFNetServiceBrowser to invalidate, obtained by a previous call to [`CFNetServiceBrowserCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function invalidates the specified instance of a Network Service browser object. Any searches using the specified instance that are in progress when this function is called are stopped. An invalidated browser cannot be scheduled on a run loop and its callback function is never called.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same CFNetServiceBrowserRef at the same time.
+    ///
+    ///
     #[doc(alias = "CFNetServiceBrowserInvalidate")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
@@ -758,7 +1465,37 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)?language=objc)
+    /// Searches for domains.
+    ///
+    /// Parameters:
+    /// - browser: The CFNetServiceBrowser, obtained by previously calling [`CFNetServiceBrowserCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)), that is to perform the search; cannot be `NULL`.
+    ///
+    /// - registrationDomains: `TRUE` to search for only registration domains; `FALSE` to search for domains that can be browsed for services. For this version of the CFNetServices API, the registration domain is the local domain maintained by the mDNS responder running on the same machine as the calling application.
+    ///
+    /// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure, that, if an error occurs, will be set to the error and the error’s domain and passed to your callback function. Pass `NULL` if you don’t want to receive the error that may occur as a result of this particular call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the search was started (asynchronous mode); `FALSE` if another search is already in progress for this CFNetServiceBrowser or if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses a CFNetServiceBrowser to search for domains. The search continues until the search is canceled by calling [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)). If `registrationDomains` is `TRUE`, this function searches only for domains in which services can be registered. If `registrationDomains` is `FALSE`, this function searches for domains that can be browsed for services. When a domain is found, the callback function specified when the CFNetServiceBrowser was created is called and passed an instance of a CFStringRef containing the domain that was found.
+    ///
+    /// In asynchronous mode, this function returns `TRUE` if the search was started. Otherwise, it returns `FALSE`.
+    ///
+    /// In synchronous mode, this function blocks until the search is stopped by calling [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)) from another thread, in which case it returns `FALSE`, or until an error occurs.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// For any one CFNetServiceBrowser, only one domain search or one service search can be in progress at the same time.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -783,7 +1520,37 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)?language=objc)
+    /// Searches a domain for services of a specified type.
+    ///
+    /// Parameters:
+    /// - browser: The CFNetServiceBrowser, obtained by previously calling [`CFNetServiceBrowserCreate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsercreate(_:_:_:)), that is to perform the search; cannot be `NULL`.
+    ///
+    /// - domain: The domain to search for the service type; cannot be `NULL`. To get the domains that are available for searching, call [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)).
+    ///
+    /// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure, that, if an error occurs, will be set to the error and the error’s domain and passed to your callback function. Pass `NULL` if you don’t want to receive the error that may occur as a result of this particular call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the search was started (asynchronous mode); `FALSE` if another search is already in progress for this CFNetServiceBrowser or if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function searches the specified domain for services that match the specified service type. The search continues until the search is canceled by calling [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)). When a match is found, the callback function specified when the CFNetServiceBrowser was created is called and passed an instance of a CFNetService representing the service that was found.
+    ///
+    /// In asynchronous mode, this function returns `TRUE` if the search was started. Otherwise, it returns `FALSE`.
+    ///
+    /// In synchronous mode, this function blocks until the search is stopped by calling [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)) from another thread, in which case this function returns `FALSE`, or until an error occurs.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// For any one CFNetServiceBrowser, only one domain search or one service search can be in progress at the same time.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -810,7 +1577,25 @@ impl CFNetServiceBrowser {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)?language=objc)
+    /// Stops a search for domains or services.
+    ///
+    /// Parameters:
+    /// - browser: The CFNetServiceBrowser that was used to start the search; cannot be `NULL`.
+    ///
+    /// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure that will be passed to the callback function associated with this CFNetServiceBrowser (if the search is being conducted in asynchronous mode) or that is pointed to by the `error` parameter when [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) or [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)) returns (if the search is being conducted in synchronous mode). Set the `domain` field to `kCFStreamErrorDomainCustom` and the `error` field to an appropriate value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This functions stops a search started by a previous call to [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) or [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)). For asynchronous and synchronous searches, calling this function causes the callback function associated with the CFNetServiceBrowser to be called once for each domain or service found. If the search is asynchronous, `error` is passed to the callback function. If the search is synchronous, calling this function causes [`CFNetServiceBrowserSearchForDomains`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchfordomains(_:_:_:)) or [`CFNetServiceBrowserSearchForServices`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowsersearchforservices(_:_:_:_:)) to return `FALSE`. If the `error` parameter for either call pointed to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure, the [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure contains the error code and the error code’s domain as set when this function was called.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// If you are stopping an asynchronous search, before calling this function, call [`CFNetServiceBrowserUnscheduleFromRunLoop`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserunschedulefromrunloop(_:_:_:)), followed by [`CFNetServiceBrowserInvalidate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserinvalidate(_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -828,7 +1613,25 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserStopSearch(self, error) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserschedulewithrunloop(_:_:_:)?language=objc)
+    /// Schedules a CFNetServiceBrowser on a run loop.
+    ///
+    /// Parameters:
+    /// - browser: The CFNetServiceBrowser that is to be scheduled on a run loop; cannot be `NULL`.
+    ///
+    /// - runLoop: The run loop on which the browser is to be scheduled; cannot be `NULL`.
+    ///
+    /// - runLoopMode: The mode on which to schedule the browser; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function schedules the specified CFNetServiceBrowser on the run loop, thereby placing the browser in asynchronous mode. The run loop will call the browser’s callback function to deliver the results of domain and service searches. The caller is responsible for ensuring that at least one of the run loops on which the browser is scheduled is being run.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -847,7 +1650,25 @@ impl CFNetServiceBrowser {
         unsafe { CFNetServiceBrowserScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserunschedulefromrunloop(_:_:_:)?language=objc)
+    /// Unschedules a CFNetServiceBrowser from a run loop and mode.
+    ///
+    /// Parameters:
+    /// - browser: The CFNetServiceBrowser that is to be unscheduled; cannot be `NULL`.
+    ///
+    /// - runLoop: The run loop; cannot be `NULL`.
+    ///
+    /// - runLoopMode: The mode from which the browser is to be unscheduled; cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to shut down a browser that is running asynchronously. To complete the shutdown, call [`CFNetServiceBrowserInvalidate`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserinvalidate(_:)) followed by [`CFNetServiceBrowserStopSearch`](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserstopsearch(_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -868,7 +1689,33 @@ impl CFNetServiceBrowser {
 }
 
 impl CFNetService {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregister?language=objc)
+    /// Makes a CFNetService available on the network.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService to register; cannot be `NULL`. The registration will fail if the service doesn’t have a domain, a type, a name, and an IP address.
+    ///
+    /// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure that will be set to an error code and the error code’s domain if an error occurs; or `NULL` if you don’t want to receive the error code and its domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if an asynchronous service registration was started; `FALSE` if an asynchronous or synchronous registration failed or if a synchronous registration was canceled.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the service is to run in asynchronous mode, you must call [`CFNetServiceSetClient(_:_:_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) to associate a callback function with this CFNetService before calling this function.
+    ///
+    /// When registering a service that runs in asynchronous mode, this function returns `TRUE` if the service contains all of the required attributes and the registration process can start. If the registration process completes successfully, the service is available on the network until you shut down the service by calling [`CFNetServiceUnscheduleFromRunLoop(_:_:_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetserviceunschedulefromrunloop(_:_:_:)), [`CFNetServiceSetClient(_:_:_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)), and [`CFNetServiceCancel(_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)). If the service does not contain all of the required attributes or if the registration process does not complete successfully, this function returns `FALSE`.
+    ///
+    /// When registering a service that runs in synchronous mode, this function blocks until an error occurs, in which case this function returns `FALSE`. Until this function returns `FALSE`, the service is available on the network. To force this function to return `FALSE`, thereby shutting down the service, call [`CFNetServiceCancel(_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)) from another thread.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -887,7 +1734,33 @@ impl CFNetService {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceresolve?language=objc)
+    /// This function updates the specified CFNetService with the IP address or addresses associated with the service. Call [`CFNetServiceGetAddressing(_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicegetaddressing(_:)) to get the addresses.
+    ///
+    /// Parameters:
+    /// - theService: The CFNetService to resolve; cannot be `NULL`. The resolution will fail if the service doesn’t have a domain, a type, and a name.
+    ///
+    /// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure that will be set to an error code and the error code’s domain if an error occurs; or `NULL` if you don’t want to receive the error code and its domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if an asynchronous service resolution was started or if a synchronous service resolution updated the CFNetService; `FALSE` if an asynchronous or synchronous resolution failed or if a synchronous resolution was canceled.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When resolving a service that runs in asynchronous mode, this function returns `TRUE` if the CFNetService has a domain, type, and name, and the underlying resolution process was started. Otherwise, this function returns `FALSE`. Once started, the resolution continues until it is canceled by calling [`CFNetServiceCancel(_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)).
+    ///
+    /// When resolving a service that runs in synchronous mode, this function blocks until the CFNetService is updated with at least one IP address, until an error occurs, or until [`CFNetServiceCancel(_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicecancel(_:)) is called.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    /// If the service will be used in asynchronous mode, you must call [`CFNetServiceSetClient(_:_:_:)`](https://developer.apple.com/documentation/cfnetwork/cfnetservicesetclient(_:_:_:)) before calling this function.
+    ///
+    ///
     ///
     /// # Safety
     ///

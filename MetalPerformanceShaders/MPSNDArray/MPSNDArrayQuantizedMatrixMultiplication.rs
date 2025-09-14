@@ -36,8 +36,6 @@ extern_class!(
     /// uses scale and minValue the array of inputs is:
     /// ` [ Aq, Bq^T, ALUT, BScale^T, BMin^T ] `.
     /// NOTE: For affine scale, zeropoint and minValue must have same transposes as quantized input.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizedmatrixmultiplication?language=objc)
     #[unsafe(super(
         MPSNDArrayMatrixMultiplication,
         MPSNDArrayMultiaryKernel,
@@ -235,8 +233,6 @@ extern_class!(
     /// A kernel which dequantizes a lookup-table based NDArray.
     ///
     /// The kernel works with 2 inputs: 1) The quantized input, 2) The LookUp table array.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutdequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -390,8 +386,6 @@ extern_class!(
     /// A kernel which dequantizes a lookup-table based NDArray with vector LUT support.
     ///
     /// The kernel works with 2 inputs: 1) The quantized input, 2) The LookUp table array.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -580,8 +574,6 @@ extern_class!(
     /// A kernel which dequantizes an input with affine quantization scheme.
     ///
     /// The kernel works with 2-4 inputs, order of inputs: 1) quantized input, 2) scale, 3) zeropoint, 4) minValue
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffineint4dequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Describes a compute pipeline state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor?language=objc)
+    /// Describes a compute pipeline state.
     #[unsafe(super(MTL4PipelineDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4PipelineState")]

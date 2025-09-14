@@ -8,7 +8,73 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshotreference?language=objc)
+    /// A representation of the state of the data in a view at a specific point in time.
+    ///
+    /// ## Overview
+    ///
+    /// Diffable data sources use _snapshots_ to provide data for collection views and table views. You use a snapshot to set up the initial state of the data that a view displays, and you use snapshots to reflect changes to the data that the view displays.
+    ///
+    /// The data in a snapshot is made up of the sections and items you want to display, in the order that you determine. You configure what to display by adding, deleting, or moving the sections and items.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Each of your sections and items must have unique identifiers that conform to the [`Hashable`](https://developer.apple.com/documentation/swift/hashable) protocol. Use `struct` or `enum` Swift value types for your identifiers, including built-in types such as `Int`, `String`, or `UUID`. If you use a Swift `class` for your identifiers, your `class` must be a subclass of `NSObject`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To display data in a view using a snapshot:
+    ///
+    /// 1. Create a snapshot and populate it with the state of the data you want to display.
+    ///
+    /// 2. Apply the snapshot to reflect the changes in the UI.
+    ///
+    /// You can create and configure a snapshot in one of these ways:
+    ///
+    /// - Create an empty snapshot, then append sections and items to it.
+    ///
+    /// - Get the current snapshot by calling the diffable data source’s [`snapshot()`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa/snapshot()) method, then modify that snapshot to reflect the new state of the data that you want to display.
+    ///
+    /// For example, the following code creates an empty snapshot and populates it with a single section with three items. Then, the code applies the snapshot, animating the UI updates between the previous state and the new state.
+    ///
+    /// ```objc
+    /// // Create a snapshot.
+    /// NSDiffableDataSourceSnapshot<NSNumber *, NSUUID *> *snapshot = [[NSDiffableDataSourceSnapshot alloc] init];
+    ///
+    ///
+    /// // Populate the snapshot.
+    /// [snapshot appendSectionsWithIdentifiers:@[@0]];
+    /// [snapshot appendItemsWithIdentifiers:@[[NSUUID UUID], [NSUUID UUID], [NSUUID UUID]]];
+    ///
+    ///
+    /// // Apply the snapshot.
+    /// [self.dataSource applySnapshot:snapshot animatingDifferences:YES];
+    /// ```
+    ///
+    /// For more information, see the diffable data source types:
+    ///
+    /// - [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereference)
+    ///
+    /// - [`UITableViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcereference)
+    ///
+    /// - [`NSCollectionViewDiffableDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasource-axww)
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// If you’re working in a Swift codebase, always use [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Avoid using this type in Swift code. Only use this type to bridge from Objective-C code to Swift code by typecasting from a snapshot reference to a snapshot:
+    ///
+    /// ```swift
+    /// let snapshot = snapshotReference as NSDiffableDataSourceSnapshot<Int, UUID>
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
@@ -259,7 +325,21 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereferencecellprovider?language=objc)
+/// A closure that configures and returns a cell for a collection view from its diffable data source.
+///
+/// Parameters:
+/// - collectionView: The collection view to configure this cell for.
+///
+/// - indexPath: The index path that specifies the location of the cell in the collection view.
+///
+/// - identifier: The identifier of the item for this cell.
+///
+///
+/// ## Return Value
+///
+/// A non-`nil` configured cell object. The cell provider must return a valid cell object to the collection view.
+///
+///
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UICollectionViewCell",
@@ -276,7 +356,21 @@ pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     ) -> *mut UICollectionViewCell,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereferencesupplementaryviewprovider?language=objc)
+/// A closure that configures and returns a collection view’s supplementary view, such as a header or footer, from a diffable data source.
+///
+/// Parameters:
+/// - collectionView: The collection view to configure this supplementary view for.
+///
+/// - kind: The kind of supplementary view to provide. The layout object that supports the supplementary view defines the value of this string.
+///
+/// - indexPath: The index path that specifies the location of the supplementary view in the collection view.
+///
+///
+/// ## Return Value
+///
+/// A non-`nil` configured supplementary view object. The supplementary view provider must return a valid view object to the collection view.
+///
+///
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UICollectionViewCell",
@@ -294,7 +388,7 @@ pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesectiontransaction-c.class?language=objc)
+    /// A transaction that describes the changes after reordering the items in a section.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSectionTransaction<
@@ -405,7 +499,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcetransaction-c.class?language=objc)
+    /// A transaction that describes the changes after reordering the items in the view.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceTransaction<
@@ -519,7 +613,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereorderinghandlers?language=objc)
+    /// Handlers for reordering items.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -665,7 +759,7 @@ impl<SectionType: Message, ItemType: Message>
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcesectionsnapshothandlers?language=objc)
+    /// Handlers for expanding and collapsing items.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -855,7 +949,49 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereference?language=objc)
+    /// The object you use to manage data and provide cells for a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// If you’re working in a Swift codebase, always use [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A _diffable data source_ object is a specialized type of data source that works together with your collection view object. It provides the behavior you need to manage updates to your collection view’s data and UI in a simple, efficient way. It also conforms to the [`UICollectionViewDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource) protocol and provides implementations for all of the protocol’s methods.
+    ///
+    /// To fill a collection view with data:
+    ///
+    /// 1. Connect a diffable data source to your collection view.
+    ///
+    /// 2. Implement a cell provider to configure your collection view’s cells.
+    ///
+    /// 3. Generate the current state of the data.
+    ///
+    /// 4. Display the data in the UI.
+    ///
+    /// To connect a diffable data source to a collection view, you create the diffable data source using its [`initWithCollectionView:cellProvider:`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereference/init(collectionview:cellprovider:)) initializer, passing in the collection view you want to associate with that data source. You also pass in a cell provider, where you configure each of your cells to determine how to display your data in the UI.
+    ///
+    /// ```objc
+    /// self.dataSource = [[UICollectionViewDiffableDataSource alloc] initWithCollectionView:self.collectionView cellProvider:^UICollectionViewCell *(UICollectionView *collectionView, NSIndexPath *indexPath, id item) {
+    ///     // Configure and return cell.
+    /// }];
+    /// ```
+    ///
+    /// Then, you generate the current state of the data and display the data in the UI by constructing and applying a snapshot. For more information, see [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshotreference).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t change the [`dataSource`](https://developer.apple.com/documentation/uikit/uicollectionview/datasource) on the collection view after you configure it with a diffable data source. If the collection view needs a new data source after you configure it initially, create and configure a new collection view and diffable data source.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1110,7 +1246,21 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcereferencecellprovider?language=objc)
+/// A closure that configures and returns a cell for a table view from its diffable data source.
+///
+/// Parameters:
+/// - tableView: The table view to configure this cell for.
+///
+/// - indexPath: The index path that specifies the location of the cell in the table view.
+///
+/// - itemIdentifier: The identifier of the item for this cell.
+///
+///
+/// ## Return Value
+///
+/// A non-`nil` configured cell object. The cell provider must return a valid cell object to the table view.
+///
+///
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",
@@ -1124,7 +1274,49 @@ pub type UITableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcereference?language=objc)
+    /// The object you use to manage data and provide cells for a table view.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// If you’re working in a Swift codebase, always use [`UITableViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasource-2euir) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A _diffable data source_ object is a specialized type of data source that works together with your table view object. It provides the behavior you need to manage updates to your table view’s data and UI in a simple, efficient way. It also conforms to the [`UITableViewDataSource`](https://developer.apple.com/documentation/uikit/uitableviewdatasource) protocol and provides implementations for all of the protocol’s methods.
+    ///
+    /// To fill a table view with data:
+    ///
+    /// 1. Connect a diffable data source to your table view.
+    ///
+    /// 2. Implement a cell provider to configure your table view’s cells.
+    ///
+    /// 3. Generate the current state of the data.
+    ///
+    /// 4. Display the data in the UI.
+    ///
+    /// To connect a diffable data source to a table view, you create the diffable data source using its [`initWithTableView:cellProvider:`](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcereference/init(tableview:cellprovider:)) initializer, passing in the table view you want to associate with that data source. You also pass in a cell provider, where you configure each of your cells to determine how to display your data in the UI.
+    ///
+    /// ```swift
+    /// self.dataSource = [[UITableViewDiffableDataSource alloc] initWithTableView:self.tableView cellProvider:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath, id itemIdentifier) {
+    ///     // configure and return cell
+    /// }];
+    /// ```
+    ///
+    /// Then, you generate the current state of the data and display the data in the UI by constructing and applying a snapshot. For more information, see [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshotreference).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Do not change the [`dataSource`](https://developer.apple.com/documentation/uikit/uitableview/datasource) on the table view after you configure it with a diffable data source. If the table view needs a new data source after you configure it initially, create and configure a new table view and diffable data source.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

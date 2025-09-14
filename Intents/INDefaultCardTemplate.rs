@@ -8,11 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A card template for customizing the Siri watch face for a shortcut.
+    ///
+    /// ## Overview
+    ///
+    /// The Siri watch face displays a relevant shortcut using information from the [`INIntent`](https://developer.apple.com/documentation/intents/inintent) or [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) provided when creating the shortcut. If you want to provide watch specific information—for example, to display a shorter title—provide the relevant shortcut a default card template by setting the [`watchTemplate`](https://developer.apple.com/documentation/intents/inrelevantshortcut/watchtemplate) property. The template allows your app to set the [`title`](https://developer.apple.com/documentation/intents/indefaultcardtemplate/title), [`subtitle`](https://developer.apple.com/documentation/intents/indefaultcardtemplate/subtitle), and [`image`](https://developer.apple.com/documentation/intents/indefaultcardtemplate/image). For more information, see [Displaying Shortcut Information in a Siri Watch Face Card](https://developer.apple.com/documentation/sirikit/displaying-shortcut-information-in-a-siri-watch-face-card).
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c7ad13aaa57db7bc86a7bd6bd8d2286a/media-3030289~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f3e0455a4f2b58e62352460a1f98dcdb/media-3030289%402x.png 2x" />
+    ///     <img alt="A screenshot of the Siri watch face showing a custom default card template with callouts for image, title, and subtitle." src="https://docs-assets.developer.apple.com/published/f3e0455a4f2b58e62352460a1f98dcdb/media-3030289%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// A template for customizing the display of relevant shortcuts.
     ///
     /// See also: INRelevantShortcut
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indefaultcardtemplate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INDefaultCardTemplate;

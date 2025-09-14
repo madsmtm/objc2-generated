@@ -7,30 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate?language=objc)
+/// The state of a player in a voice chat.
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKVoiceChatPlayerState(pub NSInteger);
 impl GKVoiceChatPlayerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/connected?language=objc)
+    /// The state when the player connects to the channel.
     #[doc(alias = "GKVoiceChatPlayerConnected")]
     #[deprecated = "No longer supported"]
     pub const Connected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/disconnected?language=objc)
+    /// The state when the player left the channel.
     #[doc(alias = "GKVoiceChatPlayerDisconnected")]
     #[deprecated = "No longer supported"]
     pub const Disconnected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/speaking?language=objc)
+    /// The state when the player speaks.
     #[doc(alias = "GKVoiceChatPlayerSpeaking")]
     #[deprecated = "No longer supported"]
     pub const Speaking: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/silent?language=objc)
+    /// The state when the player isn’t speaking.
     #[doc(alias = "GKVoiceChatPlayerSilent")]
     #[deprecated = "No longer supported"]
     pub const Silent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate/connecting?language=objc)
+    /// The state when the player is connecting to the channel, but isn’t connected yet.
     #[doc(alias = "GKVoiceChatPlayerConnecting")]
     #[deprecated = "No longer supported"]
     pub const Connecting: Self = Self(4);
@@ -45,9 +45,20 @@ unsafe impl RefEncode for GKVoiceChatPlayerState {
 }
 
 extern_class!(
-    /// GKVoiceChat represents an instance of a named voice communications channel
+    /// A voice channel that allows players to speak with each other in a multiplayer game.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat?language=objc)
+    /// ## Overview
+    ///
+    /// GameKit provides the underlying mechanism to implement voice chat between players in a multiplayer game. It’s your responsibility to provide player controls and display feedback during the chat.
+    ///
+    /// First, configure voice chat by adding the [`NSMicrophoneUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmicrophoneusagedescription) key to the Information Property List and creating an audio session. Then, create a `GKVoiceChat` object using the `GKMatch` [`voiceChatWithName:`](https://developer.apple.com/documentation/gamekit/gkmatch/voicechat(withname:)) method passing a string that identifies the voice channel. Use the [`start`](https://developer.apple.com/documentation/gamekit/gkvoicechat/start()) method to connect players to the channel. Use the [`active`](https://developer.apple.com/documentation/gamekit/gkvoicechat/isactive) property to activate the microphone or switch the microphone between channels.
+    ///
+    /// Provide a handler using the [`playerVoiceChatStateDidChangeHandler`](https://developer.apple.com/documentation/gamekit/gkvoicechat/playervoicechatstatedidchangehandler) property to update the interface when a player connects, speaks, or disconnects from a chat. You can also add controls that mute and set the volume using the [`setPlayer:muted:`](https://developer.apple.com/documentation/gamekit/gkvoicechat/setplayer(_:muted:)) method and [`volume`](https://developer.apple.com/documentation/gamekit/gkvoicechat/volume) property.
+    ///
+    /// Note that if there’s insufficient bandwidth over Wi-Fi to maintain a voice chat, GameKit may disconnect players from the channel or disband a channel.
+    ///
+    ///
+    /// GKVoiceChat represents an instance of a named voice communications channel
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]

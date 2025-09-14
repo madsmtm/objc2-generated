@@ -4,730 +4,753 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier?language=objc)
+/// A structure that defines identifiers for metadata formats.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVMetadataIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiertitle?language=objc)
+    /// An identifier that represents the title of the media.
     pub static AVMetadataCommonIdentifierTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercreator?language=objc)
+    /// An identifier that represents the name of the creator.
     pub static AVMetadataCommonIdentifierCreator: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiersubject?language=objc)
+    /// An identifier that represents the subject information for the media.
     pub static AVMetadataCommonIdentifierSubject: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierdescription?language=objc)
+    /// An identifier that represents the description of the media.
     pub static AVMetadataCommonIdentifierDescription: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierpublisher?language=objc)
+    /// An identifier that represents the name of the publisher.
     pub static AVMetadataCommonIdentifierPublisher: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercontributor?language=objc)
+    /// An identifier that represents the name of the contributor.
     pub static AVMetadataCommonIdentifierContributor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercreationdate?language=objc)
+    /// An identifier that represents the date of the original recording.
     pub static AVMetadataCommonIdentifierCreationDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierlastmodifieddate?language=objc)
+    /// An identifier that represents the last modification date of the media.
     pub static AVMetadataCommonIdentifierLastModifiedDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiertype?language=objc)
+    /// An identifier that represents the media type.
     pub static AVMetadataCommonIdentifierType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierformat?language=objc)
+    /// An identifier that represents the file format of the media content.
     pub static AVMetadataCommonIdentifierFormat: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierassetidentifier?language=objc)
+    /// An identifier that represents the asset ID for the media.
     pub static AVMetadataCommonIdentifierAssetIdentifier: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiersource?language=objc)
+    /// An identifier that represents the source information for the media.
     pub static AVMetadataCommonIdentifierSource: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierlanguage?language=objc)
+    /// An identifier that represents the language of the text or lyrics spoken or sung in the audio.
     pub static AVMetadataCommonIdentifierLanguage: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierrelation?language=objc)
+    /// An identifier that represents the relation information for the media.
     pub static AVMetadataCommonIdentifierRelation: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierlocation?language=objc)
+    /// An identifier that represents the location information for the media.
     pub static AVMetadataCommonIdentifierLocation: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercopyrights?language=objc)
+    /// An identifier that represents the copyright statement.
     pub static AVMetadataCommonIdentifierCopyrights: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifieralbumname?language=objc)
+    /// An identifier that represents the name of the album.
     pub static AVMetadataCommonIdentifierAlbumName: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierauthor?language=objc)
+    /// An identifier that represents the name of the author.
     pub static AVMetadataCommonIdentifierAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierartist?language=objc)
+    /// An identifier that represents the name of the artist.
     pub static AVMetadataCommonIdentifierArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierartwork?language=objc)
+    /// An identifier that represents an image relating to the album.
     pub static AVMetadataCommonIdentifierArtwork: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiermake?language=objc)
+    /// An identifier that represents the name of the camera maker.
     pub static AVMetadataCommonIdentifierMake: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiermodel?language=objc)
+    /// An identifier that represents the name of the camera model.
     pub static AVMetadataCommonIdentifierModel: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiersoftware?language=objc)
+    /// An identifier that represents the name of the software used to create the media.
     pub static AVMetadataCommonIdentifierSoftware: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifieraccessibilitydescription?language=objc)
+    /// An identifier that represents the accessibility description for the media.
     pub static AVMetadataCommonIdentifierAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataalbum?language=objc)
+    /// An identifier that represents the name of the album or collection in QuickTime.
     pub static AVMetadataIdentifierQuickTimeUserDataAlbum: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataarranger?language=objc)
+    /// An identifier that represents the name of the arranger of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataArranger: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataartist?language=objc)
+    /// An identifier that represents the name of the artist of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataauthor?language=objc)
+    /// An identifier that represents the name of the author of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatachapter?language=objc)
+    /// An identifier that represents the name of the chapter.
     pub static AVMetadataIdentifierQuickTimeUserDataChapter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacomment?language=objc)
+    /// An identifier that represents a comment regarding the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataComment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacomposer?language=objc)
+    /// An identifier that represents the name of the composer of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacopyright?language=objc)
+    /// An identifier that represents the copyright statement in QuickTime.
     pub static AVMetadataIdentifierQuickTimeUserDataCopyright:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacreationdate?language=objc)
+    /// An identifier that represents the creation date of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataCreationDate:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatadescription?language=objc)
+    /// An identifier that represents the description of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatadirector?language=objc)
+    /// An identifier that represents the name of the director of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatadisclaimer?language=objc)
+    /// An identifier that represents the disclaimer regarding the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataDisclaimer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataencodedby?language=objc)
+    /// An identifier that represents the name of the person or organization responsible for encoding the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataEncodedBy:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatafullname?language=objc)
+    /// An identifier that represents the full name of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataFullName: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatagenre?language=objc)
+    /// An identifier that represents the genre or genres to which the movie content conforms.
     pub static AVMetadataIdentifierQuickTimeUserDataGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatahostcomputer?language=objc)
+    /// An identifier that represents the name of the host computer.
     pub static AVMetadataIdentifierQuickTimeUserDataHostComputer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatainformation?language=objc)
+    /// An identifier that represents general information about the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatakeywords?language=objc)
+    /// An identifier that represents the keywords for the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataKeywords: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatamake?language=objc)
+    /// An identifier that represents the name of the camera maker.
     pub static AVMetadataIdentifierQuickTimeUserDataMake: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatamodel?language=objc)
+    /// An identifier that represents the name of the camera model.
     pub static AVMetadataIdentifierQuickTimeUserDataModel: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataoriginalartist?language=objc)
+    /// An identifier that represents the name of the original artist of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataOriginalArtist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataoriginalformat?language=objc)
+    /// An identifier that represents the original format of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataOriginalFormat:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataoriginalsource?language=objc)
+    /// An identifier that represents the original source of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataOriginalSource:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataperformers?language=objc)
+    /// An identifier that represents the name of the performers in the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataPerformers:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataproducer?language=objc)
+    /// An identifier that represents the name of the producer of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataProducer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatapublisher?language=objc)
+    /// An identifier that represents the name of the publisher of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataPublisher:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataproduct?language=objc)
+    /// An identifier that represents the name of the product.
     pub static AVMetadataIdentifierQuickTimeUserDataProduct: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatasoftware?language=objc)
+    /// An identifier that represents the name of software used to create the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataSoftware: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataspecialplaybackrequirements?language=objc)
+    /// An identifier that represents the special hardware and software requirements for playback.
     pub static AVMetadataIdentifierQuickTimeUserDataSpecialPlaybackRequirements:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatatrack?language=objc)
+    /// An identifier that represents a track in the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataTrack: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatawarning?language=objc)
+    /// An identifier that represents the warning text for the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataWarning: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatawriter?language=objc)
+    /// An identifier that represents the name of the writer of the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataWriter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataurllink?language=objc)
+    /// An identifier that represents the webpage for the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataURLLink: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatalocationiso6709?language=objc)
+    /// An identifier that represents the geographic point location by coordinates as defined in ISO 6709:2008.
     pub static AVMetadataIdentifierQuickTimeUserDataLocationISO6709:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatatrackname?language=objc)
+    /// An identifier that represents the name of a track in the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataTrackName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacredits?language=objc)
+    /// An identifier that represents the credits of movie source content.
     pub static AVMetadataIdentifierQuickTimeUserDataCredits: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataphonogramrights?language=objc)
+    /// An identifier that represents the phonogram rights statement.
     pub static AVMetadataIdentifierQuickTimeUserDataPhonogramRights:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatataggedcharacteristic?language=objc)
+    /// An identifier that represents the tagged characteristic.
     pub static AVMetadataIdentifierQuickTimeUserDataTaggedCharacteristic:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataaccessibilitydescription?language=objc)
+    /// An identifier that represents the accessibility description for the movie file content.
     pub static AVMetadataIdentifierQuickTimeUserDataAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdatacopyright?language=objc)
+    /// An identifier that represents the copyright statement.
     pub static AVMetadataIdentifierISOUserDataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdatadate?language=objc)
+    /// An identifier that represents the date for the media content.
     pub static AVMetadataIdentifierISOUserDataDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdatataggedcharacteristic?language=objc)
+    /// An identifier that represents the tagged media characteristic used for identifying accessibility features.
     pub static AVMetadataIdentifierISOUserDataTaggedCharacteristic:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdataaccessibilitydescription?language=objc)
+    /// An identifier that represents the accessibility description for the media content.
     pub static AVMetadataIdentifierISOUserDataAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatacopyright?language=objc)
+    /// An identifier that represents the copyright statement.
     pub static AVMetadataIdentifier3GPUserDataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdataauthor?language=objc)
+    /// An identifier that represents the author of the media.
     pub static AVMetadataIdentifier3GPUserDataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdataperformer?language=objc)
+    /// An identifier that represents information about the performer.
     pub static AVMetadataIdentifier3GPUserDataPerformer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatagenre?language=objc)
+    /// An identifier that represents the genre of the media.
     pub static AVMetadataIdentifier3GPUserDataGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatarecordingyear?language=objc)
+    /// An identifier that represents the recording year for the media.
     pub static AVMetadataIdentifier3GPUserDataRecordingYear: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatalocation?language=objc)
+    /// An identifier that represents the location information for the media.
     pub static AVMetadataIdentifier3GPUserDataLocation: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatatitle?language=objc)
+    /// An identifier that represents the title for the media.
     pub static AVMetadataIdentifier3GPUserDataTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatadescription?language=objc)
+    /// An identifier that represents the description for the media.
     pub static AVMetadataIdentifier3GPUserDataDescription: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatacollection?language=objc)
+    /// An identifier that represents the collection name for the media.
     pub static AVMetadataIdentifier3GPUserDataCollection: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatauserrating?language=objc)
+    /// An identifier that represents the user rating.
     pub static AVMetadataIdentifier3GPUserDataUserRating: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatathumbnail?language=objc)
+    /// An identifier that represents the media thumbnail.
     pub static AVMetadataIdentifier3GPUserDataThumbnail: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdataalbumandtrack?language=objc)
+    /// An identifier that represents the text for the album and track titles.
     pub static AVMetadataIdentifier3GPUserDataAlbumAndTrack: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatakeywordlist?language=objc)
+    /// An identifier that represents the list of keywords for the media.
     pub static AVMetadataIdentifier3GPUserDataKeywordList: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatamediaclassification?language=objc)
+    /// An identifier that represents the classification of the media content.
     pub static AVMetadataIdentifier3GPUserDataMediaClassification:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatamediarating?language=objc)
+    /// An identifier that represents the rating of the media content.
     pub static AVMetadataIdentifier3GPUserDataMediaRating: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataauthor?language=objc)
+    /// An identifier that represents the name of the author of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacomment?language=objc)
+    /// An identifier that represents a comment regarding the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataComment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacopyright?language=objc)
+    /// An identifier that represents the copyright statement for the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataCopyright:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacreationdate?language=objc)
+    /// An identifier that represents the creation date of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataCreationDate:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadirector?language=objc)
+    /// An identifier that represents the name of the director of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadisplayname?language=objc)
+    /// An identifier that represents the display name of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDisplayName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatainformation?language=objc)
+    /// An identifier that represents general information about the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatakeywords?language=objc)
+    /// An identifier that represents the keywords for the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataKeywords: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataproducer?language=objc)
+    /// An identifier that represents the name of the producer of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataProducer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatapublisher?language=objc)
+    /// An identifier that represents the name of the publisher of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataPublisher:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataalbum?language=objc)
+    /// An identifier that represents the name of the album or collection in QuickTime.
     pub static AVMetadataIdentifierQuickTimeMetadataAlbum: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataartist?language=objc)
+    /// An identifier that represents the name of the artist of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataartwork?language=objc)
+    /// An identifier that represents an image relating to the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataArtwork: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadescription?language=objc)
+    /// An identifier that represents the description of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatasoftware?language=objc)
+    /// An identifier that represents the name of software used to create the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataSoftware: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatayear?language=objc)
+    /// An identifier that represents the recording year of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataYear: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatagenre?language=objc)
+    /// An identifier that represents the genre or genres to which the movie content conforms.
     pub static AVMetadataIdentifierQuickTimeMetadataGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataixml?language=objc)
+    /// An identifier that represents iXML information for the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataiXML: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationiso6709?language=objc)
+    /// An identifier that represents the geographic point location by coordinates as defined in ISO 6709:2008.
     pub static AVMetadataIdentifierQuickTimeMetadataLocationISO6709:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatamake?language=objc)
+    /// An identifier that represents the name of the camera maker.
     pub static AVMetadataIdentifierQuickTimeMetadataMake: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatamodel?language=objc)
+    /// An identifier that represents the name of the camera model.
     pub static AVMetadataIdentifierQuickTimeMetadataModel: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataarranger?language=objc)
+    /// An identifier that represents the name of the arranger of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataArranger: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataencodedby?language=objc)
+    /// An identifier that represents the name of the person or organization responsible for encoding the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataEncodedBy:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataoriginalartist?language=objc)
+    /// An identifier that represents the name of the original artist of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataOriginalArtist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataperformer?language=objc)
+    /// An identifier that represents the name of the performer in the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataPerformer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacomposer?language=objc)
+    /// An identifier that represents the name of the composer of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacredits?language=objc)
+    /// An identifier that represents the credits of the movie source content.
     pub static AVMetadataIdentifierQuickTimeMetadataCredits: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataphonogramrights?language=objc)
+    /// An identifier that represents the phonogram rights statement.
     pub static AVMetadataIdentifierQuickTimeMetadataPhonogramRights:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameraidentifier?language=objc)
+    /// An identifier that represents the camera identifier in QuickTime.
     pub static AVMetadataIdentifierQuickTimeMetadataCameraIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameraframereadouttime?language=objc)
+    /// An identifier that represents the camera frame readout time in QuickTime.
     pub static AVMetadataIdentifierQuickTimeMetadataCameraFrameReadoutTime:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatatitle?language=objc)
+    /// An identifier that represents the title of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacollectionuser?language=objc)
+    /// An identifier that represents a name that indicates a user-defined collection.
     pub static AVMetadataIdentifierQuickTimeMetadataCollectionUser:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataratinguser?language=objc)
+    /// An identifier that represents the rating or relative value of the movie.
+    ///
+    /// ## Discussion
+    ///
+    /// This number can range from `0.0` to `5.0`. A value of `0.0` indicates that the user hasn’t rated the movie.
+    ///
+    ///
     pub static AVMetadataIdentifierQuickTimeMetadataRatingUser:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationname?language=objc)
+    /// An identifier that represents the name of the location.
     pub static AVMetadataIdentifierQuickTimeMetadataLocationName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationbody?language=objc)
+    /// An identifier that represents the astronomical body for compatibility with the 3GPP format.
+    ///
+    /// ## Discussion
+    ///
+    /// The system assumes `‘earth’` if this value isn’t present.
+    ///
+    ///
     pub static AVMetadataIdentifierQuickTimeMetadataLocationBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationnote?language=objc)
+    /// An identifier that represents a descriptive comment about the location.
     pub static AVMetadataIdentifierQuickTimeMetadataLocationNote:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationrole?language=objc)
+    /// An identifier that represents the single byte describing the movie location.
+    ///
+    /// ## Discussion
+    ///
+    /// `0` indicates “shooting location,” `1` indicates “real location,” `2` indicates “fictional location.” Other values are reserved.
+    ///
+    ///
     pub static AVMetadataIdentifierQuickTimeMetadataLocationRole:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationdate?language=objc)
+    /// An identifier that represents a date and time using the extended format defined in ISO 8601:2004.
     pub static AVMetadataIdentifierQuickTimeMetadataLocationDate:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadirectionfacing?language=objc)
+    /// An identifier that represents the direction the camera is facing during the shot.
     pub static AVMetadataIdentifierQuickTimeMetadataDirectionFacing:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadirectionmotion?language=objc)
+    /// An identifier that represents the direction the camera is moving during the shot.
     pub static AVMetadataIdentifierQuickTimeMetadataDirectionMotion:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatapreferredaffinetransform?language=objc)
+    /// An identifier that represents the affine transform preference for the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataPreferredAffineTransform:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedface?language=objc)
+    /// An identifier that represents a detected face in the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedFace:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedhumanbody?language=objc)
+    /// An identifier that represents a detected human body in the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedHumanBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedcatbody?language=objc)
+    /// An identifier that represents a detected cat body in the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedCatBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetecteddogbody?language=objc)
+    /// An identifier that represents a detected dog body in the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedDogBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedsalientobject?language=objc)
+    /// An identifier that represents a detected salient object in the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedSalientObject:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatavideoorientation?language=objc)
+    /// An identifier that represents the orientation of the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataVideoOrientation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacontentidentifier?language=objc)
+    /// An identifier that represents the content identifier in QuickTime.
     pub static AVMetadataIdentifierQuickTimeMetadataContentIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataaccessibilitydescription?language=objc)
+    /// An identifier that represents the accessibility description for the movie file content.
     pub static AVMetadataIdentifierQuickTimeMetadataAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataismontage?language=objc)
+    /// An identifier that represents that a movie is a montage of other media.
     pub static AVMetadataIdentifierQuickTimeMetadataIsMontage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents whether this movie should play at full frame rate.
+    ///
+    /// ## Discussion
+    ///
+    /// Some apps play movies recorded at frame rates of 120fps or higher in slow motion. If your app records high-frame-rate movies, you can add this movie-level metadata to indicate whether the movie intends to play at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
+    ///
+    ///
     /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this movie is intended to be played back at the full frame rate (1), or at a slow motion rate (0).
     ///
     /// Historically, some apps have played movies recorded at frame rates of 120fps or higher in slow motion by default. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatafullframerateplaybackintent?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -735,148 +758,178 @@ extern "C" {
 extern "C" {
     /// A value of type `kCMMetadataBaseDataType_UInt8` indicating whether this movie is intended as a Cinematic Video (1) or not (0).
     ///
-    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacinematicvideointent?language=objc)
+    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple’s software like Photos.
+    ///
+    ///
+    /// A value of type `kCMMetadataBaseDataType_UInt8` indicating whether this movie is intended as a Cinematic Video (1) or not (0).
+    ///
+    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
     pub static AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the sensitivity of the camera to light in terms of ISO exposure index (e.g. “800”). See SMPTE RDD 18.
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the sensitivity of the camera to light in terms of ISO exposure index (e.g. "800"). See SMPTE RDD 18.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameraisosensitivity?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraISOSensitivity:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the white balance value defined by the temperature in Kelvin units (e.g. “5500K” or “5500”). See SMPTE RDD 18.
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the white balance value defined by the temperature in Kelvin units (e.g. "5500K" or "5500"). See SMPTE RDD 18.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerawhitebalance?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraWhiteBalance:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData indicating the reference white balance multiplication factor data for ProRes RAW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatawhitebalancebycctwhitebalancefactors?language=objc)
+    /// A value of type kCMMetadataBaseDataType_RawData indicating the reference white balance multiplication factor data for ProRes RAW.
     pub static AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData indicating the reference color translation matrix data for ProRes RAW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatawhitebalancebycctcolormatrices?language=objc)
+    /// A value of type kCMMetadataBaseDataType_RawData indicating the reference color translation matrix data for ProRes RAW.
     pub static AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as an angle in minutes (1/60 degree) (e.g. “21600” or “360.00deg””).
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as an angle in minutes (1/60 degree) (e.g. "21600" or "360.00deg"").
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerashutterspeedangle?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as a time per one frame/field period in seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerashutterspeedtime?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as a time per one frame/field period in seconds.
     pub static AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. "F2.8" or "2.8").
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. “F2.8” or “2.8”).
+    ///
+    /// ## Discussion
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameralensirisfnumber?language=objc)
+    ///
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. "F2.8" or "2.8").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
     pub static AVMetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. “iPhone 16 Pro back camera 6.765mm f/1.78”).
+    ///
+    /// ## Discussion
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameralensmodel?language=objc)
+    ///
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
     pub static AVMetadataIdentifierQuickTimeMetadataCameraLensModel:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. "50.00mm").
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. “50.00mm”).
+    ///
+    /// ## Discussion
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerafocallength35mmequivalent?language=objc)
+    ///
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. "50.00mm").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
     pub static AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents whether the live photo movie used auto mode.
+    ///
+    /// ## Discussion
+    ///
+    /// If your app captures Live Photo content, you can add this movie-level metadata to signify that the movie content should only be used if it’s sufficiently dynamic for experiences like swiping between photos or force-touching a photo. For example, photos of static scenes or documents are excluded from the Live Photo experience.
+    ///
+    ///
     /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this Live Photo movie was captured in "Auto" mode.
     ///
     /// Clients capturing LivePhoto content may add this movie-level metadata to signify that the movie content should only be used (when swiping between photos, or force-touching a photo) if it's sufficiently dynamic. For instance, photos of static scenes or documents are to be excluded from the Live Photo experience.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataautolivephoto?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents the vitality score of the Live Photo movie.
+    ///
+    /// ## Discussion
+    ///
+    /// Live Photo movies may be algorithmically scored from `0.0` to `1.0` on their level of vitality. A Live Photo movie with a low vitality score offers little dynamism to the still photo it accompanies. The vitality score is normalized and independent of the vitality scoring version of the algorithm defined by [`AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion`](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalivephotovitalityscoringversion).
+    ///
+    /// If a Live Photo movie contains the [`AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto`](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataautolivephoto) key and its value is nonzero, apps should read the [`AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore`](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalivephotovitalityscore) value and only display the movie’s content if the score is `0.5` or higher.
+    ///
+    /// If the capture session includes a metadata output configured to provide face, dog, or cat metadata objects, their presence greatly increases the vitality score.
+    ///
+    ///
     /// A value of type kCMMetadataBaseDataType_Float32.
     ///
     /// Live Photo movies may be algorithmically scored from 0. to 1. on their level of vitality. A Live Photo movie with a low vitality score offers little dynamism to the still photo it accompanies. The vitality score is normalized and independent of the vitality scoring version of the algorithm (see AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion). If a Live Photo movie contains the AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto key and its value is non-zero, apps should read the AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore value and only display the movie's content if the score is 0.5 or higher.
     /// If the capture session includes a metadata output configured to provide face, dog, or cat metadata objects, their presence will greatly increase the vitality score.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalivephotovitalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents the version of the algorithm responsible for scoring the Live Photo movie for vitality.
     /// A value of type kCMMetadataBaseDataType_UInt32.
     ///
     /// The version of the algorithm that scored the Live Photo movie for vitality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalivephotovitalityscoringversion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents a score that indicates the quality of an asset.
+    ///
+    /// ## Discussion
+    ///
+    /// A score that considers factors such as exposure and focus. The value ranges from `0.0` to `1.0`, where a score below `0.5` indicates that the asset has serious flaws.
+    ///
+    ///
     /// A value of type kCMMetadataBaseDataType_Float32.
     ///
     /// The video may be scored by a heuristic which considers factors such as exposure and focus. The value ranges from 0-1, where a score below 0.5 indicates the asset has serious flaws.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataspatialovercapturequalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents the version of the algorithm responsible for generating a score.
     /// A value of type kCMMetadataBaseDataType_UInt32.
     ///
     /// The version of the algorithm that provided the spatial over capture quality score.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataspatialovercapturequalityscoringversion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
+    /// An identifier that represents the horizontal accuracy of the location data.
     /// A value of type kCMMetadataBaseDataType_Float32.
     ///
     /// The horizontal accuracy of the provided location data (usually specified by AVMetadataIdentifierQuickTimeMetadataLocationISO6709).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationhorizontalaccuracyinmeters?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -884,783 +937,793 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData
     ///
-    /// The static presentation metadata, Apple Immersive Media Embedded (AIME), for Apple Immersive Video that originates from ImmersiveMediaSupport framework's VenueDescriptor.aimeData.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataaimedata?language=objc)
+    /// The static presentation metadata, Apple Immersive Media Embedded (AIME), for Apple Immersive Video that originates from ImmersiveMediaSupport framework’s VenueDescriptor.aimeData.
+    ///
+    ///
+    /// A value of type kCMMetadataBaseDataType_RawData
+    ///
+    /// The static presentation metadata, Apple Immersive Media Embedded (AIME), for Apple Immersive Video that originates from ImmersiveMediaSupport framework's VenueDescriptor.aimeData.
     pub static AVMetadataIdentifierQuickTimeMetadataAIMEData: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData
     ///
-    /// The presentation timed metadata for Apple Immerisve Video. Value is a JSON-encoding of ImmersiveMediaSupport framework's PresentationDescriptor object.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatapresentationimmersivemedia?language=objc)
+    /// The presentation timed metadata for Apple Immerisve Video. Value is a JSON-encoding of ImmersiveMediaSupport framework’s PresentationDescriptor object.
+    ///
+    ///
+    /// A value of type kCMMetadataBaseDataType_RawData
+    ///
+    /// The presentation timed metadata for Apple Immerisve Video. Value is a JSON-encoding of ImmersiveMediaSupport framework's PresentationDescriptor object.
     pub static AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataalbum?language=objc)
+    /// An identifier that represents the name of the album in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataAlbum: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataartist?language=objc)
+    /// An identifier that represents the name of the artist.
     pub static AVMetadataIdentifieriTunesMetadataArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatausercomment?language=objc)
+    /// An identifier that represents a user comment regarding the content.
     pub static AVMetadataIdentifieriTunesMetadataUserComment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacoverart?language=objc)
+    /// An identifier that represents an album cover image.
     pub static AVMetadataIdentifieriTunesMetadataCoverArt: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacopyright?language=objc)
+    /// An identifier that represents the copyright statement in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatareleasedate?language=objc)
+    /// An identifier that represents the release date for the original recording.
     pub static AVMetadataIdentifieriTunesMetadataReleaseDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataencodedby?language=objc)
+    /// An identifier that represents the person or organization responsible for encoding the media.
     pub static AVMetadataIdentifieriTunesMetadataEncodedBy: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatapredefinedgenre?language=objc)
+    /// An identifier that represents the predefined genre.
     pub static AVMetadataIdentifieriTunesMetadataPredefinedGenre:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatausergenre?language=objc)
+    /// An identifier that represents the genre set by a user in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataUserGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasongname?language=objc)
+    /// An identifier that represents the name of the song in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataSongName: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatatracksubtitle?language=objc)
+    /// An identifier that represents the information relating to the contents title.
     pub static AVMetadataIdentifieriTunesMetadataTrackSubTitle:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataencodingtool?language=objc)
+    /// An identifier that represents the software or hardware and settings used for encoding.
     pub static AVMetadataIdentifieriTunesMetadataEncodingTool:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacomposer?language=objc)
+    /// An identifier that represents the name of the composer.
     pub static AVMetadataIdentifieriTunesMetadataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataalbumartist?language=objc)
+    /// An identifier that represents the artist for the album.
     pub static AVMetadataIdentifieriTunesMetadataAlbumArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataaccountkind?language=objc)
+    /// An identifier that represents the kind of iTunes account.
     pub static AVMetadataIdentifieriTunesMetadataAccountKind: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataappleid?language=objc)
+    /// An identifier that represents an Apple ID.
     pub static AVMetadataIdentifieriTunesMetadataAppleID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataartistid?language=objc)
+    /// An identifier that represents the ID for an artist.
     pub static AVMetadataIdentifieriTunesMetadataArtistID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasongid?language=objc)
+    /// An identifier that represents the song ID.
     pub static AVMetadataIdentifieriTunesMetadataSongID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadisccompilation?language=objc)
+    /// An identifier that represents whether an album is a compilation of tracks in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataDiscCompilation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadiscnumber?language=objc)
+    /// An identifier that represents the disc number of a multi-CD album in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataDiscNumber: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatagenreid?language=objc)
+    /// An identifier that represents the genre ID.
     pub static AVMetadataIdentifieriTunesMetadataGenreID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatagrouping?language=objc)
+    /// An identifier that represents additional grouping information for an album.
     pub static AVMetadataIdentifieriTunesMetadataGrouping: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataplaylistid?language=objc)
+    /// An identifier that represents the playlist ID.
     pub static AVMetadataIdentifieriTunesMetadataPlaylistID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacontentrating?language=objc)
+    /// An identifier that represents the content rating in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataContentRating:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatabeatspermin?language=objc)
+    /// An identifier that represents the beats per minute of a track in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataBeatsPerMin: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatatracknumber?language=objc)
+    /// An identifier that represents the order number in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataTrackNumber: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataartdirector?language=objc)
+    /// An identifier that represents the name of the art director.
     pub static AVMetadataIdentifieriTunesMetadataArtDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataarranger?language=objc)
+    /// An identifier that represents the name of the arranger.
     pub static AVMetadataIdentifieriTunesMetadataArranger: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataauthor?language=objc)
+    /// An identifier that represents the name of the author.
     pub static AVMetadataIdentifieriTunesMetadataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatalyrics?language=objc)
+    /// An identifier that represents the lyrics in the recording.
     pub static AVMetadataIdentifieriTunesMetadataLyrics: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataacknowledgement?language=objc)
+    /// An identifier that represents the acknowledgement information in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataAcknowledgement:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataconductor?language=objc)
+    /// An identifier that represents the name of the conductor.
     pub static AVMetadataIdentifieriTunesMetadataConductor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadescription?language=objc)
+    /// An identifier that represents the description information in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataDescription: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadirector?language=objc)
+    /// An identifier that represents the name of the director.
     pub static AVMetadataIdentifieriTunesMetadataDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataeq?language=objc)
+    /// An identifier that represents the equalizer preset option in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataEQ: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatalinernotes?language=objc)
+    /// An identifier that represents the digital booklet for an album.
     pub static AVMetadataIdentifieriTunesMetadataLinerNotes: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatarecordcompany?language=objc)
+    /// An identifier that represents the name of the record company.
     pub static AVMetadataIdentifieriTunesMetadataRecordCompany:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataoriginalartist?language=objc)
+    /// An identifier that represents the name of the original artist.
     pub static AVMetadataIdentifieriTunesMetadataOriginalArtist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataphonogramrights?language=objc)
+    /// An identifier that represents the phonogram rights statement.
     pub static AVMetadataIdentifieriTunesMetadataPhonogramRights:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataproducer?language=objc)
+    /// An identifier that represents the name of the producer.
     pub static AVMetadataIdentifieriTunesMetadataProducer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataperformer?language=objc)
+    /// An identifier that represents the name of the performer.
     pub static AVMetadataIdentifieriTunesMetadataPerformer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatapublisher?language=objc)
+    /// An identifier that represents the name of the publisher.
     pub static AVMetadataIdentifieriTunesMetadataPublisher: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasoundengineer?language=objc)
+    /// An identifier that represents the name of the sound engineer.
     pub static AVMetadataIdentifieriTunesMetadataSoundEngineer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasoloist?language=objc)
+    /// An identifier that represents the name of the soloist.
     pub static AVMetadataIdentifieriTunesMetadataSoloist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacredits?language=objc)
+    /// An identifier that represents the credits for the source content.
     pub static AVMetadataIdentifieriTunesMetadataCredits: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatathanks?language=objc)
+    /// An identifier that represents the thanks statement in iTunes.
     pub static AVMetadataIdentifieriTunesMetadataThanks: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataonlineextras?language=objc)
+    /// An identifier that represents the extra materials for an album.
     pub static AVMetadataIdentifieriTunesMetadataOnlineExtras:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataexecproducer?language=objc)
+    /// An identifier that represents the name of the executive producer.
     pub static AVMetadataIdentifieriTunesMetadataExecProducer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataaudioencryption?language=objc)
+    /// An identifier that represents the encryption details of the audio stream.
     pub static AVMetadataIdentifierID3MetadataAudioEncryption:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataattachedpicture?language=objc)
+    /// An identifier that represents an image relating to the audio file.
     pub static AVMetadataIdentifierID3MetadataAttachedPicture:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataaudioseekpointindex?language=objc)
+    /// An identifier that represents the list of seek points within the audio file.
     pub static AVMetadataIdentifierID3MetadataAudioSeekPointIndex:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacomments?language=objc)
+    /// An identifier that represents additional text information for the media.
     pub static AVMetadataIdentifierID3MetadataComments: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacommercial?language=objc)
+    /// An identifier that represents the commercial details for the media.
     pub static AVMetadataIdentifierID3MetadataCommercial: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacommerical?language=objc)
+    /// An identifier that represents the commerical frame.
     #[deprecated = "No longer supported"]
     pub static AVMetadataIdentifierID3MetadataCommerical: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencryption?language=objc)
+    /// An identifier that represents the encryption method used.
     pub static AVMetadataIdentifierID3MetadataEncryption: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataequalization?language=objc)
+    /// An identifier that represents the equalization curve within the audio file.
     pub static AVMetadataIdentifierID3MetadataEqualization: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataequalization2?language=objc)
+    /// An identifier that represents the equalization curve within the audio file.
     pub static AVMetadataIdentifierID3MetadataEqualization2: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataeventtimingcodes?language=objc)
+    /// An identifier that represents the timing codes used for synchronization with key events in a song or sound.
     pub static AVMetadataIdentifierID3MetadataEventTimingCodes:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatageneralencapsulatedobject?language=objc)
+    /// An identifier that represents the details of a file.
     pub static AVMetadataIdentifierID3MetadataGeneralEncapsulatedObject:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatagroupidentifier?language=objc)
+    /// An identifier that represents the grouping of distinct frames.
     pub static AVMetadataIdentifierID3MetadataGroupIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainvolvedpeoplelist_v23?language=objc)
+    /// An identifier that represents the list of names of contributors to the media.
     pub static AVMetadataIdentifierID3MetadataInvolvedPeopleList_v23:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalink?language=objc)
+    /// An identifier that represents the link information from an ID3 tag that might reside in another audio file or alone in a binary file.
     pub static AVMetadataIdentifierID3MetadataLink: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamusiccdidentifier?language=objc)
+    /// An identifier that represents the ID used to identify the CD in databases such as the Compact Disc Database.
     pub static AVMetadataIdentifierID3MetadataMusicCDIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatampeglocationlookuptable?language=objc)
+    /// An identifier that represents the lookup table used to increase performance and accuracy of jumps within an MPEG audio file.
     pub static AVMetadataIdentifierID3MetadataMPEGLocationLookupTable:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataownership?language=objc)
+    /// An identifier that represents the transaction details indicating proof of ownership if signed.
     pub static AVMetadataIdentifierID3MetadataOwnership: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataprivate?language=objc)
+    /// An identifier that represents the information from a software producer that its program uses.
     pub static AVMetadataIdentifierID3MetadataPrivate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataplaycounter?language=objc)
+    /// An identifier that represents the play count of the audio file.
     pub static AVMetadataIdentifierID3MetadataPlayCounter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapopularimeter?language=objc)
+    /// An identifier that represents the rating for the audio file.
     pub static AVMetadataIdentifierID3MetadataPopularimeter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapositionsynchronization?language=objc)
+    /// An identifier that represents the time offset of the first frame in the stream.
     pub static AVMetadataIdentifierID3MetadataPositionSynchronization:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarecommendedbuffersize?language=objc)
+    /// An identifier that represents the buffer size the server recommends.
     pub static AVMetadataIdentifierID3MetadataRecommendedBufferSize:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarelativevolumeadjustment?language=objc)
+    /// An identifier that represents the increase or decrease of volume on each channel while the file plays.
     pub static AVMetadataIdentifierID3MetadataRelativeVolumeAdjustment:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarelativevolumeadjustment2?language=objc)
+    /// An identifier that represents the increase or decrease of volume on each channel while the file plays.
     pub static AVMetadataIdentifierID3MetadataRelativeVolumeAdjustment2:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatareverb?language=objc)
+    /// An identifier that represents the adjustments to echoes of different kinds.
     pub static AVMetadataIdentifierID3MetadataReverb: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataseek?language=objc)
+    /// An identifier that represents the location of other tags in a file or stream.
     pub static AVMetadataIdentifierID3MetadataSeek: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasignature?language=objc)
+    /// An identifier that represents the group of frames to sign.
     pub static AVMetadataIdentifierID3MetadataSignature: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasynchronizedlyric?language=objc)
+    /// An identifier that represents the words in the audio file as text in sync with the audio.
     pub static AVMetadataIdentifierID3MetadataSynchronizedLyric:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasynchronizedtempocodes?language=objc)
+    /// An identifier that represents the tempo codes used for a more accurate description of the tempo of a musical piece.
     pub static AVMetadataIdentifierID3MetadataSynchronizedTempoCodes:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataalbumtitle?language=objc)
+    /// An identifier that represents the title of the recording.
     pub static AVMetadataIdentifierID3MetadataAlbumTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatabeatsperminute?language=objc)
+    /// An identifier that represents the beats per minute of the audio.
     pub static AVMetadataIdentifierID3MetadataBeatsPerMinute: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacomposer?language=objc)
+    /// An identifier that represents the name of the composer.
     pub static AVMetadataIdentifierID3MetadataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacontenttype?language=objc)
+    /// An identifier that represents the media content type.
     pub static AVMetadataIdentifierID3MetadataContentType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacopyright?language=objc)
+    /// An identifier that represents the copyright statement.
     pub static AVMetadataIdentifierID3MetadataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatadate?language=objc)
+    /// An identifier that represents the date for the recording.
     pub static AVMetadataIdentifierID3MetadataDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencodingtime?language=objc)
+    /// An identifier that represents the encoding time of the audio.
     pub static AVMetadataIdentifierID3MetadataEncodingTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataplaylistdelay?language=objc)
+    /// An identifier that represents the number of milliseconds of silence between every song in a playlist.
     pub static AVMetadataIdentifierID3MetadataPlaylistDelay: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalreleasetime?language=objc)
+    /// An identifier that represents the release time for the original recording.
     pub static AVMetadataIdentifierID3MetadataOriginalReleaseTime:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarecordingtime?language=objc)
+    /// An identifier that represents the recording time.
     pub static AVMetadataIdentifierID3MetadataRecordingTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatareleasetime?language=objc)
+    /// An identifier that represents the time of the first release.
     pub static AVMetadataIdentifierID3MetadataReleaseTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatataggingtime?language=objc)
+    /// An identifier that represents the time of tagging.
     pub static AVMetadataIdentifierID3MetadataTaggingTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencodedby?language=objc)
+    /// An identifier that represents the person or organization responsible for encoding the media.
     pub static AVMetadataIdentifierID3MetadataEncodedBy: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalyricist?language=objc)
+    /// An identifier that represents the writer(s) of the text or lyrics in the recording.
     pub static AVMetadataIdentifierID3MetadataLyricist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatafiletype?language=objc)
+    /// An identifier that represents the file type of the audio.
     pub static AVMetadataIdentifierID3MetadataFileType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatime?language=objc)
+    /// An identifier that represents the time for the recording.
     pub static AVMetadataIdentifierID3MetadataTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainvolvedpeoplelist_v24?language=objc)
+    /// An identifier that represents the list of names of contributors to the media.
     pub static AVMetadataIdentifierID3MetadataInvolvedPeopleList_v24:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacontentgroupdescription?language=objc)
+    /// An identifier that indicates the sound belongs to a larger category of sounds or music.
     pub static AVMetadataIdentifierID3MetadataContentGroupDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatitledescription?language=objc)
+    /// An identifier that represents the name of the piece.
     pub static AVMetadataIdentifierID3MetadataTitleDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasubtitle?language=objc)
+    /// An identifier that represents the information relating to the contents title.
     pub static AVMetadataIdentifierID3MetadataSubTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainitialkey?language=objc)
+    /// An identifier that represents the musical key in which the sound starts.
     pub static AVMetadataIdentifierID3MetadataInitialKey: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalanguage?language=objc)
+    /// An identifier that represents the language of the text or lyrics spoken or sung in the audio.
     pub static AVMetadataIdentifierID3MetadataLanguage: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalength?language=objc)
+    /// An identifier that represents the length of the audio file in milliseconds.
     pub static AVMetadataIdentifierID3MetadataLength: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamusiciancreditslist?language=objc)
+    /// An identifier that represents the mapping between an instrument and the musician that played it.
     pub static AVMetadataIdentifierID3MetadataMusicianCreditsList:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamediatype?language=objc)
+    /// An identifier that represents which media the sound originated from.
     pub static AVMetadataIdentifierID3MetadataMediaType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamood?language=objc)
+    /// An identifier that represents the mood of the audio.
     pub static AVMetadataIdentifierID3MetadataMood: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalalbumtitle?language=objc)
+    /// An identifier that represents the title of the original recording or source of sound.
     pub static AVMetadataIdentifierID3MetadataOriginalAlbumTitle:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalfilename?language=objc)
+    /// An identifier that represents the original filename for the recording.
     pub static AVMetadataIdentifierID3MetadataOriginalFilename:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginallyricist?language=objc)
+    /// An identifier that represents the text writer(s) of the original recording.
     pub static AVMetadataIdentifierID3MetadataOriginalLyricist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalartist?language=objc)
+    /// An identifier that represents the performer(s) of the original recording.
     pub static AVMetadataIdentifierID3MetadataOriginalArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalreleaseyear?language=objc)
+    /// An identifier that represents the release year for the original recording.
     pub static AVMetadataIdentifierID3MetadataOriginalReleaseYear:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatafileowner?language=objc)
+    /// An identifier that represents the name of the owner or licensee of the file and it’s contents.
     pub static AVMetadataIdentifierID3MetadataFileOwner: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataleadperformer?language=objc)
+    /// An identifier that represents the main artist of the recording.
     pub static AVMetadataIdentifierID3MetadataLeadPerformer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataband?language=objc)
+    /// An identifier that represents additional information about the performers in the recording.
     pub static AVMetadataIdentifierID3MetadataBand: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataconductor?language=objc)
+    /// An identifier that represents the name of the conductor.
     pub static AVMetadataIdentifierID3MetadataConductor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamodifiedby?language=objc)
+    /// An identifier that represents the people behind a remix and similar interpretations of another existing piece.
     pub static AVMetadataIdentifierID3MetadataModifiedBy: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapartofaset?language=objc)
+    /// An identifier that represents the part of a set the audio came from.
     pub static AVMetadataIdentifierID3MetadataPartOfASet: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataproducednotice?language=objc)
+    /// An identifier that represents the produced notice.
     pub static AVMetadataIdentifierID3MetadataProducedNotice: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapublisher?language=objc)
+    /// An identifier that represents the name of the label or publisher.
     pub static AVMetadataIdentifierID3MetadataPublisher: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatracknumber?language=objc)
+    /// An identifier that represents the order number of the audio file.
     pub static AVMetadataIdentifierID3MetadataTrackNumber: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarecordingdates?language=objc)
+    /// An identifier that represents additional recording dates that complement year, date, and time identifiers.
     pub static AVMetadataIdentifierID3MetadataRecordingDates: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainternetradiostationname?language=objc)
+    /// An identifier that represents the name of the internet radio station streaming the audio.
     pub static AVMetadataIdentifierID3MetadataInternetRadioStationName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainternetradiostationowner?language=objc)
+    /// An identifier that represents the name of the owner of the internet radio station streaming the audio.
     pub static AVMetadataIdentifierID3MetadataInternetRadioStationOwner:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasize?language=objc)
+    /// An identifier that represents the size of the audio file in bytes.
     pub static AVMetadataIdentifierID3MetadataSize: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataalbumsortorder?language=objc)
+    /// An identifier that represents how to sort the album.
     pub static AVMetadataIdentifierID3MetadataAlbumSortOrder: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataperformersortorder?language=objc)
+    /// An identifier that represents the performer sort order.
     pub static AVMetadataIdentifierID3MetadataPerformerSortOrder:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatitlesortorder?language=objc)
+    /// An identifier that represents the title sort order.
     pub static AVMetadataIdentifierID3MetadataTitleSortOrder: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainternationalstandardrecordingcode?language=objc)
+    /// An identifier that represents the international standard recording code.
     pub static AVMetadataIdentifierID3MetadataInternationalStandardRecordingCode:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencodedwith?language=objc)
+    /// An identifier that represents the software or hardware and settings used for encoding.
     pub static AVMetadataIdentifierID3MetadataEncodedWith: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasetsubtitle?language=objc)
+    /// An identifier that represents the set subtitle the track belongs to.
     pub static AVMetadataIdentifierID3MetadataSetSubtitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatayear?language=objc)
+    /// An identifier that represents the year of the recording.
     pub static AVMetadataIdentifierID3MetadataYear: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatausertext?language=objc)
+    /// An identifier that represents the user text information frame.
     pub static AVMetadataIdentifierID3MetadataUserText: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatauniquefileidentifier?language=objc)
+    /// An identifier that represents the identifier used to indicate the audio file in a database.
     pub static AVMetadataIdentifierID3MetadataUniqueFileIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatermsofuse?language=objc)
+    /// An identifier that represents the brief description of the terms of use and ownership of the file.
     pub static AVMetadataIdentifierID3MetadataTermsOfUse: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataunsynchronizedlyric?language=objc)
+    /// An identifier that represents the lyrics of the song or a text transcription of other vocal activities.
     pub static AVMetadataIdentifierID3MetadataUnsynchronizedLyric:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacommercialinformation?language=objc)
+    /// An identifier that represents the webpage containing purchasing information.
     pub static AVMetadataIdentifierID3MetadataCommercialInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacopyrightinformation?language=objc)
+    /// An identifier that represents the webpage describing the terms of use and ownership.
     pub static AVMetadataIdentifierID3MetadataCopyrightInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialaudiofilewebpage?language=objc)
+    /// An identifier that represents the official webpage for the audio file.
     pub static AVMetadataIdentifierID3MetadataOfficialAudioFileWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialartistwebpage?language=objc)
+    /// An identifier that represents the artist’s official webpage.
     pub static AVMetadataIdentifierID3MetadataOfficialArtistWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialaudiosourcewebpage?language=objc)
+    /// An identifier that represents the official webpage for the source of the audio file.
     pub static AVMetadataIdentifierID3MetadataOfficialAudioSourceWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialinternetradiostationhomepage?language=objc)
+    /// An identifier that represents the official homepage of the internet radio station.
     pub static AVMetadataIdentifierID3MetadataOfficialInternetRadioStationHomepage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapayment?language=objc)
+    /// An identifier that represents the webpage that handles the process of paying for the audio file.
     pub static AVMetadataIdentifierID3MetadataPayment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialpublisherwebpage?language=objc)
+    /// An identifier that represents the official webpage for the publisher.
     pub static AVMetadataIdentifierID3MetadataOfficialPublisherWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatauserurl?language=objc)
+    /// An identifier that represents the user webpage frame.
     pub static AVMetadataIdentifierID3MetadataUserURL: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/icymetadatastreamtitle?language=objc)
+    /// An identifier that represents the title of a stream.
     pub static AVMetadataIdentifierIcyMetadataStreamTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/icymetadatastreamurl?language=objc)
+    /// An identifier that represents the web address of a stream.
     pub static AVMetadataIdentifierIcyMetadataStreamURL: Option<&'static AVMetadataIdentifier>;
 }

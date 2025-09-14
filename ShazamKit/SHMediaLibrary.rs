@@ -8,14 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the user’s Shazam library.
+    ///
+    /// ## Overview
+    ///
+    /// Use `SHMediaLibrary` to add matched songs from the Shazam catalog to the user’s Shazam library.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  There’s no system permission necessary to write to the user’s Shazam library. Consider requesting permission from the user before adding songs to the library.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An object that represents the user's Shazam library.
     ///
     /// Use `SHMediaLibrary` to add matched songs from the Shazam catalog to the user's Shazam library.
     ///
     /// > Note:
     /// > There's no system permission necessary to write to the user's Shazam library. Consider requesting permission from the user before adding songs to the library.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmedialibrary?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use SHLibrary instead"]

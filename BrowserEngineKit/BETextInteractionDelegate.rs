@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextinteractiondelegate?language=objc)
+    /// A set of methods that informs you about selection changes in text views.
     pub unsafe trait BETextInteractionDelegate {
         #[cfg(feature = "BETextInteraction")]
         /// Invoked by the system when the selection is about to change in the document.

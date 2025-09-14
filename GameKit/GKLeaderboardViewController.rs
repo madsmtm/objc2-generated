@@ -11,9 +11,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// View controller that provides the standard user interface for leaderboards.  Present modally from the top view controller.
+    /// The `GKLeaderboardViewController` class provides a standard user interface that displays leaderboard scores to the player. If the [`GKGameCenterViewController`](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller) class is available, you should use it instead.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your game must initialize a local player before you can use any Game Center classes. If there is no initialized player, your game receives a [`GKErrorNotAuthenticated`](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated) error. For more information, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To show a leaderboard screen, initialize a new `GKLeaderboardViewController` object and set the delegate. Optionally, you can configure the view controller to display specific data to the player. Then, present the new view controller and wait for the delegate to be called. Once the delegate is called, dismiss the view controller.
+    ///
+    /// On iOS, you present and dismiss the view controller from another view controller in your game, using the methods provided by the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class. In macOS, you use the [`GKDialogController`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller) class to present and dismiss the view controller.
+    ///
+    /// Your game should pause other activities before presenting the leaderboard.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The `GKLeaderboardViewController` class is not intended to be subclassed.
+    ///
+    ///
+    /// View controller that provides the standard user interface for leaderboards.  Present modally from the top view controller.
     #[unsafe(super(GKGameCenterViewController, NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
@@ -171,7 +192,7 @@ impl GKLeaderboardViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontrollerdelegate?language=objc)
+    /// The [`GKLeaderboardViewControllerDelegate`](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontrollerdelegate) protocol is implemented by delegates of the [`GKLeaderboardViewController`](https://developer.apple.com/documentation/gamekit/gkleaderboardviewcontroller) class. The delegate is called when the player dismisses the leaderboard.
     #[deprecated]
     pub unsafe trait GKLeaderboardViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]

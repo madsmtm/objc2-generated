@@ -9,7 +9,46 @@ use objc2_health_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceactivityring?language=objc)
+    /// A view that displays data from a HealthKit activity summary object.
+    ///
+    /// ## Overview
+    ///
+    /// The [`WKInterfaceActivityRing`](https://developer.apple.com/documentation/watchkit/wkinterfaceactivityring) view displays data from an [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) object, using the Move, Exercise, and Stand activity rings (see [Figure 1](/documentation/watchkit/wkinterfaceactivityring#1965772)).
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/b37fb00fdf923f18d3ed7106e28251c3/media-1965772%402x.png)
+    ///
+    ///
+    /// The activity ring view always appears as a black rectangle with red, green, and blue concentric rings. The rings are centered in the view, and sized to fit the available space (see [Figure 2](/documentation/watchkit/wkinterfaceactivityring#1965773)).
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/9dd245f95d37440302b7ea79dd716c84/media-1965773%402x.png)
+    ///
+    ///
+    /// The rings have two different ways to display a lack of data. One indicates that the activity summary is missing, and the other indicates that the activity summary’s values are set to zero. If the ring has a `nil`-valued `activitySummary` property, the rings appear empty (see See [Figure 3](/documentation/watchkit/wkinterfaceactivityring#1965774)). Use this to indicate that there is no summary data available for the specified day (for example, dates in the future).
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/b57c2f57d583797c12f84b0d570b150c/media-1965774%402x.png)
+    ///
+    ///
+    /// If the summary has zero-valued quantities set for its value properties,  the ring displays a dot at the top of the ring (see [Figure 4](/documentation/watchkit/wkinterfaceactivityring#1965776)). Use this to indicate that the user has not yet burned any active calories, exercised, or earned any stand hours for the specified day.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/f24bf0aa1e7fa4576bc83703115b96dc/media-1965776%402x.png)
+    ///
+    ///
+    /// To display activity summary data from the HealthKit store, use an [`HKActivitySummaryQuery`](https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery) object. You can also instantiate and display your own [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects, as needed.
+    ///
+    /// To display data for a ring, the [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) object must have a non-`nil` quantity for both the corresponding value property and goal property (see the following table).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Ring" }] }], [Paragraph { inline_content: [Text { text: "Value property" }] }], [Paragraph { inline_content: [Text { text: "Goal property" }] }]], [[Paragraph { inline_content: [Text { text: "Move" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/HealthKit/HKActivitySummary/activeEnergyBurned", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Exercise" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/HealthKit/HKActivitySummary/appleExerciseTime", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/HealthKit/HKActivitySummary/appleExerciseTimeGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Stand" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/HealthKit/HKActivitySummary/appleStandHours", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/HealthKit/HKActivitySummary/appleStandHoursGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// The activity ring view colors a percentage of each ring based on these properties, as shown here:
+    ///
+    /// ```objc
+    /// ring percent = value property quantity / goal property quantity
+    /// ```
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

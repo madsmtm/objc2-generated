@@ -8,7 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemovie?language=objc)
+    /// An interface element that lets you play video and audio content in your watchOS app.
+    ///
+    /// ## Overview
+    ///
+    /// A movie object displays a poster image with a play button on top of it. When the user taps the play button, WatchKit plays the movie in a modal interface.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a movie object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myMovie: WKInterfaceMovie!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceMovie* myMovie;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates any needed movie objects and assigns them to their associated outlets. At that point, you can use those objects to make changes to the onscreen content.
+    ///
+    /// Do not attempt to play audio or video content while gathering heart rate data using Health Kit. If you use this class to play media, WatchKit automatically disables the gathering of heart rate data.
+    ///
+    /// ### Supported Media Formats
+    ///
+    /// The following table lists the encoding information to use when creating media files to play on a user’s Apple Watch. For audio and video assets played directly from your app, keep your clips relatively short. Short clips consume less space on disk, use less power, and take less time to download.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Media type" }] }], [Paragraph { inline_content: [Text { text: "Recommended encoding" }] }]], [[Paragraph { inline_content: [Text { text: "Video assets" }] }], [Paragraph { inline_content: [Text { text: "Video codec: H.264 High Profile " }, Image { identifier: "spacer", metadata: None }, Text { text: " Bit rate: 160 kpbs at up to 30 fps " }, Image { identifier: "spacer", metadata: None }, Text { text: " Full screen resolution: 208 x 260 in portrait orientation " }, Image { identifier: "spacer", metadata: None }, Text { text: " 16:9 resolution: 320 x 180 in landscape orientation " }, Image { identifier: "spacer", metadata: None }, Text { text: " Audio bit rate: 32 kpbs stereo" }] }]], [[Paragraph { inline_content: [Text { text: "Audio-only assets" }] }], [Paragraph { inline_content: [Text { text: "Bit rate: 32 kbps stereo" }] }]]], alignments: None, metadata: None })
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your movie interface object in your storyboard file. The following table lists the attributes you can configure and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Video Gravity" }] }], [Paragraph { inline_content: [Text { text: "The sizing behavior for the movie. Use this attribute to determine whether the movie maintains its aspect ratio and how it fills the available space. You can also configure this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie/setVideoGravity(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Poster Image" }] }], [Paragraph { inline_content: [Text { text: "The placeholder image to display for your movie. When the user taps the poser image, the movie interface object presents a modal sheet with the actual movie contents. You can also configure this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceMovie/setPosterImage(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

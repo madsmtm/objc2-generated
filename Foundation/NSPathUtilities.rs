@@ -114,7 +114,13 @@ impl<ObjectType: Message> NSArray<ObjectType> {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusername()?language=objc)
+/// Returns the logon name of the current user.
+///
+/// ## Return Value
+///
+/// The logon name of the current user.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSUserName() -> Retained<NSString> {
@@ -126,7 +132,13 @@ pub extern "C-unwind" fn NSUserName() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfullusername()?language=objc)
+/// Returns a string containing the full name of the current user.
+///
+/// ## Return Value
+///
+/// A string containing the full name of the current user.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
@@ -138,7 +150,19 @@ pub extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshomedirectory()?language=objc)
+/// Returns the path to either the user’s or application’s home directory, depending on the platform.
+///
+/// ## Return Value
+///
+/// The path to the current home directory.
+///
+///
+///
+/// ## Discussion
+///
+/// In iOS, the home directory is the application’s sandbox directory. In macOS, it’s the application’s sandbox directory, or the current user’s home directory if the application isn’t in a sandbox.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
@@ -150,7 +174,23 @@ pub extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshomedirectoryforuser(_:)?language=objc)
+/// Returns the path to a given user’s home directory.
+///
+/// Parameters:
+/// - userName: The name of a user.
+///
+///
+/// ## Return Value
+///
+/// The path to the home directory for the user specified by `userName`.
+///
+///
+///
+/// ## Discussion
+///
+/// For more information on file system utilities, see Low-Level File Management Programming Topics.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSHomeDirectoryForUser(
@@ -163,7 +203,21 @@ pub extern "C-unwind" fn NSHomeDirectoryForUser(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstemporarydirectory()?language=objc)
+/// Returns the path of the temporary directory for the current user.
+///
+/// ## Return Value
+///
+/// A string containing the path of the temporary directory for the current user.
+///
+///
+///
+/// ## Discussion
+///
+/// See the [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) method [`URLForDirectory:inDomain:appropriateForURL:create:error:`](https://developer.apple.com/documentation/foundation/filemanager/url(for:in:appropriatefor:create:)) for the preferred means of finding the correct temporary directory.
+///
+/// For more information about temporary files, see [File System Programming Guide](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672).
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
@@ -175,7 +229,19 @@ pub extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsopensteprootdirectory()?language=objc)
+/// Returns the root directory of the user’s system.
+///
+/// ## Return Value
+///
+/// A string identifying the root directory of the user’s system.
+///
+///
+///
+/// ## Discussion
+///
+/// For more information on file system utilities, see Low-Level File Management Programming Topics.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
@@ -187,91 +253,121 @@ pub extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory?language=objc)
+/// The location of significant directories.
+///
+/// ## Overview
+///
+/// Use these constants with the [`init(for:in:appropriateFor:create:)`](https://developer.apple.com/documentation/foundation/url/init(for:in:appropriatefor:create:)) initializer and the [`URLsForDirectory:inDomains:`](https://developer.apple.com/documentation/foundation/filemanager/urls(for:in:)) and [`URLForDirectory:inDomain:appropriateForURL:create:error:`](https://developer.apple.com/documentation/foundation/filemanager/url(for:in:appropriatefor:create:)) methods of FileManager.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSearchPathDirectory(pub NSUInteger);
 impl NSSearchPathDirectory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationdirectory?language=objc)
+    /// Supported applications (`/Applications`).
     #[doc(alias = "NSApplicationDirectory")]
     pub const ApplicationDirectory: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/demoapplicationdirectory?language=objc)
+    /// Unsupported applications and demonstration versions.
     #[doc(alias = "NSDemoApplicationDirectory")]
     pub const DemoApplicationDirectory: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/developerapplicationdirectory?language=objc)
+    /// Developer applications (`/Developer/Applications`).
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated: As of Xcode 4.3, there is no longer a Developer Application directory directory; instead, Xcode.app is a self-contained application that gets installed in the user’s Applications directory, by default, although it can be put anywhere.
+    ///
+    ///
     #[doc(alias = "NSDeveloperApplicationDirectory")]
     pub const DeveloperApplicationDirectory: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/adminapplicationdirectory?language=objc)
+    /// System and network administration applications.
     #[doc(alias = "NSAdminApplicationDirectory")]
     pub const AdminApplicationDirectory: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/librarydirectory?language=objc)
+    /// Various user-visible documentation, support, and configuration files (`/Library`).
     #[doc(alias = "NSLibraryDirectory")]
     pub const LibraryDirectory: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/developerdirectory?language=objc)
+    /// Developer resources (`/Developer`).
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated: As of Xcode 4.3, there is no longer a Developer directory; instead, Xcode.app is a self-contained application that gets installed in the user’s Applications directory, by default, although it can be put anywhere.
+    ///
+    ///
     #[doc(alias = "NSDeveloperDirectory")]
     pub const DeveloperDirectory: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/userdirectory?language=objc)
+    /// User home directories (`/Users`).
     #[doc(alias = "NSUserDirectory")]
     pub const UserDirectory: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/documentationdirectory?language=objc)
+    /// Documentation.
     #[doc(alias = "NSDocumentationDirectory")]
     pub const DocumentationDirectory: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/documentdirectory?language=objc)
+    /// Document directory.
     #[doc(alias = "NSDocumentDirectory")]
     pub const DocumentDirectory: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/coreservicedirectory?language=objc)
+    /// Core services (`System/Library/CoreServices`).
     #[doc(alias = "NSCoreServiceDirectory")]
     pub const CoreServiceDirectory: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/autosavedinformationdirectory?language=objc)
+    /// The user’s autosaved documents (`Library/Autosave Information`).
     #[doc(alias = "NSAutosavedInformationDirectory")]
     pub const AutosavedInformationDirectory: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/desktopdirectory?language=objc)
+    /// The user’s desktop directory.
     #[doc(alias = "NSDesktopDirectory")]
     pub const DesktopDirectory: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/cachesdirectory?language=objc)
+    /// Discardable cache files (`Library/Caches`).
     #[doc(alias = "NSCachesDirectory")]
     pub const CachesDirectory: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationsupportdirectory?language=objc)
+    /// Application support files (`Library/Application Support`).
     #[doc(alias = "NSApplicationSupportDirectory")]
     pub const ApplicationSupportDirectory: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/downloadsdirectory?language=objc)
+    /// The user’s downloads directory.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`NSDownloadsDirectory`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/downloadsdirectory) flag only produces a path when you provide a [`NSUserDomainMask`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/userdomainmask).
+    ///
+    ///
     #[doc(alias = "NSDownloadsDirectory")]
     pub const DownloadsDirectory: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/inputmethodsdirectory?language=objc)
+    /// Input Methods `(Library/Input Methods)`.
     #[doc(alias = "NSInputMethodsDirectory")]
     pub const InputMethodsDirectory: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/moviesdirectory?language=objc)
+    /// The user’s Movies directory `(~/Movies`).
     #[doc(alias = "NSMoviesDirectory")]
     pub const MoviesDirectory: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/musicdirectory?language=objc)
+    /// The user’s Music directory (`~/Music`).
     #[doc(alias = "NSMusicDirectory")]
     pub const MusicDirectory: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/picturesdirectory?language=objc)
+    /// The user’s Pictures directory (`~/Pictures`).
     #[doc(alias = "NSPicturesDirectory")]
     pub const PicturesDirectory: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/printerdescriptiondirectory?language=objc)
+    /// The system’s PPDs directory (`Library/Printers/PPDs`).
     #[doc(alias = "NSPrinterDescriptionDirectory")]
     pub const PrinterDescriptionDirectory: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/sharedpublicdirectory?language=objc)
+    /// The user’s Public sharing directory (`~/Public`).
     #[doc(alias = "NSSharedPublicDirectory")]
     pub const SharedPublicDirectory: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/preferencepanesdirectory?language=objc)
+    /// The PreferencePanes directory for use with System Preferences (`Library/PreferencePanes`).
     #[doc(alias = "NSPreferencePanesDirectory")]
     pub const PreferencePanesDirectory: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationscriptsdirectory?language=objc)
+    /// The user scripts folder for the calling application (`~/Library/Application Scripts/<code-signing-id>`.
     #[doc(alias = "NSApplicationScriptsDirectory")]
     pub const ApplicationScriptsDirectory: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/itemreplacementdirectory?language=objc)
+    /// The constant used to create a temporary directory.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass this constant to the [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) method [`URLForDirectory:inDomain:appropriateForURL:create:error:`](https://developer.apple.com/documentation/foundation/filemanager/url(for:in:appropriatefor:create:)) in order to create a temporary directory.
+    ///
+    ///
     #[doc(alias = "NSItemReplacementDirectory")]
     pub const ItemReplacementDirectory: Self = Self(99);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/allapplicationsdirectory?language=objc)
+    /// All directories where applications can be stored.
     #[doc(alias = "NSAllApplicationsDirectory")]
     pub const AllApplicationsDirectory: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/alllibrariesdirectory?language=objc)
+    /// All directories where resources can be stored.
     #[doc(alias = "NSAllLibrariesDirectory")]
     pub const AllLibrariesDirectory: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/trashdirectory?language=objc)
+    /// The trash directory.
     #[doc(alias = "NSTrashDirectory")]
     pub const TrashDirectory: Self = Self(102);
 }
@@ -284,26 +380,44 @@ unsafe impl RefEncode for NSSearchPathDirectory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask?language=objc)
+/// Domain constants specifying base locations to use when you search for significant directories.
+///
+/// ## Overview
+///
+/// These constants are used by the [`URLsForDirectory:inDomains:`](https://developer.apple.com/documentation/foundation/filemanager/urls(for:in:)) and [`URLForDirectory:inDomain:appropriateForURL:create:error:`](https://developer.apple.com/documentation/foundation/filemanager/url(for:in:appropriatefor:create:)) methods of FileManager.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSearchPathDomainMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSearchPathDomainMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/userdomainmask?language=objc)
+/// The user’s home directory—the place to install user’s personal items (`~`).
         #[doc(alias = "NSUserDomainMask")]
         const UserDomainMask = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/localdomainmask?language=objc)
+/// The place to install items available to everyone on this machine.
         #[doc(alias = "NSLocalDomainMask")]
         const LocalDomainMask = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/networkdomainmask?language=objc)
+/// The place to install items available on the network (`/Network`).
         #[doc(alias = "NSNetworkDomainMask")]
         const NetworkDomainMask = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/systemdomainmask?language=objc)
+/// A directory for system files provided by Apple (`/System`) .
+///
+/// ## Discussion
+///
+/// This directory can’t be modified.
+///
+///
         #[doc(alias = "NSSystemDomainMask")]
         const SystemDomainMask = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/searchpathdomainmask/alldomainsmask?language=objc)
+/// All domains.
+///
+/// ## Discussion
+///
+/// Includes all of the above and future items.
+///
+///
         #[doc(alias = "NSAllDomainsMask")]
         const AllDomainsMask = 0x0ffff;
     }
@@ -317,7 +431,25 @@ unsafe impl RefEncode for NSSearchPathDomainMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssearchpathfordirectoriesindomains(_:_:_:)?language=objc)
+/// Creates a list of directory search paths.
+///
+/// ## Discussion
+///
+/// Creates a list of path strings for the specified directories in the specified domains. The list is in the order in which you should search the directories. If `expandTilde` is [`true`](https://developer.apple.com/documentation/swift/true), tildes are expanded as described in [`stringByExpandingTildeInPath`](https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath).
+///
+/// You should consider using the [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) methods [`URLsForDirectory:inDomains:`](https://developer.apple.com/documentation/foundation/filemanager/urls(for:in:)) and [`URLForDirectory:inDomain:appropriateForURL:create:error:`](https://developer.apple.com/documentation/foundation/filemanager/url(for:in:appropriatefor:create:)). which return URLs, which are the preferred format.
+///
+/// For more information on file system utilities, see [File System Programming Guide](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672).
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The directory returned by this method may not exist. This method simply gives you the appropriate location for the requested directory. Depending on the application’s needs, it may be up to the developer to create the appropriate directory and any in between.
+///
+///
+///
+/// </div>
+///
 #[cfg(all(feature = "NSArray", feature = "NSString"))]
 #[inline]
 pub extern "C-unwind" fn NSSearchPathForDirectoriesInDomains(

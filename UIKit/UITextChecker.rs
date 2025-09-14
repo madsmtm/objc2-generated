@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextchecker?language=objc)
+    /// An object to check a string (usually the text of a document) for misspelled words.
+    ///
+    /// ## Overview
+    ///
+    /// [`UITextChecker`](https://developer.apple.com/documentation/uikit/uitextchecker) spell-checks using a lexicon for a specific language. You can tell it to ignore specific words when spell-checking a particular document and you can have it learn words, which adds those words to the lexicon. You generally use one instance of [`UITextChecker`](https://developer.apple.com/documentation/uikit/uitextchecker) per document, although you can use a single instance to spell-check related pieces of text if you want to share ignored words and other state.
+    ///
+    /// You may also use a text checker to obtain completions for partially entered words, as well as possible replacements for misspelled words, which you then can present to users.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

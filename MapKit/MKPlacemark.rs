@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkplacemark?language=objc)
+    /// A user-friendly description of a location on the map.
+    ///
+    /// ## Overview
+    ///
+    /// Placemark data includes information like the country or region, state, city, and street address associated with the specified coordinate. A placemark is a concrete annotation object and conforms to the [`MKAnnotation`](https://developer.apple.com/documentation/mapkit/mkannotation) protocol. Because it’s an annotation, you can add a placemark directly to the map view’s list of annotations.
+    ///
+    ///
     #[unsafe(super(CLPlacemark, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-core-location")]

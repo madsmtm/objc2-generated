@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsincrementalstorenode?language=objc)
+    /// A concrete class used to represent basic nodes in a Core Data incremental store.
+    ///
+    /// ## Overview
+    ///
+    /// A node represents a single record in a persistent store.
+    ///
+    /// You can subclass `NSIncrementalStoreNode` to provide custom behavior.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIncrementalStoreNode;

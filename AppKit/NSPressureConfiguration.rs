@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspressureconfiguration?language=objc)
+    /// An encapsulation of the behavior and progression of a Force Touch trackpad as it responds to specific events.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`NSPressureConfiguration`](https://developer.apple.com/documentation/appkit/nspressureconfiguration) object to configure the behavior and progression of a Force Touch trackpad when it responds to a mouse drag or pressure event sequence. Pressure configurations are assigned to views ([`NSView`](https://developer.apple.com/documentation/appkit/nsview)) and gesture recognizers ([`NSGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPressureConfiguration;

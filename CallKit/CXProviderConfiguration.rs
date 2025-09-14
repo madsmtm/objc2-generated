@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxproviderconfiguration?language=objc)
+    /// An encapsulation of the configuration of a provider object.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CXProviderConfiguration`](https://developer.apple.com/documentation/callkit/cxproviderconfiguration) object controls the native call UI for incoming and outgoing calls, including a localized name for the provider, the ringtone to play for incoming calls, and the icon to display during calls. A provider configuration can also set the maximum number of call groups and the number of calls in a single call group, determine whether to use emails and phone numbers as handles, and specify whether to support video.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXProviderConfiguration;

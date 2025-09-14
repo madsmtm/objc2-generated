@@ -8,33 +8,39 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The key (`CIFilterGeneratorExportedKey`) for the exported parameter. The associated value is the key name of the parameter you are exporting, such as `inputRadius`.
     /// The key of the target object that is exported
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcifiltergeneratorexportedkey?language=objc)
     pub static kCIFilterGeneratorExportedKey: &'static NSString;
 }
 
 extern "C" {
+    /// The target object  (`CIFilterGeneratorExportedKeyTargetObject`) for the exported key. The associated value is the name of the object, such as `CIMotionBlur`.
     /// Target object for the exported key
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcifiltergeneratorexportedkeytargetobject?language=objc)
     pub static kCIFilterGeneratorExportedKeyTargetObject: &'static NSString;
 }
 
 extern "C" {
+    /// The key (`CIFilterGeneratorExportedKeyName`) for the name used to export the [`CIFilterGenerator`](https://developer.apple.com/documentation/coreimage/cifiltergenerator) object. The associated value is a string that specifies a unique name for the filter generator object.
     /// Name of the key under which it is exported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcifiltergeneratorexportedkeyname?language=objc)
     pub static kCIFilterGeneratorExportedKeyName: &'static NSString;
 }
 
 extern_class!(
+    /// An object that creates and configures chains of individual image filters.
+    ///
+    /// ## Overview
+    ///
+    /// The `CIFilterGenerator` class provides methods for creating a [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) object by chaining together existing `CIFilter` objects to create complex effects. (A **filter chain** refers to the `CIFilter` objects that are connected in the `CIFilterGenerator` object.) The complex effect can be encapsulated as a [`CIFilterGenerator`](https://developer.apple.com/documentation/coreimage/cifiltergenerator) object and saved as a file so that it can be used again. The **filter generator file** contains an archived instance  of all the `CIFilter` objects that are chained together.
+    ///
+    /// Any filter generator files that you copy to `/Library/Graphics/Image Units/` are loaded when any of the loading methods provided by the [`CIPlugIn`](https://developer.apple.com/documentation/coreimage/ciplugin) class are invoked. A `CIFilterGenerator` object is registered by its filename or, if present, by a class attribute that you supply in its description.
+    ///
+    /// You can create a  `CIFilterGenerator` object  programmatically, using the methods provided by the `CIFilterGenerator` class, or by using the editor view provided by Core Image.
+    ///
+    ///
     /// The goal is to CIFilters to be connected and form a single CIFilter for ease of reusability.
     ///
     /// The CIFilterGenerator allows developers to create complex effects built out of one or more CIFilter and reuse them without changing code. The resulting CIFilterGenerator can be written into a file for which we introduce a new file type (extension). A CIFilterGenerator can be created from the API or more conveniently through an editor view that we provide.
     /// CIFilterGenerator files can be put into the Image Units folders on the system and they will be loaded when the user invokes one of the loadPlugIns methods. They will be registered by their filename or if present by an attribute in its description.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifiltergenerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilterGenerator;

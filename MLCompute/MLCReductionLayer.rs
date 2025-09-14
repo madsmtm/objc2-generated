@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that reduces tensor values across a specific dimension to a scalar value.
+    ///
+    /// ## Overview
+    ///
+    /// Use this layer to perform reduction operations on a given dimension. The output of this layer is a tensor of the same shape as the source tensor, except the layer sets the dimension to `1`.
+    ///
+    ///
     /// Reduce tensor values across a given dimension to a scalar value.
     ///
     /// The layer is used to perform reductionType operation on a given dimension.
     /// Result of this layer is a tensor of the same shape as source tensor,
     /// except for the given dimension which is set to 1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreductionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

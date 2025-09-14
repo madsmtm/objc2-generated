@@ -8,3124 +8,3283 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_no_filters?language=objc)
+/// No PNG filters.
 pub const IMAGEIO_PNG_NO_FILTERS: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_none?language=objc)
+/// A filter in which each byte is unchanged.
 pub const IMAGEIO_PNG_FILTER_NONE: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_sub?language=objc)
+/// A filter in which each byte is replaced with the difference between it and the corresponding byte to its left.
 pub const IMAGEIO_PNG_FILTER_SUB: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_up?language=objc)
+/// A filter in which each byte is replaced with the difference between it and the byte above it.
 pub const IMAGEIO_PNG_FILTER_UP: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_avg?language=objc)
+/// A filter in which each byte is replaced with the difference between it and the average of the bytes above it and to its left.
 pub const IMAGEIO_PNG_FILTER_AVG: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_filter_paeth?language=objc)
+/// A filter in which each byte is replaced with the difference between it and the Paeth predictor of the bytes to its left, above, and upper left.
 pub const IMAGEIO_PNG_FILTER_PAETH: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/imageio_png_all_filters?language=objc)
+/// All PNG filters.
 pub const IMAGEIO_PNG_ALL_FILTERS: c_uint = IMAGEIO_PNG_FILTER_NONE
     | IMAGEIO_PNG_FILTER_SUB
     | IMAGEIO_PNG_FILTER_UP
     | IMAGEIO_PNG_FILTER_AVG
     | IMAGEIO_PNG_FILTER_PAETH;
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses Tagged Image File Format (TIFF). See [TIFF Image Properties](https://developer.apple.com/documentation/imageio/tiff-image-properties).
     pub static kCGImagePropertyTIFFDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses Graphics Interchange Format (GIF). See [GIF Image Properties](https://developer.apple.com/documentation/imageio/gif-image-properties).
     pub static kCGImagePropertyGIFDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyjfifdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses JPEG File Interchange Format (JFIF). See [JFIF Image Properties](https://developer.apple.com/documentation/imageio/jfif-image-properties).
     pub static kCGImagePropertyJFIFDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheifdictionary?language=objc)
     pub static kCGImagePropertyHEIFDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsdictionary?language=objc)
+    /// A dictionary of properties related to an HEIC container.
     pub static kCGImagePropertyHEICSDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses Exchangeable Image File Format (EXIF).
     pub static kCGImagePropertyExifDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses Portable Network Graphics (PNG) format. See [PNG Image Properties](https://developer.apple.com/documentation/imageio/png-image-properties).
     pub static kCGImagePropertyPNGDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses International Press Telecommunications Council (IPTC) metadata.
     pub static kCGImagePropertyIPTCDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that has Global Positioning System (GPS) information.
     pub static kCGImagePropertyGPSDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyrawdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that contains minimally processed, or raw, data.
     pub static kCGImagePropertyRawDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses Camera Image File Format (CIFF). See [CIFF Image Properties](https://developer.apple.com/documentation/imageio/ciff-image-properties).
     pub static kCGImagePropertyCIFFDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanondictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from a Canon camera.
     pub static kCGImagePropertyMakerCanonDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikondictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from a Nikon camera.
     pub static kCGImagePropertyMakerNikonDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakerminoltadictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from a Minolta camera.
     pub static kCGImagePropertyMakerMinoltaDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakerfujidictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from a Fuji camera.
     pub static kCGImagePropertyMakerFujiDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakerolympusdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from a Olympus camera.
     pub static kCGImagePropertyMakerOlympusDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakerpentaxdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from a Pentax camera.
     pub static kCGImagePropertyMakerPentaxDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproperty8bimdictionary?language=objc)
+    /// A dictionary of key-value pairs for an Adobe Photoshop image. See [8BIM Image Properties](https://developer.apple.com/documentation/imageio/8bim-image-properties).
     pub static kCGImageProperty8BIMDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngdictionary?language=objc)
+    /// A dictionary of key-value pairs for an image that uses the Digital Negative (DNG) archival format. See [DNG Image Properties](https://developer.apple.com/documentation/imageio/dng-image-properties).
     pub static kCGImagePropertyDNGDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxdictionary?language=objc)
+    /// An auxiliary dictionary of key-value pairs for an image that uses Exchangeable Image File Format (EXIF).
     pub static kCGImagePropertyExifAuxDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyopenexrdictionary?language=objc)
+    /// A dictionary of properties specific to the OpenEXR metadata standard.
     pub static kCGImagePropertyOpenEXRDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakerappledictionary?language=objc)
+    /// A dictionary of key-value pairs for an image from an Apple camera.
     pub static kCGImagePropertyMakerAppleDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyfilecontentsdictionary?language=objc)
+    /// A dictionary of properties related to the image’s on-disk file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary).
+    ///
+    ///
     pub static kCGImagePropertyFileContentsDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebpdictionary?language=objc)
+    /// A dictionary of properties related to a WebP container.
     pub static kCGImagePropertyWebPDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyavisdictionary?language=objc)
     pub static kCGImagePropertyAVISDictionary: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytgadictionary?language=objc)
     pub static kCGImagePropertyTGADictionary: &'static CFString;
 }
 
 extern "C" {
+    /// The size of the image file in bytes, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     /// Properties which may be returned by "CGImageSourceCopyProperties".  The
     /// * values apply to the container in general but not necessarily to any
     /// * individual image that it contains. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyfilesize?language=objc)
     pub static kCGImagePropertyFileSize: &'static CFString;
 }
 
 extern "C" {
+    /// The number of pixels along the y-axis of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     /// Properties which may be returned by "CGImageSourceCopyPropertiesAtIndex".
     /// * The values apply to a single image of an image source file. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypixelheight?language=objc)
     pub static kCGImagePropertyPixelHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypixelwidth?language=objc)
+    /// The number of pixels along the x-axis of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyPixelWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydpiheight?language=objc)
+    /// The resolution, in dots per inch, in the y dimension.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyDPIHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydpiwidth?language=objc)
+    /// The resolution, in dots per inch, in the x dimension.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyDPIWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydepth?language=objc)
+    /// The number of bits in the color sample of a pixel.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyDepth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyorientation?language=objc)
+    /// The intended display orientation of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber). The value encodes the intended display orientation for the image according to the TIFF and EXIF specifications. See the [`CGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation) type for possible values and their meanings.
+    ///
+    ///
     pub static kCGImagePropertyOrientation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyisfloat?language=objc)
+    /// A Boolean value that indicates whether the image contains floating-point pixel samples.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if the image contains floating-point pixel samples.
+    ///
+    ///
     pub static kCGImagePropertyIsFloat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyisindexed?language=objc)
+    /// A Boolean value that indicates whether the image contains indexed pixel samples.
+    ///
+    /// ## Discussion
+    ///
+    /// Indexed pixel samples are also known as paletted samples. The value of this property is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if the image contains indexed pixel samples.
+    ///
+    ///
     pub static kCGImagePropertyIsIndexed: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyhasalpha?language=objc)
+    /// A Boolean value that indicates whether the image has an alpha channel.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). The value is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) when the image contains an alpha channel.
+    ///
+    ///
     pub static kCGImagePropertyHasAlpha: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodel?language=objc)
+    /// The color model of the image, such as RGB, CMYK, grayscale, or Lab.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). Typically, the value corresponds to the [`kCGImagePropertyColorModelRGB`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodelrgb), [`kCGImagePropertyColorModelCMYK`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodelcmyk), [`kCGImagePropertyColorModelGray`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodelgray), or [`kCGImagePropertyColorModelLab`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodellab) constant.
+    ///
+    /// A color model describes how color values are represented mathematically. A color space is a color model combined with a definition of how to interpret values within the model.
+    ///
+    ///
     pub static kCGImagePropertyColorModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyprofilename?language=objc)
+    /// The name of the optional International Color Consortium (ICC) profile embedded in the image, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+    ///
+    ///
     pub static kCGImagePropertyProfileName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyprimaryimage?language=objc)
+    /// The index of the primary image in the file.
     pub static kCGImagePropertyPrimaryImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodelrgb?language=objc)
+    /// A Red Green Blue (RGB) color model.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value with the [`kCGImagePropertyColorModel`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodel) key.
+    ///
+    ///
     pub static kCGImagePropertyColorModelRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodelgray?language=objc)
+    /// A grayscale color model.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value with the [`kCGImagePropertyColorModel`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodel) key.
+    ///
+    ///
     pub static kCGImagePropertyColorModelGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodelcmyk?language=objc)
+    /// A Cyan Magenta Yellow Black (CMYK) color model.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value with the [`kCGImagePropertyColorModel`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodel) key.
+    ///
+    ///
     pub static kCGImagePropertyColorModelCMYK: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodellab?language=objc)
+    /// A Lab color model, where color values contain the amount of light and the amounts of four human-perceivable colors.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value with the [`kCGImagePropertyColorModel`](https://developer.apple.com/documentation/imageio/kcgimagepropertycolormodel) key.
+    ///
+    ///
     pub static kCGImagePropertyColorModelLab: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffcompression?language=objc)
+    /// The compression scheme used on the image data.
     pub static kCGImagePropertyTIFFCompression: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffphotometricinterpretation?language=objc)
+    /// The color space of the image data.
     pub static kCGImagePropertyTIFFPhotometricInterpretation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffdocumentname?language=objc)
+    /// The document name.
     pub static kCGImagePropertyTIFFDocumentName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffimagedescription?language=objc)
+    /// The image description.
     pub static kCGImagePropertyTIFFImageDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffmake?language=objc)
+    /// The name of the manufacturer of the camera or input device.
     pub static kCGImagePropertyTIFFMake: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffmodel?language=objc)
+    /// The camera or input device model.
     pub static kCGImagePropertyTIFFModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytifforientation?language=objc)
+    /// The image orientation.
     pub static kCGImagePropertyTIFFOrientation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffxresolution?language=objc)
+    /// The number of pixels per resolution unit in the image width direction.
     pub static kCGImagePropertyTIFFXResolution: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffyresolution?language=objc)
+    /// The number of pixels per resolution unit in the image height direction.
     pub static kCGImagePropertyTIFFYResolution: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffxposition?language=objc)
     pub static kCGImagePropertyTIFFXPosition: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffyposition?language=objc)
     pub static kCGImagePropertyTIFFYPosition: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffresolutionunit?language=objc)
+    /// The units of resolution.
     pub static kCGImagePropertyTIFFResolutionUnit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffsoftware?language=objc)
+    /// The name and version of the software used for image creation.
     pub static kCGImagePropertyTIFFSoftware: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytifftransferfunction?language=objc)
+    /// The transfer function, in tabular format, used to map pixel components from a nonlinear form into a linear form.
     pub static kCGImagePropertyTIFFTransferFunction: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffdatetime?language=objc)
+    /// The date and time that the image was created.
     pub static kCGImagePropertyTIFFDateTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffartist?language=objc)
+    /// The artist who created the image.
     pub static kCGImagePropertyTIFFArtist: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffhostcomputer?language=objc)
+    /// The computer or operating system used when the image was created.
     pub static kCGImagePropertyTIFFHostComputer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffcopyright?language=objc)
+    /// Copyright information.
     pub static kCGImagePropertyTIFFCopyright: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffwhitepoint?language=objc)
+    /// The white point of the image.
     pub static kCGImagePropertyTIFFWhitePoint: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytiffprimarychromaticities?language=objc)
+    /// The chromaticities of the primaries of the image.
     pub static kCGImagePropertyTIFFPrimaryChromaticities: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytifftilewidth?language=objc)
     pub static kCGImagePropertyTIFFTileWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytifftilelength?language=objc)
     pub static kCGImagePropertyTIFFTileLength: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyjfifversion?language=objc)
+    /// The version of JFIF.
     pub static kCGImagePropertyJFIFVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyjfifxdensity?language=objc)
+    /// The x pixel density.
     pub static kCGImagePropertyJFIFXDensity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyjfifydensity?language=objc)
+    /// The y pixel density.
     pub static kCGImagePropertyJFIFYDensity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyjfifdensityunit?language=objc)
+    /// The units for the x and y density fields.
     pub static kCGImagePropertyJFIFDensityUnit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyjfifisprogressive?language=objc)
+    /// Whether there are versions of the image of increasing quality.
     pub static kCGImagePropertyJFIFIsProgressive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsloopcount?language=objc)
+    /// The number of times to play the sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyHEICSLoopCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsdelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in the sequence, clamped to a minimum of `0.1` seconds.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value. The value of this key is never less than 100 millseconds, and the system adjusts values less than that amount to 100 milliseconds, as needed. See [`kCGImagePropertyHEICSUnclampedDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsunclampeddelaytime).
+    ///
+    ///
     pub static kCGImagePropertyHEICSDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsunclampeddelaytime?language=objc)
+    /// The unclamped number of seconds to wait before displaying the next image in the sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value.
+    ///
+    ///
     pub static kCGImagePropertyHEICSUnclampedDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicscanvaspixelwidth?language=objc)
+    /// The width of the main image, in pixels.
     pub static kCGImagePropertyHEICSCanvasPixelWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicscanvaspixelheight?language=objc)
+    /// The height of the main image, in pixels.
     pub static kCGImagePropertyHEICSCanvasPixelHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheicsframeinfoarray?language=objc)
+    /// An array of dictionaries that contain timing information for the image sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Each [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) in the array contains timing information about an image in the sequence.
+    ///
+    ///
     pub static kCGImagePropertyHEICSFrameInfoArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifexposuretime?language=objc)
+    /// The exposure time.
     pub static kCGImagePropertyExifExposureTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffnumber?language=objc)
+    /// The F-number.
     pub static kCGImagePropertyExifFNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifexposureprogram?language=objc)
+    /// The exposure program.
     pub static kCGImagePropertyExifExposureProgram: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifspectralsensitivity?language=objc)
+    /// The spectral sensitivity of each channel.
     pub static kCGImagePropertyExifSpectralSensitivity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifisospeedratings?language=objc)
+    /// The ISO speed ratings.
     pub static kCGImagePropertyExifISOSpeedRatings: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifoecf?language=objc)
+    /// The opto-electric conversion function (OECF) that defines the relationship between the optical input of the camera and the resulting image.
     pub static kCGImagePropertyExifOECF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsensitivitytype?language=objc)
+    /// The type of sensitivity data stored for the image.
     pub static kCGImagePropertyExifSensitivityType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifstandardoutputsensitivity?language=objc)
+    /// The sensitivity data for the image.
     pub static kCGImagePropertyExifStandardOutputSensitivity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifrecommendedexposureindex?language=objc)
+    /// The recommended exposure index.
     pub static kCGImagePropertyExifRecommendedExposureIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifisospeed?language=objc)
+    /// The ISO speed setting used to capture the image.
     pub static kCGImagePropertyExifISOSpeed: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifisospeedlatitudeyyy?language=objc)
+    /// The ISO speed latitude yyy value.
     pub static kCGImagePropertyExifISOSpeedLatitudeyyy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifisospeedlatitudezzz?language=objc)
+    /// The ISO speed latitude zzz value.
     pub static kCGImagePropertyExifISOSpeedLatitudezzz: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifversion?language=objc)
+    /// The EXIF version.
     pub static kCGImagePropertyExifVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdatetimeoriginal?language=objc)
+    /// The original date and time.
     pub static kCGImagePropertyExifDateTimeOriginal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdatetimedigitized?language=objc)
+    /// The digitized date and time.
     pub static kCGImagePropertyExifDateTimeDigitized: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifoffsettime?language=objc)
     pub static kCGImagePropertyExifOffsetTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifoffsettimeoriginal?language=objc)
     pub static kCGImagePropertyExifOffsetTimeOriginal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifoffsettimedigitized?language=objc)
     pub static kCGImagePropertyExifOffsetTimeDigitized: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcomponentsconfiguration?language=objc)
+    /// The components configuration for compressed data.
+    ///
+    /// ## Discussion
+    ///
+    /// For compressed data, specifies that the channels of each component are arranged in increasing numeric order (from first component to the fourth).
+    ///
+    ///
     pub static kCGImagePropertyExifComponentsConfiguration: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcompressedbitsperpixel?language=objc)
+    /// The bits per pixel of the compression mode.
     pub static kCGImagePropertyExifCompressedBitsPerPixel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifshutterspeedvalue?language=objc)
+    /// The shutter speed value.
     pub static kCGImagePropertyExifShutterSpeedValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifaperturevalue?language=objc)
+    /// The aperture value.
     pub static kCGImagePropertyExifApertureValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifbrightnessvalue?language=objc)
+    /// The brightness value.
     pub static kCGImagePropertyExifBrightnessValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifexposurebiasvalue?language=objc)
+    /// The exposure bias value.
     pub static kCGImagePropertyExifExposureBiasValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifmaxaperturevalue?language=objc)
+    /// The maximum aperture value.
     pub static kCGImagePropertyExifMaxApertureValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubjectdistance?language=objc)
+    /// The distance to the subject, in meters.
     pub static kCGImagePropertyExifSubjectDistance: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifmeteringmode?language=objc)
+    /// The metering mode.
     pub static kCGImagePropertyExifMeteringMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiflightsource?language=objc)
+    /// The light source.
     pub static kCGImagePropertyExifLightSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifflash?language=objc)
+    /// The flash status when the image was shot.
     pub static kCGImagePropertyExifFlash: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffocallength?language=objc)
+    /// The focal length.
     pub static kCGImagePropertyExifFocalLength: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubjectarea?language=objc)
+    /// The subject area.
     pub static kCGImagePropertyExifSubjectArea: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifmakernote?language=objc)
+    /// Information specified by the camera manufacturer.
     pub static kCGImagePropertyExifMakerNote: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifusercomment?language=objc)
+    /// A user comment.
     pub static kCGImagePropertyExifUserComment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubsectime?language=objc)
+    /// The fraction of seconds for the date and time tag.
     pub static kCGImagePropertyExifSubsecTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubsectimeoriginal?language=objc)
+    /// The fraction of seconds for the original date and time tag.
     pub static kCGImagePropertyExifSubsecTimeOriginal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubsectimedigitized?language=objc)
+    /// The fraction of seconds for the digitized date and time tag.
     pub static kCGImagePropertyExifSubsecTimeDigitized: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifflashpixversion?language=objc)
+    /// The FlashPix version supported by an FPXR file.
+    ///
+    /// ## Discussion
+    ///
+    /// FlashPix is a format for multiresolution tiled images that facilitates fast onscreen viewing.
+    ///
+    ///
     pub static kCGImagePropertyExifFlashPixVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcolorspace?language=objc)
+    /// The color space.
     pub static kCGImagePropertyExifColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifpixelxdimension?language=objc)
+    /// The x dimension of a pixel.
     pub static kCGImagePropertyExifPixelXDimension: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifpixelydimension?language=objc)
+    /// The y dimension of a pixel.
     pub static kCGImagePropertyExifPixelYDimension: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifrelatedsoundfile?language=objc)
+    /// A sound file related to the image.
     pub static kCGImagePropertyExifRelatedSoundFile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifflashenergy?language=objc)
+    /// The strobe energy when the image was captured, in beam candle power seconds.
     pub static kCGImagePropertyExifFlashEnergy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifspatialfrequencyresponse?language=objc)
+    /// The spatial frequency table and spatial frequency response values in the width, height, and diagonal directions.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see ISO 12233.
+    ///
+    ///
     pub static kCGImagePropertyExifSpatialFrequencyResponse: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffocalplanexresolution?language=objc)
+    /// The number of image-width pixels (x-axis) per focal plane resolution unit.
     pub static kCGImagePropertyExifFocalPlaneXResolution: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffocalplaneyresolution?language=objc)
+    /// The number of image-height pixels (y-axis) per focal plane resolution unit.
     pub static kCGImagePropertyExifFocalPlaneYResolution: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffocalplaneresolutionunit?language=objc)
+    /// The unit of measurement for the focal plane x and y resolutions.
     pub static kCGImagePropertyExifFocalPlaneResolutionUnit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubjectlocation?language=objc)
+    /// The location of the image’s primary subject.
     pub static kCGImagePropertyExifSubjectLocation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifexposureindex?language=objc)
+    /// The selected exposure index.
     pub static kCGImagePropertyExifExposureIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsensingmethod?language=objc)
+    /// The sensor type of the camera or input device.
     pub static kCGImagePropertyExifSensingMethod: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffilesource?language=objc)
+    /// The image source.
     pub static kCGImagePropertyExifFileSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifscenetype?language=objc)
+    /// The scene type.
     pub static kCGImagePropertyExifSceneType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcfapattern?language=objc)
+    /// The color filter array (CFA) pattern, which is the geometric pattern of the image sensor for a 1-chip color sensor area.
     pub static kCGImagePropertyExifCFAPattern: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcustomrendered?language=objc)
+    /// Special  rendering performed on the image data.
     pub static kCGImagePropertyExifCustomRendered: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifexposuremode?language=objc)
+    /// The exposure mode setting.
     pub static kCGImagePropertyExifExposureMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifwhitebalance?language=objc)
+    /// The white balance mode.
     pub static kCGImagePropertyExifWhiteBalance: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdigitalzoomratio?language=objc)
+    /// The digital zoom ratio.
     pub static kCGImagePropertyExifDigitalZoomRatio: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiffocallenin35mmfilm?language=objc)
+    /// The equivalent focal length in 35 mm film.
     pub static kCGImagePropertyExifFocalLenIn35mmFilm: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifscenecapturetype?language=objc)
+    /// The scene capture type; for example, standard, landscape, portrait, or night.
     pub static kCGImagePropertyExifSceneCaptureType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifgaincontrol?language=objc)
+    /// The gain adjustment setting.
     pub static kCGImagePropertyExifGainControl: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcontrast?language=objc)
+    /// The contrast setting.
     pub static kCGImagePropertyExifContrast: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsaturation?language=objc)
+    /// The saturation setting.
     pub static kCGImagePropertyExifSaturation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsharpness?language=objc)
+    /// The sharpness setting.
     pub static kCGImagePropertyExifSharpness: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdevicesettingdescription?language=objc)
+    /// For a particular camera mode, indicates the conditions for taking the picture.
     pub static kCGImagePropertyExifDeviceSettingDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubjectdistrange?language=objc)
+    /// The distance to the subject.
     pub static kCGImagePropertyExifSubjectDistRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifimageuniqueid?language=objc)
+    /// The unique ID of the image.
     pub static kCGImagePropertyExifImageUniqueID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcameraownername?language=objc)
+    /// A string with the name of the camera’s owner.
     pub static kCGImagePropertyExifCameraOwnerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifbodyserialnumber?language=objc)
+    /// A string with the serial number of the camera.
     pub static kCGImagePropertyExifBodySerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiflensspecification?language=objc)
+    /// The specification information for the camera lens.
     pub static kCGImagePropertyExifLensSpecification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiflensmake?language=objc)
+    /// A string with the name of the lens manufacturer.
     pub static kCGImagePropertyExifLensMake: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiflensmodel?language=objc)
+    /// A string with the lens model information.
     pub static kCGImagePropertyExifLensModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexiflensserialnumber?language=objc)
+    /// A string with the lens’s serial number.
     pub static kCGImagePropertyExifLensSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifgamma?language=objc)
+    /// The gamma setting.
     pub static kCGImagePropertyExifGamma: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifcompositeimage?language=objc)
     pub static kCGImagePropertyExifCompositeImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsourceimagenumberofcompositeimage?language=objc)
+    /// The number of images that make up a composite image.
     pub static kCGImagePropertyExifSourceImageNumberOfCompositeImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsourceexposuretimesofcompositeimage?language=objc)
+    /// The exposure times for composite images.
     pub static kCGImagePropertyExifSourceExposureTimesOfCompositeImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifsubsectimeorginal?language=objc)
+    /// The fraction of seconds for the original date and time tag.
     #[deprecated = "No longer supported"]
     pub static kCGImagePropertyExifSubsecTimeOrginal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxlensinfo?language=objc)
+    /// Lens information.
     pub static kCGImagePropertyExifAuxLensInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxlensmodel?language=objc)
+    /// The lens model.
     pub static kCGImagePropertyExifAuxLensModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxserialnumber?language=objc)
+    /// The serial number.
     pub static kCGImagePropertyExifAuxSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxlensid?language=objc)
+    /// The lens ID.
     pub static kCGImagePropertyExifAuxLensID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxlensserialnumber?language=objc)
+    /// The lens serial number.
     pub static kCGImagePropertyExifAuxLensSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauximagenumber?language=objc)
+    /// The image number.
     pub static kCGImagePropertyExifAuxImageNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxflashcompensation?language=objc)
+    /// Flash compensation.
     pub static kCGImagePropertyExifAuxFlashCompensation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxownername?language=objc)
+    /// The owner name.
     pub static kCGImagePropertyExifAuxOwnerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifauxfirmware?language=objc)
+    /// Firmware information.
     pub static kCGImagePropertyExifAuxFirmware: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifloopcount?language=objc)
+    /// The number of times to repeat an animated sequence.
     pub static kCGImagePropertyGIFLoopCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifdelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in an animated sequence, clamped to a minimum of 100 milliseconds.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value. The value of this key is never less than 100 millseconds, and the system adjusts values less than that amount to 100 milliseconds, as needed. See [`kCGImagePropertyGIFUnclampedDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifunclampeddelaytime).
+    ///
+    ///
     pub static kCGImagePropertyGIFDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifimagecolormap?language=objc)
+    /// The image color map.
     pub static kCGImagePropertyGIFImageColorMap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifhasglobalcolormap?language=objc)
+    /// A Boolean value that indicates whether the GIF has a global color map.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean).
+    ///
+    ///
     pub static kCGImagePropertyGIFHasGlobalColorMap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifunclampeddelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in an animated sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// This value may be `0` milliseconds or higher. Unlike the [`kCGImagePropertyGIFDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifdelaytime) property, this value is not clamped at the low end of the range.
+    ///
+    ///
     pub static kCGImagePropertyGIFUnclampedDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifcanvaspixelwidth?language=objc)
+    /// The width of the main image, in pixels.
     pub static kCGImagePropertyGIFCanvasPixelWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifcanvaspixelheight?language=objc)
+    /// The height of the main image, in pixels.
     pub static kCGImagePropertyGIFCanvasPixelHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygifframeinfoarray?language=objc)
+    /// An array of dictionaries that contain timing information for the image sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Each [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) in the array contains timing information about an image in the sequence.
+    ///
+    ///
     pub static kCGImagePropertyGIFFrameInfoArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngauthor?language=objc)
+    /// A string that identifies the author of the image.
     pub static kCGImagePropertyPNGAuthor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngchromaticities?language=objc)
+    /// The chromaticities.
     pub static kCGImagePropertyPNGChromaticities: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngcomment?language=objc)
+    /// A string that contains image comments.
     pub static kCGImagePropertyPNGComment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngcopyright?language=objc)
+    /// A string that identifies the copyright of the image.
     pub static kCGImagePropertyPNGCopyright: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngcreationtime?language=objc)
+    /// A string that identifies the date and time the image was created.
     pub static kCGImagePropertyPNGCreationTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngdescription?language=objc)
+    /// A string that describes the image.
     pub static kCGImagePropertyPNGDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngdisclaimer?language=objc)
+    /// A disclaimer string.
     pub static kCGImagePropertyPNGDisclaimer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypnggamma?language=objc)
+    /// The gamma value.
     pub static kCGImagePropertyPNGGamma: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypnginterlacetype?language=objc)
+    /// The interlace type.
     pub static kCGImagePropertyPNGInterlaceType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngmodificationtime?language=objc)
+    /// A string that identifies the last date and time the image was modified.
     pub static kCGImagePropertyPNGModificationTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngsoftware?language=objc)
+    /// A string that identifies the software used to create the image.
     pub static kCGImagePropertyPNGSoftware: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngsource?language=objc)
     pub static kCGImagePropertyPNGSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngsrgbintent?language=objc)
+    /// The sRGB intent.
     pub static kCGImagePropertyPNGsRGBIntent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngtitle?language=objc)
+    /// A string that holds the image’s title.
     pub static kCGImagePropertyPNGTitle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngwarning?language=objc)
+    /// A warning string.
     pub static kCGImagePropertyPNGWarning: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngxpixelspermeter?language=objc)
+    /// The number of x pixels per meter.
     pub static kCGImagePropertyPNGXPixelsPerMeter: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngypixelspermeter?language=objc)
+    /// The number of y pixels per meter.
     pub static kCGImagePropertyPNGYPixelsPerMeter: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngpixelsaspectratio?language=objc)
     pub static kCGImagePropertyPNGPixelsAspectRatio: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngloopcount?language=objc)
+    /// The number of times that an animated PNG should play through its frames before stopping.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of `0` means the PNG repeats forever.
+    ///
+    ///
     pub static kCGImagePropertyAPNGLoopCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngdelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in an animated sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value. The value of this key is never less than 50 millseconds, and the system adjusts values less than that amount to 50 milliseconds, as needed. See [`kCGImagePropertyAPNGUnclampedDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngunclampeddelaytime).
+    ///
+    ///
     pub static kCGImagePropertyAPNGDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngunclampeddelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in an animated sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// This value may be `0` milliseconds or higher. Unlike the [`kCGImagePropertyAPNGDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngdelaytime) property, this value is not clamped at the low end of the range.
+    ///
+    ///
     pub static kCGImagePropertyAPNGUnclampedDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngframeinfoarray?language=objc)
+    /// An array of dictionaries that contain timing information for the image sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Each [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) in the array contains timing information about an image in the sequence.
+    ///
+    ///
     pub static kCGImagePropertyAPNGFrameInfoArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngcanvaspixelwidth?language=objc)
+    /// The width of the main image, in pixels.
     pub static kCGImagePropertyAPNGCanvasPixelWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyapngcanvaspixelheight?language=objc)
+    /// The height of the main image, in pixels.
     pub static kCGImagePropertyAPNGCanvasPixelHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebploopcount?language=objc)
+    /// The number of times to play the sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyWebPLoopCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebpdelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in the sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value. The value of this key is never less than 100 millseconds, and the system adjusts values less than that amount to 100 milliseconds, as needed. See [`kCGImagePropertyGIFUnclampedDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifunclampeddelaytime).
+    ///
+    ///
     pub static kCGImagePropertyWebPDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebpunclampeddelaytime?language=objc)
+    /// The unadjusted number of seconds to wait before displaying the next image in the sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value.
+    ///
+    ///
     pub static kCGImagePropertyWebPUnclampedDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebpframeinfoarray?language=objc)
+    /// An array of dictionaries that contain timing information for the image sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Each [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) in the array contains timing information about an image in the sequence.
+    ///
+    ///
     pub static kCGImagePropertyWebPFrameInfoArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebpcanvaspixelwidth?language=objc)
+    /// The width of the main image, in pixels.
     pub static kCGImagePropertyWebPCanvasPixelWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywebpcanvaspixelheight?language=objc)
+    /// The height of the main image, in pixels.
     pub static kCGImagePropertyWebPCanvasPixelHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsversion?language=objc)
+    /// The GPS version information.
     pub static kCGImagePropertyGPSVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpslatituderef?language=objc)
+    /// An indication of whether the latitude is north or south.
     pub static kCGImagePropertyGPSLatitudeRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpslatitude?language=objc)
+    /// The latitude.
     pub static kCGImagePropertyGPSLatitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpslongituderef?language=objc)
+    /// An indication of whether the longitude is east or west.
     pub static kCGImagePropertyGPSLongitudeRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpslongitude?language=objc)
+    /// The longitude.
     pub static kCGImagePropertyGPSLongitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsaltituderef?language=objc)
+    /// The altitude point of reference.
     pub static kCGImagePropertyGPSAltitudeRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsaltitude?language=objc)
+    /// The altitude.
     pub static kCGImagePropertyGPSAltitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpstimestamp?language=objc)
+    /// The time in UTC (Coordinated Universal Time).
     pub static kCGImagePropertyGPSTimeStamp: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpssatellites?language=objc)
+    /// The satellites used for GPS measurements.
     pub static kCGImagePropertyGPSSatellites: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsstatus?language=objc)
+    /// The status of the GPS receiver.
     pub static kCGImagePropertyGPSStatus: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsmeasuremode?language=objc)
+    /// The measurement mode.
     pub static kCGImagePropertyGPSMeasureMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdop?language=objc)
+    /// The degree of precision (DOP) of the data.
     pub static kCGImagePropertyGPSDOP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsspeedref?language=objc)
+    /// The unit for expressing the GPS receiver’s speed of movement.
     pub static kCGImagePropertyGPSSpeedRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsspeed?language=objc)
+    /// The GPS receiver’s speed of movement.
     pub static kCGImagePropertyGPSSpeed: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpstrackref?language=objc)
+    /// The reference for the direction of GPS receiver’s movement.
     pub static kCGImagePropertyGPSTrackRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpstrack?language=objc)
+    /// The direction of GPS receiver’s movement.
     pub static kCGImagePropertyGPSTrack: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsimgdirectionref?language=objc)
+    /// The reference for the direction of the image.
     pub static kCGImagePropertyGPSImgDirectionRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsimgdirection?language=objc)
+    /// The direction of the image.
     pub static kCGImagePropertyGPSImgDirection: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsmapdatum?language=objc)
+    /// The geodetic survey data used by the GPS receiver.
     pub static kCGImagePropertyGPSMapDatum: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestlatituderef?language=objc)
+    /// An indication of whether the latitude of the destination point is northern or southern.
     pub static kCGImagePropertyGPSDestLatitudeRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestlatitude?language=objc)
+    /// The latitude of the destination point.
     pub static kCGImagePropertyGPSDestLatitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestlongituderef?language=objc)
+    /// An indication of whether the longitude of the destination point is east or west.
     pub static kCGImagePropertyGPSDestLongitudeRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestlongitude?language=objc)
+    /// The longitude of the destination point.
     pub static kCGImagePropertyGPSDestLongitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestbearingref?language=objc)
+    /// The reference for giving the bearing to the destination point.
     pub static kCGImagePropertyGPSDestBearingRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestbearing?language=objc)
+    /// The bearing to the destination point.
     pub static kCGImagePropertyGPSDestBearing: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestdistanceref?language=objc)
+    /// The units for expressing the distance to the destination point.
     pub static kCGImagePropertyGPSDestDistanceRef: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdestdistance?language=objc)
+    /// The distance to the destination point.
     pub static kCGImagePropertyGPSDestDistance: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsprocessingmethod?language=objc)
+    /// The name of the method used to find a location.
     pub static kCGImagePropertyGPSProcessingMethod: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsareainformation?language=objc)
+    /// The name of the GPS area.
     pub static kCGImagePropertyGPSAreaInformation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdatestamp?language=objc)
+    /// The date and time information relative to Coordinated Universal Time (UTC).
     pub static kCGImagePropertyGPSDateStamp: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpsdifferental?language=objc)
+    /// An indication of whether differential correction is applied to the GPS receiver.
     pub static kCGImagePropertyGPSDifferental: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygpshpositioningerror?language=objc)
+    /// The horizontal error in the GPS position.
     pub static kCGImagePropertyGPSHPositioningError: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcobjecttypereference?language=objc)
+    /// The object type.
     pub static kCGImagePropertyIPTCObjectTypeReference: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcobjectattributereference?language=objc)
+    /// The object attribute.
     pub static kCGImagePropertyIPTCObjectAttributeReference: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcobjectname?language=objc)
+    /// The object name.
     pub static kCGImagePropertyIPTCObjectName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptceditstatus?language=objc)
+    /// The edit status.
     pub static kCGImagePropertyIPTCEditStatus: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptceditorialupdate?language=objc)
+    /// An editorial update.
     pub static kCGImagePropertyIPTCEditorialUpdate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcurgency?language=objc)
+    /// The urgency level.
     pub static kCGImagePropertyIPTCUrgency: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcsubjectreference?language=objc)
+    /// The subject.
     pub static kCGImagePropertyIPTCSubjectReference: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccategory?language=objc)
+    /// The category.
     pub static kCGImagePropertyIPTCCategory: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcsupplementalcategory?language=objc)
+    /// A supplemental category.
     pub static kCGImagePropertyIPTCSupplementalCategory: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcfixtureidentifier?language=objc)
+    /// A fixture identifier.
     pub static kCGImagePropertyIPTCFixtureIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptckeywords?language=objc)
+    /// Keywords relevant to the image.
     pub static kCGImagePropertyIPTCKeywords: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontentlocationcode?language=objc)
+    /// The content location code.
     pub static kCGImagePropertyIPTCContentLocationCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontentlocationname?language=objc)
+    /// The content location name.
     pub static kCGImagePropertyIPTCContentLocationName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcreleasedate?language=objc)
+    /// The earliest day on which you can use the image, in the form CCYYMMDD.
     pub static kCGImagePropertyIPTCReleaseDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcreleasetime?language=objc)
+    /// The earliest time at which you can use the image, in the form HHMMSS.
+    ///
+    /// ## Discussion
+    ///
+    /// This time is valid on the release date, which is available in the [`kCGImagePropertyIPTCReleaseDate`](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcreleasedate) property.
+    ///
+    ///
     pub static kCGImagePropertyIPTCReleaseTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexpirationdate?language=objc)
+    /// The latest date you can use the image, in the form CCYYMMDD.
     pub static kCGImagePropertyIPTCExpirationDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexpirationtime?language=objc)
+    /// The latest time on the expiration date you can use the image, in the form HHMMSS.
     pub static kCGImagePropertyIPTCExpirationTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcspecialinstructions?language=objc)
+    /// Special instructions about the use of the image.
     pub static kCGImagePropertyIPTCSpecialInstructions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcactionadvised?language=objc)
+    /// The advised action.
     pub static kCGImagePropertyIPTCActionAdvised: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcreferenceservice?language=objc)
+    /// The reference service.
     pub static kCGImagePropertyIPTCReferenceService: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcreferencedate?language=objc)
+    /// The reference date.
     pub static kCGImagePropertyIPTCReferenceDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcreferencenumber?language=objc)
+    /// The reference number.
     pub static kCGImagePropertyIPTCReferenceNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcdatecreated?language=objc)
+    /// The creation date.
     pub static kCGImagePropertyIPTCDateCreated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptctimecreated?language=objc)
+    /// The creation time.
     pub static kCGImagePropertyIPTCTimeCreated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcdigitalcreationdate?language=objc)
+    /// The digital creation date.
     pub static kCGImagePropertyIPTCDigitalCreationDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcdigitalcreationtime?language=objc)
+    /// The digital creation time.
     pub static kCGImagePropertyIPTCDigitalCreationTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcoriginatingprogram?language=objc)
+    /// The originating application.
     pub static kCGImagePropertyIPTCOriginatingProgram: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcprogramversion?language=objc)
+    /// The application version.
     pub static kCGImagePropertyIPTCProgramVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcobjectcycle?language=objc)
+    /// The editorial cycle (morning, evening, or both) of the image.
     pub static kCGImagePropertyIPTCObjectCycle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcbyline?language=objc)
+    /// The name of the person who created the image.
     pub static kCGImagePropertyIPTCByline: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcbylinetitle?language=objc)
+    /// The title of the person who created the image.
     pub static kCGImagePropertyIPTCBylineTitle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccity?language=objc)
+    /// The city where the image was created.
     pub static kCGImagePropertyIPTCCity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcsublocation?language=objc)
+    /// The location within the city where the image was created.
     pub static kCGImagePropertyIPTCSubLocation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcprovincestate?language=objc)
+    /// The province or state.
     pub static kCGImagePropertyIPTCProvinceState: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccountryprimarylocationcode?language=objc)
+    /// The primary country code, a three-letter code defined by ISO 3166-1.
     pub static kCGImagePropertyIPTCCountryPrimaryLocationCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccountryprimarylocationname?language=objc)
+    /// The primary country name.
     pub static kCGImagePropertyIPTCCountryPrimaryLocationName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcoriginaltransmissionreference?language=objc)
+    /// The call letter or number combination associated with the originating point of an image.
     pub static kCGImagePropertyIPTCOriginalTransmissionReference: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcheadline?language=objc)
+    /// A summary of the contents of the image.
     pub static kCGImagePropertyIPTCHeadline: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccredit?language=objc)
+    /// The name of the service that provided the image.
     pub static kCGImagePropertyIPTCCredit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcsource?language=objc)
+    /// The original owner of the image.
     pub static kCGImagePropertyIPTCSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccopyrightnotice?language=objc)
+    /// The copyright notice.
     pub static kCGImagePropertyIPTCCopyrightNotice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontact?language=objc)
+    /// The contact information for getting details about the image.
     pub static kCGImagePropertyIPTCContact: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccaptionabstract?language=objc)
+    /// The description of the image.
     pub static kCGImagePropertyIPTCCaptionAbstract: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcwritereditor?language=objc)
+    /// The name of the person who wrote or edited the description of the image.
     pub static kCGImagePropertyIPTCWriterEditor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcimagetype?language=objc)
+    /// The image type.
     pub static kCGImagePropertyIPTCImageType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcimageorientation?language=objc)
+    /// The image orientation (portrait, landscape, or square).
     pub static kCGImagePropertyIPTCImageOrientation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptclanguageidentifier?language=objc)
+    /// The language identifier, a two-letter code defined by ISO 639:1988.
     pub static kCGImagePropertyIPTCLanguageIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcstarrating?language=objc)
+    /// The star rating.
     pub static kCGImagePropertyIPTCStarRating: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccreatorcontactinfo?language=objc)
+    /// The creator’s contact info.
+    ///
+    /// ## Discussion
+    ///
+    /// For a list of keys to include in the contact dictionary, see [IPTC Creator Contact Info Dictionary Keys](https://developer.apple.com/documentation/imageio/iptc-creator-contact-info-dictionary-keys).
+    ///
+    ///
     pub static kCGImagePropertyIPTCCreatorContactInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcrightsusageterms?language=objc)
+    /// The usage rights for the image.
     pub static kCGImagePropertyIPTCRightsUsageTerms: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcscene?language=objc)
+    /// The scene codes for the image; a scene code is a six-digit string.
     pub static kCGImagePropertyIPTCScene: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaboutcvterm?language=objc)
     pub static kCGImagePropertyIPTCExtAboutCvTerm: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaboutcvtermcvid?language=objc)
     pub static kCGImagePropertyIPTCExtAboutCvTermCvId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaboutcvtermid?language=objc)
     pub static kCGImagePropertyIPTCExtAboutCvTermId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaboutcvtermname?language=objc)
     pub static kCGImagePropertyIPTCExtAboutCvTermName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaboutcvtermrefinedabout?language=objc)
     pub static kCGImagePropertyIPTCExtAboutCvTermRefinedAbout: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaddlmodelinfo?language=objc)
     pub static kCGImagePropertyIPTCExtAddlModelInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkorobject?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkOrObject: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcircadatecreated?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkCircaDateCreated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcontentdescription?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkContentDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcontributiondescription?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkContributionDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcopyrightnotice?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkCopyrightNotice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcreator?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkCreator: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcreatorid?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkCreatorID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcopyrightownerid?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkCopyrightOwnerID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkcopyrightownername?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkCopyrightOwnerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworklicensorid?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkLicensorID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworklicensorname?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkLicensorName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkdatecreated?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkDateCreated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkphysicaldescription?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkPhysicalDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworksource?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworksourceinventoryno?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkSourceInventoryNo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworksourceinvurl?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkSourceInvURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworkstyleperiod?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkStylePeriod: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextartworktitle?language=objc)
     pub static kCGImagePropertyIPTCExtArtworkTitle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaudiobitrate?language=objc)
     pub static kCGImagePropertyIPTCExtAudioBitrate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaudiobitratemode?language=objc)
     pub static kCGImagePropertyIPTCExtAudioBitrateMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextaudiochannelcount?language=objc)
     pub static kCGImagePropertyIPTCExtAudioChannelCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcircadatecreated?language=objc)
     pub static kCGImagePropertyIPTCExtCircaDateCreated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontainerformat?language=objc)
     pub static kCGImagePropertyIPTCExtContainerFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontainerformatidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtContainerFormatIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontainerformatname?language=objc)
     pub static kCGImagePropertyIPTCExtContainerFormatName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontributor?language=objc)
     pub static kCGImagePropertyIPTCExtContributor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontributoridentifier?language=objc)
     pub static kCGImagePropertyIPTCExtContributorIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontributorname?language=objc)
     pub static kCGImagePropertyIPTCExtContributorName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontributorrole?language=objc)
     pub static kCGImagePropertyIPTCExtContributorRole: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcopyrightyear?language=objc)
     pub static kCGImagePropertyIPTCExtCopyrightYear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcreator?language=objc)
     pub static kCGImagePropertyIPTCExtCreator: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcreatoridentifier?language=objc)
     pub static kCGImagePropertyIPTCExtCreatorIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcreatorname?language=objc)
     pub static kCGImagePropertyIPTCExtCreatorName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcreatorrole?language=objc)
     pub static kCGImagePropertyIPTCExtCreatorRole: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextcontrolledvocabularyterm?language=objc)
     pub static kCGImagePropertyIPTCExtControlledVocabularyTerm: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreen?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreen: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregion?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregiond?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionD: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregionh?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionH: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregiontext?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionText: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregionunit?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionUnit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregionw?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionW: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregionx?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionX: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdataonscreenregiony?language=objc)
     pub static kCGImagePropertyIPTCExtDataOnScreenRegionY: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdigitalimageguid?language=objc)
     pub static kCGImagePropertyIPTCExtDigitalImageGUID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdigitalsourcefiletype?language=objc)
     pub static kCGImagePropertyIPTCExtDigitalSourceFileType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdigitalsourcetype?language=objc)
     pub static kCGImagePropertyIPTCExtDigitalSourceType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdopesheet?language=objc)
     pub static kCGImagePropertyIPTCExtDopesheet: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdopesheetlink?language=objc)
     pub static kCGImagePropertyIPTCExtDopesheetLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdopesheetlinklink?language=objc)
     pub static kCGImagePropertyIPTCExtDopesheetLinkLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextdopesheetlinklinkqualifier?language=objc)
     pub static kCGImagePropertyIPTCExtDopesheetLinkLinkQualifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextembdencrightsexpr?language=objc)
     pub static kCGImagePropertyIPTCExtEmbdEncRightsExpr: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextembeddedencodedrightsexpr?language=objc)
     pub static kCGImagePropertyIPTCExtEmbeddedEncodedRightsExpr: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextembeddedencodedrightsexprtype?language=objc)
     pub static kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextembeddedencodedrightsexprlangid?language=objc)
     pub static kCGImagePropertyIPTCExtEmbeddedEncodedRightsExprLangID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextepisode?language=objc)
     pub static kCGImagePropertyIPTCExtEpisode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextepisodeidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtEpisodeIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextepisodename?language=objc)
     pub static kCGImagePropertyIPTCExtEpisodeName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextepisodenumber?language=objc)
     pub static kCGImagePropertyIPTCExtEpisodeNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextevent?language=objc)
     pub static kCGImagePropertyIPTCExtEvent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextshownevent?language=objc)
     pub static kCGImagePropertyIPTCExtShownEvent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextshowneventidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtShownEventIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextshowneventname?language=objc)
     pub static kCGImagePropertyIPTCExtShownEventName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextexternalmetadatalink?language=objc)
     pub static kCGImagePropertyIPTCExtExternalMetadataLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextfeedidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtFeedIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextgenre?language=objc)
     pub static kCGImagePropertyIPTCExtGenre: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextgenrecvid?language=objc)
     pub static kCGImagePropertyIPTCExtGenreCvId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextgenrecvtermid?language=objc)
     pub static kCGImagePropertyIPTCExtGenreCvTermId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextgenrecvtermname?language=objc)
     pub static kCGImagePropertyIPTCExtGenreCvTermName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextgenrecvtermrefinedabout?language=objc)
     pub static kCGImagePropertyIPTCExtGenreCvTermRefinedAbout: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextheadline?language=objc)
     pub static kCGImagePropertyIPTCExtHeadline: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextiptclastedited?language=objc)
     pub static kCGImagePropertyIPTCExtIPTCLastEdited: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlinkedencrightsexpr?language=objc)
     pub static kCGImagePropertyIPTCExtLinkedEncRightsExpr: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlinkedencodedrightsexpr?language=objc)
     pub static kCGImagePropertyIPTCExtLinkedEncodedRightsExpr: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlinkedencodedrightsexprtype?language=objc)
     pub static kCGImagePropertyIPTCExtLinkedEncodedRightsExprType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlinkedencodedrightsexprlangid?language=objc)
     pub static kCGImagePropertyIPTCExtLinkedEncodedRightsExprLangID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationcreated?language=objc)
     pub static kCGImagePropertyIPTCExtLocationCreated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationcity?language=objc)
     pub static kCGImagePropertyIPTCExtLocationCity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationcountrycode?language=objc)
     pub static kCGImagePropertyIPTCExtLocationCountryCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationcountryname?language=objc)
     pub static kCGImagePropertyIPTCExtLocationCountryName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationgpsaltitude?language=objc)
     pub static kCGImagePropertyIPTCExtLocationGPSAltitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationgpslatitude?language=objc)
     pub static kCGImagePropertyIPTCExtLocationGPSLatitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationgpslongitude?language=objc)
     pub static kCGImagePropertyIPTCExtLocationGPSLongitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtLocationIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationlocationid?language=objc)
     pub static kCGImagePropertyIPTCExtLocationLocationId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationlocationname?language=objc)
     pub static kCGImagePropertyIPTCExtLocationLocationName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationprovincestate?language=objc)
     pub static kCGImagePropertyIPTCExtLocationProvinceState: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationsublocation?language=objc)
     pub static kCGImagePropertyIPTCExtLocationSublocation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationworldregion?language=objc)
     pub static kCGImagePropertyIPTCExtLocationWorldRegion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextlocationshown?language=objc)
     pub static kCGImagePropertyIPTCExtLocationShown: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextmaxavailheight?language=objc)
     pub static kCGImagePropertyIPTCExtMaxAvailHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextmaxavailwidth?language=objc)
     pub static kCGImagePropertyIPTCExtMaxAvailWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextmodelage?language=objc)
     pub static kCGImagePropertyIPTCExtModelAge: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextorganisationinimagecode?language=objc)
     pub static kCGImagePropertyIPTCExtOrganisationInImageCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextorganisationinimagename?language=objc)
     pub static kCGImagePropertyIPTCExtOrganisationInImageName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersonheard?language=objc)
     pub static kCGImagePropertyIPTCExtPersonHeard: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersonheardidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtPersonHeardIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersonheardname?language=objc)
     pub static kCGImagePropertyIPTCExtPersonHeardName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimage?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagewdetails?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageWDetails: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagecharacteristic?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageCharacteristic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagecvtermcvid?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageCvTermCvId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagecvtermid?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageCvTermId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagecvtermname?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageCvTermName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagecvtermrefinedabout?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageCvTermRefinedAbout: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagedescription?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimageid?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpersoninimagename?language=objc)
     pub static kCGImagePropertyIPTCExtPersonInImageName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextproductinimage?language=objc)
     pub static kCGImagePropertyIPTCExtProductInImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextproductinimagedescription?language=objc)
     pub static kCGImagePropertyIPTCExtProductInImageDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextproductinimagegtin?language=objc)
     pub static kCGImagePropertyIPTCExtProductInImageGTIN: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextproductinimagename?language=objc)
     pub static kCGImagePropertyIPTCExtProductInImageName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpublicationevent?language=objc)
     pub static kCGImagePropertyIPTCExtPublicationEvent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpublicationeventdate?language=objc)
     pub static kCGImagePropertyIPTCExtPublicationEventDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpublicationeventidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtPublicationEventIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextpublicationeventname?language=objc)
     pub static kCGImagePropertyIPTCExtPublicationEventName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextrating?language=objc)
     pub static kCGImagePropertyIPTCExtRating: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingratingregion?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRatingRegion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregioncity?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionCity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregioncountrycode?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionCountryCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregioncountryname?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionCountryName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregiongpsaltitude?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionGPSAltitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregiongpslatitude?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionGPSLatitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregiongpslongitude?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionGPSLongitude: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregionidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregionlocationid?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionLocationId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregionlocationname?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionLocationName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregionprovincestate?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionProvinceState: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregionsublocation?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionSublocation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingregionworldregion?language=objc)
     pub static kCGImagePropertyIPTCExtRatingRegionWorldRegion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingscalemaxvalue?language=objc)
     pub static kCGImagePropertyIPTCExtRatingScaleMaxValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingscaleminvalue?language=objc)
     pub static kCGImagePropertyIPTCExtRatingScaleMinValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingsourcelink?language=objc)
     pub static kCGImagePropertyIPTCExtRatingSourceLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingvalue?language=objc)
     pub static kCGImagePropertyIPTCExtRatingValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextratingvaluelogolink?language=objc)
     pub static kCGImagePropertyIPTCExtRatingValueLogoLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextregistryid?language=objc)
     pub static kCGImagePropertyIPTCExtRegistryID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextregistryentryrole?language=objc)
     pub static kCGImagePropertyIPTCExtRegistryEntryRole: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextregistryitemid?language=objc)
     pub static kCGImagePropertyIPTCExtRegistryItemID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextregistryorganisationid?language=objc)
     pub static kCGImagePropertyIPTCExtRegistryOrganisationID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextreleaseready?language=objc)
     pub static kCGImagePropertyIPTCExtReleaseReady: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseason?language=objc)
     pub static kCGImagePropertyIPTCExtSeason: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseasonidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtSeasonIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseasonname?language=objc)
     pub static kCGImagePropertyIPTCExtSeasonName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseasonnumber?language=objc)
     pub static kCGImagePropertyIPTCExtSeasonNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseries?language=objc)
     pub static kCGImagePropertyIPTCExtSeries: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseriesidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtSeriesIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextseriesname?language=objc)
     pub static kCGImagePropertyIPTCExtSeriesName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextstorylineidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtStorylineIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextstreamready?language=objc)
     pub static kCGImagePropertyIPTCExtStreamReady: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextstyleperiod?language=objc)
     pub static kCGImagePropertyIPTCExtStylePeriod: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextsupplychainsource?language=objc)
     pub static kCGImagePropertyIPTCExtSupplyChainSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextsupplychainsourceidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtSupplyChainSourceIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextsupplychainsourcename?language=objc)
     pub static kCGImagePropertyIPTCExtSupplyChainSourceName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttemporalcoverage?language=objc)
     pub static kCGImagePropertyIPTCExtTemporalCoverage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttemporalcoveragefrom?language=objc)
     pub static kCGImagePropertyIPTCExtTemporalCoverageFrom: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttemporalcoverageto?language=objc)
     pub static kCGImagePropertyIPTCExtTemporalCoverageTo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttranscript?language=objc)
     pub static kCGImagePropertyIPTCExtTranscript: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttranscriptlink?language=objc)
     pub static kCGImagePropertyIPTCExtTranscriptLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttranscriptlinklink?language=objc)
     pub static kCGImagePropertyIPTCExtTranscriptLinkLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcexttranscriptlinklinkqualifier?language=objc)
     pub static kCGImagePropertyIPTCExtTranscriptLinkLinkQualifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideobitrate?language=objc)
     pub static kCGImagePropertyIPTCExtVideoBitrate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideobitratemode?language=objc)
     pub static kCGImagePropertyIPTCExtVideoBitrateMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideodisplayaspectratio?language=objc)
     pub static kCGImagePropertyIPTCExtVideoDisplayAspectRatio: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideoencodingprofile?language=objc)
     pub static kCGImagePropertyIPTCExtVideoEncodingProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideoshottype?language=objc)
     pub static kCGImagePropertyIPTCExtVideoShotType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideoshottypeidentifier?language=objc)
     pub static kCGImagePropertyIPTCExtVideoShotTypeIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideoshottypename?language=objc)
     pub static kCGImagePropertyIPTCExtVideoShotTypeName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvideostreamscount?language=objc)
     pub static kCGImagePropertyIPTCExtVideoStreamsCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextvisualcolor?language=objc)
     pub static kCGImagePropertyIPTCExtVisualColor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextworkflowtag?language=objc)
     pub static kCGImagePropertyIPTCExtWorkflowTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextworkflowtagcvid?language=objc)
     pub static kCGImagePropertyIPTCExtWorkflowTagCvId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextworkflowtagcvtermid?language=objc)
     pub static kCGImagePropertyIPTCExtWorkflowTagCvTermId: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextworkflowtagcvtermname?language=objc)
     pub static kCGImagePropertyIPTCExtWorkflowTagCvTermName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptcextworkflowtagcvtermrefinedabout?language=objc)
     pub static kCGImagePropertyIPTCExtWorkflowTagCvTermRefinedAbout: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfocity?language=objc)
+    /// The city portion of the contact information.
     pub static kCGImagePropertyIPTCContactInfoCity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfocountry?language=objc)
+    /// The country or region portion of the contact information.
     pub static kCGImagePropertyIPTCContactInfoCountry: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfoaddress?language=objc)
+    /// The address portion of the contact information.
     pub static kCGImagePropertyIPTCContactInfoAddress: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfopostalcode?language=objc)
+    /// The postal code portion of the contact.
     pub static kCGImagePropertyIPTCContactInfoPostalCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfostateprovince?language=objc)
+    /// The state or province of the contact.
     pub static kCGImagePropertyIPTCContactInfoStateProvince: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfoemails?language=objc)
+    /// Email addresses for the contact.
     pub static kCGImagePropertyIPTCContactInfoEmails: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfophones?language=objc)
+    /// Phone numbers for the contact.
     pub static kCGImagePropertyIPTCContactInfoPhones: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyiptccontactinfoweburls?language=objc)
+    /// Web addresses for the contact.
     pub static kCGImagePropertyIPTCContactInfoWebURLs: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproperty8bimlayernames?language=objc)
+    /// The layer names for an Adobe Photoshop file.
     pub static kCGImageProperty8BIMLayerNames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproperty8bimversion?language=objc)
+    /// The Adobe Photoshop file version.
     pub static kCGImageProperty8BIMVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngversion?language=objc)
+    /// An encoding of the four-tier version number.
     pub static kCGImagePropertyDNGVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbackwardversion?language=objc)
+    /// The oldest version for which a file is compatible.
     pub static kCGImagePropertyDNGBackwardVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydnguniquecameramodel?language=objc)
+    /// A unique, nonlocalized name for the camera model.
     pub static kCGImagePropertyDNGUniqueCameraModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydnglocalizedcameramodel?language=objc)
+    /// The localized camera model name.
     pub static kCGImagePropertyDNGLocalizedCameraModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcameraserialnumber?language=objc)
+    /// The camera serial number.
     pub static kCGImagePropertyDNGCameraSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydnglensinfo?language=objc)
+    /// Information about the lens used for the image.
     pub static kCGImagePropertyDNGLensInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngblacklevel?language=objc)
+    /// The zero light encoding level, specified as a repeating pattern.
     pub static kCGImagePropertyDNGBlackLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngwhitelevel?language=objc)
+    /// The saturated encoding level for the raw sample values.
     pub static kCGImagePropertyDNGWhiteLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcalibrationilluminant1?language=objc)
+    /// The illuminant for the first set of color calibration tags.
     pub static kCGImagePropertyDNGCalibrationIlluminant1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcalibrationilluminant2?language=objc)
+    /// The illuminant for an optional second set of color calibration tags.
     pub static kCGImagePropertyDNGCalibrationIlluminant2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcolormatrix1?language=objc)
+    /// A transformation matrix that converts XYZ values to reference camera native color spaces, under the first calibration illuminant.
     pub static kCGImagePropertyDNGColorMatrix1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcolormatrix2?language=objc)
+    /// A transformation matrix that converts XYZ values to reference camera native color spaces, under the second calibration illuminant.
     pub static kCGImagePropertyDNGColorMatrix2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcameracalibration1?language=objc)
+    /// A matrix that transforms reference camera native space values to camera-native space values under the first calibration illuminant.
     pub static kCGImagePropertyDNGCameraCalibration1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcameracalibration2?language=objc)
+    /// A matrix that transforms reference camera native space values to camera-native space values under the second calibration illuminant.
     pub static kCGImagePropertyDNGCameraCalibration2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngasshotneutral?language=objc)
+    /// The selected white balance at the time of capture, encoded as the coordinates of a neutral color in linear reference space values.
     pub static kCGImagePropertyDNGAsShotNeutral: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngasshotwhitexy?language=objc)
+    /// The selected white balance at the time of capture, encoded as x-y chromaticity coordinates.
     pub static kCGImagePropertyDNGAsShotWhiteXY: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbaselineexposure?language=objc)
+    /// The amount by which to adjust the zero point of the exposure, specified in EV units.
     pub static kCGImagePropertyDNGBaselineExposure: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbaselinenoise?language=objc)
+    /// The relative noise level of the camera model at an ISO of 100.
     pub static kCGImagePropertyDNGBaselineNoise: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbaselinesharpness?language=objc)
+    /// The amount of sharpening required for this camera model.
     pub static kCGImagePropertyDNGBaselineSharpness: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprivatedata?language=objc)
+    /// Private data that manufacturers may store with an image and use in their own converters.
     pub static kCGImagePropertyDNGPrivateData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcameracalibrationsignature?language=objc)
+    /// A string to match against the profile calibration signature for the selected camera profile.
     pub static kCGImagePropertyDNGCameraCalibrationSignature: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilecalibrationsignature?language=objc)
+    /// A string that describes the calibration for the current profile.
     pub static kCGImagePropertyDNGProfileCalibrationSignature: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngnoiseprofile?language=objc)
+    /// The amount of noise in the raw image.
     pub static kCGImagePropertyDNGNoiseProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngwarprectilinear?language=objc)
+    /// An opcode to apply a warp to an image to correct for geometric distortion and lateral chromatic aberration for rectilinear lenses.
     pub static kCGImagePropertyDNGWarpRectilinear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngwarpfisheye?language=objc)
+    /// An opcode to unwrap an image captued with a fisheye lens and map it to a perspective projection.
     pub static kCGImagePropertyDNGWarpFisheye: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngfixvignetteradial?language=objc)
+    /// An opcode to apply a gain function to an image to correct vignetting.
     pub static kCGImagePropertyDNGFixVignetteRadial: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngactivearea?language=objc)
+    /// The rectangle that defines the non-masked pixels of the sensor.
     pub static kCGImagePropertyDNGActiveArea: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydnganalogbalance?language=objc)
+    /// The analog or digital gain that applies to the stored raw values.
     pub static kCGImagePropertyDNGAnalogBalance: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngantialiasstrength?language=objc)
+    /// A hint to the DNG reader about how strong the camera’s antialias filter is.
     pub static kCGImagePropertyDNGAntiAliasStrength: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngasshoticcprofile?language=objc)
+    /// A profile that specifies default color rendering from camera color-space coordinates into the ICC profile space.
     pub static kCGImagePropertyDNGAsShotICCProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngasshotpreprofilematrix?language=objc)
+    /// A matrix to apply to the camera color-space coordinates before processing values through the ICC profile.
     pub static kCGImagePropertyDNGAsShotPreProfileMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngasshotprofilename?language=objc)
+    /// A string containing the name of the “as shot” camera profile, if any.
     pub static kCGImagePropertyDNGAsShotProfileName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbaselineexposureoffset?language=objc)
+    /// The amount of EV units to add to the baseline exposure during image rendering.
     pub static kCGImagePropertyDNGBaselineExposureOffset: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbayergreensplit?language=objc)
+    /// A value that specifies how closely green pixels in the blue/green rows track the green pixels in red/green rows.
     pub static kCGImagePropertyDNGBayerGreenSplit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngbestqualityscale?language=objc)
+    /// The scale factor to apply to the default scale to achieve the best quality image size.
     pub static kCGImagePropertyDNGBestQualityScale: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngblackleveldeltah?language=objc)
+    /// The difference between the zero-light encoding level for each column and the baseline zero-light encoding level.
     pub static kCGImagePropertyDNGBlackLevelDeltaH: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngblackleveldeltav?language=objc)
+    /// The difference between the zero-light encodoing level for each row and the baseline zero-light encoding level.
     pub static kCGImagePropertyDNGBlackLevelDeltaV: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngblacklevelrepeatdim?language=objc)
+    /// The repeat pattern size for the black level tag.
     pub static kCGImagePropertyDNGBlackLevelRepeatDim: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcfalayout?language=objc)
+    /// The spatial layout of the CFA.
     pub static kCGImagePropertyDNGCFALayout: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcfaplanecolor?language=objc)
+    /// A mapping between the values in the CFA pattern tag and the plane numbers in linear raw space.
     pub static kCGImagePropertyDNGCFAPlaneColor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngchromablurradius?language=objc)
+    /// A hint to the DNG reader about how much chroma blur to apply to the image.
     pub static kCGImagePropertyDNGChromaBlurRadius: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcolorimetricreference?language=objc)
+    /// The colorimetric reference for the CIE XYZ values.
     pub static kCGImagePropertyDNGColorimetricReference: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcurrenticcprofile?language=objc)
+    /// A profile that specifies default color rendering from camera color-space coordinates into the ICC profile space.
     pub static kCGImagePropertyDNGCurrentICCProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngcurrentpreprofilematrix?language=objc)
+    /// A matrix to apply to the current camera color-space coordinates before processing values through the ICC profile.
     pub static kCGImagePropertyDNGCurrentPreProfileMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngdefaultblackrender?language=objc)
+    /// A hint to the raw converter about how to handle the black point during rendering.
     pub static kCGImagePropertyDNGDefaultBlackRender: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngdefaultcroporigin?language=objc)
+    /// The origin of the final image area, relative to the top-left corner of the active area rectangle.
     pub static kCGImagePropertyDNGDefaultCropOrigin: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngdefaultcropsize?language=objc)
+    /// The size of the final image area, in raw image coordinates.
     pub static kCGImagePropertyDNGDefaultCropSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngdefaultscale?language=objc)
+    /// The default scale factors for each direction to convert the image to square pixels.
     pub static kCGImagePropertyDNGDefaultScale: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngdefaultusercrop?language=objc)
+    /// A default user-crop rectangle in relative coordinates.
     pub static kCGImagePropertyDNGDefaultUserCrop: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngextracameraprofiles?language=objc)
+    /// A list of file offsets to extra camera profiles.
     pub static kCGImagePropertyDNGExtraCameraProfiles: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngforwardmatrix1?language=objc)
+    /// A matrix that maps white balanced camera colors to XYZ D50 colors.
     pub static kCGImagePropertyDNGForwardMatrix1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngforwardmatrix2?language=objc)
+    /// A matrix that maps white balanced camera colors to XYZ D50 colors.
     pub static kCGImagePropertyDNGForwardMatrix2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydnglinearizationtable?language=objc)
+    /// A lookup table that maps stored values into linear values.
     pub static kCGImagePropertyDNGLinearizationTable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydnglinearresponselimit?language=objc)
+    /// The fraction of the encoding range, above which the response may become significantly non-linear.
     pub static kCGImagePropertyDNGLinearResponseLimit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngmakernotesafety?language=objc)
+    /// A Boolean value that tells the DNG reader whether the EXIF MakerNote tag is safe to preserve.
     pub static kCGImagePropertyDNGMakerNoteSafety: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngmaskedareas?language=objc)
+    /// A list of non-overlapping rectangles that contain fully masked pixels in the image.
     pub static kCGImagePropertyDNGMaskedAreas: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngnewrawimagedigest?language=objc)
+    /// An MD5 digest of the raw image data.
     pub static kCGImagePropertyDNGNewRawImageDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngnoisereductionapplied?language=objc)
+    /// The amount of noise reduction applied to the raw data on a scale of 0.0 to 1.0.
     pub static kCGImagePropertyDNGNoiseReductionApplied: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngopcodelist1?language=objc)
+    /// The list of opcodes to apply to the raw image, as read directly from the file.
     pub static kCGImagePropertyDNGOpcodeList1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngopcodelist2?language=objc)
+    /// THe list of opcodes to apply to the raw image, after mapping it to linear reference values.
     pub static kCGImagePropertyDNGOpcodeList2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngopcodelist3?language=objc)
+    /// The list of opcodes to apply to the raw image, after demosaicing it.
     pub static kCGImagePropertyDNGOpcodeList3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngoriginalbestqualityfinalsize?language=objc)
+    /// The best-quality final size of the larger original file that was the source of this proxy.
     pub static kCGImagePropertyDNGOriginalBestQualityFinalSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngoriginaldefaultcropsize?language=objc)
+    /// The default crop size of the larger original file that was the source of this proxy.
     pub static kCGImagePropertyDNGOriginalDefaultCropSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngoriginaldefaultfinalsize?language=objc)
+    /// THe default final size of the larger original file that was the source of this proxy.
     pub static kCGImagePropertyDNGOriginalDefaultFinalSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngoriginalrawfiledata?language=objc)
+    /// The compressed contents of the original raw file.
     pub static kCGImagePropertyDNGOriginalRawFileData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngoriginalrawfiledigest?language=objc)
+    /// An MD5 digest of the data stored for the original raw file data.
     pub static kCGImagePropertyDNGOriginalRawFileDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngoriginalrawfilename?language=objc)
+    /// The file name of the original raw file.
     pub static kCGImagePropertyDNGOriginalRawFileName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngpreviewapplicationname?language=objc)
+    /// The name of the app that created the preview stored in the IFD.
     pub static kCGImagePropertyDNGPreviewApplicationName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngpreviewapplicationversion?language=objc)
+    /// The version number of the app that created the preview stored in the IFD.
     pub static kCGImagePropertyDNGPreviewApplicationVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngpreviewcolorspace?language=objc)
+    /// The color space associated with the rendered preview.
     pub static kCGImagePropertyDNGPreviewColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngpreviewdatetime?language=objc)
+    /// The date and time for the render of the preview.
     pub static kCGImagePropertyDNGPreviewDateTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngpreviewsettingsdigest?language=objc)
+    /// A unique ID of the conversion settings used to render the preview.
     pub static kCGImagePropertyDNGPreviewSettingsDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngpreviewsettingsname?language=objc)
+    /// The name of the conversion settings for the preview.
     pub static kCGImagePropertyDNGPreviewSettingsName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilecopyright?language=objc)
+    /// The copyright information for the camera profile.
     pub static kCGImagePropertyDNGProfileCopyright: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofileembedpolicy?language=objc)
+    /// The usage rules for the camera profile.
     pub static kCGImagePropertyDNGProfileEmbedPolicy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilehuesatmapdata1?language=objc)
+    /// The data for the first hue/saturation/value mapping table.
     pub static kCGImagePropertyDNGProfileHueSatMapData1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilehuesatmapdata2?language=objc)
+    /// The data for the second hue/saturation/value mapping table.
     pub static kCGImagePropertyDNGProfileHueSatMapData2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilehuesatmapdims?language=objc)
+    /// The number of input samples in each dimension of the hue/saturation/value mapping tables.
     pub static kCGImagePropertyDNGProfileHueSatMapDims: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilehuesatmapencoding?language=objc)
+    /// The encoding option to use when indexing into a 3D look table during raw conversion.
     pub static kCGImagePropertyDNGProfileHueSatMapEncoding: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilelooktabledata?language=objc)
+    /// The default “look” table to apply when processing the image as a starting point for user adjustment.
     pub static kCGImagePropertyDNGProfileLookTableData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilelooktabledims?language=objc)
+    /// The number of input samples in each dimentsion of a default “look” table.
     pub static kCGImagePropertyDNGProfileLookTableDims: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilelooktableencoding?language=objc)
+    /// The encoding option to use when indexing into a 3D look table during raw conversion.
     pub static kCGImagePropertyDNGProfileLookTableEncoding: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofilename?language=objc)
+    /// A string containing the name of the camera profile.
     pub static kCGImagePropertyDNGProfileName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngprofiletonecurve?language=objc)
+    /// The default tone curve to apply when processing the image as a starting point for user adjustments.
     pub static kCGImagePropertyDNGProfileToneCurve: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngrawdatauniqueid?language=objc)
+    /// A 16-byte unique identifier for the raw image data.
     pub static kCGImagePropertyDNGRawDataUniqueID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngrawimagedigest?language=objc)
+    /// A modified MD5 digest of the raw image data.
     pub static kCGImagePropertyDNGRawImageDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngrawtopreviewgain?language=objc)
+    /// The gain between the main raw IFD and the preview IFD that contains this tag.
     pub static kCGImagePropertyDNGRawToPreviewGain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngreductionmatrix1?language=objc)
+    /// A reduction matrix that converts color camera-native space values to XYZ values, under the first calibration illuminant.
     pub static kCGImagePropertyDNGReductionMatrix1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngreductionmatrix2?language=objc)
+    /// A reduction matrix that converts color camera-native space values to XYZ values, under the second calibration illuminant.
     pub static kCGImagePropertyDNGReductionMatrix2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngrowinterleavefactor?language=objc)
+    /// The number of interleaved fields for the rows of the image.
     pub static kCGImagePropertyDNGRowInterleaveFactor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngshadowscale?language=objc)
+    /// A tag that Adobe Camera Raw uses to control the sensitivity of its Shadows slider.
     pub static kCGImagePropertyDNGShadowScale: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertydngsubtileblocksize?language=objc)
+    /// The size of rectangular blocks that tiles use to group pixels.
     pub static kCGImagePropertyDNGSubTileBlockSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffdescription?language=objc)
+    /// The camera description.
     pub static kCGImagePropertyCIFFDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycifffirmware?language=objc)
+    /// The firmware version of the camera.
     pub static kCGImagePropertyCIFFFirmware: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffownername?language=objc)
+    /// The name of the camera’s owner.
     pub static kCGImagePropertyCIFFOwnerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffimagename?language=objc)
+    /// The image name.
     pub static kCGImagePropertyCIFFImageName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffimagefilename?language=objc)
+    /// The image file name.
     pub static kCGImagePropertyCIFFImageFileName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffreleasemethod?language=objc)
+    /// The method of shutter release—single-shot or continuous.
     pub static kCGImagePropertyCIFFReleaseMethod: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffreleasetiming?language=objc)
+    /// The priority for shutter release timing—shutter or focus.
     pub static kCGImagePropertyCIFFReleaseTiming: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffrecordid?language=objc)
+    /// The number of images taken since the camera shipped.
     pub static kCGImagePropertyCIFFRecordID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffselftimingtime?language=objc)
+    /// The time in milliseconds until shutter release when using the self-timer.
     pub static kCGImagePropertyCIFFSelfTimingTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffcameraserialnumber?language=objc)
+    /// The camera serial number.
     pub static kCGImagePropertyCIFFCameraSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffimageserialnumber?language=objc)
+    /// The image serial number.
     pub static kCGImagePropertyCIFFImageSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffcontinuousdrive?language=objc)
+    /// The continuous drive mode.
     pub static kCGImagePropertyCIFFContinuousDrive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycifffocusmode?language=objc)
+    /// The focus mode.
     pub static kCGImagePropertyCIFFFocusMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffmeteringmode?language=objc)
+    /// The metering mode.
     pub static kCGImagePropertyCIFFMeteringMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffshootingmode?language=objc)
+    /// The shooting mode.
     pub static kCGImagePropertyCIFFShootingMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycifflensmodel?language=objc)
+    /// The lens model.
     pub static kCGImagePropertyCIFFLensModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycifflensmaxmm?language=objc)
+    /// The maximum lens length in millimeters.
     pub static kCGImagePropertyCIFFLensMaxMM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertycifflensminmm?language=objc)
+    /// The minimum lens length in millimeters.
     pub static kCGImagePropertyCIFFLensMinMM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffwhitebalanceindex?language=objc)
+    /// The white balance index.
     pub static kCGImagePropertyCIFFWhiteBalanceIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffflashexposurecomp?language=objc)
+    /// The flash exposure compensation.
     pub static kCGImagePropertyCIFFFlashExposureComp: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyciffmeasuredev?language=objc)
+    /// The measured exposure value.
     pub static kCGImagePropertyCIFFMeasuredEV: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonisosetting?language=objc)
+    /// The ISO setting.
     pub static kCGImagePropertyMakerNikonISOSetting: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikoncolormode?language=objc)
+    /// The color mode.
     pub static kCGImagePropertyMakerNikonColorMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonquality?language=objc)
+    /// The quality setting.
     pub static kCGImagePropertyMakerNikonQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonwhitebalancemode?language=objc)
+    /// The white balance mode.
     pub static kCGImagePropertyMakerNikonWhiteBalanceMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonsharpenmode?language=objc)
+    /// The sharpening mode.
     pub static kCGImagePropertyMakerNikonSharpenMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonfocusmode?language=objc)
+    /// The focus mode.
     pub static kCGImagePropertyMakerNikonFocusMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonflashsetting?language=objc)
+    /// The flash setting.
     pub static kCGImagePropertyMakerNikonFlashSetting: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonisoselection?language=objc)
+    /// The ISO selection.
     pub static kCGImagePropertyMakerNikonISOSelection: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonflashexposurecomp?language=objc)
+    /// The flash exposure compensation.
     pub static kCGImagePropertyMakerNikonFlashExposureComp: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonimageadjustment?language=objc)
+    /// The image adjustment setting.
     pub static kCGImagePropertyMakerNikonImageAdjustment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonlensadapter?language=objc)
+    /// The lens adapter.
     pub static kCGImagePropertyMakerNikonLensAdapter: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonlenstype?language=objc)
+    /// The lens type.
     pub static kCGImagePropertyMakerNikonLensType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonlensinfo?language=objc)
+    /// Lens information.
     pub static kCGImagePropertyMakerNikonLensInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonfocusdistance?language=objc)
+    /// The focus distance.
     pub static kCGImagePropertyMakerNikonFocusDistance: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikondigitalzoom?language=objc)
+    /// The digital zoom setting.
     pub static kCGImagePropertyMakerNikonDigitalZoom: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonshootingmode?language=objc)
+    /// The shooting mode.
     pub static kCGImagePropertyMakerNikonShootingMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikoncameraserialnumber?language=objc)
+    /// The camera serial number.
     pub static kCGImagePropertyMakerNikonCameraSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakernikonshuttercount?language=objc)
+    /// The number of times the shutter has been actuated.
     pub static kCGImagePropertyMakerNikonShutterCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanonownername?language=objc)
+    /// The name of the camera’s owner.
     pub static kCGImagePropertyMakerCanonOwnerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanoncameraserialnumber?language=objc)
+    /// The camera serial number.
     pub static kCGImagePropertyMakerCanonCameraSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanonimageserialnumber?language=objc)
+    /// The image serial number.
     pub static kCGImagePropertyMakerCanonImageSerialNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanonflashexposurecomp?language=objc)
+    /// The flash exposure compensation setting.
     pub static kCGImagePropertyMakerCanonFlashExposureComp: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanoncontinuousdrive?language=objc)
+    /// The presence of a continuous drive.
     pub static kCGImagePropertyMakerCanonContinuousDrive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanonlensmodel?language=objc)
+    /// The lens model.
     pub static kCGImagePropertyMakerCanonLensModel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanonfirmware?language=objc)
+    /// The firmware version.
     pub static kCGImagePropertyMakerCanonFirmware: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertymakercanonaspectratioinfo?language=objc)
+    /// The image aspect ratio.
     pub static kCGImagePropertyMakerCanonAspectRatioInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyopenexrcompression?language=objc)
     pub static kCGImagePropertyOpenEXRCompression: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyopenexraspectratio?language=objc)
+    /// The aspect ratio of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyOpenEXRAspectRatio: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation?language=objc)
+/// A value describing the intended display orientation for an image.
+///
+/// ## Overview
+///
+/// Values of this type define the position of the pixel coordinate origin point (`0,0`) and the directions of the coordinate axes relative to the intended display orientation of the image. Orientation values are commonly found in image metadata, and specifying image orientation correctly can be important both for displaying the image and for certain image processing tasks such as face recognition.
+///
+/// For example, the pixel data for an image captured by an iOS device camera is encoded in the camera sensor’s native landscape orientation. When the user captures a photo while holding the device in portrait orientation, iOS writes an orientation value of [`kCGImagePropertyOrientationRight`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/right) in the resulting image file. Software displaying the image can then, after reading that value from the file’s metadata, apply a 90° clockwise rotation to the image data so that the image appears in the photographer’s intended orientation.
+///
+///
+/// ![To correct an image with right orientation for display, rotate it 90° clockwise.](https://docs-assets.developer.apple.com/published/a4de8a358cbf9a76800cc595fceb8892/media-2948298%402x.png)
+///
+///
+/// ### Compatibility with UIImageOrientation
+///
+/// The [`CGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation) type covers the same set of orientation names available in from the [`UIImageOrientation`](https://developer.apple.com/documentation/uikit/uiimage/orientation) type, but the underlying numeric values of each type do not match. (For example, the “left mirrored” orientation has an underlying value of 5 in [`CGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation), but an underlying value of 7 in [`UIImageOrientation`](https://developer.apple.com/documentation/uikit/uiimage/orientation).) If you have an orientation value in one type and need a semantically equivalent value in the other, use a function such as those below to produce the same-named value in the other type:
+///
+/// Listing 1. Converting between CGImagePropertyOrientation and UIImageOrientation
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["extension CGImagePropertyOrientation {", "    init(_ uiOrientation: UIImageOrientation) {", "        switch uiOrientation {", "            case .up: self = .up", "            case .upMirrored: self = .upMirrored", "            case .down: self = .down", "            case .downMirrored: self = .downMirrored", "            case .left: self = .left", "            case .leftMirrored: self = .leftMirrored", "            case .right: self = .right", "            case .rightMirrored: self = .rightMirrored", "        }", "    }", "}", "extension UIImageOrientation {", "    init(_ cgOrientation: UIImageOrientation) {", "        switch cgOrientation {", "            case .up: self = .up", "            case .upMirrored: self = .upMirrored", "            case .down: self = .down", "            case .downMirrored: self = .downMirrored", "            case .left: self = .left", "            case .leftMirrored: self = .leftMirrored", "            case .right: self = .right", "            case .rightMirrored: self = .rightMirrored", "        }", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["CGImagePropertyOrientation CGImagePropertyOrientationForUIImageOrientation(uiOrientation) {", "    switch (uiOrientation) {", "        case UIImageOrientationUp: return kCGImagePropertyOrientationUp;", "        case UIImageOrientationDown: return kCGImagePropertyOrientationDown;", "        case UIImageOrientationLeft: return kCGImagePropertyOrientationLeft;", "        case UIImageOrientationRight: return kCGImagePropertyOrientationRight;", "        case UIImageOrientationUpMirrored: return kCGImagePropertyOrientationUpMirrored;", "        case UIImageOrientationDownMirrored: return kCGImagePropertyOrientationDownMirrored;", "        case UIImageOrientationLeftMirrored: return kCGImagePropertyOrientationLeftMirrored;", "        case UIImageOrientationRightMirrored: return kCGImagePropertyOrientationRightMirrored;", "    }", "}", "UIImageOrientation UIImageOrientationForCGImagePropertyOrientation(cgOrientation) {", "    switch (cgOrientation) {", "        case kCGImagePropertyOrientationUp: return UIImageOrientationUp;", "        case kCGImagePropertyOrientationDown: return UIImageOrientationDown;", "        case kCGImagePropertyOrientationLeft: return UIImageOrientationLeft;", "        case kCGImagePropertyOrientationRight: return UIImageOrientationRight;", "        case kCGImagePropertyOrientationUpMirrored: return UIImageOrientationUpMirrored;", "        case kCGImagePropertyOrientationDownMirrored: return UIImageOrientationDownMirrored;", "        case kCGImagePropertyOrientationLeftMirrored: return UIImageOrientationLeftMirrored;", "        case kCGImagePropertyOrientationRightMirrored: return UIImageOrientationRightMirrored;", "    }", "}"], metadata: None }] }] })
+/// ### Working with Raw TIFF/Exif Numeric Values
+///
+/// Some APIs describe image orientation with basic integer values, intended for interpretation according to the TIFF and Exif specifications. The [`CGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation) type simply defines symbolic names for those values, so you can convert to and from the raw numeric type with C type-cast syntax or the inherited [`init(rawValue:)`](https://developer.apple.com/documentation/swift/rawrepresentable/init(rawvalue:)) initializer and [`rawValue`](https://developer.apple.com/documentation/swift/rawrepresentable/rawvalue-swift.property) property in Swift.
+///
+///
 // NS_CLOSED_ENUM
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum CGImagePropertyOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/up?language=objc)
+    /// The encoded image data matches the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the leftmost column and top row, respectively. Pixel (x,y) positions increase left-to-right, top-to-bottom.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears correctly “right side up”. That is, this orientation is an identity value.
+    ///
+    ///
+    /// ![An image in up orientation can be presented for display without rotating or flipping.](https://docs-assets.developer.apple.com/published/08b6857053beb92301df7ceb36ab8175/media-2948288%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationUp")]
     Up = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/upmirrored?language=objc)
+    /// The encoded image data is horizontally flipped from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the rightmost column and top row, respectively. Pixel (x,y) positions increase right-to-left, top-to-bottom.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears horizontally mirrored.
+    ///
+    ///
+    /// ![To correct an image with upMirrored orientation for display, flip it horizontally.](https://docs-assets.developer.apple.com/published/3b93501e18e409bc3d6f779ae1e59673/media-2948289%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationUpMirrored")]
     UpMirrored = 2,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/down?language=objc)
+    /// The encoded image data is rotated 180° from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the rightmost column and bottom row, respectively. Pixel (x,y) positions increase right-to-left, bottom-to-top.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears rotated 180°.
+    ///
+    ///
+    /// ![To correct an image with down orientation for display, rotate it 180°.](https://docs-assets.developer.apple.com/published/1530f2c9454d2a3fb9e99de9bee4fe01/media-2948290%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationDown")]
     Down = 3,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/downmirrored?language=objc)
+    /// The encoded image data is vertically flipped from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the leftmost column and bottom row, respectively. Pixel (x,y) positions increase left-to-right, bottom-to-top.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears vertically flipped. (Alternatively, the image is rotated 180° and then flipped horizontally.)
+    ///
+    ///
+    /// ![To correct an image with downMirrored orientation for display, flip it vertically.](https://docs-assets.developer.apple.com/published/8170a1cc20c32b7a29544fc6e92a7f74/media-2948294%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationDownMirrored")]
     DownMirrored = 4,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/leftmirrored?language=objc)
+    /// The encoded image data is horizontally flipped and rotated 90° counter-clockwise from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the top row and leftmost column, respectively. Pixel (x,y) positions increase top-to-bottom, left-to-right.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be horizontally mirrored, then rotated 90° counter-clockwise. (That is, to present the image in its intended orientation, you can rotate it 90° clockwise, then flip horizontally.)
+    ///
+    ///
+    /// ![To correct an image with leftMirrored orientation for display, rotate it 90° clockwise then flip it horizontally.](https://docs-assets.developer.apple.com/published/ed7462784881f7d23e39b968a2ecefff/media-2948297%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationLeftMirrored")]
     LeftMirrored = 5,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/right?language=objc)
+    /// The encoded image data is rotated 90° clockwise from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the top row and rightmost column, respectively. Pixel (x,y) positions increase top-to-bottom, right-to-left.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be rotated 90° counter-clockwise. (That is, to present the image in its intended orientation, you must rotate it 90° clockwise.)
+    ///
+    ///
+    /// ![To correct an image with right orientation for display, rotate it 90° clockwise.](https://docs-assets.developer.apple.com/published/a4de8a358cbf9a76800cc595fceb8892/media-2948299%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationRight")]
     Right = 6,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/rightmirrored?language=objc)
+    /// The encoded image data is horizontally flipped and rotated 90° clockwise from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the bottom row and rightmost column, respectively. Pixel (x,y) positions increase bottom-to-top, right-to-left.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be horizontally mirrored, then rotated 90° clockwise. (That is, to present the image in its intended orientation, you can rotate  90° counter-clockwise, then flip horizontally.)
+    ///
+    ///
+    /// ![To correct an image with rightMirrored orientation for display, rotate it 90° counterclockwise then flip it horizontally.](https://docs-assets.developer.apple.com/published/6427cc1184994ac80c5119002426bac6/media-2948300%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationRightMirrored")]
     RightMirrored = 7,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation/left?language=objc)
+    /// The encoded image data is rotated 90° clockwise from the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The (x,y) pixel coordinates of the origin point (0,0) represent the bottom row and leftmost column, respectively. Pixel (x,y) positions increase bottom-to-top, left-to-right.
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be rotated 90° clockwise. (That is, to present the image in its intended orientation, you must rotate 90° counter-clockwise.)
+    ///
+    ///
+    /// ![To correct an image with left orientation for display, rotate it 90° counterclockwise.](https://docs-assets.developer.apple.com/published/a33bb23b55f1eb490a0abf2b86b81f66/media-2948296%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "kCGImagePropertyOrientationLeft")]
     Left = 8,
 }
@@ -3141,20 +3300,16 @@ unsafe impl RefEncode for CGImagePropertyOrientation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertytgacompression?language=objc)
     pub static kCGImagePropertyTGACompression: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertytgacompression?language=objc)
 // NS_CLOSED_ENUM
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CGImagePropertyTGACompression {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertytgacompression/tgacompressionnone?language=objc)
     #[doc(alias = "kCGImageTGACompressionNone")]
     #[default]
     TGACompressionNone = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertytgacompression/tgacompressionrle?language=objc)
     #[doc(alias = "kCGImageTGACompressionRLE")]
     TGACompressionRLE = 1,
 }
@@ -3170,311 +3325,349 @@ unsafe impl RefEncode for CGImagePropertyTGACompression {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngcompressionfilter?language=objc)
+    /// The PNG filter to apply prior to compression.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber). The number contains a bitwise-OR of one or more filter constants, such as [`IMAGEIO_PNG_FILTER_AVG`](https://developer.apple.com/documentation/imageio/imageio_png_filter_avg) or [`IMAGEIO_PNG_FILTER_SUB`](https://developer.apple.com/documentation/imageio/imageio_png_filter_sub). The value has no effect on formats other than PNG.
+    ///
+    ///
     pub static kCGImagePropertyPNGCompressionFilter: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypngtransparency?language=objc)
     pub static kCGImagePropertyPNGTransparency: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypedepth?language=objc)
+    /// The type for depth map information.
     pub static kCGImageAuxiliaryDataTypeDepth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypedisparity?language=objc)
+    /// The type for image disparity information.
     pub static kCGImageAuxiliaryDataTypeDisparity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypeportraiteffectsmatte?language=objc)
+    /// The type for portrait effects matte information.
     pub static kCGImageAuxiliaryDataTypePortraitEffectsMatte: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypesemanticsegmentationskinmatte?language=objc)
+    /// The type for skin matte informaton.
     pub static kCGImageAuxiliaryDataTypeSemanticSegmentationSkinMatte: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypesemanticsegmentationhairmatte?language=objc)
+    /// The type for hair matte information.
     pub static kCGImageAuxiliaryDataTypeSemanticSegmentationHairMatte: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypesemanticsegmentationteethmatte?language=objc)
+    /// The type for teeth matte information.
     pub static kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypesemanticsegmentationglassesmatte?language=objc)
+    /// The type for glasses matte informaton.
     pub static kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypesemanticsegmentationskymatte?language=objc)
+    /// The type for sky matte information.
     pub static kCGImageAuxiliaryDataTypeSemanticSegmentationSkyMatte: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypehdrgainmap?language=objc)
+    /// The type for High Dynamic Range (HDR) gain map information.
     pub static kCGImageAuxiliaryDataTypeHDRGainMap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypeisogainmap?language=objc)
     pub static kCGImageAuxiliaryDataTypeISOGainMap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfodata?language=objc)
+    /// The auxiliary data for the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). Use the [`kCGImagePropertyAuxiliaryDataType`](https://developer.apple.com/documentation/imageio/kcgimagepropertyauxiliarydatatype) property to determine the format of this data.
+    ///
+    ///
     pub static kCGImageAuxiliaryDataInfoData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfodatadescription?language=objc)
+    /// A dictionary of keys that describe the auxiliary data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). The keys in this dictionary may include [`kCGImagePropertyWidth`](https://developer.apple.com/documentation/imageio/kcgimagepropertywidth), [`kCGImagePropertyHeight`](https://developer.apple.com/documentation/imageio/kcgimagepropertyheight), and [`kCGImagePropertyBytesPerRow`](https://developer.apple.com/documentation/imageio/kcgimagepropertybytesperrow).
+    ///
+    ///
     pub static kCGImageAuxiliaryDataInfoDataDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfometadata?language=objc)
+    /// The metadata for any auxiliary data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CGImageMetadataRef`](https://developer.apple.com/documentation/imageio/cgimagemetadata) type. Use it to obtain any metadata associated with the auxiliary data.
+    ///
+    ///
     pub static kCGImageAuxiliaryDataInfoMetadata: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfocolorspace?language=objc)
     pub static kCGImageAuxiliaryDataInfoColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyimagecount?language=objc)
+    /// The number of images in the file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyImageCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertywidth?language=objc)
+    /// The width of the image, in the image’s coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyheight?language=objc)
+    /// The height of the image, in the image’s coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertybytesperrow?language=objc)
+    /// The total number of bytes in each row of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCGImagePropertyBytesPerRow: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertynamedcolorspace?language=objc)
+    /// The name of the image’s color space.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+    ///
+    ///
     pub static kCGImagePropertyNamedColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypixelformat?language=objc)
+    /// The format of the image’s individual pixels.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber). For information about how to interpret this value, see the `PixelFormat` tag in the EXIF specification.
+    ///
+    ///
     pub static kCGImagePropertyPixelFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyimages?language=objc)
+    /// An array of dictionaries, each of which contains metadata for one of the images in the file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Each element in the array is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) that contains metadata for one of the images. For example, the dictionary might contain the width and height of the image, the image’s color space name, thumbnail image information, and any auxiliary data.
+    ///
+    ///
     pub static kCGImagePropertyImages: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertythumbnailimages?language=objc)
     pub static kCGImagePropertyThumbnailImages: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyauxiliarydata?language=objc)
+    /// An array of dictionaries that contain auxiliary data for the images.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Each [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) in the array contains auxiliary data for one of the images in the file. Use the [`kCGImagePropertyAuxiliaryDataType`](https://developer.apple.com/documentation/imageio/kcgimagepropertyauxiliarydatatype) key to determine the type of data associated with the image.
+    ///
+    ///
     pub static kCGImagePropertyAuxiliaryData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyauxiliarydatatype?language=objc)
+    /// The type of the auxiliary data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). The value of this key might be [`kCGImageAuxiliaryDataTypeDisparity`](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypedisparity), [`kCGImageAuxiliaryDataTypeDepth`](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatatypedepth), or another auxiliary data type.
+    ///
+    ///
     pub static kCGImagePropertyAuxiliaryDataType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyimageindex?language=objc)
     pub static kCGImagePropertyImageIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroups?language=objc)
     pub static kCGImagePropertyGroups: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupindex?language=objc)
     pub static kCGImagePropertyGroupIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygrouptype?language=objc)
     pub static kCGImagePropertyGroupType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygrouptypestereopair?language=objc)
     pub static kCGImagePropertyGroupTypeStereoPair: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygrouptypealternate?language=objc)
     pub static kCGImagePropertyGroupTypeAlternate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimagesalternate?language=objc)
     pub static kCGImagePropertyGroupImagesAlternate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageindexleft?language=objc)
     pub static kCGImagePropertyGroupImageIndexLeft: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageindexright?language=objc)
     pub static kCGImagePropertyGroupImageIndexRight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageindexmonoscopic?language=objc)
     pub static kCGImagePropertyGroupImageIndexMonoscopic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageisleftimage?language=objc)
     pub static kCGImagePropertyGroupImageIsLeftImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageisrightimage?language=objc)
     pub static kCGImagePropertyGroupImageIsRightImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageismonoscopicimage?language=objc)
     pub static kCGImagePropertyGroupImageIsMonoscopicImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimageisalternateimage?language=objc)
     pub static kCGImagePropertyGroupImageIsAlternateImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimagebaseline?language=objc)
     pub static kCGImagePropertyGroupImageBaseline: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimagedisparityadjustment?language=objc)
     pub static kCGImagePropertyGroupImageDisparityAdjustment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupimagestereoaggressors?language=objc)
     pub static kCGImagePropertyGroupImageStereoAggressors: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiostereoaggressors_type?language=objc)
     pub static kIIOStereoAggressors_Type: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiostereoaggressors_subtypeuri?language=objc)
     pub static kIIOStereoAggressors_SubTypeURI: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiostereoaggressors_severity?language=objc)
     pub static kIIOStereoAggressors_Severity: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertygroupmonoscopicimagelocation?language=objc)
     pub static kCGImagePropertyGroupMonoscopicImageLocation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiomonoscopicimagelocation_unspecified?language=objc)
     pub static kIIOMonoscopicImageLocation_Unspecified: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiomonoscopicimagelocation_left?language=objc)
     pub static kIIOMonoscopicImageLocation_Left: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiomonoscopicimagelocation_right?language=objc)
     pub static kIIOMonoscopicImageLocation_Right: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiomonoscopicimagelocation_center?language=objc)
     pub static kIIOMonoscopicImageLocation_Center: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiometadata_cameraextrinsicskey?language=objc)
     pub static kIIOMetadata_CameraExtrinsicsKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameraextrinsics_coordinatesystemid?language=objc)
     pub static kIIOCameraExtrinsics_CoordinateSystemID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameraextrinsics_position?language=objc)
     pub static kIIOCameraExtrinsics_Position: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameraextrinsics_rotation?language=objc)
     pub static kIIOCameraExtrinsics_Rotation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiometadata_cameramodelkey?language=objc)
     pub static kIIOMetadata_CameraModelKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameramodel_modeltype?language=objc)
     pub static kIIOCameraModel_ModelType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameramodeltype_simplifiedpinhole?language=objc)
     pub static kIIOCameraModelType_SimplifiedPinhole: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameramodeltype_genericpinhole?language=objc)
     pub static kIIOCameraModelType_GenericPinhole: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kiiocameramodel_intrinsics?language=objc)
     pub static kIIOCameraModel_Intrinsics: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproviderpreferredtilewidth?language=objc)
     pub static kCGImageProviderPreferredTileWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageproviderpreferredtileheight?language=objc)
     pub static kCGImageProviderPreferredTileHeight: &'static CFString;
 }

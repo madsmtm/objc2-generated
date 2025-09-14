@@ -6,55 +6,32 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457902-kaeuserterminology/kaeuserterminology?language=objc)
 pub const kAEUserTerminology: OSType = 0x61657574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457902-kaeuserterminology/kaeterminologyextension?language=objc)
 pub const kAETerminologyExtension: OSType = 0x61657465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457902-kaeuserterminology/kaescriptingsizeresource?language=objc)
 pub const kAEScriptingSizeResource: OSType = 0x7363737a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457902-kaeuserterminology/kaeosaxsizeresource?language=objc)
 pub const kAEOSAXSizeResource: OSType = 0x6f73697a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeuthasreturningparam?language=objc)
 pub const kAEUTHasReturningParam: c_uint = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutoptional?language=objc)
 pub const kAEUTOptional: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutlistofitems?language=objc)
 pub const kAEUTlistOfItems: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutenumerated?language=objc)
 pub const kAEUTEnumerated: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutreadwrite?language=objc)
 pub const kAEUTReadWrite: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutchangesstate?language=objc)
 pub const kAEUTChangesState: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeuttightbindingfunction?language=objc)
 pub const kAEUTTightBindingFunction: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutenumsaretypes?language=objc)
 pub const kAEUTEnumsAreTypes: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutenumlistisexclusive?language=objc)
 pub const kAEUTEnumListIsExclusive: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutreplyisreference?language=objc)
 pub const kAEUTReplyIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutdirectparamisreference?language=objc)
 pub const kAEUTDirectParamIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutparamisreference?language=objc)
 pub const kAEUTParamIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutpropertyisreference?language=objc)
 pub const kAEUTPropertyIsReference: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutnotdirectparamistarget?language=objc)
 pub const kAEUTNotDirectParamIsTarget: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutparamistarget?language=objc)
 pub const kAEUTParamIsTarget: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutapostrophe?language=objc)
 pub const kAEUTApostrophe: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutfeminine?language=objc)
 pub const kAEUTFeminine: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutmasculine?language=objc)
 pub const kAEUTMasculine: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457911-kaeuthasreturningparam/kaeutplural?language=objc)
 pub const kAEUTPlural: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tscriptingsizeresource?language=objc)
+/// Defines a data type to store stack and heap information. Not typically used by developers.
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TScriptingSizeResource {
@@ -88,21 +65,13 @@ unsafe impl RefEncode for TScriptingSizeResource {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457909-klaunchtogetterminology/klaunchtogetterminology?language=objc)
 pub const kLaunchToGetTerminology: c_uint = 1 << 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457909-klaunchtogetterminology/kdontfindappbysignature?language=objc)
 pub const kDontFindAppBySignature: c_uint = 1 << 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457909-klaunchtogetterminology/kalwayssendsubject?language=objc)
 pub const kAlwaysSendSubject: c_uint = 1 << 13;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457896-kreadextensiontermsmask/kreadextensiontermsmask?language=objc)
 pub const kReadExtensionTermsMask: c_uint = 1 << 15;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457903-kosizdontopenresourcefile/kosizdontopenresourcefile?language=objc)
 pub const kOSIZDontOpenResourceFile: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457903-kosizdontopenresourcefile/kosizdontacceptremoteevents?language=objc)
 pub const kOSIZdontAcceptRemoteEvents: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457903-kosizdontopenresourcefile/kosizopenwithreadpermission?language=objc)
 pub const kOSIZOpenWithReadPermission: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1457903-kosizdontopenresourcefile/kosizcodeinsharedlibraries?language=objc)
 pub const kOSIZCodeInSharedLibraries: c_uint = 11;

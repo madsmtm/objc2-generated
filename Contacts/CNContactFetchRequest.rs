@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that defines the options to use when fetching contacts.
+    ///
+    /// ## Overview
+    ///
+    /// You need at least one contact property key to fetch a contact’s properties. Use this class with the [`enumerateContactsWithFetchRequest:error:usingBlock:`](https://developer.apple.com/documentation/contacts/cncontactstore/enumeratecontacts(with:usingblock:)) method to execute the contact fetch request.
+    ///
+    ///
     /// Specifies the search criteria to fetch contacts.
     ///
     ///
     /// Used with [CNContactStore enumerateContactsWithFetchRequest:error:usingBlock:]. Can combine any of these options to create a contact fetch request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactfetchrequest?language=objc)
     #[unsafe(super(CNFetchRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNFetchRequest")]

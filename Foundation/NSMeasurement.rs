@@ -7,7 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmeasurement?language=objc)
+    /// A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object in Swift when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// An [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) object represents a quantity and unit of measure. The [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) class provides a programmatic interface to converting measurements into different units, as well as calculating the sum or difference between two measurements.
+    ///
+    /// [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) objects are initialized with an [`NSUnit`](https://developer.apple.com/documentation/foundation/unit) object and `double` value. [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) objects are immutable, and cannot be changed after being created.
+    ///
+    /// You can use the [`NSMeasurementFormatter`](https://developer.apple.com/documentation/foundation/measurementformatter) class to create localized string representations of [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) objects.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`Measurement`](https://developer.apple.com/documentation/foundation/measurement) structure, which bridges to the [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSUnit")]

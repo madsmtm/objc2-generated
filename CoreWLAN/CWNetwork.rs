@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Encapsulates an IEEE 802.11 network, providing read-only accessors to various properties of the network.
     /// Represents a device participating in a Wi-Fi network, providing accessors to various network attributes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwnetwork?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWNetwork;

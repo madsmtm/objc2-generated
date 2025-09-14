@@ -7,7 +7,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifeedbackgenerator?language=objc)
+    /// The abstract superclass for all feedback generators.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t subclass or create instances of this class yourself. Instead, instantiate one of the concrete feedback generator subclasses:
+    ///
+    /// - [`UIImpactFeedbackGenerator`](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator). Use impact feedback to indicate when an impact occurs. For example, you might trigger impact feedback when a user interface object collides with something or snaps into place.
+    ///
+    /// - [`UISelectionFeedbackGenerator`](https://developer.apple.com/documentation/uikit/uiselectionfeedbackgenerator). Use selection feedback to indicate a change in selection.
+    ///
+    /// - [`UINotificationFeedbackGenerator`](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator). Use notification feedback to indicate successes, failures, and warnings.
+    ///
+    /// - [`UICanvasFeedbackGenerator`](https://developer.apple.com/documentation/uikit/uicanvasfeedbackgenerator). Use canvas feedback to indicate when a drawing event occurs, such as an object snapping to a guide or ruler.
+    ///
+    /// For more information, read [Playing haptic feedback in your app](https://developer.apple.com/documentation/applepencil/playing-haptic-feedback-in-your-app).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

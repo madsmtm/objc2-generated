@@ -10,7 +10,23 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace?language=objc)
+/// A profile that specifies how to interpret a color value for display.
+///
+/// ## Overview
+///
+/// A color space is multi-dimensional, and each dimension represents a specific color component. For example, the colors in an RGB color space have three dimensions or components—red, green, and blue. The intensity of each component is represented by floating point values—their range and meaning depends on the color space in question.
+///
+/// Different types of devices (scanners, monitors, printers) operate within different color spaces (RGB, CMYK, grayscale). Additionally, two devices of the same type (for example, color displays from different manufacturers) may operate within the same kind of color space, yet still produce a different range of colors, or gamut. Color spaces that are correctly specified ensure that an image has a consistent appearance regardless of the output device.
+///
+/// Core Graphics supports several kinds of color spaces:
+///
+/// - Calibrated color spaces ensure that colors appear the same when displayed on different devices. The visual appearance of the color is preserved, as far as the capabilities of the device allow.
+///
+/// - Device-dependent color spaces are tied to the system of color representation of a particular device. Device color spaces are not recommended when high-fidelity color preservation is important.
+///
+/// - Special color spaces—indexed and pattern. An indexed color space contains a color table with up to 256 entries and a base color space to which the color table entries are mapped. Each entry in the color table specifies one color in the base color space. A pattern color space is used when stroking or filling with a pattern.
+///
+///
 #[doc(alias = "CGColorSpaceRef")]
 #[repr(C)]
 pub struct CGColorSpace {
@@ -26,25 +42,46 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGColorSpace"> for CGColorSpace {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent?language=objc)
+/// Handling options for colors that are not located within the destination color space of a graphics context.
+///
+/// ## Overview
+///
+/// The rendering intent specifies how Quartz should handle colors that are not located within the gamut of the destination color space of a graphics context. It determines the exact method used to map colors from one color space to another. If you do not explicitly set the rendering intent by calling the function [`CGContextSetRenderingIntent`](https://developer.apple.com/documentation/coregraphics/cgcontext/setrenderingintent(_:)), the graphics context uses the relative colorimetric rendering intent, except when drawing sampled images.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorRenderingIntent(pub i32);
 impl CGColorRenderingIntent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/defaultintent?language=objc)
+    /// The default rendering intent for the graphics context.
     #[doc(alias = "kCGRenderingIntentDefault")]
     pub const RenderingIntentDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/absolutecolorimetric?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Map colors outside of the gamut of the output device to the closest possible match inside the gamut of the output device. This can produce a clipping effect, where two different color values in the gamut of the graphics context are mapped to the same color value in the output device’s gamut. Unlike the relative colorimetric, absolute colorimetric does not modify colors inside the gamut of the output device.
+    ///
+    ///
     #[doc(alias = "kCGRenderingIntentAbsoluteColorimetric")]
     pub const RenderingIntentAbsoluteColorimetric: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/relativecolorimetric?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Map colors outside of the gamut of the output device to the closest possible match inside the gamut of the output device. This can produce a clipping effect, where two different color values in the gamut of the graphics context are mapped to the same color value in the output device’s gamut. The relative colorimetric shifts all colors (including those within the gamut) to account for the difference between the white point of the graphics context and the white point of the output device.
+    ///
+    ///
     #[doc(alias = "kCGRenderingIntentRelativeColorimetric")]
     pub const RenderingIntentRelativeColorimetric: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/perceptual?language=objc)
+    /// Preserve the visual relationship between colors by compressing the gamut of the graphics context to fit inside the gamut of the output device. Perceptual intent is good for photographs and other complex, detailed images.
     #[doc(alias = "kCGRenderingIntentPerceptual")]
     pub const RenderingIntentPerceptual: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/saturation?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Preserve the relative saturation value of the colors when converting into the gamut of the output device. The result is an image with bright, saturated colors. Saturation intent is good for reproducing images with low detail, such as presentation charts and graphs.
+    ///
+    ///
     #[doc(alias = "kCGRenderingIntentSaturation")]
     pub const RenderingIntentSaturation: Self = Self(4);
 }
@@ -59,37 +96,37 @@ unsafe impl RefEncode for CGColorRenderingIntent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel?language=objc)
+/// Models for color spaces.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorSpaceModel(pub i32);
 impl CGColorSpaceModel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/unknown?language=objc)
+    /// An unknown color space model.
     #[doc(alias = "kCGColorSpaceModelUnknown")]
     pub const Unknown: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/monochrome?language=objc)
+    /// A monochrome color space model.
     #[doc(alias = "kCGColorSpaceModelMonochrome")]
     pub const Monochrome: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/rgb?language=objc)
+    /// An RGB color space model.
     #[doc(alias = "kCGColorSpaceModelRGB")]
     pub const RGB: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/cmyk?language=objc)
+    /// A CMYK color space model.
     #[doc(alias = "kCGColorSpaceModelCMYK")]
     pub const CMYK: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/lab?language=objc)
+    /// A Lab color space model.
     #[doc(alias = "kCGColorSpaceModelLab")]
     pub const Lab: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/devicen?language=objc)
+    /// A DeviceN color space model.
     #[doc(alias = "kCGColorSpaceModelDeviceN")]
     pub const DeviceN: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/indexed?language=objc)
+    /// An indexed color space model.
     #[doc(alias = "kCGColorSpaceModelIndexed")]
     pub const Indexed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/pattern?language=objc)
+    /// A pattern color space model.
     #[doc(alias = "kCGColorSpaceModelPattern")]
     pub const Pattern: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel/xyz?language=objc)
+    /// An XYZ color space model.
     #[doc(alias = "kCGColorSpaceModelXYZ")]
     pub const XYZ: Self = Self(7);
 }
@@ -105,206 +142,322 @@ unsafe impl RefEncode for CGColorSpaceModel {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericgray?language=objc)
+    /// The name of the generic gray color space.
     pub static kCGColorSpaceGenericGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericrgb?language=objc)
+    /// The name of the generic RGB color space.
     pub static kCGColorSpaceGenericRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericcmyk?language=objc)
+    /// The generic CMYK color space.
     pub static kCGColorSpaceGenericCMYK: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3?language=objc)
+    /// The Display P3 color space, created by Apple.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space uses the DCI P3 primaries, a D65 white point, and the sRGB transfer function.
+    ///
+    ///
     pub static kCGColorSpaceDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericrgblinear?language=objc)
+    /// The generic RGB color space with a linear transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceGenericRGB`](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericrgb), but with a linear transfer function.
+    ///
+    ///
     pub static kCGColorSpaceGenericRGBLinear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/adobergb1998?language=objc)
+    /// The Adobe RGB (1998) color space.
     pub static kCGColorSpaceAdobeRGB1998: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/srgb?language=objc)
+    /// The standard Red Green Blue (sRGB) color space.
+    ///
+    /// ## Discussion
+    ///
+    /// The sRGB colorimetry and non-linear transfer function are specified in IEC 61966-2-1.
+    ///
+    ///
     pub static kCGColorSpaceSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericgraygamma2_2?language=objc)
+    /// The generic gray color space that has an exponential transfer function with a power of 2.2.
     pub static kCGColorSpaceGenericGrayGamma2_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericxyz?language=objc)
+    /// The XYZ color space, as defined by the CIE 1931 standard.
     pub static kCGColorSpaceGenericXYZ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericlab?language=objc)
+    /// The generic LAB color space.
     pub static kCGColorSpaceGenericLab: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/acescglinear?language=objc)
+    /// The ACEScg color space.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see “ACEScg—A Working Space for CGI Render and Compositing”, Version 1.0.1, Academy of Motion Picture Arts and Sciences ([http://www.oscars.org/science-technology/sci-tech-projects/aces](http://www.oscars.org/science-technology/sci-tech-projects/aces)).
+    ///
+    ///
     pub static kCGColorSpaceACESCGLinear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_709?language=objc)
+    /// The recommendation of the International Telecommunication Union (ITU) Radiocommunication sector for the BT.709 color space.
+    ///
+    /// ## Discussion
+    ///
+    /// See the current active version of the Recommendation BT.709 document on the ITU website ([https://www.itu.int/](https://www.itu.int/)).
+    ///
+    ///
     pub static kCGColorSpaceITUR_709: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_709_pq?language=objc)
     pub static kCGColorSpaceITUR_709_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_709_hlg?language=objc)
     pub static kCGColorSpaceITUR_709_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020?language=objc)
+    /// The recommendation of the International Telecommunication Union (ITU) Radiocommunication sector for the BT.2020 color space.
+    ///
+    /// ## Discussion
+    ///
+    /// See the current active version of the Recommendation BT.2020 document on the ITU website ([https://www.itu.int/](https://www.itu.int/)).
+    ///
+    ///
     pub static kCGColorSpaceITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_srgbgamma?language=objc)
     pub static kCGColorSpaceITUR_2020_sRGBGamma: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/rommrgb?language=objc)
+    /// The Reference Output Medium Metric (ROMM) RGB color space.
     pub static kCGColorSpaceROMMRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/dcip3?language=objc)
+    /// The DCI P3 color space, which is the digital cinema standard.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space was created by Digital Cinema Initiatives.
+    ///
+    ///
     pub static kCGColorSpaceDCIP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/linearitur_2020?language=objc)
     pub static kCGColorSpaceLinearITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendeditur_2020?language=objc)
     pub static kCGColorSpaceExtendedITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlinearitur_2020?language=objc)
+    /// The recommendation of the International Telecommunication Union (ITU) Radiocommunication sector for the BT.2020 color space, with a linear transfer function and extended range values.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceITUR_2020`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020), but uses a linear transfer function. You may encode component values below `0.0` and above `1.0`.
+    ///
+    ///
     pub static kCGColorSpaceExtendedLinearITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/lineardisplayp3?language=objc)
     pub static kCGColorSpaceLinearDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendeddisplayp3?language=objc)
     pub static kCGColorSpaceExtendedDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlineardisplayp3?language=objc)
+    /// The Display P3 color space with a linear transfer function and extended-range values.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space uses the DCI P3 primaries, a D65 white point, and a linear transfer function. You can encode component values below `0.0` and above `1.0`.
+    ///
+    ///
     pub static kCGColorSpaceExtendedLinearDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2100_pq?language=objc)
     pub static kCGColorSpaceITUR_2100_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2100_hlg?language=objc)
     pub static kCGColorSpaceITUR_2100_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3_pq?language=objc)
     pub static kCGColorSpaceDisplayP3_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3_hlg?language=objc)
+    /// The Display P3 color space, using the HLG transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space was created by Apple Inc. This color space uses the DCI P3 primaries, a D65 white point, and the Hybrid Log-Gamma (HLG) transfer function. For more information on HLG, see [https://www.itu.int/rec/R-REC-BT.2100](https://www.itu.int/rec/R-REC-BT.2100).
+    ///
+    ///
     pub static kCGColorSpaceDisplayP3_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_pq?language=objc)
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_hlg?language=objc)
+    /// The recommendation of the International Telecommunication Union (ITU) Radiocommunication sector for the BT.2020 color space, with the HLG transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceITUR_2020`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020), but uses the Hybrid Log-Gamma (HLG) transfer function. Pixel values should be between `0.0` and `12.0`. See the current active version of the BT.2100 recommendation on the ITU website ([https://www.itu.int/](https://www.itu.int/)).
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3_pq_eotf?language=objc)
+    /// The Display P3 color space, using the PQ transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space was created by Apple Inc. This color space uses the DCI P3 primaries, a D65 white point, and the Perceptual Quantizer (PQ) transfer function. For more information on PQ, see [https://www.itu.int/rec/R-REC-BT.2100](https://www.itu.int/rec/R-REC-BT.2100).
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceDisplayP3_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_pq_eotf?language=objc)
+    /// The recommendation of the International Telecommunication Union (ITU) Radiocommunication sector for the BT.2020 color space, with the PQ transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceITUR_2020`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020), but uses the Perceptual Quantizer (PQ) transfer function. A pixel value of `1.0` is assumed to be `100` nits. See the current active version of the BT.2100 recommendation on the ITU website ([https://www.itu.int/](https://www.itu.int/)).
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedsrgb?language=objc)
+    /// The extended sRGB color space.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceSRGB`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/srgb), but you can encode component values below `0.0` and above `1.0`. Negative values are encoded as the signed reflection of the original encoding function, as shown in the formula below:
+    ///
+    /// ```swift
+    /// extendedTransferFunction(x) = sign(x) ✖️ sRGBTransferFunction(abs(x))
+    /// ```
+    ///
+    ///
     pub static kCGColorSpaceExtendedSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/linearsrgb?language=objc)
+    /// The sRGB color space with a linear transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceSRGB`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/srgb), but uses a linear transfer function.
+    ///
+    ///
     pub static kCGColorSpaceLinearSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlinearsrgb?language=objc)
+    /// The sRGB color space with a linear transfer function and extended-range values.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceLinearSRGB`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/linearsrgb); in addition, you may encode component values below `0.0` and above `1.0`.
+    ///
+    ///
     pub static kCGColorSpaceExtendedLinearSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedgray?language=objc)
+    /// The extended gray color space.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceGenericGrayGamma2_2`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericgraygamma2_2); in addition, you may encode component values below `0.0` and above `1.0`. Negative values are encoded as the signed reflection of the original encoding function, as shown below
+    ///
+    /// ```swift
+    /// extendedGrayTransferFunction(x) = sign(x) ✖️ gamma22Function(abs(x))
+    /// ```
+    ///
+    ///
     pub static kCGColorSpaceExtendedGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/lineargray?language=objc)
+    /// The gray color space using a linear transfer function.
     pub static kCGColorSpaceLinearGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlineargray?language=objc)
+    /// The extended gray color space with a linear transfer function.
+    ///
+    /// ## Discussion
+    ///
+    /// This color space has the same colorimetry as [`kCGColorSpaceLinearGray`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/lineargray); in addition, you may encode component values below `0.0` and above `1.0`.
+    ///
+    ///
     pub static kCGColorSpaceExtendedLinearGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/coremedia709?language=objc)
     pub static kCGColorSpaceCoreMedia709: &'static CFString;
 }
 
 impl CGColorSpace {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatedevicegray()?language=objc)
+    /// Creates a device-dependent grayscale color space.
+    ///
+    /// ## Return Value
+    ///
+    /// A device-dependent gray color space, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Colors in a device-dependent color space are not transformed or otherwise modified when displayed on an output device—that is, there is no attempt to maintain the visual appearance of a color. As a consequence, colors in a device color space often appear different when displayed on different output devices. For this reason, device color spaces are not recommended when color preservation is important.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCreateDeviceGray")]
     #[inline]
     pub fn new_device_gray() -> Option<CFRetained<CGColorSpace>> {
@@ -315,7 +468,19 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatedevicergb()?language=objc)
+    /// Creates a device-dependent RGB color space.
+    ///
+    /// ## Return Value
+    ///
+    /// A device-dependent RGB color space. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease). If unsuccessful, returns `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Colors in a device-dependent color space are not transformed or otherwise modified when displayed on an output device—that is, there is no attempt to maintain the visual appearance of a color. As a consequence, colors in a device color space often appear different when displayed on different output devices. For this reason, device color spaces are not recommended when color preservation is important.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCreateDeviceRGB")]
     #[inline]
     pub fn new_device_rgb() -> Option<CFRetained<CGColorSpace>> {
@@ -326,7 +491,19 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatedevicecmyk()?language=objc)
+    /// Creates a device-dependent CMYK color space.
+    ///
+    /// ## Return Value
+    ///
+    /// A device-dependent CMYK color space, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Colors in a device-dependent color space are not transformed or otherwise modified when displayed on an output device—that is, there is no attempt to maintain the visual appearance of a color. As a consequence, colors in a device color space often appear different when displayed on different output devices. For this reason, device color spaces are not recommended when color preservation is important.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCreateDeviceCMYK")]
     #[inline]
     pub fn new_device_cmyk() -> Option<CFRetained<CGColorSpace>> {
@@ -337,7 +514,11 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(iccdata:)?language=objc)
+    /// Creates an ICC-based color space using the ICC profile contained in the specified data.
+    ///
+    /// Parameters:
+    /// - data: The data containing the ICC profile to set for the new color space.
+    ///
     ///
     /// # Safety
     ///
@@ -354,7 +535,31 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(iccbasedncomponents:range:profile:alternate:)?language=objc)
+    /// Creates a device-independent color space that is defined according to the ICC color profile specification.
+    ///
+    /// Parameters:
+    /// - nComponents: The number of color components in the color space defined by the ICC profile data. This must match the number of components actually in the ICC profile and must equal 1, 3, or 4.
+    ///
+    /// - range: An array of numbers that specify the minimum and maximum valid values of the corresponding color components. The size of the array is two times the number of components. If `c[k]` is the `k`the color component, the valid range is range`[2*k] ≤ c[k] ≤` range`[2*k+1]`.
+    ///
+    /// - profile: A data provider that supplies the ICC profile.
+    ///
+    /// - alternate: An alternate color space to use in case the ICC profile is not supported. The alternate color space must have `nComponents` color components. You must supply an alternate color space. If this parameter is `NULL`, then the function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new ICC-based color space object, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an ICC-based color space from an ICC color profile, as defined by the International Color Consortium. ICC profiles define the reproducible color gamut (the range of colors supported by a device) and other characteristics of a particular output device, providing a way to accurately transform the color space of one device to the color space of another. The ICC profile is usually provided by the manufacturer of the device. Additionally, some color monitors and printers contain electronically embedded ICC profile information, as do some bitmap formats such as TIFF. Colors in a device-independent color space should appear the same when displayed on different devices, to the extent that the capabilities of the device allow.
+    ///
+    /// You may want to use this function for a color space that requires a detailed gamma, such as the piecewise transfer function used in sRGB or ITU-R BT.709, because this function can accurately represent these gamma curves.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -380,7 +585,27 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(indexedbasespace:last:colortable:)?language=objc)
+    /// Creates an indexed color space, consisting of colors specified by a color lookup table.
+    ///
+    /// Parameters:
+    /// - baseSpace: The color space on which the color table is based.
+    ///
+    /// - lastIndex: The maximum valid index value for the color table. The value must be less than or equal to 255.
+    ///
+    /// - colorTable: An array of `m*(lastIndex+1)` bytes, where `m` is the number of color components in the base color space. Each byte is an unsigned integer in the range `0` to `255` that is scaled to the range of the corresponding color component in the base color space.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new indexed color space object, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An indexed color space contains a color table with up to 255 entries, and a base color space to which the color table entries are mapped. Each entry in the color table specifies one color in the base color space. A value in an indexed color space is treated as an index into the color table of the color space. The data in the table is in meshed format. (For example, for an RGB color space the values are R, G, B, R, G, B, and so on.)
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -403,7 +628,23 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(patternbasespace:)?language=objc)
+    /// Creates a pattern color space.
+    ///
+    /// Parameters:
+    /// - baseSpace: For masking patterns, the underlying color space that specifies the colors to be painted through the mask. For color patterns, you should pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new pattern color space, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For information on creating and using patterns, see [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066) and [`CGPatternRef`](https://developer.apple.com/documentation/coregraphics/cgpattern). Quartz retains the color space you pass in. Upon return, you may safely release it by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCreatePattern")]
     #[inline]
     pub fn new_pattern(base_space: Option<&CGColorSpace>) -> Option<CFRetained<CGColorSpace>> {
@@ -418,12 +659,27 @@ impl CGColorSpace {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedrange?language=objc)
     pub static kCGColorSpaceExtendedRange: &'static CFString;
 }
 
 impl CGColorSpace {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(name:)?language=objc)
+    /// Creates a specified type of Quartz color space.
+    ///
+    /// Parameters:
+    /// - name: A color space name. See [Accessing System-Defined Color Spaces](https://developer.apple.com/documentation/coregraphics/cgcolorspace#accessing-system-defined-color-spaces) for a list of the valid Quartz-defined names.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new generic color space, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to create a generic color space. For more information, see [Accessing System-Defined Color Spaces](https://developer.apple.com/documentation/coregraphics/cgcolorspace#accessing-system-defined-color-spaces).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCreateWithName")]
     #[inline]
     pub fn with_name(name: Option<&CFString>) -> Option<CFRetained<CGColorSpace>> {
@@ -435,7 +691,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacegetname?language=objc)
     #[doc(alias = "CGColorSpaceGetName")]
     #[inline]
     pub fn get_name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
@@ -446,7 +701,17 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/name?language=objc)
+    /// Returns the name used to create the specified color space.
+    ///
+    /// Parameters:
+    /// - space: The color space whose name is to be returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The name used to create the specified color space, or `NULL` if the color space was not created using the [`CGColorSpaceCreateWithName`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(name:)) function.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCopyName")]
     #[inline]
     pub fn name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
@@ -459,7 +724,13 @@ impl CGColorSpace {
 }
 
 unsafe impl ConcreteType for CGColorSpace {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for Quartz color spaces.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the opaque type [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -471,7 +742,23 @@ unsafe impl ConcreteType for CGColorSpace {
 }
 
 impl CGColorSpace {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/numberofcomponents?language=objc)
+    /// Returns the number of color components in a color space.
+    ///
+    /// Parameters:
+    /// - space: The color space to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of color components in the specified color space, not including the alpha value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A color space defines an n-dimensional space whose dimensions (or components) represent intensity values. Use this function to obtain the number of components in a given color space: for example, in an RGB color space this function returns 3 (for the three intensity values red, green, and blue).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceGetNumberOfComponents")]
     #[inline]
     pub fn number_of_components(space: Option<&CGColorSpace>) -> usize {
@@ -481,7 +768,17 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetNumberOfComponents(space) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/model?language=objc)
+    /// Returns the color space model of the provided color space.
+    ///
+    /// Parameters:
+    /// - space: A color space object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// One of the constants described in  [`CGColorSpaceModel`](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceGetModel")]
     #[inline]
     pub fn model(space: Option<&CGColorSpace>) -> CGColorSpaceModel {
@@ -491,7 +788,17 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetModel(space) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/basecolorspace?language=objc)
+    /// Returns the base color space of a pattern or indexed color space.
+    ///
+    /// Parameters:
+    /// - space: A color space object for a pattern or indexed color space.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The base color space if the `space` parameter is a pattern or indexed color space; otherwise, `NULL`.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceGetBaseColorSpace")]
     #[inline]
     pub fn base_color_space(space: Option<&CGColorSpace>) -> Option<CFRetained<CGColorSpace>> {
@@ -504,7 +811,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecopybasecolorspace(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCopyBaseColorSpace")]
     #[inline]
     pub fn copy_base_color_space(&self) -> CFRetained<CGColorSpace> {
@@ -519,7 +825,17 @@ impl CGColorSpace {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacegetcolortablecount?language=objc)
+    /// Returns the number of entries in the color table of an indexed color space.
+    ///
+    /// Parameters:
+    /// - space: A color space object for an indexed color space.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of entries in the color table of the `space` parameter if the color space is an indexed color space; otherwise, returns `0`.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceGetColorTableCount")]
     #[inline]
     pub fn color_table_count(space: Option<&CGColorSpace>) -> usize {
@@ -529,7 +845,19 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetColorTableCount(space) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacegetcolortable?language=objc)
+    /// Copies the entries in the color table of an indexed color space.
+    ///
+    /// Parameters:
+    /// - space: A color space object for an indexed color space.
+    ///
+    /// - table: The array pointed to by table should be at least as large as the number of entries in the color table. On output, the array contains the table data  in the same format as that passed to [`init(indexedBaseSpace:last:colorTable:)`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(indexedbasespace:last:colortable:)).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does nothing if the color space is not an indexed color space. To determine whether a color space is an indexed color space, call the function [`model`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/model).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -543,7 +871,17 @@ impl CGColorSpace {
         unsafe { CGColorSpaceGetColorTable(space, table) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/copyiccdata()?language=objc)
+    /// Returns a copy of the ICC profile data of the provided color space.
+    ///
+    /// Parameters:
+    /// - space: The color space whose ICC profile you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ICC profile data or `NULL` if the color space does not have an ICC data profile.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCopyICCData")]
     #[inline]
     pub fn icc_data(space: Option<&CGColorSpace>) -> Option<CFRetained<CFData>> {
@@ -554,7 +892,17 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/iswidegamutrgb?language=objc)
+    /// Returns whether the RGB color space covers a significant portion of the NTSC color gamut.
+    ///
+    /// Parameters:
+    /// - CGColorSpaceRef: A color space object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the color space is greater than 85% of the NTSC gamut, otherwise  [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceIsWideGamutRGB")]
     #[inline]
     pub fn is_wide_gamut_rgb(&self) -> bool {
@@ -564,7 +912,6 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsWideGamutRGB(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/ishdr()?language=objc)
     #[doc(alias = "CGColorSpaceIsHDR")]
     #[inline]
     pub fn is_hdr(&self) -> bool {
@@ -574,7 +921,6 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsHDR(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceusesitur_2100tf(_:)?language=objc)
     #[doc(alias = "CGColorSpaceUsesITUR_2100TF")]
     #[inline]
     pub fn uses_itur_2100_tf(&self) -> bool {
@@ -584,7 +930,6 @@ impl CGColorSpace {
         unsafe { CGColorSpaceUsesITUR_2100TF(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceispqbased(_:)?language=objc)
     #[doc(alias = "CGColorSpaceIsPQBased")]
     #[inline]
     pub fn is_pq_based(&self) -> bool {
@@ -594,7 +939,6 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsPQBased(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceishlgbased(_:)?language=objc)
     #[doc(alias = "CGColorSpaceIsHLGBased")]
     #[inline]
     pub fn is_hlg_based(&self) -> bool {
@@ -604,7 +948,17 @@ impl CGColorSpace {
         unsafe { CGColorSpaceIsHLGBased(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/supportsoutput?language=objc)
+    /// Returns a Boolean indicating whether the color space can be used as a destination color space.
+    ///
+    /// Parameters:
+    /// - space: The color space.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the color space can be used as a destination, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CGColorSpaceSupportsOutput")]
     #[inline]
     pub fn supports_output(&self) -> bool {
@@ -614,7 +968,7 @@ impl CGColorSpace {
         unsafe { CGColorSpaceSupportsOutput(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/copypropertylist()?language=objc)
+    /// Returns a copy of the color space’s properties.
     #[doc(alias = "CGColorSpaceCopyPropertyList")]
     #[inline]
     pub fn property_list(&self) -> Option<CFRetained<CFPropertyList>> {
@@ -627,7 +981,11 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(propertylistplist:)?language=objc)
+    /// Creates a color space from a property list.
+    ///
+    /// Parameters:
+    /// - plist: The list of properties to use.
+    ///
     ///
     /// # Safety
     ///
@@ -644,7 +1002,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceusesextendedrange(_:)?language=objc)
     #[doc(alias = "CGColorSpaceUsesExtendedRange")]
     #[inline]
     pub fn uses_extended_range(&self) -> bool {
@@ -654,7 +1011,6 @@ impl CGColorSpace {
         unsafe { CGColorSpaceUsesExtendedRange(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatelinearized(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateLinearized")]
     #[inline]
     pub fn linearized(&self) -> Option<CFRetained<CGColorSpace>> {
@@ -665,7 +1021,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreateextended(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateExtended")]
     #[inline]
     pub fn extended(&self) -> Option<CFRetained<CGColorSpace>> {
@@ -676,7 +1031,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreateextendedlinearized(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateExtendedLinearized")]
     #[inline]
     pub fn extended_linearized(&self) -> Option<CFRetained<CGColorSpace>> {
@@ -689,7 +1043,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacecreatecopywithstandardrange(_:)?language=objc)
     #[doc(alias = "CGColorSpaceCreateCopyWithStandardRange")]
     #[inline]
     pub fn copy_with_standard_range(&self) -> CFRetained<CGColorSpace> {
@@ -704,7 +1057,17 @@ impl CGColorSpace {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(iccprofiledata:)?language=objc)
+    /// Creates an ICC-based color space using the ICC profile contained in the specified data.
+    ///
+    /// Parameters:
+    /// - data: The data containing the ICC profile to set for the new color space.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new color space based on the specified profile.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCreateWithICCProfile")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -718,7 +1081,17 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/iccdata?language=objc)
+    /// Returns a copy of the ICC profile of the provided color space.
+    ///
+    /// Parameters:
+    /// - space: The color space whose ICC profile you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ICC profile or `NULL` if the color space does not have an ICC profile.
+    ///
+    ///
     #[doc(alias = "CGColorSpaceCopyICCProfile")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -730,7 +1103,23 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/init(platformcolorspaceref:)?language=objc)
+    /// Creates a platform-specific color space.
+    ///
+    /// Parameters:
+    /// - ref: A generic pointer to a platform-specific color space. In macOS, pass a `ColorSyncProfileRef`, which is a ColorSync profile. Quartz uses this pointer (and the underlying information) only during the function call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new color space, or `NULL` if unsuccessful. In Objective-C, you’re responsible for releasing this object by calling [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Colors in a device-dependent color space are not transformed or otherwise modified when displayed on an output device — that is, there is no attempt to maintain the visual appearance of a color. As a consequence, colors in a device color space often appear different when displayed on different output devices. For this reason, device color spaces are not recommended when color preservation is important.
+    ///
+    ///
     ///
     /// # Safety
     ///

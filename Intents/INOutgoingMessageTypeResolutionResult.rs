@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inoutgoingmessagetyperesolutionresult?language=objc)
+    /// A resolution result for the message’s format.
+    ///
+    /// ## Overview
+    ///
+    /// Return an [`INOutgoingMessageTypeResolutionResult`](https://developer.apple.com/documentation/intents/inoutgoingmessagetyperesolutionresult) when you resolve an [`INOutgoingMessageType`](https://developer.apple.com/documentation/intents/inoutgoingmessagetype) parameter. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

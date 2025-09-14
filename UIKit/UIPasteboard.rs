@@ -7,119 +7,298 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/name-swift.struct?language=objc)
+/// Constants that identify the name of a pasteboard.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIPasteboardName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/name-swift.struct/general?language=objc)
+    /// The name identifying the general pasteboard, which you use for general copy-cut-paste operations.
     pub static UIPasteboardNameGeneral: &'static UIPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboardnamefind?language=objc)
+    /// A name that identifies the Find pasteboard.
+    ///
+    /// ## Discussion
+    ///
+    /// The Find pasteboard is unavailable starting in iOS 10.
+    ///
+    /// The name identifying the Find pasteboard, which, prior to iOS 10, was used in search operations. In such operations, the most recent search string in the search bar was put in the Find pasteboard.
+    ///
+    ///
     #[deprecated = "The Find pasteboard is no longer available."]
     pub static UIPasteboardNameFind: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/detectionpattern?language=objc)
+/// An object that represents a pattern to detect for the pasteboard, such as a URL, text, or a number.
 // NS_TYPED_ENUM
 pub type UIPasteboardDetectionPattern = NSString;
 
 extern "C" {
-    /// NSString value, suitable for implementing "Paste and Go"
+    /// A pattern that indicates the pasteboard contains a string that consists of a URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/detectionpattern/probableweburl?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValues(for:inItemSet:completionHandler:)`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvalues(for:initemset:completionhandler:)-pm9l) or [`detectValues(for:completionHandler:)`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvalues(for:completionhandler:)-6adre) — [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) in Objective-C — and the pasteboard detects a string that consists of a URL, it reports the value as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    ///
+    /// NSString value, suitable for implementing "Paste and Go"
     pub static UIPasteboardDetectionPatternProbableWebURL: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// NSString value, suitable for implementing "Paste and Search"
+    /// A pattern that indicates the pasteboard contains a string suitable for use as a web search term.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/detectionpattern/probablewebsearch?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValues(for:inItemSet:completionHandler:)`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvalues(for:initemset:completionhandler:)-pm9l) or [`detectValues(for:completionHandler:)`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvalues(for:completionhandler:)-6adre) — [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) in Objective-C — and the pasteboard detects a string suitable for use as a web search term, it reports the value as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    ///
+    /// NSString value, suitable for implementing "Paste and Search"
     pub static UIPasteboardDetectionPatternProbableWebSearch: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// NSNumber value
+    /// A pattern that indicates the pasteboard contains a string that consists of a numeric value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/detectionpattern/number?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValues(for:inItemSet:completionHandler:)`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvalues(for:initemset:completionhandler:)-pm9l) or [`detectValues(for:completionHandler:)`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvalues(for:completionhandler:)-6adre) — [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) in Objective-C — and the pasteboard detects a number, it reports the value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    ///
+    /// NSNumber value
     pub static UIPasteboardDetectionPatternNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchLink values
+    /// A pattern that indicates the pasteboard detects of a string that contains a URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternlink?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains a website link, the system reports the value as an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl). You can return the detected results in a paste operation with `UIPasteboardDetectionResultLink`, which contains a semantic representation of the website link values.
+    ///
+    ///
+    /// Array of DDMatchLink values
     pub static UIPasteboardDetectionPatternLink: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchPhoneNumber values
+    /// A pattern that indicates the pasteboard detects a string that contains a phone number.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternphonenumber?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains a phone number, the system reports the value as an array of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). You can return the detected results in a paste operation with `UIPasteboardDetectionResultPhoneNumber`, which contains a semantic representation of the phone number and label values.
+    ///
+    ///
+    /// Array of DDMatchPhoneNumber values
     pub static UIPasteboardDetectionPatternPhoneNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchEmailAddress values
+    /// A pattern that indicates the pasteboard detects a string that contains an email address.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternemailaddress?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains an email address, the system reports the value as an array of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). You can return the detected results in a paste operation with `UIPasteboardDetectionResultEmailAddress`, which contains a semantic representation of the email address and label values.
+    ///
+    ///
+    /// Array of DDMatchEmailAddress values
     pub static UIPasteboardDetectionPatternEmailAddress: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
+    /// A pattern that indicates the pasteboard detects a string that contains a postal address.
     /// Array of DDMatchAddress values
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternpostaladdress?language=objc)
     pub static UIPasteboardDetectionPatternPostalAddress: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchCalendarEvent values
+    /// A pattern that indicates the pasteboard detects a string that contains a calendar event.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatterncalendarevent?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains a calendar event, the system reports the value as an array of [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate), [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone), and a Boolean value to indicate an all-day event. You can return the detected results in a paste operation with `UIPasteboardDetectionResultCalendarEvent`, which contains a semantic representation of the duration, date, and time zone values.
+    ///
+    ///
+    /// Array of DDMatchCalendarEvent values
     pub static UIPasteboardDetectionPatternCalendarEvent: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchShipmentTrackingNumber values
+    /// A pattern that indicates the pasteboard detects a string that contains a parcel tracking number and carrier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternshipmenttrackingnumber?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains a parcel tracking number, the system reports the value as an array of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). You can return the detected results in a paste operation with `UIPasteboardDetectionResultShipmentTrackingNumber`, which contains a semantic representation of the tracking number and parcel carrier values.
+    ///
+    ///
+    /// Array of DDMatchShipmentTrackingNumber values
     pub static UIPasteboardDetectionPatternShipmentTrackingNumber:
         &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchFlightNumber values
+    /// A pattern that indicates the pasteboard detects a string that contains a flight number.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternflightnumber?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains a flight number, the system reports the value as an array of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). You can return the detected results in a paste operation with `UIPasteboardDetectionResultFlightNumber`, which contains a semantic representation of the flight number and airline carrier values.
+    ///
+    ///
+    /// Array of DDMatchFlightNumber values
     pub static UIPasteboardDetectionPatternFlightNumber: &'static UIPasteboardDetectionPattern;
 }
 
 extern "C" {
-    /// Array of DDMatchMoneyAmount values
+    /// A pattern that indicates the pasteboard detects a string that contains an amount of money.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboarddetectionpatternmoneyamount?language=objc)
+    /// ## Discussion
+    ///
+    /// When you include this pattern in calls to [`detectValuesForPatterns:inItemSet:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:initemset:completionhandler:) or [`detectValuesForPatterns:completionHandler:`](https://developer.apple.com/documentation/uikit/uipasteboard/detectvaluesforpatterns:completionhandler:) and the pasteboard detects a string that contains an amount of money, the system reports the value as an array of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and a Double. You can return the detected results in a paste operation with `UIPasteboardDetectionResultMoneyAmount`, which contains a semantic representation of the amount of money and currency values.
+    ///
+    ///
+    /// Array of DDMatchMoneyAmount values
     pub static UIPasteboardDetectionPatternMoneyAmount: &'static UIPasteboardDetectionPattern;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/optionskey?language=objc)
+/// Options for describing pasteboard privacy.
+///
+/// ## Overview
+///
+/// Use these options with the [`setItems:options:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitems(_:options:)) method. Options that you set apply to all the items on a pasteboard.
+///
+///
 // NS_TYPED_ENUM
 pub type UIPasteboardOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/optionskey/expirationdate?language=objc)
+    /// The time and date that you want the system to remove the pasteboard items from the pasteboard.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify the date and time as an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) value.
+    ///
+    ///
     pub static UIPasteboardOptionExpirationDate: &'static UIPasteboardOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/optionskey/localonly?language=objc)
+    /// A Boolean value that specifies that the pasteboard items should not be available to other devices through the Handoff feature.
+    ///
+    /// ## Description
+    ///
+    /// The value is expressed as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) type.
+    ///
+    ///
     pub static UIPasteboardOptionLocalOnly: &'static UIPasteboardOption;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard?language=objc)
+    /// An object that helps a user share data from one place to another within your app, and from your app to other apps.
+    ///
+    /// ## Overview
+    ///
+    /// For sharing data with any other app, use the systemwide general pasteboard. For sharing data with another app from your team — that has the same team ID as the app to share from — configure an App Group. For more information about configuring an App Group, see [Configuring app groups](https://developer.apple.com/documentation/xcode/configuring-app-groups).
+    ///
+    /// In typical usage, an object in your app writes data to a pasteboard when the user requests a copy, cut, or duplicate operation on a selection in the user interface. Another object in the same or different app then reads that data from the pasteboard and presents it to the user at a new location. This usually happens when the user requests a paste operation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Starting in iOS 14, the system notifies the user when an app gets general pasteboard content that originates in a different app without _user intent_. The system determines user intent based on user interactions, such as tapping a system-provided control or pressing Command-V. Use the properties and methods below to determine whether pasteboard items match various patterns, such as web search terms, URLs, or numbers, without notifying the user.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### The general pasteboard and named pasteboards
+    ///
+    /// The system identifies the systemwide general pasteboard with the [`UIPasteboardNameGeneral`](https://developer.apple.com/documentation/uikit/uipasteboard/name-swift.struct/general) pasteboard name, and you can use it for any type of data. Obtain the general pasteboard from the [`generalPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard/general) shared system pasteboard object.
+    ///
+    /// You can create named pasteboards with the class methods [`pasteboardWithName:create:`](https://developer.apple.com/documentation/uikit/uipasteboard/init(name:create:)) and [`pasteboardWithUniqueName`](https://developer.apple.com/documentation/uikit/uipasteboard/withuniquename()) for sharing data within your app, and from your app to other apps that have the same Team ID.
+    ///
+    /// ### Using pasteboards
+    ///
+    /// The [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) class provides methods for reading and writing individual pasteboard items, as well as methods for reading and writing multiple pasteboard items at once. For more information, see [Getting and setting pasteboard items](https://developer.apple.com/documentation/uikit/uipasteboard#getting-and-setting-pasteboard-items) in the topic groups below. The data to write to a pasteboard can be in one of the following forms:
+    ///
+    /// - If the data is an object that conforms to [`NSItemProviderWriting`](https://developer.apple.com/documentation/foundation/nsitemproviderwriting), use [`setItemProviders:localOnly:expirationDate:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitemproviders(_:localonly:expirationdate:)) to write it to the pasteboard.
+    ///
+    /// - If you can represent the data with a common object — such as [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary), [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate), [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), or [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) — you can write it to the pasteboard as a value using a method such as [`setValue:forPasteboardType:`](https://developer.apple.com/documentation/uikit/uipasteboard/setvalue(_:forpasteboardtype:)).
+    ///
+    /// - If the data is binary, use the [`setData:forPasteboardType:`](https://developer.apple.com/documentation/uikit/uipasteboard/setdata(_:forpasteboardtype:)) method to write it to the pasteboard.
+    ///
+    /// The [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) class provides convenience methods for writing and reading strings, images, URLs, and colors to and from single or multiple pasteboard items. See [Getting and setting pasteboard items of standard data types](https://developer.apple.com/documentation/uikit/uipasteboard#getting-and-setting-pasteboard-items-of-standard-data-types) in the topic groups below.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Before you attempt to read a particular data type from a pasteboard by using the methods in [Getting and setting pasteboard items of standard data types](https://developer.apple.com/documentation/uikit/uipasteboard#getting-and-setting-pasteboard-items-of-standard-data-types) in the topic groups below, check for the presence of data of the type you want. Do this by using the type-checking methods.
+    ///
+    ///
+    ///
+    /// </div>
+    /// [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) provides properties for directly checking whether specific data types are present on a pasteboard, see [Checking for data types on a pasteboard](https://developer.apple.com/documentation/uikit/uipasteboard#checking-for-data-types-on-a-pasteboard) in the topic groups below. Use these properties, rather than attempting to read pasteboard data, to avoid causing the system to needlessly attempt to fetch data before necessary, or when the data might not be present. For example, use the [`hasStrings`](https://developer.apple.com/documentation/uikit/uipasteboard/hasstrings) property to determine whether to present a string-data paste option in the user interface, using code like the following:
+    ///
+    /// ```objc
+    /// if UIPasteboard.general.hasStrings {
+    ///     // Enable string-related control...
+    /// }
+    /// ```
+    ///
+    /// Use the following properties to avoid user notifications and alerts when the system doesn’t establish user intent:
+    ///
+    /// - [`numberOfItems`](https://developer.apple.com/documentation/uikit/uipasteboard/numberofitems)
+    ///
+    /// - [`pasteboardTypes`](https://developer.apple.com/documentation/uikit/uipasteboard/types), [`pasteboardTypesForItemSet:`](https://developer.apple.com/documentation/uikit/uipasteboard/types(foritemset:))
+    ///
+    /// - [`itemSetWithPasteboardTypes:`](https://developer.apple.com/documentation/uikit/uipasteboard/itemset(withpasteboardtypes:))
+    ///
+    /// - [`hasColors`](https://developer.apple.com/documentation/uikit/uipasteboard/hascolors), [`hasImages`](https://developer.apple.com/documentation/uikit/uipasteboard/hasimages), [`hasStrings`](https://developer.apple.com/documentation/uikit/uipasteboard/hasstrings), [`hasURLs`](https://developer.apple.com/documentation/uikit/uipasteboard/hasurls)
+    ///
+    /// - [`canLoadObjectOfClass:`](https://developer.apple.com/documentation/foundation/nsitemprovider/canloadobject(ofclass:)-3eig9), [`canLoadObject(ofClass:)`](https://developer.apple.com/documentation/foundation/nsitemprovider/canloadobject(ofclass:)-40grc)
+    ///
+    /// - any of the pattern-detection methods in the [Detecting patterns of content in pasteboard items](https://developer.apple.com/documentation/uikit/uipasteboard#detecting-patterns-of-content-in-pasteboard-items) group in the topic groups below
+    ///
+    /// The system notifies the user when you access properties or call methods that pull data from the pasteboard if the system doesn’t determine that the user intends to access that data.
+    ///
+    /// ### Pasteboard items and representation types
+    ///
+    /// When you write an object to a pasteboard, the pasteboard stores it as a _pasteboard item_. A pasteboard item consists of one or more key-value pairs in which the key identifies the representation type (sometimes called a _pasteboard type_) of the value.
+    ///
+    /// A uniform type identifier frequently functions as the key for a representation type. For example, you can use the [`UTTypeJPEG`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejpeg) uniform type identifier (a constant for `public.jpeg`) as a representation type key for JPEG data.
+    ///
+    /// For a discussion of uniform type identifiers, and a list of common ones, see [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers).
+    ///
+    /// Your app can use any string to name a representation type; however, for app-specific data types, it’s best practice to use reverse-DNS notation to ensure the uniqueness of the type (for example, `com.myCompany.myApp.myType`).
+    ///
+    /// You can provide flexibility for data sharing by providing multiple representation types for a pasteboard item during a copy or cut operation. Various contexts within your app or other apps can then make use of an appropriate representation type. For example, when a user copies an image, your app can write multiple representation types, such as in the PNG, JPEG, and GIF data formats, to a pasteboard. If the original image is in PNG format, but the receiving app can handle only GIF images, it can still use the pasteboard data.
+    ///
+    /// For more about representation types, read the discussion for the [`pasteboardTypes`](https://developer.apple.com/documentation/uikit/uipasteboard/types) instance method.
+    ///
+    /// ### Sharing pasteboards between devices
+    ///
+    /// When a user signs into iCloud, the general pasteboard automatically transfers its contents to nearby devices that use the same iCloud account. You can control Handoff behavior when writing contents to the general pasteboard, and can set an expiration for items, using the [`setItemProviders:localOnly:expirationDate:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitemproviders(_:localonly:expirationdate:)), [`setObjects:localOnly:expirationDate:`](https://developer.apple.com/documentation/uikit/uipasteboard/setobjects(_:localonly:expirationdate:)-3h3iz), or [`setItems:options:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitems(_:options:)) methods, as follows:
+    ///
+    /// - To exclude a pasteboard from Handoff, specify [`false`](https://developer.apple.com/documentation/swift/false) for the `localOnly` parameter, or call the [`setItems:options:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitems(_:options:)) method with the [`UIPasteboardOptionLocalOnly`](https://developer.apple.com/documentation/uikit/uipasteboard/optionskey/localonly) option.
+    ///
+    /// - To indicate an expiration time and date for copied data, provide the `expirationDate` parameter, or call the [`setItems:options:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitems(_:options:)) method with the [`UIPasteboardOptionExpirationDate`](https://developer.apple.com/documentation/uikit/uipasteboard/optionskey/expirationdate) option. At the time and date that you set, the system removes the pasteboard items from the pasteboard.
+    ///
+    /// ### Using pasteboards with other objects
+    ///
+    /// Although the [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) class is central to copy, paste, and duplicate operations, you can employ protocols and instances of other UIKit classes in these operations as well, such as the following:
+    ///
+    /// - [`UIEditMenuInteraction`](https://developer.apple.com/documentation/uikit/uieditmenuinteraction) — Displays a menu with edit actions, such as Copy, Cut, Paste, Select, and Select All, above or below the selection.
+    ///
+    /// - [`UIActivityItemsConfigurationReading`](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationreading) — Objects implement this protocol to indicate that they support copying and sharing data.
+    ///
+    /// - [`UIPasteConfigurationSupporting`](https://developer.apple.com/documentation/uikit/uipasteconfigurationsupporting) — Objects implement this protocol to indicate whether they support pasting with a specific [`UIPasteConfiguration`](https://developer.apple.com/documentation/uikit/uipasteconfiguration).
+    ///
+    /// - [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) — Responders implement [`canPerformAction:withSender:`](https://developer.apple.com/documentation/uikit/uiresponder/canperformaction(_:withsender:)) to enable or disable commands in the above-mentioned menu based on the current context.
+    ///
+    /// - [`UIResponderStandardEditActions`](https://developer.apple.com/documentation/uikit/uiresponderstandardeditactions) — Responders implement methods that this informal protocol declares to handle the chosen menu commands (for example, `copy:` and `paste:`).
+    ///
+    /// A typical app that implements copy, paste, and duplicate operations also manages and presents related selections in its user interface. In addition, your app needs to coordinate changes in pasteboard content with changes to its data model, as appropriate for your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPasteboard;
@@ -661,46 +840,64 @@ impl DefaultRetained for UIPasteboard {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/changednotification?language=objc)
+    /// A notification that a pasteboard object posts when its contents change.
+    ///
+    /// ## Discussion
+    ///
+    /// This happens at the same time the pasteboard’s change count ([`changeCount`](https://developer.apple.com/documentation/uikit/uipasteboard/changecount) property) is incremented. Changes include the addition, removal, and modification of pasteboard items. The `userInfo` dictionary may contain the representation types of pasteboard items that have been added to or removed from the pasteboard. See [UserInfo Dictionary Keys](https://developer.apple.com/documentation/uikit/userinfo-dictionary-keys) for the keys used to access these representation types. If pasteboard items have been modified but not added or removed, the `userInfo` dictionary is `nil`.
+    ///
+    ///
     pub static UIPasteboardChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/changedtypesaddeduserinfokey?language=objc)
+    /// With the notification named [`UIPasteboardChangedNotification`](https://developer.apple.com/documentation/uikit/uipasteboard/changednotification), use this key to access the added representation types. These types are stored as an array in the notification’s `userInfo` dictionary.
     pub static UIPasteboardChangedTypesAddedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/changedtypesremoveduserinfokey?language=objc)
+    /// With the notification named [`UIPasteboardChangedNotification`](https://developer.apple.com/documentation/uikit/uipasteboard/changednotification), use this key to access the removed representation types. These types are stored as an array in the notification’s `userInfo` dictionary.
     pub static UIPasteboardChangedTypesRemovedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/removednotification?language=objc)
+    /// A notification that a pasteboard object posts just before an app removes it.
+    ///
+    /// ## Discussion
+    ///
+    /// The removal class method is [`removePasteboardWithName:`](https://developer.apple.com/documentation/uikit/uipasteboard/remove(withname:)). There is no `userInfo` dictionary.
+    ///
+    ///
     pub static UIPasteboardRemovedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/typeliststring?language=objc)
+    /// An array of pasteboard-item representation types for string-type uniform type identifiers (UTIs), including the `kUTTypeUTF8PlainText` and `kUTTypeText` types. Related [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) properties are [`string`](https://developer.apple.com/documentation/uikit/uipasteboard/string) and [`strings`](https://developer.apple.com/documentation/uikit/uipasteboard/strings).
     pub static UIPasteboardTypeListString: &'static NSArray<NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/typelisturl?language=objc)
+    /// An array of pasteboard-item representation types for URL-type uniform type identifiers (UTIs), including `kUTTypeURL`. Related [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) properties are [`URL`](https://developer.apple.com/documentation/uikit/uipasteboard/url) and [`URLs`](https://developer.apple.com/documentation/uikit/uipasteboard/urls).
     pub static UIPasteboardTypeListURL: &'static NSArray<NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/typelistimage?language=objc)
+    /// An array of pasteboard-item representation types for image-type uniform type identifiers (UTIs), including `kUTTypePNG` and `kUTTypeJPEG`. Related [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) properties are [`image`](https://developer.apple.com/documentation/uikit/uipasteboard/image) and [`images`](https://developer.apple.com/documentation/uikit/uipasteboard/images).
     pub static UIPasteboardTypeListImage: &'static NSArray<NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/typelistcolor?language=objc)
+    /// An array of pasteboard-item representation types for colors. Related [`UIPasteboard`](https://developer.apple.com/documentation/uikit/uipasteboard) properties are [`color`](https://developer.apple.com/documentation/uikit/uipasteboard/color) and [`colors`](https://developer.apple.com/documentation/uikit/uipasteboard/colors).
     pub static UIPasteboardTypeListColor: &'static NSArray<NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteboard/typeautomatic?language=objc)
+    /// An array of pasteboard-item representation types with automatically-determined uniform type identifiers (UTIs).
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type in the [`setItems:options:`](https://developer.apple.com/documentation/uikit/uipasteboard/setitems(_:options:)) method to automatically insert appropriate UTIs for supported types. In iOS 10, supported types are [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor).
+    ///
+    ///
     pub static UIPasteboardTypeAutomatic: &'static NSString;
 }

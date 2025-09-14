@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcoercionhandler?language=objc)
+    /// A mechanism for converting one kind of scripting data to another.
+    ///
+    /// ## Overview
+    ///
+    /// A shared instance of this class coerces (converts) object values to objects of another class using information supplied by classes that register with it. Coercions frequently are required during key-value coding.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCoercionHandler;

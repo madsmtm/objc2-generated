@@ -8,6 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
+    ///
+    /// ## Overview
+    ///
+    /// A [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) object manages a list of rules ([`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) objects). A rule system also offers methods for evaluating its list of rules in a context defined by two features: a [`state`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state) dictionary containing information to be tested by rules, and a set of [`facts`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/facts) representing the conclusions drawn as a result of rule evaluation. You can evaluate facts based on a binary truth state—that is, a fact either is or is not in the set—or on a continuously variable membership grade, representing different levels of veracity, confidence, or strength for use in fuzzy logic.
+    ///
+    /// You construct a rule system by creating [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) objects and adding them to the system’s list of rules. There are multiple ways to construct rules: for greater reusability, use the methods listed in Creating Data-Driven Rules; or for greater flexibility, use the [`ruleWithBlockPredicate:action:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(blockpredicate:action:)) method or create a custom subclass of [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) or [`GKNSPredicateRule`](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule). Then, add rules to the system with the methods listed in Managing a System’s List of Rules below.
+    ///
+    /// To evaluate a system, call the [`evaluate`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/evaluate()) method. This method processes each rule in the system in the order it appears in the system’s [`agenda`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/agenda) list. You set this order with the [`salience`](https://developer.apple.com/documentation/gameplaykit/gkrule/salience) property of each rule, or with the order in which you add rules to the system. As the system processes each rule, it tests the rule’s [`evaluatePredicateWithSystem:`](https://developer.apple.com/documentation/gameplaykit/gkrule/evaluatepredicate(in:)) method to determine whether the rule is satisfied in the context of the system. If the rule’s predicate is satisfied, the system executes the rule’s [`performActionWithSystem:`](https://developer.apple.com/documentation/gameplaykit/gkrule/performaction(in:)) method and moves the rule to the [`executed`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/executed) list (so the further evaluation of the agenda doesn’t repeatedly trigger the rule’s action).
+    ///
+    /// Rules typically use the system’s [`state`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state) dictionary as input and its set of [`facts`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/facts) as output. (However, more complex systems can include sets of rules whose predicates test facts or whose actions mutate the system’s state.) After evaluating a rule system, you can examine the set of facts it has produced using the methods listed in Drawing Conclusions from Facts below. You can then use the presence of a fact in the set, the value of its membership grade, or the combined membership grades of a group of facts to influence the behaviors in your game.
+    ///
+    /// For more information about rules and rule systems, read [Rule Systems](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A rule system consists of 3 things:
     /// - The current state, which upon creation is considered the inital state.
     /// - The current set of rules.
@@ -24,8 +39,6 @@ extern_class!(
     /// grade of membership. The rules may use the grade of membership to predicate their actions and in such a
     /// manner create fuzzy logic. The fuzzy logic Zadeh operators are available on the system itself in order
     /// to query multiple facts for combined membership grade.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrulesystem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKRuleSystem;
@@ -274,14 +287,55 @@ impl GKRuleSystem {
 }
 
 extern_class!(
+    /// A rule to be used in the context of a rule system, with a predicate to be tested and an action to be executed when the test succeeds.
+    ///
+    /// ## Overview
+    ///
+    /// Evaluating a [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) object tests each of its rules, which typically examine the state or facts associated with the rule system, and executes the actions specified by each rule whose test passes, such as asserting or retracting facts in the rule system or modifying its state.
+    ///
+    /// A rule has two parts: a predicate and an action.
+    ///
+    /// - The rule’s _predicate_ determines whether the rule has been satisfied, within the context of a given rule system. Evaluating a rule’s predicate typically involves examining information in the rule sytem’s [`state`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state) dictionary or testing the membership grade of facts claimed by the system (see the [`facts`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/facts) property in [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) for details).
+    ///
+    /// - The rule’s _action_ is executed if and only if the rule’s predicate is satisfied. Rule actions typically involve asserting or retracting facts in the system (see the [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) methods listed in Asserting and Retracting Facts) or modifying information in the system’s [`state`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem/state) dictionary.
+    ///
+    /// There are multiple ways to create rules for use in a rule system, each with its own advantages.
+    ///
+    /// - Typical rule predicates involve conditional logic tests on the properties of the containing rule system, and typical rule actions assert or retract facts. If your rules fit this pattern, you can use the [`ruleWithPredicate:assertingFact:grade:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(predicate:assertingfact:grade:)) and [`ruleWithPredicate:retractingFact:grade:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(predicate:retractingfact:grade:)) methods to create rules that are entirely data-driven—that is, they can be easily archived for later reuse, edited without compiling source code, and created at runtime.
+    ///
+    /// - To create rules with entirely custom logic for both predicate and action, use the [`ruleWithBlockPredicate:action:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(blockpredicate:action:)) method. This method creates rules that are very flexible, but that cannot be archived for reuse.
+    ///
+    /// - To create rules with more complex custom logic, implement your own rule classes: subclass [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) to build custom logic for both the rule’s predicate and its action, or subclass [`GKNSPredicateRule`](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule) to use an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object for the rule’s predicate and build custom logic only for the rule’s action. The reusability of custom rule classes depends on your implementation of such classes.
+    ///
+    /// For more information about rules and rule systems, read [Rule Systems](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// GameplayKit evaluates rules in the context of a [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) object, so custom rule classes should be _functional_—that is, they generally should not carry independent state that affects their predicate or action.
+    ///
+    /// #### Methods to Override
+    ///
+    /// Subclasses of [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) must implement both of the following methods:
+    ///
+    /// - Override the [`evaluatePredicateWithSystem:`](https://developer.apple.com/documentation/gameplaykit/gkrule/evaluatepredicate(in:)) method to evaluate your rule in the context of the provided rule system.
+    ///
+    /// - Override the [`performActionWithSystem:`](https://developer.apple.com/documentation/gameplaykit/gkrule/performaction(in:)) method to perform whatever actions should result when your rule is satisfied (that is, when your [`evaluatePredicateWithSystem:`](https://developer.apple.com/documentation/gameplaykit/gkrule/evaluatepredicate(in:)) implementation returns [`true`](https://developer.apple.com/documentation/swift/true)) in the context of the provided rule system.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// - Use the [`ruleWithPredicate:assertingFact:grade:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(predicate:assertingfact:grade:)) or [`ruleWithPredicate:retractingFact:grade:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(predicate:retractingfact:grade:)) to create a rule that uses an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object for evaluation and whose action asserts or retracts a fact in the containing rule system.
+    ///
+    /// - Subclass [`GKNSPredicateRule`](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule) instead to use an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object for evaluating the rule and write custom logic only for the rule’s action.
+    ///
+    /// - Use the [`ruleWithBlockPredicate:action:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(blockpredicate:action:)) method to quickly create a rule whose custom logic is contained in block objects.
+    ///
+    ///
     /// The concrete class that the GKRuleSystem uses to evaluate the current state and facts with predicated rules.
     /// These are sharable between systems, so don't retain any state in the rules themselves. Use the system-provided
     /// state storage.
     ///
     ///
     /// See: GKRuleSystem.state
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrule?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKRule;
@@ -385,10 +439,31 @@ impl GKRule {
 }
 
 extern_class!(
+    /// A rule for use in a rule system that uses a Foundation [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object to evaluate itself.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GKNSPredicateRule`](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule) class is a specialized subclass of the [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) class (which represents rules to be used by [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) objects). Custom subclasses of [`GKNSPredicateRule`](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule) use an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object to evaluate a rule, rather than requiring custom logic for evaluation as is the case with custom [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) subclasses.
+    ///
+    /// For more information about rules and rule systems, read [Rule Systems](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RuleSystems.html#//apple_ref/doc/uid/TP40015172-CH10) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// GameplayKit evaluates rules in the context of a [`GKRuleSystem`](https://developer.apple.com/documentation/gameplaykit/gkrulesystem) object, so custom rule classes should be _functional_—that is, they generally should not carry independent state that affects their predicate or action.
+    ///
+    /// #### Methods to Override
+    ///
+    /// Override the [`performActionWithSystem:`](https://developer.apple.com/documentation/gameplaykit/gkrule/performaction(in:)) method to perform whatever actions should result when your rule is satisfied (that is, when its [`predicate`](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule/predicate) property evaluates to true in the context of the provided rule system).
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// - Use the [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) method [`ruleWithPredicate:assertingFact:grade:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(predicate:assertingfact:grade:)) or [`ruleWithPredicate:retractingFact:grade:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(predicate:retractingfact:grade:)) to create a rule that uses an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object for evaluation and whose action asserts or retracts a fact in the containing rule system.
+    ///
+    /// - Use the [`GKRule`](https://developer.apple.com/documentation/gameplaykit/gkrule) method [`ruleWithBlockPredicate:action:`](https://developer.apple.com/documentation/gameplaykit/gkrule/init(blockpredicate:action:)) method to quickly create a rule whose custom logic is contained in block objects.
+    ///
+    ///
     /// A convenient subclass of GKRule that leverages existing NSPRedicate functionality for evaluating the predicate
     /// of the rule.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gknspredicaterule?language=objc)
     #[unsafe(super(GKRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKNSPredicateRule;

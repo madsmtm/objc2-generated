@@ -9,12 +9,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arerrordomain?language=objc)
+    /// The domain for error objects produced by an AR session.
     #[cfg(feature = "objc2-foundation")]
     pub static ARErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code?language=objc)
+/// Codes that identify errors in ARKit.
 // NS_ERROR_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -22,104 +22,158 @@ extern "C" {
 pub struct ARErrorCode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARErrorCode {
-    /// Unsupported configuration.
+    /// An error that indicates the device lacks support for the session’s configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/unsupportedconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// Call [`isSupported`](https://developer.apple.com/documentation/arkit/arconfiguration/issupported) on an [`ARConfiguration`](https://developer.apple.com/documentation/arkit/arconfiguration) to ensure it’s supported before attempting to create and run it on the session with [`runWithConfiguration:`](https://developer.apple.com/documentation/arkit/arsession/runwithconfiguration:).
+    ///
+    ///
+    /// Unsupported configuration.
     #[doc(alias = "ARErrorCodeUnsupportedConfiguration")]
     pub const UnsupportedConfiguration: Self = Self(100);
+    /// An error that indicates the framework fails to access a required sensor.
     /// A sensor required to run the session is not available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/sensorunavailable?language=objc)
     #[doc(alias = "ARErrorCodeSensorUnavailable")]
     pub const SensorUnavailable: Self = Self(101);
+    /// An error that indicates a sensor fails to provide required input.
     /// A sensor failed to provide the required input.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/sensorfailed?language=objc)
     #[doc(alias = "ARErrorCodeSensorFailed")]
     pub const SensorFailed: Self = Self(102);
-    /// App does not have permission to use the camera. The user may change this in settings.
+    /// An error that indicates the app lacks user permission for the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/cameraunauthorized?language=objc)
+    /// ## Discussion
+    ///
+    /// To use the device’s camera:
+    ///
+    /// - Your app’s Info.plist file must provide a message for the [NSCameraUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/plist/info/NSCameraUsageDescription) key. If this key is missing, any attempt to run an AR session fails with this error.
+    ///
+    /// - When your app first attempts to run an AR session or otherwise use the camera, iOS automatically shows an alert with your camera usage description message, asking the user to grant camera permission to your app. If the user accepts this request, the session begins; otherwise the session fails with this error.
+    ///
+    /// - If the user has previously denied camera permission for your app, all attempts to run an AR session or otherwise use the camera fail with this error. To grant camera permission, the user must explicitly enable your app in the iOS Settings app, under Privacy > Camera.
+    ///
+    ///
+    /// App does not have permission to use the camera. The user may change this in settings.
     #[doc(alias = "ARErrorCodeCameraUnauthorized")]
     pub const CameraUnauthorized: Self = Self(103);
-    /// App does not have permission to use the microphone. The user may change this in settings.
+    /// An error that indicates the app lacks user permission for the microphone.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/microphoneunauthorized?language=objc)
+    /// ## Discussion
+    ///
+    /// When this error occurs, the app needs to prompt the user to give permission to use the microphone in Settings.
+    ///
+    ///
+    /// App does not have permission to use the microphone. The user may change this in settings.
     #[doc(alias = "ARErrorCodeMicrophoneUnauthorized")]
     pub const MicrophoneUnauthorized: Self = Self(104);
-    /// App does not have permission to use the location data of the device. The user may change this in settings.
+    /// An error that indicates the app lacks user permission for the device’s current location.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/locationunauthorized?language=objc)
+    /// ## Discussion
+    ///
+    /// To resolve this issue, the app needs to ask the user to enable location access for this app in Settings.
+    ///
+    ///
+    /// App does not have permission to use the location data of the device. The user may change this in settings.
     #[doc(alias = "ARErrorCodeLocationUnauthorized")]
     pub const LocationUnauthorized: Self = Self(105);
-    /// A high-resolution frame is requested while another one is being captured.
+    /// An error that indicates the system needs to finish a high-resolution frame request before accepting another request.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/highresolutionframecaptureinprogress?language=objc)
+    /// ## Discussion
+    ///
+    /// The system provides this error to the completion handler of [`captureHighResolutionFrameWithCompletion:`](https://developer.apple.com/documentation/arkit/arsession/capturehighresolutionframe(completion:)) for failed operations.
+    ///
+    ///
+    /// A high-resolution frame is requested while another one is being captured.
     #[doc(alias = "ARErrorCodeHighResolutionFrameCaptureInProgress")]
     pub const HighResolutionFrameCaptureInProgress: Self = Self(106);
-    /// High-resolution frame capture failed.
+    /// An error that indicates a problem in the system’s capture pipeline.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/highresolutionframecapturefailed?language=objc)
+    /// ## Discussion
+    ///
+    /// The system provides this error to the completion handler of [`captureHighResolutionFrameWithCompletion:`](https://developer.apple.com/documentation/arkit/arsession/capturehighresolutionframe(completion:)) for failed operations.
+    ///
+    ///
+    /// High-resolution frame capture failed.
     #[doc(alias = "ARErrorCodeHighResolutionFrameCaptureFailed")]
     pub const HighResolutionFrameCaptureFailed: Self = Self(107);
+    /// An error that indicates when world tracking experiences an unrecoverable problem.
     /// World tracking has encountered a fatal error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/worldtrackingfailed?language=objc)
     #[doc(alias = "ARErrorCodeWorldTrackingFailed")]
     pub const WorldTrackingFailed: Self = Self(200);
-    /// Geo tracking is not available at this location.
+    /// An error that indicates a location lacks geotracking support.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/geotrackingnotavailableatlocation?language=objc)
+    /// ## Discussion
+    ///
+    /// This error code indicates that ARKit does not have the necessary localization imagery to support geo tracking at the user’s current location. See [`checkAvailabilityWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)) for more information.
+    ///
+    /// If [`checkAvailabilityWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)) returns [`true`](https://developer.apple.com/documentation/swift/true) and an app begins geo-tracking session, ARKit provides this state reason when the user has moved to an unsupported area.
+    ///
+    ///
+    /// Geo tracking is not available at this location.
     #[doc(alias = "ARErrorCodeGeoTrackingNotAvailableAtLocation")]
     pub const GeoTrackingNotAvailableAtLocation: Self = Self(201);
-    /// Geo tracking has encountered a runtime error.
+    /// An error that indicates when localization imagery fails to match the device’s camera captures.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/geotrackingfailed?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit will raise an error with this error code when visual localization is taking too long. This situation indicates that the app has met all requirements for geo tracking except for visual localization. To try again, the app needs to ask the user pan the device around the physical environment to acquire different camera-feed imagery. For more information, see [Assisting the User with Visual Localization](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing#assisting-the-user-with-visual-localization).
+    ///
+    ///
+    /// Geo tracking has encountered a runtime error.
     #[doc(alias = "ARErrorCodeGeoTrackingFailed")]
     pub const GeoTrackingFailed: Self = Self(202);
-    /// Invalid reference image
+    /// An error that indicates the framework fails to process a reference image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidreferenceimage?language=objc)
+    /// ## Discussion
+    ///
+    /// This error occurs when you supply a reference image to the configuration’s [`detectionImages`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionimages) but ARKit determined it’s unusable. This can happen when the image data doesn’t contain enough features to identify a unique picture, for example, it’s all white.
+    ///
+    ///
+    /// Invalid reference image
     #[doc(alias = "ARErrorCodeInvalidReferenceImage")]
     pub const InvalidReferenceImage: Self = Self(300);
+    /// An error that indicates the framework fails to process a reference object.
     /// Invalid reference object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidreferenceobject?language=objc)
     #[doc(alias = "ARErrorCodeInvalidReferenceObject")]
     pub const InvalidReferenceObject: Self = Self(301);
+    /// An error that indicates the framework fails to process a world map.
     /// Invalid world map.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidworldmap?language=objc)
     #[doc(alias = "ARErrorCodeInvalidWorldMap")]
     pub const InvalidWorldMap: Self = Self(302);
+    /// An error that indicates the configuration contains ambiguous or erroneous data.
     /// Invalid configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidconfiguration?language=objc)
     #[doc(alias = "ARErrorCodeInvalidConfiguration")]
     pub const InvalidConfiguration: Self = Self(303);
-    /// Invalid collaboration data.
+    /// An error that indicates the framework fails to parse collaboration data the app receives over the network.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/invalidcollaborationdata?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit produces this error when an app passes invalid data into the [`updateWithCollaborationData:`](https://developer.apple.com/documentation/arkit/arsession/update(with:)) function.
+    ///
+    ///
+    /// Invalid collaboration data.
     #[doc(alias = "ARErrorCodeInvalidCollaborationData")]
     pub const InvalidCollaborationData: Self = Self(304);
-    /// Insufficient features.
+    /// An error that indicates the framework requires more features to complete a task.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/insufficientfeatures?language=objc)
+    /// ## Discussion
+    ///
+    /// For more information about a session’s feature requirements, see [Managing Session Life Cycle and Tracking Quality](https://developer.apple.com/documentation/arkit/managing-session-life-cycle-and-tracking-quality).
+    ///
+    ///
+    /// Insufficient features.
     #[doc(alias = "ARErrorCodeInsufficientFeatures")]
     pub const InsufficientFeatures: Self = Self(400);
+    /// An error that indicates the framework fails to merge a detected object.
     /// Object merge failed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/objectmergefailed?language=objc)
     #[doc(alias = "ARErrorCodeObjectMergeFailed")]
     pub const ObjectMergeFailed: Self = Self(401);
+    /// An error that indicates a file access fails to read or write.
     /// Unable to read or write to file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/fileiofailed?language=objc)
     #[doc(alias = "ARErrorCodeFileIOFailed")]
     pub const FileIOFailed: Self = Self(500);
+    /// An error that indicates a request fails.
     /// Generic request failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code/requestfailed?language=objc)
     #[doc(alias = "ARErrorCodeRequestFailed")]
     pub const RequestFailed: Self = Self(501);
 }

@@ -6,132 +6,150 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// The protocol type for HTTP.
     /// The protocol for HTTP
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttp?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTP: &'static NSString;
 }
 
 extern "C" {
+    /// The protocol type for HTTPS.
     /// The protocol for HTTPS
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttps?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPS: &'static NSString;
 }
 
 extern "C" {
+    /// The protocol type for FTP.
     /// The protocol for FTP
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftp?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "FTP is deprecated and only supported in the classic loading mode"]
     pub static NSURLProtectionSpaceFTP: &'static NSString;
 }
 
 extern "C" {
+    /// The proxy type for HTTP proxies.
     /// The proxy type for http proxies
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPProxy: &'static NSString;
 }
 
 extern "C" {
+    /// The proxy type for HTTPS proxies.
     /// The proxy type for https proxies
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacehttpsproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceHTTPSProxy: &'static NSString;
 }
 
 extern "C" {
+    /// The proxy type for FTP proxies.
     /// The proxy type for ftp proxies
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspaceftpproxy?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "FTP is deprecated and only supported in the classic loading mode"]
     pub static NSURLProtectionSpaceFTPProxy: &'static NSString;
 }
 
 extern "C" {
+    /// The proxy type for SOCKS proxies.
     /// The proxy type for SOCKS proxies
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspacesocksproxy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLProtectionSpaceSOCKSProxy: &'static NSString;
 }
 
 extern "C" {
+    /// Use the default authentication method for a protocol.
     /// The default authentication method for a protocol
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethoddefault?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodDefault: &'static NSString;
 }
 
 extern "C" {
+    /// Use HTTP basic authentication for this protection space.
     /// HTTP basic authentication. Equivalent to
     /// NSURLAuthenticationMethodDefault for http.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpbasic?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPBasic: &'static NSString;
 }
 
 extern "C" {
+    /// Use HTTP digest authentication for this protection space.
     /// HTTP digest authentication.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhttpdigest?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTTPDigest: &'static NSString;
 }
 
 extern "C" {
-    /// HTML form authentication. Applies to any protocol.
+    /// Use HTML form authentication for this protection space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodhtmlform?language=objc)
+    /// ## Discussion
+    ///
+    /// The URL loading system never issues authentication challenges based on this authentication method. However, if your app authenticates by submitting a web form (or in some other protocol-neutral way), you can specify this protection space when you persist or look up credentials using the [`NSURLCredentialStorage`](https://developer.apple.com/documentation/foundation/urlcredentialstorage) class.
+    ///
+    ///
+    /// HTML form authentication. Applies to any protocol.
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodHTMLForm: &'static NSString;
 }
 
 extern "C" {
+    /// Use NTLM authentication for this protection space.
     /// NTLM authentication.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodntlm?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNTLM: &'static NSString;
 }
 
 extern "C" {
+    /// Negotiate whether to use Kerberos or NTLM authentication for this protection space.
     /// Negotiate authentication.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodnegotiate?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodNegotiate: &'static NSString;
 }
 
 extern "C" {
-    /// SSL Client certificate.  Applies to any protocol.
+    /// Use client certificate authentication for this protection space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodclientcertificate?language=objc)
+    /// ## Discussion
+    ///
+    /// This authentication method can apply to any protocol.
+    ///
+    ///
+    /// SSL Client certificate.  Applies to any protocol.
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodClientCertificate: &'static NSString;
 }
 
 extern "C" {
-    /// SecTrustRef validation required.  Applies to any protocol.
+    /// Perform server trust authentication (certificate validation) for this protection space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodservertrust?language=objc)
+    /// ## Discussion
+    ///
+    /// This authentication method can apply to any protocol, and is most commonly used for overriding SSL and TLS chain validation.
+    ///
+    /// To learn more, read [Overriding TLS Chain Validation Correctly](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/NetworkingTopics/Articles/OverridingSSLChainValidationCorrectly.html#//apple_ref/doc/uid/TP40012544).
+    ///
+    ///
+    /// SecTrustRef validation required.  Applies to any protocol.
     #[cfg(feature = "NSString")]
     pub static NSURLAuthenticationMethodServerTrust: &'static NSString;
 }
 
 extern_class!(
-    /// This class represents a protection space requiring authentication.
+    /// A server or an area on a server, commonly referred to as a realm, that requires authentication.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlprotectionspace?language=objc)
+    /// ## Overview
+    ///
+    /// A protection space defines a series of matching constraints that determine which credential should be provided. For example, if a request provides your delegate with a [`NSURLAuthenticationChallenge`](https://developer.apple.com/documentation/foundation/urlauthenticationchallenge) object that requests a client username and password, your app should provide the correct username and password for the particular host, port, protocol, and realm, as specified in the challenge’s protection space.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This class has no designated initializer; its `init` method always returns `nil`. You must initialize this class by calling one of the initialization methods described in Creating a protection space.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// This class represents a protection space requiring authentication.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtectionSpace;

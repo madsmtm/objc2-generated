@@ -14,8 +14,6 @@ use objc2_open_gl::*;
 use crate::*;
 
 /// CoreVideo OpenGL Texture Cache
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecache?language=objc)
 #[doc(alias = "CVOpenGLTextureCacheRef")]
 #[repr(C)]
 pub struct CVOpenGLTextureCache {
@@ -32,31 +30,31 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodekey?language=objc)
+    /// The key used to define the cache’s requested chroma sampling mode.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodeautomatic?language=objc)
+    /// The default mode if not otherwise specified.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeAutomatic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodehighestquality?language=objc)
+    /// Forces the highest quality regardless of performance impact.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeHighestQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodebestperformance?language=objc)
+    /// Set the chroma sample mode to use the most performant way possible.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLTextureCacheChromaSamplingModeBestPerformance: &'static CFString;
 }
 
 unsafe impl ConcreteType for CVOpenGLTextureCache {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecachegettypeid()?language=objc)
+    /// Returns the Core Foundation type identifier for a the texture cache.
     #[doc(alias = "CVOpenGLTextureCacheGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -68,6 +66,27 @@ unsafe impl ConcreteType for CVOpenGLTextureCache {
 }
 
 impl CVOpenGLTextureCache {
+    /// Creates a new texture cache.
+    ///
+    /// Parameters:
+    /// - allocator: The `CFAllocatorRef` to use for allocating the cache.  May be NULL.
+    ///
+    /// - cacheAttributes: A dictionary specifying options for the cache’s behavior, or `NULL` to use default options. For applicable keys and values, see [Cache Attributes](https://developer.apple.com/documentation/corevideo/cvopengltexturecache-cache-attributes).
+    ///
+    /// - cglContext: The OpenGL context into which the texture objects will be created.
+    ///
+    /// - cglPixelFormat: The OpenGL pixel format object used to create the passed in OpenGL context.
+    ///
+    /// - textureAttributes: A `CFDictionaryRef` containing the attributes to be used for creating the `CVOpenGLTexture` objects.  May be `NULL`.
+    ///
+    /// - cacheOut: Upon return, contains the newly created texture cache.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`kCVReturnSuccess`](https://developer.apple.com/documentation/corevideo/kcvreturnsuccess) on success.
+    ///
+    ///
     /// Creates a new Texture Cache.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
@@ -93,8 +112,6 @@ impl CVOpenGLTextureCache {
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecachecreate(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
@@ -130,6 +147,27 @@ impl CVOpenGLTextureCache {
         }
     }
 
+    /// Creates a CVOpenGLTexture object from an existing [CVImageBuffer](https://developer.apple.com/documentation/corevideo/cvimagebuffer-q40).
+    ///
+    /// Parameters:
+    /// - allocator: The `CFAllocatorRef` to use for allocating the `CVOpenGLTexture` object.  May be `NULL`.
+    ///
+    /// - textureCache: The texture cache object that will manage the texture.
+    ///
+    /// - sourceImage: The source `CVImageBuffer` for which to create an `CVOpenGLTexture`.
+    ///
+    /// - attributes: _This parameter is not currently supported and is for future use only._
+    ///
+    /// The desired buffer attributes for the `CVOpenGLTexture`.
+    ///
+    /// - textureOut: Upon return, contains the newly created texture.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`kCVReturnSuccess`](https://developer.apple.com/documentation/corevideo/kcvreturnsuccess) on success.
+    ///
+    ///
     /// Creates a CVOpenGLTexture object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVOpenGLTexture object.  May be NULL.
@@ -149,8 +187,6 @@ impl CVOpenGLTextureCache {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `texture_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecachecreatetexturefromimage(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -187,6 +223,19 @@ impl CVOpenGLTextureCache {
         }
     }
 
+    /// Performs internal housekeeping/recycling operations on the cache.
+    ///
+    /// Parameters:
+    /// - textureCache: The texture cache object to flush.
+    ///
+    /// - options: Currently unused, set to 0.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call must be made periodically to give the texture cache a chance to make OpenGL calls on the OpenGL context used to create it in order to perform its required housekeeping operations.
+    ///
+    ///
     /// Performs internal housekeeping/recycling operations
     ///
     /// This call must be made periodically to give the texture cache a chance to make OpenGL calls
@@ -197,8 +246,6 @@ impl CVOpenGLTextureCache {
     /// Parameter `options`: Currently unused, set to 0.
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecacheflush(_:_:)?language=objc)
     #[doc(alias = "CVOpenGLTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]

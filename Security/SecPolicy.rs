@@ -6,114 +6,117 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Basic X509-style certificate evaluation.
     /// Predefined constants used to specify a policy.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplex509basic?language=objc)
     pub static kSecPolicyAppleX509Basic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplessl?language=objc)
+    /// Basic X509 plus host name verification per RFC 2818.
     pub static kSecPolicyAppleSSL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplesmime?language=objc)
+    /// Basic X509 plus email address verification and `KeyUsage` enforcement per RFC 2632.
     pub static kSecPolicyAppleSMIME: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleeap?language=objc)
+    /// Extensible Authentication Protocol. Functionally identical to SSL policy. A separate OID is provided to facilitate per-policy, per-certificate trust settings using the `SecTrust` mechanism.
     pub static kSecPolicyAppleEAP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleipsec?language=objc)
+    /// Policy for use in IPsec communication. Functionally identical to SSL policy. A separate OID is provided to facilitate per-policy, per-certificate trust settings using the `SecTrust` mechanism.
     pub static kSecPolicyAppleIPsec: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleichat?language=objc)
+    /// Policy for use in iChat.
     #[deprecated]
     pub static kSecPolicyAppleiChat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplepkinitclient?language=objc)
+    /// Kerberos Pkinit client certificate validation.
     pub static kSecPolicyApplePKINITClient: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplepkinitserver?language=objc)
+    /// Kerberos Pkinit server certificate validation.
     pub static kSecPolicyApplePKINITServer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplecodesigning?language=objc)
+    /// Policy for use in evaluating Apple code signing certificates.
+    ///
+    /// ## Discussion
+    ///
+    /// To learn more about code signing certificates, read [App Distribution Guide](https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582).
+    ///
+    ///
     pub static kSecPolicyAppleCodeSigning: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicymacappstorereceipt?language=objc)
+    /// Policy for use in evaluating Mac App Store receipts.
     pub static kSecPolicyMacAppStoreReceipt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleidvalidation?language=objc)
+    /// Policy for use in evaluating Apple ID certificates.
+    ///
+    /// ## Discussion
+    ///
+    /// To learn more about Apple ID certificates, read [App Distribution Guide](https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582).
+    ///
+    ///
     pub static kSecPolicyAppleIDValidation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappletimestamping?language=objc)
+    /// Policy that causes evaluation of the validity of the time stamp on a signature. This can be used to allow verification that a certificate was valid at the time that something was signed with that certificate even if the certificate is no longer valid.
     pub static kSecPolicyAppleTimeStamping: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplerevocation?language=objc)
     pub static kSecPolicyAppleRevocation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplepassbooksigning?language=objc)
     pub static kSecPolicyApplePassbookSigning: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplepayissuerencryption?language=objc)
     pub static kSecPolicyApplePayIssuerEncryption: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplesslserver?language=objc)
     pub static kSecPolicyAppleSSLServer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyapplesslclient?language=objc)
     pub static kSecPolicyAppleSSLClient: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleeapserver?language=objc)
     pub static kSecPolicyAppleEAPServer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleeapclient?language=objc)
     pub static kSecPolicyAppleEAPClient: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleipsecserver?language=objc)
     pub static kSecPolicyAppleIPSecServer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyappleipsecclient?language=objc)
     pub static kSecPolicyAppleIPSecClient: &'static CFString;
 }
 
 extern "C" {
+    /// The object identifier that defines the policy type (`CFStringRef`). All policies have a value for this key.
     /// Predefined property key constants used to get or set values in
     /// a dictionary for a policy instance.
     ///
@@ -143,38 +146,45 @@ extern "C" {
     /// team identifier which must be matched in the certificate to satisfy
     /// this policy. For the Passbook signing policy, this string must match
     /// the Organizational Unit field of the certificate subject.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyoid?language=objc)
     pub static kSecPolicyOid: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyname?language=objc)
+    /// A name (`CFStringRef`) that the certificate must match to satisfy this policy. For SSL/TLS, this specifies the server name which must match the common name of the certificate. For S/MIME, this specifies the RFC 822 email address.
     pub static kSecPolicyName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyclient?language=objc)
+    /// If true, indicates this policy should be evaluated against the client certificate. If false, the policy is evaluated against the certificate for the server. Default is false.
     pub static kSecPolicyClient: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyrevocationflags?language=objc)
     pub static kSecPolicyRevocationFlags: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyteamidentifier?language=objc)
     pub static kSecPolicyTeamIdentifier: &'static CFString;
 }
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecPolicy {
+    /// Returns the unique identifier of the opaque type to which a policy object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecPolicy instances.
     ///
     /// Returns: The CFTypeID of SecPolicy instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygettypeid()?language=objc)
     #[doc(alias = "SecPolicyGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -187,6 +197,17 @@ unsafe impl ConcreteType for SecPolicy {
 
 #[cfg(feature = "SecBase")]
 impl SecPolicy {
+    /// Returns a dictionary containing a policy’s properties.
+    ///
+    /// Parameters:
+    /// - policyRef: The policy from which properties should be copied.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary with the policy’s properties. See [Security Policy Keys](https://developer.apple.com/documentation/security/security-policy-keys) for a list of valid keys. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the dictionary’s memory when you are done with it.
+    ///
+    ///
     /// Returns a dictionary of this policy's properties.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -199,8 +220,6 @@ impl SecPolicy {
     ///
     /// This function returns the properties for a policy, as set by the
     /// policy's construction function or by a prior call to SecPolicySetProperties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycopyproperties(_:)?language=objc)
     #[doc(alias = "SecPolicyCopyProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -214,10 +233,15 @@ impl SecPolicy {
 
     /// Returns a policy object for the default X.509 policy.
     ///
+    /// ## Return Value
+    ///
+    /// The policy object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release the object when you are finished with it.
+    ///
+    ///
+    /// Returns a policy object for the default X.509 policy.
+    ///
     /// Returns: A policy object. The caller is responsible for calling CFRelease
     /// on this when it is no longer needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatebasicx509()?language=objc)
     #[doc(alias = "SecPolicyCreateBasicX509")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -233,6 +257,19 @@ impl SecPolicy {
 
     /// Returns a policy object for evaluating SSL certificate chains.
     ///
+    /// Parameters:
+    /// - server: Specify `true` on the client side to return a policy for SSL server certificates.
+    ///
+    /// - hostname: If you specify a value for this parameter, the policy will require the specified value to match the host name in the leaf certificate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The policy object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release the object when you are finished with it.
+    ///
+    ///
+    /// Returns a policy object for evaluating SSL certificate chains.
+    ///
     /// Parameter `server`: Passing true for this parameter creates a policy for SSL
     /// server certificates.
     ///
@@ -241,8 +278,6 @@ impl SecPolicy {
     ///
     /// Returns: A policy object. The caller is responsible for calling CFRelease
     /// on this when it is no longer needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatessl(_:_:)?language=objc)
     #[doc(alias = "SecPolicyCreateSSL")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -260,21 +295,50 @@ impl SecPolicy {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationocspmethod?language=objc)
+/// Perform revocation     checking using OCSP (Online Certificate Status Protocol).
 pub const kSecRevocationOCSPMethod: CFOptionFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationcrlmethod?language=objc)
+/// Perform revocation checking using the CRL (Certification Revocation List) method.
 pub const kSecRevocationCRLMethod: CFOptionFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationprefercrl?language=objc)
+/// Prefer CRL revocation checking over OCSP; by default, OCSP is preferred.
 pub const kSecRevocationPreferCRL: CFOptionFlags = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationrequirepositiveresponse?language=objc)
+/// Require a positive response to pass the policy.
+///
+/// ## Discussion
+///
+/// If the flag is not set, revocation checking is done on a “best attempt” basis, where failure to reach the server is not considered fatal.
+///
+///
 pub const kSecRevocationRequirePositiveResponse: CFOptionFlags = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationnetworkaccessdisabled?language=objc)
+/// Consult only locally cached replies; do not use network access.
 pub const kSecRevocationNetworkAccessDisabled: CFOptionFlags = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrevocationuseanyavailablemethod?language=objc)
+/// Perform either OCSP or CRL checking.
+///
+/// ## Discussion
+///
+/// The checking is performed according to the method(s) specified in the certificate and the value of [`kSecRevocationPreferCRL`](https://developer.apple.com/documentation/security/ksecrevocationprefercrl).
+///
+///
 pub const kSecRevocationUseAnyAvailableMethod: CFOptionFlags = 3;
 
 #[cfg(feature = "SecBase")]
 impl SecPolicy {
+    /// Returns a policy object for checking revocation of certificates.
+    ///
+    /// Parameters:
+    /// - revocationFlags: Flags that specify revocation checking options. See [Revocation Policy Constants](https://developer.apple.com/documentation/security/revocation-policy-constants) for a list of possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A policy object or `nil` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It’s usually not necessary to create a revocation policy yourself unless you wish to override default system behavior, for example to force a particular method, or to disable revocation checking entirely.
+    ///
+    ///
     /// Returns a policy object for checking revocation of certificates.
     ///
     /// Returns: A policy object. The caller is responsible for calling CFRelease
@@ -288,8 +352,6 @@ impl SecPolicy {
     /// create a revocation policy yourself unless you wish to override default
     /// system behavior (e.g. to force a particular method, or to disable
     /// revocation checking entirely.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreaterevocation(_:)?language=objc)
     #[doc(alias = "SecPolicyCreateRevocation")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -303,6 +365,19 @@ impl SecPolicy {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a policy object based on an object identifier for the policy type.
+    ///
+    /// Parameters:
+    /// - policyIdentifier: The identifier for the desired policy type.
+    ///
+    /// - properties: A properties dictionary. See [Security Policy Keys](https://developer.apple.com/documentation/security/security-policy-keys) for a list of valid property names to use as keys in this dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new policy, or `NULL` if the policy could not be created.
+    ///
+    ///
     /// Returns a policy object based on an object identifier for the
     /// policy type. See the "Policy Constants" section for a list of defined
     /// policy object identifiers.
@@ -320,8 +395,6 @@ impl SecPolicy {
     /// - `policy_identifier` should be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatewithproperties(_:_:)?language=objc)
     #[doc(alias = "SecPolicyCreateWithProperties")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -341,6 +414,7 @@ impl SecPolicy {
 }
 
 extern "C" {
+    /// If true, the certificate’s key usage must allow it to be used for signing.
     /// Predefined property key constants used to get or set values in
     /// a dictionary for a policy instance.
     ///
@@ -393,53 +467,56 @@ extern "C" {
     /// have a key usage that permits it to be used for encryption only.
     ///
     /// have a key usage that permits it to be used for decryption only.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_digitalsignature?language=objc)
     pub static kSecPolicyKU_DigitalSignature: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_nonrepudiation?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used for non-repudiation.
     pub static kSecPolicyKU_NonRepudiation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_keyencipherment?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used for key encryption.
     pub static kSecPolicyKU_KeyEncipherment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_dataencipherment?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used for data encryption.
     pub static kSecPolicyKU_DataEncipherment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_keyagreement?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used for key agreement.
     pub static kSecPolicyKU_KeyAgreement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_keycertsign?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used for signing certificates.
     pub static kSecPolicyKU_KeyCertSign: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_crlsign?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used for signing certificate revocation lists (CRLs).
     pub static kSecPolicyKU_CRLSign: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_encipheronly?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used _only_ for encryption.
     pub static kSecPolicyKU_EncipherOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpolicyku_decipheronly?language=objc)
+    /// If true, the certificate’s key usage must allow it to be used _only_ for decryption.
     pub static kSecPolicyKU_DecipherOnly: &'static CFString;
 }
 
 #[cfg(feature = "SecBase")]
 impl SecPolicy {
+    /// Returns a policy object for the specified policy type object identifier.
+    ///
+    /// Parameters:
+    /// - policyOID: The object identifier (OID) of the policy type for this policy.
+    ///
     /// Returns a policy object based on an object identifier for the
     /// policy type. See the "Policy Constants" section for a list of defined
     /// policy object identifiers.
@@ -456,8 +533,6 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `policy_oid` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicycreatewithoid?language=objc)
     #[doc(alias = "SecPolicyCreateWithOID")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -470,6 +545,25 @@ impl SecPolicy {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves a policy’s object identifier.
+    ///
+    /// Parameters:
+    /// - policyRef: The policy object for which to obtain the object identifier. You can obtain a policy object with the [`SecPolicySearchCopyNext`](https://developer.apple.com/documentation/security/secpolicysearchcopynext) function.
+    ///
+    /// - oid: On return, points to the policy’s object identifier. This identifier is owned by the policy object and remains valid until that object is destroyed; do not release it separately.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The policy’s object identifier, in the form of a `CSSM_OID` structure, is used in the CSSM API together with the policy’s value. Use the [`SecPolicyGetValue`](https://developer.apple.com/documentation/security/secpolicygetvalue) function to obtain the value that corresponds to this object identifier.
+    ///
+    ///
     /// Returns a policy's object identifier.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -484,8 +578,6 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `oid` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygetoid?language=objc)
     #[doc(alias = "SecPolicyGetOID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -497,6 +589,27 @@ impl SecPolicy {
         unsafe { SecPolicyGetOID(self, oid) }
     }
 
+    /// Retrieves a policy’s value.
+    ///
+    /// Parameters:
+    /// - policyRef: The policy object for which to retrieve the value.
+    ///
+    /// - value: On return, points to the policy’s value. This value is owned by the policy object and remains valid until that object is destroyed; do not release it separately.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A policy’s value is defined and interpreted by the policy. If you are using CSSM, you can specify object-identifier–policy-value pairs as input to the `CSSM_TP_POLICYINFO` function. Use the [`SecPolicyGetOID`](https://developer.apple.com/documentation/security/secpolicygetoid) function to obtain the object identifier (OID) for a policy.
+    ///
+    /// Depending on how the policy uses the value, the value can be specific to a transaction. Because some other process might be using this policy object, it is best not to assign a new value to the policy using the same policy object. Instead, obtain a new policy object before assigning a new value to the policy.
+    ///
+    ///
     /// Returns a policy's value.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -511,8 +624,6 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygetvalue?language=objc)
     #[doc(alias = "SecPolicyGetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -524,6 +635,27 @@ impl SecPolicy {
         unsafe { SecPolicyGetValue(self, value) }
     }
 
+    /// Sets a policy’s value.
+    ///
+    /// Parameters:
+    /// - policyRef: The policy object whose value you wish to set.
+    ///
+    /// - value: The value to be set into the policy object, replacing any previous value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A policy’s value is defined and interpreted by the policy. If you are using CSSM, you can specify object-identifier–policy-value pairs as input to the `CSSM_TP_POLICYINFO` function. Use the [`SecPolicyGetOID`](https://developer.apple.com/documentation/security/secpolicygetoid) function to obtain the object identifier (OID) for a policy.
+    ///
+    /// Depending on how the policy uses the value, the value can be specific to a transaction. Because some other process might be using this policy object, it is best not to assign a new value to the policy using the same policy object. Instead, obtain a new policy object before assigning a new value to the policy.
+    ///
+    ///
     /// Sets a policy's value.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -541,8 +673,6 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysetvalue?language=objc)
     #[doc(alias = "SecPolicySetValue")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -554,6 +684,27 @@ impl SecPolicy {
         unsafe { SecPolicySetValue(self, value) }
     }
 
+    /// Sets properties for a policy.
+    ///
+    /// Parameters:
+    /// - policyRef: The policy to alter
+    ///
+    /// - properties: A `CFDictionaryRef` object containing the new set of properties. For a list of valid property keys, see [Security Policy Keys](https://developer.apple.com/documentation/security/security-policy-keys).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The property [`kSecPolicyOid`](https://developer.apple.com/documentation/security/ksecpolicyoid) is read-only and thus cannot be changed by this function.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Sets a policy's properties.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -574,8 +725,6 @@ impl SecPolicy {
     ///
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysetproperties?language=objc)
     #[doc(alias = "SecPolicySetProperties")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -590,6 +739,25 @@ impl SecPolicy {
         unsafe { SecPolicySetProperties(self, properties) }
     }
 
+    /// Retrieves the trust policy handle for a policy object.
+    ///
+    /// Parameters:
+    /// - policyRef: The policy object from which to obtain the trust policy handle.
+    ///
+    /// - tpHandle: On return, points to the policy object’s trust policy handle. The handle remains valid until the policy object is released.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The trust policy handle is the CSSM identifier of the trust policy module that is managing the certificate. The trust policy handle is uses as an input to a number of CSSM functions.
+    ///
+    ///
     /// Returns the CSSM trust policy handle for the given policy.
     ///
     /// Parameter `policyRef`: A policy reference.
@@ -603,8 +771,6 @@ impl SecPolicy {
     /// # Safety
     ///
     /// `tp_handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicygettphandle?language=objc)
     #[doc(alias = "SecPolicyGetTPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]

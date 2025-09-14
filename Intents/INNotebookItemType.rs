@@ -4,22 +4,40 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype?language=objc)
+/// Constants indicating the types of items to search.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INNotebookItemType(pub NSInteger);
 impl INNotebookItemType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/unknown?language=objc)
+    /// An unknown type of item.
     #[doc(alias = "INNotebookItemTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/note?language=objc)
+    /// A note item type.
+    ///
+    /// ## Discussion
+    ///
+    /// Search your app’s notes and return each one using an [`INNote`](https://developer.apple.com/documentation/intents/innote) object.
+    ///
+    ///
     #[doc(alias = "INNotebookItemTypeNote")]
     pub const Note: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/tasklist?language=objc)
+    /// A task list item type.
+    ///
+    /// ## Discussion
+    ///
+    /// Search your app’s task lists and return each one using an [`INTaskList`](https://developer.apple.com/documentation/intents/intasklist) object. Task lists are a way of grouping related tasks together.
+    ///
+    ///
     #[doc(alias = "INNotebookItemTypeTaskList")]
     pub const TaskList: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtype/task?language=objc)
+    /// A task item type.
+    ///
+    /// ## Discussion
+    ///
+    /// Search your app’s tasks and return each one using an [`INTask`](https://developer.apple.com/documentation/intents/intask) object. A task is usually contained within a task list, but may be standalone if your app does not support task lists.
+    ///
+    ///
     #[doc(alias = "INNotebookItemTypeTask")]
     pub const Task: Self = Self(3);
 }

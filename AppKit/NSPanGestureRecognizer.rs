@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspangesturerecognizer?language=objc)
+    /// A continuous gesture recognizer for panning gestures.
+    ///
+    /// ## Overview
+    ///
+    /// The gesture is recognized when the user clicks all of specified buttons, drags the mouse, and releases one or more of the buttons. Use the pan gesture recognizer object to retrieve the distance traveled during the pan and the location of the mouse as it pans.
+    ///
+    /// Upon creation, the gesture recognizer is configured to recognize pan gestures involving only the primary button. It also delays sending primary button events to the view by setting the [`delaysPrimaryMouseButtonEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents) property to [`true`](https://developer.apple.com/documentation/swift/true). To change the set of buttons to track, modify the [`buttonMask`](https://developer.apple.com/documentation/appkit/nspangesturerecognizer/buttonmask) property.
+    ///
+    /// In this gesture recognizer, the [`locationInView:`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/location(in:)) method always reports the current mouse point, which changes as the user drags the mouse.
+    ///
+    ///
     #[unsafe(super(NSGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSGestureRecognizer")]

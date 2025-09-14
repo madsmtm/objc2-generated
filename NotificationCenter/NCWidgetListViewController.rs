@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewcontroller?language=objc)
+    /// An object that provides a list view for displaying content in a macOS Today widget.
+    ///
+    /// ## Overview
+    ///
+    /// The `NCWidgetListViewController` class provides a list view for displaying content in a Today widget. A list view controller works together with its delegate to display content and support user interaction with the list. To learn about the list view controller delegate methods, see [`NCWidgetListViewDelegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewdelegate).
+    ///
+    /// You store the contents of a widget as an array of objects in the list view controller’s [`contents`](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewcontroller/contents) property. To display the objects, you use a [`delegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewcontroller/delegate) object, which provides a custom view controller for each object in `contents`. A list view controller also provides properties that make it easy to specify aspects of the list’s appearance and behavior, such as the number of rows to display, the presence of divider lines, and the ability to edit the list.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -184,7 +192,15 @@ impl NCWidgetListViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewdelegate?language=objc)
+    /// The interface for handling content display and editing in the list view of a macOS Today widget.
+    ///
+    /// ## Overview
+    ///
+    /// The `NCWidgetListViewDelegate` protocol defines methods that handle content display and editing in the list view of a Today widget. The [`delegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewcontroller/delegate) of an [`NCWidgetListViewController`](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewcontroller) must adopt the `NCWidgetListViewDelegate` protocol.
+    ///
+    /// The single required method in the protocol, [`widgetList:viewControllerForRow:`](https://developer.apple.com/documentation/notificationcenter/ncwidgetlistviewdelegate/widgetlist(_:viewcontrollerforrow:)), creates a view controller for the contents of one row in the widget’s list view. Optional methods in the `NCWidgetListViewDelegate` protocol support editing actions, such as adding a new list item and reordering or deleting list rows.
+    ///
+    ///
     #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]
     pub unsafe trait NCWidgetListViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]

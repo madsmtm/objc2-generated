@@ -10,31 +10,26 @@ use crate::*;
 
 extern "C" {
     /// The error domain for errors raised by the File Provider UI extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuierrordomain?language=objc)
+    /// The error domain for errors raised by the File Provider UI extension.
     pub static FPUIErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiactionidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type FPUIActionIdentifier = NSString;
 
 /// The error codes for errors raised by the File Provider UI extension.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode?language=objc)
+/// The error codes for errors raised by the File Provider UI extension.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FPUIExtensionErrorCode(pub NSUInteger);
 impl FPUIExtensionErrorCode {
     /// An error indicating that the action was canceled by the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode/usercancelled?language=objc)
+    /// An error indicating that the action was canceled by the user.
     #[doc(alias = "FPUIExtensionErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(0);
     /// An error indicating that the action has failed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode/failed?language=objc)
+    /// An error indicating that the action has failed.
     #[doc(alias = "FPUIExtensionErrorCodeFailed")]
     pub const Failed: Self = Self(1);
 }
@@ -49,8 +44,7 @@ unsafe impl RefEncode for FPUIExtensionErrorCode {
 
 extern_class!(
     /// An extension context provided to File Provider UI extensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiactionextensioncontext?language=objc)
+    /// An extension context provided to File Provider UI extensions.
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FPUIActionExtensionContext;

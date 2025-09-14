@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryprovider?language=objc)
+    /// The principal object for a Call Directory app extension for a host app.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallDirectoryProvider;

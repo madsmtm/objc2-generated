@@ -6,20 +6,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions?language=objc)
+/// The behaviors you can apply to an action.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationActionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/authenticationrequired?language=objc)
+/// The action can be performed only on an unlocked device.
+///
+/// ## Discussion
+///
+/// When the user selects an action with this option, the system prompts the user to unlock the device. After unlocking, the system notifies your app of the selected action. You might use option to perform actions that require accessing data that is encrypted while the device is locked.
+///
+///
         #[doc(alias = "UNNotificationActionOptionAuthenticationRequired")]
         const AuthenticationRequired = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/destructive?language=objc)
+/// The action performs a destructive task.
+///
+/// ## Discussion
+///
+/// Use this option for actions that delete user data or change the app irrevocably. The action button is displayed with special highlighting to indicate that it performs a destructive task.
+///
+///
         #[doc(alias = "UNNotificationActionOptionDestructive")]
         const Destructive = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/foreground?language=objc)
+/// The action causes the app to launch in the foreground.
+///
+/// ## Discussion
+///
+/// When the user selects an action containing this option, the system brings the app to the foreground, asking the user to unlock the device as needed. Use this option for actions that require the user to interact further with your app. Do not use this option simply to bring your app to the foreground.
+///
+///
         #[doc(alias = "UNNotificationActionOptionForeground")]
         const Foreground = 1<<2;
     }
@@ -33,12 +51,34 @@ unsafe impl RefEncode for UNNotificationActionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptionnone?language=objc)
+/// The action has the default behavior.
 pub static UNNotificationActionOptionNone: UNNotificationActionOptions =
     UNNotificationActionOptions(0);
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationaction?language=objc)
+    /// A task your app performs in response to a notification that the system delivers.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`UNNotificationAction`](https://developer.apple.com/documentation/usernotifications/unnotificationaction) objects to define the actions that your app can perform in response to a delivered notification. You define the actions that your app supports. For example, a meeting app might define actions for accepting or rejecting a meeting invitation. The action object itself contains the title to display in an action button and the button’s appearance. After creating action objects, add them to a [`UNNotificationCategory`](https://developer.apple.com/documentation/usernotifications/unnotificationcategory) object and register your categories with the system.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When someone performs a Double Tap gesture while viewing a notification on Apple Watch Series 9 or Apple Watch Ultra 2, the system invokes the first nondestructive action. A nondestructive action doesn’t include the [`UNNotificationActionOptionDestructive`](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/destructive) option, and won’t delete user data or change the app irrevocably.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For information on how to define actions and categories, see [Declaring your actionable notification types](https://developer.apple.com/documentation/usernotifications/declaring-your-actionable-notification-types).
+    ///
+    /// ### Responding to the Selection of Actions
+    ///
+    /// When the user selects one of your actions in response to a notification, the system notifies the delegate of the shared [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) object. Specifically, the system calls the [`userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)) method of your delegate object. The response object passed to your delegate includes the [`identifier`](https://developer.apple.com/documentation/usernotifications/unnotificationaction/identifier) string of the action the user selects, which you can use to perform the corresponding task.
+    ///
+    /// For information on how to handle actions, see [Handling notifications and notification-related actions](https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationAction;
@@ -117,7 +157,15 @@ impl UNNotificationAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untextinputnotificationaction?language=objc)
+    /// An action that accepts user-typed text.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`UNTextInputNotificationAction`](https://developer.apple.com/documentation/usernotifications/untextinputnotificationaction) objects to define an action that allows the user to provide a custom text-based response. When the user selects an action of this type, the system displays controls for the user to enter or dictate the text content. That text is then included in the response object that’s delivered to your app.
+    ///
+    /// For information on how to define actions and categories, see [Declaring your actionable notification types](https://developer.apple.com/documentation/usernotifications/declaring-your-actionable-notification-types).
+    ///
+    ///
     #[unsafe(super(UNNotificationAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTextInputNotificationAction;

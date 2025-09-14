@@ -20,15 +20,39 @@ unsafe impl RefEncode for CGPDFOperatorTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFOperatorTable", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortableref?language=objc)
+/// A type that stores callback functions for PDF operators.
 pub type CGPDFOperatorTableRef = *mut CGPDFOperatorTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatorcallback?language=objc)
+/// Performs custom processing for PDF operators.
+///
+/// Parameters:
+/// - scanner: A CGPDFScanner object. Core Graphics passes the scanner to your callback function. The scanner contains the PDF content stream that has the PDF operator that corresponds to this callback.
+///
+/// - info: A pointer to data passed to the callback.
+///
+///
+/// ## Discussion
+///
+/// Your callback function takes any action that’s appropriate for your application. For example, if you want to count the number of inline images in a PDF but ignore the image data, you would set a callback for the `EI` operator. In your callback you would increment a counter for each call.
+///
+///
 #[cfg(feature = "CGPDFScanner")]
 pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(CGPDFScannerRef, *mut c_void)>;
 
 impl CGPDFOperatorTable {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablecreate()?language=objc)
+    /// Creates an empty PDF operator table.
+    ///
+    /// ## Return Value
+    ///
+    /// An empty PDF operator table. In Objective-C, you’re responsible for releasing this object by calling [`CGPDFOperatorTableRelease`](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablerelease(_:)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call the function [`CGPDFOperatorTableSetCallback`](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablesetcallback(_:_:_:)) to fill the operator table with callbacks.
+    ///
+    ///
     #[doc(alias = "CGPDFOperatorTableCreate")]
     #[inline]
     pub fn create() -> CGPDFOperatorTableRef {
@@ -38,7 +62,17 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableCreate() }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortableretain(_:)?language=objc)
+    /// Increments the retain count of a CGPDFOperatorTable object.
+    ///
+    /// Parameters:
+    /// - table: A PDF operator table.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The same PDF operator table you passed in as the `table` parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -52,7 +86,11 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRetain(table) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablerelease(_:)?language=objc)
+    /// Decrements the retain count of a CGPDFOperatorTable object.
+    ///
+    /// Parameters:
+    /// - table: A PDF operator table.
+    ///
     ///
     /// # Safety
     ///
@@ -66,7 +104,21 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableRelease(table) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablesetcallback(_:_:_:)?language=objc)
+    /// Sets a callback function for a PDF operator.
+    ///
+    /// Parameters:
+    /// - table: A PDF operator table.
+    ///
+    /// - name: The name of the PDF operator you want to set a callback for.
+    ///
+    /// - callback: The callback to invoke for the PDF operator specified by the `name` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You call the function [`CGPDFOperatorTableSetCallback`](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortablesetcallback(_:_:_:)) for each PDF operator for which you want to provide a callback. See Appendix A in the _PDF Reference, Second Edition_, version 1.3, Adobe Systems Incorporated for a summary of PDF operators.
+    ///
+    ///
     ///
     /// # Safety
     ///

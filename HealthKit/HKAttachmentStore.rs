@@ -10,9 +10,14 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// The HKAttachmentStore class provides an interface for accessing and storing HKAttachment objects.
+    /// The access point for attachments associated with samples in the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkattachmentstore?language=objc)
+    /// ## Overview
+    ///
+    /// Use an [`HKAttachmentStore`](https://developer.apple.com/documentation/healthkit/hkattachmentstore) object to manage attachments for samples that your app has saved to the HealthKit store.
+    ///
+    ///
+    /// The HKAttachmentStore class provides an interface for accessing and storing HKAttachment objects.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAttachmentStore;

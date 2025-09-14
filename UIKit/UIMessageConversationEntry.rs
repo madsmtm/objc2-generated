@@ -7,26 +7,22 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// A list of options that represent the kinds of data a message can contain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum?language=objc)
+/// A list of options that represent the kinds of data a message can contain.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMessageConversationEntryDataKind(pub NSInteger);
 impl UIMessageConversationEntryDataKind {
     /// The message contains text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum/text?language=objc)
+    /// The message contains text.
     #[doc(alias = "UIMessageConversationEntryDataKindText")]
     pub const Text: Self = Self(0);
     /// The message contains an attachment, such as an image or file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum/attachment?language=objc)
+    /// The message contains an attachment, such as an image or file.
     #[doc(alias = "UIMessageConversationEntryDataKindAttachment")]
     pub const Attachment: Self = Self(1);
     /// The message contains other data, such as data that represents a sticker or a payment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum/other?language=objc)
+    /// The message contains other data, such as data that represents a sticker or a payment.
     #[doc(alias = "UIMessageConversationEntryDataKindOther")]
     pub const Other: Self = Self(2);
 }
@@ -41,8 +37,7 @@ unsafe impl RefEncode for UIMessageConversationEntryDataKind {
 
 extern_class!(
     /// A class that represents a message in a message conversation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry?language=objc)
+    /// A class that represents a message in a message conversation.
     #[unsafe(super(UIConversationEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIConversationEntry")]

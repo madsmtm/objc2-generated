@@ -12,6 +12,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe error codes that the framework returns from manual rendering mode methods.
 /// Error codes that could be returned from AVAudioEngine manual rendering mode methods,
 /// e.g. `enableManualRenderingMode:format:maximumFrameCount:error:` and
 /// `renderOffline:toBuffer:error:`.
@@ -28,20 +29,18 @@ use crate::*;
 ///
 /// AVAudioEngineManualRenderingErrorNotRunning
 /// The operation cannot be performed because the engine is not running (i.e. not started).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioEngineManualRenderingError(pub OSStatus);
 impl AVAudioEngineManualRenderingError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror/invalidmode?language=objc)
+    /// An operation the system can’t perform because the engine isn’t in manual rendering mode or the right variant of it.
     #[doc(alias = "AVAudioEngineManualRenderingErrorInvalidMode")]
     pub const InvalidMode: Self = Self(-80800);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror/initialized?language=objc)
+    /// An operation that the system can’t perform because the engine is still running.
     #[doc(alias = "AVAudioEngineManualRenderingErrorInitialized")]
     pub const Initialized: Self = Self(-80801);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingerror/notrunning?language=objc)
+    /// An operation the system can’t perform because the engine isn’t running.
     #[doc(alias = "AVAudioEngineManualRenderingErrorNotRunning")]
     pub const NotRunning: Self = Self(-80802);
 }
@@ -54,6 +53,7 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Status codes that return from the render call to the engine operating in manual rendering mode.
 /// Status codes returned from the render call to the engine operating in manual rendering mode.
 ///
 /// AVAudioEngineManualRenderingStatusError
@@ -75,23 +75,33 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingError {
 /// This is usually to guard a realtime render operation (e.g. rendering through
 /// `manualRenderingBlock`) when a reconfiguration of the engine's internal state
 /// is in progress.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEngineManualRenderingStatus(pub NSInteger);
 impl AVAudioEngineManualRenderingStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/error?language=objc)
+    /// A problem that occurs during rendering and results in no data returning.
     #[doc(alias = "AVAudioEngineManualRenderingStatusError")]
     pub const Error: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/success?language=objc)
+    /// A status that indicates the successful return of the requested data.
     #[doc(alias = "AVAudioEngineManualRenderingStatusSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/insufficientdatafrominputnode?language=objc)
+    /// A condition that occurs when the input node doesn’t return enough input data to satisfy the render request at the time of the request.
+    ///
+    /// ## Discussion
+    ///
+    /// This status only applies to the input node when it provides input data for rendering. The output buffer may contain rendered data from other active sources in the engine’s processing graph. See [`setManualRenderingInputPCMFormat:inputBlock:`](https://developer.apple.com/documentation/avfaudio/avaudioinputnode/setmanualrenderinginputpcmformat(_:inputblock:)).
+    ///
+    ///
     #[doc(alias = "AVAudioEngineManualRenderingStatusInsufficientDataFromInputNode")]
     pub const InsufficientDataFromInputNode: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus/cannotdoincurrentcontext?language=objc)
+    /// An operation that the system can’t perform under the current conditions.
+    ///
+    /// ## Discussion
+    ///
+    /// This status guards a real-time render operation when a reconfiguration of the engine’s internal state is in progress. The client can try again later.
+    ///
+    ///
     #[doc(alias = "AVAudioEngineManualRenderingStatusCannotDoInCurrentContext")]
     pub const CannotDoInCurrentContext: Self = Self(2);
 }
@@ -104,6 +114,13 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The two modes for manual rendering.
+///
+/// ## Overview
+///
+/// By default, the engine connects to an audio device and automatically renders in real time. You can configure it to operate in manual rendering mode, where it doesn’t have a connection to an audio device and renders in response to requests from the client.
+///
+///
 /// By default, the engine is connected to an audio device and automatically renders in realtime.
 /// It can also be configured to operate in manual rendering mode, i.e. not connected to an
 /// audio device and rendering in response to requests from the client.
@@ -116,17 +133,21 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingStatus {
 /// (e.g. calling libdispatch, blocking on a mutex, allocating memory etc.) while rendering.
 /// Note that only the block based render mechanism can be used in this mode
 /// (see `AVAudioEngine(manualRenderingBlock)`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEngineManualRenderingMode(pub NSInteger);
 impl AVAudioEngineManualRenderingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode/offline?language=objc)
+    /// An engine that operates in an offline mode.
     #[doc(alias = "AVAudioEngineManualRenderingModeOffline")]
     pub const Offline: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode/realtime?language=objc)
+    /// An engine that operates under real-time constraints and doesn’t make blocking calls while rendering.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use the block-based render mechanism in this mode. See [`manualRenderingBlock`](https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingblock).
+    ///
+    ///
     #[doc(alias = "AVAudioEngineManualRenderingModeRealtime")]
     pub const Realtime: Self = Self(1);
 }
@@ -139,6 +160,21 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The type that represents a block that renders the engine when operating in manual rendering mode.
+///
+/// Parameters:
+/// - numberOfFrames: The number of PCM sample frames to render.
+///
+/// - outBuffer: The PCM buffer the engine must render the audio for.
+///
+/// - outError: On exit, if an error occurs during rendering, a description of the error.
+///
+///
+/// ## Return Value
+///
+/// One of the status codes from [`AVAudioEngineManualRenderingStatus`](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus). Irrespective of the returned status code, on exit, the output buffer’s [`frameLength`](https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer/framelength) indicates the number of PCM samples the engine renders.
+///
+///
 /// Block to render the engine when operating in manual rendering mode
 ///
 /// Parameter `numberOfFrames`: The number of PCM sample frames to be rendered
@@ -171,8 +207,6 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingMode {
 ///
 /// In such a case, the client could implement their own synchronization between their realtime
 /// and non-realtime threads and retry calling `AVAudioEngineManualRenderingBlock`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -187,6 +221,71 @@ pub type AVAudioEngineManualRenderingBlock = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    /// An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints.
+    ///
+    /// ## Overview
+    ///
+    /// An audio engine object contains a group of [`AVAudioNode`](https://developer.apple.com/documentation/avfaudio/avaudionode) instances that you attach to form an audio processing chain.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/5e85c6cb567cb6b054202cfa107ede37/media-3901205~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7c3d9ef3dfa5c67520afa13402f65a9d/media-3901205%402x.png 2x" />
+    ///     <img alt="A flow diagram that shows an app using an audio engine in a real time context. The audio flows from the source file in the app to a player node, a mixer node, and an output node before reaching the device’s speaker or connected headphones." src="https://docs-assets.developer.apple.com/published/7c3d9ef3dfa5c67520afa13402f65a9d/media-3901205%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// You can connect, disconnect, and remove audio nodes during runtime with minor limitations. Removing an audio node that has differing channel counts, or that’s a mixer, can break the graph. Reconnect audio nodes only when they’re upstream of a mixer.
+    ///
+    /// By default, Audio Engine renders to a connected audio device in real time. You can configure the engine to operate in manual rendering mode when you need to render at, or faster than, real time. In that mode, the engine disconnects from audio devices and your app drives the rendering.
+    ///
+    /// ### Create an Engine for Audio File Playback
+    ///
+    /// To play an audio file, you create an [`AVAudioFile`](https://developer.apple.com/documentation/avfaudio/avaudiofile) with a file that’s open for reading. Create an audio engine object and an [`AVAudioPlayerNode`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode) instance, and then attach the player node to the engine. Next, connect the player node to the audio engine’s output node. The engine performs audio output through an output node, which is a singleton that the engine creates the first time you access it.
+    ///
+    /// ```swift
+    /// let audioFile = /* An AVAudioFile instance that points to file that's open for reading. */
+    /// let audioEngine = AVAudioEngine()
+    /// let playerNode = AVAudioPlayerNode()
+    ///
+    /// // Attach the player node to the audio engine.
+    /// audioEngine.attach(playerNode)
+    ///
+    /// // Connect the player node to the output node.
+    /// audioEngine.connect(playerNode,
+    ///                     to: audioEngine.outputNode,
+    ///                     format: audioFile.processingFormat)
+    /// ```
+    ///
+    /// Then schedule the audio file for full playback. The callback notifies your app when playback completes.
+    ///
+    /// ```swift
+    /// playerNode.scheduleFile(audioFile,
+    ///                         at: nil,
+    ///                         completionCallbackType: .dataPlayedBack) { _ in
+    ///     /* Handle any work that's necessary after playback. */
+    /// }
+    /// ```
+    ///
+    /// Before you play the audio, start the engine.
+    ///
+    /// ```swift
+    /// do {
+    ///     try audioEngine.start()
+    ///     playerNode.play()
+    /// } catch {
+    ///     /* Handle the error. */
+    /// }
+    /// ```
+    ///
+    /// When you’re done, stop the player and the engine.
+    ///
+    /// ```swift
+    /// playerNode.stop()
+    /// audioEngine.stop()
+    /// ```
+    ///
+    ///
     /// An AVAudioEngine contains a group of connected AVAudioNodes ("nodes"), each of which performs
     /// an audio signal generation, processing, or input/output task.
     ///
@@ -203,8 +302,6 @@ extern_class!(
     /// It can also be configured to operate in manual rendering mode, i.e. not connected to an
     /// audio device and rendering in response to requests from the client, normally at or
     /// faster than realtime rate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioengine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioEngine;
@@ -924,6 +1021,21 @@ impl AVAudioEngine {
 }
 
 extern "C" {
+    /// A notification the framework posts when the audio engine configuration changes.
+    ///
+    /// ## Discussion
+    ///
+    /// When the audio engine’s I/O unit observes a change to the audio input or output hardware’s channel count or sample rate, the audio engine stops, uninitializes itself, and issues this notification. The nodes remain in an attached and connected state with the previously set formats. The app must reestablish connections if the connection formats need to change.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Don’t deallocate the engine from within the client’s notification handler. The callback happens on an internal dispatch queue and can deadlock while trying to tear down the engine synchronously.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A notification generated on engine configuration changes when rendering to/from an audio
     /// device.
     ///
@@ -948,7 +1060,5 @@ extern "C" {
     /// Note that the engine must not be deallocated from within the client's notification handler
     /// because the callback happens on an internal dispatch queue and can deadlock while trying to
     /// synchronously teardown the engine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioengineconfigurationchangenotification?language=objc)
     pub static AVAudioEngineConfigurationChangeNotification: &'static NSString;
 }

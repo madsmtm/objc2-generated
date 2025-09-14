@@ -7,22 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An object that indicates whether modifications should apply to a single event or all future events of a recurring event.
 /// Values for controlling what occurrences to affect in a recurring event.
 ///
 /// This enumerated type is used to indicate the scope of a change being made to a repeating event. EKSpanThisEvent
 /// indicates the changes should apply only to this event, EKSpanFutureEvents indicates the changes should apply to
 /// this event and all future events in the pattern.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKSpan(pub NSInteger);
 impl EKSpan {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan/thisevent?language=objc)
+    /// Modifications to this event instance should affect only this instance.
     #[doc(alias = "EKSpanThisEvent")]
     pub const ThisEvent: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekspan/futureevents?language=objc)
+    /// Modifications to this event instance should also affect future instances of this event.
     #[doc(alias = "EKSpanFutureEvents")]
     pub const FutureEvents: Self = Self(1);
 }
@@ -35,7 +34,13 @@ unsafe impl RefEncode for EKSpan {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventsearchcallback?language=objc)
+/// The signature for a closure that operates on events when enumerating them.
+///
+/// Parameters:
+/// - event: An event object to operate on.
+///
+/// - stop: A pointer to a Boolean value. Set this value to [`true`](https://developer.apple.com/documentation/swift/true) to stop enumerating events.
+///
 #[cfg(all(
     feature = "EKCalendarItem",
     feature = "EKEvent",
@@ -44,12 +49,47 @@ unsafe impl RefEncode for EKSpan {
 ))]
 pub type EKEventSearchCallback = *mut block2::DynBlock<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler?language=objc)
+/// The signature for a closure that EventKit calls when requesting access to event and reminder data.
+///
+/// Parameters:
+/// - granted: [`true`](https://developer.apple.com/documentation/swift/true) if the user allows the app to access data in the event store; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+/// - error: The error that occurred, if any; otherwise, `nil`.
+///
 #[cfg(feature = "block2")]
 pub type EKEventStoreRequestAccessCompletionHandler =
     *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
+    /// An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.
+    ///
+    /// ## Overview
+    ///
+    /// The `EKEventStore` class is an app’s point of contact for accessing calendar and reminder data.
+    ///
+    /// After initializing the event store, you must request access to events or reminders before attempting to fetch or create data. To request access to reminders, call [`requestFullAccessToRemindersWithCompletion:`](https://developer.apple.com/documentation/eventkit/ekeventstore/requestfullaccesstoreminders(completion:)). To request access to events, call [`requestWriteOnlyAccessToEventsWithCompletion:`](https://developer.apple.com/documentation/eventkit/ekeventstore/requestwriteonlyaccesstoevents(completion:)) or [`requestFullAccessToEventsWithCompletion:`](https://developer.apple.com/documentation/eventkit/ekeventstore/requestfullaccesstoevents(completion:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To request access to events and reminders, your app needs to include permission strings in its `Info.plist` file that explain to someone why the app needs access. For more information, see [Accessing the event store](https://developer.apple.com/documentation/eventkit/accessing-the-event-store).
+    ///
+    ///
+    ///
+    /// </div>
+    /// A typical workflow for using an event store is:
+    ///
+    /// 1. Create a predicate, or a search query for events, with [`predicateForEventsWithStartDate:endDate:calendars:`](https://developer.apple.com/documentation/eventkit/ekeventstore/predicateforevents(withstart:end:calendars:)).
+    ///
+    /// 2. Fetch and process events that match the predicate with the [`eventsMatchingPredicate:`](https://developer.apple.com/documentation/eventkit/ekeventstore/events(matching:)) and [`enumerateEventsMatchingPredicate:usingBlock:`](https://developer.apple.com/documentation/eventkit/ekeventstore/enumerateevents(matching:using:)) methods.
+    ///
+    /// 3. Save and delete events from the event store with the [`saveEvent:span:commit:error:`](https://developer.apple.com/documentation/eventkit/ekeventstore/save(_:span:commit:)) and [`removeEvent:span:commit:error:`](https://developer.apple.com/documentation/eventkit/ekeventstore/remove(_:span:commit:)) methods.
+    ///
+    /// Use similar methods to access and manipulate reminders.
+    ///
+    /// After receiving an object from an event store, don’t use that object with a different event store. This restriction applies to [`EKObject`](https://developer.apple.com/documentation/eventkit/ekobject) subclasses such as [`EKEvent`](https://developer.apple.com/documentation/eventkit/ekevent), [`EKReminder`](https://developer.apple.com/documentation/eventkit/ekreminder), [`EKCalendar`](https://developer.apple.com/documentation/eventkit/ekcalendar), and [`EKSource`](https://developer.apple.com/documentation/eventkit/eksource), as well as predicates that the event store creates. For example, don’t fetch an event from one event store, modify the event, and then pass it to [`saveEvent:span:error:`](https://developer.apple.com/documentation/eventkit/ekeventstore/save(_:span:)) in a different store.
+    ///
+    ///
     /// The EKEventStore class provides an interface for accessing and manipulating calendar events and reminders.
     ///
     /// The EKEventStore class is the main point of contact for accessing Calendar data. You must
@@ -58,8 +98,6 @@ extern_class!(
     /// Events, Reminders, and Calendar objects retrieved from an event store cannot be used with any other event
     /// store. It is generally best to hold onto a long-lived instance of an event store, most
     /// likely as a singleton instance in your application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKEventStore;
@@ -664,6 +702,23 @@ impl EKEventStore {
 }
 
 extern "C" {
+    /// A notification posted when changes are made to the Calendar database.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is posted whenever changes are made to the Calendar database, including adding, removing, and changing events or reminders. Individual changes are not described. When you receive this notification, you should refetch all [`EKEvent`](https://developer.apple.com/documentation/eventkit/ekevent) and [`EKReminder`](https://developer.apple.com/documentation/eventkit/ekreminder) objects you have accessed, as they are considered stale.
+    ///
+    /// If you are actively editing an event and do not wish to refetch it unless it is absolutely necessary to do so, you can call the refresh method on it. If the method returns `true`, you do not need to refetch the event.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///   The system posts this notification on the main actor.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Notification name sent out when the database is changed by either an external process,
     /// another event store in the same process, or by calling saveEvent: or removeEvent: on a
     /// store you are managing. When you receive this notification, you should consider all EKEvent
@@ -675,7 +730,5 @@ extern "C" {
     /// otherwise, you should release it and abandon what you were doing with it. The view
     /// controllers provided by EventKitUI automatically deal with this for you.
     /// This notification will also be posted if access to events or reminders is changed by the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorechangednotification?language=objc)
     pub static EKEventStoreChangedNotification: &'static NSString;
 }

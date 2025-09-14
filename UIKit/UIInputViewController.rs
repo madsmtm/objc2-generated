@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdocumentproxy?language=objc)
+    /// An object that provides textual context to a custom keyboard.
+    ///
+    /// ## Overview
+    ///
+    /// Through conformance to the [`UIKeyInput`](https://developer.apple.com/documentation/uikit/uikeyinput) protocol, a text document proxy enables a custom keyboard (which is based on the [`UIInputViewController`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller) class) to insert and delete text, to adjust the position of the insertion point, and to determine whether a text input object is empty. The text document proxy uses the keyboard’s [`textDocumentProxy`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/textdocumentproxy) property to do this.
+    ///
+    /// For more about using a text document proxy, see [`UIInputViewController`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller) and [Creating a custom keyboard](https://developer.apple.com/documentation/uikit/creating-a-custom-keyboard).
+    ///
+    ///
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDocumentProxy: UIKeyInput + MainThreadOnly {
         #[unsafe(method(documentContextBeforeInput))]
@@ -46,7 +54,31 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputviewcontroller?language=objc)
+    /// The primary view controller for a custom keyboard app extension.
+    ///
+    /// ## Overview
+    ///
+    /// To create a custom keyboard, first subclass the [`UIInputViewController`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller) class, then add your keyboard’s user interface to the [`inputView`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/inputview) property of your subclass. In Xcode, you can start a custom keyboard by choosing the Custom Keyboard target template.
+    ///
+    /// A custom keyboard can respond to user input events in the following ways:
+    ///
+    /// - Add text in the form of an unattributed [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object at the insertion point in the current text input object, by calling the [`insertText:`](https://developer.apple.com/documentation/uikit/uikeyinput/inserttext(_:)) method on the [`textDocumentProxy`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/textdocumentproxy) property. This property provides that method through its conformance to the [`UIKeyInput`](https://developer.apple.com/documentation/uikit/uikeyinput) protocol
+    ///
+    /// - Delete text in a backward direction, starting at the insertion point, by calling the [`deleteBackward`](https://developer.apple.com/documentation/uikit/uikeyinput/deletebackward()) method on the [`textDocumentProxy`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/textdocumentproxy) property.
+    ///
+    /// - Switch to another keyboard in the set of user-enabled keyboards, by calling the [`advanceToNextInputMode`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/advancetonextinputmode()) method.
+    ///
+    /// - Dismiss the keyboard, by calling the [`dismissKeyboard`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/dismisskeyboard()) method.
+    ///
+    /// Obtain textual context around the insertion point by reading the [`textDocumentProxy`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/textdocumentproxy) properties [`documentContextBeforeInput`](https://developer.apple.com/documentation/uikit/uitextdocumentproxy/documentcontextbeforeinput) and [`documentContextAfterInput`](https://developer.apple.com/documentation/uikit/uitextdocumentproxy/documentcontextafterinput). To find out if the current text input object is empty, call the [`hasText`](https://developer.apple.com/documentation/uikit/uikeyinput/hastext) method on the [`textDocumentProxy`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/textdocumentproxy) property. You can employ this textual context by considering it along with user input, to offer context-sensitive output to a document from your keyboard.
+    ///
+    /// An input view controller conforms to the [`UITextInputDelegate`](https://developer.apple.com/documentation/uikit/uitextinputdelegate) protocol, allowing you to respond to changes in document content and position of the insertion point.
+    ///
+    /// To present an appropriate keyboard layout, respond to the current text input object’s [`UIKeyboardType`](https://developer.apple.com/documentation/uikit/uikeyboardtype) property. For each keyboard type trait you support, change the contents of your primary view accordingly.
+    ///
+    /// For more about creating a custom keyboard, read [Custom Keyboard](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/CustomKeyboard.html#//apple_ref/doc/uid/TP40014214-CH16) in [App Extension Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214).
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

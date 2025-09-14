@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents an opaque Merkle tree proof of inclusion. Inclusion hashes are provided to verify that the individual device has access to the document.
+    /// An object that represents proof of inclusion to a Merkle tree.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swperson/identityproof?language=objc)
+    /// ## Overview
+    ///
+    /// This object represents an opaque Merkle tree proof of inclusion. Inclusion hashes are provided to verify that the individual device has access to the document.
+    ///
+    ///
+    /// Represents an opaque Merkle tree proof of inclusion. Inclusion hashes are provided to verify that the individual device has access to the document.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWPersonIdentityProof;
@@ -67,7 +72,7 @@ impl SWPersonIdentityProof {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swperson/signedidentityproof?language=objc)
+    /// The signature that the system creates by signing the data with this person’s identity.
     #[unsafe(super(SWPersonIdentityProof, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWSignedPersonIdentityProof;

@@ -10,7 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmm?language=objc)
 #[doc(alias = "ColorSyncCMMRef")]
 #[repr(C)]
 pub struct ColorSyncCMM {
@@ -27,7 +26,6 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for ColorSyncCMM {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmgettypeid()?language=objc)
     #[doc(alias = "ColorSyncCMMGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,7 +37,6 @@ unsafe impl ConcreteType for ColorSyncCMM {
 }
 
 impl ColorSyncCMM {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmcreate(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMCreate")]
     #[inline]
     pub unsafe fn new(cmm_bundle: &CFBundle) -> Option<CFRetained<ColorSyncCMM>> {
@@ -50,7 +47,6 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmgetbundle(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMGetBundle")]
     #[inline]
     pub unsafe fn bundle(&self) -> Option<CFRetained<CFBundle>> {
@@ -61,7 +57,6 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmcopylocalizedname(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMCopyLocalizedName")]
     #[inline]
     pub unsafe fn localized_name(&self) -> Option<CFRetained<CFString>> {
@@ -72,7 +67,6 @@ impl ColorSyncCMM {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmcopycmmidentifier(_:)?language=objc)
     #[doc(alias = "ColorSyncCMMCopyCMMIdentifier")]
     #[inline]
     pub unsafe fn cmm_identifier(&self) -> Option<CFRetained<CFString>> {
@@ -84,13 +78,10 @@ impl ColorSyncCMM {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmiteratecallback?language=objc)
 pub type ColorSyncCMMIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<ColorSyncCMM>, NonNull<c_void>) -> bool>;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciterateinstalledcmms(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -101,7 +92,6 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializelinkprofileproc?language=objc)
 #[cfg(feature = "ColorSyncProfile")]
 pub type CMMInitializeLinkProfileProc = Option<
     unsafe extern "C-unwind" fn(
@@ -111,7 +101,6 @@ pub type CMMInitializeLinkProfileProc = Option<
     ) -> bool,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmminitializetransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMInitializeTransformProc = Option<
     unsafe extern "C-unwind" fn(
@@ -121,7 +110,6 @@ pub type CMMInitializeTransformProc = Option<
     ) -> bool,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmapplytransformproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMApplyTransformProc = Option<
     unsafe extern "C-unwind" fn(
@@ -142,7 +130,6 @@ pub type CMMApplyTransformProc = Option<
     ) -> bool,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cmmcreatetransformpropertyproc?language=objc)
 #[cfg(feature = "ColorSyncTransform")]
 pub type CMMCreateTransformPropertyProc = Option<
     unsafe extern "C-unwind" fn(
@@ -153,22 +140,18 @@ pub type CMMCreateTransformPropertyProc = Option<
 >;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializelinkprofileprocname?language=objc)
     pub static kCMMInitializeLinkProfileProcName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmminitializetransformprocname?language=objc)
     pub static kCMMInitializeTransformProcName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmmapplytransformprocname?language=objc)
     pub static kCMMApplyTransformProcName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcmmcreatetransformpropertyprocname?language=objc)
     pub static kCMMCreateTransformPropertyProcName: &'static CFString;
 }
 

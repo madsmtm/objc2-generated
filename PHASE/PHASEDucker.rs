@@ -8,13 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages competing sounds.
+    ///
+    /// ## Overview
+    ///
+    /// When a sound plays in any of the source groups, this class lowers the volume of all the target groups so the listener hears the source sound more clearly. You set the source and target using [`PHASEGroup`](https://developer.apple.com/documentation/phase/phasegroup) objects; see [`sourceGroups`](https://developer.apple.com/documentation/phase/phaseducker/sourcegroups) and [`targetGroups`](https://developer.apple.com/documentation/phase/phaseducker/targetgroups).
+    ///
+    /// ### Lower Background Music During a Monologue
+    ///
+    /// When an app plays a monologue, the background music may need to lower, or _duck_, to enhance the clarity of the vocals. The following code demonstrates a ducker that configures a group for background music, and another group for the vocals.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let bgmGroup = PHASEGroup(identifier: \"backgroundMusicGroup\")", "let voGroup = PHASEGroup(identifier: \"voiceOverGroup\")", "", "let ducker = PHASEDucker(engine: myEngine, sourceGroups: [voGroup],", "    targetGroups: [bgmGroup], gain: 0.25, attackTime: 0.25, releaseTime: 0.5,", "    attackCurve: .linear, releaseCurve: .linear)", "", "ducker.activate()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["PHASEGroup* bgmGroup = [[PHASEGroup alloc] ", "    initWithEngine:_objects->mEngine uid:@\"backgroundMusicGroup\"];", "PHASEGroup* voGroup = [[PHASEGroup alloc] ", "    initWithEngine:_objects->mEngine uid:@\"voiceOverGroup\"];", "", "auto ducker = [[PHASEDucker alloc] ", "    initWithEngine:_objects->mEngine", "        sourceGroups:[NSSet setWithObject:voGroup]", "        targetGroups:[NSSet setWithObject:bgmGroup]", "        gain:0.25", "        attackTime:0.25", "        releaseTime:0.5", "        attackCurve:PHASECurveTypeLinear", "        releaseCurve:PHASECurveTypeLinear];", "", "[ducker activate];"], metadata: None }] }] })
+    /// When an app sets up the ducking configuration in advance, PHASE automatically lowers the background music at runtime when the vocals play.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEDucker is used to describe ducking behavior across different groups.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseducker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEDucker;

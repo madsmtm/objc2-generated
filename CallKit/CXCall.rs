@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcall?language=objc)
+    /// A telephony call.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t instantiate [`CXCall`](https://developer.apple.com/documentation/callkit/cxcall) objects directly. Instead, [`CXCall`](https://developer.apple.com/documentation/callkit/cxcall) objects are created by the telephony provider when an incoming call is received or an outgoing call is initiated.
+    ///
+    /// Each [`CXCall`](https://developer.apple.com/documentation/callkit/cxcall) object is uniquely identified by a [`UUID`](https://developer.apple.com/documentation/callkit/cxcall/uuid). You primarily interact with calls by passing their unique identifiers to CallKit APIs. For example, to place a call on hold, you create an instance of [`CXSetHeldCallAction`](https://developer.apple.com/documentation/callkit/cxsetheldcallaction) with [`initWithCallUUID:onHold:`](https://developer.apple.com/documentation/callkit/cxsetheldcallaction/init(call:onhold:)) passing the [`UUID`](https://developer.apple.com/documentation/callkit/cxcall/uuid) of the call and [`true`](https://developer.apple.com/documentation/swift/true), create a [`CXTransaction`](https://developer.apple.com/documentation/callkit/cxtransaction) object containing the action, and then pass the transaction to an instance of [`CXCallController`](https://developer.apple.com/documentation/callkit/cxcallcontroller) using the [`requestTransaction:completion:`](https://developer.apple.com/documentation/callkit/cxcallcontroller/request(_:completion:)) method.
+    ///
+    /// You can use the [`CXCallObserver`](https://developer.apple.com/documentation/callkit/cxcallobserver) managed by a [`CXCallController`](https://developer.apple.com/documentation/callkit/cxcallcontroller) to access [`CXCall`](https://developer.apple.com/documentation/callkit/cxcall) instances for active calls using the [`calls`](https://developer.apple.com/documentation/callkit/cxcallobserver/calls) property, or provide an object conforming to the [`CXCallObserverDelegate`](https://developer.apple.com/documentation/callkit/cxcallobserverdelegate) protocol to be notified anytime a call is updated.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCall;

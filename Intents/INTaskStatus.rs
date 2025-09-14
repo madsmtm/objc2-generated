@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus?language=objc)
+/// Constants indicating the completion state of a task.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskStatus(pub NSInteger);
 impl INTaskStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus/unknown?language=objc)
+    /// A constant indicating to search for tasks whose status is unknown.
     #[doc(alias = "INTaskStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus/notcompleted?language=objc)
+    /// A constant indicating to search for tasks whose status is not complete.
     #[doc(alias = "INTaskStatusNotCompleted")]
     pub const NotCompleted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatus/completed?language=objc)
+    /// A constant indicating to search for tasks whose status is complete.
     #[doc(alias = "INTaskStatusCompleted")]
     pub const Completed: Self = Self(2);
 }

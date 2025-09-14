@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle?language=objc)
+/// The styles a button can apply to its title to communicate its action.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTextButtonStyle(pub NSInteger);
 impl CPTextButtonStyle {
+    /// A style that indicates the button performs an action other than to confirm or cancel.
     /// A style that indicates a default action.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle/normal?language=objc)
     #[doc(alias = "CPTextButtonStyleNormal")]
     pub const Normal: Self = Self(0);
+    /// A style that indicates the button cancels an action and doesn’t change data.
     /// A style that indicates the action will cancel and leave data unchanged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle/cancel?language=objc)
     #[doc(alias = "CPTextButtonStyleCancel")]
     pub const Cancel: Self = Self(1);
+    /// A style that indicates the button confirms an action and changes data.
     /// A style that indicates the button will confirm an action.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbuttonstyle/confirm?language=objc)
     #[doc(alias = "CPTextButtonStyleConfirm")]
     pub const Confirm: Self = Self(2);
 }
@@ -39,7 +36,13 @@ unsafe impl RefEncode for CPTextButtonStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptextbutton?language=objc)
+    /// A button that displays a stylized title.
+    ///
+    /// ## Overview
+    ///
+    /// You use a text button to attach custom actions to an instance of [`CPPointOfInterest`](https://developer.apple.com/documentation/carplay/cppointofinterest) or [`CPInformationTemplate`](https://developer.apple.com/documentation/carplay/cpinformationtemplate). When creating a button, you provide a closure that CarPlay invokes when the user taps the button. You communicate the button’s purpose using a title and a text style that the button applies to the title.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPTextButton;

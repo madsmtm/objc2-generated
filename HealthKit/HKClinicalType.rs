@@ -6,70 +6,83 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier?language=objc)
+/// A type identifier for the different categories of clinical records.
+///
+/// ## Overview
+///
+/// Clinical record samples are read-only, so you can’t request authorization to share clinical record types. You can’t create or save new [`HKClinicalRecord`](https://developer.apple.com/documentation/healthkit/hkclinicalrecord) objects.
+///
+/// For additional information, see [Accessing Health Records](https://developer.apple.com/documentation/healthkit/accessing-health-records).
+///
+///
 // NS_TYPED_ENUM
 pub type HKClinicalTypeIdentifier = NSString;
 
 extern "C" {
+    /// A type identifier for records of allergic or intolerant reactions.
     /// A type identifier for records of allergies or intolerances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/allergyrecord?language=objc)
     pub static HKClinicalTypeIdentifierAllergyRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
-    /// A type identifier for records that represent clinical notes.
+    /// A type identifier for records of clinical notes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/clinicalnoterecord?language=objc)
+    /// ## Discussion
+    ///
+    /// Clinical notes can have one or more attached files. While these files are often PDFs, HTML, or text files, they can be any format. Check the [`HKAttachment`](https://developer.apple.com/documentation/healthkit/hkattachment) object’s [`contentType`](https://developer.apple.com/documentation/healthkit/hkattachment/contenttype) property to determine the file type. For more information on accessing the attachments, see [`HKAttachment`](https://developer.apple.com/documentation/healthkit/hkattachment).
+    ///
+    /// If your app has permission to read [`HKClinicalTypeIdentifierClinicalNoteRecord`](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/clinicalnoterecord) samples, it can also access the attachments. For more information on reading clinical note records, see [Accessing Health Records](https://developer.apple.com/documentation/healthkit/accessing-health-records).
+    ///
+    ///
+    /// A type identifier for records that represent clinical notes.
     pub static HKClinicalTypeIdentifierClinicalNoteRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
+    /// A type identifier for records of a condition, problem, diagnosis, or other event.
     /// A type identifier for records of a condition, problem, or diagnosis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/conditionrecord?language=objc)
     pub static HKClinicalTypeIdentifierConditionRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
+    /// A type identifier for records of the current or historical administration of vaccines.
     /// A type identifier for records of vaccine administration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/immunizationrecord?language=objc)
     pub static HKClinicalTypeIdentifierImmunizationRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
     /// A type identifier for records of lab results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/labresultrecord?language=objc)
+    /// A type identifier for records of lab results.
     pub static HKClinicalTypeIdentifierLabResultRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
+    /// A type identifier for records of medication.
     /// A type identifier for records of medication prescription, intake, or administration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/medicationrecord?language=objc)
     pub static HKClinicalTypeIdentifierMedicationRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
+    /// A type identifier for records of procedures.
     /// A type identifier for records of clinical procedures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/procedurerecord?language=objc)
     pub static HKClinicalTypeIdentifierProcedureRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
     /// A type identifier for records of vital signs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/vitalsignrecord?language=objc)
+    /// A type identifier for records of vital signs.
     pub static HKClinicalTypeIdentifierVitalSignRecord: &'static HKClinicalTypeIdentifier;
 }
 
 extern "C" {
     /// A type identifier for records containing information about the user’s insurance coverage.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/coveragerecord?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this identifier for records containing information that might typically appear on the user’s insurance card.
+    ///
+    ///
+    /// A type identifier for records containing information about the user’s insurance coverage.
     pub static HKClinicalTypeIdentifierCoverageRecord: &'static HKClinicalTypeIdentifier;
 }
 
@@ -87,8 +100,7 @@ impl HKObjectType {
 
 extern_class!(
     /// A type that identifies samples that contain clinical record data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicaltype?language=objc)
+    /// A type that identifies samples that contain clinical record data.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObjectType")]

@@ -10,182 +10,245 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetlowquality?language=objc)
+    /// A preset to export a low-quality movie file.
+    ///
+    /// ## Discussion
+    ///
+    /// This preset compresses video in H.264 format and audio in AAC format.
+    ///
+    ///
     pub static AVAssetExportPresetLowQuality: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmediumquality?language=objc)
+    /// A preset to export a medium-quality movie file.
+    ///
+    /// ## Discussion
+    ///
+    /// This preset compresses video in H.264 format and audio in AAC format.
+    ///
+    ///
     pub static AVAssetExportPresetMediumQuality: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethighestquality?language=objc)
+    /// A preset to export a high-quality movie file.
+    ///
+    /// ## Discussion
+    ///
+    /// This preset compresses video in H.264 format and audio in AAC format.
+    ///
+    ///
     pub static AVAssetExportPresetHighestQuality: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevchighestquality?language=objc)
+    /// A preset to export the highest available video quality and HEVC video compression.
+    ///
+    /// ## Discussion
+    ///
+    /// This preset compresses video in HEVC format and audio in AAC format.
+    ///
+    ///
     pub static AVAssetExportPresetHEVCHighestQuality: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevchighestqualitywithalpha?language=objc)
+    /// A preset to export the highest available video quality and HEVC video compression with alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// This preset compresses video in HEVC format and audio in AAC format.
+    ///
+    ///
     pub static AVAssetExportPresetHEVCHighestQualityWithAlpha: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpreset640x480?language=objc)
+    /// A preset to export a 640 by 480 movie that contains H.264 video and AAC audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t scale movies up from a smaller size.
+    ///
+    ///
     pub static AVAssetExportPreset640x480: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpreset960x540?language=objc)
+    /// A preset to export a 960 by 540 movie that contains H.264 video and AAC audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t scale movies up from a smaller size.
+    ///
+    ///
     pub static AVAssetExportPreset960x540: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpreset1280x720?language=objc)
+    /// A preset to export a 1280 by 720 movie that contains H.264 video and AAC audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t scale movies up from a smaller size.
+    ///
+    ///
     pub static AVAssetExportPreset1280x720: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpreset1920x1080?language=objc)
+    /// A preset to export a 1920 by 1080 movie that contains H.264 video and AAC audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t scale movies up from a smaller size.
+    ///
+    ///
     pub static AVAssetExportPreset1920x1080: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpreset3840x2160?language=objc)
+    /// A preset to export a 3840 by 2160 movie that contains H.264 video and AAC audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t scale movies up from a smaller size.
+    ///
+    ///
     pub static AVAssetExportPreset3840x2160: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc1920x1080?language=objc)
+    /// A preset to export a 1920 by 1080 movie that contains HEVC video and AAC audio.
     pub static AVAssetExportPresetHEVC1920x1080: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc1920x1080withalpha?language=objc)
+    /// A preset to export a 1920 by 1080 movie that contains HEVC video with alpha and AAC audio.
     pub static AVAssetExportPresetHEVC1920x1080WithAlpha: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc3840x2160?language=objc)
+    /// A preset to export a 3840 by 2160 movie that contains HEVC video and AAC audio.
     pub static AVAssetExportPresetHEVC3840x2160: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc3840x2160withalpha?language=objc)
+    /// A preset to export a 3840 by 2160 movie that contains HEVC video with alpha and AAC audio.
     pub static AVAssetExportPresetHEVC3840x2160WithAlpha: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc4320x2160?language=objc)
     pub static AVAssetExportPresetHEVC4320x2160: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresethevc7680x4320?language=objc)
+    /// A preset to export a 7680 by 4320 movie that contains HEVC video and AAC audio.
     pub static AVAssetExportPresetHEVC7680x4320: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc960x960?language=objc)
+    /// A preset to export a 960 by 960 movie that contains MV-HEVC video and AAC audio.
     pub static AVAssetExportPresetMVHEVC960x960: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc1440x1440?language=objc)
+    /// A preset to export a 1440 by 1440 movie that contains MV-HEVC video and AAC audio.
     pub static AVAssetExportPresetMVHEVC1440x1440: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc4320x4320?language=objc)
     pub static AVAssetExportPresetMVHEVC4320x4320: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetmvhevc7680x7680?language=objc)
     pub static AVAssetExportPresetMVHEVC7680x7680: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4a?language=objc)
+    /// A preset to export an audio-only MPEG 4 Audio file with appropriate iTunes gapless playback data.
     pub static AVAssetExportPresetAppleM4A: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetpassthrough?language=objc)
+    /// A preset to export the asset in its current format, unless otherwise prohibited.
+    ///
+    /// ## Discussion
+    ///
+    /// This option doesn’t show up in the [`allExportPresets`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/allexportpresets()) and [`exportPresetsCompatibleWithAsset:`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/exportpresets(compatiblewith:)) methods.
+    ///
+    ///
     pub static AVAssetExportPresetPassthrough: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetappleprores422lpcm?language=objc)
+    /// A preset to export a QuickTime movie with Apple ProRes 422 video and LPCM audio.
     pub static AVAssetExportPresetAppleProRes422LPCM: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetappleprores4444lpcm?language=objc)
+    /// A preset to export a QuickTime movie with Apple ProRes 4444 video and LPCM audio.
     pub static AVAssetExportPresetAppleProRes4444LPCM: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4vcellular?language=objc)
+    /// A preset to export a format suitable for playing on Apple devices when it streams over a cellular network.
     pub static AVAssetExportPresetAppleM4VCellular: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4vipod?language=objc)
+    /// A preset to export a format suitable for playing on an iPod.
     pub static AVAssetExportPresetAppleM4ViPod: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4v480psd?language=objc)
+    /// A preset to export a 480p Standard Definition format suitable for playing on Apple devices.
     pub static AVAssetExportPresetAppleM4V480pSD: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4vappletv?language=objc)
+    /// A preset to export a format suitable for playing on Apple TV.
     pub static AVAssetExportPresetAppleM4VAppleTV: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4vwifi?language=objc)
+    /// A preset to export a format suitable for playing on Apple devices it streams over a WiFi network.
     pub static AVAssetExportPresetAppleM4VWiFi: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4v720phd?language=objc)
+    /// A preset to export a 720p High Definition format suitable for playing on Apple devices.
     pub static AVAssetExportPresetAppleM4V720pHD: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportpresetapplem4v1080phd?language=objc)
+    /// A preset to export a 1080p High Definition format suitable for playing on Apple devices.
     pub static AVAssetExportPresetAppleM4V1080pHD: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum?language=objc)
+/// Values that indicate the state of an export session.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetExportSessionStatus(pub NSInteger);
 impl AVAssetExportSessionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/unknown?language=objc)
+    /// The session status is unknown.
     #[doc(alias = "AVAssetExportSessionStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/waiting?language=objc)
+    /// The session is waiting to export more data.
     #[doc(alias = "AVAssetExportSessionStatusWaiting")]
     pub const Waiting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/exporting?language=objc)
+    /// The export is in progress.
     #[doc(alias = "AVAssetExportSessionStatusExporting")]
     pub const Exporting: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/completed?language=objc)
+    /// The export completes successfully.
     #[doc(alias = "AVAssetExportSessionStatusCompleted")]
     pub const Completed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/failed?language=objc)
+    /// The export fails.
     #[doc(alias = "AVAssetExportSessionStatusFailed")]
     pub const Failed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession/status-swift.enum/cancelled?language=objc)
+    /// You canceled the export.
     #[doc(alias = "AVAssetExportSessionStatusCancelled")]
     pub const Cancelled: Self = Self(5);
 }
@@ -198,6 +261,7 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type that specifies policies for how an export session processes alternate tracks in a track group.
 /// A bitfield type that specifies output handling policies for alternate tracks in a track group.
 ///
 ///
@@ -206,21 +270,37 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 ///
 ///
 /// Preserve alternate tracks via pass-through.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetTrackGroupOutputHandling(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetTrackGroupOutputHandling: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/avassettrackgroupoutputhandlingnone?language=objc)
+/// A policy that doesn’t pass through alternate audio tracks from the source asset during export.
+///
+/// ## Discussion
+///
+/// Setting this policy tells the session to disregard alternate track group assignments in the original asset.
+///
+///
         #[doc(alias = "AVAssetTrackGroupOutputHandlingNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/preservealternatetracks?language=objc)
+/// A policy that passes through alternate audio tracks from the source asset during export.
+///
+/// ## Discussion
+///
+/// Setting this policy tells the session to export alternate tracks in a track group without reencoding them.
+///
+///
         #[doc(alias = "AVAssetTrackGroupOutputHandlingPreserveAlternateTracks")]
         const PreserveAlternateTracks = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/avassettrackgroupoutputhandlingdefaultpolicy?language=objc)
+/// The default track group output handling policy.
+///
+/// ## Discussion
+///
+/// The default policy is equivalent to [`AVAssetTrackGroupOutputHandlingNone`](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling/avassettrackgroupoutputhandlingnone).
+///
+///
         #[doc(alias = "AVAssetTrackGroupOutputHandlingDefaultPolicy")]
         const DefaultPolicy = AVAssetTrackGroupOutputHandling::None.0;
     }
@@ -235,6 +315,13 @@ unsafe impl RefEncode for AVAssetTrackGroupOutputHandling {
 }
 
 extern_class!(
+    /// An object that exports assets in a format that you specify using an export preset.
+    ///
+    /// ## Overview
+    ///
+    /// You configure this object to export an instance of [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) by setting an export preset, an output file type, and an output URL.
+    ///
+    ///
     /// An AVAssetExportSession creates a new timed media resource from the contents of an
     /// existing AVAsset in the form described by a specified export preset.
     ///
@@ -260,8 +347,6 @@ extern_class!(
     /// completion, the status property indicates whether the export has completed
     /// successfully. If it has failed, the value of the error property supplies additional
     /// information about the reason for the failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetExportSession;

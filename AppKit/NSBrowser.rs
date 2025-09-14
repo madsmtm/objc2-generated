@@ -9,30 +9,62 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcontinuousscrollingbrowser?language=objc)
+/// The specific version of the AppKit framework that introduced support the continuous scrolling in a browser view.
+///
+/// ## Discussion
+///
+/// Developers should not need to use this constant unless they are writing applications for macOS 10.3 and earlier.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion = 680.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcolumnresizingbrowser?language=objc)
+/// The specific version of the AppKit framework that introduced support for resizing individual browser columns.
+///
+/// ## Discussion
+///
+/// Developers should not need to use this constant unless they are writing applications for macOS 10.3 and earlier.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnsautosavename-swift.typealias?language=objc)
 pub type NSBrowserColumnsAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum?language=objc)
+/// Types of browser column resizing.
+///
+/// ## Overview
+///
+/// These constants are used by the [`columnResizingType`](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.property) methods.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBrowserColumnResizingType(pub NSUInteger);
 impl NSBrowserColumnResizingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum/nocolumnresizing?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Neither `NSBrowser` nor the user can change the column width. The developer must explicitly set all column widths.
+    ///
+    ///
     #[doc(alias = "NSBrowserNoColumnResizing")]
     pub const NoColumnResizing: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum/autocolumnresizing?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// All columns have the same width, calculated using a combination of the minimum column width and maximum number of visible columns settings. The column width changes as the window size changes. The user cannot resize columns.
+    ///
+    ///
     #[doc(alias = "NSBrowserAutoColumnResizing")]
     pub const AutoColumnResizing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum/usercolumnresizing?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The developer chooses the initial column widths, but users can resize all columns simultaneously or each column individually.
+    ///
+    ///
     #[doc(alias = "NSBrowserUserColumnResizing")]
     pub const UserColumnResizing: Self = Self(2);
 }
@@ -45,16 +77,26 @@ unsafe impl RefEncode for NSBrowserColumnResizingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/dropoperation?language=objc)
+/// The type used to specify the drop type of a drag-and-drop operation. See [`browser:validateDrop:proposedRow:column:dropOperation:`](https://developer.apple.com/documentation/appkit/nsbrowserdelegate/browser(_:validatedrop:proposedrow:column:dropoperation:)) for more information.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBrowserDropOperation(pub NSUInteger);
 impl NSBrowserDropOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/dropoperation/on?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The drop occurs at the row to which the item was dragged.
+    ///
+    ///
     #[doc(alias = "NSBrowserDropOn")]
     pub const On: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/dropoperation/above?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The drop occurs above the row to which the item was dragged.
+    ///
+    ///
     #[doc(alias = "NSBrowserDropAbove")]
     pub const Above: Self = Self(1);
 }
@@ -68,7 +110,41 @@ unsafe impl RefEncode for NSBrowserDropOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser?language=objc)
+    /// An interface that displays a hierarchically organized list of data items that can be navigated and selected.
+    ///
+    /// ## Overview
+    ///
+    /// A browser displays information using a set of columns, which are indexed from left to right. Each successive column displays the next level down in the data hierarchy. This class uses the [`NSBrowserCell`](https://developer.apple.com/documentation/appkit/nsbrowsercell) class to implement its user interface.
+    ///
+    /// Browsers have the following components:
+    ///
+    /// - Columns
+    ///
+    /// - Scroll views
+    ///
+    /// - Matrices
+    ///
+    /// - Browser cells
+    ///
+    /// To the user, browsers display data in columns and rows within each column. These components are arranged in the following component hierarchy:
+    ///
+    /// ```objc
+    /// Browser
+    /// |---Columns [1..*]
+    ///     |---Scroll view
+    ///        |---Matrix
+    ///            |---Rows [0..*]
+    /// ```
+    ///
+    /// ### Superclass overrides
+    ///
+    /// - [`opaque`](https://developer.apple.com/documentation/appkit/nsview/isopaque) returns [`true`](https://developer.apple.com/documentation/swift/true) when the browser doesn’t have a title and its background color’s alpha component is `1.0`; otherwise, it returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// ### Protocol implementations
+    ///
+    /// - The [`NSBrowser`](https://developer.apple.com/documentation/appkit/nsbrowser) implementation of [`namesOfPromisedFilesDroppedAtDestination:`](https://developer.apple.com/documentation/appkit/nsdragginginfo/namesofpromisedfilesdropped(atdestination:)) provides the names of the files that the browser promises to create at a specified location, the result of sending `browser:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:inColumn:` to the delegate.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -756,12 +832,18 @@ impl NSBrowser {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnconfigurationdidchangenotification?language=objc)
+    /// Notifies the delegate when the width of a browser column has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the browser whose column sizes need to be made persistent. This notification does not contain a `userInfo` dictionary. If the user resizes more than one column, a single notification is posted when the user is finished resizing.
+    ///
+    ///
     pub static NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowserdelegate?language=objc)
+    /// A set of methods that a browser delegate implements to manage selection, scrolling, sizing, and other behavior.
     pub unsafe trait NSBrowserDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]

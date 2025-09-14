@@ -7,28 +7,52 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Smart Card transmission protocols.
 /// Bitmask of available SmartCard protocols.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardProtocol(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardProtocol: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/tksmartcardprotocolnone?language=objc)
+///
+/// ## Discussion
+///
+/// No transmission protocols.
+///
+///
         #[doc(alias = "TKSmartCardProtocolNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/t0?language=objc)
+///
+/// ## Discussion
+///
+/// T=0 transmission protocol.
+///
+///
         #[doc(alias = "TKSmartCardProtocolT0")]
         const T0 = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/t1?language=objc)
+///
+/// ## Discussion
+///
+/// T=1 transmission protocol.
+///
+///
         #[doc(alias = "TKSmartCardProtocolT1")]
         const T1 = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/t15?language=objc)
+///
+/// ## Discussion
+///
+/// T=15 transmission protocol.
+///
+///
         #[doc(alias = "TKSmartCardProtocolT15")]
         const T15 = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardprotocol/any?language=objc)
+///
+/// ## Discussion
+///
+/// Any available transmission protocols.
+///
+///
         #[doc(alias = "TKSmartCardProtocolAny")]
         const Any = (1<<16)-1;
     }
@@ -43,9 +67,14 @@ unsafe impl RefEncode for TKSmartCardProtocol {
 }
 
 extern_class!(
-    /// Represents single interface-bytes group of ATR.
+    /// A single interface-bytes group for a Smart Card ATR (Answer to Reset).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr/interfacegroup?language=objc)
+    /// ## Overview
+    ///
+    /// You access instances of this class by calling the [`interfaceGroupAtIndex:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr/interfacegroup(at:)) and [`interfaceGroupForProtocol:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr/interfacegroup(for:)) methods on an [`TKSmartCardATR`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr) object.
+    ///
+    ///
+    /// Represents single interface-bytes group of ATR.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardATRInterfaceGroup;
@@ -93,9 +122,22 @@ impl TKSmartCardATRInterfaceGroup {
 }
 
 extern_class!(
-    /// Represents parsed SmartCard ATR.  Provides routine for parsing byte stream or NSData with binary ATR and accessors to parsed ATR parts.
+    /// A parsed ATR (Answer To Reset) message from a Smart Card.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr?language=objc)
+    /// ## Overview
+    ///
+    /// This class declares a programmatic interface to parsing an ATR from data or a byte stream, and accessing the individual parts.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`TKSmartCardATR`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr) class parses ATR messages according to the ISO/IEC 7816-3 specification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Represents parsed SmartCard ATR.  Provides routine for parsing byte stream or NSData with binary ATR and accessors to parsed ATR parts.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardATR;

@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A kernel for performing a pointwise summation of a matrix.
     /// Dependencies: This depends on Metal.framework
     ///
     /// MPSMatrixSum performs a pointwise summation of N MPSMatrix
@@ -33,8 +34,6 @@ extern_class!(
     /// result, and applyNeuron is a neuron activation function.
     ///
     /// Each matrix in the array may have an independent origin.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsum?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

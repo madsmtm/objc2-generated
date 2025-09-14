@@ -7,9 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The ITLibAlbum class represents an album where a given media item (ITLibMediaItem) is contained.
+    /// This class provides information about an album in the iTunes library.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibalbum?language=objc)
+    /// ## Overview
+    ///
+    /// A _media item_ is a track that iTunes associates with an album. See [`ITLibMediaItem`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitem).
+    ///
+    /// A _compilation_ is an album with tracks from more than one source.
+    ///
+    /// If an album is part of a _multiple-disc set_, [`discNumber`](https://developer.apple.com/documentation/ituneslibrary/itlibalbum/discnumber) is the index of the album in the set.
+    ///
+    /// To retrieve an [`ITLibAlbum`](https://developer.apple.com/documentation/ituneslibrary/itlibalbum) instance, use the [`album`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitem/album) property of [`ITLibMediaItem`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitem).
+    ///
+    ///
+    /// The ITLibAlbum class represents an album where a given media item (ITLibMediaItem) is contained.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ITLibAlbum;

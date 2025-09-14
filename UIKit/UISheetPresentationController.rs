@@ -9,30 +9,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/identifier-swift.struct?language=objc)
+/// Constants that identify system detent sizes.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UISheetPresentationControllerDetentIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/identifier-swift.struct/medium?language=objc)
+    /// The identifier for the system’s medium detent.
     pub static UISheetPresentationControllerDetentIdentifierMedium:
         &'static UISheetPresentationControllerDetentIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/identifier-swift.struct/large?language=objc)
+    /// The identifier for the system’s large detent.
     pub static UISheetPresentationControllerDetentIdentifierLarge:
         &'static UISheetPresentationControllerDetentIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentinactive?language=objc)
+    /// A value that represents an inactive detent.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UISheetPresentationControllerDetentInactive: CGFloat;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentresolutioncontext?language=objc)
+    /// A context for resolving custom detent values.
+    ///
+    /// ## Overview
+    ///
+    /// A context of this type is available in the `resolver` closure of [`custom(identifier:resolver:)`](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/custom(identifier:resolver:)) (Swift) or  [`customDetentWithIdentifier:resolver:`](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetent/customdetentwithidentifier:resolver:) (Objective-C).
+    ///
+    ///
     pub unsafe trait UISheetPresentationControllerDetentResolutionContext:
         NSObjectProtocol + MainThreadOnly
     {
@@ -49,7 +55,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent?language=objc)
+    /// An object that represents a height where a sheet naturally rests.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -119,13 +125,13 @@ impl UISheetPresentationControllerDetent {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerautomaticdimension?language=objc)
+    /// The default value to apply to a dimension.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UISheetPresentationControllerAutomaticDimension: CGFloat;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdelegate?language=objc)
+    /// The interface that an object implements to respond to size changes in a sheet presentation controller.
     #[cfg(feature = "UIPresentationController")]
     pub unsafe trait UISheetPresentationControllerDelegate:
         UIAdaptivePresentationControllerDelegate + MainThreadOnly
@@ -141,7 +147,40 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller?language=objc)
+    /// A presentation controller that manages the appearance and behavior of a sheet.
+    ///
+    /// ## Overview
+    ///
+    /// [`UISheetPresentationController`](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller) lets you present your view controller as a sheet. Before you present your view controller, configure the sheet presentation controller in its [`sheetPresentationController`](https://developer.apple.com/documentation/uikit/uiviewcontroller/sheetpresentationcontroller) property with the behavior and appearance you want for your sheet.
+    ///
+    /// ```swift
+    /// // In a subclass of UIViewController, customize and present the sheet.
+    /// func showMyViewControllerInACustomizedSheet() {
+    ///     let viewControllerToPresent = MyViewController()
+    ///     if let sheet = viewControllerToPresent.sheetPresentationController {
+    ///         sheet.detents = [.medium(), .large()]
+    ///         sheet.largestUndimmedDetentIdentifier = .medium
+    ///         sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+    ///         sheet.prefersEdgeAttachedInCompactHeight = true
+    ///         sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+    ///     }
+    ///     present(viewControllerToPresent, animated: true, completion: nil)
+    /// }
+    /// ```
+    ///
+    /// Sheet presentation controllers specify a sheet’s size based on a _detent_, a height where a sheet naturally rests. Detents allow a sheet to resize from one edge of its fully expanded frame while the other three edges remain fixed. You specify the detents that a sheet supports using [`detents`](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detents), and monitor its most recently selected detent using [`selectedDetentIdentifier`](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/selecteddetentidentifier).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC21
+    ///  Session 10063: [Customize and Resize Sheets in UIKit](https://developer.apple.com/wwdc21/10063)
+    ///
+    /// Session 10068: [What’s new in UIKit](https://developer.apple.com/videos/play/wwdc2022/10068)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UIPresentationController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

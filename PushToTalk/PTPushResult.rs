@@ -6,7 +6,30 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptpushresult?language=objc)
+    /// An object that represents a push result.
+    ///
+    /// ## Overview
+    ///
+    /// When an app receives an Apple Push Notification service payload, return a [`PTPushResult`](https://developer.apple.com/documentation/pushtotalk/ptpushresult) object as part of the delegate method. Use [`pushResultForActiveRemoteParticipant:`](https://developer.apple.com/documentation/pushtotalk/ptpushresult/activeremoteparticipant(_:)) to show the latest participant information in the system user interface. Create a push result with [`leaveChannelPushResult`](https://developer.apple.com/documentation/pushtotalk/ptpushresult/leavechannel) to remove a user from the channel.
+    ///
+    /// ```swift
+    /// func incomingPushResult(channelManager: PTChannelManager,
+    ///                         channelUUID: UUID,
+    ///                         pushPayload: [String: Any]) -> PTPushResult {
+    ///     guard let activeSpeaker = pushPayload["activeSpeaker"] as? String else {
+    ///         // Report that there's no active speaker, so leave the channel.
+    ///         return .leaveChannel
+    ///     }
+    ///
+    ///     let activeSpeakerImage = // Get the cached image for the active speaker.
+    ///     let participant = PTParticipant(name: activeSpeaker,
+    ///                                     image: activeSpeakerImage)
+    ///     // Report the active participant information to the system.
+    ///     return .activeRemoteParticipant(participant)
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PTPushResult;

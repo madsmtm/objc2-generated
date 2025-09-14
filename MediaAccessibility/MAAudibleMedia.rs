@@ -6,24 +6,21 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification that occurs when any user-defined audible media settings change.
     /// CFNotification sent when any user-defined audible media settings are changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/kmaaudiblemediasettingschangednotification?language=objc)
     pub static kMAAudibleMediaSettingsChangedNotification: &'static CFString;
 }
 
 extern "C" {
+    /// A media characteristic that indicates that a track or media selection option includes audible content that describes a video for accessibility.
     /// A media characteristic that indicates that a track or media selection option includes audible content that descries a video for accessibility.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamediacharacteristicdescribesvideoforaccessibility?language=objc)
     pub static MAMediaCharacteristicDescribesVideoForAccessibility: &'static CFString;
 }
 
+/// Returns the preference for audible media characteristics.
 /// User preference for audible media characteristic
 ///
 /// Returns: An array containing the preferred order of media characteristics for audible media.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maaudiblemediacopypreferredcharacteristics()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MAAudibleMediaCopyPreferredCharacteristics() -> CFRetained<CFArray>
 {

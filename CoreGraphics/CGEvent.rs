@@ -8,7 +8,13 @@ use crate::*;
 
 #[cfg(feature = "CGEventTypes")]
 unsafe impl ConcreteType for CGEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/typeid?language=objc)
+    /// Returns the type identifier for the opaque type `CGEventRef`.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for the opaque type [`CGEventRef`](https://developer.apple.com/documentation/coregraphics/cgevent).
+    ///
+    ///
     #[doc(alias = "CGEventGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -21,7 +27,17 @@ unsafe impl ConcreteType for CGEvent {
 
 #[cfg(feature = "CGEventTypes")]
 impl CGEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(source:)?language=objc)
+    /// Returns a new Quartz event.
+    ///
+    /// Parameters:
+    /// - source: The event source, or `NULL` to use a default source.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new event to be filled in, or `NULL` if the event could not be created. When you no longer need the event, you should release it using the function `CFRelease`.
+    ///
+    ///
     #[doc(alias = "CGEventCreate")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -33,7 +49,25 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventcreatedata?language=objc)
+    /// Returns a flattened data representation of a Quartz event.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the data object. To use the current default allocator, pass `NULL` or `kCFAllocatorDefault`.
+    ///
+    /// - event: The event to flatten.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The flattened data representation of the event, or `NULL` if the `event` parameter is invalid. When you no longer need the data object, you should release it using the function `CFRelease`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to flatten an event for network transport to another system.
+    ///
+    ///
     #[doc(alias = "CGEventCreateData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -51,7 +85,25 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(withdataallocator:data:)?language=objc)
+    /// Returns a Quartz event created from a flattened data representation of the event.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the event object. To use the current default allocator, pass `NULL` or `kCFAllocatorDefault`.
+    ///
+    /// - data: The flattened data representation of the event to reconstruct.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An event built from the flattened data representation, or `NULL` if the `eventData` parameter is invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to reconstruct a Quartz event received by network transport from another system.
+    ///
+    ///
     #[doc(alias = "CGEventCreateFromData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -69,7 +121,23 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(mouseeventsource:mousetype:mousecursorposition:mousebutton:)?language=objc)
+    /// Returns a new Quartz mouse event.
+    ///
+    /// Parameters:
+    /// - source: An event source taken from another event, or `NULL`.
+    ///
+    /// - mouseType: A mouse event type. Pass one of the constants listed in [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype).
+    ///
+    /// - mouseCursorPosition: The position of the mouse cursor in global coordinates.
+    ///
+    /// - mouseButton: The button that’s changing state. Pass one of the constants listed in [`CGMouseButton`](https://developer.apple.com/documentation/coregraphics/cgmousebutton). This parameter is ignored unless the `mouseType` parameter is `kCGEventOtherMouseDown`, `kCGEventOtherMouseDragged`, or `kCGEventOtherMouseUp`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mouse event, or `NULL` if the event could not be created. When you no longer need the event, you should release it using the function `CFRelease`.
+    ///
+    ///
     #[doc(alias = "CGEventCreateMouseEvent")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -93,7 +161,35 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(keyboardeventsource:virtualkey:keydown:)?language=objc)
+    /// Returns a new Quartz keyboard event.
+    ///
+    /// Parameters:
+    /// - source: An event source taken from another event, or `NULL`.
+    ///
+    /// - virtualKey: The virtual key code for the event.
+    ///
+    /// - keyDown: Pass `true` to specify that the key position is down. To specify that the key position is up, pass `false`. This value is used to determine the type of the keyboard event—see [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new keyboard event, or `NULL` if the event could not be created. When you no longer need the event, you should release it using the function `CFRelease`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// All keystrokes needed to generate a character must be entered, including modifier keys.  For example, to produce a ‘Z’, the SHIFT key must be down, the ‘z’ key must go down, and then the SHIFT and ‘z’ key must be released:
+    ///
+    /// ```objc
+    /// CGEventRef event1, event2, event3, event4;
+    /// event1 = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)56, true);
+    /// event2 = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)6, true);
+    /// event3 = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)6, false);
+    /// event4 = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)56, false);
+    /// ```
+    ///
+    ///
     #[doc(alias = "CGEventCreateKeyboardEvent")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -113,7 +209,6 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/init(scrollwheelevent2source:units:wheelcount:wheel1:wheel2:wheel3:)?language=objc)
     #[doc(alias = "CGEventCreateScrollWheelEvent2")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -141,7 +236,17 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/copy()?language=objc)
+    /// Returns a copy of an existing Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event being copied.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the specified event. When you no longer need the copy, you should release it using the function `CFRelease`.
+    ///
+    ///
     #[doc(alias = "CGEventCreateCopy")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -153,7 +258,23 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/init(event:)?language=objc)
+    /// Returns a Quartz event source created from an existing Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An event source created from the specified event, or `NULL` if the event was generated with a private event source owned by another process. When you no longer need this event source, you should release it using the function `CFRelease`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Event filters may use the event source to generate events that are compatible with an event being filtered.
+    ///
+    ///
     #[doc(alias = "CGEventCreateSourceFromEvent")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -167,7 +288,13 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/setsource(_:)?language=objc)
+    /// Sets the event source of a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - source: The new event source of the specified event.
+    ///
     #[doc(alias = "CGEventSetSource")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -178,7 +305,17 @@ impl CGEvent {
         unsafe { CGEventSetSource(event, source) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/type?language=objc)
+    /// Returns the event type of a Quartz event (left mouse down, for example).
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current event type of the specified event. The return value is one of the constants listed in [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype).
+    ///
+    ///
     #[doc(alias = "CGEventGetType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -189,7 +326,13 @@ impl CGEvent {
         unsafe { CGEventGetType(event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsettype?language=objc)
+    /// Sets the event type of a Quartz event (left mouse down, for example).
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - type: The new event type of the specified event. The return value is one of the constants listed in [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype).
+    ///
     #[doc(alias = "CGEventSetType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -200,7 +343,17 @@ impl CGEvent {
         unsafe { CGEventSetType(event, r#type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/timestamp?language=objc)
+    /// Returns the timestamp of a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current timestamp of the specified event.
+    ///
+    ///
     #[doc(alias = "CGEventGetTimestamp")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -211,7 +364,13 @@ impl CGEvent {
         unsafe { CGEventGetTimestamp(event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsettimestamp?language=objc)
+    /// Sets the timestamp of a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - timestamp: The new timestamp of the specified event.
+    ///
     #[doc(alias = "CGEventSetTimestamp")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -222,7 +381,17 @@ impl CGEvent {
         unsafe { CGEventSetTimestamp(event, timestamp) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/location?language=objc)
+    /// Returns the location of a Quartz mouse event.
+    ///
+    /// Parameters:
+    /// - event: The mouse event to locate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current location of the specified mouse event in global display coordinates.
+    ///
+    ///
     #[doc(alias = "CGEventGetLocation")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -233,7 +402,32 @@ impl CGEvent {
         unsafe { CGEventGetLocation(event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/unflippedlocation?language=objc)
+    /// Returns the location of a Quartz mouse event.
+    ///
+    /// Parameters:
+    /// - event: The mouse event whose location you wish to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current location of the specified mouse event relative to the lower-left corner of the main display.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the location of the mouse cursor associated with the event.  The coordinate system used is relative to the lower-left corner of the main display, and is compatible with the global coordinate system used by the Application Kit.
+    ///
+    /// Note that the y-coordinate of the returned location is off by one from an idealized coordinate system originating at the lower-left corner of the main display. Effectively, the function is defined as follows:
+    ///
+    /// ```objc
+    /// CGPoint p = CGEventGetLocation(event);
+    /// p.y = main_display_height - p.y;
+    /// /* not p.y = (main_display_height - 1) - p.y */
+    /// return p;
+    /// ```
+    ///
+    ///
     #[doc(alias = "CGEventGetUnflippedLocation")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -244,7 +438,13 @@ impl CGEvent {
         unsafe { CGEventGetUnflippedLocation(event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsetlocation?language=objc)
+    /// Sets the location of a Quartz mouse event.
+    ///
+    /// Parameters:
+    /// - event: The mouse event whose location to set.
+    ///
+    /// - location: The new location of the specified mouse event in global display coordinates.
+    ///
     #[doc(alias = "CGEventSetLocation")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -255,7 +455,17 @@ impl CGEvent {
         unsafe { CGEventSetLocation(event, location) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/flags?language=objc)
+    /// Returns the event flags of a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current flags of the specified event. For more information, see [`CGEventFlags`](https://developer.apple.com/documentation/coregraphics/cgeventflags).
+    ///
+    ///
     #[doc(alias = "CGEventGetFlags")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -266,7 +476,13 @@ impl CGEvent {
         unsafe { CGEventGetFlags(event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsetflags?language=objc)
+    /// Sets the event flags of a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - flags: The new flags of the specified event. See [`CGEventFlags`](https://developer.apple.com/documentation/coregraphics/cgeventflags).
+    ///
     #[doc(alias = "CGEventSetFlags")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -277,7 +493,23 @@ impl CGEvent {
         unsafe { CGEventSetFlags(event, flags) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/keyboardgetunicodestring(maxstringlength:actualstringlength:unicodestring:)?language=objc)
+    /// Returns the Unicode string associated with a Quartz keyboard event.
+    ///
+    /// Parameters:
+    /// - event: The keyboard event to access.
+    ///
+    /// - maxStringLength: The length of the array you provide in the `unicodeString` parameter.
+    ///
+    /// - actualStringLength: A pointer to a `UniCharCount` variable. On return, the variable contains the actual count of Unicode characters in the event data.
+    ///
+    /// - unicodeString: A pointer to a `UniChar` array. You are responsible for allocating storage for the array. On return, your array contains the Unicode string associated with the specified event.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function and specify a `NULL` string or a maximum string length of 0, the function still returns the actual count of Unicode characters in the event data.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -310,7 +542,21 @@ impl CGEvent {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/keyboardsetunicodestring(stringlength:unicodestring:)?language=objc)
+    /// Sets the Unicode string associated with a Quartz keyboard event.
+    ///
+    /// Parameters:
+    /// - event: The keyboard event to access.
+    ///
+    /// - stringLength: The length of the array you provide in the `unicodeString` parameter.
+    ///
+    /// - unicodeString: An array that contains the new Unicode string associated with the specified event.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the system translates the virtual key code in a keyboard event into a Unicode string based on the keyboard ID in the event source. This function allows you to manually override this string. Note that application frameworks may ignore the Unicode string in a keyboard event and do their own translation based on the virtual keycode and perceived event state.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -333,7 +579,19 @@ impl CGEvent {
         unsafe { CGEventKeyboardSetUnicodeString(event, string_length, unicode_string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/getintegervaluefield(_:)?language=objc)
+    /// Returns the integer value of a field in a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - field: A field in the specified event. Pass one of the constants listed in [`CGEventField`](https://developer.apple.com/documentation/coregraphics/cgeventfield).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A 64-bit integer representation of the current value of the specified field.
+    ///
+    ///
     #[doc(alias = "CGEventGetIntegerValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -344,7 +602,23 @@ impl CGEvent {
         unsafe { CGEventGetIntegerValueField(event, field) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/setintegervaluefield(_:value:)?language=objc)
+    /// Sets the integer value of a field in a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - field: A field in the specified event. Pass one of the constants listed in [`CGEventField`](https://developer.apple.com/documentation/coregraphics/cgeventfield).
+    ///
+    /// - value: The new value of the specified field.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before calling this function, the event type must be set using a typed event creation function such as [`CGEventCreateMouseEvent`](https://developer.apple.com/documentation/coregraphics/cgevent/init(mouseeventsource:mousetype:mousecursorposition:mousebutton:)), or by calling [`CGEventSetType`](https://developer.apple.com/documentation/coregraphics/cgeventsettype).
+    ///
+    /// If you are creating a mouse event generated by a tablet, call this function and specify the field `kCGMouseEventSubtype` with a value of `kCGEventMouseSubtypeTabletPoint` or `kCGEventMouseSubtypeTabletProximity` before setting other parameters.
+    ///
+    ///
     #[doc(alias = "CGEventSetIntegerValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -359,7 +633,25 @@ impl CGEvent {
         unsafe { CGEventSetIntegerValueField(event, field, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/getdoublevaluefield(_:)?language=objc)
+    /// Returns the floating-point value of a field in a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - field: A field in the specified event. Pass one of the constants listed in [`CGEventField`](https://developer.apple.com/documentation/coregraphics/cgeventfield).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A floating point representation of the current value of the specified field.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In cases where the field value is represented within the event by a fixed point number or an integer, the result is scaled to the appropriate range as part of creating the floating point representation.
+    ///
+    ///
     #[doc(alias = "CGEventGetDoubleValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -371,7 +663,23 @@ impl CGEvent {
         unsafe { CGEventGetDoubleValueField(event, field) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/setdoublevaluefield(_:value:)?language=objc)
+    /// Sets the floating-point value of a field in a Quartz event.
+    ///
+    /// Parameters:
+    /// - event: The event to access.
+    ///
+    /// - field: A field in the specified event. Pass one of the constants listed in [`CGEventField`](https://developer.apple.com/documentation/coregraphics/cgeventfield).
+    ///
+    /// - value: The new value of the specified field.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before calling this function, the event type must be set using a typed event creation function such as [`CGEventCreateMouseEvent`](https://developer.apple.com/documentation/coregraphics/cgevent/init(mouseeventsource:mousetype:mousecursorposition:mousebutton:)), or by calling [`CGEventSetType`](https://developer.apple.com/documentation/coregraphics/cgeventsettype).
+    ///
+    /// In cases where the field’s value is represented within the event by a fixed point number or integer, the `value` parameter is scaled as needed and converted to the appropriate type.
+    ///
+    ///
     #[doc(alias = "CGEventSetDoubleValueField")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -386,7 +694,43 @@ impl CGEvent {
         unsafe { CGEventSetDoubleValueField(event, field, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreate(tap:place:options:eventsofinterest:callback:userinfo:)?language=objc)
+    /// Creates an event tap.
+    ///
+    /// Parameters:
+    /// - tap: The location of the new event tap. Pass one of the constants listed in [`CGEventTapLocation`](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation). Only processes running as the root user may locate an event tap at the point where HID events enter the window server; for other users, this function returns `NULL`.
+    ///
+    /// - place: The placement of the new event tap in the list of active event taps. Pass one of the constants listed in [`CGEventTapPlacement`](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement).
+    ///
+    /// - options: A constant that specifies whether the new event tap is a passive listener or an active filter.
+    ///
+    /// - eventsOfInterest: A bit mask that specifies the set of events to be observed. For a list of possible events, see [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype). For information on how to specify the mask, see [`CGEventMask`](https://developer.apple.com/documentation/coregraphics/cgeventmask). If the event tap is not permitted to monitor one or more of the events specified in the `eventsOfInterest` parameter, then the appropriate bits in the mask are cleared. If that action results in an empty mask, this function returns `NULL`.
+    ///
+    /// - callback: An event tap callback function that you provide. Your callback function is invoked from the run loop to which the event tap is added as a source. The thread safety of the callback is defined by the run loop’s environment. To learn more about event tap callbacks, see [`CGEventTapCallBack`](https://developer.apple.com/documentation/coregraphics/cgeventtapcallback).
+    ///
+    /// - userInfo: A pointer to user-defined data. This pointer is passed into the callback function specified in the `callback` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Foundation mach port that represents the new event tap, or `NULL` if the event tap could not be created. When you are finished using the event tap, you should release the mach port using the function `CFRelease`. Releasing the mach port also releases the tap.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Event taps receive key up and key down events if one of the following conditions is true:
+    ///
+    /// - The current process is running as the root user.
+    ///
+    /// - Access for assistive devices is enabled. In OS X v10.4, you can enable this feature using System Preferences, Universal Access panel, Keyboard view.
+    ///
+    /// After creating an event tap, you can add it to a run loop as follows:
+    ///
+    /// 1. Pass the event tap to the [`CFMachPortCreateRunLoopSource`](https://developer.apple.com/documentation/corefoundation/cfmachportcreaterunloopsource(_:_:_:)) function to create a run loop event source.
+    ///
+    /// 2. Call the [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)) function to add the source to the appropriate run loop.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -419,7 +763,33 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpsn(processserialnumber:place:options:eventsofinterest:callback:userinfo:)?language=objc)
+    /// Creates an event tap for a specified process.
+    ///
+    /// Parameters:
+    /// - processSerialNumber: The process to monitor.
+    ///
+    /// - place: The placement of the new event tap in the list of active event taps. Pass one of the constants listed in [`CGEventTapPlacement`](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement).
+    ///
+    /// - options: A constant that specifies whether the new event tap is a passive listener or an active filter.
+    ///
+    /// - eventsOfInterest: A bit mask that specifies the set of events to be observed. For a list of possible events, see [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype). For information on how to specify the mask, see [`CGEventMask`](https://developer.apple.com/documentation/coregraphics/cgeventmask). If the event tap is not permitted to monitor one or more of the events specified in the `eventsOfInterest` parameter, then the appropriate bits in the mask are cleared. If that action results in an empty mask, this function returns `NULL`.
+    ///
+    /// - callback: An event tap callback function that you provide. Your callback function is invoked from the run loop to which the event tap is added as a source. The thread safety of the callback is defined by the run loop’s environment. To learn more about event tap callbacks, see [`CGEventTapCallBack`](https://developer.apple.com/documentation/coregraphics/cgeventtapcallback).
+    ///
+    /// - userInfo: A pointer to user-defined data. This pointer is passed into the callback function specified in the `callback` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Foundation mach port that represents the new event tap, or `NULL` if the event tap could not be created. When you are finished using the event tap, you should release the mach port using the function `CFRelease`. Releasing the mach port also releases the tap.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an event tap that receives events being routed by the window server to the specified process. For more information about creating event taps, see [`CGEventTapCreate`](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreate(tap:place:options:eventsofinterest:callback:userinfo:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -460,8 +830,6 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpid(pid:place:options:eventsofinterest:callback:userinfo:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `callback` must be implemented correctly.
@@ -493,7 +861,19 @@ impl CGEvent {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapenable(tap:enable:)?language=objc)
+    /// Enables or disables an event tap.
+    ///
+    /// Parameters:
+    /// - tap: The event tap to enable or disable.
+    ///
+    /// - enable: Pass `true` to enable the event tap. To disable it, pass `false`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Event taps are normally enabled when created. If an event tap becomes unresponsive, or if a user requests that event taps be disabled, then a `kCGEventTapDisabled` event is passed to the event tap callback function. Event taps may be re-enabled by calling this function.
+    ///
+    ///
     #[doc(alias = "CGEventTapEnable")]
     #[inline]
     pub fn tap_enable(tap: &CFMachPort, enable: bool) {
@@ -503,7 +883,23 @@ impl CGEvent {
         unsafe { CGEventTapEnable(tap, enable) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tapisenabled(tap:)?language=objc)
+    /// Returns a Boolean value indicating whether an event tap is enabled.
+    ///
+    /// Parameters:
+    /// - tap: The event tap to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), the specified event tap is enabled; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see the function [`CGEventTapEnable`](https://developer.apple.com/documentation/coregraphics/cgevent/tapenable(tap:enable:)).
+    ///
+    ///
     #[doc(alias = "CGEventTapIsEnabled")]
     #[inline]
     pub fn tap_is_enabled(tap: &CFMachPort) -> bool {
@@ -513,7 +909,19 @@ impl CGEvent {
         unsafe { CGEventTapIsEnabled(tap) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/tappostevent(_:)?language=objc)
+    /// Posts a Quartz event from an event tap into the event stream.
+    ///
+    /// Parameters:
+    /// - proxy: A proxy that identifies the event tap posting the event. Your event tap callback function is passed this proxy when it is invoked.
+    ///
+    /// - event: The event to post.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to post a new event at the same point to which an event returned from an event tap callback function would be posted. The new event enters the system before the event returned by the callback enters the system. Events posted into the system will be seen by all taps placed after the tap posting the event.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -528,7 +936,19 @@ impl CGEvent {
         unsafe { CGEventTapPostEvent(proxy, event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/post(tap:)?language=objc)
+    /// Posts a Quartz event into the event stream at a specified location.
+    ///
+    /// Parameters:
+    /// - tap: The location at which to post the event. Pass one of the constants listed in [`CGEventTapLocation`](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation).
+    ///
+    /// - event: The event to post.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function posts the specified event immediately before any event taps instantiated for that location, and the event passes through any such taps.
+    ///
+    ///
     #[doc(alias = "CGEventPost")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -539,7 +959,21 @@ impl CGEvent {
         unsafe { CGEventPost(tap, event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/posttopsn(processserialnumber:)?language=objc)
+    /// Posts a Quartz event into the event stream for a specific application.
+    ///
+    /// Parameters:
+    /// - processSerialNumber: The process to receive the event.
+    ///
+    /// - event: The event to post.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function makes it possible for an application to establish an event routing policy, for example, by tapping events at the `kCGAnnotatedSessionEventTap` location and then posting the events to another desired process.
+    ///
+    /// This function posts the specified event immediately before any event taps instantiated for the specified process, and the event passes through any such taps.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -554,7 +988,6 @@ impl CGEvent {
         unsafe { CGEventPostToPSN(process_serial_number, event) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent/posttopid(_:)?language=objc)
     #[doc(alias = "CGEventPostToPid")]
     #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
     #[inline]
@@ -567,7 +1000,27 @@ impl CGEvent {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggeteventtaplist(_:_:_:)?language=objc)
+    /// Gets a list of currently installed event taps.
+    ///
+    /// Parameters:
+    /// - maxNumberOfTaps: The length of the array you provide in the `tapList` parameter.
+    ///
+    /// - tapList: An array of event tap information structures. You are responsible for allocating storage for the array. On return, your array contains a list of currently installed event taps. If you pass `NULL` in this parameter, the `maxNumberOfTaps` parameter is ignored, and the `eventTapCount` variable is filled in with the number of event taps that are currently installed.
+    ///
+    /// - eventTapCount: A pointer to a `CGTableCount` variable. On return, the variable contains actual number of array elements filled in.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See the result codes described in [Quartz Display Services](https://developer.apple.com/documentation/coregraphics/quartz-display-services).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each call to this function has the side effect of resetting the minimum and maximum latency values in the `tapList` parameter to the corresponding average values. Values reported in these fields reflect the minimum and maximum values seen since the preceding call, or the instantiation of the tap. This allows a monitoring tool to evaluate the best and worst case latency over time and under various operating conditions.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -581,7 +1034,6 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpreflightlisteneventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPreflightListenEventAccess() -> bool {
     extern "C-unwind" {
@@ -590,7 +1042,6 @@ pub extern "C-unwind" fn CGPreflightListenEventAccess() -> bool {
     unsafe { CGPreflightListenEventAccess() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrequestlisteneventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRequestListenEventAccess() -> bool {
     extern "C-unwind" {
@@ -599,7 +1050,6 @@ pub extern "C-unwind" fn CGRequestListenEventAccess() -> bool {
     unsafe { CGRequestListenEventAccess() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpreflightposteventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPreflightPostEventAccess() -> bool {
     extern "C-unwind" {
@@ -608,7 +1058,6 @@ pub extern "C-unwind" fn CGPreflightPostEventAccess() -> bool {
     unsafe { CGPreflightPostEventAccess() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrequestposteventaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRequestPostEventAccess() -> bool {
     extern "C-unwind" {

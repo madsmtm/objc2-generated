@@ -6,19 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions?language=objc)
+/// The [`saveOptions`](https://developer.apple.com/documentation/foundation/nsclosecommand/saveoptions) method returns one of the following constants to indicate how to deal with saving any modified documents:
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSaveOptions(pub NSUInteger);
 impl NSSaveOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions/yes?language=objc)
+    /// Indicates a modified document should be saved on closing without asking the user.
     #[doc(alias = "NSSaveOptionsYes")]
     pub const Yes: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions/no?language=objc)
+    /// Indicates a modified document should not be saved on closing.
     #[doc(alias = "NSSaveOptionsNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssaveoptions/ask?language=objc)
+    /// Indicates the user should be asked before saving any modified documents on closing. When no option is specified, this is the default.
     #[doc(alias = "NSSaveOptionsAsk")]
     pub const Ask: Self = Self(2);
 }
@@ -32,7 +32,17 @@ unsafe impl RefEncode for NSSaveOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclonecommand?language=objc)
+    /// A command that clones one or more scriptable objects.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSCloneCommand` clones the specified scriptable object or objects (such as words, paragraphs, images, and so on) and inserts them in the specified location, or the default location if no location is specified. The cloned scriptable objects typically correspond to objects in the application, but aren’t required to. This command corresponds to AppleScript’s `duplicate` command.
+    ///
+    /// `NSCloneCommand` is part of Cocoa’s built-in scripting support. It works automatically to support the `duplicate` command through key-value coding. Most applications don’t need to subclass `NSCloneCommand` or invoke its methods.
+    ///
+    /// When an instance of `NSCloneCommand` is executed, it clones the specified objects by sending them [`copyWithZone:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571953-copywithzone) messages.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -112,7 +122,15 @@ impl DefaultRetained for NSCloneCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclosecommand?language=objc)
+    /// A command that closes one or more scriptable objects.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSCloseCommand` closes the specified scriptable object or objects—typically a document or window (and its associated document, if any). The command may optionally specify a location to save in and how to handle modified documents (by automatically saving changes, not saving them, or asking the user).
+    ///
+    /// `NSCloseCommand` is part of Cocoa’s built-in scripting support. It works automatically to support the `close` command through key-value coding. Most applications don’t need to subclass `NSCloseCommand` or call its methods.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -186,7 +204,15 @@ impl DefaultRetained for NSCloseCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountcommand?language=objc)
+    /// A command that counts the number of objects of a specified class in the specified object container.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSCountCommand` counts the number of objects of a specified class in the specified object container (such as the number of words in a paragraph or document) and returns the result.
+    ///
+    /// `NSCountCommand` is part of Cocoa’s built-in scripting support. It works automatically to support the `count` command through key-value coding. Most applications don’t need to subclass `NSCountCommand` or call its methods.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -256,7 +282,19 @@ impl DefaultRetained for NSCountCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatecommand?language=objc)
+    /// A command that creates a scriptable object.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSCreateCommand` creates the specified scriptable object (such as a document), optionally supplying the new object with the specified attributes. This command corresponds to AppleScript’s `make` command.
+    ///
+    /// `NSCreateCommand` is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass `NSCreateCommand` or invoke its methods.
+    ///
+    /// When an instance of `NSCreateCommand` is executed, it creates a new object using `[[theClassToBeCreated allocWithZone:NULL] init]` (where `theClassToBeCreated` is the class of the object to be created), unless the command has a `with data` argument. In the latter case, the new object is created by invoking `[[NSScriptCoercionHandler sharedCoercionHandler] coerceValue:theDataAsAnObject toClass:theClassToBeCreated]`.  Any properties specified by a `with properties` argument are then set in the new object using `-setScriptingProperties:`.
+    ///
+    /// If an `NSCreateCommand` object with no argument corresponding to the `at` parameter is executed (for example, `tell application "Mail" to make new mailbox with properties {name:"testFolder"}`), and the receiver of the command (not necessarily the application object) has a to-many relationship to objects of the class to be instantiated, and the class description for the receiving class returns [`false`](https://developer.apple.com/documentation/swift/false) when sent an `isLocationRequiredToCreateForKey:` message, the `NSCreateCommand` object creates a new object and sends the receiver an [`insertValue:atIndex:inPropertyWithKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/insertvalue(_:at:inpropertywithkey:)) message to place the new object in the container. This is part of Cocoa’s scripting support for inserting newly-created objects into containers without explicitly specifying a location.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -336,7 +374,17 @@ impl DefaultRetained for NSCreateCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeletecommand?language=objc)
+    /// A command that deletes a scriptable object.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSDeleteCommand` deletes the specified scriptable object or objects (such as words, paragraphs, and so on).
+    ///
+    /// Suppose, for example, a user executes a script that sends the command `delete the third rectangle in the first document` to the Sketch sample application (located in `/Developer/Examples/AppKit`). Cocoa creates an `NSDeleteCommand` object to perform the operation. When the command is executed, it uses the key-value coding mechanism (by invoking `removeValueAtIndex:fromPropertyWithKey:`) to remove the specified object or objects from their container. See the description for [`removeValueAtIndex:fromPropertyWithKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/removevalue(at:frompropertywithkey:)) for related information.
+    ///
+    /// `NSDeleteCommand` is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass `NSDeleteCommand` or call its methods.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -416,7 +464,17 @@ impl DefaultRetained for NSDeleteCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexistscommand?language=objc)
+    /// A command that determines whether a scriptable object exists.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSExistsCommand` determines whether a specified scriptable object, such as a word, paragraph, or image, exists.
+    ///
+    /// When an instance of `NSExistsCommand` is executed, it evaluates the receiver specifier for the command to determine if it specifies any objects.
+    ///
+    /// `NSExistsCommand` is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass `NSExistsCommand`.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -486,7 +544,19 @@ impl DefaultRetained for NSExistsCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgetcommand?language=objc)
+    /// A command that retrieves a value or object from a scriptable object.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSGetCommand` gets the specified value or object from the specified scriptable object: for example, the words from a paragraph or the name of a document.
+    ///
+    /// When an instance of `NSGetCommand` is executed, it evaluates the specified receivers, gathers the specified data, if any, and packages it in a return Apple event.
+    ///
+    /// `NSGetCommand` is part of Cocoa’s built-in scripting support. It works automatically to support the `get` command through key-value coding. Most applications don’t need to subclass `NSGetCommand` or call its methods.
+    ///
+    /// For information on working with `get` commands, see [Getting and Setting Properties and Elements](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_get_set/SAppsGetSet.html#//apple_ref/doc/uid/TP40002164-CH18) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -556,7 +626,17 @@ impl DefaultRetained for NSGetCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmovecommand?language=objc)
+    /// A command that moves one or more scriptable objects.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSMoveCommand` moves the specified scriptable object or objects; for example, it may move words to a new location in a document or a file to a new directory.
+    ///
+    /// `NSMoveCommand` is part of Cocoa’s built-in scripting support. It works automatically to support the `move` AppleScript command through key-value coding. Most applications don’t need to subclass `NSMoveCommand` or invoke its methods. However, for circumstances where you might choose to subclass this command, see “Modifying a Standard Command” in [Script Commands](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_script_cmds/SAppsScriptCmds.html#//apple_ref/doc/uid/20001242) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    /// When an instance of `NSMoveCommand` is executed, it does not make copies of moved objects. It removes objects from the source container or containers, then inserts them into the destination container.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -636,7 +716,15 @@ impl DefaultRetained for NSMoveCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsquitcommand?language=objc)
+    /// A command that quits the specified app.
+    ///
+    /// ## Overview
+    ///
+    /// The quit command may optionally specify how to handle modified documents (automatically save changes, don’t save them, or ask the user). For details, see the description for the `quit` command in “Apple Events Sent By the Mac OS” in [How Cocoa Applications Handle Apple Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    /// `NSQuitCommand` is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass `NSQuitCommand` or call its methods.
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]
@@ -710,7 +798,19 @@ impl DefaultRetained for NSQuitCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssetcommand?language=objc)
+    /// A command that sets one or more attributes or relationships to one or more values.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of `NSSetCommand` sets one or more attributes or relationships to one or more values; for example, it may set the (x, y) coordinates for a window’s position or set the name of a document.
+    ///
+    /// `NSSetCommand` is part of Cocoa’s built-in scripting support. It works automatically to support the `set` command through key-value coding. Most applications don’t need to subclass `NSSetCommand` or call its methods.
+    ///
+    /// `NSSetCommand` uses available scripting class descriptions to determine whether it should set a value for an attribute (or property), or set a value for all elements (to-many objects). For the latter, it invokes [`replaceValueAtIndex:inPropertyWithKey:withValue:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/replacevalue(at:inpropertywithkey:withvalue:)); for the former, it invokes [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) (or, if the receiver overrides [`takeValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/takevalue(_:forkey:)), it invokes that method, to support backward binary compatibility.)
+    ///
+    /// For information on working with `set` commands, see [Getting and Setting Properties and Elements](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_get_set/SAppsGetSet.html#//apple_ref/doc/uid/TP40002164-CH18) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    ///
     #[unsafe(super(NSScriptCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSScriptCommand")]

@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsform?language=objc)
+    /// An `NSForm` object is a vertical matrix of [`NSFormCell`](https://developer.apple.com/documentation/appkit/nsformcell) objects to implement the fields.
     #[unsafe(super(NSMatrix, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

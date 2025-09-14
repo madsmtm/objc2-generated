@@ -10,6 +10,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The `SBApplication` class provides a mechanism enabling an Objective-C program to send Apple events to a scriptable application and receive Apple events in response. It thereby makes it possible for that program to control the application and exchange data with it. Scripting Bridge works by bridging data types between Apple event descriptors and Cocoa objects.
+    ///
+    /// ## Overview
+    ///
+    /// Although `SBApplication` includes methods that manually send and process Apple events, you should never have to call these methods directly. Instead, subclasses of `SBApplication` implement application-specific methods that handle the sending of Apple events automatically.
+    ///
+    /// For example, if you wanted to get the current iTunes track, you can simply use the `currentTrack` method of the dynamically defined subclass for the iTunes application—which handles the details of sending the Apple event for you—rather than figuring out the more complicated, low-level alternative:
+    ///
+    /// ```objc
+    /// [iTunes propertyWithCode:'pTrk'];
+    /// ```
+    ///
+    /// If you do need to send Apple events manually, consider using the `NSAppleEventDescriptor` class.
+    ///
+    /// ## Subclassing Notes
+    ///
+    /// You rarely instantiate `SBApplication` objects directly. Instead, you get the shared instance of a application-specific subclass typically by calling one of the `applicationWith...` class methods, using a bundle identifier, process identifier, or URL to identify the application.
+    ///
+    ///
     /// The `SBApplication` class provides a mechanism enabling an Objective-C
     /// program to send Apple events to a scriptable application and receive Apple
     /// events in response. It thereby makes it possible for that program to control
@@ -39,8 +58,6 @@ extern_class!(
     /// the shared instance of a application-specific subclass typically by calling
     /// one of the `applicationWith...` class methods, using a bundle identifier,
     /// process identifier, or URL to identify the application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scriptingbridge/sbapplication?language=objc)
     #[unsafe(super(SBObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SBObject")]
@@ -428,6 +445,13 @@ impl SBApplication {
 }
 
 extern_protocol!(
+    /// This informal protocol defines a delegation method for handling Apple event errors that are sent from a target application to an [`SBApplication`](https://developer.apple.com/documentation/scriptingbridge/sbapplication) object.
+    ///
+    /// ## Overview
+    ///
+    /// You must set a delegate for the [`SBApplication`](https://developer.apple.com/documentation/scriptingbridge/sbapplication) object using the [`delegate`](https://developer.apple.com/documentation/scriptingbridge/sbapplication/delegate) method. If you do not set a delegate and have the delegate handle the error in some way, [`SBApplication`](https://developer.apple.com/documentation/scriptingbridge/sbapplication) raises an exception.
+    ///
+    ///
     /// This informal protocol defines a delegation method for handling Apple event
     /// errors that are sent from a target application to an
     /// <doc
@@ -438,8 +462,6 @@ extern_protocol!(
     /// ``SBApplication/delegate`` method. If you do not set a delegate and have the
     /// delegate handle the error in some way, ``SBApplication`` raises an
     /// exception.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scriptingbridge/sbapplicationdelegate?language=objc)
     pub unsafe trait SBApplicationDelegate {
         #[cfg(feature = "objc2-core-services")]
         /// Sent by an `SBApplication` object when a target application returns an error

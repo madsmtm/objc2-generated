@@ -9,12 +9,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An identity authority is a database that stores information about identities. The `CBIdentityAuthority` class defines one or more identity authorities. You can search this database for identities in conjunction with the `CBIdentity` class factory methods.
     /// An identity authority is a database that stores information about
     /// identities. The `CBIdentityAuthority` class defines one or more identity
     /// authorities. This database can be searched for identities in conjunction
     /// with the `CBIdentity` class factory methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/collaboration/cbidentityauthority?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBIdentityAuthority;

@@ -8,8 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Controls the acceleration structure refit operation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -19,15 +17,11 @@ bitflags::bitflags! {
 /// Refitting shall result in updated vertex data from the provided geometry descriptor.
 /// If not set, vertex buffers shall be ignored on the geometry descriptor and vertex data previously
 /// encoded shall be copied.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions/vertexdata?language=objc)
         #[doc(alias = "MTLAccelerationStructureRefitOptionVertexData")]
         const VertexData = 1<<0;
 /// Refitting shall result in updated per primitive data from the provided geometry descriptor.
 /// If not set, per primitive data buffers shall be ignored on the geometry descriptor and per primitive
 /// data previously encoded shall be copied.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions/perprimitivedata?language=objc)
         #[doc(alias = "MTLAccelerationStructureRefitOptionPerPrimitiveData")]
         const PerPrimitiveData = 1<<1;
     }
@@ -41,45 +35,86 @@ unsafe impl RefEncode for MTLAccelerationStructureRefitOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage?language=objc)
+/// Options that affect how Metal builds an acceleration structure and the behavior of that acceleration structure.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLAccelerationStructureUsage: NSUInteger {
+/// A sentinel option the represents an empty set of options, which is the default behavior for building new acceleration structures.
 /// Default usage
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/mtlaccelerationstructureusagenone?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageNone")]
         const None = 0;
+/// An option that lets you update an acceleration structure after creating it.
+///
+/// ## Discussion
+///
+/// Apply this option to make a modifiable acceleration structure, which you can update over time, such as for geometry changes. By default, the framework builds immutable acceleration structures for performance. When you apply the [`MTLAccelerationStructureUsageRefit`](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/refit) option, the framework builds an acceleration structure more conservatively, which can reduce its intersection performance.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Refitting an acceleration structure generally works better when the geometry changes are relatively small.
+///
+///
+///
+/// </div>
+///
 /// Enable refitting for this acceleration structure. Note that this may reduce
 /// acceleration structure quality.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/refit?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageRefit")]
         const Refit = 1<<0;
+/// An option that instructs Metal to build an acceleration structure quickly.
+///
+/// ## Discussion
+///
+/// Apply this option when you need to reduce the time when creating or refitting an acceleration structure, such as from code that’s sensitive to runtime performance.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The acceleration structures you build with this option can reduce their intersection performance.
+///
+///
+///
+/// </div>
+///
 /// Prefer building this acceleration structure quickly at the cost of reduced ray
 /// tracing performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/preferfastbuild?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsagePreferFastBuild")]
         const PreferFastBuild = 1<<1;
+/// An option that increases an acceleration structure’s storage capacity.
+///
+/// ## Discussion
+///
+/// The acceleration structures you build with this option can affect their performance because they support more data complexity.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Standard limits" }] }], [Paragraph { inline_content: [Text { text: "Extended limits" }] }]], [[Paragraph { inline_content: [Text { text: "Primitives in primitive acceleration structure" }] }], [Paragraph { inline_content: [CodeVoice { code: "2^(28)" }] }], [Paragraph { inline_content: [CodeVoice { code: "2^(30)" }] }]], [[Paragraph { inline_content: [Text { text: "Geometries in primitive acceleration structure" }] }], [Paragraph { inline_content: [CodeVoice { code: "2^(24)" }] }], [Paragraph { inline_content: [CodeVoice { code: "2^(30)" }] }]], [[Paragraph { inline_content: [Text { text: "Instances in instance acceleration structure" }] }], [Paragraph { inline_content: [CodeVoice { code: "2^(24)" }] }], [Paragraph { inline_content: [CodeVoice { code: "2^(30)" }] }]], [[Paragraph { inline_content: [Text { text: "Visibility mask bits" }] }], [Paragraph { inline_content: [CodeVoice { code: "8" }] }], [Paragraph { inline_content: [CodeVoice { code: "32" }] }]]], alignments: None, metadata: None })
+///
 /// Enable extended limits for this acceleration structure, possibly at the cost of
 /// reduced ray tracing performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/extendedlimits?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageExtendedLimits")]
         const ExtendedLimits = 1<<2;
-/// Prioritize intersection performance over acceleration structure build time
+/// An option that instructs Metal to prioritize building an acceleration structure with better intersection performance.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/preferfastintersection?language=objc)
+/// ## Discussion
+///
+/// The acceleration structures you build with this option can increase their build times.
+///
+///
+/// Prioritize intersection performance over acceleration structure build time
         #[doc(alias = "MTLAccelerationStructureUsagePreferFastIntersection")]
         const PreferFastIntersection = 1<<4;
+/// An option that instructs Metal to prioritize building an acceleration structure that needs less memory.
+///
+/// ## Discussion
+///
+/// The acceleration structures you build with this option can increase their build times and can reduce their intersection performance.
+///
+///
 /// Minimize the size of the acceleration structure in memory, potentially at
 /// the cost of increased build time or reduced intersection performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage/minimizememory?language=objc)
         #[doc(alias = "MTLAccelerationStructureUsageMinimizeMemory")]
         const MinimizeMemory = 1<<5;
     }
@@ -93,38 +128,33 @@ unsafe impl RefEncode for MTLAccelerationStructureUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions?language=objc)
+/// Options for adjusting the behavior of an instanced acceleration structure.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureInstanceOptions(pub u32);
 bitflags::bitflags! {
     impl MTLAccelerationStructureInstanceOptions: u32 {
+/// Specifies the default behavior for resulting acceleration structure.
 /// No options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/mtlaccelerationstructureinstanceoptionnone?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionNone")]
         const None = 0;
+/// An option that turns off culling for this instance if ray intersector has culling enabled.
 /// Disable triangle back or front face culling
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/disabletriangleculling?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionDisableTriangleCulling")]
         const DisableTriangleCulling = 1<<0;
+/// Specifies that the instance specifies front facing triangles in counter-clockwise order.
 /// Override triangle front-facing winding. By default, the winding is
 /// assumed to be clockwise unless overridden by the intersector object. This overrides
 /// the intersector's winding order.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/trianglefrontfacingwindingcounterclockwise?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise")]
         const TriangleFrontFacingWindingCounterClockwise = 1<<1;
+/// Specifies that intersectors should treat the instance as opaque.
 /// Geometry is opaque
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/opaque?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionOpaque")]
         const Opaque = 1<<2;
+/// Specifies that intersectors should treat the instance as non-opaque.
 /// Geometry is non-opaque
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions/nonopaque?language=objc)
         #[doc(alias = "MTLAccelerationStructureInstanceOptionNonOpaque")]
         const NonOpaque = 1<<3;
     }
@@ -138,20 +168,15 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMatrixLayout(pub NSInteger);
 impl MTLMatrixLayout {
     /// Column-major order
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout/columnmajor?language=objc)
     #[doc(alias = "MTLMatrixLayoutColumnMajor")]
     pub const ColumnMajor: Self = Self(0);
     /// Row-major order
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout/rowmajor?language=objc)
     #[doc(alias = "MTLMatrixLayoutRowMajor")]
     pub const RowMajor: Self = Self(1);
 }
@@ -165,10 +190,15 @@ unsafe impl RefEncode for MTLMatrixLayout {
 }
 
 extern_class!(
+    /// A base class for classes that define the configuration for a new acceleration structure.
+    ///
+    /// ## Overview
+    ///
+    /// This is the base class for other acceleration structure descriptors. Don’t use this class directly. Use one of the derived classes instead, as [`MTLAccelerationStructure`](https://developer.apple.com/documentation/metal/mtlaccelerationstructure) describes.
+    ///
+    ///
     /// Base class for acceleration structure descriptors. Do not use this class directly. Use
     /// one of the derived classes instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureDescriptor;
@@ -220,10 +250,15 @@ impl DefaultRetained for MTLAccelerationStructureDescriptor {
 }
 
 extern_class!(
+    /// A base class for descriptors that contain geometry data to convert into a ray-tracing acceleration structure.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t use this base class directly. Use one of the derived classes instead, as  [`MTLAccelerationStructure`](https://developer.apple.com/documentation/metal/mtlaccelerationstructure) describes.
+    ///
+    ///
     /// Base class for all geometry descriptors. Do not use this class directly. Use one of the derived
     /// classes instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureGeometryDescriptor;
@@ -372,23 +407,26 @@ impl DefaultRetained for MTLAccelerationStructureGeometryDescriptor {
     }
 }
 
+/// Options for specifying how the acceleration structure handles timestamps that are outside the specified range.
+///
+/// ## Overview
+///
+/// The [`motionStartBorderMode`](https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstartbordermode) and [`motionEndBorderMode`](https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendbordermode) properties use this type to describe the behavior for a motion-based object when a timestamp is outside the specified range.
+///
+///
 /// Describes what happens to the object before the first motion key and after the last
 /// motion key.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMotionBorderMode(pub u32);
 impl MTLMotionBorderMode {
+    /// A mode that specifies treating times outside the specified endpoint as if they were at the endpoint.
     /// Motion is stopped. (default)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode/clamp?language=objc)
     #[doc(alias = "MTLMotionBorderModeClamp")]
     pub const Clamp: Self = Self(0);
+    /// A mode that specifies that times outside the specified endpoint need to prevent any ray-intersections with the primitive.
     /// Object disappears
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode/vanish?language=objc)
     #[doc(alias = "MTLMotionBorderModeVanish")]
     pub const Vanish: Self = Self(1);
 }
@@ -402,9 +440,14 @@ unsafe impl RefEncode for MTLMotionBorderMode {
 }
 
 extern_class!(
-    /// Descriptor for a primitive acceleration structure
+    /// A description of an acceleration structure that contains geometry primitives.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// Metal provides acceleration structures with a two-level hierarchy. The bottom layer consists of primitive acceleration structures, which instance acceleration structures in the top level reference.
+    ///
+    ///
+    /// Descriptor for a primitive acceleration structure
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPrimitiveAccelerationStructureDescriptor;
@@ -523,9 +566,8 @@ impl DefaultRetained for MTLPrimitiveAccelerationStructureDescriptor {
 }
 
 extern_class!(
+    /// A description of a list of triangle primitives to turn into an acceleration structure.
     /// Descriptor for triangle geometry
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuretrianglegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureTriangleGeometryDescriptor;
@@ -748,9 +790,8 @@ impl DefaultRetained for MTLAccelerationStructureTriangleGeometryDescriptor {
 }
 
 extern_class!(
+    /// A description of a list of bounding boxes to turn into an acceleration structure.
     /// Descriptor for bounding box geometry
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureBoundingBoxGeometryDescriptor;
@@ -860,9 +901,14 @@ impl DefaultRetained for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
 }
 
 extern_class!(
-    /// MTLbuffer and description how the data is stored in it.
+    /// Geometry data for a specific keyframe to use in a moving instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionkeyframedata?language=objc)
+    /// ## Overview
+    ///
+    /// An [`MTLMotionKeyframeData`](https://developer.apple.com/documentation/metal/mtlmotionkeyframedata) instance describes the location of geometry data for a keyframe. The exact type of data can vary, depending on which kind of motion descriptor you create. For an [`MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor`](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor) instance, the buffer data is a list of bounding boxes. For an [`MTLAccelerationStructureMotionTriangleGeometryDescriptor`](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor), the buffer data is a list of vertices.
+    ///
+    ///
+    /// MTLbuffer and description how the data is stored in it.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLMotionKeyframeData;
@@ -941,9 +987,8 @@ impl DefaultRetained for MTLMotionKeyframeData {
 }
 
 extern_class!(
+    /// A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.
     /// Descriptor for motion triangle geometry
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionTriangleGeometryDescriptor;
@@ -1157,9 +1202,8 @@ impl DefaultRetained for MTLAccelerationStructureMotionTriangleGeometryDescripto
 }
 
 extern_class!(
+    /// A description of a list of bounding boxes, as motion keyframe data, to turn into an acceleration structure.
     /// Descriptor for motion bounding box geometry
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor;
@@ -1247,8 +1291,6 @@ impl DefaultRetained for MTLAccelerationStructureMotionBoundingBoxGeometryDescri
 }
 
 /// Curve types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1258,16 +1300,12 @@ impl MTLCurveType {
     /// advantage of having a real 3D shape consistent across different ray
     /// directions, well-defined surface normals, etc. However, they may be
     /// slower to intersect. These curves are ideal for viewing close-up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype/round?language=objc)
     #[doc(alias = "MTLCurveTypeRound")]
     pub const Round: Self = Self(0);
     /// Curve with a flat cross-section aligned with the ray direction.
     /// These curves may be faster to intersect but do not have a consistent
     /// 3D structure across different rays. These curves are ideal for viewing
     /// at a distance or curves with a small radius such as hair and fur.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype/flat?language=objc)
     #[doc(alias = "MTLCurveTypeFlat")]
     pub const Flat: Self = Self(1);
 }
@@ -1281,8 +1319,6 @@ unsafe impl RefEncode for MTLCurveType {
 }
 
 /// Basis function to use to interpolate curve control points
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1294,8 +1330,6 @@ impl MTLCurveBasis {
     /// through the control points without additional control points at the
     /// beginning and end of the curve. Each curve segment can overlap
     /// N-1 control points.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/bspline?language=objc)
     #[doc(alias = "MTLCurveBasisBSpline")]
     pub const BSpline: Self = Self(0);
     /// Catmull-Rom basis. Curves represented in this basis can also be
@@ -1313,19 +1347,13 @@ impl MTLCurveBasis {
     /// Curve segments join with C^1 continuity and the
     /// curve passes through the control points. Each curve segment can overlap
     /// 3 control points.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/catmullrom?language=objc)
     #[doc(alias = "MTLCurveBasisCatmullRom")]
     pub const CatmullRom: Self = Self(1);
     /// Linear basis. The curve is made of a sequence of connected line
     /// segments each with 2 control points.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/linear?language=objc)
     #[doc(alias = "MTLCurveBasisLinear")]
     pub const Linear: Self = Self(2);
     /// Bezier basis
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis/bezier?language=objc)
     #[doc(alias = "MTLCurveBasisBezier")]
     pub const Bezier: Self = Self(3);
 }
@@ -1340,26 +1368,18 @@ unsafe impl RefEncode for MTLCurveBasis {
 
 /// Type of end cap to insert at the beginning and end of each connected
 /// sequence of curve segments.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCurveEndCaps(pub NSInteger);
 impl MTLCurveEndCaps {
     /// No end caps
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps/none?language=objc)
     #[doc(alias = "MTLCurveEndCapsNone")]
     pub const None: Self = Self(0);
     /// Disk end caps
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps/disk?language=objc)
     #[doc(alias = "MTLCurveEndCapsDisk")]
     pub const Disk: Self = Self(1);
     /// Spherical end caps
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps/sphere?language=objc)
     #[doc(alias = "MTLCurveEndCapsSphere")]
     pub const Sphere: Self = Self(2);
 }
@@ -1375,8 +1395,6 @@ unsafe impl RefEncode for MTLCurveEndCaps {
 extern_class!(
     /// Acceleration structure geometry descriptor describing geometry
     /// made of curve primitives
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureCurveGeometryDescriptor;
@@ -1702,8 +1720,6 @@ impl DefaultRetained for MTLAccelerationStructureCurveGeometryDescriptor {
 extern_class!(
     /// Acceleration structure motion geometry descriptor describing
     /// geometry made of curve primitives
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructureMotionCurveGeometryDescriptor;
@@ -1971,7 +1987,7 @@ impl DefaultRetained for MTLAccelerationStructureMotionCurveGeometryDescriptor {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptor?language=objc)
+/// A description of an instance in an instanced geometry acceleration structure.
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2007,7 +2023,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureuseridinstancedescriptor?language=objc)
+/// A description of an instance in an instanced geometry acceleration structure, with the instance including a user identifier for the instance.
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2047,35 +2063,60 @@ unsafe impl RefEncode for MTLAccelerationStructureUserIDInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype?language=objc)
+/// Options for specifying different kinds of instance types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureInstanceDescriptorType(pub NSUInteger);
 impl MTLAccelerationStructureInstanceDescriptorType {
-    /// Default instance descriptor: MTLAccelerationStructureInstanceDescriptor
+    /// An option specifying that the instance uses the default characteristics.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/default?language=objc)
+    /// ## Discussion
+    ///
+    /// This instance type corresponds to the [`MTLAccelerationStructureInstanceDescriptor`](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptor)  structure memory layout.
+    ///
+    ///
+    /// Default instance descriptor: MTLAccelerationStructureInstanceDescriptor
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeDefault")]
     pub const Default: Self = Self(0);
-    /// Instance descriptor with an added user-ID
+    /// An option specifying that the instance contains a user identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/userid?language=objc)
+    /// ## Discussion
+    ///
+    /// This instance type corresponds to the [`MTLAccelerationStructureUserIDInstanceDescriptor`](https://developer.apple.com/documentation/metal/mtlaccelerationstructureuseridinstancedescriptor) structure memory layout.
+    ///
+    ///
+    /// Instance descriptor with an added user-ID
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeUserID")]
     pub const UserID: Self = Self(1);
-    /// Instance descriptor with support for motion
+    /// An option specifying that the instance contains motion data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/motion?language=objc)
+    /// ## Discussion
+    ///
+    /// This instance type corresponds to the [`MTLAccelerationStructureMotionInstanceDescriptor`](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioninstancedescriptor) structure memory layout.
+    ///
+    ///
+    /// Instance descriptor with support for motion
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeMotion")]
     pub const Motion: Self = Self(2);
-    /// Instance descriptor with a resource handle for the instanced acceleration structure
+    /// An option that enables using an instance descriptor memory layout that the GPU can populate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/indirect?language=objc)
+    /// ## Discussion
+    ///
+    /// This instance type corresponds to the [`MTLIndirectInstanceAccelerationStructureDescriptor`](https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor) memory layout.
+    ///
+    ///
+    /// Instance descriptor with a resource handle for the instanced acceleration structure
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirect")]
     pub const Indirect: Self = Self(3);
-    /// Motion instance descriptor with a resource handle for the instanced acceleration structure.
+    /// An option specifying that the instance contains motion data, and enables using an instance descriptor memory layout that the GPU can populate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype/indirectmotion?language=objc)
+    /// ## Discussion
+    ///
+    /// This instance type corresponds to the [`MTLIndirectAccelerationStructureMotionInstanceDescriptor`](https://developer.apple.com/documentation/metal/mtlindirectaccelerationstructuremotioninstancedescriptor) memory layout.
+    ///
+    ///
+    /// Motion instance descriptor with a resource handle for the instanced acceleration structure.
     #[doc(alias = "MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion")]
     pub const IndirectMotion: Self = Self(4);
 }
@@ -2088,7 +2129,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioninstancedescriptor?language=objc)
+/// A description of an instance in an instanced geometry acceleration structure, with the instance including a user identifier and motion data for the instance.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAccelerationStructureMotionInstanceDescriptor {
@@ -2145,7 +2186,7 @@ unsafe impl RefEncode for MTLAccelerationStructureMotionInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectaccelerationstructureinstancedescriptor?language=objc)
+/// A description of an instance in an instanced geometry acceleration structure that the GPU can populate.
 #[cfg(all(feature = "MTLAccelerationStructureTypes", feature = "MTLTypes"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2185,7 +2226,7 @@ unsafe impl RefEncode for MTLIndirectAccelerationStructureInstanceDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectaccelerationstructuremotioninstancedescriptor?language=objc)
+/// A description of an instance in an acceleration structure that the GPU can populate, with motion data for the instance.
 #[cfg(feature = "MTLTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2245,7 +2286,6 @@ unsafe impl RefEncode for MTLIndirectAccelerationStructureMotionInstanceDescript
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2253,15 +2293,11 @@ pub struct MTLTransformType(pub NSInteger);
 impl MTLTransformType {
     /// A tightly packed matrix with 4 columns and 3 rows. The full transform is assumed
     /// to be a 4x4 matrix with the last row being (0, 0, 0, 1).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype/packedfloat4x3?language=objc)
     #[doc(alias = "MTLTransformTypePackedFloat4x3")]
     pub const PackedFloat4x3: Self = Self(0);
     /// A transformation represented by individual components such as translation and
     /// rotation. The rotation is represented by a quaternion, allowing for correct motion
     /// interpolation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype/component?language=objc)
     #[doc(alias = "MTLTransformTypeComponent")]
     pub const Component: Self = Self(1);
 }
@@ -2275,9 +2311,14 @@ unsafe impl RefEncode for MTLTransformType {
 }
 
 extern_class!(
-    /// Descriptor for an instance acceleration structure
+    /// A description of an acceleration structure that derives from instances of primitive acceleration structures.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlinstanceaccelerationstructuredescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// Metal provides acceleration structures with a two-level hierarchy. The bottom layer consists of primitive acceleration structures, which instance acceleration structures in the top level reference.
+    ///
+    ///
+    /// Descriptor for an instance acceleration structure
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLInstanceAccelerationStructureDescriptor;
@@ -2525,9 +2566,8 @@ impl DefaultRetained for MTLInstanceAccelerationStructureDescriptor {
 }
 
 extern_class!(
+    /// A description of an acceleration structure that Metal derives from instances of primitive acceleration structures that the GPU can populate.
     /// Descriptor for an instance acceleration structure built with an indirected buffer of instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectInstanceAccelerationStructureDescriptor;
@@ -2862,7 +2902,20 @@ impl DefaultRetained for MTLIndirectInstanceAccelerationStructureDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructure?language=objc)
+    /// A collection of model data for GPU-accelerated intersection of rays with the model.
+    ///
+    /// ## Overview
+    ///
+    /// To accelerate ray tracing, the device instance needs to reorganize your model data into an optimized data structure for intersection testing on that GPU. Create  [`MTLAccelerationStructure`](https://developer.apple.com/documentation/metal/mtlaccelerationstructure) instances to contain your model data and reference them in compute and render  commands that execute ray-tracing operations.
+    ///
+    /// You don’t define classes that implement this protocol. To create an acceleration structure, you create a descriptor instance and configure its properties with your model data. Then call the [`newAccelerationStructureWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makeaccelerationstructure(descriptor:)) method on the Metal device instance to create the instance and reserve memory for the structure. To populate the structure with the data, use an [`MTLAccelerationStructureCommandEncoder`](https://developer.apple.com/documentation/metal/mtlaccelerationstructurecommandencoder) to encode GPU commands.
+    ///
+    /// Metal provides multiple descriptor classes, each describing a different type of model data. Choose the appropriate descriptor for each acceleration structure you want to make. Most often, you create an acceleration structure for each list of triangles or bounding boxes. Then collect related geometry structures into a primitive acceleration structure. Create instance acceleration structures when you need to reference instances of primitive acceleration structures at different locations within a scene.
+    ///
+    /// The table below summarizes the descriptor classes:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Descriptor class" }] }], [Paragraph { inline_content: [Text { text: "Usage" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureTriangleGeometryDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Describes an acceleration structure for a list of triangles." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureBoundingBoxGeometryDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Describes an acceleration structure for a list of bounding boxes." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Describes an acceleration structure for a list of bounding-box or triangle acceleration structures, effectively creating a union of all of the underlying geometry." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLInstanceAccelerationStructureDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Describes an acceleration structure for a list of instances of primitive acceleration structures." }] }]]], alignments: None, metadata: None })
+    ///
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLAccelerationStructure: MTLResource {
         #[unsafe(method(size))]

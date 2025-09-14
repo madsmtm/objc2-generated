@@ -8,7 +8,37 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentproperties?language=objc)
+    /// Information that UIKit uses to generate a document header for a navigation item’s title menu.
+    ///
+    /// ## Overview
+    ///
+    /// Assign a [`UIDocumentProperties`](https://developer.apple.com/documentation/uikit/uidocumentproperties) object to your navigation item’s [`documentProperties`](https://developer.apple.com/documentation/uikit/uinavigationitem/documentproperties) property. UIKit uses this object to display a document header at the top of the title menu, which appears when a person taps the navigation item’s title. The document header displays information about the current document, such as its title, file type, and size.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/20fc164b0862be0301d545ba6b0f8d29/media-3975665~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/0811f4d9adcb9fcb3625d31fb223b7d1/media-3975665%402x.png 2x" />
+    ///     <img alt="Title menu with a document header that contains a document preview, a Share button, and the text New Document, Text Document, 1 byte." src="https://docs-assets.developer.apple.com/published/20fc164b0862be0301d545ba6b0f8d29/media-3975665~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Additionally, you can configure a set of sharing capabilities that allow people to share or drag and drop the document content from the document header:
+    ///
+    /// - Set an [`activityViewControllerProvider`](https://developer.apple.com/documentation/uikit/uidocumentproperties/activityviewcontrollerprovider) to show the Share button.
+    ///
+    /// - Set a [`dragItemsProvider`](https://developer.apple.com/documentation/uikit/uidocumentproperties/dragitemsprovider) to allow people to drag and drop the document by dragging the preview icon.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC22
+    ///  Session 10069: [Meet desktop-class iPad](https://developer.apple.com/wwdc22/10069)
+    ///
+    /// Session 10070: [Build a desktop-class iPad app](https://developer.apple.com/wwdc22/10070)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

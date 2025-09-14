@@ -10,27 +10,50 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/willpopupnotification?language=objc)
+    /// Posted whenever the pop-up list of the `NSComboBox` is going to be displayed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSComboBox` whose pop-up window will be displayed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSComboBoxWillPopUpNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/willdismissnotification?language=objc)
+    /// Posted whenever the pop-up list of the `NSComboBox` is about to be dismissed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSComboBox` whose pop-up list will be dismissed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSComboBoxWillDismissNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/selectiondidchangenotification?language=objc)
+    /// Posted after the pop-up list selection of the `NSComboBox` changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSComboBox` whose selection changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSComboBoxSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/selectionischangingnotification?language=objc)
+    /// Posted whenever the pop-up list selection of the `NSComboBox` is changing.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSComboBox` whose selection is changing. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSComboBoxSelectionIsChangingNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxdatasource?language=objc)
     pub unsafe trait NSComboBoxDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSControl",
@@ -91,7 +114,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxdelegate?language=objc)
+    /// A set of optional methods implemented by delegates of combo box objects.
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSComboBoxDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[optional]
@@ -117,7 +140,35 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox?language=objc)
+    /// A view that displays a list of values in a pop-up menu where the user selects a value or types in a custom value.
+    ///
+    /// ## Overview
+    ///
+    /// A combo box combines the behavior of an [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) object with an [`NSPopUpButton`](https://developer.apple.com/documentation/appkit/nspopupbutton) object. A combo box displays a list of values from a pop-up list, but also provides a means for users to type in custom values. For example, here’s a combo box in its initial state.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/310744cba4e0a01d0d8e33cdeb6f4951/media-4305420~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/65f42bd3cb9d4a4446fbf8d1787c78ef/media-4305420%402x.png 2x" />
+    ///     <img alt="A screenshot of a collapsed combo box." src="https://docs-assets.developer.apple.com/published/65f42bd3cb9d4a4446fbf8d1787c78ef/media-4305420%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Clicking in the text portion of the control allows the user to edit the current value. When the user clicks the down arrow at the right side of the text field, the pop-up list appears.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/39956e09ab63f621a72071057d88eebc/media-4305419~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f83a89430289e9e2f8f6682454ce30b5/media-4305419%402x.png 2x" />
+    ///     <img alt="A screenshot of an expanded combo box. The first item in the list, Item A, is selected. The remaining three items are expanded and listed below." src="https://docs-assets.developer.apple.com/published/f83a89430289e9e2f8f6682454ce30b5/media-4305419%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The [`NSComboBox`](https://developer.apple.com/documentation/appkit/nscombobox) class uses [`NSComboBoxCell`](https://developer.apple.com/documentation/appkit/nscomboboxcell) to implement its user interface.
+    ///
+    /// Also see the [`NSComboBoxDataSource`](https://developer.apple.com/documentation/appkit/nscomboboxdatasource) protocol, which declares the methods that [`NSComboBox`](https://developer.apple.com/documentation/appkit/nscombobox) uses to access the contents of its data source object.
+    ///
+    ///
     #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

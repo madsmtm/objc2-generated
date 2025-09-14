@@ -12,38 +12,27 @@ use crate::*;
 /// Contains the common code used to support the Bluetoooth hands free profile.
 ///
 /// (c) 2010 by Apple Inc. All rights reserved.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreeDeviceFeatures(pub u32);
 impl IOBluetoothHandsFreeDeviceFeatures {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/none?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/ecandornrfunction?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureECAndOrNRFunction")]
     pub const ECAndOrNRFunction: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/threewaycalling?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureThreeWayCalling")]
     pub const ThreeWayCalling: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/clipresentation?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureCLIPresentation")]
     pub const CLIPresentation: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/voicerecognition?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureVoiceRecognition")]
     pub const VoiceRecognition: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/remotevolumecontrol?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureRemoteVolumeControl")]
     pub const RemoteVolumeControl: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/enhancedcallstatus?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureEnhancedCallStatus")]
     pub const EnhancedCallStatus: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/enhancedcallcontrol?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureEnhancedCallControl")]
     pub const EnhancedCallControl: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures/codecnegotiation?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureCodecNegotiation")]
     pub const CodecNegotiation: Self = Self(1 << 7);
 }
@@ -56,43 +45,31 @@ unsafe impl RefEncode for IOBluetoothHandsFreeDeviceFeatures {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreeAudioGatewayFeatures(pub u32);
 impl IOBluetoothHandsFreeAudioGatewayFeatures {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/none?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/threewaycalling?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureThreeWayCalling")]
     pub const ThreeWayCalling: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/ecandornrfunction?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureECAndOrNRFunction")]
     pub const ECAndOrNRFunction: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/voicerecognition?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureVoiceRecognition")]
     pub const VoiceRecognition: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/inbandringtone?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureInBandRingTone")]
     pub const InBandRingTone: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/attachednumbertovoicetag?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureAttachedNumberToVoiceTag")]
     pub const AttachedNumberToVoiceTag: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/rejectcallcapability?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureRejectCallCapability")]
     pub const RejectCallCapability: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/enhancedcallstatus?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureEnhancedCallStatus")]
     pub const EnhancedCallStatus: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/enhancedcallcontrol?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureEnhancedCallControl")]
     pub const EnhancedCallControl: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/extendederrorresultcodes?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureExtendedErrorResultCodes")]
     pub const ExtendedErrorResultCodes: Self = Self(1 << 8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures/codecnegotiation?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureCodecNegotiation")]
     pub const CodecNegotiation: Self = Self(1 << 9);
 }
@@ -105,31 +82,23 @@ unsafe impl RefEncode for IOBluetoothHandsFreeAudioGatewayFeatures {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeCallHoldModes(pub NSUInteger);
 impl IOBluetoothHandsFreeCallHoldModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode0?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode0")]
     pub const Mode0: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode1?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode1")]
     pub const Mode1: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode1idx?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode1idx")]
     pub const Mode1idx: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode2?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode2")]
     pub const Mode2: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode2idx?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode2idx")]
     pub const Mode2idx: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode3?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode3")]
     pub const Mode3: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallholdmodes/mode4?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCallHoldMode4")]
     pub const Mode4: Self = Self(1 << 6);
 }
@@ -142,19 +111,15 @@ unsafe impl RefEncode for IOBluetoothHandsFreeCallHoldModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeCodecID(pub u8);
 impl IOBluetoothHandsFreeCodecID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid/idcvsd?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCodecIDCVSD")]
     pub const IDCVSD: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid/idmsbc?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCodecIDmSBC")]
     pub const IDmSBC: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecodecid/idaaceld?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeCodecIDAACELD")]
     pub const IDAACELD: Self = Self(0x80);
 }
@@ -168,105 +133,226 @@ unsafe impl RefEncode for IOBluetoothHandsFreeCodecID {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorservice?language=objc)
+    /// The command string you use to show a carrier network connection indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The possible values for the carrier network connection indicator are:
+    ///
+    /// - `0`: The phone isn’t connected to a carrier network.
+    ///
+    /// - `1`: The phone is connected to a carrier network.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorService: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorcall?language=objc)
+    /// The command string you use to show an active call indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The possible values for the call indicator are:
+    ///
+    /// - `0`: No calls are active.
+    ///
+    /// - `1`: A call is active.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorCall: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorcallsetup?language=objc)
+    /// The command string you use to show a call setup status indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The possible values for the call setup indicator are:
+    ///
+    /// - `0`: No calls are being set up.
+    ///
+    /// - `1`: An incoming call is being set up.
+    ///
+    /// - `2`: An outgoing call is being set up.
+    ///
+    /// - `3`: The party receiving the call is being notified.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorCallSetup: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorcallheld?language=objc)
+    /// The command string you use to show a call hold status indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The possible values for the hold indicator are:
+    ///
+    /// - `0`: No calls are on hold.
+    ///
+    /// - `1`: A call is on hold and another is active.
+    ///
+    /// - `2`: A call is on hold and no calls are active.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorCallHeld: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorsignal?language=objc)
+    /// The command string you use to show a signal strength indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of the signal strength indicator is an integer from `0-5`, where `0` indicates a very weak signal and `5` indicates a very strong signal.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorSignal: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorroam?language=objc)
+    /// The command string you use to show a roaming status indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The possible values for the roaming status indicator are:
+    ///
+    /// - `0`: The phone is connected to the customer’s carrier network.
+    ///
+    /// - `1`: The phone isn’t connected to the customer’s carrier network.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorRoam: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeindicatorbattchg?language=objc)
+    /// The command string you use to show a battery charge level indicator on a phone.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of the battery charge indicator is an integer from `0-5`, where `0` indicates a very low battery charge and `5` indicates a very high charge.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeIndicatorBattChg: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallindex?language=objc)
+    /// The index of the call, starting with `1`.
+    ///
+    /// ## Discussion
+    ///
+    /// Calls keep their index number until they are ended. New calls are assigned the lowest available index number.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallIndex: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecalldirection?language=objc)
+    /// A value that indicates whether a call is incoming or outgoing.
+    ///
+    /// ## Discussion
+    ///
+    /// The string contains a single digit with one of the following values:
+    ///
+    /// - `“0”`: An outgoing call.
+    ///
+    /// - `“1”`: An incoming call.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallDirection: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallstatus?language=objc)
+    /// The current state of the call.
+    ///
+    /// ## Discussion
+    ///
+    /// The string contains a single digit with one of the following values:
+    ///
+    /// - `“0”`: An active call.
+    ///
+    /// - `“1”`: An active call that’s on hold.
+    ///
+    /// - `“2”`: An outgoing call that’s dialing.
+    ///
+    /// - `“3”`: An outgoing call that’s alerting the receiver.
+    ///
+    /// - `“4”`: An incoming call.
+    ///
+    /// - `“5”`: A call that’s waiting.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallStatus: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallmode?language=objc)
+    /// The type of call data.
+    ///
+    /// ## Discussion
+    ///
+    /// The string contains a single digit with one of the following values:
+    ///
+    /// - `“0”`: A voice call.
+    ///
+    /// - `“1”`: A data call.
+    ///
+    /// - `“2”`: A fax call.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallMode: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallmultiparty?language=objc)
+    /// A value that indicates whether the call is multiple-party.
+    ///
+    /// ## Discussion
+    ///
+    /// The string contains a single digit with one of the following values:
+    ///
+    /// - `“0”`: A single-party call.
+    ///
+    /// - `“1”`: A multiple-party call.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallMultiparty: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallnumber?language=objc)
+    /// The caller’s phone number.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallNumber: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecalltype?language=objc)
+    /// The format of the caller’s phone number.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreecallname?language=objc)
+    /// The name of the caller.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHandsFreeCallName: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothSMSMode(pub NSUInteger);
 impl IOBluetoothSMSMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode/pdu?language=objc)
     #[doc(alias = "IOBluetoothSMSModePDU")]
     pub const PDU: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode/text?language=objc)
     #[doc(alias = "IOBluetoothSMSModeText")]
     pub const Text: Self = Self(1);
 }
@@ -279,19 +365,15 @@ unsafe impl RefEncode for IOBluetoothSMSMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothHandsFreeSMSSupport(pub NSUInteger);
 impl IOBluetoothHandsFreeSMSSupport {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport/phase2smssupport?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePhase2SMSSupport")]
     pub const Phase2SMSSupport: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport/phase2psmssupport?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePhase2pSMSSupport")]
     pub const Phase2pSMSSupport: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreesmssupport/manufacturespecificsmssupport?language=objc)
     #[doc(alias = "IOBluetoothHandsFreeManufactureSpecificSMSSupport")]
     pub const ManufactureSpecificSMSSupport: Self = Self(1 << 2);
 }
@@ -304,25 +386,19 @@ unsafe impl RefEncode for IOBluetoothHandsFreeSMSSupport {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreePDUMessageStatus(pub NSUInteger);
 impl IOBluetoothHandsFreePDUMessageStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusrecunread?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecUnread")]
     pub const StatusRecUnread: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusrecread?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecRead")]
     pub const StatusRecRead: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusstounsent?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusStoUnsent")]
     pub const StatusStoUnsent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusstosent?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusStoSent")]
     pub const StatusStoSent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus/statusall?language=objc)
     #[doc(alias = "IOBluetoothHandsFreePDUStatusAll")]
     pub const StatusAll: Self = Self(4);
 }
@@ -336,60 +412,67 @@ unsafe impl RefEncode for IOBluetoothHandsFreePDUMessageStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduserviccenteraddress?language=objc)
+    /// The phone number for the service center that stored and then delivered the message.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUServicCenterAddress: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduservicecenteraddresstype?language=objc)
+    /// The format of the phone number for the service center.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUServiceCenterAddressType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpdutype?language=objc)
+    /// The GSM type of the text message.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduoriginatingaddress?language=objc)
+    /// The phone number for the sender of the text message.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUOriginatingAddress: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduoriginatingaddresstype?language=objc)
+    /// The format of the phone number for the sender of the text message.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUOriginatingAddressType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduprotocolid?language=objc)
+    /// The protocol of the text message content.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUProtocolID: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpdutimestamp?language=objc)
+    /// The time the text message was sent.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUTimestamp: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduencoding?language=objc)
+    /// The encoding for the text message.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUEncoding: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothpduuserdata?language=objc)
+    /// The content of the text message.
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothPDUUserData: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// Hands free profile class.
+    ///
+    /// ## Overview
+    ///
+    /// Superclass of IOBluetoothHandsFreeDevice and IOBluetoothHandsFreeAudioGateway classes. Contains the common code used to support the bluetoooth hands free profile.
+    ///
+    ///
     /// Hands free profile class.
     ///
     /// Superclass of IOBluetoothHandsFreeDevice and IOBluetoothHandsFreeAudioGateway classes.
@@ -398,8 +481,6 @@ extern_class!(
     /// IOBluetoothHandsFreeDevice
     ///
     /// IOBluetoothHandsFreeAudioGateway
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothHandsFree;
@@ -735,7 +816,6 @@ impl IOBluetoothHandsFree {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedelegate?language=objc)
     pub unsafe trait IOBluetoothHandsFreeDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-foundation")]
         /// Tells the delegate that the hands free service level connection is complete.

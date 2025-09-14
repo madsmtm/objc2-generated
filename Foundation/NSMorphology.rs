@@ -6,22 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender?language=objc)
+/// A representation of grammatical gender, used for inflecting strings.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalGender(pub NSInteger);
 impl NSGrammaticalGender {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender/notset?language=objc)
+    /// A value that indicates the gender is unset.
     #[doc(alias = "NSGrammaticalGenderNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender/feminine?language=objc)
+    /// The feminine grammatical gender.
     #[doc(alias = "NSGrammaticalGenderFeminine")]
     pub const Feminine: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender/masculine?language=objc)
+    /// The masculine grammatical gender.
     #[doc(alias = "NSGrammaticalGenderMasculine")]
     pub const Masculine: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender/neuter?language=objc)
+    /// A value to not specify gender when inflecting a string.
     #[doc(alias = "NSGrammaticalGenderNeuter")]
     pub const Neuter: Self = Self(3);
 }
@@ -34,55 +34,55 @@ unsafe impl RefEncode for NSGrammaticalGender {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech?language=objc)
+/// A representation of grammatical parts of speech, used for inflecting strings.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPartOfSpeech(pub NSInteger);
 impl NSGrammaticalPartOfSpeech {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/notset?language=objc)
+    /// A value that indicates the part of speech is unset.
     #[doc(alias = "NSGrammaticalPartOfSpeechNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/determiner?language=objc)
+    /// A determiner, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechDeterminer")]
     pub const Determiner: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/pronoun?language=objc)
+    /// A pronoun, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechPronoun")]
     pub const Pronoun: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/letter?language=objc)
+    /// A letter, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechLetter")]
     pub const Letter: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/adverb?language=objc)
+    /// An adverb, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechAdverb")]
     pub const Adverb: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/particle?language=objc)
+    /// A particle, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechParticle")]
     pub const Particle: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/adjective?language=objc)
+    /// An adjective, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechAdjective")]
     pub const Adjective: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/adposition?language=objc)
+    /// An adposition, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechAdposition")]
     pub const Adposition: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/verb?language=objc)
+    /// A verb, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechVerb")]
     pub const Verb: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/noun?language=objc)
+    /// A noun, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechNoun")]
     pub const Noun: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/conjunction?language=objc)
+    /// A conjunction, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechConjunction")]
     pub const Conjunction: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/numeral?language=objc)
+    /// A numeral, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechNumeral")]
     pub const Numeral: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/interjection?language=objc)
+    /// An interjection, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechInterjection")]
     pub const Interjection: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/preposition?language=objc)
+    /// A preposition, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechPreposition")]
     pub const Preposition: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech/abbreviation?language=objc)
+    /// An abbreviation, as used as a part of speech.
     #[doc(alias = "NSGrammaticalPartOfSpeechAbbreviation")]
     pub const Abbreviation: Self = Self(14);
 }
@@ -95,31 +95,31 @@ unsafe impl RefEncode for NSGrammaticalPartOfSpeech {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber?language=objc)
+/// A representation of grammatical number, used for inflecting strings.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalNumber(pub NSInteger);
 impl NSGrammaticalNumber {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/notset?language=objc)
+    /// A value that indicates the number is unset.
     #[doc(alias = "NSGrammaticalNumberNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/singular?language=objc)
+    /// A single person or thing, as used for a grammatical number.
     #[doc(alias = "NSGrammaticalNumberSingular")]
     pub const Singular: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/zero?language=objc)
+    /// Zero persons or things, as used for a grammatical number.
     #[doc(alias = "NSGrammaticalNumberZero")]
     pub const Zero: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/plural?language=objc)
+    /// Multiple persons or things, as used for a grammatical number.
     #[doc(alias = "NSGrammaticalNumberPlural")]
     pub const Plural: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/pluraltwo?language=objc)
+    /// Two persons or things, as used for a grammatical number.
     #[doc(alias = "NSGrammaticalNumberPluralTwo")]
     pub const PluralTwo: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/pluralfew?language=objc)
+    /// A small number of persons or things, as used for a grammatical number.
     #[doc(alias = "NSGrammaticalNumberPluralFew")]
     pub const PluralFew: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber/pluralmany?language=objc)
+    /// A large number of persons or things, as used for a grammatical number.
     #[doc(alias = "NSGrammaticalNumberPluralMany")]
     pub const PluralMany: Self = Self(6);
 }
@@ -132,55 +132,39 @@ unsafe impl RefEncode for NSGrammaticalNumber {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalCase(pub NSInteger);
 impl NSGrammaticalCase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/notset?language=objc)
     #[doc(alias = "NSGrammaticalCaseNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/nominative?language=objc)
     #[doc(alias = "NSGrammaticalCaseNominative")]
     pub const Nominative: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/accusative?language=objc)
     #[doc(alias = "NSGrammaticalCaseAccusative")]
     pub const Accusative: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/dative?language=objc)
     #[doc(alias = "NSGrammaticalCaseDative")]
     pub const Dative: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/genitive?language=objc)
     #[doc(alias = "NSGrammaticalCaseGenitive")]
     pub const Genitive: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/prepositional?language=objc)
     #[doc(alias = "NSGrammaticalCasePrepositional")]
     pub const Prepositional: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/ablative?language=objc)
     #[doc(alias = "NSGrammaticalCaseAblative")]
     pub const Ablative: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/adessive?language=objc)
     #[doc(alias = "NSGrammaticalCaseAdessive")]
     pub const Adessive: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/allative?language=objc)
     #[doc(alias = "NSGrammaticalCaseAllative")]
     pub const Allative: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/elative?language=objc)
     #[doc(alias = "NSGrammaticalCaseElative")]
     pub const Elative: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/illative?language=objc)
     #[doc(alias = "NSGrammaticalCaseIllative")]
     pub const Illative: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/essive?language=objc)
     #[doc(alias = "NSGrammaticalCaseEssive")]
     pub const Essive: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/inessive?language=objc)
     #[doc(alias = "NSGrammaticalCaseInessive")]
     pub const Inessive: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/locative?language=objc)
     #[doc(alias = "NSGrammaticalCaseLocative")]
     pub const Locative: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase/translative?language=objc)
     #[doc(alias = "NSGrammaticalCaseTranslative")]
     pub const Translative: Self = Self(14);
 }
@@ -193,22 +177,17 @@ unsafe impl RefEncode for NSGrammaticalCase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpronountype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPronounType(pub NSInteger);
 impl NSGrammaticalPronounType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpronountype/notset?language=objc)
     #[doc(alias = "NSGrammaticalPronounTypeNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpronountype/personal?language=objc)
     #[doc(alias = "NSGrammaticalPronounTypePersonal")]
     pub const Personal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpronountype/reflexive?language=objc)
     #[doc(alias = "NSGrammaticalPronounTypeReflexive")]
     pub const Reflexive: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpronountype/possessive?language=objc)
     #[doc(alias = "NSGrammaticalPronounTypePossessive")]
     pub const Possessive: Self = Self(3);
 }
@@ -221,22 +200,17 @@ unsafe impl RefEncode for NSGrammaticalPronounType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalperson?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPerson(pub NSInteger);
 impl NSGrammaticalPerson {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalperson/notset?language=objc)
     #[doc(alias = "NSGrammaticalPersonNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalperson/first?language=objc)
     #[doc(alias = "NSGrammaticalPersonFirst")]
     pub const First: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalperson/second?language=objc)
     #[doc(alias = "NSGrammaticalPersonSecond")]
     pub const Second: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalperson/third?language=objc)
     #[doc(alias = "NSGrammaticalPersonThird")]
     pub const Third: Self = Self(3);
 }
@@ -249,19 +223,15 @@ unsafe impl RefEncode for NSGrammaticalPerson {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldetermination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalDetermination(pub NSInteger);
 impl NSGrammaticalDetermination {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldetermination/notset?language=objc)
     #[doc(alias = "NSGrammaticalDeterminationNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldetermination/independent?language=objc)
     #[doc(alias = "NSGrammaticalDeterminationIndependent")]
     pub const Independent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldetermination/dependent?language=objc)
     #[doc(alias = "NSGrammaticalDeterminationDependent")]
     pub const Dependent: Self = Self(2);
 }
@@ -274,19 +244,15 @@ unsafe impl RefEncode for NSGrammaticalDetermination {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldefiniteness?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalDefiniteness(pub NSInteger);
 impl NSGrammaticalDefiniteness {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldefiniteness/notset?language=objc)
     #[doc(alias = "NSGrammaticalDefinitenessNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldefiniteness/indefinite?language=objc)
     #[doc(alias = "NSGrammaticalDefinitenessIndefinite")]
     pub const Indefinite: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldefiniteness/definite?language=objc)
     #[doc(alias = "NSGrammaticalDefinitenessDefinite")]
     pub const Definite: Self = Self(2);
 }
@@ -300,7 +266,15 @@ unsafe impl RefEncode for NSGrammaticalDefiniteness {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphology?language=objc)
+    /// A description of the grammatical properties of a string.
+    ///
+    /// ## Overview
+    ///
+    /// Use a morphology with an [`NSInflectionRule`](https://developer.apple.com/documentation/foundation/nsinflectionrule) to specify how to interpret a specific word when inflecting an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring). This affects grammatical agreement with traits like number and gender, as well as declaring the word’s part of speech.
+    ///
+    /// The [`NSMorphology`](https://developer.apple.com/documentation/foundation/nsmorphology) type’s design is language-independent; the concepts it can specify encompass the spectrum of what languages can do. Even for languages that don’t have one or more of those properties benefit the system as hints to make appropriate choices even when an exact inflection isn’t possible. Examples of properties absent from languages include Spanish’s lack of a grammatical gender of neuter, or the nonexistence of a paucal (plural few) pronoun in English.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphology;
@@ -427,7 +401,15 @@ impl DefaultRetained for NSMorphology {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologypronoun?language=objc)
+    /// A custom pronoun for referring to a third person.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of [`NSMorphologyPronoun`](https://developer.apple.com/documentation/foundation/nsmorphologypronoun) when you need to define custom pronouns for a localized term of address.
+    ///
+    /// For examples of how to create custom pronouns, see [`TermOfAddress`](https://developer.apple.com/documentation/foundation/termofaddress).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMorphologyPronoun;
@@ -518,7 +500,26 @@ impl NSMorphology {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologycustompronoun?language=objc)
+    /// A custom pronoun behavior for use in a specific langauge.
+    ///
+    /// ## Overview
+    ///
+    /// Set a [`NSMorphologyCustomPronoun`](https://developer.apple.com/documentation/foundation/nsmorphologycustompronoun) instance on a [`NSMorphology`](https://developer.apple.com/documentation/foundation/nsmorphology) instance when you want to provide a langauge-specific customization of pronoun use in that language. Different languages have different requirements for the grammatical information needed to apply a custom pronoun, so you set custom pronoun behavior on a per-language basis.
+    ///
+    /// The example below shows how to create English “ze” and “hir” custom pronouns:
+    ///
+    /// ```objc
+    /// let ze = [[NSMorphologyCustomPronoun alloc] init];
+    /// ze.subjectForm = "ze";
+    /// ze.objectForm = "hir";
+    /// ze.possessiveForm = "hir";
+    /// ze.possessiveAdjectiveForm = "hir";
+    /// ze.reflexiveForm = "hirself";
+    /// ```
+    ///
+    /// [`NSMorphologyCustomPronoun`](https://developer.apple.com/documentation/foundation/nsmorphologycustompronoun) only supports third-person pronouns. Use this feature when your app needs to refer to third parties with a specific pronoun.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSTermOfAddress instead"]

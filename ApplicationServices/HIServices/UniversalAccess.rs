@@ -6,19 +6,34 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// Defines the Universal Access zoom change focus type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/uazoomchangefocustype?language=objc)
+/// Defines the Universal Access zoom change focus type.
 pub type UAZoomChangeFocusType = u32;
 
+///
+/// ## Discussion
+///
 /// An event is requesting focus.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1553162-uazoomfocustypes/kuazoomfocustypeother?language=objc)
+///
+/// An event is requesting focus.
 pub const kUAZoomFocusTypeOther: c_uint = 0;
+///
+/// ## Discussion
+///
 /// The text insertion point has moved.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1553162-uazoomfocustypes/kuazoomfocustypeinsertionpoint?language=objc)
+///
+/// The text insertion point has moved.
 pub const kUAZoomFocusTypeInsertionPoint: c_uint = 1;
 
+/// Determines if the Universal Access zoom feature is enabled.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns `true` if the Universal Access zoom feature is on, `false` if the zoom feature is off or if the user has zoomed all the way out.
+///
+///
 /// Determines if the Universal Access zoom feature is enabled.
 ///
 /// Returns: Returns
@@ -32,8 +47,6 @@ pub const kUAZoomFocusTypeInsertionPoint: c_uint = 1;
 /// if the zoom feature is off or if the user
 /// has zoomed all the way out.
 /// Availability: Available in Mac OS X v10.4 and later (not available in CarbonLib 1.x and not available for nonCarbon CFM).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462288-uazoomenabled?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn UAZoomEnabled() -> bool {
     extern "C-unwind" {
@@ -44,6 +57,28 @@ pub unsafe extern "C-unwind" fn UAZoomEnabled() -> bool {
 }
 
 extern "C-unwind" {
+    /// Tells the Universal Access zoom feature where it should focus.
+    ///
+    /// Parameters:
+    /// - inRect: The frame of the element in focus, in global 72-dot-per-inch (dpi) coordinates.
+    ///
+    /// - inHighlightRect: The frame of the highlighted part of the element in focus, in global 72 dpi coordinates. If the whole element is in focus, and not just a smaller part of it, pass the `inRect` parameter and pass `NULL` for `inHighlightRect`.
+    ///
+    /// - inType: A value of type [`UAZoomChangeFocusType`](https://developer.apple.com/documentation/applicationservices/uazoomchangefocustype).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns `noErr` if there were no problems, if Universal Access Zoom is zoomed all the way out, or if the feature is off; returns `paramErr` if `inRect` is `NULL` or if `inType` is out of range.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function tells Universal Access the frame of the element in focus and the part of the element that should be in focus.
+    ///
+    ///
     /// Tells the Universal Access zoom feature where it should focus.
     ///
     /// This function tells Universal Access the frame of the element in focus and the
@@ -102,8 +137,6 @@ extern "C-unwind" {
     ///
     /// - `in_rect` must be a valid pointer.
     /// - `in_highlight_rect` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458830-uazoomchangefocus?language=objc)
     pub fn UAZoomChangeFocus(
         in_rect: *const CGRect,
         in_highlight_rect: *const CGRect,

@@ -17,19 +17,19 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode?language=objc)
+/// Different ways of representing alpha.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CIRenderDestinationAlphaMode(pub NSUInteger);
 impl CIRenderDestinationAlphaMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode/none?language=objc)
+    /// Designates a destination with no alpha compositing.
     #[doc(alias = "CIRenderDestinationAlphaNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode/premultiplied?language=objc)
+    /// Designates a destination that expects premultiplied alpha values.
     #[doc(alias = "CIRenderDestinationAlphaPremultiplied")]
     pub const Premultiplied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestinationalphamode/unpremultiplied?language=objc)
+    /// Designates a destination that expects non-premultiplied alpha values.
     #[doc(alias = "CIRenderDestinationAlphaUnpremultiplied")]
     pub const Unpremultiplied: Self = Self(2);
 }
@@ -43,7 +43,17 @@ unsafe impl RefEncode for CIRenderDestinationAlphaMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderdestination?language=objc)
+    /// A specification for configuring all attributes of a render task’s destination and issuing asynchronous render tasks.
+    ///
+    /// ## Overview
+    ///
+    /// The `CIRenderDestination` class provides an API for specifying a render task destination’s properties, such as buffer format, alpha mode, clamping behavior, blending, and color space, properties formerly tied to [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext).
+    ///
+    /// You can create a `CIRenderDestination` object for each surface or buffer to which you must render. You can also render multiple times to a single destination with different settings such as colorspace and blend mode by mutating a single `CIRenderDestination` object between renders.
+    ///
+    /// Renders issued to a `CIRenderDestination` return to the caller as soon as the CPU has issued the task, rather than after the GPU has performed the task, so you can start render tasks on subsequent frames without waiting for previous renders to finish. If the render fails, a [`CIRenderTask`](https://developer.apple.com/documentation/coreimage/cirendertask) will return immediately.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderDestination;
@@ -232,7 +242,13 @@ impl CIRenderDestination {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirenderinfo?language=objc)
+    /// An encapsulation of a render task’s timing, passes, and pixels processed.
+    ///
+    /// ## Overview
+    ///
+    /// A `CIRenderInfo` object allows Xcode Quick Look to visualize the render graph with detailed timing information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderInfo;
@@ -276,7 +292,15 @@ impl CIRenderInfo {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirendertask?language=objc)
+    /// A single render task.
+    ///
+    /// ## Overview
+    ///
+    /// A single render task issued in conjunction with [`CIRenderDestination`](https://developer.apple.com/documentation/coreimage/cirenderdestination).
+    ///
+    /// A `CIRenderTask` object appears in Xcode Quick Look as a graph.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRenderTask;

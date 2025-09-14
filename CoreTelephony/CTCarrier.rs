@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcarrier?language=objc)
+    /// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTCarrier;

@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityseriessamplequery?language=objc)
+    /// A query that accesses the series data associated with a quantity sample.
+    ///
+    /// ## Overview
+    ///
+    /// Use a series query to access the individual [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) objects added to a sample using an [`HKQuantitySeriesSampleBuilder`](https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For many common calculations, consider using a statistical query instead. Statistical queries correctly handle quantity data, whether the samples represent a single quantity or a series.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

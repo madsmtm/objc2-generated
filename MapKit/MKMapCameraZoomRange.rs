@@ -9,13 +9,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapcamerazoomdefault?language=objc)
+    /// A constant value used to represent the default value for zooming in or out on a map.
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`MKMapCameraZoomDefault`](https://developer.apple.com/documentation/mapkit/mkmapcamerazoomdefault) for the minimum or maximum zoom range when you create an instance of [`MKMapCameraZoomRange`](https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class) to allow the user to zoom to any level that MapKit supports.
+    ///
+    ///
     #[cfg(feature = "objc2-core-location")]
     pub static MKMapCameraZoomDefault: CLLocationDistance;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class?language=objc)
+    /// A camera zoom range that limits the distances to which the user can zoom.
+    ///
+    /// ## Overview
+    ///
+    /// Create a camera zoom range to limit the distance to which the user can zoom. After you create the camera zoom range, you can apply it to multiple map views. If you don’t create a camera zoom range, your map view allows the user to zoom to MapKit’s capabilities.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapCameraZoomRange;

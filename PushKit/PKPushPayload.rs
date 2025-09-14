@@ -8,6 +8,7 @@ use crate::*;
 
 extern_class!(
     /// An object that contains information about a received PushKit notification.
+    /// An object that contains information about a received PushKit notification.
     ///
     /// ## Topics
     ///
@@ -15,8 +16,6 @@ extern_class!(
     ///
     /// - ``PushKit/PKPushPayload/dictionaryPayload``
     /// - ``PushKit/PKPushPayload/type``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPushPayload;

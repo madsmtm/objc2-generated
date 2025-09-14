@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrideoption?language=objc)
+    /// Details about a type of ride offered by your ride-booking service.
+    ///
+    /// ## Overview
+    ///
+    /// When the user books a ride through Siri or Maps, you use [`INRideOption`](https://developer.apple.com/documentation/intents/inrideoption) objects to convey information about pricing and passenger capacity for that ride. Prior to booking, Maps asks for ride option objects representing the rides that are available from your service at that moment. Siri and Maps present ride option information to the user in appropriate contexts so that the user has information about potential rides.
+    ///
+    /// You create [`INRideOption`](https://developer.apple.com/documentation/intents/inrideoption) objects in response to ride requests and when providing the user with a list of available rides. Always fill in as many properties of ride option objects as makes sense for that ride. Ride options let you specify pricing in several different ways, including as a range of values or as a set of line-item costs. You can also specify information about any special pricing that applies to the ride right now. After configuring the ride option, deliver it with the response object you return back to SiriKit.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRideOption;

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableheadercell?language=objc)
+    /// An object that a table header view uses to draw the content of the column headers.
+    ///
+    /// ## Overview
+    ///
+    /// Subclasses of the `NSTableHeaderCell` class can override the [`drawInteriorWithFrame:inView:`](https://developer.apple.com/documentation/appkit/nscell/drawinterior(withframe:in:)), [`editWithFrame:inView:editor:delegate:event:`](https://developer.apple.com/documentation/appkit/nscell/edit(withframe:in:editor:delegate:event:)), and [`highlight:withFrame:inView:`](https://developer.apple.com/documentation/appkit/nscell/highlight(_:withframe:in:)) methods to change the way headers appear. This specific subclass is responsible for drawing the sort indicators. See the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) class specification for information on overriding these methods.
+    ///
+    /// See the [`NSTableView`](https://developer.apple.com/documentation/appkit/nstableview) and [`NSTableHeaderCell`](https://developer.apple.com/documentation/appkit/nstableheadercell) for more information.
+    ///
+    ///
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

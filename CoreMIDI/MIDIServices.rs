@@ -9,39 +9,48 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvalidclient?language=objc)
+/// The client is invalid.
 pub const kMIDIInvalidClient: OSStatus = -10830;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvalidport?language=objc)
+/// The port is invalid.
 pub const kMIDIInvalidPort: OSStatus = -10831;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongendpointtype?language=objc)
+/// A function received a source endpoint when it required a destination endpoint, or vice versa.
 pub const kMIDIWrongEndpointType: OSStatus = -10832;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinoconnection?language=objc)
+/// The connection you’re trying to close doesn’t exist.
 pub const kMIDINoConnection: OSStatus = -10833;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownendpoint?language=objc)
+/// The system doesn’t recognize the endpoint.
 pub const kMIDIUnknownEndpoint: OSStatus = -10834;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownproperty?language=objc)
+/// The property you’re trying to query isn’t set on the object.
 pub const kMIDIUnknownProperty: OSStatus = -10835;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongpropertytype?language=objc)
+/// The value you assigned to the property is the wrong type.
 pub const kMIDIWrongPropertyType: OSStatus = -10836;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinocurrentsetup?language=objc)
+/// A MIDI setup object doesn’t currently exist.
 pub const kMIDINoCurrentSetup: OSStatus = -10837;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidimessagesenderr?language=objc)
+/// The communication with the MIDI server failed.
 pub const kMIDIMessageSendErr: OSStatus = -10838;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiserverstarterr?language=objc)
+/// The system can’t start the MIDI server.
 pub const kMIDIServerStartErr: OSStatus = -10839;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidisetupformaterr?language=objc)
+/// The system can’t read the saved state.
 pub const kMIDISetupFormatErr: OSStatus = -10840;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiwrongthread?language=objc)
+/// A driver is calling a non-I/O function in the server from a thread other than the server’s main thread.
 pub const kMIDIWrongThread: OSStatus = -10841;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiobjectnotfound?language=objc)
+/// The requested object doesn’t exist.
 pub const kMIDIObjectNotFound: OSStatus = -10842;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiidnotunique?language=objc)
+/// The identifier you’re trying to set isn’t unique.
 pub const kMIDIIDNotUnique: OSStatus = -10843;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidinotpermitted?language=objc)
+/// The process doesn’t have privileges for the requested operation.
 pub const kMIDINotPermitted: OSStatus = -10844;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiunknownerror?language=objc)
+/// The system can’t perform the requested operation.
 pub const kMIDIUnknownError: OSStatus = -10845;
 
+/// The common base class for many of the framework’s objects.
+///
+/// ## Discussion
+///
+/// MIDI Objects have properties, and often have an owning object, from which they inherit any properties they don’t define themselves.
+///
+/// Developers may add their own private properties, with names that begin with their company’s inverted domain name, but with underscores instead of dots. For example, `com_apple_APrivateAppleProperty`.
+///
+///
 /// The base class of many CoreMIDI objects.
 ///
 /// MIDIObject is the base class for many of the objects in CoreMIDI.  They have properties,
@@ -51,30 +60,45 @@ pub const kMIDIUnknownError: OSStatus = -10845;
 /// Developers may add their own private properties, whose names must begin with their
 /// company's inverted domain name, as in Java package names, but with underscores instead
 /// of dots, e.g.: com_apple_APrivateAppleProperty
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectref?language=objc)
 pub type MIDIObjectRef = u32;
 
+/// An object that maintains per-client state.
+///
+/// ## Discussion
+///
+/// A client object derives from [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref). It doesn’t have an owning object.
+///
+///
 /// An object maintaining per-client state.
 ///
 /// Derives from MIDIObjectRef, does not have an owner object.
 ///
 /// To use CoreMIDI, an application creates a MIDIClientRef, to which it can add
 /// MIDIPortRef's, through which it can send and receive MIDI.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientref?language=objc)
 pub type MIDIClientRef = MIDIObjectRef;
 
+/// A MIDI connection that a client maintains.
+///
+/// ## Discussion
+///
+/// A port object derives from [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref), and its owning object is a [`MIDIDeviceRef`](https://developer.apple.com/documentation/coremidi/midideviceref). It represents an input or output port, and it provides the means to communicate with any number of MIDI sources or destinations.
+///
+///
 /// A MIDI connection port owned by a client.
 ///
 /// Derives from MIDIObjectRef, owned by a MIDIClientRef.
 ///
 /// A MIDIPortRef, which may be an input port or output port, is an object through which a
 /// client may communicate with any number of MIDI sources or destinations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportref?language=objc)
 pub type MIDIPortRef = MIDIObjectRef;
 
+/// A MIDI device that contains entities.
+///
+/// ## Discussion
+///
+/// A device object derives from [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref). It doesn’t have an owning object.
+///
+///
 /// A MIDI device or external device, containing entities.
 ///
 /// Derives from MIDIObjectRef, does not have an owner object.
@@ -84,10 +108,17 @@ pub type MIDIPortRef = MIDIObjectRef;
 /// device via a standard MIDI cable.
 ///
 /// A MIDIDeviceRef has properties and contains MIDIEntityRef's.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midideviceref?language=objc)
 pub type MIDIDeviceRef = MIDIObjectRef;
 
+/// An entity that a device owns and that contains endpoints.
+///
+/// ## Discussion
+///
+/// An entity object derives from [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref), and its owning object is a [`MIDIDeviceRef`](https://developer.apple.com/documentation/coremidi/midideviceref).
+///
+/// Devices may have multiple logically distinct subcomponents; for example, a MIDI synthesizer and a pair of MIDI ports are addressable using a USB port. By grouping a device’s endpoints into entities, the system has enough information for an app to make reasonable assumptions about how to communicate bidirectionally with each entity, as required by MIDI librarian apps.
+///
+///
 /// A MIDI entity, owned by a device, containing endpoints.
 ///
 /// Derives from MIDIObjectRef, owned by a MIDIDeviceRef.
@@ -100,10 +131,15 @@ pub type MIDIDeviceRef = MIDIObjectRef;
 /// manner with each entity, as is desirable in MIDI librarian applications.
 ///
 /// These sub-components are MIDIEntityRef's.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientityref?language=objc)
 pub type MIDIEntityRef = MIDIObjectRef;
 
+/// A MIDI source or destination an entity owns.
+///
+/// ## Discussion
+///
+/// An endpoint object derives from [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref). It’s owned by a [`MIDIEntityRef`](https://developer.apple.com/documentation/coremidi/midientityref), unless it’s a virtual endpoint, in which case it has no owner. An entity may have any number of MIDI endpoints, which contain sources and destinations of 16-channel MIDI streams.
+///
+///
 /// A MIDI source or destination, owned by an entity.
 ///
 /// Derives from MIDIObjectRef, owned by a MIDIEntityRef, unless it is a virtual endpoint,
@@ -111,10 +147,15 @@ pub type MIDIEntityRef = MIDIObjectRef;
 ///
 /// Entities have any number of MIDIEndpointRef's, sources and destinations of 16-channel
 /// MIDI streams.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointref?language=objc)
 pub type MIDIEndpointRef = MIDIObjectRef;
 
+/// The time on the host clock when the event occurred.
+///
+/// ## Discussion
+///
+/// The system determines the timestamp using `mach_absolute_time()`.
+///
+///
 /// A host clock time.
 ///
 /// A host clock time representing the time of an event, as returned by
@@ -124,45 +165,42 @@ pub type MIDIEndpointRef = MIDIObjectRef;
 /// it's more convenient to use a UInt64 than an AbsoluteTime.
 ///
 /// See CoreAudio/HostTime.h.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditimestamp?language=objc)
 pub type MIDITimeStamp = u64;
 
+/// The MIDI object types that the system supports.
 /// Signifies the type of a MIDIObject.
 ///
 /// Signifies the real type of a MIDIObjectRef instance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIObjectType(pub i32);
 impl MIDIObjectType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/other?language=objc)
+    /// A MIDI object with an undefined type.
     #[doc(alias = "kMIDIObjectType_Other")]
     pub const Other: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/device?language=objc)
+    /// A MIDI device.
     #[doc(alias = "kMIDIObjectType_Device")]
     pub const Device: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/entity?language=objc)
+    /// A MIDI entity.
     #[doc(alias = "kMIDIObjectType_Entity")]
     pub const Entity: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/source?language=objc)
+    /// A MIDI source.
     #[doc(alias = "kMIDIObjectType_Source")]
     pub const Source: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/destination?language=objc)
+    /// A MIDI destination.
     #[doc(alias = "kMIDIObjectType_Destination")]
     pub const Destination: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externaldevice?language=objc)
+    /// An external device.
     #[doc(alias = "kMIDIObjectType_ExternalDevice")]
     pub const ExternalDevice: Self = Self(0x10 | MIDIObjectType::Device.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externalentity?language=objc)
+    /// An external entity.
     #[doc(alias = "kMIDIObjectType_ExternalEntity")]
     pub const ExternalEntity: Self = Self(0x10 | MIDIObjectType::Entity.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externalsource?language=objc)
+    /// An external source.
     #[doc(alias = "kMIDIObjectType_ExternalSource")]
     pub const ExternalSource: Self = Self(0x10 | MIDIObjectType::Source.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjecttype/externaldestination?language=objc)
+    /// An external destination.
     #[doc(alias = "kMIDIObjectType_ExternalDestination")]
     pub const ExternalDestination: Self = Self(0x10 | MIDIObjectType::Destination.0);
 }
@@ -177,35 +215,31 @@ unsafe impl RefEncode for MIDIObjectType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiobjecttype_externalmask?language=objc)
+/// A bit mask indicating that a device is external.
 pub static kMIDIObjectType_ExternalMask: MIDIObjectType = MIDIObjectType(0x10);
 
+/// A MIDI object’s unique identifier.
 /// A unique identifier for a MIDIObjectRef.
 ///
 /// An integer which uniquely identifies a MIDIObjectRef.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniqueid?language=objc)
 pub type MIDIUniqueID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidiinvaliduniqueid?language=objc)
+/// An invalid identifier.
 pub const kMIDIInvalidUniqueID: MIDIUniqueID = 0;
 
+/// Specifies a MIDI protocol variant.
 /// Specifies a MIDI protocol variant.
 ///
 /// MIDI 1.0.
 ///
 /// MIDI 2.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprotocolid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDIProtocolID(pub i32);
 impl MIDIProtocolID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprotocolid/kmidiprotocol_1_0?language=objc)
     #[doc(alias = "kMIDIProtocol_1_0")]
     pub const Protocol_1_0: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprotocolid/kmidiprotocol_2_0?language=objc)
     #[doc(alias = "kMIDIProtocol_2_0")]
     pub const Protocol_2_0: Self = Self(2);
 }
@@ -222,6 +256,19 @@ unsafe impl RefEncode for MIDIProtocolID {
 
 /// A callback function for notifying clients of state changes.
 ///
+/// Parameters:
+/// - message: A structure that contains information about what changed.
+///
+/// - refCon: The client’s `refCon`, passed to [`MIDIClientCreate`](https://developer.apple.com/documentation/coremidi/midiclientcreate(_:_:_:_:)).
+///
+///
+/// ## Discussion
+///
+/// The system invokes this callback when some aspect of the current MIDI setup changes. The system calls it on the same thread that you called [`MIDIClientCreate`](https://developer.apple.com/documentation/coremidi/midiclientcreate(_:_:_:_:)) on.
+///
+///
+/// A callback function for notifying clients of state changes.
+///
 /// This callback function is called when some aspect of the current MIDI setup changes. It
 /// is called on the runloop (thread) on which MIDIClientCreate was first called.
 ///
@@ -229,11 +276,20 @@ unsafe impl RefEncode for MIDIProtocolID {
 /// Parameter `message`: A structure containing information about what changed.
 ///
 /// Parameter `refCon`: The client's refCon passed to MIDIClientCreate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotifyproc?language=objc)
 pub type MIDINotifyProc =
     Option<unsafe extern "C-unwind" fn(NonNull<MIDINotification>, *mut c_void)>;
 
+/// A callback block for notifying clients of state changes.
+///
+/// Parameters:
+/// - message: A structure that contains information about what changed.
+///
+///
+/// ## Discussion
+///
+/// The system calls this block when some aspect of the current MIDI setup changes. The system calls it on an arbitrary thread chosen by the implementation; thread safety is the responsibility of the block.
+///
+///
 /// A callback block for notifying clients of state changes.
 ///
 /// This block is called when some aspect of the current MIDI setup changes. It
@@ -242,11 +298,24 @@ pub type MIDINotifyProc =
 ///
 ///
 /// Parameter `message`: A structure containing information about what changed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotifyblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MIDINotifyBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDINotification>)>;
 
+/// A block receiving MIDI input that includes the incoming messages and a refCon to identify the source.
+///
+/// Parameters:
+/// - evtlist: The incoming MIDI message(s).
+///
+/// - srcConnRefCon: The refCon that identifies the source of the data, which is the value that you pass for the `connRefCon` parameter to [`MIDIPortConnectSource`](https://developer.apple.com/documentation/coremidi/midiportconnectsource(_:_:_:)). This value is always [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) when receiving a MIDI event on a virtual input.
+///
+///
+/// ## Discussion
+///
+/// A client receives incoming MIDI messages through this callback block.
+///
+/// The [`MIDIInputPortCreateWithProtocol`](https://developer.apple.com/documentation/coremidi/midiinputportcreatewithprotocol(_:_:_:_:_:)) and [`MIDIDestinationCreateWithProtocol`](https://developer.apple.com/documentation/coremidi/mididestinationcreatewithprotocol(_:_:_:_:_:)) functions receive a [`MIDIReceiveBlock`](https://developer.apple.com/documentation/coremidi/midireceiveblock). The system creates a high-priority receive thread on your client’s behalf, and from that thread it calls your [`MIDIReceiveBlock`](https://developer.apple.com/documentation/coremidi/midireceiveblock) when incoming MIDI messages arrive.
+///
+///
 /// A block receiving MIDI input.
 ///
 /// This is a callback block through which a client receives incoming MIDI messages.
@@ -261,11 +330,26 @@ pub type MIDINotifyBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDINotification
 ///
 /// Parameter `srcConnRefCon`: A refCon you passed to MIDIPortConnectSource, which
 /// identifies the source of the data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceiveblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MIDIReceiveBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIEventList>, *mut c_void)>;
 
+/// A function receiving MIDI input.
+///
+/// Parameters:
+/// - pktlist: The incoming MIDI message(s).
+///
+/// - readProcRefCon: The refCon you passed to MIDIInputPortCreate or MIDIDestinationCreate
+///
+/// - srcConnRefCon: A refCon you passed to MIDIPortConnectSource, which identifies the source of the data.
+///
+///
+/// ## Discussion
+///
+/// This is a callback function through which a client receives incoming MIDI messages.
+///
+/// A MIDIReadProc function pointer is passed to the MIDIInputPortCreate and MIDIDestinationCreate functions. The CoreMIDI framework will create a high-priority receive thread on your client’s behalf, and from that thread, your MIDIReadProc will be called when incoming MIDI messages arrive.
+///
+///
 /// A function receiving MIDI input.
 ///
 /// This is a callback function through which a client receives incoming MIDI messages.
@@ -283,12 +367,25 @@ pub type MIDIReceiveBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIEventList>,
 ///
 /// Parameter `srcConnRefCon`: A refCon you passed to MIDIPortConnectSource, which
 /// identifies the source of the data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadproc?language=objc)
 #[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 pub type MIDIReadProc =
     Option<unsafe extern "C-unwind" fn(NonNull<MIDIPacketList>, *mut c_void, *mut c_void)>;
 
+/// A block receiving MIDI input.
+///
+/// Parameters:
+/// - pktlist: The incoming MIDI message(s).
+///
+/// - srcConnRefCon: A refCon you passed to MIDIPortConnectSource, which identifies the source of the data.
+///
+///
+/// ## Discussion
+///
+/// This is a callback block through which a client receives incoming MIDI messages.
+///
+/// A MIDIReadBlock is passed to the MIDIInputPortCreateWithBlock and MIDIDestinationCreateWithBlock functions. The CoreMIDI framework will create a high-priority receive thread on your client’s behalf, and from that thread, your MIDIReadProc will be called when incoming MIDI messages arrive.
+///
+///
 /// A block receiving MIDI input.
 ///
 /// This is a callback block through which a client receives incoming MIDI messages.
@@ -303,12 +400,15 @@ pub type MIDIReadProc =
 ///
 /// Parameter `srcConnRefCon`: A refCon you passed to MIDIPortConnectSource, which
 /// identifies the source of the data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadblock?language=objc)
 #[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 #[cfg(feature = "block2")]
 pub type MIDIReadBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIPacketList>, *mut c_void)>;
 
+/// A function the system calls after it completely sends a system-exclusive (SysEx) event.
+///
+/// Parameters:
+/// - request: The completed or aborted request.
+///
 /// A function called when a system-exclusive event has been completely sent.
 ///
 /// Callback function to notify the client of the completion of a call to MIDISendSysex.
@@ -316,10 +416,13 @@ pub type MIDIReadBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIPacketList>, *
 ///
 /// Parameter `request`: The MIDISysexSendRequest which has completed, or been
 /// aborted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicompletionproc?language=objc)
 pub type MIDICompletionProc = Option<unsafe extern "C-unwind" fn(NonNull<MIDISysexSendRequest>)>;
 
+/// A function the system calls after it completely sends a UMP system-exclusive (SysEx) or SysEx 8-bit event.
+///
+/// Parameters:
+/// - request: The completed or aborted request.
+///
 /// A function called when a UMP system-exclusive or system-exclusive 8-bit event has been completely sent.
 ///
 /// Callback function to notify the client of the completion of a call to MIDISendSysexUMP or MIDISendSysex8.
@@ -327,11 +430,10 @@ pub type MIDICompletionProc = Option<unsafe extern "C-unwind" fn(NonNull<MIDISys
 ///
 /// Parameter `request`: The MIDISysexSendRequestUMP which has completed, or been
 /// aborted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicompletionprocump?language=objc)
 pub type MIDICompletionProcUMP =
     Option<unsafe extern "C-unwind" fn(NonNull<MIDISysexSendRequestUMP>)>;
 
+/// A series of simultaneous MIDI events in Universal MIDI Packets (UMP) format.
 /// A series of simultaneous MIDI events in UMP format.
 ///
 ///
@@ -362,8 +464,6 @@ pub type MIDICompletionProcUMP =
 ///
 /// (This is declared to be 64 words in length so clients don't have to
 /// create custom data structures in simple situations.)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventpacket?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIEventPacket {
@@ -389,6 +489,7 @@ unsafe impl RefEncode for MIDIEventPacket {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A variable-length list of MIDI event packets.
 /// A variable-length list of MIDIEventPackets.
 ///
 ///
@@ -422,8 +523,6 @@ unsafe impl RefEncode for MIDIEventPacket {
 /// The number of MIDIEventPacket structs in the list.
 /// Field: packet
 /// An open-ended array of variable-length MIDIEventPacket structs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIEventList {
@@ -449,6 +548,7 @@ unsafe impl RefEncode for MIDIEventList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A collection of simultaneous MIDI events.
 /// A collection of simultaneous MIDI events.
 ///
 ///
@@ -479,8 +579,6 @@ unsafe impl RefEncode for MIDIEventList {
 /// (This is declared to be 256 bytes in length so clients
 /// don't have to create custom data structures in simple
 /// situations.)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacket?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIPacket {
@@ -506,6 +604,7 @@ unsafe impl RefEncode for MIDIPacket {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A list of MIDI events the system sends to or receives from an endpoint.
 /// A list of MIDI events being received from, or being sent to,
 /// one endpoint.
 ///
@@ -543,8 +642,6 @@ unsafe impl RefEncode for MIDIPacket {
 /// The number of MIDIPackets in the list.
 /// Field: packet
 /// An open-ended array of variable-length MIDIPackets.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacketlist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIPacketList {
@@ -565,6 +662,7 @@ unsafe impl RefEncode for MIDIPacketList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A request to asynchronously send a single system-exclusive (SysEx) event to a destination.
 /// A request to transmit a system-exclusive event.
 ///
 ///
@@ -589,8 +687,6 @@ unsafe impl RefEncode for MIDIPacketList {
 /// has set complete to true.
 /// Field: completionRefCon
 /// Passed as a refCon to completionProc.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexsendrequest?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -625,6 +721,7 @@ unsafe impl RefEncode for MIDISysexSendRequest {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A request to asynchronously send a single universal MIDI packet (UMP) system-exclusive (SysEx) event to a destination.
 /// A request to transmit a UMP system-exclusive event.
 ///
 ///
@@ -649,8 +746,6 @@ unsafe impl RefEncode for MIDISysexSendRequest {
 /// has set complete to true.
 /// Field: completionRefCon
 /// Passed as a refCon to completionProc.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexsendrequestump?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -683,6 +778,7 @@ unsafe impl RefEncode for MIDISysexSendRequestUMP {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The types of state changes the system supports.
 /// Signifies the type of a MIDINotification.
 ///
 ///
@@ -703,35 +799,68 @@ unsafe impl RefEncode for MIDISysexSendRequestUMP {
 /// No data.  New in Mac OS X 10.2.
 ///
 /// A driver I/O error occurred.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MIDINotificationMessageID(pub i32);
 impl MIDINotificationMessageID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgsetupchanged?language=objc)
+    /// Some aspect of the current MIDI setup changed.
+    ///
+    /// ## Discussion
+    ///
+    /// This type provides no data. Ignore this message if you’re explicitly handling other state changes.
+    ///
+    ///
     #[doc(alias = "kMIDIMsgSetupChanged")]
     pub const MsgSetupChanged: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgobjectadded?language=objc)
+    /// The system added a device, entity, or endpoint.
+    ///
+    /// ## Discussion
+    ///
+    /// This type’s data is [`MIDIObjectAddRemoveNotification`](https://developer.apple.com/documentation/coremidi/midiobjectaddremovenotification).
+    ///
+    ///
     #[doc(alias = "kMIDIMsgObjectAdded")]
     pub const MsgObjectAdded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgobjectremoved?language=objc)
+    /// The system removed a device, entity, or endpoint.
+    ///
+    /// ## Discussion
+    ///
+    /// This type’s data is [`MIDIObjectAddRemoveNotification`](https://developer.apple.com/documentation/coremidi/midiobjectaddremovenotification).
+    ///
+    ///
     #[doc(alias = "kMIDIMsgObjectRemoved")]
     pub const MsgObjectRemoved: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgpropertychanged?language=objc)
+    /// An object’s property value changed.
+    ///
+    /// ## Discussion
+    ///
+    /// This type’s data is [`MIDIObjectPropertyChangeNotification`](https://developer.apple.com/documentation/coremidi/midiobjectpropertychangenotification).
+    ///
+    ///
     #[doc(alias = "kMIDIMsgPropertyChanged")]
     pub const MsgPropertyChanged: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgthruconnectionschanged?language=objc)
+    /// The system created or disposed of a persistent MIDI Thru connection.
+    ///
+    /// ## Discussion
+    ///
+    /// This type has no data.
+    ///
+    ///
     #[doc(alias = "kMIDIMsgThruConnectionsChanged")]
     pub const MsgThruConnectionsChanged: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgserialportownerchanged?language=objc)
+    /// The system changed a serial port owner.
+    ///
+    /// ## Discussion
+    ///
+    /// This type has no data.
+    ///
+    ///
     #[doc(alias = "kMIDIMsgSerialPortOwnerChanged")]
     pub const MsgSerialPortOwnerChanged: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msgioerror?language=objc)
+    /// A driver I/O error occurred.
     #[doc(alias = "kMIDIMsgIOError")]
     pub const MsgIOError: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotificationmessageid/msginternalstart?language=objc)
     #[doc(alias = "kMIDIMsgInternalStart")]
     pub const MsgInternalStart: Self = Self(0x1000);
 }
@@ -746,6 +875,7 @@ unsafe impl RefEncode for MIDINotificationMessageID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A message that describes a system state change.
 /// A message describing a system state change.
 ///
 /// A MIDINotification is a structure passed to a MIDINotifyProc or MIDINotifyBlock, when
@@ -756,8 +886,6 @@ unsafe impl RefEncode for MIDINotificationMessageID {
 /// Field: messageSize
 /// size of the entire message, including messageID and
 /// messageSize
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDINotification {
@@ -778,6 +906,7 @@ unsafe impl RefEncode for MIDINotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A message that describes the addition or removal of an object.
 /// A message describing the addition or removal of an object.
 ///
 /// Field: messageID
@@ -792,8 +921,6 @@ unsafe impl RefEncode for MIDINotification {
 /// the added or removed object
 /// Field: childType
 /// the type of the added or removed object
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectaddremovenotification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIObjectAddRemoveNotification {
@@ -825,6 +952,7 @@ unsafe impl RefEncode for MIDIObjectAddRemoveNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A message that describes the change to an object property.
 /// A message describing the addition or removal of an object.
 ///
 /// Field: messageID
@@ -837,8 +965,6 @@ unsafe impl RefEncode for MIDIObjectAddRemoveNotification {
 /// the type of the object whose property has changed
 /// Field: propertyName
 /// the name of the changed property
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectpropertychangenotification?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -869,7 +995,7 @@ unsafe impl RefEncode for MIDIObjectPropertyChangeNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiioerrornotification?language=objc)
+/// A general I/O error notification.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIIOErrorNotification {
@@ -898,6 +1024,15 @@ unsafe impl RefEncode for MIDIIOErrorNotification {
 }
 
 extern "C" {
+    /// A name for a device, entity, or endpoint.
+    ///
+    /// ## Discussion
+    ///
+    /// Devices, entities, and endpoints may all have names. The standard way to display an endpoint’s name is to ask it for its name and display it only if unique. If not, prepend the device name.
+    ///
+    /// A studio setup editor may allow the user to set the names of both driver-owned and external devices.
+    ///
+    ///
     /// device/entity/endpoint property, string
     ///
     /// Devices, entities, and endpoints may all have names.  The recommended way to display an
@@ -906,13 +1041,24 @@ extern "C" {
     ///
     /// A setup editor may allow the user to set the names of both driver-owned and external
     /// devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyname?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyName: &'static CFString;
 }
 
 extern "C" {
+    /// The manufacturer name of a device or endpoint.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this property in the following cases:
+    ///
+    /// - MIDI drivers set this property on their devices.
+    ///
+    /// - Studio setup editors may allow the user to set this property on external devices.
+    ///
+    /// - Creators of virtual endpoints may set this property on their endpoints.
+    ///
+    ///
     /// device/endpoint property, string
     ///
     /// Drivers should set this property on their devices.
@@ -920,13 +1066,24 @@ extern "C" {
     /// Setup editors may allow the user to set this property on external devices.
     ///
     /// Creators of virtual endpoints may set this property on their endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertymanufacturer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyManufacturer: &'static CFString;
 }
 
 extern "C" {
+    /// The model name of a device or endpoint.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this property in the following scenarios:
+    ///
+    /// - MIDI drivers should set this property on their devices.
+    ///
+    /// - Studio setup editors may allow the user to set this property on external devices.
+    ///
+    /// - Creators of virtual endpoints may set this property on their endpoints.
+    ///
+    ///
     /// device/endpoint property, string
     ///
     /// Drivers should set this property on their devices.
@@ -934,25 +1091,37 @@ extern "C" {
     /// Setup editors may allow the user to set this property on external devices.
     ///
     /// Creators of virtual endpoints may set this property on their endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertymodel?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyModel: &'static CFString;
 }
 
 extern "C" {
+    /// The unique identifier of a device, entity, or, endpoint.
+    ///
+    /// ## Discussion
+    ///
+    /// The system assigns unique IDs to all objects. You may set this property on virtual endpoints; however, doing so may fail if the ID isn’t unique.
+    ///
+    /// This property value is an integer.
+    ///
+    ///
     /// devices, entities, endpoints all have unique ID's, integer
     ///
     /// The system assigns unique ID's to all objects.  Creators of virtual endpoints may set
     /// this property on their endpoints, though doing so may fail if the chosen ID is not
     /// unique.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyuniqueid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyUniqueID: &'static CFString;
 }
 
 extern "C" {
+    /// The user-visible System Exclusive (SysEx) identifier of a device or entity.
+    ///
+    /// ## Discussion
+    ///
+    /// MIDI drivers can set this property on their devices or entities. Studio setup editors can allow the user to set this property on external devices.
+    ///
+    ///
     /// device/entity property, integer
     ///
     /// The entity's system-exclusive ID, in user-visible form
@@ -960,13 +1129,24 @@ extern "C" {
     /// Drivers may set this property on their devices or entities.
     ///
     /// Setup editors may allow the user to set this property on external devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertydeviceid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyDeviceID: &'static CFString;
 }
 
 extern "C" {
+    /// The bitmap of channels on which the object receives messages.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this property in the following scenarios:
+    ///
+    /// - Drivers can set this property on their entities and endpoints.
+    ///
+    /// - Studio setup editors can allow the user to set this property on external endpoints.
+    ///
+    /// - Virtual destinations can set this property on their endpoints.
+    ///
+    ///
     /// endpoint property, integer
     ///
     /// The value is a bitmap of channels on which the object receives: 1=ch 1, 2=ch 2, 4=ch 3
@@ -977,36 +1157,49 @@ extern "C" {
     /// Setup editors may allow the user to set this property on external endpoints.
     ///
     /// Virtual destination may set this property on their endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivechannels?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceiveChannels: &'static CFString;
 }
 
 extern "C" {
+    /// The bitmap of channels on which the object transmits messages.
     /// endpoint property, integer
     ///
     /// The value is a bitmap of channels on which the object transmits: 1=ch 1, 2=ch 2, 4=ch 3
     /// ... 0x8000=ch 16.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitchannels?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitChannels: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum rate, in bytes per second, at which the system may reliably send System Exclusive (SysEx) messages to this object.
+    ///
+    /// ## Discussion
+    ///
+    /// The owning driver may set an integer value for this property.
+    ///
+    ///
     /// device/entity/endpoint property, integer
     ///
     /// Set by the owning driver; should not be touched by other clients.
     /// The value is the maximum rate, in bytes/second, at which sysex messages may
     /// be sent reliably to this object. (The default value is 3125, as with MIDI 1.0)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertymaxsysexspeed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyMaxSysExSpeed: &'static CFString;
 }
 
 extern "C" {
+    /// The recommended number of microseconds in advance that clients should schedule output.
+    ///
+    /// ## Discussion
+    ///
+    /// Only the driver that owns the object may set this property.
+    ///
+    /// If this property value is nonzero, clients should treat the value as a minimum. For devices with a nonzero advance schedule time, drivers receive outgoing messages to the device at the time the client sends them using [`MIDISend`](https://developer.apple.com/documentation/coremidi/midisend(_:_:_:)). The driver is responsible for scheduling events to play at the right times, according to their timestamps.
+    ///
+    /// You can also set this property on any virtual destinations you create. When clients send messages to a virtual destination with an advance schedule time of 0, the destination receives the messages at the scheduled delivery time. If a virtual destination has a nonzero advance schedule time, it receives timestamped messages as soon as they’re sent, and must do its own internal scheduling of events it receives.
+    ///
+    ///
     /// device/entity/endpoint property, integer
     ///
     /// Set by the owning driver; should not be touched by other clients. If it is non-zero,
@@ -1022,34 +1215,37 @@ extern "C" {
     /// their scheduled delivery time.  If a virtual destination has a non-zero advance schedule
     /// time, it receives timestamped messages as soon as they are sent, and must do its own
     /// internal scheduling of received events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyadvancescheduletimemusec?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyAdvanceScheduleTimeMuSec: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether this entity or endpoint has external MIDI connections.
     /// entity/endpoint property, integer
     ///
     /// 0 if there are external MIDI connectors, 1 if not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyisembeddedentity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyIsEmbeddedEntity: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the endpoint broadcasts messages to all of the other endpoints in the device.
+    ///
+    /// ## Discussion
+    ///
+    /// Only the owning driver may set this property.
+    ///
+    ///
     /// entity/endpoint property, integer
     ///
     /// 1 if the endpoint broadcasts messages to all of the other endpoints in the device, 0 if
     /// not.  Set by the owning driver; should not be touched by other clients.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyisbroadcast?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyIsBroadcast: &'static CFString;
 }
 
 extern "C" {
+    /// The 0-based index of the entity on which incoming real-time messages from the device appear to have originated.
     /// device property, integer
     ///
     /// Some MIDI interfaces cannot route MIDI realtime messages to individual outputs; they are
@@ -1059,13 +1255,20 @@ extern "C" {
     /// When this property is set on a driver device, it signifies the 0-based index of the
     /// entity on which incoming realtime messages from the device will appear to have
     /// originated from.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertysinglerealtimeentity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertySingleRealtimeEntity: &'static CFString;
 }
 
 extern "C" {
+    /// The unique identifier of an external device attached to this connection.
+    ///
+    /// ## Discussion
+    ///
+    /// The value provided may be an integer. To indicate that a driver connects to multiple external objects, pass the array of big-endian `SInt32` values as a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object.
+    ///
+    /// The property is nonexistent or 0 if there’s no connection.
+    ///
+    ///
     /// device/entity/endpoint property, integer or CFDataRef
     ///
     /// UniqueID of an external device/entity/endpoint attached to this one. As of Mac OS X
@@ -1081,77 +1284,83 @@ extern "C" {
     /// This property may also exist for external devices/entities/endpoints, in which case it
     /// signifies a MIDI Thru connection to another external device/entity/endpoint (again,
     /// it is strongly recommended that it be an endpoint).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyconnectionuniqueid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyConnectionUniqueID: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the object is offline.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of 1 indicates the device is temporarily absent and offline, and 0 indicates the object is present.
+    ///
+    ///
     /// device/entity/endpoint property, integer
     ///
     /// 1 = device is offline (is temporarily absent), 0 = present. Set by the owning driver, on
     /// the device; should not be touched by other clients. Property is inherited from the
     /// device by its entities and endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyoffline?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyOffline: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the system hides an endpoint from other clients.
+    ///
+    /// ## Discussion
+    ///
+    /// You can set this property on a device or entity, but it still appears in the API; the system only hides the object’s owned endpoints.
+    ///
+    ///
     /// device/entity/endpoint property, integer
     ///
     /// 1 = endpoint is private, hidden from other clients. May be set on a device or entity,
     /// but they will still appear in the API; only affects whether the owned endpoints are
     /// hidden.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyprivate?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyPrivate: &'static CFString;
 }
 
 extern "C" {
+    /// The name of the driver that owns a device, entity, or endpoint.
     /// device/entity/endpoint property, string
     ///
     /// Name of the driver that owns a device. Set by the owning driver, on the device; should
     /// not be touched by other clients. Property is inherited from the device by its entities
     /// and endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertydriverowner?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyDriverOwner: &'static CFString;
 }
 
 extern "C" {
+    /// An alias to the device’s current factory patch name file.
     /// device/entity/endpoint property, CFData containing AliasHandle.
     ///
     /// An alias to the device's current factory patch name file.
     ///
     /// Added in CoreMIDI 1.1 (Mac OS X 10.1).  DEPRECATED as of CoreMIDI 1.3. Use
     /// kMIDIPropertyNameConfiguration instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyfactorypatchnamefile?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static kMIDIPropertyFactoryPatchNameFile: &'static CFString;
 }
 
 extern "C" {
+    /// An alias to the device’s current user patch name file.
     /// device/entity/endpoint property, CFData containing AliasHandle
     ///
     /// An alias to the device's current user patch name file.
     ///
     /// Added in CoreMIDI 1.1 (Mac OS X 10.1).  DEPRECATED as of CoreMIDI 1.3. Use
     /// kMIDIPropertyNameConfiguration instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyuserpatchnamefile?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static kMIDIPropertyUserPatchNameFile: &'static CFString;
 }
 
 extern "C" {
+    /// An XML representation of the device’s current patch, note, and control name values.
     /// device/entity/endpoint property, CFDictionary
     ///
     /// This specifies the device's current patch, note and control name values using the
@@ -1183,14 +1392,13 @@ extern "C" {
     /// Clients setting this property must take particular care to preserve dictionary values
     /// other than the ones they are interested in changing and to properly structure the
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertynameconfiguration?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static kMIDIPropertyNameConfiguration: &'static CFString;
 }
 
 extern "C" {
+    /// The device’s current patch, note, and control name values in MIDINameDocument XML format.
     /// device/entity/endpoint property, CFDictionary
     ///
     /// This specifies the device's current patch, note and control name values using the
@@ -1217,13 +1425,20 @@ extern "C" {
     /// Clients setting this property must take particular care to preserve dictionary values
     /// other than the ones they are interested in changing and to properly structure the
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertynameconfigurationdictionary?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyNameConfigurationDictionary: &'static CFString;
 }
 
 extern "C" {
+    /// The full path to a device icon on the system.
+    ///
+    /// ## Discussion
+    ///
+    /// You can provide an image stored in any standard graphic file format, such as JPEG, GIF, or PNG. The maximum size for this image is 128 by 128 pixels.
+    ///
+    /// A studio setup editor should allow the user to choose icons for external devices.
+    ///
+    ///
     /// device property, CFStringRef which is a full POSIX path to a device or external device's
     /// icon, stored in any standard graphic file format such as JPEG, GIF, PNG and TIFF are all
     /// acceptable.  (See CFURL for functions to convert between POSIX paths and other ways of
@@ -1232,259 +1447,278 @@ extern "C" {
     /// Drivers should set the icon on the devices they add.
     ///
     /// A studio setup editor should allow the user to choose icons for external devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyimage?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyImage: &'static CFString;
 }
 
 extern "C" {
+    /// The version of the driver that owns a device, entity, or endpoint.
     /// device/entity/endpoint property, integer, returns the driver version API of the owning
     /// driver (only for driver- owned devices).  Drivers need not set this property;
     /// applications should not write to it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertydriverversion?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyDriverVersion: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity implements the General MIDI specification.
     /// device/entity property, integer (0/1). Indicates whether the device or entity implements
     /// the General MIDI specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertysupportsgeneralmidi?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertySupportsGeneralMIDI: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity implements the MIDI Machine Control portion of the MIDI specification.
     /// device/entity property, integer (0/1). Indicates whether the device or entity implements
     /// the MIDI Machine Control portion of the MIDI specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertysupportsmmc?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertySupportsMMC: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity can route messages to or from external MIDI devices.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t set this property value on driver-owned devices.
+    ///
+    ///
     /// device/entity property, integer (0/1). Indicates whether the device or entity can route
     /// MIDI messages to or from other external MIDI devices (as with MIDI patch bays). This
     /// should NOT be set on devices which are controlled by drivers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertycanroute?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyCanRoute: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity responds to MIDI beat clock messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity  responds
     /// to MIDI beat clock messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivesclock?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceivesClock: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity responds to MIDI Time Code messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity responds
     /// to MIDI Time Code messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivesmtc?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceivesMTC: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity responds to MIDI Note On messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity responds
     /// to MIDI Note On messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivesnotes?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceivesNotes: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity responds to MIDI Program Change messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity responds
     /// to MIDI program change messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivesprogramchanges?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceivesProgramChanges: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity responds to MIDI bank select MSB messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity responds
     /// to MIDI bank select MSB messages (control 0).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivesbankselectmsb?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceivesBankSelectMSB: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity responds to MIDI bank select LSB messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity responds
     /// to MIDI bank select LSB messages (control 32).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyreceivesbankselectlsb?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyReceivesBankSelectLSB: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity transmits MIDI beat clock messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity transmits
     /// MIDI beat clock messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitsclock?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitsClock: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity transmits MIDI Time Code messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity transmits
     /// MIDI Time Code messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitsmtc?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitsMTC: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity transmits MIDI note messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity transmits
     /// MIDI note messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitsnotes?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitsNotes: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity transmits MIDI Program Change messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity transmits
     /// MIDI program change messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitsprogramchanges?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitsProgramChanges: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity transmits MIDI bank select MSB messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity transmits
     /// MIDI bank select MSB messages (control 0).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitsbankselectmsb?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitsBankSelectMSB: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity transmits MIDI bank select LSB messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity transmits
     /// MIDI bank select LSB messages (control 32).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertytransmitsbankselectlsb?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyTransmitsBankSelectLSB: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the MIDI pan messages sent to the device or entity cause undesirable effects when playing stereo sounds.
     /// device/entity property, integer (0/1). Indicates whether the MIDI pan messages (control
     /// 10), when sent to the device or entity, cause undesirable effects when playing stereo
     /// sounds (e.g. converting the signal to mono).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertypandisruptsstereo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyPanDisruptsStereo: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity plays audio samples in response to MIDI note messages.
     /// device/entity property, integer (0/1). Indicates whether the device or entity plays
     /// audio samples in response to MIDI note messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyissampler?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyIsSampler: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity’s samples aren’t transposable, as with a drum kit.
     /// device/entity property, integer (0/1). Indicates whether the device or entity's sound
     /// presets tend to be collections of non-transposable samples (e.g. drum kits).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyisdrummachine?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyIsDrumMachine: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity mixes external audio signals.
     /// device/entity property, integer (0/1). Indicates whether the device or entity mixes
     /// external audio signals, controlled by MIDI messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyismixer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyIsMixer: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device or entity primarily acts as a MIDI-controlled audio effect.
     /// device/entity property, integer (0/1). Indicates whether the device or entity is
     /// primarily a MIDI-controlled audio effect unit (i.e. does not generate sound on its own).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyiseffectunit?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyIsEffectUnit: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum number of MIDI channels on which a device may simultaneously receive channel messages.
+    ///
+    /// ## Discussion
+    ///
+    /// The property value ranges from 0 to 16. Values for this property indicate:
+    ///
+    /// - 0 for devices that only respond to system messages
+    ///
+    /// - 1 for nonmultitimbral devices
+    ///
+    /// - 2 to 15 for multitimbral devices with fewer than 16 voices
+    ///
+    /// - 16 for fully multitimbral devices
+    ///
+    ///
     /// device/entity property, integer (0-16). Indicates the maximum number of MIDI channels on
     /// which a device may simultaneously receive MIDI Channel Messages. Common values are 0
     /// (devices which only respond to System Messages), 1 (non-multitimbral devices), and 16
     /// (fully multitimbral devices). Other values are possible, for example devices which are
     /// multi-timbral but have fewer than 16 "parts".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertymaxreceivechannels?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyMaxReceiveChannels: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum number of MIDI channels on which a device may simultaneously transmit channel messages.
+    ///
+    /// ## Discussion
+    ///
+    /// Common values are 0, 1, and 16.
+    ///
+    ///
     /// device/entity property, integer (0/1). Indicates the maximum number of MIDI channels on
     /// which a device may simultaneously transmit MIDI Channel Messages. Common values are 0, 1
     /// and 16.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertymaxtransmitchannels?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyMaxTransmitChannels: &'static CFString;
 }
 
 extern "C" {
+    /// The full path to an app on the system that configures driver-owned devices.
+    ///
+    /// ## Discussion
+    ///
+    /// Only drivers may set this property on their owned devices.
+    ///
+    ///
     /// device property, string, contains the full path to an application which knows how to
     /// configure this driver-owned devices. Drivers may set this property on their owned
     /// devices. Applications must not write to it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertydriverdeviceeditorapp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyDriverDeviceEditorApp: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the device implements the MIDI Show Control specification.
     /// device/entity property, integer (0/1). Indicates whether the device implements the MIDI
     /// Show Control specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertysupportsshowcontrol?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertySupportsShowControl: &'static CFString;
 }
 
 extern "C" {
+    /// The user-visible name for an endpoint that combines the device and endpoint names.
+    ///
+    /// ## Discussion
+    ///
+    /// For objects other than endpoints, the display name is the same as its [`kMIDIPropertyName`](https://developer.apple.com/documentation/coremidi/kmidipropertyname) value.
+    ///
+    ///
     /// device/entity/endpoint property, string.
     ///
     /// Provides the Apple-recommended user-visible name for an endpoint, by combining the
     /// device and endpoint names.
     ///
     /// For objects other than endpoints, the display name is the same as the name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertydisplayname?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyDisplayName: &'static CFString;
 }
 
 extern "C" {
+    /// The native protocol in which the endpoint communicates.
+    ///
+    /// ## Discussion
+    ///
+    /// The system sets this value on endpoints when it creates them. Drivers can dynamically change the endpoint’s protocol as a result of a MIDI-CI negotiation, by setting this property.
+    ///
+    /// Clients can observe changes to this property.
+    ///
+    ///
     /// constant        kMIDIPropertyProtocolID
     ///
     /// device/entity/endpoint property (UMP-native), MIDIProtocolID. Indicates the native protocol in which
@@ -1492,8 +1726,6 @@ extern "C" {
     /// created. Drivers may dynamically change the protocol of an endpoint as a result of a MIDI-CI
     /// negotiation, by setting this property on the endpoint. Clients can observe changes to
     /// this property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyprotocolid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyProtocolID: &'static CFString;
 }
@@ -1512,8 +1744,6 @@ extern "C" {
     ///
     /// Any UMP-native endpoint lacking this property and subsequently defined property
     /// kMIDIPropertyCanTransmitGroupless is assumed to handle/transmit all UMP traffic.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyumpactivegroupbitmap?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyUMPActiveGroupBitmap: &'static CFString;
 }
@@ -1524,8 +1754,6 @@ extern "C" {
     /// entity and endpoint property (UMP-native), integer. If this property is present and set to 1,
     /// the referenced MIDI object is or has (an) endpoint/endpoints capable of transmitting UMP
     /// messages with no group (e.g., message type 0 and message type F).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyumpcantransmitgroupless?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyUMPCanTransmitGroupless: &'static CFString;
 }
@@ -1539,13 +1767,34 @@ extern "C" {
     /// create a bidirectional mapping.
     ///
     /// Note: This value is a MIDIUniqueID, use MIDIObjectFindByUniqueID to resolve it to a MIDIObjectRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidipropertyassociatedendpoint?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIPropertyAssociatedEndpoint: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Creates a MIDI client.
+    ///
+    /// Parameters:
+    /// - name: The client’s name.
+    ///
+    /// - notifyProc: An optional callback function through which the client receives notifications of changes to the system.
+    ///
+    /// - notifyRefCon: A void pointer.
+    ///
+    /// - outClient: On successful return, points to the newly created MIDI client.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system invokes the callback function on the same run loop that you created the client on.
+    ///
+    ///
     /// Creates a MIDIClient object.
     ///
     ///
@@ -1569,8 +1818,6 @@ extern "C-unwind" {
     /// - `notify_proc` must be implemented correctly.
     /// - `notify_ref_con` must be a valid pointer or null.
     /// - `out_client` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientcreate(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIClientCreate(
         name: &CFString,
@@ -1581,6 +1828,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a MIDI client with a callback block.
+    ///
+    /// Parameters:
+    /// - name: The client’s name.
+    ///
+    /// - outClient: On successful return, points to the newly created MIDI client.
+    ///
+    /// - notifyBlock: An optional block on which the client receives notifications of changes to the system. This system calls this block on an arbitrary thread. Thread-safety is the block’s responsibility.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Creates a MIDIClient object.
     ///
     ///
@@ -1601,8 +1863,6 @@ extern "C-unwind" {
     ///
     /// - `out_client` must be a valid pointer.
     /// - `notify_block` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientcreatewithblock(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIClientCreateWithBlock(
         name: &CFString,
@@ -1612,6 +1872,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of a MIDI client.
+    ///
+    /// Parameters:
+    /// - client: The client to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t explicitly dispose of your client; the system automatically disposes all clients when an app terminates. However, if you call this method to dispose the last or only client owned by an app, the MIDI server may exit if there are no other clients remaining in the system. If this occurs, all subsequent calls by your app to [`MIDIClientCreate`](https://developer.apple.com/documentation/coremidi/midiclientcreate(_:_:_:_:)) and [`MIDIClientCreateWithBlock`](https://developer.apple.com/documentation/coremidi/midiclientcreatewithblock(_:_:_:)) fail.
+    ///
+    ///
     /// Disposes a MIDIClient object.
     ///
     ///
@@ -1626,12 +1903,37 @@ extern "C-unwind" {
     /// exit if there are no other MIDIClients remaining in the system, causing all subsequent calls
     /// to MIDIClientCreate and MIDIClientCreateWithBlock by that application to fail. For this reason,
     /// disposing all of an application's MIDIClients is strongly discouraged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiclientdispose(_:)?language=objc)
     pub fn MIDIClientDispose(client: MIDIClientRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Creates an input port through which the client may receive incoming MIDI messages from any MIDI source.
+    ///
+    /// Parameters:
+    /// - client: The client to own the newly created port.
+    ///
+    /// - portName: The name of the port.
+    ///
+    /// - protocol: The MIDI protocol variant to deliver to this port. The system automatically converts messages from one protocol to another as needed.
+    ///
+    /// - outPort: On successful return, points to the newly created MIDI port.
+    ///
+    /// - receiveBlock: A callback block the system invokes with incoming MIDI from sources connected to this port.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After creating a port, use [`MIDIPortConnectSource`](https://developer.apple.com/documentation/coremidi/midiportconnectsource(_:_:_:)) to establish an input connection from any number of sources to your port.
+    ///
+    /// The system calls the receive block on a separate high-priority thread owned by Core MIDI.
+    ///
+    ///
     /// Creates an input port through which the client may receive
     /// incoming MIDI messages from any MIDI source.
     ///
@@ -1661,8 +1963,6 @@ extern "C-unwind" {
     ///
     /// - `out_port` must be a valid pointer.
     /// - `receive_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiinputportcreatewithprotocol(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIInputPortCreateWithProtocol(
         client: MIDIClientRef,
@@ -1674,6 +1974,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an input port through which the client may receive incoming MIDI messages from any MIDI source.
+    ///
+    /// Parameters:
+    /// - client: The client to own the newly-created port.
+    ///
+    /// - portName: The name of the port.
+    ///
+    /// - readProc: The MIDIReadProc which will be called with incoming MIDI, from sources connected to this port.
+    ///
+    /// - refCon: The refCon passed to readHook.
+    ///
+    /// - outPort: On successful return, points to the newly-created MIDIPort.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After creating a port, use MIDIPortConnectSource to establish an input connection from any number of sources to your port.
+    ///
+    /// readProc will be called on a separate high-priority thread owned by CoreMIDI.
+    ///
+    ///
     /// Creates an input port through which the client may receive
     /// incoming MIDI messages from any MIDI source.
     ///
@@ -1703,8 +2030,6 @@ extern "C-unwind" {
     /// - `read_proc` must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
     /// - `out_port` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiinputportcreate(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDIInputPortCreate(
@@ -1717,6 +2042,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an input port through which the client may receive incoming MIDI messages from any MIDI source.
+    ///
+    /// Parameters:
+    /// - client: The client to own the newly-created port.
+    ///
+    /// - portName: The name of the port.
+    ///
+    /// - outPort: On successful return, points to the newly-created MIDIPort.
+    ///
+    /// - readBlock: The MIDIReadBlock which will be called with incoming MIDI, from sources connected to this port.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After creating a port, use MIDIPortConnectSource to establish an input connection from any number of sources to your port.
+    ///
+    /// readBlock will be called on a separate high-priority thread owned by CoreMIDI.
+    ///
+    ///
     /// Creates an input port through which the client may receive
     /// incoming MIDI messages from any MIDI source.
     ///
@@ -1743,8 +2093,6 @@ extern "C-unwind" {
     ///
     /// - `out_port` must be a valid pointer.
     /// - `read_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiinputportcreatewithblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIInputPortCreateWithBlock(
@@ -1756,6 +2104,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an output port through which a client sends outgoing MIDI messages to any MIDI destination.
+    ///
+    /// Parameters:
+    /// - client: The client to own the newly created port.
+    ///
+    /// - portName: The name of the port.
+    ///
+    /// - outPort: On successful return, points to the newly created port.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Output ports provide a mechanism for MIDI merging. Core MIDI assumes that each output port is responsible for sending only a single MIDI stream to each destination, although a single port may address all of the destinations in the system.
+    ///
+    /// Multiple output ports are only necessary when an application is capable of directing multiple simultaneous MIDI streams to the same destination.
+    ///
+    ///
     /// Creates an output port through which the client may send
     /// outgoing MIDI messages to any MIDI destination.
     ///
@@ -1780,8 +2151,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_port` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midioutputportcreate(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIOutputPortCreate(
         client: MIDIClientRef,
@@ -1791,6 +2160,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of a MIDI port.
+    ///
+    /// Parameters:
+    /// - port: The port to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this method explicitly isn’t required because the framework automatically disposes of clients at termination.
+    ///
+    ///
     /// Disposes a MIDIPort object.
     ///
     ///
@@ -1802,12 +2188,25 @@ extern "C-unwind" {
     /// It is not usually necessary to call this function; when an application's MIDIClient's
     /// are automatically disposed at termination, or explicitly, via MIDIClientDispose, the
     /// client's ports are automatically disposed at that time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportdispose(_:)?language=objc)
     pub fn MIDIPortDispose(port: MIDIPortRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Makes a connection from a source to a client input port.
+    ///
+    /// Parameters:
+    /// - port: The port on which to create the connection.
+    ///
+    /// - source: The source from which to create the connection.
+    ///
+    /// - connRefCon: The data that passes to the port’s [`MIDIReceiveBlock`](https://developer.apple.com/documentation/coremidi/midireceiveblock) to identify the source, which is always [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) for virtual destinations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Establishes a connection from a source to a client's input port.
     ///
     ///
@@ -1824,8 +2223,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `conn_ref_con` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportconnectsource(_:_:_:)?language=objc)
     pub fn MIDIPortConnectSource(
         port: MIDIPortRef,
         source: MIDIEndpointRef,
@@ -1834,6 +2231,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Closes a previously established source-to-input port connection.
+    ///
+    /// Parameters:
+    /// - port: The port with the connection to close.
+    ///
+    /// - source: The source from which to close a connection to a port.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Closes a previously-established source-to-input port
     /// connection.
     ///
@@ -1844,23 +2254,45 @@ extern "C-unwind" {
     /// specified port.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiportdisconnectsource(_:_:)?language=objc)
     pub fn MIDIPortDisconnectSource(port: MIDIPortRef, source: MIDIEndpointRef) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Returns the number of devices in the system.
     ///
+    /// ## Return Value
+    ///
+    /// The number of devices in the system, or 0 if an error occurred.
+    ///
+    ///
+    /// Returns the number of devices in the system.
+    ///
     ///
     /// Returns: The number of devices in the system, or 0 if an error
     /// occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofdevices()?language=objc)
     pub fn MIDIGetNumberOfDevices() -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns a device from the system.
+    ///
+    /// Parameters:
+    /// - deviceIndex0: The index of the device to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a device, or `NULL` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to enumerate the devices in the system. To enumerate the entities in the system, walk through the devices and then walk through the device’s entities. When you iterate through the devices and entities in the system, you don’t visit virtual sources and destinations created by other clients.
+    ///
+    /// A device iteration returns devices that are _offline_ (they were present in the past but aren’t currently available), while iterations through the system’s sources and destinations don’t include the endpoints of offline devices. Instead, clients typically use [`MIDIGetNumberOfSources`](https://developer.apple.com/documentation/coremidi/midigetnumberofsources()), [`MIDIGetSource`](https://developer.apple.com/documentation/coremidi/midigetsource(_:)), [`MIDIGetNumberOfDestinations`](https://developer.apple.com/documentation/coremidi/midigetnumberofdestinations()) and [`MIDIGetDestination`](https://developer.apple.com/documentation/coremidi/midigetdestination(_:)).
+    ///
+    ///
     /// Returns one of the devices in the system.
     ///
     ///
@@ -1884,12 +2316,21 @@ extern "C-unwind" {
     /// Thus clients should usually use MIDIGetNumberOfSources, MIDIGetSource,
     /// MIDIGetNumberOfDestinations and MIDIGetDestination, rather iterating through devices and
     /// entities to locate endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdevice(_:)?language=objc)
     pub fn MIDIGetDevice(device_index0: ItemCount) -> MIDIDeviceRef;
 }
 
 extern "C-unwind" {
+    /// Returns the number of entities in a device.
+    ///
+    /// Parameters:
+    /// - device: The device to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of entities the device contains, or 0 if an error occurred.
+    ///
+    ///
     /// Returns the number of entities in a given device.
     ///
     ///
@@ -1898,12 +2339,23 @@ extern "C-unwind" {
     ///
     /// Returns: The number of entities the device contains, or 0 if an
     /// error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicegetnumberofentities(_:)?language=objc)
     pub fn MIDIDeviceGetNumberOfEntities(device: MIDIDeviceRef) -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns the device’s entity at a specific index.
+    ///
+    /// Parameters:
+    /// - device: The device to query.
+    ///
+    /// - entityIndex0: The entity index.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An entity reference, or `NULL` if an error occurred.
+    ///
+    ///
     /// Returns one of a given device's entities.
     ///
     ///
@@ -1914,12 +2366,21 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A reference to an entity, or NULL if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicegetentity(_:_:)?language=objc)
     pub fn MIDIDeviceGetEntity(device: MIDIDeviceRef, entity_index0: ItemCount) -> MIDIEntityRef;
 }
 
 extern "C-unwind" {
+    /// Returns the number of sources in an entity.
+    ///
+    /// Parameters:
+    /// - entity: The entity to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of sources the entity contains, or 0 if an error occurred.
+    ///
+    ///
     /// Returns the number of sources in a given entity.
     ///
     ///
@@ -1928,12 +2389,23 @@ extern "C-unwind" {
     ///
     /// Returns: The number of sources the entity contains, or 0 if an
     /// error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetnumberofsources(_:)?language=objc)
     pub fn MIDIEntityGetNumberOfSources(entity: MIDIEntityRef) -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns one of an entity’s sources.
+    ///
+    /// Parameters:
+    /// - entity: The entity to query.
+    ///
+    /// - sourceIndex0: The source index.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a source, or `NULL` if an error occurred.
+    ///
+    ///
     /// Returns one of a given entity's sources.
     ///
     ///
@@ -1944,12 +2416,21 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A reference to a source, or NULL if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetsource(_:_:)?language=objc)
     pub fn MIDIEntityGetSource(entity: MIDIEntityRef, source_index0: ItemCount) -> MIDIEndpointRef;
 }
 
 extern "C-unwind" {
+    /// Returns the number of destinations in an entity.
+    ///
+    /// Parameters:
+    /// - entity: The entity to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of destinations the entity contains, or 0 if an error occurred.
+    ///
+    ///
     /// Returns the number of destinations in a given entity.
     ///
     ///
@@ -1958,12 +2439,23 @@ extern "C-unwind" {
     ///
     /// Returns: The number of destinations the entity contains, or 0
     /// if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetnumberofdestinations(_:)?language=objc)
     pub fn MIDIEntityGetNumberOfDestinations(entity: MIDIEntityRef) -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns one of an entity’s destinations.
+    ///
+    /// Parameters:
+    /// - entity: The entity to query.
+    ///
+    /// - destIndex0: The destination index.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a destination, or `NULL` if an error occurred.
+    ///
+    ///
     /// Returns one of a given entity's destinations.
     ///
     ///
@@ -1974,8 +2466,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A reference to a destination, or NULL if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetdestination(_:_:)?language=objc)
     pub fn MIDIEntityGetDestination(
         entity: MIDIEntityRef,
         dest_index0: ItemCount,
@@ -1983,6 +2473,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an entity’s device.
+    ///
+    /// Parameters:
+    /// - inEntity: The entity to query.
+    ///
+    /// - outDevice: On successful return, the entity’s owning device.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Returns an entity's device.
     ///
     ///
@@ -1993,8 +2496,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_device` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midientitygetdevice(_:_:)?language=objc)
     pub fn MIDIEntityGetDevice(
         in_entity: MIDIEntityRef,
         out_device: *mut MIDIDeviceRef,
@@ -2004,15 +2505,31 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Returns the number of sources in the system.
     ///
+    /// ## Return Value
+    ///
+    /// The number of sources in the system, or 0 if an error occurred.
+    ///
+    ///
+    /// Returns the number of sources in the system.
+    ///
     ///
     /// Returns: The number of sources in the system, or 0 if an error
     /// occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofsources()?language=objc)
     pub fn MIDIGetNumberOfSources() -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns a source in the system.
+    ///
+    /// Parameters:
+    /// - sourceIndex0: The source index.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a source, or `NULL` if an error occurred.
+    ///
+    ///
     /// Returns one of the sources in the system.
     ///
     ///
@@ -2020,23 +2537,37 @@ extern "C-unwind" {
     /// to return
     ///
     /// Returns: A reference to a source, or NULL if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetsource(_:)?language=objc)
     pub fn MIDIGetSource(source_index0: ItemCount) -> MIDIEndpointRef;
 }
 
 extern "C-unwind" {
     /// Returns the number of destinations in the system.
     ///
+    /// ## Return Value
+    ///
+    /// The number of destinations in the system, or 0 if an error occurred.
+    ///
+    ///
+    /// Returns the number of destinations in the system.
+    ///
     ///
     /// Returns: The number of destinations in the system, or 0 if an error
     /// occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofdestinations()?language=objc)
     pub fn MIDIGetNumberOfDestinations() -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns a destination in the system.
+    ///
+    /// Parameters:
+    /// - destIndex0: The destination index.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a destination, or `NULL` if an error occurred.
+    ///
+    ///
     /// Returns one of the destinations in the system.
     ///
     ///
@@ -2044,12 +2575,29 @@ extern "C-unwind" {
     /// destination to return
     ///
     /// Returns: A reference to a destination, or NULL if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdestination(_:)?language=objc)
     pub fn MIDIGetDestination(dest_index0: ItemCount) -> MIDIEndpointRef;
 }
 
 extern "C-unwind" {
+    /// Returns an endpoint’s entity.
+    ///
+    /// Parameters:
+    /// - inEndpoint: The endpoint to query.
+    ///
+    /// - outEntity: On exit, the endpoint’s owning entity, or `NULL` if none.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Virtual sources and destinations don’t have entities.
+    ///
+    ///
     /// Returns an endpoint's entity.
     ///
     ///
@@ -2063,8 +2611,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_entity` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointgetentity(_:_:)?language=objc)
     pub fn MIDIEndpointGetEntity(
         in_endpoint: MIDIEndpointRef,
         out_entity: *mut MIDIEntityRef,
@@ -2072,6 +2618,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a virtual destination in a client.
+    ///
+    /// Parameters:
+    /// - client: The client that owns the virtual destination.
+    ///
+    /// - name: The name of the virtual destination.
+    ///
+    /// - protocol: The MIDI protocol variant to deliver to the destination. The system automatically converts messages to this protocol as needed.
+    ///
+    /// - outDest: On successful return, a pointer to the newly created destination.
+    ///
+    /// - readBlock: A callback block the system invokes when a client sends MIDI data to the virtual destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers don’t need to call this function. When they create devices and entities, the system automatically creates sources and destinations at that time. See [`kMIDIPropertyAdvanceScheduleTimeMuSec`](https://developer.apple.com/documentation/coremidi/kmidipropertyadvancescheduletimemusec) for information about the relationship between when a sender sends MIDI data to the destination and when it’s received.
+    ///
+    /// The system calls the read block on a separate high-priority thread owned by Core MIDI.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  After creating a virtual source, assign it the same unique ID it had the last time your app created it. Doing so permits other clients to retain persistent references to your virtual source.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates a virtual destination in a client.
     ///
     ///
@@ -2109,8 +2690,6 @@ extern "C-unwind" {
     ///
     /// - `out_dest` must be a valid pointer.
     /// - `read_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididestinationcreatewithprotocol(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIDestinationCreateWithProtocol(
         client: MIDIClientRef,
@@ -2122,6 +2701,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a virtual destination in a client.
+    ///
+    /// Parameters:
+    /// - client: The client owning the virtual destination.
+    ///
+    /// - name: The name of the virtual destination.
+    ///
+    /// - readProc: The MIDIReadProc to be called when a client sends MIDI to the virtual destination.
+    ///
+    /// - refCon: The refCon to be passed to the readProc.
+    ///
+    /// - outDest: On successful return, a pointer to the newly-created destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The specified readProc gets called when clients send MIDI to your virtual destination.
+    ///
+    /// Drivers need not call this; when they create devices and entities, sources and destinations are created at that time.
+    ///
+    /// After creating a virtual destination, it’s a good idea to assign it the same unique ID it had the last time your application created it. (Although you should be prepared for this to fail in the unlikely event of a collision.) This will permit other clients to retain persistent references to your virtual destination more easily.
+    ///
+    /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the relationship between when a sender sends MIDI to the destination and when it is received.
+    ///
+    ///
     /// Creates a virtual destination in a client.
     ///
     ///
@@ -2159,8 +2769,6 @@ extern "C-unwind" {
     /// - `read_proc` must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
     /// - `out_dest` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididestinationcreate(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDIDestinationCreate(
@@ -2173,6 +2781,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a virtual destination in a client.
+    ///
+    /// Parameters:
+    /// - client: The client owning the virtual destination.
+    ///
+    /// - name: The name of the virtual destination.
+    ///
+    /// - outDest: On successful return, a pointer to the newly-created destination.
+    ///
+    /// - readBlock: The MIDIReadBlock to be called when a client sends MIDI to the virtual destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The specified readBlock gets called when clients send MIDI to your virtual destination.
+    ///
+    /// Drivers need not call this; when they create devices and entities, sources and destinations are created at that time.
+    ///
+    /// After creating a virtual destination, it’s a good idea to assign it the same unique ID it had the last time your application created it. (Although you should be prepared for this to fail in the unlikely event of a collision.) This will permit other clients to retain persistent references to your virtual destination more easily.
+    ///
+    /// See the discussion of kMIDIPropertyAdvanceScheduleTimeMuSec for notes about the relationship between when a sender sends MIDI to the destination and when it is received.
+    ///
+    ///
     /// Creates a virtual destination in a client.
     ///
     ///
@@ -2207,8 +2844,6 @@ extern "C-unwind" {
     ///
     /// - `out_dest` must be a valid pointer.
     /// - `read_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididestinationcreatewithblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIDestinationCreateWithBlock(
@@ -2220,6 +2855,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a virtual source in a client.
+    ///
+    /// Parameters:
+    /// - client: The client to own the virtual source.
+    ///
+    /// - name: The name of the virtual source.
+    ///
+    /// - protocol: The MIDI protocol variant to send from this source. The system automatically converts messages from this protocol to the protocol of the destination.
+    ///
+    /// - outSrc: On successful return, a pointer to the newly created source.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers don’t need to call this function. When they create devices and entities, the system automatically creates sources and destinations at that time. After creating a virtual source, use [`MIDIReceivedEventList`](https://developer.apple.com/documentation/coremidi/midireceivedeventlist(_:_:)) to transmit MIDI messages from your virtual source to any clients connected to the virtual source.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  After creating a virtual source, assign it the same unique ID it had the last time your app created it. Doing so permits other clients to retain persistent references to your virtual source.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates a virtual source in a client.
     ///
     ///
@@ -2251,8 +2917,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_src` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisourcecreatewithprotocol(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDISourceCreateWithProtocol(
         client: MIDIClientRef,
@@ -2263,6 +2927,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a virtual source in a client.
+    ///
+    /// Parameters:
+    /// - client: The client owning the virtual source.
+    ///
+    /// - name: The name of the virtual source.
+    ///
+    /// - outSrc: On successful return, a pointer to the newly-created source.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers need not call this; when they create devices and entities, sources and destinations are created at that time.
+    ///
+    /// After creating a virtual source, use MIDIReceived to transmit MIDI messages from your virtual source to any clients connected to the virtual source.
+    ///
+    /// After creating a virtual source, it’s a good idea to assign it the same unique ID it had the last time your application created it. (Although you should be prepared for this to fail in the unlikely event of a collision.) This will permit other clients to retain persistent references to your virtual source more easily.
+    ///
+    ///
     /// Creates a virtual source in a client.
     ///
     ///
@@ -2290,8 +2979,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_src` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisourcecreate(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn MIDISourceCreate(
@@ -2302,6 +2989,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of a virtual source or destination.
+    ///
+    /// Parameters:
+    /// - endpt: The endpoint to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Disposes a virtual source or destination your client created.
     ///
     ///
@@ -2309,12 +3007,23 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointdispose(_:)?language=objc)
     pub fn MIDIEndpointDispose(endpt: MIDIEndpointRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns the number of external MIDI devices in the system.
+    ///
+    /// ## Return Value
+    ///
+    /// The number of external devices in the system, or 0 if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// External MIDI devices connect to driver endpoints using a standard MIDI cable. Their presence is optional only when a UI (such as Audio MIDI Setup) adds them.
+    ///
+    ///
     /// Returns the number of external MIDI devices in the system.
     ///
     ///
@@ -2325,12 +3034,27 @@ extern "C-unwind" {
     /// External MIDI devices are MIDI devices connected to driver endpoints via a standard MIDI
     /// cable. Their presence is completely optional, only when a UI (such as Audio MIDI Setup)
     /// adds them.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetnumberofexternaldevices()?language=objc)
     pub fn MIDIGetNumberOfExternalDevices() -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Returns one of the external devices in the system.
+    ///
+    /// Parameters:
+    /// - deviceIndex0: The index of the device to return.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a device, or `NULL` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to enumerate the external devices in the system.
+    ///
+    ///
     /// Returns one of the external devices in the system.
     ///
     ///
@@ -2341,12 +3065,31 @@ extern "C-unwind" {
     ///
     ///
     /// Use this to enumerate the external devices in the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetexternaldevice(_:)?language=objc)
     pub fn MIDIGetExternalDevice(device_index0: ItemCount) -> MIDIDeviceRef;
 }
 
 extern "C-unwind" {
+    /// Gets an object’s integer-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to query.
+    ///
+    /// - propertyID: The name of the property to return.
+    ///
+    /// - outValue: On successful return, the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Gets an object's integer-type property.
     ///
     ///
@@ -2364,8 +3107,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetintegerproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetIntegerProperty(
         obj: MIDIObjectRef,
@@ -2375,6 +3116,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets an object’s integer-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to update.
+    ///
+    /// - propertyID: The name of the property to set.
+    ///
+    /// - value: The new property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Sets an object's integer-type property.
     ///
     ///
@@ -2388,8 +3150,6 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetintegerproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetIntegerProperty(
         obj: MIDIObjectRef,
@@ -2399,6 +3159,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an object’s string-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to query.
+    ///
+    /// - propertyID: The name of the property to return.
+    ///
+    /// - str: On successful return, the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Gets an object's string-type property.
     ///
     ///
@@ -2416,8 +3197,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `str` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetstringproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetStringProperty(
         obj: MIDIObjectRef,
@@ -2427,6 +3206,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets an object’s string-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to update.
+    ///
+    /// - propertyID: The name of the property to set.
+    ///
+    /// - str: The new property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Sets an object's string-type property.
     ///
     ///
@@ -2440,8 +3240,6 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetstringproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetStringProperty(
         obj: MIDIObjectRef,
@@ -2451,6 +3249,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an object’s data-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to query.
+    ///
+    /// - propertyID: The name of the property to return.
+    ///
+    /// - outData: On successful return, the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Gets an object's data-type property.
     ///
     ///
@@ -2469,8 +3288,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetdataproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetDataProperty(
         obj: MIDIObjectRef,
@@ -2480,6 +3297,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets an object’s data-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to update.
+    ///
+    /// - propertyID: The name of the property to set.
+    ///
+    /// - data: The new property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Sets an object's data-type property.
     ///
     ///
@@ -2493,8 +3331,6 @@ extern "C-unwind" {
     ///
     ///
     /// (See the MIDIObjectRef documentation for information about properties.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetdataproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetDataProperty(
         obj: MIDIObjectRef,
@@ -2504,6 +3340,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an object’s dictionary-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to query.
+    ///
+    /// - propertyID: The name of the property to return.
+    ///
+    /// - outDict: On successful return, the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Gets an object's dictionary-type property.
     ///
     ///
@@ -2521,8 +3378,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_dict` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetdictionaryproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectGetDictionaryProperty(
         obj: MIDIObjectRef,
@@ -2532,6 +3387,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets an object’s dictionary-type property.
+    ///
+    /// Parameters:
+    /// - obj: The object to update.
+    ///
+    /// - propertyID: The name of the property to set.
+    ///
+    /// - dict: The new property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`MIDIObjectRef`](https://developer.apple.com/documentation/coremidi/midiobjectref) for information about properties.
+    ///
+    ///
     /// Sets an object's dictionary-type property.
     ///
     ///
@@ -2550,8 +3426,6 @@ extern "C-unwind" {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectsetdictionaryproperty(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetDictionaryProperty(
         obj: MIDIObjectRef,
@@ -2560,6 +3434,29 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Returns all properties of an object.
+///
+/// Parameters:
+/// - obj: The object to query.
+///
+/// - outProperties: On successful return, the object’s properties.
+///
+/// - deep: Specify `true` to include the object’s children; for example, a device’s entities, or an entity’s endpoints.
+///
+///
+/// ## Return Value
+///
+/// An `OSStatus` result code.
+///
+///
+///
+/// ## Discussion
+///
+/// The property list may be a dictionary or an array. Dictionaries map property names (doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh) to values, which may be [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber), [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring), or [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). Arrays provide collections of other property list types.
+///
+/// Properties that an object inherits from its owning object aren’t included.
+///
+///
 /// Gets all of an object's properties.
 ///
 ///
@@ -2582,8 +3479,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `out_properties` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectgetproperties(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
@@ -2602,6 +3497,19 @@ pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
 }
 
 extern "C-unwind" {
+    /// Removes an object’s property.
+    ///
+    /// Parameters:
+    /// - obj: The object to modify,
+    ///
+    /// - propertyID: The property to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Removes an object's property.
     ///
     ///
@@ -2610,13 +3518,26 @@ extern "C-unwind" {
     /// Parameter `propertyID`: The property to be removed.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectremoveproperty(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectRemoveProperty(obj: MIDIObjectRef, property_id: &CFString) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Locates a device, entity, or endpoint by its unique identifier.
+    ///
+    /// Parameters:
+    /// - inUniqueID: The unique ID of the object to search for. You determine the unique ID by querying [`MIDIObjectGetIntegerProperty`](https://developer.apple.com/documentation/coremidi/midiobjectgetintegerproperty(_:_:_:)) for the [`kMIDIPropertyUniqueID`](https://developer.apple.com/documentation/coremidi/kmidipropertyuniqueid) property.
+    ///
+    /// - outObject: The returned object, or 0 if the object wasn’t found or an error occurred. Cast this pointer to the appropriate type, according to type specified by the `outObjectType` argument.
+    ///
+    /// - outObjectType: On exit, the type of object found, or undefined if the system found no objects.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` error code, including [`kMIDIObjectNotFound`](https://developer.apple.com/documentation/coremidi/kmidiobjectnotfound) if there is no object with this unique ID.
+    ///
+    ///
     /// Locates a device, external device, entity, or endpoint
     /// by its uniqueID.
     ///
@@ -2639,8 +3560,6 @@ extern "C-unwind" {
     ///
     /// - `out_object` must be a valid pointer or null.
     /// - `out_object_type` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiobjectfindbyuniqueid(_:_:_:)?language=objc)
     pub fn MIDIObjectFindByUniqueID(
         in_unique_id: MIDIUniqueID,
         out_object: *mut MIDIObjectRef,
@@ -2649,6 +3568,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sends MIDI events to a destination.
+    ///
+    /// Parameters:
+    /// - port: The output port through which to send MIDI events.
+    ///
+    /// - dest: The destination to receive the events.
+    ///
+    /// - evtlist: The MIDI events to send.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system schedules events with future timestamps for future delivery. It performs any needed MIDI merging.
+    ///
+    ///
     /// Sends MIDI to a destination.
     ///
     ///
@@ -2667,8 +3607,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `evtlist` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendeventlist(_:_:_:)?language=objc)
     pub fn MIDISendEventList(
         port: MIDIPortRef,
         dest: MIDIEndpointRef,
@@ -2677,6 +3615,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sends MIDI to a destination.
+    ///
+    /// Parameters:
+    /// - port: The output port through which the MIDI is to be sent.
+    ///
+    /// - dest: The destination to receive the events.
+    ///
+    /// - pktlist: The MIDI events to be sent.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Events with future timestamps are scheduled for future delivery. CoreMIDI performs any needed MIDI merging.
+    ///
+    ///
     /// Sends MIDI to a destination.
     ///
     ///
@@ -2695,8 +3654,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `pktlist` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisend(_:_:_:)?language=objc)
     #[deprecated]
     pub fn MIDISend(
         port: MIDIPortRef,
@@ -2706,6 +3663,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Asynchronously sends a single system-exclusive (SysEx) event.
+    ///
+    /// Parameters:
+    /// - request: Contains the destination and a pointer to the MIDI data to send.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Sends a single system-exclusive event, asynchronously.
     ///
     ///
@@ -2719,12 +3687,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `request` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendsysex(_:)?language=objc)
     pub fn MIDISendSysex(request: NonNull<MIDISysexSendRequest>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Asynchronously sends a single universal MIDI packet (UMP) system-exclusive (SysEx) event.
+    ///
+    /// Parameters:
+    /// - umpRequest: Contains the destination and a pointer to the MIDI data to send.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The request’s [`words`](https://developer.apple.com/documentation/coremidi/midisysexsendrequestump/words) needs to point to a single MIDI SysEx message, or portion thereof.
+    ///
+    ///
     /// Sends a single UMP system-exclusive event, asynchronously.
     ///
     ///
@@ -2738,12 +3721,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ump_request` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendumpsysex(_:)?language=objc)
     pub fn MIDISendUMPSysex(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Asynchronously sends a single universal MIDI packet (UMP) system-exclusive (SysEx) event with an 8-bit message.
+    ///
+    /// Parameters:
+    /// - umpRequest: Contains the destination and a pointer to the MIDI data to send.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The request’s [`data`](https://developer.apple.com/documentation/coremidi/midisysexsendrequest/data) needs to point to a single MIDI SysEx 8-bit message, or portion thereof.
+    ///
+    ///
     /// Sends single system-exclusive 8-bit event, asynchronously.
     ///
     ///
@@ -2757,12 +3755,25 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ump_request` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisendumpsysex8(_:)?language=objc)
     pub fn MIDISendUMPSysex8(ump_request: NonNull<MIDISysexSendRequestUMP>) -> OSStatus;
 }
 
 impl MIDIEventPacket {
+    /// Gets MIDI 1.0 system-exclusive (SysEx) bytes on the indicated group.
+    ///
+    /// Parameters:
+    /// - pkt: A [`MIDIEventPacket`](https://developer.apple.com/documentation/coremidi/midieventpacket) that contains universal MIDI packet (UMP) SysEx data.
+    ///
+    /// - groupIndex: The target group index, from `0` to `15`.
+    ///
+    /// - outData: When successful, a reference byte stream of extracted SysEx data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Gets MIDI 1.0 SysEx bytes on the indicated group.
     ///
     ///
@@ -2784,8 +3795,6 @@ impl MIDIEventPacket {
     ///
     /// - `pkt` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventpacketsysexbytesforgroup(_:_:_:)?language=objc)
     #[doc(alias = "MIDIEventPacketSysexBytesForGroup")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -2806,6 +3815,27 @@ impl MIDIEventPacket {
 }
 
 extern "C-unwind" {
+    /// Distributes incoming MIDI events from a source to its connected client input ports.
+    ///
+    /// Parameters:
+    /// - src: The source that’s transmitting MIDI events.
+    ///
+    /// - evtlist: The MIDI events to transmit.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers can call this function when receiving MIDI events from a source.
+    ///
+    /// Clients that create virtual sources, using [`MIDISourceCreateWithProtocol`](https://developer.apple.com/documentation/coremidi/midisourcecreatewithprotocol(_:_:_:_:)), can call this function when the source is generating MIDI events.
+    ///
+    ///
     /// Distributes incoming MIDI from a source to the client input ports
     /// which are connected to that source.
     ///
@@ -2828,13 +3858,34 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `evtlist` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceivedeventlist(_:_:)?language=objc)
     pub fn MIDIReceivedEventList(src: MIDIEndpointRef, evtlist: NonNull<MIDIEventList>)
         -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Distributes incoming MIDI from a source to the client input ports which are connected to that source.
+    ///
+    /// Parameters:
+    /// - src: The source which is transmitting MIDI.
+    ///
+    /// - pktlist: The MIDI events to be transmitted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers should call this function when receiving MIDI from a source.
+    ///
+    /// Clients which have created virtual sources, using MIDISourceCreate, should call this function when the source is generating MIDI.
+    ///
+    /// Unlike MIDISend(), a timestamp of 0 is not equivalent to “now”; the driver or virtual source is responsible for putting proper timestamps in the packets.
+    ///
+    ///
     /// Distributes incoming MIDI from a source to the client input ports
     /// which are connected to that source.
     ///
@@ -2857,13 +3908,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `pktlist` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceived(_:_:)?language=objc)
     #[deprecated]
     pub fn MIDIReceived(src: MIDIEndpointRef, pktlist: NonNull<MIDIPacketList>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Cancels all pending events that were previously scheduled to send.
+    ///
+    /// Parameters:
+    /// - dest: The destination with pending events to cancel. If [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0), the operation applies to all destinations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Unschedules previously-sent packets.
     ///
     ///
@@ -2874,12 +3934,23 @@ extern "C-unwind" {
     ///
     /// Clients may use MIDIFlushOutput to cancel the sending of packets that were previously
     /// scheduled for future delivery.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiflushoutput(_:)?language=objc)
     pub fn MIDIFlushOutput(dest: MIDIEndpointRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Stops and restarts MIDI I/O.
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to force Core MIDI to ask its drivers to rescan for hardware.
+    ///
+    ///
     /// Stops and restarts MIDI I/O.
     ///
     ///
@@ -2887,8 +3958,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midirestart()?language=objc)
     pub fn MIDIRestart() -> OSStatus;
 }
 
@@ -2897,6 +3966,19 @@ impl MIDIEventPacket {
 }
 
 impl MIDIEventList {
+    /// Initializes an event list.
+    ///
+    /// Parameters:
+    /// - evtlist: The event list to initialize.
+    ///
+    /// - protocol: The MIDI protocol variant.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the first [`MIDIEventPacket`](https://developer.apple.com/documentation/coremidi/midieventpacket) in the event list.
+    ///
+    ///
     /// Prepares a MIDIEventList to be built up dynamically.
     ///
     ///
@@ -2908,8 +3990,6 @@ impl MIDIEventList {
     /// # Safety
     ///
     /// `evtlist` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlistinit(_:_:)?language=objc)
     #[doc(alias = "MIDIEventListInit")]
     #[inline]
     pub unsafe fn init(
@@ -2926,6 +4006,33 @@ impl MIDIEventList {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Adds an event to an event list.
+    ///
+    /// Parameters:
+    /// - evtlist: The event list to which to add the event.
+    ///
+    /// - listSize: The event list’s capacity, in bytes.
+    ///
+    /// - curPacket: A packet pointer returned by a previous call to [`MIDIEventListInit`](https://developer.apple.com/documentation/coremidi/midieventlistinit(_:_:)) or [`MIDIEventListAdd`](https://developer.apple.com/documentation/coremidi/midieventlistadd(_:_:_:_:_:_:)) for this packet list.
+    ///
+    /// - time: The new event’s time.
+    ///
+    /// - wordCount: The number of valid MIDI 32-bit words.
+    ///
+    /// - words: The new event, which may be a single MIDI event or a partial SysEx event.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A packet pointer to pass as the `curPacket` argument in a subsequent call to this function, or `NULL` if there wasn’t room in the packet for the event.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The maximum size of an event list is 65,536 bytes. Send large SysEx messages in smaller event lists.
+    ///
+    ///
     /// Adds a MIDI event to a MIDIEventList.
     ///
     ///
@@ -2963,8 +4070,6 @@ impl MIDIEventList {
     /// - `evtlist` must be a valid pointer.
     /// - `cur_packet` must be a valid pointer.
     /// - `words` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midieventlistadd(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "MIDIEventListAdd")]
     #[inline]
     pub unsafe fn add(
@@ -2998,6 +4103,17 @@ impl MIDIPacket {
 impl MIDIPacketList {
     /// Prepares a MIDIPacketList to be built up dynamically.
     ///
+    /// Parameters:
+    /// - pktlist: The packet list to be initialized.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the first MIDIPacket in the packet list.
+    ///
+    ///
+    /// Prepares a MIDIPacketList to be built up dynamically.
+    ///
     ///
     /// Parameter `pktlist`: The packet list to be initialized.
     ///
@@ -3007,8 +4123,6 @@ impl MIDIPacketList {
     /// # Safety
     ///
     /// `pktlist` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacketlistinit(_:)?language=objc)
     #[doc(alias = "MIDIPacketListInit")]
     #[deprecated]
     #[inline]
@@ -3020,6 +4134,33 @@ impl MIDIPacketList {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Adds a MIDI event to a MIDIPacketList.
+    ///
+    /// Parameters:
+    /// - pktlist: The packet list to which the event is to be added.
+    ///
+    /// - listSize: The size, in bytes, of the packet list.
+    ///
+    /// - curPacket: A packet pointer returned by a previous call to MIDIPacketListInit or MIDIPacketListAdd for this packet list.
+    ///
+    /// - time: The new event’s time.
+    ///
+    /// - nData: The length of the new event, in bytes.
+    ///
+    /// - data: The new event. May be a single MIDI event, or a partial sys-ex event. Running status is _not_ permitted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns null if there was not room in the packet for the event; otherwise returns a packet pointer which should be passed as curPacket in a subsequent call to this function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The maximum size of a packet list is 65536 bytes. Large sysex messages must be sent in smaller packet lists.
+    ///
+    ///
     /// Adds a MIDI event to a MIDIPacketList.
     ///
     ///
@@ -3055,8 +4196,6 @@ impl MIDIPacketList {
     /// - `pktlist` must be a valid pointer.
     /// - `cur_packet` must be a valid pointer.
     /// - `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipacketlistadd(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "MIDIPacketListAdd")]
     #[deprecated]
     #[inline]

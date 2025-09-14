@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionresetform?language=objc)
+    /// `PDFActionResetForm`, a subclass of `PDFAction`, defines methods for getting and clearing fields in a PDF form.
+    ///
+    /// ## Overview
+    ///
+    /// A `PDFActionResetForm` object represents an action associated with a PDF form.
+    ///
+    ///
     #[unsafe(super(PDFAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAction")]

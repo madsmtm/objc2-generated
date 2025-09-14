@@ -13,7 +13,7 @@ use objc2_media_toolbox::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomix?language=objc)
+    /// An object that manages the input parameters for mixing audio tracks.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioMix;
@@ -61,7 +61,7 @@ impl AVAudioMix {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableaudiomix?language=objc)
+    /// An object that manages the input parameters for mixing audio tracks.
     #[unsafe(super(AVAudioMix, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableAudioMix;
@@ -126,7 +126,19 @@ impl AVMutableAudioMix {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters?language=objc)
+    /// An object that represents the parameters that you apply when adding an audio track to a mix.
+    ///
+    /// ## Overview
+    ///
+    /// You use an instance `AVAudioMixInputParameters` to apply audio volume ramps for an input to an audio mix. Mix parameters are associated with audio tracks via the [`trackID`](https://developer.apple.com/documentation/avfoundation/avaudiomixinputparameters/trackid) property.
+    ///
+    /// Audio volume is currently supported as a time-varying parameter. `AVAudioMixInputParameters` has a mutable subclass, [`AVMutableAudioMixInputParameters`](https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters).
+    ///
+    /// Before the first time at which a volume is set, a volume of 1.0 used; after the last time for which a volume has been set, the last volume is used. Within the time range of a volume ramp, the volume is interpolated between the start volume and end volume of the ramp. For example, setting the volume to 1.0 at time 0 and also setting a volume ramp from a volume of 0.5 to 0.2 with a timeRange of [4.0, 5.0] results in an audio volume parameters that hold the volume constant at 1.0 from 0.0 sec to 4.0 sec, then cause it to jump to 0.5 and descend to 0.2 from 4.0 sec to 9.0 sec, holding constant at 0.2 thereafter.
+    ///
+    /// Given that this is an immutable variant of the object, you should not allocate and initialize a version of this class yourself. Other classes may return instances of this class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioMixInputParameters;
@@ -209,7 +221,7 @@ impl AVAudioMixInputParameters {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters?language=objc)
+    /// The parameters you use when adding an audio track to a mix.
     #[unsafe(super(AVAudioMixInputParameters, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableAudioMixInputParameters;

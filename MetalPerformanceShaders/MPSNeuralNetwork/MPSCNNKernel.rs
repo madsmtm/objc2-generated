@@ -9,6 +9,27 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// Base class for neural network layers.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel) object consumes one [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object and produces one [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object.
+    ///
+    /// The region overwritten in the destination image is described by the [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect) property.  The top left corner of the region consumed (ignoring adjustments for filter size—for example, convolution filter size) is given by the [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset) property. The size of the region consumed is a function of the size of the [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect) property and any subsampling caused by pixel strides at work (for example, [`strideInPixelsX`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/strideinpixelsx)/[`strideInPixelsY`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/strideinpixelsy) in the [`MPSCNNPooling`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpooling) class).  Wherever the [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset) and [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect) properties would cause an `{x,y}` pixel address not in the image to be read, the [`edgeMode`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/edgemode) property is used to determine what value to read there.
+    ///
+    /// The `z` or `depth` component of the [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset), [`origin`](https://developer.apple.com/documentation/metal/mtlregion/origin) and [`size`](https://developer.apple.com/documentation/metalperformanceshaders/mpsregion/size) properties indexes which images to use.
+    ///
+    /// - If the [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object contains only a single image, then these values should be `offset.z = 0`, `clipRect.origin.z = 0`, and `clipRect.size.depth = 1`.
+    ///
+    /// - If the [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object contains multiple images, then the value of `clipRect.size.depth` determines the number of images to process. Both the source and destination [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects must have at least this many images. The value of `offset.z` refers to the starting image index of the source. Thus, the value of `offset.z + clipRect.size.depth` must be `<=source.numberOfImages`. Similarly, the value of `clipRect.origin.z` determines the starting image index of the destination. Thus, the value of `clipRect.origin.z + clipRect.size.depth` must be `<=destination.numberOfImages`.
+    ///
+    /// The [`destinationFeatureChannelOffset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset) property can be used to control where the kernel will start writing in terms of feature channel dimension. For example, if the destination has 64 channels and th[`destinationFeatureChannelOffset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset)e kernel outputs 32 channels, channels 0-31 of the destination will be populated by the kernel (by default). But if you want the kernel to populate channels 32-63 of the destination, you can set the value of [`destinationFeatureChannelOffset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset) to 32. Suppose you have a source of dimensions `w x h x Ni`, where `N` is the number of channels, which goes through a convolution filter `C0` which produces the output `O0 = w x h x N0` and `C`1 which produces the output `O1 = w x h x N1` followed by concatenation which produces `O = w x h x (N0 + N1)`. You can achieve this by creating an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object with dimensions `w x h x (N0 + N1)` and using this as the destination of both convolutions as follows:
+    ///
+    /// - `C0: destinationFeatureChannelOffset = 0`, this will output `N0` channels starting at channel `0` of destination thus populating `[0,N0-1]` channels.
+    ///
+    /// - `C1: destinationFeatureChannelOffset = N0`, this will output `N1` channels starting at channel `N0` of destination thus populating `[N0,N0+N1-1]` channels.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Describes a convolution neural network kernel.
@@ -60,8 +81,6 @@ extern_class!(
     /// <MPSDeviceProvider
     /// > protocol.  To accomplish this you will likely need to subclass your
     /// unarchiver to add this method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -991,13 +1010,12 @@ impl MPSCNNKernel {
 }
 
 extern_class!(
+    /// A convolution neural network kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Describes a convolution neural network kernel.
     ///
     /// A MPSCNNKernel consumes two MPSImages, primary and secondary, and produces one MPSImage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -1953,6 +1971,7 @@ impl MPSCNNBinaryKernel {
 }
 
 extern_class!(
+    /// The base class for gradient layers.
     /// Gradient kernels are the backwards pass of a MPSCNNKernel
     /// used during training to calculate gradient back propagation.
     /// These take as arguments the gradient result from the next filter
@@ -1997,8 +2016,6 @@ extern_class!(
     /// such as kernel size are copies of the forward inference pass parameters of similar name
     /// are set automatically when -[MPSCNNGradientKernel destinationImageDescriptorForSourceImages:sourceStates:]
     /// is called.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngradientkernel?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -2311,8 +2328,6 @@ extern_class!(
     /// Describes a  neural network kernel with multiple image sources.
     ///
     /// A MPSCNNKernel consumes multiple MPSImages, possibly a MPSState, and produces one MPSImage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

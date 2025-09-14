@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define the type of navigation controller transitions that can occur.
 /// UINavigationController manages a stack of view controllers and a navigation bar.
 /// It performs horizontal view transitions for pushed and popped views while keeping the navigation bar in sync.
 ///
@@ -18,20 +19,18 @@ use crate::*;
 ///
 /// UINavigationController is rotatable if its top view controller is rotatable.
 /// Navigation between controllers with non-uniform rotatability is currently not supported.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationControllerOperation(pub NSInteger);
 impl UINavigationControllerOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation/none?language=objc)
+    /// A constant that indicates no operation is taking place.
     #[doc(alias = "UINavigationControllerOperationNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation/push?language=objc)
+    /// A constant that indicates a view controller is being pushed onto the navigation stack.
     #[doc(alias = "UINavigationControllerOperationPush")]
     pub const Push: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation/pop?language=objc)
+    /// A constant that indicates the topmost view controller is being removed from the navigation stack.
     #[doc(alias = "UINavigationControllerOperationPop")]
     pub const Pop: Self = Self(2);
 }
@@ -45,13 +44,149 @@ unsafe impl RefEncode for UINavigationControllerOperation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/hideshowbarduration?language=objc)
+    /// A variable that specifies the duration when animating the navigation bar.
+    ///
+    /// ## Discussion
+    ///
+    /// Note that this is a constant value, so it can’t be set.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UINavigationControllerHideShowBarDuration: CGFloat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller?language=objc)
+    /// A container view controller that defines a stack-based scheme for navigating hierarchical content.
+    ///
+    /// ## Overview
+    ///
+    /// A navigation controller is a container view controller that manages one or more contained view controllers in a navigation interface. In this type of interface, only one contained view controller is visible at a time. Selecting an item in the view controller pushes a new view controller onscreen using an animation, hiding the previous view controller. Tapping the back button in the navigation bar at the top of the interface removes the top view controller, thereby revealing the view controller underneath.
+    ///
+    /// Use a navigation interface to mimic the organization of hierarchical data managed by your app. At each level of the hierarchy, you provide an appropriate screen (managed by a custom view controller) to display the content at that level. The following image shows an example of the navigation interface presented by the Settings application in a simulated iOS device. The first screen presents the user with the list of groups that organize preferences. Selecting a group reveals individual settings and groups of settings for that application. For all but the root view, the navigation controller provides a back button to allow the user to move back up the hierarchy.
+    ///
+    ///
+    /// ![A sample navigation interface](https://docs-assets.developer.apple.com/published/ec22a982d6cb1673c1190305d79cb382/media-1965789%402x.png)
+    ///
+    ///
+    /// A navigation controller object manages the view controllers it contains using an ordered array, known as the _navigation stack_. The first view controller in the array is the root view controller and represents the bottom of the stack. The last view controller in the array is the topmost item on the stack, and represents the view controller that the system is currently displaying. You add and remove view controllers from the stack using segues or using the methods of this class. The user can also remove the topmost view controller using the back button in the navigation bar or using a swipe gesture.
+    ///
+    /// The navigation controller manages the navigation bar at the top of the interface and an optional toolbar at the bottom of the interface. The navigation bar is always present and is managed by the navigation controller itself, which updates the navigation bar using the content provided by its contained view controllers. When the [`toolbarHidden`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/istoolbarhidden) property is [`false`](https://developer.apple.com/documentation/swift/false), the navigation controller similarly updates the toolbar with contents provided by the topmost view controller.
+    ///
+    /// A navigation controller coordinates its behavior with its [`delegate`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/delegate) object. The delegate object can override the pushing or popping of view controllers, provide custom animation transitions, and specify the preferred orientation for the navigation interface. The delegate object you provide must conform to the [`UINavigationControllerDelegate`](https://developer.apple.com/documentation/uikit/uinavigationcontrollerdelegate) protocol.
+    ///
+    /// The following image shows the relationships between the navigation controller and the objects it manages. Use the specified properties of the navigation controller to access these objects.
+    ///
+    ///
+    /// ![Diagram of objects managed by the navigation controller.](https://docs-assets.developer.apple.com/published/743ee76b71b9c1cc86c8e691d6bb17b7/media-1965791.jpg)
+    ///
+    ///
+    /// ### Navigation controller views
+    ///
+    /// A navigation controller is a container view controller — that is, it embeds the content of other view controllers inside of itself. You access a navigation controller’s view from its [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property. This view incorporates the navigation bar, an optional toolbar, and the content view corresponding to the topmost view controller. The following image shows how these views assemble to present the overall navigation interface. In this figure, the navigation interface is further embedded inside a tab bar interface. Although the content of the navigation bar and toolbar views changes, the views themselves don’t. The only view that actually changes is the custom content view provided by the topmost view controller on the navigation stack.
+    ///
+    ///
+    /// ![The views of a navigation controller](https://docs-assets.developer.apple.com/published/aaa68d2967e5dacf95bed1c774852347/media-1965793%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because the content view underlaps the navigation bar, consider that space when designing your view controller content.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The navigation controller manages the creation, configuration, and display of the navigation bar and optional navigation toolbar. Don’t change the navigation bar’s [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame), [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds), or [`alpha`](https://developer.apple.com/documentation/uikit/uiview/alpha) values directly. If you subclass [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar), initialize your navigation controller using the [`initWithNavigationBarClass:toolbarClass:`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/init(navigationbarclass:toolbarclass:)) method. To hide or show the navigation bar, use the [`navigationBarHidden`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/isnavigationbarhidden) property or [`setNavigationBarHidden:animated:`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/setnavigationbarhidden(_:animated:)) method.
+    ///
+    /// A navigation controller builds the contents of the navigation bar dynamically using the navigation item objects (instances of the [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem) class) associated with the view controllers on the navigation stack. To change the contents of the navigation bar, configure the navigation items of your custom view controllers. For more information about navigation items, see [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    /// Avoid using custom backgrounds and [`UIAppearance`](https://developer.apple.com/documentation/uikit/uiappearance) APIs to prevent interfering with Liquid Glass in your navigation bar.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Updating the navigation bar
+    ///
+    /// Each time the top-level view controller changes, the navigation controller updates the navigation bar accordingly. Specifically, the navigation controller updates the bar button items displayed in each of the three navigation bar positions: left, middle, and right. Bar button items are instances of the [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem) class. You can create items with custom content or create standard system items depending on your needs.
+    ///
+    /// When your navigation bar displays with Liquid Glass, don’t add a background or apply a tint color. Add color to the text or image in a bar button item with [`tintColor`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/tintcolor). To add color to the background of a bar button item, set the [`style`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.property) to [`UIBarButtonItemStyleProminent`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/prominent).
+    ///
+    /// For more information about the navigation bar, see [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar). For more information about how to create bar button items, see [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem).
+    ///
+    /// #### The left item
+    ///
+    /// For all but the root view controller on the navigation stack, the item on the left side of the navigation bar provides navigation back to the previous view controller. The contents of this left-most button are determined as follows:
+    ///
+    /// - If the new top-level view controller has a custom left bar button item, that item is displayed. To specify a custom left bar button item, set the [`leftBarButtonItem`](https://developer.apple.com/documentation/uikit/uinavigationitem/leftbarbuttonitem) property of the view controller’s navigation item.
+    ///
+    /// - If the top-level view controller doesn’t have a custom left bar button item, but the navigation item of the previous view controller has an object in its [`backBarButtonItem`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbarbuttonitem) property, the navigation bar displays that item.
+    ///
+    /// - If a custom bar button item isn’t specified by either of the view controllers, the system uses a default back button that displays a back image.
+    ///
+    /// - If there’s only one view controller on the navigation stack, it doesn’t display a back button.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In cases where the title of a back button is too long to fit in the available space, the navigation bar may substitute the string “Back” for the actual button title. The navigation bar does this only if the back button is provided by the previous view controller. If the new top-level view controller has a custom left-bar button item — an object in the [`leftBarButtonItem`](https://developer.apple.com/documentation/uikit/uinavigationitem/leftbarbuttonitem) or [`leftBarButtonItems`](https://developer.apple.com/documentation/uikit/uinavigationitem/leftbarbuttonitems) property of its navigation item — the navigation bar doesn’t change the button title.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### The middle item
+    ///
+    /// The navigation controller updates the middle of the navigation bar as follows:
+    ///
+    /// - If the new top-level view controller has a custom title view, the navigation bar displays that view in place of the default title view. To specify a custom title view, set the [`titleView`](https://developer.apple.com/documentation/uikit/uinavigationitem/titleview) property of the view controller’s navigation item.
+    ///
+    /// - If no custom title view is set, the navigation bar displays a label containing the view controller’s default title. The string for this label is usually obtained from the [`title`](https://developer.apple.com/documentation/uikit/uiviewcontroller/title) property of the view controller itself. If you want to display a different title than the one associated with the view controller, set the [`title`](https://developer.apple.com/documentation/uikit/uiviewcontroller/title) property of the view controller’s navigation item instead.
+    ///
+    /// #### The right item
+    ///
+    /// The navigation controller updates the right side of the navigation bar as follows:
+    ///
+    /// - If the new top-level view controller has custom right bar button items, it displays those items. To specify a custom right-bar button item or items, set the [`rightBarButtonItem`](https://developer.apple.com/documentation/uikit/uinavigationitem/rightbarbuttonitem) or [`rightBarButtonItems`](https://developer.apple.com/documentation/uikit/uinavigationitem/rightbarbuttonitems) property of the view controller’s navigation item.
+    ///
+    /// - If the view controller doesn’t have any custom right-bar button items, the navigation bar doesn’t display anything on the right side of the bar.
+    ///
+    /// ### Displaying a toolbar
+    ///
+    /// A navigation controller object manages an optional toolbar in its view hierarchy. When displayed, this toolbar obtains its current set of items from the [`toolbarItems`](https://developer.apple.com/documentation/uikit/uiviewcontroller/toolbaritems) property of the active view controller. When the active view controller changes, the navigation controller updates the toolbar items to match the new view controller, animating the new items into position when appropriate.
+    ///
+    /// The navigation toolbar is hidden by default but you can show it for your navigation interface by calling the [`setToolbarHidden:animated:`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/settoolbarhidden(_:animated:)) method of your navigation controller object. If not all of your view controllers support toolbar items, your delegate object can call this method to toggle the visibility of the toolbar during subsequent push and pop operations. To use a custom [`UIToolbar`](https://developer.apple.com/documentation/uikit/uitoolbar) subclass, initialize the navigation controller using the [`initWithNavigationBarClass:toolbarClass:`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/init(navigationbarclass:toolbarclass:)) method. If you use custom toolbar and navigation bar subclasses to create a navigation controller, note that you’re responsible for pushing and setting view controllers before presenting the navigation controller onscreen.
+    ///
+    /// ### Adapting to different environments
+    ///
+    /// The navigation interface remains the same in both horizontally compact and horizontally regular environments. When toggling between the two environments, only the size of the navigation controller’s view changes. The navigation controller doesn’t change its view hierarchy or the layout of its views.
+    ///
+    /// When configuring segues between view controllers on a navigation stack, the standard Show and Show Detail segues behave as follows:
+    ///
+    /// - Show segue: The navigation controller pushes the specified view controller onto its navigation stack.
+    ///
+    /// - Show Detail segue: The navigation controller presents the specified view controller modally.
+    ///
+    /// The behaviors of other segue types are unchanged.
+    ///
+    /// ### Interface behaviors
+    ///
+    /// A navigation controller supports the following behaviors for its interface:
+    ///
+    /// - Supported interface orientations: A navigation controller object doesn’t consult the view controllers on its navigation stack when determining the supported interface orientations. On iPhone, a navigation controller supports all orientations except portrait upside-down. On iPad, a navigation controller supports all orientations. If the navigation controller has a delegate object, the delegate can specify a different set of supported orientations using the [`navigationControllerSupportedInterfaceOrientations:`](https://developer.apple.com/documentation/uikit/uinavigationcontrollerdelegate/navigationcontrollersupportedinterfaceorientations(_:)) method.
+    ///
+    /// - Presentation context: A navigation controller defines the presentation context for modally presented view controllers. When the modal transition style is [`UIModalPresentationCurrentContext`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/currentcontext) or [`UIModalPresentationOverCurrentContext`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/overcurrentcontext), modal presentations from the view controllers in the navigation stack cover the entire navigation interface.
+    ///
+    /// ### State preservation
+    ///
+    /// When you assign a value to a navigation controller’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, it attempts to preserve itself and the contained view controllers on its navigation stack. The navigation controller starts at the bottom of the stack and moves upward, encoding each view controller that also has a valid restoration identifier string. During the next launch cycle, the navigation controller restores the preserved view controllers to the navigation stack in the same order that they were preserved.
+    ///
+    /// The view controllers you push onto the navigation stack may use the same restoration identifiers. The navigation controller automatically stores additional information to ensure that each view controller’s restoration path is unique.
+    ///
+    /// For more information about how state preservation and restoration works, see [Preserving your app’s UI across launches](https://developer.apple.com/documentation/uikit/preserving-your-app-s-ui-across-launches).
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -360,7 +495,13 @@ impl UINavigationController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontrollerdelegate?language=objc)
+    /// The interface for an object that serves as a navigation controller’s delegate.
+    ///
+    /// ## Overview
+    ///
+    /// Use a navigation controller delegate (a custom object that implements this protocol) to modify behavior when a view controller is pushed or popped from the navigation stack of a [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller) object.
+    ///
+    ///
     pub unsafe trait UINavigationControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

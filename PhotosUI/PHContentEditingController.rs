@@ -13,7 +13,13 @@ use objc2_photos::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller?language=objc)
+    /// A protocol your custom view controller class implements to provide a user interface for your Photos extension.
+    ///
+    /// ## Overview
+    ///
+    /// The [`PHContentEditingController`](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller) protocol defines methods you implement in a custom view controller class in order to create a Photos extension. The Photos app hosts your extension’s view controller to provide a user interface for editing photo or video assets.
+    ///
+    ///
     pub unsafe trait PHContentEditingController: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration?language=objc)
+    /// The class that represents a satellite image of the area with road and road name information layers on top.
     #[unsafe(super(MKMapConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKMapConfiguration")]

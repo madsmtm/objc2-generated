@@ -7,6 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A representation of an individual host on the network.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSHost`](https://developer.apple.com/documentation/foundation/host) class provides methods to access the network name and address information for a host. Instances of the [`NSHost`](https://developer.apple.com/documentation/foundation/host) class represent individual _hosts_ on a network. Use [`NSHost`](https://developer.apple.com/documentation/foundation/host) objects  to get the current host’s names and addresses and to look up other hosts by name or by address.
+    ///
+    /// To create an [`NSHost`](https://developer.apple.com/documentation/foundation/host) object, use the [`currentHost`](https://developer.apple.com/documentation/foundation/host/current()), [`hostWithAddress:`](https://developer.apple.com/documentation/foundation/host/init(address:)), or [`hostWithName:`](https://developer.apple.com/documentation/foundation/host/init(name:)) class methods (don’t use `alloc` and `init`). These methods use available network administration services to discover all names and addresses for the host requested. They don’t attempt to contact the host itself, however. This approach avoids untimely delays due to a host being unavailable, but it may result in incomplete information about the host.
+    ///
+    /// An [`NSHost`](https://developer.apple.com/documentation/foundation/host) object contains all of the network addresses and names discovered for a given host by the network administration services. Each [`NSHost`](https://developer.apple.com/documentation/foundation/host) object may contain several addresses and have more than one name. If an [`NSHost`](https://developer.apple.com/documentation/foundation/host) object has more than one name, the additional names are variations on the same name, typically the basic host name plus the fully qualified domain name. For example, with a host name `"sales"` in the domain `"anycorp.com"`, an [`NSHost`](https://developer.apple.com/documentation/foundation/host) object can hold both the names `"sales"` and `"sales.anycorp.com"`.
+    ///
+    /// [`NSHost`](https://developer.apple.com/documentation/foundation/host) methods are thread-safe.
+    ///
+    ///
     /// DEPRECATION NOTICE
     ///
     /// If you’re using `NSHost` to resolve DNS names so that you can connect to a
@@ -15,8 +28,6 @@ extern_class!(
     /// If you have other DNS resolution needs, switch to
     /// <dns
     /// _sd.h>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/host?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]

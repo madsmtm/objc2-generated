@@ -8,56 +8,56 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A key for the size of the controls in a filter view. The associated value  can be  [`IKUISizeMini`](https://developer.apple.com/documentation/quartz/ikuisizemini), [`IKUISizeSmall`](https://developer.apple.com/documentation/quartz/ikuisizesmall), or  [`IKUISizeRegular`](https://developer.apple.com/documentation/quartz/ikuisizeregular).
     /// IKUISizeFlavor
     ///
     /// Key to request the desired size of controls in a filter UIView - defined values are IKUISizeMini, IKUISizeSmall and IKUISizeRegular.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizeflavor?language=objc)
     pub static IKUISizeFlavor: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// A very small control.
     /// IKUISizeMini
     ///
     /// Constant for requesting controls in mini size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizemini?language=objc)
     pub static IKUISizeMini: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// A small control.
     /// IKUISizeSmall
     ///
     /// Constant for requesting controls in small size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizesmall?language=objc)
     pub static IKUISizeSmall: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// A standard size control.
     /// IKUISizeRegular
     ///
     /// Constant for requesting controls in regular or normal size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuisizeregular?language=objc)
     pub static IKUISizeRegular: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The maximum size of a filter view.
+    ///
+    /// ## Discussion
+    ///
+    /// Controls whose dimensions are the maximum allowable for the filter view.A width or height of `0` indicates that dimension of the view is not restricted. If the size requested is too small, the filter is expected to return a view as small as possible. It is up to the client to verify that the returned view fits into the context.
+    ///
+    ///
     /// IKUImaxSize
     ///
     /// Maximum allowed dimensions of the view for the filter UI. If width or height is zero it means that that dimension of the view is not restricted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuimaxsize?language=objc)
     pub static IKUImaxSize: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// Substitute controls of another size. The associated value is a Boolean value. If the filter cannot provide a view for the requested size and a fallback is allowed, the filter can use controls of a different size.
     /// IKUIFlavorAllowFallback
     ///
     /// Allow the filter to provide a view with controls of a different size and set than requested, if it cannot provide a view for the requested flavor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikuiflavorallowfallback?language=objc)
     pub static IKUIFlavorAllowFallback: Option<&'static NSString>;
 }
 
@@ -133,11 +133,16 @@ impl private_CIFilterIKFilterUIAddition::Sealed for CIFilter {}
 unsafe impl CIFilterIKFilterUIAddition for CIFilter {}
 
 extern_protocol!(
+    /// A protocol used to provide a custom UI.
+    ///
+    /// ## Overview
+    ///
+    /// The `IKFilterCustomUIProvider` protocol is an addition to the [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) class that defines a method for providing a view for a filter. This protocol is implemented by any filter that provides its own user interface.
+    ///
+    ///
     /// The IKFilterCustomUIProvider needs to be implemented by a filter to implement its own UI.
     ///
     /// When a filter wants to provide its own UI for all or only some configurations, it has to implement the provideViewForUIConfiguration method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfiltercustomuiprovider?language=objc)
     pub unsafe trait IKFilterCustomUIProvider {
         #[cfg(feature = "IKFilterUIView")]
         /// The provideViewForUIConfiguration gets called, when a client requests a filter UI by calling viewForUIConfiguration:excludedKeys.

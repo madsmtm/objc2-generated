@@ -8,7 +8,29 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdirectdisplaycopycurrentmetaldevice(_:)?language=objc)
+/// Returns the GPU device instance that’s currently driving a display.
+///
+/// Parameters:
+/// - display: A unique identifier for a display.
+///
+///
+/// ## Return Value
+///
+/// A device that supports Metal framework commands.
+///
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Note
+///  This function can change its return value at any time for the built-in display when the system has automatic graphics switching enabled.
+///
+///
+///
+/// </div>
+///
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "objc2",

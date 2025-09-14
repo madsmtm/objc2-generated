@@ -10,29 +10,54 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint?language=objc)
+/// Keys for the [`shaderModifiers`](https://developer.apple.com/documentation/scenekit/scnshadable/shadermodifiers) dictionary, each corresponding to an entry point in SceneKit’s shader programs where you can attach a custom GPU shader code snippet.
+///
+/// ## Discussion
+///
+/// For details on shader modifiers, see [Use Shader Modifiers to Extend SceneKit Shading](https://developer.apple.com/documentation/scenekit/scnshadable#use-shader-modifiers-to-extend-scenekit-shading) in the protocol overview.
+///
+/// SceneKit inserts your shader modifiers into its shader program in the order shown here, so you can use the structures defined by earlier entry points in later entry points. For example, a snippet associated with the [`SCNShaderModifierEntryPointFragment`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/fragment) entry point can read from the `_surface` structure defined by the [`SCNShaderModifierEntryPointSurface`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/surface) entry point.
+///
+///
 // NS_TYPED_ENUM
 pub type SCNShaderModifierEntryPoint = NSString;
 
+/// Options for how often SceneKit should execute the binding handler you provide with the [`handleBindingOfBufferNamed:frequency:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnprogram/handlebinding(ofbuffernamed:frequency:handler:)) method.
 /// The frequency at which the custom program input should be updated.
 ///
 /// When the frequency is set to SCNBufferFrequencyPerFrame, the binding block is invoked once per frame.
 /// When the frequency is set to SCNBufferFrequencyPerNode, the binding block is invoked once per SCNNode.
 /// When the frequency is set to SCNBufferFrequencyPerShadable, the binding block is invoked once per SCNMaterial or SCNGeometry (depending on the object that owns the SCNProgram).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBufferFrequency(pub NSInteger);
 impl SCNBufferFrequency {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency/perframe?language=objc)
+    /// Execute the binding handler once for each frame to be rendered using the shader.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when the contents of the buffer should be uniform across all uses of the shader when rendering a single frame, no matter how many different nodes, geometries, and materials use the shader program.
+    ///
+    ///
     #[doc(alias = "SCNBufferFrequencyPerFrame")]
     pub const PerFrame: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency/pernode?language=objc)
+    /// Execute the binding handler once for each frame, for each node to be rendered using the shader.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when the contents of the buffer should be uniform across multiple geometries or materials, but specific to each node rendered using the shader. For example, a node-specific buffer might contain information based on the node’s position and transform.
+    ///
+    ///
     #[doc(alias = "SCNBufferFrequencyPerNode")]
     pub const PerNode: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency/pershadable?language=objc)
+    /// Execute the binding handler once for each frame, for each node, for each material or geometry to be rendered using the shader.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when the contents of the buffer should be specific to each geometry or material whose program property is set to this shader. For example, a material-specific buffer might contain information to be used in animating a texture.
+    ///
+    ///
     #[doc(alias = "SCNBufferFrequencyPerShadable")]
     pub const PerShadable: Self = Self(2);
 }
@@ -46,7 +71,13 @@ unsafe impl RefEncode for SCNBufferFrequency {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferstream?language=objc)
+    /// An object that manages a Metal buffer used by a custom shader program.
+    ///
+    /// ## Overview
+    ///
+    /// Your app does not define classes that implement this protocol. Instead, you use the [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) method [`handleBindingOfBufferNamed:frequency:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnprogram/handlebinding(ofbuffernamed:frequency:handler:)) to register a block to be called by SceneKit. In that block, SceneKit provides a buffer stream object that you can use to write data to the buffer.
+    ///
+    ///
     pub unsafe trait SCNBufferStream: NSObjectProtocol {
         /// # Safety
         ///
@@ -57,6 +88,21 @@ extern_protocol!(
     }
 );
 
+/// A block SceneKit calls at render time for working with buffers in a Metal shader, used by the [`handleBindingOfBufferNamed:frequency:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnprogram/handlebinding(ofbuffernamed:frequency:handler:)) method.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - buffer: An object that provides write access to the buffer. Use the [`writeBytes:length:`](https://developer.apple.com/documentation/scenekit/scnbufferstream/writebytes(_:count:)) method on this object to write data for use by the shader.
+///
+/// - node: The node to be rendered using the shader program.
+///
+/// - shadable: The material or geometry to be rendered using the shader program.
+///
+/// - renderer: The view (or other SceneKit renderer) responsible for rendering.
+///
+///
 /// Signature for the block to execute to bind or unbind a buffer.
 ///
 /// Parameter `buffer`: The buffer to fill.
@@ -66,8 +112,6 @@ extern_protocol!(
 /// Parameter `shadable`: The rendered shadable (geometry or material).
 ///
 /// Parameter `renderer`: The renderer that is currently rendering the scene.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferbindingblock?language=objc)
 #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
 pub type SCNBufferBindingBlock = *mut block2::DynBlock<
     dyn Fn(
@@ -78,6 +122,23 @@ pub type SCNBufferBindingBlock = *mut block2::DynBlock<
     ),
 >;
 
+/// The signature for a block called for binding or unbinding a GLSL symbol in a custom program.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - `programID`: The OpenGL program identifier for the current [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) instance, as used by OpenGL functions such as `glValidateProgram`.
+///
+/// - `location`: The OpenGL location index for the symbol to be bound or unbound, as used by OpenGL functions such as `glUniform`.
+///
+/// - `renderedNode`: The [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object being rendered.
+///
+/// - `renderer`: The [`SCNRenderer`](https://developer.apple.com/documentation/scenekit/scnrenderer) object responsible for rendering.
+///
+/// Call [`handleBindingOfSymbol:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnshadable/handlebinding(ofsymbol:handler:)) or [`handleUnbindingOfSymbol:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnshadable/handleunbinding(ofsymbol:handler:)) to associate a handler block with a GLSL symbol for a SceneKit geometry or material.
+///
+///
 /// Signature for the block to execute to bind or unbind a uniform of an OpenGL or OpenGLES based program.
 ///
 /// Parameter `programID`: The id of the program object to bind/unbind values for.
@@ -87,16 +148,120 @@ pub type SCNBufferBindingBlock = *mut block2::DynBlock<
 /// Parameter `renderedNode`: The node currently being rendered.
 ///
 /// Parameter `renderer`: The renderer that is currently rendering the scene.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbindingblock?language=objc)
 #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
 pub type SCNBindingBlock =
     *mut block2::DynBlock<dyn Fn(c_uint, c_uint, *mut SCNNode, NonNull<SCNRenderer>)>;
 
 extern_protocol!(
-    /// The SCNShadable protocol defines an object that is rendered with shaders.
+    /// Methods for customizing SceneKit’s rendering of geometry and materials using Metal or OpenGL shader programs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadable?language=objc)
+    /// ## Overview
+    ///
+    /// SceneKit provides two ways to integrate custom GPU shader programs into the rendering of your scene: program objects and shader modifiers.
+    ///
+    /// ### Use Program Objects to Replace SceneKit Shading
+    ///
+    /// For complete control of the vertex and fragment shaders used to render an object, assign an [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) instance to the object’s program property. A custom program completely replaces all other rendering parameters, including material settings. Your custom program takes inputs from SceneKit and is responsible for all transform, lighting, and shading effects you want it to produce. For details on custom programs, see [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram).
+    ///
+    /// When you specify a custom program, you can provide handler blocks that SceneKit calls at render time to update the values of custom variables in your shaders. See the methods in Handling Parameters in Custom OpenGL Shader Programs.
+    ///
+    /// ### Use Shader Modifiers to Extend SceneKit Shading
+    ///
+    /// Shader modifiers are an alternative to entirely replacing SceneKit’s shaders with your own. You can use shader modifiers to, for example:
+    ///
+    /// - Parametrically deform the surface of a geometry
+    ///
+    /// - Simulate realistic surfaces with complex material properties
+    ///
+    /// - Add artistic lighting effects such as cartoon-style shading
+    ///
+    /// - Create special effects by post-processing pixels after SceneKit’s shading is complete
+    ///
+    /// A shader modifier is a snippet of source code in the Metal shader language or OpenGL Shader Language (GLSL) that SceneKit injects into its own shader programs at a defined entry point. Because your shader modifiers are additions to SceneKit’s shader program, using shader modifiers leaves SceneKit’s rendering system intact. That is, you can still use material properties, lighting models, and camera effects to affect the rendered image.
+    ///
+    /// You attach a snippet to a [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) or [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) object using its [`shaderModifiers`](https://developer.apple.com/documentation/scenekit/scnshadable/shadermodifiers) property, associating it with an entry point corresponding to the stage of SceneKit’s shader program that it modifies: geometry, surface, lighting, or fragment. Each entry point defines a context for the associated snippet, with input variables providing SceneKit’s rendering parameters in that stage and output variables that the snippet writes its results to.
+    ///
+    /// For definitions of each entry point and its inputs and outputs, see `Shader Modifier Entry Point Keys`. SceneKit inserts your shader modifiers into its shader program a specific order:
+    ///
+    /// 1. [`SCNShaderModifierEntryPointGeometry`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/geometry)
+    ///
+    /// 2. [`SCNShaderModifierEntryPointSurface`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/surface)
+    ///
+    /// 3. [`SCNShaderModifierEntryPointLightingModel`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/lightingmodel)
+    ///
+    /// 4. [`SCNShaderModifierEntryPointFragment`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/fragment)
+    ///
+    /// You can use the structures defined by earlier entry points in later entry points. For example, a snippet associated with the [`SCNShaderModifierEntryPointFragment`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/fragment) entry point can read from the `_surface` structure defined by the [`SCNShaderModifierEntryPointSurface`](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/surface) entry point.
+    ///
+    /// #### Writing a Shader Modifier Snippet
+    ///
+    /// The code you provide for a shader modifier must be organized in a specific structure, as illustrated in the example below:
+    ///
+    /// ```objc
+    /// // 1. Custom variable declarations (optional)
+    /// // For Metal, a pragma directive and one custom variable on each line:
+    /// #pragma arguments
+    /// float intensity;
+    /// // For OpenGL, a separate uniform declaration for each custom variable
+    /// uniform float intensity;
+    ///  
+    /// // 2. Custom global functions (optional)
+    /// vec2 sincos(float t) { return vec2(sin(t), cos(t)); }
+    ///  
+    /// // 3. Pragma directives (optional)
+    /// #pragma transparent
+    /// #pragma body
+    ///  
+    /// // 4. Code snippet
+    /// _geometry.position.xy = sincos(u_time);
+    /// _geometry.position.z = intensity;
+    /// ```
+    ///
+    /// 1. **Custom variables declarations.** You can provide your own inputs to a shader modifier by declaring custom variables. Because the syntax differs between Metal and OpenGL shaders, you must include both declarations for your shader modifier to be usable with both rendering technologies. To pass values into custom variables at render time, see [Providing Custom Inputs to a Shader Modifier](https://developer.apple.com/documentation/scenekit/scnshadable#providing-custom-inputs-to-a-shader-modifier).
+    ///
+    /// 2. **Custom global functions.** If your shader modifier benefits from factoring common code into functions, place their definitions here. If you include custom functions in your snippet, you must place the `#pragma body` directive between your function definitions and the main body of the snippet.
+    ///
+    /// 3. **Pragma directives.** As noted above, the `#pragma body` directive separates custom function definitions from the main body of the snippet. If the snippet contains no function definitions, you may omit this directive.
+    ///
+    /// By default, SceneKit automatically uses material properties to determine whether an object should be rendered with partial transparency and uses this information to optimize rendering performance. Use the `#pragma transparent` or `#pragma opaque` directive to override SceneKit’s setting. 4. **Code Snippet.** Place the main body of your shader modifier code at the end of the code snippet.
+    ///
+    /// One shader modifier snippet affects both Metal and OpenGL (or OpenGL ES) rendering—SceneKit automatically translates GLSL syntax to Metal shader syntax before inserting your code snippet into its own shader program. (For some simple shader modifiers, SceneKit can insert the same code snippet into either shader language without translation.)
+    ///
+    /// #### Providing Custom Inputs to a Shader Modifier
+    ///
+    /// You can also declare custom uniform variables in your shader modifier snippet. You provide values for custom uniform variables using [Key-value coding](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25). For each uniform variable you declare in a shader modifier attached to an [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) or [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) object, SceneKit observes a key with the same name on that object. When you set a new value, SceneKit automatically binds that value to the corresponding uniform location in the shader program. If you animate a change to the value implicitly (with the [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) class) or explicitly (with the [`SCNAnimatable`](https://developer.apple.com/documentation/scenekit/scnanimatable) protocol), SceneKit interpolates intermediate values and binds them to the uniform for each frame of the animation. For example, the following code animates the fading of a material from full color to grayscale:
+    ///
+    /// ```objc
+    /// // Set up the shader modifier with a custom uniform.
+    /// myMaterial.shaderModifiers = @{ SCNShaderModifierEntryPointFragment :
+    ///     @"uniform float mixLevel = 0.0;"
+    ///     "vec3 gray = vec3(dot(vec3(0.3, 0.59, 0.11), _output.color.rgb));"
+    ///     "_output.color = mix(_output.color, vec4(gray, 1.0), mixLevel);" };
+    ///  
+    /// // Later, animate a change to the uniform.
+    /// [SCNTransaction begin];
+    /// {
+    ///     [myMaterial setValue:@1.0 forKeyPath:@"mixLevel"];
+    /// }
+    /// [SCNTransaction commit];
+    /// ```
+    ///
+    /// Because SceneKit binds values to shader variables using [Key-value observing](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KVO.html#//apple_ref/doc/uid/TP40008195-CH16), you can provide values in several ways. If you set a value using the [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) or [`setValue:forKeyPath:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkeypath:)) method, or set a target value for a keypath animation, the value must be contained in an Objective-C object. For uniforms of scalar types, you can assign an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object as a value. Assigning a uniform of a vector or matrix type requires an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing data of the appropriate type. You can also bind textures to texture samplers using [`SCNMaterialProperty`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty) objects.
+    ///
+    /// Alternatively, you can create an [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) or [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) subclass for your custom shadable object and declare properties whose names match those of the uniform variables in your shader. When you assign a value to the property, SceneKit automatically binds it to the corresponding uniform in the shader program. In this case, your properties can use primitive or structure types appropriate to the corresponding Metal or GLSL variables.
+    ///
+    /// The table below lists the Objective-C types for each shading language data type:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "GLSL data types" }] }], [Paragraph { inline_content: [Text { text: "Metal data types" }] }], [Paragraph { inline_content: [Text { text: "Objective-C type" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "int" }] }], [Paragraph { inline_content: [CodeVoice { code: "int" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (" }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NSInteger", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, CodeVoice { code: "int" }, Text { text: ")" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "float" }] }], [Paragraph { inline_content: [CodeVoice { code: "float" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (" }, Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFloat-swift.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, CodeVoice { code: "float" }, Text { text: ", " }, CodeVoice { code: "double" }, Text { text: ")" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "vec2" }] }], [Paragraph { inline_content: [CodeVoice { code: "float2" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (" }, Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGPoint", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "vec3" }] }], [Paragraph { inline_content: [CodeVoice { code: "float3" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (" }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNVector3", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "vec4" }] }], [Paragraph { inline_content: [CodeVoice { code: "float4" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (" }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "mat4" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "mat4x4" }] }], [Paragraph { inline_content: [CodeVoice { code: "float4x4" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (" }, Reference { identifier: "doc://com.apple.documentation/documentation/QuartzCore/CATransform3D", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "sampler2D" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "samplerCube" }] }], [Paragraph { inline_content: [CodeVoice { code: "sampler" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// #### Using Inputs Provided by SceneKit
+    ///
+    /// SceneKit declares the following uniform variables containing global rendering parameters:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Identifier" }] }], [Paragraph { inline_content: [Text { text: "GLSL Type" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "u_time" }] }], [Paragraph { inline_content: [CodeVoice { code: "float" }] }], [Paragraph { inline_content: [Text { text: "The current system time (in seconds) since SceneKit started rendering with the shader." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "u_boundingBox" }] }], [Paragraph { inline_content: [CodeVoice { code: "mat32" }] }], [Paragraph { inline_content: [Text { text: "The bounding box of the geometry being rendered, in model space. " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_boundingBox[0].xyz" }, Text { text: " is the minimum corner of the bounding box and " }, CodeVoice { code: "u_boundingBox[1].xyz" }, Text { text: " is the maximum corner." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "u_modelTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_viewTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_projectionTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_normalTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_modelViewTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_modelViewProjectionTransform" }] }], [Paragraph { inline_content: [CodeVoice { code: "mat4" }] }], [Paragraph { inline_content: [Text { text: "The transform matrices used for converting vertex positions and normals between model, world, view, and clip coordinate spaces. " }, Image { identifier: "spacer", metadata: None }, Text { text: " For detailed definitions, see Rendering Transform Keys." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "u_inverseModelTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_inverseViewTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_inverseProjectionTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_inverseModelViewTransform" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_inverseModelViewProjectionTransform" }] }], [Paragraph { inline_content: [CodeVoice { code: "mat4" }] }], [Paragraph { inline_content: [Text { text: "The inverse matrices corresponding to each transform." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "u_diffuseTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_ambientTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_specularTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_normalTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_reflectiveTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_emissionTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_transparentTexture" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "u_multiplyTexture" }] }], [Paragraph { inline_content: [CodeVoice { code: "sampler2D" }, Text { text: " or " }, CodeVoice { code: "samplerCube" }] }], [Paragraph { inline_content: [Text { text: "The texture contents of the corresponding material property. Declared only if the material property’s " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterialProperty/contents", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object provides a texture image. " }, Image { identifier: "spacer", metadata: None }, Text { text: " The GLSL type of the uniform variable depends on whether the contents are a 2D image or cube map. " }, Image { identifier: "spacer", metadata: None }, Text { text: " For details on materials, see " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNMaterial", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// Shader modifiers may contain any legal Metal shader or GLSL code, with the exception that SceneKit reserves for its own use all identifier names with the `u_`, `a_`, and `v_` prefixes.
+    ///
+    ///
+    /// The SCNShadable protocol defines an object that is rendered with shaders.
     pub unsafe trait SCNShadable: NSObjectProtocol {
         /// Specifies a custom program used to render the receiver.
         ///
@@ -321,18 +486,165 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// The mapping channel to be used for a texture coordinate semantic.
+    ///
+    /// ## Discussion
+    ///
+    /// This key can be used with the `options` dictionary for the [`setSemantic:forSymbol:options:`](https://developer.apple.com/documentation/scenekit/scnprogram/setsemantic(_:forsymbol:options:)) method, and applies only to the [`SCNGeometrySourceSemanticTexcoord`](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/texcoord) semantic. Its value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an unsigned integer value.
+    ///
+    /// A geometry can provide, and a shader program can use, more than one source of texture coordinates for each vertex. Use this key to specify which geometry source should provide data for each texture sampler vertex attribute declared in a shader program. The mapping channel for a geometry source corresponds to its index in the array returned by calling the [`geometrySourcesForSemantic:`](https://developer.apple.com/documentation/scenekit/scngeometry/sources(for:)) method.
+    ///
+    ///
     /// Semantic options
     ///
     /// Valid keys for the option parameter of setSemantic:forSymbol:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprogrammappingchannelkey?language=objc)
     pub static SCNProgramMappingChannelKey: &'static NSString;
 }
 
 extern_class!(
-    /// A SCNProgram lets you specify custom shaders to use when rendering materials.
+    /// A complete Metal or OpenGL shader program that replaces SceneKit’s rendering of a geometry or material.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprogram?language=objc)
+    /// ## Overview
+    ///
+    /// You use an [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) object to perform custom rendering using shader programs written in the Metal shading language or the OpenGL Shading Language (GLSL). A program object contains a vertex shader and a fragment shader. To use a program object for rendering, assign it to the [`program`](https://developer.apple.com/documentation/scenekit/scnshadable/program) property of a geometry or material.
+    ///
+    /// Use a program object when you want to completely replace SceneKit’s rendering. Your shaders take input from SceneKit and become responsible for all transform, lighting, and shading effects that you want to produce.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If instead you want to simply modify or extend SceneKit’s rendering, use the [`shaderModifiers`](https://developer.apple.com/documentation/scenekit/scnshadable/shadermodifiers) property of a geometry or material to insert snippets of Metal or GLSL source code into SceneKit’s built-in shader programs. For details on creating and using shader modifiers, see [`SCNShadable`](https://developer.apple.com/documentation/scenekit/scnshadable).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To use a custom shader program in SceneKit, create an [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) object and optionally specify its [`delegate`](https://developer.apple.com/documentation/scenekit/scnprogram/delegate) object for handling errors. Next, provide shaders:
+    ///
+    /// - To provide precompiled Metal shader functions, set the [`vertexFunctionName`](https://developer.apple.com/documentation/scenekit/scnprogram/vertexfunctionname) and [`fragmentFunctionName`](https://developer.apple.com/documentation/scenekit/scnprogram/fragmentfunctionname) properties. SceneKit loads the functions from a Metal shader library in your app’s bundle resources.
+    ///
+    /// - To provide OpenGL or OpenGL ES shader source code, set the [`vertexShader`](https://developer.apple.com/documentation/scenekit/scnprogram/vertexshader) and [`fragmentShader`](https://developer.apple.com/documentation/scenekit/scnprogram/fragmentshader) properties.
+    ///
+    /// Finally, assign your program object to the geometries or materials you want rendered using the shader program.
+    ///
+    /// Rendering with Metal shaders requires that the [`renderingAPI`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/renderingapi) property of your [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object (or other renderer) be set to [`SCNRenderingAPIMetal`](https://developer.apple.com/documentation/scenekit/scnrenderingapi/metal), which in turn requires that your app be running on Metal-capable hardware. If you provide both Metal and OpenGL shaders in the same [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) object, SceneKit automatically selects the appropriate shaders to use when rendering, falling back to OpenGL or OpenGL ES shaders when Metal is not supported on the current hardware.
+    ///
+    /// ### Providing Input to a Metal Shader
+    ///
+    /// Metal shaders for use with SceneKit require an `#include <SceneKit/scn_metal>` directive to gain access to SceneKit-specific symbols. Use these symbols to access the kinds of data listed below.
+    ///
+    /// #### Vertex Attributes
+    ///
+    /// To use vertex attributes provided by [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) objects in your shader program, declare those attributes in your Metal shader source code using attribute qualifiers (see [Attribute Qualifiers to Locate Per-Vertex Inputs](https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/func-var-qual/func-var-qual.html#//apple_ref/doc/uid/TP40014364-CH4-SW11) in [Metal Shading Language Guide](https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364)) and the constants listed in Table 1. For example, the partial shader below declares an input structure using the vertex position and normal attributes.
+    ///
+    /// ```objc
+    /// #include <metal_stdlib>
+    /// using namespace metal;
+    /// #include <SceneKit/scn_metal>
+    /// typedef struct {
+    ///     float3 position [[ attribute(SCNVertexSemanticPosition) ]];
+    ///     float3 normal   [[ attribute(SCNVertexSemanticNormal) ]];
+    /// } MyVertexInput;
+    /// ```
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Metal Constant" }] }], [Paragraph { inline_content: [Text { text: "Definition" }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticPosition" }] }], [Paragraph { inline_content: [Text { text: "The vertex position, provided by the geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/vertex", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticNormal" }] }], [Paragraph { inline_content: [Text { text: "The surface normal vector at the vertex, provided by the geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/normal", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticTangent" }] }], [Paragraph { inline_content: [Text { text: "The surface-space tangent vector. " }, Image { identifier: "spacer", metadata: None }, Text { text: " SceneKit automatically infers this vector based on texture coordinates. To obtain a bitangent vector, take the cross product of the tangent vector and the surface normal vector, and scale the result by the w component of the tangent vector." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticColor" }] }], [Paragraph { inline_content: [Text { text: "The vertex color, provided by the geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/color", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticSkinJoints" }] }], [Paragraph { inline_content: [Text { text: "Skeletal animation index information, provided by the geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/boneIndices", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticSkinWeights" }] }], [Paragraph { inline_content: [Text { text: "Skeletal animation weight information, provided by the geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/boneWeights", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticTexcoord0" }] }], [Paragraph { inline_content: [Text { text: "Texture coordinates, provided by the first geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/texcoord", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticTexcoord1" }] }], [Paragraph { inline_content: [Text { text: "Texture coordinates, provided by the second geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/texcoord", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticTexcoord2" }] }], [Paragraph { inline_content: [Text { text: "Texture coordinates, provided by the third geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/texcoord", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]], [[Paragraph { inline_content: [Text { text: "SCNVertexSemanticTexcoord3" }] }], [Paragraph { inline_content: [Text { text: "Texture coordinates, provided by the fourth geometry source for the " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource/Semantic-swift.struct/texcoord", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " semantic." }] }]]], alignments: None, metadata: None })
+    /// #### Frame-Constant Data
+    ///
+    /// To use information from SceneKit that is constant for all invocations of your shader when rendering a single frame—such as view and projection matrices, fog parameters, and scene time—declare a parameter to your shader function whose type is `SCNSceneBuffer`, with an attribute qualifier binding it to buffer zero. For example, the shader function declaration below uses scene data in its second parameter.
+    ///
+    /// ```objc
+    /// vertex MyVertexOutput myVertex(MyVertexInput in [[ stage_in ]],
+    ///                                 constant SCNSceneBuffer& scn_frame [[buffer(0)]],
+    ///                                 constant default_node_t& scn_node [[buffer(1)]])
+    /// ```
+    ///
+    /// Your function can then access scene data from the fields in the `SCNSceneBuffer` structure, outlined below.
+    ///
+    /// ```objc
+    /// struct SCNSceneBuffer {
+    ///     float4x4    viewTransform;
+    ///     float4x4    inverseViewTransform; // view space to world space
+    ///     float4x4    projectionTransform;
+    ///     float4x4    viewProjectionTransform;
+    ///     float4x4    viewToCubeTransform; // view space to cube texture space (right-handed, y-axis-up)
+    ///     float4      ambientLightingColor;
+    ///     float4      fogColor;
+    ///     float3      fogParameters; // x: -1/(end-start) y: 1-start*x z: exponent
+    ///     float       time;     // system time elapsed since first render with this shader
+    ///     float       sinTime;  // precalculated sin(time)
+    ///     float       cosTime;  // precalculated cos(time)
+    ///     float       random01; // random value between 0.0 and 1.0
+    /// };
+    /// ```
+    ///
+    /// #### Per-Node Data
+    ///
+    /// To use information from SceneKit that varies for each object being rendered with a shader—such as model and normal matrices—declare a parameter to your shader function with an attribute qualifier binding it to buffer one. For the type of this parameter, declare your own struct type containing any of the fields in Listing 4.
+    ///
+    /// Listing 4. Available Fields for Per-Node Shader Data
+    ///
+    /// ```objc
+    /// float4x4 modelTransform;
+    /// float4x4 inverseModelTransform;
+    /// float4x4 modelViewTransform;
+    /// float4x4 inverseModelViewTransform;
+    /// float4x4 normalTransform; // Inverse transpose of modelViewTransform
+    /// float4x4 modelViewProjectionTransform;
+    /// float4x4 inverseModelViewProjectionTransform;
+    /// float2x3 boundingBox;
+    /// float2x3 worldBoundingBox;
+    /// ```
+    ///
+    /// For example, the partial shader below declares a struct with model and model-view-projection matrices and uses it in a vertex function.
+    ///
+    /// ```objc
+    /// struct MyNodeBuffer {
+    ///     float4x4 modelTransform;
+    ///     float4x4 modelViewProjectionTransform;
+    /// };
+    ///  
+    /// vertex MyVertexOutput myVertex(MyVertexInput in [[ stage_in ]],
+    ///                                 constant SCNSceneBuffer& scn_frame [[buffer(0)]],
+    ///                                 constant MyNodeBuffer& scn_node [[buffer(1)]])
+    /// ```
+    ///
+    /// #### Custom Variables
+    ///
+    /// To use custom input variables in a Metal shader, first declare those variables as input parameters to your Metal shader functions, using an attribute qualifier to bind to buffer 2 (or higher). Because these variables pass to your Metal shader in a buffer, you typically also define a data structure for your variables, as seen in the partial shader below.
+    ///
+    /// ```objc
+    /// struct MyAccentColors {
+    ///     float4 primaryColor;
+    ///     float4 secondaryColor;
+    /// };
+    ///  
+    /// fragment half4 myFragmentShader(default_io in [[stage_in]],
+    ///                             constant MyAccentColors& colors [[buffer(2)]]) { ... }
+    /// ```
+    ///
+    /// There are two options for providing data for your custom variables: manually and at render time.
+    ///
+    /// - To make a single change to your custom variable data, use [Key-value coding](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25): Call the [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) method on the geometry or material to be rendered with your shader, passing an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object containing your data structure as the value and the name of the corresponding shader function parameter as the key. Be aware of layout and alignment when encoding an entire structure as an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object—for best results, use data types from the SIMD library (such as `vector_float4` and `matrix_float4x4`), because those types match the layout and alignment of the GPU data types used in a Metal shader.
+    ///
+    /// You can also animate such a change by calling the [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) method within an [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) animation or by creating a [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation) object whose key is the shader function parameter name.
+    ///
+    /// In either case, you can alternatively provide a value for a specific member of a structure by wrapping that value in an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object and using the fully qualified name of that member as the key. For example, use `colors.primaryColor` as the key in the example above.
+    ///
+    /// - To update custom variable data at render time, call the [`handleBindingOfBufferNamed:frequency:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnprogram/handlebinding(ofbuffernamed:frequency:handler:)) method to register a block that SceneKit calls before rendering using your shader program. In the block, SceneKit provides an [`SCNBufferStream`](https://developer.apple.com/documentation/scenekit/scnbufferstream) object, whose [`writeBytes:length:`](https://developer.apple.com/documentation/scenekit/scnbufferstream/writebytes(_:count:)) you can call to provide a new value for your data structure.
+    ///
+    /// ### Providing Input to an OpenGL Shader
+    ///
+    /// Vertex attributes. To use vertex attributes provided by [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) objects in your shader program, map SceneKit semantics to the input vertex attribute names declared in the shader. Use the [`setSemantic:forSymbol:options:`](https://developer.apple.com/documentation/scenekit/scnprogram/setsemantic(_:forsymbol:options:)) method and the constants listed in Geometry Semantic Identifiers.
+    ///
+    /// Coordinate transformations. To use the coordinate transformations defined by the scene’s node hierarchy and point-of-view camera in your shader program, map SceneKit’s transform matrices to the uniform variable names declared in the shader. Use the [`setSemantic:forSymbol:options:`](https://developer.apple.com/documentation/scenekit/scnprogram/setsemantic(_:forsymbol:options:)) method and the constants listed in Rendering Transform Keys.
+    ///
+    /// Custom uniform variables. To provide values for your own custom uniform variables declared in the shader, choose when and how you want to update these values.
+    ///
+    /// - To update a value once, use [Key-value coding](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25): Call the [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) method, providing the uniform name from shader source code as the key and an appropriate type of data as the value.  To smoothly transition a one-time value change, call the [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) method inside an [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) animation or create an animation object with the [`animationWithKeyPath:`](https://developer.apple.com/documentation/quartzcore/capropertyanimation/init(keypath:)) method, passing the uniform name as the key.
+    ///
+    /// - To update a value every time SceneKit renders an object with your shader program, assign binding blocks using the [`handleBindingOfSymbol:usingBlock:`](https://developer.apple.com/documentation/scenekit/scnshadable/handlebinding(ofsymbol:handler:)) method of the geometry or material to be rendered with your custom program. Within a binding block you can execute OpenGL commands to bind shader uniforms or set any other state necessary for rendering.
+    ///
+    ///
+    /// A SCNProgram lets you specify custom shaders to use when rendering materials.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNProgram;
@@ -571,9 +883,14 @@ impl SCNProgram {
 }
 
 extern_protocol!(
-    /// The SCNProgramDelegate protocol declares the methods that an instance of SCNProgram invokes to delegate the binding of parameters.
+    /// The interface for tracking errors that occur when compiling shader source code.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprogramdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// You create and use custom shader programs with the  [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) class.
+    ///
+    ///
+    /// The SCNProgramDelegate protocol declares the methods that an instance of SCNProgram invokes to delegate the binding of parameters.
     pub unsafe trait SCNProgramDelegate: NSObjectProtocol {
         #[cfg(feature = "SCNRenderer")]
         /// Invoked on the delegate to let it bind program values and/or also bind associated graphics resources (such as textures).
@@ -651,6 +968,41 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// Use this entry point to deform a geometry’s surface or alter its vertex attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// Shader modifiers for this entry point execute in the vertex processing stage.
+    ///
+    /// The geometry entry point declares the following structure:
+    ///
+    /// ```objc
+    /// struct SCNShaderGeometry {
+    ///    vec3 position;
+    ///    vec3 normal;
+    ///    vec4 tangent;
+    ///    vec2 texcoords[kSCNTexcoordCount];
+    /// } _geometry;
+    /// ```
+    ///
+    /// Your shader modifier reads from this structure and writes new values to the same structure to alter the geometric properties of each vertex in a geometry.
+    ///
+    /// The `position`, `normal`, and `tangent` fields are expressed in model space. You can use SceneKit’s uniforms (such as `u_modelViewTransform`) to operate in a different coordinate space, but you must convert back to model space before writing results.
+    ///
+    /// The `kSCNTexcoordCount` variable is a constant integer corresponding to the geometry’s number of texture coordinate sources. Each set of coordinates in the `texcoords` field contains raw values from the geometry—SceneKit applies the [`contentsTransform`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/contentstransform) transformation (if any) after the geometry shader modifier completes.
+    ///
+    /// The below shader modifier produces an animated sinusoidal deformation:
+    ///
+    /// ```objc
+    /// uniform float Amplitude = 0.1;
+    ///  
+    /// _geometry.position +=
+    ///     _geometry.normal *
+    ///     (Amplitude*_geometry.position.y*_geometry.position.x) *
+    ///     sin(1.0 * u_time);
+    /// ```
+    ///
+    ///
     /// This is the entry point to operate on the geometry vertices, for example deforming them.
     ///
     /// It operates entirely in the vertex shader stage. It's input is the geometry structure:
@@ -686,12 +1038,65 @@ extern "C" {
     /// | float Amplitude;
     /// |
     /// | _geometry.position.xyz += _geometry.normal * (Amplitude * _geometry.position.y * _geometry.position.x) * sin(scn_frame.time);
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/geometry?language=objc)
     pub static SCNShaderModifierEntryPointGeometry: &'static SCNShaderModifierEntryPoint;
 }
 
 extern "C" {
+    /// Use this entry point to modify the surface properties of a material before lighting is computed.
+    ///
+    /// ## Discussion
+    ///
+    /// Shader modifiers for this entry point execute in the fragment processing stage.
+    ///
+    /// The surface entry point defines the following structure:
+    ///
+    /// ```objc
+    /// struct SCNShaderSurface {
+    ///    vec3 view;                // Direction from the point on the surface toward the camera (V)
+    ///    vec3 position;            // Position of the fragment
+    ///    vec3 normal;              // Normal of the fragment (N)
+    ///    vec3 tangent;             // Tangent of the fragment
+    ///    vec3 bitangent;           // Bitangent of the fragment
+    ///    vec4 ambient;             // Ambient property of the fragment
+    ///    vec2 ambientTexcoord;     // Ambient texture coordinates
+    ///    vec4 diffuse;             // Diffuse property of the fragment. Alpha contains the opacity.
+    ///    vec2 diffuseTexcoord;     // Diffuse texture coordinates
+    ///    vec4 specular;            // Specular property of the fragment
+    ///    vec2 specularTexcoord;    // Specular texture coordinates
+    ///    vec4 emission;            // Emission property of the fragment
+    ///    vec2 emissionTexcoord;    // Emission texture coordinates
+    ///    vec4 multiply;            // Multiply property of the fragment
+    ///    vec2 multiplyTexcoord;    // Multiply texture coordinates
+    ///    vec4 transparent;         // Transparent property of the fragment
+    ///    vec2 transparentTexcoord; // Transparent texture coordinates
+    ///    vec4 reflective;          // Reflective property of the fragment
+    ///    float shininess;          // Shininess property of the fragment.
+    ///    float fresnel;            // Fresnel property of the fragment.
+    /// } _surface;
+    /// ```
+    ///
+    /// Your shader modifier reads from this structure and writes new values to the same structure to alter the surface properties of each rendered fragment. After your shader modifier completes, SceneKit’s shader program uses these properties to compute lighting.
+    ///
+    /// Geometric fields (such as `position` and `normal`) are expressed in view space. You can use SceneKit’s uniforms (such as `u_inverseViewTransform`) to operate in a different coordinate space, but you must convert back to view space before writing results.
+    ///
+    /// Other fields of type `vec4` are colors provided by the contents of the corresponding [`SCNMaterialProperty`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty) object. Texture coordinate fields contain values transformed by the relevant material property’s [`contentsTransform`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/contentstransform) transformation.
+    ///
+    /// The below shader modifier produces black and white stripes on a surface:
+    ///
+    /// ```objc
+    /// uniform float Scale = 12.0;
+    /// uniform float Width = 0.25;
+    /// uniform float Blend = 0.3;
+    ///  
+    /// vec2 position = fract(_surface.diffuseTexcoord * Scale);
+    /// float f1 = clamp(position.y / Blend, 0.0, 1.0);
+    /// float f2 = clamp((position.y - Width) / Blend, 0.0, 1.0);
+    /// f1 = f1 * (1.0 - f2);
+    /// f1 = f1 * f1 * 2.0 * (3. * 2. * f1);
+    /// _surface.diffuse = mix(vec4(1.0), vec4(0.0), f1);
+    /// ```
+    ///
+    ///
     /// This is the entry point to alter the surface representation of the material, before the lighting has taken place.
     ///
     /// Structures available from the SCNShaderModifierEntryPointSurface entry point:
@@ -770,12 +1175,48 @@ extern "C" {
     /// | f1 = f1 * (1.0 - f2);
     /// | f1 = f1 * f1 * 2.0 * (3. * 2. * f1);
     /// | _surface.diffuse = mix(float4(1.0), float4(0.0), f1);
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/surface?language=objc)
     pub static SCNShaderModifierEntryPointSurface: &'static SCNShaderModifierEntryPoint;
 }
 
 extern "C" {
+    /// Use this entry point to provide a custom lighting equation.
+    ///
+    /// ## Discussion
+    ///
+    /// Shader modifiers for this entry point may execute in either the vertex or fragment processing stage. If the litPerPixel property of a material affected by the shader modifier is [`true`](https://developer.apple.com/documentation/swift/true), the snippet executes in the fragment processing stage; otherwise the snippet executes in the vertex processing stage.
+    ///
+    /// The surface entry point defines the following structures:
+    ///
+    /// ```objc
+    /// struct SCNShaderLightingContribution {
+    ///    vec3 ambient;
+    ///    vec3 diffuse;
+    ///    vec3 specular;
+    /// } _lightingContribution;
+    ///  
+    /// struct SCNShaderLight {
+    ///    vec4 intensity;
+    ///    vec3 direction; // Direction from the point on the surface toward the light (L)
+    /// } _light;
+    /// ```
+    ///
+    /// When rendering a fragment, SceneKit executes this shader modifier once for each active light in the scene. Your shader modifier reads from the `_light` structure and accumulates the results of your lighting computations into the `_lightingContribution` structure. After your shader modifier completes, SceneKit’s shader program combines the lighting contribution with the surface properties to determine the fragment’s color.
+    ///
+    /// All fields in the `_lightingContribution` structure and the `intensity` field in the `_light` structure are colors. The `direction` field is expressed in view space.
+    ///
+    /// The shader modifier below wraps diffuse lighting—that is, it increases all input lighting values by `0.5`, and if the resulting value is greater than `1.0` it “wraps around” back to `0.0`:
+    ///
+    /// ```objc
+    /// uniform float WrapFactor = 0.5;
+    ///  
+    /// float dotProduct = (WrapFactor + max(0.0, dot(_surface.normal,_light.direction))) / (1 + WrapFactor);
+    /// _lightingContribution.diffuse += (dotProduct * _light.intensity.rgb);
+    /// vec3 halfVector = normalize(_light.direction + _surface.view);
+    /// dotProduct = max(0.0, pow(max(0.0, dot(_surface.normal, halfVector)), _surface.shininess));
+    /// _lightingContribution.specular += (dotProduct * _light.intensity.rgb);
+    /// ```
+    ///
+    ///
     /// This is the entry point to provide custom lighting equation. The fragment will be called for each active light
     /// of the scene and will need to accumulate lighting contribution for the vertex or the fragment in the _lightingContribution structure, using the light structure given.
     ///
@@ -823,12 +1264,33 @@ extern "C" {
     /// | float3 halfVector = normalize(_light.direction + _surface.view);
     /// | dotProduct = max(0.0, pow(max(0.0, dot(_surface.normal, halfVector)), _surface.shininess));
     /// | _lightingContribution.specular += (dotProduct * _light.intensity.rgb);
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/lightingmodel?language=objc)
     pub static SCNShaderModifierEntryPointLightingModel: &'static SCNShaderModifierEntryPoint;
 }
 
 extern "C" {
+    /// Use this entry point to change the color of a fragment after all other shading has been performed.
+    ///
+    /// ## Discussion
+    ///
+    /// Shader modifiers for this entry point execute in the fragment processing stage.
+    ///
+    /// The fragment entry point defines the following structure:
+    ///
+    /// ```objc
+    /// struct SCNShaderOutput {
+    ///    vec4 color;
+    /// } _output;
+    /// ```
+    ///
+    /// Your shader modifier reads from this structure and writes a new color to the same structure to produce the final output color for each rendered fragment.
+    ///
+    /// This shader modifier inverts the output color:
+    ///
+    /// ```objc
+    /// _output.color.rgb = vec3(1.0) - _output.color.rgb;
+    /// ```
+    ///
+    ///
     /// This is the last entry point in the fragment shader, where you can alter the final color returned by the shader.
     ///
     /// You can alter the final color by reading and writing to the output color via the output structure below.
@@ -861,7 +1323,5 @@ extern "C" {
     ///
     /// Metal Shading Language
     /// | _output.color.rgb = 1.0 - _output.color.rgb;
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/fragment?language=objc)
     pub static SCNShaderModifierEntryPointFragment: &'static SCNShaderModifierEntryPoint;
 }

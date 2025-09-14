@@ -8,7 +8,73 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery?language=objc)
+    /// A query for one-time access to a SMART Health Card or EU Digital COVID Certificate.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To use Swift concurrency when reading verifiable clinical records, see [`HKVerifiableClinicalRecordQueryDescriptor`](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquerydescriptor).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use an [`HKVerifiableClinicalRecordQuery`](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery) object to request one-time access to a SMART Health Card or EU Digital COVID Certificate. For example, the following code requests cards that represent immunizations within the last six months.
+    ///
+    /// ```swift
+    /// // Calculate the start and end dates.
+    /// var sixMonthsAgo = DateComponents()
+    /// sixMonthsAgo.month = -6
+    ///
+    /// let end = Date()
+    /// guard let start = Calendar.current.date(byAdding: sixMonthsAgo, to: end) else {
+    ///     fatalError("*** Unable to calculate a date using \(end) and \(sixMonthsAgo) ***")
+    /// }
+    ///
+    /// // Create the predicate.
+    /// let lastSixMonthsPredicate =
+    /// HKQuery.predicateForVerifiableClinicalRecords(withRelevantDateWithin: DateInterval(start: start, end: end))
+    ///
+    /// // Create the query for immunization cards.
+    /// let query = HKVerifiableClinicalRecordQuery(
+    ///     recordTypes: [HKVerifiableClinicalRecordCredentialType.covid19.rawValue,
+    ///                   HKVerifiableClinicalRecordCredentialType.immunization.rawValue],
+    ///     sourceTypes: [.smartHealthCard, .euDigitalCOVIDCertificate],
+    ///     predicate: lastSixMonthsPredicate) { query, records, error in
+    ///         
+    ///         if let error = error {
+    ///             // Handle errors here.
+    ///             fatalError("*** An error occurred: \(error.localizedDescription)***")
+    ///         }
+    ///         
+    ///         if let records = records {
+    ///             
+    ///             // Use the records here.
+    ///             for record in records {
+    ///                 print(record.recordTypes)
+    ///                 print(record.itemNames)
+    ///                 print(record.issuedDate)
+    ///                 print(record.expirationDate ?? "No expiration date.")
+    ///             }
+    ///         }
+    ///     }
+    ///
+    /// // Run the query.
+    /// store.execute(query)
+    /// ```
+    ///
+    /// Unlike other HealthKit queries, you don’t need to request permission to read verifiable health records before running this query. HealthKit prompts the user for permission to read the records each time you run the query.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Running an [`HKVerifiableClinicalRecordQuery`](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordquery) requires a special entitlement from Apple, or the query fails with an [`HKErrorAuthorizationDenied`](https://developer.apple.com/documentation/healthkit/hkerror/code/errorauthorizationdenied) error. To request the entitlement, see [Request Access to the Verifiable Health Records Entitlement](https://developer.apple.com/contact/request/verifiable-health-records/).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

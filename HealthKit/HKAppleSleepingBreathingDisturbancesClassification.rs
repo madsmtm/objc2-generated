@@ -7,17 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 /// This enumerated type is used to represent a classification of the user's breathing disturbances
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplesleepingbreathingdisturbancesclassification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAppleSleepingBreathingDisturbancesClassification(pub NSInteger);
 impl HKAppleSleepingBreathingDisturbancesClassification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplesleepingbreathingdisturbancesclassification/notelevated?language=objc)
     #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationNotElevated")]
     pub const NotElevated: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplesleepingbreathingdisturbancesclassification/elevated?language=objc)
     #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationElevated")]
     pub const Elevated: Self = Self(1);
 }
@@ -36,8 +32,6 @@ impl HKAppleSleepingBreathingDisturbancesClassification {
     /// Parameter `value`: Breathing Disturbances quantity
     ///
     /// Returns: A Breathing Disturbances classification if one can be created, otherwise nil.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplesleepingbreathingdisturbancesclassificationforquantity?language=objc)
     #[doc(alias = "HKAppleSleepingBreathingDisturbancesClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
@@ -55,8 +49,6 @@ impl HKAppleSleepingBreathingDisturbancesClassification {
 /// Retrieves the minimum quantity for a Breathing Disturbances classification.
 ///
 /// Parameter `classification`: Breathing Disturbances classification for desired minimum value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplesleepingbreathingdisturbancesclassification/minimum?language=objc)
 #[cfg(feature = "HKQuantity")]
 #[inline]
 pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(

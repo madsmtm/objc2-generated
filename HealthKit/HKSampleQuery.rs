@@ -7,11 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobjectquerynolimit?language=objc)
+/// A value indicating that the query returns all the matching samples in the HealthKit store.
 pub static HKObjectQueryNoLimit: NSUInteger = 0;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksamplequery?language=objc)
+    /// A general query that returns a snapshot of all the matching samples currently saved in the HealthKit store.
+    ///
+    /// ## Overview
+    ///
+    /// You can use sample queries to search for any concrete subclasses of the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) class, including [`HKCategorySample`](https://developer.apple.com/documentation/healthkit/hkcategorysample), [`HKCorrelation`](https://developer.apple.com/documentation/healthkit/hkcorrelation), [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample), and [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) objects.
+    ///
+    /// The sample query returns sample objects that match the provided type and predicate. You can provide a sort order for the returned samples, or limit the number of samples returned. Other query classes can be used to perform more specialized searches and calculations. For more information, see [`HKQuery`](https://developer.apple.com/documentation/healthkit/hkquery).
+    ///
+    /// Sample queries are immutable: The query’s properties are set when the query is first created, and they can’t change.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Like many HealthKit classes, the [`HKSampleQuery`](https://developer.apple.com/documentation/healthkit/hksamplequery) class should not be subclassed.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

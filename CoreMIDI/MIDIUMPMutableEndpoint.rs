@@ -21,8 +21,6 @@ extern_class!(
     ///
     /// This API is not realtime-safe, all interaction with the mutable endpoint should be done on the
     /// main thread.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpmutableendpoint?language=objc)
     #[unsafe(super(MIDIUMPEndpoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MIDIUMPEndpoint", feature = "objc2"))]

@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a unique identifier for a virtual machine.
+    ///
+    /// ## Overview
+    ///
+    /// Use the data representation in [`dataRepresentation`](https://developer.apple.com/documentation/virtualization/vzgenericmachineidentifier/datarepresentation) to save the VM’s identifier. To restore a previously saved identifier use [`initWithDataRepresentation:`](https://developer.apple.com/documentation/virtualization/vzgenericmachineidentifier/init(datarepresentation:)).
+    ///
+    ///
     /// An identifier to make a virtual machine unique.
     ///
     /// The generic machine identifier is used by guests to uniquely identify the virtual hardware.
@@ -17,8 +24,6 @@ extern_class!(
     /// The contents of two identifiers can be compared with -[VZGenericMachineIdentifier isEqual:].
     ///
     /// See also: VZGenericPlatformConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgenericmachineidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGenericMachineIdentifier;

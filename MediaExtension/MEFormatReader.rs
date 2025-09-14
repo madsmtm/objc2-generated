@@ -15,6 +15,13 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
+/// An enumeration that describes if a media asset contains or supports fragments.
+///
+/// ## Overview
+///
+/// For QuickTime movie and ISO files, it indicates the presence of an `mvex` box, which is necessary to signal the possible presence of later `moof` boxes.
+///
+///
 /// Describes whether a file supports or contains fragments. For QuickTime movie and ISO files, it indicates the presence of an 'mvex' box, which is necessary in order to signal the possible presence of later 'moof' boxes.
 ///
 /// The file is not capable of being extended by fragments.
@@ -22,20 +29,18 @@ use crate::*;
 /// The file is capable of being extended by fragments *and* contains at least one fragment.
 ///
 /// The file is capable of being extended by fragments, but does not contain any fragments.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEFileInfoFragmentsStatus(pub NSInteger);
 impl MEFileInfoFragmentsStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum/couldnotcontainfragments?language=objc)
+    /// The file isn’t extendable by fragments.
     #[doc(alias = "MEFileInfoCouldNotContainFragments")]
     pub const CouldNotContainFragments: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum/containsfragments?language=objc)
+    /// The file is extendable by fragments and contains at least one fragment.
     #[doc(alias = "MEFileInfoContainsFragments")]
     pub const ContainsFragments: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum/couldcontainbutdoesnotcontainfragments?language=objc)
+    /// The file is extendable by fragments, but doesn’t contain any fragments.
     #[doc(alias = "MEFileInfoCouldContainButDoesNotContainFragments")]
     pub const CouldContainButDoesNotContainFragments: Self = Self(2);
 }
@@ -48,6 +53,7 @@ unsafe impl RefEncode for MEFileInfoFragmentsStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Informational status flags that the format reader returns after parsing additional fragments.
 /// Informational status flags returned by parseAdditionalFragmentsWithCompletionHandler.
 ///
 /// A combination of these values may be returned in the statusOut field from parseAdditionalFragmentsWithCompletionHandler.
@@ -57,21 +63,25 @@ unsafe impl RefEncode for MEFileInfoFragmentsStatus {
 /// Set if one or more fragments were added.
 ///
 /// Set if no more fragments can be added. Further calls to parseAdditionalFragmentsWithCompletionHandler will return an error.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEFormatReaderParseAdditionalFragmentsStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEFormatReaderParseAdditionalFragmentsStatus: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus/sizeincreased?language=objc)
+/// Indicates that the format reader file size increased.
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusSizeIncreased")]
         const SizeIncreased = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus/fragmentadded?language=objc)
+/// Indicates that the format reader received one or more fragments.
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentAdded")]
         const FragmentAdded = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus/fragmentscomplete?language=objc)
+/// Indicates that the format reader can’t receive any more fragments.
+///
+/// ## Discussion
+///
+/// Additional calls of [`parseAdditionalFragmentsWithCompletionHandler:`](https://developer.apple.com/documentation/mediaextension/meformatreader/parseadditionalfragments(completionhandler:)) return an error.
+///
+///
         #[doc(alias = "MEFormatReaderParseAdditionalFragmentsStatusFragmentsComplete")]
         const FragmentsComplete = 1<<2;
     }
@@ -86,11 +96,16 @@ unsafe impl RefEncode for MEFormatReaderParseAdditionalFragmentsStatus {
 }
 
 extern_class!(
+    /// An object that contains options to pass to a format reader extension.
+    ///
+    /// ## Overview
+    ///
+    /// This object is mutable with options set through instance properties.
+    ///
+    ///
     /// A class that encapsulates options to be passed to MEFormatReaderExtension
     ///
     /// The class MEFormatReaderInstantiationOptions is mutable, with options set through instance properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderinstantiationoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEFormatReaderInstantiationOptions;
@@ -143,11 +158,16 @@ impl MEFormatReaderInstantiationOptions {
 }
 
 extern_protocol!(
+    /// A protocol that defines a factory to create a new format reader with a byte source.
+    ///
+    /// ## Overview
+    ///
+    /// Media Toolbox creates the `MEFormatReaderExtension` object and the [`MEByteSource`](https://developer.apple.com/documentation/mediaextension/mebytesource) object based on the media asset.
+    ///
+    ///
     /// Provides a factory method for creating MEFormatReader objects.
     ///
     /// The MEFormatReaderExtension protocol provides a factory method to create a new MEFormatReader when provided with an MEByteSource object. MEFormatReaderExtension is always instantiated by the Media Toolbox, and the MEByteSource object is also created by Media Toolbox based on the specified media asset. All async methods in MEFormatReader/METrackReader/MESampleCursor are allowed to call the completion handlers on any thread or queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderextension?language=objc)
     pub unsafe trait MEFormatReaderExtension: NSObjectProtocol {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -175,11 +195,38 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that defines the requirements for a format reader, which represents a single media asset.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol provides an interface for the Media Toolbox to interact with extension plug-in format readers, which provide information about media assets. `MEFormatReader` objects are always instantiated by the Media Toolbox.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Developers who wish to build MediaExtension format readers using this API need to include a [Format reader entitlement](https://developer.apple.com/documentation/mediaextension/format-reader-entitlement), provisioning profile, and specialized dictionary in their Info.plist file when building their extensions.
+    ///
+    /// For more information, see [Entitlements](https://developer.apple.com/documentation/bundleresources/entitlements), [Create a development provisioning profile](https://developer.apple.com/help/account/manage-provisioning-profiles/create-a-development-provisioning-profile), and [Format reader property list dictionaries](https://developer.apple.com/documentation/mediaextension/format-reader-property-list-dictionaries).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To create an `MEFormatReader` object, Media Toolbox first creates a primary [`MEByteSource`](https://developer.apple.com/documentation/mediaextension/mebytesource) object from a source media asset. It then creates an [`MEFormatReaderExtension`](https://developer.apple.com/documentation/mediaextension/meformatreaderextension) object and calls its [`formatReaderWithByteSource:options:error:`](https://developer.apple.com/documentation/mediaextension/meformatreaderextension/formatreader(with:options:)) method.
+    ///
+    /// Once a user installs and runs the host app, embedded MediaExtension format reader extensions become available to any app on the user’s system that opts in to using them by calling [`MTRegisterProfessionalVideoWorkflowFormatReaders`](https://developer.apple.com/documentation/mediatoolbox/mtregisterprofessionalvideoworkflowformatreaders()).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `MEFormatReader` objects run in a sandboxed process with restricted access to the filesystem, network, and other kernel resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The primary object for a MediaExtension format reader, representing a single media asset.
     ///
     /// The MEFormatReader protocol provides an interface for the MediaToolbox to interact with MediaExtension format readers, which provide information about media assets. MEFormatReader objects are always instantiated by the MediaToolbox. To create an MEFormatReader object, MediaToolbox first creates a primary MEByteSource object around a source media asset. It then creates an MEFormatReaderExtension object and calls its formatReaderWithByteSource method. MEFormatReaders should expect to run in a sandboxed process with restricted access to the filesystem, network and other kernel resources.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreader?language=objc)
     pub unsafe trait MEFormatReader: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Asynchronously loads the MEFileInfo object with properties of the media asset.
@@ -259,11 +306,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that contains file properties from the media asset.
     /// A class incorporating file properties parsed from the media asset.
     ///
     /// The MEFileInfo properties are parsed asynchronously through the loadFileInfoWithCompletionHandler method of MEFormatReader.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEFileInfo;
@@ -371,11 +417,16 @@ impl MEFileInfo {
 }
 
 extern_protocol!(
+    /// A protocol that defines the information to provide about a track within a media asset.
+    ///
+    /// ## Overview
+    ///
+    /// Return default values for methods that don’t apply to a track type.
+    ///
+    ///
     /// Provides information about a track within a media asset.
     ///
     /// The MEFormatReader creates METrackReader objects for each track in the media asset. MEFormatReader plugin authors should provide code to implement the METrackReader protocol methods. Since not every method or property applies to every track type, those that don't make sense should return default values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/metrackreader?language=objc)
     pub unsafe trait METrackReader: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Asynchronously loads the METrackInfo object with properties of the media asset track.
@@ -529,11 +580,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that includes track properties parsed from the media asset.
     /// A class incorporating track properties parsed from the media asset.
     ///
     /// The METrackInfo properties are parsed asynchronously through the loadTrackInfoWithCompletionHandler method of METrackReader.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/metrackinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct METrackInfo;
@@ -831,11 +881,72 @@ impl METrackInfo {
 }
 
 extern_protocol!(
+    /// A protocol that defines the information to provide about samples within a track of a media asset, and enables stepping through samples in the track in decode or presentation order.
+    ///
+    /// ## Overview
+    ///
+    /// This object delivers sample data either by providing sample location and sample chunk information, or by directly generating a sample buffer.
+    ///
+    /// ### Delivering sample data
+    ///
+    /// An [`MESampleCursor`](https://developer.apple.com/documentation/mediaextension/mesamplecursor) object can return sample data to [`Core Media`](https://developer.apple.com/documentation/coremedia) in two ways:
+    ///
+    /// - Return information about the sample data location in the media and let Core Media read the data.
+    ///
+    /// - Read the data and return sample buffers directly.
+    ///
+    /// Review the following information that explains these approaches and which one to use for typical scenarios.
+    ///
+    /// #### Allowing Core Media to read the sample data
+    ///
+    /// This is the preferred method to deliver sample data. It allows Core Media to optimize data I/O read operations, and potentially combine multiple smaller reads into a single larger read for better performance. There are four methods available to deliver the required sample location information:
+    ///
+    /// 1. [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation())
+    ///
+    /// This is the baseline method to return sample location information. For formats with individually-stored samples such as video, Core Media calls this method to find each sample location.
+    ///
+    /// 2. [`chunkDetailsReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/chunkdetails())
+    ///
+    /// For formats with samples stored in groups, blocks, or chunks such as audio, use this method to indicate details about the number of samples stored in each group. After determining the chunk information, Core Media calls [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()) to locate individual samples within the chunk. [`MESampleCursor`](https://developer.apple.com/documentation/mediaextension/mesamplecursor) objects for these formats need to implement both [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()) and [`chunkDetailsReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/chunkdetails()).
+    ///
+    /// 3. [`estimatedSampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/estimatedsamplelocation())
+    ///
+    /// In some cases it’s not possible to directly determine the sample location and return it through [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()). Instead, there’s a two-step process to determine the sample location: call [`estimatedSampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/estimatedsamplelocation()) to obtain a coarse estimation, and then call [`refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/refinesamplelocation(_:refinementdata:refinementdatalength:refinedlocation:)) to find the exact location. Implement both methods to support this approach.
+    ///
+    /// 4. [`refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/refinesamplelocation(_:refinementdata:refinementdatalength:refinedlocation:))
+    ///
+    /// This method returns the exact sample location information as a second step after it receives the coarse estimate from [`estimatedSampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/estimatedsamplelocation()). Implement both methods to support this approach.
+    ///
+    /// #### Reading the sample buffers directly
+    ///
+    /// When it’s not possible to let Core Media read the sample data using location information, the [`MESampleCursor`](https://developer.apple.com/documentation/mediaextension/mesamplecursor) object needs to read the sample data itself using the [`MEByteSource`](https://developer.apple.com/documentation/mediaextension/mebytesource) to deliver the sample data buffers. This is less efficient for data I/O because there’s no way for Core Media to optimize read operations.
+    ///
+    /// The method [`loadSampleBufferContainingSamplesToEndCursor:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)) delivers sample data buffers directly, so it allows the [`MESampleCursor`](https://developer.apple.com/documentation/mediaextension/mesamplecursor) object flexibility to read and unpack the samples from the media. The sample cursor needs to use the [`MEByteSource`](https://developer.apple.com/documentation/mediaextension/mebytesource) directly to seek and read in the sample data. This method can deliver sample buffers either with one sample, such as for video tracks, or with blocks of samples, such as for audio tracks. It’s also suitable for use with synthesized samples that use metadata from the media, such as for timecode tracks.
+    ///
+    /// #### Choosing the best approach
+    ///
+    /// Choose the best approach in these typical scenarios:
+    ///
+    /// 1. The media stores the samples in groups interleaved among other samples.
+    ///
+    /// The `MESampleCursor` object implements [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()) and [`chunkDetailsReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/chunkdetails()) to allow Core Media to locate the chunks and find samples inside the chunks.
+    ///
+    /// 2. The media stores the samples in blocks interleaved among other samples, but some blocks are non-contiguous.
+    ///
+    /// The `MESampleCursor` object implements [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()), [`chunkDetailsReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/chunkdetails()), and [`loadSampleBufferContainingSamplesToEndCursor:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)). For contiguous samples, [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()) returns the samples to read. For non-contiguous samples, [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation()) fails with the error [`MEErrorLocationNotAvailable`](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/locationnotavailable) and Core Media then uses [`loadSampleBufferContainingSamplesToEndCursor:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)) to read the samples.
+    ///
+    /// 3. It’s not possible to determine sample location in one step.
+    ///
+    /// The `MESampleCursor` object implements [`estimatedSampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/estimatedsamplelocation()) and [`refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/refinesamplelocation(_:refinementdata:refinementdatalength:refinedlocation:)) (instead of [`sampleLocationReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/samplelocation())). If it’s not possible to determine the sample location using either the one-step or two-step approach, the `MESampleCursor` object implements [`loadSampleBufferContainingSamplesToEndCursor:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)) to directly deliver sample buffers.
+    ///
+    /// 4. It’s necessary to unpack or prepare sample data before delivering it.
+    ///
+    /// If Core Media can’t directly read the sample data, then the `MESampleCursor` object implements [`loadSampleBufferContainingSamplesToEndCursor:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)) to read the data itself, unpack or prepare it, and deliver it in sample buffers.
+    ///
+    ///
     /// Provides information about samples within a track of a media asset.
     ///
     /// The Media Toolbox creates an MESampleCursor object by calling one of the METrackReader sample cursor creation methods. It then makes method calls using the MESampleCursor protocol. MESampleCursors can deliver sample data either by providing sample location and sample chunk information, or by directly generating a sample buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mesamplecursor?language=objc)
     pub unsafe trait MESampleCursor: NSObjectProtocol + NSCopying {
         #[cfg(feature = "objc2-core-media")]
         /// The presentation timestamp (PTS) of the sample at the current position of the cursor.
@@ -1140,11 +1251,16 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that provides information about the chunk of media at the location of a sample.
+    ///
+    /// ## Overview
+    ///
+    /// The [`chunkDetailsReturningError:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/chunkdetails()) method returns an instance of this class.
+    ///
+    ///
     /// Provides information about the chunk of media where a sample is located.
     ///
     /// An instance of this class is returned by calls to the MESampleCursor method chunkDetails.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MESampleCursorChunk;
@@ -1250,11 +1366,10 @@ impl MESampleCursorChunk {
 }
 
 extern_class!(
+    /// An object that provides information about the sample location with the media.
     /// Provides information about the sample location with the media.
     ///
     /// An instance of this class is returned by calls to the MESampleCursor method sampleLocation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mesamplelocation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MESampleLocation;
@@ -1326,11 +1441,10 @@ impl MESampleLocation {
 }
 
 extern_class!(
+    /// An object that provides information about the estimated sample location with the media.
     /// Provides information about the estimated sample location with the media.
     ///
     /// An instance of this class is returned by calls to the MESampleCursor method estimatedSampleLocationReturningError.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meestimatedsamplelocation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEEstimatedSampleLocation;
@@ -1419,11 +1533,10 @@ impl MEEstimatedSampleLocation {
 }
 
 extern_class!(
+    /// An object that provides information about the HEVC dependency attributes of a sample.
     /// Provides information about the HEVC dependency attributes of a sample.
     ///
     /// An instance of this class is returned by MESampleCursor property hevcDependencyInfo.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEHEVCDependencyInfo;
@@ -1707,9 +1820,14 @@ impl MEHEVCDependencyInfo {
 extern_class!(
     /// Provides read access to the data in a media asset file.
     ///
-    /// The Media Toolbox passes an MEByteSource instance for the media asset's primary file when initializing an MEFormatReader object. The MEFormatReader may request additional MEByteSources be created for related files in the same directory as the primary file by calling the byteSourceForRelatedFileName method.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mebytesource?language=objc)
+    /// Media Toolbox passes an `MEByteSource` instance for the media asset’s primary file when it initializes an [`MEFormatReader`](https://developer.apple.com/documentation/mediaextension/meformatreader) object. The format reader may call [`byteSourceForRelatedFileName:error:`](https://developer.apple.com/documentation/mediaextension/mebytesource/bytesourceforrelatedfilename(_:)) to request additional byte sources for related files in the same directory as the primary file.
+    ///
+    ///
+    /// Provides read access to the data in a media asset file.
+    ///
+    /// The Media Toolbox passes an MEByteSource instance for the media asset's primary file when initializing an MEFormatReader object. The MEFormatReader may request additional MEByteSources be created for related files in the same directory as the primary file by calling the byteSourceForRelatedFileName method.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEByteSource;

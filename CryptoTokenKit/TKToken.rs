@@ -9,55 +9,79 @@ use objc2_security::*;
 
 use crate::*;
 
+/// A unique and persistent identifier of a particular token object.
+///
+/// ## Discussion
+///
+/// The type of this identifier must support property list serialization and must define its format by the implementation of the token extension.
+///
+///
 /// TKTokenObjectID Unique and persistent identification of objects on the token.
 ///
 /// Uniquely and persistently identifies objects (keys and certificates) present on the token.  Type of this identifier must be compatible with plist and its format is defined by the implementation of token extension.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken/objectid?language=objc)
 pub type TKTokenObjectID = AnyObject;
 
+/// A type that represents the instance identifier of a token.
 /// TKTokenInstanceID Unique, persistent identifier of this token in the form of string.
 ///
 /// InstanceID is Typically implemented by some kind of serial number of the target hardware, for example SmartCard serial number.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken/instanceid?language=objc)
 pub type TKTokenInstanceID = NSString;
 
+/// The type of the class identifier for the token driver.
 /// TKTokenDriverClassID ClassID of the token driver.
 ///
 /// Identical with
 /// `com.apple.ctk.class-id`token extension attribute. Typically in the RDN form (com.company.id).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriver/classid?language=objc)
 pub type TKTokenDriverClassID = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation?language=objc)
+/// Operations that can be performed with a token’s keys and certificates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKTokenOperation(pub NSInteger);
 impl TKTokenOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/none?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// No operation
+    ///
+    ///
     #[doc(alias = "TKTokenOperationNone")]
     pub const None: Self = Self(0);
-    /// Reading of raw data of certificate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/readdata?language=objc)
+    /// ## Discussion
+    ///
+    /// Read raw data of a certificate
+    ///
+    ///
+    /// Reading of raw data of certificate.
     #[doc(alias = "TKTokenOperationReadData")]
     pub const ReadData: Self = Self(1);
-    /// Cryptographic signature using private key.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/signdata?language=objc)
+    /// ## Discussion
+    ///
+    /// Create a cryptographic signature using a private key
+    ///
+    ///
+    /// Cryptographic signature using private key.
     #[doc(alias = "TKTokenOperationSignData")]
     pub const SignData: Self = Self(2);
-    /// Decrypting data using private key.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/decryptdata?language=objc)
+    /// ## Discussion
+    ///
+    /// Decrypt data using a private key
+    ///
+    ///
+    /// Decrypting data using private key.
     #[doc(alias = "TKTokenOperationDecryptData")]
     pub const DecryptData: Self = Self(3);
-    /// Performing Diffie-Hellman style of cryptographic key exchange using private key.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation/performkeyexchange?language=objc)
+    /// ## Discussion
+    ///
+    /// Perform a Diffie-Hellman style cryptographic key exchange using a private key
+    ///
+    ///
+    /// Performing Diffie-Hellman style of cryptographic key exchange using private key.
     #[doc(alias = "TKTokenOperationPerformKeyExchange")]
     pub const PerformKeyExchange: Self = Self(4);
 }
@@ -70,6 +94,19 @@ unsafe impl RefEncode for TKTokenOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A token’s authentication constraint for a specific operation.
+///
+/// ## Discussion
+///
+/// This object persistently identifies a constraint for performing specific operation on specific object.
+///
+/// - [`true`](https://developer.apple.com/documentation/swift/true), indicating that the operation is always allowed, without any authentication necessary.
+///
+/// - [`false`](https://developer.apple.com/documentation/swift/false), indicating that the operation is never allowed; this value isn’t typically used.
+///
+/// - Any other property list compatible value defined by the implementation of the token extension. Any such constraint is required to stay constant for the entire lifetime of the token. For example, a Smart Card token extension may decide to use the string constant `"PIN"` to indicate that the operation is authenticated with valid PIN entry to the card.
+///
+///
 /// TKTokenOperationConstraint represents authentication constraint of token object for specific token operation.
 ///
 /// Persistently identifies constraint for performing specific operation on specific object.  Value of constraint can be either:
@@ -78,19 +115,22 @@ unsafe impl RefEncode for TKTokenOperation {
 /// -
 /// `false`: the operation is never allowed, typically not implemented
 /// - any other plist-compatible value: defined by the token extension implementation.  Such constraint is opaque to the system and is required to stay constant for the given object during the whole token's lifetime.  For example, SmartCard token extension might decide to use string 'PIN' to indicate that the operation is protected by presenting valid PIN to the card first.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperationconstraint?language=objc)
 pub type TKTokenOperationConstraint = AnyObject;
 
 extern_class!(
+    /// Cryptographic algorithms used by token keys.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, the supported algorithm for a token key can be represented by a value of the `SecKeyAlgorithm` enumeration. However, tokens such as Smart Cards require that input data for operations take the format of a more specific algorithm. For example, a token may accept raw data to generate a cryptographic signature, but require that raw data to be formatted according to PKCS1 padding rules. To express such a requirement, a `TKTokenKeyAlgorithm` object defines a target algorithm and a set of other algorithms that were used. In the previous example, the target algorithm is `kSecKeyAlgorithmRSASignatureRaw` and the `kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA1` algorithm is also reported as being  used.
+    ///
+    ///
     /// TKTokenKeyAlgorithm Encapsulates cryptographic algorithm, possibly with additional associated required algorithms.
     ///
     /// An algorithm supported by a key can be usually described by one value of
     /// `SecKeyAlgorithm`enumeration.  However, some tokens (notably smartcards) require that input data for the operation are in generic format, but that generic format must be formatted according to some more specific algorithm.  An example for this would be token accepting raw data for cryptographic signature but requiring that raw data are formatted according to PKCS1 padding rules.  To express such requirement, TKTokenKeyAlgorithm defines target algorithm (
     /// `kSecKeyAlgorithmRSASignatureRaw`in our example) and a set of other algorithms which were used (continuing example above,
     /// `kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA1`will be reported as supported).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeyalgorithm?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenKeyAlgorithm;
@@ -130,9 +170,8 @@ impl TKTokenKeyAlgorithm {
 }
 
 extern_class!(
+    /// Parameters used to perform specific key exchange operations.
     /// TKTokenKeyExchangeParameters Encapsulates parameters needed for performing specific Key Exchange operation types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeyexchangeparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenKeyExchangeParameters;
@@ -170,6 +209,23 @@ impl TKTokenKeyExchangeParameters {
 }
 
 extern_class!(
+    /// A token session that manages the authentication state of a token.
+    ///
+    /// ## Overview
+    ///
+    /// A token session communicates with its delegate to perform operations with its token that are bound to the authentication state.
+    ///
+    /// A session is always instantiated by a [`TKToken`](https://developer.apple.com/documentation/cryptotokenkit/tktoken) instance through the token’s delegate when the framework detects access to the token from a new authentication session.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Never share the authentication status of a token, such as the PIN entered to unlock a smart card, with other token sessions.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// TKTokenSession represents token session which shares authentication status.
     ///
     /// Token implementation must inherit its own session implementation from TKTokenSession (or its subclass TKSmartCardTokenSession in case of SmartCard tokens).
@@ -177,8 +233,6 @@ extern_class!(
     /// TKTokenSession should keep an authentication state of the token.  Authentication status (e.g. entered PIN to unlock SmartCard) should not be shared across borders of single TKTokenSession instance.
     ///
     /// TKTokenSession is always instantiated by TKToken when framework detects access to the token from new authentication session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokensession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenSession;
@@ -231,9 +285,8 @@ impl TKTokenSession {
 }
 
 extern_protocol!(
+    /// The interface that a session instance delegate implements to respond to token session authentication events.
     /// TKTokenSessionDelegate contains operations with token objects provided by token implementors which should be performed in the context of authentication session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokensessiondelegate?language=objc)
     pub unsafe trait TKTokenSessionDelegate: NSObjectProtocol {
         /// Establishes a context for the requested authentication operation.
         ///
@@ -379,9 +432,20 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Class representing single token.  When implementing SmartCard based token, it is recommended to inherit the implementation from TKSmartCardToken.  Token object serves as synchronization point, all operations invoked upon token and all its sessions are serialized.
+    /// A representation of a hardware-based cryptographic token.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When working with smart card tokens, use or inherit from the [`TKSmartCardToken`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtoken) subclass instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Class representing single token.  When implementing SmartCard based token, it is recommended to inherit the implementation from TKSmartCardToken.  Token object serves as synchronization point, all operations invoked upon token and all its sessions are serialized.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKToken;
@@ -449,11 +513,10 @@ impl TKToken {
 }
 
 extern_protocol!(
+    /// The interface that a token delegate implements to respond to session creation events.
     /// TKTokenDelegate contains operations implementing functionality of token class.
     ///
     /// TKTokenDelegate represents protocol which must be implemented by token implementors' class representing token.  Apart from being able to identify itself with its unique identifier, and must be able to establish new TKTokenSession when requested.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendelegate?language=objc)
     pub unsafe trait TKTokenDelegate: NSObjectProtocol {
         /// Create new session instance
         ///
@@ -478,9 +541,24 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Base class for token drivers.  SmartCard token drivers should use TKSmartCardTokenDriver subclass.
+    /// A base class for building token drivers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriver?language=objc)
+    /// ## Overview
+    ///
+    /// When using the [`TKTokenDriver`](https://developer.apple.com/documentation/cryptotokenkit/tktokendriver) class, implement the [`TKTokenDriverDelegate`](https://developer.apple.com/documentation/cryptotokenkit/tktokendriverdelegate) protocol with the [`tokenDriver:tokenForConfiguration:error:`](https://developer.apple.com/documentation/cryptotokenkit/tktokendriverdelegate/tokendriver(_:tokenfor:)) method, which the system invokes when it requests the creation of a token instance. After you create the token driver, it can examine [`keychainItems`](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems) and [`configurationData`](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata) to implement your desired functionality.
+    ///
+    /// An implementation can also access its associated token configuration using the [`TKTokenConfiguration`](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When working with smart card tokens, use or inherit from the [`TKSmartCardTokenDriver`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtokendriver) subclass instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Base class for token drivers.  SmartCard token drivers should use TKSmartCardTokenDriver subclass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenDriver;
@@ -524,9 +602,8 @@ impl TKTokenDriver {
 }
 
 extern_protocol!(
+    /// The interface that a token driver delegate implements to respond to token creation events.
     /// Delegate for customizing token driver operations.  SmartCard tokens should implement TKSmartCardTokenDriverDelegate instead of this base protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriverdelegate?language=objc)
     pub unsafe trait TKTokenDriverDelegate: NSObjectProtocol {
         #[cfg(feature = "TKTokenConfiguration")]
         /// Creates new token for specified configuration. SmartCard token drivers should not implement this method.
@@ -548,9 +625,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Context of a pending authentication operation.
+    /// An authentication operation for a cryptographic token.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenauthoperation?language=objc)
+    /// ## Overview
+    ///
+    /// The CryptoTokenKit framework provides the following concrete subclasses: [`TKTokenPasswordAuthOperation`](https://developer.apple.com/documentation/cryptotokenkit/tktokenpasswordauthoperation), for password-based authentication, and [`TKTokenSmartCardPINAuthOperation`](https://developer.apple.com/documentation/cryptotokenkit/tktokensmartcardpinauthoperation) for Smart Card PIN-based authentication.
+    ///
+    ///
+    /// Context of a pending authentication operation.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenAuthOperation;
@@ -595,9 +677,8 @@ impl TKTokenAuthOperation {
 }
 
 extern_class!(
+    /// A password-based authentication operation.
     /// Context of a password authentication operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenpasswordauthoperation?language=objc)
     #[unsafe(super(TKTokenAuthOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenPasswordAuthOperation;

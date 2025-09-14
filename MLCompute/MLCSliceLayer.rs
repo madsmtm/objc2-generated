@@ -7,13 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that extracts a slice from a tensor.
+    ///
+    /// ## Overview
+    ///
+    /// The framework supports positive stride.
+    ///
+    /// Use a slice layer to slice a given source. Slicing won’t decrease the tensor dimension. The start, end, and stride vectors must be of the same size, equal to the source tensor dimension.
+    ///
+    ///
     /// Slice layer is used to slice a given source.
     ///
     /// Slicing should not decrease the tensor dimension.
     /// The start, end and stride vectors must have the same number of dimension as the source tensor.
     /// Only positive stride is supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcslicelayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

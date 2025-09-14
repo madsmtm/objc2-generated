@@ -7,27 +7,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The state of a machine learning task.
 /// All possible states an MLTask can be in.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLTaskState(pub NSInteger);
 impl MLTaskState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/suspended?language=objc)
+    /// The state of a machine learning task that’s paused.
     #[doc(alias = "MLTaskStateSuspended")]
     pub const Suspended: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/running?language=objc)
+    /// The state of a machine learning task that’s executing.
     #[doc(alias = "MLTaskStateRunning")]
     pub const Running: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/cancelling?language=objc)
+    /// The state of a machine learning task that’s in mid-termination, before it could finish successfully.
     #[doc(alias = "MLTaskStateCancelling")]
     pub const Cancelling: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/completed?language=objc)
+    /// The state of a machine learning task that has finished successfully.
     #[doc(alias = "MLTaskStateCompleted")]
     pub const Completed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mltaskstate/failed?language=objc)
+    /// The state of a machine learning task that has terminated due to an error.
     #[doc(alias = "MLTaskStateFailed")]
     pub const Failed: Self = Self(5);
 }
@@ -41,9 +40,14 @@ unsafe impl RefEncode for MLTaskState {
 }
 
 extern_class!(
-    /// Class that abstracts state transitions and basic task controls.
+    /// An abstract base class for machine learning tasks.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mltask?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create use this class directly. Instead, use a class that inherits from this one, such as [`MLUpdateTask`](https://developer.apple.com/documentation/coreml/mlupdatetask).
+    ///
+    ///
+    /// Class that abstracts state transitions and basic task controls.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLTask;

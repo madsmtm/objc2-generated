@@ -5,20 +5,46 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct?language=objc)
+/// Constants that describe the possible types of string comparison for comparison predicates.
+///
+/// ## Overview
+///
+/// The system supports these options for `LIKE`, as well as all of the equality/comparison operators.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSComparisonPredicateOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct/caseinsensitive?language=objc)
+/// A case-insensitive predicate.
+///
+/// ## Discussion
+///
+/// You represent this option in a predicate format string using a `[c]` following a string operation (for example, `"NeXT" like[c] "next"`).
+///
+///
         #[doc(alias = "NSCaseInsensitivePredicateOption")]
         const CaseInsensitivePredicateOption = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct/diacriticinsensitive?language=objc)
+/// A diacritic-insensitive predicate.
+///
+/// ## Discussion
+///
+/// You represent this option in a predicate format string using a `[d]` following a string operation (for example, `"naïve" like[d] "naive"`).
+///
+///
         #[doc(alias = "NSDiacriticInsensitivePredicateOption")]
         const DiacriticInsensitivePredicateOption = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct/normalized?language=objc)
+/// A predicate that indicates you’ve preprocessed the strings to compare.
+///
+/// ## Discussion
+///
+/// This option supersedes `NSCaseInsensitivePredicateOption` and `NSDiacriticInsensitivePredicateOption`, and is a performance optimization option.
+///
+/// You represent this option in a predicate format string using a `[n]` following a string operation (for example, `"WXYZlan" matches[n] ".lan"`).
+///
+///
         #[doc(alias = "NSNormalizedPredicateOption")]
         const NormalizedPredicateOption = 0x04;
     }
@@ -32,19 +58,31 @@ unsafe impl RefEncode for NSComparisonPredicateOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier?language=objc)
+/// Constants that describe the possible types of modifier for a comparison predicate.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateModifier(pub NSUInteger);
 impl NSComparisonPredicateModifier {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/direct?language=objc)
+    /// A predicate to compare directly the left and right hand sides.
     #[doc(alias = "NSDirectPredicateModifier")]
     pub const DirectPredicateModifier: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/all?language=objc)
+    /// A predicate to compare all entries in the destination of a to-many relationship.
+    ///
+    /// ## Discussion
+    ///
+    /// The left hand side must be a collection. The corresponding predicate compares each value in the left hand side with the right hand side, and returns [`false`](https://developer.apple.com/documentation/swift/false) when it finds the first mismatch—or [`true`](https://developer.apple.com/documentation/swift/true) if all match.
+    ///
+    ///
     #[doc(alias = "NSAllPredicateModifier")]
     pub const AllPredicateModifier: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/any?language=objc)
+    /// A predicate to match with any entry in the destination of a to-many relationship.
+    ///
+    /// ## Discussion
+    ///
+    /// The left hand side must be a collection. The corresponding predicate compares each value in the left hand side against the right hand side and returns [`true`](https://developer.apple.com/documentation/swift/true) when it finds the first match—or [`false`](https://developer.apple.com/documentation/swift/false) if no match is found
+    ///
+    ///
     #[doc(alias = "NSAnyPredicateModifier")]
     pub const AnyPredicateModifier: Self = Self(2);
 }
@@ -57,52 +95,76 @@ unsafe impl RefEncode for NSComparisonPredicateModifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator?language=objc)
+/// Defines the type of comparison for a comparison predicate.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPredicateOperatorType(pub NSUInteger);
 impl NSPredicateOperatorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/lessthan?language=objc)
+    /// A less-than predicate.
     #[doc(alias = "NSLessThanPredicateOperatorType")]
     pub const LessThanPredicateOperatorType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/lessthanorequalto?language=objc)
+    /// A less-than-or-equal-to predicate.
     #[doc(alias = "NSLessThanOrEqualToPredicateOperatorType")]
     pub const LessThanOrEqualToPredicateOperatorType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/greaterthan?language=objc)
+    /// A greater-than predicate.
     #[doc(alias = "NSGreaterThanPredicateOperatorType")]
     pub const GreaterThanPredicateOperatorType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/greaterthanorequalto?language=objc)
+    /// A greater-than-or-equal-to predicate.
     #[doc(alias = "NSGreaterThanOrEqualToPredicateOperatorType")]
     pub const GreaterThanOrEqualToPredicateOperatorType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/equalto?language=objc)
+    /// An equal-to predicate.
     #[doc(alias = "NSEqualToPredicateOperatorType")]
     pub const EqualToPredicateOperatorType: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/notequalto?language=objc)
+    /// A not-equal-to predicate.
     #[doc(alias = "NSNotEqualToPredicateOperatorType")]
     pub const NotEqualToPredicateOperatorType: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/matches?language=objc)
+    /// A full regular expression matching predicate.
     #[doc(alias = "NSMatchesPredicateOperatorType")]
     pub const MatchesPredicateOperatorType: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/like?language=objc)
+    /// A simple subset of the MATCHES predicate, similar in behavior to SQL `LIKE`.
     #[doc(alias = "NSLikePredicateOperatorType")]
     pub const LikePredicateOperatorType: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/beginswith?language=objc)
+    /// A begins-with predicate.
     #[doc(alias = "NSBeginsWithPredicateOperatorType")]
     pub const BeginsWithPredicateOperatorType: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/endswith?language=objc)
+    /// An ends-with predicate.
     #[doc(alias = "NSEndsWithPredicateOperatorType")]
     pub const EndsWithPredicateOperatorType: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/in?language=objc)
+    /// A predicate to determine if the left hand side is in the right hand side.
+    ///
+    /// ## Discussion
+    ///
+    /// For strings, returns [`true`](https://developer.apple.com/documentation/swift/true) if the left hand side is a substring of the right hand side . For collections, returns [`true`](https://developer.apple.com/documentation/swift/true) if the left hand side is in the right hand side .
+    ///
+    ///
     #[doc(alias = "NSInPredicateOperatorType")]
     pub const InPredicateOperatorType: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/customselector?language=objc)
+    /// A predicate that uses a custom selector that takes a single argument and returns a `BOOL` value.
+    ///
+    /// ## Discussion
+    ///
+    /// The selector is invoked on the left hand side with the right hand side as the argument.
+    ///
+    ///
     #[doc(alias = "NSCustomSelectorPredicateOperatorType")]
     pub const CustomSelectorPredicateOperatorType: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/contains?language=objc)
+    /// A predicate to determine if the left hand side contains the right hand side.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if `[lhs contains rhs]`; the left hand side must be an `NSExpression` object that evaluates to a collection
+    ///
+    ///
     #[doc(alias = "NSContainsPredicateOperatorType")]
     pub const ContainsPredicateOperatorType: Self = Self(99);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator/between?language=objc)
+    /// A predicate to determine if the left hand side lies at or between bounds specified by the right hand side.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if `[lhs between rhs]`; the right hand side must be an array in which the first element sets the lower bound and the second element the upper, inclusive. Comparison is performed using `compare(_:)` or the class-appropriate equivalent.
+    ///
+    ///
     #[doc(alias = "NSBetweenPredicateOperatorType")]
     pub const BetweenPredicateOperatorType: Self = Self(100);
 }
@@ -116,7 +178,13 @@ unsafe impl RefEncode for NSPredicateOperatorType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate?language=objc)
+    /// A specialized predicate for comparing expressions.
+    ///
+    /// ## Overview
+    ///
+    /// Use comparison predicates to compare the results of two expressions. You create a comparison predicate with an operator, a left expression, and a right expression, and use instances of the [`NSExpression`](https://developer.apple.com/documentation/foundation/nsexpression) class to represent those expressions. When you evaluate the predicate, it returns a `BOOL` value as the result of invoking the operator with the results of evaluating the expressions.
+    ///
+    ///
     #[unsafe(super(NSPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPredicate")]

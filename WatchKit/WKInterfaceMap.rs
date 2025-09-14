@@ -15,19 +15,19 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor?language=objc)
+/// Constants for map pin colors.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceMapPinColor(pub NSInteger);
 impl WKInterfaceMapPinColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor/red?language=objc)
+    /// A red pin.
     #[doc(alias = "WKInterfaceMapPinColorRed")]
     pub const Red: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor/green?language=objc)
+    /// A green pin.
     #[doc(alias = "WKInterfaceMapPinColorGreen")]
     pub const Green: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor/purple?language=objc)
+    /// A purple pin.
     #[doc(alias = "WKInterfaceMapPinColorPurple")]
     pub const Purple: Self = Self(2);
 }
@@ -40,16 +40,16 @@ unsafe impl RefEncode for WKInterfaceMapPinColor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap/usertrackingmode?language=objc)
+/// Modes for tracking the user’s location on the map.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceMapUserTrackingMode(pub NSInteger);
 impl WKInterfaceMapUserTrackingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap/usertrackingmode/none?language=objc)
+    /// The map remains stationary, even if the user moves off the map.
     #[doc(alias = "WKInterfaceMapUserTrackingModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap/usertrackingmode/follow?language=objc)
+    /// The map scrolls to follow the user as they move.
     #[doc(alias = "WKInterfaceMapUserTrackingModeFollow")]
     pub const Follow: Self = Self(1);
 }
@@ -63,7 +63,26 @@ unsafe impl RefEncode for WKInterfaceMapUserTrackingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap?language=objc)
+    /// An interface element that displays a noninteractive map for the location you specify.
+    ///
+    /// ## Overview
+    ///
+    /// You can configure Maps dynamically from your interface controller. Use the methods of [`WKInterfaceMap`](https://developer.apple.com/documentation/watchkit/wkinterfacemap) to specify the visible region of the map and to add any annotations or points of interest. Tapping the map launches the Maps app on the user’s Apple Watch and displays the corresponding location.
+    ///
+    /// Using a map object, you specify a geographic region to display and you can optionally add annotations to the surface of the map. Maps display annotations as images on top of the map content. You can use custom images or display the built-in pin images. Maps can display no more than five annotations at a time.
+    ///
+    /// Don’t subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a map object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myMap: WKInterfaceMap!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceMap* myMap;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the onscreen map.
+    ///
+    /// The Apple Watch must have an active network connection to download map tiles.
+    ///
+    /// ### Configure the Map in Interface Builder
+    ///
+    /// In Xcode, you can configure information about your map from your storyboard file. The map interface object has an Enabled attribute that appears as a checkbox in the Attributes inspector. When you enable the map interface object in this checkbox, tapping the map launches the Maps app and displays the current selected location.
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

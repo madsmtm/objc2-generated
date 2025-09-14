@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage?language=objc)
+/// A bitmap image or image mask.
+///
+/// ## Overview
+///
+/// A bitmap image is a rectangular array of pixels, each of which represents a single sample or data point from a source image.
+///
+///
 #[doc(alias = "CGImageRef")]
 #[repr(C)]
 pub struct CGImage {
@@ -26,34 +32,44 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGImage"> for CGImage {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo?language=objc)
+/// Storage options for alpha component data.
+///
+/// ## Overview
+///
+/// A [`CGImageAlphaInfo`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo) constant specifies (1) whether a bitmap contains an alpha channel, (2) where the alpha bits are located in the image data, and (3) whether the alpha value is premultiplied. You can obtain a [`CGImageAlphaInfo`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo) constant for an image by calling the [`CGImageGetAlphaInfo`](https://developer.apple.com/documentation/coregraphics/cgimage/alphainfo) function. (You provide a [`CGBitmapInfo`](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo) constant to the function [`CGImageCreate`](https://developer.apple.com/documentation/coregraphics/cgimage/init(width:height:bitspercomponent:bitsperpixel:bytesperrow:space:bitmapinfo:provider:decode:shouldinterpolate:intent:)), part of which is a [`CGImageAlphaInfo`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo) constant.)
+///
+/// Alpha blending is accomplished by combining the color components of the source image with the color components of the destination image using the linear interpolation formula, where “source” is one color component of one pixel of the new paint and “destination” is one color component of the background image.
+///
+/// Core Graphics supports premultiplied alpha only for images. You should not premultiply any other color values specified in Core Graphics.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageAlphaInfo(pub u32);
 impl CGImageAlphaInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/none?language=objc)
+    /// There is no alpha channel.
     #[doc(alias = "kCGImageAlphaNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/premultipliedlast?language=objc)
+    /// The alpha component is stored in the least significant bits of each pixel and the color components have already been multiplied by this alpha value. For example, premultiplied RGBA.
     #[doc(alias = "kCGImageAlphaPremultipliedLast")]
     pub const PremultipliedLast: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/premultipliedfirst?language=objc)
+    /// The alpha component is stored in the most significant bits of each pixel and the color components have already been multiplied by this alpha value. For example, premultiplied ARGB.
     #[doc(alias = "kCGImageAlphaPremultipliedFirst")]
     pub const PremultipliedFirst: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/last?language=objc)
+    /// The alpha component is stored in the least significant bits of each pixel. For example, non-premultiplied RGBA.
     #[doc(alias = "kCGImageAlphaLast")]
     pub const Last: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/first?language=objc)
+    /// The alpha component is stored in the most significant bits of each pixel. For example, non-premultiplied ARGB.
     #[doc(alias = "kCGImageAlphaFirst")]
     pub const First: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/noneskiplast?language=objc)
+    /// There is no alpha channel.
     #[doc(alias = "kCGImageAlphaNoneSkipLast")]
     pub const NoneSkipLast: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/noneskipfirst?language=objc)
+    /// There is no alpha channel. If the total size of the pixel is greater than the space required for the number of color components in the color space, the most significant bits are ignored.
     #[doc(alias = "kCGImageAlphaNoneSkipFirst")]
     pub const NoneSkipFirst: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/alphaonly?language=objc)
+    /// There is no color data, only an alpha channel.
     #[doc(alias = "kCGImageAlphaOnly")]
     pub const Only: Self = Self(7);
 }
@@ -68,16 +84,13 @@ unsafe impl RefEncode for CGImageAlphaInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageComponentInfo(pub u32);
 impl CGImageComponentInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo/integer?language=objc)
     #[doc(alias = "kCGImageComponentInteger")]
     pub const Integer: Self = Self(0 << 8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo/float?language=objc)
     #[doc(alias = "kCGImageComponentFloat")]
     pub const Float: Self = Self(1 << 8);
 }
@@ -92,29 +105,22 @@ unsafe impl RefEncode for CGImageComponentInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageByteOrderInfo(pub u32);
 impl CGImageByteOrderInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/ordermask?language=objc)
     #[doc(alias = "kCGImageByteOrderMask")]
     #[deprecated]
     pub const OrderMask: Self = Self(0x7000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/orderdefault?language=objc)
     #[doc(alias = "kCGImageByteOrderDefault")]
     pub const OrderDefault: Self = Self(0 << 12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order16little?language=objc)
     #[doc(alias = "kCGImageByteOrder16Little")]
     pub const Order16Little: Self = Self(1 << 12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order32little?language=objc)
     #[doc(alias = "kCGImageByteOrder32Little")]
     pub const Order32Little: Self = Self(2 << 12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order16big?language=objc)
     #[doc(alias = "kCGImageByteOrder16Big")]
     pub const Order16Big: Self = Self(3 << 12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo/order32big?language=objc)
     #[doc(alias = "kCGImageByteOrder32Big")]
     pub const Order32Big: Self = Self(4 << 12);
 }
@@ -129,29 +135,22 @@ unsafe impl RefEncode for CGImageByteOrderInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImagePixelFormatInfo(pub u32);
 impl CGImagePixelFormatInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/mask?language=objc)
     #[doc(alias = "kCGImagePixelFormatMask")]
     #[deprecated]
     pub const Mask: Self = Self(0xF0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/packed?language=objc)
     #[doc(alias = "kCGImagePixelFormatPacked")]
     pub const Packed: Self = Self(0 << 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgb555?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGB555")]
     pub const RGB555: Self = Self(1 << 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgb565?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGB565")]
     pub const RGB565: Self = Self(2 << 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgb101010?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGB101010")]
     pub const RGB101010: Self = Self(3 << 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo/rgbcif10?language=objc)
     #[doc(alias = "kCGImagePixelFormatRGBCIF10")]
     pub const RGBCIF10: Self = Self(4 << 16);
 }
@@ -166,54 +165,54 @@ unsafe impl RefEncode for CGImagePixelFormatInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo?language=objc)
+/// Component information for a bitmap image.
+///
+/// ## Overview
+///
+/// Applications that store pixel data in memory using ARGB format must take care in how they read data. If the code is not written correctly, it’s possible to misread the data which leads to colors or alpha that appear wrong. The byte order constants specify the byte ordering of pixel formats. To specify byte ordering, use a bitwise OR operator to combine the appropriate constant with the `bitmapInfo` parameter.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBitmapInfo(pub u32);
 bitflags::bitflags! {
     impl CGBitmapInfo: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapalphainfomask?language=objc)
         #[doc(alias = "kCGBitmapAlphaInfoMask")]
         const AlphaInfoMask = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapcomponentinfomask?language=objc)
         #[doc(alias = "kCGBitmapComponentInfoMask")]
         const ComponentInfoMask = 0xF00;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapbyteorderinfomask?language=objc)
         #[doc(alias = "kCGBitmapByteOrderInfoMask")]
         const ByteOrderInfoMask = 0x7000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmappixelformatinfomask?language=objc)
         #[doc(alias = "kCGBitmapPixelFormatInfoMask")]
         const PixelFormatInfoMask = 0xF0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapfloatinfomask?language=objc)
         #[doc(alias = "kCGBitmapFloatInfoMask")]
 #[deprecated]
         const FloatInfoMask = CGBitmapInfo::ComponentInfoMask.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/kcgbitmapbyteordermask?language=objc)
         #[doc(alias = "kCGBitmapByteOrderMask")]
 #[deprecated]
         const ByteOrderMask = CGBitmapInfo::ByteOrderInfoMask.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/floatcomponents?language=objc)
+/// The components of a bitmap are floating-point values.
         #[doc(alias = "kCGBitmapFloatComponents")]
 #[deprecated]
         const FloatComponents = CGImageComponentInfo::Float.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorderdefault?language=objc)
+/// The default byte order.
         #[doc(alias = "kCGBitmapByteOrderDefault")]
 #[deprecated]
         const ByteOrderDefault = CGImageByteOrderInfo::OrderDefault.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder16little?language=objc)
+/// 16-bit, little endian format.
         #[doc(alias = "kCGBitmapByteOrder16Little")]
 #[deprecated]
         const ByteOrder16Little = CGImageByteOrderInfo::Order16Little.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder32little?language=objc)
+/// 32-bit, little endian format.
         #[doc(alias = "kCGBitmapByteOrder32Little")]
 #[deprecated]
         const ByteOrder32Little = CGImageByteOrderInfo::Order32Little.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder16big?language=objc)
+/// 16-bit, big endian format.
         #[doc(alias = "kCGBitmapByteOrder16Big")]
 #[deprecated]
         const ByteOrder16Big = CGImageByteOrderInfo::Order16Big.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/byteorder32big?language=objc)
+/// 32-bit, big endian format.
         #[doc(alias = "kCGBitmapByteOrder32Big")]
 #[deprecated]
         const ByteOrder32Big = CGImageByteOrderInfo::Order32Big.0;
@@ -235,7 +234,13 @@ impl CGBitmapInfo {
 }
 
 unsafe impl ConcreteType for CGImage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/typeid?language=objc)
+    /// Returns the type identifier for CGImage objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the type [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage).
+    ///
+    ///
     #[doc(alias = "CGImageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -247,7 +252,45 @@ unsafe impl ConcreteType for CGImage {
 }
 
 impl CGImage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(width:height:bitspercomponent:bitsperpixel:bytesperrow:space:bitmapinfo:provider:decode:shouldinterpolate:intent:)?language=objc)
+    /// Creates a bitmap image from data supplied by a data provider.
+    ///
+    /// Parameters:
+    /// - width: The width, in pixels, of the required image.
+    ///
+    /// - height: The height, in pixels, of the required image
+    ///
+    /// - bitsPerComponent: The number of bits for each component in a source pixel. For example, if the source image uses the RGBA-32 format, you would specify 8 bits per component.
+    ///
+    /// - bitsPerPixel: The total number of bits in a source pixel. This value must be at least `bitsPerComponent` times the number of components per pixel.
+    ///
+    /// - bytesPerRow: The number of bytes of memory for each horizontal row of the bitmap.
+    ///
+    /// - space: The color space for the image. The color space is retained; on return, you may safely release it.
+    ///
+    /// - bitmapInfo: A constant that specifies whether the bitmap should contain an alpha channel and its relative location in a pixel, along with whether the components are floating-point or integer values.
+    ///
+    /// - provider: The source of data for the bitmap. For information about supported data formats, see the discussion below. The provider is retained; on return, you may safely release it.
+    ///
+    /// - decode: The decode array for the image. If you do not want to allow remapping of the image’s color values, pass `NULL` for the decode array. For each color component in the image’s color space (including the alpha component), a decode array provides a pair of values denoting the upper and lower limits of a range. For example, the decode array for a source image in the RGB color space would contain six entries total, consisting of one pair each for red, green, and blue. When the image is rendered, Core Graphics uses a linear transform to map the original component value into a relative number within your designated range that is appropriate for the destination color space.
+    ///
+    /// - shouldInterpolate: A Boolean value that specifies whether interpolation should occur. The interpolation setting specifies whether Core Graphics should apply a pixel-smoothing algorithm to the image. Without interpolation, the image may appear jagged or pixelated when drawn on an output device with higher resolution than the image data.
+    ///
+    /// - intent: A rendering intent constant that specifies how Core Graphics should handle colors that are not located within the gamut of the destination color space of a graphics context. The rendering intent determines the exact method used to map colors from one color space to another. For descriptions of the defined rendering-intent constants, see [`CGColorRenderingIntent`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bitmap image. In Objective-C, you’re responsible for releasing this object by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The data provider should provide raw data that matches the format specified by the other input parameters. To use encoded data (for example, from a file specified by a URL-based data provider), see [`CGImageCreateWithJPEGDataProvider`](https://developer.apple.com/documentation/coregraphics/cgimage/init(jpegdataprovidersource:decode:shouldinterpolate:intent:)) and [`CGImageCreateWithPNGDataProvider`](https://developer.apple.com/documentation/coregraphics/cgimage/init(pngdataprovidersource:decode:shouldinterpolate:intent:)).
+    ///
+    /// For information on supported pixel formats, see [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -301,7 +344,47 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(maskwidth:height:bitspercomponent:bitsperpixel:bytesperrow:provider:decode:shouldinterpolate:)?language=objc)
+    /// Creates a bitmap image mask from data supplied by a data provider.
+    ///
+    /// Parameters:
+    /// - width: The width, in pixels, of the required image mask.
+    ///
+    /// - height: The height, in pixels, of the required image mask.
+    ///
+    /// - bitsPerComponent: The number of significant masking bits in a source pixel. For example, if the source image is an 8-bit mask, you specify 8 bits per component. Image masks must be 1, 2, 4, or 8 bits per component.
+    ///
+    /// - bitsPerPixel: The total number of bits in a source pixel.
+    ///
+    /// - bytesPerRow: The number of bytes to use for each horizontal row of the image mask.
+    ///
+    /// - provider: The data source for the image mask.
+    ///
+    /// - decode: Typically a decode array is unnecessary, and you should pass `NULL`.
+    ///
+    /// - shouldInterpolate: A Boolean value that specifies whether an edge-smoothing algorithm is applied to the image mask.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A bitmap image mask. In Objective-C, you’re responsible for releasing this object by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A bitmap image mask is used the same way an artist uses a silkscreen, or a sign painter uses a stencil. The bitmap represents a mask through which a color is transferred. The bitmap itself does not have a color. It gets its color from the fill color currently set in the graphics state.
+    ///
+    /// When you draw into a context with a bitmap image mask, the mask determines where and how the current fill color is applied to the image rectangle. Each sample value in the mask specifies how much of the current fill color is masked out at a specific location. Effectively, the sample value specifies the opacity of the mask. Larger values represent greater opacity and hence less color applied to the page.
+    ///
+    /// Image masks must be 1, 2, 4, or 8 bits per component. For a 1-bit mask, a sample value of `1` specifies sections of the mask that are masked out; these sections block the current fill color. A sample value of `0` specifies sections of the mask that are not masked out; these sections show the current fill color of the graphics state when the mask is painted. You can think of the sample values as an inverse alpha. That is, a value of `1` is transparent and `0` is opaque.
+    ///
+    /// For image masks that are 2, 4, or 8 bits per component, each component is mapped to a range of 0 to 1 by scaling using this formula:
+    ///
+    /// `1/(2^bits per component – 1)`
+    ///
+    /// For example, a 4-bit mask has values that range from 0 to 15. These values are scaled by 1/15 so that each component ranges from 0 to 1. Component values that rescale to 0 or 1 behave the same way as they behave for 1-bit image masks. Values that scale to between 0 and 1 act as an inverse alpha. That is, the fill color is painted as if it has an alpha value of (`1 – MaskSampleValue`). For example, if the sample value of an 8-bit mask scales to `0.8`, the current fill color is painted as if it has an alpha value of `0.2`, that is (`1–0.8`).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -346,7 +429,17 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copy()?language=objc)
+    /// Creates a copy of a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An copy of the image.
+    ///
+    ///
     #[doc(alias = "CGImageCreateCopy")]
     #[inline]
     pub fn new_copy(image: Option<&CGImage>) -> Option<CFRetained<CGImage>> {
@@ -357,7 +450,23 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(jpegdataprovidersource:decode:shouldinterpolate:intent:)?language=objc)
+    /// Creates a bitmap image using JPEG-encoded data supplied by a data provider.
+    ///
+    /// Parameters:
+    /// - source: A data provider supplying JPEG-encoded data.
+    ///
+    /// - decode: The decode array for the image. Typically a decode array is unnecessary, and you should pass `NULL`.
+    ///
+    /// - shouldInterpolate: A Boolean value that specifies whether interpolation should occur. The interpolation setting specifies whether a pixel-smoothing algorithm should be applied to the image.
+    ///
+    /// - intent: A CGColorRenderingIntent constant that specifies how to handle colors that are not located within the gamut of the destination color space of a graphics context.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CGImage. In Objective-C, you’re responsible for releasing this object by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -385,7 +494,23 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(pngdataprovidersource:decode:shouldinterpolate:intent:)?language=objc)
+    /// Creates a bitmap image using PNG-encoded data supplied by a data provider.
+    ///
+    /// Parameters:
+    /// - source: A data provider supplying PNG-encoded data.
+    ///
+    /// - decode: The decode array for the image. Typically a decode array is unnecessary, and you should pass `NULL`.
+    ///
+    /// - shouldInterpolate: A Boolean value that specifies whether interpolation should occur. The interpolation setting specifies whether a pixel-smoothing algorithm should be applied to the image.
+    ///
+    /// - intent: A CGColorRenderingIntent constant that specifies how to handle colors that are not located within the gamut of the destination color space of a graphics context.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CGImage. In Objective-C, you’re responsible for releasing this object by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -412,7 +537,52 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/cropping(to:)?language=objc)
+    /// Creates a bitmap image using the data contained within a subregion of an existing bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image from which to extract the subimage.
+    ///
+    /// - rect: A rectangle specifying the portion of the image to keep.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage) object that specifies a subimage of the image. If the `rect` parameter defines an area that is not in the image, returns `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Cropping removes content around the designated rectangle; it cuts out the desired area of the input image and returns an image of the cropped size.
+    ///
+    ///
+    /// ![Butterfly photo with background cropped out](https://docs-assets.developer.apple.com/published/44e39ae57f70286b7a3ea4d5a6491b8b/media-2951298%402x.png)
+    ///
+    ///
+    /// [`CGImageCreateWithImageInRect`](https://developer.apple.com/documentation/coregraphics/cgimage/cropping(to:)) performs the following tasks to create the subimage:
+    ///
+    /// - It calls the [`CGRectIntegral`](https://developer.apple.com/documentation/coregraphics/cgrectintegral(_:)) function to adjust the `rect` parameter to integral bounds.
+    ///
+    /// - It intersects the `rect` with a rectangle whose origin is `(0,0)` and size is equal to the size of the image specified by the `image` parameter.
+    ///
+    /// - It reads the pixels within the resulting rectangle, treating the first pixel within as the origin of the subimage.
+    ///
+    /// If `W` and `H` are the width and height of image, respectively, then the point `(0,0)` corresponds to the first pixel of the image data. The point `(W–1, 0)` is the last pixel of the first row of the image data, while `(0, H–1)` is the first pixel of the last row of the image data and `(W–1, H–1)` is the last pixel of the last row of the image data.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Be sure to specify the subrectangle’s coordinates relative to the original image’s full size, even if the [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) shows only a scaled version.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The resulting image retains a reference to the original image, which means you may release the original image after calling this function.  In Swift, you do not need to release the original image reference explicitly.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["    func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect, viewWidth: CGFloat, viewHeight: CGFloat) -> UIImage? ", "{    ", "    let imageViewScale = max(inputImage.size.width / viewWidth,", "                             inputImage.size.height / viewHeight)", "", "", "    // Scale cropRect to handle images larger than shown-on-screen size", "    let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,", "                          y:cropRect.origin.y * imageViewScale,", "                          width:cropRect.size.width * imageViewScale,", "                          height:cropRect.size.height * imageViewScale)", "", "", "    // Perform cropping in Core Graphics", "    guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone)", "    else {", "        return nil", "    }", "", "", "    // Return image to UIImage", "    let croppedImage: UIImage = UIImage(cgImage: cutImageRef)", "    return croppedImage", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (UIImage*) cropImage:(UIImage*)inputImage", "                toRect:(CGRect)cropRect", "             viewWidth:(CGFloat)viewWidth", "            viewHeight:(CGFloat)viewHeight", "{", "    // viewWidth, viewHeight are dimensions of imageView", "    const CGFloat imageViewScale = MAX(inputImage.size.width/_viewWidth, inputImage.size.height/_viewHeight);", "", "    // Scale cropRect to handle images larger than shown-on-screen size", "    cropRect.origin.x *= imageViewScale;", "    cropRect.origin.y *= imageViewScale;", "    cropRect.size.width *= imageViewScale;", "    cropRect.size.height *= imageViewScale;", "    ", "    // Perform cropping in Core Graphics", "    CGImageRef cutImageRef = CGImageCreateWithImageInRect(inputImage.CGImage, cropRect);", "    ", "    // Convert back to UIImage", "    UIImage* croppedImage = [UIImage imageWithCGImage:cutImageRef];", "    ", "    // Clean up reference pointers", "    CGImageRelease(cutImageRef);", "    ", "    return croppedImage;", "}"], metadata: None }] }] })
+    /// If you already use [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage), or if you are post-processing images as [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) data in Core Image, such as chaining together multiple filters to the cropped result, it may be more efficient to crop [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) directly in the Core Image framework using the `CICrop` filter; in this case, use the convenience function [`imageByCroppingToRect:`](https://developer.apple.com/documentation/coreimage/ciimage/cropped(to:)).
+    ///
+    ///
     #[doc(alias = "CGImageCreateWithImageInRect")]
     #[inline]
     pub fn with_image_in_rect(
@@ -429,7 +599,27 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/masking(_:)?language=objc)
+    /// Creates a bitmap image from an existing image and an image mask.
+    ///
+    /// Parameters:
+    /// - image: The image to apply the `mask` parameter to. This image must not be an image mask and may not have an image mask or masking color associated with it.
+    ///
+    /// - mask: A mask. If the mask is an image, it must be in the DeviceGray color space, must not have an alpha component, and may not itself be masked by an image mask or a masking color. If the mask is not the same size as the image specified by the `image` parameter, the mask is scaled to fit the image.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An image created by masking `image` with `mask`. In Objective-C, you’re responsible for releasing this object by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting image depends on whether the `mask` parameter is an image mask or an image. If the `mask` parameter is an image mask, then the source samples of the image mask act as an inverse alpha value. That is, if the value of a source sample in the image mask is S, then the corresponding region in `image` is blended with the destination using an alpha value of (1-S). For example, if S is 1, then the region is not painted, while if S is 0, the region is fully painted.
+    ///
+    /// If the `mask` parameter is an image, then it serves as an alpha mask for blending the image onto the destination. The source samples of `mask`’ act as an alpha value. If the value of the source sample in mask is S, then the corresponding region in image is blended with the destination with an alpha of S. For example, if S is 0, then the region is not painted, while if S is 1, the region is fully painted.
+    ///
+    ///
     #[doc(alias = "CGImageCreateWithMask")]
     #[inline]
     pub fn with_mask(
@@ -446,7 +636,25 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecreatewithmaskingcolors?language=objc)
+    /// Creates a bitmap image by masking an existing bitmap image with the provided color values.
+    ///
+    /// Parameters:
+    /// - image: The image to mask. This parameter may not be an image mask, may not already have an image mask or masking color associated with it, and cannot have an alpha component.
+    ///
+    /// - components: An array of color components that specify a color or range of colors to mask the image with. The array must contain `2N` values `{ min[1], max[1], ... min[N], max[N] }` where `N` is the number of components in color space of `image`. Each value in `components` must be a valid image sample value. If `image` has integer pixel components, then each value must be in the range `[0 .. 2**bitsPerComponent - 1]` (where `bitsPerComponent` is the number of bits/component of `image`). If `image` has floating-point pixel components, then each value may be any floating-point number which is a valid color component.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An image created by masking `image` with the colors specified in the `components` array. In Objective-C, you’re responsible for releasing this object by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Any image sample with color value `{c[1], ... c[N]}` where `min[i] <= c[i] <= max[i]` for `1 <= i <= N` is masked out (that is, not painted). This means that anything underneath the unpainted samples, such as the current fill color, shows through.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -467,7 +675,19 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copy(colorspace:)?language=objc)
+    /// Creates a copy of a bitmap image, replacing its colorspace.
+    ///
+    /// Parameters:
+    /// - image: The graphics image to copy.
+    ///
+    /// - space: The destination color space. The number of components in this color space must be the same as the number in the specified image.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CGImage that is a copy of the image passed as the `image` parameter but with its color space replaced by that specified by the `colorspace` parameter. Returns `NULL` if `image` is an image mask, or if the number of components of `colorspace` is not the same as the number of components of the colorspace of `image`. In Objective-C, you’re responsible for releasing this object using [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+    ///
+    ///
     #[doc(alias = "CGImageCreateCopyWithColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -485,8 +705,6 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(headroom:width:height:bitspercomponent:bitsperpixel:bytesperrow:space:bitmapinfo:provider:decode:shouldinterpolate:intent:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `decode` must be a valid pointer or null.
@@ -542,7 +760,6 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecreatecopywithcontentheadroom(_:_:)?language=objc)
     #[doc(alias = "CGImageCreateCopyWithContentHeadroom")]
     #[inline]
     pub fn new_copy_with_content_headroom(
@@ -561,12 +778,10 @@ impl CGImage {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdefaulthdrimagecontentheadroom?language=objc)
     pub static kCGDefaultHDRImageContentHeadroom: c_float;
 }
 
 impl CGImage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/contentheadroom?language=objc)
     #[doc(alias = "CGImageGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(image: Option<&CGImage>) -> c_float {
@@ -576,7 +791,6 @@ impl CGImage {
         unsafe { CGImageGetContentHeadroom(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/calculatedcontentheadroom?language=objc)
     #[doc(alias = "CGImageCalculateContentHeadroom")]
     #[inline]
     pub fn calculate_content_headroom(image: Option<&CGImage>) -> c_float {
@@ -586,7 +800,6 @@ impl CGImage {
         unsafe { CGImageCalculateContentHeadroom(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/contentaveragelightlevel?language=objc)
     #[doc(alias = "CGImageGetContentAverageLightLevel")]
     #[inline]
     pub fn content_average_light_level(image: Option<&CGImage>) -> c_float {
@@ -596,7 +809,6 @@ impl CGImage {
         unsafe { CGImageGetContentAverageLightLevel(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/calculatedcontentaveragelightlevel?language=objc)
     #[doc(alias = "CGImageCalculateContentAverageLightLevel")]
     #[inline]
     pub fn calculate_content_average_light_level(image: Option<&CGImage>) -> c_float {
@@ -606,7 +818,6 @@ impl CGImage {
         unsafe { CGImageCalculateContentAverageLightLevel(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copy(contentaveragelightlevel:)?language=objc)
     #[doc(alias = "CGImageCreateCopyWithContentAverageLightLevel")]
     #[inline]
     pub fn new_copy_with_content_average_light_level(
@@ -623,7 +834,6 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/copywithcalculatedhdrstats()?language=objc)
     #[doc(alias = "CGImageCreateCopyWithCalculatedHDRStats")]
     #[inline]
     pub fn new_copy_with_calculated_hdr_stats(
@@ -638,7 +848,17 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/ismask?language=objc)
+    /// Returns whether a bitmap image is an image mask.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether the image passed in the `image` parameter is an image mask ([`true`](https://developer.apple.com/documentation/swift/true) indicates that the image is an image mask).
+    ///
+    ///
     #[doc(alias = "CGImageIsMask")]
     #[inline]
     pub fn is_mask(image: Option<&CGImage>) -> bool {
@@ -648,7 +868,17 @@ impl CGImage {
         unsafe { CGImageIsMask(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/width?language=objc)
+    /// Returns the width of a bitmap image, in pixels.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The width, in pixels, of the specified bitmap image (or image mask).
+    ///
+    ///
     #[doc(alias = "CGImageGetWidth")]
     #[inline]
     pub fn width(image: Option<&CGImage>) -> usize {
@@ -658,7 +888,17 @@ impl CGImage {
         unsafe { CGImageGetWidth(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/height?language=objc)
+    /// Returns the height of a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The height in pixels of the bitmap image (or image mask).
+    ///
+    ///
     #[doc(alias = "CGImageGetHeight")]
     #[inline]
     pub fn height(image: Option<&CGImage>) -> usize {
@@ -668,7 +908,23 @@ impl CGImage {
         unsafe { CGImageGetHeight(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bitspercomponent?language=objc)
+    /// Returns the number of bits allocated for a single color component of a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bits used in memory for each color component of the specified bitmap image (or image mask).
+    ///
+    ///
+    ///
+    /// ## Description
+    ///
+    /// Possible values are 1, 2, 4, or 8. For example, for a 16-bit RGB(A) colorspace, the function would return a value of 4 bits per color component.
+    ///
+    ///
     #[doc(alias = "CGImageGetBitsPerComponent")]
     #[inline]
     pub fn bits_per_component(image: Option<&CGImage>) -> usize {
@@ -678,7 +934,17 @@ impl CGImage {
         unsafe { CGImageGetBitsPerComponent(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bitsperpixel?language=objc)
+    /// Returns the number of bits allocated for a single pixel in a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bits used in memory for each pixel of the specified bitmap image (or image mask).
+    ///
+    ///
     #[doc(alias = "CGImageGetBitsPerPixel")]
     #[inline]
     pub fn bits_per_pixel(image: Option<&CGImage>) -> usize {
@@ -688,7 +954,17 @@ impl CGImage {
         unsafe { CGImageGetBitsPerPixel(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bytesperrow?language=objc)
+    /// Returns the number of bytes allocated for a single row of a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes used in memory for each row of the specified bitmap image (or image mask).
+    ///
+    ///
     #[doc(alias = "CGImageGetBytesPerRow")]
     #[inline]
     pub fn bytes_per_row(image: Option<&CGImage>) -> usize {
@@ -698,7 +974,17 @@ impl CGImage {
         unsafe { CGImageGetBytesPerRow(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/colorspace?language=objc)
+    /// Return the color space for a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The source color space for the specified bitmap image, or `NULL` if the image is an image mask. You are responsible for retaining and releasing the color space as necessary.
+    ///
+    ///
     #[doc(alias = "CGImageGetColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -710,7 +996,25 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/alphainfo?language=objc)
+    /// Returns the alpha channel information for a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CGImageAlphaInfo`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo) constant.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned value specifies (1) whether the bitmap contains an alpha channel, (2) where the alpha bits are located in the image data, and (3) whether the alpha value is premultiplied. For possible values, see [Constants](https://developer.apple.com/documentation/coregraphics/cgimage#constants). The function returns [`kCGImageAlphaNone`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/none) if the `image` parameter refers to an image mask.
+    ///
+    /// The alpha value is what determines the opacity of a pixel when it is drawn.
+    ///
+    ///
     #[doc(alias = "CGImageGetAlphaInfo")]
     #[inline]
     pub fn alpha_info(image: Option<&CGImage>) -> CGImageAlphaInfo {
@@ -720,7 +1024,17 @@ impl CGImage {
         unsafe { CGImageGetAlphaInfo(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/dataprovider?language=objc)
+    /// Returns the data provider for a bitmap image or image mask.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The data provider for the specified image. You are responsible for retaining and releasing the data provider as necessary.
+    ///
+    ///
     #[doc(alias = "CGImageGetDataProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -732,7 +1046,23 @@ impl CGImage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/decode?language=objc)
+    /// Returns the decode array for a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The decode array for a bitmap image (or image mask). See the discussion for a description of possible return values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a bitmap image or image mask, for each color component in the source color space, the decode array contains a pair of values denoting the upper and lower limits of a range. When the image is rendered, a linear transform maps the original component value into a relative number, within the designated range, that is appropriate for the destination color space. If remapping of the image’s color values is not allowed, the returned value will be `NULL`.
+    ///
+    ///
     #[doc(alias = "CGImageGetDecode")]
     #[inline]
     pub fn decode(image: Option<&CGImage>) -> *const CGFloat {
@@ -742,7 +1072,23 @@ impl CGImage {
         unsafe { CGImageGetDecode(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/shouldinterpolate?language=objc)
+    /// Returns the interpolation setting for a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if interpolation is enabled for the specified bitmap image (or image mask), otherwise, returns `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The interpolation setting specifies whether an edge-smoothing algorithm is applied to the associated image.
+    ///
+    ///
     #[doc(alias = "CGImageGetShouldInterpolate")]
     #[inline]
     pub fn should_interpolate(image: Option<&CGImage>) -> bool {
@@ -752,7 +1098,17 @@ impl CGImage {
         unsafe { CGImageGetShouldInterpolate(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/renderingintent?language=objc)
+    /// Returns the rendering intent setting for a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: The image to examine.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Provides the `CGColorRenderingIntent` constant that specifies how to handle colors that are not located within the gamut of the destination color space of a graphics context in which the image is drawn. If the image is an image mask, this function returns [`kCGRenderingIntentDefault`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/defaultintent).
+    ///
+    ///
     #[doc(alias = "CGImageGetRenderingIntent")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -763,7 +1119,29 @@ impl CGImage {
         unsafe { CGImageGetRenderingIntent(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/bitmapinfo?language=objc)
+    /// Returns the bitmap information for a bitmap image.
+    ///
+    /// Parameters:
+    /// - image: An image.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bitmap information associated with an image.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a constant that specifies:
+    ///
+    /// - The type of bitmap data—floating point or integer. You use the constant [`kCGBitmapFloatComponents`](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/floatcomponents) to extract this information.
+    ///
+    /// - Whether an alpha channel is in the data, and if so, how the alpha data is stored. You use the constant [`alphaInfoMask`](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo/alphainfomask) to extract the alpha information. Alpha information is specified as one of the constants listed in [`CGImageAlphaInfo`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo).
+    ///
+    /// You can extract the alpha information
+    ///
+    ///
     #[doc(alias = "CGImageGetBitmapInfo")]
     #[inline]
     pub fn bitmap_info(image: Option<&CGImage>) -> CGBitmapInfo {
@@ -773,7 +1151,6 @@ impl CGImage {
         unsafe { CGImageGetBitmapInfo(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/byteorderinfo?language=objc)
     #[doc(alias = "CGImageGetByteOrderInfo")]
     #[inline]
     pub fn byte_order_info(image: Option<&CGImage>) -> CGImageByteOrderInfo {
@@ -783,7 +1160,6 @@ impl CGImage {
         unsafe { CGImageGetByteOrderInfo(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/pixelformatinfo?language=objc)
     #[doc(alias = "CGImageGetPixelFormatInfo")]
     #[inline]
     pub fn pixel_format_info(image: Option<&CGImage>) -> CGImagePixelFormatInfo {
@@ -793,7 +1169,6 @@ impl CGImage {
         unsafe { CGImageGetPixelFormatInfo(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/shouldtonemap?language=objc)
     #[doc(alias = "CGImageShouldToneMap")]
     #[inline]
     pub fn should_tone_map(image: Option<&CGImage>) -> bool {
@@ -803,7 +1178,6 @@ impl CGImage {
         unsafe { CGImageShouldToneMap(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/containsimagespecifictonemappingmetadata?language=objc)
     #[doc(alias = "CGImageContainsImageSpecificToneMappingMetadata")]
     #[inline]
     pub fn contains_image_specific_tone_mapping_metadata(image: Option<&CGImage>) -> bool {
@@ -813,7 +1187,7 @@ impl CGImage {
         unsafe { CGImageContainsImageSpecificToneMappingMetadata(image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/uttype?language=objc)
+    /// The Universal Type Identifier for the image.
     #[doc(alias = "CGImageGetUTType")]
     #[inline]
     pub fn ut_type(image: Option<&CGImage>) -> Option<CFRetained<CFString>> {

@@ -108,15 +108,13 @@ use core::ffi::*;
 use crate::*;
 
 extern "C" {
+    /// Project version number for Shared with You Core.
     /// Project version number for SharedWithYouCore.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/sharedwithyoucoreversionnumber?language=objc)
     pub static SharedWithYouCoreVersionNumber: c_double;
 }
 
 extern "C" {
+    /// Project version string for Shared with You Core.
     /// Project version string for SharedWithYouCore.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/sharedwithyoucoreversionstring?language=objc)
     pub static SharedWithYouCoreVersionString: *mut c_uchar;
 }

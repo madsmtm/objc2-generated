@@ -11,16 +11,16 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserselectionstyle?language=objc)
+/// Indicates whether users may select a single calendar, or multiple calendars.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarChooserSelectionStyle(pub NSInteger);
 impl EKCalendarChooserSelectionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserselectionstyle/single?language=objc)
+    /// A style that limits users to selecting a single calendar.
     #[doc(alias = "EKCalendarChooserSelectionStyleSingle")]
     pub const Single: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserselectionstyle/multiple?language=objc)
+    /// A style that lets users select multiple calendars.
     #[doc(alias = "EKCalendarChooserSelectionStyleMultiple")]
     pub const Multiple: Self = Self(1);
 }
@@ -33,16 +33,16 @@ unsafe impl RefEncode for EKCalendarChooserSelectionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdisplaystyle?language=objc)
+/// Indicates whether to display all calendars or writable calendars only.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarChooserDisplayStyle(pub NSInteger);
 impl EKCalendarChooserDisplayStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdisplaystyle/allcalendars?language=objc)
+    /// Displays writable and read-only calendars.
     #[doc(alias = "EKCalendarChooserDisplayAllCalendars")]
     pub const AllCalendars: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdisplaystyle/writablecalendarsonly?language=objc)
+    /// Displays writable calendars only.
     #[doc(alias = "EKCalendarChooserDisplayWritableCalendarsOnly")]
     pub const WritableCalendarsOnly: Self = Self(1);
 }
@@ -56,7 +56,15 @@ unsafe impl RefEncode for EKCalendarChooserDisplayStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooser?language=objc)
+    /// A view controller for determining whether a user may select one or more calendars.
+    ///
+    /// ## Overview
+    ///
+    /// Use the calendar chooser view controller to allow users to select one or more calendars when creating or editing a calendar event. The calendar chooser also lets you specify whether to display all calendars, or only those that may be written to. The view controller can be pushed on a navigation stack or presented modally.
+    ///
+    /// Use a delegate that conforms to [`EKCalendarChooserDelegate`](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdelegate) to receive callbacks when the user selects calendars or cancels an operation.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -214,7 +222,7 @@ impl EKCalendarChooser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdelegate?language=objc)
+    /// Methods a calendar chooser’s delegate may use to receive notifications.
     pub unsafe trait EKCalendarChooserDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         #[optional]

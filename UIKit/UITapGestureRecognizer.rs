@@ -8,7 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitapgesturerecognizer?language=objc)
+    /// A discrete gesture recognizer that interprets single or multiple taps.
+    ///
+    /// ## Overview
+    ///
+    /// [`UITapGestureRecognizer`](https://developer.apple.com/documentation/uikit/uitapgesturerecognizer) is a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).
+    ///
+    /// For gesture recognition, the specified number of fingers must tap the view a specified number of times. Although taps are discrete gestures, they’re discrete for each state of the gesture recognizer. The system sends the associated action message when the gesture begins and then again for each intermediate state until (and including) the ending state of the gesture. Code that handles tap gestures should test for the state of the gesture, for example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func handleTap(sender: UITapGestureRecognizer) {", "    if sender.state == .ended {", "        // handling code", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)handleTap:(UITapGestureRecognizer *)sender", "{", "    if (sender.state == UIGestureRecognizerStateEnded)", "    {", "        // handling code", "    }", "}"], metadata: None }] }] })
+    /// Action methods handling this gesture can get the location of the gesture as a whole by calling the [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer) method [`locationInView:`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/location(in:)). If there are multiple taps, this location is the first tap. If there are multiple touches, this location is the centroid of all fingers tapping the view. Clients can get the location of particular touches in the tap by calling [`locationOfTouch:inView:`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/location(oftouch:in:)). If multiple taps are allowed, this location is the first tap.
+    ///
+    ///
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

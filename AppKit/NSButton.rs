@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton?language=objc)
+    /// A control that defines an area on the screen that a user clicks to trigger an action.
+    ///
+    /// ## Overview
+    ///
+    /// Buttons are a standard control for initiating actions within your app. You can configure buttons with many different visual styles, but the behavior is the same. When a user clicks it, a button calls the action method of its associated target object. (If you configure a button as continuous, it calls its action method at timed intervals until the user releases the mouse button or the cursor leaves the button boundaries). You use the action method to perform your app-specific tasks.
+    ///
+    /// There are multiple types of buttons, each with a different user interface and behavior. The [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell) class defines the button types, and calling the [`setButtonType:`](https://developer.apple.com/documentation/appkit/nsbutton/setbuttontype(_:)) method configures them.
+    ///
+    /// If you configure it as an accelerator button (type [`NSAcceleratorButton`](https://developer.apple.com/documentation/appkit/nsacceleratorbutton) or [`NSMultiLevelAcceleratorButton`](https://developer.apple.com/documentation/appkit/nsmultilevelacceleratorbutton)), you can set a button to send action messages when changes in pressure occur when the user clicks the button.
+    ///
+    /// Buttons can either have two states (on and off) or three states (on, off, and mixed). You enable a three-state button by calling the [`allowsMixedState`](https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate) method. On and off (also referred to as alternate and normal) states indicate that the user clicked or didn’t click the button. Mixed is typically used for checkboxes or radio buttons, which allow for an additional intermediate state. For example, suppose the state of a checkbox denotes whether a text field contains bold text. If all text in the text field is bold, then the checkbox is on. If none of the text is bold, then the checkbox is off. If some of the text is bold, then the checkbox is mixed.
+    ///
+    /// For most types of buttons, the value of the button matches its state—the value is `1` for on, `0` for off, or `-1` for mixed. For pressure-sensitive buttons, the value of the button indicates pressure level instead.
+    ///
+    /// `NSButton` and [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) both provide a control view, which displays an `NSButtonCell` object. However, while a matrix requires you to access the button cell objects directly, most button class methods act as “covers” for identically declared button cell methods. In other words, the implementation of the button method invokes the corresponding button cell method for you, allowing you to be unconcerned with the existence of the button cell. The only button cell methods that don’t have covers relate to the font you use to display the key equivalent and to specific methods for highlighting or showing the state of the button.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

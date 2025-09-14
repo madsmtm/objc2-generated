@@ -7,16 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.enum?language=objc)
+/// The style of bezel the text field displays.
+///
+/// ## Overview
+///
+/// Use [`bezelStyle`](https://developer.apple.com/documentation/appkit/nstextfieldcell/bezelstyle) to set a text field’s bezel style.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextFieldBezelStyle(pub NSUInteger);
 impl NSTextFieldBezelStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.enum/squarebezel?language=objc)
+    /// A style that draws a bezel with square corners around a text field.
     #[doc(alias = "NSTextFieldSquareBezel")]
     pub const SquareBezel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfield/bezelstyle-swift.enum/roundedbezel?language=objc)
+    /// A style that draws a bezel with rounded corners around a single-line text field.
     #[doc(alias = "NSTextFieldRoundedBezel")]
     pub const RoundedBezel: Self = Self(1);
 }
@@ -30,7 +36,21 @@ unsafe impl RefEncode for NSTextFieldBezelStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfieldcell?language=objc)
+    /// An object that enhances the text display capabilities of a cell.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) class adds to the text display capabilities of the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) class by allowing you to set the color of both the text and its background. You can also specify whether the cell draws its background at all.
+    ///
+    /// All of the methods declared by this class are also declared by the [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) class, which uses [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) objects to draw and edit text. The [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) cover methods call the corresponding [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) methods.
+    ///
+    /// Placeholder strings, set using the [`placeholderString`](https://developer.apple.com/documentation/appkit/nstextfieldcell/placeholderstring) or [`placeholderAttributedString`](https://developer.apple.com/documentation/appkit/nstextfieldcell/placeholderattributedstring) property, appear in the text field cell if the actual string is `nil` or an empty string. They’re drawn in gray on the cell and aren’t archived in the “pre-10.2” nib format.
+    ///
+    /// ### Designated Initializers
+    ///
+    /// When subclassing `NSTextFieldCell` you must implement the designated initializers [`initWithCoder:`](https://developer.apple.com/documentation/appkit/nscell/init(coder:)) and [`initTextCell:`](https://developer.apple.com/documentation/appkit/nscell/init(textcell:)).
+    ///
+    ///
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]

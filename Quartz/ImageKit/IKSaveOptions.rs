@@ -36,9 +36,8 @@ impl private_NSObjectIKSaveOptionsDelegate::Sealed for NSObject {}
 unsafe impl NSObjectIKSaveOptionsDelegate for NSObject {}
 
 extern_class!(
+    /// The `IKSaveOptions` class initializes, adds, and manages user interface options for saving image data.
     /// The IKSaveOptions class initializes, adds, and manages user interface options for saving image data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/iksaveoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKSaveOptions;

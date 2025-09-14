@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertrequest?language=objc)
+    /// A request to insert a batch of data in a persistent store.
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]

@@ -7,34 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForPhotosIntentResponseCode(pub NSInteger);
 impl INSearchForPhotosIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/unspecified?language=objc)
+    /// Your app doesn’t provide a specific status.
     #[doc(alias = "INSearchForPhotosIntentResponseCodeUnspecified")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSearchForPhotosIntentResponseCodeReady")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/continueinapp?language=objc)
+    /// Your extension is ready to transfer control to the app in order to display the search results.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, Siri launches your app and passes it the NSUserActivity object you provided at initialization time. (If you didn’t provide a user activity object, Siri creates one for you). Siri adds an INInteraction object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to display the search results.
+    ///
+    ///
     #[doc(alias = "INSearchForPhotosIntentResponseCodeContinueInApp")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/failure?language=objc)
+    /// You were unable to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from searching the user’s photos.
+    ///
+    ///
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailure")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to search their photos.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// The user must perform additional configuration steps before searching for photos is possible.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your app isn’t configured to handle the search request. For example, you might return this code if the user hasn’t yet added any photos. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForPhotosIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INSearchForPhotosIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
@@ -49,7 +79,15 @@ unsafe impl RefEncode for INSearchForPhotosIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentresponse?language=objc)
+    /// Your app’s response to a search for photos intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchForPhotosIntentResponse`](https://developer.apple.com/documentation/intents/insearchforphotosintentresponse) object to specify the results of searching the user’s photos. After performing a search using the criteria specified in the [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent) object, create an instance of this class with the results of that search. Siri communicates the status from your response to the user at appropriate times.
+    ///
+    /// You create an [`INSearchForPhotosIntentResponse`](https://developer.apple.com/documentation/intents/insearchforphotosintentresponse) object in the [`confirmSearchForPhotos:completion:`](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling/confirm(intent:completion:)) and [`handleSearchForPhotos:completion:`](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling/handle(intent:completion:)) methods of your search for photos handler object. For more information about implementing your handler object, see [`INSearchForPhotosIntentHandling`](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

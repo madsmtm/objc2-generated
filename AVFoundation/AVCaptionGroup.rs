@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents zero or more captions that intersect in time.
     /// An instance of AVCaptionGroup represents zero or more captions that intersect in time.
     ///
     /// The time range of each caption may overlap as there can be more than one active caption at a time. A sequence of AVCaptionGroup objects represents such overlapping caption timeline.
@@ -31,8 +32,6 @@ extern_class!(
     /// AVCaptionGroup for time range 1s to 2s has the list of captions: Hello and World in this order despite the fact that "World" is shown earlier than "Hello".
     ///
     /// A client may use AVCaptionGroup to get the list of active captions for the time range. For example, presentation processing may find the AVCaptionGroup object for the current time, get the list of captions, and place them into the destination display region.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiongroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionGroup;

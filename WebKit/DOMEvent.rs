@@ -7,21 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_none?language=objc)
 #[deprecated]
 pub const DOM_NONE: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_capturing_phase?language=objc)
 #[deprecated]
 pub const DOM_CAPTURING_PHASE: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_at_target?language=objc)
 #[deprecated]
 pub const DOM_AT_TARGET: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_bubbling_phase?language=objc)
 #[deprecated]
 pub const DOM_BUBBLING_PHASE: c_uint = 3;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domevent?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

@@ -7,29 +7,29 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection?language=objc)
+/// Constants for specifying the direction of the popover arrow.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPopoverArrowDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl UIPopoverArrowDirection: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/up?language=objc)
+/// An arrow that points upward.
         #[doc(alias = "UIPopoverArrowDirectionUp")]
         const Up = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/down?language=objc)
+/// An arrow that points downward.
         #[doc(alias = "UIPopoverArrowDirectionDown")]
         const Down = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/left?language=objc)
+/// An arrow that points toward the left.
         #[doc(alias = "UIPopoverArrowDirectionLeft")]
         const Left = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/right?language=objc)
+/// An arrow that points toward the right.
         #[doc(alias = "UIPopoverArrowDirectionRight")]
         const Right = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/any?language=objc)
+/// An arrow that points in any direction.
         #[doc(alias = "UIPopoverArrowDirectionAny")]
         const Any = UIPopoverArrowDirection::Up.0|UIPopoverArrowDirection::Down.0|UIPopoverArrowDirection::Left.0|UIPopoverArrowDirection::Right.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverarrowdirection/unknown?language=objc)
+/// The status of the arrow is currently unknown.
         #[doc(alias = "UIPopoverArrowDirectionUnknown")]
         const Unknown = NSUIntegerMax as _;
     }

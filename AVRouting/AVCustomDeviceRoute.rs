@@ -9,14 +9,19 @@ use crate::*;
 extern_class!(
     /// An object that represents a custom device route.
     ///
+    /// ## Overview
+    ///
+    /// Use the value of a route’s [`networkEndpoint`](https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/networkendpoint) or [`bluetoothIdentifier`](https://developer.apple.com/documentation/avrouting/avcustomdeviceroute/bluetoothidentifier) property to establish a connection to a device. Typically, only one of the properties provides a valid value, depending on the type of device. In certain cases, both properties may provide valid values, in which case your app determines which one to use.
+    ///
+    ///
+    /// An object that represents a custom device route.
+    ///
     /// Use the value of a route’s ``AVCustomDeviceRoute/networkEndpoint`` or
     /// ``AVCustomDeviceRoute/bluetoothIdentifier`` property to establish a
     /// connection to a device. Typically, only one of the properties provides a
     /// valid value, depending on the type of device. In certain cases, both
     /// properties might provide valid values, in which case your app determines which
     /// one to use.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomdeviceroute?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCustomDeviceRoute;

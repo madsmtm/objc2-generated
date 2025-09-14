@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrator?language=objc)
+    /// A protocol that maps ClockKit complications to their WidgetKit replacements.
     pub unsafe trait CLKComplicationWidgetMigrator: NSObjectProtocol {
         #[cfg(all(
             feature = "CLKComplicationDescriptor",

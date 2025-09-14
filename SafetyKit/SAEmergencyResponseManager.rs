@@ -7,33 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An enumeration that defines the status of a requested voice call.
 /// This enumeration defines the status of requested voice call
 ///
 /// See also: SAEmergencyResponseManagerVoiceCallStatus
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SAEmergencyResponseManagerVoiceCallStatus(pub NSInteger);
 impl SAEmergencyResponseManagerVoiceCallStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/dialing?language=objc)
+    /// The system is dialing the desired contact.
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusDialing")]
     pub const Dialing: Self = Self(0);
+    /// The system successfully placed a call to the desired contact and that call is currently active.
     /// <
     /// the system is dialing the voice call
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/active?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusActive")]
     pub const Active: Self = Self(1);
+    /// The voice call to the desired contact disconnected.
     /// the system dialed voice call is disconnected after being active
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/disconnected?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusDisconnected")]
     pub const Disconnected: Self = Self(2);
+    /// The voice call failed to connect to the desired contact.
     /// the system dialed voice call failed to connect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus/failed?language=objc)
     #[doc(alias = "SAEmergencyResponseManagerVoiceCallStatusFailed")]
     pub const Failed: Self = Self(3);
 }
@@ -47,6 +43,13 @@ unsafe impl RefEncode for SAEmergencyResponseManagerVoiceCallStatus {
 }
 
 extern_class!(
+    /// Provides actions in response to a Crash Detection event.
+    ///
+    /// ## Overview
+    ///
+    /// Use the manager to place a voice call to an emergency contact upon receipt of a Crash Detection event. Provide an object that adopts [`SAEmergencyResponseDelegate`](https://developer.apple.com/documentation/safetykit/saemergencyresponsedelegate) in order to respond to the status of the voice call.
+    ///
+    ///
     /// SAEmergencyResponseManager
     ///
     ///
@@ -55,8 +58,6 @@ extern_class!(
     /// SAEmergencyResponseManager requires user authorization for at least one of the emergency event detections e.g. SACrashDetectionEvent
     ///
     /// SAEmergencyResponseManager requires an entitlement from Apple to at least one of the emergency event detections. To apply for the entitlement, see respective detection mechanisms
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SAEmergencyResponseManager;
@@ -129,6 +130,7 @@ impl SAEmergencyResponseManager {
 }
 
 extern_protocol!(
+    /// The interface for receiving updates about a requested emergency response action.
     /// SAEmergencyResponseDelegate
     ///
     ///
@@ -136,8 +138,6 @@ extern_protocol!(
     ///
     ///
     /// See also: SAEmergencyResponseManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsedelegate?language=objc)
     pub unsafe trait SAEmergencyResponseDelegate: NSObjectProtocol {
         /// Voice call can be requested when running in the foreground or background within a limited time window of a detected emergency event,
         /// Use this delegate to monitor the status of the requested voice call.

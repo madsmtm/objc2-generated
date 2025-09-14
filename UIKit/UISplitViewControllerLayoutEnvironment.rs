@@ -5,25 +5,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerLayoutEnvironment(pub NSInteger);
 impl UISplitViewControllerLayoutEnvironment {
     /// There is no containing split view controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment/none?language=objc)
+    /// There is no containing split view controller.
     #[doc(alias = "UISplitViewControllerLayoutEnvironmentNone")]
     pub const None: Self = Self(0);
     /// Contained within an expanded split view controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment/expanded?language=objc)
+    /// Contained within an expanded split view controller.
     #[doc(alias = "UISplitViewControllerLayoutEnvironmentExpanded")]
     pub const Expanded: Self = Self(1);
     /// Contained within a collapsed split view controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment/collapsed?language=objc)
+    /// Contained within a collapsed split view controller.
     #[doc(alias = "UISplitViewControllerLayoutEnvironmentCollapsed")]
     pub const Collapsed: Self = Self(2);
 }
@@ -38,8 +34,7 @@ unsafe impl RefEncode for UISplitViewControllerLayoutEnvironment {
 
 extern_class!(
     /// A trait that specifies whether an ancestor split view controller, if any, is expanded or collapsed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitsplitviewcontrollerlayoutenvironment-c.class?language=objc)
+    /// A trait that specifies whether an ancestor split view controller, if any, is expanded or collapsed.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

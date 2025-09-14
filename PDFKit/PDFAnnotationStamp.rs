@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationstamp?language=objc)
+    /// A `PDFAnnotationStamp` object allows you to display a word or phrase, such as “Confidential,” in a PDF page.
+    ///
+    /// ## Overview
+    ///
+    /// A `PDFAnnotationStamp` object should have an appearance stream associated with it; otherwise, nothing useful is rendered.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

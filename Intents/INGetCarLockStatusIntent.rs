@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintent?language=objc)
+    /// A request to get the lock status of the user’s car.
+    ///
+    /// ## Overview
+    ///
+    /// When the user asks for the car’s lock status, Siri creates an `INGetCarLockStatusIntent` object . This intent object can contain the name of the user’s car. Use this object to provide information about the car’s current lock status.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetCarLockStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintenthandling) protocol. Your handler should confirm the request and create an [`INGetCarLockStatusIntentResponse`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponse) object with the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device?" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri their car’s locked status in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive, and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Is my truck locked?" }] }], [Paragraph { inline_content: [Text { text: "Are the car doors unlocked?" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "后备箱关了吗？" }] }], [Paragraph { inline_content: [Text { text: "车门是不是没锁？" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "部卡車鎖咗未？" }] }], [Paragraph { inline_content: [Text { text: "我部車有冇鎖?" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "卡車鎖上了嗎？" }] }], [Paragraph { inline_content: [Text { text: "車門有鎖了嗎？" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "部卡车锁咗未?" }] }], [Paragraph { inline_content: [Text { text: "我部车有冇锁?" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "هل الشاحنة مقفلة؟" }] }], [Paragraph { inline_content: [Text { text: "هل أبواب السيارة مفتوحة؟" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Er min bil låst" }] }], [Paragraph { inline_content: [Text { text: "Er bildørene låst op" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Ist mein Auto abgeschlossen?" }] }], [Paragraph { inline_content: [Text { text: "Sind die Autotüren offen?" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "¿Está cerrada la camioneta?" }] }], [Paragraph { inline_content: [Text { text: "¿Están abiertas las puertas del coche?" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Onko auto lukossa" }] }], [Paragraph { inline_content: [Text { text: "Onko auton ovet auki" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Est-ce que ma voiture est fermée ?" }] }], [Paragraph { inline_content: [Text { text: "Est-ce que ma voiture est ouverte ?" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "האם הרכב שלי נעול" }] }], [Paragraph { inline_content: [Text { text: "האם הרכב שלי פתוח" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "È chiusa la mia auto?" }] }], [Paragraph { inline_content: [Text { text: "Le portiere della mia auto sono aperte?" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "トラックはロックされている?" }] }], [Paragraph { inline_content: [Text { text: "車のロックは解除されている?" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "내 트럭 잠겼어?" }] }], [Paragraph { inline_content: [Text { text: "차 도어록 열려 있어?" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Adakah trak saya dikunci?" }] }], [Paragraph { inline_content: [Text { text: "Adakah pintu kereta tidak dikunci?" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Er bilen min låst?" }] }], [Paragraph { inline_content: [Text { text: "Er dørene på bilen min låst?" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Is mijn auto op slot?" }] }], [Paragraph { inline_content: [Text { text: "Zijn de autodeuren open?" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Meu carro está trancado?" }] }], [Paragraph { inline_content: [Text { text: "As portas do carro estão destrancadas?" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Закрыт ли мой грузовик?" }] }], [Paragraph { inline_content: [Text { text: "Открыты ли двери машины?" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Är min lastbil låst?" }] }], [Paragraph { inline_content: [Text { text: "Är bilens dörrar olåsta?" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "รถล\u{e47}อคอย\u{e39}\u{e48}ไหม" }] }], [Paragraph { inline_content: [Text { text: "ประต\u{e39}รถล\u{e47}อคอย\u{e39}\u{e48}หร\u{e37}อไม\u{e48}" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Aracım kilitli mi?" }] }], [Paragraph { inline_content: [Text { text: "Arabamın kapıları kilitli mi?" }] }]]], alignments: None, metadata: None })
+    /// Unlike other SiriKit intents, these phrases do not always require your app’s name. Siri infers the app’s name when possible (for example, based on unique user vocabulary registered by your app). If necessary, Siri verifies the app’s name before launching your extension.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +93,18 @@ impl INGetCarLockStatusIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for requesting the current status of the car’s locks.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the `INGetCarLockStatusIntentHandling` protocol to resolve, confirm, and handle requests for the current status of the car’s locks. Adopt this protocol in an object of your Intents extension that’s capable of accessing the status of the car’s locks.
+    ///
+    /// Siri delivers an [`INGetCarLockStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintent) object to your handler when the user asks whether the car is locked or unlocked. The provided intent object can contain the car’s name (if specified).
+    ///
+    ///
     /// Protocol to declare support for handling an INGetCarLockStatusIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintenthandling?language=objc)
     pub unsafe trait INGetCarLockStatusIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INGetCarLockStatusIntentResponse",

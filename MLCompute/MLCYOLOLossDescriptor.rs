@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration object you use to create the YOLO loss layer.
     /// The MLCYOLOLossDescriptor specifies a YOLO loss filter descriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcyololossdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

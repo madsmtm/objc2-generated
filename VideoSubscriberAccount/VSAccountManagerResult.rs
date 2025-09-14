@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Represents an in-flight request to an account manger.
+    /// An object that represents a request made for subscriber account information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanagerresult?language=objc)
+    /// ## Overview
+    ///
+    /// The system returns this object to your app when you app calls [`enqueueAccountMetadataRequest:completionHandler:`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanager/enqueue(_:completionhandler:)). Use this object to cancel the request with [`cancel`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanagerresult/cancel()) while the request is in progress.
+    ///
+    ///
+    /// Represents an in-flight request to an account manger.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAccountManagerResult;

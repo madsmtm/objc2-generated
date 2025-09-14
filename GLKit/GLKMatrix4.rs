@@ -4,7 +4,7 @@
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix4identity?language=objc)
+    /// A `4x4` identity matrix.
     #[cfg(feature = "GLKMathTypes")]
     pub static GLKMatrix4Identity: GLKMatrix4;
 }
@@ -58,7 +58,19 @@ extern "C" {
 // TODO: pub fn GLKMatrix4Transpose(matrix: GLKMatrix4,) -> GLKMatrix4;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix4invert(_:_:)?language=objc)
+    /// Returns the inverse of a matrix.
+    ///
+    /// Parameters:
+    /// - matrix: A `4x4` matrix.
+    ///
+    /// - isInvertible: On return, this holds [`true`](https://developer.apple.com/documentation/swift/true) if the matrix was inverted or [`false`](https://developer.apple.com/documentation/swift/false) if the matrix is not invertible.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `isInvertible` was set to [`true`](https://developer.apple.com/documentation/swift/true), this holds an inverted matrix. Otherwise, the identity matrix is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -68,7 +80,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix4invertandtranspose(_:_:)?language=objc)
+    /// Returns the inverse transpose of a matrix.
+    ///
+    /// Parameters:
+    /// - matrix: A `4x4` matrix.
+    ///
+    /// - isInvertible: On return, this holds [`true`](https://developer.apple.com/documentation/swift/true) if the matrix was inverted or [`false`](https://developer.apple.com/documentation/swift/false) if the matrix is not invertible.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `isInvertible` was set to [`true`](https://developer.apple.com/documentation/swift/true), this holds an inverted and transposed matrix. Otherwise, the identity matrix is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///

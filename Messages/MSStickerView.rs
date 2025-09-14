@@ -14,13 +14,18 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A view for displaying a sticker.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`MSStickerView`](https://developer.apple.com/documentation/messages/msstickerview) class to display stickers. The sticker view also provides drag-and-drop functionality. The user can press and hold a sticker to peel it from the view, and then drag the sticker to any balloon in the transcript.
+    ///
+    ///
     /// A UIView subclass that can display sticker assets.
     ///
     /// This class is a UIView subclass intended to display stickers. It provides
     /// drag and drop functionality so that user may drag the displayed sticker from this
     /// view and place it in the Messages transcript.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msstickerview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

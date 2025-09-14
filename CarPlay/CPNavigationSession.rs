@@ -9,25 +9,25 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason?language=objc)
+/// A set of reasons for pausing a trip.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CPTripPauseReason(pub NSUInteger);
 impl CPTripPauseReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/arrived?language=objc)
+    /// The user arrived at the destination.
     #[doc(alias = "CPTripPauseReasonArrived")]
     pub const Arrived: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/loading?language=objc)
+    /// The system is loading the route.
     #[doc(alias = "CPTripPauseReasonLoading")]
     pub const Loading: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/locating?language=objc)
+    /// The system is locating the destination.
     #[doc(alias = "CPTripPauseReasonLocating")]
     pub const Locating: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/rerouting?language=objc)
+    /// The system is rerouting the trip.
     #[doc(alias = "CPTripPauseReasonRerouting")]
     pub const Rerouting: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/proceedtoroute?language=objc)
+    /// The system is waiting for the user to proceed to the route.
     #[doc(alias = "CPTripPauseReasonProceedToRoute")]
     pub const ProceedToRoute: Self = Self(5);
 }
@@ -41,12 +41,23 @@ unsafe impl RefEncode for CPTripPauseReason {
 }
 
 extern_class!(
+    /// An object that represents an active route guidance session.
+    ///
+    /// ## Overview
+    ///
+    /// To start a navigation session, you call [`startNavigationSessionForTrip:`](https://developer.apple.com/documentation/carplay/cpmaptemplate/startnavigationsession(for:)) on the map template, passing the trip the user selected. The map template’s delegate receives the selected trip via [`mapTemplate:startedTrip:usingRouteChoice:`](https://developer.apple.com/documentation/carplay/cpmaptemplatedelegate/maptemplate(_:startedtrip:using:)).
+    ///
+    /// When calculating the initial set of maneuvers, you set [`pauseTripForReason:description:`](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausetrip(for:description:)) to [`CPTripPauseReasonLoading`](https://developer.apple.com/documentation/carplay/cpnavigationsession/pausereason/loading) so that CarPlay displays the correct state to the user.
+    ///
+    /// During turn-by-turn guidance, you create [`CPManeuver`](https://developer.apple.com/documentation/carplay/cpmaneuver) objects that contain information about upcoming turns, and then update [`upcomingManeuvers`](https://developer.apple.com/documentation/carplay/cpnavigationsession/upcomingmaneuvers). Maintain at least one maneuver in the array at all times. You should call [`updateTravelEstimates:forManeuver:`](https://developer.apple.com/documentation/carplay/cpnavigationsession/updateestimates(_:for:)) regularly to update the remaining time and distance for each maneuver.
+    ///
+    /// When CarPlay pauses, finishes, or cancels route guidance, you must call the corresponding method on the active navigation session.
+    ///
+    ///
     /// `CPNavigationSession`represents the active navigation session. A
     /// `CPNavigationSession`will be created for you
     /// when calling startNavigationSessionForTrip: on
     /// `CYMapTemplate`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

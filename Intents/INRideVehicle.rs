@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridevehicle?language=objc)
+    /// A specific vehicle used by a ride-booking service.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRideVehicle`](https://developer.apple.com/documentation/intents/inridevehicle) object provides information about a vehicle in your fleet. Use a vehicle object to convey details about a specific vehicle to the user. Siri and Maps present information about your vehicle’s location on the map and let the user know when the vehicle arrives.
+    ///
+    /// You create an [`INRideVehicle`](https://developer.apple.com/documentation/intents/inridevehicle) object when the user books a ride or when you provide the current status of a ride. You assign the vehicle object to the [`vehicle`](https://developer.apple.com/documentation/intents/inridestatus/vehicle) property of the [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object that you include with your response.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRideVehicle;

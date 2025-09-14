@@ -21,22 +21,22 @@ unsafe impl RefEncode for CGPDFStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFStream", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstreamref?language=objc)
+/// A type that represents a PDF stream.
 pub type CGPDFStreamRef = *mut CGPDFStream;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat?language=objc)
+/// The encoding format of PDF data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPDFDataFormat(pub i32);
 impl CGPDFDataFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/raw?language=objc)
+    /// The data stream is not encoded.
     #[doc(alias = "CGPDFDataFormatRaw")]
     pub const Raw: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/jpegencoded?language=objc)
+    /// The data stream is encoded in JPEG format.
     #[doc(alias = "CGPDFDataFormatJPEGEncoded")]
     pub const JPEGEncoded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/jpeg2000?language=objc)
+    /// The data stream is encoded in JPEG-2000 format.
     #[doc(alias = "CGPDFDataFormatJPEG2000")]
     pub const JPEG2000: Self = Self(2);
 }
@@ -52,7 +52,17 @@ unsafe impl RefEncode for CGPDFDataFormat {
 }
 
 impl CGPDFStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstreamgetdictionary(_:)?language=objc)
+    /// Returns the dictionary associated with a PDF stream.
+    ///
+    /// Parameters:
+    /// - stream: A PDF stream.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The PDF dictionary for the specified stream.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -67,7 +77,19 @@ impl CGPDFStream {
         unsafe { CGPDFStreamGetDictionary(stream) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstreamcopydata(_:_:)?language=objc)
+    /// Returns the data associated with a PDF stream.
+    ///
+    /// Parameters:
+    /// - stream: A PDF stream.
+    ///
+    /// - format: On return, contains a constant that specifies the format of the data returned—[`CGPDFDataFormatRaw`](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/raw), [`CGPDFDataFormatJPEGEncoded`](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/jpegencoded), or [`CGPDFDataFormatJPEG2000`](https://developer.apple.com/documentation/coregraphics/cgpdfdataformat/jpeg2000).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFData object that contains a copy of the stream data. You are responsible for releasing this object.
+    ///
+    ///
     ///
     /// # Safety
     ///

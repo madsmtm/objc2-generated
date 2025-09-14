@@ -9,7 +9,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksummaryref?language=objc)
+/// Defines an opaque data type representing summarization information.
+///
+/// ## Discussion
+///
+/// A summarization object contains summarization information, including summary text.
+///
+///
 #[doc(alias = "SKSummaryRef")]
 #[repr(C)]
 pub struct SKSummary {
@@ -26,7 +32,22 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSummary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444796-sksummarygettypeid?language=objc)
+    /// Gets the type identifier for Search Kit summarization objects.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeID object, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit represents summarization results with summarization objects ([`SKSummaryRef`](https://developer.apple.com/documentation/coreservices/sksummaryref) opaque types). If your code needs to determine whether a particular data type is a summary, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+    ///
+    /// Never hard-code the summarization type ID because it can change from one release of macOS to another.
+    ///
+    ///
     #[doc(alias = "SKSummaryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,7 +59,24 @@ unsafe impl ConcreteType for SKSummary {
 }
 
 impl SKSummary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446229-sksummarycreatewithstring?language=objc)
+    /// Creates a summary object based on a text string.
+    ///
+    /// Parameters:
+    /// - inString: The text string that you want to summarize.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a summarization object, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SKSummaryCreateWithString`](https://developer.apple.com/documentation/coreservices/1446229-sksummarycreatewithstring) function creates a summarization object that pre-analyzes a text string to support fast summarization. When your application no longer needs the summarization object, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -55,7 +93,18 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450009-sksummarygetsentencecount?language=objc)
+    /// Gets the number of sentences in a summarization object.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object whose sentences you want to count.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFIndex object containing the number of sentences in the summarization object.
+    ///
+    ///
     #[doc(alias = "SKSummaryGetSentenceCount")]
     #[inline]
     pub unsafe fn sentence_count(&self) -> CFIndex {
@@ -65,7 +114,18 @@ impl SKSummary {
         unsafe { SKSummaryGetSentenceCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449304-sksummarygetparagraphcount?language=objc)
+    /// Gets the number of paragraphs in a summarization object.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object whose paragraphs you want to count.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFIndex object containing the number of paragraphs in the summarization object.
+    ///
+    ///
     #[doc(alias = "SKSummaryGetParagraphCount")]
     #[inline]
     pub unsafe fn paragraph_count(&self) -> CFIndex {
@@ -75,7 +135,20 @@ impl SKSummary {
         unsafe { SKSummaryGetParagraphCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450287-sksummarycopysentenceatindex?language=objc)
+    /// Gets a specified sentence from the text in a summarization object.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object containing the text from which you want a sentence.
+    ///
+    /// - i: The ordinal number of the sentence in the original text, with the first sentence designated by zero (this function uses zero-based indexing).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the specified sentence, or `NULL` on failure.
+    ///
+    ///
     #[doc(alias = "SKSummaryCopySentenceAtIndex")]
     #[inline]
     pub unsafe fn sentence_at_index(&self, i: CFIndex) -> Option<CFRetained<CFString>> {
@@ -89,7 +162,20 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445711-sksummarycopyparagraphatindex?language=objc)
+    /// Gets a specified paragraph from the text in a summarization object.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object containing the text from which you want a paragraph.
+    ///
+    /// - i: The ordinal number of the paragraph in the original text, with the first paragraph designated by zero (this function uses zero-based indexing).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the specified paragraph, or `NULL` on failure.
+    ///
+    ///
     #[doc(alias = "SKSummaryCopyParagraphAtIndex")]
     #[inline]
     pub unsafe fn paragraph_at_index(&self, i: CFIndex) -> Option<CFRetained<CFString>> {
@@ -103,7 +189,20 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449700-sksummarycopysentencesummarystri?language=objc)
+    /// Gets a text string consisting of a summary with, at most, the requested number of sentences.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object containing the text from which you want a summarization.
+    ///
+    /// - numSentences: The maximum number of sentences you want in the summary.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the requested summary.
+    ///
+    ///
     #[doc(alias = "SKSummaryCopySentenceSummaryString")]
     #[inline]
     pub unsafe fn sentence_summary_string(
@@ -120,7 +219,20 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449746-sksummarycopyparagraphsummarystr?language=objc)
+    /// Gets a text string consisting of a summary with, at most, the requested number of paragraphs.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object containing the text from which you want a summarization.
+    ///
+    /// - numParagraphs: The maximum number of paragraphs you want in the summary.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the requested summary.
+    ///
+    ///
     #[doc(alias = "SKSummaryCopyParagraphSummaryString")]
     #[inline]
     pub unsafe fn paragraph_summary_string(
@@ -137,7 +249,26 @@ impl SKSummary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444767-sksummarygetsentencesummaryinfo?language=objc)
+    /// Gets detailed information about a body of text for constructing a custom sentence-based summary string.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object containing the text from which you want to build a summary.
+    ///
+    /// - numSentencesInSummary: The maximum number of sentences you want in the summary.
+    ///
+    /// - outRankOrderOfSentences: On input, a pointer to an array of CFIndex objects. On output, points to the previously allocated array, which now lists the summarization relevance rank of each sentence in the original text. The most important sentence gets a rank of 1. The array size must equal `numSentencesInSummary`, or else be `NULL` if you don’t want to get the rank orders.
+    ///
+    /// - outSentenceIndexOfSentences: On input, a pointer to an array of CFIndex objects. On output, points to the previously allocated array, which now contains the ordinal number for each sentence in the original text. Use the [`SKSummaryCopySentenceAtIndex`](https://developer.apple.com/documentation/coreservices/1450287-sksummarycopysentenceatindex) function with one of these numbers to get the corresponding sentence. The array size must equal `numSentencesInSummary`, or else be `NULL` if you don’t want to get the ordinal numbers of the sentences.
+    ///
+    /// - outParagraphIndexOfSentences: On input, a pointer to an array of CFIndex objects. On output, points to the previously allocated array, which now contains the ordinal number for the paragraph that each corresponding sentence, referenced in `outSentenceIndexOfSentences`, appears in. The array size must equal `numSentencesInSummary`, or else be `NULL` if you don’t want to get the ordinal numbers of the sentences.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The number of sentences in the summary.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -173,7 +304,24 @@ impl SKSummary {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447517-sksummarygetparagraphsummaryinfo?language=objc)
+    /// Gets detailed information about a body of text for constructing a custom paragraph-based summary string.
+    ///
+    /// Parameters:
+    /// - summary: The summarization object containing the text from which you want to build a summary.
+    ///
+    /// - numParagraphsInSummary: The maximum number of paragraphs you want in the summary.
+    ///
+    /// - outRankOrderOfParagraphs: On input, a pointer to an array of CFIndex objects. On output, points to the previously allocated array, which now lists the summarization relevance rank of each paragraph in the original text. The most important paragraph gets a rank of 1. The array size must equal `numParagraphsInSummary`, or else be `NULL` if you don’t want to get the relevance ranks.
+    ///
+    /// - outParagraphIndexOfParagraphs: On output, points to an array containing the ordinal number for each paragraph in the original text. Use the [`SKSummaryCopyParagraphAtIndex`](https://developer.apple.com/documentation/coreservices/1445711-sksummarycopyparagraphatindex) function with one of these numbers to get the corresponding paragraph. The array size must equal `numParagraphsInSummary`, or else be `NULL` if you don’t want to get the ordinal numbers of the paragraphs.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The number of paragraphs in the summary.
+    ///
+    ///
     ///
     /// # Safety
     ///

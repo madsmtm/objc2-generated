@@ -7,7 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityhandler?language=objc)
+/// A block that reports the current motion associated with the device.
+///
+/// ## Discussion
+///
+/// This block takes the following parameter:
+///
+/// - `activity`: The motion activity object that defines the current type of motion for the device.
+///
+///
 #[cfg(all(
     feature = "CMLogItem",
     feature = "CMMotionActivity",
@@ -15,7 +23,17 @@ use crate::*;
 ))]
 pub type CMMotionActivityHandler = *mut block2::DynBlock<dyn Fn(*mut CMMotionActivity)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityqueryhandler?language=objc)
+/// A block that reports the motion updates that occurred between the specified query interval.
+///
+/// ## Discussion
+///
+/// This block takes the following parameters:
+///
+/// - `activities`: An array of [`CMMotionActivity`](https://developer.apple.com/documentation/coremotion/cmmotionactivity) objects indicating the updates that occurred. The objects in the array are ordered by the time at which they occurred in the specified time interval. Use the [`startDate`](https://developer.apple.com/documentation/coremotion/cmmotionactivity/startdate) property in each motion object to determine when the update occurred.
+///
+/// - `error`: An error object indicating that there was a problem gathering the data or `nil` if the motion data was determined correctly.
+///
+///
 #[cfg(all(
     feature = "CMLogItem",
     feature = "CMMotionActivity",
@@ -25,7 +43,21 @@ pub type CMMotionActivityQueryHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager?language=objc)
+    /// An object that manages access to the motion data stored by the device.
+    ///
+    /// ## Overview
+    ///
+    /// Motion data reflects whether the user is walking, running, in a vehicle, or stationary for periods of time. Using this class, you can ask for notifications when the current type of motion changes or you can gather past motion change data. For example, a navigation app might look for changes in the current type of motion and offer different directions for each.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use this API, you must include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file and provide a usage description string for this key. The usage description appears in the prompt that the user must accept the first time the system asks the user to access motion data for your app. If you don’t include a usage description string, your app crashes when you call this API.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMotionActivityManager;

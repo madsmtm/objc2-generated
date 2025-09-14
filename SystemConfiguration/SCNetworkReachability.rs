@@ -12,9 +12,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The handle to a network address or name.
 /// This is the handle to a network address or name.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachability?language=objc)
 #[doc(alias = "SCNetworkReachabilityRef")]
 #[repr(C)]
 pub struct SCNetworkReachability {
@@ -30,6 +29,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCNetworkReachability"> for SCNetworkReachability {}
 );
 
+/// Structure containing user-specified data and callbacks used with [`SCNetworkReachabilitySetCallback`](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitysetcallback(_:_:_:)).
 /// Structure containing user-specified data and callbacks for SCNetworkReachability.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the SCDynamicStore creation function.
@@ -44,8 +44,6 @@ cf_objc2_type!(
 /// The value may be NULL.
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -76,6 +74,7 @@ unsafe impl RefEncode for SCNetworkReachabilityContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Flags that indicate the reachability of a network node name or address, including whether a connection is required, and whether some user intervention might be required when establishing a connection.
 /// Flags that indicate whether the specified network
 /// nodename or address is reachable, whether a connection is
 /// required, and whether some user intervention may be required
@@ -135,42 +134,72 @@ unsafe impl RefEncode for SCNetworkReachabilityContext {
 ///
 /// This flag indicates that the specified nodename or address can
 /// be reached via an EDGE, GPRS, or other "cell" connection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkReachabilityFlags(pub u32);
 bitflags::bitflags! {
     impl SCNetworkReachabilityFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/transientconnection?language=objc)
+/// The specified node name or address can be reached via a transient connection, such as PPP.
         #[doc(alias = "kSCNetworkReachabilityFlagsTransientConnection")]
         const TransientConnection = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/reachable?language=objc)
+/// The specified node name or address can be reached using the current network configuration.
         #[doc(alias = "kSCNetworkReachabilityFlagsReachable")]
         const Reachable = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionrequired?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established. If this flag is set, the `kSCNetworkReachabilityFlagsConnectionOnTraffic` flag, `kSCNetworkReachabilityFlagsConnectionOnDemand` flag, or `kSCNetworkReachabilityFlagsIsWWAN` flag is also typically set to indicate the type of connection required. If the user must manually make the connection, the `kSCNetworkReachabilityFlagsInterventionRequired` flag is also set.
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionRequired")]
         const ConnectionRequired = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionontraffic?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established. Any traffic directed to the specified name or address will initiate the connection.
+///
+/// ## Discussion
+///
+/// This flag was previously named `kSCNetworkReachabilityFlagsConnectionAutomatic`.
+///
+///
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnTraffic")]
         const ConnectionOnTraffic = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/interventionrequired?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established.
+///
+/// ## Discussion
+///
+/// In addition, some form of user intervention will be required to establish this connection, such as providing a password, an authentication token, etc.
+///
+/// Currently, this flag is returned only when there is a dial-on-traffic configuration (`kSCNetworkReachabilityFlagsConnectionOnTraffic`), an attempt to connect has already been made, and when some error (such as no dial tone, no answer, bad password, etc.) occurred during the automatic connection attempt. In this case the PPP controller stops attempting to establish a connection until the user has intervened.
+///
+///
         #[doc(alias = "kSCNetworkReachabilityFlagsInterventionRequired")]
         const InterventionRequired = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionondemand?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established.
+///
+/// ## Discussion
+///
+/// The connection will be established “On Demand” by the `CFSocketStream` programming interface (see CFStream Socket Additions for information on this). Other functions will not establish the connection.
+///
+///
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionOnDemand")]
         const ConnectionOnDemand = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/islocaladdress?language=objc)
+/// The specified node name or address is one that is associated with a network interface on the current system.
         #[doc(alias = "kSCNetworkReachabilityFlagsIsLocalAddress")]
         const IsLocalAddress = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/isdirect?language=objc)
+/// Network traffic to the specified node name or address will not go through a gateway, but is routed directly to one of the interfaces in the system.
         #[doc(alias = "kSCNetworkReachabilityFlagsIsDirect")]
         const IsDirect = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/iswwan?language=objc)
+/// The specified node name or address can be reached via a cellular connection, such as EDGE or GPRS.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This absence of this flag does not necessarily mean that a connection will never pass over a cellular network. If you need to robustly prevent cellular networking, read [Avoiding Common Networking Mistakes](https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/CommonPitfalls/CommonPitfalls.html#//apple_ref/doc/uid/TP40010220-CH4) in [Networking Overview](https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010220).
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "kSCNetworkReachabilityFlagsIsWWAN")]
         const IsWWAN = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionautomatic?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established. Any traffic directed to the specified name or address will initiate the connection. This flag is a synonym for [`kSCNetworkReachabilityFlagsConnectionOnTraffic`](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags/connectionontraffic).
         #[doc(alias = "kSCNetworkReachabilityFlagsConnectionAutomatic")]
         const ConnectionAutomatic = SCNetworkReachabilityFlags::ConnectionOnTraffic.0;
     }
@@ -186,6 +215,15 @@ unsafe impl RefEncode for SCNetworkReachabilityFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Type of callback function used when the reachability of a network address or name changes.
+///
+/// Parameters:
+/// - target: The network target being monitored for changes.
+///
+/// - flags: The flags representing the reachability status of the network address or name (see [`SCNetworkReachabilityFlags`](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags) for information about these flags).
+///
+/// - info: A C pointer to a user-specified block of data.
+///
 /// Type of the callback function used when the
 /// reachability of a network address or name changes.
 ///
@@ -196,8 +234,6 @@ unsafe impl RefEncode for SCNetworkReachabilityFlags {
 /// reachability status of the network address/name.
 ///
 /// Parameter `info`: A C pointer to a user-specified block of data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycallback?language=objc)
 pub type SCNetworkReachabilityCallBack = Option<
     unsafe extern "C-unwind" fn(
         NonNull<SCNetworkReachability>,
@@ -207,6 +243,25 @@ pub type SCNetworkReachabilityCallBack = Option<
 >;
 
 impl SCNetworkReachability {
+    /// Creates a reachability reference to the specified network address.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator.
+    ///
+    /// - address: The address of the desired host. The value of this parameter is copied into the new object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new immutable reachability reference. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the reachability reference returned by this function to monitor the reachability of the target host.
+    ///
+    ///
     /// Creates a reference to the specified network
     /// address.  This reference can be used later to monitor the
     /// reachability of the target host.
@@ -220,8 +275,6 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `address` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycreatewithaddress(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityCreateWithAddress")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -240,6 +293,27 @@ impl SCNetworkReachability {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a reachability reference to the specified network address.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator.
+    ///
+    /// - localAddress: The local address associated with a network connection. If `NULL`, only the remote address is of interest. The value of this parameter is copied into the new object.
+    ///
+    /// - remoteAddress: The remote address associated with a network connection. If `NULL`, only the local address is of interest. The value of this parameter is copied into the new object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new immutable reachability reference. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the reachability reference returned by this function to monitor the reachability of the target host.
+    ///
+    ///
     /// Creates a reference to the specified network
     /// address.  This reference can be used later to monitor the
     /// reachability of the target host.
@@ -258,8 +332,6 @@ impl SCNetworkReachability {
     ///
     /// - `local_address` must be a valid pointer or null.
     /// - `remote_address` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycreatewithaddresspair(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityCreateWithAddressPair")]
     #[cfg(feature = "libc")]
     #[deprecated]
@@ -282,6 +354,25 @@ impl SCNetworkReachability {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a reachability reference to the specified network host or node name.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator.
+    ///
+    /// - nodename: The node name of the desired host. This name is the same as that passed to the gethostbyname or getaddrinfo functions. The value of this parameter is copied into the new object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new immutable reachability reference. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the reachability reference returned by this function to monitor the reachability of the target host.
+    ///
+    ///
     /// Creates a reference to the specified network host or node
     /// name.  This reference can be used later to monitor the
     /// reachability of the target host.
@@ -297,8 +388,6 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `nodename` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycreatewithname(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityCreateWithName")]
     #[deprecated]
     #[inline]
@@ -318,10 +407,15 @@ impl SCNetworkReachability {
 }
 
 unsafe impl ConcreteType for SCNetworkReachability {
+    /// Returns the type identifier of all `SCNetworkReachability` instances.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCNetworkReachability` instances.
+    ///
+    ///
     /// Returns the type identifier of all SCNetworkReachability
     /// instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitygettypeid()?language=objc)
     #[doc(alias = "SCNetworkReachabilityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -333,6 +427,19 @@ unsafe impl ConcreteType for SCNetworkReachability {
 }
 
 impl SCNetworkReachability {
+    /// Determines if the specified network target is reachable using the current network configuration.
+    ///
+    /// Parameters:
+    /// - target: The network reference associated with the address or name to be checked for reachability.
+    ///
+    /// - flags: A pointer to memory that, on output, is filled with flags that describe the reachability of the specified target. (See [`SCNetworkReachabilityFlags`](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityflags) for possible values.)
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the flags are valid; `FALSE` if the status could not be determined.
+    ///
+    ///
     /// Determines if the given target is reachable using the
     /// current network configuration.
     ///
@@ -349,8 +456,6 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `flags` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitygetflags(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityGetFlags")]
     #[deprecated]
     #[inline]
@@ -365,6 +470,21 @@ impl SCNetworkReachability {
         ret != 0
     }
 
+    /// Assigns a client to the specified target, which receives callbacks when the reachability of the target changes.
+    ///
+    /// Parameters:
+    /// - target: The network reference associated with the address or name to be checked for reachability.
+    ///
+    /// - callout: The function to be called when the reachability of the target changes. If `NULL`, the current client for the target is removed.
+    ///
+    /// - context: The reachability context associated with the callout. This value may be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the notification client was successfully set; otherwise, `FALSE`.
+    ///
+    ///
     /// Assigns a client to a target, which receives callbacks
     /// when the reachability of the target changes.
     ///
@@ -384,8 +504,6 @@ impl SCNetworkReachability {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitysetcallback(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilitySetCallback")]
     #[deprecated]
     #[inline]
@@ -405,6 +523,21 @@ impl SCNetworkReachability {
         ret != 0
     }
 
+    /// Schedules the specified network target with the specified run loop and mode.
+    ///
+    /// Parameters:
+    /// - target: The address or name that is set up for asynchronous notifications. Must not be `NULL`.
+    ///
+    /// - runLoop: The run loop on which the target should be scheduled. Must not be `NULL`.
+    ///
+    /// - runLoopMode: The mode in which to schedule the target. Must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the target is scheduled successfully; otherwise,  `FALSE`.
+    ///
+    ///
     /// Schedules the given target with the given run loop and mode.
     ///
     /// Parameter `target`: The address or name that is set up for asynchronous
@@ -418,8 +551,6 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is scheduled successfully;
     /// FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityScheduleWithRunLoop")]
     #[deprecated]
     #[inline]
@@ -436,6 +567,21 @@ impl SCNetworkReachability {
         ret != 0
     }
 
+    /// Unschedules the specified target from the specified run loop and mode.
+    ///
+    /// Parameters:
+    /// - target: The address or name that is set up for asynchronous notifications. Must not be `NULL`.
+    ///
+    /// - runLoop: The run loop on which the target should be unscheduled. Must not be `NULL`.
+    ///
+    /// - runLoopMode: The mode in which to unschedule the target. Must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the target is unscheduled successfully; otherwise, `FALSE`.
+    ///
+    ///
     /// Unschedules the given target from the given run loop
     /// and mode.
     ///
@@ -450,8 +596,6 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is unscheduled successfully;
     /// FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilityunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilityUnscheduleFromRunLoop")]
     #[deprecated]
     #[inline]
@@ -468,6 +612,19 @@ impl SCNetworkReachability {
         ret != 0
     }
 
+    /// Schedules callbacks for the specified target on the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - target: The address or name that is set up for asynchronous notifications. Must not be `NULL`.
+    ///
+    /// - queue: The libdispatch queue on which the target should run. Pass `NULL` to disable notifications and release the queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the target is scheduled successfully; otherwise, `FALSE`.
+    ///
+    ///
     /// Schedule or unschedule callbacks for the given target on the given
     /// dispatch queue.
     ///
@@ -483,8 +640,6 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitysetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCNetworkReachabilitySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[deprecated]

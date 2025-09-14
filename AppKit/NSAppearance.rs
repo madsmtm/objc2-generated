@@ -7,12 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAppearanceName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance?language=objc)
+    /// An object that manages standard appearance attributes for UI elements in an app.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object manages how AppKit renders your app’s UI elements. Specifically, appearance objects determine which colors and images AppKit uses when drawing windows, views, and controls. Although you can use an appearance object to determine how to draw custom views and controls, a better approach is to choose colors and images that adapt automatically to the current appearance. For example, define a color asset whose actual color value changes for light and dark appearances. You can assign specific appearances to your views in Interface Builder.
+    ///
+    /// The user chooses the default appearance for the system, but you can override that appearance for all or part of your app. Apps inherit the default system appearance, windows inherit their app’s appearance, and views inherit the appearance of their nearest ancestor (either a superview or window). To force a window or view to adopt an appearance, assign a specific appearance object to its [`appearance`](https://developer.apple.com/documentation/appkit/nsappearancecustomization/appearance) property.
+    ///
+    /// When AppKit draws a control, it automatically sets the current appearance on the current thread to the control’s appearance. The current appearance influences the drawing path and return values you get when you access system fonts and colors. The current appearance also affects the appearance of text and images, such as the text and template images in a toolbar.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppearance;
@@ -116,53 +125,111 @@ impl DefaultRetained for NSAppearance {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/aqua?language=objc)
+    /// The standard light system appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to retrieve the named [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) associated with the standard light system appearance. You can assign that appearance object to the views and windows of your interface or to your entire app.
+    ///
+    ///
     pub static NSAppearanceNameAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/darkaqua?language=objc)
+    /// The standard dark system appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to retrieve the named [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) associated with the standard dark system appearance. You can assign that appearance object to the views and windows of your interface or to your entire app.
+    ///
+    ///
     pub static NSAppearanceNameDarkAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/lightcontent?language=objc)
+    /// The standard appearance that can be used by controls in light content areas (not including window-frame areas).
     #[deprecated = "Light content should use the default Aqua apppearance."]
     pub static NSAppearanceNameLightContent: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/vibrantdark?language=objc)
+    /// A dark vibrant appearance, available only in visual effect views.
+    ///
+    /// ## Discussion
+    ///
+    /// Vibrant appearances use color blending to make the foreground appearance stand out from the background more prominently.
+    ///
+    /// Don’t assign an [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object with this type directly to one of your views. Instead, assign a dark appearance to your view, make sure its [`allowsVibrancy`](https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy) property is set to [`true`](https://developer.apple.com/documentation/swift/true), and embed the view in a visual effect view. When you do, AppKit updates your view’s appearance to this type.
+    ///
+    ///
     pub static NSAppearanceNameVibrantDark: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/vibrantlight?language=objc)
+    /// The light vibrant appearance, available only in visual effect views.
+    ///
+    /// ## Discussion
+    ///
+    /// Vibrant appearances use color blending to make the foreground appearance stand out from the background more prominently.
+    ///
+    /// Don’t assign an [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object with this type directly to one of your views. Instead, assign a light appearance to your view, make sure its [`allowsVibrancy`](https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy) property is set to [`true`](https://developer.apple.com/documentation/swift/true), and embed the view in a visual effect view. When you do, AppKit updates your view’s appearance to this type.
+    ///
+    ///
     pub static NSAppearanceNameVibrantLight: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastaqua?language=objc)
+    /// A high-contrast version of the standard light system appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t assign an [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object with this type directly to one of your views. Instead, assign a light appearance to your view. AppKit then returns this type when the user enables the Increase Contrast option in the Accessibility system preferences.
+    ///
+    ///
     pub static NSAppearanceNameAccessibilityHighContrastAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastdarkaqua?language=objc)
+    /// A high-contrast version of the standard dark system appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t assign an [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object with this type directly to one of your views. Instead, assign a dark appearance to your view. AppKit then returns this type when the user enables the Increase Contrast option in the Accessibility system preferences.
+    ///
+    ///
     pub static NSAppearanceNameAccessibilityHighContrastDarkAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastvibrantlight?language=objc)
+    /// A high-contrast version of the light vibrant appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t assign an [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object with this type directly to one of your views. Instead, assign a light appearance to your view. AppKit then returns this type when the user enables the Increase Contrast option in the Accessibility system preferences and the view’s [`allowsVibrancy`](https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastvibrantdark?language=objc)
+    /// A high-contrast version of the dark vibrant appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t assign an [`NSAppearance`](https://developer.apple.com/documentation/appkit/nsappearance) object with this type directly to one of your views. Instead, assign a dark appearance to your view. AppKit then returns this type when the user enables the Increase Contrast option in the Accessibility system preferences and the view’s [`allowsVibrancy`](https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancecustomization?language=objc)
+    /// A set of methods for getting and setting the appearance attributes of a view.
+    ///
+    /// ## Overview
+    ///
+    /// When an object adopts this protocol, assigning a value to the [`appearance`](https://developer.apple.com/documentation/appkit/nsappearancecustomization/appearance) property causes that object to use the appearance attributes you specified instead of any inherited attributes. You can access the current attributes for the object from the [`effectiveAppearance`](https://developer.apple.com/documentation/appkit/nsappearancecustomization/effectiveappearance) property, which reflects any inherited attributes.
+    ///
+    ///
     pub unsafe trait NSAppearanceCustomization: NSObjectProtocol {
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]

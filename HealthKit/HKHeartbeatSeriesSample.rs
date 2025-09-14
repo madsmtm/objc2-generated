@@ -7,11 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A sample that represents a series of heartbeats.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`HKHeartbeatSeriesQuery`](https://developer.apple.com/documentation/healthkit/hkheartbeatseriesquery) to access the underlying heartbeat data.
+    ///
+    /// The [`HKHeartbeatSeriesSample`](https://developer.apple.com/documentation/healthkit/hkheartbeatseriessample) class is a subclass of the [`HKSeriesSample`](https://developer.apple.com/documentation/healthkit/hkseriessample) class. These samples are immutable; you set the sample’s properties when you build them, and they can’t change.
+    ///
+    /// ### Extend Heartbeat Samples
+    ///
+    /// Like many HealthKit classes, you shouldn’t subclass the [`HKHeartbeatSeriesSample`](https://developer.apple.com/documentation/healthkit/hkheartbeatseriessample) class. You may extend this class by adding metadata with custom keys to save related data used by your app.
+    ///
+    /// For more information, see [`addMetadata:completion:`](https://developer.apple.com/documentation/healthkit/hkheartbeatseriesbuilder/addmetadata(_:completion:)).
+    ///
+    ///
     /// An HKHeartbeatSeriesSample represents a series of heartbeats.
     ///
     /// To retrieve the underlying series data for an HKHeartbeatSeriesSample, use HKHeartbeatSeriesQuery
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartbeatseriessample?language=objc)
     #[unsafe(super(HKSeriesSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]

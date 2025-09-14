@@ -4469,40 +4469,58 @@ use objc2_core_midi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audio_toolbox_version?language=objc)
 pub const AUDIO_TOOLBOX_VERSION: c_uint = 1060;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_name?language=objc)
 pub const kInstrumentInfoKey_Name: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_msb?language=objc)
 pub const kInstrumentInfoKey_MSB: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"MSB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_lsb?language=objc)
 pub const kInstrumentInfoKey_LSB: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"LSB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_program?language=objc)
 pub const kInstrumentInfoKey_Program: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"program\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareserviceproperty_servicerestarted?language=objc)
+/// Used, with a HAL audio object property listener callback, as a flag that indicates a hardware service restart. The property’s `Float32` value has no meaning. When the hardware service restarts, any associated application state, such as cached data or property listener callbacks, must be re-established.
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceProperty_ServiceRestarted: AudioObjectPropertySelector = 0x73727374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainvolume?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMainVolume: AudioObjectPropertySelector =
     0x766d7663;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmastervolume?language=objc)
+/// A `Float32` value that represents the value of the volume control.
+///
+/// ## Discussion
+///
+/// The range for this property’s value is `0.0` (silence) through `1.0` (full level). The effect of this property depends on the hardware device associated with the HAL audio object. If the device has a primary volume control, this property controls it. If the device has individual channel volume controls, this property applies to those identified by the device’s preferred multichannel layout, or the preferred stereo pair if the device is stereo only. This control maintains relative balance between the channels it affects.
+///
+///
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMasterVolume: AudioObjectPropertySelector =
     kAudioHardwareServiceDeviceProperty_VirtualMainVolume;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainbalance?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMainBalance: AudioObjectPropertySelector =
     0x766d6263;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmasterbalance?language=objc)
+/// A `Float32` value that represents the value of a hardware device’s stereo balance control.
+///
+/// ## Discussion
+///
+/// The range for this property’s value is `0.0` (full left) through `1.0` (full right). A value of `0.5` means that both channels of the default stereo pair have equal power. This control is available only for hardware devices that have individual channel volume controls.
+///
+///
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated]
 pub const kAudioHardwareServiceDeviceProperty_VirtualMasterBalance: AudioObjectPropertySelector =
     kAudioHardwareServiceDeviceProperty_VirtualMainBalance;
 
+/// Queries a HAL audio object about whether or not it has a specified property.
+///
+/// Parameters:
+/// - inObjectID: The HAL audio object to query.
+///
+/// - inAddress: The property that you are asking about.
+///
+///
+/// ## Return Value
+///
+/// A Boolean value that indicates whether the HAL audio object does have the property (`true`) or not (`false`).
+///
+///
 /// Queries an AudioObject about whether or not it has the given property.
 ///
 /// Parameter `inObjectID`: The AudioObject to query.
@@ -4514,8 +4532,6 @@ pub const kAudioHardwareServiceDeviceProperty_VirtualMasterBalance: AudioObjectP
 /// # Safety
 ///
 /// `in_address` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareservicehasproperty(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio")]
 #[deprecated = "no longer supported"]
 #[inline]
@@ -4534,6 +4550,21 @@ pub unsafe extern "C-unwind" fn AudioHardwareServiceHasProperty(
 }
 
 extern "C-unwind" {
+    /// Queries a HAL audio object about whether a specified property is settable.
+    ///
+    /// Parameters:
+    /// - inObjectID: The HAL audio object to query.
+    ///
+    /// - inAddress: The property that you are asking about.
+    ///
+    /// - outIsSettable: A Boolean value that indicates whether the property is settable (`true`) or not (`false`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Queries an AudioObject about whether or not the given property can be set using
     /// AudioHardwareServiceSetPropertyData.
     ///
@@ -4549,8 +4580,6 @@ extern "C-unwind" {
     ///
     /// - `in_address` must be a valid pointer.
     /// - `out_is_settable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareserviceispropertysettable(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceIsPropertySettable(
@@ -4561,6 +4590,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the payload size for a given property.
+    ///
+    /// Parameters:
+    /// - inObjectID: The HAL audio object to query.
+    ///
+    /// - inAddress: The property whose payload size you want.
+    ///
+    /// - inQualifierDataSize: A `UInt32` value indicating the size of the buffer pointed to by the `inQualifierData` parameter. Not all properties require qualification; in such a case you set this parameter to `0`.
+    ///
+    /// - inQualifierData: A buffer of data to be used in determining the value of the property being queried. Not all properties require qualification; in such a case you set this parameter to `NULL`.
+    ///
+    /// - outDataSize: A `UInt32` value indicating the size, in bytes, of the payload for the given property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Queries an AudioObject to find the size of the data for the given property.
     ///
     /// Parameter `inObjectID`: The AudioObject to query.
@@ -4584,8 +4632,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_qualifier_data` must be a valid pointer.
     /// - `out_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareservicegetpropertydatasize(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceGetPropertyDataSize(
@@ -4598,6 +4644,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the value for a specified property.
+    ///
+    /// Parameters:
+    /// - inObjectID: The HAL audio object to query.
+    ///
+    /// - inAddress: The property whose value you want.
+    ///
+    /// - inQualifierDataSize: A `UInt32` value indicating the size of the buffer pointed to by the `inQualifierData` parameter. Not all properties require qualification; in such a case you set this parameter to `0`.
+    ///
+    /// - inQualifierData: A buffer of data to be used in determining the value of the property being queried. Not all properties require qualification; in such a case you set this parameter to `NULL`.
+    ///
+    /// - ioDataSize: On input, a `UInt32` value that indicates the size, in bytes, of the buffer pointed to by the `outData` parameter. On exit the size of the buffer that was used.
+    ///
+    /// - outData: The buffer into which the HAL audio object will put the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Queries an AudioObject to get the data of the given property and places it in
     /// the provided buffer.
     ///
@@ -4627,8 +4702,6 @@ extern "C-unwind" {
     /// - `in_qualifier_data` must be a valid pointer.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareservicegetpropertydata(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceGetPropertyData(
@@ -4642,6 +4715,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Asks a HAL audio object to change the value of a specified property.
+    ///
+    /// Parameters:
+    /// - inObjectID: The HAL audio object to set a property value on.
+    ///
+    /// - inAddress: The property to set.
+    ///
+    /// - inQualifierDataSize: A `UInt32` value indicating the size of the buffer pointed to by the `inQualifierData` parameter. Not all properties require qualification; in such a case you set this parameter to `0`.
+    ///
+    /// - inQualifierData: A buffer of data to be used in determining the value of the property being queried. Not all properties require qualification; in such a case you set this parameter to `NULL`.
+    ///
+    /// - inDataSize: A `UInt32` value indicating the size of the buffer pointed to by the `inData` parameter.
+    ///
+    /// - inData: The buffer containing the data to be used as the new property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The property should not be considered changed until the HAL has called your property listener callback. Many HAL audio object properties are changed asynchronously.
+    ///
+    ///
     /// Tells an AudioObject to change the value of the given property using the
     /// provided data.
     ///
@@ -4672,8 +4772,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_qualifier_data` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareservicesetpropertydata(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceSetPropertyData(
@@ -4687,6 +4785,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers a HAL audio object property listener callback function to be invoked when a specified property changes.
+    ///
+    /// Parameters:
+    /// - inObjectID: The HAL audio object to register the listener callback function with.
+    ///
+    /// - inAddress: The property that, when changed, triggers a call to your listener callback function.
+    ///
+    /// - inListener: He property listener callback to register.
+    ///
+    /// - inClientData: Application data that is passed to your listener callback when it is invoked.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Registers the given AudioObjectPropertyListenerProc to receive notifications
     /// when the given properties change.
     ///
@@ -4706,8 +4821,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareserviceaddpropertylistener(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceAddPropertyListener(
@@ -4719,6 +4832,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unregisters a HAL audio object property listener callback function.
+    ///
+    /// Parameters:
+    /// - inObjectID: The HAL audio object to unregister the listener callback function from.
+    ///
+    /// - inAddress: The property you no longer want notifications about.
+    ///
+    /// - inListener: The property listener callback function you are removing.
+    ///
+    /// - inClientData: Application data you had specified when registering the callback function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Unregisters the given AudioObjectPropertyListenerProc from receiving
     /// notifications when the given properties change.
     ///
@@ -4738,8 +4868,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiohardwareserviceremovepropertylistener(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio")]
     #[deprecated = "no longer supported"]
     pub fn AudioHardwareServiceRemovePropertyListener(
@@ -4751,14 +4879,10 @@ extern "C-unwind" {
 }
 
 /// represents an instance of an AudioFileComponent.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponent?language=objc)
 #[cfg(feature = "AudioComponent")]
 pub type AudioFileComponent = AudioComponentInstance;
 
 /// a four char code for a property ID.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentpropertyid?language=objc)
 pub type AudioFileComponentPropertyID = u32;
 
 extern "C-unwind" {
@@ -4783,8 +4907,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `in_format` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcreateurl(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AudioComponent",
         feature = "objc2-core-audio-types",
@@ -4816,8 +4938,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_component` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenurl(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentOpenURL(
         in_component: AudioFileComponent,
@@ -4852,8 +4972,6 @@ extern "C-unwind" {
     /// - `in_write_func` must be implemented correctly.
     /// - `in_get_size_func` must be implemented correctly.
     /// - `in_set_size_func` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenwithcallbacks(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
     pub fn AudioFileComponentOpenWithCallbacks(
         in_component: AudioFileComponent,
@@ -4898,8 +5016,6 @@ extern "C-unwind" {
     /// - `in_get_size_func` must be implemented correctly.
     /// - `in_set_size_func` must be implemented correctly.
     /// - `in_format` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AudioComponent",
         feature = "AudioFile",
@@ -4928,8 +5044,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_component` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentclosefile(_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentCloseFile(in_component: AudioFileComponent) -> OSStatus;
 }
@@ -4944,8 +5058,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_component` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentoptimize(_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentOptimize(in_component: AudioFileComponent) -> OSStatus;
 }
@@ -4973,8 +5085,6 @@ extern "C-unwind" {
 /// - `in_component` must be a valid pointer.
 /// - `io_num_bytes` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadbytes(_:_:_:_:_:)?language=objc)
 #[cfg(feature = "AudioComponent")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentReadBytes(
@@ -5024,8 +5134,6 @@ pub unsafe extern "C-unwind" fn AudioFileComponentReadBytes(
 /// - `in_component` must be a valid pointer.
 /// - `io_num_bytes` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentwritebytes(_:_:_:_:_:)?language=objc)
 #[cfg(feature = "AudioComponent")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentWriteBytes(
@@ -5089,8 +5197,6 @@ pub unsafe extern "C-unwind" fn AudioFileComponentWriteBytes(
 /// - `out_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadpackets(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentReadPackets(
@@ -5164,8 +5270,6 @@ pub unsafe extern "C-unwind" fn AudioFileComponentReadPackets(
 /// - `out_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadpacketdata(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentReadPacketData(
@@ -5230,8 +5334,6 @@ pub unsafe extern "C-unwind" fn AudioFileComponentReadPacketData(
 /// - `in_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentwritepackets(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileComponentWritePackets(
@@ -5286,8 +5388,6 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `out_property_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetpropertyinfo(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetPropertyInfo(
         in_component: AudioFileComponent,
@@ -5315,8 +5415,6 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetProperty(
         in_component: AudioFileComponent,
@@ -5343,8 +5441,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentsetproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentSetProperty(
         in_component: AudioFileComponent,
@@ -5373,8 +5469,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_number_items` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcountuserdata(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentCountUserData(
         in_component: AudioFileComponent,
@@ -5400,8 +5494,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_user_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdatasize(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataSize(
         in_component: AudioFileComponent,
@@ -5428,8 +5520,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_user_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdatasize64(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataSize64(
         in_component: AudioFileComponent,
@@ -5459,8 +5549,6 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `io_user_data_size` must be a valid pointer.
     /// - `out_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdata(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserData(
         in_component: AudioFileComponent,
@@ -5493,8 +5581,6 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `io_user_data_size` must be a valid pointer.
     /// - `out_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdataatoffset(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetUserDataAtOffset(
         in_component: AudioFileComponent,
@@ -5526,8 +5612,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `in_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentsetuserdata(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentSetUserData(
         in_component: AudioFileComponent,
@@ -5552,8 +5636,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_component` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentremoveuserdata(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentRemoveUserData(
         in_component: AudioFileComponent,
@@ -5577,8 +5659,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentextensionisthisformat(_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentExtensionIsThisFormat(
         in_component: AudioFileComponent,
@@ -5605,8 +5685,6 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
     /// - `out_result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentfiledataisthisformat(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentFileDataIsThisFormat(
         in_component: AudioFileComponent,
@@ -5631,8 +5709,6 @@ extern "C-unwind" {
     ///
     /// - `in_component` must be a valid pointer.
     /// - `out_result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentfileisthisformat?language=objc)
     #[cfg(feature = "AudioComponent")]
     #[deprecated = "no longer supported"]
     pub fn AudioFileComponentFileIsThisFormat(
@@ -5670,8 +5746,6 @@ extern "C-unwind" {
     /// - `in_get_size_func` must be implemented correctly.
     /// - `in_set_size_func` must be implemented correctly.
     /// - `out_result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentdataisthisformat?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "AudioFile"))]
     #[deprecated = "no longer supported"]
     pub fn AudioFileComponentDataIsThisFormat(
@@ -5706,8 +5780,6 @@ extern "C-unwind" {
     /// - `in_component` must be a valid pointer.
     /// - `in_specifier` must be a valid pointer or null.
     /// - `out_property_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetglobalinfosize(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetGlobalInfoSize(
         in_component: AudioFileComponent,
@@ -5741,8 +5813,6 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetglobalinfo(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn AudioFileComponentGetGlobalInfo(
         in_component: AudioFileComponent,
@@ -5754,100 +5824,59 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canread?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_CanRead: AudioFilePropertyID = 0x636e7264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_canwrite?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_CanWrite: AudioFilePropertyID = 0x636e7772;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_filetypename?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_FileTypeName: AudioFilePropertyID = 0x66746e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_utisfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_UTIsForType: AudioFilePropertyID = 0x66757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_mimetypesfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_MIMETypesForType: AudioFilePropertyID = 0x666d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_extensionsfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_ExtensionsForType: AudioFilePropertyID = 0x66657874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_availableformatids?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_AvailableFormatIDs: AudioFilePropertyID = 0x666d6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_availablestreamdescriptionsforformat?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_AvailableStreamDescriptionsForFormat: AudioFilePropertyID =
     0x73646964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_fastdispatchtable?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_FastDispatchTable: AudioFilePropertyID = 0x66646674;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecomponent_hfstypecodesfortype?language=objc)
 #[cfg(feature = "AudioFile")]
 pub const kAudioFileComponent_HFSTypeCodesForType: AudioFilePropertyID = 0x66686673;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecreateselect?language=objc)
 pub const kAudioFileCreateSelect: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileopenselect?language=objc)
 pub const kAudioFileOpenSelect: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinitializeselect?language=objc)
 pub const kAudioFileInitializeSelect: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileopenwithcallbacksselect?language=objc)
 pub const kAudioFileOpenWithCallbacksSelect: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinitializewithcallbacksselect?language=objc)
 pub const kAudioFileInitializeWithCallbacksSelect: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecloseselect?language=objc)
 pub const kAudioFileCloseSelect: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileoptimizeselect?language=objc)
 pub const kAudioFileOptimizeSelect: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilereadbytesselect?language=objc)
 pub const kAudioFileReadBytesSelect: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewritebytesselect?language=objc)
 pub const kAudioFileWriteBytesSelect: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilereadpacketsselect?language=objc)
 pub const kAudioFileReadPacketsSelect: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewritepacketsselect?language=objc)
 pub const kAudioFileWritePacketsSelect: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetpropertyinfoselect?language=objc)
 pub const kAudioFileGetPropertyInfoSelect: c_uint = 0x000C;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetpropertyselect?language=objc)
 pub const kAudioFileGetPropertySelect: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilesetpropertyselect?language=objc)
 pub const kAudioFileSetPropertySelect: c_uint = 0x000E;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileextensionisthisformatselect?language=objc)
 pub const kAudioFileExtensionIsThisFormatSelect: c_uint = 0x000F;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilefileisthisformatselect?language=objc)
 pub const kAudioFileFileIsThisFormatSelect: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofiledataisthisformatselect?language=objc)
 pub const kAudioFileDataIsThisFormatSelect: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetglobalinfosizeselect?language=objc)
 pub const kAudioFileGetGlobalInfoSizeSelect: c_uint = 0x0012;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetglobalinfoselect?language=objc)
 pub const kAudioFileGetGlobalInfoSelect: c_uint = 0x0013;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecountuserdataselect?language=objc)
 pub const kAudioFileCountUserDataSelect: c_uint = 0x0014;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetuserdatasizeselect?language=objc)
 pub const kAudioFileGetUserDataSizeSelect: c_uint = 0x0015;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetuserdataselect?language=objc)
 pub const kAudioFileGetUserDataSelect: c_uint = 0x0016;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilesetuserdataselect?language=objc)
 pub const kAudioFileSetUserDataSelect: c_uint = 0x0017;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileremoveuserdataselect?language=objc)
 pub const kAudioFileRemoveUserDataSelect: c_uint = 0x0018;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecreateurlselect?language=objc)
 pub const kAudioFileCreateURLSelect: c_uint = 0x0019;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileopenurlselect?language=objc)
 pub const kAudioFileOpenURLSelect: c_uint = 0x001A;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilefiledataisthisformatselect?language=objc)
 pub const kAudioFileFileDataIsThisFormatSelect: c_uint = 0x001B;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilereadpacketdataselect?language=objc)
 pub const kAudioFileReadPacketDataSelect: c_uint = 0x001C;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetuserdatasize64select?language=objc)
 pub const kAudioFileGetUserDataSize64Select: c_uint = 0x001D;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilegetuserdataatoffsetselect?language=objc)
 pub const kAudioFileGetUserDataAtOffsetSelect: c_uint = 0x001E;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/readbytesfdf?language=objc)
 pub type ReadBytesFDF = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -5858,7 +5887,6 @@ pub type ReadBytesFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/writebytesfdf?language=objc)
 pub type WriteBytesFDF = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -5869,7 +5897,6 @@ pub type WriteBytesFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/readpacketsfdf?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type ReadPacketsFDF = Option<
     unsafe extern "C-unwind" fn(
@@ -5883,7 +5910,6 @@ pub type ReadPacketsFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/readpacketdatafdf?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type ReadPacketDataFDF = Option<
     unsafe extern "C-unwind" fn(
@@ -5897,7 +5923,6 @@ pub type ReadPacketDataFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/writepacketsfdf?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type WritePacketsFDF = Option<
     unsafe extern "C-unwind" fn(
@@ -5911,7 +5936,6 @@ pub type WritePacketsFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getpropertyinfofdf?language=objc)
 #[cfg(feature = "AudioFile")]
 pub type GetPropertyInfoFDF = Option<
     unsafe extern "C-unwind" fn(
@@ -5922,7 +5946,6 @@ pub type GetPropertyInfoFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getpropertyfdf?language=objc)
 #[cfg(feature = "AudioFile")]
 pub type GetPropertyFDF = Option<
     unsafe extern "C-unwind" fn(
@@ -5933,7 +5956,6 @@ pub type GetPropertyFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/setpropertyfdf?language=objc)
 #[cfg(feature = "AudioFile")]
 pub type SetPropertyFDF = Option<
     unsafe extern "C-unwind" fn(
@@ -5944,15 +5966,12 @@ pub type SetPropertyFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/countuserdatafdf?language=objc)
 pub type CountUserDataFDF =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<u32>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getuserdatasizefdf?language=objc)
 pub type GetUserDataSizeFDF =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u32>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/getuserdatafdf?language=objc)
 pub type GetUserDataFDF = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -5963,12 +5982,10 @@ pub type GetUserDataFDF = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/setuserdatafdf?language=objc)
 pub type SetUserDataFDF = Option<
     unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, NonNull<c_void>) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilefdftable?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -6014,7 +6031,6 @@ unsafe impl RefEncode for AudioFileFDFTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilefdftableextended?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -6062,7 +6078,6 @@ unsafe impl RefEncode for AudioFileFDFTableExtended {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcreateurlproc?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
 pub type AudioFileComponentCreateURLProc = Option<
     unsafe extern "C-unwind" fn(
@@ -6073,12 +6088,10 @@ pub type AudioFileComponentCreateURLProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenurlproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type AudioFileComponentOpenURLProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFURL>, i8, c_int) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenwithcallbacksproc?language=objc)
 #[cfg(feature = "AudioFile")]
 pub type AudioFileComponentOpenWithCallbacksProc = Option<
     unsafe extern "C-unwind" fn(
@@ -6091,7 +6104,6 @@ pub type AudioFileComponentOpenWithCallbacksProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentinitializewithcallbacksproc?language=objc)
 #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
 pub type AudioFileComponentInitializeWithCallbacksProc = Option<
     unsafe extern "C-unwind" fn(
@@ -6107,15 +6119,12 @@ pub type AudioFileComponentInitializeWithCallbacksProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcloseproc?language=objc)
 pub type AudioFileComponentCloseProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentoptimizeproc?language=objc)
 pub type AudioFileComponentOptimizeProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadbytesproc?language=objc)
 pub type AudioFileComponentReadBytesProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6126,7 +6135,6 @@ pub type AudioFileComponentReadBytesProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentwritebytesproc?language=objc)
 pub type AudioFileComponentWriteBytesProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6137,7 +6145,6 @@ pub type AudioFileComponentWriteBytesProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadpacketsproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioFileComponentReadPacketsProc = Option<
     unsafe extern "C-unwind" fn(
@@ -6151,7 +6158,6 @@ pub type AudioFileComponentReadPacketsProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentreadpacketdataproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioFileComponentReadPacketDataProc = Option<
     unsafe extern "C-unwind" fn(
@@ -6165,7 +6171,6 @@ pub type AudioFileComponentReadPacketDataProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentwritepacketsproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioFileComponentWritePacketsProc = Option<
     unsafe extern "C-unwind" fn(
@@ -6179,7 +6184,6 @@ pub type AudioFileComponentWritePacketsProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetpropertyinfoproc?language=objc)
 pub type AudioFileComponentGetPropertyInfoProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6189,7 +6193,6 @@ pub type AudioFileComponentGetPropertyInfoProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetpropertyproc?language=objc)
 pub type AudioFileComponentGetPropertyProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6199,7 +6202,6 @@ pub type AudioFileComponentGetPropertyProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentsetpropertyproc?language=objc)
 pub type AudioFileComponentSetPropertyProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6209,19 +6211,15 @@ pub type AudioFileComponentSetPropertyProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentcountuserdataproc?language=objc)
 pub type AudioFileComponentCountUserDataProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<u32>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdatasizeproc?language=objc)
 pub type AudioFileComponentGetUserDataSizeProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u32>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdatasize64proc?language=objc)
 pub type AudioFileComponentGetUserDataSize64Proc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, NonNull<u64>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdataproc?language=objc)
 pub type AudioFileComponentGetUserDataProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6232,7 +6230,6 @@ pub type AudioFileComponentGetUserDataProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetuserdataatoffsetproc?language=objc)
 pub type AudioFileComponentGetUserDataAtOffsetProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6244,27 +6241,22 @@ pub type AudioFileComponentGetUserDataAtOffsetProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentsetuserdataproc?language=objc)
 pub type AudioFileComponentSetUserDataProc = Option<
     unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, NonNull<c_void>) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentremoveuserdataproc?language=objc)
 pub type AudioFileComponentRemoveUserDataProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentextensionisthisformatproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type AudioFileComponentExtensionIsThisFormatProc = Option<
     unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFString>, NonNull<u32>) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentfiledataisthisformatproc?language=objc)
 pub type AudioFileComponentFileDataIsThisFormatProc = Option<
     unsafe extern "C-unwind" fn(NonNull<c_void>, u32, NonNull<c_void>, NonNull<u32>) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetglobalinfosizeproc?language=objc)
 pub type AudioFileComponentGetGlobalInfoSizeProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6275,7 +6267,6 @@ pub type AudioFileComponentGetGlobalInfoSizeProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentgetglobalinfoproc?language=objc)
 pub type AudioFileComponentGetGlobalInfoProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -6340,50 +6331,35 @@ pub type AudioFileComponentGetGlobalInfoProc = Option<
 /// Type: UInt32. Specifies whether MIDI Song Position Pointer messages are
 /// sent to the clock's MIDI clock destinations (if any). Available starting
 /// in macOS 10.6.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockPropertyID(pub u32);
 impl CAClockPropertyID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/internaltimebase?language=objc)
     #[doc(alias = "kCAClockProperty_InternalTimebase")]
     pub const InternalTimebase: Self = Self(0x696e7462);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/timebasesource?language=objc)
     #[doc(alias = "kCAClockProperty_TimebaseSource")]
     pub const TimebaseSource: Self = Self(0x69746273);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/syncmode?language=objc)
     #[doc(alias = "kCAClockProperty_SyncMode")]
     pub const SyncMode: Self = Self(0x73796e6d);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/syncsource?language=objc)
     #[doc(alias = "kCAClockProperty_SyncSource")]
     pub const SyncSource: Self = Self(0x73796e73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/smpteformat?language=objc)
     #[doc(alias = "kCAClockProperty_SMPTEFormat")]
     pub const SMPTEFormat: Self = Self(0x736d7066);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/smpteoffset?language=objc)
     #[doc(alias = "kCAClockProperty_SMPTEOffset")]
     pub const SMPTEOffset: Self = Self(0x736d706f);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/midiclockdestinations?language=objc)
     #[doc(alias = "kCAClockProperty_MIDIClockDestinations")]
     pub const MIDIClockDestinations: Self = Self(0x6d626364);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/mtcdestinations?language=objc)
     #[doc(alias = "kCAClockProperty_MTCDestinations")]
     pub const MTCDestinations: Self = Self(0x6d746364);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/mtcfreewheeltime?language=objc)
     #[doc(alias = "kCAClockProperty_MTCFreewheelTime")]
     pub const MTCFreewheelTime: Self = Self(0x6d746677);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/tempomap?language=objc)
     #[doc(alias = "kCAClockProperty_TempoMap")]
     pub const TempoMap: Self = Self(0x746d706f);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/metertrack?language=objc)
     #[doc(alias = "kCAClockProperty_MeterTrack")]
     pub const MeterTrack: Self = Self(0x6d657472);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/name?language=objc)
     #[doc(alias = "kCAClockProperty_Name")]
     pub const Name: Self = Self(0x6e616d65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockpropertyid/sendmidispp?language=objc)
     #[doc(alias = "kCAClockProperty_SendMIDISPP")]
     pub const SendMIDISPP: Self = Self(0x6d737070);
 }
@@ -6415,20 +6391,15 @@ unsafe impl RefEncode for CAClockPropertyID {
 ///
 /// The clock's reference time is derived from the audio
 /// device addressed by an output Audio Unit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockTimebase(pub u32);
 impl CAClockTimebase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase/hosttime?language=objc)
     #[doc(alias = "kCAClockTimebase_HostTime")]
     pub const HostTime: Self = Self(0x686f7374);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase/audiodevice?language=objc)
     #[doc(alias = "kCAClockTimebase_AudioDevice")]
     pub const AudioDevice: Self = Self(0x61756469);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimebase/audiooutputunit?language=objc)
     #[doc(alias = "kCAClockTimebase_AudioOutputUnit")]
     pub const AudioOutputUnit: Self = Self(0x61756f75);
 }
@@ -6451,20 +6422,15 @@ unsafe impl RefEncode for CAClockTimebase {
 ///
 /// The clock is driven by MIDI Time Code received from a CoreMIDI source
 /// endpoint.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockSyncMode(pub u32);
 impl CAClockSyncMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode/internal?language=objc)
     #[doc(alias = "kCAClockSyncMode_Internal")]
     pub const Internal: Self = Self(0x696e7472);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode/midiclocktransport?language=objc)
     #[doc(alias = "kCAClockSyncMode_MIDIClockTransport")]
     pub const MIDIClockTransport: Self = Self(0x6d636c6b);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksyncmode/mtctransport?language=objc)
     #[doc(alias = "kCAClockSyncMode_MTCTransport")]
     pub const MTCTransport: Self = Self(0x6d6d7463);
 }
@@ -6485,8 +6451,6 @@ unsafe impl RefEncode for CAClockSyncMode {
 /// /CoreAudioTypes.h>.
 /// Values include kSMPTETimeType30, kSMPTETimeType30Drop, etc. Note that formats with more than 30
 /// fps are not usable with MIDI Time Code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksmpteformat?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type CAClockSMPTEFormat = SMPTETimeType;
 
@@ -6508,32 +6472,23 @@ pub type CAClockSMPTEFormat = SMPTETimeType;
 ///
 /// The clock is receiving SMPTE (MTC) messages in a SMPTE format that does not
 /// match the clock's SMPTE format.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockMessage(pub u32);
 impl CAClockMessage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/starttimeset?language=objc)
     #[doc(alias = "kCAClockMessage_StartTimeSet")]
     pub const StartTimeSet: Self = Self(0x7374696d);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/started?language=objc)
     #[doc(alias = "kCAClockMessage_Started")]
     pub const Started: Self = Self(0x73747274);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/stopped?language=objc)
     #[doc(alias = "kCAClockMessage_Stopped")]
     pub const Stopped: Self = Self(0x73746f70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/armed?language=objc)
     #[doc(alias = "kCAClockMessage_Armed")]
     pub const Armed: Self = Self(0x61726d64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/disarmed?language=objc)
     #[doc(alias = "kCAClockMessage_Disarmed")]
     pub const Disarmed: Self = Self(0x6461726d);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/propertychanged?language=objc)
     #[doc(alias = "kCAClockMessage_PropertyChanged")]
     pub const PropertyChanged: Self = Self(0x70636867);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockmessage/wrongsmpteformat?language=objc)
     #[doc(alias = "kCAClockMessage_WrongSMPTEFormat")]
     pub const WrongSMPTEFormat: Self = Self(0x3f736d70);
 }
@@ -6568,32 +6523,23 @@ unsafe impl RefEncode for CAClockMessage {
 /// except that the clock's SMPTE offset has been applied.
 ///
 /// SMPTETime structure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockTimeFormat(pub u32);
 impl CAClockTimeFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/hosttime?language=objc)
     #[doc(alias = "kCAClockTimeFormat_HostTime")]
     pub const HostTime: Self = Self(0x686f7374);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/samples?language=objc)
     #[doc(alias = "kCAClockTimeFormat_Samples")]
     pub const Samples: Self = Self(0x73616d70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/beats?language=objc)
     #[doc(alias = "kCAClockTimeFormat_Beats")]
     pub const Beats: Self = Self(0x62656174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/seconds?language=objc)
     #[doc(alias = "kCAClockTimeFormat_Seconds")]
     pub const Seconds: Self = Self(0x73656373);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/smpteseconds?language=objc)
     #[doc(alias = "kCAClockTimeFormat_SMPTESeconds")]
     pub const SMPTESeconds: Self = Self(0x736d7073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/smptetime?language=objc)
     #[doc(alias = "kCAClockTimeFormat_SMPTETime")]
     pub const SMPTETime: Self = Self(0x736d7074);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktimeformat/absoluteseconds?language=objc)
     #[doc(alias = "kCAClockTimeFormat_AbsoluteSeconds")]
     pub const AbsoluteSeconds: Self = Self(0x61736563);
 }
@@ -6606,29 +6552,17 @@ unsafe impl RefEncode for CAClockTimeFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_unknownpropertyerror?language=objc)
 pub const kCAClock_UnknownPropertyError: OSStatus = -66816;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidpropertysizeerror?language=objc)
 pub const kCAClock_InvalidPropertySizeError: OSStatus = -66815;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidtimeformaterror?language=objc)
 pub const kCAClock_InvalidTimeFormatError: OSStatus = -66814;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidsyncmodeerror?language=objc)
 pub const kCAClock_InvalidSyncModeError: OSStatus = -66813;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidsyncsourceerror?language=objc)
 pub const kCAClock_InvalidSyncSourceError: OSStatus = -66812;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidtimebaseerror?language=objc)
 pub const kCAClock_InvalidTimebaseError: OSStatus = -66811;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidtimebasesourceerror?language=objc)
 pub const kCAClock_InvalidTimebaseSourceError: OSStatus = -66810;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidsmpteformaterror?language=objc)
 pub const kCAClock_InvalidSMPTEFormatError: OSStatus = -66809;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidsmpteoffseterror?language=objc)
 pub const kCAClock_InvalidSMPTEOffsetError: OSStatus = -66808;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invaliduniterror?language=objc)
 pub const kCAClock_InvalidUnitError: OSStatus = -66807;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_invalidplayrateerror?language=objc)
 pub const kCAClock_InvalidPlayRateError: OSStatus = -66806;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_cannotsettimeerror?language=objc)
 pub const kCAClock_CannotSetTimeError: OSStatus = -66805;
 
 #[repr(C)]
@@ -6643,24 +6577,16 @@ unsafe impl RefEncode for OpaqueCAClock {
 }
 
 /// A reference to a Core Audio Clock object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockref?language=objc)
 pub type CAClockRef = *mut OpaqueCAClock;
 
 /// MIDI quarter notes (see MIDI specs)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockbeats?language=objc)
 pub type CAClockBeats = f64;
 
 /// A musical tempo in beats per minute.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocktempo?language=objc)
 pub type CAClockTempo = f64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksamples?language=objc)
 pub type CAClockSamples = f64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockseconds?language=objc)
 pub type CAClockSeconds = f64;
 
 /// A client-supplied function called when the clock's state changes.
@@ -6672,8 +6598,6 @@ pub type CAClockSeconds = f64;
 /// Parameter `message`: Signifies the kind of event which occurred.
 ///
 /// Parameter `param`: This value is specific to the message (currently no messages have values).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocklistenerproc?language=objc)
 pub type CAClockListenerProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, CAClockMessage, NonNull<c_void>)>;
 
@@ -6686,8 +6610,6 @@ pub type CAClockListenerProc =
 /// The beat time at which the tempo changes.
 ///
 /// The new tempo as of that time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/catempomapentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CATempoMapEntry {
@@ -6717,8 +6639,6 @@ unsafe impl RefEncode for CATempoMapEntry {
 /// The numerator of the new time signature.
 ///
 /// The denominator of the new time signature (1, 2, 4, 8, etc.).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cametertrackentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAMeterTrackEntry {
@@ -6753,8 +6673,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocknew(_:_:)?language=objc)
     pub fn CAClockNew(in_reserved_flags: u32, out_ca_clock: NonNull<CAClockRef>) -> OSStatus;
 }
 
@@ -6770,8 +6688,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockdispose(_:)?language=objc)
     pub fn CAClockDispose(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6800,8 +6716,6 @@ extern "C-unwind" {
     /// - `in_ca_clock` must be a valid pointer.
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockgetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn CAClockGetPropertyInfo(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -6836,8 +6750,6 @@ extern "C-unwind" {
     /// - `in_ca_clock` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockgetproperty(_:_:_:_:)?language=objc)
     pub fn CAClockGetProperty(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -6868,8 +6780,6 @@ extern "C-unwind" {
     ///
     /// - `in_ca_clock` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksetproperty(_:_:_:_:)?language=objc)
     pub fn CAClockSetProperty(
         in_ca_clock: CAClockRef,
         in_property_id: CAClockPropertyID,
@@ -6903,8 +6813,6 @@ extern "C-unwind" {
     /// - `in_ca_clock` must be a valid pointer.
     /// - `in_listener_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockaddlistener(_:_:_:)?language=objc)
     pub fn CAClockAddListener(
         in_ca_clock: CAClockRef,
         in_listener_proc: CAClockListenerProc,
@@ -6935,8 +6843,6 @@ extern "C-unwind" {
     /// - `in_ca_clock` must be a valid pointer.
     /// - `in_listener_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockremovelistener(_:_:_:)?language=objc)
     pub fn CAClockRemoveListener(
         in_ca_clock: CAClockRef,
         in_listener_proc: CAClockListenerProc,
@@ -6956,8 +6862,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockstart(_:)?language=objc)
     pub fn CAClockStart(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6973,8 +6877,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockstop(_:)?language=objc)
     pub fn CAClockStop(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -6997,8 +6899,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockarm(_:)?language=objc)
     pub fn CAClockArm(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -7014,8 +6914,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockdisarm(_:)?language=objc)
     pub fn CAClockDisarm(in_ca_clock: CAClockRef) -> OSStatus;
 }
 
@@ -7037,8 +6935,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ca_clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksetplayrate(_:_:)?language=objc)
     pub fn CAClockSetPlayRate(in_ca_clock: CAClockRef, in_play_rate: f64) -> OSStatus;
 }
 
@@ -7064,8 +6960,6 @@ extern "C-unwind" {
     ///
     /// - `in_ca_clock` must be a valid pointer.
     /// - `out_play_rate` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockgetplayrate(_:_:)?language=objc)
     pub fn CAClockGetPlayRate(in_ca_clock: CAClockRef, out_play_rate: NonNull<f64>) -> OSStatus;
 }
 
@@ -7094,8 +6988,6 @@ extern "C-unwind" {
     ///
     /// - `in_ca_clock` must be a valid pointer.
     /// - `out_smpte_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksecondstosmptetime(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CAClockSecondsToSMPTETime(
         in_ca_clock: CAClockRef,
@@ -7128,8 +7020,6 @@ extern "C-unwind" {
     /// - `in_ca_clock` must be a valid pointer.
     /// - `in_smpte_time` must be a valid pointer.
     /// - `out_seconds` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclocksmptetimetoseconds(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CAClockSMPTETimeToSeconds(
         in_ca_clock: CAClockRef,
@@ -7170,8 +7060,6 @@ extern "C-unwind" {
     ///
     /// - `in_ca_clock` must be a valid pointer.
     /// - `out_bar_beat_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockbeatstobarbeattime(_:_:_:_:)?language=objc)
     #[cfg(feature = "MusicPlayer")]
     pub fn CAClockBeatsToBarBeatTime(
         in_ca_clock: CAClockRef,
@@ -7204,8 +7092,6 @@ extern "C-unwind" {
     /// - `in_ca_clock` must be a valid pointer.
     /// - `in_bar_beat_time` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockbarbeattimetobeats(_:_:_:)?language=objc)
     #[cfg(feature = "MusicPlayer")]
     pub fn CAClockBarBeatTimeToBeats(
         in_ca_clock: CAClockRef,
@@ -7235,8 +7121,6 @@ extern "C-unwind" {
     ///
     /// - `in_ca_clock` must be a valid pointer.
     /// - `in_midi_packet_list` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockparsemidi(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn CAClockParseMIDI(
         in_ca_clock: CAClockRef,
@@ -7245,6 +7129,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the name of a sound bank from a sound bank file at a specified URL.
+    ///
+    /// Parameters:
+    /// - inURL: A URL that points to the sound bank whose name you want to get.
+    ///
+    /// - outName: The name of the sound bank.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// This will return the name of a sound bank from a DLS or SF2 bank.
     /// The name should be released by the caller.
     ///
@@ -7258,8 +7155,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/copynamefromsoundbank(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyNameFromSoundBank(in_url: &CFURL, out_name: NonNull<*const CFString>) -> OSStatus;
 }
@@ -7289,8 +7184,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_instrument_info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/copyinstrumentinfofromsoundbank(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyInstrumentInfoFromSoundBank(
         in_url: &CFURL,

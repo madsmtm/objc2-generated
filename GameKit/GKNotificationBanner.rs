@@ -8,10 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A Game Center-style banner that displays a message to the local player.
+    ///
+    /// ## Overview
+    ///
+    /// This class displays a message in a banner to the local player, similar to the banner that GameKit displays when a player earns an achievement. If the game is in the foreground, the banner appears immediately. If the game is in the background, the banner appears when the game becomes active.
+    ///
+    /// To display the banner with your message, use the [`showBannerWithTitle:message:completionHandler:`](https://developer.apple.com/documentation/gamekit/gknotificationbanner/show(withtitle:message:completionhandler:)) method. To specify a duration that GameKit presents the banner, use the [`showBannerWithTitle:message:duration:completionHandler:`](https://developer.apple.com/documentation/gamekit/gknotificationbanner/show(withtitle:message:duration:completionhandler:)) method instead. Optionally, pass these methods a completion handler that GameKit calls after it dismisses the banner.
+    ///
+    /// ```swift
+    /// GKNotificationBanner.show(withTitle:"Hooray",
+    ///                           message:"You passed level 1 and can move to level 2.",
+    ///                           completionHandler: nil)
+    /// ```
+    ///
+    ///
     /// Asynchronously shows a notification banner like the one used for Game Center’s “Welcome Back” message.
     /// If a banner is already being displayed, additional banners will be shown in sequence. Use this to notify the user of game events, high scores, completed achievements, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gknotificationbanner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit."]

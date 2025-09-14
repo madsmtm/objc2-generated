@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptor?language=objc)
+    /// A configuration that instructs the GPU where to store counter data from the beginning and end of a compute pass.
+    ///
+    /// ## Overview
+    ///
+    /// For more context about configuring sample buffer attachments for compute passes, see [Sampling GPU data into counter sample buffers](https://developer.apple.com/documentation/metal/sampling-gpu-data-into-counter-sample-buffers). That article is one of a series in [GPU counters and counter sample buffers](https://developer.apple.com/documentation/metal/gpu-counters-and-counter-sample-buffers) about sampling Metal hardware counters for performance measurement.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePassSampleBufferAttachmentDescriptor;
@@ -111,7 +117,13 @@ impl DefaultRetained for MTLComputePassSampleBufferAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepasssamplebufferattachmentdescriptorarray?language=objc)
+    /// A container that stores an array of sample buffer attachments for a compute pass.
+    ///
+    /// ## Overview
+    ///
+    /// The number of elements in the array is at least the number of elements in an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`counterSets`](https://developer.apple.com/documentation/metal/mtldevice/countersets) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePassSampleBufferAttachmentDescriptorArray;
@@ -167,9 +179,8 @@ impl DefaultRetained for MTLComputePassSampleBufferAttachmentDescriptorArray {
 }
 
 extern_class!(
+    /// A description of how to dispatch execution of pass commands and GPU performance sampling.
     /// MTLComputePassDescriptor represents a collection of attachments to be used to create a concrete compute command encoder
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePassDescriptor;

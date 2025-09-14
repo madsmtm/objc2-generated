@@ -10,77 +10,112 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A key that indicates the minimum bit rate of the variant to download.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, a download task selects the highest bit rate variant available. To download a variant of a particular size, provide an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) value that indicates the preferred bit rate.
+    ///
+    ///
     /// The lowest media bitrate greater than or equal to this value will be selected. Value should be a NSNumber in bps. If no suitable media bitrate is found, the highest media bitrate will be selected.
     /// The value for this key should be a NSNumber.
     ///
     /// By default, the highest media bitrate will be selected for download.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredmediabitratekey?language=objc)
     #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead"]
     pub static AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that indicates the minimum presentation size of the variant to download.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, a download task selects the variant with the largest media presentation size. To download a variant of a particular size, provide a [`CGSize`](https://developer.apple.com/documentation/corefoundation/cgsize) value for this key.
+    ///
+    ///
     /// The lowest media presentation size greater than or equal to this value will be selected. If no suitable media presentation size is found, the highest media presentation size will be selected.
     /// The value for this key should be a NSValue of CGSize.
     ///
     /// By default, the highest media presentation size will be selected for download.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskminimumrequiredpresentationsizekey?language=objc)
     #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with predicateForPresentationWidth and predicateForPresentationHeight instead"]
     pub static AVAssetDownloadTaskMinimumRequiredPresentationSizeKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that indicates which media selection to download.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, a download task automatically retrieves all of an asset’s media selections. To download a specific media selection, provide an [`AVMediaSelection`](https://developer.apple.com/documentation/avfoundation/avmediaselection) object for this key.
+    ///
+    ///
     /// The media selection for this download.
     /// The value for this key should be an AVMediaSelection.
     ///
     /// By default, media selections for AVAssetDownloadTask will be automatically selected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionkey?language=objc)
     #[deprecated = "Use AVAssetDownloadConfiguration:mediaSelections instead"]
     pub static AVAssetDownloadTaskMediaSelectionKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that indicates whether the task downloads media selections with support for multichannel playback, when available.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, download tasks retrieve the variant’s stereo audio and the most capable multichannel rendition available. Provide a Boolean value of [`false`](https://developer.apple.com/documentation/swift/false) to disable this behavior.
+    ///
+    ///
     /// Download the specified media selections with or without support for multichannel playback.
     /// The value for this key should be an NSNumber representing a BOOL.
     ///
     /// By default AVAssetDownloadTask will prefer multichannel by downloading the most capable multichannel rendition available in additon to stereo.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskmediaselectionprefersmultichannelkey?language=objc)
     #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with predicateForChannelCount instead"]
     pub static AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that indicates whether the task downloads media selections in lossless audio format, when available.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, a download task prefers downloading lossy audio formats. Provide a Boolean value of [`true`](https://developer.apple.com/documentation/swift/true) to change this behavior.
+    ///
+    ///
     /// Download the specified media selections in lossless audio representation.
     /// The value for this key should be an NSNumber representing a BOOL.
     ///
     /// By default AVAssetDownloadTask will prefer lossy audio representation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskpreferslosslessaudiokey?language=objc)
     #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'%d in audioAttributes.formatIDs', kAudioFormatAppleLossless]"]
     pub static AVAssetDownloadTaskPrefersLosslessAudioKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that indicates whether the task downloads HDR instead of SDR video, when available.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, a download task prefers downloading HDR content. Provide a Boolean value of [`false`](https://developer.apple.com/documentation/swift/false) to change this behavior.
+    ///
+    ///
     /// Download the specified media selections with or without HDR content.
     /// The value for this key should be an NSNumber representing a BOOL.
     ///
     /// By default AVAssetDownloadTask will prefer HDR content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtaskprefershdrkey?language=objc)
     #[deprecated = "Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'videoAttributes.videoRange == %@', AVVideoRangePQ]"]
     pub static AVAssetDownloadTaskPrefersHDRKey: &'static NSString;
 }
 
 extern_class!(
+    /// A session used to download HTTP Live Streaming assets.
+    ///
+    /// ## Overview
+    ///
+    /// This class is a subclass of [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask) that you use to download HTTP Live Streaming assets. You create instances of this class by calling [`assetDownloadTaskWithConfiguration:`](https://developer.apple.com/documentation/avfoundation/avassetdownloadurlsession/makeassetdownloadtask(downloadconfiguration:)) on the download session.
+    ///
+    ///
     /// A NSURLSessionTask that accepts remote AVURLAssets to download locally.
     ///
     /// Should be created with -[AVAssetDownloadURLSession assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:]. To utilize local data for playback for downloads that are in-progress, re-use the URLAsset supplied in initialization. An AVAssetDownloadTask may be instantiated with a destinationURL pointing to an existing asset on disk, for the purpose of completing or augmenting a downloaded asset.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadTask;
@@ -179,14 +214,13 @@ impl AVAssetDownloadTask {
 }
 
 extern_class!(
+    /// An object that provides the configuration for a download task.
     /// Configuration parameters for the download task.
     ///
     /// Download configuration consists of primary and auxiliary content configurations. Primary content configuration represents the primary set of renditions essential for offline playback. Auxiliary content configurations represent additional configurations to complement the primary.
     /// For example, the primary content configuration may represent stereo audio renditions and auxiliary configuration may represent complementing multichannel audio renditions.
     ///
     /// It is important to configure your download configuration object appropriately before using it to create a download task. Download task makes a copy of the configuration settings you provide and use those settings to configure the task. Once configured, the task object ignores any changes you make to the NSURLSessionConfiguration object. If you need to modify your settings, you must update the download configuration object and use it to create a new download task object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadConfiguration;
@@ -305,9 +339,8 @@ impl AVAssetDownloadConfiguration {
 }
 
 extern_class!(
+    /// A configuration object that contains variant qualifiers and media options.
     /// Represents the configuration consisting of variant and the variant's media options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadcontentconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadContentConfiguration;
@@ -380,13 +413,12 @@ impl AVAssetDownloadContentConfiguration {
 }
 
 extern_class!(
+    /// A task that downloads multiple media selections for an asset.
     /// An AVAssetDownloadTask used for downloading multiple AVMediaSelections for a single AVAsset, under the umbrella of a single download task.
     ///
     /// Should be created with -[AVAssetDownloadURLSession aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:. For progress tracking, monitor the delegate callbacks for each childAssetDownloadTask.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
@@ -452,9 +484,8 @@ impl AVAggregateAssetDownloadTask {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to implement to respond to asset-download events.
     /// Delegate methods to implement when adopting AVAssetDownloadTask. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloaddelegate?language=objc)
     pub unsafe trait AVAssetDownloadDelegate:
         NSURLSessionTaskDelegate + Send + Sync
     {
@@ -623,9 +654,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A URL session that creates and executes asset download tasks.
     /// A subclass of NSURLSession to support AVAssetDownloadTask.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadurlsession?language=objc)
     #[unsafe(super(NSURLSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadURLSession;

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityidentification?language=objc)
+    /// Methods that associate a unique identifier with elements in your user interface.
+    ///
+    /// ## Overview
+    ///
+    /// You can use the identifiers you define in UI Automation scripts because the value of [`accessibilityIdentifier`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilityidentifier) corresponds to the return value of the name method of `UIAElement`.
+    ///
+    ///
     pub unsafe trait UIAccessibilityIdentification:
         NSObjectProtocol + MainThreadOnly
     {

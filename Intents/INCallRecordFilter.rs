@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordfilter?language=objc)
+    /// Filters a user specifies to redial a call.
+    ///
+    /// ## Overview
+    ///
+    /// Use this method to create filters contributed by the user to redial a call. The `INCallRecordFilter` object identifies the person, type of call, and ability to make the call to initiate the user’s request.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INCallRecordFilter;

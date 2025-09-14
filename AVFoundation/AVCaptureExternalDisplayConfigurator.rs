@@ -14,9 +14,14 @@ use crate::*;
 extern_class!(
     /// A class you use to specify a configuration to your external display configurator.
     ///
-    /// Using an ``AVCaptureExternalDisplayConfiguration``, you direct your ``AVCaptureExternalDisplayConfigurator`` how to configure an external display to match your device's active video format.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfiguration?language=objc)
+    /// Using an [`AVCaptureExternalDisplayConfiguration`](https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfiguration), you direct your [`AVCaptureExternalDisplayConfigurator`](https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator) how to configure an external display to match your device’s active video format.
+    ///
+    ///
+    /// A class you use to specify a configuration to your external display configurator.
+    ///
+    /// Using an ``AVCaptureExternalDisplayConfiguration``, you direct your ``AVCaptureExternalDisplayConfigurator`` how to configure an external display to match your device's active video format.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureExternalDisplayConfiguration;
@@ -82,13 +87,26 @@ impl AVCaptureExternalDisplayConfiguration {
 }
 
 extern_class!(
+    /// A configurator class allowing you to configure properties of an external display to match the camera’s active video format.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AVCaptureExternalDisplayConfigurator`](https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator) allows you to configure a connected external display to output a clean feed using a `CALayer`. Using the configurator, you can opt into automatic adjustment of the external display’s color space and / or frame rate to match your device’s capture configuration. These adjustments are only applied to the external display, not to the device.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Not all displays support the same configuration options as the device’s capture formats. Your adjustments to the external display are applied with utmost effort to accurately represent the capture device. When your capture device’s [`activeFormat`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat) is unavailable on the external display, the configurator automatically chooses the closest available format.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A configurator class allowing you to configure properties of an external display to match the camera's active video format.
     ///
     /// An ``AVCaptureExternalDisplayConfigurator`` allows you to configure a connected external display to output a clean feed using a ``CALayer``. Using the configurator, you can opt into automatic adjustment of the external display’s color space and / or frame rate to match your device’s capture configuration. These adjustments are only applied to the external display, not to the device.
     ///
     /// - Note: Not all displays support the same configuration options as the device’s capture formats. Your adjustments to the external display are applied with utmost effort to accurately represent the capture device. When your capture device's ``AVCaptureDevice/activeFormat`` is unavailable on the external display, the configurator automatically chooses the closest available format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureExternalDisplayConfigurator;

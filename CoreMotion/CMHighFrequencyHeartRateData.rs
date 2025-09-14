@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence?language=objc)
+/// The level of confidence in the accuracy of the heart rate data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMHighFrequencyHeartRateDataConfidence(pub NSInteger);
 impl CMHighFrequencyHeartRateDataConfidence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/low?language=objc)
+    /// A low level of confidence in the heart rate data.
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/medium?language=objc)
+    /// A medium level of confidence in the heart rate data.
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/high?language=objc)
+    /// A high level of confidence in the heart rate data.
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceHigh")]
     pub const High: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence/highest?language=objc)
+    /// The highest level of confidence in the heart rate data.
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceHighest")]
     pub const Highest: Self = Self(3);
 }
@@ -36,7 +36,13 @@ unsafe impl RefEncode for CMHighFrequencyHeartRateDataConfidence {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedata?language=objc)
+    /// A class that represents heart rate data collected at 1 Hz.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`heartRate`](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedata/heartrate) property to get the data, and the [`confidence`](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedata/confidence) property for the accuracy.
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

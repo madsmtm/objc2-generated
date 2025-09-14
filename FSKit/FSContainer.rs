@@ -8,35 +8,42 @@ use crate::*;
 
 /// An enumeration of container state values.
 ///
+/// ## Overview
+///
+/// This enumeration represents values for a container’s state engine. Containers start in the [`FSContainerStateNotReady`](https://developer.apple.com/documentation/fskit/fscontainerstate/notready) state.
+///
+///
+/// An enumeration of container state values.
+///
 /// This enumeration represents values for a container's state engine.
 /// Containers start in the ``notReady`` state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSContainerState(pub NSInteger);
 impl FSContainerState {
+    /// The container isn’t ready.
     /// The container isn't ready.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/notready?language=objc)
     #[doc(alias = "FSContainerStateNotReady")]
     pub const NotReady: Self = Self(0);
     /// The container is blocked from transitioning from the not-ready state to the ready state by a potentially-recoverable error.
     ///
+    /// ## Discussion
+    ///
     /// This state implies that the error has a resolution that would allow the container to become ready, such as correcting an incorrect password.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/blocked?language=objc)
+    ///
+    /// The container is blocked from transitioning from the not-ready state to the ready state by a potentially-recoverable error.
+    ///
+    /// This state implies that the error has a resolution that would allow the container to become ready, such as correcting an incorrect password.
     #[doc(alias = "FSContainerStateBlocked")]
     pub const Blocked: Self = Self(1);
     /// The container is ready, but inactive.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/ready?language=objc)
+    /// The container is ready, but inactive.
     #[doc(alias = "FSContainerStateReady")]
     pub const Ready: Self = Self(2);
     /// The container is active, and one or more volumes are active.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstate/active?language=objc)
+    /// The container is active, and one or more volumes are active.
     #[doc(alias = "FSContainerStateActive")]
     pub const Active: Self = Self(3);
 }
@@ -50,6 +57,19 @@ unsafe impl RefEncode for FSContainerState {
 }
 
 extern_class!(
+    /// A type that represents a container’s status.
+    ///
+    /// ## Overview
+    ///
+    /// This type contains two properties:
+    ///
+    /// - The [`state`](https://developer.apple.com/documentation/fskit/fscontainerstatus/state) value that indicates the state of the container, such as [`FSContainerStateReady`](https://developer.apple.com/documentation/fskit/fscontainerstate/ready) or [`FSContainerStateBlocked`](https://developer.apple.com/documentation/fskit/fscontainerstate/blocked).
+    ///
+    /// - The [`status`](https://developer.apple.com/documentation/fskit/fscontainerstatus/status) is an error (optional in Swift, nullable in Objective-C) that provides further information about the state, such as why the container is blocked.
+    ///
+    /// Examples of statuses that require intervention include errors that indicate the container isn’t ready (POSIX `EAGAIN` or `ENOTCONN`), the container needs authentication (`ENEEDAUTH`), or that authentication failed (`EAUTH`). The status can also be an informative error, such as the FSKit error [`FSErrorStatusOperationInProgress`](https://developer.apple.com/documentation/fskit/fserror/code/statusoperationinprogress).
+    ///
+    ///
     /// A type that represents a container's status.
     ///
     /// This type contains two properties:
@@ -59,8 +79,6 @@ extern_class!(
     ///
     /// Examples of statuses that require intervention include errors that indicate the container isn't ready (POSIX `EAGAIN` or `ENOTCONN`), the container needs authentication (`ENEEDAUTH`), or that authentication failed (`EAUTH`).
     /// The status can also be an informative error, such as the FSKit error ``FSError/Code/statusOperationInProgress``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontainerstatus?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSContainerStatus;
@@ -150,14 +168,27 @@ impl FSContainerStatus {
 extern_class!(
     /// A type that identifies a container.
     ///
+    /// ## Overview
+    ///
+    /// The identifier is either a UUID or a UUID with additional differentiating bytes. Some network protocols evaluate access based on a user ID when connecting. In this situation, when a file server receives multiple client connections with different user IDs, the server provides different file hierarchies to each. For such systems, represent the container identifier as the UUID associated with the server, followed by four or eight bytes to differentiate connections.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Don’t subclass this class.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A type that identifies a container.
+    ///
     /// The identifier is either a UUID or a UUID with additional differentiating bytes.
     /// Some network protocols evaluate access based on a user ID when connecting.
     /// In this situation, when a file server receives multiple client connections with different user IDs, the server provides different file hierarchies to each.
     /// For such systems, represent the container identifier as the UUID associated with the server, followed by four or eight bytes to differentiate connections.
     ///
     /// > Important: Don't subclass this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscontaineridentifier?language=objc)
     #[unsafe(super(FSEntityIdentifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FSEntityIdentifier")]

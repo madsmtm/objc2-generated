@@ -6,66 +6,77 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetype?language=objc)
+/// The source type for the verifiable clinical record.
 // NS_TYPED_ENUM
 pub type HKVerifiableClinicalRecordSourceType = NSString;
 
 extern "C" {
+    /// A value indicating SMART health cards.
     /// Represents a SMART Health Card source type for a verifiable record.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetype/smarthealthcard?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeSMARTHealthCard:
         &'static HKVerifiableClinicalRecordSourceType;
 }
 
 extern "C" {
+    /// A value indicating EU Digital COVID Certificates.
     /// Represents a EU Digital COVID Certificate source type for a verifiable record.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetype/eudigitalcovidcertificate?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate:
         &'static HKVerifiableClinicalRecordSourceType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype?language=objc)
+/// The type of record returned by a verifiable clinical record query.
 // NS_TYPED_ENUM
 pub type HKVerifiableClinicalRecordCredentialType = NSString;
 
 extern "C" {
+    /// A value that represents records about COVID-19.
     /// Represents the COVID-19 credential type for a verifiable record.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/covid19?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeCOVID19:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
+    /// A value that represents immunizations.
     /// Represents the immunization credential type for a verifiable record.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/immunization?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeImmunization:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
+    /// A value that represents laboratory results.
     /// Represents the laboratory credential type for a verifiable record.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/laboratory?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeLaboratory:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern "C" {
+    /// A value that represents recovery information.
     /// Represents the recovery credential type for a verifiable record.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/recovery?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeRecovery:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
 
 extern_class!(
-    /// An NSObject that represents a verifiable clinical record.
+    /// A sample that represents the contents of a SMART Health Card or EU Digital COVID Certificate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord?language=objc)
+    /// ## Overview
+    ///
+    /// [`HKVerifiableClinicalRecord`](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord) samples contain data from a SMART Health Card or EU Digital COVID Certificate. Verifiable clinical records combine information about the user’s identity with clinical data, like an immunization record or a lab test result. The organization that produced the data cryptographically signs the bundle.
+    ///
+    /// Apps that use verifiable clinical records can use the cryptographic signature to verify the authenticity of the contents. To verify the card:
+    ///
+    /// 1. Access the card’s raw payload using the clinical record’s [`dataRepresentation`](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecord/datarepresentation) property.
+    ///
+    /// 2. Unzip the payload and parse out the `iss` value, which contains a URL that identifies the organization that issued the card.
+    ///
+    /// 3. Get the public key from the issuer.
+    ///
+    /// 4. Verify the payload’s signature.
+    ///
+    /// For more information, see [SMART Health Cards Framework](https://smarthealth.cards) and [Electronic Health Certificates](https://github.com/ehn-dcc-development/hcert-spec). You can download example SMART cards for testing and development from [Examples](https://smarthealth.cards/examples/).
+    ///
+    ///
+    /// An NSObject that represents a verifiable clinical record.
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

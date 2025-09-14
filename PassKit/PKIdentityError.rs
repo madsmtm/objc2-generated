@@ -7,65 +7,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The error domain for identity errors.
     /// Error domain for identity errors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerrordomain?language=objc)
     pub static PKIdentityErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes for identity operations.
 /// Identity error codes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKIdentityError(pub NSInteger);
 impl PKIdentityError {
+    /// An error that indicates an unknown error.
     /// Catch-all for all errors without a specific error code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/unknown?language=objc)
     #[doc(alias = "PKIdentityErrorUnknown")]
     pub const Unknown: Self = Self(0);
+    /// An error that indicates the request originates from a device the framework doesn’t support.
     /// Returned if the request originates from an unsupported device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/notsupported?language=objc)
     #[doc(alias = "PKIdentityErrorNotSupported")]
     pub const NotSupported: Self = Self(1);
+    /// An error that indicates the user cancels the presented sheet.
     /// Returned if the sheet was cancelled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/cancelled?language=objc)
     #[doc(alias = "PKIdentityErrorCancelled")]
     pub const Cancelled: Self = Self(2);
+    /// An error that indicates a network isn’t available.
     /// Returned if a request cannot be processed because
     /// the network is not available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/networkunavailable?language=objc)
     #[doc(alias = "PKIdentityErrorNetworkUnavailable")]
     pub const NetworkUnavailable: Self = Self(3);
+    /// An error that indicates the elements aren’t supported.
     /// Returned if no supported elements were requested.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/noelementsrequested?language=objc)
     #[doc(alias = "PKIdentityErrorNoElementsRequested")]
     pub const NoElementsRequested: Self = Self(4);
+    /// An error that indicates a request is already in progress.
     /// Returned if a request is made but another request is already
     /// in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/requestalreadyinprogress?language=objc)
     #[doc(alias = "PKIdentityErrorRequestAlreadyInProgress")]
     pub const RequestAlreadyInProgress: Self = Self(5);
+    /// An error that indicates the number is too large or unsuitable.
     /// Returned if the caller-supplied nonce is too large or otherwise unsuitable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/invalidnonce?language=objc)
     #[doc(alias = "PKIdentityErrorInvalidNonce")]
     pub const InvalidNonce: Self = Self(6);
+    /// An error that indicates an element the app requests isn’t valid.
     /// Returned if an element requested by the caller is invalid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/invalidelement?language=objc)
     #[doc(alias = "PKIdentityErrorInvalidElement")]
     pub const InvalidElement: Self = Self(7);
     /// Returned if the document descriptor region is not supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityerror-swift.struct/code/regionnotsupported?language=objc)
     #[doc(alias = "PKIdentityErrorRegionNotSupported")]
     pub const RegionNotSupported: Self = Self(8);
 }

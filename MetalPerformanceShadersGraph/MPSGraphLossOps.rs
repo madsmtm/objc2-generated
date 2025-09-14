@@ -7,31 +7,26 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The type of the reduction the graph applies in the loss operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype?language=objc)
+/// The type of the reduction the graph applies in the loss operations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphLossReductionType(pub u64);
 impl MPSGraphLossReductionType {
     /// Computes the loss without reduction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/none?language=objc)
+    /// Computes the loss without reduction.
     #[doc(alias = "MPSGraphLossReductionTypeNone")]
     pub const None: Self = Self(0);
     /// Computes the loss without reduction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/axis?language=objc)
+    /// Computes the loss without reduction.
     #[doc(alias = "MPSGraphLossReductionTypeAxis")]
     pub const Axis: Self = Self(MPSGraphLossReductionType::None.0);
     /// Reduces the loss down to a scalar with a sum operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/sum?language=objc)
+    /// Reduces the loss down to a scalar with a sum operation.
     #[doc(alias = "MPSGraphLossReductionTypeSum")]
     pub const Sum: Self = Self(1);
     /// Reduces the loss down to a scalar with a mean operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlossreductiontype/mean?language=objc)
+    /// Reduces the loss down to a scalar with a mean operation.
     #[doc(alias = "MPSGraphLossReductionTypeMean")]
     pub const Mean: Self = Self(2);
 }

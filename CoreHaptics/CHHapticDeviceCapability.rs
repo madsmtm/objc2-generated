@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol for providing default, mininum, and maximum values of a parameter.
     /// A protocol for querying mininum, maximum, and default values for a CHHapticEventParameter or CHHapticDynamicParameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticparameterattributes?language=objc)
     pub unsafe trait CHHapticParameterAttributes: NSObjectProtocol {
         /// The minimum value for the parameter.
         #[unsafe(method(minValue))]
@@ -30,10 +29,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that defines haptics and audio capabilities of a device.
     /// A protocol which defines properties describing haptics and audio capabilities for a particular device.
     /// These properties include limitations and ranges of parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdevicecapability?language=objc)
     pub unsafe trait CHHapticDeviceCapability {
         /// Returns YES if the hardware supports haptic event playback.
         #[unsafe(method(supportsHaptics))]

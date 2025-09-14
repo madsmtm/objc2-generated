@@ -9,10 +9,15 @@ use crate::*;
 extern_class!(
     /// A symbolic representation of a compute operation.
     ///
+    /// ## Overview
+    ///
+    /// `NSCopy` will take a refrence, this is so `NSDictionary` can work with the tensor. All operations are created, owned and destroyed by the graph.
+    ///
+    ///
+    /// A symbolic representation of a compute operation.
+    ///
     /// `NSCopy` will take a refrence, this is so `NSDictionary` can work with the tensor.
     /// All operations are created, owned and destroyed by the graph.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

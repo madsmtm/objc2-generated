@@ -7,147 +7,200 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype?language=objc)
+/// The supported pasteboard types.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPasteboardType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/string?language=objc)
+    /// String data.
+    ///
+    /// ## Discussion
+    ///
+    /// Apps that adopt App Sandbox cannot access files identified using the [`NSPasteboardTypeString`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/string) pasteboard type. Instead, use an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object, a bookmark, or a filename pasteboard type.
+    ///
+    ///
     pub static NSPasteboardTypeString: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/pdf?language=objc)
+    /// PDF data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypePDF`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/pdf) instead.
+    ///
+    ///
     pub static NSPasteboardTypePDF: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/tiff?language=objc)
+    /// Tag Image File Format (TIFF) data.
     pub static NSPasteboardTypeTIFF: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/png?language=objc)
+    /// PNG image data.
     pub static NSPasteboardTypePNG: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/rtf?language=objc)
+    /// Rich Text Format (RTF) data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypeRTF`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/rtf) instead.
+    ///
+    ///
     pub static NSPasteboardTypeRTF: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/rtfd?language=objc)
+    /// RTFD formatted file contents.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypeRTFD`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/rtfd) instead.
+    ///
+    ///
     pub static NSPasteboardTypeRTFD: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/html?language=objc)
+    /// Type for HTML content.
+    ///
+    /// ## Discussion
+    ///
+    /// An `NSTextView` object can read HTML data, but not write it.
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypeHTML`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/html) instead.
+    ///
+    ///
     pub static NSPasteboardTypeHTML: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/tabulartext?language=objc)
+    /// Tab-separated fields of text.
     pub static NSPasteboardTypeTabularText: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/font?language=objc)
+    /// Font and character information.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypeFont`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/font) instead.
+    ///
+    ///
     pub static NSPasteboardTypeFont: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/ruler?language=objc)
+    /// Paragraph formatting information.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypeRuler`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/ruler) instead.
+    ///
+    ///
     pub static NSPasteboardTypeRuler: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/color?language=objc)
+    /// Color data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`NSPasteboardTypeColor`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/color) (and you read and write colors directly to and from the pasteboard).
+    ///
+    ///
     pub static NSPasteboardTypeColor: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/sound?language=objc)
+    /// Sound data.
     pub static NSPasteboardTypeSound: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/multipletextselection?language=objc)
+    /// Multiple text selection.
     pub static NSPasteboardTypeMultipleTextSelection: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/textfinderoptions?language=objc)
+    /// Type for the Find panel metadata property list.
     pub static NSPasteboardTypeTextFinderOptions: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/url?language=objc)
+    /// URL data for one file or resource.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`writeObjects:`](https://developer.apple.com/documentation/appkit/nspasteboard/writeobjects(_:)) to write URLs directly to the pasteboard instead.
+    ///
+    /// In macOS 10.5 and earlier, write an URL to a pasteboard using the [`writeToPasteboard:`](https://developer.apple.com/documentation/foundation/nsurl/write(to:)) method of [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl). To get an URL from a pasteboard, use the [`URLFromPasteboard:`](https://developer.apple.com/documentation/foundation/nsurl/init(frompasteboard:)) method of [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl).
+    ///
+    ///
     pub static NSPasteboardTypeURL: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/fileurl?language=objc)
+    /// A file URL.
     pub static NSPasteboardTypeFileURL: &'static NSPasteboardType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct?language=objc)
+/// Constants that represent the standard pasteboard names.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPasteboardName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/general?language=objc)
+    /// The pasteboard you use to perform ordinary cut, copy, and paste operations.
     pub static NSPasteboardNameGeneral: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/font?language=objc)
+    /// The pasteboard that holds font and character information and supports Copy Font and Paste Font commands that the text editor may implement.
     pub static NSPasteboardNameFont: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/ruler?language=objc)
+    /// The pasteboard that holds information about paragraph formats and supports the Copy Ruler and Paste Ruler commands that the text editor may implement.
     pub static NSPasteboardNameRuler: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/find?language=objc)
+    /// The pasteboard that holds information about the current state of the active application’s find panel.
     pub static NSPasteboardNameFind: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/drag?language=objc)
+    /// The pasteboard that stores data to move as the result of a drag operation.
     pub static NSPasteboardNameDrag: &'static NSPasteboardName;
 }
 
 /// A value indicating pasteboard access behavior.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum?language=objc)
+/// A value indicating pasteboard access behavior.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardAccessBehavior(pub NSInteger);
 impl NSPasteboardAccessBehavior {
+    /// The default behavior for the General pasteboard is to ask upon programmatic access. All other pasteboards default to always allow access. If an app has never triggered a pasteboard access alert, its General pasteboard will report `.default` behavior. Such an app is not shown in the corresponding System Settings pane. Once programmatic pasteboard access triggers the first pasteboard access alert, the state automatically changes to `.ask`. At this point the app starts being shown in System Settings, where the user can toggle the behavior between `.ask`, `.alwaysAllow`, and `.alwaysDeny`.
     /// The default behavior for the General pasteboard is to ask upon programmatic access. All other pasteboards default to always allow access.
     /// If an app has never triggered a pasteboard access alert, its General pasteboard will report `.default` behavior. Such an app is not shown in the corresponding System Settings pane.
     /// Once programmatic pasteboard access triggers the first pasteboard access alert, the state automatically changes to `.ask`. At this point the app starts being shown in System Settings, where the user can toggle the behavior between `.ask`, `.alwaysAllow`, and `.alwaysDeny`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/default?language=objc)
     #[doc(alias = "NSPasteboardAccessBehaviorDefault")]
     pub const Default: Self = Self(0);
     /// The system will notify the user and ask for permission before granting pasteboard access. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/ask?language=objc)
+    /// The system will notify the user and ask for permission before granting pasteboard access. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
     #[doc(alias = "NSPasteboardAccessBehaviorAsk")]
     pub const Ask: Self = Self(1);
     /// The system will automatically allow all pasteboard access, without notifying the user.  The app is listed in the corresponding System Settings pane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/alwaysallow?language=objc)
+    /// The system will automatically allow all pasteboard access, without notifying the user.  The app is listed in the corresponding System Settings pane.
     #[doc(alias = "NSPasteboardAccessBehaviorAlwaysAllow")]
     pub const AlwaysAllow: Self = Self(2);
     /// The system will automatically deny all pasteboard access, without notifying the user. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/accessbehavior-swift.enum/alwaysdeny?language=objc)
+    /// The system will automatically deny all pasteboard access, without notifying the user. However, access that is both user originated and paste related will always be allowed, and will not result in a notification. The app is listed in the corresponding System Settings pane.
     #[doc(alias = "NSPasteboardAccessBehaviorAlwaysDeny")]
     pub const AlwaysDeny: Self = Self(3);
 }
@@ -161,89 +214,133 @@ unsafe impl RefEncode for NSPasteboardAccessBehavior {
 }
 
 /// A pattern to detect on the pasteboard, such as a URL, text, or a number.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpattern?language=objc)
+/// A pattern to detect on the pasteboard, such as a URL, text, or a number.
 // NS_TYPED_ENUM
 pub type NSPasteboardDetectionPattern = NSString;
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that consists of a web URL.
     ///
-    /// Returns: NSString value, suitable for implementing "Paste and Go"
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternprobableweburl?language=objc)
+    /// NSString value, suitable for implementing “Paste and Go”
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that consists of a web URL.
+    ///
+    /// Returns: NSString value, suitable for implementing "Paste and Go"
     pub static NSPasteboardDetectionPatternProbableWebURL: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string suitable for use as a web search term.
     ///
-    /// Returns: NSString value, suitable for implementing "Paste and Search"
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternprobablewebsearch?language=objc)
+    /// NSString value, suitable for implementing “Paste and Search”
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string suitable for use as a web search term.
+    ///
+    /// Returns: NSString value, suitable for implementing "Paste and Search"
     pub static NSPasteboardDetectionPatternProbableWebSearch: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that consists of a numeric value.
     ///
-    /// Returns: NSNumber value
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternnumber?language=objc)
+    /// NSNumber value
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that consists of a numeric value.
+    ///
+    /// Returns: NSNumber value
     pub static NSPasteboardDetectionPatternNumber: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains a URL.
     ///
-    /// Returns: array of DDMatchLink values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternlink?language=objc)
+    /// Array of DDMatchLink values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains a URL.
+    ///
+    /// Returns: array of DDMatchLink values
     pub static NSPasteboardDetectionPatternLink: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains a phone number.
     ///
-    /// Returns: array of DDMatchPhoneNumber values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternphonenumber?language=objc)
+    /// Array of DDMatchPhoneNumber values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains a phone number.
+    ///
+    /// Returns: array of DDMatchPhoneNumber values
     pub static NSPasteboardDetectionPatternPhoneNumber: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains an email address.
     ///
-    /// Returns: array of DDMatchEmailAddress values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternemailaddress?language=objc)
+    /// Array of DDMatchEmailAddress values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains an email address.
+    ///
+    /// Returns: array of DDMatchEmailAddress values
     pub static NSPasteboardDetectionPatternEmailAddress: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains a postal address.
     ///
-    /// Returns: array of DDMatchPostalAddress values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternpostaladdress?language=objc)
+    /// Array of DDMatchPostalAddress values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains a postal address.
+    ///
+    /// Returns: array of DDMatchPostalAddress values
     pub static NSPasteboardDetectionPatternPostalAddress: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains a calendar event.
     ///
-    /// Returns: array of DDMatchCalendarEvent values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatterncalendarevent?language=objc)
+    /// Array of DDMatchCalendarEvent values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains a calendar event.
+    ///
+    /// Returns: array of DDMatchCalendarEvent values
     pub static NSPasteboardDetectionPatternCalendarEvent: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains a parcel tracking number and carrier.
     ///
-    /// Returns: array of DDMatchShipmentTrackingNumber values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternshipmenttrackingnumber?language=objc)
+    /// Array of DDMatchShipmentTrackingNumber values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains a parcel tracking number and carrier.
+    ///
+    /// Returns: array of DDMatchShipmentTrackingNumber values
     pub static NSPasteboardDetectionPatternShipmentTrackingNumber:
         &'static NSPasteboardDetectionPattern;
 }
@@ -251,44 +348,58 @@ extern "C" {
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains a flight number.
     ///
-    /// Returns: array of DDMatchFlightNumber values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternflightnumber?language=objc)
+    /// Array of DDMatchFlightNumber values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains a flight number.
+    ///
+    /// Returns: array of DDMatchFlightNumber values
     pub static NSPasteboardDetectionPatternFlightNumber: &'static NSPasteboardDetectionPattern;
 }
 
 extern "C" {
     /// A pattern that indicates the pasteboard detects a string that contains an amount of money.
     ///
-    /// Returns: array of DDMatchMoneyAmount values
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarddetectionpatternmoneyamount?language=objc)
+    /// Array of DDMatchMoneyAmount values
+    ///
+    ///
+    /// A pattern that indicates the pasteboard detects a string that contains an amount of money.
+    ///
+    /// Returns: array of DDMatchMoneyAmount values
     pub static NSPasteboardDetectionPatternMoneyAmount: &'static NSPasteboardDetectionPattern;
 }
 
 /// A metadata type to detect on the pasteboard.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardmetadatatype?language=objc)
+/// A metadata type to detect on the pasteboard.
 // NS_TYPED_ENUM
 pub type NSPasteboardMetadataType = NSString;
 
 extern "C" {
     /// A metadata type that returns the content type if the pasteboard detects a reference to a file.
     ///
-    /// Returns: UTType value for the detected content type of the file URL, if a file URL type is present.
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardmetadatatypecontenttype?language=objc)
+    /// UTType value for the detected content type of the file URL, if a file URL type is present.
+    ///
+    ///
+    /// A metadata type that returns the content type if the pasteboard detects a reference to a file.
+    ///
+    /// Returns: UTType value for the detected content type of the file URL, if a file URL type is present.
     pub static NSPasteboardMetadataTypeContentType: &'static NSPasteboardMetadataType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/contentsoptions?language=objc)
+/// Options for preparing the pasteboard.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardContentsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardContentsOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/contentsoptions/currenthostonly?language=objc)
+/// The pasteboard contents are available only on the current device, and not on any other devices.
         #[doc(alias = "NSPasteboardContentsCurrentHostOnly")]
         const CurrentHostOnly = 1<<0;
     }
@@ -302,23 +413,60 @@ unsafe impl RefEncode for NSPasteboardContentsOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptionkey?language=objc)
+/// Options for reading pasteboard data.
+///
+/// ## Discussion
+///
+/// These options can be used for both the [`readObjectsForClasses:options:`](https://developer.apple.com/documentation/appkit/nspasteboard/readobjects(forclasses:options:)) and [`canReadObjectForClasses:options:`](https://developer.apple.com/documentation/appkit/nspasteboard/canreadobject(forclasses:options:)) methods, unless otherwise specified.  The currently available options allow for customization of how URLS are read from the pasteboard.
+///
+///
 // NS_TYPED_ENUM
 pub type NSPasteboardReadingOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptionkey/urlreadingfileurlsonly?language=objc)
+    /// Option for reading URLs to restrict the results to file URLs only.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an `NSNumber` object with a boolean value.
+    ///
+    ///
     pub static NSPasteboardURLReadingFileURLsOnlyKey: &'static NSPasteboardReadingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptionkey/urlreadingcontentsconformtotypes?language=objc)
+    /// Option for reading URLs to restrict the results to URLs with contents that conform to any of the provided UTI types.
+    ///
+    /// ## Discussion
+    ///
+    /// If the content type of a URL cannot be determined, it will not be considered to match.  The value for this key is an array of UTI type strings.
+    ///
+    ///
     pub static NSPasteboardURLReadingContentsConformToTypesKey:
         &'static NSPasteboardReadingOptionKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard?language=objc)
+    /// An object that transfers data to and from the pasteboard server.
+    ///
+    /// ## Overview
+    ///
+    /// The pasteboard server is shared by all running apps. It contains data that the user has cut or copied, as well as other data that one application wants to transfer to another. [`NSPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard) objects are an application’s sole interface to the server and to all pasteboard operations.
+    ///
+    /// An [`NSPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard) object is also used to transfer data between apps and service providers listed in each application’s Services menu. The drag pasteboard is used to transfer data that is being dragged by the user.
+    ///
+    /// A pasteboard can contain multiple items. You can directly write or read any object that implements the [`NSPasteboardWriting`](https://developer.apple.com/documentation/appkit/nspasteboardwriting) or [`NSPasteboardReading`](https://developer.apple.com/documentation/appkit/nspasteboardreading) [Protocol](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html#//apple_ref/doc/uid/TP40008195-CH45) respectively. This allows you to write and read common items such as URLs, colors, images, strings, attributed strings, and sounds without an intermediary object. Your custom classes can also implement these protocols for use with the pasteboard.
+    ///
+    /// Writing methods such as [`setData:forType:`](https://developer.apple.com/documentation/appkit/nspasteboard/setdata(_:fortype:)) provide a convenient means of writing to the first pasteboard item, without having to create the first pasteboard item. You can use code like this, for example:
+    ///
+    /// ```objc
+    /// [pboard clearContents];
+    /// [pboard setData:data forType:type];
+    /// ```
+    ///
+    /// The general pasteboard, available by way of the [`generalPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard/general) class method, automatically participates with the Universal Clipboard feature in macOS 10.12 and later and in iOS 10.0 and later. There is no macOS API for interacting with this feature.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPasteboard;
@@ -706,7 +854,7 @@ impl NSPasteboard {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypeowner?language=objc)
+    /// An object that serves as a data provider for data types that use lazy data fulfillment from a pasteboard request.
     pub unsafe trait NSPasteboardTypeOwner: NSObjectProtocol {
         #[unsafe(method(pasteboard:provideDataForType:))]
         #[unsafe(method_family = none)]
@@ -719,16 +867,21 @@ extern_protocol!(
     }
 );
 
-/// * NSPasteboardWriting and NSPasteboardReading Protocols **
+/// Type to specify options for writing to a pasteboard.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/writingoptions?language=objc)
+/// ## Overview
+///
+/// For possible values, see [Pasteboard Writing Options](https://developer.apple.com/documentation/appkit/pasteboard-writing-options).
+///
+///
+/// * NSPasteboardWriting and NSPasteboardReading Protocols **
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardWritingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/writingoptions/promised?language=objc)
+/// Data for a type with this option is promised, not immediately written.
         #[doc(alias = "NSPasteboardWritingPromised")]
         const Promised = 1<<9;
     }
@@ -743,7 +896,13 @@ unsafe impl RefEncode for NSPasteboardWritingOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwriting?language=objc)
+    /// A set of methods that defines the interface for retrieving a representation of an object that can be written to a pasteboard.
+    ///
+    /// ## Overview
+    ///
+    /// The Cocoa framework classes [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl), [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor), [`NSSound`](https://developer.apple.com/documentation/appkit/nssound), [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage), and [`NSPasteboardItem`](https://developer.apple.com/documentation/appkit/nspasteboarditem) implement this protocol. You can make your custom class conform to this protocol so that you can write instances of the class to a pasteboard using the [`writeObjects:`](https://developer.apple.com/documentation/appkit/nspasteboard/writeobjects(_:)) method of [`NSPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard).
+    ///
+    ///
     pub unsafe trait NSPasteboardWriting: NSObjectProtocol {
         #[unsafe(method(writableTypesForPasteboard:))]
         #[unsafe(method_family = none)]
@@ -770,23 +929,47 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions?language=objc)
+/// Options that specify how to interpret data on the pasteboard when initializing pasteboard data.
+///
+/// ## Overview
+///
+/// You can specify only one option. If you don’t specify an option, the system uses the default [`NSPasteboardReadingAsData`](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/asdata).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardReadingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/asdata?language=objc)
+/// An option to read data from the pasteboard as-is and return it as a data object.
+///
+/// ## Discussion
+///
+/// This is the default value. AppKit returns the data in an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object.
+///
+///
         #[doc(alias = "NSPasteboardReadingAsData")]
         const AsData = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/asstring?language=objc)
+/// An option to read data from the pasteboard and convert it to a string object.
+///
+/// ## Discussion
+///
+/// AppKit puts the data in an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+///
+///
         #[doc(alias = "NSPasteboardReadingAsString")]
         const AsString = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/aspropertylist?language=objc)
+/// An option to read data from the pasteboard and unserialize it as a property list.
         #[doc(alias = "NSPasteboardReadingAsPropertyList")]
         const AsPropertyList = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/readingoptions/askeyedarchive?language=objc)
+/// An option to read data from the pasteboard and use it to initialize the object.
+///
+/// ## Discussion
+///
+/// AppKit initializes the object using its [`initWithCoder:`](https://developer.apple.com/documentation/foundation/nscoding/init(coder:)) method.
+///
+///
         #[doc(alias = "NSPasteboardReadingAsKeyedArchive")]
         const AsKeyedArchive = 1<<2;
     }
@@ -801,7 +984,13 @@ unsafe impl RefEncode for NSPasteboardReadingOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreading?language=objc)
+    /// A set of methods that defines the interface for initializing an object from a pasteboard.
+    ///
+    /// ## Overview
+    ///
+    /// The Cocoa framework classes [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl), [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor), [`NSSound`](https://developer.apple.com/documentation/appkit/nssound), [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage), and [`NSPasteboardItem`](https://developer.apple.com/documentation/appkit/nspasteboarditem) implement this protocol. You can make your custom class conform to this protocol so that you can read instances from a pasteboard using the [`readObjectsForClasses:options:`](https://developer.apple.com/documentation/appkit/nspasteboard/readobjects(forclasses:options:)) method of [`NSPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard).
+    ///
+    ///
     pub unsafe trait NSPasteboardReading: NSObjectProtocol {
         #[unsafe(method(readableTypesForPasteboard:))]
         #[unsafe(method_family = none)]
@@ -898,11 +1087,25 @@ impl NSPasteboard {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filecontents?language=objc)
+    /// A representation of a file’s contents.
+    ///
+    /// ## Discussion
+    ///
+    /// The file contents pboard type allowed you to synthesize a pboard type for a file’s contents based on the file’s extension.
+    ///
+    /// In macOS 10.6 and later, you should use the UTI of a file to represent its contents instead.
+    ///
+    ///
     pub static NSFileContentsPboardType: &'static NSPasteboardType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filenametype(forpathextension:)?language=objc)
+/// Returns a pasteboard type based on the passed file type.
+///
+/// ## Discussion
+///
+/// Returns an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) to a pasteboard type representing a filename based on the supplied string `fileType`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSCreateFilenamePboardType(
     file_type: &NSString,
@@ -914,7 +1117,13 @@ pub extern "C-unwind" fn NSCreateFilenamePboardType(
     unsafe { Retained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filecontentstype(forpathextension:)?language=objc)
+/// Returns a pasteboard type based on the passed file type.
+///
+/// ## Discussion
+///
+/// Returns an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) to a pasteboard type representing a file’s contents based on the supplied string `fileType`. `fileType` should generally be the extension part of a filename. The conversion from a named file type to a pasteboard type is simple; no mapping to standard pasteboard types is attempted.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSCreateFileContentsPboardType(
     file_type: &NSString,
@@ -926,7 +1135,13 @@ pub extern "C-unwind" fn NSCreateFileContentsPboardType(
     unsafe { Retained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/representedpathextension?language=objc)
+/// A file type based on the passed pasteboard type.
+///
+/// ## Discussion
+///
+/// This function is the inverse of both [`NSCreateFileContentsPboardType`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filecontentstype(forpathextension:)) and [`NSCreateFilenamePboardType`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filenametype(forpathextension:)). When passed a pasteboard type as returned by those functions, it returns the extension or filename from which the type was derived. It returns `nil` if `pboardType` isn’t a pasteboard type created by those functions.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSGetFileType(
     pboard_type: &NSPasteboardType,
@@ -938,7 +1153,13 @@ pub extern "C-unwind" fn NSGetFileType(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/representedpathextensions(from:)?language=objc)
+/// Returns an array of file types based on the passed pasteboard types.
+///
+/// ## Discussion
+///
+/// Accepts a null-terminated array of pointers to pasteboard types and returns a null-terminated array of the unique extensions and filenames from the file content and filename types found in the input array. It returns `nil` if the input array contains no file content or filename types. The returned array is allocated and must be freed by the caller. The pointers in the return array point into strings passed in the input array.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSGetFileTypes(
     pboard_types: &NSArray<NSPasteboardType>,
@@ -951,147 +1172,288 @@ pub extern "C-unwind" fn NSGetFileTypes(
 }
 
 extern "C" {
-    /// * Deprecated **
+    /// `NSString` data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringpboardtype?language=objc)
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Deprecated
+    /// In apps that adopt App Sandbox, use an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object, a bookmark, or a filename pasteboard type instead. In a nonsandboxed app, you can also use the [`string`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/string) pasteboard type.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// * Deprecated **
     #[deprecated]
     pub static NSStringPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilenamespboardtype?language=objc)
+    /// An array of `NSString` objects designating one or more filenames.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`writeObjects(_:)`](https://developer.apple.com/documentation/appkit/nspasteboard/writeobjects(_:)) to write file URLs to the pasteboard.
+    ///
+    ///
     #[deprecated = "Create multiple pasteboard items with NSPasteboardTypeFileURL or kUTTypeFileURL instead"]
     pub static NSFilenamesPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstiffpboardtype?language=objc)
+    /// `NSString` data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`tiff`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/tiff) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSTIFFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfpboardtype?language=objc)
+    /// Rich Text Format (RTF) data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`rtf`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/rtf) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSRTFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabulartextpboardtype?language=objc)
+    /// An `NSString` object containing tab-separated fields of text.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`tabularText`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/tabulartext) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSTabularTextPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpboardtype?language=objc)
+    /// Font and character information.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`font`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/font) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSFontPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerpboardtype?language=objc)
+    /// Paragraph formatting information.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`ruler`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/ruler) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSRulerPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpboardtype?language=objc)
+    /// `NSColor` data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`color`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/color) (and you read and write colors directly to and from the pasteboard).
+    ///
+    ///
     #[deprecated]
     pub static NSColorPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrtfdpboardtype?language=objc)
+    /// RTFD formatted file contents.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`rtfd`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/rtfd) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSRTFDPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshtmlpboardtype?language=objc)
+    /// HTML (which an `NSTextView` object can read from, but not write to).
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`html`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/html) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSHTMLPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsurlpboardtype?language=objc)
+    /// `NSURL` data for one file or resource.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`writeObjects(_:)`](https://developer.apple.com/documentation/appkit/nspasteboard/writeobjects(_:)) to write URLs directly to the pasteboard instead.
+    ///
+    /// In OS X v10.5 and earlier: to write an URL to a pasteboard you use [`write(to:)`](https://developer.apple.com/documentation/foundation/nsurl/write(to:)) ([`NSURL`](https://developer.apple.com/documentation/foundation/nsurl)); to get an URL from a pasteboard you use [`init(fromPasteboard:)`](https://developer.apple.com/documentation/foundation/nsurl/init(frompasteboard:)) ([`NSURL`](https://developer.apple.com/documentation/foundation/nsurl)).
+    ///
+    ///
     #[deprecated]
     pub static NSURLPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpboardtype?language=objc)
+    /// PDF data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`pdf`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/pdf) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSPDFPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultipletextselectionpboardtype?language=objc)
+    /// Multiple text selection.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use [`multipleTextSelection`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/multipletextselection) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSMultipleTextSelectionPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/postscript?language=objc)
+    /// Encapsulated PostScript (EPS) code.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use `@"com.adobe.encapsulated-postscript"` instead.
+    ///
+    ///
     #[deprecated]
     pub static NSPostScriptPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/vcard?language=objc)
+    /// VCard data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use `(NSString *)kUTTypeVCard` instead.
+    ///
+    ///
     #[deprecated]
     pub static NSVCardPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/inktext?language=objc)
+    /// Ink text data.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use `(NSString *)kUTTypeInkText` instead.
+    ///
+    /// For information on ink text objects, see Using Ink Services in Your Application.
+    ///
+    ///
     #[deprecated]
     pub static NSInkTextPboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/filepromise?language=objc)
+    /// Promised files.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.6 and later, use `(NSString *)kPasteboardTypeFileURLPromise` instead.
+    ///
+    /// For information on promised files, see [Dragging Files](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DragandDrop/Tasks/DraggingFiles.html#//apple_ref/doc/uid/20001288) in [Drag and Drop Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DragandDrop/DragandDrop.html#//apple_ref/doc/uid/10000069i).
+    ///
+    ///
     #[deprecated]
     pub static NSFilesPromisePboardType: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefindpanelsearchoptions?language=objc)
+    /// Type for the Find panel metadata property list.
     #[deprecated]
     pub static NSPasteboardTypeFindPanelSearchOptions: &'static NSPasteboardType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/generalpboard?language=objc)
+    /// The pasteboard used for ordinary cut, copy, and paste operations.
+    ///
+    /// ## Discussion
+    ///
+    /// This pasteboard holds the contents of the last selection that’s been cut or copied.
+    ///
+    ///
     #[deprecated]
     pub static NSGeneralPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/fontpboard?language=objc)
+    /// The pasteboard that holds font and character information and supports Copy Font and Paste Font commands that may be implemented in a text editor.
     #[deprecated]
     pub static NSFontPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/rulerpboard?language=objc)
+    /// The pasteboard that holds information about paragraph formats and supports the Copy Ruler and Paste Ruler commands implemented in a text editor.
     #[deprecated]
     pub static NSRulerPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/findpboard?language=objc)
+    /// The pasteboard that holds information about the current state of the active application’s find panel.
+    ///
+    /// ## Discussion
+    ///
+    /// This information permits users to enter a search string into the find panel, then switch to another application to conduct another search.
+    ///
+    ///
     #[deprecated]
     pub static NSFindPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/name-swift.struct/dragpboard?language=objc)
+    /// The pasteboard that stores data to be moved as the result of a drag operation.
+    ///
+    /// ## Discussion
+    ///
+    /// For additional information on working with the drag pasteboard, see [Drag and Drop Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DragandDrop/DragandDrop.html#//apple_ref/doc/uid/10000069i).
+    ///
+    ///
     #[deprecated]
     pub static NSDragPboard: &'static NSPasteboardName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspictpboardtype?language=objc)
+    /// QuickDraw picture data.
+    ///
+    /// ## Discussion
+    ///
+    /// The PICT format was formally deprecated in OS X v10.4 along with QuickDraw. You should not be explicitly providing or looking for PICT data on the pasteboard.
+    ///
+    /// To aid in this deprecation, if PICT is the only image type on the pasteboard, as is sometimes the case when copying images from 32-bit Carbon applications, a translated image type will be automatically reported and provided by `NSPasteboard`. The translated type is added to the types array ahead of PICT so that the deprecated PICT format is not the preferred format. In addition, when an application provides image data to `NSPasteboard`, the Carbon Pasteboard Manager will automatically make a PICT translation available to 32-bit Carbon applications.
+    ///
+    /// Although `NSPICTPboardType`, and its UTI equivalent `kUTTypePICT`, will appear in a pasteboard’s type array retrieved from the existing `NSPasteboard` API, it may cease to be reported in future releases.
+    ///
+    ///
     #[deprecated]
     pub static NSPICTPboardType: &'static NSPasteboardType;
 }

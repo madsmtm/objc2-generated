@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneactivationconditions?language=objc)
+    /// The set of conditions that define when UIKit activates the current scene.
+    ///
+    /// ## Overview
+    ///
+    /// When an event occurs that requires the activation of a scene, UIKit routes the event to the scene best suited to handle it. UIKit determines which scene is the best by evaluating the target content identifier of the event against the predicates in each scene’s [`UISceneActivationConditions`](https://developer.apple.com/documentation/uikit/uisceneactivationconditions) object. You create [`UISceneActivationConditions`](https://developer.apple.com/documentation/uikit/uisceneactivationconditions) objects for your scenes and use them to prioritize which events each scene handles. Use the [`prefersToActivateForTargetContentIdentifierPredicate`](https://developer.apple.com/documentation/uikit/uisceneactivationconditions/preferstoactivatefortargetcontentidentifierpredicate) predicate to designate the scene as the primary handler of an event.
+    ///
+    /// Many different objects contain a [`targetContentIdentifier`](https://developer.apple.com/documentation/foundation/nsuseractivity/targetcontentidentifier) property, including [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity), [`UNNotificationContent`](https://developer.apple.com/documentation/usernotifications/unnotificationcontent), and [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem). When creating those objects, fill that property with a value that uniquely describes the event and matches your scenes’ predicates. Every event must match at least one scene.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

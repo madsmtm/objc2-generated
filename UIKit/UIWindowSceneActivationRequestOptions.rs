@@ -6,19 +6,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle?language=objc)
+/// The placement of a window scene relative to other scenes in the workspace.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWindowScenePresentationStyle(pub NSUInteger);
 impl UIWindowScenePresentationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle/automatic?language=objc)
+    /// The system determines the most appropriate style.
     #[doc(alias = "UIWindowScenePresentationStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle/standard?language=objc)
+    /// The default style of the system.
+    ///
+    /// ## Discussion
+    ///
+    /// On iPad, the system displays the window scene in Split View, side-by-side with the scene that originated the request for the new scene.
+    ///
+    ///
     #[doc(alias = "UIWindowScenePresentationStyleStandard")]
     pub const Standard: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle/prominent?language=objc)
+    /// Presents prominently above others in the current space.
+    ///
+    /// ## Discussion
+    ///
+    /// On iPad, the system displays the window scene modally, centered and elevated above the existing workspace. You should dedicate the scene to specific content within your app, like a document or file, and include buttons to close the scene.
+    ///
+    ///
     #[doc(alias = "UIWindowScenePresentationStyleProminent")]
     pub const Prominent: Self = Self(2);
 }
@@ -32,7 +44,13 @@ unsafe impl RefEncode for UIWindowScenePresentationStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationrequestoptions?language=objc)
+    /// An object that contains information you want the system to use when activating a new window scene.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIWindowSceneActivationRequestOptions`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationrequestoptions) object before you activate a scene using the [`activateSceneSession(for:errorHandler:)`](https://developer.apple.com/documentation/uikit/uiapplication/activatescenesession(for:errorhandler:)) (Swift) or [`activateSceneSessionForRequest:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/activatescenesessionforrequest:errorhandler:) (Objective-C) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). Use this object to specify the preferred presentation style of the new scene.
+    ///
+    ///
     #[unsafe(super(UISceneActivationRequestOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UISceneOptions")]

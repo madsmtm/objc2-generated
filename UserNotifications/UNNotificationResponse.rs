@@ -7,17 +7,41 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationdefaultactionidentifier?language=objc)
+    /// An action that indicates the user opened the app from the notification interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The delivery of this action doesn’t require any special configuration of notification categories. Use the [`userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)) method of your delegate object to receive this action.
+    ///
+    ///
     pub static UNNotificationDefaultActionIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationdismissactionidentifier?language=objc)
+    /// The action that indicates the user explicitly dismissed the notification interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The system delivers this action only if your app configured the notification’s category object with the [`UNNotificationCategoryOptionCustomDismissAction`](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/customdismissaction) option. To trigger this action, the user must explicitly dismiss the notification interface. For example, the user must tap the Dismiss button or swipe down on the notification interface in watchOS to trigger this action.
+    ///
+    /// Ignoring a notification or flicking away a notification banner doesn’t trigger this action.
+    ///
+    ///
     pub static UNNotificationDismissActionIdentifier: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationresponse?language=objc)
+    /// The user’s response to an actionable notification.
+    ///
+    /// ## Overview
+    ///
+    /// When the user interacts with a delivered notification, the system delivers a [`UNNotificationResponse`](https://developer.apple.com/documentation/usernotifications/unnotificationresponse) object to your app so that you can process the response. Users can interact with delivered notifications in many ways. If the notification’s category had associated action buttons, they can select one of those buttons. Users can also dismiss the notification without selecting one of your actions and they can open your app. A response object tells you which option the user selected.
+    ///
+    /// You don’t create [`UNNotificationResponse`](https://developer.apple.com/documentation/usernotifications/unnotificationresponse) objects yourself. Instead, the shared user notification center object creates them and delivers them to the [`userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)) method of its delegate object. Use that method to extract any needed information from the response object and take appropriate action.
+    ///
+    /// For more information about responding to actions, see [Handling notifications and notification-related actions](https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationResponse;
@@ -70,7 +94,17 @@ impl UNNotificationResponse {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse?language=objc)
+    /// The user’s response to an actionable notification, including any custom text that the user typed or dictated.
+    ///
+    /// ## Overview
+    ///
+    /// The system delivers a [`UNTextInputNotificationResponse`](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse) object to your app so that you can process user-provided text content. When defining your categories, you can specify an [`UNTextInputNotificationAction`](https://developer.apple.com/documentation/usernotifications/untextinputnotificationaction) object instead of an [`UNNotificationAction`](https://developer.apple.com/documentation/usernotifications/unnotificationaction) object for your action. If you do, the system creates an [`UNTextInputNotificationResponse`](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse) object when the user selects the accompanying action, and it fills the [`userText`](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse/usertext) property with any user-entered text.
+    ///
+    /// You don’t create [`UNTextInputNotificationResponse`](https://developer.apple.com/documentation/usernotifications/untextinputnotificationresponse) objects yourself. Instead, the shared user notification center object creates them and delivers them to the [`userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)) method of its delegate object. Use that method to extract any needed information from the response object and take appropriate action.
+    ///
+    /// For more information about responding to actions, see [Handling notifications and notification-related actions](https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions).
+    ///
+    ///
     #[unsafe(super(UNNotificationResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTextInputNotificationResponse;

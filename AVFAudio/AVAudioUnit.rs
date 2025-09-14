@@ -11,12 +11,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A subclass of the audio node class that, processes audio either in real time or nonreal time, depending on the type of the audio unit.
     /// An AVAudioNode implemented by an audio unit.
     ///
     /// An AVAudioUnit is an AVAudioNode implemented by an audio unit. Depending on the type of
     /// the audio unit, audio is processed either in real-time or non real-time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounit?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

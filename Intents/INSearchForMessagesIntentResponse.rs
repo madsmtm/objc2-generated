@@ -7,37 +7,78 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForMessagesIntentResponseCode(pub NSInteger);
 impl INSearchForMessagesIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/unspecified?language=objc)
+    /// The response code is unknown.
     #[doc(alias = "INSearchForMessagesIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/ready?language=objc)
+    /// A response code indicating app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/inprogress?language=objc)
+    /// You are performing the search but do not yet have the results.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if your search may take longer than a few seconds to complete.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app completed the search successfully, regardless of the number of found messags. If the search yielded one or more messages, provide the details of those messages in the [`messages`](https://developer.apple.com/documentation/intents/insearchformessagesintentresponse/messages) property.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/failure?language=objc)
+    /// You are unable to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from searching the user’s messages.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to search their messages.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user has not set up an account with your app. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/failuremessageservicenotavailable?language=objc)
+    /// You were unable to perform the search because your message service is currently unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// You might use this code if searches occur on a remote server and the network is unavailable.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeFailureMessageServiceNotAvailable")]
     pub const FailureMessageServiceNotAvailable: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/failuremessagetoomanyresults?language=objc)
+    /// Too many messages matched the specified search criteria.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your search returns more results than might make sense to display to the user. For example, you might return this code on watchOS if there are more than 20 messages.
+    ///
+    ///
     #[doc(alias = "INSearchForMessagesIntentResponseCodeFailureMessageTooManyResults")]
     pub const FailureMessageTooManyResults: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INSearchForMessagesIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(8);
 }
@@ -51,7 +92,15 @@ unsafe impl RefEncode for INSearchForMessagesIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentresponse?language=objc)
+    /// Your app’s response to a search for messages intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchForMessagesIntentResponse`](https://developer.apple.com/documentation/intents/insearchformessagesintentresponse) object to specify the results of searching the user’s messages. After performing a search using the criteria specified in the [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) object, create an instance of this class with the results of that search. Siri communicates the status from your response to the user at appropriate times.
+    ///
+    /// You create an [`INSearchForMessagesIntentResponse`](https://developer.apple.com/documentation/intents/insearchformessagesintentresponse) object in the [`confirmSearchForMessages:completion:`](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling/confirm(intent:completion:)) and [`handleSearchForMessages:completion:`](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling/handle(intent:completion:)) methods of your search for messages handler object. For more information about implementing your handler object, see [`INSearchForMessagesIntentHandling`](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

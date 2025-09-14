@@ -9,41 +9,53 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferwidth?language=objc)
+    /// The width of the buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferheight?language=objc)
+    /// The height of the buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbuffertarget?language=objc)
+    /// The OpenGL target for this buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferTarget: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferinternalformat?language=objc)
+    /// The OpenGL internal format of this buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferInternalFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbuffermaximummipmaplevel?language=objc)
+    /// The maximum mipmap level for this buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferMaximumMipmapLevel: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffer?language=objc)
+/// A reference to a Core Video OpenGL buffer object.
+///
+/// ## Discussion
+///
+/// The Core Video OpenGL buffer is a wrapper around the standard OpenGL pbuffer.
+///
+///
 #[doc(alias = "CVOpenGLBufferRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLBuffer = CVImageBuffer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffergettypeid()?language=objc)
+/// Obtains the Core Foundation type ID for the OpenGL buffer type.
+///
+/// ## Return Value
+///
+/// The Core Foundation ID for this data type.
+///
+///
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
 pub extern "C-unwind" fn CVOpenGLBufferGetTypeID() -> CFTypeID {
@@ -54,6 +66,35 @@ pub extern "C-unwind" fn CVOpenGLBufferGetTypeID() -> CFTypeID {
 }
 
 extern "C-unwind" {
+    /// Creates a new Core Video OpenGL buffer that can be used for OpenGL rendering purposes
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to create the Core Video OpenGL buffer. Pass `NULL` to specify the default allocator.
+    ///
+    /// - width: The width of the buffer in pixels.
+    ///
+    /// - height: The height of the buffer in pixels.
+    ///
+    /// - attributes: A Core Foundation dictionary containing other desired attributes of the buffer (texture target, internal format, max mipmap level, etc.). May be `NULL`. The following attribute values are assumed if you do not explicitly define them:
+    ///
+    /// - `kCVOpenGLBufferTarget` = `GL_TEXTURE_RECTANGLE_EXT`
+    ///
+    /// - `kCVOpenGLBufferInternalFormat` = `GL_RGBA`
+    ///
+    /// - `kCVOpenGLBufferMaximumMipmapLevel` = 0
+    ///
+    /// - bufferOut: On output, `bufferOut` points to the newly created OpenGL buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Create a new CVOpenGLBuffer that may be used for OpenGL rendering purposes
     ///
     /// Parameter `width`: The width of the buffer in pixels
@@ -73,8 +114,6 @@ extern "C-unwind" {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffercreate(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferCreate(
@@ -86,11 +125,20 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
+/// Obtains the attributes of a Core Video OpenGL buffer.
+///
+/// Parameters:
+/// - openGLBuffer: The OpenGL buffer whose attributes you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// A Core Foundation dictionary containing the OpenGL buffer attributes, or `NULL` if no attributes exist.
+///
+///
 /// Parameter `openGLBuffer`: Target OpenGL Buffer.
 ///
 /// Returns: CVOpenGLBuffer attributes dictionary, NULL if not set.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffergetattributes(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
@@ -107,6 +155,25 @@ pub extern "C-unwind" fn CVOpenGLBufferGetAttributes(
 }
 
 extern "C-unwind" {
+    /// Attaches an OpenGL context to a Core Video OpenGL buffer.
+    ///
+    /// Parameters:
+    /// - openGLBuffer: The buffer you want to attach an OpenGL context to.
+    ///
+    /// - cglContext: The OpenGL context you want to attach.
+    ///
+    /// - face: The OpenGL face enumeration (`0` for non-cube maps.)
+    ///
+    /// - level: The mipmap level for drawing in the OpenGL context. This value cannot exceed the maximum mipmap level for this buffer.
+    ///
+    /// - screen: The virtual screen number you want to use for this context.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
     /// Parameter `openGLBuffer`: The buffer you wish to attach a GL context to
     ///
     /// Parameter `cglContext`: The CGLContextObj you wish to attach
@@ -122,8 +189,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `cgl_context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferattach(_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

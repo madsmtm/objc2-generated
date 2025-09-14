@@ -9,26 +9,72 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions?language=objc)
+/// A set of options that determine the permission options available to the user when viewing the Cloud sharing controller screens.
+///
+/// ## Overview
+///
+/// These options are used when setting the [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property on the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance. This property determines which permission options are presented to the user in the controller’s user interface.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICloudSharingPermissionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UICloudSharingPermissionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingpermissionoptions/uicloudsharingpermissionstandard?language=objc)
+/// The option that makes all user options available.
+///
+/// ## Discussion
+///
+/// To tell the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance to display all user options, set its [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property to [`UICloudSharingPermissionStandard`](https://developer.apple.com/documentation/uikit/uicloudsharingpermissionoptions/uicloudsharingpermissionstandard).
+///
+/// The other [`UICloudSharingController.PermissionOptions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions) options override this option, so there’s no need to combine the other options with [`UICloudSharingPermissionStandard`](https://developer.apple.com/documentation/uikit/uicloudsharingpermissionoptions/uicloudsharingpermissionstandard).
+///
+///
         #[doc(alias = "UICloudSharingPermissionStandard")]
         const Standard = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowpublic?language=objc)
+/// The option that grants access to anyone who has the share link.
+///
+/// ## Discussion
+///
+/// To give the user the option to allow anyone to access the shared data, include the [`UICloudSharingPermissionAllowPublic`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowpublic) option when setting the [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property on the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance.
+///
+///
         #[doc(alias = "UICloudSharingPermissionAllowPublic")]
         const AllowPublic = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowprivate?language=objc)
+/// The option that restricts access to people who have been invited.
+///
+/// ## Discussion
+///
+/// To give the user the option to limit access to people who have been invited, include the [`UICloudSharingPermissionAllowPrivate`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowprivate) option when setting the [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property on the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  When inviting someone, the user must provide that person’s email address or phone number. This is how the person is identified when accepting the invitation.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "UICloudSharingPermissionAllowPrivate")]
         const AllowPrivate = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadonly?language=objc)
+/// The option that gives participants read-only permission to the shared data.
+///
+/// ## Discussion
+///
+/// To give the user the option to prevent other people from editing the shared data, include the [`UICloudSharingPermissionAllowReadOnly`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadonly) option when setting the [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property on the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance.
+///
+///
         #[doc(alias = "UICloudSharingPermissionAllowReadOnly")]
         const AllowReadOnly = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadwrite?language=objc)
+/// The option that gives participants read/write permission to the shared data.
+///
+/// ## Discussion
+///
+/// To give the user the option to allow other people to edit the shared data, include the [`UICloudSharingPermissionAllowReadWrite`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/permissionoptions/allowreadwrite) option when setting the [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property on the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance.
+///
+///
         #[doc(alias = "UICloudSharingPermissionAllowReadWrite")]
         const AllowReadWrite = 1<<3;
     }
@@ -43,7 +89,17 @@ unsafe impl RefEncode for UICloudSharingPermissionOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontrollerdelegate?language=objc)
+    /// The protocol you implement to provide additional information to, and receive notifications from, the CloudKit sharing controller.
+    ///
+    /// ## Overview
+    ///
+    /// Implement an object that conforms to the [`UICloudSharingControllerDelegate`](https://developer.apple.com/documentation/uikit/uicloudsharingcontrollerdelegate) protocol when you want to:
+    ///
+    /// - Configure a [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance.
+    ///
+    /// - Receive notifications from a [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance as it attempts to save or remove the [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare) record based on user interactions on the Invitation and People screens.
+    ///
+    ///
     pub unsafe trait UICloudSharingControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -97,7 +153,95 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller?language=objc)
+    /// A view controller that presents standard screens for adding and removing people from a CloudKit share record.
+    ///
+    /// ## Overview
+    ///
+    /// CloudKit Sharing provides real-time collaboration between one or more people using your app. A user takes certain steps to make collaboration possible, from inviting people to participate in the collaboration to setting restrictions on what participants can do. To provide these steps to a user, you must make changes to your app. With [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller), the changes require minimum effort.
+    ///
+    /// The [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) view controller class provides screens, presented within your app, for managing the people, permissions, and access rights associated with a [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare) record. The controller, along with a few lines of your own code, facilitates the setup and management of online sharing between users, making it possible for a user to:
+    ///
+    /// - Invite people to view or collaborate on a shared record
+    ///
+    /// - Set the access rights determining who can access the shared record (only people invited or anyone with the share link)
+    ///
+    /// - Set general or individual permissions (read-only or read/write)
+    ///
+    /// - Remove access from one or more participants
+    ///
+    /// - Stop participating (if the user is a participant)
+    ///
+    /// - Stop sharing with all participants (if the user is the owner of the shared record)
+    ///
+    /// The controller provides these different actions to the user based on the user’s role. If the user is the individual sharing the record (where the record is an instance of [`CKRecord`](https://developer.apple.com/documentation/cloudkit/ckrecord) representing the data to share), then the user is called the _owner_. A user who has access to the shared record and isn’t the owner is known as a _participant_. There’s no need for you to specify the user’s role. The controller determines the role automatically.
+    ///
+    /// ### Inviting participants to a new share
+    ///
+    /// The user who owns the data, represented as a [`CKRecord`](https://developer.apple.com/documentation/cloudkit/ckrecord), can invite others to view or collaborate on changes to the data. To invite participants, the owner sends the share link to the other people. To provide this capability in your app, create an instance of [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) using the [`initWithPreparationHandler:`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/init(preparationhandler:)) initializer method. You use this initializer method only when the owner isn’t already sharing the record.
+    ///
+    /// After creating the controller, you present it. The controller displays the Invitation screen. Using this screen, the owner can add participants and set restrictions on the shared record. Once done, the owner sends the share link to the participants.
+    ///
+    /// However, before the owner can send the share link, CloudKit must generate the link. This link generation happens when saving a new [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare) record, but when do you save it? You save the share record in the `preparationHandler:`.
+    ///
+    /// After the owner’s selections are complete, the controller invokes the preparation handler provided in the initializer call. In the handler, you create a new [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare) instance, initializing it with the [`CKRecord`](https://developer.apple.com/documentation/cloudkit/ckrecord) instance that represents the data to share. (This record is called the “root record.”) Next, you save the share and root records using [`CKModifyRecordsOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation). Finally, you return the shared record to the controller or return an error if the save failed. See the following code for an example of this in action.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func presentCloudSharingController(_ sender: Any) {  guard", "    let barButtonItem = sender as? UIBarButtonItem,", "    let rootRecord = self.recordToShare else {", "    return", "  }", "  ", "  let cloudSharingController = UICloudSharingController { [weak self] (controller, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in", "    guard let `self` = self else {", "      return", "    }", "    self.share(rootRecord: rootRecord, completion: completion)", "  }", "  ", "  if let popover = cloudSharingController.popoverPresentationController {", "    popover.barButtonItem = barButtonItem", "  }", "  self.present(cloudSharingController, animated: true) {}", "}", " ", "func share(rootRecord: CKRecord, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) {", "  let shareRecord = CKShare(rootRecord: rootRecord)", "  let recordsToSave = [rootRecord, shareRecord]", "  let container = CKContainer.default()", "  let privateDatabase = container.privateCloudDatabase", "  let operation = CKModifyRecordsOperation(recordsToSave: recordsToSave, recordIDsToDelete: []) ", "  operation.perRecordCompletionBlock = { (record, error) in", "    if let error = error {", "      print(\"CloudKit error: \\(error.localizedDescription)\")", "    }", "  }", "  ", "  operation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDs, error) in", "    if let error = error {", "      completion(nil, nil, error)", "    } else {", "      completion(shareRecord, container, nil)", "    }", "  }", " ", "  privateDatabase.add(operation)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)presentCloudSharingController:(id)sender", "{", "  CKRecord *rootRecord = [self recordToShare];", "  if (rootRecord == nil || [sender isKindOfClass:[UIBarButtonItem class]] == NO) {", "    return;", "  }", "  UICloudSharingController *cloudSharingController = [[UICloudSharingController alloc] initWithPreparationHandler:^(UICloudSharingController * _Nonnull controller, void (^ _Nonnull preparationCompletionHandler)(CKShare * _Nullable, CKContainer * _Nullable, NSError * _Nullable)) {", "    ", "    [self shareRootRecord:rootRecord completion:preparationCompletionHandler];", "     ", "  }];", "  ", "  UIPopoverPresentationController *popover = [cloudSharingController popoverPresentationController];", "  if (popover) {", "    [popover setBarButtonItem:sender];", "  }", "  [self presentViewController:cloudSharingController animated:YES completion:nil];", "}", "- (void)shareRootRecord:(CKRecord *)rootRecord completion:(void (^)(CKShare * _Nullable share, CKContainer * _Nullable container, NSError * _Nullable error))completion", "{", "  CKShare *shareRecord = [[CKShare alloc] initWithRootRecord:rootRecord];", "  NSArray *recordsToSave = @[rootRecord, shareRecord];", "  CKContainer *container = [CKContainer defaultContainer];", "  CKDatabase *privateDatabase = [container privateCloudDatabase];", "  ", "  CKModifyRecordsOperation *operation = [[CKModifyRecordsOperation alloc] initWithRecordsToSave:recordsToSave recordIDsToDelete:@[]];", "  [operation setPerRecordCompletionBlock:^(CKRecord * _Nullable record, NSError * _Nullable error) {", "    if (error) {", "      NSLog(@\"%@\", [error localizedDescription]);", "    }", "  }];", "  [operation setModifyRecordsCompletionBlock:^(NSArray<CKRecord *> * _Nullable savedRecords, NSArray<CKRecordID *> * _Nullable deletedRecordIDs, NSError * _Nullable error) {", "    if (error) {", "      NSLog(@\"%@\", [error localizedDescription]);", "    }", "    completion(shareRecord, container, error);", "  }];", "  ", "  [privateDatabase addOperation:operation];", "}"], metadata: None }] }] })
+    /// ### Adding and removing participants from an existing share
+    ///
+    /// To allow the owner of an existing share to manage the participants, create the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance using the [`initWithShare:container:`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/init(share:container:)) initializer method.
+    ///
+    /// After you create the controller, present it to show the People screen. From this screen, the owner can:
+    ///
+    /// - Add and remove participants
+    ///
+    /// - Change the share’s access options from private to public, or public to private
+    ///
+    /// - Change the share’s permissions from read-only to read/write, or vice versa
+    ///
+    /// - Stop sharing with all participants
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If all participants have left the share, the controller presents the Invitation screen, not the People screen, when [`initWithShare:container:`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/init(share:container:)) is used to create the controller instance.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Viewing participants and leaving a share
+    ///
+    /// To allow a participant to view the list of participants and remove themselves from a share, create the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance using the [`initWithShare:container:`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/init(share:container:)) initializer method.
+    ///
+    /// After you create the controller, present it to show the People screen. From this screen, the participant can:
+    ///
+    /// - View the list of participants
+    ///
+    /// - Copy the share link to send to others (if the owner has made the share publicly available)
+    ///
+    /// - Leave the share
+    ///
+    /// ### Presenting the controller
+    ///
+    /// [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) is designed for use in a popover. Therefore, you should always set the [`popoverPresentationController`](https://developer.apple.com/documentation/uikit/uiviewcontroller/popoverpresentationcontroller) source information before presenting the Cloud sharing controller. Doing this ensures that the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance is displayed properly across all device types.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Presenting the Cloud sharing controller in an iPad app without setting the popover presentation controller causes a run-time error.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The following code shows an example of setting the [`popoverPresentationController`](https://developer.apple.com/documentation/uikit/uiviewcontroller/popoverpresentationcontroller) before presenting a Cloud sharing controller.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func presentCloudSharingController(_ sender: Any) {  guard", "    let barButtonItem = sender as? UIBarButtonItem,", "    let rootRecord = self.recordToShare else {", "    return", "  }", "  ", "  let cloudSharingController = UICloudSharingController { (controller, completion: @escaping (CKShare?, CKContainer?, Error?) -> Void) in    ", "    // Save the share and root records.", "    // Call completion(share, container, error) handler.", "  }", "  ", "  if let popover = cloudSharingController.popoverPresentationController {", "    popover.barButtonItem = barButtonItem", "  }", "  self.present(cloudSharingController, animated: true) {}", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)presentCloudSharingController:(id)sender", "{", "  if ([self recordToShare] == nil || [sender isKindOfClass:[UIBarButtonItem class]] == NO) {", "    return;", "  }", "  ", "  UICloudSharingController *cloudSharingController = [[UICloudSharingController alloc] initWithPreparationHandler:^(UICloudSharingController * _Nonnull controller, void (^ _Nonnull preparationCompletionHandler)(CKShare * _Nullable, CKContainer * _Nullable, NSError * _Nullable)) {", "    // Save the share and root records", "    // Call preparationCompletionHandler(share, container, error);", "  }];", "  ", "  UIPopoverPresentationController *popover = [cloudSharingController popoverPresentationController];", "  if (popover) {", "    [popover setBarButtonItem:sender];", "  }", "", "  [self presentViewController:cloudSharingController animated:YES completion:nil];", "}"], metadata: None }] }] })
+    /// ### Configuring the controller
+    ///
+    /// By default, the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) user interface displays a generic thumbnail image and title to the user. You can, however, change these to app-specific representations of the shared record. You accomplish this by setting the controller’s [`delegate`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/delegate) property to an object that conforms to the [`UICloudSharingControllerDelegate`](https://developer.apple.com/documentation/uikit/uicloudsharingcontrollerdelegate) protocol, making sure to implement the [`itemThumbnailDataForCloudSharingController:`](https://developer.apple.com/documentation/uikit/uicloudsharingcontrollerdelegate/itemthumbnaildata(for:)) and [`itemTitleForCloudSharingController:`](https://developer.apple.com/documentation/uikit/uicloudsharingcontrollerdelegate/itemtitle(for:)) delegate methods.
+    ///
+    /// You can also show or hide the permission and access options presented to the user by setting the [`availablePermissions`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller/availablepermissions) property on the [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) instance.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

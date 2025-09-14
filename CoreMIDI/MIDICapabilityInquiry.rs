@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicideviceidentification?language=objc)
+/// A structure that describes a MIDI-CI device.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDICIDeviceIdentification {
@@ -39,23 +39,28 @@ unsafe impl RefEncode for MIDICIDeviceIdentification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A constant value that indicates to use all channels of the port.
 /// An outdated MIDI-CI constant indicating "the whole port", i.e. all channels.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midichannelswholeport?language=objc)
 #[cfg(feature = "MIDIMessages")]
 pub static MIDIChannelsWholePort: MIDIChannelNumber = 0x7f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciinitiatiormuid?language=objc)
+/// The unique MIDI-CI negotiation identifier to use for a responder connection.
+///
+/// ## Discussion
+///
+/// As required by the MIDI-CI specification, this value is a randomly assigned 28-bit integer.
+///
+///
 #[cfg(feature = "objc2-foundation")]
 pub type MIDICIInitiatiorMUID = NSNumber;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilestatelist?language=objc)
+/// An array of profile state objects that describes the profile configuration for all channels of a reachable MIDI-CI node.
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICIProfileStateList = NSArray<MIDICIProfileState>;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicideviceinfo?language=objc)
+    /// An object that provides basic information about a MIDI-CI device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -143,7 +148,7 @@ impl MIDICIDeviceInfo {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidiscoverednode?language=objc)
+    /// A discovered MIDI-CI node that represents a MIDI source and destination that respond to capability inquiries.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -215,6 +220,7 @@ impl MIDICIDiscoveredNode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A mapping of MIDI messages to specific sounds and synthesis behaviors, such as General MIDI, a drawbar organ, and so on.
     /// An NSObject representing Capability Inquiry profile. MIDI-CI profiles describe a mapping
     /// of MIDI messages to specific sounds and synthesis behaviors, e.g. General MIDI, a drawbar organ,
     /// etc. A MIDI-CI profile may be a standard registered profile or vendor-specific.
@@ -225,8 +231,6 @@ extern_class!(
     /// Profile ID Byte 3:    Profile Number                Manufacturer SysEx ID 3 Profile
     /// Profile ID Byte 4:    Profile Version                Manufacturer-specific Info
     /// Profile ID Byte 5:    Profile Level                Manufacturer-specific Info
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -295,7 +299,7 @@ impl MIDICIProfile {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilestate?language=objc)
+    /// An object that provides the enabled and disabled profiles for a MIDI channel or port on a device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -371,20 +375,52 @@ impl MIDICIProfileState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilechangedblock?language=objc)
+/// A block the system calls to indicate it has enabled or disabled a profile.
+///
+/// Parameters:
+/// - session: The MIDI-CI session.
+///
+/// - channel: The MIDI channel number.
+///
+/// - profile: The profile the system enabled or disabled.
+///
+/// - enabled: A Boolean value that indicates whether the system enabled the profile.
+///
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "MIDIMessages", feature = "block2", feature = "objc2"))]
 pub type MIDICIProfileChangedBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicisessiondisconnectblock?language=objc)
+/// A block the system calls when a MIDI-CI session disconnects.
+///
+/// Parameters:
+/// - session: The disconnected session instance.
+///
+/// - error: An object that provides error information, if any.
+///
+///
+/// ## Discussion
+///
+/// If the system calls this block, terminate the MIDI-CI session.
+///
+///
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICISessionDisconnectBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilespecificdatablock?language=objc)
+/// A block the system calls when a MIDI-CI session or responder receives profile-specific data.
+///
+/// Parameters:
+/// - session: The MIDI-CI session.
+///
+/// - channel: The MIDI channel number.
+///
+/// - profile: The profile that received data.
+///
+/// - profileSpecificData: The profile-specific data sent.
+///
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(
     feature = "MIDIMessages",
@@ -396,7 +432,11 @@ pub type MIDICIProfileSpecificDataBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, NonNull<NSData>),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidiscoveryresponseblock?language=objc)
+/// A block the system calls when a MIDI-CI node discovery request completes.
+///
+/// Parameters:
+/// - discoveredNodes: The array of discovered nodes.
+///
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICIDiscoveryResponseBlock =
@@ -404,7 +444,13 @@ pub type MIDICIDiscoveryResponseBlock =
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicisession?language=objc)
+    /// An object that represents a MIDI-CI session.
+    ///
+    /// ## Overview
+    ///
+    /// A MIDI-CI session is a bidirectional communication path between a MIDI source and destination identified using MIDI-CI discovery. Use a session to manipulate MIDI-CI profiles and to discover device capabilities.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -586,7 +632,13 @@ impl MIDICISession {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidiscoverymanager?language=objc)
+    /// A singleton object that performs systemwide MIDI-CI discovery.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to retrieve information about MIDI-CI–capable nodes in the MIDI subsystem. You can create [`MIDICISession`](https://developer.apple.com/documentation/coremidi/midicisession) objects only from the destinations discovered using this API.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -634,7 +686,7 @@ impl MIDICIDiscoveryManager {
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofileresponderdelegate?language=objc)
+    /// A protocol that defines the methods to respond to MIDI-CI responder life-cycle events.
     #[cfg(feature = "objc2")]
     #[deprecated = "No longer supported for CoreMIDI"]
     pub unsafe trait MIDICIProfileResponderDelegate: NSObjectProtocol {
@@ -682,7 +734,7 @@ extern_protocol!(
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciresponder?language=objc)
+    /// An object that responds to MIDI-CI inquiries from an initiator on behalf of a MIDI client, and handles profile and property exchange operations.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

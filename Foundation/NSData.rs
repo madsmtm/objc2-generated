@@ -8,32 +8,43 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Options for methods used to read data objects.
 /// **************    Read/Write Options    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataReadingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/mappedifsafe?language=objc)
+/// A hint indicating the file should be mapped into virtual memory, if possible and safe.
         #[doc(alias = "NSDataReadingMappedIfSafe")]
         const MappedIfSafe = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/uncached?language=objc)
+/// A hint indicating the file should not be stored in the file-system caches.
+///
+/// ## Discussion
+///
+/// For data being read once and discarded, this option can improve performance.
+///
+///
         #[doc(alias = "NSDataReadingUncached")]
         const Uncached = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/alwaysmapped?language=objc)
+/// Hint to map the file in if possible.
+///
+/// ## Discussion
+///
+/// This takes precedence over [`NSDataReadingMappedIfSafe`](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/mappedifsafe) if both are given.
+///
+///
         #[doc(alias = "NSDataReadingMappedAlways")]
         const MappedAlways = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/datareadingmapped?language=objc)
+/// Deprecated name for [`NSDataReadingMappedIfSafe`](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/mappedifsafe).
         #[doc(alias = "NSDataReadingMapped")]
 #[deprecated]
         const Mapped = NSDataReadingOptions::MappedIfSafe.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/mappedread?language=objc)
+/// Deprecated name for [`NSDataReadingMapped`](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/datareadingmapped).
 #[deprecated]
         const NSMappedRead = NSDataReadingOptions::Mapped.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/uncachedread?language=objc)
+/// Deprecated name for [`NSDataReadingUncached`](https://developer.apple.com/documentation/foundation/nsdata/readingoptions/uncached).
 #[deprecated]
         const NSUncachedRead = NSDataReadingOptions::Uncached.0;
     }
@@ -47,38 +58,73 @@ unsafe impl RefEncode for NSDataReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions?language=objc)
+/// Options for methods used to write data objects.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataWritingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/atomic?language=objc)
+/// An option to write data to an auxiliary file first and then replace the original file with the auxiliary file when the write completes.
+///
+/// ## Discussion
+///
+/// This option is equivalent to using a write method that takes the parameter `atomically` as [`true`](https://developer.apple.com/documentation/swift/true).
+///
+///
         #[doc(alias = "NSDataWritingAtomic")]
         const Atomic = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/withoutoverwriting?language=objc)
+/// An option that attempts to write data to a file and fails with an error if the destination file already exists.
+///
+/// ## Discussion
+///
+/// You can’t combine this constant with [`NSDataWritingAtomic`](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/atomic) because atomic allows the system to overwrite the original file.
+///
+///
         #[doc(alias = "NSDataWritingWithoutOverwriting")]
         const WithoutOverwriting = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/nofileprotection?language=objc)
+/// An option to not encrypt the file when writing it out.
+///
+/// ## Discussion
+///
+/// In this case, the system doesn’t store the file in an encrypted format and your app can access this file at boot time and while the device is unlocked.
+///
+///
         #[doc(alias = "NSDataWritingFileProtectionNone")]
         const FileProtectionNone = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotection?language=objc)
+/// An option to make the file accessible only while the device is unlocked.
+///
+/// ## Discussion
+///
+/// In this case, the system stores the file in an encrypted format and your app may only read or write to the file while the device is unlocked. At all other times, any  attempts your app makes to read and write the file will fail.
+///
+///
         #[doc(alias = "NSDataWritingFileProtectionComplete")]
         const FileProtectionComplete = 0x20000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotectionunlessopen?language=objc)
+/// An option to allow the file to be accessible while the device is unlocked or the file is already open.
+///
+/// ## Discussion
+///
+/// In this case, your app cannot open the file to read it or write to it when the device is locked, but your app can create new files with this class. If one of these files is open when the device is locked, your app can read and write to the opened file.
+///
+///
         #[doc(alias = "NSDataWritingFileProtectionCompleteUnlessOpen")]
         const FileProtectionCompleteUnlessOpen = 0x30000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotectionuntilfirstuserauthentication?language=objc)
+/// An option to allow the file to be accessible after a user first unlocks the device.
+///
+/// ## Discussion
+///
+/// In this case, the app can read or write to the file while the device is unlocked, but while it’s booting up, the file has the protection equivalent to [`NSDataWritingFileProtectionComplete`](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotection).
+///
+///
         #[doc(alias = "NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication")]
         const FileProtectionCompleteUntilFirstUserAuthentication = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/completefileprotectionwhenuserinactive?language=objc)
         #[doc(alias = "NSDataWritingFileProtectionCompleteWhenUserInactive")]
         const FileProtectionCompleteWhenUserInactive = 0x50000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/fileprotectionmask?language=objc)
+/// An option the system uses when determining the file protection options that the system assigns to the data.
         #[doc(alias = "NSDataWritingFileProtectionMask")]
         const FileProtectionMask = 0xf0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions/atomicwrite?language=objc)
+/// An option that attempts to write data to an auxiliary file first and then exchange the files.
 #[deprecated]
         const NSAtomicWrite = NSDataWritingOptions::Atomic.0;
     }
@@ -92,19 +138,30 @@ unsafe impl RefEncode for NSDataWritingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// **************    Data Search Options    ***************
+/// Options for method used to search data objects.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/searchoptions?language=objc)
+/// ## Overview
+///
+/// These options are used with the [`rangeOfData:options:range:`](https://developer.apple.com/documentation/foundation/nsdata/range(of:options:in:)) method.
+///
+///
+/// **************    Data Search Options    ***************
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataSearchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataSearchOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/searchoptions/backwards?language=objc)
+/// Search from the end of the data object.
         #[doc(alias = "NSDataSearchBackwards")]
         const Backwards = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/searchoptions/anchored?language=objc)
+/// Search is limited to start (or end, if searching backwards) of the data object.
+///
+/// ## Discussion
+///
+/// This option performs searching only on bytes at the beginning of the range (or the end when using [`NSDataSearchBackwards`](https://developer.apple.com/documentation/foundation/nsdata/searchoptions/backwards)). No match at the beginning or end means nothing is found, even if a matching sequence of bytes occurs elsewhere in the data object.
+///
+///
         #[doc(alias = "NSDataSearchAnchored")]
         const Anchored = 1<<1;
     }
@@ -118,25 +175,24 @@ unsafe impl RefEncode for NSDataSearchOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for methods used to Base64 encode data.
 /// **************        Base 64 Options    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataBase64EncodingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataBase64EncodingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/linelength64characters?language=objc)
+/// Set the maximum line length to 64 characters, after which a line ending is inserted.
         #[doc(alias = "NSDataBase64Encoding64CharacterLineLength")]
         const Encoding64CharacterLineLength = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/linelength76characters?language=objc)
+/// Set the maximum line length to 76 characters, after which a line ending is inserted.
         #[doc(alias = "NSDataBase64Encoding76CharacterLineLength")]
         const Encoding76CharacterLineLength = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/endlinewithcarriagereturn?language=objc)
+/// When a maximum line length is set, specify that the line ending to insert should include a carriage return.
         #[doc(alias = "NSDataBase64EncodingEndLineWithCarriageReturn")]
         const EncodingEndLineWithCarriageReturn = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions/endlinewithlinefeed?language=objc)
+/// When a maximum line length is set, specify that the line ending to insert should include a line feed.
         #[doc(alias = "NSDataBase64EncodingEndLineWithLineFeed")]
         const EncodingEndLineWithLineFeed = 1<<5;
     }
@@ -150,14 +206,14 @@ unsafe impl RefEncode for NSDataBase64EncodingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64decodingoptions?language=objc)
+/// Options to modify the decoding algorithm used to decode Base64 encoded data.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataBase64DecodingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataBase64DecodingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64decodingoptions/ignoreunknowncharacters?language=objc)
+/// Modify the decoding algorithm so that it ignores unknown non-Base-64 bytes, including line ending characters.
         #[doc(alias = "NSDataBase64DecodingIgnoreUnknownCharacters")]
         const IgnoreUnknownCharacters = 1<<0;
     }
@@ -172,9 +228,38 @@ unsafe impl RefEncode for NSDataBase64DecodingOptions {
 }
 
 extern_class!(
-    /// **************    Immutable Data        ***************
+    /// A static byte buffer in memory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata?language=objc)
+    /// ## Overview
+    ///
+    /// In Swift, the buffer bridges to [`Data`](https://developer.apple.com/documentation/foundation/data); use [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// [NSData](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169) and its mutable subclass [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata) provide data objects, or object-oriented wrappers for byte buffers. Data objects let simple allocated buffers (that is, data with no embedded pointers) take on the behavior of Foundation objects.
+    ///
+    /// The size of the data is subject to a theoretical limit of about 8 exabytes (1 EB = 10¹⁸ bytes; in practice, the limit should not be a factor).
+    ///
+    /// [NSData](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169) is _toll-free bridged_ with its Core Foundation counterpart, [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`Data`](https://developer.apple.com/documentation/foundation/data) structure, which bridges to the [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) class and its mutable subclass [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Writing Data Atomically
+    ///
+    /// [NSData](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169) provides methods for atomically saving their contents to a file, which guarantee that the data is either saved in its entirety, or it fails completely. An atomic write first writes the data to a temporary file and then, only if this write succeeds, moves the temporary file to its final location.
+    ///
+    /// Although atomic write operations minimize the risk of data loss due to corrupt or partially written files, they may not be appropriate when writing to a temporary directory, the user’s home directory or other publicly accessible directories. When you work with a publicly accessible file, treat that file as an untrusted and potentially dangerous resource. An attacker may compromise or corrupt these files. The attacker can also replace the files with hard or symbolic links, causing your write operations to overwrite or corrupt other system resources.
+    ///
+    /// Avoid using the [`writeToURL:atomically:`](https://developer.apple.com/documentation/foundation/nsdata/write(to:atomically:)) method (and the related methods) when working inside a publicly accessible directory. Instead, use [`NSFileHandle`](https://developer.apple.com/documentation/foundation/filehandle) with an existing file descriptor to securely write the file.
+    ///
+    /// For more information, see [Securing File Operations](https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Articles/RaceConditions.html#//apple_ref/doc/uid/TP40002585-SW9) in [Secure Coding Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Introduction.html#//apple_ref/doc/uid/TP40002415).
+    ///
+    ///
+    /// **************    Immutable Data        ***************
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSData;
@@ -705,22 +790,36 @@ impl NSMutableData {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm?language=objc)
+/// An algorithm that indicates how to compress or decompress data.
+///
+/// ## Overview
+///
+/// Choose an algorithm that best suits the needs of your app:
+///
+/// - [`NSDataCompressionAlgorithmLZFSE`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzfse) — The algorithm offers faster speed and generally achieves better compression than   [`NSDataCompressionAlgorithmZlib`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/zlib). However, it is slower than [`NSDataCompressionAlgorithmLZ4`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lz4) and doesn’t compress as well as [`NSDataCompressionAlgorithmLZMA`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzma).
+///
+/// - [`NSDataCompressionAlgorithmZlib`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/zlib) — Use this algorithm if your app requires interoperability with non-Apple devices. For example, if you are transferering data to another device where it needs to be compressed or decompressed.
+///
+/// - [`NSDataCompressionAlgorithmLZ4`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lz4) — Use this algorithm if speed is critical, and you’re willing to sacrifice compression ratio to achieve it.
+///
+/// - [`NSDataCompressionAlgorithmLZMA`](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzma) — Use this algorithm if compression ratio is critical, and you’re willing to sacrifice speed to achieve it. It is an order of magnitude slower for both compression and decompression than other choices.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDataCompressionAlgorithm(pub NSInteger);
 impl NSDataCompressionAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzfse?language=objc)
+    /// The LZFSE compression algorithm, recommended for use on Apple platforms.
     #[doc(alias = "NSDataCompressionAlgorithmLZFSE")]
     pub const LZFSE: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lz4?language=objc)
+    /// The LZ4 compression algorithm, recommended for fast compression.
     #[doc(alias = "NSDataCompressionAlgorithmLZ4")]
     pub const LZ4: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/lzma?language=objc)
+    /// The LZMA compression algorithm, recommended for high-compression ratio.
     #[doc(alias = "NSDataCompressionAlgorithmLZMA")]
     pub const LZMA: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm/zlib?language=objc)
+    /// The zlib compression algorithm, recommended for cross-platform compression.
     #[doc(alias = "NSDataCompressionAlgorithmZlib")]
     pub const Zlib: Self = Self(3);
 }
@@ -823,9 +922,40 @@ impl NSMutableData {
 }
 
 extern_class!(
-    /// **************    Mutable Data        ***************
+    /// An object representing a dynamic byte buffer in memory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledata?language=objc)
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`Data`](https://developer.apple.com/documentation/foundation/data); use [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// `NSMutableData` and its superclass `NSData` provide data objects, or object-oriented wrappers for byte buffers. Data objects let simple allocated buffers (that is, data with no embedded pointers) take on the behavior of Foundation objects. They are typically used for data storage and are also useful in Distributed Objects applications, where data contained in data objects can be copied or moved between applications. `NSData` creates static data objects, and `NSMutableData` creates dynamic data objects. You can easily convert one type of data object to the other with the initializer that takes an `NSData` object or an  `NSMutableData` object as an argument.
+    ///
+    /// The following [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) methods change when used on a mutable data object:
+    ///
+    /// - [`initWithBytesNoCopy:length:freeWhenDone:`](https://developer.apple.com/documentation/foundation/nsdata/init(bytesnocopy:length:freewhendone:))
+    ///
+    /// - [`initWithBytesNoCopy:length:deallocator:`](https://developer.apple.com/documentation/foundation/nsdata/init(bytesnocopy:length:deallocator:))
+    ///
+    /// - [`initWithBytesNoCopy:length:`](https://developer.apple.com/documentation/foundation/nsdata/init(bytesnocopy:length:))
+    ///
+    /// - [`dataWithBytesNoCopy:length:freeWhenDone:`](https://developer.apple.com/documentation/foundation/nsdata/datawithbytesnocopy:length:freewhendone:)
+    ///
+    /// - [`dataWithBytesNoCopy:length:`](https://developer.apple.com/documentation/foundation/nsdata/datawithbytesnocopy:length:)
+    ///
+    /// When called, the bytes are immediately copied and then the buffer is freed.
+    ///
+    /// `NSMutableData` is “toll-free bridged” with its Core Foundation counterpart, [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`Data`](https://developer.apple.com/documentation/foundation/data) structure, which bridges to the [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata) class and its immutable superclass [`NSData`](https://developer.apple.com/documentation/foundation/nsdata). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// **************    Mutable Data        ***************
     #[unsafe(super(NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableData;
@@ -1006,9 +1136,20 @@ impl NSMutableData {
 }
 
 extern_class!(
-    /// **************        Purgeable Data    ***************
+    /// A mutable data object containing bytes that can be discarded when they’re no longer needed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nspurgeabledata?language=objc)
+    /// ## Overview
+    ///
+    /// [`NSPurgeableData`](https://developer.apple.com/documentation/foundation/nspurgeabledata) objects inherit their creation methods from their superclass, [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata) while providing a default implementation of the [`NSDiscardableContent`](https://developer.apple.com/documentation/foundation/nsdiscardablecontent) protocol.
+    ///
+    /// All [`NSPurgeableData`](https://developer.apple.com/documentation/foundation/nspurgeabledata) objects begin “accessed” to ensure that they are not instantly discarded. The [`beginContentAccess`](https://developer.apple.com/documentation/foundation/nsdiscardablecontent/begincontentaccess()) method marks the object’s bytes as “accessed,” thus protecting them from being discarded, and must be called before accessing the object, or else an exception will be raised. This method returns [`true`](https://developer.apple.com/documentation/swift/true) if the bytes have not been discarded and if they have been successfully marked as “accessed”. Any method that directly or indirectly accesses these bytes or their length when they are not “accessed” will raise an exception. When you are done with the data, call [`endContentAccess`](https://developer.apple.com/documentation/foundation/nsdiscardablecontent/endcontentaccess()) to allow them to be discarded in order to quickly free up memory.
+    ///
+    /// You may use these objects by themselves, and do not necessarily have to use them in conjunction with [`NSCache`](https://developer.apple.com/documentation/foundation/nscache) to get the purging behavior. The [`NSCache`](https://developer.apple.com/documentation/foundation/nscache) class incorporates a caching mechanism with some auto-removal policies to ensure that its memory footprint does not get too large.
+    ///
+    /// [`NSPurgeableData`](https://developer.apple.com/documentation/foundation/nspurgeabledata) objects should not be used as keys in hashing-based collections, because the value of the bytes pointer can change after every mutation of the data.
+    ///
+    ///
+    /// **************        Purgeable Data    ***************
     #[unsafe(super(NSMutableData, NSData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPurgeableData;

@@ -8,70 +8,180 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 pub const kUSBBillboardVConnNoPowerReq: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdeviceclass?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the device class
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBDeviceClass: &CStr = kUSBHostMatchingPropertyDeviceClass;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicesubclass?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the device sub class
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBDeviceSubClass: &CStr = kUSBHostMatchingPropertyDeviceSubClass;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdeviceprotocol?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the device protocol
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBDeviceProtocol: &CStr = kUSBHostMatchingPropertyDeviceProtocol;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicemaxpacketsize?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the maximum packet size for endpoint 0
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBDeviceMaxPacketSize: &CStr = kUSBHostDevicePropertyMaxPacketSize;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbvendorid?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the device USB Vendor ID
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBVendorID: &CStr = kUSBHostMatchingPropertyVendorID;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbvendorname?language=objc)
+///
+/// ## Discussion
+///
+/// Deprecated. Use kUSBVendorID
+///
+///
 pub const kUSBVendorName: &CStr = kUSBVendorID;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbproductid?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the device USB Product ID
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBProductID: &CStr = kUSBHostMatchingPropertyProductID;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbproductname?language=objc)
+///
+/// ## Discussion
+///
+/// Deprecated. Use kUSBProductID
+///
+///
 pub const kUSBProductName: &CStr = kUSBProductID;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicereleasenumber?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the device release version
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBDeviceReleaseNumber: &CStr = kUSBHostMatchingPropertyDeviceReleaseNumber;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbmanufacturerstringindex?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the index for the manufacturer's string
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBManufacturerStringIndex: &CStr = kUSBHostDevicePropertyManufacturerStringIndex;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbproductstringindex?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the index for the product name's string
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBProductStringIndex: &CStr = kUSBHostDevicePropertyProductStringIndex;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbserialnumberstringindex?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Device Descriptor corresponding to the index for the serial number's string
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBSerialNumberStringIndex: &CStr = kUSBHostDevicePropertySerialNumberStringIndex;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbdevicenumconfigs?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Configuration Descriptor corresponding to the number of configurations
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBDeviceNumConfigs: &CStr = kUSBHostDevicePropertyNumConfigs;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbinterfacenumber?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Configuration Descriptor corresponding to the number of configurations
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBInterfaceNumber: &CStr = kUSBHostMatchingPropertyInterfaceNumber;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbalternatesetting?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Configuration Descriptor corresponding to the number of configurations
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBAlternateSetting: &CStr = kUSBHostInterfacePropertyAlternateSetting;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbnumendpoints?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Configuration Descriptor corresponding to the number of configurations
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBNumEndpoints: &CStr = kUSBHostInterfacePropertyNumEndpoints;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbinterfaceclass?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Interface Descriptor corresponding to the interface class
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBInterfaceClass: &CStr = kUSBHostMatchingPropertyInterfaceClass;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbinterfacesubclass?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Interface Descriptor corresponding to the interface sub class
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBInterfaceSubClass: &CStr = kUSBHostMatchingPropertyInterfaceSubClass;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbinterfaceprotocol?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Interface Descriptor corresponding to the interface protocol
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBInterfaceProtocol: &CStr = kUSBHostMatchingPropertyInterfaceProtocol;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbinterfacestringindex?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Interface Descriptor corresponding to the index for the interface name's string
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBInterfaceStringIndex: &CStr = kUSBHostInterfacePropertyStringIndex;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbconfigurationvalue?language=objc)
+///
+/// ## Discussion
+///
+/// The field in the USB Interface Descriptor corresponding to the configuration
+///
+///
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBConfigurationValue: &CStr = kUSBHostMatchingPropertyConfigurationValue;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBInterfaceString: &CStr = kUSBHostInterfacePropertyString;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusb1284deviceid?language=objc)
+///
+/// ## Discussion
+///
+/// IORegistry key for the 1284 Device ID of a printer
+///
+///
 pub const kUSB1284DeviceID: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"1284 Device ID\0") };
 pub const kUSBCompatibilityMatch: &CStr =
@@ -81,437 +191,293 @@ pub const kUSBStandardVersion: &CStr = kUSBHostDevicePropertyStandardVersion;
 pub const kUSBSpecReleaseNumber: &CStr = kUSBStandardVersion;
 #[cfg(feature = "IOUSBHostFamilyDefinitions")]
 pub const kUSBContainerID: &CStr = kUSBHostDevicePropertyContainerID;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbproductstring?language=objc)
+///
+/// ## Discussion
+///
+/// IORegistry key for the device's USB Product string
+///
+///
 pub const kUSBProductString: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"USB Product Name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbvendorstring?language=objc)
+///
+/// ## Discussion
+///
+/// IORegistry key for the device's USB manufacturer string
+///
+///
 pub const kUSBVendorString: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"USB Vendor Name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbserialnumberstring?language=objc)
+///
+/// ## Discussion
+///
+/// IORegistry key for the device's USB serial number string
+///
+///
 pub const kUSBSerialNumberString: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"USB Serial Number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424978-endpoint_type/kusbcontrol?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBControl: c_uint = tIOUSBEndpointType::IOUSBEndpointTypeControl.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424978-endpoint_type/kusbisoc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBIsoc: c_uint = tIOUSBEndpointType::IOUSBEndpointTypeIsochronous.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424978-endpoint_type/kusbbulk?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBBulk: c_uint = tIOUSBEndpointType::IOUSBEndpointTypeBulk.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424978-endpoint_type/kusbinterrupt?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBInterrupt: c_uint = tIOUSBEndpointType::IOUSBEndpointTypeInterrupt.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424978-endpoint_type/kusbanytype?language=objc)
 pub const kUSBAnyType: c_uint = 0xFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424768-endpoint_direction/kusbout?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBOut: c_uint = tIOUSBEndpointDirection::IOUSBEndpointDirectionOut.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424768-endpoint_direction/kusbin?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBIn: c_uint = tIOUSBEndpointDirection::IOUSBEndpointDirectionIn.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424768-endpoint_direction/kusbnone?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBNone: c_uint = tIOUSBEndpointDirection::IOUSBEndpointDirectionUnknown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424768-endpoint_direction/kusbanydirn?language=objc)
 pub const kUSBAnyDirn: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425052-device_request_type/kusbstandard?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBStandard: c_uint =
     tIOUSBDeviceRequestTypeValue::IOUSBDeviceRequestTypeValueStandard.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425052-device_request_type/kusbclass?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBClass: c_uint = tIOUSBDeviceRequestTypeValue::IOUSBDeviceRequestTypeValueClass.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425052-device_request_type/kusbvendor?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBVendor: c_uint = tIOUSBDeviceRequestTypeValue::IOUSBDeviceRequestTypeValueVendor.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424890-device_request_recipient/kusbdevice?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDevice: c_uint =
     tIOUSBDeviceRequestRecipientValue::IOUSBDeviceRequestRecipientValueDevice.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424890-device_request_recipient/kusbinterface?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBInterface: c_uint =
     tIOUSBDeviceRequestRecipientValue::IOUSBDeviceRequestRecipientValueInterface.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424890-device_request_recipient/kusbendpoint?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpoint: c_uint =
     tIOUSBDeviceRequestRecipientValue::IOUSBDeviceRequestRecipientValueEndpoint.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424890-device_request_recipient/kusbother?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBOther: c_uint =
     tIOUSBDeviceRequestRecipientValue::IOUSBDeviceRequestRecipientValueOther.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqgetstatus?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqGetStatus: c_uint = kIOUSBDeviceRequestGetStatus;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqclearfeature?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqClearFeature: c_uint = kIOUSBDeviceRequestClearFeature;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqgetstate?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqGetState: c_uint = kIOUSBDeviceRequestGetState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqsetfeature?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqSetFeature: c_uint = kIOUSBDeviceRequestSetFeature;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqreserved2?language=objc)
 pub const kUSBRqReserved2: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqsetaddress?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqSetAddress: c_uint = kIOUSBDeviceRequestSetAddress;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqgetdescriptor?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqGetDescriptor: c_uint = kIOUSBDeviceRequestGetDescriptor;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqsetdescriptor?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqSetDescriptor: c_uint = kIOUSBDeviceRequestSetDescriptor;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqgetconfig?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqGetConfig: c_uint = kIOUSBDeviceRequestGetConfiguration;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqsetconfig?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqSetConfig: c_uint = kIOUSBDeviceRequestSetConfiguration;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqgetinterface?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqGetInterface: c_uint = kIOUSBDeviceRequestGetInterface;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqsetinterface?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqSetInterface: c_uint = kIOUSBDeviceRequestSetInterface;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbrqsyncframe?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBRqSyncFrame: c_uint = kIOUSBDeviceRequestSynchFrame;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbsetsel?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBSetSel: c_uint = kIOUSBDeviceRequestSetSel;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424997-device_request/kusbsetisochdelay?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBSetIsochDelay: c_uint = kIOUSBDeviceRequestSetIsochronousDelay;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbanydesc?language=objc)
 pub const kUSBAnyDesc: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbdevicedesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeDevice.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbconfdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBConfDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeConfiguration.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbstringdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBStringDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeString.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbinterfacedesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBInterfaceDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeInterface.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbendpointdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpointDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeEndpoint.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbdevicequalifierdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceQualifierDesc: c_uint =
     tIOUSBDescriptorType::IOUSBDescriptorTypeDeviceQualifier.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbotherspeedconfdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBOtherSpeedConfDesc: c_uint =
     tIOUSBDescriptorType::IOUSBDescriptorTypeOtherSpeedConfiguration.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbinterfacepowerdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBInterfacePowerDesc: c_uint =
     tIOUSBDescriptorType::IOUSBDescriptorTypeInterfacePower.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbonthegodesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBOnTheGoDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeOTG.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusdebugdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSDebugDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeDebug.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbinterfaceassociationdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBInterfaceAssociationDesc: c_uint =
     tIOUSBDescriptorType::IOUSBDescriptorTypeInterfaceAssociation.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbbosdescriptor?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBBOSDescriptor: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeBOS.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbdevicecapability?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapability: c_uint =
     tIOUSBDescriptorType::IOUSBDescriptorTypeDeviceCapability.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbsuperspeedendpointcompanion?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBSuperSpeedEndpointCompanion: c_uint =
     tIOUSBDescriptorType::IOUSBDescriptorTypeSuperSpeedUSBEndpointCompanion.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusb3hubdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSB3HUBDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeSuperSpeedHub.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbhiddesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBHIDDesc: c_uint = tIOUSBDescriptorType::IOUSBDecriptorTypeHID.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbreportdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBReportDesc: c_uint = tIOUSBDescriptorType::IOUSBDecriptorTypeReport.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbphysicaldesc?language=objc)
 pub const kUSBPhysicalDesc: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424957-usb_descriptors/kusbhubdesc?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBHUBDesc: c_uint = tIOUSBDescriptorType::IOUSBDescriptorTypeHub.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424953-device_capability_types/kusbdevicecapabilitywirelessusb?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapabilityWirelessUSB: c_uint =
     tIOUSBDeviceCapabilityType::IOUSBDeviceCapabilityTypeWireless.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424953-device_capability_types/kusbdevicecapabilityusb20extension?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapabilityUSB20Extension: c_uint =
     tIOUSBDeviceCapabilityType::IOUSBDeviceCapabilityTypeUSB20Extension.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424953-device_capability_types/kusbdevicecapabilitysuperspeedusb?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapabilitySuperSpeedUSB: c_uint =
     tIOUSBDeviceCapabilityType::IOUSBDeviceCapabilityTypeSuperSpeed.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424953-device_capability_types/kusbdevicecapabilitycontainerid?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapabilityContainerID: c_uint =
     tIOUSBDeviceCapabilityType::IOUSBDeviceCapabilityTypeContainerID.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424953-device_capability_types/kusbdevicecapabilitybillboard?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapabilityBillboard: c_uint =
     tIOUSBDeviceCapabilityType::IOUSBDeviceCapabilityTypeBillboard.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424953-device_capability_types/kusbdevicecapabilitybillboardaltmode?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBDeviceCapabilityBillboardAltMode: c_uint =
     tIOUSBDeviceCapabilityType::IOUSBDeviceCapabilityTypeBillboardAltMode.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeatureendpointstall?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureEndpointStall: c_uint = IOUSBEndpointFeatureSelectorStall;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeaturedeviceremotewakeup?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureDeviceRemoteWakeup: c_uint = kIOUSBDeviceFeatureSelectorRemoteWakeup;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeaturetestmode?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureTestMode: c_uint = kIOUSBDeviceFeatureSelectorTestMode;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeaturefunctionsuspend?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureFunctionSuspend: c_uint = kIOUSBInterfaceFeatureSelectorSuspend;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeatureu1enable?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureU1Enable: c_uint = kIOUSBDeviceFeatureSelectorU1Enable;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeatureu2enable?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureU2Enable: c_uint = kIOUSBDeviceFeatureSelectorU2Enable;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424883-feature_selectors/kusbfeatureltmenable?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFeatureLTMEnable: c_uint = kIOUSBDeviceFeatureSelectorLTMEnable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424754-miscellaneous/kusbfunctionremotewakecapablebit?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFunctionRemoteWakeCapableBit: c_uint = IOUSBBit!(0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424754-miscellaneous/kusbfunctionremotewakeupbit?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFunctionRemoteWakeupBit: c_uint = IOUSBBit!(1);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424754-miscellaneous/kusblowpowersuspendstatebit?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBLowPowerSuspendStateBit: c_uint = IOUSBBit!(0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424754-miscellaneous/kusbfunctionremotewakeenablebit?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBFunctionRemoteWakeEnableBit: c_uint = IOUSBBit!(1);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb100maavailable?language=objc)
 pub const kUSB100mAAvailable: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb500maavailable?language=objc)
 pub const kUSB500mAAvailable: c_uint = 250;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb100ma?language=objc)
 pub const kUSB100mA: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusbatrbuspowered?language=objc)
 pub const kUSBAtrBusPowered: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusbatrselfpowered?language=objc)
 pub const kUSBAtrSelfPowered: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusbatrremotewakeup?language=objc)
 pub const kUSBAtrRemoteWakeup: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb2maxpowerperport?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSB2MaxPowerPerPort: c_uint = tIOUSB20BusCurrent::IOUSB20BusCurrentDefault.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb150maavailable?language=objc)
 pub const kUSB150mAAvailable: c_uint = 75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb900maavailable?language=objc)
 pub const kUSB900mAAvailable: c_uint = 450;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb150ma?language=objc)
 pub const kUSB150mA: c_uint = 75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424648-usb_power_constants/kusb3maxpowerperport?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSB3MaxPowerPerPort: c_uint = tIOUSB30BusCurrent::IOUSB30BusCurrentDefault.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424886-usb_release_constants/kusbrel10?language=objc)
 pub const kUSBRel10: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424886-usb_release_constants/kusbrel11?language=objc)
 pub const kUSBRel11: c_uint = 0x0110;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424886-usb_release_constants/kusbrel20?language=objc)
 pub const kUSBRel20: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424886-usb_release_constants/kusbrel30?language=objc)
 pub const kUSBRel30: c_uint = 0x0300;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424744-hid_requests/khidrqgetreport?language=objc)
 pub const kHIDRqGetReport: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424744-hid_requests/khidrqgetidle?language=objc)
 pub const kHIDRqGetIdle: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424744-hid_requests/khidrqgetprotocol?language=objc)
 pub const kHIDRqGetProtocol: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424744-hid_requests/khidrqsetreport?language=objc)
 pub const kHIDRqSetReport: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424744-hid_requests/khidrqsetidle?language=objc)
 pub const kHIDRqSetIdle: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424744-hid_requests/khidrqsetprotocol?language=objc)
 pub const kHIDRqSetProtocol: c_uint = 11;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424657-hid_report_types/khidrtinputreport?language=objc)
 pub const kHIDRtInputReport: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424657-hid_report_types/khidrtoutputreport?language=objc)
 pub const kHIDRtOutputReport: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424657-hid_report_types/khidrtfeaturereport?language=objc)
 pub const kHIDRtFeatureReport: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424894-hid_protocol/khidbootprotocolvalue?language=objc)
 pub const kHIDBootProtocolValue: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424894-hid_protocol/khidreportprotocolvalue?language=objc)
 pub const kHIDReportProtocolValue: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424702-anonymous/kusbcapslockkey?language=objc)
 pub const kUSBCapsLockKey: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424702-anonymous/kusbnumlockkey?language=objc)
 pub const kUSBNumLockKey: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424702-anonymous/kusbscrolllockkey?language=objc)
 pub const kUSBScrollLockKey: c_uint = 0x47;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbcompositeclass?language=objc)
 pub const kUSBCompositeClass: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbcommclass?language=objc)
 pub const kUSBCommClass: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbcommunicationclass?language=objc)
 pub const kUSBCommunicationClass: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbhubclass?language=objc)
 pub const kUSBHubClass: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbdataclass?language=objc)
 pub const kUSBDataClass: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbpersonalhealthcareclass?language=objc)
 pub const kUSBPersonalHealthcareClass: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbbillboardclass?language=objc)
 pub const kUSBBillBoardClass: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbdiagnosticclass?language=objc)
 pub const kUSBDiagnosticClass: c_uint = 220;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbwirelesscontrollerclass?language=objc)
 pub const kUSBWirelessControllerClass: c_uint = 224;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbmiscellaneousclass?language=objc)
 pub const kUSBMiscellaneousClass: c_uint = 239;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbapplicationspecificclass?language=objc)
 pub const kUSBApplicationSpecificClass: c_uint = 254;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424988-device_class_codes/kusbvendorspecificclass?language=objc)
 pub const kUSBVendorSpecificClass: c_uint = 255;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbaudioclass?language=objc)
 pub const kUSBAudioClass: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbaudiointerfaceclass?language=objc)
 pub const kUSBAudioInterfaceClass: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbcommunicationcontrolinterfaceclass?language=objc)
 pub const kUSBCommunicationControlInterfaceClass: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbcommunicationdatainterfaceclass?language=objc)
 pub const kUSBCommunicationDataInterfaceClass: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbhidclass?language=objc)
 pub const kUSBHIDClass: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbhidinterfaceclass?language=objc)
 pub const kUSBHIDInterfaceClass: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbphysicalinterfaceclass?language=objc)
 pub const kUSBPhysicalInterfaceClass: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbimageinterfaceclass?language=objc)
 pub const kUSBImageInterfaceClass: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbprintingclass?language=objc)
 pub const kUSBPrintingClass: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbprintinginterfaceclass?language=objc)
 pub const kUSBPrintingInterfaceClass: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbmassstorageclass?language=objc)
 pub const kUSBMassStorageClass: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbmassstorageinterfaceclass?language=objc)
 pub const kUSBMassStorageInterfaceClass: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbchipsmartcardinterfaceclass?language=objc)
 pub const kUSBChipSmartCardInterfaceClass: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbcontentsecurityinterfaceclass?language=objc)
 pub const kUSBContentSecurityInterfaceClass: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbvideointerfaceclass?language=objc)
 pub const kUSBVideoInterfaceClass: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbpersonalhealthcareinterfaceclass?language=objc)
 pub const kUSBPersonalHealthcareInterfaceClass: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbdiagnosticdeviceinterfaceclass?language=objc)
 pub const kUSBDiagnosticDeviceInterfaceClass: c_uint = 220;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbwirelesscontrollerinterfaceclass?language=objc)
 pub const kUSBWirelessControllerInterfaceClass: c_uint = 224;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbapplicationspecificinterfaceclass?language=objc)
 pub const kUSBApplicationSpecificInterfaceClass: c_uint = 254;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424756-interface_class/kusbvendorspecificinterfaceclass?language=objc)
 pub const kUSBVendorSpecificInterfaceClass: c_uint = 255;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425054-anonymous/kusbdisplayclass?language=objc)
 pub const kUSBDisplayClass: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcompositesubclass?language=objc)
 pub const kUSBCompositeSubClass: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbhubsubclass?language=objc)
 pub const kUSBHubSubClass: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbaudiocontrolsubclass?language=objc)
 pub const kUSBAudioControlSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbaudiostreamingsubclass?language=objc)
 pub const kUSBAudioStreamingSubClass: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmidistreamingsubclass?language=objc)
 pub const kUSBMIDIStreamingSubClass: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbdfusubclass?language=objc)
 pub const kUSBDFUSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbirdabridgesubclass?language=objc)
 pub const kUSBIrDABridgeSubClass: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbtestmeasurementsubclass?language=objc)
 pub const kUSBTestMeasurementSubClass: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmassstoragerbcsubclass?language=objc)
 pub const kUSBMassStorageRBCSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmassstorageatapisubclass?language=objc)
 pub const kUSBMassStorageATAPISubClass: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmassstorageqic157subclass?language=objc)
 pub const kUSBMassStorageQIC157SubClass: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmassstorageufisubclass?language=objc)
 pub const kUSBMassStorageUFISubClass: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmassstoragesff8070isubclass?language=objc)
 pub const kUSBMassStorageSFF8070iSubClass: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbmassstoragescsisubclass?language=objc)
 pub const kUSBMassStorageSCSISubClass: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbhidbootinterfacesubclass?language=objc)
 pub const kUSBHIDBootInterfaceSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommdirectlinesubclass?language=objc)
 pub const kUSBCommDirectLineSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommabstractsubclass?language=objc)
 pub const kUSBCommAbstractSubClass: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommtelephonesubclass?language=objc)
 pub const kUSBCommTelephoneSubClass: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommmultichannelsubclass?language=objc)
 pub const kUSBCommMultiChannelSubClass: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommcapisubclass?language=objc)
 pub const kUSBCommCAPISubClass: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommethernetnetworkingsubclass?language=objc)
 pub const kUSBCommEthernetNetworkingSubClass: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbatmnetworkingsubclass?language=objc)
 pub const kUSBATMNetworkingSubClass: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbreprogrammablediagnosticsubclass?language=objc)
 pub const kUSBReprogrammableDiagnosticSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbrfcontrollersubclass?language=objc)
 pub const kUSBRFControllerSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbcommonclasssubclass?language=objc)
 pub const kUSBCommonClassSubClass: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbvideocontrolsubclass?language=objc)
 pub const kUSBVideoControlSubClass: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbvideostreamingsubclass?language=objc)
 pub const kUSBVideoStreamingSubClass: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424847-interface_subclass/kusbvideointerfacecollectionsubclass?language=objc)
 pub const kUSBVideoInterfaceCollectionSubClass: c_uint = 0x03;
 
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct USBClassSpecificDesc(pub c_uint);
 impl USBClassSpecificDesc {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/usbclassspecificdesc/kusbclassspecificdescriptor?language=objc)
     #[doc(alias = "kUSBClassSpecificDescriptor")]
     pub const Descriptor: Self = Self(0x24);
 }
@@ -526,138 +492,79 @@ unsafe impl RefEncode for USBClassSpecificDesc {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/khubsuperspeedprotocol?language=objc)
 pub const kHubSuperSpeedProtocol: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/khidnointerfaceprotocol?language=objc)
 pub const kHIDNoInterfaceProtocol: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/khidkeyboardinterfaceprotocol?language=objc)
 pub const kHIDKeyboardInterfaceProtocol: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/khidmouseinterfaceprotocol?language=objc)
 pub const kHIDMouseInterfaceProtocol: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kusbvendorspecificprotocol?language=objc)
 pub const kUSBVendorSpecificProtocol: c_uint = 0xff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kusb2compliancedeviceprotocol?language=objc)
 pub const kUSB2ComplianceDeviceProtocol: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kusbbluetoothprogramminginterfaceprotocol?language=objc)
 pub const kUSBBluetoothProgrammingInterfaceProtocol: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kusbinterfaceassociationdescriptorprotocol?language=objc)
 pub const KUSBInterfaceAssociationDescriptorProtocol: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kmscprotocolcontrolbulkinterrupt?language=objc)
 pub const kMSCProtocolControlBulkInterrupt: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kmscprotocolcontrolbulk?language=objc)
 pub const kMSCProtocolControlBulk: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kmscprotocolbulkonly?language=objc)
 pub const kMSCProtocolBulkOnly: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424750-anonymous/kmscprotocolusbattachedscsi?language=objc)
 pub const kMSCProtocolUSBAttachedSCSI: c_uint = 0x62;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424990-dfu_class_attributes/kusbdfuattributesmask?language=objc)
 pub const kUSBDFUAttributesMask: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424990-dfu_class_attributes/kusbdfucandownloadbit?language=objc)
 pub const kUSBDFUCanDownloadBit: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424990-dfu_class_attributes/kusbdfucanuploadbit?language=objc)
 pub const kUSBDFUCanUploadBit: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424990-dfu_class_attributes/kusbdfumanifestationtolerantbit?language=objc)
 pub const kUSBDFUManifestationTolerantBit: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424817-printer_class_requests/kusprintingclassgetdeviceid?language=objc)
 pub const kUSPrintingClassGetDeviceID: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424817-printer_class_requests/kusprintingclassgeportstatus?language=objc)
 pub const kUSPrintingClassGePortStatus: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424817-printer_class_requests/kusprintingclasssoftreset?language=objc)
 pub const kUSPrintingClassSoftReset: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbbendpointaddressmask?language=objc)
 pub const kUSBbEndpointAddressMask: c_uint = 0x0f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbbendpointdirectionbit?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBbEndpointDirectionBit: c_uint = kIOUSBEndpointDescriptorDirectionPhase;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbbendpointdirectionmask?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBbEndpointDirectionMask: c_uint = kIOUSBEndpointDescriptorDirection;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointdirectionout?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpointDirectionOut: c_uint = kIOUSBEndpointDescriptorDirectionOut;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointdirectionin?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpointDirectionIn: c_uint = kIOUSBEndpointDescriptorDirectionIn;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointbmattributestransfertypemask?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpointbmAttributesTransferTypeMask: c_uint = kIOUSBEndpointDescriptorTransferType;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointbmattributessynchronizationtypemask?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpointbmAttributesSynchronizationTypeMask: c_uint =
     kIOUSBEndpointDescriptorSynchronizationType;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointbmattributessynchronizationtypeshift?language=objc)
 pub const kUSBEndpointbmAttributesSynchronizationTypeShift: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointbmattributesusagetypemask?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kUSBEndpointbmAttributesUsageTypeMask: c_uint = kIOUSBEndpointDescriptorUsageType;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbendpointbmattributesusagetypeshift?language=objc)
 pub const kUSBEndpointbmAttributesUsageTypeShift: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbperiodicinterruptusagetype?language=objc)
 pub const kUSBPeriodicInterruptUsageType: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbnotificationinterruptusagetype?language=objc)
 pub const kUSBNotificationInterruptUsageType: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbnosynchronizationisocsynctype?language=objc)
 pub const kUSBNoSynchronizationIsocSyncType: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbasynchronousisocsynctype?language=objc)
 pub const kUSBAsynchronousIsocSyncType: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbadaptiveisocsynctype?language=objc)
 pub const kUSBAdaptiveIsocSyncType: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbsynchronousisocsynctype?language=objc)
 pub const kUSBSynchronousIsocSyncType: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbdataisocusagetype?language=objc)
 pub const kUSBDataIsocUsageType: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbfeedbackisocusagetype?language=objc)
 pub const kUSBFeedbackIsocUsageType: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424773-endpoint_descriptor_bits/kusbimplicitfeedbackdataisocusagetype?language=objc)
 pub const kUSBImplicitFeedbackDataIsocUsageType: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425036-usb_device_capability_type_const/kusb20extensionlpmsupported?language=objc)
 pub const kUSB20ExtensionLPMSupported: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425036-usb_device_capability_type_const/kusbsuperspeedltmcapable?language=objc)
 pub const kUSBSuperSpeedLTMCapable: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425036-usb_device_capability_type_const/kusbsuperspeedsupportsls?language=objc)
 pub const kUSBSuperSpeedSupportsLS: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425036-usb_device_capability_type_const/kusbsuperspeedsupportsfs?language=objc)
 pub const kUSBSuperSpeedSupportsFS: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425036-usb_device_capability_type_const/kusbsuperspeedsupportshs?language=objc)
 pub const kUSBSuperSpeedSupportsHS: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1425036-usb_device_capability_type_const/kusbsuperspeedsupportsss?language=objc)
 pub const kUSBSuperSpeedSupportsSS: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn1watt?language=objc)
 pub const kUSBBillboardVConn1Watt: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn1p5watt?language=objc)
 pub const kUSBBillboardVConn1P5Watt: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn2watt?language=objc)
 pub const kUSBBillboardVConn2Watt: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn3watt?language=objc)
 pub const kUSBBillboardVConn3Watt: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn4watt?language=objc)
 pub const kUSBBillboardVConn4Watt: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn5watt?language=objc)
 pub const kUSBBillboardVConn5Watt: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconn6watt?language=objc)
 pub const kUSBBillboardVConn6Watt: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643726-anonymous/kusbbillboardvconnreserved?language=objc)
 pub const kUSBBillboardVConnReserved: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643743-anonymous/kusbbillboardunspecifiederror?language=objc)
 pub const kUSBBillboardUnspecifiedError: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643743-anonymous/kusbbillboardconfignotattempted?language=objc)
 pub const kUSBBillboardConfigNotAttempted: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643743-anonymous/kusbbillboardconfigunsuccessful?language=objc)
 pub const kUSBBillboardConfigUnsuccessful: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1643743-anonymous/kusbbillboardaltmodeconfigsuccess?language=objc)
 pub const kUSBBillboardAltModeConfigSuccess: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2870283-anonymous/kusbbillboardadditinalinfonopower?language=objc)
 pub const kUSBBillboardAdditinalInfoNoPower: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2870283-anonymous/kusbbillboardadditinalinfonousbpd?language=objc)
 pub const kUSBBillboardAdditinalInfoNoUSBPD: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1424851-apple_usb_vendor_id/kapplevendorid?language=objc)
 #[cfg(feature = "AppleUSBDefinitions")]
 pub const kAppleVendorID: c_uint = kIOUSBAppleVendorID;

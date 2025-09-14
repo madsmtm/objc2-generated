@@ -7,45 +7,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A value that sets an animation begin time to `0`.
+    ///
+    /// ## Discussion
+    ///
+    /// The constant is a small, non-zero, positive value which prevents CoreAnimation from replacing `0.0` with [`CACurrentMediaTime`](https://developer.apple.com/documentation/quartzcore/cacurrentmediatime()).
+    ///
+    ///
     /// Use this constant to set the CoreAnimation's animation beginTime property to be time 0.
     /// The constant is a small, non-zero, positive value which avoids CoreAnimation
     /// from replacing 0.0 with CACurrentMediaTime().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static AVCoreAnimationBeginTimeAtZero: CFTimeInterval;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity?language=objc)
+/// A structure that defines how a layer displays a player’s visual content within the layer’s bounds.
 // NS_TYPED_ENUM
 pub type AVLayerVideoGravity = NSString;
 
 extern "C" {
+    /// The video preserves its aspect ratio and fits it within the layer’s bounds.
     /// Preserve aspect ratio; fit within layer bounds.
     ///
     /// AVLayerVideoGravityResizeAspect may be used when setting the videoGravity
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity/resizeaspect?language=objc)
     pub static AVLayerVideoGravityResizeAspect: Option<&'static AVLayerVideoGravity>;
 }
 
 extern "C" {
+    /// The video preserves its aspect ratio and fills the layer’s bounds.
+    ///
+    /// ## Discussion
+    ///
+    /// This gravity value may crop the video image along its horizontal or vertical dimension.
+    ///
+    ///
     /// Preserve aspect ratio; fill layer bounds.
     ///
     /// AVLayerVideoGravityResizeAspectFill may be used when setting the videoGravity
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity/resizeaspectfill?language=objc)
     pub static AVLayerVideoGravityResizeAspectFill: Option<&'static AVLayerVideoGravity>;
 }
 
 extern "C" {
+    /// The video stretches to fill the layer’s bounds.
     /// Stretch to fill layer bounds.
     ///
     /// AVLayerVideoGravityResize may be used when setting the videoGravity
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity/resize?language=objc)
     pub static AVLayerVideoGravityResize: Option<&'static AVLayerVideoGravity>;
 }

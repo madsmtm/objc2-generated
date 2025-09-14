@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Defines the range within which an ear’s sensitivity point may have been clamped, if any.
+    ///
+    /// ## Overview
+    ///
+    /// At times, it may be required to indicate that a sensitivity point has been clamped to a range. These reasons include but are not limited to user safety, hardware limitations, or algorithm features.
+    ///
+    ///
     /// Defines the range within which an ear's sensitivity point may have been clamped, if any.
     ///
     /// At times, it may be required to indicate that a sensitivity point has been clamped to a range. These reasons include but
     /// are not limited to user safety, hardware limitations, or algorithm features.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypointclampingrange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSensitivityPointClampingRange;

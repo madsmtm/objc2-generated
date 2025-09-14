@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionhandler?language=objc)
+    /// An abstract superclass for an app extension to add a payment card to Wallet.
+    ///
+    /// ## Overview
+    ///
+    /// The principal class of your app’s extension target must be a subclass of `PKIssuerProvisioningExtensionHandler`.
+    ///
+    /// Your app must be installed and the user open the app at least once for the system to call the extension handler.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before you can add a payment card provisioning extension you need an entitlement from Apple. For more information on requesting an entitlement, contact apple-pay-inquiries@apple.com.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIssuerProvisioningExtensionHandler;

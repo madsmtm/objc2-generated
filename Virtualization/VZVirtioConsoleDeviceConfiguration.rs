@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A console device that enables communication between the host and the guest using console ports through a Virtio interface.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZVirtioConsoleDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration) object enables serial communication between the guest-operating system and host computer through the Virtio interface. The device sets up one or more ports through [`VZVirtioConsolePortConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfiguration) on the Virtio console device.
+    ///
+    ///
     /// Virtio Console Device
     ///
     /// This console device enables communication between the host and the guest using console ports through the Virtio interface.
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZVirtioConsolePortConfiguration
     ///
     /// See: VZVirtualMachineConfiguration.consoleDevices
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration?language=objc)
     #[unsafe(super(VZConsoleDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDeviceConfiguration")]

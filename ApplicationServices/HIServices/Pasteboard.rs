@@ -25,35 +25,24 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaquePasteboardRef"> for Pasteboard {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboarditemid?language=objc)
 pub type PasteboardItemID = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboardsyncerr?language=objc)
 pub const badPasteboardSyncErr: c_int = -25130;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboardindexerr?language=objc)
 pub const badPasteboardIndexErr: c_int = -25131;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboarditemerr?language=objc)
 pub const badPasteboardItemErr: c_int = -25132;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboardflavorerr?language=objc)
 pub const badPasteboardFlavorErr: c_int = -25133;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/duplicatepasteboardflavorerr?language=objc)
 pub const duplicatePasteboardFlavorErr: c_int = -25134;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/notpasteboardownererr?language=objc)
 pub const notPasteboardOwnerErr: c_int = -25135;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/nopasteboardpromisekeepererr?language=objc)
 pub const noPasteboardPromiseKeeperErr: c_int = -25136;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardsyncflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PasteboardSyncFlags(pub OptionBits);
 bitflags::bitflags! {
     impl PasteboardSyncFlags: OptionBits {
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardsyncflags/kpasteboardmodified?language=objc)
         #[doc(alias = "kPasteboardModified")]
         const Modified = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardsyncflags/kpasteboardclientisowner?language=objc)
         #[doc(alias = "kPasteboardClientIsOwner")]
         const ClientIsOwner = 1<<1;
     }
@@ -69,32 +58,24 @@ unsafe impl RefEncode for PasteboardSyncFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PasteboardFlavorFlags(pub OptionBits);
 bitflags::bitflags! {
     impl PasteboardFlavorFlags: OptionBits {
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavornoflags?language=objc)
         #[doc(alias = "kPasteboardFlavorNoFlags")]
         const NoFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavorsenderonly?language=objc)
         #[doc(alias = "kPasteboardFlavorSenderOnly")]
         const SenderOnly = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavorsendertranslated?language=objc)
         #[doc(alias = "kPasteboardFlavorSenderTranslated")]
         const SenderTranslated = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavornotsaved?language=objc)
         #[doc(alias = "kPasteboardFlavorNotSaved")]
         const NotSaved = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavorrequestonly?language=objc)
         #[doc(alias = "kPasteboardFlavorRequestOnly")]
         const RequestOnly = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavorsystemtranslated?language=objc)
         #[doc(alias = "kPasteboardFlavorSystemTranslated")]
         const SystemTranslated = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags/kpasteboardflavorpromised?language=objc)
         #[doc(alias = "kPasteboardFlavorPromised")]
         const Promised = 1<<9;
     }
@@ -110,16 +91,13 @@ unsafe impl RefEncode for PasteboardFlavorFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardstandardlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PasteboardStandardLocation(pub OSType);
 impl PasteboardStandardLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardstandardlocation/kpasteboardstandardlocationtrash?language=objc)
     #[doc(alias = "kPasteboardStandardLocationTrash")]
     pub const Trash: Self = Self(0x74727368);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardstandardlocation/kpasteboardstandardlocationunknown?language=objc)
     #[doc(alias = "kPasteboardStandardLocationUnknown")]
     pub const Unknown: Self = Self(0x756e6b6e);
 }
@@ -135,7 +113,6 @@ unsafe impl RefEncode for PasteboardStandardLocation {
 }
 
 unsafe impl ConcreteType for Pasteboard {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463386-pasteboardgettypeid?language=objc)
     #[doc(alias = "PasteboardGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -147,8 +124,6 @@ unsafe impl ConcreteType for Pasteboard {
 }
 
 impl Pasteboard {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461248-pasteboardcreate?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_pasteboard` must be a valid pointer.
@@ -167,7 +142,6 @@ impl Pasteboard {
         unsafe { PasteboardCreate(in_name, out_pasteboard) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459590-pasteboardsynchronize?language=objc)
     #[doc(alias = "PasteboardSynchronize")]
     #[inline]
     pub unsafe fn synchronize(&self) -> PasteboardSyncFlags {
@@ -177,7 +151,6 @@ impl Pasteboard {
         unsafe { PasteboardSynchronize(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460800-pasteboardclear?language=objc)
     #[doc(alias = "PasteboardClear")]
     #[inline]
     pub unsafe fn clear(&self) -> OSStatus {
@@ -187,8 +160,6 @@ impl Pasteboard {
         unsafe { PasteboardClear(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459455-pasteboardcopyname?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_name` must be a valid pointer.
@@ -204,8 +175,6 @@ impl Pasteboard {
         unsafe { PasteboardCopyName(self, out_name) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459551-pasteboardgetitemcount?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_item_count` must be a valid pointer.
@@ -221,8 +190,6 @@ impl Pasteboard {
         unsafe { PasteboardGetItemCount(self, out_item_count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463412-pasteboardgetitemidentifier?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_item` must be a valid pointer.
@@ -243,8 +210,6 @@ impl Pasteboard {
         unsafe { PasteboardGetItemIdentifier(self, in_index, out_item) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460005-pasteboardcopyitemflavors?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_item` must be a valid pointer.
@@ -266,8 +231,6 @@ impl Pasteboard {
         unsafe { PasteboardCopyItemFlavors(self, in_item, out_flavor_types) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459353-pasteboardgetitemflavorflags?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_item` must be a valid pointer.
@@ -291,8 +254,6 @@ impl Pasteboard {
         unsafe { PasteboardGetItemFlavorFlags(self, in_item, in_flavor_type, out_flags) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458917-pasteboardcopyitemflavordata?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_item` must be a valid pointer.
@@ -316,8 +277,6 @@ impl Pasteboard {
         unsafe { PasteboardCopyItemFlavorData(self, in_item, in_flavor_type, out_data) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463184-pasteboardputitemflavor?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_item` must be a valid pointer.
@@ -342,8 +301,6 @@ impl Pasteboard {
         unsafe { PasteboardPutItemFlavor(self, in_item, in_flavor_type, in_data, in_flags) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462546-pasteboardcopypastelocation?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_paste_location` must be a valid pointer.
@@ -362,7 +319,6 @@ impl Pasteboard {
         unsafe { PasteboardCopyPasteLocation(self, out_paste_location) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460572-pasteboardsetpastelocation?language=objc)
     #[doc(alias = "PasteboardSetPasteLocation")]
     #[inline]
     pub unsafe fn set_paste_location(&self, in_paste_location: &CFURL) -> OSStatus {
@@ -376,7 +332,6 @@ impl Pasteboard {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardpromisekeeperprocptr?language=objc)
 pub type PasteboardPromiseKeeperProcPtr = Option<
     unsafe extern "C-unwind" fn(
         NonNull<Pasteboard>,
@@ -387,8 +342,6 @@ pub type PasteboardPromiseKeeperProcPtr = Option<
 >;
 
 impl Pasteboard {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463604-pasteboardsetpromisekeeper?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_promise_keeper` must be implemented correctly.
@@ -410,7 +363,6 @@ impl Pasteboard {
         unsafe { PasteboardSetPromiseKeeper(self, in_promise_keeper, in_context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460816-pasteboardresolvepromises?language=objc)
     #[doc(alias = "PasteboardResolvePromises")]
     #[inline]
     pub unsafe fn resolve_promises(&self) -> OSStatus {

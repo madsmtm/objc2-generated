@@ -9,11 +9,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey?language=objc)
 // NS_TYPED_ENUM
 pub type CFNumberFormatterKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatter?language=objc)
+///
+/// ## Overview
+///
+/// CFNumberFormatter objects format the textual representations of CFNumber objects, and convert textual representations of numbers into CFNumber objects. The representation encompasses integers, floats, and doubles; floats and doubles can be formatted to a specified decimal position. You specify how strings are formatted and parsed by setting a format string and other properties of a CFNumberFormatter object.
+///
+/// The format of the format string is defined by Unicode Technical Standard #35; the version of the standard used varies with release of the operating system, and is described in [Introduction to Data Formatting Programming Guide For Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029).
+///
+/// <div class="warning">
+///
+/// ### Important
+///  `CFNumberFormatter` is not thread-safe.  Do not use a single instance from multiple threads.
+///
+///
+///
+/// </div>
+/// Unlike some other Core Foundation opaque types with names similar to a corresponding Cocoa Foundation class (such as CFString and `NSString`), CFNumberFormatter objects cannot be cast (“toll-free bridged”) to `NSNumberFormatter` objects.
+///
+///
 #[doc(alias = "CFNumberFormatterRef")]
 #[repr(C)]
 pub struct CFNumberFormatter {
@@ -30,7 +46,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFNumberFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergettypeid()?language=objc)
+    /// Returns the type identifier for the `CFNumberFormatter` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the `CFNumberFormatter` opaque type.
+    ///
+    ///
     #[doc(alias = "CFNumberFormatterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -41,40 +63,42 @@ unsafe impl ConcreteType for CFNumberFormatter {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle?language=objc)
+/// Type for constants specifying a formatter style.
+///
+/// ## Overview
+///
+/// For values, see [Number Formatter Styles](https://developer.apple.com/documentation/corefoundation/number-formatter-styles).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterStyle(pub CFIndex);
 impl CFNumberFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/nostyle?language=objc)
+    /// Specifies no style.
     #[doc(alias = "kCFNumberFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/decimalstyle?language=objc)
+    /// Specifies a decimal style format.
     #[doc(alias = "kCFNumberFormatterDecimalStyle")]
     pub const DecimalStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencystyle?language=objc)
+    /// Specifies a currency style format.
     #[doc(alias = "kCFNumberFormatterCurrencyStyle")]
     pub const CurrencyStyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/percentstyle?language=objc)
+    /// Specifies a percent style format.
     #[doc(alias = "kCFNumberFormatterPercentStyle")]
     pub const PercentStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/scientificstyle?language=objc)
+    /// Specifies a scientific style format.
     #[doc(alias = "kCFNumberFormatterScientificStyle")]
     pub const ScientificStyle: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/spelloutstyle?language=objc)
+    /// Specifies a spelled out format.
     #[doc(alias = "kCFNumberFormatterSpellOutStyle")]
     pub const SpellOutStyle: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/ordinalstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterOrdinalStyle")]
     pub const OrdinalStyle: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencyisocodestyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyISOCodeStyle")]
     pub const CurrencyISOCodeStyle: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencypluralstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyPluralStyle")]
     pub const CurrencyPluralStyle: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle/currencyaccountingstyle?language=objc)
     #[doc(alias = "kCFNumberFormatterCurrencyAccountingStyle")]
     pub const CurrencyAccountingStyle: Self = Self(10);
 }
@@ -90,7 +114,21 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 }
 
 impl CFNumberFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreate(_:_:_:)?language=objc)
+    /// Creates a new CFNumberFormatter object, localized to the given locale, which will format numbers to the given style.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - locale: A locale to use for localization. If `NULL`, the function uses the default system locale. Use [`CFLocaleCopyCurrent`](https://developer.apple.com/documentation/corefoundation/cflocalecopycurrent()) to specify the locale of the current user.
+    ///
+    /// - style: A number style. See [Number Formatter Styles](https://developer.apple.com/documentation/corefoundation/number-formatter-styles) for possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new number formatter, localized to the given locale, which will format numbers using the given style. Returns `NULL` if there was a problem creating the formatter. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -115,7 +153,17 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetlocale(_:)?language=objc)
+    /// Returns the locale object used to create the given number formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The locale used to create `formatter`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFNumberFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -129,7 +177,17 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetstyle(_:)?language=objc)
+    /// Returns the number style used to create the given number formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number style used to create `formatter`.
+    ///
+    ///
     #[doc(alias = "CFNumberFormatterGetStyle")]
     #[inline]
     pub fn style(&self) -> CFNumberFormatterStyle {
@@ -139,7 +197,17 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterGetStyle(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetformat(_:)?language=objc)
+    /// Returns a format string for the given number formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The format string for `formatter` as was specified by calling the [`CFNumberFormatterSetFormat`](https://developer.apple.com/documentation/corefoundation/cfnumberformattersetformat(_:_:)) function, or derived from the number formatter’s style. See [Creating and Using CFNumberFormatter Objects](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDataFormatting/Articles/dfCreatingCFNumberFormatters.html#//apple_ref/doc/uid/TP40002342) for more information. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFNumberFormatterGetFormat")]
     #[inline]
     pub fn format(&self) -> Option<CFRetained<CFString>> {
@@ -152,7 +220,19 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattersetformat(_:_:)?language=objc)
+    /// Sets the format string of a number formatter.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to modify.
+    ///
+    /// - formatString: The format string to be used by `formatter`. See [Creating and Using CFNumberFormatter Objects](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDataFormatting/Articles/dfCreatingCFNumberFormatters.html#//apple_ref/doc/uid/TP40002342) for more information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The format string may override other properties previously set using other functions. If this function is not called, the default value of the format string is derived from the number formatter’s style.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -169,7 +249,21 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetFormat(self, format_string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreatestringwithnumber(_:_:_:)?language=objc)
+    /// Returns a string representation of the given number using the specified number formatter.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - formatter: The number formatter to use.
+    ///
+    /// - number: The number from which to create a string representation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new string that represents the given number in the specified format. Returns `NULL` if there was a problem creating the string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -195,7 +289,23 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreatestringwithvalue(_:_:_:_:)?language=objc)
+    /// Returns a string representation of the given number or value using the specified number formatter.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - formatter: The number formatter to use.
+    ///
+    /// - numberType: The type of value that `valuePtr` references. Valid values are listed in [`CFNumberType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype).
+    ///
+    /// - valuePtr: A pointer to the value to be converted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new string that represents the given number or value formatted by `formatter`. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -226,14 +336,20 @@ impl CFNumberFormatter {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags?language=objc)
+/// Type for constants specifying how numbers should be parsed.
+///
+/// ## Overview
+///
+/// For values, see [Number Format Options](https://developer.apple.com/documentation/corefoundation/number_format_options)
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterOptionFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNumberFormatterOptionFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags/parseintegersonly?language=objc)
+/// Specifies that only integers should be parsed.
         #[doc(alias = "kCFNumberFormatterParseIntegersOnly")]
         const ParseIntegersOnly = 1;
     }
@@ -250,7 +366,25 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 }
 
 impl CFNumberFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercreatenumberfromstring(_:_:_:_:_:)?language=objc)
+    /// Returns a number object representing a given string.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - formatter: The number formatter to use.
+    ///
+    /// - string: The string to parse.
+    ///
+    /// - rangep: A reference to a range that specifies the substring of  `string` to be parsed. If `NULL`, the whole string is parsed. On return, contains the range of the actual extent of the parse (may be less than the given range).
+    ///
+    /// - options: Specifies various configuration options to change the behavior of the parse. Currently, [`kCFNumberFormatterParseIntegersOnly`](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags/parseintegersonly) is the only possible value for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new number that represents the given string. Returns `NULL` if there was a problem creating the number. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -283,7 +417,25 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetvaluefromstring(_:_:_:_:_:)?language=objc)
+    /// Returns a number or value representing a given string.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to use.
+    ///
+    /// - string: The string to parse.
+    ///
+    /// - rangep: A reference to a range that specifies the substring of  `string` to be parsed. If `NULL`, the whole string is parsed. Upon return, contains the range of the actual extent of the parse (may be less than the given range).
+    ///
+    /// - numberType: The type of value that `valuePtr` references. Valid values are listed in [`CFNumberType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype).
+    ///
+    /// - valuePtr: Upon return, contains a number or value representing the string in the specified format. You are responsible for releasing this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the string was parsed successfully, otherwise `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -315,7 +467,15 @@ impl CFNumberFormatter {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattersetproperty(_:_:_:)?language=objc)
+    /// Sets a number formatter property using a key-value pair.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to modify.
+    ///
+    /// - key: The name of the property of `formatter` to set. See [Number Formatter Property Keys](https://developer.apple.com/documentation/corefoundation/number-formatter-property-keys) for a description of possible values.
+    ///
+    /// - value: The value of the specified key. This must be an instance of the correct `CFType` object for the corresponding key.
+    ///
     ///
     /// # Safety
     ///
@@ -335,7 +495,19 @@ impl CFNumberFormatter {
         unsafe { CFNumberFormatterSetProperty(self, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattercopyproperty(_:_:)?language=objc)
+    /// Returns a copy of a number formatter’s value for a given key.
+    ///
+    /// Parameters:
+    /// - formatter: The number formatter to examine.
+    ///
+    /// - key: A property key. See [Number Formatter Property Keys](https://developer.apple.com/documentation/corefoundation/number-formatter-property-keys) for valid values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFType` object that is a copy of the property value for `key`. Returns `NULL` if there is no value specified for `key`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -358,225 +530,230 @@ impl CFNumberFormatter {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/currencycode?language=objc)
+    /// Specifies the currency code, a `CFString` object.
     pub static kCFNumberFormatterCurrencyCode: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/decimalseparator?language=objc)
+    /// Specifies the decimal separator, a `CFString` object.
     pub static kCFNumberFormatterDecimalSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/currencydecimalseparator?language=objc)
+    /// Specifies the currency decimal separator, a `CFString` object.
     pub static kCFNumberFormatterCurrencyDecimalSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/alwaysshowdecimalseparator?language=objc)
+    /// Specifies if the result of converting a value to a string should always contain the decimal separator, even if the number is an integer.
     pub static kCFNumberFormatterAlwaysShowDecimalSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/groupingseparator?language=objc)
+    /// Specifies the grouping separator, a `CFString` object.
     pub static kCFNumberFormatterGroupingSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/usegroupingseparator?language=objc)
+    /// Specifies if the grouping separator should be used, a `CFBoolean` object.
     pub static kCFNumberFormatterUseGroupingSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/percentsymbol?language=objc)
+    /// Specifies the string that is used to represent the percent symbol, a `CFString` object.
     pub static kCFNumberFormatterPercentSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/zerosymbol?language=objc)
+    /// Specifies the string that is used to represent zero, a `CFString` object.
     pub static kCFNumberFormatterZeroSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/nansymbol?language=objc)
+    /// Specifies the string that is used to represent NaN (“not a number”) when values are converted to strings, a `CFString` object.
     pub static kCFNumberFormatterNaNSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/infinitysymbol?language=objc)
+    /// Specifies the string that is used to represent the symbol for infinity, a `CFString` object.
     pub static kCFNumberFormatterInfinitySymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/minussign?language=objc)
+    /// Specifies the symbol for the minus sign, a `CFString` object.
     pub static kCFNumberFormatterMinusSign: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/plussign?language=objc)
+    /// Specifies the symbol for the plus sign, a `CFString` object.
     pub static kCFNumberFormatterPlusSign: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/currencysymbol?language=objc)
+    /// Specifies the symbol for the currency, a `CFString` object.
     pub static kCFNumberFormatterCurrencySymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/exponentsymbol?language=objc)
+    /// Specifies the exponent symbol (“E” or “e”) in the scientific notation of numbers (for example, as in `1.0e+56`), a `CFString` object.
     pub static kCFNumberFormatterExponentSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/minintegerdigits?language=objc)
+    /// Specifies the minimum number of integer digits before a decimal point, a `CFNumber` object.
     pub static kCFNumberFormatterMinIntegerDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/maxintegerdigits?language=objc)
+    /// Specifies the maximum number of integer digits before a decimal point, a `CFNumber` object.
     pub static kCFNumberFormatterMaxIntegerDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/minfractiondigits?language=objc)
+    /// Specifies the minimum number of digits after a decimal point, a `CFNumber` object.
     pub static kCFNumberFormatterMinFractionDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/maxfractiondigits?language=objc)
+    /// Specifies the maximum number of digits after a decimal point, a `CFNumber` object.
     pub static kCFNumberFormatterMaxFractionDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/groupingsize?language=objc)
+    /// Specifies how often the “thousands” or grouping separator appears, as in “10,000,000”, a `CFNumber` object.
     pub static kCFNumberFormatterGroupingSize: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/secondarygroupingsize?language=objc)
+    /// Specifies how often the secondary grouping separator appears, a `CFNumber` object.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Creating and Using CFNumberFormatter Objects](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDataFormatting/Articles/dfCreatingCFNumberFormatters.html#//apple_ref/doc/uid/TP40002342) for more information.
+    ///
+    ///
     pub static kCFNumberFormatterSecondaryGroupingSize: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/roundingmode?language=objc)
+    /// Specifies how the last digit is rounded, as when `3.1415926535…` is rounded to three decimal places, as in `3.142`. See [`CFNumberFormatterRoundingMode`](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode) for possible values.
     pub static kCFNumberFormatterRoundingMode: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/roundingincrement?language=objc)
+    /// Specifies a positive rounding increment, or `0.0` to disable rounding, a `CFNumber` object.
     pub static kCFNumberFormatterRoundingIncrement: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/formatwidth?language=objc)
+    /// Specifies the width of a formatted number within a string that is either left justified or right justified based on the value of [`kCFNumberFormatterPaddingPosition`](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/paddingposition), a `CFNumber` object.
     pub static kCFNumberFormatterFormatWidth: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/paddingposition?language=objc)
+    /// Specifies the position of a formatted number within a string, a `CFNumber` object.
     pub static kCFNumberFormatterPaddingPosition: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/paddingcharacter?language=objc)
+    /// Specifies the padding character to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterPaddingCharacter: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/defaultformat?language=objc)
+    /// The original format string for the formatter (given the date and time style and locale specified at creation), a `CFString` object.
     pub static kCFNumberFormatterDefaultFormat: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/multiplier?language=objc)
+    /// Specifies the multiplier to use when placing a formatted number within a string, a `CFNumber` object.
     pub static kCFNumberFormatterMultiplier: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/positiveprefix?language=objc)
+    /// Specifies the plus sign prefix symbol to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterPositivePrefix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/positivesuffix?language=objc)
+    /// Specifies the plus sign suffix symbol to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterPositiveSuffix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/negativeprefix?language=objc)
+    /// Specifies the minus sign prefix symbol to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterNegativePrefix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/negativesuffix?language=objc)
+    /// Specifies the minus sign suffix symbol to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterNegativeSuffix: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/permillsymbol?language=objc)
+    /// Specifies the per mill (1/1000) symbol to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterPerMillSymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/internationalcurrencysymbol?language=objc)
+    /// Specifies the international currency symbol to use when placing a formatted number within a string, a `CFString` object.
     pub static kCFNumberFormatterInternationalCurrencySymbol: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/currencygroupingseparator?language=objc)
+    /// Specifies the grouping symbol to use when placing a currency value within a string, a `CFString` object.
     pub static kCFNumberFormatterCurrencyGroupingSeparator: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/islenient?language=objc)
+    /// Specifies whether the formatter is lenient, a`CFBoolean` object.
     pub static kCFNumberFormatterIsLenient: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/usesignificantdigits?language=objc)
+    /// Specifies the whether the formatter uses significant digits, a `CFBoolean` object.
     pub static kCFNumberFormatterUseSignificantDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/minsignificantdigits?language=objc)
+    /// Specifies the minimum number of significant digits to use, a`CFNumber` object.
     pub static kCFNumberFormatterMinSignificantDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/maxsignificantdigits?language=objc)
+    /// Specifies the maximum number of significant digits to use, a`CFNumber` object.
     pub static kCFNumberFormatterMaxSignificantDigits: Option<&'static CFNumberFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey/mingroupingdigits?language=objc)
     pub static kCFNumberFormatterMinGroupingDigits: Option<&'static CFNumberFormatterKey>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode?language=objc)
+/// These constants are used to specify how numbers should be rounded.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterRoundingMode(pub CFIndex);
 impl CFNumberFormatterRoundingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundceiling?language=objc)
+    /// Round towards positive infinity.
     #[doc(alias = "kCFNumberFormatterRoundCeiling")]
     pub const RoundCeiling: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundfloor?language=objc)
+    /// Round towards negative infinity.
     #[doc(alias = "kCFNumberFormatterRoundFloor")]
     pub const RoundFloor: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/rounddown?language=objc)
+    /// Round towards zero.
     #[doc(alias = "kCFNumberFormatterRoundDown")]
     pub const RoundDown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundup?language=objc)
+    /// Round away from zero.
     #[doc(alias = "kCFNumberFormatterRoundUp")]
     pub const RoundUp: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundhalfeven?language=objc)
+    /// Round towards the nearest integer, or towards an even number if equidistant.
     #[doc(alias = "kCFNumberFormatterRoundHalfEven")]
     pub const RoundHalfEven: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundhalfdown?language=objc)
+    /// Round towards the nearest integer, or towards zero if equidistant.
     #[doc(alias = "kCFNumberFormatterRoundHalfDown")]
     pub const RoundHalfDown: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode/roundhalfup?language=objc)
+    /// Round towards the nearest integer, or away from zero if equidistant.
     #[doc(alias = "kCFNumberFormatterRoundHalfUp")]
     pub const RoundHalfUp: Self = Self(6);
 }
@@ -591,22 +768,28 @@ unsafe impl RefEncode for CFNumberFormatterRoundingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition?language=objc)
+/// Type for constants specifying how numbers should be padded.
+///
+/// ## Overview
+///
+/// For values, see [Padding Positions](https://developer.apple.com/documentation/corefoundation/padding-positions).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterPadPosition(pub CFIndex);
 impl CFNumberFormatterPadPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/beforeprefix?language=objc)
+    /// Specifies the number of padding characters before the prefix.
     #[doc(alias = "kCFNumberFormatterPadBeforePrefix")]
     pub const BeforePrefix: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/afterprefix?language=objc)
+    /// Specifies the number of padding characters after the prefix.
     #[doc(alias = "kCFNumberFormatterPadAfterPrefix")]
     pub const AfterPrefix: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/beforesuffix?language=objc)
+    /// Specifies the number of padding characters before the suffix.
     #[doc(alias = "kCFNumberFormatterPadBeforeSuffix")]
     pub const BeforeSuffix: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition/aftersuffix?language=objc)
+    /// Specifies the number of padding characters after the suffix.
     #[doc(alias = "kCFNumberFormatterPadAfterSuffix")]
     pub const AfterSuffix: Self = Self(3);
 }
@@ -622,7 +805,27 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 }
 
 impl CFNumberFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformattergetdecimalinfoforcurrencycode(_:_:_:)?language=objc)
+    /// Returns the number of fraction digits that should be displayed, and the rounding increment, for a given currency.
+    ///
+    /// Parameters:
+    /// - currencyCode: A string containing a ISO 4217 3-letter currency code. For example, AUD for Australian Dollars, EUR for Euros.
+    ///
+    /// - defaultFractionDigits: Upon return, contains the number of fraction digits that should be displayed for the currency specified by `currencyCode`.
+    ///
+    /// - roundingIncrement: Upon return, contains the rounding increment for the currency specified by `currencyCode`, or `0.0` if no rounding is done by the currency.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the information was obtained successfully, otherwise `false` (for example, if the currency code is unknown or the information is not available).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned values are not localized because these are properties of the currency.
+    ///
+    ///
     ///
     /// # Safety
     ///

@@ -8,21 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification the system posts when changes occur to its detected routes.
     /// Posted when the value of multipleRoutesDetected changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avroutedetectormultipleroutesdetecteddidchangenotification?language=objc)
     pub static AVRouteDetectorMultipleRoutesDetectedDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
+    /// An object that detects available media playback routes.
+    ///
+    /// ## Overview
+    ///
+    /// If you enable route detection, the object reports whether it detects multiple playback routes. If it does, use [`AVRoutePickerView`](https://developer.apple.com/documentation/avkit/avroutepickerview) to present the UI for the user to select an appropriate route.
+    ///
+    ///
     /// AVRouteDetector detects the presence of media playback routes.
     ///
     /// If route detection is enabled (it is disabled by default), AVRouteDetector reports whether or not multiple playback routes have been detected. If this is the case, AVKit's AVRoutePickerView can be used to allow users to pick from the set of available routes.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avroutedetector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVRouteDetector;

@@ -6,6 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The common behaviors for storage devices in the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZStorageDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzstoragedeviceattachment) object defines the implementation of a storage interface in a virtual machine. You use the attachment object to specify the source of the storage on the host computer.
+    ///
+    /// Don’t create [`VZStorageDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzstoragedeviceattachment) objects directly. Instead, instantiate an appropriate subclass such as [`VZDiskImageStorageDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment), which provides storage using a disk image.
+    ///
+    ///
     /// Base class for a storage device attachment.
     ///
     /// A storage device attachment defines how a virtual machine storage device interfaces with the host system.
@@ -15,8 +24,6 @@ extern_class!(
     ///
     ///
     /// See: VZDiskImageStorageDeviceAttachment
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzstoragedeviceattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZStorageDeviceAttachment;

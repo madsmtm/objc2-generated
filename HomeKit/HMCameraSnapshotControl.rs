@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that can take an image snapshot from a camera.
     /// This class can be used to take an image snapshot from a camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerasnapshotcontrol?language=objc)
     #[unsafe(super(HMCameraControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMCameraControl")]
@@ -93,9 +92,8 @@ impl HMCameraSnapshotControl {
 }
 
 extern_protocol!(
+    /// A set of methods used to observe the camera’s snapshot activity.
     /// This delegate receives updates on the camera snapshot.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerasnapshotcontroldelegate?language=objc)
     pub unsafe trait HMCameraSnapshotControlDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "HMCameraControl",

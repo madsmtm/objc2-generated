@@ -7,11 +7,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// A set of methods implemented by a Message Filter app extension to handle query requests.
+    ///
+    /// ## Overview
+    ///
+    /// A Message Filter app extension that adopts this protocol forms a response about the message described in the query, based on information that it either stores locally or receives from an associated network service.
+    ///
+    /// When the app extension defers a query request to a server, the system handles all network communication, passing the request to the server and passing the server’s response back to the app extension.
+    ///
+    ///
     /// Functionality related to MessageFilter extension query requests.
     ///
     /// Subclasses of ILMessageFilterExtension which support querying must conform to this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterqueryhandling?language=objc)
     pub unsafe trait ILMessageFilterQueryHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "ILMessageFilterExtensionContext",

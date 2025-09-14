@@ -9,7 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialeventtrigger?language=objc)
+    /// A trigger condition based on the user’s arrival or departure from a given location.
+    ///
+    /// ## Overview
+    ///
+    /// When configuring tasks, you can add an [`INSpatialEventTrigger`](https://developer.apple.com/documentation/intents/inspatialeventtrigger) object to display a reminder when the user approaches or leaves a specific location. Spatial event triggers rely on location services to generate events.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INSpatialEventTrigger;

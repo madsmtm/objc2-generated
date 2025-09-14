@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aucocoauibase?language=objc)
     pub unsafe trait AUCocoaUIBase {
         /// Return the version of the interface you are implementing.
         ///

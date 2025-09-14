@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties for an element that has touch state input.
     /// An object conforming to
     /// `GCTouchedStateInput`represents the touched state of
     /// an element.
@@ -15,8 +16,6 @@ extern_protocol!(
     /// Some buttons feature capacitive touch capabilities, where the user can touch
     /// the button without pressing it.  In such cases, a button can be touched without
     /// being pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gctouchedstateinput?language=objc)
     pub unsafe trait GCTouchedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the touched state changes.

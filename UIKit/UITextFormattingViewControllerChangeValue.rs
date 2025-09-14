@@ -7,133 +7,110 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Enumeration of text formatting actions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerchangetype?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerChangeType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerundefinedchangetype?language=objc)
     pub static UITextFormattingViewControllerUndefinedChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollersetboldchangetype?language=objc)
     pub static UITextFormattingViewControllerSetBoldChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerremoveboldchangetype?language=objc)
     pub static UITextFormattingViewControllerRemoveBoldChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollersetitalicchangetype?language=objc)
     pub static UITextFormattingViewControllerSetItalicChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerremoveitalicchangetype?language=objc)
     pub static UITextFormattingViewControllerRemoveItalicChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollersetunderlinechangetype?language=objc)
     pub static UITextFormattingViewControllerSetUnderlineChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerremoveunderlinechangetype?language=objc)
     pub static UITextFormattingViewControllerRemoveUnderlineChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollersetstrikethroughchangetype?language=objc)
     pub static UITextFormattingViewControllerSetStrikethroughChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerremovestrikethroughchangetype?language=objc)
     pub static UITextFormattingViewControllerRemoveStrikethroughChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerfontchangetype?language=objc)
     pub static UITextFormattingViewControllerFontChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerfontsizechangetype?language=objc)
     pub static UITextFormattingViewControllerFontSizeChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerincreasefontsizechangetype?language=objc)
     pub static UITextFormattingViewControllerIncreaseFontSizeChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerdecreasefontsizechangetype?language=objc)
     pub static UITextFormattingViewControllerDecreaseFontSizeChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextcolorchangetype?language=objc)
     pub static UITextFormattingViewControllerTextColorChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerlineheightpointsizechangetype?language=objc)
     pub static UITextFormattingViewControllerLineHeightPointSizeChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerincreaseindentationchangetype?language=objc)
     pub static UITextFormattingViewControllerIncreaseIndentationChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerdecreaseindentationchangetype?language=objc)
     pub static UITextFormattingViewControllerDecreaseIndentationChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingstylechangetype?language=objc)
     pub static UITextFormattingViewControllerFormattingStyleChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextlistchangetype?language=objc)
     pub static UITextFormattingViewControllerTextListChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollertextalignmentchangetype?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerhighlightchangetype?language=objc)
     pub static UITextFormattingViewControllerHighlightChangeType:
         &'static UITextFormattingViewControllerChangeType;
 }
@@ -141,8 +118,6 @@ extern "C" {
 extern_class!(
     /// Describes text formatting change that is a result of user action.
     /// Contains type of change, any associated value that may be applicable to that change.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerchangevalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerChangeValue;

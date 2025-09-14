@@ -9,10 +9,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmlnodecurrentversion?language=objc)
+/// The current version of CFXMLNode objects.
 pub const kCFXMLNodeCurrentVersion: CFIndex = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnode?language=objc)
+///
+/// ## Overview
+///
+/// A CFXMLNode object describes an individual XML construct—like a tag, or a comment, or a string of character data. CFXMLNode is intended to be used with the CFXMLParser and CFXMLTree opaque types.
+///
+/// Each CFXMLNode object contains three main pieces of information—the node’s type, the data string, and a pointer to an additional information data structure. A CFXMLNode object’s type is one of the enumerations described in [`CFXMLNodeTypeCode`](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode). The data string is always a CFString object; the meaning of the string is dependent on the node’s type. The format of the additional data is also dependent on the node’s type; in general, there is a custom structure for each type that requires additional data. See [`CFXMLNodeTypeCode`](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode) for the mapping from a node type to meaning of the data string, and structure of the additional information. Note that these structures are versioned and may change as the parser changes. The current version can always be identified by the [`kCFXMLNodeCurrentVersion`](https://developer.apple.com/documentation/corefoundation/kcfxmlnodecurrentversion) constant; earlier versions can be identified and used by passing earlier values for the version number (although the older structures would have been removed from the header).
+///
+/// You create a CFXMLNode object using one of the create or copy functions. Use the [`CFXMLNodeGetTypeCode`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegettypecode), [`CFXMLNodeGetString`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetstring), and [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) functions to get the node type, data string, and additional information respectively. Use the [`CFXMLNodeGetVersion`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetversion) function to get a node’s version number.
+///
+///
 #[doc(alias = "CFXMLNodeRef")]
 #[repr(C)]
 pub struct CFXMLNode {
@@ -28,60 +37,71 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFXMLNode"> for CFXMLNode {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltree?language=objc)
+///
+/// ## Overview
+///
+/// A CFXMLTree object is simply a CFTree object whose context data is known to be a CFXMLNode object. CFXMLTree is derived from CFTree—you can pass CFXMLTree objects in all the CFTree functions. As such, a CFXMLTree object can be used to represent an entire XML document; the CFTree object provides the tree structure of the document, while the CFXMLNode objects identify and describe the nodes of the tree. An XML document can be parsed to a CFXMLTree object, and a CFXMLTree object can generate the data for the equivalent XML document. This opaque type is expected to be used in conjunction with CFXMLParser and CFXMLNode objects.
+///
+///
 #[doc(alias = "CFXMLTreeRef")]
 #[cfg(feature = "CFTree")]
 pub type CFXMLTree = CFTree;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode?language=objc)
+/// The various XML data type identification codes that the parser uses to describe XML structures.
+///
+/// ## Overview
+///
+/// When the parser encounters a new XML structure, its data type and contents are placed in a CFXMLNode object.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFXMLNodeTypeCode(pub CFIndex);
 impl CFXMLNodeTypeCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/document?language=objc)
+    /// Indicates a document where the data string is `NULL` and the additional information is a pointer to a [`CFXMLDocumentInfo`](https://developer.apple.com/documentation/corefoundation/cfxmldocumentinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeDocument")]
     pub const Document: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/element?language=objc)
+    /// Indicates an element where the data string is the name of the tag and the additional information is a pointer to a [`CFXMLElementInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlelementinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeElement")]
     pub const Element: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/attribute?language=objc)
+    /// Currently not used.
     #[doc(alias = "kCFXMLNodeTypeAttribute")]
     pub const Attribute: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/processinginstruction?language=objc)
+    /// Indicates a processing instruction where the data string is the name of the target and the additional information is a pointer to a [`CFXMLProcessingInstructionInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlprocessinginstructioninfo) structure.
     #[doc(alias = "kCFXMLNodeTypeProcessingInstruction")]
     pub const ProcessingInstruction: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/comment?language=objc)
+    /// Indicates a comment section where the data string is the text of the comment and the additional information is `NULL`.
     #[doc(alias = "kCFXMLNodeTypeComment")]
     pub const Comment: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/text?language=objc)
+    /// Indicates a text section where the data string is the text’s contents and the additional information is `NULL`.
     #[doc(alias = "kCFXMLNodeTypeText")]
     pub const Text: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/cdatasection?language=objc)
+    /// Indicates a CDATA section where the data string is the text of the CDATA and the additional information is `NULL`.
     #[doc(alias = "kCFXMLNodeTypeCDATASection")]
     pub const CDATASection: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/documentfragment?language=objc)
+    /// Currently not used.
     #[doc(alias = "kCFXMLNodeTypeDocumentFragment")]
     pub const DocumentFragment: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/entity?language=objc)
+    /// Indicates an entity where the data string is the name of the entity and the additional information is a pointer to a [`CFXMLEntityInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlentityinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeEntity")]
     pub const Entity: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/entityreference?language=objc)
+    /// Indicates an entity reference where the data string is the name of the referenced entity and the additional information is a pointer to a [`CFXMLEntityReferenceInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlentityreferenceinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeEntityReference")]
     pub const EntityReference: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/documenttype?language=objc)
+    /// Indicates a document type where the data string is the name given to the top-level element and the additional information is a pointer to a [`CFXMLDocumentTypeInfo`](https://developer.apple.com/documentation/corefoundation/cfxmldocumenttypeinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeDocumentType")]
     pub const DocumentType: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/whitespace?language=objc)
+    /// Indicates white space where the data string is the text of the white space and the additional information is `NULL`.
     #[doc(alias = "kCFXMLNodeTypeWhitespace")]
     pub const Whitespace: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/notation?language=objc)
+    /// Indicates a notation where the data string is the notation name and the additional information is a pointer to a [`CFXMLNotationInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlnotationinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeNotation")]
     pub const Notation: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/elementtypedeclaration?language=objc)
+    /// Indicates an element type declaration where the data string is the tag name and the additional information is a pointer to a [`CFXMLElementTypeDeclarationInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlelementtypedeclarationinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeElementTypeDeclaration")]
     pub const ElementTypeDeclaration: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode/attributelistdeclaration?language=objc)
+    /// Indicates an attribute list declaration where the data string is the tag name and the additional information is a pointer to a [`CFXMLAttributeListDeclarationInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlattributelistdeclarationinfo) structure.
     #[doc(alias = "kCFXMLNodeTypeAttributeListDeclaration")]
     pub const AttributeListDeclaration: Self = Self(15);
 }
@@ -96,7 +116,13 @@ unsafe impl RefEncode for CFXMLNodeTypeCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlelementinfo?language=objc)
+/// Contains a list of element attributes packaged as CFDictionary key/value pairs.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters an element containing attributes. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain the pointer.
+///
+///
 #[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -125,7 +151,13 @@ unsafe impl RefEncode for CFXMLElementInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlprocessinginstructioninfo?language=objc)
+/// Contains the text of the processing instruction.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters a processing instruction. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain the pointer.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLProcessingInstructionInfo {
@@ -142,7 +174,13 @@ unsafe impl RefEncode for CFXMLProcessingInstructionInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmldocumentinfo?language=objc)
+/// Contains the source URL and text encoding information for the XML document.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters the XML declaration. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain the pointer.
+///
+///
 #[cfg(all(feature = "CFString", feature = "CFURL"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -164,7 +202,13 @@ unsafe impl RefEncode for CFXMLDocumentInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlexternalid?language=objc)
+/// Contains the system and public IDs for an external entity reference.
+///
+/// ## Overview
+///
+/// This structure is part of the definition of the [`CFXMLDocumentTypeInfo`](https://developer.apple.com/documentation/corefoundation/cfxmldocumenttypeinfo), [`CFXMLNotationInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlnotationinfo), and [`CFXMLEntityInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlentityinfo) structures.
+///
+///
 #[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -186,7 +230,13 @@ unsafe impl RefEncode for CFXMLExternalID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmldocumenttypeinfo?language=objc)
+/// Contains the external ID of the DTD.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters the beginning of the DTD. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain a pointer to this structure.
+///
+///
 #[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -204,7 +254,13 @@ unsafe impl RefEncode for CFXMLDocumentTypeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnotationinfo?language=objc)
+/// Contains the external ID of the notation.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters a notation element. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain a pointer to this structure.
+///
+///
 #[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -222,7 +278,13 @@ unsafe impl RefEncode for CFXMLNotationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlelementtypedeclarationinfo?language=objc)
+/// Contains a description of the element type.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode passed to your application when the parser encounters and element type declaration. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain a pointer to this structure.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementTypeDeclarationInfo {
@@ -239,7 +301,13 @@ unsafe impl RefEncode for CFXMLElementTypeDeclarationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlattributedeclarationinfo?language=objc)
+/// Contains information about an element attribute definition.
+///
+/// ## Overview
+///
+/// This structure is part of the definition of the [`CFXMLAttributeListDeclarationInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlattributelistdeclarationinfo) structure.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLAttributeDeclarationInfo {
@@ -265,7 +333,13 @@ unsafe impl RefEncode for CFXMLAttributeDeclarationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlattributelistdeclarationinfo?language=objc)
+/// Contains a list of the attributes associated with an element.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters an attribute declaration in the DTD. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain the pointer to this structure.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLAttributeListDeclarationInfo {
@@ -289,25 +363,31 @@ unsafe impl RefEncode for CFXMLAttributeListDeclarationInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode?language=objc)
+/// The entity type identification codes that the parser uses to describe XML entities.
+///
+/// ## Overview
+///
+/// These codes are used with the [`CFXMLEntityInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlentityinfo) and [`CFXMLEntityReferenceInfo`](https://developer.apple.com/documentation/corefoundation/cfxmlentityreferenceinfo) structures.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLEntityTypeCode(pub CFIndex);
 impl CFXMLEntityTypeCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/parameter?language=objc)
+    /// Implies a parsed, internal entity.
     #[doc(alias = "kCFXMLEntityTypeParameter")]
     pub const Parameter: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/parsedinternal?language=objc)
+    /// Indicates a parsed, internal entity.
     #[doc(alias = "kCFXMLEntityTypeParsedInternal")]
     pub const ParsedInternal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/parsedexternal?language=objc)
+    /// Indicates a parsed, external entity.
     #[doc(alias = "kCFXMLEntityTypeParsedExternal")]
     pub const ParsedExternal: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/unparsed?language=objc)
+    /// Indicates an unparsed entity.
     #[doc(alias = "kCFXMLEntityTypeUnparsed")]
     pub const Unparsed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode/character?language=objc)
+    /// Indicates a character entity type.
     #[doc(alias = "kCFXMLEntityTypeCharacter")]
     pub const Character: Self = Self(4);
 }
@@ -322,7 +402,13 @@ unsafe impl RefEncode for CFXMLEntityTypeCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentityinfo?language=objc)
+/// Contains information describing an XML entity.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters an entity declaration. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain a pointer to this structure.
+///
+///
 #[cfg(feature = "CFURL")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -351,7 +437,13 @@ unsafe impl RefEncode for CFXMLEntityInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentityreferenceinfo?language=objc)
+/// Contains information describing an XML entity reference.
+///
+/// ## Overview
+///
+/// A pointer to this structure is included in the CFXMLNode object passed to your application when the parser encounters an entity reference. Use the [`CFXMLNodeGetInfoPtr`](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr) function to obtain the pointer.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFXMLEntityReferenceInfo {
@@ -369,7 +461,13 @@ unsafe impl RefEncode for CFXMLEntityReferenceInfo {
 }
 
 unsafe impl ConcreteType for CFXMLNode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegettypeid?language=objc)
+    /// Returns the type identifier code for the CFXMLNode opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFXMLNode opaque type.
+    ///
+    ///
     #[doc(alias = "CFXMLNodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -381,7 +479,25 @@ unsafe impl ConcreteType for CFXMLNode {
 }
 
 impl CFXMLNode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodecreate?language=objc)
+    /// Creates a new CFXMLNode.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - xmlType: Type identifier code for the XML structure you want this node to describe.
+    ///
+    /// - dataString: The XML data.
+    ///
+    /// - additionalInfoPtr: A pointer to a structure containing additional information about the XML data.
+    ///
+    /// - version: The version number of the CFXMLNode object you want to create. Pass one of the pre-defined constants, typically [`kCFXMLNodeCurrentVersion`](https://developer.apple.com/documentation/corefoundation/kcfxmlnodecurrentversion).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFXMLNode object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -412,7 +528,19 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodecreatecopy?language=objc)
+    /// Creates a copy of a CFXMLNode object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - origNode: The node to copy. Do not pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFXMLNode object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -435,7 +563,17 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegettypecode?language=objc)
+    /// Returns the XML structure type code for a CFXMLNode object.
+    ///
+    /// Parameters:
+    /// - node: The CFXMLNode object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The type code for `node`.
+    ///
+    ///
     #[doc(alias = "CFXMLNodeGetTypeCode")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -446,7 +584,17 @@ impl CFXMLNode {
         unsafe { CFXMLNodeGetTypeCode(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetstring?language=objc)
+    /// Returns the data string from a CFXMLNode.
+    ///
+    /// Parameters:
+    /// - node: The CFXMLNode object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The data string from `node`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFXMLNodeGetString")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -458,7 +606,17 @@ impl CFXMLNode {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetinfoptr?language=objc)
+    /// Returns the additional information pointer of a CFXMLNode object.
+    ///
+    /// Parameters:
+    /// - node: The CFXMLNode object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to a structure containing additional information. The CFXMLNode version together with the node’s type determines the expected structure. See [`CFXMLNodeTypeCode`](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode) for information about the possible structures returned. If the returned value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFXMLNodeGetInfoPtr")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -469,7 +627,17 @@ impl CFXMLNode {
         unsafe { CFXMLNodeGetInfoPtr(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodegetversion?language=objc)
+    /// Returns the version number for a CFXMLNode object.
+    ///
+    /// Parameters:
+    /// - node: The CFXMLNode object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The version number of `node`.
+    ///
+    ///
     #[doc(alias = "CFXMLNodeGetVersion")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -481,7 +649,19 @@ impl CFXMLNode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatewithnode?language=objc)
+/// Creates a childless, parentless CFXMLTree object node for a CFXMLNode object.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - node: The CFXMLNode object to use when creating the new CFXMLTree object.
+///
+///
+/// ## Return Value
+///
+/// A CFXMLTree object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 ///
 /// # Safety
 ///
@@ -504,7 +684,17 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithNode(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreegetnode?language=objc)
+/// Returns the node of a CFXMLTree object.
+///
+/// Parameters:
+/// - xmlTree: The CFXMLTree object whose node you wish to obtain.
+///
+///
+/// ## Return Value
+///
+/// The node of `xmlTree`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+///
+///
 #[cfg(feature = "CFTree")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]

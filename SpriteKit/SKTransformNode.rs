@@ -13,12 +13,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A node that allows its children to rotate in 3D.
+    ///
+    /// ## Overview
+    ///
+    /// `SKTranformNode` adds the ability to rotate nodes across the x and y axes. When combined with `SKNode`’s [`zRotation`](https://developer.apple.com/documentation/spritekit/sknode/zrotation) property, nodes added as children to a transform node have the ability to rotate in 3D.
+    ///
+    ///
     /// An SKTransformNode can be applied a 3D rotation that will affect
     /// the visual aspect of its children.
     /// The physics and constraints of the children will behave as if none
     /// of them were transformed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransformnode?language=objc)
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

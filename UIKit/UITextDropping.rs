@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdroppable?language=objc)
+    /// The interface that determines if a text view is a drop destination.
     #[cfg(all(
         feature = "UIPasteConfigurationSupporting",
         feature = "UITextInput",
@@ -42,19 +42,19 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability?language=objc)
+/// The text-drop editability styles for noneditable text views.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropEditability(pub NSUInteger);
 impl UITextDropEditability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability/no?language=objc)
+    /// A text-drop editability specifier indicating that a noneditable text view does not accept drops.
     #[doc(alias = "UITextDropEditabilityNo")]
     pub const No: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability/temporary?language=objc)
+    /// A text-drop editability specifier indicating that a noneditable text view does accept drops but reverts to its noneditable status immediately afterward.
     #[doc(alias = "UITextDropEditabilityTemporary")]
     pub const Temporary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability/yes?language=objc)
+    /// A text-drop editability specifier indicating that a noneditable text view does accept drops, and that the dropped text remains editable after the drop is finished.
     #[doc(alias = "UITextDropEditabilityYes")]
     pub const Yes: Self = Self(2);
 }
@@ -68,7 +68,7 @@ unsafe impl RefEncode for UITextDropEditability {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropdelegate?language=objc)
+    /// The interface for configuring a text view’s drop behavior.
     pub unsafe trait UITextDropDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
@@ -241,7 +241,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdroprequest?language=objc)
+    /// The interface for specifying the attributes of a drop request for a text view.
     pub unsafe trait UITextDropRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[unsafe(method(dropPosition))]

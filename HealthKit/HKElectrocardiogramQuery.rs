@@ -8,11 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The voltage for all leads at a single point in time.
     /// An HKElectrocardiogramVoltageMeasurement contains voltage quantities for all leads at a single instance of measurement.
     ///
     /// Each HKElectrocardiogramVoltageMeasurement object corresponds to the voltage quantities across all leads for a given instance in time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/voltagemeasurement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramVoltageMeasurement;
@@ -74,7 +73,41 @@ impl HKElectrocardiogramVoltageMeasurement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery?language=objc)
+    /// A query that returns the underlying voltage measurements for an electrocardiogram sample.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`HKElectrocardiogramQuery`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery) query to access the individual voltage measurements associated with an [`HKElectrocardiogram`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram) sample.
+    ///
+    /// ```swift
+    /// // Create a query for the voltage measurements
+    /// let voltageQuery = HKElectrocardiogramQuery(ecgSample) { (query, result) in
+    ///     switch(result) {
+    ///     
+    ///     case .measurement(let measurement):
+    ///         if let voltageQuantity = measurement.quantity(for: .appleWatchSimilarToLeadI) {
+    ///             // Do something with the voltage quantity here.
+    ///
+    ///         }
+    ///     
+    ///     case .done:
+    ///         // No more voltages. Finish processing the existing voltages.
+    ///
+    ///     case .error(let error):
+    ///         // Handle the error here.
+    ///
+    ///     }
+    /// }
+    ///
+    /// // Execute the query.
+    /// healthStore.execute(voltageQuery)
+    /// ```
+    ///
+    /// The query calls the data handler once for each voltage measurement, passing a [`HKElectrocardiogramQuery.Result.measurement(_:)`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery/result/measurement(_:)) instance that contains the voltage data. After it has sent all the voltage measurements, the query calls the data handler one last time, passing [`HKElectrocardiogramQuery.Result.done`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery/result/done). If an error occurs, it stops collecting voltage data and passes [`HKElectrocardiogramQuery.Result.error(_:)`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery/result/error(_:)) instead.
+    ///
+    /// Electrocardiogram queries are immutable: You set query’s properties when you create it, and they don’t change.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

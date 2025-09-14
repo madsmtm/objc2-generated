@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An immutable representation of the postal address for a contact.
+    ///
+    /// ## Overview
+    ///
+    /// `CNPostalAddress` is a thread-safe class.
+    ///
+    ///
     /// An immutable value object representing a postal address.
     ///
     ///
     /// CNPostalAddress is thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddress;
@@ -108,41 +113,89 @@ impl CNPostalAddress {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey?language=objc)
+    /// The street name of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressStreetKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresssublocalitykey?language=objc)
+    /// The sublocality of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressSubLocalityKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey?language=objc)
+    /// The city of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressCityKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresssubadministrativeareakey?language=objc)
+    /// The subadministrative area of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressSubAdministrativeAreaKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressstatekey?language=objc)
+    /// The state name of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressStateKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresspostalcodekey?language=objc)
+    /// The postal code of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressPostalCodeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresscountrykey?language=objc)
+    /// The country or region name of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressCountryKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressisocountrycodekey?language=objc)
+    /// The ISO country code of the address.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNPostalAddressISOCountryCodeKey: &'static NSString;
 }

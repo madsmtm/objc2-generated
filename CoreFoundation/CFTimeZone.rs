@@ -9,7 +9,13 @@ use crate::*;
 
 #[cfg(feature = "CFDate")]
 unsafe impl ConcreteType for CFTimeZone {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegettypeid()?language=objc)
+    /// Returns the type identifier for the CFTimeZone opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFTimeZone opaque type.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -22,7 +28,13 @@ unsafe impl ConcreteType for CFTimeZone {
 
 #[cfg(feature = "CFDate")]
 impl CFTimeZone {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopysystem()?language=objc)
+    /// Returns the time zone currently used by the system.
+    ///
+    /// ## Return Value
+    ///
+    /// A time zone representing the time zone currently used by the system, or the GMT time zone if the current zone cannot be determined. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCopySystem")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -34,7 +46,15 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezoneresetsystem()?language=objc)
+    /// Clears the previously determined system time zone, if any.
+    ///
+    /// ## Discussion
+    ///
+    /// If the default time zone is set to the same value as the system time zone or has not been explicitly set, this function clears it as well.
+    ///
+    /// Subsequent calls to [`CFTimeZoneCopySystem`](https://developer.apple.com/documentation/corefoundation/cftimezonecopysystem()) will attempt to re-determine the system time zone.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneResetSystem")]
     #[inline]
     pub fn reset_system() {
@@ -44,7 +64,19 @@ impl CFTimeZone {
         unsafe { CFTimeZoneResetSystem() }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopydefault()?language=objc)
+    /// Returns the default time zone set for your application.
+    ///
+    /// ## Return Value
+    ///
+    /// A time zone representing the default time zone set for your application, or the system time zone if no default is set. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If no default time zone is set, this function simply returns the result of the [`CFTimeZoneCopySystem`](https://developer.apple.com/documentation/corefoundation/cftimezonecopysystem()) function.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCopyDefault")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -56,7 +88,17 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonesetdefault(_:)?language=objc)
+    /// Sets the default time zone for your application the given time zone.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to use as default.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// There can be only one default time zone, so by setting a new default time zone, you lose the previous one.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneSetDefault")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -67,7 +109,13 @@ impl CFTimeZone {
         unsafe { CFTimeZoneSetDefault(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopyknownnames()?language=objc)
+    /// Returns an array of strings containing the names of all the time zones known to the system.
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing CFString objects representing all the known time zone names. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCopyKnownNames")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -79,7 +127,19 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopyabbreviationdictionary()?language=objc)
+    /// Returns a dictionary holding the mappings of time zone abbreviations to time zone names.
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the mappings of time zone abbreviations to time zone names. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// More than one time zone may have the same abbreviation. For example, US/Pacific and Canada/Pacific both use the abbreviation “PST.” In these cases this function chooses a single name to map the abbreviation to.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCopyAbbreviationDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -91,7 +151,11 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonesetabbreviationdictionary(_:)?language=objc)
+    /// Sets the abbreviation dictionary to a given dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A dictionary containing key-value pairs for looking up time zone names given their abbreviations. The keys should be CFString objects containing the abbreviations; the values should be CFString objects containing their corresponding geopolitical region names.
+    ///
     ///
     /// # Safety
     ///
@@ -108,7 +172,27 @@ impl CFTimeZone {
         unsafe { CFTimeZoneSetAbbreviationDictionary(dict) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecreate(_:_:_:)?language=objc)
+    /// Creates a time zone with a given name and data.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator object to use to allocate memory for the new time zone. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - name: The name of the time zone to create.
+    ///
+    /// - data: The data to use to initialize the time zone. The contents of the data should be the same as that found within the time-zone files located at `/usr/share/zoneinfo`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time zone corresponding to `name` and `data`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You typically do not call this function directly. Use the [`CFTimeZoneCreateWithName`](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithname(_:_:_:)) function to obtain a time zone given its name.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -134,7 +218,19 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithtimeintervalfromgmt(_:_:)?language=objc)
+    /// Returns a time zone object for the specified time interval offset from Greenwich Mean Time (GMT).
+    ///
+    /// Parameters:
+    /// - allocator: The allocator object to use to allocate memory for the new time zone. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - ti: The offset, from GMT, of the new time zone.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new time zone whose offset from GMT is given by the interval `ti`. The name of the new time zone is GMT +/- the offset, in hours and minutes. Time zones created with this function never have daylight savings, and the offset is constant no matter what the date. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCreateWithTimeIntervalFromGMT")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -152,7 +248,21 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithname(_:_:_:)?language=objc)
+    /// Returns the time zone object identified by a given name or abbreviation.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator object to use to allocate memory for the new time zone. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - name: The name or abbreviation of the time zone to obtain. The name may be in any of the formats understood by the system, for example “EST”, “Etc/GMT-2”, “America/Argentina/Buenos_Aires”, “Europe/Monaco”, “US/Pacific”, or “posixrules”. For a complete list of system names, you can see the output of  [`CFTimeZoneCopyKnownNames`](https://developer.apple.com/documentation/corefoundation/cftimezonecopyknownnames()).
+    ///
+    /// - tryAbbrev: If `false`, assumes `name` is not an abbreviation and searches the time zone information directory for a matching name. If `true`, tries to resolve `name` using the abbreviation dictionary first before searching the information dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time zone corresponding to `name`, or `NULL` if no match was found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCreateWithName")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -172,7 +282,17 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetname(_:)?language=objc)
+    /// Returns the geopolitical region name that identifies a given time zone.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the geopolitical region name that identifies `tz`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFTimeZoneGetName")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -184,7 +304,17 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetdata(_:)?language=objc)
+    /// Returns the data that stores the information used by a time zone.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The data used to store `tz`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1). May be `NULL` if the timezone does not have any data or use Olson data for its information.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneGetData")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -196,7 +326,19 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetsecondsfromgmt(_:_:)?language=objc)
+    /// Returns the difference in seconds between the receiver and Greenwich Mean Time (GMT) at the specified date.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    /// - at: The date at which the interval is to be computed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The difference in seconds between `tz` and GMT at the specified date, `at`.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneGetSecondsFromGMT")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -207,7 +349,25 @@ impl CFTimeZone {
         unsafe { CFTimeZoneGetSecondsFromGMT(self, at) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopyabbreviation(_:_:)?language=objc)
+    /// Returns the abbreviation of a time zone at a specified date.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to use.
+    ///
+    /// - at: The absolute time at which to obtain the abbreviation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the time zone abbreviation of `at`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that the abbreviation may be different at different dates. For example, during daylight savings time the US/Eastern time zone has an abbreviation of “EDT.” At other times, its abbreviation is “EST.”
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCopyAbbreviation")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -222,7 +382,19 @@ impl CFTimeZone {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezoneisdaylightsavingtime(_:_:)?language=objc)
+    /// Returns whether or not a time zone is in daylight savings time at a specified date.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    /// - at: The date in `tz` to test for daylight savings.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `tz` is in daylight savings time at `at`, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneIsDaylightSavingTime")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -234,7 +406,19 @@ impl CFTimeZone {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetdaylightsavingtimeoffset(_:_:)?language=objc)
+    /// Returns the daylight saving time offset for a time zone at a given time.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    /// - at: The time in `tz` to test for daylight saving time offset.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The daylight saving time offset for `tz` at `at`.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneGetDaylightSavingTimeOffset")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -248,7 +432,19 @@ impl CFTimeZone {
         unsafe { CFTimeZoneGetDaylightSavingTimeOffset(self, at) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonegetnextdaylightsavingtimetransition(_:_:)?language=objc)
+    /// Returns the time in a given time zone of the next daylight saving time transition after a given time.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    /// - at: A time in `tz`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The time in `tz` of the next daylight saving time transition after `at`.
+    ///
+    ///
     #[doc(alias = "CFTimeZoneGetNextDaylightSavingTimeTransition")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -263,28 +459,34 @@ impl CFTimeZone {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle?language=objc)
+/// Index type for constants used to specify styles of time zone names.
+///
+/// ## Overview
+///
+/// For values, see [Time Zone Name Styles](https://developer.apple.com/documentation/corefoundation/time_zone_name_styles)
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFTimeZoneNameStyle(pub CFIndex);
 impl CFTimeZoneNameStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/standard?language=objc)
+    /// Specifies the standard name style; for example, “Central Standard Time” for the Central time zone.
     #[doc(alias = "kCFTimeZoneNameStyleStandard")]
     pub const Standard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/shortstandard?language=objc)
+    /// Specifies the short standard name style; for example, “CST” for the Central time zone.
     #[doc(alias = "kCFTimeZoneNameStyleShortStandard")]
     pub const ShortStandard: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/daylightsaving?language=objc)
+    /// Specifies the daylight saving name style; for example, “Central Daylight Time” for the Central time zone.
     #[doc(alias = "kCFTimeZoneNameStyleDaylightSaving")]
     pub const DaylightSaving: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/shortdaylightsaving?language=objc)
+    /// Specifies the short daylight saving name style; for example, “CDT” for the Central time zone.
     #[doc(alias = "kCFTimeZoneNameStyleShortDaylightSaving")]
     pub const ShortDaylightSaving: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/generic?language=objc)
+    /// Specifies the generic name style, which does not distinguish between daylight saving and standard time; for example, “Central Time” for the Central time zone.
     #[doc(alias = "kCFTimeZoneNameStyleGeneric")]
     pub const Generic: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonenamestyle/shortgeneric?language=objc)
+    /// Specifies the short generic name style, which does not distinguish between daylight saving and standard time; for example, “CT” for the Central time zone.
     #[doc(alias = "kCFTimeZoneNameStyleShortGeneric")]
     pub const ShortGeneric: Self = Self(5);
 }
@@ -301,7 +503,21 @@ unsafe impl RefEncode for CFTimeZoneNameStyle {
 
 #[cfg(feature = "CFDate")]
 impl CFTimeZone {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezonecopylocalizedname(_:_:_:)?language=objc)
+    /// Returns the localized name of a given time zone.
+    ///
+    /// Parameters:
+    /// - tz: The time zone to analyze.
+    ///
+    /// - style: The style for the returned name.
+    ///
+    /// - locale: The locale for which to localize the returned name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The name of `tz` localized for `locale`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFTimeZoneCopyLocalizedName")]
     #[cfg(all(feature = "CFDate", feature = "CFLocale"))]
     #[inline]
@@ -323,7 +539,15 @@ impl CFTimeZone {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationname/cftimezonesystemtimezonedidchange?language=objc)
+    /// Name of the notification posted when the system time zone changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The object of the notification is the previous system time zone object. This notification carries no user info.
+    ///
+    /// Keep in mind that there is no order in how notifications are delivered to observers; frameworks or other parts of your code may also be observing this notification to take their own actions, and these may not have occurred by the time you receive the notification.
+    ///
+    ///
     #[cfg(feature = "CFNotificationCenter")]
     pub static kCFTimeZoneSystemTimeZoneDidChangeNotification: Option<&'static CFNotificationName>;
 }

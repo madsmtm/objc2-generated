@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecoder?language=objc)
+/// An opaque reference to a CMS decoder object.
+///
+/// ## Overview
+///
+/// This is object is compatible with Core Foundation and uses standard Core Foundation semantics. Dispose of it with the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+///
 #[doc(alias = "CMSDecoderRef")]
 #[repr(C)]
 pub struct CMSDecoder {
@@ -27,7 +33,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CMSDecoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodergettypeid()?language=objc)
+    /// Returns the type identifier for the CMSDecoder opaque type.
     #[doc(alias = "CMSDecoderGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,28 +44,34 @@ unsafe impl ConcreteType for CMSDecoder {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus?language=objc)
+/// The constants that indicate the status of the signature and signer information in a signed message.
+///
+/// ## Overview
+///
+/// These are obtained using the [`CMSDecoderCopySignerStatus`](https://developer.apple.com/documentation/security/cmsdecodercopysignerstatus(_:_:_:_:_:_:_:)) function.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMSSignerStatus(pub u32);
 impl CMSSignerStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus/unsigned?language=objc)
+    /// The message was not signed.
     #[doc(alias = "kCMSSignerUnsigned")]
     pub const Unsigned: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus/valid?language=objc)
+    /// The message was signed and both the signature and the signer certificate have been verified.
     #[doc(alias = "kCMSSignerValid")]
     pub const Valid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus/needsdetachedcontent?language=objc)
+    /// The message was signed but has detached content. You must call the [`CMSDecoderSetDetachedContent`](https://developer.apple.com/documentation/security/cmsdecodersetdetachedcontent(_:_:)) function before ascertaining the signature status.
     #[doc(alias = "kCMSSignerNeedsDetachedContent")]
     pub const NeedsDetachedContent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus/invalidsignature?language=objc)
+    /// The message was signed but the signature is invalid.
     #[doc(alias = "kCMSSignerInvalidSignature")]
     pub const InvalidSignature: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus/invalidcert?language=objc)
+    /// The message was signed but the signer’s certificate could not be verified.
     #[doc(alias = "kCMSSignerInvalidCert")]
     pub const InvalidCert: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignerstatus/invalidindex?language=objc)
+    /// The specified value for the signer index (`signerIndex` parameter) is greater than the number of signers of the message minus one (`signerIndex > (numSigners – 1)`).
     #[doc(alias = "kCMSSignerInvalidIndex")]
     pub const InvalidIndex: Self = Self(5);
 }
@@ -75,7 +87,23 @@ unsafe impl RefEncode for CMSSignerStatus {
 }
 
 impl CMSDecoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercreate(_:)?language=objc)
+    /// Creates a CMSDecoder reference.
+    ///
+    /// Parameters:
+    /// - cmsDecoderOut: On return, points to a CMSDecoder reference. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is the first function in a sequence of decoder functions that you call to get information from a CMS message. The other functions in the sequence require you to pass in the CMSDecoder reference returned by this function. The next function in the sequence is `CMSDecoderUpdateMessage`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -89,7 +117,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderCreate(cms_decoder_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecoderupdatemessage(_:_:_:)?language=objc)
+    /// Feeds raw bytes of the message to be decoded into the decoder.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - msgBytes: A pointer to the data to be decoded.
+    ///
+    /// - msgBytesLen: The length of the data, in bytes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecUnknownFormat`](https://developer.apple.com/documentation/security/errsecunknownformat) upon detection of an improperly formatted CMS message.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be called multiple times. Call the `CMSDecoderFinalizeMessage` function when you have no more data to decode.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -111,7 +159,23 @@ impl CMSDecoder {
         unsafe { CMSDecoderUpdateMessage(self, msg_bytes, msg_bytes_len) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)?language=objc)
+    /// Indicates that there is no more data to decode.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecUnknownFormat`](https://developer.apple.com/documentation/security/errsecunknownformat) upon detection of an improperly formatted CMS message.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, the decoder finishes decoding the message. If the message was encrypted and this function returns a result code of `noErr`, the message was successfully decrypted. Call the [`CMSDecoderCopyContent`](https://developer.apple.com/documentation/security/cmsdecodercopycontent(_:_:)) function to retrieve the message content. Call the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to find out if the message was signed and, if so, how many signers there were.
+    ///
+    ///
     #[doc(alias = "CMSDecoderFinalizeMessage")]
     #[inline]
     pub unsafe fn finalize_message(&self) -> OSStatus {
@@ -121,7 +185,29 @@ impl CMSDecoder {
         unsafe { CMSDecoderFinalizeMessage(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodersetdetachedcontent(_:_:)?language=objc)
+    /// Specifies the message’s detached content, if any.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - detachedContent: A reference to the message’s detached content.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The data of a signed CMS message can optionally be sent separately from the message. If the message’s content is detached from the message, you must call this function to tell the decoder where to find the message content.
+    ///
+    /// Encrypted messages, including those that are also signed, cannot use detached content.
+    ///
+    /// You can call this function either before or after decoding the message (by calling the `CMSDecoderUpdateMessage` and `CMSDecoderFinalizeMessage` functions). If a signed message has detached content, however, you must call this function before you can use the `CMSDecoderCopySignerStatus` function to ascertain the signature status.
+    ///
+    ///
     #[doc(alias = "CMSDecoderSetDetachedContent")]
     #[inline]
     pub unsafe fn set_detached_content(&self, detached_content: &CFData) -> OSStatus {
@@ -134,7 +220,19 @@ impl CMSDecoder {
         unsafe { CMSDecoderSetDetachedContent(self, detached_content) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopydetachedcontent(_:_:)?language=objc)
+    /// Obtains the detached content specified with the `CMSDecoderSetDetachedContent` function.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - detachedContentOut: On return, points to the data reference specified by an earlier call to the `CMSDecoderSetDetachedContent` function. Returns a NULL data reference if no detached content has been specified. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -154,7 +252,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyDetachedContent(self, detached_content_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodersetsearchkeychain(_:_:)?language=objc)
+    /// Specifies the keychains to search for intermediate certificates to be used in verifying a signed message’s signer certificates.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - keychainOrArray: Either a single keychain to search, specified as a keychain object (type `SecKeychainRef`), or a set of keychains specified as a `CFArray` of keychain objects. If you specify an empty `CFArrayRef`, no keychains are searched for intermediate certificates.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you don’t call this function, the decoder uses the default keychain search list to search for intermediate certificates.
+    ///
+    /// If you do call this function, you must call it before you call the `CMSDecoderCopySignerStatus` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -172,7 +290,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderSetSearchKeychain(self, keychain_or_array) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)?language=objc)
+    /// Obtains the number of signers of a message.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - numSignersOut: On return, the number of signers of the message. Zero indicates that the message was not signed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call the `CMSDecoderCopySignerStatus` function to determine the status of a signature.
+    ///
+    /// You cannot call this function until after you have called the `CMSDecoderFinalizeMessage` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -189,7 +327,55 @@ impl CMSDecoder {
         unsafe { CMSDecoderGetNumSigners(self, num_signers_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysignerstatus(_:_:_:_:_:_:_:)?language=objc)
+    /// Obtains the status of a CMS message’s signature.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The [`CMSDecoderRef`](https://developer.apple.com/documentation/security/cmsdecoder) reference returned by the [`CMSDecoderCreate`](https://developer.apple.com/documentation/security/cmsdecodercreate(_:)) function.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - policyOrArray: The trust policy or policies to be used to verify the signer’s certificate. You can specify either a single [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) instance or a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) of [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) instances. For more information about policy objects, see [Policies](https://developer.apple.com/documentation/security/policies).
+    ///
+    /// - evaluateSecTrust: Set to [`true`](https://developer.apple.com/documentation/swift/true) to cause the decoder to call the [`SecTrustEvaluate`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function to evaluate the [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) instance created for the evaluation of the signer certificate. Set to [`false`](https://developer.apple.com/documentation/swift/false) if you intend to call the [`SecTrustEvaluate`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function for the [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) instance returned by the `secTrustOut` parameter.
+    ///
+    /// - signerStatusOut: If you specify [`true`](https://developer.apple.com/documentation/swift/true) for the `evaluateSecTrust` parameter, on return this parameter indicates the status of the signature. See [`CMSSignerStatus`](https://developer.apple.com/documentation/security/cmssignerstatus) for possible results. Pass in `NULL` if you don’t want a value returned.
+    ///
+    /// - secTrustOut: On return this parameter points to a [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) instance. If you specified [`true`](https://developer.apple.com/documentation/swift/true) for the `evaluateTrust` parameter, this is the trust instance that was used to verify the signer’s certificate. If you specified [`false`](https://developer.apple.com/documentation/swift/false) for the `evaluateTrust` parameter, you can call the [`SecTrustEvaluate`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function to evaluate the [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) instance. Pass `NULL` if you do not want this instance returned. You must use the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this reference when you are finished using it.
+    ///
+    /// - certVerifyResultCodeOut: If you specify [`true`](https://developer.apple.com/documentation/swift/true) for the `evaluateSecTrust` parameter, on return this parameter indicates the result of the certificate verification.  Pass in `NULL` if you don’t want a value returned.
+    ///
+    /// Some of the most common results returned in this parameter include:
+    ///
+    /// - `CSSMERR_TP_INVALID_ANCHOR_CERT`: The certificate was verified through the certificate chain to a self-signed root certificate that was present in the message, but that root certificate is not a known, trusted root certificate.
+    ///
+    /// - `CSSMERR_TP_NOT_TRUSTED`: The certificate could not be verified back to a root certificate.
+    ///
+    /// - `CSSMERR_TP_VERIFICATION_FAILURE`: The root certificate failed verification.
+    ///
+    /// - `CSSMERR_TP_VERIFY_ACTION_FAILED`: Trust could not be established according to the specified trust policy.
+    ///
+    /// - `CSSMERR_TP_INVALID_CERTIFICATE`: The signer’s leaf certificate was not valid.
+    ///
+    /// - `CSSMERR_TP_CERT_EXPIRED`: A certificate in the chain was expired at the time of verification.
+    ///
+    /// - `CSSMERR_TP_CERT_NOT_VALID_YET`: A certificate in the chain was not yet valid at the time of verification.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). A result of [`errSecSuccess`](https://developer.apple.com/documentation/security/errsecsuccess) indicates only that the function completed successfully; it does not indicate that the signature is verified or the certificates are valid. See the `signerStatusOut` and `certVerifyResultCodeOut` parameters for the verification and certificate validation results.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot call this function until after you have called the [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) function. Although the message has been fully decoded when the [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) function returns with no error, the signature can’t be validated or certificates verified until this function is called.
+    ///
+    /// A CMS message can be signed by multiple signers; this function returns the status associated with one signer as specified by the `signerIndex` parameter.
+    ///
+    /// If you both pass in [`false`](https://developer.apple.com/documentation/swift/false) for the `evaluateSecTrust` parameter and `NULL` for the `secTrustOut` parameter, no evaluation of the signer certificate can occur.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -233,7 +419,27 @@ impl CMSDecoder {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysigneremailaddress(_:_:_:)?language=objc)
+    /// Obtains the email address of the specified signer of a CMS message.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - signerIndex: A number indicating which signer’s email address to return. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - signerEmailAddressOut: On return, points to the email address of the specified signer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if the CMS message was not signed or if `signerIndex` is greater than the number of signers of the message minus one (`signerIndex > (numSigners – 1)`).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot call this function until after you have called the [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -255,7 +461,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerEmailAddress(self, signer_index, signer_email_address_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysignercert(_:_:_:)?language=objc)
+    /// Obtains the certificate of the specified signer of a CMS message.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - signerIndex: A number indicating which signer’s email address to return. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - signerCertOut: On return, points to the certificate of the specified signer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if the CMS message was not signed or if `signerIndex` is greater than the number of signers of the message minus one (signerIndex > (numSigners – 1)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot call this function until after you have called the [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -278,7 +504,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerCert(self, signer_index, signer_cert_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecoderiscontentencrypted(_:_:)?language=objc)
+    /// Determines whether a CMS message was encrypted.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - isEncryptedOut: Returns `TRUE` if the message was encrypted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that if the message was encrypted and the decoding succeeded (`CMSDecoderFinalizeMessage` returned `noErr`), then the message was successfully decrypted. Call [`CMSDecoderCopyContent`](https://developer.apple.com/documentation/security/cmsdecodercopycontent(_:_:)) to retrieve the decrypted content.
+    ///
+    /// You cannot call this function until after you have called the `CMSDecoderFinalizeMessage` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -295,7 +541,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderIsContentEncrypted(self, is_encrypted_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopyencapsulatedcontenttype(_:_:)?language=objc)
+    /// Obtains the object identifier for the encapsulated data of a signed message.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - eContentTypeOut: On return, the object identifier for the encapsulated data in a signed message.  Returns `NULL` if the message was not signed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In a signed message, the signed data consists of any type of content (referred to as the _encapsulated content_, because it is encapsulated in the signed data) plus the signature values. The content type of the encapsulated data is indicated by an object identifier. The default value for the OID is `id-data`, which indicates MIME-encoded content.
+    ///
+    /// You cannot call this function until after you have called the `CMSDecoderFinalizeMessage` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -315,7 +581,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopyallcerts(_:_:)?language=objc)
+    /// Obtains an array of all of the certificates in a message.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - certsOut: On return, points to an array of `SecCertificateRef` objects. Returns `NULL` if the message does not contain any certificates (the message was encrypted but not signed); this is not considered an error. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A CMS message can contain arbitrary sets of certificates other than or in addition to those indicating the identity of signers. You can use this function to retrieve such certificates from a message. If the message was signed, it contains signer certificates. You can use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) and [`CMSDecoderCopySignerCert`](https://developer.apple.com/documentation/security/cmsdecodercopysignercert(_:_:_:)) functions to retrieve the certificates for a specific signer.
+    ///
+    /// You cannot call this function until after you have called the [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -332,7 +618,27 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyAllCerts(self, certs_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopycontent(_:_:)?language=objc)
+    /// Obtains the message content, if any.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: The CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - contentOut: On return, points to the message’s content. Returns `NULL` if the content is detached. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the message has detached content, you are responsible for retrieving the content. In that case, you use the [`CMSDecoderSetDetachedContent`](https://developer.apple.com/documentation/security/cmsdecodersetdetachedcontent(_:_:)) function to tell the decoder the location of the content.
+    ///
+    /// You cannot call this function until after you have called the `CMSDecoderFinalizeMessage` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -349,7 +655,29 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopyContent(self, content_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysignersigningtime(_:_:_:)?language=objc)
+    /// Obtains the signing time of a CMS message, if present.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: A CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - signingTime: The address of an absolute time value where the result should be stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Typically, this function returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if the CMS message was not signed or if `signerIndex` is out of bounds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The timestamp is an unauthenticated time, although it is part of the signed attributes of the message.
+    ///
+    /// You must call [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) before you call this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -371,7 +699,29 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerSigningTime(self, signer_index, signing_time) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysignertimestamp(_:_:_:)?language=objc)
+    /// Returns the timestamp of a signer of a CMS message, if present.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: A CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - timestamp: The address of an absolute time value where the result should be stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Typically, this function returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if the CMS message was not signed or if `signerIndex` is out of bounds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This timestamp is an authenticated timestamp provided by a time stamping authority.
+    ///
+    /// You must call [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) before you call this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -393,7 +743,23 @@ impl CMSDecoder {
         unsafe { CMSDecoderCopySignerTimestamp(self, signer_index, timestamp) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysignertimestampwithpolicy(_:_:_:_:)?language=objc)
+    /// Returns the timestamp of a signer of a CMS message using a given policy, if present.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: A CMSDecoder reference returned by the [`CMSDecoderCreate`](https://developer.apple.com/documentation/security/cmsdecodercreate(_:)) function.
+    ///
+    /// - timeStampPolicy: A timestamp policy. Specify `NULL` (or use the [`CMSDecoderCopySignerTimestamp`](https://developer.apple.com/documentation/security/cmsdecodercopysignertimestamp(_:_:_:)) function instead) to get the default, which is a policy using [`kSecPolicyAppleTimeStamping`](https://developer.apple.com/documentation/security/ksecpolicyappletimestamping). See [Policies](https://developer.apple.com/documentation/security/policies) in [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services) for more about policies.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - timestamp: The address of an absolute time value where the result should be stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -425,7 +791,29 @@ impl CMSDecoder {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsdecodercopysignertimestampcertificates(_:_:_:)?language=objc)
+    /// Returns an array containing the certificates from a timestamp response.
+    ///
+    /// Parameters:
+    /// - cmsDecoder: A CMSDecoder reference returned by the `CMSDecoderCreate` function.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - certificateRefs: The address of a Core Foundation array reference where the resulting array should be stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Typically, this function returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if the CMS message was not signed or `signerIndex` is out of bounds, and returns [`errSecItemNotFound`](https://developer.apple.com/documentation/security/errsecitemnotfound) if no certificates were found.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The signature must contain an authenticated timestamp provided by a time stamping authority. Elements of the returned array are of type `SecCertificateRef`. The caller is responsible for releasing the returned array by calling `CFRelease`.
+    ///
+    /// You must call [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) before you call this function.
+    ///
+    ///
     ///
     /// # Safety
     ///

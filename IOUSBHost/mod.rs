@@ -774,11 +774,11 @@ use core::ffi::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostversionnumber?language=objc)
+    /// The version number of the framework.
     pub static IOUSBHostVersionNumber: c_double;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostversionstring?language=objc)
+    /// A string representation of the framework’s version number.
     pub static IOUSBHostVersionString: *mut c_uchar;
 }

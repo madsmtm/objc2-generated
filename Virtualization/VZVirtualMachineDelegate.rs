@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The methods you use to respond to changes in the state of the VM.
     /// A class conforming to the VZVirtualMachineDelegate protocol can provide methods for tracking the virtual machine state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachinedelegate?language=objc)
     pub unsafe trait VZVirtualMachineDelegate: NSObjectProtocol {
         #[cfg(feature = "VZVirtualMachine")]
         /// Invoked when a guest has stopped the virtual machine.

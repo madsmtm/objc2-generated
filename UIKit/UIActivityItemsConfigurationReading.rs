@@ -8,62 +8,79 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey?language=objc)
+/// A structure that defines keys for the metadata associated with an activity items configuration.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityItemsConfigurationMetadataKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/title?language=objc)
+    /// A key for the title.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) or [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) that contains the title.
+    ///
+    ///
     pub static UIActivityItemsConfigurationMetadataKeyTitle:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/messagebody?language=objc)
+    /// A key for the message body.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) or [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) that contains the message body.
+    ///
+    ///
     pub static UIActivityItemsConfigurationMetadataKeyMessageBody:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/linkpresentationmetadata?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyLinkPresentationMetadata:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintent?language=objc)
+/// A structure that specifies the types of activity item previews.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityItemsConfigurationPreviewIntent = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintent/fullsize?language=objc)
+    /// A full-size preview image.
     pub static UIActivityItemsConfigurationPreviewIntentFullSize:
         &'static UIActivityItemsConfigurationPreviewIntent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintent/thumbnail?language=objc)
+    /// A thumbnail preview image.
     pub static UIActivityItemsConfigurationPreviewIntentThumbnail:
         &'static UIActivityItemsConfigurationPreviewIntent;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteraction?language=objc)
+/// A structure that describes types of interactions.
+///
+/// ## Overview
+///
+/// Specify which interactions you want the activity view to include in [`supportedInteractions`](https://developer.apple.com/documentation/uikit/uiactivityitemsconfiguration/supportedinteractions).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityItemsConfigurationInteraction = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteraction/share?language=objc)
+    /// The share interaction.
     pub static UIActivityItemsConfigurationInteractionShare:
         &'static UIActivityItemsConfigurationInteraction;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteraction/copy?language=objc)
+    /// The copy interaction.
     pub static UIActivityItemsConfigurationInteractionCopy:
         &'static UIActivityItemsConfigurationInteraction;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationreading?language=objc)
+    /// A set of methods adopted by an object so that the object can act as an activity items configuration.
     pub unsafe trait UIActivityItemsConfigurationReading:
         NSObjectProtocol + MainThreadOnly
     {
@@ -118,9 +135,22 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Protocol adopted by classes that can provide activity items configurations
+    /// An interface that provides a source for shareable content to fulfill user requests to share current content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
+    /// ## Overview
+    ///
+    /// The user can share content from your app in a number of ways:
+    ///
+    /// - Ask Siri to “share this” on an iOS device.
+    ///
+    /// - Click an [`NSSharingServicePickerToolbarItem`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem) in the toolbar of an app built with Mac Catalyst.
+    ///
+    /// - Start a [`UIContextMenuInteraction`](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction) by using Force Touch or a long press gesture.
+    ///
+    /// When one of these interactions happens, the system asks your view controller for content to share. Supply multiple representations of the current content, such as a file, image, and URL.
+    ///
+    ///
+    /// Protocol adopted by classes that can provide activity items configurations
     pub unsafe trait UIActivityItemsConfigurationProviding: NSObjectProtocol {
         #[unsafe(method(activityItemsConfiguration))]
         #[unsafe(method_family = none)]

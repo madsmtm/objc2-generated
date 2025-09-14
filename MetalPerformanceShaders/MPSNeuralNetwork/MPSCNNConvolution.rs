@@ -9,11 +9,16 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A description of the attributes of a convolution kernel.
+    ///
+    /// ## Overview
+    ///
+    /// You use an [`MPSCNNConvolutionDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor) object to describe the properties of an [`MPSCNNConvolution`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolution) kernel such as its size, pixel format and CPU cache mode.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNConvolutionDescriptor specifies a convolution descriptor
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionDescriptor;
@@ -465,6 +470,7 @@ impl MPSCNNConvolutionDescriptor {
 }
 
 extern_class!(
+    /// A description of a convolution object that does subpixel upsampling and reshaping.
     /// MPSCNNSubPixelConvolutionDescriptor can be used to create MPSCNNConvolution object that does sub pixel upsamling
     /// and reshaping opeartion as described in
     /// http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Shi_Real-Time_Single_Image_CVPR_2016_paper.pdf
@@ -490,8 +496,6 @@ extern_class!(
     /// 1) N (outputFeatureChannels) must be multiple of r^2 (subPixelScaleFactor * subPixelScaleFactor).
     /// 2) The destination MPSImage to encode call must have at least N/r^2 + destinationFeatureChannelOffset channels.
     /// 3) Number of feature channels in reshaped output image (N/r^2) can be any value when groups = 1 but must be multiple of 4 when groups > 1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor?language=objc)
     #[unsafe(super(MPSCNNConvolutionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSubPixelConvolutionDescriptor;
@@ -615,6 +619,7 @@ impl MPSCNNSubPixelConvolutionDescriptor {
 }
 
 extern_class!(
+    /// A description of a convolution object that does depthwise convolution.
     /// MPSCNNDepthWiseConvolutionDescriptor can be used to create MPSCNNConvolution object that does depthwise convolution
     ///
     /// Depthwise convolution applies different filter to each input feature channel i.e. no cross channel mixing.
@@ -631,8 +636,6 @@ extern_class!(
     /// = Weights [ outputFeatureChannels ] [kH] [kW]
     ///
     /// Currently only channel multipler of 1 is supported i.e. inputFeatureChannels == outputFeatureChannels
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor?language=objc)
     #[unsafe(super(MPSCNNConvolutionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNDepthWiseConvolutionDescriptor;
@@ -750,13 +753,11 @@ impl MPSCNNDepthWiseConvolutionDescriptor {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionweightslayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionWeightsLayout(pub u32);
 impl MPSCNNConvolutionWeightsLayout {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionweightslayout/ohwi?language=objc)
     #[doc(alias = "MPSCNNConvolutionWeightsLayoutOHWI")]
     pub const OHWI: Self = Self(0);
 }
@@ -769,19 +770,16 @@ unsafe impl RefEncode for MPSCNNConvolutionWeightsLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype?language=objc)
+/// Options that specify the type of quantization used to generate unsigned integer weights.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNWeightsQuantizationType(pub u32);
 impl MPSCNNWeightsQuantizationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype/none-41te1?language=objc)
     #[doc(alias = "MPSCNNWeightsQuantizationTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype/none-29myw?language=objc)
     #[doc(alias = "MPSCNNWeightsQuantizationTypeLinear")]
     pub const Linear: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype/none-3wocm?language=objc)
     #[doc(alias = "MPSCNNWeightsQuantizationTypeLookupTable")]
     pub const LookupTable: Self = Self(2);
 }
@@ -795,6 +793,7 @@ unsafe impl RefEncode for MPSCNNWeightsQuantizationType {
 }
 
 extern_class!(
+    /// An object that exposes a gradient convolution kernel’s gradient with respect to weights and biases.
     /// The MPSCNNConvolutionGradientState is returned by resultStateForSourceImage:sourceStates method on MPSCNNConvolution object.
     /// Note that resultStateForSourceImage:sourceStates:destinationImage creates the object on autoreleasepool.
     /// It will be consumed by MPSCNNConvolutionGradient. This is also used by MPSCNNConvolutionTranspose encode call
@@ -838,8 +837,6 @@ extern_class!(
     /// iii) enqueue update kernel on command buffer
     /// iv) call reloadWeightsAndBiasesWithCommandBuffer:dest:weightsOffset:biasesOffset on MPSCNNConvolution and MPSCNNConvolutionGradient objects. This
     /// will reload the weights from application's update kernel in dest on GPU without CPU side involvement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -1044,7 +1041,7 @@ impl MPSCNNConvolutionGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstatebatch?language=objc)
+/// A batch of convolution gradient state instances.
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSNNGradientState",
@@ -1066,8 +1063,6 @@ extern_class!(
     /// Note that state objects are not usable across batches i.e. when batch is done you should nuke the state object and create
     /// new one for next batch.
     /// Weights update process for MPSCNNConvolutionTranspose is same as explained above for MPSCNNConvolution. See comments for MPSCNNConvolutionGradientState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradientstate?language=objc)
     #[unsafe(super(MPSCNNConvolutionGradientState, MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -1246,7 +1241,6 @@ impl MPSCNNConvolutionTransposeGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradientstatebatch?language=objc)
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSNNGradientState",
@@ -1256,14 +1250,13 @@ pub type MPSCNNConvolutionTransposeGradientStateBatch =
     NSArray<MPSCNNConvolutionTransposeGradientState>;
 
 extern_class!(
+    /// A class that stores weights and biases.
     /// The MPSCNNConvolutionWeightsAndBiasesState is returned by exportWeightsAndBiasesWithCommandBuffer: method on MPSCNNConvolution object.
     /// This is mainly used for GPU side weights/biases update process.
     /// During training, application can keep a copy of weights, velocity, momentum MTLBuffers in its data source, update the weights (in-place or out of place)
     /// with gradients obtained from MPSCNNConvolutionGradientState and call [MPSCNNConvolution reloadWeightsAndBiasesWithCommandBuffer] with resulting updated
     /// MTLBuffer. If application does not want to keep a copy of weights/biases, it can call [MPSCNNConvolution exportWeightsAndBiasesWithCommandBuffer:] to get
     /// the current weights from convolution itself, do the updated and call reloadWithCommandBuffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -1519,6 +1512,7 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
 }
 
 extern_protocol!(
+    /// The protocol that provides convolution filter weights and bias terms.
     /// Provides convolution filter weights and bias terms
     ///
     /// The MPSCNNConvolutionDataSource protocol declares the methods that an
@@ -1542,8 +1536,6 @@ extern_protocol!(
     /// MPSNNGraph objects concurrently in multiple threads and these share
     /// MPSCNNConvolutionDataSources, then the data source objects may be called
     /// reentrantly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondatasource?language=objc)
     pub unsafe trait MPSCNNConvolutionDataSource: NSCopying + NSObjectProtocol {
         #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Alerts MPS what sort of weights are provided by the object
@@ -1776,12 +1768,17 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A convolution kernel that convolves the input image with a set of filters, with each producing one feature map in the output image.
+    ///
+    /// ## Overview
+    ///
+    /// The attributes of a convolution operation are described by an [`MPSCNNConvolutionDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor) object.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNConvolution specifies a convolution.
     /// The MPSCNNConvolution convolves the input image with a set of filters, each producing one feature map in the output image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolution?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2175,20 +2172,17 @@ impl MPSCNNConvolution {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption?language=objc)
+/// Options that control which gradient to compute during backward propagation.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionGradientOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSCNNConvolutionGradientOption: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/gradientwithdata?language=objc)
         #[doc(alias = "MPSCNNConvolutionGradientOptionGradientWithData")]
         const GradientWithData = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/gradientwithweightsandbias?language=objc)
         #[doc(alias = "MPSCNNConvolutionGradientOptionGradientWithWeightsAndBias")]
         const GradientWithWeightsAndBias = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption/all?language=objc)
         #[doc(alias = "MPSCNNConvolutionGradientOptionAll")]
         const All = MPSCNNConvolutionGradientOption::GradientWithData.0|MPSCNNConvolutionGradientOption::GradientWithWeightsAndBias.0;
     }
@@ -2203,6 +2197,7 @@ unsafe impl RefEncode for MPSCNNConvolutionGradientOption {
 }
 
 extern_class!(
+    /// A gradient convolution kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNConvolutionGradient implementents backward propagation of gradient i.e. it computes the gradient of loss function
@@ -2318,8 +2313,6 @@ extern_class!(
     /// Note that if application uses encode method that return destination gradient on left hand side and consumes MPSCNNConvolutionGradientState
     /// object produced by forward MPSCNNConvolution, all these parameters are set automatically for the application i.e. applicaiton does not
     /// need to worry about setting these.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2535,6 +2528,47 @@ impl MPSCNNConvolutionGradient {
 }
 
 extern_class!(
+    /// A fully connected convolution layer, also known as an inner product layer.
+    ///
+    /// ## Overview
+    ///
+    /// A fully connected layer in  a Convolutional Neural Network (CNN) is one where every input channel is connected to every output channel. The kernel width is equal to the width of the source image, and the kernel height is equal to the height of the source image. The width and height of the output is `1 x 1`.
+    ///
+    /// A fully connected layer takes an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object with dimensions `source.width x source.height x Ni`, convolves it with `Weights[No][source.width][source.height][Ni]`,` `and produces a `1 x 1 x No` output.
+    ///
+    /// Thus, the following conditions must be true:
+    ///
+    /// - `kernelWidth  == source.width`
+    ///
+    /// - `kernelHeight == source.height`
+    ///
+    /// - `clipRect.size.width == 1`
+    ///
+    /// - `clipRect.size.height == 1`
+    ///
+    /// You can think of a fully connected layer as a matrix multiplication where the image is flattened into a vector of length `source.width*source.height*Ni`, and the weights are arranged in a matrix of dimension `No x (source.width*source.height*Ni)` to produce an output vector of length `No`.
+    ///
+    /// The value of the `strideInPixelsX`, [`strideInPixelsY`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/strideinpixelsy), and [`groups`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolution/groups) properties must be `1`. The [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset) property is not applicable and it is ignored. Because the clip rectangle is clamped to the destination image bounds, if the destination is `1 x 1`, you do not need to set the [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can implement a fully connected convolution layer using an [`MPSCNNConvolution`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolution) object by setting the following property values:
+    ///
+    /// `offset = (kernelWidth/2,kernelHeight/2)`
+    ///
+    /// `clipRect.origin = (ox,oy)`
+    ///
+    /// `clipRect.size = (1,1)`
+    ///
+    /// `strideInPixelsX = strideInPixelsY = groups = 1`
+    ///
+    /// However, using an [`MPSCNNFullyConnected`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnected) object directly is better for performance as it lets the Metal Performance Shaders framework choose the most performant implementation method, which may not be possible when you use a general convolution. For example, the framework may internally use matrix multiplication or special reduction kernels for a specific Metal feature set.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNFullyConnected specifies a fully connected convolution layer a.k.a. Inner product
@@ -2568,8 +2602,6 @@ extern_class!(
     /// However, using the MPSCNNFullyConnected for this is better for performance as it lets us choose the most
     /// performant method which may not be possible when using a general convolution. For example,
     /// we may internally use matrix multiplication or special reduction kernels for a specific platform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnected?language=objc)
     #[unsafe(super(MPSCNNConvolution, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2737,11 +2769,10 @@ impl MPSCNNFullyConnected {
 }
 
 extern_class!(
+    /// A gradient fully connected convolution layer.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Compute the gradient for fully connected layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient?language=objc)
     #[unsafe(super(
         MPSCNNConvolutionGradient,
         MPSCNNGradientKernel,
@@ -2873,6 +2904,7 @@ impl MPSCNNFullyConnectedGradient {
 }
 
 extern_class!(
+    /// A transposed convolution kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNConvolutionTranspose specifies a transposed convolution.
@@ -2976,8 +3008,6 @@ extern_class!(
     /// Note that if your application is not using MPSCNNConvolutionGradientState to configure the convolution transpose with respect to convolution,
     /// your application may do this using padding policy. In such case if convolution uses valid padding policy, than convolution transpose should use
     /// full padding policy and vice vera. Full padding remains full.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontranspose?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -3402,8 +3432,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNConvolutionTransposeGradient implementents backward propagation of gradient for MPSCNNConvolutionTranspose forward filter
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -3588,6 +3616,75 @@ impl MPSCNNConvolutionTransposeGradient {
 }
 
 extern_class!(
+    /// A convolution kernel with binary weights and an input image using binary approximations.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MPSCNNBinaryConvolution`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolution) optionally first binarizes the input image and then convolves the result with a set of binary-valued filters, each producing one feature map in the output image (which is a normal image).
+    ///
+    /// The output is computed as follows:
+    ///
+    ///
+    /// ![out[i, x, y, c] = ( sum_{dx,dy,f} in[i,x+dx, y+dy, f] x B[c,dx,dy,f] ) * scale[c] * beta[i,x,y] + bias[c]](https://docs-assets.developer.apple.com/published/fa6f18b853e498fed427aa065c8d760a/media-2903520%402x.png)
+    ///
+    ///
+    /// where the _sum over_ _dx,dy_ is over the spatial filter kernel window defined by [`kernelWidth`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/kernelwidth) and [`kernelHeight`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/kernelheight), _sum over_ _f_ is over the input feature channel indices within group, _B_ contains the binary weights, interpreted as `{-1, 1}` or `{0, 1}` and _scale[c]_ is the `outputScaleTerms` array and bias is the `outputBiasTerms` array. Above _i_ is the image index in batch the sum over input channels _f_ runs through the group indices. The convolution operator ⊗ is defined by [`MPSCNNBinaryConvolutionType`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype) passed in at initialization time of the filter:
+    ///
+    /// - [`MPSCNNBinaryConvolutionTypeBinaryWeights`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights): The input image is not binarized at all and the convolution is computed interpreting the weights as `[0, 1] -> {-1, 1}` with the given scaling terms.
+    ///
+    /// - [`MPSCNNBinaryConvolutionTypeXNOR`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor): The convolution is computed by first binarizing the input image using the sign function `bin(x) = x < 0 ? -1 : 1` and the convolution multiplication is done with the XNOR-operator:
+    ///
+    /// `!(x ^ y) = delta_xy = { (x == y) ? 1 : 0 }`
+    ///
+    /// and scaled according to the optional scaling operations.
+    ///
+    /// Note that we output the values of the bitwise convolutions to interval `{-1, 1}`, which means that the output of the XNOR-operator is scaled implicitly as follows:
+    ///
+    /// `r = 2 * ( !(x ^ y) ) - 1 = { -1, 1 }`
+    ///
+    /// This means that for a dot-product of two 32-bit words the result is:
+    ///
+    /// `r = 2 * popcount(!(x ^ y) ) - 32 = 32 - 2 * popcount( x ^ y ) = { -32, -30, ..., 30, 32 }`
+    ///
+    /// - [`MPSCNNBinaryConvolutionTypeAND`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and): The convolution is computed by first binarizing the input image using the sign function `bin(x) = x < 0 ? -1 : 1` and the convolution multiplication is done with the AND-operator:
+    ///
+    /// `(x & y) = delta_xy * delta_x1 = { (x == y == 1) ? 1 : 0 }`
+    ///
+    /// and scaled according to the optional scaling operations.
+    ///
+    /// Note that we output the values of the AND-operation is assumed to lie in `{0, 1}` interval and hence no more implicit scaling takes place.
+    ///
+    /// This means that for a dot-product of two 32-bit words the result is:
+    ///
+    /// `r = popcount(x & y) = { 0, ..., 31, 32 }`
+    ///
+    /// The input data can be pre-offset and scaled by providing the `inputBiasTerms` and `inputScaleTerms` parameters for the initialization functions and this can be used for example to accomplish batch normalization of the data. The scaling of input values happens before possible beta-image computation.
+    ///
+    /// The parameter `beta` above is an optional image which is used to compute scaling factors for each spatial position and image index. For the XNOR-Net based networks this is computed as follows:
+    ///
+    ///
+    /// ![beta[i,x,y] = sum_{dx,dy} A[i, x+dx, y+dy] / (kx * ky)](https://docs-assets.developer.apple.com/published/7c88c8a5d7337f19cdb26200251d4d2a/media-2903518%402x.png)
+    ///
+    ///
+    /// where _(dx,dy)_ are summed over the convolution filter window.
+    ///
+    ///
+    /// ![[ -kx/2, (kx-1)/2], [ -ky/2, (ky-1)/2 ] and A[i,x,y] = sum_{c} abs( in[i,x,y,c] ) / Nc](https://docs-assets.developer.apple.com/published/92d4718a271b1cb5ab619aa0388a04bc/media-2903519%402x.png)
+    ///
+    ///
+    /// where _in_ is the original input image (in full precision) and _Nc_ is the number of input channels in the input image. Parameter `beta` is not passed as input and to enable beta-scaling the user can provide [`MPSCNNBinaryConvolutionFlagsUseBetaScaling`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling) in the flags parameter in the initialization functions.
+    ///
+    /// Finally the normal activation neuron is applied and the result is written to the output image.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`MPSCNNBinaryConvolution`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolution) does not currently support [`groups`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiondescriptor/groups) greater than 1.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNBinaryConvolution specifies a convolution with binary weights and an input image using binary approximations.
@@ -3648,8 +3745,6 @@ extern_class!(
     /// Finally the normal activation neuron is applied and the result is written to the output image.
     ///
     /// NOTE: MPSCNNBinaryConvolution does not currently support groups > 1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolution?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -3868,6 +3963,7 @@ impl MPSCNNBinaryConvolution {
 }
 
 extern_class!(
+    /// A fully connected convolution layer with binary weights and optionally binarized input image.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNBinaryFullyConnected specifies a fully connected convolution layer with binary weights
@@ -3878,8 +3974,6 @@ extern_class!(
     ///
     /// The default padding policy for MPSCNNBinaryConvolution is different from most
     /// filters. It uses MPSNNPaddingMethodSizeValidOnly instead of MPSNNPaddingMethodSizeSame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected?language=objc)
     #[unsafe(super(MPSCNNBinaryConvolution, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -4109,8 +4203,6 @@ extern_class!(
     ///
     /// NOTE: Due to the nature of the operation this filter specifies a special padding policy
     /// and hence does not support non-default offset or cliprect properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculation?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -4254,8 +4346,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSNNGramMatrixCalculationGradient defines the gradient filter for MPSNNGramMatrixCalculation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

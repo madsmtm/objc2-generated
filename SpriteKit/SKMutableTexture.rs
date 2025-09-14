@@ -15,7 +15,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skmutabletexture?language=objc)
+    /// A texture whose contents can be dynamically updated.
+    ///
+    /// ## Overview
+    ///
+    /// Normally, SpriteKit textures ([`SKTexture`](https://developer.apple.com/documentation/spritekit/sktexture) objects) are static, meaning that once created, their contents cannot be changed. This is important because a static image can be more efficiently managed inside the graphics hardware. However, sometimes you need to be able to update the contents of a texture dynamically. In this case, you should use a mutable texture. Because there is a performance penalty for updating the texture’s contents, consider other options first. For example, you can render a texture in hardware using the [`textureFromNode:`](https://developer.apple.com/documentation/spritekit/skview/texture(from:)) method and a node tree.
+    ///
+    /// To use this class, create a mutable texture using either one of its creation methods or those of its superclass. Then, when you need to update the mutable texture object’s contents, call the [`modifyPixelDataWithBlock:`](https://developer.apple.com/documentation/spritekit/skmutabletexture/modifypixeldata(_:)) method. Your block is called with the location of the texture in memory. Your block should update this texture and then return.
+    ///
+    ///
     #[unsafe(super(SKTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKTexture")]

@@ -12,7 +12,15 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrun?language=objc)
+/// A glyph run.
+///
+/// ## Overview
+///
+/// A glyph run is a set of consecutive glyphs sharing the same attributes and direction.
+///
+/// The typesetter creates glyph runs as it produces lines from character strings, attributes, and font objects. That is, a line is constructed of one or more glyphs runs. Glyph runs can draw themselves into a graphic context, if desired, although most users have no need to interact directly with glyph runs.
+///
+///
 #[doc(alias = "CTRunRef")]
 #[repr(C)]
 pub struct CTRun {
@@ -28,6 +36,13 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CTRun"> for CTRun {}
 );
 
+/// A bitfield that represents the disposition of the run.
+///
+/// ## Overview
+///
+/// The [`CTRunGetStatus`](https://developer.apple.com/documentation/coretext/ctrungetstatus(_:)) function passes back this bitfield to indicate the disposition of the run.
+///
+///
 /// A bitfield passed back by CTRunGetStatus that is used to
 /// indicate the disposition of the run.
 ///
@@ -46,24 +61,28 @@ cf_objc2_type!(
 ///
 /// When set, the run requires a specific text matrix to be set
 /// in the current CG context for proper drawing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRunStatus(pub u32);
 bitflags::bitflags! {
     impl CTRunStatus: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/kctrunstatusnostatus?language=objc)
+/// The run has no special attributes.
         #[doc(alias = "kCTRunStatusNoStatus")]
         const NoStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/righttoleft?language=objc)
+/// The run proceeds from right to left.
         #[doc(alias = "kCTRunStatusRightToLeft")]
         const RightToLeft = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/nonmonotonic?language=objc)
+/// The run isn’t in strictly increasing or decreasing order.
+///
+/// ## Discussion
+///
+/// The run is reordered so that the string indices associated with the glyphs aren’t in strictly increasing (for left-to-right runs) or decreasing (for right-to-left runs) order.
+///
+///
         #[doc(alias = "kCTRunStatusNonMonotonic")]
         const NonMonotonic = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunstatus/hasnonidentitymatrix?language=objc)
+/// The run requires a specific text matrix to be set in the current Core Graphics context for proper drawing.
         #[doc(alias = "kCTRunStatusHasNonIdentityMatrix")]
         const HasNonIdentityMatrix = 1<<2;
     }
@@ -80,9 +99,8 @@ unsafe impl RefEncode for CTRunStatus {
 }
 
 unsafe impl ConcreteType for CTRun {
+    /// Returns the Core Foundation type identifier of the run object.
     /// Returns the CFType of the run object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungettypeid()?language=objc)
     #[doc(alias = "CTRunGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -96,6 +114,17 @@ unsafe impl ConcreteType for CTRun {
 impl CTRun {
     /// Gets the glyph count for the run.
     ///
+    /// Parameters:
+    /// - run: The run for which to return the glyph count.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of glyphs that the run contains, or if there are no glyphs in this run, a value of `0`.
+    ///
+    ///
+    /// Gets the glyph count for the run.
+    ///
     ///
     /// Parameter `run`: The run whose glyph count you wish to access.
     ///
@@ -103,8 +132,6 @@ impl CTRun {
     /// Returns: The number of glyphs that the run contains. It is totally
     /// possible that this function could return a value of zero,
     /// indicating that there are no glyphs in this run.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetglyphcount(_:)?language=objc)
     #[doc(alias = "CTRunGetGlyphCount")]
     #[inline]
     pub fn glyph_count(&self) -> CFIndex {
@@ -114,6 +141,23 @@ impl CTRun {
         unsafe { CTRunGetGlyphCount(self) }
     }
 
+    /// Returns the attribute dictionary that was used to create the glyph run.
+    ///
+    /// Parameters:
+    /// - run: The run for which to return attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) or `NULL` on error or if the run has no attributes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary returned is either the same one that was set as an attribute dictionary on the original attributed string or a dictionary that has been manufactured by the layout engine. Attribute dictionaries can be manufactured in the case of font substitution or if the run is missing critical attributes.
+    ///
+    ///
     /// Returns the attribute dictionary that was used to create the
     /// glyph run.
     ///
@@ -129,8 +173,6 @@ impl CTRun {
     ///
     ///
     /// Returns: The attribute dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetattributes(_:)?language=objc)
     #[doc(alias = "CTRunGetAttributes")]
     #[inline]
     pub fn attributes(&self) -> CFRetained<CFDictionary> {
@@ -143,6 +185,23 @@ impl CTRun {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Returns the run’s status.
+    ///
+    /// Parameters:
+    /// - run: The run for which to return the status.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The run’s status.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Runs have status that can be used to expedite certain operations. Knowing the direction and ordering of a run’s glyphs can aid in string index analysis, whereas knowing whether the positions reference the identity text matrix can avoid expensive comparisons. This status is provided as a convenience, because this information is not strictly necessary but can be helpful in some circumstances.
+    ///
+    ///
     /// Returns the run's status.
     ///
     ///
@@ -159,8 +218,6 @@ impl CTRun {
     ///
     ///
     /// Returns: The run's status.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstatus(_:)?language=objc)
     #[doc(alias = "CTRunGetStatus")]
     #[inline]
     pub fn status(&self) -> CTRunStatus {
@@ -170,6 +227,23 @@ impl CTRun {
         unsafe { CTRunGetStatus(self) }
     }
 
+    /// Returns a direct pointer for the glyph array stored in the run.
+    ///
+    /// Parameters:
+    /// - run: The run from which to return glyphs.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid pointer to an array of [`CGGlyph`](https://developer.apple.com/documentation/coregraphics/cgglyph) structures, or `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The glyph array will have a length equal to the value returned by [`CTRunGetGlyphCount`](https://developer.apple.com/documentation/coretext/ctrungetglyphcount(_:)). The caller should be prepared for this function to return `NULL` even if there are glyphs in the stream. If this function returns `NULL`, the caller must allocate its own buffer and call [`CTRunGetGlyphs`](https://developer.apple.com/documentation/coretext/ctrungetglyphs(_:_:_:)) to fetch the glyphs.
+    ///
+    ///
     /// Returns a direct pointer for the glyph array stored in the run.
     ///
     ///
@@ -185,8 +259,6 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGGlyph structures or NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetglyphsptr(_:)?language=objc)
     #[doc(alias = "CTRunGetGlyphsPtr")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -197,6 +269,15 @@ impl CTRun {
         unsafe { CTRunGetGlyphsPtr(self) }
     }
 
+    /// Copies a range of glyphs into a user-provided buffer.
+    ///
+    /// Parameters:
+    /// - run: The run from which to copy glyphs.
+    ///
+    /// - range: The range of glyphs to copy. If the length of the range is set to `0`, then the copy operation continues from the range’s start index to the end of the run.
+    ///
+    /// - buffer: The buffer the glyphs are copied to. The buffer must be allocated to at least the value specified by the range’s length.
+    ///
     /// Copies a range of glyphs into user-provided buffer.
     ///
     ///
@@ -215,8 +296,6 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetglyphs(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetGlyphs")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -227,6 +306,23 @@ impl CTRun {
         unsafe { CTRunGetGlyphs(self, range, buffer) }
     }
 
+    /// Returns a direct pointer for the glyph position array stored in the run.
+    ///
+    /// Parameters:
+    /// - run: The run from which to access glyph positions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid pointer to an array of [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) structures, or `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The glyph positions in a run are relative to the origin of the line containing the run. The position array will have a length equal to the value returned by [`CTRunGetGlyphCount`](https://developer.apple.com/documentation/coretext/ctrungetglyphcount(_:)). The caller should be prepared for this function to return `NULL` even if there are glyphs in the stream. If this function returns `NULL`, the caller must allocate its own buffer and call [`CTRunGetPositions`](https://developer.apple.com/documentation/coretext/ctrungetpositions(_:_:_:)) to fetch the glyph positions.
+    ///
+    ///
     /// Returns a direct pointer for the glyph position array stored in
     /// the run.
     ///
@@ -244,8 +340,6 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetpositionsptr(_:)?language=objc)
     #[doc(alias = "CTRunGetPositionsPtr")]
     #[inline]
     pub fn positions_ptr(&self) -> *const CGPoint {
@@ -255,6 +349,15 @@ impl CTRun {
         unsafe { CTRunGetPositionsPtr(self) }
     }
 
+    /// Copies a range of glyph positions into a user-provided buffer.
+    ///
+    /// Parameters:
+    /// - run: The run from which to copy glyph positions.
+    ///
+    /// - range: The range of glyph positions to copy. If the length of the range is set to `0`, then the copy operation will continue from the start index of the range to the end of the run.
+    ///
+    /// - buffer: The buffer to which the glyph positions are copied. The buffer must be allocated to at least the value specified by the range’s length.
+    ///
     /// Copies a range of glyph positions into a user-provided buffer.
     ///
     ///
@@ -278,8 +381,6 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetpositions(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetPositions")]
     #[inline]
     pub unsafe fn positions(&self, range: CFRange, buffer: NonNull<CGPoint>) {
@@ -289,6 +390,23 @@ impl CTRun {
         unsafe { CTRunGetPositions(self, range, buffer) }
     }
 
+    /// Returns a direct pointer for the glyph advance array stored in the run.
+    ///
+    /// Parameters:
+    /// - run: The run whose advances you wish to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid pointer to an array of `CGSize` structures representing the glyph advance array or `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The advance array will have a length equal to the value returned by [`CTRunGetGlyphCount`](https://developer.apple.com/documentation/coretext/ctrungetglyphcount(_:)). The caller should be prepared for this function to return `NULL` even if there are glyphs in the stream. Should this function return `NULL`, the caller needs allocate its own buffer and call [`CTRunGetAdvances`](https://developer.apple.com/documentation/coretext/ctrungetadvances(_:_:_:)) to fetch the advances. Note that advances alone are not sufficient for correctly positioning glyphs in a line, as a run may have a non-identity matrix or the initial glyph in a line may have a non-zero origin; callers should consider using positions instead.
+    ///
+    ///
     /// Returns a direct pointer for the glyph advance array stored in
     /// the run.
     ///
@@ -308,8 +426,6 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetadvancesptr(_:)?language=objc)
     #[doc(alias = "CTRunGetAdvancesPtr")]
     #[inline]
     pub fn advances_ptr(&self) -> *const CGSize {
@@ -319,6 +435,15 @@ impl CTRun {
         unsafe { CTRunGetAdvancesPtr(self) }
     }
 
+    /// Copies a range of glyph advances into a user-provided buffer.
+    ///
+    /// Parameters:
+    /// - run: The run whose advances you wish to copy.
+    ///
+    /// - range: The range of glyph advances you wish to copy. If the length of the range is set to `0`, then the copy operation continues from the range’s start index to the end of the run.
+    ///
+    /// - buffer: The buffer to which the glyph advances are copied. The buffer must be allocated to at least the value specified by the range’s length.
+    ///
     /// Copies a range of glyph advances into a user-provided buffer.
     ///
     ///
@@ -338,8 +463,6 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetadvances(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetAdvances")]
     #[inline]
     pub unsafe fn advances(&self, range: CFRange, buffer: NonNull<CGSize>) {
@@ -349,6 +472,23 @@ impl CTRun {
         unsafe { CTRunGetAdvances(self, range, buffer) }
     }
 
+    /// Returns a direct pointer for the string indices stored in the run.
+    ///
+    /// Parameters:
+    /// - run: The run for which to return string indices.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid pointer to an array of [`CFIndex`](https://developer.apple.com/documentation/corefoundation/cfindex) structures, or `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The indices are the character indices that originally spawned the glyphs that make up the run. They can be used to map the glyphs in the run back to the characters in the backing store. The string indices array will have a length equal to the value returned by [`CTRunGetGlyphCount`](https://developer.apple.com/documentation/coretext/ctrungetglyphcount(_:)). The caller should be prepared for this function to return `NULL` even if there are glyphs in the stream. If this function returns `NULL`, the caller must allocate its own buffer and call [`CTRunGetStringIndices`](https://developer.apple.com/documentation/coretext/ctrungetstringindices(_:_:_:)) to fetch the indices.
+    ///
+    ///
     /// Returns a direct pointer for the string indices stored in the run.
     ///
     ///
@@ -367,8 +507,6 @@ impl CTRun {
     ///
     ///
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstringindicesptr(_:)?language=objc)
     #[doc(alias = "CTRunGetStringIndicesPtr")]
     #[inline]
     pub fn string_indices_ptr(&self) -> *const CFIndex {
@@ -378,6 +516,21 @@ impl CTRun {
         unsafe { CTRunGetStringIndicesPtr(self) }
     }
 
+    /// Copies a range of string indices into a user-provided buffer.
+    ///
+    /// Parameters:
+    /// - run: The run from which to copy the string indices.
+    ///
+    /// - range: The range of string indices to copy. If the length of the range is set to `0`, then the copy operation continues from the range’s start index to the end of the run.
+    ///
+    /// - buffer: The buffer to which the string indices are copied. The buffer must be allocated to at least the value specified by the range’s length.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The indices are the character indices that originally spawned the glyphs that make up the run. They can be used to map the glyphs in the run back to the characters in the backing store.
+    ///
+    ///
     /// Copies a range of string indices into a user-provided buffer.
     ///
     ///
@@ -402,8 +555,6 @@ impl CTRun {
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstringindices(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetStringIndices")]
     #[inline]
     pub unsafe fn string_indices(&self, range: CFRange, buffer: NonNull<CFIndex>) {
@@ -413,6 +564,17 @@ impl CTRun {
         unsafe { CTRunGetStringIndices(self, range, buffer) }
     }
 
+    /// Gets the range of characters that originally spawned the glyphs in the run.
+    ///
+    /// Parameters:
+    /// - run: The run for which to access the string range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The range of characters that originally spawned the glyphs, of if `run` is invalid, an empty range.
+    ///
+    ///
     /// Gets the range of characters that originally spawned the glyphs
     /// in the run.
     ///
@@ -422,8 +584,6 @@ impl CTRun {
     ///
     /// Returns: Returns the range of characters that originally spawned the
     /// glyphs. If run is invalid, this will return an empty range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetstringrange(_:)?language=objc)
     #[doc(alias = "CTRunGetStringRange")]
     #[inline]
     pub fn string_range(&self) -> CFRange {
@@ -433,6 +593,25 @@ impl CTRun {
         unsafe { CTRunGetStringRange(self) }
     }
 
+    /// Gets the typographic bounds of the run.
+    ///
+    /// Parameters:
+    /// - run: The run for which to calculate the typographic bounds.
+    ///
+    /// - range: The portion of the run to measure. If the length of the range is set to `0`, then the measure operation continues from the range’s start index to the end of the run.
+    ///
+    /// - ascent: On output, the ascent of the run. This can be set to `NULL` if not needed.
+    ///
+    /// - descent: On output, the descent of the run. This can be set to `NULL` if not needed.
+    ///
+    /// - leading: On output, the leading of the run. This can be set to `NULL` if not needed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The typographic width of the run, or if `run` or `range` is invalid, `0`.
+    ///
+    ///
     /// Gets the typographic bounds of the run.
     ///
     ///
@@ -465,8 +644,6 @@ impl CTRun {
     /// - `ascent` must be a valid pointer or null.
     /// - `descent` must be a valid pointer or null.
     /// - `leading` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungettypographicbounds(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
@@ -488,6 +665,21 @@ impl CTRun {
         unsafe { CTRunGetTypographicBounds(self, range, ascent, descent, leading) }
     }
 
+    /// Calculates the image bounds for a glyph range.
+    ///
+    /// Parameters:
+    /// - run: The run for which to calculate the image bounds.
+    ///
+    /// - context: The context for the image bounds being calculated. This is required because the context could have settings in it that would cause changes in the image bounds.
+    ///
+    /// - range: The portion of the run to measure. If the length of the range is set to `0`, then the measure operation continues from the start index of the range to the end of the run.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that tightly encloses the paths of the run’s glyphs, or, if `run`, `context`, or `range` is invalid, [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+    ///
+    ///
     /// Calculates the image bounds for a glyph range.
     ///
     ///
@@ -522,8 +714,6 @@ impl CTRun {
     ///
     ///
     /// See also: CTRunGetTypographicBounds
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetimagebounds(_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -540,6 +730,23 @@ impl CTRun {
 
     /// Returns the text matrix needed to draw this run.
     ///
+    /// Parameters:
+    /// - run: The run object from which to get the text matrix.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CGAffineTransform`](https://developer.apple.com/documentation/corefoundation/cgaffinetransform) structure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To properly draw the glyphs in a run, the fields `tx` and `ty` of the [`CGAffineTransform`](https://developer.apple.com/documentation/corefoundation/cgaffinetransform) returned by this function should be set to the current text position.
+    ///
+    ///
+    /// Returns the text matrix needed to draw this run.
+    ///
     ///
     /// To properly draw the glyphs in a run, the fields 'tx' and 'ty' of
     /// the CGAffineTransform returned by this function should be set to
@@ -550,8 +757,6 @@ impl CTRun {
     ///
     ///
     /// Returns: A CGAffineTransform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungettextmatrix(_:)?language=objc)
     #[doc(alias = "CTRunGetTextMatrix")]
     #[inline]
     pub fn text_matrix(&self) -> CGAffineTransform {
@@ -561,6 +766,27 @@ impl CTRun {
         unsafe { CTRunGetTextMatrix(self) }
     }
 
+    /// Copies a range of base advances and origins into user-provided buffers.
+    ///
+    /// Parameters:
+    /// - runRef: The run that contains the base advances and origins you wish to copy.
+    ///
+    /// - range: The range of values to be copied. If the length of the range is set to `0`, the copy operation continues from the range’s start index to the end of the run.
+    ///
+    /// - advancesBuffer: The buffer to which the base advances will be copied, or `NULL`. If not `NULL`, the buffer must allow for at least as many elements as specified by the range’s length.
+    ///
+    /// - originsBuffer: The buffer to which the origins will be copied, or `NULL`. If not `NULL`, the buffer must allow for at least as many elements as specified by the range’s length.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A run’s base advances and origins determine the positions of its glyphs but require additional processing before being used for drawing.
+    ///
+    /// Similar to the advances returned by [`CTRunGetAdvances`](https://developer.apple.com/documentation/coretext/ctrungetadvances(_:_:_:)), base advances are the displacement from the origin of a glyph to the origin of the next glyph, except base advances do not include any positioning the font layout tables may have done relative to another glyph (such as a mark relative to its base).
+    ///
+    /// The displacement of the current glyph’s origin from the starting position determines the glyph’s actual position, and the displacement of the current glyph’s base advance from the starting position determines the position of the next glyph.
+    ///
+    ///
     /// Copies a range of base advances and/or origins into user-provided
     /// buffers.
     ///
@@ -599,8 +825,6 @@ impl CTRun {
     ///
     /// - `advances_buffer` must be a valid pointer or null.
     /// - `origins_buffer` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrungetbaseadvancesandorigins(_:_:_:_:)?language=objc)
     #[doc(alias = "CTRunGetBaseAdvancesAndOrigins")]
     #[inline]
     pub unsafe fn base_advances_and_origins(
@@ -620,6 +844,21 @@ impl CTRun {
         unsafe { CTRunGetBaseAdvancesAndOrigins(self, range, advances_buffer, origins_buffer) }
     }
 
+    /// Draws a complete run or part of one.
+    ///
+    /// Parameters:
+    /// - run: The run to draw.
+    ///
+    /// - context: The context into which to draw the run.
+    ///
+    /// - range: The portion of the run to draw. If the length of the range is set to `0`, then the draw operation continues from the start index of the range to the end of the run.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience call, because the run could be drawn by accessing the glyphs. This call can leave the graphics context in any state and does not flush the context after the draw operation.
+    ///
+    ///
     /// Draws a complete run or part of one.
     ///
     ///
@@ -644,8 +883,6 @@ impl CTRun {
     /// location of 0 and a length of CTRunGetGlyphCount. If the length
     /// of the range is set to 0, then the operation will continue from
     /// the range's start index to the end of the run.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundraw(_:_:_:)?language=objc)
     #[doc(alias = "CTRunDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]

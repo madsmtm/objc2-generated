@@ -10,10 +10,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The reference to an object that represents a network interface.
 /// This is the type of a reference to an object that represents
 /// a network interface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterface?language=objc)
 #[doc(alias = "SCNetworkInterfaceRef")]
 #[repr(C)]
 pub struct SCNetworkInterface {
@@ -30,107 +29,104 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetype6to4?language=objc)
+    /// The 6to4 interface.
     pub static kSCNetworkInterfaceType6to4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypebluetooth?language=objc)
+    /// The Bluetooth interface.
     pub static kSCNetworkInterfaceTypeBluetooth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypebond?language=objc)
+    /// The Ethernet bond interface.
     pub static kSCNetworkInterfaceTypeBond: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeethernet?language=objc)
+    /// The Ethernet interface.
     pub static kSCNetworkInterfaceTypeEthernet: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypefirewire?language=objc)
+    /// The FireWire interface.
     pub static kSCNetworkInterfaceTypeFireWire: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeieee80211?language=objc)
+    /// The IEEE 802.11 interface.
     pub static kSCNetworkInterfaceTypeIEEE80211: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeipsec?language=objc)
+    /// The IPSec interface.
     pub static kSCNetworkInterfaceTypeIPSec: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeirda?language=objc)
+    /// The IrDA interface.
     #[deprecated = "No longer supported"]
     pub static kSCNetworkInterfaceTypeIrDA: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypel2tp?language=objc)
+    /// The L2TP interface.
     pub static kSCNetworkInterfaceTypeL2TP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypemodem?language=objc)
+    /// The modem interface.
     pub static kSCNetworkInterfaceTypeModem: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeppp?language=objc)
+    /// The PPP interface.
     pub static kSCNetworkInterfaceTypePPP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypepptp?language=objc)
+    /// The PPTP interface.
     #[deprecated = "No longer supported"]
     pub static kSCNetworkInterfaceTypePPTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeserial?language=objc)
+    /// The serial interface.
     pub static kSCNetworkInterfaceTypeSerial: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypevlan?language=objc)
+    /// The VLAN interface.
     pub static kSCNetworkInterfaceTypeVLAN: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypewwan?language=objc)
+    /// The WWAN interface.
     pub static kSCNetworkInterfaceTypeWWAN: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfacetypeipv4?language=objc)
+    /// The IPv4 interface.
     pub static kSCNetworkInterfaceTypeIPv4: &'static CFString;
 }
 
 extern "C" {
+    /// A network interface that can used for layering other interfaces (for example, 6to4, PPTP, or L2TP) over an existing IPv4 network.
     /// A network interface that can used for layering other
     /// interfaces (e.g. 6to4, IPSec, PPTP, L2TP) over an existing
     /// IPv4 network.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkinterfaceipv4?language=objc)
     pub static kSCNetworkInterfaceIPv4: &'static SCNetworkInterface;
 }
 
+/// The reference to an object that represents an Ethernet bond interface.
 /// This is the type of a reference to an object that represents
 /// an Ethernet Bond interface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterface?language=objc)
 #[doc(alias = "SCBondInterfaceRef")]
 pub type SCBondInterface = SCNetworkInterface;
 
+/// The reference to an object that represents the status of an Ethernet bond interface.
 /// This is the type of a reference to an object that represents
 /// the status of an Ethernet Bond interface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondstatus?language=objc)
 #[doc(alias = "SCBondStatusRef")]
 #[repr(C)]
 pub struct SCBondStatus {
@@ -146,43 +142,41 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCBondStatus"> for SCBondStatus {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusok?language=objc)
+/// The status is valid (for example, enabled, active, running, and so on).
 pub const kSCBondStatusOK: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatuslinkinvalid?language=objc)
+/// The link state is not valid (such as down, half-duplex, or wrong speed).
 pub const kSCBondStatusLinkInvalid: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusnopartner?language=objc)
+/// The port on the switch to which the device is connected doesn’t seem to have 802.3ad Link Aggregation enabled.
 pub const kSCBondStatusNoPartner: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusnotinactivegroup?language=objc)
+/// Communication with a partner is occurring, but the link aggregation group is different from the one that is active.
 pub const kSCBondStatusNotInActiveGroup: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusunknown?language=objc)
+/// Nonspecific failure.
 pub const kSCBondStatusUnknown: c_uint = 999;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusdeviceaggregationstatus?language=objc)
+    /// Device is aggregating. See [Ethernet Bond Aggregation Status](https://developer.apple.com/documentation/systemconfiguration/1546981-ethernet-bond-aggregation-status) for a list of possible values.
     pub static kSCBondStatusDeviceAggregationStatus: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusdevicecollecting?language=objc)
+    /// Can be `0` or `1`.
     pub static kSCBondStatusDeviceCollecting: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscbondstatusdevicedistributing?language=objc)
+    /// Can be `0` or `1`.
     pub static kSCBondStatusDeviceDistributing: &'static CFString;
 }
 
+/// The reference to an object that represents a virtual LAN (VLAN) interface.
 /// This is the type of a reference to an object that represents
 /// a Virtual LAN (VLAN) interface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterface?language=objc)
 #[doc(alias = "SCVLANInterfaceRef")]
 pub type SCVLANInterface = SCNetworkInterface;
 
+/// The reference to an object that represents a network protocol.
 /// This is the type of a reference to an object that represents
 /// a network protocol.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocol?language=objc)
 #[doc(alias = "SCNetworkProtocolRef")]
 #[repr(C)]
 pub struct SCNetworkProtocol {
@@ -199,34 +193,33 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkprotocoltypedns?language=objc)
+    /// The DNS protocol.
     pub static kSCNetworkProtocolTypeDNS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkprotocoltypeipv4?language=objc)
+    /// The IPv4 protocol.
     pub static kSCNetworkProtocolTypeIPv4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkprotocoltypeipv6?language=objc)
+    /// The IPv6 protocol.
     pub static kSCNetworkProtocolTypeIPv6: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkprotocoltypeproxies?language=objc)
+    /// Protocol proxies.
     pub static kSCNetworkProtocolTypeProxies: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkprotocoltypesmb?language=objc)
+    /// The SMB procotol.
     pub static kSCNetworkProtocolTypeSMB: &'static CFString;
 }
 
+/// The reference to an object that represents a network service.
 /// This is the type of a reference to an object that represents
 /// a network service.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservice?language=objc)
 #[doc(alias = "SCNetworkServiceRef")]
 #[repr(C)]
 pub struct SCNetworkService {
@@ -242,10 +235,9 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCNetworkService"> for SCNetworkService {}
 );
 
+/// The reference to an object that represents a network set.
 /// This is the type of a reference to an object that represents
 /// a network set.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkset?language=objc)
 #[doc(alias = "SCNetworkSetRef")]
 #[repr(C)]
 pub struct SCNetworkSet {
@@ -262,9 +254,14 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SCNetworkInterface {
-    /// Returns the type identifier of all SCNetworkInterface instances.
+    /// Returns the type identifier of all `SCNetworkInterface` instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCNetworkInterface` instances.
+    ///
+    ///
+    /// Returns the type identifier of all SCNetworkInterface instances.
     #[doc(alias = "SCNetworkInterfaceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -276,12 +273,17 @@ unsafe impl ConcreteType for SCNetworkInterface {
 }
 
 impl SCNetworkInterface {
+    /// Returns all network-capable interfaces on the system.
+    ///
+    /// ## Return Value
+    ///
+    /// The list of interfaces on the system. You must release the returned value.
+    ///
+    ///
     /// Returns all network capable interfaces on the system.
     ///
     /// Returns: The list of interfaces on the system.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopyall()?language=objc)
     #[doc(alias = "SCNetworkInterfaceCopyAll")]
     #[inline]
     pub fn all() -> CFRetained<CFArray> {
@@ -294,6 +296,17 @@ impl SCNetworkInterface {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Identifies all of the network interface types, such as PPP, that can be layered on top of the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of network interface types supported by the specified interface, or `NULL` if no interface types are supported.
+    ///
+    ///
     /// Identify all of the network interface types (e.g. PPP) that
     /// can be layered on top of this interface.
     ///
@@ -301,8 +314,6 @@ impl SCNetworkInterface {
     ///
     /// Returns: The list of SCNetworkInterface types supported by the interface;
     /// NULL if no interface types are supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetsupportedinterfacetypes(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetSupportedInterfaceTypes")]
     #[inline]
     pub fn supported_interface_types(&self) -> Option<CFRetained<CFArray>> {
@@ -315,6 +326,17 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Identifies all of the network protocol types, such as IPv4 and IPv6, that can be layered on top of the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of network protocol types supported by the specified interface, or `NULL` if no protocol types are supported.
+    ///
+    ///
     /// Identify all of the network protocol types (e.g. IPv4, IPv6) that
     /// can be layered on top of this interface.
     ///
@@ -322,8 +344,6 @@ impl SCNetworkInterface {
     ///
     /// Returns: The list of SCNetworkProtocol types supported by the interface;
     /// NULL if no protocol types are supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetsupportedprotocoltypes(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetSupportedProtocolTypes")]
     #[inline]
     pub fn supported_protocol_types(&self) -> Option<CFRetained<CFArray>> {
@@ -336,6 +356,25 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Creates a new network interface layered on top of the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - interfaceType: The type of interface to layer on top of the network interface specified in `interface`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the new network interface. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to create a “PPP” interface on top of a “modem.”
+    ///
+    ///
     /// Create a new network interface layered on top of another.  For
     /// example, this function would be used to create a "PPP" interface
     /// on top of a "modem".
@@ -347,8 +386,6 @@ impl SCNetworkInterface {
     ///
     /// Returns: A reference to the new SCNetworkInterface.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecreatewithinterface(_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceCreateWithInterface")]
     #[inline]
     pub fn with_interface(
@@ -365,6 +402,17 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the BSD interface or device name for the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The BSD name associated with the interface (for example, `en0`), or `NULL` if no BSD name is available.
+    ///
+    ///
     /// Returns the BSD interface (en0) or device name (modem)
     /// for the interface.
     ///
@@ -372,8 +420,6 @@ impl SCNetworkInterface {
     ///
     /// Returns: The BSD name associated with the interface (e.g. "en0");
     /// NULL if no BSD name is available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetbsdname(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetBSDName")]
     #[inline]
     pub fn bsd_name(&self) -> Option<CFRetained<CFString>> {
@@ -386,6 +432,17 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the configuration settings associated with the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The configuration settings associated with the interface, or `NULL` if no configuration settings are associated with the interface or an error occurred.
+    ///
+    ///
     /// Returns the configuration settings associated with a interface.
     ///
     /// Parameter `interface`: The network interface.
@@ -393,8 +450,6 @@ impl SCNetworkInterface {
     /// Returns: The configuration settings associated with the interface;
     /// NULL if no configuration settings are associated with the interface
     /// or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetconfiguration(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetConfiguration")]
     #[inline]
     pub fn configuration(&self) -> Option<CFRetained<CFDictionary>> {
@@ -407,6 +462,19 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the extended configuration settings associated with the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - extendedType: The type of extended information (for example, EAPOL).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The configuration settings associated with the interface, or `NULL` if no configuration settings are associated with the interface or an error occurred.
+    ///
+    ///
     /// Returns the configuration settings associated with a interface.
     ///
     /// Parameter `interface`: The network interface.
@@ -416,8 +484,6 @@ impl SCNetworkInterface {
     /// Returns: The configuration settings associated with the interface;
     /// NULL if no configuration settings are associated with the interface
     /// or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetextendedconfiguration(_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetExtendedConfiguration")]
     #[inline]
     pub fn extended_configuration(
@@ -434,13 +500,22 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns a displayable link layer address for the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The hardware MAC (Media Access Control) address for the interface.
+    ///
+    ///
     /// Returns a displayable link layer address for the interface.
     ///
     /// Parameter `interface`: The network interface.
     ///
     /// Returns: A string representing the hardware (MAC) address for the interface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegethardwareaddressstring(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetHardwareAddressString")]
     #[inline]
     pub fn hardware_address_string(&self) -> Option<CFRetained<CFString>> {
@@ -453,14 +528,23 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the underlying interface, for layered network interfaces.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The underlying network interface, or `NULL` if the specified interface is a leaf interface.
+    ///
+    ///
     /// For layered network interfaces, return the underlying interface.
     ///
     /// Parameter `interface`: The network interface.
     ///
     /// Returns: The underlying network interface;
     /// NULL if this is a leaf interface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetinterface(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetInterface")]
     #[inline]
     pub fn interface(&self) -> Option<CFRetained<SCNetworkInterface>> {
@@ -473,13 +557,22 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the network interface type of the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The interface type.
+    ///
+    ///
     /// Returns the associated network interface type.
     ///
     /// Parameter `interface`: The network interface.
     ///
     /// Returns: The interface type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetinterfacetype(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetInterfaceType")]
     #[inline]
     pub fn interface_type(&self) -> Option<CFRetained<CFString>> {
@@ -492,6 +585,17 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the localized display name, such as “Ethernet” or “FireWire”, for the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The localized display name for the interface, or `NULL` if no name is available.
+    ///
+    ///
     /// Returns the localized name (e.g. "Ethernet", "FireWire") for
     /// the interface.
     ///
@@ -499,8 +603,6 @@ impl SCNetworkInterface {
     ///
     /// Returns: A localized, display name for the interface;
     /// NULL if no name is available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacegetlocalizeddisplayname(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceGetLocalizedDisplayName")]
     #[inline]
     pub fn localized_display_name(&self) -> Option<CFRetained<CFString>> {
@@ -513,6 +615,19 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Stores the configuration settings for the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - config: The configuration settings to store.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+    ///
+    ///
     /// Stores the configuration settings for the interface.
     ///
     /// Parameter `interface`: The network interface.
@@ -525,8 +640,6 @@ impl SCNetworkInterface {
     ///
     /// - `config` generic must be of the correct type.
     /// - `config` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacesetconfiguration(_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceSetConfiguration")]
     #[inline]
     pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
@@ -540,6 +653,21 @@ impl SCNetworkInterface {
         ret != 0
     }
 
+    /// Stores the extended configuration settings for the specified interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - extendedType: The type of extended information.
+    ///
+    /// - config: The extended configuration settings to store.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+    ///
+    ///
     /// Stores the configuration settings for the interface.
     ///
     /// Parameter `interface`: The network interface.
@@ -552,8 +680,6 @@ impl SCNetworkInterface {
     ///
     /// - `config` generic must be of the correct type.
     /// - `config` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacesetextendedconfiguration(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceSetExtendedConfiguration")]
     #[inline]
     pub unsafe fn set_extended_configuration(
@@ -573,6 +699,25 @@ impl SCNetworkInterface {
         ret != 0
     }
 
+    /// Returns information media options for the specified network interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - current: On output, a dictionary representing the currently requested media options (subtype, options). If `NULL`, the current options are not returned.
+    ///
+    /// - active: On output, a dictionary representing the active media options (subtype, options). If `NULL`, the active options are not returned.
+    ///
+    /// - available: On output, an array representing the possible media options (subtype, options). If `NULL`, the current options are not returned.
+    ///
+    /// - filter: A Boolean value indicating whether the available options should be filtered to exclude those options which would not normally be requested by a user/admin (for example, `hw-loopback`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if requested information has been returned.
+    ///
+    ///
     /// For the specified network interface, returns information
     /// about the currently requested media options, the active media
     /// options, and the media options which are available.
@@ -602,8 +747,6 @@ impl SCNetworkInterface {
     /// - `current` must be a valid pointer or null.
     /// - `active` must be a valid pointer or null.
     /// - `available` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopymediaoptions(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceCopyMediaOptions")]
     #[inline]
     pub unsafe fn media_options(
@@ -628,6 +771,17 @@ impl SCNetworkInterface {
         ret != 0
     }
 
+    /// Returns a list of available media subtypes for the specified interface configuration options.
+    ///
+    /// Parameters:
+    /// - available: The available options as returned by the [`SCNetworkInterfaceCopyMediaOptions`](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopymediaoptions(_:_:_:_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of available media subtypes (for example, 10BaseT/UTP, 100baseTX, etc), or `NULL` if no subtypes are available
+    ///
+    ///
     /// For the provided interface configuration options, return a list
     /// of available media subtypes.
     ///
@@ -636,8 +790,6 @@ impl SCNetworkInterface {
     ///
     /// Returns: An array of available media subtypes CFString's (e.g. 10BaseT/UTP,
     /// 100baseTX, etc).  NULL if no subtypes are available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopymediasubtypes(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceCopyMediaSubTypes")]
     #[inline]
     pub fn media_sub_types(available: &CFArray) -> Option<CFRetained<CFArray>> {
@@ -649,6 +801,19 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a list of available media options for the specified interface configuration options and subtype.
+    ///
+    /// Parameters:
+    /// - available: The available options as returned by the [`SCNetworkInterfaceCopyMediaOptions`](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopymediaoptions(_:_:_:_:_:)) function.
+    ///
+    /// - subType: The subtype.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of available media options, or `NULL` if no options are available. Each of the available options is returned as an array of strings.
+    ///
+    ///
     /// For the provided interface configuration options and specific
     /// subtype, return a list of available media options.
     ///
@@ -663,8 +828,6 @@ impl SCNetworkInterface {
     /// -duplex>,
     /// <full
     /// -duplex,flow-control>).  NULL if no options are available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopymediasubtypeoptions(_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceCopyMediaSubTypeOptions")]
     #[inline]
     pub fn media_sub_type_options(
@@ -681,6 +844,23 @@ impl SCNetworkInterface {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the current MTU setting and the range of allowable values for the specified network interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - mtu_cur: On output, the current MTU setting for the interface.
+    ///
+    /// - mtu_min: On output, the minimum MTU setting for the interface. If negative, the minimum setting could not be determined.
+    ///
+    /// - mtu_max: On output, the maximum MTU setting for the interface. If negative, the maximum setting could not be determined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the requested information has been returned.
+    ///
+    ///
     /// For the specified network interface, returns information
     /// about the currently MTU setting and the range of allowable
     /// values.
@@ -705,8 +885,6 @@ impl SCNetworkInterface {
     /// - `mtu_cur` must be a valid pointer or null.
     /// - `mtu_min` must be a valid pointer or null.
     /// - `mtu_max` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacecopymtu(_:_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceCopyMTU")]
     #[inline]
     pub unsafe fn mtu(
@@ -727,6 +905,21 @@ impl SCNetworkInterface {
         ret != 0
     }
 
+    /// Sets the requested media subtype and options for the specified network interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - subtype: The media subtype to set (for example, “autoselect” or “100baseTX”).
+    ///
+    /// - options: The media options to set (for example, “half-duplex” or “full-duplex”). If `NULL`, the active options are not returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the configuration was updated; `FALSE` if an error occurred.
+    ///
+    ///
     /// For the specified network interface, sets the requested
     /// media subtype and options.
     ///
@@ -739,8 +932,6 @@ impl SCNetworkInterface {
     /// If NULL, no specific media options will be requested.
     ///
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacesetmediaoptions(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceSetMediaOptions")]
     #[inline]
     pub fn set_media_options(&self, subtype: Option<&CFString>, options: Option<&CFArray>) -> bool {
@@ -755,6 +946,19 @@ impl SCNetworkInterface {
         ret != 0
     }
 
+    /// Sets the requested MTU setting for the specified network interface.
+    ///
+    /// Parameters:
+    /// - interface: The network interface.
+    ///
+    /// - mtu: The MTU setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the configuration was updated; `FALSE` if an error occurred.
+    ///
+    ///
     /// For the specified network interface, sets the
     /// requested MTU setting.
     ///
@@ -764,8 +968,6 @@ impl SCNetworkInterface {
     /// If zero, the interface will use the default MTU setting.
     ///
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacesetmtu(_:_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceSetMTU")]
     #[inline]
     pub fn set_mtu(&self, mtu: c_int) -> bool {
@@ -776,6 +978,31 @@ impl SCNetworkInterface {
         ret != 0
     }
 
+    /// Sends a notification to interested network configuration agents to immediately retry their configuration.
+    ///
+    /// Parameters:
+    /// - interface: The desired network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the notification was sent; otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function causes the DHCP client to contact the DHCP server immediately rather than waiting until its timeout has expired. The caller uses this function to inform the system that the network infrastructure or configuration has changed.
+    ///
+    /// Note that this function requires root privilege; alternatively, you can pass in an interface that is derived from a sequence of calls to:
+    ///
+    /// - [`SCPreferencesCreateWithAuthorization`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescreatewithauthorization(_:_:_:_:))
+    ///
+    /// - The appropriate `SCNetworkSetCopy...` function, such as [`SCNetworkSetCopyServices`](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcopyservices(_:))
+    ///
+    /// - [`SCNetworkServiceGetInterface`](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicegetinterface(_:))
+    ///
+    ///
     /// Sends a notification to interested network configuration
     /// agents to immediately retry their configuration. For example,
     /// calling this function will cause the DHCP client to contact
@@ -795,8 +1022,6 @@ impl SCNetworkInterface {
     /// Parameter `interface`: The desired network interface.
     ///
     /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfaceforceconfigurationrefresh(_:)?language=objc)
     #[doc(alias = "SCNetworkInterfaceForceConfigurationRefresh")]
     #[inline]
     pub fn force_configuration_refresh(&self) -> bool {
@@ -810,14 +1035,23 @@ impl SCNetworkInterface {
     }
 }
 
+/// Returns all Ethernet bond interfaces on the system.
+///
+/// Parameters:
+/// - prefs: The preferences session.
+///
+///
+/// ## Return Value
+///
+/// The list of Ethernet bond interfaces on the system. You must release the returned value.
+///
+///
 /// Returns all Ethernet Bond interfaces on the system.
 ///
 /// Parameter `prefs`: The "preferences" session.
 ///
 /// Returns: The list of Ethernet Bond interfaces on the system.
 /// You must release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacecopyall(_:)?language=objc)
 #[cfg(feature = "SCPreferences")]
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> CFRetained<CFArray> {
@@ -829,6 +1063,17 @@ pub extern "C-unwind" fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> CFReta
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns all network capable devices on the system that can be added to an Ethernet bond interface.
+///
+/// Parameters:
+/// - prefs: The preferences session.
+///
+///
+/// ## Return Value
+///
+/// The list of interfaces. You must release the returned value.
+///
+///
 /// Returns all network capable devices on the system
 /// that can be added to an Ethernet Bond interface.
 ///
@@ -836,8 +1081,6 @@ pub extern "C-unwind" fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> CFReta
 ///
 /// Returns: The list of interfaces.
 /// You must release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacecopyavailablememberinterfaces(_:)?language=objc)
 #[cfg(feature = "SCPreferences")]
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
@@ -853,14 +1096,23 @@ pub extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Creates a new Ethernet bond interface.
+///
+/// Parameters:
+/// - prefs: The preferences session.
+///
+///
+/// ## Return Value
+///
+/// The new Ethernet bond interface, represented by an [`SCBondInterfaceRef`](https://developer.apple.com/documentation/systemconfiguration/scbondinterface) object. You must release the returned value.
+///
+///
 /// Create a new SCBondInterface interface.
 ///
 /// Parameter `prefs`: The "preferences" session.
 ///
 /// Returns: A reference to the new SCBondInterface.
 /// You must release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacecreate(_:)?language=objc)
 #[cfg(feature = "SCPreferences")]
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceCreate(
@@ -873,13 +1125,22 @@ pub extern "C-unwind" fn SCBondInterfaceCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Removes the Ethernet bond interface from the configuration.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the interface was removed; `FALSE` if an error occurred.
+///
+///
 /// Removes the SCBondInterface from the configuration.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
 ///
 /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfaceremove(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
     extern "C-unwind" {
@@ -889,13 +1150,22 @@ pub extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
     ret != 0
 }
 
+/// Returns the member interfaces for the specified Ethernet bond interface.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface.
+///
+///
+/// ## Return Value
+///
+/// The list of interfaces.
+///
+///
 /// Returns the member interfaces for the specified Ethernet Bond interface.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
 ///
 /// Returns: The list of interfaces.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacegetmemberinterfaces(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
     bond: &SCBondInterface,
@@ -907,14 +1177,23 @@ pub extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns the configuration settings associated with the specified Ethernet bond interface.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface.
+///
+///
+/// ## Return Value
+///
+/// The configuration settings associated with the Ethernet bond interface, or `NULL` if no changes to the default configuration have been saved.
+///
+///
 /// Returns the configuration settings associated with a Ethernet Bond interface.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
 ///
 /// Returns: The configuration settings associated with the Ethernet Bond interface;
 /// NULL if no changes to the default configuration have been saved.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacegetoptions(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceGetOptions(
     bond: &SCBondInterface,
@@ -926,6 +1205,19 @@ pub extern "C-unwind" fn SCBondInterfaceGetOptions(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Sets the member interfaces for the specified Ethernet bond interface.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface
+///
+/// - members: The desired member interfaces.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+///
+///
 /// Sets the member interfaces for the specified Ethernet Bond interface.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
@@ -937,8 +1229,6 @@ pub extern "C-unwind" fn SCBondInterfaceGetOptions(
 /// # Safety
 ///
 /// `members` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacesetmemberinterfaces(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
     bond: &SCBondInterface,
@@ -952,6 +1242,19 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
     ret != 0
 }
 
+/// Sets the localized display name for the specified Ethernet bond interface.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface.
+///
+/// - newName: The new display name.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+///
+///
 /// Sets the localized display name for the specified Ethernet Bond interface.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
@@ -959,8 +1262,6 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
 /// Parameter `newName`: The new display name.
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacesetlocalizeddisplayname(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
     bond: &SCBondInterface,
@@ -976,6 +1277,19 @@ pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
     ret != 0
 }
 
+/// Sets the configuration settings for the specified Ethernet bond interface.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface.
+///
+/// - newOptions: The new configuration settings.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+///
+///
 /// Sets the configuration settings for the specified Ethernet Bond interface.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
@@ -988,8 +1302,6 @@ pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
 ///
 /// - `new_options` generic must be of the correct type.
 /// - `new_options` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacesetoptions(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
     bond: &SCBondInterface,
@@ -1003,14 +1315,23 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
     ret != 0
 }
 
+/// Returns the status of the specified Ethernet bond interface.
+///
+/// Parameters:
+/// - bond: The Ethernet bond interface.
+///
+///
+/// ## Return Value
+///
+/// The status associated with the interface. You must release the returned value.
+///
+///
 /// Returns the status of the specified Ethernet Bond interface.
 ///
 /// Parameter `bond`: The SCBondInterface interface.
 ///
 /// Returns: The status associated with the interface.
 /// You must release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondinterfacecopystatus(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceCopyStatus(
     bond: &SCBondInterface,
@@ -1023,9 +1344,14 @@ pub extern "C-unwind" fn SCBondInterfaceCopyStatus(
 }
 
 unsafe impl ConcreteType for SCBondStatus {
-    /// Returns the type identifier of all SCBondStatus instances.
+    /// Returns the type identifier of all `SCBondStatusRef` instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondstatusgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of all [`SCBondStatusRef`](https://developer.apple.com/documentation/systemconfiguration/scbondstatus) instances.
+    ///
+    ///
+    /// Returns the type identifier of all SCBondStatus instances.
     #[doc(alias = "SCBondStatusGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1037,14 +1363,23 @@ unsafe impl ConcreteType for SCBondStatus {
 }
 
 impl SCBondStatus {
+    /// Returns the member interfaces that are represented with the Ethernet bond interface.
+    ///
+    /// Parameters:
+    /// - bondStatus: The Ethernet bond status.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of interfaces.
+    ///
+    ///
     /// Returns the member interfaces that are represented with the
     /// Ethernet Bond interface.
     ///
     /// Parameter `bondStatus`: The Ethernet Bond status.
     ///
     /// Returns: The list of interfaces.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondstatusgetmemberinterfaces(_:)?language=objc)
     #[doc(alias = "SCBondStatusGetMemberInterfaces")]
     #[inline]
     pub fn member_interfaces(&self) -> Option<CFRetained<CFArray>> {
@@ -1057,6 +1392,19 @@ impl SCBondStatus {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the status of the specified member interface of an Ethernet bond or the status of the bond as a whole.
+    ///
+    /// Parameters:
+    /// - bondStatus: The Ethernet bond status.
+    ///
+    /// - interface: The member interface whose status is needed. Pass `NULL` to get the status of the Ethernet bond.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The interface status.
+    ///
+    ///
     /// Returns the status of a specific member interface of an
     /// Ethernet Bond or the status of the bond as a whole.
     ///
@@ -1070,8 +1418,6 @@ impl SCBondStatus {
     /// Note: at present, no information about the status of the Ethernet
     /// Bond is returned.  As long as one member interface is active
     /// then the bond should be operational.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scbondstatusgetinterfacestatus(_:_:)?language=objc)
     #[doc(alias = "SCBondStatusGetInterfaceStatus")]
     #[inline]
     pub fn interface_status(
@@ -1089,12 +1435,21 @@ impl SCBondStatus {
     }
 }
 
+/// Returns all virtual LAN (VLAN) interfaces on the system.
+///
+/// Parameters:
+/// - prefs: The preferences session.
+///
+///
+/// ## Return Value
+///
+/// The list of VLAN interfaces on the system. You must release the returned value.
+///
+///
 /// Returns all VLAN interfaces on the system.
 ///
 /// Returns: The list of VLAN interfaces on the system.
 /// You must release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacecopyall(_:)?language=objc)
 #[cfg(feature = "SCPreferences")]
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> CFRetained<CFArray> {
@@ -1106,13 +1461,18 @@ pub extern "C-unwind" fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> CFReta
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns the network capable devices on the system that can be associated with a virtual LAN (VLAN) interface.
+///
+/// ## Return Value
+///
+/// The list of interfaces. You must release the returned value.
+///
+///
 /// Returns the network capable devices on the system
 /// that can be associated with a VLAN interface.
 ///
 /// Returns: The list of interfaces.
 /// You must release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacecopyavailablephysicalinterfaces()?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -1123,6 +1483,21 @@ pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> CFR
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Creates a new virtual LAN (VLAN) interface.
+///
+/// Parameters:
+/// - prefs: The preferences session.
+///
+/// - physical: The physical interface to associate with the VLAN.
+///
+/// - tag: The tag to associate with the VLAN. This value must be between 1 and 4094.
+///
+///
+/// ## Return Value
+///
+/// The new VLAN interface. You must release the returned value.
+///
+///
 /// Create a new SCVLANInterface interface.
 ///
 /// Parameter `prefs`: The "preferences" session.
@@ -1139,8 +1514,6 @@ pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> CFR
 /// = tag
 /// <
 /// = 4094)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacecreate(_:_:_:)?language=objc)
 #[cfg(feature = "SCPreferences")]
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceCreate(
@@ -1159,13 +1532,22 @@ pub extern "C-unwind" fn SCVLANInterfaceCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Removes the virtual LAN (VLAN) interface from the configuration.
+///
+/// Parameters:
+/// - vlan: The VLAN interface to remove.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the interface was removed; `FALSE` if an error occurred.
+///
+///
 /// Removes the SCVLANInterface from the configuration.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
 ///
 /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfaceremove(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> bool {
     extern "C-unwind" {
@@ -1175,13 +1557,22 @@ pub extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> bool {
     ret != 0
 }
 
+/// Returns the physical interface for the specified virtual LAN (VLAN) interface.
+///
+/// Parameters:
+/// - vlan: The VLAN interface.
+///
+///
+/// ## Return Value
+///
+/// The list of interfaces.
+///
+///
 /// Returns the physical interface for the specified VLAN interface.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
 ///
 /// Returns: The list of interfaces.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacegetphysicalinterface(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
     vlan: &SCVLANInterface,
@@ -1195,13 +1586,22 @@ pub extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns the tag for the specified virtual LAN (VLAN) interface.
+///
+/// Parameters:
+/// - vlan: The VLAN interface.
+///
+///
+/// ## Return Value
+///
+/// The tag for the VLAN interface.
+///
+///
 /// Returns the tag for the specified VLAN interface.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
 ///
 /// Returns: The tag.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacegettag(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceGetTag(
     vlan: &SCVLANInterface,
@@ -1213,14 +1613,23 @@ pub extern "C-unwind" fn SCVLANInterfaceGetTag(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns the configuration settings associated with the virtual LAN (VLAN) interface.
+///
+/// Parameters:
+/// - vlan: The VLAN interface.
+///
+///
+/// ## Return Value
+///
+/// The configuration settings associated with the VLAN interface, or `NULL` if no changes to the default configuration have been saved.
+///
+///
 /// Returns the configuration settings associated with the VLAN interface.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
 ///
 /// Returns: The configuration settings associated with the VLAN interface;
 /// NULL if no changes to the default configuration have been saved.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacegetoptions(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceGetOptions(
     vlan: &SCVLANInterface,
@@ -1232,6 +1641,21 @@ pub extern "C-unwind" fn SCVLANInterfaceGetOptions(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Updates the specified virtual LAN (VLAN) interface with the specified information.
+///
+/// Parameters:
+/// - vlan: The VLAN interface to update.
+///
+/// - physical: The physical interface to associate with the VLAN interface.
+///
+/// - tag: The tag to associate with the VLAN interface. This value must be between 1 and 4094.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+///
+///
 /// Updates the specified VLAN interface.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
@@ -1247,8 +1671,6 @@ pub extern "C-unwind" fn SCVLANInterfaceGetOptions(
 /// = tag
 /// <
 /// = 4094)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacesetphysicalinterfaceandtag(_:_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
     vlan: &SCVLANInterface,
@@ -1266,6 +1688,19 @@ pub extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
     ret != 0
 }
 
+/// Sets the localized display name for the specified virtual LAN (VLAN) interface.
+///
+/// Parameters:
+/// - vlan: The VLAN interface.
+///
+/// - newName: The new display name.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+///
+///
 /// Sets the localized display name for the specified VLAN interface.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
@@ -1273,8 +1708,6 @@ pub extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
 /// Parameter `newName`: The new display name.
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacesetlocalizeddisplayname(_:_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
     vlan: &SCVLANInterface,
@@ -1290,6 +1723,19 @@ pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
     ret != 0
 }
 
+/// Sets the specified configuration settings for the specified virtual LAN (VLAN) interface.
+///
+/// Parameters:
+/// - vlan: The VLAN interface.
+///
+/// - newOptions: The new configuration settings for the VLAN interface.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+///
+///
 /// Sets the configuration settings for the specified VLAN interface.
 ///
 /// Parameter `vlan`: The SCVLANInterface interface.
@@ -1302,8 +1748,6 @@ pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
 ///
 /// - `new_options` generic must be of the correct type.
 /// - `new_options` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scvlaninterfacesetoptions(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
     vlan: &SCVLANInterface,
@@ -1318,9 +1762,14 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
 }
 
 unsafe impl ConcreteType for SCNetworkProtocol {
-    /// Returns the type identifier of all SCNetworkProtocol instances.
+    /// Returns the type identifier of all `SCNetworkProtocol` instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocolgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCNetworkProtocol` instances.
+    ///
+    ///
+    /// Returns the type identifier of all SCNetworkProtocol instances.
     #[doc(alias = "SCNetworkProtocolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1332,6 +1781,17 @@ unsafe impl ConcreteType for SCNetworkProtocol {
 }
 
 impl SCNetworkProtocol {
+    /// Returns the configuration settings associated with the specified protocol.
+    ///
+    /// Parameters:
+    /// - protocol: The network protocol.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The configuration settings associated with the protocol, or `NULL` if no configuration settings are associated with the protocol or an error occurred.
+    ///
+    ///
     /// Returns the configuration settings associated with the protocol.
     ///
     /// Parameter `protocol`: The network protocol.
@@ -1339,8 +1799,6 @@ impl SCNetworkProtocol {
     /// Returns: The configuration settings associated with the protocol;
     /// NULL if no configuration settings are associated with the protocol
     /// or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocolgetconfiguration(_:)?language=objc)
     #[doc(alias = "SCNetworkProtocolGetConfiguration")]
     #[inline]
     pub fn configuration(&self) -> Option<CFRetained<CFDictionary>> {
@@ -1353,13 +1811,22 @@ impl SCNetworkProtocol {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns a Boolean value indicating whether the specified protocol is enabled.
+    ///
+    /// Parameters:
+    /// - protocol: The network protocol.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the protocol is enabled; otherwise, `FALSE`.
+    ///
+    ///
     /// Returns whether this protocol has been enabled.
     ///
     /// Parameter `protocol`: The network protocol.
     ///
     /// Returns: TRUE if the protocol is enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocolgetenabled(_:)?language=objc)
     #[doc(alias = "SCNetworkProtocolGetEnabled")]
     #[inline]
     pub fn enabled(&self) -> bool {
@@ -1370,13 +1837,22 @@ impl SCNetworkProtocol {
         ret != 0
     }
 
+    /// Returns the type of the specified network protocol.
+    ///
+    /// Parameters:
+    /// - protocol: The network protocol.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The protocol type.
+    ///
+    ///
     /// Returns the associated network protocol type.
     ///
     /// Parameter `protocol`: The network protocol.
     ///
     /// Returns: The protocol type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocolgetprotocoltype(_:)?language=objc)
     #[doc(alias = "SCNetworkProtocolGetProtocolType")]
     #[inline]
     pub fn protocol_type(&self) -> Option<CFRetained<CFString>> {
@@ -1389,6 +1865,19 @@ impl SCNetworkProtocol {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Stores the configuration settings for the specified network protocol.
+    ///
+    /// Parameters:
+    /// - protocol: The network protocol.
+    ///
+    /// - config: The configuration settings to store.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the configuration was stored; `FALSE` if an error occurred.
+    ///
+    ///
     /// Stores the configuration settings for the protocol.
     ///
     /// Parameter `protocol`: The network protocol.
@@ -1401,8 +1890,6 @@ impl SCNetworkProtocol {
     ///
     /// - `config` generic must be of the correct type.
     /// - `config` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocolsetconfiguration(_:_:)?language=objc)
     #[doc(alias = "SCNetworkProtocolSetConfiguration")]
     #[inline]
     pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
@@ -1416,6 +1903,19 @@ impl SCNetworkProtocol {
         ret != 0
     }
 
+    /// Enables or disables the specified protocol.
+    ///
+    /// Parameters:
+    /// - protocol: The network protocol to enable or disable.
+    ///
+    /// - enabled: `TRUE` if the protocol should be enabled.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the enabled status was saved; `FALSE` if an error occurred.
+    ///
+    ///
     /// Enables or disables the protocol.
     ///
     /// Parameter `protocol`: The network protocol.
@@ -1423,8 +1923,6 @@ impl SCNetworkProtocol {
     /// Parameter `enabled`: TRUE if the protocol should be enabled.
     ///
     /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkprotocolsetenabled(_:_:)?language=objc)
     #[doc(alias = "SCNetworkProtocolSetEnabled")]
     #[inline]
     pub fn set_enabled(&self, enabled: bool) -> bool {
@@ -1440,9 +1938,14 @@ impl SCNetworkProtocol {
 }
 
 unsafe impl ConcreteType for SCNetworkService {
-    /// Returns the type identifier of all SCNetworkService instances.
+    /// Returns the type identifier of all `SCNetworkService` instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicegettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCNetworkService` instances.
+    ///
+    ///
+    /// Returns the type identifier of all SCNetworkService instances.
     #[doc(alias = "SCNetworkServiceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1454,6 +1957,25 @@ unsafe impl ConcreteType for SCNetworkService {
 }
 
 impl SCNetworkService {
+    /// Adds the network protocol of the specified type to the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    /// - protocolType: The type of network protocol to add to the service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the protocol was added to the service; `FALSE` if the protocol was already present or an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The protocol configuration is set to default values that are appropriate for the interface associated with the service.
+    ///
+    ///
     /// Adds a network protocol of the specified type to the
     /// service.  The protocol configuration is set to default values
     /// that are appropriate for the interface associated with the
@@ -1465,8 +1987,6 @@ impl SCNetworkService {
     ///
     /// Returns: TRUE if the protocol was added to the service; FALSE if the
     /// protocol was already present or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkserviceaddprotocoltype(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceAddProtocolType")]
     #[inline]
     pub fn add_protocol_type(&self, protocol_type: &CFString) -> bool {
@@ -1482,12 +2002,21 @@ impl SCNetworkService {
 
     /// Returns all available network services for the specified preferences.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of network services associated with the preferences. You must release the returned value.
+    ///
+    ///
+    /// Returns all available network services for the specified preferences.
+    ///
     /// Parameter `prefs`: The "preferences" session.
     ///
     /// Returns: The list of SCNetworkService services associated with the preferences.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicecopyall(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceCopyAll")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1499,14 +2028,23 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns all network protocols associated with the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The network protocols associated with the service. You must release the returned value.
+    ///
+    ///
     /// Returns all network protocols associated with the service.
     ///
     /// Parameter `service`: The network service.
     ///
     /// Returns: The list of SCNetworkProtocol protocols associated with the service.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicecopyprotocols(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceCopyProtocols")]
     #[inline]
     pub fn protocols(&self) -> Option<CFRetained<CFArray>> {
@@ -1519,6 +2057,19 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new network service for the specified interface in the configuration.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - interface: The network interface for which to create the new service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new network service. You must release the returned value.
+    ///
+    ///
     /// Create a new network service for the specified interface in the
     /// configuration.
     ///
@@ -1526,8 +2077,6 @@ impl SCNetworkService {
     ///
     /// Returns: A reference to the new SCNetworkService.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicecreate(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceCreate")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1547,6 +2096,19 @@ impl SCNetworkService {
 
     /// Returns the network service with the specified identifier.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - serviceID: The unique identifier of the network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The network service from the associated preferences, or `NULL` if the service ID does not exist in the preferences or if an error occurred. You must release the returned value.
+    ///
+    ///
+    /// Returns the network service with the specified identifier.
+    ///
     /// Parameter `prefs`: The "preferences" session.
     ///
     /// Parameter `serviceID`: The unique identifier for the service.
@@ -1555,8 +2117,6 @@ impl SCNetworkService {
     /// NULL if the serviceID does not exist in the preferences or if an
     /// error was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicecopy(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceCopy")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1574,6 +2134,23 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Establishes the default configuration for the specified network service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the configuration was updated; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default configuration includes the addition of network protocols for the service (with default configuration options).
+    ///
+    ///
     /// Establishes the "default" configuration for a network
     /// service.  This configuration includes the addition of
     /// network protocols for the service (with "default"
@@ -1582,8 +2159,6 @@ impl SCNetworkService {
     /// Parameter `service`: The network service.
     ///
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkserviceestablishdefaultconfiguration(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceEstablishDefaultConfiguration")]
     #[inline]
     pub fn establish_default_configuration(&self) -> bool {
@@ -1595,13 +2170,22 @@ impl SCNetworkService {
         ret != 0
     }
 
+    /// Returns a Boolean value indicating whether the specified service is enabled.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the service is enabled; otherwise, `FALSE`.
+    ///
+    ///
     /// Returns whether this service has been enabled.
     ///
     /// Parameter `service`: The network service.
     ///
     /// Returns: TRUE if the service is enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicegetenabled(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceGetEnabled")]
     #[inline]
     pub fn enabled(&self) -> bool {
@@ -1612,14 +2196,23 @@ impl SCNetworkService {
         ret != 0
     }
 
+    /// Returns the network interface associated with the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The network interface associated with the service, or `NULL` if an error occurred.
+    ///
+    ///
     /// Returns the network interface associated with the service.
     ///
     /// Parameter `service`: The network service.
     ///
     /// Returns: A reference to the SCNetworkInterface associated with the service;
     /// NULL if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicegetinterface(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceGetInterface")]
     #[inline]
     pub fn interface(&self) -> Option<CFRetained<SCNetworkInterface>> {
@@ -1632,13 +2225,22 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the user-specified name associated with the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The user-specified name associated with the service.
+    ///
+    ///
     /// Returns the [user specified] name associated with the service.
     ///
     /// Parameter `service`: The network service.
     ///
     /// Returns: The [user specified] name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicegetname(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceGetName")]
     #[inline]
     pub fn name(&self) -> Option<CFRetained<CFString>> {
@@ -1649,6 +2251,19 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the network protocol of the specified type for the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    /// - protocolType: The type of network protocol.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The network protocol associated with the service, or `NULL` if this protocol has not been added or if an error occurred. You must release the returned value.
+    ///
+    ///
     /// Returns the network protocol of the specified type for
     /// the service.
     ///
@@ -1657,8 +2272,6 @@ impl SCNetworkService {
     /// Returns: A reference to the SCNetworkProtocol associated with the service;
     /// NULL if this protocol has not been added or if an error was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicecopyprotocol(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceCopyProtocol")]
     #[inline]
     pub fn protocol(&self, protocol_type: &CFString) -> Option<CFRetained<SCNetworkProtocol>> {
@@ -1672,13 +2285,22 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the identifier for the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The service identifier.
+    ///
+    ///
     /// Returns the identifier for the service.
     ///
     /// Parameter `service`: The network service.
     ///
     /// Returns: The service identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicegetserviceid(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceGetServiceID")]
     #[inline]
     pub fn service_id(&self) -> Option<CFRetained<CFString>> {
@@ -1691,13 +2313,22 @@ impl SCNetworkService {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Removes the specified network service from the configuration.
+    ///
+    /// Parameters:
+    /// - service: The network service to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the service was removed; `FALSE` if an error occurred.
+    ///
+    ///
     /// Removes the network service from the configuration.
     ///
     /// Parameter `service`: The network service.
     ///
     /// Returns: TRUE if the service was removed; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkserviceremove(_:)?language=objc)
     #[doc(alias = "SCNetworkServiceRemove")]
     #[inline]
     pub fn remove(&self) -> bool {
@@ -1708,6 +2339,19 @@ impl SCNetworkService {
         ret != 0
     }
 
+    /// Removes the network protocol of the specified type from the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    /// - protocolType: The type of network protocol to remove from the service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the protocol was removed to the service; `FALSE` if the protocol was not configured or an error occurred.
+    ///
+    ///
     /// Removes the network protocol of the specified type from the service.
     ///
     /// Parameter `service`: The network service.
@@ -1716,8 +2360,6 @@ impl SCNetworkService {
     ///
     /// Returns: TRUE if the protocol was removed to the service; FALSE if the
     /// protocol was not configured or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkserviceremoveprotocoltype(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceRemoveProtocolType")]
     #[inline]
     pub fn remove_protocol_type(&self, protocol_type: &CFString) -> bool {
@@ -1731,6 +2373,19 @@ impl SCNetworkService {
         ret != 0
     }
 
+    /// Enables or disables the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service to enable or disable.
+    ///
+    /// - enabled: Pass `TRUE` if the service should be enabled; `FALSE` otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the enabled status was saved; `FALSE` if an error occurred.
+    ///
+    ///
     /// Enables or disables the service.
     ///
     /// Parameter `service`: The network service.
@@ -1738,8 +2393,6 @@ impl SCNetworkService {
     /// Parameter `enabled`: TRUE if the service should be enabled.
     ///
     /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicesetenabled(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceSetEnabled")]
     #[inline]
     pub fn set_enabled(&self, enabled: bool) -> bool {
@@ -1750,6 +2403,25 @@ impl SCNetworkService {
         ret != 0
     }
 
+    /// Stores the user-specified name for the specified service.
+    ///
+    /// Parameters:
+    /// - service: The network service.
+    ///
+    /// - name: The user-defined name to associate with the service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the name was saved; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Although it is not technically required, the user-specified names for all services within any given set should be unique. For this reason, an error will be returned if you attempt to name two services with the same string.
+    ///
+    ///
     /// Stores the [user specified] name for the service.
     ///
     /// Parameter `service`: The network service.
@@ -1762,8 +2434,6 @@ impl SCNetworkService {
     /// for all services within any given set should be unique.  As such, an
     /// error will be returned if you attemp to name two services with the
     /// same string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkservicesetname(_:_:)?language=objc)
     #[doc(alias = "SCNetworkServiceSetName")]
     #[inline]
     pub fn set_name(&self, name: Option<&CFString>) -> bool {
@@ -1779,9 +2449,14 @@ impl SCNetworkService {
 }
 
 unsafe impl ConcreteType for SCNetworkSet {
-    /// Returns the type identifier of all SCNetworkSet instances.
+    /// Returns the type identifier of all `SCNetworkSet` instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCNetworkSet` instances.
+    ///
+    ///
+    /// Returns the type identifier of all SCNetworkSet instances.
     #[doc(alias = "SCNetworkSetGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1793,6 +2468,25 @@ unsafe impl ConcreteType for SCNetworkSet {
 }
 
 impl SCNetworkSet {
+    /// Adds the specified network service to the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    /// - service: The service to add to the set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the service was added to the set; `FALSE` if the service was already present or an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Prior to OS X v10.5, the Network Preferences pane did not support having a single service being a member of more than one set. Therefore, an error is returned if you attempt to add a service to more than one set on a pre-10.5 system.
+    ///
+    ///
     /// Adds the network service to the set.
     ///
     /// Parameter `set`: The network set.
@@ -1806,8 +2500,6 @@ impl SCNetworkSet {
     /// did not support having a single service being a member of
     /// more than one set.  An error will be returned if you attempt
     /// to add a service to more than one set on a pre-10.5 system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetaddservice(_:_:)?language=objc)
     #[doc(alias = "SCNetworkSetAddService")]
     #[inline]
     pub fn add_service(&self, service: &SCNetworkService) -> bool {
@@ -1818,6 +2510,19 @@ impl SCNetworkSet {
         ret != 0
     }
 
+    /// Returns a Boolean value indicating whether the specified interface is represented by at least one network service in the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    /// - interface: The network interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the interface is represented in the set; otherwise, `FALSE`.
+    ///
+    ///
     /// Checks if an interface is represented by at least one
     /// network service in the specified set.
     ///
@@ -1826,8 +2531,6 @@ impl SCNetworkSet {
     /// Parameter `interface`: The network interface.
     ///
     /// Returns: TRUE if the interface is represented in the set; FALSE if not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcontainsinterface(_:_:)?language=objc)
     #[doc(alias = "SCNetworkSetContainsInterface")]
     #[inline]
     pub fn contains_interface(&self, interface: &SCNetworkInterface) -> bool {
@@ -1841,14 +2544,23 @@ impl SCNetworkSet {
         ret != 0
     }
 
+    /// Returns all available sets for the specified preferences session.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of network sets associated with the preferences. You must release the returned value.
+    ///
+    ///
     /// Returns all available sets for the specified preferences.
     ///
     /// Parameter `prefs`: The "preferences" session.
     ///
     /// Returns: The list of SCNetworkSet sets associated with the preferences.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcopyall(_:)?language=objc)
     #[doc(alias = "SCNetworkSetCopyAll")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1860,13 +2572,22 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the current set.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current set, or `NULL` if no current set has been defined.
+    ///
+    ///
     /// Returns the "current" set.
     ///
     /// Parameter `prefs`: The "preferences" session.
     ///
     /// Returns: The current set; NULL if no current set has been defined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcopycurrent(_:)?language=objc)
     #[doc(alias = "SCNetworkSetCopyCurrent")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1878,14 +2599,23 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns all network services associated with the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of network services associated with the set. You must release the returned value.
+    ///
+    ///
     /// Returns all network services associated with the set.
     ///
     /// Parameter `set`: The network set.
     ///
     /// Returns: The list of SCNetworkService services associated with the set.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcopyservices(_:)?language=objc)
     #[doc(alias = "SCNetworkSetCopyServices")]
     #[inline]
     pub fn services(&self) -> Option<CFRetained<CFArray>> {
@@ -1896,14 +2626,23 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new set in the configuration.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new network set. You must release the returned value.
+    ///
+    ///
     /// Create a new set in the configuration.
     ///
     /// Parameter `prefs`: The "preferences" session.
     ///
     /// Returns: A reference to the new SCNetworkSet.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcreate(_:)?language=objc)
     #[doc(alias = "SCNetworkSetCreate")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1917,6 +2656,19 @@ impl SCNetworkSet {
 
     /// Returns the set with the specified identifier.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - setID: The unique identifier for the set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The network set from the associated preferences, or `NULL` if the identifier does not exist in the preferences or if an error occurred. You must release the returned value.
+    ///
+    ///
+    /// Returns the set with the specified identifier.
+    ///
     /// Parameter `prefs`: The "preferences" session.
     ///
     /// Parameter `setID`: The unique identifier for the set.
@@ -1925,8 +2677,6 @@ impl SCNetworkSet {
     /// NULL if the setID does not exist in the preferences or if an
     /// error was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetcopy(_:_:)?language=objc)
     #[doc(alias = "SCNetworkSetCopy")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -1941,13 +2691,22 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the user-specified name associated with the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The user-specified name associated with the set.
+    ///
+    ///
     /// Returns the [user specified] name associated with the set.
     ///
     /// Parameter `set`: The network set.
     ///
     /// Returns: The [user specified] name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetgetname(_:)?language=objc)
     #[doc(alias = "SCNetworkSetGetName")]
     #[inline]
     pub fn name(&self) -> Option<CFRetained<CFString>> {
@@ -1958,13 +2717,22 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the identifier for the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The set identifier.
+    ///
+    ///
     /// Returns the identifier for the set.
     ///
     /// Parameter `set`: The network set.
     ///
     /// Returns: The set identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetgetsetid(_:)?language=objc)
     #[doc(alias = "SCNetworkSetGetSetID")]
     #[inline]
     pub fn set_id(&self) -> Option<CFRetained<CFString>> {
@@ -1975,6 +2743,17 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the user-specified ordering of network services within the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ordered list of service identifiers associated with the set, or `NULL` if no service order has been specified or if an error occurred.
+    ///
+    ///
     /// Returns the [user specified] ordering of network services
     /// within the set.
     ///
@@ -1984,8 +2763,6 @@ impl SCNetworkSet {
     /// with the set;
     /// NULL if no service order has been specified or if an error
     /// was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetgetserviceorder(_:)?language=objc)
     #[doc(alias = "SCNetworkSetGetServiceOrder")]
     #[inline]
     pub fn service_order(&self) -> Option<CFRetained<CFArray>> {
@@ -1996,13 +2773,22 @@ impl SCNetworkSet {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Removes the specified set from the configuration.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the set was removed; `FALSE` if an error occurred.
+    ///
+    ///
     /// Removes the set from the configuration.
     ///
     /// Parameter `set`: The network set.
     ///
     /// Returns: TRUE if the set was removed; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetremove(_:)?language=objc)
     #[doc(alias = "SCNetworkSetRemove")]
     #[inline]
     pub fn remove(&self) -> bool {
@@ -2013,6 +2799,19 @@ impl SCNetworkSet {
         ret != 0
     }
 
+    /// Removes the specified network service from the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    /// - service: The service to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the service was removed from the set; `FALSE` if the service was not already present or an error occurred.
+    ///
+    ///
     /// Removes the network service from the set.
     ///
     /// Parameter `set`: The network set.
@@ -2021,8 +2820,6 @@ impl SCNetworkSet {
     ///
     /// Returns: TRUE if the service was removed from the set; FALSE if the
     /// service was not already present or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetremoveservice(_:_:)?language=objc)
     #[doc(alias = "SCNetworkSetRemoveService")]
     #[inline]
     pub fn remove_service(&self, service: &SCNetworkService) -> bool {
@@ -2034,14 +2831,23 @@ impl SCNetworkSet {
         ret != 0
     }
 
+    /// Specifies the set that should be the current set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the current set was updated; `FALSE` if an error occurred.
+    ///
+    ///
     /// Specifies the set that should be the "current" set.
     ///
     /// Parameter `set`: The network set.
     ///
     /// Returns: TRUE if the current set was updated;
     /// FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetsetcurrent(_:)?language=objc)
     #[doc(alias = "SCNetworkSetSetCurrent")]
     #[inline]
     pub fn set_current(&self) -> bool {
@@ -2052,6 +2858,25 @@ impl SCNetworkSet {
         ret != 0
     }
 
+    /// Stores the user-specified name for the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    /// - name: The user-defined name to associate with the set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the name was saved; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Although it is not technically required, the user-specified names for all sets should be unique. For this reason, an error is returned if you attempt to name two sets with the same string.
+    ///
+    ///
     /// Stores the [user specified] name for the set.
     ///
     /// Parameter `set`: The network set.
@@ -2063,8 +2888,6 @@ impl SCNetworkSet {
     /// Note: although not technically required, the [user specified] names
     /// for all set should be unique.  As such, an error will be returned if
     /// you attemp to name two sets with the same string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetsetname(_:_:)?language=objc)
     #[doc(alias = "SCNetworkSetSetName")]
     #[inline]
     pub fn set_name(&self, name: Option<&CFString>) -> bool {
@@ -2075,6 +2898,19 @@ impl SCNetworkSet {
         ret != 0
     }
 
+    /// Stores the user-specified ordering of network services for the specified set.
+    ///
+    /// Parameters:
+    /// - set: The set (the complete configuration for a single location).
+    ///
+    /// - newOrder: The ordered list of service identifiers for the set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the new service order was saved; `FALSE` if an error occurred.
+    ///
+    ///
     /// Stores the [user specified] ordering of network services for the set.
     ///
     /// Parameter `set`: The network set.
@@ -2086,8 +2922,6 @@ impl SCNetworkSet {
     /// # Safety
     ///
     /// `new_order` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworksetsetserviceorder(_:_:)?language=objc)
     #[doc(alias = "SCNetworkSetSetServiceOrder")]
     #[inline]
     pub unsafe fn set_service_order(&self, new_order: &CFArray) -> bool {

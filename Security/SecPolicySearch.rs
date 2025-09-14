@@ -9,9 +9,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// An object that contains information about a policy search.
 /// A reference to an opaque policy search structure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearch?language=objc)
 #[doc(alias = "SecPolicySearchRef")]
 #[repr(C)]
 pub struct SecPolicySearch {
@@ -28,13 +27,24 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SecPolicySearch {
+    /// Returns the unique identifier of the opaque type to which a `SecPolicySearch` object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecPolicySearch`](https://developer.apple.com/documentation/security/secpolicysearch) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecPolicySearch`](https://developer.apple.com/documentation/security/secpolicysearch) object. You can compare this value to the `CFTypeID` identifier obtained by calling the `CFGetTypeID` function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecPolicySearch instances.
     ///
     /// Returns: The CFTypeID of SecPolicySearch instances.
     ///
     /// This API is deprecated in 10.7. The SecPolicySearchRef type is no longer used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearchgettypeid?language=objc)
     #[doc(alias = "SecPolicySearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -46,6 +56,29 @@ unsafe impl ConcreteType for SecPolicySearch {
 }
 
 impl SecPolicySearch {
+    /// Creates a search object for finding policies.
+    ///
+    /// Parameters:
+    /// - certType: The type of certificates a policy uses, as defined in `Security.framework/cssmtype.h`. Permissible values are `CSSM_CERT_X_509v1`, `CSSM_CERT_X_509v2`, and `CSSM_CERT_X_509v3`. If you are unsure of the certificate type, use `CSSM_CERT_X_509v3`.
+    ///
+    /// - policyOID: A pointer to a BER-encoded policy object identifier that uniquely specifies the policy. See [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services) for a list of policies and object identifiers provided by the AppleX509TP module.
+    ///
+    /// - value: A pointer to an optional, policy-defined value. The contents of this value depend on the policy object identifier specified. (Note that this parameter refers to the value stored in MDS and is not related to the `value` parameter of the [`SecPolicyGetValue`](https://developer.apple.com/documentation/security/secpolicygetvalue) function.) Currently the function does not use this parameter; pass `NULL` for this pointer.
+    ///
+    /// - searchRef: On return, points to the newly created policy search object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use the search object created by this function in subsequent calls to the [`SecPolicySearchCopyNext`](https://developer.apple.com/documentation/security/secpolicysearchcopynext) function to obtain trust policy objects. Policies are stored in the Module Directory Services (MDS) database. MDS is described in detail in “Part 8: Module Directory Service (MDS)” of _Common Security: CDSA and CSSM, version 2 (with corrigenda)_ from The Open Group ([http://www.opengroup.org/security/cdsa.htm](http://www.opengroup.org/security/cdsa.htm)).
+    ///
+    ///
     /// Creates a search reference for finding a policy by specifying its object identifier.
     ///
     /// Parameter `certType`: The type of certificates a policy uses.
@@ -65,8 +98,6 @@ impl SecPolicySearch {
     /// - `policy_oid` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     /// - `search_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearchcreate?language=objc)
     #[doc(alias = "SecPolicySearchCreate")]
     #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -88,6 +119,19 @@ impl SecPolicySearch {
         unsafe { SecPolicySearchCreate(cert_type, policy_oid, value, search_ref) }
     }
 
+    /// Retrieves a policy object for the next policy matching specified search criteria.
+    ///
+    /// Parameters:
+    /// - searchRef: A policy search object specifying the search criteria for this search. You create the policy search object by calling the [`SecPolicySearchCreate`](https://developer.apple.com/documentation/security/secpolicysearchcreate) function.
+    ///
+    /// - policyRef: On return, points to the policy object for the next policy (if any) matching the specified search criteria. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). When there are no more policies that match the parameters specified to [`SecPolicySearchCreate`](https://developer.apple.com/documentation/security/secpolicysearchcreate), [`errSecPolicyNotFound`](https://developer.apple.com/documentation/security/errsecpolicynotfound) is returned.
+    ///
+    ///
     /// Finds the next policy matching the given search criteria
     ///
     /// Parameter `searchRef`: A reference to the current policy search criteria.    You create the policy search  reference by a calling the SecPolicySearchCreate function. You are responsible for releasing the policy by calling the CFRelease function when finished with it.
@@ -101,8 +145,6 @@ impl SecPolicySearch {
     /// # Safety
     ///
     /// `policy_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicysearchcopynext?language=objc)
     #[doc(alias = "SecPolicySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]

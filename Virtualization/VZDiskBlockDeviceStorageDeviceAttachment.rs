@@ -7,6 +7,34 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A storage device attachment that uses a disk to store data.
+    ///
+    /// ## Overview
+    ///
+    /// The disk block device implements a storage attachment by using an actual disk rather than a disk image on a file system.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Handle the disk passed to this attachment with caution. If the disk has a file system formatted on it, the guest can destroy data in a way that isn’t recoverable.
+    ///
+    ///
+    ///
+    /// </div>
+    /// In the following example, a disk device at `/dev/rdisk42` executes the I/O operations directly on that disk rather than through a file system:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["    let fileHandle = FileHandle(forUpdatingAtPath: myDiskUrl)", "    let attachment = try VZDiskBlockDeviceStorageDeviceAttachment(fileHandle: fileHandle!, readOnly: false, synchronizationMode: .full)", "    let blockDevice = VZVirtioBlockDeviceConfiguration(attachment: attachment)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:@\"/dev/rdisk42\"];", "    if (!fileHandle) {", "        // Handle errors.", "    }", "", "    NSError *error;", "    VZDiskBlockDeviceStorageDeviceAttachment *attachment =", "        [[VZDiskBlockDeviceStorageDeviceAttachment alloc] initWithFileHandle:fileHandle", "                                                          readOnly:YES", "                                                          synchronizationMode:VZDiskSynchronizationModeFull", "                                                          error:error];", "    if (!attachment) {", "        // Handle errors.", "    }"], metadata: None }] }] })
+    /// By default, only the `root` user can access the disk file handle. Running virtual machines as `root` isn’t recommended. The best practice is to open the file in a separate process that has `root` privileges, then pass the open file descriptor using XPC or a Unix socket to a non-`root` process running Virtualization. For more information about Unix sockets, see [Streams, Sockets, and Ports](https://developer.apple.com/documentation/foundation/streams-sockets-and-ports); for more information on XPC services, see the [`XPC`](https://developer.apple.com/documentation/xpc) framework documentation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can’t use this method of privilege escalation in apps distributed on the Mac App Store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Storage device attachment using a disk block device to store data.
     ///
     /// The disk block device implements a storage attachment by using an actual disk rather than a disk image on a file system.
@@ -49,8 +77,6 @@ extern_class!(
     /// See: VZUSBMassStorageDeviceConfiguration
     ///
     /// See: VZVirtioBlockDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment?language=objc)
     #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]

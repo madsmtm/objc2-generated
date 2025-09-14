@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintent?language=objc)
+    /// A request to fulfill in your app or Intents extension.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INIntent`](https://developer.apple.com/documentation/intents/inintent) class is abstract and provides behaviors shared by all intent objects. You don’t create instances of this class directly or implement your own custom subclasses. For a list of intent types that SiriKit already handles, see the Standard Intents section of [`Intents`](https://developer.apple.com/documentation/intents). You may also define custom intent types in an Intent Definition file.
+    ///
+    /// Each subclass of `INIntent` defines the properties needed to perform the corresponding action. You use instances of those classes when responding to a request sent to your app or Intents extension by SiriKit. For more information about a specific type of action, see the appropriate subclass.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INIntent;

@@ -9,7 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewtarget?language=objc)
+    /// An object that specifies the container view to use for animations.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIPreviewTarget`](https://developer.apple.com/documentation/uikit/uipreviewtarget) object when animating views to or from a separate container view. For example, use this method to animate views to or from a different part of your app’s interface.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -83,7 +89,13 @@ impl UIPreviewTarget {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitargetedpreview?language=objc)
+    /// An object describing the view to use during preview-related animations.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UITargetedPreview`](https://developer.apple.com/documentation/uikit/uitargetedpreview) to specify the view to use during an animated transition.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

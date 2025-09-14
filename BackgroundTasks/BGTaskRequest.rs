@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract class for representing task requests.
     /// An abstract class that represents a request for the app to be launched in the background to perform work.
     /// Do not instantiate instances of this class directly. Instead, use one of its concrete subclasses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskRequest;
@@ -66,12 +65,11 @@ impl BGTaskRequest {
 
 extern_class!(
     /// A request to launch your app in the background to execute a short refresh task.
+    /// A request to launch your app in the background to execute a short refresh task.
     ///
     /// Schedule a refresh task request to ask that the system launch your app briefly so that you can download data and
     /// keep your app's contents up-to-date. The system will fulfill this request intelligently based on system conditions
     /// and app usage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTaskRequest;
@@ -119,13 +117,12 @@ impl BGAppRefreshTaskRequest {
 
 extern_class!(
     /// A request to launch your app in the background to execute a processing task that can take minutes to complete.
+    /// A request to launch your app in the background to execute a processing task that can take minutes to complete.
     ///
     /// Schedule a processing task request to ask that the system launch your app when conditions are favorable for battery
     /// life to handle deferrable, longer-running processing, such as syncing, database maintenance, or similar tasks. The
     /// system will attempt to fulfill this request to the best of its ability within the next two days as long as the user
     /// has used your app within the past week.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTaskRequest;
@@ -204,10 +201,9 @@ impl BGProcessingTaskRequest {
 }
 
 extern_class!(
+    /// A request to launch your app in the background to execute processing for a health research study in which a user participates.
     /// A request to launch your app in the background to execute a health research task for studies a user has opted into
     /// and that can take minutes to complete.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtaskrequest?language=objc)
     #[unsafe(super(BGProcessingTaskRequest, BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTaskRequest;
@@ -282,23 +278,49 @@ impl BGHealthResearchTaskRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/submissionstrategy?language=objc)
+/// The ways your app suggests the system handle your task’s submission under varying conditions.
+///
+/// ## Overview
+///
+/// The Continuous Background Task request ([`BGContinuedProcessingTaskRequest`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest)) property [`strategy`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/strategy) is of this type.
+///
+/// For more information on submission strategies, see [Performing long-running tasks on iOS and iPadOS](https://developer.apple.com/documentation/backgroundtasks/performing-long-running-tasks-on-ios-and-ipados).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BGContinuedProcessingTaskRequestSubmissionStrategy(pub NSInteger);
 impl BGContinuedProcessingTaskRequestSubmissionStrategy {
+    /// An option that fails the submission of a continuous background task if the system can’t run it immediately.
+    ///
+    /// ## Discussion
+    ///
+    /// Task processing might not start right away if the system is currently resource constrainted.
+    ///
+    ///
     /// Fail the submission if there is no room for the task request, or if the system is under substantial load and is
     /// unable immediately run the task.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/submissionstrategy/fail?language=objc)
     #[doc(alias = "BGContinuedProcessingTaskRequestSubmissionStrategyFail")]
     pub const Fail: Self = Self(0);
+    /// An option that queues a continuous background task to begin as soon as possible.
+    ///
+    /// ## Discussion
+    ///
+    /// This option adds the task request to the back of a queue. The system runs the task as soon as possible. The system might be unable to run a submitted task immediately if the system is currently at the maximum level of concurrent tasks.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// The system cancels queued [`BGContinuedProcessingTaskRequest`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest) objects if someone closes your app using the app switcher.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Add the request to the back of a queue if there is no room for the submitted task or if the system is under
     /// substantial load and is unable to immediately run the task. Queued ``BGContinuedProcessingTaskRequest``s will be
     /// cancelled when the user removes your app from the app switcher.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/submissionstrategy/queue?language=objc)
     #[doc(alias = "BGContinuedProcessingTaskRequestSubmissionStrategyQueue")]
     pub const Queue: Self = Self(1);
 }
@@ -311,21 +333,45 @@ unsafe impl RefEncode for BGContinuedProcessingTaskRequestSubmissionStrategy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/resources?language=objc)
+/// Options that specify additional system resources a background task needs.
+///
+/// ## Overview
+///
+/// The following properties are of this type:
+///
+/// - Continuous Background Task request ([`BGContinuedProcessingTaskRequest`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest)) property [`requiredResources`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/requiredresources).
+///
+/// - [`BGTaskScheduler`](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler) property [`supportedResources`](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/supportedresources).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BGContinuedProcessingTaskRequestResources(pub NSInteger);
 bitflags::bitflags! {
     impl BGContinuedProcessingTaskRequestResources: NSInteger {
+/// An option for a task with no additional required system resources.
+///
+/// ## Discussion
+///
+/// Unless informed otherwise, the scheduler assumes the default resources, allowing background CPU and network access.
+///
+///
 /// No special system resources required.
 ///
 /// Unless informed otherwise, the scheduler assumes the default resources, allowing background CPU and network
 /// access.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequestresources/bgcontinuedprocessingtaskrequestresourcesdefault?language=objc)
         #[doc(alias = "BGContinuedProcessingTaskRequestResourcesDefault")]
         const Default = 0;
+/// An option that indicates a long-running task requires the GPU.
+///
+/// ## Discussion
+///
+/// The system requires your app to have the [`Background GPU Access`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.background-tasks.continued-processing.gpu) entitlement with a value of `true` to use the GPU in the background. To do that, enable the Background GPU Access capability on your app’s target. For more information about capabilities in Xcode, see [Adding capabilities to your app](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app).
+///
+/// Not all devices support background GPU use. For more information, see [Performing long-running tasks on iOS and iPadOS](https://developer.apple.com/documentation/backgroundtasks/performing-long-running-tasks-on-ios-and-ipados).
+///
+///
 /// Indicate to the scheduler that the workload will require background GPU utilization.
 ///
 /// Task submissions will be rejected if the submitting app does not have the correct entitlement. Background GPU
@@ -333,8 +379,6 @@ bitflags::bitflags! {
 /// backgrounded workloads are not guaranteed runtime.
 ///
 /// - Important: Applications must have the `com.apple.developer.background-tasks.continued-processing.gpu`  entitlement to submit a task request with this resource.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/resources/gpu?language=objc)
         #[doc(alias = "BGContinuedProcessingTaskRequestResourcesGPU")]
         const GPU = 1<<0;
     }
@@ -349,10 +393,17 @@ unsafe impl RefEncode for BGContinuedProcessingTaskRequestResources {
 }
 
 extern_class!(
+    /// A request for a workload that the system continues processing even if a person backgrounds the app.
+    ///
+    /// ## Overview
+    ///
+    /// The app submits this request from the foreground. Submission needs to occur as a result of a person’s action, such as tapping a button. The framework begins processing the task immediately, if possible, and the system allows it to continue running even if the app moves to the background.
+    ///
+    /// For more information on Continuous Background Task requests, see [Performing long-running tasks on iOS and iPadOS](https://developer.apple.com/documentation/backgroundtasks/performing-long-running-tasks-on-ios-and-ipados).
+    ///
+    ///
     /// A request to begin a workload immediately, or shortly after submission, which is allowed to continue running even if
     /// the app is backgrounded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest?language=objc)
     #[unsafe(super(BGTaskRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGContinuedProcessingTaskRequest;

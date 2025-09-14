@@ -10,13 +10,84 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that determines which audio to play.
+    ///
+    /// ## Overview
+    ///
+    /// A sound event represents a logic tree, or hierarchy, that defines what, when, and how the framework plays a sound at runtime. You configure the tree with conditions based on your app’s state. When you invoke a sound event’s root node at runtime, the framework navigates the tree by branching based on the logic, landing on a playable node that sends the right audio to the output device:
+    ///
+    /// - To invoke a specific one-time sound, create a sound event from a single sampler node.
+    ///
+    /// - To invoke a sound event that tailors its sound based on your app’s state, define a sound event hierarchy containing one or more control nodes; see [Sound Event Nodes](https://developer.apple.com/documentation/phase/sound-event-nodes). For example, to play either footsteps or a jumping noise depending on the hero’s state, you configure a switch node that navigates based on the hero’s hypothetical `isJumping` metaparameter.
+    ///
+    /// For sound event nodes that play audio, the asset’s [`playbackMode`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode) determines whether the audio loops. One-time sound events stop automatically at the end of the audio data. Looping sound events (those with [`playbackMode`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode) `=` [`PHASEPlaybackModeLooping`](https://developer.apple.com/documentation/phase/phaseplaybackmode/looping)) require you to explicitly call [`stopAndInvalidate`](https://developer.apple.com/documentation/phase/phasesoundevent/stopandinvalidate()) to stop the audio.
+    ///
+    /// ### Playing a one-shot channel-based sound
+    ///
+    /// Apps create a sound event by requesting one from a sound event node asset. To create a sound event node asset, combine a sound asset (the source audio data) with a mixer object (which combines sound layers for output) to create a node, and add the node to the asset registry. By creating a sound event from a sampler node ([`PHASESamplerNodeDefinition`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition)), the following code plays an audio file once before discarding it.
+    ///
+    /// ```swift
+    /// // Create a channel layout for audio types that contain no channel metadata.
+    /// let stereoLayout = AVAudioChannelLayout(layoutTag: kAudioChannelLayoutTag_Stereo)
+    ///
+    /// // Load an audio file from the bundle.
+    /// let bangSoundURL = Bundle.main.url(forResource: "bangSound", withExtension: "wav")!
+    ///
+    /// // Create and register a sound asset.
+    /// var bangSoundAsset:PHASESoundAsset!
+    /// do {
+    ///     bangSoundAsset = try engine.assetRegistry.registerSoundAsset(
+    ///         url: bangSoundURL,
+    ///         identifier: "bangSound",
+    ///         assetType: .resident,
+    ///         channelLayout: stereoLayout,
+    ///         normalizationMode: .dynamic)
+    /// } catch { print("Failed to register the sound asset.") }
+    ///
+    /// // Create a mixer that routes sound directly to the output.
+    /// let stereoMixer = PHASEChannelMixerDefinition(channelLayout:stereoLayout!)
+    ///
+    /// // Create a sound event node.
+    /// let bangSoundSamplerNode = PHASESamplerNodeDefinition(
+    ///     soundAssetIdentifier: bangSoundAsset.identifier,
+    ///     mixerDefinition: stereoMixer, identifier:"bangSoundNode")
+    ///
+    /// // Add the sound event node to the asset registry and retrieve the asset object.
+    /// var bangSoundSoundEventAsset: PHASESoundEventNodeAsset!
+    /// do {
+    ///     bangSoundEventAsset = try engine.assetRegistry.registerSoundEventAsset(
+    ///         rootNode: bangSoundSamplerNode, identifier:"bangSoundTree")
+    /// } catch { print ("Failed to register the sound event node.") }
+    /// ```
+    ///
+    /// The resulting node asset represents a template for audio that’s ready for playback. To play the audio, spawn a sound event off of the node asset and call [`startWithCompletion:`](https://developer.apple.com/documentation/phase/phasesoundevent/start(completion:)) to invoke the sound event.
+    ///
+    /// ```swift
+    /// // Create a playable sound event from the template sound event asset.
+    /// var bangSoundEvent: PHASESoundEvent!
+    /// do {
+    ///         bangSoundEvent = try PHASESoundEvent(engine:engine,
+    ///         assetIdentifier: bangSoundEventAsset.identifier)
+    /// } catch { print ("Failed to create the sound event.") }
+    ///
+    /// // Play the one-shot sound event.
+    /// bangSoundEvent.start()
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To play the same sound asset again, create another sound event object. After the first [`startWithCompletion:`](https://developer.apple.com/documentation/phase/phasesoundevent/start(completion:)) call on a particular `PHASESoundEvent` instance, subsequent calls have no effect.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASESoundEvent is an object that represents a playable sound event in the PHASE system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASESoundEvent;

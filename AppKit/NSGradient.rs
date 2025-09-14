@@ -9,17 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradient/drawingoptions?language=objc)
+/// Constants that specify gradient drawing options.
+///
+/// ## Overview
+///
+/// These constants are used by the primitive drawing methods to determine if drawing occurs outside of the gradient start and end locations.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGradientDrawingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSGradientDrawingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradient/drawingoptions/drawsbeforestartinglocation?language=objc)
+/// Drawing extends before the gradient starting point.
         #[doc(alias = "NSGradientDrawsBeforeStartingLocation")]
         const DrawsBeforeStartingLocation = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradient/drawingoptions/drawsafterendinglocation?language=objc)
+/// Drawing extends beyond the gradient end point.
         #[doc(alias = "NSGradientDrawsAfterEndingLocation")]
         const DrawsAfterEndingLocation = 1<<1;
     }
@@ -34,7 +40,17 @@ unsafe impl RefEncode for NSGradientDrawingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradient?language=objc)
+    /// An object that can draw gradient fill colors
+    ///
+    /// ## Overview
+    ///
+    /// This class provides convenience methods for drawing radial or linear (axial) gradients for rectangles and [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath) objects. It also supports primitive methods that let you customize the shape of the gradient fill. A gradient consists of two or more color changes over the range of the gradient shape. When creating a gradient object, you specify the colors and their locations relative to the start and end of the gradient. This combination of color and location is known as a _color stop_. During drawing, the [`NSGradient`](https://developer.apple.com/documentation/appkit/nsgradient) object uses the color stop information to compute color changes for you and passes that information to the Quartz shading functions.
+    ///
+    /// Because the [`NSGradient`](https://developer.apple.com/documentation/appkit/nsgradient) class uses Quartz shadings, drawing is handled by computing the colors at a given point mathematically. This technique results in smooth gradients regardless of the resolution of the target device.
+    ///
+    /// For more information about gradients and their appearance, see [Gradients](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_shadings/dq_shadings.html#//apple_ref/doc/uid/TP30001066-CH207) in [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGradient;

@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// Protocol for accessing a collection of feature providers
+    /// An interface that represents a collection of feature providers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlbatchprovider?language=objc)
+    /// ## Overview
+    ///
+    /// Similar to the [`MLFeatureProvider`](https://developer.apple.com/documentation/coreml/mlfeatureprovider), this interface allows you to define your own batch provider. If you collect your data asynchronously or it is memory intensive, implement this protocol on your data structure to optimize performance with batch processing.
+    ///
+    ///
+    /// Protocol for accessing a collection of feature providers
     pub unsafe trait MLBatchProvider {
         /// Total number of feature providers
         #[unsafe(method(count))]

@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract class for a camera’s data source.
     /// Abstract class for source of data from a camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMCameraSource;

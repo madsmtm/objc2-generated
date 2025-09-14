@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxendcallaction?language=objc)
+    /// An encapsulation of the act of ending a call.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXEndCallAction`](https://developer.apple.com/documentation/callkit/cxendcallaction) is a concrete subclass of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction). When the user initiates an outgoing call, the provider sends [`provider:performEndCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-9a0m) to its delegate. The provider’s delegate calls the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method to indicate that the action was successfully performed. To indicate that the call ended at a time other than the current time, you can instead call the [`fulfillWithDateEnded:`](https://developer.apple.com/documentation/callkit/cxendcallaction/fulfill(withdateended:))
+    ///
+    ///
     #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

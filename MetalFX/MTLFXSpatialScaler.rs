@@ -9,28 +9,24 @@ use objc2_metal::*;
 use crate::*;
 
 /// The color space modes for the input and output textures you use with a spatial scaling effect instance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode?language=objc)
+/// The color space modes for the input and output textures you use with a spatial scaling effect instance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFXSpatialScalerColorProcessingMode(pub NSInteger);
 impl MTLFXSpatialScalerColorProcessingMode {
+    /// Indicates your input and output textures use a perceptual color space.
     /// Indicates your input and output textures use a perceptual color space (sRGB).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode/perceptual?language=objc)
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModePerceptual")]
     pub const Perceptual: Self = Self(0);
+    /// Indicates your input and output textures use a linear color space.
     /// Indicates your input and output textures use a linear color space in the `[0,1]` range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode/linear?language=objc)
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModeLinear")]
     pub const Linear: Self = Self(1);
+    /// Indicates your input and output textures use a high dynamic range color space.
     /// Indicates your input and output textures use a high dynamic range color space, beyond the `[0,1]` range.
     ///
     /// When you configure this mode, MetalFX performs a reversible tone mapping operation to convert your data to the `[0,1]` range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode/hdr?language=objc)
     #[doc(alias = "MTLFXSpatialScalerColorProcessingModeHDR")]
     pub const HDR: Self = Self(2);
 }
@@ -45,8 +41,7 @@ unsafe impl RefEncode for MTLFXSpatialScalerColorProcessingMode {
 
 extern_class!(
     /// A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor?language=objc)
+    /// A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXSpatialScalerDescriptor;
@@ -217,6 +212,41 @@ impl MTLFXSpatialScalerDescriptor {
 extern_protocol!(
     /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
     ///
+    /// ## Overview
+    ///
+    /// The MetalFX spatial scaler increases the size of your input texture to a larger output texture. You can use the scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
+    ///
+    /// Create an [`MTLFXSpatialScaler`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler) instance following these steps:
+    ///
+    /// 1. Create and configure an [`MTLFXSpatialScalerDescriptor`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor) instance.
+    ///
+    /// 2. Call the descriptor’s `newSpatialScalerWithDevice:` method.
+    ///
+    /// Upscale a rendering by following these steps for every render pass:
+    ///
+    /// 1. Set the spatial scaler’s [`colorTexture`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase/colortexture) property to the input texture.
+    ///
+    /// 2. Set the scaler’s [`inputContentWidth`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase/inputcontentwidth) and [`inputContentHeight`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase/inputcontentheight) properties.
+    ///
+    /// 3. Set the scaler’s [`outputTexture`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase/outputtexture) property to your destination texture.
+    ///
+    /// Encode the upscale commands to a command buffer by calling the spatial scaler’s `encodeToCommandBuffer:` method.
+    ///
+    /// ## Conforming to texture usage requirements
+    ///
+    /// Spatial scalers expose properties, such as [`colorTextureUsage`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase/colortextureusage), that indicate requirements for your textures to be compatible with it. These properties indicate the minimum set of `MTLTextureUsage` bits that you are responsible for setting in your texture descriptors for this spatial scaler to use them.
+    ///
+    /// Your game or app can set extra usage bits on your textures without losing compatibility, as long at its maintains the minimum set the scaler requests.
+    ///
+    /// ## Assigning input and output textures
+    ///
+    /// When you use an instance of a class that conforms to this protocol, you typically set its input and output textures, as well as other properties, and then encode its work to a command buffer.
+    ///
+    /// MetalFX doesn’t track that you assign the same texture instances to each property across different batches of work, the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the [`MTLFXSpatialScalerDescriptor`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor) descriptor instance that creates the scaler instance.
+    ///
+    ///
+    /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
+    ///
     /// The MetalFX spatial scaler increases the size of your input texture to a larger output texture. You can use the
     /// scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more
     /// complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
@@ -249,8 +279,6 @@ extern_protocol!(
     /// MetalFX doesn't track that you assign the same texture instances to each property across different batches of work,
     /// the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the
     /// ``MTLFXSpatialScalerDescriptor`` descriptor instance that creates the scaler instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase?language=objc)
     pub unsafe trait MTLFXSpatialScalerBase: NSObjectProtocol {
         /// The minimal texture usage options that your app’s input color texture needs in order to support this scaler.
         #[unsafe(method(colorTextureUsage))]
@@ -364,6 +392,29 @@ extern_protocol!(
 extern_protocol!(
     /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
     ///
+    /// ## Overview
+    ///
+    /// The MetalFX spatial scaler increases the size of your input texture to a larger output texture. You can use the scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
+    ///
+    /// Create an [`MTLFXSpatialScaler`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler) instance following these steps:
+    ///
+    /// 1. Create and configure an [`MTLFXSpatialScalerDescriptor`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor) instance.
+    ///
+    /// 2. Call the descriptor’s [`newSpatialScalerWithDevice:`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor/makespatialscaler(device:)) method.
+    ///
+    /// Upscale a rendering by following these steps for every render pass:
+    ///
+    /// 1. Set the spatial scaler’s `MTLFXSpatialScaler/colorTexture` property to the input texture.
+    ///
+    /// 2. Set the scaler’s `MTLFXSpatialScaler/inputContentWidth` and `MTLFXSpatialScaler/inputContentHeight` properties.
+    ///
+    /// 3. Set the scaler’s `MTLFXSpatialScaler/outputTexture` property to your destination texture.
+    ///
+    /// 4. Encode the upscale commands to an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) by calling the spatial scaler’s [`encodeToCommandBuffer:`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler/encode(commandbuffer:)) method.
+    ///
+    ///
+    /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
+    ///
     /// You create instances of this class by calling ``MTLFXSpatialScalerDescriptor/newSpatialScalerWithDevice:``.
     ///
     /// When using instances of objects conforming to this protocol, you configure the different properties it
@@ -371,8 +422,6 @@ extern_protocol!(
     /// encode its work into a Metal command buffer.
     ///
     /// See ``MTLFXSpatialScalerBase`` for more details on configuring and using spatial scalers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler?language=objc)
     pub unsafe trait MTLFXSpatialScaler: MTLFXSpatialScalerBase {
         /// Encode this spatial scaler work into a command buffer.
         ///

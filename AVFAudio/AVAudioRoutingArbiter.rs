@@ -7,6 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Categories that describe the general nature of your app’s audio use.
+///
+/// ## Overview
+///
+/// The category provides context that helps the operating system arbitrate between Apple devices that are trying to take ownership of a Bluetooth audio route.
+///
+///
 /// The category describes the general type of audio that the app plans to use.
 ///
 /// Provides context to the operating system about the type of audio an application intends to use. The system uses this information
@@ -17,20 +24,18 @@ use crate::*;
 /// Used for recording and playing back audio.
 ///
 /// Appropriate for Voice over IP(VoIP) applications.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioRoutingArbitrationCategory(pub NSInteger);
 impl AVAudioRoutingArbitrationCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category/playback?language=objc)
+    /// The app plays audio.
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayback")]
     pub const Playback: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category/playandrecord?language=objc)
+    /// The app plays and records audio.
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayAndRecord")]
     pub const PlayAndRecord: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category/playandrecordvoice?language=objc)
+    /// The app uses Voice over IP (VoIP).
     #[doc(alias = "AVAudioRoutingArbitrationCategoryPlayAndRecordVoice")]
     pub const PlayAndRecordVoice: Self = Self(2);
 }
@@ -44,9 +49,38 @@ unsafe impl RefEncode for AVAudioRoutingArbitrationCategory {
 }
 
 extern_class!(
-    /// The interface to participate in audio routing arbitration.
+    /// An object for configuring macOS apps to participate in AirPods Automatic Switching.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter?language=objc)
+    /// ## Overview
+    ///
+    /// AirPods Automatic Switching is a feature of Apple operating systems that intelligently connects wireless headphones to the most appropriate audio device in a multidevice environment. For example, if a user plays a movie on iPad, and then locks the device and starts playing music on iPhone, the system automatically switches the source audio device from iPad to iPhone.
+    ///
+    /// iOS apps automatically participate in AirPods Automatic Switching. To enable your macOS app to participate in this behavior, use `AVAudioRoutingArbiter` to indicate when your app starts and finishes playing or recording audio. For example, a Voice over IP (VoIP) app might request arbitration before starting a call, and when the arbitration completes, begin the VoIP session. Likewise, when the call ends, the app would end the VoIP session and leave arbitration.
+    ///
+    /// ```swift
+    /// func startCall() {
+    ///     let arbiter = AVAudioRoutingArbiter.shared
+    ///     arbiter.begin(category: .playAndRecordVoice) { deviceChanged, error in
+    ///         // Start VoIP session.
+    ///     }
+    /// }
+    ///
+    /// func endCall() {
+    ///     // End VoIP session.
+    ///     AVAudioRoutingArbiter.shared.leave()
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Only certain Apple and Beats wireless headsets support this feature.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// The interface to participate in audio routing arbitration.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioRoutingArbiter;

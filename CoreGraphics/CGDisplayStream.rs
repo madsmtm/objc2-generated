@@ -15,13 +15,18 @@ use objc2_io_surface::*;
 
 use crate::*;
 
+/// A reference to a display stream object.
+///
+/// ## Overview
+///
+/// This data type streams the contents of a display to your app. The contents can be scaled or converted to a different color space. You can also choose to capture only a portion of a display. Your update handler can be called either from a traditional`CFRunLoop` or on a dispatch queue.
+///
+///
 /// An opaque reference to a CGDisplayStream object
 ///
 /// A CGDisplayStream provides a streaming API for capturing display updates in a realtime manner.  It can also provide
 /// scaling and color space conversion services, as well as allow capturing sub regions of the display.   Callbacks can be targetted
 /// at either a traditional CFRunLoop, or at a dispatch queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream?language=objc)
 #[doc(alias = "CGDisplayStreamRef")]
 #[repr(C)]
 pub struct CGDisplayStream {
@@ -37,14 +42,19 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGDisplayStream"> for CGDisplayStream {}
 );
 
+/// A reference to frame update’s metadata.
+///
+/// ## Overview
+///
+/// This data type encapsulates information about how the frame changed since the previous frame delivered by a display stream. The metadata about the frame describes the portions of the screen that were redrawn and the portions of the screen that were moved from one place to another. You can merge multiple updates into a single update.
+///
+///
 /// An opaque reference to a single frame's extra metadata that describes useful frame delta information
 ///
 /// A CGDisplayStreamUpdate encapsulates information about what portions of a frame have changed relative to
 /// a previously delivered frame.   This includes regions that were changed in any way, which ones were actually redrawn, and which
 /// regions were merely copied from one place to another.   A routine is provided to merge two update refs together in cases
 /// where apps need to coalesce the values because they decided to skip processing for one or more frames.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate?language=objc)
 #[doc(alias = "CGDisplayStreamUpdateRef")]
 #[repr(C)]
 pub struct CGDisplayStreamUpdate {
@@ -60,24 +70,23 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGDisplayStreamUpdate"> for CGDisplayStreamUpdate {}
 );
 
+/// Use these constants to determine which rectangles your app is interested in.
 /// Used to select which array of rectangles to be returned by CGDisplayUpdateGetRects
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayStreamUpdateRectType(pub i32);
 impl CGDisplayStreamUpdateRectType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/refreshedrects?language=objc)
+    /// The rectangles for the portions of the display that were redrawn.
     #[doc(alias = "kCGDisplayStreamUpdateRefreshedRects")]
     pub const RefreshedRects: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/movedrects?language=objc)
+    /// The rectangles for the portions of the display that were simply moved from one part of the display to another.
     #[doc(alias = "kCGDisplayStreamUpdateMovedRects")]
     pub const MovedRects: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/dirtyrects?language=objc)
+    /// The union of both rectangles that were redrawn and rectangles that were moved.
     #[doc(alias = "kCGDisplayStreamUpdateDirtyRects")]
     pub const DirtyRects: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype/reduceddirtyrects?language=objc)
+    /// The union is calculated and then simplified. This reduces the number of rectangles returned to your app, but it may report some pixels that were not actually changed.
     #[doc(alias = "kCGDisplayStreamUpdateReducedDirtyRects")]
     pub const ReducedDirtyRects: Self = Self(3);
 }
@@ -92,24 +101,23 @@ unsafe impl RefEncode for CGDisplayStreamUpdateRectType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a frame update event.
 /// Provides information about incoming frame updates
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayStreamFrameStatus(pub i32);
 impl CGDisplayStreamFrameStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete?language=objc)
+    /// A new frame was generated.
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameComplete")]
     pub const FrameComplete: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/frameidle?language=objc)
+    /// A new frame was not generated because the display did not change.
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameIdle")]
     pub const FrameIdle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/frameblank?language=objc)
+    /// A new frame was not generated because the display has gone blank.
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameBlank")]
     pub const FrameBlank: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/stopped?language=objc)
+    /// The display stream was stopped.
     #[doc(alias = "kCGDisplayStreamFrameStatusStopped")]
     pub const Stopped: Self = Self(3);
 }
@@ -124,7 +132,31 @@ unsafe impl RefEncode for CGDisplayStreamFrameStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframeavailablehandler?language=objc)
+/// A block called when a data stream has a new frame event to process.
+///
+/// ## Discussion
+///
+/// The handler is called whenever the display stream has updated content to process as well as when other events occur. Each time a new frame is generated, the block receives an `IOSurface` object that contains the pixel data as well as an update object that describes the frame update.
+///
+/// The handler receives the following parameters:
+///
+/// - status: Describes the kind of update being passed to the handler. See [`CGDisplayStreamFrameStatus`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus).
+///
+/// - displayTime: The mach absolute time when the event occurred. For a frame event, this is when the frame was displayed by the window server.
+///
+/// - frameSurface: An `IOSurface` object that contains the pixel data. May be `NULL` in some cases.
+///
+/// If you need to maintain a reference to the surface beyond the lifetime of the handler call, you must call the [`CFRetain`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521269-cfretain) function to retain the surface and the [`IOSurfaceIncrementUseCount`](https://developer.apple.comhttps://developer.apple.com/documentation/iosurface/1419455-iosurfaceincrementusecount) function to let the display stream know that the frame is not ready for re-use. Once you are finished using the surface you must call the [`IOSurfaceDecrementUseCount`](https://developer.apple.comhttps://developer.apple.com/documentation/iosurface/1419377-iosurfacedecrementusecount) function and then call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function. If you are maintaining a cache of information about the surface (such as a GL texture object created from the surface’s contents), you must not call release it until after you remove it from your cache.
+///
+/// You can not depend on the set of surfaces being used by the display stream as being static, so you should remove surfaces from the cache when they haven’t been re-used in a while.
+///
+/// - updateRef: A [`CGDisplayStreamUpdateRef`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate) reference that holds the update metadata for the current frame.
+///
+/// If you need to hold onto the metadata beyond the lifetime of the handler call, you must call the [`CFRetain`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521269-cfretain) function on the update reference before the end of the handler. When you are finished with the update, call the call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+/// This parameter holds `NULL` when the `status` parameter’s has any value other than [`kCGDisplayStreamFrameStatusFrameComplete`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/framecomplete).
+///
+///
 #[cfg(all(feature = "block2", feature = "objc2-io-surface"))]
 #[cfg(not(target_os = "watchos"))]
 pub type CGDisplayStreamFrameAvailableHandler = *mut block2::DynBlock<
@@ -132,11 +164,16 @@ pub type CGDisplayStreamFrameAvailableHandler = *mut block2::DynBlock<
 >;
 
 unsafe impl ConcreteType for CGDisplayStreamUpdate {
+    /// Returns the type identifier of a Quartz display stream update.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier of the `CGDisplayStreamUpdate` opaque type.
+    ///
+    ///
     /// Returns the CF "class" ID for CGDisplayStreamUpdate
     ///
     /// Returns: The CFTypeID of the CGDisplayStreamUpdate class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/typeid?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -148,6 +185,27 @@ unsafe impl ConcreteType for CGDisplayStreamUpdate {
 }
 
 impl CGDisplayStreamUpdate {
+    /// Returns an array of rectangles that describe where the frame has changed since the previous frame.
+    ///
+    /// Parameters:
+    /// - updateRef: A [`CGDisplayStreamUpdateRef`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate) reference for a frame update.
+    ///
+    /// - rectType: The rectangles you are interested in. See [`CGDisplayStreamUpdateRectType`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype).
+    ///
+    /// - rectCount: A pointer to a `size_t`. This value must not be `NULL`. On return, this location is updated to contain the  number of rectangles in the returned array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of `CGRect` structures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Do not free the array. It is managed automatically by the update and disposed of when the update object is destroyed.
+    ///
+    ///
     /// Returns a pointer to an array of CGRect structs that describe what parts of the frame have changed relative
     /// to the previously delivered frame.   This rectangle list encapsulates both the update rectangles and movement rectangles.
     ///
@@ -160,8 +218,6 @@ impl CGDisplayStreamUpdate {
     /// # Safety
     ///
     /// `rect_count` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/getrects(_:rectcount:)?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetRects")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -180,6 +236,25 @@ impl CGDisplayStreamUpdate {
         unsafe { CGDisplayStreamUpdateGetRects(update_ref, rect_type, rect_count) }
     }
 
+    /// Combines two updates into a new update that includes the metadata for both source updates.
+    ///
+    /// Parameters:
+    /// - firstUpdate: A [`CGDisplayStreamUpdateRef`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate) reference. This must be the earlier of the two update references.
+    ///
+    /// - secondUpdate: A [`CGDisplayStreamUpdateRef`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate) reference. This must be the later of the two update references.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new update that contains the union of the information stored in the two source updates.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If your app needs to drop a frame without processing it, use this function to merge that frame’s update data with the data provided for a later frame update.
+    ///
+    ///
     /// Merge two CGDisplayUpdateRefs into a new one.
     ///
     /// In cases where the client wishes to drop certain frame updates, this function may be used to merge two
@@ -193,8 +268,6 @@ impl CGDisplayStreamUpdate {
     /// Parameter `secondUpdate`: The second update (in a temporal sense)
     ///
     /// Returns: The new CGDisplayStreamUpdateRef
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/init(mergedupdatefirstupdate:secondupdate:)?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateCreateMergedUpdate")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -212,6 +285,21 @@ impl CGDisplayStreamUpdate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Return the movement delta values for a single update.
+    ///
+    /// Parameters:
+    /// - updateRef: A [`CGDisplayStreamUpdateRef`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate) reference.
+    ///
+    /// - dx: A pointer to a `CGFloat` to store the x component of the movement delta
+    ///
+    /// - dy: A pointer to a `CGFloat` to store the y component of the movement delta
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The delta values describe the offset from the moved rectangles back to the source location.
+    ///
+    ///
     /// Return the movement dx and dy values for a single update
     ///
     /// Parameter `updateRef`: The CGDisplayStreamUpdateRef
@@ -226,8 +314,6 @@ impl CGDisplayStreamUpdate {
     ///
     /// - `dx` must be a valid pointer.
     /// - `dy` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/getmovedrectsdelta(dx:dy:)?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -246,6 +332,23 @@ impl CGDisplayStreamUpdate {
         unsafe { CGDisplayStreamUpdateGetMovedRectsDelta(update_ref, dx, dy) }
     }
 
+    /// Returns the number of frames that have been dropped since the last call to your update handler.
+    ///
+    /// Parameters:
+    /// - updateRef: A [`CGDisplayStreamUpdateRef`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate) reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of dropped frames.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this call when measuring your client’s performance to ensure that it is keeping up with window server updates.
+    ///
+    ///
     /// Return how many frames (if any) have been dropped since the last call to the handler.
     ///
     /// Parameter `updateRef`: The CGDisplayStreamUpdateRef
@@ -254,8 +357,6 @@ impl CGDisplayStreamUpdate {
     ///
     /// This call is primarily useful for performance measurement to determine if the client is keeping up with
     /// all WindowServer updates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate/dropcount?language=objc)
     #[doc(alias = "CGDisplayStreamUpdateGetDropCount")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
@@ -270,100 +371,115 @@ impl CGDisplayStreamUpdate {
 }
 
 extern "C" {
+    /// This key specifies that the display stream only samples a subset of the display’s framebuffer.
+    ///
+    /// ## Discussion
+    ///
+    /// If this key is not included in the dictionary, then the entire display is streamed. The value must be created using the [`CGRectCreateDictionaryRepresentation`](https://developer.apple.com/documentation/coregraphics/cgrectcreatedictionaryrepresentation(_:)) function. The rectangle is specified in points in the display’s logical coordinate system.
+    ///
+    ///
     /// This may be used to request a subregion of the display to be provided as the source of the display stream.  Use
     /// CGRectCreateDictionaryRepresentation to convert from a CGRect to the value used here.   Note: The coordinate system for the
     /// source rectangle is specified in display logical coordinates and not in pixels, in order to match the normal convention on
     /// HiDPI displays.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/sourcerect?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamSourceRect: &'static CFString;
 }
 
 extern "C" {
+    /// This key specifies that the display stream outputs the frame data into a subset of the output `IOSurface` object.
+    ///
+    /// ## Discussion
+    ///
+    /// If this key is not included in the dictionary, then the entire output surface is used. The value must be created using the [`CGRectCreateDictionaryRepresentation`](https://developer.apple.com/documentation/coregraphics/cgrectcreatedictionaryrepresentation(_:)) function. The rectangle is specified in pixels in the surface’s coordinate system.
+    ///
+    ///
     /// This may be used to request where within the destination buffer the display updates should be placed. Use
     /// CGRectCreateDictionaryRepresentation to convert from a CGRect to the value used here.   Note: The coordinate system for
     /// the destination rectangle is always specified in output pixels to match the fact that the output buffer size is also
     /// specified in terms of pixels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/destinationrect?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamDestinationRect: &'static CFString;
 }
 
 extern "C" {
+    /// This key specifies whether the display stream preserves the aspect ratio of the source pixel data. If this key is not included in the dictionary, then the aspect ratio is preserved. If the aspect ratio is preserved, then the display stream adds black bars to the output data. If the aspect ratio is not preserved, then the pixel data is stretched to fit the output buffer’s dimensions. The value associated with the key must be a `CFBoolean`.
     /// Enable/disable the work the Window Server will do to preserve the display aspect ratio.  By default the Window Server will
     /// assume that it should preserve the original aspect ratio of the source display rect.  If the aspect ratio of the source display and
     /// the display stream destination rect are not the same, black borders will be inserted at the top/bottom or right/left sides of the destination
     /// in order to preserve the source aspect ratio.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/preserveaspectratio?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamPreserveAspectRatio: &'static CFString;
 }
 
 extern "C" {
+    /// This key specifies the color space of the output buffer. If this key is not included in the dictionary, the output buffer uses the same color space as the display. The value associated with this key must be a [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) for the desired color space.
     /// Set the desired CGColorSpace of the output frames.  By default the color space will be that of the display.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/colorspace?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamColorSpace: &'static CFString;
 }
 
 extern "C" {
+    /// This key specifies the desired minimum time between frame updates, allowing you to throttle the rate at which updates are received. If this key is not included in the dictionary, the default value is `0`, meaning that updates are not throttled. The value must be specified as a `CFNumber`.
     /// Request that the delta between frame updates be at least as much specified by this value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/minimumframetime?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamMinimumFrameTime: &'static CFString;
 }
 
 extern "C" {
+    /// This key specifies whether the cursor should appear in the stream. If this key is not included in the dictionary, the cursor is visible. The value must be specified as a `CFBoolean`.
     /// Controls whether the cursor is embedded within the provided buffers or not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/showcursor?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamShowCursor: &'static CFString;
 }
 
 extern "C" {
+    /// This key specifies the number of frames to keep in the queue. If this key is not included in the dictionary, the default value is `3` frames. Specifying more frames uses more memory, but may allow you to process frame data without stalling the display stream. The value associated with this key should be specified as a `CFNumber`, and should not exceed `8` frames.
     /// Controls how many frames deep the frame queue will be.  Defaults to N.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/queuedepth?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamQueueDepth: &'static CFString;
 }
 
 extern "C" {
+    /// This key should only be included if you the display stream is creating output frames in either the 420v or 420f formats. It is used to specify the YCbCr matrix applied to the output surface.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key must be one of the strings specified in [Display Stream YCbCr to RGB conversion Matrix Options](https://developer.apple.com/documentation/coregraphics/display-stream-ycbcr-to-rgb-conversion-matrix-options).
+    ///
+    ///
     /// When outputting frames in 420v or 420f format, this key may be used to control which YCbCr matrix is used
     /// The value should be one of the three kCGDisplayStreamYCbCrMatrix values specified below.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamYCbCrMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix_itu_r_709_2?language=objc)
+    /// Specifies the YCbCr to RGB conversion matrix for HDTV digital television (ITU R 709) images.
     pub static kCGDisplayStreamYCbCrMatrix_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix_itu_r_601_4?language=objc)
+    /// Specifies the YCbCr to RGB conversion matrix for standard digital television (ITU R 601) images.
     pub static kCGDisplayStreamYCbCrMatrix_ITU_R_601_4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix_smpte_240m_1995?language=objc)
+    /// Specifies the YCbCR to RGB conversion matrix for 1920 x 1135 HDTV (SMPTE 240M 1995).
     pub static kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: &'static CFString;
 }
 
 unsafe impl ConcreteType for CGDisplayStream {
+    /// Returns the type identifier of a Quartz display stream.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier of the `CGDisplayStream` opaque type.
+    ///
+    ///
     /// Returns the CF "class" ID for CGDisplayStream
     ///
     /// Returns: The CFTypeID of the CGDisplayStream class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/typeid?language=objc)
     #[doc(alias = "CGDisplayStreamGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -375,6 +491,41 @@ unsafe impl ConcreteType for CGDisplayStream {
 }
 
 impl CGDisplayStream {
+    /// Creates a new display stream to be used with a `CFRunloop`.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to be streamed.
+    ///
+    /// - outputWidth: The width of the output frames in pixels. The width must not be zero.
+    ///
+    /// - outputHeight: The height of the output frames in pixels. The height must not be zero.
+    ///
+    /// - pixelFormat: The desired Core Media pixel format of the output frame data. The value must be one of the following:
+    ///
+    /// - `'BGRA'`: Packed Little Endian ARGB8888
+    ///
+    /// - `'l10r'`: Packed Little Endian ARGB2101010
+    ///
+    /// - `'420v'`: 2-plane “video” range YCbCr 4:2:0
+    ///
+    /// - `'420f'`: 2-plane “full” range YCbCr 4:2:0
+    ///
+    /// - properties: A dictionary of optional properties for the display stream. See [Display Stream Optional Property Keys](https://developer.apple.com/documentation/coregraphics/display-stream-optional-property-keys) for the possible keys and values that can be provided in the options dictionary.
+    ///
+    /// - handler: A block to be called when new frames are ready.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CGDisplayStream` object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before the stream can be started, it must be added to a run loop. Use the [`CGDisplayStreamGetRunLoopSource`](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/runloopsource) function to get an event source to add to the run loop.
+    ///
+    ///
     /// Creates a new CGDisplayStream intended to be used with a CFRunLoop
     ///
     /// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
@@ -406,8 +557,6 @@ impl CGDisplayStream {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `handler` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/init(display:outputwidth:outputheight:pixelformat:properties:handler:)?language=objc)
     #[doc(alias = "CGDisplayStreamCreate")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -448,6 +597,37 @@ impl CGDisplayStream {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new display stream whose updates are delivered to a dispatch queue.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to be streamed.
+    ///
+    /// - outputWidth: The width of the output frames in pixels. The width must not be zero.
+    ///
+    /// - outputHeight: The height of the output frames in pixels. The height must not be zero.
+    ///
+    /// - pixelFormat: The desired Core Media pixel format of the output frame data. The value must be one of the following:
+    ///
+    /// - `'BGRA'`: Packed Little Endian ARGB8888
+    ///
+    /// - `'l10r'`: Packed Little Endian ARGB2101010
+    ///
+    /// - `'420v'`: 2-plane “video” range YCbCr 4:2:0
+    ///
+    /// - `'420f'`: 2-plane “full” range YCbCr 4:2:0
+    ///
+    /// - properties: A dictionary of optional properties for the display stream. See [Display Stream Optional Property Keys](https://developer.apple.com/documentation/coregraphics/display-stream-optional-property-keys) for the possible keys and values that can be provided in the options dictionary.
+    ///
+    /// - queue: The GCD dispatch queue used when calling the update handler.
+    ///
+    /// - handler: A block to be called when new frames are ready.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CGDisplayStream` object.
+    ///
+    ///
     /// Creates a new CGDisplayStream intended to be serviced by a block handler
     ///
     /// This function creates a new CGDisplayStream that is to be used to get a stream of frame updates
@@ -475,8 +655,6 @@ impl CGDisplayStream {
     /// - `properties` generic must be of the correct type.
     /// - `queue` possibly has additional threading requirements.
     /// - `handler` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/init(dispatchqueuedisplay:outputwidth:outputheight:pixelformat:properties:queue:handler:)?language=objc)
     #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -521,13 +699,22 @@ impl CGDisplayStream {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Tells a stream to start sending updates.
+    ///
+    /// Parameters:
+    /// - displayStream: The display stream that should start streaming data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kCGErrorSuccess` if the stream started, otherwise an appropriate error code.
+    ///
+    ///
     /// Begin delivering frame updates to the handler block.
     ///
     /// Parameter `displayStream`: to be started
     ///
     /// Returns: kCGErrorSuccess If the display stream was started, otherwise an error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/start()?language=objc)
     #[doc(alias = "CGDisplayStreamStart")]
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
@@ -539,6 +726,25 @@ impl CGDisplayStream {
         unsafe { CGDisplayStreamStart(display_stream) }
     }
 
+    /// Tells a stream to stop sending updates.
+    ///
+    /// Parameters:
+    /// - displayStream: The display stream that should stop streaming data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kCGErrorSuccess` if the stream started, otherwise an appropriate error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After this call returns, the stream is stopped. When the stream stops, its callback is called with a status of [`kCGDisplayStreamFrameStatusStopped`](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus/stopped).  You must wait until this callback is received before releasing the display stream object.
+    ///
+    /// It is safe to call this function from within the handler block.
+    ///
+    ///
     /// End delivery of frame updates to the handler block.
     ///
     /// Parameter `displayStream`: to be stopped
@@ -548,8 +754,6 @@ impl CGDisplayStream {
     /// After this call returns, the CGDisplayStream callback function will eventually be called with a
     /// status of kCGDisplayStreamFrameStatusStopped.  After that point it is safe to release the CGDisplayStream.
     /// It is safe to call this function from within the handler block, but the previous caveat still applies.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/stop()?language=objc)
     #[doc(alias = "CGDisplayStreamStop")]
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
@@ -561,14 +765,23 @@ impl CGDisplayStream {
         unsafe { CGDisplayStreamStop(display_stream) }
     }
 
+    /// Gets the run loop source for a display stream.
+    ///
+    /// Parameters:
+    /// - displayStream: A display stream reference created using the [`CGDisplayStreamCreate`](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/init(display:outputwidth:outputheight:pixelformat:properties:handler:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An event source for the display stream. This function returns `NULL` if you pass in a display stream that was created by calling the [`CGDisplayStreamCreateWithDispatchQueue`](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/init(dispatchqueuedisplay:outputwidth:outputheight:pixelformat:properties:queue:handler:)) function.
+    ///
+    ///
     /// Return the singleton CFRunLoopSourceRef for a CGDisplayStream.
     ///
     /// Parameter `displayStream`: The CGDisplayStream object
     ///
     /// Returns: The CFRunLoopSource for this displayStream.  Note: This function will return NULL if the
     /// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/runloopsource?language=objc)
     #[doc(alias = "CGDisplayStreamGetRunLoopSource")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]

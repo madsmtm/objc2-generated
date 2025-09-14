@@ -11,9 +11,8 @@ use objc2_image_capture_core::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `IKCameraDeviceViewDelegate` protocol is adopted by the delegate of the [`IKCameraDeviceView`](https://developer.apple.com/documentation/quartz/ikcameradeviceview) class. It allows downloading of camera content, handling selection changes, and handling errors.
     /// A delegate of IKCameraDeviceView must conform to IKCameraDeviceViewDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdelegate?language=objc)
     pub unsafe trait IKCameraDeviceViewDelegate {
         /// This message is sent when the user selection did change.
         ///
@@ -69,19 +68,18 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdisplaymode?language=objc)
+/// These constants specify the display mode used by the camera view. These constants are used by [`mode`](https://developer.apple.com/documentation/quartz/ikcameradeviceview/mode).
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKCameraDeviceViewDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdisplaymode/none?language=objc)
     #[doc(alias = "IKCameraDeviceViewDisplayModeNone")]
     None = -1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdisplaymode/table?language=objc)
+    /// Display the devices in as a table.
     #[doc(alias = "IKCameraDeviceViewDisplayModeTable")]
     #[default]
     Table = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdisplaymode/icon?language=objc)
+    /// Display the devices as icons.
     #[doc(alias = "IKCameraDeviceViewDisplayModeIcon")]
     Icon = 1,
 }
@@ -94,16 +92,16 @@ unsafe impl RefEncode for IKCameraDeviceViewDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewtransfermode?language=objc)
+/// These constants specify the transfer mode used by the camera view. These constants are used by [`mode`](https://developer.apple.com/documentation/quartz/ikcameradeviceview/mode).
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKCameraDeviceViewTransferMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewtransfermode/filebased?language=objc)
+    /// Transferred files will be saved to disk by the delegate.
     #[doc(alias = "IKCameraDeviceViewTransferModeFileBased")]
     #[default]
     FileBased = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewtransfermode/memorybased?language=objc)
+    /// Transferred files will be supplied to the delegate as an `NSData` object.
     #[doc(alias = "IKCameraDeviceViewTransferModeMemoryBased")]
     MemoryBased = 1,
 }
@@ -117,9 +115,8 @@ unsafe impl RefEncode for IKCameraDeviceViewTransferMode {
 }
 
 extern_class!(
+    /// The `IKCameraDeviceView` class displays the contents of the selected camera.
     /// IKCameraDeviceView displays content of a Image Capture supported camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKCameraDeviceView;

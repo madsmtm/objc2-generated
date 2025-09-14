@@ -8,9 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Class representing a saved game for the local player, or a version of a saved game when in conflict
+    /// An object that represents a file containing saved game data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksavedgame?language=objc)
+    /// ## Overview
+    ///
+    /// A `GKSavedGame` object represents the file that contains game data you saved using the `GKLocalPlayer` [`saveGameData:withName:completionHandler:`](https://developer.apple.com/documentation/gamekit/gklocalplayer/savegamedata(_:withname:completionhandler:)) method.
+    ///
+    /// You don’t create `GKSavedGame` objects directly. Instead use the [`fetchSavedGamesWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gklocalplayer/fetchsavedgames(completionhandler:)) method to get the games you saved. Then get the filename, its modification date, and the name of the device the player used to save the game from the returned objects.
+    ///
+    /// Use the [`loadDataWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gksavedgame/loaddata(completionhandler:)) method to get the actual game data you saved in the file. To delete saved games, use the [`deleteSavedGamesWithName:completionHandler:`](https://developer.apple.com/documentation/gamekit/gklocalplayer/deletesavedgames(withname:completionhandler:)) method.
+    ///
+    ///
+    /// Class representing a saved game for the local player, or a version of a saved game when in conflict
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKSavedGame;

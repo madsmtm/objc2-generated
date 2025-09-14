@@ -7,16 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inupcomingmediapredictionmode?language=objc)
+/// Prediction modes for upcoming media intent shortcuts.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INUpcomingMediaPredictionMode(pub NSInteger);
 impl INUpcomingMediaPredictionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupcomingmediapredictionmode/default?language=objc)
+    /// The mode that predicts donated and suggested media intent shortcuts associated with your app.
     #[doc(alias = "INUpcomingMediaPredictionModeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupcomingmediapredictionmode/onlypredictsuggestedintents?language=objc)
+    /// The mode that predicts suggested media intent shortcuts associated with your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this prediction mode when you want Siri to show the user only those media intent shortcuts set in the [`setSuggestedMediaIntents:`](https://developer.apple.com/documentation/intents/inupcomingmediamanager/setsuggestedmediaintents(_:)) method. For instance, a podcast app uses this mode when it wants to only show suggested shortcuts, rather than shortcuts it donated for media the user has already listened to or watched.
+    ///
+    ///
     #[doc(alias = "INUpcomingMediaPredictionModeOnlyPredictSuggestedIntents")]
     pub const OnlyPredictSuggestedIntents: Self = Self(1);
 }
@@ -30,7 +36,13 @@ unsafe impl RefEncode for INUpcomingMediaPredictionMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupcomingmediamanager?language=objc)
+    /// The manager object you use to suggest media to the user.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to provide Siri a list of media intents for content that the user hasn’t listened to or watched, but might be interested in. For example, a podcast app may provide the latest episodes of the podcast, or a video app may provide the most recent episodes of TV shows, or suggest new movies.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INUpcomingMediaManager;

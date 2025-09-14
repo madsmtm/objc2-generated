@@ -8,30 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A string that identifies the error domain.
     /// Indicates a ``WKWebExtensionMatchPattern`` error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/errordomain?language=objc)
     pub static WKWebExtensionMatchPatternErrorDomain: &'static NSErrorDomain;
 }
 
+/// Constants that indicate errors in the [`WKWebExtensionMatchPattern`](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern) domain.
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionMatchPattern`` domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionMatchPatternError(pub NSInteger);
 impl WKWebExtensionMatchPatternError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/unknown?language=objc)
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionMatchPatternErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/invalidscheme?language=objc)
+    /// Indicates that the scheme component was invalid.
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidScheme")]
     pub const InvalidScheme: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/invalidhost?language=objc)
+    /// Indicates that the host component was invalid.
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidHost")]
     pub const InvalidHost: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code/invalidpath?language=objc)
+    /// Indicates that the path component was invalid.
     #[doc(alias = "WKWebExtensionMatchPatternErrorInvalidPath")]
     pub const InvalidPath: Self = Self(4);
 }
@@ -44,25 +42,30 @@ unsafe impl RefEncode for WKWebExtensionMatchPatternError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants used by [`WKWebExtensionMatchPattern`](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern) to indicate matching options.
 /// Constants used by ``WKWebExtensionMatchPattern`` to indicate matching options.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionMatchPatternOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebExtensionMatchPatternOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmatchpatternoptions/wkwebextensionmatchpatternoptionsnone?language=objc)
+/// Indicates no special matching options.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options/ignoreschemes?language=objc)
+/// Indicates that the scheme components should be ignored while matching.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsIgnoreSchemes")]
         const IgnoreSchemes = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options/ignorepaths?language=objc)
+/// Indicates that the host components should be ignored while matching.
         #[doc(alias = "WKWebExtensionMatchPatternOptionsIgnorePaths")]
         const IgnorePaths = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options/matchbidirectionally?language=objc)
+/// Indicates that two patterns should be checked in either direction while matching.
+///
+/// ## Discussion
+///
+/// For example, A matches B, or B matches A. Invalid for matching URLs.
+///
+///
         #[doc(alias = "WKWebExtensionMatchPatternOptionsMatchBidirectionally")]
         const MatchBidirectionally = 1<<2;
     }
@@ -77,14 +80,19 @@ unsafe impl RefEncode for WKWebExtensionMatchPatternOptions {
 }
 
 extern_class!(
+    /// An object that represents a way to specify groups of URLs.
+    ///
+    /// ## Overview
+    ///
+    /// All match patterns are specified as strings. Apart from the special `<all_urls>` pattern, match patterns consist of three parts: scheme, host, and path.
+    ///
+    ///
     /// A ``WKWebExtensionMatchPattern`` object represents a way to specify groups of URLs.
     ///
     /// All match patterns are specified as strings. Apart from the special `
     /// <all
     /// _urls>` pattern, match patterns
     /// consist of three parts: scheme, host, and path.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,12 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-analysis request that finds projected rectangular regions in an image.
+    ///
+    /// ## Overview
+    ///
+    /// A rectangle detection request locates regions of an image with rectangular shape, like credit cards, business cards, documents, and signs. The request returns its observations in the form of [`VNRectangleObservation`](https://developer.apple.com/documentation/vision/vnrectangleobservation) objects, which contain normalized coordinates of bounding boxes containing the rectangle.
+    ///
+    /// Use this type of request to find the bounding boxes of rectangles in an image. Vision returns observations for rectangles found in all orientations and sizes, along with a confidence level to indicate how likely it’s that the observation contains an actual rectangle.
+    ///
+    /// To further configure or restrict the types of rectangles found, set properties on the request specifying a range of aspect ratios, sizes, and quadrature tolerance.
+    ///
+    ///
     /// A request that will detect rectangles in an image.
     ///
     ///
     /// This request will generate VNRectangleObservation objects describing the location of rectangles detected in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectrectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -151,5 +160,5 @@ impl VNDetectRectanglesRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectrectanglesrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the rectangle detection request.
 pub static VNDetectRectanglesRequestRevision1: NSUInteger = 1;

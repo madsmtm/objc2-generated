@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationactionhandler?language=objc)
+    /// A delegate to handle incoming collaboration actions from a collaboration coordinator.
     pub unsafe trait SWCollaborationActionHandler: NSObjectProtocol {
         #[cfg(all(
             feature = "SWAction",

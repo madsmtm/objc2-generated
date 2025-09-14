@@ -38,8 +38,6 @@ extern_class!(
     /// MIDIUMPCIProfile objects may only be registered to a single CI device, and any number
     /// of MIDIUMPCIProfile objects containg the same profile ID may be registered to CI
     /// devices in the MIDI 2.0 subsystem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpciprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

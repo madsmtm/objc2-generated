@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxsetheldcallaction?language=objc)
+    /// An encapsulation of the act of placing a call on hold or removing a call from hold.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXSetHeldCallAction`](https://developer.apple.com/documentation/callkit/cxsetheldcallaction) is a concrete subclass of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction).
+    ///
+    /// When a caller places a call on hold, callers are unable to communicate with one another until the holding caller removes the call from hold. Placing a call on hold doesn’t end the call.
+    ///
+    /// When the user or the system places a call on hold, the provider sends [`provider:performSetHeldCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-947b1) to its delegate. The provider’s delegate calls the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method to indicate that the action was successfully performed.
+    ///
+    ///
     #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

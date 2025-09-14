@@ -8,7 +8,40 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscopyallocator?language=objc)
+/// A block to make a copy of a source texture for filters that can only execute out of place.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - `filter`: A valid pointer to the kernel that is calling the copy allocator.
+///
+/// - `commandBuffer`: A valid command buffer that can be used to obtain the device against which to allocate the new texture. You may also enqueue operations on the command buffer to initialize the texture on an encoder allocated in the block. You may not submit, enqueue, or wait for scheduling/completion of the command buffer.
+///
+/// - `sourceTexture`: The texture that is providing the source image for the filter. You may wish to use its size and pixel format for the next texture, but you are not required to do so.
+///
+/// The copy allocator returns a new valid texture to use as the destination for the kernel operation. If the calling function succeeds, its texture parameter will be overwritten with a pointer to this texture. If the calling function fails, then the texture will be released before the calling function returns.
+///
+/// Allocating a new texture each time is slow (they take up to 1 ms each). You can recycle old textures (or buffers and make texture from them) and reuse the memory inside the copy allocator block.
+///
+/// If there is any metadata associated with the source texture, such as colorspace information, resource label, CPU cache mode, purgeable state, etc., it may need to be similarly associated with the new texture to avoid losing your metadata.
+///
+/// If the kernel’s [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect) property doesn’t cover the entire image, you may need to copy pixels from the source texture to the new texture, or regions of the next texture will be uninitialized. You can make a command encoder to encode work on the command buffer here, if necessary. It will be scheduled to run immediately before the kernel work. You may call any of the [`enqueue`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/enqueue()), [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()), [`waitUntilCompleted`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/waituntilcompleted()), or [`waitUntilScheduled`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/waituntilscheduled()) methods inside the copy allocator block. Make sure to call [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) on the command encoder so that the command buffer has no active encoder before returning.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The next command placed on the command buffer after the copy allocator returns is almost assuredly going to be encoded with a compute command encoder. Creating any other type of encoder in the copy allocator will probably cost an additional 0.5 ms of both CPU _and_ GPU time (or more!) due to a double mode switch penalty.
+///
+///
+///
+/// </div>
+/// The following listing shows a minimal copy allocator implementation.
+///
+/// Listing 1. Minimal MPSCopyAllocator Implementation
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let copyAllocator: MPSCopyAllocator =", "{", "    (kernel: MPSKernel, buffer: MTLCommandBuffer, texture: MTLTexture) -> MTLTexture in", "    ", "    let descriptor = MTLTextureDescriptor.texture2DDescriptor(", "        pixelFormat: texture.pixelFormat,", "        width: texture.width,", "        height: texture.height,", "        mipmapped: false)", "    ", "    return buffer.device.makeTexture(descriptor: descriptor)", "}", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["MPSCopyAllocator myAllocator = ^id <MTLTexture>(MPSKernel * __nonnull filter, __nonnull id <MTLCommandBuffer> cmdBuf, __nonnull id <MTLTexture> sourceTexture)", "{", "    MTLPixelFormat format = sourceTexture.pixelFormat;", "    MTLTextureDescriptor *d = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat: format width: sourceTexture.width height: sourceTexture.height mipmapped: NO];", " ", "    id <MTLTexture> result = [cmdBuf.device newTextureWithDescriptor: d];", " ", "    return result;", "    // d is autoreleased.", "};"], metadata: None }] }] })
+///
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSCopyAllocator = *mut block2::DynBlock<
     dyn Fn(
@@ -19,11 +52,16 @@ pub type MPSCopyAllocator = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    /// A kernel that consumes one texture and produces one texture.
+    ///
+    /// ## Overview
+    ///
+    /// [`MPSUnaryImageKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel) defines shared behavior for most image processing kernels (filters) such as edging modes, clipping, and tiling support for image operations that consumes a single source textures. It is not meant to be used directly, but provides API abstraction and in some cases may allow some level of polymorphic manipulation of image kernel objects.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// A MPSUnaryImageKernel consumes one MTLTexture and produces one MTLTexture.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -375,11 +413,16 @@ impl MPSUnaryImageKernel {
 }
 
 extern_class!(
+    /// A kernel that consumes two textures and produces one texture.
+    ///
+    /// ## Overview
+    ///
+    /// [`MPSBinaryImageKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel) defines shared behavior for most image processing kernels (filters) such as edging modes, clipping, and tiling support for image operations that consume two source textures. It is not meant to be used directly, but provides API abstraction and in some cases may allow some level of polymorphic manipulation of image kernel objects.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// A MPSBinaryImageKernel consumes two MTLTextures and produces one MTLTexture.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A person in the home who may have access to control accessories and services in the home.
     /// This class describes a user in the home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmuser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMUser;

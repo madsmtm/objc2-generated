@@ -7,34 +7,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping?language=objc)
+/// Keys used to configure a media query.
+///
+/// ## Overview
+///
+/// The following code snippet shows how to apply a grouping key:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let everything = MPMediaQuery()", "everything.groupingType = MPMediaGrouping.album", "let collections = [everything]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["MPMediaQuery *everything = [[MPMediaQuery alloc] init];", "[everything setGroupingType: MPMediaGroupingAlbum];", "NSArray *collections = [everything collections];"], metadata: None }] }] })
+/// After running these code lines, the `collections` array contains all the matched media items grouped and sorted according to album name.
+///
+/// To obtain a sorted list of songs, configure a media query with the `MPMediaGroupingTitle` key, or take advantage of the title key being the default for a media query. In either case, each obtained media item is, in effect, its own collection.
+///
+/// Collections sort according to the same rules used by iTunes on the desktop. This includes respecting the primary system language chosen by the user. The system ignores leading articles during sorting, including “A,” “An,” and “The” when using English, or “L’,” “La,” and “Le” when using French. If you need precise control over sorting, implement it in your application.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaGrouping(pub NSInteger);
 impl MPMediaGrouping {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/title?language=objc)
+    /// Groups and sorts media item collections by title. For songs, for example, the title is the song name. This is the default grouping key.
     #[doc(alias = "MPMediaGroupingTitle")]
     pub const Title: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/album?language=objc)
+    /// Groups and sorts media item collections by album, and sorts songs within an album by track order.
     #[doc(alias = "MPMediaGroupingAlbum")]
     pub const Album: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/artist?language=objc)
+    /// Groups and sorts media item collections by performing artist.
     #[doc(alias = "MPMediaGroupingArtist")]
     pub const Artist: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/albumartist?language=objc)
+    /// Groups and sorts media item collections by album artist (the primary performing artist for an album as a whole).
     #[doc(alias = "MPMediaGroupingAlbumArtist")]
     pub const AlbumArtist: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/composer?language=objc)
+    /// Groups and sorts media item collections by composer.
     #[doc(alias = "MPMediaGroupingComposer")]
     pub const Composer: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/genre?language=objc)
+    /// Groups and sorts media item collections by musical or film genre.
     #[doc(alias = "MPMediaGroupingGenre")]
     pub const Genre: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/playlist?language=objc)
+    /// Groups and sorts media item collections by playlist.
     #[doc(alias = "MPMediaGroupingPlaylist")]
     pub const Playlist: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping/podcasttitle?language=objc)
+    /// Groups and sorts media item collections by podcast title.
     #[doc(alias = "MPMediaGroupingPodcastTitle")]
     pub const PodcastTitle: Self = Self(7);
 }
@@ -48,7 +61,20 @@ unsafe impl RefEncode for MPMediaGrouping {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaquery?language=objc)
+    /// A query that specifies a set of media items from the device’s media library using a filter and a grouping type.
+    ///
+    /// ## Overview
+    ///
+    /// Filter and grouping types are both optional; an unqualified query matches the entire library.
+    ///
+    /// A query has at most one grouping type. A query’s filter can consist of any number of media property predicates. You build filters using [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate) objects, based on property keys described in [`MPMediaItem`](https://developer.apple.com/documentation/mediaplayer/mpmediaitem).
+    ///
+    /// After creating and configuring a query, you use it to retrieve media items or media item collections. You can also use a query to retrieve an array of [`MPMediaQuerySection`](https://developer.apple.com/documentation/mediaplayer/mpmediaquerysection) instances, useful for displaying the results of a query in the user interface of your app. See the [`itemSections`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections) and [`collectionSections`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections) properties.
+    ///
+    /// This class includes several convenience constructors that each apply a grouping type and, in most cases, match a subset of the library. The following table summarizes the features of these constructors. See [`MPMediaItem`](https://developer.apple.com/documentation/mediaplayer/mpmediaitem) for descriptions of the entries in the Filter column. See [`MPMediaGrouping`](https://developer.apple.com/documentation/mediaplayer/mpmediagrouping) for descriptions of the entries in the Grouping type column.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Constructor name" }] }], [Paragraph { inline_content: [Text { text: "Matches entire library" }] }], [Paragraph { inline_content: [Text { text: "Filter" }] }], [Paragraph { inline_content: [Text { text: "Grouping type" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/albums()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "-" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/music", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/album", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/artists()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "-" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/music", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/artist", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/audiobooks()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "-" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/audioBook", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/title", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/compilations()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "-" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/any", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " with " }, Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemPropertyIsCompilation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/album", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/composers()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/any", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/composer", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/genres()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/any", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/genre", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/playlists()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/any", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/playlist", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/podcasts()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "-" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/podcast", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/podcastTitle", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/songs()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "-" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaType/music", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaGrouping/title", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaQuery;
@@ -184,7 +210,13 @@ impl MPMediaQuery {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicate?language=objc)
+    /// An abstract class that defines classes for filtering media in a media query.
+    ///
+    /// ## Overview
+    ///
+    /// In media queries, a _predicate_ is a statement of a logical condition that you want to test each media item against. The system returns the media items that satisfy the condition in the query result. Use this class’s concrete subclass, described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate), to define the filter in a media query to retrieve a subset of media items from the library. For more information about media queries, see [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaPredicate;
@@ -219,16 +251,16 @@ impl MPMediaPredicate {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicatecomparison?language=objc)
+/// Logical comparison types for media queries.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaPredicateComparison(pub NSInteger);
 impl MPMediaPredicateComparison {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicatecomparison/equalto?language=objc)
+    /// Matches when a media item’s value for a given property is equal to the value in the media property predicate.
     #[doc(alias = "MPMediaPredicateComparisonEqualTo")]
     pub const EqualTo: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapredicatecomparison/contains?language=objc)
+    /// Matches when a media item’s value for a given property is contained in the value of the media property predicate.
     #[doc(alias = "MPMediaPredicateComparisonContains")]
     pub const Contains: Self = Self(1);
 }
@@ -242,7 +274,15 @@ unsafe impl RefEncode for MPMediaPredicateComparison {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate?language=objc)
+    /// A set of predicates for defining a filter in a media query.
+    ///
+    /// ## Overview
+    ///
+    /// Use one or more `MPMediaPropertyPredicate` objects to define the filter in a media query to retrieve a subset of media items from the Music library. A predicate in this context is a statement of a logical condition that you want to test each media item against. The query retrieves the items that satisfy that condition.
+    ///
+    /// You define Music library queries, and retrieve query results, using the [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery) class. [`MPMediaItem`](https://developer.apple.com/documentation/mediaplayer/mpmediaitem) and [`MPMediaItemCollection`](https://developer.apple.com/documentation/mediaplayer/mpmediaitemcollection) describe the media items and media item collections that you can retrieve with a query.
+    ///
+    ///
     #[unsafe(super(MPMediaPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaPropertyPredicate;

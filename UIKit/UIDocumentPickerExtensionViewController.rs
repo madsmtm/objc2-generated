@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickerextensionviewcontroller?language=objc)
+    /// The principal class for the Document Picker View Controller extension.
+    ///
+    /// ## Overview
+    ///
+    /// The Document Picker View Controller extension can perform _import_ and _export_ operations on its own. If you want to support _open_ and _move_ operations, you must pair it with a File Provider extension.
+    ///
+    /// When creating a Document Picker extension, you must subclass [`UIDocumentPickerExtensionViewController`](https://developer.apple.com/documentation/uikit/uidocumentpickerextensionviewcontroller) to provide the document picker’s user interface. Your subclass presents a list of available documents and destinations to the user. When the user makes a selection, you trigger the file transfer and pass the selected URL back to the host app.
+    ///
+    /// For more information on creating Document Picker extensions, see [Document Provider](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/FileProvider.html#//apple_ref/doc/uid/TP40014214-CH18).
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

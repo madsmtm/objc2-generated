@@ -4,23 +4,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpshuffletype?language=objc)
+/// Indicates which item types to shuffle.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPShuffleType(pub NSInteger);
 impl MPShuffleType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpshuffletype/off?language=objc)
+    /// Nothing is shuffled during playback.
     #[doc(alias = "MPShuffleTypeOff")]
     pub const Off: Self = Self(0);
+    /// Individual items are shuffled during playback.
     /// Nothing is shuffled during playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpshuffletype/items?language=objc)
     #[doc(alias = "MPShuffleTypeItems")]
     pub const Items: Self = Self(1);
+    /// Collections of items are shuffled during playback.
     /// Individual items are shuffled during playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpshuffletype/collections?language=objc)
     #[doc(alias = "MPShuffleTypeCollections")]
     pub const Collections: Self = Self(2);
 }
@@ -33,23 +31,21 @@ unsafe impl RefEncode for MPShuffleType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mprepeattype?language=objc)
+/// Indicates which items to play repeatedly.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPRepeatType(pub NSInteger);
 impl MPRepeatType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mprepeattype/off?language=objc)
+    /// Nothing is repeated during playback.
     #[doc(alias = "MPRepeatTypeOff")]
     pub const Off: Self = Self(0);
+    /// A single item is repeated indefinitely.
     /// Nothing is repeated during playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mprepeattype/one?language=objc)
     #[doc(alias = "MPRepeatTypeOne")]
     pub const One: Self = Self(1);
+    /// The current container or playlist is repeated indefinitely.
     /// Repeat a single item indefinitely.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mprepeattype/all?language=objc)
     #[doc(alias = "MPRepeatTypeAll")]
     pub const All: Self = Self(2);
 }
@@ -62,23 +58,21 @@ unsafe impl RefEncode for MPRepeatType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptionsetting?language=objc)
+/// The states that determine when language option changes take effect.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPChangeLanguageOptionSetting(pub NSInteger);
 impl MPChangeLanguageOptionSetting {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptionsetting/none?language=objc)
+    /// No language option change is to be made.
     #[doc(alias = "MPChangeLanguageOptionSettingNone")]
     pub const None: Self = Self(0);
+    /// The language option change is applied to the now playing item only.
     /// No Language Option Change
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptionsetting/nowplayingitemonly?language=objc)
     #[doc(alias = "MPChangeLanguageOptionSettingNowPlayingItemOnly")]
     pub const NowPlayingItemOnly: Self = Self(1);
+    /// The language option change is applied to all future playback items.
     /// The Language Option change applies only the the now playing item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptionsetting/permanent?language=objc)
     #[doc(alias = "MPChangeLanguageOptionSettingPermanent")]
     pub const Permanent: Self = Self(2);
 }

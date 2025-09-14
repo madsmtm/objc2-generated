@@ -7,11 +7,33 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The element nodes in an XML tree structure.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSXMLElement`](https://developer.apple.com/documentation/foundation/xmlelement) object may have child nodes, specifically comment nodes, processing-instruction nodes, text nodes, and other [`NSXMLElement`](https://developer.apple.com/documentation/foundation/xmlelement) nodes. It may also have attribute nodes and namespace nodes associated with it (however, namespace and attribute nodes are not considered children). Any attempt to add a [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) node, [`NSXMLDTD`](https://developer.apple.com/documentation/foundation/xmldtd) node, namespace node, or attribute node as a child raises an exception. If you add a child node to an [`NSXMLElement`](https://developer.apple.com/documentation/foundation/xmlelement) object and that child already has a parent, [`NSXMLElement`](https://developer.apple.com/documentation/foundation/xmlelement) raises an exception; the child must be detached or copied first.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You can subclass `NSXMLElement` if you want element nodes with more specialized attributes or behavior, for example, paragraph and font attributes that specify how the string value of the element should appear.
+    ///
+    /// #### Methods to Override
+    ///
+    /// To subclass `NSXMLElement` you need to override the primary initializer, [`initWithName:URI:`](https://developer.apple.com/documentation/foundation/xmlelement/init(name:uri:)), and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/addAttribute(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/removeNamespace(forPrefix:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/removeAttribute(forName:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/namespaces", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/attributes", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/namespaces", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/attribute(forLocalName:uri:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/insertChild(_:at:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/attributes", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/removeChild(at:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/addNamespace(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLElement/setChildren(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// `NSXMLElement` implements  [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) to perform a deep comparison: two [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. If you want a different standard of comparison, override `isEqual:`.
+    ///
+    /// #### Special Considerations
+    ///
+    /// Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the class method [`replacementClassForClass:`](https://developer.apple.com/documentation/foundation/xmldocument/replacementclass(for:)) to return your custom class in place of an NSXML class. If your custom class has no direct NSXML counterpart—for example, it is a subclass of `NSXMLNode` that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.
+    ///
+    /// Note that you can safely set the root element of the XML document (using the `NSXMLDocument` [`setRootElement:`](https://developer.apple.com/documentation/foundation/xmldocument/setrootelement(_:))method) to be an instance of your subclass because this method only checks to see if the added node is of an element kind (`NSXMLElementKind`). These precautions do not apply, of course, if you are creating an XML tree programmatically.
+    ///
+    ///
     /// An XML element
     ///
     /// Note: Trying to add a document, namespace, attribute, or node with a parent throws an exception. To add a node with a parent first detach or create a copy of it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlelement?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

@@ -7,6 +7,19 @@ use crate::*;
 
 #[cfg(feature = "SCPreferences")]
 impl SCPreferences {
+    /// Creates a new path component rooted at the specified path in the dictionary hierarchy.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - prefix: The parent path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representing the new (unique) child path, or `NULL` if the specified path does not exist.
+    ///
+    ///
     /// Creates a new path component within the dictionary
     /// hierarchy.
     ///
@@ -16,8 +29,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns a string representing the new (unique) child path; NULL
     /// if the specified path does not exist.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathcreateuniquechild(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathCreateUniqueChild")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -32,6 +43,19 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the dictionary associated with the specified path.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - path: The path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The dictionary associated with the specified path, or `NULL` if the path does not exist.
+    ///
+    ///
     /// Returns the dictionary associated with the specified
     /// path.
     ///
@@ -41,8 +65,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns the dictionary associated with the specified path; NULL
     /// if the path does not exist.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathgetvalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathGetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -57,6 +79,19 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the link associated with the specified path.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - path: The path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The link associated with the specified path, or `NULL` if the path is not a link or does not exist.
+    ///
+    ///
     /// Returns the link (if one exists) associated with the
     /// specified path.
     ///
@@ -66,8 +101,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns the dictionary associated with the specified path; NULL
     /// if the path is not a link or does not exist.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathgetlink(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathGetLink")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -82,6 +115,21 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Associates the specified dictionary with the specified path.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - path: The path.
+    ///
+    /// - value: The dictionary of data to be stored at the path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if successful; otherwise, `FALSE`.
+    ///
+    ///
     /// Associates a dictionary with the specified path.
     ///
     /// Parameter `prefs`: The preferences session.
@@ -97,8 +145,6 @@ impl SCPreferences {
     ///
     /// - `value` generic must be of the correct type.
     /// - `value` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathsetvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathSetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -114,6 +160,21 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Associates a link to a second dictionary at the specified path.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - path: The path.
+    ///
+    /// - link: The link to be stored at the path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if successful; otherwise, `FALSE`.
+    ///
+    ///
     /// Associates a link to a second dictionary at the
     /// specified path.
     ///
@@ -125,8 +186,6 @@ impl SCPreferences {
     /// at the specified path.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathsetlink(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathSetLink")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -144,13 +203,24 @@ impl SCPreferences {
 
     /// Removes the data associated with the specified path.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - path: The path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if successful; otherwise, `FALSE`.
+    ///
+    ///
+    /// Removes the data associated with the specified path.
+    ///
     /// Parameter `prefs`: The preferences session.
     ///
     /// Parameter `path`: A string that represents the path to be returned.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencespathremovevalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesPathRemoveValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]

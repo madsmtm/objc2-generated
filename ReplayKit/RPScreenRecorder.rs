@@ -12,16 +12,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpcameraposition?language=objc)
+/// The position of the camera being accessed.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct RPCameraPosition(pub NSInteger);
 impl RPCameraPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpcameraposition/front?language=objc)
+    /// The front camera is used.
     #[doc(alias = "RPCameraPositionFront")]
     pub const Front: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpcameraposition/back?language=objc)
+    /// The back camera is used.
     #[doc(alias = "RPCameraPositionBack")]
     pub const Back: Self = Self(2);
 }
@@ -35,9 +35,14 @@ unsafe impl RefEncode for RPCameraPosition {
 }
 
 extern_class!(
-    /// Singleton class used to control app recording.
+    /// The shared recorder object that provides the ability to record audio and video of your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpscreenrecorder?language=objc)
+    /// ## Overview
+    ///
+    /// Apps on a user’s device can share the recording function, with each app having its own instance of  `RPScreenRecorder`. Your app can record the audio and video inside of the app, along with user commentary through the microphone. You get a reference to the recorder through the [`sharedRecorder`](https://developer.apple.com/documentation/replaykit/rpscreenrecorder/shared()) function and use it to implement start-and-stop recording functionality. You can present a user interface (view controller) where a user can trim and preview recordings, and share them with other users. Only one app at a time can use the recorder on the user’s device. Your app can’t record video from [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer).
+    ///
+    ///
+    /// Singleton class used to control app recording.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct RPScreenRecorder;
@@ -261,7 +266,13 @@ impl RPScreenRecorder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpscreenrecorderdelegate?language=objc)
+    /// The protocol you implement to receive notifications from the screen recorder.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to respond to changes to the screen recorder, represented by an [`RPScreenRecorder`](https://developer.apple.com/documentation/replaykit/rpscreenrecorder) object.
+    ///
+    ///
     pub unsafe trait RPScreenRecorderDelegate: NSObjectProtocol {
         #[cfg(all(feature = "RPPreviewViewController", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]

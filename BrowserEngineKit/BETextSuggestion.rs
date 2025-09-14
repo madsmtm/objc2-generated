@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextsuggestion?language=objc)
+    /// A text suggestion to insert into a document.
+    ///
+    /// ## Overview
+    ///
+    /// You typically don’t create instances of `BETextSuggestion`. The system supplies them to your browser text view’s [`insertTextSuggestion:`](https://developer.apple.com/documentation/browserenginekit/betextinput/insert(_:)-5iryn) method to suggest text insertions, for example AutoFill suggestions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BETextSuggestion;

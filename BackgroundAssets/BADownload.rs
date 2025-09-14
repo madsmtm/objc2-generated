@@ -6,25 +6,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum?language=objc)
+/// Constants that indicate the state of a download.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BADownloadState(pub NSInteger);
 impl BADownloadState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/failed?language=objc)
+    /// A state that indicates a failed download.
     #[doc(alias = "BADownloadStateFailed")]
     pub const Failed: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/created?language=objc)
+    /// A state that indicates a created download.
     #[doc(alias = "BADownloadStateCreated")]
     pub const Created: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/waiting?language=objc)
+    /// A state that indicates a download is waiting to execute.
     #[doc(alias = "BADownloadStateWaiting")]
     pub const Waiting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/downloading?language=objc)
+    /// A state that indicates a download is in progress.
     #[doc(alias = "BADownloadStateDownloading")]
     pub const Downloading: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum/finished?language=objc)
+    /// A state that indicates a finished download.
     #[doc(alias = "BADownloadStateFinished")]
     pub const Finished: Self = Self(3);
 }
@@ -37,38 +37,52 @@ unsafe impl RefEncode for BADownloadState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type that determines the execution priority of a scheduled asset download.
+///
+/// ## Overview
+///
+/// Use [`BADownloaderPriority`](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct) to assign an app-specific priority to a download or group of downloads. The system processes downloads with a higher priority before those with a lower priority, no matter what order you schedule them in.
+///
+///
 /// A download's priority
 ///
 /// The priority applied to a given download or group of downloads. This is a range from `BADownloaderPriorityMin` to `BADownloaderPriorityMax`.
 /// The priority only applies to how downloads are ordered for your application. Higher priority items will be enqued for download before lower priority items regardless of order in which they are scheduled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type BADownloaderPriority = NSInteger;
 
 extern "C" {
+    /// The lowest execution priority.
     /// A value that represents the lowest priority for a download.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct/min?language=objc)
     pub static BADownloaderPriorityMin: BADownloaderPriority;
 }
 
 extern "C" {
+    /// The default execution priority.
     /// A value that represents average priority for a download.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct/default?language=objc)
     pub static BADownloaderPriorityDefault: BADownloaderPriority;
 }
 
 extern "C" {
+    /// The highest execution priority.
     /// A value that represents the highest priority for a download.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct/max?language=objc)
     pub static BADownloaderPriorityMax: BADownloaderPriority;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload?language=objc)
+    /// An object that represents an in-progress or concluded asset download.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You don’t create instances of this object directly. Instead, use an object that inherits from [`BADownload`](https://developer.apple.com/documentation/backgroundassets/badownload), such as [`BAURLDownload`](https://developer.apple.com/documentation/backgroundassets/baurldownload).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BADownload;

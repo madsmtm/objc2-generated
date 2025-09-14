@@ -9,98 +9,187 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation?language=objc)
+/// Constants that describe compositing operators in terms of source and destination images, each having an opaque and transparent region.
+///
+/// ## Overview
+///
+/// The type of operation, the source image, and the destination image determine the final output.
+///
+/// These compositing operators are defined in and used by [`compositeToPoint:fromRect:operation:`](https://developer.apple.com/documentation/appkit/nsimage/compositetopoint:fromrect:operation:), [`compositeToPoint:operation:`](https://developer.apple.com/documentation/appkit/nsimage/compositetopoint:operation:), [`compositeToPoint:fromRect:operation:fraction:`](https://developer.apple.com/documentation/appkit/nsimage/compositetopoint:fromrect:operation:fraction:), [`compositeToPoint:operation:fraction:`](https://developer.apple.com/documentation/appkit/nsimage/compositetopoint:operation:fraction:), [`drawAtPoint:fromRect:operation:fraction:`](https://developer.apple.com/documentation/appkit/nsimage/draw(at:from:operation:fraction:)), and [`drawInRect:fromRect:operation:fraction:`](https://developer.apple.com/documentation/appkit/nsimage/draw(in:from:operation:fraction:)). They are also used by drawing methods in other classes that take a compositing operator.
+///
+/// The equations after each constant represent the mathematical formulas for calculating the color value of the resulting pixel. The table below lists the meaning of each placeholder value in the equations.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Placeholder" }] }], [Paragraph { inline_content: [Text { text: "Meaning" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "R" }] }], [Paragraph { inline_content: [Text { text: "The premultiplied result color." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "S" }] }], [Paragraph { inline_content: [Text { text: "The source color." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "D" }] }], [Paragraph { inline_content: [Text { text: "The destination color." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Sa" }] }], [Paragraph { inline_content: [Text { text: "The alpha value of the source color." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Da" }] }], [Paragraph { inline_content: [Text { text: "The alpha value of the destination color." }] }]]], alignments: None, metadata: None })
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCompositingOperation(pub NSUInteger);
 impl NSCompositingOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/clear?language=objc)
+    /// Transparency everywhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The formula `R = 0` is applied.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationClear")]
     pub const Clear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/copy?language=objc)
+    /// The source image.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image replaces the pixels of the destination with the formula `R = S`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationCopy")]
     pub const Copy: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourceover?language=objc)
+    /// The source image wherever it is opaque, and the destination image elsewhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S + D*(1-Sa)`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationSourceOver")]
     pub const SourceOver: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourcein?language=objc)
+    /// The source image wherever both images are opaque, and transparent elsewhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S * Da`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationSourceIn")]
     pub const SourceIn: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourceout?language=objc)
+    /// The source image wherever it is opaque and the destination image is transparent, and transparent elsewhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S*(1 - Da)`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationSourceOut")]
     pub const SourceOut: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/sourceatop?language=objc)
+    /// The source image wherever both images are opaque, the destination image wherever it is opaque but the source image is transparent, and transparent elsewhere
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S*Da + D*(1 - Sa)`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationSourceAtop")]
     pub const SourceAtop: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationover?language=objc)
+    /// The destination image wherever it is opaque, and the source image elsewhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S*(1 - Da) + D`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationDestinationOver")]
     pub const DestinationOver: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationin?language=objc)
+    /// The destination image wherever both images are opaque, and transparent elsewhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = D*Sa`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationDestinationIn")]
     pub const DestinationIn: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationout?language=objc)
+    /// The destination image wherever it is opaque and the source image is transparent, and transparent elsewhere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = D*(1 - Sa)`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationDestinationOut")]
     pub const DestinationOut: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/destinationatop?language=objc)
+    /// The destination image wherever both images are opaque, the source image wherever it is opaque and the destination image is transparent, and transparent elsehwere.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S*(1 - Da) + D*Sa`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationDestinationAtop")]
     pub const DestinationAtop: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/xor?language=objc)
+    /// Exclusive OR of the source and destination images.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = S*(1 - Da) + D*(1 - Sa)`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationXOR")]
     pub const XOR: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/plusdarker?language=objc)
+    /// The sum of the source and destination images, with color values approach 0 as a limit.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = MAX(0, (1 - D) + (1 - S))`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationPlusDarker")]
     pub const PlusDarker: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/nscompositingoperationhighlight?language=objc)
+    /// The source image wherever it is opaque, and the destination image elsewhere.
     #[doc(alias = "NSCompositingOperationHighlight")]
     #[deprecated = "Use NSCompositingOperationSourceOver instead"]
     pub const Highlight: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/pluslighter?language=objc)
+    /// The sum of the source and destination images, with color values approach 1 as a limit.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image is applied using the formula `R = MIN(1, S + D)`.
+    ///
+    ///
     #[doc(alias = "NSCompositingOperationPlusLighter")]
     pub const PlusLighter: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/multiply?language=objc)
+    /// The source color is multiplied by the destination color.
     #[doc(alias = "NSCompositingOperationMultiply")]
     pub const Multiply: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/screen?language=objc)
+    /// Multiplies the complement of the destination and source color values, and then complements the result.
     #[doc(alias = "NSCompositingOperationScreen")]
     pub const Screen: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/overlay?language=objc)
+    /// Source colors overlay the destination.
     #[doc(alias = "NSCompositingOperationOverlay")]
     pub const Overlay: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/darken?language=objc)
+    /// Use the darker of the source and destination colors.
     #[doc(alias = "NSCompositingOperationDarken")]
     pub const Darken: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/lighten?language=objc)
+    /// Use the lighter of the source and destination colors.
     #[doc(alias = "NSCompositingOperationLighten")]
     pub const Lighten: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/colordodge?language=objc)
+    /// Brightens the destination to reflect the source.
     #[doc(alias = "NSCompositingOperationColorDodge")]
     pub const ColorDodge: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/colorburn?language=objc)
+    /// Darkens the destination color to reflect the source.
     #[doc(alias = "NSCompositingOperationColorBurn")]
     pub const ColorBurn: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/softlight?language=objc)
+    /// Darkens or lightens colors, with the effect of shining a diffused spotlight on the destination.
     #[doc(alias = "NSCompositingOperationSoftLight")]
     pub const SoftLight: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/hardlight?language=objc)
+    /// Multiplies or screens colors, with the effect of shining a spotlight on the destination.
     #[doc(alias = "NSCompositingOperationHardLight")]
     pub const HardLight: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/difference?language=objc)
+    /// Subtracts the darker value from the lighter value.
     #[doc(alias = "NSCompositingOperationDifference")]
     pub const Difference: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/exclusion?language=objc)
+    /// Subtracts the darker value from the lighter value, except lower in contrast.
     #[doc(alias = "NSCompositingOperationExclusion")]
     pub const Exclusion: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/hue?language=objc)
+    /// Uses the hue of the source and the saturation and luminosity of the destination.
     #[doc(alias = "NSCompositingOperationHue")]
     pub const Hue: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/saturation?language=objc)
+    /// Uses the saturation value of the source and the hue and luminosity of the destination.
     #[doc(alias = "NSCompositingOperationSaturation")]
     pub const Saturation: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/color?language=objc)
+    /// Uses the hue and saturation of the source and the luminosity of the destination.
     #[doc(alias = "NSCompositingOperationColor")]
     pub const Color: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation/luminosity?language=objc)
+    /// Uses the luminosity of the source and the hue and saturation of the destination.
     #[doc(alias = "NSCompositingOperationLuminosity")]
     pub const Luminosity: Self = Self(28);
 }
@@ -113,166 +202,192 @@ unsafe impl RefEncode for NSCompositingOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeclear?language=objc)
+/// Transparent. (`R = 0`)
 #[deprecated]
 pub static NSCompositeClear: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Clear.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecopy?language=objc)
+/// Source image. (`R = S`)
 #[deprecated]
 pub static NSCompositeCopy: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Copy.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceover?language=objc)
+/// Source image wherever source image is opaque, and destination image elsewhere. (`R = S + D*(1 - Sa)`)
 #[deprecated]
 pub static NSCompositeSourceOver: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceOver.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourcein?language=objc)
+/// Source image wherever both images are opaque, and transparent elsewhere. (`R = S*Da`)
 #[deprecated]
 pub static NSCompositeSourceIn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceIn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceout?language=objc)
+/// Source image wherever source image is opaque but destination image is transparent, and transparent elsewhere. (`R = S*(1 - Da)`)
 #[deprecated]
 pub static NSCompositeSourceOut: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceOut.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesourceatop?language=objc)
+/// Source image wherever both images are opaque, destination image wherever destination image is opaque but source image is transparent, and transparent elsewhere. (`R = S*Da + D*(1 - Sa)`)
 #[deprecated]
 pub static NSCompositeSourceAtop: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SourceAtop.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationover?language=objc)
+/// Destination image wherever destination image is opaque, and source image elsewhere. (`R = S*(1 - Da) + D`)
 #[deprecated]
 pub static NSCompositeDestinationOver: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationOver.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationin?language=objc)
+/// Destination image wherever both images are opaque, and transparent elsewhere. (`R = D*Sa`)
 #[deprecated]
 pub static NSCompositeDestinationIn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationIn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationout?language=objc)
+/// Destination image wherever destination image is opaque but source image is transparent, and transparent elsewhere. (`R = D*(1 - Sa)`)
 #[deprecated]
 pub static NSCompositeDestinationOut: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationOut.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedestinationatop?language=objc)
+/// Destination image wherever both images are opaque, source image wherever source image is opaque but destination image is transparent, and transparent elsewhere. (`R = S*(1 - Da) + D*Sa`)
 #[deprecated]
 pub static NSCompositeDestinationAtop: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::DestinationAtop.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositexor?language=objc)
+/// Exclusive OR of source and destination images. (`R = S*(1 - Da) + D*(1 - Sa)`)
+///
+/// ## Discussion
+///
+/// Works only with black and white images and is not recommended for color contexts.
+///
+///
 #[deprecated]
 pub static NSCompositeXOR: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::XOR.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeplusdarker?language=objc)
+/// Sum of source and destination images, with color values approaching 0 as a limit. (`R = MAX(0, (1 - D) + (1 - S))`)
 #[deprecated]
 pub static NSCompositePlusDarker: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::PlusDarker.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehighlight?language=objc)
+/// Source image wherever source image is opaque, and destination image elsewhere.
 #[deprecated]
 pub static NSCompositeHighlight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Highlight.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositepluslighter?language=objc)
+/// Sum of source and destination images, with color values approaching 1 as a limit. (`R = MIN(1, S + D)`)
 #[deprecated]
 pub static NSCompositePlusLighter: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::PlusLighter.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositemultiply?language=objc)
+/// The source color is multiplied by the destination color.
 #[deprecated]
 pub static NSCompositeMultiply: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Multiply.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositescreen?language=objc)
+/// Multiplies the complement of the destination and source color values, and then complements the result.
 #[deprecated]
 pub static NSCompositeScreen: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Screen.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeoverlay?language=objc)
+/// Source colors overlay the destination.
 #[deprecated]
 pub static NSCompositeOverlay: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Overlay.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedarken?language=objc)
+/// Use the darker of the source and destination colors.
 #[deprecated]
 pub static NSCompositeDarken: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Darken.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositelighten?language=objc)
+/// Use the lighter of the source and destination colors.
 #[deprecated]
 pub static NSCompositeLighten: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Lighten.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolordodge?language=objc)
+/// Brightens the destination to reflect the source.
 #[deprecated]
 pub static NSCompositeColorDodge: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::ColorDodge.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolorburn?language=objc)
+/// Darkens the destination color to reflect the source.
 #[deprecated]
 pub static NSCompositeColorBurn: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::ColorBurn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesoftlight?language=objc)
+/// Darkens or lightens colors, with the effect of shining a diffused spotlight on the destination.
 #[deprecated]
 pub static NSCompositeSoftLight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::SoftLight.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehardlight?language=objc)
+/// Multiplies or screens colors, with the effect of shining a spotlight on the destination.
 #[deprecated]
 pub static NSCompositeHardLight: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::HardLight.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositedifference?language=objc)
+/// Subtracts the darker value from the lighter value.
 #[deprecated]
 pub static NSCompositeDifference: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Difference.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeexclusion?language=objc)
+/// Subtracts the darker value from the lighter value, except lower in contrast.
 #[deprecated]
 pub static NSCompositeExclusion: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Exclusion.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositehue?language=objc)
+/// Uses the hue of the source and the saturation and luminosity of the destination.
 #[deprecated]
 pub static NSCompositeHue: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Hue.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositesaturation?language=objc)
+/// Uses the saturation value of the source and the hue and luminosity of the destination.
 #[deprecated]
 pub static NSCompositeSaturation: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Saturation.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositecolor?language=objc)
+/// Uses the hue and saturation of the source and the luminosity of the destination.
 #[deprecated]
 pub static NSCompositeColor: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Color.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositeluminosity?language=objc)
+/// Uses the luminosity of the source and the hue and saturation of the destination.
 #[deprecated]
 pub static NSCompositeLuminosity: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Luminosity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype?language=objc)
+/// Constants that specify how the window device buffers the drawing done in a window.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBackingStoreType(pub NSUInteger);
 impl NSBackingStoreType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype/retained?language=objc)
+    /// The window uses a buffer, but draws directly to the screen where possible and to the buffer for obscured portions.
+    ///
+    /// ## Discussion
+    ///
+    /// You should not use this mode. It combines the limitations of `NSBackingStoreNonretained` with the memory use of `NSBackingStoreBuffered`. The original NeXTSTEP implementation was an interesting compromise that worked well with fast memory mapped framebuffers on the CPU bus—something that hasn’t been in general use since around 1994. These tend to have performance problems.
+    ///
+    /// In macOS 10.5 and later, requests for retained windows will result in the window system creating a buffered window, as that better matches actual use.
+    ///
+    ///
     #[doc(alias = "NSBackingStoreRetained")]
     #[deprecated]
     pub const Retained: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype/nonretained?language=objc)
+    /// The window draws directly to the screen without using any buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// You should not use this mode. It exists primarily for use in the original Classic Blue Box. It does not support Quartz drawing, alpha blending, or opacity. Moreover, it does not support hardware acceleration, and interferes with system-wide display acceleration. If you use this mode, your application must manage visibility region clipping itself, and manage repainting on visibility changes.
+    ///
+    ///
     #[doc(alias = "NSBackingStoreNonretained")]
     #[deprecated]
     pub const Nonretained: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype/buffered?language=objc)
+    /// The window renders all drawing into a display buffer and then flushes it to the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// You should use this mode. It supports hardware acceleration, Quartz drawing, and takes advantage of the GPU when possible. It also supports alpha channel drawing, opacity controls, using the compositor.
+    ///
+    ///
     #[doc(alias = "NSBackingStoreBuffered")]
     pub const Buffered: Self = Self(2);
 }
@@ -285,19 +400,25 @@ unsafe impl RefEncode for NSBackingStoreType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode?language=objc)
+/// Constants that let you specify how a window is ordered relative to another window.
+///
+/// ## Overview
+///
+/// For more information, see [`orderWindow:relativeTo:`](https://developer.apple.com/documentation/appkit/nswindow/order(_:relativeto:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowOrderingMode(pub NSInteger);
 impl NSWindowOrderingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode/above?language=objc)
+    /// Moves the window above the indicated window.
     #[doc(alias = "NSWindowAbove")]
     pub const Above: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode/below?language=objc)
+    /// Moves the window below the indicated window.
     #[doc(alias = "NSWindowBelow")]
     pub const Below: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode/out?language=objc)
+    /// Moves the window off the screen.
     #[doc(alias = "NSWindowOut")]
     pub const Out: Self = Self(0);
 }
@@ -310,19 +431,25 @@ unsafe impl RefEncode for NSWindowOrderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement?language=objc)
+/// Constants that indicate how the system draws the focus ring.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFocusRingPlacement(pub NSUInteger);
 impl NSFocusRingPlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/only?language=objc)
+    /// Draw the focus ring if you don’t have an image or text.
     #[doc(alias = "NSFocusRingOnly")]
     pub const Only: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/below?language=objc)
+    /// Draw the focus ring under text.
     #[doc(alias = "NSFocusRingBelow")]
     pub const Below: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/above?language=objc)
+    /// Draw the focus ring over an image.
+    ///
+    /// ## Discussion
+    ///
+    /// Fill a shape to add the focus ring around the shape.
+    ///
+    ///
     #[doc(alias = "NSFocusRingAbove")]
     pub const Above: Self = Self(2);
 }
@@ -335,19 +462,31 @@ unsafe impl RefEncode for NSFocusRingPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype?language=objc)
+/// Constants that describe the style of the focus ring.
+///
+/// ## Overview
+///
+/// The focus ring type is used by [`NSView`](https://developer.apple.com/documentation/appkit/nsview) and [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) to configure whether and how a control draws its focus ring.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFocusRingType(pub NSUInteger);
 impl NSFocusRingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype/default?language=objc)
+    /// The default focus ring type for a view or cell.
     #[doc(alias = "NSFocusRingTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype/none?language=objc)
+    /// No focus ring.
+    ///
+    /// ## Discussion
+    ///
+    /// If you set the focus ring type to this value, [`NSView`](https://developer.apple.com/documentation/appkit/nsview) and [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) do not draw any focus ring.
+    ///
+    ///
     #[doc(alias = "NSFocusRingTypeNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype/exterior?language=objc)
+    /// The standard Aqua focus ring.
     #[doc(alias = "NSFocusRingTypeExterior")]
     pub const Exterior: Self = Self(2);
 }
@@ -360,25 +499,55 @@ unsafe impl RefEncode for NSFocusRingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent?language=objc)
+/// Constants that specify how Cocoa should handle colors that are not located within the destination color space of a graphics context.
+///
+/// ## Overview
+///
+/// These constants are used by the property [`colorRenderingIntent`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/colorrenderingintent).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorRenderingIntent(pub NSInteger);
 impl NSColorRenderingIntent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/default?language=objc)
+    /// Use the default rendering intent for the graphics context.
     #[doc(alias = "NSColorRenderingIntentDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/absolutecolorimetric?language=objc)
+    /// Map colors outside of the gamut of the output device to the closest possible match inside the gamut of the output device.
+    ///
+    /// ## Discussion
+    ///
+    /// This operation can produce a clipping effect, where two different color values in the gamut of the graphics context are mapped to the same color value in the output device’s gamut. Unlike the relative colorimetric, absolute colorimetric does not modify colors inside the gamut of the output device.
+    ///
+    ///
     #[doc(alias = "NSColorRenderingIntentAbsoluteColorimetric")]
     pub const AbsoluteColorimetric: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/relativecolorimetric?language=objc)
+    /// Map colors outside of the gamut of the output device to the closest possible match inside the gamut of the output device.
+    ///
+    /// ## Discussion
+    ///
+    /// This operation can produce a clipping effect, where two different color values in the gamut of the graphics context are mapped to the same color value in the output device’s gamut. The relative colorimetric shifts all colors (including those within the gamut) to account for the difference between the white point of the graphics context and the white point of the output device.
+    ///
+    ///
     #[doc(alias = "NSColorRenderingIntentRelativeColorimetric")]
     pub const RelativeColorimetric: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/perceptual?language=objc)
+    /// Preserve the visual relationship between colors by compressing the gamut of the graphics context to fit inside the gamut of the output device.
+    ///
+    /// ## Discussion
+    ///
+    /// Perceptual intent is good for photographs and other complex, detailed images.
+    ///
+    ///
     #[doc(alias = "NSColorRenderingIntentPerceptual")]
     pub const Perceptual: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent/saturation?language=objc)
+    /// Preserve the relative saturation value of the colors when converting into the gamut of the output device.
+    ///
+    /// ## Discussion
+    ///
+    /// The result is an image with bright, saturated colors. Saturation intent is good for reproducing images with low detail, such as presentation charts and graphs.
+    ///
+    ///
     #[doc(alias = "NSColorRenderingIntentSaturation")]
     pub const Saturation: Self = Self(4);
 }
@@ -391,75 +560,117 @@ unsafe impl RefEncode for NSColorRenderingIntent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename?language=objc)
+/// Constants that specify color space names.
 // NS_TYPED_ENUM
 pub type NSColorSpaceName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/calibratedwhite?language=objc)
+    /// Calibrated color space with white and alpha components (pure white is 1.0)
     pub static NSCalibratedWhiteColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/calibratedrgb?language=objc)
+    /// Calibrated color space with red, green, blue, and alpha components.
+    ///
+    /// ## Discussion
+    ///
+    /// You can also create a color with HSB (hue, saturation, brightness) and alpha components and can extract these components.
+    ///
+    ///
     pub static NSCalibratedRGBColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/devicewhite?language=objc)
+    /// Device-dependent color space with white and alpha components (pure white is 1.0)
     pub static NSDeviceWhiteColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/devicergb?language=objc)
+    /// Device-dependent color space with red, green, blue, and alpha components.
+    ///
+    /// ## Discussion
+    ///
+    /// You can also create a color with HSB (hue, saturation, brightness) and alpha components and can extract these components.
+    ///
+    ///
     pub static NSDeviceRGBColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/devicecmyk?language=objc)
+    /// Device-dependent color space with cyan, magenta, yellow, black, and alpha components
     pub static NSDeviceCMYKColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/named?language=objc)
+    /// Catalog name and color name components
+    ///
+    /// ## Discussion
+    ///
+    /// The components of this color space are indexes into lists or catalogs of prepared colors. The catalogs of named colors come with lookup tables that are able to generate the correct color on a given device.
+    ///
+    ///
     pub static NSNamedColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/pattern?language=objc)
+    /// Pattern image (tiled)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a pattern color space, which is simply an image that is repeated over and over again in a tiled pattern.
+    ///
+    ///
     pub static NSPatternColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/custom?language=objc)
+    /// Custom `NSColorSpace` object and floating-point components describing a color in that space
+    ///
+    /// ## Discussion
+    ///
+    /// A custom color-space object represents a color space that is not necessarily predefined by the Application Kit. See “[Working With Color Spaces](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DrawColor/Tasks/UsingColorSpaces.html#//apple_ref/doc/uid/TP40001807)” for information on creating custom color-space objects.
+    ///
+    ///
     pub static NSCustomColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedblackcolorspace?language=objc)
+    /// Calibrated color space with black and alpha components (pure black is 1.0)
     #[deprecated]
     pub static NSCalibratedBlackColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceblackcolorspace?language=objc)
+    /// Device-dependent color space with black and alpha components (pure black is 1.0)
     #[deprecated]
     pub static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth?language=objc)
+/// A type that represents the depth, or amount of memory, for a single pixel in a window or screen.
+///
+/// ## Overview
+///
+/// A depth of `0` indicates default depth. Don’t make window depths persistent because they aren’t the same across systems.
+///
+/// Use the functions [`NSColorSpaceFromDepth`](https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename), [`NSBitsPerPixelFromDepth`](https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel), and [`NSPlanarFromDepth`](https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar) to extract info from an `NSWindowDepth` value.
+///
+/// Use [`NSBestDepth`](https://developer.apple.com/documentation/appkit/nsbestdepth) to compute window depths. [`NSBestDepth`](https://developer.apple.com/documentation/appkit/nsbestdepth) tries to accommodate all the parameters (match or better). If there are multiple matches, this function uses color space first, then bits per sample (`bps`), then `planar`, then bits per pixel (`bpp)` to determine the closest match. Use `0` for `bpp` to indicate the default, the same as the number of bits per plane: either `bps` or `bps` * [`NSNumberOfColorComponents`](https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents). You may use other values as hints to provide backing stores of different configurations — for instance, 8-bit color.
+///
+/// You can also use one of the explicit bit depths defined in `Explicit Window Depth Limits` for the `NSWindow` property [`depthLimit`](https://developer.apple.com/documentation/appkit/nswindow/depthlimit).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowDepth(pub i32);
 impl NSWindowDepth {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/twentyfourbitrgb?language=objc)
+    /// Twenty four bit RGB depth limit.
     #[doc(alias = "NSWindowDepthTwentyfourBitRGB")]
     pub const TwentyfourBitRGB: Self = Self(0x208);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/sixtyfourbitrgb?language=objc)
+    /// Sixty four bit RGB depth limit.
     #[doc(alias = "NSWindowDepthSixtyfourBitRGB")]
     pub const SixtyfourBitRGB: Self = Self(0x210);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/onehundredtwentyeightbitrgb?language=objc)
+    /// One hundred and twenty eight bit RGB depth limit.
     #[doc(alias = "NSWindowDepthOnehundredtwentyeightBitRGB")]
     pub const OnehundredtwentyeightBitRGB: Self = Self(0x220);
 }
@@ -472,7 +683,15 @@ unsafe impl RefEncode for NSWindowDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbestdepth?language=objc)
+/// Attempts to return a window depth adequate for the specified parameters.
+///
+/// ## Discussion
+///
+/// Returns a window depth deep enough for the given number of colors in `colorSpace`, bits per sample specified by `bps`, bits per pixel specified by `bpp`, and whether planar as specified by `planar`. Upon return, the variable pointed to by `exactMatch` is [`true`](https://developer.apple.com/documentation/swift/true) if the window depth can accommodate all of the values specified by the parameters, [`false`](https://developer.apple.com/documentation/swift/false) if it can’t.
+///
+/// Use this function to compute window depths. This function tries to accommodate all the parameters (match or better); if there are multiple matches, it gives the closest, with matching `colorSpace` first, then `bps`, then `planar`, then `bpp`. `bpp` is “bits per pixel”; 0 indicates default (same as the number of bits per plane, either `bps` or `bps` * [`numberOfColorComponents`](https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents)); other values may be used as hints to provide backing stores of different configuration; for instance, 8-bit color. The `exactMatch` parameter is optional and indicates whether all the parameters matched exactly.
+///
+///
 ///
 /// # Safety
 ///
@@ -497,7 +716,13 @@ pub unsafe extern "C-unwind" fn NSBestDepth(
     unsafe { NSBestDepth(color_space, bps, bpp, Bool::new(planar), exact_match) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar?language=objc)
+/// Returns whether the specified window depth is planar.
+///
+/// ## Discussion
+///
+/// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the specified window `depth` is planar and [`false`](https://developer.apple.com/documentation/swift/false) if it is not.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
     extern "C-unwind" {
@@ -506,7 +731,13 @@ pub extern "C-unwind" fn NSPlanarFromDepth(depth: NSWindowDepth) -> bool {
     unsafe { NSPlanarFromDepth(depth) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename?language=objc)
+/// Returns the name of the color space corresponding to the passed window depth.
+///
+/// ## Discussion
+///
+/// Returns the color space name for the specified `depth`. For example, the returned color space name can be [`NSCalibratedRGBColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspacename/calibratedrgb), or [`NSDeviceCMYKColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspacename/devicecmyk).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSColorSpaceFromDepth(
     depth: NSWindowDepth,
@@ -518,7 +749,13 @@ pub extern "C-unwind" fn NSColorSpaceFromDepth(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample?language=objc)
+/// Returns the bits per sample for the specified window depth.
+///
+/// ## Discussion
+///
+/// Returns the number of bits per sample (bits per pixel in each color component) for the window depth specified by `depth`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInteger {
     extern "C-unwind" {
@@ -527,7 +764,13 @@ pub extern "C-unwind" fn NSBitsPerSampleFromDepth(depth: NSWindowDepth) -> NSInt
     unsafe { NSBitsPerSampleFromDepth(depth) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel?language=objc)
+/// Returns the bits per pixel for the specified window depth.
+///
+/// ## Discussion
+///
+/// Returns the number of bits per pixel for the window depth specified by `depth`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInteger {
     extern "C-unwind" {
@@ -536,7 +779,13 @@ pub extern "C-unwind" fn NSBitsPerPixelFromDepth(depth: NSWindowDepth) -> NSInte
     unsafe { NSBitsPerPixelFromDepth(depth) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/numberofcolorcomponents?language=objc)
+/// Returns the number of color components in the specified color space.
+///
+/// ## Discussion
+///
+/// Returns the number of color components in the color space whose name is provided by `colorSpaceName`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSNumberOfColorComponents(
     color_space_name: &NSColorSpaceName,
@@ -547,7 +796,13 @@ pub extern "C-unwind" fn NSNumberOfColorComponents(
     unsafe { NSNumberOfColorComponents(color_space_name) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsavailablewindowdepths?language=objc)
+/// Returns the available window depth values.
+///
+/// ## Discussion
+///
+/// Returns a null-terminated array of [`NSWindow.Depth`](https://developer.apple.com/documentation/appkit/nswindow/depth) values that specify which window depths are currently available. Window depth values are converted to specific display properties using the functions [`bitsPerPixel`](https://developer.apple.com/documentation/appkit/nswindow/depth/bitsperpixel), [`bitsPerSample`](https://developer.apple.com/documentation/appkit/nswindow/depth/bitspersample), [`colorSpaceName`](https://developer.apple.com/documentation/appkit/nswindow/depth/colorspacename), and [`isPlanar`](https://developer.apple.com/documentation/appkit/nswindow/depth/isplanar).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
     extern "C-unwind" {
@@ -558,39 +813,36 @@ pub extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswhite?language=objc)
+    /// A constant that specifies the white shade in the 2-bit deep grayscale color space.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSWhite: CGFloat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslightgray?language=objc)
+    /// A constant that specifies the light gray shade in the 2-bit deep grayscale color space.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSLightGray: CGFloat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdarkgray?language=objc)
+    /// A constant that specifies the dark gray shade in the 2-bit deep grayscale color space.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSDarkGray: CGFloat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsblack?language=objc)
+    /// A constant that specifies the black shade in the 2-bit deep grayscale color space.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSBlack: CGFloat;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaygamut?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDisplayGamut(pub NSInteger);
 impl NSDisplayGamut {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaygamut/srgb?language=objc)
     #[doc(alias = "NSDisplayGamutSRGB")]
     pub const SRGB: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaygamut/p3?language=objc)
     #[doc(alias = "NSDisplayGamutP3")]
     pub const P3: Self = Self(2);
 }
@@ -603,41 +855,59 @@ unsafe impl RefEncode for NSDisplayGamut {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey?language=objc)
+/// These constants are the keys for device description dictionaries.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSDeviceDescriptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/resolution?language=objc)
+    /// The corresponding value is an `NSValue` object containing a value of type `NSSize` that describes the window’s raster resolution in dots per inch (dpi).
     pub static NSDeviceResolution: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/colorspacename?language=objc)
+    /// The corresponding value is an `NSString` object giving the name of the window’s color space.
+    ///
+    /// ## Discussion
+    ///
+    /// See Color Space Names in [Constants](https://developer.apple.com/documentation/appkit/constants) for a list of possible values.
+    ///
+    ///
     pub static NSDeviceColorSpaceName: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/bitspersample?language=objc)
+    /// The corresponding value is an `NSNumber` object containing an integer that gives the bit depth of the window’s raster image (2-bit, 8-bit, and so forth).
     pub static NSDeviceBitsPerSample: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/isscreen?language=objc)
+    /// If there is a corresponding value, this indicates that the display device is a screen.
     pub static NSDeviceIsScreen: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/isprinter?language=objc)
+    /// If there is a corresponding value, this indicates that the display device is a printer.
     pub static NSDeviceIsPrinter: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/size?language=objc)
+    /// The corresponding value is an `NSValue` object containing a value of type `NSSize` that gives the size of the window’s frame rectangle.
     pub static NSDeviceSize: &'static NSDeviceDescriptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfill?language=objc)
+/// Fills the passed rectangle with the current color.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw.
+///
+///
+/// ## Discussion
+///
+/// Fills `aRect` with the current color using the compositing mode [`NSCompositingOperation.copy`](https://developer.apple.com/documentation/appkit/nscompositingoperation/copy), which fills with the current color by copying the RGBA values. Use [`NSRectFillUsingOperation`](https://developer.apple.com/documentation/appkit/nsrectfillusingoperation) to fill specifying a compositing mode.
+///
+/// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
     extern "C-unwind" {
@@ -647,7 +917,21 @@ pub extern "C-unwind" fn NSRectFill(rect: NSRect) {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllist?language=objc)
+    /// Fills the rectangles in the passed list with the current fill color.
+    ///
+    /// Parameters:
+    /// - rects: A pointer to an array of [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structures representing the rectangles to fill.
+    ///
+    /// - count: The number of rectangles in `rects`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Fills the specified rectangles with the current fill color using the compositing mode `NSCompositeCopy`.
+    ///
+    /// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -656,7 +940,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistwithgrays?language=objc)
+    /// Fills the rectangles in the passed list with the passed list of grays.
+    ///
+    /// Parameters:
+    /// - rects: A pointer to an array of [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structures representing the rectangles to fill.
+    ///
+    /// - grays: A pointer to an array of floating-point values in the range 0.0 to 1.0, where 0.0 represents absolute black and 1.0 represents absolute white and numbers in between are varying levels of gray. Values outside this range are clamped to 0.0 or 1.0.
+    ///
+    /// - num: The number of rectangles in the `rects` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Takes a list of `num` rectangles and a matching list of gray values. The first rectangle is filled with the first gray, the second rectangle with the second gray, and so on. There must be an equal number of rectangles and gray values. The rectangles are composited using the [`NSCompositeCopy`](https://developer.apple.com/documentation/appkit/nscompositecopy) operator and the order in which the rectangles are filled cannot be guaranteed; therefore, overlapping rectangles may not draw as expected. This function alters the current color of the current graphics state, setting it unpredictably to one of the values passed in `grays`.
+    ///
+    /// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -667,7 +967,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistwithcolors?language=objc)
+    /// Fills the rectangles in the passed list with the passed list of colors.
+    ///
+    /// Parameters:
+    /// - rects: A pointer to an array of [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structures representing the rectangles to fill.
+    ///
+    /// - colors: A pointer to an array of [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) objects. The number of color objects in this parameter must equal the number of rectangles in the `rects` parameter.
+    ///
+    /// - num: The number of rectangles in the `rects` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Takes a list of `num` rectangles and a matching list of color objects. The first rectangle is filled with the first color, the second rectangle with the second color, and so on. There must be an equal number of rectangles and color values. The rectangles are composited using the [`NSCompositeCopy`](https://developer.apple.com/documentation/appkit/nscompositecopy) operator and the order in which the rectangles are filled cannot be guaranteed; therefore, overlapping rectangles may not draw as expected. This function alters the current color of the current graphics state, setting it unpredictably to one of the values passed in `colors`.
+    ///
+    /// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -681,7 +997,19 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfillusingoperation?language=objc)
+/// Fills a rectangle using the current fill color and the specified compositing operation.
+///
+/// Parameters:
+/// - rect: The rectangle to fill with the current fill color.
+///
+/// - op: The compositing operation to use when filling the rectangle.
+///
+///
+/// ## Discussion
+///
+/// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation) {
     extern "C-unwind" {
@@ -691,7 +1019,23 @@ pub extern "C-unwind" fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositin
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistusingoperation?language=objc)
+    /// Fills the rectangles in a list using the current fill color and specified compositing operation.
+    ///
+    /// Parameters:
+    /// - rects: A pointer to an array of [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structures representing the rectangles to fill.
+    ///
+    /// - count: The number of rectangles in the `rects` parameter.
+    ///
+    /// - op: The compositing operation to use when filling the rectangles.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Fills a list of `count` rectangles with the current fill color, using the compositing operation `op`. For example, specifying [`NSCompositeSourceOver`](https://developer.apple.com/documentation/appkit/nscompositesourceover) will blend with what’s already been drawn.
+    ///
+    /// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -704,7 +1048,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectfilllistwithcolorsusingoperation?language=objc)
+    /// Fills the rectangles in a list using the specified colors and compositing operation.
+    ///
+    /// Parameters:
+    /// - rects: A pointer to an array of [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structures representing the rectangles to fill.
+    ///
+    /// - colors: A pointer to an array of [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) objects. The number of color objects in this parameter must equal the number of rectangles in the `rects` parameter.
+    ///
+    /// - num: The number of rectangles in the `rects` parameter.
+    ///
+    /// - op: The compositing operation to use when filling the rectangles.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Takes a list of `num` rectangles and a matching list of color values. The first rectangle is filled with the first color, the second rectangle with the second color, and so on. There must be an equal number of rectangles and color values. Each fill operation is performed using the compositing operation `op`. The rectangles should not overlap; the order in which they are filled cannot be guaranteed. This function alters the current color of the current graphics state, setting it unpredictably to one of the values passed in `colors`.
+    ///
+    /// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -719,7 +1081,21 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsframerect?language=objc)
+/// Draws a bordered rectangle.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw.
+///
+///
+/// ## Discussion
+///
+/// Draws a frame around the inside of `aRect` in the current color and using the `NSCompositeCopy` compositing operation. The width is equal to 1.0 in the current coordinate system. Since the frame is drawn inside the rectangle, it will be visible even if drawing is clipped to the rectangle.
+///
+/// Because this function does not draw directly on the line, but rather inside it, it uses the current fill color (not stroke color) when drawing.
+///
+/// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
     extern "C-unwind" {
@@ -728,7 +1104,23 @@ pub extern "C-unwind" fn NSFrameRect(rect: NSRect) {
     unsafe { NSFrameRect(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsframerectwithwidth?language=objc)
+/// Draws a bordered rectangle.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw.
+///
+/// - frameWidth: The width of the frame, specified in points.
+///
+///
+/// ## Discussion
+///
+/// Draws a frame around the inside of `aRect` in the current color and using the `NSCompositeCopy` compositing operation. The width is equal to `frameWidth` in the current coordinate system. Since the frame is drawn inside the rectangle, it will be visible even if drawing is clipped to the rectangle.
+///
+/// Because this function does not draw directly on the line, but rather inside it, it uses the current fill color (not stroke color) when drawing.
+///
+/// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat) {
@@ -738,7 +1130,25 @@ pub extern "C-unwind" fn NSFrameRectWithWidth(rect: NSRect, frame_width: CGFloat
     unsafe { NSFrameRectWithWidth(rect, frame_width) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsframerectwithwidthusingoperation?language=objc)
+/// Draws a bordered rectangle using the specified compositing operation.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw.
+///
+/// - frameWidth: The width of the frame, specified in points.
+///
+/// - op: The compositing operation to use when drawing the frame.
+///
+///
+/// ## Discussion
+///
+/// Draws a frame around the inside of `aRect` in the current color, using the compositing operation `op`. The width is equal to `frameWidth` in the current coordinate system. Since the frame is drawn inside the rectangle, it will be visible even if drawing is clipped to the rectangle.
+///
+/// Because this function does not draw directly on the line, but rather inside it, it uses the current fill color (not stroke color) when drawing.
+///
+/// For a list of compositing operations and how you use them, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
@@ -756,7 +1166,19 @@ pub extern "C-unwind" fn NSFrameRectWithWidthUsingOperation(
     unsafe { NSFrameRectWithWidthUsingOperation(rect, frame_width, op) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectclip?language=objc)
+/// Modifies the current clipping path by intersecting it with the passed rect.
+///
+/// Parameters:
+/// - rect: The rectangle to intersect with the current clipping rectangle.
+///
+///
+/// ## Discussion
+///
+/// This function modifies the clipping path permanently. If you need to undo this modification later, you should save the current graphics state before calling this function and restore it once you are done.
+///
+/// A side effect of this function is that it clears the current Quartz 2D drawing path information. If you used Quartz 2D functions to create a drawing path in the current context, and you want to save that path information and use it later, you should transfer it to a [`CGPath`](https://developer.apple.com/documentation/coregraphics/cgpath) opaque type before calling this function. If you are using only Cocoa to do your drawing, this behavior should not affect you.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
     extern "C-unwind" {
@@ -766,7 +1188,21 @@ pub extern "C-unwind" fn NSRectClip(rect: NSRect) {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectcliplist?language=objc)
+    /// Modifies the current clipping path by intersecting it with the passed rect.
+    ///
+    /// Parameters:
+    /// - rects: A pointer to an array of [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structures, which are combined and intersected with the current clipping path.
+    ///
+    /// - count: The number of rectangles in `rects`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function modifies the clipping path permanently by generating a graphical union of the specified rectangles and then intersecting that union with the current clipping path. If you need to undo this modification later, you should save the current graphics state before calling this function and restore it once you are done.
+    ///
+    /// A side effect of this function is that it clears the current Quartz 2D drawing path information. If you used Quartz 2D functions to create a drawing path in the current context, and you want to save that path information and use it later, you should transfer it to a [`CGPath`](https://developer.apple.com/documentation/coregraphics/cgpath) opaque type before calling this function. If you are using only Cocoa to do your drawing, this behavior should not affect you.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -775,7 +1211,49 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawtiledrects(_:_:_:_:_:)?language=objc)
+    /// Draws rectangles with borders.
+    ///
+    /// Parameters:
+    /// - boundsRect: The bounding rectangle (in the current coordinate system) in which to draw. Since this function is often used to draw the border of a view, this rectangle will typically be that view’s bounds rectangle. Only those parts of `boundsRect` that lie within the `clipRect` are actually drawn.
+    ///
+    /// - clipRect: The clipping rectangle to use during drawing.
+    ///
+    /// - sides: The sides of the rectangle for which you want to specify custom gray levels. Each side must have a corresponding entry in the `grays` parameter.
+    ///
+    /// - grays: The gray levels to draw for each of the edges listed in the `sides` parameter.
+    ///
+    /// - count: The number of 1.0-unit-wide slices to draw on the specified sides.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rectangle that lies within the resulting border.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic function that can be used to draw different types of borders inside a given rectangle. These borders can be used to outline an area or to give rectangles the effect of being recessed from or elevated above the surface of the screen.
+    ///
+    /// The `sides`, `grays`, and `count` parameters determine how thick the border is and what gray levels are used to form it. This function uses the `NSDivideRect` function to take successive 1.0-unit-wide slices from the sides of the rectangle specified by the `sides` parameter. Each slice is drawn using the corresponding gray level from the `grays` parameter. This function makes and draws these slices `count` number of times. If you specify the same side more than once, the second slice is drawn inside the first.
+    ///
+    /// The following example uses this function to draw a bezeled border consisting of a 1.0–unit-wide white line at the top and on the left side and a 1.0-unit-wide dark-gray line inside a 1.0–unit-wide black line on the other two sides. The resulting rectangle inside this border is then filled in using light gray.
+    ///
+    /// ```objc
+    /// NSRectEdge mySides[] = {NSMinYEdge, NSMaxXEdge, NSMaxYEdge, NSMinXEdge,
+    ///                         NSMinYEdge, NSMaxXEdge};
+    /// float myGrays[] = {NSBlack, NSBlack, NSWhite, NSWhite,
+    ///                         NSDarkGray, NSDarkGray};
+    /// NSRect aRect, clipRect; // Assume exists
+    ///  
+    /// aRect = NSDrawTiledRects(aRect, clipRect, mySides, myGrays, 6);
+    /// [[NSColor grayColor] set];
+    /// NSRectFill(aRect);
+    /// ```
+    ///
+    /// In the preceding example, `mySides` is an array that specifies sides of a rectangle; for example, `NSMinYEdge` selects the side parallel to the x axis with the smallest y coordinate value. `myGrays` is an array that specifies the successive gray levels to be used in drawing parts of the border.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -791,7 +1269,13 @@ extern "C-unwind" {
     ) -> NSRect;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawgraybezel(_:_:)?language=objc)
+/// Draws a gray-filled rectangle with a bezel border.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw. Only those parts of `aRect` that lie within the `clipRect` are actually drawn.
+///
+/// - clipRect: The clipping rectangle to use during drawing.
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -800,7 +1284,13 @@ pub extern "C-unwind" fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawGrayBezel(rect, clip_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawgroove(_:_:)?language=objc)
+/// Draws a gray-filled rectangle with a groove border.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw. Only those parts of `aRect` that lie within the `clipRect` are actually drawn.
+///
+/// - clipRect: The clipping rectangle to use during drawing.
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -809,7 +1299,13 @@ pub extern "C-unwind" fn NSDrawGroove(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawGroove(rect, clip_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawwhitebezel(_:_:)?language=objc)
+/// Draws a white-filled rectangle with a bezel border.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw. Only those parts of `aRect` that lie within the `clipRect` are actually drawn.
+///
+/// - clipRect: The clipping rectangle to use during drawing.
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -818,7 +1314,21 @@ pub extern "C-unwind" fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawWhiteBezel(rect, clip_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawbutton(_:_:)?language=objc)
+/// Draws a gray-filled rectangle representing a user-interface button.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw. Only those parts of `aRect` that lie within the `clipRect` are actually drawn.
+///
+/// - clipRect: The clipping rectangle to use during drawing.
+///
+///
+/// ## Discussion
+///
+/// Draws a gray-filled rectangle, used to signify a user-interface button. Since this function is often used to draw the border of a view, the `aRect` parameter typically contains the view’s bounds rectangle. For an Aqua button, use an [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton) object instead.
+///
+/// This function fills the specified rectangle with light gray. This function is designed for rectangles that are defined in unscaled, unrotated coordinate systems (that is, where the y axis is vertical, the x axis is horizontal, and a unit along either axis is equal to 1 screen pixel). The coordinate system can be either flipped or unflipped. The sides of the rectangle should lie on pixel boundaries.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -827,7 +1337,17 @@ pub extern "C-unwind" fn NSDrawButton(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawButton(rect, clip_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseraserect(_:)?language=objc)
+/// Erases the specified rect by filling it with white.
+///
+/// Parameters:
+/// - rect: The rectangle (in the current coordinate system) defining the area to erase.
+///
+///
+/// ## Discussion
+///
+/// This function fills the specified rectangle with white. It does not alter the current color.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
     extern "C-unwind" {
@@ -836,7 +1356,25 @@ pub extern "C-unwind" fn NSEraseRect(rect: NSRect) {
     unsafe { NSEraseRect(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreadpixel(_:)?language=objc)
+/// Reads the color of the pixel at the specified location.
+///
+/// Parameters:
+/// - passedPoint: The pixel location to read, specified in the current coordinate system.
+///
+///
+/// ## Return Value
+///
+/// The color of the pixel at the specified location.
+///
+///
+///
+/// ## Discussion
+///
+/// Because the `passedPoint` parameter is relative to the current coordinate system, if you wish to read a pixel from a specific view, you must convert points in the view’s coordinate system to the current coordinate system before calling this function. Alternatively, you can lock focus on the view and then specify the pixel coordinate in the view’s coordinate system.
+///
+/// When mapping the specified point to pixel boundaries, this method rounds to the nearest pixel. For more information on how coordinate points map to the underlying pixels, see [Coordinate Systems and Transforms](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204) in [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[cfg(feature = "NSColor")]
 #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
 #[inline]
@@ -848,7 +1386,35 @@ pub extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<N
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawbitmap(_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+/// Draws a bitmap image.
+///
+/// ## Discussion
+///
+/// This function is marginally obsolete. Most applications are better served using the [`NSBitmapImageRep`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep) class to read and display bitmap images.
+///
+/// This function renders an image from a bitmap, binary data that describes the pixel values for the image.
+///
+/// This function renders a bitmap image using an appropriate display operator. It puts the image in the rectangular area specified by its first argument, `rect`; the rectangle is specified in the current coordinate system and is located in the current window. The next two arguments, `pixelsWide` and `pixelsHigh`, give the width and height of the image in pixels. If either of these dimensions is larger or smaller than the corresponding dimension of the destination rectangle, the image will be scaled to fit.
+///
+/// The remaining arguments describe the bitmap data, as explained in the following paragraphs.
+///
+/// The `bitsPerSample` argument is the number of bits per sample for each pixel and `samplesPerPixel` is the number of samples per pixel. `bitsPerPixel` is based on `samplesPerPixel` and the configuration of the bitmap: if the configuration is planar, then the value of `bitsPerPixel` should equal the value of `bitsPerSample`; if the configuration isn’t planar (is meshed instead), `bitsPerPixel` should equal `bitsPerSample * samplesPerPixel`.
+///
+/// The `bytesPerRow` argument is calculated in one of two ways, depending on the configuration of the image data (data configuration is described below). If the data is planar, `bytesPerRow is (7 + (pixelsWide * bitsPerSample)) / 8`. If the data is meshed, `bytesPerRow is (7 + (pixelsWide * bitsPerSample * samplesPerPixel)) / 8`.
+///
+/// A sample is data that describes one component of a pixel. In an RGB color system, the red, green, and blue components of a color are specified as separate samples, as are the cyan, magenta, yellow, and black components in a CMYK system. Color values in a grayscale are a single sample. Alpha values that determine transparency and opaqueness are specified as a coverage sample separate from color. In bitmap images with alpha, the color (or gray) components have to be premultiplied with the alpha. This is the way images with alpha are displayed, this is the way they are read back, and this is the way they are stored in TIFFs.
+///
+/// The `isPlanar` argument refers to the way data is configured in the bitmap. This flag should be set to [`true`](https://developer.apple.com/documentation/swift/true) if a separate data channel is used for each sample. The function provides for up to five channels, `data1`, `data2`, `data3`, `data4`, and `data5`. It should be set [`false`](https://developer.apple.com/documentation/swift/false) if sample values are interwoven in a single channel (meshed); all values for one pixel are specified before values for the next pixel.
+///
+/// Grayscale windows store pixel data in planar configuration; color windows store it in meshed configuration. `NSDrawBitmap` can render meshed data in a planar window, or planar data in a meshed window. However, it’s more efficient if the image has a depth (`bitsPerSample`) and configuration (`isPlanar`) that match the window.
+///
+/// The `hasAlpha` argument indicates whether the image contains alpha. If it does, the number of samples should be 1 greater than the number of color components in the model (for example, 4 for RGB).
+///
+/// The `colorSpace` argument can be [`NSCustomColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspacename/custom), indicating that the image data is to be interpreted according to the current color space in the graphics state. This allows for imaging using custom color spaces. The image parameters supplied as the other arguments should match what the color space is expecting.
+///
+/// If the image data is planar, `data`[0] through `data`[`samplesPerPixel`–1] point to the planes; if the `data` is meshed, only `data`[0] needs to be set.
+///
+///
 ///
 /// # Safety
 ///
@@ -899,7 +1465,17 @@ pub unsafe extern "C-unwind" fn NSDrawBitmap(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshighlightrect?language=objc)
+/// Highlights the specified rect by filling it with white.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw.
+///
+///
+/// ## Discussion
+///
+/// Highlights the rectangle referred to by `aRect`. Light gray becomes white, and white becomes light gray. This function must be called twice, once to highlight the rectangle and once to unhighlight it; the rectangle should not be left in its highlighted state. When not drawing on the screen, the compositing operation is replaced by one that fills the rectangle with light gray.
+///
+///
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
@@ -909,7 +1485,13 @@ pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {
     unsafe { NSHighlightRect(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbeep?language=objc)
+/// Plays the system beep.
+///
+/// ## Discussion
+///
+/// Plays the system beep. Users can select a sound to be played as the system beep. On a Macintosh computer, for example, you can change sounds with the Sound pane of System Preferences.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSBeep() {
     extern "C-unwind" {
@@ -919,7 +1501,19 @@ pub extern "C-unwind" fn NSBeep() {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgetwindowservermemory(_:_:_:_:)?language=objc)
+    /// Returns the amount of memory being used by a context.
+    ///
+    /// ## Discussion
+    ///
+    /// Calculates the amount of memory being used at the moment by the given `context`. If `NULL` is passed for `context`, the current context is used. The amount of virtual memory used by the current context is returned in the int pointed to by `virtualMemory`; the amount of window backing store used by windows owned by the current context is returned in the int pointed to by `windowBackingMemory`. The sum of these two numbers is the amount of the memory that this context is responsible for.
+    ///
+    /// Calculating these numbers takes some time to execute; thus, calling this function in normal operation is not recommended.
+    ///
+    /// If `nil` is not passed in for `windowDumpStream`, the information returned is echoed to the specified stream. This fact can be useful for finding out more about which windows are using up your storage.
+    ///
+    /// Normally, `NSGetWindowServerMemory` returns 0. If `NULL` is passed for `context` and there’s no current display context, this function returns –1.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -936,7 +1530,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawcolortiledrects(_:_:_:_:_:)?language=objc)
+    /// Draws a single-color, bordered rectangle.
+    ///
+    /// Parameters:
+    /// - boundsRect: The bounding rectangle (in the current coordinate system) in which to draw. Since this function is often used to draw the border of a view, this rectangle will typically be that view’s bounds rectangle. Only those parts of `boundsRect` that lie within the `clipRect` are actually drawn.
+    ///
+    /// - clipRect: The clipping rectangle to use during drawing.
+    ///
+    /// - sides: The sides of the rectangle for which you want to specify custom colors. Each side must have a corresponding entry in the `colors` parameter.
+    ///
+    /// - colors: The colors to draw for each of the edges listed in the `sides` parameter.
+    ///
+    /// - count: The number of 1.0-unit-wide slices to draw on the specified sides.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rectangle that lies within the resulting border.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Behaves the same as [`NSDrawTiledRects`](https://developer.apple.com/documentation/appkit/nsdrawtiledrects(_:_:_:_:_:)) except it draws its border using colors from the `colors` array.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -952,7 +1570,13 @@ extern "C-unwind" {
     ) -> NSRect;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawdarkbezel(_:_:)?language=objc)
+/// Draws a dark gray-filled rectangle with a bezel border.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw. Only those parts of `aRect` that lie within the `clipRect` are actually drawn.
+///
+/// - clipRect: The clipping rectangle to use during drawing.
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -961,7 +1585,13 @@ pub extern "C-unwind" fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawDarkBezel(rect, clip_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawlightbezel(_:_:)?language=objc)
+/// Draws a white-filled rectangle with a bezel border.
+///
+/// Parameters:
+/// - rect: The bounding rectangle (in the current coordinate system) in which to draw. Only those parts of `aRect` that lie within the `clipRect` are actually drawn.
+///
+/// - clipRect: The clipping rectangle to use during drawing.
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
     extern "C-unwind" {
@@ -970,7 +1600,13 @@ pub extern "C-unwind" fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect) {
     unsafe { NSDrawLightBezel(rect, clip_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdottedframerect(_:)?language=objc)
+/// Draws a bordered rectangle.
+///
+/// ## Discussion
+///
+/// Deprecated. Use a dashed [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath) instead.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
     extern "C-unwind" {
@@ -979,7 +1615,11 @@ pub extern "C-unwind" fn NSDottedFrameRect(rect: NSRect) {
     unsafe { NSDottedFrameRect(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawwindowbackground(_:)?language=objc)
+/// Draws the window’s default background pattern into the specified rectangle of the currently focused view.
+///
+/// Parameters:
+/// - rect: The rectangle (in the current coordinate system) in which to draw the window’s background pattern.
+///
 #[inline]
 pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
     extern "C-unwind" {
@@ -988,7 +1628,19 @@ pub extern "C-unwind" fn NSDrawWindowBackground(rect: NSRect) {
     unsafe { NSDrawWindowBackground(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement/set()?language=objc)
+/// Specifies how the system draws the focus ring.
+///
+/// Parameters:
+/// - placement: Specifies how you want the focus ring to be drawn.
+///
+///
+/// ## Discussion
+///
+/// Use [`NSFocusRingAbove`](https://developer.apple.com/documentation/appkit/nsfocusringplacement/above) to draw the focus ring over an image, use [`NSFocusRingBelow`](https://developer.apple.com/documentation/appkit/nsfocusringplacement/below) to draw the focus ring under text, and use [`NSFocusRingOnly`](https://developer.apple.com/documentation/appkit/nsfocusringplacement/only) if you don’t have an image or text. For the [`NSFocusRingOnly`](https://developer.apple.com/documentation/appkit/nsfocusringplacement/only) case, fills a shape to add the focus ring around the shape.
+///
+/// Note that the focus ring may actually be drawn outside the view but will be clipped to any clipping superview or the window content view.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
     extern "C-unwind" {
@@ -997,7 +1649,13 @@ pub extern "C-unwind" fn NSSetFocusRingStyle(placement: NSFocusRingPlacement) {
     unsafe { NSSetFocusRingStyle(placement) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisablescreenupdates()?language=objc)
+/// Disables screen updates.
+///
+/// ## Discussion
+///
+/// Prevents drawing operations from being flushed to the screen for all windows belonging to the calling process. When you re-enable screen updates (with [`NSEnableScreenUpdates`](https://developer.apple.com/documentation/appkit/nsenablescreenupdates())) screen flushing for all windows belonging to the calling process appears to be simultaneous. You typically call this function so that operations on multiple windows appear atomic to the user. This is a technique particularly useful for synchronizing parent and child windows. Make sure that the period after calling this function and before reenabling updates is short; the system only allow updating to be disabled for a limited time (currently one second) before automatically reenabling updates. Successive calls to this function are placed on a stack and must be popped off that stack by matching [`NSEnableScreenUpdates`](https://developer.apple.com/documentation/appkit/nsenablescreenupdates()) calls.
+///
+///
 #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSDisableScreenUpdates."]
 #[inline]
 pub extern "C-unwind" fn NSDisableScreenUpdates() {
@@ -1007,7 +1665,13 @@ pub extern "C-unwind" fn NSDisableScreenUpdates() {
     unsafe { NSDisableScreenUpdates() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsenablescreenupdates()?language=objc)
+/// Enables screen updates.
+///
+/// ## Discussion
+///
+/// Reenables, for all windows of a process, the flushing of drawing operations to the screen that was previously disabled by [`NSDisableScreenUpdates`](https://developer.apple.com/documentation/appkit/nsdisablescreenupdates()). Successive calls to [`NSDisableScreenUpdates`](https://developer.apple.com/documentation/appkit/nsdisablescreenupdates()) are placed on a stack and must be popped off that stack by matching calls to this function.
+///
+///
 #[deprecated = "As of 10.11 it is not generally necessary to take explicit action to achieve visual atomicity. +[NSAnimationContext runAnimationGroup:] and other similar methods can be used when a stronger than normal need for visual atomicity is required. The NSAnimationContext methods do not suffer from the same performance problems as NSEnableScreenUpdates."]
 #[inline]
 pub extern "C-unwind" fn NSEnableScreenUpdates() {
@@ -1017,17 +1681,23 @@ pub extern "C-unwind" fn NSEnableScreenUpdates() {
     unsafe { NSEnableScreenUpdates() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect?language=objc)
+/// The type for standard system animation effects, which include both display and sound.
+///
+/// ## Overview
+///
+/// These effects are used to indicate that an item was removed from a collection, such as a toolbar, without deleting the underlying data. See [`NSShowAnimationEffect`](https://developer.apple.com/documentation/appkit/nsshowanimationeffect).
+///
+///
 // NS_ENUM
 #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationEffect(pub NSUInteger);
 impl NSAnimationEffect {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect/disappearingitemdefault?language=objc)
+    /// The default effect.
     #[doc(alias = "NSAnimationEffectDisappearingItemDefault")]
     pub const DisappearingItemDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationeffect/poof?language=objc)
+    /// An effect showing a puff of smoke.
     #[doc(alias = "NSAnimationEffectPoof")]
     pub const Poof: Self = Self(10);
 }
@@ -1041,7 +1711,31 @@ unsafe impl RefEncode for NSAnimationEffect {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowanimationeffect?language=objc)
+    /// Runs a system animation effect.
+    ///
+    /// Parameters:
+    /// - animationEffect: The type of animation you want to apply.
+    ///
+    /// - centerLocation: The location at which to show the animated image, specified in screen coordinates. The animation is centered on the point you specify.
+    ///
+    /// - size: The desired size of the animated image. Specify [`NSZeroSize`](https://developer.apple.com/documentation/foundation/nszerosize) to perform the animation at the default size.
+    ///
+    /// - animationDelegate: The object to notify when the animation completes. Specify `nil` if you do not need to be notified when the animation completes.
+    ///
+    /// - didEndSelector: The selector of `animationDelegate` to call when the animation completes. Specify `nil` if you do not need to be notified when the animation completes. If you specify a selector, the corresponding method should have the following signature:
+    ///
+    /// ```objc
+    ///     - (void)animationEffectDidEnd:(void *)contextInfo;
+    /// ```
+    ///
+    /// - contextInfo: A pointer to any optional information you want passed as a parameter to the selector in the `didEndSelector` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function runs one of the standard system animation effects, which includes display and sound. For example, you can use this function to display the puff of smoke effect. For a complete list of animation effects, see [`NSAnimationEffect`](https://developer.apple.com/documentation/appkit/nsanimationeffect).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1060,7 +1754,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscountwindows?language=objc)
+    /// Counts the number of onscreen windows.
+    ///
+    /// Parameters:
+    /// - count: On output, this parameter contains the number of onscreen windows.
+    ///
     ///
     /// # Safety
     ///
@@ -1070,7 +1768,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlist?language=objc)
+    /// Gets information about onscreen windows.
+    ///
+    /// ## Discussion
+    ///
+    /// Provides an ordered list of all onscreen windows. It fills `list` with up to `size` window numbers; the order of windows in the array is the same as their order in the window server’s screen list (their front-to-back order on the screen). Use the count obtained by [`NSCountWindows`](https://developer.apple.com/documentation/appkit/nscountwindows) to specify the size of the array for this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1080,7 +1784,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscountwindowsforcontext?language=objc)
+    /// Counts the number of onscreen windows belonging to a particular application.
+    ///
+    /// ## Discussion
+    ///
+    /// Counts the number of onscreen windows belonging to a particular application, identified by `context`, which is a window server connection ID. The function returns the number by reference in `count`.
+    ///
+    /// Use of this function is discouraged as it may be deprecated in a future release.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1090,7 +1802,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlistforcontext?language=objc)
+    /// Gets information about an application’s onscreen windows.
+    ///
+    /// ## Discussion
+    ///
+    /// Provides an ordered list of onscreen windows for a particular application, identified by `context`, which is a window server connection ID. It fills `list` with up to `size` window numbers; the order of windows in the array is the same as their order in the window server’s screen list (their front-to-back order on the screen). Use the count obtained by the [`NSCountWindowsForContext`](https://developer.apple.com/documentation/appkit/nscountwindowsforcontext) function to specify the size of the array for this function.
+    ///
+    /// Use of this function is discouraged as it may be deprecated in a future release.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1099,7 +1819,13 @@ extern "C-unwind" {
     pub fn NSWindowListForContext(context: NSInteger, size: NSInteger, list: NonNull<NSInteger>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscopybits(_:_:_:)?language=objc)
+/// Copies a bitmap image to the location specified by a destination point.
+///
+/// ## Discussion
+///
+/// Copies the pixels in the rectangle specified by `srcRect` to the location specified by `destPoint`. The source rectangle is defined in the graphics state designated by `srcGState`. If `srcGState` is `NSNullObject`, the current graphics state is assumed. The `destPoint` destination is defined in the current graphics state.
+///
+///
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint) {

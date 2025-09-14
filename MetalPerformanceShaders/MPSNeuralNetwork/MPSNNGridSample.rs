@@ -9,7 +9,6 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngridsample?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

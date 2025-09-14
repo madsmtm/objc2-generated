@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// An object subclass representing common lens specification
+    /// An abstract superclass for lens specifications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hklensspecification?language=objc)
+    /// ## Overview
+    ///
+    /// Don’t instantiate this class directly. Instead, use one of its concrete subclasses: [`HKGlassesLensSpecification`](https://developer.apple.com/documentation/healthkit/hkglasseslensspecification) or [`HKContactsLensSpecification`](https://developer.apple.com/documentation/healthkit/hkcontactslensspecification).
+    ///
+    ///
+    /// An object subclass representing common lens specification
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKLensSpecification;

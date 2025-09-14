@@ -6,52 +6,114 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartCallIntentResponseCode(pub NSInteger);
 impl INStartCallIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
     #[doc(alias = "INStartCallIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/continueinapp?language=objc)
+    /// A response code that indicates your app extension is ready to transfer control to the app to start the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Returning this code during the confirm phase causes Siri to display an error button labeled “Continue in `<appName>`”.
+    ///
+    /// Upon returning this code during the handle phase, Siri launches your app and passes it the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object you provided at initialization. (If you didn’t provide a user activity object, Siri creates one for you). Siri adds an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to start the call.
+    ///
+    /// Return this code after successfully handling the start call intent instead of using [`INStartCallIntentResponseCodeReady`](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/ready).
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/userconfirmationrequired?language=objc)
+    /// A response code that indicates the user must confirm the call information before starting the call.
+    ///
+    /// ## Discussion
+    ///
+    /// This code is valid only when confirming the start call intent.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeUserConfirmationRequired")]
     pub const UserConfirmationRequired: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevent your app from starting the user’s call. For example, use this code if the user’s call requires accessing the network and the network is unavailable.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to start a call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurecallingservicenotavailable?language=objc)
+    /// A response code that indicates your app’s calling service isn’t currently available.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your calling service is temporarily unavailable for any reason.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailureCallingServiceNotAvailable")]
     pub const FailureCallingServiceNotAvailable: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurecontactnotsupportedbyapp?language=objc)
+    /// A response code that indicates the app doesn’t support the specified contact.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the sender or recipient can’t take part in a call.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailureContactNotSupportedByApp")]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failureairplanemodeenabled?language=objc)
+    /// A response code that indicates the call can’t start due to the user’s device being in airplane mode.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the call can’t start due to the device being in airplane mode.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailureAirplaneModeEnabled")]
     pub const FailureAirplaneModeEnabled: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failureunabletohandoff?language=objc)
+    /// A response code that indicates the app can’t hand off the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app can’t hand off the call.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailureUnableToHandOff")]
     pub const FailureUnableToHandOff: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// A response code that indicates the user must perform additional configuration steps before creating a call is possible.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your app isn’t configured to handle the start call request. For example, return this code if the user hasn’t yet set up a calling account. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartCallIntentResponseCodeFailureAppConfigurationRequired")]
     pub const FailureAppConfigurationRequired: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurecallinprogress?language=objc)
+    /// A response code that indicates the current call failed.
     #[doc(alias = "INStartCallIntentResponseCodeFailureCallInProgress")]
     pub const FailureCallInProgress: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/instartcallintentresponsecodefailurecallringing?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureCallRinging")]
     pub const FailureCallRinging: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INStartCallIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(13);
 }
@@ -65,7 +127,15 @@ unsafe impl RefEncode for INStartCallIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentresponse?language=objc)
+    /// Your app’s response to a start call intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INStartCallIntentResponse`](https://developer.apple.com/documentation/intents/instartcallintentresponse) object to specify whether your app is able to initiate an audio or video call. You create instances of this class when confirming and handling an [`INStartCallIntent`](https://developer.apple.com/documentation/intents/instartcallintent) object. When it’s time to call the user, SiriKit launches your app and delivers the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object contained in this object. Use that user activity object to specify any additional information that assists your app in placing the call.
+    ///
+    /// You create an [`INStartCallIntentResponse`](https://developer.apple.com/documentation/intents/instartcallintentresponse) object in the [`confirmStartCall:completion:`](https://developer.apple.com/documentation/intents/instartcallintenthandling/confirm(intent:completion:)) and [`handleStartCall:completion:`](https://developer.apple.com/documentation/intents/instartcallintenthandling/handle(intent:completion:)) methods of your start call handler object. For more information about implementing your handler object, see [`INStartCallIntentHandling`](https://developer.apple.com/documentation/intents/instartcallintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

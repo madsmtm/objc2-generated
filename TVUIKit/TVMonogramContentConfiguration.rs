@@ -13,7 +13,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmonogramcontentconfiguration-c.class?language=objc)
+    /// A content configuration for a monogram view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -121,7 +121,32 @@ impl TVMonogramContentConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmonogramcontentview?language=objc)
+    /// A view that contains a circular image of a person or the person’s initials.
+    ///
+    /// ## Overview
+    ///
+    /// The system provides a generic placeholder image if [`image`](https://developer.apple.com/documentation/tvuikit/tvmonogramcontentconfiguration-c.class/image) is `nil`. If [`personNameComponents`](https://developer.apple.com/documentation/tvuikit/tvmonogramcontentconfiguration-c.class/personnamecomponents) isn’t `nil`, the system creates a localized monogram image using the first initials from the name components.
+    ///
+    ///
+    /// ![A darkened image with a highlighted box along the left side. The box contains a round image with an actor’s initials inside of it.](https://docs-assets.developer.apple.com/published/64d07085129af0f3a469bc3bfb9d2ae7/media-3801438%402x.png)
+    ///
+    ///
+    /// The following code illustrates how to update the configuration for a monogram:
+    ///
+    /// ```swift
+    /// override func updateConfiguration(using state: UICellConfigurationState) {
+    ///     var configuration = TVMonogramContentConfiguration().updatedConfiguration(for: state)
+    ///
+    ///     configuration.image = avatarImage
+    ///     configuration.text = "Anne Johnson"
+    ///     configuration.secondaryText = "Actor"
+    ///     configuration.personNameComponents = nameComponents
+    ///
+    ///     self.contentConfiguration = configuration
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVMonogramContentView;
@@ -237,7 +262,7 @@ impl TVMonogramContentView {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmonogramcontenttextproperties?language=objc)
+    /// Properties that affect the monogram content configuration’s text.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVMonogramContentTextProperties;

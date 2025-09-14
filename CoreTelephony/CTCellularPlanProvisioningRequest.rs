@@ -7,22 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult?language=objc)
+/// The result from attempting to provision an eSIM.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularPlanProvisioningAddPlanResult(pub NSUInteger);
 impl CTCellularPlanProvisioningAddPlanResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/unknown?language=objc)
+    /// The result of the requested eSIM provisioning is unknown.
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/fail?language=objc)
+    /// The requested eSIM provisioning failed.
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultFail")]
     pub const Fail: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/success?language=objc)
+    /// The requested eSIM provisioning succeeded.
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultSuccess")]
     pub const Success: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningaddplanresult/cancel?language=objc)
     #[doc(alias = "CTCellularPlanProvisioningAddPlanResultCancel")]
     pub const Cancel: Self = Self(3);
 }
@@ -36,7 +35,15 @@ unsafe impl RefEncode for CTCellularPlanProvisioningAddPlanResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest?language=objc)
+    /// A request specifying an eSIM to download and install.
+    ///
+    /// ## Overview
+    ///
+    /// You must set the [`address`](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/address) property for the request to be valid. All other properties are optional.
+    ///
+    /// This class is only available to carrier apps with suitable entitlements.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTCellularPlanProvisioningRequest;

@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclipview?language=objc)
+    /// An object that clips a document view to a scroll view’s frame.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) holds the document view of an [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview), clipping the document view to its frame, handling the details of scrolling in an efficient manner, and updating the [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) when the document view’s size or position changes.
+    ///
+    /// You don’t typically use the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) class directly; it’s provided primarily as the scrolling machinery for the [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) class. However, you might use the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) class to implement a class similar to [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview).
+    ///
+    /// ### Interaction with NSScrollView
+    ///
+    /// When using an [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) within an [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) (the usual configuration), you should access the [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) properties that control background drawing state, rather than accessing these properties of the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview). This recommendation applies to the following properties:
+    ///
+    /// - [`backgroundColor`](https://developer.apple.com/documentation/appkit/nsclipview/backgroundcolor)
+    ///
+    /// - [`drawsBackground`](https://developer.apple.com/documentation/appkit/nsclipview/drawsbackground)
+    ///
+    /// The [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) methods are intended for when the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) is used independently of a containing [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview). In the usual case, [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) should be allowed to manage the background-drawing properties of its associated [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview).
+    ///
+    /// There is only one background-drawing state per [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview)/[`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) pair. The two objects do not maintain independent and distinct [`drawsBackground`](https://developer.apple.com/documentation/appkit/nsclipview/drawsbackground) and [`backgroundColor`](https://developer.apple.com/documentation/appkit/nsclipview/backgroundcolor) properties; rather, the accessors for these properties on [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) largely defer to the associated [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) and allow the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) to maintain the state. Note that this state is not cached by the [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) object.
+    ///
+    /// It is also important to note that setting [`drawsBackground`](https://developer.apple.com/documentation/appkit/nsclipview/drawsbackground) to [`false`](https://developer.apple.com/documentation/swift/false) in an [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) has the added effect of setting the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) property [`copiesOnScroll`](https://developer.apple.com/documentation/appkit/nsclipview/copiesonscroll) to [`false`](https://developer.apple.com/documentation/swift/false). The side effect of setting the [`drawsBackground`](https://developer.apple.com/documentation/appkit/nsclipview/drawsbackground) property directly to the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) is the appearance of “trails” (vestiges of previous drawing) in the document view as it is scrolled.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

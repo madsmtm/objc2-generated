@@ -14,34 +14,136 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation?language=objc)
+/// Constants that specify the intended display orientation for an image.
+///
+/// ## Overview
+///
+/// Orientation values are commonly found in image metadata, and specifying image orientation correctly can be important both for displaying the image and for certain kinds of image processing.
+///
+/// The [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) class automatically handles the transform necessary to present an image in the correct display orientation according to its orientation metadata, so an image object’s [`imageOrientation`](https://developer.apple.com/documentation/uikit/uiimage/imageorientation) property simply indicates which transform was applied.
+///
+/// For example, an iOS device camera always encodes pixel data in the camera sensor’s native landscape orientation, along with metadata indicating the camera orientation. When UIImage loads a photo shot in portrait orientation, it automatically applies a 90° rotation before displaying the image data, and the image’s [`imageOrientation`](https://developer.apple.com/documentation/uikit/uiimage/imageorientation) value of [`UIImageOrientationRight`](https://developer.apple.com/documentation/uikit/uiimage/orientation/right) indicates that this rotation has been applied.
+///
+///
+/// ![UIImage rotates an image with right orientation for correct display](https://docs-assets.developer.apple.com/published/a4de8a358cbf9a76800cc595fceb8892/media-2948302%402x.png)
+///
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Some frameworks describe image orientation using the [`CGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation) type (or the raw TIFF/Exif numeric values that type defines symbols for). However, the underlying numeric values of that type are incompatible with [`UIImageOrientation`](https://developer.apple.com/documentation/uikit/uiimage/orientation). For conversion help, see the [`CGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/cgimagepropertyorientation) overview.
+///
+///
+///
+/// </div>
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageOrientation(pub NSInteger);
 impl UIImageOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/up?language=objc)
+    /// The original pixel data matches the image’s intended display orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears correctly “right side up”. That is, this orientation is an identity value.
+    ///
+    ///
+    /// ![An image in up orientation can be presented for display without rotating or flipping.](https://docs-assets.developer.apple.com/published/08b6857053beb92301df7ceb36ab8175/media-2948308%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationUp")]
     pub const Up: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/down?language=objc)
+    /// The image has been rotated 180° from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears rotated 180°.
+    ///
+    ///
+    /// ![To correct an image with down orientation for display, rotate it 180°.](https://docs-assets.developer.apple.com/published/1530f2c9454d2a3fb9e99de9bee4fe01/media-2948301%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationDown")]
     pub const Down: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/left?language=objc)
+    /// The image has been rotated 90° counterclockwise from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be rotated 90° clockwise. (That is, to present the image in its intended orientation, you must rotate 90° counter-clockwise.)
+    ///
+    ///
+    /// ![To correct an image with left orientation for display, rotate it 90° counterclockwise.](https://docs-assets.developer.apple.com/published/a33bb23b55f1eb490a0abf2b86b81f66/media-2948305%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationLeft")]
     pub const Left: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/right?language=objc)
+    /// The image has been rotated 90° clockwise from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be rotated 90° counter-clockwise. (That is, to present the image in its intended orientation, you must rotate it 90° clockwise.)
+    ///
+    ///
+    /// ![To correct an image with right orientation for display, rotate it 90° clockwise.](https://docs-assets.developer.apple.com/published/a4de8a358cbf9a76800cc595fceb8892/media-2948303%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationRight")]
     pub const Right: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/upmirrored?language=objc)
+    /// The image has been horizontally flipped from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears horizontally mirrored.
+    ///
+    ///
+    /// ![To correct an image with upMirrored orientation for display, flip it horizontally.](https://docs-assets.developer.apple.com/published/3b93501e18e409bc3d6f779ae1e59673/media-2948304%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationUpMirrored")]
     pub const UpMirrored: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/downmirrored?language=objc)
+    /// The image has been vertically flipped from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears vertically flipped. (Alternatively, the image is rotated 180° and then flipped horizontally.)
+    ///
+    ///
+    /// ![To correct an image with downMirrored orientation for display, flip it vertically.](https://docs-assets.developer.apple.com/published/8170a1cc20c32b7a29544fc6e92a7f74/media-2948309%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationDownMirrored")]
     pub const DownMirrored: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/leftmirrored?language=objc)
+    /// The image has been rotated 90° clockwise and flipped horizontally from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be horizontally mirrored, then rotated 90° counter-clockwise. (That is, to present the image in its intended orientation, you can rotate it 90° clockwise, then flip horizontally.)
+    ///
+    ///
+    /// ![To correct an image with leftMirrored orientation for display, rotate it 90° clockwise then flip it horizontally.](https://docs-assets.developer.apple.com/published/ed7462784881f7d23e39b968a2ecefff/media-2948307%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationLeftMirrored")]
     pub const LeftMirrored: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/orientation/rightmirrored?language=objc)
+    /// The image has been rotated 90° counterclockwise and flipped horizontally from the orientation of its original pixel data.
+    ///
+    /// ## Discussion
+    ///
+    /// If an image is encoded with this orientation, then displayed by software unaware of orientation metadata, the image appears to be horizontally mirrored, then rotated 90° clockwise. (That is, to present the image in its intended orientation, you can rotate  90° counter-clockwise, then flip horizontally.)
+    ///
+    ///
+    /// ![To correct an image with rightMirrored orientation for display, rotate it 90° counterclockwise then flip it horizontally.](https://docs-assets.developer.apple.com/published/6427cc1184994ac80c5119002426bac6/media-2948306%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIImageOrientationRightMirrored")]
     pub const RightMirrored: Self = Self(7);
 }
@@ -54,7 +156,7 @@ unsafe impl RefEncode for UIImageOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/resizingmode-swift.enum?language=objc)
+/// Constants that specify the possible resizing modes for an image.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -69,19 +171,25 @@ unsafe impl RefEncode for UIImageResizingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum?language=objc)
+/// Constants that specify the possible rendering modes for an image.
+///
+/// ## Overview
+///
+/// The rendering mode controls how UIKit uses color information to display an image. See [Providing images for different appearances](https://developer.apple.com/documentation/uikit/providing-images-for-different-appearances) for creating tintable images with template mode.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageRenderingMode(pub NSInteger);
 impl UIImageRenderingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/automatic?language=objc)
+    /// Draw the image using the context’s default rendering mode.
     #[doc(alias = "UIImageRenderingModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/alwaysoriginal?language=objc)
+    /// Always draw the original image, without treating it as a template.
     #[doc(alias = "UIImageRenderingModeAlwaysOriginal")]
     pub const AlwaysOriginal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/alwaystemplate?language=objc)
+    /// Always draw the image as a template image, ignoring its color information.
     #[doc(alias = "UIImageRenderingModeAlwaysTemplate")]
     pub const AlwaysTemplate: Self = Self(2);
 }
@@ -95,7 +203,74 @@ unsafe impl RefEncode for UIImageRenderingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage?language=objc)
+    /// An object that manages image data in your app.
+    ///
+    /// ## Overview
+    ///
+    /// You use image objects to represent image data of all kinds, and the [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) class is capable of managing data for all image formats supported by the underlying platform. Image objects are immutable, so you always create them from existing image data, such as an image file on disk or programmatically created image data. An image object may contain a single image or a sequence of images for use in an animation.
+    ///
+    /// You can use image objects in several different ways:
+    ///
+    /// - Assign an image to a [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) object to display the image in your interface.
+    ///
+    /// - Use an image to customize system controls such as buttons, sliders, and segmented controls.
+    ///
+    /// - Draw an image directly into a view or other graphics context.
+    ///
+    /// - Pass an image to other APIs that might require image data.
+    ///
+    /// Although image objects support all platform-native image formats, it’s recommended that you use PNG or JPEG files for most images in your app. Image objects are optimized for reading and displaying both formats, and those formats offer better performance than most other image formats. Because the PNG format is lossless, it’s especially recommended for the images you use in your app’s interface.
+    ///
+    /// ### Create image objects
+    ///
+    /// When creating image objects using the methods of this class, you must have existing image data located in a file or data structure. You can’t create an empty image and draw content into it. There are many options for creating image objects, each of which is best for specific situations:
+    ///
+    /// - Use the [`imageNamed:inBundle:compatibleWithTraitCollection:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:in:compatiblewith:)) method (or the [`imageNamed:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:)) method) to create an image from an image asset or image file located in your app’s main bundle (or some other known bundle). Because these methods cache the image data automatically, they’re especially recommended for images that you use frequently.
+    ///
+    /// - Use the [`imageWithContentsOfFile:`](https://developer.apple.com/documentation/uikit/uiimage/imagewithcontentsoffile:) or [`initWithContentsOfFile:`](https://developer.apple.com/documentation/uikit/uiimage/init(contentsoffile:)) method to create an image object where the initial data isn’t in a bundle. These methods load the image data from disk each time, so don’t use them to load the same image repeatedly.
+    ///
+    /// - Use the [`animatedImageWithImages:duration:`](https://developer.apple.com/documentation/uikit/uiimage/animatedimage(with:duration:)) and [`animatedImageNamed:duration:`](https://developer.apple.com/documentation/uikit/uiimage/animatedimagenamed(_:duration:)) methods to create a single [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object comprised of multiple sequential images. Install the resulting image in a [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) object to create animations in your interface.
+    ///
+    /// Other methods of the [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) class let you create animations from specific types of data, such as Core Graphics images or image data you create yourself. UIKit also provides the [`UIGraphicsGetImageFromCurrentImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()) function to create images from content you draw yourself. You use that function in conjunction with a bitmap-based graphics context, which you use to capture your drawing commands.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because image objects are immutable, you can’t change their properties after creation. Most image properties are set automatically using metadata in the accompanying image file or image data. The immutable nature of image objects also means they’re safe to create and use from any thread.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Image assets are the easiest way to manage the images that ship with your app. Each new Xcode project contains an assets library, to which you can add multiple image sets. An image set contains the variations of a single image that your app uses. A single image set can provide different versions of an image for different platforms, for different trait environments (compact or regular), and for different scale factors.
+    ///
+    /// In addition to loading images from disk, you can ask the user to supply images from an available camera or photo library using a [`UIImagePickerController`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller) object. An image picker displays a custom user interface for selecting images. Accessing user-supplied images requires explicit user permission. For more information about using an image picker, see [`UIImagePickerController`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller).
+    ///
+    /// ### Define a stretchable image
+    ///
+    /// A stretchable image is one that defines regions where you can duplicate the underlying image data in an aesthetically pleasing way. Stretchable images are commonly used to create backgrounds that can grow or shrink to fill the available space.
+    ///
+    /// Define a stretchable image by adding insets to an existing image using the [`resizableImageWithCapInsets:`](https://developer.apple.com/documentation/uikit/uiimage/resizableimage(withcapinsets:)) or [`resizableImageWithCapInsets:resizingMode:`](https://developer.apple.com/documentation/uikit/uiimage/resizableimage(withcapinsets:resizingmode:)) method. The insets subdivide the image into two or more parts. Specifying nonzero values for each inset yields an image divided into nine parts, as shown in the following image:
+    ///
+    ///
+    /// ![An image that depicts how to use insets to define stretchable regions. The image on the left is stretched and shows Left, Right, Top, and Bottom insets. The image on the right is condensed and also shows Left, Right, Top, and Bottom insets.](https://docs-assets.developer.apple.com/published/a24122a4b3a9289007f9bcad22d8667d/media-1965929%402x.png)
+    ///
+    ///
+    /// Each inset defines the portion of the image that doesn’t stretch in the given dimension. The regions inside an image’s top and bottom insets maintain a fixed height, and the areas inside the left and right insets maintain a fixed width. The following image shows how each part of a nine-part image stretches as the image itself is stretched to fill the available space. The corners of the image don’t change size because they’re inside both a horizontal and vertical inset:
+    ///
+    ///
+    /// ![An image that depicts the stretchable portions of a nine-part image. The image on the left is stretched. The image on the right is condensed. The corners of both images remain the same size.](https://docs-assets.developer.apple.com/published/dcf9ad7415ffdb2dd9a753a3be251cce/media-1965930%402x.png)
+    ///
+    ///
+    /// ### Compare images
+    ///
+    /// The [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method is the only reliable way to determine whether two image objects contain the same image data. The following code illustrates the correct and incorrect ways to compare images.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Load the same image twice.", "let image1 = UIImage(named: \"MyImage\")", "let image2 = UIImage(named: \"MyImage\") ", "", "// The image objects may be different, but the contents are still equal.", "if image1 != nil && image1!.isEqual(image2) {", "    // Correct. This technique compares the image data correctly.", "} ", "if image1 == image2 {", "    // Incorrect! Direct object comparisons may not work.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Load the same image twice.", "UIImage* image1 = [UIImage imageNamed:@\"MyImage\"];", "UIImage* image2 = [UIImage imageNamed:@\"MyImage\"];", " ", "// The image objects may be different, but the contents are still equal", "if ([image1 isEqual:image2]) {", "   // Correct. This technique compares the image data correctly.", "}", " ", "if (image1 == image2) {", "   // Incorrect! Direct object comparisons may not work.", "}"], metadata: None }] }] })
+    /// ### Access the image data
+    ///
+    /// Image objects don’t provide direct access to their underlying image data. However, you can retrieve the image data in other formats for use in your app. Specifically, you can use the [`CGImage`](https://developer.apple.com/documentation/uikit/uiimage/cgimage) and [`CIImage`](https://developer.apple.com/documentation/uikit/uiimage/ciimage) properties to retrieve versions of the image that are compatible with Core Graphics and Core Image, respectively. You can also use the [`UIImagePNGRepresentation`](https://developer.apple.com/documentation/uikit/uiimage/pngdata()) and [`UIImageJPEGRepresentation`](https://developer.apple.com/documentation/uikit/uiimage/jpegdata(compressionquality:)) functions to generate an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object containing the image data in either the PNG or JPEG format.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImage;
@@ -832,9 +1007,24 @@ impl private_CIImageUIKitAdditions::Sealed for CIImage {}
 unsafe impl CIImageUIKitAdditions for CIImage {}
 
 impl UIImage {
-    /// return image as PNG. May return nil if image has no CGImageRef or invalid bitmap format
+    /// Returns a data object that contains the specified image in PNG format.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/pngdata()?language=objc)
+    /// Parameters:
+    /// - image: The original image data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object containing the PNG data, or `nil` if there was a problem generating the data. This function may return `nil` if the image has no data or if the underlying `CGImageRef` contains data in an unsupported bitmap format.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
+    ///
+    ///
+    /// return image as PNG. May return nil if image has no CGImageRef or invalid bitmap format
     #[doc(alias = "UIImagePNGRepresentation")]
     #[inline]
     pub fn png_representation(&self) -> Option<Retained<NSData>> {
@@ -845,9 +1035,26 @@ impl UIImage {
         unsafe { Retained::retain_autoreleased(ret) }
     }
 
-    /// return image as JPEG. May return nil if image has no CGImageRef or invalid bitmap format. compression is 0(most)..1(least)
+    /// Returns a data object that contains the image in JPEG format.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/jpegdata(compressionquality:)?language=objc)
+    /// Parameters:
+    /// - image: The original image data.
+    ///
+    /// - compressionQuality: The quality of the resulting JPEG image, expressed as a value from `0.0` to `1.0`. The value `0.0` represents the maximum compression (or lowest quality) while the value `1.0` represents the least compression (or best quality).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object containing the JPEG data, or `nil` if there’s a problem generating the data. This function may return `nil` if the image has no data or if the underlying `CGImageRef` contains data in an unsupported bitmap format.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
+    ///
+    ///
+    /// return image as JPEG. May return nil if image has no CGImageRef or invalid bitmap format. compression is 0(most)..1(least)
     #[doc(alias = "UIImageJPEGRepresentation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -863,8 +1070,6 @@ impl UIImage {
     }
 
     /// Returns HEIC data representing the image, or nil if such a representation could not be generated. HEIC is recommended for efficiently storing all kinds of images, including those with high dynamic range content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/heicdata()?language=objc)
     #[doc(alias = "UIImageHEICRepresentation")]
     #[inline]
     pub fn heic_representation(&self) -> Option<Retained<NSData>> {

@@ -4,51 +4,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_filetype?language=objc)
 pub const kCAF_FileType: u32 = 0x63616666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_fileversion_initial?language=objc)
 pub const kCAF_FileVersion_Initial: u32 = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_streamdescriptionchunkid?language=objc)
 pub const kCAF_StreamDescriptionChunkID: u32 = 0x64657363;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_audiodatachunkid?language=objc)
 pub const kCAF_AudioDataChunkID: u32 = 0x64617461;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_channellayoutchunkid?language=objc)
 pub const kCAF_ChannelLayoutChunkID: u32 = 0x6368616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_fillerchunkid?language=objc)
 pub const kCAF_FillerChunkID: u32 = 0x66726565;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_markerchunkid?language=objc)
 pub const kCAF_MarkerChunkID: u32 = 0x6d61726b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_regionchunkid?language=objc)
 pub const kCAF_RegionChunkID: u32 = 0x7265676e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_instrumentchunkid?language=objc)
 pub const kCAF_InstrumentChunkID: u32 = 0x696e7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_magiccookieid?language=objc)
 pub const kCAF_MagicCookieID: u32 = 0x6b756b69;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_infostringschunkid?language=objc)
 pub const kCAF_InfoStringsChunkID: u32 = 0x696e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_editcommentschunkid?language=objc)
 pub const kCAF_EditCommentsChunkID: u32 = 0x65646374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_packettablechunkid?language=objc)
 pub const kCAF_PacketTableChunkID: u32 = 0x70616b74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_stringschunkid?language=objc)
 pub const kCAF_StringsChunkID: u32 = 0x73747267;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_uuidchunkid?language=objc)
 pub const kCAF_UUIDChunkID: u32 = 0x75756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_peakchunkid?language=objc)
 pub const kCAF_PeakChunkID: u32 = 0x7065616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_overviewchunkid?language=objc)
 pub const kCAF_OverviewChunkID: u32 = 0x6f767677;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_midichunkid?language=objc)
 pub const kCAF_MIDIChunkID: u32 = 0x6d696469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_umidchunkid?language=objc)
 pub const kCAF_UMIDChunkID: u32 = 0x756d6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_formatlistid?language=objc)
 pub const kCAF_FormatListID: u32 = 0x6c647363;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_ixmlchunkid?language=objc)
 pub const kCAF_iXMLChunkID: u32 = 0x69584d4c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caffileheader?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFFileHeader {
@@ -68,7 +46,6 @@ unsafe impl RefEncode for CAFFileHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafchunkheader?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFChunkHeader {
@@ -85,7 +62,6 @@ unsafe impl RefEncode for CAFChunkHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caf_uuid_chunkheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAF_UUID_ChunkHeader {
@@ -104,17 +80,14 @@ unsafe impl RefEncode for CAF_UUID_ChunkHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafformatflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAFFormatFlags(pub u32);
 bitflags::bitflags! {
     impl CAFFormatFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafformatflags/linearpcmformatflagisfloat?language=objc)
         #[doc(alias = "kCAFLinearPCMFormatFlagIsFloat")]
         const LinearPCMFormatFlagIsFloat = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafformatflags/linearpcmformatflagislittleendian?language=objc)
         #[doc(alias = "kCAFLinearPCMFormatFlagIsLittleEndian")]
         const LinearPCMFormatFlagIsLittleEndian = 1<<1;
     }
@@ -128,7 +101,6 @@ unsafe impl RefEncode for CAFFormatFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafaudiodescription?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFAudioDescription {
@@ -160,7 +132,6 @@ unsafe impl RefEncode for CAFAudioDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafaudioformatlistitem?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFAudioFormatListItem {
@@ -179,7 +150,6 @@ unsafe impl RefEncode for CAFAudioFormatListItem {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpackettableheader?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFPacketTableHeader {
@@ -207,7 +177,6 @@ unsafe impl RefEncode for CAFPacketTableHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafdatachunk?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFDataChunk {
@@ -224,81 +193,44 @@ unsafe impl RefEncode for CAFDataChunk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_generic?language=objc)
 pub const kCAFMarkerType_Generic: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_programstart?language=objc)
 pub const kCAFMarkerType_ProgramStart: u32 = 0x70626567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_programend?language=objc)
 pub const kCAFMarkerType_ProgramEnd: u32 = 0x70656e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_trackstart?language=objc)
 pub const kCAFMarkerType_TrackStart: u32 = 0x74626567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_trackend?language=objc)
 pub const kCAFMarkerType_TrackEnd: u32 = 0x74656e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_index?language=objc)
 pub const kCAFMarkerType_Index: u32 = 0x696e6478;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_regionstart?language=objc)
 pub const kCAFMarkerType_RegionStart: u32 = 0x72626567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_regionend?language=objc)
 pub const kCAFMarkerType_RegionEnd: u32 = 0x72656e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_regionsyncpoint?language=objc)
 pub const kCAFMarkerType_RegionSyncPoint: u32 = 0x72737963;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_selectionstart?language=objc)
 pub const kCAFMarkerType_SelectionStart: u32 = 0x73626567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_selectionend?language=objc)
 pub const kCAFMarkerType_SelectionEnd: u32 = 0x73656e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_editsourcebegin?language=objc)
 pub const kCAFMarkerType_EditSourceBegin: u32 = 0x63626567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_editsourceend?language=objc)
 pub const kCAFMarkerType_EditSourceEnd: u32 = 0x63656e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_editdestinationbegin?language=objc)
 pub const kCAFMarkerType_EditDestinationBegin: u32 = 0x64626567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_editdestinationend?language=objc)
 pub const kCAFMarkerType_EditDestinationEnd: u32 = 0x64656e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_sustainloopstart?language=objc)
 pub const kCAFMarkerType_SustainLoopStart: u32 = 0x736c6267;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_sustainloopend?language=objc)
 pub const kCAFMarkerType_SustainLoopEnd: u32 = 0x736c656e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_releaseloopstart?language=objc)
 pub const kCAFMarkerType_ReleaseLoopStart: u32 = 0x726c6267;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_releaseloopend?language=objc)
 pub const kCAFMarkerType_ReleaseLoopEnd: u32 = 0x726c656e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_savedplayposition?language=objc)
 pub const kCAFMarkerType_SavedPlayPosition: u32 = 0x73706c79;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_tempo?language=objc)
 pub const kCAFMarkerType_Tempo: u32 = 0x746d706f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_timesignature?language=objc)
 pub const kCAFMarkerType_TimeSignature: u32 = 0x74736967;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcafmarkertype_keysignature?language=objc)
 pub const kCAFMarkerType_KeySignature: u32 = 0x6b736967;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetypenone?language=objc)
 pub const kCAF_SMPTE_TimeTypeNone: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype24?language=objc)
 pub const kCAF_SMPTE_TimeType24: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype25?language=objc)
 pub const kCAF_SMPTE_TimeType25: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype30drop?language=objc)
 pub const kCAF_SMPTE_TimeType30Drop: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype30?language=objc)
 pub const kCAF_SMPTE_TimeType30: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype2997?language=objc)
 pub const kCAF_SMPTE_TimeType2997: u32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype2997drop?language=objc)
 pub const kCAF_SMPTE_TimeType2997Drop: u32 = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype60?language=objc)
 pub const kCAF_SMPTE_TimeType60: u32 = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype5994?language=objc)
 pub const kCAF_SMPTE_TimeType5994: u32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype60drop?language=objc)
 pub const kCAF_SMPTE_TimeType60Drop: u32 = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype5994drop?language=objc)
 pub const kCAF_SMPTE_TimeType5994Drop: u32 = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype50?language=objc)
 pub const kCAF_SMPTE_TimeType50: u32 = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaf_smpte_timetype2398?language=objc)
 pub const kCAF_SMPTE_TimeType2398: u32 = 12;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caf_smpte_time?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAF_SMPTE_Time {
@@ -326,7 +258,6 @@ unsafe impl RefEncode for CAF_SMPTE_Time {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafmarker?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFMarker {
@@ -354,7 +285,6 @@ unsafe impl RefEncode for CAFMarker {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafmarkerchunk?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFMarkerChunk {
@@ -374,20 +304,16 @@ unsafe impl RefEncode for CAFMarkerChunk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAFRegionFlags(pub u32);
 bitflags::bitflags! {
     impl CAFRegionFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags/loopenable?language=objc)
         #[doc(alias = "kCAFRegionFlag_LoopEnable")]
         const LoopEnable = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags/playforward?language=objc)
         #[doc(alias = "kCAFRegionFlag_PlayForward")]
         const PlayForward = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags/playbackward?language=objc)
         #[doc(alias = "kCAFRegionFlag_PlayBackward")]
         const PlayBackward = 4;
     }
@@ -401,7 +327,6 @@ unsafe impl RefEncode for CAFRegionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregion?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFRegion {
@@ -427,7 +352,6 @@ unsafe impl RefEncode for CAFRegion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionchunk?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFRegionChunk {
@@ -447,7 +371,6 @@ unsafe impl RefEncode for CAFRegionChunk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafinstrumentchunk?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFInstrumentChunk {
@@ -485,7 +408,6 @@ unsafe impl RefEncode for CAFInstrumentChunk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafstringid?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFStringID {
@@ -501,7 +423,6 @@ unsafe impl RefEncode for CAFStringID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafstrings?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFStrings {
@@ -520,7 +441,6 @@ unsafe impl RefEncode for CAFStrings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafinfostrings?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFInfoStrings {
@@ -535,7 +455,6 @@ unsafe impl RefEncode for CAFInfoStrings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpositionpeak?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFPositionPeak {
@@ -552,7 +471,6 @@ unsafe impl RefEncode for CAFPositionPeak {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpeakchunk?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFPeakChunk {
@@ -571,7 +489,6 @@ unsafe impl RefEncode for CAFPeakChunk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafoverviewsample?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFOverviewSample {
@@ -588,7 +505,6 @@ unsafe impl RefEncode for CAFOverviewSample {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafoverviewchunk?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFOverviewChunk {
@@ -612,7 +528,6 @@ unsafe impl RefEncode for CAFOverviewChunk {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafumidchunk?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CAFUMIDChunk {

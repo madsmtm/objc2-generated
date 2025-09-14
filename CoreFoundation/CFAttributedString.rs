@@ -9,7 +9,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstring?language=objc)
+///
+/// ## Overview
+///
+/// Instances of CFAttributedString manage character strings and associated sets of attributes (for example, font and kerning information) that apply to individual characters or ranges of characters in the string. CFAttributedString as defined in Core Foundation provides the basic container functionality, while higher levels provide definitions for standard attributes, their values, and additional behaviors involving these. CFAttributedString represents an immutable string—use [`CFMutableAttributedStringRef`](https://developer.apple.com/documentation/corefoundation/cfmutableattributedstring) to create and manage an attributed string that can be changed after it has been created.
+///
+/// CFAttributedString is not a “subclass” of CFString; that is, it does not respond to CFString function calls. CFAttributedString conceptually contains a CFString to which it applies attributes. This protects you from ambiguities caused by the semantic differences between simple and attributed string.
+///
+/// Attributes are identified by key/value pairs stored in CFDictionary objects. Keys must be CFString objects, while the corresponding values are CFType objects of an appropriate type. See the attribute constants in NSAttributedString Application Kit Additions Reference or NSAttributedString UIKit Additions Reference for standard attribute names.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Attribute dictionaries set for an attributed string must always be created with [`kCFCopyStringDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/kcfcopystringdictionarykeycallbacks) for their dictionary key callbacks and [`kCFTypeDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypedictionaryvaluecallbacks) for their value callbacks; otherwise it’s an error.
+///
+///
+///
+/// </div>
+/// CFAttributedString is “toll-free bridged” with its Foundation counterpart, [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSAttributedString *` parameter, you can pass in a `CFAttributedStringRef`, and in a function where you see a `CFAttributedStringRef` parameter, you can pass in an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) instance. This also applies to concrete subclasses of [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring). See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSAttributedString`.
 #[doc(alias = "CFAttributedStringRef")]
@@ -27,7 +46,30 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFAttributedString"> for CFAttributedString {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableattributedstring?language=objc)
+///
+/// ## Overview
+///
+/// Instances of CFMutableAttributedString manage mutable character strings and associated sets of attributes (for example, font and kerning information) that apply to individual characters or ranges of characters in the string. CFAttributedString as defined in CoreFoundation provides the basic container functionality, while higher levels provide definitions for standard attributes, their values, and additional behaviors involving these. CFMutableAttributedString represents a mutable string—use CFAttributedString to create and manage an attributed string that cannot be changed after it has been created.
+///
+/// CFMutableAttributedString is not a “subclass” of CFMutableString; that is, it does not respond to CFMutableString (or CFString) function calls. CFAttributedString conceptually contains a CFMutableString to which it applies attributes. This protects you from ambiguities caused by the semantic differences between simple and attributed string. Functions defined for CFAttributedString can be applied to a CFMutableAttributedString object.
+///
+/// Attributes are identified by key/value pairs stored in CFDictionary objects. Keys must be CFString objects, while the corresponding values are CFType objects of an appropriate type. See the attribute constants in NSAttributedString Application Kit Additions Reference for standard attribute names in macOS and NSAttributedString UIKit Additions Reference on iOS.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Attribute dictionaries set for an attributed string must always be created with kCFCopyStringDictionaryKeyCallbacks for their dictionary key callbacks and kCFTypeDictionaryValueCallBacks for their value callbacks; otherwise it’s an error.
+///
+///
+///
+/// </div>
+/// When you modify the contents of a mutable attributed string, it may have to do a lot of work to ensure it is internally consistent, and to coalesce runs of identical attributes. You can call [`CFAttributedStringBeginEditing`](https://developer.apple.com/documentation/corefoundation/cfattributedstringbeginediting(_:)) and [`CFAttributedStringEndEditing`](https://developer.apple.com/documentation/corefoundation/cfattributedstringendediting(_:)) around a set of related mutation calls that don’t require the string to be in consistent state in between, and thereby reduce the amount of work necessary. These calls can be nested.
+///
+/// CFMutableAttributedString is “toll-free bridged” with its Foundation counterpart, NSMutableAttributedString. This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSMutableAttributedString *` parameter, you can pass in an object of type `CFMutableAttributedStringRef`, and in a function where you see a `CFMutableAttributedStringRef` parameter, you can pass in an `NSMutableAttributedString` instance. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+/// There is not always a 1:1 mapping between `NSMutableAttributedString`‘s methods and CFMutableAttributedString’s functions. For example, to perform an operation equivalent to `NSMutableAttributedString`’s [`appendAttributedString:`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring/append(_:)) method on a CFMutableAttributedString object, you can use [`CFAttributedStringReplaceAttributedString`](https://developer.apple.com/documentation/corefoundation/cfattributedstringreplaceattributedstring(_:_:_:)) and specify `CFRangeMake(CFAttributedStringGetLength(attrStr), 0)` as the range. Alternatively you can cast the CFMutableAttributedString object to an `NSMutableAttributedString` object and send the `appendAttributedString:` message.
+///
+///
 ///
 /// This is toll-free bridged with `NSMutableAttributedString`.
 #[doc(alias = "CFMutableAttributedStringRef")]
@@ -46,9 +88,20 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFAttributedString {
-    /// Returns the type identifier of all CFAttributedString instances.
+    /// Returns the type identifier for the CFAttributedString opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFAttributedString opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableAttributedString objects have the same type identifier as CFAttributedString objects.
+    ///
+    ///
+    /// Returns the type identifier of all CFAttributedString instances.
     #[doc(alias = "CFAttributedStringGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -60,6 +113,27 @@ unsafe impl ConcreteType for CFAttributedString {
 }
 
 impl CFAttributedString {
+    /// Creates an attributed string with specified string and attributes.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new attributed string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - str: A string that specifies the characters to use in the new attributed string. This value is copied.
+    ///
+    /// - attributes: A dictionary that contains the attributes to apply to the new attributed string. This value is copied.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An attributed string that contains the characters from `str` and the attributes specified by `attributes`. The result is `NULL` if there was a problem in creating the attributed string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that both the string and the attributes dictionary are copied. The specified attributes are applied to the whole string. If you want to apply different attributes to different ranges of the string, you should use a mutable attributed string.
+    ///
+    ///
     /// Creates an attributed string with the specified string and attributes (both copied).
     ///
     /// # Safety
@@ -69,8 +143,6 @@ impl CFAttributedString {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreate(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -90,14 +162,27 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a sub-attributed string from the specified range.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new attributed string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - aStr: The attributed string to copy.
+    ///
+    /// - range: The range of the attributed string to copy. `range` must not exceed the bounds of `aStr`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new attributed string whose string and attributes are copied from the specified range of the supplied attributed string. Returns `NULL` if there was a problem copying the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
     ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
     /// - `a_str` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatewithsubstring(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
@@ -116,9 +201,20 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Creates an immutable attributed string copy.
+    /// Creates an immutable copy of an attributed string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatecopy(_:_:)?language=objc)
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new attributed string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - aStr: The attributed string to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable attributed string with characters and attributes identical to those of `aStr`. Returns `NULL` if there was a problem copying the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// Creates an immutable attributed string copy.
     #[doc(alias = "CFAttributedStringCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -135,9 +231,24 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
+    /// Returns the string for an attributed string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetstring(_:)?language=objc)
+    /// Parameters:
+    /// - aStr: The attributed string to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing the characters from `aStr`, or `NULL` if there was a problem creating the object. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For performance reasons, the string returned will often be the backing store of the attributed string, and it might therefore change if the attributed string is edited. However, this is an implementation detail, and you should not rely on this behavior.
+    ///
+    ///
+    /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
     #[doc(alias = "CFAttributedStringGetString")]
     #[inline]
     pub fn string(&self) -> Option<CFRetained<CFString>> {
@@ -149,9 +260,18 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
+    /// Returns the length of the attributed string in characters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetlength(_:)?language=objc)
+    /// Parameters:
+    /// - aStr: The attributed string to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The length of the attributed string in characters; this is the same as `CFStringGetLength(CFAttributedStringGetString(aStr))`.
+    ///
+    ///
+    /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
     #[doc(alias = "CFAttributedStringGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -161,6 +281,29 @@ impl CFAttributedString {
         unsafe { CFAttributedStringGetLength(self) }
     }
 
+    /// Returns the attributes of an attributed string at a specified location.
+    ///
+    /// Parameters:
+    /// - aStr: The attributed string to examine.
+    ///
+    /// - loc: The location in `str` at which to determine the attributes. `loc` must not exceed the bounds of `str`.
+    ///
+    /// - effectiveRange: If not `NULL`, upon return contains a range including `loc` over which exactly the same set of attributes apply as at `loc`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary that contains the attributes of `str` at the specified location. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For performance reasons, a range returned in `effectiveRange` is not necessarily the maximal range. If you need the maximum range, you should use [`CFAttributedStringGetAttributesAndLongestEffectiveRange`](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributesandlongesteffectiverange(_:_:_:_:)).
+    ///
+    /// Note that the returned attribute dictionary might change in unpredictable ways if the attributed string is edited after this call. If you want to preserve the state of the dictionary, you should make an actual copy of it rather than just retaining it. In addition, you should make no assumptions about the relationship of the actual dictionary returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionaries will be identical (that is, `==`) to those originally specified.
+    ///
+    ///
     /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
     ///
     /// Note that the returned attribute dictionary might change in unpredictable ways from under the caller if the attributed string is edited after this call. If you wish to hang on to the dictionary long-term, you should make an actual copy of it rather than just retaining it.  Also, no assumptions should be made about the relationship of the actual CFDictionaryRef returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionary will be identical (that is, ==) to those originally specified.
@@ -168,8 +311,6 @@ impl CFAttributedString {
     /// # Safety
     ///
     /// `effective_range` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributes(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -189,14 +330,35 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the value of a given attribute of an attributed string at a specified location.
+    ///
+    /// Parameters:
+    /// - aStr: The attributed string to examine.
+    ///
+    /// - loc: The location in `str` at which to determine the attributes. `loc` must not exceed the bounds of `str`.
+    ///
+    /// - attrName: The name of the attribute whose value you want to determine.
+    ///
+    /// - effectiveRange: If not `NULL`, upon return contains a range including `loc` over which exactly the same set of attributes apply as at `loc`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of the specified attribute at the specified location in `str`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For performance reasons, a range returned in `effectiveRange` is not necessarily the maximal range. If you need the maximum range, you should use [`CFAttributedStringGetAttributeAndLongestEffectiveRange`](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributeandlongesteffectiverange(_:_:_:_:_:)).
+    ///
+    ///
     /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
     ///
     /// # Safety
     ///
     /// - `attr_name` might not allow `None`.
     /// - `effective_range` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattribute(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttribute")]
     #[inline]
     pub unsafe fn attribute(
@@ -217,13 +379,28 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the attributes of an attributed string at a specified location.
+    ///
+    /// Parameters:
+    /// - aStr: The attributed string to examine.
+    ///
+    /// - loc: The location in `str` at which to determine the attributes. `loc` must not exceed the bounds of `str`.
+    ///
+    /// - inRange: The range in `str` within to find the longest effective range of the attributes at `loc`. `inRange` must not exceed the bounds of `str`.
+    ///
+    /// - longestEffectiveRange: If  not `NULL`, upon return contains the maximal range within `inRange` over which the exact same set of attributes apply. The returned range is clipped to `inRange`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary that contains the attributes of `str` at the specified location. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
     ///
     /// # Safety
     ///
     /// `longest_effective_range` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributesandlongesteffectiverange(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -252,14 +429,31 @@ impl CFAttributedString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the value of a given attribute of an attributed string at a specified location.
+    ///
+    /// Parameters:
+    /// - aStr: The attributed string to examine.
+    ///
+    /// - loc: The location in `str` at which to determine the attributes. It is a programming error for `loc` to specify a location outside the bounds of `str`.
+    ///
+    /// - attrName: The name of the attribute whose value you want to determine.
+    ///
+    /// - inRange: The range in `str` within which you want to find the longest effective range of the attributes at `loc`. `inRange` must not exceed the bounds of `str`.
+    ///
+    /// - longestEffectiveRange: If not `NULL`, upon return contains the maximal range within `inRange` over which the exact same set of attributes apply. The returned range is clipped to `inRange`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary that contains the attributes of `str` at the specified location. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
     ///
     /// # Safety
     ///
     /// - `attr_name` might not allow `None`.
     /// - `longest_effective_range` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetattributeandlongesteffectiverange(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
     #[inline]
     pub unsafe fn attribute_and_longest_effective_range(
@@ -292,9 +486,24 @@ impl CFAttributedString {
 }
 
 impl CFMutableAttributedString {
-    /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
+    /// Creates a mutable copy of an attributed string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatemutablecopy(_:_:_:)?language=objc)
+    /// Parameters:
+    /// - alloc: The allocator to be used to allocate memory for the new attributed string. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - maxLength: The limit on the length of the new attributed string. The string starts empty and can grow to this length (it can be shorter).
+    ///
+    /// Pass `0` to specify that the maximum length is not limited. If non-`0`, `maxLength` must be greater than or equal to the length of `aStr`.
+    ///
+    /// - aStr: The attributed string to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A mutable copy of `aStr`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
     #[doc(alias = "CFAttributedStringCreateMutableCopy")]
     #[inline]
     pub fn new_copy(
@@ -313,9 +522,22 @@ impl CFMutableAttributedString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
+    /// Creates a mutable attributed string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringcreatemutable(_:_:)?language=objc)
+    /// Parameters:
+    /// - alloc: An allocator to be used to allocate memory for the new attributed string. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - maxLength: The limit on the length of the new attributed string. The string starts empty and can grow to this length (it can be shorter).
+    ///
+    /// Pass `0` to specify that the maximum length is not limited. The value must not be negative.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable attributed string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
     #[doc(alias = "CFAttributedStringCreateMutable")]
     #[inline]
     pub fn new(
@@ -332,6 +554,15 @@ impl CFMutableAttributedString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Modifies the string of an attributed string.
+    ///
+    /// Parameters:
+    /// - aStr: The mutable attributed string to modify.
+    ///
+    /// - range: The range of `aStr` to be modified. `range` must not specify characters outside the bounds of `aStr`.
+    ///
+    /// - replacement: The string to replace the existing string in `range`.
+    ///
     /// Modifies the string for the attributed string, much like CFStringReplace().  It's an error for range to specify characters outside the bounds of aStr.
     ///
     /// (Note: This function is a convenience on CFAttributedStringGetMutableString(); however, until CFAttributedStringGetMutableString() is implemented, it remains the only way to edit the string of the attributed string.)
@@ -340,8 +571,6 @@ impl CFMutableAttributedString {
     ///
     /// - `a_str` might not allow `None`.
     /// - `replacement` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringreplacestring(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringReplaceString")]
     #[inline]
     pub unsafe fn replace_string(
@@ -359,11 +588,26 @@ impl CFMutableAttributedString {
         unsafe { CFAttributedStringReplaceString(a_str, range, replacement) }
     }
 
+    /// Gets as a mutable string the string for an attributed string.
+    ///
+    /// Parameters:
+    /// - aStr: The mutable attributed string from which to retrieve the string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The string for the specified attributed string as a mutable string.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allows you to edit the character contents of the attributed string as if it were a CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
+    ///
+    ///
     /// Gets the string for the attributed string as a mutable string, allowing editing the character contents of the string as if it were an CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
     ///
     /// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetmutablestring(_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetMutableString")]
     #[inline]
     pub fn mutable_string(
@@ -378,6 +622,23 @@ impl CFMutableAttributedString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Sets the value of attributes of a mutable attributed string over a specified range.
+    ///
+    /// Parameters:
+    /// - aStr: The mutable attributed string to modify.
+    ///
+    /// - range: The range of aStr over to which the new attributes apply. `range` must not exceed the bounds of `aStr`.
+    ///
+    /// - replacement: A dictionary that contains key-value pairs that specify the new attributes to apply to `range`. The keys must be CFString objects, and the corresponding values must be CFType objects.
+    ///
+    /// - clearOtherAttributes: If `false`, existing attributes (that aren’t being replaced) are left alone; otherwise they are cleared.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that after this call, if it is mutable, changes to `replacement` will not affect the contents of the attributed string.
+    ///
+    ///
     /// Sets the value of multiple attributes over the specified range, which should be valid. If clearOtherAttributes is false, existing attributes (which aren't being replaced) are left alone; otherwise they are cleared. The dictionary should be setup for "usual" CF type usage --- CFString keys, and arbitrary CFType values. Note that after this call, further mutations to the replacement dictionary argument by the caller will not affect the contents of the attributed string.
     ///
     /// # Safety
@@ -386,8 +647,6 @@ impl CFMutableAttributedString {
     /// - `replacement` generic must be of the correct type.
     /// - `replacement` generic must be of the correct type.
     /// - `replacement` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringsetattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -410,6 +669,17 @@ impl CFMutableAttributedString {
         }
     }
 
+    /// Sets the value of a single attribute over the specified range.
+    ///
+    /// Parameters:
+    /// - aStr: The mutable attributed string to modify.
+    ///
+    /// - range: The range of `aStr` over to which the new attributes apply. `range` must not exceed the bounds of `aStr`.
+    ///
+    /// - attrName: The name of the attribute whose value to set.
+    ///
+    /// - value: The value of the attribute `attrName` to apply over `range`. This value may not be `NULL`. If you want to remove an attribute, use [`CFAttributedStringRemoveAttribute`](https://developer.apple.com/documentation/corefoundation/cfattributedstringremoveattribute(_:_:_:)).
+    ///
     /// Sets the value of a single attribute over the specified range, which should be valid. value should not be NULL.
     ///
     /// # Safety
@@ -418,8 +688,6 @@ impl CFMutableAttributedString {
     /// - `attr_name` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringsetattribute(_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringSetAttribute")]
     #[inline]
     pub unsafe fn set_attribute(
@@ -439,14 +707,27 @@ impl CFMutableAttributedString {
         unsafe { CFAttributedStringSetAttribute(a_str, range, attr_name, value) }
     }
 
+    /// Removes the value of a single attribute over a specified range.
+    ///
+    /// Parameters:
+    /// - aStr: The mutable attributed string to modify.
+    ///
+    /// - range: The range of `aStr` from which to remove the specified attribute. `range` must not exceed the bounds of `aStr`.
+    ///
+    /// - attrName: The name of the attribute to remove.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It is _not_ an error of the specified attribute does not exist over the given range.
+    ///
+    ///
     /// Removes the value of a single attribute over the specified range, which should be valid. It's OK for the attribute not the exist over the specified range.
     ///
     /// # Safety
     ///
     /// - `a_str` might not allow `None`.
     /// - `attr_name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringremoveattribute(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringRemoveAttribute")]
     #[inline]
     pub unsafe fn remove_attribute(
@@ -464,14 +745,21 @@ impl CFMutableAttributedString {
         unsafe { CFAttributedStringRemoveAttribute(a_str, range, attr_name) }
     }
 
+    /// Replaces the attributed substring over a range with another attributed string.
+    ///
+    /// Parameters:
+    /// - aStr: The mutable attributed string to modify.
+    ///
+    /// - range: The range of `aStr` to be modified. `range` must not specify characters outside the bounds of `aStr`.
+    ///
+    /// - replacement: The attributed string to replace the contents of `aStr` in `range`.
+    ///
     /// Replaces the attributed substring over the specified range with the attributed string specified in replacement. range should be valid. To delete a range of the attributed string, call CFAttributedStringReplaceString() with empty string and specified range.
     ///
     /// # Safety
     ///
     /// - `a_str` might not allow `None`.
     /// - `replacement` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringreplaceattributedstring(_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringReplaceAttributedString")]
     #[inline]
     pub unsafe fn replace_attributed_string(
@@ -489,9 +777,18 @@ impl CFMutableAttributedString {
         unsafe { CFAttributedStringReplaceAttributedString(a_str, range, replacement) }
     }
 
-    /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
+    /// Defers internal consistency-checking and coalescing for a mutable attributed string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringbeginediting(_:)?language=objc)
+    /// Parameters:
+    /// - aStr: A mutable attributed string that is to be edited.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Defers internal consistency-checking and coalescing for a mutable attributed string. You must balance a call to this function with a corresponding [`CFAttributedStringEndEditing`](https://developer.apple.com/documentation/corefoundation/cfattributedstringendediting(_:)).
+    ///
+    ///
+    /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
     #[doc(alias = "CFAttributedStringBeginEditing")]
     #[inline]
     pub fn begin_editing(a_str: Option<&CFMutableAttributedString>) {
@@ -501,9 +798,12 @@ impl CFMutableAttributedString {
         unsafe { CFAttributedStringBeginEditing(a_str) }
     }
 
-    /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
+    /// Re-enables internal consistency-checking and coalescing for a mutable attributed string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringendediting(_:)?language=objc)
+    /// Parameters:
+    /// - aStr: A mutable attributed string, following a call to [`CFAttributedStringBeginEditing`](https://developer.apple.com/documentation/corefoundation/cfattributedstringbeginediting(_:)).
+    ///
+    /// In cases where attributed string might do a bunch of work to assure self-consistency, CFAttributedStringBeginEditing/CFAttributedStringEndEditing allow disabling that to allow deferring and coalescing any work. It's a good idea to call these around a set of related mutation calls which don't require the string to be in consistent state in between. These calls can be nested.
     #[doc(alias = "CFAttributedStringEndEditing")]
     #[inline]
     pub fn end_editing(a_str: Option<&CFMutableAttributedString>) {
@@ -521,8 +821,6 @@ impl CFAttributedString {
     ///
     /// - `bidi_levels` must be a valid pointer.
     /// - `base_directions` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetbidilevelsandresolveddirections(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetBidiLevelsAndResolvedDirections")]
     #[inline]
     pub unsafe fn bidi_levels_and_resolved_directions(
@@ -552,14 +850,18 @@ impl CFAttributedString {
         }
     }
 
+    ///
+    /// ## Discussion
+    ///
+    /// If baseDirection is not NSWritingDirectionNatural, result comes from CFAttributedStringGetBidiLevelsAndResolvedDirections; otherwise, it fills bidiLevels by applying a statistical approach (a paragraph is RTL if 40% or more of its words are RTL) to the characters in range. Returns true if the result is not uni-level LTR (in other words, needing further Bidi processing). baseDirection is NSWritingDirection (NSWritingDirectionNatural, NSWritingDirectionLeftToRight, and NSWritingDirectionRightToLeft).  Understands NSWritingDirectionAttributeName values.
+    ///
+    ///
     /// If baseDirection is not NSWritingDirectionNatural, result comes from CFAttributedStringGetBidiLevelsAndResolvedDirections; otherwise, it fills bidiLevels by applying a statistical approach (a paragraph is RTL if 40% or more of its words are RTL) to the characters in range. Returns true if the result is not uni-level LTR (in other words, needing further Bidi processing). baseDirection is NSWritingDirection (NSWritingDirectionNatural, NSWritingDirectionLeftToRight, and NSWritingDirectionRightToLeft).  Understands NSWritingDirectionAttributeName values.
     ///
     /// # Safety
     ///
     /// - `bidi_levels` must be a valid pointer.
     /// - `base_directions` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfattributedstringgetstatisticalwritingdirections(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFAttributedStringGetStatisticalWritingDirections")]
     #[inline]
     pub unsafe fn statistical_writing_directions(

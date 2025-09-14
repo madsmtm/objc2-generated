@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for camera projection styles, used by the [`projection`](https://developer.apple.com/documentation/modelio/mdlcamera/projection) property.
 /// MDLCamera
 ///
 /// MDLCamera models a physically plausible camera.
@@ -211,17 +212,15 @@ use crate::*;
 ///
 /// A displayable value is therefore obtained via
 /// pow(exposureCompression((sensor value + flash) * exposure), displayGamma)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcameraprojection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLCameraProjection(pub NSUInteger);
 impl MDLCameraProjection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcameraprojection/perspective?language=objc)
+    /// A perspective projection.
     #[doc(alias = "MDLCameraProjectionPerspective")]
     pub const Perspective: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcameraprojection/orthographic?language=objc)
+    /// An orthographic projection.
     #[doc(alias = "MDLCameraProjectionOrthographic")]
     pub const Orthographic: Self = Self(1);
 }
@@ -235,7 +234,13 @@ unsafe impl RefEncode for MDLCameraProjection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcamera?language=objc)
+    /// A point of view for rendering a 3D scene, along with a set of parameters describing an intended appearance for rendering.
+    ///
+    /// ## Overview
+    ///
+    /// Camera parameters include basic information—such as the [`projectionMatrix`](https://developer.apple.com/documentation/modelio/mdlcamera/projectionmatrix) and [`fieldOfView`](https://developer.apple.com/documentation/modelio/mdlcamera/fieldofview) properties—for use with any renderer, as well as attributes that model real-world cameras—such as the [`fStop`](https://developer.apple.com/documentation/modelio/mdlcamera/fstop) and [`exposure`](https://developer.apple.com/documentation/modelio/mdlcamera/exposure) properties—for use in a renderer based on realistic optical physics.
+    ///
+    ///
     #[unsafe(super(MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -451,7 +456,13 @@ impl MDLCamera {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlstereoscopiccamera?language=objc)
+    /// A point of view for rendering a stereoscopic display of a 3D scene.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides properties related to rendering the scene from two slightly different perspectives to simulate binocular vision. For general and optical properties of a camera, see the superclass [`MDLCamera`](https://developer.apple.com/documentation/modelio/mdlcamera).
+    ///
+    ///
     #[unsafe(super(MDLCamera, MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]

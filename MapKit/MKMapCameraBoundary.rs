@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapview/cameraboundary-swift.class?language=objc)
+    /// A boundary of an area within which the map’s center needs to remain.
+    ///
+    /// ## Overview
+    ///
+    /// The constraints of the camera boundary restrict the center point of your map.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapCameraBoundary;

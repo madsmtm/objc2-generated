@@ -5,31 +5,56 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypetwitter?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string constant that identifies the social networking site, Twitter.
+    ///
+    ///
     #[deprecated]
     pub static SLServiceTypeTwitter: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypefacebook?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string constant that identifies the social networking site, Facebook.
+    ///
+    ///
     #[deprecated]
     pub static SLServiceTypeFacebook: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypesinaweibo?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string constant that identifies the social networking site, Sina Weibo.
+    ///
+    ///
     #[deprecated]
     pub static SLServiceTypeSinaWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypetencentweibo?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string constant that identifies the social networking site, Tencent Weibo.
+    ///
+    ///
     #[deprecated]
     pub static SLServiceTypeTencentWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slservicetypelinkedin?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string constant that identifies the social networking site, LinkedIn.
+    ///
+    ///
     #[deprecated]
     pub static SLServiceTypeLinkedIn: Option<&'static NSString>;
 }

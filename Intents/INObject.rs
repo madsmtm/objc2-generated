@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inobject?language=objc)
+    /// A representation of a custom intent parameter or response property.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`INObject`](https://developer.apple.com/documentation/intents/inobject) to create custom parameters and response properties for intent data that doesn’t fit into one of the System Types, such as Boolean, Duration, or Location. Define custom types and associate them with your custom intents and responses in the Intent Definition file.
+    ///
+    /// Xcode uses the type defined in the Intent Definition file to generate a subclass of `INObject`. Create an instance of this subclass to structure data in intents and intent responses.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  If your app supports intents on iOS 12, use the Custom parameter type in your Intent Definition file and create instances of [`INObject`](https://developer.apple.com/documentation/intents/inobject) (not a subclass) for custom parameters of those intents.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INObject;

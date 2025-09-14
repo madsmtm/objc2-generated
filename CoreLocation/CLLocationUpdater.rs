@@ -8,25 +8,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration?language=objc)
+/// Specifies the types of locations that a location updater generates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLiveUpdateConfiguration(pub NSInteger);
 impl CLLiveUpdateConfiguration {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationdefault?language=objc)
+    /// The default configuration.
     #[doc(alias = "CLLiveUpdateConfigurationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationautomotivenavigation?language=objc)
+    /// A configuration for automotive navigation use cases.
     #[doc(alias = "CLLiveUpdateConfigurationAutomotiveNavigation")]
     pub const AutomotiveNavigation: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationothernavigation?language=objc)
+    /// A configuration for other navigation use cases.
     #[doc(alias = "CLLiveUpdateConfigurationOtherNavigation")]
     pub const OtherNavigation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationfitness?language=objc)
+    /// A configuration for fitness use cases.
     #[doc(alias = "CLLiveUpdateConfigurationFitness")]
     pub const Fitness: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clliveupdateconfiguration/clliveupdateconfigurationairborne?language=objc)
+    /// A configuration for airborne use cases.
     #[doc(alias = "CLLiveUpdateConfigurationAirborne")]
     pub const Airborne: Self = Self(4);
 }
@@ -40,7 +40,7 @@ unsafe impl RefEncode for CLLiveUpdateConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clupdate?language=objc)
+    /// An object that represents a location update.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLUpdate;
@@ -114,7 +114,7 @@ impl CLUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationupdater?language=objc)
+    /// An object that provides device location updates.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocationUpdater;

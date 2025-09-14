@@ -7,128 +7,127 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrordomain?language=objc)
+    /// The ReplayKit error domain.
     pub static RPRecordingErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode?language=objc)
+/// The ReplayKit error domain codes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct RPRecordingErrorCode(pub NSInteger);
 impl RPRecordingErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/unknown?language=objc)
+    /// Error cause unknown.
     #[doc(alias = "RPRecordingErrorUnknown")]
     pub const Unknown: Self = Self(-5800);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/userdeclined?language=objc)
+    /// User declined recording request.
     #[doc(alias = "RPRecordingErrorUserDeclined")]
     pub const UserDeclined: Self = Self(-5801);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/disabled?language=objc)
+    /// Recording disabled via parental controls.
     #[doc(alias = "RPRecordingErrorDisabled")]
     pub const Disabled: Self = Self(-5802);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedtostart?language=objc)
+    /// Recording failed to start.
     #[doc(alias = "RPRecordingErrorFailedToStart")]
     pub const FailedToStart: Self = Self(-5803);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failed?language=objc)
+    /// Recording error occurred.
     #[doc(alias = "RPRecordingErrorFailed")]
     pub const Failed: Self = Self(-5804);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/insufficientstorage?language=objc)
+    /// Not enough storage available on the device.
     #[doc(alias = "RPRecordingErrorInsufficientStorage")]
     pub const InsufficientStorage: Self = Self(-5805);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/interrupted?language=objc)
+    /// Recording interrupted by another app.
     #[doc(alias = "RPRecordingErrorInterrupted")]
     pub const Interrupted: Self = Self(-5806);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/contentresize?language=objc)
+    /// Recording interrupted by multitasking and content resizing.
     #[doc(alias = "RPRecordingErrorContentResize")]
     pub const ContentResize: Self = Self(-5807);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/broadcastinvalidsession?language=objc)
+    /// Attempted to start a broadcast without a prior session.
     #[doc(alias = "RPRecordingErrorBroadcastInvalidSession")]
     pub const BroadcastInvalidSession: Self = Self(-5808);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/systemdormancy?language=objc)
+    /// Recording forced to end by the user pressing the power button.
     #[doc(alias = "RPRecordingErrorSystemDormancy")]
     pub const SystemDormancy: Self = Self(-5809);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/entitlements?language=objc)
+    /// Recording failed due to missing entitlements.
     #[doc(alias = "RPRecordingErrorEntitlements")]
     pub const Entitlements: Self = Self(-5810);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/activephonecall?language=objc)
+    /// Unable to record due to an active phone call.
     #[doc(alias = "RPRecordingErrorActivePhoneCall")]
     pub const ActivePhoneCall: Self = Self(-5811);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedtosave?language=objc)
+    /// The recording failed to save.
     #[doc(alias = "RPRecordingErrorFailedToSave")]
     pub const FailedToSave: Self = Self(-5812);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/carplay?language=objc)
+    /// Failed to start recording because CarPlay is active.
     #[doc(alias = "RPRecordingErrorCarPlay")]
     pub const CarPlay: Self = Self(-5813);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedapplicationconnectioninvalid?language=objc)
+    /// The recording failed because the app’s connection is invalid.
     #[doc(alias = "RPRecordingErrorFailedApplicationConnectionInvalid")]
     pub const FailedApplicationConnectionInvalid: Self = Self(-5814);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedapplicationconnectioninterrupted?language=objc)
+    /// The recording failed because the app’s connection was interrupted.
     #[doc(alias = "RPRecordingErrorFailedApplicationConnectionInterrupted")]
     pub const FailedApplicationConnectionInterrupted: Self = Self(-5815);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failednomatchingapplicationcontext?language=objc)
+    /// The context identifier doesn’t match the app identifier.
     #[doc(alias = "RPRecordingErrorFailedNoMatchingApplicationContext")]
     pub const FailedNoMatchingApplicationContext: Self = Self(-5816);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedmediaservicesfailure?language=objc)
+    /// The recording failed due to a mediaservices daemon failure.
     #[doc(alias = "RPRecordingErrorFailedMediaServicesFailure")]
     pub const FailedMediaServicesFailure: Self = Self(-5817);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/videomixingfailure?language=objc)
+    /// The recording failed due to an A/V mixing failure.
     #[doc(alias = "RPRecordingErrorVideoMixingFailure")]
     pub const VideoMixingFailure: Self = Self(-5818);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/broadcastsetupfailed?language=objc)
+    /// The broadcast set up failed.
     #[doc(alias = "RPRecordingErrorBroadcastSetupFailed")]
     pub const BroadcastSetupFailed: Self = Self(-5819);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedtoobtainurl?language=objc)
+    /// The recording failed due to a failure to obtain the URL.
     #[doc(alias = "RPRecordingErrorFailedToObtainURL")]
     pub const FailedToObtainURL: Self = Self(-5820);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedincorrecttimestamps?language=objc)
+    /// The recording failed due to malformed start and end time intervals.
     #[doc(alias = "RPRecordingErrorFailedIncorrectTimeStamps")]
     pub const FailedIncorrectTimeStamps: Self = Self(-5821);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedtoprocessfirstsample?language=objc)
+    /// The recording failed because the asset writer failed to process the first media sample.
     #[doc(alias = "RPRecordingErrorFailedToProcessFirstSample")]
     pub const FailedToProcessFirstSample: Self = Self(-5822);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedassetwriterfailedtosave?language=objc)
+    /// The recording failed due to an asset writer failure.
     #[doc(alias = "RPRecordingErrorFailedAssetWriterFailedToSave")]
     pub const FailedAssetWriterFailedToSave: Self = Self(-5823);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failednoassetwriter?language=objc)
+    /// The recording failed because there is no asset writer available.
     #[doc(alias = "RPRecordingErrorFailedNoAssetWriter")]
     pub const FailedNoAssetWriter: Self = Self(-5824);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedassetwriterinwrongstate?language=objc)
+    /// The recording failed because the asset writer is in an invalid state.
     #[doc(alias = "RPRecordingErrorFailedAssetWriterInWrongState")]
     pub const FailedAssetWriterInWrongState: Self = Self(-5825);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedassetwriterexportfailed?language=objc)
+    /// The recording failed due to an error exporting the movie.
     #[doc(alias = "RPRecordingErrorFailedAssetWriterExportFailed")]
     pub const FailedAssetWriterExportFailed: Self = Self(-5826);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedtoremovefile?language=objc)
+    /// The recording failed because the temporary file wasn’t removed.
     #[doc(alias = "RPRecordingErrorFailedToRemoveFile")]
     pub const FailedToRemoveFile: Self = Self(-5827);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedassetwriterexportcanceled?language=objc)
+    /// The recording failed because the user canceled the export.
     #[doc(alias = "RPRecordingErrorFailedAssetWriterExportCanceled")]
     pub const FailedAssetWriterExportCanceled: Self = Self(-5828);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/attempttostopnonrecording?language=objc)
+    /// Attempted to stop a recording that’s not in a recording state.
     #[doc(alias = "RPRecordingErrorAttemptToStopNonRecording")]
     pub const AttemptToStopNonRecording: Self = Self(-5829);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/attempttostartinrecordingstate?language=objc)
+    /// Attempted to start a recording that’s already in a recording state.
     #[doc(alias = "RPRecordingErrorAttemptToStartInRecordingState")]
     pub const AttemptToStartInRecordingState: Self = Self(-5830);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/photofailure?language=objc)
+    /// Failed saving the video the Camera Roll.
     #[doc(alias = "RPRecordingErrorPhotoFailure")]
     pub const PhotoFailure: Self = Self(-5831);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/recordinginvalidsession?language=objc)
+    /// Attempted to start an invalid recording session.
     #[doc(alias = "RPRecordingErrorRecordingInvalidSession")]
     pub const RecordingInvalidSession: Self = Self(-5832);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/failedtostartcapturestack?language=objc)
+    /// The system failed to configure the app for A/V recording.
     #[doc(alias = "RPRecordingErrorFailedToStartCaptureStack")]
     pub const FailedToStartCaptureStack: Self = Self(-5833);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/invalidparameter?language=objc)
+    /// The recording failed because of an invalid parameter.
     #[doc(alias = "RPRecordingErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(-5834);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/filepermissions?language=objc)
+    /// The recording failed due to a file permission error.
     #[doc(alias = "RPRecordingErrorFilePermissions")]
     pub const FilePermissions: Self = Self(-5835);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/exportcliptourlinprogress?language=objc)
     #[doc(alias = "RPRecordingErrorExportClipToURLInProgress")]
     pub const ExportClipToURLInProgress: Self = Self(-5836);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rprecordingerrorcode/codesuccessful?language=objc)
+    /// Successfully saved the recording to the Camera Roll.
     #[doc(alias = "RPRecordingErrorCodeSuccessful")]
     pub const CodeSuccessful: Self = Self(0);
 }

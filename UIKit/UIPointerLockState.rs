@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstate?language=objc)
+    /// An object that contains information about a scene’s pointer lock state.
+    ///
+    /// ## Overview
+    ///
+    /// To prevent the pointer from triggering system gestures, for example, bringing up the dock, lock it to your application. Locking the pointer hides the pointer and locks it to just your full-screen application.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -48,14 +54,25 @@ impl UIScene {
 }
 
 extern "C" {
+    /// A notification that posts when the value of the locked state for a scene changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is sent when the value in the [`locked`](https://developer.apple.com/documentation/uikit/uipointerlockstate/islocked) property changes. The `userInfo` dictionary of the notification contains the [`UIPointerLockStateSceneUserInfoKey`](https://developer.apple.com/documentation/uikit/uipointerlockstate/sceneuserinfokey) key, which reflects the new value of the [`locked`](https://developer.apple.com/documentation/uikit/uipointerlockstate/islocked) property.
+    ///
+    ///
     /// A notification that is posted when UIPointerLockState.locked changes values for a scene.
     /// It contains the related UIScene in the user info dictionary of the notification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstate/didchangenotification?language=objc)
     pub static UIPointerLockStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstate/sceneuserinfokey?language=objc)
+    /// A key that reflects the new locked state.
+    ///
+    /// ## Discussion
+    ///
+    /// The `userInfo` dictionary of the notification contains the [`UIPointerLockStateSceneUserInfoKey`](https://developer.apple.com/documentation/uikit/uipointerlockstate/sceneuserinfokey) key, which reflects the new value of the [`locked`](https://developer.apple.com/documentation/uikit/uipointerlockstate/islocked) property.
+    ///
+    ///
     pub static UIPointerLockStateSceneUserInfoKey: &'static NSString;
 }

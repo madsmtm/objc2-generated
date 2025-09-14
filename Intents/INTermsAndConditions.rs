@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intermsandconditions?language=objc)
+    /// The terms and conditions of service when making restaurant reservations.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INTermsAndConditions`](https://developer.apple.com/documentation/intents/intermsandconditions) object contains information about the terms and conditions that your company applies to users when handling restaurant reservations. Use this object to communicate the details of your company’s policies. The system presents your terms and conditions to the user through the built-in reservation interfaces. You create instances of this class when providing a response to a [`INGetAvailableRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INTermsAndConditions;

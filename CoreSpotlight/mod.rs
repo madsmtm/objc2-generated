@@ -149,18 +149,16 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/corespotlightapiversion?language=objc)
+/// The API version number for Core Spotlight.
 pub const CoreSpotlightAPIVersion: c_uint = 40;
 extern "C" {
+    /// The project version number for Core Spotlight.
     /// Project version number for CoreSpotlight.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corespotlight/corespotlightversionnumber?language=objc)
     pub static CoreSpotlightVersionNumber: c_double;
 }
 
 extern "C" {
+    /// The project version string for Core Spotlight.
     /// Project version string for CoreSpotlight.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corespotlight/corespotlightversionstring?language=objc)
     pub static CoreSpotlightVersionString: *mut c_uchar;
 }

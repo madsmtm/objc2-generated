@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdatecomponentsrange?language=objc)
+    /// An object that specifies the start and end dates for a range of time.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`PKDateComponentsRange`](https://developer.apple.com/documentation/passkit/pkdatecomponentsrange) with date components that are valid dates and have a calendar. The [`PKDateComponentsRange`](https://developer.apple.com/documentation/passkit/pkdatecomponentsrange) class supports time zones in date components, and exact times are optional.
+    ///
+    /// Provide a specific time and time zone in the date components to display a correct pickup time regardless of the user’s current time zone.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKDateComponentsRange;

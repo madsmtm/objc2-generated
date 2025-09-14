@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer?language=objc)
+    /// A discrete gesture recognizer that tracks a specified number of mouse clicks.
+    ///
+    /// ## Overview
+    ///
+    /// When configuring this gesture recognizer, you can specify which mouse buttons must be clicked and how many clicks must occur before the action method is called. The user must click the specified mouse button the required number of times without dragging the mouse for the gesture to be recognized.
+    ///
+    /// The gesture recognizer automatically sets the values of the [`delaysPrimaryMouseButtonEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents), [`delaysSecondaryMouseButtonEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delayssecondarymousebuttonevents), and [`delaysOtherMouseButtonEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysothermousebuttonevents) properties to [`true`](https://developer.apple.com/documentation/swift/true) for each button in the [`buttonMask`](https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/buttonmask) property.
+    ///
+    ///
     #[unsafe(super(NSGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSGestureRecognizer")]

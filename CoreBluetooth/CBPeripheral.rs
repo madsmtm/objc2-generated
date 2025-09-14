@@ -7,24 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values representing the connection state of a peripheral.
 /// Represents the current connection state of a CBPeripheral.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralState(pub NSInteger);
 impl CBPeripheralState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/disconnected?language=objc)
+    /// The peripheral isn’t connected to the central manager.
     #[doc(alias = "CBPeripheralStateDisconnected")]
     pub const Disconnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/connecting?language=objc)
+    /// The peripheral is in the process of connecting to the central manager.
     #[doc(alias = "CBPeripheralStateConnecting")]
     pub const Connecting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/connected?language=objc)
+    /// The peripheral is connected to the central manager.
     #[doc(alias = "CBPeripheralStateConnected")]
     pub const Connected: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate/disconnecting?language=objc)
+    /// The peripheral is disconnecting from the central manager.
     #[doc(alias = "CBPeripheralStateDisconnecting")]
     pub const Disconnecting: Self = Self(3);
 }
@@ -37,18 +36,43 @@ unsafe impl RefEncode for CBPeripheralState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Specifies which type of write is to be performed on a CBCharacteristic.
+/// Values representing the possible write types to a characteristic’s value.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype?language=objc)
+/// ## Overview
+///
+/// Characteristic write types have corresponding restrictions on the length of the data that you can write to a characteristic’s value. For the [`CBCharacteristicWriteWithResponse`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withresponse) write type’s restrictions, see the Bluetooth 4.0 specification, Volume 3, Part G, Sections 4.9.3–4. For the [`CBCharacteristicWriteWithoutResponse`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withoutresponse) write type restrictions, see the Bluetooth 4.0 specification, Volume 3, Part G, Sections 4.9.1–2.
+///
+/// <div class="warning">
+///
+/// ### Tip
+///  When you write with a response, you can write a characteristic value that’s longer than permitted when you write without a response.
+///
+///
+///
+/// </div>
+///
+/// Specifies which type of write is to be performed on a CBCharacteristic.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCharacteristicWriteType(pub NSInteger);
 impl CBCharacteristicWriteType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withresponse?language=objc)
+    /// Write a characteristic value, with a response from the peripheral to indicate whether the write was successful.
+    ///
+    /// ## Discussion
+    ///
+    /// If the write is unsuccessful, the peripheral responds with an error that details the cause of the failure.
+    ///
+    ///
     #[doc(alias = "CBCharacteristicWriteWithResponse")]
     pub const WithResponse: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withoutresponse?language=objc)
+    /// Write a characteristic value, without any response from the peripheral to indicate whether the write was successful.
+    ///
+    /// ## Discussion
+    ///
+    /// You receive no notification if writing to a characteristic value fails with this write type.
+    ///
+    ///
     #[doc(alias = "CBCharacteristicWriteWithoutResponse")]
     pub const WithoutResponse: Self = Self(1);
 }
@@ -62,9 +86,16 @@ unsafe impl RefEncode for CBCharacteristicWriteType {
 }
 
 extern_class!(
-    /// Represents a peripheral.
+    /// A remote peripheral device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheral?language=objc)
+    /// ## Overview
+    ///
+    /// The [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) class represents remote peripheral devices that your app discovers with a central manager (an instance of [`CBCentralManager`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager)). Peripherals use universally unique identifiers (UUIDs), represented by [`NSUUID`](https://developer.apple.com/documentation/foundation/nsuuid) objects, to identify themselves. Peripherals may contain one or more services or provide useful information about their connected signal strength.
+    ///
+    /// You use this class to discover, explore, and interact with the services available on a remote peripheral that supports Bluetooth low energy. A service encapsulates the way part of the device behaves. For example, one service of a heart rate monitor may be to expose heart rate data from a sensor. Services themselves contain of characteristics or included services (references to other services). Characteristics provide further details about a peripheral’s service. For example, the heart rate service may contain multiple characteristics. One characteristic could describe the intended body location of the device’s heart rate sensor, and another characteristic could transmit the heart rate measurement data. Finally, characteristics contain any number of descriptors that provide more information about the characteristic’s value, such as a human-readable description and a way to format the value.
+    ///
+    ///
+    /// Represents a peripheral.
     #[unsafe(super(CBPeer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBPeer")]
@@ -464,9 +495,14 @@ impl CBPeripheral {
 }
 
 extern_protocol!(
-    /// Delegate for CBPeripheral.
+    /// A protocol that provides updates on the use of a peripheral’s services.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheraldelegate?language=objc)
+    /// ## Overview
+    ///
+    /// The delegate of a [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) object must adopt the [`CBPeripheralDelegate`](https://developer.apple.com/documentation/corebluetooth/cbperipheraldelegate) protocol. The delegate uses this protocol’s methods to monitor the discovery, exploration, and interaction of a remote peripheral’s services and properties. This protocol doesn’t have any required methods.
+    ///
+    ///
+    /// Delegate for CBPeripheral.
     pub unsafe trait CBPeripheralDelegate: NSObjectProtocol {
         #[cfg(feature = "CBPeer")]
         /// Parameter `peripheral`: The peripheral providing this update.

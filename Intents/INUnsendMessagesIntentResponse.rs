@@ -6,46 +6,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INUnsendMessagesIntentResponseCode(pub NSInteger);
 impl INUnsendMessagesIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/ready?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/success?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failure?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failuremessagenotfound?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailureMessageNotFound")]
     pub const FailureMessageNotFound: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failurepastunsendtimelimit?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailurePastUnsendTimeLimit")]
     pub const FailurePastUnsendTimeLimit: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failuremessagetypeunsupported?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailureMessageTypeUnsupported")]
     pub const FailureMessageTypeUnsupported: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failureunsupportedonservice?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailureUnsupportedOnService")]
     pub const FailureUnsupportedOnService: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failuremessageservicenotavailable?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailureMessageServiceNotAvailable")]
     pub const FailureMessageServiceNotAvailable: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INUnsendMessagesIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(11);
 }
@@ -59,7 +46,6 @@ unsafe impl RefEncode for INUnsendMessagesIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inunsendmessagesintentresponse?language=objc)
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

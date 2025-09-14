@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction?language=objc)
+    /// A custom action to perform on an accessible object.
+    ///
+    /// ## Overview
+    ///
+    /// Apps that support custom actions can create instances of this class, specifying the user-readable name of the action, and either a handler closure or the object and selector to use when performing the action. Assistive apps display custom actions in response to specific user cues. For example, VoiceOver lets users access actions quickly using the Actions rotor.
+    ///
+    /// After creating an instance of this class, add it to the [`accessibilityCustomActions`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilitycustomactions) property of an appropriate accessible object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomAction;

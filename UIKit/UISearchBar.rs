@@ -12,22 +12,46 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon?language=objc)
+/// Constants to identify the icons used in the search bar.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISearchBarIcon(pub NSInteger);
 impl UISearchBarIcon {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/search?language=objc)
+    /// Identifies the search icon.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the corresponding icon is a magnifying glass.
+    ///
+    ///
     #[doc(alias = "UISearchBarIconSearch")]
     pub const Search: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/clear?language=objc)
+    /// Identifies the clear action icon.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the corresponding icon is a circle containing an X.
+    ///
+    ///
     #[doc(alias = "UISearchBarIconClear")]
     pub const Clear: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/bookmark?language=objc)
+    /// Identifies the bookmarks icon.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the corresponding icon is an open book.
+    ///
+    ///
     #[doc(alias = "UISearchBarIconBookmark")]
     pub const Bookmark: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon/resultslist?language=objc)
+    /// Identifies the results list icon.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the corresponding icon is a list lozenge icon.
+    ///
+    ///
     #[doc(alias = "UISearchBarIconResultsList")]
     pub const ResultsList: Self = Self(3);
 }
@@ -40,19 +64,25 @@ unsafe impl RefEncode for UISearchBarIcon {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style?language=objc)
+/// Specifies whether the search bar has a background.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISearchBarStyle(pub NSUInteger);
 impl UISearchBarStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style/default?language=objc)
+    /// The search bar has the default style.
+    ///
+    /// ## Discussion
+    ///
+    /// Defaults to [`UISearchBarStyleProminent`](https://developer.apple.com/documentation/uikit/uisearchbar/style/prominent).
+    ///
+    ///
     #[doc(alias = "UISearchBarStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style/prominent?language=objc)
+    /// The search bar has a translucent background, and the search field is opaque.
     #[doc(alias = "UISearchBarStyleProminent")]
     pub const Prominent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style/minimal?language=objc)
+    /// The search bar has no background, and the search field is translucent.
     #[doc(alias = "UISearchBarStyleMinimal")]
     pub const Minimal: Self = Self(2);
 }
@@ -66,7 +96,6 @@ unsafe impl RefEncode for UISearchBarStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilooktodictatecapable?language=objc)
     pub unsafe trait UILookToDictateCapable: NSObjectProtocol {
         /// Enable or disable 'Look To Dictate' on the receiver.
         #[unsafe(method(isLookToDictateEnabled))]
@@ -81,7 +110,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar?language=objc)
+    /// A specialized view for receiving search-related information from the user.
+    ///
+    /// ## Overview
+    ///
+    /// [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar) provides a text field for entering text, a search button, a bookmark button, and a cancel button. A search bar doesn’t actually perform any searches. You use a delegate, an object conforming to the [`UISearchBarDelegate`](https://developer.apple.com/documentation/uikit/uisearchbardelegate) protocol, to implement the actions when the user enters text or clicks buttons. For details about interacting with the text field, accessing its content, and using tokens, see [`UISearchTextField`](https://developer.apple.com/documentation/uikit/uisearchtextfield) and [`UISearchToken`](https://developer.apple.com/documentation/uikit/uisearchtoken).
+    ///
+    /// ### Customize appearance
+    ///
+    /// You can customize the appearance of search bars one at a time, or you can use the appearance proxy (`[UISearchBar appearance]`) to customize the appearance of all search bars in an app.
+    ///
+    /// In general, you should specify a value for the normal state to be used by other states which don’t have a custom value set. Similarly, when a property is dependent on the bar metrics (on iPhone, in landscape orientation bars have a different height from standard), you should specify a value for `UIBarMetricsDefault`.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -609,7 +650,13 @@ impl UISearchBar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbardelegate?language=objc)
+    /// A collection of optional methods that you implement to make a search bar control functional.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar) object provides the user interface for a search field on a bar, but it’s the application’s responsibility to implement the actions when buttons are tapped. At a minimum, the delegate needs to perform the actual search when text is entered in the text field.
+    ///
+    ///
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UISearchBarDelegate: UIBarPositioningDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]

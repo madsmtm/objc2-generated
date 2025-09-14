@@ -11,7 +11,17 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkskyboxeffect?language=objc)
+    /// A simple skybox visual effect for use in shader-based OpenGL rendering.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GLKSkyboxEffect`](https://developer.apple.com/documentation/glkit/glkskyboxeffect) provides a standard skybox effect for your application. Unlike the [`GLKBaseEffect`](https://developer.apple.com/documentation/glkit/glkbaseeffect) class, the skybox does not require your application to configure and submit vertex data. Instead, it creates its own vertex data based on the configuration data you supply.
+    ///
+    /// At initialization time, your application first creates a compatible context and makes it current. Then, it creates new skybox effect, configures its properties, and calls its [`prepareToDraw`](https://developer.apple.com/documentation/glkit/glkskyboxeffect/preparetodraw()) method. Binding the effect causes a shader to be compiled and bound to the current context.
+    ///
+    /// At rendering time, your application calls the effect’s [`prepareToDraw`](https://developer.apple.com/documentation/glkit/glkskyboxeffect/preparetodraw()) method to prepare the effect and then calls its [`draw`](https://developer.apple.com/documentation/glkit/glkskyboxeffect/draw()) method to draw the sky box.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKSkyboxEffect;

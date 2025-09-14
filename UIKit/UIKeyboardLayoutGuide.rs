@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardlayoutguide?language=objc)
+    /// A layout guide that represents the space the keyboard occupies in your app’s layout.
+    ///
+    /// ## Overview
+    ///
+    /// Configure the keyboard layout guide, and activate or deactivate constraints so your app’s layout adjusts to the keyboard in different situations. See [Adjusting your layout with keyboard layout guide](https://developer.apple.com/documentation/uikit/adjusting-your-layout-with-keyboard-layout-guide) for an example of how to dynamically respond to keyboard presentation, dismissal, and movement.
+    ///
+    ///
     #[unsafe(super(UITrackingLayoutGuide, UILayoutGuide, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,34 +8,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum?language=objc)
+/// The phase of a touch event.
+///
+/// ## Overview
+///
+/// The phase of a `UITouch` instance changes as the system receives updates during the course of an event. Access this value through the [`phase`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchPhase(pub NSInteger);
 impl UITouchPhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/began?language=objc)
+    /// A touch for a given event has pressed down on the screen.
     #[doc(alias = "UITouchPhaseBegan")]
     pub const Began: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/moved?language=objc)
+    /// A touch for a given event has moved over the screen.
     #[doc(alias = "UITouchPhaseMoved")]
     pub const Moved: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/stationary?language=objc)
+    /// A touch for a given event is pressed down on the screen, but hasn’t moved since the previous event.
     #[doc(alias = "UITouchPhaseStationary")]
     pub const Stationary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/ended?language=objc)
+    /// A touch for a given event has lifted from the screen.
     #[doc(alias = "UITouchPhaseEnded")]
     pub const Ended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/cancelled?language=objc)
+    /// The system canceled tracking for a touch, for example, when the user moves the device against their face.
     #[doc(alias = "UITouchPhaseCancelled")]
     pub const Cancelled: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionentered?language=objc)
+    /// A touch for a given event has entered a window on the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`UITouchPhaseRegionEntered`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionentered), [`UITouchPhaseRegionMoved`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionmoved), and [`UITouchPhaseRegionExited`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionexited) phases don’t always align with the [`state`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.property) property of a [`UIHoverGestureRecognizer`](https://developer.apple.com/documentation/uikit/uihovergesturerecognizer). States of the hover gesture recognizer only apply within the context of the gesture’s view, whereas the touch states apply within the window.
+    ///
+    ///
     #[doc(alias = "UITouchPhaseRegionEntered")]
     pub const RegionEntered: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionmoved?language=objc)
+    /// A touch for the given event is within a window on the screen, but has not yet pressed down.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`UITouchPhaseRegionEntered`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionentered), [`UITouchPhaseRegionMoved`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionmoved), and [`UITouchPhaseRegionExited`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionexited) phases don’t always align with the [`state`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.property) property of a [`UIHoverGestureRecognizer`](https://developer.apple.com/documentation/uikit/uihovergesturerecognizer). States of the hover gesture recognizer only apply within the context of the gesture’s view, whereas the touch states apply within the window.
+    ///
+    ///
     #[doc(alias = "UITouchPhaseRegionMoved")]
     pub const RegionMoved: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionexited?language=objc)
+    /// A touch for a given event has left a window on the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`UITouchPhaseRegionEntered`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionentered), [`UITouchPhaseRegionMoved`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionmoved), and [`UITouchPhaseRegionExited`](https://developer.apple.com/documentation/uikit/uitouch/phase-swift.enum/regionexited) phases don’t always align with the [`state`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.property) property of a [`UIHoverGestureRecognizer`](https://developer.apple.com/documentation/uikit/uihovergesturerecognizer). States of the hover gesture recognizer only apply within the context of the gesture’s view, whereas the touch states apply within the window.
+    ///
+    ///
     #[doc(alias = "UITouchPhaseRegionExited")]
     pub const RegionExited: Self = Self(7);
 }
@@ -48,19 +72,31 @@ unsafe impl RefEncode for UITouchPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability?language=objc)
+/// Keys that indicate the availability of 3D Touch on a device.
+///
+/// ## Overview
+///
+/// Only certain devices support 3D Touch. On those that do, the user can disable 3D Touch in the Accessibility area in Settings.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIForceTouchCapability(pub NSInteger);
 impl UIForceTouchCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability/unknown?language=objc)
+    /// The availability of 3D Touch is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// A view has this trait after you create it but before you add it your app’s view hierarchy.
+    ///
+    ///
     #[doc(alias = "UIForceTouchCapabilityUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability/unavailable?language=objc)
+    /// 3D Touch isn’t available on the device.
     #[doc(alias = "UIForceTouchCapabilityUnavailable")]
     pub const Unavailable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability/available?language=objc)
+    /// 3D Touch is available on the device.
     #[doc(alias = "UIForceTouchCapabilityAvailable")]
     pub const Available: Self = Self(2);
 }
@@ -73,25 +109,43 @@ unsafe impl RefEncode for UIForceTouchCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype?language=objc)
+/// The type of touch received.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchType(pub NSInteger);
 impl UITouchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/direct?language=objc)
+    /// A touch resulting from direct contact with the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// Direct touches occur when the user’s finger touches the screen.
+    ///
+    ///
     #[doc(alias = "UITouchTypeDirect")]
     pub const Direct: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/indirect?language=objc)
+    /// A touch that doesn’t result from contact with the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// Indirect touches are generated by touch input devices that are separate from the screen. For example, the trackpad of an Apple TV remote generates indirect touches.
+    ///
+    ///
     #[doc(alias = "UITouchTypeIndirect")]
     pub const Indirect: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/pencil?language=objc)
+    /// A touch from Apple Pencil.
+    ///
+    /// ## Discussion
+    ///
+    /// A pencil touch occurs when Apple Pencil interacts with the device’s screen.
+    ///
+    ///
     #[doc(alias = "UITouchTypePencil")]
     pub const Pencil: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/stylus?language=objc)
+    /// A touch from a stylus.
     #[doc(alias = "UITouchTypeStylus")]
     pub const Stylus: Self = Self(UITouchType::Pencil.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/touchtype/indirectpointer?language=objc)
+    /// A touch resulting from a button-based, indirect input device that describes the input sequence from button press to button release.
     #[doc(alias = "UITouchTypeIndirectPointer")]
     pub const IndirectPointer: Self = Self(3);
 }
@@ -104,26 +158,26 @@ unsafe impl RefEncode for UITouchType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties?language=objc)
+/// A bit mask of touch properties that may get updated.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchProperties(pub NSInteger);
 bitflags::bitflags! {
     impl UITouchProperties: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/force?language=objc)
+/// A touch property, representing force, in a bit mask.
         #[doc(alias = "UITouchPropertyForce")]
         const Force = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/azimuth?language=objc)
+/// A touch property, representing azimuth, in a bit mask.
         #[doc(alias = "UITouchPropertyAzimuth")]
         const Azimuth = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/altitude?language=objc)
+/// A touch property, representing altitude, in a bit mask.
         #[doc(alias = "UITouchPropertyAltitude")]
         const Altitude = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/location?language=objc)
+/// A touch property, representing location, in a bit mask.
         #[doc(alias = "UITouchPropertyLocation")]
         const Location = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch/properties/roll?language=objc)
+/// A touch property, representing barrel-roll angle, in a bit mask.
         #[doc(alias = "UITouchPropertyRoll")]
         const Roll = 1<<4;
     }
@@ -138,7 +192,29 @@ unsafe impl RefEncode for UITouchProperties {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouch?language=objc)
+    /// An object representing the location, size, movement, and force of a touch occurring on the screen.
+    ///
+    /// ## Overview
+    ///
+    /// You access touch objects through [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) objects passed into responder objects for event handling. A touch object includes accessors for:
+    ///
+    /// - The view or window in which the touch occurred
+    ///
+    /// - The location of the touch within the view or window
+    ///
+    /// - The approximate radius of the touch
+    ///
+    /// - The force of the touch (on devices that support 3D Touch or Apple Pencil)
+    ///
+    /// A touch object also contains a timestamp indicating when the touch occurred, an integer representing the number of times the user tapped the screen, and the phase of the touch in the form of a constant that describes whether the touch began, moved, or ended, or whether the system canceled the touch.
+    ///
+    /// To learn how to work with swipes, read [Handling Swipe and Drag Gestures](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/multitouch_background/multitouch_background.html#//apple_ref/doc/uid/TP40009541-CH5-SW21) in [Event Handling Guide for UIKit Apps](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541).
+    ///
+    /// A touch object persists throughout a multi-touch sequence. You may store a reference to a touch while handling a multi-touch sequence, as long as you release that reference when the sequence ends. If you need to store information about a touch outside of a multi-touch sequence, copy that information from the touch.
+    ///
+    /// The [`gestureRecognizers`](https://developer.apple.com/documentation/uikit/uitouch/gesturerecognizers) property of a touch contains the gesture recognizers currently handling the touch. Each gesture recognizer is an instance of a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

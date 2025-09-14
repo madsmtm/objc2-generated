@@ -10,109 +10,88 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Text formatting horizontal alignment state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textalignment?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerTextAlignment = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textalignment/left?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentLeft:
         &'static UITextFormattingViewControllerTextAlignment;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textalignment/center?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentCenter:
         &'static UITextFormattingViewControllerTextAlignment;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textalignment/right?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentRight:
         &'static UITextFormattingViewControllerTextAlignment;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textalignment/justified?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentJustified:
         &'static UITextFormattingViewControllerTextAlignment;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textalignment/natural?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentNatural:
         &'static UITextFormattingViewControllerTextAlignment;
 }
 
 /// Text formatting text list state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textlist?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerTextList = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textlist/disc?language=objc)
     pub static UITextFormattingViewControllerTextListDisc:
         &'static UITextFormattingViewControllerTextList;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textlist/hyphen?language=objc)
     pub static UITextFormattingViewControllerTextListHyphen:
         &'static UITextFormattingViewControllerTextList;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textlist/decimal?language=objc)
     pub static UITextFormattingViewControllerTextListDecimal:
         &'static UITextFormattingViewControllerTextList;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/textlist/other?language=objc)
     pub static UITextFormattingViewControllerTextListOther:
         &'static UITextFormattingViewControllerTextList;
 }
 
 /// Text formatting highlight state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerHighlight = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight/default?language=objc)
     pub static UITextFormattingViewControllerHighlightDefault:
         &'static UITextFormattingViewControllerHighlight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight/purple?language=objc)
     pub static UITextFormattingViewControllerHighlightPurple:
         &'static UITextFormattingViewControllerHighlight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight/pink?language=objc)
     pub static UITextFormattingViewControllerHighlightPink:
         &'static UITextFormattingViewControllerHighlight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight/orange?language=objc)
     pub static UITextFormattingViewControllerHighlightOrange:
         &'static UITextFormattingViewControllerHighlight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight/mint?language=objc)
     pub static UITextFormattingViewControllerHighlightMint:
         &'static UITextFormattingViewControllerHighlight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/highlight/blue?language=objc)
     pub static UITextFormattingViewControllerHighlightBlue:
         &'static UITextFormattingViewControllerHighlight;
 }
@@ -120,8 +99,6 @@ extern "C" {
 extern_class!(
     /// Object that represents current text formatting state.
     /// This can apply to formatting state of some selected range of text or currently applicable input formatting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerFormattingDescriptor;

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatasourcetranslating?language=objc)
+    /// An advanced interface for managing a data source object.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of this protocol to map between the positions of items and sections in your data source object and the positions of those same items and sections in your presented layout. Objects that adopt this protocol do so because the position of items in their data source object don’t always match the corresponding positions in their presented layout.
+    ///
+    /// [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) and [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) adopt this protocol and use it in conjunction with drag and drop operations. For example, [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) must account for the presence of placeholder cells, which appear as rows in the table but don’t have a corresponding entry in the data source object. Typically, you don’t adopt this protocol in your own classes.
+    ///
+    ///
     pub unsafe trait UIDataSourceTranslating: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(presentationSectionIndexForDataSourceSectionIndex:))]
         #[unsafe(method_family = none)]

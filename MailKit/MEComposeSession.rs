@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a single mail compose window.
     /// An instance of this class is associated with the lifecycle of a single mail compose window. This object associates the actions performed by the user in a mail compose window to a unique session. An instance of this class is passed to the methods in
     /// `MEComposeSessionHandler.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeSession;
@@ -71,25 +70,24 @@ impl MEComposeSession {
 }
 
 extern "C" {
+    /// A constant for the compose session error domain.
     /// Error domain and codes for extensions to report errors before message is delivered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerrordomain?language=objc)
     pub static MEComposeSessionErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code?language=objc)
+/// Errors that indicate invalid compose session states.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEComposeSessionErrorCode(pub NSInteger);
 impl MEComposeSessionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code/invalidrecipients?language=objc)
+    /// An error code that indicates one or more of the message’s recipients are invalid.
     #[doc(alias = "MEComposeSessionErrorCodeInvalidRecipients")]
     pub const InvalidRecipients: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code/invalidheaders?language=objc)
+    /// An error code that indicates one or more of the message’s headers are invalid.
     #[doc(alias = "MEComposeSessionErrorCodeInvalidHeaders")]
     pub const InvalidHeaders: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionerror/code/invalidbody?language=objc)
+    /// An error code that indicates the message’s body is invalid.
     #[doc(alias = "MEComposeSessionErrorCodeInvalidBody")]
     pub const InvalidBody: Self = Self(2);
 }
@@ -103,9 +101,38 @@ unsafe impl RefEncode for MEComposeSessionErrorCode {
 }
 
 extern_protocol!(
-    /// Methods in this protocol can be used by a mail app extension to keep track of new messages composed by the user and to make changes to the recipeint email address tokens.
+    /// An object that participates in the composition of mail messages, and annotates recipient tokens.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposesessionhandler?language=objc)
+    /// ## Overview
+    ///
+    /// When the user composes a message, MailKit requests a compose session handler object from your extension. MailKit uses this handler in the following ways:
+    ///
+    /// - To inform it when the compose session begins and ends
+    ///
+    /// - To add status annotations for email addresses that the user enters into the To, Cc, and Bcc fields
+    ///
+    /// - To display a custom popover in the compose window
+    ///
+    /// - To include custom headers in an outgoing message
+    ///
+    /// - To confirm that an outgoing message is ready for delivery
+    ///
+    /// Each of the items in the list above corresponds to methods that the handler implements.
+    ///
+    /// To indicate that your extension contains a compose session handler, add `MEComposeSessionHandler` to the [`MEExtensionCapabilities`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/meextensioncapabilities) array in the extension’s `Info.plist` file:
+    ///
+    /// ```swift
+    /// <key>NSExtensionAttributes</key>
+    /// <dict>
+    ///     <key>MEExtensionCapabilities</key>
+    ///     <array>
+    ///         <string>MEComposeSessionHandler</string>
+    ///     </array>
+    /// </dict>
+    /// ```
+    ///
+    ///
+    /// Methods in this protocol can be used by a mail app extension to keep track of new messages composed by the user and to make changes to the recipeint email address tokens.
     pub unsafe trait MEComposeSessionHandler: NSObjectProtocol + MainThreadOnly {
         /// This is invoked when a new message compose window is created.
         ///

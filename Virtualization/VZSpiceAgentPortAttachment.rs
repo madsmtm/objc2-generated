@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzspiceagentportattachment?language=objc)
+    /// An attachment point that enables the Spice clipboard sharing capability.
     #[unsafe(super(VZSerialPortAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortAttachment")]

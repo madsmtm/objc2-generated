@@ -6,31 +6,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype?language=objc)
+/// Constants that specify the general type of an event.
+///
+/// ## Overview
+///
+/// You can obtain the type of an event from the [`type`](https://developer.apple.com/documentation/uikit/uievent/type) property. To further identify the event, you might also need to determine its subtype, which you obtain from the [`subtype`](https://developer.apple.com/documentation/uikit/uievent/subtype) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventType(pub NSInteger);
 impl UIEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/touches?language=objc)
+    /// The event relates to touches on the screen.
     #[doc(alias = "UIEventTypeTouches")]
     pub const Touches: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/motion?language=objc)
+    /// The event relates to motion of the device, such as when a person shakes it.
     #[doc(alias = "UIEventTypeMotion")]
     pub const Motion: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol?language=objc)
+    /// The event is a remote-control event.
+    ///
+    /// ## Discussion
+    ///
+    /// Remote-control events originate as commands received from a headset or external accessory for the purposes of controlling multimedia on the device.
+    ///
+    ///
     #[doc(alias = "UIEventTypeRemoteControl")]
     pub const RemoteControl: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/presses?language=objc)
+    /// The event relates to the press of a physical button.
     #[doc(alias = "UIEventTypePresses")]
     pub const Presses: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/scroll?language=objc)
+    /// The event relates to scrolling from an indirect input device.
     #[doc(alias = "UIEventTypeScroll")]
     pub const Scroll: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/hover?language=objc)
+    /// The event relates to a pointer from an indirect input device moving over a user interface element.
     #[doc(alias = "UIEventTypeHover")]
     pub const Hover: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventtype/transform?language=objc)
+    /// The event relates to a pointer from an indirect input device performing a transformation on a user interface element, such as scaling, rotation, or translation.
     #[doc(alias = "UIEventTypeTransform")]
     pub const Transform: Self = Self(14);
 }
@@ -43,46 +55,124 @@ unsafe impl RefEncode for UIEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype?language=objc)
+/// Constants that specify the subtype of the event in relation to its general type.
+///
+/// ## Overview
+///
+/// You can obtain the subtype of an event from the [`subtype`](https://developer.apple.com/documentation/uikit/uievent/subtype) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventSubtype(pub NSInteger);
 impl UIEventSubtype {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/none?language=objc)
+    /// The event has no subtype.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the subtype for events of the [`UIEventTypeTouches`](https://developer.apple.com/documentation/uikit/uievent/eventtype/touches) general type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/motionshake?language=objc)
+    /// The event is related to a person shaking the device.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype for the [`UIEventTypeMotion`](https://developer.apple.com/documentation/uikit/uievent/eventtype/motion) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeMotionShake")]
     pub const MotionShake: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolplay?language=objc)
+    /// A remote-control event for playing audio or video.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlPlay")]
     pub const RemoteControlPlay: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolpause?language=objc)
+    /// A remote-control event for pausing audio or video.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlPause")]
     pub const RemoteControlPause: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolstop?language=objc)
+    /// A remote-control event for stopping audio or video from playing.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlStop")]
     pub const RemoteControlStop: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontroltoggleplaypause?language=objc)
+    /// A remote-control event for toggling audio or video between play and pause.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlTogglePlayPause")]
     pub const RemoteControlTogglePlayPause: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolnexttrack?language=objc)
+    /// A remote-control event for skipping to the next audio or video track.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlNextTrack")]
     pub const RemoteControlNextTrack: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolprevioustrack?language=objc)
+    /// A remote-control event for skipping to the previous audio or video track.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlPreviousTrack")]
     pub const RemoteControlPreviousTrack: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolbeginseekingbackward?language=objc)
+    /// A remote-control event to start seeking backward through the audio or video medium.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlBeginSeekingBackward")]
     pub const RemoteControlBeginSeekingBackward: Self = Self(106);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolendseekingbackward?language=objc)
+    /// A remote-control event to end seeking backward through the audio or video medium.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlEndSeekingBackward")]
     pub const RemoteControlEndSeekingBackward: Self = Self(107);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolbeginseekingforward?language=objc)
+    /// A remote-control event to start seeking forward through the audio or video medium.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlBeginSeekingForward")]
     pub const RemoteControlBeginSeekingForward: Self = Self(108);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/eventsubtype/remotecontrolendseekingforward?language=objc)
+    /// A remote-control event to end seeking forward through the audio or video medium.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a subtype of the [`UIEventTypeRemoteControl`](https://developer.apple.com/documentation/uikit/uievent/eventtype/remotecontrol) general event type.
+    ///
+    ///
     #[doc(alias = "UIEventSubtypeRemoteControlEndSeekingForward")]
     pub const RemoteControlEndSeekingForward: Self = Self(109);
 }
@@ -95,6 +185,7 @@ unsafe impl RefEncode for UIEventSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate which input-device buttons are pressed.
 /// Set of buttons pressed for the current event
 /// Raw format of: 1
 /// <
@@ -104,18 +195,16 @@ unsafe impl RefEncode for UIEventSubtype {
 /// <
 /// <
 /// 0
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventButtonMask(pub NSInteger);
 bitflags::bitflags! {
     impl UIEventButtonMask: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/primary?language=objc)
+/// A constant that represents the primary button on the input device.
         #[doc(alias = "UIEventButtonMaskPrimary")]
         const Primary = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/secondary?language=objc)
+/// A constant that represents the secondary button on the input device.
         #[doc(alias = "UIEventButtonMaskSecondary")]
         const Secondary = 1<<1;
     }
@@ -130,11 +219,14 @@ unsafe impl RefEncode for UIEventButtonMask {
 }
 
 impl UIEventButtonMask {
+    /// Creates a button mask from the specified button index.
+    ///
+    /// Parameters:
+    /// - buttonNumber: The index of the button on the input device. Pass `1` to represent [`UIEventButtonMaskPrimary`](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/primary), and `2` to represent [`UIEventButtonMaskSecondary`](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/secondary).
+    ///
     /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
     /// .button(1) == .primary
     /// .button(2) == .secondary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent/buttonmask-swift.struct/button(_:)?language=objc)
     #[doc(alias = "UIEventButtonMaskForButtonNumber")]
     #[inline]
     pub fn for_button_number(button_number: NSInteger) -> UIEventButtonMask {
@@ -146,7 +238,19 @@ impl UIEventButtonMask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uievent?language=objc)
+    /// An object that describes a single user interaction with your app.
+    ///
+    /// ## Overview
+    ///
+    /// Apps can receive many different types of events, including touch events, motion events, remote-control events, and press events. Touch events are the most common and are delivered to the view in which the touch originally occurred. Motion events are UIKit triggered and are separate from the motion events reported by the Core Motion framework. Remote-control events allow a responder object to receive commands from an external accessory or headset so that it can manage audio and video — for example, playing a video or skipping to the next audio track. Press events represent interactions with a game controller, Apple TV remote, or other device that has physical buttons. You can determine the type of an event using the [`type`](https://developer.apple.com/documentation/uikit/uievent/type) and [`subtype`](https://developer.apple.com/documentation/uikit/uievent/subtype) properties.
+    ///
+    /// A touch event object contains the touches (that is, the fingers on the screen) that have some relation to the event. A touch event object may contain one or more touches, and each touch is represented by a [`UITouch`](https://developer.apple.com/documentation/uikit/uitouch) object. When a touch event occurs, the system routes it to the appropriate responder and calls the appropriate method, such as [`touchesBegan:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesbegan(_:with:)). The responder then uses the touches to determine an appropriate course of action.
+    ///
+    /// During a multitouch sequence, UIKit reuses the same [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) object when delivering updated touch data to your app. You should never retain an event object or any object returned from an event object. If you need to retain data outside of the responder method you use to process that data, copy that data from the [`UITouch`](https://developer.apple.com/documentation/uikit/uitouch) or [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) object to your local data structures.
+    ///
+    /// For more information on how to handle events in your UIKit app, see [Event Handling Guide for UIKit Apps](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

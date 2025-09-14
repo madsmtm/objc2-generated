@@ -8,11 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages cookies, disk and memory caches, and other types of data for a web view.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`WKWebsiteDataStore`](https://developer.apple.com/documentation/webkit/wkwebsitedatastore) object to configure and manage web site data. Specifically, use this object to:
+    ///
+    /// - Manage cookies that your web site uses
+    ///
+    /// - Learn about the types of data that websites store
+    ///
+    /// - Remove unwanted web site data
+    ///
+    /// Create a data store object and assign it to the [`websiteDataStore`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/websitedatastore) property of a [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object before you create your web view.
+    ///
+    /// By default, `WKWebViewConfiguration` uses the default data store returned by the [`defaultDataStore`](https://developer.apple.com/documentation/webkit/wkwebsitedatastore/default()) method, which saves website data persistently to disk.
+    ///
+    /// To implement private browsing, create a nonpersistent data store using the [`nonPersistentDataStore`](https://developer.apple.com/documentation/webkit/wkwebsitedatastore/nonpersistent()) method instead.
+    ///
+    /// To implement profile browsing, create a persistent data store using the [`dataStoreForIdentifier:`](https://developer.apple.com/documentation/webkit/wkwebsitedatastore/init(foridentifier:)) method, passing an identifier that you use to identify the data store.
+    ///
+    ///
     /// A WKWebsiteDataStore represents various types of data that a website might
     /// make use of. This includes cookies, disk and memory caches, and persistent data such as WebSQL,
     /// IndexedDB databases, and local storage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatastore?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

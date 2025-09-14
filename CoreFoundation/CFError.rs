@@ -9,15 +9,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrordomain?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CFErrorDomain = CFString;
 
+///
+/// ## Overview
+///
+/// A CFError object encapsulates more rich and extensible error information than is possible using only an error code or error string. The core attributes of a CFError object are an error domain (represented by a string), a domain-specific error code, and a “user info” dictionary containing application-specific information. Errors are required to have a domain and an error code within that domain. Several well-known domains are defined corresponding to Mach, POSIX, and OSStatus errors.
+///
+/// The optional “user info” dictionary may provide additional information that might be useful for the interpretation and reporting of the error, including a human-readable description for the error. The “user info” dictionary sometimes includes another CFError object that represents an error in a subsystem underlying the error represented by the containing CFError object. This underlying error object may provide more specific information about the cause of the error.
+///
+/// In general, a method should signal an error condition by returning, for example, `false` or `NULL` rather than by the simple presence of an error object. The method can then optionally return an CFError object by reference, in order to further describe the error.
+///
+/// CFError is toll-free bridged to [`NSError`](https://developer.apple.com/documentation/foundation/nserror) in the Foundation framework—for more details on toll-free bridging, see [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677). `NSError` has some additional guidelines that make it easy to report errors automatically to users and attempt to recover from them. See [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806) for more information on `NSError` programming guidelines.
+///
+///
 /// This is the type of a reference to CFErrors.  CFErrorRef is toll-free bridged with NSError.
 ///
 /// This is toll-free bridged with `NSError`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferror?language=objc)
 #[doc(alias = "CFErrorRef")]
 #[repr(C)]
 pub struct CFError {
@@ -34,9 +43,14 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFError {
-    /// Returns the type identifier of all CFError instances.
+    /// Returns the type identifier for the CFError opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFError opaque type.
+    ///
+    ///
+    /// Returns the type identifier of all CFError instances.
     #[doc(alias = "CFErrorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -48,66 +62,88 @@ unsafe impl ConcreteType for CFError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomainposix?language=objc)
+    /// A constant that specified the POSIX domain.
     pub static kCFErrorDomainPOSIX: Option<&'static CFErrorDomain>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomainosstatus?language=objc)
+    /// A constant that specified the OS domain.
     pub static kCFErrorDomainOSStatus: Option<&'static CFErrorDomain>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomainmach?language=objc)
+    /// A constant that specified the Mach domain.
     pub static kCFErrorDomainMach: Option<&'static CFErrorDomain>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordomaincocoa?language=objc)
+    /// A constant that specified the Cocoa domain.
     pub static kCFErrorDomainCocoa: Option<&'static CFErrorDomain>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizeddescriptionkey?language=objc)
+    /// Key to identify the user-presentable description in the `userInfo` dictionary.
     pub static kCFErrorLocalizedDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurekey?language=objc)
     pub static kCFErrorLocalizedFailureKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurereasonkey?language=objc)
+    /// Key to identify the user-presentable failure reason in the `userInfo` dictionary.
     pub static kCFErrorLocalizedFailureReasonKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedrecoverysuggestionkey?language=objc)
+    /// Key to identify the user-presentable recovery suggestion in the `userInfo` dictionary.
     pub static kCFErrorLocalizedRecoverySuggestionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordescriptionkey?language=objc)
+    /// Key to identify the description in the `userInfo` dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// When you create a CFError object, you can provide a value for this key if you do not have localizable error strings. The description should be a complete sentence if possible, and should not contain the domain name or error code.
+    ///
+    ///
     pub static kCFErrorDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorunderlyingerrorkey?language=objc)
+    /// Key to identify the underlying error in the `userInfo` dictionary.
     pub static kCFErrorUnderlyingErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorurlkey?language=objc)
+    /// Key to identify associated URL in the `userInfo` dictionary.
     pub static kCFErrorURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorfilepathkey?language=objc)
+    /// Key to identify associated file path in the `userInfo` dictionary.
     pub static kCFErrorFilePathKey: Option<&'static CFString>;
 }
 
 impl CFError {
+    /// Creates a new CFError object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - domain: A CFString that identifies the error domain. If this reference is `NULL` or is otherwise not a valid CFString, the behavior is undefined.
+    ///
+    /// - code: A CFIndex that identifies the error code. The code is interpreted within the context of the error domain.
+    ///
+    /// - userInfo: A CFDictionary created with [`kCFCopyStringDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/kcfcopystringdictionarykeycallbacks) and [`kCFTypeDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypedictionaryvaluecallbacks). The dictionary is copied with [`CFDictionaryCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatecopy(_:_:)). If you do not want the userInfo dictionary, you can pass `NULL`, in which case an empty dictionary will be assigned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFError object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new CFError.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the error. This parameter may be NULL in which case the
@@ -129,8 +165,6 @@ impl CFError {
     /// - `user_info` generic must be of the correct type.
     /// - `user_info` generic must be of the correct type.
     /// - `user_info` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFErrorCreate")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -152,6 +186,27 @@ impl CFError {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new CFError object using given keys and values to create the user info dictionary.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - domain: A CFString that identifies the error domain. If this reference is `NULL` or is otherwise not a valid CFString, the behavior is undefined.
+    ///
+    /// - code: A CFIndex that identifies the error code. The code is interpreted within the context of the error domain.
+    ///
+    /// - userInfoKeys: An array of `numUserInfoValues` CFStrings used as keys in creating the userInfo dictionary. The value of this parameter can be `NULL` if `numUserInfoValues` is `0`.
+    ///
+    /// - userInfoValues: An array of `numUserInfoValues` CF types used as values in creating the userInfo dictionary.  The value of this parameter can be `NULL` if `numUserInfoValues` is `0`.
+    ///
+    /// - numUserInfoValues: The number of keys and values in the `userInfoKeys` and `userInfoValues` arrays.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFError object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new CFError without having to create an intermediate userInfo dictionary.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate memory for the error. This parameter may be NULL in which case the
@@ -175,8 +230,6 @@ impl CFError {
     /// - `domain` might not allow `None`.
     /// - `user_info_keys` must be a valid pointer.
     /// - `user_info_values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcreatewithuserinfokeysandvalues(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]
     #[inline]
     pub unsafe fn with_user_info_keys_and_values(
@@ -210,13 +263,22 @@ impl CFError {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the error domain for a given CFError.
+    ///
+    /// Parameters:
+    /// - err: The error to examine. If this is not a valid CFError, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The error domain for `err`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the error domain the CFError was created with.
     ///
     /// Parameter `err`: The CFError whose error domain is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorgetdomain(_:)?language=objc)
     #[doc(alias = "CFErrorGetDomain")]
     #[inline]
     pub fn domain(&self) -> Option<CFRetained<CFErrorDomain>> {
@@ -227,13 +289,28 @@ impl CFError {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the error code for a given CFError.
+    ///
+    /// Parameters:
+    /// - err: The error to examine. If this is not a valid CFError, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The error code of `err`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that this function returns the error code for the specified CFError, not an error return for the current call.
+    ///
+    ///
     /// Returns the error code the CFError was created with.
     ///
     /// Parameter `err`: The CFError whose error code is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The error code of the CFError (not an error return for the current call).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorgetcode(_:)?language=objc)
     #[doc(alias = "CFErrorGetCode")]
     #[inline]
     pub fn code(&self) -> CFIndex {
@@ -243,6 +320,17 @@ impl CFError {
         unsafe { CFErrorGetCode(self) }
     }
 
+    /// Returns the user info dictionary for a given CFError.
+    ///
+    /// Parameters:
+    /// - err: The error to examine. If this is not a valid CFError, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the same keys and values as in the userInfo dictionary `err` was created with. Returns an empty dictionary if `NULL` was supplied to the create function. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Returns CFError userInfo dictionary.
     ///
     /// Returns a dictionary containing the same keys and values as in the userInfo dictionary the CFError was created with. Returns an empty dictionary if NULL was supplied to CFErrorCreate().
@@ -250,8 +338,6 @@ impl CFError {
     /// Parameter `err`: The CFError whose error user info is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: The user info of the CFError.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopyuserinfo(_:)?language=objc)
     #[doc(alias = "CFErrorCopyUserInfo")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -263,6 +349,37 @@ impl CFError {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a human-presentable description for a given error.
+    ///
+    /// Parameters:
+    /// - err: The [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) to examine. If this is not a valid [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A localized, human-presentable description of `err`. This function never returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a complete sentence or two which says what failed and why it failed. The structure of the description depends on the details provided in the user info dictionary. The rules for computing the return value are as follows:
+    ///
+    /// 1. If the value in the user info dictionary for [`kCFErrorLocalizedDescriptionKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizeddescriptionkey) is not `NULL`, it returns that value as-is.
+    ///
+    /// 2. If the value in the user info dictionary for [`kCFErrorLocalizedFailureReasonKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurereasonkey) is not `NULL`, there will be an error generated from that.
+    ///
+    /// The description is something like: “Operation could not be completed. “ + `kCFErrorLocalizedFailureReasonKey` 3. Generate a user-presentable string from [`kCFErrorDescriptionKey`](https://developer.apple.com/documentation/corefoundation/kcferrordescriptionkey), the domain, and code.
+    ///
+    /// The description is something like: “Operation could not be completed. Error domain/code occurred. “ or “Operation could not be completed. “ + `kCFErrorDescriptionKey` + “ (Error domain/code)”
+    ///
+    /// Toll-free bridged instances of [`NSError`](https://developer.apple.com/documentation/foundation/nserror) might provide additional behaviors for manufacturing a description string.
+    ///
+    /// You should not depend on the exact contents or format of the returned string, as it might change in different releases of the operating system.
+    ///
+    /// When you create a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror), you should try to make sure the return value is human-presentable and localized by providing a value for [`kCFErrorLocalizedDescriptionKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizeddescriptionkey) in the user info dictionary.
+    ///
+    ///
     /// Returns a human-presentable description for the error. CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedDescriptionKey at the time of CFError creation.
     ///
     /// This is a complete sentence or two which says what failed and why it failed. Please refer to header comments for -[NSError localizedDescription] for details on the steps used to compute this; but roughly:
@@ -275,8 +392,6 @@ impl CFError {
     /// Parameter `err`: The CFError whose description is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopydescription(_:)?language=objc)
     #[doc(alias = "CFErrorCopyDescription")]
     #[inline]
     pub fn description(&self) -> Option<CFRetained<CFString>> {
@@ -287,6 +402,27 @@ impl CFError {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a human-presentable failure reason for a given error.
+    ///
+    /// Parameters:
+    /// - err: The CFError to examine. If this is not a valid CFError, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A localized, human-presentable failure reason for `err`, or `NULL` if no user-presentable string is available. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The failure reason is a complete sentence which describes why the operation failed. In many cases this will be just the “because” part of the description (but as a complete sentence, which makes localization easier). For example, an error description “Could not save file ‘Letter’ in folder ‘Documents’ because the volume ‘MyDisk’ doesn’t have enough space.” might have a corresponding failure reason, “The volume ‘MyDisk’ doesn’t have enough space.”
+    ///
+    /// By default, this function looks for a value for the [`kCFErrorLocalizedFailureReasonKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurereasonkey) key in the user info dictionary. Toll-free bridged instances of `NSError` might provide additional behaviors for manufacturing this value.
+    ///
+    /// When you create a CFError, you should try to make sure the return value is human-presentable and localized by providing a value for [`kCFErrorLocalizedFailureReasonKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurereasonkey) in the user info dictionary.
+    ///
+    ///
     /// Returns a human-presentable failure reason for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedFailureReasonKey at the time of CFError creation.
     ///
     /// This is a complete sentence which describes why the operation failed. In many cases this will be just the "because" part of the description (but as a complete sentence, which makes localization easier). By default this looks for kCFErrorLocalizedFailureReasonKey in the user info. Toll-free bridged NSError instances might provide additional behaviors for manufacturing this value. If no user-presentable string is available, returns NULL.
@@ -296,8 +432,6 @@ impl CFError {
     /// Parameter `err`: The CFError whose failure reason is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopyfailurereason(_:)?language=objc)
     #[doc(alias = "CFErrorCopyFailureReason")]
     #[inline]
     pub fn failure_reason(&self) -> Option<CFRetained<CFString>> {
@@ -308,6 +442,27 @@ impl CFError {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a human presentable recovery suggestion for a given error.
+    ///
+    /// Parameters:
+    /// - err: The CFError to examine. If this is not a valid CFError, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A localized, human-presentable recovery suggestion for `err`, or `NULL` if no user-presentable string is available. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is the string that can be displayed as the “informative” (or “secondary”) message on an alert panel. For example, an error description “Could not save file ‘Letter’ in folder ‘Documents’ because the volume ‘MyDisk’ doesn’t have enough space.” might have a corresponding recovery suggestion, “Remove some files from the volume and try again.”
+    ///
+    /// By default, this function looks for a value for the [`kCFErrorLocalizedRecoverySuggestionKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedrecoverysuggestionkey) key in the user info dictionary. Toll-free bridged instances of `NSError` might provide additional behaviors for manufacturing this value.
+    ///
+    /// When you create a CFError, you should try to make sure the return value is human-presentable and localized by providing a value for [`kCFErrorLocalizedRecoverySuggestionKey`](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedrecoverysuggestionkey) in the user info dictionary.
+    ///
+    ///
     /// Returns a human presentable recovery suggestion for the error.  May return NULL.  CFError creators should strive to make sure the return value is human-presentable and localized by providing a value for kCFErrorLocalizedRecoverySuggestionKey at the time of CFError creation.
     ///
     /// This is the string that can be displayed as the "informative" (aka "secondary") message on an alert panel. By default this looks for kCFErrorLocalizedRecoverySuggestionKey in the user info. Toll-free bridged NSError instances might provide additional behaviors for manufacturing this value. If no user-presentable string is available, returns NULL.
@@ -317,8 +472,6 @@ impl CFError {
     /// Parameter `err`: The CFError whose recovery suggestion is to be returned. If this reference is not a valid CFError, the behavior is undefined.
     ///
     /// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorcopyrecoverysuggestion(_:)?language=objc)
     #[doc(alias = "CFErrorCopyRecoverySuggestion")]
     #[inline]
     pub fn recovery_suggestion(&self) -> Option<CFRetained<CFString>> {

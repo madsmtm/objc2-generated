@@ -8,9 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// GKScore represents a score in the leaderboards.
+    /// An object containing information for a score that was earned by the player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscore?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your game must initialize a local player before you can use any Game Center classes. If there is no initialized player, your game receives a [`GKErrorNotAuthenticated`](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated) error. For more information, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Your game creates `GKScore` objects to post scores to a leaderboard on Game Center. When your game retrieves score information from a leaderboard, those scores are returned as `GKScore` objects.
+    ///
+    /// Scores and leaderboards work together to help you create a better game. Whenever a new `GKScore` object is created, it is associated with a leaderboard. You must ensure that the score being sent to a leaderboard is compatible with the leaderboard scoring format set in App Store Connect. See [Leaderboards and Leaderboard Sets](https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/iTunesConnectGameCenter_Guide/Leaderboards/Leaderboards.html#//apple_ref/doc/uid/TP40013726-CH2) for information on how to create a leaderboard in App Store Connect.
+    ///
+    /// To report a score to Game Center, your game allocates and initializes a new object, sets the [`value`](https://developer.apple.com/documentation/gamekit/gkscore/value) property to the score the player earned, and then calls the [`reportScoreWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkscore/report(completionhandler:)) method. The mechanism your game uses to calculate scores is up to you to design; scores are only compared within your game.
+    ///
+    ///
+    /// GKScore represents a score in the leaderboards.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

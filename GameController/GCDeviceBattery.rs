@@ -6,28 +6,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// A state that indicates whether a device’s battery has power and is charging.
 /// This is the battery status and it's represented by one of the following values:
 /// GCControllerBatteryStateUnknown means that the current state of battery is unknown or cannot be determined
 /// GCControllerBatteryStateDischarging means that controller is on battery and discharging at this moment
 /// GCControllerBatteryStateCharging means that controller is plugged in, but it's battery level is less than 100%
 /// GCControllerBatteryStateFull means that controller is plugged in and it's battery level is 100%
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCDeviceBatteryState(pub NSInteger);
 impl GCDeviceBatteryState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/unknown?language=objc)
+    /// The state of the device’s battery is unknown.
     #[doc(alias = "GCDeviceBatteryStateUnknown")]
     pub const Unknown: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/discharging?language=objc)
+    /// The device’s battery is discharging.
     #[doc(alias = "GCDeviceBatteryStateDischarging")]
     pub const Discharging: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/charging?language=objc)
+    /// The device’s battery has power and is charging, but isn’t fully charged.
     #[doc(alias = "GCDeviceBatteryStateCharging")]
     pub const Charging: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state/full?language=objc)
+    /// The device’s battery has power and is fully charged.
     #[doc(alias = "GCDeviceBatteryStateFull")]
     pub const Full: Self = Self(2);
 }
@@ -41,9 +40,14 @@ unsafe impl RefEncode for GCDeviceBatteryState {
 }
 
 extern_class!(
-    /// A controller battery is an abstract representation of the battery level and battery status of a GCController instance.
+    /// The charge level and state of a device’s battery.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to display the state of a device’s battery to a player.
+    ///
+    ///
+    /// A controller battery is an abstract representation of the battery level and battery status of a GCController instance.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceBattery;

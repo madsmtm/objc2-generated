@@ -10,12 +10,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that programmatically presents Desk View.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to programmatically launch Desk View from your app. You can optionally customize the presentation and specifiy an action to take afterward.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Desk View is available in iOS 16 and later on iPhone 11 and later, excluding iPhone SE, for use with a Mac running macOS 13 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The following example shows how to configure and present Desk View with a completion handler:
+    ///
+    /// ```swift
+    /// let deskView = AVCaptureDeskViewApplication()
+    /// let configuration = AVCaptureDeskViewApplication.LaunchConfiguration()
+    ///
+    /// // Use the previously set frame.
+    /// configuration.mainWindowFrame = .zero
+    ///
+    /// // Execute the completion handler when the user starts Desk View.
+    /// configuration.requiresSetUpModeCompletion = true
+    ///
+    /// // Launch Desk View with a configuration and completion handler.
+    /// deskView.present(launchConfiguration: configuration) { error in
+    ///     // Perform error handling and additional tasks.
+    /// }
+    /// ```
+    ///
+    ///
     /// Allows a client to programmatically present the Desk View application and be informed when it is done being launched.
     ///
     ///
     /// Users can launch the Desk View application through the Video Effects button in Control Center when a Desk View capable Continuity Camera is running. Developers may use this interface as a shortcut to launch the Desk View application directly from their application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeskviewapplication?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeskViewApplication;
@@ -77,12 +108,17 @@ impl AVCaptureDeskViewApplication {
 }
 
 extern_class!(
+    /// An object that configures how to present Desk View.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to specify the frame for Desk View when it launches, and when to execute the completion handler. You can specify whether to perform the completion handler as soon as Desk View is visible to the user, or only after they start Desk View.
+    ///
+    ///
     /// An object for configuring how the Desk View application is presented.
     ///
     ///
     /// Developers may use this interface to customize the presentation of the Desk View application upon launch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeskviewapplication/launchconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeskViewApplicationLaunchConfiguration;

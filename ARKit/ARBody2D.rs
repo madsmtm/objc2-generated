@@ -8,9 +8,14 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Representation of a body in 2D.
+    /// The screen-space representation of a person ARKit recognizes in the camera feed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arbody2d?language=objc)
+    /// ## Overview
+    ///
+    /// When ARKit recognizes a person in the camera feed, it estimates the screen-space location of the body’s joints and provides the location to you through current frame’s [`detectedBody`](https://developer.apple.com/documentation/arkit/arframe/detectedbody).
+    ///
+    ///
+    /// Representation of a body in 2D.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

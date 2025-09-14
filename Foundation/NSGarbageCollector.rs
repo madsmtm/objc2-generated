@@ -7,7 +7,29 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgarbagecollector?language=objc)
+    /// A convenient interface to the garbage collection system.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Garbage collection is deprecated in OS X 10.8. Use ARC instead—see [Transitioning to ARC Release Notes](https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Cocoa’s garbage collector is a conservative generational garbage collector. It uses “write-barriers” to detect cross generational stores of pointers so that “young” objects can be collected quickly.
+    ///
+    /// You enable garbage collection (GC) by using the `-fobjc-gc compiler` option. This switch causes the generation of the write-barrier assignment primitives. You must use this option on your main application file _and all others used by the application_, including frameworks and bundles. Bundles are ignored if they are not GC-capable.
+    ///
+    /// The collector determines what is garbage by recursively examining all nodes starting with globals, possible nodes referenced from the thread stacks, and all nodes marked as having “external” references. Nodes not reached by this search are deemed garbage. Weak references to garbage nodes are then cleared.
+    ///
+    /// Garbage nodes that are objects are sent (in an arbitrary order) a [`finalize()`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/finalize()) message, and after all `finalize` messages have been sent their memory is recovered. It is a runtime error (referred to as “resurrection”) to store a object being finalized into one that is not. For more details, see Implementing a finalize Method in Garbage Collection Programming Guide.
+    ///
+    /// You can request collection from any thread (see [`collectIfNeeded`](https://developer.apple.com/documentation/foundation/nsgarbagecollector/collectifneeded) and [`collectExhaustively`](https://developer.apple.com/documentation/foundation/nsgarbagecollector/collectexhaustively)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Building Garbage Collected apps is no longer supported."]

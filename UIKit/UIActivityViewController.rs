@@ -7,17 +7,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitysectiontypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivitySectionTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIActivitySectionTypes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitysectiontypes/uiactivitysectiontypesnone?language=objc)
         #[doc(alias = "UIActivitySectionTypesNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitysectiontypes/peoplesuggestions?language=objc)
         #[doc(alias = "UIActivitySectionTypesPeopleSuggestions")]
         const PeopleSuggestions = 1<<0;
     }
@@ -31,18 +28,50 @@ unsafe impl RefEncode for UIActivitySectionTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/completionhandler-swift.typealias?language=objc)
+/// A completion handler to execute after the activity view controller is dismissed.
+///
+/// ## Discussion
+///
+/// Upon the completion of an activity, or the dismissal of the activity view controller, the view controller’s completion block is executed. You can use this block to execute any final code related to the service. The parameters of this block are as follows:
+///
+/// - activityType: The type of the service that was selected by the user. For custom services, this is the value returned by the [`activityType`](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.property) method of a [`UIActivity`](https://developer.apple.com/documentation/uikit/uiactivity) object. For system-defined activities, it is one of the strings listed in “Built-in Activity Types” in [`UIActivity`](https://developer.apple.com/documentation/uikit/uiactivity).
+///
+/// - completed: [`true`](https://developer.apple.com/documentation/swift/true) if the service was performed or [`false`](https://developer.apple.com/documentation/swift/false) if it was not. This parameter is also set to [`false`](https://developer.apple.com/documentation/swift/false) when the user dismisses the view controller without selecting a service.
+///
+///
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/completionwithitemshandler-swift.typealias?language=objc)
+/// A completion handler to execute after the activity view controller is dismissed.
+///
+/// ## Discussion
+///
+/// Upon the completion of an activity, or the dismissal of the activity view controller, the view controller’s completion block is executed. You can use this block to execute any final code related to the service. The parameters of this block are as follows:
+///
+/// - activityType: The type of the service that was selected by the user. For custom services, this is the value returned by the [`activityType`](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.property) method of a [`UIActivity`](https://developer.apple.com/documentation/uikit/uiactivity) object. For system-defined activities, it is one of the strings listed in “Built-in Activity Types” in [`UIActivity`](https://developer.apple.com/documentation/uikit/uiactivity).
+///
+/// - completed: [`true`](https://developer.apple.com/documentation/swift/true) if the service was performed or [`false`](https://developer.apple.com/documentation/swift/false) if it was not. This parameter is also set to [`false`](https://developer.apple.com/documentation/swift/false) when the user dismisses the view controller without selecting a service.
+///
+/// - returnedItems: An array of [`NSExtensionItem`](https://developer.apple.com/documentation/foundation/nsextensionitem) objects containing any modified data. Use the items in this array to get any changes made to the original data by an extension. If no items were modified, the value of this parameter is `nil`.
+///
+/// - activityError: An error object if the activity failed to complete, or `nil` if the the activity completed normally.
+///
+///
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionWithItemsHandler =
     *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller?language=objc)
+    /// A view controller that you use to offer standard services from your app.
+    ///
+    /// ## Overview
+    ///
+    /// The system provides several standard services, such as copying items to the pasteboard, posting content to social media sites, sending items via email or SMS, and more. Apps can also define custom services.
+    ///
+    /// Your app is responsible for configuring, presenting, and dismissing this view controller. Configuration for the view controller involves specifying the data objects on which the view controller should act. (You can also specify the list of custom services your app supports.) When presenting the view controller, you must do so using the appropriate means for the current device. On iPad, you must present the view controller in a popover. On iPhone and iPod touch, you must present it modally.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]

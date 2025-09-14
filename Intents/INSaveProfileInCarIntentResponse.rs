@@ -6,34 +6,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSaveProfileInCarIntentResponseCode(pub NSInteger);
 impl INSaveProfileInCarIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a resonse code.
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeReady")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you’re in the process of saving the user’s settings, but that you haven’t yet received confirmation of the completed save.
+    ///
+    ///
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully saved the settings to the designated profile.
+    ///
+    ///
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/failure?language=objc)
+    /// You were unable to save the information to the designated profile.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from saving the settings.
+    ///
+    ///
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeFailure")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to save information to a profile.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSaveProfileInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSaveProfileInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
@@ -48,7 +78,15 @@ unsafe impl RefEncode for INSaveProfileInCarIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponse?language=objc)
+    /// Your app’s response to a save profile in car intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSaveProfileInCarIntentResponse`](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponse) object contains the status of saving one or more environment settings to the designated profile. You create instances of this class when confirming or handling a save profile in car intent.
+    ///
+    /// You create an [`INSaveProfileInCarIntentResponse`](https://developer.apple.com/documentation/intents/insaveprofileincarintentresponse) object in the [`confirmSaveProfileInCar:completion:`](https://developer.apple.com/documentation/intents/insaveprofileincarintenthandling/confirm(intent:completion:)) and [`handleSaveProfileInCar:completion:`](https://developer.apple.com/documentation/intents/insaveprofileincarintenthandling/handle(intent:completion:)) methods of your save profile in car handler object. For more information about implementing your handler object, see [`INSaveProfileInCarIntentHandling`](https://developer.apple.com/documentation/intents/insaveprofileincarintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

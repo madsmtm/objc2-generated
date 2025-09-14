@@ -7,10 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A `WebResource` object represents a downloaded URL. It encapsulates the data of the download as well as other resource properties such as the URL, MIME type, and frame name.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`initWithData:URL:MIMEType:textEncodingName:frameName:`](https://developer.apple.com/documentation/webkit/webresource/init(data:url:mimetype:textencodingname:framename:)) method to initialize a newly created `WebResource` object. Use the other methods in this class to get the properties of a `WebResource` object.
+    ///
+    ///
     /// A WebResource represents a fully downloaded URL.
     /// It includes the data of the resource as well as the metadata associated with the resource.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webresource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WebResource;

@@ -7,16 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator/style-swift.enum?language=objc)
+/// Constants that specify the progress indicator’s style.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSProgressIndicatorStyle(pub NSUInteger);
 impl NSProgressIndicatorStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator/style-swift.enum/bar?language=objc)
+    /// A rectangular indicator that can be determinate or indeterminate.
     #[doc(alias = "NSProgressIndicatorStyleBar")]
     pub const Bar: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator/style-swift.enum/spinning?language=objc)
+    /// A small circular indicator that can be determinate or indeterminate.
+    ///
+    /// ## Discussion
+    ///
+    /// The appearance of a determinate spinning style indicator is similar to an animated pie chart.
+    ///
+    ///
     #[doc(alias = "NSProgressIndicatorStyleSpinning")]
     pub const Spinning: Self = Self(1);
 }
@@ -30,7 +36,13 @@ unsafe impl RefEncode for NSProgressIndicatorStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicator?language=objc)
+    /// An interface that provides visual feedback to the user about the status of an ongoing task.
+    ///
+    /// ## Overview
+    ///
+    /// Progress indicators can be determinate or indeterminate. A determinate indicator displays the completion percentage of a task. An indeterminate indicator shows that the app is busy without providing a visual indication of how long the task will take.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -257,26 +269,46 @@ impl NSProgressIndicator {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness?language=objc)
+/// Specify the height of a progress indicator.
 // NS_ENUM
 #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSProgressIndicatorThickness(pub NSUInteger);
 impl NSProgressIndicatorThickness {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredthickness?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 14
+    ///
+    ///
     #[doc(alias = "NSProgressIndicatorPreferredThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredThickness: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredsmallthickness?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 10
+    ///
+    ///
     #[doc(alias = "NSProgressIndicatorPreferredSmallThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredSmallThickness: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredlargethickness?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 18
+    ///
+    ///
     #[doc(alias = "NSProgressIndicatorPreferredLargeThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredLargeThickness: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorthickness/nsprogressindicatorpreferredaquathickness?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 12
+    ///
+    ///
     #[doc(alias = "NSProgressIndicatorPreferredAquaThickness")]
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
     pub const PreferredAquaThickness: Self = Self(12);
@@ -290,12 +322,18 @@ unsafe impl RefEncode for NSProgressIndicatorThickness {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorbarstyle?language=objc)
+/// A rectangular indicator that can be determinate or indeterminate.
 #[deprecated]
 pub static NSProgressIndicatorBarStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Bar.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprogressindicatorspinningstyle?language=objc)
+/// A small circular indicator that can be determinate or indeterminate.
+///
+/// ## Discussion
+///
+/// The appearance of a determinate spinning style indicator is similar to an animated pie chart.
+///
+///
 #[deprecated]
 pub static NSProgressIndicatorSpinningStyle: NSProgressIndicatorStyle =
     NSProgressIndicatorStyle(NSProgressIndicatorStyle::Spinning.0);

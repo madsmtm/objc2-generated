@@ -6,46 +6,100 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartVideoCallIntentResponseCode(pub NSInteger);
 impl INStartVideoCallIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/unspecified?language=objc)
+    /// Your app can’t provide a more specific response.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the system to display an error.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeUnspecified")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to start the video call. Don’t return this response code when handling the intent; doing so causes the system to display an error.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeReady")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/continueinapp?language=objc)
+    /// Your extension is ready to transfer control to the app so that your app can place the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, Siri launches your app and passes it the NSUserActivity object you provided at initialization time. (If you didn’t provide a user activity object, Siri creates one for you.) Siri adds an INInteraction object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to place the call.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeContinueInApp")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failure?language=objc)
+    /// You were unable to initiate the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from placing the call. For example, use this code if your app’s calling network is unavailable.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailure")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to initiate the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// The user must perform additional configuration steps before initiating a call is possible.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your app isn’t configured to start a video call. For example, you might return this code if the user hasn’t yet set up a calling account. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureAppConfigurationRequired: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failurecallingservicenotavailable?language=objc)
+    /// Your app’s calling service isn’t currently available.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your calling service is temporarily unavailable for any reason.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureCallingServiceNotAvailable")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureCallingServiceNotAvailable: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failurecontactnotsupportedbyapp?language=objc)
+    /// Your app can’t use the specified contact to place the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the sender or recipient can’t take part in a video call.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureContactNotSupportedByApp")]
     #[deprecated = "INStartVideoCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponsecode/failureinvalidnumber?language=objc)
+    /// The specified number doesn’t support video calls.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the recipient’s call identifier isn’t valid for audio calls on your service.
+    ///
+    ///
     #[doc(alias = "INStartVideoCallIntentResponseCodeFailureInvalidNumber")]
     pub const FailureInvalidNumber: Self = Self(8);
 }
@@ -59,7 +113,15 @@ unsafe impl RefEncode for INStartVideoCallIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentresponse?language=objc)
+    /// A response to an intent to start a video call.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INStartVideoCallIntentResponse`](https://developer.apple.com/documentation/intents/instartvideocallintentresponse) object to specify whether your app is able to initiate a video call. You create instances of this class when confirming and handling an [`INStartVideoCallIntent`](https://developer.apple.com/documentation/intents/instartvideocallintent) object. When it’s time to call the user, SiriKit launches your app and delivers the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object contained in this object. Use that user activity object to specify any additional information that would assist your app in placing the call.
+    ///
+    /// You create an [`INStartVideoCallIntentResponse`](https://developer.apple.com/documentation/intents/instartvideocallintentresponse) object in the [`confirmStartVideoCall:completion:`](https://developer.apple.com/documentation/intents/instartvideocallintenthandling/confirm(intent:completion:)) and [`handleStartVideoCall:completion:`](https://developer.apple.com/documentation/intents/instartvideocallintenthandling/handle(intent:completion:)) methods of your start video call handler object. For more information about implementing your handler object, see [`INStartVideoCallIntentHandling`](https://developer.apple.com/documentation/intents/instartvideocallintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

@@ -7,24 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Possible values for the credential state of a user.
 /// Authorization state of an Apple ID credential.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDProviderCredentialState(pub NSInteger);
 impl ASAuthorizationAppleIDProviderCredentialState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/revoked?language=objc)
+    /// The given user’s authorization has been revoked and they should be signed out.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialRevoked")]
     pub const Revoked: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/authorized?language=objc)
+    /// The user is authorized.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialAuthorized")]
     pub const Authorized: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/notfound?language=objc)
+    /// The user hasn’t established a relationship with Sign in with Apple.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialNotFound")]
     pub const NotFound: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate/transferred?language=objc)
+    /// The app has been transferred to a different team, and you need to migrate the user’s identifier.
     #[doc(alias = "ASAuthorizationAppleIDProviderCredentialTransferred")]
     pub const Transferred: Self = Self(3);
 }
@@ -38,13 +37,34 @@ unsafe impl RefEncode for ASAuthorizationAppleIDProviderCredentialState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialrevokednotification?language=objc)
+    /// A notification that indicates the user’s credentials have been revoked and they should be signed out.
     pub static ASAuthorizationAppleIDProviderCredentialRevokedNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider?language=objc)
+    /// A mechanism for generating requests to authenticate users based on their Apple ID.
+    ///
+    /// ## Overview
+    ///
+    /// You use a provider to create a request ([`ASAuthorizationAppleIDRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest)), which you then use to initialize a controller ([`ASAuthorizationController`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller)) that performs the request:
+    ///
+    /// ```swift
+    /// let provider = ASAuthorizationAppleIDProvider()
+    /// let request = provider.createRequest()
+    /// let controller = ASAuthorizationController(authorizationRequests: [request])
+    /// ```
+    ///
+    /// On success, the controller’s delegate receives an authorization ([`ASAuthorization`](https://developer.apple.com/documentation/authenticationservices/asauthorization)) containing a credential ([`ASAuthorizationAppleIDCredential`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential)) that has an opaque [`user`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user) identifier. You can use that identifier to later check the user’s credential state—for example, to see if authorization has been revoked—by calling the [`getCredentialStateForUserID:completion:`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/getcredentialstate(foruserid:completion:)) method:
+    ///
+    /// ```swift
+    /// let user = authorization.credential.user
+    /// provider.getCredentialState(forUserID: user) { state, error in
+    ///     // Check for error and examine the state.
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationAppleIDProvider;

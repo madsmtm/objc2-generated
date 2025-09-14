@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// UIFocusGuides are UILayoutGuide subclasses that participate in the focus system from within their owning view. A UIFocusGuide may be used to expose non-view areas as focusable.
+    /// An object that exposes nonview areas as focusable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusguide?language=objc)
+    /// ## Overview
+    ///
+    /// As a subclass of [`UILayoutGuide`](https://developer.apple.com/documentation/uikit/uilayoutguide), a focus guide is not a view and does not define a new view or participate in the view hierarchy at all, except as an Auto Layout guide. Unlike [`UILayoutGuide`](https://developer.apple.com/documentation/uikit/uilayoutguide), [`UIFocusGuide`](https://developer.apple.com/documentation/uikit/uifocusguide) represents an invisible, focusable region that can redirect focus movement to other views. The `UIFocus.h` header file, including its related classes and its protocol, creates a single high-level software interface for controlling focus in apps that use focus-based input. This programming interface also helps to control focus behavior on the screen.
+    ///
+    ///
+    /// UIFocusGuides are UILayoutGuide subclasses that participate in the focus system from within their owning view. A UIFocusGuide may be used to expose non-view areas as focusable.
     #[unsafe(super(UILayoutGuide, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

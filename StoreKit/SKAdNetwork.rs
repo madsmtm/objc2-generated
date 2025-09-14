@@ -7,27 +7,149 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue?language=objc)
+/// Coarse values to use for updating conversion values.
+///
+/// ## Discussion
+///
+/// When you provide the coarse conversion value to the [`updatePostbackConversionValue:coarseValue:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:completionhandler:)) or [`updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:lockwindow:completionhandler:)) methods, use the static constants [`SKAdNetworkCoarseConversionValueLow`](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/low), [`SKAdNetworkCoarseConversionValueMedium`](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/medium), or [`SKAdNetworkCoarseConversionValueHigh`](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/high).
+///
+/// These constants have no special meaning. The app or ad network can define their meaning, as is useful for their ad campaigns. The app is responsible for assigning a coarse conversion value, as well as the fine conversion value, when it calls one of the conversion value methods. You can determine how the coarse and fine conversion values relate to the types of conversion events you want to measure.
+///
+///
 // NS_TYPED_ENUM
 pub type SKAdNetworkCoarseConversionValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/high?language=objc)
+    /// A string constant value for indicating a high coarse conversion value.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant has no special meaning. It’s up to the app or ad network to determine its meaning as needed.
+    ///
+    ///
     pub static SKAdNetworkCoarseConversionValueHigh: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/medium?language=objc)
+    /// A string constant value for indicating a medium coarse conversion value.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant has no special meaning. It’s up to the app or ad network to determine its meaning as needed.
+    ///
+    ///
     pub static SKAdNetworkCoarseConversionValueMedium: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/low?language=objc)
+    /// A string constant value for indicating a low coarse conversion value.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant has no special meaning. It’s up to the app or ad network to determine its meaning as needed.
+    ///
+    ///
     pub static SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork?language=objc)
+    /// A class that validates advertisement-driven app installations.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Use [`AdAttributionKit`](https://developer.apple.com/documentation/adattributionkit) for app ad campaigns on the App Store and alternative marketplaces. See the [ad attribution developer support page](https://developer.apple.com/app-store/ad-attribution/) for information on how AdAttributionKit helps advertisers measure the success of ad campaigns while helping maintain user privacy. For information on interoperability between SKAdNetwork and AdAttributionKit, see [Understanding AdAttributionKit and SKAdNetwork interoperability](https://developer.apple.com/documentation/adattributionkit/adattributionkit-skadnetwork-interoperability).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The ad network API helps advertisers measure the success of ad campaigns while maintaining user privacy. The API involves three participants:
+    ///
+    /// - _Ad networks_ that sign ads and receive install-validation postbacks after ads result in conversions
+    ///
+    /// - _Source apps_ that display ads from the ad networks, or websites that display the ads in Safari
+    ///
+    /// - _Advertised apps_ that update conversion values as people engage with the app
+    ///
+    /// Ad networks register with Apple to get an ad network ID and to use the API. Developers configure their apps to accept attributable ads from ad networks, and to receive copies of winning postbacks. For information about setup, see [Registering an ad network](https://developer.apple.com/documentation/storekit/registering-an-ad-network), [Configuring a source app](https://developer.apple.com/documentation/storekit/configuring-a-source-app), and [Configuring an advertised app](https://developer.apple.com/documentation/storekit/configuring-an-advertised-app). For information about displaying ads in Safari, see [`SKAdNetwork for Web Ads`](https://developer.apple.com/documentation/skadnetworkforwebads).
+    ///
+    /// The following diagram shows the path of an ad impression that wins ad attribution. The ad network serves an ad that an app or Safari web page displays. A user taps the ad and downloads the advertised app.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/244850da92bfd7de352c1c176d85afdf/media-4103236~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/cfb86917a943b271b8187aff2aa2993d/media-4103236%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/cfb86917a943b271b8187aff2aa2993d/media-4103236%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Apple determines a postback data tier for the app download, and the device uses the tier later to determine the level of detail the postback can contain to ensure crowd anonymity. For more information about the postback contents and the data tiers, see [Receiving postbacks in multiple conversion windows](https://developer.apple.com/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows).
+    ///
+    /// If the user launches the app within an attribution time-window, the ad impression is eligible for install-attribution postbacks. As the user engages with the app, the app updates the conversion value. Starting in iOS 16.1, apps can update conversion values during three conversion windows, which results in up to three postbacks for an ad signed using version 4. The system sends the postbacks to the ad network, and to the app’s developer if they opt in to receive postbacks.
+    ///
+    /// Devices send install-validation postbacks to multiple ad networks that sign their ads using version 3 or later.
+    ///
+    /// - One ad network receives a postback with a `did-win` parameter value of `true` for the ad impression that wins the ad attribution.
+    ///
+    /// - Up to five other ad networks receive a postback with a `did-win` parameter value of `false` if their ad impressions qualify for the attribution, but don’t win.
+    ///
+    /// The following diagram shows the path of ad impressions that qualify for, but don’t win, the ad attribution. Up to five ad networks receive a single nonwinning postback.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4aefe58fb129d3f8fa91da4298101078/media-4103237~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/62cd8fd4dc40174006c06a54c155300b/media-4103237%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/62cd8fd4dc40174006c06a54c155300b/media-4103237%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For more information about receiving ad attributions, including time-window details and other constraints, see [Receiving ad attributions and postbacks](https://developer.apple.com/documentation/storekit/receiving-ad-attributions-and-postbacks).
+    ///
+    /// The information in the postback that Apple cryptographically signs doesn’t include user- or device-specific data. It may include values from the ad network and the advertised app if providing those values meets Apple’s privacy threshold. For more information about postback values and postback data tiers, see [Receiving postbacks in multiple conversion windows](https://developer.apple.com/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows). For more information about the contents of postbacks for each SKAdNetwork version, see [Verifying an install-validation postback](https://developer.apple.com/documentation/storekit/verifying-an-install-validation-postback).
+    ///
+    /// ### Presenting ads, updating conversion values, and receiving attribution
+    ///
+    /// Each participant has specific responsibilities when using the ad network APIs to present ads and receive attribution.
+    ///
+    /// The ad network’s responsibilities are to:
+    ///
+    /// - Register and provide its ad network identifier to developers. See [Registering an ad network](https://developer.apple.com/documentation/storekit/registering-an-ad-network).
+    ///
+    /// - Serve signed ads to the source app. See [Signing and providing ads](https://developer.apple.com/documentation/storekit/signing-and-providing-ads).
+    ///
+    /// - Serve signed ads for display in Safari web pages. See the [`SKAdNetwork for Web Ads`](https://developer.apple.com/documentation/skadnetworkforwebads) API.
+    ///
+    /// - Receive install-validation postbacks at the URL it establishes during registration.
+    ///
+    /// - Verify the postbacks. See [Verifying an install-validation postback](https://developer.apple.com/documentation/storekit/verifying-an-install-validation-postback).
+    ///
+    /// The source app’s responsibilities are to:
+    ///
+    /// - Add the ad network identifiers to its `Info.plist` file. See [Configuring a source app](https://developer.apple.com/documentation/storekit/configuring-a-source-app).
+    ///
+    /// - Display ads that the ad network signs. See [Signing and providing ads](https://developer.apple.com/documentation/storekit/signing-and-providing-ads).
+    ///
+    /// The advertised app’s responsibilities are to:
+    ///
+    /// - Register an app installation by updating the conversion value when the user first launches the app by calling one of the conversion updating methods, such as [`updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:lockwindow:completionhandler:)).
+    ///
+    /// - Optionally, continue to update the conversion value as the user engages with the app, by calling one of the conversion updating methods, such as [`updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:coarsevalue:lockwindow:completionhandler:)).
+    ///
+    /// - Optionally, specify a server URL in its `Info.plist` file to receive a copy of the winning install-validation postback. See [Configuring an advertised app](https://developer.apple.com/documentation/storekit/configuring-an-advertised-app).
+    ///
+    /// Apple designs SKAdNetwork APIs to maintain user privacy. Apps don’t need to use [`App Tracking Transparency`](https://developer.apple.com/documentation/apptrackingtransparency) before calling SKAdNetwork APIs, and can call these APIs regardless of their tracking authorization status. For more information about privacy, see [User Privacy and Data Use](https://developer.apple.com/app-store/user-privacy-and-data-use/).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The SKAdNetwork APIs have no effect, return empty strings, or return values that indicate unavailability when you call the APIs from a compatible iPad or iPhone app running in macOS or visionOS, from a Mac app built with Mac Catalyst, or from an App Clip’s code. For more information about App Clips, see [`App Clips`](https://developer.apple.com/documentation/appclip).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAdNetwork;
@@ -108,41 +230,107 @@ impl SKAdNetwork {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkattributionsignature?language=objc)
+    /// The key that represents the advertising network’s cryptographic signature to use for install validation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). The ad network creates the cryptographic signature, used to sign ads. For instructions on generating this value, see [Generating the signature to validate StoreKit-rendered ads](https://developer.apple.com/documentation/storekit/generating-the-signature-to-validate-storekit-rendered-ads).
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkAttributionSignature: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkcampaignidentifier?language=objc)
+    /// The key that represents the advertising network’s campaign.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). Ad networks determine their own campaign identifiers, which must be an integer `>=1` and `<=100`.
+    ///
+    /// Use [`SKStoreProductParameterAdNetworkSourceIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceidentifier) instead of this value to generate version 4 and later signatures.
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkCampaignIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceidentifier?language=objc)
+    /// A four-digit integer that ad networks define to represent the ad campaign.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is available for ad impressions that use SKAdNetwork 4 and later. The [`SKStoreProductParameterAdNetworkSourceIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceidentifier), also known as the _hierarchical source identifier_, replaces and extends the campaign identifier value, [`SKStoreProductParameterAdNetworkCampaignIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkcampaignidentifier).
+    ///
+    /// Ad networks and developers define the meaning of the hierarchical source identifier. This string represents an integer of up to four digits. You can encode information about your advertisement in each set of digits; you may receive two, three, or all four digits of the [`sourceIdentifier`](https://developer.apple.com/documentation/storekit/skadimpression/sourceidentifier) in the first winning postback, depending on the ad impression’s postback data tier. For more information about the value you may get in the postback, see [Receiving postbacks in multiple conversion windows](https://developer.apple.com/documentation/storekit/receiving-postbacks-in-multiple-conversion-windows).
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkSourceIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkidentifier?language=objc)
+    /// The key that represents the advertising network’s unique identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    /// Ad networks obtain an ad network identifier during registration. Ad networks are responsible for sharing their ad network IDs with participating app developers. Apps that display ads and need to initiate the app install validation process must include the ad network ID in their `Info.plist`. For more information see [Registering an ad network](https://developer.apple.com/documentation/storekit/registering-an-ad-network) and `Configuring Apps`.
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworknonce?language=objc)
+    /// The key that represents a random value to use for added security.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSUUID`](https://developer.apple.com/documentation/foundation/nsuuid). Ad networks generate a random value for this key at the time of the ad impression.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When you generate the signature value ([`SKStoreProductParameterAdNetworkAttributionSignature`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkattributionsignature)), you must sign the nonce as an all-lowercase UUID string representation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static SKStoreProductParameterAdNetworkNonce: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworktimestamp?language=objc)
+    /// The key that represents the UNIX time, in milliseconds, of the ad impression.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). Ad networks generate the timestamp, represented as UNIX time in milliseconds, at the time you’re preparing to serve the ad.
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkTimestamp: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceappstoreidentifier?language=objc)
+    /// The key that represents the App Store ID of the app that displays the ad.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). Provide the App Store item identifier of the app that’s displaying the ad.
+    ///
+    /// During testing, if you’re using a development-signed build to display the ads and not an app from App Store, use `0` as the item identifier.
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkSourceAppStoreIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkversion?language=objc)
+    /// The key that represents the version of the ad network API.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). Set this key to version number “`4.0`”, “`3.0`”, “`2.2"`, `“2.1"`, or `"2.0"`. Use the highest available version whenever possible. For version availability, see [SKAdNetwork release notes](https://developer.apple.com/documentation/storekit/skadnetwork-release-notes).
+    ///
+    /// Ad networks use this key and the other [Ad network install-validation keys](https://developer.apple.com/documentation/storekit/ad-network-install-validation-keys) when signing ads. For more information, see [Generating the signature to validate StoreKit-rendered ads](https://developer.apple.com/documentation/storekit/generating-the-signature-to-validate-storekit-rendered-ads).
+    ///
+    ///
     pub static SKStoreProductParameterAdNetworkVersion: &'static NSString;
 }

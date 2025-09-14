@@ -9,7 +9,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextloupesession?language=objc)
+    /// An object that manages the presentation of the system magnifier at the location you specify.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UITextLoupeSession`](https://developer.apple.com/documentation/uikit/uitextloupesession) object programmatically displays the system loupe in your view. You might display this view to allow someone to magnify your view’s content. Typically, you display the loupe from a [`UIPanGestureRecognizer`](https://developer.apple.com/documentation/uikit/uipangesturerecognizer) when someone interacts with your view. As the location in the gesture recognizer changes, use the loupe session object to update the position of the loupe.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

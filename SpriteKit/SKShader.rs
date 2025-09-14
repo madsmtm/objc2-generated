@@ -8,7 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skshader?language=objc)
+    /// An object that allows you to apply a custom fragment shader.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKShader`](https://developer.apple.com/documentation/spritekit/skshader) object holds a custom OpenGL ES fragment shader. Shader objects are used to customize the drawing behavior of many different kinds of nodes in SpriteKit.
+    ///
+    /// To use a custom shader, create an [`SKShader`](https://developer.apple.com/documentation/spritekit/skshader) object and provide the source for the custom fragment shader. If your shader needs to provide uniform data to the shader, create one or more [`SKUniform`](https://developer.apple.com/documentation/spritekit/skuniform) objects and associate them with the shader object. If your shader needs to provide per-node data to the shader, create one or more [`SKAttribute`](https://developer.apple.com/documentation/spritekit/skattribute) objects and associate them with the relevant nodes. Then, assign the shader object to the [`shader`](https://developer.apple.com/documentation/spritekit/skspritenode/shader) property of any sprites that need the custom behavior.
+    ///
+    /// Compiling a shader and the uniform data associated with it can be expensive. Because of this, you should:
+    ///
+    /// - Initialize shader objects when your game launches, not while the game is running.
+    ///
+    /// - Avoid changing the shader’s source or changing the list of uniforms or attributes while your game is running. Either of these things recompiles the shader.
+    ///
+    /// - Share shader objects whenever possible. If multiple sprites need the same behavior, create one shader object and associate it with every sprite that needs that behavior. Do not create a separate shader for each sprite.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`SKShader`](https://developer.apple.com/documentation/spritekit/skshader) does not support OpenGL Extensions. SpriteKit will return an error if you compile a project containing a fragment shader using extensions.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKShader;

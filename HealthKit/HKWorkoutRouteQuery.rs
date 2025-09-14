@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutroutequery?language=objc)
+    /// A query to access the location data stored in a workout route.
+    ///
+    /// ## Overview
+    ///
+    /// Use a workout route query to access the location data associated with an [`HKWorkoutRoute`](https://developer.apple.com/documentation/healthkit/hkworkoutroute). Because a route sample can include a large number of [`CLLocation`](https://developer.apple.com/documentation/corelocation/cllocation) objects, the query asynchronously returns the locations in batches. For detailed instructions, see `Reading Route Data`.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

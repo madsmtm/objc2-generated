@@ -7,172 +7,204 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat?language=objc)
+/// Values indicating the organization and format of data for function attributes.
+///
+/// ## Overview
+///
+/// All data formats are least significant bit first (little-endian). For compute functions which manipulate data consumed by other parts of your app, ensure that the data exposed to the GPU is byte- and bit-aligned correctly to the source format. Your compute function’s attributes can be of a different type than the original source data, so long as they use the same number of bits. For example, your compute function can interpret a 128-bit little-endian integer as [`MTLAttributeFormatUInt4`](https://developer.apple.com/documentation/metal/mtlattributeformat/uint4).
+///
+/// <div class="warning">
+///
+/// ### Note
+///  When manipulating pixel data in a compute function for a future pipeline stage, use an exact match for the underlying pixel data to avoid visual corruption.
+///
+///
+///
+/// </div>
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAttributeFormat(pub NSUInteger);
 impl MTLAttributeFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/invalid?language=objc)
+    /// An invalid format.
     #[doc(alias = "MTLAttributeFormatInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar2?language=objc)
+    /// Two unsigned 8-bit values.
     #[doc(alias = "MTLAttributeFormatUChar2")]
     pub const UChar2: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar3?language=objc)
+    /// Three unsigned 8-bit values.
     #[doc(alias = "MTLAttributeFormatUChar3")]
     pub const UChar3: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar4?language=objc)
+    /// Four unsigned 8-bit values.
     #[doc(alias = "MTLAttributeFormatUChar4")]
     pub const UChar4: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char2?language=objc)
+    /// Two signed 8-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatChar2")]
     pub const Char2: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char3?language=objc)
+    /// Three signed 8-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatChar3")]
     pub const Char3: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char4?language=objc)
+    /// Four signed 8-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatChar4")]
     pub const Char4: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar2normalized?language=objc)
+    /// Two unsigned normalized 8-bit values.
     #[doc(alias = "MTLAttributeFormatUChar2Normalized")]
     pub const UChar2Normalized: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar3normalized?language=objc)
+    /// Three unsigned normalized 8-bit values.
     #[doc(alias = "MTLAttributeFormatUChar3Normalized")]
     pub const UChar3Normalized: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar4normalized?language=objc)
+    /// Four unsigned normalized 8-bit values.
     #[doc(alias = "MTLAttributeFormatUChar4Normalized")]
     pub const UChar4Normalized: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char2normalized?language=objc)
+    /// Two signed normalized 8-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatChar2Normalized")]
     pub const Char2Normalized: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char3normalized?language=objc)
+    /// Three signed normalized 8-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatChar3Normalized")]
     pub const Char3Normalized: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char4normalized?language=objc)
+    /// Four signed normalized 8-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatChar4Normalized")]
     pub const Char4Normalized: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort2?language=objc)
+    /// Two unsigned 16-bit values.
     #[doc(alias = "MTLAttributeFormatUShort2")]
     pub const UShort2: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort3?language=objc)
+    /// Three unsigned 16-bit values.
     #[doc(alias = "MTLAttributeFormatUShort3")]
     pub const UShort3: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort4?language=objc)
+    /// Four unsigned 16-bit values.
     #[doc(alias = "MTLAttributeFormatUShort4")]
     pub const UShort4: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short2?language=objc)
+    /// Two signed 16-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatShort2")]
     pub const Short2: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short3?language=objc)
+    /// Three signed 16-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatShort3")]
     pub const Short3: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short4?language=objc)
+    /// Four signed 16-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatShort4")]
     pub const Short4: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort2normalized?language=objc)
+    /// Two unsigned normalized 16-bit values
     #[doc(alias = "MTLAttributeFormatUShort2Normalized")]
     pub const UShort2Normalized: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort3normalized?language=objc)
+    /// Three unsigned normalized 16-bit values.
     #[doc(alias = "MTLAttributeFormatUShort3Normalized")]
     pub const UShort3Normalized: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort4normalized?language=objc)
+    /// Four unsigned normalized 16-bit values.
     #[doc(alias = "MTLAttributeFormatUShort4Normalized")]
     pub const UShort4Normalized: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short2normalized?language=objc)
+    /// Two signed normalized 16-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatShort2Normalized")]
     pub const Short2Normalized: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short3normalized?language=objc)
+    /// Three signed normalized 16-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatShort3Normalized")]
     pub const Short3Normalized: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short4normalized?language=objc)
+    /// Four signed normalized 16-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatShort4Normalized")]
     pub const Short4Normalized: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/half2?language=objc)
+    /// Two half-precision floating-point values.
     #[doc(alias = "MTLAttributeFormatHalf2")]
     pub const Half2: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/half3?language=objc)
+    /// Three half-precision floating-point values.
     #[doc(alias = "MTLAttributeFormatHalf3")]
     pub const Half3: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/half4?language=objc)
+    /// Four half-precision floating-point values.
     #[doc(alias = "MTLAttributeFormatHalf4")]
     pub const Half4: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/float?language=objc)
+    /// One single-precision floating-point value.
     #[doc(alias = "MTLAttributeFormatFloat")]
     pub const Float: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/float2?language=objc)
+    /// Two single-precision floating-point values.
     #[doc(alias = "MTLAttributeFormatFloat2")]
     pub const Float2: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/float3?language=objc)
+    /// Three single-precision floating-point values.
     #[doc(alias = "MTLAttributeFormatFloat3")]
     pub const Float3: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/float4?language=objc)
+    /// Four single-precision floating-point values.
     #[doc(alias = "MTLAttributeFormatFloat4")]
     pub const Float4: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/int?language=objc)
+    /// One signed 32-bit two’s complement value.
     #[doc(alias = "MTLAttributeFormatInt")]
     pub const Int: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/int2?language=objc)
+    /// Two signed 32-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatInt2")]
     pub const Int2: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/int3?language=objc)
+    /// Three signed 32-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatInt3")]
     pub const Int3: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/int4?language=objc)
+    /// Four signed 32-bit two’s complement values.
     #[doc(alias = "MTLAttributeFormatInt4")]
     pub const Int4: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uint?language=objc)
+    /// One unsigned 32-bit value.
     #[doc(alias = "MTLAttributeFormatUInt")]
     pub const UInt: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uint2?language=objc)
+    /// Two unsigned 32-bit values.
     #[doc(alias = "MTLAttributeFormatUInt2")]
     pub const UInt2: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uint3?language=objc)
+    /// Three unsigned 32-bit values.
     #[doc(alias = "MTLAttributeFormatUInt3")]
     pub const UInt3: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uint4?language=objc)
+    /// Four unsigned 32-bit values.
     #[doc(alias = "MTLAttributeFormatUInt4")]
     pub const UInt4: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/int1010102normalized?language=objc)
+    /// One packed 32-bit value with four normalized signed two’s complement integer values, arranged as 10 bits, 10 bits, 10 bits, and 2 bits.
     #[doc(alias = "MTLAttributeFormatInt1010102Normalized")]
     pub const Int1010102Normalized: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uint1010102normalized?language=objc)
+    /// One packed 32-bit value with four normalized unsigned integer values, arranged as 10 bits, 10 bits, 10 bits, and 2 bits.
     #[doc(alias = "MTLAttributeFormatUInt1010102Normalized")]
     pub const UInt1010102Normalized: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar4normalized_bgra?language=objc)
+    /// Four unsigned normalized 8-bit values, arranged as blue, green, red, and alpha components.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this representation when manipulating normalized 32-bit integer BGRA pixel formats.
+    ///
+    ///
     #[doc(alias = "MTLAttributeFormatUChar4Normalized_BGRA")]
     pub const UChar4Normalized_BGRA: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/uchar?language=objc)
+    /// One unsigned 8-bit value.
     #[doc(alias = "MTLAttributeFormatUChar")]
     pub const UChar: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/char?language=objc)
+    /// One signed 8-bit two’s complement value.
     #[doc(alias = "MTLAttributeFormatChar")]
     pub const Char: Self = Self(46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ucharnormalized?language=objc)
+    /// One unsigned normalized 8-bit value.
     #[doc(alias = "MTLAttributeFormatUCharNormalized")]
     pub const UCharNormalized: Self = Self(47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/charnormalized?language=objc)
+    /// One signed normalized 8-bit two’s complement value.
     #[doc(alias = "MTLAttributeFormatCharNormalized")]
     pub const CharNormalized: Self = Self(48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushort?language=objc)
+    /// One unsigned 16-bit value.
     #[doc(alias = "MTLAttributeFormatUShort")]
     pub const UShort: Self = Self(49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/short?language=objc)
+    /// One signed 16-bit two’s complement value.
     #[doc(alias = "MTLAttributeFormatShort")]
     pub const Short: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/ushortnormalized?language=objc)
+    /// One unsigned normalized 16-bit value.
     #[doc(alias = "MTLAttributeFormatUShortNormalized")]
     pub const UShortNormalized: Self = Self(51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/shortnormalized?language=objc)
+    /// One signed normalized 16-bit two’s complement value.
     #[doc(alias = "MTLAttributeFormatShortNormalized")]
     pub const ShortNormalized: Self = Self(52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/half?language=objc)
+    /// One half-precision floating-point value.
     #[doc(alias = "MTLAttributeFormatHalf")]
     pub const Half: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/floatrg11b10?language=objc)
+    /// One packed 32-bit value representing pixel data containing 11-bit float red and green channels, and a 10-bit float blue channel.
+    ///
+    /// ## Discussion
+    ///
+    /// This data format is identical to [`MTLPixelFormatRG11B10Float`](https://developer.apple.com/documentation/metal/mtlpixelformat/rg11b10float), and used in compute functions for manipulating pixels.
+    ///
+    ///
     #[doc(alias = "MTLAttributeFormatFloatRG11B10")]
     pub const FloatRG11B10: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat/floatrgb9e5?language=objc)
+    /// One packed 32-bit value representing pixel data containing 9-bit float red, green, and blue channels, and a 5-bit float shared exponent channel.
+    ///
+    /// ## Discussion
+    ///
+    /// This data format is identical to [`MTLPixelFormatRGB9E5Float`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgb9e5float), and used in compute functions for manipulating pixels.
+    ///
+    ///
     #[doc(alias = "MTLAttributeFormatFloatRGB9E5")]
     pub const FloatRGB9E5: Self = Self(55);
 }
@@ -185,37 +217,61 @@ unsafe impl RefEncode for MTLAttributeFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction?language=objc)
+/// The frequency and locations at which a function fetches attribute data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStepFunction(pub NSUInteger);
 impl MTLStepFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/constant?language=objc)
+    /// The function fetches attribute data once.
     #[doc(alias = "MTLStepFunctionConstant")]
     pub const Constant: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/pervertex?language=objc)
+    /// The vertex function fetches data for every vertex.
     #[doc(alias = "MTLStepFunctionPerVertex")]
     pub const PerVertex: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/perinstance?language=objc)
+    /// The function fetches data based on the instance index.
     #[doc(alias = "MTLStepFunctionPerInstance")]
     pub const PerInstance: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/perpatch?language=objc)
+    /// The post-tessellation function fetches data based on the patch index of the patch.
     #[doc(alias = "MTLStepFunctionPerPatch")]
     pub const PerPatch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/perpatchcontrolpoint?language=objc)
+    /// The post-tessellation function fetches data based on the control-point indices associated with the patch.
     #[doc(alias = "MTLStepFunctionPerPatchControlPoint")]
     pub const PerPatchControlPoint: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/threadpositioningridx?language=objc)
+    /// The compute function fetches data based on the thread’s `x` coordinate.
+    ///
+    /// ## Discussion
+    ///
+    /// This step function uses the `x` coordinate of the thread position in a grid as the index to fetch `[[stage_in]]` data. In tessellation compute kernels, you use this step function to identify a control point in a given patch.
+    ///
+    ///
     #[doc(alias = "MTLStepFunctionThreadPositionInGridX")]
     pub const ThreadPositionInGridX: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/threadpositioningridy?language=objc)
+    /// The compute function fetches data based on the thread’s `y` coordinate.
+    ///
+    /// ## Discussion
+    ///
+    /// This step function uses the `y` coordinate of the thread position in a grid as the index to fetch `[[stage_in]]` data. In tessellation compute kernels, you use this step function to identify a control point in a given patch.
+    ///
+    ///
     #[doc(alias = "MTLStepFunctionThreadPositionInGridY")]
     pub const ThreadPositionInGridY: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/threadpositioningridxindexed?language=objc)
+    /// The compute function fetches data by using the thread’s `x` coordinate to look up a value in the index buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This step function uses the `x` coordinate of the thread position in a grid as an index into the `[[stage_in]]` index buffer, which is then used to fetch data. In tessellation compute kernels, you use this step function to identify a control point in a given patch.
+    ///
+    ///
     #[doc(alias = "MTLStepFunctionThreadPositionInGridXIndexed")]
     pub const ThreadPositionInGridXIndexed: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction/threadpositioningridyindexed?language=objc)
+    /// The compute function fetches data by using the thread’s `y` coordinate to look up a value in the index buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This step function uses the `y` coordinate of the thread position in a grid as an index into the `[[stage_in]]` index buffer, which is then used to fetch data. In tessellation compute kernels, you use this step function to identify a control point in a given patch.
+    ///
+    ///
     #[doc(alias = "MTLStepFunctionThreadPositionInGridYIndexed")]
     pub const ThreadPositionInGridYIndexed: Self = Self(8);
 }
@@ -229,7 +285,7 @@ unsafe impl RefEncode for MTLStepFunction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferlayoutdescriptor?language=objc)
+    /// A description of how a compute function fetches input data for an attribute.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBufferLayoutDescriptor;
@@ -299,7 +355,13 @@ impl DefaultRetained for MTLBufferLayoutDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferlayoutdescriptorarray?language=objc)
+    /// An array of buffer layout descriptor objects.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLBufferLayoutDescriptorArray`](https://developer.apple.com/documentation/metal/mtlbufferlayoutdescriptorarray) defines the data layout and loading for compute data, using [`MTLBufferLayoutDescriptor`](https://developer.apple.com/documentation/metal/mtlbufferlayoutdescriptor) instances.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBufferLayoutDescriptorArray;
@@ -355,7 +417,13 @@ impl DefaultRetained for MTLBufferLayoutDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributedescriptor?language=objc)
+    /// A descriptor of an argument’s format and where its data is in memory.
+    ///
+    /// ## Overview
+    ///
+    /// Attribute descriptors are part of an [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) or [`MTLStageInputOutputDescriptor`](https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor) instance to provide layout information about a function’s arguments. Each descriptor is for a single argument, containing information about the attached data, offset and stride, and data type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAttributeDescriptor;
@@ -429,7 +497,13 @@ impl DefaultRetained for MTLAttributeDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributedescriptorarray?language=objc)
+    /// An array of attribute descriptor objects.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLAttributeDescriptorArray`](https://developer.apple.com/documentation/metal/mtlattributedescriptorarray) defines the data format and index binding for the attribute argument table, using [`MTLAttributeDescriptor`](https://developer.apple.com/documentation/metal/mtlattributedescriptor) instances.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAttributeDescriptorArray;
@@ -485,7 +559,7 @@ impl DefaultRetained for MTLAttributeDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor?language=objc)
+    /// A description of the input and output data of a function.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStageInputOutputDescriptor;

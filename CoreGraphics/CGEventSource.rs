@@ -8,7 +8,13 @@ use crate::*;
 
 #[cfg(feature = "CGEventTypes")]
 unsafe impl ConcreteType for CGEventSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/typeid?language=objc)
+    /// Returns the type identifier for the opaque type `CGEventSourceRef`.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for the opaque type [`CGEventSourceRef`](https://developer.apple.com/documentation/coregraphics/cgeventsource).
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -21,7 +27,23 @@ unsafe impl ConcreteType for CGEventSource {
 
 #[cfg(feature = "CGEventTypes")]
 impl CGEventSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/init(stateid:)?language=objc)
+    /// Returns a Quartz event source created with a specified source state.
+    ///
+    /// Parameters:
+    /// - stateID: The event state table to use for this event source. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new event source, or `NULL` if the specified source state is not valid. When you no longer need the event source, you should release it using the function `CFRelease`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If two or more event sources are using the same source state and one of them is released, the remaining event sources will behave as if all keys and buttons on input devices are up in generating new events from this source.
+    ///
+    ///
     #[doc(alias = "CGEventSourceCreate")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -35,7 +57,17 @@ impl CGEventSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/keyboardtype?language=objc)
+    /// Returns the keyboard type to be used with a Quartz event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The keyboard type to be used with the specified event source.
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetKeyboardType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -48,7 +80,13 @@ impl CGEventSource {
         unsafe { CGEventSourceGetKeyboardType(source) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetkeyboardtype?language=objc)
+    /// Sets the keyboard type to be used with a Quartz event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    /// - keyboardType: The keyboard type to be used with the specified event source.
+    ///
     #[doc(alias = "CGEventSourceSetKeyboardType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -65,7 +103,23 @@ impl CGEventSource {
         unsafe { CGEventSourceSetKeyboardType(source, keyboard_type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/pixelsperline?language=objc)
+    /// Gets the scale of pixels per line in a scrolling event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The scale of pixels per line in a scrolling event.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the scale of pixels per line in the specified event source. For example, if the scale in the event source is 10.5 pixels per line, this function would return 10.5. Every scrolling event can be interpreted to be scrolling by pixel or by line. By default, the scale is about ten pixels per line. You can alter the scale with the function `CGEventSourceSetPixelsPerLine`.
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetPixelsPerLine")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -76,7 +130,19 @@ impl CGEventSource {
         unsafe { CGEventSourceGetPixelsPerLine(source) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetpixelsperline?language=objc)
+    /// Sets the scale of pixels per line in a scrolling event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    /// - pixelsPerLine: The scale of pixels per line in the specified event source.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets the scale of pixels per line in the specified event source. For example, if you pass the value 12.0 in the `pixelsPerLine` parameter, the scale of pixels per line in the event source would be changed to 12.0. Every scrolling event can be interpreted to be scrolling by pixel or by line. By default, the scale is about ten pixels per line. You can retrieve the scale with the function `CGEventSourceGetPixelsPerLine`.
+    ///
+    ///
     #[doc(alias = "CGEventSourceSetPixelsPerLine")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -90,7 +156,25 @@ impl CGEventSource {
         unsafe { CGEventSourceSetPixelsPerLine(source, pixels_per_line) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/sourcestateid?language=objc)
+    /// Returns the source state associated with a Quartz event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The source state associated with the specified event source.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the ID of the source state table associated with an event source.
+    ///
+    /// For event sources created with the `kCGEventSourceStatePrivate` source state, this function returns the ID of the private source state table created for the event source. This unique ID may be passed to the `CGEventSourceCreate` function to create a second event source sharing the same state table. This may be useful, for example, in creating separate mouse and keyboard sources which share a common private state.
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetSourceStateID")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -103,7 +187,19 @@ impl CGEventSource {
         unsafe { CGEventSourceGetSourceStateID(source) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/buttonstate(_:button:)?language=objc)
+    /// Returns a Boolean value indicating the current button state of a Quartz event source.
+    ///
+    /// Parameters:
+    /// - stateID: The source state to access. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    /// - button: The mouse button to test. Pass one of the constants listed in [`CGMouseButton`](https://developer.apple.com/documentation/coregraphics/cgmousebutton).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `true`, the button is down. If `false`, the button is up.
+    ///
+    ///
     #[doc(alias = "CGEventSourceButtonState")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -117,7 +213,19 @@ impl CGEventSource {
         unsafe { CGEventSourceButtonState(state_id, button) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/keystate(_:key:)?language=objc)
+    /// Returns a Boolean value indicating the current keyboard state of a Quartz event source.
+    ///
+    /// Parameters:
+    /// - stateID: The source state to access. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    /// - key: The virtual key code to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `true`, the key is down. If `false`, the key is up.
+    ///
+    ///
     #[doc(alias = "CGEventSourceKeyState")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -128,7 +236,17 @@ impl CGEventSource {
         unsafe { CGEventSourceKeyState(state_id, key) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/flagsstate(_:)?language=objc)
+    /// Returns the current flags of a Quartz event source.
+    ///
+    /// Parameters:
+    /// - stateID: The source state to access. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current flags of the specified event source. For more information, see  [`CGEventFlags`](https://developer.apple.com/documentation/coregraphics/cgeventflags).
+    ///
+    ///
     #[doc(alias = "CGEventSourceFlagsState")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -139,7 +257,19 @@ impl CGEventSource {
         unsafe { CGEventSourceFlagsState(state_id) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/secondssincelasteventtype(_:eventtype:)?language=objc)
+    /// Returns the elapsed time since the last event for a Quartz event source.
+    ///
+    /// Parameters:
+    /// - stateID: The source state to access. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    /// - eventType: The event type to access. To get the elapsed time since the previous input event—keyboard, mouse, or tablet—specify `kCGAnyInputEventType`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The time in seconds since the previous input event of the specified type.
+    ///
+    ///
     #[doc(alias = "CGEventSourceSecondsSinceLastEventType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -156,7 +286,31 @@ impl CGEventSource {
         unsafe { CGEventSourceSecondsSinceLastEventType(state_id, event_type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/counterforeventtype(_:eventtype:)?language=objc)
+    /// Returns a count of events of a given type seen since the window server started.
+    ///
+    /// Parameters:
+    /// - stateID: The source state to access. Pass one of the constants listed in [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+    ///
+    /// - eventType: The event type to access. To get the count of input events—keyboard, mouse, or tablet—specify `kCGAnyInputEventType`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The count of events of the specified type seen since the window server started.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Quartz provides these counters for applications that monitor user activity. For example, an application could prompt a typist to take a break to reduce repetitive stress injuries.
+    ///
+    /// Modifier keys produce `kCGEventFlagsChanged` events, not `kCGEventKeyDown` events, and do so both on press and release. The volume, brightness, and CD eject keys on some keyboards (both desktop and laptop) do not generate key up or key down events.
+    ///
+    /// For various reasons, the number of key up and key down events may not be the same when all keyboard keys are up. As a result, a mismatch does not necessarily indicate that some keys are down.
+    ///
+    /// Key autorepeat events are not counted.
+    ///
+    ///
     #[doc(alias = "CGEventSourceCounterForEventType")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -170,7 +324,19 @@ impl CGEventSource {
         unsafe { CGEventSourceCounterForEventType(state_id, event_type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetuserdata?language=objc)
+    /// Sets the 64-bit user-specified data for a Quartz event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    /// - userData: The user-specified data. For example, you could specify a vendor hardware ID.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each input event includes 64 bits of user-specified data. This function sets the user-specified data for all events created by the specified event source. This data may also be set per event using the [`setIntegerValueField(_:value:)`](https://developer.apple.com/documentation/coregraphics/cgevent/setintegervaluefield(_:value:)) function.
+    ///
+    ///
     #[doc(alias = "CGEventSourceSetUserData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -181,7 +347,23 @@ impl CGEventSource {
         unsafe { CGEventSourceSetUserData(source, user_data) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/userdata?language=objc)
+    /// Returns the 64-bit user-specified data for a Quartz event source.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The user-specified data.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each input event includes 64 bits of user-specified data. This function gets the user-specified data for all events created by the specified event source. This data may also be obtained per event using the [`CGEventGetIntegerValueField`](https://developer.apple.com/documentation/coregraphics/cgevent/getintegervaluefield(_:)) function.
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetUserData")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -192,7 +374,23 @@ impl CGEventSource {
         unsafe { CGEventSourceGetUserData(source) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/setlocaleventsfilterduringsuppressionstate(_:state:)?language=objc)
+    /// Sets the mask that indicates which classes of local hardware events are enabled during event suppression.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    /// - filter: A mask that specifies the categories of local hardware events to enable during the event suppression interval. See [`CGEventFilterMask`](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask).
+    ///
+    /// - state: The type of event suppression interval during which the filter is applied. Pass one of the constants listed in [`CGEventSuppressionState`](https://developer.apple.com/documentation/coregraphics/cgeventsuppressionstate).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the system does not suppress local hardware events from the keyboard or mouse during a short interval after a Quartz event is posted—see [`CGEventSourceSetLocalEventsSuppressionInterval`](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetlocaleventssuppressioninterval)—and during a synthetic mouse drag (mouse movement with the left or only mouse button down).
+    ///
+    /// Some applications may want to disable events from some of the local hardware during this interval. For example, if you post mouse events only, you may wish to suppress local mouse events and permit local keyboard events to pass through. This function lets you specify an event source, a suppression state (event suppression interval or mouse drag), and a filter mask of event classes to be passed through. The new local events filter takes effect with the next Quartz event you post using this event source.
+    ///
+    ///
     #[doc(alias = "CGEventSourceSetLocalEventsFilterDuringSuppressionState")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -211,7 +409,27 @@ impl CGEventSource {
         unsafe { CGEventSourceSetLocalEventsFilterDuringSuppressionState(source, filter, state) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/getlocaleventsfilterduringsuppressionstate(_:)?language=objc)
+    /// Returns the mask that indicates which classes of local hardware events are enabled during event suppression.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    /// - state: The type of event suppression interval during which the filter is applied. Pass one of the constants listed in [`CGEventSuppressionState`](https://developer.apple.com/documentation/coregraphics/cgeventsuppressionstate).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A mask that specifies the categories of local hardware events to enable during the event suppression interval. See [`CGEventFilterMask`](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can configure the system to suppress local hardware events from the keyboard or mouse during a short interval after a Quartz event is posted or during a synthetic mouse drag (mouse movement with the left or only mouse button down). For information about setting this local events filter, see [`CGEventSourceSetLocalEventsFilterDuringSuppressionState`](https://developer.apple.com/documentation/coregraphics/cgeventsource/setlocaleventsfilterduringsuppressionstate(_:state:)).
+    ///
+    /// This function lets you specify an event source and a suppression state (event suppression interval or mouse drag), and returns a filter mask of event categories to be passed through during suppression.
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetLocalEventsFilterDuringSuppressionState")]
     #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
     #[inline]
@@ -228,7 +446,21 @@ impl CGEventSource {
         unsafe { CGEventSourceGetLocalEventsFilterDuringSuppressionState(source, state) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetlocaleventssuppressioninterval?language=objc)
+    /// Sets the interval that local hardware events may be suppressed following the posting of a Quartz event.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    /// - seconds: The period of time in seconds that local hardware events (keyboard or mouse) are suppressed after posting a Quartz event created with the specified event source. The value should be a number in the range [0.0, 10.0].
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the system does not suppress local hardware events from the keyboard or mouse during a short interval after a Quartz event is posted. You can use the function [`setLocalEventsFilterDuringSuppressionState(_:state:)`](https://developer.apple.com/documentation/coregraphics/cgeventsource/setlocaleventsfilterduringsuppressionstate(_:state:)) to modify this behavior.
+    ///
+    /// This function sets the period of time in seconds that local hardware events may be suppressed after posting a Quartz event created with the specified event source. The default suppression interval is 0.25 seconds.
+    ///
+    ///
     #[doc(alias = "CGEventSourceSetLocalEventsSuppressionInterval")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
@@ -245,7 +477,19 @@ impl CGEventSource {
         unsafe { CGEventSourceSetLocalEventsSuppressionInterval(source, seconds) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource/localeventssuppressioninterval?language=objc)
+    /// Returns the interval that local hardware events may be suppressed following the posting of a Quartz event.
+    ///
+    /// Parameters:
+    /// - source: The event source to access.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the system does not suppress local hardware events from the keyboard or mouse during a short interval after a Quartz event is posted. You can use the function [`CGEventSourceSetLocalEventsFilterDuringSuppressionState`](https://developer.apple.com/documentation/coregraphics/cgeventsource/setlocaleventsfilterduringsuppressionstate(_:state:)) to modify this behavior.
+    ///
+    /// This function gets the period of time in seconds that local hardware events may be suppressed after posting a Quartz event created with the specified event source. You can use the function [`CGEventSourceSetLocalEventsSuppressionInterval`](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetlocaleventssuppressioninterval) to change this time interval.
+    ///
+    ///
     #[doc(alias = "CGEventSourceGetLocalEventsSuppressionInterval")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]

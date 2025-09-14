@@ -6,7 +6,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorthography?language=objc)
+    /// A description of the linguistic content of natural language text, typically used for spelling and grammar checking.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`NSOrthography`](https://developer.apple.com/documentation/foundation/nsorthography) objects to describe the linguistic content of a piece of text, including which scripts the text contains, a dominant language (and possibly other languages) for each script, and a dominant script and language for the text as a whole.
+    ///
+    /// Scripts are uniformly described by four-letter ISO 15924 script codes, such as `"Latn"`, `"Grek"`, and `"Cyrl"`. The supertags `"Jpan"` and `"Kore"` are typically used for Japanese and Korean text, and `"Hans"` and `"Hant"` are typically used for Chinese text. The tag `"Zyyy"` is used if a specific script cannot be identified. See [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i) for more information.
+    ///
+    /// Languages are uniformly described by BCP-47 tags (preferably in canonical form). The tag `"und"` is used if a specific language cannot be determined.
+    ///
+    /// You typically work with orthography objects returned from methods and properties for classes like [`NSLinguisticTagger`](https://developer.apple.com/documentation/foundation/nslinguistictagger) and [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Subclasses must override the [`dominantScript`](https://developer.apple.com/documentation/foundation/nsorthography/dominantscript) and [`languageMap`](https://developer.apple.com/documentation/foundation/nsorthography/languagemap) properties. These properties are set using [`initWithDominantScript:languageMap:`](https://developer.apple.com/documentation/foundation/nsorthography/init(dominantscript:languagemap:)) or [`orthographyWithDominantScript:languageMap:`](https://developer.apple.com/documentation/foundation/nsorthography/orthographywithdominantscript:languagemap:) in Objective-C.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrthography;

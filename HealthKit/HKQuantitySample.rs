@@ -7,9 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract HKSample subclass representing a quantity measurement.
+    /// A sample that represents a quantity, including the value and the units.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitysample?language=objc)
+    /// ## Overview
+    ///
+    /// A quantity sample contains one or more [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. For example, you can use quantity samples to record the user’s height, the user’s current heart rate, or the number of calories in a hamburger. HealthKit provides a wide range of quantity types, letting you track many different health and fitness features.
+    ///
+    /// The [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample) class is a subclass of the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) class. Quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.
+    ///
+    /// In iOS 13 and later and watchOS 6 and later, [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample) is an abstract superclass for the [`HKCumulativeQuantitySample`](https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample) and [`HKDiscreteQuantitySample`](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample) concrete subclasses. The system automatically selects the correct subclass based on the [`HKQuantityType`](https://developer.apple.com/documentation/healthkit/hkquantitytype) object used to create the sample.
+    ///
+    /// ### Extend Quantity Samples
+    ///
+    /// Like many HealthKit classes, you should not subclass the [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample) class. You may extend this class by adding metadata with custom keys to save related data used by your app.
+    ///
+    /// For more information, see [`quantitySampleWithType:quantity:startDate:endDate:metadata:`](https://developer.apple.com/documentation/healthkit/hkquantitysample/init(type:quantity:start:end:metadata:)).
+    ///
+    ///
+    /// An abstract HKSample subclass representing a quantity measurement.
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -143,11 +158,25 @@ impl HKQuantitySample {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathquantity?language=objc)
+    /// The key path for accessing the sample’s quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    /// Alternatively, use the [`predicateForQuantitySamplesWithOperatorType:quantity:`](https://developer.apple.com/documentation/healthkit/hkquery/predicateforquantitysamples(with:quantity:)) method to create predicates that match a sample’s quantity.
+    ///
+    ///
     pub static HKPredicateKeyPathQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcount?language=objc)
+    /// A key path for the sample’s count.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathCount: &'static NSString;
 }

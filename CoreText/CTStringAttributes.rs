@@ -9,16 +9,28 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The font of the text to which this attribute applies.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this attribute must be a [`CTFontRef`](https://developer.apple.com/documentation/coretext/ctfont) object. Default is Helvetica 12.
+    ///
+    ///
     /// The font.
     ///
     ///
     /// Value must be a CTFontRef. Default is Helvetica 12.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontattributename?language=objc)
     pub static kCTFontAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// Sets a foreground color using the context’s fill color.
+    ///
+    /// ## Discussion
+    ///
+    /// Value must be a doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p object. Default is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse). The reason this exists is because an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) object defaults to a black color if no color attribute is set. This forces Core Text to set the color in the context. This attribute allows developers to sidestep this, making Core Text set nothing but font information in the [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext). If set, this attribute also determines the color used by [`kCTUnderlineStyleAttributeName`](https://developer.apple.com/documentation/coretext/kctunderlinestyleattributename), in which case it overrides the foreground color.
+    ///
+    ///
     /// Never set a foreground color in the CGContext; use what is set as
     /// the context's fill color.
     ///
@@ -31,12 +43,17 @@ extern "C" {
     /// in the CGContext. If set, this attribute also determines the
     /// color used by kCTUnderlineStyleAttributeName, in which case it
     /// overrides the foreground color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctforegroundcolorfromcontextattributename?language=objc)
     pub static kCTForegroundColorFromContextAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The amount to kern the next character.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this attribute must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) float. Default is standard kerning. The kerning attribute indicates how many points the following character should be shifted from its default offset as defined by the current character’s font in points: a positive kern indicates a shift farther away from and a negative kern indicates a shift closer to the current character. If this attribute is not present, standard kerning is used. If this attribute is set to `0.0`, no kerning is done at all.
+    ///
+    ///
     /// A kerning adjustment.
     ///
     ///
@@ -48,12 +65,29 @@ extern "C" {
     /// shift closer to the current character. If this attribute is not
     /// present, standard kerning will be used. If this attribute is
     /// set to 0.0, no kerning will be done at all.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctkernattributename?language=objc)
     pub static kCTKernAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The tracking for the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this attribute must be a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd float. The default is `0` (no tracking).
+    ///
+    /// Tracking adds space, in points, between the specified [character cluster](https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries). A positive value increases the spacing between characters, while a negative value brings the characters closer together. For example, setting [`kCTTrackingAttributeName`](https://developer.apple.com/documentation/coretext/kcttrackingattributename) to 0.1 adds 0.1 point of spacing between each character of the text.
+    ///
+    /// The effect of this attribute is similar to [`kCTKernAttributeName`](https://developer.apple.com/documentation/coretext/kctkernattributename), but it treats tracking as trailing whitespace and a nonzero amount disables nonessential ligatures, unless overridden by the presence of [`kCTLigatureAttributeName`](https://developer.apple.com/documentation/coretext/kctligatureattributename).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you apply both [`kCTTrackingAttributeName`](https://developer.apple.com/documentation/coretext/kcttrackingattributename) and [`kCTKernAttributeName`](https://developer.apple.com/documentation/coretext/kctkernattributename), [`kCTTrackingAttributeName`](https://developer.apple.com/documentation/coretext/kcttrackingattributename) supersedes [`kCTKernAttributeName`](https://developer.apple.com/documentation/coretext/kctkernattributename).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Applies tracking (letterspacing).
     ///
     ///
@@ -74,12 +108,17 @@ extern "C" {
     /// See also: kCTLigatureAttributeName
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttrackingattributename?language=objc)
     pub static kCTTrackingAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The type of ligatures to use.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this attribute must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object. Default is an integer value of `1`. The ligature attribute determines what kinds of ligatures should be used when displaying the string. A value of `0` indicates that only ligatures essential for proper rendering of text should be used. A value of `1` indicates that standard ligatures should be used, and `2` indicates that all available ligatures should be used. Which ligatures are standard depends on the script and possibly the font. Arabic text, for example, requires ligatures for many character sequences but has a rich set of additional ligatures that combine characters. English text has no essential ligatures, and typically has only two standard ligatures, those for “fi” and “fl”—all others are considered more advanced or fancy.
+    ///
+    ///
     /// Controls ligature formation.
     ///
     ///
@@ -100,18 +139,21 @@ extern "C" {
     /// if the font contains glyphs for any of U+FB00 through U+FB04 and
     /// the font lacks AAT or OpenType shaping tables, but as of 6.0
     /// shaping tables (or the lack thereof) are treated as definitive.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctligatureattributename?language=objc)
     pub static kCTLigatureAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The foreground color of the text to which this attribute applies.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this attribute must be a [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor) object. Default value is [`black`](https://developer.apple.com/documentation/coregraphics/cgcolor/black).
+    ///
+    ///
     /// The foreground color.
     ///
     ///
     /// Value must be a CGColorRef. Default value is black.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctforegroundcolorattributename?language=objc)
     pub static kCTForegroundColorAttributeName: &'static CFString;
 }
 
@@ -120,12 +162,17 @@ extern "C" {
     ///
     ///
     /// Value must be a CGColorRef. Default is no background color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbackgroundcolorattributename?language=objc)
     pub static kCTBackgroundColorAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The paragraph style of the text to which this attribute applies.
+    ///
+    /// ## Discussion
+    ///
+    /// A paragraph style object is used to specify things like line alignment, tab rulers, writing direction, and so on. Value must be a [`CTParagraphStyleRef`](https://developer.apple.com/documentation/coretext/ctparagraphstyle) object. Default is an empty [`CTParagraphStyleRef`](https://developer.apple.com/documentation/coretext/ctparagraphstyle) object.
+    ///
+    ///
     /// A CTParagraphStyle object which is used to specify things like
     /// line alignment, tab rulers, writing direction, etc.
     ///
@@ -137,12 +184,17 @@ extern "C" {
     ///
     ///
     /// See also: CFStringGetParagraphBounds
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctparagraphstyleattributename?language=objc)
     pub static kCTParagraphStyleAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The stroke width.
+    ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object. Default value is `0.0`, or no stroke. This attribute, interpreted as a percentage of font point size, controls the text drawing mode: positive values effect drawing with stroke only; negative values are for stroke and fill. A typical value for outlined text is `3.0`.
+    ///
+    ///
     /// The stroke width.
     ///
     ///
@@ -151,22 +203,32 @@ extern "C" {
     /// controls the text drawing mode: positive values effect drawing
     /// with stroke only; negative values are for stroke and fill. A
     /// typical value for outlined text is 3.0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctstrokewidthattributename?language=objc)
     pub static kCTStrokeWidthAttributeName: &'static CFString;
 }
 
 extern "C" {
     /// The stroke color.
     ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor) object. Default is the foreground color.
+    ///
+    ///
+    /// The stroke color.
+    ///
     ///
     /// Value must be a CGColorRef. Default is the foreground color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctstrokecolorattributename?language=objc)
     pub static kCTStrokeColorAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The style of underlining, to be applied at render time, for the text to which this attribute applies.
+    ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object. Default is [`kCTUnderlineStyleNone`](https://developer.apple.com/documentation/coretext/ctunderlinestyle/kctunderlinestylenone). Set a value of something other than [`kCTUnderlineStyleNone`](https://developer.apple.com/documentation/coretext/ctunderlinestyle/kctunderlinestylenone) to draw an underline. In addition, the constants listed in  [`CTUnderlineStyleModifiers`](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers) can be used to modify the look of the underline. The underline color is determined by the text’s foreground color.
+    ///
+    ///
     /// Allows the setting of an underline to be applied at render
     /// time.
     ///
@@ -177,46 +239,60 @@ extern "C" {
     /// used to modify the look of the underline. The underline color
     /// will be determined by the text's foreground color unless
     /// otherwise specified by kCTUnderlineColorAttributeName.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctunderlinestyleattributename?language=objc)
     pub static kCTUnderlineStyleAttributeName: &'static CFString;
 }
 
 extern "C" {
     /// Controls vertical text positioning.
     ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object. Default is integer value `0`. If supported by the specified font, a value of `1` enables superscripting and a value of `-1` enables subscripting.
+    ///
+    ///
+    /// Controls vertical text positioning.
+    ///
     ///
     /// Value must be a CFNumberRef. Default is int value 0. If supported
     /// by the specified font, a value of 1 enables superscripting and a
     /// value of -1 enables subscripting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctsuperscriptattributename?language=objc)
     pub static kCTSuperscriptAttributeName: &'static CFString;
 }
 
 extern "C" {
     /// The underline color.
     ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor) object. Default is the foreground color.
+    ///
+    ///
+    /// The underline color.
+    ///
     ///
     /// Value must be a CGColorRef. Default is the foreground color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctunderlinecolorattributename?language=objc)
     pub static kCTUnderlineColorAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The orientation of the glyphs in the text to which this attribute applies.
+    ///
+    /// ## Discussion
+    ///
+    /// Value must be a doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p object. Default is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse). A value of [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) indicates that horizontal glyph forms are to be used; [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) indicates that vertical glyph forms are to be used.
+    ///
+    ///
     /// Controls glyph orientation.
     ///
     ///
     /// Value must be a CFBooleanRef. Default is false. A value of false
     /// indicates that horizontal glyph forms are to be used, true
     /// indicates that vertical glyph forms are to be used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctverticalformsattributename?language=objc)
     pub static kCTVerticalFormsAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// Setting text in tate-chu-yoko form (horizontal numerals in vertical text).
     /// Setting text in tate-chu-yoko form (horizontal numerals in vertical text).
     ///
     ///
@@ -225,12 +301,17 @@ extern "C" {
     /// form. This is to apply the correct feature settings for the text.
     /// This attribute only works when kCTVerticalFormsAttributeName is set
     /// to true.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcthorizontalinverticalformsattributename?language=objc)
     pub static kCTHorizontalInVerticalFormsAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The glyph info object to apply to the text associated with this attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CTGlyphInfoRef`](https://developer.apple.com/documentation/coretext/ctglyphinfo) object. The glyph specified by this [`CTGlyphInfoRef`](https://developer.apple.com/documentation/coretext/ctglyphinfo) object is assigned to the entire attribute range, provided that its contents match the specified base string and that the specified glyph is available in the font specified by [`kCTFontAttributeName`](https://developer.apple.com/documentation/coretext/kctfontattributename).
+    ///
+    ///
     /// Allows the use of unencoded glyphs.
     ///
     ///
@@ -239,12 +320,17 @@ extern "C" {
     /// provided that its contents match the specified base string and
     /// that the specified glyph is available in the font specified by
     /// kCTFontAttributeName. See CTGlyphInfo.h for more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctglyphinfoattributename?language=objc)
     pub static kCTGlyphInfoAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// Controls glyph selection.
+    ///
+    /// ## Discussion
+    ///
+    /// Value must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object. Default is value is `0` (disabled). A non-zero value is interpreted as Apple Type Services `kCharacterShapeType` selector `+ 1` (see `<ATS/SFNTLayoutTypes.h>` for selectors). For example, an attribute value of `1` corresponds to `kTraditionalCharactersSelector`.
+    ///
+    ///
     /// Controls glyph selection.
     ///
     ///
@@ -252,13 +338,18 @@ extern "C" {
     /// A non-zero value is interpreted as an SFNT kCharacterShapeType
     /// selector + 1; see SFNTLayoutTypes.h for selectors. For example,
     /// an attribute value of 1 corresponds to kTraditionalCharactersSelector.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctcharactershapeattributename?language=objc)
     #[deprecated = "Use feature type kCharacterShapeType with the appropriate selector"]
     pub static kCTCharacterShapeAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The name of the text language.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) containing a language identifier conforming to [UTS #35](http://unicode.org/reports/tr35/). The default is unset. When this attribute is set to a valid identifier, it will be used to select localized glyphs (if supported by the font), and locale-specific line-breaking rules.
+    ///
+    ///
     /// Specifies text language.
     ///
     ///
@@ -266,12 +357,17 @@ extern "C" {
     /// is unset. When this attribute is set to a valid identifier, it will
     /// be used to select localized glyphs (if supported by the font) and
     /// locale-specific line breaking rules.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctlanguageattributename?language=objc)
     pub static kCTLanguageAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The run-delegate object to apply to an attribute range of the string.
+    ///
+    /// ## Discussion
+    ///
+    /// The value must be a [`CTRunDelegateRef`](https://developer.apple.com/documentation/coretext/ctrundelegate) object. The run delegate controls such typographic traits as glyph ascent, descent, and width. The values returned by the embedded run delegate apply to each glyph resulting from the text in that range. Because an embedded object is only a display-time modification, you should avoid applying this attribute to a range of text with complex behavior, such as text having a change of writing direction or having combining marks. It is thus recommended you apply this attribute to a range containing the single character U+FFFC.
+    ///
+    ///
     /// Allows customization of certain aspects of a range of text's
     /// appearance.
     ///
@@ -285,35 +381,38 @@ extern "C" {
     /// etc. Consequently, it is recommended that this attribute be
     /// applied to a range containing the single character U+FFFC. See
     /// CTRunDelegate.h for more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrundelegateattributename?language=objc)
     pub static kCTRunDelegateAttributeName: &'static CFString;
 }
 
+/// Underline style specifiers.
+///
+/// ## Overview
+///
+/// You can apply these underline style specifiers to the value that you set with the [`kCTUnderlineStyleAttributeName`](https://developer.apple.com/documentation/coretext/kctunderlinestyleattributename) attribute. These specifiers control the underline style Core Text uses when rendering the text to which the attribute applies.
+///
+///
 /// Underline style specifiers.
 ///
 ///
 /// These underline type specifiers can be applied to the value set
 /// with the kCTUnderlineStyleAttributeName attribute to tell
 /// CoreText that you want a different underline style.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTUnderlineStyle(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyle: i32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/kctunderlinestylenone?language=objc)
+/// A specifier that indicates not to draw an underline.
         #[doc(alias = "kCTUnderlineStyleNone")]
         const None = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/single?language=objc)
+/// A specifier that indicates to draw an underline consisting of a single line.
         #[doc(alias = "kCTUnderlineStyleSingle")]
         const Single = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/thick?language=objc)
+/// A specifier that indicates to draw an underline consisting of a thick line.
         #[doc(alias = "kCTUnderlineStyleThick")]
         const Thick = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle/double?language=objc)
+/// A specifier that indicates to draw an underline consisting of a double line.
         #[doc(alias = "kCTUnderlineStyleDouble")]
         const Double = 0x09;
     }
@@ -331,31 +430,36 @@ unsafe impl RefEncode for CTUnderlineStyle {
 
 /// Underline style modifiers.
 ///
+/// ## Overview
+///
+/// You can apply these underline style modifiers to the underline style ([`CTUnderlineStyle`](https://developer.apple.com/documentation/coretext/ctunderlinestyle)) that you set with the [`kCTUnderlineStyleAttributeName`](https://developer.apple.com/documentation/coretext/kctunderlinestyleattributename) attribute. These modifiers control the pattern of the underline.
+///
+///
+/// Underline style modifiers.
+///
 ///
 /// Set these bits with the CTUnderlineStyle that you set with the
 /// kCTUnderlineStyleAttributeName attribute to modify how the
 /// underline will be drawn.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTUnderlineStyleModifiers(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyleModifiers: i32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patternsolid?language=objc)
+/// A modifier that indicates to draw a solid underline.
         #[doc(alias = "kCTUnderlinePatternSolid")]
         const PatternSolid = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndot?language=objc)
+/// A modifier that indicates to draw an underline using a pattern of dots.
         #[doc(alias = "kCTUnderlinePatternDot")]
         const PatternDot = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndash?language=objc)
+/// A modifier that indicates to draw an underline using a pattern of dashes.
         #[doc(alias = "kCTUnderlinePatternDash")]
         const PatternDash = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndashdot?language=objc)
+/// A modifier that indicates to draw an underline using a pattern of alternating dashes and dots.
         #[doc(alias = "kCTUnderlinePatternDashDot")]
         const PatternDashDot = 0x0300;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers/patterndashdotdot?language=objc)
+/// A modifier that indicates to draw an underline using a pattern of a dash followed by two dots.
         #[doc(alias = "kCTUnderlinePatternDashDotDot")]
         const PatternDashDotDot = 0x0400;
     }
@@ -392,8 +496,6 @@ extern "C" {
     /// See also: kCTBaselineClassHanging
     ///
     /// See also: kCTBaselineClassMath
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassattributename?language=objc)
     pub static kCTBaselineClassAttributeName: &'static CFString;
 }
 
@@ -420,8 +522,6 @@ extern "C" {
     /// See also: kCTBaselineClassHanging
     ///
     /// See also: kCTBaselineClassMath
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineinfoattributename?language=objc)
     pub static kCTBaselineInfoAttributeName: &'static CFString;
 }
 
@@ -451,12 +551,27 @@ extern "C" {
     /// See also: kCTBaselineClassMath
     ///
     /// See also: kCTBaselineReferenceFont
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselinereferenceinfoattributename?language=objc)
     pub static kCTBaselineReferenceInfoAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// Vertical offset for text position.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) float. The default is standard positioning, following the baselines of the fonts used.
+    ///
+    /// The baseline offset attribute indicates how many points the characters should be shifted perpendicular to their baseline. For horizontal text, a positive baseline value indicates a shift above the text baseline, and a negative baseline value indicates a shift below the text baseline. For vertical text, a positive baseline value indicates a shift to the right of the text baseline, and a negative baseline value indicates a shift to the left of the text baseline. If this value is set to `0.0`, no baseline shift will be performed.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// This attribute is different from [`baselineOffset`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/baselineoffset). If you are writing code for [TextKit](https://developer.apple.com/documentation/appkit/textkit), you need to use [`baselineOffset`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/baselineoffset).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Controls vertical text positioning.
     ///
     ///
@@ -470,8 +585,6 @@ extern "C" {
     ///
     ///
     /// See also: NSBaselineOffsetAttributeName
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineoffsetattributename?language=objc)
     pub static kCTBaselineOffsetAttributeName: &'static CFString;
 }
 
@@ -516,14 +629,10 @@ extern "C" {
     /// See also: kCTWritingDirectionEmbedding
     ///
     /// See also: kCTWritingDirectionOverride
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctwritingdirectionattributename?language=objc)
     pub static kCTWritingDirectionAttributeName: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctwritingdirectionembedding?language=objc)
 pub const kCTWritingDirectionEmbedding: c_uint = 0 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctwritingdirectionoverride?language=objc)
 pub const kCTWritingDirectionOverride: c_uint = 1 << 1;
 
 extern "C" {
@@ -532,8 +641,6 @@ extern "C" {
     ///
     /// Value must be a CTRubyAnnotationRef. See CTRubyAnnotation.h for
     /// more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationattributename?language=objc)
     pub static kCTRubyAnnotationAttributeName: &'static CFString;
 }
 
@@ -544,7 +651,5 @@ extern "C" {
     /// The attribute value must be an object conforming to the CTAdaptiveImageProviding protocol.
     /// The range this attribute is applied to should be one or more U+FFFC characters, each of which will be drawn as the provided image,
     /// and the font attribute applied to that range will be used to determine properties such as point size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctadaptiveimageproviderattributename?language=objc)
     pub static kCTAdaptiveImageProviderAttributeName: &'static CFString;
 }

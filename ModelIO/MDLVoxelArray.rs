@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A model of a 3D object’s solid volume as a collection of _voxels_, or cubic units.
+    ///
+    /// ## Overview
+    ///
+    /// Unlike a mesh, which models only surface topology, a voxel array models the solid volume of a 3D object. Voxels are useful for modeling volumetric phenomena (such as clouds and fire), performing solid geometry operations (such as intersection and union), and preparing a 3D design for real-world physical production.
+    ///
+    ///
     /// Voxel data represented on a three dimensional grid. Voxel data can
     /// include voxels considered to be on the surface of an object, and a
     /// series of shells on the outside and inside of the surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvoxelarray?language=objc)
     #[unsafe(super(MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]

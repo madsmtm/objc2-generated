@@ -8,13 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed?language=objc)
+    /// The name of the notification indicating that the carrier token is available.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) property is the [`CTSubscriber`](https://developer.apple.com/documentation/coretelephony/ctsubscriber) instance whose subscriber token refreshed.
+    ///
+    ///
     #[deprecated]
     pub static CTSubscriberTokenRefreshed: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctsubscriberdelegate?language=objc)
+    /// A protocol to handle changes to subscriber information.
     pub unsafe trait CTSubscriberDelegate {
         #[unsafe(method(subscriberTokenRefreshed:))]
         #[unsafe(method_family = none)]
@@ -23,7 +29,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctsubscriber?language=objc)
+    /// A cellular network subscriber.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTSubscriber;

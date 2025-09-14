@@ -8,12 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The options available when making a prediction.
     /// MLPredictionOptions
     ///
     /// An object to hold options / controls / parameters of how
     /// model prediction is performed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlpredictionoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLPredictionOptions;

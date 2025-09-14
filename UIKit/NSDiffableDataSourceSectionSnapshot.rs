@@ -8,7 +8,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesectionsnapshotreference?language=objc)
+    /// A representation of the state of the data in a layout section at a specific point in time.
+    ///
+    /// ## Overview
+    ///
+    /// A section snapshot represents the data for a single section in a collection view. Through a section snapshot, you set up the initial state of the data that displays in an individual section of your view, and later update that data.
+    ///
+    /// You can use section snapshots with or instead of an [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshotreference), which represents the data in the entire view. Use a section snapshot when you need precise management of the data in a section of your layout, such as when the sections of your layout acquire their data from different sources. You can also use a section snapshot to represent data with a hierarchical structure, such as an outline with expandable items.
+    ///
+    /// The following example creates a section snapshot with one root item that contains three child items:
+    ///
+    /// ```objc
+    /// for (NSNumber *section in sections) {
+    ///     // Create a section snapshot.
+    ///     NSDiffableDataSourceSectionSnapshot<NSString *> *sectionSnapshot = [[NSDiffableDataSourceSectionSnapshot alloc] init];
+    ///     
+    ///     // Populate the section snapshot.
+    ///     [sectionSnapshot appendItems: @[@"Food", @"Drinks"]];
+    ///     [sectionSnapshot appendItems: @[@"🍏", @"🍓", @"🥐"] intoParentItem: @"Food"];
+    ///     
+    ///     // Apply the section snapshot.
+    ///     [dataSource applySnapshot: sectionSnapshot
+    ///                     toSection: section
+    ///          animatingDifferences: YES];
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// If you’re working in a Swift codebase, always use [`NSDiffableDataSourceSectionSnapshot`](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesectionsnapshot-swift.struct) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Avoid using this type in Swift code. Only use this type to bridge from Objective-C code to Swift code by typecasting from a section snapshot reference to a section snapshot:
+    ///
+    /// ```swift
+    /// let sectionSnapshot = sectionSnapshotRef as NSDiffableDataSourceSectionSnapshot<UUID>
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSectionSnapshot<ItemIdentifierType: ?Sized = AnyObject>;

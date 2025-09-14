@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerref?language=objc)
+/// An opaque reference to a web services protocol handler.
+///
+/// ## Discussion
+///
+/// The `WSProtocolHandlerRef` represents an instance of a protocol handler. Create it using `WSProtocolHandlerCreate`.
+///
+///
 #[doc(alias = "WSProtocolHandlerRef")]
 #[repr(C)]
 pub struct WSProtocolHandler {
@@ -27,7 +33,20 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for WSProtocolHandler {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423455-wsprotocolhandlergettypeid?language=objc)
+    /// Returns a `CFTypeID` for the current `WSProtocolHandlerRef`.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFTypeID`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns the `CFTypeID` of the opaque `WSProtocolHandlerRef` most recently created by `WSProtocolHandlerCreate`. `CFTypeIDs` are only valid during a particular instance of a process and should not be used as static values.
+    ///
+    ///
     #[doc(alias = "WSProtocolHandlerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,7 +58,26 @@ unsafe impl ConcreteType for WSProtocolHandler {
 }
 
 impl WSProtocolHandler {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423434-wsprotocolhandlercreate?language=objc)
+    /// Creates a `WSProtocolHandlerRef` for use in translating an XML document.
+    ///
+    /// Parameters:
+    /// - allocator: A `CFAllocatorRef` used to allocate the protocol handler.
+    ///
+    /// - protocol: A constant string, defined in `WSMethodInvocation.h`, that determines the type of implementation to create (XML-RPC vs. SOAP).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `WSProtocolHandlerRef`; `NULL` if a parse error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a `WSProtocolHandlerRef` for use in translating an XML document. A protocol handler translates dictionaries into web services requests. It is created with a string specifying the protocol (XML-RPC or SOAP) and can be modified by setting various properties. It should be noted that the parser can be re-used for multiple parses.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -62,7 +100,26 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423451-wsprotocolhandlercopyrequestdict?language=objc)
+    /// Parses an incoming XML document for the method name and parameters.
+    ///
+    /// Parameters:
+    /// - ref: The protocol handler to use.
+    ///
+    /// - data: The XML document to parse.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFDictionary`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function parses an incoming XML document for the method name and parameters. The results are in a dictionory as `kWSMethodName` (a `CFString`), `kWSMethodParameters` (a `CFDictionary`), and `kWSMethodParameterOrder` (a `CFArray`). If a parse error occurred, `NULL` is returned. Protocol specific additions (for example, `kWSSOAPMessageHeaders`) may also be present in the dictionary. The dictionary returned also represents the context with which XML reply documents are created (see `WSProtocolHandlerCreateReply`). The caller must release the resulting dictionary. Note that the returned dictionary should be used as an input parameter for other `WSProtocol` functions that require a context dictionary parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -84,7 +141,28 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423441-wsprotocolhandlercopyreplydictio?language=objc)
+    /// Parses an incoming XML document as if it were the reply of a method.
+    ///
+    /// Parameters:
+    /// - ref: A `WSProtocolHandlerRef`, as created by `WSProtocolHandlerCreate`.
+    ///
+    /// - methodName: The method name to treat the XML file as a result of.
+    ///
+    /// - data: A `CFDataRef` of the XML document to parse
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFDictionary`, as returned by `WSMethodInvocationInvoke`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Parse an incoming XML document as if it were the reply of a method.  The results are the same as the `WSMethodInvocationInvoke` response;  the reply could be a fault.  If there was a parse error, `NULL` is returned.  Protocol specific additions, such as `kWSSOAPMessageHeaders`, may also be present in the dictionary.  The caller must release the resulting dictionary.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -109,7 +187,28 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423440-wsprotocolhandlercopyreplydocume?language=objc)
+    /// Creates a Reply XML document for a given WS ProtocolHandler and context dictionary.
+    ///
+    /// Parameters:
+    /// - ref: The WSProtocolHandler to respond.
+    ///
+    /// - methodContext: The `CFDictionary` containing the context for this method call, as returned by `WSProtocolHandlerParseRequest`.
+    ///
+    /// - resultValue: A `CFTypeRef` representing the data to be serialized.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFDataRef` containing the XML response.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a Reply XML document for a given `WSProtocolHandler` and context dictionary. Protocol specific addtions (for example, `kWSSOAPMessageHeaders`) may also be present in the dictionary.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -137,7 +236,28 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423449-wsprotocolhandlercopyfaultdocume?language=objc)
+    /// Creates a Fault XML response for a given WSProtocolHandler and fault details dictionary.
+    ///
+    /// Parameters:
+    /// - ref: A `WSProtocolHandlerRef`, as created by `WSProtocolHandlerCreate`.
+    ///
+    /// - methodContext: The CFDictionary containing the context for this method call, as returned by `WSProtocolHandlerParseRequest`.
+    ///
+    /// - faultDict: A `CFDictionary` containing the fault information. See `WSMethodInvocation.h` for valid keys.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFDataRef` containing the XML fault.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a Fault XML response for a given `WSProtocolHandlerRef` and fault details dictionary. The fault dictionary contains one or more of `kWSFaultString`, `kWSFaultCode` or `kWSFaultExtra`, as per WSMethodInvocation.h.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -166,7 +286,32 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423437-wsprotocolhandlercopyrequestdocu?language=objc)
+    /// Creates an XML request for a given `WSProtocolHandler` and parameter list.
+    ///
+    /// Parameters:
+    /// - ref: The `WSProtocolHandlerRef`.
+    ///
+    /// - methodName: A `CFString` of the method name to call.
+    ///
+    /// - methodParams: A `CFDictionary` containing the parameters to send.
+    ///
+    /// - methodParamOrder: A `CFArray`, which, if not `NULL`, specifies the order of the parameters in the `CFDictionary`.
+    ///
+    /// - methodExtras: A `CFDictionary`, which, if not `NULL`, contains additional information for the protocol (for example, `kWSSoapMessageHeaders`).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFDataRef`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an XML request for a given `WSProtocolHandler` and parameter list. This is the request sent to a server.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -210,7 +355,26 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423436-wsprotocolhandlercopyproperty?language=objc)
+    /// Returns a copy of a property from a protocol handler reference.
+    ///
+    /// Parameters:
+    /// - ref: A `WSProtocolHandlerRef`, as created by `WSProtocolHandlerCreate`.
+    ///
+    /// - propertyName: The name of the property to copy.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The `CFTypeRef` value of the property, or `NULL` if the specified property does not exist.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns a property from a protocol handler.  If the result is `NULL`, the property doesn't exist.  Since this is a Copy call, you must release the result.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -229,7 +393,21 @@ impl WSProtocolHandler {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423442-wsprotocolhandlersetproperty?language=objc)
+    /// Sets a property in a specified protocol handler.
+    ///
+    /// Parameters:
+    /// - ref: The protocol handler.
+    ///
+    /// - propertyName: The name of the property to set.
+    ///
+    /// - propertyValue: The value of the property to set.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets the value of a named property in a method implementation.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -255,7 +433,41 @@ impl WSProtocolHandler {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerserializationprocptr?language=objc)
+/// This is an optional callback that handles custom serialization of a particular data type for a protocol handler.
+///
+/// Parameters:
+/// - protocol: The protocol handler for which this callback handles serialization.
+///
+/// - obj: The CFTypeRef for which this callback produces serialized XML.
+///
+/// - info: Private callback data.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A `CFStringRef` containing valid XML.  The caller of this callback will release the string. If you return `NULL`, the default serializer is used.
+///
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MySerilaizerCallback, declare it like this:
+///
+/// <a id="1681601"></a>
+/// ### Discussion
+///
+/// This callback is called whenever a type to be serialized by the protocol handler has the given CFTypeID. The callback should return an XML snippet that will be understood by the server as a correct serialization for a given type.  If the callback returns `NULL`, the default serializer is used.
+///
+/// <div class="warning">
+///
+/// ### Important
+/// For SOAP serializations, the parameter key (element name) is not part of the callback; it will be substituded for all occurances of "%@" in the returned string.
+///
+///
+///
+/// </div>
+///
 pub type WSProtocolHandlerSerializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
         *mut WSProtocolHandler,
@@ -265,7 +477,23 @@ pub type WSProtocolHandlerSerializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423438-wsprotocolhandlersetserializatio?language=objc)
+    /// Specifies a callback which will be called to produce the XML that represents the serialization of a given type ref.
+    ///
+    /// Parameters:
+    /// - protocol: The protocol which is to be executed.
+    ///
+    /// - objType: The `CFTypeID` of the object to be serialized.
+    ///
+    /// - serializationProc: The serialization callback that will do the work.
+    ///
+    /// - context: A pointer to a `WSClientContext`. The structure will be copied.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function specifies a callback which will be called to produce the XML that represents the serialization of a given type ref. This callback is called whenever a type has the given `CFTypeID`. The callback should return an XML snippet that will be understood by the server as a correct serialization for a given type.  If the callback returns NULL, the default serializer is used. For SOAP serializations, the parameter key (element name) is not part of the callback; it will be substituded for all occurances of "%@" in the returned string. If your callback returns `NULL`, the default serializer will be used.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -295,7 +523,35 @@ impl WSProtocolHandler {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsprotocolhandlerdeserializationprocptr?language=objc)
+/// This is an optional callback that handles custom deserialization of a particular data type for a protocol handler.
+///
+/// Parameters:
+/// - protocol: The protocol handler for which this callback handles deserialization.
+///
+/// - msgRoot: The root element of the XML to be deserialized.
+///
+/// - deserializeRoot: The tree element of the XML to be deserialized.
+///
+/// - info: Private callback data.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A `CFTypeRef` representing the deserialized data. The caller will release this data. If you return `NULL`, the default deserializer is used.
+///
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MyDeserilaizerCallback, declare it like this:
+///
+/// <a id="1681620"></a>
+/// ### Discussion
+///
+/// This callback is passed a reference to the invocation currently being executed, the root of the response parse tree, the current node being deserialized, and a pointer to private data. The return result should be a valid `CFTypeRef` object (which will be released  by the caller) or `NULL` to allow the default deserializer to act. Unlike the serialization callback, which is called only for a specified data type, the deserialization callback is called for every element to be deserialized.
+///
+///
 pub type WSProtocolHandlerDeserializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
         *mut WSProtocolHandler,
@@ -306,7 +562,25 @@ pub type WSProtocolHandlerDeserializationProcPtr = Option<
 >;
 
 impl WSProtocolHandler {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1423444-wsprotocolhandlersetdeserializat?language=objc)
+    /// Specifies a callback to be made when parsing an XML method response.
+    ///
+    /// Parameters:
+    /// - protocol: The `ProtocolHandlerRef`.
+    ///
+    /// - typeNamespace: The fully resolved namespace for a specific type. If `NULL`, the default namespace will be used. For example, this field could be: `CFSTR("http://www.w3.org/2001/XMLSchema-instance")`.
+    ///
+    /// - typeName: The non-qualified type name. This parameter must not be `NULL`.
+    ///
+    /// - deserializationProc: A `ProcPtr` to be called to perform the deserialization.
+    ///
+    /// - context: A pointer to a `WSClientContext`. The structure will be copied.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function specifies a callback to be made when parsing an XML method response. The callback is passed a reference to the protocol element currently being executed, the root of the response parse tree, the current node being deserialized, and a pointer to private data. The return result should be a valid `CFTypeRef` object, which will be released by the caller. If the callback returns `NULL`, the default deserializer will be used.
+    ///
+    ///
     ///
     /// # Safety
     ///

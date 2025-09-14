@@ -9,14 +9,13 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that stores data required to execute batch normalization.
     /// MPSCNNBatchNormalizationState encapsulates the data necessary
     /// to execute batch normalization.
     ///
     /// MPSCNNBatchNormalizationState cannot initialize the size of its own
     /// underlying resources.  Use [MPSCNNBatchNormalizationStatistics resultStateForSourceImages:]
     /// or [MPSCNNBatchNormalizationStatistics temporaryResultStateForCommandBuffer:sourceImages:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -213,10 +212,9 @@ impl MPSCNNBatchNormalizationState {
 }
 
 extern_class!(
+    /// An object that stores mean and variance terms used to execute batch normalization.
     /// A state which contains mean and variance terms used to apply a
     /// normalization in a MPSCNNBatchNormalization operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationmeanandvariancestate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -413,11 +411,10 @@ impl MPSCNNNormalizationMeanAndVarianceState {
 }
 
 extern_protocol!(
+    /// A protocol that defines methods that a batch normalization state uses to initialize scale factors, bias terms, and batch statistics.
     /// The MPSCNNBatchNormalizationDataSource protocol declares the methods that an
     /// instance of MPSCNNBatchNormalizationState uses to initialize the
     /// scale factors, bias terms, and batch statistics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationdatasource?language=objc)
     pub unsafe trait MPSCNNBatchNormalizationDataSource:
         NSObjectProtocol + NSCopying
     {
@@ -642,6 +639,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A batch normalization kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// MPSCNNBatchNormalization normalizes input images using per-channel
@@ -655,8 +653,6 @@ extern_class!(
     /// output_image = (input_image - mean[c]) * gamma[c] / sqrt(variance[c] + epsilon) + beta[c];
     /// out(:,:,c,:) = output_image;
     /// }
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1028,6 +1024,7 @@ impl MPSCNNBatchNormalization {
 }
 
 extern_class!(
+    /// An object that stores statistics required to execute batch normalization.
     /// Dependencies: This depends on Metal.framework
     ///
     /// MPSCNNBatchNormalizationStatistics updates a MPSCNNBatchNormalizationState
@@ -1035,8 +1032,6 @@ extern_class!(
     /// MPSCNNBatchNormalizationStatistics may be executed multiple times with
     /// multiple images to accumulate all the statistics necessary to perform
     /// a batch normalization as described in  https://arxiv.org/pdf/1502.03167v3.pdf.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatistics?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1210,6 +1205,7 @@ impl MPSCNNBatchNormalizationStatistics {
 }
 
 extern_class!(
+    /// A gradient batch normalization kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     ///
@@ -1221,8 +1217,6 @@ extern_class!(
     /// with respect to the batch normalization source images, and the
     /// gradient of the loss function with respect to the scale and bias
     /// terms used to compute the batch normalization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1514,13 +1508,12 @@ impl MPSCNNBatchNormalizationGradient {
 }
 
 extern_class!(
+    /// An object that stores the gradient of the loss function with respect to the batch statistics and batch normalization weights.
     /// Dependencies: This depends on Metal.framework
     ///
     /// MPSCNNBatchNormalizationStatisticsGradient updates a MPSCNNBatchNormalizationState
     /// with the gradient of the loss function with respect to the batch statistics and
     /// batch normalization weights used to perform a batch normalization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

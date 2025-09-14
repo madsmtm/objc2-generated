@@ -11,19 +11,19 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment?language=objc)
+/// Constants for horizontally aligning objects in their container.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceObjectHorizontalAlignment(pub NSInteger);
 impl WKInterfaceObjectHorizontalAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment/left?language=objc)
+    /// Left alignment. The object’s content aligns with the left edge of the container and extends to the right.
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment/center?language=objc)
+    /// Center alignment. The object’s content is centered horizontally in the container and extends equally to the left and right.
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentCenter")]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment/right?language=objc)
+    /// Right alignment. The object’s content aligns with the right edge of the container and extends to the left.
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentRight")]
     pub const Right: Self = Self(2);
 }
@@ -36,19 +36,19 @@ unsafe impl RefEncode for WKInterfaceObjectHorizontalAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment?language=objc)
+/// Constants for vertically aligning objects in their container.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceObjectVerticalAlignment(pub NSInteger);
 impl WKInterfaceObjectVerticalAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment/top?language=objc)
+    /// Top alignment. The object’s content aligns with the top edge of the container and extends downward.
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentTop")]
     pub const Top: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment/center?language=objc)
+    /// Center alignment. The object’s content is centered vertically in the container and extends equally up and down.
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentCenter")]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment/bottom?language=objc)
+    /// Bottom alignment. The object’s content aligns with the bottom edge of the container and extends upward.
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentBottom")]
     pub const Bottom: Self = Self(2);
 }
@@ -62,7 +62,25 @@ unsafe impl RefEncode for WKInterfaceObjectVerticalAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobject?language=objc)
+    /// An object that provides information that is common to all interface objects in your watchOS app.
+    ///
+    /// ## Overview
+    ///
+    /// Your WatchKit extension uses interface objects to manipulate the visual elements displayed on Apple Watch. Specifically, you use the methods of this class to change the size, alignment, and visibility of those elements. You can also configure the accessibility information displayed through assistive technologies like VoiceOver.
+    ///
+    /// Do not subclass or create instances of this class, or any of its subclasses, yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a button in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var button: WKInterfaceButton!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceButton* myButton;"], metadata: None }] }] })
+    /// At runtime, WatchKit creates the appropriate interface objects and assigns them to the outlets in your interface controller.
+    ///
+    /// WatchKit provides one-way communication between the interface objects in your extension and the corresponding interface elements in your watchOS app. You can set the values of an interface object, but you cannot get the current values. If you want to know the current value of an attribute, you must save the value yourself.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your group interface object in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Alpha" }] }], [Paragraph { inline_content: [Text { text: "The opacity of the object. A value of " }, CodeVoice { code: "1.0" }, Text { text: " represents fully opaque and a value of " }, CodeVoice { code: "0.0" }, Text { text: " represents fully transparent." }] }]], [[Paragraph { inline_content: [Text { text: "Hidden" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the item is hidden initially. You can change the visibility of the item programmatically by calling the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceObject/setHidden(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Installed" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the item is installed for the current device." }] }]], [[Paragraph { inline_content: [Text { text: "Horizontal" }] }], [Paragraph { inline_content: [Text { text: "The horizontal alignment of the item. Use this attribute to configure the horizontal position of the item relative to its immediate parent." }] }]], [[Paragraph { inline_content: [Text { text: "Vertical" }] }], [Paragraph { inline_content: [Text { text: "The vertical alignment of the item. Use this attribute to configure the vertical position of the item relative to its immediate parent." }] }]], [[Paragraph { inline_content: [Text { text: "Width" }] }], [Paragraph { inline_content: [Text { text: "The width of the object. Specify a fixed width or set the value of the object to be a percentage of its container’s width." }] }]], [[Paragraph { inline_content: [Text { text: "Height" }] }], [Paragraph { inline_content: [Text { text: "The height of the object. Specify a fixed height or set the value of the object to be a percentage of its container’s height." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKInterfaceObject;
@@ -193,7 +211,13 @@ impl WKInterfaceObject {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityimageregion?language=objc)
+    /// An object that defines a portion of an image that you want to call out separately to an assistive app.
+    ///
+    /// ## Overview
+    ///
+    /// The accessibility image region object defines the portion of the image that you want to call out separately and the label you want to apply to that region. Use an accessibility image region object in conjunction with any interface object that displays an image, either as part of its foreground or background content. Register your custom regions using the [`setAccessibilityImageRegions:`](https://developer.apple.com/documentation/watchkit/wkinterfaceobject/setaccessibilityimageregions(_:)) method of the corresponding interface object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKAccessibilityImageRegion;

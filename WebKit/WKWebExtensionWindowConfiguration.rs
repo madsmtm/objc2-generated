@@ -9,12 +9,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates configuration options for a window in an extension.
+    ///
+    /// ## Overview
+    ///
+    /// This class holds various options that influence the behavior and initial state of a window.
+    ///
+    /// The app retains the discretion to disregard any or all of these options, or even opt not to create a window.
+    ///
+    ///
     /// A ``WKWebExtensionWindowConfiguration`` object encapsulates configuration options for a window in an extension.
     ///
     /// This class holds various options that influence the behavior and initial state of a window.
     /// The app retains the discretion to disregard any or all of these options, or even opt not to create a window.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

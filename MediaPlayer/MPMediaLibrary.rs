@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus?language=objc)
+/// The list of possible states for authorization to access to the user’s media library.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaLibraryAuthorizationStatus(pub NSInteger);
 impl MPMediaLibraryAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/notdetermined?language=objc)
+    /// The user hasn’t determined whether to authorize the use of their media library.
     #[doc(alias = "MPMediaLibraryAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/denied?language=objc)
+    /// The app may not access the items in the user’s media library.
     #[doc(alias = "MPMediaLibraryAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/restricted?language=objc)
+    /// The app may access some of the content in the user’s media library.
     #[doc(alias = "MPMediaLibraryAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibraryauthorizationstatus/authorized?language=objc)
+    /// Your app may access items in the user’s media library.
     #[doc(alias = "MPMediaLibraryAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -36,7 +36,15 @@ unsafe impl RefEncode for MPMediaLibraryAuthorizationStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary?language=objc)
+    /// An object that represents the state of synced media items on a device.
+    ///
+    /// ## Overview
+    ///
+    /// A user may sync their device, changing the contents on the device, while your app is running. You can use the notification provided by this class to ensure that your app’s cache of the user’s library is up-to-date.
+    ///
+    /// To retrieve media items from the media library, build a custom query as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate) and [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaLibrary;
@@ -131,6 +139,12 @@ impl MPMediaLibrary {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmedialibrarydidchangenotification?language=objc)
+    /// Indicates the media library has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// When the system posts this notification, your app should reevaluate items or playlists that you previously cached.
+    ///
+    ///
     pub static MPMediaLibraryDidChangeNotification: &'static NSString;
 }

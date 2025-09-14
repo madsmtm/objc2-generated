@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationrequest?language=objc)
+    /// A base class for different kinds of authorization requests.
+    ///
+    /// ## Overview
+    ///
+    /// Use one of the concrete requests, like [`ASAuthorizationAppleIDRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest), [`ASAuthorizationPasswordRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationpasswordrequest), or [`ASAuthorizationSingleSignOnRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest).
+    ///
+    /// You typically generate one of these using the corresponding provider, which is an instance of [`ASAuthorizationAppleIDProvider`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider), [`ASAuthorizationPasswordProvider`](https://developer.apple.com/documentation/authenticationservices/asauthorizationpasswordprovider), or [`ASAuthorizationSingleSignOnProvider`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider), respectively.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationRequest;

@@ -9,9 +9,8 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    /// A highlight object that represents an active collaboration.
     /// A SWHighlight object that represents an active collaboration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swcollaborationhighlight?language=objc)
     #[unsafe(super(SWHighlight, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SWHighlight")]

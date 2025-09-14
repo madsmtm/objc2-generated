@@ -6,20 +6,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The signature for the block that executes when the user changes the axis value.
+///
+/// Parameters:
+/// - axis: The axis that the user changed.
+///
+/// - value: A normalized value for the axis ranging from `-1` to `1`.
+///
 /// Set this block if you want to be notified when the value on this axis changes.
 ///
 ///
 /// Parameter `axis`: the element that has been modified.
 ///
 /// Parameter `value`: the value the axis was set to at the time the valueChangedHandler fired.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerAxisValueChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisinput?language=objc)
+    /// A control element that tracks movement along an axis.
+    ///
+    /// ## Overview
+    ///
+    /// A `GCControllerAxisInput` object represents the value of a physical controller’s axis. For example, a [`GCControllerDirectionPad`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad) has x-axis and y-axis subelements.
+    ///
+    ///
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]

@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent?language=objc)
+    /// A request to create a reservation at the specified restaurant.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INBookRestaurantReservationIntent`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent) object asks you to book the reservation time selected by the user. Maps sends this intent to your Intents extension when the user selects a reservation time from the available options. Use this intent object to obtain the details of the reservation, including the time slot and any selected special offers. Use those details to confirm the reservation with the restaurant and store the results in your system.
+    ///
+    /// Booking a reservation is the last step in the reservation creation process. By the time the system delivers this intent to your Intents extension, the user has already had an opportunity to view a list of potential reservation times and configure the details of the reservation request. This intent object contains all of the final choices made by the user.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INBookRestaurantReservationIntentHandling`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintenthandling) protocol. Your handler should resolve and confirm any parameters and create an [`INBookRestaurantReservationIntentResponse`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentresponse) object with the status of the reservation.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -163,7 +178,15 @@ impl INBookRestaurantReservationIntent {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintenthandling?language=objc)
+    /// The handler interface booking a reservation that the user selected.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INBookRestaurantReservationIntentHandling`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintenthandling) protocol to resolve, confirm, and handle requests to book a reservation based on the provided information. The system delivers an [`INBookRestaurantReservationIntent`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent) object to your handler with the reservation details, including the restaurant, date, party size, and any special offers selected by the user. Use that intent object to complete the reservation in your system and to communicate the reservation details to the restaurant itself.
+    ///
+    /// Maps does not require you to resolve or confirm the contents of a get available restaurant reservation bookings intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
     pub unsafe trait INBookRestaurantReservationIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INBookRestaurantReservationIntentResponse",

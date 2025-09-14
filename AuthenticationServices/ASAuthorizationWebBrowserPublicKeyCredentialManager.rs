@@ -7,21 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate?language=objc)
+/// An enumeration of values that indicate whether the browser app has access to a person’s passkeys.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState(pub NSInteger);
 impl ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/authorized?language=objc)
+    /// Someone allows the browser app to use passkeys stored in the keychain, and managed by third-party credential manager apps.
+    ///
+    /// ## Discussion
+    ///
+    /// The person can change their decision by navigating to Passkeys Access for Web Browsers, in the Privacy & Security pane in Settings.
+    ///
+    ///
     #[doc(
         alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateAuthorized"
     )]
     pub const Authorized: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/denied?language=objc)
+    /// Someone forbids the browser app to use passkeys stored in the keychain, and managed by third-party credential manager apps.
+    ///
+    /// ## Discussion
+    ///
+    /// The person can change their decision by navigating to Passkeys Access for Web Browsers, in the Privacy & Security pane in Settings.
+    ///
+    ///
     #[doc(alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager/authorizationstate/notdetermined?language=objc)
+    /// The person has yet to choose whether to allow the browser app to access passkeys stored on the keychain, or managed by third-party credential managers.
     #[doc(
         alias = "ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationStateNotDetermined"
     )]
@@ -37,7 +49,7 @@ unsafe impl RefEncode for ASAuthorizationWebBrowserPublicKeyCredentialManagerAut
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserpublickeycredentialmanager?language=objc)
+    /// A class that you use to request access to a person’s passkeys in a web browser, and that reports on the access status.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationWebBrowserPublicKeyCredentialManager;

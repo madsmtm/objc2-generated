@@ -12,7 +12,6 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcardelement?language=objc)
     #[unsafe(super(CPListImageRowItemElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

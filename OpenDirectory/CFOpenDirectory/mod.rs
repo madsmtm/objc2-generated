@@ -1128,9 +1128,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// An Open Directory context type.
 /// Opaque reference for the ODContext object
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontext?language=objc)
 #[repr(C)]
 pub struct ODContextRef {
     inner: [u8; 0],
@@ -1145,9 +1144,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__ODContext"> for ODContextRef {}
 );
 
+/// An Open Directory node type.
 /// Opaque reference for the ODNode object
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderef?language=objc)
 #[repr(C)]
 pub struct ODNodeRef {
     inner: [u8; 0],
@@ -1162,9 +1160,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__ODNode"> for ODNodeRef {}
 );
 
-/// Opaque reference for the ODQuery object
+/// An Open Directory query type.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryref?language=objc)
+/// ## Discussion
+///
+/// Query objects are usually created with [`ODQueryCreateWithNode`](https://developer.apple.com/documentation/opendirectory/odquerycreatewithnode(_:_:_:_:_:_:_:_:_:)) or [`ODQueryCreateWithNodeType`](https://developer.apple.com/documentation/opendirectory/odquerycreatewithnodetype(_:_:_:_:_:_:_:_:_:)).
+///
+///
+/// Opaque reference for the ODQuery object
 #[repr(C)]
 pub struct ODQueryRef {
     inner: [u8; 0],
@@ -1179,9 +1182,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__ODQuery"> for ODQueryRef {}
 );
 
+/// An Open Directory record type.
 /// Opaque reference for the ODRecord object
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordref?language=objc)
 #[repr(C)]
 pub struct ODRecordRef {
     inner: [u8; 0],
@@ -1196,9 +1198,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__ODRecord"> for ODRecordRef {}
 );
 
-/// Opaque reference for ODSession object
+/// An Open Directory session type.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionref?language=objc)
+/// ## Discussion
+///
+/// Session objects are usually created with [`ODSessionCreate`](https://developer.apple.com/documentation/opendirectory/odsessioncreate(_:_:_:)), and are typically passed to node functions.
+///
+///
+/// Opaque reference for ODSession object
 #[repr(C)]
 pub struct ODSessionRef {
     inner: [u8; 0],
@@ -1214,11 +1221,10 @@ cf_objc2_type!(
 );
 
 extern "C" {
+    /// The error domain used for errors from the Open Directory framework.
     /// the error domain for OpenDirectory.framework details
     ///
     /// the error domain for OpenDirectory.framework details
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/koderrordomainframework?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kODErrorDomainFramework: Option<&'static CFString>;
 }

@@ -6,188 +6,207 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_0?language=objc)
+/// Foundation version released in macOS 10.0.
 pub const NSFoundationVersionNumber10_0: c_float = 397.40;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1?language=objc)
+/// Foundation version released in macOS 10.1.
 pub const NSFoundationVersionNumber10_1: c_float = 425.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_1?language=objc)
+/// Foundation version released in macOS 10.1.1.
 pub const NSFoundationVersionNumber10_1_1: c_float = 425.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_2?language=objc)
+/// Foundation version released in macOS 10.1.2.
 pub const NSFoundationVersionNumber10_1_2: c_float = 425.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_3?language=objc)
+/// Foundation version released in macOS 10.1.3.
 pub const NSFoundationVersionNumber10_1_3: c_float = 425.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_1_4?language=objc)
+/// Foundation version released in macOS 10.1.4.
 pub const NSFoundationVersionNumber10_1_4: c_float = 425.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2?language=objc)
+/// Foundation version released in macOS 10.2.
 pub const NSFoundationVersionNumber10_2: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_1?language=objc)
+/// Foundation version released in macOS 10.2.1.
 pub const NSFoundationVersionNumber10_2_1: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_2?language=objc)
+/// Foundation version released in macOS 10.2.2.
 pub const NSFoundationVersionNumber10_2_2: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_3?language=objc)
+/// Foundation version released in macOS 10.2.3.
 pub const NSFoundationVersionNumber10_2_3: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_4?language=objc)
+/// Foundation version released in macOS 10.2.4.
 pub const NSFoundationVersionNumber10_2_4: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_5?language=objc)
+/// Foundation version released in macOS 10.2.5.
 pub const NSFoundationVersionNumber10_2_5: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_6?language=objc)
+/// Foundation version released in macOS version 10.2.6.
 pub const NSFoundationVersionNumber10_2_6: c_float = 462.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_7?language=objc)
+/// Foundation version released in macOS 10.2.7.
 pub const NSFoundationVersionNumber10_2_7: c_float = 462.70;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_2_8?language=objc)
+/// Foundation version released in macOS 10.2.8.
 pub const NSFoundationVersionNumber10_2_8: c_float = 462.70;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3?language=objc)
+/// Foundation version released in macOS 10.3.
 pub const NSFoundationVersionNumber10_3: c_float = 500.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_1?language=objc)
+/// Foundation version released in macOS 10.3.1.
 pub const NSFoundationVersionNumber10_3_1: c_float = 500.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_2?language=objc)
+/// Foundation version released in macOS 10.3.2.
 pub const NSFoundationVersionNumber10_3_2: c_float = 500.30;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_3?language=objc)
+/// Foundation version released in macOS 10.3.3.
 pub const NSFoundationVersionNumber10_3_3: c_float = 500.54;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_4?language=objc)
+/// Foundation version released in macOS 10.3.4.
 pub const NSFoundationVersionNumber10_3_4: c_float = 500.56;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_5?language=objc)
+/// Foundation version released in macOS 10.3.5.
 pub const NSFoundationVersionNumber10_3_5: c_float = 500.56;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_6?language=objc)
+/// Foundation version released in macOS 10.3.6.
 pub const NSFoundationVersionNumber10_3_6: c_float = 500.56;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_7?language=objc)
+/// Foundation version released in macOS 10.3.7.
 pub const NSFoundationVersionNumber10_3_7: c_float = 500.56;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_8?language=objc)
+/// Foundation version released in macOS 10.3.8.
 pub const NSFoundationVersionNumber10_3_8: c_float = 500.56;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_3_9?language=objc)
+/// Foundation version released in macOS 10.3.9.
 pub const NSFoundationVersionNumber10_3_9: c_float = 500.58;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4?language=objc)
+/// Foundation version released in macOS 10.4.
 pub const NSFoundationVersionNumber10_4: c_float = 567.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_1?language=objc)
+/// Foundation version released in macOS 10.4.1.
 pub const NSFoundationVersionNumber10_4_1: c_float = 567.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_2?language=objc)
+/// Foundation version released in macOS 10.4.2.
 pub const NSFoundationVersionNumber10_4_2: c_float = 567.12;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_3?language=objc)
+/// Foundation version released in macOS version 10.4.3.
 pub const NSFoundationVersionNumber10_4_3: c_float = 567.21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_4_intel?language=objc)
+/// Foundation version released in macOS version 10.4.4 for Intel-based Mac computers.
 pub const NSFoundationVersionNumber10_4_4_Intel: c_float = 567.23;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_4_powerpc?language=objc)
+/// Foundation version released in macOS 10.4.4 for PowerPC-based Mac computers.
 pub const NSFoundationVersionNumber10_4_4_PowerPC: c_float = 567.21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_5?language=objc)
+/// Foundation version released in macOS version 10.4.5.
 pub const NSFoundationVersionNumber10_4_5: c_float = 567.25;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_6?language=objc)
+/// Foundation version released in macOS 10.4.6.
 pub const NSFoundationVersionNumber10_4_6: c_float = 567.26;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_7?language=objc)
+/// Foundation version released in macOS 10.4.7.
 pub const NSFoundationVersionNumber10_4_7: c_float = 567.27;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_8?language=objc)
+/// Foundation version released in macOS 10.4.8.
 pub const NSFoundationVersionNumber10_4_8: c_float = 567.28;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_9?language=objc)
+/// Foundation version released in macOS 10.4.9.
 pub const NSFoundationVersionNumber10_4_9: c_float = 567.29;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_10?language=objc)
+/// Foundation version released in macOS 10.4.10.
 pub const NSFoundationVersionNumber10_4_10: c_float = 567.29;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_4_11?language=objc)
+/// Foundation version released in macOS 10.4.11.
 pub const NSFoundationVersionNumber10_4_11: c_float = 567.36;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5?language=objc)
+/// Foundation version released in macOS 10.5.0.
 pub const NSFoundationVersionNumber10_5: c_float = 677.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_1?language=objc)
+/// Foundation version released in macOS 10.5.1.
 pub const NSFoundationVersionNumber10_5_1: c_float = 677.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_2?language=objc)
+/// Foundation version released in macOS 10.5.2.
 pub const NSFoundationVersionNumber10_5_2: c_float = 677.15;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_3?language=objc)
+/// Foundation version released in macOS 10.5.3.
 pub const NSFoundationVersionNumber10_5_3: c_float = 677.19;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_4?language=objc)
+/// Foundation version released in macOS 10.5.4.
 pub const NSFoundationVersionNumber10_5_4: c_float = 677.19;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_5?language=objc)
+/// Foundation version released in macOS 10.5.5.
 pub const NSFoundationVersionNumber10_5_5: c_float = 677.21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_6?language=objc)
+/// Foundation version released in macOS 10.5.6.
 pub const NSFoundationVersionNumber10_5_6: c_float = 677.22;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_7?language=objc)
+/// Foundation version released in macOS 10.5.7.
 pub const NSFoundationVersionNumber10_5_7: c_float = 677.24;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_5_8?language=objc)
+/// Foundation version released in macOS 10.5.8.
 pub const NSFoundationVersionNumber10_5_8: c_float = 677.26;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6?language=objc)
+/// Foundation version released in macOS 10.6.
 pub const NSFoundationVersionNumber10_6: c_float = 751.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_1?language=objc)
+/// Foundation version released in macOS 10.6.1.
 pub const NSFoundationVersionNumber10_6_1: c_float = 751.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_2?language=objc)
+/// Foundation version released in macOS 10.6.2.
 pub const NSFoundationVersionNumber10_6_2: c_float = 751.14;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_3?language=objc)
+/// Foundation version released in macOS 10.6.3.
 pub const NSFoundationVersionNumber10_6_3: c_float = 751.21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_4?language=objc)
+/// Foundation version released in macOS 10.6.4.
 pub const NSFoundationVersionNumber10_6_4: c_float = 751.29;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_5?language=objc)
+/// Foundation version released in macOS 10.6.5.
 pub const NSFoundationVersionNumber10_6_5: c_float = 751.42;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_6?language=objc)
+/// Foundation version released in macOS 10.6.6.
 pub const NSFoundationVersionNumber10_6_6: c_float = 751.53;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_7?language=objc)
+/// Foundation version released in macOS 10.6.7.
 pub const NSFoundationVersionNumber10_6_7: c_float = 751.53;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_6_8?language=objc)
+/// Foundation version released in macOS 10.6.8.
 pub const NSFoundationVersionNumber10_6_8: c_float = 751.62;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7?language=objc)
+/// Foundation version released in macOS 10.7.
 pub const NSFoundationVersionNumber10_7: c_float = 833.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_1?language=objc)
+/// Foundation version released in macOS 10.7.1.
 pub const NSFoundationVersionNumber10_7_1: c_float = 833.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_2?language=objc)
+/// Foundation version released in macOS 10.7.2.
 pub const NSFoundationVersionNumber10_7_2: c_float = 833.20;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_3?language=objc)
+/// Foundation version released in macOS 10.7.3.
 pub const NSFoundationVersionNumber10_7_3: c_float = 833.24;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_7_4?language=objc)
+/// Foundation version released in macOS 10.7.4.
 pub const NSFoundationVersionNumber10_7_4: c_float = 833.25;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8?language=objc)
+/// Foundation version released in macOS 10.8.
 pub const NSFoundationVersionNumber10_8: c_float = 945.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_1?language=objc)
+/// Foundation version released in macOS 10.8.1.
 pub const NSFoundationVersionNumber10_8_1: c_float = 945.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_2?language=objc)
+/// Foundation version released in macOS 10.8.2.
 pub const NSFoundationVersionNumber10_8_2: c_float = 945.11;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_3?language=objc)
+/// Foundation version released in macOS 10.8.3.
 pub const NSFoundationVersionNumber10_8_3: c_float = 945.16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_8_4?language=objc)
+/// Foundation version released in macOS 10.8.4.
 pub const NSFoundationVersionNumber10_8_4: c_float = 945.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_9?language=objc)
+/// Foundation version released in macOS 10.9.
 pub const NSFoundationVersionNumber10_9: c_uint = 1056;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_9_1?language=objc)
+/// Foundation version released in macOS 10.9.1.
 pub const NSFoundationVersionNumber10_9_1: c_uint = 1056;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_9_2?language=objc)
+/// Foundation version released in macOS 10.9.2.
 pub const NSFoundationVersionNumber10_9_2: c_float = 1056.13;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10?language=objc)
+/// Foundation version released in macOS version 10.10.
 pub const NSFoundationVersionNumber10_10: c_float = 1151.16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_1?language=objc)
+/// Foundation version released in macOS 10.10.1.
 pub const NSFoundationVersionNumber10_10_1: c_float = 1151.16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_2?language=objc)
+/// Foundation version released in macOS 10.10.2.
 pub const NSFoundationVersionNumber10_10_2: c_float = 1152.14;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_3?language=objc)
+/// Foundation version released in macOS 10.10.3.
 pub const NSFoundationVersionNumber10_10_3: c_float = 1153.20;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_4?language=objc)
+/// Foundation version released in macOS 10.10.4.
 pub const NSFoundationVersionNumber10_10_4: c_float = 1153.20;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_5?language=objc)
+/// Foundation version released in macOS 10.10.5.
 pub const NSFoundationVersionNumber10_10_5: c_uint = 1154;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_10_max?language=objc)
+/// Foundation version ceiling for any update of macOS 10.10.x.
 pub const NSFoundationVersionNumber10_10_Max: c_uint = 1199;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11?language=objc)
+/// Foundation version released in macOS 10.11.
 pub const NSFoundationVersionNumber10_11: c_uint = 1252;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_1?language=objc)
+/// Foundation version released in macOS 10.11.1.
 pub const NSFoundationVersionNumber10_11_1: c_float = 1255.1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_2?language=objc)
+/// Foundation version released in macOS 10.11.2.
 pub const NSFoundationVersionNumber10_11_2: c_float = 1256.1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_3?language=objc)
+/// Foundation version released in macOS 10.11.3.
 pub const NSFoundationVersionNumber10_11_3: c_float = 1256.1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_4?language=objc)
+/// Foundation version released in macOS 10.11.4.
 pub const NSFoundationVersionNumber10_11_4: c_uint = 1258;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber10_11_max?language=objc)
+/// Foundation version ceiling for any update of macOS 10.11.x.
 pub const NSFoundationVersionNumber10_11_Max: c_uint = 1299;
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionnumber?language=objc)
+    /// The version of the Foundation framework in the current environment.
     pub static NSFoundationVersionNumber: c_double;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSExceptionName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop/mode?language=objc)
+/// Modes that a run loop operates in.
+///
+/// ## Discussion
+///
+/// [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) defines additional run loop modes, including the following:
+///
+/// - [`modalPanel`](https://developer.apple.com/documentation/foundation/runloop/mode/modalpanel)
+///
+/// - [`eventTracking`](https://developer.apple.com/documentation/foundation/runloop/mode/eventtracking)
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSRunLoopMode = NSString;
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromselector(_:)?language=objc)
+    /// Returns a string representation of a given selector.
+    ///
+    /// Parameters:
+    /// - aSelector: A selector.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representation of `aSelector`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -205,7 +224,25 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsselectorfromstring(_:)?language=objc)
+/// Returns the selector with a given name.
+///
+/// Parameters:
+/// - aSelectorName: A string of any length, with any characters, that represents the name of a selector.
+///
+///
+/// ## Return Value
+///
+/// The selector named by `aSelectorName`. If `aSelectorName` is `nil`, or cannot be converted to UTF-8 (this should be only due to insufficient memory), returns `(SEL)0`.
+///
+///
+///
+/// ## Discussion
+///
+/// To make a selector, [`NSSelectorFromString`](https://developer.apple.com/documentation/foundation/nsselectorfromstring(_:)) passes a UTF-8 encoded character representation of `aSelectorName` to [`sel_registerName`](https://developer.apple.com/documentation/objectivec/sel_registername(_:)) and returns the value returned by that function. Note, therefore, that if the selector does not exist it is registered and the newly-registered selector is returned.
+///
+/// Recall that a colon (”:”) is part of a method name; `setHeight` is not the same as `setHeight:`.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSSelectorFromString(a_selector_name: &NSString) -> Sel {
@@ -217,7 +254,17 @@ pub extern "C-unwind" fn NSSelectorFromString(a_selector_name: &NSString) -> Sel
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromclass(_:)?language=objc)
+    /// Returns the name of a class as a string.
+    ///
+    /// Parameters:
+    /// - aClass: A class.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the name of `aClass`. If `aClass` is `nil`, returns `nil`.
+    ///
+    ///
     #[doc(alias = "NSStringFromClass")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -231,7 +278,17 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassfromstring(_:)?language=objc)
+/// Obtains a class by name.
+///
+/// Parameters:
+/// - aClassName: The name of a class.
+///
+///
+/// ## Return Value
+///
+/// The class object named by `aClassName`, or `nil` if no class by that name is currently loaded. If `aClassName` is `nil`, returns `nil`.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSClassFromString(a_class_name: &NSString) -> Option<&'static AnyClass> {
@@ -243,7 +300,17 @@ pub extern "C-unwind" fn NSClassFromString(a_class_name: &NSString) -> Option<&'
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromprotocol(_:)?language=objc)
+    /// Returns the name of a protocol as a string.
+    ///
+    /// Parameters:
+    /// - proto: A protocol.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the name of `proto`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -261,7 +328,17 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprotocolfromstring(_:)?language=objc)
+/// Returns a the protocol with a given name.
+///
+/// Parameters:
+/// - namestr: The name of a protocol.
+///
+///
+/// ## Return Value
+///
+/// The protocol object named by `namestr`, or `nil` if no protocol by that name is currently loaded. If `namestr` is `nil`, returns `nil`.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Retained<AnyProtocol>> {
@@ -272,7 +349,15 @@ pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Reta
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgetsizeandalignment(_:_:_:)?language=objc)
+/// Obtains the actual size and the aligned size of an encoded type.
+///
+/// ## Discussion
+///
+/// Obtains the actual size and the aligned size of the first data type represented by `typePtr` and returns a pointer to the position of the next data type in `typePtr`. You can specify `NULL` for either `sizep` or `alignp` to ignore the corresponding information.
+///
+/// The value returned in `alignp` is the aligned size of the data type; for example, on some platforms, the aligned size of a `char` might be 2 bytes while the actual physical size is 1 byte.
+///
+///
 ///
 /// # Safety
 ///
@@ -296,22 +381,56 @@ pub unsafe extern "C-unwind" fn NSGetSizeAndAlignment(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/comparator?language=objc)
+/// Defines the signature for a block object used for comparison operations.
+///
+/// ## Discussion
+///
+/// The arguments to the [Block object](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Block.html#//apple_ref/doc/uid/TP40008195-CH3) are two objects to compare. The block returns an [`NSComparisonResult`](https://developer.apple.com/documentation/foundation/comparisonresult) value to denote the ordering of the two objects.
+///
+/// You use `NSComparator` blocks in comparison operations such as `NSArray`’s [`sortedArrayUsingComparator:`](https://developer.apple.com/documentation/foundation/nsarray/sortedarray(comparator:)), for example:
+///
+/// ```objc
+/// NSArray *sortedArray = [array sortedArrayUsingComparator: ^(id obj1, id obj2) {
+///  
+///     if ([obj1 integerValue] > [obj2 integerValue]) {
+///         return (NSComparisonResult)NSOrderedDescending;
+///     }
+///  
+///     if ([obj1 integerValue] < [obj2 integerValue]) {
+///         return (NSComparisonResult)NSOrderedAscending;
+///     }
+///     return (NSComparisonResult)NSOrderedSame;
+/// }];
+/// ```
+///
+///
 #[cfg(feature = "block2")]
 pub type NSComparator =
     *mut block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
+/// Options for block enumeration operations.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEnumerationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions/concurrent?language=objc)
+/// Specifies that the Block enumeration should be concurrent.
+///
+/// ## Discussion
+///
+/// The order of invocation is nondeterministic and undefined; this flag is a hint and may be ignored by the implementation under some circumstances; the code of the Block must be safe against concurrent invocation.
+///
+///
         #[doc(alias = "NSEnumerationConcurrent")]
         const Concurrent = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions/reverse?language=objc)
+/// Specifies that the enumeration should be performed in reverse.
+///
+/// ## Discussion
+///
+/// This option is available for `NSArray` and `NSIndexSet` classes; its behavior is undefined for `NSDictionary` and `NSSet` classes, or when combined with the `NSEnumerationConcurrent` flag.
+///
+///
         #[doc(alias = "NSEnumerationReverse")]
         const Reverse = 1<<1;
     }
@@ -325,17 +444,29 @@ unsafe impl RefEncode for NSEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions?language=objc)
+/// Options for block sorting operations.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSortOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions/concurrent?language=objc)
+/// Specifies that the Block sort operation should be concurrent.
+///
+/// ## Discussion
+///
+/// This option is a hint and may be ignored by the implementation under some circumstances; the code of the Block must be safe against concurrent invocation.
+///
+///
         #[doc(alias = "NSSortConcurrent")]
         const Concurrent = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions/stable?language=objc)
+/// Specifies that the sorted results should return compared items having equal value in the order they occurred originally.
+///
+/// ## Discussion
+///
+/// If this option is unspecified, equal objects may, or may not be returned in their original order.
+///
+///
         #[doc(alias = "NSSortStable")]
         const Stable = 1<<4;
     }
@@ -349,25 +480,56 @@ unsafe impl RefEncode for NSSortOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice?language=objc)
+/// Constants that indicate the nature and importance of work to the system.
+///
+/// ## Overview
+///
+/// Work with higher quality of service classes receive more resources than work with lower quality of service classes whenever there’s resource contention.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSQualityOfService(pub NSInteger);
 impl NSQualityOfService {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/userinteractive?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used for work directly involved in providing an interactive UI. For example, processing control events or drawing to the screen.
+    ///
+    ///
     #[doc(alias = "NSQualityOfServiceUserInteractive")]
     pub const UserInteractive: Self = Self(0x21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/userinitiated?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used for performing work that has been explicitly requested by the user, and for which results must be immediately presented in order to allow for further user interaction. For example, loading an email after a user has selected it in a message list.
+    ///
+    ///
     #[doc(alias = "NSQualityOfServiceUserInitiated")]
     pub const UserInitiated: Self = Self(0x19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/utility?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used for performing work which the user is unlikely to be immediately waiting for the results. This work may have been requested by the user or initiated automatically, and often operates at user-visible timescales using a non-modal progress indicator. For example, periodic content updates or bulk file operations, such as media import.
+    ///
+    ///
     #[doc(alias = "NSQualityOfServiceUtility")]
     pub const Utility: Self = Self(0x11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/background?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used for work that is not user initiated or visible. In general, a user is unaware that this work is even happening. For example, pre-fetching content, search indexing, backups, or syncing of data with external systems.
+    ///
+    ///
     #[doc(alias = "NSQualityOfServiceBackground")]
     pub const Background: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/qualityofservice/default?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates no explicit quality of service information. Whenever possible, an appropriate quality of service is determined from available sources. Otherwise, some quality of service level between `NSQualityOfServiceUserInteractive` and `NSQualityOfServiceUtility` is used.
+    ///
+    ///
     #[doc(alias = "NSQualityOfServiceDefault")]
     pub const Default: Self = Self(-1);
 }
@@ -380,7 +542,17 @@ unsafe impl RefEncode for NSQualityOfService {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotfound-4qp9h?language=objc)
+/// A value indicating that a requested item couldn’t be found or doesn’t exist.
+///
+/// ## Discussion
+///
+/// `NSNotFound` is typically used by various methods and functions that search for items in serial data and return indices, such as characters in a string object or `id` objects in an `NSArray` object.
+///
+/// ### Special Considerations
+///
+/// Prior to OS X v10.5, `NSNotFound` was defined as `0x7fffffff`. For 32-bit systems, this was effectively the same as `NSIntegerMax`. To support 64-bit environments, `NSNotFound` is now formally defined as `NSIntegerMax`. This means, however, that the value is different in 32-bit and 64-bit environments. You should therefore not save the value directly in files or archives. Moreover, sending the value between 32-bit and 64-bit processes via Distributed Objects will not get you `NSNotFound` on the other side. This applies to any Cocoa methods invoked over Distributed Objects and which might return `NSNotFound`, such as the `indexOfObject:` method of `NSArray` (if sent to a proxy for an array).
+///
+///
 pub static NSNotFound: NSInteger = NSIntegerMax as _;
 
 #[cfg(feature = "NSString")]

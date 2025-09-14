@@ -10,7 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataitem?language=objc)
+    /// A metadata item for an audiovisual asset or one of its tracks.
+    ///
+    /// ## Overview
+    ///
+    /// To effectively use `AVMetadataItem`, you need to understand how [`AVFoundation`](https://developer.apple.com/documentation/avfoundation) organizes metadata. To simplify finding and filtering metadata items, the framework groups related metadata into key spaces:
+    ///
+    /// - **Format-specific key spaces.** The framework defines several format-specific key spaces. They roughly correlate to a particular container or file format, such as QuickTime (QuickTime metadata and user data) or MP3 (ID3). However, a single asset may contain metadata values across multiple key spaces. To retrieve an asset’s complete collection of format-specific metadata, you use its [`metadata`](https://developer.apple.com/documentation/avfoundation/avasset/metadata) property.
+    ///
+    /// - **Common key space.** There are several common metadata values, such as a movie’s creation date or description, that can exist across multiple key spaces. To help normalize access to this common metadata, the framework provides a common key space that gives access to a limited set of metadata values common to several key spaces. This makes it easy to retrieve commonly used metadata without concern for the specific format. To retrieve an asset’s collection of common metadata, you use its [`commonMetadata`](https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata) property.
+    ///
+    /// Metadata items have keys that accord with the specification of the container format from which they’re drawn. Full details of the metadata formats, metadata keys, and metadata key spaces supported by AVFoundation are available in [`AVMetadataKeySpace`](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace) and [`AVMetadataKey`](https://developer.apple.com/documentation/avfoundation/avmetadatakey).
+    ///
+    /// To load values of a metadata item when you access them for the first time, use the methods from the [`AVAsynchronousKeyValueLoading`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading) protocol. The [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) class and other classes in turn provide their metadata as needed so that you can obtain objects from those arrays without incurring overhead for items you don’t inspect.
+    ///
+    /// To filter arrays of metadata items, you use the methods of this class. For example, you can filter by key and key space, by locale, and by preferred language.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataItem;
@@ -249,7 +265,13 @@ impl AVMetadataItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablemetadataitem?language=objc)
+    /// A mutable metadata item for an audiovisual asset or for one of its tracks.
+    ///
+    /// ## Overview
+    ///
+    /// You can initialize a mutable metadata item from an existing [`AVMetadataItem`](https://developer.apple.com/documentation/avfoundation/avmetadataitem) object or with a one or more of the basic properties of a metadata item: a key, a key space, a locale, and a value.
+    ///
+    ///
     #[unsafe(super(AVMetadataItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableMetadataItem;
@@ -487,7 +509,7 @@ impl AVMetadataItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataitemvaluerequest?language=objc)
+    /// An object that responds to a request to load the value of a metadata item.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataItemValueRequest;
@@ -540,11 +562,16 @@ impl AVMetadataItemValueRequest {
 }
 
 extern_class!(
+    /// An object that filters selected information from a metadata item.
+    ///
+    /// ## Overview
+    ///
+    /// Filter instances are opaque, unmodifiable objects, that you create with the [`metadataItemFilterForSharing`](https://developer.apple.com/documentation/avfoundation/avmetadataitemfilter/forsharing()) class method.
+    ///
+    ///
     /// Filters selected information from a metadata item.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataitemfilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataItemFilter;

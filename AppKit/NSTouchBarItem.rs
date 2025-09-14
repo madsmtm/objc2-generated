@@ -7,25 +7,167 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct?language=objc)
+/// An identifier for an item in the Touch Bar.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTouchBarItemIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority?language=objc)
+/// Priorities for the visibility of a Touch Bar item.
+///
+/// ## Discussion
+///
+/// Use these constants to set the [`visibilityPriority`](https://developer.apple.com/documentation/appkit/nstouchbaritem/visibilitypriority) property of an [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) instance. The Touch Bar hides items of lower priority when there isn’t enough space to show all items.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTouchBarItemPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/high?language=objc)
+/// A constant indicating a high visibility priority.
 pub static NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/normal?language=objc)
+/// A constant indicating a normal visibility priority.
 pub static NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/low?language=objc)
+/// A constant indicating a low visibility priority.
 pub static NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000 as _;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem?language=objc)
+    /// A UI control shown in the Touch Bar on supported models of MacBook Pro.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of the [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) class is called an _item_. It appears to the user on the Touch Bar, typically along with other items, within the (invisible) bounds of the view for an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object, called a _bar_.
+    ///
+    /// You use an item by adding it or its identifier to one or another of a bar’s arrays, depending on your app’s architecture and on the user customization you want to support. Because of the close interaction between bars and items, be sure you have read the overview for the [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) class before continuing here to learn about items.
+    ///
+    /// AppKit provides a rich set of subclasses of [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem), each of which is described in the corresponding class reference document:
+    ///
+    /// - An [`NSCandidateListTouchBarItem`](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem) object (a _candidate-list item_), along with its delegate, provides a list of textual suggestions for the current text view
+    ///
+    /// - An [`NSColorPickerTouchBarItem`](https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem) object (a _color picker item_) provides a system-defined color picker
+    ///
+    /// - An [`NSCustomTouchBarItem`](https://developer.apple.com/documentation/appkit/nscustomtouchbaritem) object (a _custom item_) contains a responder of your choice, such as a view, a button, or a scrubber (an instance of the [`NSScrubber`](https://developer.apple.com/documentation/appkit/nsscrubber) class)
+    ///
+    /// - An [`NSGroupTouchBarItem`](https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem) object (a _group item_) provides a bar to contain other items
+    ///
+    /// - An [`NSPopoverTouchBarItem`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem) object (a _popover item_) provides a two-state control that, when touched or pressed, expands into its second state, showing the contents of a bar it owns
+    ///
+    /// - An [`NSSharingServicePickerTouchBarItem`](https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem) object (a _sharing service picker item_), along with its delegate, provides a list of objects eligible for sharing
+    ///
+    /// - An [`NSSliderTouchBarItem`](https://developer.apple.com/documentation/appkit/nsslidertouchbaritem) object (a _slider item_) provides a slider control for choosing a value in a range
+    ///
+    /// The two most commonly-used item classes are [`NSCustomTouchBarItem`](https://developer.apple.com/documentation/appkit/nscustomtouchbaritem) and [`NSPopoverTouchBarItem`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem).
+    ///
+    /// Refer to the following sample code projects which demonstrate how to use [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) and related classes:
+    ///
+    /// - [Creating and Customizing the Touch Bar](https://developer.apple.com/documentation/appkit/creating-and-customizing-the-touch-bar)
+    ///
+    /// - [Integrating a Toolbar and Touch Bar into Your App](https://developer.apple.com/documentation/appkit/integrating-a-toolbar-and-touch-bar-into-your-app)
+    ///
+    /// ### Custom items
+    ///
+    /// You typically use a _custom item_ (an instance of the [`NSCustomTouchBarItem`](https://developer.apple.com/documentation/appkit/nscustomtouchbaritem) class) to hold a view. For example, to place a button in the Touch Bar, proceed as follows:
+    ///
+    /// 1. Use an [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton) convenience initializer such as [`buttonWithTitle:image:target:action:`](https://developer.apple.com/documentation/appkit/nsbutton/init(title:image:target:action:)) to create and configure the button.
+    ///
+    /// 2. Set the [`view`](https://developer.apple.com/documentation/appkit/nstouchbaritem/view) property for a custom item to point to the new button.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When you create custom items, it’s important to use convenience initializers, available starting in macOS 10.12, for the [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton), [`NSSegmentedControl`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol), and [`NSSlider`](https://developer.apple.com/documentation/appkit/nsslider) classes. These initializers take care of sizing their controls correctly for the Touch Bar, and they configure appearance appropriately for the Touch Bar. If you don’t use the convenience initializers, it’s your app’s responsibility to ensure correct sizing and appearance.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Popover items
+    ///
+    /// A _popover item_ (an instance of the [`NSPopoverTouchBarItem`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem) class) — the second commonly-used type — lets you provide a new bar (an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object) when a user taps, or presses-and-holds, on the collapsed representation of the popover item.
+    ///
+    /// In its expanded state, a popover appears as an overlay above other items in the Touch Bar.
+    ///
+    /// To show a bar when a user taps a popover item, specify a bar in the item’s [`popoverTouchBar`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar) property. Enable press-and-hold by specifying a bar in the [`pressAndHoldTouchBar`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar) property. The press-and-hold feature is suitable only for a simple popover, such as one that contains a single segmented control (an instance of the [`NSSegmentedControl`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol) class) or slider (an instance of the [`NSSliderTouchBarItem`](https://developer.apple.com/documentation/appkit/nsslidertouchbaritem) class).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your popover bar requires significant user interaction and contains many items or many scroll views, don’t enable press-and-hold; doing so can result in an awkward user experience.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system automatically shows a chevron in the popover item under the following conditions: You specify the same [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object for both [`pressAndHoldTouchBar`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar) and [`popoverTouchBar`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar) properties, _and_ you use the default view for the popover item’s [`collapsedRepresentation`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation) property.
+    ///
+    /// If you provide a popover item that contains a scrubber (an [`NSScrubber`](https://developer.apple.com/documentation/appkit/nsscrubber) instance), you’ll likely want to dismiss both the scrubber and the popover after the user makes their selection in the scrubber. A good approach to achieve this user interaction is to subclass [`NSPopoverTouchBarItem`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem), employing your instance of the subclass as the scrubber’s delegate. You can then configure the delegate object, within its [`didFinishInteractingWithScrubber:`](https://developer.apple.com/documentation/appkit/nsscrubberdelegate/didfinishinteracting(with:)) method, to call the popover’s [`dismissPopover:`](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/dismisspopover(_:)) method.
+    ///
+    /// If you place a segmented control in a bar for a popover item, take care _not_ to use [`NSSegmentSwitchTrackingMomentary`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/momentary) option of the [`NSSegmentSwitchTracking`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking) enumeration because doing so interferes with the user’s operation of the control.
+    ///
+    /// ### Other common item types
+    ///
+    /// To provide a _slider item_, always use the [`NSSliderTouchBarItem`](https://developer.apple.com/documentation/appkit/nsslidertouchbaritem) class, which employs a standard slider but is optimized for user interaction with the Touch Bar. (That is, don’t instead add an [`NSSlider`](https://developer.apple.com/documentation/appkit/nsslider) object directly to a custom item.)
+    ///
+    /// A _group item_ (an instance of the [`NSGroupTouchBarItem`](https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem) class) is a container that provides a bar, in its [`groupTouchBar`](https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar) property, with its own array of items. You can enable customization for the items in a group’s contained bar, in the same way you would for items directly within a top-level bar. Using a group item lets you provide different user customization rules for different parts of the Touch Bar. Using a group item also lets you enable centering of the group within the Touch Bar.
+    ///
+    /// A _spacing item_ lets you add custom spacing between items in a bar. Specify a spacing item for a bar by assigning the [`NSTouchBarItemIdentifierFixedSpaceSmall`](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/fixedspacesmall), [`NSTouchBarItemIdentifierFixedSpaceLarge`](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/fixedspacelarge), or [`NSTouchBarItemIdentifierFlexibleSpace`](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/flexiblespace) identifier to an item, and adding that item to the bar’s items array. The system automatically instantiates and configures spacing items based on the identifiers you specify.
+    ///
+    /// ### Configuration
+    ///
+    /// You must configure each item with a unique identifier, and can optionally assign a visibility priority or tag it as a principal item.
+    ///
+    /// **NSTouchBarItem identification.** You must provide a unique identifier for each item in the bar, apart from spacing items. Specify an identifier, of type [`NSTouchBarItemIdentifier`](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct) (called an _item identifier_), for each item when you initialize it. The item identifier serves as a persistable weak reference to the item. The system uses item identifiers to populate bars and to track and record changes for user customization.
+    ///
+    /// **NSTouchBarItem priority for visibility.** If the system is showing a bar in the Touch Bar, but horizontal space is constrained and the bar defines more items than will fit, the system hides some of the items. You influence this hide/show behavior by setting a value for the [`visibilityPriority`](https://developer.apple.com/documentation/appkit/nstouchbaritem/visibilitypriority) property of each item.
+    ///
+    /// Lower-visibility-priority items get hidden by the system, as needed, before higher-visibility-priority items do.
+    ///
+    /// To set visibility priority, use the constants in the [`NSTouchBarItemPriority`](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority) enumeration, or assign an integer value. The value `0` indicates [`NSTouchBarItemPriorityNormal`](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/normal) visibility priority. Visibility priority increases with increasing numerical value. The [`NSTouchBarItemPriorityLow`](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/low) constant provides a value of `-1000`; the [`NSTouchBarItemPriorityHigh`](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/high) constant, a value `+1000`. You can use integers outside of this range if you need to.
+    ///
+    /// The system hides or shows groups of identical-priority items (defined within a single bar) together. The one exception to this rule is for items whose visibility priority is [`NSTouchBarItemPriorityNormal`](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/normal); these items get hidden one-by-one, with the normal-priority item farthest to the right getting hidden first. If horizontal space later increases in the Touch Bar, and hidden, normal-priority items become eligible for display, the system first shows the most recently-hidden of those items.
+    ///
+    /// **Principal Items.** Within a bar, you can optionally specify an item as having special significance by employing the [`principalItemIdentifier`](https://developer.apple.com/documentation/appkit/nstouchbar/principalitemidentifier) property. The system attempts to center a principal item within the Touch Bar. If you want a group of items to appear centered in the Touch Bar, designate the group item (of type [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem)) as the principal item.
+    ///
+    /// If more than one bar in the responder chain is eligible to be visible in the Touch Bar, and more than one of those has a principal item, the system determines which one to center in the Touch Bar.
+    ///
+    /// #### Fonts, images, and colors
+    ///
+    /// When using a button in a custom item, don’t attempt to set the button title’s font. In the Touch Bar, the system specifies fonts for standard controls.
+    ///
+    /// If you need to specify a font, such as for custom drawing, use the [`systemFontOfSize:`](https://developer.apple.com/documentation/appkit/nsfont/systemfont(ofsize:)) class method (or related methods) of the [`NSFont`](https://developer.apple.com/documentation/appkit/nsfont) class. Use a font size of `0` to automatically obtain appropriate sizing for the Touch Bar.
+    ///
+    /// If you use an image in a button or other control in the Touch Bar, take care to employ a template image. Template images in the Touch Bar respond automatically to system white-point changes, and automatically react to user interactions. The overview in this document lists the built-in Touch Bar template images.
+    ///
+    /// To use your own image assets, use Retina-resolution images, designated as `@2x` in your asset catalog and with a maximum height of 30 points (corresponding to 60 pixels).
+    ///
+    /// To set colors on objects within an [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) object, use AppKit named colors and use a bezel color property (available starting in macOS 10.12.1). Named colors appear correctly in the Touch Bar, support appearance vibrancy, and respond to system white-point changes. In a button or a segmented control, employ the bezel color property to ensure appropriate appearance in the Touch Bar.
+    ///
+    /// To set the background color on a button within a custom item, use code like this:
+    ///
+    /// ```swift
+    /// myButton.bezelColor = NSColor.controlColor
+    /// ```
+    ///
+    /// To set color on text and glyphs in the Touch Bar, use the following colors from the [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) class:
+    ///
+    /// - [`labelColor`](https://developer.apple.com/documentation/appkit/nscolor/labelcolor)
+    ///
+    /// - [`secondaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/secondarylabelcolor)
+    ///
+    /// - [`tertiaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/tertiarylabelcolor)
+    ///
+    /// - [`quaternaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/quaternarylabelcolor)
+    ///
+    /// The system automatically changes the relative brightness and the white-point of these colors, depending on the ambient light, and depending on other factors such as keyboard backlight level. Always use these colors, or colors that dynamically derive from these colors, for control backgrounds, text, icons, and glyphs in the Touch Bar.
+    ///
+    /// #### Handling touch events
+    ///
+    /// The easiest way to handle touch events in an item is to use AppKit controls, such as by adding a button, a segmented control, or a scrubber to the item. Standard AppKit controls convey touch events to your specified targets automatically, so use standard controls whenever possible in your app.
+    ///
+    /// If standard controls are insufficient, you can create composite views with a combination of standard controls, custom views, and gesture recognizers that you manually add to those custom views.
+    ///
+    /// If you require the lowest-level of control for touch event processing, you can use the [`NSTouch`](https://developer.apple.com/documentation/appkit/nstouch) class directly. You might go this route, for example, to provide good user feedback in the case of a control placed within a scroll view.Direct use of touch methods allows fine-grained control over interaction. You can, for example, highlight a control immediately upon a user touching it, and then remove the highlight if the user then, without lifting the finger, performs a scroll gesture.
+    ///
+    /// If using the [`NSTouch`](https://developer.apple.com/documentation/appkit/nstouch) class directly, be sure to implement the [`touchesCancelledWithEvent:`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/touchescancelled(with:)) responder method, because users can perform touch interactions that result in canceled touches.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -106,21 +248,47 @@ impl NSTouchBarItem {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/fixedspacesmall?language=objc)
+    /// The identifier of an item appropriate for use as a small space in a Touch Bar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this identifier in the [`itemIdentifiers`](https://developer.apple.com/documentation/appkit/nstouchbar/itemidentifiers) array on an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object and the system will instantiate the item for you.
+    ///
+    ///
     pub static NSTouchBarItemIdentifierFixedSpaceSmall: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/fixedspacelarge?language=objc)
+    /// The identifier of an item appropriate for use as a large space in a Touch Bar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this identifier in the [`itemIdentifiers`](https://developer.apple.com/documentation/appkit/nstouchbar/itemidentifiers) array on an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object and the system will instantiate the item for you.
+    ///
+    ///
     pub static NSTouchBarItemIdentifierFixedSpaceLarge: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/flexiblespace?language=objc)
+    /// The identifier of an item appropriate for use as a flexible space in a Touch Bar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this identifier in the [`itemIdentifiers`](https://developer.apple.com/documentation/appkit/nstouchbar/itemidentifiers) array on an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object and the system will instantiate the item for you.
+    ///
+    ///
     pub static NSTouchBarItemIdentifierFlexibleSpace: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/otheritemsproxy?language=objc)
+    /// The identifier of the special “other items proxy”, which is used to nest bars up the responder chain.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this identifier in the [`itemIdentifiers`](https://developer.apple.com/documentation/appkit/nstouchbar/itemidentifiers) array of an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object, and a special proxy item will be instantiated for you.
+    ///
+    /// When the [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) containing this item is visible, bars provided by objects closer to the first responder will be nested inside the space denoted for this item.Note that a touch bar lacking this item identifier will be replaced in its entirety by touch bars closer to the first responder in the responder chain.
+    ///
+    ///
     pub static NSTouchBarItemIdentifierOtherItemsProxy: &'static NSTouchBarItemIdentifier;
 }

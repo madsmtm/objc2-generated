@@ -11,7 +11,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate?language=objc)
+    /// Methods that let you respond to user interactions with your payment authorization controller.
+    ///
+    /// ## Overview
+    ///
+    /// The [`PKPaymentAuthorizationControllerDelegate`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate) protocol is implemented by the payment authorization controller’s delegate. You implement this protocol to respond to user interaction with that controller.
+    ///
+    /// In most cases, the payment authorization controller automatically waits for its delegate to finish responding to one method before it calls other delegate methods. You indicate that the delegate is finished with the current method by calling that method’s completion block. This action tells the pay authorization controller to proceed with the next step in the authorization process.
+    ///
+    /// There is one exception to this step-by-step procedure: The pay authorization controller calls the [`paymentAuthorizationControllerDidFinish:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontrollerdidfinish(_:)) method as soon as the user cancels a payment without authorizing. The controller can call this method at any time.
+    ///
+    ///
     pub unsafe trait PKPaymentAuthorizationControllerDelegate: NSObjectProtocol {
         #[unsafe(method(paymentAuthorizationControllerDidFinish:))]
         #[unsafe(method_family = none)]
@@ -202,7 +212,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontroller?language=objc)
+    /// An object that presents a sheet that prompts the user to authorize a payment request.
+    ///
+    /// ## Overview
+    ///
+    /// After the user authorizes the payment request for a transaction, the delegate is called with a payment token used to authorize the transaction’s payment.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`PKPaymentAuthorizationController`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontroller) class performs the same role as the [`PKPaymentAuthorizationViewController`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller) class, but it does not depend on the UIKit framework. This means that the authorization controller can be used in places where a view controller cannot (for example, in watchOS apps or in SiriKit extensions).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentAuthorizationController;

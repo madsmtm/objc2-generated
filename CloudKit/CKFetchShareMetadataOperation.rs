@@ -8,13 +8,74 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An operation that fetches metadata for one or more shares.
+    ///
+    /// ## Overview
+    ///
+    /// Use this operation to fetch the metadata for one or more shares. A share’s metadata contains the share and details about the user’s participation. Fetch metadata when you want to manually accept participation in a share using [`CKAcceptSharesOperation`](https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation).
+    ///
+    /// For a shared record hierarchy, the fetched metadata includes the record ID of the share’s root record. Set [`shouldFetchRootRecord`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shouldfetchrootrecord) to [`true`](https://developer.apple.com/documentation/swift/true) to fetch the entire root record. You can further customize this behavior using [`rootRecordDesiredKeys`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/rootrecorddesiredkeys-3xrex) to specify which fields you want to include in your fetch. This functionality isn’t applicable for a shared record zone because, unlike a shared record hierarchy, it doesn’t have a nominated root record.
+    ///
+    /// To run the operation, add it to any container’s operation queue. Returned metadata includes the ID of the container that stores the share. The operation executes its callbacks on a private serial queue.
+    ///
+    /// The operation calls [`perShareMetadataBlock`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/persharemetadatablock) once for each URL you provide, and CloudKit returns the metadata, or an error if the fetch fails. CloudKit also batches per-URL errors. If the operation completes with errors, it returns a [`partialFailure`](https://developer.apple.com/documentation/cloudkit/ckerror/partialfailure) error. The error stores individual errors in its [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary. Use the [`CKPartialErrorsByItemIDKey`](https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey) key to extract them.
+    ///
+    /// When all of the following conditions are true, CloudKit returns a [`participantMayNeedVerification`](https://developer.apple.com/documentation/cloudkit/ckerror/participantmayneedverification) error:
+    ///
+    /// - There are pending participants that don’t have matched iCloud accounts.
+    ///
+    /// - The current user has an active iCloud account and isn’t an existing participant (pending or otherwise).
+    ///
+    /// On receipt of this error, call [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) with the share’s URL to allow CloudKit to verify the user.
+    ///
+    /// The following example demonstrates how to create the operation, configure it, and then execute it using the default container’s operation queue:
+    ///
+    /// ```swift
+    /// func fetchShareMetadata(for shareURLs: [URL],
+    ///     completion: @escaping (Result<[URL: CKShare.Metadata], Error>) -> Void) {
+    ///         
+    ///     var cache = [URL: CKShare.Metadata]()
+    ///         
+    ///     // Create the fetch operation using the share URLs that
+    ///     // the caller provides to the method.
+    ///     let operation = CKFetchShareMetadataOperation(shareURLs: shareURLs)
+    ///         
+    ///     // To reduce network requests, request that CloudKit
+    ///     // includes the root record in the metadata it returns.
+    ///     operation.shouldFetchRootRecord = true
+    ///         
+    ///     // Cache the metadata that CloudKit returns using the
+    ///     // share URL. This implementation ignores per-metadata
+    ///     // fetch errors and handles any errors in the completion
+    ///     // closure instead.
+    ///     operation.perShareMetadataBlock = { url, metadata, _ in
+    ///         guard let metadata = metadata else { return }
+    ///         cache[url] = metadata
+    ///     }
+    ///         
+    ///     // If the operation fails, return the error to the caller.
+    ///     // Otherwise, return the array of participants.
+    ///     operation.fetchShareMetadataCompletionBlock = { error in
+    ///         if let error = error {
+    ///             completion(.failure(error))
+    ///         } else {
+    ///             completion(.success(cache))
+    ///         }
+    ///     }
+    ///         
+    ///     // Set an appropriate QoS and add the operation to the
+    ///     // container's queue to execute it.
+    ///     operation.qualityOfService = .userInitiated
+    ///     CKContainer.default().add(operation)
+    /// }
+    /// ```
+    ///
+    ///
     /// Fetch the
     /// `CKShareMetadata`for a share URL.
     ///
     ///
     /// Since you can't know what container this share is in before you fetch its metadata, you may run this operation in any container you have access to
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation?language=objc)
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]

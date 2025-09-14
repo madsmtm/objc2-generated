@@ -6,21 +6,20 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The possible states of the user’s touch.
 /// Represents the current state of a touch event on a touchpad.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCTouchState(pub NSInteger);
 impl GCTouchState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum/up?language=objc)
+    /// The user stops or isn’t touching the surface.
     #[doc(alias = "GCTouchStateUp")]
     pub const Up: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum/down?language=objc)
+    /// The user starts touching the surface.
     #[doc(alias = "GCTouchStateDown")]
     pub const Down: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum/moving?language=objc)
+    /// The user continues touching the surface.
     #[doc(alias = "GCTouchStateMoving")]
     pub const Moving: Self = Self(2);
 }
@@ -33,6 +32,19 @@ unsafe impl RefEncode for GCTouchState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The signature for the block that executes when the user interacts with the touchpad.
+///
+/// Parameters:
+/// - touchpad: The touchpad that the user interacts with.
+///
+/// - xValue: A normalized value of the x-axis touch location ranging from `-1` to `1`.
+///
+/// - yValue: A normalized value of the y-axis touch location ranging from `-1` to `1`.
+///
+/// - buttonValue: A normalized number between `0.0` (minimum) and `1.0` (maximum) that represents the level of pressure the user applies to the touchpad button.
+///
+/// - buttonPressed: A Boolean value that indicates whether the user is pressing the touchpad button. If [`true`](https://developer.apple.com/documentation/swift/true), the user is pressing the button; otherwise, the user isn’t.
+///
 /// Set this block if you want to be notified when an axis or the touch state changes.
 ///
 ///
@@ -45,18 +57,21 @@ unsafe impl RefEncode for GCTouchState {
 /// Parameter `buttonValue`: the value of the touch surface button at the time the handler fired.
 ///
 /// Parameter `buttonPressed`: the pressed state of the touch surface button at the time the handler fired.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpadhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerTouchpadHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
+    /// A control element that represents a touch event on a touchpad.
+    ///
+    /// ## Overview
+    ///
+    /// A `GCControllerTouchpad` object provides the state of the touches and presses on a touchpad. This is a compound element with button and directional pad subelements.
+    ///
+    ///
     /// A touchpad is a touch-based two axis input with a notion of "touch state". It keeps track of
     /// whether the touchpad is actively being touched, and generates events based on a
     /// change in touch state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad?language=objc)
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]

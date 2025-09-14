@@ -20,7 +20,15 @@ impl INInteraction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inparameter?language=objc)
+    /// A parameter of an interaction object.
+    ///
+    /// ## Overview
+    ///
+    /// Use a parameter object to identify a property of an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object. To fetch the value of the property, use the [`parameterValueForParameter:`](https://developer.apple.com/documentation/intents/ininteraction/parametervalue(for:)) method of the [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object.
+    ///
+    /// You use parameters when configuring a custom user interface for your Siri or Maps interactions. SiriKit passes parameter objects to you during the configuration of your interface. When configuring your interface, you can also create parameter objects to represent properties that you display in addition to the ones that SiriKit provides.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INParameter;

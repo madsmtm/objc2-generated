@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationactionicon?language=objc)
+    /// An icon associated with an action.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationActionIcon;

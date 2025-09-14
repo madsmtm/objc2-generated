@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkbaseplayer?language=objc)
+    /// A class that provides common data and methods for the different player objects.
+    ///
+    /// ## Overview
+    ///
+    /// [`GKBasePlayer`](https://developer.apple.com/documentation/gamekit/gkbaseplayer) is the abstract superclass for the classes that represent the local player running your app and remote players who may join their games. Use the [`GKLocalPlayer`](https://developer.apple.com/documentation/gamekit/gklocalplayer) subclass to initialize the local player who runs your app on their device. Then you can access the local player’s nickname, avatar, leaderboards, and achievements. You can also invite other players ([`GKPlayer`](https://developer.apple.com/documentation/gamekit/gkplayer) objects), and send information between players.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKBasePlayer;

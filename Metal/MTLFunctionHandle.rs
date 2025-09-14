@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionhandle?language=objc)
+    /// An object representing a function that you can add to a visible function table.
     pub unsafe trait MTLFunctionHandle: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(functionType))]

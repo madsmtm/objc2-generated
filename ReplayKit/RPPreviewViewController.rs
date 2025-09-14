@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rppreviewviewcontroller?language=objc)
+    /// An object that displays a user interface where users preview and edit a screen recording that you create with ReplayKit.
+    ///
+    /// ## Overview
+    ///
+    /// Upon completion of a successful recording, the preview view controller is passed into the completion handler for [`stopRecordingWithHandler:`](https://developer.apple.com/documentation/replaykit/rpscreenrecorder/stoprecording(handler:)).
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -121,7 +127,13 @@ impl RPPreviewViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rppreviewviewcontrollerdelegate?language=objc)
+    /// The protocol you implement to respond to changes to a screen-recording user interface.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to respond to changes to a screen-recording user interface, represented by an [`RPBroadcastActivityViewController`](https://developer.apple.com/documentation/replaykit/rpbroadcastactivityviewcontroller) object.
+    ///
+    ///
     pub unsafe trait RPPreviewViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

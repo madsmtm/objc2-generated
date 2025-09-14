@@ -5,34 +5,34 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation?language=objc)
+/// These are passed to  [`initWithObjectSpecifier:comparisonOperator:testObject:`](https://developer.apple.com/documentation/foundation/nsspecifiertest/init(objectspecifier:comparisonoperator:test:)) to specify the comparison operator.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTestComparisonOperation(pub NSUInteger);
 impl NSTestComparisonOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/equal?language=objc)
+    /// Binary comparison operator that results in true if the two objects are equal.
     #[doc(alias = "NSEqualToComparison")]
     pub const EqualToComparison: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/lessthanorequal?language=objc)
+    /// Binary comparison operator that results in true if the value of the test object is equal to or less than the value of the other object.
     #[doc(alias = "NSLessThanOrEqualToComparison")]
     pub const LessThanOrEqualToComparison: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/lessthan?language=objc)
+    /// Binary comparison operator that results in true if the value of the test object is less than the value of the other object.
     #[doc(alias = "NSLessThanComparison")]
     pub const LessThanComparison: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/greaterthanorequal?language=objc)
+    /// Binary comparison operator that results in true if the value of the test object is greater than or equal to the value of the other object.
     #[doc(alias = "NSGreaterThanOrEqualToComparison")]
     pub const GreaterThanOrEqualToComparison: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/greaterthan?language=objc)
+    /// Binary comparison operator that results in true if the value of the test object is greater than the value of the other object.
     #[doc(alias = "NSGreaterThanComparison")]
     pub const GreaterThanComparison: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/beginswith?language=objc)
+    /// Binary containment operator that results in true if the test object is a list or string that matches the beginning of the other object (which is also a list or string).
     #[doc(alias = "NSBeginsWithComparison")]
     pub const BeginsWithComparison: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/endswith?language=objc)
+    /// Binary containment operator that results in true if the test object is a list or string that matches the end of the other object (which is also a list or string).
     #[doc(alias = "NSEndsWithComparison")]
     pub const EndsWithComparison: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest/testcomparisonoperation/contains?language=objc)
+    /// Binary containment operator that results in true if the test object is a list or string that matches the other object (which is also a list or string) at any location.
     #[doc(alias = "NSContainsComparison")]
     pub const ContainsComparison: Self = Self(7);
 }
@@ -46,7 +46,15 @@ unsafe impl RefEncode for NSTestComparisonOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptwhosetest?language=objc)
+    /// An abstract class that provides the basis for testing specifiers one at a time or in groups.
+    ///
+    /// ## Overview
+    ///
+    /// `NSScriptWhoseTest` is an abstract class whose sole method is [`isTrue`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest/istrue()). Two concrete subclasses of `NSScriptWhoseTest` generate objects representing Boolean expressions comparing one object with another and objects representing multiple Boolean expressions connected by logical operators (`OR`, `AND`, `NOT`). These classes are, respectively, [`NSSpecifierTest`](https://developer.apple.com/documentation/foundation/nsspecifiertest) and [`NSLogicalTest`](https://developer.apple.com/documentation/foundation/nslogicaltest). In evaluating itself, an [`NSWhoseSpecifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier) invokes the [`isTrue`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest/istrue()) method of its “test” object.
+    ///
+    /// You shouldn’t need to subclass `NSScriptWhoseTest`, and you should rarely need to subclass one of its subclasses.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptWhoseTest;
@@ -101,7 +109,17 @@ impl DefaultRetained for NSScriptWhoseTest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogicaltest?language=objc)
+    /// The logical combination of one or more specifier tests.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class perform logical operations of `AND`, `OR`, and `NOT` on Boolean expressions represented by [`NSSpecifierTest`](https://developer.apple.com/documentation/foundation/nsspecifiertest) objects. These operators are equivalent to “`&&`”, “`||`”, and “`!`” in the C language.
+    ///
+    /// For `AND` and `OR` operations, an `NSLogicalTest` object is typically initialized with an array containing two or more [`NSSpecifierTest`](https://developer.apple.com/documentation/foundation/nsspecifiertest) objects. [`isTrue`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest/istrue())—inherited from [`NSScriptWhoseTest`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest)—evaluates the array in a manner appropriate to the logical operation. For `NOT` operations, an `NSLogicalTest` object is initialized with only one `NSSpecifierTest` object; it simply reverses the Boolean outcome of the [`isTrue`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest/istrue()) method.
+    ///
+    /// You don’t normally subclass `NSLogicalTest`.
+    ///
+    ///
     #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLogicalTest;
@@ -180,7 +198,25 @@ impl DefaultRetained for NSLogicalTest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspecifiertest?language=objc)
+    /// A comparison between an object specifier and a test object.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class represent a Boolean expression; they evaluate an object specifier and compare the resulting object to another object using a given comparison method. For more information on `NSSpecifierTest`, see the method description for its sole public method, its initializer, [`initWithObjectSpecifier:comparisonOperator:testObject:`](https://developer.apple.com/documentation/foundation/nsspecifiertest/init(objectspecifier:comparisonoperator:test:)).
+    ///
+    /// When an `NSSpecifierTest` object is properly initialized, it holds two objects:
+    ///
+    /// - A “value” or “test” object used as the basis of the comparison; this object can be a regular object or object specifier (such as “blue” in “words whose color is blue”).
+    ///
+    /// - An object specifier evaluating to the container (“words”).
+    ///
+    /// The instance also encapsulates a selector identifying the method performing this comparison. The informal protocol [NSComparisonMethods](https://developer.apple.com/documentation/foundation/nscomparisonmethods) defines a set of comparison methods useful for this purpose, while [NSScriptingComparisonMethods](https://developer.apple.com/documentation/objectivec/nsscriptingcomparisonmethods) describes additional methods you may need to use for scripting.
+    ///
+    /// The test object is compared, using the selector, against each object in the container. Specifiers in these tests usually have [`containerIsObjectBeingTested`](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerisobjectbeingtested) invoked on their topmost container.
+    ///
+    /// You should rarely need to subclass `NSSpecifierTest`.
+    ///
+    ///
     #[unsafe(super(NSScriptWhoseTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpecifierTest;

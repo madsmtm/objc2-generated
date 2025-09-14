@@ -7,19 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection?language=objc)
+/// Constants that specify the writing direction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirection(pub NSInteger);
 impl NSWritingDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection/natural?language=objc)
+    /// The writing direction of the current script that the system determines using the Unicode Bidi Algorithm rules P2 and P3.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default writing direction.
+    ///
+    ///
     #[doc(alias = "NSWritingDirectionNatural")]
     pub const Natural: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection/lefttoright?language=objc)
+    /// The writing direction is left to right.
     #[doc(alias = "NSWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection/righttoleft?language=objc)
+    /// The writing direction is right to left.
     #[doc(alias = "NSWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -32,25 +38,30 @@ unsafe impl RefEncode for NSWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment?language=objc)
+/// Constants that specify text alignment.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextAlignment(pub NSInteger);
 impl NSTextAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment/left?language=objc)
+    /// Text is left-aligned.
     #[doc(alias = "NSTextAlignmentLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment/justified?language=objc)
+    /// Text is justified.
     #[doc(alias = "NSTextAlignmentJustified")]
     pub const Justified: Self = Self(3);
+    /// Text uses the default alignment for the current localization of the app.
+    ///
+    /// ## Discussion
+    ///
+    /// The default alignment for left-to-right scripts is [`NSTextAlignmentLeft`](https://developer.apple.com/documentation/appkit/nstextalignment/left), and the default alignment for right-to-left scripts is [`NSTextAlignmentRight`](https://developer.apple.com/documentation/appkit/nstextalignment/right).
+    ///
+    ///
     /// Resolved to either ``left`` or ``right`` based on the natural alignment resolution type active in the associated component.
     ///
     /// There are two types of natural alignment resolution behavior. The natural alignment is resolved based on either the UI language or the base writing direction.
     /// The behavior is selected by the ``resolvesNaturalAlignmentWithBaseWritingDirection`` property for ``NSTextLayoutManager``.
     /// ``NSStringDrawingOptions.resolvesNaturalAlignmentWithBaseWritingDirection`` specifies the base writing direction based resolution for ``NSStringDrawing``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment/natural?language=objc)
     #[doc(alias = "NSTextAlignmentNatural")]
     pub const Natural: Self = Self(4);
 }
@@ -64,7 +75,17 @@ unsafe impl RefEncode for NSTextAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext?language=objc)
+    /// The most general programmatic interface for objects that manage text.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSText`](https://developer.apple.com/documentation/appkit/nstext) draws text for user interface objects, provides text editing capabilities, and controls text attributes such as type size, font, and color.
+    ///
+    /// [`NSText`](https://developer.apple.com/documentation/appkit/nstext) initialization creates an instance of a concrete subclass, such as [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) (generically called a text object). In general, you’re more likely to use the [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) subclass, because it extends the interface declared by [`NSText`](https://developer.apple.com/documentation/appkit/nstext) and provides much more sophisticated functionality than that declared in [`NSText`](https://developer.apple.com/documentation/appkit/nstext).
+    ///
+    /// AppKit uses text objects wherever text appears in interface objects. For example, a text object draws the title of a window, the commands in a menu, the title of a button, and the items in a browser. Your app can also create text objects for its own purposes.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -560,58 +581,48 @@ impl NSText {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsentercharacter?language=objc)
+/// The enter character: `0x0003`
 pub const NSEnterCharacter: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackspacecharacter?language=objc)
+/// The backspace character: `0x0008`
 pub const NSBackspaceCharacter: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabcharacter?language=objc)
+/// The tab character: `0x0009`
 pub const NSTabCharacter: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnewlinecharacter?language=objc)
+/// The newline character: `0x000a`
 pub const NSNewlineCharacter: c_uint = 0x000a;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsformfeedcharacter?language=objc)
+/// The form feed character: `0x000c`
 pub const NSFormFeedCharacter: c_uint = 0x000c;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscarriagereturncharacter?language=objc)
+/// The carriage return character: `0x000d`
 pub const NSCarriageReturnCharacter: c_uint = 0x000d;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbacktabcharacter?language=objc)
+/// The back tab character: `0x0019`
 pub const NSBackTabCharacter: c_uint = 0x0019;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletecharacter?language=objc)
+/// The delete character: `0x007f`
 pub const NSDeleteCharacter: c_uint = 0x007f;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslineseparatorcharacter?language=objc)
+/// The line separator character: `0x2028`
 pub const NSLineSeparatorCharacter: c_uint = 0x2028;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphseparatorcharacter?language=objc)
+/// The paragraph separator character: `0x2029`
 pub const NSParagraphSeparatorCharacter: c_uint = 0x2029;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextMovement(pub NSInteger);
 impl NSTextMovement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/return?language=objc)
     #[doc(alias = "NSTextMovementReturn")]
     pub const Return: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/tab?language=objc)
     #[doc(alias = "NSTextMovementTab")]
     pub const Tab: Self = Self(0x11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/backtab?language=objc)
     #[doc(alias = "NSTextMovementBacktab")]
     pub const Backtab: Self = Self(0x12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/left?language=objc)
     #[doc(alias = "NSTextMovementLeft")]
     pub const Left: Self = Self(0x13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/right?language=objc)
     #[doc(alias = "NSTextMovementRight")]
     pub const Right: Self = Self(0x14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/up?language=objc)
     #[doc(alias = "NSTextMovementUp")]
     pub const Up: Self = Self(0x15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/down?language=objc)
     #[doc(alias = "NSTextMovementDown")]
     pub const Down: Self = Self(0x16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/cancel?language=objc)
     #[doc(alias = "NSTextMovementCancel")]
     pub const Cancel: Self = Self(0x17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement/other?language=objc)
     #[doc(alias = "NSTextMovementOther")]
     pub const Other: Self = Self(0);
 }
@@ -625,48 +636,78 @@ unsafe impl RefEncode for NSTextMovement {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/didbegineditingnotification?language=objc)
+    /// Posted when an `NSText` object begins any operation that changes characters or formatting attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the notifying `NSText` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/didendeditingnotification?language=objc)
+    /// Posted when focus leaves an `NSText` object, whether or not any operation has changed characters or formatting attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the notifying `NSText` object. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSText/movementUserInfoKey", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "One of the values in " }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextMovement", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSTextMovement\"" }] }], [Paragraph { inline_content: [Text { text: "Possible movement code values are described in " }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/movement-codes", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It is common for [`NSTextDidEndEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didendeditingnotification) to be sent without a matching [`NSTextDidBeginEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didbegineditingnotification). The begin notification is only sent if the user actually makes changes (that is, types something or changes formatting attributes). However, the end notification is sent when focus leaves the text view, regardless of whether there was a change.
+    ///
+    /// This distinction enables an application to know whether the user actually made a change to the text or just clicked in the text view and then clicked outside it. In both cases, [`NSTextDidEndEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didendeditingnotification) is sent, but to tell the difference, the application can listen for [`NSTextDidBeginEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didbegineditingnotification).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/didchangenotification?language=objc)
+    /// Posted after an `NSText` object performs any operation that changes characters or formatting attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the notifying `NSText` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSTextDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/movementuserinfokey?language=objc)
+    /// The `userInfo` dictionary key for the [`NSTextDidEndEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didendeditingnotification) notification.
     pub static NSTextMovementUserInfoKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsillegaltextmovement?language=objc)
+/// Currently unused.
 pub const NSIllegalTextMovement: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreturntextmovement?language=objc)
+/// The Return key was pressed.
 pub const NSReturnTextMovement: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabtextmovement?language=objc)
+/// The Tab key was pressed.
 pub const NSTabTextMovement: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbacktabtextmovement?language=objc)
+/// The Backtab (Shift-Tab) key was pressed.
 pub const NSBacktabTextMovement: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslefttextmovement?language=objc)
+/// The left arrow key was pressed.
 pub const NSLeftTextMovement: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrighttextmovement?language=objc)
+/// The right arrow key was pressed.
 pub const NSRightTextMovement: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuptextmovement?language=objc)
+/// The up arrow key was pressed.
 pub const NSUpTextMovement: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdowntextmovement?language=objc)
+/// The down arrow key was pressed.
 pub const NSDownTextMovement: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscanceltextmovement?language=objc)
+/// The user cancelled the completion.
 pub const NSCancelTextMovement: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothertextmovement?language=objc)
+/// The user performed some undefined action.
 pub const NSOtherTextMovement: c_uint = 0;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdelegate?language=objc)
+    /// A set of optional methods implemented by the delegate of an [`NSText`](https://developer.apple.com/documentation/appkit/nstext) object to edit text and change text formats.
     pub unsafe trait NSTextDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -697,30 +738,43 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextwritingdirectionembedding?language=objc)
+/// Text is embedded in text with another writing direction.
+///
+/// ## Discussion
+///
+/// For example, an English quotation in the middle of an Arabic sentence could be marked as being embedded left-to-right text.
+///
+///
 #[deprecated = "Use NSWritingDirectionEmbedding instead"]
 pub const NSTextWritingDirectionEmbedding: c_uint = 0 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextwritingdirectionoverride?language=objc)
+///
+/// ## Discussion
+///
+/// Enables character types with inherent directionality to be overridden when required for special cases, such as for part numbers made of mixed English, digits, and Hebrew letters to be written from right to left.
+///
+/// Use the [`NSWritingDirectionOverride`](https://developer.apple.com/documentation/appkit/nswritingdirectionformattype/override) constant instead.
+///
+///
 #[deprecated = "Use NSWritingDirectionOverride instead"]
 pub const NSTextWritingDirectionOverride: c_uint = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslefttextalignment?language=objc)
+/// Text is visually left-aligned.
 #[deprecated]
 pub static NSLeftTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Left.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrighttextalignment?language=objc)
+/// Text is visually right-aligned.
 #[deprecated]
 pub static NSRightTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Right.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscentertextalignment?language=objc)
+/// Text is visually center-aligned.
 #[deprecated]
 pub static NSCenterTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Center.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjustifiedtextalignment?language=objc)
+/// Text is justified.
 #[deprecated]
 pub static NSJustifiedTextAlignment: NSTextAlignment =
     NSTextAlignment(NSTextAlignment::Justified.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnaturaltextalignment?language=objc)
+/// Text uses the default alignment for the current localization of the app.
 #[deprecated]
 pub static NSNaturalTextAlignment: NSTextAlignment = NSTextAlignment(NSTextAlignment::Natural.0);

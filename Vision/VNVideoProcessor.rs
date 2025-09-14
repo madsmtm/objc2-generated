@@ -12,9 +12,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that defines the cadence at which to process video.
     /// An object that defines the cadence at which the video stream is processed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/cadence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorCadence;
@@ -50,9 +49,8 @@ impl VNVideoProcessorCadence {
 }
 
 extern_class!(
+    /// An object that defines a frame-based cadence for processing a video stream.
     /// An object that defines a frame-based cadence for processing the video stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/frameratecadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorFrameRateCadence;
@@ -99,9 +97,8 @@ impl VNVideoProcessorFrameRateCadence {
 }
 
 extern_class!(
+    /// An object that defines a time-based cadence for processing a video stream.
     /// An object that defines a time-based cadence for processing the video stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/timeintervalcadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorTimeIntervalCadence;
@@ -150,9 +147,8 @@ impl VNVideoProcessorTimeIntervalCadence {
 }
 
 extern_class!(
+    /// An object that defines a video processor’s configuration options.
     /// Options applied to a request's processing of the video.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/requestprocessingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorRequestProcessingOptions;
@@ -202,11 +198,10 @@ impl VNVideoProcessorRequestProcessingOptions {
 }
 
 extern_class!(
+    /// An object that performs offline analysis of video content.
     /// A controller object that is used to perform one or more requests on a video stream.
     ///
     /// VNVideoProcessor handles the video decoding and buffer management, feeding the buffers to the associated requests at the best desired frame rate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessor;

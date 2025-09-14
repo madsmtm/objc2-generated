@@ -17,24 +17,29 @@ use objc2_image_io::*;
 
 use crate::*;
 
-/// The level of optical flow computational accuracy.
+/// The supported optical flow accuracy levels.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum?language=objc)
+/// ## Overview
+///
+/// The computation time typically increases with accuracy.
+///
+///
+/// The level of optical flow computational accuracy.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNGenerateOpticalFlowRequestComputationAccuracy(pub NSUInteger);
 impl VNGenerateOpticalFlowRequestComputationAccuracy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/low?language=objc)
+    /// Low accuracy.
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/medium?language=objc)
+    /// Medium accuracy.
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/high?language=objc)
+    /// High accuracy.
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyHigh")]
     pub const High: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/computationaccuracy-swift.enum/veryhigh?language=objc)
+    /// Very high accuracy.
     #[doc(alias = "VNGenerateOpticalFlowRequestComputationAccuracyVeryHigh")]
     pub const VeryHigh: Self = Self(3);
 }
@@ -48,6 +53,15 @@ unsafe impl RefEncode for VNGenerateOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
+    /// An object that generates directional change vectors for each pixel in the targeted image.
+    ///
+    /// ## Overview
+    ///
+    /// This request operates at a pixel level, so both images need to have the same dimensions to successfully perform the analysis. Setting a region of interest limits the region in which the analysis occurs. However, the system reports the resulting observation at full resolution.
+    ///
+    /// Optical flow requests are resource-intensive, so create only one request at a time, and release it immediately after generating optical flows.
+    ///
+    ///
     /// VNGenerateOpticalFlowRequest will determine directional change vectors for each pixel in the targeted image to transform it into the image processed
     /// by the request handler, reporting this result with a single VNPixelBufferObservation.
     ///
@@ -78,8 +92,6 @@ extern_class!(
     ///
     /// return [[request results] firstObject];
     /// }
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest?language=objc)
     #[unsafe(super(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
@@ -782,8 +794,8 @@ impl VNGenerateOpticalFlowRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the optical flow generation request.
 pub static VNGenerateOpticalFlowRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateopticalflowrequestrevision2?language=objc)
+/// A constant for specifying revision 2 of the optical flow generation request.
 pub static VNGenerateOpticalFlowRequestRevision2: NSUInteger = 2;

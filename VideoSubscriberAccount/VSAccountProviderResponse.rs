@@ -6,32 +6,53 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// An opaque protocol name, to be coordinated with specific account providers.
+/// Authentication schemes for account provider requests and responses.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme?language=objc)
+/// ## Discussion
+///
+/// If the minimum version your app supports is outside the availability of the [`VSAccountProviderAuthenticationScheme`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme) values, you must create an authentication scheme value using the raw string.
+///
+/// ```swift
+/// let request = VSAccountMetadataRequest()
+/// // ...
+/// if #available(iOS 13.0, *) {
+///   request.supportedAuthenticationSchemes = [.api]
+/// } else {
+///   request.supportedAuthenticationSchemes = [VSAccountProviderAuthenticationScheme("API")]
+/// }
+/// ```
+///
+/// The following table shows the raw strings for the [`VSAccountProviderAuthenticationScheme`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme) values.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Scheme" }] }], [Paragraph { inline_content: [Text { text: "Raw Value" }] }]], [[Paragraph { inline_content: [Text { text: "saml" }] }], [Paragraph { inline_content: [Text { text: "“SAML”" }] }]], [[Paragraph { inline_content: [Text { text: "api" }] }], [Paragraph { inline_content: [Text { text: "“API”" }] }]]], alignments: None, metadata: None })
+///
+/// An opaque protocol name, to be coordinated with specific account providers.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type VSAccountProviderAuthenticationScheme = NSString;
 
 extern "C" {
+    /// Represents a SAML authentication scheme.
     /// The authentication scheme for responses that use the SAML protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme/saml?language=objc)
     pub static VSAccountProviderAuthenticationSchemeSAML:
         &'static VSAccountProviderAuthenticationScheme;
 }
 
 extern "C" {
+    /// Represents any authentication scheme.
     /// The identifier for responses that use any authentication protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme/api?language=objc)
     pub static VSAccountProviderAuthenticationSchemeAPI:
         &'static VSAccountProviderAuthenticationScheme;
 }
 
 extern_class!(
-    /// A value object that encapsulates the response given by an account provider.
+    /// An object that contains the response from the account provider.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderresponse?language=objc)
+    /// ## Overview
+    ///
+    /// A `VSAccountProviderResponse` object encapsulates the information the account provider sends back to your app, such as authentication scheme type, raw response data, and status code.
+    ///
+    ///
+    /// A value object that encapsulates the response given by an account provider.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAccountProviderResponse;

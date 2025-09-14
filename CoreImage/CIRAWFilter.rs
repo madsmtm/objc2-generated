@@ -13,57 +13,57 @@ use objc2_image_io::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion?language=objc)
 // NS_TYPED_ENUM
 pub type CIRAWDecoderVersion = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/none?language=objc)
     pub static CIRAWDecoderVersionNone: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version9?language=objc)
     pub static CIRAWDecoderVersion9: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version9dng?language=objc)
     pub static CIRAWDecoderVersion9DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version8?language=objc)
     pub static CIRAWDecoderVersion8: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version8dng?language=objc)
     pub static CIRAWDecoderVersion8DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version7?language=objc)
     pub static CIRAWDecoderVersion7: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version7dng?language=objc)
     pub static CIRAWDecoderVersion7DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version6?language=objc)
     pub static CIRAWDecoderVersion6: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version6dng?language=objc)
     pub static CIRAWDecoderVersion6DNG: &'static CIRAWDecoderVersion;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilter?language=objc)
+    /// A filter subclass that produces an image by manipulating RAW image sensor data from a digital camera or scanner.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to generate a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object based on the configuration parameters you provide.
+    ///
+    /// You can use this object in conjunction with other Core Image classes—such as [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) and [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext)—to take advantage of the built-in Core Image filters when processing images or writing custom filters.
+    ///
+    /// You can also query this object to find out about the supported camera models, decoders, and filters.
+    ///
+    ///
     #[unsafe(super(CIFilter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CIFilter")]

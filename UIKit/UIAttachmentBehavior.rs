@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior/attachmenttype?language=objc)
+/// Constants indicating the type of the attachment behavior object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAttachmentBehaviorType(pub NSInteger);
 impl UIAttachmentBehaviorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior/attachmenttype/items?language=objc)
+    /// Designates an attachment behavior that connects a dynamic item to another dynamic item.
     #[doc(alias = "UIAttachmentBehaviorTypeItems")]
     pub const Items: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior/attachmenttype/anchor?language=objc)
+    /// Designates an attachment behavior that connects a dynamic item to an anchor point.
     #[doc(alias = "UIAttachmentBehaviorTypeAnchor")]
     pub const Anchor: Self = Self(1);
 }
@@ -31,7 +31,7 @@ unsafe impl RefEncode for UIAttachmentBehaviorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange?language=objc)
+/// The range of motion for attached objects.
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -57,20 +57,24 @@ unsafe impl Send for UIFloatRange {}
 unsafe impl Sync for UIFloatRange {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange/zero?language=objc)
+    /// A range whose minimum and maximum are both `0.0`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFloatRangeZero: UIFloatRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange/infinite?language=objc)
+    /// A range whose range is minus infinity to infinity.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFloatRangeInfinite: UIFloatRange;
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIFloatRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange/isinfinite?language=objc)
+    /// Returns a Boolean indicating whether the specified float range is infinitely large.
+    ///
+    /// Parameters:
+    /// - range: The range value to check.
+    ///
     #[doc(alias = "UIFloatRangeIsInfinite")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -87,7 +91,25 @@ impl UIFloatRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior?language=objc)
+    /// A relationship between two dynamic items, or between a dynamic item and an anchor point.
+    ///
+    /// ## Overview
+    ///
+    /// When two items are attached to each other, forces imparted on one item affect the movement of the other in a prescribed way. When an item is attached to an anchor point, the movement of that item is affected by its attachment to the specified anchor point. Some attachment behaviors support both two items and an anchor point.
+    ///
+    /// You specify type of attachment behavior you want at creation time. This class offers many creation and initialization methods, each of which creates a different type of attachment behavior, which cannot be changed later. However, you may change specific attributes of the attachment behavior using the properties of this class. For example, you can change the distance between two attached items or change the damping forces applied to the items.
+    ///
+    /// ### Applying an Attachment Behavior to Dynamic Items
+    ///
+    /// To apply an attachment behavior to your dynamic items, do the following:
+    ///
+    /// 1. Create the attachment behavior using one of the creation or initialization methods. The method you choose defines the relationship between the items and the anchor point (if any).
+    ///
+    /// 2. Enable the attachment behavior by adding it to your [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) object using the [`addBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/addbehavior(_:)) method. Do not add the same attachment behavior to multiple animator objects.
+    ///
+    /// The attachment behavior derives its coordinate system from the reference view of its associated dynamic animator object. For more information about the dynamic animator and the reference coordinate system, see [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

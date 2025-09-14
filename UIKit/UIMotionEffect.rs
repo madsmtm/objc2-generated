@@ -8,13 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract superclass for defining motion-based modifiers for views.
+    ///
+    /// ## Overview
+    ///
+    /// Subclasses of [`UIMotionEffect`](https://developer.apple.com/documentation/uikit/uimotioneffect) are responsible for defining the behavior to apply to a view when motion is detected. They do this by overriding the [`keyPathsAndRelativeValuesForViewerOffset:`](https://developer.apple.com/documentation/uikit/uimotioneffect/keypathsandrelativevalues(forvieweroffset:)) method and returning one or more key paths representing the view properties to modify.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// This class is abstract and can’t be instantiated directly. You can use the [`UIInterpolatingMotionEffect`](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect) class to implement effects or you can subclass and implement your own effects. If you subclass, your subclass must conform to the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) and [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocols and must implement the [`keyPathsAndRelativeValuesForViewerOffset:`](https://developer.apple.com/documentation/uikit/uimotioneffect/keypathsandrelativevalues(forvieweroffset:)) method.
+    ///
+    ///
     /// UIMotionEffect is an abstract superclass which declaratively represents a rendering
     /// effect that depends on the motion of the device. Given some device pose, subclassers
     /// provide relative values which are to be applied to the key paths of the target's view.
     ///
     /// Subclasses must implement conformance for NSCopying and NSCoding.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimotioneffect?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -95,24 +104,22 @@ impl UIMotionEffect {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/effecttype?language=objc)
+/// The axis to use when interpolating values.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterpolatingMotionEffectType(pub NSInteger);
 impl UIInterpolatingMotionEffectType {
+    /// Interpolate values along the horizontal axis, which involves the device facing left or right of the user’s viewpoint.
     /// Tracks the device being tilted left/right relative to the viewer. The minimum
     /// relative values maps to the device being tilted all the way to the left, the
     /// maximum to the right.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/effecttype/tiltalonghorizontalaxis?language=objc)
     #[doc(alias = "UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis")]
     pub const TiltAlongHorizontalAxis: Self = Self(0);
+    /// Interpolate values along the vertical axis, which involves the device facing above or below the user’s viewpoint.
     /// Tracks the device being tilted up/down relative to the viewer. The minimum
     /// relative values maps to the device being tilted all the way down, the maximum
     /// all the way up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/effecttype/tiltalongverticalaxis?language=objc)
     #[doc(alias = "UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis")]
     pub const TiltAlongVerticalAxis: Self = Self(1);
 }
@@ -126,13 +133,18 @@ unsafe impl RefEncode for UIInterpolatingMotionEffectType {
 }
 
 extern_class!(
+    /// An object that maps the horizontal or vertical tilt of a device to values that you specify so that UIKit can apply those values to your views.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class to determine the amount of tilt along a single axis to apply to a view. After creating an instance of this class, you must assign appropriate values to the [`minimumRelativeValue`](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/minimumrelativevalue) and [`maximumRelativeValue`](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect/maximumrelativevalue) properties. As the user moves the device, the motion effect object translates the fixed offset values returned by the system (which are in the range `-1` to `1`) to the range of values you specified. UIKit then applies the translated values to any target views.
+    ///
+    ///
     /// This motion effect maps movement of a particular type (e.g. left/right tilt) to an
     /// interpolated output between two relative values provided by the client. Uses Core
     /// Animation's implementation of interpolation for all the standard types.
     ///
     /// `keyPath` should be expressed relative to the effect's target view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffect?language=objc)
     #[unsafe(super(UIMotionEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -230,10 +242,15 @@ impl UIInterpolatingMotionEffect {
 }
 
 extern_class!(
+    /// A collection of motion effects that you want to apply to a view at the same time.
+    ///
+    /// ## Overview
+    ///
+    /// This class behaves similarly to the [`CAAnimationGroup`](https://developer.apple.com/documentation/quartzcore/caanimationgroup) class in Core Animation. The key paths and values returned by each motion effect object are applied simultaneously and with the same timing. Because [`UIMotionEffectGroup`](https://developer.apple.com/documentation/uikit/uimotioneffectgroup) is a subclass of [`UIMotionEffect`](https://developer.apple.com/documentation/uikit/uimotioneffect), you can treat it like a single motion effect in your code. After setting a value for the [`motionEffects`](https://developer.apple.com/documentation/uikit/uimotioneffectgroup/motioneffects) property, add the group object to one or more of your views.
+    ///
+    ///
     /// Behaves like CAAnimationGroup. Merges key/value pairs of constituent
     /// using Core Animation's implementations of addition for all the standard types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimotioneffectgroup?language=objc)
     #[unsafe(super(UIMotionEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

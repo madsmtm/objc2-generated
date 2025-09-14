@@ -10,15 +10,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 /// A window that presents a Media Setup configuration view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/mspresentationanchor?language=objc)
+/// A window that presents a Media Setup configuration view.
 #[cfg(feature = "objc2-ui-kit")]
 pub type MSPresentationAnchor = UIWindow;
 
 extern_protocol!(
     /// A protocol that provides media setup display information to the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/msauthenticationpresentationcontext?language=objc)
+    /// A protocol that provides media setup display information to the system.
     pub unsafe trait MSAuthenticationPresentationContext: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         /// A window that presents the system’s HomePod configuration view to the user.
@@ -35,6 +33,19 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that manages the transfer of configuration information between your app, the system, your media service, and HomePod speakers.
+    ///
+    /// ## Overview
+    ///
+    /// An `MSSetupSession` object guides the user through connecting HomePod speakers in their home to your media service. When your iOS app calls [`startWithError:`](https://developer.apple.com/documentation/mediasetup/mssetupsession/start()), the session displays a setup view in the window you provide in [`presentationAnchor`](https://developer.apple.com/documentation/mediasetup/msauthenticationpresentationcontext/presentationanchor()). The session embeds your app icon and the [`serviceName`](https://developer.apple.com/documentation/mediasetup/msserviceaccount/servicename) you provide into this setup view.
+    ///
+    ///
+    /// ![A wireframe showing the setup view Media Setup displays to the user, with callouts indicating where your app’s icon and your media service’s name appear.](https://docs-assets.developer.apple.com/published/beb144d21ee2768a88c9a09692b59f89/media-3729379%402x.png)
+    ///
+    ///
+    /// After the user confirms the setup by tapping the “Use in Home” button, the system requests an OAuth token from your authentication service and shares the token with HomePod speakers in the user’s home.
+    ///
+    ///
     /// An object that manages the transfer of configuration information between
     /// your app, the system, your media service, and HomePod speakers.
     ///
@@ -53,8 +64,6 @@ extern_class!(
     /// After the user confirms the setup by tapping the “Use in Home” button, the
     /// system requests an OAuth 2.0 token from your authentication service and shares
     /// the token with HomePod speakers in the user’s home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/mssetupsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSSetupSession;

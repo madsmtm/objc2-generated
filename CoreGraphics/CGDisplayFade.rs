@@ -4,25 +4,91 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayfadereservationinvalidtoken?language=objc)
+///
+/// ## Discussion
+///
+/// An invalid fade reservation token. For general information about fade reservation tokens, see the data type [`CGDisplayFadeReservationToken`](https://developer.apple.com/documentation/coregraphics/cgdisplayfadereservationtoken).
+///
+///
 pub const kCGDisplayFadeReservationInvalidToken: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendnormal?language=objc)
+/// The blend color is not applied at the start or end of a fade operation.
 pub const kCGDisplayBlendNormal: c_float = 0.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendsolidcolor?language=objc)
+/// The user sees only the blend color at the start or end of a fade operation.
 pub const kCGDisplayBlendSolidColor: c_float = 1.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmaxdisplayreservationinterval?language=objc)
+///
+/// ## Discussion
+///
+/// The maximum number of seconds for fade hardware reservations and display fade operations. For general information about fade intervals, see the data type [`CGDisplayFadeInterval`](https://developer.apple.com/documentation/coregraphics/cgdisplayfadeinterval).
+///
+///
 pub const kCGMaxDisplayReservationInterval: CGDisplayReservationInterval = 15.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadereservationtoken?language=objc)
+/// A token issued by Quartz when reserving one or more displays for a fade operation during a specified interval.
+///
+/// ## Discussion
+///
+/// Quartz lets you reserve the display hardware to perform a fade operation. Fade reservations are valid for up to 15 seconds. Only one token is needed for both fade-out and fade-in.
+///
+/// You should release a fade reservation immediately when you no longer need it. If the reservation expires, releasing it is safe but not necessary.
+///
+///
 pub type CGDisplayFadeReservationToken = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayblendfraction?language=objc)
+/// The percentage of blend color used in a fade operation.
+///
+/// ## Discussion
+///
+/// The blend fraction ranges from 0 (no color) to 1 (full intensity). If you specify 0, the blend color is not applied. If you specify 1, the user sees only the blend color on the screen.
+///
+/// In a fade operation, Quartz blends a color specified by the application with the current contents of the framebuffer. The blend color can be applied both at the beginning and at the end of a fade operation.
+///
+/// Color blending during a fade operation is analogous to alpha blending in Quartz 2D, and the appearance is similar. However, the implementation is quite different. In a fade operation, the blend color is applied at the very end of the graphics pipeline, when the framebuffer is transferred to video output.
+///
+/// For example, the Universal Access preference panel in macOS allows you to select a flashing screen effect (sometimes called a visual bell) to accompany the system alert sound. When you select this option, the system uses a Quartz fade operation to produce the flash. The blend color is applied using a blend fraction of 0.5 or 50%.
+///
+///
 pub type CGDisplayBlendFraction = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadeinterval?language=objc)
+/// The duration in seconds of a fade operation or a fade hardware reservation.
+///
+/// ## Discussion
+///
+/// Quartz uses this data type to specify the duration of both fade-out and fade-in operations. Values may range from 0 to `kCGMaxDisplayReservationInterval` seconds. A 0 value means fade immediately—see [`CGDisplayFade`](https://developer.apple.com/documentation/coregraphics/cgdisplayfade(_:_:_:_:_:_:_:_:)).
+///
+///
 pub type CGDisplayFadeInterval = c_float;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplayfadeeffect(_:_:_:_:_:_:)?language=objc)
+    /// Modifies the settings of the built-in fade effect that occurs during a display configuration.
+    ///
+    /// Parameters:
+    /// - config: A display configuration, acquired by calling [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)).
+    ///
+    /// - fadeOutSeconds: The time, in seconds, to fade from the normal display to the specified fade color. The fade out is completed before the display configuration is changed. If the interval is 0, Quartz applies the color immediately.
+    ///
+    /// - fadeInSeconds: The time, in seconds, to return from the specified fade color to the normal display. The fade-in is run asynchronously after the display configuration is changed.
+    ///
+    /// - fadeRed: An intensity value in the interval [0, 1] that represents the red component of the desired blend color.
+    ///
+    /// - fadeGreen: An intensity value in the interval [0, 1] that represents the green component of the desired blend color.
+    ///
+    /// - fadeBlue: An intensity value in the interval [0, 1] that represents the blue component of the desired blend color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a way to customize the built-in fade effect that Quartz performs when displays are reconfigured. The default time settings for this fade effect are 0.3 seconds to fade out, and 0.5 seconds to fade back in. The default fade color is French Blue for a normal desktop, and black for a captured display.
+    ///
+    /// Before using this function, you need to call [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)) to acquire the display configuration token for the desired display. No fade reservation is needed—when you call [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)), Quartz reserves the fade hardware (assuming it is available) and performs the fade.
+    ///
+    /// Calling this function modifies the fade behavior for a single display configuration and has no permanent effect.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -38,11 +104,39 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayreservationinterval?language=objc)
+/// The time interval for a fade reservation.
+///
+/// ## Discussion
+///
+/// A fade reservation interval is a period of time during which a specific display is reserved for a fade operation. Fade reservation intervals range from 1 to `kCGMaxDisplayReservationInterval` seconds.
+///
+/// For more information about fade reservations, see the function [`CGAcquireDisplayFadeReservation`](https://developer.apple.com/documentation/coregraphics/cgacquiredisplayfadereservation(_:_:)). Fade reservation tokens are discussed in [`CGDisplayFadeReservationToken`](https://developer.apple.com/documentation/coregraphics/cgdisplayfadereservationtoken).
+///
+///
 pub type CGDisplayReservationInterval = c_float;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgacquiredisplayfadereservation(_:_:)?language=objc)
+    /// Reserves the fade hardware for a specified time interval.
+    ///
+    /// Parameters:
+    /// - seconds: The desired number of seconds to reserve the fade hardware. An application can specify any value in the interval `(0, kCGMaxDisplayReservationInterval]`.
+    ///
+    /// - token: A pointer to storage (provided by the caller) for a fade reservation token. On return, the storage contains a new token.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`kCGErrorNoneAvailable`](https://developer.apple.com/documentation/coregraphics/cgerror/noneavailable) if another fade reservation is in effect. Otherwise, returns [`kCGErrorSuccess`](https://developer.apple.com/documentation/coregraphics/cgerror/success).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before performing a fade operation, an application must reserve the fade hardware for a specified period of time. Quartz returns a token that represents a new fade reservation. The application uses this token as an argument in subsequent calls to other display fade functions.
+    ///
+    /// During the fade reservation interval, the application has exclusive rights to use the fade hardware. At the end of the interval, the token becomes invalid and the hardware automatically returns to a normal state. Typically, the application calls [`CGReleaseDisplayFadeReservation`](https://developer.apple.com/documentation/coregraphics/cgreleasedisplayfadereservation(_:)) to release the fade reservation before it expires.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -54,7 +148,29 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgreleasedisplayfadereservation(_:)?language=objc)
+/// Releases a display fade reservation, and unfades the display if needed.
+///
+/// Parameters:
+/// - token: The current fade reservation token to be released. On return, the reservation token is no longer valid and should be discarded.
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
+///
+/// ## Discussion
+///
+/// If you call this function while an asynchronous fade operation is running, there are two possible outcomes:
+///
+/// - If the ending blend value is [`kCGDisplayBlendNormal`](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendnormal), the fade operation is allowed to run to completion.
+///
+/// - If the ending blend value is not [`kCGDisplayBlendNormal`](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendnormal), the fade operation is terminated immediately and the display is returned to normal.
+///
+/// In both cases, the reservation is actually released when the fade operation completes.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGReleaseDisplayFadeReservation(
@@ -66,7 +182,65 @@ pub extern "C-unwind" fn CGReleaseDisplayFadeReservation(
     unsafe { CGReleaseDisplayFadeReservation(token) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfade(_:_:_:_:_:_:_:_:)?language=objc)
+/// Performs a single fade operation.
+///
+/// Parameters:
+/// - token: A reservation token for the fade hardware you acquire by calling [`CGAcquireDisplayFadeReservation`](https://developer.apple.com/documentation/coregraphics/cgacquiredisplayfadereservation(_:_:)).
+///
+/// - duration: The desired number of seconds for the fade operation. You should use a value in the interval `[0, kCGMaxDisplayReservationInterval`]. If the value is `0`, Quartz applies the ending blend color immediately.
+///
+/// - startBlend: An intensity value in the interval `[0, 1]` that specifies the alpha component of the desired blend color at the beginning of the fade operation. For more information, see [Display Fade Blend Fractions](https://developer.apple.com/documentation/coregraphics/display-fade-blend-fractions).
+///
+/// - endBlend: An intensity value in the interval `[0, 1]` that specifies the alpha component of the desired blend color at the end of the fade operation. For more information, see [Display Fade Blend Fractions](https://developer.apple.com/documentation/coregraphics/display-fade-blend-fractions).
+///
+/// - redBlend: An intensity value in the interval `[0, 1]` that specifies the red component of the desired blend color.
+///
+/// - greenBlend: An intensity value in the interval `[0, 1]` that specifies the green component of the desired blend color.
+///
+/// - blueBlend: An intensity value in the interval `[0, 1]` that specifies the blue component of the desired blend color.
+///
+/// - synchronous: Pass `true` if you want the fade operation to be synchronous; otherwise, pass `false`. If a fade operation is synchronous, the function doesn’t return until the operation is complete.
+///
+///
+/// ## Return Value
+///
+/// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// Over the fade operation time interval, Quartz interpolates a blending coefficient between the starting and ending values given, applying a nonlinear (sine-based) bias term. Using this coefficient, Quartz blends the video output with the specified color.
+///
+/// The following example shows how to perform a 2-second synchronous fade-out to black:
+///
+/// ```objc
+/// CGDisplayFade (
+///     myToken,
+///     2.0,                        // 2 seconds
+///     kCGDisplayBlendNormal,      // starting state
+///     kCGDisplayBlendSolidColor,  // ending state
+///     0.0, 0.0, 0.0,              // black
+///     true                        // wait for completion
+/// );
+/// ```
+///
+/// To perform a 2-second asynchronous fade-in from black:
+///
+/// ```objc
+/// CGDisplayFade (
+///     myToken,
+///     2.0,                        // 2 seconds
+///     kCGDisplayBlendSolidColor,  // starting state
+///     kCGDisplayBlendNormal,      // ending state
+///     0.0, 0.0, 0.0,              // black
+///     false                       // don't wait for completion
+/// );
+/// ```
+///
+/// If you specify an asynchronous fade operation, it’s safe to call [`CGReleaseDisplayFadeReservation`](https://developer.apple.com/documentation/coregraphics/cgreleasedisplayfadereservation(_:)) immediately after this function returns.
+///
+///
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayFade(
@@ -105,7 +279,19 @@ pub extern "C-unwind" fn CGDisplayFade(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadeoperationinprogress()?language=objc)
+/// Returns a Boolean value indicating whether a fade operation is currently in progress.
+///
+/// ## Return Value
+///
+/// If `true`, a fade operation is currently in progress; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// You may call this function from any task running in the system. The calling task need not have a valid fade reservation.
+///
+///
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]

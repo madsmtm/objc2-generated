@@ -6,35 +6,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain?language=objc)
+    /// The `NSError` domain constant. If the `domain` value for an `NSError` object is equal to `MCErrorDomain`, then the error was produced by the Multipeer Connectivity framework itself, as opposed to a lower-level framework on which it depends.
     pub static MCErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code?language=objc)
+/// Error codes found in [`MCErrorDomain`](https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain) error domain `NSError` objects returned by methods in the Multipeer Connectivity framework.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCErrorCode(pub NSInteger);
 impl MCErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "MCErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/notconnected?language=objc)
+    /// Your app attempted to send data to a peer that is not connected.
     #[doc(alias = "MCErrorNotConnected")]
     pub const NotConnected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/invalidparameter?language=objc)
+    /// Your app passed an invalid value as a parameter.
     #[doc(alias = "MCErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/unsupported?language=objc)
+    /// The operation is unsupported. For example, this error is returned if you call [`sendResourceAtURL:withName:toPeer:withCompletionHandler:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/sendresource(at:withname:topeer:withcompletionhandler:)) with a URL that is neither a local file nor a web URL.
     #[doc(alias = "MCErrorUnsupported")]
     pub const Unsupported: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/timedout?language=objc)
+    /// The connection attempt timed out.
     #[doc(alias = "MCErrorTimedOut")]
     pub const TimedOut: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/cancelled?language=objc)
+    /// The operation was cancelled by the user.
     #[doc(alias = "MCErrorCancelled")]
     pub const Cancelled: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code/unavailable?language=objc)
+    /// Multipeer connectivity is currently unavailable.
     #[doc(alias = "MCErrorUnavailable")]
     pub const Unavailable: Self = Self(6);
 }

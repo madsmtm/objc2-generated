@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning?language=objc)
+    /// An object you use to download and install a carrier eSIM.
+    ///
+    /// ## Overview
+    ///
+    /// This class is only available to carrier apps with suitable entitlements.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTCellularPlanProvisioning;

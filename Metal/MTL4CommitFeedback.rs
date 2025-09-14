@@ -11,22 +11,30 @@ use crate::*;
 
 /// Defines the block signature for a callback Metal invokes to provide your app feedback after completing a workload.
 ///
+/// Parameters:
+/// - commitFeedback: A commit feedback instance containing information about the workload.
+///
+///
+/// ## Discussion
+///
+/// You register a commit feedback block with Metal by providing an instance of [`MTL4CommitOptions`](https://developer.apple.com/documentation/metal/mtl4commitoptions) to the command queue’s commit method, [`commit:count:options:`](https://developer.apple.com/documentation/metal/mtl4commandqueue/commit:count:options:). The commit options instance references your commit feedback handler after you add it via its [`addFeedbackHandler:`](https://developer.apple.com/documentation/metal/mtl4commitoptions/addfeedbackhandler(_:)) method.
+///
+///
+/// Defines the block signature for a callback Metal invokes to provide your app feedback after completing a workload.
+///
 /// You register a commit feedback block with Metal by providing an instance of ``MTL4CommitOptions`` to
 /// the command queue's commit method, ``MTL4CommandQueue/commit:count:options:``. The commit options instance
 /// references your commit feedback handler after you add it via its ``MTL4CommitOptions/addFeedbackHandler:``
 /// method.
 ///
 /// - Parameter commitFeedback: a commit feedback instance containing information about the workload.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commitfeedbackhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTL4CommitFeedbackHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTL4CommitFeedback>>)>;
 
 extern_protocol!(
     /// Describes an object containing debug information from Metal to your app after completing a workload.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commitfeedback?language=objc)
+    /// Describes an object containing debug information from Metal to your app after completing a workload.
     pub unsafe trait MTL4CommitFeedback: NSObjectProtocol {
         /// A description of an error when the GPU encounters an issue as it runs the committed command buffers.
         #[unsafe(method(error))]

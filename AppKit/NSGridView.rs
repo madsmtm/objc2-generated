@@ -9,34 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGridCellPlacement(pub NSInteger);
 impl NSGridCellPlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/inherited?language=objc)
     #[doc(alias = "NSGridCellPlacementInherited")]
     pub const Inherited: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/none?language=objc)
     #[doc(alias = "NSGridCellPlacementNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/leading?language=objc)
     #[doc(alias = "NSGridCellPlacementLeading")]
     pub const Leading: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/top?language=objc)
     #[doc(alias = "NSGridCellPlacementTop")]
     pub const Top: Self = Self(NSGridCellPlacement::Leading.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/trailing?language=objc)
     #[doc(alias = "NSGridCellPlacementTrailing")]
     pub const Trailing: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/bottom?language=objc)
     #[doc(alias = "NSGridCellPlacementBottom")]
     pub const Bottom: Self = Self(NSGridCellPlacement::Trailing.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/center?language=objc)
     #[doc(alias = "NSGridCellPlacementCenter")]
     pub const Center: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement/fill?language=objc)
     #[doc(alias = "NSGridCellPlacementFill")]
     pub const Fill: Self = Self(5);
 }
@@ -49,22 +40,17 @@ unsafe impl RefEncode for NSGridCellPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGridRowAlignment(pub NSInteger);
 impl NSGridRowAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/inherited?language=objc)
     #[doc(alias = "NSGridRowAlignmentInherited")]
     pub const Inherited: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/none?language=objc)
     #[doc(alias = "NSGridRowAlignmentNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/firstbaseline?language=objc)
     #[doc(alias = "NSGridRowAlignmentFirstBaseline")]
     pub const FirstBaseline: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment/lastbaseline?language=objc)
     #[doc(alias = "NSGridRowAlignmentLastBaseline")]
     pub const LastBaseline: Self = Self(3);
 }
@@ -78,13 +64,25 @@ unsafe impl RefEncode for NSGridRowAlignment {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridview/sizedforcontent?language=objc)
+    /// The default value for row and column sizes.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant indicates that a row or column should automatically fit the content views.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSGridViewSizeForContent: CGFloat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridview?language=objc)
+    /// A container that aligns views in a flexible grid of rows and columns.
+    ///
+    /// ## Overview
+    ///
+    /// A grid view helps you lay out content, such as photos or thumbnails, in a row-column arrangement similar to a spreadsheet. Within a grid view, an item that occupies a single row-column intersection is represented by an [`NSGridCell`](https://developer.apple.com/documentation/appkit/nsgridcell) object.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -327,7 +325,7 @@ impl NSGridView {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow?language=objc)
+    /// A row within a grid view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -437,7 +435,7 @@ impl NSGridRow {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcolumn?language=objc)
+    /// A column within a grid view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -538,7 +536,13 @@ impl NSGridColumn {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell?language=objc)
+    /// An individual content area within a grid view, typically at the intersection of a row and a column.
+    ///
+    /// ## Overview
+    ///
+    /// Use a grid cell to specify the content view to display and to position the content view within the cell’s area.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

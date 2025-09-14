@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract base class that represents a machine-readable code’s attributes.
+    ///
+    /// ## Overview
+    ///
+    /// Subclasses encapsulate the formal specification and fields specific to a code type. Each subclass is sufficient to recreate the unique symbol exactly as seen or used with a custom parser.
+    ///
+    ///
     /// An abstract base class that represents a machine-readable code's attributes.
     ///
     /// Subclasses encapsulate the formal specification and fields specific to a code type.
     /// Each subclass is sufficient to recreate the unique symbol exactly as seen or used with a custom parser.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibarcodedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBarcodeDescriptor;
@@ -56,31 +61,26 @@ impl CIBarcodeDescriptor {
 }
 
 /// Constants indicating the percentage of the symbol that is dedicated to error correction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum?language=objc)
+/// Constants indicating the percentage of the symbol that is dedicated to error correction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CIQRCodeErrorCorrectionLevel(pub NSInteger);
 impl CIQRCodeErrorCorrectionLevel {
     /// Indicates that approximately 20% of the symbol data is dedicated to error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levell?language=objc)
+    /// Indicates that approximately 20% of the symbol data is dedicated to error correction.
     #[doc(alias = "CIQRCodeErrorCorrectionLevelL")]
     pub const L: Self = Self(b'L' as _);
     /// Indicates that approximately 37% of the symbol data is dedicated to error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levelm?language=objc)
+    /// Indicates that approximately 37% of the symbol data is dedicated to error correction.
     #[doc(alias = "CIQRCodeErrorCorrectionLevelM")]
     pub const M: Self = Self(b'M' as _);
     /// Indicates that approximately 55% of the symbol data is dedicated to error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levelq?language=objc)
+    /// Indicates that approximately 55% of the symbol data is dedicated to error correction.
     #[doc(alias = "CIQRCodeErrorCorrectionLevelQ")]
     pub const Q: Self = Self(b'Q' as _);
     /// Indicates that approximately 65% of the symbol data is dedicated to error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum/levelh?language=objc)
+    /// Indicates that approximately 65% of the symbol data is dedicated to error correction.
     #[doc(alias = "CIQRCodeErrorCorrectionLevelH")]
     pub const H: Self = Self(b'H' as _);
 }
@@ -96,11 +96,16 @@ unsafe impl RefEncode for CIQRCodeErrorCorrectionLevel {
 extern_class!(
     /// A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol.
     ///
+    /// ## Overview
+    ///
+    /// ISO/IEC 18004 defines versions from 1 to 40, where a higher symbol version indicates a larger data-carrying capacity. QR Codes can encode text, vCard contact information, or Uniform Resource Identifiers (URI).
+    ///
+    ///
+    /// A concrete subclass of the Core Image Barcode Descriptor that represents a square QR code symbol.
+    ///
     /// ISO/IEC 18004 defines versions from 1 to 40, where a higher symbol version indicates a
     /// larger data-carrying capacity.
     /// QR Codes can encode text, vCard contact information, or Uniform Resource Identifiers (URI).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIQRCodeDescriptor;
@@ -224,10 +229,15 @@ impl CIQRCodeDescriptor {
 extern_class!(
     /// A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol.
     ///
+    /// ## Overview
+    ///
+    /// An Aztec code symbol is a 2D barcode format defined by the ISO/IEC 24778:2008 standard. It encodes data in concentric square rings around a central bullseye pattern.
+    ///
+    ///
+    /// A concrete subclass the Core Image Barcode Descriptor that represents an Aztec code symbol.
+    ///
     /// An Aztec code symbol is a 2D barcode format defined by the ISO/IEC 24778:2008 standard.
     /// It encodes data in concentric square rings around a central bullseye pattern.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciazteccodedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIAztecCodeDescriptor;
@@ -357,12 +367,19 @@ impl CIAztecCodeDescriptor {
 extern_class!(
     /// A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.
     ///
+    /// ## Overview
+    ///
+    /// PDF417 is a stacked linear barcode symbol format used predominantly in transport, ID cards, and inventory management. Each pattern in the code comprises 4 bars and spaces, 17 units long.
+    ///
+    /// Refer to the ISO/IEC 15438:2006(E) for the PDF417 symbol specification.
+    ///
+    ///
+    /// A concrete subclass of Core Image Barcode Descriptor that represents a PDF417 symbol.
+    ///
     /// PDF417 is a stacked linear barcode symbol format used predominantly in transport, ID cards,
     /// and inventory management. Each pattern in the code comprises 4 bars and spaces, 17 units long.
     ///
     /// Refer to the ISO/IEC 15438:2006(E) for the PDF417 symbol specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipdf417codedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIPDF417CodeDescriptor;
@@ -484,6 +501,15 @@ impl CIPDF417CodeDescriptor {
 
 /// Constants indicating the Data Matrix code ECC version.
 ///
+/// ## Overview
+///
+/// ECC 000 - 140 symbols offer five levels of error correction using convolutional code error correction. Each successive level or error correction offers more protection for the message data but increases the size of the symbol required to carry a given message. See the ISO/IEC 16022:2006 spec for other modes.
+///
+/// ECC 200 symbols utilize Reed-Solomon error correction. The error correction capacity for any given Data Matrix symbol is fixed by the size (in rows and columns) of the symbol. See Table 7 of ISO/IEC 16022:2006(E) for more details.
+///
+///
+/// Constants indicating the Data Matrix code ECC version.
+///
 /// ECC 000 - 140 symbols offer five levels of error correction using convolutional code error correction.
 /// Each successive level or error correction offers more protection for the message data but increases the
 /// size of the symbol required to carry a given message. See the ISO/IEC 16022:2006 spec for other modes.
@@ -491,41 +517,33 @@ impl CIPDF417CodeDescriptor {
 /// ECC 200 symbols utilize Reed-Solomon error correction.
 /// The error correction capacity for any given Data Matrix symbol is fixed by the size (in rows and columns)
 /// of the symbol. See Table 7 of ISO/IEC 16022:2006(E) for more details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CIDataMatrixCodeECCVersion(pub NSInteger);
 impl CIDataMatrixCodeECCVersion {
     /// Indicates error correction using convolutional code error correction with no data protection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v000?language=objc)
+    /// Indicates error correction using convolutional code error correction with no data protection.
     #[doc(alias = "CIDataMatrixCodeECCVersion000")]
     pub const Version000: Self = Self(0);
     /// Indicates 1/4 of the symbol is dedicated to convolutional code error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v050?language=objc)
+    /// Indicates 1/4 of the symbol is dedicated to convolutional code error correction.
     #[doc(alias = "CIDataMatrixCodeECCVersion050")]
     pub const Version050: Self = Self(50);
     /// Indicates 1/3 of the symbol is dedicated to convolutional code error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v080?language=objc)
+    /// Indicates 1/3 of the symbol is dedicated to convolutional code error correction.
     #[doc(alias = "CIDataMatrixCodeECCVersion080")]
     pub const Version080: Self = Self(80);
     /// Indicates 1/2 of the symbol is dedicated to convolutional code error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v100?language=objc)
+    /// Indicates 1/2 of the symbol is dedicated to convolutional code error correction.
     #[doc(alias = "CIDataMatrixCodeECCVersion100")]
     pub const Version100: Self = Self(100);
     /// Indicates 3/4 of the symbol is dedicated to convolutional code error correction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v140?language=objc)
+    /// Indicates 3/4 of the symbol is dedicated to convolutional code error correction.
     #[doc(alias = "CIDataMatrixCodeECCVersion140")]
     pub const Version140: Self = Self(140);
     /// Indicates error correction using Reed-Solomon error correction. Data protection overhead varies based on symbol size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum/v200?language=objc)
+    /// Indicates error correction using Reed-Solomon error correction. Data protection overhead varies based on symbol size.
     #[doc(alias = "CIDataMatrixCodeECCVersion200")]
     pub const Version200: Self = Self(200);
 }
@@ -541,10 +559,15 @@ unsafe impl RefEncode for CIDataMatrixCodeECCVersion {
 extern_class!(
     /// A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.
     ///
+    /// ## Overview
+    ///
+    /// A Data Matrix code symbol is a 2D barcode format defined by the ISO/IEC 16022:2006(E) standard. It encodes data in square or rectangular symbol with solid lines on the left and bottom sides
+    ///
+    ///
+    /// A concrete subclass the Core Image Barcode Descriptor that represents an Data Matrix code symbol.
+    ///
     /// A Data Matrix code symbol is a 2D barcode format defined by the ISO/IEC 16022:2006(E) standard.
     /// It encodes data in square or rectangular symbol with solid lines on the left and bottom sides
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor?language=objc)
     #[unsafe(super(CIBarcodeDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIDataMatrixCodeDescriptor;

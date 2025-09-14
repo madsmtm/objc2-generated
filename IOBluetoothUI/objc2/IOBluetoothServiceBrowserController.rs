@@ -11,6 +11,13 @@ use objc2_io_bluetooth::*;
 use crate::*;
 
 extern_class!(
+    /// A NSWindowController subclass to display a window to search for and perform SDP queries on bluetooth devices within range.
+    ///
+    /// ## Overview
+    ///
+    /// This NSWindowController subclass will bring up a generic Bluetooth search and SDP browsing window allowing the user to find devices within range, perform SDP queries on a particular device, and select a SDP service to connect to. The client application can provide NSArrays of valid service UUIDs to allow, and an NSArray of valid device types to allow. The device type filter is not yet implemented.
+    ///
+    ///
     /// A NSWindowController subclass to display a window to search for and perform SDP queries on bluetooth
     /// devices within range.
     ///
@@ -19,8 +26,6 @@ extern_class!(
     /// select a SDP service to connect to.  The client application can provide NSArrays of valid service
     /// UUIDs to allow, and an NSArray of valid device types to allow.  The device type filter is not
     /// yet implemented.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothservicebrowsercontroller?language=objc)
     #[unsafe(super(NSWindowController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothServiceBrowserController;

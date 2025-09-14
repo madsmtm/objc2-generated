@@ -12,13 +12,21 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingbuttonmaximumimagesize?language=objc)
+    /// The maximum size CarPlay supports for a button’s image.
     #[cfg(feature = "objc2-core-foundation")]
     pub static CPNowPlayingButtonMaximumImageSize: CGSize;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingbutton?language=objc)
+    /// The abstract base class that Now Playing template buttons use.
+    ///
+    /// ## Overview
+    ///
+    /// `CPNowPlayingButton` is an abstract base class for defining buttons that the Now Playing template displays. It provides the common functionality that’s present in all buttons available to the template.
+    ///
+    /// You don’t use this class directly, or create your own subclasses. Instead, you must use one of the concrete subclasses that the framework provides, such as [`CPNowPlayingImageButton`](https://developer.apple.com/documentation/carplay/cpnowplayingimagebutton) or [`CPNowPlayingShuffleButton`](https://developer.apple.com/documentation/carplay/cpnowplayingshufflebutton).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -95,9 +103,16 @@ impl CPNowPlayingButton {
 }
 
 extern_class!(
-    /// A now playing button that indicates the current shuffle mode for your app.
+    /// A button for cycling through the available shuffle modes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingshufflebutton?language=objc)
+    /// ## Overview
+    ///
+    /// `CPNowPlayingShuffleButton` is a concrete subclass of [`CPNowPlayingButton`](https://developer.apple.com/documentation/carplay/cpnowplayingbutton). Use the button’s handler to invoke your existing functionality for cycling through shuffle modes, using the same [`MPChangeShuffleModeCommand`](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommand) that you provide to [`MPRemoteCommandCenter`](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter).
+    ///
+    /// CarPlay uses `MPRemoteCommandCenter` to observe changes to the shuffle mode and updates the button’s appearance accordingly.
+    ///
+    ///
+    /// A now playing button that indicates the current shuffle mode for your app.
     #[unsafe(super(CPNowPlayingButton, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -148,10 +163,15 @@ impl CPNowPlayingShuffleButton {
 }
 
 extern_class!(
+    /// A button for adding the current playing item to a collection.
+    ///
+    /// ## Overview
+    ///
+    /// `CPNowPlayingAddToLibraryButton` is a concrete subclass of [`CPNowPlayingButton`](https://developer.apple.com/documentation/carplay/cpnowplayingbutton). Use this button to allow a user to add the current playing item to a collection, such as their library. You implement this functionality in the button’s handler, or use the handler to invoke existing code that performs this function.
+    ///
+    ///
     /// A now playing button that can be used to allow the user to add the current
     /// playing item to a collection, like their library.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingaddtolibrarybutton?language=objc)
     #[unsafe(super(CPNowPlayingButton, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -202,12 +222,17 @@ impl CPNowPlayingAddToLibraryButton {
 }
 
 extern_class!(
+    /// A button for presenting more options to the user.
+    ///
+    /// ## Overview
+    ///
+    /// `CPNowPlayingMoreButton` is a concrete subclass of [`CPNowPlayingButton`](https://developer.apple.com/documentation/carplay/cpnowplayingbutton). Use this button to present a [`CPListTemplate`](https://developer.apple.com/documentation/carplay/cplisttemplate), [`CPAlertTemplate`](https://developer.apple.com/documentation/carplay/cpalerttemplate), or another contextual interface for the currently playing item. For example, if the item is a podcast, use the button’s handler to present a template that displays the episode’s show notes.
+    ///
+    ///
     /// A now playing button that shows a callout-style action. For example,
     /// your app could present a
     /// `CPActionSheetTemplate`to show more actions
     /// when the user taps this button.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingmorebutton?language=objc)
     #[unsafe(super(CPNowPlayingButton, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -258,10 +283,17 @@ impl CPNowPlayingMoreButton {
 }
 
 extern_class!(
+    /// A button for cycling through the available playback rates.
+    ///
+    /// ## Overview
+    ///
+    /// `CPNowPlayingPlaybackRateButton` is a concrete subclass of [`CPNowPlayingButton`](https://developer.apple.com/documentation/carplay/cpnowplayingbutton). Use the button’s handler to invoke your existing functionality for cycling through playback rates, using the same [`MPChangePlaybackRateCommand`](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommand) that you provide to [`MPRemoteCommandCenter`](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter).
+    ///
+    /// CarPlay uses `MPRemoteCommandCenter` to observe changes to the playback rate and updates the button’s appearance accordingly.
+    ///
+    ///
     /// A now playing button that shows the current playback rate and allows
     /// the user to cycle between different playback rates provided by your app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingplaybackratebutton?language=objc)
     #[unsafe(super(CPNowPlayingButton, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -312,10 +344,17 @@ impl CPNowPlayingPlaybackRateButton {
 }
 
 extern_class!(
+    /// A button for cycling through the available repeat modes.
+    ///
+    /// ## Overview
+    ///
+    /// `CPNowPlayingRepeatButton` is a concrete subclass of [`CPNowPlayingButton`](https://developer.apple.com/documentation/carplay/cpnowplayingbutton). Use the button’s handler to invoke your existing functionality for cycling through repeat modes, using the same [`MPChangeRepeatModeCommand`](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand) that you provide to [`MPRemoteCommandCenter`](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter).
+    ///
+    /// CarPlay uses `MPRemoteCommandCenter` to observe changes to the repeat mode and updates the button’s appearance accordingly.
+    ///
+    ///
     /// A now playing button that shows the current repeat state, like "once"
     /// or "all".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingrepeatbutton?language=objc)
     #[unsafe(super(CPNowPlayingButton, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -366,10 +405,21 @@ impl CPNowPlayingRepeatButton {
 }
 
 extern_class!(
+    /// A button that displays an image.
+    ///
+    /// ## Overview
+    ///
+    /// `CPNowPlayingImageButton` is a concrete subclass of [`CPNowPlayingButton`](https://developer.apple.com/documentation/carplay/cpnowplayingbutton). Use this class when you want to display a button that contains an image.
+    ///
+    /// In iOS 17 and later, CarPlay retints the custom now playing image buttons your app provides; you need to provide images  as monocolor assets.
+    ///
+    /// CarPlay doesn’t support animated images. If you provide an animated image, CarPlay uses only the first image in the animation sequence.
+    ///
+    /// To properly size your image, use the display scale of the vehicle’s primary screen—see your interface controller’s [`carTraitCollection`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/cartraitcollection) property—and make sure it is no larger than [`CPNowPlayingButtonMaximumImageSize`](https://developer.apple.com/documentation/carplay/cpnowplayingbuttonmaximumimagesize).
+    ///
+    ///
     /// A now playing button that shows a custom image provided by your app
     /// for any other custom actions on the now playing screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingimagebutton?language=objc)
     #[unsafe(super(CPNowPlayingButton, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

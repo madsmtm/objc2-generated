@@ -6,26 +6,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit?language=objc)
+/// Values representing the duration of an interval, from a day up to a year.
+///
+/// ## Overview
+///
+/// The period unit represents the duration of an interval. Period units are used with the number of units to determine one period in [`SKProductSubscriptionPeriod`](https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod).
+///
+///
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductPeriodUnit(pub NSUInteger);
 impl SKProductPeriodUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/day?language=objc)
+    /// An interval lasting one day.
     #[doc(alias = "SKProductPeriodUnitDay")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Day: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/week?language=objc)
+    /// An interval lasting one week.
     #[doc(alias = "SKProductPeriodUnitWeek")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Week: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/month?language=objc)
+    /// An interval lasting one month.
     #[doc(alias = "SKProductPeriodUnitMonth")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Month: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit/year?language=objc)
+    /// An interval lasting one year.
     #[doc(alias = "SKProductPeriodUnitYear")]
     #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
     pub const Year: Self = Self(3);
@@ -40,7 +46,15 @@ unsafe impl RefEncode for SKProductPeriodUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod?language=objc)
+    /// An object containing the subscription period duration information.
+    ///
+    /// ## Overview
+    ///
+    /// A subscription period is a duration of time defined as some number of units, where a unit can be a [`SKProductPeriodUnitDay`](https://developer.apple.com/documentation/storekit/skproduct/periodunit/day), [`SKProductPeriodUnitWeek`](https://developer.apple.com/documentation/storekit/skproduct/periodunit/week), [`SKProductPeriodUnitMonth`](https://developer.apple.com/documentation/storekit/skproduct/periodunit/month), or [`SKProductPeriodUnitYear`](https://developer.apple.com/documentation/storekit/skproduct/periodunit/year).
+    ///
+    /// For example, a subscription period of two weeks has a [`unit`](https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod/unit) of a [`SKProductPeriodUnitWeek`](https://developer.apple.com/documentation/storekit/skproduct/periodunit/week), and a  [`numberOfUnits`](https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod/numberofunits) equal to `2`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.SubscriptionPeriod"]
@@ -93,7 +107,13 @@ impl SKProductSubscriptionPeriod {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct?language=objc)
+    /// Information about a registered product in App Store Connect.
+    ///
+    /// ## Overview
+    ///
+    /// [`SKProduct`](https://developer.apple.com/documentation/storekit/skproduct) objects are returned as part of an [`SKProductsResponse`](https://developer.apple.com/documentation/storekit/skproductsresponse) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product"]

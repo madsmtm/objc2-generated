@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swstartcollaborationaction?language=objc)
+    /// An object that represents the first action sent to an app when the user shares a collaboration.
+    ///
+    /// ## Overview
+    ///
+    /// The action contains an updated [`SWCollaborationMetadata`](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationmetadata) that include the user-selected share options. Fulfill this action with the universal link and a device-independent identifier for the collaboration.
+    ///
+    ///
     #[unsafe(super(SWAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SWAction")]

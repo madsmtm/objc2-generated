@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains details about a message’s content, such as if it’s encrypted and who digitally signed it.
     /// Contains security information about a decoded message
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityinformation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageSecurityInformation;

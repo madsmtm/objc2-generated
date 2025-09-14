@@ -7,7 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext?language=objc)
+    /// The context in which the current script command is executed.
+    ///
+    /// ## Overview
+    ///
+    /// An `NSScriptExecutionContext` object is a shared instance (there is only one instance of the class) that represents the context in which the current script command is executed. `NSScriptExecutionContext` tracks global state relating to the command being executed, especially the top-level container object (that is, the container implied by a specifier object that specifies no container) used in an evaluation of an [`NSScriptObjectSpecifier`](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier) object.
+    ///
+    /// In most cases, the top-level container for a complete series of nested object specifiers is automatically set to the application object (`NSApp`), and you can get this object with the [`topLevelObject`](https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject) method. But you can also set this top-level container to something else (using [`topLevelObject`](https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject)) if the situation warrants it.
+    ///
+    /// It is unlikely that you will need to subclass `NSScriptExecutionContext`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptExecutionContext;

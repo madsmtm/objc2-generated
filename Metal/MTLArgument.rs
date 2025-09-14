@@ -6,16 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype?language=objc)
+/// The index type for an index buffer that references vertices of geometric primitives.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIndexType(pub NSUInteger);
 impl MTLIndexType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype/uint16?language=objc)
+    /// A 16-bit unsigned integer used as a primitive index.
     #[doc(alias = "MTLIndexTypeUInt16")]
     pub const UInt16: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype/uint32?language=objc)
+    /// A 32-bit unsigned integer used as a primitive index.
     #[doc(alias = "MTLIndexTypeUInt32")]
     pub const UInt32: Self = Self(1);
 }
@@ -65,47 +65,33 @@ unsafe impl RefEncode for MTLIndexType {
 ///
 ///
 /// This binding represents a tensor object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingType(pub NSInteger);
 impl MTLBindingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/buffer?language=objc)
     #[doc(alias = "MTLBindingTypeBuffer")]
     pub const Buffer: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/threadgroupmemory?language=objc)
     #[doc(alias = "MTLBindingTypeThreadgroupMemory")]
     pub const ThreadgroupMemory: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/texture?language=objc)
     #[doc(alias = "MTLBindingTypeTexture")]
     pub const Texture: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/sampler?language=objc)
     #[doc(alias = "MTLBindingTypeSampler")]
     pub const Sampler: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/imageblockdata?language=objc)
     #[doc(alias = "MTLBindingTypeImageblockData")]
     pub const ImageblockData: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/imageblock?language=objc)
     #[doc(alias = "MTLBindingTypeImageblock")]
     pub const Imageblock: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/visiblefunctiontable?language=objc)
     #[doc(alias = "MTLBindingTypeVisibleFunctionTable")]
     pub const VisibleFunctionTable: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/primitiveaccelerationstructure?language=objc)
     #[doc(alias = "MTLBindingTypePrimitiveAccelerationStructure")]
     pub const PrimitiveAccelerationStructure: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/instanceaccelerationstructure?language=objc)
     #[doc(alias = "MTLBindingTypeInstanceAccelerationStructure")]
     pub const InstanceAccelerationStructure: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/intersectionfunctiontable?language=objc)
     #[doc(alias = "MTLBindingTypeIntersectionFunctionTable")]
     pub const IntersectionFunctionTable: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/objectpayload?language=objc)
     #[doc(alias = "MTLBindingTypeObjectPayload")]
     pub const ObjectPayload: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype/tensor?language=objc)
     #[doc(alias = "MTLBindingTypeTensor")]
     pub const Tensor: Self = Self(37);
 }
@@ -118,6 +104,7 @@ unsafe impl RefEncode for MTLBindingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The resource type for an argument of a function.
 /// The type for an input to a MTLRenderPipelineState or a MTLComputePipelineState
 ///
 ///
@@ -131,46 +118,44 @@ unsafe impl RefEncode for MTLBindingType {
 ///
 ///
 /// This input is a sampler.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentType(pub NSUInteger);
 impl MTLArgumentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/buffer?language=objc)
+    /// The argument is a buffer.
     #[doc(alias = "MTLArgumentTypeBuffer")]
     #[deprecated]
     pub const Buffer: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/threadgroupmemory?language=objc)
+    /// The argument is a pointer to threadgroup memory.
     #[doc(alias = "MTLArgumentTypeThreadgroupMemory")]
     #[deprecated]
     pub const ThreadgroupMemory: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/texture?language=objc)
+    /// The argument is a texture.
     #[doc(alias = "MTLArgumentTypeTexture")]
     #[deprecated]
     pub const Texture: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/sampler?language=objc)
+    /// The argument is a texture sampler.
     #[doc(alias = "MTLArgumentTypeSampler")]
     #[deprecated]
     pub const Sampler: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/imageblockdata?language=objc)
+    /// The argument is imageblock data.
     #[doc(alias = "MTLArgumentTypeImageblockData")]
     pub const ImageblockData: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/imageblock?language=objc)
+    /// The argument is an imageblock.
     #[doc(alias = "MTLArgumentTypeImageblock")]
     pub const Imageblock: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/visiblefunctiontable?language=objc)
+    /// The argument is a visible function table.
     #[doc(alias = "MTLArgumentTypeVisibleFunctionTable")]
     pub const VisibleFunctionTable: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/primitiveaccelerationstructure?language=objc)
+    /// The argument is a bottom-level ray tracing acceleraton structure for a set of primitives.
     #[doc(alias = "MTLArgumentTypePrimitiveAccelerationStructure")]
     pub const PrimitiveAccelerationStructure: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/instanceaccelerationstructure?language=objc)
+    /// The argument is a top-level ray tracing acceleration structure for a set of instances.
     #[doc(alias = "MTLArgumentTypeInstanceAccelerationStructure")]
     pub const InstanceAccelerationStructure: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumenttype/intersectionfunctiontable?language=objc)
+    /// The argument is an intersection function table.
     #[doc(alias = "MTLArgumentTypeIntersectionFunctionTable")]
     pub const IntersectionFunctionTable: Self = Self(27);
 }
@@ -183,28 +168,24 @@ unsafe impl RefEncode for MTLArgumentType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingAccess(pub NSUInteger);
 impl MTLBindingAccess {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/readonly?language=objc)
     #[doc(alias = "MTLBindingAccessReadOnly")]
     pub const ReadOnly: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/readwrite?language=objc)
     #[doc(alias = "MTLBindingAccessReadWrite")]
     pub const ReadWrite: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/writeonly?language=objc)
     #[doc(alias = "MTLBindingAccessWriteOnly")]
     pub const WriteOnly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/mtlargumentaccessreadonly?language=objc)
+    /// The function can only read its argument data.
     #[deprecated]
     pub const MTLArgumentAccessReadOnly: Self = Self(MTLBindingAccess::ReadOnly.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/mtlargumentaccessreadwrite?language=objc)
+    /// The function can either read or write its argument data.
     #[deprecated]
     pub const MTLArgumentAccessReadWrite: Self = Self(MTLBindingAccess::ReadWrite.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess/mtlargumentaccesswriteonly?language=objc)
+    /// The function can only write its argument data.
     #[deprecated]
     pub const MTLArgumentAccessWriteOnly: Self = Self(MTLBindingAccess::WriteOnly.0);
 }
@@ -217,12 +198,12 @@ unsafe impl RefEncode for MTLBindingAccess {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentaccess?language=objc)
+/// Function access restrictions to argument data in the shading language code.
 #[deprecated]
 pub type MTLArgumentAccess = MTLBindingAccess;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltype?language=objc)
+    /// A description of a data type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLType;
@@ -262,7 +243,15 @@ impl DefaultRetained for MTLType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstructmember?language=objc)
+    /// An instance that provides information about a field in a structure.
+    ///
+    /// ## Overview
+    ///
+    /// [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) is part of the reflection API that allows Metal framework code to query details about an argument of a Metal shading language function. An [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) instance describes the data type of one field in a struct that is passed as an [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) argument, which is represented by [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument).
+    ///
+    /// Don’t create [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) instances directly. You obtain an [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) instance from either the [`members`](https://developer.apple.com/documentation/metal/mtlstructtype/members) property or the [`memberByName:`](https://developer.apple.com/documentation/metal/mtlstructtype/memberbyname(_:)) method of an [`MTLStructType`](https://developer.apple.com/documentation/metal/mtlstructtype) instance. The [`dataType`](https://developer.apple.com/documentation/metal/mtlstructmember/datatype) property of the [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) instance tells you what kind of data is stored in the member. Recursively drill down every struct member until you reach a data type that is neither a struct nor an array.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStructMember;
@@ -337,7 +326,13 @@ impl DefaultRetained for MTLStructMember {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstructtype?language=objc)
+    /// A description of a structure.
+    ///
+    /// ## Overview
+    ///
+    /// [`MTLStructType`](https://developer.apple.com/documentation/metal/mtlstructtype) is part of the reflection API that allows Metal framework code to query details of a struct that is passed as an argument of a Metal shading language function. Don’t create [`MTLStructType`](https://developer.apple.com/documentation/metal/mtlstructtype) instances directly; instead query the [`bufferStructType`](https://developer.apple.com/documentation/metal/mtlargument/bufferstructtype) property of an [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument) instance, or call the [`structType`](https://developer.apple.com/documentation/metal/mtlstructmember/structtype()) method for an [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) instance. To examine the details of the struct, you can recursively drill down the [`members`](https://developer.apple.com/documentation/metal/mtlstructtype/members) property of the [`MTLStructType`](https://developer.apple.com/documentation/metal/mtlstructtype) instance, which contains details about struct members, each of which is represented by an [`MTLStructMember`](https://developer.apple.com/documentation/metal/mtlstructmember) instance.
+    ///
+    ///
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStructType;
@@ -380,7 +375,13 @@ impl DefaultRetained for MTLStructType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlarraytype?language=objc)
+    /// A description of an array.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLArrayType`](https://developer.apple.com/documentation/metal/mtlarraytype) instance provides details about an array parameter. Don’t create [`MTLArrayType`](https://developer.apple.com/documentation/metal/mtlarraytype) instances directly; other reflection instances contain properties to determine if a parameter is an array and to obtain the [`MTLArrayType`](https://developer.apple.com/documentation/metal/mtlarraytype) instance that describes the array.
+    ///
+    ///
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArrayType;
@@ -455,7 +456,7 @@ impl DefaultRetained for MTLArrayType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpointertype?language=objc)
+    /// A description of a pointer.
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPointerType;
@@ -519,7 +520,7 @@ impl DefaultRetained for MTLPointerType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturereferencetype?language=objc)
+    /// A description of a texture.
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTextureReferenceType;
@@ -573,8 +574,7 @@ impl DefaultRetained for MTLTextureReferenceType {
 
 extern_class!(
     /// An object that represents a tensor in the shading language in a struct or array.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorreferencetype?language=objc)
+    /// An object that represents a tensor in the shading language in a struct or array.
     #[unsafe(super(MTLType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTensorReferenceType;
@@ -634,9 +634,16 @@ impl DefaultRetained for MTLTensorReferenceType {
 }
 
 extern_class!(
-    /// MTLArgument
+    /// Information about an argument of a graphics or compute function.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargument?language=objc)
+    /// ## Overview
+    ///
+    /// An [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument) instance describes a single argument to a Metal function. Your app uses the [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument) properties to read details about a function argument as it was defined in the Metal Shading Language. You can determine the argument’s data type, access restrictions, and its associated resource type. For buffer, texture, and threadgroup memory arguments, additional properties can be read to determine more details about the argument.
+    ///
+    /// Your app does not create an [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument) instance directly. Creating an [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate) or [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) instance can generate a reflection instance ([`MTLRenderPipelineReflection`](https://developer.apple.com/documentation/metal/mtlrenderpipelinereflection) or [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection)) that contains [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument) instances.
+    ///
+    ///
+    /// MTLArgument
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -756,7 +763,6 @@ impl DefaultRetained for MTLArgument {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinding?language=objc)
     pub unsafe trait MTLBinding: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -785,7 +791,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferbinding?language=objc)
     pub unsafe trait MTLBufferBinding: MTLBinding {
         #[unsafe(method(bufferAlignment))]
         #[unsafe(method_family = none)]
@@ -811,7 +816,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlthreadgroupbinding?language=objc)
     pub unsafe trait MTLThreadgroupBinding: MTLBinding {
         #[unsafe(method(threadgroupMemoryAlignment))]
         #[unsafe(method_family = none)]
@@ -824,7 +828,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturebinding?language=objc)
     pub unsafe trait MTLTextureBinding: MTLBinding {
         #[cfg(feature = "MTLTexture")]
         #[unsafe(method(textureType))]
@@ -847,7 +850,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlobjectpayloadbinding?language=objc)
     pub unsafe trait MTLObjectPayloadBinding: MTLBinding {
         #[unsafe(method(objectPayloadAlignment))]
         #[unsafe(method_family = none)]
@@ -861,8 +863,7 @@ extern_protocol!(
 
 extern_protocol!(
     /// An object that represents a tensor bound to a graphics or compute function or a machine learning function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorbinding?language=objc)
+    /// An object that represents a tensor bound to a graphics or compute function or a machine learning function.
     pub unsafe trait MTLTensorBinding: MTLBinding {
         #[cfg(feature = "MTLTensor")]
         /// The underlying data format of this tensor.

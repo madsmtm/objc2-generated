@@ -5,7 +5,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloatquaternion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLPackedFloatQuaternion {
@@ -74,8 +73,6 @@ unsafe impl RefEncode for MTLAxisAlignedBoundingBox {
 /// A transformation represented by individual components such as translation and
 /// rotation. The rotation is represented by a quaternion, allowing for correct motion
 /// interpolation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomponenttransform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLComponentTransform {

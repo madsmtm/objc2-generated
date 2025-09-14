@@ -7,48 +7,47 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.type.property?language=objc)
+    /// This key identifies the error that occurred during the most recent operation.
     #[cfg(feature = "NSString")]
     pub static NSNetServicesErrorCode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errordomain?language=objc)
+    /// This key identifies the originator of the error, which is either the `NSNetService` object or the mach network layer. For most errors, you should not need the value provided by this key.
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSNetServicesErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum?language=objc)
+/// These constants identify errors that can occur when accessing net services.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNetServicesError(pub NSInteger);
 impl NSNetServicesError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/unknownerror?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "NSNetServicesUnknownError")]
     pub const UnknownError: Self = Self(-72000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/collisionerror?language=objc)
+    /// The service could not be published because the name is already in use. The name could be in use locally or on another system.
     #[doc(alias = "NSNetServicesCollisionError")]
     pub const CollisionError: Self = Self(-72001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/notfounderror?language=objc)
+    /// The service could not be found on the network.
     #[doc(alias = "NSNetServicesNotFoundError")]
     pub const NotFoundError: Self = Self(-72002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/activityinprogress?language=objc)
+    /// The net service cannot process the request at this time. No additional information about the network state is known.
     #[doc(alias = "NSNetServicesActivityInProgress")]
     pub const ActivityInProgress: Self = Self(-72003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/badargumenterror?language=objc)
+    /// An invalid argument was used when creating the `NSNetService` object.
     #[doc(alias = "NSNetServicesBadArgumentError")]
     pub const BadArgumentError: Self = Self(-72004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/cancellederror?language=objc)
+    /// The client canceled the action.
     #[doc(alias = "NSNetServicesCancelledError")]
     pub const CancelledError: Self = Self(-72005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/invaliderror?language=objc)
+    /// The net service was improperly configured.
     #[doc(alias = "NSNetServicesInvalidError")]
     pub const InvalidError: Self = Self(-72006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/timeouterror?language=objc)
+    /// The net service has timed out.
     #[doc(alias = "NSNetServicesTimeoutError")]
     pub const TimeoutError: Self = Self(-72007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/missingrequiredconfigurationerror?language=objc)
     #[doc(alias = "NSNetServicesMissingRequiredConfigurationError")]
     pub const MissingRequiredConfigurationError: Self = Self(-72008);
 }
@@ -61,17 +60,26 @@ unsafe impl RefEncode for NSNetServicesError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/options?language=objc)
+/// These constants specify options for a network service.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNetServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNetServiceOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/options/noautorename?language=objc)
+/// Specifies that the network service should not rename itself in the event of a name collision.
         #[doc(alias = "NSNetServiceNoAutoRename")]
         const NoAutoRename = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/options/listenforconnections?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that a TCP listener should be started for both IPv4 and IPv6 on the port specified by this service. If the listening port can’t be opened, the service calls its delegate’s [`netService:didNotPublish:`](https://developer.apple.com/documentation/foundation/netservicedelegate/netservice(_:didnotpublish:)) method to report the error.
+///
+/// The listener supports only TCP connections. If the service’s type does not end with `_tcp`, publication fails with [`NSNetServicesBadArgumentError`](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum/badargumenterror).
+///
+/// Whenever a client connects to the listening socket, the service calls its delegate’s [`netService:didAcceptConnectionWithInputStream:outputStream:`](https://developer.apple.com/documentation/foundation/netservicedelegate/netservice(_:didacceptconnectionwith:outputstream:)) method with a pair of `NSStream` objects.
+///
+///
         #[doc(alias = "NSNetServiceListenForConnections")]
         const ListenForConnections = 1<<1;
     }
@@ -86,7 +94,23 @@ unsafe impl RefEncode for NSNetServiceOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice?language=objc)
+    /// A network service that broadcasts its availability using multicast DNS.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) class represents a network service, either one your application publishes or is a client of. This class and the [`NSNetServiceBrowser`](https://developer.apple.com/documentation/foundation/netservicebrowser) class use multicast DNS to convey information about network services to and from your application. The API of [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) provides a convenient way to publish the services offered by your application and to resolve the socket address for a service.
+    ///
+    /// The types of services you access using [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) are the same types that you access directly using BSD sockets. HTTP and FTP are two services commonly provided by systems. (For a list of common services and the ports used by those services, see the file `/etc/services`.) Applications can also define their own custom services to provide specific data to clients.
+    ///
+    /// You can use the [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) class as either a publisher of a service or a client of a service. If your application publishes a service, your code must acquire a port and prepare a socket to communicate with clients. Once your socket is ready, you use the [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) class to notify clients that your service is ready. If your application is the client of a network service, you can either create an [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) object directly (if you know the exact host and port information) or use an [`NSNetServiceBrowser`](https://developer.apple.com/documentation/foundation/netservicebrowser) object to browse for services.
+    ///
+    /// To publish a service, initialize your [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) object with the service name, domain, type, and port information. All of this information must be valid for the socket created by your application. Once initialized, call the [`publish`](https://developer.apple.com/documentation/foundation/netservice/publish()) method to broadcast your service information to the network.
+    ///
+    /// When connecting to a service, use the [`NSNetServiceBrowser`](https://developer.apple.com/documentation/foundation/netservicebrowser) class to locate the service on the network and obtain the corresponding [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) object. Once you have the object, call the [`resolveWithTimeout:`](https://developer.apple.com/documentation/foundation/netservice/resolve(withtimeout:)) method to verify that the service is available and ready for your application. If it is, the [`addresses`](https://developer.apple.com/documentation/foundation/netservice/addresses) property provides the socket information you can use to connect to the service.
+    ///
+    /// The methods of [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) operate asynchronously so your application is not impacted by the speed of the network. All information about a service is returned to your application through the [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) object’s delegate. You must provide a delegate object to respond to messages and to handle errors appropriately.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
@@ -313,7 +337,19 @@ impl DefaultRetained for NSNetService {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservicebrowser?language=objc)
+    /// A network service browser that finds published services on a network using multicast DNS.
+    ///
+    /// ## Overview
+    ///
+    /// Services can range from standard services, such as HTTP and FTP, to custom services defined by other applications. You can use a network service browser in your code to obtain the list of accessible domains and then to obtain an [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) object for each discovered service. Each network service browser performs one search at a time, so if you want to perform multiple simultaneous searches, use multiple network service browsers.
+    ///
+    /// A network service browser performs all searches asynchronously using the current run loop to execute the search in the background. Results from a search are returned through the associated delegate object, which your client application must provide. Searching proceeds in the background until the object receives a [`stop`](https://developer.apple.com/documentation/foundation/netservicebrowser/stop()) message.
+    ///
+    /// To use an `NSNetServiceBrowser` object to search for services, allocate it, initialize it, and assign a delegate. (If you wish, you can also use the [`scheduleInRunLoop:forMode:`](https://developer.apple.com/documentation/foundation/netservicebrowser/schedule(in:formode:)) and [`removeFromRunLoop:forMode:`](https://developer.apple.com/documentation/foundation/netservicebrowser/remove(from:formode:)) methods to execute searches on a run loop other than the current one.) Once your object is ready, you begin by gathering the list of accessible domains using either the [`searchForRegistrationDomains`](https://developer.apple.com/documentation/foundation/netservicebrowser/searchforregistrationdomains()) or [`searchForBrowsableDomains`](https://developer.apple.com/documentation/foundation/netservicebrowser/searchforbrowsabledomains()) methods. From the list of returned domains, you can pick one and use the [`searchForServicesOfType:inDomain:`](https://developer.apple.com/documentation/foundation/netservicebrowser/searchforservices(oftype:indomain:)) method to search for services in that domain.
+    ///
+    /// The `NSNetServiceBrowser` class provides two ways to search for domains. In most cases, your client should use the [`searchForRegistrationDomains`](https://developer.apple.com/documentation/foundation/netservicebrowser/searchforregistrationdomains()) method to search only for local domains to which the host machine has registration authority. This is the preferred method for accessing domains as it guarantees that the host machine can connect to services in the returned domains. Access to domains outside this list may be more limited.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_browser_t in Network framework instead"]
@@ -429,7 +465,13 @@ impl DefaultRetained for NSNetServiceBrowser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservicedelegate?language=objc)
+    /// The interface a net service uses to inform its delegate about the state of the service it offers.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSNetServiceDelegate`](https://developer.apple.com/documentation/foundation/netservicedelegate) protocol defines the optional methods implemented by delegates of [`NSNetService`](https://developer.apple.com/documentation/foundation/netservice) objects.
+    ///
+    ///
     pub unsafe trait NSNetServiceDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(netServiceWillPublish:))]
@@ -496,7 +538,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservicebrowserdelegate?language=objc)
+    /// The interface a net service browser uses to inform a delegate about the state of service discovery.
+    ///
+    /// ## Overview
+    ///
+    /// Delegates of [`NSNetServiceBrowser`](https://developer.apple.com/documentation/foundation/netservicebrowser) instances optionally implement these methods.
+    ///
+    ///
     pub unsafe trait NSNetServiceBrowserDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(netServiceBrowserWillSearch:))]

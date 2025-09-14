@@ -12,12 +12,17 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that wraps video frames to send to the processor, as source, reference, or output frames.
+    ///
+    /// ## Overview
+    ///
+    /// Instances retain the buffer backing them.
+    ///
+    ///
     /// Helper class to wrap pixel buffers as video frames.
     ///
     /// You can use the frames as source frames, reference frames, or output frames of a processor. Frame instances retain
     /// the backing pixel buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorframe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -73,11 +78,16 @@ impl VTFrameProcessorFrame {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A class to wrap bidirectional optical flow to send to the processor.
+    ///
+    /// ## Overview
+    ///
+    /// Instances retain the buffers backing them.
+    ///
+    ///
     /// Helper class to wrap optical flow.
     ///
     /// Instances retain the backing pixel buffers that you provide.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessoropticalflow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

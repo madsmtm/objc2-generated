@@ -7,25 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype?language=objc)
+/// The geometric primitive type for drawing commands.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPrimitiveType(pub NSUInteger);
 impl MTLPrimitiveType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/point?language=objc)
+    /// Rasterize a point at each vertex. The vertex shader must provide `[[point_size]]`, or the point size is undefined.
     #[doc(alias = "MTLPrimitiveTypePoint")]
     pub const Point: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/line?language=objc)
+    /// Rasterize a line between each separate pair of vertices, resulting in a series of unconnected lines. If there are an odd number of vertices, the last vertex is ignored.
     #[doc(alias = "MTLPrimitiveTypeLine")]
     pub const Line: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/linestrip?language=objc)
+    /// Rasterize a line between each pair of adjacent vertices, resulting in a series of connected lines (also called a polyline).
     #[doc(alias = "MTLPrimitiveTypeLineStrip")]
     pub const LineStrip: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/triangle?language=objc)
+    /// For every separate set of three vertices, rasterize a triangle. If the number of vertices is not a multiple of three, either one or two vertices is ignored.
     #[doc(alias = "MTLPrimitiveTypeTriangle")]
     pub const Triangle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype/trianglestrip?language=objc)
+    /// For every three adjacent vertices, rasterize a triangle.
     #[doc(alias = "MTLPrimitiveTypeTriangleStrip")]
     pub const TriangleStrip: Self = Self(4);
 }
@@ -38,19 +38,35 @@ unsafe impl RefEncode for MTLPrimitiveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode?language=objc)
+/// The mode that determines what, if anything, the GPU writes to the results buffer, after the GPU executes the render pass.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVisibilityResultMode(pub NSUInteger);
 impl MTLVisibilityResultMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode/disabled?language=objc)
+    /// The result doesn’t contain any data because visibility testing was disabled.
     #[doc(alias = "MTLVisibilityResultModeDisabled")]
     pub const Disabled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode/boolean?language=objc)
+    /// The result records whether any samples passed depth and stencil tests.
+    ///
+    /// ## Discussion
+    ///
+    /// The GPU writes a 64-bit integer to the visibility result buffer that is nonzero if at least one fragment passed depth and stencil tests, and zero if no fragments passed the tests.
+    ///
+    ///
     #[doc(alias = "MTLVisibilityResultModeBoolean")]
     pub const Boolean: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode/counting?language=objc)
+    /// The result records how many samples passed depth and stencil tests.
+    ///
+    /// ## Discussion
+    ///
+    /// The GPU writes a 64-bit integer to the visibility result buffer that is the number of samples that passed depth and stencil tests; this can be zero. Counting is not supported by all GPUs. Check the following documents to see whether a GPU family supports _counting occlusion_ queries:
+    ///
+    /// - [Metal feature set tables (PDF)](https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf)
+    ///
+    /// - [Metal feature set tables (Numbers)](https://developer.apple.com/metal/metal-feature-set-tables.zip)
+    ///
+    ///
     #[doc(alias = "MTLVisibilityResultModeCounting")]
     pub const Counting: Self = Self(2);
 }
@@ -63,7 +79,7 @@ unsafe impl RefEncode for MTLVisibilityResultMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlscissorrect?language=objc)
+/// A rectangle for the scissor fragment test.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLScissorRect {
@@ -89,7 +105,7 @@ unsafe impl RefEncode for MTLScissorRect {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlviewport?language=objc)
+/// A 3D rectangular region for the viewport clipping.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLViewport {
@@ -119,19 +135,19 @@ unsafe impl RefEncode for MTLViewport {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode?language=objc)
+/// The mode that determines whether to perform culling and which type of primitive to cull.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCullMode(pub NSUInteger);
 impl MTLCullMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode/none?language=objc)
+    /// Does not cull any primitives.
     #[doc(alias = "MTLCullModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode/front?language=objc)
+    /// Culls front-facing primitives.
     #[doc(alias = "MTLCullModeFront")]
     pub const Front: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode/back?language=objc)
+    /// Culls back-facing primitives.
     #[doc(alias = "MTLCullModeBack")]
     pub const Back: Self = Self(2);
 }
@@ -144,16 +160,16 @@ unsafe impl RefEncode for MTLCullMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding?language=objc)
+/// The vertex winding rule that determines a front-facing primitive.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLWinding(pub NSUInteger);
 impl MTLWinding {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding/clockwise?language=objc)
+    /// Primitives whose vertices are specified in clockwise order are front-facing.
     #[doc(alias = "MTLWindingClockwise")]
     pub const Clockwise: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding/counterclockwise?language=objc)
+    /// Primitives whose vertices are specified in counter-clockwise order are front-facing.
     #[doc(alias = "MTLWindingCounterClockwise")]
     pub const CounterClockwise: Self = Self(1);
 }
@@ -166,16 +182,16 @@ unsafe impl RefEncode for MTLWinding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode?language=objc)
+/// The mode that determines how to deal with fragments outside of the near or far planes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDepthClipMode(pub NSUInteger);
 impl MTLDepthClipMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode/clip?language=objc)
+    /// Clip fragments outside the near or far planes.
     #[doc(alias = "MTLDepthClipModeClip")]
     pub const Clip: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode/clamp?language=objc)
+    /// Clamp fragments outside the near or far planes.
     #[doc(alias = "MTLDepthClipModeClamp")]
     pub const Clamp: Self = Self(1);
 }
@@ -188,16 +204,16 @@ unsafe impl RefEncode for MTLDepthClipMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode?language=objc)
+/// Specifies how to rasterize triangle and triangle strip primitives.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTriangleFillMode(pub NSUInteger);
 impl MTLTriangleFillMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode/fill?language=objc)
+    /// Rasterize triangle and triangle strip primitives as filled triangles.
     #[doc(alias = "MTLTriangleFillModeFill")]
     pub const Fill: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode/lines?language=objc)
+    /// Rasterize triangle and triangle strip primitives as lines.
     #[doc(alias = "MTLTriangleFillModeLines")]
     pub const Lines: Self = Self(1);
 }
@@ -210,7 +226,13 @@ unsafe impl RefEncode for MTLTriangleFillMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawprimitivesindirectarguments?language=objc)
+/// The data layout required for drawing primitives via indirect buffer calls.
+///
+/// ## Overview
+///
+/// See also the [`drawPrimitives:indirectBuffer:indirectBufferOffset:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/drawprimitives(type:indirectbuffer:indirectbufferoffset:)) method.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDrawPrimitivesIndirectArguments {
@@ -236,7 +258,13 @@ unsafe impl RefEncode for MTLDrawPrimitivesIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawindexedprimitivesindirectarguments?language=objc)
+/// The data layout required for drawing indexed primitives via indirect buffer calls.
+///
+/// ## Overview
+///
+/// See also the [`drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/drawindexedprimitives(type:indextype:indexbuffer:indexbufferoffset:indirectbuffer:indirectbufferoffset:)) method.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDrawIndexedPrimitivesIndirectArguments {
@@ -264,7 +292,7 @@ unsafe impl RefEncode for MTLDrawIndexedPrimitivesIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexamplificationviewmapping?language=objc)
+/// An offset applied to a render target index and viewport index.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLVertexAmplificationViewMapping {
@@ -280,7 +308,17 @@ unsafe impl RefEncode for MTLVertexAmplificationViewMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawpatchindirectarguments?language=objc)
+/// The data layout required for drawing patches via indirect buffer calls.
+///
+/// ## Overview
+///
+/// See also the following methods:
+///
+/// - [`drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/drawpatches(numberofpatchcontrolpoints:patchindexbuffer:patchindexbufferoffset:indirectbuffer:indirectbufferoffset:))
+///
+/// - [`drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/drawindexedpatches(numberofpatchcontrolpoints:patchindexbuffer:patchindexbufferoffset:controlpointindexbuffer:controlpointindexbufferoffset:indirectbuffer:indirectbufferoffset:))
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDrawPatchIndirectArguments {
@@ -306,7 +344,13 @@ unsafe impl RefEncode for MTLDrawPatchIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlquadtessellationfactorshalf?language=objc)
+/// The per-patch tessellation factors for a quad patch.
+///
+/// ## Overview
+///
+/// Refer to the [Tessellation](https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Tessellation/Tessellation.html#//apple_ref/doc/uid/TP40014221-CH15) chapter of the [Metal Programming Guide](https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221) for further information.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLQuadTessellationFactorsHalf {
@@ -322,7 +366,13 @@ unsafe impl RefEncode for MTLQuadTessellationFactorsHalf {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltriangletessellationfactorshalf?language=objc)
+/// The per-patch tessellation factors for a triangle patch.
+///
+/// ## Overview
+///
+/// Refer to the [Tessellation](https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Tessellation/Tessellation.html#//apple_ref/doc/uid/TP40014221-CH15) chapter of the [Metal Programming Guide](https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014221) for further information.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLTriangleTessellationFactorsHalf {
@@ -338,30 +388,35 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The stages in a render pass that triggers a synchronization command.
+///
+/// ## Overview
+///
+/// Render stage boundaries provide synchronization opportunities within a render pass for specific resources and resource types. For example, you can designate render stage a synchronization point for a memory barrier or a fence (see [`memoryBarrier(resources:after:before:)`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/memorybarrier(resources:after:before:)) and [`MTLFence`](https://developer.apple.com/documentation/metal/mtlfence), respectively). This allows a GPU to overlap its execution of two adjacent stages, which can shorten its overall runtime for the render pass.
+///
+///
 /// Generic render stage enum
 ///
 /// Can also be used for points at which a fence may be waited on or signaled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLRenderStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLRenderStages: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/vertex?language=objc)
+/// The vertex rendering stage.
         #[doc(alias = "MTLRenderStageVertex")]
         const Vertex = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/fragment?language=objc)
+/// The fragment rendering stage.
         #[doc(alias = "MTLRenderStageFragment")]
         const Fragment = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/tile?language=objc)
+/// The tile rendering stage.
         #[doc(alias = "MTLRenderStageTile")]
         const Tile = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/object?language=objc)
+/// The object rendering stage.
         #[doc(alias = "MTLRenderStageObject")]
         const Object = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages/mesh?language=objc)
+/// The mesh rendering stage.
         #[doc(alias = "MTLRenderStageMesh")]
         const Mesh = 1<<4;
     }
@@ -376,9 +431,42 @@ unsafe impl RefEncode for MTLRenderStages {
 }
 
 extern_protocol!(
-    /// MTLRenderCommandEncoder is a container for graphics rendering state and the code to translate the state into a command format that the device can execute.
+    /// An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrendercommandencoder?language=objc)
+    /// ## Overview
+    ///
+    /// The [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) protocol defines an interface that configures and encodes a render pass. Use a render pass to draw a scene, or a component within a scene, to its render _attachments_, the outputs of a render pass. You can use various approaches to render to those outputs, including techniques that apply the following:
+    ///
+    /// - Primitive drawing
+    ///
+    /// - Mesh drawing
+    ///
+    /// - Ray tracing
+    ///
+    /// - Tile shaders dispatching
+    ///
+    /// To create an [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) instance, call the [`renderCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makerendercommandencoder(descriptor:)) of an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance, or the [`renderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder/makerendercommandencoder()) method of an [`MTLParallelRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder) instance.
+    ///
+    /// To configure the render pass for your first drawing commands, start with a pipeline state by passing an [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate) instance to the encoder’s [`setRenderPipelineState:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/setrenderpipelinestate(_:)) method. You create the pipeline states your render pass needs, typically ahead of time, by calling one or more [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) methods (see [Pipeline state creation](https://developer.apple.com/documentation/metal/pipeline-state-creation)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Avoid visual stutter by creating pipeline states at a noncritical time, such as during launch, because of the time it can take to make them.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Set any other applicable parts of the encoder’s configuration by calling the methods on the [Render pass configuration](https://developer.apple.com/documentation/metal/render-pass-configuration) page. For example, you may need to configure the pass’s viewport, its scissor rectangle, and the settings for depth and stencil tests.
+    ///
+    /// Assign resources, such as buffers and textures, for the shaders that depend on them. For more information, see the shader-specific pages in the resource preparation section, such as [Vertex shader resource preparation commands](https://developer.apple.com/documentation/metal/vertex-shader-resource-preparation-commands) and [Fragment shader resource preparation commands](https://developer.apple.com/documentation/metal/fragment-shader-resource-preparation-commands). If your shaders access resources through an argument buffer, ensure the pass makes those resources _resident_ by loading those resources resident in GPU memory. You do this by calling the methods on the [Argument buffer resource preparation commands](https://developer.apple.com/documentation/metal/argument-buffer-resource-preparation-commands) page.
+    ///
+    /// Encode drawing commands by calling the methods on the [Render pass drawing commands](https://developer.apple.com/documentation/metal/render-pass-drawing-commands) page after you configure the state and resources the commands depend on. The encoder maintains its current state and applies them to all subsequent draw commands. For drawing commands that need different states or resources, reconfigure the render pass appropriately and then encode those draw commands. Repeat the process for each batch of drawing commands that depend on the same render pass configuration and resources.
+    ///
+    /// When you finish encoding the render pass’s commands, finalize it into the command buffer by calling the encoder’s [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) method.
+    ///
+    ///
+    /// MTLRenderCommandEncoder is a container for graphics rendering state and the code to translate the state into a command format that the device can execute.
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLRenderCommandEncoder: MTLCommandEncoder {
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]

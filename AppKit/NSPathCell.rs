@@ -7,19 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontrol/style?language=objc)
+/// `NSPathStyle` constants represent the different visual and behavioral styles an `NSPathControl` or `NSPathCell` object can have.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPathStyle(pub NSInteger);
 impl NSPathStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontrol/style/standard?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The standard display style and behavior. All path component cells are displayed with an icon image and component name. If the path can not fully be displayed, the middle parts are truncated as required.
+    ///
+    ///
     #[doc(alias = "NSPathStyleStandard")]
     pub const Standard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The pop-up display style and behavior. Only the last path component is displayed with an icon image and component name. The full path is shown when the user clicks on the cell. If the cell is editable, a Choose item is included to enable selecting a different path.
+    ///
+    ///
     #[doc(alias = "NSPathStylePopUp")]
     pub const PopUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The navigation bar display style and behavior. Similar to the `NSPathStyleStandard` with the navigation bar drawing style. Also known as the breadcrumb style.
+    ///
+    ///
     #[doc(alias = "NSPathStyleNavigationBar")]
     #[deprecated]
     pub const NavigationBar: Self = Self(1);
@@ -34,7 +49,31 @@ unsafe impl RefEncode for NSPathStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcell?language=objc)
+    /// The user interface of a path control object.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSPathCell`](https://developer.apple.com/documentation/appkit/nspathcell) maintains a collection of [`NSPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcomponentcell) objects that represent a particular path to be displayed to the user.
+    ///
+    /// The path shown can be set with the [`clickedPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell) method. Doing so removes all displayed `NSPathComponentCell` objects and automatically fills the control with `NSPathComponentCell` objects set to have the appropriate icons, display titles, and `NSURL` values for the particular path component they represent. Alternatively, you can fill the control manually by setting the cell array or directly modifying existing cells.
+    ///
+    /// Both an action and double-click action can be set for the path control. To find out what path component cell was clicked in the action, you can read the value of [`clickedPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell). When the style is set to [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup), the action is still sent, and the [`clickedPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell) value for the represented menu item is correctly set. The [`clickedPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcell/clickedpathcomponentcell) value is valid only when the action is being sent. It is also valid when the keyboard is used to invoke the action.
+    ///
+    /// Automatic animated expansion of partially hidden `NSPathComponentCell` objects happens if you correctly call [`mouseEntered:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseentered(with:)) and [`mouseExited:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseexited(with:)) for each `NSPathComponentCell` in the `NSPathCell` object. This is not required if the [`pathStyle`](https://developer.apple.com/documentation/appkit/nspathcell/pathstyle) is set to [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup), or if you wish to not have the animation.
+    ///
+    /// `NSPathCell` supports several path display styles. [`NSPathStyleStandard`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/standard) has a light blue background with arrows indicating the path. [`NSPathStyleNavigationBar`](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar) has more defined arrows (chevrons) and looks a little like a segmented button. [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup) looks and works like an [`NSPopUpButton`](https://developer.apple.com/documentation/appkit/nspopupbutton) object to display the full path, or, if the cell is editable, select a new path.
+    ///
+    /// If the cell’s [`editable`](https://developer.apple.com/documentation/appkit/nscell/iseditable) method returns [`true`](https://developer.apple.com/documentation/swift/true) (the default), you can drag and drop into the cell to change the value. You can constrain what can be dropped using UTIs (Uniform Type Identifiers) with [`allowedTypes`](https://developer.apple.com/documentation/appkit/nspathcell/allowedtypes) or the appropriate delegate methods on `NSPathControl`.
+    ///
+    /// If the cell’s [`selectable`](https://developer.apple.com/documentation/appkit/nscell/isselectable) method returns [`true`](https://developer.apple.com/documentation/swift/true) (the default), the cell’s contents can automatically be dragged out. The proper UTI, filename, and URL are placed on the pasteboard. You can further control or limit this by using the appropriate delegate methods on `NSPathControl`.
+    ///
+    /// If the cell is editable and has the path style set to [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup), an additional item in the pop-up menu allows selecting another location. By default, an `NSOpenPanel` object is configured based on the allowed types. The `NSOpenPanel` object can be customized with a delegate method.
+    ///
+    /// ## Setting the control size
+    ///
+    /// When setting the [`controlSize`](https://developer.apple.com/documentation/appkit/nscell/controlsize) property, `NSPathCell` properly respects the control size for the [`NSPathStyleStandard`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/standard) and [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup) styles. When the control size is set, the new size is propagated to subcells. When the path style is set to [`NSPathStyleNavigationBar`](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar), you cannot change the control size, and it is always set to [`NSSmallControlSize`](https://developer.apple.com/documentation/appkit/nssmallcontrolsize). Attempting to change the control size when the path style is [`NSPathStyleNavigationBar`](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar) causes an assertion. Setting the path style to [`NSPathStyleNavigationBar`](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar) forces the control size to be [`NSSmallControlSize`](https://developer.apple.com/documentation/appkit/nssmallcontrolsize).
+    ///
+    ///
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -302,7 +341,7 @@ impl NSPathCell {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcelldelegate?language=objc)
+    /// A set of methods that enable the delegate of a path cell object to customize the Open panel or pop-up menu of a path whose style is set to [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup).
     pub unsafe trait NSPathCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSActionCell",

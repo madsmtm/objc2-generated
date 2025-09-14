@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inflightreservation?language=objc)
+    /// The information that describes a flight reservation.
     #[unsafe(super(INReservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INReservation")]

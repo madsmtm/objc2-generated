@@ -10,6 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A `CBIdentityPicker` object allows a user to select identities—for example, user or group objects—that it wants one or more services or shared resources to have access to. An identity picker can be displayed either as an application-modal dialog or as a sheet attached to a document window. An identity picker returns the selected records to be added to access control lists using Collaboration. If a selected record is not a user or group identity, then an identity picker prompts the user for additional information—such as a password—to promote that record to a sharing account.
     /// A `CBIdentityPicker` object allows a user to select identities—for
     /// example, user or group objects—that it wants one or more services or
     /// shared resources to have access to. An identity picker can be displayed
@@ -19,8 +20,6 @@ extern_class!(
     /// is not a user or group identity, then an identity picker prompts the
     /// user for additional information—such as a password—to promote that
     /// record to a sharing account.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/collaboration/cbidentitypicker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBIdentityPicker;

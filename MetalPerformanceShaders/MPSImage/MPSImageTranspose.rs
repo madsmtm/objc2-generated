@@ -8,11 +8,16 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that transposes an image.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageTranspose`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetranspose) filter applies a matrix transposition to the source image by exchanging its rows with its columns.
+    ///
+    ///
     /// The MPSImageTranspose transposes an image
     ///
     /// This kernel accepts uint and int textures in addition to unorm and floating-point textures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetranspose?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

@@ -47,7 +47,7 @@ impl private_NSPasteboardItemSWCollaborationMetadata::Sealed for NSPasteboardIte
 unsafe impl NSPasteboardItemSWCollaborationMetadata for NSPasteboardItem {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/nspasteboardtypecollaborationmetadata?language=objc)
+    /// An object you use for conveying data during a collaboration.
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub static NSPasteboardTypeCollaborationMetadata: Option<&'static NSPasteboardType>;

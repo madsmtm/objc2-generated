@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationratingitem?language=objc)
+    /// A data object that provides rated content for an information template.
+    ///
+    /// ## Overview
+    ///
+    /// `CPInformationRatingItem` provides the ability to display rated content in the rows of an information template. Depending on the template’s layout, the item’s attributes stack vertically or horizontally in the rows. The [`title`](https://developer.apple.com/documentation/carplay/cpinformationitem/title) property describes the content, and the [`detail`](https://developer.apple.com/documentation/carplay/cpinformationitem/detail) property provides the content. Use the [`rating`](https://developer.apple.com/documentation/carplay/cpinformationratingitem/rating) and [`maximumRating`](https://developer.apple.com/documentation/carplay/cpinformationratingitem/maximumrating) properties to display a rating for the content. For example, you could show a service rating when displaying information about a restaurant or café.
+    ///
+    /// The template manages the visual styling of the rating and maximum rating.
+    ///
+    ///
     #[unsafe(super(CPInformationItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPInformationItem")]

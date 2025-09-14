@@ -13,9 +13,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Option set indicating semantic understanding types of the image frame.
+/// Types of optional frame features you can enable in your app.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct?language=objc)
+/// ## Discussion
+///
+/// A frame semantic represents 2D information that ARKit extracts from a frame.
+///
+///
+/// Option set indicating semantic understanding types of the image frame.
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -24,11 +29,19 @@ pub struct ARFrameSemantics(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl ARFrameSemantics: NSUInteger {
+/// An option that indicates no frame features are enabled.
 /// No semantic operation is run.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframesemantics/arframesemanticnone?language=objc)
         #[doc(alias = "ARFrameSemanticNone")]
         const None = 0;
+/// An option that indicates that people occlude your app’s virtual content.
+///
+/// ## Discussion
+///
+/// The [`ARFrameSemanticPersonSegmentation`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentation) frame semantic specifies that any person ARKit detects in the camera feed occludes virtual content, regardless of the person’s depth in the scene.
+///
+/// When this option is enabled, ARKit sets the [`estimatedDepthData`](https://developer.apple.com/documentation/arkit/arframe/estimateddepthdata) and [`segmentationBuffer`](https://developer.apple.com/documentation/arkit/arframe/segmentationbuffer) properties to serve as a foundation for people occlusion. The standard renderers ([`ARView`](https://developer.apple.com/documentation/realitykit/arview), and [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview)) use those properties to implement people occlusion for you. See [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) for more information.
+///
+///
 /// Person segmentation.
 ///
 /// A pixel in the image frame that gets classified as person will have an intensity value equal to 'ARSegmentationClassPerson'.
@@ -36,10 +49,17 @@ bitflags::bitflags! {
 /// See: -[ARFrame segmentationBuffer]
 ///
 /// See: ARSegmentationClass
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentation?language=objc)
         #[doc(alias = "ARFrameSemanticPersonSegmentation")]
         const PersonSegmentation = 1<<0;
+/// An option that indicates that people occlude your app’s virtual content depending on depth.
+///
+/// ## Discussion
+///
+/// The [`ARFrameSemanticPersonSegmentationWithDepth`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentationwithdepth) frame semantic specifies that any person ARKit detects in the camera feed should occlude virtual content, depending on the person’s depth in the scene.
+///
+/// When this option is enabled, ARKit sets the [`estimatedDepthData`](https://developer.apple.com/documentation/arkit/arframe/estimateddepthdata) and [`segmentationBuffer`](https://developer.apple.com/documentation/arkit/arframe/segmentationbuffer) properties to serve as a foundation for people occlusion. The standard renderers ([`ARView`](https://developer.apple.com/documentation/realitykit/arview), and [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview)) use those properties to implement people occlusion for you. See [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) for more information.
+///
+///
 /// Person segmentation with depth.
 ///
 /// A pixel in the image frame that gets classified as person will have an intensity value equal to 'ARSegmentationClassPerson'.
@@ -48,10 +68,15 @@ bitflags::bitflags! {
 /// See: -[ARFrame estimatedDepthData]
 ///
 /// See: -[ARFrame segmentationBuffer]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/personsegmentationwithdepth?language=objc)
         #[doc(alias = "ARFrameSemanticPersonSegmentationWithDepth")]
         const PersonSegmentationWithDepth = (1<<1)|(1<<0);
+/// An option that indicates that 2D body detection is enabled.
+///
+/// ## Discussion
+///
+/// When you set this option in your configuration’s [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) property, ARKit describes the joint positions of a body it detects in the camera image, using normalized coordinates. See [`detectedBody`](https://developer.apple.com/documentation/arkit/arframe/detectedbody) for more information.
+///
+///
 /// Body detection.
 ///
 /// Once activated an ARFrame will contain information about a detected body.
@@ -59,26 +84,42 @@ bitflags::bitflags! {
 /// See: -[ARFrame detectedBody]
 ///
 /// See: ARBody2D
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/bodydetection?language=objc)
         #[doc(alias = "ARFrameSemanticBodyDetection")]
         const BodyDetection = 1<<2;
+/// An option that provides the distance from the device to real-world objects viewed through the camera.
+///
+/// ## Discussion
+///
+/// Enable this option on a world-tracking configuration ([`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration)) to instruct ARKit to provide your app with the distance between the user’s device and the real-world objects in the camera feed. ARKit samples this distance using the LiDAR scanner and provides the results through the [`sceneDepth`](https://developer.apple.com/documentation/arkit/arframe/scenedepth) property on the session’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe).
+///
+/// ARKit creates this object from LiDAR readings at same time as the current frame. The data in [`sceneDepth`](https://developer.apple.com/documentation/arkit/arframe/scenedepth) reflects the distance from the device to real-world objects pictured in the frame’s [`capturedImage`](https://developer.apple.com/documentation/arkit/arframe/capturedimage). Alternatively, ARKit provides a [`ARFrameSemanticSmoothedSceneDepth`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/smoothedscenedepth) property that minimizes the difference in LiDAR readings across frames.
+///
+/// ARKit supports scene depth only on LiDAR-capable devices, so call [`supportsFrameSemantics:`](https://developer.apple.com/documentation/arkit/arconfiguration/supportsframesemantics(_:)) to ensure device support before attempting to enable scene depth.
+///
+///
 /// Scene Depth.
 ///
 /// Each capturedImage will have an associated scene depth data.
 ///
 /// See: - [ARFrame sceneDepth]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/scenedepth?language=objc)
         #[doc(alias = "ARFrameSemanticSceneDepth")]
         const SceneDepth = 1<<3;
+/// An option that provides the distance from the device to real-world objects, averaged across several frames.
+///
+/// ## Discussion
+///
+/// Enable this option on a world-tracking configuration ([`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration)) to instruct ARKit to provide your app with the distance between the user’s device and the real-world objects pictured in the frame’s [`capturedImage`](https://developer.apple.com/documentation/arkit/arframe/capturedimage). ARKit samples this distance using the LiDAR scanner and provides the results through the [`smoothedSceneDepth`](https://developer.apple.com/documentation/arkit/arframe/smoothedscenedepth) property on the session’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe).
+///
+/// To minimize the difference in LiDAR readings across frames, ARKit processes the data as an average. The averaged readings reduce flickering to create a smoother motion effect when depicting objects with depth, as demonstrated in [Creating a fog effect using scene depth](https://developer.apple.com/documentation/arkit/creating-a-fog-effect-using-scene-depth). Alternatively, to access a discrete LiDAR reading at the instant the framework creates the current frame, use [`sceneDepth`](https://developer.apple.com/documentation/arkit/arframe/scenedepth).
+///
+/// ARKit supports scene depth only on LiDAR-capable devices, so call [`supportsFrameSemantics:`](https://developer.apple.com/documentation/arkit/arconfiguration/supportsframesemantics(_:)) to ensure device support before attempting to enable scene depth.
+///
+///
 /// Smoothed Scene Depth.
 ///
 /// Each capturedImage will have an associated scene depth data that is temporally smoothed.
 ///
 /// See: - [ARFrame smoothedSceneDepth]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/smoothedscenedepth?language=objc)
         #[doc(alias = "ARFrameSemanticSmoothedSceneDepth")]
         const SmoothedSceneDepth = 1<<4;
     }
@@ -94,9 +135,8 @@ unsafe impl RefEncode for ARFrameSemantics {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for how ARKit constructs a scene coordinate system based on real-world device motion.
 /// Enum constants for indicating the world alignment.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -104,20 +144,75 @@ unsafe impl RefEncode for ARFrameSemantics {
 pub struct ARWorldAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARWorldAlignment {
-    /// Aligns the world with gravity that is defined by vector (0, -1, 0).
+    /// The coordinate system’s y-axis is parallel to gravity, and its origin is the initial position of the device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/gravity?language=objc)
+    /// ## Discussion
+    ///
+    /// The y-axis matches the direction of gravity as detected by the device’s motion sensing hardware; that is, the vector `(0,-1,0)` points downward.
+    ///
+    /// The position and orientation of the device as of when the session configuration is first run determine the rest of the coordinate system: For the z-axis, ARKit chooses a basis vector `(0,0,-1)` pointing in the direction the device camera faces and perpendicular to the gravity axis. ARKit chooses a x-axis based on the z- and y-axes using the right hand rule—that is, the basis vector `(1,0,0)` is orthogonal to the other two axes, and (for a viewer looking in the negative-z direction) points toward the right.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3ed38f04b1474498ccb4383b85c332a0/media-2891463~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8e9847c4e7859da69ad7cbda0ca2192f/media-2891463%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/8e9847c4e7859da69ad7cbda0ca2192f/media-2891463%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
+    /// Aligns the world with gravity that is defined by vector (0, -1, 0).
     #[doc(alias = "ARWorldAlignmentGravity")]
     pub const Gravity: Self = Self(0);
+    /// The coordinate system’s y-axis is parallel to gravity, its x- and z-axes are oriented to compass heading, and its origin is the initial position of the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The y-axis matches the direction of gravity as detected by the device’s motion sensing hardware; that is, the vector `(0,-1,0)` points downward.
+    ///
+    /// The x- and z-axes match the longitude and latitude directions as measured by Location Services. The vector `(0,0,-1)` points to true north and the vector `(-1,0,0)` points west. (That is, the positive x-, y-, and z-axes point east, up, and south, respectively.)
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0658967df506a4ae213398e3dc18079e/media-2891462~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/43ed9c7be6301ec1d30c268015670bf6/media-2891462%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/43ed9c7be6301ec1d30c268015670bf6/media-2891462%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Although this option fixes the _directions_ of the three coordinate axes to real-world directions, the _location_ of the coordinate system’s origin is still relative to the device, matching the device’s position as of when the session configuration is first run.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Using gravity and heading alignment requires tracking the device’s geographic location. Your app’s Info.plist must include user-facing text for the [NSLocationUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/plist/info/NSLocationUsageDescription) or [NSLocationWhenInUseUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/plist/info/NSLocationWhenInUseUsageDescription) key so that the user can grant your app permission for location tracking.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Aligns the world with gravity that is defined by the vector (0, -1, 0)
     /// and heading (w.r.t. True North) that is given by the vector (0, 0, -1).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/gravityandheading?language=objc)
     #[doc(alias = "ARWorldAlignmentGravityAndHeading")]
     pub const GravityAndHeading: Self = Self(1);
-    /// Aligns the world with the camera’s orientation.
+    /// The scene coordinate system is locked to match the orientation of the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/camera?language=objc)
+    /// ## Discussion
+    ///
+    /// Camera alignment defines a coordinate system based on the native sensor orientation of the device camera. Relative to a [`AVCaptureVideoOrientationLandscapeRight`](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/landscaperight)-oriented camera image, the x-axis points to the right, the y-axis points up, and the z-axis points out the front of the device (toward the user).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This coordinate system is always the same regardless of device or user interface orientation. That is, the x-axis always points along the long axis of the device, even if that direction is “down” relative to the user.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When this alignment is active, ARKit performs no device motion tracking. That is, world-space positions are effectively always relative to the current position and orientation of the device. (For example, a SceneKit object placed in an [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) will thus maintain the same position on screen, even as the camera image changes while the device moves.)
+    ///
+    ///
+    /// Aligns the world with the camera’s orientation.
     #[doc(alias = "ARWorldAlignmentCamera")]
     pub const Camera: Self = Self(2);
 }
@@ -132,9 +227,24 @@ unsafe impl RefEncode for ARWorldAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Enum constants for indicating the mode of environment texturing to run.
+/// The available environment texturing options for world tracking.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum?language=objc)
+/// ## Discussion
+///
+/// Environment textures are cube-map textures that depict the view in all directions from a specific point in a scene. In 3D asset rendering, environment textures are the basis for image-based lighting algorithms where surfaces can realistically reflect light from their surroundings. ARKit generates environment textures during an AR session using camera imagery, allowing SceneKit or a custom-rendering engine to provide realistic image-based lighting for virtual objects in your AR experience.
+///
+/// To enable texture map generation for your configuration, change this property (from its default value of [`AREnvironmentTexturingNone`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/none)):
+///
+/// - With [`AREnvironmentTexturingManual`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/manual) environment texturing, you identify points in the scene for which you want light probe texture maps by creating [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) objects and adding them to the session.
+///
+/// - With [`AREnvironmentTexturingAutomatic`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/automatic) environment texturing, ARKit automatically creates, positions, and adds [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) objects to the session.
+///
+/// In both cases, ARKit automatically generates environment textures as the session collects camera imagery. Use a delegate method such as [`session:didUpdateAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8) to find out when a texture is available, and access it from the anchor’s [`environmentTexture`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor/environmenttexture) property.
+///
+/// If you display AR content using [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) and the [`automaticallyUpdatesLighting`](https://developer.apple.com/documentation/arkit/arscnview/automaticallyupdateslighting) option, SceneKit automatically retrieves [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) texture maps and uses them to light the scene.
+///
+///
+/// Enum constants for indicating the mode of environment texturing to run.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -142,20 +252,37 @@ unsafe impl RefEncode for ARWorldAlignment {
 pub struct AREnvironmentTexturing(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl AREnvironmentTexturing {
+    /// The framework doesn’t generate environment textures.
     /// No texture information is gathered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/none?language=objc)
     #[doc(alias = "AREnvironmentTexturingNone")]
     pub const None: Self = Self(0);
+    /// The framework generates environment textures only for probe anchors you explicitly add to the session.
+    ///
+    /// ## Discussion
+    ///
+    /// When you use this [`environmentTexturing`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.property) option, you must manually choose when and where to generate environment map textures:
+    ///
+    /// 1. Create an [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) object with a `transform` indicating its position in the scene.
+    ///
+    /// 2. Add the probe anchor to the session with the [`addAnchor:`](https://developer.apple.com/documentation/arkit/arsession/add(anchor:)) method.
+    ///
+    /// If you display AR content using [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview), SceneKit automatically retrieves texture maps from probe anchors and uses them to light the scene. Otherwise, use a delegate method such as [`session:didUpdateAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8) to find out when the probe anchor’s texture has been updated and access the [`environmentTexture`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor/environmenttexture) property.
+    ///
+    ///
     /// Texture information is gathered for the environment.
     /// Environment textures will be generated for AREnvironmentProbes added to the session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/manual?language=objc)
     #[doc(alias = "AREnvironmentTexturingManual")]
     pub const Manual: Self = Self(1);
-    /// Texture information is gathered for the environment and probes automatically placed in the scene.
+    /// The framework automatically determines when and where to generate environment textures.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/automatic?language=objc)
+    /// ## Discussion
+    ///
+    /// When you use this [`environmentTexturing`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.property) option, ARKit automatically chooses positions in the scene to generate environment textures based on the camera imagery it has collected and the other anchors you’ve placed.
+    ///
+    /// If you display AR content using [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview), SceneKit automatically retrieves texture maps from probe anchors and uses them to light the scene. Otherwise, use a delegate method such as [`session:didUpdateAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8) to find out when the probe anchor’s texture has been updated and access the [`environmentTexture`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor/environmenttexture) property.
+    ///
+    ///
+    /// Texture information is gathered for the environment and probes automatically placed in the scene.
     #[doc(alias = "AREnvironmentTexturingAutomatic")]
     pub const Automatic: Self = Self(2);
 }
@@ -170,9 +297,14 @@ unsafe impl RefEncode for AREnvironmentTexturing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Types of scene reconstruction.
+/// Options that enable ARKit to detect the shape of the physical environment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/scenereconstruction?language=objc)
+/// ## Overview
+///
+/// When you set one of the these values onto a world-tracking configuration’s [`sceneReconstruction`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/scenereconstruction) property, ARKit provides you with a mesh that models the real-world surrounding the user.
+///
+///
+/// Types of scene reconstruction.
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -181,19 +313,16 @@ pub struct ARSceneReconstruction(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl ARSceneReconstruction: NSUInteger {
+/// Disables the scene reconstruction feature.
 /// No scene reconstruction is run.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscenereconstruction/arscenereconstructionnone?language=objc)
         #[doc(alias = "ARSceneReconstructionNone")]
         const None = 0;
+/// A polygonal mesh approximation of the physical environment.
 /// Scene reconstruction generates a mesh of the world
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/scenereconstruction/mesh?language=objc)
         #[doc(alias = "ARSceneReconstructionMesh")]
         const Mesh = 1<<0;
+/// An approximate shape of the physical environment, including classification of the real-world objects within it.
 /// Scene reconstruction generates a mesh of the world with classification for each face.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/scenereconstruction/meshwithclassification?language=objc)
         #[doc(alias = "ARSceneReconstructionMeshWithClassification")]
         const MeshWithClassification = (1<<1)|(1<<0);
     }
@@ -211,9 +340,24 @@ unsafe impl RefEncode for ARSceneReconstruction {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An object to describe and configure the Augmented Reality techniques to be used in an ARSession.
+    /// The base object that contains information about how to configure an augmented reality session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// [`ARConfiguration`](https://developer.apple.com/documentation/arkit/arconfiguration) defines a base class for the different options you can configure in your AR experience.
+    ///
+    /// All AR configurations establish a correspondence between the real world that the device inhabits and the virtual 3D-coordinate space, where you model content. When your app mixes virtual content with a live-camera image, the user experiences the illusion that your virtual content is part of the real world.
+    ///
+    /// To acquire the live-camera imagery, ARKit manages a camera-capture pipeline for you. Depending on the configuration you choose, it determines the cameras that capture imagery, and which camera feed the app displays.
+    ///
+    /// AR apps recognize real-world regions of interest. At runtime, ARKit generates an [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) for a real-world object it recognizes, which allows an app to refer to its details, such as size and physical location. The configuration you choose determines the kinds of real-world objects ARKit recognizes and makes available to your app.
+    ///
+    /// Don’t allocate [`ARConfiguration`](https://developer.apple.com/documentation/arkit/arconfiguration) yourself; instead, instantiate one of its subclasses.
+    ///
+    /// For more information about the camera-capture pipeline, see [Choosing Which Camera Feed to Augment](https://developer.apple.com/documentation/arkit/choosing-which-camera-feed-to-augment).
+    ///
+    ///
+    /// An object to describe and configure the Augmented Reality techniques to be used in an ARSession.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -385,14 +529,35 @@ impl ARConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks the position of a device in relation to objects in the environment.
+    ///
+    /// ## Overview
+    ///
+    /// The [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) class tracks the device’s movement with six degrees of freedom (6DOF): the three rotation axes (roll, pitch, and yaw), and three translation axes (movement in x, y, and z).
+    ///
+    /// This kind of tracking can create immersive AR experiences: A virtual object can appear to stay in the same place relative to the real world, even as the user tilts the device to look above or below the object, or moves the device around to see the object’s sides and back.
+    ///
+    ///
+    /// ![Three illustrated variations of an iPhone running an app that displays an AR experience using the rear camera. The physical environment is depicted with a couch, in front of which, the app displays a virtual character. In the left picture, the iPhone views the couch straight on with the virtual character centered onscreen. In the middle picture, the device is rotated 30 degrees about the y-axis to the right, and the right-most portion of the couch and virtual character are visible onscreen only. In the right picture, the device is translated slightly to the left, and the left-most portions of the couch and virtual character are visible onscreen only.](https://docs-assets.developer.apple.com/published/8f5d9e55ef212af5eaf82adb0731cc5c/media-2923906%402x.png)
+    ///
+    ///
+    /// World-tracking sessions also provide several ways for your app to recognize or interact with elements of the real-world scene visible to the camera:
+    ///
+    /// - Find real-world horizontal or vertical surfaces with [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property). Add the surfaces to the session as [`ARPlaneAnchor`](https://developer.apple.com/documentation/arkit/arplaneanchor) objects.
+    ///
+    /// - Recognize and track the movement of 2D images with [`detectionImages`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionimages). Add 2D images to the scene as [`ARImageAnchor`](https://developer.apple.com/documentation/arkit/arimageanchor) objects.
+    ///
+    /// - Recognize 3D objects with [`detectionObjects`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionobjects). Add 3D objects to the scene as [`ARObjectAnchor`](https://developer.apple.com/documentation/arkit/arobjectanchor) objects.
+    ///
+    /// - Find the 3D positions of real-world features that correspond to a touch point on the device’s screen with ray casting.
+    ///
+    ///
     /// A configuration for running world tracking.
     ///
     ///
     /// World tracking provides 6 degrees of freedom tracking of the device.
     /// By finding feature points in the scene, world tracking enables performing hit-tests against the frame.
     /// Tracking can no longer be resumed once the session is paused.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -639,12 +804,33 @@ impl ARWorldTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks only the device’s orientation using the rear-facing camera.
+    ///
+    /// ## Overview
+    ///
+    /// All AR configurations establish a correspondence between the real world the device inhabits and a virtual 3D coordinate space where you can model content. When your app displays that content together with a live camera image, the user experiences the illusion that your virtual content is part of the real world.
+    ///
+    /// Creating and maintaining this correspondence between spaces requires tracking the device’s motion. The [`AROrientationTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arorientationtrackingconfiguration) class tracks the device’s movement with three degrees of freedom (3DOF): specifically, the three rotation axes (roll, pitch, and yaw).
+    ///
+    /// This basic level of motion tracking can create limited AR experiences: A virtual object can appear to be part of the real world, even as the user rotates the device to look above, below, or beside that object. However, this configuration cannot track movement of the device: non-trivially changing the device’s position breaks the AR illusion, causing virtual content to appear to drift relative to the real world. For example, the user cannot walk around to see the sides and back of a virtual object. Additionally, 3DOF tracking does not support plane detection or hit testing.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Because 3DOF tracking creates limited AR experiences, you should generally not use the [`AROrientationTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arorientationtrackingconfiguration) class directly. Instead, use [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) for six degrees of freedom (6DOF) plane detection and hit testing. Use 3DOF tracking only as a fallback in situations where 6DOF tracking is temporarily unavailable.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/fe068e13bffe2d5438e7df5078b06416/media-2923907%402x.png)
+    ///
+    ///
+    ///
     /// A configuration for running orientation tracking.
     ///
     ///
     /// Orientation tracking provides 3 degrees of freedom tracking of the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arorientationtrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -693,14 +879,31 @@ impl AROrientationTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks facial movement and expressions using the front camera.
+    ///
+    /// ## Overview
+    ///
+    /// A face-tracking configuration detects faces within 3 meters of the device’s front camera. When ARKit detects a face, it creates an [`ARFaceAnchor`](https://developer.apple.com/documentation/arkit/arfaceanchor) object that provides information about a person’s facial position, orientation, topology, and expressions.
+    ///
+    /// Face tracking supports devices with Apple Neural Engine in iOS 14 and iPadOS 14 and requires a device with a TrueDepth camera on iOS 13 and iPadOS 13 and earlier. To determine whether the device supports face tracking, call [`isSupported`](https://developer.apple.com/documentation/arkit/arconfiguration/issupported) on [`ARFaceTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arfacetrackingconfiguration) before attempting to use this configuration.
+    ///
+    /// When you enable the [`lightEstimationEnabled`](https://developer.apple.com/documentation/arkit/arconfiguration/islightestimationenabled) setting, a face-tracking configuration estimates directional and environmental lighting (an [`ARDirectionalLightEstimate`](https://developer.apple.com/documentation/arkit/ardirectionallightestimate) object) by referring to the detected face as a light probe.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because face tracking provides your app with personal facial information, your app must include a privacy policy describing to users how you intend to use face tracking and face data. For details, see the [Apple Developer Program License Agreement](https://developer.apple.com/terms/).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A configuration for running face tracking.
     ///
     ///
     /// Face tracking uses the front facing camera to track the face in 3D providing details on the topology and expression of the face.
     /// A detected face will be added to the session as an ARFaceAnchor object which contains information about head pose, mesh, eye pose, and blend shape
     /// coefficients. If light estimation is enabled the detected face will be treated as a light probe and used to estimate the direction of incoming light.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arfacetrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -778,12 +981,29 @@ impl ARFaceTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks known images using the rear-facing camera.
+    ///
+    /// ## Overview
+    ///
+    /// All AR configurations establish a correspondence between the real world the device inhabits and a virtual 3D coordinate space where you can model content. When your app displays that content together with a live camera image, the user experiences the illusion that your virtual content is part of the real world.
+    ///
+    /// With [`ARImageTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arimagetrackingconfiguration), ARKit establishes a 3D space not by tracking the motion of the device relative to the world, but solely by detecting and tracking the motion of known 2D images in view of the camera. [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) can also detect images, but each configuration has its own strengths:
+    ///
+    /// - World tracking has a higher performance cost than image-only tracking, so your session can reliably track more images at once with [`ARImageTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arimagetrackingconfiguration).
+    ///
+    /// - Image-only tracking lets you anchor virtual content to known images only when those images are in view of the camera. World tracking with image detection lets you use known images to add virtual content to the 3D world, and continues to track the position of that content in world space even after the image is no longer in view.
+    ///
+    /// - World tracking works best in a stable, nonmoving environment. You can use image-only tracking to add virtual content to known images in more situations—for example, an advertisement inside a moving subway car.
+    ///
+    /// When an image-tracking configuration detects known images, it tracks their movement with six degrees of freedom (6DOF): specifically, the three rotation axes (roll, pitch, and yaw), and three translation axes (movement in x, y, and z).
+    ///
+    /// To use [`ARImageTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arimagetrackingconfiguration), define ARReferenceImage objects (either at runtime or by bundling them in your Xcode asset catalog) and assign them to the configuration’s [`trackingImages`](https://developer.apple.com/documentation/arkit/arimagetrackingconfiguration/trackingimages) property. Then, as with any AR configuration, pass the configuration to your session’s [`runWithConfiguration:options:`](https://developer.apple.com/documentation/arkit/arsession/run(_:options:)) method.
+    ///
+    ///
     /// A configuration for running image tracking.
     ///
     ///
     /// Image tracking provides 6 degrees of freedom tracking of known images. Four images may be tracked simultaneously.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arimagetrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -863,14 +1083,27 @@ impl ARImageTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that recognizes objects and collects high-fidelity data about specific objects using the rear-facing camera.
+    ///
+    /// ## Overview
+    ///
+    /// To create an app that recognizes objects in the physical environment, first you scan them during development using `ARObjectScanningConfiguration`. After you’ve scanned an object, call [`createReferenceObjectWithTransform:center:extent:completionHandler:`](https://developer.apple.com/documentation/arkit/arsession/createreferenceobject(transform:center:extent:completionhandler:)) to turn it into an [`ARReferenceObject`](https://developer.apple.com/documentation/arkit/arreferenceobject) that you can use to detect it again at run-time. When users run your app, you ask ARKit to look for your scanned obects by running a world tracking configuration and assigning reference objects to its [`detectionObjects`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionobjects) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `ARObjectScanningConfiguration` is for use only in development scenarios. Because the high-fidelity spatial mapping required by object scanning has a high performance and energy cost, many ARKit features are disabled that aren’t required for object scanning.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A configuration for scanning objects.
     ///
     ///
     /// The object scanning configuration runs world tracking, capturing additional detail in order to create reference objects.
     /// Running object scanning will consume additional power in order to provide more detailed features.
     /// The createReferenceObject method can be called on the session to capture a scan of an object in the world.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arobjectscanningconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -934,6 +1167,17 @@ impl ARObjectScanningConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks human body poses, planar surfaces, and images using the rear-facing camera.
+    ///
+    /// ## Overview
+    ///
+    /// When ARKit identifies a person in the rear camera’s feed, it calls [`session:didAddAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didadd:)), passing an [`ARBodyAnchor`](https://developer.apple.com/documentation/arkit/arbodyanchor) you can use to track the body’s movement.
+    ///
+    /// When you enable plane detection and image detection, you can use a body anchor to display a virtual character and set the character on a surface or image that you choose.
+    ///
+    /// By default, [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) includes [`ARFrameSemanticBodyDetection`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/bodydetection), which gives you access to the joint positions of a person that ARKit detects in the camera feed via the frame’s [`detectedBody`](https://developer.apple.com/documentation/arkit/arframe/detectedbody).
+    ///
+    ///
     /// A configuration for running body tracking.
     ///
     ///
@@ -943,8 +1187,6 @@ extern_class!(
     /// See: ARBodyAnchor
     ///
     /// See: -[ARFrame detectedBody]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arbodytrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -1133,13 +1375,18 @@ impl ARBodyTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks only the device’s position in 3D space.
+    ///
+    /// ## Overview
+    ///
+    /// Enables 6 degrees of freedom tracking of the iOS device by running the camera at lowest possible resolution and frame rate. Use this configuration when you don’t need to parse the camera feed, such as for example, virtual reality scenarios.
+    ///
+    ///
     /// A configuration for running positional tracking.
     ///
     ///
     /// Positional tracking provides 6 degrees of freedom tracking of the device by running the camera at lowest possible resolution and frame
     /// rate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arpositionaltrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -1208,12 +1455,51 @@ impl ARPositionalTrackingConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration that tracks locations with GPS, map data, and a device’s compass.
+    ///
+    /// ## Overview
+    ///
+    /// This configuration creates location anchors ([`ARGeoAnchor`](https://developer.apple.com/documentation/arkit/argeoanchor)) that specify a particular latitude, longitude, and optionally, altitude to enable an app to track geographic areas of interest in an AR experience.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`isSupported`](https://developer.apple.com/documentation/arkit/arconfiguration/issupported) property returns [`true`](https://developer.apple.com/documentation/swift/true) for this class on iOS 14 & iPadOS 14 devices that have an A12 chip or later and cellular (GPS) capability. Geotracking is available in specific geographic locations. To determine availability at the user’s location at runtime, call [`checkAvailabilityWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Geotracking occurs exclusively outdoors. If a geotracking app navigates users between waypoints, your app needs to handle any events along a route. The user must have an internet connection, and you can provide them information about data usage, as described in [`ARGeoAnchor`](https://developer.apple.com/documentation/arkit/argeoanchor).
+    ///
+    /// ### Encourage user safety
+    ///
+    /// To keep your users’ focus on the road while traveling, discourage them from looking at the device when in motion, such as while riding a bike. Keep users informed when navigating through unfamiliar territory. For instance, you can recommend they steer clear of private property, or remind them to check their device’s battery level before beginning a long route.
+    ///
+    /// ### Refine the user’s position with imagery
+    ///
+    /// To place location anchors with precision, geotracking requires a better understanding of the user’s geographic location than is possible with GPS alone. Based on the user’s GPS coordinates, ARKit downloads imagery that depicts the physical environment in that area. Apple collects this _localization imagery_ in advance by capturing photos of the view from the street and recording the geographic position at each photo. By comparing the device’s current camera image with this imagery, the session matches the user’s precise geographic location with the scene’s local coordinates. For information about the user’s position in local space, see [`transform`](https://developer.apple.com/documentation/arkit/arcamera/transform).
+    ///
+    /// Localization imagery captures views from public streets and routes accessible by car, but doesn’t include images of gated or pedestrian-only areas.
+    ///
+    /// Geotracking sessions use localization imagery in the [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing) state.
+    ///
+    /// ### Supported areas and cities
+    ///
+    /// Localization imagery is available for specific areas in over 20 countries, including many metropolitan areas in Australia, Europe, Japan, and North America. To check availability in a particular location, see the [`checkAvailabilityWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)) function.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  You can share an experience of geotracking with developers who live outside an area that supports it. Record a session in your app in an area that supports localization imagery for developers to create and test their geotracking app. For more information, see [Recording and Replaying AR Session Data](https://developer.apple.com/documentation/arkit/recording-and-replaying-ar-session-data).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A configuration for running geographical world tracking.
     ///
     ///
     /// It allows placing geo-referenced anchors (ARGeoAnchor) in the scene by running world tracking with location and compass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration?language=objc)
     #[unsafe(super(ARConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

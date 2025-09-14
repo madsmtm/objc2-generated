@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate the app’s permission to record audio.
 /// These are the values returned by recordPermission.
 ///
 /// The user has not yet been asked for permission.
@@ -14,20 +15,18 @@ use crate::*;
 /// The user has been asked and has denied permission.
 ///
 /// The user has been asked and has granted permission.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioApplicationRecordPermission(pub NSInteger);
 impl AVAudioApplicationRecordPermission {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum/undetermined?language=objc)
+    /// Indicates the app hasn’t requested recording permission.
     #[doc(alias = "AVAudioApplicationRecordPermissionUndetermined")]
     pub const Undetermined: Self = Self(0x756e6474);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum/denied?language=objc)
+    /// Indicates the user denies the app permission to record audio.
     #[doc(alias = "AVAudioApplicationRecordPermissionDenied")]
     pub const Denied: Self = Self(0x64656e79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum/granted?language=objc)
+    /// Indicates the user grants the app permission to record audio.
     #[doc(alias = "AVAudioApplicationRecordPermissionGranted")]
     pub const Granted: Self = Self(0x67726e74);
 }
@@ -40,6 +39,7 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate an app’s permission to add audio to calls.
 /// These are the values returned by microphoneInjectionPermission.
 ///
 /// The user has disabled this service for all apps.
@@ -51,23 +51,21 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
 /// The user has been asked and has granted permission.
 ///
 /// Introduced: ios(18.2) visionos(2.2)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioApplicationMicrophoneInjectionPermission(pub NSInteger);
 impl AVAudioApplicationMicrophoneInjectionPermission {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/servicedisabled?language=objc)
+    /// A person disables this service for all apps.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionServiceDisabled")]
     pub const ServiceDisabled: Self = Self(0x73726473);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/undetermined?language=objc)
+    /// The app hasn’t requested a person’s permission to add audio to calls.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionUndetermined")]
     pub const Undetermined: Self = Self(0x756e6474);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/denied?language=objc)
+    /// A person denies the app permission to add audio to calls.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionDenied")]
     pub const Denied: Self = Self(0x64656e79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum/granted?language=objc)
+    /// A person grants the app permission to add audio to calls.
     #[doc(alias = "AVAudioApplicationMicrophoneInjectionPermissionGranted")]
     pub const Granted: Self = Self(0x67726e74);
 }
@@ -81,6 +79,7 @@ unsafe impl RefEncode for AVAudioApplicationMicrophoneInjectionPermission {
 }
 
 extern "C" {
+    /// A notification the system posts when the app’s audio input mute state changes.
     /// Notification sent to registered listeners when the application's input is muted
     /// or unmuted.
     ///
@@ -91,23 +90,31 @@ extern "C" {
     /// Setting the `inputMuted` state while the record session is not active is allowed and will be stored, but it will not trigger a notification for the
     /// state change. When the record session subsequently goes active, the `inputMuted` state will be applied, and this notification will be dispatched
     /// with the latest input muted state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/inputmutestatechangenotification?language=objc)
     pub static AVAudioApplicationInputMuteStateChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A user information key to determine the app’s audio mute state.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key to retrieve the app’s mute state from an [`AVAudioApplicationInputMuteStateChangeNotification`](https://developer.apple.com/documentation/avfaudio/avaudioapplication/inputmutestatechangenotification).
+    ///
+    ///
     /// Keys for AVAudioApplicationInputMuteStateChangeNotification
     /// Value is NSNumber type with boolean value 0 for unmuted or value 1 for muted (samples zeroed out)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/mutestatekey?language=objc)
     pub static AVAudioApplicationMuteStateKey: &'static NSString;
 }
 
 extern_class!(
-    /// Class containing methods that relate to an application bundle's audio (i.e. a collection of one or more AVAudioSession instances)
+    /// An object that manages one or more audio sessions that belong to an app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication?language=objc)
+    /// ## Overview
+    ///
+    /// Access the shared audio application instance to control app-level audio operations, such as requesting microphone permission and controlling audio input muting.
+    ///
+    ///
+    /// Class containing methods that relate to an application bundle's audio (i.e. a collection of one or more AVAudioSession instances)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioApplication;

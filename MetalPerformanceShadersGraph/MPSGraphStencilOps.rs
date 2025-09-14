@@ -12,10 +12,17 @@ use crate::*;
 extern_class!(
     /// The class that defines the parameters for a stencil operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following [`MPSGraph`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph) method:
+    ///
+    /// - [`stencilWithSourceTensor:weightsTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/stencil(withsourcetensor:weightstensor:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for a stencil operation.
+    ///
     /// Use this descriptor with the following ``MPSGraph`` method:
     /// - ``MPSGraph/stencilWithSourceTensor:weightsTensor:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

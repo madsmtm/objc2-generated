@@ -10,15 +10,26 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventmaskforallevents?language=objc)
+///
+/// ## Discussion
+///
+/// An event mask that specifies all event types.
+///
+///
 pub const kCGEventMaskForAllEvents: c_uint = !0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapadded?language=objc)
 pub const kCGNotifyEventTapAdded: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapAdded\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapremoved?language=objc)
 pub const kCGNotifyEventTapRemoved: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapRemoved\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent?language=objc)
+/// Defines an opaque type that represents a low-level hardware event.
+///
+/// ## Overview
+///
+/// Low-level hardware events of this type are referred to as Quartz events. A typical event in macOS originates when the user manipulates an input device such as a mouse or a keyboard. The device driver associated with that device, through the I/O Kit, creates a low-level event, puts it in the window server’s event queue, and notifies the window server. The window server creates a Quartz event, annotates the event, and dispatches the event to the appropriate run-loop port of the target process. There the event is picked up by the Carbon Event Manager and forwarded to the event-handling mechanism appropriate to the application environment. You can use event taps to gain access to Quartz events at several different steps in this process.
+///
+/// This opaque type is derived from CFType and inherits the properties that all Core Foundation types have in common. For more information, see doc://com.apple.documentation/documentation/corefoundation/cftype.
+///
+///
 #[doc(alias = "CGEventRef")]
 #[repr(C)]
 pub struct CGEvent {
@@ -34,19 +45,48 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CGEvent"> for CGEvent {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton?language=objc)
+/// Constants that specify buttons on a one, two, or three-button mouse.
+///
+/// ## Overview
+///
+/// Quartz supports up to 32 mouse buttons. The first three buttons are specified using these three constants. Additional buttons are specified in USB order using the integers 3 to 31.
+///
+/// These constants are used:
+///
+/// - In the function [`CGEventCreateMouseEvent`](https://developer.apple.com/documentation/coregraphics/cgevent/init(mouseeventsource:mousetype:mousecursorposition:mousebutton:)) to specify the button that’s changing state.
+///
+/// - In the function [`CGEventSourceButtonState`](https://developer.apple.com/documentation/coregraphics/cgeventsource/buttonstate(_:button:)) to specify the button that’s being tested.
+///
+/// - To specify the value of the `kCGMouseEventButtonNumber` event field when modifying an event.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGMouseButton(pub u32);
 impl CGMouseButton {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton/left?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies the only mouse button on a one-button mouse, or the left mouse button on a two-button or three-button mouse.
+    ///
+    ///
     #[doc(alias = "kCGMouseButtonLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton/right?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies the right mouse button on a two-button or three-button mouse.
+    ///
+    ///
     #[doc(alias = "kCGMouseButtonRight")]
     pub const Right: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton/center?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies the center mouse button on a three-button mouse.
+    ///
+    ///
     #[doc(alias = "kCGMouseButtonCenter")]
     pub const Center: Self = Self(2);
 }
@@ -61,16 +101,22 @@ unsafe impl RefEncode for CGMouseButton {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrolleventunit?language=objc)
+/// Constants that specify the unit of measurement for a scrolling event.
+///
+/// ## Overview
+///
+/// You may pass one of these constants to the function [`CGEventCreateScrollWheelEvent`](https://developer.apple.com/documentation/coregraphics/cgeventcreatescrollwheelevent) to specify the unit of measurement for the event. The constant `kCGScrollEventUnitPixel` produces an event that most applications interpret as a smooth scrolling event. By default, the scale is about ten pixels per line. You can alter the scale with the function [`CGEventSourceSetPixelsPerLine`](https://developer.apple.com/documentation/coregraphics/cgeventsourcesetpixelsperline).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGScrollEventUnit(pub u32);
 impl CGScrollEventUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrolleventunit/pixel?language=objc)
+    /// Specifies that the unit of measurement is pixels.
     #[doc(alias = "kCGScrollEventUnitPixel")]
     pub const Pixel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrolleventunit/line?language=objc)
+    /// Specifies that the unit of measurement is lines.
     #[doc(alias = "kCGScrollEventUnitLine")]
     pub const Line: Self = Self(1);
 }
@@ -85,22 +131,17 @@ unsafe impl RefEncode for CGScrollEventUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGMomentumScrollPhase(pub u32);
 impl CGMomentumScrollPhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/none?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/begin?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseBegin")]
     pub const Begin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/continuous?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseContinue")]
     pub const Continue: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase/end?language=objc)
     #[doc(alias = "kCGMomentumScrollPhaseEnd")]
     pub const End: Self = Self(3);
 }
@@ -115,25 +156,19 @@ unsafe impl RefEncode for CGMomentumScrollPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGScrollPhase(pub u32);
 impl CGScrollPhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/began?language=objc)
     #[doc(alias = "kCGScrollPhaseBegan")]
     pub const Began: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/changed?language=objc)
     #[doc(alias = "kCGScrollPhaseChanged")]
     pub const Changed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/ended?language=objc)
     #[doc(alias = "kCGScrollPhaseEnded")]
     pub const Ended: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/cancelled?language=objc)
     #[doc(alias = "kCGScrollPhaseCancelled")]
     pub const Cancelled: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrollphase/maybegin?language=objc)
     #[doc(alias = "kCGScrollPhaseMayBegin")]
     pub const MayBegin: Self = Self(128);
 }
@@ -148,28 +183,21 @@ unsafe impl RefEncode for CGScrollPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGGesturePhase(pub u32);
 impl CGGesturePhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/none?language=objc)
     #[doc(alias = "kCGGesturePhaseNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/began?language=objc)
     #[doc(alias = "kCGGesturePhaseBegan")]
     pub const Began: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/changed?language=objc)
     #[doc(alias = "kCGGesturePhaseChanged")]
     pub const Changed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/ended?language=objc)
     #[doc(alias = "kCGGesturePhaseEnded")]
     pub const Ended: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/cancelled?language=objc)
     #[doc(alias = "kCGGesturePhaseCancelled")]
     pub const Cancelled: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase/maybegin?language=objc)
     #[doc(alias = "kCGGesturePhaseMayBegin")]
     pub const MayBegin: Self = Self(128);
 }
@@ -184,38 +212,44 @@ unsafe impl RefEncode for CGGesturePhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags?language=objc)
+/// Constants that indicate the modifier key state at the time an event is created, as well as other event-related states.
+///
+/// ## Overview
+///
+/// These constants specify masks for the bits in an event flags bit mask. Event flags indicate the modifier key state at the time an event is created, as well as other event-related states. Event flags are used in accessor functions such as [`CGEventGetFlags`](https://developer.apple.com/documentation/coregraphics/cgevent/flags), [`CGEventSetFlags`](https://developer.apple.com/documentation/coregraphics/cgeventsetflags), and [`CGEventSourceFlagsState`](https://developer.apple.com/documentation/coregraphics/cgeventsource/flagsstate(_:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventFlags(pub u64);
 bitflags::bitflags! {
     impl CGEventFlags: u64 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskalphashift?language=objc)
+/// Indicates that the Caps Lock key is down for a keyboard, mouse, or flag-changed event.
         #[doc(alias = "kCGEventFlagMaskAlphaShift")]
         const MaskAlphaShift = 65536;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskshift?language=objc)
+/// Indicates that the Shift key is down for a keyboard, mouse, or flag-changed event.
         #[doc(alias = "kCGEventFlagMaskShift")]
         const MaskShift = 131072;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskcontrol?language=objc)
+/// Indicates that the Control key is down for a keyboard, mouse, or flag-changed event.
         #[doc(alias = "kCGEventFlagMaskControl")]
         const MaskControl = 262144;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskalternate?language=objc)
+/// Indicates that the Alt or Option key is down for a keyboard, mouse, or flag-changed event.
         #[doc(alias = "kCGEventFlagMaskAlternate")]
         const MaskAlternate = 524288;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskcommand?language=objc)
+/// Indicates that the Command key is down for a keyboard, mouse, or flag-changed event.
         #[doc(alias = "kCGEventFlagMaskCommand")]
         const MaskCommand = 1048576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/maskhelp?language=objc)
+/// Indicates that the Help modifier key is down for a keyboard, mouse, or flag-changed event. This key is not present on most keyboards, and is different than the Help key found in the same row as Home and Page Up.
         #[doc(alias = "kCGEventFlagMaskHelp")]
         const MaskHelp = 4194304;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/masksecondaryfn?language=objc)
+/// Indicates that the Fn (Function) key is down for a keyboard, mouse, or flag-changed event. This key is found primarily on laptop keyboards.
         #[doc(alias = "kCGEventFlagMaskSecondaryFn")]
         const MaskSecondaryFn = 8388608;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/masknumericpad?language=objc)
+/// Identifies key events from the numeric keypad area on extended keyboards.
         #[doc(alias = "kCGEventFlagMaskNumericPad")]
         const MaskNumericPad = 2097152;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags/masknoncoalesced?language=objc)
+/// Indicates that mouse and pen movement events are not being coalesced.
         #[doc(alias = "kCGEventFlagMaskNonCoalesced")]
         const MaskNonCoalesced = 256;
     }
@@ -231,67 +265,85 @@ unsafe impl RefEncode for CGEventFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype?language=objc)
+/// Constants that specify the different types of input events.
+///
+/// ## Overview
+///
+/// These constants are used:
+///
+/// - In the functions [`CGEventTapCreate`](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreate(tap:place:options:eventsofinterest:callback:userinfo:)) and [`CGEventTapCreateForPSN`](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpsn(processserialnumber:place:options:eventsofinterest:callback:userinfo:)) to specify the events of interest for the new event tap.
+///
+/// - To indicate the event type passed to your event tap callback function.
+///
+/// - In the function [`CGEventCreateMouseEvent`](https://developer.apple.com/documentation/coregraphics/cgevent/init(mouseeventsource:mousetype:mousecursorposition:mousebutton:)) to specify the type of mouse event.
+///
+/// - In the functions [`CGEventGetType`](https://developer.apple.com/documentation/coregraphics/cgevent/type) and [`CGEventSetType`](https://developer.apple.com/documentation/coregraphics/cgeventsettype) to identify the event type.
+///
+/// - In the functions [`CGEventSourceCounterForEventType`](https://developer.apple.com/documentation/coregraphics/cgeventsource/counterforeventtype(_:eventtype:)) and [`CGEventSourceSecondsSinceLastEventType`](https://developer.apple.com/documentation/coregraphics/cgeventsource/secondssincelasteventtype(_:eventtype:)) to indicate the event type.
+///
+/// Note that tablet devices may generate mouse events with embedded tablet data, or tablet pointer and proximity events. Tablet mouse events allow tablets to be used with applications that are not tablet-aware.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventType(pub u32);
 impl CGEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/null?language=objc)
+    /// Specifies a null event.
     #[doc(alias = "kCGEventNull")]
     pub const Null: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/leftmousedown?language=objc)
+    /// Specifies a mouse down event with the left button.
     #[doc(alias = "kCGEventLeftMouseDown")]
     pub const LeftMouseDown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/leftmouseup?language=objc)
+    /// Specifies a mouse up event with the left button.
     #[doc(alias = "kCGEventLeftMouseUp")]
     pub const LeftMouseUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/rightmousedown?language=objc)
+    /// Specifies a mouse down event with the right button.
     #[doc(alias = "kCGEventRightMouseDown")]
     pub const RightMouseDown: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/rightmouseup?language=objc)
+    /// Specifies a mouse up event with the right button.
     #[doc(alias = "kCGEventRightMouseUp")]
     pub const RightMouseUp: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/mousemoved?language=objc)
+    /// Specifies a mouse moved event.
     #[doc(alias = "kCGEventMouseMoved")]
     pub const MouseMoved: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/leftmousedragged?language=objc)
+    /// Specifies a mouse drag event with the left button down.
     #[doc(alias = "kCGEventLeftMouseDragged")]
     pub const LeftMouseDragged: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/rightmousedragged?language=objc)
+    /// Specifies a mouse drag event with the right button down.
     #[doc(alias = "kCGEventRightMouseDragged")]
     pub const RightMouseDragged: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/keydown?language=objc)
+    /// Specifies a key down event.
     #[doc(alias = "kCGEventKeyDown")]
     pub const KeyDown: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/keyup?language=objc)
+    /// Specifies a key up event.
     #[doc(alias = "kCGEventKeyUp")]
     pub const KeyUp: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/flagschanged?language=objc)
+    /// Specifies a key changed event for a modifier or status key.
     #[doc(alias = "kCGEventFlagsChanged")]
     pub const FlagsChanged: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/scrollwheel?language=objc)
+    /// Specifies a scroll wheel moved event.
     #[doc(alias = "kCGEventScrollWheel")]
     pub const ScrollWheel: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tabletpointer?language=objc)
+    /// Specifies a tablet pointer event.
     #[doc(alias = "kCGEventTabletPointer")]
     pub const TabletPointer: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tabletproximity?language=objc)
+    /// Specifies a tablet proximity event.
     #[doc(alias = "kCGEventTabletProximity")]
     pub const TabletProximity: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/othermousedown?language=objc)
+    /// Specifies a mouse down event with one of buttons 2-31.
     #[doc(alias = "kCGEventOtherMouseDown")]
     pub const OtherMouseDown: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/othermouseup?language=objc)
+    /// Specifies a mouse up event with one of buttons 2-31.
     #[doc(alias = "kCGEventOtherMouseUp")]
     pub const OtherMouseUp: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/othermousedragged?language=objc)
+    /// Specifies a mouse drag event with one of buttons 2-31 down.
     #[doc(alias = "kCGEventOtherMouseDragged")]
     pub const OtherMouseDragged: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tapdisabledbytimeout?language=objc)
+    /// Specifies an event indicating the event tap is disabled because of timeout.
     #[doc(alias = "kCGEventTapDisabledByTimeout")]
     pub const TapDisabledByTimeout: Self = Self(4294967294);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype/tapdisabledbyuserinput?language=objc)
+    /// Specifies an event indicating the event tap is disabled because of user input.
     #[doc(alias = "kCGEventTapDisabledByUserInput")]
     pub const TapDisabledByUserInput: Self = Self(4294967295);
 }
@@ -306,208 +358,208 @@ unsafe impl RefEncode for CGEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtimestamp?language=objc)
+/// Defines the elapsed time in nanoseconds since startup that a Quartz event occurred.
+///
+/// ## Discussion
+///
+/// You set an event’s timestamp with [`CGEventSetTimestamp`](https://developer.apple.com/documentation/coregraphics/cgeventsettimestamp), and access it later with `CGEvent`’s [`CGEventGetTimestamp`](https://developer.apple.com/documentation/coregraphics/cgevent/timestamp) property.
+///
+///
 pub type CGEventTimestamp = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield?language=objc)
+/// Constants used as keys to access specialized fields in low-level events.
+///
+/// ## Overview
+///
+/// These constants are used as keys to access certain specialized event fields when using low-level accessor functions such as [`CGEventGetIntegerValueField`](https://developer.apple.com/documentation/coregraphics/cgevent/getintegervaluefield(_:)), [`CGEventSetIntegerValueField`](https://developer.apple.com/documentation/coregraphics/cgevent/setintegervaluefield(_:value:)), [`CGEventGetDoubleValueField`](https://developer.apple.com/documentation/coregraphics/cgevent/getdoublevaluefield(_:)), and [`CGEventSetDoubleValueField`](https://developer.apple.com/documentation/coregraphics/cgevent/setdoublevaluefield(_:value:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventField(pub u32);
 impl CGEventField {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventnumber?language=objc)
+    /// Key to access an integer field that contains the mouse button event number. Matching mouse-down and mouse-up events will have the same event number.
     #[doc(alias = "kCGMouseEventNumber")]
     pub const MouseEventNumber: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventclickstate?language=objc)
+    /// Key to access an integer field that contains the mouse button click state. A click state of 1 represents a single click. A click state of 2 represents a double-click. A click state of 3 represents a triple-click.
     #[doc(alias = "kCGMouseEventClickState")]
     pub const MouseEventClickState: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventpressure?language=objc)
+    /// Key to access a double field that contains the mouse button pressure. The pressure value may range from 0 to 1, with 0 representing the mouse being up. This value is commonly set by tablet pens mimicking a mouse.
     #[doc(alias = "kCGMouseEventPressure")]
     pub const MouseEventPressure: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventbuttonnumber?language=objc)
+    /// Key to access an integer field that contains the mouse button number. For information about the possible values, see [`CGMouseButton`](https://developer.apple.com/documentation/coregraphics/cgmousebutton).
     #[doc(alias = "kCGMouseEventButtonNumber")]
     pub const MouseEventButtonNumber: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventdeltax?language=objc)
+    /// Key to access an integer field that contains the horizontal mouse delta since the last mouse movement event.
     #[doc(alias = "kCGMouseEventDeltaX")]
     pub const MouseEventDeltaX: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventdeltay?language=objc)
+    /// Key to access an integer field that contains the vertical mouse delta since the last mouse movement event.
     #[doc(alias = "kCGMouseEventDeltaY")]
     pub const MouseEventDeltaY: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventinstantmouser?language=objc)
+    /// Key to access an integer field. The value is non-zero if the event should be ignored by the Inkwell subsystem.
     #[doc(alias = "kCGMouseEventInstantMouser")]
     pub const MouseEventInstantMouser: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventsubtype?language=objc)
+    /// Key to access an integer field that encodes the mouse event subtype as a `kCFNumberIntType`.
     #[doc(alias = "kCGMouseEventSubtype")]
     pub const MouseEventSubtype: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/keyboardeventautorepeat?language=objc)
+    /// Key to access an integer field, non-zero when this is an autorepeat of a key-down, and zero otherwise.
     #[doc(alias = "kCGKeyboardEventAutorepeat")]
     pub const KeyboardEventAutorepeat: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/keyboardeventkeycode?language=objc)
+    /// Key to access an integer field that contains the virtual keycode of the key-down or key-up event.
     #[doc(alias = "kCGKeyboardEventKeycode")]
     pub const KeyboardEventKeycode: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/keyboardeventkeyboardtype?language=objc)
+    /// Key to access an integer field that contains the keyboard type identifier.
     #[doc(alias = "kCGKeyboardEventKeyboardType")]
     pub const KeyboardEventKeyboardType: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventdeltaaxis1?language=objc)
+    /// Key to access an integer field that contains scrolling data. This field typically contains the change in vertical position since the last scrolling event from a Mighty Mouse scroller or a single-wheel mouse scroller.
     #[doc(alias = "kCGScrollWheelEventDeltaAxis1")]
     pub const ScrollWheelEventDeltaAxis1: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventdeltaaxis2?language=objc)
+    /// Key to access an integer field that contains scrolling data. This field typically contains the change in horizontal position since the last scrolling event from a Mighty Mouse scroller.
     #[doc(alias = "kCGScrollWheelEventDeltaAxis2")]
     pub const ScrollWheelEventDeltaAxis2: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventdeltaaxis3?language=objc)
+    /// This field is not used.
     #[doc(alias = "kCGScrollWheelEventDeltaAxis3")]
     pub const ScrollWheelEventDeltaAxis3: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventfixedptdeltaaxis1?language=objc)
+    /// Key to access a field that contains scrolling data. The scrolling data represents a line-based or pixel-based change in vertical position since the last scrolling event from a Mighty Mouse scroller or a single-wheel mouse scroller. The scrolling data uses a fixed-point 16.16 signed integer format. For example, if the field contains a value of 1.0, the integer 0x00010000 is returned by `CGEventGetIntegerValueField`. If this key is passed to `CGEventGetDoubleValueField`, the fixed-point value is converted to a double value.
     #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis1")]
     pub const ScrollWheelEventFixedPtDeltaAxis1: Self = Self(93);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventfixedptdeltaaxis2?language=objc)
+    /// Key to access a field that contains scrolling data. The scrolling data represents a line-based or pixel-based change in horizontal position since the last scrolling event from a Mighty Mouse scroller. The scrolling data uses a fixed-point 16.16 signed integer format. For example, if the field contains a value of 1.0, the integer 0x00010000 is returned by `CGEventGetIntegerValueField`. If this key is passed to `CGEventGetDoubleValueField`, the fixed-point value is converted to a double value.
     #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis2")]
     pub const ScrollWheelEventFixedPtDeltaAxis2: Self = Self(94);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventfixedptdeltaaxis3?language=objc)
+    /// This field is not used.
     #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis3")]
     pub const ScrollWheelEventFixedPtDeltaAxis3: Self = Self(95);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventpointdeltaaxis1?language=objc)
+    /// Key to access an integer field that contains pixel-based scrolling data. The scrolling data represents the change in vertical position since the last scrolling event from a Mighty Mouse scroller or a single-wheel mouse scroller.
     #[doc(alias = "kCGScrollWheelEventPointDeltaAxis1")]
     pub const ScrollWheelEventPointDeltaAxis1: Self = Self(96);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventpointdeltaaxis2?language=objc)
+    /// Key to access an integer field that contains pixel-based scrolling data. The scrolling data represents the change in horizontal position since the last scrolling event from a Mighty Mouse scroller.
     #[doc(alias = "kCGScrollWheelEventPointDeltaAxis2")]
     pub const ScrollWheelEventPointDeltaAxis2: Self = Self(97);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventpointdeltaaxis3?language=objc)
+    /// This field is not used.
     #[doc(alias = "kCGScrollWheelEventPointDeltaAxis3")]
     pub const ScrollWheelEventPointDeltaAxis3: Self = Self(98);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventscrollphase?language=objc)
     #[doc(alias = "kCGScrollWheelEventScrollPhase")]
     pub const ScrollWheelEventScrollPhase: Self = Self(99);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventscrollcount?language=objc)
     #[doc(alias = "kCGScrollWheelEventScrollCount")]
     pub const ScrollWheelEventScrollCount: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventmomentumphase?language=objc)
     #[doc(alias = "kCGScrollWheelEventMomentumPhase")]
     pub const ScrollWheelEventMomentumPhase: Self = Self(123);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventinstantmouser?language=objc)
+    /// Key to access an integer field that indicates whether the event should be ignored by the Inkwell subsystem. If the value is non-zero, the event should be ignored.
     #[doc(alias = "kCGScrollWheelEventInstantMouser")]
     pub const ScrollWheelEventInstantMouser: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointx?language=objc)
+    /// Key to access an integer field that contains the absolute X coordinate in tablet space at full tablet resolution.
     #[doc(alias = "kCGTabletEventPointX")]
     pub const TabletEventPointX: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointy?language=objc)
+    /// Key to access an integer field that contains the absolute Y coordinate in tablet space at full tablet resolution.
     #[doc(alias = "kCGTabletEventPointY")]
     pub const TabletEventPointY: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointz?language=objc)
+    /// Key to access an integer field that contains the absolute Z coordinate in tablet space at full tablet resolution.
     #[doc(alias = "kCGTabletEventPointZ")]
     pub const TabletEventPointZ: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointbuttons?language=objc)
+    /// Key to access an integer field that contains the tablet button state. Bit 0 is the first button, and a set bit represents a closed or pressed button. Up to 16 buttons are supported.
     #[doc(alias = "kCGTabletEventPointButtons")]
     pub const TabletEventPointButtons: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventpointpressure?language=objc)
+    /// Key to access a double field that contains the tablet pen pressure. A value of 0.0 represents no pressure, and 1.0 represents maximum pressure.
     #[doc(alias = "kCGTabletEventPointPressure")]
     pub const TabletEventPointPressure: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventtiltx?language=objc)
+    /// Key to access a double field that contains the horizontal tablet pen tilt. A value of 0.0 represents no tilt, and 1.0 represents maximum tilt.
     #[doc(alias = "kCGTabletEventTiltX")]
     pub const TabletEventTiltX: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventtilty?language=objc)
+    /// Key to access a double field that contains the vertical tablet pen tilt. A value of 0.0 represents no tilt, and 1.0 represents maximum tilt.
     #[doc(alias = "kCGTabletEventTiltY")]
     pub const TabletEventTiltY: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventrotation?language=objc)
+    /// Key to access a double field that contains the tablet pen rotation.
     #[doc(alias = "kCGTabletEventRotation")]
     pub const TabletEventRotation: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventtangentialpressure?language=objc)
+    /// Key to access a double field that contains the tangential pressure on the device. A value of 0.0 represents no pressure, and 1.0 represents maximum pressure.
     #[doc(alias = "kCGTabletEventTangentialPressure")]
     pub const TabletEventTangentialPressure: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventdeviceid?language=objc)
+    /// Key to access an integer field that contains the system-assigned unique device ID.
     #[doc(alias = "kCGTabletEventDeviceID")]
     pub const TabletEventDeviceID: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventvendor1?language=objc)
+    /// Key to access an integer field that contains a vendor-specified value.
     #[doc(alias = "kCGTabletEventVendor1")]
     pub const TabletEventVendor1: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventvendor2?language=objc)
+    /// Key to access an integer field that contains a vendor-specified value.
     #[doc(alias = "kCGTabletEventVendor2")]
     pub const TabletEventVendor2: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tableteventvendor3?language=objc)
+    /// Key to access an integer field that contains a vendor-specified value.
     #[doc(alias = "kCGTabletEventVendor3")]
     pub const TabletEventVendor3: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendorid?language=objc)
+    /// Key to access an integer field that contains the vendor-defined ID, typically the USB vendor ID.
     #[doc(alias = "kCGTabletProximityEventVendorID")]
     pub const TabletProximityEventVendorID: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventtabletid?language=objc)
+    /// Key to access an integer field that contains the vendor-defined tablet ID, typically the USB product ID.
     #[doc(alias = "kCGTabletProximityEventTabletID")]
     pub const TabletProximityEventTabletID: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventpointerid?language=objc)
+    /// Key to access an integer field that contains the vendor-defined ID of the pointing device.
     #[doc(alias = "kCGTabletProximityEventPointerID")]
     pub const TabletProximityEventPointerID: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventdeviceid?language=objc)
+    /// Key to access an integer field that contains the system-assigned device ID.
     #[doc(alias = "kCGTabletProximityEventDeviceID")]
     pub const TabletProximityEventDeviceID: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventsystemtabletid?language=objc)
+    /// Key to access an integer field that contains the system-assigned unique tablet ID.
     #[doc(alias = "kCGTabletProximityEventSystemTabletID")]
     pub const TabletProximityEventSystemTabletID: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendorpointertype?language=objc)
+    /// Key to access an integer field that contains the vendor-assigned pointer type.
     #[doc(alias = "kCGTabletProximityEventVendorPointerType")]
     pub const TabletProximityEventVendorPointerType: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendorpointerserialnumber?language=objc)
+    /// Key to access an integer field that contains the vendor-defined pointer serial number.
     #[doc(alias = "kCGTabletProximityEventVendorPointerSerialNumber")]
     pub const TabletProximityEventVendorPointerSerialNumber: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventvendoruniqueid?language=objc)
+    /// Key to access an integer field that contains the vendor-defined unique ID.
     #[doc(alias = "kCGTabletProximityEventVendorUniqueID")]
     pub const TabletProximityEventVendorUniqueID: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventcapabilitymask?language=objc)
+    /// Key to access an integer field that contains the device capabilities mask.
     #[doc(alias = "kCGTabletProximityEventCapabilityMask")]
     pub const TabletProximityEventCapabilityMask: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityeventpointertype?language=objc)
+    /// Key to access an integer field that contains the pointer type.
     #[doc(alias = "kCGTabletProximityEventPointerType")]
     pub const TabletProximityEventPointerType: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/tabletproximityevententerproximity?language=objc)
+    /// Key to access an integer field that indicates whether the pen is in proximity to the tablet. The value is non-zero if the pen is in proximity to the tablet and zero when leaving the tablet.
     #[doc(alias = "kCGTabletProximityEventEnterProximity")]
     pub const TabletProximityEventEnterProximity: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventtargetprocessserialnumber?language=objc)
+    /// Key to access a field that contains the event target process serial number. The value is a 64-bit long word.
     #[doc(alias = "kCGEventTargetProcessSerialNumber")]
     pub const EventTargetProcessSerialNumber: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventtargetunixprocessid?language=objc)
+    /// Key to access a field that contains the event target Unix process ID.
     #[doc(alias = "kCGEventTargetUnixProcessID")]
     pub const EventTargetUnixProcessID: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourceunixprocessid?language=objc)
+    /// Key to access a field that contains the event source Unix process ID.
     #[doc(alias = "kCGEventSourceUnixProcessID")]
     pub const EventSourceUnixProcessID: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourceuserdata?language=objc)
+    /// Key to access a field that contains the event source user-supplied data, up to 64 bits.
     #[doc(alias = "kCGEventSourceUserData")]
     pub const EventSourceUserData: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourceuserid?language=objc)
+    /// Key to access a field that contains the event source Unix effective UID.
     #[doc(alias = "kCGEventSourceUserID")]
     pub const EventSourceUserID: Self = Self(43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourcegroupid?language=objc)
+    /// Key to access a field that contains the event source Unix effective GID.
     #[doc(alias = "kCGEventSourceGroupID")]
     pub const EventSourceGroupID: Self = Self(44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventsourcestateid?language=objc)
+    /// Key to access a field that contains the event source state ID used to create this event.
     #[doc(alias = "kCGEventSourceStateID")]
     pub const EventSourceStateID: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventiscontinuous?language=objc)
+    /// Key to access an integer field that indicates whether a scrolling event contains continuous, pixel-based scrolling data. The value is non-zero when the scrolling data is pixel-based and zero when the scrolling data is line-based.
     #[doc(alias = "kCGScrollWheelEventIsContinuous")]
     pub const ScrollWheelEventIsContinuous: Self = Self(88);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventwindowundermousepointer?language=objc)
     #[doc(alias = "kCGMouseEventWindowUnderMousePointer")]
     pub const MouseEventWindowUnderMousePointer: Self = Self(91);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventwindowundermousepointerthatcanhandlethisevent?language=objc)
     #[doc(alias = "kCGMouseEventWindowUnderMousePointerThatCanHandleThisEvent")]
     pub const MouseEventWindowUnderMousePointerThatCanHandleThisEvent: Self = Self(92);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventunacceleratedpointermovementx?language=objc)
     #[doc(alias = "kCGEventUnacceleratedPointerMovementX")]
     pub const EventUnacceleratedPointerMovementX: Self = Self(170);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/eventunacceleratedpointermovementy?language=objc)
     #[doc(alias = "kCGEventUnacceleratedPointerMovementY")]
     pub const EventUnacceleratedPointerMovementY: Self = Self(171);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventmomentumoptionphase?language=objc)
     #[doc(alias = "kCGScrollWheelEventMomentumOptionPhase")]
     pub const ScrollWheelEventMomentumOptionPhase: Self = Self(173);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventaccelerateddeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventAcceleratedDeltaAxis1")]
     pub const ScrollWheelEventAcceleratedDeltaAxis1: Self = Self(176);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventaccelerateddeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventAcceleratedDeltaAxis2")]
     pub const ScrollWheelEventAcceleratedDeltaAxis2: Self = Self(175);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventrawdeltaaxis1?language=objc)
     #[doc(alias = "kCGScrollWheelEventRawDeltaAxis1")]
     pub const ScrollWheelEventRawDeltaAxis1: Self = Self(178);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield/scrollwheeleventrawdeltaaxis2?language=objc)
     #[doc(alias = "kCGScrollWheelEventRawDeltaAxis2")]
     pub const ScrollWheelEventRawDeltaAxis2: Self = Self(177);
 }
@@ -522,19 +574,30 @@ unsafe impl RefEncode for CGEventField {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype?language=objc)
+/// Constants used with the [`kCGMouseEventSubtype`](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventsubtype) event field.
+///
+/// ## Overview
+///
+/// Tablets may generate specially annotated mouse events that contain values associated with the [`kCGMouseEventSubtype`](https://developer.apple.com/documentation/coregraphics/cgeventfield/mouseeventsubtype) event field. To learn how to set these values, see the function [`CGEventSetIntegerValueField`](https://developer.apple.com/documentation/coregraphics/cgevent/setintegervaluefield(_:value:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventMouseSubtype(pub u32);
 impl CGEventMouseSubtype {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype/defaulttype?language=objc)
+    /// Specifies that the event is an ordinary mouse event, and does not contain additional tablet device information.
     #[doc(alias = "kCGEventMouseSubtypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype/tabletpoint?language=objc)
+    /// Specifies that the mouse event originated from a tablet device, and that the various `kCGTabletEvent` field selectors may be used to obtain tablet-specific data from the mouse event.
     #[doc(alias = "kCGEventMouseSubtypeTabletPoint")]
     pub const TabletPoint: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype/tabletproximity?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies that the mouse event originated from a tablet device with the pen in proximity but not necessarily touching the tablet, and that the various `kCGTabletProximity` field selectors may be used to obtain tablet-specific data from the mouse event. This is often used with mouse move events originating from a tablet.
+    ///
+    ///
     #[doc(alias = "kCGEventMouseSubtypeTabletProximity")]
     pub const TabletProximity: Self = Self(2);
 }
@@ -549,19 +612,25 @@ unsafe impl RefEncode for CGEventMouseSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation?language=objc)
+/// Constants that specify possible tapping points for events.
+///
+/// ## Overview
+///
+/// In addition to the three tapping points described above, an event tap may also be placed where annotated events are delivered to a specific application. For more information, see the function [`CGEventTapCreateForPSN`](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpsn(processserialnumber:place:options:eventsofinterest:callback:userinfo:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapLocation(pub u32);
 impl CGEventTapLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation/cghideventtap?language=objc)
+    /// Specifies that an event tap is placed at the point where HID system events enter the window server.
     #[doc(alias = "kCGHIDEventTap")]
     pub const HIDEventTap: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation/cgsessioneventtap?language=objc)
+    /// Specifies that an event tap is placed at the point where HID system and remote control events enter a login session.
     #[doc(alias = "kCGSessionEventTap")]
     pub const SessionEventTap: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation/cgannotatedsessioneventtap?language=objc)
+    /// Specifies that an event tap is placed at the point where session events have been annotated to flow to an application.
     #[doc(alias = "kCGAnnotatedSessionEventTap")]
     pub const AnnotatedSessionEventTap: Self = Self(2);
 }
@@ -576,16 +645,22 @@ unsafe impl RefEncode for CGEventTapLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement?language=objc)
+/// Constants that specify where a new event tap is inserted into the list of active event taps.
+///
+/// ## Overview
+///
+/// Event taps may be inserted at a specified location at the head of pre-existing filters, or appended after any pre-existing filters.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapPlacement(pub u32);
 impl CGEventTapPlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement/headinserteventtap?language=objc)
+    /// Specifies that a new event tap should be inserted before any pre-existing event taps at the same location.
     #[doc(alias = "kCGHeadInsertEventTap")]
     pub const HeadInsertEventTap: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement/tailappendeventtap?language=objc)
+    /// Specifies that a new event tap should be inserted after any pre-existing event taps at the same location.
     #[doc(alias = "kCGTailAppendEventTap")]
     pub const TailAppendEventTap: Self = Self(1);
 }
@@ -600,16 +675,32 @@ unsafe impl RefEncode for CGEventTapPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions?language=objc)
+/// Constants that specify whether a new event tap is an active filter or a passive listener.
+///
+/// ## Overview
+///
+/// When you create an event tap, you indicate whether it is a passive listener or active event filter. A passive listener receives events but cannot modify or divert them. An active filter may pass an event through unmodified, modify an event, or discard an event.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapOptions(pub u32);
 impl CGEventTapOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions/defaulttap?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies that a new event tap is an active filter. (Applications targeting OS X v10.4 should use the literal value to create an active filter event tap, as this constant was omitted from the header.)
+    ///
+    ///
     #[doc(alias = "kCGEventTapOptionDefault")]
     pub const Default: Self = Self(0x00000000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions/listenonly?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies that a new event tap is a passive listener.
+    ///
+    ///
     #[doc(alias = "kCGEventTapOptionListenOnly")]
     pub const ListenOnly: Self = Self(0x00000001);
 }
@@ -624,7 +715,24 @@ unsafe impl RefEncode for CGEventTapOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmask?language=objc)
+/// Defines a mask that identifies the set of Quartz events to be observed in an event tap.
+///
+/// ## Discussion
+///
+/// When you call either [`CGEventTapCreate`](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreate(tap:place:options:eventsofinterest:callback:userinfo:)) or [`CGEventTapCreateForPSN`](https://developer.apple.com/documentation/coregraphics/cgevent/tapcreateforpsn(processserialnumber:place:options:eventsofinterest:callback:userinfo:)) to register an event tap, you supply a bit mask that identifies the set of events to be observed. You specify each event using one of the event type constants listed in [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype). To form the bit mask, use the `CGEventMaskBit` macro to convert each constant into an event mask and then OR the individual masks together. For example:
+///
+/// ```objc
+/// CGEventMask mask = CGEventMaskBit(kCGEventLeftMouseDown) |
+///                    CGEventMaskBit(kCGEventLeftMouseUp);
+/// ```
+///
+/// You can also supply a mask to observe all events:
+///
+/// ```objc
+/// CGEventMask mask = kCGEventMaskForAllEvents;
+/// ```
+///
+///
 pub type CGEventMask = u64;
 
 #[repr(C)]
@@ -639,10 +747,40 @@ unsafe impl RefEncode for __CGEventTapProxy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("__CGEventTapProxy", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapproxy?language=objc)
+/// Defines an opaque type that represents state within the client application that’s associated with an event tap.
+///
+/// ## Discussion
+///
+/// An event tap proxy object is passed to your event tap callback function when it receives a new Quartz event. Your callback function needs the proxy to post Quartz events using the function [`CGEventTapPostEvent`](https://developer.apple.com/documentation/coregraphics/cgevent/tappostevent(_:)).
+///
+///
 pub type CGEventTapProxy = *mut __CGEventTapProxy;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapcallback?language=objc)
+/// A client-supplied callback function that’s invoked whenever an associated event tap receives a Quartz event.
+///
+/// Parameters:
+/// - proxy: A proxy for the event tap. See [`CGEventTapProxy`](https://developer.apple.com/documentation/coregraphics/cgeventtapproxy). This callback function may pass this proxy to other functions such as the event-posting routines.
+///
+/// - type: The event type of this event. See [`CGEventType`](https://developer.apple.com/documentation/coregraphics/cgeventtype).
+///
+/// - event: The incoming event. This event is owned by the caller, and you do not need to release it.
+///
+/// - refcon: A pointer to user-defined data. You specify this pointer when you create the event tap. Several different event taps could use the same callback function, each tap with its own user-defined data.
+///
+///
+/// ## Discussion
+///
+/// If the event tap is an active filter, your callback function should return one of the following:
+///
+/// - The (possibly modified) event that is passed in. This event is passed back to the event system.
+///
+/// - A newly-constructed event. After the new event has been passed back to the event system, the new event will be released along with the original event.
+///
+/// - `NULL` if the event passed in is to be deleted.
+///
+/// If the event tap is an passive listener, your callback function may return the event that is passed in, or `NULL`. In either case, the event stream is not affected.
+///
+///
 pub type CGEventTapCallBack = Option<
     unsafe extern "C-unwind" fn(
         CGEventTapProxy,
@@ -692,7 +830,17 @@ unsafe impl RefEncode for CGEventTapInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource?language=objc)
+/// Defines an opaque type that represents the source of a Quartz event.
+///
+/// ## Overview
+///
+/// A Quartz event source is an object that contains accumulated state related to event generation and event posting. Every event source has an associated global event state table called a source state. When you call [`CGEventSourceCreate`](https://developer.apple.com/documentation/coregraphics/cgeventsource/init(stateid:)) to create an event source, you specify which source state to use. For more information about source states, see [`CGEventSourceStateID`](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid).
+///
+/// A typical use of an event source would be to obtain the source from a Quartz event received by an event tap callback function, and then to use that source for any new events created as a result of the received event. This has the effect of marking the events as being related.
+///
+/// This opaque type is derived from CFType and inherits the properties that all Core Foundation types have in common. For more information, see doc://com.apple.documentation/documentation/corefoundation/cftype.
+///
+///
 #[doc(alias = "CGEventSourceRef")]
 #[repr(C)]
 pub struct CGEventSource {
@@ -708,19 +856,33 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CGEventSource"> for CGEventSource {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid?language=objc)
+/// Constants that specify the possible source states of an event source.
+///
+/// ## Overview
+///
+/// A source state refers to a global event state table. These tables contain accumulated information on modifier flag state, keyboard key state, mouse button state, and related internal parameters placed in effect by posting events with associated sources.
+///
+/// Two pre-existing event state tables are defined:
+///
+/// - The `kCGEventSourceStateCombinedSessionState` table reflects the combined state of all event sources posting to the current user login session. If your program is posting events from within a login session, you should use this source state when you create an event source.
+///
+/// - The `kCGEventSourceStateHIDSystemState` table reflects the combined state of all hardware event sources posting from the HID system. If your program is a daemon or a user space device driver interpreting hardware state and generating events, you should use this source state when you create an event source.
+///
+/// Specialized applications such as remote control programs may want to generate and track event source state independent of other processes. These programs should use the `kCGEventSourceStatePrivate` value in creating their event source. An independent state table and unique source state ID (`CGEventSourceStateID`) are created to track the event source’s state. This independent state table is owned by the creating event source and released with it.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventSourceStateID(pub i32);
 impl CGEventSourceStateID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid/privatestate?language=objc)
+    /// Specifies that an event source should use a private event state table.
     #[doc(alias = "kCGEventSourceStatePrivate")]
     pub const Private: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid/combinedsessionstate?language=objc)
+    /// Specifies that an event source should use the event state table that reflects the combined state of all event sources posting to the current user login session.
     #[doc(alias = "kCGEventSourceStateCombinedSessionState")]
     pub const CombinedSessionState: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid/hidsystemstate?language=objc)
+    /// Specifies that an event source should use the event state table that reflects the combined state of all hardware event sources posting from the HID system.
     #[doc(alias = "kCGEventSourceStateHIDSystemState")]
     pub const HIDSystemState: Self = Self(1);
 }
@@ -735,5 +897,11 @@ unsafe impl RefEncode for CGEventSourceStateID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcekeyboardtype?language=objc)
+/// Defines a code that represents the type of keyboard used with a specified event source.
+///
+/// ## Discussion
+///
+/// This code is the same keyboard type identifier used with the [`UCKeyTranslate`](https://developer.apple.com/documentation/coreservices/1390584-uckeytranslate) function to drive keyboard translation.
+///
+///
 pub type CGEventSourceKeyboardType = u32;

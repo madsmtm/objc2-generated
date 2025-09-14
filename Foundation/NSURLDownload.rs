@@ -7,11 +7,26 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that downloads a resource asynchronously and saves the data to a file.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API is considered legacy. Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The interface for [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) provides methods to initialize a download, set the destination path and cancel loading the request.
+    ///
+    /// The delegate object assigned to each instance of this class should implement the methods defined by the [`NSURLDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate) protocol. These methods provide the delegate with the current status of in-progress asynchronous downloads and allow the delegate to customize the URL loading process. These delegate methods are called on the thread that started the asynchronous load operation for the associated [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) object.
+    ///
+    ///
     /// A NSURLDownload loads a request and saves the downloaded data to a file. The progress of the download
     /// is reported via the NSURLDownloadDelegate protocol. Note: The word "download" is used to refer to the process
     /// of loading data off a network, decoding the data if necessary and saving the data to a file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldownload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLDownload;
@@ -152,9 +167,36 @@ impl DefaultRetained for NSURLDownload {
 }
 
 extern_protocol!(
-    /// The NSURLDownloadDelegate delegate is used to report the progress of the download.
+    /// A protocol that URL download delegates implement to interact with a URL download request.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate?language=objc)
+    /// ## Overview
+    ///
+    /// The [`NSURLDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate) protocol defines methods that allow an object to receive informational callbacks about the asynchronous load of a download’s URL request. Other delegate methods provide facilities that allow the delegate to customize the process of performing an asynchronous URL load.
+    ///
+    /// Note that these delegate methods will be called on the thread that started the asynchronous load operation for the associated [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) object.
+    ///
+    /// - A [`downloadDidBegin:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/downloaddidbegin(_:)) message will be sent to the delegate immediately upon starting the download.
+    ///
+    /// - Zero or more [`download:willSendRequest:redirectResponse:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:willsend:redirectresponse:)) messages will be sent to the delegate before any further messages are sent if it is determined that the download must redirect to a new location. The delegate can allow the redirect, modify the destination or deny the redirect.
+    ///
+    /// - Zero or more [`download:didReceiveAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didreceive:)-1pc0v) messages will be sent to the delegate if it is necessary to authenticate in order to download the request and NSURLDownload does not already have authenticated credentials.
+    ///
+    /// - Zero or more [`download:didCancelAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didcancel:)) messages will be sent to the delegate if [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) cancels the authentication challenge due to encountering a protocol implementation error.
+    ///
+    /// - Zero or more [`download:didReceiveResponse:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didreceive:)-817z3) messages will be sent to the delegate before receiving a [`download:didReceiveDataOfLength:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didreceivedataoflength:)) message. The only case where [`download:didReceiveResponse:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didreceive:)-817z3) is not sent to a delegate is when the protocol implementation encounters an error before a response could be created.
+    ///
+    /// - Zero or more [`download:didReceiveDataOfLength:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didreceivedataoflength:)) messages will be sent before [`downloadDidFinish:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/downloaddidfinish(_:)) or [`download:didFailWithError:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didfailwitherror:)) is sent to the delegate.
+    ///
+    /// - Zero or one [`download:decideDestinationWithSuggestedFilename:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:decidedestinationwithsuggestedfilename:)) will be sent to the delegate when sufficient information has been received to determine the suggested filename for the downloaded file. The delegate will not receive this message if [`setDestination:allowOverwrite:`](https://developer.apple.com/documentation/foundation/nsurldownload/setdestination(_:allowoverwrite:)) has already been sent to the [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) instance.
+    ///
+    /// - A [`download:didCreateDestination:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didcreatedestination:)) message will be sent to the delegate when the [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) instance creates the file on disk.
+    ///
+    /// - If NSURLDownload determines that the downloaded file is in a format that it is able to decode (MacBinary, Binhex or gzip), the delegate will receive a [`download:shouldDecodeSourceDataOfMIMEType:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:shoulddecodesourcedataofmimetype:)). The delegate should return [`true`](https://developer.apple.com/documentation/swift/true) to decode the data, [`false`](https://developer.apple.com/documentation/swift/false) otherwise.
+    ///
+    /// - Unless an [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) instance receives a [`cancel`](https://developer.apple.com/documentation/foundation/nsurldownload/cancel()) message, the delegate will receive one and only one [`downloadDidFinish:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/downloaddidfinish(_:)) or [`download:didFailWithError:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didfailwitherror:)) message, but never both. In addition, once either of these messages are sent, the delegate will receive no further messages for the given [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload).
+    ///
+    ///
+    /// The NSURLDownloadDelegate delegate is used to report the progress of the download.
     pub unsafe trait NSURLDownloadDelegate: NSObjectProtocol {
         /// This method is called immediately after the download has started.
         ///

@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentrycontext?language=objc)
+    /// A class that describes a key event and the text document with which the event is associated.
+    ///
+    /// ## Overview
+    ///
+    /// If the key entry occurs within the context of a composed input mode, for example Chinese, Japanese, or Korean input, set [`shouldEvaluateForInputSystemHandling`](https://developer.apple.com/documentation/browserenginekit/bekeyentrycontext/shouldevaluateforinputsystemhandling) to `true`. The text system uses the document’s marked text to combine multiple key events into a single input character.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEKeyEntryContext;

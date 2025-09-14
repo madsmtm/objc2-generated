@@ -8,44 +8,75 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemactiontype?language=objc)
+    /// Indicates that the activity type to continue is related to a searchable item.
+    ///
+    /// ## Discussion
+    ///
+    /// The `CSSearchableItemActionType` and `CSSearchableItemActivityIdentifier` constants help your app restore state or an activity when a user opens a searchable item listed in a search result. When the user opens the item, Handoff calls your app delegate’s `application(_:willContinueUserActivityWithType:)` method with `CSSearchableItemActionType`. Handoff also delivers an `NSUserActivity` object that contains a `userInfo` dictionary in which the key is `CSSearchableItemActivityIdentifier` and the associated value is the unique identifier that was used when the item was created. Your app delegate can check for the unique identifier in its `application(_:continue:restorationHandler:)` method.
+    ///
+    /// To learn more about enabling Handoff in your app, see the [Handoff Programming Guide](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/Handoff/HandoffFundamentals/HandoffFundamentals.html#//apple_ref/doc/uid/TP40014338).
+    ///
+    ///
     pub static CSSearchableItemActionType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemactivityidentifier?language=objc)
+    /// The key you use to access a searchable item in a user activity object.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key to access the unique identifier for the searchable item from the [`userInfo`](https://developer.apple.com/documentation/foundation/nsuseractivity/userinfo) dictionary of a [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object.
+    ///
+    ///
     pub static CSSearchableItemActivityIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csactionidentifier?language=objc)
+    /// A key that specifies the action’s identifier in a user activity.
+    ///
+    /// ## Discussion
+    ///
+    /// When the user selects a custom action on an indexed item, the system launches your app and invokes [`application:continueUserActivity:restorationHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:continue:restorationhandler:)). The `userInfo` dictionary of the specified [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) includes the corresponding `Info.plist` using this key.
+    ///
+    ///
     pub static CSActionIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csquerycontinuationactiontype?language=objc)
+    /// Indicates that the activity type to continue is a search or query.
+    ///
+    /// ## Discussion
+    ///
+    /// To support search continuation, be sure to include the `CoreSpotlightContinuation` key in your Info.plist file with the value `true`. When users continue a query they started in Spotlight, the system calls your app delegate’s `application(_:willContinueUserActivityWithType:)` method with `CSQueryContinuationActionType`. Then, your app delegate receives an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that contains a `userInfo` dictionary that includes the [`CSSearchQueryString`](https://developer.apple.com/documentation/corespotlight/cssearchquerystring) key in its `application(_:continue:restorationHandler:)` method. You use the query string associated with this key to continue the search.
+    ///
+    ///
     pub static CSQueryContinuationActionType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerystring?language=objc)
+    /// Provides the key for the current query in the info dictionary of the user activity object.
     pub static CSSearchQueryString: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct?language=objc)
+/// The set of options that contain metadata-associated summarization and prioritization of a searchable item.
+///
+/// ## Overview
+///
+/// To receive updates to specific properties on searchable items, implement the [`searchableItemsDidUpdate:`](https://developer.apple.com/documentation/corespotlight/cssearchableindexdelegate/searchableitemsdidupdate(_:)) delegate method.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CSSearchableItemUpdateListenerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl CSSearchableItemUpdateListenerOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemupdatelisteneroptions/cssearchableitemupdatelisteneroptiondefault?language=objc)
         #[doc(alias = "CSSearchableItemUpdateListenerOptionDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct/summarization?language=objc)
+/// A value that describes the listener summarization options.
         #[doc(alias = "CSSearchableItemUpdateListenerOptionSummarization")]
         const Summarization = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct/priority?language=objc)
+/// A value that describes the listener priority options.
         #[doc(alias = "CSSearchableItemUpdateListenerOptionPriority")]
         const Priority = 1<<2;
     }
@@ -60,7 +91,17 @@ unsafe impl RefEncode for CSSearchableItemUpdateListenerOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem?language=objc)
+    /// The details of your app-specific content that someone might search for on their devices.
+    ///
+    /// ## Overview
+    ///
+    /// A `CSSearchableItem` uniquely identifies a part of your app’s content, and provides the metadata that Spotlight indexes and uses to find that content later. As part of indexing your app’s content, you create searchable items and fill them with details about your app’s content and where to find it. After indexing the content, you can then execute queries using the Core Spotlight APIs to find the items you indexed. People can also use the system’s Spotlight search interface to find your app’s content.
+    ///
+    /// When you create or update content in your app, create a `CSSearchableItem` for that content if you want it to be searchable. A searchable item contains identification strings you use to locate that item in your content and a [`CSSearchableItemAttributeSet`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset) object with details about the item. For the metadata, you typically want to provide values for the [`title`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/title), [`displayName`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/displayname), and [`contentType`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttype) attributes at a minimum. If you’re indexing a file on disk, provide a value for the [`contentURL`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenturl) attribute. Fill in as many other attributes as makes sense for the content you’re indexing.
+    ///
+    /// After creating a searchable item, index it using a [`CSSearchableIndex`](https://developer.apple.com/documentation/corespotlight/cssearchableindex) object. As you update your app’s content, update your `CSSearchableItem` objects for that content and index them right away. If you delete content, similarly delete the searchable items from the index. Keeping your app’s indexes current ensures that searches return valid information. For more information on indexing your content, see [Adding your app’s content to Spotlight indexes](https://developer.apple.com/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSSearchableItem;

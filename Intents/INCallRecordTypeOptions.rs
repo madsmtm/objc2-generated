@@ -4,35 +4,35 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions?language=objc)
+/// Constants describing the types of calls to include during a search.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallRecordTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INCallRecordTypeOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/outgoing?language=objc)
+/// A call initiated by the user.
         #[doc(alias = "INCallRecordTypeOptionOutgoing")]
         const Outgoing = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/missed?language=objc)
+/// A call received by the user that went unanswered.
         #[doc(alias = "INCallRecordTypeOptionMissed")]
         const Missed = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/received?language=objc)
+/// A received call that the user answered.
         #[doc(alias = "INCallRecordTypeOptionReceived")]
         const Received = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/latest?language=objc)
+/// The most recent call involving the user.
         #[doc(alias = "INCallRecordTypeOptionLatest")]
         const Latest = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/voicemail?language=objc)
+/// A voicemail left from a missed call.
         #[doc(alias = "INCallRecordTypeOptionVoicemail")]
         const Voicemail = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/ringing?language=objc)
+/// An incoming call that is currently causing the user’s phone to ring.
         #[doc(alias = "INCallRecordTypeOptionRinging")]
         const Ringing = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/inprogress?language=objc)
+/// A received call that is currently in progress.
         #[doc(alias = "INCallRecordTypeOptionInProgress")]
         const InProgress = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptions/onhold?language=objc)
+/// A received call that the user has put on hold.
         #[doc(alias = "INCallRecordTypeOptionOnHold")]
         const OnHold = 1<<7;
     }

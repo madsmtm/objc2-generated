@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitem/identifier-swift.class?language=objc)
+    /// A unique identifier for a place.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItemIdentifier;

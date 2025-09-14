@@ -8,9 +8,8 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// Degrees to which the framework is confident about depth-data accuracy.
 /// Constants indicating the confidence level of per-pixel depth data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -18,13 +17,13 @@ use crate::*;
 pub struct ARConfidenceLevel(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARConfidenceLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel/low?language=objc)
+    /// Depth-value accuracy in which the framework is less confident.
     #[doc(alias = "ARConfidenceLevelLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel/medium?language=objc)
+    /// Depth-value accuracy in which the framework is moderately confident.
     #[doc(alias = "ARConfidenceLevelMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfidencelevel/high?language=objc)
+    /// Depth-value accuracy in which the framework is fairly confident.
     #[doc(alias = "ARConfidenceLevelHigh")]
     pub const High: Self = Self(2);
 }
@@ -41,9 +40,20 @@ unsafe impl RefEncode for ARConfidenceLevel {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A container for depth data and its associated confidence.
+    /// An object that describes the distance to regions of the real world from the plane of the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/ardepthdata?language=objc)
+    /// ## Overview
+    ///
+    /// This object contains the following depth information that the LiDAR scanner captures at runtime:
+    ///
+    /// - Every pixel in the [`depthMap`](https://developer.apple.com/documentation/arkit/ardepthdata/depthmap) maps to a region of the visible scene ([`capturedImage`](https://developer.apple.com/documentation/arkit/arframe/capturedimage)), where the pixel value defines that region’s distance from the plane of the camera in meters.
+    ///
+    /// - The [`confidenceMap`](https://developer.apple.com/documentation/arkit/ardepthdata/confidencemap) property measures the accuracy of the corresponding depth data in [`depthMap`](https://developer.apple.com/documentation/arkit/ardepthdata/depthmap), and is useful in filtering out lower-accuracy depth values if an app’s algorithm required it.
+    ///
+    /// [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) exposes this depth information in the [`sceneDepth`](https://developer.apple.com/documentation/arkit/arframe/scenedepth) property which it updates every frame. To enable scene depth, add the [`ARFrameSemanticSceneDepth`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct/scenedepth) frame semantic to a world-tracking configuration’s [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) and frames vended by the session contain [`ARDepthData`](https://developer.apple.com/documentation/arkit/ardepthdata) captured by the LiDAR scanner.
+    ///
+    ///
+    /// A container for depth data and its associated confidence.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

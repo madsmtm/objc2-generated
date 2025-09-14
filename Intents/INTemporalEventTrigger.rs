@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtrigger?language=objc)
+    /// A trigger condition based on a date or time.
+    ///
+    /// ## Overview
+    ///
+    /// When configuring tasks, you can add an [`INTemporalEventTrigger`](https://developer.apple.com/documentation/intents/intemporaleventtrigger) object to display a reminder at a specific time. Because you specify the time values using an [`INDateComponentsRange`](https://developer.apple.com/documentation/intents/indatecomponentsrange) object, the trigger condition can occur at a single time or within a range of time. You can also specify a repeating trigger time by specifying a day without a month or year or by specifying a time value without a specific day.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INTemporalEventTrigger;

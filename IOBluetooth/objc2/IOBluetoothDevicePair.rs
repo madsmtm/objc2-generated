@@ -7,7 +7,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicepairdelegate?language=objc)
     pub unsafe trait IOBluetoothDevicePairDelegate: NSObjectProtocol {
         /// Indicates that the pairing has started.
         ///
@@ -158,6 +157,17 @@ extern_protocol!(
 extern_class!(
     /// An instance of IOBluetoothDevicePair represents a pairing attempt to a remote Bluetooth device.
     ///
+    /// ## Overview
+    ///
+    /// Use the IOBluetoothDevicePair object to attempt to pair with any Bluetooth device. Once -start is invoked on it, progress is returned to the delegate via the messages defined below. This object enables you to pair with devices within your application without having to use the standard panels provided by the IOBluetoothUI framework, allowing you to write custom UI to select devices, and still handle the ability to perform device pairings.
+    ///
+    /// Of note is that this object MAY attempt to perform two low-level pairings, depending on the type of device you are attempting to pair. This is inconsequential to your code, however, as it occurs automatically and does not change the messaging.
+    ///
+    /// Once started, the pairing can be stopped. This will set the delegate to nil and then attempt to disconnect from the device if already connected.
+    ///
+    ///
+    /// An instance of IOBluetoothDevicePair represents a pairing attempt to a remote Bluetooth device.
+    ///
     /// Use the IOBluetoothDevicePair object to attempt to pair with any Bluetooth device. Once -start is invoked
     /// on it, progress is returned to the delegate via the messages defined below. This object enables you to
     /// pair with devices within your application without having to use the standard panels provided by the
@@ -170,8 +180,6 @@ extern_class!(
     ///
     /// Once started, the pairing can be stopped. This will set the delegate to nil and then attempt to disconnect
     /// from the device if already connected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicepair?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothDevicePair;

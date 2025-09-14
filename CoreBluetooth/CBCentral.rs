@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a remote central.
+    /// A remote device connected to a local app, which is acting as a peripheral.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentral?language=objc)
+    /// ## Overview
+    ///
+    /// The [`CBCentral`](https://developer.apple.com/documentation/corebluetooth/cbcentral) class represents remote central devices (or _centrals_) that have connected to an app implementing the peripheral role on a local device. Remote centrals use universally unique identifiers (UUIDs), represented by [`NSUUID`](https://developer.apple.com/documentation/foundation/nsuuid) objects, to identify themselves.
+    ///
+    ///
+    /// Represents a remote central.
     #[unsafe(super(CBPeer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBPeer")]

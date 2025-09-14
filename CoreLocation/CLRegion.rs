@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate?language=objc)
+/// Constants that reflect the relationship of the current location to the region boundaries.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CLRegionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate/unknown?language=objc)
+    /// It is unknown whether the location is inside or outside of the region.
     #[doc(alias = "CLRegionStateUnknown")]
     #[default]
     Unknown = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate/inside?language=objc)
+    /// The location is inside of the given region.
     #[doc(alias = "CLRegionStateInside")]
     Inside = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate/outside?language=objc)
+    /// The location is outside of the given region.
     #[doc(alias = "CLRegionStateOutside")]
     Outside = 2,
 }
@@ -32,22 +32,22 @@ unsafe impl RefEncode for CLRegionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity?language=objc)
+/// Constants that reflect the relative distance to a beacon.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLProximity(pub NSInteger);
 impl CLProximity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/unknown?language=objc)
+    /// The proximity of the beacon could not be determined.
     #[doc(alias = "CLProximityUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/immediate?language=objc)
+    /// The beacon is in the user’s immediate vicinity.
     #[doc(alias = "CLProximityImmediate")]
     pub const Immediate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/near?language=objc)
+    /// The beacon is relatively close to the user.
     #[doc(alias = "CLProximityNear")]
     pub const Near: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity/far?language=objc)
+    /// The beacon is far away.
     #[doc(alias = "CLProximityFar")]
     pub const Far: Self = Self(3);
 }
@@ -61,7 +61,13 @@ unsafe impl RefEncode for CLProximity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregion?language=objc)
+    /// A base class representing an area that can be monitored.
+    ///
+    /// ## Overview
+    ///
+    /// This is an abstract base class. Instantiate one of the provided subclasses that define specific types of regions. After you create a region, register it with a [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object with the [`startMonitoringForRegion:`](https://developer.apple.com/documentation/corelocation/cllocationmanager/startmonitoring(for:)) method. The location manager generates appropriate events whenever the user crosses the boundaries of the region.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLRegion;

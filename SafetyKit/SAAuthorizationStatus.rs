@@ -4,19 +4,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus?language=objc)
+/// An enumeration that represents the current Crash Detection event authorization state.
+///
+/// ## Overview
+///
+/// To verify that your app receives Crash Detection events, call [`requestAuthorizationWithCompletionHandler:`](https://developer.apple.com/documentation/safetykit/sacrashdetectionmanager/requestauthorization(completionhandler:)) and inspect the authorization state.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SAAuthorizationStatus(pub NSInteger);
 impl SAAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/notdetermined?language=objc)
+    /// There isn’t a designated app for receiving Crash Detection events.
     #[doc(alias = "SAAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/denied?language=objc)
+    /// The system denies the app from receiving Crash Detection events because another app has authorization.
     #[doc(alias = "SAAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/authorized?language=objc)
+    /// This is the designated app for receiving Crash Detection events.
     #[doc(alias = "SAAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(2);
 }

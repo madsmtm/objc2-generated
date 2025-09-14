@@ -12,74 +12,86 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event?language=objc)
+/// Constants describing the types of events possible for controls.
+///
+/// ## Overview
+///
+/// You set up a control so that it sends an action message to a target object by associating both target and action with one or more control events. To do this, send [`addTarget:action:forControlEvents:`](https://developer.apple.com/documentation/uikit/uicontrol/addtarget(_:action:for:)) to the control for each target-action pair you want to specify.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlEvents(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlEvents: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdown?language=objc)
+/// A touch-down event in the control.
         #[doc(alias = "UIControlEventTouchDown")]
         const TouchDown = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdownrepeat?language=objc)
+/// A repeated touch-down event in the control; for this event the value of the UITouch `tapCount` method is greater than one.
         #[doc(alias = "UIControlEventTouchDownRepeat")]
         const TouchDownRepeat = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdraginside?language=objc)
+/// An event where a finger is dragged inside the bounds of the control.
         #[doc(alias = "UIControlEventTouchDragInside")]
         const TouchDragInside = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdragoutside?language=objc)
+/// An event where a finger is dragged just outside the bounds of the control.
         #[doc(alias = "UIControlEventTouchDragOutside")]
         const TouchDragOutside = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdragenter?language=objc)
+/// An event where a finger is dragged into the bounds of the control.
+///
+/// ## Discussion
+///
+/// This event is delivered only if the touch originated inside the control’s bounds, exited the bounds, and then entered the bounds again.
+///
+///
         #[doc(alias = "UIControlEventTouchDragEnter")]
         const TouchDragEnter = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdragexit?language=objc)
+/// An event where a finger is dragged from within a control to outside its bounds.
         #[doc(alias = "UIControlEventTouchDragExit")]
         const TouchDragExit = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchupinside?language=objc)
+/// A touch-up event in the control where the finger is inside the bounds of the control.
         #[doc(alias = "UIControlEventTouchUpInside")]
         const TouchUpInside = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchupoutside?language=objc)
+/// A touch-up event in the control where the finger is outside the bounds of the control.
         #[doc(alias = "UIControlEventTouchUpOutside")]
         const TouchUpOutside = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/touchcancel?language=objc)
+/// A system event canceling the current touches for the control.
         #[doc(alias = "UIControlEventTouchCancel")]
         const TouchCancel = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged?language=objc)
+/// A touch dragging or otherwise manipulating a control, causing it to emit a series of different values.
         #[doc(alias = "UIControlEventValueChanged")]
         const ValueChanged = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/primaryactiontriggered?language=objc)
+/// A semantic action triggered by buttons.
         #[doc(alias = "UIControlEventPrimaryActionTriggered")]
         const PrimaryActionTriggered = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/menuactiontriggered?language=objc)
+/// A menu action has triggered prior to the menu being presented.
         #[doc(alias = "UIControlEventMenuActionTriggered")]
         const MenuActionTriggered = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingdidbegin?language=objc)
+/// A touch initiating an editing session in a text field by entering its bounds.
         #[doc(alias = "UIControlEventEditingDidBegin")]
         const EditingDidBegin = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingchanged?language=objc)
+/// A touch making an editing change in a text field.
         #[doc(alias = "UIControlEventEditingChanged")]
         const EditingChanged = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingdidend?language=objc)
+/// A touch ending an editing session in a text field by leaving its bounds.
         #[doc(alias = "UIControlEventEditingDidEnd")]
         const EditingDidEnd = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/editingdidendonexit?language=objc)
+/// A touch ending an editing session in a text field.
         #[doc(alias = "UIControlEventEditingDidEndOnExit")]
         const EditingDidEndOnExit = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/alltouchevents?language=objc)
+/// All touch events.
         #[doc(alias = "UIControlEventAllTouchEvents")]
         const AllTouchEvents = 0x00000FFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/alleditingevents?language=objc)
+/// All editing touches for text fields.
         #[doc(alias = "UIControlEventAllEditingEvents")]
         const AllEditingEvents = 0x000F0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/applicationreserved?language=objc)
+/// A range of control-event values available for app use.
         #[doc(alias = "UIControlEventApplicationReserved")]
         const ApplicationReserved = 0x0F000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/systemreserved?language=objc)
+/// A range of control-event values reserved for internal framework use.
         #[doc(alias = "UIControlEventSystemReserved")]
         const SystemReserved = 0xF0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/event/allevents?language=objc)
+/// All events, including system events.
         #[doc(alias = "UIControlEventAllEvents")]
         const AllEvents = 0xFFFFFFFF;
     }
@@ -93,22 +105,28 @@ unsafe impl RefEncode for UIControlEvents {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum?language=objc)
+/// Constants for specifying the vertical alignment of content (text and images) in a control.
+///
+/// ## Overview
+///
+/// You use these constants as the value of the [`contentVerticalAlignment`](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlContentVerticalAlignment(pub NSInteger);
 impl UIControlContentVerticalAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/center?language=objc)
+    /// Aligns the content vertically in the center of the control.
     #[doc(alias = "UIControlContentVerticalAlignmentCenter")]
     pub const Center: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/top?language=objc)
+    /// Aligns the content vertically at the top in the control (the default).
     #[doc(alias = "UIControlContentVerticalAlignmentTop")]
     pub const Top: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/bottom?language=objc)
+    /// Aligns the content vertically at the bottom in the control.
     #[doc(alias = "UIControlContentVerticalAlignmentBottom")]
     pub const Bottom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contentverticalalignment-swift.enum/fill?language=objc)
+    /// Aligns the content vertically to fill the content rectangle; images may be stretched.
     #[doc(alias = "UIControlContentVerticalAlignmentFill")]
     pub const Fill: Self = Self(3);
 }
@@ -121,28 +139,46 @@ unsafe impl RefEncode for UIControlContentVerticalAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum?language=objc)
+/// The horizontal alignment of content (text and images) within a control.
+///
+/// ## Overview
+///
+/// You use these constants as the value of the [`contentHorizontalAlignment`](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlContentHorizontalAlignment(pub NSInteger);
 impl UIControlContentHorizontalAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/center?language=objc)
+    /// Aligns the content horizontally in the center of the control.
     #[doc(alias = "UIControlContentHorizontalAlignmentCenter")]
     pub const Center: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/left?language=objc)
+    /// Aligns the content horizontally from the left of the control (the default).
     #[doc(alias = "UIControlContentHorizontalAlignmentLeft")]
     pub const Left: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/right?language=objc)
+    /// Aligns the content horizontally from the right of the control.
     #[doc(alias = "UIControlContentHorizontalAlignmentRight")]
     pub const Right: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/fill?language=objc)
+    /// Aligns the content horizontally to fill the content rectangles; text may wrap and images may be stretched.
     #[doc(alias = "UIControlContentHorizontalAlignmentFill")]
     pub const Fill: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/leading?language=objc)
+    /// Aligns the content horizontally from the leading edge of the control.
+    ///
+    /// ## Discussion
+    ///
+    /// For left-to-right languages, the leading edge is the left edge. For right-to-left languages, the leading edge is the right edge.
+    ///
+    ///
     #[doc(alias = "UIControlContentHorizontalAlignmentLeading")]
     pub const Leading: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/contenthorizontalalignment-swift.enum/trailing?language=objc)
+    /// Aligns the content horizontally from the trailing edge of the control.
+    ///
+    /// ## Discussion
+    ///
+    /// For left-to-right languages, the trailing edge is the right edge. For right-to-left languages, the trailing edge is the left edge.
+    ///
+    ///
     #[doc(alias = "UIControlContentHorizontalAlignmentTrailing")]
     pub const Trailing: Self = Self(5);
 }
@@ -155,32 +191,62 @@ unsafe impl RefEncode for UIControlContentHorizontalAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct?language=objc)
+/// Constants describing the state of a control.
+///
+/// ## Overview
+///
+/// A control can have more than one state at a time. Controls can have different configurations according to their state. For example, a [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton) object can display one image when it’s in its normal state and a different image when it’s highlighted.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlState(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlState: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/normal?language=objc)
+/// The normal, or default, state of a control where the control is enabled but neither selected nor highlighted.
         #[doc(alias = "UIControlStateNormal")]
         const Normal = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/highlighted?language=objc)
+/// The highlighted state of a control.
+///
+/// ## Discussion
+///
+/// A control becomes highlighted when a touch event enters the control’s bounds, and it loses that highlight when there’s a touch-up event or when the touch event exits the control’s bounds. You can retrieve and set this value through the [`highlighted`](https://developer.apple.com/documentation/uikit/uicontrol/ishighlighted) property.
+///
+///
         #[doc(alias = "UIControlStateHighlighted")]
         const Highlighted = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/disabled?language=objc)
+/// The disabled state of a control.
+///
+/// ## Discussion
+///
+/// User interactions with disabled control have no effect and the control draws itself with a dimmed appearance to reflect that it’s disabled. You can retrieve and set this value through the [`enabled`](https://developer.apple.com/documentation/uikit/uicontrol/isenabled) property.
+///
+///
         #[doc(alias = "UIControlStateDisabled")]
         const Disabled = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/selected?language=objc)
+/// The selected state of a control.
+///
+/// ## Discussion
+///
+/// For many controls, this state has no effect on behavior or appearance. Some subclasses, like the [`UISegmentedControl`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol) class, use this state to change their appearance. You can retrieve and set this value through the [`selected`](https://developer.apple.com/documentation/uikit/uicontrol/isselected) property.
+///
+///
         #[doc(alias = "UIControlStateSelected")]
         const Selected = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/focused?language=objc)
+/// The focused state of a control.
+///
+/// ## Discussion
+///
+/// In focus-based navigation systems, a control enters this state when it receives the focus. A focused control changes its appearance to indicate that it has focus, and this appearance differs from the appearance of the control when it’s highlighted or selected. Further interactions with the control can result in it also becoming highlighted or selected.
+///
+///
         #[doc(alias = "UIControlStateFocused")]
         const Focused = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/application?language=objc)
+/// Additional control-state flags available for app use.
         #[doc(alias = "UIControlStateApplication")]
         const Application = 0x00FF0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct/reserved?language=objc)
+/// Control-state flags reserved for internal framework use.
         #[doc(alias = "UIControlStateReserved")]
         const Reserved = 0xFF000000;
     }
@@ -195,7 +261,73 @@ unsafe impl RefEncode for UIControlState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrol?language=objc)
+    /// The base class for controls, which are visual elements that convey a specific action or intention in response to user interactions.
+    ///
+    /// ## Overview
+    ///
+    /// Controls implement elements such as buttons and sliders, which your app can use to facilitate navigation, gather user input, or manipulate content. Controls use the target-action mechanism to report user interactions to your app.
+    ///
+    ///
+    /// ![Examples of UIKit controls.](https://docs-assets.developer.apple.com/published/6b1386718d569d3ca35a66e82a339ecc/media-1965830%402x.png)
+    ///
+    ///
+    /// You don’t create instances of this class directly. The [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) class is a subclassing point that you extend to implement custom controls. You can also subclass existing control classes to extend or modify their behaviors. For example, you might override the methods of this class to track touch events yourself or to determine when the state of the control changes.
+    ///
+    /// A control’s state determines its appearance and its ability to support user interactions. Controls can be in one of several states, which the [`UIControlState`](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct) type defines. You can change the state of a control programmatically according to your app’s needs. For example, you might disable a control to prevent the user from interacting with it. User interactions can also change the state of a control.
+    ///
+    /// ### Respond to user interaction
+    ///
+    /// The target-action mechanism simplifies the code that you write to use controls in your app. Instead of writing code to track touch events, you write action methods to respond to control-specific events. For example, you might write an action method that responds to changes in the value of a slider. The control handles all the work of tracking incoming touch events and determining when to call your methods.
+    ///
+    /// When adding an action method to a control, you specify both the action method and an object that defines that method to the [`addTarget:action:forControlEvents:`](https://developer.apple.com/documentation/uikit/uicontrol/addtarget(_:action:for:)) method. (You can also configure the target and action of a control in Interface Builder.) The target object can be any object, but it’s typically the view controller’s root view that contains the control. If you specify `nil` for the target object, the control searches the responder chain for an object that defines the specified action method.
+    ///
+    /// The signature of an action method takes one of three forms. The `sender` parameter corresponds to the control that calls the action method, and the `event` parameter corresponds to the [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) object that triggered the control-related event.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func doSomething()", "@IBAction func doSomething(sender: UIButton)", "@IBAction func doSomething(sender: UIButton, forEvent event: UIEvent)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)doSomething;", "- (IBAction)doSomething:(id)sender;", "- (IBAction)doSomething:(id)sender forEvent:(UIEvent*)event;"], metadata: None }] }] })
+    /// The system calls action methods when the user interacts with the control in specific ways. The [`UIControlEvents`](https://developer.apple.com/documentation/uikit/uicontrol/event) type defines the types of user interactions that a control can report and those interactions mostly correlate to specific touch events within the control. When configuring a control, you must specify which events trigger the calling of your method. For a button control, you might use the [`UIControlEventTouchDown`](https://developer.apple.com/documentation/uikit/uicontrol/event/touchdown) or [`UIControlEventTouchUpInside`](https://developer.apple.com/documentation/uikit/uicontrol/event/touchupinside) event to trigger calls to your action method. For a slider, you might care only about changes to the slider’s value, so you might choose to attach your action method to [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) events.
+    ///
+    /// When a control-specific event occurs, the control calls any associated action methods immediately. The current [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object dispatches action methods and finds an appropriate object to handle the message, following the responder chain, if necessary. For more information about responders and the responder chain, see [Event Handling Guide for UIKit Apps](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541).
+    ///
+    /// ### Configure control attributes in Interface Builder
+    ///
+    /// The following table lists the attributes for instances of the [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) class.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Alignment" }] }], [Paragraph { inline_content: [Text { text: "The horizontal and vertical alignment of a control’s content. For controls that contain text or images, such as buttons and text fields, use these attributes to configure the position of that content within the control’s bounds. " }, Image { identifier: "spacer", metadata: None }, Text { text: " These alignment options apply to the content of a control and not to the control itself. For information about how to align controls with respect to other controls and views, see " }, Reference { identifier: "https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]], [[Paragraph { inline_content: [Text { text: "Content" }] }], [Paragraph { inline_content: [Text { text: "The initial state of the control. Use the checkboxes to configure whether the control is in an enabled, selected, or highlighted state initially." }] }]]], alignments: None, metadata: None })
+    /// ### Support localization
+    ///
+    /// Because [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) is an abstract class, you don’t internationalize it specifically. However, you do internationalize the content of subclasses like [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton). For information about internationalizing a specific control, see the reference for that control.
+    ///
+    /// ### Make controls accessible
+    ///
+    /// Controls are accessible by default. To be useful, an accessible user interface element must provide accurate and helpful information about its screen position, name, behavior, value, and type. This is the information VoiceOver speaks to users. Users who are blind or have low vision can rely on VoiceOver to help them use their devices.
+    ///
+    /// Controls support the following accessibility attributes:
+    ///
+    /// - **Label.** A short, localized word or phrase that succinctly describes the control or view, but doesn’t identify the element’s type. Examples are _Add_ and _Play_.
+    ///
+    /// - **Traits.** A combination of one or more individual traits, each of which describes a single aspect of an element’s state, behavior, or usage. For example, you might use a combination of the Keyboard Key and the Selected traits to describe an element that behaves like a keyboard key and that’s in a selected state.
+    ///
+    /// - **Hint.** A brief, localized phrase that describes the results of an action on an element. Examples are _Adds a title_ and _Opens the shopping list_.
+    ///
+    /// - **Frame.** The frame of the element in screen coordinates, which the `CGRect` structure specifies for an element’s screen location and size.
+    ///
+    /// - **Value.** The current value of an element when the label doesn’t represent the value. For example, the label for a slider might be _Speed_, but its current value might be _50%_.
+    ///
+    /// The `UIControl` class provides default content for the value and frame attributes. Many controls automatically enable additional specific traits as well. You can configure other accessibility attributes programmatically or with the Identity inspector in Interface Builder.
+    ///
+    /// For more information about accessibility attributes, see [Accessibility Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008785).
+    ///
+    /// ### Subclassing notes
+    ///
+    /// Subclassing [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) gives you access to the built-in target-action mechanism and simplified event-handling support. You can subclass existing controls and modify their behavior in one of two ways:
+    ///
+    /// - Override the [`sendAction:to:forEvent:`](https://developer.apple.com/documentation/uikit/uicontrol/sendaction(_:to:for:)) method of an existing subclass to observe or modify the dispatching of action methods to the control’s associated targets. You might use this method to modify the dispatch behavior for the specified object, selector, or event.
+    ///
+    /// - Override the [`beginTrackingWithTouch:withEvent:`](https://developer.apple.com/documentation/uikit/uicontrol/begintracking(_:with:)), [`continueTrackingWithTouch:withEvent:`](https://developer.apple.com/documentation/uikit/uicontrol/continuetracking(_:with:)), [`endTrackingWithTouch:withEvent:`](https://developer.apple.com/documentation/uikit/uicontrol/endtracking(_:with:)), and [`cancelTrackingWithEvent:`](https://developer.apple.com/documentation/uikit/uicontrol/canceltracking(with:)) methods to track touch events occurring in the control. You can use the tracking information to perform additional actions. Always use these methods to track touch events instead of the methods that the [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) class defines.
+    ///
+    /// If you subclass [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) directly, your subclass is responsible for setting up and managing your control’s visual appearance. Use the methods for tracking events to update your control’s state and to send an action when the control’s value changes.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

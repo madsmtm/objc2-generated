@@ -7,41 +7,83 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchCallHistoryIntentResponseCode(pub NSInteger);
 impl INSearchCallHistoryIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/unspecified?language=objc)
+    /// Your app can’t provide a more specific response.
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeUnspecified")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/ready?language=objc)
+    /// Your app is ready to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeReady")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/continueinapp?language=objc)
+    /// Your extension is ready to transfer control to the app in order to display the search results.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, Siri launches your app and passes it the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object you provided at initialization time. (If you didn’t provide a user activity object, Siri creates one for you). Siri adds an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to display the search results.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeContinueInApp")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/failure?language=objc)
+    /// You were unable to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from searching the user’s call history. For example, use this code if the user’s call history requires accessing the network and the network is unavailable.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailure")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to search their call history.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// The user must perform additional configuration steps before searching the call history is possible.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your app isn’t configured to handle the search request. For example, you might return this code if the user hasn’t yet set up a calling account. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INSearchCallHistoryIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/inprogress?language=objc)
+    /// Your app is in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that the search is in progress but hasn’t yet completed. Typically, you should return this code if you can’t complete the search within a few seconds.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponsecode/success?language=objc)
+    /// Your app successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During confirmation, use this code to indicate that you’re able to perform the search. During handling, use this code if you performed the search successfully and are ready to hand the results over to your app to display.
+    ///
+    ///
     #[doc(alias = "INSearchCallHistoryIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }
@@ -55,7 +97,17 @@ unsafe impl RefEncode for INSearchCallHistoryIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponse?language=objc)
+    /// Your app’s response to a search call history intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchCallHistoryIntentResponse`](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponse) object to specify the results of searching the user’s call history. After performing a search using the criteria specified in the [`INSearchCallHistoryIntent`](https://developer.apple.com/documentation/intents/insearchcallhistoryintent) object, create an instance of this class with the results of that search.
+    ///
+    /// Your app is responsible for displaying the results of your search, so you must communicate the results to it. One way to communicate those results is through the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that you create with your response. After creating that object, place the results in its [`userInfo`](https://developer.apple.com/documentation/foundation/nsuseractivity/userinfo) dictionary.
+    ///
+    /// You create an [`INSearchCallHistoryIntentResponse`](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponse) object in the [`confirmSearchCallHistory:completion:`](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling/confirm(intent:completion:)) and [`handleSearchCallHistory:completion:`](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling/handle(intent:completion:)) methods of your search call history handler object. For more information about implementing your handler object, see [`INSearchCallHistoryIntentHandling`](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

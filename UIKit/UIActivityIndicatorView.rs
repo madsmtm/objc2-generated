@@ -12,27 +12,33 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum?language=objc)
+/// The visual style of the progress indicator.
+///
+/// ## Overview
+///
+/// You set the value of the [`activityIndicatorViewStyle`](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.property) property with these constants.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivityIndicatorViewStyle(pub NSInteger);
 impl UIActivityIndicatorViewStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/medium?language=objc)
+    /// The default activity indicator style.
     #[doc(alias = "UIActivityIndicatorViewStyleMedium")]
     pub const Medium: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/large?language=objc)
+    /// The large style of indicator.
     #[doc(alias = "UIActivityIndicatorViewStyleLarge")]
     pub const Large: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/whitelarge?language=objc)
+    /// The large white style of indicator.
     #[doc(alias = "UIActivityIndicatorViewStyleWhiteLarge")]
     #[deprecated]
     pub const WhiteLarge: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/white?language=objc)
+    /// The standard white style of indicator.
     #[doc(alias = "UIActivityIndicatorViewStyleWhite")]
     #[deprecated]
     pub const White: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/style-swift.enum/gray?language=objc)
+    /// The standard gray style of indicator.
     #[doc(alias = "UIActivityIndicatorViewStyleGray")]
     #[deprecated]
     pub const Gray: Self = Self(2);
@@ -47,7 +53,15 @@ unsafe impl RefEncode for UIActivityIndicatorViewStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityindicatorview?language=objc)
+    /// A view that shows that a task is in progress.
+    ///
+    /// ## Overview
+    ///
+    /// You control when an activity indicator animates by calling the [`startAnimating`](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/startanimating()) and [`stopAnimating`](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/stopanimating()) methods. To automatically hide the activity indicator when animation stops, set the [`hidesWhenStopped`](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/hideswhenstopped) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// You can set the color of the activity indicator by using the [`color`](https://developer.apple.com/documentation/uikit/uiactivityindicatorview/color) property.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

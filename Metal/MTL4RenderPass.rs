@@ -10,6 +10,15 @@ use crate::*;
 extern_class!(
     /// Describes a render pass.
     ///
+    /// ## Overview
+    ///
+    /// You use render pass descriptors to create instances of [`MTL4RenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtl4rendercommandencoder) and encode draw commands into instances of [`MTL4CommandBuffer`](https://developer.apple.com/documentation/metal/mtl4commandbuffer).
+    ///
+    /// To create render command encoders, you typically call [`renderCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtl4commandbuffer/rendercommandencoderwithdescriptor:). The [`renderCommandEncoderWithDescriptor:options:`](https://developer.apple.com/documentation/metal/mtl4commandbuffer/makerendercommandencoder(descriptor:options:)) variant of this method allows you to specify additional options to encode a render pass in parallel from multiple CPU cores by creating _suspending_ and _resuming_ render passes.
+    ///
+    ///
+    /// Describes a render pass.
+    ///
     /// You use render pass descriptors to create instances of ``MTL4RenderCommandEncoder`` and encode draw
     /// commands into instances of ``MTL4CommandBuffer``.
     ///
@@ -17,8 +26,6 @@ extern_class!(
     /// The ``MTL4CommandBuffer/renderCommandEncoderWithDescriptor:options:`` variant of this method allows you to specify
     /// additional options to encode a render pass in parallel from multiple CPU cores by creating *suspending* and *resuming*
     /// render passes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4RenderPassDescriptor;

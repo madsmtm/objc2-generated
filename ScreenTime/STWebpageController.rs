@@ -11,7 +11,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screentime/stwebpagecontroller?language=objc)
+    /// The controller you use to report web usage and block restricted webpages.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides a convenient way for you to communicate changes in each webpage, such as when the user starts or stops playing media. When a parent or guardian of the user blocks the webpage’s current URL, the webpage controller:
+    ///
+    /// - Automatically occludes the web page’s content
+    ///
+    /// - Updates a KVO-compliant [`URLIsBlocked`](https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisblocked) property
+    ///
+    /// For example, you can observe `urlIsBlocked` and take action when it changes to [`YES`](https://developer.apple.com/documentation/objectivec/yes), such as pausing media.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Create a webpage controller for each webpage or tab and add it on top of the webpage’s content.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

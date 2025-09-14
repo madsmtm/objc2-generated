@@ -8,12 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains the information for a displayed media item.
+    ///
+    /// ## Overview
+    ///
+    /// This object represents a media item such as a song, movie, radio station, or podcast episode. The media player displays the information stored in it.
+    ///
+    /// Update this object by changing its properties during runtime or by creating a new `MPContentItem` object with new property values, but with the same identifier as the object to change. Use the [`beginUpdates`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/beginupdates()) and [`endUpdates`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/endupdates()) methods found in [`MPPlayableContentManager`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager) to update several `MPContentItem` objects at once.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is only used for CarPlay. Using it requires a special entitlement issued by Apple. Apps without the correct entitlement won’t appear on the CarPlay home screen. See [http://www.apple.com/ios/carplay/](http://www.apple.com/ios/carplay/) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// MPContentItem represents high-level metadata for a particular media item for
     /// representation outside the client application. Examples of media items that a
     /// developer might want to represent include song files, streaming audio URLs,
     /// or radio stations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpcontentitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPContentItem;

@@ -12,22 +12,22 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle?language=objc)
+/// The presentation style of the alert.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertViewStyle(pub NSInteger);
 impl UIAlertViewStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/default?language=objc)
+    /// A standard alert.
     #[doc(alias = "UIAlertViewStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/securetextinput?language=objc)
+    /// An alert that allows the user to enter text. The text field is obscured.
     #[doc(alias = "UIAlertViewStyleSecureTextInput")]
     pub const SecureTextInput: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/plaintextinput?language=objc)
+    /// An alert that allows the user to enter text.
     #[doc(alias = "UIAlertViewStylePlainTextInput")]
     pub const PlainTextInput: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewstyle/loginandpasswordinput?language=objc)
+    /// An alert that allows the user to enter a login identifier and password.
     #[doc(alias = "UIAlertViewStyleLoginAndPasswordInput")]
     pub const LoginAndPasswordInput: Self = Self(3);
 }
@@ -41,7 +41,21 @@ unsafe impl RefEncode for UIAlertViewStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertview?language=objc)
+    /// A view that displays an alert message.
+    ///
+    /// ## Overview
+    ///
+    /// In apps that run in versions of iOS prior to iOS 8, use the [`UIAlertView`](https://developer.apple.com/documentation/uikit/uialertview) class to display an alert message to the user. An alert view functions similar to but differs in appearance from an action sheet (an instance of [`UIActionSheet`](https://developer.apple.com/documentation/uikit/uiactionsheet)).
+    ///
+    /// ### Using an alert view
+    ///
+    /// Use the properties and methods defined in this class to set the title, message, and delegate of an alert view and configure the buttons in apps that run in versions of iOS prior to iOS 8. You must set a delegate if you add custom buttons. The delegate should conform to the [`UIAlertViewDelegate`](https://developer.apple.com/documentation/uikit/uialertviewdelegate) protocol. Use the [`show`](https://developer.apple.com/documentation/uikit/uialertview/show()) method to display an alert view after it’s configured.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The [`UIAlertView`](https://developer.apple.com/documentation/uikit/uialertview) class is intended to be used as-is and doesn’t support subclassing. The view hierarchy for this class is private and must not be modified.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -276,7 +290,21 @@ impl UIAlertView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertviewdelegate?language=objc)
+    /// The interface for the delegate of an alert view object.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate implements the button actions and any other custom behavior. Some of the methods defined in this protocol are optional.
+    ///
+    /// If you add your own buttons or customize the behavior of an alert view, implement a delegate conforming to this protocol to handle the corresponding delegate messages. Use the [`delegate`](https://developer.apple.com/documentation/uikit/uialertview/delegate) property of an alert view to specify one of your application objects as the delegate.
+    ///
+    /// If you add your own buttons to an alert view, the delegate must implement the [`alertView:clickedButtonAtIndex:`](https://developer.apple.com/documentation/uikit/uialertviewdelegate/alertview(_:clickedbuttonat:)) message to respond when those buttons are clicked; otherwise, your custom buttons do nothing. The alert view is automatically dismissed after the [`alertView:clickedButtonAtIndex:`](https://developer.apple.com/documentation/uikit/uialertviewdelegate/alertview(_:clickedbuttonat:)) delegate method is invoked.
+    ///
+    /// Optionally, you can implement the [`alertViewCancel:`](https://developer.apple.com/documentation/uikit/uialertviewdelegate/alertviewcancel(_:)) method to take the appropriate action when the system cancels your alert view. If the delegate doesn’t implement this method, the default behavior is to simulate the user clicking the cancel button and closing the view.
+    ///
+    /// You can also optionally augment the behavior of presenting and dismissing alert views using the methods in Customizing behavior.
+    ///
+    ///
     pub unsafe trait UIAlertViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]

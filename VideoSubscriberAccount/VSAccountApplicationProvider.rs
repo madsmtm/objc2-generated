@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object which provides an account provider to be added to the list of providers in your application.
+    /// An object to display app-specific providers in your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountapplicationprovider?language=objc)
+    /// ## Overview
+    ///
+    /// The `VSAccountApplicationProvider` object represents an app account provider to be added to the list of already available system TV providers in your app.
+    ///
+    ///
+    /// An object which provides an account provider to be added to the list of providers in your application.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAccountApplicationProvider;

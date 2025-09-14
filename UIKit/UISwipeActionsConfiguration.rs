@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipeactionsconfiguration?language=objc)
+    /// The set of actions to perform when swiping on rows of a table.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UISwipeActionsConfiguration`](https://developer.apple.com/documentation/uikit/uiswipeactionsconfiguration) object to associate custom swipe actions with a row of your table view. Users swipe horizontally left or right in a table view to reveal the actions associated with a row. Each swipe-actions object contains the set of actions to display for each type of swipe.
+    ///
+    /// To add custom actions to your table view’s rows, implement the [`tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:leadingswipeactionsconfigurationforrowat:)) or [`tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:trailingswipeactionsconfigurationforrowat:)) method of your table view’s delegate. In those methods, create and return the actions for the indicated row. The table displays your action buttons and executes the appropriate handler block when the user taps one of them.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

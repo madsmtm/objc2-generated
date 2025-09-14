@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus?language=objc)
+/// Identifies the type that indicates the status of the service.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTServiceStatus(pub NSInteger);
 impl PTServiceStatus {
+    /// A type that indicates the service is available for use.
     /// The service is available for use and ready for use by the client.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus/ready?language=objc)
     #[doc(alias = "PTServiceStatusReady")]
     pub const Ready: Self = Self(0);
+    /// A type that indicates the service is attempting to establish a connection.
     /// The client is attempting to establish a connection to the service.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus/connecting?language=objc)
     #[doc(alias = "PTServiceStatusConnecting")]
     pub const Connecting: Self = Self(1);
+    /// A type that indicates the service is unavailable and needs to be re-established.
     /// The service has become unavailable and availability needs to be re-established once conditions have changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus/unavailable?language=objc)
     #[doc(alias = "PTServiceStatusUnavailable")]
     pub const Unavailable: Self = Self(2);
 }
@@ -38,25 +35,22 @@ unsafe impl RefEncode for PTServiceStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode?language=objc)
+/// Identifies the type of audio transmission modes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTTransmissionMode(pub NSInteger);
 impl PTTransmissionMode {
+    /// A type that indicates a participant can simultaneously receive and transmit audio.
     /// Users can transmit and receive simultaneously.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode/fullduplex?language=objc)
     #[doc(alias = "PTTransmissionModeFullDuplex")]
     pub const FullDuplex: Self = Self(0);
+    /// A type that indicates a participant can’t simultaneously receive and transmit audio.
     /// Users can transmit and receive but not simultaneously. This is the default value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode/halfduplex?language=objc)
     #[doc(alias = "PTTransmissionModeHalfDuplex")]
     pub const HalfDuplex: Self = Self(1);
+    /// A type that indicates a participant can only receive audio.
     /// User is able to receive only, transmit is not permitted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode/listenonly?language=objc)
     #[doc(alias = "PTTransmissionModeListenOnly")]
     pub const ListenOnly: Self = Self(2);
 }
@@ -70,7 +64,21 @@ unsafe impl RefEncode for PTTransmissionMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelmanager?language=objc)
+    /// An object that represents a push-to-talk channel manager.
+    ///
+    /// ## Overview
+    ///
+    /// You must create a channel manager upon launching your app, otherwise the system tears down channels and their ability to receive push notifications. By providing a [`PTChannelRestorationDelegate`](https://developer.apple.com/documentation/pushtotalk/ptchannelrestorationdelegate), an app can rejoin or leave a previously active channel the system knows about. Once the channel resoration process completes, the system provides a [`PTChannelManager`](https://developer.apple.com/documentation/pushtotalk/ptchannelmanager) instance.
+    ///
+    /// ```swift
+    /// // Create a channel manager instance.    
+    /// channelManager = try await PTChannelManager.channelManager(delegate: self,
+    ///                                                            restorationDelegate: self)
+    /// ```
+    ///
+    /// Multiple calls to [`channelManagerWithDelegate:restorationDelegate:completionHandler:`](https://developer.apple.com/documentation/pushtotalk/ptchannelmanager/channelmanager(delegate:restorationdelegate:completionhandler:)) result in the system returning the same shared instance, so store the channel manager in an instance variable.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PTChannelManager;

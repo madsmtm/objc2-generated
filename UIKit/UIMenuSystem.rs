@@ -7,9 +7,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// The command system to build or rebuild.
+    /// An object representing a main or contextual menu system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem?language=objc)
+    /// ## Overview
+    ///
+    /// A menu system groups root menus together. The [`mainSystem`](https://developer.apple.com/documentation/uikit/uimenusystem/main) system has only one root menu while the [`contextSystem`](https://developer.apple.com/documentation/uikit/uimenusystem/context) system can have multiple root menus, each built in different [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) objects like a view controller.
+    ///
+    /// Use [`UIMenuSystem`](https://developer.apple.com/documentation/uikit/uimenusystem) in your implementation of [`buildMenuWithBuilder:`](https://developer.apple.com/documentation/uikit/uiresponder/buildmenu(with:)) to isolate changes to a specific system.
+    ///
+    /// ```swift
+    /// override func buildMenu(with builder: UIMenuBuilder) {
+    ///     super.buildMenu(with: builder)
+    ///     
+    ///     // Ensure that the builder is modifying the menu bar system.
+    ///     guard builder.system == UIMenuSystem.main else { return }
+    ///
+    ///     // ...
+    /// }
+    /// ```
+    ///
+    /// You can also use a menu system to rebuild or revalidate menus as changes occur in your app. To rebuild a menu, call the [`setNeedsRebuild`](https://developer.apple.com/documentation/uikit/uimenusystem/setneedsrebuild()) method. Call [`setNeedsRevalidate`](https://developer.apple.com/documentation/uikit/uimenusystem/setneedsrevalidate()) when you need the menu system to revalidate a menu.
+    ///
+    /// For more information, see [Adding menus and shortcuts to the menu bar and user interface](https://developer.apple.com/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface).
+    ///
+    ///
+    /// The command system to build or rebuild.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -52,25 +74,21 @@ impl UIMenuSystem {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuSystemElementGroupPreference(pub NSInteger);
 impl UIMenuSystemElementGroupPreference {
     /// The default preference. The element group is automatically included based on the platform and other system behaviors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference/automatic?language=objc)
+    /// The default preference. The element group is automatically included based on the platform and other system behaviors.
     #[doc(alias = "UIMenuSystemElementGroupPreferenceAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Prefer that the element group is removed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference/removed?language=objc)
+    /// Prefer that the element group is removed.
     #[doc(alias = "UIMenuSystemElementGroupPreferenceRemoved")]
     pub const Removed: Self = Self(1);
     /// Prefer that the element group is included.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference/included?language=objc)
+    /// Prefer that the element group is included.
     #[doc(alias = "UIMenuSystemElementGroupPreferenceIncluded")]
     pub const Included: Self = Self(2);
 }
@@ -88,31 +106,26 @@ unsafe impl Send for UIMenuSystemElementGroupPreference {}
 unsafe impl Sync for UIMenuSystemElementGroupPreference {}
 
 /// Represents a preference for the structure of Find elements in the main menu.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum?language=objc)
+/// Represents a preference for the structure of Find elements in the main menu.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuSystemFindElementGroupConfigurationStyle(pub NSInteger);
 impl UIMenuSystemFindElementGroupConfigurationStyle {
     /// The default preference. Find elements are automatically included based on the platform and other system behaviors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/automatic?language=objc)
+    /// The default preference. Find elements are automatically included based on the platform and other system behaviors.
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Prefer a minimal set of find elements, only consisting of elements to search content in the app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/search?language=objc)
+    /// Prefer a minimal set of find elements, only consisting of elements to search content in the app.
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleSearch")]
     pub const Search: Self = Self(1);
     /// Prefer a set of elements for finding within a non-editable text area
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/noneditabletext?language=objc)
+    /// Prefer a set of elements for finding within a non-editable text area
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleNonEditableText")]
     pub const NonEditableText: Self = Self(2);
     /// Prefer a full set of elements for finding and replacing text, such as Find, Find and Replace, Find Navigation, and so on.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum/editabletext?language=objc)
+    /// Prefer a full set of elements for finding and replacing text, such as Find, Find and Replace, Find Navigation, and so on.
     #[doc(alias = "UIMenuSystemFindElementGroupConfigurationStyleEditableText")]
     pub const EditableText: Self = Self(3);
 }
@@ -130,10 +143,9 @@ unsafe impl Send for UIMenuSystemFindElementGroupConfigurationStyle {}
 unsafe impl Sync for UIMenuSystemFindElementGroupConfigurationStyle {}
 
 extern_class!(
+    /// Represents a configuration for find elements, should they be present. You don’t create one of these directly. A configuration is provided as part of a `UIMainMenuSystemConfiguration`.
     /// Represents a configuration for find elements, should they be present.
     /// You don't create one of these directly. A configuration is provided as part of a `UIMainMenuSystemConfiguration`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

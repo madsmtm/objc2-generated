@@ -8,7 +8,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontrollersourceitem?language=objc)
+    /// A type that can be an anchor for a popover presentation controller.
     pub unsafe trait UIPopoverPresentationControllerSourceItem: NSObjectProtocol {
         #[cfg(all(
             feature = "UIResponder",

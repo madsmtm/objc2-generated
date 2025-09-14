@@ -9,7 +9,7 @@ use objc2_contacts::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactpickerdelegate?language=objc)
+    /// The methods that you implement to respond to contact-picker user events.
     pub unsafe trait CNContactPickerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CNContactPicker", feature = "objc2-contacts"))]
         /// Notifies the delegate when the user selects a contact. Only called when keysToDisplay is empty.

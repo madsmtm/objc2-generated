@@ -7,11 +7,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationid?language=objc)
+/// A type that represents the ID of an operation.
 pub type CKOperationID = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation?language=objc)
+    /// The abstract base class for all operations that execute in a database.
+    ///
+    /// ## Overview
+    ///
+    /// All CloudKit operations descend from `CKOperation`, which provides the infrastructure for executing tasks in one of your app’s containers. Don’t subclass or create instances of this class directly. Instead, create instances of one of its concrete subclasses.
+    ///
+    /// Use the properties of this class to configure the behavior of the operation before submitting it to a queue or executing it directly. CloudKit operations involve communicating with the iCloud servers to send and receive data. You can use the properties of this class to configure the behavior of those network requests to ensure the best performance for your app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `CKOperation` objects have a default quality of service level of [`NSQualityOfServiceDefault`](https://developer.apple.com/documentation/foundation/qualityofservice/default) (see [`qualityOfService`](https://developer.apple.com/documentation/foundation/operation/qualityofservice)). Operations with this service level are discretionary, and the system schedules them for an optimal time according to battery level and other factors. On iPhone, discretionary activities pause when the device is in Low Power Mode. For information about quality of service levels, see [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html#//apple_ref/doc/uid/TP40015243-CH39) in [Energy Efficiency Guide for iOS Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243) and [Prioritize Work at the Task Level](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html#//apple_ref/doc/uid/TP40013929-CH35) in [Energy Efficiency Guide for Mac Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Long-Lived Operations
+    ///
+    /// A _long-lived operation_ is an operation that continues to run after the user closes the app. To specify a long-lived operation, set [`longLived`](https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived) to [`true`](https://developer.apple.com/documentation/swift/true), provide a completion handler, and execute the operation. To get the identifiers of all running long-lived operations, use the [`fetchAllLongLivedOperationIDsWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/ckcontainer/fetchalllonglivedoperationidswithcompletionhandler:) method that [`CKContainer`](https://developer.apple.com/documentation/cloudkit/ckcontainer) provides. To get a specific long-lived operation, use the [`fetchLongLivedOperationWithID:completionHandler:`](https://developer.apple.com/documentation/cloudkit/ckcontainer/fetchlonglivedoperationwithid:completionhandler:) method. Make sure you set the completion handler of a long-lived operation before you execute it so that the system can notify you when it completes and you can process the results. Do not execute an operation, change it to long-lived, and execute it again as a long-lived operation.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["container.fetchAllLongLivedOperationIDs(completionHandler: { (operationIDs, error) in", "    if let error = error {", "        print(\"Error fetching long lived operations: \\(error)\")", "        // Handle error", "        return", "    }", "    guard let identifiers = operationIDs else { return }", "    for operationID in identifiers {", "        container.fetchLongLivedOperation(withID: operationID, completionHandler: { (operation, error) in", "            if let error = error {", "                print(\"Error fetching operation: \\(operationID)\\n\\(error)\")", "                // Handle error", "                return", "            }", "            guard let operation = operation else { return }", "            // Add callback handlers to operation", "            container.add(operation)", "        })", "    }", "})"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[container fetchAllLongLivedOperationIDsWithCompletionHandler:^(NSArray<NSString *> *_Nullable operationIDs, NSError *_Nullable error) {", "    if (error) {", "        // Handle error", "        return", "    }", "    for (NSString *operationID in operationIDs) {", "        [container fetchLongLivedOperationWithID:operationID completionHandler:^(CKOperation *_Nullable operation, NSError *_Nullable error) {", "            if (error) {", "                // Handle error", "                return", "            }", "            // Add callback handlers to operation", "            [container addOperation:operation];", "        }];", "    }", "}];"], metadata: None }] }] })
+    /// The following is the typical life cycle of a long-lived operation:
+    ///
+    /// 1. The app creates a long-lived operation and executes it.
+    ///
+    /// The daemon starts saving and sending the callbacks to the running app. 2. The app exits.
+    ///
+    /// The daemon continues running the long-lived operation and saves the callbacks. 3. The app launches and fetches the long-lived operation.
+    ///
+    /// If the operation is running or if it completed within the previous 24 hours, the daemon returns a proxy for the long-lived operation. If the operation completed more than 24 hours previously, the daemon may stop returning it in fetch requests. 4. The app runs the long-lived operation again.
+    ///
+    /// The daemon sends the app all the saved callbacks (it doesn’t actually rerun the operation), and continues saving the callbacks and sending them to the running app. 5. The app receives the completion callback or the app cancels the operation.
+    ///
+    /// The daemon stops including the operation in future fetch results.
+    ///
+    ///
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperation;
@@ -135,6 +170,14 @@ impl CKOperation {
 }
 
 extern_class!(
+    /// An object that describes how a CloudKit operation behaves.
+    ///
+    /// ## Overview
+    ///
+    /// All of the properties in `CKOperationConfiguration` have a default value. When determining which properties to apply to a CloudKit operation, consult the operation’s configuration property, as well as the [`defaultConfiguration`](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/defaultconfiguration) property of the group that the operation belongs to. These properties combine through the following rules:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Group default configuration value" }] }], [Paragraph { inline_content: [Text { text: "Operation configuration value" }] }], [Paragraph { inline_content: [Text { text: "Value applied to operation" }] }]], [[Paragraph { inline_content: [Text { text: "default value" }] }], [Paragraph { inline_content: [Text { text: "default value" }] }], [Paragraph { inline_content: [Text { text: "default value" }] }]], [[Paragraph { inline_content: [Text { text: "default value" }] }], [Paragraph { inline_content: [Text { text: "explicit value" }] }], [Paragraph { inline_content: [Text { text: "operation.configuration explicit value" }] }]], [[Paragraph { inline_content: [Text { text: "explicit value" }] }], [Paragraph { inline_content: [Text { text: "default value" }] }], [Paragraph { inline_content: [Text { text: "group.defaultConfiguration explicit value" }] }]], [[Paragraph { inline_content: [Text { text: "explicit value" }] }], [Paragraph { inline_content: [Text { text: "explicit value" }] }], [Paragraph { inline_content: [Text { text: "operation.configuration explicit value" }] }]]], alignments: None, metadata: None })
+    ///
     /// An operation configuration is a set of properties that describes how your operation should behave.  All properties have a default value.  When determining what properties to apply to an operation, we consult the operation's configuration property, as well as the operation->group->defaultConfiguration property.  We combine them following these rules:
     ///
     /// ```text
@@ -154,8 +197,6 @@ extern_class!(
     /// CKOperationGroup -> defaultConfiguration -> allowsCellularAccess explicitly set to NO
     /// + CKOperation -> configuration -> allowsCellularAccess explicitly set to YES
     /// = allow cellular access
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationConfiguration;

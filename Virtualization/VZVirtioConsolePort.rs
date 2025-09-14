@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a Virtio console port in a VM.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate a `VZVirtioConsolePort` directly. You retrieve this object from the [`VZVirtioConsoleDevice`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice) [`ports`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports) property.
+    ///
+    ///
     /// Class representing a Virtio console port in a virtual machine.
     ///
     /// VZVirtioConsolePort should not be instantiated directly. This object can be retrieved from the VZVirtioConsoleDevice ports property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioConsolePort;

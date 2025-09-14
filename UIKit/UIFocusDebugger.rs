@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// UIFocusDebugger provides a collection of runtime utilities for debugging issues related to focus interaction.
+    /// A runtime object for debugging focus-related interactions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdebugger?language=objc)
+    /// ## Overview
+    ///
+    /// You do not use this class or its methods directly from your code. During a debugging session, you can call the methods of this class from the `lldb` debugger command line to obtain information about the current state of the focus system.
+    ///
+    ///
+    /// UIFocusDebugger provides a collection of runtime utilities for debugging issues related to focus interaction.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -109,6 +114,12 @@ impl UIFocusDebugger {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdebuggeroutput?language=objc)
+    /// An interface for specifying output from a focus debugger object.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t use this protocol directly in your code. When debugging your app from the `lldb` command line, the methods of [`UIFocusDebugger`](https://developer.apple.com/documentation/uikit/uifocusdebugger) output their results to an object that adopts this protocol. The debugger takes the output and formats it for display.
+    ///
+    ///
     pub unsafe trait UIFocusDebuggerOutput: NSObjectProtocol + MainThreadOnly {}
 );

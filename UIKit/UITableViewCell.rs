@@ -12,22 +12,28 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle?language=objc)
+/// An enumeration for the various styles of cells.
+///
+/// ## Overview
+///
+/// In all these cell styles, the larger of the text labels is accessed using the [`textLabel`](https://developer.apple.com/documentation/uikit/uitableviewcell/textlabel) property and the smaller using the [`detailTextLabel`](https://developer.apple.com/documentation/uikit/uitableviewcell/detailtextlabel) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellStyle(pub NSInteger);
 impl UITableViewCellStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/default?language=objc)
+    /// A simple style for a cell with a text label (black and left-aligned) and an optional image view.
     #[doc(alias = "UITableViewCellStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/value1?language=objc)
+    /// A style for a cell with a label on the left side of the cell with left-aligned and black text; on the right side is a label that has smaller blue text and is right-aligned.
     #[doc(alias = "UITableViewCellStyleValue1")]
     pub const Value1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/value2?language=objc)
+    /// A style for a cell with a label on the left side of the cell with text that’s right-aligned and blue; on the right side of the cell is another label with smaller text that’s left-aligned and black.
     #[doc(alias = "UITableViewCellStyleValue2")]
     pub const Value2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle/subtitle?language=objc)
+    /// A style for a cell with a left-aligned label across the top and a left-aligned label below it in smaller gray text.
     #[doc(alias = "UITableViewCellStyleSubtitle")]
     pub const Subtitle: Self = Self(3);
 }
@@ -40,19 +46,37 @@ unsafe impl RefEncode for UITableViewCellStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle?language=objc)
+/// The style for cells to use as separators.
+///
+/// ## Overview
+///
+/// You use these constants to set the value of the [`separatorStyle`](https://developer.apple.com/documentation/uikit/uitableview/separatorstyle) property defined by [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellSeparatorStyle(pub NSInteger);
 impl UITableViewCellSeparatorStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle/none?language=objc)
+    /// The separator cell has no distinct style.
     #[doc(alias = "UITableViewCellSeparatorStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle/singleline?language=objc)
+    /// The separator cell has a single line running across its width.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default value.
+    ///
+    ///
     #[doc(alias = "UITableViewCellSeparatorStyleSingleLine")]
     pub const SingleLine: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle/singlelineetched?language=objc)
+    /// The separator cell has double lines running across its width, giving it an etched look.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is currently only supported for grouped-style table views.
+    ///
+    ///
     #[doc(alias = "UITableViewCellSeparatorStyleSingleLineEtched")]
     #[deprecated = "Use UITableViewCellSeparatorStyleSingleLine for a single line separator."]
     pub const SingleLineEtched: Self = Self(2);
@@ -66,22 +90,46 @@ unsafe impl RefEncode for UITableViewCellSeparatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum?language=objc)
+/// The style of selected cells.
+///
+/// ## Overview
+///
+/// You use these constants to set the value of the [`selectionStyle`](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellSelectionStyle(pub NSInteger);
 impl UITableViewCellSelectionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/none?language=objc)
+    /// The cell has no distinct style for when it’s selected.
     #[doc(alias = "UITableViewCellSelectionStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/blue?language=objc)
+    /// The cell has a default background color when it’s selected.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 7, the selection color is no longer blue. Use [`UITableViewCellSelectionStyleDefault`](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/default) instead.
+    ///
+    ///
     #[doc(alias = "UITableViewCellSelectionStyleBlue")]
     pub const Blue: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/gray?language=objc)
+    /// The cell has a gray background when it’s selected.
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`UITableViewCellSelectionStyleDefault`](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/default) instead.
+    ///
+    ///
     #[doc(alias = "UITableViewCellSelectionStyleGray")]
     pub const Gray: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum/default?language=objc)
+    /// The cell selection style to use for tables.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is the default.
+    ///
+    ///
     #[doc(alias = "UITableViewCellSelectionStyleDefault")]
     pub const Default: Self = Self(3);
 }
@@ -94,16 +142,34 @@ unsafe impl RefEncode for UITableViewCellSelectionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.enum?language=objc)
+/// The style of focused cells.
+///
+/// ## Overview
+///
+/// You use these constants to set the value of the [`focusStyle`](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellFocusStyle(pub NSInteger);
 impl UITableViewCellFocusStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.enum/default?language=objc)
+    /// The cell alters its appearance in a standard, system-defined way when it becomes focused.
+    ///
+    /// ## Discussion
+    ///
+    /// This focus style is the default.
+    ///
+    ///
     #[doc(alias = "UITableViewCellFocusStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.enum/custom?language=objc)
+    /// The cell doesn’t alter its appearance automatically when it becomes focused.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this style allows you to create your own custom appearance for the cell. It’s recommended that you create custom-looking cells by subclassing [`UITableViewCell`](https://developer.apple.com/documentation/uikit/uitableviewcell) and overriding [`didUpdateFocusInContext:withAnimationCoordinator:`](https://developer.apple.com/documentation/uikit/uifocusenvironment/didupdatefocus(in:with:)).
+    ///
+    ///
     #[doc(alias = "UITableViewCellFocusStyleCustom")]
     pub const Custom: Self = Self(1);
 }
@@ -116,19 +182,31 @@ unsafe impl RefEncode for UITableViewCellFocusStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum?language=objc)
+/// The editing control used by a cell.
+///
+/// ## Overview
+///
+/// Use these constants with the [`editingStyle`](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellEditingStyle(pub NSInteger);
 impl UITableViewCellEditingStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum/none?language=objc)
+    /// The cell has no editing control.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default value.
+    ///
+    ///
     #[doc(alias = "UITableViewCellEditingStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum/delete?language=objc)
+    /// The cell has the delete editing control; this control is a red circle enclosing a minus sign.
     #[doc(alias = "UITableViewCellEditingStyleDelete")]
     pub const Delete: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum/insert?language=objc)
+    /// The cell has the insert editing control; this control is a green circle enclosing a plus sign.
     #[doc(alias = "UITableViewCellEditingStyleInsert")]
     pub const Insert: Self = Self(2);
 }
@@ -141,25 +219,67 @@ unsafe impl RefEncode for UITableViewCellEditingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum?language=objc)
+/// The type of standard accessory control used by a cell.
+///
+/// ## Overview
+///
+/// Use these constants to set the value of the [`accessoryType`](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.property) property.
+///
+/// Several accessory views support additional interactions. For example, a detail button conveys that there is additional information for the user to see. For information about how to respond to interactions with a specific accessory view, see the discussion for that type.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellAccessoryType(pub NSInteger);
 impl UITableViewCellAccessoryType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/none?language=objc)
+    /// No accessory view.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default value.
+    ///
+    ///
     #[doc(alias = "UITableViewCellAccessoryNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/disclosureindicator?language=objc)
+    /// A chevron-shaped control for presenting new content.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this type when you want taps in the accessory view to display new content. Connect the accessory view itself to a push segue to display that content.
+    ///
+    /// The table view doesn’t call the delegate’s [`tableView:accessoryButtonTappedForRowWithIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:accessorybuttontappedforrowwith:)) method in response to touch events in this accessory view.
+    ///
+    ///
     #[doc(alias = "UITableViewCellAccessoryDisclosureIndicator")]
     pub const DisclosureIndicator: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/detaildisclosurebutton?language=objc)
+    /// An information button and a disclosure (chevron) control.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this type when you want both an information button and a disclosure control. Connect the disclosure control to a push segue to display new content. Use the delegate’s [`tableView:accessoryButtonTappedForRowWithIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:accessorybuttontappedforrowwith:))method to respond to touch events in the detail button.
+    ///
+    ///
     #[doc(alias = "UITableViewCellAccessoryDetailDisclosureButton")]
     pub const DetailDisclosureButton: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/checkmark?language=objc)
+    /// A checkmark image.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this option to display a checkmark image. This type of accessory view doesn’t track touches.
+    ///
+    /// To hide or show a check mark for a row, toggle the [`accessoryType`](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.property) property of the cell between the [`UITableViewCellAccessoryNone`](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/none) and [`UITableViewCellAccessoryCheckmark`](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/checkmark) values. For example, if you use a checkmark to indicate one selected row from a group of rows, use your delegate’s [`tableView:didSelectRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:didselectrowat:)) method to update the accessory views of the affected rows.
+    ///
+    ///
     #[doc(alias = "UITableViewCellAccessoryCheckmark")]
     pub const Checkmark: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum/detailbutton?language=objc)
+    /// An information button.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this option to display a button that, when tapped, displays information about the row. Use your delegate’s [`tableView:accessoryButtonTappedForRowWithIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:accessorybuttontappedforrowwith:)) method to respond to taps in the button.
+    ///
+    ///
     #[doc(alias = "UITableViewCellAccessoryDetailButton")]
     pub const DetailButton: Self = Self(4);
 }
@@ -172,20 +292,26 @@ unsafe impl RefEncode for UITableViewCellAccessoryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/statemask?language=objc)
+/// Constants used to determine the new state of a cell as it transitions between states.
+///
+/// ## Overview
+///
+/// The methods that use these constants are [`didTransitionToState:`](https://developer.apple.com/documentation/uikit/uitableviewcell/didtransition(to:)) and [`willTransitionToState:`](https://developer.apple.com/documentation/uikit/uitableviewcell/willtransition(to:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellStateMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UITableViewCellStateMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellstatemask/uitableviewcellstatedefaultmask?language=objc)
+/// The normal state of a table cell.
         #[doc(alias = "UITableViewCellStateDefaultMask")]
         const DefaultMask = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/statemask/showingeditcontrol?language=objc)
+/// The state of a table view cell when the table view is in editing mode.
         #[doc(alias = "UITableViewCellStateShowingEditControlMask")]
         const ShowingEditControlMask = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/statemask/showingdeleteconfirmation?language=objc)
+/// The state of a table view cell that shows a button requesting confirmation of a delete gesture.
         #[doc(alias = "UITableViewCellStateShowingDeleteConfirmationMask")]
         const ShowingDeleteConfirmationMask = 1<<1;
     }
@@ -199,19 +325,19 @@ unsafe impl RefEncode for UITableViewCellStateMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate?language=objc)
+/// Constants indicating the current state of a row involved in a drag operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellDragState(pub NSInteger);
 impl UITableViewCellDragState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate/none?language=objc)
+    /// The cell isn’t involved in a drag operation.
     #[doc(alias = "UITableViewCellDragStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate/lifting?language=objc)
+    /// The cell is being animated off of the table’s surface.
     #[doc(alias = "UITableViewCellDragStateLifting")]
     pub const Lifting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate/dragging?language=objc)
+    /// The cell is currently being dragged.
     #[doc(alias = "UITableViewCellDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }
@@ -224,7 +350,13 @@ unsafe impl RefEncode for UITableViewCellDragState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellconfigurationupdatehandler?language=objc)
+/// The type of block for handling updates to the cell’s configuration using the current state.
+///
+/// Parameters:
+/// - cell: The table view cell to configure.
+///
+/// - state: The new state to use for updating the cell’s configuration.
+///
 #[cfg(all(
     feature = "UICellConfigurationState",
     feature = "UIResponder",
@@ -236,7 +368,45 @@ pub type UITableViewCellConfigurationUpdateHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UITableViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell?language=objc)
+    /// The visual representation of a single row in a table view.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UITableViewCell`](https://developer.apple.com/documentation/uikit/uitableviewcell) object is a specialized type of view that manages the content of a single table row. You use cells primarily to organize and present your app’s custom content, but [`UITableViewCell`](https://developer.apple.com/documentation/uikit/uitableviewcell) provides some specific customizations to support table-related behaviors, including:
+    ///
+    /// - Applying a selection or highlight color to the cell
+    ///
+    /// - Adding standard accessory views, such as a detail or disclosure control
+    ///
+    /// - Putting the cell into an editable state
+    ///
+    /// - Indenting the cell’s content to create a visual hierarchy in your table
+    ///
+    /// Your app’s content occupies most of the cell’s bounds, but the cell may adjust that space to make room for other content. Cells display accessory views on the trailing edge of their content area. When you put your table into edit mode, the cell adds a delete control to the leading edge of its content area, and optionally swaps out an accessory view for a reorder control.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/af283a25db41dae74dee3321073f3778/media-3113230~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3eb9dd10bf532feaef9a5a57dc24113a/media-3113230%402x.png 2x" />
+    ///     <img alt="Illustration showing the area of a cell by itself and with an accessory view and edit control. The content area of a cell shrinks as needed to accommodate the accessory view or edit controls." src="https://docs-assets.developer.apple.com/published/af283a25db41dae74dee3321073f3778/media-3113230~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Every table view must have at least one type of cell for displaying content, and tables may have multiple cell types to display different types of content. Your table’s data source object handles the creation and configuration of cells immediately before they appear onscreen. For information about how to create your table’s cells, see [Filling a table with data](https://developer.apple.com/documentation/uikit/filling-a-table-with-data).
+    ///
+    /// ### Configure your cell’s content
+    ///
+    /// Configure the content and layout of your cells in your storyboard file. Tables have one cell type by default, but you can add more by changing the value in the table’s Prototype Cells attribute. In addition to configuring the cell’s content, make sure you configure the following attributes:
+    ///
+    /// - Identifier. Use this identifier (also known as a reuse identifier) to create the cell.
+    ///
+    /// - Style. Choose one of the standard types or define a custom cell.
+    ///
+    /// - Class. Specify a [`UITableViewCell`](https://developer.apple.com/documentation/uikit/uitableviewcell) subclass with your custom behavior.
+    ///
+    /// To configure the content and appearance of your cell, you can set its [`contentConfiguration`](https://developer.apple.com/documentation/uikit/uitableviewcell/contentconfiguration-9ktox) and [`backgroundConfiguration`](https://developer.apple.com/documentation/uikit/uitableviewcell/backgroundconfiguration-24e8e).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

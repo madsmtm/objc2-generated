@@ -7,9 +7,50 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A class to specify list of supported model update parameters.
+    /// The keys for the parameter dictionary in a model configuration or a model update context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlparameterkey?language=objc)
+    /// ## Overview
+    ///
+    /// Use an [`MLParameterKey`](https://developer.apple.com/documentation/coreml/mlparameterkey) to retrieve a model’s parameter value using:
+    ///
+    /// - The model’s [`parameterValueForKey:error:`](https://developer.apple.com/documentation/coreml/mlmodel/parametervalue(for:)) method
+    ///
+    /// - The [`parameters`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters) dictionary of an [`MLModelConfiguration`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration)
+    ///
+    /// - The [`parameters`](https://developer.apple.com/documentation/coreml/mlupdatecontext/parameters) dictionary of an [`MLUpdateContext`](https://developer.apple.com/documentation/coreml/mlupdatecontext)
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To access the parameter of a specific model within a pipeline model, use the parameter key’s [`scopedTo:`](https://developer.apple.com/documentation/coreml/mlparameterkey/scoped(to:)) method with the model’s name.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Overriding model and layer parameters
+    ///
+    /// To override a model’s default parameter values:
+    ///
+    /// 1. Create an [`MLModelConfiguration`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration) instance.
+    ///
+    /// 2. Use an [`MLParameterKey`](https://developer.apple.com/documentation/coreml/mlparameterkey) for each parameter to set its value in the model configuration’s [`parameters`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters) dictionary.
+    ///
+    /// 3. Create a new model instance using [`modelWithContentsOfURL:configuration:error:`](https://developer.apple.com/documentation/coreml/mlmodel/init(contentsof:configuration:)) with your custom model configuration.
+    ///
+    /// ### Configuring update parameters
+    ///
+    /// To configure the update parameters for an [`MLUpdateTask`](https://developer.apple.com/documentation/coreml/mlupdatetask):
+    ///
+    /// 1. Create an [`MLModelConfiguration`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration) instance.
+    ///
+    /// 2. Use an [`MLParameterKey`](https://developer.apple.com/documentation/coreml/mlparameterkey) for each parameter to set its value in the model configuration’s [`parameters`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters) dictionary.
+    ///
+    /// 3. Create a new update task with your custom model configuration.
+    ///
+    /// See [Personalizing a Model with On-Device Updates](https://developer.apple.com/documentation/coreml/personalizing-a-model-with-on-device-updates).
+    ///
+    ///
+    /// A class to specify list of supported model update parameters.
     #[unsafe(super(MLKey, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLKey")]

@@ -14,11 +14,9 @@ use objc2_metal::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetalbuffercachemaximumbufferagekey?language=objc)
     pub static kCVMetalBufferCacheMaximumBufferAgeKey: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercache?language=objc)
 #[doc(alias = "CVMetalBufferCacheRef")]
 #[repr(C)]
 pub struct CVMetalBufferCache {
@@ -35,7 +33,6 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CVMetalBufferCache {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercachegettypeid()?language=objc)
     #[doc(alias = "CVMetalBufferCacheGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -47,6 +44,28 @@ unsafe impl ConcreteType for CVMetalBufferCache {
 }
 
 impl CVMetalBufferCache {
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocatorRef to use for allocating the cache.  May be NULL.
+    ///
+    /// - cacheAttributes: A CFDictionaryRef containing the attributes of the cache itself. May be NULL.
+    ///
+    /// - metalDevice: The Metal device for which the buffer objects will be created.
+    ///
+    /// - cacheOut: The newly created buffer cache will be placed here
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns kCVReturnSuccess on success
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a new Buffer Cache.
+    ///
+    ///
     /// Creates a new Buffer Cache.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
@@ -64,8 +83,6 @@ impl CVMetalBufferCache {
     /// - `cache_attributes` generic must be of the correct type.
     /// - `cache_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercachecreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
@@ -87,6 +104,33 @@ impl CVMetalBufferCache {
         unsafe { CVMetalBufferCacheCreate(allocator, cache_attributes, metal_device, cache_out) }
     }
 
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocatorRef to use for allocating the CVMetalBuffer object. May be NULL.
+    ///
+    /// - bufferCache: The buffer cache object that will manage the buffer.
+    ///
+    /// - bufferOut: The newly created buffer object will be placed here.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns kCVReturnSuccess on success
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a CVMetalBuffer object from an existing CVImageBuffer
+    ///
+    /// Creates or returns a cached CVMetalBuffer object mapped to the CVImageBuffer. This creates a live binding between the CVImageBuffer and underlying CVMetalBuffer buffer object.
+    ///
+    /// ```text
+    ///         IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the images in them.
+    ///         Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
+    /// ```
+    ///
+    ///
     /// Creates a CVMetalBuffer object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVMetalBuffer object. May be NULL.
@@ -108,8 +152,6 @@ impl CVMetalBufferCache {
     /// # Safety
     ///
     /// `buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercachecreatebufferfromimage(_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalBufferCacheCreateBufferFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -142,6 +184,20 @@ impl CVMetalBufferCache {
         }
     }
 
+    ///
+    /// Parameters:
+    /// - bufferCache: The buffer cache object to flush
+    ///
+    /// - options: Currently unused, set to 0.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Performs internal housekeeping/recycling operations
+    ///
+    /// This call must be made periodically to give the buffer cache a chance to do internal housekeeping operations.
+    ///
+    ///
     /// Performs internal housekeeping/recycling operations
     ///
     /// This call must be made periodically to give the buffer cache a chance to do internal housekeeping operations.
@@ -149,8 +205,6 @@ impl CVMetalBufferCache {
     /// Parameter `bufferCache`: The buffer cache object to flush
     ///
     /// Parameter `options`: Currently unused, set to 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercacheflush(_:_:)?language=objc)
     #[doc(alias = "CVMetalBufferCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]

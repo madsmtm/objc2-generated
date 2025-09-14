@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A helper object for convient access to samples stored in an array.
+    /// An array instance that contains rasterization rates.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrasterizationratesamplearray?language=objc)
+    /// ## Overview
+    ///
+    /// The [`horizontal`](https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/horizontal) and [`vertical`](https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor/vertical) properties of an [`MTLRasterizationRateLayerDescriptor`](https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor) point to [`MTLRasterizationRateSampleArray`](https://developer.apple.com/documentation/metal/mtlrasterizationratesamplearray) instances that contains rasterization rates for the layer map. You can use array subscript syntax to access the samples. [`MTLRasterizationRateSampleArray`](https://developer.apple.com/documentation/metal/mtlrasterizationratesamplearray) instances perform bounds checking on any accesses you make to their sample data.
+    ///
+    ///
+    /// A helper object for convient access to samples stored in an array.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateSampleArray;
@@ -67,6 +72,17 @@ impl DefaultRetained for MTLRasterizationRateSampleArray {
 }
 
 extern_class!(
+    /// The minimum rasterization rates to apply to sections of a layer in the render target.
+    ///
+    /// ## Overview
+    ///
+    /// Use a layer map to divide the logical viewport coordinate system into a 2D grid of equal-sized rectangles, and choose different rasterization rates for each cell.
+    ///
+    /// Specify rasterization rates using floating-point numbers between `0.0` and `1.0`, inclusive. A rate of `1.0` represents the normal rasterization rate, where each logical unit is equal to a physical pixel; a rate of `0.5` means that two logical units equate to one physical pixel, and so on. A value of `0.0` means that the GPU renders at its lowest quality level. When you create the map, the device object chooses the nearest rasterization rate supported by the GPU that meets or exceeds the rate you specified.
+    ///
+    /// In the layer map, you provide separate rasterization rates for the grid’s rows and columns. The horizontal rates specify a horizontal rasterization rate for each column, and the vertical rates specify a vertical rasterization rate for each row. Each cell calculates its physical size in pixels by using the logical size of cells in the map, the horizontal rate from the cell’s column, and the vertical rate from its row.
+    ///
+    ///
     /// Describes the minimum rasterization rate screen space using two piecewise linear functions.
     ///
     /// The two piecewise linear function (PLF) describe the desired rasterization quality on the horizontal and vertical axis separately.
@@ -76,8 +92,6 @@ extern_class!(
     /// All other samples are spaced equidistant in screen space.
     /// MTLRasterizationRateLayerDescriptor instances will be stored inside a MTLRasterizationRateMapDescriptor which in turn is compiled by MTLDevice into a MTLRasterizationRateMap.
     /// Because MTLDevice may not support the requested granularity, the provided samples may be rounded up (towards higher quality) during compilation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrasterizationratelayerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateLayerDescriptor;
@@ -215,9 +229,8 @@ impl MTLRasterizationRateLayerDescriptor {
 }
 
 extern_class!(
+    /// Descriptions for the rasterization rates to apply to the set of layers in a rate map.
     /// Mutable array of MTLRasterizationRateLayerDescriptor
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrasterizationratelayerarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateLayerArray;
@@ -281,11 +294,19 @@ impl DefaultRetained for MTLRasterizationRateLayerArray {
 }
 
 extern_class!(
+    /// An object that you use to configure new rasterization rate maps.
+    ///
+    /// ## Overview
+    ///
+    /// To create a new rate map, first create an [`MTLRasterizationRateMapDescriptor`](https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor) instance and set its property values. Then, create a new rasterization rate-map by calling an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s
+    /// [`newRasterizationRateMapWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makerasterizationratemap(descriptor:)) method.
+    ///
+    /// When creating a rate map, Metal copies into it property values from the descriptor. You can reuse a descrptor by modifying its property values, which doesn’t affect the other rate-map instances that already exist.
+    ///
+    ///
     /// Describes a MTLRasterizationRateMap containing an arbitrary number of MTLRasterizationRateLayerDescriptor instances.
     ///
     /// An MTLRasterizationRateMapDescriptor is compiled into an MTLRasterizationRateMap using MTLDevice.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRasterizationRateMapDescriptor;
@@ -469,6 +490,25 @@ impl DefaultRetained for MTLRasterizationRateMapDescriptor {
 }
 
 extern_protocol!(
+    /// A compiled read-only instance that determines how to apply variable rasterization rates when rendering.
+    ///
+    /// ## Overview
+    ///
+    /// Use a rasterization rate map to reduce rendering quality in less-important or less-sampled regions of the render target, such as areas affected by blur effects or a far-away cascade of a shadow map.
+    ///
+    /// By default, a render pass doesn’t have a rasterization rate map, and the viewport coordinate system maps exactly to physical pixels in the targeted textures. If you apply a rasterization rate map to a render pass, the viewport coordinate system becomes a logical coordinate system, and the rate map describes how to map logical coordinates to physical pixels in the render pass’s targets. You can specify different rasterization rates in different regions of the logical coordinate system. When you do, those logical units map to fewer physical pixels, which means you can use smaller render targets and render fewer pixels, saving both memory and processing time. For more information, see [Rendering at different rasterization rates](https://developer.apple.com/documentation/metal/rendering-at-different-rasterization-rates).
+    ///
+    /// Don’t implement this protocol yourself; instead, create an [`MTLRasterizationRateMapDescriptor`](https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor) instance, configure it, and then call the [`newRasterizationRateMapWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makerasterizationratemap(descriptor:)) on a device instance.
+    ///
+    /// To apply a rasterization rate map to a render pass, set the render pass descriptor’s [`rasterizationRateMap`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor/rasterizationratemap) property.
+    ///
+    /// ### Configuring the rate map
+    ///
+    /// A rasterization rate map specifies the size of the viewport coordinate space in logical units and one or more _layer maps_. A layer map partitions the viewport coordinate space into a 2D grid of cells and defines the rasterization rate for each cell. If you aren’t using layered rendering, provide a single layer map; otherwise, provide one layer map for each layer. For more information about layered rendering, see [Rendering to multiple texture slices in a draw command](https://developer.apple.com/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command).
+    ///
+    /// You can query the physical size requirements for each layer in the render pass by calling the [`physicalSizeForLayer:`](https://developer.apple.com/documentation/metal/mtlrasterizationratemap/physicalsize(layer:)) method. Your render targets must be at least this large.
+    ///
+    ///
     /// Compiled read-only object that determines how variable rasterization rate is applied when rendering.
     ///
     /// A variable rasterization rate map is compiled by MTLDevice from a MTLRasterizationRateMapDescriptor containing one or more MTLRasterizationRateLayerDescriptor.
@@ -478,8 +518,6 @@ extern_protocol!(
     /// The quality will never exceed 1:1 in any region of screen space.
     /// Because a smaller area of the framebuffer is populated, less fragment shader invocations are required to render content, and less bandwidth is consumed to store the shaded values.
     /// Use a rasterization rate map to reduce rendering quality in less-important or less-sampled regions of the framebuffer, such as the periphery of a VR/AR display or a far-away cascade of a shadow map.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrasterizationratemap?language=objc)
     pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         /// Returns: The device on which the rasterization rate map was created

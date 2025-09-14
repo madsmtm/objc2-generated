@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The types of audio and haptic event waveforms.
 /// Types of haptic and audio events.
 ///
 ///
@@ -28,43 +29,81 @@ use crate::*;
 ///
 /// An event which generates an audio signal using a client-supplied waveform (see `CHHapticEngine(registerAudioResource:options:error)`).
 /// Currently, these behave as Transient events (i.e., no looping or enveloping).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticEventType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/haptictransient?language=objc)
+    /// A brief impulse occurring at a specific point in time, like the feedback from toggling a switch.
+    ///
+    /// ## Discussion
+    ///
+    /// Transient events complete on their own, even without a duration.
+    ///
+    ///
     pub static CHHapticEventTypeHapticTransient: &'static CHHapticEventType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/hapticcontinuous?language=objc)
+    /// A haptic event with a looped waveform of arbitrary length.
+    ///
+    /// ## Discussion
+    ///
+    /// Continuous haptic patterns, like the sustained vibration from a ringtone, take the form of lengthier feedback over a period of time. You must provide continuous events with a duration to determine their endpoint. The maximum duration of a continuous haptic event is 30 seconds.
+    ///
+    ///
     pub static CHHapticEventTypeHapticContinuous: &'static CHHapticEventType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/audiocontinuous?language=objc)
+    /// An audio event with a looped waveform of arbitrary length.
+    ///
+    /// ## Discussion
+    ///
+    /// Continuous audio patterns take the form of lengthier feedback over a period of time. You must provide continuous events with a duration to determine their endpoint.
+    ///
+    ///
     pub static CHHapticEventTypeAudioContinuous: &'static CHHapticEventType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/audiocustom?language=objc)
+    /// An audio event using a waveform that you supply.
+    ///
+    /// ## Discussion
+    ///
+    /// Custom waveforms behave like transient events, with no looping.
+    ///
+    ///
     pub static CHHapticEventTypeAudioCustom: &'static CHHapticEventType;
 }
 
+/// A type that identifies a custom audio resource.
 /// Identifier for registered, client-loaded audio data which can be used as custom event types
 /// (see `CHHapticEngine(registerAudioResource:options:error)`).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourceid?language=objc)
 pub type CHHapticAudioResourceID = NSUInteger;
 
 extern_class!(
+    /// An object that describes a single haptic or audio event.
+    ///
+    /// ## Overview
+    ///
+    /// Each event represents a single haptic or audio signal. The event [`type`](https://developer.apple.com/documentation/corehaptics/chhapticevent/type) determines whether it’s audio or haptic. Use a [`CHHapticPatternPlayer`](https://developer.apple.com/documentation/corehaptics/chhapticpatternplayer) object obtained through [`CHHapticEngine`](https://developer.apple.com/documentation/corehaptics/chhapticengine) factory methods to play events. Haptic events can be transient or continuous. Transient haptic patterns are brief impulses that occur at a specific point in time, such as the haptic feedback you feel from swiping through a picker or toggling a switch. Continuous haptic patterns, like the vibration from a ringtone, take the form of lengthier feedback over a period of time.
+    ///
+    /// In the following graphic, transient haptic patterns on the left trigger at a specific time with a specific intensity. Continuous haptic patterns on the right sustain the haptic feedback over a specific duration of time, such as three seconds.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/56f030e44ad5fb63ca53760499edb42b/media-3235483~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/5457af395d15942b22d154ae7e7fa804/media-3235483%402x.png 2x" />
+    ///     <img alt="A transient haptic pattern on the left, and a continuous haptic pattern on the right." src="https://docs-assets.developer.apple.com/published/56f030e44ad5fb63ca53760499edb42b/media-3235483~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Specify when an event begins by setting its [`relativeTime`](https://developer.apple.com/documentation/corehaptics/chhapticevent/relativetime) property. Specify the length of the event by setting its [`duration`](https://developer.apple.com/documentation/corehaptics/chhapticevent/duration) property. Set optional parameters to customize event properties. For example, you can specify the intensity of a haptic event by creating an event parameter with ID [`CHHapticEventParameterIDHapticIntensity`](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/hapticintensity).
+    ///
+    ///
     /// The description of a single haptic/audio event, plus optional Event parameters which modify the event.
     ///
     /// CHHapticEvents have a relative time property to allow specifying the time relationship between events in a pattern.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticEvent;

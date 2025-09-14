@@ -7,7 +7,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry?language=objc)
+    /// The top-level repository of scriptability information for an app at runtime.
+    ///
+    /// ## Overview
+    ///
+    /// Scriptability information specifies the terminology available for use in scripts that target an application. It also provides information, used by AppleScript and by Cocoa, about how support for that terminology is implemented in the application. This information includes descriptions of the scriptable object classes in an application and of the commands the application supports.
+    ///
+    /// There are two standard formats for supplying scriptability information: the older script suite format, consisting of a script suite file and one or more script terminology files, and the newer scripting definition (or sdef) format, consisting of a single sdef file.
+    ///
+    /// There is one instance of `NSScriptSuiteRegistry` per scriptable application. This registry object collects scriptability information when the application first needs to respond to an Apple event for which Cocoa hasn’t installed a default event handler. It then creates one instance of  [`NSScriptClassDescription`](https://developer.apple.com/documentation/foundation/nsscriptclassdescription) for each object class and one instance of [`NSScriptCommandDescription`](https://developer.apple.com/documentation/foundation/nsscriptcommanddescription) for each command class, and installs a command handler for each command.
+    ///
+    /// When a user executes an AppleScript script, Apple events are sent to the targeted application. Using the information stored in the registry object, Cocoa automatically converts incoming Apple events into script commands (based on [`NSScriptCommand`](https://developer.apple.com/documentation/foundation/nsscriptcommand) or a subclass) that manipulate objects in the application.
+    ///
+    /// The public methods of `NSScriptSuiteRegistry` are used primarily by Cocoa’s built-in scripting support. You should not need to create a subclass of `NSScriptSuiteRegistry`.
+    ///
+    /// For information on scriptability information formats, loading of scriptability information, and related topics, see “Scriptability Information” in [Overview of Cocoa Support for Scriptable Applications](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_about_apps/SAppsAboutApps.html#//apple_ref/doc/uid/TP40001976) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptSuiteRegistry;

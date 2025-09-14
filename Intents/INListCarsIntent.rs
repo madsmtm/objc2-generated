@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintent?language=objc)
+    /// An intent for retrieving a list of the user’s electric vehicles.
+    ///
+    /// ## Overview
+    ///
+    /// Maps creates instances of `INListCarsIntent` when it needs to display a list of the user’s electric vehicles, usually before or during route planning.
+    ///
+    /// To handle this intent, you create an object that conforms to the [`INListCarsIntentHandling`](https://developer.apple.com/documentation/intents/inlistcarsintenthandling) protocol. The object handles, and optionally confirms, the request by providing an instance of [`INListCarsIntentResponse`](https://developer.apple.com/documentation/intents/inlistcarsintentresponse). The response contains an array of [`INCar`](https://developer.apple.com/documentation/intents/incar) objects, one for each of the user’s electric vehicles. Maps requires that each vehicle responds to [`INGetCarPowerLevelStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent) requests so that it can use the information the intent provides—current charge, battery capacity, distance remaining, and so forth—to more accurately plan the route.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -60,11 +68,18 @@ impl INListCarsIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for requesting a list of the user’s electric vehicles.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the `INListCarsIntentHandling` protocol to confirm and handle requests from Maps for a list of the user’s electric vehicles. Adopt this protocol in an object of your Intents extension that can provide information about each of the user’s vehicles.
+    ///
+    /// Maps delivers an [`INListCarsIntent`](https://developer.apple.com/documentation/intents/inlistcarsintent) object to your handler when it needs to present a list of vehicles to the user. The  intent is a placeholder object and doesn’t provide any contextual information pertaining to the request.
+    ///
+    ///
     /// Protocol to declare support for handling an INListCarsIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintenthandling?language=objc)
     pub unsafe trait INListCarsIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

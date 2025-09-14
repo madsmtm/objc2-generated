@@ -8,26 +8,26 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype?language=objc)
+/// Designates how color for an element is to be displayed.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVColorType(pub NSInteger);
 impl TVColorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/none?language=objc)
+    /// Indicates that there is no color associated with an element.
     #[doc(alias = "TVColorTypeNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/plain?language=objc)
+    /// Indicates that a single color is to be used with an element.
     #[doc(alias = "TVColorTypePlain")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Plain: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/lineargradienttoptobottom?language=objc)
+    /// Indicates that a color gradient goes from the top to the bottom of an element.
     #[doc(alias = "TVColorTypeLinearGradientTopToBottom")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const LinearGradientTopToBottom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolortype/lineargradientlefttoright?language=objc)
+    /// Indicates that a color gradient goes from the left to the right of an element.
     #[doc(alias = "TVColorTypeLinearGradientLeftToRight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const LinearGradientLeftToRight: Self = Self(3);
@@ -42,9 +42,8 @@ unsafe impl RefEncode for TVColorType {
 }
 
 extern_class!(
+    /// The color data used by styles.
     /// Defines the color data for styles of type TVViewElementStyleTypeColor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvcolor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

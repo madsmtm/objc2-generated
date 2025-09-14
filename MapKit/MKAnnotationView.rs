@@ -13,29 +13,65 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationcalloutinfodidchangenotification?language=objc)
+    /// A property to observe to determine when the title or subtitle information of an annotation object changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification supports legacy applications and is no longer necessary. MapKit tracks changes to the title and subtitle of an annotation using KVO notifications.
+    ///
+    ///
     pub static MKAnnotationCalloutInfoDidChangeNotification: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum?language=objc)
+/// Constants that indicate the drag state of an annotation view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAnnotationViewDragState(pub NSUInteger);
 impl MKAnnotationViewDragState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/none?language=objc)
+    /// An annotation view that doesn’t have a drag operation.
+    ///
+    /// ## Discussion
+    ///
+    /// The view isn’t involved in a drag operation. The annotation view is responsible for returning itself to this state when a drag ends or cancels.
+    ///
+    ///
     #[doc(alias = "MKAnnotationViewDragStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/starting?language=objc)
+    /// An annotation view begins dragging.
+    ///
+    /// ## Discussion
+    ///
+    /// A user action causes the view to begin the drag operation. The map view automatically moves annotation views to this state in response to appropriate user actions.
+    ///
+    ///
     #[doc(alias = "MKAnnotationViewDragStateStarting")]
     pub const Starting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/dragging?language=objc)
+    /// An annotation view is actively dragging.
+    ///
+    /// ## Discussion
+    ///
+    /// The view is in the middle of a drag operation and is tracking progress.
+    ///
+    ///
     #[doc(alias = "MKAnnotationViewDragStateDragging")]
     pub const Dragging: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/canceling?language=objc)
+    /// An annotation view cancels drag operation.
+    ///
+    /// ## Discussion
+    ///
+    /// A user action causes the view to cancel the drag operation. You can put an annotation view into this state to abort the operation.
+    ///
+    ///
     #[doc(alias = "MKAnnotationViewDragStateCanceling")]
     pub const Canceling: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum/ending?language=objc)
+    /// An annotation view ends dragging.
+    ///
+    /// ## Discussion
+    ///
+    /// A user action indicates the user dropped the view. The map view automatically moves annotation views to this state in response to appropriate user actions.
+    ///
+    ///
     #[doc(alias = "MKAnnotationViewDragStateEnding")]
     pub const Ending: Self = Self(4);
 }
@@ -48,48 +84,66 @@ unsafe impl RefEncode for MKAnnotationViewDragState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority?language=objc)
+/// Constants that indicates the display priority for annotations.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MKFeatureDisplayPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/required?language=objc)
+/// A constant indicating that the item is required.
+///
+/// ## Discussion
+///
+/// An annotation view with this priority does not participate in clustering.
+///
+///
 pub static MKFeatureDisplayPriorityRequired: MKFeatureDisplayPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/defaulthigh?language=objc)
+/// A constant indicating that the item’s display priority is high.
+///
+/// ## Discussion
+///
+/// An annotation view with this priority is removed from the map when its bounds collide with the bounds of another view with a higher priority. If the priorities of the two views are equal, the view furthest from the center of the map’s visible region is hidden first.
+///
+///
 pub static MKFeatureDisplayPriorityDefaultHigh: MKFeatureDisplayPriority = 750 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/defaultlow?language=objc)
+/// A constant indicating that the item’s display priority is low.
+///
+/// ## Discussion
+///
+/// An annotation view with this priority is removed from the map when its bounds collide with the bounds of another view with a higher priority. If the priorities of the two views are equal, the view furthest from the center of the map’s visible region is hidden first.
+///
+///
 pub static MKFeatureDisplayPriorityDefaultLow: MKFeatureDisplayPriority = 250 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority?language=objc)
+/// Constants that indicates the priority for ordering overlapping annotation views.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MKAnnotationViewZPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/max?language=objc)
+/// The maximum allowed priority for overlapping views.
 pub static MKAnnotationViewZPriorityMax: MKAnnotationViewZPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/defaultselected?language=objc)
+/// The default view overlapping priority for a selected view.
 pub static MKAnnotationViewZPriorityDefaultSelected: MKAnnotationViewZPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/defaultunselected?language=objc)
+/// The default view overlapping priority for an unselected view.
 pub static MKAnnotationViewZPriorityDefaultUnselected: MKAnnotationViewZPriority = 500 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/min?language=objc)
+/// The minimum allowed priority for overlapping views.
 pub static MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum?language=objc)
+/// Constants that indicates how to interpret the collision frame rectangle of an annotation view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAnnotationViewCollisionMode(pub NSInteger);
 impl MKAnnotationViewCollisionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum/rectangle?language=objc)
+    /// A constant that indicates that the annotation view uses the full collision frame rectangle for detecting collisions.
     #[doc(alias = "MKAnnotationViewCollisionModeRectangle")]
     pub const Rectangle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum/circle?language=objc)
+    /// A constant that indicates that the annotation view uses an inscribed circle in the collision frame rectangle to determine collisions.
     #[doc(alias = "MKAnnotationViewCollisionModeCircle")]
     pub const Circle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum/none?language=objc)
+    /// A constant indicating that collisions can’t occur.
     #[doc(alias = "MKAnnotationViewCollisionModeNone")]
     pub const None: Self = Self(2);
 }
@@ -103,7 +157,37 @@ unsafe impl RefEncode for MKAnnotationViewCollisionMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview?language=objc)
+    /// The visual representation of one of your annotation objects.
+    ///
+    /// ## Overview
+    ///
+    /// _Annotation views_ are loosely coupled to a corresponding _annotation object_, which is an object that conforms to the [`MKAnnotation`](https://developer.apple.com/documentation/mapkit/mkannotation) protocol. When an annotation’s coordinate point is in the map’s visible region, the map view asks its delegate to provide a corresponding annotation view. MapKit may recycle annotation views and put them into a reuse queue that the map view maintains.
+    ///
+    /// The most efficient way to provide the content for an annotation view is to set its [`image`](https://developer.apple.com/documentation/mapkit/mkannotationview/image) property. The annotation view sizes itself automatically to the image you specify and draws that image for its contents. Because it’s a view, you can also override the [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method and draw your view’s content manually. If you choose to override [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) directly and you don’t specify a custom image in the [`image`](https://developer.apple.com/documentation/mapkit/mkannotationview/image) property, the annotation view sets the width and height of the annotation view’s frame to `0` by default. Before the framework can draw your custom content, you need to set the width and height to nonzero values by modifying the view’s [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame) property. In general, if your content consists entirely of static images, it’s more efficient to set the [`image`](https://developer.apple.com/documentation/mapkit/mkannotationview/image) property and change it as necessary than to draw the images yourself.
+    ///
+    /// Annotation views anchor to the map at the point that their associated annotation object specifies. Although they scroll with the map contents, annotation views reside in a separate display layer and don’t scale when the size of the visible map region changes.
+    ///
+    /// Additionally, annotation views support the concept of a _selection state_, which determines whether the map displays the annotation view as unselected, selected, or selected and displaying a standard callout view. The user toggles between the selection states through interactions with the annotation view. In the unselected state, the map displays the annotation view, but doesn’t highlight it. In the selected state, the framework highlights the annotation, but doesn’t display the callout. Finally, the map view can display the annotation with both a highlight and a callout. The callout view displays additional information, such as a title string and controls for viewing more information. The annotation object provides the title information, but your annotation view is responsible for providing any custom controls. For more information, see the [Subclassing notes](https://developer.apple.com/documentation/mapkit/mkannotationview#subclassing-notes) section below.
+    ///
+    /// ### Reuse annotation views
+    ///
+    /// The design of annotation views enables their reuse as the user (or your app) changes the visible map region. The reuse of annotation views provides significant performance improvements during scrolling by avoiding the creation of new view objects during this time-critical operation. For this reason, don’t tightly couple annotation views to the contents of their associated annotation. Instead, use the properties of an annotation view (or setter methods) to configure the view for a new annotation object.
+    ///
+    /// Whenever you initialize a new annotation view, specify a reuse identifier for that view. When the framework no longer needs annotation views, the map view may put them into a reuse queue. As the framework adds new annotations to the map view, the delegate object can then dequeue and reconfigure an existing view (rather than create a new one) using the [`dequeueReusableAnnotationViewWithIdentifier:`](https://developer.apple.com/documentation/mapkit/mkmapview/dequeuereusableannotationview(withidentifier:)) method of [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview).
+    ///
+    /// ### Subclassing notes
+    ///
+    /// You can use the `MKAnnotationView` class as-is or subclass it to provide custom behavior as necessary. The [`image`](https://developer.apple.com/documentation/mapkit/mkannotationview/image) property of the class lets you set the appearance of the annotation view without subclassing directly. You might also create custom subclasses as a convenience and use them to put the annotation view in a known state.
+    ///
+    /// There are no special requirements for subclassing `MKAnnotationView`. However, the following list includes some reasons you might want to subclass, and the methods to override to implement the desired behavior:
+    ///
+    /// - To put the annotation view into a consistent state, provide a custom initialization method. Your custom initialization method then calls [`initWithAnnotation:reuseIdentifier:`](https://developer.apple.com/documentation/mapkit/mkannotationview/init(annotation:reuseidentifier:)) to initialize the superclass.
+    ///
+    /// - To provide custom callout views, override the [`leftCalloutAccessoryView`](https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview) method and use it to return the views.
+    ///
+    /// If you support draggable annotation views in iOS, your subclass is responsible for changing the value in the [`dragState`](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.property) property to appropriate values at key transition points in the drag operation. For more information, see the description of that property.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

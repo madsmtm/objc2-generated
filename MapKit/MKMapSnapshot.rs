@@ -12,7 +12,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot?language=objc)
+    /// An image that a snapshotter object generates.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you use an [`MKMapSnapshotter`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter) object to capture the map contents asynchronously. An `MKMapSnapshotter.Snapshot` object contains the image that the snapshotter generates from the map contents.
+    ///
+    /// Snapshot images don’t include any custom overlays or annotations that your app adds to the map view. If you want your annotations and overlays to appear on the final image, you need to draw them yourself. To position those items correctly on the image, use the [`pointForCoordinate:`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/point(for:)) method of this class to translate the overlay or annotation coordinate value to an appropriate location inside the image’s coordinate space.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapSnapshot;

@@ -10,14 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A control for selecting from a set of mutually exclusive values by index.
+    ///
+    /// ## Overview
+    ///
+    /// Index pickers are appropriate for controls that provide an indexed container of values.
+    ///
+    ///
     /// An `AVCaptureControl` for selecting from a set of mutually exclusive values by index.
     ///
     ///
     /// `AVCaptureIndexPicker` is ideal when the set of values is provided by an indexed container like `NSArray`, `Array`, or `Sequence`. Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
     ///
     /// `AVCaptureIndexPicker` uses zero-based indexing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureindexpicker?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]

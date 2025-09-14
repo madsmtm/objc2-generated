@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a directory sharing device configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate `VZDirectorySharingDeviceConfiguration` directly. Instead use one of its subclasses, like [`VZVirtioFileSystemDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration).
+    ///
+    ///
     /// Base class for a directory sharing device configuration.
     ///
     /// VZDirectorySharingDeviceConfiguration should not be instantiated directly.
@@ -14,8 +21,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioFileSystemDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdirectorysharingdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZDirectorySharingDeviceConfiguration;

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlaydelegate?language=objc)
+    /// Methods for responding to the overlay’s appearance, dismissal, or failure to load.
     pub unsafe trait SKOverlayDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(storeOverlay:didFailToLoadWithError:))]
@@ -58,7 +58,53 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay?language=objc)
+    /// A class that displays an overlay you can use to recommend another app or an App Clip’s corresponding full app.
+    ///
+    /// ## Overview
+    ///
+    /// By displaying an overlay, you can recommend another app to users and enable them to download it immediately. To recommend media that’s not an app, or to display a product page within your app, use [`SKStoreProductViewController`](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you display an overlay in your App Clip, you may only recommend the App Clip’s corresponding full app and need to initialize the overlay with an [`SKOverlayAppClipConfiguration`](https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration) object. For more information, see [Recommending your app to App Clip users](https://developer.apple.com/documentation/appclip/recommending-your-app-to-app-clip-users).
+    ///
+    ///
+    ///
+    /// </div>
+    /// If you’re using SwiftUI, make use of the `appStoreOverlay(isPresented:configuration:)` modifier. For example usage, see [Fruta: Building a feature-rich app with SwiftUI](https://developer.apple.com/documentation/appclip/fruta-building-a-feature-rich-app-with-swiftui).
+    ///
+    /// To display an App Store overlay in an app that uses [`UIKit`](https://developer.apple.com/documentation/uikit):
+    ///
+    /// 1. Create an [`SKOverlayAppConfiguration`](https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration) with the iTunes identifier of the app you want to recommend.
+    ///
+    /// 2. Initialize `SKOverlay` with the configuration object.
+    ///
+    /// 3. Present the overlay.
+    ///
+    /// The following code displays an overlay at the bottom of the visible scene:
+    ///
+    /// ```swift
+    /// func displayOverlay() {
+    ///     guard let scene = view.window?.windowScene else { return }
+    ///
+    ///     let config = SKOverlay.AppConfiguration(appIdentifier: "The iTunes identifier of another app.", position: .bottom)
+    ///     let overlay = SKOverlay(configuration: config)
+    ///     overlay.present(in: scene)
+    /// }
+    /// ```
+    ///
+    /// To respond to the overlay’s appearance, dismissal, or failure to load, set the [`delegate`](https://developer.apple.com/documentation/storekit/skoverlay/delegate) and implement the methods defined in [`SKOverlayDelegate`](https://developer.apple.com/documentation/storekit/skoverlaydelegate).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  App extensions can’t display an overlay.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlay;

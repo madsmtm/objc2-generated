@@ -10,10 +10,29 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A template-based layout for custom messages.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MSMessageTemplateLayout`](https://developer.apple.com/documentation/messages/msmessagetemplatelayout) describes how an [`MSMessage`](https://developer.apple.com/documentation/messages/msmessage) object is presented in the transcript. The message template includes the Message extension’s icon, an image, video, or audio file, and a number of text elements (title, subtitle, caption, subcaption, trailing caption, and trailing subcaption). These elements are laid out as shown in [Figure 1](/documentation/messages/msmessagetemplatelayout#1965603).
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/1901e82e59b3edc1aa1efc9684c8c7ee/media-1965603%402x.png)
+    ///
+    ///
+    /// To use the template:
+    ///
+    /// 1. Instantiate a new `MSMessageTemplateLayout` object.
+    ///
+    /// 2. Assign values to the properties representing the desired visual elements. You can leave unwanted elements set to `nil`. The system sizes the message balloon to fit the provided content.
+    ///
+    /// 3. Assign the `MSMessageTemplateLayout` object to the [`MSMessage`](https://developer.apple.com/documentation/messages/msmessage) object’s [`layout`](https://developer.apple.com/documentation/messages/msmessage/layout) property.
+    ///
+    /// Do not subclass the `MSMessageTemplateLayout` class.
+    ///
+    ///
     /// The MSMessageTemplateLayout encapsulates properties used in the construction of UI
     /// representing a message using the default message layout template.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagetemplatelayout?language=objc)
     #[unsafe(super(MSMessageLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MSMessageLayout")]

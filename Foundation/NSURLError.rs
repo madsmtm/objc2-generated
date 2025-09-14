@@ -6,93 +6,153 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrordomain?language=objc)
+    /// URL loading system errors
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSURLErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// The NSError userInfo dictionary key used to store and retrieve the URL which caused a load to fail.
+    /// The URL which caused a load to fail.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlerrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) instance.
+    ///
+    ///
+    /// The NSError userInfo dictionary key used to store and retrieve the URL which caused a load to fail.
     #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// The URL which caused a load to fail.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// This constant supersedes [`NSErrorFailingURLStringKey`](https://developer.apple.com/documentation/foundation/nserrorfailingurlstringkey), which was deprecated starting in macOS 10.6.  Both constants refer to the same value for backward-compatibility, but this symbol name has a better prefix.
+    ///
+    ///
     /// The NSError userInfo dictionary key used to store and retrieve the NSString object for the URL which caused a load to fail.
     ///
     /// This constant supersedes NSErrorFailingURLStringKey, which was deprecated in Mac OS X 10.6.  Both constants refer to the same value for backward-compatibility, but this symbol name has a better prefix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlstringerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSURLErrorFailingURLErrorKey instead"]
     pub static NSURLErrorFailingURLStringErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// The URL that caused the error.
     /// The NSError userInfo dictionary key used to store and retrieve the NSString object for the URL which caused a load to fail.
     ///
     /// This constant is deprecated in Mac OS X 10.6, and is superseded by NSURLErrorFailingURLStringErrorKey.  Both constants refer to the same value for backward-compatibility, but the new symbol name has a better prefix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nserrorfailingurlstringkey?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSURLErrorFailingURLErrorKey instead"]
     pub static NSErrorFailingURLStringKey: &'static NSString;
 }
 
 extern "C" {
-    /// The NSError userInfo dictionary key used to store and retrieve the SecTrustRef object representing the state of a failed SSL handshake.
+    /// The state of a failed SSL handshake.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfailingurlpeertrusterrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is the [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) object.
+    ///
+    ///
+    /// The NSError userInfo dictionary key used to store and retrieve the SecTrustRef object representing the state of a failed SSL handshake.
     #[cfg(feature = "NSString")]
     pub static NSURLErrorFailingURLPeerTrustErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key in the error dictionary that provides the reason for canceling a background task.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). For a list of possible values, see URL Session Background Task Cancellation Reasons.
+    ///
+    ///
     /// The NSError userInfo dictionary key used to store and retrieve the NSNumber corresponding to the reason why a background
     /// NSURLSessionTask was cancelled
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbackgroundtaskcancelledreasonkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLErrorBackgroundTaskCancelledReasonKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcancelledreasonuserforcequitapplication?language=objc)
+/// A reason that indicates the system canceled the background task because the user force-quit the application.
 pub const NSURLErrorCancelledReasonUserForceQuitApplication: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcancelledreasonbackgroundupdatesdisabled?language=objc)
+/// A reason that indicates the system canceled the background task because background tasks are disabled.
 pub const NSURLErrorCancelledReasonBackgroundUpdatesDisabled: NSInteger = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcancelledreasoninsufficientsystemresources?language=objc)
+/// A reason that indicates the system canceled the background task because it lacks sufficient resources to perform the task.
+///
+/// ## Discussion
+///
+/// This error results from factors including (but not limited to) battery capacity, thermal condition, network connectivity, and cellular data plan.
+///
+///
 pub const NSURLErrorCancelledReasonInsufficientSystemResources: NSInteger = 2;
 
 extern "C" {
-    /// The NSErrorUserInfoKey used to store and retrieve the NSNumber object corresponding to the reason why the network is unavailable when the task failed due to unsatisfiable network constraints.  See the NSURLErrorNetworkUnavailableReason enum for details.
+    /// The reason the network was unavailable for a task.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereasonkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). For possible values, see [`NSURLErrorNetworkUnavailableReason`](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason).
+    ///
+    ///
+    /// The NSErrorUserInfoKey used to store and retrieve the NSNumber object corresponding to the reason why the network is unavailable when the task failed due to unsatisfiable network constraints.  See the NSURLErrorNetworkUnavailableReason enum for details.
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSURLErrorNetworkUnavailableReasonKey: &'static NSErrorUserInfoKey;
 }
 
+/// An enumeration of reasons why a task couldn’t satisfy networking constraints.
+///
+/// ## Overview
+///
+/// The network may be unavailable due to restrictions placed on the [`URLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration), such as [`allowsConstrainedNetworkAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess), [`allowsExpensiveNetworkAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess) and [`allowsCellularAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowscellularaccess).
+///
+///
 /// Constants used by NSError to indicate that a URLSessionTask failed because of unsatisfiable network constraints.
 ///
 /// For example if the URLSessionConfiguration property allowsExpensiveNetworkAccess was set to NO and the only interfaces available were marked as expensive then the task would fail with a NSURLErrorNotConnectedToInternet error and the userInfo dictionary would contain the value NSURLErrorNetworkUnavailableReasonExpensive for the key NSURLErrorNetworkUnavailableReason.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLErrorNetworkUnavailableReason(pub NSInteger);
 impl NSURLErrorNetworkUnavailableReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasoncellular?language=objc)
+    /// A reason that indicates network is unavailable because the interface is cellular and cellular network is disabled.
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonCellular")]
     pub const Cellular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonexpensive?language=objc)
+    /// A reason that indicates network is unavailable because the system marked the interface as expensive.
+    ///
+    /// ## Discussion
+    ///
+    /// The system determines what constitutes “expensive” based on the nature of the network interface and other factors. iOS 13 considers most cellular networks and personal hotspots expensive, but this may change in the future.
+    ///
+    /// This reason occurs when the following conditions are true:
+    ///
+    /// - The only available network interfaces are expensive.
+    ///
+    /// - The [`URLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration) property [`allowsExpensiveNetworkAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess) is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonExpensive")]
     pub const Expensive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonconstrained?language=objc)
+    /// A reason that indicates network is unavailable because the user enabled “Low Data Mode” in the Settings app.
+    ///
+    /// ## Discussion
+    ///
+    /// This reason occurs when the following conditions are true:
+    ///
+    /// - The only available network is cellular.
+    ///
+    /// - The user has enabled “Low Data Mode” option in the Cellular Data Options section of the Settings app.
+    ///
+    /// - The [`URLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration) property [`allowsConstrainedNetworkAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess) is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonConstrained")]
     pub const Constrained: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason/nsurlerrornetworkunavailablereasonultraconstrained?language=objc)
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonUltraConstrained")]
     pub const UltraConstrained: Self = Self(3);
 }
@@ -105,101 +165,203 @@ unsafe impl RefEncode for NSURLErrorNetworkUnavailableReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorunknown-c.enum.case?language=objc)
+/// The URL Loading System encountered an error that it can’t interpret.
+///
+/// ## Discussion
+///
+/// This can occur when an error originates from a lower level framework or library. Whenever this error code is received, it is a bug, and should be reported to Apple.
+///
+///
 pub const NSURLErrorUnknown: NSInteger = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcancelled-c.enum.case?language=objc)
+/// An asynchronous load has been canceled.
+///
+/// ## Discussion
+///
+/// `NSURLSession` sends this error to its delegate when a task is cancelled.
+///
+///
 pub const NSURLErrorCancelled: NSInteger = -999;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbadurl-c.enum.case?language=objc)
+/// A malformed URL prevented a URL request from being initiated.
 pub const NSURLErrorBadURL: NSInteger = -1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrortimedout-c.enum.case?language=objc)
+/// An asynchronous operation timed out.
+///
+/// ## Discussion
+///
+/// [`URLSession`](https://developer.apple.com/documentation/foundation/urlsession) sends this error to its delegate when the [`timeoutInterval`](https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval) of an [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) expires before a load can complete.
+///
+///
 pub const NSURLErrorTimedOut: NSInteger = -1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorunsupportedurl-c.enum.case?language=objc)
+/// A properly formed URL couldn’t be handled by the framework.
+///
+/// ## Discussion
+///
+/// The most likely cause is that there is no available protocol handler for the URL.
+///
+///
 pub const NSURLErrorUnsupportedURL: NSInteger = -1002;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotfindhost-c.enum.case?language=objc)
+/// The host name for a URL couldn’t be resolved.
 pub const NSURLErrorCannotFindHost: NSInteger = -1003;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotconnecttohost-c.enum.case?language=objc)
+/// An attempt to connect to a host failed.
+///
+/// ## Discussion
+///
+/// This can occur when a host name resolves, but the host is down or may not be accepting connections on a certain port.
+///
+///
 pub const NSURLErrorCannotConnectToHost: NSInteger = -1004;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkconnectionlost-c.enum.case?language=objc)
+/// A client or server connection was severed in the middle of an in-progress load.
 pub const NSURLErrorNetworkConnectionLost: NSInteger = -1005;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrordnslookupfailed-c.enum.case?language=objc)
+/// The host address couldn’t be found via DNS lookup.
+///
+/// ## Discussion
+///
+/// This error code is no longer used. You should expect to handle `NSURLErrorCannotFindHost` instead.
+///
+///
 pub const NSURLErrorDNSLookupFailed: NSInteger = -1006;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorhttptoomanyredirects-c.enum.case?language=objc)
+/// A redirect loop was detected or the threshold for number of allowable redirects was exceeded (currently 16).
 pub const NSURLErrorHTTPTooManyRedirects: NSInteger = -1007;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorresourceunavailable-c.enum.case?language=objc)
+/// A requested resource couldn’t be retrieved.
+///
+/// ## Discussion
+///
+/// This error can indicate a file-not-found situation, or decoding problems that prevent data from being processed correctly.
+///
+///
 pub const NSURLErrorResourceUnavailable: NSInteger = -1008;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornotconnectedtointernet-c.enum.case?language=objc)
+/// A network resource was requested, but an internet connection has not been established and can’t be established automatically.
+///
+/// ## Discussion
+///
+/// This error occurs when the connection can’t be established a lack of connectivity or because the user chooses not to make a network connection automatically.
+///
+///
 pub const NSURLErrorNotConnectedToInternet: NSInteger = -1009;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorredirecttononexistentlocation-c.enum.case?language=objc)
+/// A redirect was specified by way of server response code, but the server didn’t accompany this code with a redirect URL.
 pub const NSURLErrorRedirectToNonExistentLocation: NSInteger = -1010;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbadserverresponse-c.enum.case?language=objc)
+/// The URL Loading System received bad data from the server.
+///
+/// ## Discussion
+///
+/// This is equivalent to the “500 Server Error” message sent by HTTP servers.
+///
+///
 pub const NSURLErrorBadServerResponse: NSInteger = -1011;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorusercancelledauthentication-c.enum.case?language=objc)
+/// An asynchronous request for authentication has been canceled by the user.
+///
+/// ## Discussion
+///
+/// This is typically incurred by clicking a “Cancel” button in a username/password dialog, rather than the user making an attempt to authenticate.
+///
+///
 pub const NSURLErrorUserCancelledAuthentication: NSInteger = -1012;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerroruserauthenticationrequired-c.enum.case?language=objc)
+/// Authentication was required to access a resource.
 pub const NSURLErrorUserAuthenticationRequired: NSInteger = -1013;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorzerobyteresource-c.enum.case?language=objc)
+/// A server reported that a URL has a non-zero content length, but terminated the network connection gracefully without sending any data.
 pub const NSURLErrorZeroByteResource: NSInteger = -1014;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotdecoderawdata-c.enum.case?language=objc)
+/// Content data received during a connection request couldn’t be decoded for a known content encoding.
 pub const NSURLErrorCannotDecodeRawData: NSInteger = -1015;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotdecodecontentdata-c.enum.case?language=objc)
+/// Content data received during a connection request had an unknown content encoding.
 pub const NSURLErrorCannotDecodeContentData: NSInteger = -1016;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotparseresponse-c.enum.case?language=objc)
+/// A response to a connection request couldn’t be parsed.
 pub const NSURLErrorCannotParseResponse: NSInteger = -1017;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorapptransportsecurityrequiressecureconnection-c.enum.case?language=objc)
+/// App Transport Security disallowed a connection because there is no secure network connection.
+///
+/// ## Discussion
+///
+/// Starting in iOS 9.0 and macOS v10.11, App Transport Security (ATS) is enabled by default for connections created by [`URLSession`](https://developer.apple.com/documentation/foundation/urlsession). ATS requires the use of best practice secure protocols in HTTPS. For more information on ATS, see [NSAppTransportSecurity](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/plist/info/NSAppTransportSecurity) in [Information Property List Key Reference](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247).
+///
+///
 pub const NSURLErrorAppTransportSecurityRequiresSecureConnection: NSInteger = -1022;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfiledoesnotexist-c.enum.case?language=objc)
+/// The specified file doesn’t exist.
 pub const NSURLErrorFileDoesNotExist: NSInteger = -1100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfileisdirectory-c.enum.case?language=objc)
+/// A request for an FTP file resulted in the server responding that the file is not a plain file, but a directory.
 pub const NSURLErrorFileIsDirectory: NSInteger = -1101;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornopermissionstoreadfile-c.enum.case?language=objc)
+/// A resource couldn’t be read because of insufficient permissions.
 pub const NSURLErrorNoPermissionsToReadFile: NSInteger = -1102;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrordatalengthexceedsmaximum-c.enum.case?language=objc)
+/// The length of the resource data exceeded the maximum allowed.
 pub const NSURLErrorDataLengthExceedsMaximum: NSInteger = -1103;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorfileoutsidesafearea-c.enum.case?language=objc)
+/// An internal file operation failed.
+///
+/// ## Discussion
+///
+/// This error is never sent to third-party apps.
+///
+///
 pub const NSURLErrorFileOutsideSafeArea: NSInteger = -1104;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorsecureconnectionfailed-c.enum.case?language=objc)
+/// An attempt to establish a secure connection failed for reasons that can’t be expressed more specifically.
 pub const NSURLErrorSecureConnectionFailed: NSInteger = -1200;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorservercertificatehasbaddate-c.enum.case?language=objc)
+/// A server certificate is expired, or is not yet valid.
 pub const NSURLErrorServerCertificateHasBadDate: NSInteger = -1201;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorservercertificateuntrusted-c.enum.case?language=objc)
+/// A server certificate was signed by a root server that isn’t trusted.
 pub const NSURLErrorServerCertificateUntrusted: NSInteger = -1202;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorservercertificatehasunknownroot-c.enum.case?language=objc)
+/// A server certificate wasn’t signed by any root server.
 pub const NSURLErrorServerCertificateHasUnknownRoot: NSInteger = -1203;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorservercertificatenotyetvalid-c.enum.case?language=objc)
+/// A server certificate isn’t valid yet.
 pub const NSURLErrorServerCertificateNotYetValid: NSInteger = -1204;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorclientcertificaterejected-c.enum.case?language=objc)
+/// A server certificate was rejected.
 pub const NSURLErrorClientCertificateRejected: NSInteger = -1205;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorclientcertificaterequired-c.enum.case?language=objc)
+/// A client certificate was required to authenticate an SSL connection during a connection request.
 pub const NSURLErrorClientCertificateRequired: NSInteger = -1206;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotloadfromnetwork-c.enum.case?language=objc)
+/// A specific request to load an item only from the cache couldn’t be satisfied.
+///
+/// ## Discussion
+///
+/// This error is sent when the task needs to load from the network, but is blocked from doing so by the “load only from cache” directive.
+///
+///
 pub const NSURLErrorCannotLoadFromNetwork: NSInteger = -2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotcreatefile-c.enum.case?language=objc)
+/// A download task couldn’t create the downloaded file on disk because of an I/O failure.
 pub const NSURLErrorCannotCreateFile: NSInteger = -3000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotopenfile-c.enum.case?language=objc)
+/// A downloaded file on disk couldn’t be opened.
 pub const NSURLErrorCannotOpenFile: NSInteger = -3001;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotclosefile-c.enum.case?language=objc)
+/// A download task couldn’t close the downloaded file on disk.
 pub const NSURLErrorCannotCloseFile: NSInteger = -3002;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotwritetofile-c.enum.case?language=objc)
+/// A download task couldn’t write the file to disk.
 pub const NSURLErrorCannotWriteToFile: NSInteger = -3003;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotremovefile-c.enum.case?language=objc)
+/// A downloaded file couldn’t be removed from disk.
 pub const NSURLErrorCannotRemoveFile: NSInteger = -3004;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcannotmovefile-c.enum.case?language=objc)
+/// A downloaded file on disk couldn’t be moved.
 pub const NSURLErrorCannotMoveFile: NSInteger = -3005;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrordownloaddecodingfailedmidstream-c.enum.case?language=objc)
+/// A download task failed to decode an encoded file during the download.
 pub const NSURLErrorDownloadDecodingFailedMidStream: NSInteger = -3006;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrordownloaddecodingfailedtocomplete-c.enum.case?language=objc)
+/// A download task failed to decode an encoded file after downloading.
 pub const NSURLErrorDownloadDecodingFailedToComplete: NSInteger = -3007;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorinternationalroamingoff-c.enum.case?language=objc)
+/// The attempted connection required activating a data context while roaming, but international roaming is disabled.
 pub const NSURLErrorInternationalRoamingOff: NSInteger = -1018;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorcallisactive-c.enum.case?language=objc)
+/// A connection was attempted while a phone call was active on a network that doesn’t support simultaneous phone and data communication, such as EDGE or GPRS.
 pub const NSURLErrorCallIsActive: NSInteger = -1019;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrordatanotallowed-c.enum.case?language=objc)
+/// The cellular network disallowed a connection.
 pub const NSURLErrorDataNotAllowed: NSInteger = -1020;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorrequestbodystreamexhausted-c.enum.case?language=objc)
+/// A body stream was needed but the client did not provide one.
+///
+/// ## Discussion
+///
+/// This impacts clients on iOS that send a `POST` request using a body stream but do not implement the [`URLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate) delegate method [`urlSession(_:task:needNewBodyStream:)`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:neednewbodystream:)).
+///
+///
 pub const NSURLErrorRequestBodyStreamExhausted: NSInteger = -1021;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbackgroundsessionrequiressharedcontainer-c.enum.case?language=objc)
+/// The shared container identifier of the URL session configuration is needed but hasn’t been set.
+///
+/// ## Discussion
+///
+/// To use a [`URLSession`](https://developer.apple.com/documentation/foundation/urlsession) to perform background uploading or downloading in an app extension, you coordinate with the host app using a shared container. The app extension must set the [`sharedContainerIdentifier`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/sharedcontaineridentifier) of the URL session’s configuration to the shared container’s identifier. See [Performing Uploads and Downloads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionScenarios.html#//apple_ref/doc/uid/TP40014214-CH21-SW2) in [App Extension Essentials](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214-CH4) for more information.
+///
+///
 pub const NSURLErrorBackgroundSessionRequiresSharedContainer: NSInteger = -995;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbackgroundsessioninusebyanotherprocess-c.enum.case?language=objc)
+/// An app or app extension attempted to connect to a background session that is already connected to a process.
+///
+/// ## Discussion
+///
+/// This error can occur when both an app and an app extension attempt to use a background session at the same time.
+///
+///
 pub const NSURLErrorBackgroundSessionInUseByAnotherProcess: NSInteger = -996;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorbackgroundsessionwasdisconnected-c.enum.case?language=objc)
+/// The app is suspended or exits while a background data task is processing.
+///
+/// ## Discussion
+///
+/// If your app has created a background data task and the app is then suspended, the task will fail with this error code. To prevent this, when you receive the response, convert the data task to a download task.
+///
+///
 pub const NSURLErrorBackgroundSessionWasDisconnected: NSInteger = -997;

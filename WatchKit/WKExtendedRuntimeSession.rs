@@ -7,32 +7,45 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The activation states for an extended runtime session.
 /// Defines the potential states the session can be in
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionState(pub NSInteger);
 impl WKExtendedRuntimeSessionState {
-    /// Start has never been called on the session.
+    /// The app has not yet started or scheduled the session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/notstarted?language=objc)
+    /// ## Discussion
+    ///
+    /// When you instantiate a new session, it stays in the [`WKExtendedRuntimeSessionStateNotStarted`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/notstarted) state until you call the session’s [`start`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start()) or [`startAtDate:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start(at:)) method.
+    ///
+    ///
+    /// Start has never been called on the session.
     #[doc(alias = "WKExtendedRuntimeSessionStateNotStarted")]
     pub const NotStarted: Self = Self(0);
-    /// The session has been successfully scheduled to start at a future date, as specified by date passed to startAtDate.
+    /// The app has scheduled the session to run at a future date.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/scheduled?language=objc)
+    /// ## Discussion
+    ///
+    /// The session transitions to the [`WKExtendedRuntimeSessionStateScheduled`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/scheduled) state when you call the [`startAtDate:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start(at:)) method. It remains in this state until the start date arrives. Then it transitions to the running state.
+    ///
+    ///
+    /// The session has been successfully scheduled to start at a future date, as specified by date passed to startAtDate.
     #[doc(alias = "WKExtendedRuntimeSessionStateScheduled")]
     pub const Scheduled: Self = Self(1);
     /// The session is actively running.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/running?language=objc)
+    /// The session is actively running.
     #[doc(alias = "WKExtendedRuntimeSessionStateRunning")]
     pub const Running: Self = Self(2);
-    /// The session is not running. Either the session ended, or hit an error. See WKExtendedRuntimeSessionInvalidationReason for a list of reasons why the session could be invalid.
+    /// Either the session has encountered an error, or it has stopped running.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate/invalid?language=objc)
+    /// ## Discussion
+    ///
+    /// The system passes a [`WKExtendedRuntimeSessionInvalidationReason`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason) value to the session delegate’s [`extendedRuntimeSession:didInvalidateWithReason:error:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate/extendedruntimesession(_:didinvalidatewith:error:)) method. Use this value to determine why the session became invalid.
+    ///
+    ///
+    /// The session is not running. Either the session ended, or hit an error. See WKExtendedRuntimeSessionInvalidationReason for a list of reasons why the session could be invalid.
     #[doc(alias = "WKExtendedRuntimeSessionStateInvalid")]
     pub const Invalid: Self = Self(3);
 }
@@ -45,45 +58,74 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Defines the reasons for which a session may become invalid.
+/// The reasons why a session can become invalid.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason?language=objc)
+/// ## Overview
+///
+/// Sessions become invalid when they encounter an error, or when they stop running.
+///
+///
+/// Defines the reasons for which a session may become invalid.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionInvalidationReason(pub NSInteger);
 impl WKExtendedRuntimeSessionInvalidationReason {
-    /// The session ended normally, likely through a direct call to invalidate.
+    /// The session ended normally.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/none?language=objc)
+    /// ## Discussion
+    ///
+    /// The system uses this reason when you stop a session by calling its [`invalidate`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/invalidate()) method.
+    ///
+    ///
+    /// The session ended normally, likely through a direct call to invalidate.
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonNone")]
     pub const None: Self = Self(0);
-    /// A session for this application has already been started, and is currently running, another session can not be started.
+    /// This app already has a running session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/sessioninprogress?language=objc)
+    /// ## Discussion
+    ///
+    /// Each app can only run one extended runtime session at a time.
+    ///
+    ///
+    /// A session for this application has already been started, and is currently running, another session can not be started.
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonSessionInProgress")]
     pub const SessionInProgress: Self = Self(1);
-    /// The session hit its time limit, as noted by its expiration date.
+    /// The session used all of its allocated time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/expired?language=objc)
+    /// ## Discussion
+    ///
+    /// Sessions can only run for a limited amount of time. Each session type has a different time limit. For more information, see the session’s [`expirationDate`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/expirationdate) property.
+    ///
+    ///
+    /// The session hit its time limit, as noted by its expiration date.
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonExpired")]
     pub const Expired: Self = Self(2);
+    /// The app lost its frontmost status.
+    ///
+    /// ## Discussion
+    ///
+    /// If the session type doesn’t grant background execution time, the session stops as soon as the app loses its frontmost app status. Users can dismiss the frontmost app by pressing the Digital Crown, tapping a notification, or launching another app. For more information, see `Understand Frontmost App State`.
+    ///
+    ///
     /// The application has lost frontmost status, so the session ended.
     /// Examples of actions by the user which cause the session to lose frontmost status include:
     /// User pressing digital crown, tapping on a notification to go to another application,
     /// switching applications through the dock, or any other apps entering the foreground.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/resignedfrontmost?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonResignedFrontmost")]
     pub const ResignedFrontmost: Self = Self(3);
+    /// The system is in a state that doesn’t allow sessions of this type.
     /// Apple Watch is in a state that doesn't currently allow this session type to run.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/suppressedbysystem?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonSuppressedBySystem")]
     pub const SuppressedBySystem: Self = Self(4);
-    /// The session did not end normally, and there is an error returned with more information.
+    /// An error prevented the session from running.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/error?language=objc)
+    /// ## Discussion
+    ///
+    /// When the system passes this value to your extension delegate’s [`extendedRuntimeSession:didInvalidateWithReason:error:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate/extendedruntimesession(_:didinvalidatewith:error:)) method, check the `error` parameter for additional information about the error.
+    ///
+    ///
+    /// The session did not end normally, and there is an error returned with more information.
     #[doc(alias = "WKExtendedRuntimeSessionInvalidationReasonError")]
     pub const Error: Self = Self(-1);
 }
@@ -97,44 +139,100 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionInvalidationReason {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrordomain?language=objc)
+    /// The domain for errors reported by extended runtime sessions.
+    ///
+    /// ## Discussion
+    ///
+    /// The session passes these errors to the session delegate’s [`extendedRuntimeSession:didInvalidateWithReason:error:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate/extendedruntimesession(_:didinvalidatewith:error:)) method.
+    ///
+    ///
     pub static WKExtendedRuntimeSessionErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode?language=objc)
+/// The error codes reported by extended runtime sessions.
+///
+/// ## Overview
+///
+/// The session passes these errors to the sesson delegate’s [`extendedRuntimeSession:didInvalidateWithReason:error:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate/extendedruntimesession(_:didinvalidatewith:error:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKExtendedRuntimeSessionErrorCode(pub NSInteger);
 impl WKExtendedRuntimeSessionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "WKExtendedRuntimeSessionErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/scheduledtoofarinadvance?language=objc)
+    /// The app attempted to schedule a session too far in the future.
+    ///
+    /// ## Discussion
+    ///
+    /// You can’t schedule alarm sessions more than 36 hours in advance. Other session types do not support scheduling.
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorScheduledTooFarInAdvance")]
     pub const ScheduledTooFarInAdvance: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/mustbeactivetostartorschedule?language=objc)
+    /// The watchOS app attempted to start or schedule a session while not in an active state.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only start or schedule sessions when the watchOS app is running in the foreground. Specifically, the WatchKit extension’s [`applicationState`](https://developer.apple.com/documentation/watchkit/wkextension/applicationstate) must equal [`WKApplicationStateActive`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/active).
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorMustBeActiveToStartOrSchedule")]
     pub const MustBeActiveToStartOrSchedule: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/notyetstarted?language=objc)
+    /// The app invalidated the session before it started.
+    ///
+    /// ## Discussion
+    ///
+    /// The app called the [`invalidate`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/invalidate()) method on a session before calling its [`start`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start()) method.
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorNotYetStarted")]
     pub const NotYetStarted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/exceededresourcelimits?language=objc)
+    /// The session exceeded its resource limits.
+    ///
+    /// ## Discussion
+    ///
+    /// During an extended runtime session, the system limits your app’s amortized CPU usage over time. If your app exceeds the limits during a 60-second window, the system cancels the session. Monitoring usage-per-minute allows your app to experience brief spikes of CPU usage, as long as the average remains low.
+    ///
+    /// When the system cancels your session, it calls your delegate’s [`extendedRuntimeSession:didInvalidateWithReason:error:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate/extendedruntimesession(_:didinvalidatewith:error:)) method and passes a [`WKExtendedRuntimeSessionInvalidationReasonError`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/error) reason with a [`WKExtendedRuntimeSessionErrorExceededResourceLimits`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/exceededresourcelimits) error.
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorExceededResourceLimits")]
     pub const ExceededResourceLimits: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/bardisabled?language=objc)
+    /// The user has disabled background app refresh.
+    ///
+    /// ## Discussion
+    ///
+    /// If the user has disabled Background App Refresh for this app, any attempt to schedule a session by calling the [`startAtDate:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start(at:)) method fails. The system calls your delegate’s [`extendedRuntimeSession:didInvalidateWithReason:error:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate/extendedruntimesession(_:didinvalidatewith:error:)) method and passes a [`WKExtendedRuntimeSessionInvalidationReasonError`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason/error) reason with a [`WKExtendedRuntimeSessionErrorBARDisabled`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/bardisabled) error.
+    ///
+    /// Users can turn off Background App Refresh by selecting General > Background App Refresh in the Watch App.
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorBARDisabled")]
     pub const BARDisabled: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/notapprovedtostartsession?language=objc)
+    /// The app attempted to start a session, but doesn’t have a valid session type.
+    ///
+    /// ## Discussion
+    ///
+    /// To use extended runtime sessions, your app must enable the Background Mode capability and select a session type.
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorNotApprovedToStartSession")]
     pub const NotApprovedToStartSession: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/notapprovedtoschedule?language=objc)
+    /// The app attempted to schedule a session, but the session type does not support scheduling.
+    ///
+    /// ## Discussion
+    ///
+    /// You can schedule alarm sessions by calling the session’s [`startAtDate:`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start(at:)) method. For all other session types, use the [`start`](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession/start()) method instead.
+    ///
+    ///
     #[doc(alias = "WKExtendedRuntimeSessionErrorNotApprovedToSchedule")]
     pub const NotApprovedToSchedule: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/mustbeactivetoprompt?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorMustBeActiveToPrompt")]
     pub const MustBeActiveToPrompt: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionerrorcode/unsupportedsessiontype?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionErrorUnsupportedSessionType")]
     pub const UnsupportedSessionType: Self = Self(10);
 }
@@ -147,19 +245,15 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus(pub NSInteger);
 impl WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus/unknown?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus/inactive?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusInactive")]
     pub const Inactive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus/active?language=objc)
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusActive")]
     pub const Active: Self = Self(2);
 }
@@ -173,7 +267,17 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus 
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesession?language=objc)
+    /// A session that continues to run your app after the user has stopped interacting.
+    ///
+    /// ## Overview
+    ///
+    /// With extended runtime sessions, your app continues to run after the user stops interacting with it. The app can continue to communicate with Bluetooth devices, process data, or play sounds or haptics, even after the watch’s screen turns off.
+    ///
+    /// Each app can support a single type of extended runtime session: self care, mindfulness, physical therapy, or smart alarm. Select the session by enabling the appropriate Background Modes capability.
+    ///
+    /// For more information, see [Using extended runtime sessions](https://developer.apple.com/documentation/watchkit/using-extended-runtime-sessions).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKExtendedRuntimeSession;
@@ -292,7 +396,13 @@ impl WKExtendedRuntimeSession {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessiondelegate?language=objc)
+    /// A set of optional methods for monitoring an extended runtime session.
+    ///
+    /// ## Overview
+    ///
+    /// Implement these methods to track the changes to your session’s state.
+    ///
+    ///
     pub unsafe trait WKExtendedRuntimeSessionDelegate: NSObjectProtocol {
         /// Parameter `extendedRuntimeSession`: The session which has been invalidated
         ///

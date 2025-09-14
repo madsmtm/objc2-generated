@@ -9,7 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisampler?language=objc)
+    /// An object that retrieves pixel samples for processing by a filter kernel.
+    ///
+    /// ## Overview
+    ///
+    /// The `CISampler` class retrieves samples of images for processing by a [`CIKernel`](https://developer.apple.com/documentation/coreimage/cikernel) object. A `CISampler` object defines a coordinate transform, and modes for interpolation and wrapping. You use `CISampler` objects in conjunction with other Core Image classes, such as  [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class), `CIKernel`, and [`CIFilterShape`](https://developer.apple.com/documentation/coreimage/cifiltershape), to create custom filters.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CISampler;
@@ -88,41 +94,47 @@ impl CISampler {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisampleraffinematrix?language=objc)
+    /// The key for an affine matrix. The associated value is an `NSArray` object ([_a b c d tx ty_]) that defines the transformation to apply to the sampler.
     pub static kCISamplerAffineMatrix: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerwrapmode?language=objc)
+    /// The key for the sampler wrap mode. The wrap mode specifies how Core Image produces pixels that are outside the extent of the sample. Possible values are [`kCISamplerWrapBlack`](https://developer.apple.com/documentation/coreimage/kcisamplerwrapblack) and [`kCISamplerWrapClamp`](https://developer.apple.com/documentation/coreimage/kcisamplerwrapclamp).
     pub static kCISamplerWrapMode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerfiltermode?language=objc)
+    /// The key for the filtering to use when sampling the image. Possible values are [`kCISamplerFilterNearest`](https://developer.apple.com/documentation/coreimage/kcisamplerfilternearest) and [`kCISamplerFilterLinear`](https://developer.apple.com/documentation/coreimage/kcisamplerfilterlinear).
     pub static kCISamplerFilterMode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerwrapblack?language=objc)
+    /// Pixels are transparent black.
     pub static kCISamplerWrapBlack: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerwrapclamp?language=objc)
+    /// Coordinates are clamped to the extent.
     pub static kCISamplerWrapClamp: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerfilternearest?language=objc)
+    /// Nearest neighbor sampling.
     pub static kCISamplerFilterNearest: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplerfilterlinear?language=objc)
+    /// Bilinear interpolation.
     pub static kCISamplerFilterLinear: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcisamplercolorspace?language=objc)
+    /// The key for the color space to use when sampling the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value must be an RGB [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) object. Using this option specifies that samples should be converted to this color space before being passed to a kernel. If not specified, samples will be passed to the kernel in the working color space of the Core Image context used to render the image.
+    ///
+    ///
     pub static kCISamplerColorSpace: &'static NSString;
 }

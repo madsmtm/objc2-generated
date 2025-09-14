@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype?language=objc)
+/// Types of passes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassType(pub NSUInteger);
 impl PKPassType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype/barcode?language=objc)
+    /// A pass that represents a barcode.
     #[doc(alias = "PKPassTypeBarcode")]
     pub const Barcode: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype/secureelement?language=objc)
+    /// A pass that represents a credential that the device stores in the Secure Element.
     #[doc(alias = "PKPassTypeSecureElement")]
     pub const SecureElement: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasstype/payment?language=objc)
+    /// A pass that represents a credit or debit card
     #[doc(alias = "PKPassTypePayment")]
     #[deprecated = "Use PKPassTypeSecureElement instead"]
     pub const Payment: Self = Self(PKPassType::SecureElement.0);

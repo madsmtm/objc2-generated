@@ -9,7 +9,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontrollerdelegate?language=objc)
+    /// Optional methods that delegates implement to respond to viewport layout changes.
     pub unsafe trait NSTextViewportLayoutControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(viewportBoundsForTextViewportLayoutController:))]
@@ -47,7 +47,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewportlayoutcontroller?language=objc)
+    /// Manages the layout process inside the viewport interacting with its delegate.
+    ///
+    /// ## Overview
+    ///
+    /// A viewport is a rectangular area within a flipped coordinate system expanding along the y-axis. With text contents, lines advance expanding the view in the current writing direction. The viewport defines the active area where the framework lays out text fragments. In most cases, the area corresponds to the user visible area with an additional over-scroll region.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextViewportLayoutController;

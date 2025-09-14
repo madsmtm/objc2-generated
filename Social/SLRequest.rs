@@ -9,22 +9,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod?language=objc)
+/// Indicates the request method used in the request.
+///
+/// ## Overview
+///
+/// Use this constant to set the [`requestMethod`](https://developer.apple.com/documentation/social/slrequest/requestmethod) property. The type of request to use depends on the target service. For links to documentation for the supported services, see Table 1 in [`SLRequest`](https://developer.apple.com/documentation/social/slrequest).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SLRequestMethod(pub NSInteger);
 impl SLRequestMethod {
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/get?language=objc)
+    /// Requests information from the specified resource.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a GET request to fetch information from the specified server, such as character limits or a user’s timeline.
+    ///
+    ///
     #[doc(alias = "SLRequestMethodGET")]
     pub const GET: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/post?language=objc)
+    /// Submits data to be processed.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a POST request to submit information to the specified server, such as a status update or an image.
+    ///
+    ///
     #[doc(alias = "SLRequestMethodPOST")]
     pub const POST: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/delete?language=objc)
+    /// Deletes the specified resource.
     #[doc(alias = "SLRequestMethodDELETE")]
     pub const DELETE: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequestmethod/put?language=objc)
+    /// Uses a PUT request to submit the data.
     #[doc(alias = "SLRequestMethodPUT")]
     pub const PUT: Self = Self(3);
 }
@@ -37,13 +55,50 @@ unsafe impl RefEncode for SLRequestMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/social/slrequesthandler?language=objc)
+/// The callback handler for a request.
+///
+/// ## Discussion
+///
+/// The parameters for this handler are:
+///
+/// - `responseData`: The data returned by the request. The format of this data is dependent on the target service.
+///
+/// - `urlResponse`: The URL response returned by the request that includes the HTTP response codes.
+///
+/// - `error`: An error identifier.
+///
+/// Possible values are dependent on the target service and are documented by the service provider. For links to documentation for the supported services, see Table 1 in [`SLRequest`](https://developer.apple.com/documentation/social/slrequest).
+///
+///
 #[cfg(feature = "block2")]
 pub type SLRequestHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSData, *mut NSHTTPURLResponse, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slrequest?language=objc)
+    /// An object that you use to assemble an HTTP request for communicating with a social media service.
+    ///
+    /// ## Overview
+    ///
+    /// The SLRequest object encapsulates the properties of an HTTP request, providing a convenient template for you to make requests. You send a request to a social networking service to perform some operation on behalf of the user or to retrieve user information.
+    ///
+    /// HTTP requests have these common components: an HTTP request method (GET, POST, PUT, or DELETE), a URL identifying the operation to perform, a set of query parameters, and an optional multipart POST body that contains additional data. The values for these properties depend on the request you are sending and the target service provider. Refer to each supported social networking site’s documentation for possible values. Links to documentation are provided in Table 1.
+    ///
+    /// Use the [`requestForServiceType:requestMethod:URL:parameters:`](https://developer.apple.com/documentation/social/slrequest/init(forservicetype:requestmethod:url:parameters:)) method to initialize a newly created `SLRequest` object passing the required property values. Use the [`addMultipartData:withName:type:`](https://developer.apple.com/documentation/social/slrequest/addmultipartdata(_:withname:type:)) to optionally specify a multipart POST body. After you create your request, use the [`performRequestWithHandler:`](https://developer.apple.com/documentation/social/slrequest/perform(handler:)) method to send the request, specifying the handler to call when the request is done.
+    ///
+    /// If you already have a sending mechanism, you can use the [`preparedURLRequest`](https://developer.apple.com/documentation/social/slrequest/preparedurlrequest()) method to create the request that you send using an [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) object. If the request requires user authorization, set the [`account`](https://developer.apple.com/documentation/social/slrequest/account) property to an [`ACAccount`](https://developer.apple.com/documentation/accounts/acaccount) object.
+    ///
+    /// Table 1  Social Services Individual Documentation Sites
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Facebook" }] }], [Paragraph { inline_content: [Reference { identifier: "https://developers.facebook.com/docs/", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Sina Weibo" }] }], [Paragraph { inline_content: [Reference { identifier: "http://open.weibo.com/wiki/", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Twitter" }] }], [Paragraph { inline_content: [Reference { identifier: "https://dev.twitter.com/docs", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "LinkedIn" }] }], [Paragraph { inline_content: [Reference { identifier: "https://developer.linkedin.com/rest", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For Sina Weibo integration, users must have the Chinese keyboard enabled. Users can enable this keyboard in Settings > General > Keyboard. If a Chinese keyboard is not enabled, users won’t be prompted to sign in to their Sina Weibo account.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SLRequest;

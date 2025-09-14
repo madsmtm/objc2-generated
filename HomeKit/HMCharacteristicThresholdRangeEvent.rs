@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An event that triggers when the value of a characteristic is within a specified range.
     /// This class represents an event when a characteristic's value falls within the specified
     /// number range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicthresholdrangeevent?language=objc)
     #[unsafe(super(HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]
@@ -114,10 +113,9 @@ impl HMCharacteristicThresholdRangeEvent {
 }
 
 extern_class!(
+    /// A mutable event that triggers when the value of a characteristic is within a specified range.
     /// This class represents an event when a characteristic's value falls within the specified
     /// number range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutablecharacteristicthresholdrangeevent?language=objc)
     #[unsafe(super(HMCharacteristicThresholdRangeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]

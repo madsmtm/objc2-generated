@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitor-6ynwz?language=objc)
+    /// An object that monitors the conditions you add to it.
+    ///
+    /// ## Overview
+    ///
+    /// Use `CLMonitor` to monitor for and observe events such as the entry to a specific geographic area or proximity to a beacon with characteristics that you specify.
+    ///
+    /// This service is unavailable in a compatible iPad or iPhone app running in visionOS.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLMonitor;

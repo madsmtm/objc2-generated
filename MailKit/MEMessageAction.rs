@@ -6,34 +6,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor?language=objc)
+/// A color that the system uses to display a message in the message list.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageActionMessageColor(pub NSInteger);
 impl MEMessageActionMessageColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/none?language=objc)
+    /// Clears the color of the message.
     #[doc(alias = "MEMessageActionMessageColorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/green?language=objc)
+    /// Sets the color of the message to green.
     #[doc(alias = "MEMessageActionMessageColorGreen")]
     pub const Green: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/yellow?language=objc)
+    /// Sets the color of the message to yellow.
     #[doc(alias = "MEMessageActionMessageColorYellow")]
     pub const Yellow: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/orange?language=objc)
+    /// Sets the color of the message to orange.
     #[doc(alias = "MEMessageActionMessageColorOrange")]
     pub const Orange: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/red?language=objc)
+    /// Sets the color of the message to red.
     #[doc(alias = "MEMessageActionMessageColorRed")]
     pub const Red: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/purple?language=objc)
+    /// Sets the color of the message to purple.
     #[doc(alias = "MEMessageActionMessageColorPurple")]
     pub const Purple: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/blue?language=objc)
+    /// Sets the color of the message to blue.
     #[doc(alias = "MEMessageActionMessageColorBlue")]
     pub const Blue: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/messagecolor/gray?language=objc)
+    /// Sets the color of the message to gray.
     #[doc(alias = "MEMessageActionMessageColorGray")]
     pub const Gray: Self = Self(7);
 }
@@ -46,37 +46,27 @@ unsafe impl RefEncode for MEMessageActionMessageColor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageActionFlag(pub NSInteger);
 impl MEMessageActionFlag {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/none?language=objc)
     #[doc(alias = "MEMessageActionFlagNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/defaultcolor?language=objc)
     #[doc(alias = "MEMessageActionFlagDefaultColor")]
     pub const DefaultColor: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/red?language=objc)
     #[doc(alias = "MEMessageActionFlagRed")]
     pub const Red: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/orange?language=objc)
     #[doc(alias = "MEMessageActionFlagOrange")]
     pub const Orange: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/yellow?language=objc)
     #[doc(alias = "MEMessageActionFlagYellow")]
     pub const Yellow: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/green?language=objc)
     #[doc(alias = "MEMessageActionFlagGreen")]
     pub const Green: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/blue?language=objc)
     #[doc(alias = "MEMessageActionFlagBlue")]
     pub const Blue: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/purple?language=objc)
     #[doc(alias = "MEMessageActionFlagPurple")]
     pub const Purple: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction/flag/gray?language=objc)
     #[doc(alias = "MEMessageActionFlagGray")]
     pub const Gray: Self = Self(8);
 }
@@ -90,9 +80,8 @@ unsafe impl RefEncode for MEMessageActionFlag {
 }
 
 extern_class!(
+    /// An action the system performs on a message, such as setting a color or archiving it.
     /// An action that can be performed on a mail message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageAction;

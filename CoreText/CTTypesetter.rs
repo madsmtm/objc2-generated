@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesetter?language=objc)
+/// A typesetter which performs line layout.
+///
+/// ## Overview
+///
+/// Line layout includes word wrapping, hyphenation, and line breaking in either vertical or horizontal rectangles. A typesetter object takes as input an attributed string and produces a line of typeset glyphs (composed into glyph runs) in a [`CTLineRef`](https://developer.apple.com/documentation/coretext/ctline) object. The typesetter performs character-to-glyph encoding, glyph ordering, and positional operations, such as kerning, tracking, and baseline adjustments. If multiline layout is needed, it is performed by a [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter) object, which calls into the typesetter to generate the typeset lines to fill the frame.
+///
+/// A [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter) encapsulates a typesetter and provides a reference to it as a convenience, but a caller may also choose to create a freestanding typesetter.
+///
+///
 #[doc(alias = "CTTypesetterRef")]
 #[repr(C)]
 pub struct CTTypesetter {
@@ -27,9 +35,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTTypesetter {
+    /// Returns the Core Foundation type identifier of the typesetter object.
     /// Returns the CFType of the typesetter object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettergettypeid()?language=objc)
     #[doc(alias = "CTTypesetterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -41,6 +48,15 @@ unsafe impl ConcreteType for CTTypesetter {
 }
 
 extern "C" {
+    /// A key that specifies whether the text system lays out text that requires unreasonable effort.
+    ///
+    /// ## Discussion
+    ///
+    /// Proper Unicode layout of some text requires unreasonable effort. By default, the text system avoids expending this effort. To create a typesetter that always typesets the text, regardless of the amount of work needed, call [`CTTypesetterCreateWithAttributedStringAndOptions`](https://developer.apple.com/documentation/coretext/cttypesettercreatewithattributedstringandoptions(_:_:)) and set this option to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    /// The value for this key must be a `CFBooleanRef`. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse).
+    ///
+    ///
     /// Allows layout requiring a potentially unbounded amount of work.
     ///
     /// Value must be a CFBooleanRef. Default is false for clients linked on or after macOS 10.14 or iOS 12.
@@ -48,12 +64,16 @@ extern "C" {
     /// unless this option is set to kCFBooleanTrue such inputs will
     /// result in CTTypesetterCreateWithAttributedStringAndOptions
     /// returning NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout?language=objc)
     pub static kCTTypesetterOptionAllowUnboundedLayout: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Disables bidirectional processing. Value must be a CFBoolean object. Default value is `false`. Normally, typesetting applies the Unicode Bidirectional Algorithm as described in Unicode Standard Annex #9. If a typesetter is created with this option set to `true`, no directional reordering is performed, and any directional control characters are ignored.
+    ///
+    ///
     /// Disables bidi processing.
     ///
     /// Value must be a CFBooleanRef. Default is false.
@@ -61,25 +81,47 @@ extern "C" {
     /// Algorithm as described in UAX #9. If a typesetter is created
     /// with this option set to true, no directional reordering is
     /// performed and any directional control characters are ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptiondisablebidiprocessing?language=objc)
     #[deprecated = "Deprecated"]
     pub static kCTTypesetterOptionDisableBidiProcessing: &'static CFString;
 }
 
 extern "C" {
+    /// A key that specifies the embedding level of the typesetter’s text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key must be a `CFNumberRef` object. There’s no default value.
+    ///
+    /// Normally, typesetting applies the Unicode Bidirectional Algorithm as described in [Unicode Standard Annex #9](https://unicode.org/reports/tr9/). If present, this option specifies the embedding level, and the text system ignores any directional control characters.
+    ///
+    ///
     /// Specifies the embedding level.
     ///
     /// Value must be a CFNumberRef. Default is unset. Normally,
     /// typesetting applies the Unicode Bidirectional Algorithm as
     /// described in UAX #9. If present, this specifies the embedding
     /// level and any directional control characters are ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionforcedembeddinglevel?language=objc)
     pub static kCTTypesetterOptionForcedEmbeddingLevel: &'static CFString;
 }
 
 impl CTTypesetter {
+    /// Creates an immutable typesetter object using an attributed string.
+    ///
+    /// Parameters:
+    /// - string: The attributed string to typeset. This parameter must be filled in with a valid CFAttributedString object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a CTTypesetter object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resultant typesetter can be used to create lines, perform line breaking, and do other contextual analysis based on the characters in the string.
+    ///
+    ///
     /// Creates an immutable typesetter object using an attributed
     /// string.
     ///
@@ -94,8 +136,6 @@ impl CTTypesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTTypesetter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreatewithattributedstring(_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateWithAttributedString")]
     #[inline]
     pub fn with_attributed_string(string: &CFAttributedString) -> CFRetained<CTTypesetter> {
@@ -110,6 +150,33 @@ impl CTTypesetter {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates an immutable typesetter object using an attributed string and a dictionary of options.
+    ///
+    /// Parameters:
+    /// - string: The attributed string to typeset. This parameter must be a valid `CFAttributedString` object.
+    ///
+    /// - options: A dictionary of typesetter options, or `NULL` if there are none.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a typesetter object if the call is successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the typesetter to create lines, perform line breaking, and do other contextual analysis according to the characters in the string.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  By default, this function returns `NULL` if the string requires unreasonable effort to typeset. To create a typesetter that always typesets the text, regardless of the amount of effort, set the [`kCTTypesetterOptionAllowUnboundedLayout`](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout) option to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates an immutable typesetter object using an attributed
     /// string and a dictionary of options.
     ///
@@ -137,8 +204,6 @@ impl CTTypesetter {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreatewithattributedstringandoptions(_:_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateWithAttributedStringAndOptions")]
     #[inline]
     pub unsafe fn with_attributed_string_and_options(
@@ -155,6 +220,27 @@ impl CTTypesetter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an immutable line from the typesetter at a specified line offset.
+    ///
+    /// Parameters:
+    /// - typesetter: The typesetter that creates the line. This parameter is required and cannot be set to `NULL`.
+    ///
+    /// - stringRange: The string range on which the line is based. If the length portion of range is set to `0`, then the typesetter continues to add glyphs to the line until it runs out of characters in the string. The location and length of the range must be within the bounds of the string, or the call will fail.
+    ///
+    /// - offset: The line position offset.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a CTLine object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resultant line consists of glyphs in the correct visual order, ready to draw.
+    ///
+    ///
     /// Creates an immutable line from the typesetter.
     ///
     ///
@@ -176,8 +262,6 @@ impl CTTypesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreatelinewithoffset(_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterCreateLineWithOffset")]
     #[cfg(feature = "CTLine")]
     #[inline]
@@ -195,9 +279,26 @@ impl CTTypesetter {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
+    /// Creates an immutable line from the typesetter.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettercreateline(_:_:)?language=objc)
+    /// Parameters:
+    /// - typesetter: The typesetter that creates the line. This parameter is required and cannot be set to `NULL`.
+    ///
+    /// - stringRange: The string range on which the line is based. If the length portion of range is set to `0`, then the typesetter continues to add glyphs to the line until it runs out of characters in the string. The location and length of the range must be within the bounds of the string, or the call will fail.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a CTLine object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resultant line consists of glyphs in the correct visual order, ready to draw. This function is equivalent to [`CTTypesetterCreateLineWithOffset`](https://developer.apple.com/documentation/coretext/cttypesettercreatelinewithoffset(_:_:_:)) with an offset of 0.0.
+    ///
+    ///
+    /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterCreateLine")]
     #[cfg(feature = "CTLine")]
     #[inline]
@@ -214,6 +315,29 @@ impl CTTypesetter {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Suggests a contextual line breakpoint based on the width provided and the specified offset.
+    ///
+    /// Parameters:
+    /// - typesetter: The typesetter that creates the line. This parameter is required and cannot be set to `NULL`.
+    ///
+    /// - startIndex: The starting point for the line-break calculations. The break calculations include the character starting at `startIndex`.
+    ///
+    /// - width: The requested line-break width.
+    ///
+    /// - offset: The line position offset.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A count of the characters from `startIndex` and `offset` that would cause the line break. The value returned can be used to construct a character range for [`CTTypesetterCreateLine`](https://developer.apple.com/documentation/coretext/cttypesettercreateline(_:_:)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The line break can be triggered either by a hard-break character in the stream or by filling the specified width with characters.
+    ///
+    ///
     /// Suggests a contextual line break point based on the width
     /// provided.
     ///
@@ -238,8 +362,6 @@ impl CTTypesetter {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the line break. This value returned can be used
     /// to construct a character range for CTTypesetterCreateLine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestlinebreakwithoffset(_:_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterSuggestLineBreakWithOffset")]
     #[inline]
     pub fn suggest_line_break_with_offset(
@@ -259,9 +381,28 @@ impl CTTypesetter {
         unsafe { CTTypesetterSuggestLineBreakWithOffset(self, start_index, width, offset) }
     }
 
-    /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
+    /// Suggests a contextual line breakpoint based on the width provided.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestlinebreak(_:_:_:)?language=objc)
+    /// Parameters:
+    /// - typesetter: The typesetter that creates the line. This parameter is required and cannot be set to `NULL`.
+    ///
+    /// - startIndex: The starting point for the line-break calculations. The break calculations include the character starting at `startIndex`.
+    ///
+    /// - width: The requested line-break width.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A count of the characters from `startIndex` that would cause the line break. The value returned can be used to construct a character range for [`CTTypesetterCreateLine`](https://developer.apple.com/documentation/coretext/cttypesettercreateline(_:_:)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The line break can be triggered either by a hard-break character in the stream or by filling the specified width with characters. This function is equivalent to [`CTTypesetterSuggestLineBreakWithOffset`](https://developer.apple.com/documentation/coretext/cttypesettersuggestlinebreakwithoffset(_:_:_:_:)) with an offset of 0.0.
+    ///
+    ///
+    /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterSuggestLineBreak")]
     #[inline]
     pub fn suggest_line_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
@@ -275,6 +416,29 @@ impl CTTypesetter {
         unsafe { CTTypesetterSuggestLineBreak(self, start_index, width) }
     }
 
+    /// Suggests a cluster line breakpoint based on the specified width and line offset.
+    ///
+    /// Parameters:
+    /// - typesetter: The typesetter that creates the line. This parameter is required and cannot be set to `NULL`.
+    ///
+    /// - startIndex: The starting point for the typographic cluster-break calculations. The break calculations include the character starting at `startIndex`.
+    ///
+    /// - width: The requested typographic cluster-break width.
+    ///
+    /// - offset: The line offset position.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A count of the characters from `startIndex` that would cause the cluster break. The value returned can be used to construct a character range for [`CTTypesetterCreateLine`](https://developer.apple.com/documentation/coretext/cttypesettercreateline(_:_:)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This cluster break is similar to a character break, except that it does not break apart linguistic clusters. No other contextual analysis is done. This can be used by the caller to implement a different line-breaking scheme, such as hyphenation. A typographic cluster break can also be triggered by a hard-break character in the stream.
+    ///
+    ///
     /// Suggests a cluster line break point based on the width provided.
     ///
     ///
@@ -304,8 +468,6 @@ impl CTTypesetter {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the cluster break. This value returned can be
     /// used to construct a character range for CTTypesetterCreateLine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestclusterbreakwithoffset(_:_:_:_:)?language=objc)
     #[doc(alias = "CTTypesetterSuggestClusterBreakWithOffset")]
     #[inline]
     pub fn suggest_cluster_break_with_offset(
@@ -325,9 +487,28 @@ impl CTTypesetter {
         unsafe { CTTypesetterSuggestClusterBreakWithOffset(self, start_index, width, offset) }
     }
 
-    /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
+    /// Suggests a cluster line breakpoint based on the width provided.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesettersuggestclusterbreak(_:_:_:)?language=objc)
+    /// Parameters:
+    /// - typesetter: The typesetter that creates the line. This parameter is required and cannot be set to `NULL`.
+    ///
+    /// - startIndex: The starting point for the typographic cluster-break calculations. The break calculations include the character starting at `startIndex`.
+    ///
+    /// - width: The requested typographic cluster-break width.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A count of the characters from `startIndex` that would cause the cluster break. The value returned can be used to construct a character range for [`CTTypesetterCreateLine`](https://developer.apple.com/documentation/coretext/cttypesettercreateline(_:_:)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This cluster break is similar to a character break, except that it does not break apart linguistic clusters. No other contextual analysis is done. This can be used by the caller to implement a different line-breaking scheme, such as hyphenation. A typographic cluster break can also be triggered by a hard-break character in the stream. This function is equivalent to [`CTTypesetterSuggestClusterBreakWithOffset`](https://developer.apple.com/documentation/coretext/cttypesettersuggestclusterbreakwithoffset(_:_:_:_:)) with an offset of 0.0.
+    ///
+    ///
+    /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterSuggestClusterBreak")]
     #[inline]
     pub fn suggest_cluster_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {

@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionrule?language=objc)
+    /// A rule that affects how an attributed string performs automatic grammatical agreement.
+    ///
+    /// ## Overview
+    ///
+    /// Most apps can rely on loading localized strings to perform automatic grammar agreement. Typically, your app’s strings files use the Markdown extension syntax to indicate portions of the string that may require inflection to agree grammatically. This transformation occurs when you load the attributed string with methods like `NSLocalizedAttributedString`.
+    ///
+    /// However, if the system lacks information about the words in the string, you may need to apply an inflection rule programmatically. For example, a social networking app may have gender information about other users that you want to apply at runtime. When performing manual inflection at runtime, you use an inflection rule to indicate to the system what portions of a string should be automatically edited, and what to match. Add the attribute [`inflectionRule`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/inflectionrule) with an [`NSInflectionRule`](https://developer.apple.com/documentation/foundation/nsinflectionrule) on an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), then call [`inflecting()`](https://developer.apple.com/documentation/foundation/nsattributedstring/inflecting()) to perform the grammar agreement and produce an edited string.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRule;
@@ -58,7 +66,7 @@ impl NSInflectionRule {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleexplicit?language=objc)
+    /// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
     #[unsafe(super(NSInflectionRule, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInflectionRuleExplicit;

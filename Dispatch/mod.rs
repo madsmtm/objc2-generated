@@ -24,9 +24,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_api_version?language=objc)
 pub const DISPATCH_API_VERSION: c_uint = 20181008;
 impl DispatchTime {
+    /// Creates a `dispatch_time_t` relative to the default clock or modifies an existing `dispatch_time_t`.
+    ///
+    /// Parameters:
+    /// - when: The [`dispatch_function_t`](https://developer.apple.com/documentation/dispatch/dispatch_function_t) value to use as the basis for a new value. Pass [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) to create a new time value relative to now.
+    ///
+    /// - delta: The number of nanoseconds to add to the time in the `when` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new [`dispatch_time_t`](https://developer.apple.com/documentation/dispatch/dispatch_time_t).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default clock is based on [`mach_absolute_time`](https://developer.apple.com/documentation/kernel/1462446-mach_absolute_time).
+    ///
+    ///
     /// Create a dispatch_time_t relative to the current value of the default or
     /// wall time clock, or modify an existing dispatch_time_t.
     ///
@@ -46,8 +64,6 @@ impl DispatchTime {
     ///
     ///
     /// Returns: A new dispatch_time_t.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_time?language=objc)
     #[doc(alias = "dispatch_time")]
     #[must_use]
     #[inline]
@@ -58,6 +74,25 @@ impl DispatchTime {
         unsafe { dispatch_time(self, delta) }
     }
 
+    /// Creates a `dispatch_time_t` using an absolute time according to the wall clock.
+    ///
+    /// Parameters:
+    /// - when: A `struct timespec` to add time to. If `NULL` is passed, then this function uses the result of `gettimeofday`.
+    ///
+    /// - delta: Nanoseconds to add.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new [`dispatch_time_t`](https://developer.apple.com/documentation/dispatch/dispatch_time_t).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The wall clock is based on `gettimeofday(_:_:)`.
+    ///
+    ///
     /// Create a dispatch_time_t using the wall clock.
     ///
     ///
@@ -78,8 +113,6 @@ impl DispatchTime {
     /// # Safety
     ///
     /// `when` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_walltime?language=objc)
     #[doc(alias = "dispatch_walltime")]
     #[cfg(feature = "libc")]
     #[must_use]
@@ -92,6 +125,13 @@ impl DispatchTime {
     }
 }
 
+/// The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.
+///
+/// ## Discussion
+///
+/// Blocks behave like other Objective-C objects. Under ARC, the system releases and retains them automatically, and it converts them to malloc blocks as needed to facilitate their escape from the current scope of execution. When ARC is disabled, you are responsible for retaining and releasing blocks at appropriate times, and for copying blocks before allowing them to escape from the current scope of execution.
+///
+///
 /// The type of blocks submitted to dispatch queues, which take no arguments
 /// and have no return value.
 ///
@@ -132,12 +172,33 @@ impl DispatchTime {
 ///
 /// Instead, the block literal must be copied to the heap with the Block_copy()
 /// function or by sending it a -[copy] message.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
 #[cfg(feature = "block2")]
 pub type dispatch_block_t = *mut block2::DynBlock<dyn Fn()>;
 
 extern "C" {
+    /// Increments the reference count (the retain count) of a dispatch object.
+    ///
+    /// Parameters:
+    /// - object: The object to retain. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calls to this function must be balanced with calls to [`dispatch_release`](https://developer.apple.com/documentation/dispatch/dispatch_release). If  multiple subsystems of your application share a dispatch object, each subsystem should call [`dispatch_retain`](https://developer.apple.com/documentation/dispatch/dispatch_retain) to register its interest in the object.  The object is deallocated only when all subsystems have released their interest in the dispatch source.
+    ///
+    /// Note that your application does not need to retain or release the global (main and concurrent) dispatch queues.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If your app is built with a deployment target of macOS 10.8 and later or iOS v6.0 and later, dispatch queues are typically managed by ARC, so you do not need to retain or release the dispatch queues.
+    ///
+    /// For compatibility with existing code, this behavior is configurable. See `GCD Objects and Automatic Reference Counting` for details.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Increment the reference count of a dispatch object.
     ///
     ///
@@ -151,12 +212,41 @@ extern "C" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_retain?language=objc)
     pub fn dispatch_retain(object: NonNull<dispatch_object_s>);
 }
 
 extern "C" {
+    /// Decrements the reference count (the retain count) of a dispatch object.
+    ///
+    /// Parameters:
+    /// - object: The object to release. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A dispatch object is asynchronously deallocated once all references to it are released (the reference count becomes zero). When your application no longer needs a dispatch object that it has created, it should call this function to release its interest in the object and allow its memory to be deallocated when appropriate. Note that GCD does not guarantee that a given client has the last or only reference to a given object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If your app is built with a deployment target of macOS 10.8 and later or iOS v6.0 and later, dispatch queues are typically managed by ARC, so you do not need to retain or release the dispatch queues.
+    ///
+    /// For compatibility with existing code, this behavior is configurable. See `GCD Objects and Automatic Reference Counting` for details.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Your application does not need to retain or release the global (main and concurrent) dispatch queues; calling this function on global dispatch queues has no effect.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It is a programmer error to call this function on an object that is currently suspended, because suspension implies that there is still work to be done. Therefore, always balance calls to [`suspend()`](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()) and [`resume()`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()) so that the dispatch object is fully resumed when the last reference is released. The behavior when releasing the last reference to a dispatch object while it is in a suspended state is undefined.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Decrement the reference count of a dispatch object.
     ///
     ///
@@ -172,11 +262,26 @@ extern "C" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_release?language=objc)
     pub fn dispatch_release(object: NonNull<dispatch_object_s>);
 }
 
+/// Returns the application-defined context of an object.
+///
+/// Parameters:
+/// - object: This parameter cannot be `NULL`.
+///
+///
+/// ## Return Value
+///
+/// The context of the object; can be `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// Your application can associate custom context data with the object, to be used only by your application. Your application must allocate and deallocate the data as appropriate.
+///
+///
 /// Returns the application defined context of the object.
 ///
 ///
@@ -184,8 +289,6 @@ extern "C" {
 ///
 ///
 /// Returns: The context of the object; may be NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_context?language=objc)
 #[must_use]
 #[inline]
 pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *mut c_void {
@@ -196,6 +299,19 @@ pub extern "C" fn dispatch_get_context(object: NonNull<dispatch_object_s>) -> *m
 }
 
 extern "C" {
+    /// Associates an application-defined context with the object.
+    ///
+    /// Parameters:
+    /// - object: This parameter cannot be `NULL`.
+    ///
+    /// - context: The new application-defined context for the object. This can be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application can associate custom context data with the object, to be used only by your application. Your application must allocate and deallocate the data as appropriate.
+    ///
+    ///
     /// Associates an application defined context with the object.
     ///
     ///
@@ -208,12 +324,23 @@ extern "C" {
     ///
     /// - `object` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_set_context?language=objc)
     pub fn dispatch_set_context(object: NonNull<dispatch_object_s>, context: *mut c_void);
 }
 
 extern "C" {
+    /// Sets the finalizer function for a dispatch object.
+    ///
+    /// Parameters:
+    /// - object: The dispatch object to modify. This parameter cannot be `NULL`.
+    ///
+    /// - finalizer: The finalizer function pointer.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The finalizer for a  dispatch object is invoked on that object’s target queue after all references to the object are released. The application can use the finalizer to release any resources associated with the object, such as the object’s application-defined context. The context parameter passed to the finalizer function is the current context of the dispatch object at the time the finalizer call is made. The finalizer is not called if the application-defined context is `NULL`.
+    ///
+    ///
     /// Set the finalizer function for a dispatch object.
     ///
     ///
@@ -235,14 +362,19 @@ extern "C" {
     ///
     /// - `object` must be a valid pointer.
     /// - `finalizer` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_set_finalizer_f?language=objc)
     pub fn dispatch_set_finalizer_f(
         object: NonNull<dispatch_object_s>,
         finalizer: dispatch_function_t,
     );
 }
 
+/// Activates the dispatch object.
+///
+/// ## Discussion
+///
+/// Once a dispatch object has been activated, it cannot change its target queue.
+///
+///
 /// Activates the specified dispatch object.
 ///
 ///
@@ -260,8 +392,6 @@ extern "C" {
 ///
 /// Parameter `object`: The object to be activated.
 /// The result of passing NULL in this parameter is undefined.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/activate()?language=objc)
 #[inline]
 pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
     extern "C" {
@@ -270,6 +400,27 @@ pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
     unsafe { dispatch_activate(object) }
 }
 
+/// Suspends the invocation of block objects on a dispatch object.
+///
+/// Parameters:
+/// - object: The dispatch queue or dispatch source to suspend. (You cannot suspend other types of dispatch objects.) This parameter cannot be `NULL`.
+///
+///
+/// ## Discussion
+///
+/// By suspending a dispatch object, your application can temporarily prevent the execution of any blocks associated with that object. The suspension occurs after completion of any blocks running at the time of the call. Calling this function increments the suspension count of the object, and calling [`dispatch_resume`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()) decrements it. While the count is greater than zero, the object remains suspended, so you must balance each [`dispatch_suspend`](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()) call with a matching [`dispatch_resume`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()) call.
+///
+/// Any blocks submitted to a dispatch queue or events observed by a dispatch source are delivered once the object is resumed.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  It is a programmer error to release an object that is currently suspended, because suspension implies that there is still work to be done. Therefore, always balance calls to this method with a corresponding call to [`dispatch_resume`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()) before disposing of the object. The behavior when releasing the last reference to a dispatch object while it is in a suspended state is undefined.
+///
+///
+///
+/// </div>
+///
 /// Suspends the invocation of blocks on a dispatch object.
 ///
 ///
@@ -283,8 +434,6 @@ pub extern "C" fn dispatch_activate(object: NonNull<dispatch_object_s>) {
 ///
 /// Parameter `object`: The object to be suspended.
 /// The result of passing NULL in this parameter is undefined.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()?language=objc)
 #[inline]
 pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
     extern "C" {
@@ -293,6 +442,19 @@ pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
     unsafe { dispatch_suspend(object) }
 }
 
+/// Resumes the invocation of block objects on a dispatch object.
+///
+/// Parameters:
+/// - object: The object to be resumed. This parameter cannot be `NULL`.
+///
+///
+/// ## Discussion
+///
+/// Calling this function decrements the suspension count of a suspended dispatch queue or dispatch event source object. While the count is greater than zero, the object remains suspended. When the suspension count returns to zero, any blocks submitted to the dispatch queue or any events observed by the dispatch source while suspended are delivered.
+///
+/// With one exception, each call to [`dispatch_resume`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()) must balance a call to [`dispatch_suspend`](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()). New dispatch event source objects returned by [`dispatch_source_create`](https://developer.apple.com/documentation/dispatch/dispatch_source_create) have a suspension count of 1 and must be resumed before any events are delivered. This approach allows your application to fully configure the dispatch event source object prior to delivery of the first event. In all other cases, it is undefined to call [`dispatch_resume`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()) more times than [`dispatch_suspend`](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()), which would result in a negative suspension count.
+///
+///
 /// Resumes the invocation of blocks on a dispatch object.
 ///
 ///
@@ -312,8 +474,6 @@ pub extern "C" fn dispatch_suspend(object: NonNull<dispatch_object_s>) {
 ///
 /// Parameter `object`: The object to be resumed.
 /// The result of passing NULL in this parameter is undefined.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()?language=objc)
 #[inline]
 pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
     extern "C" {
@@ -323,6 +483,21 @@ pub extern "C" fn dispatch_resume(object: NonNull<dispatch_object_s>) {
 }
 
 extern "C" {
+    /// Specifies the minimum quality-of-service level for a dispatch queue, source, or workloop.
+    ///
+    /// Parameters:
+    /// - object: The [`dispatch_queue_t`](https://developer.apple.com/documentation/dispatch/dispatch_queue_t), [`dispatch_source_t`](https://developer.apple.com/documentation/dispatch/dispatch_source_t), or [`dispatch_workloop_t`](https://developer.apple.com/documentation/dispatch/dispatch_workloop_t) object you want to modify. This object must be currently inactive. If you specify an object other than a dispatch queue, source, or workloop, this function terminates the current process.
+    ///
+    /// - qos_class: The minimum quality-of-service (QoS) level to assign to the object.
+    ///
+    /// - relative_priority: The relative priority within the QoS level. This value is a negative offset from the scheduler priority associated with the value in qos_class. This value must not be greater than `0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to enforce a minimum QoS level on all tasks you assign to the object. If the QoS level of a work item is below the specified minimum, the queue, source, or workloop elevates the priority of that work item to the minimum value. Elevation of the priority happens even if the work item doesn’t have “enforce” semantics in place.
+    ///
+    ///
     /// Sets the QOS class floor on a dispatch queue, source or workloop.
     ///
     ///
@@ -359,8 +534,6 @@ extern "C" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_set_qos_class_floor?language=objc)
     pub fn dispatch_set_qos_class_floor(
         object: NonNull<dispatch_object_s>,
         qos_class: DispatchQoS,
@@ -369,7 +542,19 @@ extern "C" {
 }
 
 impl DispatchQueue {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_async?language=objc)
+    /// Submits a block for asynchronous execution on a dispatch queue and returns immediately.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the block. The system retains the queue until the block runs to completion. This parameter cannot be `NULL`.
+    ///
+    /// - block: The block to submit to the target dispatch queue. This function performs `Block_copy` and `Block_release` on behalf of callers. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the fundamental mechanism for submitting blocks to a dispatch queue. Calls to this function always return immediately after the block is submitted and never wait for the block to be invoked. The target queue determines whether the block is invoked serially or concurrently with respect to other blocks submitted to that same queue. Independent serial queues are processed concurrently with respect to each other.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -385,6 +570,21 @@ impl DispatchQueue {
         unsafe { dispatch_async(self, block) }
     }
 
+    /// Submits an app-defined function for asynchronous execution on a dispatch queue and returns immediately.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the function. The system retains the queue until the function runs to completion. This parameter cannot be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the function.
+    ///
+    /// - work: The app-defined function to invoke on the target queue. The first parameter passed to this function is the value of the `context` parameter. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the fundamental mechanism for submitting app-defined functions to a dispatch queue. Calls to this function always return immediately after the function is submitted and never wait for it to be invoked. The target queue determines whether the function is invoked serially or concurrently with respect to other tasks submitted to that same queue. Serial queues are processed concurrently with respect to each other.
+    ///
+    ///
     /// Submits a function for asynchronous execution on a dispatch queue.
     ///
     ///
@@ -410,8 +610,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_async_f?language=objc)
     #[doc(alias = "dispatch_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -425,7 +623,23 @@ impl DispatchQueue {
         unsafe { dispatch_async_f(self, context, work) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw?language=objc)
+    /// Submits a block object for execution and returns after that block finishes executing.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the block. This parameter cannot be `NULL`.
+    ///
+    /// - block: The block that contains the work to perform. This block has no return value and no parameters. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits a block to the specified dispatch queue for synchronous execution. Unlike [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this function does not return until the block has finished. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// Unlike with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), no retain is performed on the target queue. Because calls to this function are synchronous, it “borrows” the reference of the caller. Moreover, no `Block_copy` is performed on the block.
+    ///
+    /// As a performance optimization, this function executes blocks on the current thread whenever possible, with one exception: Blocks submitted to the main dispatch queue always run on the main thread.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -441,6 +655,15 @@ impl DispatchQueue {
         unsafe { dispatch_sync(self, block) }
     }
 
+    /// Submits an app-defined function for synchronous execution on a dispatch queue.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the function.  This parameter cannot be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the function.
+    ///
+    /// - work: The app-defined function to invoke on the target queue. The first parameter passed to this function is the value in the `context` parameter. This parameter cannot be `NULL`.
+    ///
     /// Submits a function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -464,8 +687,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_sync_f?language=objc)
     #[doc(alias = "dispatch_sync_f")]
     #[inline]
     pub unsafe fn exec_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -479,7 +700,25 @@ impl DispatchQueue {
         unsafe { dispatch_sync_f(self, context, work) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchqueue/asyncandwait(execute:)-1udeu?language=objc)
+    /// Submits a work item for execution and returns only after it finishes executing.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the block. This parameter cannot be `NULL`.
+    ///
+    /// - block: The block that contains the work to perform. This block has no return value and no parameters. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits work to the specified queue for execution. Unlike [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this function does not return until after the block finishes. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// Unlike [`dispatch_sync`](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw), this function respects all attributes of the queue when it executes the block. For example, it respects the quality-of-service level and autorelease frequency of the target queue.
+    ///
+    /// If the runtime has already brought up a thread to service asynchronous work items, the system uses that same thread to execute any synchronous blocks you submitted using this function. If the runtime hasn’t brought up a thread to service asynchronous work items, the sytem executes these synchronous blocks on the current thread as an optimization. However, these optimizations apply only when `queue` targets a global concurrent queue. If it targets any other queue, the system executes the work on that queue’s thread. For example, if `queue` targets the main queue, the block always runs on the main thread.
+    ///
+    /// Unlike with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), no retain is performed on the target queue. Because calls to this function are synchronous, it “borrows” the reference of the caller. Moreover, no `Block_copy` is performed on the block.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -495,6 +734,27 @@ impl DispatchQueue {
         unsafe { dispatch_async_and_wait(self, block) }
     }
 
+    /// Submits a function-based work item for execution and returns only after it finishes executing.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the function. This parameter can’t be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the function.
+    ///
+    /// - work: The app-defined function to invoke on the target queue. The first parameter passed to this function is the value in the `context` parameter. This parameter can’t be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits work to the specified queue for execution. Unlike [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this function doesn’t return until after the block finishes. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// Unlike [`sync(execute:)`](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw), this function respects all attributes of the queue when it executes the `work` function. For example, it respects the quality-of-service level and autorelease frequency of the target queue.
+    ///
+    /// If the runtime has already brought up a thread to service asynchronous work items, the system uses that same thread to execute the `work` function synchronously. If the runtime hasn’t brought up a thread to service asynchronous work items, the system executes `work` on the current thread as an optimization. However, these optimizations apply only when `queue` targets a global concurrent queue. If it targets any other queue, the system executes the `work` function on that queue’s thread. For example, if `queue` targets the main queue, the function always runs on the main thread.
+    ///
+    /// Unlike with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), no retain is performed on the target queue. Because calls to this function are synchronous, it “borrows” the reference of the caller.
+    ///
+    ///
     /// Submits a function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -518,8 +778,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_async_and_wait_f?language=objc)
     #[doc(alias = "dispatch_async_and_wait_f")]
     #[inline]
     pub unsafe fn exec_sync_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -533,7 +791,25 @@ impl DispatchQueue {
         unsafe { dispatch_async_and_wait_f(self, context, work) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_apply?language=objc)
+    /// Submits a single block to the dispatch queue and causes the block to be executed the specified number of times.
+    ///
+    /// Parameters:
+    /// - iterations: The number of times to execute the block.
+    ///
+    /// - queue: The queue on which to submit the block. It is recommended that you specify [`DISPATCH_APPLY_AUTO`](https://developer.apple.com/documentation/dispatch/dispatch_apply_auto) for this parameter, as that causes the block to run on a queue whose quality-of-service class is most appropriate for the current execution context.
+    ///
+    /// - block: The application-defined function to be submitted. This parameter cannot be `NULL`. This block has no return value and takes one parameter:
+    ///
+    /// - iteration: The current iteration index.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits a block to a dispatch queue for multiple invocations and waits for all iterations of the task block to complete before returning. If the target queue is a concurrent queue returned by [`dispatch_get_global_queue`](https://developer.apple.com/documentation/dispatch/dispatch_get_global_queue), the block can be invoked concurrently, and it must therefore be reentrant-safe. Using this function with a concurrent queue can be useful as an efficient parallel `for` loop.
+    ///
+    /// The current index of iteration is passed to each invocation of the block.
+    ///
+    ///
     #[doc(alias = "dispatch_apply")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -552,6 +828,29 @@ impl DispatchQueue {
         unsafe { dispatch_apply(iterations, queue, block) }
     }
 
+    /// Submits a single function to the dispatch queue and causes the function to be executed the specified number of times.
+    ///
+    /// Parameters:
+    /// - iterations: The number of iterations to perform.
+    ///
+    /// - queue: The queue on which to submit the function. It is recommended that you specify [`DISPATCH_APPLY_AUTO`](https://developer.apple.com/documentation/dispatch/dispatch_apply_auto) for this parameter, as that causes the block to run on a queue whose quality-of-service class is most appropriate for the current execution context.
+    ///
+    /// - context: The application-defined context parameter to pass to the function.
+    ///
+    /// - work: The application-defined function to invoke on the target queue. This parameter cannot be NULL. The block has no return value and takes the following parameters:
+    ///
+    /// - data: The pointer you specified in the `context` parameter.
+    ///
+    /// - iteration: The current iteration index.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits an application-defined function to a dispatch queue for multiple invocations and waits for all iterations of the function to complete before returning. If the target queue is a concurrent queue returned by [`dispatch_get_global_queue`](https://developer.apple.com/documentation/dispatch/dispatch_get_global_queue), the function can be invoked concurrently, and it must therefore be reentrant-safe. Using this function with a concurrent queue can be useful as an efficient parallel `for` loop.
+    ///
+    /// The current index of iteration is passed to each invocation of the function.
+    ///
+    ///
     /// Submits a function to a dispatch queue for parallel invocation.
     ///
     ///
@@ -580,8 +879,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_apply_f?language=objc)
     #[doc(alias = "dispatch_apply_f")]
     #[inline]
     pub unsafe fn apply_f(
@@ -601,6 +898,21 @@ impl DispatchQueue {
         unsafe { dispatch_apply_f(iterations, queue, context, work) }
     }
 
+    /// Returns the queue on which the currently executing block is running.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the current queue.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is defined to never return `NULL`.
+    ///
+    /// When called from outside of the context of a submitted block, this function returns the main queue if the call is executed from the main thread. If the call is made from any other thread, this function returns the default concurrent queue.
+    ///
+    ///
     /// Returns the queue on which the currently executing block is running.
     ///
     ///
@@ -625,8 +937,6 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: Returns the current queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_current_queue()?language=objc)
     #[doc(alias = "dispatch_get_current_queue")]
     #[deprecated = "unsupported interface"]
     #[must_use]
@@ -646,6 +956,29 @@ extern "C" {
     pub static _dispatch_main_q: DispatchQueue;
 }
 
+/// Returns a system-defined global concurrent queue with the specified quality-of-service class.
+///
+/// Parameters:
+/// - identifier: The quality of service you want to give to tasks executed using this queue. Quality-of-service helps determine the priority given to tasks executed by the queue. You may specify the values `QOS_CLASS_USER_INTERACTIVE`, `QOS_CLASS_USER_INITIATED`, `QOS_CLASS_UTILITY`, or `QOS_CLASS_BACKGROUND`. Queues that handle user-interactive or user-initiated tasks have a higher priority than tasks meant to run in the background.
+///
+/// In OS X 10.9 or earlier, you can specify one of the dispatch queue priority values, which are found in [`dispatch_queue_priority_t`](https://developer.apple.com/documentation/dispatch/dispatch_queue_priority_t). These values map to an appropriate quality-of-service class.
+///
+/// - flags: Flags that are reserved for future use. Always specify `0` for this parameter.
+///
+///
+/// ## Return Value
+///
+/// The requested global concurrent queue.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns a queue suitable for executing tasks with the specified quality-of-service level. Calls to the [`suspend()`](https://developer.apple.com/documentation/dispatch/dispatchobject/suspend()), [`resume()`](https://developer.apple.com/documentation/dispatch/dispatchobject/resume()), and [`dispatch_set_context`](https://developer.apple.com/documentation/dispatch/dispatch_set_context) functions have no effect on the returned queues.
+///
+/// Tasks submitted to the returned queue are scheduled concurrently with respect to one another.
+///
+///
 /// Returns a well-known global concurrent queue of a given quality of service
 /// class.
 ///
@@ -678,8 +1011,6 @@ extern "C" {
 ///
 /// Returns: Returns the requested global queue or NULL if the requested global queue
 /// does not exist.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_global_queue?language=objc)
 #[must_use]
 #[inline]
 pub extern "C" fn dispatch_get_global_queue(
@@ -702,6 +1033,23 @@ extern "C" {
 }
 
 impl DispatchQueueAttr {
+    /// Returns an attribute that configures a dispatch queue as initially inactive.
+    ///
+    /// Parameters:
+    /// - attr: Other queue attributes that you want to combine with the initially inactive attribute.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An updated set of queue attributes that includes the initially inactive attribute.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you configure a dispatch queue with this attribute, the queue does not execute tasks until you call its [`activate()`](https://developer.apple.com/documentation/dispatch/dispatchobject/activate()) method.
+    ///
+    ///
     /// Returns an attribute value which may be provided to dispatch_queue_create()
     /// or dispatch_queue_create_with_target(), in order to make the created queue
     /// initially inactive.
@@ -726,8 +1074,6 @@ impl DispatchQueueAttr {
     /// and dispatch_queue_create_with_target().
     /// The new value combines the attributes specified by the 'attr' parameter with
     /// the initially inactive attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_attr_make_initially_inactive?language=objc)
     #[doc(alias = "dispatch_queue_attr_make_initially_inactive")]
     #[must_use]
     #[inline]
@@ -746,6 +1092,7 @@ impl DispatchQueueAttr {
     }
 }
 
+/// Constants indicating the frequency with which a dispatch queue creates autorelease pools for its tasks.
 /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
 /// function.
 ///
@@ -764,14 +1111,19 @@ impl DispatchQueueAttr {
 /// Dispatch queues with this autorelease frequency never set up an individual
 /// autorelease pool around the execution of a block that is submitted to it
 /// asynchronously. This is the behavior of the global concurrent queues.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t?language=objc)
 #[doc(alias = "dispatch_autorelease_frequency_t")]
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DispatchAutoReleaseFrequency(pub c_ulong);
 impl DispatchAutoReleaseFrequency {
+    /// The queue inherits its autorelease frequency from its target queue.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is the default behavior for queues you create.
+    ///
+    ///
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -790,10 +1142,9 @@ impl DispatchAutoReleaseFrequency {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t/dispatch_autorelease_frequency_inherit?language=objc)
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_INHERIT")]
     pub const INHERIT: Self = Self(0);
+    /// The queue configures an autorelease pool before the execution of a block and releases the objects in that pool after the block finishes executing.
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -812,10 +1163,15 @@ impl DispatchAutoReleaseFrequency {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t/dispatch_autorelease_frequency_work_item?language=objc)
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM")]
     pub const WORK_ITEM: Self = Self(1);
+    /// The queue does not set up an autorelease pool around executed blocks.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is the default behavior for the system-defined global queues.
+    ///
+    ///
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
     /// function.
     ///
@@ -834,8 +1190,6 @@ impl DispatchAutoReleaseFrequency {
     /// Dispatch queues with this autorelease frequency never set up an individual
     /// autorelease pool around the execution of a block that is submitted to it
     /// asynchronously. This is the behavior of the global concurrent queues.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t/dispatch_autorelease_frequency_never?language=objc)
     #[doc(alias = "DISPATCH_AUTORELEASE_FREQUENCY_NEVER")]
     pub const NEVER: Self = Self(2);
 }
@@ -851,6 +1205,13 @@ unsafe impl RefEncode for DispatchAutoReleaseFrequency {
 }
 
 impl DispatchQueueAttr {
+    /// Returns an attribute that specifies how the dispatch queue manages autorelease pools for the blocks it executes.
+    ///
+    /// Parameters:
+    /// - attr: The dispatch queue attributes you want to modify.
+    ///
+    /// - frequency: The autorelease behavior attribute to apply to the dispatch queue. For a list of possible values, see [`dispatch_autorelease_frequency_t`](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t).
+    ///
     /// Returns a dispatch queue attribute value with the autorelease frequency
     /// set to the specified value.
     ///
@@ -886,8 +1247,6 @@ impl DispatchQueueAttr {
     /// or NULL if an invalid autorelease frequency was requested.
     /// This new value combines the attributes specified by the 'attr' parameter and
     /// the chosen autorelease frequency.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_attr_make_with_autorelease_frequency?language=objc)
     #[doc(alias = "dispatch_queue_attr_make_with_autorelease_frequency")]
     #[must_use]
     #[inline]
@@ -907,6 +1266,37 @@ impl DispatchQueueAttr {
         unsafe { DispatchRetained::retain(ret) }
     }
 
+    /// Returns attributes suitable for creating a dispatch queue with the desired quality-of-service information.
+    ///
+    /// Parameters:
+    /// - attr: A queue attribute value to be combined with the quality-of-service class. Specify [`DISPATCH_QUEUE_SERIAL`](https://developer.apple.com/documentation/dispatch/dispatch_queue_serial) if you want submitted tasks to be scheduled serially or [`DISPATCH_QUEUE_CONCURRENT`](https://developer.apple.com/documentation/dispatch/dispatch_queue_concurrent) if tasks may be scheduled concurrently. If you specify `NULL`, this function creates a serial queue.
+    ///
+    /// - qos_class: The quality of service you want to give to tasks executed using this queue. Quality-of-service helps determine the priority given to tasks executed by the queue. Specify one of the values `QOS_CLASS_USER_INTERACTIVE`, `QOS_CLASS_USER_INITIATED`, `QOS_CLASS_UTILITY`, or `QOS_CLASS_BACKGROUND`. Queues that handle user-interactive or user-initiated tasks have a higher priority than tasks meant to run in the background.
+    ///
+    /// - relative_priority: A negative offset from the maximum supported scheduler priority for the given quality-of-service class. This value must be less than `0` and greater than or equal to `QOS_MIN_RELATIVE_PRIORITY`, or else this function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An attribute value that may be passed to the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function when creating a dispatch queue.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function prior to calling the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function when you want to create a dispatch queue with a specific quality-of-service level. This function combines the queue type attributes with the quality-of-service information you specify and returns a value that you can pass to the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function. The quality-of-service value you specify using this function takes precedence over the priority level inherited from the dispatch queue’s target queue.
+    ///
+    /// The global queue priorities map to the following quality-of-service classes:
+    ///
+    /// - [`DISPATCH_QUEUE_PRIORITY_HIGH`](https://developer.apple.com/documentation/dispatch/dispatch_queue_priority_high) maps to the `QOS_CLASS_USER_INITIATED` class.
+    ///
+    /// - [`DISPATCH_QUEUE_PRIORITY_DEFAULT`](https://developer.apple.com/documentation/dispatch/dispatch_queue_priority_default) maps to the `QOS_CLASS_DEFAULT` class.
+    ///
+    /// - [`DISPATCH_QUEUE_PRIORITY_LOW`](https://developer.apple.com/documentation/dispatch/dispatch_queue_priority_low) maps to the `QOS_CLASS_UTILITY` class.
+    ///
+    /// - [`DISPATCH_QUEUE_PRIORITY_BACKGROUND`](https://developer.apple.com/documentation/dispatch/dispatch_queue_priority_background) maps to the `QOS_CLASS_BACKGROUND` class.
+    ///
+    ///
     /// Returns an attribute value which may be provided to dispatch_queue_create()
     /// or dispatch_queue_create_with_target(), in order to assign a QOS class and
     /// relative priority to the queue.
@@ -959,8 +1349,6 @@ impl DispatchQueueAttr {
     /// requested.
     /// The new value combines the attributes specified by the 'attr' parameter and
     /// the new QOS class and relative priority.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_attr_make_with_qos_class?language=objc)
     #[doc(alias = "dispatch_queue_attr_make_with_qos_class")]
     #[must_use]
     #[inline]
@@ -985,6 +1373,21 @@ impl DispatchQueueAttr {
 }
 
 impl DispatchQueue {
+    /// Creates a new dispatch queue to which you can submit blocks.
+    ///
+    /// Parameters:
+    /// - label: A string label to attach to the queue to uniquely identify it in debugging tools such as Instruments, sample, stackshots, and crash reports.  Because applications, libraries, and frameworks can all create their own dispatch queues, a reverse-DNS naming style (_com.example.myqueue_) is recommended.  This parameter is optional and can be `NULL`.
+    ///
+    /// - attr: The queue attributes. Specify [`DISPATCH_QUEUE_SERIAL`](https://developer.apple.com/documentation/dispatch/dispatch_queue_serial) (or `NULL`) to create a serial queue or specify [`DISPATCH_QUEUE_CONCURRENT`](https://developer.apple.com/documentation/dispatch/dispatch_queue_concurrent) to create a concurrent queue.
+    ///
+    /// - target: The target queue on which to execute blocks. This method retains the target queue. Specify `DISPATCH_TARGET_QUEUE_DEFAULT` to set the target queue to the default type for the current dispatch queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created dispatch queue.
+    ///
+    ///
     /// Creates a new dispatch queue with a specified target queue.
     ///
     ///
@@ -1036,8 +1439,6 @@ impl DispatchQueue {
     /// # Safety
     ///
     /// `target` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_create_with_target?language=objc)
     #[doc(alias = "dispatch_queue_create_with_target")]
     #[must_use]
     #[inline]
@@ -1071,6 +1472,27 @@ impl DispatchQueue {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Creates a new dispatch queue to which you can submit blocks.
+    ///
+    /// Parameters:
+    /// - label: A string label to attach to the queue to uniquely identify it in debugging tools such as Instruments, `sample`, stackshots, and crash reports.  Because applications, libraries, and frameworks can all create their own dispatch queues, a reverse-DNS naming style (_com.example.myqueue_) is recommended.  This parameter is optional and can be `NULL`.
+    ///
+    /// - attr: In macOS 10.7 and later or iOS 4.3 and later, specify [`DISPATCH_QUEUE_SERIAL`](https://developer.apple.com/documentation/dispatch/dispatch_queue_serial) (or `NULL`) to create a serial queue or specify [`DISPATCH_QUEUE_CONCURRENT`](https://developer.apple.com/documentation/dispatch/dispatch_queue_concurrent) to create a concurrent queue. In earlier versions, you must specify `NULL` for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created dispatch queue.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Blocks submitted to a serial queue are executed one at a time in FIFO order. Note, however, that blocks submitted to independent queues may be executed concurrently with respect to each other. Blocks submitted to a concurrent queue are dequeued in FIFO order but may run concurrently if resources are available to do so.
+    ///
+    /// If your app isn’t using ARC, you should call [`dispatch_release`](https://developer.apple.com/documentation/dispatch/dispatch_release) on a dispatch queue when it’s no longer needed. Any pending blocks submitted to a queue hold a reference to that queue, so the queue is not deallocated until all pending blocks have completed.
+    ///
+    ///
     /// Creates a new dispatch queue to which blocks may be submitted.
     ///
     ///
@@ -1111,8 +1533,6 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The newly created dispatch queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_create?language=objc)
     #[doc(alias = "dispatch_queue_create")]
     #[must_use]
     #[inline]
@@ -1139,6 +1559,17 @@ impl DispatchQueue {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Returns the label you assigned to the dispatch queue at creation time.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue from which to get the label. Specify [`DISPATCH_CURRENT_QUEUE_LABEL`](https://developer.apple.com/documentation/dispatch/dispatch_current_queue_label) to retrieve the label of the current queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The label of the queue, or `NULL` if the queue was not provided a label during initialization.
+    ///
+    ///
     /// Returns the label of the given queue, as specified when the queue was
     /// created, or the empty string if a NULL label was specified.
     ///
@@ -1150,8 +1581,6 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The label of the queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_get_label?language=objc)
     #[doc(alias = "dispatch_queue_get_label")]
     #[must_use]
     #[inline]
@@ -1163,6 +1592,7 @@ impl DispatchQueue {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Returns the quality-of-service class for the specified queue.
     /// Returns the QOS class and relative priority of the given queue.
     ///
     ///
@@ -1197,8 +1627,6 @@ impl DispatchQueue {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `relative_priority_ptr` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_get_qos_class?language=objc)
     #[doc(alias = "dispatch_queue_get_qos_class")]
     #[must_use]
     #[inline]
@@ -1214,6 +1642,28 @@ impl DispatchQueue {
 }
 
 extern "C" {
+    /// Specifies the dispatch queue on which to perform work associated with the current object.
+    ///
+    /// Parameters:
+    /// - object: The object to modify. This parameter cannot be `NULL`.
+    ///
+    /// - queue: The new target queue for the object. The new queue is retained, and the previous target queue (if any) is released. Specify `NULL` if you want the system to provide a queue that is appropriate for the current object.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The target queue determines the queue on which the object’s finalizer is invoked. In addition, assigning a target queue affects how you deal with some dispatch objects, as described in the following table.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Dispatch object" }] }], [Paragraph { inline_content: [Text { text: "Implications of assigning a target queue" }] }]], [[Paragraph { inline_content: [Text { text: "Dispatch queues" }] }], [Paragraph { inline_content: [Text { text: "Redirects all blocks from the current dispatch queue to the specified target queue. Use target queues to redirect work from several different queues onto a single queue. You might do this to minimize the total number of threads your app uses, while still preserving the execution semantics you need. The system doesn’t allocate threads to the dispatch queue if it has a target queue, unless that target queue is a global concurrent queue. " }, Image { identifier: "spacer", metadata: None }, Text { text: " The target queue defines where blocks run, but it doesn’t change the semantics of the current queue. Blocks submitted to a serial queue still execute serially, even if the underlying target queue is concurrent. In addition, you can’t create concurrency where none exists. If a queue and its target queue are both serial, submitting blocks to both queues doesn’t cause those blocks to run concurrently. The blocks still run serially in the order the target queue receives them. " }, Image { identifier: "spacer", metadata: None }, Text { text: " A dispatch queue inherits the minimum quality-of-service level from its target queue." }] }]], [[Paragraph { inline_content: [Text { text: "Dispatch sources" }] }], [Paragraph { inline_content: [Text { text: "Submits event handler and cancellation handler blocks to the specified target queue." }] }]], [[Paragraph { inline_content: [Text { text: "Dispatch I/O channels" }] }], [Paragraph { inline_content: [Text { text: "Executes I/O operations on the specified target queue. The quality of service of the target queue affects the priority of the resulting I/O operations. For example, if the target queue’s quality of service is " }, Reference { identifier: "doc://com.apple.dispatch/documentation/Dispatch/DispatchQoS/QoSClass-swift.enum/background", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", then I/O operations performed by " }, Reference { identifier: "doc://com.apple.dispatch/documentation/Dispatch/DispatchIO/read(offset:length:queue:ioHandler:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.dispatch/documentation/Dispatch/DispatchIO/write(offset:data:queue:ioHandler:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " on that queue are throttled when there is I/O contention." }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When setting up target queues, it is a programmer error to create cycles in the dispatch queue hierarchy. In other words, don’t set the target of queue A to queue B and the target of queue B to queue A.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Sets the target queue for the given object.
     ///
     ///
@@ -1275,8 +1725,6 @@ extern "C" {
     ///
     /// - `object` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchobject/settarget(queue:)?language=objc)
     pub fn dispatch_set_target_queue(
         object: NonNull<dispatch_object_s>,
         queue: Option<&DispatchQueue>,
@@ -1284,7 +1732,23 @@ extern "C" {
 }
 
 impl DispatchQueue {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_after?language=objc)
+    /// Enqueues a block for execution at the specified time.
+    ///
+    /// Parameters:
+    /// - when: The temporal milestone [`dispatch_time`](https://developer.apple.com/documentation/dispatch/dispatch_time) or [`dispatch_walltime`](https://developer.apple.com/documentation/dispatch/dispatch_walltime) returns.
+    ///
+    /// - queue: The queue on which to submit the block. The system retains the queue until the block runs to completion. This parameter cannot be `NULL`.
+    ///
+    /// - block: The block to submit.  This function performs a `Block_copy` and `Block_release` on behalf of the caller. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function waits until the specified time and then asynchronously adds `block` to the specified `queue`.
+    ///
+    /// Passing [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) as the `when` parameter is supported, but is not as optimal as calling [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async) instead. Passing [`DISPATCH_TIME_FOREVER`](https://developer.apple.com/documentation/dispatch/dispatch_time_forever) is undefined.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1304,6 +1768,25 @@ impl DispatchQueue {
         unsafe { dispatch_after(when, queue, block) }
     }
 
+    /// Enqueues an app-defined function for execution at the specified time.
+    ///
+    /// Parameters:
+    /// - when: The temporal milestone [`dispatch_time`](https://developer.apple.com/documentation/dispatch/dispatch_time) or [`dispatch_walltime`](https://developer.apple.com/documentation/dispatch/dispatch_walltime) returns.
+    ///
+    /// - queue: The queue on which to submit the function. The system retains the queue until the app-defined function runs to completion. This parameter cannot be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the function.
+    ///
+    /// - work: The app-defined function to invoke on the target queue. The first parameter passed to this function is the value in the  `context` parameter. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function waits until the specified time and then asynchronously adds the `work` function to the specified `queue`.
+    ///
+    /// Passing [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) as the `when` parameter is supported, but is not as optimal as calling [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async) instead. Passing [`DISPATCH_TIME_FOREVER`](https://developer.apple.com/documentation/dispatch/dispatch_time_forever) is undefined.
+    ///
+    ///
     /// Schedule a function for execution on a given queue at a specified time.
     ///
     ///
@@ -1330,8 +1813,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_after_f?language=objc)
     #[doc(alias = "dispatch_after_f")]
     #[inline]
     pub unsafe fn exec_after_f(
@@ -1351,7 +1832,21 @@ impl DispatchQueue {
         unsafe { dispatch_after_f(when, queue, context, work) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async?language=objc)
+    /// Submits a barrier block for asynchronous execution and returns immediately.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue on which to execute the barrier block. The system retains the queue until the block runs to completion. This parameter cannot be `NULL`.
+    ///
+    /// - block: The barrier block to submit to the target dispatch queue. This block is copied and retained until it finishes executing, at which point it is released. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calls to this function always return immediately after the block is submitted and never wait for the block to be invoked. When the barrier block reaches the front of a private concurrent queue, it is not executed immediately. Instead, the queue waits until its currently executing blocks finish executing. At that point, the barrier block executes by itself. Any blocks submitted after the barrier block are not executed until the barrier block completes.
+    ///
+    /// The queue you specify should be a concurrent queue that you create yourself using the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function. If the queue you pass to this function is a serial queue or one of the global concurrent queues, this function behaves like the [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1367,6 +1862,23 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_async(self, block) }
     }
 
+    /// Submits a barrier function for asynchronous execution and returns immediately.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue on which to execute the barrier function. The system retains the queue until the function runs to completion. This parameter cannot be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the function.
+    ///
+    /// - work: The app-defined barrier function to be executed. The first parameter passed to this function is the value of the `context` parameter. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calls to this function always return immediately after the barrier function is submitted and never wait for that function to be invoked. When the barrier function reaches the front of a private concurrent queue, it is not executed immediately. Instead, the queue waits until its currently executing blocks finish executing. At that point, the queue executes the barrier function by itself. Any blocks submitted after the barrier function are not executed until the barrier function completes.
+    ///
+    /// The queue you specify should be a concurrent queue that you create yourself using the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function. If the queue you pass to this function is a serial queue or one of the global concurrent queues, this function behaves like the [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async) function.
+    ///
+    ///
     /// Submits a barrier function for asynchronous execution on a dispatch queue.
     ///
     ///
@@ -1397,8 +1909,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_f?language=objc)
     #[doc(alias = "dispatch_barrier_async_f")]
     #[inline]
     pub unsafe fn barrier_async_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1412,7 +1922,27 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_async_f(self, context, work) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_sync?language=objc)
+    /// Submits a barrier block object for execution and waits until that block completes.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue on which to execute the barrier block. This parameter cannot be `NULL`.
+    ///
+    /// - block: The barrier block to execute. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits a barrier block to a dispatch queue for synchronous execution. Unlike [`dispatch_barrier_async`](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async), this function does not return until the barrier block has finished. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// When the barrier block reaches the front of a private concurrent queue, it is not executed immediately. Instead, the queue waits until its currently executing blocks finish executing. At that point, the queue executes the barrier block by itself. Any blocks submitted after the barrier block are not executed until the barrier block completes.
+    ///
+    /// The queue you specify should be a concurrent queue that you create yourself using the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function. If the queue you pass to this function is a serial queue or one of the global concurrent queues, this function behaves like the [`sync(execute:)`](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw) function.
+    ///
+    /// Unlike with [`dispatch_barrier_async`](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async), no retain is performed on the target queue. Because calls to this function are synchronous, it “borrows” the reference of the caller. Moreover, no `Block_copy` is performed on the block.
+    ///
+    /// As an optimization, this function invokes the barrier block on the current thread when possible.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1428,6 +1958,29 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_sync(self, block) }
     }
 
+    /// Submits a barrier function for execution and waits until that function completes.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue on which to execute the barrier function. This parameter cannot be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the barrier function.
+    ///
+    /// - work: The app-defined barrier function to execute. The first parameter passed to this function is the value in the `context` parameter. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits a barrier function to a dispatch queue for synchronous execution. Unlike [`dispatch_barrier_async_f`](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_f), this function does not return until the barrier function has finished. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// When the barrier function reaches the front of a private concurrent queue, it is not executed immediately. Instead, the queue waits until its currently executing blocks finish executing. At that point, the queue executes the barrier function by itself. Any blocks submitted after the barrier function are not executed until the barrier function completes.
+    ///
+    /// The queue you specify should be a concurrent queue that you create yourself using the [`dispatch_queue_create`](https://developer.apple.com/documentation/dispatch/dispatch_queue_create) function. If the queue you pass to this function is a serial queue or one of the global concurrent queues, this function behaves like the [`dispatch_sync_f`](https://developer.apple.com/documentation/dispatch/dispatch_sync_f) function.
+    ///
+    /// Unlike with [`dispatch_barrier_async_f`](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_f), no retain is performed on the target queue. Because calls to this function are synchronous, it “borrows” the reference of the caller.
+    ///
+    /// As an optimization, this function invokes the barrier function on the current thread when possible.
+    ///
+    ///
     /// Submits a barrier function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -1454,8 +2007,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_sync_f?language=objc)
     #[doc(alias = "dispatch_barrier_sync_f")]
     #[inline]
     pub unsafe fn barrier_sync_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1469,7 +2020,27 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_sync_f(self, context, work) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_and_wait?language=objc)
+    /// Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the block. This parameter can’t be `NULL`.
+    ///
+    /// - block: The block that contains the work to perform. This block has no return value and no parameters. This parameter can’t be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits work to the specified queue for execution. Unlike [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this function doesn’t return until after the block finishes. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// When submitted to a concurrent queue, `block` doesn’t run until all previously submitted tasks finish executing, and subsequently submitted tasks don’t execute until after `block` finishes. You use barriers to ensure the correct execution order of relevant work. For example, you might use them in reader/writer schemes where the order of read and write tasks is significant. If you submit the work to a non-concurrent queue, this method behaves identically to [`asyncAndWait(execute:)`](https://developer.apple.com/documentation/dispatch/dispatchqueue/asyncandwait(execute:)-1udeu).
+    ///
+    /// Unlike [`sync(execute:)`](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw), this function respects all attributes of the queue when it executes the block. For example, it respects the quality-of-service level and autorelease frequency of the target queue.
+    ///
+    /// If the runtime has already brought up a thread to service asynchronous work items, the system uses that same thread to execute any synchronous blocks you submitted using this function. If the runtime hasn’t brought up a thread to service asynchronous work items, the system executes these synchronous blocks on the current thread as an optimization. However, these optimizations apply only when `queue` targets a global concurrent queue. If it targets any other queue, the system executes the work on that queue’s thread. For example, if `queue` targets the main queue, the block always runs on the main thread.
+    ///
+    /// Unlike with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this method doesn’t retain the `queue` object. Because calls to this function are synchronous, it “borrows” the reference of the caller. Moreover, no `Block_copy` is performed on the block.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1485,6 +2056,29 @@ impl DispatchQueue {
         unsafe { dispatch_barrier_async_and_wait(self, block) }
     }
 
+    /// Submits a function-based work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to submit the function. This parameter cannot be `NULL`.
+    ///
+    /// - context: The app-defined context parameter to pass to the function.
+    ///
+    /// - work: The app-defined function to invoke on the target queue. The first parameter passed to this function is the value in the `context` parameter. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits work to the specified queue for execution. Unlike [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this function does not return until after the `work` function finishes. Calling this function and targeting the current queue results in deadlock.
+    ///
+    /// When submitted to a concurrent queue, the `work` function doesn’t run until all previously submitted tasks finish executing, and subsequently submitted tasks don’t execute until after the `work` function finishes. You use barriers to ensure the correct execution order of relevant work. For example, you might use them in reader/writer schemes where the order of read and write tasks is significant. If you submit the work to a nonconcurrent queue, this method behaves identically to [`asyncAndWait(execute:)`](https://developer.apple.com/documentation/dispatch/dispatchqueue/asyncandwait(execute:)-1udeu).
+    ///
+    /// Unlike [`sync(execute:)`](https://developer.apple.com/documentation/dispatch/dispatchqueue/sync(execute:)-3segw), this function respects all attributes of the queue when it executes the `work` function. For example, it respects the quality-of-service level and autorelease frequency of the target queue.
+    ///
+    /// If the runtime has already brought up a thread to service asynchronous work items, the system uses that same thread to execute any synchronous tasks you submitted using this function. If the runtime hasn’t brought up a thread to service asynchronous work items, the sytem executes these synchronous tasks on the current thread as an optimization. However, these optimizations apply only when `queue` targets a global concurrent queue. If it targets any other queue, the system executes the work on that queue’s thread. For example, if `queue` targets the main queue, the `work` function always runs on the main thread.
+    ///
+    /// Unlike with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async), this method doesn’t retain the `queue` object. Because calls to this function are synchronous, it “borrows” the reference of the caller.
+    ///
+    ///
     /// Submits a function for synchronous execution on a dispatch queue.
     ///
     ///
@@ -1512,8 +2106,6 @@ impl DispatchQueue {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async_and_wait_f?language=objc)
     #[doc(alias = "dispatch_barrier_async_and_wait_f")]
     #[inline]
     pub unsafe fn barrier_async_and_wait_f(&self, context: *mut c_void, work: dispatch_function_t) {
@@ -1529,6 +2121,23 @@ impl DispatchQueue {
 }
 
 extern "C" {
+    /// Sets the key/value data for the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - queue: The queue on which to set the specified key/value data. This parameter must not be `NULL`.
+    ///
+    /// - key: The key you want to use to identify the associated context data. Keys are only compared as pointers and are never dereferenced. Thus, you can use a pointer to a static variable for a specific subsystem or any other value that allows you to identify the value uniquely. Specifying a pointer to a string constant is not recommended. `NULL` is not a valid value for the key and attempts to set context data with a `NULL` key are ignored.
+    ///
+    /// - context: The context data to associate with `key`. This parameter may be `NULL`.
+    ///
+    /// - destructor: A destructor function that you can use to release your context data. This parameter may be `NULL`. If `context` is `NULL`, your destructor function is ignored.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to associate custom context data with a dispatch queue. Blocks executing on the queue can use the [`dispatch_get_specific`](https://developer.apple.com/documentation/dispatch/dispatch_get_specific) function to retrieve this data while they are running.
+    ///
+    ///
     /// Associates a subsystem-specific context with a dispatch queue, for a key
     /// unique to the subsystem.
     ///
@@ -1560,8 +2169,6 @@ extern "C" {
     /// - `key` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
     /// - `destructor` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_set_specific?language=objc)
     pub fn dispatch_queue_set_specific(
         queue: &DispatchQueue,
         key: NonNull<c_void>,
@@ -1571,6 +2178,25 @@ extern "C" {
 }
 
 impl DispatchQueue {
+    /// Gets the value for the key associated with the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - queue: The queue containing the desired context data. This parameter must not be `NULL`.
+    ///
+    /// - key: The key that identifies the associated context data. Keys are only compared as pointers and are never dereferenced. Thus, you can use a pointer to a static variable for a specific subsystem or any other value that allows you to identify the value uniquely. Specifying a pointer to a string constant is not recommended.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The context data associated with `key` or `NULL` if no context was found.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this method to get the context data associated with a specific dispatch queue. Blocks executing on a queue can use the [`dispatch_get_specific`](https://developer.apple.com/documentation/dispatch/dispatch_get_specific) function to retrieve the context associated with that specific queue instead.
+    ///
+    ///
     /// Returns the subsystem-specific context associated with a dispatch queue, for
     /// a key unique to the subsystem.
     ///
@@ -1594,8 +2220,6 @@ impl DispatchQueue {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_queue_get_specific?language=objc)
     #[doc(alias = "dispatch_queue_get_specific")]
     #[must_use]
     #[inline]
@@ -1611,6 +2235,23 @@ impl DispatchQueue {
 }
 
 extern "C" {
+    /// Returns the value for the key associated with the current dispatch queue.
+    ///
+    /// Parameters:
+    /// - key: The key associated with the dispatch queue on which the current block is executing. Keys are only compared as pointers and never dereferenced. Passing a string constant directly is not recommended.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The context value for the specified key; otherwise `NULL` if the key was not set for the queue (or its target queue) or the queue is a global concurrent queue.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is intended to be called from a block executing in a dispatch queue. You use it to obtain context data associated with the queue. Calling this method from code not running in a dispatch queue returns `NULL` because there is no queue to provide context.
+    ///
+    ///
     /// Returns the current subsystem-specific context for a key unique to the
     /// subsystem.
     ///
@@ -1631,13 +2272,26 @@ extern "C" {
     /// # Safety
     ///
     /// `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_get_specific?language=objc)
     #[must_use]
     pub fn dispatch_get_specific(key: NonNull<c_void>) -> *mut c_void;
 }
 
 impl DispatchQueue {
+    /// Generates an assertion if the current block is not running on the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue where you expect the current block to be running. This parameter must not be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function inside a block to verify that the block is running on the expected dispatch queue. For example, you might pass the main queue to the `queue` parameter to verify that the block is running on the app’s main thread. If you submitted the current block synchronously, the function recursively checks the context of the submitting block to ensure that it is also running on the expected dispatch queue. If the block is not running on the expected queue, this function asserts, logs an explanation to the system log, and terminates the app.
+    ///
+    /// This function evaluates where the block is actually executing. For example, if you submit the block to a dispatch queue that targets a different queue, the block is considered to be running on the target queue.
+    ///
+    /// Calling this function outside of a block running on a dispatch queue is a programmer error. If you do so, the function asserts and terminates your app.
+    ///
+    ///
     /// Verifies that the current block is executing on a given dispatch queue.
     ///
     ///
@@ -1672,8 +2326,6 @@ impl DispatchQueue {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected to run on.
     /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_assert_queue?language=objc)
     #[doc(alias = "dispatch_assert_queue")]
     #[inline]
     pub fn assert(&self) {
@@ -1684,6 +2336,21 @@ impl DispatchQueue {
         unsafe { dispatch_assert_queue(self) }
     }
 
+    /// Generates an assertion if the current block is not running as a barrier on the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue where you expect the current block to be running. This parameter must not be NULL.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method inside a block to verify that the block is running on the expected dispatch queue and is acting as a barrier on that queue. If you submitted the current block synchronously, the function recurisvely checks the context of the submitting block to ensure that it is also running on the expected dispatch queue. If the block is not running on the expected queue, this method asserts, logs an explanation to the system log, and terminates the app.
+    ///
+    /// This function evaluates where the block is actually executing. For example, if you submit the block to a dispatch queue that targets a different queue, the block is considered to be running on the target queue. A block running on a serial queue is always a barrier.
+    ///
+    /// Calling this function outside of a block running on a dispatch queue is a programmer error. If you do so, the function asserts and terminates your app.
+    ///
+    ///
     /// Verifies that the current block is executing on a given dispatch queue,
     /// and that the block acts as a barrier on that queue.
     ///
@@ -1699,8 +2366,6 @@ impl DispatchQueue {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected to run as a barrier on.
     /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_assert_queue_barrier?language=objc)
     #[doc(alias = "dispatch_assert_queue_barrier")]
     #[inline]
     pub fn assert_barrier(&self) {
@@ -1710,6 +2375,21 @@ impl DispatchQueue {
         unsafe { dispatch_assert_queue_barrier(self) }
     }
 
+    /// Generates an assertion if the current block is executing on the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - queue: The dispatch queue where the block must not be running. This parameter must not be NULL.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to verify that a block is not running on a specific dispatch queue. For example, you might pass the main queue in the queue parameter to verify that the block is not running on the app’s main thread. If you submitted the current block synchronously, the function recurisvely checks the context of the submitting block to ensure that it is also not running on the expected dispatch queue. If the block is running on the specified queue, this function asserts, logs an explanation to the system log, and terminates the app.
+    ///
+    /// This function evaluates where the block is actually executing. For example, if you submit the block to a dispatch queue that targets a different queue, the block is considered to be running on the target queue.
+    ///
+    /// Calling this function outside of a block running on a dispatch queue is a programmer error. If you do so, the function asserts and terminates your app.
+    ///
+    ///
     /// Verifies that the current block is not executing on a given dispatch queue.
     ///
     ///
@@ -1723,8 +2403,6 @@ impl DispatchQueue {
     ///
     /// Parameter `queue`: The dispatch queue that the current block is expected not to run on.
     /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_assert_queue_not?language=objc)
     #[doc(alias = "dispatch_assert_queue_not")]
     #[inline]
     pub fn assert_not(&self) {
@@ -1737,10 +2415,10 @@ impl DispatchQueue {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_allow_send_signals(_:)?language=objc)
     pub fn dispatch_allow_send_signals(preserve_signum: c_int) -> c_int;
 }
 
+/// Flags to pass to the [`dispatch_block_create`](https://developer.apple.com/documentation/dispatch/dispatch_block_create) and [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) functions.
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1802,14 +2480,19 @@ extern "C-unwind" {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct dispatch_block_flags_t(pub c_ulong);
 bitflags::bitflags! {
     impl dispatch_block_flags_t: c_ulong {
+/// Cause the work item to act as a barrier block when submitted to a concurrent queue.
+///
+/// ## Discussion
+///
+/// Indicates that a dispatch block should act as a barrier block when submitted to a [`DISPATCH_QUEUE_CONCURRENT`](https://developer.apple.com/documentation/dispatch/dispatch_queue_concurrent) queue. See [`dispatch_barrier_async`](https://developer.apple.com/documentation/dispatch/dispatch_barrier_async) for details. This flag has no effect when the dispatch block is invoked directly.
+///
+///
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1871,9 +2554,14 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_barrier?language=objc)
         const DISPATCH_BLOCK_BARRIER = 0x1;
+/// Disassociate the work item’s attributes from the current execution context.
+///
+/// ## Discussion
+///
+/// Indicates that a dispatch block should execute disassociated from current execution context attributes such as QoS class, `os_activity_t`, and properties of the current IPC request, if any. If invoked directly, the block removes these attributes from the calling thread for the duration of the block body before applying attributes assigned to the block, if any. If submitted to a queue, the block object will be executed with the attributes of the queue, or any attributes specifically assigned to the block object.
+///
+///
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1935,9 +2623,14 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_detached?language=objc)
         const DISPATCH_BLOCK_DETACHED = 0x2;
+/// Set the attributes of the work item to match the attributes of the current execution context.
+///
+/// ## Discussion
+///
+/// Indicates that a dispatch block should be assigned the execution context attributes that are current at the time the block object is created. This applies to attributes such as QoS class, os_activity_t, and properties of the current IPC request, if any. If invoked directly, the block will apply these attributes to the calling thread for the duration of the block body. If the block is submitted to a queue, this flag replaces the default behavior of associating the submitted block instance with the execution context attributes that are current at the time of submission. If a specific QoS class is assigned with [`DISPATCH_BLOCK_NO_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_no_qos_class) or the [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) function, that QoS class takes precedence over the QoS class assignment indicated by this flag.
+///
+///
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -1999,9 +2692,14 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_assign_current?language=objc)
         const DISPATCH_BLOCK_ASSIGN_CURRENT = 0x4;
+/// Execute the work item without assigning a quality-of-service class.
+///
+/// ## Discussion
+///
+/// Indicates that a dispatch block should be not be assigned a QoS class. If invoked directly, the block object will be executed with the QoS class of the calling thread. If the block object is submitted to a queue, this replaces the default behavior of associating the submitted block instance with the QoS class current at the time of submission. This flag is ignored if a specific QoS class is assigned with the [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) function.
+///
+///
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -2063,9 +2761,14 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_no_qos_class?language=objc)
         const DISPATCH_BLOCK_NO_QOS_CLASS = 0x8;
+/// Prefer the quality-of-service class associated with the current execution context.
+///
+/// ## Discussion
+///
+/// Indicates that execution of a dispatch block submitted to a queue should prefer the QoS class assigned to the queue over the QoS class assigned to the block at the time of submission. The latter will only be used if the queue in question does not have an assigned QoS class, as long as doing so does not result in a QoS class lower than the QoS class inherited from the queue’s target queue. This flag is the default when a dispatch block is submitted to a queue for asynchronous execution and has no effect when the dispatch block is invoked directly. It is ignored if [`DISPATCH_BLOCK_ENFORCE_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_enforce_qos_class) is also passed.
+///
+///
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -2127,9 +2830,14 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_inherit_qos_class?language=objc)
         const DISPATCH_BLOCK_INHERIT_QOS_CLASS = 0x10;
+/// Prefer the quality-of-service class associated with the block.
+///
+/// ## Discussion
+///
+/// Indicates that execution of a dispatch block submitted to a queue should prefer the QoS class assigned to the block at the time of submission over the QoS class assigned to the queue, as long as doing so will not result in a lower QoS class. This flag is the default when a dispatch block is submitted to a queue for synchronous execution or when the dispatch block is invoked directly.
+///
+///
 /// Flags to pass to the dispatch_block_create* functions.
 ///
 ///
@@ -2191,8 +2899,6 @@ bitflags::bitflags! {
 /// This flag is the default when a dispatch block object is submitted to a queue
 /// for synchronous execution or when the dispatch block object is invoked
 /// directly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_enforce_qos_class?language=objc)
         const DISPATCH_BLOCK_ENFORCE_QOS_CLASS = 0x20;
     }
 }
@@ -2208,6 +2914,47 @@ unsafe impl RefEncode for dispatch_block_flags_t {
 }
 
 extern "C" {
+    /// Creates a new dispatch block on the heap using an existing block and the given flags.
+    ///
+    /// Parameters:
+    /// - flags: Configuration flags for the block object. For possible values, see [`dispatch_block_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t).
+    ///
+    /// Passing a value that is not a bitwise OR of valid flags results in `NULL` being returned.
+    ///
+    /// - block: The block to create the dispatch block from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created dispatch block, or `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The provided block is copied to the heap and retained by the newly created dispatch block.
+    ///
+    /// The returned dispatch block is intended to be submitted to a dispatch queue with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async) and related functions, but may also be invoked directly. Both operations can be performed an arbitrary number of times but only the first completed execution of a dispatch block can be waited on with [`dispatch_block_wait`](https://developer.apple.com/documentation/dispatch/dispatch_block_wait) or observed with [`dispatch_block_notify`](https://developer.apple.com/documentation/dispatch/dispatch_block_notify).
+    ///
+    /// If the returned dispatch block is submitted to a dispatch queue, the submitted block instance is associated with the QoS class current at the time of submission, unless one of the following flags assigned a specific QoS class (or no QoS class) at the time of block creation:
+    ///
+    /// - [`DISPATCH_BLOCK_ASSIGN_CURRENT`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_assign_current)
+    ///
+    /// - [`DISPATCH_BLOCK_NO_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_no_qos_class)
+    ///
+    /// - [`DISPATCH_BLOCK_DETACHED`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_detached)
+    ///
+    /// The QoS class the block object is executed with also depends on the QoS class assigned to the queue and which of the following flags was specified or defaulted to:
+    ///
+    /// - [`DISPATCH_BLOCK_INHERIT_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_inherit_qos_class) (default for asynchronous execution)
+    ///
+    /// - [`DISPATCH_BLOCK_ENFORCE_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_enforce_qos_class) (default for synchronous execution)
+    ///
+    /// If the returned dispatch block is submitted directly to a serial queue and is configured to execute with a specific QoS class, the system makes a best effort to apply the necessary QoS overrides to ensure that blocks submitted earlier to the serial queue are executed at that same QoS class or higher.
+    ///
+    /// See [`dispatch_block_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t) for more information.
+    ///
+    ///
     /// Create a new dispatch block object on the heap from an existing block and
     /// the given flags.
     ///
@@ -2257,8 +3004,6 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_create?language=objc)
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_create(
@@ -2268,6 +3013,45 @@ extern "C" {
 }
 
 extern "C" {
+    /// Creates a new dispatch block from an existing block and the given flags, and assigns it the specified quality-of-service class and relative priority.
+    ///
+    /// Parameters:
+    /// - flags: Configuration flags for the block object. For possible values, see [`dispatch_block_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t).
+    ///
+    /// Passing a value that is not a bitwise OR of valid flags results in `NULL` being returned.
+    ///
+    /// - qos_class: The QoS class. For possible values, see [Quality of Service Classes (QoS)](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/RelatedDocuments.html#//apple_ref/doc/uid/TP40013929-CH20-SW16).
+    ///
+    /// Passing `QOS_CLASS_UNSPECIFIED` is equivalent to specifying the [`DISPATCH_BLOCK_NO_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_no_qos_class) flag.
+    ///
+    /// Passing any other value results in `NULL` being returned.
+    ///
+    /// - relative_priority: A relative priority within the QoS class.
+    ///
+    /// This value is a negative offset from the maximum supported scheduler priority for the given class. Passing a value greater than zero or less than `QOS_MIN_RELATIVE_PRIORITY` results in `NULL` being returned.
+    ///
+    /// - block: The block to create the dispatch block from.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The provided block is copied to the heap and retained by the newly created dispatch block.
+    ///
+    /// The returned dispatch block is intended to be submitted to a dispatch queue with [`dispatch_async`](https://developer.apple.com/documentation/dispatch/dispatch_async) and related functions, but may also be invoked directly. Both operations can be performed an arbitrary number of times but only the first completed execution of a dispatch block can be waited on with [`dispatch_block_wait`](https://developer.apple.com/documentation/dispatch/dispatch_block_wait) or observed with [`dispatch_block_notify`](https://developer.apple.com/documentation/dispatch/dispatch_block_notify).
+    ///
+    /// If invoked directly, the returned dispatch block is executed with the assigned QoS class as long as that does not result in a lower QoS class than what is current on the calling thread.
+    ///
+    /// If the returned dispatch block is submitted to a dispatch queue, the QoS class it is executed with depends on the QoS class assigned to the block, the QoS class assigned to the queue and which of the following flags was specified or defaulted to:
+    ///
+    /// - [`DISPATCH_BLOCK_INHERIT_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_inherit_qos_class) (default for asynchronous execution)
+    ///
+    /// - [`DISPATCH_BLOCK_ENFORCE_QOS_CLASS`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t/dispatch_block_enforce_qos_class) (default for synchronous execution)
+    ///
+    /// If the returned dispatch block is submitted directly to a serial queue and is configured to execute with a specific QoS class, the system makes a best effort to apply the necessary QoS overrides to ensure that blocks submitted earlier to the serial queue are executed at that same QoS class or higher.
+    ///
+    /// See [`dispatch_block_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t) for more information.
+    ///
+    ///
     /// Create a new dispatch block object on the heap from an existing block and
     /// the given flags, and assign it the specified QOS class and relative priority.
     ///
@@ -2333,8 +3117,6 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class?language=objc)
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_create_with_qos_class(
@@ -2346,6 +3128,29 @@ extern "C" {
 }
 
 extern "C" {
+    /// Creates, synchronously executes, and releases a dispatch block from the specified block and flags.
+    ///
+    /// Parameters:
+    /// - flags: Configuration flags for the block object. For possible values, see [`dispatch_block_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t).
+    ///
+    /// Passing a value that is not a bitwise OR of valid flags results in `NULL` being returned.
+    ///
+    /// - block: The block to create the dispatch block from.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is equivalent to the following code:
+    ///
+    /// ```objc
+    /// dispatch_block_t b = dispatch_block_create(flags, block);
+    /// b();
+    /// Block_release(b);
+    /// ```
+    ///
+    /// This functionality may be implemented more efficiently internally by not requiring a copy to the heap of the specified block or the allocation of a new block object.
+    ///
+    ///
     /// Create, synchronously execute and release a dispatch block object from the
     /// specified block and flags.
     ///
@@ -2370,13 +3175,44 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_perform?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: dispatch_block_t);
 }
 
 extern "C" {
+    /// Waits synchronously until execution of the specified dispatch block has completed or until the specified timeout has elapsed.
+    ///
+    /// Parameters:
+    /// - block: The dispatch block to wait on.
+    ///
+    /// The result of passing `NULL` or a block object not returned by the [`dispatch_block_create`](https://developer.apple.com/documentation/dispatch/dispatch_block_create) or [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) function is undefined.
+    ///
+    /// - timeout: When to timeout. For more information, see [`dispatch_time_t`](https://developer.apple.com/documentation/dispatch/dispatch_time_t).
+    ///
+    /// As a convenience, the [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) and [`DISPATCH_TIME_FOREVER`](https://developer.apple.com/documentation/dispatch/dispatch_time_forever) constants are provided to have this function immediately return or wait indefinitely, respectively.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns zero if the dispatch block completed within the specified timeout, or non-zero if the block timed out.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns immediately if execution of the block object has already completed.
+    ///
+    /// It is not possible to wait for multiple executions of the same block object with this interface. Instead, use [`dispatch_group_wait`](https://developer.apple.com/documentation/dispatch/dispatch_group_wait) for that purpose.
+    ///
+    /// A single dispatch block may either be waited on once and executed once, or it may be executed any number of times. The behavior of any other combination is undefined. Submission to a dispatch queue counts as an execution, even if cancellation using the [`dispatch_block_cancel`](https://developer.apple.com/documentation/dispatch/dispatch_block_cancel) function means the block’s code never runs.
+    ///
+    /// The result of calling this function from multiple threads simultaneously with the same dispatch block is undefined, but note that doing so would violate the rules described in the previous paragraph.
+    ///
+    /// If this function returns indicating that the specified timeout has elapsed, then that invocation does not count as the one allowed wait.
+    ///
+    /// If at the time this function is called, the specified dispatch block has been submitted directly to a serial queue, the system makes a best effort to apply the necessary QoS overrides to ensure that the block and any blocks submitted earlier to that serial queue are executed at the QoS class (or higher) of the thread calling [`dispatch_block_wait`](https://developer.apple.com/documentation/dispatch/dispatch_block_wait).
+    ///
+    ///
     /// Wait synchronously until execution of the specified dispatch block object has
     /// completed or until the specified timeout has elapsed.
     ///
@@ -2421,13 +3257,34 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_wait?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_wait(block: dispatch_block_t, timeout: DispatchTime) -> isize;
 }
 
 extern "C" {
+    /// Schedules a notification block to be submitted to a queue when the execution of a specified dispatch block has completed.
+    ///
+    /// Parameters:
+    /// - block: The dispatch block to observe.
+    ///
+    /// The result of passing `NULL` or a block object not returned by the [`dispatch_block_create`](https://developer.apple.com/documentation/dispatch/dispatch_block_create) or [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) function is undefined.
+    ///
+    /// - queue: The queue to which the supplied notification block is submitted when the observed block completes.
+    ///
+    /// - notification_block: The notification block to submit when the observed block object completes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function submits the notification block immediately if execution of the observed block object has already completed.
+    ///
+    /// It is not possible to be notified of multiple executions of the same block object with this interface. Instead, use the [`dispatch_group_notify`](https://developer.apple.com/documentation/dispatch/dispatch_group_notify) function for that purpose.
+    ///
+    /// A single dispatch block may either be observed one or more times and executed once, or it may be executed any number of times. The behavior of any other combination is undefined. Submission to a dispatch queue counts as an execution, even if cancellation using the [`dispatch_block_cancel`](https://developer.apple.com/documentation/dispatch/dispatch_block_cancel) function means the block’s code never runs.
+    ///
+    /// If multiple notification blocks are scheduled for a single block object, there is no defined order in which the notification blocks are submitted to their associated queues.
+    ///
+    ///
     /// Schedule a notification block to be submitted to a queue when the execution
     /// of a specified dispatch block object has completed.
     ///
@@ -2465,8 +3322,6 @@ extern "C" {
     /// - `block` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
     /// - `notification_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_notify?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_notify(
         block: dispatch_block_t,
@@ -2476,6 +3331,29 @@ extern "C" {
 }
 
 extern "C" {
+    /// Cancels the specified dispatch block asynchronously.
+    ///
+    /// Parameters:
+    /// - block: The dispatch block to cancel.
+    ///
+    /// The result of passing `NULL` or a block object not returned by the [`dispatch_block_create`](https://developer.apple.com/documentation/dispatch/dispatch_block_create) or [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) function is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Cancellation causes any future execution of the dispatch block to return immediately, but does not affect any execution of the block object that is already in progress.
+    ///
+    /// Release of any resources associated with the block object is delayed until execution of the block object is next attempted (or any execution already in progress completes).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Take care to ensure that a block object that may be canceled does not capture any resources that require execution of the block body in order to be released, such as memory allocated with `malloc(3)` on which the block body calls `free(3)`. Such resources are leaked if the block body is never executed due to cancellation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Asynchronously cancel the specified dispatch block object.
     ///
     ///
@@ -2501,13 +3379,24 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_cancel?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_block_cancel(block: dispatch_block_t);
 }
 
 extern "C" {
+    /// Tests whether the given dispatch block has been canceled.
+    ///
+    /// Parameters:
+    /// - block: The dispatch block to test cancel.
+    ///
+    /// The result of passing `NULL` or a block object not returned by the [`dispatch_block_create`](https://developer.apple.com/documentation/dispatch/dispatch_block_create) or [`dispatch_block_create_with_qos_class`](https://developer.apple.com/documentation/dispatch/dispatch_block_create_with_qos_class) function is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a non-zero value if the dispatch block is canceled, otherwise zero.
+    ///
+    ///
     /// Tests whether the given dispatch block object has been canceled.
     ///
     ///
@@ -2521,8 +3410,6 @@ extern "C" {
     /// # Safety
     ///
     /// `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_testcancel?language=objc)
     #[cfg(feature = "block2")]
     #[must_use]
     pub fn dispatch_block_testcancel(block: dispatch_block_t) -> isize;
@@ -2577,6 +3464,39 @@ extern "C" {
 }
 
 impl DispatchSource {
+    /// Creates a new dispatch source to monitor low-level system events.
+    ///
+    /// Parameters:
+    /// - type: The type of the dispatch source. For example, to create a timer source, specify [`DISPATCH_SOURCE_TYPE_TIMER`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_timer). For a complete list of constants, see [`dispatch_source_type_t`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_t).
+    ///
+    /// - handle: The underlying system handle to monitor. The interpretation of this argument is determined by the constant provided in the type parameter.
+    ///
+    /// - mask: A mask of flags specifying which events are desired. The interpretation of this argument is determined by the constant provided in the type parameter.
+    ///
+    /// - queue: The dispatch queue to which the event handler block is submitted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dispatch source object or `NULL` if the dispatch source could not be created.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Dispatch sources are not reentrant. Any events received while the dispatch source is suspended or while the event handler block is currently executing are coalesced and delivered after the dispatch source is resumed or the event handler block has returned.
+    ///
+    /// Dispatch sources are created in a suspended state. After creating the source and setting any desired attributes (for example, the handler or the context), your application must call [`activate()`](https://developer.apple.com/documentation/dispatch/dispatchobject/activate()) to begin event delivery.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Event source creation is asynchronous, so be aware of any race conditions with monitored system handles. For example, if a dispatch source is created for a process and that process exits before the source is created, any specified cancellation handler may not be called.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates a new dispatch source to monitor low-level system objects and auto-
     /// matically submit a handler block to a dispatch queue in response to events.
     ///
@@ -2623,8 +3543,6 @@ impl DispatchSource {
     ///
     /// - `type` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_create?language=objc)
     #[doc(alias = "dispatch_source_create")]
     #[must_use]
     #[inline]
@@ -2648,7 +3566,19 @@ impl DispatchSource {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_event_handler?language=objc)
+    /// Sets the event handler block for the given dispatch source.
+    ///
+    /// Parameters:
+    /// - source: The dispatch source to modify. This parameter cannot be `NULL`.
+    ///
+    /// - handler: The event handler block to submit to the source’s target queue. This function performs a `Block_copy` on behalf of the caller, and `Block_release` on the previous handler (if any). This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The event handler (if specified) is submitted to the source’s target queue in response to the arrival of an event.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2668,6 +3598,19 @@ impl DispatchSource {
 
     /// Sets the event handler function for the given dispatch source.
     ///
+    /// Parameters:
+    /// - source: The dispatch source to modify. This parameter cannot be `NULL`.
+    ///
+    /// - handler: The event handler function to submit to the source’s target queue. The context parameter passed to the event handler function is the current context of the dispatch source at the time the handler call is made. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The event handler (if specified) is submitted to the source’s target queue in response to the arrival of an event.
+    ///
+    ///
+    /// Sets the event handler function for the given dispatch source.
+    ///
     ///
     /// Parameter `source`: The dispatch source to modify.
     /// The result of passing NULL in this parameter is undefined.
@@ -2676,8 +3619,6 @@ impl DispatchSource {
     /// Parameter `handler`: The event handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the context of
     /// the dispatch source current at the time the event handler was set.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_event_handler_f?language=objc)
     #[doc(alias = "dispatch_source_set_event_handler_f")]
     #[inline]
     pub fn set_event_handler_f(&self, handler: dispatch_function_t) {
@@ -2690,7 +3631,27 @@ impl DispatchSource {
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_cancel_handler?language=objc)
+    /// Sets the cancellation handler block for the given dispatch source.
+    ///
+    /// Parameters:
+    /// - source: The dispatch source to modify. This parameter cannot be `NULL`.
+    ///
+    /// - handler: The cancellation handler block to submit to the source’s target queue. This function performs a `Block_copy` on behalf of the caller, and `Block_release` on the previous handler (if any).  This parameter can be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The cancellation handler (if specified) is submitted to the source’s target queue in response to a call to [`dispatch_source_cancel`](https://developer.apple.com/documentation/dispatch/dispatch_source_cancel) when the system has released all references to the source’s underlying handle and the source’s event handler block has returned.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To safely close a file descriptor or destroy a Mach port, a cancellation handler is required for the source for that descriptor or port. Closing the descriptor or port before the cancellation handler runs can result in a race condition. If a new descriptor is allocated with the same value as the recently closed descriptor while the source’s event handler is still running, the event handler may read/write data using the wrong descriptor.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -2710,6 +3671,27 @@ impl DispatchSource {
 
     /// Sets the cancellation handler function for the given dispatch source.
     ///
+    /// Parameters:
+    /// - source: The dispatch source to modify. This parameter cannot be `NULL`.
+    ///
+    /// - handler: The cancellation handler function to submit to the source’s target queue. The context parameter passed to the event handler function is the current context of the dispatch source at the time the handler call is made.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The cancellation handler (if specified) is submitted to the source’s target queue in response to a call to [`dispatch_source_cancel`](https://developer.apple.com/documentation/dispatch/dispatch_source_cancel) when the system has released all references to the source’s underlying handle and the source’s event handler block has returned.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To safely close a file descriptor or destroy a Mach port, a cancellation handler is required for the source for that descriptor or port. Closing the descriptor or port before the cancellation handler runs can result in a race condition. If a new descriptor is allocated with the same value as the recently closed descriptor while the source’s event handler is still running, the event handler may read/write data using the wrong descriptor.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Sets the cancellation handler function for the given dispatch source.
+    ///
     ///
     /// See dispatch_source_set_cancel_handler() for more details.
     ///
@@ -2721,8 +3703,6 @@ impl DispatchSource {
     /// Parameter `handler`: The cancellation handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the current
     /// context of the dispatch source at the time the handler call is made.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_cancel_handler_f?language=objc)
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
     #[inline]
     pub fn set_cancel_handler_f(&self, handler: dispatch_function_t) {
@@ -2735,6 +3715,21 @@ impl DispatchSource {
         unsafe { dispatch_source_set_cancel_handler_f(self, handler) }
     }
 
+    /// Asynchronously cancels the dispatch source, preventing any further invocation of its event handler block.
+    ///
+    /// Parameters:
+    /// - source: The dispatch source to be canceled. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Cancellation prevents any further invocation of the event handler block for the specified dispatch source, but does not interrupt an event handler block that is already in progress. The optional cancellation handler is submitted to the target queue once the event handler block has been completed.
+    ///
+    /// The cancellation handler is submitted to the source’s target queue when the source’s event handler has finished, indicating that it is safe to close the source’s handle (file descriptor or mach port).
+    ///
+    /// The optional cancellation handler is submitted to the dispatch source object’s target queue only after the system has released all of its references to any underlying system objects (file descriptors or mach ports). Thus, the cancellation handler is a convenient place to close or deallocate such system objects. Note that it is invalid to close a file descriptor or deallocate a mach port currently being tracked by a dispatch source object before the cancellation handler is invoked.
+    ///
+    ///
     /// Asynchronously cancel the dispatch source, preventing any further invocation
     /// of its event handler block.
     ///
@@ -2752,8 +3747,6 @@ impl DispatchSource {
     ///
     /// Parameter `source`: The dispatch source to be canceled.
     /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_cancel?language=objc)
     #[doc(alias = "dispatch_source_cancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -2765,14 +3758,29 @@ impl DispatchSource {
 
     /// Tests whether the given dispatch source has been canceled.
     ///
+    /// Parameters:
+    /// - source: The dispatch source to be tested. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Non-zero if canceled and zero if not canceled.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application can use this function to test whether a dispatch source object has been canceled by a call to [`dispatch_source_cancel`](https://developer.apple.com/documentation/dispatch/dispatch_source_cancel). The result of this function is non-zero immediately after [`dispatch_source_cancel`](https://developer.apple.com/documentation/dispatch/dispatch_source_cancel) has been called.
+    ///
+    ///
+    /// Tests whether the given dispatch source has been canceled.
+    ///
     ///
     /// Parameter `source`: The dispatch source to be tested.
     /// The result of passing NULL in this parameter is undefined.
     ///
     ///
     /// Returns: Non-zero if canceled and zero if not canceled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_testcancel?language=objc)
     #[doc(alias = "dispatch_source_testcancel")]
     #[must_use]
     #[inline]
@@ -2783,6 +3791,35 @@ impl DispatchSource {
         unsafe { dispatch_source_testcancel(self) }
     }
 
+    /// Returns the underlying system handle associated with the specified dispatch source.
+    ///
+    /// Parameters:
+    /// - source: This parameter cannot be NULL.
+    ///
+    ///
+    /// ### Return Value
+    ///
+    /// The return value should be interpreted according to the type of the dispatch source, and can be one of the following:
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_MACH_SEND`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_mach_send):  mach port (`mach_port_t`)
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_MACH_RECV`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_mach_recv):  mach port (`mach_port_t`)
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_PROC`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_proc): process identifier (`pid_t`)
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_READ`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_read): file descriptor (`int`)
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_SIGNAL`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_signal): signal number (`int`)
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_VNODE`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_vnode): file descriptor (`int`)
+    ///
+    /// - `Dispatch Source Memory Pressure Event Flags`: file descriptor (`int`)
+    ///
+    /// ## Discussion
+    ///
+    /// The handle returned is a reference to the underlying system object being monitored by the dispatch source.
+    ///
+    ///
     /// Returns the underlying system handle associated with this dispatch source.
     ///
     ///
@@ -2804,8 +3841,6 @@ impl DispatchSource {
     /// DISPATCH_SOURCE_TYPE_TIMER:           n/a
     /// DISPATCH_SOURCE_TYPE_VNODE:           file descriptor (int)
     /// DISPATCH_SOURCE_TYPE_WRITE:           file descriptor (int)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_get_handle?language=objc)
     #[doc(alias = "dispatch_source_get_handle")]
     #[must_use]
     #[inline]
@@ -2816,6 +3851,29 @@ impl DispatchSource {
         unsafe { dispatch_source_get_handle(self) }
     }
 
+    /// Returns the mask of events monitored by the dispatch source.
+    ///
+    /// Parameters:
+    /// - source: This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ### Return Value
+    ///
+    /// The return value should be interpreted according to the type of the dispatch source, and can be one of the following:
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_MACH_SEND`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_mach_send):  `Dispatch Source Mach Send Event Flags`
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_PROC`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_proc): `Dispatch Source Process Event Flags`
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_VNODE`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_vnode): `Dispatch Source Vnode Event Flags`
+    ///
+    /// ## Discussion
+    ///
+    /// The mask is a bitmask of relevant events being monitored by the dispatch event source. Any events that are not specified in the event mask are ignored and no event handler block is submitted for them.
+    ///
+    /// For details, see the flag descriptions in `Constants`.
+    ///
+    ///
     /// Returns the mask of events monitored by the dispatch source.
     ///
     ///
@@ -2837,8 +3895,6 @@ impl DispatchSource {
     /// DISPATCH_SOURCE_TYPE_TIMER:           dispatch_source_timer_flags_t
     /// DISPATCH_SOURCE_TYPE_VNODE:           dispatch_source_vnode_flags_t
     /// DISPATCH_SOURCE_TYPE_WRITE:           n/a
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_get_mask?language=objc)
     #[doc(alias = "dispatch_source_get_mask")]
     #[must_use]
     #[inline]
@@ -2849,6 +3905,41 @@ impl DispatchSource {
         unsafe { dispatch_source_get_mask(self) }
     }
 
+    /// Returns pending data for the dispatch source.
+    ///
+    /// Parameters:
+    /// - source: This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ### Return Value
+    ///
+    /// The return value should be interpreted according to the type of the dispatch source, and can be one of the following:
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_DATA_ADD`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_data_add): application-defined data
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_DATA_OR`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_data_or): application-defined data
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_MACH_SEND`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_mach_send): `Dispatch Source Mach Send Event Flags`
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_MACH_RECV`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_mach_recv): not applicable
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_PROC`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_proc): `Dispatch Source Process Event Flags`
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_READ`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_read): estimated bytes available to read
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_SIGNAL`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_signal): number of signals delivered since the last handler invocation
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_TIMER`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_timer): number of times the timer has fired since the last handler invocation
+    ///
+    /// - [`DISPATCH_SOURCE_TYPE_VNODE`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_vnode): `Dispatch Source Vnode Event Flags`
+    ///
+    /// - `Dispatch Source Memory Pressure Event Flags`: estimated buffer space available
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function from within the event handler block. The result of calling this function outside of the event handler callback is undefined.
+    ///
+    ///
     /// Returns pending data for the dispatch source.
     ///
     ///
@@ -2877,8 +3968,6 @@ impl DispatchSource {
     /// since the last handler invocation
     /// DISPATCH_SOURCE_TYPE_VNODE:           dispatch_source_vnode_flags_t
     /// DISPATCH_SOURCE_TYPE_WRITE:           estimated buffer space available
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_get_data?language=objc)
     #[doc(alias = "dispatch_source_get_data")]
     #[must_use]
     #[inline]
@@ -2889,6 +3978,19 @@ impl DispatchSource {
         unsafe { dispatch_source_get_data(self) }
     }
 
+    /// Merges data into a dispatch source and submits its event handler block to its target queue.
+    ///
+    /// Parameters:
+    /// - source: This parameter cannot be `NULL`.
+    ///
+    /// - value: The value to coalesce with the pending data using a logical OR or an ADD as specified by the dispatch source type. A value of zero has no effect and does not result in the submission of the event handler block.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application can use this function to indicate that an event has occurred on one of the application-defined dispatch event sources of type [`DISPATCH_SOURCE_TYPE_DATA_ADD`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_data_add) or [`DISPATCH_SOURCE_TYPE_DATA_OR`](https://developer.apple.com/documentation/dispatch/dispatch_source_type_data_or).
+    ///
+    ///
     /// Merges data into a dispatch source of type DISPATCH_SOURCE_TYPE_DATA_ADD,
     /// DISPATCH_SOURCE_TYPE_DATA_OR or DISPATCH_SOURCE_TYPE_DATA_REPLACE,
     /// and submits its event handler block to its target queue.
@@ -2900,8 +4002,6 @@ impl DispatchSource {
     /// Parameter `value`: The value to coalesce with the pending data using a logical OR or an ADD
     /// as specified by the dispatch source type. A value of zero has no effect
     /// and will not result in the submission of the event handler block.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_merge_data?language=objc)
     #[doc(alias = "dispatch_source_merge_data")]
     #[inline]
     pub fn merge_data(&self, value: usize) {
@@ -2911,6 +4011,27 @@ impl DispatchSource {
         unsafe { dispatch_source_merge_data(self, value) }
     }
 
+    /// Sets a start time, interval, and leeway value for a timer source.
+    ///
+    /// Parameters:
+    /// - start: The start time of the timer. See [`dispatch_time`](https://developer.apple.com/documentation/dispatch/dispatch_time) and [`dispatch_walltime`](https://developer.apple.com/documentation/dispatch/dispatch_walltime) for more information.
+    ///
+    /// - interval: The nanosecond interval for the timer.
+    ///
+    /// - leeway: The amount of time, in nanoseconds, that the system can defer the timer.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application can call this function multiple times on the same dispatch timer source object to reset the time interval for the timer source as necessary.
+    ///
+    /// The `start` time parameter also determines which clock is used for the timer. If the start time is [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) or is created with [`dispatch_time`](https://developer.apple.com/documentation/dispatch/dispatch_time), the timer is based on `mach_absolute_time`. Otherwise, if the start time of the timer is created with [`dispatch_walltime`](https://developer.apple.com/documentation/dispatch/dispatch_walltime), the timer is based on `gettimeofday`(3).
+    ///
+    /// The `leeway` parameter is a hint from the application as to the amount of time, in nanoseconds, up to which the system can defer the timer to align with other system activity for improved system performance or power consumption. For example, an application might perform a periodic task every 5 minutes, with a leeway of up to 30 seconds. Note that some latency is to be expected for all timers, even when a leeway value of zero is specified.
+    ///
+    /// Calling this function has no effect if the timer source has already been canceled.
+    ///
+    ///
     /// Sets a start time, interval, and leeway value for a timer source.
     ///
     ///
@@ -2954,8 +4075,6 @@ impl DispatchSource {
     ///
     ///
     /// Parameter `leeway`: The nanosecond leeway for the timer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_timer?language=objc)
     #[doc(alias = "dispatch_source_set_timer")]
     #[inline]
     pub fn set_timer(&self, start: DispatchTime, interval: u64, leeway: u64) {
@@ -2970,7 +4089,23 @@ impl DispatchSource {
         unsafe { dispatch_source_set_timer(self, start, interval, leeway) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_registration_handler?language=objc)
+    /// Sets the registration handler block for the given dispatch source.
+    ///
+    /// Parameters:
+    /// - source: The dispatch source to modify. This parameter cannot be `NULL`.
+    ///
+    /// - handler: The registration handler block to install. The previous registration handler (if any) is released before the new one is installed. This function uses a `Block_copy` call to store a copy of the new registration handler. This parameter can be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The registration handler (if specified) is submitted to the source’s target queue as soon as the source has been fully set up and is ready to start delivering events. The set up of a dispatch source’s underlying event-delivery mechanism occurs asynchronously. Installing a registration handler is a way to be notified when that set up is complete and the dispatch source is ready to start delivering events.
+    ///
+    /// After your operation handler is executed, the dispatch source uninstalls it. Thus, registration handlers are executed only once after you resume the dispatch source.
+    ///
+    /// If you install a registration handler on a dispatch source that is already set up and running, your handler is invoked immediately.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2990,6 +4125,23 @@ impl DispatchSource {
 
     /// Sets the registration handler function for the given dispatch source.
     ///
+    /// Parameters:
+    /// - source: The dispatch source to modify. This parameter cannot be `NULL`.
+    ///
+    /// - handler: The registration handler function to install. The previous registration handler (if any) is released before the new one is installed. The context parameter passed to the event handler function is the current context of the dispatch source at the time the handler call is made. This parameter can be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The registration handler (if specified) is submitted to the source’s target queue as soon as the source has been fully set up and is ready to start delivering events. The set up of a dispatch source’s underlying event-delivery mechanism occurs asynchronously. Installing a registration handler is a way to be notified when that set up is complete and the dispatch source is ready to start delivering events.
+    ///
+    /// After your operation handler is executed, the dispatch source uninstalls it. Thus, registration handlers are executed only once after you resume the dispatch source.
+    ///
+    /// If you install a registration handler on a dispatch source that is already set up and running, your handler is invoked immediately.
+    ///
+    ///
+    /// Sets the registration handler function for the given dispatch source.
+    ///
     ///
     /// See dispatch_source_set_registration_handler() for more details.
     ///
@@ -3001,8 +4153,6 @@ impl DispatchSource {
     /// Parameter `handler`: The registration handler function to submit to the source's target queue.
     /// The context parameter passed to the registration handler function is the
     /// current context of the dispatch source at the time the handler call is made.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_source_set_registration_handler_f?language=objc)
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
     #[inline]
     pub fn set_registration_handler_f(&self, handler: dispatch_function_t) {
@@ -3017,6 +4167,19 @@ impl DispatchSource {
 }
 
 impl DispatchGroup {
+    /// Creates a new group to which you can assign block objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created group. In Objective-C returns `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a new group with which block objects can be associated (by using the [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/dispatch_group_async) function). The dispatch group maintains a count of its outstanding associated tasks, incrementing the count when a new task is associated and decrementing it when a task completes. Functions such as [`dispatch_group_notify`](https://developer.apple.com/documentation/dispatch/dispatch_group_notify) and [`dispatch_group_wait`](https://developer.apple.com/documentation/dispatch/dispatch_group_wait) use that count to allow your application to determine when all tasks associated with the group have completed. At that time, your application can take any appropriate action.
+    ///
+    ///
     /// Creates new group with which blocks may be associated.
     ///
     ///
@@ -3026,8 +4189,6 @@ impl DispatchGroup {
     ///
     ///
     /// Returns: The newly created group, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup/init()?language=objc)
     #[doc(alias = "dispatch_group_create")]
     #[must_use]
     #[inline]
@@ -3041,7 +4202,21 @@ impl DispatchGroup {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_async?language=objc)
+    /// Schedules a block asynchronously for execution and simultaneously associates it with the specified dispatch group.
+    ///
+    /// Parameters:
+    /// - group: A dispatch group to associate the submitted block object with. The group is retained by the system until the block has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - queue: The dispatch queue to which the block object is submitted for asynchronous invocation. The queue is retained by the system until the block has run to completion.  This parameter cannot be `NULL`.
+    ///
+    /// - block: The block object to perform asynchronously. This function performs a `Block_copy` and `Block_release` on behalf of the caller.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Submits a block to a dispatch queue and associates the block object with the given dispatch group. The dispatch group can be used to wait for the completion of the block objects it references.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3061,6 +4236,23 @@ impl DispatchGroup {
         unsafe { dispatch_group_async(self, queue, block) }
     }
 
+    /// Submits an application-defined function to a dispatch queue and associates it with the specified dispatch group.
+    ///
+    /// Parameters:
+    /// - group: A dispatch group to associate the submitted function with. The group is retained by the system until the application-defined function has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - queue: The dispatch queue to which the function is submitted for asynchronous invocation. The queue is retained by the system until the application-defined function has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - context: The application-defined context parameter to pass to the application-defined function.
+    ///
+    /// - work: The application-defined function to invoke on the target queue. The first parameter passed to this function is the value in the `context` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Submits an application-defined function to a dispatch queue and associates it with the given dispatch group. The dispatch group can be used to wait for the completion of the application-defined functions it references.
+    ///
+    ///
     /// Submits a function to a dispatch queue and associates the block with the
     /// given dispatch group.
     ///
@@ -3088,8 +4280,6 @@ impl DispatchGroup {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_async_f?language=objc)
     #[doc(alias = "dispatch_group_async_f")]
     #[inline]
     pub unsafe fn exec_async_f(
@@ -3110,6 +4300,31 @@ impl DispatchGroup {
     }
 }
 
+/// Waits synchronously for the previously submitted block objects to finish; returns if the blocks do not complete before the specified timeout period has elapsed.
+///
+/// Parameters:
+/// - group: The dispatch group to wait on. This parameter cannot be `NULL`.
+///
+/// - timeout: When to timeout (see [`dispatch_time`](https://developer.apple.com/documentation/dispatch/dispatch_time)). The [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) and [`DISPATCH_TIME_FOREVER`](https://developer.apple.com/documentation/dispatch/dispatch_time_forever) constants are provided as a convenience.
+///
+///
+/// ## Return Value
+///
+/// Returns zero on success (all blocks associated with the group completed before the specified timeout) or non-zero on error (timeout occurred).
+///
+///
+///
+/// ## Discussion
+///
+/// This function waits for the completion of the blocks associated with the given dispatch group and returns when either all blocks have completed or the specified timeout has elapsed. When a timeout occurs, the group is restored to its original state.
+///
+/// This function returns immediately if the dispatch group is empty (there are no blocks associated with the group).
+///
+/// After the successful return of this function, the dispatch group is empty, and can be reused for additional blocks. See [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/dispatch_group_async) for more information.
+///
+/// If your app isn’t using ARC, you should call [`dispatch_release`](https://developer.apple.com/documentation/dispatch/dispatch_release) on a dispatch group when it’s no longer needed.
+///
+///
 /// Wait synchronously until all the blocks associated with a group have
 /// completed or until the specified timeout has elapsed.
 ///
@@ -3139,8 +4354,6 @@ impl DispatchGroup {
 ///
 /// Returns: Returns zero on success (all blocks associated with the group completed
 /// within the specified timeout) or non-zero on error (i.e. timed out).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_wait?language=objc)
 #[inline]
 pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize {
     extern "C" {
@@ -3150,7 +4363,23 @@ pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTi
 }
 
 impl DispatchGroup {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_notify?language=objc)
+    /// Schedules a block object to be submitted to a queue when a group of previously submitted block objects have completed.
+    ///
+    /// Parameters:
+    /// - group: The dispatch group to observe. The group is retained by the system until the block has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - queue: The queue to which the supplied block is submitted when the group completes. The queue is retained by the system until the block has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - block: The block to submit when the group completes. This function performs a `Block_copy` and `Block_release` on behalf of the caller.  This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function schedules a notification block to be submitted to the specified queue when all blocks associated with the dispatch group have completed. If the group is empty (no block objects are associated with the dispatch group), the notification block object is submitted immediately.
+    ///
+    /// When the notification block is submitted, the group is empty. The group can either be released with [`dispatch_release`](https://developer.apple.com/documentation/dispatch/dispatch_release) or be reused for additional block objects. See [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/dispatch_group_async) for more information.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3170,6 +4399,27 @@ impl DispatchGroup {
         unsafe { dispatch_group_notify(self, queue, block) }
     }
 
+    /// Schedules an application-defined function to be submitted to a queue when a group of previously submitted block objects have completed.
+    ///
+    /// Parameters:
+    /// - group: The dispatch group to observe. The group is retained by the system until the application-defined function has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - queue: The queue to which the supplied block is submitted when the group completes. The queue is retained by the system until the application-defined function has run to completion. This parameter cannot be `NULL`.
+    ///
+    /// - context: The application-defined context parameter to pass to the application-defined function.
+    ///
+    /// - work: The application-defined function to invoke on the target queue. The first parameter passed to this function is the value in the `context` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function schedules a notification block to be submitted to the specified queue when all blocks associated with the dispatch group have completed. If the group is empty (no block objects are associated with the dispatch group), the notification block object is submitted immediately.
+    ///
+    /// When the notification block is submitted, the group is empty, and can be reused for additional blocks. See [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/dispatch_group_async) for more information.
+    ///
+    /// If your app isn’t using ARC, you should call [`dispatch_release`](https://developer.apple.com/documentation/dispatch/dispatch_release) on a dispatch group when it’s no longer needed.
+    ///
+    ///
     /// Schedule a function to be submitted to a queue when all the blocks
     /// associated with a group have completed.
     ///
@@ -3193,8 +4443,6 @@ impl DispatchGroup {
     /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_group_notify_f?language=objc)
     #[doc(alias = "dispatch_group_notify_f")]
     #[inline]
     pub unsafe fn notify_f(
@@ -3216,6 +4464,17 @@ impl DispatchGroup {
 }
 
 extern "C" {
+    /// Explicitly indicates that a block has entered the group.
+    ///
+    /// Parameters:
+    /// - group: The dispatch group to update. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function in Objective-C increments the current count of outstanding tasks in the group. Using this function (with [`dispatch_group_leave`](https://developer.apple.com/documentation/dispatch/dispatchgroup/leave())) allows your application to properly manage the task reference count if it explicitly adds and removes tasks from the group by a means other than using the [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/dispatch_group_async) function. A call to this function must be balanced with a call to [`dispatch_group_leave`](https://developer.apple.com/documentation/dispatch/dispatchgroup/leave()). You can use this function to associate a block with more than one group at the same time.
+    ///
+    ///
     /// Manually indicate a block has entered the group
     ///
     ///
@@ -3226,12 +4485,23 @@ extern "C" {
     ///
     /// Parameter `group`: The dispatch group to update.
     /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup/enter()?language=objc)
     pub fn dispatch_group_enter(group: &DispatchGroup);
 }
 
 impl DispatchGroup {
+    /// Explicitly indicates that a block in the group finished executing.
+    ///
+    /// Parameters:
+    /// - group: The dispatch group to update. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function decrements the current count of outstanding tasks in the group. Using this function (with [`dispatch_group_enter`](https://developer.apple.com/documentation/dispatch/dispatchgroup/enter())) allows your application to properly manage the task reference count if it explicitly adds and removes tasks from the group by a means other than using the [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/dispatch_group_async) function.
+    ///
+    /// A call to this function must balance a call to [`dispatch_group_enter`](https://developer.apple.com/documentation/dispatch/dispatchgroup/enter()). It is invalid to call it more times than [`dispatch_group_enter`](https://developer.apple.com/documentation/dispatch/dispatchgroup/enter()), which would result in a negative count.
+    ///
+    ///
     /// Manually indicate a block in the group has completed
     ///
     ///
@@ -3241,8 +4511,6 @@ impl DispatchGroup {
     ///
     /// Parameter `group`: The dispatch group to update.
     /// The result of passing NULL in this parameter is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup/leave()?language=objc)
     #[doc(alias = "dispatch_group_leave")]
     #[inline]
     pub unsafe fn leave(&self) {
@@ -3254,6 +4522,31 @@ impl DispatchGroup {
 }
 
 impl DispatchSemaphore {
+    /// Creates new counting semaphore with an initial value.
+    ///
+    /// Parameters:
+    /// - value: The starting value for the semaphore. Do not pass a value less than zero.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created semaphore.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Passing zero for the value is useful for when two threads need to reconcile the completion of a particular event. Passing a value greater than zero is useful for managing a finite pool of resources, where the pool size is equal to the value.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Calls to [`signal()`](https://developer.apple.com/documentation/dispatch/dispatchsemaphore/signal()) must be balanced with calls to [`wait()`](https://developer.apple.com/documentation/dispatch/dispatchsemaphore/wait()). Attempting to dispose of a semaphore with a count lower than `value` causes an `EXC_BAD_INSTRUCTION` exception.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates new counting semaphore with an initial value.
     ///
     ///
@@ -3268,8 +4561,6 @@ impl DispatchSemaphore {
     ///
     ///
     /// Returns: The newly created semaphore, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchsemaphore/init(value:)?language=objc)
     #[doc(alias = "dispatch_semaphore_create")]
     #[must_use]
     #[inline]
@@ -3283,6 +4574,25 @@ impl DispatchSemaphore {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Waits for (decrements) a semaphore.
+    ///
+    /// Parameters:
+    /// - dsema: The semaphore. This parameter cannot be `NULL`.
+    ///
+    /// - timeout: When to timeout (see [`dispatch_time`](https://developer.apple.com/documentation/dispatch/dispatch_time)). The constants [`DISPATCH_TIME_NOW`](https://developer.apple.com/documentation/dispatch/dispatch_time_now) and [`DISPATCH_TIME_FOREVER`](https://developer.apple.com/documentation/dispatch/dispatch_time_forever) are available as a convenience.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns zero on success, or non-zero if the timeout occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Decrement the counting semaphore. If the resulting value is less than zero, this function waits for a signal to occur before returning.
+    ///
+    ///
     /// Wait (decrement) for a semaphore.
     ///
     ///
@@ -3300,8 +4610,6 @@ impl DispatchSemaphore {
     ///
     ///
     /// Returns: Returns zero on success, or non-zero if the timeout occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_semaphore_wait?language=objc)
     #[doc(alias = "dispatch_semaphore_wait")]
     #[inline]
     pub fn wait(&self, timeout: DispatchTime) -> isize {
@@ -3311,6 +4619,19 @@ impl DispatchSemaphore {
         unsafe { dispatch_semaphore_wait(self, timeout) }
     }
 
+    /// Signals (increments) a semaphore.
+    ///
+    /// ## Return Value
+    ///
+    /// If the previous value was less than zero, this function wakes a process currently waiting.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Increment the counting semaphore. If the previous value was less than zero, this function wakes a thread currently waiting in [`dispatch_semaphore_wait`](https://developer.apple.com/documentation/dispatch/dispatch_semaphore_wait).
+    ///
+    ///
     /// Signal (increment) a semaphore.
     ///
     ///
@@ -3324,8 +4645,6 @@ impl DispatchSemaphore {
     ///
     /// Returns: This function returns non-zero if a thread is woken. Otherwise, zero is
     /// returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_semaphore_signal?language=objc)
     #[doc(alias = "dispatch_semaphore_signal")]
     #[inline]
     pub fn signal(&self) -> isize {
@@ -3336,14 +4655,35 @@ impl DispatchSemaphore {
     }
 }
 
+/// A predicate for use with the `dispatch_once` function.
+///
+/// ## Discussion
+///
+/// Variables of this type must have global or static scope.  The result of using this type with automatic or dynamic allocation is undefined. See [`dispatch_get_global_queue`](https://developer.apple.com/documentation/dispatch/dispatch_get_global_queue) for details.
+///
+///
 /// A predicate for use with dispatch_once(). It must be initialized to zero.
 /// Note: static and global variables default to zero.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once_t?language=objc)
 pub type dispatch_once_t = isize;
 
 impl DispatchOnce {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once-c.func?language=objc)
+    /// Executes a block object only once for the lifetime of an application.
+    ///
+    /// Parameters:
+    /// - predicate: A pointer to a [`dispatch_once_t`](https://developer.apple.com/documentation/dispatch/dispatch_once_t) structure that is used to test whether the block has completed or not.
+    ///
+    /// - block: The block object to execute once.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is useful for initialization of global data (singletons) in an application. Always call this function before using or testing any variables that are initialized by the block.
+    ///
+    /// If called simultaneously from multiple threads, this function waits synchronously until the block has completed.
+    ///
+    /// The predicate must point to a variable stored in global or static scope. The result of using a predicate with automatic or dynamic storage (including Objective-C instance variables) is undefined.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3359,7 +4699,25 @@ impl DispatchOnce {
         unsafe { dispatch_once(predicate, block) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_once_f-c.func?language=objc)
+    /// Executes an application-defined function only once for the lifetime of an application.
+    ///
+    /// Parameters:
+    /// - predicate: A pointer to a [`dispatch_once_t`](https://developer.apple.com/documentation/dispatch/dispatch_once_t) structure that is used to test whether the block has completed or not.
+    ///
+    /// - context: The application-defined context parameter to pass to the function.
+    ///
+    /// - function: The application-defined function to invoke once on the target queue. The parameter passed to this function is the value in the `context` parameter. This parameter cannot be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is useful for initialization of global data (singletons) in an application. Always call this function before using or testing any variables that are initialized by the function.
+    ///
+    /// If called simultaneously from multiple threads, this function waits synchronously until the work function has completed.
+    ///
+    /// The predicate must point to a variable stored in global or static scope. The result of using a predicate with automatic or dynamic storage (including Objective-C instance variables) is undefined.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3399,6 +4757,35 @@ extern "C" {
 }
 
 impl DispatchData {
+    /// Creates a new dispatch data object with the specified memory buffer.
+    ///
+    /// Parameters:
+    /// - buffer: A contiguous buffer of memory containing the desired data.
+    ///
+    /// - size: The size of `buffer`, measured in bytes.
+    ///
+    /// - queue: The queue on which to call `destructor` when it is time to release the data object. The queue is retained by the data object.
+    ///
+    /// - destructor: The block responsible for releasing the memory associated with the data object. Specify [`DISPATCH_DATA_DESTRUCTOR_DEFAULT`](https://developer.apple.com/documentation/dispatch/dispatch_data_destructor_default) to use the default destructor for dispatch objects. Specify [`DISPATCH_DATA_DESTRUCTOR_FREE`](https://developer.apple.com/documentation/dispatch/dispatch_data_destructor_free) to use the destructor for malloc-based buffers.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data object containing the desired data. This object is retained initially. It is your responsibility to release the data object when you are done using it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If buffer is `NULL` or size is `0`, this function returns an empty dispatch object.
+    ///
+    /// ## Discussion
+    ///
+    /// If you specify the default destructor using the [`DISPATCH_DATA_DESTRUCTOR_DEFAULT`](https://developer.apple.com/documentation/dispatch/dispatch_data_destructor_default) constant, this function creates a copy of the data in `buffer` and manages that data internally. If you specify any other value, this function stores a pointer to your buffer and leaves the responsibility of releasing that buffer to the destructor you provide.
+    ///
+    /// When you release the last reference to the object, the system typically enqueues the block in `destructor` on the provided queue. However, if you specify the [`DISPATCH_DATA_DESTRUCTOR_FREE`](https://developer.apple.com/documentation/dispatch/dispatch_data_destructor_free) constant for the destructor, the system simply frees the associated memory inline.
+    ///
+    ///
     /// Creates a dispatch data object from the given contiguous buffer of memory. If
     /// a non-default destructor is provided, ownership of the buffer remains with
     /// the caller (i.e. the bytes will not be copied). The last release of the data
@@ -3428,8 +4815,6 @@ impl DispatchData {
     /// - `buffer` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
     /// - `destructor` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create?language=objc)
     #[doc(alias = "dispatch_data_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3454,6 +4839,23 @@ impl DispatchData {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Returns the logical size of the memory managed by a dispatch data object
+    ///
+    /// Parameters:
+    /// - data: The dispatch data object to query
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes represented by the data object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For data objects that represent multiple noncontiguous memory regions, the size reported by this function is the sum of the sizes of the individual regions.
+    ///
+    ///
     /// Returns the logical size of the memory region(s) represented by the specified
     /// dispatch data object.
     ///
@@ -3461,8 +4863,6 @@ impl DispatchData {
     /// Parameter `data`: The dispatch data object to query.
     ///
     /// Returns: The number of bytes represented by the data object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_get_size?language=objc)
     #[doc(alias = "dispatch_data_get_size")]
     #[inline]
     pub fn size(&self) -> usize {
@@ -3472,6 +4872,27 @@ impl DispatchData {
         unsafe { dispatch_data_get_size(self) }
     }
 
+    /// Returns a new dispatch data object containing a contiguous representation of the specified object’s memory.
+    ///
+    /// Parameters:
+    /// - data: A dispatch data object containing the memory to map. If the object contains multiple noncontiguous memory regions, those regions are copied to a single, contiguous memory region for the new object.
+    ///
+    /// - buffer_ptr: On input, a pointer to a variable in which to store the pointer to the memory region for the newly created dispatch data object. You may specify `NULL` for this parameter if you do not need the information.
+    ///
+    /// - size_ptr: On input, a pointer to a variable in which to store the size of the contiguous memory region in the newly created dispatch data object. You may specify `NULL` for this parameter if you do not need the information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dispatch data object containing the contiguous version of the memory managed by the object in the `data` parameter.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you specify non-`NULL` values for `buffer_ptr` or `size_ptr`, the values returned in those variables are valid only until you release the newly created dispatch data object. You can use these values as a quick way to access the data of the new data object.
+    ///
+    ///
     /// Maps the memory represented by the specified dispatch data object as a single
     /// contiguous memory region and returns a new data object representing it.
     /// If non-NULL references to a pointer and a size variable are provided, they
@@ -3497,8 +4918,6 @@ impl DispatchData {
     ///
     /// - `buffer_ptr` must be a valid pointer or null.
     /// - `size_ptr` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create_map?language=objc)
     #[doc(alias = "dispatch_data_create_map")]
     #[must_use]
     #[inline]
@@ -3520,6 +4939,25 @@ impl DispatchData {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Returns a new dispatch data object consisting of the concatenated data from two other data objects.
+    ///
+    /// Parameters:
+    /// - data1: The first data object to include. The memory from this object is placed at the beginning of the new data object’s memory region.
+    ///
+    /// - data2: The second data object to include. The memory from this object is added to the end of the memory from `data1`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dispatch data object containing the concatenated memory.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling this function, it is safe to release either of the objects in `data1` or `data2`. However, be aware that the memory from those objects may not be deallocated if the newly created dispatch data object references it, as opposed to copies it.
+    ///
+    ///
     /// Returns a new dispatch data object representing the concatenation of the
     /// specified data objects. Those objects may be released by the application
     /// after the call returns (however, the system might not deallocate the memory
@@ -3535,8 +4973,6 @@ impl DispatchData {
     ///
     /// Returns: A newly created object representing the concatenation of the
     /// data1 and data2 objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create_concat?language=objc)
     #[doc(alias = "dispatch_data_create_concat")]
     #[must_use]
     #[inline]
@@ -3553,6 +4989,27 @@ impl DispatchData {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Returns a new dispatch data object whose contents consist of a portion of another object’s memory region.
+    ///
+    /// Parameters:
+    /// - data: The dispatch data object containing the original memory to use for the new object.
+    ///
+    /// - offset: A byte offset into the memory of `data`. This offset marks the starting point of the memory for the new object.
+    ///
+    /// - length: The number of bytes from `offset` to include in the new object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dispatch data object whose memory is a subrange of the memory associated with the object in the `data` parameter.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling this function, it is safe to release the object in `data`. However, be aware that the memory from that object may not be deallocated immediately if the newly created dispatch data object references it, as opposed to copies it.
+    ///
+    ///
     /// Returns a new dispatch data object representing a subrange of the specified
     /// data object, which may be released by the application after the call returns
     /// (however, the system might not deallocate the memory region(s) described by
@@ -3569,8 +5026,6 @@ impl DispatchData {
     ///
     /// Returns: A newly created object representing the specified
     /// subrange of the data object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_create_subrange?language=objc)
     #[doc(alias = "dispatch_data_create_subrange")]
     #[must_use]
     #[inline]
@@ -3589,6 +5044,23 @@ impl DispatchData {
     }
 }
 
+/// A block to invoke for every contiguous memory region in a data object.
+///
+/// ## Discussion
+///
+/// The parameters of a dispatch data applier block are as follows:
+///
+/// - `region` - A data object containing the current memory region being analyzed.
+///
+/// - `offset` - The logical offset to the current region from the start of the data object.
+///
+/// - `buffer` - A pointer to the memory for the current region.
+///
+/// - `size` - The size of the memory for the current region.
+///
+/// This handler returns a Boolean value indicating whether traversal of the region should continue.
+///
+///
 /// A block to be invoked for every contiguous memory region in a data object.
 ///
 ///
@@ -3602,13 +5074,38 @@ impl DispatchData {
 /// Parameter `size`: The size of the memory for the current region.
 ///
 /// Returns: A Boolean indicating whether traversal should continue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_applier_t?language=objc)
 #[cfg(feature = "block2")]
 pub type dispatch_data_applier_t =
     *mut block2::DynBlock<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
 
 impl DispatchData {
+    /// Traverses the memory of a dispatch data object and executes custom code on each region.
+    ///
+    /// Parameters:
+    /// - data: The dispatch object whose memory you want to use.
+    ///
+    /// - applier: The block to run on each contiguous memory region of `data`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean indicating whether the traversal completed successfully. Typically, this value is `true` if the applier block was executed on all of the regions or there was nothing to traverse. If it is `false`, it means the block terminated the traversal early.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For each contiguous memory region, this function creates a temporary dispatch data object and passes it to the specified applier function. This new object, plus the other parameters to the block, provide direct access to the specific memory region being examined. Once the applier block returns, the temporary dispatch data object is released. (The original object in the `data` parameter is not touched.)
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If the dispatch data object has zero length, the applier block is not called.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Traverse the memory regions represented by the specified dispatch data object
     /// in logical order and invoke the specified block once for every contiguous
     /// memory region encountered.
@@ -3633,8 +5130,6 @@ impl DispatchData {
     /// # Safety
     ///
     /// `applier` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_apply?language=objc)
     #[doc(alias = "dispatch_data_apply")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3645,6 +5140,21 @@ impl DispatchData {
         unsafe { dispatch_data_apply(self, applier) }
     }
 
+    /// Returns a data object containing a portion of the data in another data object.
+    ///
+    /// Parameters:
+    /// - data: The dispatch data object to query.
+    ///
+    /// - location: The byte offset to use when determining which memory region to return.
+    ///
+    /// - offset_ptr: On input, a pointer to a variable. On output, this variable contains the offset from the beginning of `data` of the returned memory region.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dispatch data object containing a copy of the entire memory region that contains the specified location.
+    ///
+    ///
     /// Finds the contiguous memory region containing the specified location among
     /// the regions represented by the specified object and returns a copy of the
     /// internal dispatch data object representing that region along with its logical
@@ -3664,8 +5174,6 @@ impl DispatchData {
     /// # Safety
     ///
     /// `offset_ptr` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_copy_region?language=objc)
     #[doc(alias = "dispatch_data_copy_region")]
     #[must_use]
     #[inline]
@@ -3688,10 +5196,37 @@ impl DispatchData {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_fd_t?language=objc)
+/// A file descriptor used for I/O operations.
 pub type dispatch_fd_t = c_int;
 
 extern "C" {
+    /// Schedules an asynchronous read operation using the specified file descriptor.
+    ///
+    /// Parameters:
+    /// - fd: The file descriptor from which to read the data.
+    ///
+    /// - length: The maximum amount of data to read from the file descriptor.
+    ///
+    /// - queue: The queue on which to perform the specified handler block.
+    ///
+    /// - handler: The block to schedule for execution when the specified amount of data has been read or an error occurred. The parameters of the handler are as follows:
+    ///
+    /// - data: The data that was read from the file descriptor. This object contains as much data as was currently available from the file descriptor, up to the specified length. This object is owned by the system and released when the handler returns. If you wish to continue using the data, your handler must retain this object or copy the data to another location prior to returning.
+    ///
+    /// - error: This value is `0` if the data was read successfully or an EOF was reached. If an error occurred, this parameter contains the error number.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function for initiating a single, asynchronous read operation from the current position of the specified file descriptor. This method is intended for simple operations where you do not need the overhead of creating a channel and do not plan on issuing more than a few calls to read or write data. Once submitted, there is no way to cancel the read operation.
+    ///
+    /// After calling this function, the system takes control of the specified file descriptor until the handler block is enqueued. While it controls the file descriptor, the system may modify it on behalf of the application. For example, the system typically adds the `O_NONBLOCK` flag to ensure that any operations are non-blocking. During that time, it is an error for your application to modify the file descriptor directly. However, you may pass the file descriptor to this function or the [`dispatch_write`](https://developer.apple.com/documentation/dispatch/dispatch_write) function to perform additional reads or writes. You may also use the file descriptor to create a new dispatch I/O channel.
+    ///
+    /// The `handler` you provide is not queued for execution until the read operation finishes. In addition, if you issue multiple read or write calls for the same file descriptor using the convenience APIs, all of those operations must complete before any of the associated handlers are queued. If you are already using the file descriptor with another channel, you should use the [`read(offset:length:queue:ioHandler:)`](https://developer.apple.com/documentation/dispatch/dispatchio/read(offset:length:queue:iohandler:)) function to read data from the channel rather than use this function.
+    ///
+    /// If you attempt to read past the end of file, your handler is passed an empty data object and an error code of 0. For other types of unrecoverable errors, an appropriate error code is returned along with whatever data was read before the error occurred.
+    ///
+    ///
     /// Schedule a read operation for asynchronous execution on the specified file
     /// descriptor. The specified handler is enqueued with the data read from the
     /// file descriptor when the operation has completed or an error occurs.
@@ -3737,8 +5272,6 @@ extern "C" {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_read?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_read(
         fd: dispatch_fd_t,
@@ -3749,6 +5282,31 @@ extern "C" {
 }
 
 extern "C" {
+    /// Schedules an asynchronous write operation using the specified file descriptor.
+    ///
+    /// Parameters:
+    /// - fd: The file descriptor to use when writing the data.
+    ///
+    /// - data: The data to write to the file descriptor.
+    ///
+    /// - queue: The queue on which to execute the specified handler block.
+    ///
+    /// - handler: The block to schedule for execution once the specified data has been written to the file descriptor. The parameters of the handler are as follows:
+    ///
+    /// - `data` - The data that could not be written to the file descriptor. If the data was written successfully, this parameter is `NULL`.
+    ///
+    /// - `error` - This value is `0` if the data was written successfully. If an error occurred, this parameter contains the error number.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function for initiating a single, asynchronous write operation at the current position of the specified file descriptor. This method is intended for simple operations where you do not need the overhead of creating a channel and do not plan on issuing more than a few calls to read or write data. Once submitted, there is no way to cancel the write operation.
+    ///
+    /// After calling this function, the system takes control of the specified file descriptor until the handler block is enqueued. While it controls the file descriptor, the system may modify it on behalf of the application. For example, the system typically adds the `O_NONBLOCK` flag to ensure that any operations are non-blocking. During that time, it is an error for your application to modify the file descriptor directly. However, you may pass the file descriptor to this function or the [`dispatch_read`](https://developer.apple.com/documentation/dispatch/dispatch_read) function. You may also use the file descriptor to create a new dispatch I/O channel. The system relinquishes control of the file descriptor before calling your handler, so it is safe to modify the file descriptor again from your handler code.
+    ///
+    /// The `handler` you provide is not queued for execution until the write operation finishes. In addition, if you issue multiple read or write calls for the same file descriptor using the convenience APIs, all of those operations must complete before any of the associated handlers are queued. If you are already using the file descriptor with another channel, you should use the [`write(offset:data:queue:ioHandler:)`](https://developer.apple.com/documentation/dispatch/dispatchio/write(offset:data:queue:iohandler:)) function to write data to the channel rather than use this function.
+    ///
+    ///
     /// Schedule a write operation for asynchronous execution on the specified file
     /// descriptor. The specified handler is enqueued when the operation has
     /// completed or an error occurs.
@@ -3784,8 +5342,6 @@ extern "C" {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_write?language=objc)
     #[cfg(feature = "block2")]
     pub fn dispatch_write(
         fd: dispatch_fd_t,
@@ -3796,6 +5352,37 @@ extern "C" {
 }
 
 impl DispatchIO {
+    /// Creates a dispatch I/O channel and associates it with the specified file descriptor.
+    ///
+    /// Parameters:
+    /// - type: The type of channel to create. For a list of possible options, see [`dispatch_io_type_t`](https://developer.apple.com/documentation/dispatch/dispatch_io_type_t).
+    ///
+    /// - fd: The file descriptor to associate with the channel.
+    ///
+    /// - queue: The dispatch queue to associate with the channel. This queue is used to execute the channel’s clean up handler. The channel retains this queue.
+    ///
+    /// - cleanup_handler: The block to enqueue when the system relinquishes control of the channel’s file descriptor. This channel takes a single parameter that indicates the reason why control was relinquished. If the `error` parameter contains a non zero value, control was relinquished because there was an error creating the channel; otherwise, this value should be `0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The dispatch I/O channel or `NULL` if an error occurred. The returned object is retained before it is returned; it is your responsibility to close the channel and then release this object when you are done using it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create a dispatch I/O channel for an already open file descriptor. After calling this function, the system takes control of the specified file descriptor until one of the following occurs:
+    ///
+    /// - You close the channel by calling the [`dispatch_io_close`](https://developer.apple.com/documentation/dispatch/dispatch_io_close) function.
+    ///
+    /// - An unrecoverable error occurs on the file descriptor.
+    ///
+    /// - All references to the channel are released.
+    ///
+    /// While it controls the file descriptor, the system may modify that file descriptor on behalf of the application. For example, the system typically adds the `O_NONBLOCK` flag to ensure that any operations on the file descriptor are non-blocking. During that time, it is an error for your application to modify the file descriptor directly. However, you may create additional channels using the same file descriptor.
+    ///
+    ///
     /// Create a dispatch I/O channel associated with a file descriptor. The system
     /// takes control of the file descriptor until the channel is closed, an error
     /// occurs on the file descriptor or all references to the channel are released.
@@ -3827,8 +5414,6 @@ impl DispatchIO {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_create?language=objc)
     #[doc(alias = "dispatch_io_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3853,6 +5438,39 @@ impl DispatchIO {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Creates a dispatch I/O channel with the associated path name.
+    ///
+    /// Parameters:
+    /// - type: The type of channel to create. For a list of possible options, see [`dispatch_io_type_t`](https://developer.apple.com/documentation/dispatch/dispatch_io_type_t).
+    ///
+    /// - path: The file system path to open and use for the channel I/O. This path is opened using the open system call.
+    ///
+    /// - oflag: The flags to pass to the open function when opening the path.
+    ///
+    /// - mode: The mode to pass to the open function when creating a file at the specified path. If you are not creating a file, specify `0`.
+    ///
+    /// - queue: The dispatch queue to associate with the channel. This queue is used to execute the channel’s clean up handler. The channel retains this queue.
+    ///
+    /// - cleanup_handler: The block to enqueue when the system relinquishes control of the channel’s file descriptor. This channel takes a single parameter that indicates the reason why control was relinquished. If the `error` parameter contains a non zero value, control was relinquished because there was an error creating the channel; otherwise, this value should be `0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The dispatch I/O channel or `NULL` if an error occurred. The returned object is retained before it is returned; it is your responsibility to close the channel and then release this object when you are done using it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function associates the specified path with the channel but does not open a file descriptor for that path until you perform the first I/O operation. While it is open, the channel owns the file descriptor. The channel closes the file descriptor and calls its cleanup handler when one of the following occurs:
+    ///
+    /// - You close the channel by calling the [`dispatch_io_close`](https://developer.apple.com/documentation/dispatch/dispatch_io_close) function.
+    ///
+    /// - An unrecoverable error occurs on the file descriptor.
+    ///
+    /// - All references to the channel are released.
+    ///
+    ///
     /// Create a dispatch I/O channel associated with a path name. The specified
     /// path, oflag and mode parameters will be passed to open(2) when the first I/O
     /// operation on the channel is ready to execute and the resulting file
@@ -3889,8 +5507,6 @@ impl DispatchIO {
     ///
     /// - `path` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_create_with_path?language=objc)
     #[doc(alias = "dispatch_io_create_with_path")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[must_use]
@@ -3921,6 +5537,33 @@ impl DispatchIO {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Creates a new dispatch I/O channel from an existing channel.
+    ///
+    /// Parameters:
+    /// - type: The type of channel to create. For a list of possible options, see [`dispatch_io_type_t`](https://developer.apple.com/documentation/dispatch/dispatch_io_type_t).
+    ///
+    /// - io: An existing channel whose file descriptor or path name you want to use.
+    ///
+    /// - queue: The dispatch queue to associate with the channel. This queue is used to execute the channel’s clean up handler. The channel retains this queue.
+    ///
+    /// - cleanup_handler: The block to enqueue when the system relinquishes control of the channel’s file descriptor. This channel takes a single parameter that indicates the reason why control was relinquished. If the `error` parameter contains a non zero value, control was relinquished because there was an error creating the channel; otherwise, this value should be `0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The dispatch I/O channel or `NULL` if an error occurred. The returned object is retained before it is returned; it is your responsibility to close the channel and then release this object when you are done using it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a new dispatch I/O channel that inherits the file descriptor or path name of the specified channel but whose channel type and policies you can set to be different.
+    ///
+    /// If the existing channel is associated with a file descriptor, the system maintains control over the file descriptor until the new channel is also closed, an error occurs on the file descriptor, or all references to channels tied to that file descriptor are released. When the file descriptor is released, the `cleanup_handler` block is enqueued on the specified `queue` and the system relinquishes control over the file descriptor.
+    ///
+    /// While it controls the file descriptor, the system may modify that file descriptor on behalf of the application. For example, the system typically adds the `O_NONBLOCK` flag to ensure that any operations on the file descriptor are non-blocking. During that time, it is an error for your application to modify the file descriptor directly. However, you may create additional channels using the same file descriptor.
+    ///
+    ///
     /// Create a new dispatch I/O channel from an existing dispatch I/O channel.
     /// The new channel inherits the file descriptor or path name associated with
     /// the existing channel, but not its channel type or policies.
@@ -3954,8 +5597,6 @@ impl DispatchIO {
     ///
     /// Returns: The newly created dispatch I/O channel or NULL if an error
     /// occurred (invalid type specified).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_create_with_io?language=objc)
     #[doc(alias = "dispatch_io_create_with_io")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3981,6 +5622,19 @@ impl DispatchIO {
     }
 }
 
+/// A handler block used to process operations on a dispatch I/O channel.
+///
+/// ## Discussion
+///
+/// The parameters of a dispatch I/O handler are as follows:
+///
+/// - `done` - A flag indicating whether the operation is complete.
+///
+/// - `data` - The data object to be handled. This object is retained by the system for the duration of the handler’s execution and is released when the handler block returns.
+///
+/// - `error` - The error number (if any) reported for the operation. An error number of `0` typically indicates the operation was successful.
+///
+///
 /// The prototype of I/O handler blocks for dispatch I/O operations.
 ///
 ///
@@ -3989,12 +5643,41 @@ impl DispatchIO {
 /// Parameter `data`: The data object to be handled.
 ///
 /// Parameter `error`: An errno condition for the operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_handler_t?language=objc)
 #[cfg(feature = "block2")]
 pub type dispatch_io_handler_t = *mut block2::DynBlock<dyn Fn(bool, *mut DispatchData, c_int)>;
 
 impl DispatchIO {
+    /// Schedules an asynchronous read operation on the specified channel.
+    ///
+    /// Parameters:
+    /// - channel: The channel to use when reading the data.
+    ///
+    /// - offset: For random-access channels, this parameter specifies the offset into the channel from which to read. The offset is specified relative to the initial file pointer of the channel’s file descriptor at the time the channel was created.
+    ///
+    /// For stream-based channels, this parameter is ignored and data is read from the current position.
+    ///
+    /// - length: The number of bytes to read from the channel. Specify `SIZE_MAX` to continue reading data until an EOF is reached.
+    ///
+    /// - queue: The dispatch queue on which to submit the `io_handler` block.
+    ///
+    /// - io_handler: The block to use to process the data read from the channel. This block may be queued multiple times to process a given data request. Each time the block is queued, the `data` parameter passed to the handler contains the most recently read chunk of data. The handler has no return value and takes the following parameters:
+    ///
+    /// - done: A Boolean value indicating whether the operation is complete.
+    ///
+    /// - data: A [`dispatch_data_t`](https://developer.apple.com/documentation/dispatch/dispatch_data_t) object containing the data read from the file descriptor.
+    ///
+    /// - error: An `errno` condition if there was an error; otherwise, the value is `0`.
+    ///
+    /// Your block need not be reentrant. The system guarantees that only one instance of this block will be executed at any given time.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function reads the specified data and submits the handler block to queue to process the data. If the `done` parameter of the handler is set to false, it means that only part of the data was read. If the `done` parameter is [`true`](https://developer.apple.com/documentation/swift/true), it means the read operation is complete and the handler will not be submitted again. If an unrecoverable error occurs on the channel’s file descriptor, the `done` parameter is set to true and an appropriate error value is reported in the handler’s error parameter.
+    ///
+    /// If the handler is submitted with the done parameter set to true, an empty data object, and an error code of 0, it means that the channel reached the end of the file.
+    ///
+    ///
     /// Schedule a read operation for asynchronous execution on the specified I/O
     /// channel. The I/O handler is enqueued one or more times depending on the
     /// general load of the system and the policy specified on the I/O channel.
@@ -4044,8 +5727,6 @@ impl DispatchIO {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `io_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_read?language=objc)
     #[doc(alias = "dispatch_io_read")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -4068,6 +5749,29 @@ impl DispatchIO {
         unsafe { dispatch_io_read(self, offset, length, queue, io_handler) }
     }
 
+    /// Schedules an asynchronous write operation for the specified channel.
+    ///
+    /// Parameters:
+    /// - channel: The channel to use when writing the data.
+    ///
+    /// - offset: For random-access channels, this parameter specifies the offset into the channel at which to write. The offset is specified relative to the initial file pointer of the channel’s file descriptor at the time the channel was created.
+    ///
+    /// For stream-based channels, this parameter is ignored and data is written to the current position.
+    ///
+    /// - data: The data to write to the channel.
+    ///
+    /// - queue: The dispatch queue on which to submit the `io_handler` block.
+    ///
+    /// - io_handler: The block to use to report any progress. This block may be queued multiple times to process a given data request. Each time the block is queued, the `data` parameter passed to the handler contains the data that remains to be written.
+    ///
+    /// Your block need not be reentrant. The system guarantees that only one instance of this block is executed at any given time.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function writes the specified data and submits the `io_handler` block to the `queue` to report on the progress of the operation. If the `done` parameter of the handler is set to [`false`](https://developer.apple.com/documentation/swift/false), it means that only part of the data was written. If the `done` parameter is set to [`true`](https://developer.apple.com/documentation/swift/true), it means the write operation is complete and the handler is not submitted again. If the operation was successful, the handler’s `error` parameter is set to `0`. However, if an unrecoverable error occurs on the channel’s file descriptor, the `done` parameter is set to [`true`](https://developer.apple.com/documentation/swift/true) and an appropriate error value is reported in the handler’s `error` parameter.
+    ///
+    ///
     /// Schedule a write operation for asynchronous execution on the specified I/O
     /// channel. The I/O handler is enqueued one or more times depending on the
     /// general load of the system and the policy specified on the I/O channel.
@@ -4118,8 +5822,6 @@ impl DispatchIO {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `io_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_write?language=objc)
     #[doc(alias = "dispatch_io_write")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -4142,6 +5844,21 @@ impl DispatchIO {
         unsafe { dispatch_io_write(self, offset, data, queue, io_handler) }
     }
 
+    /// Closes the specified channel to new read and write operations.
+    ///
+    /// Parameters:
+    /// - channel: The channel to close.
+    ///
+    /// - flags: The options to use when closing the channel. For a list of possible values, see [`dispatch_io_close_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_io_close_flags_t).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling this function, you should not schedule any more read or write operations on the channel. Doing so causes an error to be sent to your handler.
+    ///
+    /// If the [`DISPATCH_IO_STOP`](https://developer.apple.com/documentation/dispatch/dispatch_io_stop) option is specified in the `flags` parameter, the system attempts to interrupt any outstanding read and write operations on the I/O channel. Even if you specify this flag, the corresponding handlers may be invoked with partial results. In addition, the final invocation of the handler is passed the `ECANCELED` error code to indicate that the operation was interrupted. If you do not specify the [`DISPATCH_IO_STOP`](https://developer.apple.com/documentation/dispatch/dispatch_io_stop) flag, read and write operations on the channel run to completion as normal.
+    ///
+    ///
     /// Close the specified I/O channel to new read or write operations; scheduling
     /// operations on a closed channel results in their handler returning an error.
     ///
@@ -4158,8 +5875,6 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to close.
     ///
     /// Parameter `flags`: The flags for the close operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_close?language=objc)
     #[doc(alias = "dispatch_io_close")]
     #[inline]
     pub fn close(&self, flags: DispatchIOCloseFlags) {
@@ -4169,6 +5884,21 @@ impl DispatchIO {
         unsafe { dispatch_io_close(self, flags) }
     }
 
+    /// Schedules a barrier operation on the specified channel.
+    ///
+    /// Parameters:
+    /// - channel: The channel on which you want to schedule the barrier.
+    ///
+    /// - barrier: The block to execute when all previously scheduled operations on the channel have completed.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A barrier operation is a way to ensure that no new channel-related operations is executed until all previous operations have completed and the specified `barrier` block has been executed. The barrier operation applies to the channel’s file descriptor and not to a specific channel. In other words, if multiple channels are associated with the same file descriptor, a barrier operation scheduled on any of the channels acts as a barrier across all of the channels. All previously scheduled operations on any of those channels must complete before the barrier block is executed.
+    ///
+    /// While the barrier block is running, it may safely operate on the channel’s underlying file descriptor using `fsync`, `lseek`, and similar functions, but the block must not close the file descriptor.
+    ///
+    ///
     /// Schedule a barrier operation on the specified I/O channel; all previously
     /// scheduled operations on the channel will complete before the provided
     /// barrier block is enqueued onto the global queue determined by the channel's
@@ -4193,8 +5923,6 @@ impl DispatchIO {
     /// # Safety
     ///
     /// `barrier` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/barrier(execute:)?language=objc)
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -4205,6 +5933,23 @@ impl DispatchIO {
         unsafe { dispatch_io_barrier(self, barrier) }
     }
 
+    /// Returns the file descriptor associated with the specified channel.
+    ///
+    /// Parameters:
+    /// - channel: The channel whose file descriptor you want to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The file descriptor associated with the channel or `-1` if the file descriptor is closed or not yet open.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the path name associated with the channel has not yet been opened, calling this function does not normally open the corresponding file, with one exception. If you call the function from a barrier block scheduled on the channel, the function does open the file and return the resulting file descriptor.
+    ///
+    ///
     /// Returns the file descriptor underlying a dispatch I/O channel.
     ///
     /// Will return -1 for a channel closed with dispatch_io_close() and for a
@@ -4218,8 +5963,6 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to query.
     ///
     /// Returns: The file descriptor underlying the channel, or -1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/filedescriptor?language=objc)
     #[doc(alias = "dispatch_io_get_descriptor")]
     #[must_use]
     #[inline]
@@ -4230,6 +5973,21 @@ impl DispatchIO {
         unsafe { dispatch_io_get_descriptor(self) }
     }
 
+    /// Sets the maximum number of bytes to process before enqueueing a handler block.
+    ///
+    /// Parameters:
+    /// - channel: The channel whose high-water mark you want to configure.
+    ///
+    /// - high_water: The maximum number of bytes to read or write before enqueueing the corresponding I/O handler block.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// During a read or write operation, the channel uses the high- and low-water mark values to determine how often to enqueue the associated handler block. It enqueues the block when the number of bytes read or written is between these two values.
+    ///
+    /// The default high-water mark for channels is set to `SIZE_MAX`.
+    ///
+    ///
     /// Set a high water mark on the I/O channel for all operations.
     ///
     /// The system will make a best effort to enqueue I/O handlers with partial
@@ -4245,8 +6003,6 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel on which to set the policy.
     ///
     /// Parameter `high_water`: The number of bytes to use as a high water mark.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/setlimit(highwater:)?language=objc)
     #[doc(alias = "dispatch_io_set_high_water")]
     #[inline]
     pub fn set_high_water(&self, high_water: usize) {
@@ -4256,6 +6012,23 @@ impl DispatchIO {
         unsafe { dispatch_io_set_high_water(self, high_water) }
     }
 
+    /// Sets the minimum number of bytes to process before enqueueing a handler block.
+    ///
+    /// Parameters:
+    /// - channel: The channel whose low-water mark you want to configure.
+    ///
+    /// - low_water: The minimum number of bytes to read or write before enqueueing the corresponding I/O handler block.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// During a read or write operation, the channel uses the high- and low-water mark values to determine how often to enqueue the associated handler block. It enqueues the block when the number of bytes read or written is between these two values. The only times when the number of bytes may be less than the low-water mark are when an EOF is reached or the channel interval has the [`DISPATCH_IO_STRICT_INTERVAL`](https://developer.apple.com/documentation/dispatch/dispatch_io_strict_interval) flag set.
+    ///
+    /// In practice, your handlers should be designed to handle data blocks that are significantly larger than the current low-water mark. If you always want to process the same amount of data in your handler, set the low- and high-water marks to the same value.
+    ///
+    /// The default low-water mark for channels is unspecified. However, you should assume that partial results can be returned even with this default value. If you want to prevent the return of partial results, set the low-water mark to `SIZE_MAX`.
+    ///
+    ///
     /// Set a low water mark on the I/O channel for all operations.
     ///
     /// The system will process (i.e. read or write) at least the low water mark
@@ -4281,8 +6054,6 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel on which to set the policy.
     ///
     /// Parameter `low_water`: The number of bytes to use as a low water mark.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio/setlimit(lowwater:)?language=objc)
     #[doc(alias = "dispatch_io_set_low_water")]
     #[inline]
     pub fn set_low_water(&self, low_water: usize) {
@@ -4292,6 +6063,25 @@ impl DispatchIO {
         unsafe { dispatch_io_set_low_water(self, low_water) }
     }
 
+    /// Sets the interval (in nanoseconds) at which to invoke the I/O handlers for the channel.
+    ///
+    /// Parameters:
+    /// - channel: The channel whose interval you want to configure.
+    ///
+    /// - interval: The number of nanoseconds that must elapse before the scheduling of any I/O handlers is desired.
+    ///
+    /// - flags: Flags indicating the desired delivery behavior at the interval time. For a list of flags, see [`dispatch_io_interval_flags_t`](https://developer.apple.com/documentation/dispatch/dispatch_io_interval_flags_t).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A channel interval is a way for you to receive periodic progress reports on the state of a read or write operation. You can use this feedback to update progress bars or other parts of your application.
+    ///
+    /// If you set an interval on a channel, the handlers for any read or write operations are enqueued at the given interval only if the amount of data that has been processed exceeds the current low-water mark for the channel. Passing the [`DISPATCH_IO_STRICT_INTERVAL`](https://developer.apple.com/documentation/dispatch/dispatch_io_strict_interval) constant in the `flags` parameter forces the enqueueing of the handlers even if the low-water mark is not exceeded.
+    ///
+    /// The system may add a small amount of leeway to the specified interval in order to align the delivery of handlers with other system activity. The purpose of this behavior is to improve overall performance or power consumption for the system.
+    ///
+    ///
     /// Set a nanosecond interval at which I/O handlers are to be enqueued on the
     /// I/O channel for all operations.
     ///
@@ -4314,8 +6104,6 @@ impl DispatchIO {
     ///
     /// Parameter `flags`: Flags indicating desired data delivery behavior at
     /// interval time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_set_interval?language=objc)
     #[doc(alias = "dispatch_io_set_interval")]
     #[inline]
     pub fn set_interval(&self, interval: u64, flags: DispatchIOIntervalFlags) {
@@ -4331,6 +6119,23 @@ impl DispatchIO {
 }
 
 impl DispatchWorkloop {
+    /// Creates a new workloop with the specified label.
+    ///
+    /// Parameters:
+    /// - label: A string label to attach to the queue to uniquely identify it in debugging tools such as Instruments, `sample`, stackshots, and crash reports.  Because apps, libraries, and frameworks can all create their own dispatch queues, a reverse-DNS naming style (`com.example.myqueue`) is recommended.  This parameter is optional and can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created workloop.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned workloop is active, and you may submit blocks to it immediately.
+    ///
+    ///
     /// Creates a new dispatch workloop to which workitems may be submitted.
     ///
     ///
@@ -4338,8 +6143,6 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_workloop_create?language=objc)
     #[doc(alias = "dispatch_workloop_create")]
     #[must_use]
     #[inline]
@@ -4359,6 +6162,25 @@ impl DispatchWorkloop {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Creates a new inactive workloop with the specified label.
+    ///
+    /// Parameters:
+    /// - label: A string label to attach to the queue to uniquely identify it in debugging tools such as Instruments, `sample`, stackshots, and crash reports.  Because apps, libraries, and frameworks can all create their own dispatch queues, a reverse-DNS naming style (`com.example.myqueue`) is recommended. This parameter is optional and can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created workloop.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function when you want to change the default behavior of the workloop before activating it. For example, use this method if you call [`dispatch_set_qos_class_floor`](https://developer.apple.com/documentation/dispatch/dispatch_set_qos_class_floor) to configure the minimum quality of service level.
+    ///
+    /// After configuring the workloop, you must call [`activate()`](https://developer.apple.com/documentation/dispatch/dispatchobject/activate()) before submitting any blocks to it. If you submit blocks to an inactive workloop, the system terminates the current process.
+    ///
+    ///
     /// Creates a new inactive dispatch workloop that can be setup and then
     /// activated.
     ///
@@ -4374,8 +6196,6 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_workloop_create_inactive?language=objc)
     #[doc(alias = "dispatch_workloop_create_inactive")]
     #[must_use]
     #[inline]
@@ -4397,6 +6217,13 @@ impl DispatchWorkloop {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
+    /// Configures how the workloop manages the autorelease pools for the blocks it executes.
+    ///
+    /// Parameters:
+    /// - workloop: The workloop object you want to modify.
+    ///
+    /// - frequency: The autorelease behavior attribute to apply to the dispatch queue. For a list of possible values, see [`dispatch_autorelease_frequency_t`](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t).
+    ///
     /// Sets the autorelease frequency of the workloop.
     ///
     ///
@@ -4412,8 +6239,6 @@ impl DispatchWorkloop {
     ///
     ///
     /// Parameter `frequency`: The requested autorelease frequency.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_workloop_set_autorelease_frequency?language=objc)
     #[doc(alias = "dispatch_workloop_set_autorelease_frequency")]
     #[inline]
     pub fn set_autorelease_frequency(&self, frequency: DispatchAutoReleaseFrequency) {

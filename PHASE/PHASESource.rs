@@ -8,6 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that plays audio from a 3D location and orientation in a scene.
+    ///
+    /// ## Overview
+    ///
+    /// This class represents a sound-emitting point or area in a virtual environment, positioned and oriented by a 3D [`transform`](https://developer.apple.com/documentation/phase/phaseobject/transform).
+    ///
+    /// A spatial mixer, [`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition), adds environmental effects to sound sources. To tie a mixer to a sound source, create a [`PHASEMixerParameters`](https://developer.apple.com/documentation/phase/phasemixerparameters) object and pass it into the `mixerParameters` argument of a sound event’s [`initWithEngine:assetIdentifier:mixerParameters:error:`](https://developer.apple.com/documentation/phase/phasesoundevent/init(engine:assetidentifier:mixerparameters:)) initializer.
+    ///
+    /// For an example that demonstrates sound sources, see [Playing sound from a location in a 3D scene](https://developer.apple.com/documentation/phase/playing-sound-from-a-location-in-a-3d-scene).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -17,8 +28,6 @@ extern_class!(
     /// PHASE supports both point sources and volumetric sources.
     /// A point source simulates the sound from a point in space.
     /// A volumetric source simulates the sound from a shape.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesource?language=objc)
     #[unsafe(super(PHASEObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEObject")]

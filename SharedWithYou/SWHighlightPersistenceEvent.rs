@@ -6,22 +6,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger?language=objc)
+/// Signifies the type of persistence event trigger.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SWHighlightPersistenceEventTrigger(pub NSInteger);
 impl SWHighlightPersistenceEventTrigger {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/created?language=objc)
+    /// Signifies a creation event.
     #[doc(alias = "SWHighlightPersistenceEventTriggerCreated")]
     pub const Created: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/deleted?language=objc)
+    /// Signifies a deletion event.
     #[doc(alias = "SWHighlightPersistenceEventTriggerDeleted")]
     pub const Deleted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/renamed?language=objc)
+    /// Signifies a rename event.
     #[doc(alias = "SWHighlightPersistenceEventTriggerRenamed")]
     pub const Renamed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceeventtrigger/moved?language=objc)
+    /// Signifies a move event.
     #[doc(alias = "SWHighlightPersistenceEventTriggerMoved")]
     pub const Moved: Self = Self(4);
 }
@@ -35,9 +35,8 @@ unsafe impl RefEncode for SWHighlightPersistenceEventTrigger {
 }
 
 extern_class!(
+    /// An object that represents persistence activity for a highlight.
     /// A model object representing a persistence event that has happened on some content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightpersistenceevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWHighlightPersistenceEvent;

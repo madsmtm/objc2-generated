@@ -6,36 +6,60 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication?language=objc)
+    /// Indicates a preference that applies to any application.
     pub static kCFPreferencesAnyApplication: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication?language=objc)
+    /// Indicates a preference that applies only to the current application.
     pub static kCFPreferencesCurrentApplication: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost?language=objc)
+    /// Indicates a preference that applies to any host.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is not supported.
+    ///
+    ///
     pub static kCFPreferencesAnyHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost?language=objc)
+    /// Indicates a preference that applies only to the current host.
     pub static kCFPreferencesCurrentHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser?language=objc)
+    /// Indicates a preference that applies to any user.
     pub static kCFPreferencesAnyUser: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser?language=objc)
+    /// Indicates a preference that applies only to the current user.
     pub static kCFPreferencesCurrentUser: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyappvalue(_:_:)?language=objc)
+/// Obtains a preference value for the specified key and application.
+///
+/// Parameters:
+/// - key: The preference key whose value to obtain.
+///
+/// - applicationID: The identifier of the application whose preferences to search, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+///
+///
+/// ## Return Value
+///
+/// The preference data for the specified key and application. If no value was located, returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// Note that values returned from this function are immutable, even if you have recently set the value using a mutable object.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     key: &CFString,
@@ -51,7 +75,21 @@ pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesgetappbooleanvalue(_:_:_:)?language=objc)
+/// Convenience function that directly obtains a Boolean preference value for the specified key.
+///
+/// Parameters:
+/// - key: The preference key whose value to obtain. The key must specify a preference whose value is of type `Boolean`.
+///
+/// - applicationID: The identifier of the application whose preferences are searched, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, such as `com.foosoft`.
+///
+/// - keyExistsAndHasValidFormat: On return, `true` if the preference value for the specified key was located and found to be of type `Boolean`, otherwise `false`.
+///
+///
+/// ## Return Value
+///
+/// The preference data for the specified key and application, or if no value was located, `false`.
+///
+///
 ///
 /// # Safety
 ///
@@ -76,7 +114,21 @@ pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesgetappintegervalue(_:_:_:)?language=objc)
+    /// Convenience function that directly obtains an integer preference value for the specified key.
+    ///
+    /// Parameters:
+    /// - key: The preference key whose value you wish to obtain. The key must specify a preference whose value is of type `int`.
+    ///
+    /// - applicationID: The identifier of the application whose preferences you wish to search, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+    ///
+    /// - keyExistsAndHasValidFormat: On return, indicates whether the preference value for the specified key was located and found to be of type `int`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The preference data for the specified key and application. If no value was located, `0` is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -89,7 +141,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessetappvalue(_:_:_:)?language=objc)
+    /// Adds, modifies, or removes a preference.
+    ///
+    /// Parameters:
+    /// - key: The preference key whose value you wish to set.
+    ///
+    /// - value: The value to set for the specified `key` and application. Pass `NULL` to remove the specified key from the application’s preferences.
+    ///
+    /// - applicationID: The ID of the application whose preferences you wish to create or modify, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// New preference values are stored in the standard application preference location, `~/Library/Preferences/`. When called with [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication), modifications are performed in the preference domain “Current User, Current Application, Any Host.” If you need to create preferences in some other domain, use the low-level function [`CFPreferencesSetValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencessetvalue(_:_:_:_:_:)).
+    ///
+    /// You must call the [`CFPreferencesAppSynchronize`](https://developer.apple.com/documentation/corefoundation/cfpreferencesappsynchronize(_:)) function in order for your changes to be saved to permanent storage.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -101,7 +169,19 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesaddsuitepreferencestoapp(_:_:)?language=objc)
+/// Adds suite preferences to an application’s preference search chain.
+///
+/// Parameters:
+/// - applicationID: The ID of the application to which to add suite preferences, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+///
+/// - suiteID: The ID of the application suite preferences to add. Takes the form of a Java package name, `com.foosoft`.
+///
+///
+/// ## Discussion
+///
+/// Suite preferences allow you to maintain a set of preferences that are common to all applications in the suite. When a suite is added to an application’s search chain, all of the domains pertaining to that suite are inserted into the chain. Suite preferences are added between the “Current Application” domains and the “Any Application” domains. If you add multiple suite preferences to one application, the order of the suites in the search chain is non-deterministic. You can override a suite preference for a given application by defining the same preference key in the application specific preferences.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAddSuitePreferencesToApp(
     application_id: &CFString,
@@ -113,7 +193,13 @@ pub extern "C-unwind" fn CFPreferencesAddSuitePreferencesToApp(
     unsafe { CFPreferencesAddSuitePreferencesToApp(application_id, suite_id) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesremovesuitepreferencesfromapp(_:_:)?language=objc)
+/// Removes suite preferences from an application’s search chain.
+///
+/// Parameters:
+/// - applicationID: The ID of the application from which to remove suite preferences, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+///
+/// - suiteID: The ID of the application suite preferences to remove. Takes the form of a Java package name, `com.foosoft`.
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesRemoveSuitePreferencesFromApp(
     application_id: &CFString,
@@ -128,7 +214,23 @@ pub extern "C-unwind" fn CFPreferencesRemoveSuitePreferencesFromApp(
     unsafe { CFPreferencesRemoveSuitePreferencesFromApp(application_id, suite_id) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesappsynchronize(_:)?language=objc)
+/// Writes to permanent storage all pending changes to the preference data for the application, and reads the latest preference data from permanent storage.
+///
+/// Parameters:
+/// - applicationID: The ID of the application whose preferences to write to storage, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+///
+///
+/// ## Return Value
+///
+/// `true` if synchronization was successful, otherwise `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// Calling the function [`CFPreferencesSetAppValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencessetappvalue(_:_:_:)) is not in itself sufficient for storing preferences. The [`CFPreferencesAppSynchronize`](https://developer.apple.com/documentation/corefoundation/cfpreferencesappsynchronize(_:)) function writes to permanent storage all pending preference changes for the application. Typically you would call this function after multiple calls to [`CFPreferencesSetAppValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencessetappvalue(_:_:_:)). Conversely, preference data is cached after it is first read. Changes made externally are not automatically incorporated. The [`CFPreferencesAppSynchronize`](https://developer.apple.com/documentation/corefoundation/cfpreferencesappsynchronize(_:)) function reads the latest preferences from permanent storage.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) -> bool {
     extern "C-unwind" {
@@ -138,7 +240,31 @@ pub extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) 
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyvalue(_:_:_:_:)?language=objc)
+/// Returns a preference value for a given domain.
+///
+/// Parameters:
+/// - key: Preferences key for the value to obtain.
+///
+/// - applicationID: The ID of the application whose preferences are searched. Takes the form of a Java package name, such as `com.foosoft`.
+///
+/// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) if to search the current-user domain, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to search the any-user domain.
+///
+/// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) if to search the current-host domain, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to search the any-host domain.
+///
+///
+/// ## Return Value
+///
+/// The preference data for the specified domain. If the no value was located, returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function is the primitive get mechanism for the higher level preference function [`CFPreferencesCopyAppValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyappvalue(_:_:)) Unlike the high-level function, [`CFPreferencesCopyValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyvalue(_:_:_:_:)) searches only the exact domain specified. Do not use this function directly unless you have a need. All arguments must be non-`NULL`. Do not use arbitrary user and host names, instead pass the pre-defined domain qualifier constants.
+///
+/// Note that values returned from this function are immutable, even if you have recently set the value using a mutable object.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyValue(
     key: &CFString,
@@ -158,7 +284,29 @@ pub extern "C-unwind" fn CFPreferencesCopyValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopymultiple(_:_:_:_:)?language=objc)
+/// Returns a dictionary containing preference values for multiple keys.
+///
+/// Parameters:
+/// - keysToFetch: An array of preference keys the values of which to obtain.
+///
+/// - applicationID: The ID of the application whose preferences are searched. Takes the form of a Java package name, such as `com.foosoft`.
+///
+/// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) to search the current-user domain, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to search the any-user domain.
+///
+/// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) to search the current-host domain, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to search the any-host domain.
+///
+///
+/// ## Return Value
+///
+/// A dictionary containing the preference values for the keys specified by `keysToFetch` for the specified domain. If no values were located, returns an empty dictionary. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// Note that values returned from this function are immutable, even if you have recently set the value using a mutable object.
+///
+///
 #[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyMultiple(
@@ -182,7 +330,27 @@ pub extern "C-unwind" fn CFPreferencesCopyMultiple(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessetvalue(_:_:_:_:_:)?language=objc)
+    /// Adds, modifies, or removes a preference value for the specified domain.
+    ///
+    /// Parameters:
+    /// - key: Preferences key for the value you wish to set.
+    ///
+    /// - value: The value to set for `key` and application. Pass `NULL` to remove `key` from the domain.
+    ///
+    /// - applicationID: The ID of the application whose preferences you wish to modify. Takes the form of a Java package name, `com.foosoft`.
+    ///
+    /// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) to modify the current user’s preferences, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to modify the preferences of all users.
+    ///
+    /// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) to modify the preferences of the current host, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to modify the preferences of all hosts.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the primitive set mechanism for the higher level preference function [`CFPreferencesSetAppValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencessetappvalue(_:_:_:)). Only the exact domain specified is modified. Do not use this function directly unless you have a specific need. All arguments except `value` must be non-`NULL`. Do not use arbitrary user and host names, instead pass the pre-defined constants.
+    ///
+    /// You must call the [`CFPreferencesSynchronize`](https://developer.apple.com/documentation/corefoundation/cfpreferencessynchronize(_:_:_:)) function in order for your changes to be saved to permanent storage. Note that you can only save preferences for “Any User” if you have root privileges (or Admin privileges prior to OS X v10.6).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -197,7 +365,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessetmultiple(_:_:_:_:_:)?language=objc)
+    /// Convenience function that allows you to set and remove multiple preference values.
+    ///
+    /// Parameters:
+    /// - keysToSet: A dictionary containing the key/value pairs for the preferences  to set.
+    ///
+    /// - keysToRemove: An array containing a list of keys to remove.
+    ///
+    /// - applicationID: The ID of the application whose preferences you wish to modify. Takes the form of a Java package name, `com.foosoft`.
+    ///
+    /// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) to modify the current user’s preferences, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to modify the preferences of all users.
+    ///
+    /// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) to modify the preferences of the current host, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to modify the preferences of all hosts.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Behavior is undefined if a key is in both `keysToSet` and `keysToRemove`
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -214,7 +400,29 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencessynchronize(_:_:_:)?language=objc)
+/// For the specified domain, writes all pending changes to preference data to permanent storage, and reads latest preference data from permanent storage.
+///
+/// Parameters:
+/// - applicationID: The ID of the application whose preferences you wish to modify. Takes the form of a Java package name, `com.foosoft`.
+///
+/// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) to modify the current user’s preferences, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to modify the preferences of all users.
+///
+/// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) to search the current-host domain, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to search the any-host domain.
+///
+///
+/// ## Return Value
+///
+/// `true` if synchronization was successful, `false` if an error occurred.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is the primitive synchronize mechanism for the higher level preference function [`CFPreferencesAppSynchronize`](https://developer.apple.com/documentation/corefoundation/cfpreferencesappsynchronize(_:)); it writes updated preferences to permanent storage, and reads the latest preferences from permanent storage. Only the exact domain specified is modified. Note that to modify “Any User” preferences requires root privileges (or Admin privileges prior to OS X v10.6)—see [Authorization Services Programming Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995).
+///
+/// Do not use this function directly unless you have a specific need. All arguments must be non- `NULL`. Do not use arbitrary user and host names, instead pass the pre-defined constants.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesSynchronize(
     application_id: &CFString,
@@ -232,7 +440,19 @@ pub extern "C-unwind" fn CFPreferencesSynchronize(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyapplicationlist(_:_:)?language=objc)
+/// Constructs and returns the list of all applications that have preferences in the scope of the specified user and host.
+///
+/// Parameters:
+/// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) to search the current-user domain, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to search the any-user domain.
+///
+/// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) to search the current-host domain, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to search the any-host domain.
+///
+///
+/// ## Return Value
+///
+/// The list of application IDs. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 #[cfg(feature = "CFArray")]
 #[deprecated = "Unsupported API"]
 #[inline]
@@ -250,7 +470,21 @@ pub extern "C-unwind" fn CFPreferencesCopyApplicationList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencescopykeylist(_:_:_:)?language=objc)
+/// Constructs and returns the list of all keys set in the specified domain.
+///
+/// Parameters:
+/// - applicationID: The ID of the application whose preferences to search. Takes the form of a Java package name, `com.foosoft`.
+///
+/// - userName: [`kCFPreferencesCurrentUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentuser) to search the current-user domain, otherwise [`kCFPreferencesAnyUser`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyuser) to search the any-user domain.
+///
+/// - hostName: [`kCFPreferencesCurrentHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrenthost) to search the current-host domain, otherwise [`kCFPreferencesAnyHost`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyhost) to search the any-host domain.
+///
+///
+/// ## Return Value
+///
+/// The list of keys. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 #[cfg(feature = "CFArray")]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyKeyList(
@@ -269,7 +503,25 @@ pub extern "C-unwind" fn CFPreferencesCopyKeyList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpreferencesappvalueisforced(_:_:)?language=objc)
+/// Determines whether or not a given key has been imposed on the user.
+///
+/// Parameters:
+/// - key: The key you are querying.
+///
+/// - applicationID: The application’s ID, typically [`kCFPreferencesCurrentApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencescurrentapplication). Do not pass `NULL` or [`kCFPreferencesAnyApplication`](https://developer.apple.com/documentation/corefoundation/kcfpreferencesanyapplication). Takes the form of a Java package name, `com.foosoft`.
+///
+///
+/// ## Return Value
+///
+/// `true` if value of the key cannot be changed by the user, otherwise `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// In cases where machines and/or users are under some kind of management, you should use this function to determine whether or not to disable UI elements corresponding to those preference keys.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFPreferencesAppValueIsForced(
     key: &CFString,

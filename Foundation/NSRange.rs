@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangepointer?language=objc)
+/// Type indicating a parameter is a pointer to an `NSRange` structure.
 pub type NSRangePointer = *mut NSRange;
 
 // TODO: pub fn NSMakeRange(loc: NSUInteger,len: NSUInteger,) -> NSRange;
@@ -16,7 +16,13 @@ pub type NSRangePointer = *mut NSRange;
 
 // TODO: pub fn NSEqualRanges(range1: NSRange,range2: NSRange,) -> Bool;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionrange(_:_:)?language=objc)
+/// Returns the union of the specified ranges.
+///
+/// ## Return Value
+///
+/// A range covering all indices in and between `range1` and `range2`. If one range is completely contained in the other, the returned range is equal to the larger range.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
@@ -25,7 +31,19 @@ pub extern "C-unwind" fn NSUnionRange(range1: NSRange, range2: NSRange) -> NSRan
     unsafe { NSUnionRange(range1, range2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintersectionrange(_:_:)?language=objc)
+/// Returns the intersection of the specified ranges.
+///
+/// ## Return Value
+///
+/// A range describing the intersection of `range1` and `range2`—that is, a range containing the indices that exist in both ranges.
+///
+///
+///
+/// ## Discussion
+///
+/// If the returned range’s length field is 0, then the two ranges don’t intersect, and the value of the location field is undefined.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSIntersectionRange(range1: NSRange, range2: NSRange) -> NSRange {
     extern "C-unwind" {
@@ -36,7 +54,13 @@ pub extern "C-unwind" fn NSIntersectionRange(range1: NSRange, range2: NSRange) -
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromrange(_:)?language=objc)
+    /// Returns a string representation of a range.
+    ///
+    /// ## Return Value
+    ///
+    /// A string of the form “{a, b}”, where a and b are non-negative integers representing `aRange`.
+    ///
+    ///
     #[doc(alias = "NSStringFromRange")]
     #[cfg(feature = "NSString")]
     #[inline]
@@ -50,7 +74,13 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangefromstring(_:)?language=objc)
+/// Returns a range from a textual representation.
+///
+/// ## Discussion
+///
+/// Scans `aString` for two integers which are used as the location and length values, in that order, to create an `NSRange` struct. If `aString` only contains a single integer, it is used as the location value. If `aString` does not contain any integers, this function returns an `NSRange` struct whose location and length values are both 0.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSRangeFromString(a_string: &NSString) -> NSRange {

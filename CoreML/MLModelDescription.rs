@@ -7,10 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Information about a model, primarily the input and output format for each feature the model expects, and optional metadata.
     /// A description of a model containing input, output, and state feature descriptions, optionally outputted features
     /// with special meaning and metadata.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodeldescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelDescription;

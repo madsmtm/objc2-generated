@@ -7,73 +7,102 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerrordomain?language=objc)
+    /// The domain for errors associated with the Watch Connectivity framework.
     pub static WCErrorDomain: &'static NSString;
 }
 
+/// Constants for errors during a session.
 /// These are the possible error codes that can be returned from the WatchConnectivity APIs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WCErrorCode(pub NSInteger);
 impl WCErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/genericerror?language=objc)
+    /// An error that occurs when there is an unknown problem.
     #[doc(alias = "WCErrorCodeGenericError")]
     pub const GenericError: Self = Self(7001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/sessionnotsupported?language=objc)
+    /// An error indicating that the current device doesn’t support the use of session objects.
     #[doc(alias = "WCErrorCodeSessionNotSupported")]
     pub const SessionNotSupported: Self = Self(7002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/sessionmissingdelegate?language=objc)
+    /// An error indicating that the WatchKit extension doesn’t have a valid extension delegate to process events.
     #[doc(alias = "WCErrorCodeSessionMissingDelegate")]
     pub const SessionMissingDelegate: Self = Self(7003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/sessionnotactivated?language=objc)
+    /// An error indicating that the other device doesn’t have an active session.
     #[doc(alias = "WCErrorCodeSessionNotActivated")]
     pub const SessionNotActivated: Self = Self(7004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/devicenotpaired?language=objc)
+    /// An error indicating that the current device doesn’t have a paired counterpart.
+    ///
+    /// ## Discussion
+    ///
+    /// Communication can only occur between paired devices.
+    ///
+    ///
     #[doc(alias = "WCErrorCodeDeviceNotPaired")]
     pub const DeviceNotPaired: Self = Self(7005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/watchappnotinstalled?language=objc)
+    /// An error indicating that the Watch app isn’t an installed app on the user’s Apple Watch.
     #[doc(alias = "WCErrorCodeWatchAppNotInstalled")]
     pub const WatchAppNotInstalled: Self = Self(7006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/notreachable?language=objc)
+    /// An error indicating that the counterpart app isn’t reachable.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you send an immediate message to an app that isn’t running.
+    ///
+    ///
     #[doc(alias = "WCErrorCodeNotReachable")]
     pub const NotReachable: Self = Self(7007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/invalidparameter?language=objc)
+    /// An error indicating that a parameter is invalid.
     #[doc(alias = "WCErrorCodeInvalidParameter")]
     pub const InvalidParameter: Self = Self(7008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/payloadtoolarge?language=objc)
+    /// An error indicating an attempt to send an item that exceeds the maximum size limit.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur for both data dictionaries and files.
+    ///
+    ///
     #[doc(alias = "WCErrorCodePayloadTooLarge")]
     pub const PayloadTooLarge: Self = Self(7009);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/payloadunsupportedtypes?language=objc)
+    /// An error indicating that a dictionary contains nonproperty list types.
     #[doc(alias = "WCErrorCodePayloadUnsupportedTypes")]
     pub const PayloadUnsupportedTypes: Self = Self(7010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/messagereplyfailed?language=objc)
+    /// An error that occurs when the system can’t return the reply.
     #[doc(alias = "WCErrorCodeMessageReplyFailed")]
     pub const MessageReplyFailed: Self = Self(7011);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/messagereplytimedout?language=objc)
+    /// An error that occurs when the counterpart app doesn’t return a reply in time.
     #[doc(alias = "WCErrorCodeMessageReplyTimedOut")]
     pub const MessageReplyTimedOut: Self = Self(7012);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/fileaccessdenied?language=objc)
+    /// An error indicating that the system can’t transfer a file because it is inaccessible.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur when the file path is invalid or the app has insufficient privileges to access the file.
+    ///
+    ///
     #[doc(alias = "WCErrorCodeFileAccessDenied")]
     pub const FileAccessDenied: Self = Self(7013);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/deliveryfailed?language=objc)
+    /// An error that occurs when the system can’t deliver the payload.
     #[doc(alias = "WCErrorCodeDeliveryFailed")]
     pub const DeliveryFailed: Self = Self(7014);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/insufficientspace?language=objc)
+    /// An error indicating that there isn’t enough space on the receiving side to store the data.
     #[doc(alias = "WCErrorCodeInsufficientSpace")]
     pub const InsufficientSpace: Self = Self(7015);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/sessioninactive?language=objc)
+    /// An error indicating that the session is inactive.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you try to send data using an inactive session.
+    ///
+    ///
     #[doc(alias = "WCErrorCodeSessionInactive")]
     pub const SessionInactive: Self = Self(7016);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/transfertimedout?language=objc)
+    /// An error that occurs when the transfer reaches the timeout limit before it completes.
     #[doc(alias = "WCErrorCodeTransferTimedOut")]
     pub const TransferTimedOut: Self = Self(7017);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/companionappnotinstalled?language=objc)
+    /// An error indicating that the companion hasn’t installed the app.
     #[doc(alias = "WCErrorCodeCompanionAppNotInstalled")]
     pub const CompanionAppNotInstalled: Self = Self(7018);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code/watchonlyapp?language=objc)
+    /// An error indicating that the app is a watch-only app.
     #[doc(alias = "WCErrorCodeWatchOnlyApp")]
     pub const WatchOnlyApp: Self = Self(7019);
 }

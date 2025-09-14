@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallupdate?language=objc)
+    /// An encapsulation of new and changed information about a call.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) objects are used by the system to communicate changes to calls over time. Not every property on a [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) object must be set each time, as each object includes only new and changed information. For example, when a call is started, only some properties may be known and included in the first [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) object sent to the system, such as [`localizedCallerName`](https://developer.apple.com/documentation/callkit/cxcallupdate/localizedcallername). Later in the same call, other properties may change; for example, a call may be upgraded from audio only to audio and video, which would be reflected by a new [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) object with its [`hasVideo`](https://developer.apple.com/documentation/callkit/cxcallupdate/hasvideo) property set to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// When an incoming call is received, you construct a [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) object specifying a [`localizedCallerName`](https://developer.apple.com/documentation/callkit/cxcallupdate/localizedcallername) and pass that to the [`reportNewIncomingCallWithUUID:update:completion:`](https://developer.apple.com/documentation/callkit/cxprovider/reportnewincomingcall(with:update:completion:)) method to notify the telephony provider.
+    ///
+    /// When an active call is updated, you construct a [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) object specifying any updated information and pass that to the [`reportCallWithUUID:updated:`](https://developer.apple.com/documentation/callkit/cxprovider/reportcall(with:updated:)) method. For example, if a user changes their contact information during a call, you could notify the telephony provider of this change using a new [`CXCallUpdate`](https://developer.apple.com/documentation/callkit/cxcallupdate) object with the new value set to its [`remoteHandle`](https://developer.apple.com/documentation/callkit/cxcallupdate/remotehandle) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallUpdate;

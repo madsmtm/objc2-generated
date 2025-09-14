@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssavechangesrequest?language=objc)
+    /// An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context.
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]

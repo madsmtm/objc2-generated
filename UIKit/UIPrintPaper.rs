@@ -9,7 +9,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintpaper?language=objc)
+    /// The size of paper for a print job and the rectangular area that the content prints within.
+    ///
+    /// ## Overview
+    ///
+    /// In most cases, UIKit automatically creates an instance of [`UIPrintPaper`](https://developer.apple.com/documentation/uikit/uiprintpaper) that is appropriate for a print job. The UIKit framework has default paper sizes based on a print job’s output type ([`outputType`](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.property) is a property of the [`UIPrintInfo`](https://developer.apple.com/documentation/uikit/uiprintinfo) class). If the output type is [`UIPrintInfoOutputPhoto`](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/photo), the default paper size is 4x6 or A6 or some other standard size, depending on locale; if the output type is [`UIPrintInfoOutputGeneral`](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/general) or [`UIPrintInfoOutputGrayscale`](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/grayscale), the default paper size is US Letter (8 1/2 by 11 inches) or A4 or some other standard size, depending on locale.
+    ///
+    /// Applications may have special requirements for paper sizes. For example, a word-processing application may have items of “stationery” in which printable content must be drawn. If your application fits the special case, the delegate of [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) can implement the [`printInteractionController:choosePaper:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontrollerdelegate/printinteractioncontroller(_:choosepaper:)) method of the [`UIPrintInteractionControllerDelegate`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontrollerdelegate) protocol to return a suitable print paper object. One way to do this is to call the [`bestPaperForPageSize:withPapersFromArray:`](https://developer.apple.com/documentation/uikit/uiprintpaper/bestpaper(forpagesize:withpapersfrom:)) class method of [`UIPrintPaper`](https://developer.apple.com/documentation/uikit/uiprintpaper), passing in a array of print paper objects representing the paper sizes supported by a printer. The print paper object returned from this method represents the paper size best matched to the size requirement of the application.
+    ///
+    /// The printable rectangle ([`printableRect`](https://developer.apple.com/documentation/uikit/uiprintpaper/printablerect)) is the imageable area for the printer on a paper of a given size.
+    ///
+    /// If you are using a [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object to draw the content for printing, the rectangle stored in the [`printableRect`](https://developer.apple.com/documentation/uikit/uiprintpaper/printablerect) property is stored in the page renderer’s property of the same name and the paper size used for a print job is stored as part of the [`paperRect`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/paperrect) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintPaper;

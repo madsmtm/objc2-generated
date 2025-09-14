@@ -7,9 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract class representing measurements taken over a period of time.
+    /// A HealthKit sample represents a piece of data associated with a start and end time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksample?language=objc)
+    /// ## Overview
+    ///
+    /// The `HKSample` class is an abstract class. You should never instantiate a `HKSample` object directly. Instead, you always work with one of its concrete subclasses: [`HKCategorySample`](https://developer.apple.com/documentation/healthkit/hkcategorysample), [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample), [`HKCorrelation`](https://developer.apple.com/documentation/healthkit/hkcorrelation), or [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) classes.
+    ///
+    /// HealthKit samples are all immutable: You set the sample’s properties when you create it, and they cannot change.
+    ///
+    /// If the sample represents data over a duration, the start time must be earlier than the end time. If the sample represents data at a particular instant, the start and end times can be the same.
+    ///
+    ///
+    /// An abstract class representing measurements taken over a period of time.
     #[unsafe(super(HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKObject")]
@@ -83,21 +92,21 @@ impl HKSample {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksamplesortidentifierstartdate?language=objc)
+    /// A constant for sorting samples based on their start date.
     pub static HKSampleSortIdentifierStartDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksamplesortidentifierenddate?language=objc)
+    /// A constant for sorting samples based on their end date.
     pub static HKSampleSortIdentifierEndDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstartdate?language=objc)
+    /// The key path for accessing the sample’s start date.
     pub static HKPredicateKeyPathStartDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathenddate?language=objc)
+    /// The key path for accessing the sample’s end date.
     pub static HKPredicateKeyPathEndDate: &'static NSString;
 }

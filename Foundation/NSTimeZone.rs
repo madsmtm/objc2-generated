@@ -9,7 +9,45 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone?language=objc)
+    /// Information about standard time conventions associated with a specific geopolitical region.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this type bridges to [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone); use [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// Time zones represent the standard time policies for a geopolitical region. Time zones have identifiers like “America/Los_Angeles” and can also be identified by abbreviations, such as PST for Pacific Standard Time. You can create time zone objects by ID with [`initWithName:`](https://developer.apple.com/documentation/foundation/nstimezone/init(name:)) and by abbreviation with [`timeZoneWithAbbreviation:`](https://developer.apple.com/documentation/foundation/nstimezone/init(abbreviation:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Time zone database entries such as “America/Los_Angeles” are IDs, not names. An example of a time zone name is “Pacific Daylight Time”. Although many [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone) symbols include the word “name”, they actually refer to IDs.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Time zones can also represent a temporal offset—either plus or minus—from Greenwich Mean Time (GMT). For example, the temporal offset of Pacific Standard Time is 8 hours behind Greenwich Mean Time (GMT-8). You can create time zone objects with a temporal offset by using [`timeZoneForSecondsFromGMT:`](https://developer.apple.com/documentation/foundation/nstimezone/init(forsecondsfromgmt:)).
+    ///
+    /// You typically work with system time zones rather than creating time zones by identifier or by offset. The [`systemTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone/system) class property returns the time zone currently used by the system, if known. This value is cached once the property is accessed and doesn’t reflect any system time zone changes until you call the [`resetSystemTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone/resetsystemtimezone()) method. The [`localTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone/local) class property returns an autoupdating proxy object that always returns the current time zone used by the system. You can also set the [`defaultTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone/default) class property to make your app run as if it were in a different time zone than the system.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  You can’t use [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone) APIs to change the time zone of the device or of other apps.
+    ///
+    ///
+    ///
+    /// </div>
+    /// [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone) is _toll-free bridged_ with its Core Foundation counterpart, [`CFTimeZoneRef`](https://developer.apple.com/documentation/corefoundation/cftimezone). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`TimeZone`](https://developer.apple.com/documentation/foundation/timezone) structure, which bridges to the [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTimeZone;
@@ -121,28 +159,28 @@ impl DefaultRetained for NSTimeZone {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle?language=objc)
+/// Constants you use to specify a style when presenting time zone names.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTimeZoneNameStyle(pub NSInteger);
 impl NSTimeZoneNameStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/standard?language=objc)
+    /// Specifies a standard name style. For example, “Central Standard Time” for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleStandard")]
     pub const Standard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/shortstandard?language=objc)
+    /// Specifies a short name style. For example, “CST” for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleShortStandard")]
     pub const ShortStandard: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/daylightsaving?language=objc)
+    /// Specifies a daylight saving name style. For example, “Central Daylight Time” for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleDaylightSaving")]
     pub const DaylightSaving: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/shortdaylightsaving?language=objc)
+    /// Specifies a short daylight saving name style.  For example, “CDT” for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleShortDaylightSaving")]
     pub const ShortDaylightSaving: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/generic?language=objc)
+    /// Specifies a generic name style. For example, “Central Time” for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleGeneric")]
     pub const Generic: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle/shortgeneric?language=objc)
+    /// Specifies a generic time zone name. For example, “CT” for Central Time.
     #[doc(alias = "NSTimeZoneNameStyleShortGeneric")]
     pub const ShortGeneric: Self = Self(5);
 }
@@ -291,7 +329,7 @@ impl NSTimeZone {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nssystemtimezonedidchange?language=objc)
+    /// A notification posted when the time zone changes.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSSystemTimeZoneDidChangeNotification: &'static NSNotificationName;
 }

@@ -7,6 +7,27 @@ use crate::*;
 
 #[cfg(feature = "SCPreferences")]
 impl SCPreferences {
+    /// Sets the computer name preference to the specified name.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - name: The computer name.
+    ///
+    /// - nameEncoding: The encoding associated with the computer name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if successful; otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To commit these changes to permanent storage you must call the [`SCPreferencesCommitChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescommitchanges(_:)) function. In addition, you must call the [`SCPreferencesApplyChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencesapplychanges(_:)) function for the new name to become active.
+    ///
+    ///
     /// Updates the computer name preference.
     ///
     /// Note: To commit these changes to permanent storage you must
@@ -21,8 +42,6 @@ impl SCPreferences {
     /// Parameter `nameEncoding`: The encoding associated with the computer name.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetcomputername(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetComputerName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
@@ -42,6 +61,25 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Sets the local host name to the specified name.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - name: The local host name. This string must conform to the naming conventions of a DNS host name as specified in RFC 1034 (section 3.5).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if successful; otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To commit these changes to permanent storage you must call the [`SCPreferencesCommitChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescommitchanges(_:)) function. In addition, you must call the [`SCPreferencesApplyChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencesapplychanges(_:)) function for the new name to become active.
+    ///
+    ///
     /// Updates the local host name.
     ///
     /// Note: To commit these changes to permanent storage you must
@@ -57,8 +95,6 @@ impl SCPreferences {
     /// name as specified in RFC 1034 (section 3.5).
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetlocalhostname(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetLocalHostName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]

@@ -5,16 +5,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype?language=objc)
+/// The type of change represented in computing the difference of an ordered collection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionChangeType(pub NSInteger);
 impl NSCollectionChangeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype/insert?language=objc)
+    /// A change type that represents the insertion of an object into an ordered collection.
     #[doc(alias = "NSCollectionChangeInsert")]
     pub const Insert: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectionchangetype/remove?language=objc)
+    /// A change type that represents the removal of an object from an ordered collection.
     #[doc(alias = "NSCollectionChangeRemove")]
     pub const Remove: Self = Self(1);
 }
@@ -28,7 +28,13 @@ unsafe impl RefEncode for NSCollectionChangeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectionchange?language=objc)
+    /// An object that represents an indexed change within an ordered collection.
+    ///
+    /// ## Overview
+    ///
+    /// An ordered collection change represents changes by adding, removing, or moving objects within an ordered collection. Changes with an associated index indicate a move within the collection.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedCollectionChange<ObjectType: ?Sized = AnyObject>;

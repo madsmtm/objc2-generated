@@ -7,13 +7,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The task identifier to track launch measurements.
 /// Describes the general purpose of a specific launch task.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxlaunchtaskid?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MXLaunchTaskID = NSString;
 
 extern_class!(
+    /// The shared object that registers you to receive metrics, creates logs for custom metrics, and gives access to past reports.
+    ///
+    /// ## Overview
+    ///
+    /// The `MXMetricManager` shared object manages your subscription for receiving on-device daily metrics.
+    ///
+    /// MetricKit starts accumulating reports for your app after calling [`sharedManager`](https://developer.apple.com/documentation/metrickit/mxmetricmanager/shared) for the first time. To receive the reports, call [`addSubscriber:`](https://developer.apple.com/documentation/metrickit/mxmetricmanager/add(_:)) with an object that adopts the [`MXMetricManagerSubscriber`](https://developer.apple.com/documentation/metrickit/mxmetricmanagersubscriber) protocol. The system then delivers metric reports at most once per day, and diagnostic reports immediately in iOS 15 and later and macOS 12 and later. The reports contain the metrics from the past 24 hours and any previously undelivered daily reports. To pause receiving reports, call [`removeSubscriber:`](https://developer.apple.com/documentation/metrickit/mxmetricmanager/remove(_:)).
+    ///
+    /// The calls to add a subscriber and for receiving reports are safe to use in performance-sensitive code, such as app launch.
+    ///
+    /// The snippet below shows a simple class for using MetricKit.
+    ///
+    /// ```swift
+    /// class AppMetrics: NSObject, MXMetricManagerSubscriber {
+    ///     func receiveReports() {
+    ///        let shared = MXMetricManager.shared
+    ///        shared.add(self)
+    ///     }
+    ///
+    ///     func pauseReports() {
+    ///        let shared = MXMetricManager.shared
+    ///        shared.remove(self)
+    ///     }
+    ///
+    ///     // Receive daily metrics.
+    ///     func didReceive(_ payloads: [MXMetricPayload]) {
+    ///        // Process metrics.
+    ///     }
+    ///
+    ///     // Receive diagnostics immediately when available.
+    ///     func didReceive(_ payloads: [MXDiagnosticPayload]) {
+    ///        // Process diagnostics.
+    ///     }
+    /// }
+    ///
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  MetricKit delivers daily metric reports from iOS 13 or later, and macOS 26 or later.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An instance of this class can be used to retrieve periodic, aggregated power and performance metrics.
     ///
     /// To receive metrics, clients must acquire a reference to the shared instance of the metric manager and add an eligible MXMetricManagerSubscriber.
@@ -21,8 +66,6 @@ extern_class!(
     /// Metrics are not guaranteed to be delivered, but can be expected atleast once per day when conditions permit.
     ///
     /// Subscribers to the metric manager can remove themselves using removeSubscriber:subscriber if they no longer wish to receive metrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXMetricManager;
@@ -138,13 +181,12 @@ impl MXMetricManager {
 }
 
 extern_protocol!(
+    /// A protocol defining a method for receiving a daily metrics report.
     /// A protocol that allows the conforming object to receive metric payloads from the metric manager.
     ///
     /// In order to receive metric payloads, atleast one object must conform to this protocol and be subscribed   to the metric manager.
     ///
     /// Objects which conform to this protocol can be passed to addSubscriber:subscriber and removeSubscriber:subscriber to manage their subscription state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricmanagersubscriber?language=objc)
     pub unsafe trait MXMetricManagerSubscriber: NSObjectProtocol {
         #[cfg(feature = "MXMetricPayload")]
         /// This method is invoked when a new MXMetricPayload has been received.

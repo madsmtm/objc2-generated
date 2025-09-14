@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A mutable object that represents a group of contacts.
+    ///
+    /// ## Overview
+    ///
+    /// Contacts may be members of one or more groups, depending upon the accounts they come from. The `CNMutableGroup` class is not a thread-safe class.
+    ///
+    ///
     /// A mutable value object representing a group.
     ///
     ///
     /// CNMutableGroup is not thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnmutablegroup?language=objc)
     #[unsafe(super(CNGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNGroup")]

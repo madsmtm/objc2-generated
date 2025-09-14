@@ -6,47 +6,52 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorcodedomain?language=objc)
+    /// The error domain that ClassKit uses when issuing errors.
     pub static CLSErrorCodeDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code?language=objc)
+/// Error codes that ClassKit issues.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSErrorCode(pub NSInteger);
 impl CLSErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/none?language=objc)
+    /// No error.
     #[doc(alias = "CLSErrorCodeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/classkitunavailable?language=objc)
+    /// ClassKit isn’t available on this device.
     #[doc(alias = "CLSErrorCodeClassKitUnavailable")]
     pub const ClassKitUnavailable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidargument?language=objc)
+    /// An invalid argument was provided to the API.
     #[doc(alias = "CLSErrorCodeInvalidArgument")]
     pub const InvalidArgument: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidmodification?language=objc)
+    /// An attempt to modify a read-only object failed.
     #[doc(alias = "CLSErrorCodeInvalidModification")]
     pub const InvalidModification: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/authorizationdenied?language=objc)
+    /// The app isn’t authorized to perform the requested operation.
     #[doc(alias = "CLSErrorCodeAuthorizationDenied")]
     pub const AuthorizationDenied: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/databaseinaccessible?language=objc)
+    /// ClassKit isn’t accessible because the device is locked.
     #[doc(alias = "CLSErrorCodeDatabaseInaccessible")]
     pub const DatabaseInaccessible: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/limits?language=objc)
+    /// A limit has been exceeded.
     #[doc(alias = "CLSErrorCodeLimits")]
     pub const Limits: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidcreate?language=objc)
+    /// An attempt to save a new object that already exists in the data store failed.
     #[doc(alias = "CLSErrorCodeInvalidCreate")]
     pub const InvalidCreate: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidupdate?language=objc)
+    /// ClassKit failed to save an updated object in the data store.
     #[doc(alias = "CLSErrorCodeInvalidUpdate")]
     pub const InvalidUpdate: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/partialfailure?language=objc)
+    /// ClassKit encountered more than one error.
+    ///
+    /// ## Discussion
+    ///
+    /// When you receive an error of this type, the [`CLSErrorUnderlyingErrorsKey`](https://developer.apple.com/documentation/classkit/clserroruserinfokey/underlyingerrorskey) key in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary provides an array of the individual errors contributing to this one.
+    ///
+    ///
     #[doc(alias = "CLSErrorCodePartialFailure")]
     pub const PartialFailure: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserror/code/invalidaccountcredentials?language=objc)
     #[doc(alias = "CLSErrorCodeInvalidAccountCredentials")]
     pub const InvalidAccountCredentials: Self = Self(10);
 }
@@ -59,61 +64,69 @@ unsafe impl RefEncode for CLSErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserroruserinfokey?language=objc)
+/// Keys that appear in the user info dictionary in errors that ClassKit creates.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CLSErrorUserInfoKey = NSString;
 
 extern "C" {
+    /// A key whose value is the object that caused the error.
     /// Any object that caused a failure will be available in - [NSError userInfo]; under this key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clserroruserinfokey/objectkey?language=objc)
     pub static CLSErrorObjectKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
 extern "C" {
-    /// If multiple objects cause errors we return an error with code `CLSErrorCodePartialFailure` which will contain an array of errors in - [NSError userInfo]; under this key.
+    /// A key whose value is the array of errors that contributed to this error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clserroruserinfokey/underlyingerrorskey?language=objc)
+    /// ## Discussion
+    ///
+    /// This key only appears for errors with code [`partialFailure`](https://developer.apple.com/documentation/classkit/clserror/partialfailure) in Swift or [`CLSErrorCodePartialFailure`](https://developer.apple.com/documentation/classkit/clserror/code/partialfailure) in Objective-C, signifying that more than one error occurred.
+    ///
+    ///
+    /// If multiple objects cause errors we return an error with code `CLSErrorCodePartialFailure` which will contain an array of errors in - [NSError userInfo]; under this key.
     pub static CLSErrorUnderlyingErrorsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
 extern "C" {
     /// Errors with the code `CLSErrorCodePartialFailure` may contain an array of successful entities in - [NSError userInfo]; under this key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clserroruserinfokey/successfulobjectskey?language=objc)
     pub static CLSErrorSuccessfulObjectsKey: Option<&'static CLSErrorUserInfoKey>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath?language=objc)
+/// The set of possible key paths you use to search for contexts.
+///
+/// ## Discussion
+///
+/// Use these predicate key paths when constructing a predicate to send to the [`contextsMatchingPredicate:completion:`](https://developer.apple.com/documentation/classkit/clsdatastore/contexts(matching:completion:)) method.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CLSPredicateKeyPath = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath/datecreated?language=objc)
+    /// The date on which the context was created.
     pub static CLSPredicateKeyPathDateCreated: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath/identifier?language=objc)
+    /// The context’s identifier.
     pub static CLSPredicateKeyPathIdentifier: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath/title?language=objc)
+    /// The human readable name of the context.
     pub static CLSPredicateKeyPathTitle: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath/universallinkurl?language=objc)
+    /// The context’s universal URL link.
     pub static CLSPredicateKeyPathUniversalLinkURL: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath/topic?language=objc)
+    /// The context’s topic.
     pub static CLSPredicateKeyPathTopic: Option<&'static CLSPredicateKeyPath>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clspredicatekeypath/parent?language=objc)
+    /// The context’s direct ancestor in the context hierarchy.
     pub static CLSPredicateKeyPathParent: Option<&'static CLSPredicateKeyPath>;
 }

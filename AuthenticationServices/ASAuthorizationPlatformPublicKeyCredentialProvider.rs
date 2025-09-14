@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialprovider?language=objc)
+    /// A mechanism for providing public key credential requests to an app or service with iCloud Keychain.
+    ///
+    /// ## Overview
+    ///
+    /// The credential provider accesses public-private key pairs stored in iCloud Keychain for registration or authentication with a relying party. Instantiate this object, passing in the relying party identifier for the credentials.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPlatformPublicKeyCredentialProvider;

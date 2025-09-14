@@ -6,16 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum?language=objc)
+/// A type that represents the style to use when formatting relative dates, such as “1 week ago” or “last week”.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativeDateTimeFormatterStyle(pub NSInteger);
 impl NSRelativeDateTimeFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum/numeric?language=objc)
+    /// A style that uses a numeric style to describe relative dates, such as “1 day ago” or “in 3 weeks”.
     #[doc(alias = "NSRelativeDateTimeFormatterStyleNumeric")]
     pub const Numeric: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum/named?language=objc)
+    /// A style that uses named styles to describe relative dates, such as “yesterday”, “last week”, or “next week”.
+    ///
+    /// ## Discussion
+    ///
+    /// The formatter falls back to using [`NSRelativeDateTimeFormatterStyleNumeric`](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum/numeric) if a name isn’t available.
+    ///
+    ///
     #[doc(alias = "NSRelativeDateTimeFormatterStyleNamed")]
     pub const Named: Self = Self(1);
 }
@@ -28,22 +34,28 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum?language=objc)
+/// A type that represents the style to use when formatting the units of relative dates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativeDateTimeFormatterUnitsStyle(pub NSInteger);
 impl NSRelativeDateTimeFormatterUnitsStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/full?language=objc)
+    /// A style that uses full units, such as “2 months ago”.
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleFull")]
     pub const Full: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/spellout?language=objc)
+    /// A style that spells out units such as “two months ago”.
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleSpellOut")]
     pub const SpellOut: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/short?language=objc)
+    /// A style that uses shortened units, such as “2 mo. ago”.
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleShort")]
     pub const Short: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum/abbreviated?language=objc)
+    /// A style that uses abbreviated units, such as “2 mo. ago”.
+    ///
+    /// ## Discussion
+    ///
+    /// This style may give different results in languages other than English.
+    ///
+    ///
     #[doc(alias = "NSRelativeDateTimeFormatterUnitsStyleAbbreviated")]
     pub const Abbreviated: Self = Self(3);
 }
@@ -57,7 +69,13 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterUnitsStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter?language=objc)
+    /// A formatter that creates locale-aware string representations of a relative date or time.
+    ///
+    /// ## Overview
+    ///
+    /// Use the strings that the formatter produces, such as “1 hour ago”, “in 2 weeks”, “yesterday”, and “tomorrow” as standalone strings. Embedding them in other strings may not be grammatically correct.
+    ///
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

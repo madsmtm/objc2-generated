@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingsession?language=objc)
+    /// The encapsulation of a drag-and-drop action that supports modification of the drag while in progress.
+    ///
+    /// ## Overview
+    ///
+    /// You start a new dragging session by calling the `NSView` method [`beginDraggingSessionWithItems:event:source:`](https://developer.apple.com/documentation/appkit/nsview/begindraggingsession(with:event:source:)) method. This method immediately returns and you can further modify the properties of the dragging session. The actual drag begins at the next turn of the run loop.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingSession;

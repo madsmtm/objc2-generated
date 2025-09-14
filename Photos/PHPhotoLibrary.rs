@@ -9,25 +9,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus?language=objc)
+/// Information about your app’s authorization to access the user’s photo library.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAuthorizationStatus(pub NSInteger);
 impl PHAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/notdetermined?language=objc)
+    /// The user hasn’t set the app’s authorization status.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework automatically prompts for user authorization when you attempt to fetch assets, asset collections, or collection lists. Alternatively, you may call the [`requestAuthorizationForAccessLevel:handler:`](https://developer.apple.com/documentation/photos/phphotolibrary/requestauthorization(for:handler:)) method to prompt the user for authorization at a time of your choosing.
+    ///
+    ///
     #[doc(alias = "PHAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/restricted?language=objc)
+    /// The app isn’t authorized to access the photo library, and the user can’t grant such permission.
+    ///
+    /// ## Discussion
+    ///
+    /// Parental controls or institutional configuration profiles can restrict the user’s ability to grant photo library access to an app.
+    ///
+    ///
     #[doc(alias = "PHAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/denied?language=objc)
+    /// The user explicitly denied this app access to the photo library.
     #[doc(alias = "PHAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/authorized?language=objc)
+    /// The user explicitly granted this app access to the photo library.
     #[doc(alias = "PHAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phauthorizationstatus/limited?language=objc)
+    /// The user authorized this app for limited photo library access.
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`presentLimitedLibraryPickerFromViewController:`](https://developer.apple.com/documentation/photos/phphotolibrary/presentlimitedlibrarypicker(from:)) or [`presentLimitedLibraryPickerFromViewController:completionHandler:`](https://developer.apple.com/documentation/photos/phphotolibrary/presentlimitedlibrarypicker(from:completionhandler:)) to manually present the limited library picker.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Add the `PHPhotoLibraryPreventAutomaticLimitedAccessAlert` key with a Boolean value of `true` to your app’s `Info.plist` file to prevent the system from automatically presenting the limited library selection prompt.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "PHAuthorizationStatusLimited")]
     pub const Limited: Self = Self(4);
 }
@@ -40,16 +66,16 @@ unsafe impl RefEncode for PHAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phaccesslevel?language=objc)
+/// The app’s level of access to the user’s photo library.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAccessLevel(pub NSInteger);
 impl PHAccessLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phaccesslevel/addonly?language=objc)
+    /// A value that indicates the app may only add to the user’s photo library.
     #[doc(alias = "PHAccessLevelAddOnly")]
     pub const AddOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phaccesslevel/readwrite?language=objc)
+    /// A value that indicates the app can read from and write to the user’s photo library.
     #[doc(alias = "PHAccessLevelReadWrite")]
     pub const ReadWrite: Self = Self(2);
 }
@@ -63,7 +89,18 @@ unsafe impl RefEncode for PHAccessLevel {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibrarychangeobserver?language=objc)
+    /// A protocol to adopt to have the system notify your app of changes to the photo library.
+    ///
+    /// ## Overview
+    ///
+    /// The [`PHPhotoLibraryChangeObserver`](https://developer.apple.com/documentation/photos/phphotolibrarychangeobserver) protocol notifies you of changes that occur in the photo library, regardless of whether those changes are made by your app, by a user in the Photos app, or by another app that uses the Photos framework. To receive change messages, register your observer with the [`registerChangeObserver:`](https://developer.apple.com/documentation/photos/phphotolibrary/register(_:)-6y3b9) method. For any assets or collections that you fetch, Photos sends change messages whenever those assets or collections change. Use this protocol to track changes across multiple parts of your app or respond to changes made in another app or extension.
+    ///
+    /// ### Handling Changes: An Example
+    ///
+    /// The example code below shows how you might implement this protocol in a view controller that uses a [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) interface to display the contents of an album. The view controller keeps a reference to the [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection) object representing the displayed album and the [`PHFetchResult`](https://developer.apple.com/documentation/photos/phfetchresult) object (returned by the [`fetchAssetsInAssetCollection:options:`](https://developer.apple.com/documentation/photos/phasset/fetchassets(in:options:)) method) listing the album’s contents. Then, in its [`photoLibraryDidChange:`](https://developer.apple.com/documentation/photos/phphotolibrarychangeobserver/photolibrarydidchange(_:)) method, the view controller checks for differences between the objects it fetched and the new state of the photo library, and updates its collection view accordingly.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func photoLibraryDidChange(_ changeInstance: PHChange) {", "    guard let collectionView = self.collectionView else { return }", "    // Change notifications may be made on a background queue.", "    // Re-dispatch to the main queue to update the UI.", "    DispatchQueue.main.sync {", "        // Check for changes to the displayed album itself", "        // (its existence and metadata, not its member assets).", "        if let albumChanges = changeInstance.changeDetails(for: assetCollection) {", "            // Fetch the new album and update the UI accordingly.", "            assetCollection = albumChanges.objectAfterChanges! as! PHAssetCollection", "            navigationController?.navigationItem.title = assetCollection.localizedTitle", "        }", "        // Check for changes to the list of assets (insertions, deletions, moves, or updates).", "        if let changes = changeInstance.changeDetails(for: fetchResult) {", "            // Keep the new fetch result for future use.", "            fetchResult = changes.fetchResultAfterChanges", "            if changes.hasIncrementalChanges {", "                // If there are incremental diffs, animate them in the collection view.", "                collectionView.performBatchUpdates({", "                    // For indexes to make sense, updates must be in this order:", "                    // delete, insert, reload, move.", "                    if let removed = changes.removedIndexes where removed.count > 0 {", "                        collectionView.deleteItems(at: removed.map { IndexPath(item: $0, section:0) })", "                    }", "                    if let inserted = changes.insertedIndexes where inserted.count > 0 {", "                        collectionView.insertItems(at: inserted.map { IndexPath(item: $0, section:0) })", "                    }", "                    if let changed = changes.changedIndexes where changed.count > 0 {", "                        collectionView.reloadItems(at: changed.map { IndexPath(item: $0, section:0) })", "                    }", "                    changes.enumerateMoves { fromIndex, toIndex in", "                        collectionView.moveItem(at: IndexPath(item: fromIndex, section: 0),", "                                                to: IndexPath(item: toIndex, section: 0))", "                    }", "                })", "            } else {", "                // Reload the collection view if incremental diffs aren't available.", "                collectionView.reloadData()", "            }", "        }", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)photoLibraryDidChange:(PHChange *)changeInfo {", "    // Change notifications may be made on a background queue.", "    // Re-dispatch to the main queue to update the UI.", "    dispatch_async(dispatch_get_main_queue(), ^{", "        // Check for changes to the displayed album itself", "        // (its existence and metadata, not its member assets).", "        PHObjectChangeDetails *albumChanges = [changeInfo changeDetailsForObject:self.displayedAlbum];", "        if (albumChanges) {", "            // Fetch the new album and update the UI accordingly.", "            self.displayedAlbum = [albumChanges objectAfterChanges];", "            self.navigationController.navigationItem.title = self.displayedAlbum.localizedTitle;", "        }", " ", "        // Check for changes to the list of assets (insertions, deletions, moves, or updates).", "        PHFetchResultChangeDetails *collectionChanges = [changeInfo changeDetailsForFetchResult:self.albumContents];", "        if (collectionChanges) {", "            // Keep the new fetch result for future use.", "            self.albumContents = collectionChanges.fetchResultAfterChanges;", " ", "            if (collectionChanges.hasIncrementalChanges)  {", "                // If there are incremental diffs, animate them in the collection view.", "                [self.collectionView performBatchUpdates:^{", "                    NSIndexSet *removed = collectionChanges.removedIndexes;", "                    if (removed.count) {", "                        [self.collectionView deleteItemsAtIndexPaths:[self indexPathsFromIndexSet:removed]];", "                    }", "                    NSIndexSet *inserted = collectionChanges.insertedIndexes;", "                    if (inserted.count) {", "                        [self.collectionView insertItemsAtIndexPaths:[self indexPathsFromIndexSet:inserted]];", "                    }", "                    NSIndexSet *changed = collectionChanges.changedIndexes;", "                    if (changed.count) {", "                        [self.collectionView reloadItemsAtIndexPaths:[self indexPathsFromIndexSet:changed]];", "                    }", "                    if (collectionChanges.hasMoves) {", "                        [collectionChanges enumerateMovesWithBlock:^(NSUInteger fromIndex, NSUInteger toIndex) {", "                            NSIndexPath *fromIndexPath = [NSIndexPath indexPathForItem:fromIndex inSection:0];", "                            NSIndexPath *toIndexPath = [NSIndexPath indexPathForItem:toIndex inSection:0];", "                            [self.collectionView moveItemAtIndexPath:fromIndexPath toIndexPath:toIndexPath];", "                        }];", "                    }", "                } completion:nil];", "            } else {", "                // Reload the collection view if incremental diffs aren't available.", "                [self.collectionView reloadData];", "            }", "        }", "    });", "}"], metadata: None }] }] })
+    ///
     pub unsafe trait PHPhotoLibraryChangeObserver: NSObjectProtocol {
         #[cfg(feature = "PHChange")]
         #[unsafe(method(photoLibraryDidChange:))]
@@ -73,7 +110,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibraryavailabilityobserver?language=objc)
+    /// A protocol to adopt to have the system notify your app when the availability of a photo library changes.
+    ///
+    /// ## Overview
+    ///
+    /// Observing changes to the photo library’s availability is primarily of concern with Mac apps created using macOS and Mac Catalyst, where the library may reside on an external drive or in cloud storage.
+    ///
+    ///
     pub unsafe trait PHPhotoLibraryAvailabilityObserver: NSObjectProtocol {
         #[unsafe(method(photoLibraryDidBecomeUnavailable:))]
         #[unsafe(method_family = none)]
@@ -82,7 +125,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotolibrary?language=objc)
+    /// An object that manages access and changes to the user’s photo library.
+    ///
+    /// ## Overview
+    ///
+    /// The object represents the entire set of assets and collections that the Photos app manages, including assets stored on the local device and those stored in iCloud Photos. Use this object for the following tasks:
+    ///
+    /// - Retrieving or verifying the user’s permission for your app to access Photos content
+    ///
+    /// - Making changes to assets and collections; for example, editing asset metadata or content, inserting new assets, or rearranging the members of a collection
+    ///
+    /// - Determining which records change since a previous state of the Photos library
+    ///
+    /// - Registering for update messages the system sends when the library changes
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPhotoLibrary;

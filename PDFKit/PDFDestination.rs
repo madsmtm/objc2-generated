@@ -10,13 +10,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfdestinationunspecifiedvalue?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Unspecified value used when a destination’s actual x or y value is unimportant.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kPDFDestinationUnspecifiedValue: CGFloat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdestination?language=objc)
+    /// A `PDFDestination` object describes a point on a PDF page.
+    ///
+    /// ## Overview
+    ///
+    /// In typical usage, you do not initialize `PDFDestination` objects but rather get them as either attributes of [`PDFAnnotationLink`](https://developer.apple.com/documentation/pdfkit/pdfannotationlink) or [`PDFOutline`](https://developer.apple.com/documentation/pdfkit/pdfoutline) objects, or in response to the `PDFView` method [`currentDestination`](https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFDestination;

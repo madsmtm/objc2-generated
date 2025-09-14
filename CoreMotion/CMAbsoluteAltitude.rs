@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmabsolutealtitudedata?language=objc)
+    /// Data that records a change in absolute altitude.
+    ///
+    /// ## Overview
+    ///
+    /// Absolute altitude is only available on iPhone 12 and later and Apple Watch 6 or SE and later.
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

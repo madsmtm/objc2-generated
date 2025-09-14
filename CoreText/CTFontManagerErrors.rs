@@ -8,20 +8,28 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// CFError objects with this domain have error codes corresponding to one of the `CTFontManagerError` errors listed in `Font Registration Errors` and [`CTFontManagerError`](https://developer.apple.com/documentation/coretext/ctfontmanagererror).
+    ///
+    ///
     /// CFError domain for CTFontManager errors
     ///
     /// CFErrors with this domain will have error codes corresponding to one of the CTFontManagerErrors above.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrordomain?language=objc)
     pub static kCTFontManagerErrorDomain: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// User info key to be used with CFError references returned from registration functions. The value associated with this key in the user info dictionary of a CFError object is a CFArray of font URLs that failed with the given error.
+    ///
+    ///
     /// User info key to be used with CFError references returned from registration functions.
     ///
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font URLs that failed with given error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfonturlskey?language=objc)
     pub static kCTFontManagerErrorFontURLsKey: &'static CFString;
 }
 
@@ -29,8 +37,6 @@ extern "C" {
     /// User info key to be used with CFError references returned from registration functions.
     ///
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font descriptors that failed with given error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontdescriptorskey?language=objc)
     pub static kCTFontManagerErrorFontDescriptorsKey: &'static CFString;
 }
 
@@ -38,11 +44,10 @@ extern "C" {
     /// User info key to be used with CFError references returned from registration functions.
     ///
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font asset name strings that failed with given error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontassetnamekey?language=objc)
     pub static kCTFontManagerErrorFontAssetNameKey: &'static CFString;
 }
 
+/// Errors that prevent unregistration of fonts for a specified font file URL.
 /// Font registration errors
 ///
 /// Errors that would prevent registration of fonts for a specified font file URL.
@@ -80,62 +85,60 @@ extern "C" {
 /// The operation failed due to a system limitation.
 ///
 /// The specified scope is not supported.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontManagerError(pub CFIndex);
 impl CTFontManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/filenotfound?language=objc)
+    /// An error that indicates the file doesn’t exist at the specified URL.
     #[doc(alias = "kCTFontManagerErrorFileNotFound")]
     pub const FileNotFound: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/insufficientpermissions?language=objc)
+    /// An error that indicates insufficient permissions to access the file.
     #[doc(alias = "kCTFontManagerErrorInsufficientPermissions")]
     pub const InsufficientPermissions: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/unrecognizedformat?language=objc)
+    /// An error that indicates the file’s format is unrecognized or unsupported.
     #[doc(alias = "kCTFontManagerErrorUnrecognizedFormat")]
     pub const UnrecognizedFormat: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/invalidfontdata?language=objc)
+    /// An error that indicates the file contains invalid font data that could cause system problems.
     #[doc(alias = "kCTFontManagerErrorInvalidFontData")]
     pub const InvalidFontData: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/alreadyregistered?language=objc)
+    /// An error that indicates the file is already registered in the specified scope.
     #[doc(alias = "kCTFontManagerErrorAlreadyRegistered")]
     pub const AlreadyRegistered: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/exceededresourcelimit?language=objc)
+    /// An error that indicates an operation failure due to a system limitation.
     #[doc(alias = "kCTFontManagerErrorExceededResourceLimit")]
     pub const ExceededResourceLimit: Self = Self(106);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/assetnotfound?language=objc)
+    /// An error that indicates the asset isn’t found.
     #[doc(alias = "kCTFontManagerErrorAssetNotFound")]
     pub const AssetNotFound: Self = Self(107);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/notregistered?language=objc)
+    /// An error that indicates the file isn’t registered in the specified scope.
     #[doc(alias = "kCTFontManagerErrorNotRegistered")]
     pub const NotRegistered: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/inuse?language=objc)
+    /// An error that indicates the font file is actively in use and can’t be unregistered.
     #[doc(alias = "kCTFontManagerErrorInUse")]
     pub const InUse: Self = Self(202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/systemrequired?language=objc)
+    /// An error that indicates the file is required by the system and can’t be unregistered.
     #[doc(alias = "kCTFontManagerErrorSystemRequired")]
     pub const SystemRequired: Self = Self(203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/registrationfailed?language=objc)
+    /// An error that indicates the file can’t be processed due to an unexpected FontProvider error.
     #[doc(alias = "kCTFontManagerErrorRegistrationFailed")]
     pub const RegistrationFailed: Self = Self(301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/missingentitlement?language=objc)
+    /// An error that indicates the file can’t be processed because the provider doesn’t have a necessary entitlement.
     #[doc(alias = "kCTFontManagerErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(302);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/insufficientinfo?language=objc)
+    /// An error that indicates the font descriptor doesn’t have the necessary information to specify a font file.
     #[doc(alias = "kCTFontManagerErrorInsufficientInfo")]
     pub const InsufficientInfo: Self = Self(303);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/cancelledbyuser?language=objc)
+    /// An error that indicates the user cancelled the operation.
     #[doc(alias = "kCTFontManagerErrorCancelledByUser")]
     pub const CancelledByUser: Self = Self(304);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/duplicatedname?language=objc)
+    /// An error that indicates the file can’t register because of a duplicate font name.
     #[doc(alias = "kCTFontManagerErrorDuplicatedName")]
     pub const DuplicatedName: Self = Self(305);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/invalidfilepath?language=objc)
+    /// An error that indicates the file isn’t in an allowed location, which must be either in the app’s bundle or an on-demand resource.
     #[doc(alias = "kCTFontManagerErrorInvalidFilePath")]
     pub const InvalidFilePath: Self = Self(306);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror/unsupportedscope?language=objc)
+    /// An error that indicates the specified scope isn’t supported.
     #[doc(alias = "kCTFontManagerErrorUnsupportedScope")]
     pub const UnsupportedScope: Self = Self(307);
 }

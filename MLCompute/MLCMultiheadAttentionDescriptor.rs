@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration object you use to create a multi-head attention layer.
     /// The MLCMultiheadAttentionDescriptor specifies a Multi-Head Attention descriptor
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentiondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -10,7 +10,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkgaugeprovider?language=objc)
+    /// An abstract superclass that provides all the common behaviors for the gauge providers.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class yourself. Instead, create instances of the concrete subclasses based on the type of gauge you’re trying to create.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -73,7 +79,23 @@ impl CLKGaugeProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clksimplegaugeprovider?language=objc)
+    /// A gauge that shows a fractional value.
+    ///
+    /// ## Overview
+    ///
+    /// A simple gauge provider displays values that map to a `0.0` to `1.0` range. For example, you could use the gauge to show the percentage of a task that has been completed, or the current temperature within a specified temperature range.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Tinted graphic complications display gauges using a solid color chosen by the user.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For time intervals, use the [`CLKTimeIntervalGaugeProvider`](https://developer.apple.com/documentation/clockkit/clktimeintervalgaugeprovider).
+    ///
+    ///
     #[unsafe(super(CLKGaugeProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -138,7 +160,21 @@ impl CLKSimpleGaugeProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clktimeintervalgaugeprovider?language=objc)
+    /// A gauge that tracks time intervals.
+    ///
+    /// ## Overview
+    ///
+    /// Use this gauge provider to visually show the amount of time that has elapsed within the specified time interval.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Tinted graphic complications display gauges using a solid color chosen by the user.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CLKGaugeProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

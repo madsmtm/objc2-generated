@@ -6,12 +6,20 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttask/completionhandler?language=objc)
+/// Implement this block to retrieve the error of the script executed by [`executeWithCompletionHandler:`](https://developer.apple.com/documentation/foundation/nsuserscripttask/execute(completionhandler:)).
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserScriptTaskCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttask?language=objc)
+    /// An object that executes scripts.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSUserScriptTask`](https://developer.apple.com/documentation/foundation/nsuserscripttask) class is able to run all the scripts normally run by the one of its subclasses, however it ignores the results. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any.
+    ///
+    /// If you need to execute scripts and get the input and output information use the [`NSUserUnixTask`](https://developer.apple.com/documentation/foundation/nsuserunixtask), [`NSUserAppleScriptTask`](https://developer.apple.com/documentation/foundation/nsuserapplescripttask), and [`NSUserAutomatorTask`](https://developer.apple.com/documentation/foundation/nsuserautomatortask) sub classes.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserScriptTask;
@@ -69,12 +77,22 @@ impl DefaultRetained for NSUserScriptTask {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtask/completionhandler?language=objc)
+/// Implement this block to retrieve an error from the Unix scripted executed by [`executeWithArguments:completionHandler:`](https://developer.apple.com/documentation/foundation/nsuserunixtask/execute(witharguments:completionhandler:)).
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserUnixTaskCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtask?language=objc)
+    /// An object that executes unix applications.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSUserUnixTask`](https://developer.apple.com/documentation/foundation/nsuserunixtask) class is intended to run unix applications, typically a shell script, from your application. It is intended to execute user-supplied scripts, and will execute them outside of the application’s sandbox, if any.
+    ///
+    /// The class is not intended to execute scripts built into an application; for that, use one of the [`NSTask`](https://developer.apple.com/documentation/foundation/process), [`NSAppleScript`](https://developer.apple.com/documentation/foundation/nsapplescript), or [`AMWorkflow`](https://developer.apple.com/documentation/automator/amworkflow) classes.  If the application is sandboxed, then the script must be in the [`NSApplicationScriptsDirectory`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationscriptsdirectory) folder.  A sandboxed application may read from, but not write to, this folder.
+    ///
+    /// If you simply need to execute unix scripts without regard to input or output, use [`NSUserScriptTask`](https://developer.apple.com/documentation/foundation/nsuserscripttask), which can execute any of the specific types.  If you need specific control over the input to, or output from, or the error stream of the script, use this class.
+    ///
+    ///
     #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserUnixTask;
@@ -171,7 +189,7 @@ impl DefaultRetained for NSUserUnixTask {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttask/completionhandler?language=objc)
+/// Implement this block to retrieve the result of the AppleScript executed by [`executeWithAppleEvent:completionHandler:`](https://developer.apple.com/documentation/foundation/nsuserapplescripttask/execute(withappleevent:completionhandler:)).
 #[cfg(all(
     feature = "NSAppleEventDescriptor",
     feature = "NSError",
@@ -181,7 +199,17 @@ pub type NSUserAppleScriptTaskCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSAppleEventDescriptor, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttask?language=objc)
+    /// An object that executes AppleScript scripts.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSUserAppleScriptTask`](https://developer.apple.com/documentation/foundation/nsuserapplescripttask) class is intended to run AppleScript scripts from your application. It is intended to execute user-supplied scripts and will execute them outside of the application’s sandbox, if any.
+    ///
+    /// The class is not intended to execute scripts built into an application; for that, use one of the [`NSTask`](https://developer.apple.com/documentation/foundation/process) classes. If the application is sandboxed, then the script must be in the [`NSApplicationScriptsDirectory`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationscriptsdirectory) folder. A sandboxed application may read from, but not write to, this folder.
+    ///
+    /// If you simply need to execute scripts without regard to input or output, use [`NSUserScriptTask`](https://developer.apple.com/documentation/foundation/nsuserscripttask), which can execute any of the specific types. If you need specific control over the input to or output from the script, use this class.
+    ///
+    ///
     #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAppleScriptTask;
@@ -244,13 +272,23 @@ impl DefaultRetained for NSUserAppleScriptTask {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortask/completionhandler?language=objc)
+/// Implement this block to retrieve the output of the Automator workflow executed by [`executeWithInput:completionHandler:`](https://developer.apple.com/documentation/foundation/nsuserautomatortask/execute(withinput:completionhandler:)).
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserAutomatorTaskCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortask?language=objc)
+    /// An object that executes Automator workflows.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSUserAutomatorTask`](https://developer.apple.com/documentation/foundation/nsuserautomatortask) class is intended to run Automator workflows from your application. It is intended to execute user-supplied workflows, and will execute them outside of the application’s sandbox, if any.
+    ///
+    /// The class is not intended to execute scripts built into an application; for that, use one of the [`NSTask`](https://developer.apple.com/documentation/foundation/process) or [`AMWorkflow`](https://developer.apple.com/documentation/automator/amworkflow) classes.  If the application is sandboxed, then the script must be in the [`NSApplicationScriptsDirectory`](https://developer.apple.com/documentation/foundation/filemanager/searchpathdirectory/applicationscriptsdirectory) folder.  A sandboxed application may read from, but not write to, this folder.
+    ///
+    /// If you simply need to execute scripts without regard to input or output, use [`NSUserScriptTask`](https://developer.apple.com/documentation/foundation/nsuserscripttask), which can execute any of the specific types.  If you need specific control over the input to or output from the workflow, use this class.
+    ///
+    ///
     #[unsafe(super(NSUserScriptTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserAutomatorTask;

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlgazetteer?language=objc)
+    /// A collection of terms and their labels, which take precedence over a word tagger.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`NLGazetteer`](https://developer.apple.com/documentation/naturallanguage/nlgazetteer) to augment an [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) when you need to tag a specific set of terms (single words or short phrases) with a label. Typically, you add one gazetteer per language, or one language-independent gazetteer, to an [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) with its [`setGazetteers:forTagScheme:`](https://developer.apple.com/documentation/naturallanguage/nltagger/setgazetteers(_:for:)) method. The tagger uses its gazetteers to look up each term it processes. If a gazetteer has a label for a term, the tagger uses that label to tag the term, instead of inferring a tag itself.
+    ///
+    /// Typically, you create a gazetteer at development time, such as in a macOS playground, with Create ML’s [`MLGazetteer`](https://developer.apple.com/documentation/createml/mlgazetteer). Alternatively, you can create an [`NLGazetteer`](https://developer.apple.com/documentation/naturallanguage/nlgazetteer) at runtime by using [`initWithDictionary:language:error:`](https://developer.apple.com/documentation/naturallanguage/nlgazetteer/init(dictionary:language:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLGazetteer;

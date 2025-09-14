@@ -10,8 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Configuration value you set to prioritize quality or performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/qualityprioritization-swift.enum?language=objc)
+/// Configuration value you set to prioritize quality or performance.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -19,7 +18,6 @@ use crate::*;
 pub struct VTSuperResolutionScalerConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationQualityPrioritization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/qualityprioritization-swift.enum/normal?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
 }
@@ -36,10 +34,15 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationQualityPrioritizat
 
 /// Available algorithm revisions.
 ///
+/// ## Overview
+///
+/// A new enum case with a higher revision number is added when the processing algorithm is updated. The [`defaultRevision`](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/defaultrevision) property provides the default algorithm revision.
+///
+///
+/// Available algorithm revisions.
+///
 /// A new enum case with a higher revision number is added when the processing algorithm is updated.
 /// The ``VTSuperResolutionScalerConfiguration/defaultRevision`` property provides the default algorithm revision.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -47,7 +50,6 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationQualityPrioritizat
 pub struct VTSuperResolutionScalerConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationRevision {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/revision-swift.enum/revision1?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -63,8 +65,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationRevision {
 }
 
 /// Available super-resolution processor input types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/inputtype-swift.enum?language=objc)
+/// Available super-resolution processor input types.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -72,10 +73,8 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationRevision {
 pub struct VTSuperResolutionScalerConfigurationInputType(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationInputType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/inputtype-swift.enum/video?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationInputTypeVideo")]
     pub const Video: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/inputtype-swift.enum/image?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationInputTypeImage")]
     pub const Image: Self = Self(2);
 }
@@ -91,8 +90,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationInputType {
 }
 
 /// Available super-resolution processor model status types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus?language=objc)
+/// Available super-resolution processor model status types.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -100,13 +98,10 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationInputType {
 pub struct VTSuperResolutionScalerConfigurationModelStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationModelStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus/downloadrequired?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationModelStatusDownloadRequired")]
     pub const DownloadRequired: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus/downloading?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationModelStatusDownloading")]
     pub const Downloading: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus/ready?language=objc)
     #[doc(alias = "VTSuperResolutionScalerConfigurationModelStatusReady")]
     pub const Ready: Self = Self(2);
 }
@@ -123,6 +118,17 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationModelStatus {
 
 /// Indicates the order of input frames.
 ///
+/// ## Overview
+///
+/// When submitting [`VTSuperResolutionScalerParameters`](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters) to the processor, you need to provide one of these values based on how the input frames are related to each other.
+///
+/// Use [`VTSuperResolutionScalerParametersSubmissionModeSequential`](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum/sequential) to indicate that the current submission follows presentation time order without jumps or skips, when compared to previous submissions. This value provides better processor performance than other values.
+///
+/// Use [`VTSuperResolutionScalerParametersSubmissionModeRandom`](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum/random) to indicate that the current submission has no relation to the previous submission. Typically, this indicates a jump or skip in the frame sequence. The processor clears internal caches when it receives this value in `VTFrameProcessor/processWithParameters` function call.
+///
+///
+/// Indicates the order of input frames.
+///
 /// When submitting ``VTSuperResolutionScalerParameters`` to the processor, you need to provide one of these values based on
 /// how the input frames are related to each other.
 ///
@@ -133,8 +139,6 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationModelStatus {
 /// Use ``VTSuperResolutionScalerParametersSubmissionModeRandom`` to indicate that the current submission has no relation
 /// to the previous submission. Typically, this indicates a jump or skip in the frame sequence. The processor clears
 /// internal caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -142,10 +146,8 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationModelStatus {
 pub struct VTSuperResolutionScalerParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerParametersSubmissionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum/random?language=objc)
     #[doc(alias = "VTSuperResolutionScalerParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum/sequential?language=objc)
     #[doc(alias = "VTSuperResolutionScalerParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
 }
@@ -164,6 +166,21 @@ unsafe impl RefEncode for VTSuperResolutionScalerParametersSubmissionMode {
 extern_class!(
     /// Configuration that you use to set up the super-resolution processor.
     ///
+    /// ## Overview
+    ///
+    /// This configuration enables the super-resolution processor on a `VTFrameProcessor` session.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// The super-resolution processor may require ML models which the framework needs to download in order to operate. Before calling [`startSessionWithConfiguration:error:`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/startsession(configuration:)) with an instance of this class, it is important that you verify that the necessary models are present by checking [`configurationModelStatus`](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/configurationmodelstatus). If models are not available, you can trigger model download using the [`downloadConfigurationModelWithCompletionHandler:`](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/downloadconfigurationmodel(completionhandler:)) method. Best practice is to confirm availability of models and drive download with user awareness and interaction before engaging workflows that need this processor.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Configuration that you use to set up the super-resolution processor.
+    ///
     /// This configuration enables the super-resolution processor on a `VTFrameProcessor` session.
     ///
     /// > Important: The super-resolution processor may require ML models which the framework needs to download in order to
@@ -172,8 +189,6 @@ extern_class!(
     /// If models are not available, you can trigger model download using the ``downloadConfigurationModelWithCompletionHandler:``
     /// method. Best practice is to confirm availability of models and drive download with user awareness and interaction
     /// before engaging workflows that need this processor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -434,11 +449,18 @@ impl VTSuperResolutionScalerConfiguration {
 extern_class!(
     /// An object that contains both input and output parameters that the super-resolution processor needs to run on a frame.
     ///
+    /// ## Overview
+    ///
     /// Use this object in the `processWithParameters` call of the `VTFrameProcessor` class. The output parameter for this class is `destinationFrame`, where the processor returns the output frame (as `VTFrameProcessorFrame`) back to you once `processWithParameters` completes.
     ///
     /// `VTSuperResolutionScalerParameters` are frame-level parameters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters?language=objc)
+    ///
+    /// An object that contains both input and output parameters that the super-resolution processor needs to run on a frame.
+    ///
+    /// Use this object in the `processWithParameters` call of the `VTFrameProcessor` class. The output parameter for this class is `destinationFrame`, where the processor returns the output frame (as `VTFrameProcessorFrame`) back to you once `processWithParameters` completes.
+    ///
+    /// `VTSuperResolutionScalerParameters` are frame-level parameters.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

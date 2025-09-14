@@ -7,7 +7,57 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcloudidentifier?language=objc)
+    /// An object that identifies an asset or collection that syncs through iCloud Photos.
+    ///
+    /// ## Overview
+    ///
+    /// A cloud identifier is a type of identifier that behaves like a local identifier. Use cloud identifiers to identify objects that sync across devices through iCloud Photos. You can store, sync, and use cloud identifiers with devices synced with an iCloud account. You’re also able to use secure coding to encode and decode cloud identifiers.
+    ///
+    /// A local identifier is valid for referring to objects only in the context of a local device. These objects include [`PHAsset`](https://developer.apple.com/documentation/photos/phasset), [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection), and [`PHCollectionList`](https://developer.apple.com/documentation/photos/phcollectionlist).
+    ///
+    /// Because a cloud identifier is universal, you can use it on any iCloud-synced device. Convert the cloud identifier back to a local identifier and perform a fetch to find the equivalent object on that device. Perform batch lookups of identifiers using [`localIdentifierMappingsForCloudIdentifiers:`](https://developer.apple.com/documentation/photos/phphotolibrary/localidentifiermappingsforcloudidentifiers:) and [`cloudIdentifierMappingsForLocalIdentifiers:`](https://developer.apple.com/documentation/photos/phphotolibrary/cloudidentifiermappingsforlocalidentifiers:).
+    ///
+    /// ```swift
+    /// // Get the local identifier mappings for the cloud identifiers.
+    /// let identifierMappings = library.localIdentifierMappings(for: assetCloudIdentifiers)
+    /// ```
+    ///
+    /// Retrieving identifier mappings can be an expensive operation, so perform lookups sparingly. If a lookup fails, inspect the error property on [`PHCloudIdentifierMapping`](https://developer.apple.com/documentation/photos/phcloudidentifiermapping) or [`PHLocalIdentifierMapping`](https://developer.apple.com/documentation/photos/phlocalidentifiermapping) for details. See [`PHPhotosError`](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code) for additional error details.
+    ///
+    /// ```swift
+    /// // Iterate over the cloud identifiers and add or handle missing local identifiers.
+    /// for cloudIdentifier in assetCloudIdentifiers {
+    ///     guard let identifierMapping = identifierMappings[cloudIdentifier] else {
+    ///         print("Failed to find a mapping for \(cloudIdentifier).")
+    ///         continue
+    ///     }
+    ///
+    ///     // Track the local identifier if it exists.
+    ///     if let localIdentifier = identifierMapping.localIdentifier {
+    ///         localIdentifiers.append(localIdentifier)
+    ///     } else if let error = identifierMapping.error as? PHPhotosError {
+    ///         switch error.code {
+    ///         case .identifierNotFound:
+    ///             // Skip the missing or deleted assets.
+    ///             print("Failed to find the local identifier for \(cloudIdentifier). \(error.localizedDescription))")
+    ///         case .multipleIdentifiersFound:
+    ///             // Prompt the user to resolve the cloud identifier that matched multiple assets.
+    ///             print("Found multiple local identifiers for \(cloudIdentifier). \(error.localizedDescription)")
+    ///             if let selectedLocalIdentifier = promptUserForPotentialReplacement(with: error.userInfo[PHLocalIdentifiersErrorKey]) {
+    ///                 localIdentifiers.append(selectedLocalIdentifier)
+    ///             }
+    ///         default:
+    ///             print("Encountered an unexpected error looking up the local identifier for \(cloudIdentifier). \(error.localizedDescription)")
+    ///         }
+    ///     }
+    /// }
+    ///
+    /// // Fetch assets using the found identifiers.
+    /// let mappedAssets = PHAsset.fetchAssets(withLocalIdentifiers: localIdentifiers,
+    ///                                        options: nil)
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCloudIdentifier;
@@ -70,11 +120,16 @@ impl PHCloudIdentifier {
 }
 
 extern_class!(
+    /// An object that contains the cloud identifier result from looking up a local identifier, or an error indicating why the lookup failed.
+    ///
+    /// ## Overview
+    ///
+    /// The error property exhibits two common errors—[`PHPhotosError.Code.identifierNotFound`](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/identifiernotfound) and [`PHPhotosError.Code.multipleIdentifiersFound`](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/multipleidentifiersfound). When encountering multiple identifiers, use the error’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) property to retrieve a list of matched local identifiers. You can access them using [`PHLocalIdentifiersErrorKey`](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey).
+    ///
+    ///
     /// Contains the cloud identifier result from looking up a local identifier via
     /// `cloudIdentifierMappingsForLocalIdentifiers,`or an
     /// `error`indicating why the lookup failed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phcloudidentifiermapping?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCloudIdentifierMapping;
@@ -126,11 +181,10 @@ impl PHCloudIdentifierMapping {
 }
 
 extern_class!(
+    /// An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.
     /// Contains the local identifier result from looking up a cloud identifier via
     /// `localIdentifierMappingsForCloudIdentifiers,`or an
     /// `error`indicating why the lookup failed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiermapping?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLocalIdentifierMapping;
@@ -244,9 +298,8 @@ impl PHPhotoLibrary {
 }
 
 extern "C" {
+    /// A constant value that indicates that the system can’t resolve a local object from a global identifier.
     /// DEPRECATED: If the local object cannot be resolved from a global identifier, PHLocalIdentifierNotFound is provided in that array slot.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifiernotfound?language=objc)
     #[deprecated]
     pub static PHLocalIdentifierNotFound: &'static NSString;
 }

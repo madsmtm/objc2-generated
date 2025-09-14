@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baurldownload?language=objc)
+    /// An object that represents a remote asset to download.
     #[unsafe(super(BADownload, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BADownload")]

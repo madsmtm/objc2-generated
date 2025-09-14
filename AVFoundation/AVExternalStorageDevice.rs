@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Represents a physical external storage device that stores media assets.
+    ///
+    /// ## Overview
+    ///
+    /// Each storage device instance corresponds to a physical external storage device where the system can media assets. You can access all of the currently available external storage devices with the [`AVExternalStorageDeviceDiscoverySession`](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicediscoverysession) object’s [`externalStorageDevices`](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicediscoverysession/externalstoragedevices) property.
+    ///
+    ///
     /// An AVExternalStorageDevice represents a physical external storage device connected to the device that can be used to store captured media assets.
     ///
     ///
     /// Each instance of AVExternalStorageDevice corresponds to a physical external storage device where captured media assets can be stored. Instances of AVExternalStorageDevice cannot be created directly. An array of all currently available external storage devices can be obtained using AVExternalStorageDeviceDiscoverySession.
     ///
     /// Instances of AVExternalStorageDevice can be used with AVCaptureFileOutput subclasses for writing media files.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalStorageDevice;
@@ -144,12 +149,11 @@ impl AVExternalStorageDevice {
 }
 
 extern_class!(
+    /// Informs your app when the external storage devices connect to and disconnect from the system.
     /// AVExternalStorageDeviceDiscoverySession is used to monitor connection / disconnection of external storage devices to the device.
     ///
     ///
     /// AVExternalStorageDeviceDiscoverySession is a singleton that lists the external storage devices connected to this device. The client is expected to key-value observe the externalStorageDevices property for changes to the external storage devices list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalstoragedevicediscoverysession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalStorageDeviceDiscoverySession;

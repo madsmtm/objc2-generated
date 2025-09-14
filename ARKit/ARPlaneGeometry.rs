@@ -10,12 +10,23 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A 3D mesh describing the shape of a detected plane in world-tracking AR sessions.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides the estimated general shape of a detected plane, in the form of a detailed 3D mesh appropriate for use with various rendering technologies or for exporting 3D assets. (For a quick way to visualize a plane geometry using SceneKit, see the [`ARSCNPlaneGeometry`](https://developer.apple.com/documentation/arkit/arscnplanegeometry) class.)
+    ///
+    /// Unlike the [`ARPlaneAnchor`](https://developer.apple.com/documentation/arkit/arplaneanchor) [`center`](https://developer.apple.com/documentation/arkit/arplaneanchor/center) and [`extent`](https://developer.apple.com/documentation/arkit/arplaneanchor/extent) properties, which estimate only a rectangular area for a detected plane, a plane anchor’s [`geometry`](https://developer.apple.com/documentation/arkit/arplaneanchor/geometry) property provides a more detailed estimate of  the 2D area covered by that plane. For example, if ARKit detects a circular tabletop, the resulting [`ARPlaneGeometry`](https://developer.apple.com/documentation/arkit/arplanegeometry) objects roughly match the general shape of the table. As the session continues to run, ARKit provides updated plane anchors whose associated geometry refines the estimated shape of the plane.
+    ///
+    /// You can use this model to more precisely place 3D content that should appear only on a detected flat surface. For example, to ensure that virtual objects don’t fall off the edge of a table. You can also use this model to create occlusion geometry, which hides other virtual content behind the detected surface in the camera image.
+    ///
+    /// The shape of a plane geometry is always convex. That is, the boundary polygon for a plane geometry is a minimal convex hull enclosing all points that ARKit recognizes or estimates are part of the plane.
+    ///
+    ///
     /// Object representing the geometry of a plane.
     ///
     /// The plane geometry will have a growing number of triangles
     /// and vertices updated from frame to frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplanegeometry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

@@ -8,20 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A video field mode that requests deinterlacing of video fields.
     /// Use with videoFieldMode property to request deinterlacing of video fields.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields?language=objc)
     pub static AVPlayerItemTrackVideoFieldModeDeinterlaceFields: &'static NSString;
 }
 
 extern_class!(
+    /// An object that represents the presentation state of an asset track during playback.
     /// An AVPlayerItemTrack carries a reference to an AVAssetTrack as well as presentation settings for that track.
     ///
     ///
     /// Note that inspection of assets tracks is provided by AVAssetTrack.
     /// This class is intended to represent presentation state for a track of an asset that's played by an AVPlayer and AVPlayerItem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemtrack?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

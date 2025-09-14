@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbarappearance?language=objc)
+    /// An object for customizing the appearance of a navigation bar.
+    ///
+    /// ## Overview
+    ///
+    /// After creating a [`UINavigationBarAppearance`](https://developer.apple.com/documentation/uikit/uinavigationbarappearance) object, use the methods and properties of this class to specify the appearance you want for items in the navigation bar. Use the inherited properties from [`UIBarAppearance`](https://developer.apple.com/documentation/uikit/uibarappearance) to configure the background and shadow attributes of the navigation bar itself.
+    ///
+    ///
     #[unsafe(super(UIBarAppearance, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -11,7 +11,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate?language=objc)
+    /// A template that describes available predicates and how to display them.
+    ///
+    /// ## Overview
+    ///
+    /// You can create instances of `NSPredicateEditorRowTemplate` programmatically or in Interface Builder. By default, a noncompound row template has three views: a popup (or static text field) on the left, a popup or static text field for operators, and either a popup or other view on the right.  You can subclass `NSPredicateEditorRowTemplate` to create a row template with different numbers or types of views.
+    ///
+    /// `NSPredicateEditorRowTemplate` is a concrete class, but it has five primitive methods that are called by [`NSPredicateEditor`](https://developer.apple.com/documentation/appkit/nspredicateeditor): [`templateViews`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/templateviews), [`matchForPredicate:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/match(for:)), [`setPredicate:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/setpredicate(_:)), [`displayableSubpredicatesOfPredicate:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/displayablesubpredicates(of:)), and [`predicateWithSubpredicates:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/predicate(withsubpredicates:)). `NSPredicateEditorRowTemplate` implements all of these methods, but you can override them for custom templates. The primitive methods are used by an instance of `NSPredicateEditor` as follows.
+    ///
+    /// First, an instance of `NSPredicateEditor` is created, and some row templates are set on it—either through a nib file or programmatically. The first thing predicate editor does is ask each of the templates for their views, using [`templateViews`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/templateviews).
+    ///
+    /// After setting up the predicate editor, you typically send it a [`objectValue`](https://developer.apple.com/documentation/appkit/nscontrol/objectvalue) message to restore a saved predicate. `NSPredicateEditor` needs to determine which of its templates should display each predicate in the predicate tree. It does this by sending each of its row templates a [`matchForPredicate:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/match(for:)) message and choosing the one that returns the highest value.
+    ///
+    /// After finding the best match for a predicate, `NSPredicateEditor` copies that template to get fresh views, inserts them into the proper row, and then sets the predicate on the template using [`setPredicate:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/setpredicate(_:)). Within that method, the `NSPredicateEditorRowTemplate` object must set its views’ values to represent that predicate.
+    ///
+    /// `NSPredicateEditorRowTemplate` next asks the template for the “displayable sub-predicates” of the predicate by sending a [`displayableSubpredicatesOfPredicate:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/displayablesubpredicates(of:)) message. If a template represents a predicate in its entirety, or if the predicate has no subpredicates, it can return `nil` for this.  Otherwise, it should return a list of predicates to be made into sub-rows of that template’s row. The whole process repeats for each sub-predicate.
+    ///
+    /// At this point, the user sees the predicate that was saved.  If the user then makes some changes to the views of the templates, this causes `NSPredicateEditor` to recompute its predicate by asking each of the templates to return the predicate represented by the new view values, passing in the subpredicates represented by the sub-rows (an empty array if there are none, or `nil` if they aren’t supported by that predicate type):
+    ///
+    /// [`predicateWithSubpredicates:`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/predicate(withsubpredicates:))
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPredicateEditorRowTemplate;

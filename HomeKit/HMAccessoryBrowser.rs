@@ -8,10 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A network browser you can use to discover new accessories in a home.
+    ///
+    /// ## Overview
+    ///
+    /// Discovering new network accessories is an expensive operation in terms of time and power. Only start searching for new accessories when the user explicitly asks to do so, and stop searching as soon as the user has chosen the new accessories to add to their home.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To enable a consistent user experience across HomeKit enabled apps, use either the [`addAndSetupAccessoriesWithCompletionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(completionhandler:)) or the [`addAndSetupAccessoriesWithPayload:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(with:completionhandler:)) method of the [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome) class instead of an accessory browser. These calls manage all the details of the accessory search process for you.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// This class is used to discover new accessories in the home
     /// that have never been paired with and therefore not part of the home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorybrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessoryBrowser;
@@ -112,9 +125,20 @@ impl HMAccessoryBrowser {
 }
 
 extern_protocol!(
-    /// This delegate receives updates about new accessories in the home.
+    /// An interface used to notify an accessory browser delegate of new accessories.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorybrowserdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To enable a consistent user experience across HomeKit enabled apps, use either the [`addAndSetupAccessoriesWithCompletionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(completionhandler:)) or the [`addAndSetupAccessoriesWithPayload:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(with:completionhandler:)) method of the [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome) class instead of an accessory browser. These calls manage all the details of the accessory search process for you.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// This delegate receives updates about new accessories in the home.
     pub unsafe trait HMAccessoryBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "HMAccessory")]
         /// Informs the delegate about new accessories discovered in the home.

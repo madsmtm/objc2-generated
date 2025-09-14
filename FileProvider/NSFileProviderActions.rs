@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderextensionactionidentifier?language=objc)
+/// An identifier for custom actions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderExtensionActionIdentifier = NSString;
 

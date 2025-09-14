@@ -9,7 +9,7 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget?language=objc)
+/// The kind of texture pointed to by the property.
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -19,13 +19,13 @@ pub struct GLKTextureTarget(pub GLenum);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureTarget {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget/target2d?language=objc)
+    /// The texture is a 2D texture.
     #[doc(alias = "GLKTextureTarget2D")]
     pub const Target2D: Self = Self(3553);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget/targetcubemap?language=objc)
+    /// The texture is a set of six textures that make up a cube map.
     #[doc(alias = "GLKTextureTargetCubeMap")]
     pub const TargetCubeMap: Self = Self(34067);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktexturetarget/targetct?language=objc)
+    /// The number of items in the enumeration.
     #[doc(alias = "GLKTextureTargetCt")]
     pub const TargetCt: Self = Self(2);
 }
@@ -42,7 +42,7 @@ unsafe impl RefEncode for GLKTextureTarget {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode?language=objc)
+/// The mode used to combine the texture with other color components.
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -52,13 +52,13 @@ pub struct GLKTextureEnvMode(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureEnvMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode/replace?language=objc)
+    /// The output color is set to the color fetched from the texture. The input color is ignored.
     #[doc(alias = "GLKTextureEnvModeReplace")]
     pub const Replace: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode/modulate?language=objc)
+    /// The output color is calculated by multiplying the texture’s color by the input color.
     #[doc(alias = "GLKTextureEnvModeModulate")]
     pub const Modulate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureenvmode/decal?language=objc)
+    /// The output color is calculated by using the texture’s alpha component to blend the texture’s color with the input color.
     #[doc(alias = "GLKTextureEnvModeDecal")]
     pub const Decal: Self = Self(2);
 }
@@ -76,7 +76,15 @@ unsafe impl RefEncode for GLKTextureEnvMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectpropertytexture?language=objc)
+    /// Texture drawing parameters for use in GLKit rendering effects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GLKEffectPropertyTexture`](https://developer.apple.com/documentation/glkit/glkeffectpropertytexture) class defines properties that are used to configure an OpenGL texturing operation. The texturing operation combines an input color and a color sampled from the texture and outputs a new color to the next stage of calculations. The [`envMode`](https://developer.apple.com/documentation/glkit/glkeffectpropertytexture/envmode) property determines the function used to calculate the output color from the two input colors.
+    ///
+    /// If an effect only includes a single texture property, then the input color is the lighting color calculated by the lighting stage of the graphics pipeline. An effect can also include multiple [`GLKEffectPropertyTexture`](https://developer.apple.com/documentation/glkit/glkeffectpropertytexture) objects. When an effect includes multiple properties, the first texture stage uses the lighting color as the first input color. Each texture stage after that uses the output of the previous stage as the input color.
+    ///
+    ///
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]

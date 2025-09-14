@@ -7,35 +7,63 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct?language=objc)
+/// Constants you use to identify an app’s standard menus.
+///
+/// ## Overview
+///
+/// Use these constants to identify [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) objects containing standard configurations.
+///
+/// When creating a custom menu identifier, provide a reverse domain name string value, such as `UIMenu.Identifier("com.example.apple-samplecode.MenubarSample.reloadMenu")`.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIMenuIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct?language=objc)
+/// Options you use to configure a menu’s appearance.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIMenuOptions: NSUInteger {
-/// Show children inline in parent, instead of hierarchically
+/// An option indicating the menu displays inline with its parent menu instead of displaying as a submenu.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/displayinline?language=objc)
+/// ## Discussion
+///
+/// When the menu system displays an inline menu, it separates the menu from the surrounding menus by displaying line separators.
+///
+///
+/// Show children inline in parent, instead of hierarchically
         #[doc(alias = "UIMenuOptionsDisplayInline")]
         const DisplayInline = 1<<0;
-/// Indicates whether the menu should be rendered with a destructive appearance in its parent
+/// An option indicating the menu’s appearance represents a destructive action.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/destructive?language=objc)
+/// ## Discussion
+///
+/// Apply this option when you need a menu for a destructive action. Use the menu’s title to communicate the action to perform, and use the menu’s child menu elements to ask for user confirmation of that action.
+///
+///
+/// Indicates whether the menu should be rendered with a destructive appearance in its parent
         #[doc(alias = "UIMenuOptionsDestructive")]
         const Destructive = 1<<1;
+/// An option indicating whether the menu and its submenus allow a single menu item that’s in the “on” state.
 /// Indicates whether the menu (and any submenus) should only allow a single "on" menu item.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/singleselection?language=objc)
         #[doc(alias = "UIMenuOptionsSingleSelection")]
         const SingleSelection = 1<<5;
-/// Indicates that this menu should be rendered as a palette.
+/// An option indicating the menu displays as a row of menu elements for choosing from a collection of items.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/options-swift.struct/displayaspalette?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Related sessions from WWDC23
+///  Session 10055: [What’s new in UIKit](https://developer.apple.com/videos/play/wwdc2023/10055/)
+///
+///
+///
+/// </div>
+///
+/// Indicates that this menu should be rendered as a palette.
         #[doc(alias = "UIMenuOptionsDisplayAsPalette")]
         const DisplayAsPalette = 1<<7;
     }
@@ -49,24 +77,22 @@ unsafe impl RefEncode for UIMenuOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize?language=objc)
+/// Constants that determine the size of an element in a menu.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementSize(pub NSInteger);
 impl UIMenuElementSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/small?language=objc)
+    /// A constant that represents a small menu element size.
     #[doc(alias = "UIMenuElementSizeSmall")]
     pub const Small: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/medium?language=objc)
+    /// A constant that represents a medium menu element size.
     #[doc(alias = "UIMenuElementSizeMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/large?language=objc)
+    /// A constant that represents a large menu element size.
     #[doc(alias = "UIMenuElementSizeLarge")]
     pub const Large: Self = Self(2);
     /// Automatically determine the appropriate element size for the current context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/elementsize/automatic?language=objc)
     #[doc(alias = "UIMenuElementSizeAutomatic")]
     pub const Automatic: Self = Self(-1);
 }
@@ -80,7 +106,37 @@ unsafe impl RefEncode for UIMenuElementSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu?language=objc)
+    /// A container for grouping related menu elements in an app menu or contextual menu.
+    ///
+    /// ## Overview
+    ///
+    /// Create [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) objects and use them to construct the menus and submenus your app displays. You provide menus for your app when it runs on macOS, and key command elements in those menus also appear in the discoverability HUD on iPad when someone presses the Command key. You also use menus to display contextual actions in response to specific interactions with one of your views. Every menu has a title, an optional image, and an optional set of child elements. When someone selects an element from the menu, the system executes the code you provide. The code sample below illustrates adding a menu group that contains two menu elements — New and Open — to the File menu.
+    ///
+    /// ```swift
+    /// // Ensure that the builder is modifying the menu bar system.
+    /// guard builder.system == UIMenuSystem.main else { return }
+    ///
+    /// let newDocument = UIKeyCommand(title: "New",
+    ///                                action: #selector(newDocument(_:)),
+    ///                                input: "n",
+    ///                                modifierFlags: .command)
+    ///
+    /// let openDocument = UIKeyCommand(title: "Open...",
+    ///                                 action: #selector(openDocument(_:)),
+    ///                                 input: "o",
+    ///                                 modifierFlags: .command)
+    ///
+    /// // Use the .displayInline option to avoid displaying the menu as a submenu,
+    /// // and to separate it from the other menu elements using a line separator.
+    /// let newMenu = UIMenu(title: "", options: .displayInline, children: [newDocument, openDocument])
+    ///
+    /// // Insert the menu item at the top of the File menu.
+    /// builder.insertChild(newMenu, atStartOfMenu: .file)
+    /// ```
+    ///
+    /// For examples of how you use [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu), see [Adding menus and shortcuts to the menu bar and user interface](https://developer.apple.com/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface).
+    ///
+    ///
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -254,350 +310,313 @@ impl UIMenu {
 }
 
 extern "C" {
+    /// The standard app menu.
     /// Application menu top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/application?language=objc)
     pub static UIMenuApplication: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The standard File menu.
     /// File menu top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/file?language=objc)
     pub static UIMenuFile: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The standard Edit menu.
     /// Edit menu top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/edit?language=objc)
     pub static UIMenuEdit: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The standard View menu.
     /// View menu top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/view?language=objc)
     pub static UIMenuView: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The standard Window menu.
     /// Window menu top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/window?language=objc)
     pub static UIMenuWindow: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The standard Help menu.
     /// Help menu top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/help?language=objc)
     pub static UIMenuHelp: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The About menu.
     /// About menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/about?language=objc)
     pub static UIMenuAbout: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Preferences menu.
     /// Preferences menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/preferences?language=objc)
     pub static UIMenuPreferences: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Services menu.
     /// Services menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/services?language=objc)
     pub static UIMenuServices: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Hide menu.
     /// Hide, Hide Others, Show All menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/hide?language=objc)
     pub static UIMenuHide: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Quit menu.
     /// Quit menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/quit?language=objc)
     pub static UIMenuQuit: &'static UIMenuIdentifier;
 }
 
 extern "C" {
     /// New item menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/newitem?language=objc)
+    /// New item menu
     pub static UIMenuNewItem: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The New Scene menu.
     /// New scene menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/newscene?language=objc)
     #[deprecated]
     pub static UIMenuNewScene: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Open menu.
     /// Open menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/open?language=objc)
     pub static UIMenuOpen: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Open Recent menu.
     /// Open Recent menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/openrecent?language=objc)
     pub static UIMenuOpenRecent: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Close menu.
     /// Close menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/close?language=objc)
     pub static UIMenuClose: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Print menu.
     /// Print menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/print?language=objc)
     pub static UIMenuPrint: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Document menu.
     /// Document-related menu items: Duplicate, Move, Rename, Export. The `.document` menu is added to Mac Catalyst applications by default. iOS Apps on the Mac will have the `.document` menu inserted when and if `UINavigationItem.titleMenuProvider` is set to a nonnull value, and from launch on subsequent executions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/document?language=objc)
     pub static UIMenuDocument: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Undo/Redo menu.
     /// Undo, Redo menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/undoredo?language=objc)
     pub static UIMenuUndoRedo: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The standard Edit menu.
     /// Cut, Copy, Paste, Delete, Select, Select All menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/standardedit?language=objc)
     pub static UIMenuStandardEdit: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Find menu.
     /// Find menu, containing Find Panel items and other finding operations like Use Selection for Find
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/find?language=objc)
     pub static UIMenuFind: &'static UIMenuIdentifier;
 }
 
 extern "C" {
     /// Find panel menu (Find, Find and Replace, Find Next, Find Previous)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/findpanel?language=objc)
+    /// Find panel menu (Find, Find and Replace, Find Next, Find Previous)
     pub static UIMenuFindPanel: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Replace menu.
     /// Replace..., Transliterate Chinese menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/replace?language=objc)
     pub static UIMenuReplace: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Share menu.
     /// Share menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/share?language=objc)
     pub static UIMenuShare: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Text Style menu.
     /// Bold, Italics, Underline  menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/textstyle?language=objc)
     pub static UIMenuTextStyle: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Spelling menu.
     /// Spelling menu contained within Edit menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/spelling?language=objc)
     pub static UIMenuSpelling: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Spelling Panel menu.
     /// Show Spelling, Check Document Now menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/spellingpanel?language=objc)
     pub static UIMenuSpellingPanel: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Spelling Options menu.
     /// Check Spelling While Typing and other spelling and grammar-checking options menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/spellingoptions?language=objc)
     pub static UIMenuSpellingOptions: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Substitutions menu.
     /// Substitutions menu contained within Edit menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/substitutions?language=objc)
     pub static UIMenuSubstitutions: &'static UIMenuIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/substitutionspanel?language=objc)
+    /// The Substitutions Panel menu.
     pub static UIMenuSubstitutionsPanel: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Substitutions Options menu.
     /// Smart Copy, Smart Paste, Smart Quotes, and other substitution options menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/substitutionoptions?language=objc)
     pub static UIMenuSubstitutionOptions: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Transformations menu.
     /// Transformations menu contained within Edit menu (contains Make Uppercase, Make Lowercase, Capitalize)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/transformations?language=objc)
     pub static UIMenuTransformations: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Speech menu.
     /// Speech menu contained within Edit menu (contains Speak, Speak..., Pause)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/speech?language=objc)
     pub static UIMenuSpeech: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Lookup menu.
     /// Lookup menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/lookup?language=objc)
     pub static UIMenuLookup: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Learn menu.
     /// Learn menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/learn?language=objc)
     pub static UIMenuLearn: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Format menu.
     /// Format top-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/format?language=objc)
     pub static UIMenuFormat: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The AutoFill menu.
     /// AutoFill menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/autofill?language=objc)
     pub static UIMenuAutoFill: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Font menu.
     /// Font menu contained within Format menu (contains UIMenuTextStyle)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/font?language=objc)
     pub static UIMenuFont: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Text Size menu.
     /// Bigger and Smaller menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/textsize?language=objc)
     pub static UIMenuTextSize: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Text Color menu.
     /// Show Colors menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/textcolor?language=objc)
     pub static UIMenuTextColor: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Text Style Pasteboard menu.
     /// Copy Style and Paste Style menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/textstylepasteboard?language=objc)
     pub static UIMenuTextStylePasteboard: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Text menu.
     /// Text menu contained within Format menu (contains UIMenuAlignment and UIMenuWritingDirection)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/text?language=objc)
     pub static UIMenuText: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Writing Direction menu.
     /// Default, Right to Left, Left to Right menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/writingdirection?language=objc)
     pub static UIMenuWritingDirection: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Alignment menu.
     /// Align Left, Center, Justify, Align Right menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/alignment?language=objc)
     pub static UIMenuAlignment: &'static UIMenuIdentifier;
 }
 
 extern "C" {
-    /// Show/Hide and Customize Toolbar menu
+    /// The Toolbar menu group.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/toolbar?language=objc)
+    /// ## Discussion
+    ///
+    /// The Toolbar menu group contains menu elements to show and hide the toolbar, and to customize the toolbar.
+    ///
+    ///
+    /// Show/Hide and Customize Toolbar menu
     pub static UIMenuToolbar: &'static UIMenuIdentifier;
 }
 
 extern "C" {
-    /// Sidebar menu
+    /// The Sidebar menu group.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/sidebar?language=objc)
+    /// ## Discussion
+    ///
+    /// The Sidebar menu group contains menu elements to show and hide the sidebar.
+    ///
+    ///
+    /// Sidebar menu
     pub static UIMenuSidebar: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Full Screen menu.
     /// Fullscreen menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/fullscreen?language=objc)
     pub static UIMenuFullscreen: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Minimize and Zoom menu.
     /// Minimize, Zoom menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/minimizeandzoom?language=objc)
     pub static UIMenuMinimizeAndZoom: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The Bring All to Front menu.
     /// Bring All to Front, Arrange in Front menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/bringalltofront?language=objc)
     pub static UIMenuBringAllToFront: &'static UIMenuIdentifier;
 }
 
 extern "C" {
+    /// The root menu.
     /// Root-level menu
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenu/identifier-swift.struct/root?language=objc)
     pub static UIMenuRoot: &'static UIMenuIdentifier;
 }

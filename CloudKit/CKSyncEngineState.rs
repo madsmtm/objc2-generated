@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages the sync engine’s state.
+    ///
+    /// ## Overview
+    ///
+    /// To reliably and consistently sync your app’s data, a sync engine keeps a record of several important pieces of data, such as server changes tokens (for databases and record zones), subscription identifiers, the most recent [`userRecordID`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid), and so on. This class automatically manages that state on behalf of your app, but there are certain elements you can modify. For example, you control the list of pending changes to send to the iCloud servers and manipulate that list using the [`addPendingDatabaseChanges:`](https://developer.apple.com/documentation/cloudkit/cksyncenginestate/addpendingdatabasechanges:) and [`addPendingRecordZoneChanges:`](https://developer.apple.com/documentation/cloudkit/cksyncenginestate/addpendingrecordzonechanges:) methods. If there aren’t any scheduled sync operations when you invoke these methods, the engine automatically schedules one.
+    ///
+    /// An engine’s state changes periodically and, when it does, the sync engine dispatches an event of type  [`CKSyncEngineStateUpdateEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginestateupdateevent) to your delegate. The event contains an instance of [`CKSyncEngineStateSerialization`](https://developer.apple.com/documentation/cloudkit/cksyncenginestateserialization) and, on receipt of such an event, it’s your responsibility to persist the serialized state to disk so that it’s available across app launches. On the next initialization of the sync engine, you provide the most recently persisted state as part of the engine’s configuration. For more information, see [`initWithDatabase:stateSerialization:delegate:`](https://developer.apple.com/documentation/cloudkit/cksyncengineconfiguration/initwithdatabase:stateserialization:delegate:).
+    ///
+    ///
     /// An object that tracks some state required for proper and efficient operation of ``CKSyncEngine-5sie5``.
     ///
     /// ``CKSyncEngine-5sie5`` needs to track several things in order to properly sync.
@@ -29,8 +38,6 @@ extern_class!(
     ///
     /// This event will contain a ``CKSyncEngineStateSerialization``, which you should persist locally.
     /// The next time your process launches, you initialize your sync engine with the last state serialization you received.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineState;
@@ -147,12 +154,11 @@ impl CKSyncEngineState {
 }
 
 extern_class!(
+    /// An opaque object that contains the serialized representation of a sync engine’s current state.
     /// A serialized representation of a ``CKSyncEngineState``.
     ///
     /// This will be passed to your delegate via ``CKSyncEngine/Event/StateUpdate``.
     /// You should use `NSSecureCoding` to persist this locally alongside your other data and use it the next time you initialize your sync engine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestateserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateSerialization;
@@ -186,16 +192,14 @@ impl CKSyncEngineStateSerialization {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype?language=objc)
+/// Describes a type of modification a record zone change makes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEnginePendingRecordZoneChangeType(pub NSInteger);
 impl CKSyncEnginePendingRecordZoneChangeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype/saverecord?language=objc)
     #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeSaveRecord")]
     pub const SaveRecord: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype/deleterecord?language=objc)
     #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord")]
     pub const DeleteRecord: Self = Self(1);
 }
@@ -209,9 +213,8 @@ unsafe impl RefEncode for CKSyncEnginePendingRecordZoneChangeType {
 }
 
 extern_class!(
+    /// Describes an unsent record modification.
     /// A change in a record zone that needs to be sent to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingRecordZoneChange;
@@ -265,16 +268,14 @@ impl CKSyncEnginePendingRecordZoneChange {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype?language=objc)
+/// Describes the type of a pending database change.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEnginePendingDatabaseChangeType(pub NSInteger);
 impl CKSyncEnginePendingDatabaseChangeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype/savezone?language=objc)
     #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeSaveZone")]
     pub const SaveZone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype/deletezone?language=objc)
     #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeDeleteZone")]
     pub const DeleteZone: Self = Self(1);
 }
@@ -288,9 +289,8 @@ unsafe impl RefEncode for CKSyncEnginePendingDatabaseChangeType {
 }
 
 extern_class!(
+    /// An object that describes an unsent database modification.
     /// A change in a database that needs to be sent to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingDatabaseChange;
@@ -336,9 +336,8 @@ impl CKSyncEnginePendingDatabaseChange {
 }
 
 extern_class!(
+    /// An object that describes an unsent record zone modification.
     /// A zone save that needs to be sent to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonesave?language=objc)
     #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneSave;
@@ -385,9 +384,8 @@ impl CKSyncEnginePendingZoneSave {
 }
 
 extern_class!(
+    /// An object that describes an unsent record zone deletion.
     /// A zone delete that needs to be sent to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingzonedelete?language=objc)
     #[unsafe(super(CKSyncEnginePendingDatabaseChange, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEnginePendingZoneDelete;

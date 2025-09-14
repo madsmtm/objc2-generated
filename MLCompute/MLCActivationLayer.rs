@@ -7,7 +7,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcactivationlayer?language=objc)
+    /// A layer that applies an activation function to the source tensor and produces an output.
+    ///
+    /// ## Overview
+    ///
+    /// To construct an activation layer, create an activation descriptor and then pass it to the initializer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  If you don’t need to customize the behavior of the activation layer, you can save time by using [Preconfigured Activation Layers](https://developer.apple.com/documentation/mlcompute/preconfigured-activation-layers) instead of creating a descriptor to use with an activation layer initializer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

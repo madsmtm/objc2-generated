@@ -9,20 +9,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/autosavename-swift.typealias?language=objc)
 pub type NSStatusItemAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct?language=objc)
+/// A set of optional status item behaviors.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStatusItemBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStatusItemBehavior: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct/removalallowed?language=objc)
+/// A status item that allows interactive removal.
+///
+/// ## Discussion
+///
+/// Status items with this behavior allow interactive removal from the menu bar. Upon removal, the item’s [`visible`](https://developer.apple.com/documentation/appkit/nsstatusitem/isvisible) property changes to [`false`](https://developer.apple.com/documentation/swift/false). This change is observable using key-value observation.
+///
+///
         #[doc(alias = "NSStatusItemBehaviorRemovalAllowed")]
         const RemovalAllowed = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct/terminationonremoval?language=objc)
+/// A status item that quits the application upon removal.
+///
+/// ## Discussion
+///
+/// A status item with this behavior quits the application if the user removes it from the menu bar. This behavior implicitly provides the same functionality as [`NSStatusItemBehaviorRemovalAllowed`](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct/removalallowed).
+///
+/// The [`NSStatusItemBehaviorTerminationOnRemoval`](https://developer.apple.com/documentation/appkit/nsstatusitem/behavior-swift.struct/terminationonremoval) behavior is suitable for applications that display only a [`NSStatusItem`](https://developer.apple.com/documentation/appkit/nsstatusitem) and provide no other user interface.
+///
+///
         #[doc(alias = "NSStatusItemBehaviorTerminationOnRemoval")]
         const TerminationOnRemoval = 1<<2;
     }
@@ -37,7 +50,13 @@ unsafe impl RefEncode for NSStatusItemBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem?language=objc)
+    /// An individual element displayed in the system menu bar.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSStatusBar`](https://developer.apple.com/documentation/appkit/nsstatusbar) method [`statusItemWithLength:`](https://developer.apple.com/documentation/appkit/nsstatusbar/statusitem(withlength:)) creates instances of this class and automatically adds them to the menu bar. Use the [`button`](https://developer.apple.com/documentation/appkit/nsstatusitem/button) property to customize the appearance and behavior of the status item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStatusItem;

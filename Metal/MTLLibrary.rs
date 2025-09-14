@@ -7,20 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedrenderpipelinereflection?language=objc)
+/// A convenience type alias for an autoreleased pipeline reflection instance.
 #[cfg(feature = "MTLRenderPipeline")]
 pub type MTLAutoreleasedRenderPipelineReflection = MTLRenderPipelineReflection;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedcomputepipelinereflection?language=objc)
+/// A convenience type alias for an autoreleased compute pipeline reflection object.
 #[cfg(feature = "MTLComputePipeline")]
 pub type MTLAutoreleasedComputePipelineReflection = MTLComputePipelineReflection;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
+/// A completion handler signature a method calls when it finishes creating a Metal library.
+///
+/// Parameters:
+/// - library: An [`MTLLibrary`](https://developer.apple.com/documentation/metal/mtllibrary) instance if the method successfully compiles the library without any errors; otherwise `nil`.
+///
+/// - error: An error instance if the compiler generates any warnings or errors; otherwise `nil`.
+///
+///
+/// ## Discussion
+///
+/// Both `library` and `error` can be non-`nil` if the compiler successfully generates a library with warnings.
+///
+///
 #[cfg(feature = "block2")]
 pub type MTLNewLibraryCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
+/// A completion handler signature a method calls when it finishes creating a render pipeline.
+///
+/// Parameters:
+/// - renderPipelineState: An [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate) instance if the method completes successfully; otherwise `nil`.
+///
+/// - error: If an error occurs, an error information instance; otherwise `nil`.
+///
 #[cfg(all(
     feature = "MTLAllocation",
     feature = "MTLRenderPipeline",
@@ -29,7 +47,15 @@ pub type MTLNewLibraryCompletionHandler =
 pub type MTLNewRenderPipelineStateCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
+/// A completion handler signature a method calls when it finishes creating a render pipeline and reflection information.
+///
+/// Parameters:
+/// - renderPipelineState: An [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate) instance if the method successfully compiles the library without any errors; otherwise `nil`.
+///
+/// - reflection: An [`MTLRenderPipelineReflection`](https://developer.apple.com/documentation/metal/mtlrenderpipelinereflection) instance if the method completes successfully; otherwise `nil`.
+///
+/// - error: If an error occurs, an error information instance; otherwise `nil`.
+///
 #[cfg(all(
     feature = "MTLAllocation",
     feature = "MTLRenderPipeline",
@@ -43,7 +69,13 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2:
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatecompletionhandler?language=objc)
+/// A completion handler signature a method calls when it finishes creating a compute pipeline.
+///
+/// Parameters:
+/// - computePipelineState: An [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) instance if the method completes successfully; otherwise `nil`.
+///
+/// - error: On return, if an error occurs, a pointer to an error information instance; otherwise `nil`.
+///
 #[cfg(all(
     feature = "MTLAllocation",
     feature = "MTLComputePipeline",
@@ -52,7 +84,15 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2:
 pub type MTLNewComputePipelineStateCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
+/// A completion handler signature a method calls when it finishes creating a compute pipeline and reflection information.
+///
+/// Parameters:
+/// - computePipelineState: An [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) instance if the method completes successfully; otherwise `nil`.
+///
+/// - reflection: An [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection) instance if the method completes successfully; otherwise `nil`.
+///
+/// - error: On return, if an error occurs, a pointer to an error information instance; otherwise `nil`.
+///
 #[cfg(all(
     feature = "MTLAllocation",
     feature = "MTLComputePipeline",
@@ -66,29 +106,40 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewdynamiclibrarycompletionhandler?language=objc)
 #[cfg(all(feature = "MTLDynamicLibrary", feature = "block2"))]
 pub type MTLNewDynamicLibraryCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLDynamicLibrary>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedargument?language=objc)
+/// A convenience type alias for an autoreleased argument instance.
 #[deprecated = "Use MTLBinding and cast to specific Binding (MTLTextureBinding, MTLBufferBinding, .etc) instead"]
 #[cfg(feature = "MTLArgument")]
 pub type MTLAutoreleasedArgument = MTLArgument;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype?language=objc)
+/// Types of tessellation patches that can be inputs of a post-tessellation vertex function.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPatchType(pub NSUInteger);
 impl MTLPatchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype/none?language=objc)
+    /// An option that indicates that this isn’t a post-tessellation vertex function.
     #[doc(alias = "MTLPatchTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype/triangle?language=objc)
+    /// A triangle patch.
+    ///
+    /// ## Discussion
+    ///
+    /// Metal uses this value if the shader is a post-tessellation vertex function with the `[[patch(triangle)]]` attribute.
+    ///
+    ///
     #[doc(alias = "MTLPatchTypeTriangle")]
     pub const Triangle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype/quad?language=objc)
+    /// A quad patch.
+    ///
+    /// ## Discussion
+    ///
+    /// Metal uses this value if the shader is a post-tessellation vertex function with the `[[patch(quad)]]` attribute.
+    ///
+    ///
     #[doc(alias = "MTLPatchTypeQuad")]
     pub const Quad: Self = Self(2);
 }
@@ -102,7 +153,13 @@ unsafe impl RefEncode for MTLPatchType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexattribute?language=objc)
+    /// An instance that represents an attribute of a vertex function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLVertexAttribute`](https://developer.apple.com/documentation/metal/mtlvertexattribute) instance represents an attribute for per-vertex input in a vertex function. You use vertex attribute instances to inspect the inputs of a vertex function by examining the [`vertexAttributes`](https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes) property of the corresponding [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexAttribute;
@@ -162,7 +219,7 @@ impl DefaultRetained for MTLVertexAttribute {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattribute?language=objc)
+    /// An object that describes an attribute defined in the stage-in argument for a shader.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAttribute;
@@ -221,6 +278,7 @@ impl DefaultRetained for MTLAttribute {
     }
 }
 
+/// The type of a top-level Metal Shading Language (MSL) function.
 /// An identifier for a top-level Metal function.
 ///
 /// Each location in the API where a program is used requires a function written for that specific usage.
@@ -233,32 +291,28 @@ impl DefaultRetained for MTLAttribute {
 ///
 ///
 /// A compute kernel, usable to create a MTLComputePipelineState.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLFunctionType(pub NSUInteger);
 impl MTLFunctionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/vertex?language=objc)
+    /// A vertex function you can use in a render pipeline state object.
     #[doc(alias = "MTLFunctionTypeVertex")]
     pub const Vertex: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/fragment?language=objc)
+    /// A fragment function you can use in a render pipeline state object.
     #[doc(alias = "MTLFunctionTypeFragment")]
     pub const Fragment: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/kernel?language=objc)
+    /// A kernel you can use in a compute pipeline state object.
     #[doc(alias = "MTLFunctionTypeKernel")]
     pub const Kernel: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/visible?language=objc)
+    /// A function you can use in a visible function table.
     #[doc(alias = "MTLFunctionTypeVisible")]
     pub const Visible: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/intersection?language=objc)
+    /// A function you can use in an intersection function table.
     #[doc(alias = "MTLFunctionTypeIntersection")]
     pub const Intersection: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/mesh?language=objc)
     #[doc(alias = "MTLFunctionTypeMesh")]
     pub const Mesh: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiontype/object?language=objc)
     #[doc(alias = "MTLFunctionTypeObject")]
     pub const Object: Self = Self(8);
 }
@@ -272,9 +326,16 @@ unsafe impl RefEncode for MTLFunctionType {
 }
 
 extern_class!(
-    /// describe an uberShader constant used by the function
+    /// A constant that specializes the behavior of a shader.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionconstant?language=objc)
+    /// ## Overview
+    ///
+    /// Don’t create an [`MTLFunctionConstant`](https://developer.apple.com/documentation/metal/mtlfunctionconstant) instance directly. Instead, the list of function constants for a function by querying the `functionConstants` property of an [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instance.
+    ///
+    /// An [`MTLFunctionConstant`](https://developer.apple.com/documentation/metal/mtlfunctionconstant) instance should only be obtained from a nonspecialized function created with the [`newFunctionWithName:`](https://developer.apple.com/documentation/metal/mtllibrary/makefunction(name:)) method. You only need an [`MTLFunctionConstant`](https://developer.apple.com/documentation/metal/mtlfunctionconstant) instance if you don’t have sufficient information to create an [`MTLFunctionConstantValues`](https://developer.apple.com/documentation/metal/mtlfunctionconstantvalues) instance used to create a specialized function with the [`newFunctionWithName:constantValues:error:`](https://developer.apple.com/documentation/metal/mtllibrary/makefunction(name:constantvalues:)) or [`newFunctionWithName:constantValues:completionHandler:`](https://developer.apple.com/documentation/metal/mtllibrary/makefunction(name:constantvalues:completionhandler:)) method.
+    ///
+    ///
+    /// describe an uberShader constant used by the function
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionConstant;
@@ -326,11 +387,28 @@ impl DefaultRetained for MTLFunctionConstant {
 }
 
 extern_protocol!(
+    /// A interface that represents a public shader function in a Metal library.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instances to specify which shaders a Metal pipeline calls when the GPU executes commands that specify that pipeline. For more information on creating pipeline states, see [`MTLRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor) and [`MTLComputePipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor).
+    ///
+    /// An [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instance is a _specialized_ function if the shader contains function constants, otherwise it is a _nonspecialized_ function.
+    ///
+    /// Don’t use standard allocation and initialization techniques to create an [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instance. Instead, use the function creation methods provided by the [`MTLLibrary`](https://developer.apple.com/documentation/metal/mtllibrary) protocol. To create a nonspecialized function, call the [`newFunctionWithName:`](https://developer.apple.com/documentation/metal/mtllibrary/makefunction(name:)) method.
+    ///
+    /// To create a specialized function, call one of these [`MTLLibrary`](https://developer.apple.com/documentation/metal/mtllibrary) methods:
+    ///
+    /// - [`newFunctionWithName:constantValues:completionHandler:`](https://developer.apple.com/documentation/metal/mtllibrary/makefunction(name:constantvalues:completionhandler:))
+    ///
+    /// - [`newFunctionWithName:constantValues:error:`](https://developer.apple.com/documentation/metal/mtllibrary/makefunction(name:constantvalues:))
+    ///
+    /// [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instances can use a significant amount of memory; release any strong references to them after you finish creating pipeline instances.
+    ///
+    ///
     /// A handle to intermediate code used as inputs for either a MTLComputePipelineState or a MTLRenderPipelineState.
     ///
     /// MTLFunction is a single vertex shader, fragment shader, or compute function.  A Function can only be used with the device that it was created against.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunction?language=objc)
     pub unsafe trait MTLFunction: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]
@@ -423,47 +501,46 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion?language=objc)
+/// Metal shading language versions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLanguageVersion(pub NSUInteger);
 impl MTLLanguageVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version1_0?language=objc)
+    /// Version 1.0 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion1_0")]
     #[deprecated = "Use a newer language standard"]
     pub const Version1_0: Self = Self(1 << 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version1_1?language=objc)
+    /// Version 1.1 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion1_1")]
     pub const Version1_1: Self = Self((1 << 16) + 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version1_2?language=objc)
+    /// Version 1.2 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion1_2")]
     pub const Version1_2: Self = Self((1 << 16) + 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_0?language=objc)
+    /// Version 2.0 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion2_0")]
     pub const Version2_0: Self = Self(2 << 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_1?language=objc)
+    /// Version 2.1 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion2_1")]
     pub const Version2_1: Self = Self((2 << 16) + 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_2?language=objc)
+    /// Version 2.2 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion2_2")]
     pub const Version2_2: Self = Self((2 << 16) + 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_3?language=objc)
+    /// Version 2.3 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion2_3")]
     pub const Version2_3: Self = Self((2 << 16) + 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version2_4?language=objc)
+    /// Version 2.4 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion2_4")]
     pub const Version2_4: Self = Self((2 << 16) + 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version3_0?language=objc)
+    /// Version 3.0 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion3_0")]
     pub const Version3_0: Self = Self((3 << 16) + 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version3_1?language=objc)
+    /// Version 3.1 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion3_1")]
     pub const Version3_1: Self = Self((3 << 16) + 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version3_2?language=objc)
+    /// Version 3.2 of the Metal shading language.
     #[doc(alias = "MTLLanguageVersion3_2")]
     pub const Version3_2: Self = Self((3 << 16) + 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion/version4_0?language=objc)
     #[doc(alias = "MTLLanguageVersion4_0")]
     pub const Version4_0: Self = Self((4 << 16) + 0);
 }
@@ -476,16 +553,16 @@ unsafe impl RefEncode for MTLLanguageVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrarytype?language=objc)
+/// A set of options for Metal library types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryType(pub NSInteger);
 impl MTLLibraryType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrarytype/executable?language=objc)
+    /// A library that can create pipeline state objects.
     #[doc(alias = "MTLLibraryTypeExecutable")]
     pub const Executable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrarytype/dynamic?language=objc)
+    /// A library that you can dynamically link to from other libraries.
     #[doc(alias = "MTLLibraryTypeDynamic")]
     pub const Dynamic: Self = Self(1);
 }
@@ -498,6 +575,7 @@ unsafe impl RefEncode for MTLLibraryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The optimization options for the Metal compiler.
 /// Optimization level for the Metal compiler.
 ///
 ///
@@ -505,17 +583,21 @@ unsafe impl RefEncode for MTLLibraryType {
 ///
 ///
 /// Like default, with extra optimizations to reduce code size.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryOptimizationLevel(pub NSInteger);
 impl MTLLibraryOptimizationLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel/default?language=objc)
+    /// An optimization option for the Metal compiler that prioritizes runtime performance.
     #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel/size?language=objc)
+    /// An optimization option for the Metal compiler that prioritizes minimizing the size of its output binaries, which may also reduce compile time.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is similar to [`MTLLibraryOptimizationLevelDefault`](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel/default), but adds optimizations that prioritize minimizing a shader’s executable size, which may also reduce compile time.
+    ///
+    ///
     #[doc(alias = "MTLLibraryOptimizationLevelSize")]
     pub const Size: Self = Self(1);
 }
@@ -528,16 +610,13 @@ unsafe impl RefEncode for MTLLibraryOptimizationLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompilesymbolvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCompileSymbolVisibility(pub NSInteger);
 impl MTLCompileSymbolVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompilesymbolvisibility/default?language=objc)
     #[doc(alias = "MTLCompileSymbolVisibilityDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompilesymbolvisibility/hidden?language=objc)
     #[doc(alias = "MTLCompileSymbolVisibilityHidden")]
     pub const Hidden: Self = Self(1);
 }
@@ -550,6 +629,7 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An indication of whether the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard.
 /// An enum to indicate if the compiler can perform optimizations for floating-point arithmetic that may violate the IEEE 754 standard
 ///
 ///
@@ -560,20 +640,30 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
 ///
 ///
 /// Allows aggressive, unsafe floating-point optimizations
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathMode(pub NSInteger);
 impl MTLMathMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode/safe?language=objc)
+    /// An indicator of the mode the compiler uses to disable unsafe floating-point optimizations by preventing the compiler from making any transformations that could affect the results.
     #[doc(alias = "MTLMathModeSafe")]
     pub const Safe: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode/relaxed?language=objc)
+    /// An indicator of the mode the compiler uses to make aggressive, potentially lossy assumptions about floating-point math, while honoring Inf/NaN.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default for Apple silicon devices.
+    ///
+    ///
     #[doc(alias = "MTLMathModeRelaxed")]
     pub const Relaxed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode/fast?language=objc)
+    /// An indicator of the mode the compiler uses to make aggressive, potentially lossy assumptions about floating-point math.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default for Intel and AMD devices.
+    ///
+    ///
     #[doc(alias = "MTLMathModeFast")]
     pub const Fast: Self = Self(2);
 }
@@ -586,6 +676,7 @@ unsafe impl RefEncode for MTLMathMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Indicates which FP32 math functions Metal uses.
 /// An enum to indicate the default math functions for single precision floating-point
 ///
 ///
@@ -593,17 +684,21 @@ unsafe impl RefEncode for MTLMathMode {
 ///
 ///
 /// Sets the default math functions for single precision floating-point to the corresponding functions in 'metal::precise' namespace
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathFloatingPointFunctions(pub NSInteger);
 impl MTLMathFloatingPointFunctions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions/fast?language=objc)
+    /// An indication that Metal uses the fast version of the 32b floating-point math functions.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default behavior.
+    ///
+    ///
     #[doc(alias = "MTLMathFloatingPointFunctionsFast")]
     pub const Fast: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions/precise?language=objc)
+    /// An indication that Metal uses the precise version of the 32b floating-point math functions.
     #[doc(alias = "MTLMathFloatingPointFunctionsPrecise")]
     pub const Precise: Self = Self(1);
 }
@@ -617,7 +712,23 @@ unsafe impl RefEncode for MTLMathFloatingPointFunctions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompileoptions?language=objc)
+    /// Compilation settings for a Metal shader library.
+    ///
+    /// ## Overview
+    ///
+    /// You can configure the Metal compiler’s options by setting any or all of an [`MTLCompileOptions`](https://developer.apple.com/documentation/metal/mtlcompileoptions) instance’s properties, including the following:
+    ///
+    /// - Target previous OS releases by assigning the [`languageVersion`](https://developer.apple.com/documentation/metal/mtlcompileoptions/languageversion) property to an [`MTLLanguageVersion`](https://developer.apple.com/documentation/metal/mtllanguageversion) case.
+    ///
+    /// - Set preprocessor macros for the Metal compiler by assigning a dictionary to the [`preprocessorMacros`](https://developer.apple.com/documentation/metal/mtlcompileoptions/preprocessormacros) property.
+    ///
+    /// - Choose what the Metal compiler’s optimizer prioritizes by setting the [`optimizationLevel`](https://developer.apple.com/documentation/metal/mtlcompileoptions/optimizationlevel) property to an [`MTLLibraryOptimizationLevel`](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel) case.
+    ///
+    /// - Allow the compiler to optimize for floating-point arithmetic that may violate the IEEE 754 standard by setting [`mathMode`](https://developer.apple.com/documentation/metal/mtlcompileoptions/mathmode) to [`MTLMathModeFast`](https://developer.apple.com/documentation/metal/mtlmathmode/fast).
+    ///
+    /// You can compile a library with your compile options instance by calling an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`newLibraryWithSource:options:error:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(source:options:)) or [`newLibraryWithSource:options:completionHandler:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(source:options:completionhandler:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCompileOptions;
@@ -877,8 +988,7 @@ impl DefaultRetained for MTLCompileOptions {
 
 extern_class!(
     /// Represents a reflection object containing information about a function in a Metal library.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionreflection?language=objc)
+    /// Represents a reflection object containing information about a function in a Metal library.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionReflection;
@@ -928,36 +1038,40 @@ impl DefaultRetained for MTLFunctionReflection {
 }
 
 extern "C" {
+    /// The error domain for Metal libraries.
     /// NSErrors raised when creating a library.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerrordomain?language=objc)
     pub static MTLLibraryErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes for Metal library errors.
 /// NSErrors raised when creating a library.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLibraryError(pub NSUInteger);
 impl MTLLibraryError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/unsupported?language=objc)
+    /// Metal couldn’t support the requested action.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the requested library file has improper formatting, or the requested library is not accessible.
+    ///
+    ///
     #[doc(alias = "MTLLibraryErrorUnsupported")]
     pub const Unsupported: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/internal?language=objc)
+    /// The action caused an internal error.
     #[doc(alias = "MTLLibraryErrorInternal")]
     pub const Internal: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/compilefailure?language=objc)
+    /// The library or function failed to compile.
     #[doc(alias = "MTLLibraryErrorCompileFailure")]
     pub const CompileFailure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/compilewarning?language=objc)
+    /// The library or function compiled successfully but generated warnings.
     #[doc(alias = "MTLLibraryErrorCompileWarning")]
     pub const CompileWarning: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/functionnotfound?language=objc)
+    /// Metal couldn’t find the specified Metal function.
     #[doc(alias = "MTLLibraryErrorFunctionNotFound")]
     pub const FunctionNotFound: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryerror-swift.struct/code/filenotfound?language=objc)
+    /// Metal couldn’t find the Metal source file.
     #[doc(alias = "MTLLibraryErrorFileNotFound")]
     pub const FileNotFound: Self = Self(6);
 }
@@ -971,7 +1085,27 @@ unsafe impl RefEncode for MTLLibraryError {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrary?language=objc)
+    /// A collection of Metal shader functions.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLLibrary`](https://developer.apple.com/documentation/metal/mtllibrary) instance contains Metal shading language source code compiled during an app’s build process or at runtime from a text string.
+    ///
+    /// Don’t implement this protocol yourself; instead, use the library creation methods provided by the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) protocol. To create an [`MTLLibrary`](https://developer.apple.com/documentation/metal/mtllibrary) from a precompiled Metal library binary, call one of these [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) methods:
+    ///
+    /// - [`newDefaultLibrary`](https://developer.apple.com/documentation/metal/mtldevice/makedefaultlibrary())
+    ///
+    /// - [`newLibraryWithFile:error:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(filepath:))
+    ///
+    /// - [`newLibraryWithData:error:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(data:))
+    ///
+    /// To create an [`MTLLibrary`](https://developer.apple.com/documentation/metal/mtllibrary) by compiling source code at runtime, call one of these [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) methods:
+    ///
+    /// - [`newLibraryWithSource:options:completionHandler:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(source:options:completionhandler:))
+    ///
+    /// - [`newLibraryWithSource:options:error:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(source:options:))
+    ///
+    ///
     pub unsafe trait MTLLibrary: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]

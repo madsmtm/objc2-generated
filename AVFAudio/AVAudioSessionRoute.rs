@@ -8,95 +8,132 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the location of the data source on device.
 /// The location of a data source on an iOS device.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/location?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionLocation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/location/upper?language=objc)
+    /// A value that indicates that the data source is located near the top end of the device.
     pub static AVAudioSessionLocationUpper: &'static AVAudioSessionLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/location/lower?language=objc)
+    /// A value that indicates that the data source is located near the bottom end of the device.
     pub static AVAudioSessionLocationLower: &'static AVAudioSessionLocation;
 }
 
+/// Constants that indicate the directions in which a data source can point, relative to the device’s natural orientation.
 /// The orientation or directionality of a data source on an iOS device.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionOrientation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/top?language=objc)
+    /// A data source that points upward.
     pub static AVAudioSessionOrientationTop: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/bottom?language=objc)
+    /// A data source that points downward.
     pub static AVAudioSessionOrientationBottom: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/front?language=objc)
+    /// A data source that points outward from the front of the device, toward the user.
     pub static AVAudioSessionOrientationFront: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/back?language=objc)
+    /// A data source that points outward from the back of the device, away from the user.
     pub static AVAudioSessionOrientationBack: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/left?language=objc)
+    /// A data source that points outward to the left of the device, away from the user.
     pub static AVAudioSessionOrientationLeft: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/right?language=objc)
+    /// A data source that points outward to the right of the device, away from the user.
     pub static AVAudioSessionOrientationRight: &'static AVAudioSessionOrientation;
 }
 
-/// The possible polar patterns for a data source on an iOS device.
+/// Constants that describe the possible polar patterns of the data source on an iOS device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern?language=objc)
+/// ## Overview
+///
+/// The direction of a polar pattern is relative to the orientation of the data source. For example, you can use the cardioid pattern with a back-facing data source to more clearly record sound from behind the device, or with a front-facing data source to more clearly record sound from in front of the device (such as the user’s voice).
+///
+///
+/// The possible polar patterns for a data source on an iOS device.
 // NS_TYPED_ENUM
 pub type AVAudioSessionPolarPattern = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/omnidirectional?language=objc)
+    /// A data source that’s equally sensitive to sound from any direction.
+    ///
+    /// ## Discussion
+    ///
+    /// The omnidirectional pattern is circular and picks up sounds from all directions at the same level.
+    ///
+    ///
+    /// ![The omnidirectional pattern picks up sounds equally from all directions.](https://docs-assets.developer.apple.com/published/ccd23dc04d9a02eb835015bcbee1bcce/media-3039131%402x.png)
+    ///
+    ///
+    ///
     pub static AVAudioSessionPolarPatternOmnidirectional: &'static AVAudioSessionPolarPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/cardioid?language=objc)
+    /// A data source that’s most sensitive to sound from the direction of the data source and is nearly insensitive to sound from the opposite direction.
+    ///
+    /// ## Discussion
+    ///
+    /// The cardioid pattern is heart-shaped and picks up most sound from the front side.
+    ///
+    ///
+    /// ![The cardioid pattern picks up sound from the direction of the data source. ](https://docs-assets.developer.apple.com/published/f888c0f9c3ee232680a47b771c6b6f81/media-3039129%402x.png)
+    ///
+    ///
+    ///
     pub static AVAudioSessionPolarPatternCardioid: &'static AVAudioSessionPolarPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/subcardioid?language=objc)
+    /// A data source that’s most sensitive to sound from the direction of the data source and is less sensitive to sound from the opposite direction.
+    ///
+    /// ## Discussion
+    ///
+    /// The subcardioid pattern picks up a sound from a wide radius in the front and in the back.
+    ///
+    ///
+    /// ![The subcardioid pattern picks up more sound from the direction of the data source than from the rear. ](https://docs-assets.developer.apple.com/published/0acc584378e763be5f567d2e4921f04c/media-3039130%402x.png)
+    ///
+    ///
+    ///
     pub static AVAudioSessionPolarPatternSubcardioid: &'static AVAudioSessionPolarPattern;
 }
 
 extern "C" {
-    /// If you select a data source with AVAudioSessionPolarPatternStereo, then you must call setPreferredInputOrientation:error: on your Audio Session so that left and right are presented from the correct directions.
+    /// A polar pattern that captures a stereo image of an audio source.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/stereo?language=objc)
+    /// ## Discussion
+    ///
+    /// If you select a data source with this polar pattern, call [`setPreferredInputOrientation:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setpreferredinputorientation(_:)) on your audio session to ensure that left and right are correctly oriented in the captured audio.
+    ///
+    ///
+    /// If you select a data source with AVAudioSessionPolarPatternStereo, then you must call setPreferredInputOrientation:error: on your Audio Session so that left and right are presented from the correct directions.
     pub static AVAudioSessionPolarPatternStereo: &'static AVAudioSessionPolarPattern;
 }
 
 extern_class!(
+    /// A class that describes a hardware channel on the current device.
     /// Information about a port's audio channels.
     ///
     /// AudioQueue, AURemoteIO and AUVoiceIO instances can be assigned to communicate with specific
     /// hardware channels by setting an array of
     /// <port
     /// UID, channel index> pairs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionchanneldescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSessionChannelDescription;
@@ -173,9 +210,16 @@ impl AVAudioSessionChannelDescription {
 }
 
 extern_class!(
-    /// Information about one of potentially multiple data sources associated with a port.
+    /// An object that defines a data source for an audio input or output, giving information such as the source’s name, location, and orientation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondatasourcedescription?language=objc)
+    /// ## Overview
+    ///
+    /// You obtain data source descriptions from the shared [`AVAudioSession`](https://developer.apple.com/documentation/avfaudio/avaudiosession) object or the [`AVAudioSessionPortDescription`](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription) objects corresponding to its input and output ports. Only built-in microphone ports on certain devices support the location, orientation, and polar pattern properties. If a port doesn’t support these features, the value of its [`dataSources`](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription/datasources) property is `nil`.
+    ///
+    /// This class is especially useful for differentiating between microphone configurations on devices having more than one built-in microphone. Such devices may also support signal processing features for spatial filtering, or _beamforming_, in which the system makes the device more sensitive to audio signals from a particular direction. See `Data Source Polar Patterns` for more information.
+    ///
+    ///
+    /// Information about one of potentially multiple data sources associated with a port.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSessionDataSourceDescription;
@@ -268,8 +312,7 @@ impl AVAudioSessionDataSourceDescription {
 
 extern_class!(
     /// Describes whether a specific capability is supported and if that capability is currently enabled
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncapability?language=objc)
+    /// Describes whether a specific capability is supported and if that capability is currently enabled
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSessionCapability;
@@ -324,8 +367,7 @@ impl AVAudioSessionCapability {
 
 extern_class!(
     /// An object that describes capabilities of Bluetooth microphone ports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportextensionbluetoothmicrophone?language=objc)
+    /// An object that describes capabilities of Bluetooth microphone ports.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSessionPortExtensionBluetoothMicrophone;
@@ -381,9 +423,16 @@ impl AVAudioSessionPortExtensionBluetoothMicrophone {
 }
 
 extern_class!(
-    /// Information about a port, a physical connector or audio device.
+    /// Information about the capabilities of the port and the hardware channels it supports.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportdescription?language=objc)
+    /// ## Overview
+    ///
+    /// A port description object describes a single input or output port associated with an audio route. Examples of audio ports include a device’s built-in speaker, a microphone on a wired headset, and a Bluetooth device supporting the Advanced Audio Distribution Profile (A2DP).
+    ///
+    /// You can query the audio session’s [`currentRoute`](https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute) property to get information about the active set of input and output ports. To change the current audio routing, call the [`setPreferredInput:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setpreferredinput(_:)) method. For example, on a device with a wired headset attached, the audio session’s [`availableInputs`](https://developer.apple.com/documentation/avfaudio/avaudiosession/availableinputs) array may contain two port descriptions: one for the headset microphone and one for the device’s built-in microphone. You can use the audio session’s [`setPreferredInput:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setpreferredinput(_:)) method to select the headset or built-in microphone for audio input.
+    ///
+    ///
+    /// Information about a port, a physical connector or audio device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSessionPortDescription;
@@ -563,9 +612,14 @@ impl AVAudioSessionPortDescription {
 }
 
 extern_class!(
-    /// A description of the input and output ports which comprise a route.
+    /// An object that describes the input and output ports associated with a session’s audio route.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class yourself. Instead, you retrieve the current audio route from your app’s [`AVAudioSession`](https://developer.apple.com/documentation/avfaudio/avaudiosession) object.
+    ///
+    ///
+    /// A description of the input and output ports which comprise a route.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSessionRouteDescription;

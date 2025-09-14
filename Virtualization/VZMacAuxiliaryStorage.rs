@@ -6,18 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options you can set when creating new auxiliary storage.
 /// Options when creating a new auxiliary storage.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/initializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZMacAuxiliaryStorageInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl VZMacAuxiliaryStorageInitializationOptions: NSUInteger {
+/// A Boolean value that indicates whether the VM can overwrite an existing auxiliary storage file.
 /// Overwrite an existing auxiliary storage.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/initializationoptions/allowoverwrite?language=objc)
         #[doc(alias = "VZMacAuxiliaryStorageInitializationOptionAllowOverwrite")]
         const AllowOverwrite = 1<<0;
     }
@@ -32,6 +30,29 @@ unsafe impl RefEncode for VZMacAuxiliaryStorageInitializationOptions {
 }
 
 extern_class!(
+    /// An object that contains information the boot loader needs for booting macOS as a guest operating system.
+    ///
+    /// ## Overview
+    ///
+    /// The Mac auxiliary storage contains data used by the boot loader and the guest operating system. It’s necessary to boot a macOS guest OS.
+    ///
+    /// When creating a new VM, use [`initCreatingStorageAtURL:hardwareModel:options:error:`](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/init(creatingstorageat:hardwaremodel:options:)) to create a default initialized auxiliary storage.
+    ///
+    /// The hardware model you use when creating the new auxiliary storage depends on the restore image that you’ll use for installation. From the restore image, use [`mostFeaturefulSupportedConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration) to get a supported configuration. A configuration has a [`VZMacHardwareModel`](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel) associated with it.
+    ///
+    /// After initializing the new auxiliary storage, set it on `VZMacPlatformConfiguration`.[`auxiliaryStorage`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage).
+    ///
+    /// The hardware model in `VZMacPlatformConfiguration`.[`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel) must be identical to the one used to create the empty auxiliary storage., otherwise the behavior isn’t defined.
+    ///
+    /// When installing macOS, the [`VZMacOSInstaller`](https://developer.apple.com/documentation/virtualization/vzmacosinstaller) lays out data on the auxiliary storage. After installation, the macOS guest uses the auxiliary storage for every subsequent boot.
+    ///
+    /// When moving or performing a backup of a VM, you must move or copy the file containing the auxiliary storage along with the main disk image.
+    ///
+    /// To boot a VM created with `VZMacOSInstaller`, use [`initWithContentsOfURL:`](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/init(contentsofurl:)) to set up the auxiliary storage from the existing file used during installation.
+    ///
+    /// When using an existing file, the hardware model of the `VZMacPlatformConfiguration`.[`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel) must match the hardware model used when creating the original file.
+    ///
+    ///
     /// Mac auxiliary storage.
     ///
     /// The Mac auxiliary storage contains data used by the boot loader and the guest operating system. It is necessary to boot a macOS guest OS.
@@ -65,8 +86,6 @@ extern_class!(
     /// See also: VZMacOSConfigurationRequirements
     ///
     /// See also: VZMacOSInstaller
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacAuxiliaryStorage;

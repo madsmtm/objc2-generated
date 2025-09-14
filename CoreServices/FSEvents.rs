@@ -12,84 +12,149 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcreateflags?language=objc)
+///
+/// ## Discussion
+///
+/// Flags that can be passed to the FSEventStreamCreate...() functions to modify the behavior of the stream being created.
+///
+///
 pub type FSEventStreamCreateFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagnone?language=objc)
+///
+/// ## Discussion
+///
+/// The default.
+///
+///
 pub const kFSEventStreamCreateFlagNone: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagusecftypes?language=objc)
+///
+/// ## Discussion
+///
+/// The framework will invoke your callback function with CF types rather than raw C types (i.e., a CFArrayRef of CFStringRefs, rather than a raw C array of raw C string pointers). See FSEventStreamCallback.
+///
+///
 pub const kFSEventStreamCreateFlagUseCFTypes: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagnodefer?language=objc)
+///
+/// ## Discussion
+///
+/// Affects the meaning of the latency parameter. If you specify this flag and more than latency seconds have elapsed since the last event, your app will receive the event immediately. The delivery of the event resets the latency timer and any further events will be delivered after latency seconds have elapsed. This flag is useful for apps that are interactive and want to react immediately to changes but avoid getting swamped by notifications when changes are occurringin rapid succession. If you do not specify this flag, then when an event occurs after a period of no events, the latency timer is started. Any events that occur during the next latency seconds will be delivered as one group (including that first event). The delivery of the group of events resets the latency timer and any further events will be delivered after latency seconds. This is the default behavior and is more appropriate for background, daemon or batch processing apps.
+///
+///
 pub const kFSEventStreamCreateFlagNoDefer: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagwatchroot?language=objc)
+///
+/// ## Discussion
+///
+/// Request notifications of changes along the path to the path(s) you're watching. For example, with this flag, if you watch "/foo/bar" and it is renamed to "/foo/bar.old", you would receive a RootChanged event. The same is true if the directory "/foo" were renamed. The event you receive is a special event: the path for the event is the original path you specified, the flag kFSEventStreamEventFlagRootChanged is set and event ID is zero. RootChanged events are useful to indicate that you should rescan a particular hierarchy because it changed completely (as opposed to the things inside of it changing). If you want to track the current location of a directory, it is best to open the directory before creating the stream so that you have a file descriptor for it and can issue an F_GETPATH fcntl() to find the current path.
+///
+///
 pub const kFSEventStreamCreateFlagWatchRoot: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagignoreself?language=objc)
+///
+/// ## Discussion
+///
+/// Don't send events that were triggered by the current process. This is useful for reducing the volume of events that are sent. It is only useful if your process might modify the file system hierarchy beneath the path(s) being monitored. Note: this has no effect on historical events, i.e., those delivered before the HistoryDone sentinel event.
+///
+///
 pub const kFSEventStreamCreateFlagIgnoreSelf: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagfileevents?language=objc)
+///
+/// ## Discussion
+///
+/// Request file-level notifications. Your stream will receive events about individual files in the hierarchy you're watching instead of only receiving directory level notifications. Use this flag with care as it will generate significantly more events than without it.
+///
+///
 pub const kFSEventStreamCreateFlagFileEvents: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagmarkself?language=objc)
 pub const kFSEventStreamCreateFlagMarkSelf: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflaguseextendeddata?language=objc)
 pub const kFSEventStreamCreateFlagUseExtendedData: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreateflagfullhistory?language=objc)
 pub const kFSEventStreamCreateFlagFullHistory: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455376-fseventstreamcreateflags/kfseventstreamcreatewithdocid?language=objc)
 pub const kFSEventStreamCreateWithDocID: c_uint = 0x00000100;
 pub const kFSEventStreamCreateDeviceState: c_uint = 0x00000200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreameventflags?language=objc)
+///
+/// ## Discussion
+///
+/// Flags that can be passed your FSEventStreamCallback function.
+///
+///
 pub type FSEventStreamEventFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagnone?language=objc)
+///
+/// ## Discussion
+///
+/// There was some change in the directory at the specific path supplied in this event.
+///
+///
 pub const kFSEventStreamEventFlagNone: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagmustscansubdirs?language=objc)
+///
+/// ## Discussion
+///
+/// Your application must rescan not just the directory given in the event, but all its children, recursively. This can happen if there was a problem whereby events were coalesced hierarchically. For example, an event in /Users/jsmith/Music and an event in /Users/jsmith/Pictures might be coalesced into an event with this flag set and path=/Users/jsmith. If this flag is set you may be able to get an idea of whether the bottleneck happened in the kernel (less likely) or in your client (more likely) by checking for the presence of the informational flags kFSEventStreamEventFlagUserDropped or kFSEventStreamEventFlagKernelDropped.
+///
+///
 pub const kFSEventStreamEventFlagMustScanSubDirs: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflaguserdropped?language=objc)
+///
+/// ## Discussion
+///
+/// The kFSEventStreamEventFlagUserDropped or kFSEventStreamEventFlagKernelDropped flags may be set in addition to the kFSEventStreamEventFlagMustScanSubDirs flag to indicate that a problem occurred in buffering the events (the particular flag set indicates where the problem occurred) and that the client must do a full scan of any directories (and their subdirectories, recursively) being monitored by this stream. If you asked to monitor multiple paths with this stream then you will be notified about all of them. Your code need only check for the kFSEventStreamEventFlagMustScanSubDirs flag; these flags (if present) only provide information to help you diagnose the problem.
+///
+///
 pub const kFSEventStreamEventFlagUserDropped: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagkerneldropped?language=objc)
 pub const kFSEventStreamEventFlagKernelDropped: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflageventidswrapped?language=objc)
+///
+/// ## Discussion
+///
+/// If kFSEventStreamEventFlagEventIdsWrapped is set, it means the 64-bit event ID counter wrapped around. As a result, previously-issued event ID's are no longer valid arguments for the sinceWhen parameter of the FSEventStreamCreate...() functions.
+///
+///
 pub const kFSEventStreamEventFlagEventIdsWrapped: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflaghistorydone?language=objc)
+///
+/// ## Discussion
+///
+/// Denotes a sentinel event sent to mark the end of the "historical" events sent as a result of specifying a sinceWhen value in the FSEventStreamCreate...() call that created this event stream. (It will not be sent if kFSEventStreamEventIdSinceNow was passed for sinceWhen.) After invoking the client's callback with all the "historical" events that occurred before now, the client's callback will be invoked with an event where the kFSEventStreamEventFlagHistoryDone flag is set. The client should ignore the path supplied in this callback.
+///
+///
 pub const kFSEventStreamEventFlagHistoryDone: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagrootchanged?language=objc)
+///
+/// ## Discussion
+///
+/// Denotes a special event sent when there is a change to one of the directories along the path to one of the directories you asked to watch. When this flag is set, the event ID is zero and the path corresponds to one of the paths you asked to watch (specifically, the one that changed). The path may no longer exist because it or one of its parents was deleted or renamed. Events with this flag set will only be sent if you passed the flag kFSEventStreamCreateFlagWatchRoot to FSEventStreamCreate...() when you created the stream.
+///
+///
 pub const kFSEventStreamEventFlagRootChanged: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagmount?language=objc)
+///
+/// ## Discussion
+///
+/// Denotes a special event sent when a volume is mounted underneath one of the paths being monitored. The path in the event is the path to the newly-mounted volume. You will receive one of these notifications for every volume mount event inside the kernel (independent of DiskArbitration). Beware that a newly-mounted volume could contain an arbitrarily large directory hierarchy. Avoid pitfalls like triggering a recursive scan of a non-local filesystem, which you can detect by checking for the absence of the MNT_LOCAL flag in the f_flags returned by statfs(). Also be aware of the MNT_DONTBROWSE flag that is set for volumes which should not be displayed by user interface elements.
+///
+///
 pub const kFSEventStreamEventFlagMount: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagunmount?language=objc)
+///
+/// ## Discussion
+///
+/// Denotes a special event sent when a volume is unmounted underneath one of the paths being monitored. The path in the event is the path to the directory from which the volume was unmounted. You will receive one of these notifications for every volume unmount event inside the kernel. This is not a substitute for the notifications provided by the DiskArbitration framework; you only get notified after the unmount has occurred. Beware that unmounting a volume could uncover an arbitrarily large directory hierarchy, although macOS never does that.
+///
+///
 pub const kFSEventStreamEventFlagUnmount: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemcreated?language=objc)
 pub const kFSEventStreamEventFlagItemCreated: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemremoved?language=objc)
 pub const kFSEventStreamEventFlagItemRemoved: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagiteminodemetamod?language=objc)
 pub const kFSEventStreamEventFlagItemInodeMetaMod: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemrenamed?language=objc)
 pub const kFSEventStreamEventFlagItemRenamed: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemmodified?language=objc)
 pub const kFSEventStreamEventFlagItemModified: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemfinderinfomod?language=objc)
 pub const kFSEventStreamEventFlagItemFinderInfoMod: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemchangeowner?language=objc)
 pub const kFSEventStreamEventFlagItemChangeOwner: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemxattrmod?language=objc)
 pub const kFSEventStreamEventFlagItemXattrMod: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemisfile?language=objc)
 pub const kFSEventStreamEventFlagItemIsFile: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemisdir?language=objc)
 pub const kFSEventStreamEventFlagItemIsDir: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemissymlink?language=objc)
 pub const kFSEventStreamEventFlagItemIsSymlink: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagownevent?language=objc)
 pub const kFSEventStreamEventFlagOwnEvent: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemishardlink?language=objc)
 pub const kFSEventStreamEventFlagItemIsHardlink: c_uint = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemislasthardlink?language=objc)
 pub const kFSEventStreamEventFlagItemIsLastHardlink: c_uint = 0x00200000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1455361-fseventstreameventflags/kfseventstreameventflagitemcloned?language=objc)
 pub const kFSEventStreamEventFlagItemCloned: c_uint = 0x00400000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreameventid?language=objc)
+///
+/// ## Discussion
+///
+/// Event IDs that can be passed to the FSEventStreamCreate...() functions and FSEventStreamCallback(). They are monotonically increasing per system, even across reboots and drives coming and going. They bear no relation to any particular clock or timebase.
+///
+///
 pub type FSEventStreamEventId = u64;
 
 #[repr(C)]
@@ -104,10 +169,14 @@ unsafe impl RefEncode for __FSEventStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("__FSEventStream", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamref?language=objc)
+///
+/// ## Discussion
+///
+/// This is the type of a reference to an FSEventStream.
+///
+///
 pub type FSEventStreamRef = *mut __FSEventStream;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcontext?language=objc)
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -138,7 +207,32 @@ unsafe impl RefEncode for FSEventStreamContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/fseventstreamcallback?language=objc)
+///
+/// Parameters:
+/// - streamRef: The stream for which event(s) occurred.
+///
+/// - clientCallBackInfo: The info field that was supplied in the context when this stream was created.
+///
+/// - numEvents: The number of events being reported in this callback. Each of the arrays (eventPaths, eventFlags, eventIds) will have this many elements.
+///
+/// - eventPaths: An array of paths to the directories in which event(s) occurred.
+///
+/// The type of this parameter depends on the flags passed to FSEventStreamCreate...(). If kFSEventStreamCreateFlagUseCFTypes was set, then this will be a CFArrayRef containing CFStringRef objects (per CFStringCreateWithFileSystemRepresentation()). Ownership follows the Get rule, and they will be released by the framework after your callback returns. If kFSEventStreamCreateFlagUseCFTypes was not set, then the framework will pass your callback a raw C array of raw C strings that will be deallocated by the framework after your callback returns.
+///
+/// A path might be "/" if ether of these flags is set for the event: kFSEventStreamEventFlagUserDropped, kFSEventStreamEventFlagKernelDropped.
+///
+/// - eventFlags: An array of flag words corresponding to the paths in the eventPaths parameter. If no flags are set, then there was some change in the directory at the specific path supplied in this event. See FSEventStreamEventFlags.
+///
+/// - eventIds: An array of FSEventStreamEventIds corresponding to the paths in the eventPaths parameter.
+///
+/// Each event ID comes from the most recent event being reported in the corresponding directory named in the eventPaths parameter. Event IDs all come from a single global source. They are guaranteed to always be increasing, usually in leaps and bounds, even across system reboots and moving drives from one machine to another. Just before invoking your callback your stream is updated so that calling the accessor FSEventStreamGetLatestEventId() will return the largest of the values passed in the eventIds parameter; if you were to stop processing events from this stream after this callback and resume processing them later from a newly-created FSEventStream, this is the value you would pass for the sinceWhen parameter to the FSEventStreamCreate...() function.
+///
+///
+/// ## Discussion
+///
+/// This is the type of the callback function supplied by the client when creating a new stream. This callback is invoked by the service from the client's runloop(s) when events occur, per the parameters specified when the stream was created.
+///
+///
 pub type FSEventStreamCallback = Option<
     unsafe extern "C-unwind" fn(
         ConstFSEventStreamRef,
@@ -151,7 +245,35 @@ pub type FSEventStreamCallback = Option<
 >;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443980-fseventstreamcreate?language=objc)
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator to be used to allocate memory for the stream. Pass NULL or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - callback: An FSEventStreamCallback which will be called when FS events occur.
+    ///
+    /// - context: A pointer to the FSEventStreamContext structure the client wants to associate with this stream. Its fields are copied out into the stream itself so its memory can be released after the stream is created. Passing NULL is allowed and has the same effect as passing a structure whose fields are all set to zero.
+    ///
+    /// - pathsToWatch: A CFArray of CFStringRefs, each specifying a path to a directory, signifying the root of a filesystem hierarchy to be watched for modifications.
+    ///
+    /// - sinceWhen: The service will supply events that have happened after the given event ID. To ask for events "since now" pass the constant kFSEventStreamEventIdSinceNow. Often, clients will supply the highest-numbered FSEventStreamEventId they have received in a callback, which they can obtain via the FSEventStreamGetLatestEventId() accessor. Do not pass zero for sinceWhen, unless you want to receive events for every directory modified since "the beginning of time" -- an unlikely scenario.
+    ///
+    /// - latency: The number of seconds the service should wait after hearing about an event from the kernel before passing it along to the client via its callback. Specifying a larger value may result in more effective temporal coalescing, resulting in fewer callbacks and greater overall efficiency.
+    ///
+    /// - flags: Flags that modify the behavior of the stream being created. See FSEventStreamCreateFlags.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A valid FSEventStreamRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a new FS event stream object with the given parameters. In order to start receiving callbacks you must also call FSEventStreamScheduleWithRunLoop() and FSEventStreamStart().
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -170,7 +292,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447341-fseventstreamcreaterelativetodev?language=objc)
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator to be used to allocate memory for the stream. Pass NULL or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - callback: An FSEventStreamCallback which will be called when FS events occur.
+    ///
+    /// - context: A pointer to the FSEventStreamContext structure the client wants to associate with this stream. Its fields are copied out into the stream itself so its memory can be released after the stream is created.
+    ///
+    /// - deviceToWatch: A dev_t corresponding to the device which you want to receive notifications from. The dev_t is the same as the st_dev field from a stat structure of a file on that device or the f_fsid[0] field of a statfs structure. If the value of dev is zero, it is ignored.
+    ///
+    /// - pathsToWatchRelativeToDevice: A CFArray of CFStringRefs, each specifying a relative path to a directory on the device identified by the dev parameter. The paths should be relative to the root of the device. For example, if a volume "MyData" is mounted at "/Volumes/MyData" and you want to watch "/Volumes/MyData/Pictures/July", specify a path string of "Pictures/July". To watch the root of a volume pass a path of "" (the empty string).
+    ///
+    /// - sinceWhen: The service will supply events that have happened after the given event ID. To ask for events "since now" pass the constant kFSEventStreamEventIdSinceNow. Often, clients will supply the highest-numbered FSEventStreamEventId they have received in a callback, which they can obtain via the FSEventStreamGetLatestEventId() accessor. Do not pass zero for sinceWhen, unless you want to receive events for every directory modified since "the beginning of time" -- an unlikely scenario.
+    ///
+    /// - latency: The number of seconds the service should wait after hearing about an event from the kernel before passing it along to the client via its callback. Specifying a larger value may result in more effective temporal coalescing, resulting in fewer callbacks.
+    ///
+    /// - flags: Flags that modify the behavior of the stream being created. See FSEventStreamCreateFlags.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A valid FSEventStreamRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a new FS event stream object for a particular device with the given parameters. In order to start receiving callbacks you must also call FSEventStreamScheduleWithRunLoop() and FSEventStreamStart().
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -191,7 +343,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446030-fseventstreamgetlatesteventid?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The sinceWhen attribute of the stream.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Fetches the sinceWhen property of the stream. Upon receiving an event (and just before invoking the client's callback) this attribute is updated to the highest-numbered event ID mentioned in the event.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -201,7 +369,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449675-fseventstreamgetdevicebeingwatch?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The dev_t for a device-relative stream, otherwise 0.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Fetches the dev_t supplied when the stream was created via FSEventStreamCreateRelativeToDevice(), otherwise 0.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -210,7 +394,23 @@ extern "C-unwind" {
     pub fn FSEventStreamGetDeviceBeingWatched(stream_ref: ConstFSEventStreamRef) -> libc::dev_t;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447917-fseventstreamcopypathsbeingwatch?language=objc)
+///
+/// Parameters:
+/// - streamRef: A valid stream.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A CFArray of CFStringRefs corresponding to those supplied when the stream was created. Ownership follows the Copy rule.
+///
+///
+///
+/// ## Discussion
+///
+/// Fetches the paths supplied when the stream was created via one of the FSEventStreamCreate...() functions.
+///
+///
 ///
 /// # Safety
 ///
@@ -230,11 +430,41 @@ pub unsafe extern "C-unwind" fn FSEventStreamCopyPathsBeingWatched(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442917-fseventsgetcurrenteventid?language=objc)
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The event ID of the most recent event generated by the system.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Fetches the most recently generated event ID, system-wide (not just for one stream). By thetime it is returned to your application even newer events may have already been generated.
+    ///
+    ///
     pub fn FSEventsGetCurrentEventId() -> FSEventStreamEventId;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444453-fseventscopyuuidfordevice?language=objc)
+///
+/// Parameters:
+/// - dev: The dev_t of the device that you want to get the UUID for.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The UUID associated with the stream of events on this device, or NULL if no UUID is available (for example, on a read-only device). The UUID is stored on the device itself and travels with it even when the device is attached to different computers. Ownership follows the Copy Rule.
+///
+///
+///
+/// ## Discussion
+///
+/// Gets the UUID associated with a device, or NULL if not possible (for example, on read-only device). A (non-NULL) UUID uniquely identifies a given stream of FSEvents. If this (non-NULL) UUID is different than one that you stored from a previous run then the event stream is different (for example, because FSEvents were purged, because the disk was erased, or because the event ID counter wrapped around back to zero).
+///
+/// A NULL return value indicates that "historical" events are not available, i.e., you should not supply a "sinceWhen" value to FSEventStreamCreate...() other than kFSEventStreamEventIdSinceNow.
+///
+///
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventsCopyUUIDForDevice(
@@ -248,7 +478,27 @@ pub unsafe extern "C-unwind" fn FSEventsCopyUUIDForDevice(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449772-fseventsgetlasteventidfordeviceb?language=objc)
+    ///
+    /// Parameters:
+    /// - dev: The dev_t of the device.
+    ///
+    /// - time: The time as a CFAbsoluteTime whose value is the number of seconds since Jan 1, 1970 (i.e. a posix style time_t).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The last event ID for the given device that was returned before the given time.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Gets the last event ID for the given device that was returned before the given time. This is conservative in the sense that if you then use the returned event ID as the sinceWhen parameter of FSEventStreamCreateRelativeToDevice() that you will not miss any events that happened since that time. On the other hand, you might receive some (harmless) extra events.
+    ///
+    /// Beware: there are things that can cause this to fail to be accurate. For example, someone might change the system's clock (either backwards or forwards). Or an external drive might be used on different systems without perfectly synchronized clocks.
+    ///
+    ///
     #[cfg(feature = "libc")]
     pub fn FSEventsGetLastEventIdForDeviceBeforeTime(
         dev: libc::dev_t,
@@ -256,7 +506,25 @@ extern "C-unwind" {
     ) -> FSEventStreamEventId;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447985-fseventspurgeeventsfordeviceupto?language=objc)
+///
+/// Parameters:
+/// - dev: The dev_t of the device.
+///
+/// - eventId: The event ID.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// True if it succeeds, otherwise False if it fails.
+///
+///
+///
+/// ## Discussion
+///
+/// Purges old events from the persistent per-volume database maintained by the service. Can only be called by the root user.
+///
+///
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn FSEventsPurgeEventsForDeviceUpToEventId(
@@ -274,8 +542,6 @@ pub unsafe extern "C-unwind" fn FSEventsPurgeEventsForDeviceUpToEventId(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444986-fseventstreamretain?language=objc)
-    ///
     /// # Safety
     ///
     /// `stream_ref` must be a valid pointer.
@@ -283,7 +549,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445989-fseventstreamrelease?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Decrements the stream's refcount. The refcount is initially one and is incremented via FSEventStreamRetain(). If the refcount reaches zero then the stream is deallocated.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -292,7 +567,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447824-fseventstreamschedulewithrunloop?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    /// - runLoop: The run loop on which to schedule the stream.
+    ///
+    /// - runLoopMode: A run loop mode on which to schedule the stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function schedules the stream on the specified run loop, like CFRunLoopAddSource() does for a CFRunLoopSourceRef. The caller is responsible for ensuring that the stream is scheduled on at least one run loop and that at least one of the run loops on which the stream is scheduled is being run.
+    ///
+    /// To start receiving events on the stream, call FSEventStreamStart().
+    ///
+    /// To remove the stream from the run loops upon which it has been scheduled, call FSEventStreamUnscheduleFromRunLoop() or FSEventStreamInvalidate().
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -307,7 +599,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441982-fseventstreamunschedulefromrunlo?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    /// - runLoop: The run loop from which to unschedule the stream.
+    ///
+    /// - runLoopMode: The run loop mode from which to unschedule the stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function removes the stream from the specified run loop, like CFRunLoopRemoveSource() does for a CFRunLoopSourceRef.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -322,7 +627,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444164-fseventstreamsetdispatchqueue?language=objc)
+    /// Schedules the stream on the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    /// - q: The dispatch queue to use to receive events (or `NULL` to stop receiving events from the stream).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller is responsible for ensuring that the stream is scheduled on a dispatch queue and that the queue is started.
+    ///
+    /// If there’s a problem scheduling the stream on the queue, an error will be returned when you try to start the stream.
+    ///
+    /// To start receiving events on the stream, call [`FSEventStreamStart`](https://developer.apple.com/documentation/coreservices/1448000-fseventstreamstart).
+    ///
+    /// To remove the stream from the queue on which it was scheduled, call [`FSEventStreamSetDispatchQueue`](https://developer.apple.com/documentation/coreservices/1444164-fseventstreamsetdispatchqueue) with a `NULL` queue parameter or call [`FSEventStreamInvalidate`](https://developer.apple.com/documentation/coreservices/1446990-fseventstreaminvalidate) which does the same thing. You must eventually call [`FSEventStreamInvalidate`](https://developer.apple.com/documentation/coreservices/1446990-fseventstreaminvalidate) and it’s an error to call [`FSEventStreamInvalidate`](https://developer.apple.com/documentation/coreservices/1446990-fseventstreaminvalidate) without having the stream either scheduled on a runloop or a dispatch queue, so don’t set the dispatch queue to `NULL` before calling [`FSEventStreamInvalidate`](https://developer.apple.com/documentation/coreservices/1446990-fseventstreaminvalidate).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -333,7 +656,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446990-fseventstreaminvalidate?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Invalidates the stream, like CFRunLoopSourceInvalidate() does for a CFRunLoopSourceRef. It will be unscheduled from any runloops or dispatch queues upon which it had been scheduled.
+    ///
+    /// FSEventStreamInvalidate() can only be called on the stream after you have called FSEventStreamScheduleWithRunLoop() or FSEventStreamSetDispatchQueue().
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -341,7 +675,27 @@ extern "C-unwind" {
     pub fn FSEventStreamInvalidate(stream_ref: FSEventStreamRef);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448000-fseventstreamstart?language=objc)
+///
+/// Parameters:
+/// - streamRef: A valid stream.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// True if it succeeds, otherwise False if it fails. It ought to always succeed, but in the event it does not then your code should fall back to performing recursive scans of the directories of interest as appropriate.
+///
+///
+///
+/// ## Discussion
+///
+/// Attempts to register with the FS Events service to receive events per the parameters in the stream.
+///
+/// FSEventStreamStart() can only be called once the stream has been scheduled on at least one runloop, via FSEventStreamScheduleWithRunLoop().
+///
+/// Once started, the stream can be stopped via FSEventStreamStop().
+///
+///
 ///
 /// # Safety
 ///
@@ -356,7 +710,25 @@ pub unsafe extern "C-unwind" fn FSEventStreamStart(stream_ref: FSEventStreamRef)
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441727-fseventstreamflushasync?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The largest event id of any event ever queued for this stream, otherwise zero if no events have been queued for this stream.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Asks the FS Events service to flush out any events that have occurred but have not yet been delivered, due to the latency parameter that was supplied when the stream was created. This flushing occurs asynchronously -- do not expect the events to have already been delivered by the time this call returns.
+    ///
+    /// FSEventStreamFlushAsync() can only be called after the stream has been started, via FSEventStreamStart().
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -365,7 +737,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445629-fseventstreamflushsync?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Asks the FS Events service to flush out any events that have occurred but have not yet been delivered, due to the latency parameter that was supplied when the stream was created. This flushing occurs synchronously -- by the time this call returns, your callback will have been invoked for every event that had already occurred at the time you made this call.
+    ///
+    /// FSEventStreamFlushSync() can only be called after the stream has been started, via FSEventStreamStart().
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -374,7 +757,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447673-fseventstreamstop?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unregisters with the FS Events service. The client callback will not be called for this stream while it is stopped.
+    ///
+    /// FSEventStreamStop() can only be called if the stream has been started, via FSEventStreamStart().
+    ///
+    /// Once stopped, the stream can be restarted via FSEventStreamStart(), at which point it will resume receiving events from where it left off ("sinceWhen").
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -383,7 +779,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444302-fseventstreamshow?language=objc)
+    ///
+    /// Parameters:
+    /// - streamRef: A valid stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Prints a description of the supplied stream to stderr. For debugging only.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -391,7 +796,19 @@ extern "C-unwind" {
     pub fn FSEventStreamShow(stream_ref: ConstFSEventStreamRef);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442676-fseventstreamcopydescription?language=objc)
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A CFStringRef containing the description of the supplied stream. Ownership follows the Copy rule.
+///
+///
+///
+/// ## Discussion
+///
+/// Returns a CFStringRef containing the description of the supplied stream. For debugging only.
+///
+///
 ///
 /// # Safety
 ///
@@ -410,8 +827,6 @@ pub unsafe extern "C-unwind" fn FSEventStreamCopyDescription(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444666-fseventstreamsetexclusionpaths?language=objc)
-///
 /// # Safety
 ///
 /// - `stream_ref` must be a valid pointer.

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcpoint2?language=objc)
+/// A structure that represents a normalized point in a two-dimensional coordinate system.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCPoint2 {
@@ -25,7 +25,13 @@ unsafe impl RefEncode for GCPoint2 {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcpoint2zero?language=objc)
+    /// The origin for a two dimensional point.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant represents the `(0, 0)` origin.
+    ///
+    ///
     pub static GCPoint2Zero: GCPoint2;
 }
 
@@ -35,7 +41,17 @@ impl GCPoint2 {
     // TODO: pub fn GCPoint2Equal(point1: GCPoint2,point2: GCPoint2,) -> bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsstringfromgcpoint2(_:)?language=objc)
+/// Returns a string representation of a point.
+///
+/// Parameters:
+/// - point: The point to convert to a string.
+///
+///
+/// ## Return Value
+///
+/// A string of the form `{a, b}`, where `a` and `b` are the x and y coordinates of `point`.
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {
     extern "C-unwind" {

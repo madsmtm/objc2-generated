@@ -6,46 +6,94 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartAudioCallIntentResponseCode(pub NSInteger);
 impl INStartAudioCallIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/unspecified?language=objc)
+    /// Your app can’t provide a specific status.
     #[doc(alias = "INStartAudioCallIntentResponseCodeUnspecified")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeReady")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/continueinapp?language=objc)
+    /// Your extension is ready to transfer control so your app can place the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, Siri launches your app and passes it the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object you provided at initialization time. (If you didn’t provide a user activity object, Siri creates one for you.) Siri adds an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to place the call.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeContinueInApp")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failure?language=objc)
+    /// You were unable to initiate the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from placing the call. For example, use this code if your app’s calling network is unavailable.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailure")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to initiate the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// The user must perform additional configuration steps before initiating a call is possible.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your app isn’t configured to start an audio call. For example, you might return this code if the user hasn’t yet set up a calling account. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureAppConfigurationRequired: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurecallingservicenotavailable?language=objc)
+    /// Your app’s calling service isn’t currently available.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your calling service is temporarily unavailable for any reason.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureCallingServiceNotAvailable")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureCallingServiceNotAvailable: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurecontactnotsupportedbyapp?language=objc)
+    /// You can’t use the specified contact to place the call.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the sender or recipient cannot take part in an audio call.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureContactNotSupportedByApp")]
     #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
     pub const FailureContactNotSupportedByApp: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponsecode/failurenovalidnumber?language=objc)
+    /// The specified number doesn’t support audio calls.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the recipient’s call identifier isn’t valid for audio calls on your service.
+    ///
+    ///
     #[doc(alias = "INStartAudioCallIntentResponseCodeFailureNoValidNumber")]
     pub const FailureNoValidNumber: Self = Self(8);
 }
@@ -59,7 +107,15 @@ unsafe impl RefEncode for INStartAudioCallIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentresponse?language=objc)
+    /// An app’s response to an intent to start an audio call.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INStartAudioCallIntentResponse`](https://developer.apple.com/documentation/intents/instartaudiocallintentresponse) object to specify whether your app is able to initiate an audio-based call. You create instances of this class when confirming and handling an [`INStartAudioCallIntent`](https://developer.apple.com/documentation/intents/instartaudiocallintent) object. When it’s time to call the user, SiriKit launches your app and delivers the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object contained in this object. Use that user activity object to specify any additional information that would assist your app in placing the call.
+    ///
+    /// You create an [`INStartAudioCallIntentResponse`](https://developer.apple.com/documentation/intents/instartaudiocallintentresponse) object in the [`confirmStartAudioCall:completion:`](https://developer.apple.com/documentation/intents/instartaudiocallintenthandling/confirm(intent:completion:)) and [`handleStartAudioCall:completion:`](https://developer.apple.com/documentation/intents/instartaudiocallintenthandling/handle(intent:completion:)) methods of your start audio call handler object. For more information about implementing your handler object, see [`INStartAudioCallIntentHandling`](https://developer.apple.com/documentation/intents/instartaudiocallintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogandhandleeveryexceptionmask?language=objc)
+/// Combines via bitwise-OR all the constants listed in [Logging and Handling Constants](https://developer.apple.com/documentation/exceptionhandling/logging-and-handling-constants).
 pub const NSLogAndHandleEveryExceptionMask: c_uint = NSLogUncaughtExceptionMask
     | NSLogUncaughtSystemExceptionMask
     | NSLogUncaughtRuntimeErrorMask
@@ -18,29 +18,28 @@ pub const NSLogAndHandleEveryExceptionMask: c_uint = NSLogUncaughtExceptionMask
     | NSHandleTopLevelExceptionMask
     | NSLogOtherExceptionMask
     | NSHandleOtherExceptionMask;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangoneveryexceptionmask?language=objc)
+/// Combines via bitwise-OR all the constants listed in [System Hang Constants](https://developer.apple.com/documentation/exceptionhandling/system-hang-constants).
 pub const NSHangOnEveryExceptionMask: c_uint = NSHangOnUncaughtExceptionMask
     | NSHangOnUncaughtSystemExceptionMask
     | NSHangOnUncaughtRuntimeErrorMask
     | NSHangOnTopLevelExceptionMask
     | NSHangOnOtherExceptionMask;
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtsystemexceptionexception?language=objc)
+    /// Identifies an uncaught system exception.
     pub static NSUncaughtSystemExceptionException: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsuncaughtruntimeerrorexception?language=objc)
+    /// Identifies an Objective-C runtime error.
     pub static NSUncaughtRuntimeErrorException: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsstacktracekey?language=objc)
+    /// The key for fetching the stack trace (an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object) in the [`userInfo`](https://developer.apple.com/documentation/foundation/nsexception/userinfo-swift.property) dictionary of the [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) object passed into one of the delegate methods described in [NSExceptionHandlerDelegate](https://developer.apple.com/documentation/exceptionhandling/nsexceptionhandlerdelegate).
     pub static NSStackTraceKey: Option<&'static NSString>;
 }
 
 impl NSExceptionHandler {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsexceptionhandlerresume()?language=objc)
     #[doc(alias = "NSExceptionHandlerResume")]
     #[inline]
     pub unsafe fn resume() {
@@ -51,40 +50,58 @@ impl NSExceptionHandler {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtexceptionmask?language=objc)
+/// The exception handler logs uncaught exceptions.
 pub const NSLogUncaughtExceptionMask: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleuncaughtexceptionmask?language=objc)
+/// The exception handler handles uncaught exceptions by terminating the thread in which they occur.
 pub const NSHandleUncaughtExceptionMask: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtsystemexceptionmask?language=objc)
+/// The exception handler logs uncaught system exceptions.
 pub const NSLogUncaughtSystemExceptionMask: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleuncaughtsystemexceptionmask?language=objc)
+/// The exception handler handles uncaught system exceptions by converting them to [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) objects containing a stack trace.
 pub const NSHandleUncaughtSystemExceptionMask: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsloguncaughtruntimeerrormask?language=objc)
+/// The exception handler logs uncaught runtime errors.
 pub const NSLogUncaughtRuntimeErrorMask: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleuncaughtruntimeerrormask?language=objc)
+/// The exception handler handles uncaught runtime errors by converting them to [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) objects containing a stack trace.
 pub const NSHandleUncaughtRuntimeErrorMask: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogtoplevelexceptionmask?language=objc)
+/// The exception handler logs exceptions that would be caught by the top-level handler.
 pub const NSLogTopLevelExceptionMask: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandletoplevelexceptionmask?language=objc)
+/// The exception handler handles exceptions caught by the top-level handler by converting them to [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) objects containing a stack trace.
 pub const NSHandleTopLevelExceptionMask: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nslogotherexceptionmask?language=objc)
+/// The exception handler logs exceptions caught by handlers lower than the top-level handler.
 pub const NSLogOtherExceptionMask: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshandleotherexceptionmask?language=objc)
+/// The exception handler handles exceptions caught by handlers lower than the top-level handler by converting them to [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) objects containing a stack trace.
 pub const NSHandleOtherExceptionMask: c_uint = 1 << 9;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonuncaughtexceptionmask?language=objc)
+/// The exception handler suspends execution when it detects an uncaught exception (other than a system exception or runtime error).
 pub const NSHangOnUncaughtExceptionMask: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonuncaughtsystemexceptionmask?language=objc)
+/// The exception handler suspends execution when it detects an uncaught system exception.
 pub const NSHangOnUncaughtSystemExceptionMask: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonuncaughtruntimeerrormask?language=objc)
+/// The exception handler suspends execution when it detects an uncaught runtime error.
 pub const NSHangOnUncaughtRuntimeErrorMask: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangontoplevelexceptionmask?language=objc)
+/// The exception handler suspends execution when it detects an exception that would be handled by the top-level handler.
 pub const NSHangOnTopLevelExceptionMask: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nshangonotherexceptionmask?language=objc)
+/// The exception handler suspends execution when it detects an exception that would be handled by an object other than the top-level handler.
 pub const NSHangOnOtherExceptionMask: c_uint = 1 << 4;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/exceptionhandling/nsexceptionhandler?language=objc)
+    /// The `NSExceptionHandler` class provides facilities for monitoring and debugging exceptional conditions in Objective-C programs. It works by installing a special uncaught exception handler via the  [`NSSetUncaughtExceptionHandler`](https://developer.apple.com/documentation/foundation/nssetuncaughtexceptionhandler(_:)) function. Consequently, to use the services of `NSExceptionHandler`, you must not install your own custom uncaught exception handler.
+    ///
+    /// ## Overview
+    ///
+    /// To use these services, you set a bit mask in the singleton `NSExceptionHandler` instance and, optionally, a delegate. The constants comprising the bit mask indicate the type of exception to be monitored and the behavior of the `NSExceptionHandler` object (or, simply, the exception handler). The delegate is asked to approve the logging and handling of each monitored [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) object using the NSExceptionHandlerDelegate protocol.
+    ///
+    /// The constants for configuring exception handler behavior can be categorized in several ways:
+    ///
+    /// - Uncaught exceptions versus caught exceptions—or, more accurately, exceptions that would be caught (for example, by the top-level handler)
+    ///
+    /// - Exception type or cause: system exceptions (such as invalid memory accesses), Objective-C runtime errors (such as messages sent to freed objects), and other exceptions
+    ///
+    /// - Exception handler behavior: logging the exception (including a stack trace) to the console, handling the exception, and suspending program execution so the debugger can be attached
+    ///
+    /// The way the exception handler handles an exception depends on the type of exception; the exception handler converts system exceptions and runtime errors into [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) objects with a stack trace embedded in their `userInfo` dictionary; for all other uncaught exceptions, it terminates the thread on which they occur . The constants used to configure an `NSExceptionHandler` object are described in [Logging and Handling Constants](https://developer.apple.com/documentation/exceptionhandling/logging-and-handling-constants) and [System Hang Constants](https://developer.apple.com/documentation/exceptionhandling/system-hang-constants).
+    ///
+    /// The `defaults` command-line system also allows you to set values corresponding to the `enum` constants used to configure the exception handler; see [Controlling a Program’s Response to Exceptions](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Exceptions/Tasks/ControllingAppResponse.html#//apple_ref/doc/uid/20000473) for details.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExceptionHandler;

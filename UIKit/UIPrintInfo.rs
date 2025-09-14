@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum?language=objc)
+/// Constants that describe the output type, which is an indication of the type of content the app is drawing or providing.
+///
+/// ## Overview
+///
+/// You use these constants when setting the value of the [`outputType`](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.property) property of a `UIPrintInfo` object.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoOutputType(pub NSInteger);
 impl UIPrintInfoOutputType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/general?language=objc)
+    /// Specifies that the printed content consists of mixed text, graphics, and images. The default paper is Letter, A4, or similar locale-specific designation. Output is normal quality, duplex.
     #[doc(alias = "UIPrintInfoOutputGeneral")]
     pub const General: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/photo?language=objc)
+    /// Specifies that the printed content consists of black-and-white or color images. The default paper is 4x6, A6, or similar locale-specific designation. Output is high quality, simplex.
     #[doc(alias = "UIPrintInfoOutputPhoto")]
     pub const Photo: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/grayscale?language=objc)
+    /// Specifies that the printed content is grayscale. Set the output type to this value when your printable content contains no color—for example, it’s black text only. The default paper is Letter/A4. Output is grayscale quality, duplex. This content type can produce a performance improvement in some cases.
     #[doc(alias = "UIPrintInfoOutputGrayscale")]
     pub const Grayscale: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/outputtype-swift.enum/photograyscale?language=objc)
+    /// Specifies that the printed content is a grayscale image. Set the output type to this value when your printable content contains no color—for example, it’s black text only. The default paper is Letter/A4. Output is high quality grayscale, duplex.
     #[doc(alias = "UIPrintInfoOutputPhotoGrayscale")]
     pub const PhotoGrayscale: Self = Self(3);
 }
@@ -35,16 +41,30 @@ unsafe impl RefEncode for UIPrintInfoOutputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.enum?language=objc)
+/// Constants that describe the orientation of printing on a page.
+///
+/// ## Overview
+///
+/// You use these constants when setting the value of the [`orientation`](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.property) property of a `UIPrintInfo` object.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  UIKit ignores the [`orientation`](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.property) property when printable content is assigned to the `printingItem` or `printingItems` properties of the shared [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) object. It determines the orientation based on the type of content.
+///
+///
+///
+/// </div>
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoOrientation(pub NSInteger);
 impl UIPrintInfoOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.enum/portrait?language=objc)
+    /// Pages are printed in portrait orientation.
     #[doc(alias = "UIPrintInfoOrientationPortrait")]
     pub const Portrait: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/orientation-swift.enum/landscape?language=objc)
+    /// Pages are printed in landscape orientation.
     #[doc(alias = "UIPrintInfoOrientationLandscape")]
     pub const Landscape: Self = Self(1);
 }
@@ -57,19 +77,25 @@ unsafe impl RefEncode for UIPrintInfoOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum?language=objc)
+/// Constants that describe the duplex mode of a selected printer.
+///
+/// ## Overview
+///
+/// You use these constants when setting the value of the [`duplex`](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.property) property of a `UIPrintInfo` object.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoDuplex(pub NSInteger);
 impl UIPrintInfoDuplex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum/none?language=objc)
+    /// No double-sided (duplex) printing; single-sided printing only.
     #[doc(alias = "UIPrintInfoDuplexNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum/longedge?language=objc)
+    /// Duplex printing that flips the back page along the long edge of the paper.
     #[doc(alias = "UIPrintInfoDuplexLongEdge")]
     pub const LongEdge: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo/duplex-swift.enum/shortedge?language=objc)
+    /// Duplex print that flips the back page along the short edge of the paper.
     #[doc(alias = "UIPrintInfoDuplexShortEdge")]
     pub const ShortEdge: Self = Self(2);
 }
@@ -83,7 +109,15 @@ unsafe impl RefEncode for UIPrintInfoDuplex {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfo?language=objc)
+    /// Information about a print job that the system uses when it prints.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIPrintInfo`](https://developer.apple.com/documentation/uikit/uiprintinfo) object encapsulates information about a print job, including printer identifier, job name, output type (photo, normal, grayscale), orientation (portrait or landscape), and any selected duplex mode.
+    ///
+    /// Typically, you create a [`UIPrintInfo`](https://developer.apple.com/documentation/uikit/uiprintinfo) object and assign it to the [`printInfo`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printinfo) property of the shared [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) instance. However, it isn’t necessary to create a [`UIPrintInfo`](https://developer.apple.com/documentation/uikit/uiprintinfo) object for a print job; UIKit assumes certain defaults. In the printing-options user interface, users can select the printer, single-sided or double-sided printing for duplex printers, and (if the app allows it) a range of pages to print.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a collection of mutually exclusive options for the presentation of media within an asset.
     /// AVMediaSelectionGroup provides a collection of mutually exclusive options for the presentation of media within an asset.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaSelectionGroup;
@@ -161,9 +160,8 @@ impl AVMediaSelectionGroup {
 }
 
 extern_class!(
+    /// An object that represents a specific option for the presentation of media within a group of options.
     /// AVMediaSelectionOption represents a specific option for the presentation of media within a group of options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselectionoption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaSelectionOption;
@@ -349,9 +347,14 @@ impl AVMediaSelectionGroup {
 extern_class!(
     /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
     ///
-    /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface based on an AVCustomMediaSelectionScheme, users are essentially indicating a preference for the media characteristic of the selected setting. Selection of a specific AVMediaSelectionOption in the AVMediaSelectionGroup is then derived from the user's indicated preferences. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcustommediaselectionscheme?language=objc)
+    /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface based on an AVCustomMediaSelectionScheme, users are essentially indicating a preference for the media characteristic of the selected setting. Selection of a specific AVMediaSelectionOption in the AVMediaSelectionGroup is then derived from the user’s indicated preferences. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
+    ///
+    /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVCustomMediaSelectionScheme provides a collection of custom settings for controlling the presentation of the media.
+    ///
+    /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface based on an AVCustomMediaSelectionScheme, users are essentially indicating a preference for the media characteristic of the selected setting. Selection of a specific AVMediaSelectionOption in the AVMediaSelectionGroup is then derived from the user's indicated preferences. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCustomMediaSelectionScheme;
@@ -426,9 +429,14 @@ impl AVCustomMediaSelectionScheme {
 extern_class!(
     /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSelector represents a collection of mutually exclusive settings.
     ///
+    /// ## Overview
+    ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediapresentationselector?language=objc)
+    ///
+    /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSelector represents a collection of mutually exclusive settings.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaPresentationSelector;
@@ -488,9 +496,14 @@ impl AVMediaPresentationSelector {
 extern_class!(
     /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.
     ///
+    /// ## Overview
+    ///
     /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface that offers AVMediaPresentationSettings, users are essentially indicating a preference for the media characteristic of the selected setting. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediapresentationsetting?language=objc)
+    ///
+    /// For content that has been authored with the express intent of offering an alternative selection interface for AVMediaSelectionOptions, AVMediaPresentationSetting represents a selectable setting for controlling the presentation of the media.
+    ///
+    /// Each selectable setting is associated with a media characteristic that one or more of the AVMediaSelectionOptions in the AVMediaSelectionGroup possesses. By selecting a setting in a user interface that offers AVMediaPresentationSettings, users are essentially indicating a preference for the media characteristic of the selected setting. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaPresentationSetting;

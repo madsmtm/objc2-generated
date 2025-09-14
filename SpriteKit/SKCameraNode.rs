@@ -10,6 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A node that determines which parts of the scene are visible within a view.
+    ///
+    /// ## Overview
+    ///
+    /// If you don’t use a camera in your scene, you control the visible portion of a scene using its [`anchorPoint`](https://developer.apple.com/documentation/spritekit/skscene/anchorpoint) property.
+    ///
+    ///
     /// A Camera node is a full fledged SKNode that can have actions and physics applied to it.
     /// It also uses the standard SKNode transform system so modifying the camera node's position
     /// is how you translate the camera's viewport. Applying a scale to the node would zoom
@@ -27,8 +34,6 @@ extern_class!(
     /// In order to use a camera; set it on the scene that contains the camera.
     ///
     /// See: SKScene.camera
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skcameranode?language=objc)
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

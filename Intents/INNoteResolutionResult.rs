@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innoteresolutionresult?language=objc)
+    /// A resolution result for notes.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INNoteResolutionResult`](https://developer.apple.com/documentation/intents/innoteresolutionresult) object when resolving parameters containing an [`INNote`](https://developer.apple.com/documentation/intents/innote) object. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

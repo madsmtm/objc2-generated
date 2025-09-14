@@ -10,11 +10,22 @@ use crate::*;
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecCertificate {
+    /// Returns the unique identifier of the opaque type to which a certificate object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecCertificate instances.
     ///
     /// Returns: The CFTypeID of SecCertificate instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategettypeid()?language=objc)
     #[doc(alias = "SecCertificateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -27,6 +38,25 @@ unsafe impl ConcreteType for SecCertificate {
 
 #[cfg(feature = "SecBase")]
 impl SecCertificate {
+    /// Creates a certificate object from a DER representation of a certificate.
+    ///
+    /// Parameters:
+    /// - allocator: The `CFAllocator` object you wish to use to allocate the certificate object. Pass `NULL` to use the default allocator.
+    ///
+    /// - data: A DER (Distinguished Encoding Rules) representation of an X.509 certificate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created certificate object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it. Returns `nil` if the data passed in the `data` parameter is not a valid DER-encoded X.509 certificate.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The certificate object returned by this function is used as input to other functions in the API.
+    ///
+    ///
     /// Create a certificate given it's DER representation as a CFData.
     ///
     /// Parameter `allocator`: CFAllocator to allocate the certificate with.
@@ -35,8 +65,6 @@ impl SecCertificate {
     ///
     /// Returns: Return NULL if the passed-in data is not a valid DER-encoded
     /// X.509 certificate, return a SecCertificateRef otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecreatewithdata(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -54,14 +82,23 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a DER representation of a certificate given a certificate object.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object for which you wish to return the DER (Distinguished Encoding Rules) representation of the X.509 certificate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The DER representation of the certificate. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it. Returns `nil` if the data passed in the `certificate` parameter is not a valid certificate object.
+    ///
+    ///
     /// Return the DER representation of an X.509 certificate.
     ///
     /// Parameter `certificate`: SecCertificate object created with
     /// SecCertificateCreateWithData().
     ///
     /// Returns: DER encoded X.509 certificate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopydata(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -75,6 +112,23 @@ impl SecCertificate {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Returns a human-readable summary of a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object for which you wish to return a summary string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string that contains a human-readable summary of the contents of the certificate. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it. Returns `NULL` if the data passed in the `certificate` parameter is not a valid certificate object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because all the data in the string comes from the certificate, the string is in whatever language is used in the certificate.
+    ///
+    ///
     /// Return a simple string which hopefully represents a human
     /// understandable summary.
     ///
@@ -86,8 +140,6 @@ impl SecCertificate {
     ///
     /// Returns: A CFStringRef which the caller should CFRelease() once it's no
     /// longer needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopysubjectsummary(_:)?language=objc)
     #[doc(alias = "SecCertificateCopySubjectSummary")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -101,6 +153,19 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves the common name of the subject of a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object from which to retrieve the common name.
+    ///
+    /// - commonName: On return, points to the common name. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Retrieves the common name of the subject of a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the common name.
@@ -116,8 +181,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `common_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopycommonname(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyCommonName")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -131,6 +194,25 @@ impl SecCertificate {
         unsafe { SecCertificateCopyCommonName(self, common_name) }
     }
 
+    /// Retrieves the email addresses for the subject of a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object from which to retrieve the email addresses.
+    ///
+    /// - emailAddresses: On return, an array of zero or more `CFStringRef` elements, each containing one email address found in the certificate subject. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Not every certificate subject includes an email address. If the function does not find any email addresses, it returns a `CFArrayRef` object with zero elements in the array.
+    ///
+    ///
     /// Returns an array of zero or more email addresses for the subject of a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the email addresses.
@@ -143,8 +225,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `email_addresses` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyemailaddresses(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyEmailAddresses")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -161,13 +241,22 @@ impl SecCertificate {
         unsafe { SecCertificateCopyEmailAddresses(self, email_addresses) }
     }
 
+    /// Retrieves the normalized issuer sequence from a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which to retrieve the data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object containing the sequence or `NULL` on error. In Objective-C, free this object with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
     /// Return the certificate's normalized issuer
     ///
     /// Parameter `certificate`: The certificate from which to get values
     ///
     /// The issuer is a sequence in the format used by SecItemCopyMatching.  The content returned is a DER-encoded X.509 distinguished name. For a display version of the issuer, call SecCertificateCopyValues. The caller must CFRelease the value returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedissuersequence(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedIssuerSequence")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -181,13 +270,22 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves the normalized subject sequence from a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which to retrieve the data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object containing the sequence or `NULL` on error. In Objective-C, free this object with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
     /// Return the certificate's normalized subject
     ///
     /// Parameter `certificate`: The certificate from which to get values
     ///
     /// The subject is a sequence in the format used by SecItemCopyMatching. The content returned is a DER-encoded X.509 distinguished name. For a display version of the subject, call SecCertificateCopyValues. The caller must CFRelease the value returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedsubjectsequence(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedSubjectSequence")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -203,13 +301,28 @@ impl SecCertificate {
 
     /// Retrieves the public key for a given certificate.
     ///
+    /// Parameters:
+    /// - certificate: The certificate from which to copy the key.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The public key. In Objective-C, free this key with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The return reference is `NULL` if the public key has an encoding issue or uses an unsupported algorithm.
+    ///
+    ///
+    /// Retrieves the public key for a given certificate.
+    ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the public key.
     ///
     /// Returns: A reference to the public key for the specified certificate. Your code must release this reference by calling the CFRelease function. If the public key has an encoding issue or uses an unsupported algorithm, the returned reference will be null.
     ///
     /// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopykey(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -221,6 +334,25 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves the public key from a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object from which to retrieve the public key.
+    ///
+    /// - key: In macOS, points to the public key for the specified certificate. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// In iOS, the certificate’s public key.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS, a result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Retrieves the public key for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the public key.
@@ -234,8 +366,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopypublickey(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -254,6 +384,25 @@ impl SecCertificate {
         unsafe { SecCertificateCopyPublicKey(self, key) }
     }
 
+    /// Returns the certificate’s serial number.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which to copy the serial number.
+    ///
+    /// - error: A [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) pointer the function uses to return an error instance on failure. Set to `nil` to ignore any error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The content of a DER-encoded integer (without the tag and length fields) for this certificate’s serial number.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In Objective-C, if the function returns an error free it with a call to [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) when you are done with it. If it returns data, you must free that as well.
+    ///
+    ///
     /// Return the certificate's serial number.
     ///
     /// Parameter `certificate`: The certificate from which to get values.
@@ -265,8 +414,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyserialnumberdata(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopySerialNumberData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -290,8 +437,6 @@ impl SecCertificate {
     ///
     /// Returns: Returns the absolute time at which the given certificate becomes valid,
     /// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynotvalidbeforedate(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNotValidBeforeDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -311,8 +456,6 @@ impl SecCertificate {
     ///
     /// Returns: Returns the absolute time at which the given certificate expires,
     /// or NULL if this value could not be obtained. The caller must CFRelease the value returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynotvalidafterdate(_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNotValidAfterDate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -326,6 +469,19 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a copy of a certificate’s serial number.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which the serial number should be copied.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data instance containing a DER-encoded integer for the certificate’s serial number (without the tag and length fields) or `nil` if an error occurred. In Objective-C, free this object with a call to [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) when you are done with it.
+    ///
+    ///
     /// Return the certificate's serial number.
     ///
     /// Parameter `certificate`: The certificate from which to get values.
@@ -337,8 +493,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyserialnumber(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopySerialNumber")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -359,23 +513,54 @@ impl SecCertificate {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectitemattr?language=objc)
+/// DER-encoded subject distinguished name.
 pub const kSecSubjectItemAttr: c_uint = 1937072746;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecissueritemattr?language=objc)
+/// DER-encoded issuer distinguished name.
 pub const kSecIssuerItemAttr: c_uint = 1769173877;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecserialnumberitemattr?language=objc)
+/// DER-encoded certificate serial number (without the tag and length).
 pub const kSecSerialNumberItemAttr: c_uint = 1936614002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpublickeyhashitemattr?language=objc)
+/// Public key hash.
 pub const kSecPublicKeyHashItemAttr: c_uint = 1752198009;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectkeyidentifieritemattr?language=objc)
+/// Subject key identifier.
 pub const kSecSubjectKeyIdentifierItemAttr: c_uint = 1936419172;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccerttypeitemattr?language=objc)
+/// Certificate type.
 pub const kSecCertTypeItemAttr: c_uint = 1668577648;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccertencodingitemattr?language=objc)
+/// Certificate encoding.
 pub const kSecCertEncodingItemAttr: c_uint = 1667591779;
 
 #[cfg(feature = "SecBase")]
 impl SecCertificate {
+    /// Creates a certificate object based on the specified data, type, and encoding.
+    ///
+    /// Parameters:
+    /// - data: A pointer to the certificate data. The data must be an X509 certificate in binary format.
+    ///
+    /// - type: The certificate type as defined in `Security.framework/cssmtype.h`. Permissible values are `CSSM_CERT_X_509v1`, `CSSM_CERT_X_509v2`, and `CSSM_CERT_X_509v3`. If you are unsure of the certificate type, use `CSSM_CERT_X_509v3`.
+    ///
+    /// - encoding: The certificate encoding as defined in `Security.framework/cssmtype.h`. Permissible values are `CSSM_CERT_ENCODING_BER` and `CSSM_CERT_ENCODING_DER`. If you are unsure of the encoding, use `CSSM_CERT_ENCODING_BER`.
+    ///
+    /// - certificate: On return, points to the newly created certificate object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecCertificateCreateWithData(_:_:)`](https://developer.apple.com/documentation/security/seccertificatecreatewithdata(_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The certificate object returned by this function is used as input to several other functions in the API.
+    ///
+    ///
     /// Creates a certificate based on the input data, type, and encoding.
     ///
     /// Parameter `data`: A pointer to the certificate data.
@@ -394,8 +579,6 @@ impl SecCertificate {
     ///
     /// - `data` must be a valid pointer.
     /// - `certificate` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecreatefromdata?language=objc)
     #[doc(alias = "SecCertificateCreateFromData")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -422,6 +605,37 @@ impl SecCertificate {
         unsafe { SecCertificateCreateFromData(data, r#type, encoding, certificate) }
     }
 
+    /// Adds a certificate to a keychain.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object for the certificate to add to the keychain.
+    ///
+    /// - keychain: The keychain object for the keychain to which you want to add the certificate. Pass `NULL` to add the certificate to the default keychain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To add a certificate to the login keychain, use [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This function requires a certificate object, which can, for example, be created with the [`SecCertificateCreateFromData`](https://developer.apple.com/documentation/security/seccertificatecreatefromdata) function or obtained over a network (see [Secure Transport](https://developer.apple.com/documentation/security/secure-transport)). If the certificate has already been added to the specified keychain, the function returns [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem) and does not add another copy to the keychain. The function looks at the certificate data, not at the certificate object, to determine whether the certificate is a duplicate. It considers two certificates to be duplicates if they have the same primary key attributes.
+    ///
+    /// ### Special Considerations
+    ///
+    /// If the keychain is locked, the system asks the user for a password or other token to unlock it. This function can therefore block while waiting for user input.
+    ///
+    ///
     /// Adds a certificate to the specified keychain.
     ///
     /// Parameter `certificate`: A reference to a certificate.
@@ -432,8 +646,6 @@ impl SecCertificate {
     ///
     /// This function is successful only if the certificate was created using the SecCertificateCreateFromData or
     /// SecCertificateCreateWithData functions, and the certificate has not yet been added to the specified keychain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificateaddtokeychain(_:_:)?language=objc)
     #[doc(alias = "SecCertificateAddToKeychain")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -447,6 +659,25 @@ impl SecCertificate {
         unsafe { SecCertificateAddToKeychain(self, keychain) }
     }
 
+    /// Retrieves the data for a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: A certificate object for the certificate from which to retrieve the data.
+    ///
+    /// - data: On return, points to the data for the certificate specified. You must allocate the space for a `CSSM_DATA` structure before calling this function. This data pointer is only guaranteed to remain valid as long as the certificate remains unchanged and valid.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function requires a certificate object, which can, for example, be created with the [`SecCertificateCreateFromData`](https://developer.apple.com/documentation/security/seccertificatecreatefromdata) function, obtained from an identity with the [`SecIdentityCopyCertificate(_:_:)`](https://developer.apple.com/documentation/security/secidentitycopycertificate(_:_:)) function, or obtained over a network (see [Secure Transport](https://developer.apple.com/documentation/security/secure-transport)).
+    ///
+    ///
     /// Retrieves the data for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the data.
@@ -460,8 +691,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetdata?language=objc)
     #[doc(alias = "SecCertificateGetData")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "cssmtype"))]
     #[deprecated]
@@ -474,6 +703,19 @@ impl SecCertificate {
         unsafe { SecCertificateGetData(self, data) }
     }
 
+    /// Retrieves the type of a specified certificate.
+    ///
+    /// Parameters:
+    /// - certificate: A certificate object for the certificate for which to obtain the type.
+    ///
+    /// - certificateType: On return, points to the type of the specified certificate. Certificate types are defined in `Security.framework/cssmtype.h`. You must allocate the space for a `CSSM_CERT_TYPE` structure before calling this function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Retrieves the type for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the type.
@@ -487,8 +729,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `certificate_type` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategettype?language=objc)
     #[doc(alias = "SecCertificateGetType")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -503,6 +743,7 @@ impl SecCertificate {
         unsafe { SecCertificateGetType(self, certificate_type) }
     }
 
+    /// Unsupported.
     /// Retrieves the subject name for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the subject name.
@@ -528,8 +769,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `subject` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetsubject?language=objc)
     #[doc(alias = "SecCertificateGetSubject")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -549,6 +788,7 @@ impl SecCertificate {
         unsafe { SecCertificateGetSubject(self, subject) }
     }
 
+    /// Unsupported.
     /// Retrieves the issuer name for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the issuer name.
@@ -574,8 +814,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `issuer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetissuer?language=objc)
     #[doc(alias = "SecCertificateGetIssuer")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -595,6 +833,25 @@ impl SecCertificate {
         unsafe { SecCertificateGetIssuer(self, issuer) }
     }
 
+    /// Retrieves the certificate library handle from a certificate object.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object from which to obtain the certificate library handle.
+    ///
+    /// - clHandle: On return, points to the certificate library handle of the specified certificate. This handle remains valid until the certificate object is released.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The certificate library handle is the CSSM identifier of the certificate library module that is managing the certificate. The certificate library handle is used as an input to a number of CSSM functions.
+    ///
+    ///
     /// Retrieves the certificate library handle for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to obtain the certificate library handle.
@@ -608,8 +865,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `cl_handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetclhandle?language=objc)
     #[doc(alias = "SecCertificateGetCLHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -624,6 +879,25 @@ impl SecCertificate {
         unsafe { SecCertificateGetCLHandle(self, cl_handle) }
     }
 
+    /// Retrieves the algorithm identifier for a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object from which to retrieve the algorithm identifier.
+    ///
+    /// - algid: On return, points to a struct that identifies the algorithm for this certificate. This pointer remains valid until the certificate reference is released. Do not attempt to free this pointer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `CSSM_X509_ALGORITHM_IDENTIFIER` struct is defined in `Security.framework/x509defs.h` and discussed in _Common Security: CDSA and CSSM, version 2 (with corrigenda)_ from [http://www.opengroup.org/security/cdsa.htm](http://www.opengroup.org/security/cdsa.htm). Possible algorithms are enumerated in `Security.framework/oidsalg.h`.
+    ///
+    ///
     /// Retrieves the algorithm identifier for a given certificate.
     ///
     /// Parameter `certificate`: A reference to the certificate from which to retrieve the algorithm identifier.
@@ -636,8 +910,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `algid` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificategetalgorithmid?language=objc)
     #[doc(alias = "SecCertificateGetAlgorithmID")]
     #[cfg(all(feature = "SecAsn1Types", feature = "SecBase"))]
     #[deprecated]
@@ -652,6 +924,31 @@ impl SecCertificate {
         unsafe { SecCertificateGetAlgorithmID(self, algid) }
     }
 
+    /// Retrieves the preferred certificate for the specified name and key use.
+    ///
+    /// Parameters:
+    /// - name: A string containing an email address (RFC822) or other name for which a preferred certificate is requested.
+    ///
+    /// - keyUsage: A key use value, as defined in `Security.framework/cssmtype.h`. Pass `0` to ignore this parameter.
+    ///
+    /// - certificate: On return, a reference to the preferred certificate, or `NULL` if none was found. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to obtain the preferred encryption certificate for an email recipient.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Use [`SecCertificateCopyPreferred(_:_:)`](https://developer.apple.com/documentation/security/seccertificatecopypreferred(_:_:)) for new development instead.
+    ///
+    ///
     /// Returns the preferred certificate for the specified name and key usage. If a preferred certificate does not exist for the specified name and key usage, NULL is returned.
     ///
     /// Parameter `name`: A string containing an email address (RFC822) or other name for which a preferred certificate is requested.
@@ -668,8 +965,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `certificate` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopypreference?language=objc)
     #[doc(alias = "SecCertificateCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
@@ -689,6 +984,25 @@ impl SecCertificate {
         unsafe { SecCertificateCopyPreference(name, key_usage, certificate) }
     }
 
+    /// Returns the preferred certificate for the specified name and key usage.
+    ///
+    /// Parameters:
+    /// - name: A string containing an email address (RFC 822) or other name for which a preferred certificate is requested.
+    ///
+    /// - keyUsage: An array containing a list of usage attributes ([`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt), for example), or `NULL` if you do not want to request a certificate based on a particular usage. See Attribute Item Keys for a complete list of possible usage attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The preferred certificate for the specified name and key usage, or `NULL` if a matching certificate does not exist. In Objective-C, free the certificate with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to obtain the preferred encryption certificate for an email recipient. If a preferred certificate has not been set for the supplied name, this function returns `NULL`. Your code should then perform a search for possible certificates by calling [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)).
+    ///
+    ///
     /// Returns the preferred certificate for the specified name and key usage. If a preferred certificate does not exist for the specified name and key usage, NULL is returned.
     ///
     /// Parameter `name`: A string containing an email address (RFC822) or other name for which a preferred certificate is requested.
@@ -703,8 +1017,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `key_usage` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopypreferred(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -722,6 +1034,35 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Sets the preferred certificate for a specified name, key use, and date.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate object identifying the preferred certificate.
+    ///
+    /// - name: A string containing an email address (RFC822) or other name with which the preferred certificate is to be associated.
+    ///
+    /// - keyUsage: A key use value, as defined in `Security.framework/cssmtype.h`. Pass `0` if you don’t want to specify a particular key use.
+    ///
+    /// - date: The date after which this preference is no longer valid. If supplied, the preferred certificate is changed only if this date is later than the currently saved setting. Pass `NULL` if this preference should not be restricted by date.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to set the preferred encryption certificate for an email recipient, either manually (when encrypting email to a recipient) or automatically upon receipt of encrypted email.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Use [`SecCertificateSetPreferred(_:_:_:)`](https://developer.apple.com/documentation/security/seccertificatesetpreferred(_:_:_:)) for new development instead.
+    ///
+    /// Because this preference is stored in the default keychain, if the keychain is locked, the system asks the user for a password or other token to unlock it. This function can therefore block while waiting for user input.
+    ///
+    ///
     /// Sets the preferred certificate for a specified name, key usage, and date.
     ///
     /// Parameter `certificate`: A reference to the certificate which will be preferred.
@@ -736,8 +1077,6 @@ impl SecCertificate {
     ///
     /// This function will typically be used to set the preferred encryption certificate for an email recipient, either manually (when encrypting email to a recipient) or automatically upon receipt of encrypted email.
     /// This API is deprecated in 10.7. Plese use the SecCertificateSetPreferred API instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatesetpreference?language=objc)
     #[doc(alias = "SecCertificateSetPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated]
@@ -759,6 +1098,21 @@ impl SecCertificate {
         unsafe { SecCertificateSetPreference(self, name, key_usage, date) }
     }
 
+    /// Sets the certificate that should be preferred for the specified name and key use.
+    ///
+    /// Parameters:
+    /// - certificate: The key to use as the preferred certificate for the specified name and key usage.
+    ///
+    /// - name: A string containing an email address (RFC 822) or other name for which a preferred certificate is requested.
+    ///
+    /// - keyUsage: An array containing a list of usage attributes ([`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt), for example), or `NULL` if you want this certificate to be preferred for any usage. See Attribute Item Keys for a complete list of possible usage attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Sets the preferred certificate for a specified name and optional key usage.
     ///
     /// Parameter `certificate`: A reference to the preferred certificate. If NULL is passed, any existing preference for the specified name is cleared instead.
@@ -775,8 +1129,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `key_usage` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatesetpreferred(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateSetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -796,52 +1148,50 @@ impl SecCertificate {
     }
 }
 
+/// The flags that indicate key usage in the `KeyUsage` extension of a certificate.
 /// Flags to indicate key usages in the KeyUsage extension of a certificate
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyUsage(pub u32);
 bitflags::bitflags! {
     impl SecKeyUsage: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/kseckeyusageunspecified?language=objc)
         #[doc(alias = "kSecKeyUsageUnspecified")]
         const Unspecified = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/digitalsignature?language=objc)
+/// The `DigitalSignature` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageDigitalSignature")]
         const DigitalSignature = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/nonrepudiation?language=objc)
+/// The `NonRepudiation` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageNonRepudiation")]
         const NonRepudiation = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/contentcommitment?language=objc)
+/// The `ContentCommitment` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageContentCommitment")]
         const ContentCommitment = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/keyencipherment?language=objc)
+/// The `KeyEncipherment` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageKeyEncipherment")]
         const KeyEncipherment = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/dataencipherment?language=objc)
+/// The `DataEncipherment` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageDataEncipherment")]
         const DataEncipherment = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/keyagreement?language=objc)
+/// The `KeyAgreement` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageKeyAgreement")]
         const KeyAgreement = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/keycertsign?language=objc)
+/// The `KeyCertSign` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageKeyCertSign")]
         const KeyCertSign = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/crlsign?language=objc)
+/// The `CRLSign` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageCRLSign")]
         const CRLSign = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/encipheronly?language=objc)
+/// The `EncipherOnly` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageEncipherOnly")]
         const EncipherOnly = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/decipheronly?language=objc)
+/// The `DecipherOnly` bit is set in KeyUsage extension.
         #[doc(alias = "kSecKeyUsageDecipherOnly")]
         const DecipherOnly = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/critical?language=objc)
+/// The KeyUsage extension is marked critical.
         #[doc(alias = "kSecKeyUsageCritical")]
         const Critical = 1<<31;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyusage/all?language=objc)
+/// All flags set.
         #[doc(alias = "kSecKeyUsageAll")]
         const All = 0x7FFFFFFF;
     }
@@ -858,78 +1208,117 @@ unsafe impl RefEncode for SecKeyUsage {
 }
 
 extern "C" {
-    /// Constants used to access dictionary entries returned by SecCertificateCopyValues
+    /// A key whose value indicates the type of certificate property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertykeytype?language=objc)
+    /// ## Discussion
+    ///
+    /// Possible values for this key are described in [Certificate Property Type Values](https://developer.apple.com/documentation/security/certificate-property-type-values).
+    ///
+    ///
+    /// Constants used to access dictionary entries returned by SecCertificateCopyValues
     pub static kSecPropertyKeyType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertykeylabel?language=objc)
+    /// A key whose value is the label for a certificate property.
+    ///
+    /// ## Discussion
+    ///
+    /// This label may contain a descriptive (localized) string or an OID string.
+    ///
+    ///
     pub static kSecPropertyKeyLabel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertykeylocalizedlabel?language=objc)
+    /// A key whose value is the localized label for a certificate property.
     pub static kSecPropertyKeyLocalizedLabel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertykeyvalue?language=objc)
+    /// A key whose value is the value for a certificate property.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a Core Foundation type, usually a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring), [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray), or [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object.
+    ///
+    ///
     pub static kSecPropertyKeyValue: &'static CFString;
 }
 
 extern "C" {
+    /// A key whose value is a string describing a trust evaluation warning.
     /// Public Constants for property list values returned by SecCertificateCopyValues
     ///
     /// Note that kSecPropertyTypeTitle and kSecPropertyTypeError are defined in SecTrust.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypewarning?language=objc)
     pub static kSecPropertyTypeWarning: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypesuccess?language=objc)
+    /// A key whose value is a string describing a trust evaluation success.
     pub static kSecPropertyTypeSuccess: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypesection?language=objc)
+    /// A key whose value is a string describing the name of a field in the certificate (`CFSTR("Subject Name")`, for example).
     pub static kSecPropertyTypeSection: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypedata?language=objc)
+    /// A key whose value is a data object.
     pub static kSecPropertyTypeData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypestring?language=objc)
+    /// A key whose value is a string.
     pub static kSecPropertyTypeString: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypeurl?language=objc)
+    /// Specifies a key whose value is a URL.
     pub static kSecPropertyTypeURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypedate?language=objc)
+    /// Specifies a key whose value is a string containing a date (or a string listing the bytes of an invalid date).
     pub static kSecPropertyTypeDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypearray?language=objc)
+    /// Specifies a key whose value is an array.
     pub static kSecPropertyTypeArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypenumber?language=objc)
+    /// Specifies a key whose value is a number.
     pub static kSecPropertyTypeNumber: &'static CFString;
 }
 
 #[cfg(feature = "SecBase")]
 impl SecCertificate {
+    /// Creates a dictionary that represents a certificate’s contents.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which values should be copied.
+    ///
+    /// - keys: An array of string OID values, or `NULL`. If non-`NULL`, these OID values determine which values from the certificate to return. If `NULL`, all values are returned.
+    ///
+    /// Only OIDs that represent top-level keys in the returned dictionary can be specified. Unknown OIDs are ignored. See [Certificate OIDs](https://developer.apple.com/documentation/security/certificate-oids) for the list of known OIDs.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the specified values from the certificate or `NULL` if an error occurs. In Objective-C, free this dictionary with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each entry in this dictionary is itself a dictionary with the keys described in [Certificate Property Keys](https://developer.apple.com/documentation/security/certificate-property-keys).
+    ///
+    ///
     /// Creates a dictionary that represents a certificate's contents.
     ///
     /// Parameter `certificate`: The certificate from which to get values
@@ -959,8 +1348,6 @@ impl SecCertificate {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyvalues(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyValues")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -980,6 +1367,27 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a copy of the long description of a certificate.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator that should be used. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator.
+    ///
+    /// - certificate: The certificate from which the long description should be copied.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string object containing the long description, or `NULL` if an error occurred. In Objective-C, free this object with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The format of this string is not guaranteed to be consistent across different operating systems or versions. Do not attempt to parse it programmatically.
+    ///
+    ///
     /// Return the long description of a certificate
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -1002,8 +1410,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopylongdescription(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyLongDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1023,6 +1429,27 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a copy of the short description of a certificate.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator that should be used. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator.
+    ///
+    /// - certificate: The certificate from which the short description should be copied.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string object containing the short description, or `NULL` if an error occurred. In Objective-C, free this object with [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The format of this string is not guaranteed to be consistent across different operating systems or versions. Do not attempt to parse it programmatically.
+    ///
+    ///
     /// Return the short description of a certificate
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -1045,8 +1472,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopyshortdescription(_:_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyShortDescription")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1066,6 +1491,25 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a normalized copy of the distinguished name (DN) of the issuer of a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which the issuer’s distinguished name should be copied.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object containing a DER-encoded X.509 distinguished name suitable for use with [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)). Returns `NULL` if an error occurred. In Objective-C, free the object with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To obtain a copy of the issuer’s distinguished name in a format suitable for display purposes, call [`SecCertificateCopyValues`](https://developer.apple.com/documentation/security/seccertificatecopyvalues(_:_:_:)) instead.
+    ///
+    ///
     /// Return the certificate's normalized issuer
     ///
     /// Parameter `certificate`: The certificate from which to get values
@@ -1083,8 +1527,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedissuercontent(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedIssuerContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedIssuerContent is deprecated. Use SecCertificateCopyNormalizedIssuerSequence instead."]
@@ -1103,6 +1545,25 @@ impl SecCertificate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a normalized copy of the distinguished name (DN) of the subject of a certificate.
+    ///
+    /// Parameters:
+    /// - certificate: The certificate from which the subject’s distinguished name should be copied.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object containing a DER-encoded X.509 distinguished name suitable for use with [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)). Returns `NULL` if an error occurred. In Objective-C, free this object with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To obtain a copy of the subject’s distinguished name in a format suitable for display purposes, call [`SecCertificateCopyValues`](https://developer.apple.com/documentation/security/seccertificatecopyvalues(_:_:_:)) instead.
+    ///
+    ///
     /// Return the certificate's normalized subject
     ///
     /// Parameter `certificate`: The certificate from which to get values
@@ -1120,8 +1581,6 @@ impl SecCertificate {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificatecopynormalizedsubjectcontent(_:_:)?language=objc)
     #[doc(alias = "SecCertificateCopyNormalizedSubjectContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecCertificateCopyNormalizedSubjectContent is deprecated. Use SecCertificateCopyNormalizedSubjectSequence instead."]

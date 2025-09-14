@@ -7,28 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSnoozeTasksIntentResponseCode(pub NSInteger);
 impl INSnoozeTasksIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSnoozeTasksIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase, after you’ve verified that you’re able to snooze the tasks in the specified task list. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSnoozeTasksIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode/inprogress?language=objc)
+    /// A response code that indicates deletion is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you began snoozing tasks in the task list but didn’t confirm that the process was complete. For example, when a server handles the snoozing and you’ve not yet received a confirmation from that server. Configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INSnoozeTasksIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode/success?language=objc)
+    /// A response code that indicates your app succeeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after successfully snoozing the tasks in the task list. Your response should contain the details of the task list and tasks that you changed.
+    ///
+    ///
     #[doc(alias = "INSnoozeTasksIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to snooze the task.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevent you from snoozing the tasks in the task list.
+    ///
+    ///
     #[doc(alias = "INSnoozeTasksIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to snooze the tasks.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t snooze the tasks from your Intents extension, but the user can do so from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSnoozeTasksIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +78,15 @@ unsafe impl RefEncode for INSnoozeTasksIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintentresponse?language=objc)
+    /// Your response to a delete tasks request.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSnoozeTasksIntentResponse`](https://developer.apple.com/documentation/intents/insnoozetasksintentresponse) object to return information about your attempt to delete an existing task. Siri communicates your response information to the user at appropriate times.
+    ///
+    /// You create an [`INSnoozeTasksIntentResponse`](https://developer.apple.com/documentation/intents/insnoozetasksintentresponse) object in the [`confirmSnoozeTasks:completion:`](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling/confirm(intent:completion:)) and [`handleSnoozeTasks:completion:`](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INSnoozeTasksIntentHandling`](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

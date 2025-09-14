@@ -10,7 +10,18 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchref?language=objc)
+/// Defines an opaque data type representing an asynchronous search.
+///
+/// ## Discussion
+///
+/// A search object is created when you call the [`SKSearchCreate`](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate) function.
+///
+/// <a id="1681574"></a>
+/// ### Special Considerations
+///
+/// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with SKSearch objects. In a garbage-collected environment, you must use [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to dispose of an SKSearch object.
+///
+///
 #[doc(alias = "SKSearchRef")]
 #[repr(C)]
 pub struct SKSearch {
@@ -27,7 +38,22 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSearch {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448621-sksearchgettypeid?language=objc)
+    /// Gets the type identifier for Search Kit search objects.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeID object containing the type identifier for the SKSearch opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit represents searches with search objects ([`SKSearchRef`](https://developer.apple.com/documentation/coreservices/sksearchref) opaque types). If your code needs to determine whether a particular data type is a search object, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+    ///
+    /// Never hard-code the search type ID because it can change from one release of macOS to another.
+    ///
+    ///
     #[doc(alias = "SKSearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,20 +64,93 @@ unsafe impl ConcreteType for SKSearch {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchoptions?language=objc)
+/// Specifies the search options available for the [`SKSearchCreate`](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate) function.
 pub type SKSearchOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptiondefault?language=objc)
+///
+/// ## Discussion
+///
+/// Default search options include:
+///
+/// - Relevance scores will be computed
+///
+/// - Spaces in a query are interpreted as Boolean `AND` operators.
+///
+/// - Do not use similarity searching.
+///
+///
 pub const kSKSearchOptionDefault: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptionnorelevancescores?language=objc)
+/// This option saves time during a search by suppressing the computation of relevance scores.
 pub const kSKSearchOptionNoRelevanceScores: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptionspacemeansor?language=objc)
+/// This option alters query behavior so that spaces are interpreted as Boolean `OR` operators.
 pub const kSKSearchOptionSpaceMeansOR: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptionfindsimilar?language=objc)
+/// This option alters query behavior so that Search Kit returns references to documents that are similar to an example text string. When this option is specified, Search Kit ignores all query operators.
 pub const kSKSearchOptionFindSimilar: c_uint = 1 << 2;
 
 impl SKSearch {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate?language=objc)
+    /// Creates an asynchronous search object for querying an index, and initiates search.
+    ///
+    /// Parameters:
+    /// - inIndex: The index to query.
+    ///
+    /// - inQuery: The query string to search for.
+    ///
+    /// - inSearchOptions: The search options. May be `NULL`. See the [`SKSearchOptions`](https://developer.apple.com/documentation/coreservices/sksearchoptions) enumeration for a description of the available options.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A search object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an asynchronous search object for querying the document contents in an index. It also initiates the search on a separate thread.
+    ///
+    /// After you create the search object, call [`SKSearchFindMatches`](https://developer.apple.com/documentation/coreservices/1448608-sksearchfindmatches) to retrieve results. You can call [`SKSearchFindMatches`](https://developer.apple.com/documentation/coreservices/1448608-sksearchfindmatches) immediately. To cancel a search, call [`SKSearchCancel`](https://developer.apple.com/documentation/coreservices/1442083-sksearchcancel).
+    ///
+    /// For normal (non-similarity-based) queries, Search Kit discerns the type of query—Boolean, prefix, phrase, and so on—from the syntax of the query itself. Moreover, Search Kit supports multiple query types within a single search. For example, the following query includes Boolean, prefix, and suffix searching:
+    ///
+    /// ```occ
+    /// appl* OR *ing
+    /// ```
+    ///
+    /// This query will return documents containing words that begin with “appl” as well as documents that contain words that end with “ing”.
+    ///
+    /// For similarity searches, specified with the `kSKSearchOptionFindSimilar` flag in the `inSearchOptions` parameter, `SKSearchCreate` ignores all query operators.
+    ///
+    /// The query operators that `SKSearchCreate` recognizes for non-similarity searching are:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Operator" }] }], [Paragraph { inline_content: [Text { text: "meaning" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "AND" }] }], [Paragraph { inline_content: [Text { text: "Boolean " }, CodeVoice { code: "AND" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "&" }] }], [Paragraph { inline_content: [Text { text: "Boolean " }, CodeVoice { code: "AND" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "<space>" }] }], [Paragraph { inline_content: [Text { text: "Boolean " }, CodeVoice { code: "AND" }, Text { text: " by default when no other operator is present, or Boolean " }, CodeVoice { code: "OR" }, Text { text: " if specified by " }, CodeVoice { code: "kSKSearchOptionSpaceMeansOR" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "OR" }] }], [Paragraph { inline_content: [Text { text: "Boolean inclusive " }, CodeVoice { code: "OR" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "|" }] }], [Paragraph { inline_content: [Text { text: "Boolean inclusive " }, CodeVoice { code: "OR" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NOT" }] }], [Paragraph { inline_content: [Text { text: "Boolean " }, CodeVoice { code: "NOT" }, Text { text: " (see Special Considerations)" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "!" }] }], [Paragraph { inline_content: [Text { text: "Boolean " }, CodeVoice { code: "NOT" }, Text { text: " (see Special Considerations)" }] }]], [[Paragraph { inline_content: [Text { text: "*" }] }], [Paragraph { inline_content: [Text { text: "Wildcard for prefix or suffix; surround term with wildcard characters for substring search. Ignored in phrase searching." }] }]], [[Paragraph { inline_content: [Text { text: "(" }] }], [Paragraph { inline_content: [Text { text: "Begin logical grouping" }] }]], [[Paragraph { inline_content: [Text { text: ")" }] }], [Paragraph { inline_content: [Text { text: "End logical grouping" }] }]], [[Paragraph { inline_content: [Text { text: "\"" }] }], [Paragraph { inline_content: [Text { text: "delimiter for phrase searching" }] }]]], alignments: None, metadata: Some(ContentMetadata { abstract_: Some([Text { text: "Search Kit query operators for non-similarity searches" }]), device_frame: None, anchor: Some("1965939"), title: Some("Table 1") }) })
+    /// The operators `AND`, `OR`, and `NOT` are case sensitive.
+    ///
+    /// Search Kit performs Unicode normalization on query strings and on the text placed into indexes. It uses Unicode Normalization Form KC (NFKC, compatibility decomposition followed by canonical composition) as documented in Unicode Standard Annex #15. For example, the a-grave character, ‘à’, can be written as the two Unicode characters (`0x0061`, `0x0300`) or as the single Unicode character `0x00E0`. Search Kit will normalize (`0x0061, 0x0300`) to `0x00E0`. For more information on Unicode normalization, see [http://unicode.org/reports/tr15 ](https://developer.apple.comhttp://unicode.org/reports/tr15/).
+    ///
+    /// Search Kit further normalizes query strings and indexes by stripping diacritical marks and by forcing characters to lowercase. For example, Search Kit normalizes each of the following characters to ‘a’: ‘a’, ‘à’, ‘A’, and ‘À’.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// When your application no longer needs the search object, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    /// <a id="1968657"></a>
+    /// ### Special Considerations
+    ///
+    /// Search Kit supports logical exclusion. The `NOT` and `!` operators behave as though they were `EXCLUDE` operators. For example, a search for ‘red `NOT` blue’ returns all documents that contain the word ‘red’ and do not contain the word ‘blue’.
+    ///
+    /// Unary Boolean operators, however, are not currently implemented in Search Kit. A search, for example, for ‘`NOT` blue’, returns zero documents no matter what their content.
+    ///
+    /// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with SKSearch objects. In a garbage-collected environment, you must use [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to dispose of an SKSearch object.
+    ///
+    /// <a id="1968658"></a>
+    /// ### Version-Notes
+    ///
+    /// OS X version 10.4 uses a completely revised, and far more powerful, query approach than did earlier versions of macOS. Refer to the Discussion in this function for details. Refer to [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) (deprecated) for a description of Search Kit’s behavior in earlier versions of macOS.
+    ///
+    /// In versions of macOS prior to version 10.4, Search Kit did not perform Unicode normalization, and did not remove diacritical marks.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -76,7 +175,19 @@ impl SKSearch {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442083-sksearchcancel?language=objc)
+    /// Cancels an asynchronous search request.
+    ///
+    /// Parameters:
+    /// - inSearch: The search object whose associated asynchronous search you want to cancel.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function when you want to cancel an asynchronous search that you initiated with [`SKSearchCreate`](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate). This function stops the search process if it is still in progress at the time. It does not dispose of the search object (SKSearchRef).
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKSearchCancel")]
     #[inline]
     pub unsafe fn cancel(&self) {
@@ -86,7 +197,44 @@ impl SKSearch {
         unsafe { SKSearchCancel(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448608-sksearchfindmatches?language=objc)
+    /// Extracts search result information from a search object.
+    ///
+    /// Parameters:
+    /// - inSearch: A reference to a search object (SKSearchRef) previously created with [`SKSearchCreate`](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate).
+    ///
+    /// - inMaximumCount: The maximum number of items to find. For each item found, [`SKSearchFindMatches`](https://developer.apple.com/documentation/coreservices/1448608-sksearchfindmatches) places the associated document ID into the `outDocumentIDsArray` array. Specify an `inMaximumCount` of 0 to find as many items as possible within `maximumTime`.
+    ///
+    /// - outDocumentIDsArray: On input, a pointer to an array for document IDs. On output, points to points to the previously allocated array, which now contains the found document IDs. The size of this array must be equal to `inMaximumCount`.
+    ///
+    /// - outScoresArray: On input, a pointer to an array for scores. On output, points to the previously allocated array, which now contains relevance scores for the found items. The size of this array, if not `NULL`, must be equal to `inMaximumCount`. Can be `NULL` on input, provided that your application doesn’t need this information. Search Kit does not normalize relevance scores, so they can be very large.
+    ///
+    /// - maximumTime: The maximum number of seconds before this function returns, whether or not `inMaximumCount` items have been found. Setting maximumTime to 0 tells the search to return quickly
+    ///
+    /// - outFoundCount: On input, a pointer to a CFIndex object that will hold the number of items found. On output, points to the CFIndex object that now contains the actual number of items found.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A logical value indicating whether the search is still in progress. Returns false when the search is exhausted.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SKSearchFindMatches`](https://developer.apple.com/documentation/coreservices/1448608-sksearchfindmatches) extracts results from a find operation initiated by a search object (SKSearchRef).
+    ///
+    /// This function provides results to its output parameters simply in the order in which they are found. This reduces latency to support search-as-you-type functionality. Larger scores mean greater relevance.
+    ///
+    /// You can call this function on a search object repeatedly to get additional sets of search results. For example, if you call this function twice with an `inMaximumCount` value of 10, the first call will put the first 10 items found into the output arrays and the second call will put the second 10 items found into the output arrays.
+    ///
+    /// Applications are free to display relevance scores in any appropriate manner. One simple way is to divide each relevance score by the largest number returned to get relevance numbers scaled linearly from 0.0 to 1.0. Search Kit does not scale the relevance scores for you, because you may want to combine the scores from several calls on a search object or the scores from calls to more than one search object.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// Before invoking a search, call [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush) on all indexes you will query to ensure that updates to the indexes have been flushed to disk.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -130,7 +278,27 @@ impl SKSearch {
 
 #[cfg(feature = "SKIndex")]
 impl SKIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445499-skindexcopyinfofordocumentids?language=objc)
+    /// Gets document names and parent IDs based on document IDs.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document information.
+    ///
+    /// - inCount: The number of document IDs in `inDocumentIDsArray`.
+    ///
+    /// - inDocumentIDsArray: Points to an array of document IDs representing the documents whose names and parent IDs you want.
+    ///
+    /// - outNamesArray: On input, a pointer to an array for document names. On output, points to the previously allocated array, which now contains the document names corresponding to the document IDs in `inDocumentIDsArray`. May be `NULL` on input if you don’t want to get the document names.
+    ///
+    /// When finished with the names array, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) on each array element.
+    ///
+    /// - outParentIDsArray: On input, a pointer to an array for parent document IDs. On output, points to the previously allocated array, which now contains document IDs representing the parents of the documents whose IDs are in `inDocumentIDsArray`. May be `NULL` on input if you don’t want to get the parent document IDs.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SKIndexCopyInfoForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1445499-skindexcopyinfofordocumentids) function lets you get a batch of document names and parent document IDs in one step, based on a list of document IDs.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -167,7 +335,27 @@ impl SKIndex {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445305-skindexcopydocumentrefsfordocume?language=objc)
+    /// Gets document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) based on document IDs.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document information.
+    ///
+    /// - inCount: The number of document IDs in `inDocumentIDsArray`.
+    ///
+    /// - inDocumentIDsArray: Points to an array of document IDs corresponding to the document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) you want.
+    ///
+    /// - outDocumentRefsArray: On input, a pointer to an array for document URL objects. On output, points to the previously allocated array, which now contains document URL objects corresponding to the document IDs in `inDocumentIDsArray`.
+    ///
+    /// When finished with the document URL objects array, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) on each array element.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SKIndexCopyDocumentRefsForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1445305-skindexcopydocumentrefsfordocume) function lets you get a batch of document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in one step, based on a list of document IDs.
+    ///
+    /// If you want to get lightweight URLs in the form of CFURL objects instead, use [`SKIndexCopyDocumentURLsForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1443501-skindexcopydocumenturlsfordocume).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -200,7 +388,27 @@ impl SKIndex {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443501-skindexcopydocumenturlsfordocume?language=objc)
+    /// Gets document URLs based on document IDs.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document information.
+    ///
+    /// - inCount: The number of document IDs in `inDocumentIDsArray`.
+    ///
+    /// - inDocumentIDsArray: Points to an array of document IDs corresponding to the document URLs (CFURL objects) you want.
+    ///
+    /// - outDocumentURLsArray: On input, a pointer to an array for document URLs (CFURL objects). On output, points to the previously allocated array, which now contains document URLs corresponding to the document IDs in `inDocumentIDArray`.
+    ///
+    /// When finished with the document URL array, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) on each array element.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SKIndexCopyDocumentURLsForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1443501-skindexcopydocumenturlsfordocume) function lets you get a batch of document URLs (CFURL objects) in one step, based on a list of document IDs.
+    ///
+    /// If you want to get Search Kit Document URL objects (SKDocumentRefs) instead, use [`SKIndexCopyDocumentRefsForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1445305-skindexcopydocumentrefsfordocume).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -234,7 +442,15 @@ impl SKIndex {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchgroupref?language=objc)
+/// Deprecated. Use asynchronous searching with SKSearchCreate instead, which does not employ search groups.
+///
+/// ## Discussion
+///
+/// Defines an opaque data type representing a search group.
+///
+/// A search group is a group of one or more indexes to be searched. To create a search group, use [`SKSearchGroupCreate`](https://developer.apple.com/documentation/coreservices/1448627-sksearchgroupcreate). For other operations with search groups, see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/search_kit#1655469", kind: "article", title: "Fast Asynchronous Searching", url: "/documentation/coreservices/search_kit#1655469", abstract_: [], role: Some("task") }.
+///
+///
 #[doc(alias = "SKSearchGroupRef")]
 #[repr(C)]
 pub struct SKSearchGroup {
@@ -251,7 +467,24 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSearchGroup {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448637-sksearchgroupgettypeid?language=objc)
+    /// Deprecated. Use asynchronous searching with SKSearchCreate instead, which does not employ search groups.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeID object containing the type identifier for the SKSearchGroup opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Gets the type identifier for Search Kit search groups.
+    ///
+    /// Search Kit represents search groups with the [`SKSearchGroupRef`](https://developer.apple.com/documentation/coreservices/sksearchgroupref) opaque type. If your code needs to determine whether a particular data type is a search group, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+    ///
+    /// Never hard-code the search group type ID because it can change from one release of macOS to another.
+    ///
+    ///
     #[doc(alias = "SKSearchGroupGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -262,7 +495,13 @@ unsafe impl ConcreteType for SKSearchGroup {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresultsref?language=objc)
+/// Deprecated. Use asynchronous searching with SKSearchCreate instead, which does not employ search groups.
+///
+/// ## Discussion
+///
+/// Defines an opaque data type representing the result of a search. To perform a query and generate search results, use [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) or [`SKSearchResultsCreateWithDocuments`](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen). To examine the result of a search, use [`SKSearchResultsGetInfoInRange`](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange). For other operations on search results, see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/search_kit#1655799", kind: "article", title: "Legacy Support for Synchronous Searching", url: "/documentation/coreservices/search_kit#1655799", abstract_: [], role: Some("task") }.
+///
+///
 #[doc(alias = "SKSearchResultsRef")]
 #[repr(C)]
 pub struct SKSearchResults {
@@ -279,7 +518,22 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKSearchResults {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448603-sksearchresultsgettypeid?language=objc)
+    /// Gets the type identifier for Search Kit search results.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeID object containing the type identifier for the SKSearchResults opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit represents search results with search results objects ([`SKSearchResultsRef`](https://developer.apple.com/documentation/coreservices/sksearchresultsref) opaque types). If your code needs to determine whether a particular data type is a search result, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+    ///
+    /// Never hard-code the search result type ID because it can change from one release of macOS to another.
+    ///
+    ///
     #[doc(alias = "SKSearchResultsGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -290,21 +544,29 @@ unsafe impl ConcreteType for SKSearchResults {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype?language=objc)
+/// Search Kit ignores the constants in this group. Use asynchronous searching with `SKSearchCreate` instead, which uses query syntax to determine search type.
+///
+/// ## Overview
+///
+/// In releases of macOS prior to version 10.4, these constants specify the category of search to perform. Starting with OS X v10.4, use asynchronous searching with `SKSearchCreate` instead, which uses query syntax to determine search type.
+///
+/// In older versions of macOS, these constants specify the various search types you can use with `SKSearchResultsCreateWithQuery`. Each of these specifies a set of ranked search hits. The `kSKSearchRanked` and `kSKSearchPrefixRanked` constants can be used for all index types. The `kSKSearchBooleanRanked` and `kSKSearchRequiredRanked` constants cannot be used for vector indexes.
+///
+///
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKSearchType(pub c_uint);
 impl SKSearchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchranked?language=objc)
+    /// Deprecated. Specifies a basic ranked search.
     #[doc(alias = "kSKSearchRanked")]
     pub const Ranked: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchbooleanranked?language=objc)
+    /// Deprecated. Specifies a query that can include Boolean operators including `'|'`, `'&'`, `'!'`, `'('`, and `')'`.
     #[doc(alias = "kSKSearchBooleanRanked")]
     pub const BooleanRanked: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchrequiredranked?language=objc)
+    /// Deprecated. Specifies a query that can include required (`'+'`) or excluded (`'-'`) terms.
     #[doc(alias = "kSKSearchRequiredRanked")]
     pub const RequiredRanked: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype/ksksearchprefixranked?language=objc)
+    /// Deprecated. Specifies a prefix-based search, which matches terms that begin with the query string.
     #[doc(alias = "kSKSearchPrefixRanked")]
     pub const PrefixRanked: Self = Self(3);
 }
@@ -319,13 +581,55 @@ unsafe impl RefEncode for SKSearchType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback?language=objc)
+/// Deprecated. Use `SKSearchCreate` and `SKSearchFindMatches` instead, which do not use a callback.
+///
+/// Parameters:
+/// - inIndex: The index you are searching.
+///
+/// - inDocument: The document URL object within the index you are searching.
+///
+/// - inContext: An application-specified context which you set when calling [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) or [`SKSearchResultsCreateWithDocuments`](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A Boolean value of `true` for a successful search hit, or `false` otherwise.
+///
+///
+///
+/// ## Discussion
+///
+/// Deprecated. Defines a pointer to a search-results filtering callback function for hit testing and processing during a search. Use this callback function to perform custom filtering on the search hits returned by the [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) and [`SKSearchResultsCreateWithDocuments`](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen) functions. Return `true` to keep this document URL object (SKDocumentRef) in the results, `false` to filter it out.
+///
+///
 #[cfg(all(feature = "SKDocument", feature = "SKIndex"))]
 pub type SKSearchResultsFilterCallBack =
     Option<unsafe extern "C-unwind" fn(*mut SKIndex, *const SKDocument, *mut c_void) -> Boolean>;
 
 impl SKSearchGroup {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448627-sksearchgroupcreate?language=objc)
+    /// Creates a search group as an array of references to indexes.
+    ///
+    /// Parameters:
+    /// - inArrayOfInIndexes: A CFArray object containing the indexes to put into the search group.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An SKSearchGroup opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a search group as an array of references to indexes.
+    ///
+    /// You create a search group to search one or more indexes, and then typically use the resulting `SKSearchGroupRef` opaque type with [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) or [`SKSearchResultsCreateWithDocuments`](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen).
+    ///
+    /// When your application no longer needs the search group, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -346,7 +650,24 @@ impl SKSearchGroup {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448615-sksearchgroupcopyindexes?language=objc)
+    /// Obtains the indexes for a search group.
+    ///
+    /// Parameters:
+    /// - inSearchGroup: The search group whose indexes you want to copy.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArray object containing the indexes in the search group.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Although the search functions [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) and [`SKSearchResultsCreateWithDocuments`](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen) operate directly on search groups, many Search Kit functions, such as [`SKIndexCompact`](https://developer.apple.com/documentation/coreservices/1443628-skindexcompact), operate on one index at a time. When you want to examine or manage all the indexes in a search group, use `SKSearchGroupCopyIndexes` to get the search group’s list of indexes.
+    ///
+    ///
     #[doc(alias = "SKSearchGroupCopyIndexes")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -362,7 +683,45 @@ impl SKSearchGroup {
 }
 
 impl SKSearchResults {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery?language=objc)
+    /// Queries the indexes in a search group.
+    ///
+    /// Parameters:
+    /// - inSearchGroup: The search group to query.
+    ///
+    /// - inQuery: The query string to search for.
+    ///
+    /// - inSearchType: The category of search to perform. See the [`SKSearchType`](https://developer.apple.com/documentation/coreservices/sksearchtype) enumeration for options.
+    ///
+    /// - inMaxFoundDocuments: The maximum number of found items to return. Your application must pass in a positive integer value.
+    ///
+    /// - inContext: An application-specified context for use by the [`SKSearchResultsFilterCallBack`](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback). Can be `NULL`, but if you want to use the callback you must supply a context.
+    ///
+    /// - inFilterCallBack: A callback function for hit testing during searching. Can be `NULL`, in which case your application receives the returned results directly and without any custom postprocessing. If non-`NULL`, you must supply a context. See [`SKSearchResultsFilterCallBack`](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A search results object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function searches the on-disk indexes in a search group. Before invoking a search, call [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush) on all indexes in the search group to ensure that changes to the indexes have been flushed to disk.
+    ///
+    /// Once you’ve obtained the results of a search, get the specifics—including which documents match the user’s query, and the ranking scores for each document—by calling [`SKSearchResultsGetInfoInRange`](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange). You can extract other information by calling [`SKSearchResultsCopyMatchingTerms`](https://developer.apple.com/documentation/coreservices/1448612-sksearchresultscopymatchingterms) and [`SKSearchResultsGetCount`](https://developer.apple.com/documentation/coreservices/1448598-sksearchresultsgetcount).
+    ///
+    /// When your application no longer needs the search result, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    /// <a id="1681502"></a>
+    /// ### Special Considerations
+    ///
+    /// This deprecated function performs searches synchronously. Apple recommends using the asynchronous [`SKSearchCreate`](https://developer.apple.com/documentation/coreservices/1443079-sksearchcreate) function instead.
+    ///
+    /// In the current implementation of Search Kit, unary Boolean operators are not implemented. A search, for example, for ‘not blue’, returns zero documents no matter what their content.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -405,7 +764,44 @@ impl SKSearchResults {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448629-sksearchresultscreatewithdocumen?language=objc)
+    /// Finds documents similar to given example documents.
+    ///
+    /// Parameters:
+    /// - inSearchGroup: A search group containing the indexes which, in turn, contain the document URL objects (SKDocumentRefs) representing the documents you want to search by similarity. The search group must also contains the indexes that contain the textual content of the example documents.
+    ///
+    /// - inExampleDocuments: An array of document URL objects (SKDocumentRefs), each representing an example document.
+    ///
+    /// - inMaxFoundDocuments: The maximum number of found items to return. Your application must pass in a positive value.
+    ///
+    /// - inContext: An application-specified context for use by the [`SKSearchResultsFilterCallBack`](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback) callback function. Can be `NULL`.
+    ///
+    /// - inFilterCallBack: A callback function for hit testing during searching—see [`SKSearchResultsFilterCallBack`](https://developer.apple.com/documentation/coreservices/sksearchresultsfiltercallback). In a similarity search, your application would typically use this function to exclude the example documents from the search results. This parameter can be `NULL`, in which case your application receives the returned results directly and without any custom postprocessing.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A search results object containing a list of document URL objects (SKDocumentRefs) representing documents similar to the example documents.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function searches the on-disk indexes in a search group for document URL objects (SKDocumentRefs) representing documents similar to those provided as examples. Build the search group in three steps:
+    ///
+    /// 1. Collect the index IDs from the search groups you want to search: for each search group, call the [`SKSearchGroupCopyIndexes`](https://developer.apple.com/documentation/coreservices/1448615-sksearchgroupcopyindexes) function.
+    ///
+    /// 2. Add the document URL objects representing the example documents to a memory-based index (if they’re not already in an index) by calling [`SKIndexCreateWithMutableData`](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata), and get that index’s ID.
+    ///
+    /// 3. Create a new search group that contains the indexes to search, and also containing the example-documents index, using [`SKSearchGroupCreate`](https://developer.apple.com/documentation/coreservices/1448627-sksearchgroupcreate).
+    ///
+    /// Before invoking a search, call [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush) on all indexes in the search group to ensure that changes to the indexes have been written to disk.
+    ///
+    /// Once you’ve obtained the results of a search, get the specifics—including which documents match the user’s similarity query, and the ranking scores for each document—by calling [`SKSearchResultsGetInfoInRange`](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange).
+    ///
+    /// When your application no longer needs the search result, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -446,7 +842,18 @@ impl SKSearchResults {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448598-sksearchresultsgetcount?language=objc)
+    /// Gets the total number of found items in a search.
+    ///
+    /// Parameters:
+    /// - inSearchResults: A search results object containing the results of a query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFIndex object containing the total number of found items in a search.
+    ///
+    ///
     #[doc(alias = "SKSearchResultsGetCount")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -457,7 +864,32 @@ impl SKSearchResults {
         unsafe { SKSearchResultsGetCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange?language=objc)
+    /// Extracts information from a Search Kit query result.
+    ///
+    /// Parameters:
+    /// - inSearchResults: The search results whose information you want to extract.
+    ///
+    /// - inRange: The starting ranking and total number of found items to obtain, specified as `(Location, Length)`. ‘Location’ specifies the starting item by ranking, with the top-ranked item having a location of 0. ‘Length’ specifies the total number of items to include in the results. For example, (0,1) indicates the first item, which is also the highest-ranking item. (1,1) indicates the second item, which is also the second-highest-ranking item. (0,5) means to get the first 5 items.
+    ///
+    /// - outDocumentsArray: On output, points to an array of found document URL objects (SKDocumentRefs).
+    ///
+    /// - outIndexesArray: On output, points to an array of indexes in which the found document URL objects reside. Can be `NULL` on input, provided that your application doesn’t need this information.
+    ///
+    /// - outScoresArray: On output, points to an array of correspondence scores for found items. Can be `NULL` on input, provided that your application doesn’t need this information.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The number of items returned—usually the same number as specified by the length item in the `inRange` parameter.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides results to its output parameters in the order in which they are found, to reduce latency and to support search-as-you-type functionality.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -495,7 +927,32 @@ impl SKSearchResults {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448612-sksearchresultscopymatchingterms?language=objc)
+    /// Obtains the terms in a document that match a query.
+    ///
+    /// Parameters:
+    /// - inSearchResults: The search results to examine.
+    ///
+    /// - inItem: An integer that corresponds to a document URL object (SKDocumentRef) in the search results. A value of ‘1’ identifies the first document URL object in the search results, a value of ‘2’ identifies the second, and so on.
+    ///
+    /// If you’ve created the search results using [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery), the document URL objects are sorted in ranking order with the top-ranked one first. See [`SKSearchResultsGetInfoInRange`](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange) for a description of how to get a particular document URL object, or set of them, from a search result.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArray object containing term IDs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When using a prefix search, or a search for which the user entered more than one word, there may be multiple terms that match the query. This function returns an array of the term IDs corresponding to these matches.
+    ///
+    /// For example, a user could enter ‘App’ when performing a prefix search. If a document represented in the search group contains the words ‘Apple,’ ‘application,’ and ‘appendectomy,’ the IDs for all of these terms would then appear in the CFArray object that `SKSearchResultsCopyMatchingTerms` returns.
+    ///
+    /// See [`SKSearchResultsCreateWithQuery`](https://developer.apple.com/documentation/coreservices/1448610-sksearchresultscreatewithquery) for a description of how to perform a search and get search results. See [`SKSearchResultsGetInfoInRange`](https://developer.apple.com/documentation/coreservices/1448618-sksearchresultsgetinfoinrange) for how to extract information, including document URL objects, from a search result. See [`SKSearchType`](https://developer.apple.com/documentation/coreservices/sksearchtype) for a description of the various categories of search.
+    ///
+    ///
     #[doc(alias = "SKSearchResultsCopyMatchingTerms")]
     #[deprecated = "No longer supported"]
     #[inline]

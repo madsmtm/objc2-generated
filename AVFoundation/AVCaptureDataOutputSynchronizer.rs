@@ -12,6 +12,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that coordinates time-matched delivery of data from multiple capture outputs.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class when you need to capture media from multiple capture outputs and want to receive all data samples from the same timestamp in a single delegate callback.
+    ///
+    /// For example, when you use an [`AVCaptureDataOutputSynchronizer`](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer) object to coordinate the output of [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput) and [`AVCaptureDepthDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput) objects, you can easily match each captured video frame to depth information captured at the same moment.
+    ///
+    ///
     /// AVCaptureDataOutputSynchronizer synchronizes the delivery of data from multiple capture data outputs (AVCaptureVideoDataOutput, AVCaptureDepthDataOutput, AVCaptureMetadataOutput, AVCaptureAudioDataOutput) to a single delegate callback.
     ///
     ///
@@ -20,8 +29,6 @@ extern_class!(
     /// For instance, if you specify a video data output as your first (primary) output and a metadata output for detected faces as your second output, your data callback will not be called until there is face data ready for a video frame, or it is assured that there is no face metadata for that particular video frame.
     ///
     /// Note that the AVCaptureDataOutputSynchronizer overrides each data output's -setSampleBufferDelegate:queue:, -setDepthDataDelegate:queue:, or -setMetadataObjectsDelegate:queue: method call. -[AVCaptureVideoDataOutput alwaysDiscardsLateVideoFrames] and -[AVCaptureDepthDataOutput alwaysDiscardsLateDepthData] properties are honored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDataOutputSynchronizer;
@@ -107,7 +114,7 @@ impl AVCaptureDataOutputSynchronizer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizerdelegate?language=objc)
+    /// Methods for receiving captured data from multiple capture outputs synchronized to the same timestamp.
     pub unsafe trait AVCaptureDataOutputSynchronizerDelegate: NSObjectProtocol {
         /// Called when an AVCaptureDataOutputSynchronizer instance outputs synchronized data from one or more data outputs.
         ///
@@ -129,12 +136,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A set of data samples collected simultaneously from multiple capture outputs.
     /// A collection of AVCaptureSynchronizedData objects.
     ///
     ///
     /// AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedDataCollection: delegate method delivers a collection of AVCaptureSynchronizedData objects which can be iterated by AVCaptureOutput. AVCaptureSynchronizedDataCollection supports object subscripting and fast enumeration of the data outputs as keys.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddatacollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedDataCollection;
@@ -201,12 +207,11 @@ impl AVCaptureSynchronizedDataCollection {
 }
 
 extern_class!(
+    /// The abstract superclass for media samples collected using synchronized capture.
     /// An abstract base class representing the data delivered by a data output through the AVCaptureDataOutputSynchronizer interface.
     ///
     ///
     /// AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback delivers a dictionary of key/value pairs, with the keys being the AVCaptureOutput instances returning data, and the values being concrete subclasses of AVCaptureSynchronizedData.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedData;
@@ -238,12 +243,11 @@ impl AVCaptureSynchronizedData {
 }
 
 extern_class!(
+    /// A container for video or audio samples collected using synchronized capture.
     /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureVideoDataOutput or AVCaptureAudioDataOutput.
     ///
     ///
     /// Synchronized sample buffer data is valid for the duration of AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback. To extend the sample buffer data beyond the callback, you must CFRetain it, and later call CFRelease when you're done with it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata?language=objc)
     #[unsafe(super(AVCaptureSynchronizedData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedSampleBufferData;
@@ -297,12 +301,11 @@ impl AVCaptureSynchronizedSampleBufferData {
 }
 
 extern_class!(
+    /// A container for metadata objects collected using synchronized capture.
     /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureMetadataOutput.
     ///
     ///
     /// A single AVCaptureMetadataOutput may be configured to deliver multiple kinds of metadata objects (such as QRCodes and detected faces). AVCaptureSynchronizedMetadataObjectData's -metadataObjects array may contain multiple AVMetadataObject subclasses, depending on how the AVCaptureMetadataOutput was configured. All synchronized metadata objects share a common timestamp.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedmetadataobjectdata?language=objc)
     #[unsafe(super(AVCaptureSynchronizedData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedMetadataObjectData;
@@ -339,12 +342,11 @@ impl AVCaptureSynchronizedMetadataObjectData {
 }
 
 extern_class!(
+    /// A container for scene depth information collected using synchronized capture.
     /// An concrete subclass of AVCaptureSynchronizedData representing the data delivered by an AVCaptureDepthDataOutput.
     ///
     ///
     /// Depth data, like video, may be dropped if not serviced in a timely fashion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesynchronizeddepthdata?language=objc)
     #[unsafe(super(AVCaptureSynchronizedData, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSynchronizedDepthData;

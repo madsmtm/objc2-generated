@@ -6,26 +6,21 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammadefog?language=objc)
     pub static kCGEXRToneMappingGammaDefog: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammaexposure?language=objc)
     pub static kCGEXRToneMappingGammaExposure: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammakneelow?language=objc)
     pub static kCGEXRToneMappingGammaKneeLow: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammakneehigh?language=objc)
     pub static kCGEXRToneMappingGammaKneeHigh: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgexrtonemappinggammagetdefaultoptions?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGEXRToneMappingGammaGetDefaultOptions() -> CFRetained<CFDictionary> {
     extern "C-unwind" {

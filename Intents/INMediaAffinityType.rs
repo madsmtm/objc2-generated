@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype?language=objc)
+/// Constants that describe a user’s affinity for a media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaAffinityType(pub NSInteger);
 impl INMediaAffinityType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype/unknown?language=objc)
+    /// A type that indicates the user’s affinity for the media item is unknown.
     #[doc(alias = "INMediaAffinityTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype/like?language=objc)
+    /// A type that indicates the user likes the media item.
     #[doc(alias = "INMediaAffinityTypeLike")]
     pub const Like: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytype/dislike?language=objc)
+    /// A type that indicates the user dislikes the media item.
     #[doc(alias = "INMediaAffinityTypeDislike")]
     pub const Dislike: Self = Self(2);
 }

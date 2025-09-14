@@ -9,8 +9,6 @@ use objc2_core_midi::*;
 use crate::*;
 
 /// type for instrument identifiers
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdeviceinstrumentid?language=objc)
 pub type MusicDeviceInstrumentID = u32;
 
 /// convenience struct for specifying a note and velocity
@@ -30,8 +28,6 @@ pub type MusicDeviceInstrumentID = u32;
 /// The velocity of the new note - this can be a fractional value - specified as MIDI (within the range of 0
 /// <
 /// 128)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestdnoteparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicDeviceStdNoteParams {
@@ -61,8 +57,6 @@ unsafe impl RefEncode for MusicDeviceStdNoteParams {
 /// The parameter ID
 ///
 /// The value of that parameter
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteparamscontrolvalue?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -108,8 +102,6 @@ unsafe impl RefEncode for NoteParamsControlValue {
 /// 128)
 ///
 /// A variable length array with the number of elements: argCount - 2.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicenoteparams?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -138,28 +130,20 @@ unsafe impl RefEncode for MusicDeviceNoteParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_usegroupinstrument?language=objc)
 pub const kMusicNoteEvent_UseGroupInstrument: c_uint = 0xFFFFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicnoteevent_unused?language=objc)
 pub const kMusicNoteEvent_Unused: c_uint = 0xFFFFFFFF;
 
 /// The type used to specify which group (channel number in MIDI) is used with a given command (new note,
 /// control or parameter value change)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicegroupid?language=objc)
 pub type MusicDeviceGroupID = u32;
 
 /// The type used to hold an unique identifier returned by MusicDeviceStartNote that is used to then address
 /// that note (typically to turn the note off). An ID must be used for notes, because notes can be specified
 /// by fractional pitches, and so using the MIDI note number is not sufficient to identify the note to turn
 /// it off (or to apply polyphonic after touch).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteinstanceid?language=objc)
 pub type NoteInstanceID = u32;
 
 /// The unique type of a MusicDevice audio unit (which is an AudioComponentInstance)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicecomponent?language=objc)
 #[cfg(feature = "AudioComponent")]
 pub type MusicDeviceComponent = AudioComponentInstance;
 
@@ -198,8 +182,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidievent(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceMIDIEvent(
         in_unit: MusicDeviceComponent,
@@ -231,8 +213,6 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicesysex(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceSysEx(
         in_unit: MusicDeviceComponent,
@@ -274,8 +254,6 @@ extern "C-unwind" {
     ///
     /// - `in_unit` must be a valid pointer.
     /// - `evt_list` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidieventlist(_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
     pub fn MusicDeviceMIDIEventList(
         in_unit: MusicDeviceComponent,
@@ -329,8 +307,6 @@ extern "C-unwind" {
     /// - `in_unit` must be a valid pointer.
     /// - `out_note_instance_id` must be a valid pointer.
     /// - `in_params` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestartnote(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     pub fn MusicDeviceStartNote(
         in_unit: MusicDeviceComponent,
@@ -364,8 +340,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestopnote(_:_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     pub fn MusicDeviceStopNote(
         in_unit: MusicDeviceComponent,
@@ -375,21 +349,13 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicerange?language=objc)
 pub const kMusicDeviceRange: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicemidieventselect?language=objc)
 pub const kMusicDeviceMIDIEventSelect: c_uint = 0x0101;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicesysexselect?language=objc)
 pub const kMusicDeviceSysExSelect: c_uint = 0x0102;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceprepareinstrumentselect?language=objc)
 pub const kMusicDevicePrepareInstrumentSelect: c_uint = 0x0103;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicereleaseinstrumentselect?language=objc)
 pub const kMusicDeviceReleaseInstrumentSelect: c_uint = 0x0104;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicestartnoteselect?language=objc)
 pub const kMusicDeviceStartNoteSelect: c_uint = 0x0105;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicestopnoteselect?language=objc)
 pub const kMusicDeviceStopNoteSelect: c_uint = 0x0106;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicemidieventlistselect?language=objc)
 pub const kMusicDeviceMIDIEventListSelect: c_uint = 0x0107;
 
 /// This proc can be exported through the FastDispatch property or is used as the prototype for
@@ -402,8 +368,6 @@ pub const kMusicDeviceMIDIEventListSelect: c_uint = 0x0107;
 ///
 ///
 /// Returns: noErr, or an audio unit error code
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicemidieventproc?language=objc)
 pub type MusicDeviceMIDIEventProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, u32, u32, u32, u32) -> OSStatus>;
 
@@ -417,8 +381,6 @@ pub type MusicDeviceMIDIEventProc =
 ///
 ///
 /// Returns: noErr, or an audio unit error code
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicesysexproc?language=objc)
 pub type MusicDeviceSysExProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<u8>, u32) -> OSStatus>;
 
@@ -432,8 +394,6 @@ pub type MusicDeviceSysExProc =
 ///
 ///
 /// Returns: noErr, or an audio unit error code
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestartnoteproc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub type MusicDeviceStartNoteProc = Option<
     unsafe extern "C-unwind" fn(
@@ -456,8 +416,6 @@ pub type MusicDeviceStartNoteProc = Option<
 ///
 ///
 /// Returns: noErr, or an audio unit error code
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestopnoteproc?language=objc)
 pub type MusicDeviceStopNoteProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -468,8 +426,6 @@ pub type MusicDeviceStopNoteProc = Option<
 >;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdeviceprepareinstrument?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.
@@ -482,8 +438,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicereleaseinstrument?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_unit` must be a valid pointer.

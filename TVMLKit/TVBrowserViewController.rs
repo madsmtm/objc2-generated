@@ -12,7 +12,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvbrowsertransitionanimator?language=objc)
+    /// An object that provides animations to and from the full screen browser.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -46,7 +46,13 @@ impl TVBrowserTransitionAnimator {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvbrowserviewcontrollerdatasource?language=objc)
+    /// Methods adopted by the object you use to represent the browser view.
+    ///
+    /// ## Overview
+    ///
+    /// Use the data source to provide a document to the browser.
+    ///
+    ///
     pub unsafe trait TVBrowserViewControllerDataSource: NSObjectProtocol {
         #[cfg(all(
             feature = "TVDocumentViewController",
@@ -64,7 +70,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvbrowserviewcontrollerdelegate?language=objc)
+    /// Methods for detecting events and performing actions on the browser view.
     pub unsafe trait TVBrowserViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "TVViewElement", feature = "objc2-ui-kit"))]
         #[optional]
@@ -89,7 +95,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvbrowserviewcontroller?language=objc)
+    /// A view controller that presents content in a browsable, full-screen format.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to create a full-screen layout that supports full-screen browsing. This layout includes a built-in parallax effect that is triggered during the transition between cells.
+    ///
+    ///
+    /// ![Screenshot of the full screen browser. Hidden cells lie on the left and right side of the currently displayed cell, with edges peeking out.](https://docs-assets.developer.apple.com/published/2f5e58a70ebd8fd24d54f039c9b15ca2/media-3332104%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

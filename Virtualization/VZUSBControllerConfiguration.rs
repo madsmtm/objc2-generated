@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a USB controller configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create `VZUSBControllerConfiguration` objects directly. Use one of its subclasses, such as [`VZXHCIControllerConfiguration`](https://developer.apple.com/documentation/virtualization/vzxhcicontrollerconfiguration), instead.
+    ///
+    ///
     /// Base class for a USB Controller configuration.
     ///
     /// VZUSBControllerConfiguration should not be instantiated directly.
     /// One of its subclasses like VZXHCIControllerConfiguration should be used instead.
     ///
     /// See: VZXHCIControllerConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZUSBControllerConfiguration;

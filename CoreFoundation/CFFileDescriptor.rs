@@ -9,10 +9,55 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptornativedescriptor?language=objc)
+/// Defines a type for the native file descriptor.
 pub type CFFileDescriptorNativeDescriptor = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptor?language=objc)
+///
+/// ## Overview
+///
+/// The CFFileDescriptor provides an opaque type to monitor file descriptors for read and write activity via CFRunLoop.
+///
+/// You use CFFileDescriptor to monitor file descriptors for read and write activity via CFRunLoop using callbacks. Each call back is one-shot, and must be re-enabled if you want to get another one.
+///
+/// You can re-enable the callback in the callback function itself, but you must completely service the file descriptor before doing so. For example, if you create a CFFileDescriptor for a pipe and get a callback because there are bytes to be read, then if you don’t read all of the bytes but nevertheless re-enable the CFFileDescriptor for read activity, you’ll get called back again immediately.
+///
+/// You can monitor kqueue file descriptors for read activity to find out when an event the kqueue is filtering for has occurred. You are responsible for understanding the use of the kevent() API and inserting and removing filters from the kqueue file descriptor yourself.
+///
+/// The following example takes a UNIX process ID as argument, and watches up to 20 seconds, and reports if the process terminates in that time:
+///
+/// ```objc
+/// // cc test.c -framework CoreFoundation -O
+/// #include <CoreFoundation/CoreFoundation.h>
+/// #include <unistd.h>
+/// #include <sys/event.h>
+/// static void noteProcDeath(CFFileDescriptorRef fdref, CFOptionFlags callBackTypes, void *info) {
+///     struct kevent kev;
+///     int fd = CFFileDescriptorGetNativeDescriptor(fdref);
+///     kevent(fd, NULL, 0, &kev, 1, NULL);
+///     // take action on death of process here
+///     printf("process with pid '%u' died\n", (unsigned int)kev.ident);
+///     CFFileDescriptorInvalidate(fdref);
+///     CFRelease(fdref); // the CFFileDescriptorRef is no longer of any use in this example
+/// }
+/// // one argument, an integer pid to watch, required
+/// int main(int argc, char *argv[]) {
+///     if (argc < 2) exit(1);
+///     int fd = kqueue();
+///     struct kevent kev;
+///     EV_SET(&kev, atoi(argv[1]), EVFILT_PROC, EV_ADD|EV_ENABLE, NOTE_EXIT, 0, NULL);
+///     kevent(fd, &kev, 1, NULL, 0, NULL);
+///     CFFileDescriptorRef fdref = CFFileDescriptorCreate(kCFAllocatorDefault, fd, true, noteProcDeath, NULL);
+///     CFFileDescriptorEnableCallBacks(fdref, kCFFileDescriptorReadCallBack);
+///     CFRunLoopSourceRef source = CFFileDescriptorCreateRunLoopSource(kCFAllocatorDefault, fdref, 0);
+///     CFRunLoopAddSource(CFRunLoopGetMain(), source, kCFRunLoopDefaultMode);
+///     CFRelease(source);
+///     // run the run loop for 20 seconds
+///     CFRunLoopRunInMode(kCFRunLoopDefaultMode, 20.0, false);
+///     return 0;
+/// }
+/// ```
+///
+///
 #[doc(alias = "CFFileDescriptorRef")]
 #[repr(C)]
 pub struct CFFileDescriptor {
@@ -28,16 +73,16 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFFileDescriptor"> for CFFileDescriptor {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcffiledescriptorreadcallback?language=objc)
+/// Identifies the read callback.
 pub const kCFFileDescriptorReadCallBack: CFOptionFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcffiledescriptorwritecallback?language=objc)
+/// Identifies the write callback.
 pub const kCFFileDescriptorWriteCallBack: CFOptionFlags = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcallback?language=objc)
+/// Defines a structure for a callback for a CFFileDescriptor.
 pub type CFFileDescriptorCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFFileDescriptor, CFOptionFlags, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcontext?language=objc)
+/// Defines a structure for the context of a CFFileDescriptor.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -69,7 +114,13 @@ unsafe impl RefEncode for CFFileDescriptorContext {
 }
 
 unsafe impl ConcreteType for CFFileDescriptor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorgettypeid()?language=objc)
+    /// Returns the type identifier for the CFFileDescriptor opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFFileDescriptor opaque type.
+    ///
+    ///
     #[doc(alias = "CFFileDescriptorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -81,7 +132,25 @@ unsafe impl ConcreteType for CFFileDescriptor {
 }
 
 impl CFFileDescriptor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreate(_:_:_:_:_:)?language=objc)
+    /// Creates a new CFFileDescriptor.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new file descriptor object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - fd: The file descriptor for the new CFFileDescriptor.
+    ///
+    /// - closeOnInvalidate: `true` if the new CFFileDescriptor should close `fd` when it is invalidated, otherwise `false`.
+    ///
+    /// - callout: The CFFileDescriptorCallBack for the new CFFileDescriptor.
+    ///
+    /// - context: Contextual information for the new CFFileDescriptor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFFileDescriptor or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -112,7 +181,17 @@ impl CFFileDescriptor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorgetnativedescriptor(_:)?language=objc)
+    /// Returns the native file descriptor for a given CFFileDescriptor.
+    ///
+    /// Parameters:
+    /// - f: A CFFileDescriptor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The native file descriptor for `f`.
+    ///
+    ///
     #[doc(alias = "CFFileDescriptorGetNativeDescriptor")]
     #[inline]
     pub fn native_descriptor(&self) -> CFFileDescriptorNativeDescriptor {
@@ -124,7 +203,13 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetNativeDescriptor(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorgetcontext(_:_:)?language=objc)
+    /// Gets the context for a given CFFileDescriptor.
+    ///
+    /// Parameters:
+    /// - f: A CFFileDescriptor.
+    ///
+    /// - context: Upon return, contains the context passed to `f` in [`CFFileDescriptorCreate`](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreate(_:_:_:_:_:)).
+    ///
     ///
     /// # Safety
     ///
@@ -141,7 +226,13 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorenablecallbacks(_:_:)?language=objc)
+    /// Enables callbacks for a given CFFileDescriptor.
+    ///
+    /// Parameters:
+    /// - f: A CFFileDescriptor.
+    ///
+    /// - callBackTypes: A bitmask that specifies which callbacks to enable (see [Callback Identifiers](https://developer.apple.com/documentation/corefoundation/1477595-callback-identifiers) for possible components).
+    ///
     #[doc(alias = "CFFileDescriptorEnableCallBacks")]
     #[inline]
     pub fn enable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -154,7 +245,13 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorEnableCallBacks(self, call_back_types) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptordisablecallbacks(_:_:)?language=objc)
+    /// Disables callbacks for a given CFFileDescriptor.
+    ///
+    /// Parameters:
+    /// - f: A CFFileDescriptor.
+    ///
+    /// - callBackTypes: A bitmask that specifies which callbacks to disable (see [Callback Identifiers](https://developer.apple.com/documentation/corefoundation/1477595-callback-identifiers) for possible components).
+    ///
     #[doc(alias = "CFFileDescriptorDisableCallBacks")]
     #[inline]
     pub fn disable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -167,7 +264,27 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorDisableCallBacks(self, call_back_types) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorinvalidate(_:)?language=objc)
+    /// Invalidates a CFFileDescriptor object.
+    ///
+    /// Parameters:
+    /// - f: A CFFileDescriptor.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once invalidated, the CFFileDescriptor object will no longer be read from or written to at the Core Fundation level.
+    ///
+    /// If you passed `true` for the `closeOnInvalidate` parameter when you called [`CFFileDescriptorCreate`](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreate(_:_:_:_:_:)), this function also closes the underlying file descriptor. If you passed `false`, you must close the descriptor yourself _after_ invalidating the CFFileDescriptor object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must invalidate the CFFileDescriptor before closing the underlying file descriptor.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CFFileDescriptorInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -177,7 +294,17 @@ impl CFFileDescriptor {
         unsafe { CFFileDescriptorInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the native file descriptor for a given CFFileDescriptor is valid.
+    ///
+    /// Parameters:
+    /// - f: A CFFileDescriptor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the native file descriptor for `f` is valid, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFFileDescriptorIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -188,7 +315,27 @@ impl CFFileDescriptor {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreaterunloopsource(_:_:_:)?language=objc)
+    /// Creates a new runloop source for a given CFFileDescriptor.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new bag and its storage for values. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - f: A CFFileDescriptor.
+    ///
+    /// - order: The order for the new run loop (see [`CFRunLoopSourceCreate`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecreate(_:_:_:))).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new runloop source for `f`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context for the new runloop (see [`CFRunLoopSourceCreate`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecreate(_:_:_:))) is the same as the context passed in when the CFFileDescriptor was created (see [`CFFileDescriptorCreate`](https://developer.apple.com/documentation/corefoundation/cffiledescriptorcreate(_:_:_:_:_:))).
+    ///
+    ///
     #[doc(alias = "CFFileDescriptorCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]

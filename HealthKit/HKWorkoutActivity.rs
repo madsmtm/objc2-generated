@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An HKWorkoutActivity is an object describing the properties of an activity within an HKWorkout.
+    /// An object that describes an activity within a longer workout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivity?language=objc)
+    /// ## Overview
+    ///
+    /// Workout activity objects partition a workout into a set of separate activities. For example, you can use workout activities to record the swim, bike, and running portions of a multisport event, like a triathlon, or to represent the active and rest periods during interval training. All [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) instance have at least one, associated [`HKWorkoutActivity`](https://developer.apple.com/documentation/healthkit/hkworkoutactivity). If you don’t explicitly set workout activities, HealthKit assigns a workout activity that matches the [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) object’s activity type. For more information, see [Dividing a HealthKit workout into activities](https://developer.apple.com/documentation/healthkit/dividing-a-healthkit-workout-into-activities).
+    ///
+    ///
+    /// An HKWorkoutActivity is an object describing the properties of an activity within an HKWorkout.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutActivity;
@@ -152,41 +157,41 @@ impl HKWorkoutActivity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitytype?language=objc)
+    /// The key path for accessing activities that match a workout activity type.
     pub static HKPredicateKeyPathWorkoutActivityType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityduration?language=objc)
+    /// The key path for accessing activities with a matching duration.
     pub static HKPredicateKeyPathWorkoutActivityDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitystartdate?language=objc)
+    /// The key path for accessing activities with a matching start date.
     pub static HKPredicateKeyPathWorkoutActivityStartDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityenddate?language=objc)
+    /// The key path for accessing activities with a matching end date.
     pub static HKPredicateKeyPathWorkoutActivityEndDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitysumquantity?language=objc)
+    /// The key path for accessing activities with a matching sum.
     pub static HKPredicateKeyPathWorkoutActivitySumQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityminimumquantity?language=objc)
+    /// The key path for accessing activities with a matching minimum quantity.
     pub static HKPredicateKeyPathWorkoutActivityMinimumQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivitymaximumquantity?language=objc)
+    /// The key path for accessing activities with a matching maximum quantity.
     pub static HKPredicateKeyPathWorkoutActivityMaximumQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivityaveragequantity?language=objc)
+    /// The key path for accessing activities with a matching average quantity.
     pub static HKPredicateKeyPathWorkoutActivityAverageQuantity: &'static NSString;
 }

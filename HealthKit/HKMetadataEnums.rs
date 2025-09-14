@@ -4,18 +4,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Version numbers for the algorithm Apple Watch uses to generate an ECG reading.
 /// Indicates which algorithm version number was used by the ECG app on Apple Watch.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleECGAlgorithmVersion(pub NSInteger);
 impl HKAppleECGAlgorithmVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion/version1?language=objc)
+    /// The version 1 algorithm.
     #[doc(alias = "HKAppleECGAlgorithmVersion1")]
     pub const Version1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion/version2?language=objc)
+    /// The version 2 algorithm.
+    ///
+    /// ## Discussion
+    ///
+    /// Version 2 of the ECG algorithm includes the following changes:
+    ///
+    /// - The ECG app can check for atrial fibrillation for heart rates up to 150 BPM.
+    ///
+    /// - The ECG app now distinguishes between poor recordings and inconclusive results.
+    ///
+    /// Apple Watch reports a poor recording when circumstances cause the watch to collect insufficient or inaccurate data, such as when the user wears the watch too loosely on their wrist, or if the user’s arm isn’t resting on a firm surface. The user can make another attempt at measuring their ECG after fixing the issue. An inconclusive reading indicates the system can’t interpret the data, for instance if the user wears a pacemaker, or if they exhibit an arrhythmia the app doesn’t recognize.
+    ///
+    ///
     #[doc(alias = "HKAppleECGAlgorithmVersion2")]
     pub const Version2: Self = Self(2);
 }
@@ -28,18 +39,17 @@ unsafe impl RefEncode for HKAppleECGAlgorithmVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants indicating the timing of a blood glucose sample relative to a meal.
 /// Indicates how your blood glucose reading relates to a meal.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKBloodGlucoseMealTime(pub NSInteger);
 impl HKBloodGlucoseMealTime {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime/preprandial?language=objc)
+    /// A blood glucose sample taken just before eating a meal.
     #[doc(alias = "HKBloodGlucoseMealTimePreprandial")]
     pub const Preprandial: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodglucosemealtime/postprandial?language=objc)
+    /// A blood glucose sample taken just after eating a meal.
     #[doc(alias = "HKBloodGlucoseMealTimePostprandial")]
     pub const Postprandial: Self = Self(2);
 }
@@ -52,46 +62,46 @@ unsafe impl RefEncode for HKBloodGlucoseMealTime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation?language=objc)
+/// Constants that indicate where on the body a temperature reading was taken.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBodyTemperatureSensorLocation(pub NSInteger);
 impl HKBodyTemperatureSensorLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/other?language=objc)
+    /// The temperature was taken at a location that is not otherwise in this list.
     #[doc(alias = "HKBodyTemperatureSensorLocationOther")]
     pub const Other: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/armpit?language=objc)
+    /// The temperature was taken in the armpit.
     #[doc(alias = "HKBodyTemperatureSensorLocationArmpit")]
     pub const Armpit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/body?language=objc)
+    /// The temperature was taken on the body.
     #[doc(alias = "HKBodyTemperatureSensorLocationBody")]
     pub const Body: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/ear?language=objc)
+    /// The temperature was taken in the ear.
     #[doc(alias = "HKBodyTemperatureSensorLocationEar")]
     pub const Ear: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/finger?language=objc)
+    /// The temperature was taken at the finger.
     #[doc(alias = "HKBodyTemperatureSensorLocationFinger")]
     pub const Finger: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/gastrointestinal?language=objc)
+    /// The temperature was taken inside the gastrointestinal tract.
     #[doc(alias = "HKBodyTemperatureSensorLocationGastroIntestinal")]
     pub const GastroIntestinal: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/mouth?language=objc)
+    /// The temperature was taken in the mouth.
     #[doc(alias = "HKBodyTemperatureSensorLocationMouth")]
     pub const Mouth: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/rectum?language=objc)
+    /// The temperature was taken in the rectum.
     #[doc(alias = "HKBodyTemperatureSensorLocationRectum")]
     pub const Rectum: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/toe?language=objc)
+    /// The temperature was taken at the toe.
     #[doc(alias = "HKBodyTemperatureSensorLocationToe")]
     pub const Toe: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/eardrum?language=objc)
+    /// The temperature was taken on the eardrum.
     #[doc(alias = "HKBodyTemperatureSensorLocationEarDrum")]
     pub const EarDrum: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/temporalartery?language=objc)
+    /// The temperature was taken at the temporal artery.
     #[doc(alias = "HKBodyTemperatureSensorLocationTemporalArtery")]
     pub const TemporalArtery: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation/forehead?language=objc)
+    /// The temperature was taken on the forehead.
     #[doc(alias = "HKBodyTemperatureSensorLocationForehead")]
     pub const Forehead: Self = Self(11);
 }
@@ -118,23 +128,17 @@ unsafe impl RefEncode for HKBodyTemperatureSensorLocation {
 /// the user’s cycling workouts to calculate
 /// a predicted Cycling Functional Threshold
 /// Power.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKCyclingFunctionalThresholdPowerTestType(pub NSInteger);
 impl HKCyclingFunctionalThresholdPowerTestType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/maxexercise60minute?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise60Minute")]
     pub const MaxExercise60Minute: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/maxexercise20minute?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeMaxExercise20Minute")]
     pub const MaxExercise20Minute: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/ramptest?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypeRampTest")]
     pub const RampTest: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcyclingfunctionalthresholdpowertesttype/predictionexercise?language=objc)
     #[doc(alias = "HKCyclingFunctionalThresholdPowerTestTypePredictionExercise")]
     pub const PredictionExercise: Self = Self(4);
 }
@@ -147,24 +151,23 @@ unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values that indicate the placement of the device that measured a sample.
 /// The detected placement of the device during the bout of walking
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKDevicePlacementSide(pub NSInteger);
 impl HKDevicePlacementSide {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/unknown?language=objc)
+    /// The system couldn’t determine the device’s placement.
     #[doc(alias = "HKDevicePlacementSideUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/left?language=objc)
+    /// A device predominately located on the left side.
     #[doc(alias = "HKDevicePlacementSideLeft")]
     pub const Left: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/right?language=objc)
+    /// A device predominately located on the right side.
     #[doc(alias = "HKDevicePlacementSideRight")]
     pub const Right: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside/central?language=objc)
+    /// A device predominately located near the center of the body.
     #[doc(alias = "HKDevicePlacementSideCentral")]
     pub const Central: Self = Self(3);
 }
@@ -177,19 +180,25 @@ unsafe impl RefEncode for HKDevicePlacementSide {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext?language=objc)
+/// Values that indicate the user’s level of activity when the heart rate sample was measured.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKHeartRateMotionContext(pub NSInteger);
 impl HKHeartRateMotionContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/notset?language=objc)
+    /// A value indicating that the user’s activity level could not be determined.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is identical to the sample’s metadata not containing a [`HKMetadataKeyHeartRateMotionContext`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext) key.
+    ///
+    ///
     #[doc(alias = "HKHeartRateMotionContextNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/sedentary?language=objc)
+    /// A value indicating that the user has been still for at least 5 minutes prior to the heart rate sample.
     #[doc(alias = "HKHeartRateMotionContextSedentary")]
     pub const Sedentary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/active?language=objc)
+    /// A value indicating that the user was in motion during the heart rate sample.
     #[doc(alias = "HKHeartRateMotionContextActive")]
     pub const Active: Self = Self(2);
 }
@@ -202,6 +211,7 @@ unsafe impl RefEncode for HKHeartRateMotionContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The test that measured a person’s heart-rate recovery.
 /// Represents the test used to determine a Heart Rate Recovery value
 ///
 ///
@@ -211,20 +221,30 @@ unsafe impl RefEncode for HKHeartRateMotionContext {
 ///
 /// metrics to calculate a predicted Heart Rate
 /// Recovery.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKHeartRateRecoveryTestType(pub NSInteger);
 impl HKHeartRateRecoveryTestType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype/maxexercise?language=objc)
+    /// Measures a person’s actual heart-rate recovery.
+    ///
+    /// ## Discussion
+    ///
+    /// In this test, a person exercises to their physical limit. The test measures their max heart rate during the workout, and then compares this with their heart rate after the workout ends. This lets the test calculate the actual heart rate recovery.
+    ///
+    ///
     #[doc(alias = "HKHeartRateRecoveryTestTypeMaxExercise")]
     pub const MaxExercise: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype/predictionsubmaxexercise?language=objc)
+    /// A test that estimates a person’s heart-rate recovery using lower-intensity exercise.
+    ///
+    /// ## Discussion
+    ///
+    /// In this test, a person performs lower-intensity exercise, staying below their physical limit. The test then estimates their actual heart rate recovery based on the difference between their exercising heart rate, and the rate of recovery after the exercise ends.
+    ///
+    ///
     #[doc(alias = "HKHeartRateRecoveryTestTypePredictionSubMaxExercise")]
     pub const PredictionSubMaxExercise: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartraterecoverytesttype/predictionnonexercise?language=objc)
+    /// A test that estimates a person’s heart-rate recovery without using exercise.
     #[doc(alias = "HKHeartRateRecoveryTestTypePredictionNonExercise")]
     pub const PredictionNonExercise: Self = Self(3);
 }
@@ -237,31 +257,31 @@ unsafe impl RefEncode for HKHeartRateRecoveryTestType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation?language=objc)
+/// Constants that indicate where on the body the heart rate sensor is located.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKHeartRateSensorLocation(pub NSInteger);
 impl HKHeartRateSensorLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/other?language=objc)
+    /// The heart rate sensor’s location is not otherwise on this list.
     #[doc(alias = "HKHeartRateSensorLocationOther")]
     pub const Other: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/chest?language=objc)
+    /// The heart rate sensor is located on the user’s chest.
     #[doc(alias = "HKHeartRateSensorLocationChest")]
     pub const Chest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/wrist?language=objc)
+    /// The heart rate sensor is located on the user’s wrist.
     #[doc(alias = "HKHeartRateSensorLocationWrist")]
     pub const Wrist: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/finger?language=objc)
+    /// The heart rate sensor is located on the user’s finger.
     #[doc(alias = "HKHeartRateSensorLocationFinger")]
     pub const Finger: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/hand?language=objc)
+    /// The heart rate sensor is located on the user’s hand.
     #[doc(alias = "HKHeartRateSensorLocationHand")]
     pub const Hand: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/earlobe?language=objc)
+    /// The heart rate sensor is located on the user’s earlobe.
     #[doc(alias = "HKHeartRateSensorLocationEarLobe")]
     pub const EarLobe: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation/foot?language=objc)
+    /// The heart rate sensor is located on the user’s foot.
     #[doc(alias = "HKHeartRateSensorLocationFoot")]
     pub const Foot: Self = Self(6);
 }
@@ -274,6 +294,7 @@ unsafe impl RefEncode for HKHeartRateSensorLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible reasons for administering insulin.
 /// Represents a medical reason for the delivery of insulin
 ///
 ///
@@ -281,17 +302,27 @@ unsafe impl RefEncode for HKHeartRateSensorLocation {
 /// injection of slow-acting insulin.
 ///
 /// glucose level correction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKInsulinDeliveryReason(pub NSInteger);
 impl HKInsulinDeliveryReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason/basal?language=objc)
+    /// Insulin administered to meet the user’s basic metabolic needs.
+    ///
+    /// ## Discussion
+    ///
+    /// Users typically administer basal insulin at a continuous rate from an insulin pump, or as a periodic injection of slow-acting insulin.
+    ///
+    ///
     #[doc(alias = "HKInsulinDeliveryReasonBasal")]
     pub const Basal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkinsulindeliveryreason/bolus?language=objc)
+    /// Insulin administered to meet the user’s episodic requirements.
+    ///
+    /// ## Discussion
+    ///
+    /// Users administer bolus insulin to meet episodic needs, such as during a meal or to correct their blood glucose levels.
+    ///
+    ///
     #[doc(alias = "HKInsulinDeliveryReasonBolus")]
     pub const Bolus: Self = Self(2);
 }
@@ -310,17 +341,13 @@ unsafe impl RefEncode for HKInsulinDeliveryReason {
 /// standard such as a stationary bike
 ///
 /// signals (walking, running etc.)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKPhysicalEffortEstimationType(pub NSInteger);
 impl HKPhysicalEffortEstimationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype/activitylookup?language=objc)
     #[doc(alias = "HKPhysicalEffortEstimationTypeActivityLookup")]
     pub const ActivityLookup: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphysicaleffortestimationtype/devicesensed?language=objc)
     #[doc(alias = "HKPhysicalEffortEstimationTypeDeviceSensed")]
     pub const DeviceSensed: Self = Self(2);
 }
@@ -333,33 +360,32 @@ unsafe impl RefEncode for HKPhysicalEffortEstimationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The style of stroke while swimming.
 /// Represents a style of stroke used during a swimming workout.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKSwimmingStrokeStyle(pub NSInteger);
 impl HKSwimmingStrokeStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/unknown?language=objc)
+    /// The user’s stroke could not be determined.
     #[doc(alias = "HKSwimmingStrokeStyleUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/mixed?language=objc)
+    /// The user swam a mixture of strokes.
     #[doc(alias = "HKSwimmingStrokeStyleMixed")]
     pub const Mixed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/freestyle?language=objc)
+    /// The user swam the freestyle stroke.
     #[doc(alias = "HKSwimmingStrokeStyleFreestyle")]
     pub const Freestyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/backstroke?language=objc)
+    /// The user swam the backstroke.
     #[doc(alias = "HKSwimmingStrokeStyleBackstroke")]
     pub const Backstroke: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/breaststroke?language=objc)
+    /// The user swam the breaststroke.
     #[doc(alias = "HKSwimmingStrokeStyleBreaststroke")]
     pub const Breaststroke: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/butterfly?language=objc)
+    /// The user swam the butterfly stroke.
     #[doc(alias = "HKSwimmingStrokeStyleButterfly")]
     pub const Butterfly: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle/kickboard?language=objc)
+    /// The user swam using a kickboard.
     #[doc(alias = "HKSwimmingStrokeStyleKickboard")]
     pub const Kickboard: Self = Self(6);
 }
@@ -372,19 +398,19 @@ unsafe impl RefEncode for HKSwimmingStrokeStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext?language=objc)
+/// The type of motion performed during the sample.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKUserMotionContext(pub NSInteger);
 impl HKUserMotionContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext/notset?language=objc)
+    /// The person’s motion was not specified.
     #[doc(alias = "HKUserMotionContextNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext/stationary?language=objc)
+    /// The person was stationary during the sample.
     #[doc(alias = "HKUserMotionContextStationary")]
     pub const Stationary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext/active?language=objc)
+    /// The person was active during the sample.
     #[doc(alias = "HKUserMotionContextActive")]
     pub const Active: Self = Self(2);
 }
@@ -397,6 +423,13 @@ unsafe impl RefEncode for HKUserMotionContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Methods for calculating the user’s VO2 max rate.
+///
+/// ## Overview
+///
+/// VO2 max represents the maximal oxygen consumption during incremental exercise. VO2 max is an important indicator of fitness and endurance.
+///
+///
 /// Represents the test used to create a VO2 Max Sample.
 ///
 ///
@@ -407,23 +440,20 @@ unsafe impl RefEncode for HKUserMotionContext {
 /// calculate a predicted VO2Max.
 ///
 /// predicted VO2Max.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVO2MaxTestType(pub NSInteger);
 impl HKVO2MaxTestType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/maxexercise?language=objc)
+    /// A test that measures VO2 max rate by monitoring exercise to the user’s physical limit.
     #[doc(alias = "HKVO2MaxTestTypeMaxExercise")]
     pub const MaxExercise: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/predictionsubmaxexercise?language=objc)
+    /// A calculation that estimates VO2 max rate based on low-intensity exercise.
     #[doc(alias = "HKVO2MaxTestTypePredictionSubMaxExercise")]
     pub const PredictionSubMaxExercise: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/predictionnonexercise?language=objc)
+    /// A calculation that estimates VO2 max rate without any exercise.
     #[doc(alias = "HKVO2MaxTestTypePredictionNonExercise")]
     pub const PredictionNonExercise: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvo2maxtesttype/predictionsteptest?language=objc)
     #[doc(alias = "HKVO2MaxTestTypePredictionStepTest")]
     pub const PredictionStepTest: Self = Self(4);
 }
@@ -439,17 +469,13 @@ unsafe impl RefEncode for HKVO2MaxTestType {
 /// Represents the water salinity for an underwater depth or water temperature sample.
 ///
 /// This value indicates the water salinity
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWaterSalinity(pub NSInteger);
 impl HKWaterSalinity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity/freshwater?language=objc)
     #[doc(alias = "HKWaterSalinityFreshWater")]
     pub const FreshWater: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwatersalinity/saltwater?language=objc)
     #[doc(alias = "HKWaterSalinitySaltWater")]
     pub const SaltWater: Self = Self(2);
 }
@@ -462,94 +488,94 @@ unsafe impl RefEncode for HKWaterSalinity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition?language=objc)
+/// Constants that indicate a type of weather.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWeatherCondition(pub NSInteger);
 impl HKWeatherCondition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/none?language=objc)
+    /// The weather condition is unknown or irrelevant.
     #[doc(alias = "HKWeatherConditionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/clear?language=objc)
+    /// The weather condition is clear.
     #[doc(alias = "HKWeatherConditionClear")]
     pub const Clear: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/fair?language=objc)
+    /// The weather condition is fair.
     #[doc(alias = "HKWeatherConditionFair")]
     pub const Fair: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/partlycloudy?language=objc)
+    /// The weather condition is partly cloudy.
     #[doc(alias = "HKWeatherConditionPartlyCloudy")]
     pub const PartlyCloudy: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mostlycloudy?language=objc)
+    /// The weather condition is mostly cloudy.
     #[doc(alias = "HKWeatherConditionMostlyCloudy")]
     pub const MostlyCloudy: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/cloudy?language=objc)
+    /// The weather condition is cloudy.
     #[doc(alias = "HKWeatherConditionCloudy")]
     pub const Cloudy: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/foggy?language=objc)
+    /// The weather condition is foggy.
     #[doc(alias = "HKWeatherConditionFoggy")]
     pub const Foggy: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/haze?language=objc)
+    /// The weather condition is hazy.
     #[doc(alias = "HKWeatherConditionHaze")]
     pub const Haze: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/windy?language=objc)
+    /// The weather condition is windy.
     #[doc(alias = "HKWeatherConditionWindy")]
     pub const Windy: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/blustery?language=objc)
+    /// The weather condition is blustery.
     #[doc(alias = "HKWeatherConditionBlustery")]
     pub const Blustery: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/smoky?language=objc)
+    /// The weather condition is smoky.
     #[doc(alias = "HKWeatherConditionSmoky")]
     pub const Smoky: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/dust?language=objc)
+    /// The weather condition is dust.
     #[doc(alias = "HKWeatherConditionDust")]
     pub const Dust: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/snow?language=objc)
+    /// The weather condition is snow.
     #[doc(alias = "HKWeatherConditionSnow")]
     pub const Snow: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/hail?language=objc)
+    /// The weather condition is hail.
     #[doc(alias = "HKWeatherConditionHail")]
     pub const Hail: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/sleet?language=objc)
+    /// The weather condition is sleet.
     #[doc(alias = "HKWeatherConditionSleet")]
     pub const Sleet: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/freezingdrizzle?language=objc)
+    /// The weather condition is freezing drizzle.
     #[doc(alias = "HKWeatherConditionFreezingDrizzle")]
     pub const FreezingDrizzle: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/freezingrain?language=objc)
+    /// The weather condition is freezing rain.
     #[doc(alias = "HKWeatherConditionFreezingRain")]
     pub const FreezingRain: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedrainandhail?language=objc)
+    /// The weather condition is mixed rain and hail.
     #[doc(alias = "HKWeatherConditionMixedRainAndHail")]
     pub const MixedRainAndHail: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedrainandsnow?language=objc)
+    /// The weather condition is mixed rain and snow.
     #[doc(alias = "HKWeatherConditionMixedRainAndSnow")]
     pub const MixedRainAndSnow: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedrainandsleet?language=objc)
+    /// The weather condition is mixed rain and sleet.
     #[doc(alias = "HKWeatherConditionMixedRainAndSleet")]
     pub const MixedRainAndSleet: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/mixedsnowandsleet?language=objc)
+    /// The weather condition is mixed snow and sleet.
     #[doc(alias = "HKWeatherConditionMixedSnowAndSleet")]
     pub const MixedSnowAndSleet: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/drizzle?language=objc)
+    /// The weather condition is drizzle.
     #[doc(alias = "HKWeatherConditionDrizzle")]
     pub const Drizzle: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/scatteredshowers?language=objc)
+    /// The weather condition is scattered showers.
     #[doc(alias = "HKWeatherConditionScatteredShowers")]
     pub const ScatteredShowers: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/showers?language=objc)
+    /// The weather condition is showers.
     #[doc(alias = "HKWeatherConditionShowers")]
     pub const Showers: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/thunderstorms?language=objc)
+    /// The weather condition is thunderstorms.
     #[doc(alias = "HKWeatherConditionThunderstorms")]
     pub const Thunderstorms: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/tropicalstorm?language=objc)
+    /// The weather condition is tropical storm.
     #[doc(alias = "HKWeatherConditionTropicalStorm")]
     pub const TropicalStorm: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/hurricane?language=objc)
+    /// The weather condition is hurricane.
     #[doc(alias = "HKWeatherConditionHurricane")]
     pub const Hurricane: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition/tornado?language=objc)
+    /// The weather condition is tornado.
     #[doc(alias = "HKWeatherConditionTornado")]
     pub const Tornado: Self = Self(27);
 }
@@ -562,23 +588,22 @@ unsafe impl RefEncode for HKWeatherCondition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The possible locations for swimming.
 /// This enumerated type is used to represent the location type of a swimming workout.
 ///
 /// This value indicates whether a swimming workout was performed in a pool or open water.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutSwimmingLocationType(pub NSInteger);
 impl HKWorkoutSwimmingLocationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype/unknown?language=objc)
+    /// The swimming location could not be determined.
     #[doc(alias = "HKWorkoutSwimmingLocationTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype/pool?language=objc)
+    /// The user swam in a pool.
     #[doc(alias = "HKWorkoutSwimmingLocationTypePool")]
     pub const Pool: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype/openwater?language=objc)
+    /// The user swam in open water like a lake or ocean.
     #[doc(alias = "HKWorkoutSwimmingLocationTypeOpenWater")]
     pub const OpenWater: Self = Self(2);
 }

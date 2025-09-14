@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The name of the controller’s primary directional pad element.
+    ///
+    /// ## Discussion
+    ///
+    /// For the second-generation Siri Remote and later, this represents the entire touch surface including the inner and outer rings.
+    ///
+    ///
     /// The primary directional input surface for the directional gamepad
     ///
     ///
@@ -14,12 +21,17 @@ extern "C" {
     ///
     ///
     /// Note: For the 2021 2nd generation Siri Remote, this represents touching anywhere on the entire touch surface - including the inner and outer rings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionaldpad?language=objc)
     pub static GCInputDirectionalDpad: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the controller’s touch surface button.
+    ///
+    /// ## Discussion
+    ///
+    /// For the second-generation Siri Remote and later, this represents the button on the entire touch surface including the inner and outer rings.
+    ///
+    ///
     /// The button corresponding to pressing anywhere on the primary directional input surface for the directional gamepad
     ///
     ///
@@ -27,32 +39,53 @@ extern "C" {
     ///
     ///
     /// Note: For the 2021 2nd generation Siri Remote, this represents pressing anywhere the entire touch surface - including the inner and outer rings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionaltouchsurfacebutton?language=objc)
     pub static GCInputDirectionalTouchSurfaceButton: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the controller’s optional secondary directional pad element.
+    ///
+    /// ## Discussion
+    ///
+    /// This input element is an eight-way digital directional pad with physical up, down, left, and right buttons. For the second-generation Siri Remote and later, this represents the outer ring of the touch surface.
+    ///
+    ///
     /// An optional secondary directional input surface for the directional gamepad. This input is guaranteed to be an 8-way digital dpad with physical Up, Down, Left, Right butttons.
     ///
     ///
     /// Note: For the 2021 2nd generation Siri Remote, this represents pressing on the outer ring of the touch surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionalcardinaldpad?language=objc)
     pub static GCInputDirectionalCardinalDpad: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the controller’s optional button on the directional gamepad.
+    ///
+    /// ## Discussion
+    ///
+    /// This input element represents the center button on the cardinal directional pad. For the second-generation Siri Remote and later, this represents the inner ring of the touch surface.
+    ///
+    ///
     /// An optional button for the directional gamepad. This input represents the center button of the cardinal dpad.
     ///
     ///
     /// Note: For the 2021 2nd generation Siri Remote, this represents pressing anywhere on the inner ring of the touch surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionalcenterbutton?language=objc)
     pub static GCInputDirectionalCenterButton: &'static NSString;
 }
 
 extern_class!(
+    /// A profile that supports only the directional pad, without motion or rotation.
+    ///
+    /// ## Overview
+    ///
+    /// The directional gamepad profile is similar to a micro gamepad profile except it doesn’t support motion or rotation. The controller’s [`motion`](https://developer.apple.com/documentation/gamecontroller/gccontroller/motion) property is `nil` and the inherited [`allowsRotation`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation) property is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// If you select Micro Gamepad when you add the Game Controllers capability ([`GCSupportedGameControllers`](https://developer.apple.com/documentation/bundleresources/information-property-list/gcsupportedgamecontrollers) ) to your project, and you also support the GCDirectionalGamepad profile, select Directional Gamepad as well.
+    ///
+    /// If you support the second-generation Siri Remote and later, set the [`GCSupportsMultipleMicroGamepads`](https://developer.apple.com/documentation/bundleresources/information-property-list/gcsupportsmultiplemicrogamepads) key to `YES` in the information property list in your project.
+    ///
+    /// In addition, the directional pad element may report digital or analog values. If the directional pad’s [`analog`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog) property is [`false`](https://developer.apple.com/documentation/swift/false), it reports absolute directional pad values (the [`reportsAbsoluteDpadValues`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/reportsabsolutedpadvalues) property is [`true`](https://developer.apple.com/documentation/swift/true)).
+    ///
+    ///
     /// Directional Gamepad profile.
     ///
     /// All controller profiles provide a base level of information about the controller they belong to. A directional gamepad
@@ -78,8 +111,6 @@ extern_class!(
     ///
     ///
     /// Note: This profile represents the 2021 2nd generation Siri Remote. Make sure you set GCSupportsMultipleMicroGamepads to YES to properly support the remote.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionalgamepad?language=objc)
     #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]

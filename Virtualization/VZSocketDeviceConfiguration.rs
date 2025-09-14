@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The common configuration traits for socket device requests.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a [`VZSocketDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzsocketdeviceconfiguration) object directly. Instead, create a [`VZVirtioSocketDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdeviceconfiguration) object and add it to your virtual machine’s configuration.
+    ///
+    ///
     /// Base class for a socket device configuration.
     ///
     /// VZSocketDeviceConfiguration should not be instantiated directly.
@@ -14,8 +21,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioSocketDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzsocketdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSocketDeviceConfiguration;

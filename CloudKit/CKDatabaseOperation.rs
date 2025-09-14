@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation?language=objc)
+    /// The abstract base class for operations that act upon databases in CloudKit.
+    ///
+    /// ## Overview
+    ///
+    /// Database operations typically involve fetching and saving records and other database objects, as well as executing queries on the contents of the database. Use this class’s [`database`](https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database) property to tell the operation which database to use when you execute it. Don’t subclass this class or create instances of it. Instead, create instances of one of its concrete subclasses.
+    ///
+    ///
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]

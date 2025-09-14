@@ -8,13 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of inputs that provide positions along an axis that are relative to the previous position.
     /// An object conforming to
     /// `GCRelativeInput`represents an input that reports
     /// its change in position along an axis (delta) since the previous event.
     /// Relative inputs have no fixed origin from which a coordinate syatem can be
     /// defined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcrelativeinput?language=objc)
     pub unsafe trait GCRelativeInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block to be notified when the delta of the input changes.

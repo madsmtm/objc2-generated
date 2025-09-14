@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/easession?language=objc)
+    /// The object you use to manage communications between your app and a connected hardware accessory.
+    ///
+    /// ## Overview
+    ///
+    /// An [`EASession`](https://developer.apple.com/documentation/externalaccessory/easession) object creates a communications channel between your app and a connected hardware accessory. The manufacturer of the device must share the accessory’s supported protocols with you. When you create your session, specify one of these protocols to initiate communication with the accessory. After initializing an [`EASession`](https://developer.apple.com/documentation/externalaccessory/easession) object, use the provided output and input streams to transfer data to and from the accessory using that protocol.
+    ///
+    /// After creating a session object, immediately retrieve and configure the stream objects provided by the session. Streams send events to their associated delegate to notify it of changes in the stream status. For example, streams notify the delegate when data is waiting to be read or when more space is available for writing data. For more information about how to use stream objects, see [Stream Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Streams/Streams.html#//apple_ref/doc/uid/10000188i).
+    ///
+    /// When sending and receiving data using the provided streams, it is your responsibility to ensure the data is formatted according to the specified protocol. The [`EASession`](https://developer.apple.com/documentation/externalaccessory/easession) class has no knowledge of specific accessory protocols and doesn’t attempt to format the data in any way before or after transferring it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EASession;

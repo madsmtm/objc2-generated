@@ -8,11 +8,44 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that associates virtual conferencing details with an event object in a user’s calendar.
+    ///
+    /// ## Overview
+    ///
+    /// [`EKVirtualConferenceProvider`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceprovider) lets apps that offer virtual conferencing services to integrate directly with events in users’ calendars. To add this support to your app, add a virtual conference extension. The principal class of the app extension is a custom subclass of [`EKVirtualConferenceProvider`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceprovider) that you create that provides the following:
+    ///
+    /// - A list of room types where events take place, such as Personal Room or Team Room
+    ///
+    /// - A descriptor for a virtual conference, including a user-visible title, one or more URLs, and additional details
+    ///
+    /// ### Providing Room Details
+    ///
+    /// To provide a list of rooms, you provide one or more _room type descriptors_ that contain details about where a virtual conference takes place. Each room type descriptor includes a user-visible title and an identifier that you choose. EventKit calls [`fetchAvailableRoomTypesWithCompletionHandler:`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceprovider/fetchavailableroomtypes(completionhandler:)) on your virtual conference provider to retrieve an array of [`EKVirtualConferenceRoomTypeDescriptor`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypedescriptor) objects.
+    ///
+    /// ### Providing Conference Details
+    ///
+    /// After EventKit has the room type descriptors, users can add an event that specifies one of your rooms as the location. To identify the virtual conference event, your virtual conference provider creates a _virtual conference descriptor_ that contains details about the virtual conference. The conference descriptor contains the following:
+    ///
+    /// - One or more [`EKVirtualConferenceURLDescriptor`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor) objects to specify how the user joins the virtual conference
+    ///
+    /// - An optional user-visible title that EventKit may display
+    ///
+    /// - An optional user-visible string with details about the virtual conference that EventKit displays
+    ///
+    /// EventKit calls [`fetchVirtualConferenceForIdentifier:completionHandler:`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceprovider/fetchvirtualconference(identifier:completionhandler:)) on your virtual conference provider to retrieve an instance of [`EKVirtualConferenceDescriptor`](https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Events that use your virtual conference descriptors may sync to other devices where your app isn’t installed. To support links to your virtual conference regardless of whether your app is installed, adopt universal links in your app. Universal links let you specify HTTP URLs that open your app if it’s installed or open a corresponding web page if it’s not. For more information about adopting universal links in your app, see [Supporting universal links in your app](https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Provides virtual conferences to Calendar.
     ///
     /// Subclass this class in your extension and override the below two methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceProvider;

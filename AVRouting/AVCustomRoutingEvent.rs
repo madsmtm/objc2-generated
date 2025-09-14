@@ -6,26 +6,22 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Values that indicate the reason for a routing event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason?language=objc)
+/// Values that indicate the reason for a routing event.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCustomRoutingEventReason(pub NSInteger);
 impl AVCustomRoutingEventReason {
     /// A value that indicates that a user selects a route in the picker.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason/activate?language=objc)
+    /// A value that indicates that a user selects a route in the picker.
     #[doc(alias = "AVCustomRoutingEventReasonActivate")]
     pub const Activate: Self = Self(0);
     /// A value that indicates that a user deselects a route in the picker.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason/deactivate?language=objc)
+    /// A value that indicates that a user deselects a route in the picker.
     #[doc(alias = "AVCustomRoutingEventReasonDeactivate")]
     pub const Deactivate: Self = Self(1);
     /// A value that indicates to reactivate a route a user authorized previously.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingeventreason/reactivate?language=objc)
+    /// A value that indicates to reactivate a route a user authorized previously.
     #[doc(alias = "AVCustomRoutingEventReasonReactivate")]
     pub const Reactivate: Self = Self(2);
 }
@@ -41,10 +37,15 @@ unsafe impl RefEncode for AVCustomRoutingEventReason {
 extern_class!(
     /// An object that represents an event that occurs on a route.
     ///
+    /// ## Overview
+    ///
+    /// Depending on the route’s reason, apps establish or tear down a connection to a specified route.
+    ///
+    ///
+    /// An object that represents an event that occurs on a route.
+    ///
     /// Depending on the route’s reason, apps establish or tear down a connection to
     /// a specified route.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCustomRoutingEvent;

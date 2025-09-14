@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration object that represents a USB Mass storage device.
     /// Configuration of a USB Mass Storage storage device.
     ///
     /// This device configuration creates a storage device that conforms to the USB Mass Storage specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbmassstoragedeviceconfiguration?language=objc)
     #[unsafe(super(VZStorageDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceConfiguration")]

@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtypeoptionsresolutionresult?language=objc)
+    /// A resolution result for the call types to include in a search.
+    ///
+    /// ## Overview
+    ///
+    /// An `INCallRecordTypeOptionsResolutionResult` object is what you return when resolving parameters containing a value of type [`INCallRecordTypeOptions`](https://developer.apple.com/documentation/intents/incallrecordtypeoptions). Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

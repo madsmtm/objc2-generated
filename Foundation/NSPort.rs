@@ -8,17 +8,49 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/socketnativehandle?language=objc)
+/// Type for the platform-specific native socket handle.
 pub type NSSocketNativeHandle = c_int;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/port/didbecomeinvalidnotification?language=objc)
+    /// Posted from the [`invalidate`](https://developer.apple.com/documentation/foundation/port/invalidate()) method, which is invoked when the `NSPort` is deallocated or when it notices that its communication channel has been damaged. The notification object is the `NSPort` object that has become invalid. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// An `NSSocketPort` object cannot detect when its connection to a remote port is lost, even if the remote port is on the same machine. Therefore, it cannot invalidate itself and post this notification. Instead, you must detect the timeout error when the next message is sent.
+    ///
+    /// The `NSPort` object posting this notification is no longer useful, so all receivers should unregister themselves for any notifications involving the `NSPort`. A method receiving this notification should check to see which port became invalid before attempting to do anything. In particular, observers that receive all [`NSPortDidBecomeInvalidNotification`](https://developer.apple.com/documentation/foundation/port/didbecomeinvalidnotification) messages should be aware that communication with the window server is handled through an `NSPort`. If this port becomes invalid, drawing operations will cause a fatal error.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSPortDidBecomeInvalidNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/port?language=objc)
+    /// An abstract class that represents a communication channel.
+    ///
+    /// ## Overview
+    ///
+    /// Communication occurs between [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects, which typically reside in different threads or tasks. The distributed objects system uses [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects to send [`NSPortMessage`](https://developer.apple.com/documentation/foundation/portmessage) objects back and forth. Implement interapplication communication using distributed objects whenever possible and use [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects only when necessary.
+    ///
+    /// To receive incoming messages, add [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects to an instance of [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) as input sources. [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) objects automatically add their receive port when initialized.
+    ///
+    /// When the [`NSPort`](https://developer.apple.com/documentation/foundation/port) object receives a port message, it forwards the message to its delegate in a [`handleMachMessage:`](https://developer.apple.com/documentation/foundation/nsmachportdelegate/handlemachmessage(_:)) or [`handlePortMessage:`](https://developer.apple.com/documentation/foundation/portdelegate/handle(_:)) message. The delegate should implement only one of these methods to process the incoming message in whatever form desired. [`handleMachMessage:`](https://developer.apple.com/documentation/foundation/nsmachportdelegate/handlemachmessage(_:)) provides a message as a raw Mach message beginning with a `msg_header_t` structure. [`handlePortMessage:`](https://developer.apple.com/documentation/foundation/portdelegate/handle(_:)) provides a message as an instance of [`NSPortMessage`](https://developer.apple.com/documentation/foundation/portmessage), which is an object-oriented wrapper for a Mach message. If a delegate has not been set, the `NSPort` object handles the message itself.
+    ///
+    /// When you are finished using a port object, you must explicitly invalidate the port object prior to sending it a `release` message. Similarly, if your application uses garbage collection, you must invalidate the port object before removing any strong references to it. If you do not invalidate the port, the resulting port object may linger and create a memory leak. To invalidate the port object, invoke its [`invalidate`](https://developer.apple.com/documentation/foundation/port/invalidate()) method.
+    ///
+    /// Foundation defines three concrete subclasses of `NSPort`. [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) and [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) allow local (on the same machine) communication only. [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport) allows for both local and remote communication, but may be more expensive than the others for the local case. When creating an `NSPort` object, using doc:nsport/1807189-allocwithzone or [`port`](https://developer.apple.com/documentation/foundation/nsport/port), an [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) object is created instead.
+    ///
+    /// For backward compatibility on Mach, `- [NSPort allocWithZone:]` returns an instance of the [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) class when sent to this class. Otherwise, it returns an instance of a concrete subclass that can be used for messaging between threads or processes on the local machine, or, in the case of [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport), between processes on separate machines.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`NSPort`](https://developer.apple.com/documentation/foundation/port) conforms to the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol, but only supports coding by an [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder). [`NSPort`](https://developer.apple.com/documentation/foundation/port) and its subclasses do not support archiving.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPort;
@@ -175,7 +207,13 @@ impl DefaultRetained for NSPort {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/portdelegate?language=objc)
+    /// An interface for handling incoming messages.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSPortDelegate`](https://developer.apple.com/documentation/foundation/portdelegate) protocol defines the optional methods implemented by delegates of [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects.
+    ///
+    ///
     pub unsafe trait NSPortDelegate: NSObjectProtocol {
         #[cfg(feature = "NSPortMessage")]
         #[optional]
@@ -185,20 +223,20 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport/options?language=objc)
+/// Used to remove access rights to a mach port when the `NSMachPort` object is invalidated or destroyed.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMachPortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMachPortOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions/nsmachportdeallocatenone?language=objc)
+/// Do not remove any send or receive rights.
         #[doc(alias = "NSMachPortDeallocateNone")]
         const DeallocateNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport/options/deallocatesendright?language=objc)
+/// Deallocate a send right when the `NSMachPort` object is invalidated or destroyed.
         #[doc(alias = "NSMachPortDeallocateSendRight")]
         const DeallocateSendRight = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport/options/deallocatereceiveright?language=objc)
+/// Remove a receive right when the `NSMachPort` object is invalidated or destroyed.
         #[doc(alias = "NSMachPortDeallocateReceiveRight")]
         const DeallocateReceiveRight = 1<<1;
     }
@@ -213,7 +251,23 @@ unsafe impl RefEncode for NSMachPortOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachport?language=objc)
+    /// A port that can be used as an endpoint for distributed object connections (or raw messaging).
+    ///
+    /// ## Overview
+    ///
+    /// [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) is a subclass of [`NSPort`](https://developer.apple.com/documentation/foundation/port) that wraps a Mach port, the fundamental communication port in macOS. [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) allows for local (on the same machine) communication only. A companion class, [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport), allows for both local and remote distributed object communication, but may be more expensive than [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) for the local case.
+    ///
+    /// To use [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) effectively, you should be familiar with Mach ports, port access rights, and Mach messages. See the Mach OS documentation for more information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) conforms to the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol, but only supports coding by an [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder). [`NSPort`](https://developer.apple.com/documentation/foundation/port) and its subclasses do not support archiving.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMachPort;
@@ -330,7 +384,13 @@ impl DefaultRetained for NSMachPort {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportdelegate?language=objc)
+    /// An interface for handling incoming Mach messages.
+    ///
+    /// ## Overview
+    ///
+    /// Delegates of [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) objects optionally adopt this protocol.
+    ///
+    ///
     pub unsafe trait NSMachPortDelegate: NSPortDelegate {
         /// # Safety
         ///
@@ -343,7 +403,33 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/messageport?language=objc)
+    /// A port that can be used as an endpoint for distributed object connections (or raw messaging).
+    ///
+    /// ## Overview
+    ///
+    /// [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) is a subclass of [`NSPort`](https://developer.apple.com/documentation/foundation/port) that allows for local (on the same machine) communication only. A companion class, [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport), allows for both local and remote communication, but may be more expensive than [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) for the local case.
+    ///
+    /// [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) defines no additional methods over those already defined by [`NSPort`](https://developer.apple.com/documentation/foundation/port).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) conforms to the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol, but only supports coding by an [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder) object. [`NSPort`](https://developer.apple.com/documentation/foundation/port) and its subclasses do not support archiving.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Avoid [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport). There’s little reason to use [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) rather than [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) or [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport). There’s no particular performance or functionality advantage. It is recommended avoiding its use.
+    ///
+    /// [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport) may be deprecated in the macOS 10.6 or later.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMessagePort;
@@ -409,7 +495,21 @@ impl DefaultRetained for NSMessagePort {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/socketport?language=objc)
+    /// A port that represents a BSD socket.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport) object can be used as an endpoint for distributed object connections. Companion classes, [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) and [`NSMessagePort`](https://developer.apple.com/documentation/foundation/messageport), allow for local (on the same machine) communication only. The [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport) class allows for both local and remote communication, but may be more expensive than the others for the local case.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`NSSocketPort`](https://developer.apple.com/documentation/foundation/socketport) class conforms to the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol, but only supports coding by an [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder). [`NSPort`](https://developer.apple.com/documentation/foundation/port) and its other subclasses do not support archiving.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPort, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSocketPort;

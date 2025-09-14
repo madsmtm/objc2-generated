@@ -7,18 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An enumeration of tracking priorities.
 /// Tracking level options to favor speed or location accuracy. The VNRequestTrackingLevelFast is the default option used by trackers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNRequestTrackingLevel(pub NSUInteger);
 impl VNRequestTrackingLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel/accurate?language=objc)
+    /// Tracking level that favors location accuracy over speed.
     #[doc(alias = "VNRequestTrackingLevelAccurate")]
     pub const Accurate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttrackinglevel/fast?language=objc)
+    /// Tracking level that favors speed over location accuracy.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default option used by trackers.
+    ///
+    ///
     #[doc(alias = "VNRequestTrackingLevelFast")]
     pub const Fast: Self = Self(1);
 }
@@ -32,11 +37,16 @@ unsafe impl RefEncode for VNRequestTrackingLevel {
 }
 
 extern_class!(
+    /// The abstract superclass for image-analysis requests that track unique features across multiple images or video frames.
+    ///
+    /// ## Overview
+    ///
+    /// Instantiate a tracking request subclass to perform object tracking across multiple frames of an image. After initialization, configure the degree of accuracy by setting [`trackingLevel`](https://developer.apple.com/documentation/vision/vntrackingrequest/trackinglevel), and provide observations you’d like to track by setting the [`inputObservation`](https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation) initial bounding box.
+    ///
+    ///
     /// A base class for all tracking requests.
     ///
     /// Since this class is not meant to be directly instantiated, no initializers are available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackingrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]

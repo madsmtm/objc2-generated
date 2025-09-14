@@ -7,9 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Description of a feature
+    /// The name, type, and constraints of an input or output feature.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturedescription?language=objc)
+    /// ## Overview
+    ///
+    /// In Core ML, a _feature_ is a single input or output of a model. A model can have any number of _input features_ or _output features_. Each feature has a name and a value type, which are defined in the feature’s `MLFeatureDescription`. Model authors use feature descriptions to help developers integrate their model properly. Each `MLFeatureDescription` instance has read-only properties that indicate the feature’s name, its type, and whether it’s optional.
+    ///
+    /// For examples of features, see [Integrating a Core ML Model into Your App](https://developer.apple.com/documentation/coreml/integrating-a-core-ml-model-into-your-app). Note the three input features named `solarPanels`, `greenhouses`, and `size`, and the output feature is named `price`. All four features are of type `Double`.
+    ///
+    /// An `MLFeatureDescription` may also include constraints, which specify the limitations of the model’s input and output features. For each input feature, the constraints describe what values the model expects from your app. For each output feature, the constraints describe what values your app should expect from the model. You can also write code to inspect these descriptions before using the model in your app.
+    ///
+    ///
+    /// Description of a feature
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLFeatureDescription;

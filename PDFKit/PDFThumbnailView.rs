@@ -11,12 +11,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfthumbnailviewdocumenteditednotification?language=objc)
     pub static PDFThumbnailViewDocumentEditedNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfthumbnailview?language=objc)
+    /// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

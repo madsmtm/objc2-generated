@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxcell?language=objc)
+    /// The user interface of a combo box.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSComboBoxCell`](https://developer.apple.com/documentation/appkit/nscomboboxcell) is a subclass of [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) used to implement the user interface of “combo boxes” (see [`NSComboBox`](https://developer.apple.com/documentation/appkit/nscombobox) for information on how combo boxes look and work). The [`NSComboBox`](https://developer.apple.com/documentation/appkit/nscombobox) subclass of [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) uses a single [`NSComboBoxCell`](https://developer.apple.com/documentation/appkit/nscomboboxcell), and essentially all of the [`NSComboBox`](https://developer.apple.com/documentation/appkit/nscombobox) class’s methods simply invoke the corresponding [`NSComboBoxCell`](https://developer.apple.com/documentation/appkit/nscomboboxcell) method.
+    ///
+    /// Also see the [`NSComboBoxCellDataSource`](https://developer.apple.com/documentation/appkit/nscomboboxcelldatasource) protocol, which declares the methods that an [`NSComboBoxCell`](https://developer.apple.com/documentation/appkit/nscomboboxcell) object uses to access the contents of its data source object.
+    ///
+    ///
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -342,7 +350,6 @@ impl NSComboBoxCell {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxcelldatasource?language=objc)
     pub unsafe trait NSComboBoxCellDataSource: NSObjectProtocol {
         #[cfg(all(
             feature = "NSActionCell",

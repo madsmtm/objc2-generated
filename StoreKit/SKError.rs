@@ -7,77 +7,119 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerrordomain?language=objc)
+    /// The error domain name for StoreKit errors.
     pub static SKErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code?language=objc)
+/// Error codes for StoreKit errors.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKErrorCode(pub NSInteger);
 impl SKErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/unknown?language=objc)
+    /// Error code indicating that an unknown or unexpected error occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about the underlying cause of the error, see the [`localizedDescription`](https://developer.apple.com/documentation/foundation/nserror/localizeddescription) property of the error object.
+    ///
+    /// Retrying may resolve this error in some instances.
+    ///
+    ///
     #[doc(alias = "SKErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/clientinvalid?language=objc)
+    /// Error code indicating that the client is not allowed to perform the attempted action.
     #[doc(alias = "SKErrorClientInvalid")]
     pub const ClientInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/paymentcancelled?language=objc)
+    /// Error code indicating that the user canceled a payment request.
     #[doc(alias = "SKErrorPaymentCancelled")]
     pub const PaymentCancelled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/paymentinvalid?language=objc)
+    /// Error code indicating that one of the payment parameters wasn’t recognized by the App Store.
     #[doc(alias = "SKErrorPaymentInvalid")]
     pub const PaymentInvalid: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/paymentnotallowed?language=objc)
+    /// Error code indicating that the user is not allowed to authorize payments.
     #[doc(alias = "SKErrorPaymentNotAllowed")]
     pub const PaymentNotAllowed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/storeproductnotavailable?language=objc)
+    /// Error code indicating that the requested product is not available in the store.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`SKStorefront`](https://developer.apple.com/documentation/storekit/skstorefront) for more information.
+    ///
+    ///
     #[doc(alias = "SKErrorStoreProductNotAvailable")]
     pub const StoreProductNotAvailable: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/cloudservicepermissiondenied?language=objc)
+    /// Error code indicating that the user has not allowed access to Cloud service information.
     #[doc(alias = "SKErrorCloudServicePermissionDenied")]
     pub const CloudServicePermissionDenied: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/cloudservicenetworkconnectionfailed?language=objc)
+    /// Error code indicating that the device could not connect to the network.
     #[doc(alias = "SKErrorCloudServiceNetworkConnectionFailed")]
     pub const CloudServiceNetworkConnectionFailed: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/cloudservicerevoked?language=objc)
+    /// Error code indicating that the user has revoked permission to use this cloud service.
     #[doc(alias = "SKErrorCloudServiceRevoked")]
     pub const CloudServiceRevoked: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/privacyacknowledgementrequired?language=objc)
+    /// Error code indicating that the user has not yet acknowledged Apple’s privacy policy for Apple Music.
     #[doc(alias = "SKErrorPrivacyAcknowledgementRequired")]
     pub const PrivacyAcknowledgementRequired: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/unauthorizedrequestdata?language=objc)
+    /// Error code indicating that the app is attempting to use a property for which it does not have the required entitlement.
+    ///
+    /// ## Discussion
+    ///
+    /// To use [`requestData`](https://developer.apple.com/documentation/storekit/skpayment/requestdata), an app must have a required entitlement.
+    ///
+    ///
     #[doc(alias = "SKErrorUnauthorizedRequestData")]
     pub const UnauthorizedRequestData: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/invalidofferidentifier?language=objc)
+    /// Error code indicating that the offer identifier is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// The offer [`identifier`](https://developer.apple.com/documentation/storekit/skpaymentdiscount/identifier) is not valid. For example, you have not set up an offer with that identifier in the App Store, or you have revoked the offer.
+    ///
+    ///
     #[doc(alias = "SKErrorInvalidOfferIdentifier")]
     pub const InvalidOfferIdentifier: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/invalidsignature?language=objc)
+    /// Error code indicating that the signature in a payment discount isn’t valid.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`signature`](https://developer.apple.com/documentation/storekit/skpaymentdiscount/signature) is not valid.
+    ///
+    ///
     #[doc(alias = "SKErrorInvalidSignature")]
     pub const InvalidSignature: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/missingofferparams?language=objc)
+    /// Error code indicating that parameters are missing in a payment discount.
+    ///
+    /// ## Discussion
+    ///
+    /// This error appears if all parameters of [`SKPaymentDiscount`](https://developer.apple.com/documentation/storekit/skpaymentdiscount) are not present.
+    ///
+    ///
     #[doc(alias = "SKErrorMissingOfferParams")]
     pub const MissingOfferParams: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/invalidofferprice?language=objc)
+    /// Error code indicating that the price you specified in App Store Connect is no longer valid.
+    ///
+    /// ## Discussion
+    ///
+    /// An offer price can become invalid if you change the price of the base subscription such that it is lower than the offer price. Offers must always represent a discounted price.
+    ///
+    ///
     #[doc(alias = "SKErrorInvalidOfferPrice")]
     pub const InvalidOfferPrice: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/overlaycancelled?language=objc)
+    /// An error code that indicates the cancellation of an overlay.
     #[doc(alias = "SKErrorOverlayCancelled")]
     pub const OverlayCancelled: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/overlayinvalidconfiguration?language=objc)
+    /// An error code that indicates the overlay’s configuration is invalid.
     #[doc(alias = "SKErrorOverlayInvalidConfiguration")]
     pub const OverlayInvalidConfiguration: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/overlaytimeout?language=objc)
     #[doc(alias = "SKErrorOverlayTimeout")]
     pub const OverlayTimeout: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/ineligibleforoffer?language=objc)
+    /// An error code that indicates the user is ineligible for the subscription offer.
     #[doc(alias = "SKErrorIneligibleForOffer")]
     pub const IneligibleForOffer: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/unsupportedplatform?language=objc)
+    /// An error code that indicates the current platform doesn’t support overlays.
     #[doc(alias = "SKErrorUnsupportedPlatform")]
     pub const UnsupportedPlatform: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code/overlaypresentedinbackgroundscene?language=objc)
     #[doc(alias = "SKErrorOverlayPresentedInBackgroundScene")]
     pub const OverlayPresentedInBackgroundScene: Self = Self(20);
 }

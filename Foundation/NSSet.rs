@@ -9,9 +9,42 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// **************    Immutable Set    ***************
+    /// A static, unordered collection of unique objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsset?language=objc)
+    /// ## Overview
+    ///
+    /// The [`NSSet`](https://developer.apple.com/documentation/foundation/nsset), [`NSMutableSet`](https://developer.apple.com/documentation/foundation/nsmutableset), and [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset) classes declare the programmatic interface to an unordered collection of objects.
+    ///
+    /// [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and can’t modify the entries after that. [`NSMutableSet`](https://developer.apple.com/documentation/foundation/nsmutableset), on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic — or mutable — set allows the addition and deletion of entries at any time, automatically allocating memory as needed.
+    ///
+    /// Use sets as an alternative to arrays when the order of elements isn’t important and you need to consider performance in testing whether the set contains an object. With an array, testing for membership is slower than with sets.
+    ///
+    /// [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) is “toll-free bridged” with its Core Foundation counterpart, [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// In Swift, use this class instead of a [`Set`](https://developer.apple.com/documentation/swift/set) constant in cases where you require reference semantics.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// There should be little need of subclassing. If you need to customize behavior, it’s often better to consider composition instead of subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// In a subclass, you must override all of its primitive methods:
+    ///
+    /// - [`count`](https://developer.apple.com/documentation/foundation/nsset/count)
+    ///
+    /// - [`member:`](https://developer.apple.com/documentation/foundation/nsset/member(_:))
+    ///
+    /// - [`objectEnumerator`](https://developer.apple.com/documentation/foundation/nsset/objectenumerator())
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// Before making a custom class of [`NSSet`](https://developer.apple.com/documentation/foundation/nsset), investigate [`NSHashTable`](https://developer.apple.com/documentation/foundation/nshashtable) and the corresponding Core Foundation type, [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset). Because [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) and [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset) are “toll-free bridged,” you can substitute a [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset) object for a [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) object in your code (with appropriate casting). Although they’re corresponding types, [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset) and [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) don’t have identical interfaces or implementations, and you can sometimes do things with [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset) that you can’t easily do with [`NSSet`](https://developer.apple.com/documentation/foundation/nsset).
+    ///
+    /// If the behavior you want to add supplements that of the existing class, you could write a category on [`NSSet`](https://developer.apple.com/documentation/foundation/nsset). Keep in mind, however, that this category affects all instances of [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.
+    ///
+    ///
+    /// **************    Immutable Set    ***************
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSSet<ObjectType: ?Sized = AnyObject>;
@@ -365,9 +398,34 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 }
 
 extern_class!(
-    /// **************    Mutable Set    ***************
+    /// A dynamic unordered collection of unique objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableset?language=objc)
+    /// ## Overview
+    ///
+    /// You can use this type in Swift instead of a [`Set`](https://developer.apple.com/documentation/swift/set) in cases that require reference semantics.
+    ///
+    /// The `NSMutableSet` class declares the programmatic interface to a mutable, unordered collection of distinct objects.
+    ///
+    /// The [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset) class, which is a concrete subclass of `NSMutableSet`, supports mutable sets that can contain multiple instances of the same element. The [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) class supports creating and managing immutable sets.
+    ///
+    /// NSMutableSet is “toll-free bridged” with its Core Foundation counterpart, [`CFMutableSetRef`](https://developer.apple.com/documentation/corefoundation/cfmutableset). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// There should be little need of subclassing. If you need to customize behavior, it is often better to consider composition instead of subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// In a subclass, you must override both of its primitive methods:
+    ///
+    /// - [`addObject:`](https://developer.apple.com/documentation/foundation/nsmutableset/add(_:))
+    ///
+    /// - [`removeObject:`](https://developer.apple.com/documentation/foundation/nsmutableset/remove(_:))
+    ///
+    /// You must also override the primitive methods of the [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) class.
+    ///
+    ///
+    /// **************    Mutable Set    ***************
     #[unsafe(super(NSSet<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableSet<ObjectType: ?Sized = AnyObject>;
@@ -545,9 +603,36 @@ impl<ObjectType: Message> NSMutableSet<ObjectType> {
 }
 
 extern_class!(
-    /// **************    Counted Set    ***************
+    /// A mutable, unordered collection of distinct objects that may appear more than once in the collection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountedset?language=objc)
+    /// ## Overview
+    ///
+    /// Each distinct object inserted into an [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset) object has a counter associated with it. [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset) keeps track of the number of times objects are inserted and requires that objects be removed the same number of times. Thus, there is only one instance of an object in an [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) object even if the object has been added to the set multiple times. The [`count`](https://developer.apple.com/documentation/foundation/nsset/count) method defined by the superclass [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) has special significance; it returns the number of distinct objects, not the total number of times objects are represented in the set. The [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) and [`NSMutableSet`](https://developer.apple.com/documentation/foundation/nsmutableset) classes are provided for static and dynamic sets, respectively, whose elements are distinct.
+    ///
+    /// While [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset) and [`CFBagRef`](https://developer.apple.com/documentation/corefoundation/cfbag) are not toll-free bridged, they provide similar functionality. For more information about `CFBag`, see the [`CFBagRef`](https://developer.apple.com/documentation/corefoundation/cfbag).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Because [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset) is not a class cluster, it does not have primitive methods that provide the basis for its implementation. In general, there should be little need for subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// If you subclass [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset), you must override any method of which you want to change the behavior.
+    ///
+    /// If you change the primitive behavior of an [`NSCountedSet`](https://developer.apple.com/documentation/foundation/nscountedset), for instance if you change how objects are stored, you must override all of the affected methods. These include:
+    ///
+    /// - [`addObject:`](https://developer.apple.com/documentation/foundation/nscountedset/add(_:))
+    ///
+    /// - [`removeObject:`](https://developer.apple.com/documentation/foundation/nscountedset/remove(_:))
+    ///
+    /// - [`objectEnumerator`](https://developer.apple.com/documentation/foundation/nscountedset/objectenumerator())
+    ///
+    /// - [`countForObject:`](https://developer.apple.com/documentation/foundation/nscountedset/count(for:))
+    ///
+    /// If you change the primitive behavior, you must also override the primitive methods of [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) and [`NSMutableSet`](https://developer.apple.com/documentation/foundation/nsmutableset).
+    ///
+    ///
+    /// **************    Counted Set    ***************
     #[unsafe(super(NSMutableSet<ObjectType>, NSSet<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSCountedSet<ObjectType: ?Sized = AnyObject>;

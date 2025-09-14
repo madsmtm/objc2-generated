@@ -10,21 +10,18 @@ use objc2_ui_kit::*;
 use crate::*;
 
 /// Types of shape used to draw a list item.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemimagegridelement/shape?language=objc)
+/// Types of shape used to draw a list item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListImageRowItemImageGridElementShape(pub NSInteger);
 impl CPListImageRowItemImageGridElementShape {
     /// The list item will render a row of elements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemimagegridelement/shape/circular?language=objc)
+    /// The list item will render a row of elements.
     #[doc(alias = "CPListImageRowItemImageGridElementShapeCircular")]
     pub const Circular: Self = Self(0);
     /// The list item will render a condensed list of rounded rectangle elements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemimagegridelement/shape/roundedrectangle?language=objc)
+    /// The list item will render a condensed list of rounded rectangle elements.
     #[doc(alias = "CPListImageRowItemImageGridElementShapeRoundedRectangle")]
     pub const RoundedRectangle: Self = Self(1);
 }
@@ -38,7 +35,6 @@ unsafe impl RefEncode for CPListImageRowItemImageGridElementShape {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemimagegridelement?language=objc)
     #[unsafe(super(CPListImageRowItemElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

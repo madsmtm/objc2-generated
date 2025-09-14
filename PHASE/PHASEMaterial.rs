@@ -5,30 +5,35 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Material preset
+/// A collection of physical surfaces that each add a unique acoustic quality to your app’s audio.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset?language=objc)
+/// ## Overview
+///
+/// This enumeration defines the types of surface texture that you choose for your scene’s objects. To assign a preset to a material, define the `preset` argument for the material’s [`initWithEngine:preset:`](https://developer.apple.com/documentation/phase/phasematerial/init(engine:preset:)) initializer.
+///
+///
+/// Material preset
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEMaterialPreset(pub NSInteger);
 impl PHASEMaterialPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/cardboard?language=objc)
+    /// A surface characteristic that produces the acoustic quality of cardboard.
     #[doc(alias = "PHASEMaterialPresetCardboard")]
     pub const Cardboard: Self = Self(0x6d437264);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/glass?language=objc)
+    /// A surface characteristic that produces the acoustic quality of glass.
     #[doc(alias = "PHASEMaterialPresetGlass")]
     pub const Glass: Self = Self(0x6d476c73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/brick?language=objc)
+    /// A surface characteristic that produces the acoustic quality of brick.
     #[doc(alias = "PHASEMaterialPresetBrick")]
     pub const Brick: Self = Self(0x6d42726b);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/concrete?language=objc)
+    /// A surface characteristic that produces the acoustic quality of concrete.
     #[doc(alias = "PHASEMaterialPresetConcrete")]
     pub const Concrete: Self = Self(0x6d436372);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/drywall?language=objc)
+    /// A surface characteristic that produces the acoustic quality of drywall.
     #[doc(alias = "PHASEMaterialPresetDrywall")]
     pub const Drywall: Self = Self(0x6d447277);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerialpreset/wood?language=objc)
+    /// A surface characteristic that produces the acoustic quality of wood.
     #[doc(alias = "PHASEMaterialPresetWood")]
     pub const Wood: Self = Self(0x6d577564);
 }
@@ -42,13 +47,18 @@ unsafe impl RefEncode for PHASEMaterialPreset {
 }
 
 extern_class!(
+    /// Surface characteristics that determine the acoustic properties of an object.
+    ///
+    /// ## Overview
+    ///
+    /// To specify the physical texture of a sound source or occluder, define the `materials` argument of the [`PHASEShape`](https://developer.apple.com/documentation/phase/phaseshape) initializer, [`initWithEngine:mesh:materials:`](https://developer.apple.com/documentation/phase/phaseshape/init(engine:mesh:materials:)). The [`PHASEMaterialPreset`](https://developer.apple.com/documentation/phase/phasematerialpreset) contains the surface types with which you define the `preset` argument of this class’s [`initWithEngine:preset:`](https://developer.apple.com/documentation/phase/phasematerial/init(engine:preset:)) initializer.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEMaterial describes the acoustic properties of a material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasematerial?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEMaterial;

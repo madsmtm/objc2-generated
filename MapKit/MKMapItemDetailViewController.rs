@@ -11,7 +11,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailviewcontrollerdelegate?language=objc)
+    /// The methods that you use to receive events from an associated map view controller.
     pub unsafe trait MKMapItemDetailViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -27,7 +27,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailviewcontroller?language=objc)
+    /// An object that displays detailed information about a map item.
+    ///
+    /// ## Overview
+    ///
+    /// The view controller presents modally and displays place information such as addresses and phone numbers.
+    ///
+    /// This class doesn’t support subclassing. The view hierarchy for this class is private and must not be modified.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

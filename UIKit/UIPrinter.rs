@@ -7,43 +7,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate the types of jobs that the printer supports.
 /// Job types supported by a printer.
 ///
 /// This enumeration provides the abstract job types
 /// reported by the UIPrinter supportedJobTypes method.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrinterJobTypes(pub NSInteger);
 bitflags::bitflags! {
     impl UIPrinterJobTypes: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/unknown?language=objc)
+/// The printer support is unknown.
         #[doc(alias = "UIPrinterJobTypeUnknown")]
         const Unknown = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/document?language=objc)
+/// The printer supports standard document printing.
         #[doc(alias = "UIPrinterJobTypeDocument")]
         const Document = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/envelope?language=objc)
+/// The printer supports printing on envelopes.
         #[doc(alias = "UIPrinterJobTypeEnvelope")]
         const Envelope = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/label?language=objc)
+/// The printer supports printing on cut labels.
         #[doc(alias = "UIPrinterJobTypeLabel")]
         const Label = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/photo?language=objc)
+/// The printer supports printing with photographic print quality.
         #[doc(alias = "UIPrinterJobTypePhoto")]
         const Photo = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/receipt?language=objc)
+/// The printer supports printing receipts on a continuous roll of paper.
         #[doc(alias = "UIPrinterJobTypeReceipt")]
         const Receipt = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/roll?language=objc)
+/// The printer supports printing documents or photos on a continuous roll of paper.
         #[doc(alias = "UIPrinterJobTypeRoll")]
         const Roll = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/largeformat?language=objc)
+/// The printer supports printing larger than the ISO A3 size.
         #[doc(alias = "UIPrinterJobTypeLargeFormat")]
         const LargeFormat = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes/postcard?language=objc)
+/// The printer supports printing on postcards.
         #[doc(alias = "UIPrinterJobTypePostcard")]
         const Postcard = 1<<7;
     }
@@ -58,7 +57,15 @@ unsafe impl RefEncode for UIPrinterJobTypes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter?language=objc)
+    /// A printer on the network.
+    ///
+    /// ## Overview
+    ///
+    /// You use a printer object to obtain information about a printer so that you can display that information in your app’s interface. You do not use printer objects to communicate with the printer directly.
+    ///
+    /// Most of the time, you use a [`UIPrinterPickerController`](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller) object to retrieve a printer object representing the printer selected by the user. If you already have a URL containing the address of a printer—perhaps one that was previously selected by the user—you can use that URL to create a printer object directly. When creating your own printer objects, you must connect to the printer using the [`contactPrinter:`](https://developer.apple.com/documentation/uikit/uiprinter/contactprinter(_:)) method before retrieving any of the printer’s attributes.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

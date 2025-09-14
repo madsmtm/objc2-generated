@@ -12,26 +12,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/hintkey?language=objc)
+/// Constants for the keys to include in a hints dictionary when drawing the image.
 // NS_TYPED_ENUM
 pub type NSImageHintKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerepmatchesdevice?language=objc)
+/// A constant indicating that the value of certain attributes, such as the number of colors or bits per sample, will change to match the display device.
+///
+/// ## Discussion
+///
+/// This value can be passed in (or received back) as the value of [`bitsPerSample`](https://developer.apple.com/documentation/appkit/nsimagerep/bitspersample), [`pixelsWide`](https://developer.apple.com/documentation/appkit/nsimagerep/pixelswide), and [`pixelsHigh`](https://developer.apple.com/documentation/appkit/nsimagerep/pixelshigh).
+///
+///
 pub const NSImageRepMatchesDevice: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection?language=objc)
+/// Constants that describe the layout direction for the image.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageLayoutDirection(pub NSInteger);
 impl NSImageLayoutDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection/unspecified?language=objc)
+    /// An unspecified layout direction.
     #[doc(alias = "NSImageLayoutDirectionUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection/lefttoright?language=objc)
+    /// A left-to-right layout direction.
     #[doc(alias = "NSImageLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection/righttoleft?language=objc)
+    /// A right-to-left layout direction.
     #[doc(alias = "NSImageLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(3);
 }
@@ -45,7 +51,13 @@ unsafe impl RefEncode for NSImageLayoutDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep?language=objc)
+    /// A semiabstract superclass that provides subclasses that you use to draw an image from a particular type of source data.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSImageRep`](https://developer.apple.com/documentation/appkit/nsimagerep) class is called “semiabstract” because it has some instance variables and implementation of its own, in addition to defining subclasses. Although an [`NSImageRep`](https://developer.apple.com/documentation/appkit/nsimagerep) subclass can be used directly, it is typically accessed through an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object, which manages a group of image representations, choosing the best one for the current output device.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImageRep;
@@ -329,6 +341,12 @@ impl DefaultRetained for NSImageRep {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/registrydidchangenotification?language=objc)
+    /// Posted whenever the image representation class registry changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the image class that is registered or unregistered. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSImageRepRegistryDidChangeNotification: &'static NSNotificationName;
 }

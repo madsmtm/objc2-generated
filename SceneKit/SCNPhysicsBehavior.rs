@@ -10,9 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// SCNPhysicsBehavior is an abstract class that represents a behavior in the physics world.
+    /// The abstract superclass for joints, vehicle simulations, and other high-level behaviors that incorporate multiple physics bodies.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbehavior?language=objc)
+    /// ## Overview
+    ///
+    /// An [`SCNPhysicsBehavior`](https://developer.apple.com/documentation/scenekit/scnphysicsbehavior) object defines a high-level behavior for one or more physics bodies, modifying the results of the physics simulation. Behaviors include joints that connect multiple bodies so they move together and vehicle definitions that cause a body to roll like a car. You never use this class directly; instead, you instantiate one of the subclasses that defines the kind of behavior you want to add to your physics world. describes the kinds of behaviors you can create in SceneKit.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Class Name" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsHingeJoint", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Connects two bodies and allows them to pivot around each other on a single axis." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsBallSocketJoint", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Connects two bodies and allows them to pivot around each other in any direction." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsSliderJoint", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Connects two bodies and allows them to slide or rotate relative to one another. Slider joints can also work as motors, applying a force or torque between the two bodies." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicle", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Simulates a physics body as the chassis of a car or other wheeled vehicle. You control a vehicle in terms of steering, braking, and acceleration, and use " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPhysicsVehicleWheel", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " objects to define the appearance and physical properties of each of its wheels." }] }]]], alignments: None, metadata: None })
+    /// To use a physics behavior, you follow these steps:
+    ///
+    /// 1. Create [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) objects and attach them to each node that participates in the behavior.
+    ///
+    /// 2. Create and configure a behavior object using one of the subclasses listed in Table 1.
+    ///
+    /// 3. Add the behavior to the physics simulation by calling the [`addBehavior:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/addbehavior(_:)) method on your scene’s [`SCNPhysicsWorld`](https://developer.apple.com/documentation/scenekit/scnphysicsworld) object.
+    ///
+    ///
+    /// SCNPhysicsBehavior is an abstract class that represents a behavior in the physics world.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsBehavior;
@@ -48,9 +62,14 @@ impl SCNPhysicsBehavior {
 }
 
 extern_class!(
-    /// SCNPhysicsHingeJoint makes two bodies to move like they are connected by a hinge. It is for example suitable for doors, chains...
+    /// A physics behavior that connects two bodies and allows them to pivot around each other on a single axis.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicshingejoint?language=objc)
+    /// ## Overview
+    ///
+    /// A hinge has a single degree of freedom (rotation). You can also use a hinge joint to pin a body so that it can only move by rotating around a specific axis in the coordinate space of the node containing it.
+    ///
+    ///
+    /// SCNPhysicsHingeJoint makes two bodies to move like they are connected by a hinge. It is for example suitable for doors, chains...
     #[unsafe(super(SCNPhysicsBehavior, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsHingeJoint;
@@ -169,9 +188,14 @@ impl SCNPhysicsHingeJoint {
 }
 
 extern_class!(
-    /// SCNPhysicsBallSocketJoint makes two bodies to move like they are connected by a ball-and-socket joint (i.e it allows rotations around all axes).
+    /// A physics behavior that connects two physics bodies and allows them to pivot around each other in any direction.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsballsocketjoint?language=objc)
+    /// ## Overview
+    ///
+    /// A ball and socket joint has three rotational degrees of freedom and zero translational degrees of freedom. You can also use a ball and socket joint to pin a body to a specific location in the coordinate space of the node containing it while allowing it to rotate freely.
+    ///
+    ///
+    /// SCNPhysicsBallSocketJoint makes two bodies to move like they are connected by a ball-and-socket joint (i.e it allows rotations around all axes).
     #[unsafe(super(SCNPhysicsBehavior, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsBallSocketJoint;
@@ -265,9 +289,14 @@ impl SCNPhysicsBallSocketJoint {
 }
 
 extern_class!(
-    /// SCNPhysicsSliderJoint provides a linear sliding joint between two bodies.
+    /// A physics behavior that connects two bodies and allows them to slide against each other and rotate around their connecting points.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicssliderjoint?language=objc)
+    /// ## Overview
+    ///
+    /// A slider joint can have zero, one, or two degrees of freedom depending on whether you allow it to slide or rotate. You can also use a slider joint to pin a body so that it can move only by sliding a specific axis in the coordinate space of the node containing it. You can also use a slider joint as a motor, applying a force or torque to the bodies it connects.
+    ///
+    ///
+    /// SCNPhysicsSliderJoint provides a linear sliding joint between two bodies.
     #[unsafe(super(SCNPhysicsBehavior, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsSliderJoint;
@@ -474,7 +503,6 @@ impl SCNPhysicsSliderJoint {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsconetwistjoint?language=objc)
     #[unsafe(super(SCNPhysicsBehavior, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsConeTwistJoint;
@@ -607,9 +635,32 @@ impl SCNPhysicsConeTwistJoint {
 }
 
 extern_class!(
-    /// SCNPhysicsVehicleWheel represents a wheel that can be attached to a SCNPhysicsVehicle instance.
+    /// The appearance and physical characteristics of an individual wheel associated with an physics vehicle behavior.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsvehiclewheel?language=objc)
+    /// ## Overview
+    ///
+    /// To use wheels in a vehicle simulation, include them when creating an [`SCNPhysicsVehicle`](https://developer.apple.com/documentation/scenekit/scnphysicsvehicle) object with the [`vehicleWithChassisBody:wheels:`](https://developer.apple.com/documentation/scenekit/scnphysicsvehicle/init(chassisbody:wheels:)) initializer, then add the vehicle object to your scene’s physics world using the physics world’s [`addBehavior:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/addbehavior(_:)) method.
+    ///
+    /// ### Creating a Wheel
+    ///
+    /// You create a wheel with an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object whose contents provide the wheel’s visual representation—a geometry that rotates when the simulated vehicle rolls along a surface. The node representing a wheel must be a child of the node containing the physics body that serves as the vehicle’s chassis, and each wheel in a vehicle must reference a unique node. Typically, you load a scene file that contains a node hierarchy representing the vehicle and all of its wheels. Next, you designate which nodes serve as the body and wheels.
+    ///
+    /// Because the [`SCNPhysicsVehicle`](https://developer.apple.com/documentation/scenekit/scnphysicsvehicle) behavior that a wheel is attached to manages its participation in the physics simulation, you don’t need to attach a physics body to the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object representing a wheel.
+    ///
+    /// ### Changing a Wheel’s Physical Properties
+    ///
+    /// The properties of a wheel define the geometry of its connection to the vehicle and simulate its size, traction, and suspension. You can change these properties after the wheel and the vehicle containing it have been added to the physics world. In this way, you can simulate effects such as variable suspension and flat tires.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Vehicles and their wheels have several properties measured in real-world units (meters, centimeters, and newtons) with default values that produce realistic behavior for vehicles of size similar to an average automobile. If you design your scene on a different scale, proportionally change the values of these properties to fit the desired behavior of your app or game.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// SCNPhysicsVehicleWheel represents a wheel that can be attached to a SCNPhysicsVehicle instance.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsVehicleWheel;
@@ -784,9 +835,16 @@ impl SCNPhysicsVehicleWheel {
 }
 
 extern_class!(
-    /// SCNPhysicsVehicle provides a vehicle behavior.
+    /// A physics behavior that modifies a physics body to behave like a car, motorcycle, or other wheeled vehicle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsvehicle?language=objc)
+    /// ## Overview
+    ///
+    /// To build a vehicle, designate an [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) object as its chassis and an array of [`SCNPhysicsVehicleWheel`](https://developer.apple.com/documentation/scenekit/scnphysicsvehiclewheel) objects as its wheels. For each wheel, you define physical characteristics such as suspension and traction, and associate a node in your scene to provide the wheel’s size and visual representation. After you construct a vehicle, you can control it in terms of acceleration, braking, and steering.
+    ///
+    /// Although it’s also possible to use a set of physics bodies and joints to collectively simulate a wheeled vehicle, the [`SCNPhysicsVehicle`](https://developer.apple.com/documentation/scenekit/scnphysicsvehicle) class implements a higher-level simulation that provides realistic vehicle behavior with more efficient simulation performance.
+    ///
+    ///
+    /// SCNPhysicsVehicle provides a vehicle behavior.
     #[unsafe(super(SCNPhysicsBehavior, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsVehicle;

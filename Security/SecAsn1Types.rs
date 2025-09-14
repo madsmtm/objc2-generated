@@ -7,7 +7,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_data-swift.struct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_data {
@@ -26,15 +25,15 @@ unsafe impl RefEncode for cssm_data {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1item?language=objc)
+/// A structure holding DER encoded data.
 #[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1Item = cssm_data;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1oid?language=objc)
+/// An object identifier.
 #[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1Oid = cssm_data;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1algid?language=objc)
+/// A structure identifying an ASN.1 algorithm by its OID, and its corresponding parameters.
 #[deprecated = "SecAsn1 is not supported"]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -54,7 +53,7 @@ unsafe impl RefEncode for SecAsn1AlgId {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1pubkeyinfo?language=objc)
+/// A structure containing a public key and its associated algorithm.
 #[deprecated = "SecAsn1 is not supported"]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -74,7 +73,7 @@ unsafe impl RefEncode for SecAsn1PubKeyInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1template_struct?language=objc)
+/// A structure that defines one element of a BER or DER encoding.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SecAsn1Template_struct {
@@ -102,14 +101,14 @@ unsafe impl RefEncode for SecAsn1Template_struct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1template?language=objc)
+/// A structure that defines one element of a BER or DER encoding.
 #[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1Template = SecAsn1Template_struct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1templatechooser?language=objc)
+/// Dynamically provides the sub-template to use during encode or decode.
 #[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1TemplateChooser = core::ffi::c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1templatechooserptr?language=objc)
+/// A pointer to the template chooser function.
 #[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1TemplateChooserPtr = *mut SecAsn1TemplateChooser;

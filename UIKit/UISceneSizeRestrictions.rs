@@ -9,11 +9,16 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that specifies the minimum and maximum sizes for resizable windows.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a [`UISceneSizeRestrictions`](https://developer.apple.com/documentation/uikit/uiscenesizerestrictions) object yourself. Instead, fetch an existing one from the [`sizeRestrictions`](https://developer.apple.com/documentation/uikit/uiwindowscene/sizerestrictions) property of your window scene, and modify its properties to set the minimum and maximum window sizes. The system provides this object only when it supports variable-sized windows.
+    ///
+    ///
     /// Sizing preferences for the scene. Clients do not create `UISceneSizeRestrictions` directly. An instance is returned from `UIWindowScene.sizeRestrictions`
     /// if the platform supports scene resizing.
     /// - Note: The system imposes limits on each preference that may result in it not being honored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesizerestrictions?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

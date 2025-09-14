@@ -6,33 +6,44 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/centertype?language=objc)
+/// This constant specifies the notification center type.
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSDistributedNotificationCenterType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/centertype/localnotificationcentertype?language=objc)
+    /// Distributes notifications to all tasks on the sender’s computer.
     #[cfg(feature = "NSString")]
     pub static NSLocalNotificationCenterType: &'static NSDistributedNotificationCenterType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior?language=objc)
+/// These constants specify the types of notification delivery suspension behaviors.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNotificationSuspensionBehavior(pub NSUInteger);
 impl NSNotificationSuspensionBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/drop?language=objc)
+    /// The server doesn’t queue any notifications with this name and object until the notification center resumes notification delivery.
+    ///
+    /// ## Discussion
+    ///
+    /// To resume notification delivery, set the [`suspended`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended) to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "NSNotificationSuspensionBehaviorDrop")]
     pub const Drop: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/coalesce?language=objc)
+    /// The server only queues the last notification of the specified name and object; earlier notifications are dropped. In cover methods for which suspension behavior is not an explicit argument, `NSNotificationSuspensionBehaviorCoalesce` is the default.
     #[doc(alias = "NSNotificationSuspensionBehaviorCoalesce")]
     pub const Coalesce: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/hold?language=objc)
+    /// The server holds all matching notifications until the queue has been filled (queue size determined by the server), at which point the server may flush queued notifications.
     #[doc(alias = "NSNotificationSuspensionBehaviorHold")]
     pub const Hold: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior/deliverimmediately?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The server delivers notifications matching this registration irrespective of whether [`suspended`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended) with an argument of [`true`](https://developer.apple.com/documentation/swift/true) has been called. When a notification with this suspension behavior is matched, it has the effect of first flushing any queued notifications. The effect is as if [`suspended`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspended) with an argument of [`false`](https://developer.apple.com/documentation/swift/false) were first called if the application is suspended, followed by the notification in question being delivered, followed by a transition back to the previous suspended or unsuspended state.
+    ///
+    ///
     #[doc(alias = "NSNotificationSuspensionBehaviorDeliverImmediately")]
     pub const DeliverImmediately: Self = Self(4);
 }
@@ -45,17 +56,15 @@ unsafe impl RefEncode for NSNotificationSuspensionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/options?language=objc)
+/// These constants specify the behavior of notifications posted using the [`postNotificationName:object:userInfo:options:`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/postnotificationname(_:object:userinfo:options:)) method.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDistributedNotificationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDistributedNotificationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/options/deliverimmediately?language=objc)
         #[doc(alias = "NSDistributedNotificationDeliverImmediately")]
         const DeliverImmediately = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter/options/posttoallsessions?language=objc)
         #[doc(alias = "NSDistributedNotificationPostToAllSessions")]
         const PostToAllSessions = 1<<1;
     }
@@ -69,16 +78,62 @@ unsafe impl RefEncode for NSDistributedNotificationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationdeliverimmediately?language=objc)
+/// When set, the notification is delivered immediately to all observers, regardless of their suspension behavior or suspension state. When not set, allows the normal suspension behavior of notification observers to take place.
 pub static NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
     NSDistributedNotificationOptions(NSDistributedNotificationOptions::DeliverImmediately.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationposttoallsessions?language=objc)
+/// When set, the notification is posted to all sessions. When not set, the notification is sent only to applications within the same login session as the posting task.
 pub static NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
     NSDistributedNotificationOptions(NSDistributedNotificationOptions::PostToAllSessions.0);
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/distributednotificationcenter?language=objc)
+    /// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSDistributedNotificationCenter`](https://developer.apple.com/documentation/foundation/distributednotificationcenter) instance broadcasts [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.
+    ///
+    /// ### Principal Attributes
+    ///
+    /// - Notification dispatch table. See “Class at a Glance” > “Principal Attributes” in [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter) for information about the dispatch table.
+    ///
+    /// In addition to the notification name and sender, dispatch table entries for distributed notification centers specify when the notification center delivers notifications to its observers. See the [`postNotificationName:object:userInfo:deliverImmediately:`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/postnotificationname(_:object:userinfo:deliverimmediately:)) method, Suspending and Resuming Notification Delivery, and [`NSNotificationSuspensionBehavior`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/suspensionbehavior) for details.
+    ///
+    /// ### Commonly Used Methods
+    ///
+    /// - [`defaultCenter`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/default()): Accesses the default distributed notification center.
+    ///
+    /// - [`addObserver:selector:name:object:suspensionBehavior:`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/addobserver(_:selector:name:object:suspensionbehavior:)): Registers an object to receive a notification with a specified behavior when notification delivery is suspended.
+    ///
+    /// - [`postNotificationName:object:userInfo:deliverImmediately:`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/postnotificationname(_:object:userinfo:deliverimmediately:)): Creates and posts a notification.
+    ///
+    /// - [`removeObserver:name:object:`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/removeobserver(_:name:object:)): Specifies that an object no longer wants to receive certain notifications.
+    ///
+    /// ### Overview
+    ///
+    /// Each task has a default distributed notification center that you access with the [`defaultCenter`](https://developer.apple.com/documentation/foundation/distributednotificationcenter/default()) class method. There may be different types of distributed notification centers. Currently there is a single type—`NSLocalNotificationCenterType`. This type of distributed notification center handles notifications that can be sent between tasks on a single computer. For communication between tasks on different computers, use [Distributed Objects Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i).
+    ///
+    /// Posting a _distributed notification_ is an expensive operation. The notification gets sent to a system-wide server that distributes it to all the tasks that have objects registered for distributed notifications. The latency between posting the notification and the notification’s arrival in another task is unbounded. In fact, when too many notifications are posted and the server’s queue fills up, notifications may be dropped.
+    ///
+    /// Distributed notifications are delivered via a task’s run loop. A task must be running a run loop in one of the “common” modes, such as `NSDefaultRunLoopMode`, to receive a distributed notification. For multithreaded applications running in macOS 10.3 and later, distributed notifications are always delivered to the main thread. For multithreaded applications running in OS X v10.2.8 and earlier, notifications are delivered to the thread that first used the distributed notifications API, which in most cases is the main thread.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `NSDistributedNotificationCenter` does not implement a secure communications protocol. When using distributed notifications, your app should treat any data passed in the notification as untrusted. See [Security Overview](https://developer.apple.com/library/archive/documentation/Security/Conceptual/Security_Overview/Introduction/Introduction.html#//apple_ref/doc/uid/TP30000976) for general guidance on secure coding practices.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `NSDistributedNotificationCenter` objects should not be used to send notifications between threads within the same task. Use [Distributed Objects Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DistrObjects/DistrObjects.html#//apple_ref/doc/uid/10000102i) or the [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) method [`performSelectorOnMainThread:withObject:waitUntilDone:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/performselector(onmainthread:with:waituntildone:)), instead. You can also setup an [`NSPort`](https://developer.apple.com/documentation/foundation/port) object to receive and distribute messages from other threads.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSNotificationCenter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSNotification")]

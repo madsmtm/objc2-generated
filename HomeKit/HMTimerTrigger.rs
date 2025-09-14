@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A trigger to activate an action set based on a periodic timer.
+    ///
+    /// ## Overview
+    ///
+    /// When a timer trigger is enabled using [`enable:completionHandler:`](https://developer.apple.com/documentation/homekit/hmtrigger/enable(_:completionhandler:)), the system checks to verify that the timer trigger’s fire date, time zone, and recurrence rules yield a next fire date that is in the future.
+    ///
+    ///
     /// Timer based trigger.
     ///
     ///
     /// This class represents a trigger that is based on timers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmtimertrigger?language=objc)
     #[unsafe(super(HMTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMTrigger")]

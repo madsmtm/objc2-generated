@@ -11,25 +11,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates which local files WebKit can access when loading content.
+    ///
+    /// If NSReadAccessURLDocumentOption references a single file, only that file may be loaded by WebKit. If NSReadAccessURLDocumentOption references a directory, files inside that directory may be loaded by WebKit.
+    ///
+    ///
     /// Indicates which local files WebKit can access when loading content.
     ///
     /// If NSReadAccessURLDocumentOption references a single file, only that file may be
     /// loaded by WebKit. If NSReadAccessURLDocumentOption references a directory, files inside that
     /// directory may be loaded by WebKit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsreadaccessurldocumentoption?language=objc)
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     pub static NSReadAccessURLDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
+///
+/// ## Discussion
+///
+/// Document-Level attributes, like NSBackgroundColorDocumentAttribute, or an error. An implementation of this block type must expect to be called asynchronously when passed to HTML loading methods.
+///
+///
 /// Type definition for the completion handler block used to get asynchronous attributed strings.
 ///
 /// The completion handler block is passed the attributed string result along with any
 /// document-level attributes, like NSBackgroundColorDocumentAttribute, or an error. An implementation
 /// of this block type must expect to be called asynchronously when passed to HTML loading methods.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type NSAttributedStringCompletionHandler = *mut block2::DynBlock<

@@ -12,8 +12,6 @@ extern_class!(
     ///
     /// Gradient states must be created with [MPSCNNKernel resultStateForSourceImage:sourceStates:destinationImage:]
     /// or analogous interfaces.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygradientstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]

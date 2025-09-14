@@ -6,25 +6,39 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnointerfacestyle?language=objc)
+/// The default interface style.
 #[deprecated]
 pub const NSNoInterfaceStyle: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnextstepinterfacestyle?language=objc)
+/// The NextStep interface style.
 #[deprecated]
 pub const NSNextStepInterfaceStyle: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindows95interfacestyle?language=objc)
+/// The Windows 95 interface style.
 #[deprecated]
 pub const NSWindows95InterfaceStyle: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmacintoshinterfacestyle?language=objc)
+/// The Macintosh interface style.
 #[deprecated]
 pub const NSMacintoshInterfaceStyle: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyle?language=objc)
+/// These constants are used in `NSResponder`’s [`interfaceStyle`](https://developer.apple.com/documentation/appkit/nsresponder/interfacestyle) method.
 #[deprecated]
 pub type NSInterfaceStyle = NSUInteger;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyleforkey?language=objc)
+    /// Returns an interface style value for the specified key and responder.
+    ///
+    /// ## Discussion
+    ///
+    /// Used to determine an interface style based on a key and a responder, either of which may be `nil`. An [`NSInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsinterfacestyle) value specifies the style in which an interface item, such as a button or a scroll bar, should be drawn. For example, a value of [`NSMacintoshInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsmacintoshinterfacestyle) indicates an item should be drawn in the Macintosh style. The values defined for [`NSInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsinterfacestyle) are [`NSNoInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsnointerfacestyle), [`NSNextStepInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsnextstepinterfacestyle), [`NSWindows95InterfaceStyle`](https://developer.apple.com/documentation/appkit/nswindows95interfacestyle), and [`NSMacintoshInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsmacintoshinterfacestyle). Note that this function never returns [`NSNoInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsnointerfacestyle).
+    ///
+    /// The interface style value returned by this function depends on several factors. If responder is not `nil` and if responder specifies an interface style other than [`NSNoInterfaceStyle`](https://developer.apple.com/documentation/appkit/nsnointerfacestyle), this function returns the responder’s style, and `key` is ignored.
+    ///
+    /// Otherwise, if `key` is not `nil` and there is an interface style for `key` specified by the defaults system, this function returns the interface style for `key` from the defaults system.
+    ///
+    /// Finally, if `key` is `nil`, or if there is no interface style for `key` specified by the defaults system, this function returns the global interface style specified by the defaults system.
+    ///
+    /// The defaults system allows an application to customize its behavior to match a user’s preferences. You can read about the defaults system in the documentation for [`UserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -55,7 +69,7 @@ impl NSResponder {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinterfacestyledefault?language=objc)
+    /// For more information, see the function [`NSInterfaceStyleForKey`](https://developer.apple.com/documentation/appkit/nsinterfacestyleforkey).
     #[deprecated]
     pub static NSInterfaceStyleDefault: Option<&'static NSString>;
 }

@@ -8,19 +8,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice?language=objc)
+/// The device that the odometer sample originates from.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMOdometerOriginDevice(pub NSInteger);
 impl CMOdometerOriginDevice {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice/unknown?language=objc)
+    /// The origin of the odometer sample is unknown.
     #[doc(alias = "CMOdometerOriginDeviceUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice/local?language=objc)
+    /// The origin of the odometer sample comes from the same device that requests the sample.
     #[doc(alias = "CMOdometerOriginDeviceLocal")]
     pub const Local: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerorigindevice/remote?language=objc)
+    /// The origin of the odometer sample comes from a device that’s paired with the local device.
     #[doc(alias = "CMOdometerOriginDeviceRemote")]
     pub const Remote: Self = Self(2);
 }
@@ -34,7 +34,13 @@ unsafe impl RefEncode for CMOdometerOriginDevice {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmodometerdata?language=objc)
+    /// A class that represents odometer data for workouts.
+    ///
+    /// ## Overview
+    ///
+    /// To get the measurements, use the [`speed`](https://developer.apple.com/documentation/coremotion/cmodometerdata/speed) and [`slope`](https://developer.apple.com/documentation/coremotion/cmodometerdata/slope-96hlt) properties. To compute distances, use the [`deltaDistance`](https://developer.apple.com/documentation/coremotion/cmodometerdata/deltadistance) and [`deltaAltitude`](https://developer.apple.com/documentation/coremotion/cmodometerdata/deltaaltitude) properties.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMOdometerData;

@@ -15,35 +15,39 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerfailedtodecodenotification?language=objc)
+    /// A notification the system posts when a sample buffer display layer fails to decode.
+    ///
+    /// ## Discussion
+    ///
+    /// You can retrieve the error object from the user information dictionary by querying it for its [`AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey`](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerfailedtodecodenotificationerrorkey) value.
+    ///
+    ///
     pub static AVSampleBufferDisplayLayerFailedToDecodeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerfailedtodecodenotificationerrorkey?language=objc)
+    /// The key for the corresponding error.
     pub static AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerrequiresflushtoresumedecodingdidchangenotification?language=objc)
+    /// A notification the system posts when a sample buffer display layer changes its decoding requirements.
     pub static AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayeroutputobscuredduetoinsufficientexternalprotectiondidchangenotification?language=objc)
     pub static AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerreadyfordisplaydidchangenotification?language=objc)
     pub static AVSampleBufferDisplayLayerReadyForDisplayDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer?language=objc)
+    /// An object that displays compressed or uncompressed video frames.
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]

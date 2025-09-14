@@ -9,7 +9,36 @@ use objc2_javascript_core::*;
 use crate::*;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnexportjavascriptmodule(_:)?language=objc)
+    /// Makes SceneKit classes and global constants available to the specified JavaScript context.
+    ///
+    /// ## Discussion
+    ///
+    /// By controlling SceneKit using JavaScript code supplied at run time, you can enable rapid development for parts of your game or app. For example, a designer can easily experiment with visual effects or game-character behaviors without needing to compile and deploy your complete Xcode project.
+    ///
+    /// This function exports all SceneKit classes and global constants, and all methods and properties on those classes, to JavaScript using the rules defined in the [`JSExport`](https://developer.apple.com/documentation/javascriptcore/jsexport) protocol. For example, the JavaScript code below performs various operations on a SceneKit node:
+    ///
+    /// ```javascript
+    /// var aNode = SCNNode.node();
+    /// aNode.opacity = 0.5;
+    /// aNode.removeFromParentNode();
+    /// // Animate an opacity change.
+    /// SCNTransaction.begin();
+    /// SCNTransaction.setAnimationDuration(1.0);
+    /// aNode.opacity = 0.5;
+    /// SCNTransaction.commit();
+    /// ```
+    ///
+    /// For SceneKit APIs that involve vectors and matrices, use JavaScript object syntax to define those values in terms of their elements:
+    ///
+    /// ```javascript
+    /// aNode.scale = {x:2, y:2, z:2};
+    /// aNode.transform = {m11:1, m12:0, m13:0, /*...*/ m44:1};
+    /// ```
+    ///
+    /// SceneKit also exports the following special JavaScript objects and functions:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Objective-C / Swift class" }] }], [Paragraph { inline_content: [Text { text: "JavaScript constructor" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/AppKit/NSColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.documentation/documentation/UIKit/UIColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "SCNColor.color(r,g,b,a)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/AppKit/NSImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.documentation/documentation/UIKit/UIImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "SCNImage.imageWithURL(aURL)" }] }]], [[Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "SCNImage.imageWithPath(aPath)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/QuartzCore/CABasicAnimation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "CABasicAnimation.animationWithKeyPath(aPath)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/QuartzCore/CAKeyframeAnimation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "CAKeyframeAnimation.animationWithKeyPath(aPath)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/QuartzCore/CAAnimationGroup", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "new CAAnimationGroup()" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/QuartzCore/CAMediaTimingFunction", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "CAMediaTimingFunction.functionWithName(name)" }] }]]], alignments: None, metadata: None })
+    ///
     #[cfg(feature = "objc2-javascript-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNExportJavaScriptModule(context: &JSContext);

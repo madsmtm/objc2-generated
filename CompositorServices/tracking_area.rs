@@ -17,10 +17,9 @@ unsafe impl RefEncode for cp_tracking_area {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_tracking_area", &[]));
 }
 
+/// An opaque type that describes a region of a view that interacts with the gaze/cursor.
 /// An opaque type that describes a region of a view that
 /// interacts with the gaze/cursor.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_t?language=objc)
 pub type cp_tracking_area_t = *mut cp_tracking_area;
 
 #[repr(C)]
@@ -35,10 +34,16 @@ unsafe impl RefEncode for cp_hover_effect {
 }
 
 /// An opaque type that describes a hover effect of the tracking area.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_hover_effect_t?language=objc)
+/// An opaque type that describes a hover effect of the tracking area.
 pub type cp_hover_effect_t = *mut cp_hover_effect;
 
+/// A value used when rendering a tracking area.
+///
+/// ## Overview
+///
+/// When rendering to [`cp_drawable_get_tracking_areas_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture) use this value to write the pixel value. Upper bound limit is based on pixel format set by [`cp_layer_renderer_configuration_get_tracking_areas_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_tracking_areas_format) Can change per-frame for the same rendered mesh/object. A value of 0 is reserved to represent the absence of a tracking area.
+///
+///
 /// A value used when rendering a tracking area.
 ///
 /// When rendering to ``cp_drawable_get_tracking_areas_texture``
@@ -47,17 +52,21 @@ pub type cp_hover_effect_t = *mut cp_hover_effect;
 /// ``cp_layer_renderer_configuration_get_tracking_areas_format``
 /// Can change per-frame for the same rendered mesh/object.
 /// A value of 0 is reserved to represent the absence of a tracking area.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/rendervalue-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_tracking_area_render_value = u16;
 
+/// Value to be used in the tracking area texture, to indicate that there is no tracking area at a given pixel.
 /// Value to be used in the tracking area texture, to indicate that there
 /// is no tracking area at a given pixel.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_render_value_invalid?language=objc)
 pub static cp_tracking_area_render_value_invalid: cp_tracking_area_render_value = 0;
 
+/// An identifier for the tracking area.
+///
+/// ## Overview
+///
+/// All tracking areas should have a unique value in a frame. This value should be constant for the same rendered mesh/object across frames to ensure tracking areas are identifiable between frames. There is no reserved values so all values are considered valid but should be unique.
+///
+///
 /// An identifier for the tracking area.
 ///
 /// All tracking areas should have a unique value in a frame.
@@ -66,19 +75,39 @@ pub static cp_tracking_area_render_value_invalid: cp_tracking_area_render_value 
 /// frames.
 /// There is no reserved values so all values are considered valid
 /// but should be unique.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_tracking_area_identifier = u64;
 
 /// Identifier reserved as invalid.
 ///
-/// Should not be used as identifier for ``cp_drawable_add_tracking_area``.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_identifier_invalid?language=objc)
+/// Should not be used as identifier for [`addTrackingArea(identifier:)`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addtrackingarea(identifier:)).
+///
+///
+/// Identifier reserved as invalid.
+///
+/// Should not be used as identifier for ``cp_drawable_add_tracking_area``.
 pub static cp_tracking_area_identifier_invalid: cp_tracking_area_identifier = 0;
 
 impl cp_tracking_area {
+    /// Returns the render value for the tracking area.
+    ///
+    /// Parameters:
+    /// - tracking_area: The tracking area for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The render value for the tracking area for this frame. This value is what should be used in this frames render pass to identify the tracking area of given identifier.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned value in the render pass of [`cp_drawable_get_tracking_areas_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture) for the pixel value of the tracking area identifier.
+    ///
+    ///
     /// Returns the render value for the tracking area.
     ///
     /// - Parameters:
@@ -93,8 +122,6 @@ impl cp_tracking_area {
     /// # Safety
     ///
     /// `tracking_area` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/rendervalue-swift.property?language=objc)
     #[doc(alias = "cp_tracking_area_get_render_value")]
     #[inline]
     pub unsafe fn render_value(tracking_area: cp_tracking_area_t) -> cp_tracking_area_render_value {
@@ -108,6 +135,17 @@ impl cp_tracking_area {
 
     /// Returns the identifier for the tracking area.
     ///
+    /// Parameters:
+    /// - tracking_area: The tracking area for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the tracking area. This should be a unique value for this tracking area and consistent for the rendered mesh/object across frames.
+    ///
+    ///
+    /// Returns the identifier for the tracking area.
+    ///
     /// - Parameters:
     /// - tracking_area: The tracking area for a frame.
     /// - Returns: The identifier for the tracking area.
@@ -117,8 +155,6 @@ impl cp_tracking_area {
     /// # Safety
     ///
     /// `tracking_area` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/identifier-swift.property?language=objc)
     #[doc(alias = "cp_tracking_area_get_identifier")]
     #[inline]
     pub unsafe fn identifier(tracking_area: cp_tracking_area_t) -> cp_tracking_area_identifier {
@@ -130,6 +166,23 @@ impl cp_tracking_area {
         unsafe { cp_tracking_area_get_identifier(tracking_area) }
     }
 
+    /// Returns the hover effect opaque object for the tracking area for this frame.
+    ///
+    /// Parameters:
+    /// - tracking_area: The tracking area for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The hover effect for the tracking area.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The hover effect contains information used to render the hover effect using the tracking area textures and gaze once application render pass has completed. Can only create 1 hover effect per-tracking area, to destroy and disable the hover effect see `cp_hover_effect_destroy`
+    ///
+    ///
     /// Returns the hover effect opaque object for the tracking area for this frame.
     ///
     /// - Parameters:
@@ -145,8 +198,6 @@ impl cp_tracking_area {
     /// # Safety
     ///
     /// `tracking_area` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_add_automatic_hover_effect?language=objc)
     #[doc(alias = "cp_tracking_area_add_automatic_hover_effect")]
     #[inline]
     pub unsafe fn add_automatic_hover_effect(

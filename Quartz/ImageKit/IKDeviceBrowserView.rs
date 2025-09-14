@@ -11,9 +11,8 @@ use objc2_image_capture_core::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `IKDeviceBrowserViewDelegate` defines the methods that the delegate of the [`IKDeviceBrowserView`](https://developer.apple.com/documentation/quartz/ikdevicebrowserview) class can implement. All the methods are optional.
     /// A delegate of IKDeviceBrowserView must conform to IKDeviceBrowserViewDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdelegate?language=objc)
     pub unsafe trait IKDeviceBrowserViewDelegate {
         #[cfg(feature = "objc2-image-capture-core")]
         /// This message is sent when the user selection did change.
@@ -49,19 +48,19 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode?language=objc)
+/// These constants specify the display mode of the device browser.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKDeviceBrowserViewDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode/table?language=objc)
+    /// The devices are displayed in a table.
     #[doc(alias = "IKDeviceBrowserViewDisplayModeTable")]
     #[default]
     Table = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode/outline?language=objc)
+    /// The devices are displayed in an outline.
     #[doc(alias = "IKDeviceBrowserViewDisplayModeOutline")]
     Outline = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode/icon?language=objc)
+    /// The devices are displayed as icons.
     #[doc(alias = "IKDeviceBrowserViewDisplayModeIcon")]
     Icon = 2,
 }
@@ -75,9 +74,14 @@ unsafe impl RefEncode for IKDeviceBrowserViewDisplayMode {
 }
 
 extern_class!(
-    /// IKDeviceBrowserView displays Image Capture cameras and scanners.
+    /// The `IKDeviceBrowserView` allows you to select a camera or scanner from a list of the available devices.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserview?language=objc)
+    /// ## Overview
+    ///
+    /// The [`IKDeviceBrowserView`](https://developer.apple.com/documentation/quartz/ikdevicebrowserview) delegate must conform to the [`IKDeviceBrowserViewDelegate`](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdelegate) protocol. The delegate provides methods to inform you of selection changes in the browser as well as errors encountered when creating the browser list.
+    ///
+    ///
+    /// IKDeviceBrowserView displays Image Capture cameras and scanners.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKDeviceBrowserView;

@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivideoeditorcontroller?language=objc)
+    /// A view controller that manages the system interface for trimming video frames and encoding a previously recorded movie.
+    ///
+    /// ## Overview
+    ///
+    /// A video editor manages user interactions and provides the filesystem path of the edited movie to your delegate object (see [`UIVideoEditorControllerDelegate`](https://developer.apple.com/documentation/uikit/uivideoeditorcontrollerdelegate)). The features of the [`UIVideoEditorController`](https://developer.apple.com/documentation/uikit/uivideoeditorcontroller) class are available only on devices that support video recording. Use a video editor when your intent is to provide an interface for movie editing. While the [`UIImagePickerController`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller) class also lets a user trim movies, its primary roles are choosing saved pictures and movies, and capturing new pictures and movies.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `UIVideoEditorController` class supports portrait mode only. This class is intended to be used as-is and doesn’t support subclassing. The view hierarchy for this class is private; don’t modify the view hierarchy. This class doesn’t support modifications to its appearance by use of overlay views.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -224,7 +238,15 @@ impl UIVideoEditorController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivideoeditorcontrollerdelegate?language=objc)
+    /// A set of methods that your delegate object must implement to respond to the video editor.
+    ///
+    /// ## Overview
+    ///
+    /// The methods of this protocol notify your delegate when the system has saved an edited movie or the user has canceled editing to discard any changes. There’s also a method for responding to errors encountered by the video editor.
+    ///
+    /// The delegate methods are responsible for dismissing the video editor when the operation completes. To dismiss the editor, call the [`dismissViewControllerAnimated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)) method of the parent controller responsible for displaying the video editor. The video editor is described in [`UIVideoEditorController`](https://developer.apple.com/documentation/uikit/uivideoeditorcontroller).
+    ///
+    ///
     pub unsafe trait UIVideoEditorControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

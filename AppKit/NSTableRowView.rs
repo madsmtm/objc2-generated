@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablerowview?language=objc)
+    /// The view shown for a row in a table view.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTableRowView`](https://developer.apple.com/documentation/appkit/nstablerowview) is responsible for displaying attributes associated with the row, including the selection highlight, and group row look.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

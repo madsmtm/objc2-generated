@@ -8,12 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of inputs that provide absolute values along an axis with a fixed origin.
     /// An object conforming to
     /// `GCAxisInput`represents an input that produces
     /// normalized values - between [-1, 1] - along an axis with a fixed origin.
     /// The origin - a value of 0 - corresponds the neutral state of the input.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcaxisinput?language=objc)
     pub unsafe trait GCAxisInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block to be notified when the value of the axis input changes.

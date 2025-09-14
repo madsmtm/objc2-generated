@@ -5,13 +5,22 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Creates a read transform from a read stream reference.
+///
+/// Parameters:
+/// - inputStream: The stream that is to be opened and read from when the chain executes.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
 /// Creates a read transform from a CFReadStreamRef
 ///
 ///
 /// Parameter `inputStream`: The stream that is to be opened and read from when
 /// the chain executes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatereadtransformwithreadstream(_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

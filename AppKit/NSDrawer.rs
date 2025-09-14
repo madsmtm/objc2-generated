@@ -9,25 +9,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum?language=objc)
+/// These constants specify the possible states of a drawer.
+///
+/// ## Overview
+///
+/// These constants are returned by [`state`](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.property).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDrawerState(pub NSUInteger);
 impl NSDrawerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/closedstate?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The drawer is closed (not visible onscreen).
+    ///
+    ///
     #[doc(alias = "NSDrawerClosedState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const ClosedState: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/openingstate?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The drawer is in the process of opening.
+    ///
+    ///
     #[doc(alias = "NSDrawerOpeningState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const OpeningState: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/openstate?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The drawer is open (visible onscreen).
+    ///
+    ///
     #[doc(alias = "NSDrawerOpenState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const OpenState: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum/closingstate?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The drawer is in the process of closing.
+    ///
+    ///
     #[doc(alias = "NSDrawerClosingState")]
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub const ClosingState: Self = Self(3);
@@ -42,7 +68,13 @@ unsafe impl RefEncode for NSDrawerState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer?language=objc)
+    /// A user interface element that contains and displays text, scroll, and browser views, in addition to other view subclasses.
+    ///
+    /// ## Overview
+    ///
+    /// A drawer is associated with a window, called its parent, and can appear only while its parent is visible onscreen. A drawer cannot be moved or ordered independently of a window, but is instead attached to one edge of its parent and moves along with it.
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
@@ -269,7 +301,7 @@ impl NSWindow {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdelegate?language=objc)
+    /// A set of methods that drawer delegates implement to open, close, and resize the drawer.
     pub unsafe trait NSDrawerDelegate: NSObjectProtocol {
         #[cfg(feature = "NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
@@ -323,25 +355,49 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/willopennotification?language=objc)
+    /// Posted whenever the drawer is about to open.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSDrawer` object about to open. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerWillOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/didopennotification?language=objc)
+    /// Posted whenever the drawer is opened.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSDrawer` object that opened. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerDidOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/willclosenotification?language=objc)
+    /// Posted whenever the drawer is about to close.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSDrawer`object about to close. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/didclosenotification?language=objc)
+    /// Posted whenever the drawer is closed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSDrawer` object that closed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerDidCloseNotification: &'static NSNotificationName;
 }

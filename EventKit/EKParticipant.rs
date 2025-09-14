@@ -7,9 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Abstract class representing a participant attached to an event.
+    /// A class that represents person, group, or room invited to a calendar event.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipant?language=objc)
+    /// ## Overview
+    ///
+    /// Do not create `EKParticipant` objects directly. Instead, use the property attendees on [`EKCalendarItem`](https://developer.apple.com/documentation/eventkit/ekcalendaritem) to return an array of `EKParticipant` objects.
+    ///
+    /// EventKit cannot add participants to an event nor change participant information. Use the properties in this class to get information about a participant.
+    ///
+    /// A participant can be a person, group, room, or other resource.
+    ///
+    ///
+    /// Abstract class representing a participant attached to an event.
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

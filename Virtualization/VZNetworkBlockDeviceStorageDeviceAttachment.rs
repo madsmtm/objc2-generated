@@ -8,6 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A storage device attachment backed by a Network Block Device (NBD) client.
+    ///
+    /// ## Overview
+    ///
+    /// This storage device attachment provides a Network Block Device (NBD) client implementation. The NBD client connects to an NBD server referred to by an NBD Uniform Resource Indicator (URI), represented as an URL in this API. The NBD server runs outside of and isn’t controlled by the Virtualization framework. The NBD client forwards the guest’s I/O operations to the NBD server, which handles the I/O operations.
+    ///
+    /// The NBD client attempts to connect to the NBD server referred to by the URL used when you started the VM with [`startWithCompletionHandler:`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/start()). However, it’s important to note that a connection attempt isn’t made when the framework initializes the attachment object.
+    ///
+    /// Reconnection attempts take place throughout the life cycle of the VM when the NBD client encounters a recoverable error such as connection timeout and unexpected connection errors. The NBD client disconnects from the server when the VM shuts down.
+    ///
+    /// Using this attachment requires the app to have the [`com.apple.security.network.client`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.network.client) entitlement because this attachment opens an outgoing network connection.
+    ///
+    /// To create a device that uses an NBD service, first initialize a `VZNetworkBlockDeviceStorageDeviceAttachment` with the URI of an NBD server, then use the attachment to configure a [`VZStorageDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration) as shown in the example below (the attachment works with any subclass of [`VZStorageDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration), not just [`VZVirtioBlockDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration)):
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["    let url = try URL(string: \"nbd://localhost:10809/myDisk\")", "    let attachment = try VZNetworkBlockDeviceStorageDeviceAttachment(url: url, timeout: 5.0, isForcedReadOnly: false, synchronizationMode: .full)", "    let blockDevice = VZVirtioBlockDeviceConfiguration(attachment: attachment)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["    NSURL *url = [[NSURL alloc] initWithString:@\"nbd://localhost:10809/myDisk\"]", "    NSError *error = nil;", "    VZNetworkBlockDeviceStorageDeviceAttachment *attachment =", "        [[VZNetworkBlockDeviceStorageDeviceAttachment alloc] initWithURL:url", "                                                                 timeout:5.0", "                                                          forcedReadOnly:NO", "                                                     synchronizationMode:VZDiskSynchronizationModeFull", "                                                                   error:&error];", "    if (!attachment) {", "        // Handle the error.", "    }", "", "    VZVirtioBlockDeviceConfiguration *blockDevice = [[VZVirtioBlockDeviceConfiguration alloc] initWithAttachment:attachment];", ""], metadata: None }] }] })
+    /// For more information about Network Block Devices, see the [Network Block Device Specification](https://github.com/NetworkBlockDevice/nbd/blob/master/doc/proto.md) on GitHub.
+    ///
+    /// For more information about the NBD URL format, see the [Network Block Device URL specification](https://github.com/NetworkBlockDevice/nbd/blob/master/doc/uri.md) on GitHub.
+    ///
+    ///
     /// Storage device attachment backed by a Network Block Device (NBD) client.
     ///
     /// This storage device attachment provides an NBD client implementation. The NBD client is connected
@@ -50,8 +70,6 @@ extern_class!(
     ///
     /// VZVirtioBlockDeviceConfiguration *blockDevice = [[VZVirtioBlockDeviceConfiguration alloc] initWithAttachment:attachment];
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment?language=objc)
     #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]
@@ -188,10 +206,9 @@ impl VZNetworkBlockDeviceStorageDeviceAttachment {
 }
 
 extern_protocol!(
+    /// Methods you implement to respond to changes to a network block device attachment.
     /// A class conforming to VZNetworkBlockDeviceStorageDeviceAttachmentDelegate can provide
     /// methods for tracking the attachment's state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachmentdelegate?language=objc)
     pub unsafe trait VZNetworkBlockDeviceStorageDeviceAttachmentDelegate:
         NSObjectProtocol
     {

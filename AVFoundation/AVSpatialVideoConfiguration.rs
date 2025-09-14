@@ -11,8 +11,7 @@ use crate::*;
 
 extern_class!(
     /// An AVSpatialVideoConfiguration specifies spatial video properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialvideoconfiguration-c.class?language=objc)
+    /// An AVSpatialVideoConfiguration specifies spatial video properties.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpatialVideoConfiguration;

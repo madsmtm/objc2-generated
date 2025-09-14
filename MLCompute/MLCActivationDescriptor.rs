@@ -8,9 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The MLCActivationDescriptor specifies a neuron descriptor.
+    /// A configuration object you use to create an activation layer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcactivationdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// The framework provides the following activation descriptor initializers to create the associated descriptors:
+    ///
+    /// - [`descriptorWithType:`](https://developer.apple.com/documentation/mlcompute/mlcactivationdescriptor/init(type:)): Absolute, GELU, Identity, LogSigmoid, Parametric Soft Sign, SELU, Sigmoid, TanhShrink
+    ///
+    /// - [`descriptorWithType:a:`](https://developer.apple.com/documentation/mlcompute/mlcactivationdescriptor/init(type:a:)): CELU, HardShrink, Parametric ELU, ReLU, SoftShrink
+    ///
+    /// - [`descriptorWithType:a:b:`](https://developer.apple.com/documentation/mlcompute/mlcactivationdescriptor/init(type:a:b:)): Hard Sigmoid, Hyperbolic tangent (TanH), Linear, Parametric Soft Plus, ReLUN, Threshold
+    ///
+    ///
+    /// The MLCActivationDescriptor specifies a neuron descriptor.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

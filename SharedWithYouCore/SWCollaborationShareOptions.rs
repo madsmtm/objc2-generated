@@ -8,11 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the state of the collaboration options for the document.
     /// represents the state of the collaboration options for the document.
     ///
     /// SWCollaborationShareOptions contains the SWCollaborationOptionsGorups that are available for the collaboration as well as a string, provided by the client, that summarizes the state of the selected options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationshareoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWCollaborationShareOptions;

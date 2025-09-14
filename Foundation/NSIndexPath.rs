@@ -7,7 +7,35 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexpath?language=objc)
+    /// A list of indexes that together represent the path to a specific location in a tree of nested arrays.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`IndexPath`](https://developer.apple.com/documentation/foundation/indexpath); use [`NSIndexPath`](https://developer.apple.com/documentation/foundation/nsindexpath) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// Each index in an index path represents the index into an array of children from one node in the tree to another, deeper, node. For example, the index path `1.4.3.2` specifies the path shown in [Figure 1](/documentation/foundation/nsindexpath#1965825).
+    ///
+    ///
+    /// ![Index path “1.4.3.2”](https://docs-assets.developer.apple.com/published/3a94cb2adc36a5b685ea3a727e5ba729/media-1965825.gif)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The UIKit framework adds programming interfaces to the `NSIndexPath` class of the Foundation framework to facilitate the identification of rows and sections in [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) objects and the identification of items and sections in [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) objects. The API consists of class factory methods and properties for accessing the various indexed values. You use the factory methods to create an index path for the corresponding table view or collection view.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`IndexPath`](https://developer.apple.com/documentation/foundation/indexpath) structure, which bridges to the [`NSIndexPath`](https://developer.apple.com/documentation/foundation/nsindexpath) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexPath;

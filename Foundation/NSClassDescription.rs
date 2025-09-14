@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescription?language=objc)
+    /// An abstract class that provides the interface for querying the relationships and properties of a class.
+    ///
+    /// ## Overview
+    ///
+    /// Concrete subclasses of `NSClassDescription` provide the available attributes of objects of a particular class and the relationships between that class and other classes. Defining these relationships between classes allows for more intelligent and flexible manipulation of objects with key-value coding.
+    ///
+    /// It is important to note that there are no class descriptions by default. To use `NSClassDescription` objects in your code you have to implement them for your model classes. For all concrete subclasses, you must provide implementations for all instance methods of `NSClassDescription`. (`NSClassDescription` provides only the implementation for the class methods that maintain the cache of registered class descriptions.) Once created, you must register a class description with the `NSClassDescription` method [`registerClassDescription:forClass:`](https://developer.apple.com/documentation/foundation/nsclassdescription/register(_:for:)).
+    ///
+    /// You can use the `NSString` objects in the arrays returned by methods such as [`attributeKeys`](https://developer.apple.com/documentation/foundation/nsclassdescription/attributekeys) and [`toManyRelationshipKeys`](https://developer.apple.com/documentation/foundation/nsclassdescription/tomanyrelationshipkeys)  to access—using key-value coding—the properties of an instance of the class to which a class description object corresponds. For more about attributes and relationships, see Cocoa Fundamentals Guide. For more about key-value coding, see [Key-Value Coding Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i).
+    ///
+    /// [`NSScriptClassDescription`](https://developer.apple.com/documentation/foundation/nsscriptclassdescription), which is used to map the relationships between scriptable classes, is the only concrete subclass of `NSClassDescription` provided as part of the Cocoa framework.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSClassDescription;
@@ -130,7 +142,15 @@ impl private_NSObjectNSClassDescriptionPrimitives::Sealed for NSObject {}
 unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsclassdescriptionneededforclass?language=objc)
+    /// Posted by [`classDescriptionForClass:`](https://developer.apple.com/documentation/foundation/nsclassdescription/init(for:)) when a class description cannot be found for a class.
+    ///
+    /// ## Discussion
+    ///
+    /// After the notification is processed, [`classDescriptionForClass:`](https://developer.apple.com/documentation/foundation/nsclassdescription/init(for:)) checks for a class description again. This checking allows an observer to register class descriptions lazily. The notification is posted only once for any given class, even if the class description remains undefined.
+    ///
+    /// The notification object is the class object for which the class description is requested. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSClassDescriptionNeededForClassNotification: &'static NSNotificationName;
 }

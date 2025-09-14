@@ -6,32 +6,32 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct?language=objc)
+/// These constants define the regular expression options. These constants are used by the property [`options`](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.property), [`regularExpressionWithPattern:options:error:`](https://developer.apple.com/documentation/foundation/nsregularexpression/regularexpressionwithpattern:options:error:), and [`initWithPattern:options:error:`](https://developer.apple.com/documentation/foundation/nsregularexpression/init(pattern:options:)).
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRegularExpressionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRegularExpressionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/caseinsensitive?language=objc)
+/// Match letters in the pattern independent of case.
         #[doc(alias = "NSRegularExpressionCaseInsensitive")]
         const CaseInsensitive = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/allowcommentsandwhitespace?language=objc)
+/// Ignore whitespace and #-prefixed comments in the pattern.
         #[doc(alias = "NSRegularExpressionAllowCommentsAndWhitespace")]
         const AllowCommentsAndWhitespace = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/ignoremetacharacters?language=objc)
+/// Treat the entire pattern as a literal string.
         #[doc(alias = "NSRegularExpressionIgnoreMetacharacters")]
         const IgnoreMetacharacters = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/dotmatcheslineseparators?language=objc)
+/// Allow `.` to match any character, including line separators.
         #[doc(alias = "NSRegularExpressionDotMatchesLineSeparators")]
         const DotMatchesLineSeparators = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/anchorsmatchlines?language=objc)
+/// Allow `^` and `$` to match the start and end of lines.
         #[doc(alias = "NSRegularExpressionAnchorsMatchLines")]
         const AnchorsMatchLines = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/useunixlineseparators?language=objc)
+/// Treat only `\n` as a line separator (otherwise, all standard line separators are used).
         #[doc(alias = "NSRegularExpressionUseUnixLineSeparators")]
         const UseUnixLineSeparators = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/useunicodewordboundaries?language=objc)
+/// Use Unicode `TR#29` to specify word boundaries (otherwise, traditional regular expression word boundaries are used).
         #[doc(alias = "NSRegularExpressionUseUnicodeWordBoundaries")]
         const UseUnicodeWordBoundaries = 1<<6;
     }
@@ -46,7 +46,108 @@ unsafe impl RefEncode for NSRegularExpressionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression?language=objc)
+    /// An immutable representation of a compiled regular expression that you apply to Unicode strings.
+    ///
+    /// ## Overview
+    ///
+    /// The fundamental matching method for [`NSRegularExpression`](https://developer.apple.com/documentation/foundation/nsregularexpression) is a Block iterator method that allows clients to supply a Block object which will be invoked each time the regular expression matches a portion of the target string.  There are additional convenience methods for returning all the matches as an array, the total number of matches, the first match, and the range of the first match.
+    ///
+    /// An individual match is represented by an instance of the [`NSTextCheckingResult`](https://developer.apple.com/documentation/foundation/nstextcheckingresult) class, which carries information about the overall matched range (via its [`range`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/range) property), and the range of each individual capture group (via the [`rangeAtIndex:`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/range(at:)) method).  For basic [`NSRegularExpression`](https://developer.apple.com/documentation/foundation/nsregularexpression) objects, these match results will be of type [`NSTextCheckingTypeRegularExpression`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/regularexpression), but subclasses may use other types.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSRegularExpression`](https://developer.apple.com/documentation/foundation/nsregularexpression) conforms to the International Components for Unicode ([ICU](https://unicode-org.github.io/icu/)) specification for [regular expressions](https://unicode-org.github.io/icu/userguide/strings/regexp.html).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Examples Using NSRegularExpression
+    ///
+    /// What follows are a set of graduated examples for using the `NSRegularExpression` class. All these examples use the regular expression `\\b(a|b)(c|d)\\b` as their regular expression.
+    ///
+    /// This snippet creates a regular expression to match two-letter words, in which the first letter is “a” or “b” and the second letter is “c” or “d”. Specifying [`NSRegularExpressionCaseInsensitive`](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct/caseinsensitive) means that matches will be case-insensitive, so this will match “BC”, “aD”, and so forth, as well as their lower-case equivalents.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["do {", "    let regex = try NSRegularExpression(pattern: \"\\\\b(a|b)(c|d)\\\\b\", options: .caseInsensitive)", "} catch let error as NSError {", "    print(\"Error creating NSRegularExpression: \\(error)\")", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSError *error = NULL;", "NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@\"\\\\b(a|b)(c|d)\\\\b\"", "                                                                       options:NSRegularExpressionCaseInsensitive", "                                                                         error:&error];"], metadata: None }] }] })
+    /// The [`numberOfMatchesInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/numberofmatches(in:options:range:)) method provides a simple mechanism for counting the number of matches in a given range of a string.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let numberOfMatches = regex.numberOfMatches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSUInteger numberOfMatches = [regex numberOfMatchesInString:string", "                                                    options:0", "                                                      range:NSMakeRange(0, [string length])];"], metadata: None }] }] })
+    /// If you are interested only in the overall range of the first match, the [`rangeOfFirstMatchInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/rangeoffirstmatch(in:options:range:)) method provides it for you.  Some regular expressions (though not the example pattern) can successfully match a zero-length range, so the comparison of the resulting range with `{NSNotFound, 0}` is the most reliable way to determine whether there was a match or not.
+    ///
+    /// The example regular expression contains two capture groups, corresponding to the two sets of parentheses, one for the first letter, and one for the second.  If you are interested in more than just the overall matched range, you want to obtain an [`NSTextCheckingResult`](https://developer.apple.com/documentation/foundation/nstextcheckingresult) object corresponding to a given match.  This object provides information about the overall matched range, via its [`range`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/range) property, and also supplies the capture group ranges, via the [`rangeAtIndex:`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/range(at:)) method.  The first capture group range is given by `[result rangeAtIndex:1]`, the second by `[result rangeAtIndex:2]`.  Sending a result the  [`rangeAtIndex:`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/range(at:)) message and passing `0` is equivalent to `[result range]`.
+    ///
+    /// If the result returned is non-`nil`, then `[result range]` will always be a valid range, so it is not necessary to compare it against `{NSNotFound, 0}`.  However, for some regular expressions (though not the example pattern) some capture groups may or may not participate in a given match.  If a given capture group does not participate in a given match, then `[result rangeAtIndex:idx]` will return `{NSNotFound, 0}`.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let rangeOfFirstMatch = regex.rangeOfFirstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))", "if rangeOfFirstMatch.location != NSNotFound {", "     let substringForFirstMatch = (string as NSString).substring(with: rangeOfFirstMatch)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:string options:0 range:NSMakeRange(0, [string length])];", "if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {", "    NSString *substringForFirstMatch = [string substringWithRange:rangeOfFirstMatch];", "}"], metadata: None }] }] })
+    /// The [`matchesInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/matches(in:options:range:)) returns all the matching results.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let matches = regex.matches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count))", " for match in matches {", "     let matchRange = match.range", "     let firstHalfRange = match.range(at: 1)", "     let secondHalfRange = match.range(at: 2)", " }", " "], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSArray *matches = [regex matchesInString:string", "                                  options:0", "                                    range:NSMakeRange(0, [string length])];", "for (NSTextCheckingResult *match in matches) {", "     NSRange matchRange = [match range];", "     NSRange firstHalfRange = [match rangeAtIndex:1];", "     NSRange secondHalfRange = [match rangeAtIndex:2];", "}"], metadata: None }] }] })
+    /// The [`firstMatchInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/firstmatch(in:options:range:)) method is similar to [`matchesInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/matches(in:options:range:)) but it returns only the first match.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["if let match = regex.firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) {", "    let matchRange = match.range", "    let firstHalfRange = match.range(at: 1)", "    let secondHalfRange = match.range(at: 2)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSTextCheckingResult *match = [regex firstMatchInString:string", "                                                options:0", "                                                  range:NSMakeRange(0, [string length])];", "if (match) {", "    NSRange matchRange = [match range];", "    NSRange firstHalfRange = [match rangeAtIndex:1];", "    NSRange secondHalfRange = [match rangeAtIndex:2];", " }", " "], metadata: None }] }] })
+    /// The Block enumeration method [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)) is the most general and flexible of the matching methods of `NSRegularExpression`.  It allows you to iterate through matches in a string, performing arbitrary actions on each as specified by the code in the Block and to stop partway through if desired.  In the following example case, the iteration is stopped after a certain number of matches have been found.
+    ///
+    /// If neither of the special options [`NSMatchingReportProgress`](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportprogress) or [`NSMatchingReportCompletion`](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportcompletion) is specified, then the result argument to the Block is guaranteed to be non-`nil`, and as mentioned before, it is guaranteed to have a valid overall range.  See [`NSMatchingOptions`](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions) for the significance of [`NSMatchingReportProgress`](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportprogress) or [`NSMatchingReportCompletion`](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportcompletion).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var count = 0", "regex.enumerateMatches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) { match, flags, stop in", "     guard let match = match else { return }", "", "     let matchRange = match.range", "     let firstHalfRange = match.range(at: 1)", "     let secondHalfRange = match.range(at: 2)", "     count += 1", "     if count >= 100 {", "         stop = true", "     }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["__block NSUInteger count = 0;", "[regex enumerateMatchesInString:string options:0 range:NSMakeRange(0, [string length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){", "     NSRange matchRange = [match range];", "     NSRange firstHalfRange = [match rangeAtIndex:1];", "     NSRange secondHalfRange = [match rangeAtIndex:2];", "     if (++count >= 100) *stop = YES;", "}];"], metadata: None }] }] })
+    /// `NSRegularExpression` also provides simple methods for performing find-and-replace operations on a string.  The following example returns a modified copy, but there is a corresponding method for modifying a mutable string in place.  The template specifies what is to be used to replace each match, with `$0` representing the contents of the overall matched range, `$1` representing the contents of the first capture group, and so on.  In this case, the template reverses the two letters of the word.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let modifiedString = regex.stringByReplacingMatches(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count), withTemplate: \"$2$1\")", " "], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSString *modifiedString = [regex stringByReplacingMatchesInString:string", "                                                           options:0", "                                                             range:NSMakeRange(0, [string length])", "                                                      withTemplate:@\"$2$1\"];"], metadata: None }] }] })
+    /// ### Concurrency and Thread Safety
+    ///
+    /// `NSRegularExpression` is designed to be immutable and thread safe, so that a single instance can be used in matching operations on multiple threads at once.  However, the string on which it is operating should not be mutated during the course of a matching operation, whether from another thread or from within the Block used in the iteration.
+    ///
+    /// ### Regular Expression Syntax
+    ///
+    /// The following tables describe the character expressions used by the regular expression to match patterns within a string, the pattern operators that specify how many times a pattern is matched and additional matching restrictions, and the last table specifies flags that can be included in the regular expression pattern that specify search behavior over multiple lines (these flags can also be specified using the [`NSRegularExpressionOptions`](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct) option flags.
+    ///
+    /// #### Regular Expression Metacharacters
+    ///
+    /// Table 1: Character sequences used to match characters within a string.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Character Expression" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\a" }] }], [Paragraph { inline_content: [Text { text: "Match a BELL, " }, CodeVoice { code: "\\u0007" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\A" }] }], [Paragraph { inline_content: [Text { text: "Match at the beginning of the input. Differs from " }, CodeVoice { code: "^" }, Text { text: " in that " }, CodeVoice { code: "\\A" }, Text { text: " will not match after a new line within the input." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\b, outside of a [Set]" }] }], [Paragraph { inline_content: [Text { text: "Match if the current position is a word boundary. Boundaries occur at the transitions between word (" }, CodeVoice { code: "\\w" }, Text { text: ") and non-word (" }, CodeVoice { code: "\\W" }, Text { text: ") characters, with combining marks ignored. For better word boundaries, see " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSRegularExpression/Options-swift.struct/useUnicodeWordBoundaries", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\b, within a [Set]" }] }], [Paragraph { inline_content: [Text { text: "Match a BACKSPACE, " }, CodeVoice { code: "\\u0008" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\B" }] }], [Paragraph { inline_content: [Text { text: "Match if the current position is not a word boundary." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\cX" }] }], [Paragraph { inline_content: [Text { text: "Match a " }, CodeVoice { code: "control-X" }, Text { text: " character" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\d" }] }], [Paragraph { inline_content: [Text { text: "Match any character with the Unicode General Category of Nd (Number, Decimal Digit.)" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\D" }] }], [Paragraph { inline_content: [Text { text: "Match any character that is not a decimal digit." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\e" }] }], [Paragraph { inline_content: [Text { text: "Match an " }, CodeVoice { code: "ESCAPE" }, Text { text: ", " }, CodeVoice { code: "\\u001B" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\E" }] }], [Paragraph { inline_content: [Text { text: "Terminates a " }, CodeVoice { code: "\\Q ... \\E" }, Text { text: " quoted sequence." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\f" }] }], [Paragraph { inline_content: [Text { text: "Match a FORM FEED, " }, CodeVoice { code: "\\u000C" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\G" }] }], [Paragraph { inline_content: [Text { text: "Match if the current position is at the end of the previous match." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\n" }] }], [Paragraph { inline_content: [Text { text: "Match a " }, CodeVoice { code: "LINE FEED" }, Text { text: ", " }, CodeVoice { code: "\\u000A" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\N{" }, Emphasis { inline_content: [Text { text: "UNICODE CHARACTER NAME" }] }, CodeVoice { code: "}" }] }], [Paragraph { inline_content: [Text { text: "Match the named character." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\p{" }, Emphasis { inline_content: [Text { text: "UNICODE PROPERTY NAME" }] }, CodeVoice { code: "}" }] }], [Paragraph { inline_content: [Text { text: "Match any character with the specified Unicode Property." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\P{" }, Emphasis { inline_content: [Text { text: "UNICODE PROPERTY NAME" }] }, CodeVoice { code: "}" }] }], [Paragraph { inline_content: [Text { text: "Match any character not having the specified Unicode Property." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\Q" }] }], [Paragraph { inline_content: [Text { text: "Quotes all following characters until " }, CodeVoice { code: "\\E" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\r" }] }], [Paragraph { inline_content: [Text { text: "Match a CARRIAGE RETURN, \\u000D." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\s" }] }], [Paragraph { inline_content: [Text { text: "Match a white space character. White space is defined as [\\t\\n\\f\\r\\p{Z}]." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\S" }] }], [Paragraph { inline_content: [Text { text: "Match a non-white space character." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\t" }] }], [Paragraph { inline_content: [Text { text: "Match a HORIZONTAL TABULATION, " }, CodeVoice { code: "\\u0009" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\u" }, Emphasis { inline_content: [Text { text: "hhhh" }] }] }], [Paragraph { inline_content: [Text { text: "Match the character with the hex value " }, Emphasis { inline_content: [Text { text: "hhhh" }] }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\U" }, Emphasis { inline_content: [Text { text: "hhhhhhhh" }] }] }], [Paragraph { inline_content: [Text { text: "Match the character with the hex value " }, Emphasis { inline_content: [Text { text: "hhhhhhhh" }] }, Text { text: ". Exactly eight hex digits must be provided, even though the largest Unicode code point is " }, CodeVoice { code: "\\U0010ffff" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\w" }] }], [Paragraph { inline_content: [Text { text: "Match a word character. Word characters are [\\p{Ll}\\p{Lu}\\p{Lt}\\p{Lo}\\p{Nd}]." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\W" }] }], [Paragraph { inline_content: [Text { text: "Match a non-word character." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\x{" }, Emphasis { inline_content: [Text { text: "hhhh" }] }, CodeVoice { code: "}" }] }], [Paragraph { inline_content: [Text { text: "Match the character with hex value " }, Emphasis { inline_content: [Text { text: "hhhh" }] }, Text { text: ". From one to six hex digits may be supplied." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\x" }, Emphasis { inline_content: [Text { text: "hh" }] }] }], [Paragraph { inline_content: [Text { text: "Match the character with two digit hex value " }, Emphasis { inline_content: [Text { text: "hh" }] }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\X" }] }], [Paragraph { inline_content: [Text { text: "Match a Grapheme Cluster." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\Z" }] }], [Paragraph { inline_content: [Text { text: "Match if the current position is at the end of input, but before the final line terminator, if one exists." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\z" }] }], [Paragraph { inline_content: [Text { text: "Match if the current position is at the end of input." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\" }, Emphasis { inline_content: [Text { text: "n" }] }] }], [Paragraph { inline_content: [Text { text: "Back Reference. Match whatever the _n_th capturing group matched. " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " must be a number " }, CodeVoice { code: "≥ 1" }, Text { text: " and " }, CodeVoice { code: "≤" }, Text { text: " total number of capture groups in the pattern." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\0" }, Emphasis { inline_content: [Text { text: "ooo" }] }] }], [Paragraph { inline_content: [Text { text: "Match an Octal character.  " }, Emphasis { inline_content: [Text { text: "ooo" }] }, Text { text: " is from one to three octal digits.  " }, CodeVoice { code: "0377" }, Text { text: " is the largest allowed Octal character.  The leading zero is required; it distinguishes Octal constants from back references." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "[" }, Emphasis { inline_content: [Text { text: "pattern" }] }, CodeVoice { code: "]" }] }], [Paragraph { inline_content: [Text { text: "Match any one character from the pattern." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "." }] }], [Paragraph { inline_content: [Text { text: "Match any character. See " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSRegularExpression/Options-swift.struct/dotMatchesLineSeparators", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and the " }, CodeVoice { code: "s" }, Text { text: " character expression in Table 4." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "^" }] }], [Paragraph { inline_content: [Text { text: "Match at the beginning of a line. See " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSRegularExpression/Options-swift.struct/anchorsMatchLines", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and the " }, CodeVoice { code: "\\m" }, Text { text: " character expression in Table 4." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "$" }] }], [Paragraph { inline_content: [Text { text: "Match at the end of a line. See " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSRegularExpression/Options-swift.struct/anchorsMatchLines", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and the " }, CodeVoice { code: "m" }, Text { text: " character expression in Table 4." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\" }] }], [Paragraph { inline_content: [Text { text: "Quotes the following character. Characters that must be quoted to be treated as literals are `* ? + [ ( ) { } ^ $" }] }]]], alignments: None, metadata: None })
+    /// #### Regular Expression Operators
+    ///
+    /// Table 2: Regular expression operators.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Operator" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "`" }] }], [Paragraph { inline_content: [Text { text: "`" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "*" }] }], [Paragraph { inline_content: [Text { text: "Match " }, CodeVoice { code: "0" }, Text { text: " or more times. Match as many times as possible." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "+" }] }], [Paragraph { inline_content: [Text { text: "Match " }, CodeVoice { code: "1" }, Text { text: " or more times. Match as many times as possible." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "?" }] }], [Paragraph { inline_content: [Text { text: "Match zero or one times. Prefer one." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: "}" }] }], [Paragraph { inline_content: [Text { text: "Match exactly " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " times." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: ",}" }] }], [Paragraph { inline_content: [Text { text: "Match at least " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " times. Match as many times as possible." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: "," }, Emphasis { inline_content: [Text { text: "m" }] }, CodeVoice { code: "}" }] }], [Paragraph { inline_content: [Text { text: "Match between " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " and " }, Emphasis { inline_content: [Text { text: "m" }] }, Text { text: " times. Match as many times as possible, but not more than " }, Emphasis { inline_content: [Text { text: "m" }] }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "*?" }] }], [Paragraph { inline_content: [Text { text: "Match " }, CodeVoice { code: "0" }, Text { text: " or more times. Match as few times as possible." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "+?" }] }], [Paragraph { inline_content: [Text { text: "Match 1 or more times. Match as few times as possible." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "??" }] }], [Paragraph { inline_content: [Text { text: "Match zero or one times. Prefer zero." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: "}?" }] }], [Paragraph { inline_content: [Text { text: "Match exactly n times." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: ",}?" }] }], [Paragraph { inline_content: [Text { text: "Match at least n times, but no more than required for an overall pattern match." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: "," }, Emphasis { inline_content: [Text { text: "m" }] }, CodeVoice { code: "}?" }] }], [Paragraph { inline_content: [Text { text: "Match between n and m times. Match as few times as possible, but not less than n." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "*+" }] }], [Paragraph { inline_content: [Text { text: "Match 0 or more times. Match as many times as possible when first encountered. Do not retry with fewer, even if overall match fails (possessive match)." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "++" }] }], [Paragraph { inline_content: [Text { text: "Match 1 or more times (possessive match)." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "?+" }] }], [Paragraph { inline_content: [Text { text: "Match zero or one times (possessive match)." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: "}+" }] }], [Paragraph { inline_content: [Text { text: "Match exactly " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " times." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: ",}+" }] }], [Paragraph { inline_content: [Text { text: "Match at least " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " times (possessive match)." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "{" }, Emphasis { inline_content: [Text { text: "n" }] }, CodeVoice { code: "," }, Emphasis { inline_content: [Text { text: "m" }] }, CodeVoice { code: "}+" }] }], [Paragraph { inline_content: [Text { text: "Match between " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " and " }, Emphasis { inline_content: [Text { text: "m" }] }, Text { text: " times (possessive match)." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(" }, Emphasis { inline_content: [Text { text: "…" }] }, CodeVoice { code: ")" }] }], [Paragraph { inline_content: [Text { text: "Capturing parentheses. Range of input that matched the parenthesized subexpression is available after the match." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?:" }, Emphasis { inline_content: [Text { text: "…" }] }, CodeVoice { code: ")" }] }], [Paragraph { inline_content: [Text { text: "Non-capturing parentheses. Groups the included pattern, but does not provide capturing of matching text. Somewhat more efficient than capturing parentheses." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?>" }, Emphasis { inline_content: [Text { text: "…" }] }, CodeVoice { code: ")" }] }], [Paragraph { inline_content: [Text { text: "Atomic-match parentheses. First match of the parenthesized subexpression is the only one tried; if it does not lead to an overall pattern match, back up the search for a match to a position before the “" }, CodeVoice { code: "(?>" }, Text { text: "”" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?# ... )" }] }], [Paragraph { inline_content: [Text { text: "Free-format comment " }, CodeVoice { code: "(?# comment )" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?= ... )" }] }], [Paragraph { inline_content: [Text { text: "Look-ahead assertion. True if the parenthesized pattern matches at the current input position, but does not advance the input position." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?! ... )" }] }], [Paragraph { inline_content: [Text { text: "Negative look-ahead assertion. True if the parenthesized pattern does not match at the current input position. Does not advance the input position." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?<= ... )" }] }], [Paragraph { inline_content: [Text { text: "Look-behind assertion. True if the parenthesized pattern matches text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?<! ... )" }] }], [Paragraph { inline_content: [Text { text: "Negative Look-behind assertion. True if the parenthesized pattern does not match text preceding the current input position, with the last character of the match being the input character just before the current position. Does not alter the input position. The length of possible strings matched by the look-behind pattern must not be unbounded (no * or + operators.)" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?ismwx-ismwx:" }, Text { text: " " }, CodeVoice { code: "..." }, Text { text: " " }, CodeVoice { code: ")" }] }], [Paragraph { inline_content: [Text { text: "Flag settings. Evaluate the parenthesized expression with the specified flags enabled or -disabled. The flags are defined in " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSRegularExpression#Flag-Options", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "(?ismwx-ismwx)" }] }], [Paragraph { inline_content: [Text { text: "Flag settings. Change the flag settings. Changes apply to the portion of the pattern following the setting. For example, (?i) changes to a case insensitive match.The flags are defined in " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSRegularExpression#Flag-Options", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// #### Template Matching Format
+    ///
+    /// The `NSRegularExpression` class provides find-and-replace methods for both immutable and mutable strings using the technique of template matching.
+    ///
+    /// Table 3: Find-and-replace syntax.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Character" }] }], [Paragraph { inline_content: [Text { text: "Descriptions" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "$" }, Emphasis { inline_content: [Text { text: "n" }] }] }], [Paragraph { inline_content: [Text { text: "The text of capture group n will be substituted for $" }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: ". " }, Emphasis { inline_content: [Text { text: "n" }] }, Text { text: " must be " }, CodeVoice { code: ">= 0" }, Text { text: " and not greater than the number of capture groups. A " }, CodeVoice { code: "$" }, Text { text: " not followed by a digit has no special meaning, and will appear in the substitution text as itself, a " }, CodeVoice { code: "$" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "\\" }] }], [Paragraph { inline_content: [Text { text: "Treat the following character as a literal, suppressing any special meaning. Backslash escaping in substitution text is only required for ‘$’ and ’', but may be used on any other character without bad effects." }] }]]], alignments: None, metadata: None })
+    /// The replacement string is treated as a template, with `$0` being replaced by the contents of the matched range, `$1` by the contents of the first capture group, and so on.  Additional digits beyond the maximum required to represent the number of capture groups will be treated as ordinary characters, as will a `$` not followed by digits.  Backslash will escape both `$` and `\`.
+    ///
+    /// #### Flag Options
+    ///
+    /// The following flags control various aspects of regular expression matching. These flag values may be specified within the pattern using the `(?ismx-ismx)` pattern options.  Equivalent behaviors can be specified for the entire pattern when an `NSRegularExpression` is initialized, using the [`NSRegularExpressionOptions`](https://developer.apple.com/documentation/foundation/nsregularexpression/options-swift.struct) option flags.
+    ///
+    /// Table 4: Regular expression matching flags.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Flag (Pattern)" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "i" }] }], [Paragraph { inline_content: [Text { text: "If set, matching will take place in a case-insensitive manner." }] }]], [[Paragraph { inline_content: [Text { text: "x" }] }], [Paragraph { inline_content: [Text { text: "If set, allow use of white space and #comments within patterns" }] }]], [[Paragraph { inline_content: [Text { text: "s" }] }], [Paragraph { inline_content: [Text { text: "If set, a “" }, CodeVoice { code: "." }, Text { text: "” in a pattern will match a line terminator in the input text. By default, it will not. Note that a " }, CodeVoice { code: "carriage-return / line-feed pair" }, Text { text: " in text behave as a single line terminator, and will match a single “" }, CodeVoice { code: "." }, Text { text: "” in a regular expression pattern" }] }]], [[Paragraph { inline_content: [Text { text: "m" }] }], [Paragraph { inline_content: [Text { text: "Control the behavior of “" }, CodeVoice { code: "^" }, Text { text: "” and “" }, CodeVoice { code: "$" }, Text { text: "” in a pattern. By default these will only match at the start and end, respectively, of the input text. If this flag is set, “" }, CodeVoice { code: "^" }, Text { text: "” and “" }, CodeVoice { code: "$" }, Text { text: "” will also match at the start and end of each line within the input text." }] }]], [[Paragraph { inline_content: [Text { text: "w" }] }], [Paragraph { inline_content: [Text { text: "Controls the behavior of " }, CodeVoice { code: "\\b" }, Text { text: " in a pattern. If set, word boundaries are found according to the definitions of word found in Unicode UAX 29, Text Boundaries. By default, word boundaries are identified by means of a simple classification of characters as either “word” or “non-word”, which approximates traditional regular expression behavior. The results obtained with the two options can be quite different in runs of spaces and other non-word characters." }] }]]], alignments: None, metadata: None })
+    /// ### Performance
+    ///
+    /// `NSRegularExpression` implements a nondeterministic finite automaton matching engine. As such, complex regular expression patterns containing multiple `*` or `+` operators may result in poor performance when attempting to perform matches — particularly failing to match a given input. For more information, see the [“Performance Tips” section of the ICU User Guide](http://userguide.icu-project.org/strings/regexp#TOC-Performance-Tips).
+    ///
+    /// ### ICU License
+    ///
+    /// Tables 1, 2, 3, and 4 are reproduced from the ICU User Guide, Copyright (c) 2000 - 2009 IBM and Others, which are licensed under the following terms:
+    ///
+    /// COPYRIGHT AND PERMISSION NOTICE
+    ///
+    /// Copyright (c) 1995-2009 International Business Machines Corporation and others. All rights reserved.
+    ///
+    /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, provided that the above copyright notice(s) and this permission notice appear in all copies of the Software and that both the above copyright notice(s) and this permission notice appear in supporting documentation.
+    ///
+    /// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+    ///
+    /// Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization of the copyright holder.
+    ///
+    /// All trademarks and registered trademarks mentioned herein are the property of their respective owners.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRegularExpression;
@@ -139,26 +240,26 @@ impl DefaultRetained for NSRegularExpression {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions?language=objc)
+/// The matching options constants specify the reporting, completion and matching rules to the expression matching methods. These constants are used by all methods that search for, or replace values, using a regular expression.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMatchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportprogress?language=objc)
+/// Call the Block periodically during long-running match operations. This option has no effect for methods other than [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)). See [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)) for a description of the constant in context.
         #[doc(alias = "NSMatchingReportProgress")]
         const ReportProgress = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/reportcompletion?language=objc)
+/// Call the Block once after the completion of any matching. This option has no effect for methods other than [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)). See [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)) for a description of the constant in context.
         #[doc(alias = "NSMatchingReportCompletion")]
         const ReportCompletion = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/anchored?language=objc)
+/// Specifies that matches are limited to those at the start of the search range. See [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)) for a description of the constant in context.
         #[doc(alias = "NSMatchingAnchored")]
         const Anchored = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/withtransparentbounds?language=objc)
+/// Specifies that matching may examine parts of the string beyond the bounds of the search range, for purposes such as word boundary detection, lookahead, etc. This constant has no effect if the search range contains the entire string. See [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)) for a description of the constant in context.
         #[doc(alias = "NSMatchingWithTransparentBounds")]
         const WithTransparentBounds = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions/withoutanchoringbounds?language=objc)
+/// Specifies that `^` and `$` will not automatically match the beginning and end of the search range, but will still match the beginning and end of the entire string. This constant has no effect if the search range contains the entire string. See [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)) for a description of the constant in context.
         #[doc(alias = "NSMatchingWithoutAnchoringBounds")]
         const WithoutAnchoringBounds = 1<<4;
     }
@@ -172,26 +273,26 @@ unsafe impl RefEncode for NSMatchingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags?language=objc)
+/// Set by the Block as the matching progresses, completes, or fails. Used by the method [`enumerateMatchesInString:options:range:usingBlock:`](https://developer.apple.com/documentation/foundation/nsregularexpression/enumeratematches(in:options:range:using:)).
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMatchingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/progress?language=objc)
+/// Set when the Block is called to report progress during a long-running match operation.
         #[doc(alias = "NSMatchingProgress")]
         const Progress = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/completed?language=objc)
+/// Set when the Block is called after matching has completed.
         #[doc(alias = "NSMatchingCompleted")]
         const Completed = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/hitend?language=objc)
+/// Set when the current match operation reached the end of the search range.
         #[doc(alias = "NSMatchingHitEnd")]
         const HitEnd = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/requiredend?language=objc)
+/// Set when the current match depended on the location of the end of the search range.
         #[doc(alias = "NSMatchingRequiredEnd")]
         const RequiredEnd = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpression/matchingflags/internalerror?language=objc)
+/// Set when matching failed due to an internal error.
         #[doc(alias = "NSMatchingInternalError")]
         const InternalError = 1<<4;
     }
@@ -321,7 +422,93 @@ impl NSRegularExpression {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatadetector?language=objc)
+    /// A specialized regular expression object that matches natural language text for predefined data patterns.
+    ///
+    /// ## Overview
+    ///
+    /// Find dates, addresses, links, phone numbers, and transit information in natural language text with `NSDataDetector`.
+    ///
+    /// `NSDataDetector` returns the results of matching content in [`NSTextCheckingResult`](https://developer.apple.com/documentation/foundation/nstextcheckingresult) objects. The [`NSTextCheckingResult`](https://developer.apple.com/documentation/foundation/nstextcheckingresult) objects that `NSDataDetector` returns are different from those that [`NSRegularExpression`](https://developer.apple.com/documentation/foundation/nsregularexpression) returns. The results are one of the data detector’s types and contain the corresponding properties. For example, results of type [`NSTextCheckingTypeDate`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/date) have a [`date`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/date), [`timeZone`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/timezone), and [`duration`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration); and results of type [`NSTextCheckingTypeLink`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/link) have a [`URL`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/url).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t use `NSDataDetector` to validate data. `NSDataDetector` discards potential matches in case of uncertainty. Use a class specific to the type of data for validation instead. For example, attempt to instantiate a [`URL`](https://developer.apple.com/documentation/foundation/url) object using [`init(string:)`](https://developer.apple.com/documentation/foundation/url/init(string:)) to validate a URL string. A valid URL string returns an instance of [`URL`](https://developer.apple.com/documentation/foundation/url), while an invalid URL string returns [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Examples
+    ///
+    /// The following shows several graduated examples of using the `NSDataDetector` class.
+    ///
+    /// This code fragment creates a data detector that finds URL links and phone numbers. If an error occurs, it returns in `error`.
+    ///
+    /// ```objc
+    ///    NSError *error = nil;
+    ///    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink|NSTextCheckingTypePhoneNumber
+    ///                                                               error:&error];
+    /// ```
+    ///
+    /// After creating the data detector instance, you can determine the number of matches within a range of a string using the `NSRegularExpression` method [`numberOfMatchesInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/numberofmatches(in:options:range:)).
+    ///
+    /// ```objc
+    ///    NSUInteger numberOfMatches = [detector numberOfMatchesInString:string
+    ///                                                           options:0
+    ///                                                             range:NSMakeRange(0, [string length])];
+    /// ```
+    ///
+    /// If you’re interested only in the overall range of the first match, the [`numberOfMatchesInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/numberofmatches(in:options:range:)) method provides it.  However, with data detectors, this is less likely than with regular expressions because clients are usually interested in additional information as well.
+    ///
+    /// The additional information available depends on the type of the result.  For results of type [`NSTextCheckingTypeLink`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/link), it’s the `URL` property that’s significant.  For results of type `NSTextCheckingTypePhoneNumber` , it’s the `phoneNumber` property instead.
+    ///
+    /// The [`matchesInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/matches(in:options:range:)) method is similar to [`firstMatchInString:options:range:`](https://developer.apple.com/documentation/foundation/nsregularexpression/firstmatch(in:options:range:)), except that it returns all matches rather than only the first. The following code fragment finds all the matches for links and phone numbers in a string:
+    ///
+    /// ```objc
+    ///    NSArray *matches = [detector matchesInString:string
+    ///                                         options:0
+    ///                                           range:NSMakeRange(0, [string length])];
+    ///    for (NSTextCheckingResult *match in matches) {
+    ///         NSRange matchRange = [match range];
+    ///         if ([match resultType] == NSTextCheckingTypeLink) {
+    ///             NSURL *url = [match URL];
+    ///         } else if ([match resultType] == NSTextCheckingTypePhoneNumber) {
+    ///             NSString *phoneNumber = [match phoneNumber];
+    ///         }
+    ///    }
+    /// ```
+    ///
+    /// The `NSRegularExpression` block object enumerator is the most general and flexible of the matching methods.  It allows you to iterate through matches in a string, performing arbitrary actions on each as specified by the code in the block, and to stop partway through if desired. In the following code fragment, the iteration stops after finding a certain number of matches:
+    ///
+    /// ```objc
+    ///    __block NSUInteger count = 0;
+    ///    [detector enumerateMatchesInString:string
+    ///                               options:0
+    ///                                 range:NSMakeRange(0, [string length])
+    ///                            usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
+    ///         NSRange matchRange = [match range];
+    ///         if ([match resultType] == NSTextCheckingTypeLink) {
+    ///             NSURL *url = [match URL];
+    ///         } else if ([match resultType] == NSTextCheckingTypePhoneNumber) {
+    ///             NSString *phoneNumber = [match phoneNumber];
+    ///         }
+    ///         if (++count >= 100) *stop = YES;
+    ///    }];
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only use `NSDataDetector` on natural language text.
+    ///
+    /// If you expect text to be in a particular format, use an [`NSFormatter`](https://developer.apple.com/documentation/foundation/formatter) or [`NSValueTransformer`](https://developer.apple.com/documentation/foundation/valuetransformer) subclass instead. For instance, if you’re expecting a date field to be an ISO 8601 timestamp, use [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) to parse that into an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    /// If the text is in a machine-readable format, such as XML or JSON, extract the natural language text, such as by using [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser) or [`NSJSONSerialization`](https://developer.apple.com/documentation/foundation/jsonserialization), and match on that rather than attempt to match on the entire document.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSRegularExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataDetector;

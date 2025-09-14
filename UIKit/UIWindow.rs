@@ -12,13 +12,57 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level?language=objc)
+/// The positioning of windows relative to each other.
+///
+/// ## Overview
+///
+/// The stacking of levels takes precedence over the stacking of windows within each level. That is, even the bottom window in a level obscures the top window of the next level down. Levels are listed in order from lowest to highest.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIWindowLevel = CGFloat;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow?language=objc)
+    /// The backdrop for your app’s user interface and the object that dispatches events to your views.
+    ///
+    /// ## Overview
+    ///
+    /// Windows work with your view controllers to handle events and to perform many other tasks that are fundamental to your app’s operation. UIKit handles most window-related interactions, working with other objects as needed to implement many app behaviors.
+    ///
+    /// You use windows only when you need to do the following:
+    ///
+    /// - Provide a main window to display your app’s content.
+    ///
+    /// - Create additional windows (as needed) to display additional content.
+    ///
+    /// Normally, Xcode provides your app’s main window. New iOS projects use storyboards to define the app’s views. Storyboards require the presence of a [`window`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/window) property on the app delegate object, which the Xcode templates automatically provide. If your app doesn’t use storyboards, you must create this window yourself.
+    ///
+    /// Most apps need only one window, which displays the app’s content on the device’s main screen. Although you can create additional windows on the device’s main screen, extra windows are commonly used to display content on an external screen, as described in [Presenting content on a connected display](https://developer.apple.com/documentation/uikit/presenting-content-on-a-connected-display).
+    ///
+    /// You also use [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow) objects for a handful of other tasks:
+    ///
+    /// - Setting the z-axis level of your window, which affects the visibility of the window relative to other windows.
+    ///
+    /// - Showing windows and making them the target of keyboard events.
+    ///
+    /// - Converting coordinate values to and from the window’s coordinate system.
+    ///
+    /// - Changing the root view controller of a window.
+    ///
+    /// - Changing the screen on which the window is displayed.
+    ///
+    /// Windows don’t have any visual appearance of their own. Instead, a window hosts one or more views, which are managed by the window’s root view controller. You configure the root view controller in your storyboards, adding whatever views are appropriate for your interface.
+    ///
+    /// You should rarely need to subclass [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow). The kinds of behaviors you might implement in a window can usually be implemented in a higher-level view controller more easily. One of the few times you might want to subclass is to override the [`becomeKeyWindow`](https://developer.apple.com/documentation/uikit/uiwindow/becomekey()) or [`resignKeyWindow`](https://developer.apple.com/documentation/uikit/uiwindow/resignkey()) methods to implement custom behaviors when a window’s key status changes. For information about how to display a window on a specific screen, see [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen).
+    ///
+    /// ### Understand keyboard interactions
+    ///
+    /// Whereas touch events are delivered to the window where they occurred, events that don’t have a relevant coordinate value are delivered to the _key window_. Only one window at a time can be the key window, and you can use a window’s [`keyWindow`](https://developer.apple.com/documentation/uikit/uiwindow/iskeywindow) property to determine its status. Most of the time, your app’s main window is the key window, but UIKit may designate a different window as needed.
+    ///
+    /// If you need to know which window is key, observe the [`UIWindowDidBecomeKeyNotification`](https://developer.apple.com/documentation/uikit/uiwindow/didbecomekeynotification) and [`UIWindowDidResignKeyNotification`](https://developer.apple.com/documentation/uikit/uiwindow/didresignkeynotification) notifications. The system sends those notifications on the main actor in response to key window changes in your app. To force a window become key, or to force a window to resign the key status, call the appropriate methods of this class.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -255,7 +299,13 @@ impl UIWindow {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutguideaspectfitting?language=objc)
+    /// The interface for a layout guide that supports a particular aspect ratio.
+    ///
+    /// ## Overview
+    ///
+    /// The [`safeAreaAspectFitLayoutGuide`](https://developer.apple.com/documentation/uikit/uiwindow/safeareaaspectfitlayoutguide) property adopts this protocol to provide a layout guide for placing media content of a particular aspect ratio.
+    ///
+    ///
     pub unsafe trait UILayoutGuideAspectFitting: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         /// Update the aspect ratio (width / height) for the given content
@@ -296,112 +346,307 @@ impl UIWindow {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level/normal?language=objc)
+    /// The default level.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this level for the majority of your content, including for your app’s main window.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIWindowLevelNormal: UIWindowLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level/alert?language=objc)
+    /// The level for an alert view.
+    ///
+    /// ## Discussion
+    ///
+    /// Windows at this level appear on top of the status bar.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIWindowLevelAlert: UIWindowLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level/statusbar?language=objc)
+    /// The level for a status window.
+    ///
+    /// ## Discussion
+    ///
+    /// Windows at this level appear on top of your app’s main window, but below alerts.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIWindowLevelStatusBar: UIWindowLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didbecomevisiblenotification?language=objc)
+    /// A notification that posts when a window becomes visible.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the visible window. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// Switching between apps doesn’t generate visibility-related notifications for windows. Window visibility changes reflect changes to the window’s [`hidden`](https://developer.apple.com/documentation/uikit/uiview/ishidden) property and reflect only the window’s visibility within the app.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static UIWindowDidBecomeVisibleNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didbecomehiddennotification?language=objc)
+    /// A notification that posts when a window becomes hidden.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the hidden window. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// Switching between apps doesn’t generate visibility-related notifications for windows. Window visibility changes reflect changes to the window’s [`hidden`](https://developer.apple.com/documentation/uikit/uiview/ishidden) property and reflect only the window’s visibility within the app.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static UIWindowDidBecomeHiddenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didbecomekeynotification?language=objc)
+    /// A notification that posts whenever a window becomes the key window.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the window that became key. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the main actor. In iOS 15 and later, the system posts this notification when the window becomes the key window of its scene. In iOS 14 and earlier, the system posts this notification when the window becomes the key window of the app.
+    ///
+    ///
     pub static UIWindowDidBecomeKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didresignkeynotification?language=objc)
+    /// A notification that posts whenever a window resigns its status as main window.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the window that resigned its main window status. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the main actor. In iOS 15 and later, the system posts this notification when the window is no longer the key window of its scene. In iOS 14 and earlier, the system posts this notification when the window is no longer the key window of the app.
+    ///
+    ///
     pub static UIWindowDidResignKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardwillshownotification?language=objc)
+    /// A notification that posts immediately prior to displaying the keyboard.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 16.1 and later, the notification object is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that the keyboard appears on. In earlier versions of iOS, the notification object is `nil`.
+    ///
+    /// The `userInfo` dictionary contains information about the keyboard. To get the location and size of the keyboard from the `userInfo` dictionary, use [`UIKeyboardFrameBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey) and [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The system posts this notification on the main actor. An app running in visionOS never receives this notification. The system displays the keyboard in a separate window, leaving the app’s window unaffected by the keyboard’s appearance and disappearance.
+    ///
+    ///
     pub static UIKeyboardWillShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboarddidshownotification?language=objc)
+    /// A notification that posts immediately after displaying the keyboard.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 16.1 and later, the notification object is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that the keyboard appears on. In earlier versions of iOS, the notification object is `nil`.
+    ///
+    /// The `userInfo` dictionary contains information about the keyboard. To get the location and size of the keyboard from the `userInfo` dictionary, use [`UIKeyboardFrameBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey) and [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The system posts this notification on the main actor. An app running in visionOS never receives this notification. The system displays the keyboard in a separate window, leaving the app’s window unaffected by the keyboard’s appearance and disappearance.
+    ///
+    ///
     pub static UIKeyboardDidShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardwillhidenotification?language=objc)
+    /// A notification that posts immediately prior to dismissing the keyboard.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 16.1 and later, the notification object is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that the keyboard appears on. In earlier versions of iOS, the notification object is `nil`.
+    ///
+    /// The `userInfo` dictionary contains information about the keyboard. To get the location and size of the keyboard from the `userInfo` dictionary, use [`UIKeyboardFrameBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey) and [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The system posts this notification on the main actor. An app running in visionOS never receives this notification. The system displays the keyboard in a separate window, leaving the app’s window unaffected by the keyboard’s appearance and disappearance.
+    ///
+    ///
     pub static UIKeyboardWillHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboarddidhidenotification?language=objc)
+    /// A notification that posts immediately after dismissing the keyboard.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 16.1 and later, the notification object is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that the keyboard appears on. In earlier versions of iOS, the notification object is `nil`.
+    ///
+    /// The `userInfo` dictionary contains information about the keyboard. To get the location and size of the keyboard from the `userInfo` dictionary, use [`UIKeyboardFrameBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey) and [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The system posts this notification on the main actor. An app running in visionOS never receives this notification. The system displays the keyboard in a separate window, leaving the app’s window unaffected by the keyboard’s appearance and disappearance.
+    ///
+    ///
     pub static UIKeyboardDidHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey?language=objc)
+    /// A user info key to retrieve the keyboard’s frame at the beginning of its animation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) for identifying the frame rectangle of the keyboard (in the screen’s coordinate space) before animating the keyboard. The frame rectangle reflects the current orientation of the device.
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    ///
     pub static UIKeyboardFrameBeginUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey?language=objc)
+    /// A user info key to retrieve the keyboard’s frame at the end of its animation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) for identifying the frame rectangle of the keyboard (in the screen’s coordinate space) after animating the keyboard. The frame rectangle reflects the current orientation of the device.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Instead of using this key to track the keyboard’s frame, consider using [`UIKeyboardLayoutGuide`](https://developer.apple.com/documentation/uikit/uikeyboardlayoutguide), which allows you to respond dynamically to keyboard movement in your app. For more information, see [Adjusting your layout with keyboard layout guide](https://developer.apple.com/documentation/uikit/adjusting-your-layout-with-keyboard-layout-guide).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. The following code example shows how to convert from the screen’s coordinate space to your view’s coordinate space:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["guard let userInfo = notification.userInfo else { return }", "", "// In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.", "guard let screen = notification.object as? UIScreen,", "      // Get the keyboard’s frame at the end of its animation.", "      let keyboardFrameEnd = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }", "", "// Use that screen to get the coordinate space to convert from.", "let fromCoordinateSpace = screen.coordinateSpace", "", "// Get your view's coordinate space.", "let toCoordinateSpace: UICoordinateSpace = view", "", "// Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.", "let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDictionary *userInfo = [notification userInfo];", "", "// Get the keyboard’s frame at the end of its animation.", "CGRect keyboardFrameEnd = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];", "", "// In iOS 16.1 and later, the keyboard notification object is the screen the keyboard appears on.", "// Use that screen to get the coordinate space to convert from.", "id<UICoordinateSpace> fromCoordinateSpace = [(UIScreen *)notification.object coordinateSpace];", "", "// Get your view's coordinate space.", "id<UICoordinateSpace> toCoordinateSpace = self.view;", "", "// Convert the keyboard's frame from the screen's coordinate space to your view's coordinate space.", "keyboardFrameEnd = [fromCoordinateSpace convertRect:keyboardFrameEnd toCoordinateSpace:toCoordinateSpace];"], metadata: None }] }] })
+    /// The keyboard might overlap only part of your view, so after you convert the frame to your view’s coordinate space, get the intersection of the keyboard’s frame and the view or window it overlaps. Getting the intersection allows you to work with only the portion of the keyboard that overlaps your view. You can use this value to offset your views or perform other necessary updates to your UI. The following code example shows how to offset the bottom of your view the appropriate distance in relation to the keyboard’s frame:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Get the safe area insets when the keyboard is offscreen.", "var bottomOffset = view.safeAreaInsets.bottom", "    ", "// Get the intersection between the keyboard's frame and the view's bounds to work with the", "// part of the keyboard that overlaps your view.", "let viewIntersection = view.bounds.intersection(convertedKeyboardFrameEnd)", "    ", "// Check whether the keyboard intersects your view before adjusting your offset.", "if !viewIntersection.isEmpty {", "        ", "    // Adjust the offset by the difference between the view's height and the height of the", "    // intersection rectangle.", "    bottomOffset = view.bounds.maxY - viewIntersection.minY", "}", "", "// Use the new offset to adjust your UI, for example by changing a layout guide, offsetting", "// your view, changing a scroll inset, and so on. This example uses the new offset to update", "// the value of an existing Auto Layout constraint on the view.", "movingBottomConstraint.constant = bottomOffset"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Get the safe area insets when the keyboard is offscreen.", "CGFloat bottomOffset = self.view.safeAreaInsets.bottom;", "", "// Get the intersection between the keyboard's frame and the view's bounds to work with the", "// part of the keyboard that overlaps your view.", "CGRect viewIntersection = CGRectIntersection(self.view.bounds, keyboardFrameEnd);", "", "// Check whether the keyboard intersects your view before adjusting your offset.", "if (!CGRectIsEmpty(viewIntersection)) {", "", "    // Adjust the offset by the difference between the view's height and the height of the", "    // intersection rectangle.", "    bottomOffset = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(viewIntersection);", "}", "", "// Use the new offset to adjust your UI, for example by changing a layout guide, offsetting", "// your view, changing a scroll inset, and so on. This example uses the new offset to update", "// the value of an existing Auto Layout constraint on the view.", "self.movingBottomConstraint.constant = bottomOffset;"], metadata: None }] }] })
+    ///
     pub static UIKeyboardFrameEndUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardanimationdurationuserinfokey?language=objc)
+    /// A user info key to retrieve the duration of the keyboard animation in seconds.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a `double` that represents the duration of the keyboard animation in seconds. You can use this value to match the animation of the keyboard in your own animations.
+    ///
+    /// For an example of how to match the keyboard’s animation, see [`UIKeyboardAnimationCurveUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardanimationcurveuserinfokey).
+    ///
+    ///
     pub static UIKeyboardAnimationDurationUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardanimationcurveuserinfokey?language=objc)
+    /// A user info key to retrieve the animation curve that the system uses to animate the keyboard onto or off the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a [`UIViewAnimationCurve`](https://developer.apple.com/documentation/uikit/uiview/animationcurve) constant used to determine how the system animates the keyboard onto or off the screen. You can use this value to match the animation of the keyboard in your own animations.
+    ///
+    /// Before using this value, convert the animation curve constant to [`UIViewAnimationOptions`](https://developer.apple.com/documentation/uikit/uiview/animationoptions), which you can pass to one of UIKit’s animation methods, such as [`animateWithDuration:animations:completion:`](https://developer.apple.com/documentation/uikit/uiview/animate(withduration:animations:completion:)).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Get the animation curve constant and the duration for your animation.", "guard let animationCurve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,", "      let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }", "", "// Convert the animation curve constant to animation options.", "let animationOptions = UIView.AnimationOptions(rawValue: animationCurve << 16)", "", "// Perform your animation.", "UIView.animate(withDuration: animationDuration,", "               delay: 0,", "               options: animationOptions) {", "    // Specify what to animate. For example, calling layoutIfNeeded animates a change to", "    // the view's constraints.", "    self.view.layoutIfNeeded()", "} completion: { _ in", "    // Use the completion handler to perform anything that needs to happen after the keyboard", "    // frame finishes animating, such as scrolling your text view after the animation completes.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Convert the animation curve constant to animation options.", "UIViewAnimationOptions options = (UIViewAnimationOptions)[[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey]", "                          integerValue] << 16;", "", "// Get the duration for your animation.", "CGFloat duration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];", "", "// Perform your animation.", "[UIView animateWithDuration:duration", "                      delay:0.0", "                    options:options", "                 animations:^{", "    // Specify what to animate. For example, calling layoutIfNeeded animates a change ", "    // to the view's constraints.", "    [self.view layoutIfNeeded]; ", "}", "                 completion:^(BOOL finished) {", "    // Use the completion handler to perform anything that needs to happen after the keyboard", "    // frame finishes animating, such as scrolling your text view after the animation completes.", "}];"], metadata: None }] }] })
+    ///
     pub static UIKeyboardAnimationCurveUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardislocaluserinfokey?language=objc)
+    /// A user info key to retrieve a Boolean value that indicates whether the keyboard belongs to the current app.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value that indicates whether the keyboard belongs to the current app. With Multitasking in iPadOS, the system notifies all visible apps when the keyboard appears and disappears. The value is [`true`](https://developer.apple.com/documentation/swift/true) for the app that caused the keyboard to appear and [`false`](https://developer.apple.com/documentation/swift/false) for the other apps.
+    ///
+    ///
     pub static UIKeyboardIsLocalUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardwillchangeframenotification?language=objc)
+    /// A notification that posts immediately prior to a change in the keyboard’s frame.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 16.1 and later, the notification object is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that the keyboard appears on. In earlier versions of iOS, the notification object is `nil`.
+    ///
+    /// The `userInfo` dictionary contains information about the keyboard. To get the location and size of the keyboard from the `userInfo` dictionary, use [`UIKeyboardFrameBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey) and [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The system posts this notification on the main actor. An app running in visionOS never receives this notification. The system displays the keyboard in a separate window, leaving the app’s window unaffected by changes to the keyboard.
+    ///
+    ///
     pub static UIKeyboardWillChangeFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboarddidchangeframenotification?language=objc)
+    /// A notification that posts immediately after a change in the keyboard’s frame.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 16.1 and later, the notification object is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that the keyboard appears on. In earlier versions of iOS, the notification object is `nil`.
+    ///
+    /// The `userInfo` dictionary contains information about the keyboard. To get the location and size of the keyboard from the `userInfo` dictionary, use [`UIKeyboardFrameBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey) and [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The keyboard’s frame uses the screen’s coordinate space, which is different than the coordinate space of your views. Although they might sometimes match, such as when your app is full screen, they might be different when your app isn’t full screen, such as in Split View, Slide Over, and Stage Manager. This means you need to account for this difference by converting the keyboard’s frame from the screen’s coordinate space to that of your views. For an example of how to handle this conversion, see [`UIKeyboardFrameEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey).
+    ///
+    /// The system posts this notification on the main actor. An app running in visionOS never receives this notification. The system displays the keyboard in a separate window, leaving the app’s window unaffected by changes to the keyboard.
+    ///
+    ///
     pub static UIKeyboardDidChangeFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardcenterbeginuserinfokey?language=objc)
+    /// A user info key to retrieve the center point of the keyboard before its animation begins.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing a [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) that identifies the keyboard’s center point, in the window’s coordinate space, before its animation begins. These coordinates take into account any rotation factors applied to the window’s contents as a result of interface orientation changes. Thus, the center point of the keyboard is different in portrait versus landscape orientations.
+    ///
+    ///
     #[deprecated]
     pub static UIKeyboardCenterBeginUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardcenterenduserinfokey?language=objc)
+    /// A user info key to retrieve the center point of the keyboard after its animation completes.
+    ///
+    /// ## Discussion
+    ///
+    /// The value retrieved with this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing a [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) indicating the keyboard’s center point, in the window’s coordinate space, after its animation ends. These coordinates take into account any rotation factors applied to the window’s contents as a result of interface orientation changes. Thus, the center point of the keyboard is different in portrait versus landscape orientations.
+    ///
+    ///
     #[deprecated]
     pub static UIKeyboardCenterEndUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardboundsuserinfokey?language=objc)
+    /// A user info key to retrieve the bounds of the keyboard.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) that identifies the bounds rectangle of the keyboard in the window coordinate space. This value is sufficient for obtaining the size of the keyboard. If you want to get the origin of the keyboard on the screen (before or after animation), use the values obtained from the user info dictionary through the [`UIKeyboardCenterBeginUserInfoKey`](https://developer.apple.com/documentation/uikit/uikeyboardcenterbeginuserinfokey) or [`UIKeyboardCenterEndUserInfoKey`](https://developer.apple.com/documentation/uikit/uikeyboardcenterenduserinfokey) constants.
+    ///
+    ///
     #[deprecated]
     pub static UIKeyboardBoundsUserInfoKey: &'static NSString;
 }

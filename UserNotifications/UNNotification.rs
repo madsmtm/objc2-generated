@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotification?language=objc)
+    /// The data for a local or remote notification the system delivers to your app.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UNNotification`](https://developer.apple.com/documentation/usernotifications/unnotification) object contains the initial notification request, which contains the notification’s payload, and the date that the system delivered the notification.
+    ///
+    /// Don’t create notification objects directly. When handling notifications, the system delivers notification objects to your [`UNUserNotificationCenterDelegate`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate) object. The [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) object also maintains the list of notifications that the system delivers, and you use the [`getDeliveredNotificationsWithCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/getdeliverednotifications(completionhandler:)) method to retrieve those objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotification;

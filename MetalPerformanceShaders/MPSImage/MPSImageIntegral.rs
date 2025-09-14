@@ -8,6 +8,22 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that calculates the sum of pixels over a specified region in an image.
+    ///
+    /// ## Overview
+    ///
+    /// The value at each position is the sum of all pixels in a source image rectangle, `sumRect.` The following listing shows the pseudocode used to calculate `sumRect`.
+    ///
+    /// Listing 1. Pseudocode for sumRect
+    ///
+    /// ```objc
+    /// sumRect.origin = filter.offset
+    /// sumRect.size = dest_position - filter.clipRect.origin
+    /// ```
+    ///
+    /// If the channels in the source image are normalized, half-float or floating values, the destination image is recommended to be a 32-bit floating-point image. If the channels in the source image are integer values, it is recommended that an appropriate 32-bit integer image destination format is used.
+    ///
+    ///
     /// The MPSImageIntegral calculates the sum of pixels over a specified region in the image.
     /// The value at each position is the sum of all pixels in a source image rectangle, sumRect:
     ///
@@ -20,8 +36,6 @@ extern_class!(
     /// an appropriate 32-bit integer image destination format is used.
     ///
     /// This kernel accepts uint and int textures in addition to unorm and floating-point textures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageintegral?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -143,6 +157,22 @@ impl MPSImageIntegral {
 }
 
 extern_class!(
+    /// A filter that calculates the sum of squared pixels over a specified region in an image.
+    ///
+    /// ## Overview
+    ///
+    /// The value at each position is the sum of all squared pixels in a source image rectangle, `sumRect.` The following listing shows the pseudocode used to calculate `sumRect`.
+    ///
+    /// Listing 1. Pseudocode for sumRect
+    ///
+    /// ```other
+    /// sumRect.origin = filter.offset
+    /// sumRect.size = dest_position - filter.clipRect.origin
+    /// ```
+    ///
+    /// If the channels in the source image are normalized, half-float or floating values, the destination image is recommended to be a 32-bit floating-point image. If the channels in the source image are integer values, it is recommended that an appropriate 32-bit integer image destination format is used.
+    ///
+    ///
     /// The MPSImageIntegralOfSquares calculates the sum of squared pixels over a specified region in the image.
     /// The value at each position is the sum of all squared pixels in a source image rectangle, sumRect:
     ///
@@ -155,8 +185,6 @@ extern_class!(
     /// an appropriate 32-bit integer image destination format is used.
     ///
     /// This kernel accepts uint and int textures in addition to unorm and floating-point textures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageintegralofsquares?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

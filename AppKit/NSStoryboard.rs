@@ -6,19 +6,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard/name?language=objc)
+/// The name of the storyboard file.
 pub type NSStoryboardName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard/sceneidentifier?language=objc)
+/// A string that uniquely identifies a view controller or window controller in your storyboard file.
+///
+/// ## Discussion
+///
+/// Set scene identifiers in your storyboard by assigning a value to the Storyboard ID attribute.
+///
+///
 pub type NSStoryboardSceneIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardcontrollercreator?language=objc)
+/// A block that you use to handle the custom creation of controller objects from your storyboard file.
+///
+/// Parameters:
+/// - coder: The coder object containing the storyboard data to use when configuring the window controller.
+///
+///
+/// ## Discussion
+///
+/// Use your block to construct a window or view controller using a custom initialization method. Your custom method must accept an [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) object as one of its parameters, and it may include other parameters that you need to initialize the contents of the object. The implementation of your method must call the inherited [`init(coder:)`](https://developer.apple.com/documentation/appkit/nsresponder/init(coder:)) method at some point during its execution. Not doing so is a programmer error.
+///
+///
 #[cfg(feature = "block2")]
 pub type NSStoryboardControllerCreator =
     *mut block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard?language=objc)
+    /// An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file.
+    ///
+    /// ## Overview
+    ///
+    /// You can use storyboard files to define the view and window controllers for all or part of an app’s user interface. Typically, AppKit creates these objects automatically in response to actions defined within a storyboard file itself, such as the clicking of a button or the choosing of a menu item. However, you can use a storyboard object to directly instantiate the initial view controller from a storyboard file or to instantiate other view or window controllers that you want to present programmatically. In the context of a storyboard file, each contained controller is called a _scene_.
+    ///
+    /// A transition from one scene to another in a storyboard is called a _segue_. This same term, and the same Cocoa APIs, express a containment relationship between two scenes. In macOS, containment (rather than transition) is the more common notion for storyboards. For descriptions of the related APIs, refer to [`NSStoryboardSegue`](https://developer.apple.com/documentation/appkit/nsstoryboardsegue) and [`NSSeguePerforming`](https://developer.apple.com/documentation/appkit/nssegueperforming).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboard;

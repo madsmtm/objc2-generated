@@ -7,19 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype?language=objc)
+/// Classifications that reflect the type of identity document.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddIdentityDocumentType(pub NSInteger);
 impl PKAddIdentityDocumentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype/idcard?language=objc)
+    /// A generic pass that represents a person’s identification.
     #[doc(alias = "PKAddIdentityDocumentTypeIDCard")]
     pub const IDCard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype/mdl?language=objc)
+    /// A pass that represents a driver’s license or government-issued identification.
+    ///
+    /// ## Discussion
+    ///
+    /// The `mDL` identification type is `ISO 18013`-compliant.
+    ///
+    ///
     #[doc(alias = "PKAddIdentityDocumentTypeMDL")]
     pub const MDL: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype/photoid?language=objc)
+    /// A pass to use for personal identification.
     #[doc(alias = "PKAddIdentityDocumentTypePhotoID")]
     pub const PhotoID: Self = Self(2);
 }
@@ -33,7 +39,13 @@ unsafe impl RefEncode for PKAddIdentityDocumentType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentitydocumentmetadata?language=objc)
+    /// A set of configured metadata that defines the required information to add the corresponding pass to Wallet.
+    ///
+    /// ## Overview
+    ///
+    /// This class contains the required and optional metadata you need to configure a pass. It’s similar to [`PKShareablePassMetadata`](https://developer.apple.com/documentation/passkit/pkshareablepassmetadata).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityDocumentMetadata;
@@ -102,7 +114,39 @@ impl PKIdentityDocumentMetadata {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumentmetadata?language=objc)
+    /// The object for specifying the metadata necessary to provision identity documents.
+    ///
+    /// ## Overview
+    ///
+    /// After creating a [`PKAddIdentityDocumentMetadata`](https://developer.apple.com/documentation/passkit/pkaddidentitydocumentmetadata) object, you can verify whether an identity document already exists for the specified [`issuingCountryCode`](https://developer.apple.com/documentation/passkit/pkidentitydocumentmetadata/issuingcountrycode) and  [`documentType`](https://developer.apple.com/documentation/passkit/pkidentitydocumentmetadata/documenttype).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class requires a special entitlement from Apple. Your app needs to include that entitlement before you can use this API.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The following example shows how to create a metadata object:
+    ///
+    /// ```swift
+    /// let previewIdentityPass = PKAddPassMetadataPreview(
+    ///                   passThumbnail: passThumbnail,
+    ///                   localizedDescription: localizedDescription
+    ///               )
+    ///
+    /// let identityMetadata = PKAddIdentityDocumentMetadata(
+    ///     provisioningCredentialIdentifier: credentialIdentifier,
+    ///     sharingInstanceIdentifier: sharingInstanceIdentifier,
+    ///     cardTemplateIdentifier: templateIdentifier,
+    ///     issuingCountryCode: "US",
+    ///     documentType: .mDL,
+    ///     previewIdentityPass: previewIdentityPass
+    /// )
+    /// ```
+    ///
+    ///
     #[unsafe(super(PKIdentityDocumentMetadata, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKAddIdentityDocumentMetadata;
@@ -158,7 +202,13 @@ impl PKAddIdentityDocumentMetadata {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkjapanindividualnumbercardmetadata?language=objc)
+    /// A class that contains metadata indicating the specific product instance to provision.
+    ///
+    /// ## Overview
+    ///
+    /// This class is similar to [`PKShareablePassMetadata`](https://developer.apple.com/documentation/passkit/pkshareablepassmetadata).
+    ///
+    ///
     #[unsafe(super(PKIdentityDocumentMetadata, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKJapanIndividualNumberCardMetadata;
@@ -258,7 +308,13 @@ impl PKJapanIndividualNumberCardMetadata {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumentconfiguration?language=objc)
+    /// Configuration to define the identity document.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class for identity document passes. You provide the underlying metadata that defines the passes.
+    ///
+    ///
     #[unsafe(super(PKAddSecureElementPassConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKAddSecureElementPassConfiguration")]

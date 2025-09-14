@@ -11,9 +11,18 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// SFCertificateView is a NSView that displays the contents of a certificate.
+    /// A view that displays the contents of a certificate, with options to display certificate details, display trust settings, and allow users to edit a certificate’s trust settings.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfcertificateview?language=objc)
+    /// ## Overview
+    ///
+    /// The following figure shows a certificate view that includes editable trust settings and certificate details.
+    ///
+    ///
+    /// ![Certificate view](https://docs-assets.developer.apple.com/published/bd8edd7bcf22321f8b84c87b057c8d5c/media-1965608.jpg)
+    ///
+    ///
+    ///
+    /// SFCertificateView is a NSView that displays the contents of a certificate.
     #[unsafe(super(NSVisualEffectView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFCertificateView;
@@ -220,6 +229,11 @@ impl SFCertificateView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfcertificateviewdisclosurestatedidchange?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Sent when the disclosure triangle is opened or closed.
+    ///
+    ///
     pub static SFCertificateViewDisclosureStateDidChange: Option<&'static NSString>;
 }

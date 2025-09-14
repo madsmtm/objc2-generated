@@ -7,18 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the direction to search for an item result.
 /// Direction to search for an NSAccessibilityCustomRotorItemResult.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityCustomRotorSearchDirection(pub NSInteger);
 impl NSAccessibilityCustomRotorSearchDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchdirection/previous?language=objc)
+    /// The previous search item.
     #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionPrevious")]
     pub const Previous: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchdirection/next?language=objc)
+    /// The next search item.
     #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionNext")]
     pub const Next: Self = Self(1);
 }
@@ -31,80 +30,78 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate the type of content that the rotor represents.
 /// Use NSAccessibilityCustomRotorType when providing results for the
 /// following types. This allows assistive technologies to assign keyboard
 /// commands and gestures for these common search types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityCustomRotorType(pub NSInteger);
 impl NSAccessibilityCustomRotorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/custom?language=objc)
+    /// A rotor with a custom label.
     #[doc(alias = "NSAccessibilityCustomRotorTypeCustom")]
     pub const Custom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/any?language=objc)
+    /// Any type of item.
     #[doc(alias = "NSAccessibilityCustomRotorTypeAny")]
     pub const Any: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/annotation?language=objc)
+    /// An annotation.
     #[doc(alias = "NSAccessibilityCustomRotorTypeAnnotation")]
     pub const Annotation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/boldtext?language=objc)
+    /// Any bold text.
     #[doc(alias = "NSAccessibilityCustomRotorTypeBoldText")]
     pub const BoldText: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/heading?language=objc)
+    /// Any heading-level text.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeading")]
     pub const Heading: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel1?language=objc)
+    /// A first-level heading.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel1")]
     pub const HeadingLevel1: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel2?language=objc)
+    /// A second-level heading.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel2")]
     pub const HeadingLevel2: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel3?language=objc)
+    /// A third-level heading.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel3")]
     pub const HeadingLevel3: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel4?language=objc)
+    /// A fourth-level heading.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel4")]
     pub const HeadingLevel4: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel5?language=objc)
+    /// A fifth-level heading.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel5")]
     pub const HeadingLevel5: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/headinglevel6?language=objc)
+    /// A sixth-level heading.
     #[doc(alias = "NSAccessibilityCustomRotorTypeHeadingLevel6")]
     pub const HeadingLevel6: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/image?language=objc)
+    /// An image.
     #[doc(alias = "NSAccessibilityCustomRotorTypeImage")]
     pub const Image: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/italictext?language=objc)
+    /// Any italicized text.
     #[doc(alias = "NSAccessibilityCustomRotorTypeItalicText")]
     pub const ItalicText: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/landmark?language=objc)
+    /// A landmark.
     #[doc(alias = "NSAccessibilityCustomRotorTypeLandmark")]
     pub const Landmark: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/link?language=objc)
+    /// A link.
     #[doc(alias = "NSAccessibilityCustomRotorTypeLink")]
     pub const Link: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/list?language=objc)
+    /// A list of items.
     #[doc(alias = "NSAccessibilityCustomRotorTypeList")]
     pub const List: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/misspelledword?language=objc)
+    /// A misspelled word.
     #[doc(alias = "NSAccessibilityCustomRotorTypeMisspelledWord")]
     pub const MisspelledWord: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/table?language=objc)
+    /// A table of information.
     #[doc(alias = "NSAccessibilityCustomRotorTypeTable")]
     pub const Table: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/textfield?language=objc)
+    /// A text field.
     #[doc(alias = "NSAccessibilityCustomRotorTypeTextField")]
     pub const TextField: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/underlinedtext?language=objc)
+    /// Any underlined text.
     #[doc(alias = "NSAccessibilityCustomRotorTypeUnderlinedText")]
     pub const UnderlinedText: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/visitedlink?language=objc)
+    /// A visited link.
     #[doc(alias = "NSAccessibilityCustomRotorTypeVisitedLink")]
     pub const VisitedLink: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype/audiograph?language=objc)
     #[doc(alias = "NSAccessibilityCustomRotorTypeAudiograph")]
     pub const Audiograph: Self = Self(21);
 }
@@ -118,10 +115,17 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorType {
 }
 
 extern_class!(
+    /// A context-sensitive function that helps VoiceOver users find the next instance of a related accessibility element.
+    ///
+    /// ## Overview
+    ///
+    /// Assistive apps, like VoiceOver, provide interfaces to quickly search apps for content of a specific type. For example, in a web browser, a user can quickly explore a list of navigational links or buttons using VoiceOver’s content menus.
+    ///
+    /// [`NSAccessibilityCustomRotor`](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor) provides a way for apps to vend their own content menus. For example, Pages can create a _Headings_ custom rotor that allows assistive apps to search the Pages document for all headings.
+    ///
+    ///
     /// NSAccessibilityCustomRotors allow assistive technologies, like
     /// VoiceOver, to search applications for content related to the given label.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotor;
@@ -250,11 +254,16 @@ impl DefaultRetained for NSAccessibilityCustomRotor {
 }
 
 extern_class!(
+    /// Search parameters for a custom rotor.
+    ///
+    /// ## Overview
+    ///
+    /// Use these parameters to determine the next matching [`NSAccessibilityCustomRotorItemResult`](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemresult).
+    ///
+    ///
     /// NSAccessibilityCustomRotorSearchParameters is a container for
     /// search parameters. It should be examined to determine the next matching
     /// NSAccessibilityCustomRotorItemResult.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorSearchParameters;
@@ -330,10 +339,9 @@ impl DefaultRetained for NSAccessibilityCustomRotorSearchParameters {
 }
 
 extern_class!(
+    /// A target accessibility element that a custom rotor references.
     /// NSAccessibilityCustomRotorItemResults are the objects returned
     /// to assistive technologies that match a search parameter criteria.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorItemResult;
@@ -428,7 +436,7 @@ impl NSAccessibilityCustomRotorItemResult {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemsearchdelegate?language=objc)
+    /// A delegate for a custom rotor that finds the next item result after performing a search with the specified search parameters.
     pub unsafe trait NSAccessibilityCustomRotorItemSearchDelegate: NSObjectProtocol {
         /// Returns the found NSAccessibilityCustomRotorItemResult after
         /// performing a search with the given search parameters.

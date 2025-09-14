@@ -9,6 +9,29 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A spatial normalization kernel.
+    ///
+    /// ## Overview
+    ///
+    /// The spatial normalization for a feature channel applies the kernel over local regions which extend spatially, but are in separate feature channels (i.e., they have the shape `1 x kernel width x kernel height`).
+    ///
+    /// For each feature channel, the function computes the sum of squares of `X` inside each rectangle, `N2(i,j)`. It then divides each element of `X` as follows:
+    ///
+    ///
+    /// ![Y(i,j) = X(i,j) / (delta + alpha/(kw*kh) * N2(i,j))^beta](https://docs-assets.developer.apple.com/published/ac698d749cc4e24dd6eac74538c7a877/media-2903551%402x.png)
+    ///
+    ///
+    /// Where `kw` and `kh` are the values of the `kernelWidth` and `kernelHeight` properties, respectively. It is your responsibility to ensure that the combination of the values of the [`delta`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta) and [`alpha`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha) `kernelWidth` `kernelHeight` properties does not result in a situation where the denominator becomes zero (in such situations the resulting pixel-value is undefined).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The encoding methods in the [`MPSUnaryImageKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel) class can be used to encode an [`MPSCNNSpatialNormalization`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization) object to a [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the spatial normalization filter.
@@ -21,8 +44,6 @@ extern_class!(
     /// It is the end-users responsibility to ensure that the combination of the
     /// parameters delta and alpha does not result in a situation where the denominator
     /// becomes zero - in such situations the resulting pixel-value is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -181,6 +202,7 @@ impl MPSCNNSpatialNormalization {
 }
 
 extern_class!(
+    /// A gradient spatial normalization kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the spatial normalization gradient filter.
@@ -204,8 +226,6 @@ extern_class!(
     /// K(j) = [j-floor((kh-1)/2), j+floor(kh/2]
     ///
     /// For correct gradient computation all parameters must be the same as the original normalization filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -377,6 +397,29 @@ impl MPSCNNSpatialNormalizationGradient {
 }
 
 extern_class!(
+    /// A local-contrast normalization kernel.
+    ///
+    /// ## Overview
+    ///
+    /// The local contrast normalization kernel is quite similar to the spatial normalization kernel, described in the [`MPSCNNSpatialNormalization`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization) class, in that it applies the kernel over local regions which extend spatially, but are in separate feature channels (i.e., they have the shape `1 x kernel width x kernel height`). However, instead of dividing by the local “energy” of the feature, the denominator uses the local variance of the feature - effectively the mean value of the feature is subtracted from the signal. For each feature channel, the function computes the variance `VAR(i,j)` and mean `M(i,j)` of `X(i,j)` inside each rectangle around the spatial point `(i,j)`. Then the result is computed for each element of `X` as follows:
+    ///
+    ///
+    /// ![Y(i,j) = pm + ps * ( X(i,j) - p0 * M(i,j)) / (delta + alpha * VAR(i,j))^beta](https://docs-assets.developer.apple.com/published/7689db69d813a580cdcea8dc6892d42e/media-2903532%402x.png)
+    ///
+    ///
+    /// Where `kw` and `kh` are the values of the `kernelWidth` and the `kernelHeight` properties, respectively, and the values of the [`pm`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization/pm), [`ps`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization/ps), and [`p0`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization/p0) properties can be used to offset and scale the result in various ways. For example setting `pm=0`, `ps=1`, `p0=1`, `delta=0`, `alpha=1.0` and `beta=0.5` scales input data so that the result has unit variance and zero mean, provided that input variance is positive.
+    ///
+    /// It is your responsibility to ensure that the combination of the values of the [`delta`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization/delta) and [`alpha`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization/alpha) properties does not result in a situation where the denominator becomes zero - in such situations the resulting pixel-value is undefined. A good way to guard against tiny variances is to regulate the expression with a small delta value, for example `delta=1/1024`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  The encoding methods in the [`MPSUnaryImageKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel) class can be used to encode an [`MPSCNNLocalContrastNormalization`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization) object to a [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the local contrast normalization filter.
@@ -402,8 +445,6 @@ extern_class!(
     /// becomes zero - in such situations the resulting pixel-value is undefined. A good way to guard
     /// against tiny variances is to regulate the expression with a small value for delta, for example
     /// delta = 1/1024 = 0.0009765625.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -598,6 +639,7 @@ impl MPSCNNLocalContrastNormalization {
 }
 
 extern_class!(
+    /// A gradient local-contrast normalization kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the local contrast normalization gradient filter.
@@ -634,8 +676,6 @@ extern_class!(
     /// K(j) = [j-floor((kh-1)/2), j+floor(kh/2]
     ///
     /// For correct gradient computation all parameters must be the same as the original normalization filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -843,6 +883,41 @@ impl MPSCNNLocalContrastNormalizationGradient {
 }
 
 extern_class!(
+    /// A normalization kernel applied across feature channels.
+    ///
+    /// ## Overview
+    ///
+    /// The normalization kernel applies the kernel to a local region across nearby feature channels, but with no spatial extent (i.e., they have the shape `kernel size x 1 x 1`). The normalized output is given by the function:
+    ///
+    ///
+    /// ![Y(i,j,k) = X(i,j,k) / L(i,j,k)^beta](https://docs-assets.developer.apple.com/published/f66797aefdbb329df3e06f395e9e8132/media-2903526%402x.png)
+    ///
+    ///
+    /// Where the normalizing factor is:
+    ///
+    ///
+    /// ![L(i,j,k) = delta + alpha/N * (sum_{q in Q(k)} X(i,j,q)^2](https://docs-assets.developer.apple.com/published/bad73469577ab8a5b0bf214cb956e041/media-2903524%402x.png)
+    ///
+    ///
+    /// Where `N` is the kernel size. The window `Q(k)` itself is defined as:
+    ///
+    ///
+    /// ![Q(k) = [max(0, k-floor(N/2)), min(D-1, k+floor((N-1)/2)]](https://docs-assets.developer.apple.com/published/75894c30e3ac24a2ee6081729351aba4/media-2903527%402x.png)
+    ///
+    ///
+    /// Where `k` is the feature channel index (running from 0 to `D-1`) and `D` is the number of feature channels, and the values of [`alpha`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization/alpha), [`beta`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization/beta), and [`delta`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization/delta) are set via properties.
+    ///
+    /// It is your responsibility to ensure that the combination of the values of the [`delta`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization/delta) and [`alpha`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization/alpha) properties does not result in a situation where the denominator becomes zero - in such situations the resulting pixel-value is undefined.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The encoding methods in the [`MPSUnaryImageKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel) class can be used to encode an [`MPSCNNCrossChannelNormalization`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization) object to a [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the normalization filter across feature channels.
@@ -860,8 +935,6 @@ extern_class!(
     /// It is the end-users responsibility to ensure that the combination of the
     /// parameters delta and alpha does not result in a situation where the denominator
     /// becomes zero - in such situations the resulting pixel-value is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1020,6 +1093,7 @@ impl MPSCNNCrossChannelNormalization {
 }
 
 extern_class!(
+    /// A gradient normalization kernel applied across feature channels.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the normalization gradient filter across feature channels.
@@ -1044,8 +1118,6 @@ extern_class!(
     /// R(k) = [max(0, k-floor((N-1)/2)), min(D-1, k+floor(N/2)]
     ///
     /// For correct gradient computation all parameters must be the same as the original normalization filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

@@ -7,11 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsegue/identifier-swift.typealias?language=objc)
 pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsegue?language=objc)
+    /// A transition or containment relationship between two scenes in a storyboard.
+    ///
+    /// ## Overview
+    ///
+    /// In this context, a _scene_ is a view controller or a window controller and a _storyboard_ is an instance of the [`NSStoryboard`](https://developer.apple.com/documentation/appkit/nsstoryboard) class.
+    ///
+    /// A storyboard segue has a procedural notion of being invoked, known in the API as being _performed_. You can take advantage of hooks into the segue performance process by way of the [`NSSeguePerforming`](https://developer.apple.com/documentation/appkit/nssegueperforming) protocol.
+    ///
+    /// You do not create storyboard segue objects directly. Instead, the system creates them as needed as segues are invoked. To run code during initialization and performance of a segue, override the [`initWithIdentifier:source:destination:`](https://developer.apple.com/documentation/appkit/nsstoryboardsegue/init(identifier:source:destination:)) and [`perform`](https://developer.apple.com/documentation/appkit/nsstoryboardsegue/perform()) methods.
+    ///
+    /// You can initiate a segue programmatically with the [`performSegueWithIdentifier:sender:`](https://developer.apple.com/documentation/appkit/nssegueperforming/performsegue(withidentifier:sender:)) method of the [`NSSeguePerforming`](https://developer.apple.com/documentation/appkit/nssegueperforming) protocol. For example, you might do this to transition from a scene in one storyboard file to a scene in another.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStoryboardSegue;
@@ -89,7 +100,15 @@ impl DefaultRetained for NSStoryboardSegue {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegueperforming?language=objc)
+    /// A set of methods that support the mediation of a custom segue.
+    ///
+    /// ## Overview
+    ///
+    /// When you subclass [`NSStoryboardSegue`](https://developer.apple.com/documentation/appkit/nsstoryboardsegue) to express a custom transition or containment relationship between storyboard scenes, you might also want to provide code that prepares the destination/contained view or window controller object. Put this code in an override of the [`prepareForSegue:sender:`](https://developer.apple.com/documentation/appkit/nssegueperforming/prepare(for:sender:)) method.
+    ///
+    /// To conditionally disallow the performance of a segue, override the [`shouldPerformSegueWithIdentifier:sender:`](https://developer.apple.com/documentation/appkit/nssegueperforming/shouldperformsegue(withidentifier:sender:)) method, returning [`false`](https://developer.apple.com/documentation/swift/false).If you need to programmatically trigger a segue that cannot be expressed in a storyboard file, such as a transition between scenes in different storyboards, use the [`performSegueWithIdentifier:sender:`](https://developer.apple.com/documentation/appkit/nssegueperforming/performsegue(withidentifier:sender:)) method in this protocol.
+    ///
+    ///
     pub unsafe trait NSSeguePerforming: NSObjectProtocol + MainThreadOnly {
         /// # Safety
         ///

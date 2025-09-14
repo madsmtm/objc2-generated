@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inoutgoingmessagetype?language=objc)
+/// The format of the message.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INOutgoingMessageType(pub NSInteger);
 impl INOutgoingMessageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inoutgoingmessagetype/unknown?language=objc)
+    /// An unspecified message format.
     #[doc(alias = "INOutgoingMessageTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inoutgoingmessagetype/outgoingmessagetext?language=objc)
+    /// Plain text.
     #[doc(alias = "INOutgoingMessageTypeOutgoingMessageText")]
     pub const OutgoingMessageText: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inoutgoingmessagetype/outgoingmessageaudio?language=objc)
+    /// An audio recording.
     #[doc(alias = "INOutgoingMessageTypeOutgoingMessageAudio")]
     pub const OutgoingMessageAudio: Self = Self(2);
 }

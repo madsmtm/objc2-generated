@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontrollerdelegate?language=objc)
+    /// A group of methods you use to customize web extension interactions.
     pub unsafe trait WKWebExtensionControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

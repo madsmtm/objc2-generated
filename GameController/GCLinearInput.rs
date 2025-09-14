@@ -8,11 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of inputs that provide values in unit coordinates.
     /// An object conforming to
     /// `GCLinearInput`represents an input that produces
     /// normalized values in the unit interval - between [0, 1].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gclinearinput?language=objc)
     pub unsafe trait GCLinearInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block to be notified when the value of the input changes.

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentaccount?language=objc)
+    /// A user account that provides the funds when making a payment.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPaymentAccount`](https://developer.apple.com/documentation/intents/inpaymentaccount) object represents a user account known to your app. When paying bills, you use the specified payment account as the source of any funds involved in the financial transaction. Your app must have the authority to transfer funds from the designated account to any payees.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPaymentAccount;

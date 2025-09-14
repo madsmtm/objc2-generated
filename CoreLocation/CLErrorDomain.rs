@@ -6,6 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kclerrordomain?language=objc)
+    /// The domain for Core Location errors.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is used in the [`NSError`](https://developer.apple.com/documentation/foundation/nserror) class.
+    ///
+    ///
     pub static kCLErrorDomain: &'static NSString;
 }

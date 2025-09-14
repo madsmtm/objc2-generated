@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A class representing key used to store any value against
+    /// An abstract base class for machine learning key types.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlkey?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create use this class directly. Instead, use a class that inherits from this one, such as [`MLParameterKey`](https://developer.apple.com/documentation/coreml/mlparameterkey) or [`MLMetricKey`](https://developer.apple.com/documentation/coreml/mlmetrickey).
+    ///
+    ///
+    /// A class representing key used to store any value against
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLKey;

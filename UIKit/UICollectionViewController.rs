@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcontroller?language=objc)
+    /// A view controller that specializes in managing a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// A view controller implements the following behavior:
+    ///
+    /// - If the collection view controller has an assigned nib file or was loaded from a storyboard, it loads its view from the corresponding nib file or storyboard. If you create the collection view controller programmatically, it automatically creates a new unconfigured collection view object, which you can access using the [`collectionView`](https://developer.apple.com/documentation/uikit/uicollectionviewcontroller/collectionview) property.
+    ///
+    /// - When loading a collection view from a storyboard or nib file, the data source and delegate objects for the collection view are obtained from the nib file. If a data source or delegate is not specified, the collection view controller assigns itself to the unspecified role.
+    ///
+    /// - When the collection view is about to appear for the first time, the collection view controller reloads the collection view data. It also clears the current selection every time the view is displayed. You can change this behavior by setting the value of the [`clearsSelectionOnViewWillAppear`](https://developer.apple.com/documentation/uikit/uicollectionviewcontroller/clearsselectiononviewwillappear) property to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// You create a custom subclass of `UICollectionViewController` for each collection view that you want to manage. When you initialize the controller, using the [`initWithCollectionViewLayout:`](https://developer.apple.com/documentation/uikit/uicollectionviewcontroller/init(collectionviewlayout:)) method, you specify the layout the collection view should have. Because the initially created collection view is without dimensions or content, the collection view’s data source and delegate—typically the collection view controller itself—must provide this information.
+    ///
+    /// You may override the [`loadView`](https://developer.apple.com/documentation/uikit/uiviewcontroller/loadview()) method or any other superclass method, but if you do, be sure to call `super` in the implementation of your method. If you do not, the collection view controller may not be able to perform all of the tasks needed to maintain the integrity of the collection view.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

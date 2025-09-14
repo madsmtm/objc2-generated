@@ -9,22 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel?language=objc)
+/// Logging levels that Automator supports.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AMLogLevel(pub NSUInteger);
 impl AMLogLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/debug?language=objc)
+    /// The debug log level.
     #[doc(alias = "AMLogLevelDebug")]
     pub const Debug: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/info?language=objc)
+    /// The informational log level.
     #[doc(alias = "AMLogLevelInfo")]
     pub const Info: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/warn?language=objc)
+    /// The warning log level.
     #[doc(alias = "AMLogLevelWarn")]
     pub const Warn: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amloglevel/error?language=objc)
+    /// The error log level.
     #[doc(alias = "AMLogLevelError")]
     pub const Error: Self = Self(3);
 }
@@ -38,7 +38,17 @@ unsafe impl RefEncode for AMLogLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amaction?language=objc)
+    /// An abstract class that defines the interface and general characteristics of Automator actions.
+    ///
+    /// ## Overview
+    ///
+    /// Automator is an Apple app that allows users to construct and execute workflows consisting of a sequence of discrete modules called actions. An action performs a specific task, such as copying a file or cropping an image, and passes its output to Automator to give to the next action in the workflow. Actions are currently implemented as loadable bundles owned by objects of the [`AMBundleAction`](https://developer.apple.com/documentation/automator/ambundleaction) class, a subclass of [`AMAction`](https://developer.apple.com/documentation/automator/amaction).
+    ///
+    /// The critically important method declared by [`AMAction`](https://developer.apple.com/documentation/automator/amaction) is [`runWithInput:error:`](https://developer.apple.com/documentation/automator/amaction/run(withinput:)). When Automator executes a workflow, it sends this message to each action object in the workflow (in workflow sequence), in most cases passing in the output of the previous action as input. The action object performs its task in this method and ends by returning an output object for the next action in the workflow.
+    ///
+    /// Subclassing [`AMAction`](https://developer.apple.com/documentation/automator/amaction) is not recommended. For most situations requiring an enhancement to the Automator framework, it is sufficient to subclass [`AMBundleAction`](https://developer.apple.com/documentation/automator/ambundleaction).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AMAction;

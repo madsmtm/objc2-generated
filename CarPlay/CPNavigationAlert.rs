@@ -9,21 +9,20 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// A set of reasons for dismissing a navigation alert.
 /// Reasons why your navigation alert was dismissed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPNavigationAlertDismissalContext(pub NSUInteger);
 impl CPNavigationAlertDismissalContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext/timeout?language=objc)
+    /// The system dismissed the navigation alert due to a timeout.
     #[doc(alias = "CPNavigationAlertDismissalContextTimeout")]
     pub const Timeout: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext/userdismissed?language=objc)
+    /// The user dismissed the navigation alert.
     #[doc(alias = "CPNavigationAlertDismissalContextUserDismissed")]
     pub const UserDismissed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert/dismissalcontext/systemdismissed?language=objc)
+    /// The system dismissed the navigation alert.
     #[doc(alias = "CPNavigationAlertDismissalContextSystemDismissed")]
     pub const SystemDismissed: Self = Self(2);
 }
@@ -36,19 +35,31 @@ unsafe impl RefEncode for CPNavigationAlertDismissalContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A constant that defines the minimum amount of time that an alert is visible.
+///
+/// ## Discussion
+///
+/// The minimum duration is in effect when [`duration`](https://developer.apple.com/documentation/carplay/cpnavigationalert/duration) is not zero.
+///
+///
 /// Your
 /// `CPNavigationAlert`may specify a duration for which the alert will be visible onscreen,
 /// or 0 for an alert that is visible indefinitely.
 ///
 /// For non-indefinite alerts, this is the minimum duration the alert will be visible.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalertminimumduration?language=objc)
 pub static CPNavigationAlertMinimumDuration: NSTimeInterval = 5 as _;
 
 extern_class!(
-    /// `CPNavigationAlert`is a banner alert that can display map or navigation-related information to the user.
+    /// An alert that displays map- or navigation-related information to the user.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationalert?language=objc)
+    /// ## Overview
+    ///
+    /// To display a navigation alert, create an instance of [`CPNavigationAlert`](https://developer.apple.com/documentation/carplay/cpnavigationalert) and pass it to the map template’s [`presentNavigationAlert:animated:`](https://developer.apple.com/documentation/carplay/cpmaptemplate/present(navigationalert:animated:)) method. When creating an alert, you must provide a title, action, and duration. The duration tells the system how long to show the alert before automatically dismissing it. You can also include a subtitle and secondary action when needed.
+    ///
+    /// The system displays the primary and secondary actions as buttons on the alert. After the user taps the button, the system calls the action’s [`handler`](https://developer.apple.com/documentation/carplay/cpalertaction/handler) block, which is where your app performs the requested action. The system also dismisses the alert after the user taps the button. However, your app can dismiss the alert without any user interaction by calling [`dismissNavigationAlertAnimated:completion:`](https://developer.apple.com/documentation/carplay/cpmaptemplate/dismissnavigationalert(animated:completion:)).
+    ///
+    ///
+    /// `CPNavigationAlert`is a banner alert that can display map or navigation-related information to the user.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

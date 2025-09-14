@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The boot loader configuration the system uses to boot guest-operating systems that expect an Extensible Firmware Interface (EFI) ROM.
     /// Boot loader configuration for booting guest operating systems expecting an EFI ROM.
     ///
     /// You must use a VZGenericPlatformConfiguration in conjunction with the EFI boot loader.
@@ -16,8 +17,6 @@ extern_class!(
     /// See: VZGenericPlatformConfiguration
     ///
     /// See: VZVirtualMachineConfiguration.platform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefibootloader?language=objc)
     #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]

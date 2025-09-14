@@ -7,22 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Describes how a resource will be used by a shader through an argument buffer
+/// Options that describe how a graphics or compute function uses an argument buffer’s resource.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage?language=objc)
+/// ## Overview
+///
+/// You can combine multiple [`MTLResourceUsage`](https://developer.apple.com/documentation/metal/mtlresourceusage) values with a bitwise OR (`|`) if the resource serves multiple purposes over its lifetime. You can enable options for certain resources that indicate whether the Metal driver needs to convert the resource to another format, such as whether it needs to decompress a color render target.
+///
+///
+/// Describes how a resource will be used by a shader through an argument buffer
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLResourceUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceUsage: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage/read?language=objc)
+/// An option that enables reading from the resource.
         #[doc(alias = "MTLResourceUsageRead")]
         const Read = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage/write?language=objc)
+/// An option that enables writing to the resource.
         #[doc(alias = "MTLResourceUsageWrite")]
         const Write = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage/sample?language=objc)
+/// An option that enables sampling from the resource.
+///
+/// ## Discussion
+///
+/// Specify this option only if the resource is a texture.
+///
+///
         #[doc(alias = "MTLResourceUsageSample")]
 #[deprecated]
         const Sample = 1<<2;
@@ -37,22 +48,21 @@ unsafe impl RefEncode for MTLResourceUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes the types of resources that a barrier operates on.
 /// Describes the types of resources that the a barrier operates on
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBarrierScope(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLBarrierScope: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope/buffers?language=objc)
+/// The barrier affects any buffer objects.
         #[doc(alias = "MTLBarrierScopeBuffers")]
         const Buffers = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope/textures?language=objc)
+/// The barrier affects textures.
         #[doc(alias = "MTLBarrierScopeTextures")]
         const Textures = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope/rendertargets?language=objc)
+/// The barrier affects any render targets.
         #[doc(alias = "MTLBarrierScopeRenderTargets")]
         const RenderTargets = 1<<2;
     }
@@ -68,14 +78,21 @@ unsafe impl RefEncode for MTLBarrierScope {
 
 /// Describes stages of GPU work.
 ///
+/// ## Overview
+///
+/// All commands you encoder into command buffers relate to one or more shader stages, for example, a compute dispatch command from a compute command encoder relates to stage [`MTLStageDispatch`](https://developer.apple.com/documentation/metal/mtlstages/dispatch).
+///
+/// Use these stages to issue barriers between shader stages to ensure Metal correctly synchronizes GPU commands.
+///
+///
+/// Describes stages of GPU work.
+///
 /// All commands you encoder into command buffers relate to one or more shader stages,
 /// for example, a compute dispatch command from a compute command encoder relates to
 /// stage ``MTLStageDispatch``.
 ///
 /// Use these stages to issue barriers between shader stages to ensure Metal correctly
 /// synchronizes GPU commands.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -83,58 +100,47 @@ pub struct MTLStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStages: NSUInteger {
 /// Represents all vertex shader stage work in a render pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/vertex?language=objc)
+/// Represents all vertex shader stage work in a render pass.
         #[doc(alias = "MTLStageVertex")]
         const Vertex = 1<<0;
 /// Represents all fragment shader stage work in a render pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/fragment?language=objc)
+/// Represents all fragment shader stage work in a render pass.
         #[doc(alias = "MTLStageFragment")]
         const Fragment = 1<<1;
 /// Represents all tile shading stage work in a render pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/tile?language=objc)
+/// Represents all tile shading stage work in a render pass.
         #[doc(alias = "MTLStageTile")]
         const Tile = 1<<2;
 /// Represents all object shader stage work in a render pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/object?language=objc)
+/// Represents all object shader stage work in a render pass.
         #[doc(alias = "MTLStageObject")]
         const Object = 1<<3;
 /// Represents all mesh shader stage work work in a render pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/mesh?language=objc)
+/// Represents all mesh shader stage work work in a render pass.
         #[doc(alias = "MTLStageMesh")]
         const Mesh = 1<<4;
 /// Represents all sparse and placement sparse resource mapping updates.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/resourcestate?language=objc)
+/// Represents all sparse and placement sparse resource mapping updates.
         #[doc(alias = "MTLStageResourceState")]
         const ResourceState = 1<<26;
 /// Represents all compute dispatches in a compute pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/dispatch?language=objc)
+/// Represents all compute dispatches in a compute pass.
         #[doc(alias = "MTLStageDispatch")]
         const Dispatch = 1<<27;
 /// Represents all blit operations in a pass.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/blit?language=objc)
+/// Represents all blit operations in a pass.
         #[doc(alias = "MTLStageBlit")]
         const Blit = 1<<28;
 /// Represents all acceleration structure operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/accelerationstructure?language=objc)
+/// Represents all acceleration structure operations.
         #[doc(alias = "MTLStageAccelerationStructure")]
         const AccelerationStructure = 1<<29;
 /// Represents all machine learning network dispatch operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/machinelearning?language=objc)
+/// Represents all machine learning network dispatch operations.
         #[doc(alias = "MTLStageMachineLearning")]
         const MachineLearning = 1<<30;
 /// Convenience mask representing all stages of GPU work.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages/all?language=objc)
+/// Convenience mask representing all stages of GPU work.
         #[doc(alias = "MTLStageAll")]
         const All = NSIntegerMax as _;
     }
@@ -149,9 +155,21 @@ unsafe impl RefEncode for MTLStages {
 }
 
 extern_protocol!(
-    /// MTLCommandEncoder is the common interface for objects that write commands into MTLCommandBuffers.
+    /// An encoder that writes GPU commands into a command buffer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencoder?language=objc)
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol yourself; instead you call methods on an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance to create command encoders. Command encoder instances are lightweight instances that you re-create every time you need to send commands to the GPU.
+    ///
+    /// There are many different kinds of command encoders, each providing a different set of commands that can be encoded into the buffer. A command encoder implements the [`MTLCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcommandencoder) protocol and an additional protocol specific to the kind of encoder being created.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Protocol" }] }], [Paragraph { inline_content: [Text { text: "Task" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Graphics rendering" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Computation" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Memory management" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLParallelRenderCommandEncoder", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Multiple graphics rendering tasks encoded in parallel." }] }]]], alignments: None, metadata: None })
+    /// While a command encoder is active, it has the exclusive right to append commands to its command buffer. Once you finish encoding commands, call the [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) method to finish encoding the commands. To write further commands into the same command buffer, create a new command encoder.
+    ///
+    /// You can call the [`insertDebugSignpost:`](https://developer.apple.com/documentation/metal/mtlcommandencoder/insertdebugsignpost(_:)), [`pushDebugGroup:`](https://developer.apple.com/documentation/metal/mtlcommandencoder/pushdebuggroup(_:)), and [`popDebugGroup`](https://developer.apple.com/documentation/metal/mtlcommandencoder/popdebuggroup()) methods to put debug strings into the command buffer and to push or pop string labels used to identify groups of encoded commands. These methods don’t change the rendering or compute behavior of your app; the Xcode debugger uses them to organize your app’s rendering commands in a format that may provide insight into how your app works.
+    ///
+    ///
+    /// MTLCommandEncoder is the common interface for objects that write commands into MTLCommandBuffers.
     pub unsafe trait MTLCommandEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.

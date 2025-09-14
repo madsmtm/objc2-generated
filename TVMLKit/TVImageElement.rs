@@ -6,26 +6,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype?language=objc)
+/// The type of image.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVImageType(pub NSInteger);
 impl TVImageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/image?language=objc)
+    /// The image is presented in its actual size.
     #[doc(alias = "TVImageTypeImage")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Image: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/fullscreen?language=objc)
+    /// The image occupies the entire screen.
     #[doc(alias = "TVImageTypeFullscreen")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Fullscreen: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/decoration?language=objc)
+    /// The image is a decoration image, which is used to display an image inside of another image.
     #[doc(alias = "TVImageTypeDecoration")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Decoration: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimagetype/hero?language=objc)
+    /// The image is a hero image, which is used to display a product image.
     #[doc(alias = "TVImageTypeHero")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Hero: Self = Self(3);
@@ -40,11 +40,10 @@ unsafe impl RefEncode for TVImageType {
 }
 
 extern_class!(
+    /// A representation of a read-only DOM node containing the attributes that describe an image element.
     /// Convenience class representing
     /// <img/>
     /// element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvimageelement?language=objc)
     #[unsafe(super(TVViewElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVViewElement")]

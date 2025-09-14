@@ -6,36 +6,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The action that an operation performs.
 /// Type of the operation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderTestingOperationType(pub NSInteger);
 impl NSFileProviderTestingOperationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/ingestion?language=objc)
+    /// Alerts the system to changes to either the local or remote storage.
     #[doc(alias = "NSFileProviderTestingOperationTypeIngestion")]
     pub const Ingestion: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/lookup?language=objc)
+    /// Looks up an item.
     #[doc(alias = "NSFileProviderTestingOperationTypeLookup")]
     pub const Lookup: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/creation?language=objc)
+    /// Propagates the creation of a source item to the target location.
     #[doc(alias = "NSFileProviderTestingOperationTypeCreation")]
     pub const Creation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/modification?language=objc)
+    /// Propagates a change from the source item to the target location.
     #[doc(alias = "NSFileProviderTestingOperationTypeModification")]
     pub const Modification: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/deletion?language=objc)
+    /// Propagates the deletion of the source item from the target location.
     #[doc(alias = "NSFileProviderTestingOperationTypeDeletion")]
     pub const Deletion: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/contentfetch?language=objc)
+    /// Fetches an item’s content.
     #[doc(alias = "NSFileProviderTestingOperationTypeContentFetch")]
     pub const ContentFetch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/childrenenumeration?language=objc)
+    /// Lists an item’s content.
     #[doc(alias = "NSFileProviderTestingOperationTypeChildrenEnumeration")]
     pub const ChildrenEnumeration: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationtype/collisionresolution?language=objc)
+    /// Resolves a collision by renaming the new item.
     #[doc(alias = "NSFileProviderTestingOperationTypeCollisionResolution")]
     pub const CollisionResolution: Self = Self(7);
 }
@@ -49,9 +48,8 @@ unsafe impl RefEncode for NSFileProviderTestingOperationType {
 }
 
 extern_protocol!(
+    /// An operation that the system can schedule.
     /// An operation that can scheduled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperation?language=objc)
     pub unsafe trait NSFileProviderTestingOperation: NSObjectProtocol {
         /// The operation type
         #[unsafe(method(type))]
@@ -184,22 +182,25 @@ impl NSFileProviderManager {
     );
 }
 
-/// Side affected by the operation.
+/// The location where the operation takes place.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside?language=objc)
+/// ## Overview
+///
+/// Most operations are symmetrical. They can affect either items stored locally or items in the File Provider extension’s remote storage.
+///
+///
+/// Side affected by the operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderTestingOperationSide(pub NSUInteger);
 impl NSFileProviderTestingOperationSide {
+    /// The File Provider extension’s local storage.
     /// The operation reads or writes the disk.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside/disk?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationSideDisk")]
     pub const Disk: Self = Self(0);
+    /// The File Provider extension’s remote storage.
     /// The operation reads or writes the file provider extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingoperationside/fileprovider?language=objc)
     #[doc(alias = "NSFileProviderTestingOperationSideFileProvider")]
     pub const FileProvider: Self = Self(1);
 }
@@ -213,11 +214,10 @@ unsafe impl RefEncode for NSFileProviderTestingOperationSide {
 }
 
 extern_protocol!(
+    /// An operation that alerts the system to either local or remote storage changes.
     /// This operation causes the system to ingest a change.
     ///
     /// When running this operation, the system will discover a change from the disk or the provider.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingingestion?language=objc)
     pub unsafe trait NSFileProviderTestingIngestion: NSFileProviderTestingOperation {
         /// Side of the event.
         #[unsafe(method(side))]
@@ -241,9 +241,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that looks up an item.
     /// This operation causes the system to lookup an item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestinglookup?language=objc)
     pub unsafe trait NSFileProviderTestingLookup: NSFileProviderTestingOperation {
         /// Side of the event.
         #[unsafe(method(side))]
@@ -259,9 +258,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that syncs the creation of the source item to the target location.
     /// This operation causes the system to propagate a creation of an item from a source side to a target side.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcreation?language=objc)
     pub unsafe trait NSFileProviderTestingCreation: NSFileProviderTestingOperation {
         /// The target side of the operation.
         #[unsafe(method(targetSide))]
@@ -283,11 +281,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that syncs the modification of the source item to the target location.
     /// This operation causes the system to propagate a modification of an existing item from a source side to a target side.
     ///
     /// The modification happens if a change is identified on an item that is already known by both sides.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingmodification?language=objc)
     pub unsafe trait NSFileProviderTestingModification:
         NSFileProviderTestingOperation
     {
@@ -329,11 +326,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that syncs the deletion of the source item to the target location.
     /// This operation causes the system to propagate a deletion from a source side to a target side.
     ///
     /// The deletion happens if an item that is known by the target side is deleted on the source side.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingdeletion?language=objc)
     pub unsafe trait NSFileProviderTestingDeletion: NSFileProviderTestingOperation {
         /// The target side of the operation.
         #[unsafe(method(targetSide))]
@@ -367,9 +363,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that fetches an item’s content.
     /// This operation causes the system to fetch the content of an item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcontentfetch?language=objc)
     pub unsafe trait NSFileProviderTestingContentFetch:
         NSFileProviderTestingOperation
     {
@@ -387,9 +382,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that lists a directory’s content.
     /// This operation causes the system to list the children of an item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingchildrenenumeration?language=objc)
     pub unsafe trait NSFileProviderTestingChildrenEnumeration:
         NSFileProviderTestingOperation
     {
@@ -407,6 +401,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// An operation that resolves a collision by renaming the new item.
     /// This operation causes the system to resolve a collision by rename a colliding item.
     ///
     /// In case two items claim the same disk location because the have the same parent and filename,
@@ -414,8 +409,6 @@ extern_protocol!(
     /// have the same parent, but a slightly modified name (for instance "a.txt" will be renamed to "a 2.txt").
     ///
     /// This can for instance happen if the case sensitivity of the local filesystem and of the provider differs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertestingcollisionresolution?language=objc)
     pub unsafe trait NSFileProviderTestingCollisionResolution:
         NSFileProviderTestingOperation
     {

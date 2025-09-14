@@ -10,7 +10,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintent?language=objc)
+    /// A request to book the specified ride from your service.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates an [`INRequestRideIntent`](https://developer.apple.com/documentation/intents/inrequestrideintent) object when the user asks to book a ride using your app. A ride request intent contains user-supplied information about the ride, such as its starting point and the number of people. Use this intent object to identify possible ride options for the user to choose from and to book the ride after the user confirms it.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INRequestRideIntentHandling`](https://developer.apple.com/documentation/intents/inrequestrideintenthandling) protocol. Your handler should confirm the request and create an [`INRequestRideIntentResponse`](https://developer.apple.com/documentation/intents/inrequestrideintentresponse) object with information about whether your app successfully booked the ride.
+    ///
+    /// When implementing ride-booking support, provide a GeoJSON file with the regions for which you are able to provide rides and upload that file as your app’s Routing App Coverage File in App Store Connect. When it needs to suggest apps capable of providing a ride, Maps uses your coverage information to determine whether it should suggest your app. If you do not provide a coverage file and your app is not installed on the user’s device, Maps does not suggest your app. For information about how to create and upload a Routing App Coverage File, see [iTunes Connect Developer Help](https://help.apple.com/itunes-connect/developer/#/dev4ba662442).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When implementing ride-booking support, provide a GeoJSON file with the regions for which you’re able to provide rides and upload that file as your app’s Routing App Coverage File in App Store Connect. When it needs to suggest apps capable of providing a ride, Maps uses your coverage information to determine whether it should suggest your app. If you don’t provide a coverage file and your app isn’t installed on the user’s device, Maps doesn’t suggest your app. For information about how to create and upload a Routing App Coverage File, see [iTunes Connect Developer Help](https://help.apple.com/itunes-connect/developer/#/dev4ba662442).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -109,11 +132,45 @@ impl INRequestRideIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for booking a ride for the user.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INRequestRideIntentHandling`](https://developer.apple.com/documentation/intents/inrequestrideintenthandling) protocol to resolve, confirm, and handle requests to book a ride using your service. Adopt this protocol in an object of your Intents extension that is capable of initiating the booking process with your service. SiriKit calls the methods of your object to resolve the parameters to your ride-related information and to book the ride upon confirmation by the user.
+    ///
+    /// Ride requests have many items to resolve. You should resolve all options in some manner, but you may omit options that are not relevant to your service. For example, if your service transports cargo instead of passengers, you might ignore the party size option. For ride requests, you must resolve the following items:
+    ///
+    /// - Pickup location
+    ///
+    /// - Drop-off location
+    ///
+    /// - Party size
+    ///
+    /// - Ride option
+    ///
+    /// - Payment method
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Maps does not require you to confirm the contents of a get ride status intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Handling a Ride Request
+    ///
+    /// Handling a ride request involves booking the ride with your service and providing SiriKit with the status of the booking. The details of how you book rides through your service are up to you. You need to schedule the ride, find a vehicle and a driver, and arrange payment from the user. The [`INRequestRideIntent`](https://developer.apple.com/documentation/intents/inrequestrideintent) object contains information about what the user needs. Pass the information in that object to your service and use the results to configure the response object you return to SiriKit.
+    ///
+    /// The code listing below is an example of how you might book a ride and provide a response. Because booking the actual ride is a custom process, the example calls several custom methods to implement key phases of that process. The first of these methods uses information from the intent object to register the request with a fictional service and retrieve an ID string identifying the request. Use that ID string to retrieve specific information from the service regarding the vehicle type, driver, and ride option. Use all of the retrieved information to build the [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object that and add the status object to the [`INRequestRideIntentResponse`](https://developer.apple.com/documentation/intents/inrequestrideintentresponse) object passed back to SiriKit.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func handle(requestRide intent: INRequestRideIntent, completion: (INRequestRideIntentResponse) -> Void) {", "    let status = INRideStatus()", "    ", "    // Configure the ride request internally and get its ID", "    status.rideIdentifier = self.createNewRideRequest(withStartingLocation: intent.pickupLocation!,", "                                                      endingLocation: intent.dropOffLocation!,", "                                                      partySize: intent.partySize!,", "                                                      paymentMethod: intent.paymentMethod!)", "    ", "    // Configure the pickup and dropoff information.", "    status.estimatedPickupDate = self.estimatedPickupDateForRideRequest(identifier: status.rideIdentifier!)", "    status.pickupLocation = intent.pickupLocation", "    status.dropOffLocation = intent.dropOffLocation", "    ", "    // Retrieve the ride details that the user needs.", "    status.vehicle = self.vehicleForRideRequest(identifier: status.rideIdentifier!)", "    status.driver = self.driverForRideRequest(identifier: status.rideIdentifier!)", "    ", "    // Configure the vehicle type and pricing.", "    status.rideOption = self.rideOptionForRideRequest(identifier: status.rideIdentifier!)", "    ", "    // Commit the request and get the current status.", "    status.phase = self.completeBookingForRideRequest(identifier: status.rideIdentifier!)", "    ", "    var responseCode : INRequestRideIntentResponseCode", "    if status.phase == .received {", "        responseCode = .inProgress", "    }", "    else if status.phase == .confirmed {", "        responseCode = .success", "    }", "    else {", "        responseCode = .failure", "    }", "    ", "    let response = INRequestRideIntentResponse.init(code: responseCode, userActivity: nil)", "    response.rideStatus = status", "    ", "    completion(response)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)handleRequestRide:(INRequestRideIntent *)requestRideIntent", "       completion:(void (^)(INRequestRideIntentResponse *requestRideIntentResponse))completion {", "   INRideStatus* status = [[INRideStatus alloc] init];", " ", "   // Create the request in my app's ride booking software.", "   // Get the resulting request ID to use for configuring the response.", "   status.rideIdentifier =", "      [self createNewRideRequestWithStartingLocation:requestRideIntent.pickupLocation", "                                      endingLocation:requestRideIntent.dropOffLocation", "                                           partySize:requestRideIntent.partySize", "                                       paymentMethod:requestRideIntent.paymentMethod];", " ", "   // Configure the pickup and dropoff information.", "   status.estimatedPickupDate = [self estimatedPickupDateForRideRequest:status.rideIdentifier];", "   status.pickupLocation = requestRideIntent.pickupLocation;", "   status.dropOffLocation = requestRideIntent.dropOffLocation;", " ", "   // Retrieve information about the assigned vehicle and driver (if any).", "   status.vehicle = [self vehicleForRideRequest:status.rideIdentifier];", "   status.driver = [self driverForRideRequest:status.rideIdentifier];", " ", "   // Configure the vehicle type and pricing.", "    status.rideOption = [self rideOptionForRideRequest:status.rideIdentifier];", " ", "   // Commit the request and get the current status.", "   status.phase = [self completeBookingForRideRequest:status.rideIdentifier];", " ", "   // Use the status to determine the success or failure of the request.", "   INRequestRideIntentResponseCode responseCode;", "   if (status.phase == INRidePhaseReceived)", "      responseCode = INRequestRideIntentResponseCodeInProgress;", "   else if (status.phase == INRidePhaseConfirmed)", "      responseCode = INRequestRideIntentResponseCodeSuccess;", "   else", "      responseCode = INRequestRideIntentResponseCodeFailure;", " ", "   // Create the response object and fill it with the status information.", "   INRequestRideIntentResponse* response = [[INRequestRideIntentResponse alloc]", "                          initWithCode:responseCode userActivity:nil];", "   response.rideStatus = status;", " ", "   // Return the response to SiriKit.", "   completion(response);", "}"], metadata: None }] }] })
+    /// When creating responses, providing an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object is optional and necessary only when you want to include custom information for your app. If you specify `nil`, SiriKit creates a user activity object for you as needed. For more information on configuring the response object, see [`INRequestRideIntentResponse`](https://developer.apple.com/documentation/intents/inrequestrideintentresponse).
+    ///
+    ///
     /// Protocol to declare support for handling an INRequestRideIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintenthandling?language=objc)
     pub unsafe trait INRequestRideIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

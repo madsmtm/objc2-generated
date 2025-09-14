@@ -13,9 +13,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// AVPictureInPictureController is a subclass of NSObject that can be used to present the contents of an AVPlayerLayer or AVPlayerView floating on top of applications.
+    /// A controller that responds to user-initiated Picture in Picture playback of video in a floating, resizable window.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller?language=objc)
+    /// ## Overview
+    ///
+    /// To use Picture in Picture, you need to configure your app to support background audio playback. See [Configuring your app for media playback](https://developer.apple.com/documentation/avfoundation/configuring-your-app-for-media-playback) for more details.
+    ///
+    /// Before presenting a user interface to start Picture in Picture, call the [`isPictureInPictureSupported`](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturesupported()) method to determine if the current device supports the feature, and check the [`pictureInPicturePossible`](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/ispictureinpicturepossible) property value to determine whether PiP is possible in the current context.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The framework doesn’t support subclassing [`AVPictureInPictureController`](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// AVPictureInPictureController is a subclass of NSObject that can be used to present the contents of an AVPlayerLayer or AVPlayerView floating on top of applications.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureController;
@@ -188,11 +203,16 @@ impl AVPictureInPictureController {
 }
 
 extern_class!(
+    /// An object that represents the source of the content to present in Picture in Picture.
+    ///
+    /// ## Overview
+    ///
+    /// The system supports displaying content from an [`AVPlayerLayer`](https://developer.apple.com/documentation/avfoundation/avplayerlayer) or [`AVSampleBufferDisplayLayer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer) in a Picture in Picture window. Use an instance of this class to describe the source of your app’s content.
+    ///
+    ///
     /// A content source for AVPictureInPictureController.
     ///
     /// Create a content source with an appropriate layer, and use it to initialize the AVPictureInPictureController.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureControllerContentSource;
@@ -234,9 +254,14 @@ impl AVPictureInPictureControllerContentSource {
 }
 
 extern_protocol!(
-    /// A protocol for delegates of AVPictureInPictureController.
+    /// A protocol to adopt to respond to Picture in Picture events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontrollerdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// Adopt this protocol in a custom object, and assign the object as the [`delegate`](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/delegate) of your [`AVPictureInPictureController`](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller) instance.
+    ///
+    ///
+    /// A protocol for delegates of AVPictureInPictureController.
     pub unsafe trait AVPictureInPictureControllerDelegate: NSObjectProtocol {
         /// Parameter `pictureInPictureController`: The Picture in Picture controller.
         ///

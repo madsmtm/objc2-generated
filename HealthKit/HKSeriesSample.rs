@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class represents a type of HKSample that references a series of data.
+    /// An abstract base class that defines samples that contain a series of items.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriessample?language=objc)
+    /// ## Overview
+    ///
+    /// Never instantiate [`HKSeriesSample`](https://developer.apple.com/documentation/healthkit/hkseriessample) objects directly. Instead, user one of the concrete subclasses (for example, the [`HKWorkoutRoute`](https://developer.apple.com/documentation/healthkit/hkworkoutroute) class).
+    ///
+    ///
+    /// This class represents a type of HKSample that references a series of data.
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

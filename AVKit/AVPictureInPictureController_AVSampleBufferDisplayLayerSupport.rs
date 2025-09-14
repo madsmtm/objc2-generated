@@ -23,9 +23,8 @@ impl AVPictureInPictureController {
 }
 
 extern_protocol!(
+    /// A protocol for controlling playback from a sample buffer display layer in Picture in Picture.
     /// A protocol for controlling playback from an AVSampleBufferDisplayLayer in Picture in Picture.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturesamplebufferplaybackdelegate?language=objc)
     pub unsafe trait AVPictureInPictureSampleBufferPlaybackDelegate:
         NSObjectProtocol
     {

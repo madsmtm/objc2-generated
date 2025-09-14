@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a hot-pluggable USB mass storage device.
+    ///
+    /// ## Overview
+    ///
+    /// Create this device either by instantiating it directly and passing [`VZUSBMassStorageDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzusbmassstoragedeviceconfiguration) to its initializer, or instantiating a `VZUSBMassStorageDeviceConfiguration` in a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration). Direct instantiation creates an object that you can pass to [`attachDevice:completionHandler:`](https://developer.apple.com/documentation/virtualization/vzusbcontroller/attach(device:completionhandler:)). Instantiation through `VZUSBMassStorageDeviceConfiguration` makes the device available in the [`usbDevices`](https://developer.apple.com/documentation/virtualization/vzusbcontroller/usbdevices) property.
+    ///
+    ///
     /// Class representing a hot-pluggable USB Mass Storage device.
     ///
     /// This device is created through either instantiating it directly and passing VZUSBMassStorageDeviceConfiguration to its initializer
@@ -14,8 +21,6 @@ extern_class!(
     /// will make the device available in VZUSBController.usbDevices property.
     ///
     /// See: VZUSBController
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbmassstoragedevice?language=objc)
     #[unsafe(super(VZStorageDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDevice")]

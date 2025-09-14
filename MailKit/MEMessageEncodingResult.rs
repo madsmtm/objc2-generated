@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains a signed or encrypted message, or errors that indicate failure to encode the message.
     /// Contains information about an outging mail message after any security measures have been applied.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencodingresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageEncodingResult;

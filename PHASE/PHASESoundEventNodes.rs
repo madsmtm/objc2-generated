@@ -11,6 +11,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options that inform PHASE of an audio-stream buffer’s playback priority.
+///
+/// ## Overview
+///
+/// When your app provides audio buffers that PHASE plays through a [`PHASEPushStreamNode`](https://developer.apple.com/documentation/phase/phasepushstreamnode), use this structure to inform PHASE of a particular buffer’s priority.
+///
+/// Associate an option to a particular buffer by passing it in to the [`scheduleBuffer:atTime:options:`](https://developer.apple.com/documentation/phase/phasepushstreamnode/schedulebuffer(buffer:time:options:)) function of a [`PHASEPushStreamNode`](https://developer.apple.com/documentation/phase/phasepushstreamnode).
+///
+///
 /// *************************************************************************************************
 ///
 ///
@@ -24,24 +33,22 @@ use crate::*;
 /// The buffer interrupts any buffer already playing.
 ///
 /// The buffer interrupts any buffer already playing, at its loop point.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPushStreamBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEPushStreamBufferOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/default?language=objc)
+/// Indicates a buffer processes after existing buffers in the queue.
         #[doc(alias = "PHASEPushStreamBufferDefault")]
         const Default = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/loops?language=objc)
+/// Indicates a buffer restarts after it finishes processing.
         #[doc(alias = "PHASEPushStreamBufferLoops")]
         const Loops = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/interrupts?language=objc)
+/// Indicates a buffer begins processing immediately.
         #[doc(alias = "PHASEPushStreamBufferInterrupts")]
         const Interrupts = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions/interruptsatloop?language=objc)
+/// Indicates a buffer begins processing when an existing buffer loops.
         #[doc(alias = "PHASEPushStreamBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<3;
     }
@@ -55,18 +62,23 @@ unsafe impl RefEncode for PHASEPushStreamBufferOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A status that describes the results after the app schedules a push-stream buffer.
+///
+/// ## Overview
+///
+/// A [`PHASEPushStreamNode`](https://developer.apple.com/documentation/phase/phasepushstreamnode) object provides an instance of this class to the completion closure after the app schedules a buffer by calling [`scheduleBuffer:completionCallbackType:completionHandler:`](https://developer.apple.com/documentation/phase/phasepushstreamnode/schedulebuffer(buffer:completioncallbacktype:completionhandler:)).
+///
+///
 /// Specifies when the completion handler must be invoked.
 ///
 /// The buffer data has been rendered by the player.
 /// This does not account for any signal processing latencies downstream of the player in the engine.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamcompletioncallbackcondition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPushStreamCompletionCallbackCondition(pub NSInteger);
 impl PHASEPushStreamCompletionCallbackCondition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamcompletioncallbackcondition/datarendered?language=objc)
+    /// Indicates the framework invokes the callback when the engine processes the audio for output.
     #[doc(alias = "PHASEPushStreamCompletionDataRendered")]
     pub const DataRendered: Self = Self(0);
 }
@@ -80,6 +92,25 @@ unsafe impl RefEncode for PHASEPushStreamCompletionCallbackCondition {
 }
 
 extern_class!(
+    /// A base class for sound event nodes that connect to form a node hierarchy.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines the base functionality for an object that, depending on the derived class’s type, either plays audio or hands off the invocation to one or more other nodes.
+    ///
+    /// ### Configure a Sound Event Node to Play Audio
+    ///
+    /// To play audio with this class, retrieve a sound-event node asset ([`PHASESoundEventNodeAsset`](https://developer.apple.com/documentation/phase/phasesoundeventnodeasset)) that generates sound events by creating and registering one of the audio-providing node definitions in [Sound Event Nodes](https://developer.apple.com/documentation/phase/sound-event-nodes). Call [`registerSoundEventAssetWithRootNode:identifier:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registersoundeventasset(rootnode:identifier:)) and pass the node definition in the `rootNode` argument. Provide an `identifier` argument with a unique name that your app refers to later when generating a playable [`PHASESoundEvent`](https://developer.apple.com/documentation/phase/phasesoundevent).
+    ///
+    /// ### Configure a Node Hiearchy that Reacts to Your App’s State
+    ///
+    /// You can create a hierarchy of nodes that blends audio based on your app’s parameters, or plays the right audio based on your app’s state. To create the hierarchy, register one of the control nodes in [Sound Event Nodes](https://developer.apple.com/documentation/phase/sound-event-nodes) by calling [`registerSoundEventAssetWithRootNode:identifier:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registersoundeventasset(rootnode:identifier:)), passing in a unique [`identifier`](https://developer.apple.com/documentation/phase/phasedefinition/identifier) you define for the subclass.
+    ///
+    /// The particular configuration you choose for a node hierarchy instructs PHASE on which audio to play, when to play it, or whether to hand off an invocation to one or more child nodes ([`children`](https://developer.apple.com/documentation/phase/phasesoundeventnodedefinition/children)).
+    ///
+    /// For example, if you register and invoke a [`PHASESwitchNodeDefinition`](https://developer.apple.com/documentation/phase/phaseswitchnodedefinition) that contains two child [`PHASESamplerNodeDefinition`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition) objects, PHASE plays the audio of one of the child sampler nodes based on the current value of the switch node’s metaparameter. For more information, see [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -90,8 +121,6 @@ extern_class!(
     /// Generator nodes produce audio. They are always leaf nodes in a node hierarchy. These include samplers and stream nodes.
     /// Control nodes set the logic for how generator nodes are selected, mixed and parameterized before downstream mixer processing.
     /// Control nodes are always parent nodes, and can be organized into hierarchies for complex sound design scenarios.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventnodedefinition?language=objc)
     #[unsafe(super(PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -122,13 +151,18 @@ impl PHASESoundEventNodeDefinition {
 }
 
 extern_class!(
+    /// A base class for nodes that provide audio data to generate sound.
+    ///
+    /// ## Overview
+    ///
+    /// This class encapsulates shared logic for subclasses that provide audio data to a mixer for sound output, namely [`PHASESamplerNodeDefinition`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition) and [`PHASEPushStreamNodeDefinition`](https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object for defining a generator node when building a sound event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasegeneratornodedefinition?language=objc)
     #[unsafe(super(PHASESoundEventNodeDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -249,6 +283,13 @@ impl PHASEGeneratorNodeDefinition {
 }
 
 extern_class!(
+    /// A node that plays complete audio data.
+    ///
+    /// ## Overview
+    ///
+    /// Generate sound events from this node to play audio data that your app loads completely, either from disk or from memory.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -256,8 +297,6 @@ extern_class!(
     /// Sampler node definition.
     ///
     /// Sampler nodes play back registered sound assets.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesamplernodedefinition?language=objc)
     #[unsafe(super(
         PHASEGeneratorNodeDefinition,
         PHASESoundEventNodeDefinition,
@@ -360,6 +399,13 @@ impl PHASESamplerNodeDefinition {
 }
 
 extern_class!(
+    /// A node that plays all its children at the same time.
+    ///
+    /// ## Overview
+    ///
+    /// This node adds structure to the sound event tree while performing no conditional logic or audio playback of its own. By passing invocation to all its children at once, this class invokes the child nodes’ actions simultaneously.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -367,8 +413,6 @@ extern_class!(
     /// An object for defining a container sound event node when building a sound event.
     ///
     /// A container node plays back all its children at once.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecontainernodedefinition?language=objc)
     #[unsafe(super(PHASESoundEventNodeDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -419,6 +463,70 @@ impl PHASEContainerNodeDefinition {
 }
 
 extern_class!(
+    /// A node that smoothly fades between the audio of its child nodes.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines a threshold and a numeric parameter the app increases and decreases to fade between child nodes. Each child node defines a range within the threshold in which the child node plays audio. As the app moves the blend parameter value between `0` and the threshold, the blend node plays the audio of its child nodes whose range and fade curve overlap at the current value.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/fad590e77e054d14a53b5230291c250b/media-3918862~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/aca0330112ec32cda9c94d16e6119920/media-3918862%402x.png 2x" />
+    ///     <img alt="Illustration of a flowchart that represents a sound event node tree. The chart contains three boxes, which represent nodes. At left, a box labeled Blend Node extends an arrow, which points to a box in the upper right that’s labeled, Sampler Node Cobblestone Footstep. The box labeled Random Node extends another arrow, which points to a box in the lower right that’s labeled, Sampler Node Grass Footstep. A verticle bar ranges from top sampler node to the bottom sampler node to indicate the range in which both just one node actively plays audio, or both nodes actively play audio, and to what volume they play. " src="https://docs-assets.developer.apple.com/published/fad590e77e054d14a53b5230291c250b/media-3918862~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ### Play a Blend of Simultaneous Audio Data
+    ///
+    /// To gradually change the audio that a sound event plays, define blend thresholds and a number metaparameter that incrementally increases or decreases between the thresholds. For example, the following code sets up a sound event hierarchy containing two sampler nodes that play audio, with each one modeling a different terrain. The app sets the metaparameter value based on the value of the terrain the player stands on. When the app starts a sound event from this hierarchy, PHASE plays:
+    ///
+    /// - A grass footstep for terrain values between `0` and `0.33`
+    ///
+    /// - A cobblestone footstep for terrain values between `0.67` and `1.0`
+    ///
+    /// - A blend of both footstep sounds for values between `0.33` and `0.67`
+    ///
+    /// ```swift
+    /// // Create a meta parameter definition that chooses among different terrains.
+    /// let terrainBlendParameter = PHASENumberMetaParameterDefinition(
+    ///     value: 0.5,
+    ///     minimum: 0.0,
+    ///     maximum: 1.0,
+    ///     identifier: "terrain")
+    ///
+    /// // Create a blend node and pass in the meta parameter.
+    /// let terrainBlendNode = PHASEBlendNodeDefinition(blendMetaParameterDefinition: terrainBlendParameter)
+    ///
+    /// // Add two samples nodes to blend between.
+    /// terrainBlendNode.addRangeForInputValuesAbove(
+    ///     value: 0.33,
+    ///     fullGainAtValue: 1.0,
+    ///     fadeCurveType: .linear,
+    ///     subtree:cobblestoneSamplerNode)
+    ///
+    /// terrainBlendNode.addRangeForInputValuesBelow(
+    ///     value: 0.67,
+    ///     fullGainAtValue: 0.0,
+    ///     fadeCurveType: .linear,
+    ///     subtree:grassSamplerNode)
+    ///
+    /// // Create a sound event.
+    /// var footstepEvent: PHASESoundEvent?
+    /// do { footstepEvent = try PHASESoundEvent(engine: myEngine, assetIdentifier: "terrain") }
+    /// catch { fatalError("Failed to create the sound event due to: \(error)") }        
+    ///
+    /// // Set the "terrain" metaparameter value to a midpoint that
+    /// //  plays audio from both subtrees at an equal volume.
+    /// guard let terrainParameter = footstepEvent?.metaParameters["terrain"] else { fatalError() }
+    /// terrainParameter.value = 0.5
+    ///
+    /// // Play the sound and hear a mix of both terrains.
+    /// footstepEvent?.start() { reason in
+    /// /* Perform completion tasks. */ }
+    /// ```
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -426,8 +534,6 @@ extern_class!(
     /// An object for defining a blend sound event node when building a sound event.
     ///
     /// A blend node blends between its children based on a numeric parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseblendnodedefinition?language=objc)
     #[unsafe(super(PHASESoundEventNodeDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -610,6 +716,44 @@ impl PHASEBlendNodeDefinition {
 }
 
 extern_class!(
+    /// A node that passes invocation to only one of its child nodes.
+    ///
+    /// ## Overview
+    ///
+    /// A switch node takes a different path in a sound-event hierarchy depending on the value that the app supplies for the node’s switch metaparameter. You define the available paths ahead of time by calling [`addSubtree:switchValue:`](https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/addsubtree(_:switchvalue:)) at least twice and supplying the subtree’s unique string name as the switch value. When your app invokes a sound event at runtime, PHASE checks the value of [`switchMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition) to determine which path to take.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/020acb797e797cff3e3e1fa70f65278b/media-3918861~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/ca9b1fe656ec9cead83a5017abbb03c9/media-3918861%402x.png 2x" />
+    ///     <img alt="Illustration of a flowchart that represents a sound event node tree. The chart contains three boxes, which represent nodes. At left, a box labeled Switch Node contains the text Input Metaparameter Terrain. An arrow flows to the right from the switch node to a box resting at the bottom of the figure that’s labeled Sampler Node Sidewalk Footstep. Another arrow flows to the right from the switch node to a box resting at the top of the figure, labeled Sampler Node Grass Footstep." src="https://docs-assets.developer.apple.com/published/ca9b1fe656ec9cead83a5017abbb03c9/media-3918861%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ### Switch Between Mulitple Node Trees
+    ///
+    /// For example, the following diagram represents a node tree that plays one of three grass or sidewalk footstep sounds, depending on the app’s current state. The app sets a value for the switch-node metaparameter according to the terrain on which the player in a game currently stands.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4b0593ddf36df3aed8e5c6fa4b3dc133/media-3918863~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/74bd2906e5c8cd42e42a2dd07e1b55be/media-3918863%402x.png 2x" />
+    ///     <img alt="Illustration of a flow chart that represents a sound event node tree. At left, a box labeled Switch Node cointains the text Input Metaparameter terrain. Two arrows flow out of the node to respective boxes that are both labeled Random Node. One random node branches to two different boxes labeled Sampler Node. One sampler node contains the text Grass Footstep Variation One. The other sampler node contains the text Grass Footstep Variation Two. The other random node branches to two different boxes titled Sampler Node. One sampler node contains the text Cobblestone Footstep Variation One. The other sampler node contains the text Cobblestone Footstep Variation Two. " src="https://docs-assets.developer.apple.com/published/74bd2906e5c8cd42e42a2dd07e1b55be/media-3918863%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following code creates a random node subtree for each terrain type and adds each one as a subtree to the switch node.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Set up the sampler nodes for the \"grass\" group of sounds.", "let grassFootstep1 = PHASESamplerNodeDefinition(soundAssetIdentifier:\"GrassOne\" , mixerDefinition: myMixer)", "let grassFootstep2 = PHASESamplerNodeDefinition(soundAssetIdentifier:\"GrassTwo\" , mixerDefinition: myMixer)", "", "// Create a random node and assign the grass samplers to it.", "let grassRandomNode = PHASERandomNodeDefinition(identifier: \"grassRandomNode\")", "grassRandomNode.addSubtree(grassFootstep1, weight: 10)", "grassRandomNode.addSubtree(grassFootstep2, weight: 5)", "", "// Set up the sampler nodes for the \"cobblestone\" group of sounds.", "let cobblestoneFootstep1 = PHASESamplerNodeDefinition(soundAssetIdentifier: \"CobblestoneOne\", mixerDefinition: myMixer)", "let cobblestoneFootstep2 = PHASESamplerNodeDefinition(soundAssetIdentifier: \"CobblestoneTwo\", mixerDefinition: myMixer)", "", "// Create a random node and assign the cobblestone samplers to it.", "let cobblestoneRandomNode = PHASERandomNodeDefinition(identifier: \"cobblestoneRandomNode\")", "cobblestoneRandomNode.addSubtree(cobblestoneFootstep1, weight: 4)", "cobblestoneRandomNode.addSubtree(cobblestoneFootstep2, weight: 2)", "", "// Create a metaparameter definition named \"terrain\" for the sound event.", "let terrainSwitchParameter = PHASEStringMetaParameterDefinition(value: \"cobblestone\", identifier:\"terrain\")", "", "// Create a switch node and provide the metaparameter.", "let terrainSwitchNode = PHASESwitchNodeDefinition(switchMetaParameterDefinition: terrainSwitchParameter)", "", "// Add two random nodes as the metaparameter toggle options.", "terrainSwitchNode.addSubtree(cobblestoneRandomNode, switchValue: \"cobblestone\")", "terrainSwitchNode.addSubtree(grassRandomNode, switchValue: \"grass\")", "", "// Set the terrain metaparameter to play the sound event.", "var footstepEvent: PHASESoundEvent!", "do {", "    footstepEvent = try PHASESoundEvent(engine: myEngine, assetIdentifier: \"footStepEventAsset\")", "} catch { fatalError(\"Failed to create sound event.\") }", "", "// Set the terrain to grass.", "if let metaparameter = footstepEvent.metaParameters[\"terrain\"] {", "    metaparameter.value = \"grass\"", "}", "", "// Invoke the sound event and hear noise for the selected terrain.", "footstepEvent.start()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Set up the sampler nodes for the \"grass\" group of sounds.", "PHASESamplerNodeDefinition* grassFootstep1 = [[PHASESamplerNodeDefinition alloc] ", "    initWithSoundAssetUID:@\"GrassOne\" mixerDefinition:mixNode];", "PHASESamplerNodeDefinition* grassFootstep2 = [[PHASESamplerNodeDefinition alloc] ", "    initWithSoundAssetUID:@\"GrassTwo\" mixerDefinition:mixNode];", "", "// Create a random node and assign the grass samplers to it.", "PHASERandomNodeDefinition* grassRandomNode = [[PHASERandomNodeDefinition alloc] ", "    initWithUID:@\"grassRandomNode\"];", "[grassRandomNode addSubtree:grassFootstep1 weight:@10];", "[grassRandomNode addSubtree:grassFootstep2 weight:@5];", "", "// Set up the sampler nodes for the \"cobblestone\" group of sounds.", "PHASESamplerNodeDefinition* cobblestoneFootstep1 = [[PHASESamplerNodeDefinition alloc] ", "    initWithSoundAssetUID:@\"CobblestoneOne\" mixerDefinition:mixNode];", "PHASESamplerNodeDefinition* cobblestoneFootstep2 = [[PHASESamplerNodeDefinition alloc] ", "    initWithSoundAssetUID:@\"CobblestoneTwo\" mixerDefinition:mixNode];", "", "// Create a random node and assign the cobblestone samplers to it.", "PHASERandomNodeDefinition* cobblestoneRandomNode = [[PHASERandomNodeDefinition alloc] ", "    initWithUID:@\"cobblestoneRandomNode\"];", "[cobblestoneRandomNode addSubtree:cobblestoneFootstep1 weight:@4];", "[cobblestoneRandomNode addSubtree:cobblestoneFootstep2 weight:@2];", "", "// Create a metaparameter definition named \"terrain\" for the sound event.", "PHASEStringMetaParameterDefinition terrainSwitchParameter = ", "    [[PHASEStringMetaParameterDefinition alloc] ", "        initWithValue:@\"cobblestone\" uid:@\"terrain\"];", "", "// Create a switch node and provide the metaparameter.", "PHASESwitchNodeDefinition* terrainSwitchNode = [[PHASESwitchNodeDefinition alloc] ", "    initWithSwitchMetaParameterDefinition:terrainSwitchParameter];", "", "// Add two random nodes as the metaparameter toggle options.", "[terrainSwitchNode addSubtree:cobblestoneRandomNode switchValue:@\"cobblestone\"];", "[terrainSwitchNode addSubtree:grassRandomNode switchValue:@\"grass\"];", "", "// Set the terrain metaparameter to play the sound event.", "PHASESoundEvent* footstepEvent = [[PHASESoundEvent alloc] ", "    initWithEngine:_objects->mEngine", "    registeredSoundEventNodeAssetUID:@\"footStepEventAsset\" outError:nil];", "", "// Set the terrain to grass.", "footstepEvent.metaParameters[@\"terrain\"] = @\"grass\";", "", "// Invoke the sound event and hear noise for the selected terrain.", "[footstepEvent startAndReturnError:&myError];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  The [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) objects affect only one sound event. To propagate a metaparameter change to multiple sound events, register the metaparameter globally using [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)), and change its value through the asset registry’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -617,8 +761,6 @@ extern_class!(
     /// An object for defining a switch sound event node when building a sound event.
     ///
     /// A switch node switches between its children based on a string parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseswitchnodedefinition?language=objc)
     #[unsafe(super(PHASESoundEventNodeDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -694,6 +836,28 @@ impl PHASESwitchNodeDefinition {
 }
 
 extern_class!(
+    /// A sound event node that invokes one of its child nodes at random.
+    ///
+    /// ## Overview
+    ///
+    /// When the framework invokes a random node, it passes the invocation on to one of its children at random. The weight you choose for a child node in the [`addSubtree:weight:`](https://developer.apple.com/documentation/phase/phaserandomnodedefinition/addsubtree(_:weight:)) argument skews the node’s selection chances.
+    ///
+    /// ### Choose from Alternate Sounds
+    ///
+    /// This class can model real-world cases where an event varies slightly, such as when footsteps sound slightly different because of the unique ground composition at each step.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d2e65cdc0965a0d56a46c3f03efd9f90/media-3918860~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3e7605629beec5855ca52d33b3bf11de/media-3918860%402x.png 2x" />
+    ///     <img alt="Illustration of a flowchart that represents a sound event node tree. The chart contains three boxes, which represent nodes. At left, a box labeled Random Node extends an arrow, which points to a box in the upper right that’s labeled Sampler Node Footstep Variation One. The box labeled Random Node extends another arrow, which points to a box in the lower right that’s labeled Sampler Node Footstep Variation Two. " src="https://docs-assets.developer.apple.com/published/d2e65cdc0965a0d56a46c3f03efd9f90/media-3918860~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The following code creates an instance of this class that selects from three different footstep sounds. The weights determine that an uncommon footstep noise plays half as frequently as the common footstep. And a third footstep noise plays 10% of the time.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create several nodes from prior-registered footstep sound assets.", "let footstep1 = PHASESamplerNodeDefinition(", "    soundAssetIdentifier: \"footstep1\",", "    mixerDefinition: myMixer, identifier: \"footstep1\")", "let footstep2 = PHASESamplerNodeDefinition(", "    soundAssetIdentifier: \"footstep2\",", "    mixerDefinition: myMixer, identifier: \"footstep2\")", "let footstep3 = PHASESamplerNodeDefinition(", "    soundAssetIdentifier: \"footstep3\",    ", "    mixerDefinition: myMixer, identifier: \"footstep3\")", "", "// Create the random node.", "let randomNode = PHASERandomNodeDefinition(identifier: \"randomNode\")", "", "// Connect leaf nodes to the tree and set the weights. ", "randomNode.addSubtree(footstep1, weight: 10)", "randomNode.addSubtree(footstep2, weight: 5)", "randomNode.addSubtree(footstep3, weight: 1)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create several nodes from prior-registered footstep sound assets.", "PHASESamplerNodeDefinition* footstep1 = ", "    [[PHASESamplerNodeDefinition alloc] ", "        initWithSoundAssetUID:@\"footstep1\" ", "        mixerDefinition:mixNode uid:@\"footstep1\"];", "PHASESamplerNodeDefinition* footstep2 = ", "    [[PHASESamplerNodeDefinition alloc] ", "        initWithSoundAssetUID:@\"footstep2\" ", "        mixerDefinition:mixNode uid:@\"footstep2\"];", "PHASESamplerNodeDefinition* footstep3 = ", "    [[PHASESamplerNodeDefinition alloc] ", "        initWithSoundAssetUID:@\"footstep3\" ", "        mixerDefinition:mixNode uid:@\"footstep3\"];", "", "// Create the random node.", "PHASERandomNodeDefinition* randomNode = ", "    [[PHASERandomNodeDefinition alloc] initWithUID:@\"randomNode\"];", "", "// Connect leaf nodes to the tree and set the weights. ", "[randomNode addSubtree:footstep1 weight:@10];", "[randomNode addSubtree:footstep2 weight:@5];", "[randomNode addSubtree:footstep3 weight:@1];"], metadata: None }] }] })
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -701,8 +865,6 @@ extern_class!(
     /// An object for defining a random sound event node when building a sound event.
     ///
     /// A random node selects one of its children based on a weighted random choice.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserandomnodedefinition?language=objc)
     #[unsafe(super(PHASESoundEventNodeDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -776,13 +938,18 @@ impl PHASERandomNodeDefinition {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// ---
+    /// The base class for stream nodes, exposing common elements.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// The base class for stream nodes, exposing common elements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasestreamnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEStreamNode;
@@ -829,13 +996,26 @@ impl PHASEStreamNode {
 }
 
 extern_class!(
+    /// A node that plays a sequence of audio buffers.
+    ///
+    /// ## Overview
+    ///
+    /// Use this node to create sound events for a piecemeal audio source, for example, an audio stream that your app accesses over the network or loads from a memory-mapped file on disk.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To create a sound event for fully-loaded audio data instead, use [`PHASESamplerNodeDefinition`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object for defining a push stream sound event node when building a sound event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition?language=objc)
     #[unsafe(super(
         PHASEGeneratorNodeDefinition,
         PHASESoundEventNodeDefinition,
@@ -922,13 +1102,20 @@ impl PHASEPushStreamNodeDefinition {
 }
 
 extern_class!(
+    /// An audio stream you manage to provide a sound buffer data.
+    ///
+    /// ## Overview
+    ///
+    /// A sound event’s [`pushStreamNodes`](https://developer.apple.com/documentation/phase/phasesoundevent/pushstreamnodes) dictionary populates with an instance of this class when PHASE invokes a  [`PHASEPushStreamNodeDefinition`](https://developer.apple.com/documentation/phase/phasepushstreamnodedefinition) in your event node tree.
+    ///
+    /// Your app provides the audio data that the sound event plays by calling one or more of this class’s buffer-scheduling functions, for example, [`scheduleBuffer:`](https://developer.apple.com/documentation/phase/phasepushstreamnode/schedulebuffer(buffer:)).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object for addessing an instance of a stream in an executing sound event
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamnode?language=objc)
     #[unsafe(super(PHASEStreamNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEPushStreamNode;
@@ -1055,6 +1242,35 @@ impl PHASEPushStreamNode {
     );
 }
 
+///
+/// Parameters:
+/// - isSilence: The client may use this flag to indicate that the buffer it vends contains only silence. The receiver of the buffer can then use the flag as a hint as to whether the buffer needs to be processed or not. Note that because the flag is only a hint, when setting the silence flag, the originator of a buffer must also ensure that it contains silence (zeroes).
+///
+/// - timestamp: The HAL time at which the audio data will be rendered. If there is a sample rate conversion or time compression/expansion downstream, the sample time will not be valid.
+///
+/// - frameCount: The number of sample frames of audio data requested.
+///
+/// - outputData: The output data.
+///
+///
+/// ## Return Value
+///
+/// An OSStatus result code. If an error is returned, the audio data should be assumed to be invalid.
+///
+///
+///
+/// ## Discussion
+///
+/// Block to supply audio data to PHASEPullStreamNode
+///
+/// ```text
+/// The caller must supply valid buffers in outputData's mBuffers' mData and mDataByteSize.
+/// mDataByteSize must be consistent with frameCount. This block may provide output in those
+/// specified buffers, or it may replace the mData pointers with pointers to memory which it
+/// owns and guarantees will remain valid until the next render cycle.
+/// ```
+///
+///
 /// Block to supply audio data to PHASEPullStreamNode
 ///
 /// Parameter `isSilence`: The client may use this flag to indicate that the buffer it vends contains only silence.
@@ -1077,8 +1293,6 @@ impl PHASEPushStreamNode {
 ///
 /// Returns: An OSStatus result code. If an error is returned, the audio data should be assumed to be
 /// invalid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepullstreamrenderhandler?language=objc)
 #[cfg(all(
     feature = "block2",
     feature = "objc2-avf-audio",
@@ -1094,13 +1308,18 @@ pub type PHASEPullStreamRenderBlock = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// ---
+    /// An object for defining a pull stream sound event node when building a sound event.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object for defining a pull stream sound event node when building a sound event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepullstreamnodedefinition?language=objc)
     #[unsafe(super(
         PHASEGeneratorNodeDefinition,
         PHASESoundEventNodeDefinition,
@@ -1187,13 +1406,18 @@ impl PHASEPullStreamNodeDefinition {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// ---
+    /// An object for addessing an instance of a stream in an executing sound event
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object for addessing an instance of a stream in an executing sound event
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepullstreamnode?language=objc)
     #[unsafe(super(PHASEStreamNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEPullStreamNode;

@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconregion?language=objc)
+    /// A region for detecting the presence of iBeacon devices.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CLBeaconRegion`](https://developer.apple.com/documentation/corelocation/clbeaconregion) object defines a region that you use to detect Bluetooth beacons conforming to the iBeacon specification. In contrast to a [`CLCircularRegion`](https://developer.apple.com/documentation/corelocation/clcircularregion) that centers on a geographic location, a [`CLBeaconRegion`](https://developer.apple.com/documentation/corelocation/clbeaconregion) focuses on an iBeacon with specific identifying characteristics, which you provide. When a matching device comes in range, Core Location notifies your app.
+    ///
+    /// You monitor beacon regions in two ways. To detect when a beacon is in range, use the [`startMonitoringForRegion:`](https://developer.apple.com/documentation/corelocation/cllocationmanager/startmonitoring(for:)) method of your location manager object. After detecting a beacon, call the [`startRangingBeaconsInRegion:`](https://developer.apple.com/documentation/corelocation/cllocationmanager/startrangingbeacons(in:)) method to determine the relative distance to that beacon.
+    ///
+    /// When detecting an iBeacon, you need to specify the [`proximityUUID`](https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid), [`major`](https://developer.apple.com/documentation/corelocation/clbeaconregion/major), and [`minor`](https://developer.apple.com/documentation/corelocation/clbeaconregion/minor) values that you programmed into the beacon hardware. You use the values to identify your beacons uniquely, and you can specify a subset of values to detect multiple beacons. The [`proximityUUID`](https://developer.apple.com/documentation/corelocation/clbeaconregion/proximityuuid) property is typically the same for all of the beacons in your installation. Use the [`major`](https://developer.apple.com/documentation/corelocation/clbeaconregion/major) and [`minor`](https://developer.apple.com/documentation/corelocation/clbeaconregion/minor) values to distinguish among different beacons in your installation.
+    ///
+    /// If you want to configure the current iOS device as a Bluetooth beacon, create a beacon region with the appropriate identifying information. You can then call the [`peripheralDataWithMeasuredPower:`](https://developer.apple.com/documentation/corelocation/clbeaconregion/peripheraldata(withmeasuredpower:)) method of the region to get a dictionary that you can use to advertise the device with the Core Bluetooth framework. For more information about using that framework to advertise the device as a beacon, see [Turning an iOS device into an iBeacon device](https://developer.apple.com/documentation/corelocation/turning-an-ios-device-into-an-ibeacon-device).
+    ///
+    /// For information about how to detect beacons, see [Determining the proximity to an iBeacon device](https://developer.apple.com/documentation/corelocation/determining-the-proximity-to-an-ibeacon-device).
+    ///
+    ///
     #[unsafe(super(CLRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLRegion")]
@@ -202,7 +216,15 @@ impl CLBeaconRegion {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeacon?language=objc)
+    /// Information about an observed iBeacon device and its relative distance to a person’s device.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CLBeacon`](https://developer.apple.com/documentation/corelocation/clbeacon) class represents a beacon that was observed during beacon ranging. You do not create instances of this class directly. The location manager ([`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager)) object reports observed beacons to its associated delegate object.
+    ///
+    /// The identity of a beacon is defined by its [`UUID`](https://developer.apple.com/documentation/corelocation/clbeacon/uuid), [`major`](https://developer.apple.com/documentation/corelocation/clbeacon/major), and [`minor`](https://developer.apple.com/documentation/corelocation/clbeacon/minor) properties. These values are coded into the beacon itself. For a more thorough description of the meaning of those values, see [`CLBeaconRegion`](https://developer.apple.com/documentation/corelocation/clbeaconregion).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBeacon;

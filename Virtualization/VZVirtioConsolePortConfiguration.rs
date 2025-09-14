@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents the configuration options you can set on a Virtio console port.
+    ///
+    /// ## Overview
+    ///
+    /// A console port is a two-way communication channel between a host [`VZSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzserialportattachment) and a VM console port. A Virtio device can have one or more attached console devices. Optionally, you can set a name for a console port and also configure a console port that the guest can use as the system console.
+    ///
+    ///
     /// Virtio Console Port
     ///
     /// A console port is a two-way communication channel between a host VZSerialPortAttachment and a virtual machine console port. One or more console ports are attached to a Virtio console device.
@@ -17,8 +24,6 @@ extern_class!(
     /// See: VZConsolePortConfiguration
     ///
     /// See: VZVirtualMachineConfiguration.consoleDevices
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfiguration?language=objc)
     #[unsafe(super(VZConsolePortConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsolePortConfiguration")]

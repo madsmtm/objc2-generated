@@ -15,7 +15,38 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlayer?language=objc)
+    /// An object that presents the visual contents of a player object.
+    ///
+    /// ## Overview
+    ///
+    /// A common way to use this object in iOS or tvOS is as the backing layer for a [`UIView`](https://developer.apple.com/documentation/uikit/uiview), as the following example shows:
+    ///
+    /// ```swift
+    /// /// A view that displays the visual contents of a player object.
+    /// class PlayerView: UIView {
+    ///
+    ///     // Override the property to make AVPlayerLayer the view's backing layer.
+    ///     override static var layerClass: AnyClass { AVPlayerLayer.self }
+    ///     
+    ///     // The associated player object.
+    ///     var player: AVPlayer? {
+    ///         get { playerLayer.player }
+    ///         set { playerLayer.player = newValue }
+    ///     }
+    ///     
+    ///     private var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The value of a player layer’s inherited [`contents`](https://developer.apple.com/documentation/quartzcore/calayer/contents) property is opaque and you can’t change it.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]

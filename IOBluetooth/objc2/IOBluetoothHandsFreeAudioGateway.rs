@@ -9,11 +9,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that sends data to a connected Bluetooth hands-free phone or headset and processes commands from it.
+    ///
+    /// ## Overview
+    ///
+    /// This class represents the audio gateway portion of a Bluetooth audio profile.
+    ///
+    ///
     /// APIs for managing a hands free audio gateway
     ///
     /// (c) 2010 by Apple Inc. All rights reserved.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogateway?language=objc)
     #[unsafe(super(IOBluetoothHandsFree, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOBluetoothHandsFree")]
@@ -146,7 +151,7 @@ impl IOBluetoothHandsFreeAudioGateway {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewaydelegate?language=objc)
+    /// A set of optional methods for receiving information about status changes for a connected Bluetooth hands-free phone or headset.
     pub unsafe trait IOBluetoothHandsFreeAudioGatewayDelegate {
         #[cfg(all(feature = "IOBluetoothHandsFree", feature = "objc2-foundation"))]
         /// Tells the delegate that the device is sending a hangup.

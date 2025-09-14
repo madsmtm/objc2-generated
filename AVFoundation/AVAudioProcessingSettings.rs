@@ -5,6 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An algorithm used to set the audio pitch as the rate changes.
 /// The type of a time pitch algorithm.
 ///
 /// On macOS and iOS, the default algorithm for playback for applications linked on or after iOS 15.0 or macOS 12.0 is is AVAudioTimePitchAlgorithmTimeDomain. For iOS versions prior to 15.0 the default value is AVAudioTimePitchAlgorithmLowQualityZeroLatency. For macOS versions prior to 12.0 the default value is AVAudioTimePitchAlgorithmSpectral.
@@ -13,12 +14,17 @@ use crate::*;
 /// other offline processing is AVAudioTimePitchAlgorithmSpectral.
 ///
 /// For scaled audio edits, i.e. when the timeMapping of an AVAssetTrackSegment is between timeRanges of unequal duration, it is important to choose an algorithm that supports the full range of edit rates present in the source media.  AVAudioTimePitchAlgorithmSpectral is often the best choice due to the highly inclusive range of rates it supports, assuming that it is desirable to maintain a constant pitch regardless of the edit rate.  If it is instead desirable to allow the pitch to vary with the edit rate, AVAudioTimePitchAlgorithmVarispeed is the best choice.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioTimePitchAlgorithm = NSString;
 
 extern "C" {
+    /// A low-quality and very low computationally intensive pitch algorithm.
+    ///
+    /// ## Discussion
+    ///
+    /// This algorithm is suitable for brief fast-forward and rewind effects, as well as low-quality voice. The rate snaps to `{0.5, 0.666667, 0.8, 1.0, 1.25, 1.5, 2.0}`.
+    ///
+    ///
     /// Values for time pitch algorithm
     ///
     ///
@@ -36,28 +42,45 @@ extern "C" {
     ///
     /// High quality, no pitch correction. Pitch varies with rate.
     /// Variable rate from 1/32 to 32.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/lowqualityzerolatency?language=objc)
     #[deprecated = "Use AVAudioTimePitchAlgorithmTimeDomain instead"]
     pub static AVAudioTimePitchAlgorithmLowQualityZeroLatency:
         Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/timedomain?language=objc)
+    /// A modest quality time pitch algorithm that’s suitable for voice.
+    ///
+    /// ## Discussion
+    ///
+    /// This is less computationally intensive than [`AVAudioTimePitchAlgorithmSpectral`](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/spectral), and uses a variable rate from `1/32` to `32`.
+    ///
+    ///
     pub static AVAudioTimePitchAlgorithmTimeDomain: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/spectral?language=objc)
+    /// A highest-quality time pitch algorithm that’s suitable for music.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the most computationally intensive, and uses a variable rate from `1/32` to `32`.
+    ///
+    ///
     pub static AVAudioTimePitchAlgorithmSpectral: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/varispeed?language=objc)
+    /// A high-quality time pitch algorithm that doesn’t perform pitch correction.
+    ///
+    /// ## Discussion
+    ///
+    /// The pitch varies with the rate, and supports variable rates from `1/32` to `32`.
+    ///
+    ///
     pub static AVAudioTimePitchAlgorithmVarispeed: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
+/// A structure that defines the spatialization formats that a player item supports.
 /// These constants can be used to specify values for allowedAudioSpatializationFormats.
 ///
 ///
@@ -68,24 +91,22 @@ extern "C" {
 /// Indicates that only multichannel layouts may be used for audio spatialization.
 ///
 /// Indicates that mono, stereo and multichannel layouts may be used for audio spatialization.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSpatializationFormats(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSpatializationFormats: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/avaudiospatializationformatnone?language=objc)
+/// A value that indicates the player item doesn’t support audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/monoandstereo?language=objc)
+/// A value that indicates the player item only supports mono and stereo layouts for audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatMonoAndStereo")]
         const MonoAndStereo = 0x3;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/multichannel?language=objc)
+/// A value that indicates the player item only supports multichannel layouts for audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatMultichannel")]
         const Multichannel = 0x4;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiospatializationformats/monostereoandmultichannel?language=objc)
+/// A value that indicates the player item supports mono, stereo, and multichannel layouts for audio spatialization.
         #[doc(alias = "AVAudioSpatializationFormatMonoStereoAndMultichannel")]
         const MonoStereoAndMultichannel = 0x7;
     }

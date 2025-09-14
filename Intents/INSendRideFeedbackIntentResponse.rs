@@ -6,22 +6,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSendRideFeedbackIntentResponseCode(pub NSInteger);
 impl INSendRideFeedbackIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/unspecified?language=objc)
+    /// There is no specified response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this code during the confirmation or handling phases results in an error.
+    ///
+    ///
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your Intents extension is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/success?language=objc)
+    /// You successfully recorded the feedback for the ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that your ride service recorded the feedback for the ride. You can also specify this code during the confirmation phase to indicate that you are ready to handle the intent.
+    ///
+    ///
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeSuccess")]
     pub const Success: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponsecode/failure?language=objc)
+    /// You were unable to record the feedback for the ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from recording the feedback for the ride.
+    ///
+    ///
     #[doc(alias = "INSendRideFeedbackIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
 }
@@ -35,7 +59,15 @@ unsafe impl RefEncode for INSendRideFeedbackIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponse?language=objc)
+    /// Your app’s response to a send ride feedback intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSendRideFeedbackIntentResponse`](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponse) object contains your app’s response to a request for feedback about a ride. After creating the response object, specify any feedback using the properties of this object. Siri and Maps display your response information to the user during the confirmation phase.
+    ///
+    /// You create an [`INSendRideFeedbackIntentResponse`](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponse) object in the [`confirmSendRideFeedback:completion:`](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling/confirm(sendridefeedback:completion:)) and [`confirmSendRideFeedback:completion:`](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling/confirm(sendridefeedback:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INSendRideFeedbackIntentHandling`](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

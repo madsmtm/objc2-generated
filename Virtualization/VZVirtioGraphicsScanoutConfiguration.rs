@@ -8,13 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration for a Virtio graphics device that configures the dimensions of the graphics device for a Linux VM.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `VZVirtioGraphicsScanoutConfiguration` to configure the width and height of a Virtio graphics device.
+    ///
+    ///
     /// Configuration for a scanout attached to a Virtio graphics device.
     ///
     /// This scanout can be shown in a VZVirtualMachineView.
     ///
     /// See also: VZVirtioGraphicsDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsscanoutconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDisplayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDisplayConfiguration")]

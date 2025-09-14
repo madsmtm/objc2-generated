@@ -7,96 +7,170 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype?language=objc)
+/// Possible usages for a custom vocabulary term.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INVocabularyStringType(pub NSInteger);
 impl INVocabularyStringType {
-    /// The name of a contact as a person will say it, for example “Jon Smith”, “Apple”.
+    /// The name of an app-specific contact.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/contactname?language=objc)
+    /// ## Discussion
+    ///
+    /// For example, you might include the strings “Jon Smith” or “Apple Inc”. Don’t include names already in the Contacts app on the user’s device. Instead, use this type to define contacts that are exclusive to your app.
+    ///
+    /// Siri puts your contact names in the [`nameComponents`](https://developer.apple.com/documentation/intents/inperson/namecomponents) or [`displayName`](https://developer.apple.com/documentation/intents/inperson/displayname) properties of any [`INPerson`](https://developer.apple.com/documentation/intents/inperson) object associated with intents related to calls, messages, payments, and photos.
+    ///
+    ///
+    /// The name of a contact as a person will say it, for example “Jon Smith”, “Apple”.
     #[doc(alias = "INVocabularyStringTypeContactName")]
     pub const ContactName: Self = Self(1);
-    /// The name of a group of contacts as a person will say it, for example "Tahoe Trip".
+    /// The name of a group of contacts, as a person would say it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/contactgroupname?language=objc)
+    /// ## Discussion
+    ///
+    /// For example, you might include the string “Tahoe Trip” to describe the members of a vacation party.
+    ///
+    /// Siri puts group names into the [`groupName`](https://developer.apple.com/documentation/intents/insendmessageintent/groupname) property of the [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent) and into similar properties for intents that support group addresses.
+    ///
+    ///
+    /// The name of a group of contacts as a person will say it, for example "Tahoe Trip".
     #[doc(alias = "INVocabularyStringTypeContactGroupName")]
     pub const ContactGroupName: Self = Self(2);
-    /// A keyword associated with an image or images, for example "food", "Vacation".
+    /// A user-defined keyword associated with an image or images.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/phototag?language=objc)
+    /// ## Discussion
+    ///
+    /// For example, you might include the strings “food” or “vacation” if the user defined those tags in your app.
+    ///
+    /// Siri applies custom photo tags to the [`searchTerms`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchterms) property of the [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent) and [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent) classes.
+    ///
+    ///
+    /// A keyword associated with an image or images, for example "food", "Vacation".
     #[doc(alias = "INVocabularyStringTypePhotoTag")]
     pub const PhotoTag: Self = Self(100);
+    /// The user-given name assigned to a collection of photographs.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, you might include the string “WWDC 2015 Karaoke” for an album created by the user.
+    ///
+    /// Siri applies custom photo album names to the [`albumName`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent/albumname) property of the [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent) and [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent) classes.
+    ///
+    ///
     /// The name for a photograph album, for example "WWDC 2015 Karaoke".
     /// You may find that INVocabularyStringTypePhotoTag is a better match for concepts that are similar to, but not exactly, albums.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/photoalbumname?language=objc)
     #[doc(alias = "INVocabularyStringTypePhotoAlbumName")]
     pub const PhotoAlbumName: Self = Self(101);
-    /// The name a user has created for a workout, for example  “Half Marathon”, “Kettlebell exercise”
+    /// The user-given name assigned to a workout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/workoutactivityname?language=objc)
+    /// ## Discussion
+    ///
+    /// For example, you might include the string “Half Marathon” or “Kettlebell exercise” for specific regimens created by the user.
+    ///
+    /// Siri applies custom workout names to the [`workoutName`](https://developer.apple.com/documentation/intents/instartworkoutintent/workoutname) property of the [`INStartWorkoutIntent`](https://developer.apple.com/documentation/intents/instartworkoutintent), [`INPauseWorkoutIntent`](https://developer.apple.com/documentation/intents/inpauseworkoutintent), [`INResumeWorkoutIntent`](https://developer.apple.com/documentation/intents/inresumeworkoutintent), [`INEndWorkoutIntent`](https://developer.apple.com/documentation/intents/inendworkoutintent), and [`INCancelWorkoutIntent`](https://developer.apple.com/documentation/intents/incancelworkoutintent) classes.
+    ///
+    ///
+    /// The name a user has created for a workout, for example  “Half Marathon”, “Kettlebell exercise”
     #[doc(alias = "INVocabularyStringTypeWorkoutActivityName")]
     pub const WorkoutActivityName: Self = Self(200);
+    /// The name of a vehicle configuration profile.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, automotive vendors might include the strings “Roadtrip”, “Rally”, or “Good Weather” to describe specific configurations.
+    ///
+    /// Siri puts the profile name in the appropriate property of the [`INSaveProfileInCarIntent`](https://developer.apple.com/documentation/intents/insaveprofileincarintent) and [`INSetProfileInCarIntent`](https://developer.apple.com/documentation/intents/insetprofileincarintent) objects.
+    ///
+    ///
     /// The name of a vehicle configuration profile, for example "Roadtrip", "Rally", "Good Weather".
     /// For use by automaker apps that are enabled to work with CarPlay
     /// <https
     /// ://developer.apple.com/carplay/>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/carprofilename?language=objc)
     #[doc(alias = "INVocabularyStringTypeCarProfileName")]
     pub const CarProfileName: Self = Self(300);
-    /// The name of a vehicle as a person will say it, for example “BMW”, “My Convertible”.
+    /// A name that identifies the user’s car.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/carname?language=objc)
+    /// ## Discussion
+    ///
+    /// Siri puts the car name in the `carName` property of the [`INActivateCarSignalIntent`](https://developer.apple.com/documentation/intents/inactivatecarsignalintent), [`INGetCarPowerLevelStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent), [`INGetCarLockStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintent), and [`INSetCarLockStatusIntent`](https://developer.apple.com/documentation/intents/insetcarlockstatusintent) classes. If Siri can’t identify a car name in the request, it uses the string `myCar`.
+    ///
+    ///
+    /// The name of a vehicle as a person will say it, for example “BMW”, “My Convertible”.
     #[doc(alias = "INVocabularyStringTypeCarName")]
     pub const CarName: Self = Self(301);
+    /// The name of the bank or company that holds the user’s account.
+    ///
+    /// ## Discussion
+    ///
+    /// Siri puts the organization name in the `organizationName` property of the [`INPaymentAccount`](https://developer.apple.com/documentation/intents/inpaymentaccount) and [`INBillPayee`](https://developer.apple.com/documentation/intents/inbillpayee) objects.
+    ///
+    ///
     /// The name of an organization to pay as a person will say it, for example “PG
     /// &E
     /// ”, “Comcast”.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/paymentsorganizationname?language=objc)
     #[doc(alias = "INVocabularyStringTypePaymentsOrganizationName")]
     pub const PaymentsOrganizationName: Self = Self(400);
-    /// The name of an account nick name as a person will say it, for example “Checking”, “Rainy day savings”.
+    /// The user-given nickname for a bank account.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/paymentsaccountnickname?language=objc)
+    /// ## Discussion
+    ///
+    /// Siri puts the nickname in the `nickname` property of the [`INPaymentAccount`](https://developer.apple.com/documentation/intents/inpaymentaccount) and [`INBillPayee`](https://developer.apple.com/documentation/intents/inbillpayee) objects.
+    ///
+    ///
+    /// The name of an account nick name as a person will say it, for example “Checking”, “Rainy day savings”.
     #[doc(alias = "INVocabularyStringTypePaymentsAccountNickname")]
     pub const PaymentsAccountNickname: Self = Self(401);
-    /// The title of a note, task, or task list as a person will say it; for example, "Grocery list" or "Weekly meeting minutes".
+    /// The title of a note, task, or task list.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/notebookitemtitle?language=objc)
+    /// ## Discussion
+    ///
+    /// Examples might include “Grocery list” or “Weekly meeting minutes”.
+    ///
+    ///
+    /// The title of a note, task, or task list as a person will say it; for example, "Grocery list" or "Weekly meeting minutes".
     #[doc(alias = "INVocabularyStringTypeNotebookItemTitle")]
     pub const NotebookItemTitle: Self = Self(500);
-    /// The name of the note or task list's group (folder, directory, account); for example, "iCloud" or "Shopping"
+    /// The title of a group (or folder) containing the user’s notes or task lists.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/notebookitemgroupname?language=objc)
+    /// ## Discussion
+    ///
+    /// Examples might include “Shopping” or “Personal”.
+    ///
+    ///
+    /// The name of the note or task list's group (folder, directory, account); for example, "iCloud" or "Shopping"
     #[doc(alias = "INVocabularyStringTypeNotebookItemGroupName")]
     pub const NotebookItemGroupName: Self = Self(501);
-    /// The title of a playlist as a person will say it, for example "Today's Hits".
+    /// The name or title of a playlist.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediaplaylisttitle?language=objc)
+    /// ## Discussion
+    ///
+    /// Examples might include ‘Today’s Hits” or “80’s Hair Bands”.
+    ///
+    ///
+    /// The title of a playlist as a person will say it, for example "Today's Hits".
     #[doc(alias = "INVocabularyStringTypeMediaPlaylistTitle")]
     pub const MediaPlaylistTitle: Self = Self(700);
+    /// The name of a musical artist.
     /// The name of a music artist as a person will say it, for example "The Beatles".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediamusicartistname?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaMusicArtistName")]
     pub const MediaMusicArtistName: Self = Self(701);
+    /// The name or title of an audiobook.
     /// The title of an audiobook as a person will say it, for example "The Time Machine".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediaaudiobooktitle?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaAudiobookTitle")]
     pub const MediaAudiobookTitle: Self = Self(702);
+    /// The name of an audiobook’s author.
     /// The name of an audiobook author as a person will say it, for example "Mary Shelley".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediaaudiobookauthorname?language=objc)
     #[doc(alias = "INVocabularyStringTypeMediaAudiobookAuthorName")]
     pub const MediaAudiobookAuthorName: Self = Self(703);
-    /// The name of a Podcast or Radio show title as a person will say it, for example "Fresh Air".
+    /// The name or title of a podcast or radio show.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invocabularystringtype/mediashowtitle?language=objc)
+    /// ## Discussion
+    ///
+    /// Examples might include “Your Morning Drive” or “Fresh Air”.
+    ///
+    ///
+    /// The name of a Podcast or Radio show title as a person will say it, for example "Fresh Air".
     #[doc(alias = "INVocabularyStringTypeMediaShowTitle")]
     pub const MediaShowTitle: Self = Self(704);
 }
@@ -110,7 +184,27 @@ unsafe impl RefEncode for INVocabularyStringType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invocabulary?language=objc)
+    /// An object for registering user-specific vocabulary that Siri requests might include.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INVocabulary`](https://developer.apple.com/documentation/intents/invocabulary) object lets you augment your app’s global vocabulary with terms that are both unique to your app and to the current user of your app. Registering custom terms provides Siri with hints it needs to apply those terms appropriately to the corresponding intent objects. You may register custom terms only for specific types of content, including users of your app, custom workout names, or custom tags applied to a photo.
+    ///
+    /// Some tips for specifying custom vocabulary include:
+    ///
+    /// - Be selective about the terms that you register for users. Include words and phrases only when their use in your app by the current user might differ from everyday usage.
+    ///
+    /// - Order terms from most important to least important. If you register a large number of entries, Siri may ingest only the ones at the beginning of your list.
+    ///
+    /// - Don’t register contact names that you retrieved from the user’s Contacts database. Register contacts only if your app manages contact information separately from the system databases.
+    ///
+    /// - Don’t use this class to register terms that are common to all users of your app. Include vocabulary that’s common to all users of your app in your app’s global vocabulary file. For information about specifying your app’s global vocabulary file, see [SiriKit Programming Guide](https://developer.apple.com/library/archive/documentation/Intents/Conceptual/SiriIntegrationGuide/index.html#//apple_ref/doc/uid/TP40016875).
+    ///
+    /// - Your Intents extension must support at least one intent that uses the registered terms. It’s a programmer error to register terms that aren’t supported by any of your extension’s intents.
+    ///
+    /// Use the shared vocabulary object only in your iOS app. Don’t try to register vocabulary from your Intents extension or Intents UI extension.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INVocabulary;

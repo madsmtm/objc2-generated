@@ -11,6 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a voice that an audio unit provides to its host.
+    ///
+    /// ## Overview
+    ///
+    /// This is a voice that an [`AVSpeechSynthesisProviderAudioUnit`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit) provides to the system, distinct from [`AVSpeechSynthesisVoice`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice). Use [`speechVoices`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices) to access the underlying [`AVSpeechSynthesisVoice`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice) in the voice quality [`AVSpeechSynthesisVoiceQualityEnhanced`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/enhanced).
+    ///
+    ///
     /// The representation of a provided voice that is available for speech synthesis.
     ///
     /// `AVSpeechSynthesisProviderVoice`is distinct from
@@ -20,8 +27,6 @@ extern_class!(
     /// `AVSpeechSynthesisVoice`when using
     /// `AVSpeechSynthesisVoice.speechVoices().`The quality will always be listed as
     /// `.enhanced`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesisProviderVoice;
@@ -224,13 +229,12 @@ impl AVSpeechSynthesisProviderVoice {
 }
 
 extern_class!(
+    /// An object that represents the text to synthesize and the voice to use.
     /// An
     /// `AVSpeechSynthesisProviderRequest`gets delivered to an
     /// `AVSpeechSynthesisProviderAudioUnit`in order to synthesize audio.
     /// This is distinct from an
     /// `AVSpeechUtterance,`which is a generic utterance to be spoken.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesisProviderRequest;
@@ -304,20 +308,43 @@ impl AVSpeechSynthesisProviderRequest {
     );
 }
 
+/// A type that represents the method for sending marker information to the host.
+///
+/// Parameters:
+/// - markers: An array of speech synthesis metadata.
+///
+/// - speechRequest: A speech request the system associates with the metadata.
+///
 /// A block of information that is relevant to the generation of speech synthesis.
 ///
 /// Parameter `metadata`: An array of speech synthesis metadata
 ///
 /// Parameter `speechRequest`: The speech request associated with the metadata
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideroutputblock?language=objc)
 #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
 pub type AVSpeechSynthesisProviderOutputBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>, NonNull<AVSpeechSynthesisProviderRequest>),
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit?language=objc)
+    /// An object that generates speech from text.
+    ///
+    /// ## Overview
+    ///
+    /// Use a speech synthesizer audio unit to generate audio buffers that contain speech for a given voice and speech markup. The audio unit receives an [`AVSpeechSynthesisProviderRequest`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest) as input, and extracts audio buffers through the render block.
+    ///
+    /// Use [`speechSynthesisOutputMetadataBlock`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechsynthesisoutputmetadatablock) to provide metadata as an array of [`AVSpeechSynthesisMarker`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker).
+    ///
+    /// The system scans and loads voices for audio unit extensions of this type, and the voices it provides are available for use in [`AVSpeechSynthesizer`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer) and accessibility technologies like VoiceOver and Speak Screen.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Network access isn’t allowed in speech synthesizers.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(AUAudioUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-audio-toolbox")]

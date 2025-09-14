@@ -10,72 +10,66 @@ use objc2_core_video::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioinvalidsequencenumber?language=objc)
 pub const kCMIOInvalidSequenceNumber: c_uint = !(0);
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodiscontinuities?language=objc)
 pub const kCMIOSampleBufferNoDiscontinuities: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_unknowndiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_UnknownDiscontinuity: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_timecodediscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_TimecodeDiscontinuity: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_packeterror?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_PacketError: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_streamdiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_StreamDiscontinuity: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_malformeddata?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_MalformedData: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_datawasflushed?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DataWasFlushed: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_datawasdropped?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DataWasDropped: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_bufferoverrun?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_BufferOverrun: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_discontinuityindts?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DiscontinuityInDTS: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_relatedtodiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_RelatedToDiscontinuity: c_uint = 1 << 9;
+///
+/// ## Discussion
+///
+/// (As in another picture in the same MPEG-2 GOP) exhibits a discontinuity.
+///
+///
 /// (as in another picture in the same MPEG-2
 /// GOP) exhibits a discontinuity.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_clientsyncdiscontinuity?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_ClientSyncDiscontinuity: c_uint = 1 << 10;
+///
+/// ## Discussion
+///
+/// As a way of syncronizing the graph to a known state.
+///
+///
 /// as a way of syncronizing the graph to
 /// a known state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_trickplay?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_TrickPlay: c_uint = 1 << 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_nodatamarker?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_NoDataMarker: c_uint = 1 << 12;
+///
+/// ## Discussion
+///
+/// The graph if the source has no data (for example an HDV camera running on empty tape).
+///
+///
 /// the graph if the source has no data (for example
 /// an HDV camera running on empty tape).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_dataformatchanged?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DataFormatChanged: c_uint = 1 << 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_timingreferencejumped?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_TimingReferenceJumped: c_uint = 1 << 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_durationwasextended?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_DurationWasExtended: c_uint = 1 << 15;
+///
+/// ## Discussion
+///
+/// By increasing the duration of known good media;  this is a “soft” discontinuity, much like kCMIOSampleBufferDiscontinuityFlag_TimecodeDiscontinuity, meaning that the stream isn’t necessarily broken, but clients might want to force capture of all media.
+///
+///
 /// by increasing the duration of known good media;  this is a "soft"
 /// discontinuity, much like kCMIOSampleBufferDiscontinuityFlag_TimecodeDiscontinuity,
 /// meaning that the stream isn't necessarily broken, but clients might want to force
 /// capture of all media.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_sleepwakecycle?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_SleepWakeCycle: c_uint = 1 << 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferdiscontinuityflag_codecsettingschanged?language=objc)
 pub const kCMIOSampleBufferDiscontinuityFlag_CodecSettingsChanged: c_uint = 1 << 17;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_unknown?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_Unknown: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_nomedia?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_NoMedia: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_devicedidnotsync?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_DeviceDidNotSync: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_deviceinwrongmode?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_DeviceInWrongMode: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_processingerror?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_ProcessingError: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebuffernodataevent_sleepwakecycle?language=objc)
 pub const kCMIOSampleBufferNoDataEvent_SleepWakeCycle: c_uint = 5;
 
 extern "C" {
@@ -83,8 +77,6 @@ extern "C" {
     /// are used to denote that the given buffer represents a
     /// discontinuity in a stream of buffers.  Its various values
     /// are defined in CMIOTypes.h.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_discontinuityflags?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_DiscontinuityFlags: Option<&'static CFString>;
 }
@@ -95,8 +87,6 @@ extern "C" {
     /// it can be inquired upon and used to detect gaps in the
     /// stream (for example, a buffer was dropped somewhere will
     /// reveil itself by a gap in the sequence of sequence numbers).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_sequencenumber?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_SequenceNumber: Option<&'static CFString>;
 }
@@ -105,8 +95,6 @@ extern "C" {
     /// An AVS::HDV1PackData structure, as defined by AVC Video Services.
     /// Attached to video MPEG-2 video buffers that came from a transmit
     /// stream that had HDV-1 Pack data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_hdv1_packdata?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_HDV1_PackData: Option<&'static CFString>;
 }
@@ -115,8 +103,6 @@ extern "C" {
     /// An AVS::HDV2VideoFramePack structure, as defined by AVC Video
     /// Services.  Attached to video MPEG-2 video buffers that came from
     /// a transmit stream that had HDV-2 VAUX data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_hdv2_vaux?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_HDV2_VAUX: Option<&'static CFString>;
 }
@@ -125,8 +111,6 @@ extern "C" {
     /// A CFData that contains a CoreAudio AudioTimeStamp structure, as
     /// defined CoreAudioTypes.h.  Attached to buffers provided by
     /// CoreAudio devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_caaudiotimestamp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_CAAudioTimeStamp: Option<&'static CFString>;
 }
@@ -135,8 +119,6 @@ extern "C" {
     /// A CFData that contains CoreAudio SMPTETime structure, as defined
     /// CoreAudioTypes.h.  Attached to buffers that have an associated
     /// SMPTE time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_smptetime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_SMPTETime: Option<&'static CFString>;
 }
@@ -152,8 +134,6 @@ extern "C" {
     /// looking for gaps in  the SMPTE timecode can inquire about this
     /// property, and if it exists, check to see that it increments
     /// monotonically.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_nativesmpteframecount?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_NativeSMPTEFrameCount: Option<&'static CFString>;
 }
@@ -162,8 +142,6 @@ extern "C" {
     /// A CFNumber of kCFNumberSInt32Type.  Attached to buffers containing
     /// an MPEG-2 transmit stream that was contains multiplexed video frames.
     /// It specifies how many video frames are represented by the buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_numberofvideoframesinbuffer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_NumberOfVideoFramesInBuffer:
         Option<&'static CFString>;
@@ -174,8 +152,6 @@ extern "C" {
     /// an MPEG-2 video I-Frame that is being multiplexed with audio for
     /// output.  It specifies how many frames are contained in the GOP
     /// that is started by the I-Frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_numberofvideoframesingop?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_NumberOfVideoFramesInGOP: Option<&'static CFString>;
 }
@@ -186,8 +162,6 @@ extern "C" {
     /// the muxed data that is based on the source data.  Typically used
     /// to drive the clock abstraction for an output device in order to
     /// provide a preview of the source data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_muxedsourcepresentationtimestamp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_MuxedSourcePresentationTimeStamp:
         Option<&'static CFString>;
@@ -197,8 +171,6 @@ extern "C" {
     /// A CFNumber of kCFNumberSInt64Type. Attached to buffers that are
     /// associated with a realtime source or destination that is related
     /// to the CPU's hosttime in nanoseconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_hosttime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_HostTime: Option<&'static CFString>;
 }
@@ -207,8 +179,6 @@ extern "C" {
     /// A CFBoolean. Attached to buffers (and having the value
     /// kCFBooleanTrue) if the contents of that buffer is identical
     /// to the previous buffer in its stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_repeatedbuffercontents?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_RepeatedBufferContents: Option<&'static CFString>;
 }
@@ -219,8 +189,6 @@ extern "C" {
     /// Downstream units may still desire to know the source format
     /// from which an audio buffer was derived.  Units dealing with
     /// audio data should propagate this attachment if it is present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_sourceaudioformatdescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_SourceAudioFormatDescription:
         Option<&'static CFString>;
@@ -231,8 +199,6 @@ extern "C" {
     /// that has been pulled down (for example, 24p buffers recorded at
     /// 30p).  These buffers can use this attachment to specify where
     /// this buffer falls in the cadence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_pulldowncadenceinfo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_PulldownCadenceInfo: Option<&'static CFString>;
 }
@@ -242,8 +208,6 @@ extern "C" {
     /// data may attach the data as a CMSampleBuffer.  This technique
     /// is used by the CMIO VDIG input unit if closed caption data
     /// is available for the current video frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_closedcaptionsamplebuffer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_ClosedCaptionSampleBuffer: Option<&'static CFString>;
 }
@@ -251,8 +215,6 @@ extern "C" {
 extern "C" {
     /// A CF obect.  Attached to buffers output from units that
     /// support kCMIOUnitProperty_ClientSequenceID.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_clientsequenceid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_ClientSequenceID: Option<&'static CFString>;
 }
@@ -273,8 +235,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorScale
     /// kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_KeyboardModifiers
     /// kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_KeyboardModifiersEvent
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_mouseandkeyboardmodifiers?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers: Option<&'static CFString>;
 }
@@ -284,8 +244,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the approximate X coordinate of the cursor hotspot when the screen was
     /// captured (in the cursor’s flipped coordinate system, origin is the top left of the display and not relative to the capture area).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorpositionx?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorPositionX:
         Option<&'static CFString>;
@@ -296,8 +254,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the approximate Y coordinate of the cursor hotspot when the screen was
     /// captured (in the cursor’s flipped coordinate system, origin is the top left of the display and not relative to the capture area).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorpositiony?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorPositionY:
         Option<&'static CFString>;
@@ -308,8 +264,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the approximate state of the mouse buttons when the screen was
     /// captured.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_mousebuttonstate?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_MouseButtonState:
         Option<&'static CFString>;
@@ -320,8 +274,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the visibility of the mouse cursor when the screen was
     /// captured.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorisvisible?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorIsVisible:
         Option<&'static CFString>;
@@ -332,8 +284,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the frame CGRect as dictionary of the cursor when the screen was captured relative to the capture area.
     /// The origin is at the lower left of the capture area.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorframerect?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorFrameRect:
         Option<&'static CFString>;
@@ -343,8 +293,6 @@ extern "C" {
     /// Used to look up a NSCursor reference from the CFDictionary specified by
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the NSCursor when the screen was captured.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorreference?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorReference:
         Option<&'static CFString>;
@@ -356,8 +304,6 @@ extern "C" {
     /// the CFNumber of the seed value for the cursor referenced by
     /// kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorReference;
     /// changes in this number reflect that the cursor has changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorseed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorSeed:
         Option<&'static CFString>;
@@ -367,8 +313,6 @@ extern "C" {
     /// Used to look up a CFNumber from the CFDictionary specified by
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the cursor scaling when the screen was captured.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorscale?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorScale:
         Option<&'static CFString>;
@@ -379,8 +323,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// if the cursor is being drawn at the display level when the screen was
     /// captured (if TRUE, the CursorFrameRect may not represent accurately the frame CGRect of the cursor image being drawn).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_cursorisdrawninframebuffer?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_CursorIsDrawnInFramebuffer:
         Option<&'static CFString>;
@@ -391,8 +333,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the approximate state of the keyboard modifiers when the screen was
     /// captured.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_keyboardmodifiers?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_KeyboardModifiers:
         Option<&'static CFString>;
@@ -403,8 +343,6 @@ extern "C" {
     /// kCMIOSampleBufferAttachmentKey_MouseAndKeyboardModifiers.  It specifies
     /// the approximate state of the keyboard modifiers when the screen was
     /// captured as define in NSEvent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachment_mouseandkeyboardmodifierskey_keyboardmodifiersevent?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachment_MouseAndKeyboardModifiersKey_KeyboardModifiersEvent:
         Option<&'static CFString>;
@@ -413,8 +351,6 @@ extern "C" {
 extern "C" {
     /// A CFBoolean indicating that the underlying pixel buffer has been overlaid by a static image.
     /// If this attachement exists it will contain the value kCFBooleanTrue indicating a static image overlay. Otherwise the pixel buffer has not been overlaid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_pixelbufferoverlaidbystaticimage?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_PixelBufferOverlaidByStaticImage:
         Option<&'static CFString>;
@@ -424,8 +360,6 @@ extern "C" {
     /// A CFNumber of kCFNumberSInt32Type. Attached to buffers representing
     /// that a device has stopped returning data.  The value of this attachment
     /// is the same as for the discontinuity flags.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosamplebufferattachmentkey_nodatamarker?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOSampleBufferAttachmentKey_NoDataMarker: Option<&'static CFString>;
 }
@@ -433,8 +367,6 @@ extern "C" {
 extern "C" {
     /// A CVPixelBufferRef, as defined by CoreVideo.
     /// Attached to block buffers that wrap a Core Video Pixel Buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioblockbufferattachmentkey_cvpixelbufferreference?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kCMIOBlockBufferAttachmentKey_CVPixelBufferReference: Option<&'static CFString>;
 }
@@ -578,8 +510,6 @@ extern "C-unwind" {
     /// - `sample_timing_array` must be a valid pointer.
     /// - `sample_size_array` must be a valid pointer.
     /// - `s_buf_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercreate?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreate(
         allocator: Option<&CFAllocator>,
@@ -630,8 +560,6 @@ extern "C-unwind" {
     /// - `format_description` might not allow `None`.
     /// - `sample_timing` must be a valid pointer.
     /// - `s_buf_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercreateforimagebuffer?language=objc)
     #[cfg(all(
         feature = "objc2-core-foundation",
         feature = "objc2-core-media",
@@ -666,8 +594,6 @@ extern "C-unwind" {
     /// - `allocator` might not allow `None`.
     /// - `format_description` might not allow `None`.
     /// - `s_buf_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercreatenodatamarker?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferCreateNoDataMarker(
         allocator: Option<&CFAllocator>,
@@ -696,8 +622,6 @@ extern "C-unwind" {
     ///
     /// - `allocator` might not allow `None`.
     /// - `sbuf` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffersetsequencenumber?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetSequenceNumber(
         allocator: Option<&CFAllocator>,
@@ -718,8 +642,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sbuf` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffergetsequencenumber?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferGetSequenceNumber(sbuf: Option<&CMSampleBuffer>) -> u64;
 }
@@ -738,8 +660,6 @@ extern "C-unwind" {
     ///
     /// - `allocator` might not allow `None`.
     /// - `sbuf` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffersetdiscontinuityflags?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetDiscontinuityFlags(
         allocator: Option<&CFAllocator>,
@@ -760,8 +680,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sbuf` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffergetdiscontinuityflags?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferGetDiscontinuityFlags(sbuf: Option<&CMSampleBuffer>) -> u32;
 }
@@ -780,8 +698,6 @@ extern "C-unwind" {
     ///
     /// - `source_s_buf` might not allow `None`.
     /// - `dest_s_buf` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercopynonrequiredattachments?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferCopyNonRequiredAttachments(
         source_s_buf: Option<&CMSampleBuffer>,
@@ -807,8 +723,6 @@ extern "C-unwind" {
     ///
     /// - `source_s_buf` might not allow `None`.
     /// - `dest_s_buf` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiosamplebuffercopysampleattachments?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn CMIOSampleBufferCopySampleAttachments(
         source_s_buf: Option<&CMSampleBuffer>,

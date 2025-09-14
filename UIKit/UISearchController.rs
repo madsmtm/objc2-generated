@@ -7,30 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum?language=objc)
+/// Constants that specify the modes for showing and hiding the scope bar.
+///
+/// ## Overview
+///
+/// You use these constants with the [`scopeBarActivation`](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISearchControllerScopeBarActivation(pub NSInteger);
 impl UISearchControllerScopeBarActivation {
+    /// A mode in which the system automatically determines when to show and hide the scope bar.
     /// System-defined automatic showing and hiding of the scope bar
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/automatic?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// Showing and hiding the scope bar will be controlled by client code through the `showsScopeBar` API on the UISearchController's `searchBar`
+    /// A mode that gives you manual control over when to show and hide the scope bar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/manual?language=objc)
+    /// ## Discussion
+    ///
+    /// When you use this mode, you control when to show and hide the scope bar through the [`showsScopeBar`](https://developer.apple.com/documentation/uikit/uisearchbar/showsscopebar) property on the [`searchBar`](https://developer.apple.com/documentation/uikit/uisearchcontroller/searchbar) of the [`UISearchController`](https://developer.apple.com/documentation/uikit/uisearchcontroller).
+    ///
+    ///
+    /// Showing and hiding the scope bar will be controlled by client code through the `showsScopeBar` API on the UISearchController's `searchBar`
     #[doc(alias = "UISearchControllerScopeBarActivationManual")]
     pub const Manual: Self = Self(1);
+    /// A mode in which the search controller shows the scope bar when typing begins in the search field, and hides it after search cancellation.
     /// The search controller shows the scope bar when typing begins in the search field, and hides it when search is cancelled
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/ontextentry?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationOnTextEntry")]
     pub const OnTextEntry: Self = Self(2);
+    /// A mode in which the search controller shows the scope bar when search becomes active, and hides it after search cancellation.
     /// The search controller shows the scope bar when search becomes active, and hides it when search is cancelled
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller/scopebaractivation-swift.enum/onsearchactivation?language=objc)
     #[doc(alias = "UISearchControllerScopeBarActivationOnSearchActivation")]
     pub const OnSearchActivation: Self = Self(3);
 }
@@ -44,7 +52,7 @@ unsafe impl RefEncode for UISearchControllerScopeBarActivation {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontrollerdelegate?language=objc)
+    /// A set of delegate methods for search controller objects.
     pub unsafe trait UISearchControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -107,7 +115,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchresultsupdating?language=objc)
+    /// A set of methods that let you update search results based on information the user enters into the search bar.
     pub unsafe trait UISearchResultsUpdating: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(updateSearchResultsForSearchController:))]
@@ -131,7 +139,35 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontroller?language=objc)
+    /// A view controller that manages the display of search results based on interactions with a search bar.
+    ///
+    /// ## Overview
+    ///
+    /// Use a search controller to provide a standard search experience of the contents of another view controller. When the user interacts with a [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar), the search controller coordinates with a search results controller to display the search results.
+    ///
+    /// In iOS, incorporate the search controller’s [`searchBar`](https://developer.apple.com/documentation/uikit/uisearchcontroller/searchbar) into your own view controller’s interface. Display your view controller in whatever way is appropriate for your app. See [Displaying searchable content by using a search controller](https://developer.apple.com/documentation/uikit/displaying-searchable-content-by-using-a-search-controller) and [Using suggested searches with a search controller](https://developer.apple.com/documentation/uikit/using-suggested-searches-with-a-search-controller) to learn how to implement a search controller in your app.
+    ///
+    /// In tvOS, start with a [`UISearchContainerViewController`](https://developer.apple.com/documentation/uikit/uisearchcontainerviewcontroller) to manage the presentation of the search controller. See [UIKit Catalog (tvOS): Creating and Customizing UIKit Controls](https://developer.apple.com/library/archive/samplecode/UICatalogFortvOS/Introduction/Intro.html#//apple_ref/doc/uid/TP40016433) to learn how to implement a search controller embedded inside a `UISearchContainerViewController` object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Don’t use a [`UISearchContainerViewController`](https://developer.apple.com/documentation/uikit/uisearchcontainerviewcontroller) in iOS.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Display search results
+    ///
+    /// Specify a second view controller for displaying search results when you call [`initWithSearchResultsController:`](https://developer.apple.com/documentation/uikit/uisearchcontroller/init(searchresultscontroller:)). When the user interacts with the search bar, the search controller automatically displays the results controller with the results you specify. If your results view is full-screen in tvOS, set the [`searchControllerObservedScrollView`](https://developer.apple.com/documentation/uikit/uisearchcontroller/searchcontrollerobservedscrollview) to the results controller as well, so the search bar scrolls with your content view.
+    ///
+    /// Provide a [`UISearchResultsUpdating`](https://developer.apple.com/documentation/uikit/uisearchresultsupdating) object to the search controller’s [`searchResultsUpdater`](https://developer.apple.com/documentation/uikit/uisearchcontroller/searchresultsupdater) property. Typically, the view controller with your searchable content also acts as the search results updater object, but you can use another object if you prefer. When the user interacts with the search bar, the search controller calls the appropriate [`UISearchResultsUpdating`](https://developer.apple.com/documentation/uikit/uisearchresultsupdating) method, giving your object the opportunity to perform the search and update the contents of your search results view.
+    ///
+    /// ### Customize transitions
+    ///
+    /// To customize the presentation or dismissal of the search results controller, set the search controller’s [`delegate`](https://developer.apple.com/documentation/uikit/uisearchcontroller/delegate) property to an object that conforms to the [`UISearchControllerDelegate`](https://developer.apple.com/documentation/uikit/uisearchcontrollerdelegate) protocol. Then implement delegate methods in this object to receive presentation and dismissal events from the search controller.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

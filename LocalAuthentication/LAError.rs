@@ -7,121 +7,136 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The error domain that the framework uses when issuing errors.
     /// LocalAuthentication error domain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerrordomain?language=objc)
     pub static LAErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code?language=objc)
+/// Errors issued by the LocalAuthentication framework.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LAError(pub NSInteger);
 impl LAError {
+    /// The user failed to provide valid credentials.
     /// Authentication was not successful because user failed to provide valid credentials.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/authenticationfailed?language=objc)
     #[doc(alias = "LAErrorAuthenticationFailed")]
     pub const AuthenticationFailed: Self = Self(-1);
+    /// The user tapped the cancel button in the authentication dialog.
     /// Authentication was canceled by user (e.g. tapped Cancel button).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/usercancel?language=objc)
     #[doc(alias = "LAErrorUserCancel")]
     pub const UserCancel: Self = Self(-2);
+    /// The user tapped the fallback button in the authentication dialog, but no fallback is available for the authentication policy.
     /// Authentication was canceled because the user tapped the fallback button (Enter Password).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/userfallback?language=objc)
     #[doc(alias = "LAErrorUserFallback")]
     pub const UserFallback: Self = Self(-3);
-    /// Authentication was canceled by system (e.g. another application went to foreground).
+    /// The system canceled authentication.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/systemcancel?language=objc)
+    /// ## Discussion
+    ///
+    /// This might happen if another app comes to the foreground while your app displays the authentication dialog.
+    ///
+    ///
+    /// Authentication was canceled by system (e.g. another application went to foreground).
     #[doc(alias = "LAErrorSystemCancel")]
     pub const SystemCancel: Self = Self(-4);
+    /// A passcode isn’t set on the device.
     /// Authentication could not start because passcode is not set on the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/passcodenotset?language=objc)
     #[doc(alias = "LAErrorPasscodeNotSet")]
     pub const PasscodeNotSet: Self = Self(-5);
+    /// Touch ID is not available on the device.
     /// Authentication could not start because Touch ID is not available on the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/touchidnotavailable?language=objc)
     #[doc(alias = "LAErrorTouchIDNotAvailable")]
     #[deprecated = "use LAErrorBiometryNotAvailable"]
     pub const TouchIDNotAvailable: Self = Self(-6);
+    /// The user has no enrolled Touch ID fingers.
     /// Authentication could not start because Touch ID has no enrolled fingers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/touchidnotenrolled?language=objc)
     #[doc(alias = "LAErrorTouchIDNotEnrolled")]
     #[deprecated = "use LAErrorBiometryNotEnrolled"]
     pub const TouchIDNotEnrolled: Self = Self(-7);
+    /// Touch ID is locked because there were too many failed attempts.
     /// Authentication was not successful because there were too many failed Touch ID attempts and
     /// Touch ID is now locked. Passcode is required to unlock Touch ID, e.g. evaluating
     /// LAPolicyDeviceOwnerAuthenticationWithBiometrics will ask for passcode as a prerequisite.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/touchidlockout?language=objc)
     #[doc(alias = "LAErrorTouchIDLockout")]
     #[deprecated = "use LAErrorBiometryLockout"]
     pub const TouchIDLockout: Self = Self(-8);
+    /// The app canceled authentication.
+    ///
+    /// ## Discussion
+    ///
+    /// You receive this error if you call the [`invalidate`](https://developer.apple.com/documentation/localauthentication/lacontext/invalidate()) method while authentication is in process.
+    ///
+    ///
     /// Authentication was canceled by application (e.g. invalidate was called while
     /// authentication was in progress).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/appcancel?language=objc)
     #[doc(alias = "LAErrorAppCancel")]
     pub const AppCancel: Self = Self(-9);
-    /// LAContext passed to this call has been previously invalidated.
+    /// The context was previously invalidated.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/invalidcontext?language=objc)
+    /// ## Discussion
+    ///
+    /// You invalidate a context by calling its [`invalidate`](https://developer.apple.com/documentation/localauthentication/lacontext/invalidate()) method.
+    ///
+    ///
+    /// LAContext passed to this call has been previously invalidated.
     #[doc(alias = "LAErrorInvalidContext")]
     pub const InvalidContext: Self = Self(-10);
+    /// Biometry is not available on the device.
     /// Authentication could not start because biometry is not available on the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-c.enum/laerrorbiometrynotavailable?language=objc)
     #[doc(alias = "LAErrorBiometryNotAvailable")]
     pub const BiometryNotAvailable: Self = Self(-6);
+    /// The user has no enrolled biometric identities.
     /// Authentication could not start because biometry has no enrolled identities.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-c.enum/laerrorbiometrynotenrolled?language=objc)
     #[doc(alias = "LAErrorBiometryNotEnrolled")]
     pub const BiometryNotEnrolled: Self = Self(-7);
+    /// Biometry is locked because there were too many failed attempts.
+    ///
+    /// ## Discussion
+    ///
+    /// A passcode is now required to unlock biometry. Try the [`LAPolicy.deviceOwnerAuthentication`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication) policy instead to allow use of a passcode.
+    ///
+    ///
     /// Authentication was not successful because there were too many failed biometry attempts and
     /// biometry is now locked. Passcode is required to unlock biometry, e.g. evaluating
     /// LAPolicyDeviceOwnerAuthenticationWithBiometrics will ask for passcode as a prerequisite.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-c.enum/laerrorbiometrylockout?language=objc)
     #[doc(alias = "LAErrorBiometryLockout")]
     pub const BiometryLockout: Self = Self(-8);
+    /// Displaying the required authentication user interface is forbidden.
+    ///
+    /// ## Discussion
+    ///
+    /// Permit the display of the authentication UI by setting the [`interactionNotAllowed`](https://developer.apple.com/documentation/localauthentication/lacontext/interactionnotallowed) property to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Authentication failed because it would require showing UI which has been forbidden
     /// by using interactionNotAllowed property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/notinteractive?language=objc)
     #[doc(alias = "LAErrorNotInteractive")]
     pub const NotInteractive: Self = Self(-1004);
-    /// Authentication could not start because there was no paired watch device nearby.
+    /// An attempt to authenticate with Apple Watch failed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/watchnotavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// You receive this error when the system fails to locate a nearby, paired Apple Watch running watchOS 6 or later while trying to authenticate using one of the watch authentication policies like [`LAPolicyDeviceOwnerAuthenticationWithWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch).
+    ///
+    ///
+    /// Authentication could not start because there was no paired watch device nearby.
     #[doc(alias = "LAErrorWatchNotAvailable")]
     #[deprecated]
     pub const WatchNotAvailable: Self = Self(-11);
     /// Authentication could not start because there was no paired companion device nearby.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/companionnotavailable-swift.enum.case?language=objc)
+    /// Authentication could not start because there was no paired companion device nearby.
     #[doc(alias = "LAErrorCompanionNotAvailable")]
     pub const CompanionNotAvailable: Self = Self(-11);
+    /// The device supports biometry only using a removable accessory, but no accessory is paired.
     /// Authentication could not start because this device supports biometry only via removable accessories and no accessory has been paired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/biometrynotpaired?language=objc)
     #[doc(alias = "LAErrorBiometryNotPaired")]
     pub const BiometryNotPaired: Self = Self(-12);
+    /// The device supports biometry only using a removable accessory, but the paired accessory isn’t connected.
     /// Authentication could not start because this device supports biometry only via removable accessories and the paired accessory is not connected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/biometrydisconnected?language=objc)
     #[doc(alias = "LAErrorBiometryDisconnected")]
     pub const BiometryDisconnected: Self = Self(-13);
     /// Authentication could not start because dimensions of embedded UI are invalid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code/invaliddimensions?language=objc)
     #[doc(alias = "LAErrorInvalidDimensions")]
     pub const InvalidDimensions: Self = Self(-14);
 }

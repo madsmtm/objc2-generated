@@ -6,11 +6,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An element that represents either a pattern or a sequential gear shift.
     /// A
     /// `GCGearShifterElement`object represents an attached gear shifter.  Both
     /// pattern and sequential gear shifters are supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgearshifterelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCGearShifterElement;

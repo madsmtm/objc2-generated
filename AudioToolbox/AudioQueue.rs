@@ -14,19 +14,28 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// A value that uniquely identifies an audio queue property.
+/// Identifiers for audio queue properties.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid?language=objc)
+/// ## Discussion
+///
+/// To receive a notification that a specific audio queue property has changed:
+///
+/// 1. Define a property listener callback, referencing the desired audio queue property ID. Base the callback on the [`AudioQueuePropertyListenerProc`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertylistenerproc) callback function declaration.
+///
+/// 2. Assign the callback to an audio queue using the [`AudioQueueAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)) function.
+///
+/// 3. When you get a property-changed notification, call the [`AudioQueueGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetproperty(_:_:_:_:)) function to get the current value of the property.
+///
+///
+/// A value that uniquely identifies an audio queue property.
 pub type AudioQueuePropertyID = u32;
 
+/// A `UInt32` value that uniquely identifies an audio queue parameter.
 /// A value that uniquely identifies an audio queue parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueparameterid?language=objc)
 pub type AudioQueueParameterID = u32;
 
+/// A `Float32` value for an audio queue parameter.
 /// A value for an audio queue parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueparametervalue?language=objc)
 pub type AudioQueueParameterValue = f32;
 
 #[repr(C)]
@@ -40,9 +49,24 @@ unsafe impl RefEncode for OpaqueAudioQueue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAudioQueue", &[]));
 }
 
-/// An opaque data type that represents an audio queue.
+/// Defines an opaque data type that represents an audio queue.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueref?language=objc)
+/// ## Discussion
+///
+/// An audio queue is a software object you use for recording or playing audio in macOS. It does the work of:
+///
+/// - Connecting to audio hardware
+///
+/// - Managing memory
+///
+/// - Employing codecs, as needed, for compressed audio formats
+///
+/// - Mediating recording or playback
+///
+/// You create, use, and dispose of audio queues using the functions described in [Audio Queue Services](https://developer.apple.com/documentation/audiotoolbox/audio-queue-services).
+///
+///
+/// An opaque data type that represents an audio queue.
 pub type AudioQueueRef = *mut OpaqueAudioQueue;
 
 #[repr(C)]
@@ -57,6 +81,13 @@ unsafe impl RefEncode for OpaqueAudioQueueTimeline {
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioQueueTimeline", &[]));
 }
 
+/// Defines an opaque data type that represents an audio queue timeline object.
+///
+/// ## Discussion
+///
+/// You can use a timeline object to observe time discontinuities in the audio hardware device associated with an audio queue. A discontinuity is, for example, a period of silence when sound was expected. Causes of discontinuities include changes in device state or data processing overloads. See Technical Q&A 1467, [CoreAudio Overload Warnings](https://developer.apple.com/library/archive/qa/qa1467/_index.html#//apple_ref/doc/uid/DTS10003908). You query a timeline object by passing it as a parameter to the [`AudioQueueGetCurrentTime`](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetcurrenttime(_:_:_:_:)) function.
+///
+///
 /// An opaque data type that represents an audio queue timeline.
 ///
 /// You can use this object to observe any overloads in the audio device associated with the
@@ -69,117 +100,169 @@ unsafe impl RefEncode for OpaqueAudioQueueTimeline {
 /// warnings indicate you are taking too long to process audio data and the system has cut
 /// you off. You query a timeline object by passing it as a parameter to
 /// AudioQueueGetCurrentTime, which means a discontinuity has occurred.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuetimelineref?language=objc)
 pub type AudioQueueTimelineRef = *mut OpaqueAudioQueueTimeline;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidbuffer?language=objc)
+/// The specified audio queue buffer does not belong to the specified audio queue.
 pub const kAudioQueueErr_InvalidBuffer: OSStatus = -66687;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferempty?language=objc)
+/// The audio queue buffer is empty (that is, the `mAudioDataByteSize` field = `0`).
 pub const kAudioQueueErr_BufferEmpty: OSStatus = -66686;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_disposalpending?language=objc)
+/// The function cannot act on the audio queue because it is being asynchronously disposed of.
 pub const kAudioQueueErr_DisposalPending: OSStatus = -66685;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidproperty?language=objc)
+/// The specified property ID is invalid.
 pub const kAudioQueueErr_InvalidProperty: OSStatus = -66684;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidpropertysize?language=objc)
+/// The size of the specified property is invalid.
 pub const kAudioQueueErr_InvalidPropertySize: OSStatus = -66683;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidparameter?language=objc)
+/// The specified parameter ID is invalid.
 pub const kAudioQueueErr_InvalidParameter: OSStatus = -66682;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_cannotstart?language=objc)
+/// The audio queue has encountered a problem and cannot start.
 pub const kAudioQueueErr_CannotStart: OSStatus = -66681;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invaliddevice?language=objc)
+/// The specified audio hardware device could not be located.
 pub const kAudioQueueErr_InvalidDevice: OSStatus = -66680;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferinqueue?language=objc)
+/// The audio queue buffer cannot be disposed of when it is enqueued.
 pub const kAudioQueueErr_BufferInQueue: OSStatus = -66679;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidrunstate?language=objc)
+/// The queue is running but the function can only operate on the queue when it is stopped, or vice versa.
 pub const kAudioQueueErr_InvalidRunState: OSStatus = -66678;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidqueuetype?language=objc)
+/// The queue is an input queue but the function can only operate on an output queue, or vice versa.
 pub const kAudioQueueErr_InvalidQueueType: OSStatus = -66677;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_permissions?language=objc)
+/// You do not have the required permissions to call the function.
 pub const kAudioQueueErr_Permissions: OSStatus = -66676;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidpropertyvalue?language=objc)
+/// The property value used is not valid.
 pub const kAudioQueueErr_InvalidPropertyValue: OSStatus = -66675;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_primetimedout?language=objc)
+/// During a call to the [`AudioQueuePrime`](https://developer.apple.com/documentation/audiotoolbox/audioqueueprime(_:_:_:)) function, the audio queue’s audio converter failed to convert the requested number of sample frames.
 pub const kAudioQueueErr_PrimeTimedOut: OSStatus = -66674;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_codecnotfound?language=objc)
+/// The requested codec was not found.
 pub const kAudioQueueErr_CodecNotFound: OSStatus = -66673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidcodecaccess?language=objc)
+/// The codec could not be accessed.
 pub const kAudioQueueErr_InvalidCodecAccess: OSStatus = -66672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_queueinvalidated?language=objc)
+/// In iOS, the audio server has exited, causing the audio queue to become invalid.
 pub const kAudioQueueErr_QueueInvalidated: OSStatus = -66671;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_toomanytaps?language=objc)
 pub const kAudioQueueErr_TooManyTaps: OSStatus = -66670;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidtapcontext?language=objc)
 pub const kAudioQueueErr_InvalidTapContext: OSStatus = -66669;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_recordunderrun?language=objc)
+/// During recording, data was lost because there was no enqueued buffer to store it in.
 pub const kAudioQueueErr_RecordUnderrun: OSStatus = -66668;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidtaptype?language=objc)
 pub const kAudioQueueErr_InvalidTapType: OSStatus = -66667;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_bufferenqueuedtwice?language=objc)
 pub const kAudioQueueErr_BufferEnqueuedTwice: OSStatus = -66666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_cannotstartyet?language=objc)
 pub const kAudioQueueErr_CannotStartYet: OSStatus = -66665;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_enqueueduringreset?language=objc)
+/// During a call to the [`AudioQueueReset`](https://developer.apple.com/documentation/audiotoolbox/audioqueuereset(_:)), [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)), or [`AudioQueueDispose`](https://developer.apple.com/documentation/audiotoolbox/audioqueuedispose(_:_:)) functions, the system does not allow you to enqueue buffers.
 pub const kAudioQueueErr_EnqueueDuringReset: OSStatus = -66632;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueerr_invalidofflinemode?language=objc)
+/// The operation requires the audio queue to be in offline mode but it isn’t, or vice versa.
+///
+/// ## Discussion
+///
+/// To use offline mode or to return to normal mode, use the [`AudioQueueSetOfflineRenderFormat`](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetofflinerenderformat(_:_:_:)) function.
+///
+///
 pub const kAudioQueueErr_InvalidOfflineMode: OSStatus = -66626;
 
+/// Value is a read-only `UInt32` value indicating whether or not the audio queue is running. A nonzero value means running; `0` means stopped. A notification is sent when the associated audio queue starts or stops, which may occur sometime after the [`AudioQueueStart`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestart(_:_:)) or [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)) function is called.
 /// value is UInt32
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_isrunning?language=objc)
 pub const kAudioQueueProperty_IsRunning: AudioQueuePropertyID = 0x6171726e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuedeviceproperty_samplerate?language=objc)
+/// Value is a read-only `Float64` value representing the sampling rate of the audio hardware device associated with an audio queue.
 pub const kAudioQueueDeviceProperty_SampleRate: AudioQueuePropertyID = 0x61717372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuedeviceproperty_numberchannels?language=objc)
+/// Value is a read-only `UInt32` value representing the number of channels in the audio hardware device associated with an audio queue.
 pub const kAudioQueueDeviceProperty_NumberChannels: AudioQueuePropertyID = 0x61716463;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentdevice?language=objc)
+/// The unique identifier (UID) of the audio hardware device.
+///
+/// ## Discussion
+///
+/// Value is a read-write [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object representing the unique identifier (UID) of the audio hardware device associated with an audio queue.
+///
+///
 pub const kAudioQueueProperty_CurrentDevice: AudioQueuePropertyID = 0x61716364;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_magiccookie?language=objc)
+/// Value is a read/write void pointer to a block of memory, which you set up, containing an audio format magic cookie. If the audio format you are playing or recording to requires a magic cookie, you must set a value for this property before enqueuing any buffers.
 pub const kAudioQueueProperty_MagicCookie: AudioQueuePropertyID = 0x61716d63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_maximumoutputpacketsize?language=objc)
+/// Value is a read-only`UInt32` value that is the size, in bytes, of the largest single packet of data in the output format. Primarily useful when encoding VBR compressed data.
 pub const kAudioQueueProperty_MaximumOutputPacketSize: AudioQueuePropertyID = 0x786f7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_streamdescription?language=objc)
+/// An audio queue’s data format.
+///
+/// ## Discussion
+///
+/// Value is a read-only [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) structure, indicating an audio queue’s data format. Primarily useful for obtaining a complete ASBD when recording, in cases where you initially specify a sample rate of `0`.
+///
+///
 pub const kAudioQueueProperty_StreamDescription: AudioQueuePropertyID = 0x61716674;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_channellayout?language=objc)
+/// Describes an audio queue channel layout.
+///
+/// ## Discussion
+///
+/// Value is a read/write [`AudioChannelLayout`](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout) structure that describes an audio queue channel layout. The number of channels in the layout must match the number of channels in the audio format. This property is typically not used in the case of one or two channel audio. For more than two channels (such as in the case of 5.1 surround sound), you may need to specify a channel layout to indicate channel order, such as left, then center, then right.
+///
+///
 pub const kAudioQueueProperty_ChannelLayout: AudioQueuePropertyID = 0x6171636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_enablelevelmetering?language=objc)
+/// Value is a read/write `UInt32` value that indicates whether audio level metering is enabled for an audio queue. `0` = metering off, `1` = metering on.
 pub const kAudioQueueProperty_EnableLevelMetering: AudioQueuePropertyID = 0x61716d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentlevelmeter?language=objc)
+/// A read-only array of level meter status structures.
+///
+/// ## Discussion
+///
+/// Value is a read-only array of [`AudioQueueLevelMeterState`](https://developer.apple.com/documentation/audiotoolbox/audioqueuelevelmeterstate) structures, one array element per audio channel. The member values in the structure are in the range `0` (for silence) to `1` (indicating maximum level).
+///
+///
 pub const kAudioQueueProperty_CurrentLevelMeter: AudioQueuePropertyID = 0x61716d76;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_currentlevelmeterdb?language=objc)
+/// Value is a read-only array of [`AudioQueueLevelMeterState`](https://developer.apple.com/documentation/audiotoolbox/audioqueuelevelmeterstate) structures, one array element per audio channel. The member values in the structure are in decibels.
 pub const kAudioQueueProperty_CurrentLevelMeterDB: AudioQueuePropertyID = 0x61716d64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_decodebuffersizeframes?language=objc)
+/// Value is a read/write `UInt32` value that is the size of the buffer into which a playback (output) audio queue decodes buffers. A larger buffer provides more reliability and  better long-term performance at the expense of memory and decreased responsiveness in some situations.
 pub const kAudioQueueProperty_DecodeBufferSizeFrames: AudioQueuePropertyID = 0x64636266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_convertererror?language=objc)
+/// Value is a  read-only `UInt32` value that indicates the most recent error (if any) encountered by the audio queue’s internal encoding/decoding process.
 pub const kAudioQueueProperty_ConverterError: AudioQueuePropertyID = 0x71637665;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_enabletimepitch?language=objc)
 pub const kAudioQueueProperty_EnableTimePitch: AudioQueuePropertyID = 0x715f7470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchalgorithm?language=objc)
 pub const kAudioQueueProperty_TimePitchAlgorithm: AudioQueuePropertyID = 0x71747061;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_timepitchbypass?language=objc)
 pub const kAudioQueueProperty_TimePitchBypass: AudioQueuePropertyID = 0x71747062;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_intendedspatialexperience?language=objc)
 pub const kAudioQueueProperty_IntendedSpatialExperience: AudioQueuePropertyID = 0x6973656f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_spectral?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_Spectral: u32 = 0x73706563;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_timedomain?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_TimeDomain: u32 = 0x7469646f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueuetimepitchalgorithm_varispeed?language=objc)
 pub const kAudioQueueTimePitchAlgorithm_Varispeed: u32 = 0x76737064;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_channelassignments?language=objc)
 pub const kAudioQueueProperty_ChannelAssignments: AudioQueuePropertyID = 0x61716361;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_volume?language=objc)
+/// The playback volume for the audio queue, ranging from `0.0` through `1.0` on a linear scale. A value of `0.0` indicates silence; a value of `1.0` (the default) indicates full volume for the audio queue instance.
+///
+/// ## Discussion
+///
+/// Use this property to control an audio queue’s volume relative to other audio output.
+///
+/// To provide UI in iOS for adjusting system audio playback volume, use the [`MPVolumeView`](https://developer.apple.com/documentation/mediaplayer/mpvolumeview) class, which provides media playback controls that iOS users expect and whose appearance you can customize.
+///
+///
 pub const kAudioQueueParam_Volume: AudioQueueParameterID = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_playrate?language=objc)
+/// The playback rate for the audio queue, in the range `0.5` through `2.0`. A value of `1.0` (the default) specifies that the audio queue should play at its normal rate.
+///
+/// ## Discussion
+///
+/// This parameter is usable only if the time-pitch processor is enabled.
+///
+///
 pub const kAudioQueueParam_PlayRate: AudioQueueParameterID = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_pitch?language=objc)
+/// The number of cents to pitch-shift the audio queue’s playback, in the range `-2400` through `2400` cents (where 1200 cents corresponds to one musical octave.)
+///
+/// ## Discussion
+///
+/// This parameter is usable only if the time/pitch processor is enabled.
+///
+///
 pub const kAudioQueueParam_Pitch: AudioQueueParameterID = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_volumeramptime?language=objc)
+/// The number of seconds over which a volume change is ramped.
+///
+/// ## Discussion
+///
+/// For example, to fade from unity gain down to silence over the course of 1 second, set this parameter to `1` and then set the `kAudioQueueParam_Volume` parameter to `0`.
+///
+///
 pub const kAudioQueueParam_VolumeRampTime: AudioQueueParameterID = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueparam_pan?language=objc)
+/// The stereo panning position of a source. For a monophonic source, panning is determined as follows:
+///
+/// ## Discussion
+///
+/// - –1 = hard left
+///
+/// -   0 = center
+///
+/// - +1 = hard right
+///
+/// For a stereophonic source, this parameter affects the left/right balance. For a multichannel source, this parameter has no effect.
+///
+///
 pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 
 /// Flags used in conjunction with processing taps
@@ -206,27 +289,20 @@ pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 /// the audio queue is being stopped asynchronously and has finished playing
 /// all of its data. Returned from GetSourceAudio and should be propagated
 /// on return from the callback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioQueueProcessingTapFlags(pub u32);
 bitflags::bitflags! {
     impl AudioQueueProcessingTapFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/preeffects?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_PreEffects")]
         const PreEffects = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/posteffects?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_PostEffects")]
         const PostEffects = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/siphon?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_Siphon")]
         const Siphon = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/startofstream?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_StartOfStream")]
         const StartOfStream = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags/endofstream?language=objc)
         #[doc(alias = "kAudioQueueProcessingTap_EndOfStream")]
         const EndOfStream = 1<<9;
     }
@@ -240,6 +316,15 @@ unsafe impl RefEncode for AudioQueueProcessingTapFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Defines an audio queue buffer.
+///
+/// ## Overview
+///
+/// Each audio queue has an associated set of audio queue buffers.  To allocate a buffer, call the [`AudioQueueAllocateBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebuffer(_:_:_:)) function. To dispose of a buffer, call the [`AudioQueueFreeBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioqueuefreebuffer(_:_:)) function.
+///
+/// If using a VBR compressed audio data format, you may want to instead use the `AudioQueueAllocateBufferWithPacketDescriptions` function. This function allocates a buffer with additional space for packet descriptions. The `mPacketDescriptionCapacity`, `mPacketDescriptions`, and `mPacketDescriptionCount` fields may only be used with buffers allocated with `AudioQueueAllocateBufferWithPacketDescriptions`.
+///
+///
 /// Defines a buffer of audio data to be managed by an audio queue.
 ///
 /// Each audio queue has an associated set of audio queue buffers. You can request that a
@@ -272,8 +357,6 @@ unsafe impl RefEncode for AudioQueueProcessingTapFlags {
 /// The number of valid packet descriptions in the buffer. You set this value when providing
 /// buffers for playback; the audio queue sets this value when returning buffers from
 /// a recording queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuebuffer?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -308,12 +391,18 @@ unsafe impl RefEncode for AudioQueueBuffer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A pointer to an audio queue buffer.
 /// An pointer to an AudioQueueBuffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuebufferref?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioQueueBufferRef = *mut AudioQueueBuffer;
 
+/// Specifies an audio queue parameter and associated value.
+///
+/// ## Overview
+///
+/// You use this structure with the [`AudioQueueEnqueueBufferWithParameters`](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebufferwithparameters(_:_:_:_:_:_:_:_:_:_:)) function. See that function, and [Audio Queue Parameters](https://developer.apple.com/documentation/audiotoolbox/1552626-audio-queue-parameters), for more information.
+///
+///
 /// Specifies a value for an audio queue parameter.
 ///
 /// Two ways are available to supply an audio queue with parameters:
@@ -335,8 +424,6 @@ pub type AudioQueueBufferRef = *mut AudioQueueBuffer;
 /// The parameter.
 ///
 /// The value of the specified parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueparameterevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioQueueParameterEvent {
@@ -359,12 +446,11 @@ unsafe impl RefEncode for AudioQueueParameterEvent {
 }
 
 /// Specifies the current level metering information for one channel of an audio queue.
+/// Specifies the current level metering information for one channel of an audio queue.
 ///
 /// The audio channel's average RMS power.
 ///
 /// The audio channel's peak RMS power
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuelevelmeterstate?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioQueueLevelMeterState {
@@ -396,8 +482,6 @@ unsafe impl RefEncode for OpaqueAudioQueueProcessingTap {
 }
 
 /// An object for intercepting and processing audio within an audio queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapref?language=objc)
 pub type AudioQueueProcessingTapRef = *mut OpaqueAudioQueueProcessingTap;
 
 /// Specifies an audio device channel to which the queue will play or from which
@@ -407,8 +491,6 @@ pub type AudioQueueProcessingTapRef = *mut OpaqueAudioQueueProcessingTap;
 /// obtained from an AudioDeviceID.
 ///
 /// The 1-based index of the channel.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuechannelassignment?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -441,8 +523,6 @@ unsafe impl RefEncode for AudioQueueChannelAssignment {
 /// Parameter `inAQ`: The audio queue that invoked the callback.
 ///
 /// Parameter `inBuffer`: The audio queue buffer made available by the audio queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
 pub type AudioQueueOutputCallbackBlock =
     *mut block2::DynBlock<dyn Fn(AudioQueueRef, AudioQueueBufferRef)>;
@@ -468,8 +548,6 @@ pub type AudioQueueOutputCallbackBlock =
 ///
 /// Parameter `inPacketDescs`: For compressed formats which require packet descriptions, the packet descriptions
 /// produced by the encoder for the incoming buffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueinputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
 pub type AudioQueueInputCallbackBlock = *mut block2::DynBlock<
     dyn Fn(
@@ -481,6 +559,33 @@ pub type AudioQueueInputCallbackBlock = *mut block2::DynBlock<
     ),
 >;
 
+/// Called by the system when an audio queue buffer is available for reuse.
+///
+/// Parameters:
+/// - inUserData: The custom data you’ve specified in the `inUserData` parameter of the [`AudioQueueNewOutput`](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutput(_:_:_:_:_:_:_:)) function. Typically, this includes data format and state information for the audio queue.
+///
+/// - inAQ: The playback audio queue that invoked the callback.
+///
+/// - inBuffer: An audio queue buffer, newly available to fill because the playback audio queue has acquired its contents.
+///
+///
+/// ## Discussion
+///
+/// If you name your callback function `MyAudioQueueOutputCallback`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This callback function is invoked each time its associated playback audio queue has acquired the data from an audio queue buffer, at which point the buffer is available for reuse. The newly-available buffer is sent to this callback in the `inBuffer` parameter. Typically, you write this callback to:
+///
+/// 1. Fill the newly-available buffer with the next set of audio data from a file or other buffer.
+///
+/// 2. Reenqueue the buffer for playback. To reenqueue a buffer, use the [`AudioQueueEnqueueBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebuffer(_:_:_:_:)) or [`AudioQueueEnqueueBufferWithParameters`](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebufferwithparameters(_:_:_:_:_:_:_:_:_:_:)) function.
+///
+/// To associate this callback with a playback audio queue, provide a reference to the callback as you are creating the audio queue. See the `inCallbackProc` parameter of the [`AudioQueueNewOutput`](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutput(_:_:_:_:_:_:_:)) function.
+///
+/// When the system invokes this callback, you cannot assume that the audio data from the newly-available buffer has been played. For a description of how to check that a sound has finished playing, read the Discussion for the [`AudioQueuePropertyListenerProc`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertylistenerproc) callback function.
+///
+///
 /// Defines a pointer to a callback function that is called when a playback audio
 /// queue has finished taking data from a buffer.
 ///
@@ -494,12 +599,35 @@ pub type AudioQueueInputCallbackBlock = *mut block2::DynBlock<
 /// Parameter `inAQ`: The audio queue that invoked the callback.
 ///
 /// Parameter `inBuffer`: The audio queue buffer made available by the audio queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallback?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioQueueOutputCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, AudioQueueRef, AudioQueueBufferRef)>;
 
+/// Called by the system when a recording audio queue has finished filling an audio queue buffer.
+///
+/// Parameters:
+/// - inUserData: The custom data you’ve specified in the `inUserData` parameter of the [`AudioQueueNewInput`](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewinput(_:_:_:_:_:_:_:)) function. Typically, this includes format and state information for the audio queue.
+///
+/// - inAQ: The recording audio queue that invoked the callback.
+///
+/// - inBuffer: An audio queue buffer, newly filled by the recording audio queue, containing the new audio data your callback needs to write.
+///
+/// - inStartTime: The sample time for the start of the audio queue buffer. This parameter is not used in basic recording.
+///
+/// - inNumberPacketDescriptions: The number of packets of audio data sent to the callback in the `inBuffer` parameter. When recording in a constant bit rate (CBR) format, the audio queue sets this parameter to `NULL`.
+///
+/// - inPacketDescs: For compressed formats that require packet descriptions, the set of packet descriptions produced by the encoder for audio data in the `inBuffer` parameter. When recording in a CBR format, the audio queue sets this parameter to `NULL`.
+///
+///
+/// ## Discussion
+///
+/// If you name your callback function `MyAudioQueueInputCallback`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// You specify a recording audio queue callback when calling the [`AudioQueueNewInput`](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewinput(_:_:_:_:_:_:_:)) function. The callback is invoked each time its recording audio queue has filled an audio queue buffer with fresh audio data. Typically, your callback writes the data to a file or other buffer, and then reenqueues the audio queue buffer to receive more data.
+///
+///
 /// Defines a pointer to a callback function that is called when a recording audio
 /// queue has finished filling a buffer.
 ///
@@ -524,8 +652,6 @@ pub type AudioQueueOutputCallback =
 ///
 /// Parameter `inPacketDescs`: For compressed formats which require packet descriptions, the packet descriptions
 /// produced by the encoder for the incoming buffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueinputcallback?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioQueueInputCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -538,6 +664,29 @@ pub type AudioQueueInputCallback = Option<
     ),
 >;
 
+/// Called by the system when a specified audio queue property changes value.
+///
+/// Parameters:
+/// - inUserData: The custom data you’ve specified in the `inUserData` parameter of the [`AudioQueueAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)) function.
+///
+/// - inAQ: The recording or playback audio queue that invoked the callback.
+///
+/// - inID: The ID of the property whose value changes you want to observe.
+///
+///
+/// ## Discussion
+///
+/// If you name your callback function `MyAudioQueuePropertyListenerProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// Install this callback in an audio queue by calling the [`AudioQueueAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)) function. For example, say you want your application to be notified, after you call the [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)) function with the `inImmedate` parameter set to `false`, that audio has finished playing. Perform these steps:
+///
+/// 1. Define this property listener callback function to listen for changes to the [`kAudioQueueProperty_IsRunning`](https://developer.apple.com/documentation/audiotoolbox/kaudioqueueproperty_isrunning) property.
+///
+/// 2. Install this callback, using the [`AudioQueueAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)) function, in the playback audio queue that you want to monitor.
+///
+///
 /// Defines a pointer to a callback function that is called when a specified
 /// property changes value.
 ///
@@ -550,8 +699,6 @@ pub type AudioQueueInputCallback = Option<
 /// Parameter `inAQ`: The audio queue that invoked the callback.
 ///
 /// Parameter `inID`: The ID of the property that invoked the callback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertylistenerproc?language=objc)
 pub type AudioQueuePropertyListenerProc =
     Option<unsafe extern "C-unwind" fn(*mut c_void, AudioQueueRef, AudioQueuePropertyID)>;
 
@@ -645,8 +792,6 @@ pub type AudioQueuePropertyListenerProc =
 /// are zero. On exit, they should contain the tap's output.
 ///
 /// Siphoning taps receive valid buffers which they must not alter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapcallback?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioQueueProcessingTapCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -661,6 +806,29 @@ pub type AudioQueueProcessingTapCallback = Option<
 >;
 
 extern "C-unwind" {
+    /// Creates a new playback audio queue object.
+    ///
+    /// Parameters:
+    /// - inFormat: The data format of the audio to play. For linear PCM, only interleaved formats are supported. Compressed formats are also supported.
+    ///
+    /// - inCallbackProc: A callback function to use with the playback audio queue. The audio queue invokes the callback when the audio queue has finished acquiring a buffer. See [`AudioQueueOutputCallback`](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallback).
+    ///
+    /// - inUserData: A custom data structure for use with the callback function.
+    ///
+    /// - inCallbackRunLoop: The event loop on which the callback function pointed to by the `inCallbackProc` parameter is to be called. If you specify `NULL`, the callback is invoked on one of the audio queue’s internal threads.
+    ///
+    /// - inCallbackRunLoopMode: The run loop mode in which to invoke the callback function specified in the `inCallbackProc` parameter. Typically, you pass `kCFRunLoopCommonModes` or use `NULL`, which is equivalent. You can choose to create your own thread with your own run loops. For more information on run loops, see Run Loops and doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht.
+    ///
+    /// - inFlags: Reserved for future use. Must be `0`.
+    ///
+    /// - outAQ: On output, the newly created playback audio queue object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Creates a new audio queue for playing audio data.
     ///
     /// To create an playback audio queue, you allocate buffers, then queue buffers (using
@@ -700,8 +868,6 @@ extern "C-unwind" {
     /// - `in_user_data` must be a valid pointer or null.
     /// - `in_callback_run_loop` possibly has additional threading requirements.
     /// - `out_aq` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutput(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewOutput(
         in_format: NonNull<AudioStreamBasicDescription>,
@@ -715,6 +881,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new recording audio queue object.
+    ///
+    /// Parameters:
+    /// - inFormat: The compressed or uncompressed audio data format to record to. When recording to linear PCM, only interleaved formats are supported.
+    ///
+    /// - inCallbackProc: A callback function to use with the recording audio queue. The audio queue calls this function when the audio queue has finished filling a buffer. See [`AudioQueueInputCallback`](https://developer.apple.com/documentation/audiotoolbox/audioqueueinputcallback).
+    ///
+    /// - inUserData: A custom data structure for use with the callback function.
+    ///
+    /// - inCallbackRunLoop: The event loop on which the callback function pointed to by the  `inCallbackProc` parameter is to be called. If you specify `NULL`, the callback is called on one of the audio queue’s internal threads.
+    ///
+    /// - inCallbackRunLoopMode: The run loop mode in which to invoke the callback function specified in the `inCallbackProc` parameter. Typically, you pass `kCFRunLoopCommonModes` or use `NULL`, which is equivalent. You can choose to create your own thread with your own run loops. For more information on run loops, see Run Loops and doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht.
+    ///
+    /// - inFlags: Reserved for future use. Must be `0`.
+    ///
+    /// - outAQ: On output, the newly created recording audio queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Creates a new audio queue for recording audio data.
     ///
     /// Outline of how to use the queue for input:
@@ -756,8 +945,6 @@ extern "C-unwind" {
     /// - `in_user_data` must be a valid pointer or null.
     /// - `in_callback_run_loop` possibly has additional threading requirements.
     /// - `out_aq` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewinput(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioQueueNewInput(
         in_format: NonNull<AudioStreamBasicDescription>,
@@ -800,8 +987,6 @@ extern "C-unwind" {
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     /// - `in_callback_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutputwithdispatchqueue(_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -848,8 +1033,6 @@ extern "C-unwind" {
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     /// - `in_callback_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewinputwithdispatchqueue(_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -864,6 +1047,25 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Disposes of an audio queue.
+///
+/// Parameters:
+/// - inAQ: The audio queue you want to dispose of.
+///
+/// - inImmediate: If you pass `true`, the audio queue is disposed of immediately (that is, synchronously). If you pass `false`, disposal does not take place until all enqueued buffers are processed (that is, asynchronously).
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// Disposing of an audio queue also disposes of its resources, including its buffers. After you call this function, you can no longer interact with the audio queue. In addition, the audio queue no longer invokes any callbacks.
+///
+///
 /// Disposes an existing audio queue.
 ///
 /// Disposing of the audio queue also disposes of all its resources, including its buffers.
@@ -885,8 +1087,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_aq` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedispose(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioQueueDispose(
     in_aq: AudioQueueRef,
@@ -899,6 +1099,27 @@ pub unsafe extern "C-unwind" fn AudioQueueDispose(
 }
 
 extern "C-unwind" {
+    /// Asks an audio queue object to allocate an audio queue buffer.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue you want to allocate a buffer.
+    ///
+    /// - inBufferByteSize: The desired capacity of the new buffer, in bytes. Appropriate capacity depends on the processing you will perform on the data as well as on the audio data format.
+    ///
+    /// - outBuffer: On output, points to the newly allocated audio queue buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once allocated, the pointer to the audio queue buffer and the buffer’s capacity cannot be changed. The buffer’s size field, `mAudioDataByteSize`, which indicates the amount of valid data, is initially set to 0.
+    ///
+    ///
     /// Asks an audio queue to allocate a buffer.
     ///
     /// Once allocated, the pointer to the buffer and the buffer's size are fixed and cannot be
@@ -920,8 +1141,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebuffer(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBuffer(
         in_aq: AudioQueueRef,
@@ -931,6 +1150,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Asks an audio queue object to allocate an audio queue buffer with space for packet descriptions.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue you want to allocate a buffer.
+    ///
+    /// - inBufferByteSize: The desired data capacity of the new buffer, in bytes. Appropriate capacity depends on the processing you will perform on the data as well as on the audio data format.
+    ///
+    /// - inNumberPacketDescriptions: The desired size of the packet description array in the new audio queue buffer.
+    ///
+    /// - outBuffer: On output, points to the newly allocated audio queue buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function when allocating an audio queue buffer for use with a VBR compressed data format.
+    ///
+    /// Once allocated, the pointer to the audio queue buffer and the buffer’s capacity cannot be changed. The buffer’s size field, `mAudioDataByteSize`, which indicates the amount of valid data, is initially set to 0.
+    ///
+    ///
     /// Asks an audio queue to allocate a buffer with space for packet descriptions.
     ///
     /// Once allocated, the pointer to the buffer and the buffer's size are fixed and cannot be
@@ -954,8 +1198,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebufferwithpacketdescriptions(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueAllocateBufferWithPacketDescriptions(
         in_aq: AudioQueueRef,
@@ -966,6 +1208,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Asks an audio queue to dispose of an audio queue buffer.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that owns the audio queue buffer you want to dispose of.
+    ///
+    /// - inBuffer: The buffer to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Disposing of an audio queue also disposes of its buffers. Call this function only if you want to dispose of a particular buffer while continuing to use an audio queue. You can dispose of a buffer only when the audio queue that owns it is stopped (that is, not processing audio data).
+    ///
+    ///
     /// Disposes of an audio queue buffer.
     ///
     /// This function disposes of the buffer allocated by AudioQueueAllocateBuffer. Disposing of
@@ -985,13 +1246,46 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuefreebuffer(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueFreeBuffer(in_aq: AudioQueueRef, in_buffer: AudioQueueBufferRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Adds a buffer to the buffer queue of a recording or playback audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that owns the audio queue buffer.
+    ///
+    /// - inBuffer: The audio queue buffer to add to the buffer queue.
+    ///
+    /// - inNumPacketDescs: The number of packets of audio data in the `inBuffer` parameter. Use a value of `0` for any of the following situations:
+    ///
+    /// - When playing a constant bit rate (CBR) format.
+    ///
+    /// - When the audio queue is a recording (input) audio queue.
+    ///
+    /// - When the buffer you are reenqueuing was allocated with the [`AudioQueueAllocateBufferWithPacketDescriptions`](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebufferwithpacketdescriptions(_:_:_:_:)) function. In this case, your callback should describe the buffer’s packets in the buffer’s `mPacketDescriptions` and `mPacketDescriptionCount` fields.
+    ///
+    /// - inPacketDescs: An array of packet descriptions. Use a value of `NULL` for any of the following situations:
+    ///
+    /// - When playing a constant bit rate (CBR) format.
+    ///
+    /// - When the audio queue is an input (recording) audio queue.
+    ///
+    /// - When the buffer you are reenqueuing was allocated with the [`AudioQueueAllocateBufferWithPacketDescriptions`](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebufferwithpacketdescriptions(_:_:_:_:)) function. In this case, your callback should describe the buffer’s packets in the buffer’s `mPacketDescriptions` and `mPacketDescriptionCount` fields.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Audio queue callbacks use this function to reenqueue buffers—placing them “last in line” in a buffer queue. A playback (or _output_) callback reenqueues a buffer after the buffer is filled with fresh audio data (typically from a file). A recording (or _input_) callback reenqueues a buffer after the buffer’s contents were written (typically to a file).
+    ///
+    ///
     /// Assigns a buffer to an audio queue for recording or playback.
     ///
     /// If the buffer was allocated with AudioQueueAllocateBufferWithPacketDescriptions,
@@ -1022,8 +1316,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_buffer` must be a valid pointer.
     /// - `in_packet_descs` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebuffer(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBuffer(
         in_aq: AudioQueueRef,
@@ -1034,6 +1326,55 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a buffer to the buffer queue of a playback audio queue object, specifying start time and other settings.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue object that owns the audio queue buffer.
+    ///
+    /// - inBuffer: The audio queue buffer to add to the buffer queue. Before calling this function, the buffer must contain the audio data to be played.
+    ///
+    /// - inNumPacketDescs: The number of packets of audio data in the `inBuffer` parameter. Use a value of `0` for either of the following situations:
+    ///
+    /// - When playing a constant bit rate (CBR) format.
+    ///
+    /// - When the buffer you are reenqueuing was allocated with the [`AudioQueueAllocateBufferWithPacketDescriptions`](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebufferwithpacketdescriptions(_:_:_:_:)) function. In this case, your callback should describe the buffer’s packets in the buffer’s `mPacketDescriptions` and `mPacketDescriptionCount` fields.
+    ///
+    /// - inPacketDescs: An array of packet descriptions. Use a value of `NULL` for either of the following situations:
+    ///
+    /// - When playing a constant bit rate (CBR) format.
+    ///
+    /// - When the buffer you are reenqueuing was allocated with the [`AudioQueueAllocateBufferWithPacketDescriptions`](https://developer.apple.com/documentation/audiotoolbox/audioqueueallocatebufferwithpacketdescriptions(_:_:_:_:)) function. In this case, your callback should describe the buffer’s packets in the buffer’s `mPacketDescriptions` and `mPacketDescriptionCount` fields.
+    ///
+    /// - inTrimFramesAtStart: The number of priming frames to skip at the start of the buffer.
+    ///
+    /// - inTrimFramesAtEnd: The number of frames to skip at the end of the buffer.
+    ///
+    /// - inNumParamValues: The number of audio queue parameter values pointed to by the `inParamValues` parameter. If you are not setting parameters, use `0`.
+    ///
+    /// - inParamValues: An array of parameters to apply to an audio queue buffer. (In OS X v10.5, there is only one audio queue parameter, `kAudioQueueParam_Volume`.)  If you are not setting parameters for the buffer, use `NULL`.
+    ///
+    /// Assign parameter values before playback—they cannot be changed while a buffer is playing. Changes to audio queue buffer parameters take effect when the buffer starts playing.
+    ///
+    /// - inStartTime: The desired start time for playing the buffer. To specify a time relative to when the audio queue started, use the `mSampleTime` field of the `AudioTimeStamp` structure. Use `NULL` to indicate that the buffer should play as soon as possible—which may be after previously queued buffers finish playing.
+    ///
+    /// Buffers play in the order they are enqueued (first in, first out). If multiple buffers are queued, the start times must be in ascending order or `NULL`; otherwise, an error occurs.  This parameter specifies when audio data is to start playing, ignoring any trim frames specified in the `inTrimFramesAtStart` parameter.
+    ///
+    /// - outActualStartTime: On output, the time when the buffer will actually start playing.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can exert some control over the buffer queue with this function. You can assign audio queue settings that are, in effect, carried by an audio queue buffer as you enqueue it. Hence, settings take effect when an audio queue buffer begins playing.
+    ///
+    /// This function applies only to playback. Recording audio queues do not take parameters and do not support variable bit rate (VBR) formats (which might require trimming).
+    ///
+    ///
     /// Assigns a buffer to an audio queue for playback, providing parameters
     /// and start time information.
     ///
@@ -1102,8 +1443,6 @@ extern "C-unwind" {
     /// - `in_param_values` must be a valid pointer or null.
     /// - `in_start_time` must be a valid pointer or null.
     /// - `out_actual_start_time` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebufferwithparameters(_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueEnqueueBufferWithParameters(
         in_aq: AudioQueueRef,
@@ -1122,6 +1461,27 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Begins playing or recording audio.
     ///
+    /// Parameters:
+    /// - inAQ: The audio queue to start.
+    ///
+    /// - inStartTime: The time at which the audio queue should start.
+    ///
+    /// To specify a start time relative to the timeline of the associated audio device, use the `mSampleTime` field of the `AudioTimeStamp` structure. Use `NULL` to indicate that the audio queue should start as soon as possible.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the associated audio device is not already running, this function starts it.
+    ///
+    ///
+    /// Begins playing or recording audio.
+    ///
     /// If the audio hardware is not already running, this function starts it.
     ///
     ///
@@ -1137,13 +1497,40 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_start_time` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuestart(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueStart(in_aq: AudioQueueRef, in_start_time: *const AudioTimeStamp) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Decodes enqueued buffers in preparation for playback.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue to be primed.
+    ///
+    /// - inNumberOfFramesToPrepare: The number of frames to decode before returning. Pass `0` to decode all enqueued buffers.
+    ///
+    /// - outNumberOfFramesPrepared: On output, the number of frames actually decoded and prepared for playback. Pass `NULL` on input if you you are not interested in this information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function decodes enqueued buffers in preparation for playback. It returns when at least the number of audio sample frames specified in `inNumberOfFramesToPrepare` are decoded and ready to play, or (if you pass `0` for the `inNumberOfFramesToPrepare` parameter), when all enqueued buffers are decoded.
+    ///
+    /// To make a buffer of audio data ready to play, use [`AudioQueuePrime`](https://developer.apple.com/documentation/audiotoolbox/audioqueueprime(_:_:_:)) as follows:
+    ///
+    /// 1. Call [`AudioQueueEnqueueBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebuffer(_:_:_:_:)).
+    ///
+    /// 2. Call [`AudioQueuePrime`](https://developer.apple.com/documentation/audiotoolbox/audioqueueprime(_:_:_:)).
+    ///
+    /// 3. Call [`AudioQueueStart`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestart(_:_:)).
+    ///
+    ///
     /// Begins decoding buffers in preparation for playback.
     ///
     /// This function begins decoding buffers in preparation for playback. It returns when at
@@ -1174,8 +1561,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_number_of_frames_prepared` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprime(_:_:_:)?language=objc)
     pub fn AudioQueuePrime(
         in_aq: AudioQueueRef,
         in_number_of_frames_to_prepare: u32,
@@ -1183,6 +1568,25 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Stops playing or recording audio.
+///
+/// Parameters:
+/// - inAQ: The audio queue to stop.
+///
+/// - inImmediate: If you pass `true`, stopping occurs immediately (that is, _synchronously_). If you pass `false`, the function returns immediately, but the audio queue does not stop until its queued buffers are played or recorded (that is, the stop occurs _asynchronously_). Audio queue callbacks are invoked as necessary until the queue actually stops.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// This function resets an audio queue, stops the audio hardware associated with the queue if it is not in use by other audio services, and stops the audio queue. When recording, this function is typically invoked by a user. When playing back, a playback audio queue callback should call this function when there is no more audio to play.
+///
+///
 /// Stops playing or recording audio.
 ///
 /// This function resets the audio queue and stops the audio hardware associated with the
@@ -1211,8 +1615,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_aq` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioQueueStop(
     in_aq: AudioQueueRef,
@@ -1227,6 +1629,23 @@ pub unsafe extern "C-unwind" fn AudioQueueStop(
 extern "C-unwind" {
     /// Pauses audio playback or recording.
     ///
+    /// Parameters:
+    /// - inAQ: The audio queue to pause.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Pausing an audio queue does not affect buffers or reset the audio queue. To resume playback or recording, call [`AudioQueueStart`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestart(_:_:)).
+    ///
+    ///
+    /// Pauses audio playback or recording.
+    ///
     /// Pausing the queue does not affect buffers or reset the audio queue. To resume playback
     /// or recording using the audio queue, call AudioQueueStart.
     ///
@@ -1238,12 +1657,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuepause(_:)?language=objc)
     pub fn AudioQueuePause(in_aq: AudioQueueRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Resets an audio queue’s decoder state.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue to flush.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call [`AudioQueueFlush`](https://developer.apple.com/documentation/audiotoolbox/audioqueueflush(_:)) after enqueuing the last audio queue buffer to ensure that all buffered data, as well as all audio data in the midst of processing, gets recorded or played. If you do not call this function, stale data in the audio queue’s decoder may interfere with playback or recording of the next set of buffers.
+    ///
+    /// Call this function before calling [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)) if you want to ensure that all enqueued data reaches the destination. If you call [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)) with the `inImmediate` parameter set to `false`, calling this function does nothing; under those conditions, [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)) calls this function.
+    ///
+    ///
     /// Resets the audio queue's decoder state.
     ///
     /// After all queued buffers have been played, the function cleans up all decoder state
@@ -1266,12 +1702,31 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueflush(_:)?language=objc)
     pub fn AudioQueueFlush(in_aq: AudioQueueRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Resets an audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue to reset.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function immediately resets an audio queue, flushes any queued buffers (invoking callbacks as necessary), removes all buffers from previously scheduled use, and resets decoder and digital signal processing (DSP) state.
+    ///
+    /// If you queue buffers after calling this function, processing does not begin until the decoder and DSP state of the audio queue are reset. This might create an audible discontinuity (or “glitch”).
+    ///
+    /// This function is called automatically when you call [`AudioQueueStop`](https://developer.apple.com/documentation/audiotoolbox/audioqueuestop(_:_:)).
+    ///
+    ///
     /// Resets an audio queue.
     ///
     /// This function immediately resets an audio queue, flushes any queued buffer, removes all
@@ -1295,12 +1750,31 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuereset(_:)?language=objc)
     pub fn AudioQueueReset(in_aq: AudioQueueRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets an audio queue parameter value.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that you want to get a parameter value from.
+    ///
+    /// - inParamID: The ID of the parameter whose value you want to get. In OS X v10.5, audio queues have one parameter available: `kAudioQueueParam_Volume`, which controls playback gain.  See [Audio Queue Parameters](https://developer.apple.com/documentation/audiotoolbox/1552626-audio-queue-parameters)
+    ///
+    /// - outValue: On output, points to the current value of the specified parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can access the current parameter values for an audio queue at any time with this function. An audio queue parameter value is the sum of settings applied at buffer granularity, using the [`AudioQueueEnqueueBufferWithParameters`](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebufferwithparameters(_:_:_:_:_:_:_:_:_:_:)) function, and settings applied to the audio queue per se, using the [`AudioQueueSetParameter`](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetparameter(_:_:_:)) function.
+    ///
+    ///
     /// Obtains an audio queue parameter value.
     ///
     /// You can access the current parameter values for an audio queue at any time with this
@@ -1321,8 +1795,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetparameter(_:_:_:)?language=objc)
     pub fn AudioQueueGetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
@@ -1331,6 +1803,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a playback audio queue parameter value.
+    ///
+    /// Parameters:
+    /// - inAQ: The playback audio queue that you want to set a parameter value on.
+    ///
+    /// - inParamID: The ID of the parameter you want to set. In OS X v10.5, audio queues have one parameter available: `kAudioQueueParam_Volume`, which controls playback gain.  See [Audio Queue Parameters](https://developer.apple.com/documentation/audiotoolbox/1552626-audio-queue-parameters).
+    ///
+    /// - inValue: The parameter value to set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to change the settings for a playback audio queue directly. Changes take effect immediately. To set playback gain at the granularity of an audio queue buffer, use the [`AudioQueueEnqueueBufferWithParameters`](https://developer.apple.com/documentation/audiotoolbox/audioqueueenqueuebufferwithparameters(_:_:_:_:_:_:_:_:_:_:)) function.
+    ///
+    ///
     /// Sets an audio queue parameter value.
     ///
     /// Parameter `inAQ`: The audio queue whose parameter value you want to set.
@@ -1344,8 +1837,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetparameter(_:_:_:)?language=objc)
     pub fn AudioQueueSetParameter(
         in_aq: AudioQueueRef,
         in_param_id: AudioQueueParameterID,
@@ -1354,6 +1845,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an audio queue property value.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that you want to get a property value from.
+    ///
+    /// - inID: The ID of the property whose value you want to get. See [`AudioQueuePropertyID`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid).
+    ///
+    /// - outData: On output, the desired property value.
+    ///
+    /// - ioDataSize: On input, the maximum bytes of space the caller expects to receive. On output, the actual data size of the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before calling this function, you can use the [`AudioQueueGetPropertySize`](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetpropertysize(_:_:_:)) function to determine the size, in bytes, of the value of a specified property. Some properties have values of a specific size, as described in [`AudioQueuePropertyID`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Obtains an audio queue property value.
     ///
     /// Parameter `inAQ`: The audio queue whose property value you want to obtain.
@@ -1372,8 +1892,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
     /// - `io_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetproperty(_:_:_:_:)?language=objc)
     pub fn AudioQueueGetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1383,6 +1901,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets an audio queue property value.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that you want to set a property value on.
+    ///
+    /// - inID: The ID of the property whose value you want to set. See [`AudioQueuePropertyID`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid).
+    ///
+    /// - inData: The property value to set.
+    ///
+    /// - inDataSize: The size of the property data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Sets an audio queue property value.
     ///
     /// Parameter `inAQ`: The audio queue whose property value you want to set.
@@ -1400,8 +1935,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetproperty(_:_:_:_:)?language=objc)
     pub fn AudioQueueSetProperty(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1411,6 +1944,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the size of the value of an audio queue property.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that has the property value whose size you want to get.
+    ///
+    /// - inID: The ID of the property value whose size you want to get. See [`AudioQueuePropertyID`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid).
+    ///
+    /// - outDataSize: On output, the size of the requested property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Obtains the size of an audio queue property.
     ///
     /// Parameter `inAQ`: The audio queue containing the property value whose size you want to obtain.
@@ -1426,8 +1974,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetpropertysize(_:_:_:)?language=objc)
     pub fn AudioQueueGetPropertySize(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1436,6 +1982,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a property listener callback to an audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that you want to assign a property listener callback to.
+    ///
+    /// - inID: The ID of the property whose changes you want to respond to. See [`AudioQueuePropertyID`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid).
+    ///
+    /// - inProc: The callback to be invoked when the property value changes.
+    ///
+    /// - inUserData: Custom data for the property listener callback.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to let your application respond to property value changes in an audio queue. For example, say your application’s user interface has a button that acts as a Play/Stop toggle switch. When an audio file has finished playing, the audio queue stops and the value of the  `kAudioQueueProperty_IsRunning` property changes from `true` to `false`. You can use a property listener callback to update the button text appropriately.
+    ///
+    ///
     /// Adds a listener callback for a property.
     ///
     /// This callback is used to act upon a change in an audio queue property such as
@@ -1459,8 +2028,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioQueueAddPropertyListener(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1470,6 +2037,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a property listener callback from an audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue that you want to remove a property listener callback from.
+    ///
+    /// - inID: The ID of the property whose changes you no longer want to respond to. See [`AudioQueuePropertyID`](https://developer.apple.com/documentation/audiotoolbox/audioqueuepropertyid).
+    ///
+    /// - inProc: The callback to be removed.
+    ///
+    /// - inUserData: The same custom data for the property listener callback that you passed when calling [`AudioQueueAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audioqueueaddpropertylistener(_:_:_:_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Removes a listener callback for a property.
     ///
     /// Parameter `inAQ`: The audio queue that owns the property from which you want to remove a listener.
@@ -1487,8 +2071,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_proc` must be implemented correctly.
     /// - `in_user_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueremovepropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioQueueRemovePropertyListener(
         in_aq: AudioQueueRef,
         in_id: AudioQueuePropertyID,
@@ -1498,6 +2080,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a timeline object for an audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue to associate with the new timeline object.
+    ///
+    /// - outTimeline: On output, the newly created timeline object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Create a timeline object if you want to get timeline discontinuity information from an audio queue using the [`AudioQueueGetCurrentTime`](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetcurrenttime(_:_:_:_:)) function.
+    ///
+    ///
     /// Creates a timeline object.
     ///
     /// You need to instantiate a timeline object if you want to know about any timeline
@@ -1514,8 +2115,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_timeline` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuecreatetimeline(_:_:)?language=objc)
     pub fn AudioQueueCreateTimeline(
         in_aq: AudioQueueRef,
         out_timeline: NonNull<AudioQueueTimelineRef>,
@@ -1523,6 +2122,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of an audio queue’s timeline object.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue associated with the timeline object you want to dispose of.
+    ///
+    /// - inTimeline: The timeline object to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Disposing of an audio queue automatically disposes of any associated resources, including a timeline object. Call this function only if you want to dispose of a timeline object and not the audio queue associated with it.
+    ///
+    ///
     /// Disposes of a timeline object.
     ///
     /// Disposing of an audio queue automatically disposes of any associated timeline objects.
@@ -1540,8 +2158,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `in_timeline` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedisposetimeline(_:_:)?language=objc)
     pub fn AudioQueueDisposeTimeline(
         in_aq: AudioQueueRef,
         in_timeline: AudioQueueTimelineRef,
@@ -1549,6 +2165,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the current audio queue time.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue whose current time you want to get.
+    ///
+    /// - inTimeline: The audio queue timeline object to which timeline discontinuities are reported. Use `NULL` if the audio queue does not have an associated timeline object.
+    ///
+    /// - outTimeStamp: On output, the current audio queue time. The `mSampleTime` field represents audio queue time in terms of the audio queue sample rate, relative to when the queue started or will start.
+    ///
+    /// - outTimelineDiscontinuity: On output, `true` if there has been a timeline discontinuity, or `false` if there has been no discontinuity. If the audio queue does not have an associated timeline object, this parameter is always `NULL`.
+    ///
+    /// A timeline discontinuity may occur, for example, if the sample rate is changed for the audio hardware device associated with an audio queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Obtains the current audio queue time.
     ///
     /// You must specify a timeline object if you want to be notified about any timeline
@@ -1579,8 +2214,6 @@ extern "C-unwind" {
     /// - `in_timeline` must be a valid pointer or null.
     /// - `out_time_stamp` must be a valid pointer or null.
     /// - `out_timeline_discontinuity` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuegetcurrenttime(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueGetCurrentTime(
         in_aq: AudioQueueRef,
@@ -1591,6 +2224,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the current time of the audio hardware device associated with an audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue whose associated audio device is to be queried.
+    ///
+    /// - outTimeStamp: On output, the current time of the audio hardware device associated with the audio queue. If the device is not running, the only valid field in the audio timestamp structure is `mHostTime`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value whether or not the audio hardware device associated with the audio queue is running. The similar `AudioDeviceGetCurrentTime` function, declared in the `AudioHardware.h` header file, returns an error in this case.
+    ///
+    ///
     /// Obtains the current time of the audio device associated with an audio queue.
     ///
     /// If the audio device associated with the audio queue is not running, the only valid field
@@ -1610,8 +2262,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `out_time_stamp` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedevicegetcurrenttime(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetCurrentTime(
         in_aq: AudioQueueRef,
@@ -1620,6 +2270,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts the time for an audio queue’s associated audio hardware device from one time base representation to another.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue associated with the device whose times are being translated.
+    ///
+    /// - inTime: The time to be translated.
+    ///
+    /// - outTime: On output, the translated time.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The device must be running for this function to provide a result. For an explanation of the various time base representations for an audio hardware device, see [`AudioTimeStamp`](https://developer.apple.com/documentation/coreaudiotypes/audiotimestamp) in [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+    ///
+    ///
     /// Converts the time in the time base of the associated audio device from one
     /// representation to another.
     ///
@@ -1650,8 +2321,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_time` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedevicetranslatetime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceTranslateTime(
         in_aq: AudioQueueRef,
@@ -1661,6 +2330,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the start time, for an audio hardware device, that is closest to a requested start time.
+    ///
+    /// Parameters:
+    /// - inAQ: The audio queue whose associated audio hardware device’s start time you want to get.
+    ///
+    /// - ioRequestedStartTime: On input, the requested start time. On output, the actual start time.
+    ///
+    /// - inFlags: Reserved for future use. Pass `0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function asks an audio queue’s associated device for a start time to use for recording or playback. The time returned will be equal to or later than the requested start time, depending on device and system factors. For example, the start time might be shifted to allow for aligning buffer access. The device must be running to use this function.
+    ///
+    ///
     /// Obtains an audio device's start time that is closest to a requested start time.
     ///
     /// Parameter `inAQ`: The audio queue whose device's nearest start time you want to obtain.
@@ -1675,8 +2365,6 @@ extern "C-unwind" {
     ///
     /// - `in_aq` must be a valid pointer.
     /// - `io_requested_start_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuedevicegetneareststarttime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueDeviceGetNearestStartTime(
         in_aq: AudioQueueRef,
@@ -1686,6 +2374,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the rendering mode and audio format for a playback audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The playback audio queue whose rendering mode and audio format you want to set.
+    ///
+    /// - inFormat: The audio format for offline rendering. The format must be some sort of linear PCM. If the format has more than one channel, it must be interleaved. For more information on the [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) structure, see [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+    ///
+    /// Pass `NULL` to disable offline rendering and return the audio queue to normal output to an audio device.
+    ///
+    /// - inLayout: The channel layout for offline rendering.  For more information on the [`AudioChannelLayout`](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout) structure, see [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+    ///
+    /// Pass `NULL` when using this function to disable offline rendering.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to set a playback audio queue to perform offline rendering, such as for export to an audio file. In offline rendering mode, a playback audio queue does not connect to external hardware.
+    ///
+    /// You can also use this function to restore an audio queue to normal rendering mode by passing `NULL` in the `inFormat` and `inLayout` parameters.
+    ///
+    ///
     /// Specify an audio format to which the queue will perform subsequent offline rendering,
     /// or disable offline rendering.
     ///
@@ -1709,8 +2424,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_format` must be a valid pointer or null.
     /// - `in_layout` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetofflinerenderformat(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueSetOfflineRenderFormat(
         in_aq: AudioQueueRef,
@@ -1720,6 +2433,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Exports audio to a buffer, instead of to a device, using a playback audio queue.
+    ///
+    /// Parameters:
+    /// - inAQ: The playback audio queue.
+    ///
+    /// - inTimestamp: The time corresponding to the beginning of the current audio queue buffer. This function uses the `mSampleTime` field of the [`AudioTimeStamp`](https://developer.apple.com/documentation/coreaudiotypes/audiotimestamp) data structure.
+    ///
+    /// - ioBuffer: On input, a buffer you supply to hold rendered audio data. On output, the rendered audio data, which you can then write to a file.
+    ///
+    /// - inNumberFrames: The number of frames of audio to render.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you change a playback audio queue’s rendering mode to offline, using the [`AudioQueueSetOfflineRenderFormat`](https://developer.apple.com/documentation/audiotoolbox/audioqueuesetofflinerenderformat(_:_:_:)) function, you gain access to the rendered audio. You can then write the audio to a file, rather than have it play to external hardware such as a loudspeaker.
+    ///
+    ///
     /// Obtain a buffer of audio output from a queue in offline rendering mode.
     ///
     /// Parameter `inAQ`: The output queue from which to obtain output.
@@ -1739,8 +2475,6 @@ extern "C-unwind" {
     /// - `in_aq` must be a valid pointer.
     /// - `in_timestamp` must be a valid pointer.
     /// - `io_buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueofflinerender(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueOfflineRender(
         in_aq: AudioQueueRef,
@@ -1811,8 +2545,6 @@ extern "C-unwind" {
     /// - `out_max_frames` must be a valid pointer.
     /// - `out_processing_format` must be a valid pointer.
     /// - `out_aq_tap` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapnew(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapNew(
         in_aq: AudioQueueRef,
@@ -1840,8 +2572,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_aq_tap` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapdispose(_:)?language=objc)
     pub fn AudioQueueProcessingTapDispose(in_aq_tap: AudioQueueProcessingTapRef) -> OSStatus;
 }
 
@@ -1882,8 +2612,6 @@ extern "C-unwind" {
     /// - `out_flags` must be a valid pointer.
     /// - `out_number_frames` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapgetsourceaudio(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioQueueProcessingTapGetSourceAudio(
         in_aq_tap: AudioQueueProcessingTapRef,
@@ -1922,8 +2650,6 @@ extern "C-unwind" {
     /// - `in_aq_tap` must be a valid pointer.
     /// - `out_queue_sample_time` must be a valid pointer.
     /// - `out_queue_frame_count` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapgetqueuetime(_:_:_:)?language=objc)
     pub fn AudioQueueProcessingTapGetQueueTime(
         in_aq_tap: AudioQueueProcessingTapRef,
         out_queue_sample_time: NonNull<f64>,

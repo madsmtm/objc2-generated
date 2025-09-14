@@ -7,7 +7,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachment?language=objc)
+    /// A media file associated with a notification.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UNNotificationAttachment`](https://developer.apple.com/documentation/usernotifications/unnotificationattachment) object when you want to include audio, image, or video content together in an alert-based notification. When creating the [`UNNotificationAttachment`](https://developer.apple.com/documentation/usernotifications/unnotificationattachment) object, the file you specify must be on disk, and the file format must be one of the supported types.
+    ///
+    /// You’re responsible for supplying attachments before the system displays your notification’s alert. For local notifications, add attachments when creating the notification’s content. For remote notifications, use a notification service app extension to download the attached files and then add them to the notification’s content before delivery.
+    ///
+    /// The system validates attachments before displaying the associated notification. If you attach a file to a local notification request that’s corrupted, invalid, or of an unsupported file type, the system doesn’t schedule your request. For remote notifications, the system validates attachments after your notification service app extension finishes. Once validated, the system moves the attached files into the attachment data store so that the appropriate processes can access the files. The system copies attachments located inside an app’s bundle.
+    ///
+    /// ### Supported File Types
+    ///
+    /// Table 1 lists the types of files you can include as an attachment and the supported file formats. The table also lists the maximum size allowed for attachments of each type. An image file may contain a static image or an animated image sequence.
+    ///
+    /// Table 1. Supported attachment file types
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attachment" }] }], [Paragraph { inline_content: [Text { text: "Supported file types" }] }], [Paragraph { inline_content: [Text { text: "Maximum size" }] }]], [[Paragraph { inline_content: [Text { text: "Audio" }] }], [Paragraph { inline_content: [CodeVoice { code: "kUTTypeAudioInterchangeFileFormat" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeWaveformAudio" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeMP3" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeMPEG4Audio" }] }], [Paragraph { inline_content: [Text { text: "5 MB" }] }]], [[Paragraph { inline_content: [Text { text: "Image" }] }], [Paragraph { inline_content: [CodeVoice { code: "kUTTypeJPEG" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeGIF" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypePNG" }] }], [Paragraph { inline_content: [Text { text: "10 MB" }] }]], [[Paragraph { inline_content: [Text { text: "Movie" }] }], [Paragraph { inline_content: [CodeVoice { code: "kUTTypeMPEG" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeMPEG2Video" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeMPEG4" }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "kUTTypeAVIMovie" }] }], [Paragraph { inline_content: [Text { text: "50 MB" }] }]]], alignments: None, metadata: None })
+    /// When creating an attachment, you can specify optional details about how to present the thumbnail image for the image or movie. Use the [`UNNotificationAttachmentOptionsThumbnailClippingRectKey`](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey) option to use only the specified portion of an image as a thumbnail. For animated images and movies, use the [`UNNotificationAttachmentOptionsThumbnailTimeKey`](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailtimekey) option to select which frame to use for the thumbnail image.
+    ///
+    /// The system limits the amount of storage space allocated for attachments for each app. To delete attachments, use the methods of the [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) class to remove the notification requests that contain those attachments.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationAttachment;
@@ -74,21 +95,45 @@ impl UNNotificationAttachment {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionstypehintkey?language=objc)
+    /// A hint about an attachment’s file type.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) containing a Uniform Type Identifier (UTI) that describes the file’s type. If you don’t include this key, the system uses the attachment’s filename extension to determine its type.
+    ///
+    ///
     pub static UNNotificationAttachmentOptionsTypeHintKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailhiddenkey?language=objc)
+    /// A Boolean value indicating whether the system hides the attachment’s thumbnail.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean value. When set to [`true`](https://developer.apple.com/documentation/swift/true), the attachment’s thumbnail isn’t displayed. If you don’t include this key, the system shows the thumbnail.
+    ///
+    ///
     pub static UNNotificationAttachmentOptionsThumbnailHiddenKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey?language=objc)
+    /// The clipping rectangle for a thumbnail image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a dictionary containing a normalized [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) — a unit rectangle whose values are in the range `0.0` to `1.0` and represent the portion of the original image that you want to display. For example, specifying an origin of (`0.25`, `0.25`) and a size of (`0.5`, `0.5`) defines a clipping rectangle that shows only the center portion of the image. Use the [`dictionaryRepresentation`](https://developer.apple.com/documentation/corefoundation/cgrect/dictionaryrepresentation) function to create the dictionary for your rectangle.
+    ///
+    ///
     pub static UNNotificationAttachmentOptionsThumbnailClippingRectKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationattachmentoptionsthumbnailtimekey?language=objc)
+    /// The frame number of an animation to use as a thumbnail image.
+    ///
+    /// ## Discussion
+    ///
+    /// For animated images, the value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing the frame number to use as the thumbnail. For movies, the value of this key is the time (in seconds) into the movie from which to grab the thumbnail image; you may also specify the value as a [`CMTime`](https://developer.apple.com/documentation/coremedia/cmtime) structure encoded using the [`CMTimeCopyAsDictionary`](https://developer.apple.com/documentation/coremedia/cmtimecopyasdictionary(_:allocator:)) function.
+    ///
+    ///
     pub static UNNotificationAttachmentOptionsThumbnailTimeKey: &'static NSString;
 }

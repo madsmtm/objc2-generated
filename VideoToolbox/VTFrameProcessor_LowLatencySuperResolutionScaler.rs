@@ -15,14 +15,27 @@ use crate::*;
 extern_class!(
     /// An object you use to configure frame processor for low-latency super-resolution scaler processing.
     ///
+    /// ## Overview
+    ///
+    /// Use this object to configure a [`VTFrameProcessor`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor). Query this interface also for important operating details, like the pixel buffer attributes required for frames you submit to the processor.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// When calling [`startSessionWithConfiguration:error:`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/startsession(configuration:)) to create a `VTLowLatencySuperResolutionScaler` session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering pipelines during this call.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An object you use to configure frame processor for low-latency super-resolution scaler processing.
+    ///
     /// Use this object to configure a ``VTFrameProcessor``. Query this interface also for important operating details, like
     /// the pixel buffer attributes required for frames you submit to the processor.
     ///
     /// > Important: When calling ``VTFrameProcessor/startSessionWithConfiguration:error:`` to create a `VTLowLatencySuperResolutionScaler`
     /// session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering
     /// pipelines during this call.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencysuperresolutionscalerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -180,11 +193,18 @@ impl VTLowLatencySuperResolutionScalerConfiguration {
 extern_class!(
     /// An object that contains both input and output parameters that the low-latency super-resolution scaler frame processor needs.
     ///
+    /// ## Overview
+    ///
     /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class.
     ///
     /// `VTLowLatencySuperResolutionScalerParameters` are frame-level parameters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencysuperresolutionscalerparameters?language=objc)
+    ///
+    /// An object that contains both input and output parameters that the low-latency super-resolution scaler frame processor needs.
+    ///
+    /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class.
+    ///
+    /// `VTLowLatencySuperResolutionScalerParameters` are frame-level parameters.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

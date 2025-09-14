@@ -8,11 +8,10 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that stores gamma and beta terms used to apply a scale and bias in instance- or batch-normalization operations.
     /// A state which contains gamma and beta terms used to apply a scale
     /// and bias in either an MPSCNNInstanceNormalization or MPSCNNBatchNormalization
     /// operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationgammaandbetastate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]

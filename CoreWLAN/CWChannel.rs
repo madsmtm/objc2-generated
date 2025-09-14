@@ -7,12 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Encapsulates an IEEE 802.11 channel.
     /// Represents an IEEE 802.11 channel.
     ///
     ///
     /// The CWChannel class is used by both CWInterface and CWNetwork as a representation of an IEEE 802.11 Wi-Fi channel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWChannel;

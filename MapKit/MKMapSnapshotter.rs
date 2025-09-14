@@ -9,13 +9,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/completionhandler?language=objc)
+/// A block that processes the results of a snapshot request.
+///
+/// Parameters:
+/// - snapshot: The image data that the snapshotter generates, or `nil` if an error occurs.
+///
+/// - error: The error that occurs, or `nil` if the framework generates the snapshot successfully.
+///
 #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
 pub type MKMapSnapshotCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter?language=objc)
+    /// A utility class for capturing a map and its content into an image.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`MKMapSnapshotter`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter) object when you want to capture the system-provided map content, including the map tiles and imagery. The snapshotter object captures the best image possible by loading all of the available map tiles before capturing the image.
+    ///
+    /// Configure a snapshotter object using an [`MKMapSnapshotOptions`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options) object. The snapshot options specify the appearance of the map, including which portion of the map the snapshotter captures.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Snapshotter objects don’t capture the visual representations of any overlays or annotations that your app creates. If you want those items to appear in the final snapshot, you must draw them on the resulting snapshot image. For more information about drawing custom content on map snapshots, see [`MKMapSnapshot`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapSnapshotter;

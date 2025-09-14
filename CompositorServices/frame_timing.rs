@@ -17,6 +17,13 @@ unsafe impl RefEncode for cp_frame_timing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_frame_timing", &[]));
 }
 
+/// A type that stores information about a frame’s encoding, rendering, and presentation deadlines.
+///
+/// ## Discussion
+///
+/// Before you start drawing your frame’s content, retrieve the frame’s timing information using [`cp_frame_predict_timing`](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing). That function returns the latest predicted values for you to use during planning. After you retrieve the [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type for the frame, get the timing information from the drawable instead using [`frameTiming`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming).
+///
+///
 /// An opaque type that stores information about a frame’s
 /// encoding, rendering, and presentation deadlines.
 ///
@@ -24,11 +31,26 @@ unsafe impl RefEncode for cp_frame_timing {
 /// function to update and retrieve the frame’s timing information.
 /// After you access the frame’s ``cp_drawable_t`` type, get the
 /// timing information using the ``cp_drawable_get_frame_timing`` function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_t?language=objc)
 pub type cp_frame_timing_t = *mut cp_frame_timing;
 
 impl cp_frame_timing {
+    /// Returns the optimal time to start the frame submission process.
+    ///
+    /// Parameters:
+    /// - frame_timing: The frame’s timing information. Fetch this information using the [`cp_frame_predict_timing`](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing) function. After you retrieve the frame’s drawable type, get the information using [`frameTiming`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming) instead.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Mach absolute time at which to query the input for your frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The optimal input time is the time at which to call the [`startSubmission()`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startsubmission()) function. Use the time before the input time to update your app’s data structures and prepare for rendering. Call [`cp_time_wait_until`](https://developer.apple.com/documentation/compositorservices/cp_time_wait_until) to suspend your app until the optimal time arrives. When it does, fetch the current device pose and finish rendering and the frame and commit your Metal command buffers.
+    ///
+    ///
     /// Returns the optimal time to query the input for a frame.
     ///
     /// - Parameters:
@@ -45,8 +67,6 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_optimal_input_time?language=objc)
     #[doc(alias = "cp_frame_timing_get_optimal_input_time")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -58,6 +78,23 @@ impl cp_frame_timing {
         unsafe { cp_frame_timing_get_optimal_input_time(frame_timing) }
     }
 
+    /// Returns the time at which you must finish all work for the specified frame.
+    ///
+    /// Parameters:
+    /// - frame_timing: The frame’s timing information. Fetch this information using the [`cp_frame_predict_timing`](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing) function. After you retrieve the frame’s drawable type, get the information using [`frameTiming`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming) instead.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Mach absolute time at which you must finish all work and commit your command buffers to the GPU.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This value reflects the time you need to finish your work and deliver the frame to the system. Finish all CPU tasks, commit your Metal command buffers, and call [`endSubmission()`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endsubmission()) by the specified time. This time is before the actual presentation time of the frame, because it accounts for the Compositor Services overhead needed to render your frame and display it.
+    ///
+    ///
     /// Returns the time at which you must finish all work for the specified
     /// frame.
     ///
@@ -78,8 +115,6 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_rendering_deadline?language=objc)
     #[doc(alias = "cp_frame_timing_get_rendering_deadline")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -91,6 +126,23 @@ impl cp_frame_timing {
         unsafe { cp_frame_timing_get_rendering_deadline(frame_timing) }
     }
 
+    /// Returns the time at which the system displays the frame.
+    ///
+    /// Parameters:
+    /// - frame_timing: The frame’s timing information. Fetch this information using the [`cp_frame_predict_timing`](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing) function. After you retrieve the frame’s drawable type, get the information using [`frameTiming`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming) instead.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Mach absolute time at which the layer presents the frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the presentation time as a synchronization point for other parts of your app. For example, if you play an audio clip when the frame appears, configure your code to start playing the clip at the specified time.
+    ///
+    ///
     /// Returns the time at which the system will display the frame
     /// onscreen.
     ///
@@ -110,8 +162,6 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_presentation_time?language=objc)
     #[doc(alias = "cp_frame_timing_get_presentation_time")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -143,8 +193,6 @@ impl cp_frame_timing {
     /// # Safety
     ///
     /// `frame_timing` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_trackable_anchor_time?language=objc)
     #[doc(alias = "cp_frame_timing_get_trackable_anchor_time")]
     #[cfg(feature = "cp_types")]
     #[inline]

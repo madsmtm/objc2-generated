@@ -8,9 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// Methods in this protocol can be used by a mail app extension to perform actions on messages as they are downloaded.
+    /// An object that performs actions on messages as the system downloads them.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactionhandler?language=objc)
+    /// ## Overview
+    ///
+    /// As MailKit downloads messages, it invokes the [`decideActionForMessage:completionHandler:`](https://developer.apple.com/documentation/mailkit/memessageactionhandler/decideaction(for:completionhandler:)) method on your handler. You indicate the action to take for each message, such as marking it as read or unread, flagging it, or archiving it.
+    ///
+    /// To indicate that your extension contains a message action handler, add `MEMessageActionHandler` to the [`MEExtensionCapabilities`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/meextensioncapabilities) array in the extension’s `Info.plist` file:
+    ///
+    /// ```plist
+    /// <key>NSExtensionAttributes</key>
+    /// <dict>
+    ///     <key>MEExtensionCapabilities</key>
+    ///     <array>
+    ///         <string>MEMessageActionHandler</string>
+    ///     </array>
+    /// </dict>
+    /// ```
+    ///
+    ///
+    /// Methods in this protocol can be used by a mail app extension to perform actions on messages as they are downloaded.
     pub unsafe trait MEMessageActionHandler: NSObjectProtocol {
         #[cfg(all(
             feature = "MEMessage",

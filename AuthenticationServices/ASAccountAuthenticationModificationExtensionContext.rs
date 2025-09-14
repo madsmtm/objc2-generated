@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext?language=objc)
+    /// An object that you interact with to change an account’s password or to upgrade to Sign in with Apple.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This class ignores calls from Mac apps built with Mac Catalyst.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccountAuthenticationModificationExtensionContext;

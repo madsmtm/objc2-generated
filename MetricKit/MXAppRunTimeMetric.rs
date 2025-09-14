@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about the amount of time the app is active.
     /// An MXMetric subclass that encapsulates app runtime metrics.
     ///
     /// Runtime metrics describe application time spent running in different modes, such as audio, location, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappruntimemetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

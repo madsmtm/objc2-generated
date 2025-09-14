@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistrationrequest?language=objc)
+    /// The object for registering a new security key credential.
+    ///
+    /// ## Overview
+    ///
+    /// Create an instance of this class when registering for a new credential using security key authorization.
+    ///
+    ///
     #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]

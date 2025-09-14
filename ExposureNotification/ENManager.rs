@@ -9,51 +9,95 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Overall status of Exposure Notification on the system.
+/// A set of cases that represents the overall status of exposure notification on the system.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This enumeration is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// Overall status of Exposure Notification on the system.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENStatus(pub NSInteger);
 impl ENStatus {
-    /// Status of Exposure Notification is unknown. This is the status before ENManager has activated successfully.
+    /// Notification is unknown.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/unknown?language=objc)
+    /// ## Discussion
+    ///
+    /// This is the status before [`ENManager`](https://developer.apple.com/documentation/exposurenotification/enmanager) has activated successfully.
+    ///
+    ///
+    /// Status of Exposure Notification is unknown. This is the status before ENManager has activated successfully.
     #[doc(alias = "ENStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Notification is active.
     /// Exposure Notification is active on the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/active?language=objc)
     #[doc(alias = "ENStatusActive")]
     pub const Active: Self = Self(1);
-    /// Exposure Notification is disabled. setExposureNotificationEnabled:completionHandler can be used to enable it.
+    /// Notification is disabled.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/disabled?language=objc)
+    /// ## Discussion
+    ///
+    /// Use [`setExposureNotificationEnabled:completionHandler:`](https://developer.apple.com/documentation/exposurenotification/enmanager/setexposurenotificationenabled(_:completionhandler:)) to enable exposure notification.
+    ///
+    ///
+    /// Exposure Notification is disabled. setExposureNotificationEnabled:completionHandler can be used to enable it.
     #[doc(alias = "ENStatusDisabled")]
     pub const Disabled: Self = Self(2);
+    /// Bluetooth is turned off.
+    ///
+    /// ## Discussion
+    ///
+    /// Bluetooth is required for Exposure Notification. If Bluetooth is disabled, notify the user that Exposure Notification can’t work without Bluetooth enabled.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This may not match the state of Bluetooth as reported by CoreBluetooth.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Exposure Notification is a system service and can use Bluetooth in situations when apps cannot. For the purposes of notification of exposure, it’s better to use this API instead of CoreBluetooth.
+    ///
+    ///
     /// Bluetooth has been turned off on the system. Bluetooth is required for Exposure Notification.
     /// Note: this may not match the state of Bluetooth as reported by CoreBluetooth.
     /// Exposure Notification is a system service and can use Bluetooth in situations when apps cannot.
     /// So for the purposes of Exposure Notification, it's better to use this API instead of CoreBluetooth.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/bluetoothoff?language=objc)
     #[doc(alias = "ENStatusBluetoothOff")]
     pub const BluetoothOff: Self = Self(3);
+    /// Notification is not active due to system restrictions, such as parental controls.
+    ///
+    /// ## Discussion
+    ///
+    /// When in this state, the app cannot enable exposure notification.
+    ///
+    ///
     /// Exposure Notification is not active due to system restrictions, such as parental controls.
     /// When in this state, the app cannot enable Exposure Notification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/restricted?language=objc)
     #[doc(alias = "ENStatusRestricted")]
     pub const Restricted: Self = Self(4);
-    /// For future use. Not returned by any APIs yet.
+    /// The user paused Exposure Notification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/paused?language=objc)
+    /// ## Discussion
+    ///
+    /// Don’t use this enumeration; it’s currently unsupported.
+    ///
+    ///
+    /// For future use. Not returned by any APIs yet.
     #[doc(alias = "ENStatusPaused")]
     pub const Paused: Self = Self(5);
+    /// The user hasn’t authorized Exposure Notification.
     /// Exposure Notification is not available due to insufficient authorization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus/unauthorized?language=objc)
     #[doc(alias = "ENStatusUnauthorized")]
     pub const Unauthorized: Self = Self(6);
 }
@@ -66,33 +110,40 @@ unsafe impl RefEncode for ENStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Activities that occurred while the app might not be running.
+/// Activities that occur while the app isn’t running.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This symbol is available in iOS 12.5, and in iOS 13.6 and later.
+///
+///
+///
+/// </div>
+///
+/// Activities that occurred while the app might not be running.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENActivityFlags(pub u32);
 bitflags::bitflags! {
     impl ENActivityFlags: u32 {
+/// This property is reserved.
 /// Reserved field
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/reserved1?language=objc)
         #[doc(alias = "ENActivityFlagsReserved1")]
         const Reserved1 = 1<<0;
+/// This property is reserved.
 /// Reserved field
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/reserved2?language=objc)
         #[doc(alias = "ENActivityFlagsReserved2")]
         const Reserved2 = 1<<1;
+/// The property that specifies launching the app in the background for periodic operation in iOS 12.5.
 /// The app launched in the background to perform periodic operations on iOS 12.5.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/periodicrun?language=objc)
         #[doc(alias = "ENActivityFlagsPeriodicRun")]
         const PeriodicRun = 1<<2;
+/// The property that specifies launching the app in the foreground to display preauthorized key-release information.
 /// The app launched in the foreground to display information about the pre-authorized key release
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags/preauthorizedkeyreleasenotificationtapped?language=objc)
         #[doc(alias = "ENActivityFlagsPreAuthorizedKeyReleaseNotificationTapped")]
         const PreAuthorizedKeyReleaseNotificationTapped = 1<<3;
     }
@@ -106,63 +157,128 @@ unsafe impl RefEncode for ENActivityFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Invoked after the app is launched to report activities that occurred while the app might not be running.
+/// The handler the system invokes to report activities that occurred while the app wasn’t running.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityhandler?language=objc)
+/// Parameters:
+/// - activityFlags: The flags indicating what activity occured while the app wasn’t running.
+///
+/// Invoked after the app is launched to report activities that occurred while the app might not be running.
 #[cfg(feature = "block2")]
 pub type ENActivityHandler = *mut block2::DynBlock<dyn Fn(ENActivityFlags)>;
 
+/// The definition of a handler that returns diagnosis keys.
 /// Invoked when getDiagnosisKeysWithCompletionHandler completes.
 /// If it completes successfully, keys will contain the Diagnosis Keys for this device and error will be nil.
 /// If it fails, keys will be nil and error indicates the reason it failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetdiagnosiskeyshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetDiagnosisKeysHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
 
+/// The definition of a handler that returns exposure summaries.
 /// Invoked when detecting exposures completes. It provides a summary of exposures.
 /// If it completes successfully, summary will contain a summary of exposures and error will be nil.
 /// If it fails, summary will be nil and error indicates the reason it failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endetectexposureshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDetectExposuresHandler =
     *mut block2::DynBlock<dyn Fn(*mut ENExposureDetectionSummary, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosiskeysavailablehandler?language=objc)
+/// The handler the system invokes after requesting diagnosis keys.
+///
+/// Parameters:
+/// - keys: An array of temporary exposure keys.
+///
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDiagnosisKeysAvailableHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<ENTemporaryExposureKey>>)>;
 
+/// The definition of a handler that receives exposure info.
 /// Invoked when getting exposures completes. It provides info about each exposure.
 /// If it completes successfully, exposures will contain info about each exposure and error will be nil.
 /// If it fails, exposures will be nil and error indicates the reason it failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposureinfohandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureInfoHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSArray<ENExposureInfo>, *mut NSError)>;
 
+/// The handler the system invokes when the acquisition of windows completes.
+///
+/// Parameters:
+/// - exposureWindows: An array of available exposure windows. The contents of this array are in no particular order.
+///
+/// - error: A successful invocation if `nil`; otherwise, the error that occured.
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
 /// Invoked when getExposureWindows completes. It provides info about each exposure window.
 /// If it completes successfully, exposureWindows will non-nil and error will be nil.
 /// If it fails, exposureWindows will be nil and error indicates the reason it failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposurewindowshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureWindowsHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSArray<ENExposureWindow>, *mut NSError)>;
 
-/// Invoked when getUserTraveled completes.
+/// The handler the system invokes when acquistiion of the user’s travel status completes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetusertraveledhandler?language=objc)
+/// Parameters:
+/// - traveled: Indicates whether the user has traveled.
+///
+/// - error: A successful invocation if `nil`; otherwise, the error that occured.
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// Invoked when getUserTraveled completes.
 #[cfg(feature = "block2")]
 pub type ENGetUserTraveledHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
-    /// Manages Exposure Notification functionality.
+    /// A class that manages exposure notifications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enmanager?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, and in iOS 13.5 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Before using an instance of this class, call [`activateWithCompletionHandler:`](https://developer.apple.com/documentation/exposurenotification/enmanager/activate(completionhandler:)). If the completion handler completes successfully, you can work with the remaining properties and methods on the class. Activating this object doesn’t enable exposure notification; it only allows this object to be used. Once activated, exposure notification can be enabled with [`setExposureNotificationEnabled:completionHandler:`](https://developer.apple.com/documentation/exposurenotification/enmanager/setexposurenotificationenabled(_:completionhandler:)), if needed.
+    ///
+    /// If the app no longer needs an instance of this class, you must call [`invalidate`](https://developer.apple.com/documentation/exposurenotification/enmanager/invalidate()), which stops any outstanding operations and invokes the invalidation handler.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Invalidation is asynchronous so it’s possible for handlers to be invoked after calling [`invalidate`](https://developer.apple.com/documentation/exposurenotification/enmanager/invalidate()).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The framework invokes the invalidation handler once invalidation finishes, and performs the invocation exactly once, even if [`invalidate`](https://developer.apple.com/documentation/exposurenotification/enmanager/invalidate()) is called multiple times. It does not call any additional handlers.
+    ///
+    /// After calling [`invalidate`](https://developer.apple.com/documentation/exposurenotification/enmanager/invalidate()), your app can’t reuse the object. A new object must be created for subsequent use. The framework clears strong references once invalidation completes to break potential retain cycles. You don’t need to use weak references within your handlers to avoid retain cycles when using this class.
+    ///
+    ///
+    /// Manages Exposure Notification functionality.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENManager;

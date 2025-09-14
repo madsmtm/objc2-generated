@@ -9,7 +9,7 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/snapshot?language=objc)
+    /// An object that contains a snapshot image.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundSnapshot;

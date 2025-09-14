@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalternatives?language=objc)
+    /// A list of alternative strings for a piece of text.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTextAlternatives`](https://developer.apple.com/documentation/appkit/nstextalternatives) is an immutable value class that stores a list of alternatives for a piece of text and communicates the user’s selection of an alternative via a notification to your app. To support dictation, for example, you might use [`NSTextAlternatives`](https://developer.apple.com/documentation/appkit/nstextalternatives) to present a list of alternative interpretations for a word or phrase the user speaks. If the user chooses to replace the initial interpretation with an alternative, [`NSTextAlternatives`](https://developer.apple.com/documentation/appkit/nstextalternatives) notifies you of the choice so that you can update the text appropriately.
+    ///
+    /// [`NSTextAlternatives`](https://developer.apple.com/documentation/appkit/nstextalternatives) instances are attached to attributed strings as the value of a text attribute, [`NSTextAlternativesAttributeName`](https://developer.apple.com/documentation/appkit/nstextalternativesattributename).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAlternatives;
@@ -71,6 +79,13 @@ impl DefaultRetained for NSTextAlternatives {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalternatives/selectedalternativestringnotification?language=objc)
+    /// Posted when the user selects an alternate string.
+    ///
+    /// ## Discussion
+    ///
+    /// Arbitrary objects can listen for for this notification to get user selections of alternative strings. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSAlternativeString\"" }] }], [Paragraph { inline_content: [Text { text: "The selected alternative string." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSTextAlternativesSelectedAlternativeStringNotification: &'static NSNotificationName;
 }

@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a user-selectable playback speed in a playback user interface.
     /// Class used to define a user selectable playback speed in a playback UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplaybackspeed?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlaybackSpeed;

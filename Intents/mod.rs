@@ -2967,14 +2967,10 @@ use crate::*;
 
 extern "C" {
     /// Project version number for Intents.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/intentsversionnumber?language=objc)
     pub static IntentsVersionNumber: c_double;
 }
 
 extern "C" {
     /// Project version string for Intents.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/intentsversionstring?language=objc)
     pub static IntentsVersionString: *mut c_uchar;
 }

@@ -7,148 +7,118 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceid?language=objc)
     pub static kColorSyncDeviceID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceclass?language=objc)
     pub static kColorSyncDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccameradeviceclass?language=objc)
     pub static kColorSyncCameraDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplaydeviceclass?language=objc)
     pub static kColorSyncDisplayDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprinterdeviceclass?language=objc)
     pub static kColorSyncPrinterDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncscannerdeviceclass?language=objc)
     pub static kColorSyncScannerDeviceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileurl?language=objc)
     pub static kColorSyncDeviceProfileURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedescription?language=objc)
     pub static kColorSyncDeviceDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedescriptions?language=objc)
     pub static kColorSyncDeviceDescriptions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncfactoryprofiles?language=objc)
     pub static kColorSyncFactoryProfiles: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynccustomprofiles?language=objc)
     pub static kColorSyncCustomProfiles: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicemodedescription?language=objc)
     pub static kColorSyncDeviceModeDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicemodedescriptions?language=objc)
     pub static kColorSyncDeviceModeDescriptions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicedefaultprofileid?language=objc)
     pub static kColorSyncDeviceDefaultProfileID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdevicehostscope?language=objc)
     pub static kColorSyncDeviceHostScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceuserscope?language=objc)
     pub static kColorSyncDeviceUserScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilehostscope?language=objc)
     pub static kColorSyncProfileHostScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileuserscope?language=objc)
     pub static kColorSyncProfileUserScope: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileisfactory?language=objc)
     pub static kColorSyncDeviceProfileIsFactory: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileisdefault?language=objc)
     pub static kColorSyncDeviceProfileIsDefault: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileiscurrent?language=objc)
     pub static kColorSyncDeviceProfileIsCurrent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofileid?language=objc)
     pub static kColorSyncDeviceProfileID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceregisterednotification?language=objc)
     pub static kColorSyncDeviceRegisteredNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceunregisterednotification?language=objc)
     pub static kColorSyncDeviceUnregisteredNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdeviceprofilesnotification?language=objc)
     pub static kColorSyncDeviceProfilesNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplaydeviceprofilesnotification?language=objc)
     pub static kColorSyncDisplayDeviceProfilesNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilerepositorychangenotification?language=objc)
     pub static kColorSyncProfileRepositoryChangeNotification: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncregistrationupdatewindowserver?language=objc)
     pub static kColorSyncRegistrationUpdateWindowServer: &'static CFString;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncregisterdevice(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `device_info` generic must be of the correct type.
@@ -161,13 +131,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncunregisterdevice(_:_:)?language=objc)
     pub fn ColorSyncUnregisterDevice(device_class: &CFString, device_id: &CFUUID) -> bool;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdevicesetcustomprofiles(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `profile_info` generic must be of the correct type.
@@ -179,7 +146,6 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdevicecopydeviceinfo(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncDeviceCopyDeviceInfo(
     device_class: &CFString,
@@ -195,13 +161,10 @@ pub unsafe extern "C-unwind" fn ColorSyncDeviceCopyDeviceInfo(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdeviceprofileiteratecallback?language=objc)
 pub type ColorSyncDeviceProfileIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, *mut c_void) -> bool>;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciteratedeviceprofiles(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -212,7 +175,6 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cgdisplaycreateuuidfromdisplayid(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
     display_id: u32,
@@ -226,6 +188,5 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/cgdisplaygetdisplayidfromuuid(_:)?language=objc)
     pub fn CGDisplayGetDisplayIDFromUUID(uuid: &CFUUID) -> u32;
 }

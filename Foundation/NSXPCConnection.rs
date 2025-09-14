@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcproxycreating?language=objc)
+    /// Methods for creating new proxy objects.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSXPCConnection`](https://developer.apple.com/documentation/foundation/nsxpcconnection) implements this protocol. All objects returned from the methods in this protocol also implement the protocol. This allows creation of new proxies from other proxies.
+    ///
+    ///
     pub unsafe trait NSXPCProxyCreating {
         #[unsafe(method(remoteObjectProxy))]
         #[unsafe(method_family = none)]
@@ -35,14 +41,19 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnection/options?language=objc)
+/// Options that you can pass to a connection.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXPCConnectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSXPCConnectionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnection/options/privileged?language=objc)
+///
+/// ## Discussion
+///
+/// Use this option if connecting to a service in the privileged Mach bootstrap (for example, a daemon with a `launchd.plist` in `/Library/LaunchDaemons)`.
+///
+///
         #[doc(alias = "NSXPCConnectionPrivileged")]
         const Privileged = 1<<12;
     }
@@ -57,7 +68,13 @@ unsafe impl RefEncode for NSXPCConnectionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnection?language=objc)
+    /// A bidirectional communication channel between two processes.
+    ///
+    /// ## Overview
+    ///
+    /// This class is the primary means of creating and configuring the communication mechanism between two processes. Each process has one instance of this class to represent the endpoint in the communication channel.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCConnection;
@@ -259,7 +276,13 @@ impl DefaultRetained for NSXPCConnection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistener?language=objc)
+    /// A listener that waits for new incoming connections, configures them, and accepts or rejects them.
+    ///
+    /// ## Overview
+    ///
+    /// Each XPC service, launchd agent, or launchd daemon typically has at least one [`NSXPCListener`](https://developer.apple.com/documentation/foundation/nsxpclistener) object that listens for connections to a specified service name. Each listener must have a delegate that conforms to the [`NSXPCListenerDelegate`](https://developer.apple.com/documentation/foundation/nsxpclistenerdelegate) protocol. When the listener receives a new connection request, it creates a new [`NSXPCConnection`](https://developer.apple.com/documentation/foundation/nsxpcconnection) object, then asks the delegate to inspect, configure, and resume the connection object by calling the delegate’s [`listener:shouldAcceptNewConnection:`](https://developer.apple.com/documentation/foundation/nsxpclistenerdelegate/listener(_:shouldacceptnewconnection:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListener;
@@ -346,7 +369,7 @@ impl DefaultRetained for NSXPCListener {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerdelegate?language=objc)
+    /// The protocol that delegates to the XPC listener use to accept or reject new connections.
     pub unsafe trait NSXPCListenerDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(listener:shouldAcceptNewConnection:))]
@@ -360,7 +383,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcinterface?language=objc)
+    /// An interface that may be sent to an exported object or remote object proxy.
+    ///
+    /// ## Overview
+    ///
+    /// This object holds all information about the interface of an exported object or remote object proxy. It describes what messages are allowed, what kinds of objects are allowed as arguments, what the signature of any reply blocks are, and information about additional proxy objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCInterface;
@@ -472,7 +501,15 @@ impl DefaultRetained for NSXPCInterface {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpclistenerendpoint?language=objc)
+    /// An object that names a specific XPC listener.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of [`NSXPCListenerEndpoint`](https://developer.apple.com/documentation/foundation/nsxpclistenerendpoint) may be retrieved from an [`NSXPCListener`](https://developer.apple.com/documentation/foundation/nsxpclistener) instance and sent over existing [`NSXPCConnection`](https://developer.apple.com/documentation/foundation/nsxpcconnection)s. A process may then use the endpoint to create a new [`NSXPCConnection`](https://developer.apple.com/documentation/foundation/nsxpcconnection) to the original [`NSXPCListener`](https://developer.apple.com/documentation/foundation/nsxpclistener).
+    ///
+    /// This pattern is useful if you have a service which multiplexes work to other services. The service can act as an intermediate helper. The requesting application does not need to know specifically which service it is connecting to, just that it implements a known [`NSXPCInterface`](https://developer.apple.com/documentation/foundation/nsxpcinterface).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXPCListenerEndpoint;
@@ -521,7 +558,13 @@ impl DefaultRetained for NSXPCListenerEndpoint {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpccoder?language=objc)
+    /// A coder that encodes and decodes objects that your app sends over an XPC connection.
+    ///
+    /// ## Overview
+    ///
+    /// If you want to perform custom encoding or decoding of [`Codable`](https://developer.apple.com/documentation/swift/codable) objects that your app sends over an [`NSXPCConnection`](https://developer.apple.com/documentation/foundation/nsxpcconnection), use [`isKindOfClass:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/iskind(of:)) to determine if the coder provided to your object is a kind of [`NSXPCCoder`](https://developer.apple.com/documentation/foundation/nsxpccoder).
+    ///
+    ///
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]

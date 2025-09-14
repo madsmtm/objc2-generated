@@ -7,7 +7,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domfile?language=objc)
     #[unsafe(super(DOMBlob, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -7,18 +7,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcedatarequestid?language=objc)
+/// A numeric identifier for an asynchronous asset resource loading request.
+///
+/// ## Discussion
+///
+/// Pass this identifier to the [`cancelDataRequest:`](https://developer.apple.com/documentation/photos/phassetresourcemanager/canceldatarequest(_:)) method if you need to cancel a request before it completes.
+///
+///
 pub type PHAssetResourceDataRequestID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phinvalidassetresourcedatarequestid?language=objc)
+/// The asynchronous resource loading request cannot be canceled.
 pub static PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceprogresshandler?language=objc)
+/// The signature for a block that Photos calls while downloading asset resource data from iCloud. Used by the [`progressHandler`](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/progresshandler) property.
+///
+/// ## Discussion
+///
+/// If you request an asset resource whose data is not on the local device, and you have enabled downloading with the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/isnetworkaccessallowed) property, Photos calls your block periodically to report progress.
+///
+/// The block takes a single parameter:
+///
+/// - progress: A floating-point value indicating the progress of the download. A value of `0.0` indicates that the download has just started, and a value of `1.0` indicates the download is complete.
+///
+///
 #[cfg(feature = "block2")]
 pub type PHAssetResourceProgressHandler = *mut block2::DynBlock<dyn Fn(c_double)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions?language=objc)
+    /// A set of options affecting the delivery of underlying asset data that you request from the asset resource manager.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class when requesting the underlying data for photo, video, and Live Photo asset resources from a [`PHAssetResourceManager`](https://developer.apple.com/documentation/photos/phassetresourcemanager) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceRequestOptions;
@@ -80,7 +102,13 @@ impl PHAssetResourceRequestOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcemanager?language=objc)
+    /// A resource manager for the data storage underlying a Photos asset.
+    ///
+    /// ## Overview
+    ///
+    /// An asset can have multiple underlying data resources—for example, both original and edited versions—each of which is represented by a [`PHAssetResource`](https://developer.apple.com/documentation/photos/phassetresource) object. Unlike the [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager) class, which provides and caches the primary representations of assets as thumbnails, image objects, or video objects, the asset resource manager provides direct access to these underlying data resources.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceManager;

@@ -8,36 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The activation modes for RNN operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation?language=objc)
+/// The activation modes for RNN operations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphRNNActivation(pub NSUInteger);
 impl MPSGraphRNNActivation {
     /// Defines a pass through activation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/none?language=objc)
+    /// Defines a pass through activation.
     #[doc(alias = "MPSGraphRNNActivationNone")]
     pub const None: Self = Self(0);
     /// Defines a ReLU activation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/relu?language=objc)
+    /// Defines a ReLU activation.
     #[doc(alias = "MPSGraphRNNActivationRelu")]
     pub const Relu: Self = Self(1);
     /// Defines a Tanh activation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/tanh?language=objc)
+    /// Defines a Tanh activation.
     #[doc(alias = "MPSGraphRNNActivationTanh")]
     pub const Tanh: Self = Self(2);
     /// Defines a Sigmoid activation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/sigmoid?language=objc)
+    /// Defines a Sigmoid activation.
     #[doc(alias = "MPSGraphRNNActivationSigmoid")]
     pub const Sigmoid: Self = Self(3);
     /// Defines a Hard sigmoid activation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrnnactivation/hardsigmoid?language=objc)
+    /// Defines a Hard sigmoid activation.
     #[doc(alias = "MPSGraphRNNActivationHardSigmoid")]
     pub const HardSigmoid: Self = Self(4);
 }
@@ -53,6 +47,27 @@ unsafe impl RefEncode for MPSGraphRNNActivation {
 extern_class!(
     /// The class that defines the parameters for a single gate RNN operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following [`MPSGraph`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph) methods:
+    ///
+    /// - [`singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternn(_:recurrentweight:initstate:descriptor:name:))
+    ///
+    /// - [`singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternn(_:recurrentweight:inputweight:bias:initstate:descriptor:name:))
+    ///
+    /// - [`singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternn(_:recurrentweight:inputweight:bias:initstate:mask:descriptor:name:))
+    ///
+    /// - [`singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:initState:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternngradients(_:recurrentweight:sourcegradient:zstate:initstate:descriptor:name:))
+    ///
+    /// - [`singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternngradients(_:recurrentweight:sourcegradient:zstate:inputweight:bias:initstate:descriptor:name:))
+    ///
+    /// - [`singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternngradients(_:recurrentweight:sourcegradient:zstate:inputweight:bias:initstate:mask:descriptor:name:))
+    ///
+    /// - [`singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/singlegaternngradients(_:recurrentweight:sourcegradient:zstate:stategradient:inputweight:bias:initstate:mask:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for a single gate RNN operation.
+    ///
     /// Use this descriptor with the following ``MPSGraph`` methods:
     /// - ``MPSGraph/singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:``
     /// - ``MPSGraph/singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:``
@@ -61,8 +76,6 @@ extern_class!(
     /// - ``MPSGraph/singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:``
     /// - ``MPSGraph/singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:``
     /// - ``MPSGraph/singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -164,6 +177,27 @@ impl MPSGraphSingleGateRNNDescriptor {
 extern_class!(
     /// The class that defines the parameters for a long short-term memory (LSTM) operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following [`MPSGraph`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph) methods:
+    ///
+    /// - [`LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstm(_:recurrentweight:initstate:initcell:descriptor:name:))
+    ///
+    /// - [`LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstm(_:recurrentweight:inputweight:bias:initstate:initcell:descriptor:name:))
+    ///
+    /// - [`LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstm(_:recurrentweight:inputweight:bias:initstate:initcell:mask:peephole:descriptor:name:))
+    ///
+    /// - [`LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstmgradients(_:recurrentweight:sourcegradient:zstate:celloutputfwd:descriptor:name:))
+    ///
+    /// - [`LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstmgradients(_:recurrentweight:sourcegradient:zstate:celloutputfwd:inputweight:bias:initstate:initcell:descriptor:name:))
+    ///
+    /// - [`LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstmgradients(_:recurrentweight:sourcegradient:zstate:celloutputfwd:inputweight:bias:initstate:initcell:mask:descriptor:name:))
+    ///
+    /// - [`LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/lstmgradients(_:recurrentweight:sourcegradient:zstate:celloutputfwd:stategradient:cellgradient:inputweight:bias:initstate:initcell:mask:peephole:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for a long short-term memory (LSTM) operation.
+    ///
     /// Use this descriptor with the following ``MPSGraph`` methods:
     /// - ``MPSGraph/LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:``
     /// - ``MPSGraph/LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:``
@@ -172,8 +206,6 @@ extern_class!(
     /// - ``MPSGraph/LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:``
     /// - ``MPSGraph/LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:``
     /// - ``MPSGraph/LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -349,6 +381,25 @@ impl MPSGraphLSTMDescriptor {
 extern_class!(
     /// The class that defines the parameters for a gated recurrent unit (GRU) operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following [`MPSGraph`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph) methods:
+    ///
+    /// - [`GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/gru(_:recurrentweight:inputweight:bias:descriptor:name:))
+    ///
+    /// - [`GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/gru(_:recurrentweight:inputweight:bias:initstate:descriptor:name:))
+    ///
+    /// - [`GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/gru(_:recurrentweight:inputweight:bias:initstate:mask:secondarybias:descriptor:name:))
+    ///
+    /// - [`GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/grugradients(_:recurrentweight:sourcegradient:zstate:outputfwd:inputweight:bias:descriptor:name:))
+    ///
+    /// - [`GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/grugradients(_:recurrentweight:sourcegradient:zstate:outputfwd:inputweight:bias:initstate:descriptor:name:))
+    ///
+    /// - [`GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/grugradients(_:recurrentweight:sourcegradient:zstate:outputfwd:stategradient:inputweight:bias:initstate:mask:secondarybias:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for a gated recurrent unit (GRU) operation.
+    ///
     /// Use this descriptor with the following ``MPSGraph`` methods:
     /// - ``MPSGraph/GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:``
     /// - ``MPSGraph/GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:``
@@ -356,8 +407,6 @@ extern_class!(
     /// - ``MPSGraph/GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:``
     /// - ``MPSGraph/GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:``
     /// - ``MPSGraph/GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

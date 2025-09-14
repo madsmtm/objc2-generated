@@ -12,19 +12,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode?language=objc)
+/// The type of scaling to be used when printing a page (see [`PDFDocument`](https://developer.apple.com/documentation/pdfkit/pdfdocument)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFPrintScalingMode(pub NSInteger);
 impl PDFPrintScalingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode/pagescalenone?language=objc)
+    /// Do not apply scaling to the page when printing.
     #[doc(alias = "kPDFPrintPageScaleNone")]
     pub const PageScaleNone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode/pagescaletofit?language=objc)
+    /// Scale each page up or down to best fit the paper size.
     #[doc(alias = "kPDFPrintPageScaleToFit")]
     pub const PageScaleToFit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode/pagescaledowntofit?language=objc)
+    /// Scale large pages down to fit the paper size (smaller pages do not get scaled up).
     #[doc(alias = "kPDFPrintPageScaleDownToFit")]
     pub const PageScaleDownToFit: Self = Self(2);
 }
@@ -37,19 +37,19 @@ unsafe impl RefEncode for PDFPrintScalingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions?language=objc)
+/// An enumeration that specifies document permissions status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDocumentPermissions(pub NSInteger);
 impl PDFDocumentPermissions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions/none?language=objc)
+    /// The status that indicates no document permissions.
     #[doc(alias = "kPDFDocumentPermissionsNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions/user?language=objc)
+    /// The status that indicates user document permissions.
     #[doc(alias = "kPDFDocumentPermissionsUser")]
     pub const User: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions/owner?language=objc)
+    /// The status that indicates owner document permissions.
     #[doc(alias = "kPDFDocumentPermissionsOwner")]
     pub const Owner: Self = Self(2);
 }
@@ -63,176 +63,228 @@ unsafe impl RefEncode for PDFDocumentPermissions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidunlocknotification?language=objc)
+    /// A notification that a document unlocks after a [`unlock(withPassword:)`](https://developer.apple.com/documentation/pdfkit/pdfdocument/unlock(withpassword:)) message.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself.
+    ///
+    ///
     pub static PDFDocumentDidUnlockNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidbeginfindnotification?language=objc)
+    /// A notification that the [`beginFindString(_:withOptions:)`](https://developer.apple.com/documentation/pdfkit/pdfdocument/beginfindstring(_:withoptions:)) or [`findString(_:withOptions:)`](https://developer.apple.com/documentation/pdfkit/pdfdocument/findstring(_:withoptions:)) method begins finding.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself.
+    ///
+    ///
     pub static PDFDocumentDidBeginFindNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidendfindnotification?language=objc)
+    /// A notification that the [`beginFindString(_:withOptions:)`](https://developer.apple.com/documentation/pdfkit/pdfdocument/beginfindstring(_:withoptions:)) or [`findString(_:withOptions:)`](https://developer.apple.com/documentation/pdfkit/pdfdocument/findstring(_:withoptions:)) method returns.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`beginFindString(_:withOptions:)`](https://developer.apple.com/documentation/pdfkit/pdfdocument/beginfindstring(_:withoptions:)) method returns immediately, so this notification is posted when the “find” operation is finished.
+    ///
+    /// You can use this notification to know when to close or hide a progress bar.
+    ///
+    /// The notification object is the `PDFDocument` object itself.
+    ///
+    ///
     pub static PDFDocumentDidEndFindNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidbeginpagefindnotification?language=objc)
+    /// A notification that a find operation begins working on a new page of a document.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this notification to update a progress bar.
+    ///
+    /// The notification object is the `PDFDocument` object itself. To determine the page, use the `@”PDFDocumentPageIndex”` key to obtain userinfo of type `NSNumber`.
+    ///
+    ///
     pub static PDFDocumentDidBeginPageFindNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidendpagefindnotification?language=objc)
+    /// A notification that a find operation finishes working on a page in a document.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this notification to update a progress bar.
+    ///
+    /// The notification object is the `PDFDocument` object itself. To determine the page, use the `@”PDFDocumentPageIndex”` key to obtain userinfo of type `NSNumber`.
+    ///
+    ///
     pub static PDFDocumentDidEndPageFindNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidfindmatchnotification?language=objc)
+    /// A notification that a string match is found in a document.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself. To determine the string selection found, use the `@”PDFDocumentFoundSelection”` key to obtain userinfo of type `PDFSelection *`
+    ///
+    ///
     pub static PDFDocumentDidFindMatchNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidbeginwritenotification?language=objc)
+    /// A notification that a write operation begins working on a document.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself.
+    ///
+    ///
     pub static PDFDocumentDidBeginWriteNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidendwritenotification?language=objc)
+    /// A notification that a write operation finishes working on a document.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself.
+    ///
+    ///
     pub static PDFDocumentDidEndWriteNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidbeginpagewritenotification?language=objc)
+    /// A notification that a write operation begins working on a page in a document.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself. To determine the page, use the `@”PDFDocumentPageIndex”` key to obtain userinfo of type `NSNumber`.
+    ///
+    ///
     pub static PDFDocumentDidBeginPageWriteNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdidendpagewritenotification?language=objc)
+    /// A notification that a write operation finishes working on a page in a document.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFDocument` object itself. To determine the page, use the `@”PDFDocumentPageIndex”` key to obtain userinfo of type `NSNumber`.
+    ///
+    ///
     pub static PDFDocumentDidEndPageWriteNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentfoundselectionkey?language=objc)
     pub static PDFDocumentFoundSelectionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpageindexkey?language=objc)
     pub static PDFDocumentPageIndexKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute?language=objc)
+/// A structure that specifies document attributes.
 // NS_TYPED_ENUM
 pub type PDFDocumentAttribute = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/titleattribute?language=objc)
+    /// An optional text string containing the title of the document.
     pub static PDFDocumentTitleAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/authorattribute?language=objc)
+    /// An optional text string containing the name of the author of the document.
     pub static PDFDocumentAuthorAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/subjectattribute?language=objc)
+    /// An optional text string containing a description of the subject of the document.
     pub static PDFDocumentSubjectAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/creatorattribute?language=objc)
+    /// An optional text string containing the name of the application that created the document content.
     pub static PDFDocumentCreatorAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/producerattribute?language=objc)
+    /// An optional text string containing the name of the application that produced the PDF data for the document.
     pub static PDFDocumentProducerAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/creationdateattribute?language=objc)
+    /// An optional text string containing the document’s creation date.
     pub static PDFDocumentCreationDateAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/modificationdateattribute?language=objc)
+    /// An optional text string containing the document’s last-modified date.
     pub static PDFDocumentModificationDateAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/keywordsattribute?language=objc)
+    /// An optional array of text strings containing keywords for the document.
     pub static PDFDocumentKeywordsAttribute: &'static PDFDocumentAttribute;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption?language=objc)
+/// A structure that specifies file writing options for a document.
 // NS_TYPED_ENUM
 pub type PDFDocumentWriteOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/ownerpasswordoption?language=objc)
+    /// An `NSString` object for the owner’s password which is required for encryption.
     pub static PDFDocumentOwnerPasswordOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/userpasswordoption?language=objc)
+    /// An `NSString` object for the user’s password which is optional for encryption.
     pub static PDFDocumentUserPasswordOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/accesspermissionsoption?language=objc)
     pub static PDFDocumentAccessPermissionsOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/burninannotationsoption?language=objc)
     pub static PDFDocumentBurnInAnnotationsOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/savetextfromocroption?language=objc)
     pub static PDFDocumentSaveTextFromOCROption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/saveimagesasjpegoption?language=objc)
     pub static PDFDocumentSaveImagesAsJPEGOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/optimizeimagesforscreenoption?language=objc)
     pub static PDFDocumentOptimizeImagesForScreenOption: &'static PDFDocumentWriteOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PDFAccessPermissions(pub NSUInteger);
 impl PDFAccessPermissions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowslowqualityprinting?language=objc)
     #[doc(alias = "PDFAllowsLowQualityPrinting")]
     pub const AllowsLowQualityPrinting: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowshighqualityprinting?language=objc)
     #[doc(alias = "PDFAllowsHighQualityPrinting")]
     pub const AllowsHighQualityPrinting: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowsdocumentchanges?language=objc)
     #[doc(alias = "PDFAllowsDocumentChanges")]
     pub const AllowsDocumentChanges: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowsdocumentassembly?language=objc)
     #[doc(alias = "PDFAllowsDocumentAssembly")]
     pub const AllowsDocumentAssembly: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowscontentcopying?language=objc)
     #[doc(alias = "PDFAllowsContentCopying")]
     pub const AllowsContentCopying: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowscontentaccessibility?language=objc)
     #[doc(alias = "PDFAllowsContentAccessibility")]
     pub const AllowsContentAccessibility: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowscommenting?language=objc)
     #[doc(alias = "PDFAllowsCommenting")]
     pub const AllowsCommenting: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaccesspermissions/allowsformfieldentry?language=objc)
     #[doc(alias = "PDFAllowsFormFieldEntry")]
     pub const AllowsFormFieldEntry: Self = Self(1 << 7);
 }
@@ -246,7 +298,15 @@ unsafe impl RefEncode for PDFAccessPermissions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocument?language=objc)
+    /// An object that represents PDF data or a PDF file and defines methods for writing, searching, and selecting PDF data.
+    ///
+    /// ## Overview
+    ///
+    /// The other utility classes are either instantiated from methods in `PDFDocument`, as are `PDFPage` and `PDFOutline`; or support it, as do `PDFSelection` and `PDFDestination`.
+    ///
+    /// You initialize a `PDFDocument` object with PDF data or with a URL to a PDF file. You can then ask for the page count, add or delete pages, perform a find, or parse selected content into an `NSString` object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFDocument;
@@ -580,7 +640,7 @@ impl PDFDocument {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentdelegate?language=objc)
+    /// The delegate for the `PDFDocument` object.
     pub unsafe trait PDFDocumentDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(documentDidUnlock:))]

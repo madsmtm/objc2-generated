@@ -6,159 +6,177 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avformatidkey?language=objc)
+    /// An integer value that represents the format of the audio data.
+    ///
+    /// ## Discussion
+    ///
+    /// For information about the possible values for this key, see [Audio Format Identifiers](https://developer.apple.com/documentation/coreaudiotypes/audio-format-identifiers).
+    ///
+    ///
     pub static AVFormatIDKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsampleratekey?language=objc)
+    /// A floating point value that represents the sample rate, in hertz.
     pub static AVSampleRateKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avnumberofchannelskey?language=objc)
+    /// An integer value that represents the number of channels.
     pub static AVNumberOfChannelsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmbitdepthkey?language=objc)
     pub static AVLinearPCMBitDepthKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmisbigendiankey?language=objc)
     pub static AVLinearPCMIsBigEndianKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmisfloatkey?language=objc)
     pub static AVLinearPCMIsFloatKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avlinearpcmisnoninterleaved?language=objc)
     pub static AVLinearPCMIsNonInterleaved: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiofiletypekey?language=objc)
+    /// A string that indicates the audio file type.
     pub static AVAudioFileTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaudioqualitykey?language=objc)
+    /// A constant that represents an integer from the audio quality enumeration.
+    ///
+    /// ## Discussion
+    ///
+    /// For information about possible values, see [`AVAudioQuality`](https://developer.apple.com/documentation/avfaudio/avaudioquality).
+    ///
+    ///
     pub static AVEncoderAudioQualityKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaudioqualityforvbrkey?language=objc)
     pub static AVEncoderAudioQualityForVBRKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitratekey?language=objc)
     pub static AVEncoderBitRateKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitrateperchannelkey?language=objc)
     pub static AVEncoderBitRatePerChannelKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitratestrategykey?language=objc)
+    /// A constant that represents the bit rate strategy for the encoder to use.
     pub static AVEncoderBitRateStrategyKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderbitdepthhintkey?language=objc)
     pub static AVEncoderBitDepthHintKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderdynamicrangecontrolconfigurationkey?language=objc)
     pub static AVEncoderDynamicRangeControlConfigurationKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencodercontentsourcekey?language=objc)
     pub static AVEncoderContentSourceKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avencoderaspfrequencykey?language=objc)
     pub static AVEncoderASPFrequencyKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithmkey?language=objc)
+    /// An integer value that represents the sample rate audio quality.
+    ///
+    /// ## Discussion
+    ///
+    /// For information about supported values, see [`AVAudioQuality`](https://developer.apple.com/documentation/avfaudio/avaudioquality).
+    ///
+    ///
     pub static AVSampleRateConverterAlgorithmKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteraudioqualitykey?language=objc)
+    /// An integer value that represents the audio quality for conversion.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about audio quality, see [`AVAudioQuality`](https://developer.apple.com/documentation/avfaudio/avaudioquality).
+    ///
+    ///
     pub static AVSampleRateConverterAudioQualityKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avchannellayoutkey?language=objc)
     pub static AVChannelLayoutKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_constant?language=objc)
+    /// A value that represents a constant bit rate strategy.
     pub static AVAudioBitRateStrategy_Constant: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_longtermaverage?language=objc)
+    /// A value that represents an average bit rate strategy.
     pub static AVAudioBitRateStrategy_LongTermAverage: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_variableconstrained?language=objc)
+    /// A value that represents a constrained variable bit rate strategy.
     pub static AVAudioBitRateStrategy_VariableConstrained: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobitratestrategy_variable?language=objc)
+    /// A value that represents a variable bit rate strategy.
     pub static AVAudioBitRateStrategy_Variable: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithm_normal?language=objc)
+    /// The usual encoder bit rate strategy.
     pub static AVSampleRateConverterAlgorithm_Normal: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithm_mastering?language=objc)
+    /// The mastering encoder bit rate strategy.
     pub static AVSampleRateConverterAlgorithm_Mastering: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteralgorithm_minimumphase?language=objc)
+    /// The minimum phase encoder bit rate strategy.
     pub static AVSampleRateConverterAlgorithm_MinimumPhase: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality?language=objc)
+/// The values that specify the sample rate audio quality for encoding and conversion.
+///
+/// ## Overview
+///
+/// You use this value with [`AVEncoderAudioQualityKey`](https://developer.apple.com/documentation/avfaudio/avencoderaudioqualitykey) and [`AVSampleRateConverterAudioQualityKey`](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteraudioqualitykey).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioQuality(pub NSInteger);
 impl AVAudioQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality/min?language=objc)
+    /// A value that represents a minimum audio quality for encoding and conversion.
     #[doc(alias = "AVAudioQualityMin")]
     pub const Min: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality/low?language=objc)
+    /// A value that represents a low audio quality for encoding and conversion.
     #[doc(alias = "AVAudioQualityLow")]
     pub const Low: Self = Self(0x20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality/medium?language=objc)
+    /// A value that represents a medium audio quality for encoding and conversion.
     #[doc(alias = "AVAudioQualityMedium")]
     pub const Medium: Self = Self(0x40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality/high?language=objc)
+    /// A value that represents a high audio quality for encoding and conversion.
     #[doc(alias = "AVAudioQualityHigh")]
     pub const High: Self = Self(0x60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality/max?language=objc)
+    /// A value that represents a maximum audio quality for encoding and conversion.
     #[doc(alias = "AVAudioQualityMax")]
     pub const Max: Self = Self(0x7F);
 }
@@ -171,25 +189,19 @@ unsafe impl RefEncode for AVAudioQuality {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioDynamicRangeControlConfiguration(pub NSInteger);
 impl AVAudioDynamicRangeControlConfiguration {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration/none?language=objc)
     #[doc(alias = "AVAudioDynamicRangeControlConfiguration_None")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration/music?language=objc)
     #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Music")]
     pub const Music: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration/speech?language=objc)
     #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Speech")]
     pub const Speech: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration/movie?language=objc)
     #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Movie")]
     pub const Movie: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration/capture?language=objc)
     #[doc(alias = "AVAudioDynamicRangeControlConfiguration_Capture")]
     pub const Capture: Self = Self(4);
 }
@@ -202,76 +214,53 @@ unsafe impl RefEncode for AVAudioDynamicRangeControlConfiguration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioContentSource(pub NSInteger);
 impl AVAudioContentSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/unspecified?language=objc)
     #[doc(alias = "AVAudioContentSource_Unspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/reserved?language=objc)
     #[doc(alias = "AVAudioContentSource_Reserved")]
     pub const Reserved: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/applecapture_traditional?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleCapture_Traditional")]
     pub const AppleCapture_Traditional: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/applecapture_spatial?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleCapture_Spatial")]
     pub const AppleCapture_Spatial: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/applecapture_spatial_enhanced?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleCapture_Spatial_Enhanced")]
     pub const AppleCapture_Spatial_Enhanced: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/applemusic_traditional?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleMusic_Traditional")]
     pub const AppleMusic_Traditional: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/applemusic_spatial?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleMusic_Spatial")]
     pub const AppleMusic_Spatial: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/appleav_traditional_offline?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleAV_Traditional_Offline")]
     pub const AppleAV_Traditional_Offline: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/appleav_spatial_offline?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleAV_Spatial_Offline")]
     pub const AppleAV_Spatial_Offline: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/appleav_traditional_live?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleAV_Traditional_Live")]
     pub const AppleAV_Traditional_Live: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/appleav_spatial_live?language=objc)
     #[doc(alias = "AVAudioContentSource_AppleAV_Spatial_Live")]
     pub const AppleAV_Spatial_Live: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/applepassthrough?language=objc)
     #[doc(alias = "AVAudioContentSource_ApplePassthrough")]
     pub const ApplePassthrough: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/capture_traditional?language=objc)
     #[doc(alias = "AVAudioContentSource_Capture_Traditional")]
     pub const Capture_Traditional: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/capture_spatial?language=objc)
     #[doc(alias = "AVAudioContentSource_Capture_Spatial")]
     pub const Capture_Spatial: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/capture_spatial_enhanced?language=objc)
     #[doc(alias = "AVAudioContentSource_Capture_Spatial_Enhanced")]
     pub const Capture_Spatial_Enhanced: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/music_traditional?language=objc)
     #[doc(alias = "AVAudioContentSource_Music_Traditional")]
     pub const Music_Traditional: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/music_spatial?language=objc)
     #[doc(alias = "AVAudioContentSource_Music_Spatial")]
     pub const Music_Spatial: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/av_traditional_offline?language=objc)
     #[doc(alias = "AVAudioContentSource_AV_Traditional_Offline")]
     pub const AV_Traditional_Offline: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/av_spatial_offline?language=objc)
     #[doc(alias = "AVAudioContentSource_AV_Spatial_Offline")]
     pub const AV_Spatial_Offline: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/av_traditional_live?language=objc)
     #[doc(alias = "AVAudioContentSource_AV_Traditional_Live")]
     pub const AV_Traditional_Live: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/av_spatial_live?language=objc)
     #[doc(alias = "AVAudioContentSource_AV_Spatial_Live")]
     pub const AV_Spatial_Live: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource/passthrough?language=objc)
     #[doc(alias = "AVAudioContentSource_Passthrough")]
     pub const Passthrough: Self = Self(42);
 }

@@ -12,12 +12,25 @@ use objc2_security_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Encapsulates an IEEE 802.11 interface.
+    ///
+    /// ## Overview
+    ///
+    /// Provides access to various WLAN interface parameters, and operations such as scanning for networks, association, and creating computer-to-computer (ad-hoc) networks.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Do not instantiate interface objects directly. Instead, use interface objects vended by a [`CWWiFiClient`](https://developer.apple.com/documentation/corewlan/cwwificlient) instance via the [`interface`](https://developer.apple.com/documentation/corewlan/cwwificlient/interface()) method or one of its relatives. This enables your app to adopt App Sandbox even when it uses CoreWLAN without the need for any special exceptions. Directly instantiating interface objects causes low level access to system sockets, which by default is not allowed in a sandboxed environment.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Control and query a Wi-Fi interface on OS X.
     ///
     ///
     /// All actions performed by a CWInterface object are executed on the Wi-Fi device with the corresponding interface name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWInterface;

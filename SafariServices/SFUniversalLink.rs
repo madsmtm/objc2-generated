@@ -8,13 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that provides browsers with the ability to discover associations between an app and a website.
+    ///
+    /// ## Overview
+    ///
+    /// Universal links are a bridge between an app and a website that have related content, such as products or services. Typically, clicking a link in a browser takes a person to a website. However, the person may have an app that provides the same content and a better experience.
+    ///
+    /// A web browser uses the `SFUniversalLink` class to discover such applications and provide the person with additional options for interaction beyond the default browser behavior.
+    ///
+    /// In order to use universal links, you need to use the entitlement [`com.apple.developer.associated-domains.applinks.read-write`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.associated-domains.applinks.read-write) with a value of `true`. Before you submit an app with the entitlement to the App Store, you need to get permission to use the entitlement. Request permission at [https://developer.apple.com/contact/request/browser-universal-links-request](https://developer.apple.com/contact/request/browser-universal-links-request).
+    ///
+    ///
     /// This class represents a universal link available on the current system.
     /// Universal links can be opened in a browser or directly in an application.
     ///
     ///
     /// Warning: The use of this class requires an entitlement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfuniversallink?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFUniversalLink;

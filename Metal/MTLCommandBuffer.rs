@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The discrete states for a command buffer that represent its life cycle stages.
 /// MTLCommandBufferStatus reports the current stage in the lifetime of MTLCommandBuffer, as it proceeds to enqueued, committed, scheduled, and completed.
 ///
 ///
@@ -28,29 +29,63 @@ use crate::*;
 ///
 ///
 /// Execution of the command buffer was aborted due to an error during execution.  Check -error for more information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferStatus(pub NSUInteger);
 impl MTLCommandBufferStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/notenqueued?language=objc)
+    /// A command buffer’s initial state, which indicates its command queue isn’t reserving a place for it.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) protocol’s [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property for more information.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
     pub const NotEnqueued: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/enqueued?language=objc)
+    /// A command buffer’s second state, which indicates its command queue is reserving a place for it.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) protocol’s [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property for more information.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferStatusEnqueued")]
     pub const Enqueued: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/committed?language=objc)
+    /// A command buffer’s third state, which indicates the command queue is preparing to schedule the command buffer by resolving its dependencies.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) protocol’s [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property for more information.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferStatusCommitted")]
     pub const Committed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/scheduled?language=objc)
+    /// A command buffer’s fourth state, which indicates the command buffer has its resources ready and is waiting for the GPU to run its commands.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) protocol’s [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property for more information.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferStatusScheduled")]
     pub const Scheduled: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/completed?language=objc)
+    /// A command buffer’s successful, final state, which indicates the GPU finished running the command buffer’s commands without any problems.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) protocol’s [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property for more information.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferStatusCompleted")]
     pub const Completed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/error?language=objc)
+    /// A command buffer’s unsuccessful, final state, which indicates the GPU stopped running the buffer’s commands because of a runtime issue.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) protocol’s [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property for more information. When a command buffer’s status is equal to [`MTLCommandBufferStatusError`](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus/error), check its [`error`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/error) property for more details about the issue. See [Command buffer debugging](https://developer.apple.com/documentation/metal/command-buffer-debugging) for more methods properties that can help you identify the issue.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferStatusError")]
     pub const Error: Self = Self(5);
 }
@@ -64,12 +99,12 @@ unsafe impl RefEncode for MTLCommandBufferStatus {
 }
 
 extern "C" {
+    /// The domain for Metal command buffer errors.
     /// An error domain for NSError objects produced by MTLCommandBuffer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain?language=objc)
     pub static MTLCommandBufferErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes that indicate why a GPU is unable to finish running a command buffer.
 /// Error codes that can be found in MTLCommandBuffer.error
 ///
 ///
@@ -101,48 +136,80 @@ extern "C" {
 ///
 ///
 /// Execution of the command buffer was stopped due to Stack Overflow Exception. [MTLComputePipelineDescriptor maxCallStackDepth] setting needs to be checked.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferError(pub NSUInteger);
 impl MTLCommandBufferError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/none?language=objc)
+    /// An error code that represents the absence of any problems.
     #[doc(alias = "MTLCommandBufferErrorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/internal?language=objc)
+    /// An error code that indicates the Metal framework has an internal problem.
+    ///
+    /// ## Discussion
+    ///
+    /// The local description contains the underlying error code. You can report the scenario that generated this error code with [Feedback Assistant](https://feedbackassistant.apple.com).
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferErrorInternal")]
     pub const Internal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/timeout?language=objc)
+    /// An error code that indicates the system interrupted and terminated the command buffer because it took more time to execute than the system allows.
     #[doc(alias = "MTLCommandBufferErrorTimeout")]
     pub const Timeout: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/pagefault?language=objc)
+    /// An error code that indicates the command buffer generated a page fault the GPU can’t service.
+    ///
+    /// ## Discussion
+    ///
+    /// The underlying cause may be a buffer read/write attribute mismatch or an out-of-boundary access.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferErrorPageFault")]
     pub const PageFault: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/blacklisted?language=objc)
+    /// A former error code that indicates the system has revoked the Metal device’s access because it’s responsible for too many timeouts or hangs.
     #[doc(alias = "MTLCommandBufferErrorBlacklisted")]
     #[deprecated]
     pub const Blacklisted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-c.enum/mtlcommandbuffererroraccessrevoked?language=objc)
+    /// An error code that indicates the system has revoked the Metal device’s access because it’s responsible for too many timeouts or hangs.
     #[doc(alias = "MTLCommandBufferErrorAccessRevoked")]
     pub const AccessRevoked: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/notpermitted?language=objc)
+    /// An error code that indicates a process doesn’t have access to a GPU device.
     #[doc(alias = "MTLCommandBufferErrorNotPermitted")]
     pub const NotPermitted: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/outofmemory?language=objc)
+    /// An error code that indicates the GPU device doesn’t have sufficient memory to execute a command buffer.
     #[doc(alias = "MTLCommandBufferErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/invalidresource?language=objc)
+    /// An error code that indicates the command buffer has an invalid reference to resource.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically, apps trigger this error by deleting a resource and then running a command buffer that refers to it.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferErrorInvalidResource")]
     pub const InvalidResource: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/memoryless?language=objc)
+    /// An error code that indicates the GPU ran out of one or more of its internal resources that support memoryless render pass attachments.
+    ///
+    /// ## Discussion
+    ///
+    /// See the error string for more details.
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferErrorMemoryless")]
     pub const Memoryless: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/deviceremoved?language=objc)
+    /// An error code that indicates a person physically removed the GPU device before the command buffer finished running.
     #[doc(alias = "MTLCommandBufferErrorDeviceRemoved")]
     pub const DeviceRemoved: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror-swift.struct/code/stackoverflow?language=objc)
+    /// An error code that indicates the GPU terminated the command buffer because a kernel function of tile shader used too many stack frames.
+    ///
+    /// ## Discussion
+    ///
+    /// You can set the largest number of stack frames your pipelines by configuring these properties:
+    ///
+    /// - [`MTLComputePipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor)`.`[`maxCallStackDepth`](https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/maxcallstackdepth) for kernel functions
+    ///
+    /// - [`MTLTileRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtltilerenderpipelinedescriptor)`.`[`maxCallStackDepth`](https://developer.apple.com/documentation/metal/mtltilerenderpipelinedescriptor/maxcallstackdepth) for tile shaders
+    ///
+    ///
     #[doc(alias = "MTLCommandBufferErrorStackOverflow")]
     pub const StackOverflow: Self = Self(12);
 }
@@ -156,12 +223,18 @@ unsafe impl RefEncode for MTLCommandBufferError {
 }
 
 extern "C" {
-    /// Key in the userInfo for MTLCommandBufferError NSErrors. Value is an NSArray of MTLCommandBufferEncoderInfo objects in recorded order if an appropriate MTLCommandBufferErrorOption was set, otherwise the key will not exist in the userInfo dictionary.
+    /// A key to a command buffer error’s user information dictionary that retrieves additional information about a GPU’s runtime error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfoerrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// You can retrieve an [`MTLCommandBufferEncoderInfo`](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfo) instance from the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary of a command buffer’s [`error`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/error) property.
+    ///
+    ///
+    /// Key in the userInfo for MTLCommandBufferError NSErrors. Value is an NSArray of MTLCommandBufferEncoderInfo objects in recorded order if an appropriate MTLCommandBufferErrorOption was set, otherwise the key will not exist in the userInfo dictionary.
     pub static MTLCommandBufferEncoderInfoErrorKey: &'static NSErrorUserInfoKey;
 }
 
+/// Options for reporting errors from a command buffer.
 /// Options for controlling the error reporting for Metal command buffer objects.
 ///
 ///
@@ -169,18 +242,30 @@ extern "C" {
 ///
 ///
 /// Provide the execution status of the individual encoders within the command buffer. In the event of a command buffer error, populate the `userInfo` dictionary of the command buffer's NSError parameter, see MTLCommandBufferEncoderInfoErrorKey and MTLCommandBufferEncoderInfo. Note that enabling this error reporting option may increase CPU, GPU, and/or memory overhead on some platforms; testing for impact is suggested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferErrorOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLCommandBufferErrorOption: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption/mtlcommandbuffererroroptionnone?language=objc)
+/// An option that clears a command buffer’s error options.
         #[doc(alias = "MTLCommandBufferErrorOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption/encoderexecutionstatus?language=objc)
+/// An option that instructs a command buffer to save additional details about a GPU runtime error.
+///
+/// ## Discussion
+///
+/// You can set this option to a command buffer descriptor’s [`errorOptions`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/erroroptions) property.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Enabling this option can slightly reduce your app’s CPU runtime performance.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "MTLCommandBufferErrorOptionEncoderExecutionStatus")]
         const EncoderExecutionStatus = 1<<0;
     }
@@ -194,6 +279,7 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible error conditions for the command encoder’s commands.
 /// The error states for a Metal command encoder after command buffer execution.
 ///
 ///
@@ -210,26 +296,30 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
 ///
 ///
 /// The commands associated with the encoder caused an error.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandEncoderErrorState(pub NSInteger);
 impl MTLCommandEncoderErrorState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/unknown?language=objc)
+    /// An error state that indicates the command buffer doesn’t know the state of its commands on the GPU.
     #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/completed?language=objc)
+    /// A state that indicates the GPU successfully executed the commands without any errors.
     #[doc(alias = "MTLCommandEncoderErrorStateCompleted")]
     pub const Completed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/affected?language=objc)
+    /// An error state that indicates the GPU failed to fully execute the commands because of an error.
+    ///
+    /// ## Discussion
+    ///
+    /// The commands in the command buffer may or may not be responsible for the error.
+    ///
+    ///
     #[doc(alias = "MTLCommandEncoderErrorStateAffected")]
     pub const Affected: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/pending?language=objc)
+    /// An error state that indicates the GPU didn’t execute the commands.
     #[doc(alias = "MTLCommandEncoderErrorStatePending")]
     pub const Pending: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate/faulted?language=objc)
+    /// An error state that indicates the commands in the command buffer are the cause of an error.
     #[doc(alias = "MTLCommandEncoderErrorStateFaulted")]
     pub const Faulted: Self = Self(4);
 }
@@ -243,9 +333,14 @@ unsafe impl RefEncode for MTLCommandEncoderErrorState {
 }
 
 extern_class!(
-    /// An object that you use to configure new Metal command buffer objects.
+    /// A configuration that customizes the behavior for a new command buffer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// Create a command buffer with a custom configuration by creating an [`MTLCommandBufferDescriptor`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor) instance and passing it to an [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue) instance’s [`commandBufferWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandqueue/makecommandbuffer(descriptor:)) method. You can configure whether the command buffer retains references to resources that its commands refer to with the [`retainedReferences`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/retainedreferences) property. The command buffer can save extra error information, which is useful during development, by setting its [`errorOptions`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/erroroptions) property to [`MTLCommandBufferErrorOptionEncoderExecutionStatus`](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption/encoderexecutionstatus).
+    ///
+    ///
+    /// An object that you use to configure new Metal command buffer objects.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCommandBufferDescriptor;
@@ -320,9 +415,14 @@ impl DefaultRetained for MTLCommandBufferDescriptor {
 }
 
 extern_protocol!(
-    /// Provides execution status information for a Metal command encoder.
+    /// A container that provides additional information about a runtime failure a GPU encounters as it runs the commands in a command buffer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferencoderinfo?language=objc)
+    /// ## Overview
+    ///
+    /// To create a command buffer that generates additional information (when a GPU encounters an error running it), configure an [`MTLCommandBufferDescriptor`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor) instance’s [`errorOptions`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/erroroptions) property. For information about how to retrieve the information from an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance, see its [`error`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/error) property.
+    ///
+    ///
+    /// Provides execution status information for a Metal command encoder.
     pub unsafe trait MTLCommandBufferEncoderInfo: NSObjectProtocol {
         /// The debug label given to the associated Metal command encoder at command buffer submission.
         #[unsafe(method(label))]
@@ -341,11 +441,22 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferhandler?language=objc)
+/// A completion handler signature a GPU device calls when it finishes scheduling a command buffer, or when the GPU finishes running it.
+///
+/// Parameters:
+/// - commandBuffer: The [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance that’s invoking the completion handler.
+///
+///
+/// ## Discussion
+///
+/// The [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) type uses this signature in its methods that register your completion handlers, including [`addScheduledHandler:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/addscheduledhandler(_:)) and [`addCompletedHandler:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)).
+///
+///
 #[cfg(feature = "block2")]
 pub type MTLCommandBufferHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLCommandBuffer>>)>;
 
+/// The type of dispatch method to use when calling encoded functions.
 /// MTLDispatchType Describes how a command encoder will execute dispatched work.
 ///
 ///
@@ -353,17 +464,21 @@ pub type MTLCommandBufferHandler =
 ///
 ///
 /// Command encoder dispatches are executed in parallel with each other.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDispatchType(pub NSUInteger);
 impl MTLDispatchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype/serial?language=objc)
+    /// Sets a command encoder to dispatch encoded commands serially during your pass.
     #[doc(alias = "MTLDispatchTypeSerial")]
     pub const Serial: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype/concurrent?language=objc)
+    /// Sets a command encoder to dispatch encoded commands concurrently during your pass.
+    ///
+    /// ## Discussion
+    ///
+    /// If you encode multiple commands that access a single resource, you’re responsible for synchronizing the accesses to that resource. For more information, see [Resource synchronization](https://developer.apple.com/documentation/metal/resource-synchronization).
+    ///
+    ///
     #[doc(alias = "MTLDispatchTypeConcurrent")]
     pub const Concurrent: Self = Self(1);
 }
@@ -377,9 +492,62 @@ unsafe impl RefEncode for MTLDispatchType {
 }
 
 extern_protocol!(
-    /// A serial list of commands for the device to execute.
+    /// A container that stores a sequence of GPU commands that you encode into it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffer?language=objc)
+    /// ## Overview
+    ///
+    /// A command buffer represents a chunk of work for the GPU that stores the commands you encode to it, as well as any resources those commands need. You primarily use a command buffer to:
+    ///
+    /// - Create command encoders and call their methods to add commands to the buffer
+    ///
+    /// - Optionally reserve a place for the command buffer in its command queue by _enqueuing_ the command buffer, even before you encode any commands into it
+    ///
+    /// - Submit, or commit_,_ the contents of the command buffer to the command queue that creates it to run on the GPU device the queue represents
+    ///
+    /// Create a command encoder from an [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue) instance by calling its [`commandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandqueue/makecommandbuffer()) method. Typically, you create one or more command queues when your app launches and then keep them throughout your app’s lifetime.
+    ///
+    /// To add commands to an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance, create an encoder from one of its factory methods, including:
+    ///
+    /// - An [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) instance by calling [`renderCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makerendercommandencoder(descriptor:))
+    ///
+    /// - An [`MTLComputeCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder) instance by calling [`computeCommandEncoderWithDispatchType:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makecomputecommandencoder(dispatchtype:))
+    ///
+    /// - An [`MTLBlitCommandEncoder`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder) instance by calling [`blitCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeblitcommandencoder()) or [`blitCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeblitcommandencoder(descriptor:))
+    ///
+    /// - An [`MTLParallelRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder) instance by calling [`parallelRenderCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeparallelrendercommandencoder(descriptor:))
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  All encoders inherit additional methods from the [`MTLCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcommandencoder).
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can use only a single encoder at a time to add commands to a command buffer. To start using a different command encoder, first signal that you’re done with the current encoder by calling its [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) method. Then create another command encoder from the command buffer and continue adding commands to the buffer with the new encoder.
+    ///
+    /// Repeat the process until you finish encoding commands to the command buffer and are ready to run the buffer’s contents on the GPU. Then submit the command buffer to the command queue that you used to create it by calling the command buffer’s [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()) method. After an app commits a command buffer, you check its [`status`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/status) property or block a thread by calling its [`waitUntilScheduled`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/waituntilscheduled()) or [`waitUntilCompleted`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/waituntilcompleted()) methods.
+    ///
+    /// You also have the option to reserve a place for the command buffer in its command queue by calling the command buffer’s [`enqueue`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/enqueue()) method. You can call this method exactly once at any time before you commit the buffer to the queue. If you don’t enqueue a command buffer, it implicitly enqueues itself when you commit it. Each command queue ensures the order that you enqueue its command buffers is the same order the queue schedules them to run on the GPU.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Establish an order of execution for multiple command buffers you encode in parallel by first calling their [`enqueue`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/enqueue()) methods in that order.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For example, a multithreaded app might set the GPU’s execution order for a sequence of related subtasks by:
+    ///
+    /// 1. Creating a command buffer for each subtask
+    ///
+    /// 2. Enqueuing the command buffers in the proper order on a single thread
+    ///
+    /// 3. Encoding commands to each buffer on a separate thread and then committing it
+    ///
+    ///
+    /// A serial list of commands for the device to execute.
     pub unsafe trait MTLCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.

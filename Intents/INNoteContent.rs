@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontent?language=objc)
+    /// An abstract class that defines the types of content contained in notes.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you create instances of the [`INTextNoteContent`](https://developer.apple.com/documentation/intents/intextnotecontent) or [`INImageNoteContent`](https://developer.apple.com/documentation/intents/inimagenotecontent) subclasses.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INNoteContent;

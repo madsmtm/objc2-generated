@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a Mac graphics device.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t instantiate a `VZMacGraphicsDevice` directly. Graphics devices are first configured on the [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) through a subclass of [`VZMacGraphicsDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdeviceconfiguration).  When the framework creates a VZVirtualMachine from the configuration, the graphics devices are available through the `graphicsDevices` property.
+    ///
+    ///
     /// A Mac graphics device.
     ///
     /// The VZMacGraphicsDevice is the runtime counterpart of VZMacGraphicsDeviceConfiguration.
@@ -19,8 +26,6 @@ extern_class!(
     /// See: VZMacGraphicsDeviceConfiguration
     ///
     /// See: VZGraphicsDevice.displays
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdevice?language=objc)
     #[unsafe(super(VZGraphicsDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDevice")]

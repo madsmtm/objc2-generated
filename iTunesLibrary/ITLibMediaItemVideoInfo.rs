@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The ITLibMediaItemVideoInfo class encapsulates the video information of a video media item.
+    /// This class encapsulates the video information of a video media item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemvideoinfo?language=objc)
+    /// ## Overview
+    ///
+    /// Video media items include TV shows, movies, and video podcasts.
+    ///
+    ///
+    /// The ITLibMediaItemVideoInfo class encapsulates the video information of a video media item.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ITLibMediaItemVideoInfo;

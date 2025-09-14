@@ -11,11 +11,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A JavaScript execution environment.
+    ///
+    /// ## Overview
+    ///
+    /// You create and use JavaScript contexts to evaluate JavaScript scripts from Objective-C or Swift code; to access values that JavaScript defines or calculates; and to make native objects, methods, or functions accessible to JavaScript.
+    ///
+    ///
     /// A JSContext is a JavaScript execution environment. All
     /// JavaScript execution takes place within a context, and all JavaScript values
     /// are tied to a context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

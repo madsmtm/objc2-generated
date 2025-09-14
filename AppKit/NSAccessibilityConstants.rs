@@ -8,598 +8,610 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/errorcodeexceptioninfo?language=objc)
+    /// An integer error code for debugging.
+    ///
+    /// ## Discussion
+    ///
+    /// This key will appear in an exception’s dictionary. Its value will be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    ///
     pub static NSAccessibilityErrorCodeExceptionInfo: &'static NSString;
 }
 
+/// Constants that describe attributes.
 /// * Accessibility Constants **
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityAttributeName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/role?language=objc)
+    /// The element’s type, such as `NSAccessibilityRadioButtonRole` (`NSString`). See Roles for a list of available roles.
     pub static NSAccessibilityRoleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/roledescription?language=objc)
+    /// A localized, human-intelligible description of the element’s role, such as `radio button` (`NSString`).
     pub static NSAccessibilityRoleDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/subrole?language=objc)
+    /// The element’s subrole, such as `NSAccessibilityTableRowSubrole` (`NSString`). See Subroles for a list of available subroles.
     pub static NSAccessibilitySubroleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/help?language=objc)
+    /// The help text for the element (`NSString`).
     pub static NSAccessibilityHelpAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/value?language=objc)
+    /// The element’s value (`id`).
     pub static NSAccessibilityValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/minvalue?language=objc)
+    /// The element’s minimum value (`id`).
     pub static NSAccessibilityMinValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/maxvalue?language=objc)
+    /// The element’s maximum value (`id`).
     pub static NSAccessibilityMaxValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/enabled?language=objc)
+    /// A flag that indicates the enabled state of the element (`NSNumber`).
     pub static NSAccessibilityEnabledAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/focused?language=objc)
+    /// A flag that indicates the presence of keyboard focus (`NSNumber`).
     pub static NSAccessibilityFocusedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/parent?language=objc)
+    /// The element’s parent element in the accessibility hierarchy (`id`).
     pub static NSAccessibilityParentAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/children?language=objc)
+    /// The element’s child elements in the accessibility hierarchy (`NSArray`).
     pub static NSAccessibilityChildrenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/window?language=objc)
+    /// The window containing the current element (`id`).
     pub static NSAccessibilityWindowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/topleveluielement?language=objc)
+    /// The top-level element that contains this element (`id`).
     pub static NSAccessibilityTopLevelUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedchildren?language=objc)
+    /// The currently selected children of the element (`NSArray`).
     pub static NSAccessibilitySelectedChildrenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblechildren?language=objc)
+    /// The element’s child elements that are visible (`NSArray`).
     pub static NSAccessibilityVisibleChildrenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/position?language=objc)
+    /// The position in points of the element’s lower-left corner in screen-relative coordinates (`NSValue`).
     pub static NSAccessibilityPositionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/size?language=objc)
+    /// The element’s size in points (`NSValue`).
     pub static NSAccessibilitySizeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/contents?language=objc)
+    /// Elements that represent the contents in the current element, such as the document view of a scroll view (`NSArray`).
     pub static NSAccessibilityContentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/title?language=objc)
+    /// The title of the element, such as a button’s visible text (`NSString`).
     pub static NSAccessibilityTitleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/description?language=objc)
+    /// The purpose of the element, not including the role (`NSString`).
     pub static NSAccessibilityDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/shownmenu?language=objc)
+    /// The menu currently being displayed (`id`).
     pub static NSAccessibilityShownMenuAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/valuedescription?language=objc)
+    /// The description of the element’s value (`NSString`).
     pub static NSAccessibilityValueDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sharedfocuselements?language=objc)
     pub static NSAccessibilitySharedFocusElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/previouscontents?language=objc)
+    /// The elements representing the contents that precede the current divider element, such as a subview adjacent to a split view’s splitter bar element (`NSArray`).
     pub static NSAccessibilityPreviousContentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/nextcontents?language=objc)
+    /// The elements representing the contents that follow the current divider element, such as a subview adjacent to a split view’s splitter element (`NSArray`).
     pub static NSAccessibilityNextContentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/header?language=objc)
+    /// The element that represents a table view’s header (`id`).
     pub static NSAccessibilityHeaderAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/edited?language=objc)
+    /// A flag that indicates whether the element has been modified (`NSNumber`).
     pub static NSAccessibilityEditedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/tabs?language=objc)
+    /// The tab elements in a tab view (`NSArray`).
     pub static NSAccessibilityTabsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/horizontalscrollbar?language=objc)
+    /// The element that represents a scroll view’s horizontal scroll bar (`id`).
     pub static NSAccessibilityHorizontalScrollBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/verticalscrollbar?language=objc)
+    /// The element that represents the vertical scroll bar in a scroll view (`id`).
     pub static NSAccessibilityVerticalScrollBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/overflowbutton?language=objc)
+    /// The element that represents a toolbar’s overflow button (`id`).
     pub static NSAccessibilityOverflowButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/incrementbutton?language=objc)
+    /// The element that represents a stepper’s increment button (`id`).
     pub static NSAccessibilityIncrementButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/decrementbutton?language=objc)
+    /// The element that represents a stepper’s decrement button (`id`).
     pub static NSAccessibilityDecrementButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/filename?language=objc)
+    /// The filename associated with the element (`NSString`).
     pub static NSAccessibilityFilenameAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/expanded?language=objc)
+    /// A flag that indicates whether the element is expanded (`NSNumber`).
     pub static NSAccessibilityExpandedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selected?language=objc)
+    /// A flag that indicates whether the element is selected (`NSNumber`).
     pub static NSAccessibilitySelectedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/splitters?language=objc)
+    /// The views and splitter bar in a split view (`NSArray`).
     pub static NSAccessibilitySplittersAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/document?language=objc)
+    /// The URL for the file represented by the element (`NSString`).
     pub static NSAccessibilityDocumentAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/activationpoint?language=objc)
     pub static NSAccessibilityActivationPointAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/url?language=objc)
+    /// The URL associated with the element (`NSURL`).
     pub static NSAccessibilityURLAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/index?language=objc)
+    /// The index of the row or column represented by the element (`NSValue`).
     pub static NSAccessibilityIndexAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rowcount?language=objc)
+    /// The number of rows in the grid (`NSNumber` as `intValue`).
     pub static NSAccessibilityRowCountAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columncount?language=objc)
+    /// The number of columns in the grid (`NSNumber` as `intValue`).
     pub static NSAccessibilityColumnCountAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/orderedbyrow?language=objc)
+    /// A flag that indicates whether the grid is in row major or column major order.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an `NSNumber` as `boolValue`. A value of [`true`](https://developer.apple.com/documentation/swift/true) indicates row major order, and [`false`](https://developer.apple.com/documentation/swift/false) indicates column major order.
+    ///
+    ///
     pub static NSAccessibilityOrderedByRowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/warningvalue?language=objc)
+    /// The warning value in a level indicator (typically, `NSNumber`).
     pub static NSAccessibilityWarningValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/criticalvalue?language=objc)
+    /// The critical value in a level indicator (typically, `NSNumber`).
     pub static NSAccessibilityCriticalValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/placeholdervalue?language=objc)
+    /// The placeholder value for a control, such as a text field (`NSString`).
     pub static NSAccessibilityPlaceholderValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/containsprotectedcontent?language=objc)
+    /// A flag that indicates whether the object contains protected content.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an `NSNumber` as `boolValue`. The value is [`true`](https://developer.apple.com/documentation/swift/true) if the object contains protected content, and [`false`](https://developer.apple.com/documentation/swift/false) if not.
+    ///
+    ///
     pub static NSAccessibilityContainsProtectedContentAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/alternateuivisible?language=objc)
     pub static NSAccessibilityAlternateUIVisibleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/required?language=objc)
     pub static NSAccessibilityRequiredAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/autointeractableattribute?language=objc)
     pub static NSAccessibilityAutoInteractableAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/datetimecomponentsattribute?language=objc)
     pub static NSAccessibilityDateTimeComponentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/embeddedimagedescriptionattribute?language=objc)
     pub static NSAccessibilityEmbeddedImageDescriptionAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/pathattribute?language=objc)
     pub static NSAccessibilityPathAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/textinputmarkedrangeattribute?language=objc)
     pub static NSAccessibilityTextInputMarkedRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/blockquotelevelattribute?language=objc)
     pub static NSAccessibilityBlockQuoteLevelAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/headinglevelattribute?language=objc)
     pub static NSAccessibilityHeadingLevelAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/languageattribute?language=objc)
     pub static NSAccessibilityLanguageAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visitedattribute?language=objc)
     pub static NSAccessibilityVisitedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/titleuielement?language=objc)
+    /// An element that represents another element’s static text title (`id`).
     pub static NSAccessibilityTitleUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/servesastitleforuielements?language=objc)
+    /// The elements for which this element serves as the title (`NSArray`).
     pub static NSAccessibilityServesAsTitleForUIElementsAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/linkeduielements?language=objc)
+    /// The elements with which this element is related (`NSArray`).
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the contents of a list item that are displayed in another pane or window.
+    ///
+    ///
     pub static NSAccessibilityLinkedUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedtext?language=objc)
+    /// The currently selected text (`NSString`).
     pub static NSAccessibilitySelectedTextAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedtextrange?language=objc)
+    /// The range of selected text (`NSValue`).
     pub static NSAccessibilitySelectedTextRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/numberofcharacters?language=objc)
+    /// The number of characters in the text (`NSNumber`).
     pub static NSAccessibilityNumberOfCharactersAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblecharacterrange?language=objc)
+    /// The range of visible text (`NSValue`).
+    ///
+    /// ## Discussion
+    ///
+    /// Returns ranges for entire lines. For example, characters that are horizontally clipped will be reported in the visible range.
+    ///
+    ///
     pub static NSAccessibilityVisibleCharacterRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sharedtextuielements?language=objc)
+    /// The elements with which the text of this element is shared (`NSArray`).
     pub static NSAccessibilitySharedTextUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sharedcharacterrange?language=objc)
+    /// The (`rangeValue`) part of shared text in this view (`NSValue`).
     pub static NSAccessibilitySharedCharacterRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/insertionpointlinenumber?language=objc)
+    /// The line number containing the insertion point (`NSNumber`).
     pub static NSAccessibilityInsertionPointLineNumberAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedtextranges?language=objc)
+    /// An array of `NSValue` (`rangeValue`) ranges of selected text (`NSArray`).
     pub static NSAccessibilitySelectedTextRangesAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute?language=objc)
+/// Values that describe parameterized attributes.
 // NS_TYPED_ENUM
 pub type NSAccessibilityParameterizedAttributeName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/lineforindex?language=objc)
+    /// The line number (`NSNumber`) of the specified character (`NSNumber`).
     pub static NSAccessibilityLineForIndexParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rangeforline?language=objc)
+    /// The range of characters (`NSValue` containing an `NSRange` value) corresponding to the specified line number (`NSNumber`).
     pub static NSAccessibilityRangeForLineParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/stringforrange?language=objc)
+    /// The substring (`NSString`) specified by the range (`NSValue` containing an `NSRange` value).
     pub static NSAccessibilityStringForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rangeforposition?language=objc)
+    /// The range of characters (`NSValue` containing an `NSRange` value) composing the glyph at the specified point (`NSValue` containing an `NSPoint` value).
     pub static NSAccessibilityRangeForPositionParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rangeforindex?language=objc)
+    /// The full range of characters (`NSValue` containing an `NSRange` value), including the specified character, which compose a single glyph (`NSNumber`).
     pub static NSAccessibilityRangeForIndexParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/boundsforrange?language=objc)
+    /// The rectangle (`NSValue` containing an `NSRect` value) enclosing the specified range of characters (`NSValue` containing an `NSRange` value). If the range crosses a line boundary, the returned rectangle will fully enclose all the lines of characters.
     pub static NSAccessibilityBoundsForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rtfforrange?language=objc)
+    /// The RTF data (`NSData`) describing the specified range of characters (`NSValue` containing an `NSRange` value).
     pub static NSAccessibilityRTFForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/stylerangeforindex?language=objc)
+    /// The full range of characters (`NSValue` containing an `NSRange` value), including the specified character (`NSNumber`), which have the same style.
     pub static NSAccessibilityStyleRangeForIndexParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/attributedstringforrange?language=objc)
+    /// Does not use attributes from Appkit/AttributedString.h (`NSAttributedString`).
     pub static NSAccessibilityAttributedStringForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfonttextattribute?language=objc)
+    /// Font keys (`NSDictionary`).
     pub static NSAccessibilityFontTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityforegroundcolortextattribute?language=objc)
+    /// Text foreground color (`CGColorRef`).
     pub static NSAccessibilityForegroundColorTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybackgroundcolortextattribute?language=objc)
+    /// Text background color (`CGColorRef`).
     pub static NSAccessibilityBackgroundColorTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunderlinecolortextattribute?language=objc)
+    /// Text underline color (`CGColorRef`).
     pub static NSAccessibilityUnderlineColorTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystrikethroughcolortextattribute?language=objc)
+    /// Text strikethrough color (`CGColorRef`).
     pub static NSAccessibilityStrikethroughColorTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunderlinetextattribute?language=objc)
+    /// Text underline style (`NSNumber`).
     pub static NSAccessibilityUnderlineTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysuperscripttextattribute?language=objc)
+    /// Text superscript style (`NSNumber`). Values > 0 are superscript; values < 0 are subscript.
     pub static NSAccessibilitySuperscriptTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystrikethroughtextattribute?language=objc)
+    /// Text strikethrough (`NSNumber` as a Boolean value).
     pub static NSAccessibilityStrikethroughTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityshadowtextattribute?language=objc)
+    /// Text shadow (`NSNumber` as a Boolean value).
     pub static NSAccessibilityShadowTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityattachmenttextattribute?language=objc)
+    /// Text attachment (`id`).
     pub static NSAccessibilityAttachmentTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylinktextattribute?language=objc)
+    /// Text link (`id`).
     pub static NSAccessibilityLinkTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityautocorrectedtextattribute?language=objc)
+    /// Autocorrected text (`NSNumber` as a Boolean value).
     pub static NSAccessibilityAutocorrectedTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextalignmentattribute?language=objc)
     pub static NSAccessibilityTextAlignmentAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontboldattribute?language=objc)
     pub static NSAccessibilityFontBoldAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontitalicattribute?language=objc)
     pub static NSAccessibilityFontItalicAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/childreninnavigationorderattribute?language=objc)
     pub static NSAccessibilityChildrenInNavigationOrderAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/indexforchilduielementattribute?language=objc)
     pub static NSAccessibilityIndexForChildUIElementAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/indexforchilduielementinnavigationorderattribute?language=objc)
     pub static NSAccessibilityIndexForChildUIElementInNavigationOrderAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylistitemprefixtextattribute?language=objc)
     pub static NSAccessibilityListItemPrefixTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylistitemindextextattribute?language=objc)
     pub static NSAccessibilityListItemIndexTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylistitemleveltextattribute?language=objc)
     pub static NSAccessibilityListItemLevelTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymisspelledtextattribute?language=objc)
+    /// Misspelled text that isn’t necessarily visibly marked as misspelled (`NSNumber` as a Boolean value).
+    ///
+    /// ## Discussion
+    ///
+    /// Beginning in macOS 10.9, VoiceOver no longer checks for this attribute; instead, VoiceOver uses [`NSAccessibilityMarkedMisspelledTextAttribute`](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkedmisspelledtextattribute).
+    ///
+    ///
     pub static NSAccessibilityMisspelledTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkedmisspelledtextattribute?language=objc)
+    /// Misspelled text that is visibly marked as misspelled (`NSNumber` as a Boolean value). If you’re implementing a custom text-editing app, use `NSAccessibilityMarkedMisspelledTextAttribute` to ensure that VoiceOver properly identifies misspelled text to users.
     pub static NSAccessibilityMarkedMisspelledTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylanguagetextattribute?language=objc)
     pub static NSAccessibilityLanguageTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomtextattribute?language=objc)
     pub static NSAccessibilityCustomTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationtextattribute?language=objc)
     pub static NSAccessibilityAnnotationTextAttribute: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextcompletionattribute?language=objc)
     pub static NSAccessibilityTextCompletionAttribute: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey?language=objc)
+/// Keys for annotation attributes.
 // NS_TYPED_ENUM
 pub type NSAccessibilityAnnotationAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/label?language=objc)
+    /// A description of the annotation.
     pub static NSAccessibilityAnnotationLabel: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/element?language=objc)
+    /// The user interface element for the annotation.
     pub static NSAccessibilityAnnotationElement: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/location?language=objc)
+    /// The position where the annotation applies.
     pub static NSAccessibilityAnnotationLocation: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition?language=objc)
+/// Constants that specify the position where the annotation applies.
+///
+/// ## Overview
+///
+/// Use these constants as values for the [`NSAccessibilityAnnotationLocation`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/location) key.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityAnnotationPosition(pub NSInteger);
 impl NSAccessibilityAnnotationPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition/fullrange?language=objc)
     #[doc(alias = "NSAccessibilityAnnotationPositionFullRange")]
     pub const FullRange: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition/start?language=objc)
     #[doc(alias = "NSAccessibilityAnnotationPositionStart")]
     pub const Start: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition/end?language=objc)
     #[doc(alias = "NSAccessibilityAnnotationPositionEnd")]
     pub const End: Self = Self(2);
 }
@@ -612,143 +624,143 @@ unsafe impl RefEncode for NSAccessibilityAnnotationPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey?language=objc)
+/// Keys for font attributes.
 // NS_TYPED_ENUM
 pub type NSAccessibilityFontAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/fontname?language=objc)
+    /// A required key for a font name.
     pub static NSAccessibilityFontNameKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/fontfamily?language=objc)
+    /// An optional key for a font family.
     pub static NSAccessibilityFontFamilyKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/visiblename?language=objc)
+    /// An optional key for font visibility.
     pub static NSAccessibilityVisibleNameKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/fontsize?language=objc)
+    /// A required key for a font size.
     pub static NSAccessibilityFontSizeKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/main?language=objc)
+    /// A flag that indicates whether the window is the main window (`NSNumber`).
     pub static NSAccessibilityMainAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/minimized?language=objc)
+    /// A flag that indicates whether the window is minimized (`NSNumber`).
     pub static NSAccessibilityMinimizedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/closebutton?language=objc)
+    /// The element representing the close button (`id`).
     pub static NSAccessibilityCloseButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/zoombutton?language=objc)
+    /// The element that represents the zoom button (`id`).
     pub static NSAccessibilityZoomButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/minimizebutton?language=objc)
+    /// The element that represents the minimize button (`id`).
     pub static NSAccessibilityMinimizeButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/toolbarbutton?language=objc)
+    /// The element that represents the toolbar button (`id`).
     pub static NSAccessibilityToolbarButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/proxy?language=objc)
+    /// The element that represents the window’s proxy icon (`id`).
     pub static NSAccessibilityProxyAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/growarea?language=objc)
+    /// The element representing the grow area (`id`).
     pub static NSAccessibilityGrowAreaAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/modal?language=objc)
+    /// A flag that indicates whether the window represented by this element is modal (`NSNumber`).
     pub static NSAccessibilityModalAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/defaultbutton?language=objc)
+    /// The element that represents the default button (`id`).
     pub static NSAccessibilityDefaultButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/cancelbutton?language=objc)
+    /// The element that represents the cancel button (`id`).
     pub static NSAccessibilityCancelButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/fullscreenbutton?language=objc)
+    /// The element that represents the full-screen button (`id`).
     pub static NSAccessibilityFullScreenButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/menubar?language=objc)
+    /// The app’s menu bar (`id`).
     pub static NSAccessibilityMenuBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/windows?language=objc)
+    /// The app’s windows (`NSArray`).
     pub static NSAccessibilityWindowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/frontmost?language=objc)
+    /// A flag that indicates whether the app is frontmost (`NSNumber`).
     pub static NSAccessibilityFrontmostAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/hidden?language=objc)
+    /// A flag that indicates whether the app is hidden (`NSNumber`).
     pub static NSAccessibilityHiddenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/mainwindow?language=objc)
+    /// The app’s main window (`id`).
     pub static NSAccessibilityMainWindowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/focusedwindow?language=objc)
+    /// The app’s window that has current focus (`id`).
     pub static NSAccessibilityFocusedWindowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/focuseduielement?language=objc)
+    /// The element with the current focus (`id`).
     pub static NSAccessibilityFocusedUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/extrasmenubar?language=objc)
+    /// The app extras menu bar (`id`).
     pub static NSAccessibilityExtrasMenuBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation?language=objc)
+/// Values that indicate the orientation of accessibility elements, such as scroll bars and split views.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityOrientation(pub NSInteger);
 impl NSAccessibilityOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation/unknown?language=objc)
+    /// The element has unknown orientation.
     #[doc(alias = "NSAccessibilityOrientationUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation/vertical?language=objc)
+    /// The element is oriented vertically.
     #[doc(alias = "NSAccessibilityOrientationVertical")]
     pub const Vertical: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation/horizontal?language=objc)
+    /// The element is oriented horizontally.
     #[doc(alias = "NSAccessibilityOrientationHorizontal")]
     pub const Horizontal: Self = Self(2);
 }
@@ -762,206 +774,242 @@ unsafe impl RefEncode for NSAccessibilityOrientation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/orientation?language=objc)
+    /// The element’s orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value can be [`NSAccessibilityHorizontalOrientationValue`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/horizontal) or [`NSAccessibilityVerticalOrientationValue`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/vertical).
+    ///
+    ///
     pub static NSAccessibilityOrientationAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue?language=objc)
+/// Values that indicate the orientation of user interface elements, such as scroll bars and split views.
 // NS_TYPED_ENUM
 pub type NSAccessibilityOrientationValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/vertical?language=objc)
+    /// The element is oriented vertically.
     pub static NSAccessibilityVerticalOrientationValue: &'static NSAccessibilityOrientationValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/horizontal?language=objc)
+    /// The element is oriented horizontally.
     pub static NSAccessibilityHorizontalOrientationValue: &'static NSAccessibilityOrientationValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/unknown?language=objc)
+    /// The element has unknown orientation.
     pub static NSAccessibilityUnknownOrientationValue: &'static NSAccessibilityOrientationValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columntitles?language=objc)
+    /// The elements that represent the column titles (`NSArray`).
     pub static NSAccessibilityColumnTitlesAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/searchbutton?language=objc)
+    /// The element that represents the search button in a search field (`id`).
     pub static NSAccessibilitySearchButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/searchmenu?language=objc)
+    /// The element that represents the menu in a search field (`id`).
     pub static NSAccessibilitySearchMenuAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/clearbutton?language=objc)
+    /// The element that represents the clear button in a search field (`id`).
     pub static NSAccessibilityClearButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rows?language=objc)
+    /// The table’s rows (`NSArray`).
     pub static NSAccessibilityRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblerows?language=objc)
+    /// The table’s visible rows (`NSArray`).
     pub static NSAccessibilityVisibleRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedrows?language=objc)
+    /// The table’s selected rows (`NSArray`).
     pub static NSAccessibilitySelectedRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columns?language=objc)
+    /// The table’s columns (`NSArray`).
     pub static NSAccessibilityColumnsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblecolumns?language=objc)
+    /// The table’s visible columns (`NSArray`).
     pub static NSAccessibilityVisibleColumnsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedcolumns?language=objc)
+    /// The table’s selected columns (`NSArray`).
     pub static NSAccessibilitySelectedColumnsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sortdirection?language=objc)
+    /// The column’s sort direction (`NSString`).
+    ///
+    /// ## Discussion
+    ///
+    /// See [Column Sort Direction](https://developer.apple.com/documentation/appkit/column-sort-direction) for possible values.
+    ///
+    ///
     pub static NSAccessibilitySortDirectionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedcells?language=objc)
+    /// The table’s selected cells (`NSArray`). This attribute is required for cell-based tables.
     pub static NSAccessibilitySelectedCellsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblecells?language=objc)
+    /// The table’s visible cells (`NSArray`). This attribute is required for cell-based tables.
     pub static NSAccessibilityVisibleCellsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rowheaderuielements?language=objc)
+    /// The table’s row headers (`NSArray`).
     pub static NSAccessibilityRowHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columnheaderuielements?language=objc)
+    /// The table’s column headers (`NSArray`).
     pub static NSAccessibilityColumnHeaderUIElementsAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/cellforcolumnandrow?language=objc)
+    /// The cell at the specified row and column.
+    ///
+    /// ## Discussion
+    ///
+    /// The parameter is an `NSArray` that contains two `NSNumber` objects: the first number specifies the column index and the second number specifies the row index. This attribute is required for cell-based tables.
+    ///
+    ///
     pub static NSAccessibilityCellForColumnAndRowParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rowindexrange?language=objc)
+    /// The row index range of the cell (an `NSValue` instance that contains the row’s starting index and index span in the table).
     pub static NSAccessibilityRowIndexRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columnindexrange?language=objc)
+    /// The column index range of the cell (an `NSValue` instance that contains the row’s starting index and index span in the table).
     pub static NSAccessibilityColumnIndexRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/horizontalunits?language=objc)
+    /// The units that the layout view uses for horizontal values (`NSString`).
+    ///
+    /// ## Discussion
+    ///
+    /// See [Measurement Unit Attributes](https://developer.apple.com/documentation/appkit/measurement-unit-attributes) for possible values.
+    ///
+    ///
     pub static NSAccessibilityHorizontalUnitsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/verticalunits?language=objc)
+    /// The units that the layout view uses for vertical values (`NSString`).
+    ///
+    /// ## Discussion
+    ///
+    /// See [Measurement Unit Attributes](https://developer.apple.com/documentation/appkit/measurement-unit-attributes) for possible values.
+    ///
+    ///
     pub static NSAccessibilityVerticalUnitsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/horizontalunitdescription?language=objc)
+    /// The description of the layout view’s horizontal units (`NSString`).
     pub static NSAccessibilityHorizontalUnitDescriptionAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/verticalunitdescription?language=objc)
+    /// The description of the layout view’s vertical units (`NSString`).
     pub static NSAccessibilityVerticalUnitDescriptionAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/layoutpointforscreenpoint?language=objc)
+    /// The point in the layout area (`NSValue`) corresponding to the specified point on the screen (`NSValue`).
     pub static NSAccessibilityLayoutPointForScreenPointParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/layoutsizeforscreensize?language=objc)
+    /// The size of the layout area in points (`NSValue`) corresponding to the specified screen size (`NSValue`).
     pub static NSAccessibilityLayoutSizeForScreenSizeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/screenpointforlayoutpoint?language=objc)
+    /// The screen point (`NSValue`) corresponding to the specified point in the layout area (`NSValue`).
     pub static NSAccessibilityScreenPointForLayoutPointParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/screensizeforlayoutsize?language=objc)
+    /// The size of the screen in points (`NSValue`) corresponding to the specified size of the layout area (`NSValue`).
     pub static NSAccessibilityScreenSizeForLayoutSizeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/handles?language=objc)
+    /// The drag handles of the item (`NSArray`).
     pub static NSAccessibilityHandlesAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue?language=objc)
+/// Values that indicate the sort direction of a column.
 // NS_TYPED_ENUM
 pub type NSAccessibilitySortDirectionValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue/ascending?language=objc)
+    /// The column is sorted in ascending values.
     pub static NSAccessibilityAscendingSortDirectionValue:
         &'static NSAccessibilitySortDirectionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue/descending?language=objc)
+    /// The column is sorted in descending values.
     pub static NSAccessibilityDescendingSortDirectionValue:
         &'static NSAccessibilitySortDirectionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue/unknown?language=objc)
+    /// The sort direction is unknown.
     pub static NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilitySortDirectionValue;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection?language=objc)
+/// Values that indicate the sort direction of a column.
+///
+/// ## Overview
+///
+/// This constant is used with the [`accessibilitySortDirection`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilitysortdirection) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilitySortDirection(pub NSInteger);
 impl NSAccessibilitySortDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection/unknown?language=objc)
+    /// The sort direction is unknown.
     #[doc(alias = "NSAccessibilitySortDirectionUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection/ascending?language=objc)
+    /// The column is sorted in ascending values.
     #[doc(alias = "NSAccessibilitySortDirectionAscending")]
     pub const Ascending: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection/descending?language=objc)
+    /// The column is sorted in descending values.
     #[doc(alias = "NSAccessibilitySortDirectionDescending")]
     pub const Descending: Self = Self(2);
 }
@@ -975,171 +1023,183 @@ unsafe impl RefEncode for NSAccessibilitySortDirection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosing?language=objc)
+    /// A flag that indicates whether a row is disclosing other rows (`NSNumber`).
     pub static NSAccessibilityDisclosingAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosedrows?language=objc)
+    /// The rows disclosed by this row (`NSArray`).
     pub static NSAccessibilityDisclosedRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosedbyrow?language=objc)
+    /// The row disclosing this row (`id`).
     pub static NSAccessibilityDisclosedByRowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosurelevel?language=objc)
+    /// The indentation level of this row (`NSNumber`).
     pub static NSAccessibilityDisclosureLevelAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/allowedvalues?language=objc)
+    /// The allowed values in the slider (`NSArray`).
     pub static NSAccessibilityAllowedValuesAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/labeluielements?language=objc)
+    /// The elements that represent the slider’s labels (`NSArray`).
     pub static NSAccessibilityLabelUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/labelvalue?language=objc)
+    /// The value of the label represented by this element (`NSNumber`).
     pub static NSAccessibilityLabelValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/mattehole?language=objc)
+    /// The bounds of the matte hole, in screen coordinates in points (`NSValue` containing an `NSRect`).
     #[deprecated]
     pub static NSAccessibilityMatteHoleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/mattecontentuielement?language=objc)
+    /// The element that is clipped by the matte (`id`).
     #[deprecated]
     pub static NSAccessibilityMatteContentUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markeruielements?language=objc)
+    /// An array of marker user interface elements (`NSArray`)
     pub static NSAccessibilityMarkerUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markervalues?language=objc)
+    /// The marker values (`NSArray` of `NSNumber`).
     pub static NSAccessibilityMarkerValuesAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markergroupuielement?language=objc)
+    /// A marker group user interface element (`id`).
     pub static NSAccessibilityMarkerGroupUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/units?language=objc)
+    /// The ruler units (`NSString`).
+    ///
+    /// ## Discussion
+    ///
+    /// See [Measurement Unit Attributes](https://developer.apple.com/documentation/appkit/measurement-unit-attributes) for possible values.
+    ///
+    ///
     pub static NSAccessibilityUnitsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/unitdescription?language=objc)
+    /// The description of ruler units (`NSString`).
     pub static NSAccessibilityUnitDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markertype?language=objc)
+    /// The type of the marker (`NSString`).
+    ///
+    /// ## Discussion
+    ///
+    /// See [Ruler Marker Type Values](https://developer.apple.com/documentation/appkit/ruler-marker-type-values) for possible values.
+    ///
+    ///
     pub static NSAccessibilityMarkerTypeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markertypedescription?language=objc)
+    /// The description of the marker type (`NSString`).
     pub static NSAccessibilityMarkerTypeDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/identifier?language=objc)
+    /// The identity of the element (`NSString`).
     pub static NSAccessibilityIdentifierAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue?language=objc)
+/// Values that describe ruler marker types.
 // NS_TYPED_ENUM
 pub type NSAccessibilityRulerMarkerTypeValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/lefttabstop?language=objc)
+    /// Left tab stop.
     pub static NSAccessibilityLeftTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/righttabstop?language=objc)
+    /// Right tab stop.
     pub static NSAccessibilityRightTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/centertabstop?language=objc)
+    /// Center tab stop.
     pub static NSAccessibilityCenterTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/decimaltabstop?language=objc)
+    /// Decimal tab stop.
     pub static NSAccessibilityDecimalTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/headindent?language=objc)
+    /// Head indent marker.
     pub static NSAccessibilityHeadIndentMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/tailindent?language=objc)
+    /// Tail indent marker.
     pub static NSAccessibilityTailIndentMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/firstlineindent?language=objc)
+    /// First line indent marker.
     pub static NSAccessibilityFirstLineIndentMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/unknown?language=objc)
+    /// Unknown marker type.
     pub static NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype?language=objc)
+/// Values that indicate the marker type of an accessibility element.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityRulerMarkerType(pub NSInteger);
 impl NSAccessibilityRulerMarkerType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/unknown?language=objc)
+    /// Unknown marker type.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopleft?language=objc)
+    /// Left tab stop.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopLeft")]
     pub const TabStopLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopright?language=objc)
+    /// Right tab stop.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopRight")]
     pub const TabStopRight: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopcenter?language=objc)
+    /// Center tab stop.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopCenter")]
     pub const TabStopCenter: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/tabstopdecimal?language=objc)
+    /// Decimal tab stop.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeTabStopDecimal")]
     pub const TabStopDecimal: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/indenthead?language=objc)
+    /// Head indent marker.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentHead")]
     pub const IndentHead: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/indenttail?language=objc)
+    /// Tail indent marker.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentTail")]
     pub const IndentTail: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype/indentfirstline?language=objc)
+    /// First line indent marker.
     #[doc(alias = "NSAccessibilityRulerMarkerTypeIndentFirstLine")]
     pub const IndentFirstLine: Self = Self(7);
 }
@@ -1152,54 +1212,60 @@ unsafe impl RefEncode for NSAccessibilityRulerMarkerType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue?language=objc)
+/// Values that indicate the unit values of a ruler or layout area.
 // NS_TYPED_ENUM
 pub type NSAccessibilityRulerUnitValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/inches?language=objc)
+    /// The units are inches.
     pub static NSAccessibilityInchesUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/centimeters?language=objc)
+    /// The units are centimeters.
     pub static NSAccessibilityCentimetersUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/points?language=objc)
+    /// The units are points.
     pub static NSAccessibilityPointsUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/picas?language=objc)
+    /// The units are picas.
     pub static NSAccessibilityPicasUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/unknown?language=objc)
+    /// The units are unknown.
     pub static NSAccessibilityUnknownUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits?language=objc)
+/// Values that indicate the unit values of a ruler or layout area.
+///
+/// ## Overview
+///
+/// This constant is used with the [`accessibilityHorizontalUnits`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilityhorizontalunits), [`accessibilityVerticalUnits`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilityverticalunits), and [`accessibilityUnits`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilityunits) properties.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityUnits(pub NSInteger);
 impl NSAccessibilityUnits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/unknown?language=objc)
+    /// The units are unknown.
     #[doc(alias = "NSAccessibilityUnitsUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/inches?language=objc)
+    /// The units are inches.
     #[doc(alias = "NSAccessibilityUnitsInches")]
     pub const Inches: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/centimeters?language=objc)
+    /// The units are centimeters.
     #[doc(alias = "NSAccessibilityUnitsCentimeters")]
     pub const Centimeters: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/points?language=objc)
+    /// The units are points.
     #[doc(alias = "NSAccessibilityUnitsPoints")]
     pub const Points: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits/picas?language=objc)
+    /// The units are picas.
     #[doc(alias = "NSAccessibilityUnitsPicas")]
     pub const Picas: Self = Self(4);
 }
@@ -1212,804 +1278,810 @@ unsafe impl RefEncode for NSAccessibilityUnits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action?language=objc)
+/// Constants that describe types of actions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAccessibilityActionName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/press?language=objc)
+    /// An action that simulates clicking an object, such as a button.
     pub static NSAccessibilityPressAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/increment?language=objc)
+    /// An action that increments the value of the object.
     pub static NSAccessibilityIncrementAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/decrement?language=objc)
+    /// An action that decrements the value of the object.
     pub static NSAccessibilityDecrementAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/confirm?language=objc)
+    /// An action that simulates pressing Return in the object, such as a text field.
     pub static NSAccessibilityConfirmAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/pick?language=objc)
+    /// An action that selects the object, such as a menu item.
     pub static NSAccessibilityPickAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/cancel?language=objc)
+    /// An action that cancels the operation.
     pub static NSAccessibilityCancelAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/raise?language=objc)
+    /// An action that simulates bringing a window forward by clicking on its title bar.
     pub static NSAccessibilityRaiseAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/showmenu?language=objc)
+    /// An action that simulates showing a menu by clicking on it.
     pub static NSAccessibilityShowMenuAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/delete?language=objc)
+    /// An action that deletes the value of the object.
     pub static NSAccessibilityDeleteAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/scrolltovisibleaction?language=objc)
     pub static NSAccessibilityScrollToVisibleAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/showalternateui?language=objc)
+    /// An action that shows an alternate UI, for example, during a mouse-hover event.
     pub static NSAccessibilityShowAlternateUIAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/showdefaultui?language=objc)
+    /// An action that shows the original or default UI; for example, during a mouse-hover event.
     pub static NSAccessibilityShowDefaultUIAction: &'static NSAccessibilityActionName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification?language=objc)
+/// The name of the notification.
 // NS_TYPED_ENUM
 pub type NSAccessibilityNotificationName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/mainwindowchanged?language=objc)
+    /// This notification is posted after the main window changes. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityMainWindowChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/focusedwindowchanged?language=objc)
+    /// This notification is posted after the key window changes. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityFocusedWindowChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/focuseduielementchanged?language=objc)
+    /// This notification is posted after an accessibility element gains focus. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityFocusedUIElementChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationactivated?language=objc)
+    /// This notification is posted after the app has been activated. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityApplicationActivatedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationdeactivated?language=objc)
+    /// This notification is posted after the app has been deactivated.  Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityApplicationDeactivatedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationhidden?language=objc)
+    /// This notification is posted after the app is hidden. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityApplicationHiddenNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationshown?language=objc)
+    /// This notification is posted after the app is shown. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityApplicationShownNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowcreated?language=objc)
+    /// This notification is posted after a new window appears. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityWindowCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowmoved?language=objc)
+    /// This notification is posted after a window moves.  Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityWindowMovedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowresized?language=objc)
+    /// This notification is posted after a window’s size changes. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityWindowResizedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowminiaturized?language=objc)
+    /// This notification is posted after a window is put in the Dock. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityWindowMiniaturizedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowdeminiaturized?language=objc)
+    /// This notification is posted after a window is restored to full size from the Dock.  Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityWindowDeminiaturizedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/drawercreated?language=objc)
+    /// This notification is posted after a drawer appears. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityDrawerCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/sheetcreated?language=objc)
+    /// This notification is posted after a sheet appears.  Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySheetCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/uielementdestroyed?language=objc)
+    /// This notification is posted after an accessibility element is destroyed. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityUIElementDestroyedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/valuechanged?language=objc)
+    /// This notification is posted after an accessibility element’s value changes. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityValueChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/titlechanged?language=objc)
+    /// This notification is posted after an accessibility element’s title changes. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityTitleChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/resized?language=objc)
+    /// This notification is posted after an accessibility element’s size changes. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityResizedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/moved?language=objc)
+    /// This notification is posted after an accessibility element moves. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityMovedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/created?language=objc)
+    /// This notification is posted after an accessibility element is created. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/layoutchanged?language=objc)
+    /// This notification is posted after the UI changes in a way that requires the attention of an accessibility client. This notification should be accompanied by a `userInfo` dictionary with the key [`NSAccessibilityUIElementsKey`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/uielements) and an array containing the UI elements that have been added or changed. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityLayoutChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/helptagcreated?language=objc)
+    /// This notification is posted after a help tag appears. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityHelpTagCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedtextchanged?language=objc)
+    /// This notification is posted after text is selected or deselected.  Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySelectedTextChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/rowcountchanged?language=objc)
+    /// This notification is posted after a row is added or deleted. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityRowCountChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedchildrenchanged?language=objc)
+    /// This notification is posted after one or more child elements are selected or deselected. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySelectedChildrenChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedrowschanged?language=objc)
+    /// This notification is posted after one or more rows are selected or deselected. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySelectedRowsChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedcolumnschanged?language=objc)
+    /// This notification is posted after one or more columns are selected or deselected. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySelectedColumnsChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/rowexpanded?language=objc)
+    /// This notification is posted after a row expands. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityRowExpandedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/rowcollapsed?language=objc)
+    /// This notification is posted after a row collapses. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityRowCollapsedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilityautocorrectionoccurred?language=objc)
     pub static NSAccessibilityAutocorrectionOccurredNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitytextinputmarkingsessionbegan?language=objc)
     pub static NSAccessibilityTextInputMarkingSessionBeganNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitytextinputmarkingsessionended?language=objc)
     pub static NSAccessibilityTextInputMarkingSessionEndedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingsourcedragbegan?language=objc)
     pub static NSAccessibilityDraggingSourceDragBeganNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingsourcedragended?language=objc)
     pub static NSAccessibilityDraggingSourceDragEndedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdropallowed?language=objc)
     pub static NSAccessibilityDraggingDestinationDropAllowedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdropnotallowed?language=objc)
     pub static NSAccessibilityDraggingDestinationDropNotAllowedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdragaccepted?language=objc)
     pub static NSAccessibilityDraggingDestinationDragAcceptedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdragnotaccepted?language=objc)
     pub static NSAccessibilityDraggingDestinationDragNotAcceptedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedcellschanged?language=objc)
+    /// This notification is posted after one or more cells in a cell-based table are selected or deselected. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySelectedCellsChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/unitschanged?language=objc)
+    /// This notification is posted after the units in a layout area change. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilityUnitsChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedchildrenmoved?language=objc)
+    /// This notification is posted after the selected items in a layout area move. Post this notification using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) function instead of an `NSNotificationCenter` instance.
     pub static NSAccessibilitySelectedChildrenMovedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/announcementrequested?language=objc)
+    /// This notification is posted whenever an accessibility element needs to make an announcement to the user. This notification requires a `userInfo` dictionary with the key [`NSAccessibilityAnnouncementKey`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/announcement) and a localized string containing the announcement. To help an assistive app determine the importance of the announcement, add the appropriate [`NSAccessibilityPriorityKey`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/priority) to the `userInfo` dictionary.
     pub static NSAccessibilityAnnouncementRequestedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role?language=objc)
+/// Values that describe types of objects that accessibility elements represent.
 // NS_TYPED_ENUM
 pub type NSAccessibilityRole = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/unknown?language=objc)
+    /// An object with an unknown role.
     pub static NSAccessibilityUnknownRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/button?language=objc)
+    /// The button role.
     pub static NSAccessibilityButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/radiobutton?language=objc)
+    /// The radio button role.
     pub static NSAccessibilityRadioButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/checkbox?language=objc)
+    /// The checkbox role.
     pub static NSAccessibilityCheckBoxRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/slider?language=objc)
+    /// The slider role.
     pub static NSAccessibilitySliderRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/tabgroup?language=objc)
+    /// The tab group role.
     pub static NSAccessibilityTabGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/textfield?language=objc)
+    /// The text field role.
     pub static NSAccessibilityTextFieldRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/statictext?language=objc)
+    /// The uneditable text role.
     pub static NSAccessibilityStaticTextRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/textarea?language=objc)
+    /// The text view role.
     pub static NSAccessibilityTextAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/scrollarea?language=objc)
+    /// The scroll view role.
     pub static NSAccessibilityScrollAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/popupbutton?language=objc)
+    /// The pop-up button role.
     pub static NSAccessibilityPopUpButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menubutton?language=objc)
+    /// The menu button role.
     pub static NSAccessibilityMenuButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/table?language=objc)
+    /// The table role.
     pub static NSAccessibilityTableRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/application?language=objc)
+    /// The app role.
     pub static NSAccessibilityApplicationRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/group?language=objc)
+    /// The group role.
     pub static NSAccessibilityGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/radiogroup?language=objc)
+    /// The radio button group role.
     pub static NSAccessibilityRadioGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/list?language=objc)
+    /// The list role.
     pub static NSAccessibilityListRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/scrollbar?language=objc)
+    /// The scroll bar role.
     pub static NSAccessibilityScrollBarRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/valueindicator?language=objc)
+    /// The value indicator role.
     pub static NSAccessibilityValueIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/image?language=objc)
+    /// The image role.
     pub static NSAccessibilityImageRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menubar?language=objc)
+    /// The menu bar role.
     pub static NSAccessibilityMenuBarRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menubaritem?language=objc)
+    /// The menu bar item role.
     pub static NSAccessibilityMenuBarItemRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menu?language=objc)
+    /// The menu role.
     pub static NSAccessibilityMenuRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menuitem?language=objc)
+    /// The menu item role.
     pub static NSAccessibilityMenuItemRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/column?language=objc)
+    /// The column role.
     pub static NSAccessibilityColumnRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/row?language=objc)
+    /// The row role.
     pub static NSAccessibilityRowRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/toolbar?language=objc)
+    /// The toolbar role.
     pub static NSAccessibilityToolbarRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/busyindicator?language=objc)
+    /// The busy indicator role.
     pub static NSAccessibilityBusyIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/progressindicator?language=objc)
+    /// The progress indicator role.
     pub static NSAccessibilityProgressIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/window?language=objc)
+    /// The window role.
     pub static NSAccessibilityWindowRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/drawer?language=objc)
+    /// The drawer role.
     pub static NSAccessibilityDrawerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/systemwide?language=objc)
+    /// The systemwide accessibility object role.
     pub static NSAccessibilitySystemWideRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/outline?language=objc)
+    /// The outline role.
     pub static NSAccessibilityOutlineRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/incrementor?language=objc)
+    /// The stepper role.
     pub static NSAccessibilityIncrementorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/browser?language=objc)
+    /// The browser role.
     pub static NSAccessibilityBrowserRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/combobox?language=objc)
+    /// The combo box role.
     pub static NSAccessibilityComboBoxRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/splitgroup?language=objc)
+    /// The split view role.
     pub static NSAccessibilitySplitGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/splitter?language=objc)
+    /// The splitter bar role for a split view.
     pub static NSAccessibilitySplitterRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/colorwell?language=objc)
+    /// The color well role.
     pub static NSAccessibilityColorWellRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/growarea?language=objc)
+    /// The grow (resize) area role in a window.
     pub static NSAccessibilityGrowAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/sheet?language=objc)
+    /// The sheet role.
     pub static NSAccessibilitySheetRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/helptag?language=objc)
+    /// The help tag role.
     pub static NSAccessibilityHelpTagRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/matte?language=objc)
+    /// The matte role.
     pub static NSAccessibilityMatteRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/ruler?language=objc)
+    /// The ruler role.
     pub static NSAccessibilityRulerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/rulermarker?language=objc)
+    /// The ruler marker role.
     pub static NSAccessibilityRulerMarkerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/link?language=objc)
+    /// The link role.
     pub static NSAccessibilityLinkRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/disclosuretriangle?language=objc)
+    /// The disclosure triangle role.
     pub static NSAccessibilityDisclosureTriangleRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/grid?language=objc)
+    /// The grid role.
     pub static NSAccessibilityGridRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/relevanceindicator?language=objc)
+    /// The relevance indicator role.
     pub static NSAccessibilityRelevanceIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/datetimearearole?language=objc)
     pub static NSAccessibilityDateTimeAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/levelindicator?language=objc)
+    /// The level indicator role.
     pub static NSAccessibilityLevelIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/cell?language=objc)
+    /// The cell role in a table or matrix.
     pub static NSAccessibilityCellRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/popover?language=objc)
+    /// The popover role.
     pub static NSAccessibilityPopoverRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/pagerole?language=objc)
+    /// The page role.
     pub static NSAccessibilityPageRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/headingrole?language=objc)
     pub static NSAccessibilityHeadingRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/listmarkerrole?language=objc)
     pub static NSAccessibilityListMarkerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/webarearole?language=objc)
     pub static NSAccessibilityWebAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/layoutarea?language=objc)
+    /// The layout area role (a view, such as a graphic view, that contains visual elements that may not have any accessibility representation).
     pub static NSAccessibilityLayoutAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/layoutitem?language=objc)
+    /// The role for an item in a layout area.
     pub static NSAccessibilityLayoutItemRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/handle?language=objc)
+    /// The drag handle role.
     pub static NSAccessibilityHandleRole: &'static NSAccessibilityRole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole?language=objc)
+/// Values that describe specialized object subtypes that accessibility elements represent.
 // NS_TYPED_ENUM
 pub type NSAccessibilitySubrole = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/unknown?language=objc)
+    /// An unknown subrole.
     pub static NSAccessibilityUnknownSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/closebutton?language=objc)
+    /// A window’s close button subrole.
     pub static NSAccessibilityCloseButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/zoombutton?language=objc)
+    /// A window’s zoom button subrole.
     pub static NSAccessibilityZoomButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/minimizebutton?language=objc)
+    /// A window’s minimize button subrole.
     pub static NSAccessibilityMinimizeButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/toolbarbutton?language=objc)
+    /// A window’s toolbar button subrole.
     pub static NSAccessibilityToolbarButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/tablerow?language=objc)
+    /// A table row subrole.
     pub static NSAccessibilityTableRowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/outlinerow?language=objc)
+    /// An outline row subrole.
     pub static NSAccessibilityOutlineRowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/securetextfield?language=objc)
+    /// A secure text field subrole.
     pub static NSAccessibilitySecureTextFieldSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/standardwindow?language=objc)
+    /// A standard window subrole.
     pub static NSAccessibilityStandardWindowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/dialog?language=objc)
+    /// A dialog subrole.
     pub static NSAccessibilityDialogSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/systemdialog?language=objc)
+    /// A system dialog subrole (a system-generated dialog that floats on the top layer, regardless of which app is frontmost).
     pub static NSAccessibilitySystemDialogSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/floatingwindow?language=objc)
+    /// A floating window subrole.
     pub static NSAccessibilityFloatingWindowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/systemfloatingwindow?language=objc)
+    /// A system floating window subrole (a system-generated panel).
     pub static NSAccessibilitySystemFloatingWindowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/incrementarrow?language=objc)
+    /// An increment arrow subrole (the up arrow in a scroll bar).
     pub static NSAccessibilityIncrementArrowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/decrementarrow?language=objc)
+    /// A decrement arrow subrole (the down arrow in a scroll bar).
     pub static NSAccessibilityDecrementArrowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/incrementpage?language=objc)
+    /// An increment page subrole (the increment area in the scroll track of a scroll bar).
     pub static NSAccessibilityIncrementPageSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/decrementpage?language=objc)
+    /// A decrement page subrole (the decrement area in the scroll track of a scroll bar).
     pub static NSAccessibilityDecrementPageSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/searchfield?language=objc)
+    /// A search field subrole.
     pub static NSAccessibilitySearchFieldSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/textattachment?language=objc)
+    /// A text attachment subrole.
     pub static NSAccessibilityTextAttachmentSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/textlink?language=objc)
+    /// A text link subrole.
     pub static NSAccessibilityTextLinkSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/timeline?language=objc)
+    /// A timeline subrole.
     pub static NSAccessibilityTimelineSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/sortbutton?language=objc)
+    /// A sort button subrole for a table or outline view.
     pub static NSAccessibilitySortButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/ratingindicator?language=objc)
+    /// A rating indicator subrole.
     pub static NSAccessibilityRatingIndicatorSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/contentlist?language=objc)
+    /// A subrole for content that is organized in a list, but is not in a list control or table view.
     pub static NSAccessibilityContentListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/definitionlist?language=objc)
+    /// A subrole for a content list in a webpage.
     pub static NSAccessibilityDefinitionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/fullscreenbutton?language=objc)
+    /// A window’s full-screen button subrole.
     pub static NSAccessibilityFullScreenButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/toggle?language=objc)
+    /// A toggle subrole.
     pub static NSAccessibilityToggleSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/switch?language=objc)
+    /// A switch subrole.
     pub static NSAccessibilitySwitchSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/descriptionlist?language=objc)
+    /// A description list subrole.
     pub static NSAccessibilityDescriptionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/tabbuttonsubrole?language=objc)
     pub static NSAccessibilityTabButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/collectionlistsubrole?language=objc)
     pub static NSAccessibilityCollectionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/sectionlistsubrole?language=objc)
     pub static NSAccessibilitySectionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/suggestionsubrole?language=objc)
     pub static NSAccessibilitySuggestionSubrole: &'static NSAccessibilitySubrole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey?language=objc)
+/// The key in the user info dictionary for a notification.
 // NS_TYPED_ENUM
 pub type NSAccessibilityNotificationUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/uielements?language=objc)
+    /// An array of elements for the notification.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an array of accessibility elements for the notification. For example, in the [`NSAccessibilityLayoutChangedNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/layoutchanged) notification, use this key to include an array of elements that you add or change.
+    ///
+    ///
     pub static NSAccessibilityUIElementsKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/priority?language=objc)
+    /// A priority level that can help an assistive app determine how to handle the corresponding notification.
+    ///
+    /// ## Discussion
+    ///
+    /// An example of using this key is VoiceOver which decides whether to speak an announcement immediately or after the current speech has finished. For a list of possible values, see [`NSAccessibilityPriorityLevel`](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel).
+    ///
+    ///
     pub static NSAccessibilityPriorityKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/announcement?language=objc)
+    /// The announcement as a localized string.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is required for [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) and should be used in conjunction with [`NSAccessibilityPriorityKey`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/priority) to help assistive apps determine the importance of the announcement.
+    ///
+    ///
     pub static NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:userinfo:)?language=objc)
+    /// Sends a notification and an optional user info dictionary to any observing assistive apps.
+    ///
+    /// ## Discussion
+    ///
+    /// Sends `notification` and `userInfo` to any assistive apps that register to receive the notification from the UI object `element` in your app. The system restricts the `userInfo` dictionary values to the same values as it restricts the accessibility attributes. The `userInfo` dictionary can also be `nil` (most accessibility notifications don’t require it).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2022,19 +2094,25 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel?language=objc)
+/// A data type for notification priority levels.
+///
+/// ## Overview
+///
+/// Use these priority levels as values for the [`NSAccessibilityPriorityKey`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/priority) key.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAccessibilityPriorityLevel(pub NSInteger);
 impl NSAccessibilityPriorityLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel/low?language=objc)
+    /// The notification is a low priority.
     #[doc(alias = "NSAccessibilityPriorityLow")]
     pub const Low: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel/medium?language=objc)
+    /// The notification is a medium priority.
     #[doc(alias = "NSAccessibilityPriorityMedium")]
     pub const Medium: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritylevel/high?language=objc)
+    /// The notification is a high priority.
     #[doc(alias = "NSAccessibilityPriorityHigh")]
     pub const High: Self = Self(90);
 }
@@ -2047,309 +2125,247 @@ unsafe impl RefEncode for NSAccessibilityPriorityLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityloadingtoken?language=objc)
+/// A token type for loading accessibility elements.
 pub type NSAccessibilityLoadingToken = AnyObject;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/uielementsforsearchpredicateparameterizedattribute?language=objc)
     pub static NSAccessibilityUIElementsForSearchPredicateParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/resultsforsearchpredicateparameterizedattribute?language=objc)
     pub static NSAccessibilityResultsForSearchPredicateParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchidentifierskey?language=objc)
     pub static NSAccessibilitySearchIdentifiersKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchcurrentelementkey?language=objc)
     pub static NSAccessibilitySearchCurrentElementKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchcurrentrangekey?language=objc)
     pub static NSAccessibilitySearchCurrentRangeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchdirectionkey?language=objc)
     pub static NSAccessibilitySearchDirectionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchresultslimitkey?language=objc)
     pub static NSAccessibilitySearchResultsLimitKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchtextkey?language=objc)
     pub static NSAccessibilitySearchTextKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchdirectionnext?language=objc)
     pub static NSAccessibilitySearchDirectionNext: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchdirectionprevious?language=objc)
     pub static NSAccessibilitySearchDirectionPrevious: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchresultelementkey?language=objc)
     pub static NSAccessibilitySearchResultElementKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchresultrangekey?language=objc)
     pub static NSAccessibilitySearchResultRangeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchresultdescriptionoverridekey?language=objc)
     pub static NSAccessibilitySearchResultDescriptionOverrideKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchresultloaderkey?language=objc)
     pub static NSAccessibilitySearchResultLoaderKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilitySearchKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/anytypesearchkey?language=objc)
     pub static NSAccessibilityAnyTypeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/articlesearchkey?language=objc)
     pub static NSAccessibilityArticleSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/blockquotesamelevelsearchkey?language=objc)
     pub static NSAccessibilityBlockquoteSameLevelSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/blockquotesearchkey?language=objc)
     pub static NSAccessibilityBlockquoteSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/boldfontsearchkey?language=objc)
     pub static NSAccessibilityBoldFontSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/buttonsearchkey?language=objc)
     pub static NSAccessibilityButtonSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/checkboxsearchkey?language=objc)
     pub static NSAccessibilityCheckBoxSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/controlsearchkey?language=objc)
     pub static NSAccessibilityControlSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/differenttypesearchkey?language=objc)
     pub static NSAccessibilityDifferentTypeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/fontchangesearchkey?language=objc)
     pub static NSAccessibilityFontChangeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/fontcolorchangesearchkey?language=objc)
     pub static NSAccessibilityFontColorChangeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/framesearchkey?language=objc)
     pub static NSAccessibilityFrameSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/graphicsearchkey?language=objc)
     pub static NSAccessibilityGraphicSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel1searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel1SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel2searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel2SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel3searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel3SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel4searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel4SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel5searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel5SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel6searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel6SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headingsamelevelsearchkey?language=objc)
     pub static NSAccessibilityHeadingSameLevelSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headingsearchkey?language=objc)
     pub static NSAccessibilityHeadingSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/italicfontsearchkey?language=objc)
     pub static NSAccessibilityItalicFontSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/keyboardfocusablesearchkey?language=objc)
     pub static NSAccessibilityKeyboardFocusableSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/landmarksearchkey?language=objc)
     pub static NSAccessibilityLandmarkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/linksearchkey?language=objc)
     pub static NSAccessibilityLinkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/listsearchkey?language=objc)
     pub static NSAccessibilityListSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/liveregionsearchkey?language=objc)
     pub static NSAccessibilityLiveRegionSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/misspelledwordsearchkey?language=objc)
     pub static NSAccessibilityMisspelledWordSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/outlinesearchkey?language=objc)
     pub static NSAccessibilityOutlineSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/plaintextsearchkey?language=objc)
     pub static NSAccessibilityPlainTextSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/radiogroupsearchkey?language=objc)
     pub static NSAccessibilityRadioGroupSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/sametypesearchkey?language=objc)
     pub static NSAccessibilitySameTypeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/statictextsearchkey?language=objc)
     pub static NSAccessibilityStaticTextSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/stylechangesearchkey?language=objc)
     pub static NSAccessibilityStyleChangeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/tablesamelevelsearchkey?language=objc)
     pub static NSAccessibilityTableSameLevelSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/tablesearchkey?language=objc)
     pub static NSAccessibilityTableSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/textfieldsearchkey?language=objc)
     pub static NSAccessibilityTextFieldSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/textstatechangetypekey?language=objc)
     pub static NSAccessibilityTextStateChangeTypeKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/textstatesynckey?language=objc)
     pub static NSAccessibilityTextStateSyncKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/underlinesearchkey?language=objc)
     pub static NSAccessibilityUnderlineSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/unvisitedlinksearchkey?language=objc)
     pub static NSAccessibilityUnvisitedLinkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/visitedlinksearchkey?language=objc)
     pub static NSAccessibilityVisitedLinkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydatetimecomponentsflags?language=objc)
 pub type NSAccessibilityDateTimeComponentsFlags = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhourminutedatetimecomponentsflag?language=objc)
 pub const NSAccessibilityHourMinuteDateTimeComponentsFlag: c_uint = 0x000c;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhourminuteseconddatetimecomponentsflag?language=objc)
 pub const NSAccessibilityHourMinuteSecondDateTimeComponentsFlag: c_uint = 0x000e;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityyearmonthdatetimecomponentsflag?language=objc)
 pub const NSAccessibilityYearMonthDateTimeComponentsFlag: c_uint = 0x00c0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityyearmonthdaydatetimecomponentsflag?language=objc)
 pub const NSAccessibilityYearMonthDayDateTimeComponentsFlag: c_uint = 0x00e0;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortbuttonrole?language=objc)
+    /// The sort button role.
     #[deprecated]
     pub static NSAccessibilitySortButtonRole: &'static NSAccessibilityRole;
 }

@@ -6,7 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdefaultmalloczone?language=objc)
+/// Returns the default zone.
+///
+/// ## Return Value
+///
+/// The default zone, which is created automatically at startup.
+///
+///
+///
+/// ## Discussion
+///
+/// This zone is used by the standard C function `malloc`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
     extern "C-unwind" {
@@ -16,7 +28,13 @@ pub extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatezone?language=objc)
+/// Creates a new zone.
+///
+/// ## Return Value
+///
+/// A pointer to a new zone of `startSize` bytes, which will grow and shrink by `granularity` bytes. If `canFree` is 0, the allocator will never free memory, and `malloc` will be fast. Returns `NULL` if a new zone could not be created.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSCreateZone(
     start_size: NSUInteger,
@@ -35,7 +53,13 @@ pub extern "C-unwind" fn NSCreateZone(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecyclezone?language=objc)
+    /// Frees memory in a zone.
+    ///
+    /// ## Discussion
+    ///
+    /// Frees `zone` after adding any of its pointers still in use to the default zone. (This strategy prevents retained objects from being inadvertently destroyed.)
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -44,7 +68,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssetzonename?language=objc)
+    /// Sets the name of the specified zone.
+    ///
+    /// ## Discussion
+    ///
+    /// Sets the name of `zone` to `name`, which can aid in debugging.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -53,7 +83,13 @@ extern "C-unwind" {
     pub fn NSSetZoneName(zone: *mut NSZone, name: &NSString);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonename?language=objc)
+/// Returns the name of the specified zone.
+///
+/// ## Return Value
+///
+/// A string containing the name associated with `zone`. If `zone` is `nil`, the default zone is used. If no name is associated with `zone`, the returned string is empty.
+///
+///
 ///
 /// # Safety
 ///
@@ -70,7 +106,19 @@ pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSStri
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonefrompointer?language=objc)
+    /// Gets the zone for a given block of memory.
+    ///
+    /// ## Return Value
+    ///
+    /// The zone for the block of memory indicated by `pointer`, or `NULL` if the block was not allocated from a zone.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `pointer` must be one that was returned by a prior call to an allocation function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -78,7 +126,13 @@ extern "C-unwind" {
     pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonemalloc?language=objc)
+/// Allocates memory in a zone.
+///
+/// ## Discussion
+///
+/// Allocates `size` bytes in `zone` and returns a pointer to the allocated memory. This function returns `NULL` if it was unable to allocate the requested memory.
+///
+///
 ///
 /// # Safety
 ///
@@ -95,7 +149,13 @@ pub unsafe extern "C-unwind" fn NSZoneMalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonecalloc?language=objc)
+/// Allocates memory in a zone.
+///
+/// ## Discussion
+///
+/// Allocates enough memory from `zone` for `numElems` elements, each with a size `numBytes` bytes, and returns a pointer to the allocated memory. The memory is initialized with zeros. This function returns `NULL` if it was unable to allocate the requested memory.
+///
+///
 ///
 /// # Safety
 ///
@@ -117,7 +177,13 @@ pub unsafe extern "C-unwind" fn NSZoneCalloc(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonerealloc?language=objc)
+/// Allocates memory in a zone.
+///
+/// ## Discussion
+///
+/// Changes the size of the block of memory pointed to by `ptr` to `size` bytes. It may allocate new memory to replace the old, in which case it moves the contents of the old memory block to the new block, up to a maximum of `size` bytes. `ptr` may be `NULL`. This function returns `NULL` if it was unable to allocate the requested memory.
+///
+///
 ///
 /// # Safety
 ///
@@ -141,7 +207,13 @@ pub unsafe extern "C-unwind" fn NSZoneRealloc(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszonefree?language=objc)
+    /// Deallocates a block of memory in the specified zone.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns memory to the `zone` from which it was allocated. The standard C function `free` does the same, but spends time finding which zone the memory belongs to.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -150,12 +222,24 @@ extern "C-unwind" {
     pub fn NSZoneFree(zone: *mut NSZone, ptr: NonNull<c_void>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscannedoption?language=objc)
+/// Specifies allocation of scanned memory.
 pub const NSScannedOption: NSUInteger = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectordisabledoption?language=objc)
+/// Specifies that the block is retained, and therefore ineligible for collection. Specifying this option is equivalent to invoking [`disableCollectorForPointer:`](https://developer.apple.com/documentation/foundation/nsgarbagecollector/disablecollectorforpointer:) with the returned block as the argument.
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallocatecollectable?language=objc)
+/// Allocates collectable memory.
+///
+/// Parameters:
+/// - size: The number of bytes of memory to allocate.
+///
+/// - options: `0` or `NSScannedOption`: A value of `0` allocates non-scanned memory; a value of `NSScannedOption` allocates scanned memory.
+///
+///
+/// ## Return Value
+///
+/// A pointer to the allocated memory, or `NULL` if the function is unable to allocate the requested memory.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSAllocateCollectable(
     size: NSUInteger,
@@ -168,7 +252,17 @@ pub extern "C-unwind" fn NSAllocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreallocatecollectable?language=objc)
+/// Reallocates collectable memory.
+///
+/// ## Discussion
+///
+/// Changes the size of the block of memory pointed to by `ptr` to `size` bytes. It may allocate new memory to replace the old, in which case it moves the contents of the old memory block to the new block, up to a maximum of `size` bytes.
+///
+/// `options` can be `0` or `NSScannedOption`: A value of `0` allocates non-scanned memory; a value of `NSScannedOption` allocates scanned memory.
+///
+/// This function returns `NULL` if it’s unable to allocate the requested memory.
+///
+///
 ///
 /// # Safety
 ///
@@ -190,7 +284,13 @@ pub unsafe extern "C-unwind" fn NSReallocateCollectable(
     ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspagesize()?language=objc)
+/// Returns the number of bytes in a page.
+///
+/// ## Return Value
+///
+/// The number of bytes in a page.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSPageSize() -> NSUInteger {
     extern "C-unwind" {
@@ -199,7 +299,13 @@ pub extern "C-unwind" fn NSPageSize() -> NSUInteger {
     unsafe { NSPageSize() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslogpagesize()?language=objc)
+/// Returns the binary log of the page size.
+///
+/// ## Return Value
+///
+/// The binary log of the page size.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSLogPageSize() -> NSUInteger {
     extern "C-unwind" {
@@ -208,7 +314,13 @@ pub extern "C-unwind" fn NSLogPageSize() -> NSUInteger {
     unsafe { NSLogPageSize() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrounduptomultipleofpagesize(_:)?language=objc)
+/// Returns the specified number of bytes rounded up to a multiple of the page size.
+///
+/// ## Return Value
+///
+/// In bytes, the multiple of the page size that is closest to, but not less than, `byteCount` (that is, the number of bytes rounded up to a multiple of the page size).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     extern "C-unwind" {
@@ -217,7 +329,13 @@ pub extern "C-unwind" fn NSRoundUpToMultipleOfPageSize(bytes: NSUInteger) -> NSU
     unsafe { NSRoundUpToMultipleOfPageSize(bytes) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrounddowntomultipleofpagesize(_:)?language=objc)
+/// Returns the specified number of bytes rounded down to a multiple of the page size.
+///
+/// ## Return Value
+///
+/// In bytes, the multiple of the page size that is closest to, but not greater than, `byteCount` (that is, the number of bytes rounded down to a multiple of the page size).
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger {
     extern "C-unwind" {
@@ -226,7 +344,13 @@ pub extern "C-unwind" fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> N
     unsafe { NSRoundDownToMultipleOfPageSize(bytes) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallocatememorypages(_:)?language=objc)
+/// Allocates a new block of memory.
+///
+/// ## Discussion
+///
+/// Allocates the integral number of pages whose total size is closest to, but not less than, `byteCount`. The allocated pages are guaranteed to be filled with zeros. If the allocation fails, raises `NSInvalidArgumentException`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
     extern "C-unwind" {
@@ -237,7 +361,13 @@ pub extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_v
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocatememorypages(_:_:)?language=objc)
+    /// Deallocates the specified block of memory.
+    ///
+    /// ## Discussion
+    ///
+    /// This function deallocates memory that was allocated with `NSAllocateMemoryPages`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -246,7 +376,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopymemorypages(_:_:_:)?language=objc)
+    /// Copies a block of memory.
+    ///
+    /// ## Discussion
+    ///
+    /// Copies (or copies on write) `byteCount` bytes from `source` to `destination`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -255,7 +391,13 @@ extern "C-unwind" {
     pub fn NSCopyMemoryPages(source: NonNull<c_void>, dest: NonNull<c_void>, bytes: NSUInteger);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrealmemoryavailable()?language=objc)
+/// Returns information about the user’s system.
+///
+/// ## Return Value
+///
+/// The number of bytes available in RAM.
+///
+///
 #[deprecated = "Use NSProcessInfo instead"]
 #[inline]
 pub extern "C-unwind" fn NSRealMemoryAvailable() -> NSUInteger {

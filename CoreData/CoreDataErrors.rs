@@ -7,145 +7,181 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdetailederrorskey?language=objc)
+    /// If multiple validation errors occur in one operation, they are collected in an array and added with this key to the “top-level error” of the operation.
     pub static NSDetailedErrorsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationobjecterrorkey?language=objc)
+    /// The error key for the object that failed to validate.
     pub static NSValidationObjectErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationkeyerrorkey?language=objc)
+    /// The error key for the attribute that failed to validate.
     pub static NSValidationKeyErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationpredicateerrorkey?language=objc)
+    /// The error key for the predicate that failed to validate.
     pub static NSValidationPredicateErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationvalueerrorkey?language=objc)
+    /// The error key for the value that failed to validate.
     pub static NSValidationValueErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsaffectedstoreserrorkey?language=objc)
+    /// The key for stores prompting an error.
     pub static NSAffectedStoresErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsaffectedobjectserrorkey?language=objc)
+    /// The key for objects prompting an error.
     pub static NSAffectedObjectsErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoresaveconflictserrorkey?language=objc)
+    /// The key for the array of merge conflict objects (instances of [`NSMergeConflict`](https://developer.apple.com/documentation/coredata/nsmergeconflict)).
     pub static NSPersistentStoreSaveConflictsErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqliteerrordomain?language=objc)
+    /// Domain for SQLite errors.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of “code” corresponds to preexisting values in SQLite.
+    ///
+    ///
     pub static NSSQLiteErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectvalidationerror?language=objc)
+/// Error code to denote a generic validation error.
 pub const NSManagedObjectValidationError: NSInteger = 1550;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectconstraintvalidationerror?language=objc)
+/// Error code to denote a problem with the validation of a managed object.
 pub const NSManagedObjectConstraintValidationError: NSInteger = 1551;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationmultipleerrorserror?language=objc)
+/// Error code to denote an error containing multiple validation errors.
 pub const NSValidationMultipleErrorsError: NSInteger = 1560;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationmissingmandatorypropertyerror?language=objc)
+/// Error code for a non-optional property with a nil value.
 pub const NSValidationMissingMandatoryPropertyError: NSInteger = 1570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationrelationshiplacksminimumcounterror?language=objc)
+/// Error code to denote a to-many relationship with too few destination objects.
 pub const NSValidationRelationshipLacksMinimumCountError: NSInteger = 1580;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationrelationshipexceedsmaximumcounterror?language=objc)
+/// Error code to denote a bounded to-many relationship with too many destination objects.
 pub const NSValidationRelationshipExceedsMaximumCountError: NSInteger = 1590;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationrelationshipdenieddeleteerror?language=objc)
+/// Error code to denote some relationship with delete rule `NSDeleteRuleDeny` is non-empty.
 pub const NSValidationRelationshipDeniedDeleteError: NSInteger = 1600;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationnumbertoolargeerror?language=objc)
+/// Error code to denote some numerical value is too large.
 pub const NSValidationNumberTooLargeError: NSInteger = 1610;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationnumbertoosmallerror?language=objc)
+/// Error code to denote some numerical value is too small.
 pub const NSValidationNumberTooSmallError: NSInteger = 1620;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationdatetoolateerror?language=objc)
+/// Error code to denote some date value is too late.
 pub const NSValidationDateTooLateError: NSInteger = 1630;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationdatetoosoonerror?language=objc)
+/// Error code to denote some date value is too soon.
 pub const NSValidationDateTooSoonError: NSInteger = 1640;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationinvaliddateerror?language=objc)
+/// Error code to denote some date value fails to match date pattern.
 pub const NSValidationInvalidDateError: NSInteger = 1650;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationstringtoolongerror?language=objc)
+/// Error code to denote some string value is too long.
 pub const NSValidationStringTooLongError: NSInteger = 1660;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationstringtooshorterror?language=objc)
+/// Error code to denote some string value is too short.
 pub const NSValidationStringTooShortError: NSInteger = 1670;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationstringpatternmatchingerror?language=objc)
+/// Error code to denote some string value fails to match some pattern.
 pub const NSValidationStringPatternMatchingError: NSInteger = 1680;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidationinvalidurierror?language=objc)
+/// Error code to denote a problem with the validation of a URI property.
 pub const NSValidationInvalidURIError: NSInteger = 1690;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextlockingerror?language=objc)
+/// Error code to denote an inability to acquire a lock in a managed object context.
 pub const NSManagedObjectContextLockingError: NSInteger = 132000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorlockingerror?language=objc)
+/// Error code to denote an inability to acquire a lock in a persistent store.
 pub const NSPersistentStoreCoordinatorLockingError: NSInteger = 132010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectreferentialintegrityerror?language=objc)
+/// Error code to denote an attempt to fire a fault pointing to an object that does not exist.
+///
+/// ## Discussion
+///
+/// The store is accessible, but the object corresponding to the fault cannot be found.
+///
+///
 pub const NSManagedObjectReferentialIntegrityError: NSInteger = 133000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectexternalrelationshiperror?language=objc)
+/// Error code to denote that an object being saved has a relationship containing an object from another store.
 pub const NSManagedObjectExternalRelationshipError: NSInteger = 133010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectmergeerror?language=objc)
+/// Error code to denote that a merge policy failed—Core Data is unable to complete merging.
 pub const NSManagedObjectMergeError: NSInteger = 133020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectconstraintmergeerror?language=objc)
+/// Error code to denote a problem with the merging of instances of a managed object.
 pub const NSManagedObjectConstraintMergeError: NSInteger = 133021;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreinvalidtypeerror?language=objc)
+/// Error code to denote an unknown persistent store type/format/version.
 pub const NSPersistentStoreInvalidTypeError: NSInteger = 134000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoretypemismatcherror?language=objc)
+/// Error code returned by a persistent store coordinator if a store is accessed that does not match the specified type.
 pub const NSPersistentStoreTypeMismatchError: NSInteger = 134010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreincompatibleschemaerror?language=objc)
+/// Error code to denote that a persistent store returned an error for a save operation.
+///
+/// ## Discussion
+///
+/// This code pertains to database level errors such as a missing table.
+///
+///
 pub const NSPersistentStoreIncompatibleSchemaError: NSInteger = 134020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoresaveerror?language=objc)
+/// Error code to denote that a persistent store returned an error for a save operation.
+///
+/// ## Discussion
+///
+/// This code pertains to errors such as permissions problems.
+///
+///
 pub const NSPersistentStoreSaveError: NSInteger = 134030;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreincompletesaveerror?language=objc)
+/// Error code to denote that one or more of the stores returned an error during a save operations.
+///
+/// ## Discussion
+///
+/// The stores or objects that failed are in the corresponding user info dictionary of the `NSError` object.
+///
+///
 pub const NSPersistentStoreIncompleteSaveError: NSInteger = 134040;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoresaveconflictserror?language=objc)
+/// Error code to denote that an unresolved merge conflict was encountered during a save. .
+///
+/// ## Discussion
+///
+/// The `NSError` object’s user info dictionary contains the key [`NSPersistentStoreSaveConflictsErrorKey`](https://developer.apple.com/documentation/coredata/nspersistentstoresaveconflictserrorkey).
+///
+///
 pub const NSPersistentStoreSaveConflictsError: NSInteger = 134050;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredataerror?language=objc)
+/// An error code that indicates a nonspecific Core Data error.
 pub const NSCoreDataError: NSInteger = 134060;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreoperationerror?language=objc)
+/// Error code to denote that a persistent store operation failed.
 pub const NSPersistentStoreOperationError: NSInteger = 134070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreopenerror?language=objc)
+/// Error code to denote an error occurred while attempting to open a persistent store.
 pub const NSPersistentStoreOpenError: NSInteger = 134080;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoretimeouterror?language=objc)
+/// Error code to denote that Core Data failed to connect to a persistent store within the time specified by `NSPersistentStoreTimeoutOption`.
 pub const NSPersistentStoreTimeoutError: NSInteger = 134090;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreunsupportedrequesttypeerror?language=objc)
+/// Error code to denote that an `NSPersistentStore` subclass was passed a request (an instance of [`NSPersistentStoreRequest`](https://developer.apple.com/documentation/coredata/nspersistentstorerequest)) that it did not understand.
 pub const NSPersistentStoreUnsupportedRequestTypeError: NSInteger = 134091;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreincompatibleversionhasherror?language=objc)
+/// Error code to denote that entity version hashes in the store are incompatible with the current managed object model.
 pub const NSPersistentStoreIncompatibleVersionHashError: NSInteger = 134100;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationerror?language=objc)
+/// Error code to denote a general migration error.
 pub const NSMigrationError: NSInteger = 134110;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationconstraintviolationerror?language=objc)
+/// Error code to denote a problem with the validation of a managed object during a migration.
 pub const NSMigrationConstraintViolationError: NSInteger = 134111;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationcancellederror?language=objc)
+/// Error code to denote that migration failed due to manual cancellation.
 pub const NSMigrationCancelledError: NSInteger = 134120;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationmissingsourcemodelerror?language=objc)
+/// Error code to denote that migration failed due to a missing source data model.
 pub const NSMigrationMissingSourceModelError: NSInteger = 134130;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationmissingmappingmodelerror?language=objc)
+/// Error code to denote that migration failed due to a missing mapping model.
 pub const NSMigrationMissingMappingModelError: NSInteger = 134140;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationmanagersourcestoreerror?language=objc)
+/// Error code to denote that migration failed due to a problem with the source data store.
 pub const NSMigrationManagerSourceStoreError: NSInteger = 134150;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationmanagerdestinationstoreerror?language=objc)
+/// Error code to denote that migration failed due to a problem with the destination data store.
 pub const NSMigrationManagerDestinationStoreError: NSInteger = 134160;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymigrationpolicyerror?language=objc)
+/// An error code that indicates a migration failure during processing of an entity migration policy.
 pub const NSEntityMigrationPolicyError: NSInteger = 134170;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqliteerror?language=objc)
+/// Error code to denote a general SQLite error.
 pub const NSSQLiteError: NSInteger = 134180;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinferredmappingmodelerror?language=objc)
+/// Error code to denote a problem with the creation of an inferred mapping model.
 pub const NSInferredMappingModelError: NSInteger = 134190;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordimporterror?language=objc)
+/// Error code to denote a general error encountered while importing external records.
 pub const NSExternalRecordImportError: NSInteger = 134200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorytokenexpirederror?language=objc)
+/// Error code to denote that the persistent history token has expired.
 pub const NSPersistentHistoryTokenExpiredError: NSInteger = 134301;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreferencenotfounderror?language=objc)
+/// An error code that indicates Core Data isn’t able to find or instantiate the referenced object model.
 pub const NSManagedObjectModelReferenceNotFoundError: NSInteger = 134504;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstagedmigrationframeworkversionmismatcherror?language=objc)
+/// An error code that indicates a failed migration because the persistent store’s metadata doesn’t support staged lightweight migrations.
 pub const NSStagedMigrationFrameworkVersionMismatchError: NSInteger = 134505;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstagedmigrationbackwardmigrationerror?language=objc)
+/// An error code that indicates a failed migration because of an attempt to migrate backward.
 pub const NSStagedMigrationBackwardMigrationError: NSInteger = 134506;

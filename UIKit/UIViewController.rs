@@ -9,22 +9,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle?language=objc)
+/// Transition styles available when presenting view controllers.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIModalTransitionStyle(pub NSInteger);
 impl UIModalTransitionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/coververtical?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// When the view controller is presented, its view slides up from the bottom of the screen. On dismissal, the view slides back down. This is the default transition style.
+    ///
+    ///
     #[doc(alias = "UIModalTransitionStyleCoverVertical")]
     pub const CoverVertical: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/fliphorizontal?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// When the view controller is presented, the current view initiates a horizontal 3D flip from right-to-left, resulting in the revealing of the new view as if it were on the back of the previous view. On dismissal, the flip occurs from left-to-right, returning to the original view.
+    ///
+    ///
     #[doc(alias = "UIModalTransitionStyleFlipHorizontal")]
     pub const FlipHorizontal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/crossdissolve?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// When the view controller is presented, the current view fades out while the new view fades in at the same time. On dismissal, a similar type of cross-fade is used to return to the original view.
+    ///
+    ///
     #[doc(alias = "UIModalTransitionStyleCrossDissolve")]
     pub const CrossDissolve: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/partialcurl?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// When the view controller is presented, one corner of the current view curls up to reveal the presented view underneath. On dismissal, the curled up page unfurls itself back on top of the presented view. A view controller presented using this transition is itself prevented from presenting any additional view controllers.
+    ///
+    /// This transition style is supported only if the parent view controller is presenting a full-screen view and you use the [`UIModalPresentationFullScreen`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen) modal presentation style. Attempting to use a different form factor for the parent view or a different presentation style triggers an exception.
+    ///
+    ///
     #[doc(alias = "UIModalTransitionStylePartialCurl")]
     pub const PartialCurl: Self = Self(3);
 }
@@ -37,43 +59,139 @@ unsafe impl RefEncode for UIModalTransitionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle?language=objc)
+/// Modal presentation styles available when presenting view controllers.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIModalPresentationStyle(pub NSInteger);
 impl UIModalPresentationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen?language=objc)
+    /// A presentation style in which the presented view covers the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// The views belonging to the presenting view controller are removed after the presentation completes.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationFullScreen")]
     pub const FullScreen: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/pagesheet?language=objc)
+    /// A presentation style that partially covers the underlying content.
+    ///
+    /// ## Discussion
+    ///
+    /// In a regular-width, regular-height size class, the system adds a dimming layer over the background content and centers the view controller’s content on top of this layer. The content is roughly the size of a page, where the height is greater than the width. The actual dimensions vary depending on several factors including the device’s screen size and orientation. A part of the background content always remains visible.
+    ///
+    /// To provide a custom content size, use the [`UIModalPresentationFormSheet`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/formsheet) style instead, and set the modal view controller’s [`preferredContentSize`](https://developer.apple.com/documentation/uikit/uiviewcontroller/preferredcontentsize) property.
+    ///
+    /// In a compact-width, regular-height size class, the system displays the view controller as a sheet with part of the background content visible near the top of the screen.
+    ///
+    /// In a compact-height size class, the behavior is the same as [`UIModalPresentationFullScreen`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen).
+    ///
+    /// Where the background content remains visible, the system doesn’t call the presenting view controller’s [`viewWillDisappear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwilldisappear(_:)) and [`viewDidDisappear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewdiddisappear(_:)) methods.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationPageSheet")]
     pub const PageSheet: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/formsheet?language=objc)
+    /// A presentation style that displays the content centered in the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// In a regular-width, regular-height size class, the system adds a layer with a Liquid Glass effect over the background content and centers the view controller’s content on top of this layer. The default content size is smaller than that of the [`UIModalPresentationPageSheet`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/pagesheet) style. A part of the background content always remains visible.
+    ///
+    /// To provide a custom content size, use the modal view controller’s [`preferredContentSize`](https://developer.apple.com/documentation/uikit/uiviewcontroller/preferredcontentsize) property.
+    ///
+    /// In a compact-width, regular-height size class, the system displays the view controller as a sheet with part of the background content visible near the top of the screen.
+    ///
+    /// In a compact-height size class, the behavior is the same as [`UIModalPresentationFullScreen`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen).
+    ///
+    /// Where the background content remains visible, the system doesn’t call the presenting view controller’s [`viewWillDisappear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwilldisappear(_:)) and [`viewDidDisappear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewdiddisappear(_:)) methods.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationFormSheet")]
     pub const FormSheet: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/currentcontext?language=objc)
+    /// A presentation style where the content is displayed over another view controller’s content.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this presentation style, the current view controller’s content is displayed over the view controller whose [`definesPresentationContext`](https://developer.apple.com/documentation/uikit/uiviewcontroller/definespresentationcontext) property is [`true`](https://developer.apple.com/documentation/swift/true). UIKit may walk up the view controller hierarchy to find a view controller that wants to define the presentation context. The views belonging to the presenting view controller are removed after the presentation completes.
+    ///
+    /// When presenting a view controller in a popover, this presentation style is supported only if the transition style is [`UIModalTransitionStyleCoverVertical`](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/coververtical). Attempting to use a different transition style triggers an exception. However, you may use other transition styles (except the partial curl transition) if the parent view controller is not in a popover.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationCurrentContext")]
     pub const CurrentContext: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/custom?language=objc)
+    /// A custom view presentation style that is managed by a custom presentation controller and one or more custom animator objects.
+    ///
+    /// ## Discussion
+    ///
+    /// All of these objects are provided by the presented view controller’s transitioning delegate, which is an object that conforms to the [`UIViewControllerTransitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate) protocol. Before presenting a view controller using this style, set the view controller’s  [`transitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontroller/transitioningdelegate) property to your custom transitioning delegate.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationCustom")]
     pub const Custom: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/overfullscreen?language=objc)
+    /// A view presentation style in which the presented view covers the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// The views beneath the presented content are not removed from the view hierarchy when the presentation finishes. So if the presented view controller does not fill the screen with opaque content, the underlying content shows through.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationOverFullScreen")]
     pub const OverFullScreen: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/overcurrentcontext?language=objc)
+    /// A presentation style where the content is displayed over another view controller’s content.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this presentation style, the current view controller’s content is displayed over the view controller whose [`definesPresentationContext`](https://developer.apple.com/documentation/uikit/uiviewcontroller/definespresentationcontext) property is [`true`](https://developer.apple.com/documentation/swift/true). UIKit may walk up the view controller hierarchy to find a view controller that wants to define the presentation context. The views beneath the presented content are not removed from the view hierarchy when the presentation finishes. So if the presented view controller does not fill the screen with opaque content, the underlying content shows through.
+    ///
+    /// When presenting a view controller in a popover, this presentation style is supported only if the transition style is [`UIModalTransitionStyleCoverVertical`](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle/coververtical). Attempting to use a different transition style triggers an exception. However, you may use other transition styles (except the partial curl transition) if the parent view controller is not in a popover.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationOverCurrentContext")]
     pub const OverCurrentContext: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/popover?language=objc)
+    /// A presentation style where the content is displayed in a popover view.
+    ///
+    /// ## Discussion
+    ///
+    /// In a horizontally regular environment, this style displays the view controller in a popover view. The background content is dimmed and taps outside the popover cause the popover to be dismissed. If you do not want taps to dismiss the popover, you can assign one or more views to the [`passthroughViews`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller/passthroughviews) property of the associated [`UIPopoverPresentationController`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller) object, which you can get from the [`popoverPresentationController`](https://developer.apple.com/documentation/uikit/uiviewcontroller/popoverpresentationcontroller) property.
+    ///
+    /// In iOS 13 and later, for horizontally or vertically compact environments, this option behaves the same as [`UIModalPresentationFormSheet`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/formsheet).
+    ///
+    /// In iOS 12 and earlier:
+    ///
+    /// - For horizontally compact environments, this option behaves the same as [`UIModalPresentationFullScreen`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/fullscreen).
+    ///
+    /// - For horizontally regular and vertically compact environments, this option behaves the same as [`UIModalPresentationFormSheet`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/formsheet).
+    ///
+    /// For more information about horizontal and vertical size classes, see [`UIUserInterfaceSizeClass`](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass).
+    ///
+    ///
     #[doc(alias = "UIModalPresentationPopover")]
     pub const Popover: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/bluroverfullscreen?language=objc)
+    /// A presentation style that blurs the underlying content before displaying new content in a full-screen presentation.
     #[doc(alias = "UIModalPresentationBlurOverFullScreen")]
     pub const BlurOverFullScreen: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/none?language=objc)
+    /// A presentation style that indicates no adaptations should be made.
+    ///
+    /// ## Discussion
+    ///
+    /// Do not use this style to present a view controller. Instead, return it from the [`adaptivePresentationStyleForPresentationController:`](https://developer.apple.com/documentation/uikit/uiadaptivepresentationcontrollerdelegate/adaptivepresentationstyle(for:)) method of an adaptive delegate when you do not want a presentation controller to adapt the style of an already presented view controller.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationNone")]
     pub const None: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/automatic?language=objc)
+    /// The default presentation style chosen by the system.
+    ///
+    /// ## Discussion
+    ///
+    /// For most view controllers, UIKit maps this style to:
+    ///
+    /// - [`UIModalPresentationFormSheet`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/formsheet) in iOS 18 and later
+    ///
+    /// - [`UIModalPresentationPageSheet`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/pagesheet) in versions of iOS earlier than iOS 18
+    ///
+    /// Some system view controllers may map it to a different style.
+    ///
+    ///
     #[doc(alias = "UIModalPresentationAutomatic")]
     pub const Automatic: Self = Self(-2);
 }
@@ -87,7 +205,17 @@ unsafe impl RefEncode for UIModalPresentationStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentcontainer?language=objc)
+    /// A set of methods for adapting the contents of your view controllers to size and trait changes.
+    ///
+    /// ## Overview
+    ///
+    /// The methods of this protocol handle size-related transitions that are related to changes in the current trait environment or view controller hierarchy. When the parent view controller changes, or when trait changes occur that affect the size of a view controller, UIKit calls these methods to give the affected objects a chance to respond appropriately.
+    ///
+    /// All [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) and [`UIPresentationController`](https://developer.apple.com/documentation/uikit/uipresentationcontroller) objects provide default implementations for the methods of this protocol. When creating your own custom view controller or presentation controller, you can override the default implementations to make adjustments to your content. For example, you might use these methods to adjust the size or position of any child view controllers.
+    ///
+    /// When overriding the methods of this protocol, call `super` to let UIKit perform any default behaviors. View controllers and presentation controllers perform their own adjustments when these methods are called. Calling `super` ensures that UIKit is able to continue adjusting other parts of your user interface.
+    ///
+    ///
     pub unsafe trait UIContentContainer: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredContentSize))]
@@ -144,12 +272,140 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/showdetailtargetdidchangenotification?language=objc)
+    /// Posted when a split view controller is expanded or collapsed.
+    ///
+    /// ## Discussion
+    ///
+    /// When a view controller is using [`showViewController:sender:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/show(_:sender:)) or [`showDetailViewController:sender:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/showdetailviewcontroller(_:sender:)), it may need to know when a split view controller higher in the view hierarchy has changed. This notification is sent when a split view controller expands or collapses. The object of this notification is the view controller that caused the change.
+    ///
+    ///
     pub static UIViewControllerShowDetailTargetDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller?language=objc)
+    /// An object that manages a view hierarchy for your UIKit app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class defines the shared behavior that’s common to all view controllers. You rarely create instances of the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class directly. Instead, you subclass [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) and add the methods and properties needed to manage the view controller’s view hierarchy.
+    ///
+    /// A view controller’s main responsibilities include the following:
+    ///
+    /// - Updating the contents of the views, usually in response to changes to the underlying data
+    ///
+    /// - Responding to user interactions with views
+    ///
+    /// - Resizing views and managing the layout of the overall interface
+    ///
+    /// - Coordinating with other objects — including other view controllers — in your app
+    ///
+    /// A view controller is tightly bound to the views it manages and takes part in handling events in its view hierarchy. Specifically, view controllers are [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) objects and are inserted into the responder chain between the view controller’s root view and that view’s superview, which typically belongs to a different view controller. If none of the view controller’s views handle an event, the view controller has the option of handling the event or passing it along to the superview.
+    ///
+    /// View controllers are rarely used in isolation. Instead, you often use multiple view controllers, each of which owns a portion of your app’s user interface. For example, one view controller might display a table of items while a different view controller displays the selected item from that table. Usually, only the views from one view controller are visible at a time. A view controller may present a different view controller to display a new set of views, or it may act as a container for other view controllers’ content and animate views however it wants.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// Every app contains at least one custom subclass of [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller). More often, apps contain many custom view controllers. Custom view controllers define the overall behaviors of your app, including the app’s appearance and how it responds to user interactions. The following sections provide a brief overview of some of the tasks your custom subclass performs. For detailed information about using and implementing view controllers, see [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457).
+    ///
+    /// #### Manage views
+    ///
+    /// Each view controller manages a view hierarchy, the root view of which is stored in the [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property of this class. The root view acts primarily as a container for the rest of the view hierarchy. The size and position of the root view is determined by the object that owns it, which is either a parent view controller or the app’s window. The view controller that’s owned by the window is the app’s root view controller and its view is sized to fill the window.
+    ///
+    /// View controllers load their views lazily. Accessing the [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property for the first time loads or creates the view controller’s views. There are several ways to specify the views for a view controller:
+    ///
+    /// - Specify the view controller and its views in your app’s storyboard. Storyboards are the preferred way to specify your views. With a storyboard, you specify the views and their connections to the view controller. You also specify the relationships and segues between your view controllers, which makes it easier to see and modify your app’s behavior.
+    ///
+    /// To load a view controller from a storyboard, call the [`instantiateViewControllerWithIdentifier:`](https://developer.apple.com/documentation/uikit/uistoryboard/instantiateviewcontroller(withidentifier:)) method of the appropriate [`UIStoryboard`](https://developer.apple.com/documentation/uikit/uistoryboard) object. The storyboard object creates the view controller and returns it to your code.
+    ///
+    /// - Specify the views for a view controller using a nib file. A nib file lets you specify the views of a single view controller but doesn’t let you define segues or relationships between view controllers. The nib file also stores only minimal information about the view controller itself.
+    ///
+    /// To initialize a view controller object using a nib file, create your view controller class programmatically and initialize it using the [`initWithNibName:bundle:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/init(nibname:bundle:)) method. When its views are requested, the view controller loads them from the nib file.
+    ///
+    /// - Specify the views for a view controller using the [`loadView`](https://developer.apple.com/documentation/uikit/uiviewcontroller/loadview()) method. In that method, create your view hierarchy programmatically and assign the root view of that hierarchy to the view controller’s [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property.
+    ///
+    /// All of these techniques have the same end result, which is to create the appropriate set of views and expose them through the [`view`](https://developer.apple.com/documentation/uikit/uiviewcontroller/view) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A view controller is the sole owner of its view and any subviews it creates. It’s responsible for creating those views and for relinquishing ownership of them at the appropriate times such as when the view controller itself is released. If you use a storyboard or a nib file to store your view objects, each view controller object automatically gets its own copy of these views when the view controller asks for them. However, if you create your views manually, each view controller must have its own unique set of views. You can’t share views between view controllers.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A view controller’s root view is always sized to fit its assigned space. For other views in your view hierarchy, use Interface Builder to specify the Auto Layout constraints that govern how each view is positioned and sized within its superview’s bounds. You can also create constraints programmatically and add them to your views at appropriate times. For more information about how to create constraints, see [Auto Layout Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853).
+    ///
+    /// ##### Handle view-related notifications
+    ///
+    /// When the visibility of its views changes, a view controller automatically calls its own methods so that subclasses can respond to the change. Use a method like [`viewIsAppearing:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewisappearing(_:)) to prepare your views to appear onscreen, and use [`viewWillDisappear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwilldisappear(_:)) to save changes or other state information. Use other methods to make appropriate changes.
+    ///
+    /// The following image shows the possible visible states for a view controller’s views and the state transitions that can occur. Not all `will` callback methods are paired with only a `did` callback method. You need to ensure that if you start a process in a `will` callback method, you end the process in both the corresponding `did` and the opposite `will` callback method.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7034ec4a62a026b24725e92aa23a4fa8/media-1965800~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a941e6911051bdb9476e5c7b33a7eea2/media-1965800%402x.png 2x" />
+    ///     <img alt="A diagram of four spheres arranged in a circle. The sphere on the right is labeled Appearing and has a clockwise arrow leading to the bottom sphere, which is labeled Appeared. A small dot on the arrow is labeled viewDidAppear. A clockwise arrow leads from the bottom sphere to the left sphere, which is labeled Disappearing. A small dot along the arrow is labeled viewWillDisappear. A clockwise arrow leads from the left sphere to the top sphere, which is labeled Disappeared. Two small dots along the arrow are labeled viewDidDisappear and View removed. A clockwise arrow leads from the top sphere to the right sphere. Three small dots along the arrow are labeled viewWillAppear, View added, and viewIsAppearing." src="https://docs-assets.developer.apple.com/published/a941e6911051bdb9476e5c7b33a7eea2/media-1965800%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ##### Handle view rotations
+    ///
+    /// As of iOS 8, all rotation-related methods are deprecated. Instead, rotations are treated as a change in the size of the view controller’s view and are therefore reported using the [`viewWillTransitionToSize:withTransitionCoordinator:`](https://developer.apple.com/documentation/uikit/uicontentcontainer/viewwilltransition(to:with:)) method. When the interface orientation changes, UIKit calls this method on the window’s root view controller. That view controller then notifies its child view controllers, propagating the message throughout the view controller hierarchy.
+    ///
+    /// In iOS 6 and iOS 7, your app supports the interface orientations defined in your app’s `Info.plist` file. A view controller can override the [`supportedInterfaceOrientations`](https://developer.apple.com/documentation/uikit/uiviewcontroller/supportedinterfaceorientations) method to limit the list of supported orientations. Typically, the system calls this method only on the root view controller of the window or a view controller presented to fill the entire screen; child view controllers use the portion of the window provided for them by their parent view controller and no longer participate directly in decisions about what rotations are supported. The intersection of the app’s orientation mask and the view controller’s orientation mask is used to determine which orientations a view controller can be rotated into.
+    ///
+    /// You can override the [`preferredInterfaceOrientationForPresentation`](https://developer.apple.com/documentation/uikit/uiviewcontroller/preferredinterfaceorientationforpresentation) for a view controller that’s intended to be presented full screen in a specific orientation.
+    ///
+    /// When a rotation occurs for a visible view controller, the [`willRotateToInterfaceOrientation:duration:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/willrotate(to:duration:)), [`willAnimateRotationToInterfaceOrientation:duration:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/willanimaterotation(to:duration:)), and [`didRotateFromInterfaceOrientation:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/didrotate(from:)) methods are called during the rotation. The [`viewWillLayoutSubviews`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwilllayoutsubviews()) method is also called after the view is resized and positioned by its parent. If a view controller isn’t visible when an orientation change occurs, then the rotation methods are never called. However, the [`viewWillLayoutSubviews`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwilllayoutsubviews()) method is called when the view becomes visible.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  At launch time, apps should always set up their interface in a portrait orientation. After the [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)) method returns, the app uses the view controller rotation mechanism described above to rotate the views to the appropriate orientation prior to showing the window.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Implement a container view controller
+    ///
+    /// A custom [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) subclass can also act as a container view controller. A container view controller manages the presentation of content of other view controllers it owns, also known as its child view controllers. A child’s view can be presented as-is or in conjunction with views owned by the container view controller.
+    ///
+    /// Your container view controller subclass should declare a public interface to associate its children. The nature of these methods is up to you and depends on the semantics of the container you’re creating. You need to decide how many children can be displayed by your view controller at once, when those children are displayed, and where they appear in your view controller’s view hierarchy. Your view controller class defines what relationships, if any, are shared by the children. By establishing a clean public interface for your container, you ensure that children use its capabilities logically, without accessing too many private details about how your container implements the behavior.
+    ///
+    /// Your container view controller must associate a child view controller with itself before adding the child’s root view to the view hierarchy. This allows iOS to properly route events to child view controllers and the views those controllers manage. Likewise, after it removes a child’s root view from its view hierarchy, it should disconnect that child view controller from itself. To make or break these associations, your container calls specific methods defined by the base class. These methods aren’t intended to be called by clients of your container class; they are to be used only by your container’s implementation to provide the expected containment behavior.
+    ///
+    /// Here are the essential methods you might need to call:
+    ///
+    /// - [`addChildViewController:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/addchild(_:))
+    ///
+    /// - [`removeFromParentViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller/removefromparent())
+    ///
+    /// - [`willMoveToParentViewController:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/willmove(toparent:))
+    ///
+    /// - [`didMoveToParentViewController:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/didmove(toparent:))
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You’re not required to override any methods when creating a container view controller.
+    ///
+    /// By default, rotation and appearance callbacks are automatically forwarded to children. You may optionally override the [`shouldAutomaticallyForwardRotationMethods`](https://developer.apple.com/documentation/uikit/uiviewcontroller/shouldautomaticallyforwardrotationmethods()) and [`shouldAutomaticallyForwardAppearanceMethods`](https://developer.apple.com/documentation/uikit/uiviewcontroller/shouldautomaticallyforwardappearancemethods) methods to take control of this behavior yourself.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Manage memory
+    ///
+    /// Memory is a critical resource in iOS, and view controllers provide built-in support for reducing their memory footprint at critical times. The [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class provides some automatic handling of low-memory conditions through its [`didReceiveMemoryWarning`](https://developer.apple.com/documentation/uikit/uiviewcontroller/didreceivememorywarning()) method, which releases unneeded memory.
+    ///
+    /// #### Support state preservation and restoration
+    ///
+    /// If you assign a value to the view controller’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, the system may ask the view controller to encode itself when the app transitions to the background. When preserved, a view controller preserves the state of any views in its view hierarchy that also have restoration identifiers. View controllers don’t automatically save any other state. If you’re implementing a custom container view controller, you must encode any child view controllers yourself. Each child you encode must have a unique restoration identifier.
+    ///
+    /// For more information about how the system determines which view controllers to preserve and restore, see [App Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072). To see an example of state preservation and restoration, see [Restoring your app’s state](https://developer.apple.com/documentation/uikit/restoring-your-app-s-state).
+    ///
+    ///
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -974,7 +1230,15 @@ impl UIViewController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/hierarchyinconsistencyexception?language=objc)
+    /// Raised if the view controller hierarchy is inconsistent with the view hierarchy.
+    ///
+    /// ## Discussion
+    ///
+    /// When a view controller’s view is added to the view hierarchy, the system walks up the view hierarchy to find the first parent view that has a view controller. That view controller must be the parent of the view controller whose view is being added. Otherwise, this exception is raised. This consistency check is also performed when a view controller is added as a child by calling the [`addChildViewController:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/addchild(_:)) method.
+    ///
+    /// It is also allowed for a view controller that has no parent to add its view to the view hierarchy. This is generally not recommended, but is useful in some special cases.
+    ///
+    ///
     pub static UIViewControllerHierarchyInconsistencyException: &'static NSExceptionName;
 }
 
@@ -1329,7 +1593,31 @@ impl UIViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerpreviewing?language=objc)
+    /// A set of methods that define the interface for configuring a previewing view controller on devices that support 3D Touch.
+    ///
+    /// ## Overview
+    ///
+    /// The system returns a context object conforming to this protocol when you call a view controller’s [`registerForPreviewingWithDelegate:sourceView:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/registerforpreviewing(with:sourceview:)) method. This method registers the view controller to participate in 3D Touch preview (peek) and commit (pop) behaviors.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Terminology Note
+    ///  The end-user terminology for the views presented during the phases of force-based touches includes _peek_ and _pop_. For clarity here, and to align with the API names, this document uses the corresponding terms _preview_ and _commit view_.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To learn about 3D Touch, read [Adopting 3D Touch on iPhone](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t adopt this protocol in custom classes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait UIViewControllerPreviewing: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction."]
@@ -1366,7 +1654,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerpreviewingdelegate?language=objc)
+    /// A set of methods used by the delegate to respond, with a preview view controller and a commit view controller, to the user pressing a view object on the screen of a device that supports 3D Touch.
+    ///
+    /// ## Overview
+    ///
+    /// To learn about 3D Touch, read [Adopting 3D Touch on iPhone](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Terminology Note
+    ///  The end-user terminology for the views presented during the phases of force-based touches includes _peek_ and _pop_. For clarity here, and to align with the API names, this document uses the corresponding terms _preview_ and _commit view_.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait UIViewControllerPreviewingDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1603,19 +1905,15 @@ extern_conformance!(
     unsafe impl UITraitChangeObservable for UIViewController {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContainerBackgroundStyle(pub NSInteger);
 impl UIContainerBackgroundStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle/automatic?language=objc)
     #[doc(alias = "UIContainerBackgroundStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle/glass?language=objc)
     #[doc(alias = "UIContainerBackgroundStyleGlass")]
     pub const Glass: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle/hidden?language=objc)
     #[doc(alias = "UIContainerBackgroundStyleHidden")]
     pub const Hidden: Self = Self(2);
 }
@@ -1648,7 +1946,21 @@ impl UIViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionitem?language=objc)
+    /// A set of methods that defines the styles you can apply to peek quick actions and peek quick action groups, and defines a read-only accessor for the user-visible title of a peek quick action.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t adopt this protocol in custom classes.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`UIPreviewActionItem`](https://developer.apple.com/documentation/uikit/uipreviewactionitem) protocol is adopted by the [`UIPreviewAction`](https://developer.apple.com/documentation/uikit/uipreviewaction) and [`UIPreviewActionGroup`](https://developer.apple.com/documentation/uikit/uipreviewactiongroup) classes.
+    ///
+    ///
     pub unsafe trait UIPreviewActionItem: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
@@ -1656,22 +1968,34 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style?language=objc)
+/// The style for a peek quick action.
+///
+/// ## Overview
+///
+/// Use these styles with instances of the [`UIPreviewAction`](https://developer.apple.com/documentation/uikit/uipreviewaction) and [`UIPreviewActionGroup`](https://developer.apple.com/documentation/uikit/uipreviewactiongroup) classes.
+///
+///
 // NS_ENUM
 #[deprecated = "Please use UIContextMenuInteraction."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPreviewActionStyle(pub NSInteger);
 impl UIPreviewActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style/default?language=objc)
+    /// The default style.
     #[doc(alias = "UIPreviewActionStyleDefault")]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style/selected?language=objc)
+    /// The style for a selected peek quick action.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style for the initially-selected item within a disclosed peek quick action group.
+    ///
+    ///
     #[doc(alias = "UIPreviewActionStyleSelected")]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Selected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style/destructive?language=objc)
+    /// The style for a peek quick action that changes or deletes data.
     #[doc(alias = "UIPreviewActionStyleDestructive")]
     #[deprecated = "Please use UIContextMenuInteraction."]
     pub const Destructive: Self = Self(2);
@@ -1686,7 +2010,13 @@ unsafe impl RefEncode for UIPreviewActionStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction?language=objc)
+    /// A preview action, or _peek quick action_, that displays below a peek when a user swipes the peek upward.
+    ///
+    /// ## Overview
+    ///
+    /// A peek quick action typically selects a deep link to your app and has a title, a style, and a handler. Peeks and peek quick actions are available on devices that support 3D Touch.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1753,7 +2083,13 @@ impl UIPreviewAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactiongroup?language=objc)
+    /// A group of one or more child quick actions, each an instance of the preview action class.
+    ///
+    /// ## Overview
+    ///
+    /// When first displayed, the group appears as a single option in a peek quick action sheet. If the user selects the group, a submenu opens, displaying the child quick actions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

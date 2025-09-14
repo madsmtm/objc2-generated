@@ -7,230 +7,447 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicename?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechSynthesizerVoiceName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey?language=objc)
+/// The following constants are keys for the dictionary returned by [`attributesForVoice:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/attributes(forvoice:)).
+///
+/// ## Overview
+///
+/// The following are the identifiers of the macOS system voices (defined in `/System/Library/Speech/Voices`):
+///
+/// ```objc
+/// com.apple.speech.synthesis.voice.Agnes
+/// com.apple.speech.synthesis.voice.Albert
+/// com.apple.speech.synthesis.voice.Alex
+/// com.apple.speech.synthesis.voice.BadNews
+/// com.apple.speech.synthesis.voice.Bahh
+/// com.apple.speech.synthesis.voice.Bells
+/// com.apple.speech.synthesis.voice.Boing
+/// com.apple.speech.synthesis.voice.Bruce
+/// com.apple.speech.synthesis.voice.Bubbles
+/// com.apple.speech.synthesis.voice.Cellos
+/// com.apple.speech.synthesis.voice.Deranged
+/// com.apple.speech.synthesis.voice.Fred
+/// com.apple.speech.synthesis.voice.GoodNews
+/// com.apple.speech.synthesis.voice.Hysterical
+/// com.apple.speech.synthesis.voice.Junior
+/// com.apple.speech.synthesis.voice.Kathy
+/// com.apple.speech.synthesis.voice.Organ
+/// com.apple.speech.synthesis.voice.Princess
+/// com.apple.speech.synthesis.voice.Ralph
+/// com.apple.speech.synthesis.voice.Trinoids
+/// com.apple.speech.synthesis.voice.Vicki
+/// com.apple.speech.synthesis.voice.Victoria
+/// com.apple.speech.synthesis.voice.Whisper
+/// com.apple.speech.synthesis.voice.Zarvox
+/// ```
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSVoiceAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/name?language=objc)
+    /// The name of the voice suitable for display. An `NSString`.
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceName: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/identifier?language=objc)
+    /// A unique string identifying the voice. The identifiers of the system voices are listed in `Listing 1`.
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceIdentifier: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/age?language=objc)
+    /// The perceived age (in years) of the voice. An `NSString`
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceAge: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/gender?language=objc)
+    /// The perceived gender of the voice. The supported values are listed in `Voice Gender Keys`.  An `NSString`
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGender: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/demotext?language=objc)
+    /// A demonstration string to speak. An `NSString`
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceDemoText: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/localeidentifier?language=objc)
+    /// The language of the voice.  An `NSString`
+    ///
+    /// ## Discussion
+    ///
+    /// The canonical locale identifier string describing the voice’s locale. A locale is generally composed of three pieces of ordered information: a language code, a region code, and a variant code.  Refer to documentation about the [`NSLocale`](https://developer.apple.com/documentation/foundation/nslocale) class or [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i) for more information.
+    ///
+    ///
     pub static NSVoiceLocaleIdentifier: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/supportedcharacters?language=objc)
+    /// A list of Unicode character id ranges that define the Unicode characters supported by this voice.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary containing two keys: “UnicodeCharBegin”, an integer value containing the beginning Unicode id of this range; and “UnicodeCharBegin”, an integer value containing the ending Unicode id of this range. The synthesizer converts or ignores any characters not contained in the range of supported characters.
+    ///
+    /// Some voices may not provide this attribute.
+    ///
+    ///
     pub static NSVoiceSupportedCharacters: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/individuallyspokencharacters?language=objc)
+    /// A list of Unicode character id ranges that define the Unicode characters that can be spoken in character-by-character mode by this voice.
+    ///
+    /// ## Discussion
+    ///
+    /// Each list entry is a dictionary containing two keys: “UnicodeCharBegin”, an integer value containing the beginning Unicode id of this range; and “UnicodeCharEnd”, an integer value containing the ending Unicode id of this range. Your application can use these ranges to determine if the voice can speak the name of an individual character when spoken in character-by-character mode.
+    ///
+    /// Some voices may not provide this attribute.
+    ///
+    ///
     pub static NSVoiceIndividuallySpokenCharacters: &'static NSVoiceAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey?language=objc)
+/// These constants identify key-value pairs used to add vocabulary to the dictionary using [`addSpeechDictionary:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/addspeechdictionary(_:)).
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechDictionaryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/localeidentifier?language=objc)
+    /// The canonical locale identifier string describing the dictionary’s locale.
+    ///
+    /// ## Discussion
+    ///
+    /// A locale is generally composed of three pieces of ordered information: a language code, a region code, and a variant code.  Refer to documentation about [`NSLocale`](https://developer.apple.com/documentation/foundation/nslocale) or [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i) for more information
+    ///
+    ///
     pub static NSSpeechDictionaryLocaleIdentifier: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/modificationdate?language=objc)
+    /// A string representation of the dictionary’s last modification date in the international format (YYYY-MM-DD HH:MM:SS ±HHMM). If the same word appears across multiple dictionaries, the one from the dictionary with the most recent date will be used.
     pub static NSSpeechDictionaryModificationDate: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/pronunciations?language=objc)
+    /// An array of dictionary objects containing the keys `NSSpeechDictionaryEntrySpelling` and `NSSpeechDictionaryEntryPhonemes`.
     pub static NSSpeechDictionaryPronunciations: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/abbreviations?language=objc)
+    /// An array of dictionary objects containing the keys `NSSpeechDictionaryEntrySpelling` and `NSSpeechDictionaryEntryPhonemes`.
     pub static NSSpeechDictionaryAbbreviations: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/entryspelling?language=objc)
+    /// The spelling of an entry. An `NSString`.
     pub static NSSpeechDictionaryEntrySpelling: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/entryphonemes?language=objc)
+    /// The phonemic representation of an entry. An `NSString`.
     pub static NSSpeechDictionaryEntryPhonemes: &'static NSSpeechDictionaryKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender?language=objc)
+/// The following constants define voice gender attributes, which are the allowable values of the [`NSVoiceGender`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/gender) key returned by [`attributesForVoice:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/attributes(forvoice:)).
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSVoiceGenderName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/neuter?language=objc)
+    /// A neutral voice (or a novelty voice with a humorous or whimsical quality).
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderNeuter: &'static NSVoiceGenderName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/male?language=objc)
+    /// A male voice
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderMale: &'static NSVoiceGenderName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/female?language=objc)
+    /// A female voice
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderFemale: &'static NSVoiceGenderName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/neutral?language=objc)
     pub static NSVoiceGenderNeutral: &'static NSVoiceGenderName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey?language=objc)
+/// These constants are used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)) to get or set the characteristics of a synthesizer.
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/status?language=objc)
+    /// Get speech-status information for the synthesizer.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary that contains speech-status information for the synthesizer. See [`NSSpeechStatusKey`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey) for a description of the keys present in the dictionary.
+    ///
+    ///
     pub static NSSpeechStatusProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors?language=objc)
+    /// Get speech-error information for the synthesizer.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary object that contains speech-error information. See [`NSSpeechErrorKey`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey) for a description of the keys present in the dictionary.
+    ///
+    /// This property lets you get information about various run-time errors that occur during speaking, such as the detection of badly formed embedded commands. Errors returned directly by the Speech Synthesis Manager are not reported here.
+    ///
+    /// If your application implements the [`speechSynthesizer:didEncounterErrorAtIndex:ofString:message:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerdelegate/speechsynthesizer(_:didencountererrorat:of:message:)) delegate message, the delegate message can use this property to get error information.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechErrorsProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/inputmode?language=objc)
+    /// Get or set the synthesizer’s current text-processing mode.
+    ///
+    /// ## Discussion
+    ///
+    /// A string object that specifies whether the channel is currently in text input mode or phoneme input mode.The supported values are listed in [`NSSpeechMode`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode).
+    ///
+    /// When in phoneme-processing mode, a text string is interpreted to be a series of characters representing various phonemes and prosodic controls. Some synthesizers might support additional input-processing modes and define constants for these modes.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    ///
     pub static NSSpeechInputModeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/charactermode?language=objc)
+    /// Get or set the synthesizer’s current text-processing mode.
+    ///
+    /// ## Discussion
+    ///
+    /// An NSString object that specifies whether the channel is currently in text input mode or phoneme input mode.The supported values are listed in [`NSSpeechMode`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode).
+    ///
+    /// When the character-processing mode is [`NSSpeechModeNormal`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/normal), input characters are spoken as you would expect to hear them. When the mode is [`NSSpeechModeLiteral`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/literal), each character is spoken literally, so that the word “cat” is spoken “`C–A–T`”.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    ///
     pub static NSSpeechCharacterModeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/numbermode?language=objc)
+    /// Get or set the synthesizer’s current number-processing mode.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that specifies whether the synthesizer is currently in normal or literal number-processing mode. The supported values are listed in [`NSSpeechMode`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode).
+    ///
+    /// When the number-processing mode is [`NSSpeechModeNormal`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/normal), the synthesizer assembles digits into numbers (so that “12” is spoken as “twelve”). When the mode is [`NSSpeechModeLiteral`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/literal), each digit is spoken literally (so that “12” is spoken as “one, two”).
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    ///
     pub static NSSpeechNumberModeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/rate?language=objc)
+    /// Get or set a synthesizer’s speech rate.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the synthesizer’s speaking rate. The range of supported rates is not predefined by the [`NSSpeechSynthesizer`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer) class; each speech synthesizer provides its own range of speech rates. Average human speech occurs at a rate of 180 to 220 words per minute.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    ///
     pub static NSSpeechRateProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/pitchbase?language=objc)
+    /// Get or set a synthesizer’s baseline speech pitch.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the baseline speech pitch. Typical voice frequencies range from around 90 hertz for a low-pitched voice to perhaps 300 hertz for a high-pitched voice. These frequencies correspond to approximate pitch values in the ranges of 30.000 to 40.000 and 55.000 to 65.000, respectively.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The change in speech pitch may not be noticeable until the next sentence or paragraph is spoken.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSSpeechPitchBaseProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/pitchmod?language=objc)
+    /// Get or set a synthesizer’s pitch modulation.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the synthesizer’s pitch modulation.
+    ///
+    /// Pitch modulation is also expressed as a floating-point value in the range of 0.000 to 127.000. These values correspond to MIDI note values, where 60.000 is equal to middle C on a piano scale. The most useful speech pitches fall in the range of 40.000 to 55.000. A pitch modulation value of 0.000 corresponds to a monotone in which all speech is generated at the frequency corresponding to the speech pitch. Given a speech pitch value of 46.000, a pitch modulation of 2.000 would mean that the widest possible range of pitches corresponding to the actual frequency of generated text would be 44.000 to 48.000.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The change in pitch modulation may not be noticeable until the next sentence or paragraph is spoken.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSSpeechPitchModProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/volume?language=objc)
+    /// Get or set the speech volume for a synthesizer.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that specifies the synthesizer’s speech volume.
+    ///
+    /// Volumes are expressed in floating-point values ranging from 0.0 through 1.0. A value of 0.0 corresponds to silence, and a value of 1.0 corresponds to the maximum possible volume. Volume units lie on a scale that is linear with amplitude or voltage. A doubling of perceived loudness corresponds to a doubling of the volume.
+    ///
+    /// This property is used with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)) and [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)).
+    ///
+    ///
     pub static NSSpeechVolumeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfo?language=objc)
+    /// Get information about the speech synthesizer being used on the specified synthesizer.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary object that contains information about the speech synthesizer being used on the specified synthesizer. See [`NSSpeechSynthesizerInfoKey`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey) for a description of the keys present in the dictionary.
+    ///
+    ///
     pub static NSSpeechSynthesizerInfoProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/recentsync?language=objc)
+    /// Get the message code for the most recently encountered synchronization command.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the most recently encountered synchronization command. This property works with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechRecentSyncProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemesymbols?language=objc)
+    /// Get a list of phoneme symbols and example words defined for the synthesizer.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary object that contains the phoneme symbols and example words defined for the current synthesizer.
+    ///
+    /// Your application might use this information to show the user what symbols to use when entering phonemic text directly. See [`NSSpeechPhonemeInfoKey`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey) for a description of the keys present in the dictionary.
+    ///
+    /// This property works with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechPhonemeSymbolsProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/currentvoice?language=objc)
+    /// Set the current voice on the synthesizer to the specified voice.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary object that contains the phoneme symbols and example words defined for the current synthesizer. Your application might use this information to show the user what symbols to use when entering phonemic text directly. See `NSSpeechPhonemeSymbolsProperty Dictionary Keys` for the keys you can use to specify values in this dictionary.
+    ///
+    /// This property works with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechCurrentVoiceProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiter?language=objc)
+    /// Set the embedded speech command delimiter characters to be used for the synthesizer.
+    ///
+    /// ## Discussion
+    ///
+    /// A dictionary object that contains the delimiter information. By default, the opening delimiter is “[[” and the closing delimiter is “]]”. Your application might need to change these delimiters temporarily if those character sequences occur naturally in a text buffer that is to be spoken. Your application can also disable embedded command processing by passing empty delimiters (as empty strings). See [`NSSpeechCommandDelimiterKey`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey) for the keys you can use to specify values in this dictionary.
+    ///
+    /// This property works with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechCommandDelimiterProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/reset?language=objc)
+    /// Set a synthesizer back to its default state.
+    ///
+    /// ## Discussion
+    ///
+    /// There is no value associated with this property; to reset the channel to its default state, set the key to `nil`. You can use this function to, for example, set speech pitch and speech rate to default values.
+    ///
+    /// This property works with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechResetProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/outputtofileurl?language=objc)
+    /// Set the speech output destination to a file or to the computer’s speakers.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object. To write the speech output to a file, use the file’s [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl); to generate the sound through the computer’s speakers, use `nil`. This property works with [`setObject:forProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/setobject(_:forproperty:)).
+    ///
+    ///
     pub static NSSpeechOutputToFileURLProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicelanguage?language=objc)
+    /// The language of the voice (currently US English only). An `NSString`
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated: Use [`localeIdentifier`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/localeidentifier) instead.
+    ///
+    ///
     #[deprecated]
     pub static NSVoiceLanguage: &'static NSVoiceAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary?language=objc)
+/// These constants are used to indicate where speech should be stopped and paused. See [`pauseSpeakingAtBoundary:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/pausespeaking(at:)) and [`stopSpeakingAtBoundary:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/stopspeaking(at:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpeechBoundary(pub NSUInteger);
 impl NSSpeechBoundary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary/immediateboundary?language=objc)
+    /// Speech should be paused or stopped immediately.
     #[doc(alias = "NSSpeechImmediateBoundary")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const ImmediateBoundary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary/wordboundary?language=objc)
+    /// Speech should be paused or stopped at the end of the word.
     #[doc(alias = "NSSpeechWordBoundary")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const WordBoundary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary/sentenceboundary?language=objc)
+    /// Speech should be paused or stopped at the end of the sentence.
     #[doc(alias = "NSSpeechSentenceBoundary")]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub const SentenceBoundary: Self = Self(2);
@@ -245,7 +462,31 @@ unsafe impl RefEncode for NSSpeechBoundary {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer?language=objc)
+    /// The Cocoa interface to speech synthesis in macOS.
+    ///
+    /// ## Overview
+    ///
+    /// Speech synthesis, also called text-to-speech (TTS), parses text and converts it into audible speech. It offers a concurrent feedback mode that can be used in concert with or in place of traditional visual and aural notifications. For example, your application can use a speech synthesizer object to “pronounce” the text of important alert dialogs. Synthesized speech has several advantages. It can provide urgent information to users without forcing them to shift attention from their current task. And because speech doesn’t rely on visual elements for meaning, it is a crucial technology for users with vision or attention disabilities.
+    ///
+    /// In addition, synthesized speech can help save system resources. Because sound samples can take up large amounts of room on disk, using text in place of sampled sound is extremely efficient, and so a multimedia application might use an [`NSSpeechSynthesizer`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer) object to provide a narration of a QuickTime movie instead of including sampled-sound data on a movie track.
+    ///
+    /// When you create an [`NSSpeechSynthesizer`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer) instance using the default initializer (`init`), the class uses the **default voice** selected in System Preferences > Speech. Alternatively, you can select a specific voice for an [`NSSpeechSynthesizer`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer) instance by initializing it with [`initWithVoice:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/init(voice:)). To begin synthesis, send either [`startSpeakingString:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/startspeaking(_:)) or [`startSpeakingString:toURL:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/startspeaking(_:to:)) to the instance. The former generates speech through the system’s default sound output device; the latter saves the generated speech to a file. If you wish to be notified when the current speech concludes, set the [`delegate`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/delegate) property and implement the delegate method [`speechSynthesizer:didFinishSpeaking:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerdelegate/speechsynthesizer(_:didfinishspeaking:)).
+    ///
+    /// Speech synthesis is just one of the macOS speech technologies. The speech recognizer technology allows applications to “listen to” text spoken in U.S. English; the [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) class is the Cocoa interface to this technology. Both technologies provide benefits for all users, and are particularly useful to those users who have difficulties seeing the screen or using the mouse and keyboard.
+    ///
+    /// ### Speech Feedback Window
+    ///
+    /// The speech feedback window ([Figure 1](/documentation/appkit/nsspeechsynthesizer#1965715)) displays the text recognized from the user’s speech and the text from which an `NSSpeechSynthesizer` object synthesizes speech. Using the feedback window makes spoken exchange more natural and helps the user understand the synthesized speech.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/41fd24182e5b44a0e32aad125d250bef/media-1965715.jpg)
+    ///
+    ///
+    /// For example, your application may use an [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) object to listen for the command “Play some music.” When it recognizes this command, your application might then respond by speaking “Which artist?” using a speech synthesizer.
+    ///
+    /// When `UsesFeedbackWindow` is [`true`](https://developer.apple.com/documentation/swift/true), the speech synthesizer uses the feedback window if its visible, which the user specifies in System Preferences > Speech.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
@@ -433,7 +674,7 @@ impl DefaultRetained for NSSpeechSynthesizer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerdelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSSpeechSynthesizer`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer) objects.
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub unsafe trait NSSpeechSynthesizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
@@ -489,142 +730,202 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode?language=objc)
+/// Keys for the speaking mode.
+///
+/// ## Discussion
+///
+/// Use these keys in the [`NSSpeechInputModeProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/inputmode), [`NSSpeechCharacterModeProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/charactermode), and [`NSSpeechNumberModeProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/numbermode) dictionaries.
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/text?language=objc)
+    /// Indicates that the synthesizer is in text-processing mode.
     pub static NSSpeechModeText: &'static NSSpeechMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/phoneme?language=objc)
+    /// Indicates that the synthesizer is in phoneme-processing mode. When in phoneme-processing mode, a text buffer is interpreted to be a series of characters representing various phonemes and prosodic controls.
     pub static NSSpeechModePhoneme: &'static NSSpeechMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/normal?language=objc)
+    /// Indicates that the synthesizer assembles digits into numbers (so that 12 is spoken as “twelve”) and text into words.
     pub static NSSpeechModeNormal: &'static NSSpeechMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/literal?language=objc)
+    /// Indicates that each digit or character is spoken literally (so that 12 is spoken as “one, two”, or the word “cat” is spoken as “C A T”).
     pub static NSSpeechModeLiteral: &'static NSSpeechMode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey?language=objc)
+/// Keys for the speech synthesizier status.
+///
+/// ## Discussion
+///
+/// Use these keys in the [`NSSpeechStatusProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/status) dictionary.
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechStatusKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/outputbusy?language=objc)
+    /// Indicates whether the synthesizer is currently producing speech.
+    ///
+    /// ## Discussion
+    ///
+    /// A synthesizer is considered to be producing speech even at some times when no audio data is being produced through the computer’s speaker. This occurs, for example, when the synthesizer is processing input, but has not yet initiated speech or when speech output is paused.
+    ///
+    ///
     pub static NSSpeechStatusOutputBusy: &'static NSSpeechStatusKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/outputpaused?language=objc)
+    /// Indicates whether speech output in the synthesizer has been paused by sending the message [`pauseSpeakingAtBoundary:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/pausespeaking(at:)).
     pub static NSSpeechStatusOutputPaused: &'static NSSpeechStatusKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/numberofcharactersleft?language=objc)
+    /// The number of characters left in the input string of text.
+    ///
+    /// ## Discussion
+    ///
+    /// When the value of this key is zero, you can destroy the input string.
+    ///
+    ///
     pub static NSSpeechStatusNumberOfCharactersLeft: &'static NSSpeechStatusKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/phonemecode?language=objc)
+    /// Indicates that the synthesizer is in phoneme-processing mode. When in phoneme-processing mode, a text buffer is interpreted to be a series of characters representing various phonemes and prosodic controls.
     pub static NSSpeechStatusPhonemeCode: &'static NSSpeechStatusKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey?language=objc)
+/// Keys that identify errors that may occur during speech synthesis.
+///
+/// ## Discussion
+///
+/// Use these keys in the [`NSSpeechErrorsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors) dictionary.
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechErrorKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/count?language=objc)
+    /// The number of errors that have occurred in processing the current text string, since the last call to [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)) with the [`NSSpeechErrorsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors) property.  An `NSNumber`
+    ///
+    /// ## Discussion
+    ///
+    /// Using the [`NSSpeechErrorOldestCode`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/oldestcode) keys and the [`NSSpeechErrorNewestCode`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/newestcode) keys, you can get information about the oldest and most recent errors that occurred since the last call to [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)), but you cannot get information about any intervening errors.
+    ///
+    ///
     pub static NSSpeechErrorCount: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/oldestcode?language=objc)
+    /// The error code of the first error that occurred since the last call to [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)) with the [`NSSpeechErrorsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors) property.  An `NSNumber`
     pub static NSSpeechErrorOldestCode: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/oldestcharacteroffset?language=objc)
+    /// The position in the text string of the first error that occurred since the last call to [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)) with the [`NSSpeechErrorsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors) property.  An `NSNumber`
     pub static NSSpeechErrorOldestCharacterOffset: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/newestcode?language=objc)
+    /// The error code of the most recent error that occurred since the last call to [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)) with the [`NSSpeechErrorsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors) property.  An `NSNumber`
     pub static NSSpeechErrorNewestCode: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/newestcharacteroffset?language=objc)
+    /// The position in the text string of the most recent error that occurred since the last call to [`objectForProperty:error:`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/object(forproperty:)) with the [`NSSpeechErrorsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors) property. An `NSNumber`.
     pub static NSSpeechErrorNewestCharacterOffset: &'static NSSpeechErrorKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey?language=objc)
+/// Keys for the speech synthesizier information.
+///
+/// ## Discussion
+///
+/// Use constants as keys for the [`NSSpeechSynthesizerInfoProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfo) dictionary.
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechSynthesizerInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey/identifier?language=objc)
+    /// The identifier of the speech synthesizer.
     pub static NSSpeechSynthesizerInfoIdentifier: &'static NSSpeechSynthesizerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey/version?language=objc)
+    /// The version of the speech synthesizer.
     pub static NSSpeechSynthesizerInfoVersion: &'static NSSpeechSynthesizerInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey?language=objc)
+/// Keys for the speech phoneme information.
+///
+/// ## Discussion
+///
+/// Use these keys in the [`NSSpeechPhonemeSymbolsProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemesymbols) dictionary.
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechPhonemeInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/opcode?language=objc)
+    /// NSNumber
     pub static NSSpeechPhonemeInfoOpcode: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/symbol?language=objc)
+    /// The symbol used to represent the phoneme.
+    ///
+    /// ## Discussion
+    ///
+    /// The symbol does not necessarily have a phonetic connection to the phoneme, but might simply be an abstract textual representation of it.
+    ///
+    ///
     pub static NSSpeechPhonemeInfoSymbol: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/example?language=objc)
+    /// An example word that illustrates the use of the phoneme.
     pub static NSSpeechPhonemeInfoExample: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/hilitestart?language=objc)
+    /// The character offset into the example word that identifies the location of the beginning of the phoneme.
     pub static NSSpeechPhonemeInfoHiliteStart: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/hiliteend?language=objc)
+    /// The character offset into the example word that identifies the location of the end of the phoneme.
     pub static NSSpeechPhonemeInfoHiliteEnd: &'static NSSpeechPhonemeInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey?language=objc)
+/// Keys for the command delimiters.
+///
+/// ## Discussion
+///
+/// Use these keys in the [`NSSpeechCommandDelimiterProperty`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiter) dictionary.
+///
+///
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechCommandDelimiterKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey/prefix?language=objc)
+    /// The command delimiter string that prefixes a command, by default, this is `[[`.
     pub static NSSpeechCommandPrefix: &'static NSSpeechCommandDelimiterKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey/suffix?language=objc)
+    /// The command delimiter string that suffixes a command,by default, this is `]]`.
     pub static NSSpeechCommandSuffix: &'static NSSpeechCommandDelimiterKey;
 }

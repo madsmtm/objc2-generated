@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineentry?language=objc)
+    /// A container for the complication template object to display and the time to display it.
+    ///
+    /// ## Overview
+    ///
+    /// Each entry object represents a single data point along your complication’s timeline. You create and return timeline entries when asked to do so by ClockKit. When the date associated with a particular timeline entry occurs, ClockKit updates your complication’s interface with the data in the accompanying template object.
+    ///
+    /// You can assign a group identifier to timeline entries to control the behavior of transition animations during Time Travel. When two timeline entries have different values in their [`timelineAnimationGroup`](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineentry/timelineanimationgroup) property, or when the values are `nil`, ClockKit animates the transition between those entries during Time Travel. When two entries have the same group value, no animation is created.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

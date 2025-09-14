@@ -7,12 +7,114 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontransfersizeunknown?language=objc)
+    /// The total size of the transfer cannot be determined.
     pub static NSURLSessionTransferSizeUnknown: i64;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession?language=objc)
+    /// An object that coordinates a group of related, network data transfer tasks.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related [`NSURLSessionDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondelegate) and [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate) to support authentication and receive events like redirection and task completion.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) API involves many different classes that work together in a fairly complex way which may not be obvious if you read the reference documentation by itself. Before using the API, read the overview in the [URL Loading System](https://developer.apple.com/documentation/foundation/url-loading-system) topic. The articles in the Essentials, Uploading, and Downloading sections offer examples of performing common tasks with [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Your app creates one or more [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) instances, each of which coordinates a group of related data-transfer tasks. For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).
+    ///
+    /// ### Types of URL sessions
+    ///
+    /// The tasks within a given URL session share a common session configuration object, which defines connection behavior, like the maximum number of simultaneous connections to make to a single host, whether connections can use the cellular network, and so on.
+    ///
+    /// [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) has a singleton [`sharedSession`](https://developer.apple.com/documentation/foundation/urlsession/shared) session (which doesn’t have a configuration object) for basic requests. It’s not as customizable as sessions you create, but it serves as a good starting point if you have very limited requirements. You access this session by calling the shared class method. For other kinds of sessions, you create a [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) with one of three kinds of configurations:
+    ///
+    /// - A default session behaves much like the shared session, but lets you configure it. You can also assign a delegate to the default session to obtain data incrementally.
+    ///
+    /// - Ephemeral sessions are similar to shared sessions, but don’t write caches, cookies, or credentials to disk.
+    ///
+    /// - Background sessions let you perform uploads and downloads of content in the background while your app isn’t running.
+    ///
+    /// See Creating a session configuration object in the [`NSURLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration) class for details on creating each type of configuration.
+    ///
+    /// ### Types of URL session tasks
+    ///
+    /// Within a session, you create tasks that optionally upload data to a server and then retrieve data from the server either as a file on disk or as one or more [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects in memory. The [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) API provides four types of tasks:
+    ///
+    /// - Data tasks send and receive data using [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects. Data tasks are intended for short, often interactive requests to a server.
+    ///
+    /// - Upload tasks are similar to data tasks, but they also send data (often in the form of a file), and support background uploads while the app isn’t running.
+    ///
+    /// - Download tasks retrieve data in the form of a file, and support background downloads and uploads while the app isn’t running.
+    ///
+    /// - WebSocket tasks exchange messages over TCP and TLS, using the WebSocket protocol defined in [RFC 6455](https://tools.ietf.org/html/rfc6455).
+    ///
+    /// ### Using a session delegate
+    ///
+    /// Tasks in a session also share a common delegate object. You implement this delegate to provide and obtain information when various events occur, including when:
+    ///
+    /// - Authentication fails.
+    ///
+    /// - Data arrives from the server.
+    ///
+    /// - Data becomes available for caching.
+    ///
+    /// If you don’t need the features provided by a delegate, you can use this API without providing one by passing `nil` when you create a session.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The session object keeps a strong reference to the delegate until your app exits or explicitly invalidates the session. If you don’t invalidate the session, your app leaks memory until the app terminates.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Each task you create with the session calls back to the session’s delegate, using the methods defined in [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate). You can also intercept these callbacks before they reach the session delegate by populating a separate [`delegate`](https://developer.apple.com/documentation/foundation/urlsessiontask/delegate) that’s specific to the task.
+    ///
+    /// ### Asynchronicity and URL sessions
+    ///
+    /// Like most networking APIs, the [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) API is highly asynchronous. It returns data to your app in one of three ways, depending on the methods you call:
+    ///
+    /// - If you’re using Swift, you can use the methods marked with the `async` keyword to perform common tasks. For example, [`data(from:delegate:)`](https://developer.apple.com/documentation/foundation/urlsession/data(from:delegate:)) fetches data, while [`download(from:delegate:)`](https://developer.apple.com/documentation/foundation/urlsession/download(from:delegate:)) downloads files. Your call point uses the `await` keyword to suspend running until the transfer completes. You can also use the [`bytes(from:delegate:)`](https://developer.apple.com/documentation/foundation/urlsession/bytes(from:delegate:)) method to receive data as an [`AsyncSequence`](https://developer.apple.com/documentation/swift/asyncsequence). With this approach, you use the `for`-`await`-`in` syntax to iterate over the data as your app receives it. The [`URL`](https://developer.apple.com/documentation/foundation/url) type also offers covenience methods to fetch bytes or lines from the shared URL session.
+    ///
+    /// - In Swift or Objective-C, you can provide a completion handler block, which runs when the transfer completes.
+    ///
+    /// - In Swift or Objective-C, you can receive callbacks to a delegate method as the transfer progresses and immediately after it completes.
+    ///
+    /// In addition to delivering this information to delegates, the [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) provides status and progress properties. Query these properties if you need to make programmatic decisions based on the current state of the task (with the caveat that its state can change at any time).
+    ///
+    /// ### Protocol support
+    ///
+    /// The [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) class natively supports the `data`, `file`, `ftp`, `http`, and `https` URL schemes, with transparent support for proxy servers and SOCKS gateways, as configured in the user’s system preferences.
+    ///
+    /// [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) supports the HTTP/1.1, HTTP/2, and HTTP/3 protocols. HTTP/2 support, as described by [RFC 7540](https://tools.ietf.org/html/rfc7540), requires a server that supports Application-Layer Protocol Negotiation (ALPN).
+    ///
+    /// You can also add support for your own custom networking protocols and URL schemes (for your app’s private use) by subclassing [`NSURLProtocol`](https://developer.apple.com/documentation/foundation/urlprotocol).
+    ///
+    /// ### App Transport Security (ATS)
+    ///
+    /// iOS 9.0 and macOS 10.11 and later use App Transport Security (ATS) for all HTTP connections made with [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession). ATS requires that HTTP connections use HTTPS ([RFC 2818](https://tools.ietf.org/html/rfc2818)).
+    ///
+    /// For more information, see [`NSAppTransportSecurity`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsapptransportsecurity).
+    ///
+    /// ### Foundation copying behavior
+    ///
+    /// Session and task objects conform to the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) protocol as follows:
+    ///
+    /// - When your app copies a session or task object, you get the same object back.
+    ///
+    /// - When your app copies a configuration object, you get a new copy you can independently modify.
+    ///
+    /// ### Thread safety
+    ///
+    /// The URL session API is thread-safe. You can freely create sessions and tasks in any thread context. When your delegate methods call the provided completion handlers, the work is automatically scheduled on the correct delegate queue.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSession;
@@ -433,22 +535,46 @@ impl NSURLSession {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum?language=objc)
+/// Constants for determining the current state of a task.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskState(pub NSInteger);
 impl NSURLSessionTaskState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/running?language=objc)
+    /// The task is currently being serviced by the session.
+    ///
+    /// ## Discussion
+    ///
+    /// A task in this state is subject to the request and resource timeouts specified in the session configuration object.
+    ///
+    ///
     #[doc(alias = "NSURLSessionTaskStateRunning")]
     pub const Running: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/suspended?language=objc)
+    /// The task was suspended by the app.
+    ///
+    /// ## Discussion
+    ///
+    /// No further processing takes place until the task is resumed. A task in this state is not subject to timeouts.
+    ///
+    ///
     #[doc(alias = "NSURLSessionTaskStateSuspended")]
     pub const Suspended: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/canceling?language=objc)
+    /// The task has received a `cancel` message.
+    ///
+    /// ## Discussion
+    ///
+    /// The delegate may or may not have received a [`URLSession:task:didCompleteWithError:`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:didcompletewitherror:)) message yet. A task in this state is not subject to timeouts.
+    ///
+    ///
     #[doc(alias = "NSURLSessionTaskStateCanceling")]
     pub const Canceling: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum/completed?language=objc)
+    /// The task has completed (without being canceled), and the task’s delegate receives no further callbacks.
+    ///
+    /// ## Discussion
+    ///
+    /// If the task completed successfully, the task’s [`error`](https://developer.apple.com/documentation/foundation/urlsessiontask/error) property is `nil`. Otherwise, it provides an error object that tells what went wrong. A task in this state is not subject to timeouts.
+    ///
+    ///
     #[doc(alias = "NSURLSessionTaskStateCompleted")]
     pub const Completed: Self = Self(3);
 }
@@ -462,7 +588,31 @@ unsafe impl RefEncode for NSURLSessionTaskState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask?language=objc)
+    /// A task, like downloading a specific resource, performed in a URL session.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask) class is the base class for tasks in a URL session. Tasks are always part of a session; you create a task by calling one of the task creation methods on a [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) instance. The method you call determines the type of task.
+    ///
+    /// - Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession)‘s [`dataTaskWithURL:`](https://developer.apple.com/documentation/foundation/urlsession/datatask(with:)-10dy7) and related methods to create [`NSURLSessionDataTask`](https://developer.apple.com/documentation/foundation/urlsessiondatatask) instances. Data tasks request a resource, returning the server’s response as one or more `NSData` objects in memory. They are supported in default, ephemeral, and shared sessions, but are not supported in background sessions.
+    ///
+    /// - Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession)‘s [`uploadTaskWithRequest:fromData:`](https://developer.apple.com/documentation/foundation/urlsession/uploadtask(with:from:)) and related methods to create [`NSURLSessionUploadTask`](https://developer.apple.com/documentation/foundation/urlsessionuploadtask) instances. Upload tasks are like data tasks, except that they make it easier to provide a request body so you can upload data before retrieving the server’s response. Additionally, upload tasks are supported in background sessions.
+    ///
+    /// - Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession)’s [`downloadTaskWithURL:`](https://developer.apple.com/documentation/foundation/urlsession/downloadtask(with:)-1onj) and related methods to create [`NSURLSessionDownloadTask`](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask) instances. Download tasks download a resource directly to a file on disk. Download tasks are supported in any type of session.
+    ///
+    /// - Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession)’s [`streamTaskWithHostName:port:`](https://developer.apple.com/documentation/foundation/urlsession/streamtask(withhostname:port:)) or [`streamTaskWithNetService:`](https://developer.apple.com/documentation/foundation/urlsession/streamtask(with:)) to create [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) instances. Stream tasks establish a TCP/IP connection from a host name and port or a net service object.
+    ///
+    /// After you create a task, you start it by calling its [`resume`](https://developer.apple.com/documentation/foundation/urlsessiontask/resume()) method. The session then maintains a strong reference to the task until the request finishes or fails; you don’t need to maintain a reference to the task unless it’s useful for your app’s internal bookkeeping.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  All task properties support key-value observing.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTask;
@@ -644,22 +794,46 @@ impl NSURLSessionTask {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/defaultpriority?language=objc)
+    /// The default URL session task priority, used implicitly for any task you have not prioritized.
+    ///
+    /// ## Discussion
+    ///
+    /// The floating point value of this constant is `0.5`.
+    ///
+    ///
     pub static NSURLSessionTaskPriorityDefault: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/lowpriority?language=objc)
+    /// A low URL session task priority, with a floating point value above the minimum of `0` and below the default value.
     pub static NSURLSessionTaskPriorityLow: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/highpriority?language=objc)
+    /// A high URL session task priority, with a floating point value above the default value and below the maximum of `1.0`.
     pub static NSURLSessionTaskPriorityHigh: c_float;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondatatask?language=objc)
+    /// A URL session task that returns downloaded data directly to the app in memory.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSURLSessionDataTask`](https://developer.apple.com/documentation/foundation/urlsessiondatatask) is a concrete subclass of [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask). The methods in the [`NSURLSessionDataTask`](https://developer.apple.com/documentation/foundation/urlsessiondatatask) class are documented in [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask).
+    ///
+    /// A data task returns data directly to the app (in memory) as one or more `NSData` objects. When you use a data task:
+    ///
+    /// - During upload of the body data (if your app provides any), the session periodically calls its delegate’s [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:didsendbodydata:totalbytessent:totalbytesexpectedtosend:)) method with status information.
+    ///
+    /// - After receiving an initial response, the session calls its delegate’s [`URLSession:dataTask:didReceiveResponse:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didreceive:completionhandler:)) method to let you examine the status code and headers, and optionally convert the data task into a download task.
+    ///
+    /// - During the transfer, the session calls its delegate’s [`URLSession:dataTask:didReceiveData:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didreceive:)) method to provide your app with the content as it arrives.
+    ///
+    /// - Upon completion, the session calls its delegate’s [`URLSession:dataTask:willCacheResponse:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:willcacheresponse:completionhandler:)) method to let you determine whether the response should be cached.
+    ///
+    /// For examples of using data tasks for fetching and uploading data, see [Fetching website data into memory](https://developer.apple.com/documentation/foundation/fetching-website-data-into-memory) and [Uploading data to a website](https://developer.apple.com/documentation/foundation/uploading-data-to-a-website).
+    ///
+    ///
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDataTask;
@@ -703,7 +877,29 @@ impl NSURLSessionDataTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionuploadtask?language=objc)
+    /// A URL session task that uploads data to the network in a request body.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSURLSessionUploadTask`](https://developer.apple.com/documentation/foundation/urlsessionuploadtask) class is a subclass of [`NSURLSessionDataTask`](https://developer.apple.com/documentation/foundation/urlsessiondatatask), which in turn is a concrete subclass of [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask). The methods associated with the [`NSURLSessionUploadTask`](https://developer.apple.com/documentation/foundation/urlsessionuploadtask) class are documented in [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask).
+    ///
+    /// Upload tasks are used for making HTTP requests that require a request body (such as `POST` or `PUT`). They behave similarly to data tasks, but you create them by calling different methods on the session that are designed to make it easier to provide the content to upload. As with data tasks, if the server provides a response, upload tasks return that response as one or more `NSData` objects in memory.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Unlike data tasks, you can use upload tasks to upload content in the background.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When you create an upload task, you provide a [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) instance that contains any additional headers that you might need to send alongside the upload, such as the content type, content disposition, and so on. In iOS, when you create an upload task for a file in a background session, the system copies that file to a temporary location and streams data from there.
+    ///
+    /// While the upload is in progress, the task calls the session delegate’s [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:didsendbodydata:totalbytessent:totalbytesexpectedtosend:)) method periodically to provide you with status information.
+    ///
+    /// When the upload phase of the request finishes, the task behaves like a data task, calling methods on the session delegate to provide you with the server’s response—headers, status code, content data, and so on.
+    ///
+    ///
     #[unsafe(super(NSURLSessionDataTask, NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionUploadTask;
@@ -765,7 +961,27 @@ impl NSURLSessionUploadTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask?language=objc)
+    /// A URL session task that stores downloaded data to a file.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSURLSessionDownloadTask`](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask) is a concrete subclass of [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask), which provides most of the methods for this class.
+    ///
+    /// Download tasks directly write the server’s response data to a temporary file, providing your app with progress updates as data arrives from the server. When you use download tasks in background sessions, these downloads continue even when your app is in the suspended state or otherwise not running.
+    ///
+    /// You can pause (cancel) download tasks and resume them later (assuming the server supports doing so). You can also resume downloads that failed because of network connectivity problems.
+    ///
+    /// ### Download delegate behavior
+    ///
+    /// When you use a download task, your delegate receives several callbacks unique to download scenarios.
+    ///
+    /// - During download, the session periodically calls the delegate’s [`URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:`](https://developer.apple.com/documentation/foundation/urlsessiondownloaddelegate/urlsession(_:downloadtask:didwritedata:totalbyteswritten:totalbytesexpectedtowrite:)) method with status information.
+    ///
+    /// - Upon successful completion, the session calls the delegate’s [`URLSession:downloadTask:didFinishDownloadingToURL:`](https://developer.apple.com/documentation/foundation/urlsessiondownloaddelegate/urlsession(_:downloadtask:didfinishdownloadingto:)) method or completion handler. In that method, you must either open the file for reading or move it to a permanent location in your app’s sandbox container directory.
+    ///
+    /// - Upon unsuccessful completion, the session calls the delegate’s [`URLSession:task:didCompleteWithError:`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:didcompletewitherror:)) method or completion handler. The only errors your delegate receives through the `error` parameter are client-side errors, such as being unable to resolve the hostname or connect to the host. To check for server-side errors, inspect the [`response`](https://developer.apple.com/documentation/foundation/urlsessiontask/response) property of the `task` parameter received by this callback.
+    ///
+    ///
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDownloadTask;
@@ -820,7 +1036,35 @@ impl NSURLSessionDownloadTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionstreamtask?language=objc)
+    /// A URL session task that is stream-based.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) is a concrete subclass of [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask). Many of the methods in the [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) class are documented in [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask).
+    ///
+    /// The [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) class provides an interface a TCP/IP connection created via [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession). Tasks may be created from an [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) using the [`streamTaskWithHostName:port:`](https://developer.apple.com/documentation/foundation/urlsession/streamtask(withhostname:port:)) and [`streamTaskWithNetService:`](https://developer.apple.com/documentation/foundation/urlsession/streamtask(with:)) methods. They may also be created as a result of an [`NSURLSessionDataTask`](https://developer.apple.com/documentation/foundation/urlsessiondatatask) being upgraded via the HTTP `Upgrade:` response header and appropriate use of the [`HTTPShouldUsePipelining`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpshouldusepipelining) option of [`NSURLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  See [RFC 2817](https://tools.ietf.org/html/rfc2817) and [RFC 6455](https://tools.ietf.org/html/rfc6455) for information about the `Upgrade:` header.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) object performs asynchronous reads and writes, which are enqueued and executed serially, calling a handler upon completion being on the session delegate queue. If the task is canceled, all enqueued reads and writes will call their completion handlers with an appropriate error.
+    ///
+    /// When working with APIs that accept [`NSStream`](https://developer.apple.com/documentation/foundation/stream) objects, you can create [`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream) and [`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream) objects from an [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) object by calling the [`captureStreams`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask/capturestreams()) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  watchOS supports [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask) for specific use cases. For more details, see [TN3135: Low-level networking on watchOS](https://developer.apple.com/documentation/technotes/tn3135-low-level-networking-on-watchos).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionStreamTask;
@@ -921,16 +1165,13 @@ impl NSURLSessionStreamTask {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionWebSocketMessageType(pub NSInteger);
 impl NSURLSessionWebSocketMessageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype/nsurlsessionwebsocketmessagetypedata?language=objc)
     #[doc(alias = "NSURLSessionWebSocketMessageTypeData")]
     pub const Data: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype/nsurlsessionwebsocketmessagetypestring?language=objc)
     #[doc(alias = "NSURLSessionWebSocketMessageTypeString")]
     pub const String: Self = Self(1);
 }
@@ -944,7 +1185,6 @@ unsafe impl RefEncode for NSURLSessionWebSocketMessageType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketMessage;
@@ -994,49 +1234,79 @@ impl NSURLSessionWebSocketMessage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum?language=objc)
+/// A code that indicates why a WebSocket connection closed.
+///
+/// ## Overview
+///
+/// The WebSocket close codes follow the close codes defined in [RFC 6455](https://tools.ietf.org/html/rfc6455#section-7.4.1).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionWebSocketCloseCode(pub NSInteger);
 impl NSURLSessionWebSocketCloseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/invalid?language=objc)
+    /// A code that indicates the connection is still open.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/normalclosure?language=objc)
+    /// A code that indicates normal connection closure.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeNormalClosure")]
     pub const NormalClosure: Self = Self(1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/goingaway?language=objc)
+    /// A code that indicates an endpoint is going away.
+    ///
+    /// ## Discussion
+    ///
+    /// This code indicates situations like a server going down or a browser having navigated away from a page.
+    ///
+    ///
     #[doc(alias = "NSURLSessionWebSocketCloseCodeGoingAway")]
     pub const GoingAway: Self = Self(1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/protocolerror?language=objc)
+    /// A code that indicates an endpoint terminated the connection due to a protocol error.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeProtocolError")]
     pub const ProtocolError: Self = Self(1002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/unsupporteddata?language=objc)
+    /// A code that indicates an endpoint terminated the connection after receiving a type of data it can’t accept.
+    ///
+    /// ## Discussion
+    ///
+    /// An endpoint that only accepts text may send this close code if it receives a binary message.
+    ///
+    ///
     #[doc(alias = "NSURLSessionWebSocketCloseCodeUnsupportedData")]
     pub const UnsupportedData: Self = Self(1003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/nostatusreceived?language=objc)
+    /// A reserved code that indicates an endpoint expected a status code and didn’t receive one.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeNoStatusReceived")]
     pub const NoStatusReceived: Self = Self(1005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/abnormalclosure?language=objc)
+    /// A reserved code that indicates the connection closed without a close control frame.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeAbnormalClosure")]
     pub const AbnormalClosure: Self = Self(1006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/invalidframepayloaddata?language=objc)
+    /// A code that indicates the server terminated the connection because it received data inconsistent with the message’s type.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalidFramePayloadData")]
     pub const InvalidFramePayloadData: Self = Self(1007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/policyviolation?language=objc)
+    /// A code that indicates an endpoint terminated the connection because it received a message that violates its policy.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic code for use when a more specific code is unavailable.
+    ///
+    ///
     #[doc(alias = "NSURLSessionWebSocketCloseCodePolicyViolation")]
     pub const PolicyViolation: Self = Self(1008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/messagetoobig?language=objc)
+    /// A code that indicates an endpoint is terminating the connection because it received a message too big for it to process.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeMessageTooBig")]
     pub const MessageTooBig: Self = Self(1009);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/mandatoryextensionmissing?language=objc)
+    /// A code that indicates the client terminated the connection because the server didn’t negotiate a required extension.
+    ///
+    /// ## Discussion
+    ///
+    /// RFC 6455 indicates the client should provide a [`closeReason`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closereason) with a list of the needed extensions.
+    ///
+    ///
     #[doc(alias = "NSURLSessionWebSocketCloseCodeMandatoryExtensionMissing")]
     pub const MandatoryExtensionMissing: Self = Self(1010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/internalservererror?language=objc)
+    /// A code that indicates the server terminated the connection because it encountered an unexpected condition.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInternalServerError")]
     pub const InternalServerError: Self = Self(1011);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum/tlshandshakefailure?language=objc)
+    /// A reserved code that indicates the connection closed due to the failure to perform a TLS handshake.
     #[doc(alias = "NSURLSessionWebSocketCloseCodeTLSHandshakeFailure")]
     pub const TLSHandshakeFailure: Self = Self(1015);
 }
@@ -1050,7 +1320,27 @@ unsafe impl RefEncode for NSURLSessionWebSocketCloseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask?language=objc)
+    /// A URL session task that communicates over the WebSockets protocol standard.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSURLSessionWebSocketTask`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask) is a concrete subclass of [`NSURLSessionTask`](https://developer.apple.com/documentation/foundation/urlsessiontask) that provides a message-oriented transport protocol over TCP and TLS in the form of WebSocket framing. It follows the WebSocket Protocol defined in [RFC 6455](https://tools.ietf.org/html/rfc6455).
+    ///
+    /// You create a [`NSURLSessionWebSocketTask`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask) with either a `ws:` or `wss:` URL. When creating the task, you can also provide a list of protocols to advertise during the handshake phase. Once the handshake completes, your app receives notifications through the session’s [`delegate`](https://developer.apple.com/documentation/foundation/urlsession/delegate).
+    ///
+    /// You send data with [`send(_:completionHandler:)`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/send(_:completionhandler:)) and receive data with [`receive(completionHandler:)`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/receive(completionhandler:)). The task performs reads and writes asynchronously, and allows you to send and receive messages that contain both binary frames and UTF-8 encoded text frames. The task enqueues any reads or writes you perform prior to the handshake’s completion, and executes them after the handshake completes.
+    ///
+    /// [`NSURLSessionWebSocketTask`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask) supports redirection and authentication like other types of tasks do, using the methods in [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate). The WebSocket task calls the redirection and authentication delegate methods prior to completing the handshake. The WebSocket task also supports cookies, by storing cookies to the session configuration’s [`HTTPCookieStorage`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage), and attaches cookies to outgoing HTTP handshake requests.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  watchOS supports [`NSURLSessionWebSocketTask`](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask) for specific use cases. For more details, see [TN3135: Low-level networking on watchOS](https://developer.apple.com/documentation/technotes/tn3135-low-level-networking-on-watchos).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketTask;
@@ -1154,6 +1444,7 @@ impl NSURLSessionWebSocketTask {
     );
 }
 
+/// Constants that specify the type of service that Multipath TCP uses.
 /// The NSURLSessionMultipathServiceType enum defines constants that
 /// can be used to specify the multipath service type to associate an NSURLSession.  The
 /// multipath service type determines whether multipath TCP should be attempted and the conditions
@@ -1173,23 +1464,51 @@ impl NSURLSessionWebSocketTask {
 ///
 /// used for better bandwidth.  This mode is only available for experimentation on devices configured for development use.
 /// It can be enabled in the Developer section of the Settings app.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionMultipathServiceType(pub NSInteger);
 impl NSURLSessionMultipathServiceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/none?language=objc)
+    /// The default service type indicating that Multipath TCP should not be used.
     #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/handover?language=objc)
+    /// A Multipath TCP service that provides seamless handover between Wi-Fi and cellular in order to preserve the connection.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify this option for long-lived or persistent connections. You must also set the [`Multipath Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath) in the Xcode Capabilities pane for your app.
+    ///
+    ///
     #[doc(alias = "NSURLSessionMultipathServiceTypeHandover")]
     pub const Handover: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/interactive?language=objc)
+    /// A service whereby Multipath TCP attempts to use the lowest-latency interface.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify this option for latency-sensitive, low-volume connections that might use cellular data. You must also set the [`Multipath Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath) in the Xcode Capabilities pane for your app.
+    ///
+    ///
     #[doc(alias = "NSURLSessionMultipathServiceTypeInteractive")]
     pub const Interactive: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum/aggregate?language=objc)
+    /// A service that aggregates the capacities of other Multipath options in an attempt to increase throughput and minimize latency.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is available only for experimentation. Specify it for connections that use cellular data. You must also set the [`Multipath Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath) in the Xcode Capabilities pane for your app.
+    ///
+    /// To enable the aggregation mode, open the Settings app on your development iPhone and navigate to Developer, and then turn on Multipath Networking.
+    ///
+    /// Multipath Aggregation requires an iOS device in Developer mode with a cellular connection running iOS 11.0 or later.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Setting this option will use a considerable amount of cellular data.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSURLSessionMultipathServiceTypeAggregate")]
     pub const Aggregate: Self = Self(3);
 }
@@ -1203,7 +1522,37 @@ unsafe impl RefEncode for NSURLSessionMultipathServiceType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration?language=objc)
+    /// A configuration object that defines behavior and policies for a URL session.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSURLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration) object defines the behavior and policies to use when uploading and downloading data using an [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object. When uploading or downloading data, creating a configuration object is always the first step you must take. You use this object to configure the timeout values, caching policies, connection requirements, and other types of information that you intend to use with your [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object.
+    ///
+    /// It is important to configure your [`NSURLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration) object appropriately before using it to initialize a session object. Session objects make a copy of the configuration settings you provide and use those settings to configure the session. Once configured, the session object ignores any changes you make to the [`NSURLSessionConfiguration`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration) object. If you need to modify your transfer policies, you must update the session configuration object and use it to create a new [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In some cases, the policies defined in this configuration may be overridden by policies specified by an [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) object provided for a task. Any policy specified on the request object is respected unless the session’s policy is more restrictive. For example, if the session configuration specifies that cellular networking should not be allowed, the [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) object cannot request cellular networking.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information about using configuration objects to create sessions, see [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession).
+    ///
+    /// ### Types of session configurations
+    ///
+    /// The behavior and capabilities of a URL session are largely determined by the kind of configuration used to create the session.
+    ///
+    /// The singleton shared session (which has no configuration object) is for basic requests. It’s not as customizable as sessions that you create, but it serves as a good starting point if you have very limited requirements. You access this session by calling the shared class method. See that method’s discussion for more information about its limitations.
+    ///
+    /// Default sessions behave much like the shared session (unless you customize them further), but let you obtain data incrementally using a delegate. You can create a default session configuration by calling the default method on the URLSessionConfiguration class.
+    ///
+    /// Ephemeral sessions are similar to default sessions, but they don’t write caches, cookies, or credentials to disk. You can create an ephemeral session configuration by calling the ephemeral method on the URLSessionConfiguration class.
+    ///
+    /// Background sessions let you perform uploads and downloads of content in the background while your app isn’t running. You can create a background session configuration by calling the backgroundSessionConfiguration(_:) method on the URLSessionConfiguration class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionConfiguration;
@@ -1576,19 +1925,25 @@ impl NSURLSessionConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition?language=objc)
+/// The action to take on a delayed URL session task.
+///
+/// ## Overview
+///
+/// The values of this enumeration indicate how to handle a task with a delayed start time (as set with the [`earliestBeginDate`](https://developer.apple.com/documentation/foundation/urlsessiontask/earliestbegindate) property). When the task is ready to start, it calls the [`URLSession:task:willBeginDelayedRequest:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:willbegindelayedrequest:completionhandler:)) method of [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate). The implementation of this method must call the provided completion handler, passing in one case of this enumeration as the first argument. If the [`NSURLSessionDelayedRequestUseNewRequest`](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/usenewrequest) disposition is used for the first argument, the caller must also provide a new [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) as the second argument.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionDelayedRequestDisposition(pub NSInteger);
 impl NSURLSessionDelayedRequestDisposition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/continueloading?language=objc)
+    /// A disposition indicating that the task should proceed with the original request.
     #[doc(alias = "NSURLSessionDelayedRequestContinueLoading")]
     pub const ContinueLoading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/usenewrequest?language=objc)
+    /// A disposition indicating that the task should use a new request to perform the network load.
     #[doc(alias = "NSURLSessionDelayedRequestUseNewRequest")]
     pub const UseNewRequest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition/cancel?language=objc)
+    /// A disposition indicating that the task should be canceled.
     #[doc(alias = "NSURLSessionDelayedRequestCancel")]
     pub const Cancel: Self = Self(2);
 }
@@ -1601,22 +1956,30 @@ unsafe impl RefEncode for NSURLSessionDelayedRequestDisposition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition?language=objc)
+/// Constants passed by session or task delegates to the provided continuation block in response to an authentication challenge.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionAuthChallengeDisposition(pub NSInteger);
 impl NSURLSessionAuthChallengeDisposition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/usecredential?language=objc)
+    /// Use the specified credential, which may be `nil`.
     #[doc(alias = "NSURLSessionAuthChallengeUseCredential")]
     pub const UseCredential: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling?language=objc)
+    /// Use the default handling for the challenge as though this delegate method were not implemented. The provided credential parameter is ignored.
     #[doc(alias = "NSURLSessionAuthChallengePerformDefaultHandling")]
     pub const PerformDefaultHandling: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/cancelauthenticationchallenge?language=objc)
+    /// Cancel the entire request. The provided credential parameter is ignored.
     #[doc(alias = "NSURLSessionAuthChallengeCancelAuthenticationChallenge")]
     pub const CancelAuthenticationChallenge: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/rejectprotectionspace?language=objc)
+    /// Reject this challenge, and call the authentication delegate method again with the next authentication protection space. The provided credential parameter is ignored.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`NSURLSessionAuthChallengeRejectProtectionSpace`](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/rejectprotectionspace) disposition is only appropriate in fairly unusual situations. For example, a Windows server might use both [`NSURLAuthenticationMethodNegotiate`](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodnegotiate) and [`NSURLAuthenticationMethodNTLM`](https://developer.apple.com/documentation/foundation/nsurlauthenticationmethodntlm). If your app can only handle NTLM, you would want to reject the Negotiate challenge, in order to then receive the queued NTLM challenge.
+    ///
+    /// However, most apps won’t face this scenario, and if you cannot provide a credential for a certain authentication method, you should usually fall back to the [`NSURLSessionAuthChallengePerformDefaultHandling`](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition/performdefaulthandling) disposition instead.
+    ///
+    ///
     #[doc(alias = "NSURLSessionAuthChallengeRejectProtectionSpace")]
     pub const RejectProtectionSpace: Self = Self(3);
 }
@@ -1629,22 +1992,46 @@ unsafe impl RefEncode for NSURLSessionAuthChallengeDisposition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition?language=objc)
+/// Constants indicating how a data or upload session should proceed after receiving the initial headers.
+///
+/// ## Overview
+///
+/// When a data or upload task first receives a response, it calls the  [`URLSession:dataTask:didReceiveResponse:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didreceive:completionhandler:)) method of [`NSURLSessionDataDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate). Implement this method to inspect the received [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) and then call the provided completion handler. The first parameter to the completion handler is of this type, a disposition that tells the task how to proceed.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionResponseDisposition(pub NSInteger);
 impl NSURLSessionResponseDisposition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/cancel?language=objc)
+    /// Cancel the load.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this disposition is equivalent to calling [`cancel`](https://developer.apple.com/documentation/foundation/urlsessiontask/cancel()) on the task.
+    ///
+    ///
     #[doc(alias = "NSURLSessionResponseCancel")]
     pub const Cancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/allow?language=objc)
+    /// Allow the load operation to continue.
     #[doc(alias = "NSURLSessionResponseAllow")]
     pub const Allow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/becomedownload?language=objc)
+    /// Convert the response for this request to use a [`NSURLSessionDownloadTask`](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask).
+    ///
+    /// ## Discussion
+    ///
+    /// When used with the completion handler from [`URLSession:dataTask:didReceiveResponse:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didreceive:completionhandler:)), this disposition converts the data task to a download task. This will result in your delegate’s [`URLSession:dataTask:didBecomeDownloadTask:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didbecome:)-60op5) being called to provide you with the new download task that supersedes the current task.
+    ///
+    ///
     #[doc(alias = "NSURLSessionResponseBecomeDownload")]
     pub const BecomeDownload: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition/becomestream?language=objc)
+    /// Convert the response for this request to use a [`NSURLSessionStreamTask`](https://developer.apple.com/documentation/foundation/urlsessionstreamtask).
+    ///
+    /// ## Discussion
+    ///
+    /// When used with the completion handler from [`URLSession:dataTask:didReceiveResponse:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didreceive:completionhandler:)), this disposition converts the task to a stream task. This will result in your delegate’s [`URLSession:dataTask:didBecomeStreamTask:`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate/urlsession(_:datatask:didbecome:)-7nqzu) being called to provide you with the new stream task that supersedes the current task.
+    ///
+    ///
     #[doc(alias = "NSURLSessionResponseBecomeStream")]
     pub const BecomeStream: Self = Self(3);
 }
@@ -1658,7 +2045,21 @@ unsafe impl RefEncode for NSURLSessionResponseDisposition {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondelegate?language=objc)
+    /// A protocol that defines methods that URL session instances call on their delegates to handle session-level events, like session life cycle changes.
+    ///
+    /// ## Overview
+    ///
+    /// In addition to the methods defined in this protocol, most delegates should also implement some or all of the methods in the [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate), [`NSURLSessionDataDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate), and [`NSURLSessionDownloadDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondownloaddelegate) protocols to handle task-level events. These include events like the beginning and end of individual tasks, and periodic progress updates from data or download tasks.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Your [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object doesn’t need to have a delegate. If no delegate is assigned, a system-provided delegate is used, and you must provide a completion callback to obtain the data.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSURLSessionDelegate: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "NSError")]
         #[optional]
@@ -1698,7 +2099,25 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate?language=objc)
+    /// A protocol that defines methods that URL session instances call on their delegates to handle task-level events.
+    ///
+    /// ## Overview
+    ///
+    /// You use this protocol in one of two ways, depending on how you use a [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession):
+    ///
+    /// - If you create tasks with Swift’s `async`-`await` syntax, using methods like [`bytes(for:delegate:)`](https://developer.apple.com/documentation/foundation/urlsession/bytes(for:delegate:)) and [`data(for:delegate:)`](https://developer.apple.com/documentation/foundation/urlsession/data(for:delegate:)), you pass a `delegate` argument of this type. The delegate receives callbacks for things like task progress, while the call point awaits the completion of the task.
+    ///
+    /// - If you add tasks to the session with methods like [`dataTaskWithURL:`](https://developer.apple.com/documentation/foundation/urlsession/datatask(with:)-10dy7) and [`downloadTaskWithURL:`](https://developer.apple.com/documentation/foundation/urlsession/downloadtask(with:)-1onj), then you implement this protocol’s methods in a [`delegate`](https://developer.apple.com/documentation/foundation/urlsession/delegate) you set on the session. This session delegate may also implement other protocols as appropriate, like [`NSURLSessionDownloadDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondownloaddelegate) and [`NSURLSessionDataDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate). You can also assign a delegate of this type directly to the task to intercept callbacks before the task delivers them to the session’s delegate.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Your [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object doesn’t need to have a delegate. If you don’t assign a delegate, the session uses a system-provided delegate. In this case, you must provide a completion callback or use the Swift `async`-`await` methods to obtain the data.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSURLSessionTaskDelegate: NSURLSessionDelegate {
         #[optional]
         #[unsafe(method(URLSession:didCreateTask:))]
@@ -1856,7 +2275,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate?language=objc)
+    /// A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to data and upload tasks.
+    ///
+    /// ## Overview
+    ///
+    /// Your session delegate should also implement the methods in the [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate) protocol to handle task-level events that are common to all task types, and methods in the [`NSURLSessionDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondelegate) protocol to handle session-level events.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object need not have a delegate. If no delegate is assigned, when you create tasks in that session, you must provide a completion handler block to obtain the data.
+    ///
+    /// Completion handler blocks are primarily intended as an alternative to using a custom delegate. If you create a task using a method that takes a completion handler block, the delegate methods for response and data delivery are not called.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSURLSessionDataDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(feature = "NSURLResponse", feature = "block2"))]
         /// # Safety
@@ -1922,7 +2357,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondownloaddelegate?language=objc)
+    /// A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to download tasks.
+    ///
+    /// ## Overview
+    ///
+    /// In addition to the methods in this protocol, be sure to implement the methods in the [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate) and [`NSURLSessionDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondelegate) protocols to handle events common to all task types and session-level events, respectively.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  An [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object need not have a delegate. If no delegate is assigned, a system-provided delegate is used, and you must provide a completion callback to obtain the data.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSURLSessionDownloadDelegate: NSURLSessionTaskDelegate {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(URLSession:downloadTask:didFinishDownloadingToURL:))]
@@ -1960,7 +2409,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionstreamdelegate?language=objc)
+    /// A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to stream tasks.
+    ///
+    /// ## Overview
+    ///
+    /// In addition to these methods, be sure to implement the methods in the [`NSURLSessionTaskDelegate`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate) and [`NSURLSessionDelegate`](https://developer.apple.com/documentation/foundation/urlsessiondelegate) protocols to handle events common to all task types and session-level events, respectively.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// A [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) object need not have a delegate. If no delegate is assigned, a system-provided delegate is used, and you must provide a completion callback to obtain the data.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSURLSessionStreamDelegate: NSURLSessionTaskDelegate {
         #[optional]
         #[unsafe(method(URLSession:readClosedForStreamTask:))]
@@ -2004,7 +2467,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsocketdelegate?language=objc)
+    /// A protocol that defines methods that URL session instances call on their delegates to handle task-level events specific to WebSocket tasks.
     pub unsafe trait NSURLSessionWebSocketDelegate: NSURLSessionTaskDelegate {
         #[cfg(feature = "NSString")]
         #[optional]
@@ -2032,15 +2495,19 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondownloadtaskresumedata?language=objc)
+    /// A key in the error dictionary that provides resume data.
+    ///
+    /// ## Discussion
+    ///
+    /// When a transfer error occurs or when you call the [`cancelByProducingResumeData:`](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask/cancel(byproducingresumedata:)) method, the delegate object or completion handler gets an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object. If the transfer is resumable, that error object’s `userInfo` dictionary contains a value for this key. To resume the transfer, your app can pass that value to the [`downloadTaskWithResumeData:`](https://developer.apple.com/documentation/foundation/urlsession/downloadtask(withresumedata:)) or [`downloadTaskWithResumeData:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsession/downloadtask(withresumedata:completionhandler:)) method.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLSessionDownloadTaskResumeData: &'static NSString;
 }
 
 extern "C" {
     /// Key in the userInfo dictionary of an NSError received during a failed upload.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionuploadtaskresumedata?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLSessionUploadTaskResumeData: &'static NSString;
 }
@@ -2058,23 +2525,23 @@ impl NSURLSessionConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype?language=objc)
+/// The manner in which a resource is fetched.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskMetricsResourceFetchType(pub NSInteger);
 impl NSURLSessionTaskMetricsResourceFetchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/unknown?language=objc)
+    /// The manner in which the resource was fetched could not be determined.
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/networkload?language=objc)
+    /// The resource was loaded over the network.
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeNetworkLoad")]
     pub const NetworkLoad: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/serverpush?language=objc)
+    /// The resource was pushed by the server to the client.
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeServerPush")]
     #[deprecated = "Server push is no longer supported as of iOS 17 and aligned releases"]
     pub const ServerPush: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype/localcache?language=objc)
+    /// The resource was retrieved from the local storage.
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeLocalCache")]
     pub const LocalCache: Self = Self(3);
 }
@@ -2087,25 +2554,19 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsResourceFetchType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskMetricsDomainResolutionProtocol(pub NSInteger);
 impl NSURLSessionTaskMetricsDomainResolutionProtocol {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/unknown?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/udp?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUDP")]
     pub const UDP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/tcp?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTCP")]
     pub const TCP: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/tls?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolTLS")]
     pub const TLS: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol/https?language=objc)
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolHTTPS")]
     pub const HTTPS: Self = Self(4);
 }
@@ -2119,7 +2580,33 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsDomainResolutionProtocol {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics?language=objc)
+    /// An object that encapsualtes the performance metrics collected by the URL Loading System during the execution of a session task.
+    ///
+    /// ## Overview
+    ///
+    /// Each [`NSURLSessionTaskTransactionMetrics`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics) object consists of a [`request`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/request) and [`response`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response) property, corresponding to the request and response of the corresponding task. It also contains temporal metrics, starting with [`fetchStartDate`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/fetchstartdate) and ending with [`responseEndDate`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responseenddate), as well as other characteristics like [`networkProtocolName`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname) and [`resourceFetchType`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/resourcefetchtype).
+    ///
+    /// ### Understanding temporal metrics
+    ///
+    /// The figure below shows the sequence of events for a URL session task, which correspond to the temporal metrics captured by [`NSURLSessionTaskTransactionMetrics`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics).
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e81f8ae516660414e5102a38b4db7b31/media-3162616~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/fe43fa65ab15aa2971fae2fab53e1a4f/media-3162616%402x.png 2x" />
+    ///     <img alt="Diagram showing the temporal metrics for a URL session task. When a task starts, it performs a DNS lookup and then starts a connection. If the connection is encrypted, the user agent starts a TLS security handshake to secure the connection. After the connection to the server is established, the user agent requests the specified resource, and receives a response." src="https://docs-assets.developer.apple.com/published/fe43fa65ab15aa2971fae2fab53e1a4f/media-3162616%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For all metrics with a start and end date, if an aspect of the task was not completed, then its corresponding end date metric is `nil`. This can happen if name lookup begins, but the operation either times out, fails, or the client cancels the task before the name can be resolved. In this case, the [`domainLookupEndDate`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupenddate) property is `nil`, along with all metrics for aspects that occurred afterwards.
+    ///
+    /// ### Measuring tasks using iCloud Private Relay
+    ///
+    /// iCloud Private Relay can change the timing and sequence of events for your tasks by sending requests through a set of privacy proxies. All tasks that use iCloud Private Relay set the [`proxyConnection`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/isproxyconnection) property in their transaction metrics. In this case, the [`remoteAddress`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress) property contains the address of the proxy, and not the origin server.
+    ///
+    /// Tasks to different hosts can reuse the same transport connection, just like how tasks can already share a connection when using HTTP/2. In these cases, a proxied task may not report any [`secureConnectionStartDate`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionstartdate) or [`secureConnectionEndDate`](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionenddate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskTransactionMetrics;
@@ -2304,7 +2791,13 @@ impl NSURLSessionTaskTransactionMetrics {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics?language=objc)
+    /// An object encapsulating the metrics for a session task.
+    ///
+    /// ## Overview
+    ///
+    /// Each [`NSURLSessionTaskMetrics`](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics) object contains the [`taskInterval`](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/taskinterval) and [`redirectCount`](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/redirectcount), as well as metrics for each request-and-response transaction made during the execution of the task.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskMetrics;

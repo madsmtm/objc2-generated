@@ -10,7 +10,30 @@ use crate::*;
 extern_class!(
     /// An object that records audio data to a file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorder?language=objc)
+    /// ## Overview
+    ///
+    /// Use an audio recorder to:
+    ///
+    /// - Record audio from the system’s active input device
+    ///
+    /// - Record for a specified duration or until the user stops recording
+    ///
+    /// - Pause and resume a recording
+    ///
+    /// - Access recording-level metering data
+    ///
+    /// To record audio in iOS or tvOS, configure your audio session to use the [`AVAudioSessionCategoryRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/record) or [`AVAudioSessionCategoryPlayAndRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playandrecord) category.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For more advanced recording capabilities, like applying signal processing to recorded audio, use [`AVAudioEngine`](https://developer.apple.com/documentation/avfaudio/avaudioengine) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An object that records audio data to a file.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioRecorder;
@@ -241,9 +264,8 @@ impl AVAudioRecorder {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to respond to audio recording events and encoding errors.
     /// A protocol for delegates of AVAudioRecorder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiorecorderdelegate?language=objc)
     pub unsafe trait AVAudioRecorderDelegate: NSObjectProtocol + Send + Sync {
         /// This callback method is called when a recording has been finished or stopped.
         ///

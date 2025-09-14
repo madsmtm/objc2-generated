@@ -14,9 +14,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A tool for drawing on a PKCanvasView.
+    /// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinkingtoolreference?language=objc)
+    /// ## Overview
+    ///
+    /// A [`PKInkingTool`](https://developer.apple.com/documentation/pencilkit/pkinkingtool-swift.struct) object supports the creation of new content on a [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview). With an inking tool, the canvas turns touch input from the user into a continuously rendered stroke. The value in the [`width`](https://developer.apple.com/documentation/pencilkit/pkinkingtoolreference/width) property determines the base width of that stroke; however, that base value also depends on input from Apple Pencil, including force, azimuth, and angle data.
+    ///
+    /// Create an inking tool programmatically, or display a [`PKToolPicker`](https://developer.apple.com/documentation/pencilkit/pktoolpicker) object and from which a user can select a tool. Assign the resulting object to the [`tool`](https://developer.apple.com/documentation/pencilkit/pkcanvasview/tool-6str6) property of your [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview) object. The canvas uses any subsequent touch sequences to draw new content on the canvas. Assigning a new inking tool doesn’t change the characteristics for any previously drawn strokes.
+    ///
+    ///
+    /// A tool for drawing on a PKCanvasView.
     #[unsafe(super(PKTool, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKTool")]

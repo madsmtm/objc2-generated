@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfoutline?language=objc)
+    /// A `PDFOutline` object is an element in a tree-structured hierarchy that can represent the structure of a PDF document.
+    ///
+    /// ## Overview
+    ///
+    /// An outline is an optional component of a PDF document, useful for viewing the structure of the document and for navigating within it.
+    ///
+    /// Outlines are created by the document’s author. If you represent a PDF document outline using outline objects, the root of the hierarchy is obtained from the PDF document itself. This root outline is not visible and serves merely as a container for the visible outlines.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFOutline;

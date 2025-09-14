@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputserviceprovider?language=objc)
     pub unsafe trait NSInputServiceProvider {
         /// # Safety
         ///
@@ -145,7 +144,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputservermousetracker?language=objc)
     pub unsafe trait NSInputServerMouseTracker {
         /// # Safety
         ///
@@ -195,7 +193,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintentresponse?language=objc)
+    /// Your response to an intent object.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INIntentResponse`](https://developer.apple.com/documentation/intents/inintentresponse) class is abstract and provides common behavior for all response objects that your app creates. You do not create instances of this class directly. Instead, you create instances of the specific subclasses representing the intents that you are trying to handle. This class provides access to the custom user activity object that you provided when initializing your response object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INIntentResponse;

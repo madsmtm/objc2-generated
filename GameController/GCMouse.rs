@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification that posts after a mouse connects to the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`GCMouse`](https://developer.apple.com/documentation/gamecontroller/gcmouse) object that represents the mouse.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use these constants with NSNotificationCenter to listen to connection and disconnection events.
     ///
     /// Use GCMouseDidConnectNotification for observing connections of mice.
@@ -29,17 +38,32 @@ extern "C" {
     /// See: NSNotificationCenter
     ///
     /// See: GCMouse.mice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousedidconnectnotification?language=objc)
     pub static GCMouseDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousediddisconnectnotification?language=objc)
+    /// A notification that posts after a mouse disconnects from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`GCMouse`](https://developer.apple.com/documentation/gamecontroller/gcmouse) object that represents the mouse.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     pub static GCMouseDidDisconnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// A notification that posts when a mouse becomes the most recent mouse that the user connects.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`GCMouse`](https://developer.apple.com/documentation/gamecontroller/gcmouse) object that represents the current mouse. For example, set the mouse input change handlers when you receive this notification.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use these constants with NSNotificationCenter to listen to a controller becoming the most recently used mouse.
     /// This is a good time to swap out UI to match the new current mouse, and unregister any handlers with
     /// the old current controller.
@@ -59,24 +83,35 @@ extern "C" {
     /// See: GCMouse.mice
     ///
     /// See: GCMouse.current
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousedidbecomecurrentnotification?language=objc)
     pub static GCMouseDidBecomeCurrentNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousedidstopbeingcurrentnotification?language=objc)
+    /// A notification that posts when a mouse stops being the most recent mouse that the user connects.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`GCMouse`](https://developer.apple.com/documentation/gamecontroller/gcmouse) object that represents the previous current mouse. For example, if you set any of the mouse input change handlers, unset them when you receive this notification.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     pub static GCMouseDidStopBeingCurrentNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object that represents a physical mouse connected to a device.
+    ///
+    /// ## Overview
+    ///
+    /// To get a mouse object and its input values, register for the [`GCMouseDidConnect`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/gcmousedidconnect) (Swift) or [`GCMouseDidConnectNotification`](https://developer.apple.com/documentation/gamecontroller/gcmousedidconnectnotification) (Objective-C) notification for when a mouse connects to the device. Then register for the [`GCMouseDidBecomeCurrent`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/gcmousedidbecomecurrent)  (Swift) or [`GCMouseDidBecomeCurrentNotification`](https://developer.apple.com/documentation/gamecontroller/gcmousedidbecomecurrentnotification) (Objective-C) notification for when it becomes the [`current`](https://developer.apple.com/documentation/gamecontroller/gcmouse/current) mouse. Alternatively, use the [`current`](https://developer.apple.com/documentation/gamecontroller/gcmouse/current) class property or the [`mice`](https://developer.apple.com/documentation/gamecontroller/gcmouse/mice()) class method to get a mouse object. Then get the current input values from the mouse object’s [`mouseInput`](https://developer.apple.com/documentation/gamecontroller/gcmouse/mouseinput) controller profile.
+    ///
+    ///
     /// Mice are available to an application that links to GameController.framework. There are 2 ways to access mice
     /// paired to the system. Adopt both to ensure the best user experience:
     ///
     /// 1: Querying for the current array of mice using [GCMouse mice]
     /// 2: Registering for Connection/Disconnection notifications from NSNotificationCenter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmouse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCMouse;

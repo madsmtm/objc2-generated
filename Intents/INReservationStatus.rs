@@ -4,25 +4,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus?language=objc)
+/// Constants that describe the current status of the reservation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INReservationStatus(pub NSInteger);
 impl INReservationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/unknown?language=objc)
+    /// The current reservation is unknown.
     #[doc(alias = "INReservationStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/canceled?language=objc)
+    /// The user or business canceled the reservation.
     #[doc(alias = "INReservationStatusCanceled")]
     pub const Canceled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/pending?language=objc)
+    /// The reservation confirmation is pending.
     #[doc(alias = "INReservationStatusPending")]
     pub const Pending: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/hold?language=objc)
+    /// The reservation is on hold.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this status when the app is reserving the reservation time for the user, but the user hasn’t made the reservation.
+    ///
+    ///
     #[doc(alias = "INReservationStatusHold")]
     pub const Hold: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationstatus/confirmed?language=objc)
+    /// The reservation is confirmed.
     #[doc(alias = "INReservationStatusConfirmed")]
     pub const Confirmed: Self = Self(4);
 }

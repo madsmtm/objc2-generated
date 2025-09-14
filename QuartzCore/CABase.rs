@@ -5,7 +5,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacurrentmediatime()?language=objc)
+/// Returns the current absolute time, in seconds.
+///
+/// ## Return Value
+///
+/// A `CFTimeInterval` derived by calling `mach_absolute_time()` and converting the result to seconds.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CACurrentMediaTime() -> CFTimeInterval {

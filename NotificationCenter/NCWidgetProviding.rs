@@ -7,19 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult?language=objc)
+/// The result of updating a widget’s state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NCUpdateResult(pub NSUInteger);
 impl NCUpdateResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult/newdata?language=objc)
+    /// The update resulted in new data to display.
+    ///
+    /// ## Discussion
+    ///
+    /// When new data is available, the widget might have to update its layout.
+    ///
+    ///
     #[doc(alias = "NCUpdateResultNewData")]
     pub const NewData: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult/nodata?language=objc)
+    /// The update did not result in any new data since the last update.
     #[doc(alias = "NCUpdateResultNoData")]
     pub const NoData: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncupdateresult/failed?language=objc)
+    /// The update attempt failed.
     #[doc(alias = "NCUpdateResultFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -33,7 +39,13 @@ unsafe impl RefEncode for NCUpdateResult {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncwidgetproviding?language=objc)
+    /// The interface for customizing the appearance and behavior of a Today widget.
+    ///
+    /// ## Overview
+    ///
+    /// The `NCWidgetProviding` protocol allows customization of the appearance and behavior of a Today widget.
+    ///
+    ///
     #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]
     pub unsafe trait NCWidgetProviding: NSExtensionRequestHandling {
         #[cfg(feature = "block2")]

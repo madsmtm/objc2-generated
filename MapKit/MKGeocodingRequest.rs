@@ -8,7 +8,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeocodingrequest?language=objc)
+    /// A class that looks up a geographic coordinate using the provided string.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this class to look up the coordinate for an address string you provide, for example if you want to display the location in a map. This example shows how to use a [`Task`](https://developer.apple.com/documentation/swift/task) modifier on a SwiftUI view to geocode an array of street addresses to the corresponding coordinates that MapKit returns in an array of [`MKMapItem`](https://developer.apple.com/documentation/mapkit/mkmapitem) objects.
+    ///
+    /// ```swift
+    ///
+    /// struct MyGeocoderView: View {
+    ///
+    ///     let addressVisits = [
+    ///         "Bethesda Terrace, Central Park \n New York, NY 10023 \n United States",
+    ///         "Mill Creek Park Fountain, \n Kansas City, Missouri, \n United States",
+    ///         "Archibald Fountain, 110 Elizabeth St \n Sydney NSW 2000 \n Australia"
+    ///     ]
+    ///     @State var addressVisitMapItems: [MKMapItem] = []
+    ///     var body: some View {
+    ///     // SwiftUI body views
+    ///     }
+    ///     .onAppear {
+    ///         Task {
+    ///             var addressMapItems = [MKMapItem]()
+    ///             for address in addressVisits {
+    ///                 if let request = MKGeocodingRequest(addressString: address) {
+    ///                     do {
+    ///                         let mapitems = try await request.mapItems
+    ///                         if let mapitem = mapitems.first {
+    ///                             addressMppItems.append(mapitem)
+    ///                         }
+    ///                     } catch let error {
+    ///                         print("error: \(error)")
+    ///                     }
+    ///                 }
+    ///             }
+    ///             addressVisitMapItems = addressMapItems
+    ///
+    ///             // The `addressVisitMapItems` array contains `MKMapItem` items that provide information that describe
+    ///             // the geographic coordinates, the specific address, and other rich data about the provided locations:
+    ///             //
+    ///             // "New York, NY 10023 United States" at (40.76821482, -73.98669500)
+    ///             // "West 43rd St, Kansas City, MO 64111 United States" at (39.04979190, -94.59874170)
+    ///             // "110 Elizabeth St Sydney NSW 2000 Australia" at (33.87171620, 151.21150870)
+    ///         }
+    ///     }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeocodingRequest;

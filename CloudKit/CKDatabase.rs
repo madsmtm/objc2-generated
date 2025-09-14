@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope?language=objc)
+/// Constants that represent the scope of a database.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKDatabaseScope(pub NSInteger);
 impl CKDatabaseScope {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope/public?language=objc)
+    /// The public database.
     #[doc(alias = "CKDatabaseScopePublic")]
     pub const Public: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope/private?language=objc)
+    /// The private database.
     #[doc(alias = "CKDatabaseScopePrivate")]
     pub const Private: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase/scope/shared?language=objc)
+    /// The shared database.
     #[doc(alias = "CKDatabaseScopeShared")]
     pub const Shared: Self = Self(3);
 }
@@ -33,7 +33,49 @@ unsafe impl RefEncode for CKDatabaseScope {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabase?language=objc)
+    /// An object that represents a collection of record zones and subscriptions.
+    ///
+    /// ## Overview
+    ///
+    /// A database takes requests and operations and applies them to the objects it contains, whether that’s record zones, records, or subscriptions. Each of your app’s users has access to the three separate databases:
+    ///
+    /// - A public database that’s accessible to all users of your app.
+    ///
+    /// - A private database that’s accessible only to the user of the current device.
+    ///
+    /// - A shared database that’s accessible only to the user of the current device, which contains records that other iCloud users share with them.
+    ///
+    /// The public database is always available, even when the device doesn’t have an active iCloud account. In this scenario, your app can fetch specific records and perform searches, but it can’t create or modify records. CloudKit requires an iCloud account for writing to the public database so it can identify the authors of any changes. All access to the private and shared databases requires an iCloud account.
+    ///
+    /// You don’t create instances of [`CKDatabase`](https://developer.apple.com/documentation/cloudkit/ckdatabase), nor do you subclass it. Instead, you access the required database using one of your app’s containers. For more information, see [`CKContainer`](https://developer.apple.com/documentation/cloudkit/ckcontainer).
+    ///
+    /// By default, CloudKit executes the methods in this class with a low-priority quality of service (QoS). To use a higher-priority QoS, perform the following:
+    ///
+    /// 1. Create an instance of [`CKOperationConfiguration`](https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class) and set its [`qualityOfService`](https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class/qualityofservice) property to the preferred value.
+    ///
+    /// 2. Call the databaseʼs [`configuredWith(configuration:group:body:)`](https://developer.apple.com/documentation/cloudkit/ckdatabase/configuredwith(configuration:group:body:)-637p1) method and provide the configuration and a trailing closure.
+    ///
+    /// 3. In the closure, use the provided database to execute the relevant methods at the preferred QoS.
+    ///
+    /// ```swift
+    /// func fetchRecords(with ids: [CKRecord.ID]) async throws
+    ///     -> [CKRecord.ID: Result<CKRecord, Error>] {
+    ///
+    ///     // Get a reference to the user's private database.
+    ///     let database = CKContainer.default().privateCloudDatabase
+    ///
+    ///     // Create a configuration with a higher-priority quality of service.
+    ///     let config = CKOperation.Configuration()
+    ///     config.qualityOfService = .userInitiated
+    ///
+    ///     // Configure the database and execute the fetch.
+    ///     return try await database.configuredWith(configuration: config) { db in
+    ///         try await db.records(for: ids)
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabase;

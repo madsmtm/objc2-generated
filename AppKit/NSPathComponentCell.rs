@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcomponentcell?language=objc)
+    /// A component of a path.
+    ///
+    /// ## Overview
+    ///
+    /// An `NSPathCell` object manages a collection of `NSPathComponentCell` objects, in conjunction with an `NSPathControl` object, to represent a path.
+    ///
+    ///
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

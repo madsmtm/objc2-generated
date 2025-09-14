@@ -10,7 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifieldbehavior?language=objc)
+    /// An object that applies field-based physics to dynamic items.
+    ///
+    /// ## Overview
+    ///
+    /// A field behavior defines an area in which forces such as gravity, magnetism, drag, velocity, turbulence, and others can be applied. After creating a field behavior object of the appropriate type, configure the strength of the intended force along with any other field attributes.
+    ///
+    /// After creating a field behavior object, call the [`addItem:`](https://developer.apple.com/documentation/uikit/uifieldbehavior/additem(_:)) method to associate the field with that item. For many types of fields, you must also configure a [`UIDynamicItemBehavior`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior) object for the item to define relevant attributes of the item such as its density (mass) or charge. After configuring the field, add it to the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) object associated with your interface to begin the animations.
+    ///
+    /// The [`position`](https://developer.apple.com/documentation/uikit/uifieldbehavior/position) of a field defines its location in your interface and the field’s [`region`](https://developer.apple.com/documentation/uikit/uifieldbehavior/region) defines its area of influence. The region you specify is centered on the field’s position. Regions can be circular or rectangular, and you can combine regions in different ways to create more complex region shapes.
+    ///
+    /// Most fields use only a subset of the field attributes in their computations. All fields have a [`strength`](https://developer.apple.com/documentation/uikit/uifieldbehavior/strength) value that helps define the intensity of the field. Most fields also use the [`falloff`](https://developer.apple.com/documentation/uikit/uifieldbehavior/falloff) property to vary the field strength over distance. You configure other attributes only as needed for the type of field.
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

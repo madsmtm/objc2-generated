@@ -8,9 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represent a characteristic on a service of an accessory.
+    /// A specific characteristic of a service, like the brightness of a dimmable light or its color temperature.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristic?language=objc)
+    /// ## Overview
+    ///
+    /// An [`HMCharacteristic`](https://developer.apple.com/documentation/homekit/hmcharacteristic) instance represents an aspect of a service that provides data, or that your app can control.
+    ///
+    /// You don’t create characteristic instances. Instead, an accessory manufacturer incorporates them into a device, which publishes them to you through the [`characteristics`](https://developer.apple.com/documentation/homekit/hmservice/characteristics) array of an [`HMService`](https://developer.apple.com/documentation/homekit/hmservice) instance.
+    ///
+    /// Characteristics have a [`properties`](https://developer.apple.com/documentation/homekit/hmcharacteristic/properties) array that indicates attributes like readability, writability, and user-visibility. They also have a [`characteristicType`](https://developer.apple.com/documentation/homekit/hmcharacteristic/characteristictype) property that tells your app what the characteristic controls or describes. Device manufacturers can use one of the standard types, given in [Characteristic types](https://developer.apple.com/documentation/homekit/characteristic-types), or they can create custom types.
+    ///
+    /// Each characteristic has a [`value`](https://developer.apple.com/documentation/homekit/hmcharacteristic/value) that you can read or write. Some characteristics use plain numbers, Booleans, or strings. Others have application specific meanings declared in enumerations associated with the given characteristic type. The characteristic’s [`metadata`](https://developer.apple.com/documentation/homekit/hmcharacteristic/metadata) can help your app interpret the value.
+    ///
+    ///
+    /// Represent a characteristic on a service of an accessory.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMCharacteristic;

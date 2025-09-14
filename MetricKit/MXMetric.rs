@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract data class for a metric.
     /// An abstract class that describes a specific metric vended by MetricKit.
     ///
     /// All supported metrics are subclasses of MXMetric.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetric?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXMetric;

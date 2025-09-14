@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that resizes and changes the aspect ratio of an image.
     /// Resize an image and / or change its aspect ratio
     ///
     /// The MPSImageScale filter can be used to resample an existing image
@@ -20,8 +21,6 @@ extern_class!(
     /// Bilinear
     /// Bicubcic
     /// Lanczos
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagescale?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -199,6 +198,13 @@ impl MPSImageScale {
 }
 
 extern_class!(
+    /// A filter that resizes and changes the aspect ratio of an image using Lanczos resampling.
+    ///
+    /// ## Overview
+    ///
+    /// You can use this filter to enlarge or reduce the size of an image, or to change the aspect ratio of an image. The filter uses a Lanczos resampling algorithm, that typically produces better quality for photographs, but is slower than linear sampling that uses GPU texture units. Lanczos downsampling does not require a low pass filter to be applied before it is used. Because the resampling function has negative lobes, Lanczos can result in ringing artifacts near sharp edges, making it less suitable for vector art.
+    ///
+    ///
     /// Resize an image and / or change its aspect ratio
     ///
     /// The MPSImageLanczosScale filter can be used to resample an existing image
@@ -210,8 +216,6 @@ extern_class!(
     /// does not require a low pass filter to be applied before it is used.
     /// Because the resampling function has negative lobes, Lanczos can result
     /// in ringing near sharp edges, making it less suitable for vector art.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelanczosscale?language=objc)
     #[unsafe(super(MPSImageScale, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -320,12 +324,11 @@ impl MPSImageLanczosScale {
 }
 
 extern_class!(
+    /// A filter that resizes and changes the aspect ratio of an image using Bilinear resampling.
     /// Resize an image and / or change its aspect ratio
     ///
     /// The MPSImageBilinearScale filter can be used to resample an existing image
     /// using a bilinear filter. This is typically used to reduce the size of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebilinearscale?language=objc)
     #[unsafe(super(MPSImageScale, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

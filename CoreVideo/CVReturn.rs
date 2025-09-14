@@ -3,48 +3,52 @@
 
 use crate::*;
 
+/// A Core Video error type return value.
 /// CoreVideo specific error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvreturn?language=objc)
 pub type CVReturn = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnsuccess?language=objc)
+/// Indicates the operation completed successfully.
 pub const kCVReturnSuccess: CVReturn = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnfirst?language=objc)
+/// Placeholder to mark the beginning of Core Video result codes (not returned by any functions).
 pub const kCVReturnFirst: CVReturn = -6660;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnerror?language=objc)
+/// An otherwise undefined error occurred.
 pub const kCVReturnError: CVReturn = kCVReturnFirst;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturninvalidargument?language=objc)
+/// Invalid function parameter. For example, out of range or the wrong type.
 pub const kCVReturnInvalidArgument: CVReturn = -6661;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnallocationfailed?language=objc)
+/// Memory allocation for a buffer or buffer pool failed.
 pub const kCVReturnAllocationFailed: CVReturn = -6662;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnunsupported?language=objc)
 pub const kCVReturnUnsupported: CVReturn = -6663;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturninvaliddisplay?language=objc)
+/// The display specified when creating a display link is invalid.
 pub const kCVReturnInvalidDisplay: CVReturn = -6670;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturndisplaylinkalreadyrunning?language=objc)
+/// The specified display link is already running.
 pub const kCVReturnDisplayLinkAlreadyRunning: CVReturn = -6671;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturndisplaylinknotrunning?language=objc)
+/// The specified display link is not running.
 pub const kCVReturnDisplayLinkNotRunning: CVReturn = -6672;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturndisplaylinkcallbacksnotset?language=objc)
+/// No callback registered for the specified display link. You must set either the output callback or both the render and display callbacks.
 pub const kCVReturnDisplayLinkCallbacksNotSet: CVReturn = -6673;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturninvalidpixelformat?language=objc)
+/// The buffer does not support the specified pixel format.
 pub const kCVReturnInvalidPixelFormat: CVReturn = -6680;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturninvalidsize?language=objc)
+/// The buffer cannot support the requested buffer size (usually too big).
 pub const kCVReturnInvalidSize: CVReturn = -6681;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturninvalidpixelbufferattributes?language=objc)
+/// A buffer cannot be created with the specified attributes.
 pub const kCVReturnInvalidPixelBufferAttributes: CVReturn = -6682;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnpixelbuffernotopenglcompatible?language=objc)
+/// The pixel buffer is not compatible with OpenGL due to an unsupported buffer size, pixel format, or attribute.
 pub const kCVReturnPixelBufferNotOpenGLCompatible: CVReturn = -6683;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnpixelbuffernotmetalcompatible?language=objc)
+/// The pixel buffer is not compatible with Metal due to an unsupported buffer size, pixel format, or attribute.
 pub const kCVReturnPixelBufferNotMetalCompatible: CVReturn = -6684;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnwouldexceedallocationthreshold?language=objc)
+/// Allocation for a pixel buffer failed because the threshold value set for the [`kCVPixelBufferPoolAllocationThresholdKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolallocationthresholdkey) key in the [`CVPixelBufferPoolCreatePixelBufferWithAuxAttributes`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)) function would be surpassed.
 pub const kCVReturnWouldExceedAllocationThreshold: CVReturn = -6689;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnpoolallocationfailed?language=objc)
+/// Allocation for a buffer pool failed, most likely due to a lack of resources. Check to make sure your parameters are in range.
 pub const kCVReturnPoolAllocationFailed: CVReturn = -6690;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturninvalidpoolattributes?language=objc)
+/// A buffer pool cannot be created with the specified attributes.
 pub const kCVReturnInvalidPoolAttributes: CVReturn = -6691;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnretry?language=objc)
+/// A scan hasn’t completely traversed the `CVBufferPool` due to a concurrent operation.
+///
+/// ## Discussion
+///
+/// A result of `kCVReturnRetry` indicates that a client can retry the scan.
+///
+///
 pub const kCVReturnRetry: CVReturn = -6692;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvreturnlast?language=objc)
+/// Placeholder to mark the end of Core Video result codes (not returned by any functions).
 pub const kCVReturnLast: CVReturn = -6699;

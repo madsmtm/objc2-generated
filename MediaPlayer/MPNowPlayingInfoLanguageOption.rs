@@ -7,65 +7,107 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicismainprogramcontent?language=objc)
+    /// Indicates that the language option includes content that’s marked by the content author as intrinsic to the presentation of the language option.
+    ///
+    /// ## Discussion
+    ///
+    /// An option that presents the main program audio for the presentation, regardless of locale, would typically have this characteristic. The system infers the presence of this characteristic for a language option and considers any option that doesn’t have the characteristic [`MPLanguageOptionCharacteristicIsAuxiliaryContent`](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicisauxiliarycontent) to have the characteristic.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicIsMainProgramContent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicisauxiliarycontent?language=objc)
+    /// Indicates that the language option includes content that’s marked by the content author as auxiliary to the presentation of the language option.
+    ///
+    /// ## Discussion
+    ///
+    /// A language option that presents audio containing commentary on the presentation would typically have this characteristic.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicIsAuxiliaryContent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristiccontainsonlyforcedsubtitles?language=objc)
+    /// Indicates that the language option presents only forced subtitles.
+    ///
+    /// ## Discussion
+    ///
+    /// Language options with forced-only subtitles are typically selected when the user hasn’t selected a legible option with an accessibility characteristic or an auxiliary purpose and its locale matches the locale of the selected audible language option. The system infers the presence of this characteristic for a legible language option from the format description of the associated track that presents the subtitle media.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicContainsOnlyForcedSubtitles: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristictranscribesspokendialog?language=objc)
+    /// Indicates that the language option includes legible content in the language of its specified locale that transcribes spoken dialog.
+    ///
+    /// ## Discussion
+    ///
+    /// It’s possible for a legible option to include both transcriptions of spoken dialog and descriptions of music and sound effects.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicTranscribesSpokenDialog: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicdescribesmusicandsound?language=objc)
+    /// Indicates that the language option includes legible content in the language of its specified locale that describes music and sound effects occurring in program audio.
+    ///
+    /// ## Discussion
+    ///
+    /// It’s possible for a legible language option to include both transcriptions of spoken dialog and descriptions of music and sound effects.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicDescribesMusicAndSound: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristiceasytoread?language=objc)
+    /// Indicates that the language option provides legible content in the language of its specified locale and that the content was edited for ease of reading.
+    ///
+    /// ## Discussion
+    ///
+    /// Closed caption tracks that carry easy reader captions (per the CEA-608 specification) should have this characteristic tag. Subtitle tracks can also have this characteristic tag, where appropriate.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicEasyToRead: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicdescribesvideo?language=objc)
+    /// Indicates that the language option includes audible content that describes the visual portion of the presentation.
+    ///
+    /// ## Discussion
+    ///
+    /// It’s possible for a legible language option to include both transcriptions of spoken dialog and descriptions of music and sound effects.
+    ///
+    ///
     pub static MPLanguageOptionCharacteristicDescribesVideo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristiclanguagetranslation?language=objc)
+    /// Indicates that the language option contains a translation in the language of its specified locale.
     pub static MPLanguageOptionCharacteristicLanguageTranslation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicdubbedtranslation?language=objc)
+    /// Indicates that the language option includes content that contains a dubbed translation.
     pub static MPLanguageOptionCharacteristicDubbedTranslation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mplanguageoptioncharacteristicvoiceovertranslation?language=objc)
+    /// Indicates that the language option includes voice over content in the language of its specified locale describes translated dialog.
     pub static MPLanguageOptionCharacteristicVoiceOverTranslation: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiontype?language=objc)
+/// The language option type to use for the Now Playing item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingInfoLanguageOptionType(pub NSUInteger);
 impl MPNowPlayingInfoLanguageOptionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiontype/audible?language=objc)
+    /// Indicates an audible language option is used.
     #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeAudible")]
     pub const Audible: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiontype/legible?language=objc)
+    /// Indicates a written language option is used.
     #[doc(alias = "MPNowPlayingInfoLanguageOptionTypeLegible")]
     pub const Legible: Self = Self(1);
 }
@@ -79,9 +121,14 @@ unsafe impl RefEncode for MPNowPlayingInfoLanguageOptionType {
 }
 
 extern_class!(
-    /// Represents a single language option option.
+    /// A set of interfaces for setting the language option for the Now Playing item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption?language=objc)
+    /// ## Overview
+    ///
+    /// The [`MPNowPlayingInfoLanguageOption`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption) and [`MPNowPlayingInfoLanguageOptionGroup`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup) classes provide interfaces for setting information about language options, for example, audio and subtitles, in the Now Playing information area.
+    ///
+    ///
+    /// Represents a single language option option.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOption;
@@ -163,7 +210,13 @@ impl MPNowPlayingInfoLanguageOption {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup?language=objc)
+    /// A grouped set of language options where only a single language option can be active at a time.
+    ///
+    /// ## Overview
+    ///
+    /// The `MPNowPlayingInfoLanguageOptionGroup` and [`MPNowPlayingInfoLanguageOption`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption) classes provide interfaces for setting information about language options, for example, audio and subtitles, in the Now Playing information area.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoLanguageOptionGroup;

@@ -7,30 +7,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Indicates a [`WKWebExtensionDataRecord`](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord) error.
     /// Indicates a ``WKWebExtensionDataRecord`` error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/errordomain?language=objc)
     pub static WKWebExtensionDataRecordErrorDomain: &'static NSErrorDomain;
 }
 
+/// Constants that indicate errors in the [`WKWebExtensionDataRecord`](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord) domain.
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionDataRecord`` domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionDataRecordError(pub NSInteger);
 impl WKWebExtensionDataRecordError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/unknown?language=objc)
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionDataRecordErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/localstoragefailed?language=objc)
+    /// Indicates a failure occurred when either deleting or calculating local storage.
     #[doc(alias = "WKWebExtensionDataRecordErrorLocalStorageFailed")]
     pub const LocalStorageFailed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/sessionstoragefailed?language=objc)
+    /// Indicates a failure occurred when either deleting or calculating session storage.
     #[doc(alias = "WKWebExtensionDataRecordErrorSessionStorageFailed")]
     pub const SessionStorageFailed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code/synchronizedstoragefailed?language=objc)
+    /// Indicates a failure occurred when either deleting or calculating synchronized storage.
     #[doc(alias = "WKWebExtensionDataRecordErrorSynchronizedStorageFailed")]
     pub const SynchronizedStorageFailed: Self = Self(4);
 }
@@ -44,11 +42,16 @@ unsafe impl RefEncode for WKWebExtensionDataRecordError {
 }
 
 extern_class!(
-    /// A ``WKWebExtensionDataRecord`` object represents a record of stored data for a specific web extension context.
+    /// An object that represents a record of stored data for a specific web extension context.
+    ///
+    /// ## Overview
     ///
     /// Contains properties and methods to query the data types and sizes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord?language=objc)
+    ///
+    /// A ``WKWebExtensionDataRecord`` object represents a record of stored data for a specific web extension context.
+    ///
+    /// Contains properties and methods to query the data types and sizes.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

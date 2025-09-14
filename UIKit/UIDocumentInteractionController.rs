@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentinteractioncontroller?language=objc)
+    /// A view controller that previews, opens, or prints files with a file format that your app can’t handle directly.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to present an appropriate user interface for previewing, opening, copying, or printing a specified file. For example, an email program might use this class to allow the user to preview attachments and open them in other apps.
+    ///
+    /// After presenting its user interface, a document interaction controller handles all interactions needed to support file preview and menu display.
+    ///
+    /// You can also use the delegate to participate in interactions occurring within the presented interface. For example, the delegate is notified when a file is about to be handed off to another application for opening. For a complete description of the methods you can implement in your delegate, see [`UIDocumentInteractionControllerDelegate`](https://developer.apple.com/documentation/uikit/uidocumentinteractioncontrollerdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -179,7 +189,17 @@ impl UIDocumentInteractionController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentinteractioncontrollerdelegate?language=objc)
+    /// A set of methods you can implement to respond to messages from a document interaction controller.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol to participate when document previews are displayed and when a document is about to be opened by another application. You can also use this protocol to respond to commands (such as “copy” and “print”) from a document interaction controller’s options menu.
+    ///
+    /// If you use a document interaction controller to display a document preview, your delegate must implement the [`documentInteractionControllerViewControllerForPreview:`](https://developer.apple.com/documentation/uikit/uidocumentinteractioncontrollerdelegate/documentinteractioncontrollerviewcontrollerforpreview(_:)) method. All other methods of this protocol are optional.
+    ///
+    /// For more information about using a document interaction controller, see [`UIDocumentInteractionController`](https://developer.apple.com/documentation/uikit/uidocumentinteractioncontroller).
+    ///
+    ///
     pub unsafe trait UIDocumentInteractionControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]

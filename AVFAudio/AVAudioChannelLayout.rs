@@ -9,14 +9,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes the roles of a set of audio channels.
+    ///
+    /// ## Overview
+    ///
+    /// The `AVAudioChannelLayout` class is a thin wrapper for Core Audio’s [`AudioChannelLayout`](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout).
+    ///
+    ///
     /// A description of the roles of a set of audio channels.
     ///
     /// This object is a thin wrapper for the AudioChannelLayout structure, described
     /// in
     /// <CoreAudio
     /// /CoreAudioTypes.h>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiochannellayout?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioChannelLayout;

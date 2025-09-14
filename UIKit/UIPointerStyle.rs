@@ -10,7 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerstyle?language=objc)
+    /// An object that defines the pointer shape and effect.
+    ///
+    /// ## Overview
+    ///
+    /// Whenever possible, match pointer styles to UIKit styles and make them consistent with the visual intent of similar views.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When supporting the use of Apple Pencil, effect-based styles, such as a pointer style created using [`init(effect:shape:)`](https://developer.apple.com/documentation/uikit/uipointerstyle/init(effect:shape:)) are fully supported, but shape-based pointer styles created using [`init(shape:constrainedAxes:)`](https://developer.apple.com/documentation/uikit/uipointerstyle/init(shape:constrainedaxes:)) aren’t.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/inputs/pointing-devices/).
+    ///
+    ///
     #[unsafe(super(UIHoverStyle, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -116,7 +132,13 @@ impl UIPointerStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffect-c.class?language=objc)
+    /// An effect that alters a view’s appearance when a pointer enters the current region.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIPointerEffect`](https://developer.apple.com/documentation/uikit/uipointereffect-swift.enum) attempts to determine the appropriate effect for the given preview automatically. Use one of its subclasses to request a specific system-provided effect.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -171,9 +193,8 @@ impl UIPointerEffect {
 }
 
 extern_class!(
+    /// An effect where the pointer slides under the given view and morphs into the view’s shape.
     /// Pointer slides under the given view and morphs into the view's shape
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerhighlighteffect?language=objc)
     #[unsafe(super(UIPointerEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -228,9 +249,8 @@ impl UIPointerHighlightEffect {
 }
 
 extern_class!(
+    /// An effect where the pointer slides under the given view and disappears as the view scales up and gains a shadow.
     /// Pointer slides under the given view and disappears as the view scales up and gains a shadow.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlifteffect?language=objc)
     #[unsafe(super(UIPointerEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -284,19 +304,19 @@ impl UIPointerLiftEffect {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode?language=objc)
+/// An effect that defines how to apply a tint to a view during a pointer interaction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPointerEffectTintMode(pub NSInteger);
 impl UIPointerEffectTintMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode/uipointereffecttintmodenone?language=objc)
+    /// The view has no tint applied.
     #[doc(alias = "UIPointerEffectTintModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode/uipointereffecttintmodeoverlay?language=objc)
+    /// The view has a tint overlay.
     #[doc(alias = "UIPointerEffectTintModeOverlay")]
     pub const Overlay: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffecttintmode/uipointereffecttintmodeunderlay?language=objc)
+    /// The view has a tint underlay.
     #[doc(alias = "UIPointerEffectTintModeUnderlay")]
     pub const Underlay: Self = Self(2);
 }
@@ -310,9 +330,14 @@ unsafe impl RefEncode for UIPointerEffectTintMode {
 }
 
 extern_class!(
-    /// Pointer retains the system shape while over the given view. Visual changes applied to the view are dictated by the effect's properties.
+    /// An effect where visual changes apply to the view and the pointer retains its default shape.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerhovereffect?language=objc)
+    /// ## Overview
+    ///
+    /// Use the properties of [`UIPointerHoverEffect`](https://developer.apple.com/documentation/uikit/uipointerhovereffect) to define the visual changes to apply to the view.
+    ///
+    ///
+    /// Pointer retains the system shape while over the given view. Visual changes applied to the view are dictated by the effect's properties.
     #[unsafe(super(UIPointerEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -394,7 +419,21 @@ impl UIPointerHoverEffect {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointershape-c.class?language=objc)
+    /// An object that defines the shape of custom pointers.
+    ///
+    /// ## Overview
+    ///
+    /// If the desired pointer shape can be expressed as a rounded rectangle, use either [`shapeWithRoundedRect:`](https://developer.apple.com/documentation/uikit/uipointershape-c.class/shapewithroundedrect:) or [`shapeWithRoundedRect:cornerRadius:`](https://developer.apple.com/documentation/uikit/uipointershape-c.class/shapewithroundedrect:cornerradius:) for best results.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If used alongside a content effect, this rectangle must be in the view coordinate space of the [`preview`](https://developer.apple.com/documentation/uikit/uipointereffect-swift.enum/preview). Otherwise, it’s centered about the pointer’s current location, and the rectangle’s origin is interpreted as an offset.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

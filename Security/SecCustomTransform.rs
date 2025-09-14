@@ -9,6 +9,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The keys that describe the metadata attributes of transform attributes.
+///
+/// ## Overview
+///
+/// Use one of these values as the `type` parameter in a call to the [`SecTransformCustomSetAttribute`](https://developer.apple.com/documentation/security/sectransformcustomsetattribute(_:_:_:_:)) or [`SecTransformCustomGetAttribute`](https://developer.apple.com/documentation/security/sectransformcustomgetattribute(_:_:_:)) function. These values allow you to access not only the value of an attribute, as you would do directly with calls the [`SecTransformSetAttribute`](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)) or [`SecTransformGetAttribute`](https://developer.apple.com/documentation/security/sectransformgetattribute(_:_:)) function, but also the metadata associated with that attribute, such as the name of an attribute, or whether it is required to have a value.
+///
+///
 /// Within a transform, each of its attributes is a collection of
 /// "metadata attributes", of which name and current value are two. The
 /// value is directly visible from outside; the other metadata
@@ -73,55 +80,119 @@ use crate::*;
 ///
 /// This metadata value is true if the attribute has an inbound
 /// connection. This metadata is read only.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype?language=objc)
 // NS_ENUM
 #[deprecated = "SecTransform is no longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTransformMetaAttributeType(pub CFIndex);
 impl SecTransformMetaAttributeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/value?language=objc)
+    /// The actual value of the attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The attribute value has a default value of `NULL`.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeValue")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Value: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/name?language=objc)
+    /// The name of the attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// Attribute name is read only and may not be used with the SecTransformSetAttributeBlock block.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeName")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Name: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/ref?language=objc)
+    /// A direct reference to an attribute’s value.
+    ///
+    /// ## Discussion
+    ///
+    /// This reference allows for direct access to an attribute without having to look up the attribute by name. If a transform commonly uses an attribute, using a reference speeds up the use of that attribute. Attribute references are not visible or valid from outside of the particular transform instance.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeRef")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Ref: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/required?language=objc)
+    /// Indicates whether the attribute value is optional.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies if an attribute must have a non `NULL` value set or have an incoming connection before the transform starts to execute. This metadata has a default value of [`true`](https://developer.apple.com/documentation/swift/true) for the input attribute, but [`false`](https://developer.apple.com/documentation/swift/false) for all other attributes.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeRequired")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Required: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/requiresoutboundconnection?language=objc)
+    /// The attribute requires an outbound connection.
+    ///
+    /// ## Discussion
+    ///
+    /// This metadata has a default value of [`true`](https://developer.apple.com/documentation/swift/true) for the output attribute but is [`false`](https://developer.apple.com/documentation/swift/false) for all other attributes.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeRequiresOutboundConnection")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const RequiresOutboundConnection: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/deferred?language=objc)
+    /// The attribute defers notifications.
+    ///
+    /// ## Discussion
+    ///
+    /// Determines if the AttributeSetNotification notification or the ProcessData blocks are deferred until [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)) is called. This metadata value has a default value of [`true`](https://developer.apple.com/documentation/swift/true) for the input attribute but is [`false`](https://developer.apple.com/documentation/swift/false) for all other attributes.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeDeferred")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Deferred: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/stream?language=objc)
+    /// The attribute expects stream operation.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies if the attribute should expect a series of values ending with a `NULL` to specify the end of the data stream. This metadata has a default value of [`true`](https://developer.apple.com/documentation/swift/true) for the input and output attributes, but is [`false`](https://developer.apple.com/documentation/swift/false) for all other attributes.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeStream")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Stream: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/cancycle?language=objc)
+    /// The transform allows cyclic behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// A transform group is a directed graph which is typically acyclic. Some transforms need to work with cycles. For example, a transform that emits a header and trailer around the data of another transform must create a cycle. If this metadata set to [`true`](https://developer.apple.com/documentation/swift/true), no error is returned if a cycle is detected for this attribute.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeCanCycle")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const CanCycle: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/externalize?language=objc)
+    /// The attribute is exportable.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies if this attribute should be written out when creating the external representation of this transform. This metadata has a default value of [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeExternalize")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const Externalize: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/hasoutboundconnections?language=objc)
+    /// The attribute has an outbound connection.
+    ///
+    /// ## Discussion
+    ///
+    /// This metadata value is [`true`](https://developer.apple.com/documentation/swift/true) if the attribute has an outbound connection.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeHasOutboundConnections")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const HasOutboundConnections: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformmetaattributetype/hasinboundconnection?language=objc)
+    /// The attribute has an inbound connection.
+    ///
+    /// ## Discussion
+    ///
+    /// This metadata value is [`true`](https://developer.apple.com/documentation/swift/true) if the attribute has an inbound connection.
+    ///
+    ///
     #[doc(alias = "kSecTransformMetaAttributeHasInboundConnection")]
     #[deprecated = "SecTransform is no longer supported"]
     pub const HasInboundConnection: Self = Self(10);
@@ -137,24 +208,77 @@ unsafe impl RefEncode for SecTransformMetaAttributeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A direct reference to a security transform attribute.
+///
+/// ## Discussion
+///
+/// Using an attribute reference rather than referring to it by name, such as in calls to the [`SecTransformCustomSetAttribute`](https://developer.apple.com/documentation/security/sectransformcustomsetattribute(_:_:_:_:)) function, speeds up the operation.
+///
+///
 /// A direct reference to an attribute. Using an attribute
 /// reference speeds up using an attribute's value by removing
 /// the need to look
 /// it up by name.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattribute?language=objc)
 #[doc(alias = "SecTransformAttributeRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecTransformAttribute = CFType;
 
+/// A type that may be either a string or an attribute reference.
+///
+/// ## Discussion
+///
+/// Use a value of this type in place of either a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) or a [`SecTransformAttributeRef`](https://developer.apple.com/documentation/security/sectransformattribute) when referring to transform attributes, such as with the `attribute` parameter in calls to the [`SecTransformCustomSetAttribute`](https://developer.apple.com/documentation/security/sectransformcustomsetattribute(_:_:_:_:))  and [`SecTransformCustomGetAttribute`](https://developer.apple.com/documentation/security/sectransformcustomgetattribute(_:_:_:)) functions. When using a name, see [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes) for a list of valid key names.
+///
+///
 /// This type signifies that either a CFStringRef or
 /// a SecTransformAttributeRef may be used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformstringorattribute?language=objc)
 #[doc(alias = "SecTransformStringOrAttributeRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecTransformStringOrAttribute = CFType;
 
+/// A block that overrides the default behavior of a custom transform.
+///
+/// ## Return Value
+///
+/// A dictionary of the custom items to be exported if this block is used to override the [`kSecTransformActionExternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactionexternalizeextradata) action or  `NULL` for any other action. Alternatively, the block returns a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object if an error occurs.
+///
+///
+///
+/// ## Discussion
+///
+/// A  block of this type is used to override the default behavior of a custom transform. This block is associated with the SecTransformOverrideTransformAction block.
+///
+/// The behaviors that can be overridden are:
+///
+/// - [`kSecTransformActionCanExecute`](https://developer.apple.com/documentation/security/ksectransformactioncanexecute) - Determine if the transform has all of the data needed to run.
+///
+/// - [`kSecTransformActionStartingExecution`](https://developer.apple.com/documentation/security/ksectransformactionstartingexecution) - Called just before running ProcessData.
+///
+/// - [`kSecTransformActionFinalize`](https://developer.apple.com/documentation/security/ksectransformactionfinalize) - Called just before deleting the custom transform.
+///
+/// - [`kSecTransformActionExternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactionexternalizeextradata) - Called to allow for writing out custom data to be exported.
+///
+/// For example:
+///
+/// ```objc
+/// SecTransformImplementationRef ref;
+/// CFErrorRef error = NULL;
+///  
+/// error = SecTransformSetTransformAction(ref, kSecTransformActionStartingExecution, ^{
+///     // Initialize any data needed before running
+///     CFErrorRef result = DoMyInitialization();
+///     return result;});
+///  
+/// SecTransformTransformActionBlock actionBlock =
+/// ^{
+///     // Clean up any existing data before running
+///     CFErrorRef result = DoMyFinalization();
+///     return result;};
+///  
+/// error = SecTransformSetTransformAction(ref, kSecTransformActionFinalize,actionBlock);
+/// ```
+///
+///
 /// A block that overrides the default behavior of a
 /// custom transform.
 ///
@@ -217,12 +341,23 @@ pub type SecTransformStringOrAttribute = CFType;
 /// ```
 ///
 /// </pre>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformactionblock?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
 pub type SecTransformActionBlock = *mut block2::DynBlock<dyn Fn() -> *const CFType>;
 
+/// A block used to override the default attribute handling for when an attribute is set.
+///
+/// Parameters:
+/// - attribute: The attribute whose default is being overridden or NULL if this is a generic notification override
+///
+/// - value: Proposed new value for the attribute.
+///
+///
+/// ## Return Value
+///
+/// The new value of the attribute if successful or a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object on failure. If a transform needs to have a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) as the value of an attribute, then place the object in a container, such as a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) or [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object.
+///
+///
 /// A block used to override the default attribute handling
 /// for when an attribute is set.
 ///
@@ -242,13 +377,22 @@ pub type SecTransformActionBlock = *mut block2::DynBlock<dyn Fn() -> *const CFTy
 ///
 ///
 /// See the example program in this header for more details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattributeactionblock?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
 pub type SecTransformAttributeActionBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
 
+/// A block used to override the default data handling for a transform.
+///
+/// Parameters:
+/// - data: The data to be processed. When this block is used to to implement the [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata) action, the data is the input data that is to be processed into the output data. When this block is used to implement the [`kSecTransformActionInternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata) action, the data is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) that contains the data that needs to be imported.
+///
+///
+/// ## Return Value
+///
+/// `NULL` for the [`kSecTransformActionInternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata) action, the data to be passed to the output attribute for any other action, or a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) instance on failure.
+///
+///
 /// A block used to override the default data handling
 /// for a transform.
 ///
@@ -274,11 +418,22 @@ pub type SecTransformAttributeActionBlock =
 ///
 ///
 /// See the example program for more details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformdatablock?language=objc)
 #[cfg(feature = "block2")]
 pub type SecTransformDataBlock = *mut block2::DynBlock<dyn Fn(NonNull<CFType>) -> *const CFType>;
 
+/// A block that you return from a transform creation function.
+///
+/// ## Return Value
+///
+/// A an error object if an error occurred.
+///
+///
+///
+/// ## Discussion
+///
+/// You return a block of this type from the custom transform creation function of type [`SecTransformCreateFP`](https://developer.apple.com/documentation/security/sectransformcreatefp) that you register with the [`SecTransformRegister`](https://developer.apple.com/documentation/security/sectransformregister(_:_:_:)) function.
+///
+///
 /// This is the block that is returned from an
 /// implementation of a CreateTransform function.
 ///
@@ -290,8 +445,6 @@ pub type SecTransformDataBlock = *mut block2::DynBlock<dyn Fn(NonNull<CFType>) -
 /// developers CreateTransform function, defines
 /// the behavior of a custom attribute.  Please
 /// see the example at the head of this file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransforminstanceblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SecTransformInstanceBlock = *mut block2::DynBlock<dyn Fn() -> *mut CFError>;
 
@@ -308,12 +461,40 @@ unsafe impl RefEncode for OpaqueSecTransformImplementation {
         Encoding::Pointer(&Encoding::Struct("OpaqueSecTransformImplementation", &[]));
 }
 
+/// An opaque pointer to a block that implements an instance of a transform.
 /// The SecTransformImplementationRef is a pointer to a block
 /// that implements an instance of a transform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformimplementationref?language=objc)
 pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation;
 
+/// Requests a callback when an attribute is set.
+///
+/// Parameters:
+/// - ref: A [`SecTransformImplementationRef`](https://developer.apple.com/documentation/security/sectransformimplementationref) that is bound to an instance of a custom transform.
+///
+/// - action: The behavior to be set.
+///
+/// Use [`kSecTransformActionAttributeNotification`](https://developer.apple.com/documentation/security/ksectransformactionattributenotification) to add a block that is called when an attribute is set. If the name is `NULL`, then the supplied block is called for all set attributes except for ones that have a specific block as a handler.
+///
+/// Use [`kSecTransformActionAttributeValidation`](https://developer.apple.com/documentation/security/ksectransformactionattributevalidation) to add a block that is called to validate the input to an attribute.
+///
+/// - attribute: The name of the attribute that will be handled. An attribute reference may also be given here. A `NULL` value indicates that the supplied action is for all attributes.
+///
+/// - newAction: A [`SecTransformAttributeActionBlock`](https://developer.apple.com/documentation/security/sectransformattributeactionblock) which implements the behavior.
+///
+///
+/// ## Return Value
+///
+/// An error on failure, or `NULL` on success. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the error’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// The [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata) action used with the [`SecTransformSetDataAction`](https://developer.apple.com/documentation/security/sectransformsetdataaction(_:_:_:)) function is a special case of a [`SecTransformSetAttributeAction`](https://developer.apple.com/documentation/security/sectransformsetattributeaction(_:_:_:_:)) action. If this is called on the input attribute then it will overwrite any [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata) action.
+///
+/// You may call this function multiple times for either a named attribute or for all attributes when the attribute parameter is `NULL`. The last call takes precedence.
+///
+///
 /// Be notified when a attribute is set. The supplied block is
 /// called when the attribute is set. This can be done for a
 /// specific named attribute or all attributes.
@@ -367,8 +548,6 @@ pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
 /// - `new_action` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsetattributeaction(_:_:_:_:)?language=objc)
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -390,6 +569,35 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Changes the way a custom transform processes data.
+///
+/// Parameters:
+/// - ref: A [`SecTransformImplementationRef`](https://developer.apple.com/documentation/security/sectransformimplementationref) that is bound to an instance of a custom transform.
+///
+/// - action: The action being overridden.
+///
+/// Use  [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata) to change the way that input data is processed into the output data. The default behavior is to simply copy the input data to the output attribute. Changing this behavior is really a special case of a [`SecTransformSetAttributeAction`](https://developer.apple.com/documentation/security/sectransformsetattributeaction(_:_:_:_:)) action. Using [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata) as the `action` overwrites any previously set [`kSecTransformActionAttributeNotification`](https://developer.apple.com/documentation/security/ksectransformactionattributenotification) action.
+///
+/// Use [`kSecTransformActionInternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata) to change the way that custom externalized data is imported into the transform. The default behavior is to do nothing.
+///
+/// - newAction: A [`SecTransformDataBlock`](https://developer.apple.com/documentation/security/sectransformdatablock) which implements the behavior.
+///
+/// If the `action` parameter is [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata) then this block is called to process the input data into the output data. If the action parameter is [`kSecTransformActionInternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata) then this block is called to input custom data into the transform.
+///
+///
+/// ## Return Value
+///
+/// An error on failure, or `NULL` on success. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the error’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// When the `action` parameter is [`kSecTransformActionProcessData`](https://developer.apple.com/documentation/security/ksectransformactionprocessdata), the `newAction` block changes the way that input data is processed to become the output data. When the `action` parameter is [`kSecTransformActionInternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata) it changes the way a custom transform reads in data to be imported into the transform.
+///
+/// You may call this function multiple times. The last call takes precedence.
+///
+///
 /// Change the way a custom transform will do data processing.
 /// When the action parameter is kSecTransformActionProcessData
 /// The newAction block will change the way that input data is
@@ -443,8 +651,6 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
 ///
 /// - `ref` must be a valid pointer.
 /// - `new_action` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsetdataaction(_:_:_:)?language=objc)
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -464,7 +670,21 @@ pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsettransformaction(_:_:_:)?language=objc)
+/// Changes the way that a transform deals with transform lifecycle behaviors.
+///
+/// Parameters:
+/// - ref: A custom transform.
+///
+/// - action: The behavior to change. Valid values are [`kSecTransformActionCanExecute`](https://developer.apple.com/documentation/security/ksectransformactioncanexecute), [`kSecTransformActionStartingExecution`](https://developer.apple.com/documentation/security/ksectransformactionstartingexecution), [`kSecTransformActionFinalize`](https://developer.apple.com/documentation/security/ksectransformactionfinalize), or [`kSecTransformActionExternalizeExtraData`](https://developer.apple.com/documentation/security/ksectransformactionexternalizeextradata).
+///
+/// - newAction: A [`SecTransformActionBlock`](https://developer.apple.com/documentation/security/sectransformactionblock) block that implements the behavior.
+///
+///
+/// ## Return Value
+///
+/// An error on failure, or `NULL` on success. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the error’s memory when you are done with it.
+///
+///
 ///
 /// # Safety
 ///
@@ -489,6 +709,33 @@ pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Gets an attribute value from a custom transform.
+///
+/// Parameters:
+/// - ref: A [`SecTransformImplementationRef`](https://developer.apple.com/documentation/security/sectransformimplementationref) that is bound to an instance of a custom transform.
+///
+/// - attribute: The name or the attribute handle of the attribute whose value is to be retrieved. When using a name, see [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes) for a list of valid key names.
+///
+/// - type: The type of data to be retrieved for the attribute. See the discussion on [`SecTransformMetaAttributeType`](https://developer.apple.com/documentation/security/sectransformmetaattributetype) for details.
+///
+///
+/// ## Return Value
+///
+/// The value of the attribute.
+///
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This function is deprecated. Use [`SecTransformCustomGetAttribute(_:_:_:)`](https://developer.apple.com/documentation/security/sectransformcustomgetattribute(_:_:_:)) instead.
+///
+///
+///
+/// </div>
+///
 /// Allow a custom transform to get an attribute value
 ///
 ///
@@ -510,8 +757,6 @@ pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
 ///
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectranformcustomgetattribute?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
@@ -530,6 +775,21 @@ pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Gets an attribute value from a custom transform.
+///
+/// Parameters:
+/// - ref: A [`SecTransformImplementationRef`](https://developer.apple.com/documentation/security/sectransformimplementationref) that is bound to an instance of a custom transform.
+///
+/// - attribute: The name or the attribute handle of the attribute whose value is to be retrieved. When using a name, see [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes) for a list of valid key names.
+///
+/// - type: The type of data to be retrieved for the attribute. See the discussion on [`SecTransformMetaAttributeType`](https://developer.apple.com/documentation/security/sectransformmetaattributetype) for details.
+///
+///
+/// ## Return Value
+///
+/// The value of the attribute.
+///
+///
 /// Allow a custom transform to get an attribute value
 ///
 ///
@@ -551,8 +811,6 @@ pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
 ///
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcustomgetattribute(_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
@@ -572,6 +830,29 @@ pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Sets an attribute value on a custom transform.
+///
+/// Parameters:
+/// - ref: A [`SecTransformImplementationRef`](https://developer.apple.com/documentation/security/sectransformimplementationref) that is bound to an instance of a custom transform.
+///
+/// - attribute: The name or the attribute handle of the attribute whose value is to be set. When using a name, see [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes) for a list of valid key names.
+///
+/// - type: The type of data to be retrieved for the attribute. See the discussion on [`SecTransformMetaAttributeType`](https://developer.apple.com/documentation/security/sectransformmetaattributetype) for details.
+///
+/// - value: The new value for the attribute
+///
+///
+/// ## Return Value
+///
+/// An error on failure, or `NULL` on success. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the error’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// Unlike the [`SecTransformSetAttribute`](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)) function this function can set attribute values while a transform is executing. These values are limited to the custom transform instance that is bound to the `ref` parameter.
+///
+///
 /// Allow a custom transform to set an attribute value
 ///
 ///
@@ -603,8 +884,6 @@ pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
 /// - `value` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcustomsetattribute(_:_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
@@ -625,6 +904,27 @@ pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Pushes a single value back for a specific attribute.
+///
+/// Parameters:
+/// - ref: A [`SecTransformImplementationRef`](https://developer.apple.com/documentation/security/sectransformimplementationref) that is bound to an instance of a custom transform.
+///
+/// - attribute: The name or the attribute handle of the attribute whose value is to be pushed back. When using a name, see [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes) for a list of valid key names.
+///
+/// - value: The value being pushed back.
+///
+///
+/// ## Return Value
+///
+/// An error on failure, or `NULL` on success. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the error’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// Calling this function stops the flow of data into the specified attribute until any attribute is changed for the transform instance bound to the `ref` parameter.
+///
+///
 /// Allows for putting a single value back for a specific
 /// attribute.  This will stop the flow of data into the
 /// specified attribute until any attribute is changed for the
@@ -649,8 +949,6 @@ pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
 /// - `value` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformpushbackattribute(_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
@@ -669,6 +967,27 @@ pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// A pointer to a function that creates a new instance of a custom transform.
+///
+/// Parameters:
+/// - name: The name of the new custom transform. This name must be unique.
+///
+/// - newTransform: The newly created transform.
+///
+/// - ref: A reference that is bound to an instance of a custom transform.
+///
+///
+/// ## Return Value
+///
+/// A [`SecTransformInstanceBlock`](https://developer.apple.com/documentation/security/sectransforminstanceblock) that is used to create a new instance of a custom transform.
+///
+///
+///
+/// ## Discussion
+///
+/// Provide a function of this type to the [`SecTransformCreate`](https://developer.apple.com/documentation/security/sectransformcreate(_:_:)) function when creating a custom transform. The function defined here returns an object of type [`SecTransformInstanceBlock`](https://developer.apple.com/documentation/security/sectransforminstanceblock) that provides the implementation of all of the overrides necessary to create the custom transform. This returned [`SecTransformInstanceBlock`](https://developer.apple.com/documentation/security/sectransforminstanceblock) is also where the “instance” variables for the custom transform may be defined.
+///
+///
 /// A function pointer to a function that will create a
 /// new instance of a custom transform.
 ///
@@ -695,8 +1014,6 @@ pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
 /// SecTransformInstanceBlock is also where the "instance"
 /// variables for the custom transform may be defined. See the
 /// example in the header section of this file for more detail.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatefp?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 pub type SecTransformCreateFP = Option<
@@ -708,6 +1025,13 @@ pub type SecTransformCreateFP = Option<
 >;
 
 extern "C" {
+    /// An action that triggers to verify that all required attributes are either set or connected to another transform.
+    ///
+    /// ## Discussion
+    ///
+    /// Overrides the standard behavior that checks to see if all of the required attributes either have been set or are connected to another transform. When overriding the default behavior the developer can decided what the necessary data is to have for a transform to be considered ‘ready to run’. Returning NULL means that the transform is ready to be run. If the transform is NOT ready to run then the override should return a CFErrorRef stipulating the error.
+    ///
+    ///
     /// Overrides the standard behavior that checks to see if all of the
     /// required attributes either have been set or are connected to
     /// another transform.  When overriding the default behavior the
@@ -716,58 +1040,83 @@ extern "C" {
     /// that the transform is ready to be run. If the transform is NOT
     /// ready to run then the override should return a CFErrorRef
     /// stipulating the error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactioncanexecute?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionCanExecute: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers just before starting execution of a custom transform.
+    ///
+    /// ## Discussion
+    ///
+    /// Overrides the standard behavior that occurs just before starting execution of a custom transform. This is typically overridden to allow for initialization. This is used with the SecTransformOverrideTransformAction block.
+    ///
+    ///
     /// Overrides the standard behavior that occurs just before starting
     /// execution of a custom transform. This is typically overridden
     /// to allow for initialization. This is used with the
     /// SecTransformOverrideTransformAction block.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionstartingexecution?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionStartingExecution: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers just before deleting a custom transform to enable custom cleanup operations.
+    ///
+    /// ## Discussion
+    ///
+    /// Overrides the standard behavior that occurs just before deleting a custom transform. This is typically overridden to allow for memory clean up of a custom transform. This is used with the SecTransformOverrideTransformAction block.
+    ///
+    ///
     /// Overrides the standard behavior that occurs just before deleting
     /// a custom transform. This is typically overridden to allow for
     /// memory clean up of a custom transform.  This is used with the
     /// SecTransformOverrideTransformAction block.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionfinalize?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionFinalize: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers after data is stored.
+    ///
+    /// ## Discussion
+    ///
+    /// Allows for adding to the data that is stored using an override to the kSecTransformActionExternalizeExtraData block. The output of this override is a dictionary that contains the custom externalized data. A common use of this override is to write out a version number of a custom transform.
+    ///
+    ///
     /// Allows for adding to the data that is stored using an override
     /// to the kSecTransformActionExternalizeExtraData block. The output
     /// of this override is a dictionary that contains the custom
     /// externalized data. A common use of this override is to write out
     /// a version number of a custom transform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionexternalizeextradata?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionExternalizeExtraData: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers to process the data of an attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// Overrides the standard data processing for an attribute. This is almost exclusively used for processing the input attribute as the return value of their block sets the output attribute. This is used with the SecTransformOverrideAttributeAction block.
+    ///
+    ///
     /// Overrides the standard data processing for an attribute. This is
     /// almost exclusively used for processing the input attribute as
     /// the return value of their block sets the output attribute. This
     /// is used with the SecTransformOverrideAttributeAction block.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionprocessdata?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionProcessData: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers after attributes are read into a transform.
+    ///
+    /// ## Discussion
+    ///
+    /// Overrides the standard processing that occurs when externalized data is used to create a transform. This is closely tied to the kSecTransformActionExternalizeExtraData override. The ‘normal’ attributes are read into the new transform and then this is called to read in the items that were written out using kSecTransformActionExternalizeExtraData override. A common use of this override would be to read in the version number of the externalized custom transform.
+    ///
+    ///
     /// Overrides the standard processing that occurs when externalized
     /// data is used to create a transform.  This is closely tied to the
     /// kSecTransformActionExternalizeExtraData override. The 'normal'
@@ -776,13 +1125,18 @@ extern "C" {
     /// kSecTransformActionExternalizeExtraData override. A common use
     /// of this override would be to read in the version number of the
     /// externalized custom transform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactioninternalizeextradata?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionInternalizeExtraData: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers when an attribute is set.
+    ///
+    /// ## Discussion
+    ///
+    /// Allows a block to be called when an attribute is set. This allows for caching the value as a block variable in the instance block or transmogrifying the data to be set. This action is where a custom transform would be able to do processing outside of processing input to output as process data does. One the data has been processed the action block can call SecTransformCustomSetAttribute to update and other attribute.
+    ///
+    ///
     /// Allows a block to be called when an attribute is set.  This
     /// allows for caching the value as a block variable in the instance
     /// block or transmogrifying the data to be set. This action is
@@ -790,23 +1144,41 @@ extern "C" {
     /// of processing input to output as process data does.  One the
     /// data has been processed the action block can call
     /// SecTransformCustomSetAttribute to update and other attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionattributenotification?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionAttributeNotification: &'static CFString;
 }
 
 extern "C" {
+    /// An action that triggers to perform validation of an attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// Allows a block to be called to validate the new value for an attribute. The default is no validation and any CFTypeRef can be used as the new value. The block should return NULL if the value is ok to set on the attribute or a CFErrorRef otherwise.
+    ///
+    ///
     /// Allows a block to be called to validate the new value for an
     /// attribute.  The default is no validation and any CFTypeRef can
     /// be used as the new value.  The block should return NULL if the
     /// value is ok to set on the attribute or a CFErrorRef otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformactionattributevalidation?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformActionAttributeValidation: &'static CFString;
 }
 
+/// Registers a custom transform.
+///
+/// Parameters:
+/// - uniqueName: A unique name for this custom transform. It is recommended that a reverse DNS name be used for the name of your custom transform
+///
+/// - createTransformFunction: A [`SecTransformCreateFP`](https://developer.apple.com/documentation/security/sectransformcreatefp) function pointer. The function must return a [`SecTransformInstanceBlock`](https://developer.apple.com/documentation/security/sectransforminstanceblock) block. Call block_copy on this block before returning it. Failure to do so results in undefined behavior.
+///
+/// - error: A pointer that the function uses to provide an error object with details if an error occurs. The caller becomes responsible for the object’s memory. Pass `NULL` to ignore the error.
+///
+///
+/// ## Return Value
+///
+/// A Boolean that is set to [`true`](https://developer.apple.com/documentation/swift/true) if the custom transform was registered and [`false`](https://developer.apple.com/documentation/swift/false) otherwise
+///
+///
 /// Register a new custom transform so that it may be used to
 /// process data
 ///
@@ -832,8 +1204,6 @@ extern "C" {
 ///
 /// - `create_transform_function` must be implemented correctly.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformregister(_:_:_:)?language=objc)
 #[cfg(all(feature = "SecTransform", feature = "block2"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -855,6 +1225,19 @@ pub unsafe extern "C-unwind" fn SecTransformRegister(
 
 /// Creates a transform computation object.
 ///
+/// Parameters:
+/// - name: The type of transform to create. Use one of the pre-defined transform types or a custom type that you previously registered using [`SecTransformRegister`](https://developer.apple.com/documentation/security/sectransformregister(_:_:_:)).
+///
+/// - error: A pointer that the function uses to provide an error object with details if an error occurs. The caller becomes responsible for the object’s memory. Pass `NULL` to ignore the error.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+/// Creates a transform computation object.
+///
 ///
 /// Parameter `name`: The type of transform to create, must have been registered
 /// by SecTransformRegister, or be a system pre-defined
@@ -873,8 +1256,6 @@ pub unsafe extern "C-unwind" fn SecTransformRegister(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreate(_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -892,6 +1273,21 @@ pub unsafe extern "C-unwind" fn SecTransformCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns an object from inside a ProcessData override that says that although no data is being returned the transform is still active and awaiting data.
+///
+/// ## Return Value
+///
+/// A ‘special’ value that allows that specifies that the transform is still active and awaiting data.
+///
+///
+///
+/// ## Discussion
+///
+/// The standard behavior for the ProcessData override is that it will receive a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object and it processes that data and returns another data object that contains the processed data. When there is no more data to process the ProcessData override block is called one last time with a `NULL` data reference. The ProcessData block should/must return the `NULL` data reference to complete the processing. This model does not work well for some transforms. For example a digest transform needs to see ALL of the data that is being digested before it can send out the digest value.
+///
+/// If a ProcessData block has no data to return, it can return [`SecTransformNoData`](https://developer.apple.com/documentation/security/sectransformnodata()), which informs the transform system that there is no data to pass on to the next transform.
+///
+///
 /// Returns back A CFTypeRef from inside a processData
 /// override that says that while no data is being returned
 /// the transform is still active and awaiting data.
@@ -915,8 +1311,6 @@ pub unsafe extern "C-unwind" fn SecTransformCreate(
 /// If a ProcessData block has no data to return, it can return
 /// SecTransformNoData(), which informs the transform system
 /// that there is no data to pass on to the next transform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformnodata()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformNoData() -> CFRetained<CFType> {

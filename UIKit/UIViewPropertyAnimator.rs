@@ -10,7 +10,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator?language=objc)
+    /// A class that animates changes to views and allows the dynamic modification of those animations.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) object lets you animate changes to views and dynamically modify your animations before they finish. With a property animator, you can run your animations from start to finish normally or you can turn them into interactive animations and control the timing yourself. The animator operates on animatable properties of views, such as the [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame), [`center`](https://developer.apple.com/documentation/uikit/uiview/center), [`alpha`](https://developer.apple.com/documentation/uikit/uiview/alpha), and [`transform`](https://developer.apple.com/documentation/uikit/uiview/transform) properties, creating the needed animations from the blocks you provide.
+    ///
+    /// When creating a property animator object, you specify the following:
+    ///
+    /// - A block containing code that modifies the properties of one or more views.
+    ///
+    /// - The timing curve that defines the speed of the animation over the course of its run.
+    ///
+    /// - The duration (in seconds) of the animation.
+    ///
+    /// - An optional completion block to execute when the animations finish.
+    ///
+    /// In your animation blocks, set the value of an animatable property to the final value you want reflected by that view. For example, if you want to fade out a view, you would set its alpha property to `0` in your block. The property animator object creates an animation that adjusts the value of that property from its initial value to the new value that you specified in your block.
+    ///
+    /// The speed at which the value of a property changes is controlled by the timing curve you specify when creating the property animator. Property animators include support for the built-in UIKit animation curves such as linear, ease-in, and ease-out. You can also use a cubic Bezier curve or a spring function to control the timing of the animations.
+    ///
+    /// If you create your animator using one of the standard initialization methods, you must explicitly start your animations by calling the [`startAnimation`](https://developer.apple.com/documentation/uikit/uiviewanimating/startanimation()) method. If you want to start the animations immediately after the creation of your animator, use the [`runningPropertyAnimatorWithDuration:delay:options:animations:completion:`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator/runningpropertyanimator(withduration:delay:options:animations:completion:)) method instead of the standard initializers.
+    ///
+    /// This class adopts the [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) and [`UIViewImplicitlyAnimating`](https://developer.apple.com/documentation/uikit/uiviewimplicitlyanimating) protocols, which define the methods for starting, stopping, and modifying your animations. For more information about the methods of those protocols, see [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) and [`UIViewImplicitlyAnimating`](https://developer.apple.com/documentation/uikit/uiviewimplicitlyanimating).
+    ///
+    /// ### Modify animations dynamically
+    ///
+    /// A property animator gives you programmatic control over the timing and execution of the animations. Specifically, you can:
+    ///
+    /// - Start, pause, resume, and stop animations; see the methods of the [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) protocol.
+    ///
+    /// - Add animation blocks after the original animations start using the [`addAnimations:`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator/addanimations(_:)) and [`addAnimations:delayFactor:`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator/addanimations(_:delayfactor:)) methods.
+    ///
+    /// - Scrub through a paused animation by modifying the [`fractionComplete`](https://developer.apple.com/documentation/uikit/uiviewanimating/fractioncomplete) property.
+    ///
+    /// - Change the animation’s direction using the [`reversed`](https://developer.apple.com/documentation/uikit/uiviewanimating/isreversed) property.
+    ///
+    /// - Modify the timing and duration of a partially complete animation by pausing the animation and using the [`continueAnimationWithTimingParameters:durationFactor:`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator/continueanimation(withtimingparameters:durationfactor:)) method to finish it.
+    ///
+    /// Most of the basic behavior is controlled by the properties of the [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) protocol, which this class adopts. Use those methods and properties to start, pause, resume, and stop the animations. You can also use them to scrub through the animation and change its direction. Use the methods and properties of this class to modify the animation blocks themselves and to update the timing information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

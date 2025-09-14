@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassproperties?language=objc)
+    /// An object that represents the properties of a pass that contains a balance used for specific transactions, such as a transit pass or loyalty card.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStoredValuePassProperties;

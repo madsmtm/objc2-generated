@@ -8,7 +8,6 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtl4fxtemporalscaler?language=objc)
     #[cfg(feature = "MTLFXTemporalScaler")]
     pub unsafe trait MTL4FXTemporalScaler: MTLFXTemporalScalerBase {
         /// Encode this spatial scaler work into a command buffer.

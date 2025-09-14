@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplancapability?language=objc)
+/// The type of cellular plan available for an eSIM.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularPlanCapability(pub NSInteger);
 impl CTCellularPlanCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplancapability/dataonly?language=objc)
+    /// The cellular plan is available for data only.
     #[doc(alias = "CTCellularPlanCapabilityDataOnly")]
     pub const DataOnly: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplancapability/dataandvoice?language=objc)
+    /// The cellular plan is available for data and voice.
     #[doc(alias = "CTCellularPlanCapabilityDataAndVoice")]
     pub const DataAndVoice: Self = Self(1);
 }
@@ -30,7 +30,13 @@ unsafe impl RefEncode for CTCellularPlanCapability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties?language=objc)
+    /// An object you use for an eSIM.
+    ///
+    /// ## Overview
+    ///
+    /// Use `CTCellularPlanProperties` to set the capabilities of your eSIMs.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTCellularPlanProperties;

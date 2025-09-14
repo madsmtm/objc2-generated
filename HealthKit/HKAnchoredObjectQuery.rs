@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery?language=objc)
+    /// A query that returns changes to the HealthKit store, including a snapshot of new changes and continuous monitoring as a long-running query.
+    ///
+    /// ## Overview
+    ///
+    /// Anchored object queries provide an easy way to search for new data in the HealthKit store. An [`HKAnchoredObjectQuery`](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery) returns an anchor value that corresponds to the last sample or deleted object received by that query. Subsequent queries can use this anchor to restrict their results to only newer saved or deleted objects.
+    ///
+    /// Anchored object queries are mostly immutable. You can assign the query’s [`updateHandler`](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery/updatehandler) property after instantiating the object, but you must set all other properties when you instantiate the object. You can’t change them.
+    ///
+    /// ### Combine Snapshots and Updates
+    ///
+    /// The anchored object query can combine the abilities of a regular query with a long-running query.
+    ///
+    /// - It grabs a snapshot of the data currently stored in the HealthKit store (like an [`HKSampleQuery`](https://developer.apple.com/documentation/healthkit/hksamplequery)).
+    ///
+    /// - It can also perform a long-running query that responds to updates (like an [`HKObserverQuery`](https://developer.apple.com/documentation/healthkit/hkobserverquery)).
+    ///
+    /// Often, it’s more efficient to set up and run a single anchored object query than to run separate sample and observer queries. As a result, you may want to use anchored object queries, even when you aren’t using anchors to limit the results. In this case, set the anchor parameter to `nil`.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

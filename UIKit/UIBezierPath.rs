@@ -12,7 +12,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibezierpath?language=objc)
+    /// A path that consists of straight and curved line segments that you can render in your custom views.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class initially to specify just the geometry for your path. Paths can define simple shapes such as rectangles, ovals, and arcs or they can define complex polygons that incorporate a mixture of straight and curved line segments. After defining the shape, you can use additional methods of this class to render the path in the current drawing context.
+    ///
+    /// A [`UIBezierPath`](https://developer.apple.com/documentation/uikit/uibezierpath) object combines the geometry of a path with attributes that describe the path during rendering. You set the geometry and attributes separately and can change them independent of one another. After you have the object configured the way you want it, you can tell it to draw itself in the current context. Because the creation, configuration, and rendering process are all distinct steps, Bézier path objects can be reused easily in your code. You can even use the same object to render the same shape multiple times, perhaps changing the rendering options between successive drawing calls.
+    ///
+    /// You set the geometry of a path by manipulating the path’s current point. When you create a new empty path object, the current point is undefined and must be set explicitly. To move the current point without drawing a segment, you use the [`moveToPoint:`](https://developer.apple.com/documentation/uikit/uibezierpath/move(to:)) method. All other methods result in the addition of either a line or curve segments to the path. The methods for adding new segments always assume you are starting at the current point and ending at some new point that you specify. After adding the segment, the end point of the new segment automatically becomes the current point.
+    ///
+    /// A single Bézier path object can contain any number of open or closed subpaths, where each subpath represents a connected series of path segments. Calling the [`closePath`](https://developer.apple.com/documentation/uikit/uibezierpath/close()) method closes a subpath by adding a straight line segment from the current point to the first point in the subpath. Calling the [`moveToPoint:`](https://developer.apple.com/documentation/uikit/uibezierpath/move(to:)) method ends the current subpath (without closing it) and sets the starting point of the next subpath. The subpaths of a Bézier path object share the same drawing attributes and must be manipulated as a group. To draw subpaths with different attributes, you must put each subpath in its own [`UIBezierPath`](https://developer.apple.com/documentation/uikit/uibezierpath) object.
+    ///
+    /// After configuring the geometry and attributes of a Bézier path, you draw the path in the current graphics context using the [`stroke`](https://developer.apple.com/documentation/uikit/uibezierpath/stroke()) and [`fill`](https://developer.apple.com/documentation/uikit/uibezierpath/fill()) methods. The [`stroke`](https://developer.apple.com/documentation/uikit/uibezierpath/stroke()) method traces the outline of the path using the current stroke color and the attributes of the Bézier path object. Similarly, the [`fill`](https://developer.apple.com/documentation/uikit/uibezierpath/fill()) method fills in the area enclosed by the path using the current fill color. (You set the stroke and fill color using the [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) class.)
+    ///
+    /// In addition to using a Bézier path object to draw shapes, you can also use it to define a new clipping region. The [`addClip`](https://developer.apple.com/documentation/uikit/uibezierpath/addclip()) method intersects the shape represented by the path object with the current clipping region of the graphics context. During subsequent drawing, only content that lies within the new intersection region is actually rendered to the graphics context.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIBezierPath;

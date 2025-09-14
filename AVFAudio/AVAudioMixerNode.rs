@@ -7,6 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that takes any number of inputs and converts them into a single output.
+    ///
+    /// ## Overview
+    ///
+    /// The mixer accepts input at any sample rate and efficiently combines sample rate conversions. It also accepts any channel count and correctly upmixes or downmixes to the output channel count.
+    ///
+    ///
     /// A node that mixes its inputs to a single output.
     ///
     /// Mixers may have any number of inputs.
@@ -14,8 +21,6 @@ extern_class!(
     /// The mixer accepts input at any sample rate and efficiently combines sample rate
     /// conversions. It also accepts any channel count and will correctly upmix or downmix
     /// to the output channel count.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixernode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

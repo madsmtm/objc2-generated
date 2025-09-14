@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options?language=objc)
+    /// The options the snapshotter initializer uses to create a snapshotter to capture map-based imagery.
+    ///
+    /// ## Overview
+    ///
+    /// After creating and configuring an instance of this class, you pass that instance to an [`MKMapSnapshotter`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter) object. The snapshotter uses the configuration options to determine which portion of the map to capture, the viewing angle to use for the camera, and the map’s overall appearance.
+    ///
+    /// In macOS 10.14 and later, you can apply a light or dark appearance to your map snapshots by modifying the [`appearance`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/appearance) property of your snapshot options. Even if you specify a custom appearance, users can use the Maps app to force all maps to adopt a light appearance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapSnapshotOptions;

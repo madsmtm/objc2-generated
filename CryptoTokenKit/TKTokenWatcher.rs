@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher/tokeninfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenWatcherTokenInfo;
@@ -46,7 +45,13 @@ impl TKTokenWatcherTokenInfo {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenwatcher?language=objc)
+    /// An object that tracks the tokens available in the system.
+    ///
+    /// ## Overview
+    ///
+    /// Create a token watcher and register an insertion handler to be notified when tokens are added to the system. You can also add removal handlers for specific tokens to be notified when those tokens are removed from the system.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenWatcher;

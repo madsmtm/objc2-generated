@@ -8,7 +8,66 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation?language=objc)
+    /// An operation that converts user identities into share participants.
+    ///
+    /// ## Overview
+    ///
+    /// Participants are a fundamental part of sharing in CloudKit. A participant provides information about a user and their participation in a share, which includes their identity, acceptance status, role, and permissions. The acceptance status manages the user’s visibilty of the shared records. The role and permissions control what actions the user can perform on those records.
+    ///
+    /// You don’t create participants. Instead, create an instance of [`CKUserIdentityLookupInfo`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/lookupinfo-swift.class) for each user. Provide the user’s email address or phone number, and then use this operation to convert them into participants that you can add to a share. CloudKit limits the number of participants in a share to 100, and each participant must have an active iCloud account.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`UICloudSharingController`](https://developer.apple.com/documentation/uikit/uicloudsharingcontroller) provides a consistent and familiar experience for managing a share’s participants and their permissions. Only use this operation when you want to provide an app-specific approach.
+    ///
+    ///
+    ///
+    /// </div>
+    /// CloudKit queries iCloud for corresponding accounts as part of the operation. If it doesn’t find an account, the server updates the participant’s [`userIdentity`](https://developer.apple.com/documentation/cloudkit/ckshare/participant/useridentity) to reflect that by setting the [`hasiCloudAccount`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount) property to [`false`](https://developer.apple.com/documentation/swift/false). CloudKit associates a participant with their iCloud account when they accept the share.
+    ///
+    /// Anyone with the URL of a public share can become a participant in that share. For a private share, the owner manages its participants. A participant can’t accept a private share unless the owner adds them first.
+    ///
+    /// To run the operation, add it to the container’s operation queue. The operation executes its callbacks on a private serial queue.
+    ///
+    /// The following example demonstrates how to create the operation, configure it, and then execute it using the default container’s operation queue:
+    ///
+    /// ```swift
+    /// func fetchParticipants(for lookupInfos: [CKUserIdentity.LookupInfo],
+    ///     completion: @escaping (Result<[CKShare.Participant], Error>) -> Void) {
+    ///
+    ///     var participants = [CKShare.Participant]()
+    ///         
+    ///     // Create the operation using the lookup objects
+    ///     // that the caller provides to the method.
+    ///     let operation = CKFetchShareParticipantsOperation(
+    ///         userIdentityLookupInfos: lookupInfos)
+    ///         
+    ///     // Collect the participants as CloudKit generates them.
+    ///     operation.shareParticipantFetchedBlock = { participant in
+    ///         participants.append(participant)
+    ///     }
+    ///         
+    ///     // If the operation fails, return the error to the caller.
+    ///     // Otherwise, return the array of participants.
+    ///     operation.fetchShareParticipantsCompletionBlock = { error in
+    ///         if let error = error {
+    ///             completion(.failure(error))
+    ///         } else {
+    ///             completion(.success(participants))
+    ///         }
+    ///     }
+    ///         
+    ///     // Set an appropriate QoS and add the operation to the
+    ///     // container's queue to execute it.
+    ///     operation.qualityOfService = .userInitiated
+    ///     CKContainer.default().add(operation)
+    /// }
+    /// ```
+    ///
+    /// The operation calls [`shareParticipantFetchedBlock`](https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation/shareparticipantfetchedblock) once for each item you provide, and CloudKit returns the participant, or an error if it can’t generate a particpant. CloudKit also batches per-participant errors. If the operation completes with errors, it returns a [`partialFailure`](https://developer.apple.com/documentation/cloudkit/ckerror/partialfailure) error. The error stores the individual errors in its [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary. Use the [`CKPartialErrorsByItemIDKey`](https://developer.apple.com/documentation/cloudkit/ckpartialerrorsbyitemidkey) key to extract them.
+    ///
+    ///
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]

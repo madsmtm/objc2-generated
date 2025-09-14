@@ -10,8 +10,6 @@ use crate::*;
 
 extern_class!(
     /// A vertex buffer and optional index and mask buffer for a set of polygons
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspolygonbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

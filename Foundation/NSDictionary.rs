@@ -9,9 +9,80 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// **************    Immutable Dictionary    ***************
+    /// A static collection of objects associated with unique keys.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdictionary?language=objc)
+    /// ## Overview
+    ///
+    /// You can use this type in Swift instead of a [`Dictionary`](https://developer.apple.com/documentation/swift/dictionary) in cases that require reference semantics.
+    ///
+    /// The `NSDictionary` class declares the programmatic interface to objects that manage immutable associations of keys and values. For example, an interactive form could be represented as a dictionary, with the field names as keys, corresponding to user-entered values.
+    ///
+    /// Use this class or its subclass [`NSMutableDictionary`](https://developer.apple.com/documentation/foundation/nsmutabledictionary) when you need a convenient and efficient way to retrieve data associated with an arbitrary key. `NSDictionary` creates static dictionaries, and `NSMutableDictionary` creates dynamic dictionaries. (For convenience, the term _dictionary_ refers to any instance of one of these classes without specifying its exact class membership.)
+    ///
+    /// A key-value pair within a dictionary is called an entry. Each entry consists of one object that represents the key and a second object that is that key’s value. Within a dictionary, the keys are unique. That is, no two keys in a single dictionary are equal (as determined by [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:))). In general, a key can be any object (provided that it conforms to the `NSCopying` protocol—see below), but note that when using key-value coding the key must be a string (see [Accessing Object Properties](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/BasicPrinciples.html#//apple_ref/doc/uid/20002170)). Neither a key nor a value can be `nil`; if you need to represent a null value in a dictionary, you should use [`NSNull`](https://developer.apple.com/documentation/foundation/nsnull).
+    ///
+    /// `NSDictionary` is “toll-free bridged” with its Core Foundation counterpart, [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// ### Creating NSDictionary Objects Using Dictionary Literals
+    ///
+    /// In addition to the provided initializers, such as [`initWithObjects:forKeys:`](https://developer.apple.com/documentation/foundation/nsdictionary/init(objects:forkeys:)), you can create an `NSDictionary` object using a _dictionary literal_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let dictionary: NSDictionary = [", "    \"anObject\" : someObject,", "    \"helloString\" : \"Hello, World!\",", "    \"magicNumber\" : 42,", "    \"aValue\" : someValue", "]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDictionary *dictionary = @{", "       @\"anObject\" : someObject,", "    @\"helloString\" : @\"Hello, World!\",", "    @\"magicNumber\" : @42,", "         @\"aValue\" : someValue", "};"], metadata: None }] }] })
+    /// In Objective-C, the compiler generates code that makes an underlying call to the [`dictionaryWithObjects:forKeys:count:`](https://developer.apple.com/documentation/foundation/nsdictionary/dictionarywithobjects:forkeys:count:) method.
+    ///
+    /// ```objc
+    /// id objects[] = { someObject, @"Hello, World!", @42, someValue };
+    /// id keys[] = { @"anObject", @"helloString", @"magicNumber", @"aValue" };
+    /// NSUInteger count = sizeof(objects) / sizeof(id);
+    /// NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects
+    ///                                                        forKeys:keys
+    ///                                                          count:count];
+    /// ```
+    ///
+    /// Unlike [`dictionaryWithObjectsAndKeys:`](https://developer.apple.com/documentation/foundation/nsdictionary/dictionarywithobjectsandkeys:) and other initializers, dictionary literals specify entries in key-value order. You should not terminate the list of objects with `nil` when using this literal syntax, and in fact `nil` is an invalid value. For more information about object literals in Objective-C, see [Working with Objects](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4) in [Programming with Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210).
+    ///
+    /// In Swift, the `NSDictionary` class conforms to the `DictionaryLiteralConvertible` protocol, which allows it to be initialized with dictionary literals. For more information about object literals in Swift, see [Literal Expression](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID390) in [The Swift Programming Language (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097).
+    ///
+    /// ### Accessing Values Using Subscripting
+    ///
+    /// In addition to the provided instance methods, such as [`objectForKey:`](https://developer.apple.com/documentation/foundation/nsdictionary/object(forkey:)), you can access `NSDictionary` values by their keys using _subscripting_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let value = dictionary[\"helloString\"]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["id value = dictionary[@\"helloString\"];"], metadata: None }] }] })
+    /// ### Enumerating Entries Using for-in Loops
+    ///
+    /// In addition to the provided instance methods, such as [`enumerateKeysAndObjectsUsingBlock:`](https://developer.apple.com/documentation/foundation/nsdictionary/enumeratekeysandobjects(_:)), you can enumerate `NSDictionary` entries using _for-in loops_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["for (key, value) in dictionary {", "    print(\"Value: \\(value) for key: \\(key)\")", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["for (NSString *key in dictionary) {", "    id value = dictionary[key];", "    NSLog(@\"Value: %@ for key: %@\", value, key);", "}"], metadata: None }] }] })
+    /// In Objective-C, `NSDictionary` conforms to the [`NSFastEnumeration`](https://developer.apple.com/documentation/foundation/nsfastenumeration) protocol.
+    ///
+    /// In Swift, `NSDictionary` conforms to the `SequenceType` protocol.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You generally shouldn’t need to subclass `NSDictionary`. Custom behavior can usually be achieved through composition rather than subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// If you do need to subclass `NSDictionary`, take into account that it is a [Class cluster](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/ClassCluster.html#//apple_ref/doc/uid/TP40008195-CH7). Any subclass must override the following primitive methods:
+    ///
+    /// - [`initWithObjects:forKeys:count:`](https://developer.apple.com/documentation/foundation/nsdictionary/init(objects:forkeys:count:))
+    ///
+    /// - [`count`](https://developer.apple.com/documentation/foundation/nsdictionary/count)
+    ///
+    /// - [`objectForKey:`](https://developer.apple.com/documentation/foundation/nsdictionary/object(forkey:))
+    ///
+    /// - [`keyEnumerator`](https://developer.apple.com/documentation/foundation/nsdictionary/keyenumerator())
+    ///
+    /// The other methods of `NSDictionary` operate by invoking one or more of these primitives. The non-primitive methods provide convenient ways of accessing multiple entries at once.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// Before making a custom class of `NSDictionary`, investigate [`NSMapTable`](https://developer.apple.com/documentation/foundation/nsmaptable) and the corresponding Core Foundation type, [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). Because `NSDictionary` and `CFDictionary` are “toll-free bridged,” you can substitute a `CFDictionary` object for a `NSDictionary` object in your code (with appropriate casting). Although they are corresponding types, `CFDictionary` and `NSDictionary` do not have identical interfaces or implementations, and you can sometimes do things with `CFDictionary` that you cannot easily do with `NSDictionary`.
+    ///
+    /// If the behavior you want to add supplements that of the existing class, you could write a category on `NSDictionary`. Keep in mind, however, that this category will be in effect for all instances of `NSDictionary` that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.
+    ///
+    ///
+    /// **************    Immutable Dictionary    ***************
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
@@ -574,9 +645,37 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
 }
 
 extern_class!(
-    /// **************    Mutable Dictionary    ***************
+    /// A dynamic collection of objects associated with unique keys.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutabledictionary?language=objc)
+    /// ## Overview
+    ///
+    /// In Swift, you can use this type instead of a [`Dictionary`](https://developer.apple.com/documentation/swift/dictionary) variable in cases that require reference semantics.
+    ///
+    /// The `NSMutableDictionary` class declares the programmatic interface to objects that manage mutable associations of keys and values. It adds modification operations to the basic operations it inherits from [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary).
+    ///
+    /// `NSMutableDictionary` is “toll-free bridged” with its Core Foundation counterpart, [`CFMutableDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// ### Setting Values Using Subscripting
+    ///
+    /// In addition to the provided instance methods, such as [`setObject:forKey:`](https://developer.apple.com/documentation/foundation/nsmutabledictionary/setobject(_:forkey:)), you can access `NSDictionary` values by their keys using _subscripting_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let value = \"someValue\"", "mutableDictionary[\"someKey\"] = value"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["id value = @\"someValue\";", "mutableDictionary[@\"someKey\"] = value;"], metadata: None }] }] })
+    /// ### Subclassing Notes
+    ///
+    /// There should typically be little need to subclass `NSMutableDictionary`. If you do need to customize behavior, it is often better to consider composition rather than subclassing.
+    ///
+    /// #### Methods to Override
+    ///
+    /// In a subclass, you must override both of its primitive methods:
+    ///
+    /// - [`setObject:forKey:`](https://developer.apple.com/documentation/foundation/nsmutabledictionary/setobject(_:forkey:))
+    ///
+    /// - [`removeObjectForKey:`](https://developer.apple.com/documentation/foundation/nsmutabledictionary/removeobject(forkey:))
+    ///
+    /// You must also override the primitive methods of the [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) class.
+    ///
+    ///
+    /// **************    Mutable Dictionary    ***************
     #[unsafe(super(NSDictionary<KeyType, ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableDictionary<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;

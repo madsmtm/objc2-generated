@@ -15,7 +15,7 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylink?language=objc)
+/// A reference to a display link object.
 #[doc(alias = "CVDisplayLinkRef")]
 #[repr(C)]
 pub struct CVDisplayLink {
@@ -31,7 +31,27 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CVDisplayLink"> for CVDisplayLink {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputcallback?language=objc)
+/// A type for a display link callback function that the system invokes when it’s time for the app to output a video frame.
+///
+/// Parameters:
+/// - displayLink: A display link that requests a frame.
+///
+/// - inNow: A pointer to the current time.
+///
+/// - inOutputTime: A pointer to the display time for a frame.
+///
+/// - flagsIn: Currently unused. Pass 0.
+///
+/// - flagsOut: Currently unused. Pass 0.
+///
+/// - displayLinkContext: A pointer to app-defined data.
+///
+///
+/// ## Discussion
+///
+/// Your app must register a callback function for the system to invoke with the data necessary to process and output a frame of video. Your callback must retrieve the frame with the timestamp that the `inOutputTime` parameter specifies, manipulate it if you require (for example, apply color correction or map onto a surface), and output it to the display.
+///
+///
 #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
 pub type CVDisplayLinkOutputCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -44,7 +64,6 @@ pub type CVDisplayLinkOutputCallback = Option<
     ) -> CVReturn,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputhandler?language=objc)
 #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
 pub type CVDisplayLinkOutputHandler = *mut block2::DynBlock<
     dyn Fn(
@@ -57,7 +76,13 @@ pub type CVDisplayLinkOutputHandler = *mut block2::DynBlock<
 >;
 
 unsafe impl ConcreteType for CVDisplayLink {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgettypeid()?language=objc)
+    /// Obtains the Core Foundation ID for the display link data type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation ID for this type.
+    ///
+    ///
     #[doc(alias = "CVDisplayLinkGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,6 +94,27 @@ unsafe impl ConcreteType for CVDisplayLink {
 }
 
 impl CVDisplayLink {
+    /// Creates a display link for an array of displays.
+    ///
+    /// Parameters:
+    /// - displayArray: A pointer to an array of Core Graphics display IDs representing all the active monitors you want to use with this display link.
+    ///
+    /// - count: The number of displays in the display array.
+    ///
+    /// - displayLinkOut: On output, `displayLinkOut` points to the newly created display link.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this call to create a display link for a set of displays identified by the Core Graphics display IDs. For more information on the display identifier type, see [`CGDirectDisplayID`](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid).
+    ///
+    ///
     /// General call to create a CVDisplayLink
     ///
     /// Use this call to create a CVDisplayLink for a set of displays indentified by the CGDirectDisplayIDs.
@@ -85,8 +131,6 @@ impl CVDisplayLink {
     ///
     /// - `display_array` must be a valid pointer.
     /// - `display_link_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithcgdisplays(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplays")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -106,6 +150,25 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkCreateWithCGDisplays(display_array, count, display_link_out) }
     }
 
+    /// Creates a display link from an OpenGL display mask.
+    ///
+    /// Parameters:
+    /// - mask: The OpenGL display mask describing the available displays.
+    ///
+    /// - displayLinkOut: On output, `displayLinkOut` points to the newly created display link.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Using this function avoids having to call the Core Graphics function `CGOpenGLDisplayMaskToDisplayID`.
+    ///
+    ///
     /// Convenience call to create a CVDisplayLink from an OpenGL display mask.
     ///
     /// Use this call to create a CVDisplayLink for a CGOpenGLDisplayMask.
@@ -119,8 +182,6 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `display_link_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithopengldisplaymask(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithOpenGLDisplayMask")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -138,6 +199,25 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkCreateWithOpenGLDisplayMask(mask, display_link_out) }
     }
 
+    /// Creates a display link for a single display.
+    ///
+    /// Parameters:
+    /// - displayID: The Core Graphics ID of the target display.
+    ///
+    /// - displayLinkOut: On output, `displayLinkOut` points to the newly created display link.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this call to create a display link for a single display. For more information on the display identifier type, see [`CGDirectDisplayID`](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid).
+    ///
+    ///
     /// Convenience call to create a CVDisplayLink for a single CGDirectDisplay.
     ///
     /// Use this call to create a CVDisplayLink for a single CGDirectDisplay.
@@ -151,8 +231,6 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `display_link_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithcgdisplay(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithCGDisplay")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -170,6 +248,23 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkCreateWithCGDisplay(display_id, display_link_out) }
     }
 
+    /// Creates a display link capable of being used with all active displays.
+    ///
+    /// Parameters:
+    /// - displayLinkOut: On output, `displayLinkOut` points to the newly created display link.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `CVDisplayLinkCreateWithActiveCGDisplays` determines the displays actively used by the host computer and creates a display link compatible with all of them. For most applications, calling this function is the most convenient way to create a display link. After creation, you can assign the display link to any active display by calling the [`CVDisplayLinkSetCurrentCGDisplay`](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetcurrentcgdisplay(_:_:)) function.
+    ///
+    ///
     /// Convenience function to create a CVDisplayLink capable of being used with all active CGDisplays
     ///
     /// Parameter `displayLinkOut`: The newly created CVDisplayLink
@@ -179,8 +274,6 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `display_link_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkcreatewithactivecgdisplays(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkCreateWithActiveCGDisplays")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -196,6 +289,25 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkCreateWithActiveCGDisplays(display_link_out) }
     }
 
+    /// Sets the current display of a display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose display you want to set.
+    ///
+    /// - displayID: The ID of the display to be set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Although it is safe to call this function on a running display link, a discontinuity may appear in the video timestamp.
+    ///
+    ///
     /// Sets the current display of a DisplayLink
     ///
     /// It is safe to call this with a running display link, but be aware that there will likely be a timestamp
@@ -206,8 +318,6 @@ impl CVDisplayLink {
     /// Parameter `displayID`: target CGDirectDisplayID
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetcurrentcgdisplay(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetCurrentCGDisplay")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -222,6 +332,27 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkSetCurrentCGDisplay(self, display_id) }
     }
 
+    /// Selects the display link most optimal for the current renderer of an OpenGL context.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose current display is to be set.
+    ///
+    /// - cglContext: The OpenGL context to retrieve the current renderer from.
+    ///
+    /// - cglPixelFormat: The OpenGL pixel format used to create the passed-in OpenGL context.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function chooses the display with the lowest refresh rate.
+    ///
+    ///
     /// Convenience function to select a CVDisplayLink most optimal for the current renderer of the passed in OpenGL context
     ///
     /// Parameter `displayLink`: The CVDisplayLink for which you want to set the current CGDisplay
@@ -236,8 +367,6 @@ impl CVDisplayLink {
     ///
     /// - `cgl_context` must be a valid pointer.
     /// - `cgl_pixel_format` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetcurrentcgdisplayfromopenglcontext(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
@@ -260,6 +389,17 @@ impl CVDisplayLink {
         }
     }
 
+    /// Gets the current display associated with a display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose current display you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An identifier representing the current display. For more information on the display identifier type, see [`CGDirectDisplayID`](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid).
+    ///
+    ///
     /// Gets the current display of a DisplayLink
     ///
     /// (description)
@@ -267,8 +407,6 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: target CVDisplayLinkRef
     ///
     /// Returns: CGDirectDisplayID
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetcurrentcgdisplay(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetCurrentCGDisplay")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -280,6 +418,27 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkGetCurrentCGDisplay(self) }
     }
 
+    /// Sets the renderer output callback function.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose output callback you want to set.
+    ///
+    /// - callback: The callback function to set for this display link. See [`CVDisplayLinkOutputCallback`](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputcallback) for more information about implementing this function.
+    ///
+    /// - userInfo: A pointer to user data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The display link invokes this callback whenever it wants you to output a frame.
+    ///
+    ///
     /// Set the renderer output callback function
     ///
     /// The DisplayLink will invoke this callback whenever it wants you to output a frame.
@@ -296,8 +455,6 @@ impl CVDisplayLink {
     ///
     /// - `callback` must be implemented correctly.
     /// - `user_info` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetoutputcallback(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetOutputCallback")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -330,8 +487,6 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinksetoutputhandler(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkSetOutputHandler")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -346,6 +501,23 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkSetOutputHandler(self, handler) }
     }
 
+    /// Activates a display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link to be activated.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See[Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function starts the display link thread, which then periodically calls back to your application to request that you display frames. If the specified display link is already running, `CVDisplayLinkStart` returns an error.
+    ///
+    ///
     /// Start timer for DisplayLink
     ///
     /// This call should not be made from inside the CVDisplayLinkOutputCallback
@@ -354,8 +526,6 @@ impl CVDisplayLink {
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
     /// kCVReturnDisplayLinkCallbacksNotSet The DisplayLink cannot be started until the output callback is set.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkstart(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkStart")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -367,6 +537,25 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkStart(self) }
     }
 
+    /// Stops a display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link to be stopped.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the specified display link is already stopped, `CVDisplayLinkStop` returns an error.
+    ///
+    /// In macOS 10.4 and later, the display link thread is automatically stopped if the user employs Fast User Switching. The display link is restarted when switching back to the original user.
+    ///
+    ///
     /// Stop timer for DisplayLink
     ///
     /// (description)
@@ -374,8 +563,6 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: target CVDisplayLinkRef
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successfull.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkstop(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkStop")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -387,6 +574,23 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkStop(self) }
     }
 
+    /// Retrieves the nominal refresh period of a display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose refresh period you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CVTime` structure that holds the nominal refresh period. This value is indefinite if an invalid display link was specified.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call allows one to retrieve the device’s ideal refresh period.   For example, an NTSC output device might report 1001/60000 to represent the exact NTSC vertical refresh rate.
+    ///
+    ///
     /// Retrieves the nominal refresh period of a CVDisplayLink.
     ///
     /// This call allows one to retrieve the device's "ideal" refresh period.   For example, an NTSC output device might report 1001/60000 to represent the exact NTSC vertial refresh rate.
@@ -394,8 +598,6 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the refresh period from.
     ///
     /// Returns: A CVTime struct that holds the nominal refresh period.    This value may be indefinite.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetnominaloutputvideorefreshperiod(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetNominalOutputVideoRefreshPeriod")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -409,6 +611,23 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkGetNominalOutputVideoRefreshPeriod(self) }
     }
 
+    /// Retrieves the nominal latency of a display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose latency value you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CVTime` structure that holds the latency value. This value may be indefinite.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call allows you to retrieve the device’s built-in output latency. For example, an NTSC device with one frame of latency might report back 1001/30000 or 2002/60000.
+    ///
+    ///
     /// Retrieves the nominal latency of a CVDisplayLink.
     ///
     /// This call allows one to retrieve the device's built in output latency. An NTSC device with one frame of latency might report back 1001/30000 or 2002/60000, for example.
@@ -416,8 +635,6 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the latency period from.
     ///
     /// Returns: A CVTime struct that holds the latency.   This value may be indefinite.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetoutputvideolatency(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetOutputVideoLatency")]
     #[cfg(feature = "CVBase")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -429,6 +646,23 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkGetOutputVideoLatency(self) }
     }
 
+    /// Retrieves the actual output refresh period of a display as measured by the system time.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link to get the refresh period from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A double-precision floating-point value representing the actual refresh period in seconds. This value may be zero if the device is not running or is otherwise unavailable.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call returns the actual output refresh period computed relative to the system time (as measured using the [`CVGetCurrentHostTime`](https://developer.apple.com/documentation/corevideo/cvgetcurrenthosttime()) function).
+    ///
+    ///
     /// Retrieves the actual output refresh period of a display as measured by the host timebase.
     ///
     /// This call returns the actual output refresh period (in seconds) as computed relative to the host's timebase.
@@ -436,8 +670,6 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the refresh period from.
     ///
     /// Returns: A double containing the actual refresh period.   This value may be zero if the device is not running, or is otherwise unavailable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetactualoutputvideorefreshperiod(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetActualOutputVideoRefreshPeriod")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
@@ -450,6 +682,17 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkGetActualOutputVideoRefreshPeriod(self) }
     }
 
+    /// Indicates whether a given display link is running.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose run state you want to determine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the display link is running, `false` otherwise.
+    ///
+    ///
     /// Retrieves the running state of a CVDisplayLink.
     ///
     /// This call queries the running state of the given CVDisplayLink.
@@ -457,8 +700,6 @@ impl CVDisplayLink {
     /// Parameter `displayLink`: The CVDisplayLink to get the running state from.
     ///
     /// Returns: A boolean describing the running state. It returns true if it is running and false if it is not running or the CVDisplayLink is invalid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkisrunning(_:)?language=objc)
     #[doc(alias = "CVDisplayLinkIsRunning")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
@@ -470,6 +711,25 @@ impl CVDisplayLink {
         ret != 0
     }
 
+    /// Retrieves the current (“now”) time of a given display link.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose current time you want to obtain.
+    ///
+    /// - outTime: A pointer to a `CVTimeStamp` structure. Note that you must set the version in the structure (currently 0) before calling to indicate which version of the timestamp structure you want.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this call to obtain the timestamp of the frame that is currently being displayed.
+    ///
+    ///
     /// Retrieves the current ("now") time of a given CVDisplayLink
     ///
     /// This call may be used to get the current time of a running CVDisplayLink, outside of the output callback.
@@ -483,8 +743,6 @@ impl CVDisplayLink {
     /// # Safety
     ///
     /// `out_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetcurrenttime(_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkGetCurrentTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
@@ -499,6 +757,27 @@ impl CVDisplayLink {
         unsafe { CVDisplayLinkGetCurrentTime(self, out_time) }
     }
 
+    /// Translates the time in the display link’s time base from one representation to another.
+    ///
+    /// Parameters:
+    /// - displayLink: The display link whose time base should be used to do the translation.
+    ///
+    /// - inTime: A pointer to a `CVTimeStamp` structure containing the source time to translate.
+    ///
+    /// - outTime: A pointer to a `CVTimeStamp` structure into which the target time is written. Before calling, you must set the version field (currently `0`) to indicate which version of the structure you want. You should also set the `flags` field to specify which representations to translate to.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that the display link has to be running for this call to succeed.
+    ///
+    ///
     /// Translates the time in the CVDisplayLink's time base from one representation to
     /// another. Note that the device has to be running for this call to succeed.
     ///
@@ -516,8 +795,6 @@ impl CVDisplayLink {
     ///
     /// - `in_time` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinktranslatetime(_:_:_:)?language=objc)
     #[doc(alias = "CVDisplayLinkTranslateTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]

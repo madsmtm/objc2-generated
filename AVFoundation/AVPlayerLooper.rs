@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Status constants that indicate whether a looper can successfully perform looping playback.
 /// These constants are returned by the AVPlayerLooper status property to indicate whether it can successfully accomplish looping playback.
 ///
 /// Indicates that the status of the looper is not yet known.
@@ -18,23 +19,33 @@ use crate::*;
 /// Indicates that the looper is not able to perform looping playback because of an error. The error is described by the value of the error property.
 ///
 /// Indicates that the looper is no longer looping because -disableLooping was invoked.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperStatus(pub NSInteger);
 impl AVPlayerLooperStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/unknown?language=objc)
+    /// The status isn’t known.
     #[doc(alias = "AVPlayerLooperStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/ready?language=objc)
+    /// The looper is ready to perform looping playback.
     #[doc(alias = "AVPlayerLooperStatusReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/failed?language=objc)
+    /// The looper isn’t able to perform looping playback due to an error.
+    ///
+    /// ## Discussion
+    ///
+    /// Examine the looper’s [`error`](https://developer.apple.com/documentation/avfoundation/avplayerlooper/error) property to determine the cause of the failure.
+    ///
+    ///
     #[doc(alias = "AVPlayerLooperStatusFailed")]
     pub const Failed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum/cancelled?language=objc)
+    /// The app canceled looping on the player.
+    ///
+    /// ## Discussion
+    ///
+    /// The system sets this status after you call the [`disableLooping`](https://developer.apple.com/documentation/avfoundation/avplayerlooper/disablelooping()) method.
+    ///
+    ///
     #[doc(alias = "AVPlayerLooperStatusCancelled")]
     pub const Cancelled: Self = Self(3);
 }
@@ -47,22 +58,27 @@ unsafe impl RefEncode for AVPlayerLooperStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define the ordering of items in a player looper.
 /// These constants are the allowable values of Looper's existingItemsOrder initization parameter.
 ///
 /// Indicates that the looper will insert the replica items before any existing items in the specified AVQueuePlayer's play queue. This is default behavior.
 ///
 /// Indicates that the looper will insert the replica items after any existing items in the specified AVQueuePlayer's play queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/itemordering?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperItemOrdering(pub NSInteger);
 impl AVPlayerLooperItemOrdering {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/itemordering/loopingitemsprecedeexistingitems?language=objc)
+    /// Indicates to insert replica items before any existing items in the specified player’s queue.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default behavior.
+    ///
+    ///
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsPrecedeExistingItems")]
     pub const LoopingItemsPrecedeExistingItems: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/itemordering/loopingitemsfollowexistingitems?language=objc)
+    /// Indicates to insert replica items after any existing items in the specified player’s queue.
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsFollowExistingItems")]
     pub const LoopingItemsFollowExistingItems: Self = Self(1);
 }
@@ -76,7 +92,24 @@ unsafe impl RefEncode for AVPlayerLooperItemOrdering {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper?language=objc)
+    /// An object that loops media content using a queue player.
+    ///
+    /// ## Overview
+    ///
+    /// You can manually implement looping playback in your app using [`AVQueuePlayer`](https://developer.apple.com/documentation/avfoundation/avqueueplayer), but `AVPlayerLooper` provides a much simpler interface to loop a single [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem). You create a player looper by passing it a reference to your [`AVQueuePlayer`](https://developer.apple.com/documentation/avfoundation/avqueueplayer) and a template [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) and the looper automatically manages the looping playback of this content (see example).
+    ///
+    /// ```swift
+    /// let asset = // AVAsset with its 'duration' property value loaded
+    /// let playerItem = AVPlayerItem(asset: asset)
+    ///  
+    /// // Create a new player looper with the queue player and template item
+    /// playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+    ///  
+    /// // Begin looping playback
+    /// queuePlayer.play()
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerLooper;

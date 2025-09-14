@@ -12,11 +12,16 @@ use crate::*;
 
 /// A notification when graph executable execution finishes.
 ///
+/// Parameters:
+/// - results: If no error, the results produced by the graph operation. If Graph hasn’t yet allocated the results, this will be `NSNull`.
+///
+/// - error: If an error occurs, more information might be found here.
+///
+/// A notification when graph executable execution finishes.
+///
 /// - Parameters:
 /// - results: If no error, the results produced by the graph operation. If Graph hasn't yet allocated the results, this will be `NSNull`.
 /// - error: If an error occurs, more information might be found here.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutablecompletionhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensorData",
@@ -27,11 +32,16 @@ pub type MPSGraphExecutableCompletionHandler =
 
 /// A notification when graph executable execution schedules.
 ///
+/// Parameters:
+/// - results: If no error, the results produced by the graph operation.
+///
+/// - error: If an error occurs, more information might be found here.
+///
+/// A notification when graph executable execution schedules.
+///
 /// - Parameters:
 /// - results: If no error, the results produced by the graph operation.
 /// - error: If an error occurs, more information might be found here.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutablescheduledhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensorData",
@@ -42,8 +52,7 @@ pub type MPSGraphExecutableScheduledHandler =
 
 extern_class!(
     /// A class that consists of all the levers  to synchronize and schedule executable execution.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableexecutiondescriptor?language=objc)
+    /// A class that consists of all the levers  to synchronize and schedule executable execution.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -180,31 +189,26 @@ impl MPSGraphExecutableExecutionDescriptor {
 }
 
 /// The options available to a graph.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform?language=objc)
+/// The options available to a graph.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphDeploymentPlatform(pub u64);
 impl MPSGraphDeploymentPlatform {
     /// Deployment platofmr for macOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/macos?language=objc)
+    /// Deployment platofmr for macOS.
     #[doc(alias = "MPSGraphDeploymentPlatformMacOS")]
     pub const MacOS: Self = Self(0);
     /// Deployment target for iOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/ios?language=objc)
+    /// Deployment target for iOS.
     #[doc(alias = "MPSGraphDeploymentPlatformIOS")]
     pub const IOS: Self = Self(1);
     /// Deployment target for tvOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/tvos?language=objc)
+    /// Deployment target for tvOS.
     #[doc(alias = "MPSGraphDeploymentPlatformTvOS")]
     pub const TvOS: Self = Self(2);
     /// Deployment target for visionOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdeploymentplatform/visionos?language=objc)
+    /// Deployment target for visionOS.
     #[doc(alias = "MPSGraphDeploymentPlatformVisionOS")]
     pub const VisionOS: Self = Self(3);
 }
@@ -219,8 +223,7 @@ unsafe impl RefEncode for MPSGraphDeploymentPlatform {
 
 extern_class!(
     /// A class that consists of all the levers  to serialize an executable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor?language=objc)
+    /// A class that consists of all the levers  to serialize an executable.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -292,9 +295,14 @@ impl MPSGraphExecutableSerializationDescriptor {
 extern_class!(
     /// The compiled representation of a compute graph executable.
     ///
+    /// ## Overview
+    ///
     /// An `MPSGraphExecutable` is a compiled graph for specific feeds for specific target tensors and target operations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable?language=objc)
+    ///
+    /// The compiled representation of a compute graph executable.
+    ///
+    /// An `MPSGraphExecutable` is a compiled graph for specific feeds for specific target tensors and target operations.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

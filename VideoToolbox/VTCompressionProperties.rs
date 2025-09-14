@@ -9,33 +9,57 @@ use crate::*;
 extern "C" {
     /// The number of pending frames in the compression session.
     ///
+    /// ## Discussion
+    ///
     /// This number may decrease asynchronously.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_numberofpendingframes?language=objc)
+    ///
+    /// The number of pending frames in the compression session.
+    ///
+    /// This number may decrease asynchronously.
     pub static kVTCompressionPropertyKey_NumberOfPendingFrames: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether the common pixel buffer pool is shared between the video encoder and the session client.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is `false` if separate pools are used because the video encoder’s and the client’s pixel buffer attributes were incompatible.
+    ///
+    ///
     /// Indicates whether the a common pixel buffer pool is shared between
     /// the video encoder and the session client.
     ///
     /// This is false if separate pools are used because the video encoder's
     /// and the client's pixel buffer attributes were incompatible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_pixelbufferpoolisshared?language=objc)
     pub static kVTCompressionPropertyKey_PixelBufferPoolIsShared: &'static CFString;
 }
 
 extern "C" {
+    /// The video encoder’s pixel buffer attributes for the compression session.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use these attributes to create a pixel buffer pool for source pixel buffers.
+    ///
+    ///
     /// The video encoder's pixel buffer attributes for the compression session.
     ///
     /// You can use these to create a pixel buffer pool for source pixel buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_videoencoderpixelbufferattributes?language=objc)
     pub static kVTCompressionPropertyKey_VideoEncoderPixelBufferAttributes: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum interval between key frames, also known as the key frame rate.
+    ///
+    /// ## Discussion
+    ///
+    /// Key frames, also known as sync frames, reset inter-frame dependencies; decoding a key frame is sufficient to prepare a decoder for correctly decoding the difference frames that follow. Video encoders are allowed to generate key frames more frequently if doing so results in more efficient compression. The default key frame interval is 0, which indicates that the video encoder should choose where to place all key frames. A key frame interval of 1 indicates that every frame must be a keyframe, 2 indicates that at least every other frame must be a keyframe, and so on.
+    ///
+    /// This key can be set in conjunction with [`kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxkeyframeintervalduration), which requires a keyframe every _X_ frames or every _Y_ seconds, whichever comes first.
+    ///
+    ///
     /// The maximum interval between key frames, also known as the key frame rate.
     ///
     /// Key frames, also known as sync frames, reset inter-frame
@@ -55,12 +79,19 @@ extern "C" {
     /// kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration,
     /// and both limits will be enforced - requiring a keyframe every X
     /// frames or every Y seconds, whichever comes first.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxkeyframeinterval?language=objc)
     pub static kVTCompressionPropertyKey_MaxKeyFrameInterval: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum duration from one key frame to the next in seconds.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is `0`, which means no limit.  This property is particularly useful when the frame rate is variable. See [`kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxkeyframeintervalduration) for more discussion of key frames.
+    ///
+    /// This key can be set in conjunction with [`kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxkeyframeintervalduration), which requires a keyframe every `X` frames or every `Y` seconds, whichever comes first.
+    ///
+    ///
     /// The maximum duration from one key frame to the next in seconds.
     ///
     /// Zero by default, which means no limit.
@@ -72,21 +103,31 @@ extern "C" {
     /// kVTCompressionPropertyKey_MaxKeyFrameInterval,
     /// and both limits will be enforced - requiring a keyframe every X
     /// frames or every Y seconds, whichever comes first.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxkeyframeintervalduration?language=objc)
     pub static kVTCompressionPropertyKey_MaxKeyFrameIntervalDuration: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether temporal compression is enabled.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is `true`.  Set this `value` to false to require key-frame-only compression.
+    ///
+    ///
     /// Enables temporal compression.
     ///
     /// True by default.  Set this to false to require key-frame-only compression.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_allowtemporalcompression?language=objc)
     pub static kVTCompressionPropertyKey_AllowTemporalCompression: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether frame reordering is enabled.
+    ///
+    /// ## Discussion
+    ///
+    /// In order to encode B frames, a video encoder must reorder frames, which means that the order in which the frames are emitted and stored (the decode order) is different from the order in which they were presented to the video encoder (the display order).  The default value is `true`.  Set this value to `false` to prevent frame reordering.
+    ///
+    ///
     /// Enables frame reordering.
     ///
     /// In order to encode B frames, a video encoder must reorder frames,
@@ -94,12 +135,11 @@ extern "C" {
     /// stored (the decode order) is different from the order in which
     /// they were presented to the video encoder (the display order).
     /// True by default.  Set this to false to prevent frame reordering.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_allowframereordering?language=objc)
     pub static kVTCompressionPropertyKey_AllowFrameReordering: &'static CFString;
 }
 
 extern "C" {
+    /// Enables Open GOP (Group Of Pictures) encoding.
     /// Enables Open GOP (Group Of Pictures) encoding.
     ///
     /// Only applicable to certain video encoders.  For HEVC encoding the property value is kCFBooleanTrue by default - which means
@@ -108,12 +148,17 @@ extern "C" {
     /// If set to kCFBooleanFalse, this will mean that the encoder will generate groups of pictures that are independently decodable; there
     /// will be no frame dependencies across sync samples (frames where kCMSampleAttachmentKey_NotSync is absent or kCFBooleanFalse)
     /// When the value is kCFBooleanTrue, the encoder may use Open GOP frame dependency structures to increase compression efficiency or quality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_allowopengop?language=objc)
     pub static kVTCompressionPropertyKey_AllowOpenGOP: &'static CFString;
 }
 
 extern "C" {
+    /// The long-term desired average bit rate in bits per second.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is not a hard limit; the bit rate may peak above this. The default bit rate is zero, which indicates that the video encoder should determine the size of compressed data. Note that bit rate settings only have an effect when timing information is provided for source frames, and that some codecs do not support limiting to specified bit rates.
+    ///
+    ///
     /// The long-term desired average bit rate in bits per second.
     ///
     /// This is not a hard limit; the bit rate may peak above this.
@@ -122,12 +167,17 @@ extern "C" {
     /// Note that bit rate settings only have an effect when timing
     /// information is provided for source frames, and that some codecs do
     /// not support limiting to specified bit rates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_averagebitrate?language=objc)
     pub static kVTCompressionPropertyKey_AverageBitRate: &'static CFString;
 }
 
 extern "C" {
+    /// Zero, one, or two hard limits on data rate.
+    ///
+    /// ## Discussion
+    ///
+    /// Each hard limit is described by a data size in bytes and a duration in seconds, and requires that the total size of compressed data for any contiguous segment of that duration (in decode time) not exceed the data size. By default, no data rate limits are set.  The property is a doc://com.apple.documentation/documentation/corefoundation/cfarray-s28 of an even number of doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd objects, alternating between bytes and seconds. Note that data rate settings only have an effect when timing information is provided for source frames, and that some codecs do not support limiting to specified data rates.
+    ///
+    ///
     /// Zero, one or two hard limits on data rate.
     ///
     /// Each hard limit is described by a data size in bytes and a
@@ -157,12 +207,17 @@ extern "C" {
     /// Encoding is more likely to undershoot a requested
     /// kVTCompressionPropertyKey_AverageBitRate if the specified target is too
     /// close to a hard limit specified by kVTCompressionPropertyKey_DataRateLimits.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_dataratelimits?language=objc)
     pub static kVTCompressionPropertyKey_DataRateLimits: &'static CFString;
 }
 
 extern "C" {
+    /// The desired compression quality.
+    ///
+    /// ## Discussion
+    ///
+    /// Some encoders, such as JPEG, describe the compression level of each image with a quality value.  This value should be specified as a number in the range of 0.0 to 1.0, where low = 0.25, normal = 0.50, high = 0.75, and 1.0 implies lossless compression for encoders that support it.
+    ///
+    ///
     /// The desired compression quality.
     ///
     /// Some encoders, such as JPEG, describe the compression level of each
@@ -170,12 +225,25 @@ extern "C" {
     /// number in the range of 0.0 to 1.0, where low = 0.25, normal = 0.50,
     /// high = 0.75, and 1.0 implies lossless compression for encoders that
     /// support it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_quality?language=objc)
     pub static kVTCompressionPropertyKey_Quality: &'static CFString;
 }
 
 extern "C" {
+    /// The target quality to use for encoding the alpha channel.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify this value as a number in the range of `0.0` for the lowest quality to `1.0` for nearly lossless quality. Alpha plane bit rates tend to increase with increasing values. When encoding the alpha channel, the system gives priority to quality over bitrate.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Only HEVC with Alpha encoders support this parameter.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The target quality to use for encoding the alpha channel.
     ///
     /// The desired compression level to use for encoding the alpha channel.
@@ -184,12 +252,19 @@ extern "C" {
     /// bit rates will tend to increase with increasing values.  When encoding
     /// the alpha channel, quality is given priority over bitrate.  Note this
     /// parameter is currently only applicable to HEVC with Alpha encoders.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_targetqualityforalpha?language=objc)
     pub static kVTCompressionPropertyKey_TargetQualityForAlpha: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether and how a compression session concatenates frames with other compressed frames to form a longer series.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is `true` if frames compressed in a separate session will be concatenated before the beginning of the current session. The value is `false` if the current session is a stand-alone session, or if this session will encode the first segment of a multi-segment compression. The default value is `false`.
+    ///
+    /// This information enables video encoders to ensure that compressed segments can be concatenated smoothly – for example, avoiding data rate spikes where segments are joined.
+    ///
+    ///
     /// Indicates whether and how a compression session's frames will be
     /// concatenated with other compressed frames to form a longer series.
     ///
@@ -201,12 +276,19 @@ extern "C" {
     /// This information enables video encoders to ensure that compressed
     /// segments can be concatenated smoothly -- for example, avoiding
     /// data rate spikes where segments are joined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesbeforestart?language=objc)
     pub static kVTCompressionPropertyKey_MoreFramesBeforeStart: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether and how a compression session concatenates frames with other compressed frames to form a longer series.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is `true` if frames compressed in a separate session will be concatenated following the end of the current session. This value is `false` if the current session is a stand-alone session, or if this session will encode the last segment of a multi-segment compression.
+    ///
+    /// The default value is `false`.
+    ///
+    ///
     /// Indicates whether and how a compression session's frames will be
     /// concatenated with other compressed frames to form a longer series.
     ///
@@ -214,12 +296,11 @@ extern "C" {
     /// concatenated following the end of this one. False if this is a
     /// stand-alone session, or if this session will encode the last
     /// segment of a multi-segment compression. By default, false.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesafterend?language=objc)
     pub static kVTCompressionPropertyKey_MoreFramesAfterEnd: &'static CFString;
 }
 
 extern "C" {
+    /// A hint for the video encoder to maximize its speed during encoding, sacrificing quality if needed.
     /// Hint for the video encoder that it should maximize its speed during encode, sacrificing quality if needed
     ///
     /// Video encoders sometimes have a tradeoff available between encoding speed and quality at a given bitrate.
@@ -233,12 +314,11 @@ extern "C" {
     /// ProRes hardware encoders currently prioritize speed over quality by default.
     /// Not all video encoders support this property.
     /// By default, this property is NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_prioritizeencodingspeedoverquality?language=objc)
     pub static kVTCompressionPropertyKey_PrioritizeEncodingSpeedOverQuality: &'static CFString;
 }
 
 extern "C" {
+    /// Requires that the encoder use a Constant Bit Rate algorithm.
     /// Requires that the encoder use a Constant Bit Rate algorithm.
     ///
     /// The property kVTCompressionPropertyKey_ExpectedFrameRate should be set along with kVTCompressionPropertyKey_ConstantBitRate
@@ -253,22 +333,35 @@ extern "C" {
     ///
     /// This is not supported in all encoders or in all encoder operating modes. kVTPropertyNotSupportedErr will be
     /// returned when this option is not supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_constantbitrate?language=objc)
     pub static kVTCompressionPropertyKey_ConstantBitRate: &'static CFString;
 }
 
 extern "C" {
+    /// An estimate of the expected size in bytes of a single encoded frame based on the current configuration.
     /// Returns the encoder's estimate of the expected size of a single encoded frame in bytes, based on current configuration.
     ///
     /// When supported, this option is intended to allow clients to estimate the output file size for an encoded video stream.
     /// This property is not implemented by all video encoders.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_estimatedaveragebytesperframe?language=objc)
     pub static kVTCompressionPropertyKey_EstimatedAverageBytesPerFrame: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Requires that the encoder use a variable bitrate (VBR) rate control algorithm and specifies the desired variable bitrate in bits per second.
+    ///
+    /// The actual peak bitrate present in the bitstream may be above or below this value based on other parameters such as kVTCompressionPropertyKey_VBVMaxBitRate. This property key needs to be set to achieve Variable Bitrate (VBR) rate control. This property key is not compatible with:
+    ///
+    /// 1. kVTCompressionPropertyKey_AverageBitRate,
+    ///
+    /// 2. kVTCompressionPropertyKey_ConstantBitRate,
+    ///
+    /// 3. kVTCompressionPropertyKey_DataRateLimits,
+    ///
+    /// 4. VTVideoEncoderSpecification_EnableLowLatencyRateControl = True.
+    ///
+    ///
     /// Requires that the encoder use a variable bitrate (VBR) rate control algorithm and specifies the desired variable bitrate in bits per second.
     ///
     /// The actual peak bitrate present in the bitstream may be above or below this value based on other parameters such as kVTCompressionPropertyKey_VBVMaxBitRate.
@@ -278,12 +371,26 @@ extern "C" {
     /// 2. kVTCompressionPropertyKey_ConstantBitRate,
     /// 3. kVTCompressionPropertyKey_DataRateLimits,
     /// 4. VTVideoEncoderSpecification_EnableLowLatencyRateControl = True.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_variablebitrate?language=objc)
     pub static kVTCompressionPropertyKey_VariableBitRate: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Defines the maximum bitrate that can enter the video buffering verifier (VBV) model at any time in variable bitrate (VBR) mode.
+    ///
+    /// The value of this property must be greater than zero. This property key is not compatible with:
+    ///
+    /// 1. kVTCompressionPropertyKey_AverageBitRate,
+    ///
+    /// 2. kVTCompressionPropertyKey_ConstantBitRate,
+    ///
+    /// 3. kVTCompressionPropertyKey_DataRateLimits,
+    ///
+    /// 4. VTVideoEncoderSpecification_EnableLowLatencyRateControl=True.
+    ///
+    ///
     /// Defines the maximum bitrate that can enter the video buffering verifier (VBV) model at any time in variable bitrate (VBR) mode.
     ///
     /// The value of this property must be greater than zero.
@@ -292,12 +399,24 @@ extern "C" {
     /// 2. kVTCompressionPropertyKey_ConstantBitRate,
     /// 3. kVTCompressionPropertyKey_DataRateLimits,
     /// 4. VTVideoEncoderSpecification_EnableLowLatencyRateControl=True.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_vbvmaxbitrate?language=objc)
     pub static kVTCompressionPropertyKey_VBVMaxBitRate: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Capacity of the video buffering verifier (VBV) model in seconds.
+    ///
+    /// VBV model allows for larger variations in bitrates while avoiding decoder-side overflows or underflows. A larger VBV model size may improve compression quality, but it requires more memory and may introduce delay. The value of this property must be greater than 0.0. The default value is set as 2.5 seconds. This property key is compatible with constant bitrate (CBR) or variable bitrate (VBR) rate control. This property key is incompatible with:
+    ///
+    /// 1. kVTCompressionPropertyKey_AverageBitRate,
+    ///
+    /// 2. kVTCompressionPropertyKey_DataRateLimits,
+    ///
+    /// 3. VTVideoEncoderSpecification_EnableLowLatencyRateControl=True.
+    ///
+    ///
     /// Capacity of the video buffering verifier (VBV) model in seconds.
     ///
     /// VBV model allows for larger variations in bitrates while avoiding decoder-side overflows or underflows.
@@ -309,12 +428,24 @@ extern "C" {
     /// 1. kVTCompressionPropertyKey_AverageBitRate,
     /// 2. kVTCompressionPropertyKey_DataRateLimits,
     /// 3. VTVideoEncoderSpecification_EnableLowLatencyRateControl=True.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_vbvbufferduration?language=objc)
     pub static kVTCompressionPropertyKey_VBVBufferDuration: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Initial delay of the VBV model between storing the picture in the VBV buffer model and decoding of that picture, as a percentage of VBV buffer duration.
+    ///
+    /// This value should be specified as a number in the range of 0 to 100. Larger value increases the delay but results in smoother playback. Default value is 90, meaning 90% of the VBV buffer duration. This property key is incompatible with:
+    ///
+    /// 1. kVTCompressionPropertyKey_AverageBitRate,
+    ///
+    /// 2. kVTCompressionPropertyKey_DataRateLimits,
+    ///
+    /// 3. VTVideoEncoderSpecification_EnableLowLatencyRateControl=True.
+    ///
+    ///
     /// Initial delay of the VBV model between storing the picture in the VBV buffer model and decoding of that picture, as a percentage of VBV buffer duration.
     ///
     /// This value should be specified as a number in the range of 0 to 100.
@@ -324,301 +455,247 @@ extern "C" {
     /// 1. kVTCompressionPropertyKey_AverageBitRate,
     /// 2. kVTCompressionPropertyKey_DataRateLimits,
     /// 3. VTVideoEncoderSpecification_EnableLowLatencyRateControl=True.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_vbvinitialdelaypercentage?language=objc)
     pub static kVTCompressionPropertyKey_VBVInitialDelayPercentage: &'static CFString;
 }
 
 extern "C" {
+    /// The profile and level for the encoded bitstream.
+    ///
+    /// ## Discussion
+    ///
+    /// Available profiles and levels vary across formats and among video encoders. Video encoders should use standard keys where available, and follow standard patterns when standard keys are unavailable.
+    ///
+    ///
     /// Specifies the profile and level for the encoded bitstream.
     ///
     /// Available profiles and levels vary across formats and between video encoders.
     /// Video encoders should use standard keys where available, and follow standard patterns where not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_profilelevel?language=objc)
     pub static kVTCompressionPropertyKey_ProfileLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_hevc_main_autolevel?language=objc)
     pub static kVTProfileLevel_HEVC_Main_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_hevc_main10_autolevel?language=objc)
     pub static kVTProfileLevel_HEVC_Main10_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_hevc_main42210_autolevel?language=objc)
     pub static kVTProfileLevel_HEVC_Main42210_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_hevc_monochrome_autolevel?language=objc)
     pub static kVTProfileLevel_HEVC_Monochrome_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_hevc_monochrome10_autolevel?language=objc)
     pub static kVTProfileLevel_HEVC_Monochrome10_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_1_3?language=objc)
     pub static kVTProfileLevel_H264_Baseline_1_3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_3_0?language=objc)
     pub static kVTProfileLevel_H264_Baseline_3_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_3_1?language=objc)
     pub static kVTProfileLevel_H264_Baseline_3_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_3_2?language=objc)
     pub static kVTProfileLevel_H264_Baseline_3_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_4_0?language=objc)
     pub static kVTProfileLevel_H264_Baseline_4_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_4_1?language=objc)
     pub static kVTProfileLevel_H264_Baseline_4_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_4_2?language=objc)
     pub static kVTProfileLevel_H264_Baseline_4_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_5_0?language=objc)
     pub static kVTProfileLevel_H264_Baseline_5_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_5_1?language=objc)
     pub static kVTProfileLevel_H264_Baseline_5_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_5_2?language=objc)
     pub static kVTProfileLevel_H264_Baseline_5_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_baseline_autolevel?language=objc)
     pub static kVTProfileLevel_H264_Baseline_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_constrainedbaseline_autolevel?language=objc)
     pub static kVTProfileLevel_H264_ConstrainedBaseline_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_3_0?language=objc)
     pub static kVTProfileLevel_H264_Main_3_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_3_1?language=objc)
     pub static kVTProfileLevel_H264_Main_3_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_3_2?language=objc)
     pub static kVTProfileLevel_H264_Main_3_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_4_0?language=objc)
     pub static kVTProfileLevel_H264_Main_4_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_4_1?language=objc)
     pub static kVTProfileLevel_H264_Main_4_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_4_2?language=objc)
     pub static kVTProfileLevel_H264_Main_4_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_5_0?language=objc)
     pub static kVTProfileLevel_H264_Main_5_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_5_1?language=objc)
     pub static kVTProfileLevel_H264_Main_5_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_5_2?language=objc)
     pub static kVTProfileLevel_H264_Main_5_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_main_autolevel?language=objc)
     pub static kVTProfileLevel_H264_Main_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_extended_5_0?language=objc)
     pub static kVTProfileLevel_H264_Extended_5_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_extended_autolevel?language=objc)
     pub static kVTProfileLevel_H264_Extended_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_3_0?language=objc)
     pub static kVTProfileLevel_H264_High_3_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_3_1?language=objc)
     pub static kVTProfileLevel_H264_High_3_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_3_2?language=objc)
     pub static kVTProfileLevel_H264_High_3_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_4_0?language=objc)
     pub static kVTProfileLevel_H264_High_4_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_4_1?language=objc)
     pub static kVTProfileLevel_H264_High_4_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_4_2?language=objc)
     pub static kVTProfileLevel_H264_High_4_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_5_0?language=objc)
     pub static kVTProfileLevel_H264_High_5_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_5_1?language=objc)
     pub static kVTProfileLevel_H264_High_5_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_5_2?language=objc)
     pub static kVTProfileLevel_H264_High_5_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_high_autolevel?language=objc)
     pub static kVTProfileLevel_H264_High_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h264_constrainedhigh_autolevel?language=objc)
     pub static kVTProfileLevel_H264_ConstrainedHigh_AutoLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_simple_l0?language=objc)
     pub static kVTProfileLevel_MP4V_Simple_L0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_simple_l1?language=objc)
     pub static kVTProfileLevel_MP4V_Simple_L1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_simple_l2?language=objc)
     pub static kVTProfileLevel_MP4V_Simple_L2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_simple_l3?language=objc)
     pub static kVTProfileLevel_MP4V_Simple_L3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_main_l2?language=objc)
     pub static kVTProfileLevel_MP4V_Main_L2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_main_l3?language=objc)
     pub static kVTProfileLevel_MP4V_Main_L3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_main_l4?language=objc)
     pub static kVTProfileLevel_MP4V_Main_L4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_advancedsimple_l0?language=objc)
     pub static kVTProfileLevel_MP4V_AdvancedSimple_L0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_advancedsimple_l1?language=objc)
     pub static kVTProfileLevel_MP4V_AdvancedSimple_L1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_advancedsimple_l2?language=objc)
     pub static kVTProfileLevel_MP4V_AdvancedSimple_L2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_advancedsimple_l3?language=objc)
     pub static kVTProfileLevel_MP4V_AdvancedSimple_L3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_mp4v_advancedsimple_l4?language=objc)
     pub static kVTProfileLevel_MP4V_AdvancedSimple_L4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h263_profile0_level10?language=objc)
     pub static kVTProfileLevel_H263_Profile0_Level10: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h263_profile0_level45?language=objc)
     pub static kVTProfileLevel_H263_Profile0_Level45: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprofilelevel_h263_profile3_level45?language=objc)
     pub static kVTProfileLevel_H263_Profile3_Level45: &'static CFString;
 }
 
 extern "C" {
     /// When set, requires the encoder to output bitstream with the requested bit depth, if supported by the configured profile level setting.
     /// In the absence of this property, the video encoder will assume the highest bit depth allowable by the configured profile level setting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_outputbitdepth?language=objc)
     pub static kVTCompressionPropertyKey_OutputBitDepth: &'static CFString;
 }
 
@@ -636,27 +713,37 @@ extern "C" {
     /// transfer function is kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ
     /// color primaries is kCVImageBufferColorPrimaries_ITU_R_2020
     /// color matrix is kCVImageBufferYCbCrMatrix_ITU_R_2020
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_hdrmetadatainsertionmode?language=objc)
     pub static kVTCompressionPropertyKey_HDRMetadataInsertionMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvthdrmetadatainsertionmode_none?language=objc)
     pub static kVTHDRMetadataInsertionMode_None: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvthdrmetadatainsertionmode_auto?language=objc)
     pub static kVTHDRMetadataInsertionMode_Auto: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvthdrmetadatainsertionmode_requestsdrrangepreservation?language=objc)
     pub static kVTHDRMetadataInsertionMode_RequestSDRRangePreservation: &'static CFString;
 }
 
 extern "C" {
+    /// The entropy encoding mode for H.264 compression.
+    ///
+    /// ## Discussion
+    ///
+    /// If supported by an H.264 encoder, this property controls whether the encoder should use Context-based Adaptive Variable Length Coding (CAVLC) or Context-based Adaptive Binary Arithmetic Coding (CABAC). CABAC generally gives better compression at the expense of higher computational overhead. The default value is encoder-specific and may change depending on other encoder settings.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Changing the default entropy mode may result in a configuration that is not compatible with a requested Profile and Level.  Results in this case are undefined, and could include encode errors or a noncompliant output stream.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The entropy encoding mode for H.264 compression.
     ///
     /// If supported by an H.264 encoder, this property controls whether the encoder should use
@@ -666,43 +753,58 @@ extern "C" {
     /// Care should be taken when using this property -- changes may result in a configuration
     /// which is not compatible with a requested Profile and Level.  Results in this case are undefined,
     /// and could include encode errors or a non-compliant output stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_h264entropymode?language=objc)
     pub static kVTCompressionPropertyKey_H264EntropyMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvth264entropymode_cavlc?language=objc)
     pub static kVTH264EntropyMode_CAVLC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvth264entropymode_cabac?language=objc)
     pub static kVTH264EntropyMode_CABAC: &'static CFString;
 }
 
 extern "C" {
     /// The pixel depth of the encoded video.
     ///
+    /// ## Discussion
+    ///
+    /// This property is only supported by video encoders for formats that are tied to particular pixel formats (for example, 16-bit RGB, 24-bit RGB).
+    ///
+    ///
+    /// The pixel depth of the encoded video.
+    ///
     /// This property is only supported by video encoders for formats that are
     /// tied to particular pixel formats (eg, 16-bit RGB, 24-bit RGB).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_depth?language=objc)
     pub static kVTCompressionPropertyKey_Depth: &'static CFString;
 }
 
 extern "C" {
+    /// A key that specifies whether to encode the alpha channel of input video frames.
+    ///
+    /// ## Discussion
+    ///
+    /// Set this property to false in cases where you’re not interested in preserving alpha, or if you know the alpha channel to be fully opaque.
+    ///
+    /// This property isn’t supported by all encoders.
+    ///
+    ///
     /// Instructs the encoder to encode or discard the alpha channel of input video frames
     ///
     /// This property allows a client to  specify whether or not the alpha channel in the source pixelBuffers should be encoded.
     /// The client may set this to kCFBooleanFalse in cases where they are not interested in preserving alpha, or if the alpha channel is known to be fully opaque.
     /// This property is not supported by all encoders.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_preservealphachannel?language=objc)
     pub static kVTCompressionPropertyKey_PreserveAlphaChannel: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum number of frames that a compressor is allowed to hold before it must output a compressed frame.
+    ///
+    /// ## Discussion
+    ///
+    /// This value limits the number of frames that may be held in the compression window. If the maximum frame delay count is M, then before the call to encode frame N returns, frame N-M must have been emitted. The default is [`kVTUnlimitedFrameDelayCount`](https://developer.apple.com/documentation/videotoolbox/kvtunlimitedframedelaycount), which sets no limit on the compression window.
+    ///
+    ///
     /// The maximum frame delay count is the maximum number of frames that
     /// a compressor is allowed to hold before it must output a compressed
     /// frame.
@@ -713,26 +815,40 @@ extern "C" {
     /// been emitted.
     /// The default is kVTUnlimitedFrameDelayCount, which sets no limit
     /// on the compression window.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxframedelaycount?language=objc)
     pub static kVTCompressionPropertyKey_MaxFrameDelayCount: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtunlimitedframedelaycount?language=objc)
+/// Indicates that no limit should be set on the compression window.
 pub const kVTUnlimitedFrameDelayCount: c_int = -1;
 
 extern "C" {
+    /// The maximum slice size for H.264 encoding.
+    ///
+    /// ## Discussion
+    ///
+    /// If supported by an H.264 encoder, the value limits the size in bytes of slices produced by the encoder, where possible. By default, no limit is specified.  A value of zero implies default behavior.
+    ///
+    ///
     /// Specifies the maximum slice size for H.264 encoding
     ///
     /// If supported by an H.264 encoder, the value limits the size in bytes of
     /// slices produced by the encoder, where possible.
     /// By default, no limit is specified.  A value of zero implies default behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxh264slicebytes?language=objc)
     pub static kVTCompressionPropertyKey_MaxH264SliceBytes: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether it’s recommended that the video encoder perform compression in real time.
+    ///
+    /// ## Discussion
+    ///
+    /// For offline compression, clients may set this property to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), which indicates that it is OK for the video encoder to work slower than real time in order to produce a better result.
+    ///
+    /// For real-time compression, clients may set this property to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) to recommend that encoding stay timely.
+    ///
+    /// By default, this property is `NULL`, indicating unknown.
+    ///
+    ///
     /// Hints the video encoder that compression is, or is not, being performed in real time.
     ///
     /// For offline compression, clients are advised to set this property to kCFBooleanFalse.
@@ -748,8 +864,6 @@ extern "C" {
     /// kVTCompressionPropertyKey_ExpectedFrameRate property to optimize energy usage,
     /// by anticipating that encoding requests will happen at this rate.
     /// By default, this property is NULL, indicating unknown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_realtime?language=objc)
     pub static kVTCompressionPropertyKey_RealTime: &'static CFString;
 }
 
@@ -763,12 +877,19 @@ extern "C" {
     /// By default, this property is NULL.
     /// If the kVTCompressionPropertyKey_RealTime property is set to kCFBooleanTrue,
     /// the video encoder may act as though this property were set to kCFBooleanFalse.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maximizepowerefficiency?language=objc)
     pub static kVTCompressionPropertyKey_MaximizePowerEfficiency: &'static CFString;
 }
 
 extern "C" {
+    /// The number of source frames, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// This property allows a client to give the video encoder advance guidance as to how many frames will be encoded. If nonzero, this value should be the exact number of times that the client calls [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)) in each pass.
+    ///
+    /// The default is `0`, which indicates that the number of source frames is unknown.
+    ///
+    ///
     /// Indicates the number of source frames, if known.
     ///
     /// This property allows a client to give the video encoder advance guidance as to how
@@ -777,12 +898,19 @@ extern "C" {
     /// VTCompressionSessionEncodeFrame in each pass.
     /// The default is 0, which indicates that the number of source frames
     /// is not known.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_sourceframecount?language=objc)
     pub static kVTCompressionPropertyKey_SourceFrameCount: &'static CFString;
 }
 
 extern "C" {
+    /// The expected frame rate, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// The frame rate is measured in frames per second.  This setting is not used to control the frame rate; it’s provided as a hint to the video encoder so that it can set up internal configuration before compression begins. The actual frame rate depends on frame durations and may vary.
+    ///
+    /// By default, this value is `0`, indicating the frame rate is unknown.
+    ///
+    ///
     /// Indicates the expected frame rate of the video to be encoded.
     ///
     /// The frame rate is measured in frames per second.
@@ -791,12 +919,23 @@ extern "C" {
     /// If kVTCompressionPropertyKey_RealTime has been set to true, the ExpectedFrameRate may be used to optimize energy usage as well as perform internal encoder configuration before compression begins.
     /// If kVTCompressionPropertyKey_RealTime is not set, or has been set to false, the ExpectedFrameRate is still helpful and allows the encoder to optimize internal encoder configuration before compression begins.
     /// By default, the property has a value of zero indicating "unknown".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_expectedframerate?language=objc)
     pub static kVTCompressionPropertyKey_ExpectedFrameRate: &'static CFString;
 }
 
 extern "C" {
+    /// A value that specifies the maximum real time rate at which frames can be submitted to a compression session.
+    ///
+    /// ## Discussion
+    ///
+    /// The frame rate is measured in frames per second. This property can be used to inform the encoder of the maximum rate that frames could be submitted to the encoder during realtime encoding.  This allows the encoder to configure itself to ensure this capability.
+    ///
+    /// This property can only be used when [`kVTCompressionPropertyKey_RealTime`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_realtime) has been set to true.
+    ///
+    /// Unlike [`kVTCompressionPropertyKey_ExpectedFrameRate`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_expectedframerate), this property informs the maximum possible rate that the compression session could see, not the average frame rate that is expected in normal operation.
+    ///
+    /// By default, the property has a value of zero indicating “unknown”.
+    ///
+    ///
     /// Indicates the maximum real time rate at which frames could be submitted to the VTCompressionSession
     ///
     /// The frame rate is measured in frames per second.
@@ -804,8 +943,6 @@ extern "C" {
     /// This property can only be used when kVTCompressionPropertyKey_RealTime has been set to true.
     /// Unlike kVTCompressionPropertyKey_ExpectedFrameRate, this property informs the maximum possible rate that the VTCompressionSession could see, not the average frame rate that is expected in normal operation.
     /// By default, the property has a value of zero indicating "unknown".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maximumrealtimeframerate?language=objc)
     pub static kVTCompressionPropertyKey_MaximumRealTimeFrameRate: &'static CFString;
 }
 
@@ -814,8 +951,6 @@ extern "C" {
     ///
     /// This property indicates the fraction of total frames submitted that should be encoded in the base layer.
     /// For example, a value of 0.5 means that half of the frames are in the base layer, and half are in the enhancement layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_baselayerframeratefraction?language=objc)
     pub static kVTCompressionPropertyKey_BaseLayerFrameRateFraction: &'static CFString;
 }
 
@@ -825,17 +960,20 @@ extern "C" {
     /// This is not a hard limit; the encoder will attempt to satisfy this ratio when possible. If not set, the encoder will manage the ratio.
     /// For example: If the target bitrate is set to 500kbps and kVTCompressionPropertyKey_BaseLayerBitRateFraction is set to 0.6, the base layer will be given a
     /// budget of 300kbps and the enhancement layer 200kbps.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_baselayerbitratefraction?language=objc)
     pub static kVTCompressionPropertyKey_BaseLayerBitRateFraction: &'static CFString;
 }
 
 extern "C" {
+    /// The expected total duration of the compression session, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, this value is `0`, indicating the duration is unknown.
+    ///
+    ///
     /// Indicates the expected total duration for the compression session, if known.
     ///
     /// By default, this is zero, indicating "unknown".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_expectedduration?language=objc)
     pub static kVTCompressionPropertyKey_ExpectedDuration: &'static CFString;
 }
 
@@ -844,8 +982,6 @@ extern "C" {
     ///
     /// The frame rate is measured in frames per second.
     /// This property is only implemented by encoders which support hierarchical frame encoding, and requests that this encoding feature be enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_baselayerframerate?language=objc)
     pub static kVTCompressionPropertyKey_BaseLayerFrameRate: &'static CFString;
 }
 
@@ -854,8 +990,6 @@ extern "C" {
     ///
     /// This is typically used to force the encoder to use lower count than allowed by the stantard for a level/profile.
     /// The encoder will fail and  report an error if the requested value exceeds the limit set by the standard for such a level/profile.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_referencebuffercount?language=objc)
     pub static kVTCompressionPropertyKey_ReferenceBufferCount: &'static CFString;
 }
 
@@ -864,8 +998,6 @@ extern "C" {
     ///
     /// The MSE value returned may be measured using an internal representation of the decoded frame which may lack filtering or processing present in the actual decoded frame.  Because of this, there may be a small delta between the reported MSE and the true MSE.
     /// If supported, the MSE values will be returned as sample buffer attachments on the encoded frame using the kVTSampleAttachmentKey_QualityMetrics key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_calculatemeansquarederror?language=objc)
     pub static kVTCompressionPropertyKey_CalculateMeanSquaredError: &'static CFString;
 }
 
@@ -873,8 +1005,6 @@ extern "C" {
     /// The value for this key contain quality-related metadata from the video encoder for a video frame.
     ///
     /// The video encoder will attach this via the CMSampleBufferGetSampleAttachmentsArray interface before emitting the sample buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtsampleattachmentkey_qualitymetrics?language=objc)
     pub static kVTSampleAttachmentKey_QualityMetrics: &'static CFString;
 }
 
@@ -884,8 +1014,6 @@ extern "C" {
     /// For single-view video, a CFNumber value is returned.
     /// For multi-view video, a CFArray value is returned, and each element (CFNumber) in the CFArray includes MSE for the corresponding view.
     /// The video encoder will attach this in kVTSampleAttachmentKey_QualityMetrics via the CMSampleBufferGetSampleAttachmentsArray interface before emitting the sample buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtsampleattachmentqualitymetricskey_lumameansquarederror?language=objc)
     pub static kVTSampleAttachmentQualityMetricsKey_LumaMeanSquaredError: &'static CFString;
 }
 
@@ -895,8 +1023,6 @@ extern "C" {
     /// For single-view video, a CFNumber value is returned.
     /// For multi-view video, a CFArray value is returned, and each element (CFNumber) in the CFArray includes MSE for the corresponding view.
     /// The video encoder will attach this in kVTSampleAttachmentKey_QualityMetrics via the CMSampleBufferGetSampleAttachmentsArray interface before emitting the sample buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtsampleattachmentqualitymetricskey_chromabluemeansquarederror?language=objc)
     pub static kVTSampleAttachmentQualityMetricsKey_ChromaBlueMeanSquaredError: &'static CFString;
 }
 
@@ -906,12 +1032,19 @@ extern "C" {
     /// For single-view video, a CFNumber value is returned.
     /// For multi-view video, a CFArray value is returned, and each element (CFNumber) in the CFArray includes MSE for the corresponding view.
     /// The video encoder will attach this in kVTSampleAttachmentKey_QualityMetrics via the CMSampleBufferGetSampleAttachmentsArray interface before emitting the sample buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtsampleattachmentqualitymetricskey_chromaredmeansquarederror?language=objc)
     pub static kVTSampleAttachmentQualityMetricsKey_ChromaRedMeanSquaredError: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether hardware-accelerated video encoding is allowed, if available.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is set in the `encoderSpecification` passed in to [`VTCompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)).  Set it to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) to allow hardware-accelerated encoding.  To specifically prevent hardware encoding, set this property to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse).
+    ///
+    /// This setting is useful for clients doing realtime encoding operations because it allows VideoToolbox to choose the optimal encoding path.
+    ///
+    ///
     /// If set to kCFBooleanTrue, use a hardware accelerated video encoder if available.  If set to
     /// kCFBooleanFalse, hardware encode will never be used.
     ///
@@ -919,13 +1052,26 @@ extern "C" {
     /// to kCFBooleanTrue to allow hardware accelerated encode.  To prevent hardware encode,
     /// this property can be set to kCFBooleanFalse.
     /// In MacOS 10.15 and later, hardware encode is enabled in VTCompressionSessions by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_enablehardwareacceleratedvideoencoder?language=objc)
     pub static kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder:
         &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether hardware-accelerated encoding is required.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is set in the `encoderSpecification` passed in to [`VTCompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)).  Set it to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) to require hardware-accelerated encoding.  If hardware acceleration is not possible, the [`VTCompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)) call fails. Setting this key automatically implies that [`kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder`](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_enablehardwareacceleratedvideoencoder) is enabled; there is no need to set both.
+    ///
+    /// This key is useful for clients that have their own software encoding implementation or those that may need to configure software and hardware encode sessions differently. Hardware acceleration may be unavailable for a number of reasons:
+    ///
+    /// - The machine does not have hardware acceleration capabilities.
+    ///
+    /// - The requested encoding format or encoding configuration is not supported.
+    ///
+    /// - The hardware encoding resources on the machine are busy.
+    ///
+    ///
     /// If set to kCFBooleanTrue, only use hardware encode and return an error if this isn't possible.
     /// Setting this key automatically implies kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder --
     /// there is no need to set both and the Enable key does nothing if the Require key is set.
@@ -939,20 +1085,23 @@ extern "C" {
     /// - the machine does not have hardware acceleration capabilities
     /// - the requested encoding format or encoding configuration is not supported
     /// - the hardware encoding resources on the machine are busy
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_requirehardwareacceleratedvideoencoder?language=objc)
     pub static kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder:
         &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether a hardware-accelerated video encoder is used.
+    ///
+    /// ## Discussion
+    ///
+    /// You can query this property using [`VTSessionCopyProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyproperty(_:key:allocator:valueout:)) after you have enabled hardware accelerated encode using [`kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder`](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_enablehardwareacceleratedvideoencoder) to see if a hardware-accelerated encoder was selected ([`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue)).
+    ///
+    ///
     /// If set to kCFBooleanTrue, a hardware accelerated video encoder is being used.
     ///
     /// You can query this property using VTSessionCopyProperty after you have enabled hardware
     /// accelerated encode using kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder
     /// to see if a hardware accelerated encoder was selected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_usinghardwareacceleratedvideoencoder?language=objc)
     pub static kVTCompressionPropertyKey_UsingHardwareAcceleratedVideoEncoder: &'static CFString;
 }
 
@@ -961,8 +1110,6 @@ extern "C" {
     ///
     /// This specification implies kVTVideoEncoderSpecification_EnableHardwareAcceleratedVideoEncoder.  A separate hardware encode opt-in is not required.
     /// The GPU registryID can be obtained from a MTLDevice using [MTLDevice registryID] or can be obtained from OpenGL or OpenCL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_requiredencodergpuregistryid?language=objc)
     pub static kVTVideoEncoderSpecification_RequiredEncoderGPURegistryID: &'static CFString;
 }
 
@@ -974,8 +1121,6 @@ extern "C" {
     /// If both kVTVideoEncoderSpecification_PreferredEncoderGPURegistryID and kVTVideoEncoderSpecification_RequiredEncoderGPURegistryID are set, kVTVideoEncoderSpecification_PreferredEncoderGPURegistryID will be ignored.
     /// This specification can be used in conjunction with kVTVideoEncoderSpecification_RequireHardwareAcceleratedVideoEncoder to prevent a fallback to software encode.
     /// The GPU registryID can be obtained from a MTLDevice using [MTLDevice registryID] or can be obtained from OpenGL or OpenCL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_preferredencodergpuregistryid?language=objc)
     pub static kVTVideoEncoderSpecification_PreferredEncoderGPURegistryID: &'static CFString;
 }
 
@@ -984,21 +1129,25 @@ extern "C" {
     ///
     /// You can query this property using VTSessionCopyProperty after building a VTCompressionSession to find out which GPU the encoder is using.
     /// If a encoder based on a built-in GPU was used it will return NULL.  If a software encoder is used, it will return NULL
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_usinggpuregistryid?language=objc)
     pub static kVTCompressionPropertyKey_UsingGPURegistryID: &'static CFString;
 }
 
 extern "C" {
+    /// A value that indicates whether the encoder supports base frame QP requests.
     /// This property can be queried to determine if the encoder supports base frame QP requests.
     ///
     /// If this property returns kCFBooleanTrue, it indicates that the encoder supports base frame QP requests through kVTEncodeFrameOptionKey_BaseFrameQP. If it returns false or kVTPropertyNotSupportedErr, base frame QP requests will cause errors on VTCompressionSessionEncodeFrame calls, or will be ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_supportsbaseframeqp?language=objc)
     pub static kVTCompressionPropertyKey_SupportsBaseFrameQP: &'static CFString;
 }
 
 extern "C" {
+    /// Boolean value indicating whether the current frame is forced to be a key frame.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is set in the `frameProperties` dictionary passed to [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)); it determines whether the current frame is forced to be a keyframe or not. Note that it may not be possible for the encoder to accommodate all requests.
+    ///
+    ///
     /// CFBoolean forcing the current frame to be a key frame
     ///
     /// This value is set in the frameProperties CFDictionary passed to
@@ -1006,8 +1155,6 @@ extern "C" {
     /// keyframe or not.
     /// Note that it may not be possible for the encoder to accomodate all
     /// requests.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtencodeframeoptionkey_forcekeyframe?language=objc)
     pub static kVTEncodeFrameOptionKey_ForceKeyFrame: &'static CFString;
 }
 
@@ -1036,12 +1183,17 @@ extern "C" {
     /// does not support it, it will be ignored.
     ///
     /// Note that it may not be possible for the encoder to accommodate all requests.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtencodeframeoptionkey_baseframeqp?language=objc)
     pub static kVTEncodeFrameOptionKey_BaseFrameQP: &'static CFString;
 }
 
 extern "C" {
+    /// The clean aperture for encoded frames.
+    ///
+    /// ## Discussion
+    ///
+    /// If a video encoder enforces specific clean apertures, this property is read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) will return [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). The clean aperture will be set on the format description for output samples, and may affect source frame scaling. NULL is a valid value for this property, meaning that the clean aperture is the full width and height.
+    ///
+    ///
     /// Describes the clean aperture for encoded frames.
     ///
     /// Some video encoders may enforce specific clean apertures;
@@ -1049,12 +1201,17 @@ extern "C" {
     /// The clean aperture will be set on the format description for output samples,
     /// and may affect source frame scaling.
     /// NULL is a valid value for this property, meaning that the clean aperture is the full width and height.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_cleanaperture?language=objc)
     pub static kVTCompressionPropertyKey_CleanAperture: &'static CFString;
 }
 
 extern "C" {
+    /// The pixel aspect ratio for encoded frames.
+    ///
+    /// ## Discussion
+    ///
+    /// If a video encoder enforces specific pixel aspect ratios, this property will be read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) returns [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). The pixel aspect ratio is set on the format description for output samples, and may affect source frame scaling. `NULL` is a valid value for this property, meaning square pixels (1:1).
+    ///
+    ///
     /// Describes the pixel aspect ratio for encoded frames.
     ///
     /// Some video encoders may enforce specific pixel aspect ratios;
@@ -1062,23 +1219,33 @@ extern "C" {
     /// The pixel aspect ratio will be set on the format description for output samples,
     /// and may affect source frame scaling.
     /// NULL is a valid value for this property, meaning square pixels (1:1).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_pixelaspectratio?language=objc)
     pub static kVTCompressionPropertyKey_PixelAspectRatio: &'static CFString;
 }
 
 extern "C" {
+    /// The field count indicating whether the frames should be encoded progressive (1) or interlaced (2).
+    ///
+    /// ## Discussion
+    ///
+    /// The field count is set on the format description for output samples, and may affect source frame scaling. `NULL` is a valid value for this property.
+    ///
+    ///
     /// Indicates whether the frames should be encoded progressive (1) or interlaced (2).
     ///
     /// The field count will be set on the format description for output samples,
     /// and may affect source frame scaling.
     /// NULL is a valid value for this property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_fieldcount?language=objc)
     pub static kVTCompressionPropertyKey_FieldCount: &'static CFString;
 }
 
 extern "C" {
+    /// Field ordering for encoded interlaced frames.
+    ///
+    /// ## Discussion
+    ///
+    /// If a video encoder enforces specific field ordering, this property will be read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) returns [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). The field detail is set on the format description for output samples, and may affect source frame scaling. `NULL` is a valid value for this property.
+    ///
+    ///
     /// Indicates field ordering for encoded interlaced frames.
     ///
     /// Some video encoders may enforce specific field ordering;
@@ -1086,69 +1253,101 @@ extern "C" {
     /// The field detail will be set on the format description for output samples,
     /// and may affect source frame scaling.
     /// NULL is a valid value for this property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_fielddetail?language=objc)
     pub static kVTCompressionPropertyKey_FieldDetail: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether the DV video stream should have the 16x9 flag set.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is supported by the DV25/50 family of encoders.
+    ///
+    /// When false, the picture aspect ratio is 4:3. When true, the picture aspect ratio is 16:9. Either way, a fixed aspect ratio is used (the specific value depends on whether the format is NTSC or PAL).
+    ///
+    ///
     /// Indicates that the DV video stream should have the 16x9 flag set.
     ///
     /// This property is supported by the DV25/50 family of encoders.
     /// When false, the picture aspect ratio is 4:3.
     /// When true, the picture aspect ratio is 16:9.
     /// Either way, a fixed PixelAspectRatio is used (the specific value depends on whether the format is NTSC or PAL).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_aspectratio16x9?language=objc)
     pub static kVTCompressionPropertyKey_AspectRatio16x9: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether the DV video stream should have the progressive flag set.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is supported by the DV25/50 family of encoders. If false, content is encoded as interlaced. If true, content is encoded as progressive. The value of this property fixes the [`kVTCompressionPropertyKey_FieldCount`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_fieldcount) and [`kVTCompressionPropertyKey_FieldDetail`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_fielddetail) properties.
+    ///
+    ///
     /// Indicates that the DV video stream should have the progressive flag set.
     ///
     /// This property is supported by the DV25/50 family of encoders.
     /// If false, content is encoded as interlaced.
     /// If true, content is encoded as progressive.
     /// The value of this property fixes the FieldCount and FieldDetail properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_progressivescan?language=objc)
     pub static kVTCompressionPropertyKey_ProgressiveScan: &'static CFString;
 }
 
 extern "C" {
+    /// The color primaries for compressed content.
+    ///
+    /// ## Discussion
+    ///
+    /// If a video encoder enforces specific colorimetry, this property will be read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) returns [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). The value is set on the format description for output sample buffers.
+    ///
+    ///
     /// Indicates color primaries for compressed content.
     ///
     /// Some video encoders may enforce specific colorimetry;
     /// in those cases this property will be read-only (SetProperty will return kVTPropertyReadOnlyErr).
     /// The value will be set on the format description for output sample buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_colorprimaries?language=objc)
     pub static kVTCompressionPropertyKey_ColorPrimaries: &'static CFString;
 }
 
 extern "C" {
+    /// The transfer function for compressed content.
+    ///
+    /// ## Discussion
+    ///
+    /// If the video encoder enforces specific colorimetry, this property will be read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) will return [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). The value is set on the format description for output sample buffers.
+    ///
+    ///
     /// Indicates transfer function for compressed content.
     ///
     /// Some video encoders may enforce specific colorimetry;
     /// in those cases this property will be read-only (SetProperty will return kVTPropertyReadOnlyErr).
     /// The value will be set on the format description for output sample buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_transferfunction?language=objc)
     pub static kVTCompressionPropertyKey_TransferFunction: &'static CFString;
 }
 
 extern "C" {
+    /// The YCbCr matrix for compressed content.
+    ///
+    /// ## Discussion
+    ///
+    /// If the video encoder enforces specific colorimetry, this property will be read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) will return [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). The value is set on the format description for output sample buffers.
+    ///
+    ///
     /// Indicates YCbCr matrix for compressed content.
     ///
     /// Some video encoders may enforce specific colorimetry;
     /// in those cases this property will be read-only (SetProperty will return kVTPropertyReadOnlyErr).
     /// The value will be set on the format description for output sample buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_ycbcrmatrix?language=objc)
     pub static kVTCompressionPropertyKey_YCbCrMatrix: &'static CFString;
 }
 
 extern "C" {
+    /// The ICC profile for compressed content.
+    ///
+    /// ## Discussion
+    ///
+    /// If the video encoder enforces specific colorimetry, this property will be read-only ([`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) will return [`kVTPropertyReadOnlyErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadonlyerr)). If this property and any of the other color properties (color primaries, transfer function, or YCbCr matrix) are set, they should be set to consistent values, or undefined behavior may occur. The value will be set on the format description for output sample buffers. `NULL` can be a valid value for this property.
+    ///
+    ///
     /// Indicates ICC profile for compressed content.
     ///
     /// Some video encoders may enforce specific colorimetry;
@@ -1157,8 +1356,6 @@ extern "C" {
     /// or undefined behavior may occur.
     /// The value will be set on the format description for output sample buffers.
     /// NULL can be a valid value for this property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_iccprofile?language=objc)
     pub static kVTCompressionPropertyKey_ICCProfile: &'static CFString;
 }
 
@@ -1167,8 +1364,6 @@ extern "C" {
     ///
     /// The value will be set on the format description for output sample buffers,
     /// and incorporated into the appropriate SEI NAL unit where supported by the encoder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_masteringdisplaycolorvolume?language=objc)
     pub static kVTCompressionPropertyKey_MasteringDisplayColorVolume: &'static CFString;
 }
 
@@ -1177,8 +1372,6 @@ extern "C" {
     ///
     /// The value will be set on the format description for output sample buffers,
     /// and incorporated into the appropriate SEI NAL unit where supported by the encoder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_contentlightlevelinfo?language=objc)
     pub static kVTCompressionPropertyKey_ContentLightLevelInfo: &'static CFString;
 }
 
@@ -1186,8 +1379,6 @@ extern "C" {
     /// Indicates gamma level for compressed content.
     ///
     /// This property allows the caller to specify a gamma value to include in the CMVideoFormatDescription attached to output CMSampleBuffers. It does not change pixel data being encoded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_gammalevel?language=objc)
     pub static kVTCompressionPropertyKey_GammaLevel: &'static CFString;
 }
 
@@ -1197,33 +1388,55 @@ extern "C" {
     /// Video compression will fail if source image buffers have a mismatched value in their kCVImageBufferAlphaChannelMode attachment.
     /// If this property is not set, the encoder may read the first source image buffer's kCVImageBufferAlphaChannelMode attachment.
     /// If neither the property nor the first buffer's attachment is set, defaults to kVTAlphaChannelMode_PremultipliedAlpha.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_alphachannelmode?language=objc)
     pub static kVTCompressionPropertyKey_AlphaChannelMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtalphachannelmode_straightalpha?language=objc)
     pub static kVTAlphaChannelMode_StraightAlpha: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtalphachannelmode_premultipliedalpha?language=objc)
     pub static kVTAlphaChannelMode_PremultipliedAlpha: &'static CFString;
 }
 
 extern "C" {
+    /// Properties for configuring a pixel transfer session.
+    ///
+    /// ## Discussion
+    ///
+    /// The properties for configuring a [VTPixelTransferSession](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersession-api-collection) to transfer source frames from the client’s image buffers to the video encoder’s image buffers, if necessary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum of properties to configure a [VTPixelTransferSession](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersession-api-collection). Setting this property alone does not necessarily guarantee that a [VTPixelTransferSession](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersession-api-collection) will be created.
+    ///
+    ///
     /// Specifies properties to configure a VTPixelTransferSession used to transfer source frames
     /// from the client's image buffers to the video encoder's image buffers, if necessary.
     ///
     /// Setting this property alone does not necessarily guarantee that a VTPixelTransferSession will be created.
     /// See VTPixelTransferProperties.h.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_pixeltransferproperties?language=objc)
     pub static kVTCompressionPropertyKey_PixelTransferProperties: &'static CFString;
 }
 
 extern "C" {
+    /// A property key that enables multipass compression and provides storage for encoder private data.
+    ///
+    /// ## Discussion
+    ///
+    /// Some video encoders support multipass encoding.  To determine whether a [VTCompressionSession](https://developer.apple.com/documentation/videotoolbox/vtcompressionsession-api-collection) supports multipass encoding, you can inspect the dictionary returned by [`VTSessionCopySupportedPropertyDictionary`](https://developer.apple.com/documentation/videotoolbox/vtsessioncopysupportedpropertydictionary(_:supportedpropertydictionaryout:)) to see if it contains [`kVTCompressionPropertyKey_MultiPassStorage`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage).
+    ///
+    /// To enable multipass encoding, set the [`kVTCompressionPropertyKey_MultiPassStorage`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage) property to a [VTMultiPassStorage](https://developer.apple.com/documentation/videotoolbox/vtmultipassstorage-api-collection) object, which you can create by calling [`VTMultiPassStorageCreate`](https://developer.apple.com/documentation/videotoolbox/vtmultipassstoragecreate(allocator:fileurl:timerange:options:multipassstorageout:)).  Then make one or more passes over the source frames.  Bracket each pass with a call to [`VTCompressionSessionBeginPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionbeginpass(_:flags:_:)) at the beginning and [`VTCompressionSessionEndPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)) at the end.
+    ///
+    /// In the first pass of multipass encoding, call [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)) for every source frame (just as in single-pass encoding).  At the end of every pass, call [`VTCompressionSessionEndPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)).  This may take some time as the video encoder determines whether it can improve the encoding by performing another pass.  If the user cancels encoding during this time, call [`VTCompressionSessionInvalidate`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioninvalidate(_:)) to interrupt the processing.  [`VTCompressionSessionEndPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)) indicates through the `furtherPassesRequestedOut` argument whether the video encoder has requested another pass.  There is no particular limit on the number of passes the video encoder may request, but the client is free to disregard this request and use the last-emitted set of frames.
+    ///
+    /// If `furtherPassesRequestedOut` is set to [`true`](https://developer.apple.com/documentation/swift/true) and you want to perform another pass, call [`VTCompressionSessionGetTimeRangesForNextPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongettimerangesfornextpass(_:timerangecountout:timerangearrayout:)) to determine the time ranges for the next pass.  Only the source frames within these time ranges need to be passed to [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)); the video encoder is satisfied with the already-emitted compressed frames outside these ranges, and they can be kept for the final output.
+    ///
+    /// In second and successive passes, you must pass identical source frames, frame properties, and timestamps to [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)) as in the first pass, with the exception that frames not in the requested time ranges should be skipped.
+    ///
+    /// You can create and use a [VTFrameSilo](https://developer.apple.com/documentation/videotoolbox/vtframesilo-api-collection) object to merge sequences of compressed frames across passes during multipass encoding.
+    ///
+    ///
     /// Enables multi-pass compression and provides storage for encoder-private data.
     ///
     /// Some video encoders support multi-pass encoding.  To determine whether a VTCompressionSession supports multi-pass encoding, you can inspect the dictionary returned by VTSessionCopySupportedPropertyDictionary to see if it contains kVTCompressionPropertyKey_MultiPassStorage.
@@ -1237,21 +1450,51 @@ extern "C" {
     /// In second and successive passes, you must pass identical source frames, frame properties and timestamps to VTCompressionSessionEncodeFrame as in the first pass, with the exception that frames not in the requested time ranges should be skipped.
     ///
     /// You can create and use a VTFrameSilo object to merge sequences of compressed frames across passes during multi-pass encoding.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage?language=objc)
     pub static kVTCompressionPropertyKey_MultiPassStorage: &'static CFString;
 }
 
 extern "C" {
     /// Specifies a particular video encoder by its ID string.
+    /// Specifies a particular video encoder by its ID string.
     ///
     /// Matches the value specified in kVTVideoEncoderSpecification_EncoderID, and the kVTVideoEncoderList_EncoderID value returned from VTCopyVideoEncoderList.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_encoderid?language=objc)
     pub static kVTCompressionPropertyKey_EncoderID: &'static CFString;
 }
 
 extern "C" {
+    /// The recommended number of compression sessions to instantiate in a parallel encoding configuration.
+    ///
+    /// ## Discussion
+    ///
+    /// Configuring a compression session for parallel encoding requires the use of the [`kVTCompressionPropertyKey_MoreFramesBeforeStart`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesbeforestart), [`kVTCompressionPropertyKey_MoreFramesAfterEnd`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesafterend), and [`kVTCompressionPropertyKey_SourceFrameCount`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_sourceframecount) properties.
+    ///
+    /// For example, if the recommended parallelization limit is 4, a setup for 4 compression sessions for a 400 frame movie might look like the following:
+    ///
+    /// - **Compression Session 1**: [`kVTCompressionPropertyKey_MoreFramesBeforeStart`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesbeforestart) `= false`
+    ///
+    /// [`kVTCompressionPropertyKey_MoreFramesAfterEnd`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesafterend) `= true`
+    ///
+    /// [`kVTCompressionPropertyKey_SourceFrameCount`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_sourceframecount) `= 100`
+    ///
+    /// - **Compression Session 2**: [`kVTCompressionPropertyKey_MoreFramesBeforeStart`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesbeforestart) `= true`
+    ///
+    /// [`kVTCompressionPropertyKey_MoreFramesAfterEnd`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesafterend) `= true`
+    ///
+    /// [`kVTCompressionPropertyKey_SourceFrameCount`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_sourceframecount) `= 100`
+    ///
+    /// - **Compression Session 3**: [`kVTCompressionPropertyKey_MoreFramesBeforeStart`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesbeforestart) `= true`
+    ///
+    /// [`kVTCompressionPropertyKey_MoreFramesAfterEnd`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesafterend) `= true`
+    ///
+    /// [`kVTCompressionPropertyKey_SourceFrameCount`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_sourceframecount) `= 100`
+    ///
+    /// - **Compression Session 4**: [`kVTCompressionPropertyKey_MoreFramesBeforeStart`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesbeforestart) `= true`
+    ///
+    /// [`kVTCompressionPropertyKey_MoreFramesAfterEnd`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_moreframesafterend) `= false`
+    ///
+    /// [`kVTCompressionPropertyKey_SourceFrameCount`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_sourceframecount) `= 100`
+    ///
+    ///
     /// If supported by the underlying video encoder, returns the recommended number of VTCompressionSessions to instantiate in a parallel encoding configuration.
     ///
     /// Parallel encoding VTCompressionSessions require the use of the properties kVTCompressionPropertyKey_MoreFramesBeforeStart, kVTCompressionPropertyKey_MoreFramesAfterEnd, and kVTCompressionPropertyKey_SourceFrameCount.
@@ -1272,47 +1515,85 @@ extern "C" {
     /// kVTCompressionPropertyKey_MoreFramesBeforeStart = true
     /// kVTCompressionPropertyKey_MoreFramesAfterEnd = false
     /// kVTCompressionPropertyKey_SourceFrameCount = 100
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_recommendedparallelizationlimit?language=objc)
     pub static kVTCompressionPropertyKey_RecommendedParallelizationLimit: &'static CFString;
 }
 
 extern "C" {
+    /// The recommended minimum number of video frames for a given subdivision in a parallel encoding configuration.
+    ///
+    /// ## Discussion
+    ///
+    /// For best results, ensure that the total number of frames of a parallelized subdivision is greater than or equal to this value.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This configuration isn’t supported by all video encoders.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// If supported by the underlying video encoder, returns the recommended minimum number of video frames for a given subdivision in a parallel encoding configuration.
     ///
     /// For best results, ensure that the total number of frames of a parallelized subdivision is greater than or equal to this returned value.
     /// See also kVTCompressionPropertyKey_RecommendedParallelizationLimit
     /// See also kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumDuration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_recommendedparallelizedsubdivisionminimumframecount?language=objc)
     pub static kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumFrameCount:
         &'static CFString;
 }
 
 extern "C" {
+    /// The recommended minimum duration for a given subdivision in a parallel encoding configuration.
+    ///
+    /// ## Discussion
+    ///
+    /// For best results, ensure that the total duration of a parallelized subdivision is greater than or equal to this value.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This configuration isn’t supported by all video encoders.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// If supported by the underlying video encoder, returns the recommended minimum duration for a given subdivision in a parallel encoding configuration.
     ///
     /// For best results, ensure that the total duration of a parallelized subdivision is greater than or equal to this returned value.
     /// See also kVTCompressionPropertyKey_RecommendedParallelizationLimit
     /// See also kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumFrameCount
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_recommendedparallelizedsubdivisionminimumduration?language=objc)
     pub static kVTCompressionPropertyKey_RecommendedParallelizedSubdivisionMinimumDuration:
         &'static CFString;
 }
 
 extern "C" {
+    /// Specifies whether to preserve dynamic HDR metadata on the input pixel buffer.
     /// Controls whether or not to preserve any dynamic HDR metadata on the input pixel buffer
     ///
     /// If set to false, and kVTCompressionPropertyKey_HDRMetadataInsertionMode is not
     /// kVTHDRMetadataInsertionMode_None, then VTCompressionSession will generate the
     /// dynamic HDR metadata for the pixel buffer, if the HDR format is supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_preservedynamichdrmetadata?language=objc)
     pub static kVTCompressionPropertyKey_PreserveDynamicHDRMetadata: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies to select an encoder that supports low-latency operation and enables low-latency mode.
+    ///
+    /// ## Discussion
+    ///
+    /// Low latency rate control enforces the following behaviors:
+    ///
+    /// - Infinite GOP (all P frames following the beginning IDR).
+    ///
+    /// - No frame reordering (B frame) or looking ahead.
+    ///
+    /// - Only High profiles. The encoder sets the levels automatically.
+    ///
+    /// - Temporal Layer structure.
+    ///
+    ///
     /// Requires that an encoder which supports low-latency operation be selected, and enables low-latency mode.
     ///
     /// Low latency RateControl enforces the following behaviors:
@@ -1325,36 +1606,33 @@ extern "C" {
     /// kVTCompressionPropertyKey_AverageBitRate
     /// kVTCompressionPropertyKey_BaseLayerFrameRateFraction
     /// kVTEncodeFrameOptionKey_ForceKeyFrame
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_enablelowlatencyratecontrol?language=objc)
     pub static kVTVideoEncoderSpecification_EnableLowLatencyRateControl: &'static CFString;
 }
 
 extern "C" {
+    /// The maximum allowed encoded frame QP (Quantization Parameter).
     /// Specifies the maximum allowed encoded frame QP (Quantization Parameter).
     ///
     /// This is an optional parameter. Use it only when you have a specific requirement for the video quality and you are
     /// familiar with frame QP. To satisfy this requirement, the encoder may drop frames to maintain bitrate and QP goals.
     /// This is not supported in all encoders or in all encoder operating modes. kVTPropertyNotSupportedErr will be
     /// returned when this option is not supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_maxallowedframeqp?language=objc)
     pub static kVTCompressionPropertyKey_MaxAllowedFrameQP: &'static CFString;
 }
 
 extern "C" {
+    /// The minimum allowed encoded frame QP (Quantization Parameter).
     /// Specifies the minimum allowed encoded frame QP (Quantization Parameter).
     ///
     /// This is an optional parameter. Use it only when you have a specific requirement for the video quality and you are
     /// familiar with frame QP.
     /// This is not supported in all encoders or in all encoder operating modes. kVTPropertyNotSupportedErr will be
     /// returned when this option is not supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_minallowedframeqp?language=objc)
     pub static kVTCompressionPropertyKey_MinAllowedFrameQP: &'static CFString;
 }
 
 extern "C" {
+    /// Enables Long Term Reference (LTR) frames during encoding.
     /// Enable Long Term Reference (LTR) frames during encoding
     ///
     /// When an LTR frame is encoded, encoder will signal a unique token of the LTR frame in the encoder callback through:
@@ -1370,12 +1648,11 @@ extern "C" {
     /// kVTEncodeFrameOptionKey_AcknowledgedLTRTokens
     /// kVTEncodeFrameOptionKey_ForceLTRRefresh
     /// kVTSampleAttachmentKey_RequireLTRAcknowledgementToken
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_enableltr?language=objc)
     pub static kVTCompressionPropertyKey_EnableLTR: &'static CFString;
 }
 
 extern "C" {
+    /// Enable Long Term Reference (LTR) frames during encoding.
     /// A CFArray of CFNumbers containing the kVTSampleAttachmentKey_RequireLTRAcknowledgementToken values which have been successfully sent to the receiver and can be used as references
     ///
     /// When an LTR frame is encoded, the encoder will return a unique token for the LTR frame on the output CMSampleBuffer through kVTSampleAttachmentKey_RequireLTRAcknowledgementToken.
@@ -1385,12 +1662,11 @@ extern "C" {
     /// kVTCompressionPropertyKey_EnableLTR
     /// kVTEncodeFrameOptionKey_ForceLTRRefresh
     /// kVTSampleAttachmentKey_RequireLTRAcknowledgementToken
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtencodeframeoptionkey_acknowledgedltrtokens?language=objc)
     pub static kVTEncodeFrameOptionKey_AcknowledgedLTRTokens: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether to force Long Term Reference (LTR).
     /// Set this option to kCFBooleanTrue to force an LTR refresh
     ///
     /// When the encoder receives this request on an incoming frame, the encoder will encode a new reference frame using a previously
@@ -1400,12 +1676,11 @@ extern "C" {
     /// kVTCompressionPropertyKey_EnableLTR
     /// kVTEncodeFrameOptionKey_AcknowledgedLTRTokens
     /// kVTSampleAttachmentKey_RequireLTRAcknowledgementToken
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtencodeframeoptionkey_forceltrrefresh?language=objc)
     pub static kVTEncodeFrameOptionKey_ForceLTRRefresh: &'static CFString;
 }
 
 extern "C" {
+    /// A number value that contains a unique token for this Long Term Reference (LTR).
     /// CFNumber containing a unique token for this LTR
     ///
     /// This CMSampleBuffer attachment contains a unique token which can be returned to the encoder through
@@ -1415,80 +1690,122 @@ extern "C" {
     /// kVTCompressionPropertyKey_EnableLTR
     /// kVTEncodeFrameOptionKey_AcknowledgedLTRTokens
     /// kVTEncodeFrameOptionKey_ForceLTRRefresh
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtsampleattachmentkey_requireltracknowledgementtoken?language=objc)
     pub static kVTSampleAttachmentKey_RequireLTRAcknowledgementToken: &'static CFString;
 }
 
 extern "C" {
+    /// The identifiers of the video layers to encode in a multiview encoding operation.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is specific to MV-HEVC.
+    ///
+    /// Specifying layer ID values advises the encoder to expect [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) objects with specific [`CMTag`](https://developer.apple.com/documentation/coremedia/cmtag-swift.class) values that reference them.
+    ///
+    /// The default value is `NULL`.
+    ///
+    ///
     /// Requests multi-image encoding; advises encoder to expect CMTaggedBufferGroups with specific CMTags referencing these MV-HEVC VideoLayerIDs.
     ///
     /// MV-HEVC specific.
     /// The property value is a CFArray containing VideoLayerIDs as CFNumbers.
     /// The property is NULL by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_mvhevcvideolayerids?language=objc)
     pub static kVTCompressionPropertyKey_MVHEVCVideoLayerIDs: &'static CFString;
 }
 
 extern "C" {
+    /// The identifiers of the views corresponding to the video layers in a multiview encoding operation.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is specific to MV-HEVC.
+    ///
+    /// The entries in the specified array should be in the same order and have the same count as the value specified in [`kVTCompressionPropertyKey_MVHEVCVideoLayerIDs`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_mvhevcvideolayerids).
+    ///
+    /// The default value is `NULL`.
+    ///
+    ///
     /// Specifies the ViewIDs corresponding to the VideoLayerIDs provided via kVTCompressionPropertyKey_MVHEVCVideoLayerIDs.
     ///
     /// MV-HEVC specific.
     /// The property value is a CFArray containing ViewIDs as CFNumbers.
     /// The entries in this array should be in the same order and have the same count as the value set via kVTCompressionPropertyKey_MVHEVCVideoLayerIDs.
     /// The property is NULL by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_mvhevcviewids?language=objc)
     pub static kVTCompressionPropertyKey_MVHEVCViewIDs: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies which view identifier corresponds to the left eye and right eye.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is specific to MV-HEVC.
+    ///
+    /// The property value is an array containing two view identifiers as numbers. The first value corresponds to the left eye and the second value corresponds to the right. The system incorporates the view identifiers into the 3D Reference Displays Info SEI message.
+    ///
+    /// The property is NULL by default.
+    ///
+    ///
     /// Specifies which of the ViewIDs provided via kVTCompressionPropertyKey_MVHEVCViewIDs is the "left view id" and which is the "right view id".
     ///
     /// MV-HEVC specific.
     /// These ViewIDs will be incorporated into the 3D Reference Displays Info SEI message.
     /// The property value is a CFArray containing two ViewIDs as CFNumbers with the first correspponding to the left eye and the second corresponding to the right eye.
     /// The property is NULL by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_mvhevcleftandrightviewids?language=objc)
     pub static kVTCompressionPropertyKey_MVHEVCLeftAndRightViewIDs: &'static CFString;
 }
 
 extern "C" {
+    /// A value that indicates which eye is the primary eye when rendering in 2D.
+    ///
+    /// ## Discussion
+    ///
+    /// This property sets a value for the [`kCMFormatDescriptionExtension_HeroEye`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_heroeye) format description on the output samples. Supported values are [`kCMFormatDescriptionHeroEye_Left`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionheroeye_left) or [`kCMFormatDescriptionHeroEye_Right`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionheroeye_right).
+    ///
+    ///
     /// Specifies the value of kCMFormatDescriptionExtension_HeroEye.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_heroeye?language=objc)
     pub static kVTCompressionPropertyKey_HeroEye: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtheroeye_left?language=objc)
     pub static kVTHeroEye_Left: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtheroeye_right?language=objc)
     pub static kVTHeroEye_Right: &'static CFString;
 }
 
 extern "C" {
+    /// A value that specifies the distance between centers of the lenses of the camera system.
+    ///
+    /// ## Discussion
+    ///
+    /// This property sets a value for the [`kCMFormatDescriptionExtension_StereoCameraBaseline`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_stereocamerabaseline) format description on the output samples. The value is an unsigned 32-bit integer in micrometers, or thousandths of a millimeter (for example 63123 micrometers is 63.123 millimeters).
+    ///
+    /// This property is optional. Only specify a value if you know the specific distance.
+    ///
+    ///
     /// Specifies the value of kCMFormatDescriptionExtension_StereoCameraBaseline.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_stereocamerabaseline?language=objc)
     pub static kVTCompressionPropertyKey_StereoCameraBaseline: &'static CFString;
 }
 
 extern "C" {
+    /// A value that indicates a relative shift of the left and right images, which changes the zero parallax plane.
+    ///
+    /// ## Discussion
+    ///
+    /// This property sets a value for the [`kCMFormatDescriptionExtension_HorizontalDisparityAdjustment`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_horizontaldisparityadjustment) format description on the output samples. The value is a 32-bit integer, measured over the range of `-10000` to `10000`, that maps to a uniform range of `-1.0` to `1.0`.
+    ///
+    /// This property is optional. Only specify a disparity adjustment, including 0, when you know the specific value.
+    ///
+    ///
     /// Specifies the value of kCMFormatDescriptionExtension_HorizontalDisparityAdjustment.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_horizontaldisparityadjustment?language=objc)
     pub static kVTCompressionPropertyKey_HorizontalDisparityAdjustment: &'static CFString;
 }
 
@@ -1496,8 +1813,6 @@ extern "C" {
     /// Specifies the value of kCMFormatDescriptionExtension_HasLeftStereoEyeView.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_hasleftstereoeyeview?language=objc)
     pub static kVTCompressionPropertyKey_HasLeftStereoEyeView: &'static CFString;
 }
 
@@ -1505,8 +1820,6 @@ extern "C" {
     /// Specifies the value of kCMFormatDescriptionExtension_HasRightStereoEyeView.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_hasrightstereoeyeview?language=objc)
     pub static kVTCompressionPropertyKey_HasRightStereoEyeView: &'static CFString;
 }
 
@@ -1515,70 +1828,129 @@ extern "C" {
     ///
     /// The value is a CFNumber holding an unsigned 32-bit integer that is interpreted in millidegree or thousandths of a degree (e.g., 123456 is 123.456 degree).
     /// This property is optional and should only be specified if the field of view is known.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_horizontalfieldofview?language=objc)
     pub static kVTCompressionPropertyKey_HorizontalFieldOfView: &'static CFString;
 }
 
 extern "C" {
+    /// A value that indicates the projection kind.
+    ///
+    /// ## Discussion
+    ///
+    /// The value will be set on the format description (`kCMFormatDescriptionExtension_ProjectionKind`) for output samples and may affect the decoded frame presentation.
+    ///
+    ///
     /// Specifies the value of kCMFormatDescriptionExtension_ProjectionKind.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_projectionkind?language=objc)
     pub static kVTCompressionPropertyKey_ProjectionKind: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprojectionkind_rectilinear?language=objc)
     pub static kVTProjectionKind_Rectilinear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprojectionkind_equirectangular?language=objc)
     pub static kVTProjectionKind_Equirectangular: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprojectionkind_halfequirectangular?language=objc)
     pub static kVTProjectionKind_HalfEquirectangular: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtprojectionkind_parametricimmersive?language=objc)
     pub static kVTProjectionKind_ParametricImmersive: &'static CFString;
 }
 
 extern "C" {
+    /// A value that indicates the view packing kind.
+    ///
+    /// ## Discussion
+    ///
+    /// The value will be set on the format description (`kCMFormatDescriptionExtension_ViewPackingKind`) for output samples and may affect the decoded frame presentation.
+    ///
+    ///
     /// Specifies the value of kCMFormatDescriptionExtension_ViewPackingKind.
     ///
     /// The value will be set on the format description for output samples and may affect the decoded frame presentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_viewpackingkind?language=objc)
     pub static kVTCompressionPropertyKey_ViewPackingKind: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtviewpackingkind_sidebyside?language=objc)
     pub static kVTViewPackingKind_SideBySide: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtviewpackingkind_overunder?language=objc)
     pub static kVTViewPackingKind_OverUnder: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies intrinsic and extrinsic parameters for single or multiple lenses.
+    ///
+    /// The property value is an array of dictionaries describing the camera calibration data for each lens. The camera calibration data includes intrinsics and extrinics with other parameters. For a stereoscopic camera system, the left and right lens signaling can be done with the kVTCompressionPropertyCameraCalibrationKey_LensRole key and its value.
+    ///
+    ///
     /// Specifies intrinsic and extrinsic parameters for single or multiple lenses.
     ///
     /// The property value is an array of dictionaries describing the camera calibration data for each lens. The camera calibration data includes intrinsics and extrinics with other parameters.
     /// For a stereoscopic camera system, the left and right lens signaling can be done with the kVTCompressionPropertyCameraCalibrationKey_LensRole key and its value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_cameracalibrationdatalenscollection?language=objc)
     pub static kVTCompressionPropertyKey_CameraCalibrationDataLensCollection: &'static CFString;
 }
 
 extern "C" {
+    /// The following keys are required in each kVTCompressionPropertyKey_CameraCalibrationDataLensCollection dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies the camera calibration methodology.
+    ///
+    /// If the algorithm kind is ParametricLens, the camera lens collection requires camera intrinsic and extrinsic parameters.
+    ///
+    /// Specifies the kind of lens (e.g., color).
+    ///
+    /// Specifies a unique number associated with a lens.
+    ///
+    /// Specifies the particular use of the lens in the camera system (e.g., left or right for a stereo system).
+    ///
+    /// For a stereoscopic camera system, one lens should have the left role and another should have the right role.
+    ///
+    /// Specifies the first and second radial distortion coefficients(k1 and k2) used to correct the distortion that appeared as curved lines for straight lines and the first and second tangential distortion coefficients(p1 and p2) used to correct the distortion caused by a lens’s improper alignment of physical elements.
+    ///
+    /// The values are in a CFArray of four CFNumbers in k1, k2, p1 and p2 order.
+    ///
+    /// Specifies a three element polynomial for mapping x axis UV parameters with an adjustment using the equation `x' = polynomialX[0] + polynomialX[1]*x + polynomialX[2]*x^3`.
+    ///
+    /// The values are in a CFArray of three CFNumbers(float) in the order polynomialX[0], polynomialX[1] & polynomialX[2]. The polynomial transform origin is at the center of the frame. The default values of elements of polynomialX[] are [0.0, 1.0, 0.0].
+    ///
+    /// Specifies a three element polynomial for mapping y axis UV parameters with an adjustment using the equation `y' = polynomialY[0] + polynomialY[1]*y + polynomialY[2]*y^3`.
+    ///
+    /// The values are in a CFArray of three CFNumbers(float) in the order polynomialY[0], polynomialY[1] & polynomialY[2]. The polynomial transform origin is at the center of the frame. The default values of elements of polynomialY[] are [0.0, 1.0, 0.0].
+    ///
+    /// Specifies the outer limit of the calibration validity in degrees of angle eccentric from the optical axis.
+    ///
+    /// The value is linked to radial distortion corrections with k1 and k2.
+    ///
+    /// Specifies the 3x3 camera intrinsic matrix for camera calibration.
+    ///
+    /// Camera intrinsic matrix is a CFData containing a matrix_float3x3, which is column-major. Each element is in IEEE754 native-endian 32-bit floating point. It has the following contents: fx	s	cx 0	fy	cy 0	0	1 fx and fy are the focal length in pixels. For square pixels, they will have the same value. cx and cy are the coordinates of the principal point. The origin is the upper left of the frame. s is an optional skew factor.
+    ///
+    /// Specifies the offset of the point of perspective relative to the rectilinear projection.
+    ///
+    /// Specifies the image dimensions to which the camera’s intrinsic matrix values are relative.
+    ///
+    /// Values are width and height in a CFDictionary. Dictionary keys are compatible with CGSize dictionary, namely “Width” and “Height”.
+    ///
+    /// Identifies how the origin of the camera system’s extrinsics are determined.
+    ///
+    /// The ‘blin’ value indicates the center of transform is determined by the point mid way along the dimensions indicated by the StereoCameraSystemBaselineBox held in the StereoCameraSystemBox. Each left and right lens within a stereoscopic camera system is equidistant from this point, so the ‘blin’ value is halved when associated with the respective left and right lenses.
+    ///
+    /// Specifies a camera’s orientation to a world or scene coordinate system. The orientation value is a unit quaternion(ix, iy, and iz) instead of the classical 3x3 matrix.
+    ///
+    /// The values are in a CFArray of three CFNumbers in ix, iy, and iz order.
+    ///
+    ///
     /// The following keys are required in each kVTCompressionPropertyKey_CameraCalibrationDataLensCollection dictionary.
     ///
     ///
@@ -1665,108 +2037,105 @@ extern "C" {
     /// Specifies a camera’s orientation to a world or scene coordinate system. The orientation value is a unit quaternion(ix, iy, and iz) instead of the classical 3x3 matrix.
     ///
     /// The values are in a CFArray of three CFNumbers in ix, iy, and iz order.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensalgorithmkind?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensAlgorithmKind: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcameracalibrationlensalgorithmkind_parametriclens?language=objc)
     pub static kVTCameraCalibrationLensAlgorithmKind_ParametricLens: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensdomain?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensDomain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcameracalibrationlensdomain_color?language=objc)
     pub static kVTCameraCalibrationLensDomain_Color: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensidentifier?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensrole?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensRole: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcameracalibrationlensrole_mono?language=objc)
     pub static kVTCameraCalibrationLensRole_Mono: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcameracalibrationlensrole_left?language=objc)
     pub static kVTCameraCalibrationLensRole_Left: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcameracalibrationlensrole_right?language=objc)
     pub static kVTCameraCalibrationLensRole_Right: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensdistortions?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensDistortions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_radialanglelimit?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_RadialAngleLimit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensframeadjustmentspolynomialx?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialX:
         &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_lensframeadjustmentspolynomialy?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_LensFrameAdjustmentsPolynomialY:
         &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_intrinsicmatrix?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_intrinsicmatrixprojectionoffset?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixProjectionOffset:
         &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_intrinsicmatrixreferencedimensions?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_IntrinsicMatrixReferenceDimensions:
         &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_extrinsicoriginsource?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOriginSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcameracalibrationextrinsicoriginsource_stereocamerasystembaseline?language=objc)
     pub static kVTCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline:
         &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertycameracalibrationkey_extrinsicorientationquaternion?language=objc)
     pub static kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOrientationQuaternion:
         &'static CFString;
 }
 
 extern "C" {
+    /// A value that requests that the encoder retain the specified number of frames during encoding.
+    ///
+    /// ## Discussion
+    ///
+    /// These frames will be used for additional analysis and statistics gathering before the frame is finally encoded at the end of the window. When this property is not set, video encoder will automatically determine the number of lookahead frames.
+    ///
+    /// Encoder will choose number of lookahead frames closer to the suggested value based on internal configuration. This property directly affects latency of the video encoder. The following properties also affect look ahead frames:
+    ///
+    /// 1. Value of this property must be less than or equal to `kVTCompressionPropertyKey_MaxFrameDelayCount`.
+    ///
+    /// 2. This property is ignored when `VTVideoEncoderSpecification_EnableLowLatencyRateControl` is set to true
+    ///
+    /// 3. This property is ignored when `kVTCompressionPropertyKey_Quality` is set to 1.0
+    ///
+    /// 4. This property can not be used in conjunction with multi-pass feature (`kVTCompressionPropertyKey_MultiPassStorage`)
+    ///
+    ///
     /// Requests that the encoder retain the specified number of frames during encoding. These frames will be used for additional analysis and statistics
     /// gathering before the frame is finally encoded at the end of the window. When this property is not set, video encoder will automatically determine
     /// the number of lookahead frames.
@@ -1777,53 +2146,86 @@ extern "C" {
     /// 2. This property is ignored when `VTVideoEncoderSpecification_EnableLowLatencyRateControl` is set to true
     /// 3. This property is ignored when `kVTCompressionPropertyKey_Quality` is set to 1.0
     /// 4. This property can not be used in conjunction with multi-pass feature (`kVTCompressionPropertyKey_MultiPassStorage`)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_suggestedlookaheadframecount?language=objc)
     pub static kVTCompressionPropertyKey_SuggestedLookAheadFrameCount: &'static CFString;
 }
 
 extern "C" {
+    /// A value that controls spatial adaptation of the quantization parameter (QP) based on per-frame statistics.
+    ///
+    /// ## Discussion
+    ///
+    /// If set to [`kVTQPModulationLevel_Disable`](https://developer.apple.com/documentation/videotoolbox/kvtqpmodulationlevel_disable), spatial QP adaptation is not applied based on per-frame statistics. If set to [`kVTQPModulationLevel_Default`](https://developer.apple.com/documentation/videotoolbox/kvtqpmodulationlevel_default), video encoder is allowed to apply spatial QP adaptation for each macro block (or coding unit) within a video frame. QP adaptation is based on spatial characteristics of a frame and the level of spatial QP adaptation is decided internally by the rate controller.
+    ///
+    ///
     /// Control spatial adaptation of the quantization parameter (QP) based on per-frame statistics.
     /// If set to kVTQPModulationLevel_Disable, spatial QP adaptation is not applied based on per-frame statistics.
     /// If set to kVTQPModulationLevel_Default, video encoder is allowed to apply spatial QP adaptation for each macro block (or coding unit) within a video frame.
     /// QP adaptation is based on spatial characteristics of a frame and the level of spatial QP adaptation is decided internally by the rate controller.
     ///
     /// This property must be disabled when low latency rate control is enabled. Support for this property is codec dependent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_spatialadaptiveqplevel?language=objc)
     pub static kVTCompressionPropertyKey_SpatialAdaptiveQPLevel: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtqpmodulationlevel_default?language=objc)
 pub const kVTQPModulationLevel_Default: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtqpmodulationlevel_disable?language=objc)
 pub const kVTQPModulationLevel_Disable: c_int = 0;
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Where supported by video encoders, returns a dictionary whose keys are the available compression presets (prefixed by `kVTCompressionPreset_`) and the values are dictionaries containing the corresponding settings property key/value pairs.
+    ///
+    /// Clients can select a compression preset for their encoding needs and use its encoder settings to configure the encoder. Clients may also use the encoder settings as a base configuration that they can customize as they require.
+    ///
+    /// ```text
+    /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_Balanced, kVTCompressionPreset_HighSpeed, kVTCompressionPreset_VideoConferencing.
+    /// ```
+    ///
+    ///
     /// Where supported by video encoders, returns a dictionary whose keys are the available compression presets (prefixed by `kVTCompressionPreset_`) and the values are dictionaries containing the corresponding settings property key/value pairs.
     ///
     /// Clients can select a compression preset for their encoding needs and use its encoder settings to configure the encoder.
     /// Clients may also use the encoder settings as a base configuration that they can customize as they require.
     ///
     /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_Balanced, kVTCompressionPreset_HighSpeed, kVTCompressionPreset_VideoConferencing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_supportedpresetdictionaries?language=objc)
     pub static kVTCompressionPropertyKey_SupportedPresetDictionaries: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// A preset to achieve a high compression quality.
+    ///
+    /// An encoder configured using this preset is expected to achieve a higher quality with a slower encoding than an encoder configured with the preset kVTCompressionPreset_Balanced or kVTCompressionPreset_HighSpeed. The presets kVTCompressionPreset_Balanced and kVTCompressionPreset_HighSpeed may be preferred for a faster encoding.
+    ///
+    /// ```text
+    /// See also kVTCompressionPreset_Balanced, kVTCompressionPreset_HighSpeed, kVTCompressionPreset_VideoConferencing.
+    /// ```
+    ///
+    ///
     /// A preset to achieve a high compression quality.
     ///
     /// An encoder configured using this preset is expected to achieve a higher quality with a slower encoding than an encoder configured with the preset kVTCompressionPreset_Balanced or kVTCompressionPreset_HighSpeed.
     /// The presets kVTCompressionPreset_Balanced and kVTCompressionPreset_HighSpeed may be preferred for a faster encoding.
     ///
     /// See also kVTCompressionPreset_Balanced, kVTCompressionPreset_HighSpeed, kVTCompressionPreset_VideoConferencing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpreset_highquality?language=objc)
     pub static kVTCompressionPreset_HighQuality: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// A preset to provide a balanced compression quality and encoding speed.
+    ///
+    /// An encoder configured using this preset is expected to achieve a higher quality than an encoder configured with the preset kVTCompressionPreset_HighSpeed. The preset kVTCompressionPreset_HighSpeed may be preferred for a faster encoding. The preset kVTCompressionPreset_HighQuality may be preferred for a higher compression quality.
+    ///
+    /// ```text
+    /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_HighSpeed, kVTCompressionPreset_VideoConferencing.
+    /// ```
+    ///
+    ///
     /// A preset to provide a balanced compression quality and encoding speed.
     ///
     /// An encoder configured using this preset is expected to achieve a higher quality than an encoder configured with the preset kVTCompressionPreset_HighSpeed.
@@ -1831,30 +2233,48 @@ extern "C" {
     /// The preset kVTCompressionPreset_HighQuality may be preferred for a higher compression quality.
     ///
     /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_HighSpeed, kVTCompressionPreset_VideoConferencing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpreset_balanced?language=objc)
     pub static kVTCompressionPreset_Balanced: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// A preset to provide a high-speed encoding.
+    ///
+    /// An encoder configured using this preset is expected to achieve a faster encoding at a lower compression quality than an encoder configured with the preset kVTCompressionPreset_HighQuality or kVTCompressionPreset_Balanced. The presets kVTCompressionPreset_HighQuality and kVTCompressionPreset_Balanced may be preferred for a higher compression quality.
+    ///
+    /// ```text
+    /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_Balanced, kVTCompressionPreset_VideoConferencing.
+    /// ```
+    ///
+    ///
     /// A preset to provide a high-speed encoding.
     ///
     /// An encoder configured using this preset is expected to achieve a faster encoding at a lower compression quality than an encoder configured with the preset kVTCompressionPreset_HighQuality or kVTCompressionPreset_Balanced.
     /// The presets kVTCompressionPreset_HighQuality and kVTCompressionPreset_Balanced may be preferred for a higher compression quality.
     ///
     /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_Balanced, kVTCompressionPreset_VideoConferencing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpreset_highspeed?language=objc)
     pub static kVTCompressionPreset_HighSpeed: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// A preset to achieve low-latency encoding for real-time communication applications.
+    ///
+    /// This preset requires setting kVTVideoEncoderSpecification_EnableLowLatencyRateControl to kCFBooleanTrue for encoding in the low-latency mode.
+    ///
+    /// ```text
+    /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_Balanced, kVTCompressionPreset_HighSpeed.
+    /// ```
+    ///
+    ///
     /// A preset to achieve low-latency encoding for real-time communication applications.
     ///
     /// This preset requires setting kVTVideoEncoderSpecification_EnableLowLatencyRateControl to kCFBooleanTrue for encoding in the low-latency mode.
     ///
     /// See also kVTCompressionPreset_HighQuality, kVTCompressionPreset_Balanced, kVTCompressionPreset_HighSpeed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpreset_videoconferencing?language=objc)
     pub static kVTCompressionPreset_VideoConferencing: &'static CFString;
 }

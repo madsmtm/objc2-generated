@@ -7,13 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object with a shape and position that blocks audio from reaching the listener.
+    ///
+    /// ## Overview
+    ///
+    /// The framework lowers the volume of an audio signal when an instance of this class positions somewhere along the path between the sound source and the listener.
+    ///
+    /// For an example that demonstrates sound occlusion, see [Playing sound from a location in a 3D scene](https://developer.apple.com/documentation/phase/playing-sound-from-a-location-in-a-3d-scene).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEOccluder represents a shape (with associated materials) that can affect sound transmission within the simulated acoustic scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseoccluder?language=objc)
     #[unsafe(super(PHASEObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEObject")]

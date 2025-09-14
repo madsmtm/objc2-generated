@@ -8,30 +8,30 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle?language=objc)
+/// The style applied to the text inside of an element.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVTextElementStyle(pub NSInteger);
 impl TVTextElementStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/none?language=objc)
+    /// No style is applied to the element.
     #[doc(alias = "TVTextElementStyleNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/title?language=objc)
+    /// The title style defaults are applied to the element.
     #[doc(alias = "TVTextElementStyleTitle")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Title: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/subtitle?language=objc)
+    /// The subtitle style defaults are applied to the element.
     #[doc(alias = "TVTextElementStyleSubtitle")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Subtitle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/description?language=objc)
+    /// The description style defaults are applied to the element.
     #[doc(alias = "TVTextElementStyleDescription")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Description: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelementstyle/decoration?language=objc)
+    /// The decoration style defaults are applied to the element.
     #[doc(alias = "TVTextElementStyleDecoration")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Decoration: Self = Self(4);
@@ -46,9 +46,8 @@ unsafe impl RefEncode for TVTextElementStyle {
 }
 
 extern_class!(
+    /// The textual content for the DOM element.
     /// Represents textual content for the DOM element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtextelement?language=objc)
     #[unsafe(super(TVViewElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVViewElement")]

@@ -15,32 +15,32 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct?language=objc)
+/// Constants that specify the autoresizing behaviors for views.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAutoresizingMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAutoresizingMaskOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/none?language=objc)
+/// The view cannot be resized.
         #[doc(alias = "NSViewNotSizable")]
         const ViewNotSizable = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/minxmargin?language=objc)
+/// The left margin between the view and its superview is flexible.
         #[doc(alias = "NSViewMinXMargin")]
         const ViewMinXMargin = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/width?language=objc)
+/// The view’s width is flexible.
         #[doc(alias = "NSViewWidthSizable")]
         const ViewWidthSizable = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/maxxmargin?language=objc)
+/// The right margin between the view and its superview is flexible.
         #[doc(alias = "NSViewMaxXMargin")]
         const ViewMaxXMargin = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/minymargin?language=objc)
+/// The bottom margin between the view and its superview is flexible.
         #[doc(alias = "NSViewMinYMargin")]
         const ViewMinYMargin = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/height?language=objc)
+/// The view’s height is flexible.
         #[doc(alias = "NSViewHeightSizable")]
         const ViewHeightSizable = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct/maxymargin?language=objc)
+/// The top margin between the view and its superview is flexible.
         #[doc(alias = "NSViewMaxYMargin")]
         const ViewMaxYMargin = 32;
     }
@@ -54,22 +54,22 @@ unsafe impl RefEncode for NSAutoresizingMaskOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype?language=objc)
+/// These constants specify the type of a view’s border.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBorderType(pub NSUInteger);
 impl NSBorderType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/noborder?language=objc)
+    /// No border.
     #[doc(alias = "NSNoBorder")]
     pub const NoBorder: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/lineborder?language=objc)
+    /// A black line border around the view.
     #[doc(alias = "NSLineBorder")]
     pub const LineBorder: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/bezelborder?language=objc)
+    /// A concave border that makes the view look sunken.
     #[doc(alias = "NSBezelBorder")]
     pub const BezelBorder: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype/grooveborder?language=objc)
+    /// A thin border that looks etched around the image.
     #[doc(alias = "NSGrooveBorder")]
     pub const GrooveBorder: Self = Self(3);
 }
@@ -82,25 +82,25 @@ unsafe impl RefEncode for NSBorderType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum?language=objc)
+/// Constants that specify how layer resizing is handled when a view is layer-backed or layer-hosting. For more information, see the  [`layerContentsRedrawPolicy`](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.property) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayerContentsRedrawPolicy(pub NSInteger);
 impl NSViewLayerContentsRedrawPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/never?language=objc)
+    /// Leave the layer’s contents alone. Never mark the layer as needing display, or draw the view’s contents to the layer. This is how developer created layers (layer-hosting views) are treated.
     #[doc(alias = "NSViewLayerContentsRedrawNever")]
     pub const Never: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/onsetneedsdisplay?language=objc)
+    /// Any of the `setNeedsDisplay` methods sent to the view will cause the view redraw the affected layer parts by invoking the view’s [`drawRect:`](https://developer.apple.com/documentation/appkit/nsview/draw(_:)), but neither the layer or the view are marked as needing display when the view’s size changes.
     #[doc(alias = "NSViewLayerContentsRedrawOnSetNeedsDisplay")]
     pub const OnSetNeedsDisplay: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/duringviewresize?language=objc)
+    /// Resize the view’s backing-layer and redraw the view to the layer when the view’s size changes. If the resize is animated, AppKit will drive the resize animation itself and will do this resize and redraw at each step of the animation. Affected parts of the layer will also be redrawn when the view is marked as needing display. This mode is a superset of [`NSViewLayerContentsRedrawOnSetNeedsDisplay`](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/onsetneedsdisplay). This is the way that layer-backed views are currently treated.
     #[doc(alias = "NSViewLayerContentsRedrawDuringViewResize")]
     pub const DuringViewResize: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/beforeviewresize?language=objc)
+    /// Resize the layer and redraw the view to the layer when the view’s size changes. This will be done just once at the beginning of a resize animation, not at each frame of the animation. Affected parts of the layer will also be redrawn when the view is marked as needing display. This mode is a superset of [`NSViewLayerContentsRedrawOnSetNeedsDisplay`](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/onsetneedsdisplay).
     #[doc(alias = "NSViewLayerContentsRedrawBeforeViewResize")]
     pub const BeforeViewResize: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum/crossfade?language=objc)
+    /// Redraw the layer contents at the new size and crossfade from the old contents to the new contents. Use this in conjunction with the [`NSViewLayerContentsPlacement`](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum) constants to get a nice crossfade animation for complex layer-backed views that cannot update correctly at each step of the animation.
     #[doc(alias = "NSViewLayerContentsRedrawCrossfade")]
     pub const Crossfade: Self = Self(4);
 }
@@ -113,46 +113,46 @@ unsafe impl RefEncode for NSViewLayerContentsRedrawPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum?language=objc)
+/// These constants specify the location of the layer content when the content is not rerendered in response to view resizing. For more information, see the [`layerContentsPlacement`](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.property) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayerContentsPlacement(pub NSInteger);
 impl NSViewLayerContentsPlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/scaleaxesindependently?language=objc)
+    /// The content is resized to fit the entire bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementScaleAxesIndependently")]
     pub const ScaleAxesIndependently: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/scaleproportionallytofit?language=objc)
+    /// The content is resized to fit the bounds rectangle, preserving the aspect of the content. If the content does not completely fill the bounds rectangle, the content is centered in the partial axis.
     #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFit")]
     pub const ScaleProportionallyToFit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/scaleproportionallytofill?language=objc)
+    /// The content is resized to completely fill the bounds rectangle, while still preserving the aspect of the content. The content is centered in the axis it exceeds.
     #[doc(alias = "NSViewLayerContentsPlacementScaleProportionallyToFill")]
     pub const ScaleProportionallyToFill: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/center?language=objc)
+    /// The content is horizontally and vertically centered in the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementCenter")]
     pub const Center: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/top?language=objc)
+    /// The content is horizontally centered at the top-edge of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementTop")]
     pub const Top: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/topright?language=objc)
+    /// The content is positioned in the top-right corner of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementTopRight")]
     pub const TopRight: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/right?language=objc)
+    /// The content is vertically centered at the right-edge of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementRight")]
     pub const Right: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/bottomright?language=objc)
+    /// The content is positioned in the bottom-right corner of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementBottomRight")]
     pub const BottomRight: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/bottom?language=objc)
+    /// The content is horizontally centered at the bottom-edge of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementBottom")]
     pub const Bottom: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/bottomleft?language=objc)
+    /// The content is positioned in the bottom-left corner of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementBottomLeft")]
     pub const BottomLeft: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/left?language=objc)
+    /// The content is vertically centered at the left-edge of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementLeft")]
     pub const Left: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum/topleft?language=objc)
+    /// The content is positioned in the top-left corner of the bounds rectangle.
     #[doc(alias = "NSViewLayerContentsPlacementTopLeft")]
     pub const TopLeft: Self = Self(11);
 }
@@ -165,14 +165,100 @@ unsafe impl RefEncode for NSViewLayerContentsPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/trackingrecttag?language=objc)
+/// This type describes the rectangle used to track the mouse.
+///
+/// ## Discussion
+///
+/// If the value of this type is 0, it is invalid. See the methods [`addTrackingRect:owner:userData:assumeInside:`](https://developer.apple.com/documentation/appkit/nsview/addtrackingrect(_:owner:userdata:assumeinside:)) and [`removeTrackingRect:`](https://developer.apple.com/documentation/appkit/nsview/removetrackingrect(_:)).
+///
+///
 pub type NSTrackingRectTag = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/tooltiptag?language=objc)
+/// This type describes the rectangle used to identify a tooltip rectangle.
+///
+/// ## Discussion
+///
+/// If the value of this type is 0, it is invalid. See the methods [`addToolTipRect:owner:userData:`](https://developer.apple.com/documentation/appkit/nsview/addtooltip(_:owner:userdata:)) and[`removeToolTip:`](https://developer.apple.com/documentation/appkit/nsview/removetooltip(_:)).
+///
+///
 pub type NSToolTipTag = NSInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview?language=objc)
+    /// The infrastructure for drawing, printing, and handling events in an app.
+    ///
+    /// ## Overview
+    ///
+    /// You typically don’t use [`NSView`](https://developer.apple.com/documentation/appkit/nsview) objects directly. Instead, you use objects that descend from [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or you subclass [`NSView`](https://developer.apple.com/documentation/appkit/nsview) yourself and override its methods to implement the behavior you need. An instance of the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) class (or one of its subclasses) is commonly known as a view object, or simply as a view.
+    ///
+    /// Views handle the presentation and interaction with your app’s visible content. You arrange one or more views inside an [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object, which acts as a wrapper for your content. A view object defines a rectangular region for drawing and receiving mouse events. Views handle other chores as well, including the dragging of icons and working with the [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) class to support efficient scrolling.
+    ///
+    /// AppKit handles most of your app’s [`NSView`](https://developer.apple.com/documentation/appkit/nsview) management. Unless you’re implementing a concrete subclass of [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or working intimately with the content of the view hierarchy at runtime, you don’t need to know much about this class’s interface. For any view, there are many methods that you can use as-is. The following methods are commonly used.
+    ///
+    /// - [`frame`](https://developer.apple.com/documentation/appkit/nsview/frame) returns the location and size of the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object.
+    ///
+    /// - [`bounds`](https://developer.apple.com/documentation/appkit/nsview/bounds) returns the internal origin and size of the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object.
+    ///
+    /// - [`needsDisplay`](https://developer.apple.com/documentation/appkit/nsview/needsdisplay) determines whether the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object needs to be redrawn.
+    ///
+    /// - [`window`](https://developer.apple.com/documentation/appkit/nsview/window) returns the [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object that contains the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object.
+    ///
+    /// - [`drawRect:`](https://developer.apple.com/documentation/appkit/nsview/draw(_:)) draws the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object. (All subclasses must implement this method, but it’s rarely invoked explicitly.) An alternative to drawing is to update the layer directly using the [`updateLayer`](https://developer.apple.com/documentation/appkit/nsview/updatelayer()) method.
+    ///
+    /// For more information on how `NSView` instances handle event and action messages, see [Cocoa Event Handling Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/Introduction/Introduction.html#//apple_ref/doc/uid/10000060i). For more information on displaying tooltips and contextual menus, see [Displaying Contextual Menus](https://developer.apple.com/documentation/appkit/nsmenu#displaying-contextual-menus) and [Managing Tooltips](https://developer.apple.com/documentation/appkit/nswindow#managing-tooltips).
+    ///
+    /// ### Subclassing notes
+    ///
+    /// `NSView` is perhaps the most important class in AppKit when it comes to subclassing and inheritance. Most user-interface objects you see in a Cocoa application are objects that inherit from `NSView`. If you want to create an object that draws itself in a special way, or that responds to mouse clicks in a special way, you would create a custom subclass of `NSView` (or of a class that inherits from `NSView`). Subclassing `NSView` is such a common and important procedure that several technical documents describe how to both draw in custom subclasses and respond to events in custom subclasses. See [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290) and [Cocoa Event Handling Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/Introduction/Introduction.html#//apple_ref/doc/uid/10000060i) (especially “[Handling Mouse Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/HandlingMouseEvents/HandlingMouseEvents.html#//apple_ref/doc/uid/10000060i-CH6)” and “[Mouse Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/EventObjectsTypes/EventObjectsTypes.html#//apple_ref/doc/uid/10000060i-CH4-SW10)”).
+    ///
+    /// #### Handling events in your subclass
+    ///
+    /// If you subclass [`NSView`](https://developer.apple.com/documentation/appkit/nsview) directly and handle specific types of events, don’t call `super` in the implementations of your event-related methods. Views inherit their event-handling capabilities from their [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) parent class. The default behavior for responders is to pass events up the responder chain, which isn’t the behavior you typically want for a custom view. Therefore, don’t call `super` if your view implements any of the following methods and handles the event:
+    ///
+    /// - [`mouseDown:`](https://developer.apple.com/documentation/appkit/nsresponder/mousedown(with:))
+    ///
+    /// - [`mouseDragged:`](https://developer.apple.com/documentation/appkit/nsresponder/mousedragged(with:))
+    ///
+    /// - [`mouseUp:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseup(with:))
+    ///
+    /// - [`mouseMoved:`](https://developer.apple.com/documentation/appkit/nsresponder/mousemoved(with:))
+    ///
+    /// - [`mouseEntered:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseentered(with:))
+    ///
+    /// - [`mouseExited:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseexited(with:))
+    ///
+    /// - [`rightMouseDragged:`](https://developer.apple.com/documentation/appkit/nsresponder/rightmousedragged(with:))
+    ///
+    /// - [`rightMouseUp:`](https://developer.apple.com/documentation/appkit/nsresponder/rightmouseup(with:))
+    ///
+    /// - [`otherMouseDown:`](https://developer.apple.com/documentation/appkit/nsresponder/othermousedown(with:))
+    ///
+    /// - [`otherMouseDragged:`](https://developer.apple.com/documentation/appkit/nsresponder/othermousedragged(with:))
+    ///
+    /// - [`otherMouseUp:`](https://developer.apple.com/documentation/appkit/nsresponder/othermouseup(with:))
+    ///
+    /// - [`scrollWheel:`](https://developer.apple.com/documentation/appkit/nsresponder/scrollwheel(with:))
+    ///
+    /// - [`keyDown:`](https://developer.apple.com/documentation/appkit/nsresponder/keydown(with:))
+    ///
+    /// - [`keyUp:`](https://developer.apple.com/documentation/appkit/nsresponder/keyup(with:))
+    ///
+    /// - [`flagsChanged:`](https://developer.apple.com/documentation/appkit/nsresponder/flagschanged(with:))
+    ///
+    /// - [`tabletPoint:`](https://developer.apple.com/documentation/appkit/nsresponder/tabletpoint(with:))
+    ///
+    /// - [`tabletProximity:`](https://developer.apple.com/documentation/appkit/nsresponder/tabletproximity(with:))
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `NSView` changes the default behavior of [`rightMouseDown:`](https://developer.apple.com/documentation/appkit/nsresponder/rightmousedown(with:)) so that it calls [`menuForEvent:`](https://developer.apple.com/documentation/appkit/nsview/menu(for:)) and, if non `nil`, presents the contextual menu. In macOS 10.7 and later, if the event is not handled, `NSView` passes the event up the responder chain. Because of these behaviorial changes, call `super` when implementing [`rightMouseDown:`](https://developer.apple.com/documentation/appkit/nsresponder/rightmousedown(with:)) in your custom `NSView` subclasses.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If your view descends from a class other than `NSView`, call `super` to let the parent view handle any events that you don’t.
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1167,7 +1253,15 @@ impl NSView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayercontentscaledelegate?language=objc)
+    /// An optional layer delegate method for handling resolution changes.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol to manage scale and contents for a layer hosted in a view. When a window changes its backing resolution, AppKit attempts to automatically update the `contentsScale` and `contents` of all `CALayer` objects in the window to match the new resolution. Layers backed by a view are updated automatically. Any layer whose `contents` property is set to an `NSImage` object is also updated automatically. Based on the `NSImage` object’s available representations, AppKit selects an appropriate bitmapped representation, or rasterizes a resolution-independent representation at the appropriate scale factor.
+    ///
+    /// For all other layers, AppKit checks whether the layer has a delegate that implements this protocol.  If so, AppKit asks the layer’s delegate whether it should automatically update the `contentsScale` for that layer to match the new scale factor of the window.
+    ///
+    ///
     pub unsafe trait NSViewLayerContentScaleDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "NSResponder",
@@ -1189,7 +1283,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewtooltipowner?language=objc)
+    /// A set of methods for dynamically associating a tool tip with a view.
+    ///
+    /// ## Overview
+    ///
+    /// Tool tips are hints displayed to the user when the mouse hovers over a view. Adopt this protocol in views for which you want to provide tool tips. If the view does not implement this protocol, the system uses the [`description`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/description) method instead.
+    ///
+    ///
     pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         /// # Safety
@@ -1208,9 +1308,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    ///
+    /// ## Overview
+    ///
     /// A protocol to request information from NSView subclasses about the selected content in the view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontentselectioninfo?language=objc)
+    ///
+    /// A protocol to request information from NSView subclasses about the selected content in the view.
     pub unsafe trait NSViewContentSelectionInfo: NSObjectProtocol {
         #[optional]
         #[unsafe(method(selectionAnchorRect))]
@@ -1455,27 +1559,53 @@ impl NSView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey?language=objc)
+/// These constants are keys that you can use in the options dictionary in [`enterFullScreenMode:withOptions:`](https://developer.apple.com/documentation/appkit/nsview/enterfullscreenmode(_:withoptions:)) and [`exitFullScreenModeWithOptions:`](https://developer.apple.com/documentation/appkit/nsview/exitfullscreenmode(options:)).
 // NS_TYPED_ENUM
 pub type NSViewFullScreenModeOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodeallscreens?language=objc)
+    /// Key whose corresponding value specifies whether the view should take over all screens.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean value.
+    ///
+    ///
     pub static NSFullScreenModeAllScreens: &'static NSViewFullScreenModeOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodesetting?language=objc)
+    /// Key whose corresponding value specifies the full screen mode setting.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) that contains keys specified in Display Mode Standard Properties and Display Mode Optional Properties in [Quartz Display Services](https://developer.apple.com/documentation/coregraphics/quartz-display-services).
+    ///
+    /// When the [`NSFullScreenModeApplicationPresentationOptions`](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodeapplicationpresentationoptions) is specified in the options dictionary specifying this option as well will cause an exception.
+    ///
+    ///
     pub static NSFullScreenModeSetting: &'static NSViewFullScreenModeOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodewindowlevel?language=objc)
+    /// Key whose corresponding value specifies the screen mode window level.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing an integer value.
+    ///
+    ///
     pub static NSFullScreenModeWindowLevel: &'static NSViewFullScreenModeOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodeapplicationpresentationoptions?language=objc)
+    /// Key whose corresponding value specifies the application presentation options.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing an unsigned integer value of [`NSApplicationPresentationOptions`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct). Those options can be combined using the C bit-wise `OR` operator before created the `NSNumber` instance. See [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) constants section [`NSApplicationPresentationOptions`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct) for more information on these options.
+    ///
+    ///
     pub static NSFullScreenModeApplicationPresentationOptions:
         &'static NSViewFullScreenModeOptionKey;
 }
@@ -1512,26 +1642,32 @@ impl NSView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionoptionkey?language=objc)
+/// Keys to include in your definition.
 // NS_TYPED_ENUM
 pub type NSDefinitionOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionoptionkey/presentationtype?language=objc)
+    /// An optional key in the options dictionary that specifies the presentation type of the definition display.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is one of the constants in [`NSDefinitionPresentationType`](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype).
+    ///
+    ///
     pub static NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype?language=objc)
+/// Presentation options for the window.
 // NS_TYPED_ENUM
 pub type NSDefinitionPresentationType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype/overlay?language=objc)
+    /// A possible value of the [`NSDefinitionPresentationTypeKey`](https://developer.apple.com/documentation/appkit/nsview/definitionoptionkey/presentationtype) dictionary key that produces a small overlay window at the string location,
     pub static NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype/dictionaryapplication?language=objc)
+    /// A possible value of the [`NSDefinitionPresentationTypeKey`](https://developer.apple.com/documentation/appkit/nsview/definitionoptionkey/presentationtype) dictionary key that invokes Dictionary application to display the definition.
     pub static NSDefinitionPresentationTypeDictionaryApplication:
         &'static NSDefinitionPresentationType;
 }
@@ -1888,28 +2024,92 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/framedidchangenotification?language=objc)
+    /// A notification that posts when the view’s frame rectangle changes to a new value.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification posts only when the view’s [`postsFrameChangedNotifications`](https://developer.apple.com/documentation/appkit/nsview/postsframechangednotifications) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The notification object is the `NSView` object whose frame rectangle has changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// The following methods can result in notification posting:
+    ///
+    /// - [`frame`](https://developer.apple.com/documentation/appkit/nsview/frame)
+    ///
+    /// - [`setFrameOrigin:`](https://developer.apple.com/documentation/appkit/nsview/setframeorigin(_:))
+    ///
+    /// - [`frameRotation`](https://developer.apple.com/documentation/appkit/nsview/framerotation)
+    ///
+    /// - [`setFrameSize:`](https://developer.apple.com/documentation/appkit/nsview/setframesize(_:))
+    ///
+    ///
     pub static NSViewFrameDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewfocusdidchangenotification?language=objc)
+    /// Deprecated in macOS 10.4 and later. Posted for an `NSView` object and each of its descendants (recursively) whenever the frame or bounds geometry of the view changed.
+    ///
+    /// ## Discussion
+    ///
+    /// Instead use `NSViewBoundsDidChangeNotification` and `NSViewFrameDidChangeNotification` to get the same information provided by this notification.
+    ///
+    /// The notification object is the view whose geometry changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static NSViewFocusDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/boundsdidchangenotification?language=objc)
+    /// A notification that posts when the view’s bounds rectangle changes to a new value independently of the frame rectangle.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification posts only when the view’s [`postsBoundsChangedNotifications`](https://developer.apple.com/documentation/appkit/nsview/postsboundschangednotifications) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The notification object is the `NSView` object whose bounds rectangle has changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// The following methods can result in notification posting:
+    ///
+    /// - [`bounds`](https://developer.apple.com/documentation/appkit/nsview/bounds)
+    ///
+    /// - [`setBoundsOrigin:`](https://developer.apple.com/documentation/appkit/nsview/setboundsorigin(_:))
+    ///
+    /// - [`boundsRotation`](https://developer.apple.com/documentation/appkit/nsview/boundsrotation)
+    ///
+    /// - [`setBoundsSize:`](https://developer.apple.com/documentation/appkit/nsview/setboundssize(_:))
+    ///
+    /// - [`translateOriginToPoint:`](https://developer.apple.com/documentation/appkit/nsview/translateorigin(to:))
+    ///
+    /// - [`scaleUnitSquareToSize:`](https://developer.apple.com/documentation/appkit/nsview/scaleunitsquare(to:))
+    ///
+    /// - [`rotateByAngle:`](https://developer.apple.com/documentation/appkit/nsview/rotate(bydegrees:))
+    ///
+    /// Note that the bounds rectangle resizes automatically to track the frame rectangle. However, changes to the frame rectangle do not result in this bounds-changed notification.
+    ///
+    ///
     pub static NSViewBoundsDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/globalframedidchangenotification?language=objc)
+    /// Posted whenever an `NSView` object that has attached surfaces (that is, `NSOpenGLContext` objects) moves to a different screen, or other cases where the `NSOpenGLContext` object needs to be updated.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the surface’s view. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Use NSOpenGLView instead."]
     pub static NSViewGlobalFrameDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/didupdatetrackingareasnotification?language=objc)
+    /// Posted whenever a view recalculates its tracking areas.
+    ///
+    /// ## Discussion
+    ///
+    /// It is sent after the view receives [`updateTrackingAreas`](https://developer.apple.com/documentation/appkit/nsview/updatetrackingareas()).
+    ///
+    ///
     pub static NSViewDidUpdateTrackingAreasNotification: &'static NSNotificationName;
 }

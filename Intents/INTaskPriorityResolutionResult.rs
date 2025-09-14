@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskpriorityresolutionresult?language=objc)
+    /// A resolution result for the priority associated with a task.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INTaskPriorityResolutionResult`](https://developer.apple.com/documentation/intents/intaskpriorityresolutionresult) object when resolving parameters containing an [`INTaskPriority`](https://developer.apple.com/documentation/intents/intaskpriority) object. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

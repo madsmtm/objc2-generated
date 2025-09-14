@@ -9,21 +9,30 @@ use crate::*;
 
 /// A unique identifier for an operation.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsoperationid?language=objc)
+/// ## Overview
+///
+/// A unique identifier for an operation.
+///
+///
+/// A unique identifier for an operation.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type FSOperationID = NSUInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fskit/fsoperationid/unspecified?language=objc)
     pub static FSOperationIDUnspecified: FSOperationID;
 }
 
 /// Flags that describe the behavior of a blockmap operation.
 ///
+/// ## Overview
+///
+/// This type is an option set in Swift. In Objective-C, you use the cases of this enumeration to create a bit field.
+///
+///
+/// Flags that describe the behavior of a blockmap operation.
+///
 /// This type is an option set in Swift.
 /// In Objective-C, you use the cases of this enumeration to create a bit field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,13 +40,11 @@ pub struct FSBlockmapFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSBlockmapFlags: NSUInteger {
 /// A flag that describes a read operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapflags/read?language=objc)
+/// A flag that describes a read operation.
         #[doc(alias = "FSBlockmapFlagsRead")]
         const Read = 0x000100;
 /// A flag that describes a write operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapflags/write?language=objc)
+/// A flag that describes a write operation.
         #[doc(alias = "FSBlockmapFlagsWrite")]
         const Write = 0x000200;
     }
@@ -53,10 +60,15 @@ unsafe impl RefEncode for FSBlockmapFlags {
 
 /// Flags that describe the behavior of an I/O completion operation.
 ///
+/// ## Overview
+///
+/// This type is an option set in Swift. In Objective-C, the cases of this enumeration combine to create a bit field.
+///
+///
+/// Flags that describe the behavior of an I/O completion operation.
+///
 /// This type is an option set in Swift.
 /// In Objective-C, the cases of this enumeration combine to create a bit field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -64,18 +76,15 @@ pub struct FSCompleteIOFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSCompleteIOFlags: NSUInteger {
 /// A flag that describes a read operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags/read?language=objc)
+/// A flag that describes a read operation.
         #[doc(alias = "FSCompleteIOFlagsRead")]
         const Read = FSBlockmapFlags::Read.0;
 /// A flag that describes a write operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags/write?language=objc)
+/// A flag that describes a write operation.
         #[doc(alias = "FSCompleteIOFlagsWrite")]
         const Write = FSBlockmapFlags::Write.0;
 /// A flag that requests that the file system module flush metadata I/O asynchronously.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags/async?language=objc)
+/// A flag that requests that the file system module flush metadata I/O asynchronously.
         #[doc(alias = "FSCompleteIOFlagsAsync")]
         const Async = 0x000400;
     }
@@ -90,8 +99,7 @@ unsafe impl RefEncode for FSCompleteIOFlags {
 }
 
 /// An enumeration of types of extents.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextenttype?language=objc)
+/// An enumeration of types of extents.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -99,18 +107,36 @@ pub struct FSExtentType(pub NSInteger);
 impl FSExtentType {
     /// An extent type to indicate valid data.
     ///
+    /// ## Discussion
+    ///
+    /// Use this type for all extents on a file system that doesn’t support sparse files.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    /// The kernel keeps track of the end of file, so it knows a range of `[EOF, allocated space]` is uninitialized. Because of this behavior, it’s valid to pass the data extent type for such a range.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An extent type to indicate valid data.
+    ///
     /// Use this type for all extents on a file system that doesn't support sparse files.
     ///
     /// > Tip: The kernel keeps track of the end of file, so it knows a range of `[EOF, allocated space]` is uninitialized. Because of this behavior, it's valid to pass the data extent type for such a range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextenttype/data?language=objc)
     #[doc(alias = "FSExtentTypeData")]
     pub const Data: Self = Self(0);
     /// An extent type to indicate uninitialized data.
     ///
-    /// Only use this extent type in file systems that support sparse files, and only then to represent ranges in the file that aren't allocated yet.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextenttype/zerofill?language=objc)
+    /// Only use this extent type in file systems that support sparse files, and only then to represent ranges in the file that aren’t allocated yet.
+    ///
+    ///
+    /// An extent type to indicate uninitialized data.
+    ///
+    /// Only use this extent type in file systems that support sparse files, and only then to represent ranges in the file that aren't allocated yet.
     #[doc(alias = "FSExtentTypeZeroFill")]
     pub const ZeroFill: Self = Self(1);
 }
@@ -126,11 +152,16 @@ unsafe impl RefEncode for FSExtentType {
 extern_class!(
     /// A type that directs the kernel to map space on disk to a specific file managed by this file system.
     ///
+    /// ## Overview
+    ///
+    /// _Extents_ provide the kernel the logical-to-physical mapping of a given file. An extent describes a physical offset on disk, and a length and a logical offset within the file. Rather than working with extents directly, you use this type’s methods to provide or “pack” extent information, which FSKit then passes to the kernel.
+    ///
+    ///
+    /// A type that directs the kernel to map space on disk to a specific file managed by this file system.
+    ///
     /// _Extents_ provide the kernel the logical-to-physical mapping of a given file.
     /// An extent describes a physical offset on disk, and a length and a logical offset within the file.
     /// Rather than working with extents directly, you use this type's methods to provide or "pack" extent information, which FSKit then passes to the kernel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextentpacker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSExtentPacker;
@@ -181,6 +212,17 @@ impl FSExtentPacker {
 extern_protocol!(
     /// Methods and properties implemented by volumes that use kernel-offloaded I/O to achieve higher file transfer performance.
     ///
+    /// ## Overview
+    ///
+    /// A volume that conforms to this protocol supplies file extent mappings to FSKit, which allows file transfers to take place in the kernel. This approach provides higher-performance file transfer than transferring data between the module and kernel, while still allowing the file system to run in user space.
+    ///
+    /// This protocol uses _extents_ to provide the kernel the logical-to-physical mapping of a given file. An extent describes a physical offset on disk, and a length and a logical offset within the file. You don’t manage extents directly. Instead, FSKit provides you with an [`FSExtentPacker`](https://developer.apple.com/documentation/fskit/fsextentpacker) to define and pack the extents in your implementations of this protocol’s methods.
+    ///
+    /// Most volumes conform to either this protocol or [`FSVolumeReadWriteOperations`](https://developer.apple.com/documentation/fskit/fsvolume/readwriteoperations). You can conform to both if you need to provide kernel-offloaded I/O only for certain files. In that case, files with the [`FSItemAttributeInhibitKernelOffloadedIO`](https://developer.apple.com/documentation/fskit/fsitem/attribute/inhibitkerneloffloadedio) attribute set use [`FSVolumeReadWriteOperations`](https://developer.apple.com/documentation/fskit/fsvolume/readwriteoperations), and those without it use this protocol. A volume that doesn’t conform to either protocol can’t support any I/O operation.
+    ///
+    ///
+    /// Methods and properties implemented by volumes that use kernel-offloaded I/O to achieve higher file transfer performance.
+    ///
     /// A volume that conforms to this protocol supplies file extent mappings to FSKit, which allows file transfers to take place in the kernel.
     /// This approach provides higher-performance file transfer than transferring data between the module and kernel, while still allowing the file system to run in user space.
     ///
@@ -193,8 +235,6 @@ extern_protocol!(
     /// You can conform to both if you need to provide kernel-offloaded I/O only for certain files.
     /// In that case, files with the ``FSItem/Attribute/inhibitKernelOffloadedIO`` attribute set use ``FSVolumeReadWriteOperations``, and those without it use this protocol.
     /// A volume that doesn't conform to either protocol can't support any I/O operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumekerneloffloadediooperations?language=objc)
     pub unsafe trait FSVolumeKernelOffloadedIOOperations: NSObjectProtocol {
         #[cfg(all(feature = "FSItem", feature = "block2", feature = "libc"))]
         /// Maps a file's disk space into extents, allowing the kernel to perform I/O with that space.

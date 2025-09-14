@@ -9,42 +9,50 @@ use objc2_io_surface::*;
 
 use crate::*;
 
-/// MTLTextureType describes the dimensionality of each image, and if multiple images are arranged into an array or cube.
+/// The dimension of each image, including whether multiple images are arranged into an array or a cube.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype?language=objc)
+/// ## Overview
+///
+/// For a `MTLTextureTypeCube` texture, the property values describe one slice, which is any one of its six sides. For example, [`mipmapLevelCount`](https://developer.apple.com/documentation/metal/mtltexture/mipmaplevelcount) is the number of mipmap levels for one slice, not the total sum of mipmap levels in six slices. By definition, the [`width`](https://developer.apple.com/documentation/metal/mtltexture/width) and [`height`](https://developer.apple.com/documentation/metal/mtltexture/height) of a cube texture are the same value.
+///
+/// Each slice of a cube texture maps to a side with a specific orientation.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Slice index" }] }], [Paragraph { inline_content: [Text { text: "Slice orientation" }] }]], [[Paragraph { inline_content: [Text { text: "0" }] }], [Paragraph { inline_content: [Text { text: "+X" }] }]], [[Paragraph { inline_content: [Text { text: "1" }] }], [Paragraph { inline_content: [Text { text: "-X" }] }]], [[Paragraph { inline_content: [Text { text: "2" }] }], [Paragraph { inline_content: [Text { text: "+Y" }] }]], [[Paragraph { inline_content: [Text { text: "3" }] }], [Paragraph { inline_content: [Text { text: "-Y" }] }]], [[Paragraph { inline_content: [Text { text: "4" }] }], [Paragraph { inline_content: [Text { text: "+Z" }] }]], [[Paragraph { inline_content: [Text { text: "5" }] }], [Paragraph { inline_content: [Text { text: "-Z" }] }]]], alignments: None, metadata: None })
+///
+/// MTLTextureType describes the dimensionality of each image, and if multiple images are arranged into an array or cube.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureType(pub NSUInteger);
 impl MTLTextureType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type1d?language=objc)
+    /// A one-dimensional texture image.
     #[doc(alias = "MTLTextureType1D")]
     pub const Type1D: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type1darray?language=objc)
+    /// An array of one-dimensional texture images.
     #[doc(alias = "MTLTextureType1DArray")]
     pub const Type1DArray: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2d?language=objc)
+    /// A two-dimensional texture image.
     #[doc(alias = "MTLTextureType2D")]
     pub const Type2D: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray?language=objc)
+    /// An array of two-dimensional texture images.
     #[doc(alias = "MTLTextureType2DArray")]
     pub const Type2DArray: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2dmultisample?language=objc)
+    /// A two-dimensional texture image that uses more than one sample for each pixel.
     #[doc(alias = "MTLTextureType2DMultisample")]
     pub const Type2DMultisample: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/typecube?language=objc)
+    /// A cube texture with six two-dimensional images.
     #[doc(alias = "MTLTextureTypeCube")]
     pub const TypeCube: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/typecubearray?language=objc)
+    /// An array of cube textures, each with six two-dimensional images.
     #[doc(alias = "MTLTextureTypeCubeArray")]
     pub const TypeCubeArray: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type3d?language=objc)
+    /// A three-dimensional texture image.
     #[doc(alias = "MTLTextureType3D")]
     pub const Type3D: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/type2dmultisamplearray?language=objc)
+    /// An array of two-dimensional texture images that use more than one sample for each pixel.
     #[doc(alias = "MTLTextureType2DMultisampleArray")]
     pub const Type2DMultisampleArray: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype/typetexturebuffer?language=objc)
+    /// A texture buffer.
     #[doc(alias = "MTLTextureTypeTextureBuffer")]
     pub const TypeTextureBuffer: Self = Self(9);
 }
@@ -57,28 +65,28 @@ unsafe impl RefEncode for MTLTextureType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle?language=objc)
+/// A set of options to choose from when creating a texture swizzle pattern.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureSwizzle(pub u8);
 impl MTLTextureSwizzle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/zero?language=objc)
+    /// A value of `0.0` is copied to the destination channel.
     #[doc(alias = "MTLTextureSwizzleZero")]
     pub const Zero: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/one?language=objc)
+    /// A value of `1.0` is copied to the destination channel.
     #[doc(alias = "MTLTextureSwizzleOne")]
     pub const One: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/red?language=objc)
+    /// The red channel of the source pixel is copied to the destination channel.
     #[doc(alias = "MTLTextureSwizzleRed")]
     pub const Red: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/green?language=objc)
+    /// The green channel of the source pixel is copied to the destination channel.
     #[doc(alias = "MTLTextureSwizzleGreen")]
     pub const Green: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/blue?language=objc)
+    /// The blue channel of the source pixel is copied to the destination channel.
     #[doc(alias = "MTLTextureSwizzleBlue")]
     pub const Blue: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle/alpha?language=objc)
+    /// The alpha channel of the source pixel is copied to the destination channel.
     #[doc(alias = "MTLTextureSwizzleAlpha")]
     pub const Alpha: Self = Self(5);
 }
@@ -91,7 +99,13 @@ unsafe impl RefEncode for MTLTextureSwizzle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzlechannels?language=objc)
+/// A pattern that modifies the data read or sampled from a texture by rearranging or duplicating the elements of a vector.
+///
+/// ## Overview
+///
+/// Use this structure to specify a custom swizzle pattern when creating a new texture or texture view.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLTextureSwizzleChannels {
@@ -122,7 +136,13 @@ impl MTLTextureSwizzleChannels {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedtexturehandle?language=objc)
+    /// A texture handle that can be shared across process address space boundaries.
+    ///
+    /// ## Overview
+    ///
+    /// `MTLSharedTextureHandle` objects may be passed between processes using XPC connections and then used to create a reference to the texture in another process. The texture in the other process must be created using the same [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) on which the shared texture was originally created. To identify which device it was created on, you can use the [`device`](https://developer.apple.com/documentation/metal/mtlsharedtexturehandle/device) property of the `MTLSharedTextureHandle` object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedTextureHandle;
@@ -177,33 +197,121 @@ impl DefaultRetained for MTLSharedTextureHandle {
     }
 }
 
+/// An enumeration for the various options that determine how you can use a texture.
+///
+/// ## Overview
+///
+/// If a texture has multiple uses in your app, you can combine multiple usage options for that texture. After you set the texture’s usage options, you can use it only in the ways that you specified.
+///
+/// Metal can optimize operations for a given texture, based on its intended use. Set explicit usage options for a texture, if you know them in advance, before you use the texture. Only set usage options that correspond to a texture’s intended use.
+///
+/// In iOS devices with GPU family 5, Metal doesn’t apply lossless compression to a given texture if you set any of these options:
+///
+/// - [`MTLTextureUsageUnknown`](https://developer.apple.com/documentation/metal/mtltextureusage/unknown)
+///
+/// - [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite)
+///
+/// - [`MTLTextureUsagePixelFormatView`](https://developer.apple.com/documentation/metal/mtltextureusage/pixelformatview)
+///
+///
 /// MTLTextureUsage declares how the texture will be used over its lifetime (bitwise OR for multiple uses).
 ///
 /// This information may be used by the driver to make optimization decisions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLTextureUsage: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/unknown?language=objc)
+/// An option for a texture whose usage is unknown.
+///
+/// ## Discussion
+///
+/// Set this option if you’re not sure how your app uses the given texture, but you want to be able to use it in many ways. This might be the case if you have multiple code paths and it’s unclear how your app specifically uses the texture at runtime.
+///
+/// This is the most flexible usage option for a texture, but it incurs a significant performance cost. Metal can’t optimize operations for the texture if you don’t set specific usage options.
+///
+/// In iOS devices with GPU family 5, Metal doesn’t apply lossless compression to the given texture if you set this option.
+///
+///
         #[doc(alias = "MTLTextureUsageUnknown")]
         const Unknown = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/shaderread?language=objc)
+/// An option for reading or sampling from the texture in a shader.
+///
+/// ## Discussion
+///
+/// Set this option if you access the given texture with a `read()` or `sample()` function in any shader. This option enables the `access::read` and `access::sample` attributes for the texture. For more information about texture functions and access attributes, see [Metal Shading Language Guide](https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364).
+///
+/// If the texture is a read-write texture that you also access with a `write()` function in the same shader, set the [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite) option to enable the `access::read_write` attribute.
+///
+///
         #[doc(alias = "MTLTextureUsageShaderRead")]
         const ShaderRead = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite?language=objc)
+/// An option for writing to the texture in a shader.
+///
+/// ## Discussion
+///
+/// Set this option if you access the given texture with a `write()` function in any shader. This option enables the `access::write` attribute for the texture. For more information about texture functions and access attributes, see [Metal Shading Language Guide](https://developer.apple.com/library/archive/documentation/Metal/Reference/MetalShadingLanguageGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014364).
+///
+/// If the texture is a read-write texture that you also access with a `read()` function in the same shader, set the [`MTLTextureUsageShaderRead`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderread) option to enable the `access::read_write` attribute.
+///
+/// In iOS devices with GPU family 5, Metal doesn’t apply lossless compression to the given texture if you set this option.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Rendering and writing to a texture are different operations, and you don’t need to combine their usage options. Set the [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) option if you render to a given texture, but don’t set the [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite) option if you don’t write to the texture. The [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) and [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite) options aren’t equivalent, and setting [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) doesn’t require you to also set [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite).
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "MTLTextureUsageShaderWrite")]
         const ShaderWrite = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget?language=objc)
+/// An option for rendering to the texture in a render pass.
+///
+/// ## Discussion
+///
+/// Set this option if you use the given texture as a color, depth, or stencil render target in any render pass. This option allows you to assign the texture to the [`texture`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/texture) property of an [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor).
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Rendering and writing to a texture are different operations, and you don’t need to combine their usage options. Set the [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) option if you render to a given texture, but don’t set the [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite) option if you don’t write to the texture. The [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) and [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite) options aren’t equivalent, and setting [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) doesn’t require you to also set [`MTLTextureUsageShaderWrite`](https://developer.apple.com/documentation/metal/mtltextureusage/shaderwrite).
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "MTLTextureUsageRenderTarget")]
         const RenderTarget = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/pixelformatview?language=objc)
+/// An option to create texture views with a different component layout.
+///
+/// ## Discussion
+///
+/// Set this option if you need to call any of these methods of the texture to create a texture view with a different component layout:
+///
+/// - [`newTextureViewWithPixelFormat:`](https://developer.apple.com/documentation/metal/mtltexture/maketextureview(pixelformat:))
+///
+/// - [`makeTextureView(pixelFormat:textureType:levels:slices:)`](https://developer.apple.com/documentation/metal/mtltexture/maketextureview(pixelformat:texturetype:levels:slices:))
+///
+/// - [`newTextureViewWithPixelFormat:textureType:levels:slices:`](https://developer.apple.com/documentation/metal/mtltexture/newtextureviewwithpixelformat:texturetype:levels:slices:)
+///
+/// - [`makeTextureView(pixelFormat:textureType:levels:slices:swizzle:)`](https://developer.apple.com/documentation/metal/mtltexture/maketextureview(pixelformat:texturetype:levels:slices:swizzle:))
+///
+/// - [`newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:`](https://developer.apple.com/documentation/metal/mtltexture/newtextureviewwithpixelformat:texturetype:levels:slices:swizzle:)
+///
+/// For example, if your texture uses the [`MTLPixelFormatRGBA8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8unorm) pixel format, you can reinterpret the data as [`MTLPixelFormatR32Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r32uint). The pixel layout is considered different if the number of components differs, or if their size or order is different from the components in the original pixel format.
+///
+/// Don’t set this option if your texture view needs to read the component values in a different order. Instead, create a texture view with a swizzle pattern that specifies the new order.
+///
+/// Don’t set this option if your texture view only converts between linear space and sRGB. For example, if your texture uses the [`MTLPixelFormatRGBA8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8unorm) pixel format and your texture view uses [`MTLPixelFormatBGRA8Unorm_sRGB`](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra8unorm_srgb).
+///
+/// In iOS devices with GPU family 5 and later, Metal doesn’t apply lossless compression to the given texture if you set this option.
+///
+///
         #[doc(alias = "MTLTextureUsagePixelFormatView")]
         const PixelFormatView = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage/shaderatomic?language=objc)
         #[doc(alias = "MTLTextureUsageShaderAtomic")]
         const ShaderAtomic = 0x0020;
     }
@@ -217,16 +325,13 @@ unsafe impl RefEncode for MTLTextureUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturecompressiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureCompressionType(pub NSInteger);
 impl MTLTextureCompressionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturecompressiontype/lossless?language=objc)
     #[doc(alias = "MTLTextureCompressionTypeLossless")]
     pub const Lossless: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturecompressiontype/lossy?language=objc)
     #[doc(alias = "MTLTextureCompressionTypeLossy")]
     pub const Lossy: Self = Self(1);
 }
@@ -240,7 +345,15 @@ unsafe impl RefEncode for MTLTextureCompressionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturedescriptor?language=objc)
+    /// An instance that you use to configure new Metal texture instances.
+    ///
+    /// ## Overview
+    ///
+    /// To create a new texture, first create an [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) instance and set its property values. Then, call either the [`newTextureWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/maketexture(descriptor:)) or [`newTextureWithDescriptor:iosurface:plane:`](https://developer.apple.com/documentation/metal/mtldevice/maketexture(descriptor:iosurface:plane:)) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance, or the [`newTextureWithDescriptor:offset:bytesPerRow:`](https://developer.apple.com/documentation/metal/mtlbuffer/maketexture(descriptor:offset:bytesperrow:)) method of an [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instance.
+    ///
+    /// When you create a texture, Metal copies property values from the descriptor into the new texture. You can reuse an [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) instance, modifying its property values as needed, to create more [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instances, without affecting any textures you already created.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTextureDescriptor;
@@ -545,7 +658,6 @@ impl DefaultRetained for MTLTextureDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureviewdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTextureViewDescriptor;
@@ -648,13 +760,40 @@ impl DefaultRetained for MTLTextureViewDescriptor {
 }
 
 extern_protocol!(
+    /// A resource that holds formatted image data.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol yourself; instead, use one of the following methods to create an [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instance:
+    ///
+    /// - Create an [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) instance to describe the texture’s properties and then call the [`newTextureWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/maketexture(descriptor:)) method of the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) protocol to create the texture.
+    ///
+    /// - To create a texture that uses an existing [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface) to hold the texture data, create an [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) instance to describe the image data in the surface. Call the [`newTextureWithDescriptor:iosurface:plane:`](https://developer.apple.com/documentation/metal/mtldevice/maketexture(descriptor:iosurface:plane:)) method to create the texture.
+    ///
+    /// - To create a texture that reinterprets another texture’s data as if it has a different format, call one of the following texture methods:
+    ///
+    ///   - [`newTextureViewWithPixelFormat:`](https://developer.apple.com/documentation/metal/mtltexture/maketextureview(pixelformat:))
+    ///
+    /// - [`makeTextureView(pixelFormat:textureType:levels:slices:)`](https://developer.apple.com/documentation/metal/mtltexture/maketextureview(pixelformat:texturetype:levels:slices:)) (Swift)
+    ///
+    /// - [`newTextureViewWithPixelFormat:textureType:levels:slices:`](https://developer.apple.com/documentation/metal/mtltexture/newtextureviewwithpixelformat:texturetype:levels:slices:) (Objective-C)
+    ///
+    ///   You need to choose a pixel format for the new texture compatible with the source texture’s pixel format. The new texture shares the same storage allocation as the source texture. If you make changes to the new texture, the source texture reflects those changes, and vice versa.
+    ///
+    /// - To create a texture that uses an [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instance’s contents to hold pixel data, create an [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) instance to describe the texture’s properties. Then call the [`newTextureWithDescriptor:offset:bytesPerRow:`](https://developer.apple.com/documentation/metal/mtlbuffer/maketexture(descriptor:offset:bytesperrow:)) method on the buffer instance. The new texture instance shares the storage allocation of the source buffer instance. If you make changes to the texture, the buffer reflects those changes, and vice versa.
+    ///
+    /// After you create an [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instance, most of its characteristics, such as its size, type, and pixel format are all immutable. Only the texture’s pixel data is mutable.
+    ///
+    /// To copy pixel data from system memory into the texture, call [`replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:`](https://developer.apple.com/documentation/metal/mtltexture/replace(region:mipmaplevel:slice:withbytes:bytesperrow:bytesperimage:)) or [`replaceRegion:mipmapLevel:withBytes:bytesPerRow:`](https://developer.apple.com/documentation/metal/mtltexture/replace(region:mipmaplevel:withbytes:bytesperrow:)).
+    ///
+    /// To copy pixel data back to system memory, call [`getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:`](https://developer.apple.com/documentation/metal/mtltexture/getbytes(_:bytesperrow:bytesperimage:from:mipmaplevel:slice:)) or [`getBytes:bytesPerRow:fromRegion:mipmapLevel:`](https://developer.apple.com/documentation/metal/mtltexture/getbytes(_:bytesperrow:from:mipmaplevel:)).
+    ///
+    ///
     /// MTLTexture represents a collection of 1D, 2D, or 3D images.
     ///
     /// Each image in a texture is a 1D, 2D, 2DMultisample, or 3D image. The texture contains one or more images arranged in a mipmap stack. If there are multiple mipmap stacks, each one is referred to as a slice of the texture. 1D, 2D, 2DMultisample, and 3D textures have a single slice. In 1DArray and 2DArray textures, every slice is an array element. A Cube texture always has 6 slices, one for each face. In a CubeArray texture, each set of six slices is one element in the array.
     ///
     /// Most APIs that operate on individual images in a texture address those images via a tuple of a Slice, and Mipmap Level within that slice.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexture?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLTexture: MTLResource {
         /// The resource this texture was created from. It may be a texture or a buffer. If this texture is not reusing storage of another MTLResource, then nil is returned.

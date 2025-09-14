@@ -6,18 +6,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Possible values for the service identifier type.
 /// The type of value represented by the service identifier.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier/identifiertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialServiceIdentifierType(pub NSInteger);
 impl ASCredentialServiceIdentifierType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier/identifiertype/domain?language=objc)
+    /// A domain service identifier.
     #[doc(alias = "ASCredentialServiceIdentifierTypeDomain")]
     pub const Domain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier/identifiertype/url?language=objc)
+    /// A URL service identifier.
     #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
     pub const URL: Self = Self(1);
 }
@@ -31,7 +30,7 @@ unsafe impl RefEncode for ASCredentialServiceIdentifierType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier?language=objc)
+    /// An identifier representing a particular service for which the user needs a credential, like a web site.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialServiceIdentifier;

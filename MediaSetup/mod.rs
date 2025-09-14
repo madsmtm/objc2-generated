@@ -41,14 +41,12 @@ use crate::*;
 
 extern "C" {
     /// The version number of the Media Setup framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/mediasetupversionnumber?language=objc)
+    /// The version number of the Media Setup framework.
     pub static MediaSetupVersionNumber: c_double;
 }
 
 extern "C" {
     /// The version of the Media Setup framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/mediasetupversionstring?language=objc)
+    /// The version of the Media Setup framework.
     pub static MediaSetupVersionString: *mut c_uchar;
 }

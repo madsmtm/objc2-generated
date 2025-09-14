@@ -4,7 +4,7 @@
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix3identity?language=objc)
+    /// A `3x3` identity matrix.
     #[cfg(feature = "GLKMathTypes")]
     pub static GLKMatrix3Identity: GLKMatrix3;
 }
@@ -46,7 +46,19 @@ extern "C" {
 // TODO: pub fn GLKMatrix3Transpose(matrix: GLKMatrix3,) -> GLKMatrix3;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix3invert(_:_:)?language=objc)
+    /// Returns the inverse of a matrix.
+    ///
+    /// Parameters:
+    /// - matrix: A matrix.
+    ///
+    /// - isInvertible: On return, this holds [`true`](https://developer.apple.com/documentation/swift/true) if the matrix was inverted or [`false`](https://developer.apple.com/documentation/swift/false) if the matrix is not invertible.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `isInvertible` was set to [`true`](https://developer.apple.com/documentation/swift/true), this holds an inverted matrix. Otherwise, the identity matrix is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -56,7 +68,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix3invertandtranspose(_:_:)?language=objc)
+    /// Returns the inverse transpose of a matrix.
+    ///
+    /// Parameters:
+    /// - matrix: A matrix.
+    ///
+    /// - isInvertible: On return, this holds [`true`](https://developer.apple.com/documentation/swift/true) if the matrix was inverted or [`false`](https://developer.apple.com/documentation/swift/false) if the matrix is not invertible.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `isInvertible` was set to [`true`](https://developer.apple.com/documentation/swift/true), this holds an inverted and transposed matrix. Otherwise, the identity matrix is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///

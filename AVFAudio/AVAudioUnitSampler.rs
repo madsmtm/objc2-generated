@@ -11,6 +11,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that you configure with one or more instrument samples, based on Apple’s Sampler audio unit.
+    ///
+    /// ## Overview
+    ///
+    /// An `AVAudioUnitSampler` is an [`AVAudioUnit`](https://developer.apple.com/documentation/avfaudio/avaudiounit) for Apple’s Sampler audio unit.
+    ///
+    /// You configure the sampler by loading instruments from different types of files. These include an `aupreset` file, DLS, or SF2 sound bank; an EXS24 instrument; a single audio file; or an array of audio files.
+    ///
+    /// The output of a `AVAudioUnitSampler` is a single stereo bus.
+    ///
+    ///
     /// Apple's sampler audio unit.
     ///
     /// An AVAudioUnit for Apple's Sampler Audio Unit. The sampler can be configured by loading
@@ -18,8 +29,6 @@ extern_class!(
     /// an EXS24 instrument, a single audio file, or an array of audio files.
     ///
     /// The output is a single stereo bus.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitsampler?language=objc)
     #[unsafe(super(AVAudioUnitMIDIInstrument, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

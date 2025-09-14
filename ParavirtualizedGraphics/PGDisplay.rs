@@ -13,11 +13,10 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// Coordinates that describe sizes or offsets within a 2D array of pixels.
 /// A struct for describing size of or offsets into a 2D array of pixels (used for size of display mode, size of cursor, and cursor hotSpot).
 /// Field: x Represents horizontal pixel offset/size
 /// Field: y Represents vertical pixel offset/size
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycoord_t?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PGDisplayCoord_t {
@@ -33,55 +32,64 @@ unsafe impl RefEncode for PGDisplayCoord_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The block signature for a routine that handles changes to the display’s graphics mode.
+///
+/// Parameters:
+/// - sizeInPixels: The dimensions of the new display mode.
+///
+/// - pixelFormat: The pixel format of the new display mode.
+///
 /// A block that will be invoked at display mode change boundaries.
 ///
 /// Parameter `sizeInPixels`: Size of upcoming frames.
 ///
 /// Parameter `pixelFormat`: Pixel format of upcoming frames.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaymodechangehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PGDisplayModeChangeHandler = *mut block2::DynBlock<dyn Fn(PGDisplayCoord_t, OSType)>;
 
+/// The block signature for a routine that handles frame updates from the guest.
 /// A block that will be invoked to notify client of availability of new Guest compositor frame to be further processed.
 ///
 /// See encodeCurrentFrameToCommandBuffer:texture:region: below to get further processing underway.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaynewframeeventhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PGDisplayNewFrameEventHandler = *mut block2::DynBlock<dyn Fn()>;
 
+/// The block signature for a routine that handles changes to the cursor’s appearance.
+///
+/// Parameters:
+/// - glyph: The image to assign to the cursor.
+///
+/// - hotSpot   : The point to set as the cursor’s hot spot.
+///
 /// A block that will be invoked to handle cursor glyph updates.
 ///
 /// Parameter `glyph`: Cursor glyph to apply.
 ///
 /// Parameter `hotSpot`: Top,left relative location of hotSpot.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorglyphhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 pub type PGDisplayCursorGlyphHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<NSBitmapImageRep>, PGDisplayCoord_t)>;
 
+/// The block signature for a routine that handles changes to the cursor’s visibility.
+///
+/// Parameters:
+/// - show: A Boolean value that indicates whether to show the cursor.
+///
 /// A block that will be invoked to handle cursor show/hide updates.
 ///
 /// Parameter `show`: Flag indicating whether to show cursor glyph.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorshowhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PGDisplayCursorShowHandler = *mut block2::DynBlock<dyn Fn(Bool)>;
 
 /// A block that will be invoked to handle cursor movement.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursormovehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PGDisplayCursorMoveHandler = *mut block2::DynBlock<dyn Fn()>;
 
 extern_class!(
+    /// A descriptor for a virtual display.
     /// Descriptor to facilitate creation of PGDisplay.
     ///
     /// See [PGDevice newDisplayWithDescriptor:port:serialNum]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PGDisplayDescriptor;
@@ -263,11 +271,10 @@ impl PGDisplayDescriptor {
 }
 
 extern_class!(
+    /// A description of a supported display mode.
     /// Description of supported display mode.
     ///
     /// Client of PGDisplay can dynamically supply NSArray of PGDisplayMode objects to convey supported modes.  The first mode in array is preferred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaymode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PGDisplayMode;
@@ -318,11 +325,16 @@ impl PGDisplayMode {
 }
 
 extern_protocol!(
+    /// An object that provides display functionality to the guest operating system in a way that the host-side virtual machine app can intercept.
+    ///
+    /// ## Overview
+    ///
+    /// The framework emulates hot-plugging to the display. After you create the display object, set the [`modeList`](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplay/modelist) property to a list of modes you want the display to use. The first time you set the mode list, the framework connects the display to the virtualized graphics card. When you release the display object, the device simulates unplugging the display.
+    ///
+    ///
     /// Object providing display functionality to guest in a way that host-side VM app can intercept (and process as it chooses).
     ///
     /// The first time the modeList is set for a display, the guest will receive a simulated hot-plug of a display on its port. When this object is freed, the guest will receive a simulated hot-unplug of the display on its port.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplay?language=objc)
     pub unsafe trait PGDisplay: NSObjectProtocol {
         /// The name of the display.
         #[unsafe(method(name))]

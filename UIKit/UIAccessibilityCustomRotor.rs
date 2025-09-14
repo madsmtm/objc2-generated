@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/direction?language=objc)
+/// Constants that indicate the search direction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityCustomRotorDirection(pub NSInteger);
 impl UIAccessibilityCustomRotorDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/direction/previous?language=objc)
+    /// The previous search item.
     #[doc(alias = "UIAccessibilityCustomRotorDirectionPrevious")]
     pub const Previous: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/direction/next?language=objc)
+    /// The next search item.
     #[doc(alias = "UIAccessibilityCustomRotorDirectionNext")]
     pub const Next: Self = Self(1);
 }
@@ -29,67 +29,67 @@ unsafe impl RefEncode for UIAccessibilityCustomRotorDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum?language=objc)
+/// Constants that indicate the type of content that the rotor represents.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityCustomSystemRotorType(pub NSInteger);
 impl UIAccessibilityCustomSystemRotorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/none?language=objc)
+    /// No specific type.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/link?language=objc)
+    /// A link.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeLink")]
     pub const Link: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/visitedlink?language=objc)
+    /// A visited link.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeVisitedLink")]
     pub const VisitedLink: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/heading?language=objc)
+    /// Any heading-level text.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeading")]
     pub const Heading: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel1?language=objc)
+    /// A first-level heading.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel1")]
     pub const HeadingLevel1: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel2?language=objc)
+    /// A second-level heading.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel2")]
     pub const HeadingLevel2: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel3?language=objc)
+    /// A third-level heading.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel3")]
     pub const HeadingLevel3: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel4?language=objc)
+    /// A fourth-level heading.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel4")]
     pub const HeadingLevel4: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel5?language=objc)
+    /// A fifth-level heading.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel5")]
     pub const HeadingLevel5: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/headinglevel6?language=objc)
+    /// A sixth-level heading.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeHeadingLevel6")]
     pub const HeadingLevel6: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/boldtext?language=objc)
+    /// Any bold text.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeBoldText")]
     pub const BoldText: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/italictext?language=objc)
+    /// Any italicized text.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeItalicText")]
     pub const ItalicText: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/underlinetext?language=objc)
+    /// Any underlined text.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeUnderlineText")]
     pub const UnderlineText: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/misspelledword?language=objc)
+    /// A misspelled word.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeMisspelledWord")]
     pub const MisspelledWord: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/image?language=objc)
+    /// An image.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeImage")]
     pub const Image: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/textfield?language=objc)
+    /// A text field.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeTextField")]
     pub const TextField: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/table?language=objc)
+    /// A table of information.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeTable")]
     pub const Table: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/list?language=objc)
+    /// A list of items.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeList")]
     pub const List: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum/landmark?language=objc)
+    /// A landmark.
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeLandmark")]
     pub const Landmark: Self = Self(18);
 }
@@ -102,7 +102,7 @@ unsafe impl RefEncode for UIAccessibilityCustomSystemRotorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/search?language=objc)
+/// The block type for retrieving the next or previous rotor.
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomRotorSearch = *mut block2::DynBlock<
     dyn Fn(
@@ -110,7 +110,6 @@ pub type UIAccessibilityCustomRotorSearch = *mut block2::DynBlock<
     ) -> *mut UIAccessibilityCustomRotorItemResult,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomrotorsreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXCustomRotorsReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
@@ -171,7 +170,7 @@ impl private_NSObjectUIAccessibilityCustomRotor::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityCustomRotor for NSObject {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearchpredicate?language=objc)
+    /// The search parameters that help determine the next matching custom rotor item result.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -218,7 +217,21 @@ impl UIAccessibilityCustomRotorSearchPredicate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor?language=objc)
+    /// A context-sensitive function that helps VoiceOver users find the next instance of a related element.
+    ///
+    /// ## Overview
+    ///
+    /// You might use an instance of this class to find the next link in an article, or the next misspelled word in a document.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC20
+    ///  Session 10116: [VoiceOver Efficiency with Custom Rotors](https://developer.apple.com/wwdc20/10116)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -332,7 +345,7 @@ impl UIAccessibilityCustomRotor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotoritemresult?language=objc)
+    /// A target element that a custom rotor references.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,16 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributetemporaleventtriggerunsupportedreason?language=objc)
+/// Reasons the app can’t modify the temporal event trigger of the task.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSetTaskAttributeTemporalEventTriggerUnsupportedReason(pub NSInteger);
 impl INSetTaskAttributeTemporalEventTriggerUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributetemporaleventtriggerunsupportedreason/timeinpast?language=objc)
+    /// The temporal event trigger refers to a moment or time span that has already occurred.
     #[doc(alias = "INSetTaskAttributeTemporalEventTriggerUnsupportedReasonTimeInPast")]
     pub const TimeInPast: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributetemporaleventtriggerunsupportedreason/invalidrecurrence?language=objc)
+    /// The temporal event trigger refers to an invalid or unsupported schedule for repeating a task.
     #[doc(alias = "INSetTaskAttributeTemporalEventTriggerUnsupportedReasonInvalidRecurrence")]
     pub const InvalidRecurrence: Self = Self(2);
 }
@@ -29,7 +29,15 @@ unsafe impl RefEncode for INSetTaskAttributeTemporalEventTriggerUnsupportedReaso
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributetemporaleventtriggerresolutionresult?language=objc)
+    /// A resolution result for a temporal event trigger.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INSetTaskAttributeTemporalEventTriggerResolutionResult`](https://developer.apple.com/documentation/intents/insettaskattributetemporaleventtriggerresolutionresult) object when resolving parameters that contain an [`INTemporalEventTrigger`](https://developer.apple.com/documentation/intents/intemporaleventtrigger) value for an [`INSetTaskAttributeIntent`](https://developer.apple.com/documentation/intents/insettaskattributeintent). Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution operators, see [`INTemporalEventTriggerResolutionResult`](https://developer.apple.com/documentation/intents/intemporaleventtriggerresolutionresult).
+    ///
+    ///
     #[unsafe(super(
         INTemporalEventTriggerResolutionResult,
         INIntentResolutionResult,

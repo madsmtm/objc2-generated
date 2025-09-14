@@ -6,25 +6,55 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype?language=objc)
+/// Constants that define merge policy types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMergePolicyType(pub NSUInteger);
 impl NSMergePolicyType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/errormergepolicytype?language=objc)
+    /// The default merge policy for all managed object contexts.
+    ///
+    /// ## Discussion
+    ///
+    /// If a save fails because of conflicting objects, you can find the IDs of those objects in error’s `userInfo` dictionary. Use the [`NSInsertedObjectsKey`](https://developer.apple.com/documentation/coredata/nsinsertedobjectskey) and [`NSUpdatedObjectsKey`](https://developer.apple.com/documentation/coredata/nsupdatedobjectskey) keys to extract the object IDs.
+    ///
+    ///
     #[doc(alias = "NSErrorMergePolicyType")]
     pub const ErrorMergePolicyType: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/mergebypropertystoretrumpmergepolicytype?language=objc)
+    /// A property-based merge policy that applies external changes.
+    ///
+    /// ## Discussion
+    ///
+    /// A policy that merges conflicts between the persistent store’s version of the object and the current in-memory version by individual property, with external changes trumping in-memory changes.
+    ///
+    ///
     #[doc(alias = "NSMergeByPropertyStoreTrumpMergePolicyType")]
     pub const MergeByPropertyStoreTrumpMergePolicyType: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/mergebypropertyobjecttrumpmergepolicytype?language=objc)
+    /// A property-based merge policy that applies in-memory changes.
+    ///
+    /// ## Discussion
+    ///
+    /// A policy that merges conflicts between the persistent store’s version of the object and the current in-memory version by individual property, with in-memory changes trumping external changes.
+    ///
+    ///
     #[doc(alias = "NSMergeByPropertyObjectTrumpMergePolicyType")]
     pub const MergeByPropertyObjectTrumpMergePolicyType: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/overwritemergepolicytype?language=objc)
+    /// A merge policy type that overwrites the entire stored object.
+    ///
+    /// ## Discussion
+    ///
+    /// This policy merges conflicts between the persistent store’s version of the object and the current in-memory version by saving the entire in-memory object to the persistent store.
+    ///
+    ///
     #[doc(alias = "NSOverwriteMergePolicyType")]
     pub const OverwriteMergePolicyType: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicytype/rollbackmergepolicytype?language=objc)
+    /// A merge policy that discards unsaved changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This policy merges conflicts between the persistent store’s version of the object and the current in-memory version by discarding unsaved changes.
+    ///
+    ///
     #[doc(alias = "NSRollbackMergePolicyType")]
     pub const RollbackMergePolicyType: Self = Self(0x04);
 }
@@ -38,7 +68,19 @@ unsafe impl RefEncode for NSMergePolicyType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergeconflict?language=objc)
+    /// An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
+    ///
+    /// ## Overview
+    ///
+    /// A conflict can occur in two situations:
+    ///
+    /// - Between the managed object context and its in-memory cached state at the persistent store coordinator layer.
+    ///
+    /// - Between the cached state at the persistent store coordinator layer and the external store (file, database, and so forth). In this case, the merge conflict has a cached snapshot and a persisted snapshot.  The source object is also provided as a convenience, but it is not directly involved in the conflict.
+    ///
+    /// Snapshot dictionaries include values for all attributes and to-one relationships, but not to-many relationships. Relationship values are `NSManagedObjectID` references. To-many relationships must be pulled from the persistent store as needed.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMergeConflict;
@@ -109,7 +151,15 @@ impl NSMergeConflict {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsconstraintconflict?language=objc)
+    /// An encapsulation of conflicts that occur during an attempt to save a managed object.
+    ///
+    /// ## Overview
+    ///
+    /// A constraint conflict occurs when your data model is using unique constraints and one or more managed objects are violating that constraint.
+    ///
+    /// When this error occurs, the error instance can be interrogated to determine which instance of [`NSManagedObject`](https://developer.apple.com/documentation/coredata/nsmanagedobject) is violating the constraint and which property on the [`NSManagedObject`](https://developer.apple.com/documentation/coredata/nsmanagedobject) instance is in violation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstraintConflict;
@@ -181,7 +231,19 @@ impl NSConstraintConflict {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmergepolicy?language=objc)
+    /// A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
+    ///
+    /// ## Overview
+    ///
+    /// A conflict is a mismatch between state held at two different layers in the Core Data stack. A conflict can arise when you save a managed object context and you have stale data at another layer. There are two places in which a conflict may occur:
+    ///
+    /// - Between the managed object context layer and its in-memory cached state at the persistent store coordinator layer.
+    ///
+    /// - Between the cached state at the persistent store coordinator and the external store (file, database, and so forth).
+    ///
+    /// Conflicts are represented by instances of [`NSMergeConflict`](https://developer.apple.com/documentation/coredata/nsmergeconflict).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMergePolicy;

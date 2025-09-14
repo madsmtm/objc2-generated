@@ -12,30 +12,31 @@ use objc2_core_midi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_null?language=objc)
+/// A null music event.
 pub const kMusicEventType_NULL: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendednote?language=objc)
+/// A non-MIDI music event with variable number of parameters.
 pub const kMusicEventType_ExtendedNote: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendedtempo?language=objc)
+/// An event that signals a change in tempo, in beats-per-minute.
 pub const kMusicEventType_ExtendedTempo: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_user?language=objc)
+/// User-defined data.
 pub const kMusicEventType_User: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_meta?language=objc)
+/// A standard MIDI file metaevent.
 pub const kMusicEventType_Meta: u32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midinotemessage?language=objc)
+/// A MIDI note-on message, including duration.
 pub const kMusicEventType_MIDINoteMessage: u32 = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midichannelmessage?language=objc)
+/// A MIDI channel message, other than note control.
 pub const kMusicEventType_MIDIChannelMessage: u32 = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_midirawdata?language=objc)
+/// MIDI system-exclusive data.
 pub const kMusicEventType_MIDIRawData: u32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_parameter?language=objc)
+/// An audio unit parameter event.
 pub const kMusicEventType_Parameter: u32 = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_aupreset?language=objc)
+/// An event containing an audio unit user preset dictionary.
 pub const kMusicEventType_AUPreset: u32 = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventtype?language=objc)
+/// MIDI and other music event types, used by music event iterator functions.
 pub type MusicEventType = u32;
 
+/// Flags used to configure the behavior of the [`MusicSequenceFileLoad`](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileload(_:_:_:_:)) and [`MusicSequenceFileLoadData`](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileloaddata(_:_:_:_:)) functions.
 /// Flags used to customise loading behaviour
 ///
 /// If this flag is set the resultant Sequence will contain:
@@ -48,18 +49,15 @@ pub type MusicEventType = u32;
 /// 1 track for each MIDI Channel that is found in the SMF
 /// 1 track for SysEx or MetaEvents - this will be the last track
 /// in the sequence after the LoadSMFWithFlags calls
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceLoadFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceLoadFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags/smf_preservetracks?language=objc)
         #[doc(alias = "kMusicSequenceLoadSMF_PreserveTracks")]
         const SMF_PreserveTracks = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags/smf_channelstotracks?language=objc)
+/// If this flag is set the resultant Sequence will contain a tempo track, 1 track for each MIDI Channel that is found in the SMF, 1 track for SysEx or MetaEvents - and this will be the last track in the sequence after the LoadSMFWithFlags calls.
         #[doc(alias = "kMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
     }
@@ -73,6 +71,7 @@ unsafe impl RefEncode for MusicSequenceLoadFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The various types of music sequences.
 /// A sequence type
 ///
 /// Different sequence types to describe the basic mode of operation of a sequence's time line
@@ -88,20 +87,18 @@ unsafe impl RefEncode for MusicSequenceLoadFlags {
 /// A music sequence with a single 60bpm tempo event
 ///
 /// A music sequence with a single tempo event that represents the audio sample rate
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MusicSequenceType(pub u32);
 impl MusicSequenceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype/beats?language=objc)
+    /// Used for a music sequence that corresponds to a normal MIDI file. The tempo track defines the number of beats per second and can have multiple tempo events.
     #[doc(alias = "kMusicSequenceType_Beats")]
     pub const Beats: Self = Self(0x62656174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype/seconds?language=objc)
+    /// Used for a music sequence that corresponds to a MIDI file, but employs SMPTE timecode. The tempo track contains a single tempo event that specifies 60 beat-per-minute.
     #[doc(alias = "kMusicSequenceType_Seconds")]
     pub const Seconds: Self = Self(0x73656373);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype/samples?language=objc)
+    /// Used for audio samples; a music sequence of this type cannot be saved to a MIDI file. The tempo track contains a single tempo event that specifies an audio sample rate in samples-per-second.
     #[doc(alias = "kMusicSequenceType_Samples")]
     pub const Samples: Self = Self(0x73616d70);
 }
@@ -114,6 +111,7 @@ unsafe impl RefEncode for MusicSequenceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The various types of files that can be parsed by a music sequence.
 /// describes different types of files that can be parsed by a music sequence
 ///
 /// let the system read iMelody files and read and write MIDI files (and any future types)
@@ -121,20 +119,17 @@ unsafe impl RefEncode for MusicSequenceType {
 /// read and write MIDI files
 ///
 /// read iMelody files
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceFileTypeID(pub u32);
 impl MusicSequenceFileTypeID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid/anytype?language=objc)
     #[doc(alias = "kMusicSequenceFile_AnyType")]
     pub const AnyType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid/miditype?language=objc)
+    /// A MIDI file type
     #[doc(alias = "kMusicSequenceFile_MIDIType")]
     pub const MIDIType: Self = Self(0x6d696469);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid/imelodytype?language=objc)
+    /// An iMelody file type.
     #[doc(alias = "kMusicSequenceFile_iMelodyType")]
     pub const iMelodyType: Self = Self(0x696d656c);
 }
@@ -147,24 +142,22 @@ unsafe impl RefEncode for MusicSequenceFileTypeID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Flags that configure the behavior of the [`MusicSequenceFileCreate`](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreate(_:_:_:_:_:)) and [`MusicSequenceFileCreateData`](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreatedata(_:_:_:_:_:)) functions.
 /// controls the behaviour of the create file calls
 ///
 /// Does not overwrite existing files.  Attempts to save over an existing file
 /// will return kAudio_FilePermissionError
 ///
 /// Erase an existing file when creating a new file
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceFileFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceFileFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags/kmusicsequencefileflags_default?language=objc)
         #[doc(alias = "kMusicSequenceFileFlags_Default")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags/erasefile?language=objc)
+/// Specifies that an existing file should be erased when creating a new file.
         #[doc(alias = "kMusicSequenceFileFlags_EraseFile")]
         const EraseFile = 1;
     }
@@ -178,14 +171,12 @@ unsafe impl RefEncode for MusicSequenceFileFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A timestamp for use by a music sequence.
 /// The type used to refer to time values in a music sequence
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictimestamp?language=objc)
 pub type MusicTimeStamp = f64;
 
+/// Describes a MIDI note.
 /// The parameters to specify a MIDI note
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midinotemessage?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDINoteMessage {
@@ -213,9 +204,8 @@ unsafe impl RefEncode for MIDINoteMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a MIDI channel message.
 /// The parameters to specify a MIDI channel message
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midichannelmessage?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIChannelMessage {
@@ -241,9 +231,8 @@ unsafe impl RefEncode for MIDIChannelMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a MIDI system-exclusive (SysEx) message.
 /// Generally used to represent a MIDI SysEx message
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midirawdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIRawData {
@@ -260,9 +249,8 @@ unsafe impl RefEncode for MIDIRawData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a MIDI metaevent such as lyric text, time signature, and so on.
 /// The parameters to specify a MIDI meta event
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midimetaevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIMetaEvent {
@@ -292,13 +280,12 @@ unsafe impl RefEncode for MIDIMetaEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a user-defined event.
 /// Provides a general struct for specifying a user defined event.
 ///
 /// the size in bytes of the data
 ///
 /// size bytes of user defined event data
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventuserdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicEventUserData {
@@ -317,9 +304,8 @@ unsafe impl RefEncode for MusicEventUserData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a note-on event with extended parameters.
 /// The parameters to specify an extended note on event
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendednoteonevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -348,9 +334,8 @@ unsafe impl RefEncode for ExtendedNoteOnEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes an audio unit parameter automation event.
 /// The parameters to specify a parameter event to an audio unit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/parameterevent?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -379,9 +364,8 @@ unsafe impl RefEncode for ParameterEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes a music track tempo in beats-per-minute.
 /// specifies the value for a tempo in beats per minute
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedtempoevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ExtendedTempoEvent {
@@ -396,9 +380,8 @@ unsafe impl RefEncode for ExtendedTempoEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes an audio unit preset.
 /// The parameters to specify a preset for an audio unit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupresetevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -446,8 +429,6 @@ unsafe impl RefEncode for AUPresetEvent {
 /// The denominator of the fractional number of beats.
 ///
 /// Must be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cabarbeattime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CABarBeatTime {
@@ -486,7 +467,7 @@ unsafe impl RefEncode for OpaqueMusicPlayer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueMusicPlayer", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayer?language=objc)
+/// A music player plays a music sequence (of type `MusicSequence`).
 pub type MusicPlayer = *mut OpaqueMusicPlayer;
 
 #[repr(C)]
@@ -500,7 +481,7 @@ unsafe impl RefEncode for OpaqueMusicSequence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueMusicSequence", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequence?language=objc)
+/// A music sequence.
 pub type MusicSequence = *mut OpaqueMusicSequence;
 
 #[repr(C)]
@@ -514,7 +495,15 @@ unsafe impl RefEncode for OpaqueMusicTrack {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueMusicTrack", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrack?language=objc)
+/// A music track consists of a series of music events, each timestamped using units of beats.
+///
+/// ## Discussion
+///
+/// A music track (of type `MusicTrack`) has properties which may be inspected and assigned, including support for looping, muting/soloing, and time-stamp interpretation. You can iterate through the events in a music track, and can perform various editing operations on them.
+///
+/// A music track is a component of a music sequence (of type [`MusicSequence`](https://developer.apple.com/documentation/audiotoolbox/musicsequence)), which in turn is played by a music player (of type [`MusicPlayer`](https://developer.apple.com/documentation/audiotoolbox/musicplayer)).
+///
+///
 pub type MusicTrack = *mut OpaqueMusicTrack;
 
 #[repr(C)]
@@ -529,12 +518,16 @@ unsafe impl RefEncode for OpaqueMusicEventIterator {
         Encoding::Pointer(&Encoding::Struct("OpaqueMusicEventIterator", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiterator?language=objc)
+/// A music event iterator sequentially handles events on a music track.
 pub type MusicEventIterator = *mut OpaqueMusicEventIterator;
 
-/// See MusicSequenceSetUserCallback
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceusercallback?language=objc)
+/// ## Discussion
+///
+/// If you named your callback `MyMusicSequenceUserCallback`, you would declare it like this:
+///
+///
+/// See MusicSequenceSetUserCallback
 pub type MusicSequenceUserCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -547,47 +540,75 @@ pub type MusicSequenceUserCallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_invalidsequencetype?language=objc)
 pub const kAudioToolboxErr_InvalidSequenceType: OSStatus = -10846;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_trackindexerror?language=objc)
 pub const kAudioToolboxErr_TrackIndexError: OSStatus = -10859;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_tracknotfound?language=objc)
 pub const kAudioToolboxErr_TrackNotFound: OSStatus = -10858;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_endoftrack?language=objc)
 pub const kAudioToolboxErr_EndOfTrack: OSStatus = -10857;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_startoftrack?language=objc)
 pub const kAudioToolboxErr_StartOfTrack: OSStatus = -10856;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_illegaltrackdestination?language=objc)
 pub const kAudioToolboxErr_IllegalTrackDestination: OSStatus = -10855;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_nosequence?language=objc)
 pub const kAudioToolboxErr_NoSequence: OSStatus = -10854;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_invalideventtype?language=objc)
 pub const kAudioToolboxErr_InvalidEventType: OSStatus = -10853;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_invalidplayerstate?language=objc)
 pub const kAudioToolboxErr_InvalidPlayerState: OSStatus = -10852;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerr_cannotdoincurrentcontext?language=objc)
 pub const kAudioToolboxErr_CannotDoInCurrentContext: OSStatus = -10863;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiotoolboxerror_notrackdestination?language=objc)
 pub const kAudioToolboxError_NoTrackDestination: OSStatus = -66720;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_loopinfo?language=objc)
+/// Looping information for a music track.
+///
+/// ## Discussion
+///
+/// Looping is off by default; by default, a music track plays exactly once. A read/write [`MusicTrackLoopInfo`](https://developer.apple.com/documentation/audiotoolbox/musictrackloopinfo) structure.
+///
+///
 pub const kSequenceTrackProperty_LoopInfo: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_offsettime?language=objc)
+/// A music track’s start time in terms of beat number.
+///
+/// ## Discussion
+///
+/// By default this value is 0. A read/write [`MusicTimeStamp`](https://developer.apple.com/documentation/audiotoolbox/musictimestamp) value.
+///
+///
 pub const kSequenceTrackProperty_OffsetTime: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_mutestatus?language=objc)
+/// The mute/unmute state of a music track. By default this value is `false` (not muted). A read/write Boolean value.
 pub const kSequenceTrackProperty_MuteStatus: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_solostatus?language=objc)
+/// The solo/unsolo state of a music track. By default this value is `false` (not soloed). A read/write Boolean value.
 pub const kSequenceTrackProperty_SoloStatus: u32 = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_automatedparameters?language=objc)
+/// Indicates whether or not a music track’s purpose is audio unit parameter automation. If this property’s value is other than 0, music events in the track can only indicate points in an automation curve. A read/write `UInt32` value, where a value other than 0 indicates that the track is for parameter automation.
 pub const kSequenceTrackProperty_AutomatedParameters: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_tracklength?language=objc)
+/// The time of the last music event in a music track, plus time required for note fade-outs and so on.
+///
+/// ## Discussion
+///
+/// If this property is not set, music track length equals the end of the last active event in the track and is adjusted dynamically as events are added or removed. The value of this property is the specified track length, or the calculated length—whichever is greater. A read/write [`MusicTimeStamp`](https://developer.apple.com/documentation/audiotoolbox/musictimestamp) value.
+///
+///
 pub const kSequenceTrackProperty_TrackLength: u32 = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_timeresolution?language=objc)
+/// The time resolution for a sequence of music events. For example, this value can indicate the time resolution that was specified by the MIDI file used to construct a sequence.
+///
+/// ## Discussion
+///
+/// To use a specific time resolution when writing a new file, retrieve this value and then specify it when calling the [`MusicSequenceFileCreate`](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreate(_:_:_:_:_:)) function.
+///
+/// This value does not directly determine playback rate for a music track, but rather it
+///
+/// `kSequenceTrackProperty_TimeResolution` is set in two possible ways:
+///
+/// - If you create a music sequence programmatically, the value is set to 480.
+///
+/// - If you create a music sequence from a MIDI file, the value is set to the time resolution specified in the MIDI file.
+///
+/// A read-only `SInt16` value that is valid only for a tempo track.
+///
+///
 pub const kSequenceTrackProperty_TimeResolution: u32 = 6;
 
-/// Used to control the looping behaviour of a track
+/// Supports control of the looping behavior of a music track.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackloopinfo?language=objc)
+/// ## Overview
+///
+/// This data type is used for the value of the [`kSequenceTrackProperty_LoopInfo`](https://developer.apple.com/documentation/audiotoolbox/ksequencetrackproperty_loopinfo) property.
+///
+///
+/// Used to control the looping behaviour of a track
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicTrackLoopInfo {
@@ -607,6 +628,23 @@ unsafe impl RefEncode for MusicTrackLoopInfo {
 }
 
 extern "C-unwind" {
+    /// Creates a new music player.
+    ///
+    /// Parameters:
+    /// - outPlayer: On output, the newly created music player.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A music player can send its output to an audio processing graph, to a MIDI endpoint, or to a combination of both.
+    ///
+    ///
     /// Create a new music player
     ///
     /// A music player is used to play a sequence back. This call is used to create a player
@@ -618,12 +656,21 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusicplayer(_:)?language=objc)
     pub fn NewMusicPlayer(out_player: NonNull<MusicPlayer>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disposes of a music player.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
     /// Dispose a music player
     ///
     /// Parameter `inPlayer`: the player to dispose
@@ -631,12 +678,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposemusicplayer(_:)?language=objc)
     pub fn DisposeMusicPlayer(in_player: MusicPlayer) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Sets the music sequence for the music player to play.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player you are configuring.
+    ///
+    /// - inSequence: The music sequence for the music player to play.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A music player must be stopped to call this function on it. Setting a music sequence for a player overrides the previously set sequence.
+    ///
+    ///
     /// Set the sequence for the player to play
     ///
     /// A Sequence cannot be set on a player while it is playing. Setting a sequence
@@ -650,12 +714,23 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `in_sequence` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayersetsequence(_:_:)?language=objc)
     pub fn MusicPlayerSetSequence(in_player: MusicPlayer, in_sequence: MusicSequence) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the music sequence associated with a music player.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player whose music sequence you want to get.
+    ///
+    /// - outSequence: On output, the music sequence associated with the music player.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the music player does not have a sequence set, this function returns `kAudioToolboxErr_NoSequence`.
+    ///
+    ///
     /// Get the sequence attached to a player
     ///
     /// If the player does not have a sequence set, this will return the _NoSequence error
@@ -668,8 +743,6 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergetsequence(_:_:)?language=objc)
     pub fn MusicPlayerGetSequence(
         in_player: MusicPlayer,
         out_sequence: NonNull<MusicSequence>,
@@ -677,6 +750,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the playback point for a music player, in beats.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player you want to set the playback point on.
+    ///
+    /// - inTime: The time, in beats, to set the playback point to.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can call this function while a music player is stopped or playing. If playing at the time of the call, playback continues at the specified point. No range checking on the `inTime` value is performed by this function.
+    ///
+    ///
     /// Set the current time on the player
     ///
     /// The Get and Set Time calls take a specification of time as beats. This positions the player
@@ -691,12 +783,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayersettime(_:_:)?language=objc)
     pub fn MusicPlayerSetTime(in_player: MusicPlayer, in_time: MusicTimeStamp) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the playback point for a music player, in beats.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player you want to get the playback point for.
+    ///
+    /// - outTime: On output, the playback point for the music player.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For converting between beats and seconds, see [`MusicSequenceGetSecondsForBeats`](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsecondsforbeats(_:_:_:)) and [`MusicSequenceGetBeatsForSeconds`](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetbeatsforseconds(_:_:_:)).
+    ///
+    ///
     /// Get the current time of the player
     ///
     /// The Get and Set Time calls take a specification of time as beats. This retrieves the player's
@@ -710,8 +819,6 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergettime(_:_:)?language=objc)
     pub fn MusicPlayerGetTime(
         in_player: MusicPlayer,
         out_time: NonNull<MusicTimeStamp>,
@@ -719,6 +826,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the host time associated with a specified beat.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player that you are querying.
+    ///
+    /// - inBeats: The beat number that you want the host time for.
+    ///
+    /// - outHostTime: On output, the host time associated with the `inBeats` value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. This function returns an error if the player is not playing.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is valid only if the music player is playing. For converting between beats and seconds, see [`MusicSequenceGetSecondsForBeats`](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsecondsforbeats(_:_:_:)) and [`MusicSequenceGetBeatsForSeconds`](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetbeatsforseconds(_:_:_:)).
+    ///
+    ///
     /// Returns the host time that will be (or was) played at the specified beat.
     ///
     /// This call is only valid if the player is playing and will return an error if the player is not playing
@@ -740,8 +868,6 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_host_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergethosttimeforbeats(_:_:_:)?language=objc)
     pub fn MusicPlayerGetHostTimeForBeats(
         in_player: MusicPlayer,
         in_beats: MusicTimeStamp,
@@ -750,6 +876,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the beat number associated a specified host time.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player that you are querying.
+    ///
+    /// - inHostTime: The host time that you want the beat number for.
+    ///
+    /// - outBeats: On output, the beat number associated with the `inHostTime` value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. This function returns an error if the player is not playing.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is valid only if the music player is playing. For converting between beats and seconds, see [`MusicSequenceGetSecondsForBeats`](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsecondsforbeats(_:_:_:)) and [`MusicSequenceGetBeatsForSeconds`](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetbeatsforseconds(_:_:_:)).
+    ///
+    ///
     /// Returns the beat that will be (or was) played at the specified host time.
     ///
     /// This call is only valid if the player is playing and will return an error if the player is not playing
@@ -771,8 +918,6 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergetbeatsforhosttime(_:_:_:)?language=objc)
     pub fn MusicPlayerGetBeatsForHostTime(
         in_player: MusicPlayer,
         in_host_time: u64,
@@ -781,6 +926,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Prepares a music player to play.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player to prepare to play.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function in advance of playback to reduce a music player’s startup latency. If you call [`MusicPlayerStart`](https://developer.apple.com/documentation/audiotoolbox/musicplayerstart(_:)) without first calling this function, the player will call this function before beginning playback.
+    ///
+    ///
     /// Prepare the player for playing
     ///
     /// Allows the player to prepare its state so that starting is has a lower latency. If a player is started without
@@ -791,12 +953,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerpreroll(_:)?language=objc)
     pub fn MusicPlayerPreroll(in_player: MusicPlayer) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Starts playback of a music player.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player to start.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you call this function without first calling [`MusicPlayerPreroll`](https://developer.apple.com/documentation/audiotoolbox/musicplayerpreroll(_:)), the player will call that function before beginning playback.
+    ///
+    ///
     /// Start the player
     ///
     /// If the player has not been prerolled, it will pre-roll itself and then start.
@@ -806,12 +983,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerstart(_:)?language=objc)
     pub fn MusicPlayerStart(in_player: MusicPlayer) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Stops playback of a music player.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player to stop.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Music players must be explicitly stopped. Specifically, a music player does not automatically stop when its associated music sequence has been completely played.
+    ///
+    ///
     /// Stop the player
     ///
     /// Parameter `inPlayer`: the player
@@ -819,12 +1011,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerstop(_:)?language=objc)
     pub fn MusicPlayerStop(in_player: MusicPlayer) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Indicates whether or not a music player is playing.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player to query.
+    ///
+    /// - outIsPlaying: On output `true` (nonzero) if playing, `false` (zero) if not playing.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a music player has started playing and has not been explicitly stopped, the `outIsPlaying` value is `true`. Specifically, if the player’s music sequence has completed—so there is no more audible output—but the player has not been explicitly stopped, the `outIsPlaying` value is `true` and the music player’s time value continues to increase.
+    ///
+    ///
     /// Returns the playing state of the player. "Is it playing?"
     ///
     /// This call returns a non-zero value in outIsPlaying if the player has been
@@ -840,8 +1049,6 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_is_playing` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayerisplaying(_:_:)?language=objc)
     pub fn MusicPlayerIsPlaying(
         in_player: MusicPlayer,
         out_is_playing: NonNull<Boolean>,
@@ -849,6 +1056,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a playback rate multiplier for a music player.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player that you want to set a playback rate multiplier on.
+    ///
+    /// - inScaleRate: The playback rate multiplier to apply to the music player. For example, setting this parameter to a value of 2 doubles the playback rate. Must be greater than 0.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A music player’s default playback rate multiplier is 1.0.
+    ///
+    ///
     /// Scale the playback rate of the player
     ///
     /// Parameter `inPlayer`: the player
@@ -859,12 +1085,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_player` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayersetplayratescalar(_:_:)?language=objc)
     pub fn MusicPlayerSetPlayRateScalar(in_player: MusicPlayer, in_scale_rate: f64) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the playback rate multiplier for a music player.
+    ///
+    /// Parameters:
+    /// - inPlayer: The music player that you want to get the playback rate multiplier from.
+    ///
+    /// - outScaleRate: The playback rate multiplier of the music player.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A music player’s default playback rate multiplier is 1.0.
+    ///
+    ///
     /// Get the playback rate scalar of the player
     ///
     /// Parameter `inPlayer`: the player
@@ -875,8 +1118,6 @@ extern "C-unwind" {
     ///
     /// - `in_player` must be a valid pointer.
     /// - `out_scale_rate` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayergetplayratescalar(_:_:)?language=objc)
     pub fn MusicPlayerGetPlayRateScalar(
         in_player: MusicPlayer,
         out_scale_rate: NonNull<f64>,
@@ -884,6 +1125,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new empty music sequence.
+    ///
+    /// Parameters:
+    /// - outSequence: On output, the new, empty music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A new music sequence has only a tempo track, with a default tempo of 120 beats-per-minute. The default sequence type is beat-based. For the various sequence types, see [`MusicSequenceType`](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype).
+    ///
+    /// To direct the output of a music sequence to an audio processing graph, use the [`MusicSequenceSetAUGraph`](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetaugraph(_:_:)) function. To direct the output instead to a MIDI endpoint, use the [`MusicSequenceSetMIDIEndpoint`](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetmidiendpoint(_:_:)) function.
+    ///
+    /// To direct the output of a specific music track, use the [`MusicTrackSetDestNode`](https://developer.apple.com/documentation/audiotoolbox/musictracksetdestnode(_:_:)) and [`MusicTrackSetDestMIDIEndpoint`](https://developer.apple.com/documentation/audiotoolbox/musictracksetdestmidiendpoint(_:_:)) functions, described in `MusicTrack`.
+    ///
+    ///
     /// Create a new empty sequence
     ///
     /// A new music sequence will only have a tempo track (with a default tempo of 120 bpm),
@@ -900,12 +1162,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusicsequence(_:)?language=objc)
     pub fn NewMusicSequence(out_sequence: NonNull<MusicSequence>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disposes of a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot dispose of a music sequence while it is associated with a music player.
+    ///
+    ///
     /// Dispose the sequence
     ///
     /// A sequence cannot be disposed while a MusicPlayer has it.
@@ -915,12 +1192,23 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposemusicsequence(_:)?language=objc)
     pub fn DisposeMusicSequence(in_sequence: MusicSequence) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Add a new, empty music track to a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to add the new music track to.
+    ///
+    /// - outTrack: On output, the new music track that was appended to the list of tracks for the music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Add a new (empty) track to the sequence
     ///
     /// Parameter `inSequence`: the sequence
@@ -931,8 +1219,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencenewtrack(_:_:)?language=objc)
     pub fn MusicSequenceNewTrack(
         in_sequence: MusicSequence,
         out_track: NonNull<MusicTrack>,
@@ -940,6 +1226,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a music track from a music sequence, and disposes of the track.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to remove the music track from.
+    ///
+    /// - inTrack: The music track to remove and dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Remove and dispose a track from a sequence
     ///
     /// Parameter `inSequence`: the sequence
@@ -950,12 +1249,29 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencedisposetrack(_:_:)?language=objc)
     pub fn MusicSequenceDisposeTrack(in_sequence: MusicSequence, in_track: MusicTrack) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the number of music tracks owned by a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence whose track count you want.
+    ///
+    /// - outNumberOfTracks: On output, the number of music tracks in the music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The track count provided by this function excludes the tempo track.
+    ///
+    ///
     /// The number of tracks in a sequence.
     /// The track count and accessors exclude the tempo track (which is treated as a special case)
     ///
@@ -967,8 +1283,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_number_of_tracks` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegettrackcount(_:_:)?language=objc)
     pub fn MusicSequenceGetTrackCount(
         in_sequence: MusicSequence,
         out_number_of_tracks: NonNull<u32>,
@@ -976,6 +1290,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the music track at the specified track index.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to obtain the music track from.
+    ///
+    /// - inTrackIndex: The index for the music track you want to obtain. Music tracks are zero-indexed. Out of bound indexes result in an error.
+    ///
+    /// - outTrack: On output, the music track specified by the `inTrackIndex` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is for accessing only music tracks, not the tempo track.
+    ///
+    ///
     /// Get a track at the specified index
     ///
     /// Index is zero based. It will return kAudio_ParamError if index is not in the range: 0
@@ -993,8 +1328,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetindtrack(_:_:_:)?language=objc)
     pub fn MusicSequenceGetIndTrack(
         in_sequence: MusicSequence,
         in_track_index: u32,
@@ -1003,6 +1336,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the index number for a specified music track.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to obtain the track index number from.
+    ///
+    /// - inTrack: The music track whose index you want to obtain. This function returns an error if the music track is not part of the music sequence specified in the `inSequence` parameter.
+    ///
+    /// - outTrackIndex: On output, the zero-based index of the music track that you provided in the `inTrack` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is for accessing only indexes for music tracks, not the tempo track.
+    ///
+    ///
     /// Get the index for a specific track
     ///
     /// Index is zero based. It will return an error if the track is not a member of the sequence.
@@ -1019,8 +1373,6 @@ extern "C-unwind" {
     /// - `in_sequence` must be a valid pointer.
     /// - `in_track` must be a valid pointer.
     /// - `out_track_index` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegettrackindex(_:_:_:)?language=objc)
     pub fn MusicSequenceGetTrackIndex(
         in_sequence: MusicSequence,
         in_track: MusicTrack,
@@ -1029,6 +1381,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the tempo track for a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence whose tempo track you want to obtain.
+    ///
+    /// - outTrack: On output, the tempo track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each music sequence has a single tempo track. All tempo events are placed into this track, as well as some other events—such as the time signature from a MIDI file. The tempo track, once retrieved, can be edited and iterated over as can a music track. Most non-tempo events in a tempo track are ignored.
+    ///
+    ///
     /// Get the tempo track of the sequence
     ///
     /// Each sequence has a single tempo track. All tempo events are placed into this tempo track (as well
@@ -1043,8 +1414,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegettempotrack(_:_:)?language=objc)
     pub fn MusicSequenceGetTempoTrack(
         in_sequence: MusicSequence,
         out_track: NonNull<MusicTrack>,
@@ -1052,6 +1421,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Associates an audio processing graph with a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to associate with an audio processing graph.
+    ///
+    /// - inGraph: The audio processing graph to associate with the music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After you call this function, the system directs a played music sequence’s output to the associated audio processing graph. By default, all music tracks in the sequence are directed to the first node in the graph that is an Instrument unit (of type `DLSMusicDevice`).
+    ///
+    ///
     /// Set the graph to be associated with the sequence
     ///
     /// A sequence can be associated with an AUGraph and this graph will be used to render the events as
@@ -1069,13 +1457,30 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `in_graph` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetaugraph(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicSequenceSetAUGraph(in_sequence: MusicSequence, in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the audio processing graph associated with a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence whose associated audio processing graph you want to get.
+    ///
+    /// - outGraph: On output, the audio processing graph associated with the music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If no audio processing graph is already associated with the music sequence, this function creates a default graph. The default graph contains an Instrument unit (of type DLSMusicDevice) and a dynamic compressor unit (of type DynamicCompressor). In this case, all music tracks in the music sequence have their outputs directed to the Instrument unit.
+    ///
+    ///
     /// Gets the graph currently associated with a sequence
     ///
     /// By default if no graph is assigned to a sequence then the sequence will create a default graph.
@@ -1095,8 +1500,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetaugraph(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicSequenceGetAUGraph(
         in_sequence: MusicSequence,
@@ -1105,6 +1508,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Associates a specified MIDI endpoint with all music tracks in a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want to associate with a MIDI endpoint.
+    ///
+    /// - inEndpoint: The MIDI endpoint to associate with the music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function, equivalent to iterating through the music tracks in a music sequence and targeting each to the MIDI endpoint.
+    ///
+    ///
     /// Makes the target of all of the tracks in the sequence a MIDI endpoint
     ///
     /// This is a convenience function, and is equivalent to iterating through all of the tracks in a sequence
@@ -1118,8 +1540,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetmidiendpoint(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicSequenceSetMIDIEndpoint(
         in_sequence: MusicSequence,
@@ -1128,6 +1548,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the sequence type for a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence whose sequence type you want to set.
+    ///
+    /// - inType: The type of sequence to assign to the music sequence. For the list of available sequence types, see [`MusicSequenceType`](https://developer.apple.com/documentation/audiotoolbox/musicsequencetype). The default sequence type is `kMusicSequenceType_Beats`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The sequence type can be set to `kMusicSequenceType_Beats` at any time. The sequence type can only be set to `kMusicSequenceType_Seconds` or `kMusicSequenceType_Samples` if there are no tempo events already in the sequence.
+    ///
+    /// The following considerations pertain to the various sequence types:
+    ///
+    /// - `kMusicSequenceType_Beats`—Tempo is specified as beats-per-minute. A music sequence of this type can contain any number of tempo events.
+    ///
+    /// - `kMusicSequenceType_Samples`—Tempo is specified as a sample rate, in terms of samples-per-second. If you set the tempo to 44,100 using a sequence of this type, then 44,100 beats corresponds to a duration of one second.
+    ///
+    /// - `kMusicSequenceType_Seconds`—The tempo should be set to 60; a beat is a second.
+    ///
+    /// After setting a music sequence to the `kMusicSequenceType_Samples` or `kMusicSequenceType_Seconds` type, add a single tempo event to specify the tempo.
+    ///
+    /// A meta event of interest for the `kMusicSequenceType_Seconds` sequence type is the SMPTE Offset meta event, which is stored in the tempo track. The sequence doesn’t do anything with this event.
+    ///
+    ///
     /// Set the sequence type (the default is beats)
     ///
     /// These two calls allow you to get and set a MusicSequence type; specifying
@@ -1156,8 +1607,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetsequencetype(_:_:)?language=objc)
     pub fn MusicSequenceSetSequenceType(
         in_sequence: MusicSequence,
         in_type: MusicSequenceType,
@@ -1165,6 +1614,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the sequence type for a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence whose sequence type you want to get.
+    ///
+    /// - outType: On output, the sequence type for the music sequence.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Get the sequence type
     ///
     /// See SetSequence for a full description
@@ -1177,8 +1639,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_type` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsequencetype(_:_:)?language=objc)
     pub fn MusicSequenceGetSequenceType(
         in_sequence: MusicSequence,
         out_type: NonNull<MusicSequenceType>,
@@ -1186,6 +1646,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Loads data into a music sequence from a URL reference.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to load the data into.
+    ///
+    /// - inFileRef: A `file://` URL pointing to a file that contains the data to load.
+    ///
+    /// - inFileTypeHint: Provides a hint to the system about the file type referenced by the `inFileRef` parameter.
+    ///
+    /// - inFlags: Flags that specify how the data should be parsed, and how it should be assigned to tracks. See [`MusicSequenceLoadFlags`](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Load the data contained within the referenced file to the sequence
     ///
     /// This function will parse the file referenced by the URL and add the events to the sequence.
@@ -1202,8 +1679,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileload(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoad(
         in_sequence: MusicSequence,
@@ -1214,6 +1689,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Load data into a music sequence from a data reference.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence to load the data into.
+    ///
+    /// - inData: The contents of a valid file loaded into a `CFData` object.
+    ///
+    /// - inFileTypeHint: Provides a hint to the system about the file type referenced by the `inFileRef` parameter.
+    ///
+    /// - inFlags: Flags that specify how the data should be parsed, and how it should be assigned to tracks. See [`MusicSequenceLoadFlags`](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The data to be loaded must conform to the file type indicated by the `inFileTypeHint` parameter.
+    ///
+    ///
     /// Load the data to the sequence
     ///
     /// This function will parse the data and add the events to the sequence. The data provided needs to
@@ -1231,8 +1729,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileloaddata(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoadData(
         in_sequence: MusicSequence,
@@ -1247,6 +1743,51 @@ extern "C-unwind" {
 // TODO: pub fn MusicSequenceGetSMPTEResolution(in_res: i16,fps: NonNull<SignedByte>,ticks: NonNull<Byte>,);
 
 extern "C-unwind" {
+    /// Creates a MIDI file from the events in a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want to create a MIDI file from.
+    ///
+    /// - inFileRef: The URL to the MIDI file to be created.
+    ///
+    /// - inFileType: The type of file to create.
+    ///
+    /// - inFlags: Flags that configure the file creation process.
+    ///
+    /// - inResolution: The resolution, which depends on the file type and the music sequence type.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be (and is most commonly) used to create a MIDI file from the events in a sequence. Only MIDI based events are used when creating the MIDI file. MIDI files are normally beat based, but can also have a SMPTE (or real-time rather than beat time) representation.
+    ///
+    /// The inResolution parameter specifies the relationship between “tick” and quarter note for saving to a standard MIDI file. Pass 0 to this parameter to use the default value; namely, the value that is currently set on the tempo track.
+    ///
+    /// The various sequence types determine the kinds of files that can be created, as follows:
+    ///
+    /// - Beats—When saving a MIDI file, it saves a beats (PPQ) based axis.
+    ///
+    /// - Seconds—When saving a MIDI file, it will save it as a SMPTE resolution - so you should specify this resolution when creating the MIDI file. If zero is specified, 25 fps and 40 ticks/frame is used (a time scale of a millisecond)
+    ///
+    /// - Samples—You cannot save to a MIDI file with this sequence type.
+    ///
+    /// The complete meaning of the 16-bit “division” field in a MIDI File’s MThd chunk. If it is positive, then a tick represents 1/D quarter notes.  If it negative, the following pertains:
+    ///
+    /// - Bits 14-8 are a signed 7-bit number representing the SMPTE format: 24, -25, -29 (drop), -30.
+    ///
+    /// - Bits 7-0 represents the number of ticks per SMPTE frame. Typical values are 4, 10, 80, 100. You can obtain millisecond resolution by specifying 25 frames/sec and 40 divisions/frame:
+    ///
+    /// ```objc
+    ///   30 fps with 80 bits (ticks) per frame: 0xE250  ((char)0xE2 == -30)
+    /// ```
+    ///
+    ///
     /// Create a file from a sequence
     ///
     /// This function can be (and is most commonly) used to create a MIDI file from the events in a sequence.
@@ -1299,8 +1840,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreate(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreate(
         in_sequence: MusicSequence,
@@ -1312,6 +1851,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a data object containing the events from a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want to create a MIDI data object from.
+    ///
+    /// - inFileType: The type of file format for the data in the data object.
+    ///
+    /// - inFlags: Flags that configure the data object creation process.
+    ///
+    /// - inResolution: The resolution, which depends on the file type and the music sequence type.
+    ///
+    /// - outData: On output, the data object containing MIDI data in the specified format.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `CFData` object should be released by the caller.
+    ///
+    ///
     /// Create a data object from a sequence
     ///
     /// The same basic parameters apply to this as with the MusicSequenceFileCreate function. The difference
@@ -1332,8 +1896,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefilecreatedata(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreateData(
         in_sequence: MusicSequence,
@@ -1345,6 +1907,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Reverses the MIDI and tempo events in a music sequence, so the start becomes the end.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want to time-reverse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Reverse in time all events in a sequence, including the tempo events
     ///
     /// Parameter `inSequence`: the sequence
@@ -1352,12 +1925,31 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencereverse(_:)?language=objc)
     pub fn MusicSequenceReverse(in_sequence: MusicSequence) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Calculates the number of seconds that correspond to a number of beats.
+    ///
+    /// Parameters:
+    /// - inSequence: The sequence that you want to get a count of seconds for.
+    ///
+    /// - inBeats: The number of beats that you want the corresponding number of seconds for.
+    ///
+    /// - outSeconds: On output, the number of seconds that corresponds to the number of beats in the `inBeats` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function makes use of the music sequence’s tempo track.
+    ///
+    ///
     /// Returns a seconds value that would correspond to the supplied beats
     ///
     /// Uses the sequence's tempo events
@@ -1372,8 +1964,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_seconds` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetsecondsforbeats(_:_:_:)?language=objc)
     pub fn MusicSequenceGetSecondsForBeats(
         in_sequence: MusicSequence,
         in_beats: MusicTimeStamp,
@@ -1382,6 +1972,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Calculates the number of beats that correspond to a number of seconds.
+    ///
+    /// Parameters:
+    /// - inSequence: The sequence that you want to get a count of beats for.
+    ///
+    /// - inSeconds: The number of seconds that you want the corresponding number of beats for.
+    ///
+    /// - outBeats: On output, the number of beats that corresponds to the number of seconds in the `inSeconds` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function makes use of the music sequence’s tempo track.
+    ///
+    ///
     /// Returns a beat value that would correspond to the supplied seconds from zero.
     ///
     /// Uses the sequence's tempo events
@@ -1396,8 +2007,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetbeatsforseconds(_:_:_:)?language=objc)
     pub fn MusicSequenceGetBeatsForSeconds(
         in_sequence: MusicSequence,
         in_seconds: f64,
@@ -1406,6 +2015,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers a user callback function with a music sequence.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want to add a user callback function to.
+    ///
+    /// - inCallback: A reference to your callback function. Use `NULL` to remove a registered callback function.
+    ///
+    /// - inClientData: Your data that the music sequence provides back to your callback function when it is invoked.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The music sequence invokes your callback for each user event added to any music track owned by the sequence. If there is a callback registered, then UserEvents will be chased when MusicPlayerSetTime is called. In that case the inStartSliceBeat and inEndSliceBeat will both be the same value and will be the beat that the player is chasing to.
+    ///
+    /// Usually, where the sequence data is being scheduled for playback, the following applies:
+    ///
+    /// ```objc
+    /// inStartSliceBeat <= inEventTime < inEndSliceBeat
+    /// ```
+    ///
+    /// The only exception to this is if the track that owns the MusicEvent is looping. In this case the start beat will still be less than the end beat (so your callback can still determine that it is playing, and what beats are currently being scheduled), however, the inEventTime will be the original time-stamped time of the user event.
+    ///
+    ///
     /// Establish a user callback for a sequence
     ///
     /// This call is used to register (or remove if inCallback is NULL) a callback
@@ -1440,8 +2078,6 @@ extern "C-unwind" {
     /// - `in_sequence` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesetusercallback(_:_:_:)?language=objc)
     pub fn MusicSequenceSetUserCallback(
         in_sequence: MusicSequence,
         in_callback: MusicSequenceUserCallback,
@@ -1450,6 +2086,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Formats a music sequence’s beat time to its bar-beat time.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want bar-beat time for.
+    ///
+    /// - inBeats: The beats to be represented as bar-beats.
+    ///
+    /// - inSubbeatDivisor: The denominator of the fractional number of beats.
+    ///
+    /// - outBarBeatTime: On output, the music sequence’s bar-beat time.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The sequence’s tempo track time signature events are used to calculate the bar-beat representation. If there are no Time Sig events added to the sequence 4/4 is assumed. A time signature event is a MIDI Meta Event as specified for MIDI files.
+    ///
+    /// Refer to `AudioToolbox/CAClock.h` for more information.
+    ///
+    ///
     /// Convenience function to format a sequence's beat time to its bar-beat time
     ///
     /// The sequence's tempo track Time Sig events are used to
@@ -1468,8 +2129,6 @@ extern "C-unwind" {
     ///
     /// - `in_sequence` must be a valid pointer.
     /// - `out_bar_beat_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencebeatstobarbeattime(_:_:_:_:)?language=objc)
     pub fn MusicSequenceBeatsToBarBeatTime(
         in_sequence: MusicSequence,
         in_beats: MusicTimeStamp,
@@ -1479,6 +2138,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Formats a music sequence’s bar-beat time to its beat time.
+    ///
+    /// Parameters:
+    /// - inSequence: The music sequence that you want the beat count for.
+    ///
+    /// - inBarBeatTime: The bar-beat time to be represented as beats.
+    ///
+    /// - outBeats: On output, the music sequence’s beat time.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The sequence’s tempo track time signature events are used to to calculate the bar-beat representation. If there are no Time Sig events added to the sequence 4/4 is assumed. A time signature event is a MIDI Meta Event as specified for MIDI files.
+    ///
+    /// Refer to `AudioToolbox/CAClock.h` for more information.
+    ///
+    ///
     /// Convenience function to format a bar-beat time to a sequence's beat time
     ///
     /// The sequence's tempo track Time Sig events are used to
@@ -1496,8 +2178,6 @@ extern "C-unwind" {
     /// - `in_sequence` must be a valid pointer.
     /// - `in_bar_beat_time` must be a valid pointer.
     /// - `out_beats` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencebarbeattimetobeats(_:_:_:)?language=objc)
     pub fn MusicSequenceBarBeatTimeToBeats(
         in_sequence: MusicSequence,
         in_bar_beat_time: NonNull<CABarBeatTime>,
@@ -1505,6 +2185,23 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Returns a dictionary containing music sequence information.
+///
+/// Parameters:
+/// - inSequence: The music sequence that you want the information dictionary from.
+///
+///
+/// ## Return Value
+///
+/// A dictionary object containing information about a music sequence.
+///
+///
+///
+/// ## Discussion
+///
+/// The dictionary can contain one or more of the kAFInfoDictionary_* keys specified in `AudioToolbox/AudioFile.h`. The caller should release the returned dictionary. If the call fails it will return `NULL`
+///
+///
 /// Returns a dictionary containing meta-data derived from a sequence
 ///
 /// The dictionary can contain one or more of the kAFInfoDictionary_*
@@ -1522,8 +2219,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_sequence` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencegetinfodictionary(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
@@ -1540,6 +2235,19 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
 }
 
 extern "C-unwind" {
+    /// Gets the music sequence that the music track is a member of.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to know the music sequence for.
+    ///
+    /// - outSequence: On return, the music sequence that the music track is a member of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Gets the sequence which the track is a member of
     ///
     /// Parameter `inTrack`: the track
@@ -1550,8 +2258,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_sequence` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetsequence(_:_:)?language=objc)
     pub fn MusicTrackGetSequence(
         in_track: MusicTrack,
         out_sequence: NonNull<MusicSequence>,
@@ -1559,6 +2265,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the music track’s event target to an audio unit node.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to set a target audio unit node for.
+    ///
+    /// - inNode: The node that you specifying as the target for music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The audio unit node that you specify must be a member of the audio processing graph that the music track’s sequence is using. When played, the track sends its events to that node.
+    ///
+    ///
     /// Sets the track's target to the specified AUNode
     ///
     /// The node must be a member of the graph that the track's sequence is using. When played, the track
@@ -1571,13 +2296,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracksetdestnode(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackSetDestNode(in_track: MusicTrack, in_node: AUNode) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Sets the music track’s event target to a MIDI endpoint.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to set a target MIDI endpoint for.
+    ///
+    /// - inEndpoint: The MIDI endpoint that you specifying as the target for music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When played, the music track sends its events to the specified MIDI endpoint.
+    ///
+    ///
     /// Sets the track's target to the specified MIDI endpoint
     ///
     /// When played, the track will send all of its events to the specified MIDI Endpoint.
@@ -1589,8 +2331,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracksetdestmidiendpoint(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicTrackSetDestMIDIEndpoint(
         in_track: MusicTrack,
@@ -1599,6 +2339,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the audio unit node that is the event target for a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track for which you want to get the associated audio unit node.
+    ///
+    /// - outNode: On return, the audio unit node that is the event target of the music track. This function instead returns an error if the music track’s event target is not an audio unit node.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the music track’s event target is a MIDI endpoint, returns `kAudioToolboxErr_IllegalTrackDestination`.
+    ///
+    ///
     /// Gets the track's target if it is an AUNode
     ///
     /// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is a MIDIEndpointRef
@@ -1612,13 +2365,24 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetdestnode(_:_:)?language=objc)
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: NonNull<AUNode>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the MIDI endpoint that is the event target for a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track for which you want to get the associated MIDI endpoint.
+    ///
+    /// - outEndpoint: On return, the MIDI endpoint that is the event target of the music track. This function instead returns an error if the music track’s event target is not a MIDI endpoint.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the music track’s event target is an audio unit node, returns `kAudioToolboxErr_IllegalTrackDestination`.
+    ///
+    ///
     /// Gets the track's target if it is a MIDI Endpoint
     ///
     /// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is an AUNode
@@ -1632,8 +2396,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_endpoint` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetdestmidiendpoint(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-midi")]
     pub fn MusicTrackGetDestMIDIEndpoint(
         in_track: MusicTrack,
@@ -1642,6 +2404,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a music track property value.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to set a property value for.
+    ///
+    /// - inPropertyID: The identifier for the music track property that you want to set. See [Music Track Properties](https://developer.apple.com/documentation/audiotoolbox/1515456-music-track-properties) for possible values.
+    ///
+    /// - inData: The new property value.
+    ///
+    /// - inLength: The size of the new property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Music track property values are always accessed by reference.
+    ///
+    ///
     /// Sets the specified property value
     ///
     /// Property values are always get and set by reference
@@ -1658,8 +2443,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracksetproperty(_:_:_:_:)?language=objc)
     pub fn MusicTrackSetProperty(
         in_track: MusicTrack,
         in_property_id: u32,
@@ -1669,6 +2452,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a music track property value.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to get a property value from.
+    ///
+    /// - inPropertyID: The identifier for the music track property that you want to get. See [Music Track Properties](https://developer.apple.com/documentation/audiotoolbox/1515456-music-track-properties) for possible values.
+    ///
+    /// - outData: On output, the requested property value.
+    ///
+    /// - ioLength: On input, the available size for the retrieved property value. On output, the size of the valid property data that `outData` points to.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Music track property values are always accessed by reference. As of OS X v10.6, all such property values are fixed length.
+    ///
+    /// This function’s main purpose is to retrieve a music track property value, but you also use it to obtain the size of a variable-length property. Do this, prior to retrieving a variable-length property value, to ensure that you allocate enough memory in `outData` to hold the value.
+    ///
+    /// To obtain a property value’s size, call this function with the `outData` parameter set to `NULL`. On output, the `ioLength` parameter contains the property size.
+    ///
+    ///
     /// Gets the specified property value
     ///
     /// If outData is NULL, then the size of the data will be passed back in ioLength
@@ -1690,8 +2500,6 @@ extern "C-unwind" {
     /// - `in_track` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
     /// - `io_length` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackgetproperty(_:_:_:_:)?language=objc)
     pub fn MusicTrackGetProperty(
         in_track: MusicTrack,
         in_property_id: u32,
@@ -1701,6 +2509,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Shifts music track events forward or backward in time, in terms of beats.
+    ///
+    /// Parameters:
+    /// - inTrack: The track whose events you want to move forward or backward in time.
+    ///
+    /// - inStartTime: The current start time, in beats, for the music track events you want to move.
+    ///
+    /// - inEndTime: The current end time, in beats, for the music track events you want to move.
+    ///
+    /// - inMoveTime: The number of beats to move the specified range of music track events. A positive value moves the events toward the end of the music track; a negative value moves the events toward the start.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `inStartTime` value must be less than the `inEndTime` value.
+    ///
+    ///
     /// Move events in a track
     ///
     /// Moves all of the events in the specified time range by the moveTime. MoveTime maybe negative to
@@ -1722,8 +2553,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackmoveevents(_:_:_:_:)?language=objc)
     pub fn MusicTrackMoveEvents(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1733,6 +2562,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a specified range of music track events.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to remove events from.
+    ///
+    /// - inStartTime: The start time, in beats, for the range of music track events that you want to remove.
+    ///
+    /// - inEndTime: The end time, in beats, for the range of music track events that you want to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `inStartTime` value must be less than the `inEndTime` value.
+    ///
+    ///
     /// Removes all events within the specified range
     ///
     /// All time ranges are [starttime
@@ -1748,8 +2598,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackclear(_:_:_:)?language=objc)
     pub fn MusicTrackClear(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1758,6 +2606,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a specified range of music track events, and shifts later events toward the start of the track to fill in the gap.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track that you want to cut events from.
+    ///
+    /// - inStartTime: The start time, in beats, for the range of music track events that you want to cut.
+    ///
+    /// - inEndTime: The end time, in beats, for the range of music track events that you want to cut.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `inStartTime` value must be less than the `inEndTime` value.
+    ///
+    ///
     /// Removes all the events within the specified range
     ///
     /// Events that fall past the specified range will be moved back by the specified range time.
@@ -1776,8 +2645,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackcut(_:_:_:)?language=objc)
     pub fn MusicTrackCut(
         in_track: MusicTrack,
         in_start_time: MusicTimeStamp,
@@ -1786,6 +2653,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies a range of events from one music track and inserts them into another music track.
+    ///
+    /// Parameters:
+    /// - inSourceTrack: The music track that you want to copy events from.
+    ///
+    /// - inSourceStartTime: The start time, in beats, for the range of music track events that you want to copy from the source track.
+    ///
+    /// - inSourceEndTime: The end time, in beats, for the range of music track events that you want to copy from the source track.
+    ///
+    /// - inDestTrack: The music track that you want to add events to.
+    ///
+    /// - inDestInsertTime: The insertion point, in beats, in the destination music track for the copied events.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The events in the destination music track, starting at the insertion point, are pushed later in time (that is, away from the start of the track) to make room for the inserted events.
+    ///
+    /// The `inSourceStartTime` value must be less than the `inSourceEndTime` value.
+    ///
+    ///
     /// Copies events from one track and inserts them into another
     ///
     /// Copies all of the events with the specified time range of the source track. It then inserts
@@ -1811,8 +2705,6 @@ extern "C-unwind" {
     ///
     /// - `in_source_track` must be a valid pointer.
     /// - `in_dest_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackcopyinsert(_:_:_:_:_:)?language=objc)
     pub fn MusicTrackCopyInsert(
         in_source_track: MusicTrack,
         in_source_start_time: MusicTimeStamp,
@@ -1823,6 +2715,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies a range of events from one music track and merges them into another music track.
+    ///
+    /// Parameters:
+    /// - inSourceTrack: The music track that you want to copy events from.
+    ///
+    /// - inSourceStartTime: The start time, in beats, for the range of music track events that you want to copy from the source track.
+    ///
+    /// - inSourceEndTime: The end time, in beats, for the range of music track events that you want to copy from the source track.
+    ///
+    /// - inDestTrack: The music track that you want to add events to.
+    ///
+    /// - inDestInsertTime: The insertion point, in beats, in the destination music track for the copied events.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The events inserted into the destination music track are merged with existing events in that track. The events in the destination track that existed prior to calling this function remain in place.
+    ///
+    /// The `inSourceStartTime` value must be less than the `inSourceEndTime` value.
+    ///
+    ///
     /// Copies events from one track and merges them into another
     ///
     /// Copies all of the events with the specified time range of the source track. It then merges
@@ -1847,8 +2766,6 @@ extern "C-unwind" {
     ///
     /// - `in_source_track` must be a valid pointer.
     /// - `in_dest_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackmerge(_:_:_:_:_:)?language=objc)
     pub fn MusicTrackMerge(
         in_source_track: MusicTrack,
         in_source_start_time: MusicTimeStamp,
@@ -1859,6 +2776,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `MIDINoteMessage` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inMessage: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a MIDINoteMessage event to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -1873,8 +2805,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_message` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmidinoteevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMIDINoteEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1883,6 +2813,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `MIDIChannelMessage` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inMessage: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a MIDIChannelMessage event to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -1897,8 +2842,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_message` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmidichannelevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMIDIChannelEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1907,6 +2850,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `MIDIRawData` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inRawData: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a MIDIRawData event to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -1921,8 +2879,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_raw_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmidirawdataevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMIDIRawDataEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -1931,6 +2887,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `ExtendedNoteOnEvent` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inInfo: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a ExtendedNoteOnEvent to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -1945,8 +2916,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewextendednoteevent(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
     pub fn MusicTrackNewExtendedNoteEvent(
         in_track: MusicTrack,
@@ -1956,6 +2925,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `ParameterEvent` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inInfo: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a ParameterEvent to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -1970,8 +2954,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewparameterevent(_:_:_:)?language=objc)
     #[cfg(feature = "AUComponent")]
     pub fn MusicTrackNewParameterEvent(
         in_track: MusicTrack,
@@ -1981,6 +2963,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a tempo to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inBPM: The tempo, in beats per minute, to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a tempo event to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -1994,8 +2991,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_track` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewextendedtempoevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewExtendedTempoEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -2004,6 +2999,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `MIDIMetaEvent` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inMetaEvent: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a MIDIMetaEvent to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -2018,8 +3028,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_meta_event` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewmetaevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewMetaEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -2028,6 +3036,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `MusicEventUserData` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inUserData: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a MusicEventUserData event to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -2042,8 +3065,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewuserevent(_:_:_:)?language=objc)
     pub fn MusicTrackNewUserEvent(
         in_track: MusicTrack,
         in_time_stamp: MusicTimeStamp,
@@ -2052,6 +3073,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds an event of type `AUPresetEvent` to a music track.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to add the event to.
+    ///
+    /// - inTimeStamp: The timestamp, in beats, at which to add the event. Must be greater than or equal to 0.
+    ///
+    /// - inPresetEvent: The event to add to the music track.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Adds a AUPresetEvent to a track
     ///
     /// The event is added at the specified time stamp. The time stamp should not be less than zero.
@@ -2066,8 +3102,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `in_preset_event` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewaupresetevent(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
     pub fn MusicTrackNewAUPresetEvent(
         in_track: MusicTrack,
@@ -2077,6 +3111,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new music event iterator.
+    ///
+    /// Parameters:
+    /// - inTrack: The music track to iterate over.
+    ///
+    /// - outIterator: On output, the newly created music event iterator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A newly-created music event iterator points at the first event on the music track specified in the `inTrack` parameter.
+    ///
+    /// If you edit a music track after associating it with a music event iterator, you must discard iterator and create a new one. Perform the following steps after editing the track:
+    ///
+    /// 1. Obtain the current position using the [`MusicEventIteratorGetEventInfo`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorgeteventinfo(_:_:_:_:_:)) function, and save the position.
+    ///
+    /// 2. Dispose of the music event iterator.
+    ///
+    /// 3. Create a new iterator.
+    ///
+    /// 4. Seek to the desired position using the [`MusicEventIteratorSeek`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseek(_:_:)) function.
+    ///
+    ///
     /// Creates an iterator to iterator over a track's events
     ///
     /// The iterator should be considered invalid if a track is edited. In that case you should create a new
@@ -2091,8 +3154,6 @@ extern "C-unwind" {
     ///
     /// - `in_track` must be a valid pointer.
     /// - `out_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusiceventiterator(_:_:)?language=objc)
     pub fn NewMusicEventIterator(
         in_track: MusicTrack,
         out_iterator: NonNull<MusicEventIterator>,
@@ -2100,6 +3161,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of a music event iterator.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Dispose an iterator
     ///
     /// Parameter `inIterator`: the iterator
@@ -2107,12 +3179,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposemusiceventiterator(_:)?language=objc)
     pub fn DisposeMusicEventIterator(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Positions a music event iterator at a specified timestamp, in beats.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator that you want to position along a music track.
+    ///
+    /// - inTimeStamp: The new position for the music event iterator, in beats.
+    ///
+    /// If there is no music event at the specified time, on output the iterator points to the first event after that time.
+    ///
+    /// To position the iterator immediately beyond the final event of a music track, specify [`kMusicTimeStamp_EndOfTrack`](https://developer.apple.com/documentation/audiotoolbox/kmusictimestamp_endoftrack) for this parameter. You can then call the [`MusicEventIteratorPreviousEvent`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorpreviousevent(_:)) to backtrack to the final event of the music track.
+    ///
+    /// To position the iterator at the first event of a music track, specify a value of 0 for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Move the iterator to an event at the specified time
     ///
     /// If there is no event at the specified time, the iterator will point to the first event after
@@ -2129,8 +3218,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseek(_:_:)?language=objc)
     pub fn MusicEventIteratorSeek(
         in_iterator: MusicEventIterator,
         in_time_stamp: MusicTimeStamp,
@@ -2138,6 +3225,40 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Positions a music event iterator at the next event on a music track.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator to reposition.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to increment the position of a music event iterator forward through a music track’s events.
+    ///
+    /// If an iterator is at the final event of a track when you call this function, the iterator then moves beyond the final event. You can detect if the iterator is beyond the final event by calling the [`MusicEventIteratorHasCurrentEvent`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhascurrentevent(_:_:)) function.
+    ///
+    /// The following code snippet illustrates how to use a music event iterator to proceed forward along a music track, from the start:
+    ///
+    /// ```objc
+    /// // Create a new iterator, which automatically points at the first event
+    /// // on the iterator's music track.
+    ///  
+    /// bool hasCurrentEvent;
+    /// MusicEventIteratorHasCurrentEvent (myIterator, &hasCurrentEvent);
+    /// while (hasCurrentEvent) {
+    ///         // do work here
+    ///     MusicEventIteratorNextEvent (myIterator);
+    ///     MusicEventIteratorHasCurrentEvent (myIterator, &hasCurrentEvent);
+    /// }
+    /// ```
+    ///
+    ///
     /// Move the iterator to the next event
     ///
     /// If the iterator was at the last event, then it will move past the last event and will no longer point
@@ -2151,12 +3272,44 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratornextevent(_:)?language=objc)
     pub fn MusicEventIteratorNextEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Positions a music event iterator at the previous event on a music track.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator to reposition.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to decrement a music event iterator, moving it backward through a music track’s events.
+    ///
+    /// If an iterator is at the first event of a track when you call this function, the iterator position remains unchanged and this function returns an error.
+    ///
+    /// The following code snippet illustrates how to use a music event iterator to proceed backward along a music track, from the end:
+    ///
+    /// ```objc
+    /// // Points iterator just beyond the final event on its music track
+    /// MusicEventIteratorSeek (myIterator, kMusicTimeStamp_EndOfTrack);
+    ///  
+    /// bool hasPreviousEvent;
+    /// MusicEventIteratorHasPreviousEvent (myIterator, &hasPreviousEvent);
+    /// while (hasPreviousEvent) {
+    ///     MusicEventIteratorPreviousEvent (myIterator);
+    ///         // do work here
+    ///     MusicEventIteratorHasPreviousEvent (myIterator, &hasPreviousEvent);
+    /// }
+    /// ```
+    ///
+    ///
     /// Move the iterator to the previous event
     ///
     /// If the iterator was at the first event, then it will leave the iterator unchanged and return an error.
@@ -2169,12 +3322,35 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorpreviousevent(_:)?language=objc)
     pub fn MusicEventIteratorPreviousEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets information about the event at a music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose current event you want information about.
+    ///
+    /// - outTimeStamp: On output, the timestamp of the music event, in beats.
+    ///
+    /// - outEventType: On output, the type of music event. For possible event types, see [`MusicEventType`](https://developer.apple.com/documentation/audiotoolbox/musiceventtype).
+    ///
+    /// - outEventData: On output, a reference to the music event data. The type of data is specified by the `outEventType` parameter. Do not modify the referenced data directly; to change an event, use the [`MusicEventIteratorSetEventInfo`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseteventinfo(_:_:_:)) function.
+    ///
+    /// - outEventDataSize: On output, the size, in bytes, of the music event data in the `outEventData` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Pass `NULL` for any output parameter whose information you do not need.
+    ///
+    ///
     /// Retrieves the event data at the iterator.
     ///
     /// Retrieves the event and other information from the iterator's current position.
@@ -2201,8 +3377,6 @@ extern "C-unwind" {
     /// - `out_event_type` must be a valid pointer.
     /// - `out_event_data` must be a valid pointer.
     /// - `out_event_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorgeteventinfo(_:_:_:_:_:)?language=objc)
     pub fn MusicEventIteratorGetEventInfo(
         in_iterator: MusicEventIterator,
         out_time_stamp: NonNull<MusicTimeStamp>,
@@ -2213,6 +3387,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets information for the event at a music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose current event you want to set.
+    ///
+    /// - inEventType: The type of music event that you are specifying. For possible event types, see [`MusicEventType`](https://developer.apple.com/documentation/audiotoolbox/musiceventtype).
+    ///
+    /// - inEventData: The event data that you are specifying. The size and type of the data must be appropriate for the music event type you specify in the `inEventType` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to set the music event type and event data for the event that a music event iterator is positioned at. This function doesn’t allow you to change an event’s timestamp; to do that, call the [`MusicEventIteratorSetEventTime`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseteventtime(_:_:)) function.
+    ///
+    ///
     /// Changes the type or value of an event
     ///
     /// Allows you to change either the event type, or the values of the event data, that the iterator is
@@ -2230,8 +3425,6 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `in_event_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseteventinfo(_:_:_:)?language=objc)
     pub fn MusicEventIteratorSetEventInfo(
         in_iterator: MusicEventIterator,
         in_event_type: MusicEventType,
@@ -2240,6 +3433,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the timestamp for the event at a music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose current event you want to change the timestamp of.
+    ///
+    /// - inTimeStamp: The new timestamp for the event, in beats.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling this function, the music event iterator remains positioned at the same event. However, because the event has been moved to a new location on the iterator’s music track, the iterator may no longer have a next or previous event. You can test this by calling [`MusicEventIteratorHasPreviousEvent`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhaspreviousevent(_:_:)) and [`MusicEventIteratorHasNextEvent`](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhasnextevent(_:_:)).
+    ///
+    ///
     /// Set a new time for an event
     ///
     /// The iterator will still be pointing to the same event, but as the event will have moved,
@@ -2254,8 +3466,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorseteventtime(_:_:)?language=objc)
     pub fn MusicEventIteratorSetEventTime(
         in_iterator: MusicEventIterator,
         in_time_stamp: MusicTimeStamp,
@@ -2263,6 +3473,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Deletes the event at a music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose current event you want to delete.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling this function, the music event iterator points to the event that follows the deleted event—if there is such an event. If the event you deleted was the final event, the iterator is then positioned immediately beyond the final event of the music track.
+    ///
+    ///
     /// Deletes the event pointed to by the iterator
     ///
     /// The iterator will reference the next event after the event has been deleted.
@@ -2273,12 +3500,23 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratordeleteevent(_:)?language=objc)
     pub fn MusicEventIteratorDeleteEvent(in_iterator: MusicEventIterator) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Indicates whether or not a music track contains an event before the music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose state you want to know about.
+    ///
+    /// - outHasPrevEvent: On output, `true` (nonzero) if there is an event closer to the start of the music track than the music event iterator’s current position; `false` (zero) otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Does the track have an event previous to the event the iterator is pointing to?
     ///
     /// To use the iterator going backwards through a track:
@@ -2305,8 +3543,6 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `out_has_prev_event` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhaspreviousevent(_:_:)?language=objc)
     pub fn MusicEventIteratorHasPreviousEvent(
         in_iterator: MusicEventIterator,
         out_has_prev_event: NonNull<Boolean>,
@@ -2314,6 +3550,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Indicates whether or not a music track contains an event beyond the music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose state you want to know about.
+    ///
+    /// - outHasNextEvent: On output, `true` (nonzero) if there is an event closer to the end of the music track than the music event iterator’s current position; `false` (zero) otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Does the track have an event past the event the iterator is pointing too?
     ///
     /// To use the iterator going forwards through a track:
@@ -2340,8 +3589,6 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `out_has_next_event` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhasnextevent(_:_:)?language=objc)
     pub fn MusicEventIteratorHasNextEvent(
         in_iterator: MusicEventIterator,
         out_has_next_event: NonNull<Boolean>,
@@ -2349,6 +3596,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Indicates whether or not a music track contains an event at the music event iterator’s current position.
+    ///
+    /// Parameters:
+    /// - inIterator: The music event iterator whose state you want to know about.
+    ///
+    /// - outHasCurEvent: On output, `true` (nonzero) if there is an event at the music event iterator’s current position; `false` (zero) otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Is there an event at the iterator's current position?
     ///
     /// Parameter `inIterator`: the iterator
@@ -2359,8 +3619,6 @@ extern "C-unwind" {
     ///
     /// - `in_iterator` must be a valid pointer.
     /// - `out_has_cur_event` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventiteratorhascurrentevent(_:_:)?language=objc)
     pub fn MusicEventIteratorHasCurrentEvent(
         in_iterator: MusicEventIterator,
         out_has_cur_event: NonNull<Boolean>,
@@ -2368,8 +3626,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadsmfdatawithflags?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_sequence` must be a valid pointer.
@@ -2383,8 +3639,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencesavesmfdata?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_sequence` must be a valid pointer.
@@ -2399,8 +3653,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newmusictrackfrom?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_source_track` must be a valid pointer.
@@ -2414,10 +3666,8 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusiceventtype_extendedcontrol?language=objc)
 pub const kMusicEventType_ExtendedControl: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedcontrolevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -2445,8 +3695,6 @@ unsafe impl RefEncode for ExtendedControlEvent {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictracknewextendedcontrolevent?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_track` must be a valid pointer.

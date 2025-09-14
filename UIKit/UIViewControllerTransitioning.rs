@@ -10,33 +10,73 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewcontrollerkey/from?language=objc)
+    /// A key that identifies the view controller that’s visible at the beginning of the transition, or at the end of a canceled transition.
+    ///
+    /// ## Discussion
+    ///
+    /// This view controller is typically the one presenting the “to” view controller or is the one being replaced by the “to” view controller.
+    ///
+    ///
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextFromViewControllerKey:
         &'static UITransitionContextViewControllerKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewcontrollerkey/to?language=objc)
+    /// A key that identifies the view controller that’s visible at the end of a completed transition.
+    ///
+    /// ## Discussion
+    ///
+    /// This view controller is the one being presented.
+    ///
+    ///
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextToViewControllerKey:
         &'static UITransitionContextViewControllerKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewkey/from?language=objc)
+    /// A key that identifies the view shown at the beginning of the transition, or at the end of a canceled transition.
+    ///
+    /// ## Discussion
+    ///
+    /// This view is typically the presenting view controller’s view.
+    ///
+    ///
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextFromViewKey: &'static UITransitionContextViewKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewkey/to?language=objc)
+    /// A key that identifies the view shown at the end of a completed transition.
+    ///
+    /// ## Discussion
+    ///
+    /// This view is typically the presented view controller’s view but may also be an ancestor of that view.
+    ///
+    ///
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextToViewKey: &'static UITransitionContextViewKey;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning?language=objc)
+    /// A set of methods that provide contextual information for transition animations between view controllers.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t adopt this protocol in your own classes, nor should you directly create objects that adopt this protocol. During a transition, the animator objects involved in that transition receive a fully configured context object from UIKit. Custom animator objects — objects that adopt the [`UIViewControllerAnimatedTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning) or [`UIViewControllerInteractiveTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning) protocol — should simply retrieve the information they need from the provided object.
+    ///
+    /// A context object encapsulates information about the views and view controllers involved in the transition. It also contains details about the how to execute the transition. For interactive transitions, the interactive animator object uses the methods of this protocol to report the animation’s progress. When the animation starts, the interactive animator object must save a pointer to the context object. Based on user interactions, the animator object then calls the [`updateInteractiveTransition:`](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning/updateinteractivetransition(_:)), [`finishInteractiveTransition`](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning/finishinteractivetransition()), or [`cancelInteractiveTransition`](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning/cancelinteractivetransition()) methods to report the progress toward completing the animation. Those methods send that information to UIKit so that it can drive the timing of the animations.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When defining custom animator objects, always check the value returned by the [`animated`](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning/isanimated) method to determine whether you should create animations at all. And when you do create transition animations, always call the [`completeTransition:`](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning/completetransition(_:)) method from an appropriate completion block to let UIKit know when all of your animations have finished.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait UIViewControllerContextTransitioning:
         NSObjectProtocol + MainThreadOnly
     {
@@ -130,7 +170,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning?language=objc)
+    /// A set of methods for implementing the animations for a custom view controller transition.
+    ///
+    /// ## Overview
+    ///
+    /// The methods in this protocol let you define an animator object, which creates the animations for transitioning a view controller on or off screen in a fixed amount of time. The animations you create using this protocol must not be interactive. To create interactive transitions, you must combine your animator object with another object that controls the timing of your animations.
+    ///
+    /// In your animator object, implement the [`transitionDuration:`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning/transitionduration(using:)) method to specify the duration of your transition and implement the [`animateTransition:`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning/animatetransition(using:)) method to create the animations themselves. Information about the objects involved in the transition is passed to your [`animateTransition:`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning/animatetransition(using:)) method in the form of a context object. Use the information provided by that object to move the target view controller’s view on or off screen over the specified duration.
+    ///
+    /// Create your animator object from a transitioning delegate — an object that conforms to the [`UIViewControllerTransitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate) protocol. When presenting a view controller, set the presentation style to [`UIModalPresentationCustom`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/custom) and assign your transitioning delegate to the view controller’s [`transitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontroller/transitioningdelegate) property. The view controller retrieves your animator object from the transitioning delegate and uses it to perform the animations. You can provide separate animator objects for presenting and dismissing the view controller.
+    ///
+    /// To add user interaction to a view controller transition, you must use an animator object together with an _interactive animator object_** **— a custom object that adopts the [`UIViewControllerInteractiveTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning) protocol. For more on defining interactive transitions, see [`UIViewControllerInteractiveTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning).
+    ///
+    ///
     pub unsafe trait UIViewControllerAnimatedTransitioning:
         NSObjectProtocol + MainThreadOnly
     {
@@ -169,7 +221,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning?language=objc)
+    /// A set of methods that enable an object (such as a navigation controller) to drive a view controller transition.
+    ///
+    /// ## Overview
+    ///
+    /// An _interactive transition delegate_ (which is the term for an object that supports this protocol) can respond to touch events, or to time-varying programmatic input, by speeding up, slowing down, or even reversing the progress of a view controller transition. For example, an interactive transition on a navigation controller could respond to a swipe gesture by moving a view controller onto or off of the navigation stack.
+    ///
+    /// To support an interactive view controller transition, you must also provide a transition animator delegate, which is a custom object that adopts the [`UIViewControllerAnimatedTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning) protocol. The transition delegate and the transition animator can, if you wish, be defined within a single custom class, but the class must adopt both protocols.
+    ///
+    /// If you instead want to provide a fixed-duration animated view controller transition — one that doesn’t support user interaction — use a transition animator delegate on its own. Refer to [`UIViewControllerAnimatedTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning).
+    ///
+    /// For the methods you can call to retrieve view transition context information from within your [`startInteractiveTransition:`](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning/startinteractivetransition(_:)) method, refer to [`UIViewControllerContextTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrollercontexttransitioning).
+    ///
+    ///
     pub unsafe trait UIViewControllerInteractiveTransitioning:
         NSObjectProtocol + MainThreadOnly
     {
@@ -205,7 +269,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate?language=objc)
+    /// A set of methods that vend objects used to manage a fixed-length or interactive transition between view controllers.
+    ///
+    /// ## Overview
+    ///
+    /// When you want to present a view controller using a custom modal presentation type, set its [`modalPresentationStyle`](https://developer.apple.com/documentation/uikit/uiviewcontroller/modalpresentationstyle) property to `custom` and assign an object that conforms to this protocol to its [`transitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontroller/transitioningdelegate) property. When you present that view controller, UIKit queries your transitioning delegate for the objects to use when animating the view controller into position.
+    ///
+    /// When implementing your transitioning delegate object, you can return different animator objects depending on whether a view controller is being presented or dismissed. All transitions use a _transition animator object_—an object that conforms to the [`UIViewControllerAnimatedTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning) protocol—to implement the basic animations. A transition animator object performs a set of animations over a finite period of time. If you want to use touch input or other user interactions to control the timing of the animation, you can also provide an _interactive animator object_—an object that conforms to the [`UIViewControllerInteractiveTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrollerinteractivetransitioning) protocol—to update the progress of the animations. You can provide separate animator objects for presenting and dismissing the view controller.
+    ///
+    /// For custom modal transition styles, you can provide a [`UIPresentationController`](https://developer.apple.com/documentation/uikit/uipresentationcontroller) object in addition to the animator objects. The system creates your presentation controller before presenting the view controller and keeps a reference to that object until the view controller is dismissed. Because its existence extends beyond the lifespan of either animator object, you can use the presentation controller to coordinate aspects of the presentation or dismissal process that would be difficult to do otherwise. For example, if your custom transition style involves displaying a separate shadow view as a backdrop to the view controller’s content, the presentation controller can create the shadow view and show it and hide it at the appropriate times.
+    ///
+    ///
     pub unsafe trait UIViewControllerTransitioningDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -263,7 +337,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipercentdriveninteractivetransition?language=objc)
+    /// An object that drives an interactive animation between one view controller and another.
+    ///
+    /// ## Overview
+    ///
+    /// A percent-driven interactive transition object relies on a transition animator delegate—a custom object that adopts the [`UIViewControllerAnimatedTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning) protocol—to set up and perform the animations.
+    ///
+    /// To use this concrete class, return an instance of it from your view controller delegate when asked for an interactive transition controller. As user events arrive that would affect the progress of a transition, call the [`updateInteractiveTransition:`](https://developer.apple.com/documentation/uikit/uipercentdriveninteractivetransition/update(_:)), [`cancelInteractiveTransition`](https://developer.apple.com/documentation/uikit/uipercentdriveninteractivetransition/cancel()), and [`finishInteractiveTransition`](https://developer.apple.com/documentation/uikit/uipercentdriveninteractivetransition/finish()) methods to reflect the current progress. For example, you might call these methods from a gesture recognizer to reflect how much of the gesture is completed.
+    ///
+    /// You can subclass [`UIPercentDrivenInteractiveTransition`](https://developer.apple.com/documentation/uikit/uipercentdriveninteractivetransition), but if you do so you must start each of your method overrides with a call to the `super` implementation of the method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

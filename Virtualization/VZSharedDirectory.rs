@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A directory on the host that can be exposed to a guest.
+    /// A directory on the host that you can expose to a guest.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzshareddirectory?language=objc)
+    /// ## Overview
+    ///
+    /// This exposes a directory from the host file system to the guest.
+    ///
+    ///
+    /// A directory on the host that can be exposed to a guest.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSharedDirectory;

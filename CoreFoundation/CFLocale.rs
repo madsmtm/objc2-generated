@@ -8,15 +8,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocaleidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CFLocaleIdentifier = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey?language=objc)
 // NS_TYPED_ENUM
 pub type CFLocaleKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocale?language=objc)
+///
+/// ## Overview
+///
+/// Unicode operations such as collation and text boundary determination can be affected by the conventions of a particular language or region. CFLocale objects specify language-specific or region-specific information for locale-sensitive operations.
+///
+/// The CFLocale opaque type provides support for obtaining available locales, obtaining localized locale names, and converting among locale data formats. Locale identifiers in macOS follow the IETF’s [BCP 47](http://www.rfc-editor.org/rfc/bcp/bcp47.txt). CFLocale never uses Script Manager codes (except for the legacy support provided by [`CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes`](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallocaleidentifierfromscriptmanagercodes(_:_:_:)))—the Script Manager and all its concepts are deprecated.
+///
+/// For more information on locale identifiers, read [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i). It is also useful to read the ICU’s [User Guide for the Locale Class](http://icu-project.org/userguide/locale.html).
+///
+/// CFLocale is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSLocale`](https://developer.apple.com/documentation/foundation/nslocale). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSLocale *` parameter, you can pass in a `CFLocaleRef`, and in a function where you see a `CFLocaleRef` parameter, you can pass in an `NSLocale` instance. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSLocale`.
 #[doc(alias = "CFLocaleRef")]
@@ -35,7 +44,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFLocale {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegettypeid()?language=objc)
+    /// Returns the type identifier for the CFLocale opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFLocale opaque type.
+    ///
+    ///
     #[doc(alias = "CFLocaleGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -47,7 +62,19 @@ unsafe impl ConcreteType for CFLocale {
 }
 
 impl CFLocale {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetsystem()?language=objc)
+    /// Returns the root, canonical locale.
+    ///
+    /// ## Return Value
+    ///
+    /// The root, canonical locale. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The root locale contains fixed backstop settings for all locale information.
+    ///
+    ///
     #[doc(alias = "CFLocaleGetSystem")]
     #[inline]
     pub fn system() -> Option<CFRetained<CFLocale>> {
@@ -58,7 +85,21 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopycurrent()?language=objc)
+    /// Returns a copy of the logical locale for the current user.
+    ///
+    /// ## Return Value
+    ///
+    /// The logical locale for the current user that is formed from the settings for the current user’s chosen system locale overlaid with any custom settings the user has specified in System Preferences. May return a retained cached object, not a new object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Settings you get from this locale do not change as a user’s preferences are changed so that your operations are consistent. Typically you perform some operations on the returned object and then release it. Since the returned object may be cached, you do not need to hold on to it indefinitely.
+    ///
+    /// Note that locale settings are independent of the user’s language setting. The language of the current locale may not correspond to the language at the first index in the `AppleLanguages` array from user defaults. For more details, see Locale Concepts in Locales Programming Guide; see also [`CFLocaleCopyPreferredLanguages`](https://developer.apple.com/documentation/corefoundation/cflocalecopypreferredlanguages()).
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyCurrent")]
     #[inline]
     pub fn current() -> Option<CFRetained<CFLocale>> {
@@ -69,7 +110,13 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyavailablelocaleidentifiers()?language=objc)
+    /// Returns an array of CFString objects that represents all locales for which locale data is available.
+    ///
+    /// ## Return Value
+    ///
+    /// An array of CFString objects that represents all locales for which locale data is available. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyAvailableLocaleIdentifiers")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -81,7 +128,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyisolanguagecodes()?language=objc)
+    /// Returns an array of CFString objects that represents all known legal ISO language codes.
+    ///
+    /// ## Return Value
+    ///
+    /// An array of CFString objects that represents all known legal ISO language codes. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note: many of these will not have any supporting locale data in macOS.
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyISOLanguageCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -93,7 +152,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyisocountrycodes()?language=objc)
+    /// Returns an array of CFString objects that represents all known legal ISO country codes.
+    ///
+    /// ## Return Value
+    ///
+    /// An array of CFString objects that represents all known legal ISO country codes. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note: many of these will not have any supporting locale data in macOS.
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyISOCountryCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -105,7 +176,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopyisocurrencycodes()?language=objc)
+    /// Returns an array of CFString objects that represents all known legal ISO currency codes.
+    ///
+    /// ## Return Value
+    ///
+    /// An array of CFString objects that represents all known legal ISO currency codes.Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note: many of these will not have any supporting locale data in macOS.
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyISOCurrencyCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -117,7 +200,13 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopycommonisocurrencycodes()?language=objc)
+    /// Returns an array of strings that represents ISO currency codes for currencies in common use.
+    ///
+    /// ## Return Value
+    ///
+    /// An array of CFString objects that represents ISO currency codes for currencies in common use. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyCommonISOCurrencyCodes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -129,7 +218,13 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopypreferredlanguages()?language=objc)
+    /// Returns the array of canonicalized language IDs that the user prefers.
+    ///
+    /// ## Return Value
+    ///
+    /// The array of canonicalized `CFString` language IDs that the current user prefers. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyPreferredLanguages")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -141,7 +236,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallanguageidentifierfromstring(_:_:)?language=objc)
+    /// Returns a canonical language identifier by mapping an arbitrary locale identification string to the canonical identifier
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - localeIdentifier: A string representation of an arbitrary locale identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string that represents the canonical language identifier for the specified arbitrary locale identifier. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCreateCanonicalLanguageIdentifierFromString")]
     #[inline]
     pub fn new_canonical_language_identifier_from_string(
@@ -160,7 +267,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallocaleidentifierfromstring(_:_:)?language=objc)
+    /// Returns a canonical locale identifier by mapping an arbitrary locale identification string to the canonical identifier.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - localeIdentifier: A string representation of an arbitrary locale identifier (for example, “English”).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A canonical locale identifier created by mapping the arbitrary locale identification string to the canonical identifier for the corresponding locale (for example, “en”). Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCreateCanonicalLocaleIdentifierFromString")]
     #[inline]
     pub fn new_canonical_locale_identifier_from_string(
@@ -179,7 +298,21 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecanonicallocaleidentifierfromscriptmanagercodes(_:_:_:)?language=objc)
+    /// Returns a canonical locale identifier from given language and region codes.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - lcode: A macOS language code.
+    ///
+    /// - rcode: A macOS region code.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A canonical locale identifier created by mapping `lcode` and `rcode` to a locale. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes")]
     #[inline]
     pub fn new_canonical_locale_identifier_from_script_manager_codes(
@@ -200,7 +333,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatelocaleidentifierfromwindowslocalecode(_:_:)?language=objc)
+    /// Returns a locale identifier from a Windows locale code.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - lcid: The Windows locale code.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The locale identifier.
+    ///
+    ///
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode")]
     #[inline]
     pub fn new_locale_identifier_from_windows_locale_code(
@@ -217,7 +362,17 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetwindowslocalecodefromlocaleidentifier(_:)?language=objc)
+    /// Returns a Windows locale code from the locale identifier.
+    ///
+    /// Parameters:
+    /// - localeIdentifier: The locale identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Windows locale code.
+    ///
+    ///
     #[doc(alias = "CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier")]
     #[inline]
     pub fn windows_locale_code_from_locale_identifier(
@@ -232,25 +387,50 @@ impl CFLocale {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection?language=objc)
+/// These constants describe the text direction for a language. They are returned by the functions [`CFLocaleGetLanguageCharacterDirection`](https://developer.apple.com/documentation/corefoundation/cflocalegetlanguagecharacterdirection(_:)) and [`CFLocaleGetLanguageLineDirection`](https://developer.apple.com/documentation/corefoundation/cflocalegetlanguagelinedirection(_:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFLocaleLanguageDirection(pub CFIndex);
 impl CFLocaleLanguageDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/unknown?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The direction of the language is unknown.
+    ///
+    ///
     #[doc(alias = "kCFLocaleLanguageDirectionUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/lefttoright?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The language direction is from left to right.
+    ///
+    ///
     #[doc(alias = "kCFLocaleLanguageDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/righttoleft?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The language direction is from right to left.
+    ///
+    ///
     #[doc(alias = "kCFLocaleLanguageDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/toptobottom?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The language direction is from top to bottom.
+    ///
+    ///
     #[doc(alias = "kCFLocaleLanguageDirectionTopToBottom")]
     pub const TopToBottom: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/bottomtotop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The language direction is from bottom to top.
+    ///
+    ///
     #[doc(alias = "kCFLocaleLanguageDirectionBottomToTop")]
     pub const BottomToTop: Self = Self(4);
 }
@@ -266,7 +446,17 @@ unsafe impl RefEncode for CFLocaleLanguageDirection {
 }
 
 impl CFLocale {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetlanguagecharacterdirection(_:)?language=objc)
+    /// Returns the character direction for the specified ISO language code.
+    ///
+    /// Parameters:
+    /// - isoLangCode: The ISO language code.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The character direction for the language. See [`CFLocaleLanguageDirection`](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection) for possible values. If the appropriate direction can’t be determined, [`kCFLocaleLanguageDirectionUnknown`](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/unknown) is returned.
+    ///
+    ///
     #[doc(alias = "CFLocaleGetLanguageCharacterDirection")]
     #[inline]
     pub fn language_character_direction(
@@ -280,7 +470,17 @@ impl CFLocale {
         unsafe { CFLocaleGetLanguageCharacterDirection(iso_lang_code) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetlanguagelinedirection(_:)?language=objc)
+    /// Returns the line direction for the specified ISO language code.
+    ///
+    /// Parameters:
+    /// - isoLangCode: The ISO language code.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The line direction for the language. See [`CFLocaleLanguageDirection`](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection) for possible values. If the appropriate direction can’t be determined, [`kCFLocaleLanguageDirectionUnknown`](https://developer.apple.com/documentation/corefoundation/cflocalelanguagedirection/unknown) is returned.
+    ///
+    ///
     #[doc(alias = "CFLocaleGetLanguageLineDirection")]
     #[inline]
     pub fn language_line_direction(iso_lang_code: Option<&CFString>) -> CFLocaleLanguageDirection {
@@ -292,7 +492,25 @@ impl CFLocale {
         unsafe { CFLocaleGetLanguageLineDirection(iso_lang_code) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecomponentsfromlocaleidentifier(_:_:)?language=objc)
+    /// Returns a dictionary containing the result from parsing a locale ID consisting of language, script, country or region, variant, and keyword/value pairs.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - localeID: The locale ID to use when creating the locale dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the result from parsing a locale ID consisting of language, script, country or region, variant, and keyword/value pairs. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary keys are the constant CFString objects that correspond to the locale ID components; the values correspond to constants where available. For example: the string “en_US@calendar=japanese” yields a dictionary with three entries: `kCFLocaleLanguageCode``=en`, `kCFLocaleCountryCode``=US`, and `kCFLocaleCalendarIdentifier``=``kCFJapaneseCalendar`. See also [`CFLocaleCreateLocaleIdentifierFromComponents`](https://developer.apple.com/documentation/corefoundation/cflocalecreatelocaleidentifierfromcomponents(_:_:)).
+    ///
+    ///
     #[doc(alias = "CFLocaleCreateComponentsFromLocaleIdentifier")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -310,7 +528,25 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatelocaleidentifierfromcomponents(_:_:)?language=objc)
+    /// Returns a locale identifier consisting of language, script, country or region, variant, and keyword/value pairs derived from a dictionary containing the source information.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - dictionary: The dictionary to use when creating the locale identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A locale identifier consisting of language, script, country or region, variant, and keyword/value pairs derived from `dictionary`. Returns `NULL` if there was a problem creating the string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Reverses the actions of [`CFLocaleCreateComponentsFromLocaleIdentifier`](https://developer.apple.com/documentation/corefoundation/cflocalecreatecomponentsfromlocaleidentifier(_:_:)), creating a single string from the data in the specified dictionary. For example, the dictionary {`kCFLocaleLanguageCode``=en``,` `kCFLocaleCountryCode``=US``,` `kCFLocaleCalendarIdentifier``=``kCFJapaneseCalendar``}` becomes `"en_US@calendar=japanese"`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -335,7 +571,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreate(_:_:)?language=objc)
+    /// Creates a locale for the given arbitrary locale identifier.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - localeIdentifier: A string representation of an arbitrary locale identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new locale that corresponds to the arbitrary locale identifier `localeIdentifier`. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCreate")]
     #[inline]
     pub fn new(
@@ -352,7 +600,19 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecreatecopy(_:_:)?language=objc)
+    /// Returns a copy of a locale.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - locale: The locale object to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new locale that is a copy of `locale`. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFLocaleCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -369,7 +629,17 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetidentifier(_:)?language=objc)
+    /// Returns the given locale’s identifier.
+    ///
+    /// Parameters:
+    /// - locale: The locale object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representation of `locale`’s identifier. This may not be the same string that was used to create the locale—it may be canonicalized. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFLocaleGetIdentifier")]
     #[inline]
     pub fn identifier(&self) -> Option<CFRetained<CFLocaleIdentifier>> {
@@ -380,7 +650,25 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalegetvalue(_:_:)?language=objc)
+    /// Returns the corresponding value for the given key of a locale’s key-value pair.
+    ///
+    /// Parameters:
+    /// - locale: The locale object to examine.
+    ///
+    /// - key: The key for which to obtain the corresponding value. Possible values are described in [Locale Property Keys](https://developer.apple.com/documentation/corefoundation/locale-property-keys).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value corresponding to the given key in locale. The value may be any type of CFType object. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Locale objects use key-value pairs to store property values. Use this function to get the value of a specific property.
+    ///
+    ///
     #[doc(alias = "CFLocaleGetValue")]
     #[inline]
     pub fn value(&self, key: Option<&CFLocaleKey>) -> Option<CFRetained<CFType>> {
@@ -394,7 +682,27 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalecopydisplaynameforpropertyvalue(_:_:_:)?language=objc)
+    /// Returns the display name for the given value.
+    ///
+    /// Parameters:
+    /// - displayLocale: A locale object.
+    ///
+    /// - key: A string that identifies the type that `value` is. It must be one of the standard locale property keys (see [Locale Property Keys](https://developer.apple.com/documentation/corefoundation/locale-property-keys)).
+    ///
+    /// - value: The value for which the display name is required.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The display name for `value`. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that not all locale property keys have values with display name values.
+    ///
+    ///
     #[doc(alias = "CFLocaleCopyDisplayNameForPropertyValue")]
     #[inline]
     pub fn display_name_for_property_value(
@@ -415,232 +723,342 @@ impl CFLocale {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationname/cflocalecurrentlocaledidchange?language=objc)
+    /// Identifier for the notification sent if the current locale changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a local notification posted when the user changes locale information in the System Preferences panel. Keep in mind that there is no order in how notifications are delivered to observers; frameworks or other parts of your code may also be observing this notification to take their own actions, and these may not have occurred at the time you receive the notification.
+    ///
+    /// There is no object or user info for this notification.
+    ///
+    ///
     #[cfg(feature = "CFNotificationCenter")]
     pub static kCFLocaleCurrentLocaleDidChangeNotification: Option<&'static CFNotificationName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/identifier?language=objc)
+    /// Specifies locale identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString containing the POSIX locale identifier as used by ICU, such as “`ja_JP`”. If you have a variant locale or a different currency or calendar, it can be as complex as “`en_US_POSIX@calendar=japanese;currency=EUR`” or “`az_Cyrl_AZ@calendar=buddhist;currency=JPY`”.
+    ///
+    ///
     pub static kCFLocaleIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/languagecode?language=objc)
+    /// Specifies the locale language code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString containing an ISO 639-x/IETF BCP 47 language identifier, such as “`ja`”.
+    ///
+    ///
     pub static kCFLocaleLanguageCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/countrycode?language=objc)
+    /// Specifies the locale country code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString containing an ISO county code, such as “`JP`”.
+    ///
+    ///
     pub static kCFLocaleCountryCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/scriptcode?language=objc)
+    /// Specifies the locale script code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString containing a Unicode script tag (strictly, an ISO 15924 script tag). Usually this is empty (it is for “`ja_JP`”). It may be present for locales where a script _must_ be specified, for example “`uz-Latn-UZ`” vs. “`uz-Cyrl-UZ`” for Uzbek in Latin vs. Cyrillic (in the first case the script code is “`Latn`”, and in the second it is “`Cyrl`”).
+    ///
+    ///
     pub static kCFLocaleScriptCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/variantcode?language=objc)
+    /// Specifies the locale variant code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString containing the variant name. The variant code is arbitrary and application-specific. ICU adds “`_EURO`”  to its locale designations for locales that support the Euro currency. For  “`en_US_POSIX`” the variant is “`POSIX`”, and for “`hy_AM_REVISED`” it is “`REVISED`”.
+    ///
+    ///
     pub static kCFLocaleVariantCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/exemplarcharacterset?language=objc)
+    /// Specifies the locale character set.
     pub static kCFLocaleExemplarCharacterSet: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/calendaridentifier?language=objc)
+    /// Specifies the locale calendar identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString containing the calendar identifier (for possible values, see [Locale Calendar Identifiers](https://developer.apple.com/documentation/corefoundation/locale-calendar-identifiers)).
+    ///
+    ///
     pub static kCFLocaleCalendarIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/calendar?language=objc)
+    /// Specifies the locale calendar.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFCalendar object.
+    ///
+    ///
     pub static kCFLocaleCalendar: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/collationidentifier?language=objc)
+    /// Specifies the locale collation identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a collation.
+    ///
+    ///
     pub static kCFLocaleCollationIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/usesmetricsystem?language=objc)
+    /// Specifies the whether the locale uses the metric system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFBoolean.
+    ///
+    ///
     pub static kCFLocaleUsesMetricSystem: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/measurementsystem?language=objc)
+    /// Specifies the measurement system used.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object, for example “Metric” or “U.S.”.
+    ///
+    ///
     pub static kCFLocaleMeasurementSystem: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/decimalseparator?language=objc)
+    /// Specifies the decimal point string.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object, for example “.” or “,”.
+    ///
+    ///
     pub static kCFLocaleDecimalSeparator: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/groupingseparator?language=objc)
+    /// Specifies the separator string between groups of digits.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object, for example “,” or “.”.
+    ///
+    ///
     pub static kCFLocaleGroupingSeparator: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/currencysymbol?language=objc)
+    /// Specifies the currency symbol.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object, for example “$” or “£”.
+    ///
+    ///
     pub static kCFLocaleCurrencySymbol: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/currencycode?language=objc)
+    /// Specifies the locale currency code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object, for example “USD” or “GBP”.
+    ///
+    ///
     pub static kCFLocaleCurrencyCode: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/collatoridentifier?language=objc)
+    /// Specifies the collation identifier for the locale.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object. If unknown, `nil` is returned.
+    ///
+    ///
     pub static kCFLocaleCollatorIdentifier: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/quotationbegindelimiterkey?language=objc)
+    /// Specifies the begin quotation symbol associated with the locale.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     pub static kCFLocaleQuotationBeginDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/quotationenddelimiterkey?language=objc)
+    /// Specifies the end quotation symbol associated with the locale.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object.
+    ///
+    ///
     pub static kCFLocaleQuotationEndDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/alternatequotationbegindelimiterkey?language=objc)
+    /// Specifies the alternating begin quotation symbol associated with the locale. In some locales, when quotations are nested, the quotation characters alternate. Thus, `NSLocaleQuotationBeginDelimiterKey`, then `NSLocaleAlternateQuotationBeginDelimiterKey`, and so on.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object.
+    ///
+    ///
     pub static kCFLocaleAlternateQuotationBeginDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey/alternatequotationenddelimiterkey?language=objc)
+    /// Specifies the alternating end quotation symbol associated with the locale. In some locales, when quotations are nested, the quotation characters alternate. Thus, `NSLocaleQuotationEndDelimiterKey`, then `NSLocaleAlternateQuotationEndDelimiterKey`, and so on.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a CFString object.
+    ///
+    ///
     pub static kCFLocaleAlternateQuotationEndDelimiterKey: Option<&'static CFLocaleKey>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier?language=objc)
 // NS_TYPED_ENUM
 pub type CFCalendarIdentifier = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/gregoriancalendar?language=objc)
+    /// The name of the calendar currently supported by the [`kCFDateFormatterCalendarName`](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/calendarname) property.
     pub static kCFGregorianCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/buddhistcalendar?language=objc)
+    /// Specifies the Buddhist calendar.
     pub static kCFBuddhistCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/chinesecalendar?language=objc)
+    /// Specifies the Chinese calendar.
     pub static kCFChineseCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/hebrewcalendar?language=objc)
+    /// Specifies the Hebrew calendar.
     pub static kCFHebrewCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/islamiccalendar?language=objc)
+    /// Specifies the Islamic calendar.
     pub static kCFIslamicCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/islamiccivilcalendar?language=objc)
+    /// Specifies the Islamic tabular calendar with Friday (civil) origin.
     pub static kCFIslamicCivilCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/japanesecalendar?language=objc)
+    /// Specifies the Japanese calendar.
     pub static kCFJapaneseCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/republicofchinacalendar?language=objc)
+    /// Specifies the calendar for the Republic of China.
     pub static kCFRepublicOfChinaCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/persiancalendar?language=objc)
+    /// Specifies the Persian calendar.
     pub static kCFPersianCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/indiancalendar?language=objc)
+    /// Specifies the Indian calendar.
     pub static kCFIndianCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/cfiso8601calendar?language=objc)
+    /// Specifies the ISO 8601 calendar.
     pub static kCFISO8601Calendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/islamictabularcalendar?language=objc)
+    /// Specifies the Islamic tabular calendar with Thursday (astronomical) origin.
     pub static kCFIslamicTabularCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/islamicummalquracalendar?language=objc)
+    /// Specifies the Islamic Umm Al Qura calendar.
     pub static kCFIslamicUmmAlQuraCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/banglacalendar?language=objc)
     pub static kCFBanglaCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/gujaraticalendar?language=objc)
     pub static kCFGujaratiCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/kannadacalendar?language=objc)
     pub static kCFKannadaCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/malayalamcalendar?language=objc)
     pub static kCFMalayalamCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/marathicalendar?language=objc)
     pub static kCFMarathiCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/odiacalendar?language=objc)
     pub static kCFOdiaCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/tamilcalendar?language=objc)
     pub static kCFTamilCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/telugucalendar?language=objc)
     pub static kCFTeluguCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/vikramcalendar?language=objc)
     pub static kCFVikramCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/dangicalendar?language=objc)
     pub static kCFDangiCalendar: Option<&'static CFCalendarIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/vietnamesecalendar?language=objc)
     pub static kCFVietnameseCalendar: Option<&'static CFCalendarIdentifier>;
 }
 

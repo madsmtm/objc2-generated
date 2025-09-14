@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinteraction?language=objc)
+    /// The protocol that an interaction implements to access the view that owns it.
     pub unsafe trait UIInteraction: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]

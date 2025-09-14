@@ -4,32 +4,32 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions?language=objc)
+/// Days of the week.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDayOfWeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INDayOfWeekOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/monday?language=objc)
+/// The value for Monday.
         #[doc(alias = "INDayOfWeekOptionMonday")]
         const Monday = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/tuesday?language=objc)
+/// The value for Tuesday.
         #[doc(alias = "INDayOfWeekOptionTuesday")]
         const Tuesday = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/wednesday?language=objc)
+/// The value for Wednesday.
         #[doc(alias = "INDayOfWeekOptionWednesday")]
         const Wednesday = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/thursday?language=objc)
+/// The value for Thursday.
         #[doc(alias = "INDayOfWeekOptionThursday")]
         const Thursday = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/friday?language=objc)
+/// The value for Friday.
         #[doc(alias = "INDayOfWeekOptionFriday")]
         const Friday = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/saturday?language=objc)
+/// The value for Saturday.
         #[doc(alias = "INDayOfWeekOptionSaturday")]
         const Saturday = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indayofweekoptions/sunday?language=objc)
+/// The value for Sunday.
         #[doc(alias = "INDayOfWeekOptionSunday")]
         const Sunday = 1<<6;
     }

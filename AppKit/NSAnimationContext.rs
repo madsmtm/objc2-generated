@@ -11,7 +11,33 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationcontext?language=objc)
+    /// An animation context, which contains information about environment and state.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSAnimationContext`](https://developer.apple.com/documentation/appkit/nsanimationcontext) is analogous to [`CATransaction`](https://developer.apple.com/documentation/quartzcore/catransaction) and is similar in overall concept to [`NSGraphicsContext`](https://developer.apple.com/documentation/appkit/nsgraphicscontext). Each thread maintains its own stack of nestable [`NSAnimationContext`](https://developer.apple.com/documentation/appkit/nsanimationcontext) instances, with each new instance initialized as a copy of the instance below (so, inheriting its current properties).
+    ///
+    /// Multiple [`NSAnimationContext`](https://developer.apple.com/documentation/appkit/nsanimationcontext) instances can be nested, allowing a given block of code to initiate animations using its own specified duration without affecting animations initiated by surrounding code.
+    ///
+    /// ```objc
+    /// [NSAnimationContext beginGrouping];
+    /// // Animate enclosed operations with a duration of 1 second
+    /// [[NSAnimationContext currentContext] setDuration:1.0];
+    /// [[aView animator] setFrame:newFrame];
+    /// ...
+    ///     [NSAnimationContext beginGrouping];
+    ///     // Animate alpha fades with half-second duration
+    ///     [[NSAnimationContext currentContext] setDuration:0.5];
+    ///     [[aView animator] setAlphaValue:0.75];
+    ///     [[bView animator] setAlphaValue:0.75];
+    ///     [NSAnimationContext endGrouping];
+    /// ...
+    /// // Will animate with a duration of 1 second
+    /// [[bView animator] setFrame:secondFrame];
+    /// [NSAnimationContext endGrouping];
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAnimationContext;

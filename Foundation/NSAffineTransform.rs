@@ -8,7 +8,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaffinetransformstruct?language=objc)
+/// A structure that defines the three-by-three matrix that performs an affine transform between two coordinate systems.
+///
+/// ## Overview
+///
+/// For more details, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -48,7 +54,33 @@ unsafe impl Send for NSAffineTransformStruct {}
 unsafe impl Sync for NSAffineTransformStruct {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaffinetransform?language=objc)
+    /// A graphics coordinate transformation.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`AffineTransform`](https://developer.apple.com/documentation/foundation/affinetransform); use [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// A transformation specifies how points in one coordinate system are transformed to points in another coordinate system. An affine transformation is a special type of transformation that preserves parallel lines in a path but does not necessarily preserve lengths or angles. Scaling, rotation, and translation are the most commonly used manipulations supported by affine transforms, but shearing is also possible.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In OS X 10.3 and earlier the [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform) class was declared and implemented entirely in the Application Kit framework. As of macOS 10.4 the [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform) class has been split across the Foundation and Application Kit frameworks.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Methods for applying affine transformations to the current graphics context and a method for applying an affine transformation to an [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath) object are described in NSAffineTransform Additions Reference in the Application Kit.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`AffineTransform`](https://developer.apple.com/documentation/foundation/affinetransform) structure, which bridges to the [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAffineTransform;

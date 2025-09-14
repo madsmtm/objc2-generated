@@ -47,7 +47,13 @@ use crate::*;
 
 // TODO: pub fn NSSwapHostLongLongToLittle(x: c_ulonglong,) -> c_ulonglong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsswappedfloat?language=objc)
+/// Opaque type containing an endian-independent `float` value.
+///
+/// ## Overview
+///
+/// The fields of an [`NSSwappedFloat`](https://developer.apple.com/documentation/foundation/nsswappedfloat) are private.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSSwappedFloat {
@@ -66,7 +72,13 @@ unsafe impl Send for NSSwappedFloat {}
 
 unsafe impl Sync for NSSwappedFloat {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsswappeddouble?language=objc)
+/// Opaque structure containing endian-independent `double` value.
+///
+/// ## Overview
+///
+/// The fields of an [`NSSwappedDouble`](https://developer.apple.com/documentation/foundation/nsswappeddouble) are private.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSSwappedDouble {

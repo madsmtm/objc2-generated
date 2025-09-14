@@ -7,42 +7,92 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForAccountsIntentResponseCode(pub NSInteger);
 impl INSearchForAccountsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you have verified that you are able to perform the search. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/inprogress?language=objc)
+    /// The search is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if the search is running but you are unable to return the results after a few seconds of having your handler called. You might use this code when performing the search requires communicating with your server and you have not yet received a confirmation from that server.
+    ///
+    /// When handling an intent, you might want to first configure a timer to fire if your server does not return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/success?language=objc)
+    /// You successfully retrieved the search results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after performing the search successfully. Your response should contain the details of the found accounts.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failure?language=objc)
+    /// You were unable to retrieve the search results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from performing the search.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot perform the search from your Intents extension but can perform it from your app. Do not use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failurecredentialsunverified?language=objc)
+    /// You were unable to perform the search because you could not verify the user’s credentials.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you are unable to verify the credentials of the current user. You might use this response code if the user is currently logged out of your app or is unknown to you. You might also use it if the user does not have any configured accounts.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureCredentialsUnverified")]
     pub const FailureCredentialsUnverified: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failureaccountnotfound?language=objc)
+    /// The search yielded no results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the search yielded no results.
+    ///
+    ///
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureAccountNotFound")]
     pub const FailureAccountNotFound: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failuretermsandconditionsacceptancerequired?language=objc)
+    /// The search failed as the user must accept the terms and conditions.
     #[doc(
         alias = "INSearchForAccountsIntentResponseCodeFailureTermsAndConditionsAcceptanceRequired"
     )]
     pub const FailureTermsAndConditionsAcceptanceRequired: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponsecode/failurenoteligible?language=objc)
+    /// The request failed because a user was not eligible to perform the transaction.
     #[doc(alias = "INSearchForAccountsIntentResponseCodeFailureNotEligible")]
     pub const FailureNotEligible: Self = Self(9);
 }
@@ -56,7 +106,15 @@ unsafe impl RefEncode for INSearchForAccountsIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponse?language=objc)
+    /// Your app’s response to a request to search for account information.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchForAccountsIntentResponse`](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponse) object to return the account information found during a search operation. After performing a search using the criteria specified in an [`INSearchForAccountsIntent`](https://developer.apple.com/documentation/intents/insearchforaccountsintent) object, create an instance of this class and fill it with the results of that search. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INSearchForAccountsIntentResponse`](https://developer.apple.com/documentation/intents/insearchforaccountsintentresponse) object in the [`confirmSearchForAccounts:completion:`](https://developer.apple.com/documentation/intents/insearchforaccountsintenthandling/confirm(intent:completion:)) and [`handleSearchForAccounts:completion:`](https://developer.apple.com/documentation/intents/insearchforaccountsintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INSearchForAccountsIntentHandling`](https://developer.apple.com/documentation/intents/insearchforaccountsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

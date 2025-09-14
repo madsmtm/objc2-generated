@@ -7,7 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phadjustmentdata?language=objc)
+    /// A description of the edits made to an asset’s photo, video, or Live Photo content, which allows your app to reconstruct or revert the effects of prior editing sessions.
+    ///
+    /// ## Overview
+    ///
+    /// When a user edits an asset, Photos saves a [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object along with the modified image or video data. This object provides an application-defined “recipe” you can use to reconstruct the edit. For example, if your app applies filters to a photo, you might create adjustment data that identifies which filters the user picked, the parameters for each, and the order to apply the filters in. Later, the user can resume working with those filters and parameters by using your app or another app that understands your adjustment data format. When iCloud Photos is enabled, a user can revert or resume edits made on a different device.
+    ///
+    /// You work with adjustment data when editing an asset, using either the [`requestContentEditingInputWithOptions:completionHandler:`](https://developer.apple.com/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)) method or a photo extension view controller that implements the [`PHContentEditingController`](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller) protocol.
+    ///
+    /// - When you begin an edit (through a [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object), examine the editing input’s [`adjustmentData`](https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata) property to decide whether the last edit made to the asset is compatible with your app. If so, you can allow the user to resume working with that edit. If not, you can make further edits to the last saved version of the photo.
+    ///
+    /// - When you commit an edit (through a [`PHContentEditingOutput`](https://developer.apple.com/documentation/photos/phcontenteditingoutput) object), provide a new adjustment whose data represents the changes your app made.
+    ///
+    /// For each asset, Photos stores only one [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object, representing the **most recent** edit made to the asset’s content.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAdjustmentData;

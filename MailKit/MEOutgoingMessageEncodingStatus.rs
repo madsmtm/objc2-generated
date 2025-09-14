@@ -7,9 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Contains information about any security measures that will be applied to a mail message when it is sent or any errrors that occurred while verifying security status.
+    /// An object that contains information about security measures the user can apply when composing a message.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meoutgoingmessageencodingstatus?language=objc)
+    /// ## Overview
+    ///
+    /// As a user composes a new message, MailKit requests the encoding status from your message security handler. The handler provides an [`MEOutgoingMessageEncodingStatus`](https://developer.apple.com/documentation/mailkit/meoutgoingmessageencodingstatus) that contains:
+    ///
+    /// - Boolean values that indicate if the handler can sign or encrypt the message
+    ///
+    /// - An error if verifying the security status fails
+    ///
+    /// - An array of recipient addresses for which the handler can’t encrypt the message
+    ///
+    ///
+    /// Contains information about any security measures that will be applied to a mail message when it is sent or any errrors that occurred while verifying security status.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEOutgoingMessageEncodingStatus;

@@ -7,91 +7,97 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifiertwitter?language=objc)
+    /// Identifier for the Twitter account type.
     #[deprecated = "Use Twitter SDK instead"]
     pub static ACAccountTypeIdentifierTwitter: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifierfacebook?language=objc)
+    /// Identifier for the Facebook account type.
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACAccountTypeIdentifierFacebook: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifiersinaweibo?language=objc)
+    /// Identifier for the Sina Weibo account type.
     #[deprecated = "Use Sina Weibo SDK instead"]
     pub static ACAccountTypeIdentifierSinaWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifiertencentweibo?language=objc)
+    /// Identifier for the Tencent Weibo account type.
     #[deprecated = "Use Tencent Weibo SDK instead"]
     pub static ACAccountTypeIdentifierTencentWeibo: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttypeidentifierlinkedin?language=objc)
+    /// Identifier for the LinkedIn account type.
     #[deprecated = "Use LinkedIn SDK instead"]
     pub static ACAccountTypeIdentifierLinkedIn: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookappidkey?language=objc)
+    /// The Facebook App ID, as it appears on the Facebook website.
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAppIdKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookpermissionskey?language=objc)
+    /// The array of strings of permissions to request (for example, `email`, `publish_stream`, and so on).
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookPermissionsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudiencekey?language=objc)
+    /// Only required when posting permissions are requested.
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudienceeveryone?language=objc)
+    /// Posts are visible to everyone.
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceEveryone: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudiencefriends?language=objc)
+    /// Posts are visible only to friends.
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceFriends: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acfacebookaudienceonlyme?language=objc)
+    /// Posts are visible to the user only.
     #[deprecated = "Use Facebook SDK instead"]
     pub static ACFacebookAudienceOnlyMe: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/aclinkedinappidkey?language=objc)
+    /// The LinkedIn App ID, as it appears on the LinkedIn website.
     #[deprecated = "Use LinkedIn SDK instead"]
     pub static ACLinkedInAppIdKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/aclinkedinpermissionskey?language=objc)
+    /// The array of strings of permissions to request.
     #[deprecated = "Use LinkedIn SDK instead"]
     pub static ACLinkedInPermissionsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/actencentweiboappidkey?language=objc)
+    /// The Tencent Weibo App ID, as it appears on the Tencent Weibo website.
     #[deprecated = "Use Tencent Weibo SDK instead"]
     pub static ACTencentWeiboAppIdKey: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccounttype?language=objc)
+    /// An object that encapsulates information about all accounts of a particular type.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create account type objects directly. To obtain an account type object, use the [`accountTypeWithAccountTypeIdentifier:`](https://developer.apple.com/documentation/accounts/acaccountstore/accounttype(withaccounttypeidentifier:)) method or the [`accountType`](https://developer.apple.com/documentation/accounts/acaccount/accounttype) property of an account object. Use the [`accountsWithAccountType:`](https://developer.apple.com/documentation/accounts/acaccountstore/accounts(with:)) method to obtain all accounts of a particular type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]

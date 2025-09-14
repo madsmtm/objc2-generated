@@ -75,22 +75,22 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightblessprivilegedhelper?language=objc)
+/// The authorization rights key for approving and installing a privileged helper tool.
 pub const kSMRightBlessPrivilegedHelper: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.blesshelper\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightmodifysystemdaemons?language=objc)
+/// The authorization rights key for modifying system daemons.
 pub const kSMRightModifySystemDaemons: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.daemons.modify\0") };
 extern "C" {
+    /// The system-level launch domain.
     /// A constant representing the privileged Mach bootstrap context. Modifications
     /// to this context require root privileges.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kSMDomainSystemLaunchd: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// The user-level launch domain.
     /// A constant representing the Mach bootstrap context associated with the
     /// caller's UID. On iOS, this symbol is a synonym for
     /// {
@@ -100,12 +100,23 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmdomainuserlaunchd?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kSMDomainUserLaunchd: Option<&'static CFString>;
 }
 
+/// Copies the job description dictionary for the specified job label.
+///
+/// Parameters:
+/// - domain: The job’s domain (for example, [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd)).
+///
+/// - jobLabel: The label identifier of the job to copy.
+///
+///
+/// ## Return Value
+///
+/// A new dictionary describing the job, or `NULL` if the system couldn’t find the job. The caller must release the dictionary.
+///
+///
 /// Copy the job description dictionary for the given job label.
 ///
 ///
@@ -135,8 +146,6 @@ extern "C" {
 ///
 /// - `domain` might not allow `None`.
 /// - `job_label` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobcopydictionary(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -154,6 +163,17 @@ pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Copies the job description dictionaries for all jobs in the specified domain.
+///
+/// Parameters:
+/// - domain: The job’s domain (for example, [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd)).
+///
+///
+/// ## Return Value
+///
+/// A new array containing all job dictionaries, or `NULL` if an error occurred. The caller must release the array.
+///
+///
 /// Copy the job description dictionaries for all jobs in the given domain.
 ///
 ///
@@ -184,8 +204,6 @@ pub unsafe extern "C-unwind" fn SMJobCopyDictionary(
 /// # Safety
 ///
 /// `domain` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smcopyalljobdictionaries(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -199,6 +217,25 @@ pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Submits the specified job to the specified domain.
+///
+/// Parameters:
+/// - domain: The job’s domain (for example, [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd)).
+///
+/// - job: A dictionary describing a job.
+///
+/// - auth: An `AuthorizationRef` containing the [`kSMRightModifySystemDaemons`](https://developer.apple.com/documentation/servicemanagement/ksmrightmodifysystemdaemons) right if the specified
+///
+/// domain is [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd).
+///
+/// - outError: An output reference to a `CFErrorRef` describing the specific error when submitting the job, or `NULL` if no error occurred. It’s the responsibility of the app to release the error reference. This argument can be `NULL`.
+///
+///
+/// ## Return Value
+///
+/// Returns true if the system successfully submits the job, otherwise `false`.
+///
+///
 /// Submits the given job to the specified domain.
 ///
 ///
@@ -238,8 +275,6 @@ pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
 /// - `job` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobsubmit(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -261,6 +296,31 @@ pub unsafe extern "C-unwind" fn SMJobSubmit(
     ret != 0
 }
 
+/// Removes the job with the specified label from the specified domain.
+///
+/// Parameters:
+/// - domain: The job’s domain (for example, [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd)).
+///
+/// - jobLabel: The label identifier of the job to remove.
+///
+/// - auth: An `AuthorizationRef` containing the [`kSMRightModifySystemDaemons`](https://developer.apple.com/documentation/servicemanagement/ksmrightmodifysystemdaemons) right if the specified domain is [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd).
+///
+/// - wait: Pass `true` to block until the process for the specified job has exited.
+///
+/// - outError: An output reference to a `CFErrorRef` describing the specific error when removing the job, or `NULL` if no error occurred. It’s the responsibility of the app to release the error reference. This argument can be `NULL`.
+///
+///
+/// ## Return Value
+///
+/// Returns `true` if the system successfully removes the job, otherwise `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// If the job is currently running, it conditionally blocks until the running process has exited.
+///
+///
 /// Removes the job with the given label from the specified domain. When this
 /// function is used to remove a job that is running, the invocation blocks
 /// until the job exits, commonly taking several seconds.
@@ -303,8 +363,6 @@ pub unsafe extern "C-unwind" fn SMJobSubmit(
 /// - `job_label` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobremove(_:_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated]
 #[inline]
@@ -328,6 +386,43 @@ pub unsafe extern "C-unwind" fn SMJobRemove(
     ret != 0
 }
 
+/// Submits the executable for the given label as a job to `launchd`.
+///
+/// Parameters:
+/// - domain: The job’s domain. The Service Management framework only supports the [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd) domain.
+///
+/// - executableLabel: The label of the privileged executable to install. This label must be one of the keys found in the [`SMPrivilegedExecutables`](https://developer.apple.com/documentation/bundleresources/information-property-list/smprivilegedexecutables) dictionary in the application’s `Info.plist`.
+///
+/// - auth: An authorization reference containing the [`kSMRightBlessPrivilegedHelper`](https://developer.apple.com/documentation/servicemanagement/ksmrightblessprivilegedhelper) right.
+///
+/// - outError: An output reference to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) describing the specific error encountered while submitting the executable tool; or, `NULL` if successful. It’s the responsibility of the application to release the error reference. This argument may be `NULL`.
+///
+///
+/// ## Return Value
+///
+/// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the job was successfully submitted; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// `SMJobBless` submits the executable for the given label as a `launchd` job. This function removes the need for a `setuid(_:)` helper invoked through [`AuthorizationExecuteWithPrivileges`](https://developer.apple.comhttps://developer.apple.com/documentation/security/1540038-authorizationexecutewithprivileg) in order to install a `launchd` property list. If the job is already installed, this methods returns [`true`](https://developer.apple.com/documentation/swift/true).
+///
+/// In order to use this function, the app must meet the following requirements:
+///
+/// 1. Xcode must sign both the calling app and target executable tool.
+///
+/// 2. The calling app’s `Info.plist` must include an [`SMPrivilegedExecutables`](https://developer.apple.com/documentation/bundleresources/information-property-list/smprivilegedexecutables) dictionary of strings. Each string is a textual representation of a code signing requirement the system uses to determine whether the app owns the privileged tool once installed (for example, in order for subsequent versions to update the installed version).
+///
+/// Each key of `SMPrivilegedExecutables` is a reverse-DNS label for the helper tool that must be globally unique.
+///
+/// 1. The helper tool must have an embedded `Info.plist` containing an [`SMAuthorizedClients`](https://developer.apple.com/documentation/bundleresources/information-property-list/smauthorizedclients) array of strings. Each string is a textual representation of a code signing requirement describing a client allowed to add and remove the tool.
+///
+/// 2. The helper tool must have an embedded launchd property list. The only required key in this property list is the `Label` key. When the Service Management framework extracts the `launchd` property list and writes it to disk, it sets the key for `ProgramArguments` to an array of 1 element that points to a standard location. You can’t specify your own program arguments, so don’t rely on the system passing custom command line arguments to your tool. Pass any parameters through an inter-process communication (IPC) channel.
+///
+/// 3. The helper tool must reside in the Contents/Library/LaunchServices directory inside the application bundle, and its name must be its launchd job label. So if your launchd job label is `com.apple.Mail.helper`, this must be the name of the tool in your application bundle.
+///
+///
 /// If the job is already installed, success is returned.
 ///
 /// In order to use this function the following requirements must be met:
@@ -407,8 +502,6 @@ pub unsafe extern "C-unwind" fn SMJobRemove(
 /// - `executable_label` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smjobbless(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]

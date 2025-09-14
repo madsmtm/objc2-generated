@@ -7,26 +7,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The following flags are for [`activateWithOptions:`](https://developer.apple.com/documentation/appkit/nsrunningapplication/activate(options:)).
 /// The following flags are for `-activateWithOptions:` and equivalent.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationActivationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationActivationOptions: NSUInteger {
+/// By default, activation brings only the main and key windows forward.  If you specify NSApplicationActivateAllWindows, all of the application’s windows are brought forward.
 /// By default, activation brings only the main and key
 /// windows forward. If you specify `activateAllWindows`,
 /// all of the application's windows are brought forward.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions/activateallwindows?language=objc)
         #[doc(alias = "NSApplicationActivateAllWindows")]
         const ActivateAllWindows = 1<<0;
+/// The application is activated regardless of the currently active app.
+///
+/// ## Discussion
+///
+/// By default, activation deactivates the calling app (assuming it was active), and then the new app is activated only if there’s no currently active application. This prevents the new app from stealing focus from the user, if the app is slow to activate and the user has switched to a different app in the interim. However, if you specify [`NSApplicationActivateIgnoringOtherApps`](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions/activateignoringotherapps), the application is activated regardless of the currently active app, potentially stealing focus from the user.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  You should **rarely pass this flag** because stealing key focus produces a poor user experience.
+///
+///
+///
+/// </div>
+///
 /// The application is activated regardless of the currently
 /// active app.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions/activateignoringotherapps?language=objc)
         #[doc(alias = "NSApplicationActivateIgnoringOtherApps")]
 #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
         const ActivateIgnoringOtherApps = 1<<1;
@@ -41,22 +52,39 @@ unsafe impl RefEncode for NSApplicationActivationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Activation policies (used by [`activationPolicy`](https://developer.apple.com/documentation/appkit/nsrunningapplication/activationpolicy)) that control whether and how an app may be activated.
 /// The following activation policies control whether and how an application may be activated.
 /// They are determined by the `Info.plist`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationActivationPolicy(pub NSInteger);
 impl NSApplicationActivationPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum/regular?language=objc)
+    /// The application is an ordinary app that appears in the Dock and may have a user interface.
+    ///
+    /// ## Discussion
+    ///
+    /// This policy is the default for bundled apps, unless overridden in the `Info.plist`.
+    ///
+    ///
     #[doc(alias = "NSApplicationActivationPolicyRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum/accessory?language=objc)
+    /// The application doesn’t appear in the Dock and doesn’t have a menu bar, but it may be activated programmatically or by clicking on one of its windows.
+    ///
+    /// ## Discussion
+    ///
+    /// This corresponds to value of the `LSUIElement` key in the application’s `Info.plist` being `1`.
+    ///
+    ///
     #[doc(alias = "NSApplicationActivationPolicyAccessory")]
     pub const Accessory: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum/prohibited?language=objc)
+    /// The application doesn’t appear in the Dock and may not create windows or be activated.
+    ///
+    /// ## Discussion
+    ///
+    /// This corresponds to the value of the `LSBackgroundOnly` key in the application’s `Info.plist` file being `1`. This is also the default for unbundled executables that don’t have `Info.plist` files.
+    ///
+    ///
     #[doc(alias = "NSApplicationActivationPolicyProhibited")]
     pub const Prohibited: Self = Self(2);
 }
@@ -70,6 +98,21 @@ unsafe impl RefEncode for NSApplicationActivationPolicy {
 }
 
 extern_class!(
+    /// An object that can manipulate and provide information for a single instance of an app.
+    ///
+    /// ## Overview
+    ///
+    /// Some properties of an app are fixed, such as the bundle identifier. Other properties may vary over time, such as whether the app is hidden. Properties that vary can be observed with key-value observing, in which case the description comment for the method notes this capability.
+    ///
+    /// Properties that vary over time are inherently race-prone. For example, a hidden app may unhide itself at any time. To ameliorate this, properties persist until the next turn of the main run loop in a common mode. For example, if you repeatedly poll an unhidden app for its hidden property without allowing the run loop to run, it will continue to return [`false`](https://developer.apple.com/documentation/swift/false), even if the app hides, until the next turn of the run loop.
+    ///
+    /// [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) is thread safe, in that its properties are returned atomically. However, it is still subject to the main run loop policy described above. If you access an instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) from a background thread, be aware that its time-varying properties may change from under you as the main run loop runs (or not).
+    ///
+    /// An [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) instance remains valid after the app exits. However, most properties lose their significance, and some properties may not be available on a terminated application.
+    ///
+    /// To access the list of all running apps, use the  [`runningApplications`](https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications) method in [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace).
+    ///
+    ///
     /// `NSRunningApplication` is a class to manipulate and provide information for a single instance of an application.  Only user applications are tracked; this does not provide information about every process on the system.
     ///
     /// Some properties of an application are fixed, such as the bundle identifier.  Other properties may vary over time, such as whether the app is hidden.  Properties that vary can be observed with KVO, in which case the description comment for the method will mention it.
@@ -81,8 +124,6 @@ extern_class!(
     /// An `NSRunningApplication` instance remains valid after the application exits.  However, most properties lose their significance, and some properties may not be available on a terminated application.
     ///
     /// To access the list of all running applications, use the `-runningApplications` method on `NSWorkspace`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrunningapplication?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRunningApplication;

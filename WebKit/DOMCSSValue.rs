@@ -7,21 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_inherit?language=objc)
 #[deprecated]
 pub const DOM_CSS_INHERIT: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_primitive_value?language=objc)
 #[deprecated]
 pub const DOM_CSS_PRIMITIVE_VALUE: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_value_list?language=objc)
 #[deprecated]
 pub const DOM_CSS_VALUE_LIST: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_css_custom?language=objc)
 #[deprecated]
 pub const DOM_CSS_CUSTOM: c_uint = 3;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domcssvalue?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

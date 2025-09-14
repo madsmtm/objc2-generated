@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A response to an HTTPS network request.
+    /// A response to an HTTPS network request performed on behalf of a Message Filter app extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilnetworkresponse?language=objc)
+    /// ## Overview
+    ///
+    /// To preserve user privacy, a Message Filter app extension can’t contact the server itself. Instead, it tells the system to contact the server and pass back the server’s response.
+    ///
+    ///
+    /// A response to an HTTPS network request.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILNetworkResponse;

@@ -9,12 +9,19 @@ use crate::*;
 
 /// Configuration options for pipeline dataset serializer objects.
 ///
+/// ## Overview
+///
+/// Use these options to enable different functionality in instances of [`MTL4PipelineDataSetSerializer`](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializer).
+///
+/// You can combine these values via a logical `OR` and set it to [`configuration`](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerdescriptor/configuration) to specify desired level of serialization support for instances of [`MTL4PipelineDataSetSerializer`](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializer).
+///
+///
+/// Configuration options for pipeline dataset serializer objects.
+///
 /// Use these options to enable different functionality in instances of ``MTL4PipelineDataSetSerializer``.
 ///
 /// You can combine these values via a logical `OR` and set it to ``MTL4PipelineDataSetSerializerDescriptor/configuration``
 /// to specify desired level of serialization support for instances of ``MTL4PipelineDataSetSerializer``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerconfiguration?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -23,18 +30,30 @@ bitflags::bitflags! {
     impl MTL4PipelineDataSetSerializerConfiguration: NSUInteger {
 /// Enables serializing pipeline scripts.
 ///
-/// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsPipelinesScriptWithError``.
+/// ## Discussion
+///
+/// Set this mask to use `MTL4PipelineDataSetSerializer.serializeAsPipelinesScriptWithError`.
 ///
 /// This for the default behavior.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerconfiguration/capturedescriptors?language=objc)
+///
+/// Enables serializing pipeline scripts.
+///
+/// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsPipelinesScriptWithError``.
+///
+/// This for the default behavior.
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureDescriptors")]
         const CaptureDescriptors = 1<<0;
 /// Enables serializing pipeline binary functions.
 ///
-/// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsArchiveAndFlush(toURL:error:)``.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerconfiguration/capturebinaries?language=objc)
+/// Set this mask to use `MTL4PipelineDataSetSerializer.serializeAsArchiveAndFlush(toURL:error:)`.
+///
+///
+/// Enables serializing pipeline binary functions.
+///
+/// Set this mask to use ``MTL4PipelineDataSetSerializer.serializeAsArchiveAndFlush(toURL:error:)``.
         #[doc(alias = "MTL4PipelineDataSetSerializerConfigurationCaptureBinaries")]
         const CaptureBinaries = 1<<1;
     }
@@ -50,8 +69,7 @@ unsafe impl RefEncode for MTL4PipelineDataSetSerializerConfiguration {
 
 extern_class!(
     /// Groups together properties to create a pipeline data set serializer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializerdescriptor?language=objc)
+    /// Groups together properties to create a pipeline data set serializer.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4PipelineDataSetSerializerDescriptor;
@@ -114,6 +132,25 @@ impl DefaultRetained for MTL4PipelineDataSetSerializerDescriptor {
 extern_protocol!(
     /// A fast-addition container for collecting data during pipeline state creation.
     ///
+    /// ## Overview
+    ///
+    /// Pipeline data serializer instances allow you to create binary archives and serialize pipeline scripts to use with the offline Metal binary generator (`metal-tt`) doc:compiling-binary-archives-from-a-custom-configuration-script.md.
+    ///
+    /// You capture and retain all relevant data for all pipelines a compiler instance creates by providing an instance of this object to its [`MTL4CompilerDescriptor`](https://developer.apple.com/documentation/metal/mtl4compilerdescriptor).
+    ///
+    /// After capturing data, you can serialize it to a binary archive to persist its contents offline by calling [`serializeAsArchiveAndFlushToURL:error:`](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializer/serializeasarchiveandflush(url:)). You can also serialize a pipeline script suitable for the offline binary generator (`metal-tt`) by calling [`serializeAsPipelinesScriptWithError:`](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializer/serializeaspipelinesscript())
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// The objects [`MTL4PipelineDataSetSerializer`](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializer) contains are opaque and can’t accelerate compilation for compilers they are not attached to. Additionally, your program can’t read data out of data set serializer instances.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A fast-addition container for collecting data during pipeline state creation.
+    ///
     /// Pipeline data serializer instances allow you to create binary archives and serialize pipeline scripts to use with
     /// the offline Metal binary generator (`metal-tt`)
     /// <doc
@@ -128,8 +165,6 @@ extern_protocol!(
     ///
     /// - Note: The objects ``MTL4PipelineDataSetSerializer`` contains are opaque and can't accelerate compilation for
     /// compilers they are not attached to. Additionally, your program can't read data out of data set serializer instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedatasetserializer?language=objc)
     pub unsafe trait MTL4PipelineDataSetSerializer: NSObjectProtocol {
         /// Serializes a pipeline data set to an archive.
         ///

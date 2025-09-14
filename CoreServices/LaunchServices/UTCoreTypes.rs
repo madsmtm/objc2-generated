@@ -141,7 +141,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypertf?language=objc)
+    /// The type identifier for Rich Text Format.
     #[deprecated = "Use UTTypeRTF or UTType.rtf (swift) instead."]
     pub static kUTTypeRTF: &'static CFString;
 }

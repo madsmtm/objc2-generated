@@ -8,6 +8,19 @@ use crate::*;
 impl JSContext {
     /// Creates a JavaScript context group.
     ///
+    /// ## Return Value
+    ///
+    /// The created [`JSContextGroupRef`](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A [`JSContextGroupRef`](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref) associates JavaScript contexts with one another. Contexts in the same group may share and exchange JavaScript objects. Sharing and exchanging JavaScript objects between contexts in different groups produces undefined behavior. When you use objects from the same context group in multiple threads, explicit synchronization is a requirement.
+    ///
+    ///
+    /// Creates a JavaScript context group.
+    ///
     /// A JSContextGroup associates JavaScript contexts with one another.
     /// Contexts in the same group may share and exchange JavaScript objects. Sharing and/or exchanging
     /// JavaScript objects between contexts in different groups will produce undefined behavior.
@@ -20,8 +33,6 @@ impl JSContext {
     /// JSContextGroup's run loop once it has been created.
     ///
     /// Returns: The created JSContextGroup.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupcreate()?language=objc)
     #[doc(alias = "JSContextGroupCreate")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -34,6 +45,17 @@ impl JSContext {
 
     /// Retains a JavaScript context group.
     ///
+    /// Parameters:
+    /// - group: The [`JSContextGroupRef`](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref) to retain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSContextGroupRef`](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref) that is the same as `group`.
+    ///
+    ///
+    /// Retains a JavaScript context group.
+    ///
     /// Parameter `group`: The JSContextGroup to retain.
     ///
     /// Returns: A JSContextGroup that is the same as group.
@@ -41,8 +63,6 @@ impl JSContext {
     /// # Safety
     ///
     /// `group` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupretain(_:)?language=objc)
     #[doc(alias = "JSContextGroupRetain")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -55,13 +75,16 @@ impl JSContext {
 
     /// Releases a JavaScript context group.
     ///
+    /// Parameters:
+    /// - group: The [`JSContextGroupRef`](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref) to release.
+    ///
+    /// Releases a JavaScript context group.
+    ///
     /// Parameter `group`: The JSContextGroup to release.
     ///
     /// # Safety
     ///
     /// `group` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgrouprelease(_:)?language=objc)
     #[doc(alias = "JSContextGroupRelease")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -74,6 +97,25 @@ impl JSContext {
 }
 
 extern "C-unwind" {
+    /// Creates a global JavaScript execution context.
+    ///
+    /// Parameters:
+    /// - globalObjectClass: The class to use when creating the global object. Pass `NULL` to use the default object class.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) with a global object of class `globalObjectClass`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// [`JSGlobalContextCreate`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcreate(_:)) allocates a global object and populates it with all the built-in JavaScript objects, such as `Object`, `Function`, `String`, and `Array`.
+    ///
+    /// In WebKit 4 and later, the system creates the context in a unique context group. Therefore, scripts may execute in it concurrently with scripts executing in other contexts. However, you may not use values from the context in other contexts.
+    ///
+    ///
     /// Creates a global JavaScript execution context.
     ///
     /// JSGlobalContextCreate allocates a global object and populates it with all the
@@ -91,13 +133,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `global_object_class` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcreate(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCreate(global_object_class: JSClassRef) -> JSGlobalContextRef;
 }
 
 extern "C-unwind" {
+    /// Creates a global JavaScript execution context in the provided context group.
+    ///
+    /// Parameters:
+    /// - group: The context group to use. The created global context retains the group. Pass `NULL` to create a unique group for the context.
+    ///
+    /// - globalObjectClass: The class to use when creating the global object. Pass `NULL` to use the default object class.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) with a global object of class `globalObjectClass` and a context group equal to `group`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// [`JSGlobalContextCreateInGroup`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcreateingroup(_:_:)) allocates a global object and populates it with all the built-in JavaScript objects, such as `Object`, `Function`, `String`, and `Array`.
+    ///
+    ///
     /// Creates a global JavaScript execution context in the context group provided.
     ///
     /// JSGlobalContextCreateInGroup allocates a global object and populates it with
@@ -116,8 +175,6 @@ extern "C-unwind" {
     ///
     /// - `group` must be a valid pointer.
     /// - `global_object_class` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcreateingroup(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCreateInGroup(
         group: JSContextGroupRef,
@@ -128,6 +185,17 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Retains a global JavaScript execution context.
     ///
+    /// Parameters:
+    /// - ctx: The [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) to retain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) that is the same as `ctx`.
+    ///
+    ///
+    /// Retains a global JavaScript execution context.
+    ///
     /// Parameter `ctx`: The JSGlobalContext to retain.
     ///
     /// Returns: A JSGlobalContext that is the same as ctx.
@@ -135,8 +203,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextRetain(ctx: JSGlobalContextRef) -> JSGlobalContextRef;
 }
@@ -144,19 +210,33 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Releases a global JavaScript execution context.
     ///
+    /// Parameters:
+    /// - ctx: The [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) to release.
+    ///
+    /// Releases a global JavaScript execution context.
+    ///
     /// Parameter `ctx`: The JSGlobalContext to release.
     ///
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextRelease(ctx: JSGlobalContextRef);
 }
 
 #[cfg(all(feature = "JSContext", feature = "objc2"))]
 impl JSContext {
+    /// Gets the global object of a JavaScript execution context.
+    ///
+    /// Parameters:
+    /// - ctx: The [`JSContextRef`](https://developer.apple.com/documentation/javascriptcore/jscontextref) with the global object you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The global object of `ctx`.
+    ///
+    ///
     /// Gets the global object of a JavaScript execution context.
     ///
     /// Parameter `ctx`: The JSContext whose global object you want to get.
@@ -166,8 +246,6 @@ impl JSContext {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgetglobalobject(_:)?language=objc)
     #[doc(alias = "JSContextGetGlobalObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -178,6 +256,17 @@ impl JSContext {
         unsafe { JSContextGetGlobalObject(ctx) }
     }
 
+    /// Gets the context group that a JavaScript execution context belongs to.
+    ///
+    /// Parameters:
+    /// - ctx: The [`JSContextRef`](https://developer.apple.com/documentation/javascriptcore/jscontextref) with the group you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The group that `ctx` belongs to.
+    ///
+    ///
     /// Gets the context group to which a JavaScript execution context belongs.
     ///
     /// Parameter `ctx`: The JSContext whose group you want to get.
@@ -187,8 +276,6 @@ impl JSContext {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgetgroup(_:)?language=objc)
     #[doc(alias = "JSContextGetGroup")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -201,6 +288,17 @@ impl JSContext {
 
     /// Gets the global context of a JavaScript execution context.
     ///
+    /// Parameters:
+    /// - ctx: The `JSContextRef` with the global context you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The global context of `ctx`.
+    ///
+    ///
+    /// Gets the global context of a JavaScript execution context.
+    ///
     /// Parameter `ctx`: The JSContext whose global context you want to get.
     ///
     /// Returns: ctx's global context.
@@ -208,8 +306,6 @@ impl JSContext {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgetglobalcontext(_:)?language=objc)
     #[doc(alias = "JSContextGetGlobalContext")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -224,6 +320,23 @@ impl JSContext {
 extern "C-unwind" {
     /// Gets a copy of the name of a context.
     ///
+    /// Parameters:
+    /// - ctx: The [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) with the name you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The name for `ctx`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// JavaScriptCore exposes the name of [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) for remote debugging to make it easier to identify the context you want to attach to.
+    ///
+    ///
+    /// Gets a copy of the name of a context.
+    ///
     /// Parameter `ctx`: The JSGlobalContext whose name you want to get.
     ///
     /// Returns: The name for ctx.
@@ -233,13 +346,18 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextcopyname(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextCopyName(ctx: JSGlobalContextRef) -> JSStringRef;
 }
 
 extern "C-unwind" {
+    /// Sets the remote debugging name for a context.
+    ///
+    /// Parameters:
+    /// - ctx: The [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) that you want to name.
+    ///
+    /// - name: The remote debugging name to set on `ctx`.
+    ///
     /// Sets the name exposed when inspecting a context.
     ///
     /// Parameter `ctx`: The JSGlobalContext that you want to name.
@@ -250,13 +368,22 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextsetname(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetName(ctx: JSGlobalContextRef, name: JSStringRef);
 }
 
 extern "C-unwind" {
+    /// Returns a Boolean value that indicates whether the JavaScript context is inspectable.
+    ///
+    /// Parameters:
+    /// - ctx: The [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) to check whether it’s inspectable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether the JavaScript context is inspectable.
+    ///
+    ///
     /// Gets whether the context is inspectable in Web Inspector.
     ///
     /// Parameter `ctx`: The JSGlobalContext that you want to change the inspectability of.
@@ -266,13 +393,18 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextisinspectable(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextIsInspectable(ctx: JSGlobalContextRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Sets a JavaScript context to be either inspectable or not inspectable.
+    ///
+    /// Parameters:
+    /// - ctx: The [`JSGlobalContextRef`](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextref) to set whether it’s inspectable.
+    ///
+    /// - inspectable: A Boolean value that indicates whether the context is inspectable.
+    ///
     /// Sets whether the context is inspectable in Web Inspector. Default value is NO.
     ///
     /// Parameter `ctx`: The JSGlobalContext that you want to change the inspectability of.
@@ -282,8 +414,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsglobalcontextsetinspectable(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool);
 }

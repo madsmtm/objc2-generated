@@ -7,13 +7,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A port-based connection between the guest operating system and the host computer.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZVirtioSocketConnection`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketconnection) object contains the port information for the guest operating system and host computer. You don’t create connection objects directly. When the guest operating system initiates a connection, the virtual machine creates the connection object and passes it to the appropriate [`VZVirtioSocketListener`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener) object, which forwards the object to its delegate. When the virtual machine opens a connection to a guest port, the [`connectToPort:completionHandler:`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice/connect(toport:)) method (Objective-C) or [`connect(toPort:completionHandler:)`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice/connect(toport:completionhandler:)) method (Swift) pass the connection object to your completion handler.
+    ///
+    ///
     /// The VZVirtioSocketConnection object represents a Virtio socket device's connection.
     ///
     /// The connection encompasses a source port, destination port, and an associated file descriptor.
     ///
     /// See: VZVirtioSocketDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSocketConnection;

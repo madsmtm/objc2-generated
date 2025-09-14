@@ -7,11 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains detailed information about the current UI update state.
+    ///
+    /// ## Overview
+    ///
+    /// During a UI update, this object provides details about the state of the update. When using a [`UIUpdateLink`](https://developer.apple.com/documentation/uikit/uiupdatelink), you can query this UI update information object to learn about the current UI update.
+    ///
+    /// A UI update can service views on different displays simultaneously, which means these views can have a different [`UIUpdateInfo`](https://developer.apple.com/documentation/uikit/uiupdateinfo). Get the UI update information for a specific view using [`currentUpdateInfoForView:`](https://developer.apple.com/documentation/uikit/uiupdateinfo/current(for:)-34zby) or a specific window using [`currentUpdateInfoForWindowScene:`](https://developer.apple.com/documentation/uikit/uiupdateinfo/current(for:)-6y1z9). The UI update information can also change as the current UI update progresses through its phases.
+    ///
+    ///
     /// Contains detailed information about the current state of the UI update. This information may change as UI update
     /// progresses through its phases. Note, that single UI update might service views on different displays simultaneously,
     /// in which case such views may have different `UIUpdateInfo` (e.g. `estimatedPresentationTime` may differ).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiupdateinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

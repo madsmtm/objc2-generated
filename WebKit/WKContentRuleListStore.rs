@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkcontentruleliststore?language=objc)
+    /// An object that contains the rules for how to load and filter content in the web view.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`WKContentRuleListStore`](https://developer.apple.com/documentation/webkit/wkcontentruleliststore) to compile and manage rules for filtering content in a web view. Rule lists act as content blockers inside your app. You use them to prevent the web view from loading specific content, either based on the original location of that content or other criteria you specify. For example, a corporate app might use rules to prevent the web view from loading content that originates from outside the corporate network.
+    ///
+    /// Fetch the default [`WKContentRuleListStore`](https://developer.apple.com/documentation/webkit/wkcontentruleliststore) object or create a custom store object and use it to compile or access the available rules. Each store object stores its existing rules persistently in the file system and loads those rules at creation time. A store object doesn’t automatically apply any of its rules to a particular web view. To apply a rule to a web view, add it to the [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object of the web view’s configuration object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

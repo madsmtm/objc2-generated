@@ -4,20 +4,20 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions?language=objc)
+/// Constants indicating how often to trigger an event.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTemporalEventTriggerTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INTemporalEventTriggerTypeOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions/notscheduled?language=objc)
+/// No temporal event trigger scheduled.
         #[doc(alias = "INTemporalEventTriggerTypeOptionNotScheduled")]
         const NotScheduled = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions/schedulednonrecurring?language=objc)
+/// A single scheduled temporal event trigger.
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledNonRecurring")]
         const ScheduledNonRecurring = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions/scheduledrecurring?language=objc)
+/// A recurring, scheduled temporal event trigger.
         #[doc(alias = "INTemporalEventTriggerTypeOptionScheduledRecurring")]
         const ScheduledRecurring = 1<<2;
     }

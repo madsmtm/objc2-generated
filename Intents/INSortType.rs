@@ -4,19 +4,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype?language=objc)
+/// Constants indicating how the intent sorted the search results.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSortType(pub NSInteger);
 impl INSortType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype/unknown?language=objc)
+    /// The sort order is unknown.
     #[doc(alias = "INSortTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype/asis?language=objc)
+    /// The sorted items are in the order returned.
     #[doc(alias = "INSortTypeAsIs")]
     pub const AsIs: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insorttype/bydate?language=objc)
+    /// The sorted items are in date order.
+    ///
+    /// ## Discussion
+    ///
+    /// You may specify this sort type regardless of whether the search included a date as one of the search parameters.
+    ///
+    ///
     #[doc(alias = "INSortTypeByDate")]
     pub const ByDate: Self = Self(2);
 }

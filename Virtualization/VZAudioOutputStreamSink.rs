@@ -6,6 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for an audio output stream sink.
+    ///
+    /// ## Overview
+    ///
+    /// An audio output stream sink defines how the host system consumes audio data from a guest.
+    ///
+    /// Don’t instantiate `VZAudioOutputStreamSink` directly, use one of its subclasses, such as [`VZHostAudioOutputStreamSink`](https://developer.apple.com/documentation/virtualization/vzhostaudiooutputstreamsink) instead.
+    ///
+    ///
     /// Base class for an audio output stream sink.
     ///
     /// An audio output stream sink defines how audio data from a guest is consumed on the host system.
@@ -14,8 +23,6 @@ extern_class!(
     ///
     ///
     /// See: VZHostAudioOutputStreamSink
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzaudiooutputstreamsink?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZAudioOutputStreamSink;

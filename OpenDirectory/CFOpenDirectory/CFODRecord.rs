@@ -8,13 +8,18 @@ use crate::*;
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODRecordRef {
+    /// Returns the type ID for a record.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID for a record.
+    ///
+    ///
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for the ODRecord object
     ///
     /// Returns: a valid CFTypeID for the ODRecord object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordgettypeid()?language=objc)
     #[doc(alias = "ODRecordGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -26,6 +31,31 @@ unsafe impl ConcreteType for ODRecordRef {
 }
 
 impl ODRecordRef {
+    /// Sets node authentication credentials for a given record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - username: The username to use to authenticate with the node.
+    ///
+    /// - password: The password to use to authenticate with the node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the credentials are successfully set; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you want to set credentials for all references to a node, use [`ODNodeSetCredentials`](https://developer.apple.com/documentation/opendirectory/odnodesetcredentials(_:_:_:_:_:)) instead.
+    ///
+    /// If this function fails, the previous credentials are used.
+    ///
+    ///
     /// Similar to calling ODNodeSetCredentials except credentials are only set for this particular record's node
     ///
     /// Sets the credentials if necessary on the ODNodeRef referenced by this ODRecordRef.  Very similar to
@@ -53,8 +83,6 @@ impl ODRecordRef {
     /// - `username` might not allow `None`.
     /// - `password` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetnodecredentials(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordSetNodeCredentials")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -75,6 +103,35 @@ impl ODRecordRef {
         unsafe { ODRecordSetNodeCredentials(self, username, password, error) }
     }
 
+    /// Sets node authentication credentials for a record using a specified authentication method.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - recordType: The record type that uses the credentials. Can be `NULL`. The default value is `kODRecordTypeUsers`.
+    ///
+    /// - authType: The type of authentication to use.
+    ///
+    /// - authItems: An array of `CFString` or `CFData` objects to be used in the authentication process.
+    ///
+    /// - outAuthItems: An array of `CFData` objects returned from the authentication process, if any are returned; `NULL` otherwise.
+    ///
+    /// - outContext: The proper context if the authentication attempt requires a context; `NULL` otherwise. If not `NULL`, then more calls must be made with the Context to continue the authentication.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if no error occurs; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you want to set credentials for all references to a node, use [`ODNodeSetCredentialsExtended`](https://developer.apple.com/documentation/opendirectory/odnodesetcredentialsextended(_:_:_:_:_:_:_:)) instead.
+    ///
+    ///
     /// Similar to calling ODNodeSetCredentialsExtended except credentials are only set for this particular record's
     /// node
     ///
@@ -109,8 +166,6 @@ impl ODRecordRef {
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetnodecredentialsextended(_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordSetNodeCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -150,6 +205,27 @@ impl ODRecordRef {
         }
     }
 
+    /// Sets credentials for interacting with a record’s node with the Kerberos cache.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - cacheName: The name of the Kerberos cache to use. Can be `NULL`. By default, the currently active Kerberos cache is used.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the credentials are successfully set; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you want to set credentials for all references to a node, use [`ODNodeSetCredentialsUsingKerberosCache`](https://developer.apple.com/documentation/opendirectory/odnodesetcredentialsusingkerberoscache) instead.
+    ///
+    ///
     /// Unsupported function.
     ///
     /// Unsupported function.
@@ -158,8 +234,6 @@ impl ODRecordRef {
     ///
     /// - `cache_name` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetnodecredentialsusingkerberoscache?language=objc)
     #[doc(alias = "ODRecordSetNodeCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -179,6 +253,21 @@ impl ODRecordRef {
         unsafe { ODRecordSetNodeCredentialsUsingKerberosCache(self, cache_name, error) }
     }
 
+    /// Returns the password policies of a record.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - record: The record.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The password policies for the record, or `NULL` if no policies have been set.
+    ///
+    ///
     /// Returns a CFDictionaryRef of the effective policy for the user if available
     ///
     /// Returns a CFDictionaryRef of the effective policy for the user if available
@@ -196,8 +285,6 @@ impl ODRecordRef {
     /// - `allocator` might not allow `None`.
     /// - `record` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopypasswordpolicy?language=objc)
     #[doc(alias = "ODRecordCopyPasswordPolicy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyEffectivePolicies"]
@@ -218,6 +305,21 @@ impl ODRecordRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Verifies a given password for a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - password: The password.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the password is valid; otherwise, `false`.
+    ///
+    ///
     /// Verifies the password provided is valid for the record
     ///
     /// Verifies the password provided is valid for the record.
@@ -234,8 +336,6 @@ impl ODRecordRef {
     ///
     /// - `password` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordverifypassword(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordVerifyPassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -254,6 +354,27 @@ impl ODRecordRef {
         unsafe { ODRecordVerifyPassword(self, password, error) }
     }
 
+    /// Verifies a given password for a record given a specified authentication method.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - authType: The type of authentication to use.
+    ///
+    /// - authItems: An array of `CFString` or `CFData` objects to be used in the authentication process.
+    ///
+    /// - outAuthItems: An array of `CFData` objects returned from the authentication process, if any are returned; `NULL` otherwise.
+    ///
+    /// - outContext: The proper context if the authentication attempt requires a context; `NULL` otherwise. If not `NULL`, then more calls must be made with the Context to continue the authentication.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the authentication information is valid; otherwise, `false`.
+    ///
+    ///
     /// Allows use of other Open Directory types of authentications to verify a record password
     ///
     /// Allows the caller to use other types of authentications that are available in Open Directory, that may
@@ -284,8 +405,6 @@ impl ODRecordRef {
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordverifypasswordextended(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordVerifyPasswordExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -322,6 +441,23 @@ impl ODRecordRef {
         }
     }
 
+    /// Changes the password of a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - oldPassword: The record’s old password. Pass `NULL` if the record has no old password.
+    ///
+    /// - newPassword: The record’s new password.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the password is successfully changed; `false` otherwise.
+    ///
+    ///
     /// Changes the password of an ODRecord
     ///
     /// Changes the password of an ODRecord.  If NULL is passed into inOldPassword, then an attempt to set
@@ -342,8 +478,6 @@ impl ODRecordRef {
     /// - `old_password` might not allow `None`.
     /// - `new_password` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordchangepassword(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordChangePassword")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -364,6 +498,17 @@ impl ODRecordRef {
         unsafe { ODRecordChangePassword(self, old_password, new_password, error) }
     }
 
+    /// Returns the type of a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The type of the record.
+    ///
+    ///
     /// Returns the record type of an ODRecordRef
     ///
     /// Returns the record type of an ODRecordRef
@@ -371,8 +516,6 @@ impl ODRecordRef {
     /// Parameter `record`: an ODRecordRef to use
     ///
     /// Returns: a CFStringRef of the record type for this ODRecordRef
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordgetrecordtype(_:)?language=objc)
     #[doc(alias = "ODRecordGetRecordType")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -384,6 +527,23 @@ impl ODRecordRef {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the official name of a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The official name of the record.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The official name of the record typically corresponds to the first value of the `kODAttributeTypeRecordName` attribute, but not always.
+    ///
+    ///
     /// Returns the official record name of an ODRecordRef
     ///
     /// Returns the official record name of an ODRecordRef which typically corresponds to the first value
@@ -392,8 +552,6 @@ impl ODRecordRef {
     /// Parameter `record`: an ODRecordRef to use
     ///
     /// Returns: a CFStringRef of the record name for this ODRecordRef
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordgetrecordname(_:)?language=objc)
     #[doc(alias = "ODRecordGetRecordName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -405,6 +563,27 @@ impl ODRecordRef {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the value of a single attribute of a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - attribute: The attribute.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of the requested attribute, or `NULL` if the attribute doesn’t exist.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the requested attribute has not been fetched before, it is fetched in order to return its value. If the record has been fetched before, internal storage is consulted instead of the directory.
+    ///
+    ///
     /// Returns the value of an attribute as an array of CFStringRef or CFDataRef types
     ///
     /// Returns the value of an attribute as an array of CFStringRef or CFDataRef, depending on
@@ -424,8 +603,6 @@ impl ODRecordRef {
     ///
     /// - `attribute` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopyvalues(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordCopyValues")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -448,6 +625,29 @@ impl ODRecordRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Sets one or more attribute values of a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - attribute: The attribute type to set.
+    ///
+    /// - valueOrValues: The value or values. Can be of type `CFStringRef` or `CFDataRef`, or a `CFArrayRef` containing elements of type `CFStringRef` and `CFDataRef`.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the value or values are successfully set; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Passing an empty array for `inValueOrValues` deletes the attribute.
+    ///
+    ///
     /// Will take a CFDataRef or CFStringRef or a CFArrayRef of either type and set it for the attribute
     ///
     /// Will take a CFDataRef or CFStringRef or a CFArrayRef of either type and set it for the attribute.
@@ -472,8 +672,6 @@ impl ODRecordRef {
     /// - `value_or_values` should be of the correct type.
     /// - `value_or_values` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetvalue(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordSetValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -497,6 +695,23 @@ impl ODRecordRef {
         unsafe { ODRecordSetValue(self, attribute, value_or_values, error) }
     }
 
+    /// Adds a value to an attribute of a record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - attribute: The attribute.
+    ///
+    /// - value: The value to add to the attribute. Can be a `CFStringRef` object or a `CFDataRef` object.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the value is successfully added; `false` otherwise.
+    ///
+    ///
     /// Adds a value to an attribute
     ///
     /// Adds a value to an attribute.
@@ -517,8 +732,6 @@ impl ODRecordRef {
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordaddvalue(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordAddValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -542,6 +755,29 @@ impl ODRecordRef {
         unsafe { ODRecordAddValue(self, attribute, value, error) }
     }
 
+    /// Removes a value from a record’s attribute.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - attribute: The attribute.
+    ///
+    /// - value: The value to remove.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `inValue` is successfully removed from `inAttribute`; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `inValue` does not exist, `true` is returned and no error is set.
+    ///
+    ///
     /// Removes a particular value from an attribute.
     ///
     /// Removes a particular value from an attribute.
@@ -563,8 +799,6 @@ impl ODRecordRef {
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordremovevalue(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordRemoveValue")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -588,6 +822,27 @@ impl ODRecordRef {
         unsafe { ODRecordRemoveValue(self, attribute, value, error) }
     }
 
+    /// Returns the values of a record’s attributes.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - attributes: An array of attributes to return values for. Elements are of type `CFStringRef` or `ODAttributeType`. If `NULL`, all currently fetched values are returned.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The attribute values of the record.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned values are of type `CFString` or `CFData`, depending on the type of attribute. If `inAttributes` is not `NULL` and a requested attribute has not been fetched before, it is fetched in order to return its value.
+    ///
+    ///
     /// Returns the attributes and values in the form of a key-value pair set for this record.
     ///
     /// Returns the attributes and values in the form of a key-value pair set for this record.  The key is a
@@ -610,8 +865,6 @@ impl ODRecordRef {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopydetails(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -631,6 +884,25 @@ impl ODRecordRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Synchronizes a record with the directory to get current data and commit changes.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the record is successfully synchronized; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function refetches any attributes which have been fetched previously, but it does not fetch previously unfetched attributes.
+    ///
+    ///
     /// Synchronizes the record from the Directory in order to get current data and commit pending changes
     ///
     /// Synchronizes the record from the Directory in order to get current data.  Any previously fetched attributes
@@ -645,8 +917,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsynchronize(_:_:)?language=objc)
     #[doc(alias = "ODRecordSynchronize")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -657,6 +927,25 @@ impl ODRecordRef {
         unsafe { ODRecordSynchronize(self, error) }
     }
 
+    /// Deletes a record from a node and invalidates the record.
+    ///
+    /// Parameters:
+    /// - record: The record.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the record is successfully deleted; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After deleting the record, you should release it with the `CFRelease` function.
+    ///
+    ///
     /// Deletes the record from the node and invalidates the record.
     ///
     /// Deletes the record from the node and invalidates the record.  The ODRecordRef should be
@@ -671,8 +960,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecorddelete(_:_:)?language=objc)
     #[doc(alias = "ODRecordDelete")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -683,6 +970,27 @@ impl ODRecordRef {
         unsafe { ODRecordDelete(self, error) }
     }
 
+    /// Adds a record as a member of a group record.
+    ///
+    /// Parameters:
+    /// - group: The group record.
+    ///
+    /// - member: The record to add.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the record is successfully added; `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns an error if `inGroup` is not a group record or if `inMember` is not of a type allowed in a group record.
+    ///
+    ///
     /// Will add the record as a member of the group record that is provided
     ///
     /// Will add the record as a member of the group record that is provided in an appopriate manner
@@ -702,8 +1010,6 @@ impl ODRecordRef {
     ///
     /// - `member` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordaddmember(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordAddMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -722,6 +1028,21 @@ impl ODRecordRef {
         unsafe { ODRecordAddMember(self, member, error) }
     }
 
+    /// Removes a record as a member from a specified group record.
+    ///
+    /// Parameters:
+    /// - group: The group record.
+    ///
+    /// - member: The record to remove.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `inMember` is successfully removed from `inGroup`; otherwise, `false`.
+    ///
+    ///
     /// Will remove the record as a member from the group record that is provided
     ///
     /// Will remove the record as a member from the group record that is provided.  If the record type
@@ -739,8 +1060,6 @@ impl ODRecordRef {
     ///
     /// - `member` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordremovemember(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordRemoveMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -759,6 +1078,27 @@ impl ODRecordRef {
         unsafe { ODRecordRemoveMember(self, member, error) }
     }
 
+    /// Returns whether a group record contains a given record.
+    ///
+    /// Parameters:
+    /// - group: The group record.
+    ///
+    /// - member: The record to check for membership in the group record.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `inMember` is a member of `inGroup`; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses system APIs instead of examining attributes to determine membership.
+    ///
+    ///
     /// Will use membership APIs to resolve group membership based on Group and Member record combination
     ///
     /// Will use membership APIs to resolve group membership based on Group and Member record combination.
@@ -777,8 +1117,6 @@ impl ODRecordRef {
     ///
     /// - `member` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcontainsmember(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordContainsMember")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -810,8 +1148,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopypolicies(_:_:)?language=objc)
     #[doc(alias = "ODRecordCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordCopyAccountPolicies"]
@@ -840,8 +1176,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopyeffectivepolicies(_:_:)?language=objc)
     #[doc(alias = "ODRecordCopyEffectivePolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordAuthenticationAllowed and similar functions"]
@@ -875,8 +1209,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopysupportedpolicies(_:_:)?language=objc)
     #[doc(alias = "ODRecordCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -913,8 +1245,6 @@ impl ODRecordRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetpolicies(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODRecordSetAccountPolicies"]
@@ -954,8 +1284,6 @@ impl ODRecordRef {
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -996,8 +1324,6 @@ impl ODRecordRef {
     ///
     /// - `policy` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordremovepolicy(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1051,8 +1377,6 @@ impl ODRecordRef {
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordaddaccountpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1098,8 +1422,6 @@ impl ODRecordRef {
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordremoveaccountpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODRecordRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1153,8 +1475,6 @@ impl ODRecordRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsetaccountpolicies(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1189,8 +1509,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordcopyaccountpolicies(_:_:)?language=objc)
     #[doc(alias = "ODRecordCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1236,8 +1554,6 @@ impl ODRecordRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordauthenticationallowed(_:_:)?language=objc)
     #[doc(alias = "ODRecordAuthenticationAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1277,8 +1593,6 @@ impl ODRecordRef {
     ///
     /// - `new_password` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordpasswordchangeallowed(_:_:_:)?language=objc)
     #[doc(alias = "ODRecordPasswordChangeAllowed")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1312,8 +1626,6 @@ impl ODRecordRef {
     ///
     /// Returns: a bool which signifies if the password will expire within the
     /// specified time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordwillpasswordexpire(_:_:)?language=objc)
     #[doc(alias = "ODRecordWillPasswordExpire")]
     #[inline]
     pub unsafe fn will_password_expire(&self, will_expire_in: u64) -> bool {
@@ -1338,8 +1650,6 @@ impl ODRecordRef {
     ///
     /// Returns: a bool which signifies if authentications will expire within the
     /// specified time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordwillauthenticationsexpire(_:_:)?language=objc)
     #[doc(alias = "ODRecordWillAuthenticationsExpire")]
     #[inline]
     pub unsafe fn will_authentications_expire(&self, will_expire_in: u64) -> bool {
@@ -1365,8 +1675,6 @@ impl ODRecordRef {
     /// expiration time is returned.  If already expired,
     /// kODExpirationTimeExpired is returned.  If there are no password
     /// change policies, kODExpirationTimeNeverExpires is returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsecondsuntilpasswordexpires(_:)?language=objc)
     #[doc(alias = "ODRecordSecondsUntilPasswordExpires")]
     #[inline]
     pub unsafe fn seconds_until_password_expires(&self) -> i64 {
@@ -1391,8 +1699,6 @@ impl ODRecordRef {
     /// kODExpirationTimeExpired is returned.  If there are no
     /// authentication policies controlling expiration,
     /// kODExpirationTimeNeverExpires is returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordsecondsuntilauthenticationsexpire(_:)?language=objc)
     #[doc(alias = "ODRecordSecondsUntilAuthenticationsExpire")]
     #[inline]
     pub unsafe fn seconds_until_authentications_expire(&self) -> i64 {

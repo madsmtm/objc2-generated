@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfastenumeration?language=objc)
+    /// A protocol that objects adopt to support fast enumeration.
+    ///
+    /// ## Overview
+    ///
+    /// The abstract class [`NSEnumerator`](https://developer.apple.com/documentation/foundation/nsenumerator) provides a convenience implementation that uses [`nextObject`](https://developer.apple.com/documentation/foundation/nsenumerator/nextobject()) to return items one at a time.
+    ///
+    ///
     pub unsafe trait NSFastEnumeration {
         /// # Safety
         ///
@@ -24,7 +30,25 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerator?language=objc)
+    /// An abstract class whose subclasses enumerate collections of objects, such as arrays and dictionaries.
+    ///
+    /// ## Overview
+    ///
+    /// All creation methods are defined in the collection classes—such as [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), [`NSSet`](https://developer.apple.com/documentation/foundation/nsset), and [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary)—which provide special [`NSEnumerator`](https://developer.apple.com/documentation/foundation/nsenumerator) objects with which to enumerate their contents. For example, `NSArray` has two methods that return an [`NSEnumerator`](https://developer.apple.com/documentation/foundation/nsenumerator) object: [`objectEnumerator`](https://developer.apple.com/documentation/foundation/nsset/objectenumerator()) and [`reverseObjectEnumerator`](https://developer.apple.com/documentation/foundation/nsarray/reverseobjectenumerator()). `NSDictionary` also has two methods that return an [`NSEnumerator`](https://developer.apple.com/documentation/foundation/nsenumerator) object: [`keyEnumerator`](https://developer.apple.com/documentation/foundation/nsdictionary/keyenumerator()) and [`objectEnumerator`](https://developer.apple.com/documentation/foundation/nsdictionary/objectenumerator()). These methods let you enumerate the contents of a dictionary by key or by value, respectively.
+    ///
+    /// You send [`nextObject`](https://developer.apple.com/documentation/foundation/nsenumerator/nextobject()) repeatedly to a newly created [`NSEnumerator`](https://developer.apple.com/documentation/foundation/nsenumerator) object to have it return the next object in the original collection. When the collection is exhausted, `nil` is returned. You cannot “reset” an enumerator after it has exhausted its collection. To enumerate a collection again, you need a new enumerator.
+    ///
+    /// The enumerator subclasses used by `NSArray`, `NSDictionary`, and `NSSet` retain the collection during enumeration. When the enumeration is exhausted, the collection is released.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In Objective-C, it is not safe to modify a mutable collection while enumerating through it. Some enumerators may currently allow enumeration of a collection that is modified, but this behavior is not guaranteed to be supported in the future.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEnumerator<ObjectType: ?Sized = AnyObject>;

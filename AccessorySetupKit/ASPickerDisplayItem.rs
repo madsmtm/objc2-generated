@@ -9,9 +9,8 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// Setup options offered by the accessory picker.
 /// Accessory Setup Options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -19,20 +18,23 @@ pub struct ASPickerDisplayItemSetupOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASPickerDisplayItemSetupOptions: NSUInteger {
 /// An option to ask the person using the app to rename the accessory.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct/rename?language=objc)
+/// An option to ask the person using the app to rename the accessory.
         #[doc(alias = "ASPickerDisplayItemSetupRename")]
         const Rename = 1<<0;
 /// An option to require the app to finish accessory authorization before showing the setup view.
 ///
-/// If the accessory supports ``ASAccessory/SupportOptions/bluetoothPairingLE``, then the app needs to start pairing by accessing a protected GATT characteristic.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct/confirmauthorization?language=objc)
+/// If the accessory supports [`ASAccessorySupportBluetoothPairingLE`](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothpairingle), then the app needs to start pairing by accessing a protected GATT characteristic.
+///
+///
+/// An option to require the app to finish accessory authorization before showing the setup view.
+///
+/// If the accessory supports ``ASAccessory/SupportOptions/bluetoothPairingLE``, then the app needs to start pairing by accessing a protected GATT characteristic.
         #[doc(alias = "ASPickerDisplayItemSetupConfirmAuthorization")]
         const ConfirmAuthorization = 1<<1;
 /// An option to ask the person setting up the accessory to finish additional setup in the app after the accessory is authorized.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct/finishinapp?language=objc)
+/// An option to ask the person setting up the accessory to finish additional setup in the app after the accessory is authorized.
         #[doc(alias = "ASPickerDisplayItemSetupFinishInApp")]
         const FinishInApp = 1<<2;
     }
@@ -47,7 +49,17 @@ unsafe impl RefEncode for ASPickerDisplayItemSetupOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem?language=objc)
+    /// An accessory as presented by the discovery picker.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of `ASPickerDisplayItem` that describe the accessories you want to discover. Each item contains a name and product image to display, plus an [`ASDiscoveryDescriptor`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor) that identifies the kind of accessories to match. Pass these in an array to [`showPickerForDisplayItems:completionHandler:`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession/showpicker(for:completionhandler:)) to display a picker that allows the person using your app to discover and select nearby accessories.
+    ///
+    /// Filter the matched accessories by supplying a [`descriptor`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/descriptor), which contains various Bluetooth and Wi-Fi properties to match. The descriptor also allows you to set the [`bluetoothRange`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothrange) of matched accessories; set its value to [`ASDiscoveryDescriptorRangeImmediate`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range/immediate) to limit discovery of Bluetooth accessories to those within the immediate proximity of the device running your app.
+    ///
+    /// To enable different behaviors during setup, use the [`setupOptions`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.property) property, which is an option set (Swift) or bitfield (Objective-C) of behavior options. The defined options in [`ASPickerDisplayItemSetupOptions`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.struct) allow you to specify behaviors like allowing renaming of the accessory during setup, or confirming accessory authorization before showing the setup view.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPickerDisplayItem;
@@ -177,7 +189,13 @@ impl ASPickerDisplayItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asmigrationdisplayitem?language=objc)
+    /// A previously-discovered accessory as presented by the discovery picker, for use when migrating it to AccessorySetupKit.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of `ASMigrationDisplayItem` by calling the superclass’s initializer [`initWithName:productImage:descriptor:`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/init(name:productimage:descriptor:)), then specify the Bluetooth [`peripheralIdentifier`](https://developer.apple.com/documentation/accessorysetupkit/asmigrationdisplayitem/peripheralidentifier), the Wi-Fi [`hotspotSSID`](https://developer.apple.com/documentation/accessorysetupkit/asmigrationdisplayitem/hotspotssid), or both, for the specific accessory you want to migrate.
+    ///
+    ///
     #[unsafe(super(ASPickerDisplayItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASMigrationDisplayItem;
@@ -300,12 +318,17 @@ impl ASMigrationDisplayItem {
 extern_class!(
     /// A picker display item created from customizing a discovered accessory.
     ///
+    /// ## Overview
+    ///
+    /// Use this type when your app’s picker uses the [`ASPickerDisplaySettingsOptionFilterDiscoveryResults`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct/filterdiscoveryresults) option. With this option enabled, your discovery session receives [`ASAccessoryEventTypeAccessoryDiscovered`](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessorydiscovered) events with discovered accessories. To include a discovered accessory in the picker, create an instance of this class, optionally using the Bluetooth properties of the event’s [`ASDiscoveredAccessory`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoveredaccessory) to provide a more specific name or product image. Then send the `ASDiscoveredDisplayItem` to the picker with the session’s [`updatePickerShowingDiscoveredDisplayItems:completionHandler:`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession/updatepicker(showing:completionhandler:)) method.
+    ///
+    ///
+    /// A picker display item created from customizing a discovered accessory.
+    ///
     /// Use this type when your app's picker uses the ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` option.
     /// With this option enabled, your discovery session receives ``ASAccessoryEventType/accessoryDiscovered`` events with discovered accessories.
     /// To include a discovered accessory in the picker, create an instance of this class, optionally using the Bluetooth properties of the event's ``ASDiscoveredAccessory`` to provide a more specific name or product image.
     /// Then send the `ASDiscoveredDisplayItem` to the picker with the session's ``ASAccessorySession/updatePicker(showing:completionHandler:)`` method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscovereddisplayitem?language=objc)
     #[unsafe(super(ASPickerDisplayItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASDiscoveredDisplayItem;

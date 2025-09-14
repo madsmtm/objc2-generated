@@ -30,8 +30,6 @@ extern_class!(
     /// 5. Points in the edges are fit to a line), and extended along the edge until the line error crosses a
     /// lineErrorThreshold. Lines which are beyond a minimum length are labelled line segments and
     /// will be outputs of the algorithm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedlines?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

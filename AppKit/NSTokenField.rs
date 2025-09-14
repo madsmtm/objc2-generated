@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfielddelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSTokenField`](https://developer.apple.com/documentation/appkit/nstokenfield) objects.
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSTokenFieldDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -160,7 +160,25 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield?language=objc)
+    /// A text field that converts text into visually distinct tokens.
+    ///
+    /// ## Overview
+    ///
+    /// Use a token field when you want typed text to be transformed into “tokens”, which are visually distinct elements in the text field interface. For example, you might use a token field in a mail app to display email addresses for individual users. The distinct appearance of tokens makes them easy for users to distinguish from surrounding text.
+    ///
+    /// `NSTokenField` uses an [`NSTokenFieldCell`](https://developer.apple.com/documentation/appkit/nstokenfieldcell) to implement much of the control’s functionality. `NSTokenField` provides cover methods for most methods of `NSTokenFieldCell`, which invoke the corresponding cell method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Notes
+    ///  In OS X v10.4 and earlier, represented objects associated with token fields had to conform to [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding). Starting with OS X v10.5, they no longer need to.
+    ///
+    /// In OS X v10.4, `NSTokenField` trims whitespace around tokens but it does not trim whitespace in macOS versions 10.5.0 and 10.5.1. In OS X v10.5.2, you get whitespace-trimming behavior by either linking against the v10.4 binary or linking against the v10.5 binary and _not_ implementing the [`tokenField:representedObjectForEditingString:`](https://developer.apple.com/documentation/appkit/nstokenfielddelegate/tokenfield(_:representedobjectforediting:)) method. If you do not want the whitespace-trimming behavior, link against the v10.5 binary and implement this method, returning the editing string if you have no represented object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

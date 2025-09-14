@@ -14,11 +14,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that renders captions for display at a particular time.
+    ///
+    /// ## Overview
+    ///
+    /// This object renders a caption scene for a given time from a collection of captions. If there aren’t any captions to display at the specified time, the renderer draws an empty flood fill with a zero alpha or a color.
+    ///
+    ///
     /// An instance of AVCaptionRenderer represents a service that can render the captions for a particular time
     ///
     /// An instance of AVCaptionRenderer performs drawing of a caption "scene" from a population of captions given a time. If there are no captions or no captions at the specified time, "emptiness" will still be drawn (e.g., flood filling with zero alpha or a color).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrenderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRenderer;
@@ -103,6 +108,13 @@ impl AVCaptionRenderer {
 }
 
 extern_class!(
+    /// An object that holds a time range and an associated state which indicates when the renderer draws output.
+    ///
+    /// ## Overview
+    ///
+    /// To render a scene, the object considers state like the existence of captions and regions, their temporal overlaps, and whether captions use animation effects. Your app can request time ranges where visual differences exist and use these time ranges to optimize drawing performance, like drawing once per scene. Alternatively, it can ignore scenes, and instead call [`renderInContext:forTime:`](https://developer.apple.com/documentation/avfoundation/avcaptionrenderer/render(in:for:)) repeatedly, but this may have additional performance impact.
+    ///
+    ///
     /// An instance of AVCaptionRendererScene holds a time range and associated state indicating when the AVCaptionRenderer will draw different output.
     ///
     /// In rendering the timeline established by the captions referenced by an AVCaptionRenderer, there are considerations such as temporal overlapping of captions, the existence of captions and other graphical elements like regions, and whether captions may be animated (e.g., scrolling in regions, character reveal in a caption). To communicate to the AVCaptionRenderer client the minimal set of time ranges where there are any visual differences, AVCaptionRendererScenes can be requested from -[AVCaptionRenderer captionSceneChangesInRange:]. A client wanting to optimize drawing performance may use this timing information to draw scenes only once per scene. Alternatively, clients can ignore scenes and repeatedly call renderInContext:atTime: but this may have additional performance impact.
@@ -110,8 +122,6 @@ extern_class!(
     /// Other information about the rendering of a caption scene can be communicated through the AVCaptionRendererScene. For example, if captions are animated, an AVCaptionRendererScene with the time range and an indication of the animation occurring will be returned. There should be no inference from the number of scenes to the number of captions. Even a single caption with internal animations in part of its duration could result in multiple AVCaptionRendererScenes being produced.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrenderer/scene?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRendererScene;

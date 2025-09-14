@@ -12,22 +12,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode?language=objc)
+/// Options for aligning text vertically.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKLabelVerticalAlignmentMode(pub NSInteger);
 impl SKLabelVerticalAlignmentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/baseline?language=objc)
+    /// Positions the text so that the font’s baseline lies on the node’s origin.
     #[doc(alias = "SKLabelVerticalAlignmentModeBaseline")]
     pub const Baseline: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/center?language=objc)
+    /// Centers the text vertically on the node’s origin.
     #[doc(alias = "SKLabelVerticalAlignmentModeCenter")]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/top?language=objc)
+    /// Positions the text so that the top of the text is on the node’s origin.
     #[doc(alias = "SKLabelVerticalAlignmentModeTop")]
     pub const Top: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode/bottom?language=objc)
+    /// Positions the text so that the bottom of the text is on the node’s origin.
     #[doc(alias = "SKLabelVerticalAlignmentModeBottom")]
     pub const Bottom: Self = Self(3);
 }
@@ -40,19 +40,19 @@ unsafe impl RefEncode for SKLabelVerticalAlignmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode?language=objc)
+/// Options for aligning text horizontally.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKLabelHorizontalAlignmentMode(pub NSInteger);
 impl SKLabelHorizontalAlignmentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode/center?language=objc)
+    /// Centers the text horizontally on the node’s origin.
     #[doc(alias = "SKLabelHorizontalAlignmentModeCenter")]
     pub const Center: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode/left?language=objc)
+    /// Positions the text so that the left side of the text is on the node’s origin.
     #[doc(alias = "SKLabelHorizontalAlignmentModeLeft")]
     pub const Left: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode/right?language=objc)
+    /// Positions the text so that the right side of the text is on the node’s origin.
     #[doc(alias = "SKLabelHorizontalAlignmentModeRight")]
     pub const Right: Self = Self(2);
 }
@@ -66,9 +66,14 @@ unsafe impl RefEncode for SKLabelHorizontalAlignmentMode {
 }
 
 extern_class!(
-    /// A node that displays a text label with a given font.
+    /// A graphical element that draws text.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelnode?language=objc)
+    /// ## Overview
+    ///
+    /// `SKLabelNode` allows you to render text in your scene. You can define a custom style using properties such as [`fontName`](https://developer.apple.com/documentation/spritekit/sklabelnode/fontname) and [`fontColor`](https://developer.apple.com/documentation/spritekit/sklabelnode/fontcolor), or configure the look of your text with an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring).
+    ///
+    ///
+    /// A node that displays a text label with a given font.
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

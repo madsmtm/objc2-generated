@@ -13,22 +13,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection?language=objc)
+/// For some transitions, the direction in which the transition is performed.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTransitionDirection(pub NSInteger);
 impl SKTransitionDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/up?language=objc)
+    /// The transition goes up.
     #[doc(alias = "SKTransitionDirectionUp")]
     pub const Up: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/down?language=objc)
+    /// The transition goes down.
     #[doc(alias = "SKTransitionDirectionDown")]
     pub const Down: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/right?language=objc)
+    /// The transition goes right.
     #[doc(alias = "SKTransitionDirectionRight")]
     pub const Right: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransitiondirection/left?language=objc)
+    /// The transition goes left.
     #[doc(alias = "SKTransitionDirectionLeft")]
     pub const Left: Self = Self(3);
 }
@@ -42,9 +42,26 @@ unsafe impl RefEncode for SKTransitionDirection {
 }
 
 extern_class!(
-    /// A transition style from one scene to another.
+    /// An object used to perform an animated transition to a new scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktransition?language=objc)
+    /// ## Overview
+    ///
+    /// Scenes are the basic building blocks of games. Typically, you design self-contained scenes for the parts of your game, and then transition between these scenes as necessary. For example, you might create different scene classes to represent any or all of the following concepts:
+    ///
+    /// - A loading scene to display while other content is loaded
+    ///
+    /// - A main menu scene to choose what kind of game the user wants to play
+    ///
+    /// - A scene to configure the details of the specific kind of game the user chose
+    ///
+    /// - A scene that provides the gameplay
+    ///
+    /// - A scene displayed when gameplay ends
+    ///
+    /// When you present a new scene in a view that is already presenting a scene, you have the option of using a transition to animate the change from the old scene to the new scene. Using a transition provides continuity so that the scene change is not quite so abrupt.
+    ///
+    ///
+    /// A transition style from one scene to another.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTransition;

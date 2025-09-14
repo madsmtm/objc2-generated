@@ -7,9 +7,128 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object subclass representing lens specification for glasses
+    /// An object that contains the glasses prescription data for one eye.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkglasseslensspecification?language=objc)
+    /// ## Overview
+    ///
+    /// To create a sample that stores a glasses prescription, start by defining a specification for each eye. Each lens specification object requires a `sphere` parameter. This measures the lens’s strength for correcting either nearsightedness or farsightedness (measured in [`diopterUnit`](https://developer.apple.com/documentation/healthkit/hkunit/diopter()) units).
+    ///
+    /// ```swift
+    /// // The correction for farsightedness.
+    /// let sphere = HKQuantity(unit: .diopter(), doubleValue: -0.75)
+    /// ```
+    ///
+    /// Next, create values for any of the prescription’s optional parameters. For example, if the prescription corrects for astigmatism, create the `cylinder` and `axis` values. The `cylinder` value uses [`diopterUnit`](https://developer.apple.com/documentation/healthkit/hkunit/diopter()) units, while the `axis` uses [`degreeAngleUnit`](https://developer.apple.com/documentation/healthkit/hkunit/degreeangle()).
+    ///
+    /// ```swift
+    /// // The corrections for astigmatism.
+    /// let cylinder = HKQuantity(unit: .diopter(), doubleValue: -0.5)
+    /// let axis = HKQuantity(unit: .degreeAngle(), doubleValue: 155.0)
+    /// ```
+    ///
+    /// To add a multifocal correction for reading, create an `addPower` value using [`diopterUnit`](https://developer.apple.com/documentation/healthkit/hkunit/diopter()) units.
+    ///
+    /// ```swift
+    /// // Multifocal correction for reading.
+    /// let addPower = HKQuantity(unit: .diopter(), doubleValue: +2.00)
+    /// ```
+    ///
+    /// To add a correction for eye alignment, create an [`HKVisionPrism`](https://developer.apple.com/documentation/healthkit/hkvisionprism) object.
+    ///
+    /// ```swift
+    /// // The correction for eye alignment.
+    /// let prismQuantity = HKQuantity(unit: .prismDiopter(), doubleValue: +0.25)
+    /// let angle = HKQuantity(unit: .degreeAngle(), doubleValue: 15.0)
+    /// let prism = HKVisionPrism(amount: prismQuantity,
+    ///                           angle: angle,
+    ///                           eye: .right)
+    /// ```
+    ///
+    /// To add information about the distance between the eye and the back of the lens, or the pupil and the center of the nose, create `vertexDistance`, `nearDistance`, and `farDistance` values. All of these use millimeters.
+    ///
+    /// ```swift
+    /// // Distance between the back of the lens and the eye.
+    /// let vertexDistance = HKQuantity(unit: HKUnit.meterUnit(with: .milli), doubleValue: 14.0)
+    ///
+    /// // Set the distance between the pupil and the center of the nose when looking at a nearby object.
+    /// let nearDistance = HKQuantity(unit: HKUnit.meterUnit(with: .milli), doubleValue: 25.0)
+    ///
+    /// // Set the distance between the pupil and the center of the nose when looking far away.
+    /// let farDistance = HKQuantity(unit: HKUnit.meterUnit(with: .milli), doubleValue: 27.0)
+    /// ```
+    ///
+    /// Then you can create the [`HKGlassesLensSpecification`](https://developer.apple.com/documentation/healthkit/hkglasseslensspecification) lens specification.
+    ///
+    /// ```swift
+    /// // The prescription for the right eye.
+    /// let glassesRightEye = HKGlassesLensSpecification(sphere: sphere,
+    ///                                                  cylinder: cylinder,
+    ///                                                  axis: axis,
+    ///                                                  addPower: addPower,
+    ///                                                  vertexDistance: vertexDistance,
+    ///                                                  prism: prism,
+    ///                                                  farPupillaryDistance: farDistance,
+    ///                                                  nearPupillaryDistance: nearDistance)
+    /// ```
+    ///
+    /// After you create your lens specifications, you can create an [`HKGlassesPrescription`](https://developer.apple.com/documentation/healthkit/hkglassesprescription) sample.
+    ///
+    /// ```swift
+    /// // The date the doctor issued the prescription.
+    /// let dateIssued = Date()
+    ///
+    /// // The date when the prescription expires.
+    /// let expirationDate = dateIssued.addingTimeInterval(60 * 24 * 365)
+    ///
+    /// // The glasses prescription.
+    /// let prescription = HKGlassesPrescription(rightEyeSpecification: glassesRightEye,
+    ///                                                leftEyeSpecification: glassesLeftEye,
+    ///                                                dateIssued: dateIssued,
+    ///                                                expirationDate: expirationDate,
+    ///                                                device: HKDevice.local(),
+    ///                                                metadata: nil)
+    /// ```
+    ///
+    /// Then save the sample to the HealthKit store.
+    ///
+    /// ```swift
+    /// // Save the sample to the HealthKit store.
+    /// do {
+    ///     try await store.save(prescription)
+    /// } catch {
+    ///     // Handle the error here.
+    ///     fatalError("*** An error occurred while saving the prescription sample to the HealthKit store \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    /// Finally, add an image or PDF of the prescription to the sample as an attachment.
+    ///
+    /// ```swift
+    /// // Get the attachment store.
+    /// let attachmentStore = HKAttachmentStore(healthStore: store)
+    ///
+    /// // Attach the image to the sample.
+    /// do {
+    ///     _ = try await attachmentStore.addAttachment(to: prescription,
+    ///                                                 name: "Glasses Prescription",
+    ///                                                 contentType: type,
+    ///                                                 url: url)
+    /// } catch {
+    ///     // Handle the error.
+    ///     fatalError("*** An error occurred while attaching the image: \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Many regions require an image of the prescription to manufacture glasses or contacts. Add an image or pdf of the prescription as an attachment. For more information, see [`HKAttachmentStore`](https://developer.apple.com/documentation/healthkit/hkattachmentstore).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An object subclass representing lens specification for glasses
     #[unsafe(super(HKLensSpecification, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKLensSpecification")]

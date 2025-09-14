@@ -7,106 +7,156 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The domain for CFErrorRefs created by Transforms
+    /// The domain of any error object created by a transform on failure.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object to determine what went wrong.
+    ///
+    ///
+    /// The domain for CFErrorRefs created by Transforms
     pub static kSecTransformErrorDomain: &'static CFString;
 }
 
 extern "C" {
+    /// The key in an error’s `userInfo` dictionary whose value specifies the previous error when multiple errors occur during transform evaluation.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the value associated with this key to trace through a chain of [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) objects when more than one error occurs during transform evaluation.
+    ///
+    ///
     /// If multiple errors occurred, the CFErrorRef that
     /// is returned from a Transfo]rm API will have a userInfo
     /// dictionary and that dictionary will have the previous
     /// error keyed by the kSecTransformPreviousErrorKey.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformpreviouserrorkey?language=objc)
     pub static kSecTransformPreviousErrorKey: &'static CFString;
 }
 
 extern "C" {
+    /// The key in an error’s `userInfo` dictionary whose value indicates the transform that caused the chain to abort.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the value associated with this key to determine exactly which transform failed when more than one error occurs during transform evaluation.
+    ///
+    ///
     /// The value of this key will be the transform that caused
     /// the transform chain to abort.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformabortoriginatorkey?language=objc)
     pub static kSecTransformAbortOriginatorKey: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorattributenotfound?language=objc)
+/// The attribute was not found.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorAttributeNotFound: CFIndex = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidoperation?language=objc)
+/// An invalid operation was attempted.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidOperation: CFIndex = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrornotinitializedcorrectly?language=objc)
+/// A required initialization is missing: It is most likely a missing required attribute.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorNotInitializedCorrectly: CFIndex = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrormorethanoneoutput?language=objc)
+/// A transform has an internal routing error that has caused multiple outputs instead of a single discrete output.
+///
+/// ## Discussion
+///
+/// This error occurs if [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)) has already been called.
+///
+///
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorMoreThanOneOutput: CFIndex = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidinputdictionary?language=objc)
+/// A dictionary used to import a transform has invalid data.
+///
+/// ## Discussion
+///
+/// This error may occur when trying to import a transform from a data representation using the [`SecTransformCreateFromExternalRepresentation`](https://developer.apple.com/documentation/security/sectransformcreatefromexternalrepresentation(_:_:)) function.
+///
+///
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidInputDictionary: CFIndex = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidalgorithm?language=objc)
+/// A transform that needs an algorithm as an attribute received an invalid algorithm.
+///
+/// ## Discussion
+///
+/// This error applies to the sign and verify transforms.
+///
+///
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidAlgorithm: CFIndex = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidlength?language=objc)
+/// A transform that needs a length such as a digest transform has been given an invalid length.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidLength: CFIndex = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidtype?language=objc)
+/// An invalid type has been set on an attribute.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidType: CFIndex = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidinput?language=objc)
+/// The input set on a transform is invalid.
+///
+/// ## Discussion
+///
+/// This can occur if the data set for an attribute does not meet certain requirements such as correct key usage for signing data.
+///
+///
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidInput: CFIndex = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrornamealreadyregistered?language=objc)
+/// A custom transform of a particular name has already been registered.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorNameAlreadyRegistered: CFIndex = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorunsupportedattribute?language=objc)
+/// An illegal action such as setting a read-only attribute has occurred.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorUnsupportedAttribute: CFIndex = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformoperationnotsupportedongroup?language=objc)
+/// An illegal action on a group transform has occurred.
+///
+/// ## Discussion
+///
+/// This might happen, for example, if you call [`SecTransformSetAttribute`](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)) on a group.
+///
+///
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformOperationNotSupportedOnGroup: CFIndex = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrormissingparameter?language=objc)
+/// A transform is missing a required attribute.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorMissingParameter: CFIndex = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorinvalidconnection?language=objc)
+/// A connection between transforms in different groups was attempted.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorInvalidConnection: CFIndex = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformisexecuting?language=objc)
+/// An illegal operation was called on a Transform while it was executing.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformTransformIsExecuting: CFIndex = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminvalidoverride?language=objc)
+/// An illegal override was given to a custom transform.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformInvalidOverride: CFIndex = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformisnotregistered?language=objc)
+/// A custom transform was asked to be created but the transform has not been registered.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformTransformIsNotRegistered: CFIndex = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerrorabortinprogress?language=objc)
+/// The abort attribute has been set and the transform is in the process of shutting down.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorAbortInProgress: CFIndex = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformerroraborted?language=objc)
+/// The transform was aborted.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformErrorAborted: CFIndex = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminvalidargument?language=objc)
+/// An invalid argument was given to a Transform API.
 #[deprecated = "SecTransform is no longer supported"]
 pub const kSecTransformInvalidArgument: CFIndex = 21;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectransform?language=objc)
+/// A Core Foundation type that represents a security transform.
 #[doc(alias = "SecTransformRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecTransform = CFType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secgrouptransform?language=objc)
+/// A Core Foundation type that represents a container holding a group of transforms.
 #[doc(alias = "SecGroupTransformRef")]
 #[deprecated = "SecTransform is no longer supported"]
 pub type SecGroupTransform = CFType;
 
+/// Returns the unique identifier of the opaque type to which a security transform object belongs.
+///
+/// ## Return Value
+///
+/// A value that identifies the opaque type of a [`SecTransformRef`](https://developer.apple.com/documentation/security/sectransform) object.
+///
+///
 /// Return the CFTypeID for a SecTransform.
 ///
 /// Returns: The CFTypeID
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecTransformGetTypeID() -> CFTypeID {
@@ -116,11 +166,16 @@ pub extern "C-unwind" fn SecTransformGetTypeID() -> CFTypeID {
     unsafe { SecTransformGetTypeID() }
 }
 
+/// Returns the Core Foundation type ID for a transform group container.
+///
+/// ## Return Value
+///
+/// A value that identifies the opaque type of a [`SecGroupTransformRef`](https://developer.apple.com/documentation/security/secgrouptransform) object.
+///
+///
 /// Return the CFTypeID for a SecTransformGroup.
 ///
 /// Returns: The CFTypeID
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secgrouptransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecGroupTransformGetTypeID() -> CFTypeID {
@@ -131,53 +186,67 @@ pub extern "C-unwind" fn SecGroupTransformGetTypeID() -> CFTypeID {
 }
 
 extern "C" {
+    /// The input to a transform.
     /// **************    Transform Attribute Names  ***************
     ///
     ///
     /// The name of the input attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransforminputattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformInputAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The output of a transform.
     /// The name of the output attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformoutputattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformOutputAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// A write stream that should receive debug data.
+    ///
+    /// ## Discussion
+    ///
+    /// Set this attribute to a [`CFWriteStreamRef`](https://developer.apple.com/documentation/corefoundation/cfwritestream). This signals the transform to write debugging information to the stream. If you set this attribute to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), debug data is written to `stderr` instead.
+    ///
+    ///
     /// Set this attribute to a CFWriteStream.
     /// This will signal the transform to write debugging
     /// information to the stream.
     /// If this attribute is set to kCFBooleanTrue then
     /// the debugging data will be written out to
     /// stderr.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformdebugattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformDebugAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The name of a transform.
     /// The name of the transform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformtransformname?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformTransformName: &'static CFString;
 }
 
 extern "C" {
+    /// The reason for an abort.
     /// The name of the abort attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectransformabortattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecTransformAbortAttributeName: &'static CFString;
 }
 
+/// Creates a transform instance from a dictionary of parameters.
+///
+/// Parameters:
+/// - dictionary: The dictionary of parameters.
+///
+/// - error: An optional pointer to a CFErrorRef. This value is set if an error occurred. If not NULL the caller is responsible for releasing the CFErrorRef.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a SecTransformRef object. You must release the object with CFRelease when you are done with it. A NULL will be returned if an error occurred during initialization, and if the error parameter is non-null, it contains the specific error data.
+///
+///
 /// Creates a transform instance from a CFDictionary of
 /// parameters.
 ///
@@ -201,8 +270,6 @@ extern "C" {
 /// - `dictionary` generic must be of the correct type.
 /// - `dictionary` generic must be of the correct type.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreatefromexternalrepresentation(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
@@ -219,6 +286,19 @@ pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Creates a dictionary that contains enough information to be able to recreate a transform.
+///
+/// Parameters:
+/// - transformRef: The transformRef to be externalized.
+///
+///
+/// ## Discussion
+///
+/// This function returns a CFDictionaryRef that contains sufficient information to be able to recreate this transform. You can pass this CFDictionaryRef to SecTransformCreateFromExternalRepresentation to be able to recreate the transform. The dictionary can also be written out to disk using the techniques described here.
+///
+/// http://developer.apple.com/mac/library/documentation/CoreFoundation/Conceptual/CFPropertyLists/Articles/Saving.html
+///
+///
 /// Create a CFDictionaryRef that contains enough
 /// information to be able to recreate a transform.
 ///
@@ -239,8 +319,6 @@ pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
 /// # Safety
 ///
 /// `transform_ref` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcopyexternalrepresentation(_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
@@ -256,6 +334,19 @@ pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Creates an object that acts as a container for a set of connected transforms.
+///
+/// ## Return Value
+///
+/// A transform group object.
+///
+///
+///
+/// ## Discussion
+///
+/// A [`SecGroupTransformRef`](https://developer.apple.com/documentation/security/secgrouptransform) is a container for all of the transforms that are in a directed graph. You can use this container as you would a single transform with the [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)), [`SecTransformExecuteAsync`](https://developer.apple.com/documentation/security/sectransformexecuteasync(_:_:_:)) and [`SecTransformCopyExternalRepresentation`](https://developer.apple.com/documentation/security/sectransformcopyexternalrepresentation(_:)) functions.On the other hand, unlike a stand alone transform, you can’t use a transform group with the [`SecTransformConnectTransforms`](https://developer.apple.com/documentation/security/sectransformconnecttransforms(_:_:_:_:_:_:)), [`SecTransformSetAttribute`](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)) or [`SecTransformGetAttribute`](https://developer.apple.com/documentation/security/sectransformgetattribute(_:_:)) functions. Attempting to do so produces undefined behavior.
+///
+///
 /// Create a SecGroupTransformRef that acts as a
 /// container for a set of connected transforms.
 ///
@@ -275,8 +366,6 @@ pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
 /// SecTransformConnectTransforms,
 /// SecTransformSetAttribute and
 /// SecTransformGetAttribute is undefined.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformcreategrouptransform()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained<SecGroupTransform>
@@ -289,6 +378,69 @@ pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Chains transforms together.
+///
+/// Parameters:
+/// - sourceTransformRef: The transform that sends the data to the destinationTransformRef.
+///
+/// - sourceAttributeName: The name of the attribute in the sourceTransformRef that supplies the data to the destinationTransformRef. Any attribute of the transform may be used as a source.
+///
+/// - destinationTransformRef: The transform that has one of its attributes be set with the data from the sourceTransformRef parameter.
+///
+/// - destinationAttributeName: The name of the attribute within the destinationTransformRef whose data is set with the data from the sourceTransformRef sourceAttributeName attribute. Any attribute of the transform may be set.
+///
+/// - group: In order to ensure referential integrity, transforms are chained together into a directed graph and placed into a group. Each transform that makes up the graph must be placed into the same group. After a SecTransformRef has been placed into a group by calling the SecTransformConnectTransforms it may be released as the group will retain the transform. CFRelease the group after you execute it, or when you determine you will never execute it.
+///
+/// In the example below, the output of trans1 is set to be the input of trans2. The output of trans2 is set to be the input of trans3. Since the same group was used for the connections, the three transforms are in the same group.
+///
+/// ```objc
+///  
+///  
+///    					SecGroupTransformRef group =SecTransformCreateGroupTransform();
+///    					CFErrorRef error = NULL;
+///  
+///    					SecTransformRef trans1; // previously created using a
+///    											// Transform construction API
+///    											// like SecEncryptTransformCreate
+///  
+///    					SecTransformRef trans2;	// previously created using a
+///    											// Transform construction API
+///    											// like SecEncryptTransformCreate
+///  
+///    					SecTransformRef trans3; // previously created using a
+///    											// Transform construction API
+///    											// like SecEncryptTransformCreate
+///  
+///  
+///    					SecTransformConnectTransforms(trans1, kSecTransformOutputAttributeName,
+///    												  trans2, kSecTransformInputAttributeName,
+///    												  group, &error);
+///  
+///    					SecTransformConnectTransforms(trans2, kSecTransformOutputAttributeName,
+///    												  trans3, kSecTransformInputAttributeName.
+///    												  group, &error);
+///    					CFRelease(trans1);
+///    					CFRelease(trans2);
+///    					CFRelease(trans3);
+///  
+///    					CFDataRef = (CFDataRef)SecTransformExecute(group, &error, NULL, NULL);
+///    					CFRelease(group);
+/// ```
+///
+/// - error: An optional pointer to a CFErrorRef. This value is set if an error occurred. If not NULL, the caller is responsible for releasing the CFErrorRef.
+///
+///
+/// ## Return Value
+///
+/// A [`SecGroupTransformRef`](https://developer.apple.com/documentation/security/secgrouptransform) object that you can use for chaining calls to [`SecTransformConnectTransforms`](https://developer.apple.com/documentation/security/sectransformconnecttransforms(_:_:_:_:_:_:)).
+///
+///
+///
+/// ## Discussion
+///
+/// This function places transforms into a group by attaching the value of an attribute of one transform to the attribute of another transform. Typically the attribute supplying the data is the kSecTransformAttrOutput attribute but that is not a requirement. It can be used to set an attribute like Salt with the output attribute of a random number transform. This function returns an error and the named attribute will not be changed if [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)) had previously been called on the transform.
+///
+///
 /// Pipe fitting for transforms.
 ///
 ///
@@ -392,8 +544,6 @@ pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained
 /// - `destination_transform_ref` should be of the correct type.
 /// - `group` should be of the correct type.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformconnecttransforms(_:_:_:_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
@@ -427,6 +577,31 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Sets a static value for an attribute in a transform.
+///
+/// Parameters:
+/// - transformRef: The transform whose attribute is to be set.
+///
+/// - key: The name of the attribute to be set. See [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes) for a list of valid keys and possible values.
+///
+/// - value: The static value to set for the named attribute.
+///
+/// - error: A pointer that the function uses to provide an error object with details if an error occurs. The caller becomes responsible for the object’s memory. Pass `NULL` to ignore the error.
+///
+///
+/// ## Return Value
+///
+/// A Boolean set to [`true`](https://developer.apple.com/documentation/swift/true) if the call succeeds. Otherwise, the `error` parameter contains information about the failure.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is useful for things like iteration counts and other non-changing values. It returns an error and the named attribute is not changed if [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)) has already been called on the transform.
+///
+/// Compare this function with the [`SecTransformConnectTransforms`](https://developer.apple.com/documentation/security/sectransformconnecttransforms(_:_:_:_:_:_:)) function which sets derived data.
+///
+///
 /// Set a static value as the value of an attribute in a
 /// transform. This is useful for things like iteration
 /// counts and other non-changing values.
@@ -463,8 +638,6 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
 /// - `transform_ref` should be of the correct type.
 /// - `value` should be of the correct type.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
@@ -485,6 +658,25 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
     ret != 0
 }
 
+/// Gets the current value of a transform attribute.
+///
+/// Parameters:
+/// - transformRef: The transform whose attribute value will be retrieved.
+///
+/// - key: The name of the attribute to retrieve. See [Transform Attributes](https://developer.apple.com/documentation/security/transform-attributes)  for a list of valid keys.
+///
+///
+/// ## Return Value
+///
+/// The value of an attribute. If this attribute is being set as the output of another transform and [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)) has not been called on the transform or if the attribute does not exists then `NULL` will be returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This may be called after [`SecTransformExecute`](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)).
+///
+///
 /// Get the current value of a transform attribute.
 ///
 ///
@@ -506,8 +698,6 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttribute(
 /// # Safety
 ///
 /// `transform_ref` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformgetattribute(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
@@ -524,6 +714,25 @@ pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Finds a member of a transform group by its name.
+///
+/// Parameters:
+/// - transform: The transform group to be searched.
+///
+/// - name: The name of the transform to be found.
+///
+///
+/// ## Return Value
+///
+/// The transform group member, or `NULL` if the member was not found.
+///
+///
+///
+/// ## Discussion
+///
+/// When a transform instance is created you give it a unique name. This name can be used to find that instance in a group. While it is possible to use the [`SecTransformSetAttribute`](https://developer.apple.com/documentation/security/sectransformsetattribute(_:_:_:_:)) function to change a transform’s name after creating it, this is not recommended because doing so causes the [`SecTransformFindByName`](https://developer.apple.com/documentation/security/sectransformfindbyname(_:_:)) function to misbehave.
+///
+///
 /// Finds a member of a transform group by its name.
 ///
 ///
@@ -547,8 +756,6 @@ pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
 /// # Safety
 ///
 /// `transform` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformfindbyname(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformFindByName(
@@ -565,6 +772,27 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Executes a transform or transform group synchronously.
+///
+/// Parameters:
+/// - transformRef: The transform to execute.
+///
+/// - errorRef: An optional pointer to a CFErrorRef. This value will be set if an error occurred during initialization or execution of the transform or group. If not NULL the caller will be responsible for releasing the returned CFErrorRef.
+///
+///
+/// ## Return Value
+///
+/// This is the result of the transform. The specific value is determined by the transform being executed.
+///
+///
+///
+/// ## Discussion
+///
+/// There are two phases that occur when executing a transform. The first phase checks to see if the transforms have all of their required attributes set. If a GroupTransform is being executed, then a required attribute for a transform is valid if it is connected to another attribute that supplies the required value. If any of the required attributes are not set or connected then SecTransformExecute will not run the transform but will return NULL and the apporiate error is placed in the error parameter if it is not NULL.
+///
+/// The second phase is the actual execution of the transform. SecTransformExecute executes the transform or GroupTransform and when all of the processing is completed it returns the result. If an error occurs during execution, then all processing will stop and NULL will be returned and the appropriate error will be placed in the error parameter if it is not NULL.
+///
+///
 /// Executes a Transform or transform group synchronously.
 ///
 ///
@@ -605,8 +833,6 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
 ///
 /// - `transform_ref` should be of the correct type.
 /// - `error_ref` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformexecute(_:_:)?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformExecute(
@@ -624,6 +850,15 @@ pub unsafe extern "C-unwind" fn SecTransformExecute(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// A block that delivers messages during asynchronous operations.
+///
+/// Parameters:
+/// - message: A CFType containing the message. This is where either intermediate or final results are returned.
+///
+/// - error: If an error occurred, this will contain a CFErrorRef, otherwise this will be NULL. If not NULL the caller is responsible for releasing the CFErrorRef.
+///
+/// - isFinal: If set the message returned is the final result otherwise it is an intermediate result.
+///
 /// A SecMessageBlock is used by a transform instance to
 /// deliver messages during asynchronous operations.
 ///
@@ -639,7 +874,5 @@ pub unsafe extern "C-unwind" fn SecTransformExecute(
 ///
 /// Parameter `isFinal`: If set the message returned is the final result
 /// otherwise it is an intermediate result.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secmessageblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SecMessageBlock = *mut block2::DynBlock<dyn Fn(*const CFType, *mut CFError, Boolean)>;

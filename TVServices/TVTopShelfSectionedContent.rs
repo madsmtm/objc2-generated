@@ -9,9 +9,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that represents sectioned content.
+    /// The set of items you want to present using a section-based interface in the top shelf.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectionedcontent?language=objc)
+    /// ## Overview
+    ///
+    /// Create a [`TVTopShelfSectionedContent`](https://developer.apple.com/documentation/tvservices/tvtopshelfsectionedcontent) object when you want to display your top shelf content using a sectioned interface. A sectioned interface displays a single labled row of items. Items are organized by section. As the row scrolls horizontally through the items, the system updates the label above the items to indicate the current section. You specify the title of each section and its items using [`TVTopShelfItemCollection`](https://developer.apple.com/documentation/tvservices/tvtopshelfitemcollection) objects.
+    ///
+    /// For more information about how to configure images for a sectioned interface, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/tvos/icons-and-images/top-shelf-images/).
+    ///
+    ///
+    /// An object that represents sectioned content.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVTopShelfSectionedContent;

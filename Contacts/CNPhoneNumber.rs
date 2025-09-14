@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An immutable object representing a phone number for a contact.
+    ///
+    /// ## Overview
+    ///
+    /// `CNPhoneNumber` objects are thread-safe, and you may access their properties from any thread of your app.
+    ///
+    ///
     /// An immutable value object representing a phone number.
     ///
     ///
     /// CNPhoneNumber is thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnphonenumber?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPhoneNumber;
@@ -70,41 +75,89 @@ impl CNPhoneNumber {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberiphone?language=objc)
+    /// The label for identifying the contact’s iPhone number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberiPhone: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberapplewatch?language=objc)
+    /// The label for identifying the contact’s Apple Watch phone number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberAppleWatch: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumbermobile?language=objc)
+    /// The label for identifying the contact’s mobile phone number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberMobile: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumbermain?language=objc)
+    /// The label for identifying the contact’s main phone number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberMain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberhomefax?language=objc)
+    /// The label for identifying the contact’s home fax number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberHomeFax: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberworkfax?language=objc)
+    /// The label for identifying the contact’s work fax number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberWorkFax: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberotherfax?language=objc)
+    /// The label for identifying another fax number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberOtherFax: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelphonenumberpager?language=objc)
+    /// The label for identifying the contact’s pager number.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelPhoneNumberPager: &'static NSString;
 }

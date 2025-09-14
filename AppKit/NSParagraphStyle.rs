@@ -9,28 +9,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode?language=objc)
+/// Constants that specify what happens when a line is too long for a container.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakMode(pub NSUInteger);
 impl NSLineBreakMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bywordwrapping?language=objc)
+    /// The value that indicates wrapping occurs at word boundaries, unless the word doesn’t fit on a single line.
     #[doc(alias = "NSLineBreakByWordWrapping")]
     pub const ByWordWrapping: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bycharwrapping?language=objc)
+    /// The value that indicates wrapping occurs before the first character that doesn’t fit.
     #[doc(alias = "NSLineBreakByCharWrapping")]
     pub const ByCharWrapping: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/byclipping?language=objc)
+    /// The value that indicates lines don’t extend past the edge of the text container.
     #[doc(alias = "NSLineBreakByClipping")]
     pub const ByClipping: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bytruncatinghead?language=objc)
+    /// The value that indicates that a line displays so that the end fits in the container and an ellipsis glyph indicates the missing text at the beginning of the line.
+    ///
+    /// ## Discussion
+    ///
+    /// Although this mode works for multiline text, it’s more often used for single line text.
+    ///
+    ///
     #[doc(alias = "NSLineBreakByTruncatingHead")]
     pub const ByTruncatingHead: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bytruncatingtail?language=objc)
+    /// The value that indicates a line displays so that the beginning fits in the container and an ellipsis glyph indicates the missing text at the end of the line.
+    ///
+    /// ## Discussion
+    ///
+    /// Although this mode works for multiline text, it’s more often used for single line text.
+    ///
+    ///
     #[doc(alias = "NSLineBreakByTruncatingTail")]
     pub const ByTruncatingTail: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode/bytruncatingmiddle?language=objc)
+    /// The value that indicates that a line displays so that the beginning and end fit in the container and an ellipsis glyph indicates the missing text in the middle.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this mode for single-line layout; using it with multiline text truncates the text into a single line.
+    ///
+    ///
     #[doc(alias = "NSLineBreakByTruncatingMiddle")]
     pub const ByTruncatingMiddle: Self = Self(5);
 }
@@ -43,23 +61,41 @@ unsafe impl RefEncode for NSLineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct?language=objc)
+/// Constants that specify how the text system breaks lines while laying out paragraphs.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLineBreakStrategy: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakstrategy/nslinebreakstrategynone?language=objc)
+/// The text system doesn’t use any line-break strategies.
         #[doc(alias = "NSLineBreakStrategyNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct/pushout?language=objc)
+/// The text system pushes out individual lines to avoid an orphan word on the last line of the paragraph.
+///
+/// ## Discussion
+///
+/// To avoid an orphan word on the last line of a paragraph before a page break, the text system may extend individual lines by one or more words. Typically, the text system only pushes out the last line by one word.
+///
+///
         #[doc(alias = "NSLineBreakStrategyPushOut")]
         const PushOut = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct/hangulwordpriority?language=objc)
+/// The text system prohibits breaking between Hangul characters.
+///
+/// ## Discussion
+///
+/// To avoid breaking between Hangul characters, this strategy is preferred for typesetting modern Korean documents that display UI strings.
+///
+///
         #[doc(alias = "NSLineBreakStrategyHangulWordPriority")]
         const HangulWordPriority = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct/standard?language=objc)
+/// The text system uses the same configuration of line-break strategies that it uses for standard UI labels.
+///
+/// ## Discussion
+///
+/// This strategy optimizes for displaying shorter strings that are common in UI labels. This strategy may be unsuitable for large amounts of text.
+///
+///
         #[doc(alias = "NSLineBreakStrategyStandard")]
         const Standard = 0xFFFF;
     }
@@ -73,17 +109,31 @@ unsafe impl RefEncode for NSLineBreakStrategy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttab/optionkey?language=objc)
+/// The terminating character for a tab column.
 // NS_TYPED_ENUM
 pub type NSTextTabOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttab/optionkey/columnterminators?language=objc)
+    /// The value is an `NSCharacterSet` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The character set is used to determine the terminating character for a tab column. The tab and newline characters are implied even if they don’t exist in the character set. This attribute is optional.
+    ///
+    ///
     pub static NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttab?language=objc)
+    /// A tab in a paragraph.
+    ///
+    /// ## Overview
+    ///
+    /// A text tab represents a tab in an [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle) object, storing an alignment type and location. [`NSTextTab`](https://developer.apple.com/documentation/appkit/nstexttab) objects are most frequently used with the TextKit system and with [`NSRulerView`](https://developer.apple.com/documentation/appkit/nsrulerview) and [`NSRulerMarker`](https://developer.apple.com/documentation/appkit/nsrulermarker) objects.
+    ///
+    /// The text system supports four alignment types: left, center, right, and decimal (based on the decimal separator character of the locale in effect). These alignment types are absolute, not based on the line sweep direction of text. For example, tabbed text is always positioned to the left of a right-aligned tab, whether the line sweep direction is left to right or right to left. A tab’s location, on the other hand, is relative to the back margin. A tab set at 1.5”, for example, is at 1.5” from the right in right to left text.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTab;
@@ -147,7 +197,15 @@ impl DefaultRetained for NSTextTab {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle?language=objc)
+    /// The paragraph or ruler attributes for an attributed string.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle) object stores formatting information for a paragraph of text. The formatting information includes the amount of space between lines, indentations for lines of text, line heights, tab-stop positions, and more. Apply paragraph styles to the text of an attributed string by adding the [`paragraphStyle`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/paragraphstyle) attribute and setting its value to an instance of this class. The text-rendering system uses the paragraph style information in an attributed string to lay out and render the text.
+    ///
+    /// The [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle) class manages an immutable set of style information, but you can create an [`NSMutableParagraphStyle`](https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle) when you want to modify the style information before applying it to your text.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSParagraphStyle;
@@ -301,7 +359,21 @@ impl DefaultRetained for NSParagraphStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle?language=objc)
+    /// An object for changing the values of the subattributes in a paragraph style attribute.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSMutableParagraphStyle`](https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle) class adds methods to its superclass, [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle), for changing the values of the subattributes in a paragraph style attribute. For more information, see [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle) and [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t mutate a paragraph style object after adding it to an attributed string. Doing so can cause your app to crash.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSParagraphStyle, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableParagraphStyle;
@@ -654,24 +726,30 @@ impl NSMutableParagraphStyle {
     );
 }
 
-/// ********************** Deprecated ***********************
+/// Constants that specify the type of tab stop.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype?language=objc)
+/// ## Overview
+///
+/// The following mappings define the conversions between text alignment in [`NSTextTab`](https://developer.apple.com/documentation/appkit/nstexttab) and tab stop types that [`NSTextTab`](https://developer.apple.com/documentation/appkit/nstexttab) defines:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Alignment" }] }], [Paragraph { inline_content: [Text { text: "Tab stop type" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextAlignment/left", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/leftTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextAlignment/right", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/rightTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextAlignment/center", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/centerTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextAlignment/justified", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/leftTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextAlignment/natural", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/leftTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", or " }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/rightTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", depending on the user setting." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSTextAlignment/right", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " with a terminator" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSParagraphStyle/TextTabType/decimalTabStopType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+///
+/// ********************** Deprecated ***********************
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTabType(pub NSUInteger);
 impl NSTextTabType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/lefttabstoptype?language=objc)
+    /// A left-aligned tab stop.
     #[doc(alias = "NSLeftTabStopType")]
     pub const LeftTabStopType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/righttabstoptype?language=objc)
+    /// A right-aligned tab stop.
     #[doc(alias = "NSRightTabStopType")]
     pub const RightTabStopType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/centertabstoptype?language=objc)
+    /// A center-aligned tab stop.
     #[doc(alias = "NSCenterTabStopType")]
     pub const CenterTabStopType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype/decimaltabstoptype?language=objc)
+    /// A tab stop that aligns columns of numbers to each number’s decimal point.
     #[doc(alias = "NSDecimalTabStopType")]
     pub const DecimalTabStopType: Self = Self(3);
 }

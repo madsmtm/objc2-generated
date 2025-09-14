@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptor?language=objc)
+    /// A configuration that instructs the GPU where to store counter data from the beginning and end of a blit pass.
+    ///
+    /// ## Overview
+    ///
+    /// See [Sampling GPU data into counter sample buffers](https://developer.apple.com/documentation/metal/sampling-gpu-data-into-counter-sample-buffers) for more context about configuring instances of this type. That article is one of a series of articles in [GPU counters and counter sample buffers](https://developer.apple.com/documentation/metal/gpu-counters-and-counter-sample-buffers).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBlitPassSampleBufferAttachmentDescriptor;
@@ -111,7 +117,13 @@ impl DefaultRetained for MTLBlitPassSampleBufferAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitpasssamplebufferattachmentdescriptorarray?language=objc)
+    /// A container that stores an array of sample buffer attachments for a blit pass.
+    ///
+    /// ## Overview
+    ///
+    /// The number of elements in the array is at least the number of elements in an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`counterSets`](https://developer.apple.com/documentation/metal/mtldevice/countersets) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBlitPassSampleBufferAttachmentDescriptorArray;
@@ -167,9 +179,14 @@ impl DefaultRetained for MTLBlitPassSampleBufferAttachmentDescriptorArray {
 }
 
 extern_class!(
-    /// MTLBlitPassDescriptor represents a collection of attachments to be used to create a concrete blit command encoder
+    /// A configuration you create to customize a blit command encoder, which affects the runtime behavior of the blit pass you encode with it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitpassdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// You can customize an encoder for a blit pass by creating and configuring an [`MTLBlitPassDescriptor`](https://developer.apple.com/documentation/metal/mtlblitpassdescriptor) instance and passing it to [`blitCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeblitcommandencoder(descriptor:)).
+    ///
+    ///
+    /// MTLBlitPassDescriptor represents a collection of attachments to be used to create a concrete blit command encoder
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBlitPassDescriptor;

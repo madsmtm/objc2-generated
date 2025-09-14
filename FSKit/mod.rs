@@ -218,14 +218,12 @@ use crate::*;
 
 extern "C" {
     /// Project version number for FSKit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fskitversionnumber?language=objc)
+    /// Project version number for FSKit.
     pub static FSKitVersionNumber: c_double;
 }
 
 extern "C" {
     /// Project version string for FSKit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fskitversionstring?language=objc)
+    /// Project version string for FSKit.
     pub static FSKitVersionString: *mut c_uchar;
 }

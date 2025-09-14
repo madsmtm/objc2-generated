@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-analysis request that tracks the movement of a previously identified object across multiple images or video frames.
+    ///
+    /// ## Overview
+    ///
+    /// Use this type of request to track the bounding boxes around objects previously identified in an image. Vision attempts to locate the same object from the input observation throughout the sequence.
+    ///
+    ///
     /// VNTrackObjectRequest tracks an object in a sequence of images.
     ///
     /// The VNTrackObjectRequest is a general purpose object tracker. This tracker is used when the tracked entity does not have a special tracker, like VNTrackRectangleRequest. The VNTrackObjectRequest is initialized with VNDetectedObjectObservation that contains bounding box for the object of interest. This tracker is processed using one of the [VNSequenceRequestHandler performRequests:...] methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackobjectrequest?language=objc)
     #[unsafe(super(VNTrackingRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
@@ -94,8 +99,8 @@ impl VNTrackObjectRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackobjectrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the object tracking request.
 pub static VNTrackObjectRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackobjectrequestrevision2?language=objc)
+/// A constant for specifying revision 2 of the object tracking request.
 pub static VNTrackObjectRequestRevision2: NSUInteger = 2;

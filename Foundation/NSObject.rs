@@ -7,7 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoding?language=objc)
+    /// A protocol that enables an object to be encoded and decoded for archiving and distribution.
+    ///
+    /// ## Overview
+    ///
+    /// The `NSCoding` protocol declares the two methods that a class must implement so that instances of that class can be encoded and decoded. This capability provides the basis for archiving (where objects and other structures are stored on disk) and distribution (where objects are copied to different address spaces).
+    ///
+    /// In keeping with object-oriented design principles, an object being encoded or decoded is responsible for encoding and decoding its instance variables. A coder instructs the object to do so by invoking [`encodeWithCoder:`](https://developer.apple.com/documentation/foundation/nscoding/encode(with:)) or doc://com.apple.documentation/documentation/oslog/oslogentry/init(coder:). [`encodeWithCoder:`](https://developer.apple.com/documentation/foundation/nscoding/encode(with:)) instructs the object to encode its instance variables to the coder provided; an object can receive this method any number of times. doc://com.apple.documentation/documentation/oslog/oslogentry/init(coder:) instructs the object to initialize itself from data in the coder provided; as such, it replaces any other initialization method and is sent only once per object. Any object class that should be codeable must adopt the `NSCoding` protocol and implement its methods.
+    ///
+    /// It is important to consider the possible types of archiving that a coder supports. In macOS 10.2 and later, keyed archiving is preferred. You may, however, need to support classic archiving. For details, see [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    ///
     pub unsafe trait NSCoding {
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -28,7 +38,27 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecurecoding?language=objc)
+    /// A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.
+    ///
+    /// ## Overview
+    ///
+    /// Historically, many classes decoded instances of themselves like this:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["if let object = decoder.decodeObjectForKey(\"myKey\") as MyClass {", "    // ...succeeds...", "} else {", "    // ...fail...", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["id obj = [decoder decodeObjectForKey:@\"myKey\"];", "if (![obj isKindOfClass:[MyClass class]]) { /* ...fail... */ }"], metadata: None }] }] })
+    /// This technique is potentially unsafe because by the time you can verify the class type, the object has already been constructed, and if this is part of a collection class, potentially inserted into an object graph.
+    ///
+    /// In order to conform to [`NSSecureCoding`](https://developer.apple.com/documentation/foundation/nssecurecoding):
+    ///
+    /// - An object that does not override doc://com.apple.documentation/documentation/oslog/oslogentry/init(coder:) can conform to `NSSecureCoding` without any changes (assuming that it is a subclass of another class that conforms).
+    ///
+    /// - An object that does override doc://com.apple.documentation/documentation/oslog/oslogentry/init(coder:) must decode any enclosed objects using the [`decodeObjectOfClass:forKey:`](https://developer.apple.com/documentation/foundation/nscoder/decodeobjectofclass:forkey:) method. For example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["  let obj = decoder.decodeObject(of:MyClass.self, forKey: \"myKey\")"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["  id obj = [decoder decodeObjectOfClass:[MyClass class]", "              forKey:@\"myKey\"];"], metadata: None }] }] })
+    /// In addition, the class must override the getter for its [`supportsSecureCoding`](https://developer.apple.com/documentation/foundation/nssecurecoding/supportssecurecoding) property to return [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// For more information about how this relates to the NSXPC API, see [Creating XPC Services](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingXPCServices.html#//apple_ref/doc/uid/10000172i-SW6) in [Daemons and Services Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i).
+    ///
+    ///
     pub unsafe trait NSSecureCoding: NSCoding {
         #[unsafe(method(supportsSecureCoding))]
         #[unsafe(method_family = none)]
@@ -74,9 +104,20 @@ impl private_NSObjectNSCoderMethods::Sealed for NSObject {}
 unsafe impl NSObjectNSCoderMethods for NSObject {}
 
 extern_protocol!(
-    /// *********    Discardable Content        **********
+    /// You implement this protocol when a class’s objects have subcomponents that can be discarded when not being used, thereby giving an application a smaller memory footprint.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdiscardablecontent?language=objc)
+    /// ## Overview
+    ///
+    /// An `NSDiscardableContent` object’s life cycle is dependent upon a “counter” variable. An `NSDiscardableContent` object is a purgeable block of memory that keeps track of whether or not it is currently being used by some other object. When this memory is being read, or is still needed, its counter variable will be greater than or equal to 1. When it is not being used, and can be discarded, the counter variable will be equal to 0.
+    ///
+    /// When the counter is equal to 0, the block of memory may be discarded if memory is tight at that point in time. In order to discard the content, call [`discardContentIfPossible`](https://developer.apple.com/documentation/foundation/nsdiscardablecontent/discardcontentifpossible()) on the object, which will free the associated memory if the counter variable equals 0.
+    ///
+    /// By default, `NSDiscardableContent` objects are initialized with their counter equal to 1 to ensure that they are not immediately discarded by the memory-management system. From this point, you must keep track of the counter variable’s state. Calling the [`beginContentAccess`](https://developer.apple.com/documentation/foundation/nsdiscardablecontent/begincontentaccess()) method increments the counter variable by 1, thus ensuring that the object will not be discarded. When you no longer need the object, decrement its counter by calling [`endContentAccess`](https://developer.apple.com/documentation/foundation/nsdiscardablecontent/endcontentaccess()).
+    ///
+    /// The Foundation framework includes the [`NSPurgeableData`](https://developer.apple.com/documentation/foundation/nspurgeabledata) class, which provides a default implementation of this protocol.
+    ///
+    ///
+    /// *********    Discardable Content        **********
     pub unsafe trait NSDiscardableContent {
         #[unsafe(method(beginContentAccess))]
         #[unsafe(method_family = none)]
@@ -115,14 +156,33 @@ pub unsafe trait NSObjectNSDiscardableContentProxy:
 impl private_NSObjectNSDiscardableContentProxy::Sealed for NSObject {}
 unsafe impl NSObjectNSDiscardableContentProxy for NSObject {}
 
+/// Creates and returns a new instance of a given class.
+///
+/// Parameters:
+/// - aClass: The class of which to create an instance.
+///
+/// - extraBytes: The number of extra bytes required for indexed instance variables (this value is typically `0`).
+///
+/// - zone: The zone in which to create the new instance (pass `NULL` to specify the default zone).
+///
+///
+/// ## Return Value
+///
+/// A new instance of `aClass` or `nil` if an instance could not be created.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is deprecated and unavailable for use with ARC.
+///
+///
 /// *********    Object Allocation / Deallocation        ******
 ///
 /// # Safety
 ///
 /// - `a_class` probably has further requirements.
 /// - `zone` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallocateobject?language=objc)
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllocateObject(
@@ -143,7 +203,21 @@ pub unsafe extern "C-unwind" fn NSAllocateObject(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocateobject?language=objc)
+    /// Destroys an existing object.
+    ///
+    /// Parameters:
+    /// - object: An object.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function deallocates `object`, which must have been allocated using `NSAllocateObject`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated and unavailable for use with ARC.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -151,7 +225,27 @@ extern "C-unwind" {
     pub fn NSDeallocateObject(object: &AnyObject);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopyobject?language=objc)
+/// Creates an exact copy of an object.
+///
+/// Parameters:
+/// - object: The object to copy.
+///
+/// - extraBytes: The number of extra bytes required for indexed instance variables (this value is typically `0`).
+///
+/// - zone: The zone in which to create the new instance (pass `NULL` to specify the default zone).
+///
+///
+/// ## Return Value
+///
+/// A new object that’s an exact copy of `anObject`, or `nil` if `object` is `nil` or if `object` could not be copied.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is deprecated and unavailable for use with ARC. To create a copy of an object, use the [`copyWithZone:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571953-copywithzone) method instead.
+///
+///
 ///
 /// # Safety
 ///
@@ -177,7 +271,29 @@ pub unsafe extern "C-unwind" fn NSCopyObject(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshouldretainwithzone?language=objc)
+/// Indicates whether an object should be retained.
+///
+/// Parameters:
+/// - anObject: An object.
+///
+/// - requestedZone: A memory zone.
+///
+///
+/// ## Return Value
+///
+/// Returns [`true`](https://developer.apple.com/documentation/swift/true) if `requestedZone` is `NULL`, the default zone, or the zone in which `anObject` was allocated; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// This function is typically called from inside an `NSObject`’s [`copyWithZone:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571953-copywithzone), when deciding whether to retain `anObject` as opposed to making a copy of it.
+///
+/// ### Special Considerations
+///
+/// This function is deprecated and unavailable for use with ARC.
+///
+///
 ///
 /// # Safety
 ///
@@ -196,7 +312,21 @@ pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsincrementextrarefcount?language=objc)
+    /// Increments the specified object’s reference count.
+    ///
+    /// Parameters:
+    /// - object: An object.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function increments the “extra reference” count of `object`. Newly created objects have only one actual reference, so that a single release message results in the object being deallocated. Extra references are those beyond the single original reference and are usually created by sending the object a retain message. Your code should generally not use these functions unless it is overriding the retain or release methods.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated and unavailable for use with ARC.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -204,7 +334,27 @@ extern "C-unwind" {
     pub fn NSIncrementExtraRefCount(object: &AnyObject);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecrementextrarefcountwaszero?language=objc)
+/// Decrements the specified object’s reference count.
+///
+/// Parameters:
+/// - object: An object.
+///
+///
+/// ## Return Value
+///
+/// [`false`](https://developer.apple.com/documentation/swift/false) if `anObject` had an extra reference count, or [`true`](https://developer.apple.com/documentation/swift/true) if `anObject` didn’t have an extra reference count—indicating that the object should be deallocated (with `dealloc`).
+///
+///
+///
+/// ## Discussion
+///
+/// Decrements the “extra reference” count of `anObject`. Newly created objects have only one actual reference, so that a single release message results in the object being deallocated. Extra references are those beyond the single original reference and are usually created by sending the object a retain message. Your code should generally not use these functions unless it is overriding the [`retain`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobjectprotocol/1571946-retain) or [`release`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobjectprotocol/1571957-release) methods.
+///
+/// ### Special Considerations
+///
+/// This function is deprecated and unavailable for use with ARC.
+///
+///
 ///
 /// # Safety
 ///
@@ -218,7 +368,27 @@ pub unsafe extern "C-unwind" fn NSDecrementExtraRefCountWasZero(object: &AnyObje
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextrarefcount?language=objc)
+    /// Returns the specified object’s reference count.
+    ///
+    /// Parameters:
+    /// - object: An object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current reference count of `object`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used in conjunction with [`NSIncrementExtraRefCount`](https://developer.apple.com/documentation/foundation/nsincrementextrarefcount) and [`NSDecrementExtraRefCountWasZero`](https://developer.apple.com/documentation/foundation/nsdecrementextrarefcountwaszero) in situations where you need to override an object’s [`retain`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobjectprotocol/1571946-retain) and [`release`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobjectprotocol/1571957-release) methods.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated and unavailable for use with ARC.
+    ///
+    ///
     ///
     /// # Safety
     ///

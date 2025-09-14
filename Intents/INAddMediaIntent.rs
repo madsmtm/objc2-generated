@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintent?language=objc)
+    /// A request to add a media item.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INAddMediaIntent`](https://developer.apple.com/documentation/intents/inaddmediaintent) object when the user asks to add a media item. The intents object contains the media to add.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INAddMediaIntentHandling`](https://developer.apple.com/documentation/intents/inaddmediaintenthandling) protocol. Your handler should confirm the request and create an [`INAddMediaIntentResponse`](https://developer.apple.com/documentation/intents/inaddmediaintentresponse) object that contains the media to add.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents (audio only)" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -89,11 +102,18 @@ impl INAddMediaIntent {
 }
 
 extern_protocol!(
+    /// The handler interface that adds media.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INAddMediaIntentHandling`](https://developer.apple.com/documentation/intents/inaddmediaintenthandling) protocol to resolve, confirm, and handle requests to add media. Adopt this protocol in an object of your Intents extension that’s capable of adding media.
+    ///
+    /// Siri delivers an [`INAddMediaIntent`](https://developer.apple.com/documentation/intents/inaddmediaintent) object to your handler when the user asks to add media using your app. Use the methods of this protocol to resolve the parameters and add the media.
+    ///
+    ///
     /// Protocol to declare support for handling an INAddMediaIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintenthandling?language=objc)
     pub unsafe trait INAddMediaIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INAddMediaIntentResponse",

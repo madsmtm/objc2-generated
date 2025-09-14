@@ -11,25 +11,81 @@ use objc2_io_surface::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod?language=objc)
+/// The compression codecs that Metal supports for input/output handles.
+///
+/// ## Overview
+///
+/// For more information on the individual codecs, see the [`Algorithm`](https://developer.apple.com/documentation/compression/algorithm) enumeration in the [`Compression`](https://developer.apple.com/documentation/compression) framework.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCompressionMethod(pub NSInteger);
 impl MTLIOCompressionMethod {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/zlib?language=objc)
+    /// Indicates that a file uses the zlib compression algorithm codec.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on the zlib codec, see:
+    ///
+    /// - [`Algorithm.zlib`](https://developer.apple.com/documentation/compression/algorithm/zlib)
+    ///
+    /// - [`COMPRESSION_ZLIB`](https://developer.apple.com/documentation/compression/compression_zlib)
+    ///
+    ///
     #[doc(alias = "MTLIOCompressionMethodZlib")]
     pub const Zlib: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lzfse?language=objc)
+    /// Indicates that a file uses the LZFSE compression algorithm codec.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on the LZFSE codec, see:
+    ///
+    /// - [`Algorithm.lzfse`](https://developer.apple.com/documentation/compression/algorithm/lzfse)
+    ///
+    /// - [`COMPRESSION_LZFSE`](https://developer.apple.com/documentation/compression/compression_lzfse)
+    ///
+    ///
     #[doc(alias = "MTLIOCompressionMethodLZFSE")]
     pub const LZFSE: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lz4?language=objc)
+    /// Indicates that a file uses the LZ4 compression algorithm codec.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on the LZ4 codec, see:
+    ///
+    /// - [`Algorithm.lz4`](https://developer.apple.com/documentation/compression/algorithm/lz4)
+    ///
+    /// - [`COMPRESSION_LZ4`](https://developer.apple.com/documentation/compression/compression_lz4)
+    ///
+    ///
     #[doc(alias = "MTLIOCompressionMethodLZ4")]
     pub const LZ4: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lzma?language=objc)
+    /// Indicates that a file uses the LZMA compression algorithm codec.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on the LZMA codec, see:
+    ///
+    /// - [`Algorithm.lzma`](https://developer.apple.com/documentation/compression/algorithm/lzma)
+    ///
+    /// - [`COMPRESSION_LZMA`](https://developer.apple.com/documentation/compression/compression_lzma)
+    ///
+    ///
     #[doc(alias = "MTLIOCompressionMethodLZMA")]
     pub const LZMA: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod/lzbitmap?language=objc)
+    /// Indicates that a file uses the LZBitmap compression algorithm codec.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on the LZBitmap codec, see:
+    ///
+    /// - [`Algorithm.lzbitmap`](https://developer.apple.com/documentation/compression/algorithm/lzbitmap)
+    ///
+    /// - [`COMPRESSION_LZBITMAP`](https://developer.apple.com/documentation/compression/compression_lzbitmap)
+    ///
+    ///
     #[doc(alias = "MTLIOCompressionMethodLZBitmap")]
     pub const LZBitmap: Self = Self(4);
 }
@@ -42,14 +98,25 @@ unsafe impl RefEncode for MTLIOCompressionMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns the device instance Metal selects as the default.
+///
+/// ## Return Value
+///
+/// A device object.
+///
+///
+///
+/// ## Discussion
+///
+/// In macOS, in order for the system to provide a default Metal device object, you must link to the [`Core Graphics`](https://developer.apple.com/documentation/coregraphics) framework. You usually need to do this explicitly if you’re writing apps that don’t use graphics by default, such as command line tools.
+///
+///
 /// Returns a reference to the preferred system default Metal device.
 ///
 /// On Mac OS X systems that support automatic graphics switching, calling
 /// this API to get a Metal device will cause the system to switch to the high power
 /// GPU.  On other systems that support more than one GPU it will return the GPU that
 /// is associated with the main display.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcreatesystemdefaultdevice()?language=objc)
 #[inline]
 pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
 ) -> Option<Retained<ProtocolObject<dyn MTLDevice>>> {
@@ -60,45 +127,87 @@ pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
     unsafe { Retained::from_raw(ret) }
 }
 
+/// A notification that represents a change to a GPU device in the system.
 /// Type for device notifications
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname?language=objc)
 // NS_TYPED_ENUM
 pub type MTLDeviceNotificationName = NSString;
 
 extern "C" {
+    /// A notification that Metal sends to observers when the system adds a GPU device.
     /// This notification is posted when a new Metal device is added to the system
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname/wasadded?language=objc)
     pub static MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName;
 }
 
 extern "C" {
+    /// A notification that Metal sends to observers when a person requests to remove a GPU device from the system.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification tells your app to stop using an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance by releasing any objects and resources your app created with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Metal removes the device instance from the array it returns with its methods — such as [`MTLCopyAllDevices`](https://developer.apple.com/documentation/metal/mtlcopyalldevices()) — before sending this notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// This notification is posted when the user has requested that applications cease using a particular device.  Applications
     /// should assume that the device will be removed (terminated) imminently.  Additionally, the device will be removed from the internal
     /// device array prior to this notification being posted.  Applications should immediately begin the process of releasing all resources
     /// created on the given device, as well as any references to the device itself.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname/removalrequested?language=objc)
     pub static MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName;
 }
 
 extern "C" {
+    /// A notification that Metal sends to observers when the system removes a GPU device.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification tells your app that an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance and its methods are no longer valid to avoid runtime failures.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If a person removes a GPU without warning, this notification may be posted without a prior [`MTLDeviceRemovalRequestedNotification`](https://developer.apple.com/documentation/metal/mtldevicenotificationname/removalrequested) notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// This notification is posted if the device is removed while there are still outstanding references to it, due to either a surprise
     /// or forced disconnect by the user.  Applications must expect that any attempt to use the device after this point will fail.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname/wasremoved?language=objc)
     pub static MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName;
 }
 
-/// Block signature for device notifications
+/// A Swift closure or an Objective-C block that Metal calls when the system adds or removes a GPU device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationhandler?language=objc)
+/// Parameters:
+/// - device: An [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) that represents the GPU that’s sending the notification.
+///
+/// - notifyName: A notification that represents a change to a GPU device in the system.
+///
+/// Block signature for device notifications
 #[cfg(feature = "block2")]
 pub type MTLDeviceNotificationHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
 
+/// Returns an array of all the Metal GPU devices in the system and registers a notification handler that Metal calls when the device list changes.
+///
+/// Parameters:
+/// - observer: A pointer to an object instance the method sets to a new observer — which Metal retains — before returning.
+///
+/// - handler: A notification handler you implement that Metal calls when the system adds or removes a GPU device from the system.
+///
+///
+/// ## Discussion
+///
+/// Keep a copy of `observer` in your app after this function returns in case you want to stop receiving notifications. You can stop receiving notifications by passing `observer` to the [`MTLRemoveDeviceObserver(_:)`](https://developer.apple.com/documentation/metal/mtlremovedeviceobserver(_:)) function.
+///
+///
 /// Returns an NSArray of the current set of available Metal devices and installs a notification handler
 /// to be notified of any further changes (additions, removals, etc.).  The observer return value is retained by Metal and may be
 /// passed to MTLRemoveDeviceObserver() if the application no longer wishes to receive notifications.
@@ -109,8 +218,6 @@ pub type MTLDeviceNotificationHandler = *mut block2::DynBlock<
 ///
 /// - `observer` must be a valid pointer.
 /// - `handler` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcopyalldeviceswithobserver?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
@@ -129,120 +236,324 @@ pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
 }
 
 extern "C-unwind" {
+    /// Removes a registered observer of device notifications.
+    ///
+    /// Parameters:
+    /// - observer: An object instance that represents the observer the [`MTLCopyAllDevicesWithObserver(handler:)`](https://developer.apple.com/documentation/metal/mtlcopyalldeviceswithobserver(handler:)) function creates.
+    ///
     /// Removes a previously installed observer for device change notifications.
     ///
     /// # Safety
     ///
     /// `observer` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlremovedeviceobserver(_:)?language=objc)
     pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset?language=objc)
+/// The device feature sets that define specific platform, hardware, and software configurations.
+///
+/// ## Overview
+///
+/// If your app is running on an operating system that supports the [`supportsFamily:`](https://developer.apple.com/documentation/metal/mtldevice/supportsfamily(_:)) method, use that method instead. See [Detecting GPU features and Metal software versions](https://developer.apple.com/documentation/metal/detecting-gpu-features-and-metal-software-versions) for more information about [`MTLGPUFamily`](https://developer.apple.com/documentation/metal/mtlgpufamily) — the replacement for this enumeration —  and the feature set tables. This type doesn’t define constants for GPU families introduced after iOS GPU family 5.
+///
+/// Metal feature sets define the feature availability, implementation limits, and pixel format capabilities for each device. The table shows the GPU families and their corresponding GPU hardware.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "GPU family" }] }], [Paragraph { inline_content: [Text { text: "GPU hardware" }] }]], [[Paragraph { inline_content: [Text { text: "iOS GPU family 1" }] }], [Paragraph { inline_content: [Text { text: "Apple A7 devices" }] }]], [[Paragraph { inline_content: [Text { text: "iOS GPU family 2 " }, Image { identifier: "spacer", metadata: None }, Text { text: " tvOS GPU family 1" }] }], [Paragraph { inline_content: [Text { text: "Apple A8 devices" }] }]], [[Paragraph { inline_content: [Text { text: "iOS GPU family 3 " }, Image { identifier: "spacer", metadata: None }, Text { text: " tvOS GPU family 2" }] }], [Paragraph { inline_content: [Text { text: "Apple A9 devices " }, Image { identifier: "spacer", metadata: None }, Text { text: " Apple A10 devices" }] }]], [[Paragraph { inline_content: [Text { text: "iOS GPU family 4" }] }], [Paragraph { inline_content: [Text { text: "Apple A11 devices" }] }]], [[Paragraph { inline_content: [Text { text: "iOS GPU family 5" }] }], [Paragraph { inline_content: [Text { text: "Apple A12 devices" }] }]], [[Paragraph { inline_content: [Text { text: "macOS GPU family 1" }] }], [Paragraph { inline_content: [Text { text: "iMac Pro models " }, Image { identifier: "spacer", metadata: None }, Text { text: " iMac models from 2012 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " MacBook models from 2015 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " MacBook Pro models from 2012 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " MacBook Air models from 2012 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " Mac mini models from 2012 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " Mac Pro models from late 2013" }] }]], [[Paragraph { inline_content: [Text { text: "macOS GPU family 2" }] }], [Paragraph { inline_content: [Text { text: "iMac models from 2015 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " MacBook Pro models from 2016 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " MacBook models from 2016 or later " }, Image { identifier: "spacer", metadata: None }, Text { text: " iMac Pro models from 2017 or later" }] }]]], alignments: None, metadata: None })
+/// For more information on Mac support for Metal, see [Mac computers that support Metal](https://support.apple.com/en-us/HT205073).
+///
+///
 // NS_ENUM
 #[deprecated = "Use MTLGPUFamily instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFeatureSet(pub NSUInteger);
 impl MTLFeatureSet {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v1?language=objc)
+    /// The GPU family 1, version 1 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A7 devices running iOS 8.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
     pub const iOS_GPUFamily1_v1: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v1?language=objc)
+    /// The GPU family 2, version 1 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running iOS 8.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v1")]
     pub const iOS_GPUFamily2_v1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v2?language=objc)
+    /// The GPU family 1, version 2 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A7 devices running iOS 9.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v2")]
     pub const iOS_GPUFamily1_v2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v2?language=objc)
+    /// The GPU family 2, version 2 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running iOS 9.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v2")]
     pub const iOS_GPUFamily2_v2: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v1?language=objc)
+    /// The GPU family 3, version 1 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A9 devices running iOS 9.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v1")]
     pub const iOS_GPUFamily3_v1: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v3?language=objc)
+    /// The GPU family 1, version 3 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A7 devices running iOS 10.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v3")]
     pub const iOS_GPUFamily1_v3: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v3?language=objc)
+    /// The GPU family 2, version 3 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running iOS 10.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v3")]
     pub const iOS_GPUFamily2_v3: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v2?language=objc)
+    /// The GPU family 3, version 2 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A9 devices running iOS 10.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v2")]
     pub const iOS_GPUFamily3_v2: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v4?language=objc)
+    /// The GPU family 1, version 4 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A7 devices running iOS 11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v4")]
     pub const iOS_GPUFamily1_v4: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v4?language=objc)
+    /// The GPU family 2, version 4 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running iOS 11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v4")]
     pub const iOS_GPUFamily2_v4: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v3?language=objc)
+    /// The GPU family 3, version 3 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A9 devices running iOS 11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v3")]
     pub const iOS_GPUFamily3_v3: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily4_v1?language=objc)
+    /// The GPU family 4, version 1 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A11 devices running iOS 11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v1")]
     pub const iOS_GPUFamily4_v1: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily1_v5?language=objc)
+    /// The GPU family 1, version 5 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A7 devices running iOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v5")]
     pub const iOS_GPUFamily1_v5: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily2_v5?language=objc)
+    /// The GPU family 2, version 5 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running iOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v5")]
     pub const iOS_GPUFamily2_v5: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily3_v4?language=objc)
+    /// The GPU family 3, version 4 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A9 devices running iOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v4")]
     pub const iOS_GPUFamily3_v4: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily4_v2?language=objc)
+    /// The GPU family 4, version 2 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A11 devices running iOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v2")]
     pub const iOS_GPUFamily4_v2: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/ios_gpufamily5_v1?language=objc)
+    /// The GPU family 5, version 1 feature set for iOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A12 devices running iOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily5_v1")]
     pub const iOS_GPUFamily5_v1: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v1?language=objc)
+    /// The GPU family 1, version 1 feature set for macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with the first family of Mac GPUs that support Metal and run macOS 10.11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v1")]
     pub const macOS_GPUFamily1_v1: Self = Self(10000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/osx_gpufamily1_v1?language=objc)
     #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v1")]
     pub const OSX_GPUFamily1_v1: Self = Self(MTLFeatureSet::macOS_GPUFamily1_v1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v2?language=objc)
+    /// The GPU family 1, version 2 feature set for macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with the first family of Mac GPUs that support Metal and run macOS 10.12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v2")]
     pub const macOS_GPUFamily1_v2: Self = Self(10001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/osx_gpufamily1_v2?language=objc)
     #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v2")]
     pub const OSX_GPUFamily1_v2: Self = Self(MTLFeatureSet::macOS_GPUFamily1_v2.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_readwritetexturetier2?language=objc)
+    /// The read-write texture, tier 2 feature set for macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds to support the second tier of pixel formats with read-write texture capabilities.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_macOS_ReadWriteTextureTier2")]
     pub const macOS_ReadWriteTextureTier2: Self = Self(10002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/osx_readwritetexturetier2?language=objc)
     #[doc(alias = "MTLFeatureSet_OSX_ReadWriteTextureTier2")]
     pub const OSX_ReadWriteTextureTier2: Self = Self(MTLFeatureSet::macOS_ReadWriteTextureTier2.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v3?language=objc)
+    /// The GPU family 1, version 3 feature set for macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with the first family of Mac GPUs that support Metal and run macOS 10.13.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v3")]
     pub const macOS_GPUFamily1_v3: Self = Self(10003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily1_v4?language=objc)
+    /// The GPU family 1, version 4 feature set for macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with the first family of Mac GPUs that support Metal and run macOS 10.14.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v4")]
     pub const macOS_GPUFamily1_v4: Self = Self(10004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/macos_gpufamily2_v1?language=objc)
+    /// The GPU family 2, version 1 feature set for macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with macOS 10.14 and the following GPUs:
+    ///
+    /// - Intel Iris Graphics 5xx
+    ///
+    /// - Intel Iris Plus Graphics 6xx
+    ///
+    /// - Intel HD Graphics 5xx
+    ///
+    /// - Intel HD Graphics 6xx
+    ///
+    /// - AMD FirePro Dxxx
+    ///
+    /// - AMD Radeon R9 M2xx
+    ///
+    /// - AMD Radeon R9 M3xx
+    ///
+    /// - AMD Radeon Pro 4xx
+    ///
+    /// - AMD Radeon Pro 5xx
+    ///
+    /// - AMD Radeon Pro Vega
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily2_v1")]
     pub const macOS_GPUFamily2_v1: Self = Self(10005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v1-swift.enum.case?language=objc)
+    /// The GPU family 1, version 1 feature set for tvOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running tvOS 9.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v1")]
     pub const tvOS_GPUFamily1_v1: Self = Self(30000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v1-swift.type.property?language=objc)
     #[doc(alias = "MTLFeatureSet_TVOS_GPUFamily1_v1")]
     pub const TVOS_GPUFamily1_v1: Self = Self(MTLFeatureSet::tvOS_GPUFamily1_v1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v2?language=objc)
+    /// The GPU family 1, version 2 feature set for tvOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running tvOS 10.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v2")]
     pub const tvOS_GPUFamily1_v2: Self = Self(30001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v3?language=objc)
+    /// The GPU family 1, version 3 feature set for tvOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running tvOS 11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v3")]
     pub const tvOS_GPUFamily1_v3: Self = Self(30002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily2_v1?language=objc)
+    /// The GPU family 2, version 1 feature set for tvOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A10 devices running tvOS 11.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v1")]
     pub const tvOS_GPUFamily2_v1: Self = Self(30003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily1_v4?language=objc)
+    /// The GPU family 1, version 4 feature set for tvOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A8 devices running tvOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v4")]
     pub const tvOS_GPUFamily1_v4: Self = Self(30004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfeatureset/tvos_gpufamily2_v2?language=objc)
+    /// The GPU family 2, version 2 feature set for tvOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This feature set corresponds with Apple A10 devices running tvOS 12.
+    ///
+    ///
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v2")]
     pub const tvOS_GPUFamily2_v2: Self = Self(30005);
 }
@@ -255,70 +566,81 @@ unsafe impl RefEncode for MTLFeatureSet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily?language=objc)
+/// Represents the functionality for families of GPUs.
+///
+/// ## Overview
+///
+/// Check whether a GPU supports the features of a specific family by calling the [`supportsFamily:`](https://developer.apple.com/documentation/metal/mtldevice/supportsfamily(_:)) method of a GPU’s [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLGPUFamily(pub NSInteger);
 impl MTLGPUFamily {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple1?language=objc)
+    /// Represents the Apple family 1 GPU features that correspond to the Apple A7 GPUs.
     #[doc(alias = "MTLGPUFamilyApple1")]
     pub const Apple1: Self = Self(1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple2?language=objc)
+    /// Represents the Apple family 2 GPU features that correspond to the Apple A8 GPUs.
     #[doc(alias = "MTLGPUFamilyApple2")]
     pub const Apple2: Self = Self(1002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple3?language=objc)
+    /// Represents the Apple family 3 GPU features that correspond to the Apple A9 and A10 GPUs.
     #[doc(alias = "MTLGPUFamilyApple3")]
     pub const Apple3: Self = Self(1003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple4?language=objc)
+    /// Represents the Apple family 4 GPU features that correspond to the Apple A11 GPUs.
     #[doc(alias = "MTLGPUFamilyApple4")]
     pub const Apple4: Self = Self(1004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple5?language=objc)
+    /// Represents the Apple family 5 GPU features that correspond to the Apple A12 GPUs.
     #[doc(alias = "MTLGPUFamilyApple5")]
     pub const Apple5: Self = Self(1005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple6?language=objc)
+    /// Represents the Apple family 6 GPU features that correspond to the Apple A13 GPUs.
     #[doc(alias = "MTLGPUFamilyApple6")]
     pub const Apple6: Self = Self(1006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple7?language=objc)
+    /// Represents the Apple family 7 GPU features that correspond to the Apple A14 and M1 GPUs.
     #[doc(alias = "MTLGPUFamilyApple7")]
     pub const Apple7: Self = Self(1007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple8?language=objc)
+    /// Represents the Apple family 8 GPU features that correspond to the Apple A15, A16, and M2 GPUs.
     #[doc(alias = "MTLGPUFamilyApple8")]
     pub const Apple8: Self = Self(1008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple9?language=objc)
+    /// Represents the Apple family 9 GPU features that correspond to the Apple A17, M3, and M4 GPUs.
     #[doc(alias = "MTLGPUFamilyApple9")]
     pub const Apple9: Self = Self(1009);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/apple10?language=objc)
     #[doc(alias = "MTLGPUFamilyApple10")]
     pub const Apple10: Self = Self(1010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/mac1?language=objc)
+    /// Represents the Mac family 1 GPU features.
     #[doc(alias = "MTLGPUFamilyMac1")]
     #[deprecated]
     pub const Mac1: Self = Self(2001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/mac2?language=objc)
+    /// Represents the Mac family 2 GPU features.
     #[doc(alias = "MTLGPUFamilyMac2")]
     pub const Mac2: Self = Self(2002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/common1?language=objc)
+    /// Represents the Common family 1 GPU features.
     #[doc(alias = "MTLGPUFamilyCommon1")]
     pub const Common1: Self = Self(3001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/common2?language=objc)
+    /// Represents the Common family 2 GPU features.
     #[doc(alias = "MTLGPUFamilyCommon2")]
     pub const Common2: Self = Self(3002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/common3?language=objc)
+    /// Represents the Common family 3 GPU features.
     #[doc(alias = "MTLGPUFamilyCommon3")]
     pub const Common3: Self = Self(3003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/maccatalyst1?language=objc)
+    /// Represents a family 1 Mac GPU when running an app you built with Mac Catalyst.
     #[doc(alias = "MTLGPUFamilyMacCatalyst1")]
     #[deprecated]
     pub const MacCatalyst1: Self = Self(4001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/maccatalyst2?language=objc)
+    /// Represents a family 2 Mac GPU when running an app you built with Mac Catalyst.
     #[doc(alias = "MTLGPUFamilyMacCatalyst2")]
     #[deprecated]
     pub const MacCatalyst2: Self = Self(4002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/metal3?language=objc)
+    /// Represents the Metal 3 features.
+    ///
+    /// ## Discussion
+    ///
+    /// The following platform and GPU combinations support Metal 3:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "GPUs" }] }]], [[Paragraph { inline_content: [Text { text: "iOS" }] }], [Paragraph { inline_content: [Text { text: "A14 and later" }] }]], [[Paragraph { inline_content: [Text { text: "iPadOS" }] }], [Paragraph { inline_content: [Text { text: "A14 and later " }, Image { identifier: "spacer", metadata: None }, Text { text: " M1 and later" }] }]], [[Paragraph { inline_content: [Text { text: "macOS" }] }], [Paragraph { inline_content: [Text { text: "M1 and later " }, Image { identifier: "spacer", metadata: None }, Text { text: " AMD Vega " }, Image { identifier: "spacer", metadata: None }, Text { text: " AMD 5000-series " }, Image { identifier: "spacer", metadata: None }, Text { text: " AMD 6000-series " }, Image { identifier: "spacer", metadata: None }, Text { text: " Intel Iris Pro Graphics  " }, Image { identifier: "spacer", metadata: None }, Text { text: " Intel UHD Graphics 630" }] }]]], alignments: None, metadata: None })
+    ///
     #[doc(alias = "MTLGPUFamilyMetal3")]
     pub const Metal3: Self = Self(5001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpufamily/metal4?language=objc)
     #[doc(alias = "MTLGPUFamilyMetal4")]
     pub const Metal4: Self = Self(5002);
 }
@@ -331,24 +653,29 @@ unsafe impl RefEncode for MTLGPUFamily {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Specifies the location of the GPU on macOS
+/// Indicates the location of the GPU relative to the system it’s connect to.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation?language=objc)
+/// ## Overview
+///
+/// Check the location of a GPU by checking the [`location`](https://developer.apple.com/documentation/metal/mtldevice/location) property of its [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+///
+///
+/// Specifies the location of the GPU on macOS
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDeviceLocation(pub NSUInteger);
 impl MTLDeviceLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/builtin?language=objc)
+    /// A location that indicates the GPU is permanently connected to the system internally.
     #[doc(alias = "MTLDeviceLocationBuiltIn")]
     pub const BuiltIn: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/slot?language=objc)
+    /// A GPU location that indicates a person connected the GPU to a system’s internal slot.
     #[doc(alias = "MTLDeviceLocationSlot")]
     pub const Slot: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/external?language=objc)
+    /// A GPU location that indicates a person connected the GPU to the system with an external interface, such as Thunderbolt.
     #[doc(alias = "MTLDeviceLocationExternal")]
     pub const External: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation/unspecified?language=objc)
+    /// A value that indicates the system can’t determine how the GPU connects to it.
     #[doc(alias = "MTLDeviceLocationUnspecified")]
     pub const Unspecified: Self = Self(NSUIntegerMax as _);
 }
@@ -361,29 +688,46 @@ unsafe impl RefEncode for MTLDeviceLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options that determine how Metal prepares the pipeline.
 /// Controls the creation of the pipeline
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPipelineOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLPipelineOption: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/mtlpipelineoptionnone?language=objc)
+/// Don’t provide any reflection information.
         #[doc(alias = "MTLPipelineOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/argumentinfo?language=objc)
+/// An option instance that provides argument information for textures and threadgroup memory.
+///
+/// ## Discussion
+///
+/// This option provides all properties of an [`MTLArgument`](https://developer.apple.com/documentation/metal/mtlargument) instance, except for [`bufferStructType`](https://developer.apple.com/documentation/metal/mtlargument/bufferstructtype) and [`bufferPointerType`](https://developer.apple.com/documentation/metal/mtlargument/bufferpointertype), which are `nil`. To obtain these detailed buffer type properties, retrieve the [`MTLPipelineOptionBufferTypeInfo`](https://developer.apple.com/documentation/metal/mtlpipelineoption/buffertypeinfo) instance.
+///
+///
         #[doc(alias = "MTLPipelineOptionArgumentInfo")]
 #[deprecated]
         const ArgumentInfo = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/bindinginfo?language=objc)
+/// An option that provides binding information for pipeline state resources.
         #[doc(alias = "MTLPipelineOptionBindingInfo")]
         const BindingInfo = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/buffertypeinfo?language=objc)
+/// An option instance that provides detailed buffer type information for buffer arguments.
+///
+/// ## Discussion
+///
+/// This option provides the [`bufferStructType`](https://developer.apple.com/documentation/metal/mtlargument/bufferstructtype) and [`bufferPointerType`](https://developer.apple.com/documentation/metal/mtlargument/bufferpointertype) properties for the [`MTLPipelineOption`](https://developer.apple.com/documentation/metal/mtlpipelineoption) stored in [`MTLPipelineOptionArgumentInfo`](https://developer.apple.com/documentation/metal/mtlpipelineoption/argumentinfo).
+///
+///
         #[doc(alias = "MTLPipelineOptionBufferTypeInfo")]
         const BufferTypeInfo = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption/failonbinaryarchivemiss?language=objc)
+/// An option that specifies that Metal only creates the pipeline state object if the compiled shader is present inside a linked binary archive.
+///
+/// ## Discussion
+///
+/// When this value is `true` and a compiled shader isn’t available, Metal produces an error rather than attempting to recompile on-demand on the GPU.
+///
+///
         #[doc(alias = "MTLPipelineOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<2;
     }
@@ -397,21 +741,68 @@ unsafe impl RefEncode for MTLPipelineOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The support level for read-write texture formats.
 /// MTLReadWriteTextureTier determines support level for read-write texture formats.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLReadWriteTextureTier(pub NSUInteger);
 impl MTLReadWriteTextureTier {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tiernone?language=objc)
+    /// Read-write textures are not supported.
     #[doc(alias = "MTLReadWriteTextureTierNone")]
     pub const TierNone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tier1?language=objc)
+    /// Tier 1 read/write textures are supported.
+    ///
+    /// ## Discussion
+    ///
+    /// Read/write texture tier 1 supports the following pixel formats:
+    ///
+    /// - [`MTLPixelFormatR32Float`](https://developer.apple.com/documentation/metal/mtlpixelformat/r32float)
+    ///
+    /// - [`MTLPixelFormatR32Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r32uint)
+    ///
+    /// - [`MTLPixelFormatR32Sint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r32sint)
+    ///
+    ///
     #[doc(alias = "MTLReadWriteTextureTier1")]
     pub const Tier1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tier2?language=objc)
+    /// Tier 2 read/write textures are supported.
+    ///
+    /// ## Discussion
+    ///
+    /// Read/write texture tier 2 supports the following pixel formats in addition to those supported by [`MTLReadWriteTextureTier1`](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier/tier1):
+    ///
+    /// - [`MTLPixelFormatRGBA32Float`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32float)
+    ///
+    /// - [`MTLPixelFormatRGBA32Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32uint)
+    ///
+    /// - [`MTLPixelFormatRGBA32Sint`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32sint)
+    ///
+    /// - [`MTLPixelFormatRGBA16Float`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16float)
+    ///
+    /// - [`MTLPixelFormatRGBA16Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16uint)
+    ///
+    /// - [`MTLPixelFormatRGBA16Sint`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16sint)
+    ///
+    /// - [`MTLPixelFormatRGBA8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8unorm)
+    ///
+    /// - [`MTLPixelFormatRGBA8Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8uint)
+    ///
+    /// - [`MTLPixelFormatRGBA8Sint`](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8sint)
+    ///
+    /// - [`MTLPixelFormatR16Float`](https://developer.apple.com/documentation/metal/mtlpixelformat/r16float)
+    ///
+    /// - [`MTLPixelFormatR16Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r16uint)
+    ///
+    /// - [`MTLPixelFormatR16Sint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r16sint)
+    ///
+    /// - [`MTLPixelFormatR8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/r8unorm)
+    ///
+    /// - [`MTLPixelFormatR8Uint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r8uint)
+    ///
+    /// - [`MTLPixelFormatR8Sint`](https://developer.apple.com/documentation/metal/mtlpixelformat/r8sint)
+    ///
+    ///
     #[doc(alias = "MTLReadWriteTextureTier2")]
     pub const Tier2: Self = Self(2);
 }
@@ -424,18 +815,35 @@ unsafe impl RefEncode for MTLReadWriteTextureTier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// MTLArgumentBuffersTier determines support level for argument buffers.
+/// The values that determine the limits and capabilities of argument buffers.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier?language=objc)
+/// ## Overview
+///
+/// See [Improving CPU performance by using argument buffers](https://developer.apple.com/documentation/metal/improving-cpu-performance-by-using-argument-buffers) for more information about argument buffer tiers, limits, and capabilities. Query the [`argumentBuffersSupport`](https://developer.apple.com/documentation/metal/mtldevice/argumentbufferssupport) property to determine argument buffer tier support for a given device.
+///
+///
+/// MTLArgumentBuffersTier determines support level for argument buffers.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentBuffersTier(pub NSUInteger);
 impl MTLArgumentBuffersTier {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier/tier1?language=objc)
+    /// Support for tier 1 argument buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Tier 1 argument buffers are supported on all iOS, tvOS, and macOS GPUs.
+    ///
+    ///
     #[doc(alias = "MTLArgumentBuffersTier1")]
     pub const Tier1: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier/tier2?language=objc)
+    /// Support for tier 2 argument buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Tier 2 argument buffers are supported on all macOS discrete GPUs.
+    ///
+    ///
     #[doc(alias = "MTLArgumentBuffersTier2")]
     pub const Tier2: Self = Self(1);
 }
@@ -448,18 +856,17 @@ unsafe impl RefEncode for MTLArgumentBuffersTier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options used when converting between a pixel-based region within a texture to a tile-based region.
 /// MTLSparseTextureRegionAlignmentMode determines type of alignment used when converting from pixel region to tile region.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSparseTextureRegionAlignmentMode(pub NSUInteger);
 impl MTLSparseTextureRegionAlignmentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode/outward?language=objc)
+    /// The tile region includes any partially covered tiles.
     #[doc(alias = "MTLSparseTextureRegionAlignmentModeOutward")]
     pub const Outward: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode/inward?language=objc)
+    /// The tile region ignores partially covered tiles.
     #[doc(alias = "MTLSparseTextureRegionAlignmentModeInward")]
     pub const Inward: Self = Self(1);
 }
@@ -472,9 +879,8 @@ unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The expected sizes for a ray-tracing acceleration structure.
 /// Describes the memory requirements for an acceleration structure
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuresizes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAccelerationStructureSizes {
@@ -501,6 +907,7 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for different times when you can sample GPU counters.
 /// MTLCounterSamplingPoint determines type of sampling points that are supported on given device.
 ///
 ///
@@ -517,26 +924,48 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
 ///
 ///
 /// Counter sampling at blit boundary is supported, blit encoder method sampleCountersInBuffer can be used for sampling.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSamplingPoint(pub NSUInteger);
 impl MTLCounterSamplingPoint {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atstageboundary?language=objc)
+    /// Counter sampling is allowed at the start and end of a render pass’s vertex and fragment stages, and at the start and end of compute and blit passes.
     #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]
     pub const AtStageBoundary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atdrawboundary?language=objc)
+    /// Counter sampling is allowed between draw commands in a render pass.
+    ///
+    /// ## Discussion
+    ///
+    /// When a Metal device instance supports this sampling boundary, you can call the [`sampleCountersInBuffer:atSampleIndex:withBarrier:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)) method on an [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) to sample the counters between individual draw commands.
+    ///
+    ///
     #[doc(alias = "MTLCounterSamplingPointAtDrawBoundary")]
     pub const AtDrawBoundary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atdispatchboundary?language=objc)
+    /// Counter sampling is allowed between kernel dispatches in a compute pass.
+    ///
+    /// ## Discussion
+    ///
+    /// When a Metal device instance supports this sampling boundary, you can call the [`sampleCountersInBuffer:atSampleIndex:withBarrier:`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)) method on an [`MTLComputeCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder) to sample the counters between individual dispatch commands.
+    ///
+    ///
     #[doc(alias = "MTLCounterSamplingPointAtDispatchBoundary")]
     pub const AtDispatchBoundary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/attiledispatchboundary?language=objc)
+    /// Counter sampling is allowed between tile dispatches in a render pass.
+    ///
+    /// ## Discussion
+    ///
+    /// When a Metal device instance supports this sampling boundary, you can call the [`sampleCountersInBuffer:atSampleIndex:withBarrier:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)) method on an [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) to sample the counters between individual tile shader dispatches commands.
+    ///
+    ///
     #[doc(alias = "MTLCounterSamplingPointAtTileDispatchBoundary")]
     pub const AtTileDispatchBoundary: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint/atblitboundary?language=objc)
+    /// Counter sampling is allowed between blit commands in a blit pass.
+    ///
+    /// ## Discussion
+    ///
+    /// When a Metal device instance supports this sampling boundary, you can call the [`sampleCountersInBuffer:atSampleIndex:withBarrier:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/samplecounters(samplebuffer:sampleindex:barrier:)) method on an [`MTLBlitCommandEncoder`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder) to sample the counters between individual blit commands.
+    ///
+    ///
     #[doc(alias = "MTLCounterSamplingPointAtBlitBoundary")]
     pub const AtBlitBoundary: Self = Self(4);
 }
@@ -549,9 +978,8 @@ unsafe impl RefEncode for MTLCounterSamplingPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The size and alignment of a resource, in bytes.
 /// Represent a memory size and alignment in bytes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsizeandalign?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLSizeAndAlign {
@@ -569,9 +997,14 @@ unsafe impl RefEncode for MTLSizeAndAlign {
 }
 
 extern_class!(
-    /// Represents a member of an argument buffer
+    /// A representation of an argument within an argument buffer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// This descriptor can represent arguments within flat structures only. It can represent arrays of allowed argument buffer data types, but it cannot represent arguments within nested structures. Argument buffers with simple, flat structures can be represented by an array of [`MTLArgumentDescriptor`](https://developer.apple.com/documentation/metal/mtlargumentdescriptor) instances. You can then use this array to create an [`MTLArgumentEncoder`](https://developer.apple.com/documentation/metal/mtlargumentencoder) instance by calling the [`newArgumentEncoderWithArguments:`](https://developer.apple.com/documentation/metal/mtldevice/makeargumentencoder(arguments:)) method. Argument buffers with complex, nested structures must define their structure in Metal shading language code, which can then be directly assigned to a specific buffer index of a function. You can then use this buffer index to call the [`newArgumentEncoderWithBufferIndex:`](https://developer.apple.com/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:)) method and create an [`MTLArgumentEncoder`](https://developer.apple.com/documentation/metal/mtlargumentencoder) instance.
+    ///
+    ///
+    /// Represents a member of an argument buffer
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArgumentDescriptor;
@@ -689,9 +1122,8 @@ impl DefaultRetained for MTLArgumentDescriptor {
 }
 
 extern_class!(
+    /// A class that contains the architectural details of a GPU device.
     /// Contains information about the device's architecture
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlarchitecture?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLArchitecture;
@@ -738,13 +1170,34 @@ impl DefaultRetained for MTLArchitecture {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltimestamp?language=objc)
+/// The number of nanoseconds for a point in absolute time or Mach absolute time.
+///
+/// ## Discussion
+///
+/// The type of absolute time a Metal timestamp uses can vary with a system’s configuration, but it’s consistent for a configuration.
+///
+///
 pub type MTLTimestamp = u64;
 
 extern_protocol!(
-    /// MTLDevice represents a processor capable of data parallel computations
+    /// The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevice?language=objc)
+    /// ## Overview
+    ///
+    /// You can get the default [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) at runtime by calling [`MTLCreateSystemDefaultDevice`](https://developer.apple.com/documentation/metal/mtlcreatesystemdefaultdevice()) (see [Getting the default GPU](https://developer.apple.com/documentation/metal/getting-the-default-gpu)). Each Metal device instance represents a GPU and is the main starting point for your app’s interaction with it. With a Metal device instance, you can inspect a GPU’s features and capabilities (see [Device inspection](https://developer.apple.com/documentation/metal/device-inspection)) and create subsidiary type instances with its factory methods.
+    ///
+    /// - Buffers, textures, and other resources store, synchronize, and pass data between the GPU and CPU (see [Resource fundamentals](https://developer.apple.com/documentation/metal/resource-fundamentals)).
+    ///
+    /// - Input/Output command queues efficiently load resources from the file system (see [Resource loading](https://developer.apple.com/documentation/metal/resource-loading)).
+    ///
+    /// - Command queues create command encoders and schedule work for the GPU, including rendering and compute commands (see [Render passes](https://developer.apple.com/documentation/metal/render-passes) and [Compute passes](https://developer.apple.com/documentation/metal/compute-passes)).
+    ///
+    /// - Pipeline states store render or compute pipeline configurations — which can be expensive to create — so that you can reuse them, potentially many times.
+    ///
+    /// If your app uses more than one GPU (see [Multi-GPU systems](https://developer.apple.com/documentation/metal/multi-gpu-systems)), ensure that instances of these types only interact with others from the same device. For example, your app can pass a texture to a command encoder that comes from the same Metal device, but not to another device.
+    ///
+    ///
+    /// MTLDevice represents a processor capable of data parallel computations
     pub unsafe trait MTLDevice: NSObjectProtocol + Send + Sync {
         /// The full name of the vendor device.
         #[unsafe(method(name))]

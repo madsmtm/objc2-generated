@@ -12,17 +12,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The UTType for storing drawing data.
+    /// The uniform type identifier for data associated with a drawing object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkappledrawingtypeidentifier?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this type when reading or writing drawing data. For example, use this type to determine if you can read data from the pasteboard.
+    ///
+    ///
+    /// The UTType for storing drawing data.
     #[cfg(feature = "objc2-core-foundation")]
     pub static PKAppleDrawingTypeIdentifier: &'static CFString;
 }
 
 extern_class!(
-    /// The data model object for storing drawing data created from PKCanvasView.
+    /// A data structure that contains the drawing information captured by a canvas view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkdrawingreference?language=objc)
+    /// ## Overview
+    ///
+    /// A [`PKDrawing`](https://developer.apple.com/documentation/pencilkit/pkdrawingreference) object stores the user-drawn content from a [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview) object. You use drawing objects to store the data associated with your user’s drawings. You can save this data with the rest of your app’s content, and you can use that saved data to create a new drawing object later. You can also generate an image based on the drawn content.
+    ///
+    ///
+    /// The data model object for storing drawing data created from PKCanvasView.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKDrawing;

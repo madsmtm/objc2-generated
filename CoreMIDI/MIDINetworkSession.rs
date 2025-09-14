@@ -10,24 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkbonjourservicetype?language=objc)
+    /// The Bonjour service type.
     #[cfg(feature = "objc2-foundation")]
     pub static MIDINetworkBonjourServiceType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange?language=objc)
+    /// Indicates that the list of contacts changed.
     #[cfg(feature = "objc2-foundation")]
     pub static MIDINetworkNotificationContactsDidChange: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange?language=objc)
+    /// Indicates that other aspects of the session changed, such as the connection list, connection policy, and so on.
     #[cfg(feature = "objc2-foundation")]
     pub static MIDINetworkNotificationSessionDidChange: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -35,13 +34,10 @@ extern "C" {
 pub struct MIDINetworkConnectionPolicy(pub NSUInteger);
 #[cfg(feature = "objc2")]
 impl MIDINetworkConnectionPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy/noone?language=objc)
     #[doc(alias = "MIDINetworkConnectionPolicy_NoOne")]
     pub const NoOne: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy/hostsincontactlist?language=objc)
     #[doc(alias = "MIDINetworkConnectionPolicy_HostsInContactList")]
     pub const HostsInContactList: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnectionpolicy/anyone?language=objc)
     #[doc(alias = "MIDINetworkConnectionPolicy_Anyone")]
     pub const Anyone: Self = Self(2);
 }
@@ -58,7 +54,7 @@ unsafe impl RefEncode for MIDINetworkConnectionPolicy {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkhost?language=objc)
+    /// An object that represents the host’s network address.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -145,7 +141,7 @@ impl MIDINetworkHost {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkconnection?language=objc)
+    /// An object that connects a session to a host.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -186,7 +182,13 @@ impl MIDINetworkConnection {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworksession?language=objc)
+    /// An object that represents a pairing of a source and destination.
+    ///
+    /// ## Overview
+    ///
+    /// A session can have any number of connections. The system broadcasts output to all connections, and merges input from multiple connections.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

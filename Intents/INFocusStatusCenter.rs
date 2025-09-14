@@ -6,22 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus?language=objc)
+/// A constant that indicates whether your app has authorization to access the user’s focus status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INFocusStatusAuthorizationStatus(pub NSInteger);
 impl INFocusStatusAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/notdetermined?language=objc)
+    /// The user hasn’t chosen whether to grant your app access to their focus status yet.
     #[doc(alias = "INFocusStatusAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/restricted?language=objc)
+    /// A restriction prevents your app from accessing the user’s focus status.
     #[doc(alias = "INFocusStatusAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/denied?language=objc)
+    /// The user has denied your app access to their focus status.
     #[doc(alias = "INFocusStatusAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatusauthorizationstatus/authorized?language=objc)
+    /// Your app has authorization to access the user’s focus status.
     #[doc(alias = "INFocusStatusAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -35,7 +35,7 @@ unsafe impl RefEncode for INFocusStatusAuthorizationStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatuscenter?language=objc)
+    /// An object that maintains the user’s current focus status and your app’s ability to access it.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INFocusStatusCenter;

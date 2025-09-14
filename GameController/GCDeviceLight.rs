@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The colored light on a device.
     /// A controller light is an abstract representation of the light-emitting capabilities of a GCController instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicelight?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceLight;

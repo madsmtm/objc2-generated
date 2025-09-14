@@ -7,7 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspictimagerep?language=objc)
+    /// An object that renders an image from a PICT format data stream of version 1, version 2, and extended version 2.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  There is no guarantee that the image will render exactly the same as it would under QuickDraw because of the differences between the display medium and QuickDraw. In particular, some transfer modes and region operations may not be supported.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]

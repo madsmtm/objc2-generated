@@ -10,7 +10,33 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimanageddocument?language=objc)
+    /// A managed document object that integrates with Core Data.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIManagedDocument`](https://developer.apple.com/documentation/uikit/uimanageddocument) is a concrete subclass of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument). When you initialize a managed document, you specify the URL for the document location. The document object then creates a Core Data stack to use to access the document’s persistent store using a managed object model from the app’s main bundle. [`UIManagedDocument`](https://developer.apple.com/documentation/uikit/uimanageddocument) performs all the basic setup you need for Core Data, and in some cases you may use instances of the class directly (without a need to subclass). You can supply configuration options for the creation of the coordinator using [`persistentStoreOptions`](https://developer.apple.com/documentation/uikit/uimanageddocument/persistentstoreoptions), and for the model using [`modelConfiguration`](https://developer.apple.com/documentation/uikit/uimanageddocument/modelconfiguration). You can also perform additional customization by creating a subclass of [`UIManagedDocument`](https://developer.apple.com/documentation/uikit/uimanageddocument):
+    ///
+    /// - Override [`persistentStoreName`](https://developer.apple.com/documentation/uikit/uimanageddocument/persistentstorename) to customize the name of the persistent store file inside the document’s file package.
+    ///
+    /// - Override [`managedObjectModel`](https://developer.apple.com/documentation/uikit/uimanageddocument/managedobjectmodel) to customize creation of the managed object model.
+    ///
+    /// You do this if, for example, your app supports multiple document types, each of which uses a different model. You want to ensure that the models aren’t merged for each document class.
+    ///
+    /// - Override [`persistentStoreTypeForFileType:`](https://developer.apple.com/documentation/uikit/uimanageddocument/persistentstoretype(forfiletype:)) to customize the type of persistent store used by a document.
+    ///
+    /// - Override [`configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:`](https://developer.apple.com/documentation/uikit/uimanageddocument/configurepersistentstorecoordinator(for:oftype:modelconfiguration:storeoptions:)) to customize the loading or creation of a persistent store.
+    ///
+    /// ### Handling errors
+    ///
+    /// To enable your app to observe and handle errors in saving and validating a managed document, you must subclass the [`UIManagedDocument`](https://developer.apple.com/documentation/uikit/uimanageddocument) class and override one or both of the following two inherited methods from the [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) class:
+    ///
+    /// - [`handleError:userInteractionPermitted:`](https://developer.apple.com/documentation/uikit/uidocument/handleerror(_:userinteractionpermitted:))
+    ///
+    /// - [`finishedHandlingError:recovered:`](https://developer.apple.com/documentation/uikit/uidocument/finishedhandlingerror(_:recovered:))
+    ///
+    /// Overriding is required because otherwise, the only information your app receives on error is the [`UIDocumentStateChangedNotification`](https://developer.apple.com/documentation/uikit/uidocument/statechangednotification) notification, which doesn’t contain a `userInfo` dictionary and so doesn’t convey specific error information.
+    ///
+    ///
     #[unsafe(super(UIDocument, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

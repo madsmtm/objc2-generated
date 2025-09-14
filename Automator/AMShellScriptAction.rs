@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amshellscriptaction?language=objc)
+    /// An object that represents Automator actions whose runtime behavior is driven by a shell script or by a Perl or Python script.
+    ///
+    /// ## Overview
+    ///
+    /// When you create a Shell Script Automator Action project in Xcode, the project template supplies an [`AMShellScriptAction`](https://developer.apple.com/documentation/automator/amshellscriptaction) instance as the Principal Class of the action bundle. This ready-made instance provides a default implementation of the [`AMAction`](https://developer.apple.com/documentation/automator/amaction) [`runWithInput:error:`](https://developer.apple.com/documentation/automator/amaction/run(withinput:)) method that uses the logic defined in the script. You can substitute your own subclass of [`AMShellScriptAction`](https://developer.apple.com/documentation/automator/amshellscriptaction) for Principal Class if you need to.
+    ///
+    ///
     #[unsafe(super(AMBundleAction, AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]

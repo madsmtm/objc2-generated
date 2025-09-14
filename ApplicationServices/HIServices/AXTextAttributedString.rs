@@ -8,6 +8,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A dictionary (a `CFDictionaryRef`) of two or more font keys.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary associated with this attribute must contain the [`kAXFontNameKey`](https://developer.apple.com/documentation/applicationservices/kaxfontnamekey) and [`kAXFontSizeKey`](https://developer.apple.com/documentation/applicationservices/kaxfontsizekey) font keys. It may also contain the [`kAXFontFamilyKey`](https://developer.apple.com/documentation/applicationservices/kaxfontfamilykey) and [`kAXVisibleNameKey`](https://developer.apple.com/documentation/applicationservices/kaxvisiblenamekey) font keys.
+    ///
+    ///
     /// A dictionary (a
     /// <code>
     /// CFDictionaryRef
@@ -23,56 +30,81 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxfonttextattribute?language=objc)
     pub static kAXFontTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CGColorRef` value that describes the foreground color.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CGColorRef
     /// </code>
     /// value that describes the foreground color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxforegroundcolortextattribute?language=objc)
     pub static kAXForegroundColorTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CGColorRef` value that describes the background color.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CGColorRef
     /// </code>
     /// value that describes the background color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxbackgroundcolortextattribute?language=objc)
     pub static kAXBackgroundColorTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CGColorRef` value that describes the color of the underlining.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CGColorRef
     /// </code>
     /// value that describes the color of the underlining.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxunderlinecolortextattribute?language=objc)
     pub static kAXUnderlineColorTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CGColorRef` value that describes the color of the strikethrough.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CGColorRef
     /// </code>
     /// value that describes the color of the strikethrough.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxstrikethroughcolortextattribute?language=objc)
     pub static kAXStrikethroughColorTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFNumberRef` value that describes the underline style (see [`AXUnderlineStyle`](https://developer.apple.com/documentation/applicationservices/axunderlinestyle) for possible values).
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFNumberRef
@@ -84,12 +116,17 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxunderlinetextattribute?language=objc)
     pub static kAXUnderlineTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFNumberRef` value that indicates whether the text is superscript (value > 0) or subscript (value < 0).
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFNumberRef
@@ -97,108 +134,151 @@ extern "C" {
     /// value that indicates whether the text is superscript (value > 0) or subscript (value
     /// <
     /// 0).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxsuperscripttextattribute?language=objc)
     pub static kAXSuperscriptTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFBooleanRef` value that indicates whether the text displays strikethrough.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFBooleanRef
     /// </code>
     /// value that indicates whether the text displays strikethrough.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxstrikethroughtextattribute?language=objc)
     pub static kAXStrikethroughTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFBooleanRef` value that indicates whether the text displays shadow.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFBooleanRef
     /// </code>
     /// value that indicates whether the text displays shadow.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxshadowtextattribute?language=objc)
     pub static kAXShadowTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// An `AXUIElementRef` value for the accessibility object representing the text attachment.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// An
     /// <code>
     /// AXUIElementRef
     /// </code>
     /// value for the accessibility object representing the text attachment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxattachmenttextattribute?language=objc)
     pub static kAXAttachmentTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// An `AXUIElementRef` value used to access the object to which the specified range of text links.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// An
     /// <code>
     /// AXUIElementRef
     /// </code>
     /// value used to access the object to which the specified range of text links.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxlinktextattribute?language=objc)
     pub static kAXLinkTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFStringRef` value that indicates the language in which the text will be spoken aloud by the system.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFStringRef
     /// </code>
     /// value that indicates the language in which the text will be spoken aloud by the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxnaturallanguagetextattribute?language=objc)
     pub static kAXNaturalLanguageTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFStringRef` value that indicates the string that will replace the text.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFStringRef
     /// </code>
     /// value that indicates the string that will replace the text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxreplacementstringtextattribute?language=objc)
     pub static kAXReplacementStringTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFBooleanRef` value that indicates whether the text is misspelled.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFBooleanRef
     /// </code>
     /// value that indicates whether the text is misspelled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxmisspelledtextattribute?language=objc)
     pub static kAXMisspelledTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFBooleanRef` value that indicates whether the text is visibly shown as misspelled (for example, with a squiggle underneath the text).
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFBooleanRef
     /// </code>
     /// value that indicates whether the text is visibly shown as misspelled
     /// (for example, with a squiggle underneath the text).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxmarkedmisspelledtextattribute?language=objc)
     pub static kAXMarkedMisspelledTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A `CFBooleanRef` value that indicates whether the text was autocorrected.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// A
     /// <code>
     /// CFBooleanRef
     /// </code>
     /// value that indicates whether the text was autocorrected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxautocorrectedtextattribute?language=objc)
     pub static kAXAutocorrectedTextAttribute: &'static CFString;
 }
 
@@ -208,8 +288,6 @@ extern "C" {
     /// CFAttributedStringRef
     /// </code>
     /// value that indicates the prepended string of the list item. If the string is a common unicode character (e.g. a bullet •), return that unicode character. For lists with images before the text, return a reasonable label of the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxlistitemprefixtextattribute?language=objc)
     pub static kAXListItemPrefixTextAttribute: &'static CFString;
 }
 
@@ -219,8 +297,6 @@ extern "C" {
     /// CFNumberRef
     /// </code>
     /// value that indicates the line index. Each list item increments the index, even for unordered lists. The first item should have index 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxlistitemindextextattribute?language=objc)
     pub static kAXListItemIndexTextAttribute: &'static CFString;
 }
 
@@ -230,12 +306,17 @@ extern "C" {
     /// CFNumberRef
     /// </code>
     /// value that indicates the indent level. Each sublist increments the level. The first item should have level 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxlistitemleveltextattribute?language=objc)
     pub static kAXListItemLevelTextAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// Required key of the [`kAXFontTextAttribute`](https://developer.apple.com/documentation/applicationservices/kaxfonttextattribute) dictionary for the font name in a `CFStringRef`.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// Required key of the {
     ///
     /// ```text
@@ -243,12 +324,17 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxfontnamekey?language=objc)
     pub static kAXFontNameKey: &'static CFString;
 }
 
 extern "C" {
+    /// Optional key of the [`kAXFontTextAttribute`](https://developer.apple.com/documentation/applicationservices/kaxfonttextattribute) dictionary for the font family name in a `CFStringRef`.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// Optional key of the {
     ///
     /// ```text
@@ -256,12 +342,17 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxfontfamilykey?language=objc)
     pub static kAXFontFamilyKey: &'static CFString;
 }
 
 extern "C" {
+    /// Optional key of the [`kAXFontTextAttribute`](https://developer.apple.com/documentation/applicationservices/kaxfonttextattribute) dictionary for the font display name in a `CFStringRef`.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// Optional key of the {
     ///
     /// ```text
@@ -269,12 +360,17 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvisiblenamekey?language=objc)
     pub static kAXVisibleNameKey: &'static CFString;
 }
 
 extern "C" {
+    /// Required key of the [`kAXFontTextAttribute`](https://developer.apple.com/documentation/applicationservices/kaxfonttextattribute) dictionary for the font size in a `CFNumberRef`.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// Required key of the {
     ///
     /// ```text
@@ -282,11 +378,10 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxfontsizekey?language=objc)
     pub static kAXFontSizeKey: &'static CFString;
 }
 
+/// Values that describe the style of underlining (used with the [`kAXUnderlineTextAttribute`](https://developer.apple.com/documentation/applicationservices/kaxunderlinetextattribute) attribute).
 /// Values that describe the style of underlining (used with the {
 ///
 /// ```text
@@ -294,23 +389,17 @@ extern "C" {
 ///  
 ///
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXUnderlineStyle(pub u32);
 impl AXUnderlineStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestylenone?language=objc)
     #[doc(alias = "kAXUnderlineStyleNone")]
     pub const None: Self = Self(0x0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestylesingle?language=objc)
     #[doc(alias = "kAXUnderlineStyleSingle")]
     pub const Single: Self = Self(0x1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestylethick?language=objc)
     #[doc(alias = "kAXUnderlineStyleThick")]
     pub const Thick: Self = Self(0x2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axunderlinestyle/kaxunderlinestyledouble?language=objc)
     #[doc(alias = "kAXUnderlineStyleDouble")]
     pub const Double: Self = Self(0x9);
 }
@@ -326,6 +415,5 @@ unsafe impl RefEncode for AXUnderlineStyle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxforegoundcolortextattribute?language=objc)
     pub static kAXForegoundColorTextAttribute: &'static CFString;
 }

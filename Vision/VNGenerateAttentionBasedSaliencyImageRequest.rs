@@ -7,10 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that produces a heat map that identifies the parts of an image most likely to draw attention.
     /// Generates an image that identifies which part(s) of a given image is most interesting (i.e. something that a human is likely to look at - hence attention based).
     /// The resulting observation, VNSaliencyImageObservation, encodes this data as a heat map which can be used to highlight regions of interest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -80,10 +79,9 @@ impl VNGenerateAttentionBasedSaliencyImageRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the image saliency request.
 pub static VNGenerateAttentionBasedSaliencyImageRequestRevision1: NSUInteger = 1;
 
+/// A value that indicates the second revision for an attention-saliency image request.
 /// Improved accuracy, reduced latency and memory utilization.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequestrevision2?language=objc)
 pub static VNGenerateAttentionBasedSaliencyImageRequestRevision2: NSUInteger = 2;

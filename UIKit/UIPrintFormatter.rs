@@ -10,7 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintformatter?language=objc)
+    /// An abstract base class for print formatters, which are objects that lay out custom printable content that can cross page boundaries.
+    ///
+    /// ## Overview
+    ///
+    /// Given a print formatter, the printing system can automate the printing of the type of content associated with the print formatter. Examples of such content could be a web view, a mix of images and text, or a long text document. The UIKit framework provides several concrete subclasses of [`UIPrintFormatter`](https://developer.apple.com/documentation/uikit/uiprintformatter): [`UISimpleTextPrintFormatter`](https://developer.apple.com/documentation/uikit/uisimpletextprintformatter), [`UIMarkupTextPrintFormatter`](https://developer.apple.com/documentation/uikit/uimarkuptextprintformatter), and [`UIViewPrintFormatter`](https://developer.apple.com/documentation/uikit/uiviewprintformatter).
+    ///
+    /// You can assign a single print formatter for a print job using the [`printFormatter`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printformatter) property of the [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) shared instance; or you can specify one or more print formatters that are associated with specific pages of a page renderer through the [`addPrintFormatter:startingAtPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/addprintformatter(_:startingatpageat:))method of [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer). A page renderer is an instance of a custom subclass of [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) that draws content for printing.
+    ///
+    /// [`UIPrintFormatter`](https://developer.apple.com/documentation/uikit/uiprintformatter) publishes an interface that allows you to specify the starting page for a print job and the margins around the printed content; given that information plus the content, a print formatter computes the number of pages for the print job. The following image depicts the print-formatter properties, along with certain [`UIPrintPaper`](https://developer.apple.com/documentation/uikit/uiprintpaper) and [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) properties, that define the layout of a multipage print job.
+    ///
+    ///
+    /// ![Diagram that shows the layout of printed content.](https://docs-assets.developer.apple.com/published/5af87d7015f12142813615b85252c418/media-1965769.jpg)
+    ///
+    ///
+    /// Third-party subclasses of [`UIPrintFormatter`](https://developer.apple.com/documentation/uikit/uiprintformatter) aren’t recommended. If you have custom content to print, use a custom [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintFormatter;
@@ -135,7 +151,23 @@ impl DefaultRetained for UIPrintFormatter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisimpletextprintformatter?language=objc)
+    /// An object that lays out plain text for printing, possibly over multiple pages.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UISimpleTextPrintFormatter`](https://developer.apple.com/documentation/uikit/uisimpletextprintformatter) class allows you to specify global font, color, and text alignment properties for the printed text. To use this print formatter for a print job, create an instance of [`UISimpleTextPrintFormatter`](https://developer.apple.com/documentation/uikit/uisimpletextprintformatter) initialized with the text, set the text properties and the inherited layout properties, and add the object to the print job in one of two ways:
+    ///
+    /// - If a single print formatter is being used for the print job (with no additional drawing), assign it to the [`printFormatter`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printformatter) property of the [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) shared instance. The inherited [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) property identifies the beginning page of content with which the formatter is associated.
+    ///
+    /// - If you are using multiple formatters along with a page renderer, associate each print formatter with a starting page of the printed content. You often take this approach when you want to add content such as headers and footers to what the formatters provide. You have two ways of associating a print formatter with a  [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object:
+    ///
+    /// - You can add print formatters to the [`printFormatters`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/printformatters) property of the [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object; the [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) property of the print formatter specifies the starting page.
+    ///
+    /// - You can add print formatters by calling [`addPrintFormatter:startingAtPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/addprintformatter(_:startingatpageat:)) for each print formatter; the second parameter of this method specifies the starting page (and overrides any [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) value).
+    ///
+    /// You can change the text at any time before drawing of the printable content begins. You cannot change the text after drawing begins.
+    ///
+    ///
     #[unsafe(super(UIPrintFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISimpleTextPrintFormatter;
@@ -244,7 +276,23 @@ impl DefaultRetained for UISimpleTextPrintFormatter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimarkuptextprintformatter?language=objc)
+    /// An object that lays out HTML text for a multipage print job.
+    ///
+    /// ## Overview
+    ///
+    /// To use this print formatter for a print job, create an instance of [`UIMarkupTextPrintFormatter`](https://developer.apple.com/documentation/uikit/uimarkuptextprintformatter) initialized with the HTML, set the inherited layout properties, and add the object to the print job in one of two ways:
+    ///
+    /// - If a single print formatter is being used for the print job (with no additional drawing), assign it to the [`printFormatter`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printformatter) property of the [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) shared instance.  The inherited [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) property identifies the beginning page of content with which the formatter is associated.
+    ///
+    /// - If you are using multiple formatters along with a page renderer, associate each print formatter with a starting page of the printed content. You often take this approach when you want to add content such as headers and footers to what the formatters provide. You have two ways of associating a print formatter with a  [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object:
+    ///
+    /// - You can add print formatters to the [`printFormatters`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/printformatters) property of the [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object; the [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) property of the print formatter specifies the starting page.
+    ///
+    /// - You can add print formatters by calling [`addPrintFormatter:startingAtPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/addprintformatter(_:startingatpageat:)) for each print formatter; the second parameter of this method specifies the starting page (and overrides any [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) value).
+    ///
+    /// You can change the markup text at any time before the drawing of the printable content begins.
+    ///
+    ///
     #[unsafe(super(UIPrintFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMarkupTextPrintFormatter;
@@ -302,7 +350,29 @@ impl DefaultRetained for UIMarkupTextPrintFormatter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewprintformatter?language=objc)
+    /// An object that lays out the drawn content of a view for printing.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of three system classes offer usable view print formatters to applications: [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) and [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview) of the UIKit framework, and [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) of the MapKit framework. To obtain a view print formatter for a print job, call the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) method [`viewPrintFormatter`](https://developer.apple.com/documentation/uikit/uiview/viewprintformatter()) and initialize the print formatter’s inherited layout properties.
+    ///
+    /// Add the print formatter to the print job in one of two ways:
+    ///
+    /// - If a single print formatter is being used for the print job (with no additional drawing), assign it to the [`printFormatter`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printformatter) property of the [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) shared instance. The inherited [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) property identifies the beginning page of content with which the formatter is associated.
+    ///
+    /// - If you are using multiple formatters along with a page renderer, associate each print formatter with a starting page of the printed content. You often take this approach when you want to add content such as headers and footers to what the formatters provide. You have two ways of associating a print formatter with a  [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object:
+    ///
+    /// - You can add print formatters to the [`printFormatters`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/printformatters)  property of the [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object; the [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) property of the print formatter specifies the starting page
+    ///
+    /// - You can add print formatters by calling [`addPrintFormatter:startingAtPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/addprintformatter(_:startingatpageat:)) for each print formatter; the second parameter of this method specifies the starting page (and overrides any [`startPage`](https://developer.apple.com/documentation/uikit/uiprintformatter/startpage) value).
+    ///
+    /// View print formatters typically implement the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) method [`drawRect:forViewPrintFormatter:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:for:)) to draw content in a way that is suitable for printing, If they don’t implement this method, their [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method is called instead.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Subclassing `UIViewPrintFormatter` to print the contents of a view is not recommended. To print the contents of a custom view, you should instead draw the view’s contents for printing using a custom [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) object.
+    ///
+    ///
     #[unsafe(super(UIPrintFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewPrintFormatter;

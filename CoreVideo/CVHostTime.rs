@@ -4,14 +4,25 @@ use core::ffi::*;
 
 use crate::*;
 
+/// Returns the current system time.
+///
+/// ## Return Value
+///
+/// The current host time.
+///
+///
+///
+/// ## Discussion
+///
+/// In macOS, the host time bases for Core Video and CoreAudio are identical—both are based on the `mach_absolute_time` function—so the values returned from either API can be used interchangeably.
+///
+///
 /// Retrieve the current value of the host time base.
 ///
 /// On Mac OS X, the host time base for CoreVideo and CoreAudio are identical, and the values returned from either API
 /// may be used interchangeably.
 ///
 /// Returns: The current host time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvgetcurrenthosttime()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVGetCurrentHostTime() -> u64 {
     extern "C-unwind" {
@@ -20,14 +31,25 @@ pub extern "C-unwind" fn CVGetCurrentHostTime() -> u64 {
     unsafe { CVGetCurrentHostTime() }
 }
 
+/// Returns the frequency of updates to the system time.
+///
+/// ## Return Value
+///
+/// The current host frequency.
+///
+///
+///
+/// ## Discussion
+///
+/// In macOS, the host time bases for Core Video and CoreAudio are identical—both are based on the `mach_absolute_time` function—so the values returned from either API can be used interchangeably.
+///
+///
 /// Retrieve the frequency of the host time base.
 ///
 /// On Mac OS X, the host time base for CoreVideo and CoreAudio are identical, and the values returned from either API
 /// may be used interchangeably.
 ///
 /// Returns: The current host frequency.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvgethostclockfrequency()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVGetHostClockFrequency() -> c_double {
     extern "C-unwind" {
@@ -36,11 +58,16 @@ pub extern "C-unwind" fn CVGetHostClockFrequency() -> c_double {
     unsafe { CVGetHostClockFrequency() }
 }
 
+/// Returns the smallest possible increment in the system time.
+///
+/// ## Return Value
+///
+/// The smallest valid increment in the system time.
+///
+///
 /// Retrieve the smallest possible increment in the host time base.
 ///
 /// Returns: The smallest valid increment in the host time base.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvgethostclockminimumtimedelta()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVGetHostClockMinimumTimeDelta() -> u32 {
     extern "C-unwind" {

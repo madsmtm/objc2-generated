@@ -5,22 +5,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype?language=objc)
+/// Constants indicating the type of timing information to use.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITimingCurveType(pub NSInteger);
 impl UITimingCurveType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/builtin?language=objc)
+    /// Use the built-in UIKit timing curves. Specify this value when you want to use one of the constants in the [`UIViewAnimationCurve`](https://developer.apple.com/documentation/uikit/uiview/animationcurve) type. Specify the desired curve using the [`cubicTimingParameters`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider/cubictimingparameters) property.
     #[doc(alias = "UITimingCurveTypeBuiltin")]
     pub const Builtin: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/cubic?language=objc)
+    /// Use a custom cubic Bézier curve. Specify the curve information using the [`cubicTimingParameters`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider/cubictimingparameters) property.
     #[doc(alias = "UITimingCurveTypeCubic")]
     pub const Cubic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/spring?language=objc)
+    /// Use a custom spring animation. Specify the desired curve using the [`springTimingParameters`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider/springtimingparameters) property.
     #[doc(alias = "UITimingCurveTypeSpring")]
     pub const Spring: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurvetype/composed?language=objc)
+    /// Use a combination of timing parameters. This type of curve starts with the curve defined by the [`cubicTimingParameters`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider/cubictimingparameters) property and modifies it using the spring information in the [`springTimingParameters`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider/springtimingparameters) property.
     #[doc(alias = "UITimingCurveTypeComposed")]
     pub const Composed: Self = Self(3);
 }
@@ -34,7 +34,15 @@ unsafe impl RefEncode for UITimingCurveType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitimingcurveprovider?language=objc)
+    /// An interface for providing the timing information needed to perform animations.
+    ///
+    /// ## Overview
+    ///
+    /// An object that adopts the [`UITimingCurveProvider`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider) protocol provides the timing information needed to perform animations with a [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) object. A timing curve defines the velocity at which animated properties change to their new values over the duration of the animation. A custom timing curve provider can specify timing using the built-in UIKit curves, a cubic Bézier curve, a spring-based timing function, or a combination of timing information.
+    ///
+    /// When implementing this protocol in a custom object, you must provide implementations for all of the properties. Use the [`timingCurveType`](https://developer.apple.com/documentation/uikit/uitimingcurveprovider/timingcurvetype) property to specify which timing information your object provides. Configure the other properties with the actual timing curve values.
+    ///
+    ///
     pub unsafe trait UITimingCurveProvider: NSCoding + NSCopying + MainThreadOnly {
         #[unsafe(method(timingCurveType))]
         #[unsafe(method_family = none)]

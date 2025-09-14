@@ -7,35 +7,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithdirectionaltabs?language=objc)
+/// The specific version of the AppKit framework that introduced support for directional tab items.
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype?language=objc)
+/// These constants specify the tab view’s type as used by the [`tabViewType`](https://developer.apple.com/documentation/appkit/nstabview/tabviewtype) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewType(pub NSUInteger);
 impl NSTabViewType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/toptabsbezelborder?language=objc)
+    /// The view includes tabs on the top of the view and has a bezeled border (the default).
     #[doc(alias = "NSTopTabsBezelBorder")]
     pub const TopTabsBezelBorder: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/lefttabsbezelborder?language=objc)
+    /// Tabs are on the left of the view with a bezeled border.
     #[doc(alias = "NSLeftTabsBezelBorder")]
     pub const LeftTabsBezelBorder: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/bottomtabsbezelborder?language=objc)
+    /// Tabs are on the bottom of the view with a bezeled border.
     #[doc(alias = "NSBottomTabsBezelBorder")]
     pub const BottomTabsBezelBorder: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/righttabsbezelborder?language=objc)
+    /// Tabs are on the right of the view with a bezeled border.
     #[doc(alias = "NSRightTabsBezelBorder")]
     pub const RightTabsBezelBorder: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/notabsbezelborder?language=objc)
+    /// The view does not include tabs and has a bezeled border.
     #[doc(alias = "NSNoTabsBezelBorder")]
     pub const NoTabsBezelBorder: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/notabslineborder?language=objc)
+    /// The view does not include tabs and has a lined border.
     #[doc(alias = "NSNoTabsLineBorder")]
     pub const NoTabsLineBorder: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype/notabsnoborder?language=objc)
+    /// The view does not include tabs and has no border.
     #[doc(alias = "NSNoTabsNoBorder")]
     pub const NoTabsNoBorder: Self = Self(6);
 }
@@ -48,25 +48,19 @@ unsafe impl RefEncode for NSTabViewType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabPosition(pub NSUInteger);
 impl NSTabPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/none?language=objc)
     #[doc(alias = "NSTabPositionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/top?language=objc)
     #[doc(alias = "NSTabPositionTop")]
     pub const Top: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/left?language=objc)
     #[doc(alias = "NSTabPositionLeft")]
     pub const Left: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/bottom?language=objc)
     #[doc(alias = "NSTabPositionBottom")]
     pub const Bottom: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum/right?language=objc)
     #[doc(alias = "NSTabPositionRight")]
     pub const Right: Self = Self(4);
 }
@@ -79,19 +73,15 @@ unsafe impl RefEncode for NSTabPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewBorderType(pub NSUInteger);
 impl NSTabViewBorderType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum/none?language=objc)
     #[doc(alias = "NSTabViewBorderTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum/line?language=objc)
     #[doc(alias = "NSTabViewBorderTypeLine")]
     pub const Line: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum/bezel?language=objc)
     #[doc(alias = "NSTabViewBorderTypeBezel")]
     pub const Bezel: Self = Self(2);
 }
@@ -105,7 +95,17 @@ unsafe impl RefEncode for NSTabViewBorderType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview?language=objc)
+    /// A multipage interface that displays one page at a time.
+    ///
+    /// ## Overview
+    ///
+    /// A tab view contains a row of tabs that give the appearance of folder tabs, as shown in the [Figure 1](/documentation/appkit/nstabview#2555818). The user selects the desired page by clicking the appropriate tab or using the arrow keys to move between pages. Each page displays a view hierarchy provided by your app.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/32a0de8ad83145bde674bf96a45ecdb7/media-2555818%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -419,7 +419,7 @@ impl NSTabView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewdelegate?language=objc)
+    /// The `NSTabViewDelegate` protocol defines the optional methods implemented by delegates of `NSTabView` objects.
     pub unsafe trait NSTabViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSTabViewItem", feature = "NSView"))]
         #[optional]

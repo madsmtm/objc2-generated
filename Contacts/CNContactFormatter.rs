@@ -8,21 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The formatting styles for contact names.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle?language=objc)
+/// The formatting styles for contact names.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactFormatterStyle(pub NSInteger);
 impl CNContactFormatterStyle {
+    /// Combines the contact name components into a full name.
     /// Combine the contact name components into a displayable full name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle/fullname?language=objc)
     #[doc(alias = "CNContactFormatterStyleFullName")]
     pub const FullName: Self = Self(0);
+    /// Combines the contact phonetic name components into a phonetic full name.
     /// Combine the contact phonetic name components into a displayable phonetic full name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle/phoneticfullname?language=objc)
     #[doc(alias = "CNContactFormatterStylePhoneticFullName")]
     pub const PhoneticFullName: Self = Self(1);
 }
@@ -35,21 +32,20 @@ unsafe impl RefEncode for CNContactFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The formatting orders for contact names component.
 /// The formatting order of the contact name components.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactDisplayNameOrder(pub NSInteger);
 impl CNContactDisplayNameOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder/userdefault?language=objc)
+    /// Display name order by user default.
     #[doc(alias = "CNContactDisplayNameOrderUserDefault")]
     pub const UserDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder/givennamefirst?language=objc)
+    /// Display name order by given name first.
     #[doc(alias = "CNContactDisplayNameOrderGivenNameFirst")]
     pub const GivenNameFirst: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder/familynamefirst?language=objc)
+    /// Display name order by family name first.
     #[doc(alias = "CNContactDisplayNameOrderFamilyNameFirst")]
     pub const FamilyNameFirst: Self = Self(2);
 }
@@ -63,12 +59,17 @@ unsafe impl RefEncode for CNContactDisplayNameOrder {
 }
 
 extern_class!(
+    /// An object that you use to format contact information before displaying it to the user.
+    ///
+    /// ## Overview
+    ///
+    /// A `CNContactFormatter` object handles international ordering and delimiting for the contact name components. When formatting many contacts, create an instance of this class and use the instance methods; otherwise use the class methods.
+    ///
+    ///
     /// Formats a contact name.
     ///
     ///
     /// This formatter handles international ordering and delimiting of the contact name components. This includes applying the user defaults when appropriate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactFormatter;
@@ -256,6 +257,6 @@ impl CNContactFormatter {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpropertyattribute?language=objc)
+    /// The contact’s name component property key.
     pub static CNContactPropertyAttribute: &'static NSString;
 }

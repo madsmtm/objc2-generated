@@ -7,31 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum?language=objc)
+/// Tab control style options for a tab view controller.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewControllerTabStyle(pub NSInteger);
 impl NSTabViewControllerTabStyle {
+    /// A style that displays a segmented control along the top edge of the tab view interface. Access the configuration of the tab items through the tab view, which you can get from the [`tabView`](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview) property.
     /// Uses an NSSegmentedControl to show the UI for the tabs. The control is on the top of the view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/segmentedcontrolontop?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnTop")]
     pub const SegmentedControlOnTop: Self = Self(0);
+    /// A style that displays a segmented control along the bottom edge of the tab view interface. Access the configuration of the tab items through the tab view, which you can get from the [`tabView`](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview) property.
     /// Uses an NSSegmentedControl to show the UI for the tabs. The control is on the bottom of the view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/segmentedcontrolonbottom?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleSegmentedControlOnBottom")]
     pub const SegmentedControlOnBottom: Self = Self(1);
+    /// A style that automatically adds any tabs to the window’s toolbar. The tab view controller takes control of the window’s toolbar and sets itself as the toolbar’s delegate. Customization of the toolbar is handled using the methods in Responding to Toolbar Events.
     /// Automatically pushes the tabs into the window's toolbar as toolbar items, if non-nil. This style will cause the TabViewController to set its containing window's toolbar to its own and become that toolbar's delegate. The toolbar items can be customized or supplemented by overriding the relevant NSToolbarDelegate methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/toolbar?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleToolbar")]
     pub const Toolbar: Self = Self(2);
+    /// A style that indicates the tab view controller does not provide the tab selection UI. Your app provides the control (such as an [`NSSegmentedControl`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol) or [`NSPopUpButton`](https://developer.apple.com/documentation/appkit/nspopupbutton)) for navigating between tabs. You can bind an existing control to the tab view controller object so that interactions with the control automatically change tabs.
     /// NSTabViewController will not provide any of its own tab control UI. Separate UI, such as a NSSegmentedControl or NSPopupButton, can be easily bound to the TabViewController. Or
     /// `tabView.tabViewType`can be changed for the TabView itself to draw the UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.enum/unspecified?language=objc)
     #[doc(alias = "NSTabViewControllerTabStyleUnspecified")]
     pub const Unspecified: Self = Self(-1);
 }
@@ -45,6 +41,21 @@ unsafe impl RefEncode for NSTabViewControllerTabStyle {
 }
 
 extern_class!(
+    /// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
+    ///
+    /// ## Overview
+    ///
+    /// Each page of content is managed by a separate child view controller. Navigation between child view controllers is accomplished with the help of an [`NSTabView`](https://developer.apple.com/documentation/appkit/nstabview) object, which the tab view controller manages. When the user selects a new tab, the tab view controller displays the content associated with the associated child view controller, replacing the previous content.
+    ///
+    /// Each tab is represented by an [`NSTabViewItem`](https://developer.apple.com/documentation/appkit/nstabviewitem) object, which contains the name of the tab and stores a pointer to the child view controller that manages the tab’s content. Normally, you configure the tab view items at design time using Interface Builder, but you can also add them programmatically using the methods of this class. Always assign a child view controller to new tab view items before adding those items to the tab view interface.
+    ///
+    /// Another way to add tabs programmatically is to add child view controllers directly to the tab view controller. When you call the [`addChildViewController:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/addchild(_:)) or [`insertChildViewController:atIndex:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/insertchild(_:at:)) method of this class, the tab view controller automatically creates a default [`NSTabViewItem`](https://developer.apple.com/documentation/appkit/nstabviewitem) object for the specified view controller. You can fetch the newly created item using the [`tabViewItemForViewController:`](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabviewitem(for:)) method and configure it. Removing a child view controller with the [`removeChildViewControllerAtIndex:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/removechild(at:)) method similarly removes the corresponding tab view item.
+    ///
+    /// The tab view controller lazily loads the views associated with each child view controller, creating them only after the corresponding tab is selected. When the tab view controller’s view is first displayed, only the view for the initially selected tab is loaded.
+    ///
+    /// The [`tabStyle`](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabstyle-swift.property) property determines the appearance of the tab controls. A tab view controller can display a segmented control or display tabs in the window’s toolbar. You can also provide your own control for displaying tabs. The tab view controller automatically coordinates interactions between designated control and the corresponding [`tabView`](https://developer.apple.com/documentation/appkit/nstabviewcontroller/tabview) object.
+    ///
+    ///
     /// NSTabViewController is a container view controller that displays a single child view controller at a time from its
     /// `childViewControllers.`It provides standard tab-style UI for user selection of tabs, or allows custom UI to be easily created by providing targets for bindings.
     /// ChildViewControllers’ views are lazily loaded; they are only loaded once their tab is selected and visible.
@@ -52,8 +63,6 @@ extern_class!(
     /// NSViewController's methods
     /// `-addChildViewController:,``-insertViewController:atIndex:,`and
     /// `-removeChildViewControllerAtIndex:`can all be used as convience methods to add children; default TabViewItems will be appropriately created or destroyed. The default NSTabViewItem created with with +[NSTabViewItem tabViewItemForViewController:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]

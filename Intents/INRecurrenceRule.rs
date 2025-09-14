@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencerule?language=objc)
+    /// An object that describes the pattern to use when repeating an event.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INRecurrenceRule`](https://developer.apple.com/documentation/intents/inrecurrencerule) object to define a repeating pattern for date ranges. Typically, you use recurrence rules when defining date ranges that you associate with a trigger, such as an [`INTemporalEventTrigger`](https://developer.apple.com/documentation/intents/intemporaleventtrigger) object. Using a recurrence rule avoids the need to create a new trigger each time the old one fires.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRecurrenceRule;

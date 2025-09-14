@@ -5,37 +5,41 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// A type that contains an authorization session identifier.
 /// These are externally visible identifiers for authorization sessions.
 /// Different sessions have different identifiers; beyond that, you can't
 /// tell anything from these values.
 /// SessionIds can be compared for equality as you'd expect, but you should be careful
 /// to use attribute bits wherever appropriate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/securitysessionid?language=objc)
 pub type SecuritySessionId = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/nosecuritysession?language=objc)
+/// Not a valid session.
 pub const noSecuritySession: SecuritySessionId = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/callersecuritysession?language=objc)
+/// A value that is a placeholder for the caller’s session.
+///
+/// ## Discussion
+///
+/// When you provide this value as the `session` input to the [`SessionGetInfo`](https://developer.apple.com/documentation/security/sessiongetinfo(_:_:_:)) function, the function will return the actual session ID via the `sessionId` output.
+///
+///
 pub const callerSecuritySession: SecuritySessionId = 4294967295;
 
+/// The attributes of a security session.
 /// Each Session has a set of attribute bits. You can get those from the
 /// SessionGetInfo API function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SessionAttributeBits(pub u32);
 bitflags::bitflags! {
     impl SessionAttributeBits: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionisroot?language=objc)
+/// A bit that indicates the session is the root session.
         const sessionIsRoot = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionhasgraphicaccess?language=objc)
+/// A bit that indicates a graphic subsystem is available.
         const sessionHasGraphicAccess = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionhastty?language=objc)
+/// A bit that indicates `/dev/tty` is available.
         const sessionHasTTY = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits/sessionisremote?language=objc)
+/// A bit that indicates the session was initiated over the network.
         const sessionIsRemote = 0x1000;
     }
 }
@@ -50,17 +54,24 @@ unsafe impl RefEncode for SessionAttributeBits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The flags that affect the creation of a security session.
 /// These flags control how a new session is created by SessionCreate.
 /// They have no permanent meaning beyond that.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessioncreationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SessionCreationFlags(pub u32);
 bitflags::bitflags! {
     impl SessionCreationFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sessioncreationflags/sessionkeepcurrentbootstrap?language=objc)
+/// The caller has allocated sub-bootstrap.
+///
+/// ## Discussion
+///
+/// If you create a subset port on your own, you can force
+///
+/// the [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)) function to use it by passing this flag in the `flags` parameter. However, you can’t supersede a prior call that way; only a single [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)) call is allowed for each session.
+///
+///
         const sessionKeepCurrentBootstrap = 0x8000;
     }
 }
@@ -75,22 +86,49 @@ unsafe impl RefEncode for SessionCreationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessionsuccess?language=objc)
+/// The operation completed successfully.
+///
+/// ## Discussion
+///
+/// This result code is an alias for errSecSuccess.
+///
+///
 pub const errSessionSuccess: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessioninvalidid?language=objc)
+/// Detected an invalid session ID.
 pub const errSessionInvalidId: OSStatus = -60500;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessioninvalidattributes?language=objc)
+/// Detected an invalid set of request attribute bits.
 pub const errSessionInvalidAttributes: OSStatus = -60501;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessionauthorizationdenied?language=objc)
+/// Authorization denied.
 pub const errSessionAuthorizationDenied: OSStatus = -60502;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessionvaluenotset?language=objc)
+/// The requested session attribute has not been set.
 pub const errSessionValueNotSet: OSStatus = -60503;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessioninternal?language=objc)
+/// An unrecognized internal error occurred.
 pub const errSessionInternal: OSStatus = -60008;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsessioninvalidflags?language=objc)
+/// Encountered invalid flags or options.
 pub const errSessionInvalidFlags: OSStatus = -60011;
 
 extern "C-unwind" {
+    /// Obtains information about a security session.
+    ///
+    /// Parameters:
+    /// - session: The session you are asking about. You can use one of the special sessions given in [Session ID Values](https://developer.apple.com/documentation/security/session-id-values), for example to ask about your own session.
+    ///
+    /// - sessionId: A pointer to a [`SecuritySessionId`](https://developer.apple.com/documentation/security/securitysessionid) value that the function populates with the actual session ID for the session you asked about. This value will not be one of the special values from [Session ID Values](https://developer.apple.com/documentation/security/session-id-values), but will instead be an actual session ID.
+    ///
+    /// - attributes: A pointer to a [`SessionAttributeBits`](https://developer.apple.com/documentation/security/sessionattributebits) structure that the function fills with the attribute bits for the session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Sessions API Result Codes](https://developer.apple.com/documentation/security/sessions-api-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can ask about any session whose identifier you know. Use the [`callerSecuritySession`](https://developer.apple.com/documentation/security/callersecuritysession) constant to ask about your own session (the one your process is in).
+    ///
+    ///
     /// Obtain information about a session. You can ask about any session whose
     /// identifier you know. Use the callerSecuritySession constant to ask about
     /// your own session (the one your process is in).
@@ -115,8 +153,6 @@ extern "C-unwind" {
     ///
     /// - `session_id` must be a valid pointer or null.
     /// - `attributes` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessiongetinfo(_:_:_:)?language=objc)
     pub fn SessionGetInfo(
         session: SecuritySessionId,
         session_id: *mut SecuritySessionId,
@@ -125,6 +161,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a security session.
+    ///
+    /// Parameters:
+    /// - flags: Flags controlling how the session is created. See [`SessionCreationFlags`](https://developer.apple.com/documentation/security/sessioncreationflags) for valid values.
+    ///
+    /// - attributes: The set of attribute bits to set for the new session. Not all bits can be set this way. See [`SessionAttributeBits`](https://developer.apple.com/documentation/security/sessionattributebits) for valid values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Sessions API Result Codes](https://developer.apple.com/documentation/security/sessions-api-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Upon completion, the new session contains the calling process (and none other). You can’t create a session for someone else, and can’t avoid being placed into the new session. This is (currently) the only call that changes a process’s session membership.
+    ///
+    /// By default, a new bootstrap subset port is created for the calling process. The process acquires this new port as its bootstrap port, which all its children will inherit. If you happen to have created the subset port on your own, you can pass the [`sessionKeepCurrentBootstrap`](https://developer.apple.com/documentation/security/sessioncreationflags/sessionkeepcurrentbootstrap) flag, and [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)) will use it. Note however that you cannot supersede a prior [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)) call that way; only a single [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)) call is allowed for each session (however made).
+    ///
+    /// This call will discard any security information established for the calling process. In particular, any authorization handles acquired will become invalid, and so will any keychain related information. Call [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)) before making any other security-related calls that establish rights of any kind, to the extent this is practical. Also, do not perform security-related calls in any other threads while calling [`SessionCreate`](https://developer.apple.com/documentation/security/sessioncreate(_:_:)).
+    ///
+    ///
     /// This (very specialized) function creates a security session.
     /// Upon completion, the new session contains the calling process (and none other).
     /// You cannot create a session for someone else, and cannot avoid being placed
@@ -156,8 +215,6 @@ extern "C-unwind" {
     /// errSessionInvalidAttributes -60501 Attempt to set invalid attribute bits
     /// errSessionAuthorizationDenied -60502 Attempt to re-initialize a session
     /// errSessionInvalidFlags -60011 Attempt to specify unsupported flag bits
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessioncreate(_:_:)?language=objc)
     pub fn SessionCreate(flags: SessionCreationFlags, attributes: SessionAttributeBits)
         -> OSStatus;
 }

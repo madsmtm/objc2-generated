@@ -7,16 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/position?language=objc)
+/// Constants that identify the position of an overlay on the screen.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKOverlayPosition(pub NSInteger);
 impl SKOverlayPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/position/bottom?language=objc)
+    /// Specifies that the overlay is at the bottom of the screen.
     #[doc(alias = "SKOverlayPositionBottom")]
     pub const Bottom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/position/bottomraised?language=objc)
+    /// Specifies that the overlay is at a raised position at the bottom of the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this position in case your app uses a [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar).
+    ///
+    ///
     #[doc(alias = "SKOverlayPositionBottomRaised")]
     pub const BottomRaised: Self = Self(1);
 }
@@ -30,7 +36,7 @@ unsafe impl RefEncode for SKOverlayPosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.class?language=objc)
+    /// The abstract superclass for all classes that represent an overlay’s attributes.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayConfiguration;
@@ -53,9 +59,8 @@ impl SKOverlayConfiguration {
 }
 
 extern_class!(
+    /// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
     /// An overlay configuration that can be used to show any app from the App Store.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppConfiguration;
@@ -181,9 +186,8 @@ impl SKOverlayAppConfiguration {
 }
 
 extern_class!(
+    /// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
     /// An overlay configuration that can be used to show an app clip's full app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppClipConfiguration;

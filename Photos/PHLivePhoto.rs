@@ -12,31 +12,80 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestid?language=objc)
+/// A numeric identifier for an asynchronous Live Photo loading request.
+///
+/// ## Discussion
+///
+/// Pass this identifier to the [`cancelLivePhotoRequestWithRequestID:`](https://developer.apple.com/documentation/photos/phlivephoto/cancelrequest(withrequestid:)) method if you need to cancel a request before it completes.
+///
+///
 pub type PHLivePhotoRequestID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestidinvalid?language=objc)
+/// The asynchronous Live Photo loading request cannot be canceled.
 pub static PHLivePhotoRequestIDInvalid: PHLivePhotoRequestID = 0;
 
 extern "C" {
-    /// These keys may be found in the info dictionary delivered to a live photo request result handler block.
+    /// An error that occurred while attempting to load the requested Live Photo.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfoerrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The [`requestLivePhotoWithResourceFileURLs:placeholderImage:targetSize:contentMode:resultHandler:`](https://developer.apple.com/documentation/photos/phlivephoto/request(withresourcefileurls:placeholderimage:targetsize:contentmode:resulthandler:)) method validates that the files and their metadata can be loaded as a Live Photo. If Photos cannot load a Live Photo from the specified files, the `result` parameter in your result handler block is `nil`, and this key in the `info` dictionary contains an `NSError` object describing the error.
+    ///
+    ///
+    /// These keys may be found in the info dictionary delivered to a live photo request result handler block.
     pub static PHLivePhotoInfoErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfoisdegradedkey?language=objc)
+    /// A Boolean (`NSNumber`) value indicating whether the result Live Photo is a low-quality substitute for the requested Live Photo.
+    ///
+    /// ## Discussion
+    ///
+    /// If `true`, the `result` parameter of your `resultHandler` block contains a still or low-quality Live Photo, and Photos will call your result handler block again to provide the full motion and sound content of the Live Photo. If `false`, Photos has provided all possible data and will not call your result handler again.
+    ///
+    ///
     pub static PHLivePhotoInfoIsDegradedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoinfocancelledkey?language=objc)
+    /// A Boolean (`NSNumber`) value indicating whether the Live Photo loading request was canceled.
+    ///
+    /// ## Discussion
+    ///
+    /// If you call the [`cancelLivePhotoRequestWithRequestID:`](https://developer.apple.com/documentation/photos/phlivephoto/cancelrequest(withrequestid:)) method to cancel a request, Photos calls your result handler block with a `true` value for this key.
+    ///
+    ///
     pub static PHLivePhotoInfoCancelledKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephoto?language=objc)
+    /// A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture.
+    ///
+    /// ## Overview
+    ///
+    /// In iOS and tvOS, you can use this class to reference Live Photos from the user’s library (fetched with the [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) and [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager) classes), to load displayable Live Photo objects from data obtained elsewhere (such as pictures shared through a social network), and to assign Live Photos to [`PHLivePhotoView`](https://developer.apple.com/documentation/photosui/phlivephotoview) objects for display.
+    ///
+    /// In iOS, tvOS, and macOS, you can use this class to display edits in progress for Live Photo content in a photo editing extension.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For guidance on how to integrate Live Photos with your app’s user experience, see [Live Photos](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/MobileHIG/LivePhotos.html#//apple_ref/doc/uid/TP40006556-CH74) in [iOS Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`PHLivePhoto`](https://developer.apple.com/documentation/photos/phlivephoto) class serves in much the same role for Live Photos as the [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) or [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) class serves for static images. A [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) or [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object represents not the data file an image is loaded from, but instead a ready-to-use image that can be displayed in a view—similarly, a [`PHLivePhoto`](https://developer.apple.com/documentation/photos/phlivephoto) object represents a Live Photo ready to display with motion and sound using a [`PHLivePhotoView`](https://developer.apple.com/documentation/photosui/phlivephotoview) object, not an entry in the Photos library or the data resources that constitute a Live Photo. (To work with Live Photos as elements of the Photos library, use the [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) class. To work with the data files that constitute a Live Photo, use the [`PHAssetResource`](https://developer.apple.com/documentation/photos/phassetresource) class.)
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  To display Live Photo content on the web, use the [`LivePhotosKit JS`](https://developer.apple.com/documentation/livephotoskitjs) framework.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhoto;

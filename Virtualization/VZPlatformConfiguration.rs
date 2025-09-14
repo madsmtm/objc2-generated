@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a platform configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate directly `VZPlatformConfiguration`, use one of its subclasses, such as [`VZGenericPlatformConfiguration`](https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration) or [`VZMacPlatformConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration) instead.
+    ///
+    ///
     /// Base class for a platform configuration.
     ///
     /// VZPlatformConfiguration should not be instantiated directly.
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZGenericPlatformConfiguration
     ///
     /// See: VZMacPlatformConfiguration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzplatformconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZPlatformConfiguration;

@@ -19,9 +19,22 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A reference image to be detected in the scene.
+    /// A 2D image that you want ARKit to detect in the physical environment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arreferenceimage?language=objc)
+    /// ## Overview
+    ///
+    /// To accurately detect the position and orientation of a 2D image in the real world, ARKit requires preprocessed image data and knowledge of the image’s real-world dimensions. The [`ARReferenceImage`](https://developer.apple.com/documentation/arkit/arreferenceimage) class encapsulates this information. To enable image detection in an AR session, pass a collection of reference images to your session configuration’s [`detectionImages`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionimages) property.
+    ///
+    /// Typically, you create reference images in your Xcode project’s asset catalog:
+    ///
+    /// 1. In your asset catalog, use the Add (+) button to create an AR Resource Group.
+    ///
+    /// 2. Drag image files into the resource group to create AR Reference Image entries in the asset catalog.
+    ///
+    /// 3. For each reference image, use the Xcode inspector panel to provide the real-world size at which you want ARKit to recognize the image. (You can also provide a descriptive name, which appears as the [`name`](https://developer.apple.com/documentation/arkit/arreferenceimage/name) property at runtime and can be useful for debugging.)
+    ///
+    ///
+    /// A reference image to be detected in the scene.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

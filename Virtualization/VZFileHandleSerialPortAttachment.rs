@@ -7,12 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An attachment point that allows bidirectional communication using file handles.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZFileHandleSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment) object to configure a serial port using separate file handles for reading and writing data. In your virtual machine, use the file handles in this object in the following way:
+    ///
+    /// - To send data to the guest operating system, write data to the file handle in the [`fileHandleForReading`](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment/filehandleforreading) property.
+    ///
+    /// - To receive data from the guest operating system, read data from the file handle in the [`fileHandleForWriting`](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment/filehandleforwriting) property.
+    ///
+    ///
     /// File handle serial port attachment.
     ///
     /// VZFileHandleSerialPortAttachment defines a serial port attachment from a file handle.
     /// Data written to fileHandleForReading goes to the guest. Data sent from the guest appears on fileHandleForWriting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment?language=objc)
     #[unsafe(super(VZSerialPortAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortAttachment")]

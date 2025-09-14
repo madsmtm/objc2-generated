@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A Virtio graphics scanout that corresponds to a Virtio graphics scanout configuration.
     /// Class representing a Virtio graphics device scanout.
     ///
     /// The VZVirtioGraphicsScanout is the runtime counterpart of VZVirtioGraphicsScanoutConfiguration.
@@ -23,8 +24,6 @@ extern_class!(
     /// See: VZGraphicsDisplay
     ///
     /// See: VZGraphicsDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsscanout?language=objc)
     #[unsafe(super(VZGraphicsDisplay, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDisplay")]

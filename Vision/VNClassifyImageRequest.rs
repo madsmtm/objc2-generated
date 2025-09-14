@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request to classify an image.
+    ///
+    /// ## Overview
+    ///
+    /// This type of request produces a collection of [`VNClassificationObservation`](https://developer.apple.com/documentation/vision/vnclassificationobservation) objects that describe an image. Access the classifications through [`knownClassificationsForRevision:error:`](https://developer.apple.com/documentation/vision/vnclassifyimagerequest/knownclassifications(forrevision:)).
+    ///
+    ///
     /// A request for classifying an image.
     ///
     ///
     /// This request will produce a collection of VNClassificationObservation objects which describe an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -115,12 +120,21 @@ impl VNClassifyImageRequest {
     );
 }
 
-/// Classification with a taxonomy of 1,303 possible identifiers.
+/// A constant for specifying the first revision of the image-classification request.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision1?language=objc)
+/// ## Discussion
+///
+/// The revision number is a constant that you pass on a per-request basis to indicate to the Vision framework which version of the image classifier to use for that request. Each OS release in which the framework improves aspects of the algorithm (recognition speed, accuracy, number of languages supported, and so forth), the revision number increments by 1.
+///
+/// By default, recognition requests use the latest—the highest—revision number for the SDK that your app links against. If you don’t recompile your app against a newer SDK, your app binary uses the revision that was the default at the time you last compiled it. If you do recompile, your app uses the default of the new SDK.
+///
+/// If your app must support users on older OS versions that don’t have access to the latest Vision framework, you may want to specify an earlier revision. For example, your algorithm may depend on specific behavior from a Vision request, such as writing your image processing algorithm to assume the size or aspect ratio of bounding boxes from an older revision of the face detector. In such a scenario, you can support earlier versions of the algorithm by specifying lower numbers:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["visionRequest.revision = VNClassifyImageRequestRevision1"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["visionRequest.revision = VNClassifyImageRequestRevision1;"], metadata: None }] }] })
+///
+/// Classification with a taxonomy of 1,303 possible identifiers.
 pub static VNClassifyImageRequestRevision1: NSUInteger = 1;
 
+/// A value that indicates the second revision for an image-classification request.
 /// The same taxonomy as `VNClassifyImageRequestRevision1` but with improved accuracy, reduced latency and memory utilization.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassifyimagerequestrevision2?language=objc)
 pub static VNClassifyImageRequestRevision2: NSUInteger = 2;

@@ -7,32 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation?language=objc)
+/// The kinds of operations that you can perform with OpenID authentication.
+///
+/// ## Discussion
+///
+/// Use one of these values as the [`requestedOperation`](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidrequest/requestedoperation) property in an OpenID request that you make with an instance of either [`ASAuthorizationAppleIDRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest) or [`ASAuthorizationSingleSignOnRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationOpenIDOperation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationimplicit?language=objc)
+    /// An operation that depends on the particular kind of credential provider.
     pub static ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationlogin?language=objc)
+    /// An operation used to authenticate a user.
     pub static ASAuthorizationOperationLogin: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationrefresh?language=objc)
+    /// An operation that refreshes the logged-in user’s credentials.
     pub static ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationlogout?language=objc)
+    /// An operation that ends an authenticated session.
     pub static ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidrequest?language=objc)
+    /// An OpenID authorization request.
     #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]

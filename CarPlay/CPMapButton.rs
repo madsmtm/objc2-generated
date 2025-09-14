@@ -10,7 +10,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmapbutton?language=objc)
+    /// A button that represents an action that a map template displays on the CarPlay screen.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

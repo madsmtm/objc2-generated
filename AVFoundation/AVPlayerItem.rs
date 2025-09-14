@@ -12,81 +12,172 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/timejumpednotification?language=objc)
+    /// A notification the system posts when a player item’s time changes discontinuously.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the player item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may post this notification on a thread other than the one you use to register the observer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static AVPlayerItemTimeJumpedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/didplaytoendtimenotification?language=objc)
+    /// A notification the system posts when a player item plays to its end time.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the item that finished playing.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may post this notification on a thread other than the one you use to register the observer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static AVPlayerItemDidPlayToEndTimeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/failedtoplaytoendtimenotification?language=objc)
+    /// A notification that the system posts when a player item fails to play to its end time.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the player item that finished playing.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may post this notification on a thread other than the one you use to register the observer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static AVPlayerItemFailedToPlayToEndTimeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/playbackstallednotification?language=objc)
+    /// A notification the system posts when a player item media doesn’t arrive in time to continue playback.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the player item whose playback is unable to continue due to network delays. Streaming-media playback continues after the player item retrieves a sufficient amount of data. File-based playback doesn’t continue.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may post this notification on a thread other than the one you use to register the observer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static AVPlayerItemPlaybackStalledNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/newaccesslogentrynotification?language=objc)
+    /// A notification the system posts when a player item adds a new entry to its access log.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the player item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may post this notification on a thread other than the one you use to register the observer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static AVPlayerItemNewAccessLogEntryNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/newerrorlogentrynotification?language=objc)
+    /// A notification the system posts when a player item adds a new entry to its error log.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the player item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may post this notification on a thread other than the one you use to register the observer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static AVPlayerItemNewErrorLogEntryNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/recommendedtimeoffsetfromlivedidchangenotification?language=objc)
+    /// A notification the player item posts when its offset from the live time changes.
+    ///
+    /// ## Discussion
+    ///
+    /// Register to observe notifications of this type to observe changes to the value of the [`recommendedTimeOffsetFromLive`](https://developer.apple.com/documentation/avfoundation/avplayeritem/recommendedtimeoffsetfromlive) property.
+    ///
+    ///
     pub static AVPlayerItemRecommendedTimeOffsetFromLiveDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/mediaselectiondidchangenotification?language=objc)
+    /// A notification the player item posts when its media selection changes.
     pub static AVPlayerItemMediaSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemfailedtoplaytoendtimeerrorkey?language=objc)
+    /// The key to retrieve the error object from the notification’s user information dictionary.
     pub static AVPlayerItemFailedToPlayToEndTimeErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key to retrieve a unique identifier of the participant that caused the time jump.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key to retrieve a UUID value for the participant in a coordinated playback session that caused the time jump. The returned UUID reresents a value in the playback coordinator’s [`otherParticipants`](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants) array.
+    ///
+    ///
     /// Indicates a time jump was caused by another participant connected through AVPlayerPlaybackCoordinator.
     ///
     /// Informs the receiver of an AVPlayerItemTimeJumpedNotification that a time jump originated from another AVCoordinatedPlaybackParticipant connected through AVPlayerPlaybackCoordinator. This can be used to inform UI showing why the current time changed. The type of the value for this key is an AVCoordinatedPlaybackParticipant, which is part of the AVPlayerPlaybackCoordinator.otherParticipants array.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/timejumpedoriginatingparticipantkey?language=objc)
     pub static AVPlayerItemTimeJumpedOriginatingParticipantKey: &'static NSString;
 }
 
+/// The statuses for a player item.
 /// These constants are returned by the AVPlayerItem status property to indicate whether it can successfully be played.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerItemStatus(pub NSInteger);
 impl AVPlayerItemStatus {
+    /// The item’s status is unknown.
     /// Indicates that the status of the player item is not yet known because it has not tried to load new media resources for playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum/unknown?language=objc)
     #[doc(alias = "AVPlayerItemStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The item is ready to play.
     /// Indicates that the player item is ready to be played.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum/readytoplay?language=objc)
     #[doc(alias = "AVPlayerItemStatusReadyToPlay")]
     pub const ReadyToPlay: Self = Self(1);
+    /// The item no longer plays due to an error.
     /// Indicates that the player item can no longer be played because of an error. The error is described by the value of the player item's error property. The player item's errorLog property might contain additional information about the error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVPlayerItemStatusFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -100,6 +191,13 @@ unsafe impl RefEncode for AVPlayerItemStatus {
 }
 
 extern_class!(
+    /// An object that models the timing and presentation state of an asset during playback.
+    ///
+    /// ## Overview
+    ///
+    /// A player item stores a reference to an [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) object, which represents the media to play. If you require inspecting an asset before you enqueue it for playback, call its [`load(_:isolation:)`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading/load(_:isolation:)) method to retrieve the values of one or more properties. Alternatively, you can tell the player item to automatically load the required properties by passing them to its [`init(asset:automaticallyLoadedAssetKeys:)`](https://developer.apple.com/documentation/avfoundation/avplayeritem/init(asset:automaticallyloadedassetkeys:)-5czjh) initializer. When the player item is ready to play, the asset properties you request are ready to use.
+    ///
+    ///
     /// An AVPlayerItem carries a reference to an AVAsset as well as presentation settings for that asset.
     ///
     /// Note that inspection of media assets is provided by AVAsset.
@@ -110,8 +208,6 @@ extern_class!(
     /// To allow clients to add and remove their objects as key-value observers safely, AVPlayerItem serializes notifications of
     /// changes that occur dynamically during playback on the same dispatch queue on which notifications of playback state changes
     /// are serialized by its associated AVPlayer. By default, this queue is the main queue. See dispatch_get_main_queue().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -862,23 +958,26 @@ impl AVPlayerItem {
     );
 }
 
+/// Defines the preferences the player item uses when selecting variant playlists.
 /// These constants can be used in any combination as the value of variantPreferences.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVariantPreferences(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVariantPreferences: NSUInteger {
-/// Indicates that only the basic behaviors of the player for choosing among variants should be applied, including considerations of available bandwidth, compatibility of the indicated codec or codecs, the dimensions of visual output, and the number of available audio output channels.
+/// Indicates that the player item uses the default behavior for determining variant playlist selection.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences/avvariantpreferencenone?language=objc)
+/// ## Discussion
+///
+/// By default, a player item bases variant selection on the available bandwidth, compatibility of the indicated codec or codecs, dimensions of the visual output, and number of available audio output channels.
+///
+///
+/// Indicates that only the basic behaviors of the player for choosing among variants should be applied, including considerations of available bandwidth, compatibility of the indicated codec or codecs, the dimensions of visual output, and the number of available audio output channels.
         #[doc(alias = "AVVariantPreferenceNone")]
         const None = 0;
+/// A preference that indicates the player item supports variant playlists that contain losslessly encoded audio when sufficient bandwidth is available.
 /// Directs the item to permit the use of variants with lossless audio encodings, if sufficient bandwidth is available for their use.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences/scalabilitytolosslessaudio?language=objc)
         #[doc(alias = "AVVariantPreferenceScalabilityToLosslessAudio")]
         const ScalabilityToLosslessAudio = 1<<0;
     }
@@ -1318,6 +1417,13 @@ impl AVPlayerItem {
 }
 
 extern_class!(
+    /// An object used to retrieve the access log associated with a player item.
+    ///
+    /// ## Overview
+    ///
+    /// An `AVPlayerItemAccessLog` object accumulates key metrics about network playback and presents them as a collection of [`AVPlayerItemAccessLogEvent`](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent) instances. Each event instance collates the data that relates to each uninterrupted period of playback.
+    ///
+    ///
     /// An AVPlayerItemAccessLog provides methods to retrieve the access log in a format suitable for serialization.
     ///
     /// An AVPlayerItemAccessLog acculumulates key metrics about network playback and presents them as a collection
@@ -1325,8 +1431,6 @@ extern_class!(
     /// that relates to each uninterrupted period of playback.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslog?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemAccessLog;
@@ -1401,13 +1505,12 @@ impl AVPlayerItemAccessLog {
 }
 
 extern_class!(
+    /// The error log associated with a player item.
     /// An AVPlayerItemErrorLog provides methods to retrieve the error log in a format suitable for serialization.
     ///
     /// An AVPlayerItemErrorLog provides data to identify if, and when, network resource playback failures occured.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlog?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemErrorLog;
@@ -1482,14 +1585,21 @@ impl AVPlayerItemErrorLog {
 }
 
 extern_class!(
+    /// A single entry in a player item’s access log.
+    ///
+    /// ## Overview
+    ///
+    /// This object provides named properties for accessing the data fields of each log event. Each event is a single entry in an [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) object’s access log.
+    ///
+    /// These properties aren’t observable. For more information about key-value observing, see [Using Key-Value Observing in Swift](https://developer.apple.com/documentation/swift/using-key-value-observing-in-swift).
+    ///
+    ///
     /// An AVPlayerItemAccessLogEvent represents a single log entry.
     ///
     /// An AVPlayerItemAccessLogEvent provides named properties for accessing the data
     /// fields of each log event. None of the properties of this class are observable.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemaccesslogevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemAccessLogEvent;
@@ -1908,14 +2018,21 @@ impl AVPlayerItemAccessLogEvent {
 }
 
 extern_class!(
+    /// A single item in a player item’s error log.
+    ///
+    /// ## Overview
+    ///
+    /// This object provides properties for accessing the data fields of each log event. Each event is a single entry in an [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) object’s error log.
+    ///
+    /// These properties aren’t observable. For more information about key-value observing, see [Using Key-Value Observing in Swift](https://developer.apple.com/documentation/swift/using-key-value-observing-in-swift).
+    ///
+    ///
     /// An AVPlayerItemErrorLogEvent represents a single log entry.
     ///
     /// An AVPlayerItemErrorLogEvent provides named properties for accessing the data
     /// fields of each log event. None of the properties of this class are observable.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemerrorlogevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemErrorLogEvent;

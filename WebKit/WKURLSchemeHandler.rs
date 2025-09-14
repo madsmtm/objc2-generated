@@ -7,10 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol for loading resources with URL schemes that WebKit doesn’t handle.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`WKURLSchemeHandler`](https://developer.apple.com/documentation/webkit/wkurlschemehandler) protocol in objects that handle custom URL schemes for your web content. Custom schemes let you integrate custom resource types into your web content, and you may define custom schemes for resources that your app requires. For example, you might use a custom scheme to integrate content that is available only on the user’s device, such as the user’s photos. Adopt this protocol in one of your app’s objects and register it using the [`setURLSchemeHandler:forURLScheme:`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/seturlschemehandler(_:forurlscheme:)) method of [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration).
+    ///
+    /// When a web view encounters a resource that uses a custom scheme, it creates a [`WKURLSchemeTask`](https://developer.apple.com/documentation/webkit/wkurlschemetask) object and passes it to the methods of your scheme handler object. Use the [`webView:startURLSchemeTask:`](https://developer.apple.com/documentation/webkit/wkurlschemehandler/webview(_:start:)) method to begin loading the resource. While your handler loads the object, the web view may call your handler’s [`webView:stopURLSchemeTask:`](https://developer.apple.com/documentation/webkit/wkurlschemehandler/webview(_:stop:)) method to notify you that the resource is no longer needed.
+    ///
+    ///
     /// A class conforming to the WKURLSchemeHandler protocol provides methods for
     /// loading resources with URL schemes that WebKit doesn't know how to handle itself.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkurlschemehandler?language=objc)
     pub unsafe trait WKURLSchemeHandler: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKURLSchemeTask",

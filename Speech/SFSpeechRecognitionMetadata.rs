@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// The metadata of speech in the audio of a speech recognition request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata?language=objc)
+    /// The metadata of speech in the audio of a speech recognition request.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionMetadata;

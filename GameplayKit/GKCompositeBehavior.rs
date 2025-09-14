@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkcompositebehavior?language=objc)
+    /// A set of behaviors, each of which is a set of goals, that together influence the movement of an agent.
+    ///
+    /// ## Overview
+    ///
+    /// By composing [`GKGoal`](https://developer.apple.com/documentation/gameplaykit/gkgoal) objects into subgroups ([`GKBehavior`](https://developer.apple.com/documentation/gameplaykit/gkbehavior) objects) and composing those behaviors into composite behaviors, you can control certain aspects of a [`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) object’s movement in concert. To assign a behavior to an agent, use its [`behavior`](https://developer.apple.com/documentation/gameplaykit/gkagent/behavior) property.
+    ///
+    /// For example, you might create a behavior for a set of agents to stay together as a flock (with cohesion, alignment, and separation goals) while loosely following a path. With a single [`GKBehavior`](https://developer.apple.com/documentation/gameplaykit/gkbehavior) object, whenever you want to change the importance of the flocking goals relative to the path-following goals, you’d need to individually change the weight of each goal. With a composite behavior, you can adjust the relative influence of a group of goals together, as in the following code.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let flock = GKBehavior(goals: [", "    GKGoal(toAlignWith: agents, maxDistance: 10, maxAngle: .pi/4),", "    GKGoal(toCohereWith: agents, maxDistance: 10, maxAngle: .pi/4),", "    GKGoal(toSeparateFrom: agents, maxDistance: 10, maxAngle: .pi/4),", "])", "let meanderOnPath = GKBehavior(goals: [", "    GKGoal(toFollow: path, maxPredictionTime: 1, forward: true),", "    GKGoal(toWander: 10)", "])", "let composite = GKCompositeBehavior(behaviors: [", "    flock, meanderOnPath", "])"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["GKBehavior *flock = [GKBehavior behaviorWithGoals:@[", "    [GKGoal goalToAlignWithAgents:agents maxDistance:10 maxAngle:M_PI_4],", "    [GKGoal goalToCohereWithAgents:agents maxDistance:10 maxAngle:M_PI_4],", "    [GKGoal goalToSeparateFromAgents:agents maxDistance:10 maxAngle:M_PI_4]", "]];", "GKBehavior *meanderOnPath = [GKBehavior behaviorWithgoals:@[", "    [GKGoal goalToFollowPath:path maxPredictionTime:1.0 forward:YES],", "    [GKGoal goalToWander:10]", "]];", "GKCompositeBehavior *composite = [GKCompositeBehavior behaviorWithBehaviors:@[", "    flock, meanderOnPath", "]];"], metadata: None }] }] })
+    /// After constructing this behavior, you can use the [`setWeight:forBehavior:`](https://developer.apple.com/documentation/gameplaykit/gkcompositebehavior/setweight(_:for:)) method to increase or decrease the influence of the `flock` and `meanderOnPath` behaviors relative to one another.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     #[unsafe(super(GKBehavior, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKBehavior")]

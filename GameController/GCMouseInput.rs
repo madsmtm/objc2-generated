@@ -7,6 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The signature for the block that the mouse input profile calls when the mouse moves.
+///
+/// Parameters:
+/// - mouse: The controller for the physical mouse.
+///
+/// - deltaX: The raw amount that the mouse moves along the x-axis without affecting mouse sensitivity settings.
+///
+/// - deltaY: The raw amount that the mouse moves along the y-axis without affecting mouse sensitivity settings.
+///
 /// Set this block if you want to be notified when the mouse was moved
 ///
 /// Parameter `mouse`: this mouse that is being used for input
@@ -14,19 +23,34 @@ use crate::*;
 /// Parameter `deltaX`: the value of raw mouse delta along x axis. Not affected by mouse sensitivity settings
 ///
 /// Parameter `deltaY`: the value of raw mouse delta along y axis. Not affected by mouse sensitivity settings
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousemoved?language=objc)
 #[cfg(all(feature = "GCPhysicalInputProfile", feature = "block2"))]
 pub type GCMouseMoved = *mut block2::DynBlock<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
+    /// A controller profile that tracks input from a mouse.
+    ///
+    /// ## Overview
+    ///
+    /// This profile supports a mouse with the following features:
+    ///
+    /// - A two-axis cursor and scroll
+    ///
+    /// - A left button
+    ///
+    /// - An optional right button
+    ///
+    /// - An optional middle button
+    ///
+    /// - An optional set of auxiliary buttons
+    ///
+    /// This profile provides only raw mouse movement delta values. For the cursor position at a specific time, use the [`UIHoverGestureRecognizer`](https://developer.apple.com/documentation/uikit/uihovergesturerecognizer) class and the `NSEvent` [`mouseLocation`](https://developer.apple.com/documentation/appkit/nsevent/mouselocation) method.
+    ///
+    ///
     /// Mouse profile that represent a physical mouse object with two axis cursor, two axis scroll,
     /// left button, optional right and middle buttons and optional set of auxiliary buttons.
     ///
     /// It only provides information about raw mouse movement deltas. For the valid cursor position
     /// at given point in time, use UIHoverGestureRecognizer and NSEvent.mouseLocation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmouseinput?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

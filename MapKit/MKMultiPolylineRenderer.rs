@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmultipolylinerenderer?language=objc)
+    /// A visual representation of multiple polyline overlay objects.
+    ///
+    /// ## Overview
+    ///
+    /// Use the multipolyline renderer to provide the styling of multiple polylines that you create using [`MKMultiPolyline`](https://developer.apple.com/documentation/mapkit/mkmultipolyline).
+    ///
+    ///
     #[unsafe(super(MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]

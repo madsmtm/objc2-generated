@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of inputs that provide a normalized point in a two-dimensional coordinate system with a fixed origin.
+    ///
+    /// ## Overview
+    ///
+    /// The normalized point with coordinates that range between `-1` and `1`. The origin `(0, 0)` represents the neutral state of the input.
+    ///
+    ///
     /// An object conforming to
     /// `GCAxis2DInput`represents an input that produces a
     /// pair of normalized values - between [-1, 1] - along two axes with fixed origin.
     /// The origin - a value of 0 - corresponds the neutral state of the input.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcaxis2dinput?language=objc)
     pub unsafe trait GCAxis2DInput: NSObjectProtocol {
         #[cfg(all(
             feature = "GCPhysicalInputElement",

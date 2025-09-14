@@ -8,6 +8,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Specifies a keychain item’s class code.
+///
+/// ## Overview
+///
+/// These enumerations define constants your application can use to specify the type of the keychain item you wish to create, dispose, add, delete, update, copy, or locate. You can also use these constants with the tag constant [`SecItemAttr`](https://developer.apple.com/documentation/security/secitemattr).
+///
+///
 /// Specifies a keychain item's class code.
 ///
 ///
@@ -19,33 +26,31 @@ use crate::*;
 ///
 ///
 /// The SecItemClass enumeration defines constants your application can use to specify the type of the keychain item you wish to create, dispose, add, delete, update, copy, or locate. You can also use these constants with the tag constant SecItemAttr.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecItemClass(pub FourCharCode);
 impl SecItemClass {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/internetpassworditemclass?language=objc)
+    /// Indicates that the item is an Internet password.
     #[doc(alias = "kSecInternetPasswordItemClass")]
     pub const InternetPasswordItemClass: Self = Self(0x696e6574);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/genericpassworditemclass?language=objc)
+    /// Indicates that the item is a generic password.
     #[doc(alias = "kSecGenericPasswordItemClass")]
     pub const GenericPasswordItemClass: Self = Self(0x67656e70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/ksecapplesharepassworditemclass?language=objc)
+    /// Indicates that the item is an AppleShare password.
     #[doc(alias = "kSecAppleSharePasswordItemClass")]
     #[deprecated]
     pub const AppleSharePasswordItemClass: Self = Self(0x61736870);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/certificateitemclass?language=objc)
+    /// Indicates that the item is an X509 certificate.
     #[doc(alias = "kSecCertificateItemClass")]
     pub const CertificateItemClass: Self = Self(0x80001000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/publickeyitemclass?language=objc)
+    /// Indicates that the item is a public key of a public-private pair.
     #[doc(alias = "kSecPublicKeyItemClass")]
     pub const PublicKeyItemClass: Self = Self(0x0000000F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/privatekeyitemclass?language=objc)
+    /// Indicates that the item is a private key of a public-private pair.
     #[doc(alias = "kSecPrivateKeyItemClass")]
     pub const PrivateKeyItemClass: Self = Self(0x00000010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemclass/symmetrickeyitemclass?language=objc)
+    /// Indicates that the item is a private key used for symmetric-key encryption.
     #[doc(alias = "kSecSymmetricKeyItemClass")]
     pub const SymmetricKeyItemClass: Self = Self(0x00000011);
 }
@@ -60,6 +65,17 @@ unsafe impl RefEncode for SecItemClass {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Specifies a keychain item’s attributes.
+///
+/// ## Overview
+///
+/// Not all of these attributes are used for all types of items. Which set of attributes exist for each type of item is documented in the “Data Storage Library Services” chapter of _Common Security: CDSA and CSSM, version 2 (with corrigenda)_ from The Open Group ([http://www.opengroup.org/security/cdsa.htm](http://www.opengroup.org/security/cdsa.htm)) for standard items and in the DL section of the _Security Release Notes_ for Apple-defined item types (if any).
+///
+/// To obtain information about a certificate, use the CDSA Certificate Library (CL) API. To obtain information about a key, use the `SecKeyGetCSSMKey` function and the CDSA Cryptographic Service Provider (CSP) API.
+///
+/// For attributes for keys, see [Keychain Item Attribute Constants For Keys](https://developer.apple.com/documentation/security/keychain-item-attribute-constants-for-keys).
+///
+///
 /// Specifies keychain item attributes.
 ///
 ///
@@ -91,95 +107,231 @@ unsafe impl RefEncode for SecItemClass {
 ///
 ///
 /// To obtain information about a certificate, use the CDSA Certificate Library (CL) API. To obtain information about a key, use the SecKeyGetCSSMKey function and the CDSA Cryptographic Service Provider (CSP) API.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecItemAttr(pub FourCharCode);
 impl SecItemAttr {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/creationdateitemattr?language=objc)
+    /// Identifies the creation date attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to get a string value that represents the date the item was created, expressed in Zulu Time format (“YYYYMMDDhhmmssZ”). This is the native format for stored time values in the CDSA specification (defined as `CSSM_DB_ATTRIBUTE_FORMAT_TIME_DATE` in the `CSSM_DB_ATTRIBUTE_FORMAT` enumeration, Section 17.2.6.). When specifying the creation date as input to a function (for example, [`SecKeychainSearchCreateFromAttributes`](https://developer.apple.com/documentation/security/seckeychainsearchcreatefromattributes)), you may alternatively provide a numeric value of type `UInt32` or `SInt64`, expressed as seconds since 01 January 1904.
+    ///
+    ///
     #[doc(alias = "kSecCreationDateItemAttr")]
     pub const CreationDateItemAttr: Self = Self(0x63646174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/moddateitemattr?language=objc)
+    /// Identifies the modification date attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to get a string value that represents the date the item was created, expressed in Zulu Time format (“YYYYMMDDhhmmssZ”). This is the native format for stored time values in the CDSA specification (defined as `CSSM_DB_ATTRIBUTE_FORMAT_TIME_DATE` in the `CSSM_DB_ATTRIBUTE_FORMAT` enumeration, Section 17.2.6.). When specifying the creation date as input to a function (for example, [`SecKeychainSearchCreateFromAttributes`](https://developer.apple.com/documentation/security/seckeychainsearchcreatefromattributes)), you may alternatively provide a numeric value of type `UInt32` or `SInt64`, expressed as seconds since 01 January 1904.
+    ///
+    ///
     #[doc(alias = "kSecModDateItemAttr")]
     pub const ModDateItemAttr: Self = Self(0x6d646174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/descriptionitemattr?language=objc)
+    /// Identifies the description attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string value that represents a user-visible string describing this particular kind of item, for example “disk image password”. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecDescriptionItemAttr")]
     pub const DescriptionItemAttr: Self = Self(0x64657363);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/commentitemattr?language=objc)
+    /// Identifies the comment attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string value that represents a user-editable string containing comments for this item. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecCommentItemAttr")]
     pub const CommentItemAttr: Self = Self(0x69636d74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/creatoritemattr?language=objc)
+    /// Identifies the creator attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `FourCharCode` that represents the item’s creator.
+    ///
+    ///
     #[doc(alias = "kSecCreatorItemAttr")]
     pub const CreatorItemAttr: Self = Self(0x63727472);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/typeitemattr?language=objc)
+    /// Identifies the type attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `FourCharCode` that represents the item’s type.
+    ///
+    ///
     #[doc(alias = "kSecTypeItemAttr")]
     pub const TypeItemAttr: Self = Self(0x74797065);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/scriptcodeitemattr?language=objc)
+    /// Identifies the script code attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `ScriptCode` that represents the script code for all strings. Use of this attribute is deprecated; string attributes should always be stored in UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecScriptCodeItemAttr")]
     pub const ScriptCodeItemAttr: Self = Self(0x73637270);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/labelitemattr?language=objc)
+    /// Identifies the label attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string value that represents a user-editable string containing the label for this item. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecLabelItemAttr")]
     pub const LabelItemAttr: Self = Self(0x6c61626c);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/invisibleitemattr?language=objc)
+    /// Identifies the invisible attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `Boolean` that indicates whether the item is invisible (that is, should not be displayed).
+    ///
+    ///
     #[doc(alias = "kSecInvisibleItemAttr")]
     pub const InvisibleItemAttr: Self = Self(0x696e7669);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/negativeitemattr?language=objc)
+    /// Identifies the negative attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `Boolean` that indicates whether there is a valid password associated with this keychain item. This is useful if your application doesn’t want a password for some particular service to be stored in the keychain, but prefers that it always be entered by the user. The item, which is typically invisible and with zero-length data, acts as a placeholder.
+    ///
+    ///
     #[doc(alias = "kSecNegativeItemAttr")]
     pub const NegativeItemAttr: Self = Self(0x6e656761);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/customiconitemattr?language=objc)
+    /// Identifies the custom icon attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// Use of this attribute is deprecated. Custom icons for keychains are not supported in macOS.
+    ///
+    ///
     #[doc(alias = "kSecCustomIconItemAttr")]
     pub const CustomIconItemAttr: Self = Self(0x63757369);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/accountitemattr?language=objc)
+    /// Identifies the account attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string that represents the user account. It also applies to generic, Internet, and AppleShare password items. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecAccountItemAttr")]
     pub const AccountItemAttr: Self = Self(0x61636374);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/serviceitemattr?language=objc)
+    /// Identifies the service attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string that represents the service associated with this item, for example, “iTools”. This is unique to generic password attributes. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecServiceItemAttr")]
     pub const ServiceItemAttr: Self = Self(0x73766365);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/genericitemattr?language=objc)
+    /// Identifies the generic attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of untyped bytes that represents a user-defined attribute. This is unique to generic password attributes.
+    ///
+    ///
     #[doc(alias = "kSecGenericItemAttr")]
     pub const GenericItemAttr: Self = Self(0x67656e61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/securitydomainitemattr?language=objc)
+    /// Identifies the security domain attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value that represents the Internet security domain. This is unique to Internet password attributes.
+    ///
+    ///
     #[doc(alias = "kSecSecurityDomainItemAttr")]
     pub const SecurityDomainItemAttr: Self = Self(0x73646d6e);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/serveritemattr?language=objc)
+    /// Identifies the server attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string that represents the Internet server’s domain name or IP address. This is unique to Internet password attributes. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecServerItemAttr")]
     pub const ServerItemAttr: Self = Self(0x73727672);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/authenticationtypeitemattr?language=objc)
+    /// Identifies the authentication type attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `SecAuthenticationType` that represents the Internet authentication scheme. For possible authentication values, see [`SecAuthenticationType`](https://developer.apple.com/documentation/security/secauthenticationtype). This is unique to Internet password attributes.
+    ///
+    ///
     #[doc(alias = "kSecAuthenticationTypeItemAttr")]
     pub const AuthenticationTypeItemAttr: Self = Self(0x61747970);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/portitemattr?language=objc)
+    /// Identifies the port attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `UInt32` that represents the Internet port number. This is unique to Internet password attributes.
+    ///
+    ///
     #[doc(alias = "kSecPortItemAttr")]
     pub const PortItemAttr: Self = Self(0x706f7274);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/pathitemattr?language=objc)
+    /// Identifies the path attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string value that represents the path. This is unique to Internet password attributes. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecPathItemAttr")]
     pub const PathItemAttr: Self = Self(0x70617468);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/volumeitemattr?language=objc)
+    /// Identifies the volume attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a string value that represents the AppleShare volume. This is unique to AppleShare password attributes. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecVolumeItemAttr")]
     pub const VolumeItemAttr: Self = Self(0x766c6d65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/addressitemattr?language=objc)
+    /// Identifies the address attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `string` that represents the AppleTalk zone name, or the IP or domain name that represents the server address. This is unique to AppleShare password attributes. Keychain strings should use UTF-8 encoding.
+    ///
+    ///
     #[doc(alias = "kSecAddressItemAttr")]
     pub const AddressItemAttr: Self = Self(0x61646472);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/signatureitemattr?language=objc)
+    /// Identifies the server signature attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type [`SecAFPServerSignature`](https://developer.apple.com/documentation/security/secafpserversignature) that represents the server signature block. This is unique to AppleShare password attributes.
+    ///
+    ///
     #[doc(alias = "kSecSignatureItemAttr")]
     pub const SignatureItemAttr: Self = Self(0x73736967);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/protocolitemattr?language=objc)
+    /// Identifies the protocol attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this tag to set or get a value of type `SecProtocolType` that represents the Internet protocol. For possible protocol type values, see [`SecProtocolType`](https://developer.apple.com/documentation/security/secprotocoltype). This is unique to AppleShare and Internet password attributes.
+    ///
+    ///
     #[doc(alias = "kSecProtocolItemAttr")]
     pub const ProtocolItemAttr: Self = Self(0x7074636c);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/certificatetype?language=objc)
+    /// Indicates a `CSSM_CERT_TYPE` type.
     #[doc(alias = "kSecCertificateType")]
     pub const CertificateType: Self = Self(0x63747970);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/certificateencoding?language=objc)
+    /// Indicates a `CSSM_CERT_ENCODING` type.
     #[doc(alias = "kSecCertificateEncoding")]
     pub const CertificateEncoding: Self = Self(0x63656e63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/crltype?language=objc)
+    /// Indicates a `CSSM_CRL_TYPE` type.
     #[doc(alias = "kSecCrlType")]
     pub const CrlType: Self = Self(0x63727470);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/crlencoding?language=objc)
+    /// Indicates a `CSSM_CRL_ENCODING` type.
     #[doc(alias = "kSecCrlEncoding")]
     pub const CrlEncoding: Self = Self(0x63726e63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemattr/alias?language=objc)
+    /// Indicates an alias.
     #[doc(alias = "kSecAlias")]
     pub const Alias: Self = Self(0x616c6973);
 }
@@ -196,21 +348,50 @@ unsafe impl RefEncode for SecItemAttr {
 
 /// Represents a 16-byte Apple File Protocol server signature block.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secafpserversignature?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is deprecated. Use internet password items instead of AppleShare password items.
+///
+///
+///
+/// </div>
+/// This type represents a 16-byte Apple File Protocol server signature block. You can use a value of this type with the keychain item attribute constant [`kSecSignatureItemAttr`](https://developer.apple.com/documentation/security/secitemattr/signatureitemattr) to specify an Apple File Protocol server signature.
+///
+///
+/// Represents a 16-byte Apple File Protocol server signature block.
 pub type SecAFPServerSignature = [u8; 16];
 
-/// Represents a 20-byte public key hash.
+/// A container for a 20-byte public key hash.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpublickeyhash?language=objc)
+/// ## Discussion
+///
+/// The `SecPublicKeyHash` type represents a hash of a public key. You can use the constant `kSecPublicKeyHashItemAttr` as input to functions in the Keychain Services API to set or retrieve a certificate attribute value of this type. See [Keychain services](https://developer.apple.com/documentation/security/keychain-services) for information about getting and setting attribute values.
+///
+///
+/// Represents a 20-byte public key hash.
 pub type SecPublicKeyHash = [u8; 20];
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecKeychainItem {
+    /// Returns the unique identifier of the opaque type to which a keychain item object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecKeychainItem instances.
     ///
     /// Returns: The CFTypeID of SecKeychainItem instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemgettypeid()?language=objc)
     #[doc(alias = "SecKeychainItemGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -223,6 +404,41 @@ unsafe impl ConcreteType for SecKeychainItem {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
+    /// Updates an existing keychain item after changing its attributes or data.
+    ///
+    /// Parameters:
+    /// - itemRef: A reference to the keychain item to modify.
+    ///
+    /// - attrList: A pointer to the list of attributes to modify and their new values. Pass `NULL` if you have no need to modify attributes.
+    ///
+    /// - length: The length of the buffer pointed to by the `data` parameter. Pass `0` if you pass `NULL` in the `data` parameter.
+    ///
+    /// - data: A pointer to a buffer containing the data to store. Pass `NULL` if you do not need to modify the data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The keychain item is written to the keychain’s permanent data store. If the keychain item has not previously been added to a keychain, a call to this function does nothing and returns `noErr`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For new development, where possible, you should generally use [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)) to obtain attributes of keychain items instead, because that function is based on Core Foundation types.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Note that when you use this function to modify a keychain item, Keychain Services updates the modification date of the item. Therefore, you cannot use this function to modify the modification date, as the value you specify will be overwritten with the current time. If you want to change the modification date to something other than the current time, use a CSSM function to do so.
+    ///
+    /// You should pair the [`SecKeychainItemCopyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) function with the `SecKeychainItemModifyAttributesAndData` function, as these functions handle more attributes than are support by the old Keychain Manager and passing them into older calls yields an invalid attribute error. Use the functions [`SecKeychainItemModifyContent`](https://developer.apple.com/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)) and [`SecKeychainItemCopyContent`](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)) when dealing with older Keychain Manager functions.
+    ///
+    ///
     /// Updates an existing keychain item after changing its attributes or data.
     ///
     /// Parameter `itemRef`: A reference to the keychain item to modify.
@@ -241,8 +457,6 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemModifyAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -266,6 +480,39 @@ impl SecKeychainItem {
 
     /// Creates a new keychain item from the supplied parameters.
     ///
+    /// Parameters:
+    /// - itemClass: A constant identifying the class of item to create. See [`SecItemClass`](https://developer.apple.com/documentation/security/secitemclass) for valid constants.
+    ///
+    /// - attrList: A pointer to the list of attributes for the item to create.
+    ///
+    /// - length: The length of the buffer pointed to by the `data` parameter.
+    ///
+    /// - data: A pointer to a buffer containing the data to store.
+    ///
+    /// - keychainRef: A reference to the keychain in which to add the item. Pass `NULL` to specify the default keychain.
+    ///
+    /// - initialAccess: An access object for this keychain item. Use the [`SecAccessCreate`](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)) function to create an access object or the [`SecKeychainItemCopyAccess`](https://developer.apple.com/documentation/security/seckeychainitemcopyaccess(_:_:)) function to copy an access object from another keychain item. If you pass `NULL` for this parameter, the access defaults to the application creating the item.
+    ///
+    /// - itemRef: On return, a pointer to a reference to the newly created keychain item. This parameter is optional. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each item stored in the keychain contains data (such as a certificate), which is indexed by the item’s attributes. Use this function to create a keychain item from its attributes and data. To create keychain items that hold passwords, use the [`SecKeychainAddInternetPassword`](https://developer.apple.com/documentation/security/seckeychainaddinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) or [`SecKeychainAddGenericPassword`](https://developer.apple.com/documentation/security/seckeychainaddgenericpassword(_:_:_:_:_:_:_:_:)) functions.
+    ///
+    /// A `SecKeychainItemRef` object for a certificate that is stored in a keychain can be safely cast to a `SecCertificateRef` for use with the Certificate, Key, and Trust API.
+    ///
+    /// This function automatically calls the function [`SecKeychainUnlock`](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)) to display the Unlock Keychain dialog box if the keychain is currently locked.
+    ///
+    ///
+    /// Creates a new keychain item from the supplied parameters.
+    ///
     /// Parameter `itemClass`: A constant identifying the class of item to create.
     ///
     /// Parameter `attrList`: The list of attributes of the item to create.
@@ -287,8 +534,6 @@ impl SecKeychainItem {
     /// - `attr_list` must be a valid pointer.
     /// - `data` must be a valid pointer or null.
     /// - `item_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcreatefromcontent(_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCreateFromContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -326,6 +571,43 @@ impl SecKeychainItem {
         }
     }
 
+    /// Updates an existing keychain item after changing its attributes and/or data.
+    ///
+    /// Parameters:
+    /// - itemRef: A reference to the keychain item to modify.
+    ///
+    /// - attrList: A pointer to the list of attributes to set and their new values. Pass `NULL` if you have no need to modify attributes.
+    ///
+    /// - length: The length of the buffer pointed to by the `data` parameter. Pass `0` if you pass `NULL` in the `data` parameter.
+    ///
+    /// - data: A pointer to a buffer containing the data to store. Pass `NULL` if you do not need to modify the data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The keychain item is written to the keychain’s permanent data store.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For new development, where possible, you should generally use [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)) to modify the data and attributes of keychain items instead, because that function is based on Core Foundation types.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If the keychain item has not previously been added to a keychain, a call to this function does nothing and returns `noErr`.
+    ///
+    /// Note that when you use this function to modify a keychain item, Keychain Services updates the modification date of the item. Therefore, you cannot use this function to modify the modification date, as the value you specify will be overwritten with the current time. If you want to change the modification date to something other than the current time, use a CSSM function to do so.
+    ///
+    /// You should pair the `SecKeychainItemModifyContent` function with the [`SecKeychainItemCopyContent`](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)) function when dealing with older Keychain Manager functions. The [`SecKeychainItemCopyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) and [`SecKeychainItemModifyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)) functions handle more attributes than are support by the old Keychain Manager; however, passing them into older calls yields an invalid attribute error.
+    ///
+    ///
     /// Updates an existing keychain item after changing its attributes or data. This call should only be used in conjunction with SecKeychainItemCopyContent().
     ///
     /// Parameter `itemRef`: A reference to the keychain item to modify.
@@ -342,8 +624,6 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemModifyContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -365,6 +645,45 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemModifyContent(self, attr_list, length, data) }
     }
 
+    /// Copies the data and attributes stored in the given keychain item.
+    ///
+    /// Parameters:
+    /// - itemRef: A reference to the keychain item to modify.
+    ///
+    /// - itemClass: On return, points to the item’s class. Pass `NULL` if it is not required. See [`SecItemClass`](https://developer.apple.com/documentation/security/secitemclass) for valid constants.
+    ///
+    /// - attrList: On entry, the list of attributes to get in this item; on return the attributes are filled in. Pass `NULL` if you don’t need to retrieve any attributes. You must call [`SecKeychainItemFreeContent`](https://developer.apple.com/documentation/security/seckeychainitemfreecontent(_:_:)) when you no longer need the attributes and data.
+    ///
+    /// - length: On return, the length of the buffer pointed to by the `outData` parameter.
+    ///
+    /// - outData: On return, a pointer to a buffer containing the data in this item. Pass `NULL` if you don’t need this data. You must call [`SecKeychainItemFreeContent`](https://developer.apple.com/documentation/security/seckeychainitemfreecontent(_:_:)) when you no longer need the attributes and data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the data and attributes of a specific keychain item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For new development, where possible, you should generally use [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) to obtain the data and attributes of keychain items instead, because that function is based on Core Foundation types.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can use the [`SecKeychainSearchCopyNext`](https://developer.apple.com/documentation/security/seckeychainsearchcopynext) function to search for a keychain item if you don’t already have the item’s reference object. To find and obtain data from a password keychain item, use the [`SecKeychainFindInternetPassword`](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) or [`SecKeychainFindGenericPassword`](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)) function.
+    ///
+    /// You should pair the [`SecKeychainItemModifyContent`](https://developer.apple.com/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)) function with the `SecKeychainItemCopyContent` function when dealing with older Keychain Manager functions. The [`SecKeychainItemCopyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) and [`SecKeychainItemModifyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)) functions handle more attributes than are supported by the old Keychain Manager; however, passing them into older calls yields an invalid attribute error.
+    ///
+    /// If the keychain item data is encrypted, this function decrypts the data before returning it to you. If the calling application is not in the list of trusted applications, the user is prompted before access is allowed. If the access controls for this item do not allow decryption, the function returns the `errSecAuthFailed` result code.
+    ///
+    ///
     /// Copies the data and/or attributes stored in the given keychain item. It is recommended that you use SecKeychainItemCopyAttributesAndData(). You must call SecKeychainItemFreeContent when you no longer need the attributes and data. If you want to modify the attributes returned here, use SecKeychainModifyContent().
     ///
     /// Parameter `itemRef`: A reference to the keychain item to modify.
@@ -385,8 +704,6 @@ impl SecKeychainItem {
     /// - `attr_list` must be a valid pointer or null.
     /// - `length` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -410,6 +727,27 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemCopyContent(self, item_class, attr_list, length, out_data) }
     }
 
+    /// Releases the memory used by the keychain attribute list and the keychain data retrieved in a call to the [`SecKeychainItemCopyContent`](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)) function.
+    ///
+    /// Parameters:
+    /// - attrList: A pointer to the attribute list to release. Pass `NULL` if there is no attribute list to release.
+    ///
+    /// - data: A pointer to the data buffer to release. Pass `NULL` if there is no data to release.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because the [`SecKeychainFindInternetPassword`](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) and [`SecKeychainFindGenericPassword`](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)) functions call the [`SecKeychainItemCopyContent`](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)) function, you must call `SecKeychainItemFreeContent` to release the data buffers after calls to those functions as well.
+    ///
+    /// Because the `SecKeychainItemCopyContent` function does not allocate buffers until they are needed, you should not call the `SecKeychainItemFreeContent` function unless data is actually returned to you.
+    ///
+    ///
     /// Releases the memory used by the keychain attribute list and the keychain data retrieved in a previous call to SecKeychainItemCopyContent.
     ///
     /// Parameter `attrList`: A pointer to the attribute list to release. Pass NULL to ignore this parameter.
@@ -420,8 +758,6 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemfreecontent(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemFreeContent")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -439,6 +775,49 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemFreeContent(attr_list, data) }
     }
 
+    /// Retrieves the data and/or attributes stored in the given keychain item.
+    ///
+    /// Parameters:
+    /// - itemRef: A reference to the keychain item from which you wish to retrieve data or attributes.
+    ///
+    /// - info: A pointer to a list of tags and formats of attributes to retrieve. You can call [`SecKeychainAttributeInfoForItemID`](https://developer.apple.com/documentation/security/seckeychainattributeinfoforitemid(_:_:_:)) to obtain a list of all possible attribute tags and formats for the item’s class. Pass `NULL` if you don’t wish to retrieve any attributes.
+    ///
+    /// - itemClass: On return, the item’s class. Pass `NULL` if not required. See [`SecItemClass`](https://developer.apple.com/documentation/security/secitemclass) for valid constants.
+    ///
+    /// - attrList: On return, the retrieved attributes and their values .  Pass `NULL` if not required. You must call the function [`SecKeychainItemFreeAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemfreeattributesanddata(_:_:)) when you no longer need the attributes and values.
+    ///
+    /// - length: On return, the actual length of the data returned in the `outData` parameter.
+    ///
+    /// - outData: On return, the data in this item. Pass `NULL` if not required. You must call the function [`SecKeychainItemFreeAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemfreeattributesanddata(_:_:)) when you no longer need the data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the data and attributes of a specific keychain item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This is a CSSM-based API. CSSM is deprecated.
+    ///
+    /// For new development, where possible, you should generally use [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) to obtain attributes of keychain items instead, because that function is based on Core Foundation types.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can use the [`SecKeychainSearchCopyNext`](https://developer.apple.com/documentation/security/seckeychainsearchcopynext) function to search for a keychain item if you don’t already have the item’s reference object. To find and obtain data from a password keychain item, use the [`SecKeychainFindInternetPassword`](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) or [`SecKeychainFindGenericPassword`](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)) function.
+    ///
+    /// You should pair the `SecKeychainItemCopyAttributesAndData` function with the [`SecKeychainItemModifyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)) function, as these functions handle more attributes than are support by the old Keychain Manager and passing them into older calls yields an invalid attribute error. Use the functions [`SecKeychainItemModifyContent`](https://developer.apple.com/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)) and [`SecKeychainItemCopyContent`](https://developer.apple.com/documentation/security/seckeychainitemcopycontent(_:_:_:_:_:)) when dealing with older Keychain Manager functions.
+    ///
+    /// If the keychain item data is encrypted, this function decrypts the data before returning it to you. If the calling application is not in the list of trusted applications, the user is prompted before access is allowed. If the access controls for this item do not allow decryption, the function returns the `errSecAuthFailed` result code.
+    ///
+    ///
     /// Copies the data and/or attributes stored in the given keychain item. You must call SecKeychainItemFreeAttributesAndData when you no longer need the attributes and data. If you want to modify the attributes returned here, use SecKeychainModifyAttributesAndData.
     ///
     /// Parameter `itemRef`: A reference to the keychain item to copy.
@@ -462,8 +841,6 @@ impl SecKeychainItem {
     /// - `attr_list` must be a valid pointer or null.
     /// - `length` must be a valid pointer or null.
     /// - `out_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -493,6 +870,19 @@ impl SecKeychainItem {
         }
     }
 
+    /// Releases the memory used by the keychain attribute list and/or the keychain data retrieved in a call to `SecKeychainItemCopyAttributesAndData`.
+    ///
+    /// Parameters:
+    /// - attrList: A pointer to the attribute list to release. Pass `NULL` if there is no attribute list to release.
+    ///
+    /// - data: A pointer to the data buffer to release. Pass `NULL` if there is no data to release.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Releases the memory used by the keychain attribute list and the keychain data retrieved in a previous call to SecKeychainItemCopyAttributesAndData.
     ///
     /// Parameter `attrList`: A pointer to the attribute list to release. Pass NULL to ignore this parameter.
@@ -505,8 +895,6 @@ impl SecKeychainItem {
     ///
     /// - `attr_list` must be a valid pointer or null.
     /// - `data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemfreeattributesanddata(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemFreeAttributesAndData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -524,6 +912,25 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemFreeAttributesAndData(attr_list, data) }
     }
 
+    /// Deletes a keychain item from the default keychain’s permanent data store.
+    ///
+    /// Parameters:
+    /// - itemRef: A keychain item object of the item to delete. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the keychain item has not previously been added to the keychain, this function does nothing and returns `noErr`.
+    ///
+    /// Do not delete a keychain item and recreate it in order to modify it; instead, use the [`SecKeychainItemModifyContent`](https://developer.apple.com/documentation/security/seckeychainitemmodifycontent(_:_:_:_:)) or [`SecKeychainItemModifyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemmodifyattributesanddata(_:_:_:_:)) function to modify an existing keychain item. When you delete a keychain item, you lose any access controls and trust settings added by the user or by other applications.
+    ///
+    ///
     /// Deletes a keychain item from the default keychain's permanent data store.
     ///
     /// Parameter `itemRef`: A keychain item reference of the item to delete.
@@ -531,8 +938,6 @@ impl SecKeychainItem {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// If itemRef has not previously been added to the keychain, SecKeychainItemDelete does nothing and returns errSecSuccess. IMPORTANT: SecKeychainItemDelete does not dispose the memory occupied by the item reference itself; use the CFRelease function when you are completely finished with an item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemdelete(_:)?language=objc)
     #[doc(alias = "SecKeychainItemDelete")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -544,6 +949,19 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemDelete(self) }
     }
 
+    /// Returns the keychain object of a given keychain item.
+    ///
+    /// Parameters:
+    /// - itemRef: A keychain item object.
+    ///
+    /// - keychainRef: On return, a pointer to a keychain object referencing the given keychain item. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Copies an existing keychain reference from a keychain item.
     ///
     /// Parameter `itemRef`: A keychain item reference.
@@ -555,8 +973,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `keychain_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopykeychain(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyKeychain")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -571,6 +987,23 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemCopyKeychain(self, keychain_ref) }
     }
 
+    /// Copies a keychain item from one keychain to another.
+    ///
+    /// Parameters:
+    /// - itemRef: A reference to the keychain item to copy.
+    ///
+    /// - destKeychainRef: A reference to the keychain in which to insert the copied keychain item. Pass `NULL` to specify the default keychain.
+    ///
+    /// - initialAccess: The initial access for the copied keychain item. Use the [`SecAccessCreate`](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)) function to create an access object or the [`SecKeychainItemCopyAccess`](https://developer.apple.com/documentation/security/seckeychainitemcopyaccess(_:_:)) function to copy an access object from another keychain item. If you pass `NULL` for this parameter, the access defaults to the application creating the item.
+    ///
+    /// - itemCopy: On return, a pointer to a copy of the keychain item referenced by the `itemRef` parameter. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Copies a keychain item.
     ///
     /// Parameter `itemRef`: A reference to the keychain item to copy.
@@ -586,8 +1019,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `item_copy` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcreatecopy(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCreateCopy")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -609,6 +1040,25 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemCreateCopy(self, dest_keychain_ref, initial_access, item_copy) }
     }
 
+    /// Creates a persistent reference for a keychain item.
+    ///
+    /// Parameters:
+    /// - itemRef: A keychain item reference for the item for which you want a persistent reference.
+    ///
+    /// - persistentItemRef: On return, a persistent reference for the keychain item. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unlike normal references, a persistent reference may be stored on disk or passed between processes. You can convert a persistent reference into an ordinary keychain item reference (`SecKeychainItemRef`) by calling the [`SecKeychainItemCopyFromPersistentReference`](https://developer.apple.com/documentation/security/seckeychainitemcopyfrompersistentreference(_:_:)) function.
+    ///
+    ///
     /// Returns a CFDataRef which can be used as a persistent reference to the given keychain item. The data obtained can be turned back into a SecKeychainItemRef later by calling SecKeychainItemCopyFromPersistentReference().
     ///
     /// Parameter `itemRef`: A reference to a keychain item.
@@ -620,8 +1070,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `persistent_item_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcreatepersistentreference(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCreatePersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -639,6 +1087,25 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemCreatePersistentReference(self, persistent_item_ref) }
     }
 
+    /// Provides a keychain item reference, given a persistent reference.
+    ///
+    /// Parameters:
+    /// - persistentItemRef: A persistent reference for a keychain item.
+    ///
+    /// - itemRef: On return, a keychain item reference for the item for which you provided a persistent reference. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A persistent reference may be stored on disk or passed between processes. You use the [`SecKeychainItemCreatePersistentReference`](https://developer.apple.com/documentation/security/seckeychainitemcreatepersistentreference(_:_:)) function to create a persistent reference.
+    ///
+    ///
     /// Returns a SecKeychainItemRef, given a persistent reference previously obtained by calling SecKeychainItemCreatePersistentReference().
     ///
     /// Parameter `persistentItemRef`: A CFDataRef containing a persistent reference to a keychain item.
@@ -650,8 +1117,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `item_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopyfrompersistentreference(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyFromPersistentReference")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -669,6 +1134,31 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemCopyFromPersistentReference(persistent_item_ref, item_ref) }
     }
 
+    /// Returns the CSSM database handle for a given keychain item object.
+    ///
+    /// Parameters:
+    /// - keyItemRef: A keychain item object.
+    ///
+    /// - dldbHandle: On return, a pointer to a CSSM database handle for the keychain database containing the given item. The handle is valid until the keychain item object is released.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. The common security services manager module is no longer used.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns the CSSM_DL_DB_HANDLE for a given keychain item reference.
     ///
     /// Parameter `keyItemRef`: A keychain item reference.
@@ -682,8 +1172,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `dldb_handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemgetdldbhandle?language=objc)
     #[doc(alias = "SecKeychainItemGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -698,6 +1186,31 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemGetDLDBHandle(self, dldb_handle) }
     }
 
+    /// Returns a CSSM unique record for the given keychain item object.
+    ///
+    /// Parameters:
+    /// - itemRef: A keychain item object.
+    ///
+    /// - uniqueRecordID: On return, a pointer to a CSSM unique record for the given item. The unique record is valid until the item object is released.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. The common security services manager module is no longer used.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns a CSSM_DB_UNIQUE_RECORD for the given keychain item reference.
     ///
     /// Parameter `itemRef`: A keychain item reference.
@@ -711,8 +1224,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `unique_record_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemgetuniquerecordid?language=objc)
     #[doc(alias = "SecKeychainItemGetUniqueRecordID")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -735,6 +1246,25 @@ impl SecKeychainItem {
         unsafe { SecKeychainItemGetUniqueRecordID(self, unique_record_id) }
     }
 
+    /// Retrieves the access of a given keychain item.
+    ///
+    /// Parameters:
+    /// - itemRef: A keychain item.
+    ///
+    /// - access: On return, points to the keychain item’s access instance. Call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method to release this access instance when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to retrieve the access instance from a keychain item. Alternatively, you can look for the [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) attribute among the keychain item’s attributes when you call the [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) method.
+    ///
+    ///
     /// Copies the access of a given keychain item.
     ///
     /// Parameter `itemRef`: A reference to a keychain item.
@@ -746,8 +1276,6 @@ impl SecKeychainItem {
     /// # Safety
     ///
     /// `access` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemcopyaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -764,13 +1292,30 @@ impl SecKeychainItem {
 
     /// Sets the access of a given keychain item.
     ///
+    /// Parameters:
+    /// - itemRef: A keychain item.
+    ///
+    /// - access: An access instance to replace the keychain item’s current access instance. Use the [`SecAccessCreate`](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)) function to create a default access instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to attach an access instance to a particular keychain item. Alternatively, you can use the [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) attribute when calling either of the [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) or [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)) methods.
+    ///
+    ///
+    /// Sets the access of a given keychain item.
+    ///
     /// Parameter `itemRef`: A reference to a keychain item.
     ///
     /// Parameter `access`: A reference to an access to replace the keychain item's current access.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemsetaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainItemSetAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

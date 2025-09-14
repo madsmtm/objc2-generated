@@ -14,9 +14,14 @@ use crate::*;
 extern_class!(
     /// An abstract class that represents a request to recognize speech from an audio source.
     ///
-    /// Don't create ``SFSpeechRecognitionRequest`` objects directly. Create an ``SFSpeechURLRecognitionRequest`` or ``SFSpeechAudioBufferRecognitionRequest`` object instead. Use the properties of this class to configure various aspects of your request object before you start the speech recognition process. For example, use the ``shouldReportPartialResults`` property to specify whether you want partial results or only the final result of speech recognition.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest?language=objc)
+    /// Don’t create [`SFSpeechRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest) objects directly. Create an [`SFSpeechURLRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest) or [`SFSpeechAudioBufferRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest) object instead. Use the properties of this class to configure various aspects of your request object before you start the speech recognition process. For example, use the [`shouldReportPartialResults`](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/shouldreportpartialresults) property to specify whether you want partial results or only the final result of speech recognition.
+    ///
+    ///
+    /// An abstract class that represents a request to recognize speech from an audio source.
+    ///
+    /// Don't create ``SFSpeechRecognitionRequest`` objects directly. Create an ``SFSpeechURLRecognitionRequest`` or ``SFSpeechAudioBufferRecognitionRequest`` object instead. Use the properties of this class to configure various aspects of your request object before you start the speech recognition process. For example, use the ``shouldReportPartialResults`` property to specify whether you want partial results or only the final result of speech recognition.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionRequest;
@@ -151,6 +156,47 @@ impl SFSpeechRecognitionRequest {
 extern_class!(
     /// A request to recognize speech in a recorded audio file.
     ///
+    /// ## Overview
+    ///
+    /// Use this object to perform speech recognition on the contents of an audio file.
+    ///
+    /// The following example shows a method that performs recognition on an audio file based on the user’s default language and prints out the transcription.
+    ///
+    /// Listing 1. Getting a speech recognizer and making a recognition request
+    ///
+    /// ```swift
+    /// func recognizeFile(url: URL) {
+    ///     // Create a speech recognizer associated with the user's default language.
+    ///     guard let myRecognizer = SFSpeechRecognizer() else {
+    ///         // The system doesn't support the user's default language.
+    ///         return
+    ///     }
+    ///     
+    ///     guard myRecognizer.isAvailable else {
+    ///         // The recognizer isn't available.
+    ///         return
+    ///     }
+    ///     
+    ///     // Create and execute a speech recognition request for the audio file at the URL.
+    ///     let request = SFSpeechURLRecognitionRequest(url: url)
+    ///     myRecognizer.recognitionTask(with: request) { (result, error) in
+    ///         guard let result else {
+    ///             // Recognition failed, so check the error for details and handle it.
+    ///             return
+    ///         }
+    ///         
+    ///         // Print the speech transcription with the highest confidence that the
+    ///         // system recognized.
+    ///         if result.isFinal {
+    ///             print(result.bestTranscription.formattedString)
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
+    /// A request to recognize speech in a recorded audio file.
+    ///
     /// Use this object to perform speech recognition on the contents of an audio file.
     ///
     /// The following example shows a method that performs recognition on an audio file based on the user's default language and prints out the transcription.
@@ -186,8 +232,6 @@ extern_class!(
     /// }
     /// }
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest?language=objc)
     #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechURLRecognitionRequest;
@@ -227,6 +271,17 @@ impl SFSpeechURLRecognitionRequest {
 }
 
 extern_class!(
+    /// A request to recognize speech from captured audio content, such as audio from the device’s microphone.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`SFSpeechAudioBufferRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest) object to perform speech recognition on live audio, or on a set of existing audio buffers. For example, use this request object to route audio from a device’s microphone to the speech recognizer.
+    ///
+    /// The request object contains no audio initially. As you capture audio, call [`appendAudioPCMBuffer:`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/append(_:)) or [`appendAudioSampleBuffer:`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/appendaudiosamplebuffer(_:)) to add audio samples to the request object. The speech recognizer continuously analyzes the audio you appended, stopping only when you call the [`endAudio`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/endaudio()) method. You must call [`endAudio`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/endaudio()) explicitly to stop the speech recognition process.
+    ///
+    /// For a complete example of how to use audio buffers with speech recognition, see [SpeakToMe: Using Speech Recognition with AVAudioEngine](https://developer.apple.com/library/archive/samplecode/SpeakToMe/Introduction/Intro.html#//apple_ref/doc/uid/TP40017110).
+    ///
+    ///
     /// A request to recognize speech from captured audio content, such as audio from the device's microphone.
     ///
     /// Use an ``SFSpeechAudioBufferRecognitionRequest`` object to perform speech recognition on live audio, or on a set of existing audio buffers. For example, use this request object to route audio from a device's microphone to the speech recognizer.
@@ -234,8 +289,6 @@ extern_class!(
     /// The request object contains no audio initially. As you capture audio, call ``append(_:)`` or ``appendAudioSampleBuffer(_:)`` to add audio samples to the request object. The speech recognizer continuously analyzes the audio you appended, stopping only when you call the ``endAudio()`` method. You must call ``endAudio()`` explicitly to stop the speech recognition process.
     ///
     /// For a complete example of how to use audio buffers with speech recognition, see [SpeakToMe: Using Speech Recognition with AVAudioEngine](https://developer.apple.com/library/archive/samplecode/SpeakToMe/Introduction/Intro.html#//apple_ref/doc/uid/TP40017110).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest?language=objc)
     #[unsafe(super(SFSpeechRecognitionRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechAudioBufferRecognitionRequest;

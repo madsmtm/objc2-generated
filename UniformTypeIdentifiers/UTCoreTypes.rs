@@ -5,16 +5,30 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C" {
+    /// A generic base type for most objects, such as files or directories.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.item`.
+    ///
+    ///
     /// A generic base type for most things (files, directories.)
     ///
     /// UTI: public.item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeItem: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents anything containing user-viewable content.
+    ///
+    /// ## Discussion
+    ///
+    /// Types that conform to content include documents, pasteboard data, and document packages. Types describing files or packages must also conform to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) or [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage) in order for the system to bind documents to them.
+    ///
+    /// The identifier for this type is `public.content`.
+    ///
+    ///
     /// A base type for anything containing user-viewable document content
     /// (documents, pasteboard data, and document packages.)
     ///
@@ -23,568 +37,896 @@ extern "C" {
     /// `UTTypePackage`in order for the system to bind documents to them.
     ///
     /// UTI: public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeContent: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a content format supporting mixed embedded content.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.composite-content`.
+    ///
+    /// This type conforms to [`UTTypeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent).
+    ///
+    ///
     /// A base type for content formats supporting mixed embedded content
     /// (i.e., compound documents).
     ///
     /// UTI: public.composite-content
     ///
     /// conforms to: public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCompositeContent: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a data item that’s mountable as a volume.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.disk-image`.
+    ///
+    ///
     /// A data item mountable as a volume
     ///
     /// UTI: public.disk-image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypediskimage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDiskImage: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents any sort of byte stream, including files and in-memory data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.data`.
+    ///
+    /// This type conforms to [`UTTypeItem`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem).
+    ///
+    ///
     /// A base type for any sort of simple byte stream, including files and
     /// in-memory data.
     ///
     /// UTI: public.data
     ///
     /// conforms to: public.item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeData: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a file system directory, including packages and folders.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.directory`.
+    ///
+    /// This type conforms to [`UTTypeItem`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem).
+    ///
+    ///
     /// A file system directory (includes packages
     /// _and_folders.)
     ///
     /// UTI: public.directory
     ///
     /// conforms to: public.item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedirectory?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDirectory: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a resolvable reference, including symbolic links and aliases.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.resolvable`.
+    ///
+    ///
     /// Symbolic link and alias file types conform to this type.
     ///
     /// UTI: com.apple.resolvable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperesolvable?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeResolvable: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a symbolic link.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.symlink`.
+    ///
+    /// This type conforms to [`UTTypeItem`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem) and [`UTTypeResolvable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperesolvable).
+    ///
+    ///
     /// A symbolic link.
     ///
     /// UTI: public.symlink
     ///
     /// conforms to: public.item, com.apple.resolvable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesymboliclink?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSymbolicLink: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an executable.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.executable`.
+    ///
+    /// This type conforms to [`UTTypeItem`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem).
+    ///
+    ///
     /// An executable item.
     ///
     /// UTI: public.executable
     ///
     /// conforms to: public.item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexecutable?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeExecutable: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a volume mount point.
+    ///
+    /// ## Discussion
+    ///
+    /// A mount point that resolves to the root directory of a volume.
+    ///
+    /// The identifier for this type is `public.mount-point`.
+    ///
+    /// This type conforms to [`UTTypeItem`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeitem) and [`UTTypeResolvable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperesolvable).
+    ///
+    ///
     /// A volume mount point (resolvable, resolves to the root directory of a
     /// volume.)
     ///
     /// UTI: com.apple.mount-point
     ///
     /// conforms to: public.item, com.apple.resolvable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemountpoint?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMountPoint: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an alias file.
+    ///
+    /// ## Discussion
+    ///
+    /// This type conforms to both [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeResolvable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperesolvable), and its identifier is `com.apple.alias-file`.
+    ///
+    ///
     /// A fully-formed alias file.
     ///
     /// UTI: com.apple.alias-file
     ///
     /// conforms to: public.data, com.apple.resolvable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypealiasfile?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAliasFile: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a URL bookmark.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.bookmark`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeResolvable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperesolvable).
+    ///
+    ///
     /// A URL bookmark.
     ///
     /// UTI: com.apple.bookmark
     ///
     /// conforms to: public.data, com.apple.resolvable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeurlbookmarkdata?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeURLBookmarkData: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a URL.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.url`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// Any URL.
     ///
     /// UTI: public.url
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeurl?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeURL: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a URL to a file in the file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.file-url`.
+    ///
+    /// This type conforms to [`UTTypeURL`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeurl).
+    ///
+    ///
     /// A URL with the scheme
     /// `"file:".`
     /// UTI: public.file-url
     ///
     /// conforms to: public.url
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefileurl?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFileURL: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents all text-encoded data, including text with markup.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.text`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent).
+    ///
+    ///
     /// The base type for all text-encoded data, including text with markup
     /// (HTML, RTF, etc.).
     ///
     /// UTI: public.text
     ///
     /// conforms to: public.data, public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents text with no markup and an unspecified encoding.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.plain-text`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Text with no markup and an unspecified encoding.
     ///
     /// UTI: public.plain-text
     ///
     /// conforms to: public.text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePlainText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents plain text encoded as UTF-8.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.utf8-plain-text`.
+    ///
+    /// This type conforms to [`UTTypePlainText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaintext).
+    ///
+    ///
     /// Plain text encoded as UTF-8.
     ///
     /// UTI: public.utf8-plain-text
     ///
     /// conforms to: public.plain-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf8plaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF8PlainText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents plain text encoded as UTF-16 with an optional BOM.
+    ///
+    /// ## Discussion
+    ///
+    /// If the bill of materials isn’t present, the encoding uses “external byte order (big-endian),
+    ///
+    /// The identifier for this type is `public.utf16-external-plain-text`.
+    ///
+    /// This type conforms to [`UTTypePlainText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaintext).
+    ///
+    ///
     /// Plain text encoded as UTF-16 with a BOM, or if a BOM is not present,
     /// using "external representation" byte order (big-endian).
     ///
     /// UTI: public.utf16-external-plain-text
     ///
     /// conforms to: public.plain-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf16externalplaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF16ExternalPlainText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents plain text encoded as UTF-16 in native byte order with an optional bill of materials.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.utf16-plain-text`.
+    ///
+    /// This type conforms to [`UTTypePlainText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaintext).
+    ///
+    ///
     /// Plain text encoded as UTF-16, in native byte order, with an optional
     /// BOM.
     ///
     /// UTI: public.utf16-plain-text
     ///
     /// conforms to: public.plain-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf16plaintext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF16PlainText: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents text containing delimited values.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.delimited-values-text`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Text containing delimited values.
     ///
     /// UTI: public.delimited-values-text
     ///
     /// conforms to: public.text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedelimitedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDelimitedText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents text containing comma-separated values.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.comma-separated-values-text`.
+    ///
+    /// This type conforms to [`UTTypeDelimitedText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedelimitedtext).
+    ///
+    ///
     /// Text containing comma-separated values (.csv).
     ///
     /// UTI: public.comma-separated-values-text
     ///
     /// conforms to: public.delimited-values-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecommaseparatedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCommaSeparatedText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents text containing tab-separated values.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.tab-separated-values-text`.
+    ///
+    /// This type conforms to [`UTTypeDelimitedText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedelimitedtext).
+    ///
+    ///
     /// Text containing tab-separated values.
     ///
     /// UTI: public.tab-separated-values-text
     ///
     /// conforms to: public.delimited-values-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetabseparatedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeTabSeparatedText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents UTF-8–encoded text containing tab-separated values.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.utf8-tab-separated-values-text`.
+    ///
+    /// This type conforms to [`UTTypeDelimitedText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedelimitedtext) and [`UTTypeUTF8PlainText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf8plaintext).
+    ///
+    ///
     /// UTF-8 encoded text containing tab-separated values.
     ///
     /// UTI: public.utf8-tab-separated-values-text
     ///
     /// conforms to: public.tab-separated-values-text, public.utf8-plain-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeutf8tabseparatedtext?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUTF8TabSeparatedText: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Rich Text Format data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.rtf`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Rich Text Format data.
     ///
     /// UTI: public.rtf
     ///
     /// conforms to: public.text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypertf?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRTF: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents any version of HTML.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.html`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Any version of HTML.
     ///
     /// UTI: public.html
     ///
     /// conforms to: public.text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypehtml?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHTML: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents generic XML data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.xml`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Generic XML.
     ///
     /// UTI: public.xml
     ///
     /// conforms to: public.text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexml?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeXML: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Yet Another Markup Language data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.yaml`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Yet Another Markup Language.
     ///
     /// UTI: public.yaml
     ///
     /// conforms to: public.text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeyaml?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeYAML: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// Cascading Style Sheets (CSS)
     ///
     /// UTI: public.css
     ///
     /// conforms to: public.text
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecss?language=objc)
+    ///
+    /// Cascading Style Sheets (CSS)
+    ///
+    /// UTI: public.css
+    ///
+    /// conforms to: public.text
     #[cfg(feature = "UTType")]
     pub static UTTypeCSS: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents source code of any programming language.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.source-code`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext).
+    ///
+    ///
     /// Abstract type for source code of any language.
     ///
     /// UTI: public.source-code
     ///
     /// conforms to: public.plain-text
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSourceCode: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents assembly language source code.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.assembly-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// Assembly language source (.s)
     ///
     /// UTI: public.assembly-source
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeassemblylanguagesource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAssemblyLanguageSource: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a C source code file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.c-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// C source code (.c)
     ///
     /// UTI: public.c-source
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecsource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCSource: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an Objective-C source code file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.objective-c-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// Objective-C source code (.m)
     ///
     /// UTI: public.objective-c-source
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeobjectivecsource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeObjectiveCSource: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Swift source code file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.swift-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// Swift source code (.swift)
     ///
     /// UTI: public.swift-source
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeswiftsource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSwiftSource: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a C++ source code file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.c-plus-plus-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// C++ source code (.cp, etc.)
     ///
     /// UTI: public.c-plus-plus-source
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecplusplussource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCPlusPlusSource: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an Objective-C++ source code file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.objective-c-plus-plus-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// Objective-C++ source code.
     ///
     /// UTI: public.objective-c-plus-plus-source
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeobjectivecplusplussource?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeObjectiveCPlusPlusSource: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a C header file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.c-header`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// A C header.
     ///
     /// UTI: public.c-header
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecheader?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCHeader: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a C++ header file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.c-plus-plus-header`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// A C++ header.
     ///
     /// UTI: public.c-plus-plus-header
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecplusplusheader?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCPlusPlusHeader: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents any scripting language source.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.script`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode).
+    ///
+    ///
     /// A base type for any scripting language source.
     ///
     /// UTI: public.script
     ///
     /// conforms to: public.source-code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an AppleScript text-based script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.applescript.text`.
+    ///
+    /// This type conforms to [`UTTypeScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescript).
+    ///
+    ///
     /// An AppleScript text-based script (.applescript).
     ///
     /// UTI: com.apple.applescript.text
     ///
     /// conforms to: public.script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplescript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an Open Scripting Architecture binary script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.applescript.script`.
+    ///
+    /// This type conforms to [`UTTypeScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescript) and [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// An Open Scripting Architecture binary script (.scpt).
     ///
     /// UTI: com.apple.applescript.script
     ///
     /// conforms to: public.data, public.script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeosascript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeOSAScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an Open Scripting Architecture script bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.applescript.script-bundle`.
+    ///
+    /// This type conforms to [`UTTypeScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescript), [`UTTypeBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle), and [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage).
+    ///
+    ///
     /// An Open Scripting Architecture script bundle (.scptd).
     ///
     /// UTI: com.apple.applescript.script-bundle
     ///
     /// conforms to: com.apple.bundle, com.apple.package, public.script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeosascriptbundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeOSAScriptBundle: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents JavaScript source code.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.netscape.javascript-source`.
+    ///
+    /// This type conforms to [`UTTypeSourceCode`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesourcecode) and [`UTTypeExecutable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexecutable).
+    ///
+    ///
     /// JavaScript source code
     ///
     /// UTI: com.netscape.javascript-source
     ///
     /// conforms to: public.source-code, public.executable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejavascript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeJavaScript: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a shell script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.shell-script`.
+    ///
+    /// This type conforms to [`UTTypeScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescript).
+    ///
+    ///
     /// The base type for shell scripts.
     ///
     /// UTI: public.shell-script
     ///
     /// conforms to: public.script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeshellscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeShellScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Perl script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.perl-script`.
+    ///
+    /// This type conforms to [`UTTypeShellScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeshellscript).
+    ///
+    ///
     /// A Perl script.
     ///
     /// UTI: public.perl-script
     ///
     /// conforms to: public.shell-script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeperlscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePerlScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Python script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.python-script`.
+    ///
+    /// This type conforms to [`UTTypeShellScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeshellscript).
+    ///
+    ///
     /// A Python script.
     ///
     /// UTI: public.python-script
     ///
     /// conforms to: public.shell-script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepythonscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePythonScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Ruby script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.ruby-script`.
+    ///
+    /// This type conforms to [`UTTypeShellScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeshellscript).
+    ///
+    ///
     /// A Ruby script.
     ///
     /// UTI: public.ruby-script
     ///
     /// conforms to: public.shell-script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperubyscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRubyScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a PHP script.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.php-script`.
+    ///
+    /// This type conforms to [`UTTypeShellScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeshellscript).
+    ///
+    ///
     /// A PHP script.
     ///
     /// UTI: public.php-script
     ///
     /// conforms to: public.shell-script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypephpscript?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePHPScript: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Makefile.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.make-source`.
+    ///
+    /// This type conforms to [`script`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/script).
+    ///
+    ///
     /// A makefile.
     ///
     /// UTI: public.make-source
     ///
     /// conforms to: public.script
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemakefile?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMakefile: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents JavaScript Object Notation (JSON) data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.json`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext); it doesn’t conform to [`UTTypeJavaScript`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejavascript).
+    ///
+    ///
     /// JavaScript object notation (JSON) data
     ///
     /// UTI: public.json
@@ -594,396 +936,637 @@ extern "C" {
     ///
     /// Note: JSON almost (but doesn't quite) conforms to
     /// com.netscape.javascript-source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejson?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeJSON: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a property list.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.property-list`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// A base type for property lists.
     ///
     /// UTI: com.apple.property-list
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepropertylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePropertyList: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an XML property list.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.xml-property-list`.
+    ///
+    /// This type conforms to [`UTTypeXML`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexml) and [`UTTypePropertyList`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepropertylist).
+    ///
+    ///
     /// An XML property list.
     ///
     /// UTI: com.apple.xml-property-list
     ///
     /// conforms to: public.xml, com.apple.property-list
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexmlpropertylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeXMLPropertyList: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a binary property list.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.binary-property-list`.
+    ///
+    /// This type conforms to [`UTTypePropertyList`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepropertylist).
+    ///
+    ///
     /// A binary property list.
     ///
     /// UTI: com.apple.binary-property-list
     ///
     /// conforms to: com.apple.property-list
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebinarypropertylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBinaryPropertyList: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Adobe Portable Document Format (PDF) documents.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.adobe.pdf`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeCompositeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent).
+    ///
+    ///
     /// An Adobe PDF document.
     ///
     /// UTI: com.adobe.pdf
     ///
     /// conforms to: public.data, public.composite-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepdf?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePDF: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Rich Text Format Directory documents.
+    ///
+    /// ## Discussion
+    ///
+    /// RTFD is RTF with content embedded in its on-disk format.
+    ///
+    /// The identifier for this type is `com.apple.rtfd`.
+    ///
+    /// This type conforms to [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage) and [`UTTypeCompositeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent).
+    ///
+    ///
     /// A Rich Text Format Directory document (RTF with content embedding
     /// in its on-disk format.)
     ///
     /// UTI: com.apple.rtfd
     ///
     /// conforms to: com.apple.package, public.composite-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypertfd?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRTFD: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents flattened Rich Text Format Directory documents.
+    ///
+    /// ## Discussion
+    ///
+    /// The pasteboard uses a flattened Rich Text Format Directory format.
+    ///
+    /// The identifier for this type is `com.apple.flat-rtfd`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeCompositeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent).
+    ///
+    ///
     /// A flattened RTFD document (formatted for the pasteboard.)
     ///
     /// UTI: com.apple.flat-rtfd
     ///
     /// conforms to: public.data, public.composite-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeflatrtfd?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFlatRTFD: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents WebKit web archive data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.webarchive`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeCompositeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent).
+    ///
+    ///
     /// The WebKit webarchive format.
     ///
     /// UTI: com.apple.webarchive
     ///
     /// conforms to: public.data, public.composite-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypewebarchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeWebArchive: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents image data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.image`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent).
+    ///
+    ///
     /// A base type for abstract image data.
     ///
     /// UTI: public.image
     ///
     /// conforms to: public.data, public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeImage: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a JPEG image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.jpeg`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A JPEG image.
     ///
     /// UTI: public.jpeg
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejpeg?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeJPEG: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a TIFF image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.tiff`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A TIFF image.
     ///
     /// UTI: public.tiff
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetiff?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeTIFF: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a GIF image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.compuserve.gif`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A GIF image.
     ///
     /// UTI: com.compuserve.gif
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypegif?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeGIF: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a PNG image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.png`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A PNG image.
     ///
     /// UTI: public.png
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepng?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePNG: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Apple icon data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.icns`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// Apple icon data
     ///
     /// UTI: com.apple.icns
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeicns?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeICNS: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Windows bitmap image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.microsoft.bmp`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A Windows bitmap.
     ///
     /// UTI: com.microsoft.bmp
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebmp?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBMP: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Windows icon data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.microsoft.ico`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// Windows icon data
     ///
     /// UTI: com.microsoft.ico
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeico?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeICO: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a raw image format that you use in digital photography.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.camera-raw-image`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A base type for raw image data (.raw).
     ///
     /// UTI: public.camera-raw-image
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperawimage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRAWImage: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a scalable vector graphics (SVG) image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.svg-image`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A Scalable Vector Graphics image.
     ///
     /// UTI: public.svg-image
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesvg?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSVG: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Live Photos.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.live-photo`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A Live Photo.
     ///
     /// UTI: com.apple.live-photo
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypelivephoto?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeLivePhoto: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents High Efficiency Image File Format images.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.heif`.
+    ///
+    /// This type conforms to a base type identified by `public.heif-standard`, which in turn conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A High Efficiency Image File Format image.
     ///
     /// UTI: public.heif
     ///
     /// conforms to: public.heif-standard
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeheif?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHEIF: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents High Efficiency Image Coding images.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.heic`.
+    ///
+    /// This type conforms to a base type identified by `public.heif-standard`, which in turn conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// A High Efficiency Image Coding image.
     ///
     /// UTI: public.heic
     ///
     /// conforms to: public.heif-standard
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeheic?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeHEIC: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// A High Efficiency Image Coding Image Sequence.
     ///
     /// UTI: public.heics
     ///
     /// conforms to: public.heif-standard
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeheics?language=objc)
+    ///
+    /// A High Efficiency Image Coding Image Sequence.
+    ///
+    /// UTI: public.heics
+    ///
+    /// conforms to: public.heif-standard
     #[cfg(feature = "UTType")]
     pub static UTTypeHEICS: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a WebP image.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `org.webmproject.webp`.
+    ///
+    /// This type conforms to [`UTTypeImage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeimage).
+    ///
+    ///
     /// The WebP image format.
     ///
     /// UTI: org.webmproject.webp
     ///
     /// conforms to: public.image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypewebp?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeWebP: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// An EXR image.
     ///
     /// UTI: com.ilm.openexr-image
     ///
     /// conforms to: public.image
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexr?language=objc)
+    ///
+    /// An EXR image.
+    ///
+    /// UTI: com.ilm.openexr-image
+    ///
+    /// conforms to: public.image
     #[cfg(feature = "UTType")]
     pub static UTTypeEXR: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// An Adobe DNG (digital negative) image.
     ///
     /// UTI: com.adobe.raw-image
     ///
     /// conforms to: public.image
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedng?language=objc)
+    ///
+    /// An Adobe DNG (digital negative) image.
+    ///
+    /// UTI: com.adobe.raw-image
+    ///
+    /// conforms to: public.image
     #[cfg(feature = "UTType")]
     pub static UTTypeDNG: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// A JPEG-XL encoded image.
     ///
     /// UTI: public.jpeg-xl
     ///
     /// conforms to: public.image
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypejpegxl?language=objc)
+    ///
+    /// A JPEG-XL encoded image.
+    ///
+    /// UTI: public.jpeg-xl
+    ///
+    /// conforms to: public.image
     #[cfg(feature = "UTType")]
     pub static UTTypeJPEGXL: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents 3D content.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.3d-content`.
+    ///
+    /// This type conforms to [`UTTypeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent).
+    ///
+    ///
     /// A base type for 3D content.
     ///
     /// UTI: public.3d-content
     ///
     /// conforms to: public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype3dcontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTType3DContent: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Universal Scene Description content.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.pixar.universal-scene-description`.
+    ///
+    /// This type conforms to [`UTType3DContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype3dcontent) and [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// Universal Scene Description content.
     ///
     /// UTI: com.pixar.universal-scene-description
     ///
     /// conforms to: public.3d-content, public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeusd?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUSD: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Universal Scene Description Package content.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.pixar.universal-scene-description-mobile`.
+    ///
+    /// This type conforms to [`UTType3DContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype3dcontent) and [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// Universal Scene Description Package content.
     ///
     /// UTI: com.pixar.universal-scene-description-mobile
     ///
     /// conforms to: public.3d-content, public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeusdz?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUSDZ: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Reality Composer file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.reality`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// A Reality File.
     ///
     /// UTI: com.apple.reality
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttyperealityfile?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeRealityFile: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a SceneKit serialized scene.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.scenekit.scene`.
+    ///
+    /// This type conforms to [`UTType3DContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype3dcontent) and [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// A SceneKit serialized scene.
     ///
     /// UTI: com.apple.scenekit.scene
     ///
     /// conforms to: public.3d-content, public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypescenekitscene?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSceneKitScene: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an augmented reality reference object.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.arobject`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// An AR reference object.
     ///
     /// UTI: com.apple.arobject
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearreferenceobject?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeARReferenceObject: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents data that contains video content that may or may not also include audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.audiovisual-content`.
+    ///
+    /// This type conforms to [`UTTypeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent) and [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// Any audio and/or video content.
     ///
     /// UTI: public.audiovisual-content
     ///
     /// conforms to: public.data, public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudiovisualcontent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAudiovisualContent: &'static UTType;
 }
 
 extern "C" {
+    /// A base type representing media formats that may contain both video and audio.
+    ///
+    /// ## Discussion
+    ///
+    /// This type corresponds to what users would label a “movie”.
+    ///
+    /// The identifier for this type is `public.movie`.
+    ///
+    /// This type conforms to [`UTTypeAudiovisualContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudiovisualcontent).
+    ///
+    ///
     /// A media format which may contain both video and audio.
     ///
     /// This type corresponds to what users would label a "movie".
@@ -991,239 +1574,379 @@ extern "C" {
     /// UTI: public.movie
     ///
     /// conforms to: public.audiovisual-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMovie: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents video that doesn’t contain audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.video`.
+    ///
+    /// This type conforms to [`UTTypeMovie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie).
+    ///
+    ///
     /// Pure video data with no audio data.
     ///
     /// UTI: public.video
     ///
     /// conforms to: public.movie
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevideo?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeVideo: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents audio that doesn’t contain video.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.audio`.
+    ///
+    /// This type conforms to [`UTTypeAudiovisualContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudiovisualcontent).
+    ///
+    ///
     /// Pure audio data with no video data.
     ///
     /// UTI: public.audio
     ///
     /// conforms to: public.audiovisual-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAudio: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a QuickTime movie.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.quicktime-movie`.
+    ///
+    /// This type conforms to [`UTTypeMovie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie).
+    ///
+    ///
     /// A QuickTime movie.
     ///
     /// UTI: com.apple.quicktime-movie
     ///
     /// conforms to: public.movie
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypequicktimemovie?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeQuickTimeMovie: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an MPEG-1 or MPEG-2 movie.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.mpeg`.
+    ///
+    /// This type conforms to [`UTTypeMovie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie).
+    ///
+    ///
     /// An MPEG-1 or MPEG-2 movie.
     ///
     /// UTI: public.mpeg
     ///
     /// conforms to: public.movie
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an MPEG-2 video.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.mpeg-2-video`.
+    ///
+    /// This type conforms to [`UTTypeVideo`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevideo).
+    ///
+    ///
     /// An MPEG-2 video.
     ///
     /// UTI: public.mpeg-2-video
     ///
     /// conforms to: public.video
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg2video?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG2Video: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in MPEG-2 transport stream movie format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.mpeg-2-transport-stream`.
+    ///
+    /// This type conforms to [`UTTypeMovie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie).
+    ///
+    ///
     /// The MPEG-2 Transport Stream movie format.
     ///
     /// UTI: public.mpeg-2-transport-stream
     ///
     /// conforms to: public.movie
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg2transportstream?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG2TransportStream: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents MP3 audio.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.mp3`.
+    ///
+    /// This type conforms to [`UTTypeAudio`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio).
+    ///
+    ///
     /// MP3 audio.
     ///
     /// UTI: public.mp3
     ///
     /// conforms to: public.audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemp3?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMP3: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an MPEG-4 movie.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.mpeg-4`.
+    ///
+    /// This type conforms to [`UTTypeMovie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie).
+    ///
+    ///
     /// MPEG-4 movie
     ///
     /// UTI: public.mpeg-4
     ///
     /// conforms to: public.movie
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg4movie?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG4Movie: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an MPEG-4 audio layer file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.mpeg-4-audio`.
+    ///
+    /// This type conforms to [`UTTypeMPEG`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg) and [`UTTypeAudio`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio).
+    ///
+    ///
     /// An MPEG-4 audio layer file.
     ///
     /// UTI: public.mpeg-4-audio
     ///
     /// conforms to: public.mpeg-4, public.audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg4audio?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMPEG4Audio: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in Apple-protected MPEG-4 format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.protected-mpeg-4-audio`.
+    ///
+    /// This type conforms to [`UTTypeAudio`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio).
+    ///
+    ///
     /// The Apple protected MPEG4 format (.m4p, iTunes music store format.)
     ///
     /// UTI: com.apple.protected-mpeg-4-audio
     ///
     /// conforms to: public.audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeappleprotectedmpeg4audio?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleProtectedMPEG4Audio: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in Apple-protected MPEG-4 format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.protected-mpeg-4-video`.
+    ///
+    /// This type conforms to a base type identified by `com.apple.m4v-video`, which in turn conforms to [`UTTypeMPEG4Movie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypempeg4movie).
+    ///
+    ///
     /// An Apple protected MPEG-4 movie.
     ///
     /// UTI: com.apple.protected-mpeg-4-video
     ///
     /// conforms to: com.apple.m4v-video
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeappleprotectedmpeg4video?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleProtectedMPEG4Video: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in AVI movie format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.avi`.
+    ///
+    /// This type conforms to [`UTTypeMovie`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemovie).
+    ///
+    ///
     /// The AVI movie format.
     ///
     /// UTI: public.avi
     ///
     /// conforms to: public.movie
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeavi?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAVI: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in AIFF audio format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.aiff-audio`.
+    ///
+    /// This type conforms to a base type identified by `public.aifc-audio`, which in turn conforms to [`UTTypeAudio`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio).
+    ///
+    ///
     /// The AIFF audio format
     ///
     /// UTI: public.aiff-audio
     ///
     /// conforms to: public.aifc-audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaiff?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAIFF: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in Microsoft Waveform Audio File Format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.microsoft.waveform-audio`.
+    ///
+    /// This type conforms to [`UTTypeAudio`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio).
+    ///
+    ///
     /// The Microsoft waveform audio format (.wav).
     ///
     /// UTI: com.microsoft.waveform-audio
     ///
     /// conforms to: public.audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypewav?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeWAV: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in MIDI audio format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.midi-audio`.
+    ///
+    /// This type conforms to [`UTTypeAudio`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeaudio).
+    ///
+    ///
     /// The MIDI audio format.
     ///
     /// UTI: public.midi-audio
     ///
     /// conforms to: public.audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemidi?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMIDI: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.playlist`.
+    ///
+    ///
     /// The base type for playlists.
     ///
     /// UTI: public.playlist
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePlaylist: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an M3U or M3U8 playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.m3u-playlist`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext) and [`UTTypePlaylist`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeplaylist).
+    ///
+    ///
     /// An M3U or M3U8 playlist
     ///
     /// UTI: public.m3u-playlist
     ///
     /// conforms to: public.text, public.playlist
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypem3uplaylist?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeM3UPlaylist: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a user-browsable directory.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.folder`.
+    ///
+    /// This type conforms to [`UTTypeDirectory`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedirectory).
+    ///
+    ///
     /// A user-browsable directory (i.e. not a package.)
     ///
     /// UTI: public.folder
     ///
     /// conforms to: public.directory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefolder?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFolder: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents the root folder of a volume or mount point.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.volume`.
+    ///
+    /// This type conforms to [`UTTypeFolder`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefolder).
+    ///
+    ///
     /// The root folder of a volume or mount point.
     ///
     /// UTI: public.volume
     ///
     /// conforms to: public.folder
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevolume?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeVolume: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a packaged directory.
+    ///
+    /// ## Discussion
+    ///
+    /// Bundles differ from packages in that a bundle has an internal file hierarchy that [`CFBundle`](https://developer.apple.com/documentation/corefoundation/cfbundle) can read, while packages display to the user as if they were regular files. A single file system object can be both a package and a bundle.
+    ///
+    /// The identifier for this type is `com.apple.package`.
+    ///
+    /// This type conforms to [`UTTypeDirectory`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedirectory).
+    ///
+    ///
     /// A packaged directory.
     ///
     /// Bundles differ from packages in that a bundle has an internal file hierarchy
@@ -1235,13 +1958,22 @@ extern "C" {
     /// UTI: com.apple.package
     ///
     /// conforms to: public.directory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePackage: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a directory that conforms to one of the bundle layouts.
+    ///
+    /// ## Discussion
+    ///
+    /// Bundles differ from packages in that a bundle has an internal file hierarchy that [`CFBundle`](https://developer.apple.com/documentation/corefoundation/cfbundle) can read, while packages display to the user as if they were regular files. A single file system object can be both a package and a bundle.
+    ///
+    /// The identifier for this type is `com.apple.bundle`.
+    ///
+    /// This type conforms to [`UTTypeDirectory`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedirectory).
+    ///
+    ///
     /// A directory conforming to one of the
     /// `CFBundle`layouts.
     ///
@@ -1254,401 +1986,622 @@ extern "C" {
     /// UTI: com.apple.bundle
     ///
     /// conforms to: public.directory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBundle: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a bundle-based plug-in.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.plugin`.
+    ///
+    /// This type conforms to [`UTTypeBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle) and [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage).
+    ///
+    ///
     /// The base type for bundle-based plugins.
     ///
     /// UTI: com.apple.plugin
     ///
     /// conforms to: com.apple.bundle, com.apple.package
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepluginbundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePluginBundle: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Spotlight metadata importer bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.metadata-importer`.
+    ///
+    /// This type conforms to [`UTTypePluginBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepluginbundle).
+    ///
+    ///
     /// A Spotlight metadata importer bundle.
     ///
     /// UTI: com.apple.metadata-importer
     ///
     /// conforms to: com.apple.plugin
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypespotlightimporter?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSpotlightImporter: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a QuickLook preview generator bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.quicklook-generator`.
+    ///
+    /// This type conforms to [`UTTypePluginBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepluginbundle).
+    ///
+    ///
     /// A QuickLook preview generator bundle.
     ///
     /// UTI: com.apple.quicklook-generator
     ///
     /// conforms to: com.apple.plugin
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypequicklookgenerator?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeQuickLookGenerator: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an XPC service bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.xpc-service`.
+    ///
+    /// This type conforms to [`UTTypeBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle) and [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage).
+    ///
+    ///
     /// An XPC service bundle.
     ///
     /// UTI: com.apple.xpc-service
     ///
     /// conforms to: com.apple.bundle, com.apple.package
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexpcservice?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeXPCService: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an Apple framework bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.framework`.
+    ///
+    /// This type conforms to [`UTTypeBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle).
+    ///
+    ///
     /// A macOS or iOS framework bundle.
     ///
     /// UTI: com.apple.framework
     ///
     /// conforms to: com.apple.bundle
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeframework?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFramework: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a macOS, iOS, iPadOS, watchOS, and tvOS app.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.application`.
+    ///
+    /// This type conforms to [`UTTypeExecutable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexecutable).
+    ///
+    ///
     /// The base type for macOS and iOS applications.
     ///
     /// UTI: com.apple.application
     ///
     /// conforms to: public.executable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplication?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeApplication: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a bundled app.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.application-bundle`.
+    ///
+    /// This type conforms to [`UTTypeApplication`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplication), [`UTTypeBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle), and [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage).
+    ///
+    ///
     /// A bundled application.
     ///
     /// UTI: com.apple.application-bundle
     ///
     /// conforms to: com.apple.application, com.apple.bundle, com.apple.package
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplicationbundle?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeApplicationBundle: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an app extension.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.application-and-system-extension`.
+    ///
+    /// This type conforms to [`UTTypeXPCService`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypexpcservice).
+    ///
+    ///
     /// An application extension (.appex).
     ///
     /// UTI: com.apple.application-and-system-extension
     ///
     /// conforms to: com.apple.xpc-service
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplicationextension?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeApplicationExtension: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a UNIX executable.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.unix-executable`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeExecutable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexecutable).
+    ///
+    ///
     /// A UNIX executable (flat file.)
     ///
     /// UTI: public.unix-executable
     ///
     /// conforms to: public.data, public.executable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeunixexecutable?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeUnixExecutable: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Windows executable.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.windows-executable`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeExecutable`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexecutable).
+    ///
+    ///
     /// A Windows executable (.exe).
     ///
     /// UTI: com.microsoft.windows-executable
     ///
     /// conforms to: public.data, public.executable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeexe?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEXE: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a System Preferences pane.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.systempreference.prefpane`.
+    ///
+    /// This type conforms to [`UTTypePackage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepackage) and [`UTTypeBundle`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebundle).
+    ///
+    ///
     /// A System Preferences pane.
     ///
     /// UTI: com.apple.systempreference.prefpane
     ///
     /// conforms to: com.apple.package, com.apple.bundle
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypesystempreferencespane?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSystemPreferencesPane: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents an archive of files and directories.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.archive`.
+    ///
+    ///
     /// an archive of files and directories
     ///
     /// UTI: public.archive
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeArchive: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a GNU zip archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `org.gnu.gnu-zip-archive`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeArchive`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearchive).
+    ///
+    ///
     /// A GNU zip archive.
     ///
     /// UTI: org.gnu.gnu-zip-archive
     ///
     /// conforms to: public.data, public.archive
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypegzip?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeGZIP: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a bzip2 archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.bzip2-archive`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeArchive`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearchive).
+    ///
+    ///
     /// A bzip2 archive.
     ///
     /// UTI: public.bzip2-archive
     ///
     /// conforms to: public.data, public.archive
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebz2?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBZ2: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a zip archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.zip-archive`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeArchive`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearchive).
+    ///
+    ///
     /// A zip archive.
     ///
     /// UTI: public.zip-archive
     ///
     /// conforms to: com.pkware.zip-archive
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypezip?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeZIP: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an Apple archive of files and directories.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.archive`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeArchive`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypearchive).
+    ///
+    ///
     /// An Apple Archive.
     ///
     /// UTI: com.apple.archive
     ///
     /// conforms to: public.data, public.archive
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeapplearchive?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAppleArchive: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// A tar Archive.
     ///
     /// UTI: public.tar-archive
     ///
     /// conforms to: public.data, public.archive
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetararchive?language=objc)
+    ///
+    /// A tar Archive.
+    ///
+    /// UTI: public.tar-archive
+    ///
+    /// conforms to: public.data, public.archive
     #[cfg(feature = "UTType")]
     pub static UTTypeTarArchive: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a spreadsheet document.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.spreadsheet`.
+    ///
+    /// This type conforms to [`UTTypeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontent).
+    ///
+    ///
     /// A base type for spreadsheet documents.
     ///
     /// UTI: public.spreadsheet
     ///
     /// conforms to: public.content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypespreadsheet?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeSpreadsheet: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a presentation document.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.presentation`.
+    ///
+    /// This type conforms to [`UTTypeCompositeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent).
+    ///
+    ///
     /// A base type for presentation documents.
     ///
     /// UTI: public.presentation
     ///
     /// conforms to: public.composite-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepresentation?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePresentation: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a database store.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.database`.
+    ///
+    ///
     /// A database store.
     ///
     /// UTI: public.database
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedatabase?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeDatabase: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a message.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.message`.
+    ///
+    ///
     /// A base type for messages (email, IM, etc.)
     ///
     /// UTI: public.message
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemessage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeMessage: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents contact information.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.contact`.
+    ///
+    ///
     /// contact information, e.g. for a person, group, organization
     ///
     /// UTI: public.contact
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontact?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeContact: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a vCard file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.vcard`.
+    ///
+    /// This type conforms to [`UTTypeText`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetext) and [`UTTypeContact`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecontact).
+    ///
+    ///
     /// A vCard file.
     ///
     /// UTI: public.vcard
     ///
     /// conforms to: public.text, public.contact
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypevcard?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeVCard: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a to-do item.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.to-do-item`.
+    ///
+    ///
     /// A to-do item.
     ///
     /// UTI: public.to-do-item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypetodoitem?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeToDoItem: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a calendar event.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.calendar-event`.
+    ///
+    ///
     /// A calendar event.
     ///
     /// UTI: public.calendar-event
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecalendarevent?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeCalendarEvent: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an email message.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.email-message`.
+    ///
+    /// This type conforms to [`UTTypeMessage`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypemessage).
+    ///
+    ///
     /// An e-mail message.
     ///
     /// UTI: public.email-message
     ///
     /// conforms to: public.message
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeemailmessage?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEmailMessage: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents an Apple internet location file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.apple.internet-location`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and a base type identified by `public.stored-url`.
+    ///
+    ///
     /// A base type for Apple Internet location files.
     ///
     /// UTI: com.apple.internet-location
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeinternetlocation?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeInternetLocation: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents a Microsoft internet shortcut file.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.microsoft.internet-shortcut`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and a base type identified by `public.stored-url`.
+    ///
+    ///
     /// Microsoft Internet shortcut files (.url).
     ///
     /// UTI: com.apple.internet-location
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeinternetshortcut?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeInternetShortcut: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents a font.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.font`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// A base type for fonts.
     ///
     /// UTI: public.font
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypefont?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeFont: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents bookmark data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.bookmark`.
+    ///
+    ///
     /// A bookmark.
     ///
     /// UTI: public.bookmark
     ///
     ///
     /// See also: UTTypeURLBookmarkData
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypebookmark?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeBookmark: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents Public Key Cryptography Standard (PKCS) 12 data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `com.rsa.pkcs-12`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// PKCS#12 data.
     ///
     /// UTI: com.rsa.pkcs-12
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypepkcs12?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypePKCS12: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents an X.509 certificate.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.x509-certificate`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata).
+    ///
+    ///
     /// An X.509 certificate.
     ///
     /// UTI: public.x509-certificate
     ///
     /// conforms to: public.data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypex509certificate?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeX509Certificate: &'static UTType;
 }
 
 extern "C" {
+    /// A type that represents data in the electronic publication (EPUB) format.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `org.idpf.epub-container`.
+    ///
+    /// This type conforms to [`UTTypeData`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypedata) and [`UTTypeCompositeContent`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypecompositecontent).
+    ///
+    ///
     /// The EPUB format.
     ///
     /// UTI: org.idpf.epub-container
     ///
     /// conforms to: public.data, public.composite-content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeepub?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeEPUB: &'static UTType;
 }
 
 extern "C" {
+    /// A base type that represents console log data.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier for this type is `public.log`.
+    ///
+    ///
     /// A base type for console logs.
     ///
     /// UTI: public.log
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypelog?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeLog: &'static UTType;
 }
@@ -1657,30 +2610,42 @@ extern "C" {
     /// An Apple Haptics Audio Pattern file.
     ///
     /// UTI: com.apple.haptics.ahap
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypeahap?language=objc)
     #[cfg(feature = "UTType")]
     pub static UTTypeAHAP: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// A GeoJSON file.
     ///
     /// UTI: public.geojson
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypegeojson?language=objc)
+    ///
+    /// A GeoJSON file.
+    ///
+    /// UTI: public.geojson
     #[cfg(feature = "UTType")]
     pub static UTTypeGeoJSON: &'static UTType;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// Serialized LinkPresentation metadata.
     ///
     /// UTI: com.apple.linkpresentation.metadata
     ///
     /// conforms to: public.data
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypelinkpresentationmetadata?language=objc)
+    ///
+    /// Serialized LinkPresentation metadata.
+    ///
+    /// UTI: com.apple.linkpresentation.metadata
+    ///
+    /// conforms to: public.data
     #[cfg(feature = "UTType")]
     pub static UTTypeLinkPresentationMetadata: &'static UTType;
 }

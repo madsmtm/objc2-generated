@@ -8,14 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A controllable feature of an accessory, like a light attached to a garage door opener.
+    ///
+    /// ## Overview
+    ///
+    /// An [`HMService`](https://developer.apple.com/documentation/homekit/hmservice) instance represents a service provided by an accessory. Accessories have both user-controllable services, like a light, and services that are for the use of the accessory itself, like a firmware update service.
+    ///
+    /// You don’t create services directly. Instead you find them in the [`services`](https://developer.apple.com/documentation/homekit/hmaccessory/services) array of an [`HMAccessory`](https://developer.apple.com/documentation/homekit/hmaccessory) instance.
+    ///
+    /// A single accessory may have more than one user-controllable service. For example, most garage door openers have a service for opening and closing the door, and another service for the light on the garage door opener. These services are what Apple’s Home app labels as “accessories”.
+    ///
+    /// You inspect or change a service’s [`HMCharacteristic`](https://developer.apple.com/documentation/homekit/hmcharacteristic) instances to discover state, or modify behavior.
+    ///
+    ///
     /// Represents a service provided by an accessory.
     ///
     ///
     /// This class represents a service provided by an accessory in the home.
     /// A service is composed of one or more characteristics that can be
     /// modified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMService;

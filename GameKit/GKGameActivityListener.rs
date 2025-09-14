@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivitylistener?language=objc)
+    /// An object that responds to activity events.
     pub unsafe trait GKGameActivityListener {
         #[cfg(all(
             feature = "GKBasePlayer",

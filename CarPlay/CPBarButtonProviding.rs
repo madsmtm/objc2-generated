@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonproviding?language=objc)
+    /// The methods that templates use to provide buttons for the navigation bar.
+    ///
+    /// ## Overview
+    ///
+    /// `CPBarButtonProviding` is a protocol that templates use to provide a Back button and leading and trailing buttons for the navigation bar.
+    ///
+    /// You don’t adopt this protocol in your own types. If you want to add buttons to the navigation bar, you must use one of the prebuilt templates that already conforms to the protocol, such as [`CPMapTemplate`](https://developer.apple.com/documentation/carplay/cpmaptemplate) or [`CPContactTemplate`](https://developer.apple.com/documentation/carplay/cpcontacttemplate).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The root templates of a tab bar don’t show leading or trailing bar buttons, and the system throws an exception if you attempt to assign bar buttons to the Now Playing template.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait CPBarButtonProviding: NSObjectProtocol {
         #[cfg(feature = "CPBarButton")]
         /// An array of bar buttons to be displayed on the leading side of the navigation bar.

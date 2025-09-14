@@ -6,20 +6,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions?language=objc)
+/// Type for flags that determine the degree of mutability of newly created property lists.
+///
+/// ## Overview
+///
+/// See [Property List Mutability Options](https://developer.apple.com/documentation/corefoundation/property_list_mutability_options) for possible values.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFPropertyListMutabilityOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFPropertyListMutabilityOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions/kcfpropertylistimmutable?language=objc)
+/// Specifies that the property list should be immutable.
         #[doc(alias = "kCFPropertyListImmutable")]
         const Immutable = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions/mutablecontainers?language=objc)
+/// Specifies that the property list should have mutable containers but immutable leaves.
         #[doc(alias = "kCFPropertyListMutableContainers")]
         const MutableContainers = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions/mutablecontainersandleaves?language=objc)
+/// Specifies that the property list should have mutable containers and mutable leaves.
         #[doc(alias = "kCFPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 1<<1;
     }
@@ -35,7 +41,37 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatefromxmldata(_:_:_:_:)?language=objc)
+/// Creates a property list using the specified XML or binary property list data.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new property list. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - xmlData: The raw bytes to convert into a property list. The bytes may be the content of an XML file or of a binary property list (see [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat)).
+///
+/// - mutabilityOption: A constant that specifies the degree of mutability for the returned property list. See [Property List Mutability Options](https://developer.apple.com/documentation/corefoundation/property_list_mutability_options) for descriptions of possible values.
+///
+/// - errorString: On return, `NULL` if the conversion is successful, otherwise a string that describes the nature of the error. Error messages are not localized, but may be in the future, so they are not currently suitable for comparison.
+///
+/// Pass `NULL` if you do not wish to receive an error string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+/// ## Return Value
+///
+/// A new property list if the conversion is successful, otherwise `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Warning
+///  This function is obsolete and will be deprecated soon. Use [`CFPropertyListCreateWithData`](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatewithdata(_:_:_:_:_:)) instead.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -65,7 +101,31 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatexmldata(_:_:)?language=objc)
+/// Creates an XML representation of the specified property list.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new data object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - propertyList: The property list to convert. This may be any of the standard property list objects, for example a CFArray or a CFDictionary object.
+///
+///
+/// ## Return Value
+///
+/// A CFData object containing the XML data. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Warning
+///  This function is obsolete and will be deprecated soon. Use [`CFPropertyListCreateData`](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatedata(_:_:_:_:_:)) instead.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -89,7 +149,27 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatedeepcopy(_:_:_:)?language=objc)
+/// Recursively creates a copy of a given property list.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new property list. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - propertyList: The property list to copy. This may be any of the standard property list objects, for example a CFArray or a CFDictionary object.
+///
+/// - mutabilityOption: A constant that specifies the degree of mutability of the returned property list. See [Property List Mutability Options](https://developer.apple.com/documentation/corefoundation/property_list_mutability_options) for descriptions of possible values.
+///
+///
+/// ## Return Value
+///
+/// A new property list that is a copy of `propertyList`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// Recursively creates a copy of the given property list so nested arrays and dictionaries are copied as well as the top-most container.
+///
+///
 ///
 /// # Safety
 ///
@@ -113,19 +193,19 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat?language=objc)
+/// Specifies the format of a property list.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFPropertyListFormat(pub CFIndex);
 impl CFPropertyListFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat/openstepformat?language=objc)
+    /// OpenStep format (use of this format is discouraged).
     #[doc(alias = "kCFPropertyListOpenStepFormat")]
     pub const OpenStepFormat: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat/xmlformat_v1_0?language=objc)
+    /// XML format version 1.0.
     #[doc(alias = "kCFPropertyListXMLFormat_v1_0")]
     pub const XMLFormat_v1_0: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat/binaryformat_v1_0?language=objc)
+    /// Binary format version 1.0.
     #[doc(alias = "kCFPropertyListBinaryFormat_v1_0")]
     pub const BinaryFormat_v1_0: Self = Self(200);
 }
@@ -140,7 +220,25 @@ unsafe impl RefEncode for CFPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistisvalid(_:_:)?language=objc)
+/// Determines if a property list is valid.
+///
+/// Parameters:
+/// - plist: The property list to validate.
+///
+/// - format: A constant that specifies the allowable format of `plist`. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+///
+///
+/// ## Return Value
+///
+/// `true` if the object graph rooted at `plist` is a valid property list graph—that is, the property list contains no cycles, only contains property list objects, and all dictionary keys are strings; otherwise `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// The debugging library version of this function prints out some useful messages.
+///
+///
 ///
 /// # Safety
 ///
@@ -158,7 +256,41 @@ pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistwritetostream(_:_:_:_:)?language=objc)
+    /// Writes the bytes of a property list serialization out to a stream.
+    ///
+    /// Parameters:
+    /// - propertyList: The property list to write out.
+    ///
+    /// - stream: The stream to write to. The stream must be opened and configured—this function simply writes bytes to the stream.
+    ///
+    /// - format: A constant that specifies the format used to write `propertyList`. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+    ///
+    /// - errorString: On return, `NULL` if the conversion is successful, otherwise a string that describes the nature of the errors. Error messages are not localized, but may be in the future, so they are not currently suitable for comparison.
+    ///
+    /// Pass `NULL` if you do not wish to receive an error string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes written, or `0` if an error occurred. If `0` is returned, `errorString` will contain an error message.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function leaves the stream open after reading the content. When reading a property list, this function expects the reading stream to end wherever the writing ended, so that the end of the property list data can be identified.
+    ///
+    /// ### Special Considerations
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  This function is obsolete and will be deprecated soon. Use [`CFPropertyListWrite`](https://developer.apple.com/documentation/corefoundation/cfpropertylistwrite(_:_:_:_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -175,7 +307,45 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatefromstream(_:_:_:_:_:_:)?language=objc)
+/// Creates a property list using data from a stream.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new property list. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - stream: The stream whose data contains the content. The stream must be opened and configured—this function simply reads bytes from the stream. The stream may contain any supported property list type (see [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat)).
+///
+/// - streamLength: The number of bytes to read. If `0`, this function will read to the end of the stream.
+///
+/// - mutabilityOption: A constant that specifies the degree of mutability for the returned property list. See [Property List Mutability Options](https://developer.apple.com/documentation/corefoundation/property_list_mutability_options) for descriptions of possible values.
+///
+/// - format: A constant that specifies the format of the property list. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+///
+/// - errorString: On return, `NULL` if the conversion is successful, otherwise a string that describes the nature of the error. Error messages are not localized, but may be in the future, so they are not suitable for comparison.
+///
+/// Pass `NULL` if you do not wish to receive an error string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+/// ## Return Value
+///
+/// A new property list initialized with the data contained in `stream`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function simply reads bytes from `stream` starting at the current location to the end, which is expected to be the end of the property list, or up to the number of bytes specified by `streamLength` if it is not `0`.
+///
+/// ### Special Considerations
+///
+/// <div class="warning">
+///
+/// ### Warning
+///  This function is obsolete and will be deprecated soon. Use [`CFPropertyListCreateWithStream`](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatewithstream(_:_:_:_:_:_:)) instead.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -217,16 +387,34 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadcorrupterror?language=objc)
+/// Signifies an error parsing a property list.
 pub const kCFPropertyListReadCorruptError: CFIndex = 3840;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadunknownversionerror?language=objc)
+/// Signifies the version number in the property list is unknown.
 pub const kCFPropertyListReadUnknownVersionError: CFIndex = 3841;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadstreamerror?language=objc)
+/// Signifies a stream error reading a property list.
 pub const kCFPropertyListReadStreamError: CFIndex = 3842;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistwritestreamerror?language=objc)
+/// Signifies a stream error writing a property list.
 pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatewithdata(_:_:_:_:_:)?language=objc)
+/// Creates a property list from a given CFData object.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new property list object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - data: A CFData object containing a serialized representation of a property list.
+///
+/// - options: A [`CFPropertyListMutabilityOptions`](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions) constant to specify the mutability of the returned property list—see [Property List Mutability Options](https://developer.apple.com/documentation/corefoundation/property_list_mutability_options) for possible values.
+///
+/// - format: If this parameter is non-`NULL`, on return it will be set to the format of the data. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+///
+/// - error: If this parameter is non-`NULL`, if an error occurs, on return this will contain a CFError error describing the problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+/// ## Return Value
+///
+/// A new property list created from the data in `data`. If an error occurs while parsing the data, returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 ///
 /// # Safety
 ///
@@ -256,7 +444,27 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatewithstream(_:_:_:_:_:_:)?language=objc)
+/// Create and return a property list with a CFReadStream input.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new property list object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - stream: A CFReadStream that contains a serialized representation of a property list.
+///
+/// - streamLength: The number of bytes to read from the stream. Pass `0` to read until the end of the stream is detected.
+///
+/// - options: A [`CFPropertyListMutabilityOptions`](https://developer.apple.com/documentation/corefoundation/cfpropertylistmutabilityoptions) constant to specify the mutability of the returned property list—see [Property List Mutability Options](https://developer.apple.com/documentation/corefoundation/property_list_mutability_options) for possible values.
+///
+/// - format: If this parameter is non-`NULL`, on return it will be set to the format of the data. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+///
+/// - error: If this parameter is non-`NULL`, if an error occurs, on return this will contain a CFError error describing the problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+/// ## Return Value
+///
+/// A new property list created from the data in `stream`. If an error occurs while parsing the data, returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 ///
 /// # Safety
 ///
@@ -291,7 +499,25 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistwrite(_:_:_:_:_:)?language=objc)
+    /// Write the bytes of a serialized property list out to a stream.
+    ///
+    /// Parameters:
+    /// - propertyList: The property list to write out.
+    ///
+    /// - stream: The CFWriteStream to which to write the data. The stream must be opened and configured.
+    ///
+    /// - format: A CFPropertyListFormat constant to specify the data format. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+    ///
+    /// - options: This parameter is currently unused and should be set to `0`.
+    ///
+    /// - error: If this parameter is non-NULL, if an error occurs, on return this will contain a CFError error describing the problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes written to `stream`. If an error occurs, returns `0`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -308,7 +534,29 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatedata(_:_:_:_:_:)?language=objc)
+/// Returns a CFData object containing a serialized representation of a given property list in a specified format.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new data object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - propertyList: The property list to write out.
+///
+/// - format: A CFPropertyListFormat constant to specify the data format. See [`CFPropertyListFormat`](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat) for possible values.
+///
+/// - options: This parameter is currently unused and should be set to `0`.
+///
+/// - error: If this parameter is non-NULL, if an error occurs, on return this will contain a CFError error describing the problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+/// ## Return Value
+///
+/// A CFData object containing a serialized representation of `propertyList` in a the format specified by `format`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+///
 ///
 /// # Safety
 ///

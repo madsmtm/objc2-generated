@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus?language=objc)
+/// The authorization status for motion-related features.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMAuthorizationStatus(pub NSInteger);
 impl CMAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/notdetermined?language=objc)
+    /// The status has not yet been determined.
     #[doc(alias = "CMAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/restricted?language=objc)
+    /// Access is denied due to system-wide restrictions.
     #[doc(alias = "CMAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/denied?language=objc)
+    /// Access was denied by the user.
     #[doc(alias = "CMAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmauthorizationstatus/authorized?language=objc)
+    /// Access was granted by the user.
     #[doc(alias = "CMAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

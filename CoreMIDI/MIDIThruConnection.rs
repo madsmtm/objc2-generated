@@ -10,17 +10,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// An opaque reference to a play-through connection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionref?language=objc)
+/// An opaque reference to a play-through connection.
 #[cfg(feature = "MIDIServices")]
 pub type MIDIThruConnectionRef = MIDIObjectRef;
 
+/// A custom lookup table to transform MIDI 7-bit values, as contained in note numbers, velocities, control values, and so on.
 /// A custom mapping function to transform MIDI 7-bit values,
 /// as contained in note numbers, velocities, control values,
 /// etc.  y = value[x], where x is the input MIDI value, y the
 /// output.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midivaluemap?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MIDIValueMap {
@@ -37,6 +35,7 @@ unsafe impl RefEncode for MIDIValueMap {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values that specify the type of MIDI transformation.
 /// Values specifying a type of MIDI transformation, as found in the transform member of MIDITransform.
 ///
 ///
@@ -55,35 +54,45 @@ unsafe impl RefEncode for MIDIValueMap {
 /// the value's maximum value is param
 ///
 /// transform the value using a map; param is the index of the map in the connection's array of maps.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformType(pub u16);
 impl MIDITransformType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/none?language=objc)
+    /// No transformation.
     #[doc(alias = "kMIDITransform_None")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/filterout?language=objc)
+    /// A transformation that filters out an event type.
     #[doc(alias = "kMIDITransform_FilterOut")]
     pub const FilterOut: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/mapcontrol?language=objc)
+    /// A transformation that changes a specified control number to a supplied parameter value.
     #[doc(alias = "kMIDITransform_MapControl")]
     pub const MapControl: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/add?language=objc)
+    /// A transform that adds a parameter value.
     #[doc(alias = "kMIDITransform_Add")]
     pub const Add: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/scale?language=objc)
+    /// A transform that multiplies by the specified parameter value.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify the parameter value in fixed point format: `bbbb.bbbb bbbb bbbb`
+    ///
+    ///
     #[doc(alias = "kMIDITransform_Scale")]
     pub const Scale: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/minvalue?language=objc)
+    /// A transform that sets the minimum value to the specified parameter value.
     #[doc(alias = "kMIDITransform_MinValue")]
     pub const MinValue: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/maxvalue?language=objc)
+    /// A transform that sets the maximum value to the specified parameter value.
     #[doc(alias = "kMIDITransform_MaxValue")]
     pub const MaxValue: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype/mapvalue?language=objc)
+    /// A transform that maps one value to another.
+    ///
+    /// ## Discussion
+    ///
+    /// The value you specify is the index of the map in the connection’s array of maps.
+    ///
+    ///
     #[doc(alias = "kMIDITransform_MapValue")]
     pub const MapValue: Self = Self(12);
 }
@@ -98,9 +107,10 @@ unsafe impl RefEncode for MIDITransformType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidithruconnection_maxendpoints?language=objc)
+/// The maximum number of endpoints for this connection.
 pub const kMIDIThruConnection_MaxEndpoints: c_uint = 8;
 
+/// A set of values that indicate how to interpret control numbers.
 /// Specifies how control numbers are interpreted.
 ///
 ///
@@ -109,29 +119,27 @@ pub const kMIDIThruConnection_MaxEndpoints: c_uint = 8;
 /// control numbers may be 0-31
 ///
 /// control numbers may be 0-16383
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformControlType(pub u8);
 impl MIDITransformControlType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_7bit?language=objc)
+    /// A 7-bit control type.
     #[doc(alias = "kMIDIControlType_7Bit")]
     pub const ControlType_7Bit: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_14bit?language=objc)
+    /// A 14-bit control type.
     #[doc(alias = "kMIDIControlType_14Bit")]
     pub const ControlType_14Bit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_7bitrpn?language=objc)
+    /// A 7-bit Registered Parameter Number (RPN).
     #[doc(alias = "kMIDIControlType_7BitRPN")]
     pub const ControlType_7BitRPN: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_14bitrpn?language=objc)
+    /// A 14-bit Registered Parameter Number (RPN).
     #[doc(alias = "kMIDIControlType_14BitRPN")]
     pub const ControlType_14BitRPN: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_7bitnrpn?language=objc)
+    /// A 7-bit Nonregistered Parameter Number (RPN).
     #[doc(alias = "kMIDIControlType_7BitNRPN")]
     pub const ControlType_7BitNRPN: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype/controltype_14bitnrpn?language=objc)
+    /// A 14-bit Nonregistered Parameter Number (RPN).
     #[doc(alias = "kMIDIControlType_14BitNRPN")]
     pub const ControlType_14BitNRPN: Self = Self(5);
 }
@@ -146,14 +154,13 @@ unsafe impl RefEncode for MIDITransformControlType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The transformation of a single type of MIDI event.
 /// Describes how a single type of MIDI event is transformed.
 ///
 /// This structure controls the transformation of various MIDI events other than control changes.
 ///
 /// Field: transform   The type of transformation to be applied to the event values.
 /// Field: param       An argument to the transformation method (see description of MIDITransformType).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDITransform {
@@ -174,6 +181,18 @@ unsafe impl RefEncode for MIDITransform {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that describes the transformation of MIDI control change events.
+///
+/// ## Overview
+///
+/// A single parameters object may describe any number of transformations to control events. It’s important to order multiple transformations correctly: filter out, remap, and then alter values.
+///
+/// The system performs all transformations internally using 14-bit values, so when you perform an add, min, or max transform on a 7-bit control value, the parameter must be a 14-bit value. For example, to add 10 to a control value, the parameter must be (10 << 7) = 1280.
+///
+/// Based on the MIDI specification, the system interprets several controls specially:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Control" }] }], [Paragraph { inline_content: [Text { text: "Function" }] }]], [[Paragraph { inline_content: [Text { text: "32-63" }] }], [Paragraph { inline_content: [Text { text: "The least signifcant bit of 0-31." }] }]], [[Paragraph { inline_content: [Text { text: "6/38" }] }], [Paragraph { inline_content: [Text { text: "Data entry." }] }]], [[Paragraph { inline_content: [Text { text: "96, 97" }] }], [Paragraph { inline_content: [Text { text: "Data increment and decrement, respectively." }] }]], [[Paragraph { inline_content: [Text { text: "98-101" }] }], [Paragraph { inline_content: [Text { text: "NRPN/RPN" }] }]]], alignments: None, metadata: None })
+///
 /// Describes a transformation of MIDI control change events.
 ///
 /// A single MIDIThruConnectionParams may describe any number of transformations to control
@@ -201,8 +220,6 @@ unsafe impl RefEncode for MIDITransform {
 /// Field: controlNumber       The control number to be affected.
 /// Field: transform           The type of transformation to be applied to the event values.
 /// Field: param               An argument to the transformation method (see description of MIDITransformType).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicontroltransform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIControlTransform {
@@ -232,6 +249,13 @@ unsafe impl RefEncode for MIDIControlTransform {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A source or destination in a MIDI thru connection.
+///
+/// ## Overview
+///
+/// Set the endpoint’s [`uniqueID`](https://developer.apple.com/documentation/coremidi/midithruconnectionendpoint/uniqueid) to 0 if the endpoint exists and you’re passing its [`endpointRef`](https://developer.apple.com/documentation/coremidi/midithruconnectionendpoint/endpointref). When retrieving a connection from Core MIDI, its [`endpointRef`](https://developer.apple.com/documentation/coremidi/midithruconnectionendpoint/endpointref) may be `NULL` if it doesn’t exist, but the [`uniqueID`](https://developer.apple.com/documentation/coremidi/midithruconnectionendpoint/uniqueid) is always non-zero.
+///
+///
 /// Describes a source or destination in a MIDIThruConnection.
 ///
 /// When creating one of these, you can leave uniqueID 0 if the endpoint exists and you are passing
@@ -242,8 +266,6 @@ unsafe impl RefEncode for MIDIControlTransform {
 ///
 /// Field: endpointRef     The endpoint specified as a MIDIEndpointRef.
 /// Field: uniqueID        The endpoint specified by its uniqueID.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionendpoint?language=objc)
 #[cfg(feature = "MIDIServices")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -265,6 +287,7 @@ unsafe impl RefEncode for MIDIThruConnectionEndpoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A set of MIDI routings and transformations.
 /// Describes a set of MIDI routings and transformations.
 ///
 /// The remainder of the structure is variably-sized. It contains numControlTransform instances of
@@ -305,8 +328,6 @@ unsafe impl RefEncode for MIDIThruConnectionEndpoint {
 /// Field: numControlTransforms    The number of control transformations in the variable-length portion of the struct.
 /// Field: numMaps                 The number of MIDIValueMaps in the variable-length portion of the struct.
 /// Field: reserved3       Must be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionparams?language=objc)
 #[cfg(feature = "MIDIServices")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -381,6 +402,17 @@ unsafe impl RefEncode for MIDIThruConnectionParams {
 impl MIDIThruConnectionParams {
     // TODO: pub fn MIDIThruConnectionParamsSize(ptr: NonNull<MIDIThruConnectionParams>,) -> usize;
 
+    /// Initializes a parameters object with its default values.
+    ///
+    /// Parameters:
+    /// - inConnectionParams: The parameters to initialize.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that fills the connection structure with default values. Set the source and destination to create a simple, unmodified thru connection.
+    ///
+    ///
     /// Fills a MIDIThruConnectionParams with default values.
     ///
     /// Parameter `inConnectionParams`: The struct to be initialized.
@@ -392,8 +424,6 @@ impl MIDIThruConnectionParams {
     /// # Safety
     ///
     /// `in_connection_params` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionparamsinitialize(_:)?language=objc)
     #[doc(alias = "MIDIThruConnectionParamsInitialize")]
     #[cfg(feature = "MIDIServices")]
     #[inline]
@@ -408,6 +438,21 @@ impl MIDIThruConnectionParams {
 }
 
 extern "C-unwind" {
+    /// Creates a MIDI thru connection.
+    ///
+    /// Parameters:
+    /// - inPersistentOwnerID: A unique identifier of the owning object, such as `com.mycompany.MyApp`. If you pass `NULL`, the client owns the connection and it’s automatically disposed with the client.
+    ///
+    /// - inConnectionParams: A [`MIDIThruConnectionParams`](https://developer.apple.com/documentation/coremidi/midithruconnectionparams) object that’s contained in a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata).
+    ///
+    /// - outConnection: On successful return, a reference to the newly created connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Creates a thru connection.
     ///
     /// Parameter `inPersistentOwnerID`: If null, then the connection is marked as owned by the client
@@ -423,8 +468,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_connection` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectioncreate(_:_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionCreate(
         in_persistent_owner_id: Option<&CFString>,
@@ -434,18 +477,46 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes a MIDI thru connection.
+    ///
+    /// Parameters:
+    /// - connection: The connection to dispose.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Disposes a thru connection.
     ///
     /// Parameter `connection`: The connection to be disposed
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectiondispose(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIThruConnectionDispose(connection: MIDIThruConnectionRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Returns the thru connection’s parameters.
+    ///
+    /// Parameters:
+    /// - connection: The connection to dispose.
+    ///
+    /// - outConnectionParams: On successful return, the connection’s parameters in a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned object contains a [`MIDIThruConnectionParams`](https://developer.apple.com/documentation/coremidi/midithruconnectionparams) structure. The caller is responsible for releasing it.
+    ///
+    ///
     /// Obtains a thru connection's MIDIThruConnectionParams.
     ///
     /// Parameter `connection`: The connection to be disposed.
@@ -460,8 +531,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_connection_params` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectiongetparams(_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionGetParams(
         connection: MIDIThruConnectionRef,
@@ -470,6 +539,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Updates a thru connection’s parameters.
+    ///
+    /// Parameters:
+    /// - connection: The connection to update.
+    ///
+    /// - inConnectionParams: The connection’s new parameters in a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Alters a thru connection's MIDIThruConnectionParams.
     ///
     /// Parameter `connection`: The connection to be modified.
@@ -477,8 +559,6 @@ extern "C-unwind" {
     /// Parameter `inConnectionParams`: The connection's new MIDIThruConnectionParams in a CFDataRef
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionsetparams(_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIThruConnectionSetParams(
         connection: MIDIThruConnectionRef,
@@ -487,6 +567,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Finds the persistent thru connections for the specified client.
+    ///
+    /// Parameters:
+    /// - inPersistentOwnerID: The identifier of the owning object.
+    ///
+    /// - outConnectionList: On successful return, a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) that contains an array of MIDI thru connections.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Returns all of the persistent thru connections created by a client.
     ///
     /// Parameter `inPersistentOwnerID`: The ID of the owner whose connections are to be returned.
@@ -498,8 +591,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_connection_list` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionfind(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIThruConnectionFind(
         in_persistent_owner_id: &CFString,

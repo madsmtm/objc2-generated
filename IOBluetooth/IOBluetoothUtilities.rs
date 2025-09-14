@@ -11,6 +11,25 @@ use crate::*;
 extern "C-unwind" {
     /// Convenience routine to take an NSString and turn it into a BluetoothDeviceAddress structure.
     ///
+    /// Parameters:
+    /// - inNameString: Ptr to an NSString that contains the data to turn into the device address.
+    ///
+    /// - outDeviceAddress: Ptr to an address structure that will be returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns success (0) or failure code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Pass in most types of strings, such as “001122334455” or “00-11-22-33-44-55” and the conversion should be successful. Also, you should have 2 characters per byte for the conversion to work properly.
+    ///
+    ///
+    /// Convenience routine to take an NSString and turn it into a BluetoothDeviceAddress structure.
+    ///
     /// Parameter `inNameString`: Ptr to an NSString that contains the data to turn into the device address.
     ///
     /// Parameter `outDeviceAddress`: Ptr to an address structure that will be returned.
@@ -23,8 +42,6 @@ extern "C-unwind" {
     ///
     /// - `in_name_string` might not allow `None`.
     /// - `out_device_address` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnsstringtodeviceaddress(_:_:)?language=objc)
     #[cfg(all(feature = "Bluetooth", feature = "objc2-foundation"))]
     pub fn IOBluetoothNSStringToDeviceAddress(
         in_name_string: Option<&NSString>,
@@ -32,6 +49,23 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
+/// Convenience routine to take a device address structure and create an NSString.
+///
+/// Parameters:
+/// - deviceAddress: A valid bluetooth device structure.
+///
+///
+/// ## Return Value
+///
+/// Returns the created address string.
+///
+///
+///
+/// ## Discussion
+///
+/// The resultant string will be in this format: “00-11-22-33-44-55”
+///
+///
 /// Convenience routine to take a device address structure and create an NSString.
 ///
 /// Parameter `deviceAddress`: A valid bluetooth device structure.
@@ -43,8 +77,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `device_address` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnsstringfromdeviceaddress(_:)?language=objc)
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddress(
@@ -70,8 +102,6 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddress(
 /// # Safety
 ///
 /// `device_address` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnsstringfromdeviceaddresscolon(_:)?language=objc)
 #[cfg(all(feature = "Bluetooth", feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
@@ -88,6 +118,23 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
 
 /// Apple designated PIM data is classified as: .vcard, .vcal, .vcf, .vnote, .vmsg, .vcs
 ///
+/// Parameters:
+/// - inFileName: Name of file - should include extension!
+///
+///
+/// ## Return Value
+///
+/// Yes or no, is it Apple-designated PIM data?
+///
+///
+///
+/// ## Discussion
+///
+/// Not much to talk about.
+///
+///
+/// Apple designated PIM data is classified as: .vcard, .vcal, .vcf, .vnote, .vmsg, .vcs
+///
 /// Parameter `inFileName`: Name of file - should include extension!
 ///
 /// Returns: Yes or no, is it Apple-designated PIM data?
@@ -97,8 +144,6 @@ pub unsafe extern "C-unwind" fn IOBluetoothNSStringFromDeviceAddressColon(
 /// # Safety
 ///
 /// `in_file_name` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothisfileappledesignatedpimdata(_:)?language=objc)
 #[cfg(feature = "objc2-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
@@ -111,6 +156,24 @@ pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
     ret != 0
 }
 
+///
+/// Parameters:
+/// - inName: Name of file that needs unique name in the specified path.
+///
+/// - inPath: Path you are trying to put file into.
+///
+///
+/// ## Return Value
+///
+/// String with a unique name appended on it for the provided path.
+///
+///
+///
+/// ## Discussion
+///
+/// When passed a VALID filename and a VALID path, this routine will return you a the path with the name appended onto it. If it already exist, it will insert a #1, #2, etc. Example: If you pass @“TestFile.txt” and @”~/Documents”, you will get @“~Documents/TestFile.txt”. If one already exists, you will be returned: @“~Documents/TestFile #1.txt”.
+///
+///
 /// Parameter `inName`: Name of file that needs unique name in the specified path.
 ///
 /// Parameter `inPath`: Path you are trying to put file into.
@@ -134,8 +197,6 @@ pub unsafe extern "C-unwind" fn IOBluetoothIsFileAppleDesignatedPIMData(
 ///
 /// - `in_name` might not allow `None`.
 /// - `in_path` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothgetuniquefilenameandpath(_:_:)?language=objc)
 #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothGetUniqueFileNameAndPath(
@@ -155,40 +216,73 @@ pub unsafe extern "C-unwind" fn IOBluetoothGetUniqueFileNameAndPath(
 extern "C-unwind" {
     /// Returns total number of HID devices on the system (Bluetooth + USB)
     ///
-    /// Returns: Number of HID devices.
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnumberofavailablehiddevices()?language=objc)
+    /// Number of HID devices.
+    ///
+    ///
+    /// Returns total number of HID devices on the system (Bluetooth + USB)
+    ///
+    /// Returns: Number of HID devices.
     pub fn IOBluetoothNumberOfAvailableHIDDevices() -> c_long;
 }
 
 extern "C-unwind" {
+    /// Returns number of “pointing” HID devices on the system (Bluetooth + USB)
+    ///
+    /// ## Return Value
+    ///
+    /// Number of HID devices.
+    ///
+    ///
     /// Returns number of "pointing" HID devices on the system (Bluetooth + USB)
     ///
     /// Returns: Number of HID devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnumberofpointinghiddevices()?language=objc)
     pub fn IOBluetoothNumberOfPointingHIDDevices() -> c_long;
 }
 
 extern "C-unwind" {
     /// Returns number of keyboard HID devices on the system (Bluetooth + USB)
     ///
-    /// Returns: Number of HID devices.
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnumberofkeyboardhiddevices()?language=objc)
+    /// Number of HID devices.
+    ///
+    ///
+    /// Returns number of keyboard HID devices on the system (Bluetooth + USB)
+    ///
+    /// Returns: Number of HID devices.
     pub fn IOBluetoothNumberOfKeyboardHIDDevices() -> c_long;
 }
 
 extern "C-unwind" {
+    /// Returns number of “Tablet” HID devices on the system (Bluetooth + USB)
+    ///
+    /// ## Return Value
+    ///
+    /// Number of HID devices.
+    ///
+    ///
     /// Returns number of "Tablet" HID devices on the system (Bluetooth + USB)
     ///
     /// Returns: Number of HID devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothnumberoftablethiddevices()?language=objc)
     pub fn IOBluetoothNumberOfTabletHIDDevices() -> c_long;
 }
 
 extern "C-unwind" {
+    /// The number of registry entries with a device classname.
+    ///
+    /// ## Return Value
+    ///
+    /// Number of HID devices.
+    ///
+    ///
+    ///
+    /// ## Overview
+    ///
+    /// Returns total number of registry entries with the provided device classname. For example, [`IOHIPointing`](https://developer.apple.com/documentation/kernel/iohipointing).
+    ///
+    ///
     /// Returns total number of registry entries with the provided device classname. e.g. "IOHIPointing"
     ///
     /// Returns: Number of HID devices.
@@ -196,7 +290,5 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device_type` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothfindnumberofregistryentriesofclassname(_:)?language=objc)
     pub fn IOBluetoothFindNumberOfRegistryEntriesOfClassName(device_type: *const c_char) -> c_long;
 }

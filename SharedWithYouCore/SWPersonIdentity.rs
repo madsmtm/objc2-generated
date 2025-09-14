@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents an opaque Merkle tree where the root hash of the tree can uniquely identify the individual by all of their devices. The individual's devices can prove themselves to be part of this identity, and can then be used for cryptographic signatures for that individual.
+    /// The unique identity for a person.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swperson/identity?language=objc)
+    /// ## Overview
+    ///
+    /// This object represents an opaque Merkle tree where the root hash of the tree can uniquely identify the individual using the hash value of all of their devices. The individual’s devices use [`SWPersonIdentityProof`](https://developer.apple.com/documentation/sharedwithyoucore/swperson/identityproof) to prove themselves to be part of this identity, and can then be used for cryptographic signatures for that individual.
+    ///
+    ///
+    /// Represents an opaque Merkle tree where the root hash of the tree can uniquely identify the individual by all of their devices. The individual's devices can prove themselves to be part of this identity, and can then be used for cryptographic signatures for that individual.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWPersonIdentity;

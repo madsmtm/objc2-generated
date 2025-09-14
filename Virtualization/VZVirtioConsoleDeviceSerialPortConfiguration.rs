@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration object that requests the creation of a console device to communicate with the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZVirtioConsoleDeviceSerialPortConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceserialportconfiguration) object enables serial communication between the guest operating system and host computer through the Virtio interface. After you create this configuration object, configure its inherited [`attachment`](https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment) property with an object that defines the type of serial communication you want to enable. Use a [`VZFileHandleSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment) object to enable two-way communication between the guest and host, and use a [`VZFileSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzfileserialportattachment) object to enable one-way communication from the guest to the file you designate.
+    ///
+    ///
     /// Virtio Console Serial Port Device
     ///
     /// The device creates a console which enables communication between the host and the guest through the Virtio interface.
     ///
     /// The device sets up a single port on the Virtio console device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceserialportconfiguration?language=objc)
     #[unsafe(super(VZSerialPortConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortConfiguration")]

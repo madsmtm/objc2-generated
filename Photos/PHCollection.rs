@@ -9,7 +9,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollection?language=objc)
+    /// The abstract superclass for Photos asset collections and collection lists.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create or work with instances of this class directly. Instead, use one of its two concrete subclasses, [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection) or [`PHCollectionList`](https://developer.apple.com/documentation/photos/phcollectionlist).
+    ///
+    /// - A [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection) object represents a collection of photo or video assets, such as an album, moment, or Shared Photo Stream.
+    ///
+    /// - A [`PHCollectionList`](https://developer.apple.com/documentation/photos/phcollectionlist) object represents a collection that contains other collections, such as a a folder containing albums or the set of all moments in a calendar year.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Accessing or modifying the Photos library requires explicit authorization from the user. The first time you call one of the methods listed in the Fetching Collections group, Photos automatically prompts the user for authorization. (Alternatively, you can use the [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) [`requestAuthorization:`](https://developer.apple.com/documentation/photos/phphotolibrary/requestauthorization(_:)) method to prompt the user at a time of your choosing.)
+    ///
+    /// Your app’s `Info.plist` file must provide a value for the [NSPhotoLibraryUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
@@ -107,7 +127,25 @@ impl PHCollection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollection?language=objc)
+    /// A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.
+    ///
+    /// ## Overview
+    ///
+    /// In the Photos framework, collection objects (including asset collections) do not directly reference their member objects, and there are no other objects that directly reference collection objects. To retrieve the members of an asset collection, fetch them with a [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) class method such as [`fetchAssetsInAssetCollection:options:`](https://developer.apple.com/documentation/photos/phasset/fetchassets(in:options:)). To find asset collections, use one of the methods listed in the Fetching Asset Collections group below.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Accessing or modifying the Photos library requires explicit authorization from the user. The first time you call one of the methods listed in the Fetching Asset Collections group, Photos automatically prompts the user for authorization. (Alternatively, you can use the [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary)  [`requestAuthorization:`](https://developer.apple.com/documentation/photos/phphotolibrary/requestauthorization(_:)) method to prompt the user at a time of your choosing.)
+    ///
+    /// Your app’s `Info.plist` file must provide a value for the [NSPhotoLibraryUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Like assets and collection lists, asset collections are immutable. To create, rename, or delete asset collections, or to add, remove, or rearrange members in an asset collection, create a [`PHAssetCollectionChangeRequest`](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest) object within a photo library change block. For details on using change requests and change blocks to update the photo library, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
@@ -298,7 +336,25 @@ impl PHAssetCollection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlist?language=objc)
+    /// A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.
+    ///
+    /// ## Overview
+    ///
+    /// In the Photos framework, collection objects (including asset collections) do not directly reference their member objects, and there are no other objects that directly reference collection objects. To retrieve the members of a collection list, fetch them with a [`PHCollection`](https://developer.apple.com/documentation/photos/phcollection) class method such as [`fetchCollectionsInCollectionList:options:`](https://developer.apple.com/documentation/photos/phcollection/fetchcollections(in:options:)). To find objects at the root of the collection list hierarchy (such as album folders with no parent folders), use the [`fetchTopLevelUserCollectionsWithOptions:`](https://developer.apple.com/documentation/photos/phcollection/fetchtoplevelusercollections(with:)) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Accessing or modifying the Photos library requires explicit authorization from the user. The first time you call one of the methods listed in the Fetching Collection Lists group, Photos automatically prompts the user for authorization. (Alternatively, you can use the [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) [`requestAuthorization:`](https://developer.apple.com/documentation/photos/phphotolibrary/requestauthorization(_:)) method to prompt the user at a time of your choosing.)
+    ///
+    /// Your app’s `Info.plist` file must provide a value for the [NSPhotoLibraryUsageDescription](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Like assets and asset collections, collection lists are immutable. To create, rename, or delete collection lists, or to add, remove, or rearrange members in a collection list, create a [`PHCollectionListChangeRequest`](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest) object within a photo library change block. For details on using change requests and change blocks to update the photo library, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]

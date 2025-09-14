@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that estimates loss for the YOLO algorithm.
     /// A YOLO loss layer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcyololosslayer?language=objc)
     #[unsafe(super(MLCLossLayer, MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]

@@ -9,7 +9,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotation?language=objc)
+    /// An interface for associating your content with a specific map location.
+    ///
+    /// ## Overview
+    ///
+    /// An object that adopts this protocol manages the data that you want to display on the map surface. It doesn’t provide the visual representation that the map displays. Instead, your map view’s delegate provides the [`MKAnnotationView`](https://developer.apple.com/documentation/mapkit/mkannotationview) objects necessary to display the content of your annotations. When you want to display content at a specific point on the map, add an annotation object to the map view. When the annotation’s [`coordinate`](https://developer.apple.com/documentation/mapkit/mkannotation/coordinate) is visible on the map, the map view asks its delegate to provide an appropriate view to display any content associated with the annotation. You implement the [`mapView:viewForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz) method of the delegate to provide that view.
+    ///
+    /// An object that adopts this protocol needs to implement the [`coordinate`](https://developer.apple.com/documentation/mapkit/mkannotation/coordinate) property. The other methods of this protocol are optional.
+    ///
+    ///
     pub unsafe trait MKAnnotation: NSObjectProtocol {
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(coordinate))]

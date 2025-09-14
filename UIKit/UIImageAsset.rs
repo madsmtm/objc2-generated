@@ -8,7 +8,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimageasset?language=objc)
+    /// A container for a collection of images that represent multiple ways of describing a single piece of artwork.
+    ///
+    /// ## Overview
+    ///
+    /// A common use case for [`UIImageAsset`](https://developer.apple.com/documentation/uikit/uiimageasset) is the grouping of multiple images of the same item at different display scales. Image asset objects aren’t assigned to instances of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) rather; [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) provides an asset when multiple representations of an image are available. Images retrieved from image asset catalogs using the [`imageNamed:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:)) or [`imageNamed:inBundle:compatibleWithTraitCollection:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:in:compatiblewith:)) methods automatically have an image asset object that allows access to other images from the catalog.
+    ///
+    /// ### Register an image
+    ///
+    /// When you register an image with an image asset, you associate a [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) object with the image. The trait collection must contain the [`displayScale`](https://developer.apple.com/documentation/uikit/uitraitcollection/displayscale) and [`userInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uitraitcollection/userinterfaceidiom) trait properties. If you don’t define these traits in the trait collection, the following defaults are assigned:
+    ///
+    /// - [`displayScale`](https://developer.apple.com/documentation/uikit/uitraitcollection/displayscale) = `1.0`
+    ///
+    /// - [`userInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uitraitcollection/userinterfaceidiom) = [`UIUserInterfaceIdiomUnspecified`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/unspecified)
+    ///
+    /// For example, if you create a trait collection that only contains a horizontal size class, the default display scale and idiom are added when the image is registered.
+    ///
+    /// ### Retrieve an image
+    ///
+    /// When you retrieve or unregister an image from an image asset, you do so using the trait collection that was used to register the image. To ensure the correct image is retrieved, the trait collection used must contain the [`displayScale`](https://developer.apple.com/documentation/uikit/uitraitcollection/displayscale) and [`userInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uitraitcollection/userinterfaceidiom) traits. If these traits aren’t defined in the trait collection, the following defaults are assigned:
+    ///
+    /// - [`displayScale`](https://developer.apple.com/documentation/uikit/uitraitcollection/displayscale) = scale of the current device
+    ///
+    /// - [`userInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uitraitcollection/userinterfaceidiom) = the type of interface used on the current device
+    ///
+    /// For example, if you create a trait collection that only contains a horizontal size class, the default display scale and idiom of the current device are added when searching the `UIImageAsset` for an image.
+    ///
+    /// [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) automatically retrieves the correct image when [`traitCollectionDidChange:`](https://developer.apple.com/documentation/uikit/uitraitenvironment/traitcollectiondidchange(_:)) is called on it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageAsset;

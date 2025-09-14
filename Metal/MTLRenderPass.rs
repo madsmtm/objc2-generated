@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlclearcolor?language=objc)
+/// An RGBA value used for a color pixel.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLClearColor {
@@ -37,19 +37,19 @@ impl MTLClearColor {
     // TODO: pub fn MTLClearColorMake(red: c_double,green: c_double,blue: c_double,alpha: c_double,) -> MTLClearColor;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction?language=objc)
+/// Types of actions performed for an attachment at the start of a rendering pass.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLoadAction(pub NSUInteger);
 impl MTLLoadAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction/dontcare?language=objc)
+    /// The GPU has permission to discard the existing contents of the attachment at the start of the render pass, replacing them with arbitrary data.
     #[doc(alias = "MTLLoadActionDontCare")]
     pub const DontCare: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction/load?language=objc)
+    /// The GPU preserves the existing contents of the attachment at the start of the render pass.
     #[doc(alias = "MTLLoadActionLoad")]
     pub const Load: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction/clear?language=objc)
+    /// The GPU writes a value to every pixel in the attachment at the start of the render pass.
     #[doc(alias = "MTLLoadActionClear")]
     pub const Clear: Self = Self(2);
 }
@@ -62,28 +62,56 @@ unsafe impl RefEncode for MTLLoadAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction?language=objc)
+/// Types of actions performed for an attachment at the end of a rendering pass.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStoreAction(pub NSUInteger);
 impl MTLStoreAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/dontcare?language=objc)
+    /// The GPU has permission to discard the rendered contents of the attachment at the end of the render pass, replacing them with arbitrary data.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when you need the attachment’s contents during the render pass but not afterwards. Some GPUs may still store the contents back to the texture, but you can’t rely on that behavior. You must assume that GPU discarded the texture’s contents.
+    ///
+    ///
     #[doc(alias = "MTLStoreActionDontCare")]
     pub const DontCare: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/store?language=objc)
+    /// The GPU stores the rendered contents to the texture.
     #[doc(alias = "MTLStoreActionStore")]
     pub const Store: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/multisampleresolve?language=objc)
+    /// The GPU resolves the multisampled data to one sample per pixel and stores the data to the resolve texture, discarding the multisample data afterwards.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when you need to resolve the multisample attachment’s contents at the end of the render pass but don’t need the multisample data afterwards. Some GPUs may still store the multisample data back to the texture, but you can’t rely on that behavior. You must assume that GPU discarded the multisample texture’s contents.
+    ///
+    ///
     #[doc(alias = "MTLStoreActionMultisampleResolve")]
     pub const MultisampleResolve: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/storeandmultisampleresolve?language=objc)
+    /// The GPU stores the multisample data to the multisample texture, resolves the data to a sample per pixel, and stores the data to the resolve texture.
     #[doc(alias = "MTLStoreActionStoreAndMultisampleResolve")]
     pub const StoreAndMultisampleResolve: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/unknown?language=objc)
+    /// The system selects a store action when it encodes the render pass.
+    ///
+    /// ## Discussion
+    ///
+    /// Only apply this action if you can’t determine the store action when you create the render pass descriptor. You must specify a store action before you finish encoding commands into the render command encoder. Refer to the [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) and [`MTLParallelRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder) protocol references for further information.
+    ///
+    ///
     #[doc(alias = "MTLStoreActionUnknown")]
     pub const Unknown: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction/customsampledepthstore?language=objc)
+    /// The GPU stores depth data in a sample-position–agnostic representation.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only set this action on an [`MTLRenderPassDepthAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassdepthattachmentdescriptor) instance.
+    ///
+    /// Set this action when you need to read the depth data in a subsequent render pass or blit operation that is unaware of the programmable sample positions used to generate the data.
+    ///
+    /// If you specify this action, Metal may decompress the depth render target and store the resulting data in its decompressed form. If you don’t change programmable sample positions in a subsequent render pass, use [`MTLStoreActionStore`](https://developer.apple.com/documentation/metal/mtlstoreaction/store) instead to improve performance.
+    ///
+    ///
     #[doc(alias = "MTLStoreActionCustomSampleDepthStore")]
     pub const CustomSampleDepthStore: Self = Self(5);
 }
@@ -96,17 +124,33 @@ unsafe impl RefEncode for MTLStoreAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions?language=objc)
+/// Options that modify a store action.
+///
+/// ## Overview
+///
+/// This property modifies the intended behavior of the store actions in the [`MTLStoreAction`](https://developer.apple.com/documentation/metal/mtlstoreaction) enumeration.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStoreActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStoreActionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions/mtlstoreactionoptionnone?language=objc)
+/// An option that doesn’t modify the intended behavior of a store action.
         #[doc(alias = "MTLStoreActionOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions/customsamplepositions?language=objc)
+/// An option that stores data in a sample-position–agnostic representation.
+///
+/// ## Discussion
+///
+/// Set this option only on an [`MTLRenderPassColorAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptor) or [`MTLRenderPassDepthAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassdepthattachmentdescriptor) instance. Setting this option on an [`MTLRenderPassStencilAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassstencilattachmentdescriptor) instance or combining it with a nonstore [`storeAction`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction) value results in a runtime error.
+///
+/// Set this action when you need to read the data in a subsequent render pass or blit operation that is unaware of the programmable sample positions used to generate the data. You should set this option when, for example, reading per-sample data within a fragment function that uses different programmable sample positions.
+///
+/// If you specify this action, Metal may decompress the depth render target and store the resulting data in its decompressed form. If you don’t change programmable sample positions in a subsequent render pass, use [`MTLStoreActionStore`](https://developer.apple.com/documentation/metal/mtlstoreaction/store) instead to improve performance.
+///
+///
         #[doc(alias = "MTLStoreActionOptionCustomSamplePositions")]
         const CustomSamplePositions = 1<<0;
     }
@@ -122,24 +166,27 @@ unsafe impl RefEncode for MTLStoreActionOptions {
 
 /// This enumeration controls if Metal accumulates visibility results between render encoders or resets them.
 ///
+/// ## Overview
+///
+/// You can specify this property for `MTLRenderCommandEncoders` and for `MTL4RenderCommandEncoders` through their descriptors’ `MTLRenderCommandEncoder/visibilityResultType` and `MTL4RenderCommandEncoder/visibilityResultType` methods.
+///
+///
+/// This enumeration controls if Metal accumulates visibility results between render encoders or resets them.
+///
 /// You can specify this property for ``MTLRenderCommandEncoders`` and for ``MTL4RenderCommandEncoders`` through
 /// their descriptors' ``MTLRenderCommandEncoder/visibilityResultType`` and ``MTL4RenderCommandEncoder/visibilityResultType``
 /// methods.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVisibilityResultType(pub NSInteger);
 impl MTLVisibilityResultType {
     /// Reset visibility result data when you create a render command encoder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype/reset?language=objc)
+    /// Reset visibility result data when you create a render command encoder.
     #[doc(alias = "MTLVisibilityResultTypeReset")]
     pub const Reset: Self = Self(0);
     /// Accumulate visibility results data across multiple render passes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype/accumulate?language=objc)
+    /// Accumulate visibility results data across multiple render passes.
     #[doc(alias = "MTLVisibilityResultTypeAccumulate")]
     pub const Accumulate: Self = Self(1);
 }
@@ -153,7 +200,26 @@ unsafe impl RefEncode for MTLVisibilityResultType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor?language=objc)
+    /// A render target that serves as the output destination for pixels generated by a render pass.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor) instance to configure an individual render target of a framebuffer. Each [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor) instance specifies one texture that a graphics rendering pass can write into.
+    ///
+    /// Typically, you don’t directly create [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor) instances. Instead, the [`MTLRenderPassDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor) instance creates a default set of attachment instances. For each attachment that you intend to use as a render target, retrieve the [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor) instance from the render pass descriptor and configure its properties for use during this rendering pass.
+    ///
+    /// You must set the attachment’s [`texture`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/texture) property. The [`level`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/level), [`slice`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/slice), and [`depthPlane`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/depthplane) properties specify the mipmap level, slice, and depth plane (for 3D textures) of the texture, respectively.
+    ///
+    /// The [`loadAction`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction) and [`storeAction`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction) properties specify actions to perform at the start and end of a rendering pass for the attachment, respectively. For example, if you set the [`loadAction`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/loadaction) property of an attachment to [`MTLLoadActionClear`](https://developer.apple.com/documentation/metal/mtlloadaction/clear), then the contents of the texture fill with a value for the type of attachment at the start of the rendering pass.
+    ///
+    /// There are specific [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor) subclasses for color, depth, and stencil attachments. Each subclass provides additional properties to configure for that kind of attachment. The table below provides the list of subclasses.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attachment type" }] }], [Paragraph { inline_content: [Text { text: "Descriptor subclass" }] }]], [[Paragraph { inline_content: [Text { text: "Color" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Depth" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Stencil" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// ### Multisampling
+    ///
+    /// To perform multisampled antialiased rendering, you use two textures. Attach to the [`texture`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/texture) property a [`MTLTextureType2DMultisample`](https://developer.apple.com/documentation/metal/mtltexturetype/type2dmultisample) texture, and a 2D or cube texture to the [`resolveTexture`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/resolvetexture) property. When a rendering command executes, it renders to the multisample texture. At the end of the render pass, the GPU resolves the contents of the multisample texture and writes the results into the resolve texture. The [`resolveLevel`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/resolvelevel), [`resolveSlice`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/resolveslice), and [`resolveDepthPlane`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/resolvedepthplane) properties specify where the resolved image is written to. The attachment’s [`storeAction`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction) property determines what happens to the multisample texture after the GPU resolves its data.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassAttachmentDescriptor;
@@ -330,7 +396,7 @@ impl DefaultRetained for MTLRenderPassAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptor?language=objc)
+    /// A color render target that serves as the output destination for color pixels generated by a render pass.
     #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassColorAttachmentDescriptor;
@@ -382,21 +448,20 @@ impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
     }
 }
 
+/// Filtering options for controlling an MSAA depth resolve operation.
 /// Controls the MSAA depth resolve operation. Supported on iOS GPU Family 3 and later.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMultisampleDepthResolveFilter(pub NSUInteger);
 impl MTLMultisampleDepthResolveFilter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter/sample0?language=objc)
+    /// No filter is applied.
     #[doc(alias = "MTLMultisampleDepthResolveFilterSample0")]
     pub const Sample0: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter/min?language=objc)
+    /// The GPU compares all depth samples in the pixel and selects the sample with the smallest value.
     #[doc(alias = "MTLMultisampleDepthResolveFilterMin")]
     pub const Min: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter/max?language=objc)
+    /// The GPU compares all depth samples in the pixel and selects the sample with the largest value.
     #[doc(alias = "MTLMultisampleDepthResolveFilterMax")]
     pub const Max: Self = Self(2);
 }
@@ -410,7 +475,7 @@ unsafe impl RefEncode for MTLMultisampleDepthResolveFilter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassdepthattachmentdescriptor?language=objc)
+    /// A depth render target that serves as the output destination for depth pixels generated by a render pass.
     #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassDepthAttachmentDescriptor;
@@ -472,22 +537,25 @@ impl DefaultRetained for MTLRenderPassDepthAttachmentDescriptor {
     }
 }
 
+/// Constants used to control the multisample stencil resolve operation.
 /// Controls the MSAA stencil resolve operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMultisampleStencilResolveFilter(pub NSUInteger);
 impl MTLMultisampleStencilResolveFilter {
+    /// Chooses the first stencil sample in the pixel.
     /// The stencil sample corresponding to sample 0. This is the default behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter/sample0?language=objc)
     #[doc(alias = "MTLMultisampleStencilResolveFilterSample0")]
     pub const Sample0: Self = Self(0);
-    /// The stencil sample corresponding to whichever depth sample is selected by the depth resolve filter. If depth resolve is not enabled, the stencil sample is chosen based on what a depth resolve filter would have selected.
+    /// Chooses the stencil sample corresponding to the depth sample selected by the depth resolve filter.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter/depthresolvedsample?language=objc)
+    /// ## Discussion
+    ///
+    /// The resolve filter selects the stencil sample corresponding to the sample that the depth resolve filter would have selected.
+    ///
+    ///
+    /// The stencil sample corresponding to whichever depth sample is selected by the depth resolve filter. If depth resolve is not enabled, the stencil sample is chosen based on what a depth resolve filter would have selected.
     #[doc(alias = "MTLMultisampleStencilResolveFilterDepthResolvedSample")]
     pub const DepthResolvedSample: Self = Self(1);
 }
@@ -501,7 +569,7 @@ unsafe impl RefEncode for MTLMultisampleStencilResolveFilter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassstencilattachmentdescriptor?language=objc)
+    /// A stencil render target that serves as the output destination for stencil pixels generated by a render pass.
     #[unsafe(super(MTLRenderPassAttachmentDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassStencilAttachmentDescriptor;
@@ -567,7 +635,7 @@ impl DefaultRetained for MTLRenderPassStencilAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasscolorattachmentdescriptorarray?language=objc)
+    /// An array of render pass color attachment descriptor objects.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassColorAttachmentDescriptorArray;
@@ -623,7 +691,7 @@ impl DefaultRetained for MTLRenderPassColorAttachmentDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptor?language=objc)
+    /// A description of where to store GPU counter information at the start and end of a render pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptor;
@@ -764,7 +832,7 @@ impl DefaultRetained for MTLRenderPassSampleBufferAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpasssamplebufferattachmentdescriptorarray?language=objc)
+    /// An array of sample buffer attachments for a render pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassSampleBufferAttachmentDescriptorArray;
@@ -820,9 +888,22 @@ impl DefaultRetained for MTLRenderPassSampleBufferAttachmentDescriptorArray {
 }
 
 extern_class!(
-    /// MTLRenderPassDescriptor represents a collection of attachments to be used to create a concrete render command encoder
+    /// A group of render targets that hold the results of a render pass.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// An [`MTLRenderPassDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor) instance contains a collection of attachments used as the rendering destination for pixels generated by a rendering pass. The [`MTLRenderPassDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor) instance also sets the destination buffer for visibility information generated by a rendering pass.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When configuring an [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) instance for use with an attachment, set its [`usage`](https://developer.apple.com/documentation/metal/mtltexturedescriptor/usage) value to [`MTLTextureUsageRenderTarget`](https://developer.apple.com/documentation/metal/mtltextureusage/rendertarget) if you already know that you intend to use the resulting [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instance in an attachment. This may significantly improve your app’s performance with certain hardware.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// MTLRenderPassDescriptor represents a collection of attachments to be used to create a concrete render command encoder
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPassDescriptor;

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorysetuprequest?language=objc)
+    /// An object that describes how to add and setup up new accessories.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to provide steps for the user to add one or more accessories to a particular home, and follow up with additional setup.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessorySetupRequest;

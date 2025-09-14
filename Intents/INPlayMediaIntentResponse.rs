@@ -7,46 +7,101 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode?language=objc)
+/// Codes returned by an app or Intents app extension when handling or confirming a play media intent.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPlayMediaIntentResponseCode(pub NSInteger);
 impl INPlayMediaIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/unspecified?language=objc)
+    /// An unspecified response code.
     #[doc(alias = "INPlayMediaIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/ready?language=objc)
+    /// The intents handler is ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Respond with this code in your Intents app extension’s [`confirmPlayMedia:completion:`](https://developer.apple.com/documentation/intents/inplaymediaintenthandling/confirm(intent:completion:)) method after verifying that your app can play the requested media.
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/continueinapp?language=objc)
+    /// The system should launch the app in the foreground to play the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Because the lifespan of an app extension is short, media playback should happen in your app, not in the Intents app extension. To play the media with your app in the foreground, return [`INPlayMediaIntentResponseCodeContinueInApp`](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/continueinapp) as the response [`code`](https://developer.apple.com/documentation/intents/inplaymediaintentresponse/code).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Your app should be in the foreground when playing a video requested with a media intent shortcut.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/inprogress?language=objc)
+    /// The app is preparing to play the media content.
+    ///
+    /// ## Discussion
+    ///
+    /// Respond with this code when your app needs more time to load the media before playing it.
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/success?language=objc)
+    /// The app is playing the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Respond with this code after your app starts playing the media content in the [`application:handleIntent:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handle:completionhandler:)) method.
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeSuccess")]
     pub const Success: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/handleinapp?language=objc)
+    /// The system should launch the app in the background to play the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Because the lifespan of an app extension is short, media playback should happen in your app, not in the Intents app extension. To handle media playback in your app while in the background, return [`INPlayMediaIntentResponseCodeHandleInApp`](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/handleinapp) as the response [`code`](https://developer.apple.com/documentation/intents/inplaymediaintentresponse/code).
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failure?language=objc)
+    /// A failure occurred while confirming or handling the intent.
     #[doc(alias = "INPlayMediaIntentResponseCodeFailure")]
     pub const Failure: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch the app before media playback can begin.
+    ///
+    /// ## Discussion
+    ///
+    /// Respond with this code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, use this code when the user hasn’t set up an account with your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failureunknownmediatype?language=objc)
+    /// The app cannot play the media because the type is unknown or not supported.
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureUnknownMediaType")]
     pub const FailureUnknownMediaType: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failurenounplayedcontent?language=objc)
+    /// The media container has no unplayed content.
+    ///
+    /// ## Discussion
+    ///
+    /// Respond with this code when a media container such as a playlist has no unplayed media items.
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureNoUnplayedContent")]
     pub const FailureNoUnplayedContent: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failurerestrictedcontent?language=objc)
+    /// The app cannot play the media because of content restrictions.
+    ///
+    /// ## Discussion
+    ///
+    /// Respond with this code when you cannot handle the request because of a geographic region restriction or similar constraint.
+    ///
+    ///
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureRestrictedContent")]
     pub const FailureRestrictedContent: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponsecode/failuremaxstreamlimitreached?language=objc)
     #[doc(alias = "INPlayMediaIntentResponseCodeFailureMaxStreamLimitReached")]
     pub const FailureMaxStreamLimitReached: Self = Self(11);
 }
@@ -60,7 +115,19 @@ unsafe impl RefEncode for INPlayMediaIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaintentresponse?language=objc)
+    /// An intents handler’s response to a play media intent.
+    ///
+    /// ## Overview
+    ///
+    /// Create an instance of this class when you are:
+    ///
+    /// - Confirming your app can play the media.
+    ///
+    /// - Handling the request to play the media.
+    ///
+    /// To send private state data from your Intents app extension to your app, store the data in an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object and include the object when creating the [`INPlayMediaIntentResponse`](https://developer.apple.com/documentation/intents/inplaymediaintentresponse) instance.
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

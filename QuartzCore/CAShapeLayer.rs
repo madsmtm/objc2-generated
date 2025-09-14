@@ -11,20 +11,68 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerfillrule?language=objc)
 // NS_TYPED_ENUM
 pub type CAShapeLayerFillRule = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinejoin?language=objc)
 // NS_TYPED_ENUM
 pub type CAShapeLayerLineJoin = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinecap?language=objc)
 // NS_TYPED_ENUM
 pub type CAShapeLayerLineCap = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayer?language=objc)
+    /// A layer that draws a cubic Bezier spline in its coordinate space.
+    ///
+    /// ## Overview
+    ///
+    /// The shape is composited between the layer’s contents and its first sublayer.
+    ///
+    /// The shape will be drawn antialiased, and whenever possible it will be mapped into screen space before being rasterized to preserve resolution independence. However, certain kinds of image processing operations, such as CoreImage filters, applied to the layer or its ancestors may force rasterization in a local coordinate space.
+    ///
+    /// The following code shows how you can build complex, composite paths and display them using a shape layer. In this example, a series of progressively transformed ellipses form a simple flower shape. The shape layer that displays the path has its [`fillRule`](https://developer.apple.com/documentation/quartzcore/cashapelayer/fillrule) set to [`kCAFillRuleEvenOdd`](https://developer.apple.com/documentation/quartzcore/cashapelayerfillrule/evenodd) which stops the overlapping “petals” from filling with the yellow [`fillColor`](https://developer.apple.com/documentation/quartzcore/cashapelayer/fillcolor).
+    ///
+    /// ```swift
+    /// let width: CGFloat = 640
+    /// let height: CGFloat = 640
+    ///      
+    /// let shapeLayer = CAShapeLayer()
+    /// shapeLayer.frame = CGRect(x: 0, y: 0,
+    ///                           width: width, height: height)
+    ///      
+    /// let path = CGMutablePath()
+    ///      
+    /// stride(from: 0, to: CGFloat.pi * 2, by: CGFloat.pi / 6).forEach {
+    ///     angle in
+    ///     var transform  = CGAffineTransform(rotationAngle: angle)
+    ///         .concatenating(CGAffineTransform(translationX: width / 2, y: height / 2))
+    ///     
+    ///     let petal = CGPath(ellipseIn: CGRect(x: -20, y: 0, width: 40, height: 100),
+    ///                        transform: &transform)
+    ///     
+    ///     path.addPath(petal)
+    /// }
+    ///     
+    /// shapeLayer.path = path
+    /// shapeLayer.strokeColor = UIColor.red.cgColor
+    /// shapeLayer.fillColor = UIColor.yellow.cgColor
+    /// shapeLayer.fillRule = kCAFillRuleEvenOdd
+    /// ```
+    ///
+    /// The following figure shows the resulting shape layer.
+    ///
+    ///
+    /// ![Composite path displayed in a shape layer](https://docs-assets.developer.apple.com/published/67723bba6f48e3e15851ddfb2c5a2a8c/media-2825196%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Shape rasterization may favor speed over accuracy. For example, pixels with multiple intersecting path segments may not give exact results.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -229,41 +277,41 @@ impl DefaultRetained for CAShapeLayer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerfillrule/nonzero?language=objc)
+    /// Specifies the non-zero winding rule. Count each left-to-right path as +1 and each right-to-left path as -1. If the sum of all crossings is 0, the point is outside the path. If the sum is nonzero, the point is inside the path and the region containing it is filled.
     pub static kCAFillRuleNonZero: &'static CAShapeLayerFillRule;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerfillrule/evenodd?language=objc)
+    /// Specifies the even-odd winding rule. Count the total number of path crossings. If the number of crossings is even, the point is outside the path. If the number of crossings is odd, the point is inside the path and the region containing it should be filled.
     pub static kCAFillRuleEvenOdd: &'static CAShapeLayerFillRule;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinejoin/miter?language=objc)
+    /// Specifies a miter line shape of the joints between connected segments of a stroked path.
     pub static kCALineJoinMiter: &'static CAShapeLayerLineJoin;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinejoin/round?language=objc)
+    /// Specifies a round line shape of the joints between connected segments of a stroked path.
     pub static kCALineJoinRound: &'static CAShapeLayerLineJoin;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinejoin/bevel?language=objc)
+    /// Specifies a bevel line shape of the joints between connected segments of a stroked path.
     pub static kCALineJoinBevel: &'static CAShapeLayerLineJoin;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinecap/butt?language=objc)
+    /// Specifies a butt line cap style for endpoints for an open path when stroked.
     pub static kCALineCapButt: &'static CAShapeLayerLineCap;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinecap/round?language=objc)
+    /// Specifies a round line cap style for endpoints for an open path when stroked.
     pub static kCALineCapRound: &'static CAShapeLayerLineCap;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cashapelayerlinecap/square?language=objc)
+    /// Specifies a square line cap style for endpoints for an open path when stroked.
     pub static kCALineCapSquare: &'static CAShapeLayerLineCap;
 }

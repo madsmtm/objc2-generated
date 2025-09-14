@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmultipolygon?language=objc)
+    /// A collection of multiple closed polygon overlays.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`MKMultiPolygon`](https://developer.apple.com/documentation/mapkit/mkmultipolygon) when you have multiple distinct polygon shapes that you intend to render using the same style.
+    ///
+    ///
     #[unsafe(super(MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKShape")]

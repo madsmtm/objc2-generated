@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// This class acts as a wrapper for the [`HKBiologicalSex`](https://developer.apple.com/documentation/healthkit/hkbiologicalsex) enumeration.
     /// A wrapper object for HKBiologicalSex enumeration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsexobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBiologicalSexObject;
@@ -62,9 +61,8 @@ impl HKBiologicalSexObject {
 }
 
 extern_class!(
+    /// This class acts as a wrapper for the [`HKBloodType`](https://developer.apple.com/documentation/healthkit/hkbloodtype) enumeration.
     /// A wrapper object for HKBloodType enumeration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtypeobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKBloodTypeObject;
@@ -117,9 +115,8 @@ impl HKBloodTypeObject {
 }
 
 extern_class!(
+    /// This class acts as a wrapper for the [`HKFitzpatrickSkinType`](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype) enumeration.
     /// A wrapper object for HKFitzpatrickSkinType enumeration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFitzpatrickSkinTypeObject;
@@ -172,9 +169,8 @@ impl HKFitzpatrickSkinTypeObject {
 }
 
 extern_class!(
+    /// This class acts as a wrapper for the wheelchair use enumeration.
     /// A wrapper object for HKWheelchairUse enumeration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWheelchairUseObject;
@@ -227,9 +223,8 @@ impl HKWheelchairUseObject {
 }
 
 extern_class!(
+    /// An object that contains a movement mode value.
     /// A wrapper object for HKActivityMoveMode enumeration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivityMoveModeObject;

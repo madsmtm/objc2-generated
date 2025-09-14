@@ -7,14 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The media access control (MAC) address for a network interface in your virtual machine.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZMACAddress`](https://developer.apple.com/documentation/virtualization/vzmacaddress) object contains the hardware address of your network interface. Every network device has a unique 48-bit MAC address that the system uses to route network packets to that device.
+    ///
+    /// Call the [`randomLocallyAdministeredAddress`](https://developer.apple.com/documentation/virtualization/vzmacaddress/randomlocallyadministered()) method to get a local MAC address suitable for use with your network interfaces. Alternatively, you can create a [`VZMACAddress`](https://developer.apple.com/documentation/virtualization/vzmacaddress) object yourself from a string or `ether_addr_t` structure.
+    ///
+    ///
     /// VZMACAddress represents a media access control address (MAC address), the 48-bit ethernet address.
     ///
     /// The easiest way to obtain a MAC address is with +[VZMACAddress randomLocallyAdministeredAddress]. The method
     /// returns a valid local MAC address typically used with network interfaces.
     ///
     /// See: VZNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacaddress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMACAddress;

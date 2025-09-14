@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style?language=objc)
+/// Constants that specify a level indicator’s appearance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLevelIndicatorStyle(pub NSUInteger);
 impl NSLevelIndicatorStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/relevancy?language=objc)
+    /// A style that indicates the relevancy of an item, such as a search result.
     #[doc(alias = "NSLevelIndicatorStyleRelevancy")]
     pub const Relevancy: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/continuouscapacity?language=objc)
+    /// A style that indicates the capacity of something, such as how much data is on a hard disk.
     #[doc(alias = "NSLevelIndicatorStyleContinuousCapacity")]
     pub const ContinuousCapacity: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/discretecapacity?language=objc)
+    /// A style that displays discrete segments that indicate the capacity of something, such as an audio level.
     #[doc(alias = "NSLevelIndicatorStyleDiscreteCapacity")]
     pub const DiscreteCapacity: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicator/style/rating?language=objc)
+    /// A style that indicates a rank, such as a star ranking display.
     #[doc(alias = "NSLevelIndicatorStyleRating")]
     pub const Rating: Self = Self(3);
 }
@@ -36,7 +36,7 @@ unsafe impl RefEncode for NSLevelIndicatorStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslevelindicatorcell?language=objc)
+    /// `NSLevelIndicatorCell` is a subclass of [`NSActionCell`](https://developer.apple.com/documentation/appkit/nsactioncell) that provides several level indicator display styles including: capacity, ranking and relevancy. The capacity style provides both continuous and discrete modes.
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -220,22 +220,22 @@ impl NSLevelIndicatorCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrelevancylevelindicatorstyle?language=objc)
+/// A style that indicates the relevancy of an item, such as a search result.
 #[deprecated]
 pub static NSRelevancyLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::Relevancy.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontinuouscapacitylevelindicatorstyle?language=objc)
+/// A style that indicates the capacity of something, such as how much data is on a hard disk.
 #[deprecated]
 pub static NSContinuousCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::ContinuousCapacity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdiscretecapacitylevelindicatorstyle?language=objc)
+/// A style that displays discrete segments that indicate the capacity of something, such as an audio level.
 #[deprecated]
 pub static NSDiscreteCapacityLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::DiscreteCapacity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsratinglevelindicatorstyle?language=objc)
+/// A style that indicates a rank, such as a star ranking display.
 #[deprecated]
 pub static NSRatingLevelIndicatorStyle: NSLevelIndicatorStyle =
     NSLevelIndicatorStyle(NSLevelIndicatorStyle::Rating.0);

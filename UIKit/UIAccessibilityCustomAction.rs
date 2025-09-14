@@ -7,13 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction/handler?language=objc)
+/// A closure type that defines a handler to perform for an action.
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomActionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction?language=objc)
+    /// A custom action to perform on an accessible object.
+    ///
+    /// ## Overview
+    ///
+    /// Apps that support custom actions can create instances of this class, specifying the user-readable name of the action and the object and selector to use when performing the action. Assistive apps display custom actions in response to specific user cues. For example, VoiceOver lets users access actions quickly using the Actions rotor.
+    ///
+    /// After creating an instance of this class, add it to the [`accessibilityCustomActions`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitycustomactions) property of an appropriate accessible object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -244,6 +252,5 @@ impl UIAccessibilityCustomAction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction/editcategory?language=objc)
     pub static UIAccessibilityCustomActionCategoryEdit: &'static NSString;
 }

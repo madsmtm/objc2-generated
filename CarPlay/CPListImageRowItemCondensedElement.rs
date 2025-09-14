@@ -10,21 +10,18 @@ use objc2_ui_kit::*;
 use crate::*;
 
 /// Types of shape used to draw a condensed row element.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement/shape?language=objc)
+/// Types of shape used to draw a condensed row element.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListImageRowItemCondensedElementShape(pub NSInteger);
 impl CPListImageRowItemCondensedElementShape {
     /// The list item will render an element with a circular image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement/shape/circular?language=objc)
+    /// The list item will render an element with a circular image.
     #[doc(alias = "CPListImageRowItemCondensedElementShapeCircular")]
     pub const Circular: Self = Self(0);
     /// The list item will render an element with a rounded rectangle image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement/shape/roundedrectangle?language=objc)
+    /// The list item will render an element with a rounded rectangle image.
     #[doc(alias = "CPListImageRowItemCondensedElementShapeRoundedRectangle")]
     pub const RoundedRectangle: Self = Self(1);
 }
@@ -38,7 +35,6 @@ unsafe impl RefEncode for CPListImageRowItemCondensedElementShape {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement?language=objc)
     #[unsafe(super(CPListImageRowItemElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

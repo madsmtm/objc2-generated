@@ -4,26 +4,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions?language=objc)
+/// Constants that indicate a message search filter.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMessageAttributeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INMessageAttributeOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/read?language=objc)
+/// A read message.
         #[doc(alias = "INMessageAttributeOptionRead")]
         const Read = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/unread?language=objc)
+/// An unread message.
         #[doc(alias = "INMessageAttributeOptionUnread")]
         const Unread = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/flagged?language=objc)
+/// A flagged message.
         #[doc(alias = "INMessageAttributeOptionFlagged")]
         const Flagged = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/unflagged?language=objc)
+/// An unflagged message.
         #[doc(alias = "INMessageAttributeOptionUnflagged")]
         const Unflagged = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptions/played?language=objc)
+/// A played message.
         #[doc(alias = "INMessageAttributeOptionPlayed")]
         const Played = 1<<4;
     }

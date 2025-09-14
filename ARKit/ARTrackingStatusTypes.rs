@@ -5,9 +5,8 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Possible values for position-tracking quality.
 /// A value describing the camera’s tracking state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -15,19 +14,24 @@ use crate::*;
 pub struct ARTrackingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARTrackingState {
+    /// Camera position tracking is not available.
     /// Tracking is not available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenotavailable?language=objc)
     #[doc(alias = "ARTrackingStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
-    /// Tracking is limited. See tracking reason for details.
+    /// Tracking is available, but the quality of results is questionable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatelimited?language=objc)
+    /// ## Discussion
+    ///
+    /// In this state, the positions and transforms of anchors in the scene (especially detected planes) may not be accurate or consistent from one captured frame to the next.
+    ///
+    /// See the associated [`ARTrackingStateReason`](https://developer.apple.com/documentation/arkit/artrackingstatereason) value for information you can present to the user for improving tracking quality.
+    ///
+    ///
+    /// Tracking is limited. See tracking reason for details.
     #[doc(alias = "ARTrackingStateLimited")]
     pub const Limited: Self = Self(1);
+    /// Camera position tracking is providing optimal results.
     /// Tracking is Normal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenormal?language=objc)
     #[doc(alias = "ARTrackingStateNormal")]
     pub const Normal: Self = Self(2);
 }
@@ -42,9 +46,8 @@ unsafe impl RefEncode for ARTrackingState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible causes for limited position-tracking quality.
 /// A reason describing why the camera’s tracking state is limited.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -52,29 +55,48 @@ unsafe impl RefEncode for ARTrackingState {
 pub struct ARTrackingStateReason(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARTrackingStateReason {
-    /// Tracking is not limited.
+    /// The current tracking state is not limited.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonnone?language=objc)
+    /// ## Discussion
+    ///
+    /// This value occurs when the [`trackingState`](https://developer.apple.com/documentation/arkit/arcamera/trackingstate-9pgmq) property is [`ARTrackingStateNotAvailable`](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenotavailable) or [`ARTrackingStateNormal`](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenormal).
+    ///
+    ///
+    /// Tracking is not limited.
     #[doc(alias = "ARTrackingStateReasonNone")]
     pub const None: Self = Self(0);
-    /// Tracking is limited due to initialization in progress.
+    /// The AR session has not yet gathered enough camera or motion data to provide tracking information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasoninitializing?language=objc)
+    /// ## Discussion
+    ///
+    /// This value occurs temporarily after starting a new AR session or changing configurations.
+    ///
+    ///
+    /// Tracking is limited due to initialization in progress.
     #[doc(alias = "ARTrackingStateReasonInitializing")]
     pub const Initializing: Self = Self(1);
+    /// The device is moving too fast for accurate image-based position tracking.
     /// Tracking is limited due to a excessive motion of the camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonexcessivemotion?language=objc)
     #[doc(alias = "ARTrackingStateReasonExcessiveMotion")]
     pub const ExcessiveMotion: Self = Self(2);
+    /// The scene visible to the camera does not contain enough distinguishable features for image-based position tracking.
     /// Tracking is limited due to a lack of features visible to the camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasoninsufficientfeatures?language=objc)
     #[doc(alias = "ARTrackingStateReasonInsufficientFeatures")]
     pub const InsufficientFeatures: Self = Self(3);
-    /// Tracking is limited due to a relocalization in progress.
+    /// The AR session is attempting to resume after an interruption.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonrelocalizing?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit cannot track device position or orientation when the session has been interrupted (for example, by dismissing the view hosting an AR session or switching to another app). When resuming the session after an interruption, you cannot be certain that the world coordinate system (used for placing anchors) matches the device’s real-world environment.
+    ///
+    /// If your session or view delegate implements the [`sessionShouldAttemptRelocalization(_:)`](https://developer.apple.com/documentation/arkit/arsessionobserver/sessionshouldattemptrelocalization(_:)) method and returns [`true`](https://developer.apple.com/documentation/swift/true), ARKit attempts to reconcile pre- and post-interruption world tracking state. During this process, called _relocalization_, world tracking quality is [`ARTrackingStateLimited`](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatelimited), with [`ARTrackingStateReasonRelocalizing`](https://developer.apple.com/documentation/arkit/artrackingstatereason/artrackingstatereasonrelocalizing) as the reason for limited quality.
+    ///
+    /// If successful, the relocalization process ends after a short time, tracking quality returns to the [`ARTrackingStateNormal`](https://developer.apple.com/documentation/arkit/artrackingstate/artrackingstatenormal) state, and the world coordinate system and anchor positions generally reflect their state before the interruption.
+    ///
+    /// However, the speed and success rate of relocalization can vary depending on real-world conditions. You may wish to hide AR content or disable UI during relocalization, and reset tracking if relocalization doesn’t succeed within a time frame appropriate for your app.
+    ///
+    ///
+    /// Tracking is limited due to a relocalization in progress.
     #[doc(alias = "ARTrackingStateReasonRelocalizing")]
     pub const Relocalizing: Self = Self(4);
 }

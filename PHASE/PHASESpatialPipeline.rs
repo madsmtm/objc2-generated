@@ -7,25 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory?language=objc)
+/// Sound resonance effects for spatial mixing.
+///
+/// ## Discussion
+///
+/// This class identifies the various audio layers that a spatial mixer offers as keys to the [`entries`](https://developer.apple.com/documentation/phase/phasespatialpipeline/entries) dictionary.
+///
+///
 // NS_TYPED_ENUM
 pub type PHASESpatialCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory/directpathtransmission?language=objc)
+    /// A spatial category that refers to the unfiltered audio signal.
     pub static PHASESpatialCategoryDirectPathTransmission: &'static PHASESpatialCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory/earlyreflections?language=objc)
+    /// A spatial category that refers to the earlier echoes along the duration of sound resonance.
     pub static PHASESpatialCategoryEarlyReflections: &'static PHASESpatialCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory/latereverb?language=objc)
+    /// A spatial category that refers to the later echoes along the duration of sound resonance.
     pub static PHASESpatialCategoryLateReverb: &'static PHASESpatialCategory;
 }
 
+/// Sound resonance options for a spatial pipeline.
+///
+/// ## Overview
+///
+/// Each [`PHASESpatialPipeline`](https://developer.apple.com/documentation/phase/phasespatialpipeline) specifies a flag in its [`initWithFlags:`](https://developer.apple.com/documentation/phase/phasespatialpipeline/init(flags:)) initializer.
+///
+///
 /// *************************************************************************************************
 ///
 ///
@@ -37,21 +50,19 @@ extern "C" {
 /// Early Reflections.
 ///
 /// Late Reverb.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESpatialPipelineFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASESpatialPipelineFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/directpathtransmission?language=objc)
+/// A spatial property that refers to the original audio signal.
         #[doc(alias = "PHASESpatialPipelineFlagDirectPathTransmission")]
         const DirectPathTransmission = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/earlyreflections?language=objc)
+/// A spatial property that refers to the earlier echoes along the duration of sound resonance.
         #[doc(alias = "PHASESpatialPipelineFlagEarlyReflections")]
         const EarlyReflections = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/latereverb?language=objc)
+/// A spatial property that refers to the later echoes along the duration of sound resonance.
         #[doc(alias = "PHASESpatialPipelineFlagLateReverb")]
         const LateReverb = 1<<2;
     }
@@ -66,13 +77,22 @@ unsafe impl RefEncode for PHASESpatialPipelineFlags {
 }
 
 extern_class!(
+    /// An audio layer with an adjustable volume for a spatial mixer’s output.
+    ///
+    /// ## Overview
+    ///
+    /// This property adjusts the amount of audio that passes through a spatial mixer’s pipeline ([`spatialPipeline`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline)) to the output. The pipeline’s [`entries`](https://developer.apple.com/documentation/phase/phasespatialpipeline/entries) contains an instance of this class for each type of audio layer that [`PHASESpatialCategory`](https://developer.apple.com/documentation/phase/phasespatialcategory) defines. Depending on the layer’s type, the audio may sound like spatial relections, environmental reverb, or the unfiltered signal. An app adjusts the layer’s presence in the mixer’s output by:
+    ///
+    /// - Defining an initial volume using [`sendLevel`](https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel)
+    ///
+    /// - Adjusting the audio’s volume dynamically, for example, by fading it over a duration using [`sendLevelMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevelmetaparameterdefinition)
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Spatial Pipeline Entry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipelineentry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASESpatialPipelineEntry;
@@ -129,13 +149,20 @@ impl PHASESpatialPipelineEntry {
 }
 
 extern_class!(
+    /// An object that specifies the volume of optional environmental effects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition) class contains an instance of this class, [`spatialPipeline`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline), to add optional sound layers to the output.
+    ///
+    /// On top of the original audio signal designated by [`PHASESpatialPipelineFlagDirectPathTransmission`](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct/directpathtransmission), this class optionally includes audio layers for environmental effects, such as [`PHASESpatialCategoryEarlyReflections`](https://developer.apple.com/documentation/phase/phasespatialcategory/earlyreflections) or [`PHASESpatialCategoryLateReverb`](https://developer.apple.com/documentation/phase/phasespatialcategory/latereverb), in the output.  To control the amount of volume that either audio layer possesses in the mixer’s output, adjust the [`sendLevel`](https://developer.apple.com/documentation/phase/phasespatialpipelineentry/sendlevel) for the layer’s respective [`PHASESpatialPipelineEntry`](https://developer.apple.com/documentation/phase/phasespatialpipelineentry) member in the [`entries`](https://developer.apple.com/documentation/phase/phasespatialpipeline/entries) dictionary.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Spatial Pipeline.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASESpatialPipeline;

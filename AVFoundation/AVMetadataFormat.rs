@@ -4,691 +4,701 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat?language=objc)
+/// A structure that defines metadata formats.
 // NS_TYPED_ENUM
 pub type AVMetadataFormat = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace?language=objc)
+/// A structure that defines a metadata key space.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVMetadataKeySpace = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey?language=objc)
+/// A structure that defines a metadata key.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVMetadataKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/common?language=objc)
+    /// The common key space.
+    ///
+    /// ## Discussion
+    ///
+    /// Keys in this space are common to all or most of the format-specific metadata formats.
+    ///
+    ///
     pub static AVMetadataKeySpaceCommon: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeytitle?language=objc)
+    /// A key that represents the title of the media.
     pub static AVMetadataCommonKeyTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeycreator?language=objc)
+    /// A key that represents the name of the creator.
     pub static AVMetadataCommonKeyCreator: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeysubject?language=objc)
+    /// A key that represents the subject information for the media.
     pub static AVMetadataCommonKeySubject: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeydescription?language=objc)
+    /// A key that represents the description of the media.
     pub static AVMetadataCommonKeyDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeypublisher?language=objc)
+    /// A key that represents the name of the publisher.
     pub static AVMetadataCommonKeyPublisher: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeycontributor?language=objc)
+    /// A key that represents the name of the contributor.
     pub static AVMetadataCommonKeyContributor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeycreationdate?language=objc)
+    /// A key that represents the date of the original recording.
     pub static AVMetadataCommonKeyCreationDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeylastmodifieddate?language=objc)
+    /// A key that represents the last modification date of the media.
     pub static AVMetadataCommonKeyLastModifiedDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeytype?language=objc)
+    /// A key that represents the media type.
     pub static AVMetadataCommonKeyType: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyformat?language=objc)
+    /// A key that represents the file format of the media content.
     pub static AVMetadataCommonKeyFormat: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyidentifier?language=objc)
+    /// A key that represents the ID for the media.
     pub static AVMetadataCommonKeyIdentifier: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeysource?language=objc)
+    /// A key that represents the source information for the media.
     pub static AVMetadataCommonKeySource: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeylanguage?language=objc)
+    /// A key that represents the language of the text or lyrics spoken or sung in the audio.
     pub static AVMetadataCommonKeyLanguage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyrelation?language=objc)
+    /// A key that represents the relation information for the media.
     pub static AVMetadataCommonKeyRelation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeylocation?language=objc)
+    /// A key that represents the location information for the media.
     pub static AVMetadataCommonKeyLocation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeycopyrights?language=objc)
+    /// A key that represents the copyright statement.
     pub static AVMetadataCommonKeyCopyrights: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyalbumname?language=objc)
+    /// A key that represents the name of the album.
     pub static AVMetadataCommonKeyAlbumName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyauthor?language=objc)
+    /// A key that represents the name of the author.
     pub static AVMetadataCommonKeyAuthor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyartist?language=objc)
+    /// A key that represents the name of the artist.
     pub static AVMetadataCommonKeyArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyartwork?language=objc)
+    /// A key that represents an image relating to the album.
     pub static AVMetadataCommonKeyArtwork: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeymake?language=objc)
+    /// A key that represents the name of the camera maker.
     pub static AVMetadataCommonKeyMake: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeymodel?language=objc)
+    /// A key that represents the name of the camera model.
     pub static AVMetadataCommonKeyModel: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeysoftware?language=objc)
+    /// A key that represents the name of the software used to create the media.
     pub static AVMetadataCommonKeySoftware: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/commonkeyaccessibilitydescription?language=objc)
+    /// A key that represents the accessibility description for the media.
     pub static AVMetadataCommonKeyAccessibilityDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/quicktimeuserdata?language=objc)
+    /// The QuickTime user data metadata format.
     pub static AVMetadataFormatQuickTimeUserData: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/quicktimeuserdata?language=objc)
+    /// The QuickTime user data key space.
     pub static AVMetadataKeySpaceQuickTimeUserData: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyalbum?language=objc)
+    /// A key that represents the name of the album or collection in QuickTime.
     pub static AVMetadataQuickTimeUserDataKeyAlbum: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyarranger?language=objc)
+    /// A key that represents the name of the arranger of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyArranger: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyartist?language=objc)
+    /// A key that represents the name of the artist of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyauthor?language=objc)
+    /// A key that represents the name of the author of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyAuthor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeychapter?language=objc)
+    /// A key that represents the name of the chapter.
     pub static AVMetadataQuickTimeUserDataKeyChapter: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeycomment?language=objc)
+    /// A key that represents a comment regarding the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyComment: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeycomposer?language=objc)
+    /// A key that represents the name of the composer of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyComposer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeycopyright?language=objc)
+    /// A key that represents the copyright statement in QuickTime.
     pub static AVMetadataQuickTimeUserDataKeyCopyright: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeycreationdate?language=objc)
+    /// A key that represents the creation date of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyCreationDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeydescription?language=objc)
+    /// A key that represents the description of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeydirector?language=objc)
+    /// A key that represents the name of the director of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyDirector: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeydisclaimer?language=objc)
+    /// A key that represents the disclaimer regarding the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyDisclaimer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyencodedby?language=objc)
+    /// A key that represents the name of the person or organization responsible for encoding the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyEncodedBy: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyfullname?language=objc)
+    /// A key that represents the full name of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyFullName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeygenre?language=objc)
+    /// A key that represents the genre or genres to which the movie content conforms.
     pub static AVMetadataQuickTimeUserDataKeyGenre: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyhostcomputer?language=objc)
+    /// A key that represents the name of the host computer.
     pub static AVMetadataQuickTimeUserDataKeyHostComputer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyinformation?language=objc)
+    /// A key that represents general information about the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyInformation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeykeywords?language=objc)
+    /// A key that represents the keywords for the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyKeywords: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeymake?language=objc)
+    /// A key that represents the name of the camera maker.
     pub static AVMetadataQuickTimeUserDataKeyMake: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeymodel?language=objc)
+    /// A key that represents the name of the camera model.
     pub static AVMetadataQuickTimeUserDataKeyModel: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyoriginalartist?language=objc)
+    /// A key that represents the name of the original artist of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyOriginalArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyoriginalformat?language=objc)
+    /// A key that represents the original format of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyOriginalFormat: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyoriginalsource?language=objc)
+    /// A key that represents the original source of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyOriginalSource: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyperformers?language=objc)
+    /// A key that represents the name of the performers in the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyPerformers: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyproducer?language=objc)
+    /// A key that represents the name of the producer of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyProducer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeypublisher?language=objc)
+    /// A key that represents the name of the publisher of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyPublisher: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyproduct?language=objc)
+    /// A key that represents the name of the product.
     pub static AVMetadataQuickTimeUserDataKeyProduct: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeysoftware?language=objc)
+    /// A key that represents the name of software used to create the movie file content.
     pub static AVMetadataQuickTimeUserDataKeySoftware: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyspecialplaybackrequirements?language=objc)
+    /// A key that represents the special hardware and software requirements for playback.
     pub static AVMetadataQuickTimeUserDataKeySpecialPlaybackRequirements:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeytrack?language=objc)
+    /// A key that represents a track in the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyTrack: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeywarning?language=objc)
+    /// A key that represents the warning text for the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyWarning: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeywriter?language=objc)
+    /// A key that represents the name of the writer of the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyWriter: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyurllink?language=objc)
+    /// A key that represents the webpage for the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyURLLink: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeylocationiso6709?language=objc)
+    /// A key that represents the geographic point location by coordinates as defined in ISO 6709:2008.
     pub static AVMetadataQuickTimeUserDataKeyLocationISO6709: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeytrackname?language=objc)
+    /// A key that represents the name of a track in the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyTrackName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeycredits?language=objc)
+    /// A key that represents the credits of movie source content.
     pub static AVMetadataQuickTimeUserDataKeyCredits: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyphonogramrights?language=objc)
+    /// A key that represents the phonogram rights statement.
     pub static AVMetadataQuickTimeUserDataKeyPhonogramRights: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeytaggedcharacteristic?language=objc)
+    /// A key that represents the tagged characteristic.
     pub static AVMetadataQuickTimeUserDataKeyTaggedCharacteristic: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimeuserdatakeyaccessibilitydescription?language=objc)
+    /// A key that represents the accessibility description for the movie file content.
     pub static AVMetadataQuickTimeUserDataKeyAccessibilityDescription:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/isouserdata?language=objc)
+    /// The ISO user data metadata format.
     pub static AVMetadataFormatISOUserData: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/isouserdata?language=objc)
+    /// The ISO key space.
     pub static AVMetadataKeySpaceISOUserData: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/isouserdatakeycopyright?language=objc)
+    /// A key that represents the copyright statement.
     pub static AVMetadataISOUserDataKeyCopyright: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/isouserdatakeytaggedcharacteristic?language=objc)
+    /// A key that represents the tagged media characteristic used for identifying accessibility features.
     pub static AVMetadataISOUserDataKeyTaggedCharacteristic: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// A key that represents the date for the media content.
     /// ISO User data key for the content creation date/time.
     ///
     /// The value is date and time, formatted according to ISO 8601, when the content was created. For clips captured by recording devices, this is typically the date and time when the clip’s recording started. When stored in AV(Mutable)MetadataItem, the value type must be either NSDate or NSString. When NSString is used, the value uses one of ISO 8601 formats such as "2016-01-11T17:31:10Z".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/isouserdatakeydate?language=objc)
     pub static AVMetadataISOUserDataKeyDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/isouserdatakeyaccessibilitydescription?language=objc)
+    /// A key that represents the accessibility description for the media content.
     pub static AVMetadataISOUserDataKeyAccessibilityDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeycopyright?language=objc)
+    /// A key that represents the copyright statement.
     pub static AVMetadata3GPUserDataKeyCopyright: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeyauthor?language=objc)
+    /// A key that represents the author of the media.
     pub static AVMetadata3GPUserDataKeyAuthor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeyperformer?language=objc)
+    /// A key that represents information about the performer.
     pub static AVMetadata3GPUserDataKeyPerformer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeygenre?language=objc)
+    /// A key that represents the genre of the media.
     pub static AVMetadata3GPUserDataKeyGenre: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeyrecordingyear?language=objc)
+    /// A key that represents the recording year for the media.
     pub static AVMetadata3GPUserDataKeyRecordingYear: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeylocation?language=objc)
+    /// A key that represents the location information for the media.
     pub static AVMetadata3GPUserDataKeyLocation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeytitle?language=objc)
+    /// A key that represents the title for the media.
     pub static AVMetadata3GPUserDataKeyTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeydescription?language=objc)
+    /// A key that represents the description for the media.
     pub static AVMetadata3GPUserDataKeyDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeycollection?language=objc)
+    /// A key that represents the collection name for the media.
     pub static AVMetadata3GPUserDataKeyCollection: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeyuserrating?language=objc)
+    /// A key that represents the user rating.
     pub static AVMetadata3GPUserDataKeyUserRating: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeythumbnail?language=objc)
+    /// A key that represents the media thumbnail.
     pub static AVMetadata3GPUserDataKeyThumbnail: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeyalbumandtrack?language=objc)
+    /// A key that represents the text for the album and track titles.
     pub static AVMetadata3GPUserDataKeyAlbumAndTrack: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeykeywordlist?language=objc)
+    /// A key that represents the list of keywords for the media.
     pub static AVMetadata3GPUserDataKeyKeywordList: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeymediaclassification?language=objc)
+    /// A key that represents the classification of the media content.
     pub static AVMetadata3GPUserDataKeyMediaClassification: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/metadata3gpuserdatakeymediarating?language=objc)
+    /// A key that represents the rating of the media content.
     pub static AVMetadata3GPUserDataKeyMediaRating: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/quicktimemetadata?language=objc)
+    /// The QuickTime metadata format.
     pub static AVMetadataFormatQuickTimeMetadata: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/quicktimemetadata?language=objc)
+    /// The QuickTime metadata key space.
     pub static AVMetadataKeySpaceQuickTimeMetadata: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyauthor?language=objc)
+    /// A key that represents the name of the author of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyAuthor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycomment?language=objc)
+    /// A key that represents a comment regarding the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyComment: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycopyright?language=objc)
+    /// A key that represents the copyright statement for the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyCopyright: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycreationdate?language=objc)
+    /// A key that represents the creation date of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyCreationDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeydirector?language=objc)
+    /// A key that represents the name of the director of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyDirector: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeydisplayname?language=objc)
+    /// A key that represents the display name of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyDisplayName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyinformation?language=objc)
+    /// A key that represents general information about the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyInformation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeykeywords?language=objc)
+    /// A key that represents the keywords for the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyKeywords: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyproducer?language=objc)
+    /// A key that represents the name of the producer of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyProducer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeypublisher?language=objc)
+    /// A key that represents the name of the publisher of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyPublisher: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyalbum?language=objc)
+    /// A key that represents the name of the album or collection in QuickTime.
     pub static AVMetadataQuickTimeMetadataKeyAlbum: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyartist?language=objc)
+    /// A key that represents the name of the artist of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyartwork?language=objc)
+    /// A key that represents an image relating to the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyArtwork: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeydescription?language=objc)
+    /// A key that represents the description of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeysoftware?language=objc)
+    /// A key that represents the name of software used to create the movie file content.
     pub static AVMetadataQuickTimeMetadataKeySoftware: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyyear?language=objc)
+    /// A key that represents the recording year of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyYear: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeygenre?language=objc)
+    /// A key that represents the genre or genres to which the movie content conforms.
     pub static AVMetadataQuickTimeMetadataKeyGenre: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyixml?language=objc)
+    /// A key that represents iXML information for the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyiXML: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeylocationiso6709?language=objc)
+    /// A key that represents the geographic point location by coordinates as defined in ISO 6709:2008.
     pub static AVMetadataQuickTimeMetadataKeyLocationISO6709: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeymake?language=objc)
+    /// A key that represents the name of the camera maker.
     pub static AVMetadataQuickTimeMetadataKeyMake: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeymodel?language=objc)
+    /// A key that represents the name of the camera model.
     pub static AVMetadataQuickTimeMetadataKeyModel: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyarranger?language=objc)
+    /// A key that represents the name of the arranger of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyArranger: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyencodedby?language=objc)
+    /// A key that represents the name of the person or organization responsible for encoding the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyEncodedBy: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyoriginalartist?language=objc)
+    /// A key that represents the name of the original artist of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyOriginalArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyperformer?language=objc)
+    /// A key that represents the name of the performer in the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyPerformer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycomposer?language=objc)
+    /// A key that represents the name of the composer of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyComposer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycredits?language=objc)
+    /// A key that represents the credits of the movie source content.
     pub static AVMetadataQuickTimeMetadataKeyCredits: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyphonogramrights?language=objc)
+    /// A key that represents the phonogram rights statement.
     pub static AVMetadataQuickTimeMetadataKeyPhonogramRights: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycameraidentifier?language=objc)
+    /// A key that represents the camera identifier in QuickTime.
     pub static AVMetadataQuickTimeMetadataKeyCameraIdentifier: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycameraframereadouttime?language=objc)
+    /// A key that represents the camera frame readout time in QuickTime.
     pub static AVMetadataQuickTimeMetadataKeyCameraFrameReadoutTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeytitle?language=objc)
+    /// A key that represents the title of the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycollectionuser?language=objc)
+    /// A key that represents a name that indicates a user-defined collection.
     pub static AVMetadataQuickTimeMetadataKeyCollectionUser: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyratinguser?language=objc)
+    /// A key that represents the rating or relative value of the movie.
     pub static AVMetadataQuickTimeMetadataKeyRatingUser: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeylocationname?language=objc)
+    /// A key that represents the name of the location.
     pub static AVMetadataQuickTimeMetadataKeyLocationName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeylocationbody?language=objc)
+    /// A key that represents the astronomical body for compatibility with the 3GPP format.
     pub static AVMetadataQuickTimeMetadataKeyLocationBody: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeylocationnote?language=objc)
+    /// A key that represents a descriptive comment about the location.
     pub static AVMetadataQuickTimeMetadataKeyLocationNote: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeylocationrole?language=objc)
+    /// A key that represents the single byte describing the movie location.
     pub static AVMetadataQuickTimeMetadataKeyLocationRole: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeylocationdate?language=objc)
+    /// A key that represents a date and time using the extended format defined in ISO 8601:2004.
     pub static AVMetadataQuickTimeMetadataKeyLocationDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeydirectionfacing?language=objc)
+    /// A key that represents the direction the camera is facing during the shot.
     pub static AVMetadataQuickTimeMetadataKeyDirectionFacing: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeydirectionmotion?language=objc)
+    /// A key that represents the direction the camera is moving during the shot.
     pub static AVMetadataQuickTimeMetadataKeyDirectionMotion: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycontentidentifier?language=objc)
+    /// A key that represents the content identifier in QuickTime.
     pub static AVMetadataQuickTimeMetadataKeyContentIdentifier: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyaccessibilitydescription?language=objc)
+    /// A key that represents the accessibility description for the movie file content.
     pub static AVMetadataQuickTimeMetadataKeyAccessibilityDescription:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyismontage?language=objc)
+    /// A key that represents that the movie is a montage of other media.
     pub static AVMetadataQuickTimeMetadataKeyIsMontage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// An key that represents whether this movie should play at full frame rate.
+    ///
+    /// ## Discussion
+    ///
+    /// Some apps play movies recorded at frame rates of 120fps or higher in slow motion. If your app records high-frame-rate movies, you can add this movie-level metadata to indicate whether the movie intends to play at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
+    ///
+    ///
     /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this movie is intended to be played back at the full frame rate (1), or at a slow motion rate (0).
     ///
     /// Historically, some apps have played movies recorded at frame rates of 120fps or higher in slow motion by default. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeyfullframerateplaybackintent?language=objc)
     pub static AVMetadataQuickTimeMetadataKeyFullFrameRatePlaybackIntent:
         Option<&'static AVMetadataKey>;
 }
@@ -696,881 +706,894 @@ extern "C" {
 extern "C" {
     /// A value of type `kCMMetadataBaseDataType_UInt8` indicating whether this movie is intended as a Cinematic Video (1) or not (0).
     ///
-    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycinematicvideointent?language=objc)
+    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple’s software like Photos.
+    ///
+    ///
+    /// A value of type `kCMMetadataBaseDataType_UInt8` indicating whether this movie is intended as a Cinematic Video (1) or not (0).
+    ///
+    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
     pub static AVMetadataQuickTimeMetadataKeyCinematicVideoIntent: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the sensitivity of the camera to light in terms of ISO exposure index (e.g. “800”). See SMPTE RDD 18.
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the sensitivity of the camera to light in terms of ISO exposure index (e.g. "800"). See SMPTE RDD 18.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycameraisosensitivity?language=objc)
     pub static AVMetadataQuickTimeMetadataKeyCameraISOSensitivity: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the white balance value defined by the temperature in Kelvin units (e.g. “5500K” or “5500”). See SMPTE RDD 18.
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the white balance value defined by the temperature in Kelvin units (e.g. "5500K" or "5500"). See SMPTE RDD 18.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycamerawhitebalance?language=objc)
     pub static AVMetadataQuickTimeMetadataKeyCameraWhiteBalance: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData indicating the reference white balance multiplication factor data for ProRes RAW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeywhitebalancebycctwhitebalancefactors?language=objc)
+    /// A value of type kCMMetadataBaseDataType_RawData indicating the reference white balance multiplication factor data for ProRes RAW.
     pub static AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData indicating the reference color translation matrix data for ProRes RAW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeywhitebalancebycctcolormatrices?language=objc)
+    /// A value of type kCMMetadataBaseDataType_RawData indicating the reference color translation matrix data for ProRes RAW.
     pub static AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTColorMatrices:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as an angle in minutes (1/60 degree) (e.g. “21600” or “360.00deg””).
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as an angle in minutes (1/60 degree) (e.g. "21600" or "360.00deg"").
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycamerashutterspeedangle?language=objc)
     pub static AVMetadataQuickTimeMetadataKeyCameraShutterSpeedAngle:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as a time per one frame/field period in seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycamerashutterspeedtime?language=objc)
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as a time per one frame/field period in seconds.
     pub static AVMetadataQuickTimeMetadataKeyCameraShutterSpeedTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. "F2.8" or "2.8").
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. “F2.8” or “2.8”).
+    ///
+    /// ## Discussion
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycameralensirisfnumber?language=objc)
+    ///
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating measure of the amount of light transmitted through the lens. It is the focal length divided by the effective lens aperture diameter (e.g. "F2.8" or "2.8").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
     pub static AVMetadataQuickTimeMetadataKeyCameraLensIrisFNumber: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. “iPhone 16 Pro back camera 6.765mm f/1.78”).
+    ///
+    /// ## Discussion
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycameralensmodel?language=objc)
+    ///
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
     pub static AVMetadataQuickTimeMetadataKeyCameraLensModel: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. "50.00mm").
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. “50.00mm”).
+    ///
+    /// ## Discussion
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/quicktimemetadatakeycamerafocallength35mmequivalent?language=objc)
+    ///
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. "50.00mm").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
     pub static AVMetadataQuickTimeMetadataKeyCameraFocalLength35mmEquivalent:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/itunesmetadata?language=objc)
+    /// The iTunes metadata format.
     pub static AVMetadataFormatiTunesMetadata: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/itunes?language=objc)
+    /// The iTunes key space.
     pub static AVMetadataKeySpaceiTunes: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyalbum?language=objc)
+    /// A key that represents the name of the album in iTunes.
     pub static AVMetadataiTunesMetadataKeyAlbum: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyartist?language=objc)
+    /// A key that represents the name of the artist.
     pub static AVMetadataiTunesMetadataKeyArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyusercomment?language=objc)
+    /// A key that represents a user comment regarding the content.
     pub static AVMetadataiTunesMetadataKeyUserComment: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeycoverart?language=objc)
+    /// A key that represents an album cover image.
     pub static AVMetadataiTunesMetadataKeyCoverArt: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeycopyright?language=objc)
+    /// A key that represents the copyright statement in iTunes.
     pub static AVMetadataiTunesMetadataKeyCopyright: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyreleasedate?language=objc)
+    /// A key that represents the release date for the original recording.
     pub static AVMetadataiTunesMetadataKeyReleaseDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyencodedby?language=objc)
+    /// A key that represents the person or organization that encoded the media.
     pub static AVMetadataiTunesMetadataKeyEncodedBy: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeypredefinedgenre?language=objc)
+    /// A key that represents the predefined genre.
     pub static AVMetadataiTunesMetadataKeyPredefinedGenre: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyusergenre?language=objc)
+    /// A key that represents the genre set by a user in iTunes.
     pub static AVMetadataiTunesMetadataKeyUserGenre: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeysongname?language=objc)
+    /// A key that represents the name of the song in iTunes.
     pub static AVMetadataiTunesMetadataKeySongName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeytracksubtitle?language=objc)
+    /// A key that represents the information relating to the contents title.
     pub static AVMetadataiTunesMetadataKeyTrackSubTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyencodingtool?language=objc)
+    /// A key that represents the software or hardware and settings used for encoding.
     pub static AVMetadataiTunesMetadataKeyEncodingTool: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeycomposer?language=objc)
+    /// A key that represents the name of the composer.
     pub static AVMetadataiTunesMetadataKeyComposer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyalbumartist?language=objc)
+    /// A key that represents the artist for the album.
     pub static AVMetadataiTunesMetadataKeyAlbumArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyaccountkind?language=objc)
+    /// A key that represents the kind of iTunes account.
     pub static AVMetadataiTunesMetadataKeyAccountKind: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyappleid?language=objc)
+    /// A key that represents an Apple ID.
     pub static AVMetadataiTunesMetadataKeyAppleID: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyartistid?language=objc)
+    /// A key that represents the ID for an artist.
     pub static AVMetadataiTunesMetadataKeyArtistID: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeysongid?language=objc)
+    /// A key that represents the song ID.
     pub static AVMetadataiTunesMetadataKeySongID: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeydisccompilation?language=objc)
+    /// A key that represents whether an album is a compilation of tracks in iTunes.
     pub static AVMetadataiTunesMetadataKeyDiscCompilation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeydiscnumber?language=objc)
+    /// A key that represents the disc number of a multi-CD album in iTunes.
     pub static AVMetadataiTunesMetadataKeyDiscNumber: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeygenreid?language=objc)
+    /// A key that represents the genre ID.
     pub static AVMetadataiTunesMetadataKeyGenreID: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeygrouping?language=objc)
+    /// A key that represents additional grouping information for an album.
     pub static AVMetadataiTunesMetadataKeyGrouping: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyplaylistid?language=objc)
+    /// A key that represents the playlist ID.
     pub static AVMetadataiTunesMetadataKeyPlaylistID: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeycontentrating?language=objc)
+    /// A key that represents the content rating in iTunes.
     pub static AVMetadataiTunesMetadataKeyContentRating: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeybeatspermin?language=objc)
+    /// A key that represents the beats per minute of a track in iTunes.
     pub static AVMetadataiTunesMetadataKeyBeatsPerMin: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeytracknumber?language=objc)
+    /// A key that represents the order number in iTunes.
     pub static AVMetadataiTunesMetadataKeyTrackNumber: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyartdirector?language=objc)
+    /// A key that represents the name of the art director.
     pub static AVMetadataiTunesMetadataKeyArtDirector: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyarranger?language=objc)
+    /// A key that represents the name of the arranger.
     pub static AVMetadataiTunesMetadataKeyArranger: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyauthor?language=objc)
+    /// A key that represents the name of the author.
     pub static AVMetadataiTunesMetadataKeyAuthor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeylyrics?language=objc)
+    /// A key that represents the lyrics in the recording.
     pub static AVMetadataiTunesMetadataKeyLyrics: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyacknowledgement?language=objc)
+    /// A key that represents the acknowledgement information in iTunes.
     pub static AVMetadataiTunesMetadataKeyAcknowledgement: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyconductor?language=objc)
+    /// A key that represents the name of the conductor.
     pub static AVMetadataiTunesMetadataKeyConductor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeydescription?language=objc)
+    /// A key that represents the description information in iTunes.
     pub static AVMetadataiTunesMetadataKeyDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeydirector?language=objc)
+    /// A key that represents the name of the director.
     pub static AVMetadataiTunesMetadataKeyDirector: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyeq?language=objc)
+    /// A key that represents the equalizer preset option in iTunes.
     pub static AVMetadataiTunesMetadataKeyEQ: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeylinernotes?language=objc)
+    /// A key that represents the digital booklet for an album.
     pub static AVMetadataiTunesMetadataKeyLinerNotes: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyrecordcompany?language=objc)
+    /// A key that represents the name of the record company.
     pub static AVMetadataiTunesMetadataKeyRecordCompany: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyoriginalartist?language=objc)
+    /// A key that represents the name of the original artist.
     pub static AVMetadataiTunesMetadataKeyOriginalArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyphonogramrights?language=objc)
+    /// A key that represents the phonogram rights statement.
     pub static AVMetadataiTunesMetadataKeyPhonogramRights: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyproducer?language=objc)
+    /// A key that represents the name of the producer.
     pub static AVMetadataiTunesMetadataKeyProducer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyperformer?language=objc)
+    /// A key that represents the name of the performer.
     pub static AVMetadataiTunesMetadataKeyPerformer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeypublisher?language=objc)
+    /// A key that represents the name of the publisher.
     pub static AVMetadataiTunesMetadataKeyPublisher: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeysoundengineer?language=objc)
+    /// A key that represents the name of the sound engineer.
     pub static AVMetadataiTunesMetadataKeySoundEngineer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeysoloist?language=objc)
+    /// A key that represents the name of the soloist.
     pub static AVMetadataiTunesMetadataKeySoloist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeycredits?language=objc)
+    /// A key that represents the credits for the source content.
     pub static AVMetadataiTunesMetadataKeyCredits: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeythanks?language=objc)
+    /// A key that represents the thanks statement in iTunes.
     pub static AVMetadataiTunesMetadataKeyThanks: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyonlineextras?language=objc)
+    /// A key that represents the extra materials for an album.
     pub static AVMetadataiTunesMetadataKeyOnlineExtras: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/itunesmetadatakeyexecproducer?language=objc)
+    /// A key that represents the name of the executive producer.
     pub static AVMetadataiTunesMetadataKeyExecProducer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/id3metadata?language=objc)
+    /// The ID3 metadata format.
     pub static AVMetadataFormatID3Metadata: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/id3?language=objc)
+    /// The ID3 key space.
     pub static AVMetadataKeySpaceID3: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyaudioencryption?language=objc)
+    /// A key that represents the encryption details of the audio stream.
     pub static AVMetadataID3MetadataKeyAudioEncryption: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyattachedpicture?language=objc)
+    /// A key that represents an image relating to the audio file.
     pub static AVMetadataID3MetadataKeyAttachedPicture: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyaudioseekpointindex?language=objc)
+    /// A key that represents the list of seek points within the audio file.
     pub static AVMetadataID3MetadataKeyAudioSeekPointIndex: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycomments?language=objc)
+    /// A key that represents additional text information for the media.
     pub static AVMetadataID3MetadataKeyComments: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycommercial?language=objc)
+    /// A key that represents the commercial details for the media.
     pub static AVMetadataID3MetadataKeyCommercial: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycommerical?language=objc)
+    /// A key that represents the commerical frame.
     #[deprecated]
     pub static AVMetadataID3MetadataKeyCommerical: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyencryption?language=objc)
+    /// A key that represents the encryption method used.
     pub static AVMetadataID3MetadataKeyEncryption: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyequalization?language=objc)
+    /// A key that represents the equalization curve within the audio file.
     pub static AVMetadataID3MetadataKeyEqualization: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyequalization2?language=objc)
+    /// A key that represents the equalization curve within the audio file.
     pub static AVMetadataID3MetadataKeyEqualization2: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyeventtimingcodes?language=objc)
+    /// A key that represents the timing codes used for synchronization with key events in a song or sound.
     pub static AVMetadataID3MetadataKeyEventTimingCodes: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeygeneralencapsulatedobject?language=objc)
+    /// A key that represents the details of a file.
     pub static AVMetadataID3MetadataKeyGeneralEncapsulatedObject: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeygroupidentifier?language=objc)
+    /// A key that represents the grouping of distinct frames.
     pub static AVMetadataID3MetadataKeyGroupIdentifier: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyinvolvedpeoplelist_v23?language=objc)
+    /// A key that represents the list of names of contributors to the media.
     pub static AVMetadataID3MetadataKeyInvolvedPeopleList_v23: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeylink?language=objc)
+    /// A key that represents the link information from an ID3 tag that might reside in another audio file or alone in a binary file.
     pub static AVMetadataID3MetadataKeyLink: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeymusiccdidentifier?language=objc)
+    /// A key that represents the ID used to identify the CD in databases such as the Compact Disc Database.
     pub static AVMetadataID3MetadataKeyMusicCDIdentifier: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeympeglocationlookuptable?language=objc)
+    /// A key that represents the lookup table used to increase performance and accuracy of jumps within an MPEG audio file.
     pub static AVMetadataID3MetadataKeyMPEGLocationLookupTable: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyownership?language=objc)
+    /// A key that represents the transaction details indicating proof of ownership if signed.
     pub static AVMetadataID3MetadataKeyOwnership: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyprivate?language=objc)
+    /// A key that represents the information from a software producer that its program uses.
     pub static AVMetadataID3MetadataKeyPrivate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyplaycounter?language=objc)
+    /// A key that represents the play count of the audio file.
     pub static AVMetadataID3MetadataKeyPlayCounter: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeypopularimeter?language=objc)
+    /// A key that represents the rating for the audio file.
     pub static AVMetadataID3MetadataKeyPopularimeter: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeypositionsynchronization?language=objc)
+    /// A key that represents the time offset of the first frame in the stream.
     pub static AVMetadataID3MetadataKeyPositionSynchronization: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyrecommendedbuffersize?language=objc)
+    /// A key that represents the buffer size the server recommends.
     pub static AVMetadataID3MetadataKeyRecommendedBufferSize: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyrelativevolumeadjustment?language=objc)
+    /// A key that represents the increase or decrease of volume on each channel while the file plays.
     pub static AVMetadataID3MetadataKeyRelativeVolumeAdjustment: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyrelativevolumeadjustment2?language=objc)
+    /// A key that represents the increase or decrease of volume on each channel while the file plays.
     pub static AVMetadataID3MetadataKeyRelativeVolumeAdjustment2: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyreverb?language=objc)
+    /// A key that represents the adjustments to echoes of different kinds.
     pub static AVMetadataID3MetadataKeyReverb: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyseek?language=objc)
+    /// A key that represents the location of other tags in a file or stream.
     pub static AVMetadataID3MetadataKeySeek: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeysignature?language=objc)
+    /// A key that represents the group of frames to sign.
     pub static AVMetadataID3MetadataKeySignature: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeysynchronizedlyric?language=objc)
+    /// A key that represents the words in the audio file as text in sync with the audio.
     pub static AVMetadataID3MetadataKeySynchronizedLyric: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeysynchronizedtempocodes?language=objc)
+    /// A key that represents the tempo codes used for a more accurate description of the tempo of a musical piece.
     pub static AVMetadataID3MetadataKeySynchronizedTempoCodes: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyalbumtitle?language=objc)
+    /// A key that represents the title of the recording.
     pub static AVMetadataID3MetadataKeyAlbumTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeybeatsperminute?language=objc)
+    /// A key that represents the beats per minute of the audio.
     pub static AVMetadataID3MetadataKeyBeatsPerMinute: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycomposer?language=objc)
+    /// A key that represents the name of the composer.
     pub static AVMetadataID3MetadataKeyComposer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycontenttype?language=objc)
+    /// A key that represents the media content type.
     pub static AVMetadataID3MetadataKeyContentType: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycopyright?language=objc)
+    /// A key that represents the copyright statement.
     pub static AVMetadataID3MetadataKeyCopyright: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeydate?language=objc)
+    /// A key that represents the date for the recording.
     pub static AVMetadataID3MetadataKeyDate: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyencodingtime?language=objc)
+    /// A key that represents the encoding time of the audio.
     pub static AVMetadataID3MetadataKeyEncodingTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyplaylistdelay?language=objc)
+    /// A key that represents the number of milliseconds of silence between every song in a playlist.
     pub static AVMetadataID3MetadataKeyPlaylistDelay: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyoriginalreleasetime?language=objc)
+    /// A key that represents the release time for the original recording.
     pub static AVMetadataID3MetadataKeyOriginalReleaseTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyrecordingtime?language=objc)
+    /// A key that represents the recording time.
     pub static AVMetadataID3MetadataKeyRecordingTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyreleasetime?language=objc)
+    /// A key that represents the time of the first release.
     pub static AVMetadataID3MetadataKeyReleaseTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeytaggingtime?language=objc)
+    /// A key that represents the time of tagging.
     pub static AVMetadataID3MetadataKeyTaggingTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyencodedby?language=objc)
+    /// A key that represents the person or organization responsible for encoding the media.
     pub static AVMetadataID3MetadataKeyEncodedBy: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeylyricist?language=objc)
+    /// A key that represents the writer(s) of the text or lyrics in the recording.
     pub static AVMetadataID3MetadataKeyLyricist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyfiletype?language=objc)
+    /// A key that represents the file type of the audio.
     pub static AVMetadataID3MetadataKeyFileType: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeytime?language=objc)
+    /// A key that represents the time for the recording.
     pub static AVMetadataID3MetadataKeyTime: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyinvolvedpeoplelist_v24?language=objc)
+    /// A key that represents the list of names of contributors to the media.
     pub static AVMetadataID3MetadataKeyInvolvedPeopleList_v24: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycontentgroupdescription?language=objc)
+    /// A key that indicates the sound belongs to a larger category of sounds or music.
     pub static AVMetadataID3MetadataKeyContentGroupDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeytitledescription?language=objc)
+    /// A key that represents the name of the piece.
     pub static AVMetadataID3MetadataKeyTitleDescription: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeysubtitle?language=objc)
+    /// A key that represents the information relating to the contents title.
     pub static AVMetadataID3MetadataKeySubTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyinitialkey?language=objc)
+    /// A key that represents the musical key in which the sound starts.
     pub static AVMetadataID3MetadataKeyInitialKey: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeylanguage?language=objc)
+    /// A key that represents the language of the text or lyrics spoken or sung in the audio.
     pub static AVMetadataID3MetadataKeyLanguage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeylength?language=objc)
+    /// A key that represents the length of the audio file in milliseconds.
     pub static AVMetadataID3MetadataKeyLength: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeymusiciancreditslist?language=objc)
+    /// A key that represents the mapping between an instrument and the musician that played it.
     pub static AVMetadataID3MetadataKeyMusicianCreditsList: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeymediatype?language=objc)
+    /// A key that represents which media the sound originated from.
     pub static AVMetadataID3MetadataKeyMediaType: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeymood?language=objc)
+    /// A key that represents the mood of the audio.
     pub static AVMetadataID3MetadataKeyMood: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyoriginalalbumtitle?language=objc)
+    /// A key that represents the title of the original recording or source of sound.
     pub static AVMetadataID3MetadataKeyOriginalAlbumTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyoriginalfilename?language=objc)
+    /// A key that represents the original filename for the recording.
     pub static AVMetadataID3MetadataKeyOriginalFilename: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyoriginallyricist?language=objc)
+    /// A key that represents the text writer(s) of the original recording.
     pub static AVMetadataID3MetadataKeyOriginalLyricist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyoriginalartist?language=objc)
+    /// A key that represents the performer(s) of the original recording.
     pub static AVMetadataID3MetadataKeyOriginalArtist: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyoriginalreleaseyear?language=objc)
+    /// A key that represents the release year for the original recording.
     pub static AVMetadataID3MetadataKeyOriginalReleaseYear: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyfileowner?language=objc)
+    /// A key that represents the name of the owner or licensee of the file and it’s contents.
     pub static AVMetadataID3MetadataKeyFileOwner: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyleadperformer?language=objc)
+    /// A key that represents the main artist of the recording.
     pub static AVMetadataID3MetadataKeyLeadPerformer: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyband?language=objc)
+    /// A key that represents additional information about the performers in the recording.
     pub static AVMetadataID3MetadataKeyBand: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyconductor?language=objc)
+    /// A key that represents the name of the conductor.
     pub static AVMetadataID3MetadataKeyConductor: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeymodifiedby?language=objc)
+    /// A key that represents the people behind a remix and similar interpretations of another existing piece.
     pub static AVMetadataID3MetadataKeyModifiedBy: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeypartofaset?language=objc)
+    /// A key that represents the part of a set the audio came from.
     pub static AVMetadataID3MetadataKeyPartOfASet: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyproducednotice?language=objc)
+    /// A key that represents the produced notice.
     pub static AVMetadataID3MetadataKeyProducedNotice: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeypublisher?language=objc)
+    /// A key that represents the name of the label or publisher.
     pub static AVMetadataID3MetadataKeyPublisher: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeytracknumber?language=objc)
+    /// A key that represents the order number of the audio file.
     pub static AVMetadataID3MetadataKeyTrackNumber: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyrecordingdates?language=objc)
+    /// A key that represents additional recording dates that complement year, date, and time keys.
     pub static AVMetadataID3MetadataKeyRecordingDates: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyinternetradiostationname?language=objc)
+    /// A key that represents the name of the internet radio station streaming the audio.
     pub static AVMetadataID3MetadataKeyInternetRadioStationName: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyinternetradiostationowner?language=objc)
+    /// A key that represents the name of the owner of the internet radio station streaming the audio.
     pub static AVMetadataID3MetadataKeyInternetRadioStationOwner: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeysize?language=objc)
+    /// A key that represents the size of the audio file in bytes.
     pub static AVMetadataID3MetadataKeySize: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyalbumsortorder?language=objc)
+    /// A key that represents how to sort the album.
     pub static AVMetadataID3MetadataKeyAlbumSortOrder: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyperformersortorder?language=objc)
+    /// A key that represents the performer sort order.
     pub static AVMetadataID3MetadataKeyPerformerSortOrder: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeytitlesortorder?language=objc)
+    /// A key that represents the title sort order.
     pub static AVMetadataID3MetadataKeyTitleSortOrder: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyinternationalstandardrecordingcode?language=objc)
+    /// A key that represents the international standard recording code.
     pub static AVMetadataID3MetadataKeyInternationalStandardRecordingCode:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyencodedwith?language=objc)
+    /// A key that represents the software or hardware and settings used for encoding.
     pub static AVMetadataID3MetadataKeyEncodedWith: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeysetsubtitle?language=objc)
+    /// A key that represents the set subtitle the track belongs to.
     pub static AVMetadataID3MetadataKeySetSubtitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyyear?language=objc)
+    /// A key that represents the year of the recording.
     pub static AVMetadataID3MetadataKeyYear: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyusertext?language=objc)
+    /// A key that represents the user text information frame.
     pub static AVMetadataID3MetadataKeyUserText: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyuniquefileidentifier?language=objc)
+    /// A key that represents the identifier used to indicate the audio file in a database.
     pub static AVMetadataID3MetadataKeyUniqueFileIdentifier: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeytermsofuse?language=objc)
+    /// A key that represents the brief description of the terms of use and ownership of the file.
     pub static AVMetadataID3MetadataKeyTermsOfUse: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyunsynchronizedlyric?language=objc)
+    /// A key that represents the lyrics of the song or a text transcription of other vocal activities.
     pub static AVMetadataID3MetadataKeyUnsynchronizedLyric: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycommercialinformation?language=objc)
+    /// A key that represents the webpage containing purchasing information.
     pub static AVMetadataID3MetadataKeyCommercialInformation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeycopyrightinformation?language=objc)
+    /// A key that represents the webpage describing the terms of use and ownership.
     pub static AVMetadataID3MetadataKeyCopyrightInformation: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyofficialaudiofilewebpage?language=objc)
+    /// A key that represents the official webpage for the audio file.
     pub static AVMetadataID3MetadataKeyOfficialAudioFileWebpage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyofficialartistwebpage?language=objc)
+    /// A key that represents the artist’s official webpage.
     pub static AVMetadataID3MetadataKeyOfficialArtistWebpage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyofficialaudiosourcewebpage?language=objc)
+    /// A key that represents the official webpage for the source of the audio file.
     pub static AVMetadataID3MetadataKeyOfficialAudioSourceWebpage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyofficialinternetradiostationhomepage?language=objc)
+    /// A key that represents the official homepage of the internet radio station.
     pub static AVMetadataID3MetadataKeyOfficialInternetRadioStationHomepage:
         Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeypayment?language=objc)
+    /// A key that represents the webpage that handles the process of paying for the audio file.
     pub static AVMetadataID3MetadataKeyPayment: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyofficialpublisherwebpage?language=objc)
+    /// A key that represents the official webpage for the publisher.
     pub static AVMetadataID3MetadataKeyOfficialPublisherWebpage: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/id3metadatakeyuserurl?language=objc)
+    /// A key that represents the user webpage frame.
     pub static AVMetadataID3MetadataKeyUserURL: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// The Icecast/ShoutCAST streaming key space.
     /// Icecast/ShoutCAST streaming metadata
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/icy?language=objc)
     pub static AVMetadataKeySpaceIcy: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/icymetadatakeystreamtitle?language=objc)
+    /// A key that represents the title of a stream.
     pub static AVMetadataIcyMetadataKeyStreamTitle: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakey/icymetadatakeystreamurl?language=objc)
+    /// A key that represents the web address of a stream.
     pub static AVMetadataIcyMetadataKeyStreamURL: Option<&'static AVMetadataKey>;
 }
 
 extern "C" {
+    /// The HLS metadata format.
     /// HTTP Live Streaming metadata
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/hlsmetadata?language=objc)
     pub static AVMetadataFormatHLSMetadata: Option<&'static AVMetadataFormat>;
 }
 
 extern "C" {
+    /// The HTTP Live Streaming key space.
     /// HLS Metadata does not define its own keySpace or keys. Use of the keySpace AVMetadataKeySpaceQuickTimeMetadata and its keys is recommended.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/hlsdaterange?language=objc)
     pub static AVMetadataKeySpaceHLSDateRange: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
+    /// The AudioToolbox audio file key space.
     /// Keys for metadata provided by AudioToolbox's AudioFile interface. See
     /// <AudioToolbox
     /// /AudioFile.h>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatakeyspace/audiofile?language=objc)
     pub static AVMetadataKeySpaceAudioFile: Option<&'static AVMetadataKeySpace>;
 }
 
 extern "C" {
+    /// An unknown metadata format.
     /// Metadata format for AVMetadataItems of unknown provenance. This can occur when metadata is provided generically by an intermediate interface, such as AudioToolbox's AudioFile interface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataformat/unknown?language=objc)
     pub static AVMetadataFormatUnknown: Option<&'static AVMetadataFormat>;
 }
 
+/// A structure that defines keys for extra metadata attributes.
 /// Extra attribute keys
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVMetadataExtraAttributeKey = NSString;
 
 extern "C" {
-    /// When present in an item's extraAttributes dictionary, identifies the resource to be used as the item's value. Values for this key are of type NSString.
+    /// A key that identifies a resource to use as the item’s value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributekey/valueuri?language=objc)
+    /// ## Discussion
+    ///
+    /// This key supports string values.
+    ///
+    ///
+    /// When present in an item's extraAttributes dictionary, identifies the resource to be used as the item's value. Values for this key are of type NSString.
     pub static AVMetadataExtraAttributeValueURIKey: Option<&'static AVMetadataExtraAttributeKey>;
 }
 
 extern "C" {
+    /// A key that identifies the base URI the item uses to resolve its related URIs.
     /// When present in an item's extraAttributes dictionary, identifies the base URI against which other URIs related to the item are to be resolved, e.g. AVMetadataExtraAttributeValueURIKey. Values for this key are of type NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributekey/baseuri?language=objc)
     pub static AVMetadataExtraAttributeBaseURIKey: Option<&'static AVMetadataExtraAttributeKey>;
 }
 
 extern "C" {
+    /// A key that identifies more information about the item.
     /// More information about the item; specific to the item keySpace
     /// &
     /// key.
@@ -1578,7 +1601,5 @@ extern "C" {
     /// For example, this key is used with the following ID3 tags:
     /// TXXX, WXXX, APIC, GEOB: carries the Description
     /// PRIV: carries the Owner Identifier
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataextraattributekey/info?language=objc)
     pub static AVMetadataExtraAttributeInfoKey: Option<&'static AVMetadataExtraAttributeKey>;
 }

@@ -7,25 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype?language=objc)
+/// Constants that specify the types of fetch requests.
+///
+/// ## Overview
+///
+/// [`requestType`](https://developer.apple.com/documentation/coredata/nspersistentstorerequest/requesttype) uses these constants.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentStoreRequestType(pub NSUInteger);
 impl NSPersistentStoreRequestType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/fetchrequesttype?language=objc)
+    /// Specifies that the request returns managed objects.
     #[doc(alias = "NSFetchRequestType")]
     pub const FetchRequestType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/saverequesttype?language=objc)
+    /// Specifies that the request saves managed objects.
     #[doc(alias = "NSSaveRequestType")]
     pub const SaveRequestType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/batchinsertrequesttype?language=objc)
+    /// A request that inserts data into a persistent store using a batch of managed objects or dictionaries.
     #[doc(alias = "NSBatchInsertRequestType")]
     pub const BatchInsertRequestType: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/batchupdaterequesttype?language=objc)
+    /// A request that updates data for multiple managed objects in a persistent store.
     #[doc(alias = "NSBatchUpdateRequestType")]
     pub const BatchUpdateRequestType: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequesttype/batchdeleterequesttype?language=objc)
+    /// A request that deletes data for multiple managed objects from a persistent store.
     #[doc(alias = "NSBatchDeleteRequestType")]
     pub const BatchDeleteRequestType: Self = Self(7);
 }
@@ -39,7 +45,7 @@ unsafe impl RefEncode for NSPersistentStoreRequestType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerequest?language=objc)
+    /// Criteria used to retrieve data from or save data to a persistent store.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreRequest;

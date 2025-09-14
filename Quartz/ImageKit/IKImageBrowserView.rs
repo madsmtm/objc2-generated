@@ -10,31 +10,31 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcellsstylenone?language=objc)
+/// No style.
 pub const IKCellsStyleNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcellsstyleshadowed?language=objc)
+/// Cells use shadows.
 pub const IKCellsStyleShadowed: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcellsstyleoutlined?language=objc)
+/// Cells are outlined.
 pub const IKCellsStyleOutlined: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcellsstyletitled?language=objc)
+/// Cells display a title.
 pub const IKCellsStyleTitled: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcellsstylesubtitled?language=objc)
+/// Cells display a subtitle.
 pub const IKCellsStyleSubtitled: c_uint = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikgroupbezelstyle?language=objc)
+/// A bezel style.
 pub const IKGroupBezelStyle: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikgroupdisclosurestyle?language=objc)
+/// A disclosure triangle.
 pub const IKGroupDisclosureStyle: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserdropoperation?language=objc)
+/// These constants specify the locations for dropping items onto the browser view. Used by the method [`setDropIndex:dropOperation:`](https://developer.apple.com/documentation/quartz/ikimagebrowserview/setdrop(_:dropoperation:)).
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IKImageBrowserDropOperation(pub c_uint);
 impl IKImageBrowserDropOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserdropon?language=objc)
+    /// Drop the item on the cell.
     #[doc(alias = "IKImageBrowserDropOn")]
     pub const On: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserdropbefore?language=objc)
+    /// Drop the item before the cell.
     #[doc(alias = "IKImageBrowserDropBefore")]
     pub const Before: Self = Self(1);
 }
@@ -246,11 +246,28 @@ impl private_NSObjectIKImageBrowserItem::Sealed for NSObject {}
 unsafe impl NSObjectIKImageBrowserItem for NSObject {}
 
 extern_class!(
+    /// A view for displaying and browsing a large collection of images and movies.
+    ///
+    /// ## Overview
+    ///
+    /// The [`IKImageBrowserView`](https://developer.apple.com/documentation/quartz/ikimagebrowserview) class is a view for displaying and browsing a large amount of images and movies efficiently. This class will be deprecated in a future release. Please switch to [`NSCollectionView`](https://developer.apple.com/documentation/appkit/nscollectionview) instead.
+    ///
+    /// You must set a datasource for the view and implement, at a minimum, the [`numberOfItemsInImageBrowser:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/numberofitems(inimagebrowser:)) and [`imageBrowser:itemAtIndex:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/imagebrowser(_:itemat:)) described in [IKImageBrowserDataSource Protocol](https://developer.apple.com/documentation/quartz/ikimagebrowserdatasource-protocol). The items must conform to the IKImageBrowserItem Protocol protocol.
+    ///
+    /// The class’s delegate object must conform to IKImageBrowserDelegate Protocol protocol. It receives notification of changes in selection, as well as mouse events in the cells.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Core Animation Integration
+    ///  The image browser supports either being hosted in a layer-backed view or using custom layers for its own appearance. Custom layers on the image browser are not supported when the image browser is itself backed by a layer.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An IKImageBrowserView object is a view that display and browse images and movies. It supports scrolling and zooming.
     ///
     /// The IKImageBrowserView is deprecated. Please switch to NSCollectionView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Deprecated - Please use NSCollectionView instead"]
@@ -870,136 +887,256 @@ impl private_NSObjectIKImageBrowserDelegate::Sealed for NSObject {}
 unsafe impl NSObjectIKImageBrowserDelegate for NSObject {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserpathrepresentationtype?language=objc)
+    /// A file path image representation.
+    ///
+    /// ## Discussion
+    ///
+    /// A path representation ([`NSString`](https://developer.apple.com/documentation/foundation/nsstring)).
+    ///
+    ///
     pub static IKImageBrowserPathRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsurlrepresentationtype?language=objc)
+    /// A URL image representation.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl)object.
+    ///
+    ///
     pub static IKImageBrowserNSURLRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsimagerepresentationtype?language=objc)
+    /// An image representation type for image objects.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage)  object.
+    ///
+    ///
     pub static IKImageBrowserNSImageRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercgimagerepresentationtype?language=objc)
+    /// An image representation for Core Graphics images.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage)  object.
+    ///
+    ///
     pub static IKImageBrowserCGImageRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercgimagesourcerepresentationtype?language=objc)
+    /// A Core Graphics image source representation.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CGImageSourceRef`](https://developer.apple.com/documentation/imageio/cgimagesource)  object.
+    ///
+    ///
     pub static IKImageBrowserCGImageSourceRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsdatarepresentationtype?language=objc)
+    /// An data representation of an image.
+    ///
+    /// ## Discussion
+    ///
+    /// An  [`NSData`](https://developer.apple.com/documentation/foundation/nsdata)  object.
+    ///
+    ///
     pub static IKImageBrowserNSDataRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsernsbitmapimagerepresentationtype?language=objc)
+    /// A bitmap image representation.
+    ///
+    /// ## Discussion
+    ///
+    /// An  [`NSBitmapImageRep`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep)  object.
+    ///
+    ///
     pub static IKImageBrowserNSBitmapImageRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqtmovierepresentationtype?language=objc)
+    /// A   `QTMovie`  object.
     pub static IKImageBrowserQTMovieRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqtmoviepathrepresentationtype?language=objc)
+    /// A path (NSString) or URL (NSURL) to a QuickTime movie.
     pub static IKImageBrowserQTMoviePathRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqccompositionrepresentationtype?language=objc)
+    /// A [`QCComposition`](https://developer.apple.com/documentation/quartz/qccomposition) object.
     pub static IKImageBrowserQCCompositionRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserqccompositionpathrepresentationtype?language=objc)
+    /// A  path (NSString) or URL (NSURL) to a Quartz Composer composition.
     pub static IKImageBrowserQCCompositionPathRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserquicklookpathrepresentationtype?language=objc)
+    /// A path (NSString) or URL (NSURL) to load data using QuickLook.
     pub static IKImageBrowserQuickLookPathRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsericonrefpathrepresentationtype?language=objc)
+    /// A path to an icon.
     pub static IKImageBrowserIconRefPathRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsericonrefrepresentationtype?language=objc)
+    /// An icon.
     pub static IKImageBrowserIconRefRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserpdfpagerepresentationtype?language=objc)
+    /// A PDF page representation.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`PDFPage`](https://developer.apple.com/documentation/pdfkit/pdfpage) instance or a [`CGPDFPageRef`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    ///
     pub static IKImageBrowserPDFPageRepresentationType: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserbackgroundcolorkey?language=objc)
+    /// A key for the background color of the image browser view.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object.
+    ///
+    ///
     pub static IKImageBrowserBackgroundColorKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserselectioncolorkey?language=objc)
+    /// A key for the color that indicates a selection.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object.
+    ///
+    ///
     pub static IKImageBrowserSelectionColorKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellsoutlinecolorkey?language=objc)
+    /// A key for the outline color for an item in the image browser view.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object.
+    ///
+    ///
     pub static IKImageBrowserCellsOutlineColorKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellstitleattributeskey?language=objc)
+    /// A key for  title attribute of an item in the image browser view.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object.
+    ///
+    ///
     pub static IKImageBrowserCellsTitleAttributesKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellshighlightedtitleattributeskey?language=objc)
+    /// A key for the highlighted title attribute for an item in the image browser view.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object.
+    ///
+    ///
     pub static IKImageBrowserCellsHighlightedTitleAttributesKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellssubtitleattributeskey?language=objc)
+    /// A key for  a subtitle attribute for an item in the image browser view.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object.
+    ///
+    ///
     pub static IKImageBrowserCellsSubtitleAttributesKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergrouprangekey?language=objc)
+    /// A key for the range of a group.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object. This is required if the view uses grouping
+    ///
+    ///
     pub static IKImageBrowserGroupRangeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupbackgroundcolorkey?language=objc)
+    /// A key for the background color of a group.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object. This color is used only for the bezel style.
+    ///
+    ///
     pub static IKImageBrowserGroupBackgroundColorKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergrouptitlekey?language=objc)
+    /// A key for the title of a group.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. This string is used for the disclosure style only.
+    ///
+    ///
     pub static IKImageBrowserGroupTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupstylekey?language=objc)
+    /// A key for the style of a group.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is one of the constants defined in  [Group Style Attributes](https://developer.apple.com/documentation/quartz/1564247-group-style-attributes).
+    ///
+    ///
     pub static IKImageBrowserGroupStyleKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupheaderlayer?language=objc)
+    /// A key for the header layer of the group.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer).
+    ///
+    ///
     pub static IKImageBrowserGroupHeaderLayer: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsergroupfooterlayer?language=objc)
+    /// A key for the header layer of the group.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer).
+    ///
+    ///
     pub static IKImageBrowserGroupFooterLayer: Option<&'static NSString>;
 }

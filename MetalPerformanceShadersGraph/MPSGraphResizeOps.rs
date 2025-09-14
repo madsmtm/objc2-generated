@@ -9,21 +9,18 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 /// The resize mode to use for resizing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizemode?language=objc)
+/// The resize mode to use for resizing.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphResizeMode(pub NSUInteger);
 impl MPSGraphResizeMode {
     /// Samples the nearest neighbor to the pixel coordinate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizemode/nearest?language=objc)
+    /// Samples the nearest neighbor to the pixel coordinate.
     #[doc(alias = "MPSGraphResizeNearest")]
     pub const Nearest: Self = Self(0);
     /// Samples the 4 neighbors to the pixel coordinate and uses bilinear interpolation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizemode/bilinear?language=objc)
+    /// Samples the 4 neighbors to the pixel coordinate and uses bilinear interpolation.
     #[doc(alias = "MPSGraphResizeBilinear")]
     pub const Bilinear: Self = Self(1);
 }
@@ -37,41 +34,34 @@ unsafe impl RefEncode for MPSGraphResizeMode {
 }
 
 /// The rounding mode to use when using nearest resize mode.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode?language=objc)
+/// The rounding mode to use when using nearest resize mode.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphResizeNearestRoundingMode(pub NSUInteger);
 impl MPSGraphResizeNearestRoundingMode {
     /// Rounds values to the nearest integer value, with 0.5f offset rounding toward +inf.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode/roundpreferceil?language=objc)
+    /// Rounds values to the nearest integer value, with 0.5f offset rounding toward +inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundPreferCeil")]
     pub const RoundPreferCeil: Self = Self(0);
     /// Rounds values to the nearest integer value, with 0.5f rounding toward -inf.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode/roundpreferfloor?language=objc)
+    /// Rounds values to the nearest integer value, with 0.5f rounding toward -inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundPreferFloor")]
     pub const RoundPreferFloor: Self = Self(1);
     /// Rounds values toward +inf.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode/ceil?language=objc)
+    /// Rounds values toward +inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeCeil")]
     pub const Ceil: Self = Self(2);
     /// Rounds values toward -inf.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode/floor?language=objc)
+    /// Rounds values toward -inf.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeFloor")]
     pub const Floor: Self = Self(3);
     /// Rounds values to the nearest integer value, with 0.5f rounding toward the closest even value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode/roundtoeven?language=objc)
+    /// Rounds values to the nearest integer value, with 0.5f rounding toward the closest even value.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundToEven")]
     pub const RoundToEven: Self = Self(4);
     /// Rounds values to the nearest integer value, with 0.5f rounding toward the closest odd value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode/roundtoodd?language=objc)
+    /// Rounds values to the nearest integer value, with 0.5f rounding toward the closest odd value.
     #[doc(alias = "MPSGraphResizeNearestRoundingModeRoundToOdd")]
     pub const RoundToOdd: Self = Self(5);
 }

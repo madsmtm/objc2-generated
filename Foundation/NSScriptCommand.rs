@@ -6,31 +6,45 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnoscripterror?language=objc)
+/// No error.
 pub const NSNoScriptError: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverevaluationscripterror?language=objc)
+/// The object or objects specified by the direct parameter to a command could not be found.
 pub const NSReceiverEvaluationScriptError: NSInteger = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyspecifierevaluationscripterror?language=objc)
+/// The object or objects specified by a key (for commands that support key specifiers) could not be found.
 pub const NSKeySpecifierEvaluationScriptError: NSInteger = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentevaluationscripterror?language=objc)
+/// The object specified by an argument could not be found.
 pub const NSArgumentEvaluationScriptError: NSInteger = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreceiverscanthandlecommandscripterror?language=objc)
+/// The receivers don’t support the command sent to them.
 pub const NSReceiversCantHandleCommandScriptError: NSInteger = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrequiredargumentsmissingscripterror?language=objc)
+/// An argument (or more than one argument) is missing.
 pub const NSRequiredArgumentsMissingScriptError: NSInteger = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentswrongscripterror?language=objc)
+/// An argument (or more than one argument) is of the wrong type or is otherwise invalid.
 pub const NSArgumentsWrongScriptError: NSInteger = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyscripterror?language=objc)
+/// An unidentified error occurred; indicates an error in the scripting support of your application.
 pub const NSUnknownKeyScriptError: NSInteger = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalscripterror?language=objc)
+/// An unidentified internal error occurred; indicates an error in the scripting support of your application.
 pub const NSInternalScriptError: NSInteger = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyscripterror?language=objc)
+/// The implementation of a scripting command signaled an error.
 pub const NSOperationNotSupportedForKeyScriptError: NSInteger = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscannotcreatescriptcommanderror?language=objc)
+/// Could not create the script command; an invalid or unrecognized Apple event was received.
 pub const NSCannotCreateScriptCommandError: NSInteger = 10;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcommand?language=objc)
+    /// A self-contained scripting statement.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of [`NSScriptCommand`](https://developer.apple.com/documentation/foundation/nsscriptcommand) represents a scripting statement, such as `set word 5 of the front document to word 1 of the second document`, and contains the information needed to perform the operation specified by the statement.
+    ///
+    /// When an Apple event reaches a Cocoa application, Cocoa’s built-in scripting support transforms it into a script command (that is, an instance of `NSScriptCommand` or one of the subclasses provided by Cocoa scripting or by your application) and executes the command in the context of the application. Executing a command means either invoking the selector associated with the command on the object or objects designated to receive the command, or having the command perform its default implementation method ([`performDefaultImplementation`](https://developer.apple.com/documentation/foundation/nsscriptcommand/performdefaultimplementation())).
+    ///
+    /// Your application most likely calls methods of `NSScriptCommand` to extract the command arguments. You do this either in the `performDefaultImplementation` method of a command subclass you have created, or in an object method designated as the selector to handle a particular command.
+    ///
+    /// As part of Cocoa’s standard scripting implementation, `NSScriptCommand` and its subclasses can handle the default command set for AppleScript’s Standard suite for most applications without any subclassing. The Standard suite includes commands such as `copy`, `count`, `create`, `delete`, `exists`, and `move`, as well as common object classes such as `application`, `document`, and `window`.
+    ///
+    /// For more information on working with script commands, see [Script Commands](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_script_cmds/SAppsScriptCmds.html#//apple_ref/doc/uid/20001242) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCommand;

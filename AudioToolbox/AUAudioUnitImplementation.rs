@@ -8,26 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Describes the type of a render event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AURenderEventType(pub u8);
 impl AURenderEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/parameter?language=objc)
+    /// A parameter event.
     #[doc(alias = "AURenderEventParameter")]
     pub const Parameter: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/parameterramp?language=objc)
+    /// A ramped parameter event.
     #[doc(alias = "AURenderEventParameterRamp")]
     pub const ParameterRamp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/midi?language=objc)
+    /// A MIDI event.
     #[doc(alias = "AURenderEventMIDI")]
     pub const MIDI: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/midisysex?language=objc)
+    /// A system-exclusive MIDI event.
     #[doc(alias = "AURenderEventMIDISysEx")]
     pub const MIDISysEx: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendereventtype/midieventlist?language=objc)
     #[doc(alias = "AURenderEventMIDIEventList")]
     pub const MIDIEventList: Self = Self(10);
 }
@@ -245,36 +242,97 @@ impl AUParameterTree {
     );
 }
 
-/// A block called to notify the AUAudioUnit implementation of changes to AUParameter values.
+/// A block called to notify the audio unit implementation of changes to a parameter value.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueobserver?language=objc)
+/// ## Discussion
+///
+/// This block is only of interest to audio unit subclasses.
+///
+/// The block takes the following parameters:
+///
+/// - param: The parameter that was changed.
+///
+/// - value: The current value of the parameter.
+///
+///
+/// A block called to notify the AUAudioUnit implementation of changes to AUParameter values.
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueObserver = *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>, AUValue)>;
 
-/// A block called to fetch an AUParameter's current value from the AUAudioUnit implementation.
+/// A block called to fetch a parameter’s current value from the audio unit implementation.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvalueprovider?language=objc)
+/// ## Discussion
+///
+/// This block is only of interest to audio unit subclasses.
+///
+/// The block returns the current value of the parameter.
+///
+/// The block takes the following parameters:
+///
+/// - param: The parameter to query.
+///
+///
+/// A block called to fetch an AUParameter's current value from the AUAudioUnit implementation.
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueProvider =
     *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>) -> AUValue>;
 
-/// A block called to convert an AUParameter's value to a string.
+/// A block called to convert a parameter value to a string representation.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorstringfromvaluecallback?language=objc)
+/// ## Discussion
+///
+/// This block is only of interest to audio unit subclasses.
+///
+/// The block returns a string representing a parameter value.
+///
+/// The block takes the following parameters:
+///
+/// - param: The parameter that contains the value.
+///
+/// - value: The parameter value to be converted.
+///
+///
+/// A block called to convert an AUParameter's value to a string.
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorStringFromValueCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>, *const AUValue) -> NonNull<NSString>>;
 
-/// A block called to convert a string to an AUParameter's value.
+/// A block called to convert a string to a parameter value.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementorvaluefromstringcallback?language=objc)
+/// ## Discussion
+///
+/// This block is only of interest to audio unit subclasses.
+///
+/// The block returns the current value of the parameter.
+///
+/// The block takes the following parameters:
+///
+/// - param: The parameter whose value will be changed.
+///
+/// - string: The string that contains the new parameter value.
+///
+///
+/// A block called to convert a string to an AUParameter's value.
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorValueFromStringCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<AUParameter>, NonNull<NSString>) -> AUValue>;
 
-/// A block called to return a group or parameter's localized display name, abbreviated to the requested length.
+/// A block called to obtain a parameter node’s display name, possibly truncated to a desired length.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auimplementordisplaynamewithlengthcallback?language=objc)
+/// ## Discussion
+///
+/// This block is only of interest to audio unit subclasses.
+///
+/// The block returns a truncated parameter node display name.
+///
+/// The block takes the following parameters:
+///
+/// - node: The parameter node to query.
+///
+/// - desiredLength: The desired length, in characters, of the display name.
+///
+///
+/// A block called to return a group or parameter's localized display name, abbreviated to the requested length.
 #[cfg(all(feature = "AUParameters", feature = "block2"))]
 pub type AUImplementorDisplayNameWithLengthCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<AUParameterNode>, NSInteger) -> NonNull<NSString>>;
@@ -430,6 +488,15 @@ impl AUParameterNode {
 }
 
 extern_class!(
+    /// A class that wraps a version 2 audio unit as version 3 audio unit.
+    ///
+    /// ## Overview
+    ///
+    /// A version 3 audio unit may subclass the [`AUAudioUnitV2Bridge`](https://developer.apple.com/documentation/audiotoolbox/auaudiounitv2bridge) class. If so, the audio unit’s component description should refer to a registered component with a version 2 implementation by using a factory function. The bridge will instantiate the version 2 audio unit via the factory function and communicate with it using version 2 audio unit APIs.
+    ///
+    /// Hosts should not access this class; it will be instantiated if needed when creating an audio unit.
+    ///
+    ///
     /// Wraps a v2 audio unit in an AUAudioUnit subclass.
     ///
     /// Implementors of version 3 audio units may derive their implementations from
@@ -441,8 +508,6 @@ extern_class!(
     ///
     /// Hosts should not access this class; it will be instantiated when needed when creating an
     /// AUAudioUnit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitv2bridge?language=objc)
     #[unsafe(super(AUAudioUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AUAudioUnit")]
@@ -521,6 +586,15 @@ impl AUAudioUnitV2Bridge {
 }
 
 extern_protocol!(
+    /// An object that creates a version 3 audio unit.
+    ///
+    /// ## Overview
+    ///
+    /// In most cases, if your audio unit specifies parameters to configure its behavior, it should provide a custom user interface to control those parameters. You create this user interface by subclassing the [`AUViewController`](https://developer.apple.com/documentation/coreaudiokit/auviewcontroller) class and implementing this protocol on your subclass.
+    ///
+    /// If your audio unit doesn’t provide a custom user interface, subclass the [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) class instead. In this case, the hosting app must create a generic user interface for your audio unit.
+    ///
+    ///
     /// Protocol to which principal classes of v3 audio units (extensions) must conform.
     ///
     /// The principal class of a non-UI v3 audio unit extension will generally derive from NSObject
@@ -528,8 +602,6 @@ extern_protocol!(
     ///
     /// The principal class of a UI v3 audio unit extension must derive from AUViewController and
     /// implement this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitfactory?language=objc)
     pub unsafe trait AUAudioUnitFactory: NSExtensionRequestHandling {
         #[cfg(all(feature = "AUAudioUnit", feature = "AudioComponent"))]
         /// Create an instance of an extension's AUAudioUnit.

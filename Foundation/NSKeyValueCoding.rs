@@ -7,78 +7,84 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/undefinedkeyexception?language=objc)
+    /// Raised when a key value coding operation fails.
+    ///
+    /// ## Discussion
+    ///
+    /// `userInfo` keys are described in [NSUndefinedKeyException userInfo Keys](https://developer.apple.com/documentation/objectivec/nsundefinedkeyexception-userinfo-keys).
+    ///
+    ///
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSUndefinedKeyException: &'static NSExceptionName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator?language=objc)
+/// These constants define the available array operators. See [Using Collection Operators](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/CollectionOperators.html) for more information.
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSKeyValueOperator = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/averagekeyvalueoperator?language=objc)
+    /// The @avg array operator.
     #[cfg(feature = "NSString")]
     pub static NSAverageKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/countkeyvalueoperator?language=objc)
+    /// The @count array operator.
     #[cfg(feature = "NSString")]
     pub static NSCountKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/distinctunionofarrayskeyvalueoperator?language=objc)
+    /// The @distinctUnionOfArrays array operator.
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/distinctunionofobjectskeyvalueoperator?language=objc)
+    /// The @distinctUnionOfObjects array operator.
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/distinctunionofsetskeyvalueoperator?language=objc)
+    /// The @distinctUnionOfSets array operator.
     #[cfg(feature = "NSString")]
     pub static NSDistinctUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/maximumkeyvalueoperator?language=objc)
+    /// The @max array operator.
     #[cfg(feature = "NSString")]
     pub static NSMaximumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/minimumkeyvalueoperator?language=objc)
+    /// The @min array operator.
     #[cfg(feature = "NSString")]
     pub static NSMinimumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/sumkeyvalueoperator?language=objc)
+    /// The @sum array operator.
     #[cfg(feature = "NSString")]
     pub static NSSumKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/unionofarrayskeyvalueoperator?language=objc)
+    /// The @unionOfArrays array operator.
     #[cfg(feature = "NSString")]
     pub static NSUnionOfArraysKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/unionofobjectskeyvalueoperator?language=objc)
+    /// The @unionOfObjects array operator.
     #[cfg(feature = "NSString")]
     pub static NSUnionOfObjectsKeyValueOperator: &'static NSKeyValueOperator;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueoperator/unionofsetskeyvalueoperator?language=objc)
+    /// The @unionOfSets array operator.
     #[cfg(feature = "NSString")]
     pub static NSUnionOfSetsKeyValueOperator: &'static NSKeyValueOperator;
 }

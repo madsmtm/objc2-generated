@@ -9,6 +9,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object you use to configure additional tasks or animations to run alongside the Writing Tools animations.
+    ///
+    /// ## Overview
+    ///
+    /// When Writing Tools replaces text in one of your context objects, it provides a `UIWritingToolsCoordinator.AnimationParameters` object for you to use to configure any additional animations. During a Writing Tools session, you hide the text under evaluation and provide a targeted preview of your content. Writing Tools animations changes to that preview, but you might need to provide additional animations for other parts of your view’s content. For example, you might need to animate any layout changes caused by the insertion or removal of text in other parts of your view. Use this object to configure those animations.
+    ///
+    /// You don’t create a `UIWritingToolsCoordinator.AnimationParameters` object directly. Instead, the system creates one and passes it to the `UIWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)` method of your [`UIWritingToolsCoordinatorDelegate`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol) object. Use that object to specify the blocks to run during and after the system animations.
+    ///
+    ///
     /// An object you use to configure additional tasks or animations to
     /// run alongside the Writing Tools animations.
     ///
@@ -28,8 +37,6 @@ extern_class!(
     /// ``UIWritingToolsCoordinator/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
     /// method of your ``UIWritingToolsCoordinatorDelegate`` object. Use that
     /// object to specify the blocks to run during and after the system animations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/animationparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWritingToolsCoordinatorAnimationParameters;

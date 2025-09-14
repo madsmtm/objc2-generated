@@ -5,28 +5,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod?language=objc)
+/// The custom authorization method.
+///
+/// ## Discussion
+///
+/// Use [`ASAuthorizationCustomMethod`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod) to specify a type of custom sign-in in tvOS, like enabling the user to sign in manually or by restoring a purchase.
+///
+///
 // NS_TYPED_ENUM
 pub type ASAuthorizationCustomMethod = NSString;
 
 extern "C" {
-    /// An authorization method that uses the VideoSubscriberAccount framework to sign in.
+    /// A type of authorization that uses a TV provider account to sign in.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod/videosubscriberaccount?language=objc)
+    /// ## Discussion
+    ///
+    /// This kind of authorization method displays a Sign in with TV Provider button.
+    ///
+    ///
+    /// An authorization method that uses the VideoSubscriberAccount framework to sign in.
     pub static ASAuthorizationCustomMethodVideoSubscriberAccount:
         &'static ASAuthorizationCustomMethod;
 }
 
 extern "C" {
-    /// An authorization method that restores an in-app purchase to sign in.
+    /// A type of authorization that restores an in-app purchase to sign in.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod/restorepurchase?language=objc)
+    /// ## Discussion
+    ///
+    /// This kind of authorization method displays a Restore Purchase button.
+    ///
+    ///
+    /// An authorization method that restores an in-app purchase to sign in.
     pub static ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod;
 }
 
 extern "C" {
-    /// An authorization method that uses some other sign-in mechanism.
+    /// A type of authorization that uses a custom sign-in method.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod/other?language=objc)
+    /// ## Discussion
+    ///
+    /// This kind of authorization method displays a Sign in Manually button.
+    ///
+    ///
+    /// An authorization method that uses some other sign-in mechanism.
     pub static ASAuthorizationCustomMethodOther: &'static ASAuthorizationCustomMethod;
 }

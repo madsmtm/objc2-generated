@@ -8,6 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that supports safely sharing Thread credentials between multiple clients.
+    ///
+    /// ## Overview
+    ///
+    /// Request credentials for either a specific Thread network or for the _preferred network_ using [`THClient`](https://developer.apple.com/documentation/threadnetwork/thclient). The preferred network is the default Thread network chosen by the framework for a home.
+    ///
+    /// The ThreadNetwork framework maintains a database of network credentials. The class allows clients to store, list, and delete credentials for a given network from the database.
+    ///
+    /// Some methods in [`THClient`](https://developer.apple.com/documentation/threadnetwork/thclient) use the _team ID_, a string that you store in your application’s `Info.plist`. The ThreadNetwork framework uses the team ID to preserve the privacy of the Thread network credentials across different clients. For example, credentials stored by one client can’t be deleted or modified by another client.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Thread credentials give you the ability to add any device into the Thread network. Use this information responsibly.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A class that supports safely sharing Thread credentials between multiple
     /// clients.
     ///
@@ -27,8 +46,6 @@ extern_class!(
     ///
     /// - Important: Thread credentials give you the ability to add any device into
     /// the Thread network. Use this information responsibly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/threadnetwork/thclient?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct THClient;

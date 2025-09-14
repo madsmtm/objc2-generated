@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationreplacepasswordwithsigninwithapplerequest?language=objc)
+    /// A request to upgrade from using a password to using Sign in with Apple.
+    ///
+    /// ## Overview
+    ///
+    /// Your app uses this class to initiate an upgrade to Sign in with Apple. After creating the request, your app initiates the upgrade process by instantiating an [`ASAccountAuthenticationModificationController`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller) object and calling [`performRequest:`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/perform(_:)) on it. The system invokes your authentication modification extension to complete the upgrade.
+    ///
+    ///
     #[unsafe(super(ASAccountAuthenticationModificationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAccountAuthenticationModificationRequest")]

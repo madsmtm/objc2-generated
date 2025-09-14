@@ -7,15 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcompletionhandler?language=objc)
+/// The completion handler for asynchronous control, bulk, and interrupt transfers.
+///
+/// Parameters:
+/// - status: The result for the transfer.
+///
+/// - bytesTransferred: The number of bytes the request transferred.
+///
 #[cfg(feature = "block2")]
 pub type IOUSBHostCompletionHandler = *mut block2::DynBlock<dyn Fn(IOReturn, NSUInteger)>;
 
+/// The absolute time.
 /// AbsoluteTime represented as a uint64_t.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhosttime?language=objc)
 pub type IOUSBHostTime = u64;
 
+/// A structure that represents a single frame in an isochronous transfer.
 /// Structure representing a single frame in an isochronous transfer. Use of this
 /// structure is discouraged, use
 ///
@@ -35,8 +41,6 @@ pub type IOUSBHostTime = u64;
 /// Field: timeStamp The observed IOUSBHostTime for this frame's completion.  Note that
 /// interrupt latency and system load may result in more than one frame completing with
 /// the same timestamp.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronousframe?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIsochronousFrame {
@@ -72,15 +76,12 @@ unsafe impl RefEncode for IOUSBHostIsochronousFrame {
 /// <code>
 /// sendIORequestWithData:transactionList:transactionListCount:firstFrameNumber:options:error:completionHandler
 /// </code>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostIsochronousTransferOptions(pub u32);
 bitflags::bitflags! {
     impl IOUSBHostIsochronousTransferOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransferoptions/iousbhostisochronoustransferoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostIsochronousTransferOptionsNone")]
         const None = 0;
     }
@@ -102,18 +103,14 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransferOptions {
 /// <code>
 /// sendIORequestWithData:transactionList:transactionListCount:firstFrameNumber:error:completionHandler
 /// </code>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostIsochronousTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOUSBHostIsochronousTransactionOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions/iousbhostisochronoustransactionoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostIsochronousTransactionOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions/wrap?language=objc)
         #[doc(alias = "IOUSBHostIsochronousTransactionOptionsWrap")]
         const Wrap = 1<<0;
     }
@@ -147,8 +144,6 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransactionOptions {
 /// ```
 ///
 /// for more details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransaction?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIsochronousTransaction {
@@ -178,13 +173,18 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransaction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A completion handler for asynchronous isochronous transfers.
+///
+/// Parameters:
+/// - status: The result code for isochronous transfer.
+///
+/// - frameList: The frame list of [`IOUSBHostIsochronousFrame`](https://developer.apple.com/documentation/iousbhost/iousbhostisochronousframe) that [`enqueueIORequestWithData:frameList:frameListCount:firstFrameNumber:error:completionHandler:`](https://developer.apple.com/documentation/iousbhost/iousbhostpipe/enqueueiorequest(with:framelist:framelistcount:firstframenumber:completionhandler:)) passes.
+///
 /// Isochronous IO completion handler.
 ///
 /// Parameter `status`: IOReturn result code for isochronous transfer.
 ///
 /// Parameter `frameList`: Frame list for isochronous transfer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronouscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type IOUSBHostIsochronousCompletionHandler =
     *mut block2::DynBlock<dyn Fn(IOReturn, NonNull<IOUSBHostIsochronousFrame>)>;
@@ -194,19 +194,17 @@ pub type IOUSBHostIsochronousCompletionHandler =
 /// Parameter `status`: IOReturn result code for isochronous transfer.
 ///
 /// Parameter `transactionList`: Transaction list for isochronous transfer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactioncompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type IOUSBHostIsochronousTransactionCompletionHandler =
     *mut block2::DynBlock<dyn Fn(IOReturn, NonNull<IOUSBHostIsochronousTransaction>)>;
 
 extern "C" {
+    /// The error domain for the framework.
     /// NSErrorDomain for IOUSBHostFamily. Error codes are IOKit IOReturn codes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhosterrordomain?language=objc)
     pub static IOUSBHostErrorDomain: &'static NSErrorDomain;
 }
 
+/// Options for aborting pending input/output requests.
 /// Options for
 /// <code>
 /// abort
@@ -226,17 +224,21 @@ extern "C" {
 /// ```text
 ///  abortWithOption:error:
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostabortoption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostAbortOption(pub NSUInteger);
 impl IOUSBHostAbortOption {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostabortoption/asynchronous?language=objc)
+    /// The option to abort input/output requests asynchronously.
     #[doc(alias = "IOUSBHostAbortOptionAsynchronous")]
     pub const Asynchronous: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostabortoption/synchronous?language=objc)
+    /// The option to abort input/output requests synchronously.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default argument for functions that abort pending input/output requests. All input/output requests must abort before functions can return.
+    ///
+    ///
     #[doc(alias = "IOUSBHostAbortOptionSynchronous")]
     pub const Synchronous: Self = Self(1);
 }
@@ -249,6 +251,7 @@ unsafe impl RefEncode for IOUSBHostAbortOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for initializing the host object.
 /// Options for
 /// <code>
 /// initWithIOService:options:queue:error:interestHandler
@@ -271,21 +274,24 @@ unsafe impl RefEncode for IOUSBHostAbortOption {
 /// </code>
 /// message.  The message will include
 /// the registry entry ID of the requesting service.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostObjectInitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl IOUSBHostObjectInitOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions/iousbhostobjectinitoptionsnone?language=objc)
+/// The default argument for initializing the host object.
         #[doc(alias = "IOUSBHostObjectInitOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions/devicecapture?language=objc)
+/// The option to capture the device and terminate existing drivers.
+///
+/// ## Discussion
+///
+/// Callers must have either the com.apple.vm.device-access entitlement and the [`IOUSBHostDevice`](https://developer.apple.com/documentation/iousbhost/iousbhostdevice) object from [`IOServiceAuthorize`](https://developer.apple.com/documentation/iokit/1514533-ioserviceauthorize) authorization, or have root privileges. Using this option terminates all clients and drivers of the [`IOUSBHostDevice`](https://developer.apple.com/documentation/iousbhost/iousbhostdevice) and associated [`IOUSBHostInterface`](https://developer.apple.com/documentation/kernel/iousbhostinterface) clients, as well as the caller. Upon [`destroy`](https://developer.apple.com/documentation/iousbhost/iousbhostobject/destroy()) of the [`IOUSBHostDevice`](https://developer.apple.com/documentation/iousbhost/iousbhostdevice), the device resets and [`IOUSBHostInterface`](https://developer.apple.com/documentation/kernel/iousbhostinterface) reregisters for [`IOKit`](https://developer.apple.com/documentation/iokit) matching.
+///
+///
         #[doc(alias = "IOUSBHostObjectInitOptionsDeviceCapture")]
         const DeviceCapture = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions/deviceseize?language=objc)
         #[doc(alias = "IOUSBHostObjectInitOptionsDeviceSeize")]
         const DeviceSeize = 1<<1;
     }
@@ -299,6 +305,20 @@ unsafe impl RefEncode for IOUSBHostObjectInitOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Options for destroyWithOptions
+///
+/// ```text
+///          the device will not be reset and drivers will not be re-registered for matching.  This allows for IOUSBHostDevice
+///          objects that were initialized with <code>IOUSBHostObjectInitOptionsDeviceCapture</code> to honor the
+///          <code>kUSBHostMessageDeviceIsRequestingClose</code> message.
+///
+///          This option is only valid for macOS
+/// ```
+///
+///
 /// Options for
 /// <code>
 /// destroyWithOptions
@@ -316,18 +336,14 @@ unsafe impl RefEncode for IOUSBHostObjectInitOptions {
 /// message.
 ///
 /// This option is only valid for macOS
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostObjectDestroyOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl IOUSBHostObjectDestroyOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions/iousbhostobjectdestroyoptionsnone?language=objc)
         #[doc(alias = "IOUSBHostObjectDestroyOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions/devicesurrender?language=objc)
         #[doc(alias = "IOUSBHostObjectDestroyOptionsDeviceSurrender")]
         const DeviceSurrender = 1<<0;
     }
@@ -343,120 +359,126 @@ unsafe impl RefEncode for IOUSBHostObjectDestroyOptions {
 
 // TODO: pub fn IOUSBHostDeviceRequestType(direction: tIOUSBDeviceRequestDirectionValue,r#type: tIOUSBDeviceRequestTypeValue,recipient: tIOUSBDeviceRequestRecipientValue,) -> u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey?language=objc)
+/// Properties for implementing the matching service.
 // NS_TYPED_ENUM
 pub type IOUSBHostMatchingPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/vendorid?language=objc)
+    /// The matching property for the device’s vendor ID.
     pub static IOUSBHostMatchingPropertyKeyVendorID: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/productid?language=objc)
+    /// The matching property for the device’s product ID.
     pub static IOUSBHostMatchingPropertyKeyProductID: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/productidarray?language=objc)
+    /// The matching property on a list of product IDs.
     pub static IOUSBHostMatchingPropertyKeyProductIDArray: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfacenumber?language=objc)
+    /// The matching property for the device’s interface number.
     pub static IOUSBHostMatchingPropertyKeyInterfaceNumber: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/configurationvalue?language=objc)
+    /// The matching property for the device’s current configuration value.
     pub static IOUSBHostMatchingPropertyKeyConfigurationValue:
         &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/devicereleasenumber?language=objc)
+    /// The matching property for the device’s release number.
     pub static IOUSBHostMatchingPropertyKeyDeviceReleaseNumber:
         &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfaceclass?language=objc)
+    /// The matching property for the interface’s class ID.
     pub static IOUSBHostMatchingPropertyKeyInterfaceClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfacesubclass?language=objc)
+    /// The matching property for the interface’s subclass ID.
     pub static IOUSBHostMatchingPropertyKeyInterfaceSubClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfaceprotocol?language=objc)
+    /// The matching property for the interface’s protocol.
     pub static IOUSBHostMatchingPropertyKeyInterfaceProtocol: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/deviceclass?language=objc)
+    /// The matching property for the device’s class.
     pub static IOUSBHostMatchingPropertyKeyDeviceClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/devicesubclass?language=objc)
+    /// The matching property for the device’s subclass.
     pub static IOUSBHostMatchingPropertyKeyDeviceSubClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/deviceprotocol?language=objc)
+    /// The matching property for the device’s protocol.
     pub static IOUSBHostMatchingPropertyKeyDeviceProtocol: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/speed?language=objc)
+    /// The matching property for the device’s enumeration speed.
     pub static IOUSBHostMatchingPropertyKeySpeed: &'static IOUSBHostMatchingPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostpropertykey?language=objc)
+/// Properties that the USB host device and interface classes share.
 pub type IOUSBHostPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostpropertykeylocationid?language=objc)
+    /// The location ID of the USB host device.
     pub static IOUSBHostPropertyKeyLocationID: &'static IOUSBHostPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey?language=objc)
+/// Properties of a USB device that describe its state.
 // NS_TYPED_ENUM
 pub type IOUSBHostDevicePropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/vendorstring?language=objc)
+    /// The device’s vendor name.
     pub static IOUSBHostDevicePropertyKeyVendorString: &'static IOUSBHostDevicePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/serialnumberstring?language=objc)
+    /// The device’s serial number as a string.
     pub static IOUSBHostDevicePropertyKeySerialNumberString: &'static IOUSBHostDevicePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/containerid?language=objc)
+    /// The device’s container ID.
+    ///
+    /// ## Discussion
+    ///
+    /// See USB 3.2, 9.6.2.3 for more information.
+    ///
+    ///
     pub static IOUSBHostDevicePropertyKeyContainerID: &'static IOUSBHostDevicePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/currentconfiguration?language=objc)
+    /// The device’s current configuration value.
     pub static IOUSBHostDevicePropertyKeyCurrentConfiguration: &'static IOUSBHostDevicePropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinterfacepropertykey?language=objc)
+/// Properties of a USB interface that describe its state.
 // NS_TYPED_ENUM
 pub type IOUSBHostInterfacePropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinterfacepropertykey/alternatesetting?language=objc)
+    /// The USB interface’s current alternative setting value.
     pub static IOUSBHostInterfacePropertyKeyAlternateSetting:
         &'static IOUSBHostInterfacePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdefaultcontrolcompletiontimeout?language=objc)
+    /// The default completion timeout for input/output requests.
     pub static IOUSBHostDefaultControlCompletionTimeout: NSTimeInterval;
 }

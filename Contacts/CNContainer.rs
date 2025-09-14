@@ -6,22 +6,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype?language=objc)
+/// The container may be local on the device or associated with a server account that has contacts.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContainerType(pub NSInteger);
 impl CNContainerType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/unassigned?language=objc)
+    /// A container where the system hasn’t assigned the container type.
     #[doc(alias = "CNContainerTypeUnassigned")]
     pub const Unassigned: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/local?language=objc)
+    /// A container for contacts only stored locally on the device.
+    ///
+    /// ## Discussion
+    ///
+    /// There is only one local container for a device.
+    ///
+    ///
     #[doc(alias = "CNContainerTypeLocal")]
     pub const Local: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/exchange?language=objc)
+    /// A container for contacts stored in an Exchange folder from an Exchange server.
     #[doc(alias = "CNContainerTypeExchange")]
     pub const Exchange: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertype/carddav?language=objc)
+    /// A container for contacts stored in an CardDAV server, such as iCloud.
     #[doc(alias = "CNContainerTypeCardDAV")]
     pub const CardDAV: Self = Self(3);
 }
@@ -35,12 +41,19 @@ unsafe impl RefEncode for CNContainerType {
 }
 
 extern_class!(
+    /// An immutable object that represents a collection of contacts.
+    ///
+    /// ## Overview
+    ///
+    /// A contact can be in only one container. CardDAV accounts usually have only one container whereas Exchange accounts may have multiple containers, where each container represents an Exchange folder.
+    ///
+    /// `CNContainer` objects are thread-safe, and you may access their properties from any thread of your app.
+    ///
+    ///
     /// An immutable value object representing a container.
     ///
     ///
     /// CNContainer is thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContainer;
@@ -97,16 +110,34 @@ impl CNContainer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontaineridentifierkey?language=objc)
+    /// The identifier key of the container.
+    ///
+    /// ## Discussion
+    ///
+    /// This key represents the container identifier property for KVC/KVO usage. This property is always fetched.
+    ///
+    ///
     pub static CNContainerIdentifierKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainernamekey?language=objc)
+    /// The name of the container.
+    ///
+    /// ## Discussion
+    ///
+    /// This key represents the container identifier property for KVC/KVO usage. This property is always fetched.
+    ///
+    ///
     pub static CNContainerNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontainertypekey?language=objc)
+    /// The type of the container.
+    ///
+    /// ## Discussion
+    ///
+    /// This key represents the container identifier property for KVC/KVO usage. This property is always fetched.
+    ///
+    ///
     pub static CNContainerTypeKey: &'static NSString;
 }

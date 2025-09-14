@@ -14,9 +14,18 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// `CPWindow`is the main window for content presented on the car screen.
+    /// A window that displays its content on the CarPlay screen.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpwindow?language=objc)
+    /// ## Overview
+    ///
+    /// Navigation apps use a window to render their maps, and CarPlay provides one via the scene delegate’s [`templateApplicationScene:didConnectInterfaceController:toWindow:`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate/templateapplicationscene(_:didconnect:to:)) method. For all other categories of apps, you use templates exclusively to draw your user interface, and your scene delegate must implement [`templateApplicationScene:didConnectInterfaceController:`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate/templateapplicationscene(_:didconnect:)) instead.
+    ///
+    /// When CarPlay launches your navigation app, instantiate your map-drawing view controller and assign it to the window’s [`rootViewController`](https://developer.apple.com/documentation/uikit/uiwindow/rootviewcontroller) property. This becomes the base CarPlay view and is for drawing maps exclusively. You use templates for all other user interface elements.
+    ///
+    /// The base view of a navigation app does not receive tap or drag events.
+    ///
+    ///
+    /// `CPWindow`is the main window for content presented on the car screen.
     #[unsafe(super(UIWindow, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

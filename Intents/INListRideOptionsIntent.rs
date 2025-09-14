@@ -10,7 +10,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintent?language=objc)
+    /// An intent for getting the types of rides available from a ride-booking service.
+    ///
+    /// ## Overview
+    ///
+    /// Maps creates an [`INListRideOptionsIntent`](https://developer.apple.com/documentation/intents/inlistrideoptionsintent) object when it needs to display the types of vehicles that your service offers. Use the information in this intent to identify the possible vehicles that you can provide to the user right now. The intent contains information about the user’s pickup and drop-off locations, which you can use to determine ride availability, pricing, and estimated pickup times. This intent object represents a request for information and is not a commitment from the user to book any of the specified rides.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INListRideOptionsIntentHandling`](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling) protocol. Your handler should resolve and confirm the request parameters and create an [`INListRideOptionsIntentResponse`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponse) object with the list of options.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When implementing ride-booking support, provide a GeoJSON file with the regions for which you are able to provide rides and upload that file as your app’s Routing App Coverage File in App Store Connect. When it needs to suggest apps capable of providing a ride, Maps uses your coverage information to determine whether it should suggest your app. If you do not provide a coverage file and your app is not installed on the user’s device, Maps does not suggest your app. For information about how to create and upload a Routing App Coverage File, see [iTunes Connect Developer Help](https://help.apple.com/itunes-connect/developer/#/dev4ba662442).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -81,11 +102,20 @@ impl INListRideOptionsIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for fetching the list of rides currently available from your ride-booking service.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INListRideOptionsIntentHandling`](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling) protocol to resolve, confirm, and handle requests for information about the types of rides available from your service right now. Maps asks for this information when the user searches for a ride between the specified pickup and drop-off locations. Adopt this protocol in an object of your Intents extension that is capable of retrieving the ride information from your servers.
+    ///
+    /// Ride options represent the categories of vehicles that your service offers and do not represent specific vehicles in your fleet. Each ride option contains information about the passenger capacity and pricing of the corresponding vehicles. You should also provide an estimated time at which one or more vehicles of that type could pick up the user.
+    ///
+    /// Maps may deliver an [`INListRideOptionsIntent`](https://developer.apple.com/documentation/intents/inlistrideoptionsintent) object to your handler object at any time. Maps does not require you to resolve or confirm the contents of a list ride options intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
     /// Protocol to declare support for handling an INListRideOptionsIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling?language=objc)
     pub unsafe trait INListRideOptionsIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

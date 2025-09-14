@@ -34,21 +34,41 @@ impl private_NSItemProviderNSItemSourceInfo::Sealed for NSItemProvider {}
 unsafe impl NSItemProviderNSItemSourceInfo for NSItemProvider {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifierdatetext?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// UTI subtype for [`date`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/date), `com.apple.structured-text.date`.
+    ///
+    ///
     pub static NSTypeIdentifierDateText: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifieraddresstext?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// UTI subtype for [`addressCheckingResultWithRange:components:`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/addresscheckingresult(range:components:)), `com.apple.structured-text.address`.
+    ///
+    ///
     pub static NSTypeIdentifierAddressText: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifierphonenumbertext?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// UTI subtype for [`phoneNumber`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/phonenumber), `com.apple.structured-text.telephone-number`.
+    ///
+    ///
     pub static NSTypeIdentifierPhoneNumberText: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypeidentifiertransitinformationtext?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// UTI subtype for [`NSTextCheckingTypeTransitInformation`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/transitinformation), `com.apple.structured-text.transit-information`.
+    ///
+    ///
     pub static NSTypeIdentifierTransitInformationText: &'static NSString;
 }

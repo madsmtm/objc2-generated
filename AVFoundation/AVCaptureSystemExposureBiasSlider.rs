@@ -7,14 +7,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A control that adjusts the exposure bias of a capture device within the system-recommended range.
+    ///
+    /// ## Overview
+    ///
+    /// This control defines its range by querying the [`systemRecommendedExposureBiasRange`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/systemrecommendedexposurebiasrange) property of the device’s active format. If a device’s [`activeFormat`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat) value changes, the slider updates its range with the new format’s system-recommended value.
+    ///
+    /// To use this control, add it to the capture session by calling the session’s [`addControl:`](https://developer.apple.com/documentation/avfoundation/avcapturesession/addcontrol(_:)) method.
+    ///
+    ///
     /// The system's recommended continuous exposure bias control for `-[AVCaptureDevice exposureTargetBias]`.
     ///
     ///
     /// `AVCaptureSystemExposureBiasSlider` uses the range specified by `systemRecommendedExposureBiasRange` on the `activeFormat` from the `AVCaptureDevice` specified during initialization. As the device's `activeFormat` changes, the slider updates its range with the new format's `systemRecommendedExposureBiasRange`.
     ///
     /// Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemexposurebiasslider?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]

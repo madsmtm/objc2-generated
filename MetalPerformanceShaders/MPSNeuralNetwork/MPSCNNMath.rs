@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that stores the clamp mask used by gradient arithmetic operators.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNArithmeticGradientState is used to hold the clamp mask used by both
@@ -18,8 +19,6 @@ extern_class!(
     /// object.
     ///
     /// The clamp mask is stored internally and is not accessible by the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate?language=objc)
     #[unsafe(super(MPSNNBinaryGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -182,7 +181,7 @@ impl MPSCNNArithmeticGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradientstatebatch?language=objc)
+/// A batch of arithmetic gradient state instances.
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSNNGradientState",
@@ -191,6 +190,7 @@ impl MPSCNNArithmeticGradientState {
 pub type MPSCNNArithmeticGradientStateBatch = NSArray<MPSCNNArithmeticGradientState>;
 
 extern_class!(
+    /// The base class for arithmetic operators.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNArithmetic filter takes two source images, a primary source image and a
@@ -232,8 +232,6 @@ extern_class!(
     /// channels.
     ///
     /// You must use one of the sub-classes of MPSImageArithmetic.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmetic?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -492,13 +490,12 @@ impl MPSCNNArithmetic {
 }
 
 extern_class!(
+    /// An addition operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the addition operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) + (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnadd?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -618,13 +615,12 @@ impl MPSCNNAdd {
 }
 
 extern_class!(
+    /// A subtraction operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the subtraction operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) - (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtract?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -744,13 +740,12 @@ impl MPSCNNSubtract {
 }
 
 extern_class!(
+    /// A multiply operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the multiplication operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) * (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiply?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -870,13 +865,12 @@ impl MPSCNNMultiply {
 }
 
 extern_class!(
+    /// A division operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the division operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) / (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndivide?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -995,29 +989,22 @@ impl MPSCNNDivide {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNComparisonType(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNComparisonType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/equal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeEqual")]
         const Equal = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/notequal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeNotEqual")]
         const NotEqual = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/less?language=objc)
         #[doc(alias = "MPSNNComparisonTypeLess")]
         const Less = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/lessorequal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeLessOrEqual")]
         const LessOrEqual = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/greater?language=objc)
         #[doc(alias = "MPSNNComparisonTypeGreater")]
         const Greater = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype/greaterorequal?language=objc)
         #[doc(alias = "MPSNNComparisonTypeGreaterOrEqual")]
         const GreaterOrEqual = 5;
     }
@@ -1039,8 +1026,6 @@ extern_class!(
     /// it applies the following function: result = (abs(x-y))
     /// <
     /// = threshold
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncompare?language=objc)
     #[unsafe(super(MPSCNNArithmetic, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1185,6 +1170,7 @@ impl MPSNNCompare {
 }
 
 extern_class!(
+    /// The base class for gradient arithmetic operators.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNArithmeticGradient filter is the backward filter for the MPSCNNArithmetic
@@ -1254,8 +1240,6 @@ extern_class!(
     /// channels.
     ///
     /// You must use one of the sub-classes of MPSImageArithmeticGradient.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnarithmeticgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1449,6 +1433,7 @@ impl MPSCNNArithmeticGradient {
 }
 
 extern_class!(
+    /// A gradient addition operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the addition gradient operator.
@@ -1466,8 +1451,6 @@ extern_class!(
     /// of the applicable broadcasting dimensions (rows, columns, feature channels, or any
     /// combination thereof) to produce the destination image of the size that matches the
     /// primary/secondary input images used in the forward pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnaddgradient?language=objc)
     #[unsafe(super(
         MPSCNNArithmeticGradient,
         MPSCNNGradientKernel,
@@ -1610,6 +1593,7 @@ impl MPSCNNAddGradient {
 }
 
 extern_class!(
+    /// A gradient subtraction operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the subtraction gradient operator.
@@ -1629,8 +1613,6 @@ extern_class!(
     /// of the applicable broadcasting dimensions (rows, columns, feature channels, or any
     /// combination thereof) to produce the destination image of the size that matches the
     /// primary/secondary input images used in the forward pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsubtractgradient?language=objc)
     #[unsafe(super(
         MPSCNNArithmeticGradient,
         MPSCNNGradientKernel,
@@ -1773,6 +1755,7 @@ impl MPSCNNSubtractGradient {
 }
 
 extern_class!(
+    /// A gradient multiply operator.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the multiplication gradient operator.
@@ -1793,8 +1776,6 @@ extern_class!(
     /// of the applicable broadcasting dimensions (rows, columns, feature channels, or any
     /// combination thereof) to produce the destination image of the size that matches the
     /// primary/secondary input images used in the forward pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiplygradient?language=objc)
     #[unsafe(super(
         MPSCNNArithmeticGradient,
         MPSCNNGradientKernel,

@@ -7,13 +7,40 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An AI that chooses moves in turn-based games using a _probabilistic_ strategy.
+    ///
+    /// ## Overview
+    ///
+    /// To use this strategy, you indicate whether a possible states of your game model represents a win, and the strategist randomly searches possible game model states in order to find moves that will likely result in winning the game. You provide information about your game model to the strategist by implementing the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel), [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer), and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols in your custom classes, then use the strategist’s methods to find optimal moves.
+    ///
+    /// ### Choosing a Strategist
+    ///
+    /// The Monte Carlo strategist is one of several strategist classes that GameplayKit provides. The key advantage of the [`GKMonteCarloStrategist`](https://developer.apple.com/documentation/gameplaykit/gkmontecarlostrategist) class is performance. By using random sampling to make educated guesses about which sequences of moves to simulate, this strategy can arrive at a decision quickly even for games with large and complex state spaces. The cost of this strategy is strength of gameplay: because the strategist randomly samples possible moves, it may miss the best moves. Additionally, this strategy doesn’t need a scoring method to rate each game model state—instead, your game model class needs to implement only the [`isWinForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/iswin(for:)) method.
+    ///
+    /// See the [`GKStrategist`](https://developer.apple.com/documentation/gameplaykit/gkstrategist) protocol for alternate strategies, as well as the methods and properties supported by all strategist classes.
+    ///
+    /// ### Using a Monte Carlo Strategist
+    ///
+    /// Using the Monte Carlo strategist in a game requires the following steps:
+    ///
+    /// 1. Create classes describing your gameplay model, adopting the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel), [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer), and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols.
+    ///
+    /// 2. Create a [`GKMonteCarloStrategist`](https://developer.apple.com/documentation/gameplaykit/gkmontecarlostrategist) instance and configure its properties [`budget`](https://developer.apple.com/documentation/gameplaykit/gkmontecarlostrategist/budget), [`explorationParameter`](https://developer.apple.com/documentation/gameplaykit/gkmontecarlostrategist/explorationparameter), and [`randomSource`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource) to determine its gameplay behavior.
+    ///
+    /// 3. Point the strategist’s [`gameModel`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel) property at the instance of your game model class (that is, your class that implements the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel) protocol) representing the current state of the game in play.
+    ///
+    /// 4. Use the [`bestMoveForActivePlayer`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/bestmoveforactiveplayer()) method to select the best possible move for the current player. This method returns a move object (that is, an instance of the custom class you create to adopt the [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocol).
+    ///
+    /// 5. Examine the move object to make use of the move selected by the strategist. You created this instance in the [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method of your game model class to describe a possible move in your game, so examining the object gives you the information needed to perform that move.
+    ///
+    /// For more information about describing your gameplay model and using strategists, see [The Minmax Strategist](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// The Monte Carlo Strategist is a generic AI that selects a game model update for a given player that results
     /// in the highest likelihood for that player to eventually win the game. It does this by sampling the updates available
     /// to the player in question. In doing this it will select the update it knows to produce the best result so far, expanding on this
     /// selection, simulating the rest of the game from that expansion, and then propogating the results (win or loss) upwards.
     /// It will do this until the budget has been reached, then returning the choice it has deemed best suited for the player in question.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmontecarlostrategist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMonteCarloStrategist;

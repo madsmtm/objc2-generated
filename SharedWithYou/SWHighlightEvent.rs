@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol that defines an activity that the system posts in response to a user action for a highlight.
     /// A protocol defining an activity that can be posted in response to a user action on some content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightevent?language=objc)
     pub unsafe trait SWHighlightEvent:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {

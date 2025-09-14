@@ -15,26 +15,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that represent output types for a stream frame.
 /// SCStreamOutputTypeScreen is a screen capture sample buffer. This sample buffer that is wrapping a CMSampleBuffer that is backed by an IOSurface. The width and height of the sample buffer is what is defined in the SCStreamConfiguration for width and height. The sample buffer will be called back on the provided queue when adding a SCStreamOutput. The pixel format of the sample buffer will be what is defined in the SCStreamConfiguration. In the case of multiple window capture, the width and height will be that of the display passed in for the filter. The background color of multiwindow sample buffers will be default black and can be set through the SCStreamConfiguration.
 ///
 ///
 ///
 /// SCStreamOutputTypeAudio is an audio capture sample buffer. This sample buffer that is wrapping an audio buffer list. The format of the audio buffer is based on sampleRate and channelCount set in SCStreamConfiguration.
 /// SCStreamOutputTypeMicrophone is a microphone audio capture sample buffer. This sample buffer that is wrapping an audio buffer list. The format of the audio buffer is based on the selected microphone capture device's native format.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamOutputType(pub NSInteger);
 impl SCStreamOutputType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype/screen?language=objc)
+    /// An output type that represents a screen capture sample buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This output represents a sample buffer that wraps a [CVPixelBuffer](https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e) backed by an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface).
+    ///
+    /// The width, height, and pixel format of the sample buffer reflect what you define in [`SCStreamConfiguration`](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration). When capturing multiple windows, the system bases the width and height on the display you pass in through [`SCContentFilter`](https://developer.apple.com/documentation/screencapturekit/sccontentfilter). You can set a background color for multi-window sample buffers by setting [`backgroundColor`](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/backgroundcolor); otherwise the default color is black.
+    ///
+    ///
     #[doc(alias = "SCStreamOutputTypeScreen")]
     pub const Screen: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype/audio?language=objc)
+    /// An output type that represents an audio capture sample buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// A captured sample buffer wraps an [`AudioBufferList`](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist) structure that contains the audio samples. The stream configuration’s [`sampleRate`](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/samplerate) and [`channelCount`](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/channelcount) property values determine of the format of the audio.
+    ///
+    ///
     #[doc(alias = "SCStreamOutputTypeAudio")]
     pub const Audio: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype/microphone?language=objc)
     #[doc(alias = "SCStreamOutputTypeMicrophone")]
     pub const Microphone: Self = Self(2);
 }
@@ -47,30 +59,43 @@ unsafe impl RefEncode for SCStreamOutputType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// SCFrameStatus denotes the status of frame sample buffer.
+/// Status values for a frame from a stream.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus?language=objc)
+/// ## Overview
+///
+/// You create a frame status by initializing it with the value you retrieve for the [`SCStreamFrameInfoStatus`](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/status) from the sample buffer’s attachments dictionary.
+///
+/// ```swift
+/// if let statusRawValue = attachments[SCStreamFrameInfo.status] as? Int {
+///     // Create status value.
+///     let status = SCFrameStatus(rawValue: statusRawValue)
+///     ...
+/// }
+/// ```
+///
+///
+/// SCFrameStatus denotes the status of frame sample buffer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCFrameStatus(pub NSInteger);
 impl SCFrameStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/complete?language=objc)
+    /// A status that indicates the system successfully generated a new frame.
     #[doc(alias = "SCFrameStatusComplete")]
     pub const Complete: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/idle?language=objc)
+    /// A status that indicates the system didn’t generate a new frame because the display didn’t change.
     #[doc(alias = "SCFrameStatusIdle")]
     pub const Idle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/blank?language=objc)
+    /// A status that indicates the system didn’t generate a new frame because the display is blank.
     #[doc(alias = "SCFrameStatusBlank")]
     pub const Blank: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/suspended?language=objc)
+    /// A status that indicates the system didn’t generate a new frame because you suspended updates.
     #[doc(alias = "SCFrameStatusSuspended")]
     pub const Suspended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/started?language=objc)
+    /// A status that indicates the frame is the first one sent after the stream starts.
     #[doc(alias = "SCFrameStatusStarted")]
     pub const Started: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus/stopped?language=objc)
+    /// A status that indicates the frame is in a stopped state.
     #[doc(alias = "SCFrameStatusStopped")]
     pub const Stopped: Self = Self(5);
 }
@@ -83,21 +108,20 @@ unsafe impl RefEncode for SCFrameStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Configures how to present streaming notifications to a streamer of Presenter Overlay.
 /// SCPresenterOverlayAlertSetting denotes the setting that can be set to determine when to show the presenter overlay alert for any stream
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCPresenterOverlayAlertSetting(pub NSInteger);
 impl SCPresenterOverlayAlertSetting {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting/system?language=objc)
+    /// Displays an alert when using Presenter Overlay based on the System Settings.
     #[doc(alias = "SCPresenterOverlayAlertSettingSystem")]
     pub const System: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting/never?language=objc)
+    /// Never display an alert when using Presenter Overlay.
     #[doc(alias = "SCPresenterOverlayAlertSettingNever")]
     pub const Never: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting/always?language=objc)
+    /// Always display an alert when using Presenter Overlay.
     #[doc(alias = "SCPresenterOverlayAlertSettingAlways")]
     pub const Always: Self = Self(2);
 }
@@ -110,20 +134,19 @@ unsafe impl RefEncode for SCPresenterOverlayAlertSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The display type of the presented stream.
 /// SCStreamTypeWindow window stream
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamtype?language=objc)
 // NS_ENUM
 #[deprecated = "Use SCShareableContentStyle instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamType(pub NSInteger);
 impl SCStreamType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamtype/window?language=objc)
+    /// The stream is currently presented as a window.
     #[doc(alias = "SCStreamTypeWindow")]
     #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Window: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamtype/display?language=objc)
+    /// The stream is currently on a complete display.
     #[doc(alias = "SCStreamTypeDisplay")]
     #[deprecated = "Use SCShareableContentStyle instead"]
     pub const Display: Self = Self(1);
@@ -137,19 +160,31 @@ unsafe impl RefEncode for SCStreamType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype?language=objc)
+/// Available resolutions for content capture.
+///
+/// ## Overview
+///
+/// Higher-resolution values produce better and more accurate-looking content to the source, at the expense of bandwidth.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureResolutionType(pub NSInteger);
 impl SCCaptureResolutionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype/automatic?language=objc)
+    /// Allow ScreenCaptureKit to automatically select the quality of content depending on factors such as network connection.
     #[doc(alias = "SCCaptureResolutionAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype/best?language=objc)
+    /// Capture streaming content at the best available resolution.
+    ///
+    /// ## Discussion
+    ///
+    /// This streaming resolution only applies to independent window capture.
+    ///
+    ///
     #[doc(alias = "SCCaptureResolutionBest")]
     pub const Best: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype/nominal?language=objc)
+    /// Capture streaming content with a one point to one pixel conversion factor.
     #[doc(alias = "SCCaptureResolutionNominal")]
     pub const Nominal: Self = Self(2);
 }
@@ -162,21 +197,38 @@ unsafe impl RefEncode for SCCaptureResolutionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// SCCaptureDynamicRange client can specify whether the captured screen output will be SDR or HDR. When SCCaptureDynamicRangeHDR is set, the output screen capture buffer pixel format and color space will be updated in order to support HDR.
+/// Specifies whether the captured screen output is standard or high dynamic range.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange?language=objc)
+/// ## Overview
+///
+/// High dynamic range screenshot capture may specify local or canonical display attributes optimizing output for presentation on either the capture display or any high dyanmic range display. The screenshot capture updates the output screen capture buffer pixel format and color space to support high dynamic range when specified.
+///
+///
+/// SCCaptureDynamicRange client can specify whether the captured screen output will be SDR or HDR. When SCCaptureDynamicRangeHDR is set, the output screen capture buffer pixel format and color space will be updated in order to support HDR.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureDynamicRange(pub NSInteger);
 impl SCCaptureDynamicRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange/sdr?language=objc)
+    /// Specifies that the system captures the screen in standard dynamic range.
     #[doc(alias = "SCCaptureDynamicRangeSDR")]
     pub const SDR: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange/hdrlocaldisplay?language=objc)
+    /// Specifies that the system captures the screen in high dynamic range with attributes of the local display.
+    ///
+    /// ## Discussion
+    ///
+    /// Local display capture uses the attributes of the display where the captured content is currently presented optimizing rendering for presentation on the capture display.
+    ///
+    ///
     #[doc(alias = "SCCaptureDynamicRangeHDRLocalDisplay")]
     pub const HDRLocalDisplay: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange/hdrcanonicaldisplay?language=objc)
+    /// Specifies that the system captures the screen in high dynamic range with attributes of the canonical display.
+    ///
+    /// ## Discussion
+    ///
+    /// Canonical display capture uses the attributes of the canonical display optimizing rendering for presentation on any high dynamic range display.
+    ///
+    ///
     #[doc(alias = "SCCaptureDynamicRangeHDRCanonicalDisplay")]
     pub const HDRCanonicalDisplay: Self = Self(2);
 }
@@ -190,11 +242,16 @@ unsafe impl RefEncode for SCCaptureDynamicRange {
 }
 
 extern_class!(
+    /// An instance that filters the content a stream captures.
+    ///
+    /// ## Overview
+    ///
+    /// Use a content filter to limit an [`SCStream`](https://developer.apple.com/documentation/screencapturekit/scstream) object’s output to only that matching your filter criteria. Retrieve the displays, apps, and windows that your app can capture from an instance of [`SCShareableContent`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent).
+    ///
+    ///
     /// SCContentFilter
     ///
     /// SCContentFilter is a object that determines the exact content to be captured in the SCStream. It can be filtered through displays, windows, excluded windows or applications.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentfilter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentFilter;
@@ -355,27 +412,26 @@ impl SCContentFilter {
     );
 }
 
+///
+/// ## Overview
+///
 /// Client can use SCStreamConfigurationPreset to create SCStreamConfiguration with suggested values of properties for various use cases
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset?language=objc)
+///
+/// Client can use SCStreamConfigurationPreset to create SCStreamConfiguration with suggested values of properties for various use cases
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamConfigurationPreset(pub NSInteger);
 impl SCStreamConfigurationPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrstreamlocaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamLocalDisplay")]
     pub const CaptureHDRStreamLocalDisplay: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrstreamcanonicaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamCanonicalDisplay")]
     pub const CaptureHDRStreamCanonicalDisplay: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrscreenshotlocaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotLocalDisplay")]
     pub const CaptureHDRScreenshotLocalDisplay: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrscreenshotcanonicaldisplay?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRScreenshotCanonicalDisplay")]
     pub const CaptureHDRScreenshotCanonicalDisplay: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/preset/capturehdrrecordingpreservedsdrhdr10?language=objc)
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRRecordingPreservedSDRHDR10")]
     pub const CaptureHDRRecordingPreservedSDRHDR10: Self = Self(4);
 }
@@ -389,11 +445,16 @@ unsafe impl RefEncode for SCStreamConfigurationPreset {
 }
 
 extern_class!(
+    /// An instance that provides the output configuration for a stream.
+    ///
+    /// ## Overview
+    ///
+    /// Creating an instance of this class provides a default configuration for a stream. Only configure its properties if you need to customize the output.
+    ///
+    ///
     /// SCStreamConfiguration
     ///
     /// SCStreamConfiguration is an object that encapsulates the SCStream properties such as output width, height, pixelformat and others.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStreamConfiguration;
@@ -794,79 +855,104 @@ impl SCStreamConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo?language=objc)
+/// An instance that defines metadata keys for a stream frame.
+///
+/// ## Overview
+///
+/// Use [`SCStreamFrameInfo`](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo) keys to retrieve values from the dictionary of metadata attached to the sample buffers that a stream produces. For example, you can retrieve the display time, content scale, and scaling factor, as shown below:
+///
+/// ```swift
+/// // A dictionary of attachments for a streamed sample buffer.
+/// let attachments: [SCStreamFrameInfo: Any] = // Retrieve attachments from a sample buffer.
+///
+/// let displayTime = attachments[.displayTime] as? UInt64 ?? 0
+/// let contentScale = attachments[.contentScale] as? Double ?? 0.0
+/// let scaleFactor = attachments[.scaleFactor] as? Double ?? 0.0
+/// ```
+///
+///
 // NS_TYPED_ENUM
 pub type SCStreamFrameInfo = NSString;
 
 extern "C" {
+    /// A key to retrieve the status of a video frame.
     /// SCStreamFrameInfoStatus
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer that denotes the frames SCFrameStatus
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/status?language=objc)
     pub static SCStreamFrameInfoStatus: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the display time of a video frame.
+    ///
+    /// ## Discussion
+    ///
+    /// For a frame event, this value represents the time the window server displays the frame.
+    ///
+    ///
     /// SCStreamFrameInfoDisplayTime
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the mach absolute time when the event occurred. For a frame event, this is when the frame was displayed by the window server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/displaytime?language=objc)
     pub static SCStreamFrameInfoDisplayTime: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the scale factor of a video frame.
     /// SCStreamFrameInfoScaleFactor
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the display resolution associated with the frame. Display resolution is the pixel to point scaling factor. It should be in the range of [1, 4].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/scalefactor?language=objc)
     pub static SCStreamFrameInfoScaleFactor: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the content scale of a video frame.
     /// SCStreamFrameInfoContentScale
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the content scale associated with the frame. Content scale is the scaling factor from original content size to its size in surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/contentscale?language=objc)
     pub static SCStreamFrameInfoContentScale: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the content rectangle of a video frame.
     /// SCStreamFrameInfoContentRect
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the content rect associated with the frame. Content rect is the size and location of content in points in surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/contentrect?language=objc)
     pub static SCStreamFrameInfoContentRect: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the areas of a video frame that contain changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an array of rectangles that represents a union of the rectangles redrawn and moved.
+    ///
+    ///
     /// SCStreamFrameInfoDirtyRects
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for an array of rectangles that is the union of both rectangles that were redrawn and rectangles that were moved. This is an array of CGRect in NSValue. The CGRects elements are specified in pixels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/dirtyrects?language=objc)
     pub static SCStreamFrameInfoDirtyRects: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the onscreen location of captured content.
     /// SCStreamFrameInfoScreenRect
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the onscreen location of the captured content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/screenrect?language=objc)
     pub static SCStreamFrameInfoScreenRect: &'static SCStreamFrameInfo;
 }
 
 extern "C" {
+    /// A key to retrieve the bounding rectangle for a video frame.
+    ///
+    /// ## Discussion
+    ///
+    /// The bounding rectangle provided for a frame is the minimum bounding box for containing all captured windows in the frame.
+    ///
+    ///
     /// SCStreamFrameInfoBoundingRect
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the bounding rect associated with the frame. Bounding rect is the size and location of smallest bounding box containing all captured windows in points and in surface coordinates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/boundingrect?language=objc)
     pub static SCStreamFrameInfoBoundingRect: &'static SCStreamFrameInfo;
 }
 
@@ -875,13 +961,17 @@ extern "C" {
     ///
     /// The key for the CFDictionary attached to the CMSampleBuffer for the content rect associated with the frame while in presenter overlay.  In presenter overlay small, this content rect is the size and location of smallest bounding box containing all captured windows plus small overlay window in points and in surface coordinates.
     /// In presenter overlay large, this content rect is the size and location of shared content in points and in surface coordinates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamframeinfo/presenteroverlaycontentrect?language=objc)
     pub static SCStreamFrameInfoPresenterOverlayContentRect: &'static SCStreamFrameInfo;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstream?language=objc)
+    /// An instance that represents a stream of shareable content.
+    ///
+    /// ## Overview
+    ///
+    /// Use a stream to capture video of screen content like apps and windows. Create a content stream by passing it an instance of [`SCContentFilter`](https://developer.apple.com/documentation/screencapturekit/sccontentfilter) and an [`SCStreamConfiguration`](https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration) object. The stream uses the filter to determine which screen content to capture, and uses the configuration data to configure the output.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCStream;
@@ -1058,7 +1148,15 @@ impl SCStream {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutput?language=objc)
+    /// A delegate protocol your app implements to receive capture stream output events.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SCStreamOutput`](https://developer.apple.com/documentation/screencapturekit/scstreamoutput) protocol provides a way to retrieve output from an [`SCStream`](https://developer.apple.com/documentation/screencapturekit/scstream).
+    ///
+    /// After you call [`startCaptureWithCompletionHandler:`](https://developer.apple.com/documentation/screencapturekit/scstream/startcapture(completionhandler:)), the system provides frame data through the [`stream:didOutputSampleBuffer:ofType:`](https://developer.apple.com/documentation/screencapturekit/scstreamoutput/stream(_:didoutputsamplebuffer:of:)) method. You can inspect the [`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) to retrieve image data, and inspect the sample buffer for metadata about the frame.
+    ///
+    ///
     pub unsafe trait SCStreamOutput: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
         /// stream:didOutputSampleBuffer:ofType:
@@ -1081,11 +1179,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A delegate protocol your app implements to respond to stream events.
     /// SCStreamDelegate
     ///
     /// SCStreamDelegate is the object that adheres to the SCStream delegate call backs
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamdelegate?language=objc)
     pub unsafe trait SCStreamDelegate: NSObjectProtocol {
         /// stream:didStopStreamWithError:
         ///

@@ -6,22 +6,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype?language=objc)
+/// An enumeration that identifies different types of credentials that apps and websites can request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialRequestType(pub NSInteger);
 impl ASCredentialRequestType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/password?language=objc)
+    /// The app or website is requesting a password credential.
     #[doc(alias = "ASCredentialRequestTypePassword")]
     pub const Password: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/passkeyassertion?language=objc)
+    /// The app or website is requesting a passkey assertion credential.
     #[doc(alias = "ASCredentialRequestTypePasskeyAssertion")]
     pub const PasskeyAssertion: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/passkeyregistration?language=objc)
+    /// The app or website is requesting a passkey registration credential.
     #[doc(alias = "ASCredentialRequestTypePasskeyRegistration")]
     pub const PasskeyRegistration: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequesttype/onetimecode?language=objc)
+    /// The app or website is requesting a one-time passcode.
     #[doc(alias = "ASCredentialRequestTypeOneTimeCode")]
     pub const OneTimeCode: Self = Self(3);
 }
@@ -35,11 +35,10 @@ unsafe impl RefEncode for ASCredentialRequestType {
 }
 
 extern_protocol!(
+    /// A protocol that describes a request from the user for your extension to provide a credential.
     /// ASCredentialRequest is used by Credential Provider Extensions to identify a credential to use
     /// for an authorization request. For passkey requests it also carries the assertion challenge to
     /// be used by the extension to create the assertion response.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequest?language=objc)
     pub unsafe trait ASCredentialRequest:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {

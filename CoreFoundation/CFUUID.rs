@@ -8,7 +8,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuid?language=objc)
+///
+/// ## Overview
+///
+/// CFUUID objects are used by plug-ins to uniquely identify types, interfaces, and factories. When creating a new type, host developers must generate UUIDs to identify the type as well as its interfaces and factories.
+///
+/// UUIDs (Universally Unique Identifiers), also known as GUIDs (Globally Unique Identifiers) or IIDs (Interface Identifiers), are 128-bit values designed to be unique.
+///
+/// The standard format for UUIDs represented in ASCII is a string punctuated by hyphens, for example `68753A44-4D6F-1226-9C60-0050E4C00067`. The hex representation looks, as you might expect, like a list of numerical values preceded by `0x`. For example, `0x68, 0x75, 0x3A, 0x44, 0x4D, 0x6F, 0x12, 0x26, 0x9C, 0x60, 0x00, 0x50, 0xE4, 0xC0, 0x00, 0x67` . To use a UUID, you create it and then copy the resulting strings into your header and C language source files. Because a UUID is expressed as an array of bytes, there are no endianness considerations for different platforms.
+///
+/// You can create a CFUUID object using any one of the `CFUUIDCreate...` functions. Use the [`CFUUIDGetConstantUUIDWithBytes`](https://developer.apple.com/documentation/corefoundation/cfuuidgetconstantuuidwithbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) function if you want to declare a UUID constant in a `#define` statement. You can get the raw bytes of an existing CFUUID object using the [`CFUUIDGetUUIDBytes`](https://developer.apple.com/documentation/corefoundation/cfuuidgetuuidbytes(_:)) function.
+///
+///
 #[doc(alias = "CFUUIDRef")]
 #[repr(C)]
 pub struct CFUUID {
@@ -24,7 +35,13 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFUUID"> for CFUUID {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidbytes?language=objc)
+/// A 128-bit struct that represents a UUID as raw bytes.
+///
+/// ## Overview
+///
+/// This structure can be obtained from a CFUUID object using the [`CFUUIDGetUUIDBytes`](https://developer.apple.com/documentation/corefoundation/cfuuidgetuuidbytes(_:)) function. This structure can be passed to functions that expect a raw UUID.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFUUIDBytes {
@@ -77,7 +94,13 @@ unsafe impl RefEncode for CFUUIDBytes {
 }
 
 unsafe impl ConcreteType for CFUUID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidgettypeid()?language=objc)
+    /// Returns the type identifier for all CFUUID objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFUUID opaque type.
+    ///
+    ///
     #[doc(alias = "CFUUIDGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -89,7 +112,17 @@ unsafe impl ConcreteType for CFUUID {
 }
 
 impl CFUUID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreate(_:)?language=objc)
+    /// Creates a Universally Unique Identifier (UUID) object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFUUID object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFUUID object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFUUIDCreate")]
     #[inline]
     pub fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFUUID>> {
@@ -100,7 +133,55 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatewithbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    /// Creates a CFUUID object from raw UUID bytes.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFUUID object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - byte0: Raw byte number `0`.
+    ///
+    /// - byte1: Raw byte number `1`.
+    ///
+    /// - byte2: Raw byte number `2`.
+    ///
+    /// - byte3: Raw byte number `3`.
+    ///
+    /// - byte4: Raw byte number `4`.
+    ///
+    /// - byte5: Raw byte number `5`.
+    ///
+    /// - byte6: Raw byte number `6`.
+    ///
+    /// - byte7: Raw byte number `7`.
+    ///
+    /// - byte8: Raw byte number `8`.
+    ///
+    /// - byte9: Raw byte number `9`.
+    ///
+    /// - byte10: Raw byte number `10`.
+    ///
+    /// - byte11: Raw byte number `11`.
+    ///
+    /// - byte12: Raw byte number `12`.
+    ///
+    /// - byte13: Raw byte number `13`.
+    ///
+    /// - byte14: Raw byte number `14`.
+    ///
+    /// - byte15: Raw byte number `15`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFUUID object, or, if a CFUUID object of the same value already exists, the existing instance with its reference count incremented. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// .
+    ///
+    ///
     #[doc(alias = "CFUUIDCreateWithBytes")]
     #[inline]
     pub fn with_bytes(
@@ -152,7 +233,19 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatefromstring(_:_:)?language=objc)
+    /// Creates a CFUUID object for a specified string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFUUID object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - uuidStr: A string containing a UUID. The standard format for UUIDs represented in ASCII is a string punctuated by hyphens, for example `68753A44-4D6F-1226-9C60-0050E4C00067`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFUUID object, or if a CFUUID object of the same value already exists, the existing instance with its reference count incremented. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFUUIDCreateFromString")]
     #[inline]
     pub fn from_string(
@@ -169,7 +262,19 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatestring(_:_:)?language=objc)
+    /// Returns the string representation of a specified CFUUID object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - uuid: The CFUUID object whose string representation to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The string representation of `uuid`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFUUIDCreateString")]
     #[inline]
     pub fn new_string(
@@ -186,7 +291,55 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidgetconstantuuidwithbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    /// Returns a CFUUID object from raw UUID bytes.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFUUID object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - byte0: Raw byte number `0`.
+    ///
+    /// - byte1: Raw byte number `1`.
+    ///
+    /// - byte2: Raw byte number `2`.
+    ///
+    /// - byte3: Raw byte number `3`.
+    ///
+    /// - byte4: Raw byte number `4`.
+    ///
+    /// - byte5: Raw byte number `5`.
+    ///
+    /// - byte6: Raw byte number `6`.
+    ///
+    /// - byte7: Raw byte number `7`.
+    ///
+    /// - byte8: Raw byte number `8`.
+    ///
+    /// - byte9: Raw byte number `9`.
+    ///
+    /// - byte10: Raw byte number `10`.
+    ///
+    /// - byte11: Raw byte number `11`.
+    ///
+    /// - byte12: Raw byte number `12`.
+    ///
+    /// - byte13: Raw byte number `13`.
+    ///
+    /// - byte14: Raw byte number `14`.
+    ///
+    /// - byte15: Raw byte number `15`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFUUID object. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used in headers to declare a UUID constant with `#define`.
+    ///
+    ///
     #[doc(alias = "CFUUIDGetConstantUUIDWithBytes")]
     #[inline]
     pub fn constant_uuid_with_bytes(
@@ -238,7 +391,17 @@ impl CFUUID {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidgetuuidbytes(_:)?language=objc)
+    /// Returns the value of a UUID object as raw bytes.
+    ///
+    /// Parameters:
+    /// - uuid: The CFUUID object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of `uuid` represented as raw bytes.
+    ///
+    ///
     #[doc(alias = "CFUUIDGetUUIDBytes")]
     #[inline]
     pub fn uuid_bytes(&self) -> CFUUIDBytes {
@@ -248,7 +411,19 @@ impl CFUUID {
         unsafe { CFUUIDGetUUIDBytes(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidcreatefromuuidbytes(_:_:)?language=objc)
+    /// Creates a CFUUID object from raw UUID bytes.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFUUID object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - bytes: Raw UUID bytes to use to create the CFUUID object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFUUID object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFUUIDCreateFromUUIDBytes")]
     #[inline]
     pub fn from_uuid_bytes(

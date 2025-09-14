@@ -4,28 +4,57 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Describes how quantities can be aggregated over time.
+/// Constant values that describe how quantities can be aggregated over time.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle?language=objc)
+/// ## Overview
+///
+/// A quantity type’s aggregation style determines the type of statistics queries that you can perform. Discrete types support average, minimum, and maximum queries. Cumulative types support only sum queries. For more information, see [`HKStatisticsQuery`](https://developer.apple.com/documentation/healthkit/hkstatisticsquery).
+///
+///
+/// Describes how quantities can be aggregated over time.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKQuantityAggregationStyle(pub NSInteger);
 impl HKQuantityAggregationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/cumulative?language=objc)
+    /// Cumulative samples that can be summed over time.
+    ///
+    /// ## Discussion
+    ///
+    /// Use cumulative types to measure a total value over a given time period. Step count, distance, inhaler usage, nutritional information, and energy burned are all cumulative quantity types.
+    ///
+    ///
     #[doc(alias = "HKQuantityAggregationStyleCumulative")]
     pub const Cumulative: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discretearithmetic?language=objc)
+    /// Discrete samples that can be averaged over time using an arithmetic mean.
+    ///
+    /// ## Discussion
+    ///
+    /// Use discrete types to monitor changes in a value over time. Body mass, heart rate, temperature, and respiratory rate are all discrete quantity types. You can also query for the minimum or maximum value in a given time period.
+    ///
+    ///
     #[doc(alias = "HKQuantityAggregationStyleDiscreteArithmetic")]
     pub const DiscreteArithmetic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discrete?language=objc)
+    /// Discrete samples may be averaged over time.
+    ///
+    /// ## Discussion
+    ///
+    /// You typically use discrete types to monitor the change in the value over time. For example, body mass, heart rate, temperature, and respiratory rate are all discrete quantity types. You can also query for the minimum or maximum value in a given time period.
+    ///
+    ///
     #[doc(alias = "HKQuantityAggregationStyleDiscrete")]
     #[deprecated]
     pub const Discrete: Self = Self(HKQuantityAggregationStyle::DiscreteArithmetic.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discretetemporallyweighted?language=objc)
+    /// Discrete samples that can be averaged over a time interval using a temporally weighted integration function.
     #[doc(alias = "HKQuantityAggregationStyleDiscreteTemporallyWeighted")]
     pub const DiscreteTemporallyWeighted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discreteequivalentcontinuouslevel?language=objc)
+    /// Discrete samples that can be combined over a time interval by computing the equivalent continuous sound level.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on sound level meters, see IEC 61672-1.
+    ///
+    ///
     #[doc(alias = "HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel")]
     pub const DiscreteEquivalentContinuousLevel: Self = Self(3);
 }

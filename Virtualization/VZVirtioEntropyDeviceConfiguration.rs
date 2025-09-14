@@ -7,11 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A source of entropy for the guest’s random number generator.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtioEntropyDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioentropydeviceconfiguration) object to expose a source of entropy for the guest operating system’s random-number generator. When you create this object and add it to your virtual machine’s configuration, the virtual machine configures a Virtio-compliant entropy device. The guest operating system uses this device as a seed to generate random numbers.
+    ///
+    /// Create a [`VZVirtioEntropyDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioentropydeviceconfiguration) object and add it to the [`entropyDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/entropydevices) property of your virtual machine’s configuration.
+    ///
+    ///
     /// Virtio Entropy Device
     ///
     /// The device exposes a source of entropy for the guest's random number generator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioentropydeviceconfiguration?language=objc)
     #[unsafe(super(VZEntropyDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZEntropyDeviceConfiguration")]

@@ -6,191 +6,259 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Specifies a logical `AND` operation.
 /// ** LOGICAL OPERATOR CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeand?language=objc)
 pub const kAEAND: c_uint = 0x414e4420;
+/// Specifies a logical `OR` operation.
 /// ** LOGICAL OPERATOR CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeor?language=objc)
 pub const kAEOR: c_uint = 0x4f522020;
+/// Specifies a logical `NOT` operation.
 /// ** LOGICAL OPERATOR CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaenot?language=objc)
 pub const kAENOT: c_uint = 0x4e4f5420;
+/// The first element in the specified container.
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaefirst?language=objc)
 pub const kAEFirst: c_uint = 0x66697273;
+/// Specifies the last element in the container.
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaelast?language=objc)
 pub const kAELast: c_uint = 0x6c617374;
-/// ** ABSOLUTE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaemiddle?language=objc)
+/// ## Discussion
+///
+/// Specifies the middle element in the container. If an object specifier specifies `kAEMiddle` and the number of elements in the container is even, the Apple Event Manager rounds down. For example, in a range of four words the second word is the “middle” word.
+///
+///
+/// ** ABSOLUTE ORDINAL CONSTANTS  ***
 pub const kAEMiddle: c_uint = 0x6d696464;
+/// Specifies a single element chosen at random from the container.
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeany?language=objc)
 pub const kAEAny: c_uint = 0x616e7920;
+/// Specifies all the elements in the container.
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeall?language=objc)
 pub const kAEAll: c_uint = 0x616c6c20;
+/// Specifies the Apple event object after the container.
 /// ** RELATIVE ORDINAL CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaenext?language=objc)
 pub const kAENext: c_uint = 0x6e657874;
+/// Specifies the Apple event object before the container.
 /// ** RELATIVE ORDINAL CONSTANTS  ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeprevious?language=objc)
 pub const kAEPrevious: c_uint = 0x70726576;
+/// Specifies a descriptor of `typeType`, whose data consists of one of the constant values described in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj).
 /// ** KEYWORD CONSTANT    ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaecompoperator?language=objc)
 pub const keyAECompOperator: c_uint = 0x72656c6f;
+/// Specifies a descriptor of type `typeAEList` containing one or more comparison or logical descriptors.
 /// ** KEYWORD CONSTANT    ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaelogicalterms?language=objc)
 pub const keyAELogicalTerms: c_uint = 0x7465726d;
+/// Specifies a descriptor of type `typeEnumerated` whose data is one of the logical operators (such as `kAEAND`) defined in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj).
 /// ** KEYWORD CONSTANT    ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaelogicaloperator?language=objc)
 pub const keyAELogicalOperator: c_uint = 0x6c6f6763;
-/// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaeobject1?language=objc)
+/// ## Discussion
+///
+/// Identifies a descriptor for the element that is currently being compared to the object or data specified by the descriptor for the keyword `keyAEObject2`. Either object can be described by a descriptor of type `typeObjectSpecifier` or `typeObjectBeingExamined`.
+///
+/// A descriptor of `typeObjectBeingExamined` acts as a placeholder for each of the successive elements in a container when the Apple Event Manager tests those elements one at a time.
+///
+///
+/// ** KEYWORD CONSTANT    ***
 pub const keyAEObject1: c_uint = 0x6f626a31;
-/// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaeobject2?language=objc)
+/// ## Discussion
+///
+/// Identifies a descriptor for the element that is currently being compared to the object or data specified by the descriptor for the keyword `keyAEObject1`.
+///
+/// The keyword `keyAEObject2` can also be used with a descriptor of any other descriptor type whose data is to be compared to each element in a container.
+///
+///
+/// ** KEYWORD CONSTANT    ***
 pub const keyAEObject2: c_uint = 0x6f626a32;
-/// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaedesiredclass?language=objc)
+/// ## Discussion
+///
+/// A four-character code that identifies the object class of the specified object or objects.
+///
+/// Constants for object class IDs are described in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj).
+///
+///
+/// ** KEYWORD CONSTANT    ***
 pub const keyAEDesiredClass: c_uint = 0x77616e74;
+/// Specifies the container for the requested object or objects. The data is an object specifier (or in some cases a null descriptor).
 /// ** KEYWORD CONSTANT    ***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaecontainer?language=objc)
 pub const keyAEContainer: c_uint = 0x66726f6d;
-/// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaekeyform?language=objc)
+/// ## Discussion
+///
+/// A four-character code that identifies the key form for the specified object or objects.
+///
+/// The constants for specifying the key form are described in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj).
+///
+///
+/// ** KEYWORD CONSTANT    ***
 pub const keyAEKeyForm: c_uint = 0x666f726d;
-/// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaekeydata?language=objc)
+/// ## Discussion
+///
+/// Data or nested descriptors that specify a property, name, position, range, or test, depending on the key form.
+///
+/// The descriptor types used in object specifiers are described in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj).
+///
+///
+/// ** KEYWORD CONSTANT    ***
 pub const keyAEKeyData: c_uint = 0x73656c64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaerangestart?language=objc)
+/// Specifies the first Apple event object in a desired range.
 #[cfg(feature = "AEDataModel")]
 pub const keyAERangeStart: AEKeyword = 0x73746172;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaerangestop?language=objc)
+/// Specifies the last Apple event object in the desired range.
 #[cfg(feature = "AEDataModel")]
 pub const keyAERangeStop: AEKeyword = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keydisposetokenproc?language=objc)
+/// Token disposal function. See [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyDisposeTokenProc: AEKeyword = 0x78746f6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaecompareproc?language=objc)
+/// Object-comparison function. See [`OSLCompareProcPtr`](https://developer.apple.com/documentation/coreservices/oslcompareprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyAECompareProc: AEKeyword = 0x636d7072;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaecountproc?language=objc)
+/// Object-counting function. See [`OSLCountProcPtr`](https://developer.apple.com/documentation/coreservices/oslcountprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyAECountProc: AEKeyword = 0x636f6e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaemarktokenproc?language=objc)
+/// Mark token function. See [`OSLGetMarkTokenProcPtr`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyAEMarkTokenProc: AEKeyword = 0x6d6b6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaemarkproc?language=objc)
+/// Object-marking function. See [`OSLMarkProcPtr`](https://developer.apple.com/documentation/coreservices/oslmarkprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyAEMarkProc: AEKeyword = 0x6d61726b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaeadjustmarksproc?language=objc)
+/// Mark-adjusting function. See [`OSLAdjustMarksProcPtr`](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyAEAdjustMarksProc: AEKeyword = 0x61646a6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaegeterrdescproc?language=objc)
+/// Get error descriptor callback function. See [`OSLGetErrDescProcPtr`](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr).
 #[cfg(feature = "AEDataModel")]
 pub const keyAEGetErrDescProc: AEKeyword = 0x696e6463;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formabsoluteposition?language=objc)
+///
+/// ## Discussion
+///
+/// An integer or other constant indicating the position of one or more elements in relation to the beginning or end of their container. The key data consists of an integer that specifies either an offset or an ordinal position.
+///
+/// For descriptor type `typeAbsoluteOrdinal`, the data consists of one of the constants `kAEFirst`, `kAEMiddle`, `kAELast`, `kAEAny`, or `kAEAll`, which are described in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).
+///
+/// For other descriptor types, the data can be coerced to either a positive integer, indicating the offset of the requested element from the beginning of the container, or a negative integer, indicating its offset from the end of the container.
+///
+///
 pub const formAbsolutePosition: c_uint = 0x696e6478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formrelativeposition?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies an element position either immediately before or immediately after a container, not inside it. The key data is specified by a descriptor of type `typeEnumerated` whose data consists of one of the constants `kAENext` and `kAEPrevious`, which are described in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).
+///
+///
 pub const formRelativePosition: c_uint = 0x72656c65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formtest?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies a test. The key data is specified by either a comparison descriptor or a logical descriptor.
+///
+/// The Apple Event Manager internally translates object specifiers of key form `formTest` into object specifiers of key form `formWhose` to optimize resolution of object specifiers. This involves collapsing the key form and key data from two object specifiers in a container hierarchy into one object specifier with the key form `formWhose`.
+///
+/// See also [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken), [`Constants for Object Specifiers, Positions, and Logical and Comparison Operations`](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_), [`CreateCompDescriptor`](https://developer.apple.com/documentation/coreservices/1449155-createcompdescriptor), and [`CreateLogicalDescriptor`](https://developer.apple.com/documentation/coreservices/1445212-createlogicaldescriptor).
+///
+///
 pub const formTest: c_uint = 0x74657374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formrange?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies a group of elements between two other elements. The key data is specified by a range descriptor, which is a coerced Apple event record of type `typeRangeDescriptor` that identifies two Apple event objects marking the beginning and end of a range of elements.
+///
+/// The data for a range descriptor consists of two keyword-specified descriptors with the keywords `keyAERangeStart` and `keyAERangeStop`.
+///
+///
 pub const formRange: c_uint = 0x72616e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formpropertyid?language=objc)
+/// Specifies the property ID for an element’s property.
 pub const formPropertyID: c_uint = 0x70726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formname?language=objc)
+/// Specifies the Apple event object by name.
 pub const formName: c_uint = 0x6e616d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formuniqueid?language=objc)
+/// Specifies a value that uniquely identifies an object within its container or across an application.
 pub const formUniqueID: c_uint = 0x49442020;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeobjectspecifier?language=objc)
+/// Specifies a descriptor used with the `keyAEContainer` keyword in a keyword-specified descriptor. The key data for the descriptor is an object specifier.
 #[cfg(feature = "AEDataModel")]
 pub const typeObjectSpecifier: DescType = 0x6f626a20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeobjectbeingexamined?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies a descriptor that acts as a placeholder for each of the successive elements in a container when the Apple Event Manager tests those elements one at a time. The descriptor has a null data storage pointer. This descriptor type is used only with `formTest`.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub const typeObjectBeingExamined: DescType = 0x65786d6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typecurrentcontainer?language=objc)
+/// Specifies a container for an element that demarcates one boundary in a range. The descriptor has a null data storage pointer. This descriptor type is used only with `formRange`.
 #[cfg(feature = "AEDataModel")]
 pub const typeCurrentContainer: DescType = 0x63636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typetoken?language=objc)
+/// Specifies a descriptor whose data storage pointer refers to a structure of type [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).
 #[cfg(feature = "AEDataModel")]
 pub const typeToken: DescType = 0x746f6b65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typerelativedescriptor?language=objc)
+/// Specifies a descriptor whose data consists of one of the constants `kAENext` or `kAEPrevious`, which are described in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). Used with `formRelativePosition`.
 #[cfg(feature = "AEDataModel")]
 pub const typeRelativeDescriptor: DescType = 0x72656c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeabsoluteordinal?language=objc)
+/// Specifies a descriptor whose data consists of one of the constants `kAEFirst`, `kAEMiddle`, `kAELast`, `kAEAny`, or `kAEAll`, which are described in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). Used with `formAbsolutePosition`.
 #[cfg(feature = "AEDataModel")]
 pub const typeAbsoluteOrdinal: DescType = 0x6162736f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeindexdescriptor?language=objc)
+/// Specifies a descriptor whose data indicates an indexed position within a range of values.
 #[cfg(feature = "AEDataModel")]
 pub const typeIndexDescriptor: DescType = 0x696e6465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typerangedescriptor?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies a range descriptor that identifies two Apple event objects marking the beginning and end of a range of elements. The data for a range descriptor consists of two keyword-specified descriptors with the keywords `keyAERangeStart` and `keyAERangeStop`, respectively, which specify the first Apple event object in the desired range and the last Apple event object in the desired range.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub const typeRangeDescriptor: DescType = 0x72616e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typelogicaldescriptor?language=objc)
+/// Specifies a logical descriptor. Data is one of the constants described in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).
 #[cfg(feature = "AEDataModel")]
 pub const typeLogicalDescriptor: DescType = 0x6c6f6769;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typecompdescriptor?language=objc)
+/// Specifies a comparison descriptor. Data is one of the constants described in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).
 #[cfg(feature = "AEDataModel")]
 pub const typeCompDescriptor: DescType = 0x636d7064;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeosltokenlist?language=objc)
+/// Specifies a descriptor whose data consists of a list of tokens. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).)
 #[cfg(feature = "AEDataModel")]
 pub const typeOSLTokenList: DescType = 0x6f73746c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeidominimum?language=objc)
+/// The application does not handle whose tests or provide marking callbacks.
 pub const kAEIDoMinimum: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeidowhose?language=objc)
+/// The application supports whose tests (supports key form `formWhose`).
 pub const kAEIDoWhose: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeidomarking?language=objc)
+/// The application provides marking callback functions. Marking callback functions are described in [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager).
 pub const kAEIDoMarking: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaepasssubdescs?language=objc)
 pub const kAEPassSubDescs: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeresolvenestedlists?language=objc)
 pub const kAEResolveNestedLists: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaehandlesimpleranges?language=objc)
 pub const kAEHandleSimpleRanges: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeuserelativeiterators?language=objc)
 pub const kAEUseRelativeIterators: c_uint = 0x0040;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/typewhosedescriptor?language=objc)
 pub const typeWhoseDescriptor: c_uint = 0x77686f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/formwhose?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies a container of one or more objects and a test to perform on the objects.
+///
+/// The key data for `formWhose` is specified by a whose descriptor, which is a coerced Apple event record of descriptor type `typeWhoseDescriptor`. The data for a whose descriptor consists of two keyword-specified descriptors with the keywords `keyAEIndex` and `keyAETest`.
+///
+/// See also the description for `formTest`.
+///
+///
 pub const formWhose: c_uint = 0x77686f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/typewhoserange?language=objc)
 pub const typeWhoseRange: c_uint = 0x77726e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaewhoserangestart?language=objc)
 pub const keyAEWhoseRangeStart: c_uint = 0x77737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaewhoserangestop?language=objc)
 pub const keyAEWhoseRangeStop: c_uint = 0x77737470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaeindex?language=objc)
 pub const keyAEIndex: c_uint = 0x6b696478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaetest?language=objc)
 pub const keyAETest: c_uint = 0x6b747374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrecord?language=objc)
+/// Stores token information used by the AEResolve functionwhile locating a range of objects.
+///
+/// ## Overview
+///
+/// When the [`AEResolve`](https://developer.apple.com/documentation/coreservices/1449720-aeresolve) functioncalls an object accessor function to locate a range of objects, theApple Event Manager replaces the descriptor of type `typeCurrentContainer` witha token for the container of each boundary object. When using `AEResolve` toresolve the object specifier, your application doesn’t need toexamine the contents of this token, because the Apple Event Managerkeeps track of it.
+///
+/// If your application attempts to resolve some or all of theobject specifier without calling `AEResolve`,the application may need to examine the token before it can locatethe boundary objects. The token provided by the Apple Event Managerfor a boundary object’s container is a descriptor of type `typeToken` whosedata storage pointer refers to a structure of type `ccntTokenRecord`.
+///
+///
 #[cfg(feature = "AEDataModel")]
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -212,15 +280,57 @@ unsafe impl RefEncode for ccntTokenRecord {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrecptr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type ccntTokenRecPtr = *mut ccntTokenRecord;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrechandle?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub type ccntTokenRecHandle = *mut ccntTokenRecPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr?language=objc)
+/// Your object accessor function either finds elements or properties of an Apple event object.
+///
+/// Parameters:
+/// - desiredClass: The object class of the desired Apple event object or objects. Constants for object class IDs are described in [`Object Class ID Constants`](https://developer.apple.com/documentation/coreservices/1556368-object_class_id_constants). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - container: A pointer to a descriptor that specifies the container of the desired Apple event object or objects. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - containerClass: The object class of the container. Constants for object class IDs are described in [`Object Class ID Constants`](https://developer.apple.com/documentation/coreservices/1556368-object_class_id_constants). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - form: The key form specified by the object specifier being resolved. Constants for key form are described in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - selectionData: A pointer to a descriptor containing the key data specified by the object specifier being resolved. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - value: A pointer to a descriptor where your object accessor routine stores a descriptor that identifies the found object. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - accessorRefcon: A reference constant. The Apple Event Manager passes this value to your object accessor function each time it calls it. The reference constant may have a value of 0.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your object accessor function should return `noErr` if it successfully located the requested object and `errAEEventNotHandled` if it could not locate the object. When the Apple Event Manager receives the result code `errAEEventNotHandled` after calling an object accessor function, it attempts to use other methods of locating the requested objects, such as calling an equivalent system object accessor function.
+///
+///
+///
+/// ## Discussion
+///
+/// To resolve an object specifier, your application calls the [`AEResolve`](https://developer.apple.com/documentation/coreservices/1449720-aeresolve) function. `AEResolve` in turn calls application-defined object accessor functions to locate specific Apple event objects and properties in the application’s data structures. Your application provides one or more object accessor functions that can locate all the element classes and properties it supports.
+///
+/// Each object accessor function provided by your application should either find elements or properties of an Apple event object. The `AEResolve` function uses the object class ID of the specified Apple event object and the descriptor type of the token that identifies the object’s container to determine which object accessor function to call. To install an object accessor function, use the [`AEInstallObjectAccessor`](https://developer.apple.com/documentation/coreservices/1447905-aeinstallobjectaccessor) function.
+///
+/// To provide a pointer to your object accessor callback function, you create a universal procedure pointer (UPP) of type [`OSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/oslaccessorupp), using the function [`NewOSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/1449584-newoslaccessorupp). You can do so with code like the following:
+///
+/// ```occ
+/// AEObjectAccessorUPP MyObjectAccessorUPP;
+/// MyObjectAccessorUPP = NewAEObjectAccessorUPP (&MyObjectAccessorCallback)
+/// ```
+///
+/// You can then pass the UPP `MyObjectAccessorUPP` as a parameter to any function that installs or removes an object accessor, such as [`AEInstallObjectAccessor`](https://developer.apple.com/documentation/coreservices/1447905-aeinstallobjectaccessor). If your application installs the same object accessor to handle more than one kind of object class or property of an Apple event, you can use the same UPP to install the accessor multiple times.
+///
+/// If you wish to call your object accessor callback function directly, you can use the [`InvokeOSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/1448978-invokeoslaccessorupp) function.
+///
+/// After you are finished with an object accessor callback function, and have removed it with the [`AERemoveObjectAccessor`](https://developer.apple.com/documentation/coreservices/1442552-aeremoveobjectaccessor) function, you can dispose of the UPP with the [`DisposeOSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/1444684-disposeoslaccessorupp) function. However, don’t dispose of the UPP if any remaining accessor function uses it or if you plan to install the accessor function again.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLAccessorProcPtr = Option<
     unsafe extern "C-unwind" fn(
@@ -234,74 +344,393 @@ pub type OSLAccessorProcPtr = Option<
     ) -> OSErr,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcompareprocptr?language=objc)
+/// Defines a pointer to an object comparison callback function. Your object comparison function compares one Apple event object to another or to the data for a descriptor.
+///
+/// Parameters:
+/// - oper: A comparison operator that specifies the type of comparison to perform. The available comparison operators are described in [`Comparison Operator Constants`](https://developer.apple.com/documentation/applicationservices/apple_event_manager/comparison_operator_constants). For related information, see the function [`CreateCompDescriptor`](https://developer.apple.com/documentation/coreservices/1449155-createcompdescriptor). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - obj1: A pointer to a token describing the first Apple event object to compare. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - obj2: A pointer to a token or some other descriptor that specifies either an Apple event object or a value to compare to the Apple event object specified by the `obj1` parameter. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - result: A pointer to a Boolean value where your object comparison function stores a value indicating the result of the comparison operation. You store `TRUE` if the values of the `obj1` and `obj2` parameters have the relationship specified by the `comparisonOperator` parameter; otherwise, you store `FALSE`.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your object comparison function should return `noErr` if it successfully compared the objects and `errAEEventNotHandled` if it can’t compare the objects. When the Apple Event Manager gets an error result of `errAEEventNotHandled`, it attempts to use other methods of comparing the specified objects, such as calling an equivalent system object comparison function.
+///
+///
+///
+/// ## Discussion
+///
+/// The Apple Event Manager calls your object comparison function when, in the course of resolving an object specifier, the manager needs to compare an Apple event object with another object or with a value in a descriptor.
+///
+/// If you want the Apple Event Manager to help your application resolve object specifiers of key form `formTest` (and if your application doesn’t specify `kAEIDoWhose` as described in [`Callback Constants for the AEResolve Function`](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres)), you should provide an object-counting function, as described in [`OSLCountProcPtr`](https://developer.apple.com/documentation/coreservices/oslcountprocptr), and an object comparison function.
+///
+/// It is up to your application to interpret the comparison operators it receives. The meaning of comparison operators differs according to the Apple event objects being compared, and not all comparison operators apply to all object classes. The available comparison operators are described in [`Comparison Operator Constants`](https://developer.apple.com/documentation/applicationservices/apple_event_manager/comparison_operator_constants).
+///
+/// To provide a pointer to your object comparison callback function, you create a universal procedure pointer (UPP) of type [`OSLCompareUPP`](https://developer.apple.com/documentation/coreservices/oslcompareupp), using the function [`NewOSLCompareUPP`](https://developer.apple.com/documentation/coreservices/1444603-newoslcompareupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLCompareObjectsUPP MyCompareObjectsUPP;
+/// MyCompareObjectsUPP = NewOSLCompareObjectsUPP(&MyCompareObjectsCallback)
+/// ```
+///
+/// You can then pass the UPP `MyCompareObjectsUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your object comparison callback function directly, you can use the [`InvokeOSLCompareUPP`](https://developer.apple.com/documentation/coreservices/1443110-invokeoslcompareupp) function.
+///
+/// After you are finished with your object comparison callback function, you can dispose of the UPP with the [`DisposeOSLCompareUPP`](https://developer.apple.com/documentation/coreservices/1448398-disposeoslcompareupp) function. However, if you will use the same object comparison function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLCompareProcPtr = Option<
     unsafe extern "C-unwind" fn(DescType, *const AEDesc, *const AEDesc, *mut Boolean) -> OSErr,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcountprocptr?language=objc)
+/// Defines a pointer to an object counting callback function. Your object counting function counts the number of Apple event objects of a specified class in a specified container object.
+///
+/// Parameters:
+/// - desiredType: The object class of the Apple event objects to be counted. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - containerClass: The object class of the container for the Apple event objects to be counted. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - container: A pointer to a token that identifies the container for the Apple event objects to be counted. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - result: A pointer to a variable where your object-counting function stores the number of Apple objects of the specified class in the specified container.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your object counting function should return `noErr` if it successfully counted the objects and `errAEEventNotHandled` if it can’t count the objects. When the Apple Event Manager receives the result code `errAEEventNotHandled` after calling an object counting function, it attempts to use other methods of counting the specified objects, such as calling an equivalent system object counting function.
+///
+///
+///
+/// ## Discussion
+///
+/// If you want the Apple Event Manager to help your application resolve object specifiers of key form `formTest` (and if your application doesn’t specify `kAEIDoWhose` as described in [`Callback Constants for the AEResolve Function`](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres)), you should provide an object comparison function, as described in [`OSLCompareProcPtr`](https://developer.apple.com/documentation/coreservices/oslcompareprocptr), and an object-counting function.
+///
+/// The Apple Event Manager calls your object-counting function when, in the course of resolving an object specifier, the manager requires a count of the number of Apple event objects of a given class in a given container.
+///
+/// To provide a pointer to your object counting callback function, you create a universal procedure pointer (UPP) of type [`OSLCountUPP`](https://developer.apple.com/documentation/coreservices/oslcountupp), using the function [`NewOSLCountUPP`](https://developer.apple.com/documentation/coreservices/1448156-newoslcountupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLCountObjectsUPP MyCountObjectsUPP;
+/// MyCountObjectsUPP = NewOSLCountObjectsUPP (&MyCountObjectsCallback)
+/// ```
+///
+/// You can then pass the UPP `MyCountObjectsUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your object counting callback function directly, you can use the [`InvokeOSLCountUPP`](https://developer.apple.com/documentation/coreservices/1448030-invokeoslcountupp) function.
+///
+/// After you are finished with your object counting callback function, you can dispose of the UPP with the [`DisposeOSLCountUPP`](https://developer.apple.com/documentation/coreservices/1443984-disposeoslcountupp) function. However, if you will use the same object counting function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLCountProcPtr =
     Option<unsafe extern "C-unwind" fn(DescType, DescType, *const AEDesc, *mut c_long) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr?language=objc)
+/// Defines a pointer to a dispose token callback function. Your dispose token function, required only if you use a complex token format, disposes of the specified token.
+///
+/// Parameters:
+/// - unneededToken: A pointer to the token to dispose of. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).) On successful return, your function must set this to the null descriptor. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your token disposal function should return `noErr` if it successfully disposed of the token and `errAEEventNotHandled` if it can’t dispose of the token. When the Apple Event Manager receives the result code `errAEEventNotHandled` after calling a token disposal function, it attempts to use other methods of disposing of the specified token, such as calling an equivalent system token disposal function if one is available or, if that fails, by calling [`AEDisposeDesc`](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc).
+///
+///
+///
+/// ## Discussion
+///
+/// The Apple Event Manager calls your token disposal function whenever it needs to dispose of a token. It also calls your disposal function when your application calls the [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken) function. If your application does not provide a token disposal function, the Apple Event Manager calls [`AEDisposeDesc`](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc) instead.
+///
+/// Your token disposal function must be able to dispose of all of the token types used by your application.
+///
+/// If your application supports marking, a call to `MyDisposeTokenCallback` to dispose of a mark token lets your application know that it can unmark the objects marked with that mark token, as described in the Discussion section for [`OSLGetMarkTokenProcPtr`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr).
+///
+/// To provide a pointer to your token disposal callback function, you create a universal procedure pointer (UPP) of type [`OSLDisposeTokenUPP`](https://developer.apple.com/documentation/coreservices/osldisposetokenupp), using the function [`NewOSLDisposeTokenUPP`](https://developer.apple.com/documentation/coreservices/1450027-newosldisposetokenupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLDisposeTokenUPP MyDisposeTokenUPP;
+/// MyDisposeTokenUPP = NewOSLDisposeTokenUPP (&MyDisposeTokenCallback)
+/// ```
+///
+/// You can then pass the UPP `MyDisposeTokenUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your token disposal callback function directly, you can use the [`InvokeOSLDisposeTokenUPP`](https://developer.apple.com/documentation/coreservices/1443963-invokeosldisposetokenupp) function.
+///
+/// After you are finished with your token disposal callback function, you can dispose of the UPP with the [`DisposeOSLDisposeTokenUPP`](https://developer.apple.com/documentation/coreservices/1442670-disposeosldisposetokenupp) function. However, if you will use the same token disposal function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLDisposeTokenProcPtr = Option<unsafe extern "C-unwind" fn(*mut AEDesc) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr?language=objc)
+/// Defines a pointer to a mark token callback function. Your mark token function returns a mark token.
+///
+/// Parameters:
+/// - dContainerToken: A pointer to the Apple event object that contains the elements to be marked with the mark token. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - containerClass: The object class of the container that contains the objects to be marked. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - result: A pointer to a descriptor where your mark token function should return a mark token. If your function can’t return a mark token, it should return a null descriptor. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your mark token function should return `noErr` if it successfully supplies a mark token and `errAEEventNotHandled` if it fails to supply a mark token. When the Apple Event Manager gets an error result of `errAEEventNotHandled` after calling a mark token function, it attempts to get a mark token by calling the equivalent system marking callback function.
+///
+///
+///
+/// ## Discussion
+///
+/// To get a mark token, the Apple Event Manager calls your mark token function. Like other tokens, the mark token returned can be a descriptor of any type; however, unlike other tokens, a mark token identifies the way your application will mark Apple event objects during the current session while resolving a single object specifier that specifies the key form `formTest`.
+///
+/// A mark token is valid until the Apple Event Manager either disposes of it by calling [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken) or returns it as the result of the [`AEResolve`](https://developer.apple.com/documentation/coreservices/1449720-aeresolve) function. If the final result of a call to `AEResolve` is a mark token, the Apple event objects currently marked for that mark token are those specified by the object specifier passed to `AEResolve`, and your application can proceed to do whatever the Apple event has requested. Note that your application is responsible for disposing of a final mark token with a call to `AEDisposeToken`, just as for any other final token.
+///
+/// If your application supports marking, it should also provide a token disposal function modeled after the token disposal function described in [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr). When the Apple Event Manager calls `AEDisposeToken` to dispose of a mark token that is not the final result of a call to `AEResolve`, the subsequent call to your token disposal function lets you know that you can unmark the Apple event objects marked with that mark token. A call to `AEDisposeDesc` to dispose of a mark token (which would occur if you did not provide a token disposal function) would go unnoticed.
+///
+/// To provide a pointer to your mark token callback function, you create a universal procedure pointer (UPP) of type [`OSLGetMarkTokenUPP`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenupp), using the function [`NewOSLGetMarkTokenUPP`](https://developer.apple.com/documentation/coreservices/1445166-newoslgetmarktokenupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLGetMarkTokenUPP MyGetMarkTokenUPP;
+/// MyGetMarkTokenUPP = NewOSLGetMarkTokenUPP (&MyGetMarkTokenCallback)
+/// ```
+///
+/// You can then pass the UPP `MyGetMarkTokenUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your mark token callback function directly, you can use the [`InvokeOSLGetMarkTokenUPP`](https://developer.apple.com/documentation/coreservices/1441894-invokeoslgetmarktokenupp) function.
+///
+/// After you are finished with your mark token callback function, you can dispose of the UPP with the [`DisposeOSLGetMarkTokenUPP`](https://developer.apple.com/documentation/coreservices/1442377-disposeoslgetmarktokenupp) function. However, if you will use the same mark token function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetMarkTokenProcPtr =
     Option<unsafe extern "C-unwind" fn(*const AEDesc, DescType, *mut AEDesc) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr?language=objc)
+/// Defines a pointer to an error descriptor callback function. Your error descriptor callback function supplies a pointer to an address where the Apple Event Manager can store the current descriptor if an error occurs during a call to the `AEResolve` function.
+///
+/// Parameters:
+/// - appDescPtr: A pointer to a pointer to a descriptor address. Your error descriptor callback function supplies a pointer to an address of a descriptor where the Apple Event Manager can store the current descriptor if an error occurs. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your error descriptor function should return `noErr` if it completes successfully and a nonzero error value if it is unsuccessful. If it returns a nonzero value, the Apple Event Manager continues to resolve the object specifier as if it had never called the error callback function.
+///
+///
+///
+/// ## Discussion
+///
+/// Your get error descriptor callback function simply supplies a pointer to an address. Shortly after your application calls the [`AEResolve`](https://developer.apple.com/documentation/coreservices/1449720-aeresolve) function, the Apple Event Manager calls your get error descriptor callback function and writes a null descriptor to the address supplied by your callback, overwriting whatever was there previously.
+///
+/// If an error occurs during the resolution of the object specifier, the Apple Event Manager calls your get error descriptor callback function again and writes the descriptor it is currently working with—often an object specifier—to the address supplied by your callback. If `AEResolve` returns an error during the resolution of an object specifier, this address contains the descriptor responsible for the error.
+///
+/// You should always write a null descriptor at the address provided by your get error descriptor callback function before calling `AEResolve`. When recovering from an error, the Apple Event Manager, never writes to the address you provide unless it already contains a null descriptor. You may wish to maintain a single global variable of type `AEDesc` and have your get error descriptor callback function always provide the address of that variable.
+///
+/// After `AEResolve` returns, if your error descriptor is not the null descriptor, you are responsible for disposing of it.
+///
+/// To provide a pointer to your get error descriptor callback function, you create a universal procedure pointer (UPP) of type [`OSLGetErrDescUPP`](https://developer.apple.com/documentation/coreservices/oslgeterrdescupp), using the function [`NewOSLGetErrDescUPP`](https://developer.apple.com/documentation/coreservices/1447934-newoslgeterrdescupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLGetErrorDescUPP MyGetErrorDescUPP;
+/// MyGetErrorDescUPP = NewOSLGetErrorDescUPP (&MyGetErrorDescCallback)
+/// ```
+///
+/// You can then pass the UPP `MyGetErrorDescUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your get error descriptor callback function directly, you can use the [`InvokeOSLGetErrDescUPP`](https://developer.apple.com/documentation/coreservices/1448420-invokeoslgeterrdescupp) function.
+///
+/// After you are finished with your get error descriptor callback function, you can dispose of the UPP with the [`DisposeOSLGetErrDescUPP`](https://developer.apple.com/documentation/coreservices/1446061-disposeoslgeterrdescupp) function. However, if you will use the same get error descriptor callback function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetErrDescProcPtr = Option<unsafe extern "C-unwind" fn(*mut *mut AEDesc) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslmarkprocptr?language=objc)
+/// Defines a pointer to an object marking callback function. Your object-marking function marks a specific Apple event object.
+///
+/// Parameters:
+/// - dToken: A pointer to the token for the Apple event object to be marked. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - markToken: A pointer to the mark token used to mark the Apple event object. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - index: The number of times your `MyMarkCallback` function has been called for the current mark token (that is, the number of Apple event objects that have so far passed the test, including the element to be marked).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your object marking function should return `noErr` if it successfully marks the Apple event object and `errAEEventNotHandled` if it fails to mark the object. When the Apple Event Manager gets an error result of `errAEEventNotHandled` after calling an object marking function, it attempts to get mark the object by calling the equivalent system object marking function.
+///
+///
+///
+/// ## Discussion
+///
+/// To mark an Apple event object using the current mark token, the Apple Event Manager calls the object-marking function provided by your application. In addition to marking the specified object, your `MyMarkCallback` function should record the mark count for each object that it marks. The mark count recorded for each marked object allows your application to determine which of a set of marked tokens pass a test, as described in the Discussion section for the [`OSLAdjustMarksProcPtr`](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr) function.
+///
+/// To provide a pointer to your mark callback function, you create a universal procedure pointer (UPP) of type [`OSLMarkUPP`](https://developer.apple.com/documentation/coreservices/oslmarkupp), using the function [`NewOSLMarkUPP`](https://developer.apple.com/documentation/coreservices/1446942-newoslmarkupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLMarkUPP MyMarkUPP;
+/// MyMarkUPP = NewOSLMarkUPP (&MyMarkCallback)
+/// ```
+///
+/// You can then pass the UPP `MyMarkUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your mark callback function directly, you can use the [`InvokeOSLMarkUPP`](https://developer.apple.com/documentation/coreservices/1447444-invokeoslmarkupp) function.
+///
+/// After you are finished with your mark callback function, you can dispose of the UPP with the [`DisposeOSLMarkUPP`](https://developer.apple.com/documentation/coreservices/1449253-disposeoslmarkupp) function. However, if you will use the same mark function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLMarkProcPtr =
     Option<unsafe extern "C-unwind" fn(*const AEDesc, *const AEDesc, c_long) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr?language=objc)
+/// Defines a pointer to an adjust marks callback function. Your adjust marks function unmarks objects previously marked by a call to your marking function.
+///
+/// Parameters:
+/// - newStart: The mark count value (provided when the `MyAdjustMarksCallback` callback function was called to mark the object) for the first object in the new set of marked objects.
+///
+/// - newStop: The mark count value (provided when the `MyAdjustMarksCallback` callback function was called to mark the object) for the last object in the new set of marked objects.
+///
+/// - markToken: A pointer to the mark token for the marked objects. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. Your adjust marks function should return `noErr` if it successfully adjusted the marks and `errAEEventNotHandled` if it could not locate the object. When the Apple Event Manager gets an error result of `errAEEventNotHandled`, it attempts to adjust the marks by calling the equivalent system mark-adjusting function.
+///
+///
+///
+/// ## Discussion
+///
+/// When the Apple Event Manager needs to identify either a range of elements or the absolute position of an element in a group of Apple event objects that pass a test, it can use your application’s mark-adjusting function to unmark objects previously marked by a call to your marking function.
+///
+/// For example, suppose an object specifier specifies `any row in the table "MyCustomers" for which the City column is "San Francisco"`. The Apple Event Manager first uses the appropriate object accessor function to locate all the rows in the table for which the City column is `"San Francisco"` and calls the application’s marking function repeatedly to mark them. It then generates a random number between 1 and the number of rows it found that passed the test and calls the application’s mark-adjusting function to unmark all the rows whose mark count does not match the randomly generated number. If the randomly chosen row has a mark count value of 5, the Apple Event Manager passes the value 5 to the mark-adjusting function in both the `newStart` parameter and the `newStop `parameter, and passes the current mark token in the `markToken` parameter.
+///
+/// When the Apple Event Manager calls your `MyAdjustMarksCallback `function, your application must dispose of any data structures that it created to mark the previously marked objects.
+///
+/// To provide a pointer to your adjust marks callback function, you create a universal procedure pointer (UPP) of type [`OSLAdjustMarksUPP`](https://developer.apple.com/documentation/coreservices/osladjustmarksupp), using the function [`NewOSLAdjustMarksUPP`](https://developer.apple.com/documentation/coreservices/1443347-newosladjustmarksupp). You can do so with code like the following:
+///
+/// ```occ
+/// OSLAdjustMarksUPP MyAdjustMarksUPP;
+/// MyAdjustMarksUPP = NewOSLAdjustMarksUPP (&MyAdjustMarksCallback)
+/// ```
+///
+/// You can then pass the UPP `MyAdjustMarksUPP` as a parameter to the [`AESetObjectCallbacks`](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks) function or the [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) function.
+///
+/// If you wish to call your adjust marks callback function directly, you can use the [`InvokeOSLAdjustMarksUPP`](https://developer.apple.com/documentation/coreservices/1448506-invokeosladjustmarksupp) function.
+///
+/// After you are finished with your adjust marks callback function, you can dispose of the UPP with the [`DisposeOSLAdjustMarksUPP`](https://developer.apple.com/documentation/coreservices/1443940-disposeosladjustmarksupp) function. However, if you will use the same adjust marks function in subsequent calls to the function `AESetObjectCallbacks` or the function `AEInstallSpecialHandler`, you can reuse the same UPP, rather than dispose of it and later create a new UPP.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLAdjustMarksProcPtr =
     Option<unsafe extern "C-unwind" fn(c_long, c_long, *const AEDesc) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslaccessorupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLAccessorProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of an object accessor callback function, see [`OSLAccessorProcPtr`](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLAccessorUPP = OSLAccessorProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcompareupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLCompareProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of a compare callback function, see [`OSLCompareProcPtr`](https://developer.apple.com/documentation/coreservices/oslcompareprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLCompareUPP = OSLCompareProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslcountupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLCountProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of a count callback function, see [`OSLCountProcPtr`](https://developer.apple.com/documentation/coreservices/oslcountprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLCountUPP = OSLCountProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osldisposetokenupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLDisposeTokenProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of a dispose token callback function, see [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLDisposeTokenUPP = OSLDisposeTokenProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgetmarktokenupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLGetMarkTokenProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of a mark token callback function, see [`OSLGetMarkTokenProcPtr`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetMarkTokenUPP = OSLGetMarkTokenProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslgeterrdescupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLGetErrDescProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of a get error descriptor callback function, see [`OSLGetErrDescProcPtr`](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLGetErrDescUPP = OSLGetErrDescProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/oslmarkupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLMarkProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of a mark callback function, see [`OSLMarkProcPtr`](https://developer.apple.com/documentation/coreservices/oslmarkprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLMarkUPP = OSLMarkProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/osladjustmarksupp?language=objc)
+/// Defines a data type for the universal procedure pointer for the `OSLAdjustMarksProcPtr` callback function pointer.
+///
+/// ## Discussion
+///
+/// For a description of an adjust marks callback function, see [`OSLAdjustMarksProcPtr`](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr).
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub type OSLAdjustMarksUPP = OSLAdjustMarksProcPtr;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449584-newoslaccessorupp?language=objc)
+    /// Creates a new universal procedure pointer to an object accessor function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/oslaccessorupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLAccessorProcPtr`](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -311,7 +740,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444603-newoslcompareupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback comparison function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLCompareUPP`](https://developer.apple.com/documentation/coreservices/oslcompareupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLCompareProcPtr`](https://developer.apple.com/documentation/coreservices/oslcompareprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -321,7 +763,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448156-newoslcountupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback count function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLCountUPP`](https://developer.apple.com/documentation/coreservices/oslcountupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLCountProcPtr`](https://developer.apple.com/documentation/coreservices/oslcountprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -331,7 +786,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450027-newosldisposetokenupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback dispose token function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLDisposeTokenUPP`](https://developer.apple.com/documentation/coreservices/osldisposetokenupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -341,7 +809,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445166-newoslgetmarktokenupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback get mark function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLGetMarkTokenUPP`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLGetMarkTokenProcPtr`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -351,7 +832,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447934-newoslgeterrdescupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback get error descriptor function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLGetErrDescUPP`](https://developer.apple.com/documentation/coreservices/oslgeterrdescupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLGetErrDescProcPtr`](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -361,7 +855,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446942-newoslmarkupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback mark function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLMarkUPP`](https://developer.apple.com/documentation/coreservices/oslmarkupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLMarkProcPtr`](https://developer.apple.com/documentation/coreservices/oslmarkprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -371,7 +878,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443347-newosladjustmarksupp?language=objc)
+    /// Creates a new universal procedure pointer to an object callback adjust marks function.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// See [`OSLAdjustMarksUPP`](https://developer.apple.com/documentation/coreservices/osladjustmarksupp).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLAdjustMarksProcPtr`](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -381,7 +901,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444684-disposeoslaccessorupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object accessor function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLAccessorProcPtr`](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -391,7 +917,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448398-disposeoslcompareupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback comparison function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLCompareProcPtr`](https://developer.apple.com/documentation/coreservices/oslcompareprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -401,7 +933,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443984-disposeoslcountupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback count function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLCountProcPtr`](https://developer.apple.com/documentation/coreservices/oslcountprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -411,7 +949,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442670-disposeosldisposetokenupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback dispose token function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -421,7 +965,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442377-disposeoslgetmarktokenupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback get mark function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLGetMarkTokenProcPtr`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -431,7 +981,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446061-disposeoslgeterrdescupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback get error descriptor function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLGetErrDescProcPtr`](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -441,7 +997,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449253-disposeoslmarkupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback mark function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLMarkProcPtr`](https://developer.apple.com/documentation/coreservices/oslmarkprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -451,7 +1013,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443940-disposeosladjustmarksupp?language=objc)
+    /// Disposes of a universal procedure pointer to an object callback adjust marks function.
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLAdjustMarksProcPtr`](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -461,7 +1029,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448978-invokeoslaccessorupp?language=objc)
+    /// Calls an object accessor universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLAccessorProcPtr`](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -484,7 +1065,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443110-invokeoslcompareupp?language=objc)
+    /// Calls an object callback comparison universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLCompareProcPtr`](https://developer.apple.com/documentation/coreservices/oslcompareprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -503,7 +1097,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448030-invokeoslcountupp?language=objc)
+    /// Calls an object callback count universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLCountProcPtr`](https://developer.apple.com/documentation/coreservices/oslcountprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -521,7 +1128,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443963-invokeosldisposetokenupp?language=objc)
+    /// Calls an object callback dispose token universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -535,7 +1155,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441894-invokeoslgetmarktokenupp?language=objc)
+    /// Calls an object callback get mark universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLGetMarkTokenProcPtr`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -552,7 +1185,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448420-invokeoslgeterrdescupp?language=objc)
+    /// Calls an object callback get error descriptor universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLGetErrDescProcPtr`](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -566,7 +1212,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447444-invokeoslmarkupp?language=objc)
+    /// Calls an object callback mark universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLMarkProcPtr`](https://developer.apple.com/documentation/coreservices/oslmarkprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -583,7 +1242,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448506-invokeosladjustmarksupp?language=objc)
+    /// Calls an object callback adjust marks universal procedure pointer.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the [`OSLAdjustMarksProcPtr`](https://developer.apple.com/documentation/coreservices/osladjustmarksprocptr) callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -599,12 +1271,72 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447372-aeobjectinit?language=objc)
+    /// Initializes the Object Support Library.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function before calling any of the Apple Event Manager functions that describe or manipulate Apple event objects.
+    ///
+    /// You should call the `AEObjectInit` function to initialize the Apple Event Manager functions that handle object specifiers and Apple event objects.
+    ///
+    /// <a id="1770197"></a>
+    /// ### Version-Notes
+    ///
+    /// To make these functions available to your application with version 1.01 and earlier versions of the Apple Event Manager, you must also link the Apple Event Object Support Library with your application when you build it. For more information, see the Version Notes section for the AppleScript Gestalt Selector described in _Inside macOS: Gestalt Manager Reference_ and the function [`AERemoveSpecialHandler`](https://developer.apple.com/documentation/coreservices/1447960-aeremovespecialhandler).
+    ///
+    ///
     pub fn AEObjectInit() -> OSErr;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447756-aesetobjectcallbacks?language=objc)
+    /// Specifies the object callback functions for your application.
+    ///
+    /// Parameters:
+    /// - myCompareProc: Either a universal procedure pointer to the object comparison function provided by your application or `NULL` if no function is provided. See [`OSLCompareUPP`](https://developer.apple.com/documentation/coreservices/oslcompareupp).
+    ///
+    /// - myCountProc: Either a universal procedure pointer to the object-counting function provided by your application or `NULL` if no function is provided. See [`OSLCountUPP`](https://developer.apple.com/documentation/coreservices/oslcountupp).
+    ///
+    /// - myDisposeTokenProc: Either a universal procedure pointer to the token disposal function provided by your application or `NULL` if no function is provided. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`OSLDisposeTokenUPP`](https://developer.apple.com/documentation/coreservices/osldisposetokenupp).
+    ///
+    /// - myGetMarkTokenProc: Either a universal procedure pointer to the function for returning a mark token provided by your application or `NULL` if no function is provided. See [`OSLGetMarkTokenUPP`](https://developer.apple.com/documentation/coreservices/oslgetmarktokenupp).
+    ///
+    /// - myMarkProc: Either a universal procedure pointer to the object-marking function provided by your application or `NULL` if no function is provided. See [`OSLMarkUPP`](https://developer.apple.com/documentation/coreservices/oslmarkupp).
+    ///
+    /// - myAdjustMarksProc: Either a universal procedure pointer to the mark-adjusting function provided by your application or `NULL` if no function is provided. See [`OSLAdjustMarksUPP`](https://developer.apple.com/documentation/coreservices/osladjustmarksupp).
+    ///
+    /// - myGetErrDescProcPtr: Either a universal procedure pointer to the error callback function provided by your application or `NULL` if no function is provided. See [`OSLGetErrDescUPP`](https://developer.apple.com/documentation/coreservices/oslgeterrdescupp).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is just a convenient wrapper for [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler). You can manipulate the special handler table with more control using the routines described in REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1652333", kind: "article", title: "Managing Special Handler Dispatch Tables", url: "/documentation/applicationservices/apple_event_manager#1652333", abstract_: [], role: Some("task") }.
+    ///
+    /// Your application can provide only one each of the object callback functions specified by `AESetObjectCallbacks`—one object comparison function, one object-counting function, and so on. As a result, each of these callback functions must perform the requested task (comparing, counting, and so on) for all the object classes that your application supports. In contrast, your application may provide many different object accessor functions if necessary, depending on the object classes and token types your application supports. You install object accessor functions with [`AEInstallObjectAccessor`](https://developer.apple.com/documentation/coreservices/1447905-aeinstallobjectaccessor).
+    ///
+    /// To replace object callback functions that have been previously installed, you can call `AESetObjectCallbacks` again. Each additional call to `AESetObjectCallbacks` replaces any object callback functions installed by previous calls. Only those functions you specify are replaced; to avoid replacing existing callback functions, specify a value of `NULL` for the functions you don’t want to replace.
+    ///
+    /// You cannot use `AESetObjectCallbacks` to replace system object callback functions or object accessor functions. To install system object callback functions, use the function [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler).
+    ///
+    /// <a id="1770198"></a>
+    /// ### Version-Notes
+    ///
+    /// In macOS, your application can not make an object callback function available to other applications by installing it in a system object accessor dispatch table.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -628,7 +1360,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449720-aeresolve?language=objc)
+    /// Resolves an object specifier.
+    ///
+    /// Parameters:
+    /// - objectSpecifier: A pointer to the object specifier to resolve. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    /// - callbackFlags: A value that determines what additional assistance, if any, your application can give the Apple Event Manager when it parses the object specifier. The value is specified by adding the desired constants described in [`Callback Constants for the AEResolve Function`](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres). Most applications use `kAEIDoMinimum`.
+    ///
+    /// - theToken: A pointer to a descriptor. On return, a token that identifies the Apple event objects specified by the `objectSpecifier` parameter. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).)
+    ///
+    /// Your object accessor functions may need to create many tokens to resolve a single object specifier; this parameter contains only the final token that identifies the requested Apple event object.
+    ///
+    /// Whenever the `AEResolve` function returns final token to your event handler as the result of the resolving an object specifier passed to `AEResolve`, your application must deallocate the memory used by the token. If your application uses complex tokens, it must dispose of the token by calling [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). If your application uses simple tokens, you can use either [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken) or [`AEDisposeDesc`](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. The `AEResolve` function returns any result code returned by one of your application’s object accessor functions or object callback functions. For example, an object accessor function can return `errAENoSuchObject` (–1728) when it can’t find an Apple event object, or it can return more specific result codes. If any object accessor function or object callback function returns a result code other than `noErr` or `errAEEventNotHandled`, `AEResolve` immediately disposes of any existing tokens and returns. The result code it returns in this case is the result code returned by the object accessor function or the object callback function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If an Apple event parameter consists of an object specifier, your handler for the event typically calls the `AEResolve` function to begin the process of resolving the object specifier.
+    ///
+    /// The `AEResolve` function resolves the object specifier passed in the `objectSpecifier` parameter with the help of your object accessor functions, described in [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager), and the object callback functions, described in [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager).
+    ///
+    /// For information on how to receive error information from the `AEResolve` function, see [`OSLGetErrDescProcPtr`](https://developer.apple.com/documentation/coreservices/oslgeterrdescprocptr).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -642,7 +1403,39 @@ extern "C-unwind" {
     ) -> OSErr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447905-aeinstallobjectaccessor?language=objc)
+/// Adds or replaces an entry for an object accessor function to an object accessor dispatch table.
+///
+/// Parameters:
+/// - desiredClass: The object type of the Apple event objects located by this accessor. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - containerType: The type of the token whose objects are accessed by this accessor. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).) The accessor function finds objects in containers specified by tokens of this type. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - theAccessor: A universal procedure pointer to the object accessor function to install. See [`OSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/oslaccessorupp).
+///
+/// - accessorRefcon: A reference constant the Apple Event Manager passes to the object accessor function whenever it calls the function. If your object accessor function doesn’t require a reference constant, pass 0 for this parameter. To change the value of the reference constant, you must call `AEInstallObjectAccessor` again.
+///
+/// - isSysHandler: Specifies the object accessor dispatch table to add the entry to. Pass `TRUE` to add the entry to the system object accessor dispatch table or `FALSE` to add the entry to your application’s object accessor dispatch table. Use of the system object accessor dispatch table is not recommended.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// The `AEInstallObjectAccessor` function adds or replaces an entry to either the application or system object accessor dispatch table.
+///
+/// <a id="1770185"></a>
+/// ### Version-Notes
+///
+/// In macOS, your application can not make an object callback function available to other applications by installing it in a system object accessor dispatch table.
+///
+/// If your Carbon application running in Mac OS 8 or OS 9 installs a system object accessor function in its application heap, rather than in the system heap, you must call [`AERemoveObjectAccessor`](https://developer.apple.com/documentation/coreservices/1442552-aeremoveobjectaccessor) to remove the function before your application terminates.
+///
+///
 ///
 /// # Safety
 ///
@@ -677,7 +1470,30 @@ pub unsafe extern "C-unwind" fn AEInstallObjectAccessor(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442552-aeremoveobjectaccessor?language=objc)
+/// Removes an object accessor function from an object accessor dispatch table.
+///
+/// Parameters:
+/// - desiredClass: The object class of the Apple event objects located by the object accessor function to remove. Pass the value `typeWildCard` to remove an object accessor function whose entry in an object accessor dispatch table specifies `typeWildCard` as the object class. Pass the value `cProperty` to remove an object accessor function whose entry in an object accessor dispatch table specifies `cProperty` (a constant used to specify a property of any object class). Some other possible values are defined in [`Object Class ID Constants`](https://developer.apple.com/documentation/coreservices/1556368-object_class_id_constants). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - containerType: The descriptor type of the token that identifies the container for the objects located by the object accessor function to remove. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).) Pass the value `typeWildCard` to remove an object accessor function whose entry in an object accessor dispatch table specifies `typeWildCard` as the descriptor type of the token used to specify the container type. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - theAccessor: A universal procedure pointer to the special handler to remove. Although the `functionClass` parameter is sufficient to identify the handler to remove, you can identify the handler explicitly as a safeguard. If you pass `NULL` for this parameter, the Apple Event Manager relies solely on the function class to identify the handler. A universal procedure pointer (UPP) to the object accessor function to remove. Although the parameters `desiredClass` and `containerType` are sufficient to identify the function to remove, you can identify the function explicitly by providing a UPP in this parameter. If you pass `NULL` for this parameter, the Apple Event Manager relies solely on the desired class and container type. See [`OSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/oslaccessorupp).
+///
+/// - isSysHandler: Specifies the object accessor dispatch table to remove the object accessor function from. Pass `TRUE` to remove the object accessor function from the system object accessor dispatch table or `FALSE` to remove the object accessor function from your application’s object accessor dispatch table. Use of the system object accessor dispatch table is not recommended.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// In macOS, your application can not make an object callback function available to other applications by installing it in a system object accessor dispatch table.
+///
+///
 ///
 /// # Safety
 ///
@@ -708,7 +1524,37 @@ pub unsafe extern "C-unwind" fn AERemoveObjectAccessor(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449054-aegetobjectaccessor?language=objc)
+/// Gets an object accessor function from an object accessor dispatch table.
+///
+/// Parameters:
+/// - desiredClass: The object class of the Apple event objects located by the object accessor function to get. Pass the value `typeWildCard` to get an object accessor function whose entry in an object accessor dispatch table specifies `typeWildCard` as the object class. Pass the value `cProperty` to get an object accessor function whose entry in an object accessor dispatch table specifies `cProperty` (a constant used to specify a property of any object class). Some other possible values are defined in [`Object Class ID Constants`](https://developer.apple.com/documentation/coreservices/1556368-object_class_id_constants). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - containerType: The descriptor type of the token that identifies the container for the objects located by the requested accessor function. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).) Pass the value `typeWildCard` to get an object accessor function whose entry in an object accessor dispatch table specifies `typeWildCard` as the descriptor type of the token used to specify the container type. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - accessor: A universal procedure pointer. On return, a pointer to the requested object accessor function, if an object accessor dispatch table entry exists that exactly matches the values supplied in the parameters `desiredClass` and `containerType`. See [`OSLAccessorUPP`](https://developer.apple.com/documentation/coreservices/oslaccessorupp).
+///
+/// - accessorRefcon: A pointer to a reference constant. On return, points to the reference constant from the object accessor dispatch table entry for the specified object accessor function. The reference constant may have a value of 0.
+///
+/// - isSysHandler: Specifies the object accessor dispatch table to get the object accessor function from. Pass `TRUE` to get the object accessor function from the system object accessor dispatch table or `FALSE` to get the object accessor function from your application’s object accessor dispatch table. Use of the system object accessor dispatch table is not recommended.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// Calling `AEGetObjectAccessor` does not remove the object accessor function from an object accessor dispatch table.
+///
+/// <a id="1770184"></a>
+/// ### Version-Notes
+///
+/// In macOS, your application can not make an object callback function available to other applications by installing it in a system object accessor dispatch table.
+///
+///
 ///
 /// # Safety
 ///
@@ -744,7 +1590,33 @@ pub unsafe extern "C-unwind" fn AEGetObjectAccessor(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken?language=objc)
+    /// Deallocates the memory used by a token.
+    ///
+    /// Parameters:
+    /// - theToken: A pointer to the token to dispose of. On successful return, the pointer is set to the null descriptor. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application calls the [`AEResolve`](https://developer.apple.com/documentation/coreservices/1449720-aeresolve) function to resolve an object specifier, with the help of the object accessor functions described in “Object Accessor Callbacks” and the application object callback functions described in “Object Callback Functions”.
+    ///
+    /// When `AEResolve` returns a final token to your event handler as the result of the resolution of an object specifier, your application must deallocate the memory used by the token. When your application calls the `AEDisposeToken` function, the Apple Event Manager first calls your application’s token disposal function, if you have provided one. The token disposal function is described in [`OSLDisposeTokenProcPtr`](https://developer.apple.com/documentation/coreservices/osldisposetokenprocptr).
+    ///
+    /// If you haven’t provided a token disposal function, or if your application’s token disposal function returns `errAEEventNotHandled` as the function result, the Apple Event Manager calls the system token disposal function if one is available. If there is no system token disposal function or the function returns `errAEEventNotHandled` as the function result, the Apple Event Manager calls the `AEDisposeDesc` function to dispose of the token.
+    ///
+    /// <a id="1770180"></a>
+    /// ### Version-Notes
+    ///
+    /// In macOS, your application can not make an object callback function available to other applications by installing it in a system object accessor dispatch table.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -754,7 +1626,43 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447059-aecallobjectaccessor?language=objc)
+    /// Invokes the appropriate object accessor function for a specific desired type and container type.
+    ///
+    /// Parameters:
+    /// - desiredClass: The type of the Apple event object requested. Some possible values are defined in [`Object Class ID Constants`](https://developer.apple.com/documentation/coreservices/1556368-object_class_id_constants). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    /// - containerToken: A pointer to the token that identifies the container for the desired object. (Token is defined in [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken).) See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    /// - containerClass: The object class of the container for the desired objects. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    /// - keyForm: The key form that specifies how to find the object within the container. Key form constants are described in [`Key Form and Descriptor Type Object Specifier Constants`](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj). See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    /// - keyData: A pointer to the key data that identifies the object within the container. The type of this data is form-specific. That is, `formName` typically has key data of type `typeText`. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    /// - token: A pointer to a token. On return, a token specifying the desired object (or objects). Your application should dispose of this token when it is through with it by calling [`AEDisposeToken`](https://developer.apple.com/documentation/coreservices/1446783-aedisposetoken). See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }. `AECallObjectAccessor` returns any result codes returned by the object accessor function it calls.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you want your application to do some of the Apple event object resolution normally performed by the [`AEResolve`](https://developer.apple.com/documentation/coreservices/1449720-aeresolve) function, you can use `AECallObjectAccessor` to invoke an object accessor function. This might be useful, for example, if you have installed an object accessor function using `typeWildCard` for the `AEInstallObjectAccessor` function’s `desiredClass` parameter and `typeAEList` for the `containerType` parameter. To return a list of tokens for a request like “line one of every window” the object accessor function can create an empty list, then call `AECallObjectAccessor` for each requested element, adding tokens for each element to the list one at a time.
+    ///
+    /// The parameters of `AECallObjectAccessor` are identical to the parameters of an object accessor function, as described in [`OSLAccessorProcPtr`](https://developer.apple.com/documentation/coreservices/oslaccessorprocptr) with one exception—the Apple Event Manager adds a reference constant parameter each time it calls the object accessor function.
+    ///
+    /// You can also call a specific object accessor function directly through its universal procedure pointer with one of the invoke functions described in REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1651592", kind: "article", title: "Creating, Calling, and Deleting Universal Procedure Pointers", url: "/documentation/applicationservices/apple_event_manager#1651592", abstract_: [], role: Some("task") }.
+    ///
+    /// <a id="1770183"></a>
+    /// ### Version-Notes
+    ///
+    /// In macOS, your application can not make an object callback function available to other applications by installing it in a system object accessor dispatch table.
+    ///
+    ///
     ///
     /// # Safety
     ///

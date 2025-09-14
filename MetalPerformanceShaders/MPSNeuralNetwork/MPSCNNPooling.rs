@@ -9,13 +9,42 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A pooling kernel.
+    ///
+    /// ## Overview
+    ///
+    /// Pooling is a form of non-linear sub-sampling. Pooling partitions the input image into a set of rectangles (overlapping or non-overlapping) and, for each such sub-region, outputs a value. The pooling operation is used in computer vision to reduce the dimensionality of intermediate representations.
+    ///
+    /// The encode methods in the [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel) class can be used to encode an [`MPSCNNPooling`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpooling) object to a [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object. The exact location of the pooling window for each output value is determined as follows:
+    ///
+    /// - The pooling window center for the first (top left) output pixel of the clip rectangle is at spatial coordinates `(offset.x, offset.y)` in the input image.
+    ///
+    /// - From this, the top left corner of the pooling window is at `(offset.x - floor(kernelWidth/2)`, `offset.y - floor(kernelHeight/2))` and extends `(kernelWidth, kernelHeight)` pixels to the right and down direction, which means that the last pixel to be included into the pooling window is at `(offset.x + floor((kernelWidth-1)/2)`, `offset.y + floor((kernelHeight-1)/2))`, so that for even kernel sizes the pooling window extends one pixel more into the left and up direction.
+    ///
+    /// - The following pooling windows can be then easily deduced from the first one by simple shifting the source coordinates according to the values of the `strideInPixelsX` and `strideInPixelsY` properties.
+    ///
+    /// For example,  the pooling window center `w(x,y)` for the output value at coordinate `(x,y)` of the destination clip rectangle (`(x,y)` computed with regard to clipping rectangle origin) is at `w(x,y) = (offset.x + strideInPixelsX * x , offset.y + strideInPixelsY * y)`.
+    ///
+    /// Quite often it is desirable to distribute the pooling windows as evenly as possible in the input image. As explained above, if the `offset` is zero, then the center of the first pooling window is at the top left corner of the input image, which means that the left and top stripes of the pooling window are read from outside the input image boundaries (when filter size is larger than unity). Also it may mean that some values from the bottom and right stripes are not included at all in the pooling, resulting in loss of valuable information.
+    ///
+    /// A scheme used in some common libraries is to shift the source `offset` according to the following formula:
+    ///
+    /// - `offset.xy += {(int)ceil(((L.xy - 1) % s.xy) / 2)}`, for odd `f.xy`
+    ///
+    /// - `offset.xy += {(int)floor(((L.xy - 1) % s.xy) / 2) + 1},` for even `f.xy`
+    ///
+    /// Where `L` is the size of the input image (or more accurately the size corresponding to the scaled `clipRect` value in source coordinates, which commonly coincides with the source image itself), `s.xy` is `(``strideInPixelsX`, `strideInPixelsY``)` and `f.xy` is `(kernelWidth, kernelHeight)`.
+    ///
+    /// This offset distributes the pooling window centers evenly in the effective source `clipRect`, when the output size is rounded up with regards to stride (`output size = ceil(input size / stride)`) and is commonly used in CNN libraries (for example _TensorFlow_ uses this offset scheme in its maximum pooling implementation `tf.nn.max_pool` with `'S``AME``'` - padding, for `'VALID'` padding one can simply set `offset.xy += floor(f.xy/2)` to get the first pooling window inside the source image completely).
+    ///
+    /// For an [`MPSCNNPoolingMax`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmax) object, the way the input image borders are handled can become important: if there are negative values in the source image near the borders of the image and the pooling window crosses the borders, then using a [`MPSImageEdgeModeZero`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/zero) edge modemay cause the maximum pooling operation to override the negative input data values with zeros coming from outside the source image borders, resulting in large boundary effects. A simple way to avoid this is to use a [`MPSImageEdgeModeClamp`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp) edge mode, which for an [`MPSCNNPoolingMax`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmax) object effectively causes all pooling windows to remain within the source image.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Pooling is a form of non-linear sub-sampling. Pooling partitions the input image into a set of
     /// rectangles (overlapping or non-overlapping) and, for each such sub-region, outputs a value.
     /// The pooling operation is used in computer vision to reduce the dimensionality of intermediate representations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpooling?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -162,12 +191,17 @@ impl MPSCNNPooling {
 }
 
 extern_class!(
+    /// A max pooling filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter returns the maximum value of the pixels in the filter region defined by `kernelWidth` x `kernelHeight`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the max pooling filter.  For each pixel, returns the maximum value of pixels
     /// in the kernelWidth x kernelHeight filter region.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmax?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -320,6 +354,15 @@ impl MPSCNNPoolingMax {
 }
 
 extern_class!(
+    /// An average pooling filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter returns the average value of the pixels in the filter region defined by `kernelWidth` `x` `kernelHeight`.
+    ///
+    /// When the value of the [`edgeMode`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/edgemode) property is set to [`MPSImageEdgeModeClamp`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode/clamp), the filtering window is shrunk to remain within the source image borders. For pixels close to the image borders, the filtering window will be smaller in order to fit inside the source image and less values will be used to compute the average value. In case the filtering window is entirely outside the source image border, the output value will be `0`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the average pooling filter.  For each pixel, returns the mean value of pixels
@@ -331,8 +374,6 @@ extern_class!(
     /// will be smaller in order to fit inside the source image and less values will be used to compute the
     /// average. In case the filtering window is entirely outside the source image border the
     /// outputted value will be zero.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaverage?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -523,13 +564,22 @@ impl MPSCNNPoolingAverage {
 }
 
 extern_class!(
+    /// An L2-norm pooling filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel, returns L2-Norm of pixels in the `kernelWidth * kernelHeight` filter region:
+    ///
+    ///
+    /// ![out[c,x,y] = sqrt ( sum_{dx,dy} in[c,x+dx,y+dy] * in[c,x+dx,y+dy] )](https://docs-assets.developer.apple.com/published/ad86372e61a5349468f50e9f214fd2be/media-2903549%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the L2-norm pooling filter.  For each pixel, returns L2-Norm of pixels
     /// in the kernelWidth x kernelHeight filter region.
     /// out[c,x,y] = sqrt ( sum_{dx,dy} in[c,x+dx,y+dy] * in[c,x+dx,y+dy] ).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2norm?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -682,12 +732,17 @@ impl MPSCNNPoolingL2Norm {
 }
 
 extern_class!(
+    /// A dilated max pooling filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel, returns the maximum value of pixels in the `kernelWidth * kernelHeight` filter region by step size `dilationFactorX` `*` `dilationFactorY`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the dilated max pooling filter.  For each pixel, returns the maximum value of pixels
     /// in the kernelWidth x kernelHeight filter region by step size dilationRateX x dilationRateY.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmax?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -881,6 +936,7 @@ impl MPSCNNDilatedPoolingMax {
 }
 
 extern_class!(
+    /// A gradient pooling kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the base class for computing the gradient of the pooling filters.
@@ -921,8 +977,6 @@ extern_class!(
     ///
     /// The actual value of d out(x) / d in(y) depends on the pooling operation and these are defined in the
     /// subclasses of MPSCNNPoolingGradient.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolinggradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1086,6 +1140,7 @@ impl MPSCNNPoolingGradient {
 }
 
 extern_class!(
+    /// A gradient average pooling filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the filter for computing the gradient of the average pooling filter.
@@ -1123,8 +1178,6 @@ extern_class!(
     /// image will produce correct results for the gradient backpropagation and hence it is
     /// recommended to use a temporary image of correct size (see MPSTemporaryImage) for the
     /// secondary source image parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaveragegradient?language=objc)
     #[unsafe(super(
         MPSCNNPoolingGradient,
         MPSCNNGradientKernel,
@@ -1321,6 +1374,7 @@ impl MPSCNNPoolingAverageGradient {
 }
 
 extern_class!(
+    /// A gradient max pooling filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the filter for computing the gradient of the max pooling filter.
@@ -1359,8 +1413,6 @@ extern_class!(
     /// the indices of maximal values for each pooling window, but this means redundant computations.
     /// Later we may add encode calls to MPSCNNPoolingMax that produce a state that contains the
     /// coordinates of the maximal values to be consumed by the gradient filters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmaxgradient?language=objc)
     #[unsafe(super(
         MPSCNNPoolingGradient,
         MPSCNNGradientKernel,
@@ -1519,6 +1571,7 @@ impl MPSCNNPoolingMaxGradient {
 }
 
 extern_class!(
+    /// A gradient L2-norm pooling filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the filter for computing the gradient of the L2-Norm pooling filter.
@@ -1543,8 +1596,6 @@ extern_class!(
     /// delta_{x,y} =  {  1, when x == y
     /// {  0, otherwise,
     /// and out(x) is the L2-norm pooling value at point 'x' defined above.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2normgradient?language=objc)
     #[unsafe(super(
         MPSCNNPoolingGradient,
         MPSCNNGradientKernel,
@@ -1703,12 +1754,17 @@ impl MPSCNNPoolingL2NormGradient {
 }
 
 extern_class!(
+    /// A gradient dilated max pooling filter.
+    ///
+    /// ## Overview
+    ///
+    /// A gradient max pooling filter but the pixels selected in each “application” of the max pooling operation are exactly the same pixels that would be selected with dilated convolution
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the filter for computing the gradient of the dilated max pooling filter.
     /// For details see comments on MPSCNNPoolingMaxGradient.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradient?language=objc)
     #[unsafe(super(
         MPSCNNPoolingGradient,
         MPSCNNGradientKernel,

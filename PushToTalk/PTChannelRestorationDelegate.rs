@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelrestorationdelegate?language=objc)
+    /// A type that represents the channel restoration behavior.
     pub unsafe trait PTChannelRestorationDelegate: NSObjectProtocol {
         #[cfg(feature = "PTChannelDescriptor")]
         /// If the system had been tracking a channel previously, this method will be called.

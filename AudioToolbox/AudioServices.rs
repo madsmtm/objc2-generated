@@ -7,32 +7,54 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesnoerror?language=objc)
+/// No error has occurred.
 pub const kAudioServicesNoError: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesunsupportedpropertyerror?language=objc)
+/// The property is not supported.
 pub const kAudioServicesUnsupportedPropertyError: OSStatus = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesbadpropertysizeerror?language=objc)
+/// The size of the property data was not correct.
 pub const kAudioServicesBadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesbadspecifiersizeerror?language=objc)
+/// The size of the specifier data was not correct.
 pub const kAudioServicesBadSpecifierSizeError: OSStatus = 0x21737063;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundunspecifiederror?language=objc)
+/// An unspecified error has occurred.
 pub const kAudioServicesSystemSoundUnspecifiedError: OSStatus = -1500;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundclienttimedouterror?language=objc)
+/// System sound client message timed out.
 pub const kAudioServicesSystemSoundClientTimedOutError: OSStatus = -1501;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicessystemsoundexceededmaximumdurationerror?language=objc)
 pub const kAudioServicesSystemSoundExceededMaximumDurationError: OSStatus = -1502;
 
+/// A system sound object, identified with a sound file you want to play.
+///
+/// ## Discussion
+///
+/// Call the [`AudioServicesCreateSystemSoundID`](https://developer.apple.com/documentation/audiotoolbox/audioservicescreatesystemsoundid(_:_:)) function to obtain a system sound object.
+///
+///
 /// SystemSoundIDs are created by the System Sound client application
 /// for playback of a provided AudioFile.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/systemsoundid?language=objc)
 pub type SystemSoundID = u32;
 
-/// Type used for specifying an AudioServices property.
+/// The data type for a system sound property identifier.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicespropertyid?language=objc)
+/// ## Discussion
+///
+/// System Audio Services properties are listed in [System Sound Services Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1405268-system-sound-services-property-i).
+///
+///
+/// Type used for specifying an AudioServices property.
 pub type AudioServicesPropertyID = u32;
 
+/// A function the system invokes when a system sound finishes playing.
+///
+/// Parameters:
+/// - ssID: The system sound that has finished playing.
+///
+/// - clientData: App data that you specified when registering the callback function.
+///
+///
+/// ## Discussion
+///
+/// Because a system sound may play for up to 30 seconds, the [`AudioServicesPlaySystemSound`](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsound(_:)) function executes asynchronously (that is, it returns immediately), and calls this function when the sound finishes playing. You can use this callback, for example, to help you avoid playing a second sound while a first sound is still playing.
+///
+///
 /// A function to be executed when a SystemSoundID finishes playing.
 ///
 /// AudioServicesSystemSoundCompletionProc may be provided by client application to be
@@ -41,27 +63,50 @@ pub type AudioServicesPropertyID = u32;
 /// Parameter `ssID`: The SystemSoundID that completed playback
 ///
 /// Parameter `clientData`: Client application user data
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicessystemsoundcompletionproc?language=objc)
 pub type AudioServicesSystemSoundCompletionProc =
     Option<unsafe extern "C-unwind" fn(SystemSoundID, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_userpreferredalert?language=objc)
+/// On the desktop, use this constant with the [`AudioServicesPlayAlertSound`](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsound(_:)) function to play the alert specified in the Sound preference pane.
 pub const kSystemSoundID_UserPreferredAlert: SystemSoundID = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_flashscreen?language=objc)
+/// On the desktop, use this constant with the [`AudioServicesPlayAlertSound`](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsound(_:)) function to display a flash of light on the screen.
 pub const kSystemSoundID_FlashScreen: SystemSoundID = 0x00000FFE;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kuserpreferredalert?language=objc)
+/// A deprecated sound identifier.
+///
+/// ## Discussion
+///
+/// Use [`kSystemSoundID_UserPreferredAlert`](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_userpreferredalert) instead.
+///
+///
 pub const kUserPreferredAlert: SystemSoundID = kSystemSoundID_UserPreferredAlert;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_vibrate?language=objc)
+/// On the iPhone, use this constant with the [`AudioServicesPlayAlertSound`](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsound(_:)) function to invoke a brief vibration. On the iPod touch, does nothing.
 pub const kSystemSoundID_Vibrate: SystemSoundID = 0x00000FFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertyisuisound?language=objc)
+/// A `UInt32` value, where `1` means that, for the audio file specified by a system sound passed in the `inSpecifier` parameter, the System Sound server respects the user setting in the Sound Effects preference and is silent when the user turns off sound effects.
+///
+/// ## Discussion
+///
+/// This property is set to `1` by default. Set it to `0` for the system sound to always play when passed to [`AudioServicesPlaySystemSound`](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsound(_:)), regardless of the user’s setting in sound preferences.
+///
+///
 pub const kAudioServicesPropertyIsUISound: AudioServicesPropertyID = 0x69737569;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicespropertycompleteplaybackifappdies?language=objc)
+/// A `UInt32` value, where `1` means that the audio file specified by a system sound passed in the `inSpecifier` parameter should finish playing even if the client application terminates. This could happen, for example, if the user quits or the application terminates unexpectedly while the sound is playing. The default is `0`. That is, you must explicitly set this property’s value to `1` if you want the sound to complete playing even if the application terminates.
 pub const kAudioServicesPropertyCompletePlaybackIfAppDies: AudioServicesPropertyID = 0x69666469;
 
 extern "C-unwind" {
+    /// Creates a system sound object.
+    ///
+    /// Parameters:
+    /// - inFileURL: The URL of the audio file to play.
+    ///
+    /// - outSystemSoundID: On output, a system sound object associated with the specified audio file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Allows the application to designate an audio file for playback by the System Sound server.
     ///
     /// Returned SystemSoundIDs are passed to AudioServicesPlayAlertSoundWithCompletion()
@@ -76,8 +121,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_system_sound_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicescreatesystemsoundid(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesCreateSystemSoundID(
         in_file_url: &CFURL,
@@ -86,6 +129,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of a system sound object and associated resources.
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: The system sound object to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Allows the System Sound server to dispose any resources needed for the provided
     /// SystemSoundID.
     ///
@@ -93,8 +147,6 @@ extern "C-unwind" {
     /// associated audio file are no longer required.
     ///
     /// Parameter `inSystemSoundID`: A SystemSoundID that the application no longer needs to use.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesdisposesystemsoundid(_:)?language=objc)
     pub fn AudioServicesDisposeSystemSoundID(in_system_sound_id: SystemSoundID) -> OSStatus;
 }
 
@@ -110,8 +162,6 @@ extern "C-unwind" {
     /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
     /// of success or failure. The callbacks are issued on a serial queue and the client is
     /// responsible for handling thread safety.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsoundwithcompletion(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioServicesPlayAlertSoundWithCompletion(
         in_system_sound_id: SystemSoundID,
@@ -129,8 +179,6 @@ extern "C-unwind" {
     /// Parameter `inCompletionBlock`: The completion block gets executed for every attempt to play a system sound irrespective
     /// of success or failure. The callbacks are issued on a serial queue and the client is
     /// responsible for handling thread safety.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsoundwithcompletion(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioServicesPlaySystemSoundWithCompletion(
         in_system_sound_id: SystemSoundID,
@@ -139,6 +187,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets information about a System Sound Services property.
+    ///
+    /// Parameters:
+    /// - inPropertyID: The property you want information about.
+    ///
+    /// - inSpecifierSize: The size of the buffer pointed to by the `inSpecifier` parameter. Pass `0` if no specifier buffer is required.
+    ///
+    /// - inSpecifier: A pointer to a specifier buffer, if such a buffer is required by the property about which you want information. Pass `NULL` if no specifier is required.
+    ///
+    /// - outPropertyDataSize: On output, the size, in bytes, of the property value. To get the property value, you need a buffer of at least this size.
+    ///
+    /// - outWritable: On output, `true` if the property is writable, or `false` if the property is read only.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// System Sound Services properties are listed and described in [System Sound Services Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1405268-system-sound-services-property-i).
+    ///
+    ///
     /// Get information about the size of an AudioServices property and whether it can
     /// be set.
     ///
@@ -161,8 +234,6 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `out_property_data_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesgetpropertyinfo(_:_:_:_:_:)?language=objc)
     pub fn AudioServicesGetPropertyInfo(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -173,6 +244,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a specified System Sound Services property value.
+    ///
+    /// Parameters:
+    /// - inPropertyID: The property whose value you want.
+    ///
+    /// - inSpecifierSize: The size of the buffer pointed to by the `inSpecifier` parameter. Pass `0` if no specifier buffer is required.
+    ///
+    /// - inSpecifier: A pointer to a specifier buffer, if such a buffer is required by the property about which you want information. Pass `NULL` if no specifier is required.
+    ///
+    /// - ioPropertyDataSize: On input, the size, in bytes, of the buffer pointed to by the `outPropertyData` parameter. Call the [`AudioServicesGetPropertyInfo`](https://developer.apple.com/documentation/audiotoolbox/audioservicesgetpropertyinfo(_:_:_:_:_:)) function to find out the size required for this buffer. On output, the number of bytes written to the buffer.
+    ///
+    /// - outPropertyData: On output, the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// System Sound Services properties are listed and described in [System Sound Services Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1405268-system-sound-services-property-i).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Retrieve the indicated property data
     ///
     /// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
@@ -196,8 +298,6 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesgetproperty(_:_:_:_:_:)?language=objc)
     pub fn AudioServicesGetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -208,6 +308,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the value for a specified System Sound Services property.
+    ///
+    /// Parameters:
+    /// - inPropertyID: The property whose value you want to set.
+    ///
+    /// - inSpecifierSize: The size of the buffer pointed to by the `inSpecifier` parameter. Pass `0` if no specifier buffer is required.
+    ///
+    /// - inSpecifier: A pointer to a specifier buffer, if such a buffer is required by the property about which you want information. Pass `NULL` if no specifier is required.
+    ///
+    /// - inPropertyDataSize: The size, in bytes, of the buffer pointed to by the `inPropertyData` parameter.
+    ///
+    /// - inPropertyData: The property value you want to set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// System Sound Services properties are listed and described in [System Sound Services Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1405268-system-sound-services-property-i).
+    ///
+    ///
     /// Set the indicated property data
     ///
     /// Parameter `inPropertyID`: a AudioServicesPropertyID constant.
@@ -227,8 +352,6 @@ extern "C-unwind" {
     ///
     /// - `in_specifier` must be a valid pointer or null.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicessetproperty(_:_:_:_:_:)?language=objc)
     pub fn AudioServicesSetProperty(
         in_property_id: AudioServicesPropertyID,
         in_specifier_size: u32,
@@ -239,6 +362,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Plays a system sound as an alert.
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: The system sound object to play as an alert.
+    ///
+    /// Before using this function, call the [`AudioServicesCreateSystemSoundID`](https://developer.apple.com/documentation/audiotoolbox/audioservicescreatesystemsoundid(_:_:)) function to obtain a system sound.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the particular iOS device, this function plays a short sound and may invoke vibration. Calling this function does the following on various iOS devices:
+    ///
+    /// - _iPhone_—plays the specified sound. If the user has configured the Settings application for vibration on ring, also invokes vibration. However, the device does _not_ vibrate if your app’s audio session is configured with the  [`AVAudioSessionCategoryPlayAndRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playandrecord) or [`AVAudioSessionCategoryRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/record) audio session category. This ensures that vibration doesn’t interfere with audio recording. For an explanation of audio session categories, see [Categories Express Audio Roles](https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007875-CH1-SW4).
+    ///
+    /// - _iPod touch, original_—plays a short alert melody.
+    ///
+    /// - _iPod touch, 2nd generation and newer_—plays the specified sound.
+    ///
+    /// In iOS, the duration of the sound to be played must not be more than 30 seconds.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  System-supplied alert sounds and system-supplied user-interface sound effects are not available to your iOS application. For example, using the `kSystemSoundID_UserPreferredAlert` constant as a parameter to the `AudioServicesPlayAlertSound` function will not play anything.
+    ///
+    ///
+    ///
+    /// </div>
+    /// In macOS, when a user has configured System Preferences to flash the screen for alerts, or if sound cannot be rendered, calling this function will result in the screen flashing. In macOS, pass the constant `kSystemSoundID_UserPreferredAlert` to play the alert sound selected by the user in System Preferences. In iOS there is no preferred user alert sound.
+    ///
+    /// To play a short sound not used as an alert, use [`AudioServicesPlaySystemSound`](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsound(_:)).
+    ///
+    ///
     /// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion instead.
     ///
     ///
@@ -250,12 +406,43 @@ extern "C-unwind" {
     /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play. On the desktop you
     /// can pass the kSystemSoundID_UserPreferredAlert constant to playback the alert sound
     /// selected by the user in System Preferences. On iOS there is no preferred user alert sound.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsound(_:)?language=objc)
     pub fn AudioServicesPlayAlertSound(in_system_sound_id: SystemSoundID);
 }
 
 extern "C-unwind" {
+    /// Plays a system sound object.
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: The system sound to play. Before using this function, call the [`AudioServicesCreateSystemSoundID`](https://developer.apple.com/documentation/audiotoolbox/audioservicescreatesystemsoundid(_:_:)) function to obtain a system sound.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function plays a short sound (30 seconds or less in duration). Because sound might play for several seconds, this function is executed asynchronously. To know when a sound has finished playing, call the [`AudioServicesAddSystemSoundCompletion`](https://developer.apple.com/documentation/audiotoolbox/audioservicesaddsystemsoundcompletion(_:_:_:_:_:)) function to register a callback function.
+    ///
+    /// On some iOS devices, you can pass the [`kSystemSoundID_Vibrate`](https://developer.apple.com/documentation/audiotoolbox/ksystemsoundid_vibrate) constant to invoke vibration. On other iOS devices, calling this function with that constant does nothing.
+    ///
+    /// Sound files that you play using this function must be:
+    ///
+    /// - No longer than 30 seconds in duration
+    ///
+    /// - In linear PCM or IMA4 (IMA/ADPCM) format
+    ///
+    /// - Packaged in a `.caf`, `.aif`, or `.wav` file
+    ///
+    /// In addition, when you use the `AudioServicesPlaySystemSound` function:
+    ///
+    /// - Sounds play at the current system audio volume, with no programmatic volume control available
+    ///
+    /// - Sounds play immediately
+    ///
+    /// - Looping and stereo positioning are unavailable
+    ///
+    /// - Simultaneous playback is unavailable: You can play only one sound at a time
+    ///
+    /// - The sound is played locally on the device speakers; it does not use audio routing.
+    ///
+    ///
     /// This function will be deprecated in a future release. Use AudioServicesPlaySystemSoundWithCompletion instead.
     ///
     ///
@@ -265,12 +452,35 @@ extern "C-unwind" {
     /// A SystemSoundID indicating the desired System Sound to be played.
     ///
     /// Parameter `inSystemSoundID`: A SystemSoundID for the System Sound server to play.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsound(_:)?language=objc)
     pub fn AudioServicesPlaySystemSound(in_system_sound_id: SystemSoundID);
 }
 
 extern "C-unwind" {
+    /// Registers a callback function that is invoked when a specified system sound finishes playing.
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: The system sound that your callback function is to respond to.
+    ///
+    /// - inRunLoop: The run loop in which the callback function should run. Pass `NULL` to use the main run loop.
+    ///
+    /// - inRunLoopMode: The mode for the run loop in which the callback functions should run. Pass `NULL` to use the default run loop mode.
+    ///
+    /// - inCompletionRoutine: The callback function to be invoked when the specified system sound has finished playing.
+    ///
+    /// - inClientData: Application data to be passed to your callback function when it is invoked. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because a system sound may play for several seconds, you might want to know when it has finished playing. For example, you may want to wait until a system sound has finished playing before you play another sound.
+    ///
+    ///
     /// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion
     /// or AudioServicesPlaySystemSoundWithCompletion instead.
     ///
@@ -301,8 +511,6 @@ extern "C-unwind" {
     /// - `in_run_loop` possibly has additional threading requirements.
     /// - `in_completion_routine` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesaddsystemsoundcompletion(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesAddSystemSoundCompletion(
         in_system_sound_id: SystemSoundID,
@@ -314,6 +522,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unregisters any completion callback functions that were registered for a specified system sound.
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: The system sound for which callback functions should be removed.
+    ///
     /// This function will be deprecated in a future release. Use AudioServicesPlayAlertSoundWithCompletion
     /// or AudioServicesPlaySystemSoundWithCompletion instead.
     ///
@@ -326,24 +539,46 @@ extern "C-unwind" {
     ///
     /// Parameter `inSystemSoundID`: The SystemSoundID for which completion routines should be
     /// removed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesremovesystemsoundcompletion(_:)?language=objc)
     pub fn AudioServicesRemoveSystemSoundCompletion(in_system_sound_id: SystemSoundID);
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Keys that are passed in a dictionary to AudioServicesPlaySystemSoundWithDetails
+    ///
+    /// ```text
+    ///             Must be any non-nil CASpatialAudioExperience. The system sound
+    ///             will have this spatial experience for the duration of its
+    ///             playback and cannot change mid-playback.
+    /// ```
+    ///
+    ///
     /// Keys that are passed in a dictionary to AudioServicesPlaySystemSoundWithDetails
     ///
     /// Must be any non-nil CASpatialAudioExperience. The system sound
     /// will have this spatial experience for the duration of its
     /// playback and cannot change mid-playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesdetailintendedspatialexperience?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kAudioServicesDetailIntendedSpatialExperience: &'static CFString;
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: A SystemSoundID for the system sound server to play.
+    ///
+    /// - inDetails: A set of details as described above.
+    ///
+    /// - inCompletionBlock: The completion block gets executed for every attempt to play a system sound irrespective of success or failure. The callbacks are issued on a serial queue and the client is responsible for handling thread safety.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Play the sound designated by the provided SystemSoundID.
+    ///
+    ///
     /// Play the sound designated by the provided SystemSoundID.
     ///
     /// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play.
@@ -358,8 +593,6 @@ extern "C-unwind" {
     ///
     /// - `in_details` generic must be of the correct type.
     /// - `in_details` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplaysystemsoundwithdetails?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlaySystemSoundWithDetails(
         in_system_sound_id: SystemSoundID,
@@ -369,6 +602,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - inSystemSoundID: A SystemSoundID for the system sound server to play with alert sound behavior.
+    ///
+    /// - inDetails: A set of details as described above.
+    ///
+    /// - inCompletionBlock: The completion block gets executed for every attempt to play a system sound irrespective of success or failure. The callbacks are issued on a serial queue and the client is responsible for handling thread safety.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Play the alert designated by the provided SystemSoundID.
+    ///
+    ///
     /// Play the alert designated by the provided SystemSoundID.
     ///
     /// Parameter `inSystemSoundID`: A SystemSoundID for the system sound server to play with alert sound behavior.
@@ -383,8 +630,6 @@ extern "C-unwind" {
     ///
     /// - `in_details` generic must be of the correct type.
     /// - `in_details` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioservicesplayalertsoundwithdetails?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlayAlertSoundWithDetails(
         in_system_sound_id: SystemSoundID,

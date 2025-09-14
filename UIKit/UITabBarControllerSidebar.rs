@@ -7,7 +7,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -15,23 +14,17 @@ pub struct UITabBarControllerSidebarLayout(pub NSInteger);
 impl UITabBarControllerSidebarLayout {
     /// On iOS, this resolves to `overlap`.
     /// On macOS and visionOS, this resolves to `tile`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout/automatic?language=objc)
     #[doc(alias = "UITabBarControllerSidebarLayoutAutomatic")]
     pub const Automatic: Self = Self(0);
     /// When the sidebar is displayed, it will overlap the selected view controller,
     /// allowing the selected view controller to render underneath the sidebar. Anchor
     /// the view's content to the `layoutMarginsGuide` or `safeAreaLayoutGuide` to avoid
     /// being occluded by the sidebar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout/overlap?language=objc)
     #[doc(alias = "UITabBarControllerSidebarLayoutOverlap")]
     pub const Overlap: Self = Self(1);
     /// When the sidebar is displayed, the selected view controller is resized and shifted
     /// to display alongside the sidebar. The selected view controller is not occluded by
     /// the sidebar, cannot render underneath the sidebar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout/tile?language=objc)
     #[doc(alias = "UITabBarControllerSidebarLayoutTile")]
     pub const Tile: Self = Self(2);
 }
@@ -45,7 +38,6 @@ unsafe impl RefEncode for UITabBarControllerSidebarLayout {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabsidebarscrolltarget?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -90,7 +82,7 @@ impl UITabSidebarScrollTarget {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class?language=objc)
+    /// An object for managing and configuring the sidebar.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -236,7 +228,6 @@ impl UITabBarControllerSidebar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/animating?language=objc)
     pub unsafe trait UITabBarControllerSidebarAnimating:
         NSObjectProtocol + MainThreadOnly
     {
@@ -253,7 +244,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/delegate-swift.protocol?language=objc)
     pub unsafe trait UITabBarControllerSidebarDelegate:
         NSObjectProtocol + MainThreadOnly
     {

@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates a diagnostic report.
+    ///
+    /// ## Overview
+    ///
+    /// The system delivers a diagnostic report as soon as it’s available.
+    ///
+    ///
     /// A wrapper class which contains a diagnostic payload and associated properties of that payload.
     ///
     /// MXDiagnosticPayload encapsulates currently supported diagnostics that can be vended by MetricKit. Arrays of MXDiangostic subclasses on MXDiagnosticPayload are nullable. If an array of MXDiagnostic subclasses is nil, it indicates that the diagnostics are not available for this payload.
@@ -16,8 +23,6 @@ extern_class!(
     /// An MXDiagnosticPayload contains diagnostics that cover a 24 hour period of application usage. The properties timeStampBegin and timeStampEnd should be used to determine which time range the payload covers.
     ///
     /// It is possible for an MXDiagnosticPayload to cover regions of time where an application was updated, and thus each MXDiagnostic subclass will contain its own application version string. This is in contrast to MXMetricPayload, where only the latest application version string is included as metadata of the payload. Each MXDiagnostic subclass application version string should be inspected prior to processing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnosticpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXDiagnosticPayload;

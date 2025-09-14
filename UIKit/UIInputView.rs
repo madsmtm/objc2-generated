@@ -12,16 +12,28 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputview/style?language=objc)
+/// Constants that indicate the appearance changes for an input view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInputViewStyle(pub NSInteger);
 impl UIInputViewStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputview/style/default?language=objc)
+    /// Apply blur behaviors to the view so that it looks like it belongs with the keyboard.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t apply tinting effects. This style is intended for input views that attach to the top of the keyboard and have a similar theme but that don’t look like the keyboard itself.
+    ///
+    ///
     #[doc(alias = "UIInputViewStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputview/style/keyboard?language=objc)
+    /// Apply both blur and tinting effects to the view to mimic the keyboard background.
+    ///
+    /// ## Discussion
+    ///
+    /// This style makes the input view match the keyboard appearance and can be used to replace or extend the keyboard.
+    ///
+    ///
     #[doc(alias = "UIInputViewStyleKeyboard")]
     pub const Keyboard: Self = Self(1);
 }
@@ -35,7 +47,21 @@ unsafe impl RefEncode for UIInputViewStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputview?language=objc)
+    /// An object that displays and manages custom input for a view when that view becomes the first responder.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UIInputView`](https://developer.apple.com/documentation/uikit/uiinputview) class is designed to match the appearance of the standard system keyboard when used as an input view with a responder. When defining your own custom input views or input accessory views, you can use a [`UIInputView`](https://developer.apple.com/documentation/uikit/uiinputview) object as the root view and add any subviews you want to create your input view. The input view and its subviews receive tinting and blur effects based on the options you specify at initialization time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The effects offered by this class are applied only when the view is attached to a responder as either an input view or input accessory view. For subviews to receive style effects, they must conform to the [`UIAppearance`](https://developer.apple.com/documentation/uikit/uiappearance) protocol.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,9 +7,20 @@ use crate::*;
 
 #[cfg(feature = "CSCommon")]
 unsafe impl ConcreteType for SecRequirement {
-    /// Returns the type identifier of all SecRequirement instances.
+    /// Returns the unique identifier of the opaque type to which a code requirement object belongs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecRequirementRef`](https://developer.apple.com/documentation/security/secrequirement) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can compare the value returned by this function to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
+    /// Returns the type identifier of all SecRequirement instances.
     #[doc(alias = "SecRequirementGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -22,6 +33,27 @@ unsafe impl ConcreteType for SecRequirement {
 
 #[cfg(feature = "CSCommon")]
 impl SecRequirement {
+    /// Creates a code requirement object from the binary form of a code requirement.
+    ///
+    /// Parameters:
+    /// - data: A binary blob created earlier from a valid code requirement object by calling the [`SecRequirementCopyData`](https://developer.apple.com/documentation/security/secrequirementcopydata(_:_:_:)) function.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - requirement: On return, contains a code requirement object that behaves identically to the one from which the data blob was obtained.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the [`SecRequirementCopyData`](https://developer.apple.com/documentation/security/secrequirementcopydata(_:_:_:)) function to convert a code requirement object to a binary blob, and store the blob in any form you wish. When you are ready to use the code requirement in another function call, you can use the [`SecRequirementCreateWithData`](https://developer.apple.com/documentation/security/secrequirementcreatewithdata(_:_:_:)) function to convert it back to a code requirement object.
+    ///
+    ///
     /// Create a SecRequirement object from binary form.
     /// This is the effective inverse of SecRequirementCopyData.
     ///
@@ -41,8 +73,6 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `requirement` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcreatewithdata(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCreateWithData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -61,6 +91,29 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithData(data, flags, requirement) }
     }
 
+    /// Creates a code requirement object by compiling a valid text representation of a code requirement.
+    ///
+    /// Parameters:
+    /// - text: The text form of a code requirement.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - requirement: On return, contains a code requirement object that implements the conditions described in the text.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Code requirements and the code signing requirement language are documented in [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929).
+    ///
+    /// If you use the [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) function to create a code requirement object from a text string and later use the [`SecRequirementCopyString`](https://developer.apple.com/documentation/security/secrequirementcopystring(_:_:_:)) function to convert the object back to a string, the reconstituted text may differ in formatting, contain different source comments, and perform its validation functions in different order from the original. However, it is guaranteed that that the reconstituted text is functionally identical to the original. That is, recompiling the text using [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) will produce a code requirement object that behaves identically to the first one you created.
+    ///
+    ///
     /// Create a SecRequirement object by compiling a valid text representation
     /// of a requirement.
     ///
@@ -78,8 +131,6 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `requirement` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCreateWithString")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -98,7 +149,31 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithString(text, flags, requirement) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)?language=objc)
+    /// Creates a code requirement object by compiling a valid text representation of a code requirement and returns detailed error information in the case of failure.
+    ///
+    /// Parameters:
+    /// - text: The text form of a code requirement.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - errors: On return, if the function call fails and returns a result code other than `errSecSuccess`, points to an error object further describing the nature and circumstances of the failure. Use the [`CFErrorCopyUserInfo`](https://developer.apple.com/documentation/corefoundation/cferrorcopyuserinfo(_:)) function to retrieve the user info dictionary from the error object. See [User Info Dictionary Error Keys](https://developer.apple.com/documentation/security/user-info-dictionary-error-keys) for possible values. Pass `NULL` if you do not want this information. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    /// - requirement: On return, contains a code requirement object that implements the conditions described in the text.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The advantage of this function over [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) is that if there are any errors in the text string you pass in the `text` parameter, this function returns the syntax errors generated by the parser. These errors are in plain English and can be displayed to a user if it would be useful to do so. Code requirements and the code signing requirement language are documented in [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929).
+    ///
+    /// If you use the [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function to create a code requirement object from a text string and later use the [`SecRequirementCopyString`](https://developer.apple.com/documentation/security/secrequirementcopystring(_:_:_:)) function to convert the object back to a string, the reconstituted text may differ in formatting, contain different source comments, and perform its validation functions in different order from the original. However, it is guaranteed that that the reconstituted text is functionally identical to the original. That is, recompiling the text using [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) will produce a code requirement object that behaves identically to the first one you created.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -124,6 +199,27 @@ impl SecRequirement {
         unsafe { SecRequirementCreateWithStringAndErrors(text, flags, errors, requirement) }
     }
 
+    /// Extracts a binary form of a code requirement from a code requirement object.
+    ///
+    /// Parameters:
+    /// - requirement: A valid code requirement object.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - data: On return, the code requirement in the form of a binary blob.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can extract the binary blob from the [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object and store it in any form you wish. Use of this function is the only publicly supported way to get such a data blob. You can use the [`SecRequirementCreateWithData`](https://developer.apple.com/documentation/security/secrequirementcreatewithdata(_:_:_:)) function to convert it back to a code requirement object.
+    ///
+    ///
     /// Extracts a stable, persistent binary form of a SecRequirement.
     /// This is the effective inverse of SecRequirementCreateWithData.
     ///
@@ -142,8 +238,6 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcopydata(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCopyData")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -158,6 +252,27 @@ impl SecRequirement {
         unsafe { SecRequirementCopyData(self, flags, data) }
     }
 
+    /// Converts a code requirement object into text form.
+    ///
+    /// Parameters:
+    /// - requirement: A valid code requirement object.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - text: On return, a text representation of the code requirement.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you use the [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) or [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function to create a code requirement object from a text string and later use the [`SecRequirementCopyString`](https://developer.apple.com/documentation/security/secrequirementcopystring(_:_:_:)) function to convert the object back to a string, the reconstituted text may differ in formatting, contain different source comments, and perform its validation functions in different order from the original. However, it is guaranteed that that the reconstituted text is functionally identical to the original. That is, recompiling the text using [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) will produce a code requirement object that behaves identically to the first one you created.
+    ///
+    ///
     /// Converts a SecRequirement object into text form.
     /// This is the effective inverse of SecRequirementCreateWithString.
     ///
@@ -181,8 +296,6 @@ impl SecRequirement {
     /// # Safety
     ///
     /// `text` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementcopystring(_:_:_:)?language=objc)
     #[doc(alias = "SecRequirementCopyString")]
     #[cfg(feature = "CSCommon")]
     #[inline]

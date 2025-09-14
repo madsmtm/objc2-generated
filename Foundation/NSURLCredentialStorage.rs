@@ -7,9 +7,30 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// NSURLCredentialStorage implements a singleton object (shared instance) which manages the shared credentials cache. Note: Whereas in Mac OS X any application can access any credential with a persistence of NSURLCredentialPersistencePermanent provided the user gives permission, in iPhone OS an application can access only its own credentials.
+    /// The manager of a shared credentials cache.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredentialstorage?language=objc)
+    /// ## Overview
+    ///
+    /// The shared cache stores and retrieves instances of [`NSURLCredential`](https://developer.apple.com/documentation/foundation/urlcredential). You can store password-based credentials permanently, based on the [`NSURLCredentialPersistence`](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum) they were created with. Certificate-based credentials are never stored permanently.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The [`NSURLCredentialStorage`](https://developer.apple.com/documentation/foundation/urlcredentialstorage) class is meant to be used as-is, but you can subclass it if you have specific needs, such as screening which credentials are stored.
+    ///
+    /// When overriding methods of this class, be aware that methods that take a `task` parameter are preferred to equivalent methods that do not. Therefore, you should override the task-based methods when subclassing, as follows:
+    ///
+    /// - Setting credentials — Override [`setCredential:forProtectionSpace:task:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/set(_:for:task:)) instead of or in addition to [`setCredential:forProtectionSpace:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/set(_:for:)).
+    ///
+    /// - Getting credentials — Override [`getCredentialsForProtectionSpace:task:completionHandler:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/getcredentials(for:task:completionhandler:)) instead of or in addition to [`credentialsForProtectionSpace:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/credentials(for:)).
+    ///
+    /// - Removing credentials — Override [`removeCredential:forProtectionSpace:options:task:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/remove(_:for:options:task:)) instead of or in addition to [`removeCredential:forProtectionSpace:options:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/remove(_:for:options:)) and [`removeCredential:forProtectionSpace:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/remove(_:for:)).
+    ///
+    /// - Setting default credentials — Override [`setDefaultCredential:forProtectionSpace:task:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/setdefaultcredential(_:for:task:)) instead of or in addition to [`setDefaultCredential:forProtectionSpace:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/setdefaultcredential(_:for:)).
+    ///
+    /// - Getting default credentials — Override [`getDefaultCredentialForProtectionSpace:task:completionHandler:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/getdefaultcredential(for:task:completionhandler:)) instead of or in addition to [`defaultCredentialForProtectionSpace:`](https://developer.apple.com/documentation/foundation/urlcredentialstorage/defaultcredential(for:)).
+    ///
+    ///
+    /// NSURLCredentialStorage implements a singleton object (shared instance) which manages the shared credentials cache. Note: Whereas in Mac OS X any application can access any credential with a persistence of NSURLCredentialPersistencePermanent provided the user gives permission, in iPhone OS an application can access only its own credentials.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredentialStorage;
@@ -277,17 +298,28 @@ impl NSURLCredentialStorage {
 }
 
 extern "C" {
+    /// A notification posted when the set of stored credentials changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/notification/object) is the [`NSURLCredentialStorage`](https://developer.apple.com/documentation/foundation/urlcredentialstorage) instance that changed. This notification does not contain a [`userInfo`](https://developer.apple.com/documentation/foundation/notification/userinfo) dictionary.
+    ///
+    ///
     /// This notification is sent on the main thread whenever
     /// the set of stored credentials changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsurlcredentialstoragechanged?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSURLCredentialStorageChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstorageremovesynchronizablecredentials?language=objc)
+    /// The corresponding value is an `NSNumber` object representing a Boolean value that indicates whether credentials which contain the [`NSURLCredentialPersistenceSynchronizable`](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/synchronizable) attribute should be removed.
+    ///
+    /// ## Discussion
+    ///
+    /// If the key is missing or the value is `@NO`, then no attempt will be made to remove such a credential.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLCredentialStorageRemoveSynchronizableCredentials: &'static NSString;
 }

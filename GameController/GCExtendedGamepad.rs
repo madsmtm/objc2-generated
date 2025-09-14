@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The signature for the block that the profile calls when an element’s value changes.
+///
+/// Parameters:
+/// - gamepad: The profile with the element value that changes.
+///
+/// - element: The element with the value that changes in the profile.
+///
 /// Set this block if you want to be notified when a value on a element changed. If multiple elements have changed this block will be called
 /// for each element that changed. As elements in a collection, such as the axis in a dpad, tend to change at the same time and thus
 /// will only call this once with the collection as the element.
@@ -14,8 +21,6 @@ use crate::*;
 /// Parameter `gamepad`: this gamepad that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
 ///
 /// Parameter `element`: the element that has been modified.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -25,7 +30,39 @@ pub type GCExtendedGamepadValueChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad?language=objc)
+    /// A controller profile that supports the extended set of gamepad controls.
+    ///
+    /// ## Overview
+    ///
+    /// The extended gamepad controller profile represents a physical or virtual controller with the following input elements:
+    ///
+    /// - Two shoulder buttons
+    ///
+    /// - Two trigger buttons
+    ///
+    /// - Four face buttons in a diamond pattern
+    ///
+    /// - One directional pad
+    ///
+    /// - Two thumbsticks with optional thumbstick buttons
+    ///
+    /// - Optional Home and Options buttons
+    ///
+    /// - A Menu button
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d69e43f6305d621f06d596207576def2/media-3850406~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/74601dd72896727165a38539cc713b0a/media-3850406%402x.png 2x" />
+    ///     <img alt="An illustration of an extended gamepad controller with callouts for the buttons and controls." src="https://docs-assets.developer.apple.com/published/d69e43f6305d621f06d596207576def2/media-3850406~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// If a [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object supports this type of profile, get the input values of the elements from the controller’s [`extendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad) property or use the profile’s [`valueChangedHandler`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/valuechangedhandler) method to receive a callback when the input values change. Alternatively, use the [`saveSnapshot`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/savesnapshot()) method to capture the input values at a moment in time.
+    ///
+    /// If the controller’s [`extendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad) property is `nil`, the controller doesn’t support this type of profile. See [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) for other profiles you can use.
+    ///
+    ///
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

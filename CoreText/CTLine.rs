@@ -12,7 +12,13 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctline?language=objc)
+/// A line of text.
+///
+/// ## Overview
+///
+/// A `CTLine` object contains an array of glyph runs. Line objects are created by the typesetter during a framesetting operation and can draw themselves directly into a graphics context.
+///
+///
 #[doc(alias = "CTLineRef")]
 #[repr(C)]
 pub struct CTLine {
@@ -28,6 +34,13 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CTLine"> for CTLine {}
 );
 
+/// Options for getting the bounds of a line of text.
+///
+/// ## Overview
+///
+/// Passing `0` (no options) returns the typographic bounds, including typographic leading and shifts.
+///
+///
 /// Options for CTLineGetBoundsWithOptions.
 ///
 ///
@@ -61,30 +74,46 @@ cf_objc2_type!(
 /// to be used when drawing to avoid clipping that may be caused
 /// by the typographic bounds. This option does not have any effect
 /// when used with kCTLineBoundsUseGlyphPathBounds.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineBoundsOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CTLineBoundsOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/excludetypographicleading?language=objc)
+/// An option to exclude typographic leading.
         #[doc(alias = "kCTLineBoundsExcludeTypographicLeading")]
         const ExcludeTypographicLeading = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/excludetypographicshifts?language=objc)
+/// An option to ignore cross-stream shifts due to positioning, such as kerning or baseline alignment.
         #[doc(alias = "kCTLineBoundsExcludeTypographicShifts")]
         const ExcludeTypographicShifts = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/usehangingpunctuation?language=objc)
+/// An option to enable hanging punctuation.
+///
+/// ## Discussion
+///
+/// The result of this option moves standard punctuation, such as periods, commas, hyphens, dashes, quotation marks, and asterisks, into the margin of either end of text, to give the appearance of a more uniform vertical alignment. Consider using this option when the text is fully justified.
+///
+///
         #[doc(alias = "kCTLineBoundsUseHangingPunctuation")]
         const UseHangingPunctuation = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/useglyphpathbounds?language=objc)
+/// An option to use glyph path bounds rather than the default typographic bounds.
         #[doc(alias = "kCTLineBoundsUseGlyphPathBounds")]
         const UseGlyphPathBounds = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/useopticalbounds?language=objc)
+/// An option to use optical bounds.
+///
+/// ## Discussion
+///
+/// This option overrides [`kCTLineBoundsUseGlyphPathBounds`](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/useglyphpathbounds).
+///
+///
         #[doc(alias = "kCTLineBoundsUseOpticalBounds")]
         const UseOpticalBounds = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/includelanguageextents?language=objc)
+/// An option to include additional space based on common glyph sequences for various languages.
+///
+/// ## Discussion
+///
+/// Use the result of this option when drawing to avoid clipping that the typographic bounds may cause. This option doesn’t have an effect when you use it with [`kCTLineBoundsUseGlyphPathBounds`](https://developer.apple.com/documentation/coretext/ctlineboundsoptions/useglyphpathbounds).
+///
+///
         #[doc(alias = "kCTLineBoundsIncludeLanguageExtents")]
         const IncludeLanguageExtents = 1<<5;
     }
@@ -100,6 +129,7 @@ unsafe impl RefEncode for CTLineBoundsOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Truncation types required by the [`CTLineCreateTruncatedLine`](https://developer.apple.com/documentation/coretext/ctlinecreatetruncatedline(_:_:_:_:)) function to tell the truncation engine which type of truncation is being requested.
 /// Truncation types required by CTLineCreateTruncatedLine. These
 /// will tell truncation engine which type of truncation is being
 /// requested.
@@ -115,20 +145,33 @@ unsafe impl RefEncode for CTLineBoundsOptions {
 ///
 /// Truncate in the middle of the line, leaving both the start
 /// and the end portions visible.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineTruncationType(pub u32);
 impl CTLineTruncationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype/start?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Truncate the beginning of the line, leaving the end portion visible.
+    ///
+    ///
     #[doc(alias = "kCTLineTruncationStart")]
     pub const Start: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype/end?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Truncate the end of the line, leaving the start portion visible.
+    ///
+    ///
     #[doc(alias = "kCTLineTruncationEnd")]
     pub const End: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype/middle?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Truncate the middle of the line, leaving both the start and the end portions visible.
+    ///
+    ///
     #[doc(alias = "kCTLineTruncationMiddle")]
     pub const Middle: Self = Self(2);
 }
@@ -144,9 +187,8 @@ unsafe impl RefEncode for CTLineTruncationType {
 }
 
 unsafe impl ConcreteType for CTLine {
+    /// Returns the Core Foundation type identifier of the line object.
     /// Returns the CFType of the line object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegettypeid()?language=objc)
     #[doc(alias = "CTLineGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -158,6 +200,23 @@ unsafe impl ConcreteType for CTLine {
 }
 
 impl CTLine {
+    /// Creates a single immutable line object from an attributed string.
+    ///
+    /// Parameters:
+    /// - attrString: The string that creates the line.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a [`CTLineRef`](https://developer.apple.com/documentation/coretext/ctline) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allows clients to create a line without creating a [`CTTypesetterRef`](https://developer.apple.com/documentation/coretext/cttypesetter) object. The framework provides a typesetter for single-line typesetting under the hood. Simple elements that don’t require line breaks, such as text labels, can use this API.
+    ///
+    ///
     /// Creates a single immutable line object directly from an
     /// attributed string.
     ///
@@ -173,8 +232,6 @@ impl CTLine {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinecreatewithattributedstring(_:)?language=objc)
     #[doc(alias = "CTLineCreateWithAttributedString")]
     #[inline]
     pub fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTLine> {
@@ -189,6 +246,29 @@ impl CTLine {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a truncated line from an existing line.
+    ///
+    /// Parameters:
+    /// - line: The line from which to create a truncated line.
+    ///
+    /// - width: The width at which truncation begins. The line is truncated if its width is greater than the width passed in this parameter.
+    ///
+    /// - truncationType: The type of truncation to perform if needed. See [`CTLineTruncationType`](https://developer.apple.com/documentation/coretext/ctlinetruncationtype) for possible values.
+    ///
+    /// - truncationToken: This token is added at the point where truncation took place, to indicate that the line was truncated. Usually, the truncation token is the ellipsis character (`U+2026`). If this parameter is set to `NULL`, then no truncation token is used and the line is simply cut off.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a truncated CTLine object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The line specified in `truncationToken` should have a width less than the width specified by the `width` parameter. If the width of the line specified in `truncationToken` is greater than `width` and truncation is needed, the function returns `NULL`.
+    ///
+    ///
     /// Creates a truncated line from an existing line.
     ///
     ///
@@ -215,8 +295,6 @@ impl CTLine {
     /// Returns: This function will return a reference to a truncated CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinecreatetruncatedline(_:_:_:_:)?language=objc)
     #[doc(alias = "CTLineCreateTruncatedLine")]
     #[inline]
     pub fn truncated_line(
@@ -240,6 +318,21 @@ impl CTLine {
 
     /// Creates a justified line from an existing line.
     ///
+    /// Parameters:
+    /// - line: The line from which to create a justified line.
+    ///
+    /// - justificationFactor: Full or partial justification. When set to `1.0` or greater, full justification is performed. If this parameter is set to less than `1.0`, varying degrees of partial justification are performed. If it is set to `0` or less, no justification is performed.
+    ///
+    /// - justificationWidth: The width to which the resultant line is justified. If `justificationWidth` is less than the actual width of the line, then negative justification is performed (that is, glyphs are squeezed together).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a justified CTLine object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
+    /// Creates a justified line from an existing line.
+    ///
     ///
     /// Parameter `line`: The line that you want to create a justified line for.
     ///
@@ -259,8 +352,6 @@ impl CTLine {
     /// Returns: This function will return a reference to a justified CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinecreatejustifiedline(_:_:_:)?language=objc)
     #[doc(alias = "CTLineCreateJustifiedLine")]
     #[inline]
     pub fn justified_line(
@@ -282,6 +373,23 @@ impl CTLine {
 
     /// Returns the total glyph count for the line object.
     ///
+    /// Parameters:
+    /// - line: The line whose glyph count is returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The total glyph count for the line passed in.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The total glyph count is equal to the sum of all of the glyphs in the glyph runs forming the line.
+    ///
+    ///
+    /// Returns the total glyph count for the line object.
+    ///
     ///
     /// The total glyph count is equal to the sum of all of the glyphs in
     /// the glyph runs forming the line.
@@ -291,8 +399,6 @@ impl CTLine {
     ///
     ///
     /// Returns: The total glyph count for the line passed in.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetglyphcount(_:)?language=objc)
     #[doc(alias = "CTLineGetGlyphCount")]
     #[inline]
     pub fn glyph_count(&self) -> CFIndex {
@@ -304,13 +410,22 @@ impl CTLine {
 
     /// Returns the array of glyph runs that make up the line object.
     ///
+    /// Parameters:
+    /// - line: The line whose glyph run array is returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) containing the CTRun objects that make up the line.
+    ///
+    ///
+    /// Returns the array of glyph runs that make up the line object.
+    ///
     ///
     /// Parameter `line`: The line that you want to obtain the glyph run array for.
     ///
     ///
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetglyphruns(_:)?language=objc)
     #[doc(alias = "CTLineGetGlyphRuns")]
     #[inline]
     pub fn glyph_runs(&self) -> CFRetained<CFArray> {
@@ -323,6 +438,17 @@ impl CTLine {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Gets the range of characters that originally spawned the glyphs in the line.
+    ///
+    /// Parameters:
+    /// - line: The line from which to obtain the string range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFRange`](https://developer.apple.com/documentation/corefoundation/cfrange) structure that contains the range over the backing store string that spawned the glyphs, or if the function fails for any reason, an empty range.
+    ///
+    ///
     /// Gets the range of characters that originally spawned the glyphs
     /// in the line.
     ///
@@ -333,8 +459,6 @@ impl CTLine {
     /// Returns: A CFRange that contains the range over the backing store string
     /// that spawned the glyphs. If the function fails for any reason, an
     /// empty range will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetstringrange(_:)?language=objc)
     #[doc(alias = "CTLineGetStringRange")]
     #[inline]
     pub fn string_range(&self) -> CFRange {
@@ -344,6 +468,21 @@ impl CTLine {
         unsafe { CTLineGetStringRange(self) }
     }
 
+    /// Gets the pen offset required to draw flush text.
+    ///
+    /// Parameters:
+    /// - line: The line from which to obtain a flush position.
+    ///
+    /// - flushFactor: Determines the type of flushness. A `flushFactor` of `0` or less indicates left flush. A `flushFactor` of `1.0` or more indicates right flush. Flush factors between `0` and `1.0` indicate varying degrees of center flush, with a value of `0.5` being totally center flush.
+    ///
+    /// - flushWidth: Specifies the width to which the flushness operation should apply.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The offset from the current pen position for the flush operation.
+    ///
+    ///
     /// Gets the pen offset required to draw flush text.
     ///
     ///
@@ -362,8 +501,6 @@ impl CTLine {
     ///
     /// Returns: A value which can be used to offset the current pen position for
     /// the flush operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetpenoffsetforflush(_:_:_:)?language=objc)
     #[doc(alias = "CTLineGetPenOffsetForFlush")]
     #[inline]
     pub fn pen_offset_for_flush(&self, flush_factor: CGFloat, flush_width: c_double) -> c_double {
@@ -377,6 +514,19 @@ impl CTLine {
         unsafe { CTLineGetPenOffsetForFlush(self, flush_factor, flush_width) }
     }
 
+    /// Draws a complete line.
+    ///
+    /// Parameters:
+    /// - line: The line to draw.
+    ///
+    /// - context: The context into which the line is drawn.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function because the line could be drawn run-by-run by getting the glyph runs, getting the glyphs out of them, and calling a function such as [`CGContextShowGlyphsAtPositions`](https://developer.apple.comhttps://developer.apple.com/documentation/coregraphics/1456200-cgcontextshowglyphsatpositions). This call can leave the graphics context in any state and does not flush the context after the draw operation.
+    ///
+    ///
     /// Draws a line.
     ///
     ///
@@ -392,8 +542,6 @@ impl CTLine {
     ///
     ///
     /// Parameter `context`: The context to which the line will be drawn.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinedraw(_:_:)?language=objc)
     #[doc(alias = "CTLineDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -404,6 +552,23 @@ impl CTLine {
         unsafe { CTLineDraw(self, context) }
     }
 
+    /// Calculates the typographic bounds of a line.
+    ///
+    /// Parameters:
+    /// - line: The line whose typographic bounds are calculated.
+    ///
+    /// - ascent: On output, the ascent of the line. This parameter can be set to `NULL` if not needed.
+    ///
+    /// - descent: On output, the descent of the line. This parameter can be set to `NULL` if not needed.
+    ///
+    /// - leading: On output, the leading of the line. This parameter can be set to `NULL` if not needed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The typographic width of the line. If the line is invalid, this function returns `0`.
+    ///
+    ///
     /// Calculates the typographic bounds for a line.
     ///
     ///
@@ -438,8 +603,6 @@ impl CTLine {
     /// - `ascent` must be a valid pointer or null.
     /// - `descent` must be a valid pointer or null.
     /// - `leading` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegettypographicbounds(_:_:_:_:)?language=objc)
     #[doc(alias = "CTLineGetTypographicBounds")]
     #[inline]
     pub unsafe fn typographic_bounds(
@@ -461,6 +624,19 @@ impl CTLine {
 
     /// Calculates the bounds for a line.
     ///
+    /// Parameters:
+    /// - line: The line for which you calculate the bounds.
+    ///
+    /// - options: Desired options or `0` if none.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bounds of the line as specified by the type and options, such that the coordinate origin is coincident with the line origin and the rect origin is at the bottom left. If the line is invalid, this function will return [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+    ///
+    ///
+    /// Calculates the bounds for a line.
+    ///
     ///
     /// Parameter `line`: The line that you want to calculate the bounds for.
     ///
@@ -472,8 +648,6 @@ impl CTLine {
     /// such that the coordinate origin is coincident with the line
     /// origin and the rect origin is at the bottom left. If the line
     /// is invalid this function will return CGRectNull.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetboundswithoptions(_:_:)?language=objc)
     #[doc(alias = "CTLineGetBoundsWithOptions")]
     #[inline]
     pub fn bounds_with_options(&self, options: CTLineBoundsOptions) -> CGRect {
@@ -483,6 +657,23 @@ impl CTLine {
         unsafe { CTLineGetBoundsWithOptions(self, options) }
     }
 
+    /// Returns the trailing whitespace width for a line.
+    ///
+    /// Parameters:
+    /// - line: The line whose trailing whitespace width is calculated.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The width of the line’s trailing whitespace. If the line is invalid, this function will always return zero.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creating a line for a width can result in a line that is actually longer than the desired width due to trailing whitespace. Although this is typically not an issue due to whitespace being invisible, this function can be used to determine what amount of a line’s width is due to trailing whitespace.
+    ///
+    ///
     /// Calculates the trailing whitespace width for a line.
     ///
     ///
@@ -496,8 +687,6 @@ impl CTLine {
     ///
     /// Returns: The width of the line's trailing whitespace. If line is invalid,
     /// this function will always return zero.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegettrailingwhitespacewidth(_:)?language=objc)
     #[doc(alias = "CTLineGetTrailingWhitespaceWidth")]
     #[inline]
     pub fn trailing_whitespace_width(&self) -> c_double {
@@ -507,6 +696,19 @@ impl CTLine {
         unsafe { CTLineGetTrailingWhitespaceWidth(self) }
     }
 
+    /// Calculates the image bounds for a line.
+    ///
+    /// Parameters:
+    /// - line: The line whose image bounds are calculated.
+    ///
+    /// - context: The context for which the image bounds are calculated. This is required because the context could have settings in it that would cause changes in the image bounds.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that tightly encloses the paths of the line’s glyphs, or, if the line or context is invalid, [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+    ///
+    ///
     /// Calculates the image bounds for a line.
     ///
     ///
@@ -535,8 +737,6 @@ impl CTLine {
     /// See also: CTLineGetBoundsWithOptions
     ///
     /// See also: CTLineGetPenOffsetForFlush
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetimagebounds(_:_:)?language=objc)
     #[doc(alias = "CTLineGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -547,6 +747,25 @@ impl CTLine {
         unsafe { CTLineGetImageBounds(self, context) }
     }
 
+    /// Performs hit testing.
+    ///
+    /// Parameters:
+    /// - line: The line being examined.
+    ///
+    /// - position: The location of the mouse click relative to the line’s origin.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The string index for the position, or if the line does not support string access, [`kCFNotFound`](https://developer.apple.com/documentation/corefoundation/kcfnotfound). Relative to the line’s string range, this value can be no less than the first string index and no greater than the last string index plus 1.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to determine the string index for a mouse click or other event. This string index corresponds to the character before which the next character should be inserted. This determination is made by analyzing the string from which a typesetter was created and the corresponding glyphs as embodied by a particular line.
+    ///
+    ///
     /// Performs hit testing.
     ///
     ///
@@ -568,8 +787,6 @@ impl CTLine {
     /// range, this value will be no less than the first string index and
     /// no greater than one plus the last string index. In the event of
     /// failure, this function will return kCFNotFound.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetstringindexforposition(_:_:)?language=objc)
     #[doc(alias = "CTLineGetStringIndexForPosition")]
     #[inline]
     pub fn string_index_for_position(&self, position: CGPoint) -> CFIndex {
@@ -579,6 +796,27 @@ impl CTLine {
         unsafe { CTLineGetStringIndexForPosition(self, position) }
     }
 
+    /// Determines the graphical offset or offsets for a string index.
+    ///
+    /// Parameters:
+    /// - line: The line from which the offset is requested.
+    ///
+    /// - charIndex: The string index corresponding to the desired position.
+    ///
+    /// - secondaryOffset: On output, the secondary offset along the baseline for `charIndex`. When a single caret is sufficient for a string index, this value will be the same as the primary offset, which is the return value of this function. May be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The primary offset along the baseline for `charIndex`, or `0.0` if the line does not support string access.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the graphical offset or offsets corresponding to a string index, suitable for movement between adjacent lines or for drawing a custom caret. For moving between adjacent lines, the primary offset can be adjusted for any relative indentation of the two lines; a [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) constructed with the adjusted offset for its `x` value and `0.0` for its `y` value is suitable for passing to [`CTLineGetStringIndexForPosition`](https://developer.apple.com/documentation/coretext/ctlinegetstringindexforposition(_:_:)). For drawing a custom caret, the returned primary offset corresponds to the portion of the caret that represents the visual insertion location for a character whose direction matches the line’s writing direction.
+    ///
+    ///
     /// Determines the graphical offset(s) for a string index.
     ///
     ///
@@ -613,8 +851,6 @@ impl CTLine {
     /// # Safety
     ///
     /// `secondary_offset` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinegetoffsetforstringindex(_:_:_:)?language=objc)
     #[doc(alias = "CTLineGetOffsetForStringIndex")]
     #[inline]
     pub unsafe fn offset_for_string_index(
@@ -634,13 +870,18 @@ impl CTLine {
 
     /// Enumerates caret offsets for characters in a line.
     ///
+    /// Parameters:
+    /// - line: The line to enumerate.
+    ///
+    /// - block: The block to invoke once for each logical caret edge in the line, in left-to-right visual order. The block’s `offset` parameter is relative to the line origin. The block’s `leadingEdge` parameter specifies logical order.
+    ///
+    /// Enumerates caret offsets for characters in a line.
+    ///
     ///
     /// The provided block is invoked once for each logical caret edge in the line, in left-to-right visual order.
     ///
     ///
     /// Parameter `block`: The offset parameter is relative to the line origin. The leadingEdge parameter of this block refers to logical order.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineenumeratecaretoffsets(_:_:)?language=objc)
     #[doc(alias = "CTLineEnumerateCaretOffsets")]
     #[cfg(feature = "block2")]
     #[inline]

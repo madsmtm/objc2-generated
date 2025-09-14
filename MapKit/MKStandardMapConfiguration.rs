@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.enum?language=objc)
+/// Values that control how the framework emphasizes map features.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKStandardMapEmphasisStyle(pub NSInteger);
 impl MKStandardMapEmphasisStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.enum/default?language=objc)
+    /// The default level of emphasis.
     #[doc(alias = "MKStandardMapEmphasisStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration/emphasisstyle-swift.enum/muted?language=objc)
+    /// The muted level of emphasis.
     #[doc(alias = "MKStandardMapEmphasisStyleMuted")]
     pub const Muted: Self = Self(1);
 }
@@ -30,7 +30,7 @@ unsafe impl RefEncode for MKStandardMapEmphasisStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration?language=objc)
+    /// The class that represents the default map presentation, which is a street map that shows the position of all roads and some road names.
     #[unsafe(super(MKMapConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKMapConfiguration")]

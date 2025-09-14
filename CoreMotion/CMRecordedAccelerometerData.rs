@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrecordedaccelerometerdata?language=objc)
+    /// A single piece of accelerometer data that was recorded by the device.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class directly. Instead, you use a [`CMSensorRecorder`](https://developer.apple.com/documentation/coremotion/cmsensorrecorder) object to retrieve already recorded data from the system.
+    ///
+    ///
     #[unsafe(super(CMAccelerometerData, CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a read or write request from a central.
+    /// A request that uses the Attribute Protocol (ATT).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattrequest?language=objc)
+    /// ## Overview
+    ///
+    /// The [`CBATTRequest`](https://developer.apple.com/documentation/corebluetooth/cbattrequest) class represents Attribute Protocol (ATT) read and write requests from remote central devices (represented by [`CBCentral`](https://developer.apple.com/documentation/corebluetooth/cbcentral) objects). Remote centrals use these ATT requests to read and write characteristic values on local peripherals (represented by [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) objects). Local peripherals, on the other hand, use the properties of [`CBATTRequest`](https://developer.apple.com/documentation/corebluetooth/cbattrequest) objects to respond to the read and write requests appropriately, using the [`respondToRequest:withResult:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/respond(to:withresult:)) method of the [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) class.
+    ///
+    ///
+    /// Represents a read or write request from a central.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBATTRequest;

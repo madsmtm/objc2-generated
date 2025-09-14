@@ -7,9 +7,20 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// An object to encapsulate memory to be used as tensor data
+    /// An encapsulation of the memory that tensor data uses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensordata?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A tensor data instance doesn’t take ownership of the `bytes` pointer and therefore won’t free it upon deallocation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An object to encapsulate memory to be used as tensor data
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

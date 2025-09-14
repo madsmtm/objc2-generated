@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttyperesolutionresult?language=objc)
+    /// A resolution result for the type of data contained in notes.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INNoteContentTypeResolutionResult`](https://developer.apple.com/documentation/intents/innotecontenttyperesolutionresult) object when resolving parameters containing an [`INNoteContentType`](https://developer.apple.com/documentation/intents/innotecontenttype) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

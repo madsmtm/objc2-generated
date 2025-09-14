@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscustomimagerep?language=objc)
+    /// An object that uses a delegate object to render an image from a custom format.
+    ///
+    /// ## Overview
+    ///
+    /// When called upon to produce an image, an [`NSCustomImageRep`](https://developer.apple.com/documentation/appkit/nscustomimagerep) sends a message to its delegate to do the actual drawing. You can use this class to support custom image formats without going to the trouble of subclassing [`NSImageRep`](https://developer.apple.com/documentation/appkit/nsimagerep) directly.
+    ///
+    ///
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]

@@ -8,215 +8,163 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_1monochrome?language=objc)
+/// 1 bit indexed.
 pub const kCVPixelFormatType_1Monochrome: OSType = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_2indexed?language=objc)
+/// 2-bit indexed.
 pub const kCVPixelFormatType_2Indexed: OSType = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4indexed?language=objc)
+/// 4-bit indexed.
 pub const kCVPixelFormatType_4Indexed: OSType = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_8indexed?language=objc)
+/// 8-bit indexed.
 pub const kCVPixelFormatType_8Indexed: OSType = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_1indexedgray_whiteiszero?language=objc)
+/// 1 bit indexed gray, white is zero.
 pub const kCVPixelFormatType_1IndexedGray_WhiteIsZero: OSType = 0x00000021;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_2indexedgray_whiteiszero?language=objc)
+/// 2-bit indexed gray, white is zero.
 pub const kCVPixelFormatType_2IndexedGray_WhiteIsZero: OSType = 0x00000022;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4indexedgray_whiteiszero?language=objc)
+/// 4-bit indexed gray, white is zero.
 pub const kCVPixelFormatType_4IndexedGray_WhiteIsZero: OSType = 0x00000024;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_8indexedgray_whiteiszero?language=objc)
+/// 8-bit indexed gray, white is zero.
 pub const kCVPixelFormatType_8IndexedGray_WhiteIsZero: OSType = 0x00000028;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16be555?language=objc)
+/// 16-bit BE RGB 555.
 pub const kCVPixelFormatType_16BE555: OSType = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16le555?language=objc)
+/// 16-bit LE RGB 555.
 pub const kCVPixelFormatType_16LE555: OSType = 0x4c353535;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16le5551?language=objc)
+/// 16-bit LE RGB 5551.
 pub const kCVPixelFormatType_16LE5551: OSType = 0x35353531;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16be565?language=objc)
+/// 16-bit BE RGB 565.
 pub const kCVPixelFormatType_16BE565: OSType = 0x42353635;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16le565?language=objc)
+/// 16-bit LE RGB 565.
 pub const kCVPixelFormatType_16LE565: OSType = 0x4c353635;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_24rgb?language=objc)
+/// 24-bit RGB.
 pub const kCVPixelFormatType_24RGB: OSType = 0x00000018;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_24bgr?language=objc)
+/// 24-bit BGR.
 pub const kCVPixelFormatType_24BGR: OSType = 0x32344247;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32argb?language=objc)
+/// 32-bit ARGB.
 pub const kCVPixelFormatType_32ARGB: OSType = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32bgra?language=objc)
+/// 32-bit BGRA.
 pub const kCVPixelFormatType_32BGRA: OSType = 0x42475241;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32abgr?language=objc)
+/// 32-bit ABGR.
 pub const kCVPixelFormatType_32ABGR: OSType = 0x41424752;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32rgba?language=objc)
+/// 32-bit RGBA.
 pub const kCVPixelFormatType_32RGBA: OSType = 0x52474241;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64argb?language=objc)
+/// 64-bit ARGB, 16-bit big-endian samples.
 pub const kCVPixelFormatType_64ARGB: OSType = 0x62363461;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64rgbale?language=objc)
 pub const kCVPixelFormatType_64RGBALE: OSType = 0x6c363472;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_48rgb?language=objc)
+/// 48-bit RGB, 16-bit big-endian samples.
 pub const kCVPixelFormatType_48RGB: OSType = 0x62343872;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32alphagray?language=objc)
+/// 32-bit AlphaGray, 16-bit big-endian samples, black is zero.
 pub const kCVPixelFormatType_32AlphaGray: OSType = 0x62333261;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16gray?language=objc)
+/// 16-bit Grayscale, 16-bit big-endian samples, black is zero.
 pub const kCVPixelFormatType_16Gray: OSType = 0x62313667;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_30rgb?language=objc)
+/// 30-bit RGB, 10-bit big-endian samples, 2 unused padding bits (at least significant end).
 pub const kCVPixelFormatType_30RGB: OSType = 0x5231306b;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_30rgb_r210?language=objc)
 pub const kCVPixelFormatType_30RGB_r210: OSType = 0x72323130;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr8?language=objc)
+/// Component Y’CbCr 8-bit 4:2:2, ordered Cb Y’0 Cr Y’1.
 pub const kCVPixelFormatType_422YpCbCr8: OSType = 0x32767579;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444ypcbcra8?language=objc)
+/// Component Y’CbCrA 8-bit 4:4:4:4, ordered Cb Y’ Cr A.
 pub const kCVPixelFormatType_4444YpCbCrA8: OSType = 0x76343038;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444ypcbcra8r?language=objc)
+/// Component Y’CbCrA 8-bit 4:4:4:4, rendering format. Full range alpha, zero biased YUV, ordered A Y’ Cb Cr.
 pub const kCVPixelFormatType_4444YpCbCrA8R: OSType = 0x72343038;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444aypcbcr8?language=objc)
+/// Component Y’CbCrA 8-bit 4:4:4:4, ordered A Y’ Cb Cr, full range alpha, video range Y’CbCr.
 pub const kCVPixelFormatType_4444AYpCbCr8: OSType = 0x79343038;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444aypcbcr16?language=objc)
+/// Component Y’CbCrA 16-bit 4:4:4:4, ordered A Y’ Cb Cr, full range alpha, video range Y’CbCr, 16-bit little-endian samples.
 pub const kCVPixelFormatType_4444AYpCbCr16: OSType = 0x79343136;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444aypcbcrfloat?language=objc)
 pub const kCVPixelFormatType_4444AYpCbCrFloat: OSType = 0x7234666c;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr8?language=objc)
+/// Component Y’CbCr 8-bit 4:4:4.
 pub const kCVPixelFormatType_444YpCbCr8: OSType = 0x76333038;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr16?language=objc)
+/// Component Y’CbCr 10,12,14,16-bit 4:2:2.
 pub const kCVPixelFormatType_422YpCbCr16: OSType = 0x76323136;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr10?language=objc)
+/// Component Y’CbCr 10-bit 4:2:2.
 pub const kCVPixelFormatType_422YpCbCr10: OSType = 0x76323130;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr10?language=objc)
+/// Component Y’CbCr 10-bit 4:4:4.
 pub const kCVPixelFormatType_444YpCbCr10: OSType = 0x76343130;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8planar?language=objc)
+/// Planar Component Y’CbCr 8-bit 4:2:0. `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrPlanar` struct.
 pub const kCVPixelFormatType_420YpCbCr8Planar: OSType = 0x79343230;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8planarfullrange?language=objc)
+/// Planar Component Y’CbCr 8-bit 4:2:0, full range.  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrPlanar` struct.
 pub const kCVPixelFormatType_420YpCbCr8PlanarFullRange: OSType = 0x66343230;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr_4a_8biplanar?language=objc)
+/// First plane: Video-range Component Y’CbCr 8-bit 4:2:2, ordered Cb Y’0 Cr Y’1; second plane: alpha 8-bit 0-255.
 pub const kCVPixelFormatType_422YpCbCr_4A_8BiPlanar: OSType = 0x61327679;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8biplanarvideorange?language=objc)
+/// Bi-Planar Component Y’CbCr 8-bit 4:2:0, video-range (luma=[16,235] chroma=[16,240]).  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrBiPlanar` struct.
 pub const kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange: OSType = 0x34323076;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8biplanarfullrange?language=objc)
+/// Bi-Planar Component Y’CbCr 8-bit 4:2:0, full-range (luma=[0,255] chroma=[1,255]).  `baseAddr` points to a big-endian `CVPlanarPixelBufferInfo_YCbCrBiPlanar` struct.
 pub const kCVPixelFormatType_420YpCbCr8BiPlanarFullRange: OSType = 0x34323066;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr8biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_422YpCbCr8BiPlanarVideoRange: OSType = 0x34323276;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr8biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_422YpCbCr8BiPlanarFullRange: OSType = 0x34323266;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr8biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_444YpCbCr8BiPlanarVideoRange: OSType = 0x34343476;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr8biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_444YpCbCr8BiPlanarFullRange: OSType = 0x34343466;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr8_yuvs?language=objc)
+/// Component Y’CbCr 8-bit 4:2:2, ordered Y’0 Cb Y’1 Cr.
 pub const kCVPixelFormatType_422YpCbCr8_yuvs: OSType = 0x79757673;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr8fullrange?language=objc)
+/// Component Y’CbCr 8-bit 4:2:2, full range, ordered Y’0 Cb Y’1 Cr.
 pub const kCVPixelFormatType_422YpCbCr8FullRange: OSType = 0x79757666;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent8?language=objc)
+/// 8-bit one component, black is zero.
 pub const kCVPixelFormatType_OneComponent8: OSType = 0x4c303038;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_twocomponent8?language=objc)
+/// 8-bit two component, black is zero.
 pub const kCVPixelFormatType_TwoComponent8: OSType = 0x32433038;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_30rgblepackedwidegamut?language=objc)
 pub const kCVPixelFormatType_30RGBLEPackedWideGamut: OSType = 0x77333072;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_argb2101010lepacked?language=objc)
 pub const kCVPixelFormatType_ARGB2101010LEPacked: OSType = 0x6c313072;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_40argblewidegamut?language=objc)
 pub const kCVPixelFormatType_40ARGBLEWideGamut: OSType = 0x77343061;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_40argblewidegamutpremultiplied?language=objc)
 pub const kCVPixelFormatType_40ARGBLEWideGamutPremultiplied: OSType = 0x7734306d;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent10?language=objc)
 pub const kCVPixelFormatType_OneComponent10: OSType = 0x4c303130;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent12?language=objc)
 pub const kCVPixelFormatType_OneComponent12: OSType = 0x4c303132;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent16?language=objc)
 pub const kCVPixelFormatType_OneComponent16: OSType = 0x4c303136;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_twocomponent16?language=objc)
 pub const kCVPixelFormatType_TwoComponent16: OSType = 0x32433136;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent16half?language=objc)
+/// 6-bit one component IEEE half-precision float, 16-bit little-endian samples.
 pub const kCVPixelFormatType_OneComponent16Half: OSType = 0x4c303068;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent32float?language=objc)
+/// 32-bit one component IEEE float, 32-bit little-endian samples.
 pub const kCVPixelFormatType_OneComponent32Float: OSType = 0x4c303066;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_twocomponent16half?language=objc)
+/// 16-bit two component IEEE half-precision float, 16-bit little-endian samples.
 pub const kCVPixelFormatType_TwoComponent16Half: OSType = 0x32433068;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_twocomponent32float?language=objc)
+/// 32-bit two component IEEE float, 32-bit little-endian samples.
 pub const kCVPixelFormatType_TwoComponent32Float: OSType = 0x32433066;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64rgbahalf?language=objc)
+/// 64-bit RGBA IEEE half-precision float, 16-bit little-endian samples.
 pub const kCVPixelFormatType_64RGBAHalf: OSType = 0x52476841;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_128rgbafloat?language=objc)
+/// 128-bit RGBA IEEE float, 32-bit little-endian samples.
 pub const kCVPixelFormatType_128RGBAFloat: OSType = 0x52476641;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_14bayer_grbg?language=objc)
 pub const kCVPixelFormatType_14Bayer_GRBG: OSType = 0x67726234;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_14bayer_rggb?language=objc)
 pub const kCVPixelFormatType_14Bayer_RGGB: OSType = 0x72676734;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_14bayer_bggr?language=objc)
 pub const kCVPixelFormatType_14Bayer_BGGR: OSType = 0x62676734;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_14bayer_gbrg?language=objc)
 pub const kCVPixelFormatType_14Bayer_GBRG: OSType = 0x67627234;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_disparityfloat16?language=objc)
 pub const kCVPixelFormatType_DisparityFloat16: OSType = 0x68646973;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_disparityfloat32?language=objc)
 pub const kCVPixelFormatType_DisparityFloat32: OSType = 0x66646973;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_depthfloat16?language=objc)
 pub const kCVPixelFormatType_DepthFloat16: OSType = 0x68646570;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_depthfloat32?language=objc)
 pub const kCVPixelFormatType_DepthFloat32: OSType = 0x66646570;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr10biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange: OSType = 0x78343230;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr10biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange: OSType = 0x78343232;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr10biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_444YpCbCr10BiPlanarVideoRange: OSType = 0x78343434;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr10biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_420YpCbCr10BiPlanarFullRange: OSType = 0x78663230;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr10biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_422YpCbCr10BiPlanarFullRange: OSType = 0x78663232;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr10biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_444YpCbCr10BiPlanarFullRange: OSType = 0x78663434;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8videorange_8a_triplanar?language=objc)
 pub const kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar: OSType = 0x76306138;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_16versatilebayer?language=objc)
 pub const kCVPixelFormatType_16VersatileBayer: OSType = 0x62703136;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_96versatilebayerpacked12?language=objc)
 pub const kCVPixelFormatType_96VersatileBayerPacked12: OSType = 0x62747032;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64rgba_downscaledproresraw?language=objc)
 pub const kCVPixelFormatType_64RGBA_DownscaledProResRAW: OSType = 0x62703634;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr16biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_422YpCbCr16BiPlanarVideoRange: OSType = 0x73763232;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr16biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_444YpCbCr16BiPlanarVideoRange: OSType = 0x73763434;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_444ypcbcr16videorange_16a_triplanar?language=objc)
 pub const kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar: OSType = 0x73346173;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_30rgble_8a_biplanar?language=objc)
 pub const kCVPixelFormatType_30RGBLE_8A_BiPlanar: OSType = 0x62336138;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_32bgra?language=objc)
 pub const kCVPixelFormatType_Lossless_32BGRA: OSType = 0x26424741;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_64rgbahalf?language=objc)
 pub const kCVPixelFormatType_Lossless_64RGBAHalf: OSType = 0x26526841;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_420ypcbcr8biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange: OSType = 0x26387630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_420ypcbcr8biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange: OSType = 0x26386630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_420ypcbcr10packedbiplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange: OSType = 0x26787630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_422ypcbcr10packedbiplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange: OSType = 0x26787632;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_420ypcbcr10packedbiplanarfullrange?language=objc)
 pub const kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarFullRange: OSType = 0x26786630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_30rgble_8a_biplanar?language=objc)
 pub const kCVPixelFormatType_Lossless_30RGBLE_8A_BiPlanar: OSType = 0x26623338;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossless_30rgblepackedwidegamut?language=objc)
 pub const kCVPixelFormatType_Lossless_30RGBLEPackedWideGamut: OSType = 0x26773372;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossy_32bgra?language=objc)
 pub const kCVPixelFormatType_Lossy_32BGRA: OSType = 0x2d424741;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossy_420ypcbcr8biplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange: OSType = 0x2d387630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossy_420ypcbcr8biplanarfullrange?language=objc)
 pub const kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange: OSType = 0x2d386630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossy_420ypcbcr10packedbiplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange: OSType = 0x2d787630;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_lossy_422ypcbcr10packedbiplanarvideorange?language=objc)
 pub const kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: OSType = 0x2d787632;
 
+/// The flags to pass to [`CVPixelBufferLockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)) and [`CVPixelBufferUnlockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferunlockbaseaddress(_:_:)).
 /// Flags to pass to CVPixelBufferLockBaseAddress() / CVPixelBufferUnlockBaseAddress()
 ///
 /// If you are not going to modify the data while you hold the lock, you should set this flag
 /// to avoid potentially invalidating any existing caches of the buffer contents.  This flag
 /// should be passed both to the lock and unlock functions.  Non-symmetrical usage of this
 /// flag will result in undefined behavior.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "CVBase")]
 #[repr(transparent)]
@@ -225,7 +173,21 @@ pub struct CVPixelBufferLockFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferLockFlags: CVOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags/readonly?language=objc)
+/// A read-only buffer.
+///
+/// ## Discussion
+///
+/// Set this flag if you don’t plan to modify buffer data while holding the lock. Setting this flag improves performance by preventing Core Video from invalidating  existing caches of the buffer’s contents.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  If you pass this flag to the [`CVPixelBufferLockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)) function, you must also pass it to the [`CVPixelBufferUnlockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferunlockbaseaddress(_:_:)) function.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "kCVPixelBufferLock_ReadOnly")]
         const ReadOnly = 0x00000001;
     }
@@ -241,7 +203,13 @@ unsafe impl RefEncode for CVPixelBufferLockFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarcomponentinfo?language=objc)
+/// A structure for describing planar components.
+///
+/// ## Overview
+///
+/// Depending on how they were created, planar pixel buffers may or may not have this descriptor at their base address. For this reason, you should use [`CVPixelBufferGetBaseAddressOfPlane`](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbaseaddressofplane(_:_:)) and [`CVPixelBufferGetBytesPerRowOfPlane`](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbytesperrowofplane(_:_:)) to get information about a planar pixel buffer.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarComponentInfo {
@@ -260,7 +228,7 @@ unsafe impl RefEncode for CVPlanarComponentInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo?language=objc)
+/// A structure for describing planar buffers.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarPixelBufferInfo {
@@ -280,7 +248,7 @@ unsafe impl RefEncode for CVPlanarPixelBufferInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo_ycbcrplanar?language=objc)
+/// A structure for describing YCbCr planar buffers.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarPixelBufferInfo_YCbCrPlanar {
@@ -306,7 +274,7 @@ unsafe impl RefEncode for CVPlanarPixelBufferInfo_YCbCrPlanar {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo_ycbcrbiplanar?language=objc)
+/// A structure for describing YCbCr biplanar buffers.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarPixelBufferInfo_YCbCrBiPlanar {
@@ -331,92 +299,208 @@ unsafe impl RefEncode for CVPlanarPixelBufferInfo_YCbCrBiPlanar {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpixelformattypekey?language=objc)
+    /// A key to one or more pixel buffer format types.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is either a single [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) value or a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) containing multiple [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) values.
+    ///
+    ///
     pub static kCVPixelBufferPixelFormatTypeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffermemoryallocatorkey?language=objc)
+    /// A key to the allocator that the system uses to create the pixel buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator).
+    ///
+    ///
     pub static kCVPixelBufferMemoryAllocatorKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferwidthkey?language=objc)
+    /// A key to the width of the pixel buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kCVPixelBufferWidthKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferheightkey?language=objc)
+    /// A key to the height of the pixel buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kCVPixelBufferHeightKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelsleftkey?language=objc)
+    /// A key to the number of pixels padding the left of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kCVPixelBufferExtendedPixelsLeftKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelstopkey?language=objc)
+    /// A key to the number of pixels padding the top of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kCVPixelBufferExtendedPixelsTopKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelsrightkey?language=objc)
+    /// A key to the number of pixels padding the right of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kCVPixelBufferExtendedPixelsRightKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelsbottomkey?language=objc)
+    /// A key to the number of pixels padding the bottom of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kCVPixelBufferExtendedPixelsBottomKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferbytesperrowalignmentkey?language=objc)
+    /// A key to a number that specifies the alignment of number of bytes per row in the pixel buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The number of bytes per row in the pixel buffer must be a multiple of this number.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kCVPixelBufferBytesPerRowAlignmentKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffercgbitmapcontextcompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether the pixel buffer is compatible with Core Graphics bitmap contexts.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean).
+    ///
+    ///
     pub static kCVPixelBufferCGBitmapContextCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffercgimagecompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether the pixel buffer is compatible with Core Graphics bitmap image types.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean), and it indicates compatibility with [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage) types.
+    ///
+    ///
     pub static kCVPixelBufferCGImageCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopenglcompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether the pixel buffer is compatible with OpenGL contexts.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean).
+    ///
+    ///
     pub static kCVPixelBufferOpenGLCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferplanealignmentkey?language=objc)
+    /// A key to a number that specifies the alignment of the planes in the pixel buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd. Planes start on a byte number that’s a multiple of this value.
+    ///
+    ///
     pub static kCVPixelBufferPlaneAlignmentKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfacepropertieskey?language=objc)
+    /// A key to the dictionary containing optional properties for the IOSurface framework.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). Provide a value for this key if you want Core Video to use the [`IOSurface`](https://developer.apple.com/documentation/iosurface) framework to allocate the pixel buffer. Provide an empty dictionary to use the default [`IOSurface`](https://developer.apple.com/documentation/iosurface) options.
+    ///
+    ///
     pub static kCVPixelBufferIOSurfacePropertiesKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopenglescompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether the pixel buffer is compatible with OpenGL ES contexts.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). To use pixel buffers in OpenGL ES rendering, see [CVOpenGLESTextureCache](https://developer.apple.com/documentation/corevideo/cvopenglestexturecache-q2r).
+    ///
+    ///
     pub static kCVPixelBufferOpenGLESCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffermetalcompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether the pixel buffer is compatible with the Metal framework.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). To use pixel buffers with the Metal framework, see [CVMetalTextureCache](https://developer.apple.com/documentation/corevideo/cvmetaltexturecache-q3j).
+    ///
+    ///
     pub static kCVPixelBufferMetalCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopengltexturecachecompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether OpenGL performs format conversions of the texture-cache data in a shader.
+    ///
+    /// ## Discussion
+    ///
+    /// This key instructs the graphics subsystem to perform YCbCr-to-RGB conversions for the texture-cache data in a GPU shader, instead of performing them natively in OpenGL.
+    ///
+    ///
     pub static kCVPixelBufferOpenGLTextureCacheCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopenglestexturecachecompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether OpenGL ES performs format conversions of the texture-cache data in a shader.
+    ///
+    /// ## Discussion
+    ///
+    /// This key instructs the graphics subsystem to perform YCbCr-to-RGB conversions for the texture-cache data in a GPU shader, instead of performing them natively in OpenGL ES.
+    ///
+    ///
     pub static kCVPixelBufferOpenGLESTextureCacheCompatibilityKey: &'static CFString;
 }
 
@@ -424,26 +508,18 @@ extern "C" {
     /// Buffer attachment key for code indicating Bayer pattern (sensel arrangement).
     ///
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value follows the semantics of the ProRes RAW bayer_pattern bitstream syntax element, namely 0, 1, 2, or 3, where 0 means the top-left sensel of the frame is red-filtered ("RGGB"); 1 means the top-left sensel of the frame is green-filtered, with the top row alternating between green- and red-filtered sensels ("GRBG"); 2 means the top-left sensel of the frame is green- filtered, with the top row alternating between green- and blue-filtered sensels ("GBRG"); and 3 means the top-left sensel of the frame is blue-filtered ("BGGR").  This attachment applies only to buffers with VersatileBayer formats.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferversatilebayerkey_bayerpattern?language=objc)
     pub static kCVPixelBufferVersatileBayerKey_BayerPattern: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvversatilebayer_bayerpattern_rggb?language=objc)
 pub const kCVVersatileBayer_BayerPattern_RGGB: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvversatilebayer_bayerpattern_grbg?language=objc)
 pub const kCVVersatileBayer_BayerPattern_GRBG: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvversatilebayer_bayerpattern_gbrg?language=objc)
 pub const kCVVersatileBayer_BayerPattern_GBRG: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvversatilebayer_bayerpattern_bggr?language=objc)
 pub const kCVVersatileBayer_BayerPattern_BGGR: c_uint = 3;
 
 extern "C" {
     /// Buffer attachment key for siting offsets, relative to pixel center, of individual sensels/components constituting each pixel.
     ///
     /// Associated attachment is CFData containing an array of 8 32-bit floats.  The eight CFData array elements specify, in order, the following sensel/component offsets from pixel center: red horizontal offset, red vertical offset, green horizontal offset, green vertical offset, blue horizontal offset, blue vertical offset, alpha horizontal offset, and alpha vertical offset.  A positive offset value indicates that the sensel/component lies to the right of or below the center of its pixel, while a negative value indicates that the sensel/component lies to the left of or above the center of its pixel.  Horizontal and vertical offset magnitudes are respectively in terms of the spacing between horizontally- and vertically-adjacent pixel centers.  This attachment applies only to buffers with the bp64 format, and is optional for those buffers; if not present, all offsets are considered to be 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_senselsitingoffsets?language=objc)
     pub static kCVPixelBufferProResRAWKey_SenselSitingOffsets: &'static CFString;
 }
 
@@ -451,8 +527,6 @@ extern "C" {
     /// Buffer attachment key for sensel black level.
     ///
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the sensel level corresponding to no light exposure.  This attachment is required for buffers with either the bp16 or bp64 format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_blacklevel?language=objc)
     pub static kCVPixelBufferProResRAWKey_BlackLevel: &'static CFString;
 }
 
@@ -460,8 +534,6 @@ extern "C" {
     /// Buffer attachment key for sensel white level.
     ///
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the sensel level corresponding to sensor (or camera A-to-D converter) saturation.  This attachment is required for buffers with either the bp16 or bp64 format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitelevel?language=objc)
     pub static kCVPixelBufferProResRAWKey_WhiteLevel: &'static CFString;
 }
 
@@ -469,8 +541,6 @@ extern "C" {
     /// Buffer attachment key for illuminant correlated color temperature.
     ///
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the illuminant correlated color temperature (CCT), in kelvins, selected at the time of capture.  May be 0, indicating that the CCT is unknown or unspecified.  This attachment is optional for buffers with either the bp16 or bp64 format; if not present, the CCT is considered unknown or unspecified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitebalancecct?language=objc)
     pub static kCVPixelBufferProResRAWKey_WhiteBalanceCCT: &'static CFString;
 }
 
@@ -478,8 +548,6 @@ extern "C" {
     /// Buffer attachment key for white balance red factor.
     ///
     /// Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the white balance multiplication factor for red-filtered sensels.  This attachment is required for buffers with either the bp16 or bp64 format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitebalanceredfactor?language=objc)
     pub static kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor: &'static CFString;
 }
 
@@ -487,8 +555,6 @@ extern "C" {
     /// Buffer attachment key for white balance blue factor.
     ///
     /// Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the white balance multiplication factor for blue-filtered sensels.  This attachment is required for buffers with either the bp16 or bp64 format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitebalancebluefactor?language=objc)
     pub static kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor: &'static CFString;
 }
 
@@ -496,8 +562,6 @@ extern "C" {
     /// Buffer attachment key for color translation matrix.
     ///
     /// Associated attachment is CFData containing an array of 9 32-bit floats.  The value is a 3x3 matrix which transforms linear RGB pixel values in the camera native color space to CIE 1931 XYZ values relative to the D65 illuminant, where the matrix entries are stored in the CFData in row-major order.  This attachment is required for buffers with either the bp16 or bp64 format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_colormatrix?language=objc)
     pub static kCVPixelBufferProResRAWKey_ColorMatrix: &'static CFString;
 }
 
@@ -505,8 +569,6 @@ extern "C" {
     /// Buffer attachment key for gain factor.
     ///
     /// Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the overall gain factor for raw conversion.  This attachment is required for buffers with either the bp16 or bp64 format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_gainfactor?language=objc)
     pub static kCVPixelBufferProResRAWKey_GainFactor: &'static CFString;
 }
 
@@ -514,8 +576,6 @@ extern "C" {
     /// Buffer attachment key for recommended number of pixels/rows to discard from the sides of the image after raw conversion.
     ///
     /// Associated attachment is CFData containing an array of 4 32-bit floats.  The four CFData array elements specify, in order, the recommended number of: pixels to discard from the start (left) of each row of the image; pixels to discard from the end (right) of each row of the image; rows of pixels to discard from the top of the image; and rows of pixels to discard from the bottom of the image.  (Pixels/rows are discarded after raw conversion.)  This attachment is optional for buffers with either the bp16 or bp64 format; if not present, the recommended crop values are considered to be 0.  For buffers with the bp64 format, the values may be nonintegral due to downscaling, in which case the handling of fractional parts is implementation-dependent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_recommendedcrop?language=objc)
     pub static kCVPixelBufferProResRAWKey_RecommendedCrop: &'static CFString;
 }
 
@@ -523,28 +583,43 @@ extern "C" {
     /// Buffer attachment key for metadata extension.
     ///
     /// Associated attachment is CFData containing ProRes RAW metadata extension. This attachment is optional for buffers with either bp16 or bp64.  The CFData contains a big-endian uint32 representing the size of the item in bytes followed by a 4-character code ('psim') followed by a variable-length pascal string identifying the metadata (like a key string) followed by the metadata payload.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_metadataextension?language=objc)
     pub static kCVPixelBufferProResRAWKey_MetadataExtension: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// Key sets the IOSurface backed memory allocation for CVPixelBuffer as purgable and volatile.
     ///
     /// A purgeable IOSurface is capable of being switched between non-volatile, volatile and empty states using IOSurfaceSetPurgeable.  When in the volatile state, the OS is permitted to instantly change its state to empty and remove all its memory pages.  Clients should set the IOSurfaces to the non-volatile state while they are in use and the volatile state when their need and contents is optional/speculative and OK to discard in response to system memory demand.  See IOSurfaceSetPurgeable for more details.  This key is only effective for CVPixelBuffers that are backed by IOSurface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfacepurgeablekey?language=objc)
+    ///
+    /// Key sets the IOSurface backed memory allocation for CVPixelBuffer as purgable and volatile.
+    ///
+    /// A purgeable IOSurface is capable of being switched between non-volatile, volatile and empty states using IOSurfaceSetPurgeable.  When in the volatile state, the OS is permitted to instantly change its state to empty and remove all its memory pages.  Clients should set the IOSurfaces to the non-volatile state while they are in use and the volatile state when their need and contents is optional/speculative and OK to discard in response to system memory demand.  See IOSurfaceSetPurgeable for more details.  This key is only effective for CVPixelBuffers that are backed by IOSurface.
     pub static kCVPixelBufferIOSurfacePurgeableKey: &'static CFString;
 }
 
-/// Based on the image buffer type. The pixel buffer implements the memory storage for an image buffer.
+/// A reference to a Core Video pixel buffer object.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffer?language=objc)
+/// ## Discussion
+///
+/// The pixel buffer stores an image in main memory.
+///
+///
+/// Based on the image buffer type. The pixel buffer implements the memory storage for an image buffer.
 #[doc(alias = "CVPixelBufferRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVPixelBuffer = CVImageBuffer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergettypeid()?language=objc)
+/// Returns the Core Foundation type identifier of the pixel buffer type.
+///
+/// ## Return Value
+///
+/// The Core Foundation type identifier for this type.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -554,6 +629,31 @@ pub extern "C-unwind" fn CVPixelBufferGetTypeID() -> CFTypeID {
 }
 
 extern "C-unwind" {
+    /// Resolves an array of `CFDictionary` objects describing various pixel buffer attributes into a single dictionary.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to create the pixel buffer. Pass `NULL` to specify the default allocator.
+    ///
+    /// - attributes: An array of Core Foundation dictionaries containing pixel buffer attribute key-value pairs.
+    ///
+    /// - resolvedDictionaryOut: On output, the consolidated dictionary. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call is useful when you need to resolve requirements between several potential clients of a buffer.
+    ///
+    /// If two or more dictionaries contain the same key but different values, this function adjusts values where possible so that the output dictionary contains a mutually compatible set of values. For example, if the `attributes` parameter contains dictionaries whose bytes-per-row attributes differ, the `rowBytes` value in the output dictionary is the least common multiple of the input values.
+    ///
+    /// Some mismatched attributes cannot be resolved. Calling this function results in an error if the widths, heights, pixel format allocators, or callbacks in the input dictionaries do not match.
+    ///
+    ///
     /// Takes a CFArray of CFDictionary objects describing various pixel buffer attributes and tries to resolve them into a
     /// single dictionary.
     ///
@@ -569,8 +669,6 @@ extern "C-unwind" {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `resolved_dictionary_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreateresolvedattributesdictionary(_:_:_:)?language=objc)
     #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: Option<&CFAllocator>,
@@ -580,6 +678,43 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a single pixel buffer for a given size and pixel format.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer pool. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) for the `allocator` parameter to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - width: The width of the pixel buffer, in pixels.
+    ///
+    /// - height: The height of the pixel buffer, in pixels.
+    ///
+    /// - pixelFormatType: The pixel format identified by its four-character code.
+    ///
+    /// - pixelBufferAttributes: An optional dictionary that contains the attributes for the pixel buffer. See [Pixel Buffer Attribute Keys](https://developer.apple.com/documentation/corevideo/pixel-buffer-attribute-keys) for possible values.
+    ///
+    /// - pixelBufferOut: On output, the newly created pixel buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some of the parameters specified in this function override equivalent pixel buffer attributes. For example, if you set values for the [`kCVPixelBufferWidthKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferwidthkey) and [`kCVPixelBufferHeightKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferheightkey) keys in the `pixelBufferAttributes` dictionary, the values for the `width` and `height` parameters override the values in the dictionary.
+    ///
+    /// Use [`CVPixelBufferRelease`](https://developer.apple.com/documentation/corevideo/cvpixelbufferrelease) to release ownership of the `pixelBufferOut` object when you’re done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  If you need to create and release multiple pixel buffers, use `CVPixelBufferPool` to create a pixel buffer pool that efficiently reuses pixel buffer memory.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Call to create a single PixelBuffer for a given size and pixelFormatType.
     ///
     /// Creates a single PixelBuffer for a given size and pixelFormatType. It allocates the necessary memory based on the pixel dimensions, pixelFormatType and extended pixels described in the pixelBufferAttributes. Not all parameters of the pixelBufferAttributes will be used here.
@@ -601,8 +736,6 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreate(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreate(
         allocator: Option<&CFAllocator>,
@@ -614,11 +747,61 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleasebytescallback?language=objc)
+/// A type that defines a release callback function.
+///
+/// Parameters:
+/// - releaseRefCon: A pointer to application-defined data. This pointer is the same as that passed in the `releaseRefCon` parameter of [`CVPixelBufferCreateWithBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithbytes(_:_:_:_:_:_:_:_:_:_:)).
+///
+/// - baseAddress: A pointer to the base address of the memory holding the pixels. This pointer is the same as that passed in the `baseAddress` parameter of [`CVPixelBufferCreateWithBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithbytes(_:_:_:_:_:_:_:_:_:_:)).
+///
+///
+/// ## Discussion
+///
+/// When you create a pixel buffer using [`CVPixelBufferCreateWithBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithbytes(_:_:_:_:_:_:_:_:_:_:)), you can optionally pass a callback function that’s invoked when the system frees the pixel buffer. Use this callback function to release the pixel data and perform any other cleanup needed when the buffer is released.
+///
+/// You define a callback function as shown below:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Define a function to call when the pixel buffer is freed.", "let releaseCallback: CVPixelBufferReleaseBytesCallback = { releaseRefCon, baseAddress in", "    guard let baseAddress = baseAddress else { return }", "    free(UnsafeMutableRawPointer(mutating: baseAddress))", "    // Perform additional cleanup as needed.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Define a function to call when the pixel buffer is freed.", "void releaseCallback(void *releaseRefCon, const void *baseAddress) {", "    free((void *)baseAddress);", "    // Perform additional cleanup as needed.", "}"], metadata: None }] }] })
+///
 pub type CVPixelBufferReleaseBytesCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *const c_void)>;
 
 extern "C-unwind" {
+    /// Creates a pixel buffer for a given size and pixel format containing data specified by a memory location.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer pool. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) for the `allocator` parameter to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - width: The width of the pixel buffer, in pixels.
+    ///
+    /// - height: The height of the pixel buffer, in pixels.
+    ///
+    /// - pixelFormatType: The pixel format identified by its respective four character code (type `OSType`).
+    ///
+    /// - baseAddress: A pointer to the base address of the memory storing the pixels.
+    ///
+    /// - bytesPerRow: The row bytes of the pixel storage memory.
+    ///
+    /// - releaseCallback: The callback function to be called when the pixel buffer is destroyed. This callback allows the owner of the pixels to free the memory. See [`CVPixelBufferReleaseBytesCallback`](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleasebytescallback) for more information.
+    ///
+    /// - releaseRefCon: The user data identifying the pixel buffer. This value is passed to your pixel buffer release callback.
+    ///
+    /// - pixelBufferAttributes: A Core Foundation dictionary with additional attributes for a pixel buffer. This parameter is optional. See [Pixel Buffer Attribute Keys](https://developer.apple.com/documentation/corevideo/pixel-buffer-attribute-keys) for more details.
+    ///
+    /// - pixelBufferOut: On output, the newly created pixel buffer. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some of the parameters specified in this call override equivalent pixel buffer attributes. For example, if you define the `kCVPixelBufferWidth` and `kCVPixelBufferHeight` keys in the pixel buffer attributes parameter (`pixelBufferAttributes`), these values are overridden by the `width` and `height` parameters.
+    ///
+    ///
     /// Call to create a single PixelBuffer for a given size and pixelFormatType based on a passed in piece of memory.
     ///
     /// Creates a single PixelBuffer for a given size and pixelFormatType. Not all parameters of the pixelBufferAttributes will be used here. It requires a release callback function that will be called, when the PixelBuffer gets destroyed so that the owner of the pixels can free the memory.
@@ -651,8 +834,6 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithbytes(_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithBytes(
         allocator: Option<&CFAllocator>,
@@ -668,12 +849,79 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleaseplanarbytescallback?language=objc)
+/// Defines a pointer to a pixel buffer release callback function, which is called when a pixel buffer created by [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) is released.
+///
+/// Parameters:
+/// - releaseRefCon: A pointer to application-defined data. This pointer is the same as that passed in the `releaseRefCon` parameter of [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)).
+///
+/// - dataPtr: A pointer to a plane descriptor block. This is the same pointer you passed to [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) in the `dataPtr` parameter.
+///
+/// - dataSize: The size value you passed to [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) in the `dataSize` parameter.
+///
+/// - numberOfPlanes: The number of planes value you passed to [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) in the `numberOfPlanes` parameter.
+///
+/// - planeAddresses: A pointer to the base plane address you passed to [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) in the `basePlaneAddress` parameter.
+///
+///
+/// ## Discussion
+///
+/// You would declare a callback named `MyPixelBufferReleasePlanarBytes` like this:
+///
+/// ### Discussion
+///
+/// You use this callback to release the pixels and perform any other cleanup when a pixel buffer is released.
+///
+///
 pub type CVPixelBufferReleasePlanarBytesCallback = Option<
     unsafe extern "C-unwind" fn(*mut c_void, *const c_void, usize, usize, *mut *const c_void),
 >;
 
 extern "C-unwind" {
+    /// Creates a single pixel buffer in planar format for a given size and pixel format containing data specified by a memory location.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer pool. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) for the `allocator` parameter to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - width: The width of the pixel buffer, in pixels.
+    ///
+    /// - height: The height of the pixel buffer, in pixels.
+    ///
+    /// - pixelFormatType: The pixel format identified by its respective four-character code (type `OSType`).
+    ///
+    /// - dataPtr: A pointer to a plane descriptor block if applicable, or `NULL` if it is not.
+    ///
+    /// - dataSize: The size of the memory if the planes are contiguous, or `NULL` if it is not.
+    ///
+    /// - numberOfPlanes: The number of planes.
+    ///
+    /// - planeBaseAddress: The array of base addresses for the planes.
+    ///
+    /// - planeWidth: The array of plane widths.
+    ///
+    /// - planeHeight: The array of plane heights.
+    ///
+    /// - planeBytesPerRow: The array of plane bytes-per-row values.
+    ///
+    /// - releaseCallback: The callback function that gets called when the pixel buffer is destroyed. This callback allows the owner of the pixels to free the memory. See [`CVPixelBufferReleaseBytesCallback`](https://developer.apple.com/documentation/corevideo/cvpixelbufferreleasebytescallback) for more information.
+    ///
+    /// - releaseRefCon: A pointer to user data identifying the pixel buffer. This value is passed to your pixel buffer release callback.
+    ///
+    /// - pixelBufferAttributes: A dictionary with additional attributes for a a pixel buffer. This parameter is optional. See [Pixel Buffer Attribute Keys](https://developer.apple.com/documentation/corevideo/pixel-buffer-attribute-keys) for more details.
+    ///
+    /// - pixelBufferOut: On output, the newly created pixel buffer. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some of the parameters specified in this call override equivalent pixel buffer attributes. For example, if you define the `kCVPixelBufferWidth` and `kCVPixelBufferHeight` keys in the pixel buffer attributes parameter (`pixelBufferAttributes`), these values are overridden by the `width` and `height` parameters.
+    ///
+    ///
     /// Call to create a single PixelBuffer in planar format for a given size and pixelFormatType based on a passed in piece of memory.
     ///
     /// Creates a single PixelBuffer for a given size and pixelFormatType. Not all parameters of the pixelBufferAttributes will be used here. It requires a release callback function that will be called, when the PixelBuffer gets destroyed so that the owner of the pixels can free the memory.
@@ -720,8 +968,6 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithPlanarBytes(
         allocator: Option<&CFAllocator>,
@@ -743,6 +989,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Locks the base address of the pixel buffer.
+    ///
+    /// Parameters:
+    /// - pixelBuffer: The pixel buffer whose base address you want to lock.
+    ///
+    /// - lockFlags: Either [`kCVPixelBufferLock_ReadOnly`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags/readonly) or `0`; see [`CVPixelBufferLockFlags`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags) for discussion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call the [`CVPixelBufferLockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)) function before accessing pixel data with the CPU, and call the [`CVPixelBufferUnlockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferunlockbaseaddress(_:_:)) function afterward. If you include the [`kCVPixelBufferLock_ReadOnly`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags/readonly) value in the `lockFlags` parameter when locking the buffer, you must also include it when unlocking the buffer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When accessing pixel data with the GPU, locking is not necessary and can impair performance.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Description Locks the BaseAddress of the PixelBuffer to ensure that the memory is accessible.
     ///
     /// This API ensures that the CVPixelBuffer is accessible in system memory. This should only be called if the base address is going to be used and the pixel data will be accessed by the CPU.
@@ -752,8 +1025,6 @@ extern "C-unwind" {
     /// Parameter `lockFlags`: See CVPixelBufferLockFlags.
     ///
     /// Returns: kCVReturnSuccess if the lock succeeded, or error code on failure
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBase",
         feature = "CVBuffer",
@@ -767,6 +1038,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Unlocks the base address of the pixel buffer.
+    ///
+    /// Parameters:
+    /// - pixelBuffer: The pixel buffer whose base address you want to unlock.
+    ///
+    /// - unlockFlags: Either [`kCVPixelBufferLock_ReadOnly`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags/readonly) or `0`; see [`CVPixelBufferLockFlags`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags) for discussion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call the [`CVPixelBufferLockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)) function before accessing pixel data with the CPU, and call the [`CVPixelBufferUnlockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferunlockbaseaddress(_:_:)) function afterward. If you include the [`kCVPixelBufferLock_ReadOnly`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockflags/readonly) value in the `lockFlags` parameter when locking the buffer, you must also include it when unlocking the buffer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When accessing pixel data with the GPU, locking is not necessary and can impair performance.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Description Unlocks the BaseAddress of the PixelBuffer.
     ///
     /// Parameter `pixelBuffer`: Target PixelBuffer.
@@ -774,8 +1072,6 @@ extern "C-unwind" {
     /// Parameter `unlockFlags`: See CVPixelBufferLockFlags.
     ///
     /// Returns: kCVReturnSuccess if the unlock succeeded, or error code on failure
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferunlockbaseaddress(_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBase",
         feature = "CVBuffer",
@@ -788,13 +1084,22 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
+/// Returns the width of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose width you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The width of the buffer, in pixels.
+///
+///
 /// Returns the width of the PixelBuffer.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Width in pixels.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetwidth(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -804,13 +1109,22 @@ pub extern "C-unwind" fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> 
     unsafe { CVPixelBufferGetWidth(pixel_buffer) }
 }
 
+/// Returns the height of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose height you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The buffer height, in pixels.
+///
+///
 /// Returns the height of the PixelBuffer.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Height in pixels.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetheight(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -820,13 +1134,26 @@ pub extern "C-unwind" fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) ->
     unsafe { CVPixelBufferGetHeight(pixel_buffer) }
 }
 
+/// Returns the pixel format type of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose format type you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// A four-character code `OSType` identifier for the pixel format.
+///
+///
+///
+/// ## Discussion
+///
+///
 /// Returns the PixelFormatType of the PixelBuffer.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: OSType identifying the pixel format by its type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetpixelformattype(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelBuffer) -> OSType {
@@ -836,6 +1163,31 @@ pub extern "C-unwind" fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelB
     unsafe { CVPixelBufferGetPixelFormatType(pixel_buffer) }
 }
 
+/// Returns the base address of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose base address you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The base address of the pixel buffer.
+///
+///
+///
+/// ## Discussion
+///
+/// The pointer returned by this function depends on the type of buffer and the conditions under which it was created.
+///
+/// - For chunky buffers, returns a pointer to the pixel at (0,0) in the buffer.
+///
+/// - For planar buffers, returns a pointer to a [`CVPlanarComponentInfo`](https://developer.apple.com/documentation/corevideo/cvplanarcomponentinfo) structure, or `NULL` if no such structure is present.
+///
+/// Because this function returns `NULL` for some planar buffers, you should call [`CVPixelBufferGetBaseAddressOfPlane`](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbaseaddressofplane(_:_:)) and [`CVPixelBufferGetBytesPerRowOfPlane`](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbytesperrowofplane(_:_:)) to get information about a planar buffer.
+///
+/// Retrieving the base address for a pixel buffer requires that the buffer base address be locked using the [`CVPixelBufferLockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)) function.
+///
+///
 /// Returns the base address of the PixelBuffer.
 ///
 /// Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
@@ -846,8 +1198,6 @@ pub extern "C-unwind" fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelB
 /// Returns: Base address of the pixels.
 /// For chunky buffers, this will return a pointer to the pixel at 0,0 in the buffer
 /// For planar buffers this will return a pointer to a PlanarComponentInfo struct (defined in QuickTime).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbaseaddress(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffer) -> *mut c_void {
@@ -857,14 +1207,23 @@ pub extern "C-unwind" fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffe
     unsafe { CVPixelBufferGetBaseAddress(pixel_buffer) }
 }
 
+/// Returns the number of bytes per row of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose bytes-per-row value you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes per row of the image data.   For planar buffers, this function returns a `rowBytes` value such that `bytesPerRow` * `height` covers the entire image, including all planes.
+///
+///
 /// Returns the rowBytes of the PixelBuffer.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Bytes per row of the image data.   For planar buffers this will return a rowBytes value such that bytesPerRow * height
 /// will cover the entire image including all planes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbytesperrow(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -874,13 +1233,22 @@ pub extern "C-unwind" fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffe
     unsafe { CVPixelBufferGetBytesPerRow(pixel_buffer) }
 }
 
+/// Returns the data size for contiguous planes of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose data size you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The size of the memory if the planes are contiguous, or `NULL` if it is not.
+///
+///
 /// Returns the data size for contigous planes of the PixelBuffer.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Data size used in CVPixelBufferCreateWithPlanarBytes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetdatasize(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -890,13 +1258,28 @@ pub extern "C-unwind" fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) 
     unsafe { CVPixelBufferGetDataSize(pixel_buffer) }
 }
 
+/// Determines whether the pixel buffer is planar.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer to check.
+///
+///
+/// ## Return Value
+///
+/// `true` if the pixel buffer is planar; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// Planar buffers can be created using the [`CVPixelBufferCreateWithPlanarBytes`](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithplanarbytes(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) function.
+///
+///
 /// Returns if the PixelBuffer is planar.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: True if the PixelBuffer was created using CVPixelBufferCreateWithPlanarBytes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferisplanar(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> bool {
@@ -907,13 +1290,22 @@ pub extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> 
     ret != 0
 }
 
+/// Returns number of planes of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose plane count you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The number of planes.  Returns `0` for nonplanar pixel buffers.
+///
+///
 /// Returns number of planes of the PixelBuffer.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 ///
 /// Returns: Number of planes.  Returns 0 for non-planar CVPixelBufferRefs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetplanecount(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer) -> usize {
@@ -923,6 +1315,19 @@ pub extern "C-unwind" fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer
     unsafe { CVPixelBufferGetPlaneCount(pixel_buffer) }
 }
 
+/// Returns the width of the plane at a given index in the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose plane width you want to obtain.
+///
+/// - planeIndex: The plane index that contains the plane’s width value.
+///
+///
+/// ## Return Value
+///
+/// The width of the plane, in pixels, or `0` for nonplanar pixel buffers.
+///
+///
 /// Returns the width of the plane at planeIndex in the PixelBuffer.
 ///
 /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
@@ -933,8 +1338,6 @@ pub extern "C-unwind" fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Width in pixels, or 0 for non-planar CVPixelBufferRefs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetwidthofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetWidthOfPlane(
@@ -947,6 +1350,19 @@ pub extern "C-unwind" fn CVPixelBufferGetWidthOfPlane(
     unsafe { CVPixelBufferGetWidthOfPlane(pixel_buffer, plane_index) }
 }
 
+/// Returns the height of the plane at planeIndex in the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose plane height you want to obtain.
+///
+/// - planeIndex: The index of the plane.
+///
+///
+/// ## Return Value
+///
+/// The height of the buffer, in pixels, or `0` for nonplanar pixel buffers.
+///
+///
 /// Returns the height of the plane at planeIndex in the PixelBuffer.
 ///
 /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
@@ -957,8 +1373,6 @@ pub extern "C-unwind" fn CVPixelBufferGetWidthOfPlane(
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Height in pixels, or 0 for non-planar CVPixelBufferRefs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetheightofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetHeightOfPlane(
@@ -972,6 +1386,25 @@ pub extern "C-unwind" fn CVPixelBufferGetHeightOfPlane(
     unsafe { CVPixelBufferGetHeightOfPlane(pixel_buffer, plane_index) }
 }
 
+/// Returns the base address of the plane at the specified plane index.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer containing the plane whose base address you want to obtain.
+///
+/// - planeIndex: The index of the plane.
+///
+///
+/// ## Return Value
+///
+/// The base address of the plane, or `NULL` for nonplanar pixel buffers.
+///
+///
+///
+/// ## Discussion
+///
+/// Retrieving the base address for a pixel buffer requires that the buffer base address be locked using the [`CVPixelBufferLockBaseAddress`](https://developer.apple.com/documentation/corevideo/cvpixelbufferlockbaseaddress(_:_:)) function.
+///
+///
 /// Returns the base address of the plane at planeIndex in the PixelBuffer.
 ///
 /// Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
@@ -983,8 +1416,6 @@ pub extern "C-unwind" fn CVPixelBufferGetHeightOfPlane(
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Base address of the plane, or NULL for non-planar CVPixelBufferRefs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbaseaddressofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBaseAddressOfPlane(
@@ -1000,6 +1431,19 @@ pub extern "C-unwind" fn CVPixelBufferGetBaseAddressOfPlane(
     unsafe { CVPixelBufferGetBaseAddressOfPlane(pixel_buffer, plane_index) }
 }
 
+/// Returns the number of bytes per row for a plane at the specified index in the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer containing the plane.
+///
+/// - planeIndex: The index of the plane whose bytes-per-row value you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes per row for the plane, or `NULL` for nonplanar pixel buffers.
+///
+///
 /// Returns the row bytes of the plane at planeIndex in the PixelBuffer.
 ///
 /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
@@ -1010,8 +1454,6 @@ pub extern "C-unwind" fn CVPixelBufferGetBaseAddressOfPlane(
 /// Parameter `planeIndex`: Identifying the plane.
 ///
 /// Returns: Row bytes of the plane, or NULL for non-planar CVPixelBufferRefs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetbytesperrowofplane(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferGetBytesPerRowOfPlane(
@@ -1028,6 +1470,23 @@ pub extern "C-unwind" fn CVPixelBufferGetBytesPerRowOfPlane(
 }
 
 extern "C-unwind" {
+    /// Returns the amount of extended pixel padding in the pixel buffer.
+    ///
+    /// Parameters:
+    /// - pixelBuffer: The pixel buffer whose extended pixel size you want to obtain.
+    ///
+    /// - extraColumnsOnLeft: On output, the pixel row padding to the left.  Pass `NULL` if you do not want this information.
+    ///
+    /// - extraColumnsOnRight: On output, the pixel row padding to the right. Pass `NULL` if you do not want this information.
+    ///
+    /// - extraRowsOnTop: On output, the pixel row padding to the top.  Pass `NULL` if you do not want this information.
+    ///
+    /// - extraRowsOnBottom: On output, the pixel row padding to the bottom. Pass `NULL` if you do not want this information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Returns the size of extended pixels of the PixelBuffer.
     ///
     /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
@@ -1049,8 +1508,6 @@ extern "C-unwind" {
     /// - `extra_columns_on_right` must be a valid pointer or null.
     /// - `extra_rows_on_top` must be a valid pointer or null.
     /// - `extra_rows_on_bottom` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetextendedpixels(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     pub fn CVPixelBufferGetExtendedPixels(
         pixel_buffer: &CVPixelBuffer,
@@ -1061,11 +1518,26 @@ extern "C-unwind" {
     );
 }
 
+/// Fills the extended pixels of the pixel buffer.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer whose extended pixels you want to fill.
+///
+///
+/// ## Return Value
+///
+/// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+///
+///
+///
+/// ## Discussion
+///
+/// This function replicates edge pixels to fill the entire extended region of the image.
+///
+///
 /// Fills the extended pixels of the PixelBuffer.   This function replicates edge pixels to fill the entire extended region of the image.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferfillextendedpixels(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelBuffer) -> CVReturn {
@@ -1080,8 +1552,6 @@ pub extern "C-unwind" fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelB
 /// Can be used to create similar pixelbuffers.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercopycreationattributes(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
@@ -1097,6 +1567,18 @@ pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+///
+/// Parameters:
+/// - pixelBuffer: PixelBuffer to check for compatibility.
+///
+/// - attributes: Creation attributes which pixel buffer should have.
+///
+///
+/// ## Discussion
+///
+/// Returns true if given pixel buffer is compatible with pixelBufferAttributes dictionary.
+///
+///
 /// Returns true if given pixel buffer is compatible with pixelBufferAttributes dictionary.
 ///
 /// Parameter `pixelBuffer`: PixelBuffer to check for compatibility.
@@ -1107,8 +1589,6 @@ pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
 ///
 /// - `attributes` generic must be of the correct type.
 /// - `attributes` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferiscompatiblewithattributes(_:_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVPixelBufferIsCompatibleWithAttributes(

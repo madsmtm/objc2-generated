@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability?language=objc)
+/// Constants indicating the capabilities of the call.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallCapability(pub NSInteger);
 impl INCallCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability/unknown?language=objc)
+    /// An unknown type of call.
     #[doc(alias = "INCallCapabilityUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability/audiocall?language=objc)
+    /// An audio call.
     #[doc(alias = "INCallCapabilityAudioCall")]
     pub const AudioCall: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapability/videocall?language=objc)
+    /// A video call.
     #[doc(alias = "INCallCapabilityVideoCall")]
     pub const VideoCall: Self = Self(2);
 }

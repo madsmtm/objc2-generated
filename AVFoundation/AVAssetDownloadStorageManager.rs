@@ -7,35 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define eviction priorities for a storage management policy.
 /// These constants represents the eviction priority of downloaded assets.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetDownloadedAssetEvictionPriority = NSString;
 
 extern "C" {
+    /// An eviction priority that indicates that this asset is important and the system should evict lower-priority assets first.
     /// Used to mark assets with the highest priority. They will be the last to be purged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority/important?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityImportant:
         &'static AVAssetDownloadedAssetEvictionPriority;
 }
 
 extern "C" {
+    /// The default eviction priority.
     /// Used to mark assets have the default priority. They will be the first to be purged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority/default?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityDefault:
         &'static AVAssetDownloadedAssetEvictionPriority;
 }
 
 extern_class!(
+    /// An object that manages policies to automatically purge downloaded assets.
     /// An AVAssetDownloadStorageManager manages the policy for automatic purging of downloaded AVAssets. The policy is vended as AVAssetDownloadStorageManagementPolicy object.
     ///
     /// When a storage management policy needs to be set on an asset, sharedDownloadStorageManager singleton needs to be fetched.
     /// The new policy can then be set by using setStorageManagementPolicy and the location of the downloaded asset.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadStorageManager;
@@ -89,11 +85,10 @@ impl AVAssetDownloadStorageManager {
 }
 
 extern_class!(
+    /// An object that defines a policy to automatically manage the storage of downloaded assets.
     /// A class to inform the system of a policy for automatic purging of downloaded AVAssets.
     ///
     /// System will put in best-effort to evict all the assets based on expirationDate before evicting based on priority.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadstoragemanagementpolicy?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetDownloadStorageManagementPolicy;
@@ -150,11 +145,10 @@ impl AVAssetDownloadStorageManagementPolicy {
 }
 
 extern_class!(
+    /// A mutable object that you use to create a new storage management policy.
     /// A mutable subclass of AVAssetDownloadStorageManagementPolicy.
     ///
     /// System will put in best-effort to evict all the assets based on expirationDate before evicting based on priority.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy?language=objc)
     #[unsafe(super(AVAssetDownloadStorageManagementPolicy, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableAssetDownloadStorageManagementPolicy;

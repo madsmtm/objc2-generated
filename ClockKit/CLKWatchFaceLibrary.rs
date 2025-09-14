@@ -8,29 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errordomain?language=objc)
+    /// The domain for errors while importing watch faces.
     pub static CLKWatchFaceLibraryErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode?language=objc)
+/// Error codes that the watch face library returns.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLKWatchFaceLibraryErrorCode(pub NSInteger);
 impl CLKWatchFaceLibraryErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/notfileurl?language=objc)
+    /// No file was found at the specified URL.
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeNotFileURL")]
     pub const NotFileURL: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/invalidfile?language=objc)
+    /// The specified file wasn’t a valid watch face file.
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeInvalidFile")]
     pub const InvalidFile: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/permissiondenied?language=objc)
+    /// The app does not have permission to read the specified file.
     #[doc(alias = "CLKWatchFaceLibraryErrorCodePermissionDenied")]
     pub const PermissionDenied: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/facenotavailable?language=objc)
+    /// The watch face is not available on this device.
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeFaceNotAvailable")]
     pub const FaceNotAvailable: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode/nourl?language=objc)
     #[doc(alias = "CLKWatchFaceLibraryErrorCodeNoURL")]
     pub const NoURL: Self = Self(5);
 }
@@ -44,7 +43,13 @@ unsafe impl RefEncode for CLKWatchFaceLibraryErrorCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary?language=objc)
+    /// An object for importing watch faces that the app provides.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`CLKWatchFaceLibrary`](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary) object to add an existing .`watchface` file to the Watch app. Add watch faces only on devices that support pairing with an Apple Watch.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLKWatchFaceLibrary;

@@ -8,7 +8,7 @@ use objc2_core_media::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracksegment?language=objc)
+    /// An object that represents a time range segment of an asset track.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetTrackSegment;

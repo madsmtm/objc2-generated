@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontrollerdelegate?language=objc)
+    /// An interface you implement for receiving success and failure statuses about modification of an account’s authentication properties.
     pub unsafe trait ASAccountAuthenticationModificationControllerDelegate:
         NSObjectProtocol
     {
@@ -40,7 +40,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontrollerpresentationcontextproviding?language=objc)
+    /// An interface you implement to coordinate presentation of the user interface when modifying an account’s authentication properties.
     pub unsafe trait ASAccountAuthenticationModificationControllerPresentationContextProviding:
         NSObjectProtocol + MainThreadOnly
     {
@@ -57,7 +57,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller?language=objc)
+    /// An object that performs a request to modify an account’s authentication properties.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This class ignores calls from Mac apps built with Mac Catalyst.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccountAuthenticationModificationController;

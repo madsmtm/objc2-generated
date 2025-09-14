@@ -4,25 +4,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LACompanionType(pub NSInteger);
 impl LACompanionType {
     /// Paired Apple Watch
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype/watch?language=objc)
+    /// Paired Apple Watch
     #[doc(alias = "LACompanionTypeWatch")]
     pub const Watch: Self = Self(1);
     /// Paired Mac
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype/mac?language=objc)
+    /// Paired Mac
     #[doc(alias = "LACompanionTypeMac")]
     pub const Mac: Self = Self(2);
     /// Paired Vision Pro
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacompaniontype/vision?language=objc)
+    /// Paired Vision Pro
     #[doc(alias = "LACompanionTypeVision")]
     pub const Vision: Self = Self(4);
 }

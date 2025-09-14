@@ -8,20 +8,16 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsequencedirection?language=objc)
+/// Directions that a sequence of inputs can be processed by a recurrent neural network layer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNSequenceDirection(pub NSUInteger);
 impl MPSRNNSequenceDirection {
     /// The input sequence is processed from index zero to array length minus one
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsequencedirection/forward?language=objc)
     #[doc(alias = "MPSRNNSequenceDirectionForward")]
     pub const Forward: Self = Self(0);
     /// The input sequence is processed from index array length minus one to zero
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsequencedirection/backward?language=objc)
     #[doc(alias = "MPSRNNSequenceDirectionBackward")]
     pub const Backward: Self = Self(1);
 }
@@ -34,25 +30,22 @@ unsafe impl RefEncode for MPSRNNSequenceDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode?language=objc)
+/// Modes that define how two images or matrices are combined.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNBidirectionalCombineMode(pub NSUInteger);
 impl MPSRNNBidirectionalCombineMode {
+    /// A mode in which two sequences are kept separate.
     /// The two sequences are kept separate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode/none?language=objc)
     #[doc(alias = "MPSRNNBidirectionalCombineModeNone")]
     pub const None: Self = Self(0);
+    /// A mode in which two sequences are summed to form a single output.
     /// The two sequences are summed together to form a single output
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode/add?language=objc)
     #[doc(alias = "MPSRNNBidirectionalCombineModeAdd")]
     pub const Add: Self = Self(1);
+    /// A mode in which two sequences are concatenated along the feature channels to form a single output.
     /// The two sequences are concatenated together along the feature channels to form a single output
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode/concatenate?language=objc)
     #[doc(alias = "MPSRNNBidirectionalCombineModeConcatenate")]
     pub const Concatenate: Self = Self(2);
 }
@@ -66,11 +59,10 @@ unsafe impl RefEncode for MPSRNNBidirectionalCombineMode {
 }
 
 extern_class!(
+    /// A description of a recursive neural network block or layer.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSRNNDescriptor specifies a Recursive neural network block/layer descriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSRNNDescriptor;
@@ -176,6 +168,41 @@ impl MPSRNNDescriptor {
 }
 
 extern_class!(
+    /// A description of a simple recurrent block or layer.
+    ///
+    /// ## Overview
+    ///
+    /// The recurrent neural network (RNN) layer initialized with a [`MPSRNNSingleGateDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor) transforms the input data (image or matrix) and previous output with a set of filters. Each produces one feature map in the new output data.
+    ///
+    /// You may provide the RNN unit with a single input or a sequence of inputs.
+    ///
+    /// ### Description of Operation
+    ///
+    /// 1. Let `x_j` be the input data (at time index `t` of sequence, `j` index containing quadruplet: batch index, `x,y` and feature index (`x = y = 0` for matrices)).
+    ///
+    /// 2. Let `h0_j` be the recurrent input (previous output) data from previous time step (at time index `t-1` of sequence).
+    ///
+    /// 3. Let `h1_i` be the output data produced at this time step.
+    ///
+    /// 4. Let `W_ij, U_ij` be the weights for input and recurrent input data, respectively.
+    ///
+    /// 5. Let `b_i` be a bias term.
+    ///
+    /// 6. Let `gi(x)` be a neuron activation function.
+    ///
+    /// The new output image `h1_i` data is computed as follows:
+    ///
+    /// ```other
+    /// h1_i = gi( W_ij * x_j + U_ij * h0_j  + b_i )
+    /// ```
+    ///
+    /// The `*` stands for convolution (see [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer)) or matrix-vector/matrix multiplication (see [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer)).
+    ///
+    /// Summation is over index `j` (except for the batch index), but there’s no summation over repeated index `i` (the output index).
+    ///
+    /// Note that for validity, all intermediate images must be of same size, and the `U` matrix must be square (that is, [`outputFeatureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/outputfeaturechannels) `==` [`inputFeatureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/inputfeaturechannels)). Also, the bias terms are scalars with regard to spatial dimensions.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSRNNSingleGateDescriptor specifies a simple recurrent block/layer descriptor.
@@ -206,8 +233,6 @@ extern_class!(
     /// repeated index i - the output index.
     /// Note that for validity all intermediate images have to be of same size and the U matrix has to be square
     /// (ie. outputFeatureChannels == inputFeatureChannels in those). Also the bias terms are scalars wrt. spatial dimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsinglegatedescriptor?language=objc)
     #[unsafe(super(MPSRNNDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSRNNSingleGateDescriptor;
@@ -285,6 +310,58 @@ impl MPSRNNSingleGateDescriptor {
 }
 
 extern_class!(
+    /// A description of a gated recurrent unit block or layer.
+    ///
+    /// ## Overview
+    ///
+    /// The recurrent neural network (RNN) layer initialized with a [`MPSGRUDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsgrudescriptor) transforms the input data (image or matrix) and previous output with a set of filters. Each produces one feature map in the output data according to the gated recurrent unit (GRU) unit formula detailed below.
+    ///
+    /// You may provide the GRU unit with a single input or a sequence of inputs. The layer also supports p-norm gating.
+    ///
+    /// ### Description of Operation
+    ///
+    /// 1. Let `x_j` be the input data (at time index `t` of sequence, `j` index containing quadruplet: batch index, `x,y` and feature index (`x = y = 0` for matrices)).
+    ///
+    /// 2. Let `h0_`j be the recurrent input (previous output) data from previous time step (at time index `t-1` of sequence).
+    ///
+    /// 3. Let `h_i` be the proposed new output.
+    ///
+    /// 4. Let `h1_i` be the output data produced at this time step.
+    ///
+    /// 5. Let `Wz_ij`, `Uz_ij` be the input gate weights for input and recurrent input data, respectively.
+    ///
+    /// 6. Let `bi_i` be the bias for the input gate.
+    ///
+    /// 7. Let `Wr_ij`, `Ur_ij` be the recurrent gate weights for input and recurrent input data, respectively.
+    ///
+    /// 8. Let `br_i` be the bias for the recurrent gate.
+    ///
+    /// 9. Let `Wh_ij`, `Uh_ij`, `Vh_ij` be the output gate weights for input, recurrent gate, and input gate, respectively.
+    ///
+    /// 10. Let `bh_i` be the bias for the output gate.
+    ///
+    /// 11. Let `gz(x``)`, `gr(x)`, `gh(x)` be the neuron activation function for the input, recurrent, and output gates.
+    ///
+    /// 12. Let `p > 0` be a scalar variable (typical `p >= 1.0`) that defines the p-norm gating norm value.
+    ///
+    /// The output of the GRU layer is computed as follows:
+    ///
+    /// ```other
+    /// z_i = gz(  Wz_ij * x_j  +  Uz_ij * h0_j  +  bz_i  )
+    /// r_i = gr(  Wr_ij * x_j  +  Ur_ij * h0_j  +  br_i  )
+    /// c_i =      Uh_ij * (r_j h0_j)  +  Vh_ij * (z_j h0_j)
+    /// h_i = gh(  Wh_ij * x_j  + c_i + bh_i  )
+    ///
+    /// h1_i = ( 1 - z_i ^ p)^(1/p) h0_i + z_i h_i
+    /// ```
+    ///
+    /// The `*` stands for convolution (see [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer)) or matrix-vector/matrix multiplication (see [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer)).
+    ///
+    /// Summation is over index `j` (except for the batch index), but there’s no summation over repeated index `i`,` `the output index.
+    ///
+    /// Note that for validity, all intermediate images must be of same size, and all `U` and `V` matrices must be square (that is, [`outputFeatureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/outputfeaturechannels) `==` [`inputFeatureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/inputfeaturechannels)). Also, the bias terms are scalars with regard to spatial dimensions. The conventional GRU block is achieved by setting `Vh = 0` (nil), and the Minimal Gated Unit is achieved with `Uh = 0`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSGRUDescriptor specifies a GRU (Gated Recurrent Unit) block/layer descriptor.
@@ -332,8 +409,6 @@ extern_class!(
     /// (ie. outputFeatureChannels == inputFeatureChannels in those). Also the bias terms are scalars wrt. spatial dimensions.
     /// The conventional GRU block is achieved by setting Vh = 0 (nil) and the so-called Minimal Gated Unit is achieved with Uh = 0.
     /// (The Minimal Gated Unit is detailed in: https://arxiv.org/abs/1603.09420 and there they call z_i the value of the forget gate).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgrudescriptor?language=objc)
     #[unsafe(super(MPSRNNDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSGRUDescriptor;
@@ -527,6 +602,66 @@ impl MPSGRUDescriptor {
 }
 
 extern_class!(
+    /// A description of a long short-term memory block or layer.
+    ///
+    /// ## Overview
+    ///
+    /// The recurrent neural network (RNN) layer initialized with [`MPSLSTMDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor) transforms the input data (image or matrix), the memory cell data, and previous output with a set of filters. Each produces one feature map in the output data and memory cell according to the long short-term memory (LSTM) formula detailed below.
+    ///
+    /// You may provide the LSTM unit with a single input or a sequence of inputs.
+    ///
+    /// ### Description of Operation
+    ///
+    /// 1. Let `x_j` be the input data (at time index `t` of sequence, `j` index containing quadruplet: batch index, `x`,`y` and feature index (`x = y = 0` for matrices)).
+    ///
+    /// 2. Let `h0_j` be the recurrent input (previous output) data from previous time step (at time index `t-1` of sequence).
+    ///
+    /// 3. Let `h1_i` be the output data produced at this time step.
+    ///
+    /// 4. Let `c0_j` be the previous memory cell data (at time index `t-1` of sequence).
+    ///
+    /// 5. Let `c1_i` be the new memory cell data (at time index `t-1` of sequence).
+    ///
+    /// 6. Let `Wi_ij`, `Ui_ij`, `Vi_ij` be the input gate weights for input, recurrent input, and memory cell (peephole) data, respectively.
+    ///
+    /// 7. Let `bi_i` be the bias for the input gate.
+    ///
+    /// 8. Let `Wf_ij`, `Uf_ij`, `Vf_ij` be the forget gate weights for input, recurrent input, and memory cell data, respectively.
+    ///
+    /// 9. Let `bf_i` be the bias for the forget gate.
+    ///
+    /// 10. Let `Wo_ij`, `Uo_ij`, `Vo_ij` be the output gate weights for input, recurrent input, and memory cell data, respectively.
+    ///
+    /// 11. Let `bo_i` be the bias for the output gate.
+    ///
+    /// 12. Let `Wc_ij`, `Uc_ij`, `Vc_ij` be the memory cell gate weights for input, recurrent input, and memory cell data, respectively.
+    ///
+    /// 13. Let `bc_i` be the bias for the memory cell gate.
+    ///
+    /// 14. Let `gi(x)`, `gf(x)`, `go(x)`, `gc(x)` be the neuron activation function for the input, forget, output gate, and memory cell gate.
+    ///
+    /// 15. Let `gh(x)` be the activation function applied to result memory cell data.
+    ///
+    /// The output of the LSTM layer is computed as follows:
+    ///
+    /// ```other
+    /// I_i = gi(  Wi_ij * x_j  +  Ui_ij * h0_j  +  Vi_ij * c0_j  + bi_i  )
+    /// F_i = gf(  Wf_ij * x_j  +  Uf_ij * h0_j  +  Vf_ij * c0_j  + bf_i  )
+    /// C_i = gc(  Wc_ij * x_j  +  Uc_ij * h0_j  +  Vc_ij * c0_j  + bc_i  )
+    ///
+    /// c1_i = F_i c0_i  +  I_i C_i
+    ///
+    /// O_i = go(  Wo_ij * x_j  +  Uo_ij * h0_j  +  Vo_ij * c1_j  + bo_i  )
+    /// h1_i = O_i gh( c1_i )
+    /// ```
+    ///
+    /// The `*` stands for convolution (see [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer)) or matrix-vector/matrix multiplication (see [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer)).
+    ///
+    /// Summation is over index `j` (except for the batch index), but there’s no summation over repeated index `i` (the output index).
+    ///
+    /// Note that for validity, all intermediate images must be of same size, and all `U` and `V` matrices must be square (that is, [`outputFeatureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/outputfeaturechannels) == [`inputFeatureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor/inputfeaturechannels)). Also, the bias terms are scalars with regard to spatial dimensions.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSLSTMDescriptor specifies a LSTM block/layer descriptor.
@@ -578,8 +713,6 @@ extern_class!(
     /// repeated index i - the output index.
     /// Note that for validity all intermediate images have to be of same size and all U and V matrices have to be square
     /// (ie. outputFeatureChannels == inputFeatureChannels in those). Also the bias terms are scalars wrt. spatial dimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpslstmdescriptor?language=objc)
     #[unsafe(super(MPSRNNDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSLSTMDescriptor;
@@ -904,11 +1037,10 @@ impl MPSLSTMDescriptor {
 }
 
 extern_class!(
+    /// A class that holds all the data that’s passed from one sequence iteration of the image-based recurrent neural network layer (stack) to the next.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This class holds all the data that is passed from one sequence iteration of the image-based RNN layer (stack) to the next.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnrecurrentimagestate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -1082,6 +1214,27 @@ impl MPSRNNRecurrentImageState {
 }
 
 extern_class!(
+    /// A recurrent neural network layer for inference on Metal Performance Shaders images.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer) specifies a recurrent neural network layer for inference on [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects. Two types of recurrent layers are supported:
+    ///
+    /// - [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer)—Operates with convolutions on images.
+    ///
+    /// - [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer)—Operates on matrices.
+    ///
+    /// You can use [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer) to implement the latter by using 1 x 1 images, but due to image size restrictions and performance, [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer) is the better choice for linear recurrent layers.
+    ///
+    /// [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer) is initialized using either of the following:
+    ///
+    /// - A single [`MPSRNNDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor) instance, which further specifies the recurrent network layer.
+    ///
+    /// - An array of [`MPSRNNDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor) instances, which specifies a stack of recurrent layers that can operate in parallel a subset of the inputs in a sequence of inputs and recurrent outputs.
+    ///
+    /// Stacks with bidirectionally traversing encode functions don’t support starting from a previous set of recurrent states. However, you can achieve this effect by defining two separate unidirectional stacks of layers, running the same input sequence on them separately (one forward and one backward), and ultimately combining the two result sequences.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSRNNImageInferenceLayer specifies a recurrent neural network layer for inference on MPSImages.
@@ -1101,8 +1254,6 @@ extern_class!(
     /// from a previous set of recurrent states, but this can be achieved quite easily by defining two separate
     /// unidirectional stacks of layers, and running the same input sequence on them separately (one forwards and one backwards)
     /// and ultimately combining the two result sequences as desired with auxiliary functions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1430,11 +1581,10 @@ impl MPSRNNImageInferenceLayer {
 }
 
 extern_class!(
+    /// A class holds all the data that’s passed from one sequence iteration of the matrix-based recurrent neural network layer to the next.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This class holds all the data that is passed from one sequence iteration of the matrix-based RNN layer to the next.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnrecurrentmatrixstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -1608,6 +1758,27 @@ impl MPSRNNRecurrentMatrixState {
 }
 
 extern_class!(
+    /// A recurrent neural network layer for inference on Metal Performance Shaders matrices.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer) specifies a recurrent neural network layer for inference on [`MPSMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix) objects. Two types of recurrent layers are supported:
+    ///
+    /// - [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer)—Operates with convolutions on images.
+    ///
+    /// - [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer)—Operates on matrices.
+    ///
+    /// You can use [`MPSRNNImageInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnimageinferencelayer) to implement the latter by using 1 x 1 images, but due to image size restrictions and performance, [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer) is the better choice for linear recurrent layers.
+    ///
+    /// [`MPSRNNMatrixInferenceLayer`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer) is initialized using either of the following:
+    ///
+    /// - A single [`MPSRNNDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor) instance, which further specifies the recurrent network layer.
+    ///
+    /// - An array of [`MPSRNNDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnndescriptor) instances, which specifies a stack of recurrent layers that can operate in parallel a subset of the inputs in a sequence of inputs and recurrent outputs.
+    ///
+    /// Stacks with bidirectionally traversing encode functions don’t support starting from a previous set of recurrent states. However, you can achieve this effect by defining two separate unidirectional stacks of layers, running the same input sequence on them separately (one forward and one backward), and ultimately combining the two result sequences.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSRNNMatrixInferenceLayer specifies a recurrent neural network layer for inference on MPSMatrices.
@@ -1657,8 +1828,6 @@ extern_class!(
     /// <
     /// => y = x W^T, where x is the matrix containing
     /// the input vectors as rows, y is the matrix containing the output vectors as rows and W is the weight matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixinferencelayer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -2012,11 +2181,10 @@ impl MPSRNNMatrixInferenceLayer {
 }
 
 extern_class!(
+    /// A class that holds data from a forward pass to be used in a backward pass.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This class holds the data that is passed from the forward pass needed in the backward pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtrainingstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -2159,100 +2327,70 @@ impl MPSRNNMatrixTrainingState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid?language=objc)
+/// Options that define which matrix is copied in or out of a trainable RNN layer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNMatrixId(pub NSUInteger);
 impl MPSRNNMatrixId {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/singlegateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdSingleGateInputWeights")]
     pub const SingleGateInputWeights: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/singlegaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdSingleGateRecurrentWeights")]
     pub const SingleGateRecurrentWeights: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/singlegatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdSingleGateBiasTerms")]
     pub const SingleGateBiasTerms: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateInputWeights")]
     pub const LSTMInputGateInputWeights: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateRecurrentWeights")]
     pub const LSTMInputGateRecurrentWeights: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateMemoryWeights")]
     pub const LSTMInputGateMemoryWeights: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstminputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMInputGateBiasTerms")]
     pub const LSTMInputGateBiasTerms: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateInputWeights")]
     pub const LSTMForgetGateInputWeights: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateRecurrentWeights")]
     pub const LSTMForgetGateRecurrentWeights: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateMemoryWeights")]
     pub const LSTMForgetGateMemoryWeights: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmforgetgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMForgetGateBiasTerms")]
     pub const LSTMForgetGateBiasTerms: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateInputWeights")]
     pub const LSTMMemoryGateInputWeights: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateRecurrentWeights")]
     pub const LSTMMemoryGateRecurrentWeights: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateMemoryWeights")]
     pub const LSTMMemoryGateMemoryWeights: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmmemorygatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMMemoryGateBiasTerms")]
     pub const LSTMMemoryGateBiasTerms: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateInputWeights")]
     pub const LSTMOutputGateInputWeights: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateRecurrentWeights")]
     pub const LSTMOutputGateRecurrentWeights: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgatememoryweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateMemoryWeights")]
     pub const LSTMOutputGateMemoryWeights: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/lstmoutputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdLSTMOutputGateBiasTerms")]
     pub const LSTMOutputGateBiasTerms: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruinputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUInputGateInputWeights")]
     pub const GRUInputGateInputWeights: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruinputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUInputGateRecurrentWeights")]
     pub const GRUInputGateRecurrentWeights: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruinputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUInputGateBiasTerms")]
     pub const GRUInputGateBiasTerms: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/grurecurrentgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRURecurrentGateInputWeights")]
     pub const GRURecurrentGateInputWeights: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/grurecurrentgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRURecurrentGateRecurrentWeights")]
     pub const GRURecurrentGateRecurrentWeights: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/grurecurrentgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRURecurrentGateBiasTerms")]
     pub const GRURecurrentGateBiasTerms: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgateinputweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateInputWeights")]
     pub const GRUOutputGateInputWeights: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgaterecurrentweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateRecurrentWeights")]
     pub const GRUOutputGateRecurrentWeights: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgateinputgateweights?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateInputGateWeights")]
     pub const GRUOutputGateInputGateWeights: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/gruoutputgatebiasterms?language=objc)
     #[doc(alias = "MPSRNNMatrixIdGRUOutputGateBiasTerms")]
     pub const GRUOutputGateBiasTerms: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid/mpsrnnmatrixid_count?language=objc)
     #[doc(alias = "MPSRNNMatrixId_count")]
     pub const _count: Self = Self(29);
 }
@@ -2266,6 +2404,7 @@ unsafe impl RefEncode for MPSRNNMatrixId {
 }
 
 extern_class!(
+    /// A layer for training recurrent neural networks on Metal Performance Shaders matrices.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSRNNMatrixTrainingLayer specifies a recurrent neural network layer for training on MPSMatrices.
@@ -2301,8 +2440,6 @@ extern_class!(
     /// <
     /// => y = x W^T, where x is the matrix containing
     /// the input vectors as rows, y is the matrix containing the output vectors as rows and W is the weight matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixtraininglayer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

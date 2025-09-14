@@ -12,7 +12,15 @@ use objc2_user_notifications::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/connectionoptions?language=objc)
+    /// A data object containing information about the reasons why UIKit created the scene.
+    ///
+    /// ## Overview
+    ///
+    /// UIKit creates scenes for many reasons. It might do so in response to a Handoff request or a request to open a URL. When there’s a specific reason for creating a scene, UIKit fills a [`UISceneConnectionOptions`](https://developer.apple.com/documentation/uikit/uiscene/connectionoptions) object with the associated data and passes it to your delegate at connection time. Use the information in this object to respond accordingly. For example, open the URLs that UIKit provides, and display their contents in the scene.
+    ///
+    /// Don’t create [`UISceneConnectionOptions`](https://developer.apple.com/documentation/uikit/uiscene/connectionoptions) objects directly. UIKit creates [`UISceneConnectionOptions`](https://developer.apple.com/documentation/uikit/uiscene/connectionoptions) objects for you and passes them to the [`scene:willConnectToSession:options:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scene(_:willconnectto:options:)) method of your scene delegate.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -68,7 +76,13 @@ impl UISceneConnectionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/openurloptions?language=objc)
+    /// Options that UIKit provides when asking your app to open a URL.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a [`UISceneOpenURLOptions`](https://developer.apple.com/documentation/uikit/uiscene/openurloptions) object directly. UIKit creates one for you when your app receives a request to open a URL. Use the information in the object to determine how to respond to the URL.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -109,7 +123,7 @@ impl UISceneOpenURLOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/openexternalurloptions?language=objc)
+    /// Options you specify when asking a scene to open a URL.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -159,22 +173,34 @@ impl UISceneOpenExternalURLOptions {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior?language=objc)
+/// A set of behaviors that specify how a new scene joins a scene collection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneCollectionJoinBehavior(pub NSInteger);
 impl UISceneCollectionJoinBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/automatic?language=objc)
+    /// A behavior that uses the system preferences for joining collections.
     #[doc(alias = "UISceneCollectionJoinBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/preferred?language=objc)
+    /// A behavior that adds the new scene to the requesting scene’s collection and activate it, or attempts to join a compatible collection.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`requestingScene`](https://developer.apple.com/documentation/uikit/uiscene/activationrequestoptions/requestingscene) is set, this behavior adds the new scene to its collection and activates it. Otherwise, the scene attempts to join a compatible collection.
+    ///
+    ///
     #[doc(alias = "UISceneCollectionJoinBehaviorPreferred")]
     pub const Preferred: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/disallowed?language=objc)
+    /// A behavior that creates a new collection for the new scene, ignoring system preferences.
     #[doc(alias = "UISceneCollectionJoinBehaviorDisallowed")]
     pub const Disallowed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/preferredwithoutactivating?language=objc)
+    /// A behavior that adds the new scene to the requesting scene’s collection without activating it, or attempts to join a compatible collection.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`requestingScene`](https://developer.apple.com/documentation/uikit/uiscene/activationrequestoptions/requestingscene) is set, this behavior adds the new scene without deactivating the [`requestingScene`](https://developer.apple.com/documentation/uikit/uiscene/activationrequestoptions/requestingscene). Otherwise, this behavior behaves the same as [`UISceneCollectionJoinBehaviorPreferred`](https://developer.apple.com/documentation/uikit/uiscenecollectionjoinbehavior/preferred). For example, in apps built with Mac Catalyst, you can use this behavior to open a link in a new tab in the background.
+    ///
+    ///
     #[doc(alias = "UISceneCollectionJoinBehaviorPreferredWithoutActivating")]
     pub const PreferredWithoutActivating: Self = Self(3);
 }
@@ -188,7 +214,13 @@ unsafe impl RefEncode for UISceneCollectionJoinBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationrequestoptions?language=objc)
+    /// An object that contains information you want the system to use when activating the session associated with a scene.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UISceneActivationRequestOptions`](https://developer.apple.com/documentation/uikit/uiscene/activationrequestoptions) object before you activate or create a scene using the [`activateSceneSession(for:errorHandler:)`](https://developer.apple.com/documentation/uikit/uiapplication/activatescenesession(for:errorhandler:)) (Swift) or [`activateSceneSessionForRequest:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/activatescenesessionforrequest:errorhandler:) (Objective-C) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). Use this object to specify which of your app’s existing scenes originated the request for the new scene.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -240,7 +272,13 @@ impl UISceneActivationRequestOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedestructionrequestoptions?language=objc)
+    /// An object you pass to UIKit to permanently remove a scene and its associated session from your app.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UISceneDestructionRequestOptions`](https://developer.apple.com/documentation/uikit/uiscenedestructionrequestoptions) object before calling the [`requestSceneSessionDestruction:options:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/requestscenesessiondestruction(_:options:errorhandler:)) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). When destroying a [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene), create a [`UIWindowSceneDestructionRequestOptions`](https://developer.apple.com/documentation/uikit/uiwindowscenedestructionrequestoptions) object instead and use it to configure the dismissal animations.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

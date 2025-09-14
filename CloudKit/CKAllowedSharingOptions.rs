@@ -7,26 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption?language=objc)
+/// An object that controls participant access options.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSharingParticipantAccessOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantAccessOption: NSUInteger {
+/// The permission option the system uses to control whether a user can share publicly.
 /// If specified, the system sharing UI will allow the user to share publicly i.e. anyone with the link has access.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption/anyonewithlink?language=objc)
         #[doc(alias = "CKSharingParticipantAccessOptionAnyoneWithLink")]
         const AnyoneWithLink = 1<<0;
+/// The permission option the system uses to control whether a user can share privately.
 /// If specified, the system sharing UI will allow the user to share privately to specified recipients.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption/specifiedrecipientsonly?language=objc)
         #[doc(alias = "CKSharingParticipantAccessOptionSpecifiedRecipientsOnly")]
         const SpecifiedRecipientsOnly = 1<<1;
+/// The permission option the system uses to control whether a user can share publicly or privately.
 /// Allow the user to configure the share with either access option.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption/any?language=objc)
         #[doc(alias = "CKSharingParticipantAccessOptionAny")]
         const Any = CKSharingParticipantAccessOption::AnyoneWithLink.0|CKSharingParticipantAccessOption::SpecifiedRecipientsOnly.0;
     }
@@ -40,26 +37,23 @@ unsafe impl RefEncode for CKSharingParticipantAccessOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption?language=objc)
+/// An object that controls participant permission options.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantPermissionOption: NSUInteger {
+/// The permission option the system uses to control whether a user can grant read-only access.
 /// If specified, the system sharing UI will allow the user to grant participants read-only permissions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption/readonly?language=objc)
         #[doc(alias = "CKSharingParticipantPermissionOptionReadOnly")]
         const ReadOnly = 1<<0;
+/// The permission option the system uses to control whether a user can grant write access.
 /// If specified, the system sharing UI will allow the user to grant participants read/write permissions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption/readwrite?language=objc)
         #[doc(alias = "CKSharingParticipantPermissionOptionReadWrite")]
         const ReadWrite = 1<<1;
+/// The permission option the system uses to control whether a user can grant read-only or write access.
 /// Allow the user to configure added share participants with either permission option.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption/any?language=objc)
         #[doc(alias = "CKSharingParticipantPermissionOptionAny")]
         const Any = CKSharingParticipantPermissionOption::ReadOnly.0|CKSharingParticipantPermissionOption::ReadWrite.0;
     }
@@ -74,7 +68,13 @@ unsafe impl RefEncode for CKSharingParticipantPermissionOption {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckallowedsharingoptions?language=objc)
+    /// An object that controls participant access and permission options.
+    ///
+    /// ## Overview
+    ///
+    /// Register an instance of this class with an [`NSItemProvider`](https://developer.apple.com/documentation/foundation/nsitemprovider) or when preparing a [`CKShareTransferRepresentation.ExportedShare`](https://developer.apple.com/documentation/cloudkit/cksharetransferrepresentation/exportedshare) before your app invokes the share sheet. The share sheet uses the registered `CKAllowedSharingOptions` object to let the user choose between the allowed options when sharing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKAllowedSharingOptions;

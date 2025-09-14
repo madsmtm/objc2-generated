@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A sample object representing the results of a standard hearing test.
+    /// A sample that stores an audiogram.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsample?language=objc)
+    /// ## Overview
+    ///
+    /// This sample stores the results from a hearing test. The sample stores the audiogram data as an array of sensitivity points.
+    ///
+    ///
+    /// A sample object representing the results of a standard hearing test.
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

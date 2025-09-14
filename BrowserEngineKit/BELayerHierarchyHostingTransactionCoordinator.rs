@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator?language=objc)
+    /// Synchronizes updates to views and layers in different processes.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BELayerHierarchyHostingTransactionCoordinator;

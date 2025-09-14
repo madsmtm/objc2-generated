@@ -11,48 +11,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerContentsGravity = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsformat?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerContentsFormat = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsfilter?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerContentsFilter = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercornercurve?language=objc)
 // NS_TYPED_ENUM
 pub type CALayerCornerCurve = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask?language=objc)
+/// These constants are used by the [`autoresizingMask`](https://developer.apple.com/documentation/quartzcore/calayer/autoresizingmask) property.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAAutoresizingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAAutoresizingMask: c_uint {
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/kcalayernotsizable?language=objc)
+/// The receiver cannot be resized.
         #[doc(alias = "kCALayerNotSizable")]
         const LayerNotSizable = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerminxmargin?language=objc)
+/// The left margin between the receiver and its superview is flexible.
         #[doc(alias = "kCALayerMinXMargin")]
         const LayerMinXMargin = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerwidthsizable?language=objc)
+/// The receiver’s width is flexible.
         #[doc(alias = "kCALayerWidthSizable")]
         const LayerWidthSizable = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layermaxxmargin?language=objc)
+/// The right margin between the receiver and its superview is flexible.
         #[doc(alias = "kCALayerMaxXMargin")]
         const LayerMaxXMargin = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerminymargin?language=objc)
+/// The bottom margin between the receiver and its superview is flexible.
         #[doc(alias = "kCALayerMinYMargin")]
         const LayerMinYMargin = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layerheightsizable?language=objc)
+/// The receiver’s height is flexible.
         #[doc(alias = "kCALayerHeightSizable")]
         const LayerHeightSizable = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask/layermaxymargin?language=objc)
+/// The top margin between the receiver and its superview is flexible.
         #[doc(alias = "kCALayerMaxYMargin")]
         const LayerMaxYMargin = 1<<5;
     }
@@ -66,66 +62,77 @@ unsafe impl RefEncode for CAAutoresizingMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/tonemapmode-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type CAToneMapMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/tonemapmode-swift.struct/automatic?language=objc)
     pub static CAToneMapModeAutomatic: &'static CAToneMapMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/tonemapmode-swift.struct/never?language=objc)
     pub static CAToneMapModeNever: &'static CAToneMapMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/tonemapmode-swift.struct/ifsupported?language=objc)
     pub static CAToneMapModeIfSupported: &'static CAToneMapMode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/dynamicrange?language=objc)
 // NS_TYPED_ENUM
 pub type CADynamicRange = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/dynamicrange/automatic?language=objc)
     pub static CADynamicRangeAutomatic: &'static CADynamicRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/dynamicrange/standard?language=objc)
     pub static CADynamicRangeStandard: &'static CADynamicRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/dynamicrange/constrainedhigh?language=objc)
     pub static CADynamicRangeConstrainedHigh: &'static CADynamicRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer/dynamicrange/high?language=objc)
     pub static CADynamicRangeHigh: &'static CADynamicRange;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask?language=objc)
+/// This mask is used by the [`edgeAntialiasingMask`](https://developer.apple.com/documentation/quartzcore/calayer/edgeantialiasingmask) property.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAEdgeAntialiasingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAEdgeAntialiasingMask: c_uint {
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layerleftedge?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that the left edge of the receiver’s content should be antialiased.
+///
+///
         #[doc(alias = "kCALayerLeftEdge")]
         const LayerLeftEdge = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layerrightedge?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that the right edge of the receiver’s content should be antialiased.
+///
+///
         #[doc(alias = "kCALayerRightEdge")]
         const LayerRightEdge = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layerbottomedge?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that the bottom edge of the receiver’s content should be antialiased.
+///
+///
         #[doc(alias = "kCALayerBottomEdge")]
         const LayerBottomEdge = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask/layertopedge?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that the top edge of the receiver’s content should be antialiased.
+///
+///
         #[doc(alias = "kCALayerTopEdge")]
         const LayerTopEdge = 1<<3;
     }
@@ -139,23 +146,18 @@ unsafe impl RefEncode for CAEdgeAntialiasingMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CACornerMask(pub NSUInteger);
 bitflags::bitflags! {
     impl CACornerMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layerminxminycorner?language=objc)
         #[doc(alias = "kCALayerMinXMinYCorner")]
         const LayerMinXMinYCorner = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layermaxxminycorner?language=objc)
         #[doc(alias = "kCALayerMaxXMinYCorner")]
         const LayerMaxXMinYCorner = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layerminxmaxycorner?language=objc)
         #[doc(alias = "kCALayerMinXMaxYCorner")]
         const LayerMinXMaxYCorner = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask/layermaxxmaxycorner?language=objc)
         #[doc(alias = "kCALayerMaxXMaxYCorner")]
         const LayerMaxXMaxYCorner = 1<<3;
     }
@@ -170,9 +172,16 @@ unsafe impl RefEncode for CACornerMask {
 }
 
 extern_class!(
-    /// The base layer class. *
+    /// An object that manages image-based content and allows you to perform animations on that content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayer?language=objc)
+    /// ## Overview
+    ///
+    /// Layers are often used to provide the backing store for views but can also be used without a view to display content. A layer’s main job is to manage the visual content that you provide but the layer itself has visual attributes that can be set, such as a background color, border, and shadow. In addition to managing visual content, the layer also maintains information about the geometry of its content (such as its position, size, and transform) that is used to present that content onscreen. Modifying the properties of the layer is how you initiate animations on the layer’s content or geometry. A layer object encapsulates the duration and pacing of a layer and its animations by adopting the [`CAMediaTiming`](https://developer.apple.com/documentation/quartzcore/camediatiming) protocol, which defines the layer’s timing information.
+    ///
+    /// If the layer object was created by a view, the view typically assigns itself as the layer’s delegate automatically, and you should not change that relationship. For layers you create yourself, you can assign a [`delegate`](https://developer.apple.com/documentation/quartzcore/calayer/delegate) object and use that object to provide the contents of the layer dynamically and perform other tasks. A layer may also have a layout manager object (assigned to the [`layoutManager`](https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager) property) to manage the layout of subviews separately.
+    ///
+    ///
+    /// The base layer class. *
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CALayer;
@@ -1068,9 +1077,8 @@ impl DefaultRetained for CALayer {
 }
 
 extern_protocol!(
+    /// Methods that allow an object to manage the layout of a layer and its sublayers.
     /// Layout manager protocol. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayoutmanager?language=objc)
     pub unsafe trait CALayoutManager: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
@@ -1091,9 +1099,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Action (event handler) protocol. *
+    /// An interface that allows instances to respond to actions triggered by a Core Animation layer change.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caaction?language=objc)
+    /// ## Overview
+    ///
+    /// When queried with an action identifier (a key path, an external action name, or a predefined action identifier) a layer returns the appropriate action object–which must implement the [`CAAction`](https://developer.apple.com/documentation/quartzcore/caaction) protocol–and sends it a [`runActionForKey:object:arguments:`](https://developer.apple.com/documentation/quartzcore/caaction/run(forkey:object:arguments:)) message.
+    ///
+    ///
+    /// Action (event handler) protocol. *
     pub unsafe trait CAAction {
         /// # Safety
         ///
@@ -1115,9 +1128,14 @@ extern_conformance!(
 );
 
 extern_protocol!(
-    /// Delegate methods. *
+    /// Methods your app can implement to respond to layer-related events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayerdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// You can implement the methods of this protocol to provide the layer’s content, handle the layout of sublayers, and provide custom animation actions to perform. The object that implements this protocol must be assigned to the [`delegate`](https://developer.apple.com/documentation/quartzcore/calayer/delegate) property of the layer object.
+    ///
+    ///
+    /// Delegate methods. *
     pub unsafe trait CALayerDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(displayLayer:))]
@@ -1152,133 +1170,121 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// The content is horizontally and vertically centered in the bounds rectangle.
     /// Layer `contentsGravity' values. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/center?language=objc)
     pub static kCAGravityCenter: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/top?language=objc)
+    /// The content is horizontally centered at the top-edge of the bounds rectangle.
     pub static kCAGravityTop: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/bottom?language=objc)
+    /// The content is horizontally centered at the bottom-edge of the bounds rectangle.
     pub static kCAGravityBottom: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/left?language=objc)
+    /// The content is vertically centered at the left-edge of the bounds rectangle.
     pub static kCAGravityLeft: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/right?language=objc)
+    /// The content is vertically centered at the right-edge of the bounds rectangle.
     pub static kCAGravityRight: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/topleft?language=objc)
+    /// The content is positioned in the top-left corner of the bounds rectangle.
     pub static kCAGravityTopLeft: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/topright?language=objc)
+    /// The content is positioned in the top-right corner of the bounds rectangle.
     pub static kCAGravityTopRight: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/bottomleft?language=objc)
+    /// The content is positioned in the bottom-left corner of the bounds rectangle.
     pub static kCAGravityBottomLeft: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/bottomright?language=objc)
+    /// The content is positioned in the bottom-right corner of the bounds rectangle.
     pub static kCAGravityBottomRight: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/resize?language=objc)
+    /// The content is resized to fit the entire bounds rectangle.
     pub static kCAGravityResize: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/resizeaspect?language=objc)
+    /// The content is resized to fit the bounds rectangle, preserving the aspect of the content. If the content does not completely fill the bounds rectangle, the content is centered in the partial axis.
     pub static kCAGravityResizeAspect: &'static CALayerContentsGravity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/resizeaspectfill?language=objc)
+    /// The content is resized to completely fill the bounds rectangle, while still preserving the aspect of the content. The content is centered in the axis it exceeds.
     pub static kCAGravityResizeAspectFill: &'static CALayerContentsGravity;
 }
 
 extern "C" {
     /// Layer `contentsFormat` values. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsformat/rgba8uint?language=objc)
     pub static kCAContentsFormatRGBA8Uint: &'static CALayerContentsFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsformat/rgba16float?language=objc)
     pub static kCAContentsFormatRGBA16Float: &'static CALayerContentsFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsformat/gray8uint?language=objc)
     pub static kCAContentsFormatGray8Uint: &'static CALayerContentsFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsformat/automatic?language=objc)
     pub static kCAContentsFormatAutomatic: &'static CALayerContentsFormat;
 }
 
 extern "C" {
+    /// Nearest neighbor interpolation filter.
     /// Contents filter names. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsfilter/nearest?language=objc)
     pub static kCAFilterNearest: &'static CALayerContentsFilter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsfilter/linear?language=objc)
+    /// Linear interpolation filter.
     pub static kCAFilterLinear: &'static CALayerContentsFilter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercontentsfilter/trilinear?language=objc)
+    /// Trilinear minification filter. Enables mipmap generation. Some renderers may ignore this, or impose additional restrictions, such as source images requiring power-of-two dimensions.
     pub static kCAFilterTrilinear: &'static CALayerContentsFilter;
 }
 
 extern "C" {
     /// Corner curve names. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercornercurve/circular?language=objc)
     pub static kCACornerCurveCircular: &'static CALayerCornerCurve;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/calayercornercurve/continuous?language=objc)
     pub static kCACornerCurveContinuous: &'static CALayerCornerCurve;
 }
 
 extern "C" {
+    /// The identifier that represents the action taken when a layer becomes visible, either as a result being inserted into the visible layer hierarchy or the layer is no longer set as hidden.
     /// Layer event names. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaonorderin?language=objc)
     pub static kCAOnOrderIn: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaonorderout?language=objc)
+    /// The identifier that represents the action taken when the layer is removed from the layer hierarchy or is hidden.
     pub static kCAOnOrderOut: &'static NSString;
 }
 
 extern "C" {
+    /// The identifier that represents a transition animation.
     /// The animation key used for transitions. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransition?language=objc)
     pub static kCATransition: &'static NSString;
 }

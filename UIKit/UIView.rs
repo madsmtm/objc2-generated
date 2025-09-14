@@ -12,22 +12,22 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve?language=objc)
+/// Specifies the supported animation curves.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationCurve(pub NSInteger);
 impl UIViewAnimationCurve {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/easeinout?language=objc)
+    /// An ease-in ease-out curve causes the animation to begin slowly, accelerate through the middle of its duration, and then slow again before completing. This is the default curve for most animations.
     #[doc(alias = "UIViewAnimationCurveEaseInOut")]
     pub const EaseInOut: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/easein?language=objc)
+    /// An ease-in curve causes the animation to begin slowly, and then speed up as it progresses.
     #[doc(alias = "UIViewAnimationCurveEaseIn")]
     pub const EaseIn: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/easeout?language=objc)
+    /// An ease-out curve causes the animation to begin quickly, and then slow down as it completes.
     #[doc(alias = "UIViewAnimationCurveEaseOut")]
     pub const EaseOut: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve/linear?language=objc)
+    /// A linear animation curve causes an animation to occur evenly over its duration.
     #[doc(alias = "UIViewAnimationCurveLinear")]
     pub const Linear: Self = Self(3);
 }
@@ -40,49 +40,49 @@ unsafe impl RefEncode for UIViewAnimationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum?language=objc)
+/// Options to specify how a view adjusts its content when its size changes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewContentMode(pub NSInteger);
 impl UIViewContentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaletofill?language=objc)
+    /// The option to scale the content to fit the size of itself by changing the aspect ratio of the content if necessary.
     #[doc(alias = "UIViewContentModeScaleToFill")]
     pub const ScaleToFill: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfit?language=objc)
+    /// The option to scale the content to fit the size of the view by maintaining the aspect ratio. Any remaining area of the view’s bounds is transparent.
     #[doc(alias = "UIViewContentModeScaleAspectFit")]
     pub const ScaleAspectFit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfill?language=objc)
+    /// The option to scale the content to fill the size of the view. Some portion of the content may be clipped to fill the view’s bounds.
     #[doc(alias = "UIViewContentModeScaleAspectFill")]
     pub const ScaleAspectFill: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/redraw?language=objc)
+    /// The option to redisplay the view when the bounds change by invoking the [`setNeedsDisplay`](https://developer.apple.com/documentation/uikit/uiview/setneedsdisplay()) method.
     #[doc(alias = "UIViewContentModeRedraw")]
     pub const Redraw: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/center?language=objc)
+    /// The option to center the content in the view’s bounds, keeping the proportions the same.
     #[doc(alias = "UIViewContentModeCenter")]
     pub const Center: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/top?language=objc)
+    /// The option to center the content aligned at the top in the view’s bounds.
     #[doc(alias = "UIViewContentModeTop")]
     pub const Top: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/bottom?language=objc)
+    /// The option to center the content aligned at the bottom in the view’s bounds.
     #[doc(alias = "UIViewContentModeBottom")]
     pub const Bottom: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/left?language=objc)
+    /// The option to align the content on the left of the view.
     #[doc(alias = "UIViewContentModeLeft")]
     pub const Left: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/right?language=objc)
+    /// The option to align the content on the right of the view.
     #[doc(alias = "UIViewContentModeRight")]
     pub const Right: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/topleft?language=objc)
+    /// The option to align the content in the top-left corner of the view.
     #[doc(alias = "UIViewContentModeTopLeft")]
     pub const TopLeft: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/topright?language=objc)
+    /// The option to align the content in the top-right corner of the view.
     #[doc(alias = "UIViewContentModeTopRight")]
     pub const TopRight: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/bottomleft?language=objc)
+    /// The option to align the content in the bottom-left corner of the view.
     #[doc(alias = "UIViewContentModeBottomLeft")]
     pub const BottomLeft: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/bottomright?language=objc)
+    /// The option to align the content in the bottom-right corner of the view.
     #[doc(alias = "UIViewContentModeBottomRight")]
     pub const BottomRight: Self = Self(12);
 }
@@ -95,25 +95,25 @@ unsafe impl RefEncode for UIViewContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition?language=objc)
+/// Animation transition options for use in an animation block object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationTransition(pub NSInteger);
 impl UIViewAnimationTransition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/none?language=objc)
+    /// The option for indicating that no transition is specified.
     #[doc(alias = "UIViewAnimationTransitionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/flipfromleft?language=objc)
+    /// A transition that flips a view around a vertical axis from left to right. The left side of the view moves towards the front and right side towards the back.
     #[doc(alias = "UIViewAnimationTransitionFlipFromLeft")]
     pub const FlipFromLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/flipfromright?language=objc)
+    /// A transition that flips a view around a vertical axis from right to left. The right side of the view moves towards the front and left side towards the back.
     #[doc(alias = "UIViewAnimationTransitionFlipFromRight")]
     pub const FlipFromRight: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/curlup?language=objc)
+    /// A transition that curls a view up from the bottom.
     #[doc(alias = "UIViewAnimationTransitionCurlUp")]
     pub const CurlUp: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition/curldown?language=objc)
+    /// A transition that curls a view down from the top.
     #[doc(alias = "UIViewAnimationTransitionCurlDown")]
     pub const CurlDown: Self = Self(4);
 }
@@ -126,32 +126,32 @@ unsafe impl RefEncode for UIViewAnimationTransition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct?language=objc)
+/// Options for automatic view resizing.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAutoresizing(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewAutoresizing: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewautoresizing/uiviewautoresizingnone?language=objc)
+/// The option for indicating that the view does not resize.
         #[doc(alias = "UIViewAutoresizingNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexibleleftmargin?language=objc)
+/// Resizing performed by expanding or shrinking a view in the direction of the left margin.
         #[doc(alias = "UIViewAutoresizingFlexibleLeftMargin")]
         const FlexibleLeftMargin = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexiblewidth?language=objc)
+/// Resizing performed by expanding or shrinking a view’s width.
         #[doc(alias = "UIViewAutoresizingFlexibleWidth")]
         const FlexibleWidth = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexiblerightmargin?language=objc)
+/// Resizing performed by expanding or shrinking a view in the direction of the right margin.
         #[doc(alias = "UIViewAutoresizingFlexibleRightMargin")]
         const FlexibleRightMargin = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexibletopmargin?language=objc)
+/// Resizing performed by expanding or shrinking a view in the direction of the top margin.
         #[doc(alias = "UIViewAutoresizingFlexibleTopMargin")]
         const FlexibleTopMargin = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexibleheight?language=objc)
+/// Resizing performed by expanding or shrinking a view’s height.
         #[doc(alias = "UIViewAutoresizingFlexibleHeight")]
         const FlexibleHeight = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct/flexiblebottommargin?language=objc)
+/// Resizing performed by expanding or shrinking a view in the direction of the bottom margin.
         #[doc(alias = "UIViewAutoresizingFlexibleBottomMargin")]
         const FlexibleBottomMargin = 1<<5;
     }
@@ -165,88 +165,151 @@ unsafe impl RefEncode for UIViewAutoresizing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions?language=objc)
+/// Options for animating views using block objects.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewAnimationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/layoutsubviews?language=objc)
+/// Lay out subviews at commit time so that they are animated along with their parent.
         #[doc(alias = "UIViewAnimationOptionLayoutSubviews")]
         const LayoutSubviews = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/allowuserinteraction?language=objc)
+/// Allow the user to interact with views while they are being animated.
         #[doc(alias = "UIViewAnimationOptionAllowUserInteraction")]
         const AllowUserInteraction = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/beginfromcurrentstate?language=objc)
+/// Start the animation from the current setting associated with an already in-flight animation.
+///
+/// ## Discussion
+///
+/// If this key is not present, all in-flight animations are allowed to finish before the new animation is started. If another animation is not in flight, this key has no effect.
+///
+///
         #[doc(alias = "UIViewAnimationOptionBeginFromCurrentState")]
         const BeginFromCurrentState = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/repeat?language=objc)
+/// Repeat the animation indefinitely.
         #[doc(alias = "UIViewAnimationOptionRepeat")]
         const Repeat = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/autoreverse?language=objc)
+/// Run the animation backwards and forwards (must be combined with the repeat option).
         #[doc(alias = "UIViewAnimationOptionAutoreverse")]
         const Autoreverse = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/overrideinheritedduration?language=objc)
+/// Force the animation to use the original duration value specified when the animation was submitted.
+///
+/// ## Discussion
+///
+/// If this key is not present, the animation inherits the remaining duration of the in-flight animation, if any.
+///
+///
         #[doc(alias = "UIViewAnimationOptionOverrideInheritedDuration")]
         const OverrideInheritedDuration = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/overrideinheritedcurve?language=objc)
+/// Force the animation to use the original curve value specified when the animation was submitted.
+///
+/// ## Discussion
+///
+/// If this key is not present, the animation inherits the curve of the in-flight animation, if any.
+///
+///
         #[doc(alias = "UIViewAnimationOptionOverrideInheritedCurve")]
         const OverrideInheritedCurve = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/allowanimatedcontent?language=objc)
+/// Animate the views by changing the property values dynamically and redrawing the view.
+///
+/// ## Discussion
+///
+/// If this key is not present, the views are animated using a snapshot image.
+///
+///
         #[doc(alias = "UIViewAnimationOptionAllowAnimatedContent")]
         const AllowAnimatedContent = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/showhidetransitionviews?language=objc)
+/// Hide or show views during a view transition.
+///
+/// ## Discussion
+///
+/// When present, this key causes views to be hidden or shown (instead of removed or added) when performing a view transition. Both views must already be present in the parent view’s hierarchy when using this key. If this key is not present, the to-view in a transition is added to, and the from-view is removed from, the parent view’s list of subviews.
+///
+///
         #[doc(alias = "UIViewAnimationOptionShowHideTransitionViews")]
         const ShowHideTransitionViews = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/overrideinheritedoptions?language=objc)
+/// The option to not inherit the animation type or any options.
         #[doc(alias = "UIViewAnimationOptionOverrideInheritedOptions")]
         const OverrideInheritedOptions = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curveeaseinout?language=objc)
+/// Specify an ease-in ease-out curve, which causes the animation to begin slowly, accelerate through the middle of its duration, and then slow again before completing.
         #[doc(alias = "UIViewAnimationOptionCurveEaseInOut")]
         const CurveEaseInOut = 0<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curveeasein?language=objc)
+/// An ease-in curve causes the animation to begin slowly, and then speed up as it progresses.
         #[doc(alias = "UIViewAnimationOptionCurveEaseIn")]
         const CurveEaseIn = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curveeaseout?language=objc)
+/// An ease-out curve causes the animation to begin quickly, and then slow as it completes.
         #[doc(alias = "UIViewAnimationOptionCurveEaseOut")]
         const CurveEaseOut = 2<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/curvelinear?language=objc)
+/// A linear animation curve causes an animation to occur evenly over its duration.
         #[doc(alias = "UIViewAnimationOptionCurveLinear")]
         const CurveLinear = 3<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions/uiviewanimationoptiontransitionnone?language=objc)
+/// No transition is specified.
         #[doc(alias = "UIViewAnimationOptionTransitionNone")]
         const TransitionNone = 0<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfromleft?language=objc)
+/// A transition that flips a view around its vertical axis from left to right (the left side of the view moves toward the front and right side toward the back).
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromLeft")]
         const TransitionFlipFromLeft = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfromright?language=objc)
+/// A transition that flips a view around its vertical axis from right to left (the right side of the view moves toward the front and left side toward the back).
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromRight")]
         const TransitionFlipFromRight = 2<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitioncurlup?language=objc)
+/// A transition that curls a view up from the bottom.
         #[doc(alias = "UIViewAnimationOptionTransitionCurlUp")]
         const TransitionCurlUp = 3<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitioncurldown?language=objc)
+/// A transition that curls a view down from the top.
         #[doc(alias = "UIViewAnimationOptionTransitionCurlDown")]
         const TransitionCurlDown = 4<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitioncrossdissolve?language=objc)
+/// A transition that dissolves from one view to the next.
         #[doc(alias = "UIViewAnimationOptionTransitionCrossDissolve")]
         const TransitionCrossDissolve = 5<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfromtop?language=objc)
+/// A transition that flips a view around its horizontal axis from top to bottom (the top side of the view moves toward the front and the bottom side toward the back).
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromTop")]
         const TransitionFlipFromTop = 6<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/transitionflipfrombottom?language=objc)
+/// A transition that flips a view around its horizontal axis from bottom to top (the bottom side of the view moves toward the front and the top side toward the back).
         #[doc(alias = "UIViewAnimationOptionTransitionFlipFromBottom")]
         const TransitionFlipFromBottom = 7<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions/uiviewanimationoptionpreferredframesperseconddefault?language=objc)
+/// The default number of frames per second.
+///
+/// ## Discussion
+///
+/// It’s recommended that you use the default value unless you have identified a specific need for an explicit rate.
+///
+///
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecondDefault")]
         const PreferredFramesPerSecondDefault = 0<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/preferredframespersecond60?language=objc)
+/// A frame rate of 60 frames per second.
+///
+/// ## Discussion
+///
+/// Specify this value to request a preferred frame rate. It’s recommended that you use the default value unless you have identified a specific need for an explicit rate.
+///
+///
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecond60")]
         const PreferredFramesPerSecond60 = 3<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/preferredframespersecond30?language=objc)
+/// A frame rate of 30 frames per second.
+///
+/// ## Discussion
+///
+/// Specify this value to request a preferred frame rate. It’s recommended that you use the default value unless you have identified a specific need for an explicit rate.
+///
+///
         #[doc(alias = "UIViewAnimationOptionPreferredFramesPerSecond30")]
         const PreferredFramesPerSecond30 = 7<<24;
+/// Flush all pending updates (including traits, properties, and layout) whenever the animation context changes. This includes flushing updates:
+///
+/// ## Discussion
+///
+/// - Before entering an animation scope, for invalidations that happened previously without animation.
+///
+/// - Before entering a nested animation scope, for invalidations that happened in the outer animation scope.
+///
+/// - Before exiting any animation scope, for invalidations that happened in that animation scope.
+///
+/// - Before disabling animations, for invalidations that happened in the animation scope with animations enabled.
+///
+/// - Before re-enabling animations, for invalidations that happened in the scope with animations disabled. This animation option implicitly applies to any nested animation scopes, even if they don’t explicitly use this option.
+///
+///
 /// Flush all pending updates (including traits, properties, and layout) whenever the animation context changes.
 /// This includes flushing updates:
 /// - Before entering an animation scope, for invalidations that happened previously without animation.
@@ -255,8 +318,6 @@ bitflags::bitflags! {
 /// - Before disabling animations, for invalidations that happened in the animation scope with animations enabled.
 /// - Before re-enabling animations, for invalidations that happened in the scope with animations disabled.
 /// This animation option implicitly applies to any nested animation scopes, even if they don't explicitly use this option.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions/flushupdates?language=objc)
         #[doc(alias = "UIViewAnimationOptionFlushUpdates")]
         const FlushUpdates = 1<<28;
     }
@@ -270,47 +331,89 @@ unsafe impl RefEncode for UIViewAnimationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions?language=objc)
+/// Options for configuring keyframe-based animations.
+///
+/// ## Overview
+///
+/// Use these options with the [`animateKeyframesWithDuration:delay:options:animations:completion:`](https://developer.apple.com/documentation/uikit/uiview/animatekeyframes(withduration:delay:options:animations:completion:)) method.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewKeyframeAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewKeyframeAnimationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/layoutsubviews?language=objc)
+/// The option to lay out subviews at commit time so that they’re animated along with their parent.
         #[doc(alias = "UIViewKeyframeAnimationOptionLayoutSubviews")]
         const LayoutSubviews = UIViewAnimationOptions::LayoutSubviews.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/allowuserinteraction?language=objc)
+/// The option that allows a person to interact with views while they’re being animated.
         #[doc(alias = "UIViewKeyframeAnimationOptionAllowUserInteraction")]
         const AllowUserInteraction = UIViewAnimationOptions::AllowUserInteraction.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/beginfromcurrentstate?language=objc)
+/// The option to start an animation from the current setting associated with an already in-flight animation.
+///
+/// ## Discussion
+///
+/// If this option isn’t present, any in-flight animations are allowed to finish before the new animation is started. If another animation isn’t in flight, this option has no effect.
+///
+///
         #[doc(alias = "UIViewKeyframeAnimationOptionBeginFromCurrentState")]
         const BeginFromCurrentState = UIViewAnimationOptions::BeginFromCurrentState.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/repeat?language=objc)
+/// The option to repeat an animation indefinitely.
         #[doc(alias = "UIViewKeyframeAnimationOptionRepeat")]
         const Repeat = UIViewAnimationOptions::Repeat.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/autoreverse?language=objc)
+/// The option to run an animation backwards and forwards.
+///
+/// ## Discussion
+///
+/// This option must be combined with the [`UIViewKeyframeAnimationOptionRepeat`](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/repeat) option.
+///
+///
         #[doc(alias = "UIViewKeyframeAnimationOptionAutoreverse")]
         const Autoreverse = UIViewAnimationOptions::Autoreverse.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/overrideinheritedduration?language=objc)
+/// The option to force an animation to use the original duration value specified when the animation was submitted.
+///
+/// ## Discussion
+///
+/// If this option isn’t present, the animation inherits the remaining duration of the in-flight animation, if any.
+///
+///
         #[doc(alias = "UIViewKeyframeAnimationOptionOverrideInheritedDuration")]
         const OverrideInheritedDuration = UIViewAnimationOptions::OverrideInheritedDuration.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/overrideinheritedoptions?language=objc)
+/// The option to not inherit the animation type or any options.
         #[doc(alias = "UIViewKeyframeAnimationOptionOverrideInheritedOptions")]
         const OverrideInheritedOptions = UIViewAnimationOptions::OverrideInheritedOptions.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodelinear?language=objc)
+/// The option to use a simple linear calculation when interpolating between keyframe values.
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeLinear")]
         const CalculationModeLinear = 0<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodediscrete?language=objc)
+/// The option to not interpolate between keyframe values, but rather to jump directly to each new keyframe value.
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeDiscrete")]
         const CalculationModeDiscrete = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodepaced?language=objc)
+/// The option to compute intermediate keyframe values using a simple pacing algorithm.
+///
+/// ## Discussion
+///
+/// This option results in an evenly paced animation.
+///
+///
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModePaced")]
         const CalculationModePaced = 2<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodecubic?language=objc)
+/// The option to compute intermediate frames using a default Catmull-Rom spline that passes through the keyframe values.
+///
+/// ## Discussion
+///
+/// You can’t adjust the parameters of this algorithm.
+///
+///
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeCubic")]
         const CalculationModeCubic = 3<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions/calculationmodecubicpaced?language=objc)
+/// The option to compute intermediate frames using the cubic scheme while ignoring the timing properties of the animation.
+///
+/// ## Discussion
+///
+/// Instead, timing parameters are calculated implicitly to give the animation a constant velocity.
+///
+///
         #[doc(alias = "UIViewKeyframeAnimationOptionCalculationModeCubicPaced")]
         const CalculationModeCubicPaced = 4<<10;
     }
@@ -324,13 +427,13 @@ unsafe impl RefEncode for UIViewKeyframeAnimationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/systemanimation?language=objc)
+/// Option to remove the views from the hierarchy when animation is complete.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISystemAnimation(pub NSUInteger);
 impl UISystemAnimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/systemanimation/delete?language=objc)
+    /// Option to remove views from the view hierarchy when animation is complete.
     #[doc(alias = "UISystemAnimationDelete")]
     pub const Delete: Self = Self(0);
 }
@@ -343,19 +446,19 @@ unsafe impl RefEncode for UISystemAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum?language=objc)
+/// The tint adjustment mode for the view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewTintAdjustmentMode(pub NSInteger);
 impl UIViewTintAdjustmentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum/automatic?language=objc)
+    /// The tint adjustment mode of the view is the same as its superview’s tint adjustment mode (or `UIViewTintAdjustmentModeNormal` if the view has no superview).
     #[doc(alias = "UIViewTintAdjustmentModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum/normal?language=objc)
+    /// The view’s tint color property returns the completely unmodified tint color of the view.
     #[doc(alias = "UIViewTintAdjustmentModeNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum/dimmed?language=objc)
+    /// The view’s tint color property returns a desaturated, dimmed version of the view’s original tint color.
     #[doc(alias = "UIViewTintAdjustmentModeDimmed")]
     pub const Dimmed: Self = Self(2);
 }
@@ -368,25 +471,43 @@ unsafe impl RefEncode for UIViewTintAdjustmentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute?language=objc)
+/// A semantic description of the view’s contents, used to determine whether the view should be flipped when switching between left-to-right and right-to-left layouts.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISemanticContentAttribute(pub NSInteger);
 impl UISemanticContentAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/unspecified?language=objc)
+    /// The default value for views.
+    ///
+    /// ## Discussion
+    ///
+    /// The view is flipped when switching between left-to-right and right-to-left layouts.
+    ///
+    ///
     #[doc(alias = "UISemanticContentAttributeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/playback?language=objc)
+    /// A view representing the playback controls, such as Play, Rewind, or Fast Forward buttons or playhead scrubbers.
+    ///
+    /// ## Discussion
+    ///
+    /// These views aren’t flipped when switching between left-to-right and right-to-left layouts.
+    ///
+    ///
     #[doc(alias = "UISemanticContentAttributePlayback")]
     pub const Playback: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/spatial?language=objc)
+    /// A view representing a directional control, such as a segment control for text alignment, or a D-pad control for a game.
+    ///
+    /// ## Discussion
+    ///
+    /// These views aren’t flipped when switching between left-to-right and right-to-left layouts.
+    ///
+    ///
     #[doc(alias = "UISemanticContentAttributeSpatial")]
     pub const Spatial: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/forcelefttoright?language=objc)
+    /// A view that’s always displayed using a left-to-right layout.
     #[doc(alias = "UISemanticContentAttributeForceLeftToRight")]
     pub const ForceLeftToRight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute/forcerighttoleft?language=objc)
+    /// A view that’s always displayed using a right-to-left layout.
     #[doc(alias = "UISemanticContentAttributeForceRightToLeft")]
     pub const ForceRightToLeft: Self = Self(4);
 }
@@ -400,7 +521,154 @@ unsafe impl RefEncode for UISemanticContentAttribute {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview?language=objc)
+    /// An object that manages the content for a rectangular area on the screen.
+    ///
+    /// ## Overview
+    ///
+    /// Views are the fundamental building blocks of your app’s user interface, and the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class defines the behaviors that are common to all views. A view object renders content within its bounds rectangle, and handles any interactions with that content. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class is a concrete class that you can instantiate and use to display a fixed background color. You can also subclass it to draw more sophisticated content. To display labels, images, buttons, and other interface elements commonly found in apps, use the view subclasses that the UIKit framework provides rather than trying to define your own.
+    ///
+    /// Because view objects are the main way your application interacts with the user, they have a number of responsibilities. Here are just a few:
+    ///
+    /// - Drawing and animation
+    ///
+    ///   - Views draw content in their rectangular area using UIKit or Core Graphics.
+    ///
+    /// - You can animate some view properties to new values.
+    ///
+    /// - Layout and subview management
+    ///
+    ///   - Views may contain zero or more subviews.
+    ///
+    /// - Views can adjust the size and position of their subviews.
+    ///
+    /// - Use Auto Layout to define the rules for resizing and repositioning your views in response to changes in the view hierarchy.
+    ///
+    /// - Event handling
+    ///
+    ///   - A view is a subclass of [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) and can respond to touches and other types of events.
+    ///
+    /// - Views can install gesture recognizers to handle common gestures.
+    ///
+    /// Views can nest inside other views to create view hierarchies, which offer a convenient way to organize related content. Nesting a view creates a parent-child relationship between the nested child view (known as the _subview_) and the parent (known as the _superview_). A parent view may contain any number of subviews, but each subview has only one superview. By default, when a subview’s visible area extends outside of the bounds of its superview, no clipping of the subview’s content occurs. Use the [`clipsToBounds`](https://developer.apple.com/documentation/uikit/uiview/clipstobounds) property to change that behavior.
+    ///
+    /// The [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame) and [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds) properties define the geometry of each view. The [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame) property defines the origin and dimensions of the view in the coordinate system of its superview. The [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds) property defines the internal dimensions of the view as it sees them, and its use is almost exclusive to custom drawing code. The center property provides a convenient way to reposition a view without changing its [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame) or [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds) properties directly.
+    ///
+    /// For detailed information about how to use the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class, see [View Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009503).
+    ///
+    /// ### Create a view
+    ///
+    /// Normally, you create views in your storyboards by dragging them from the library to your canvas. You can also create views programmatically. When creating a view, you typically specify its initial size and position relative to its future superview. For example, the following example creates a view and places its top-left corner at the point (10, 10) in the superview’s coordinate system (once it is added to that superview).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let rect = CGRect(x: 10, y: 10, width: 100, height: 100)", "let myView = UIView(frame: rect)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["CGRect  viewRect = CGRectMake(10, 10, 100, 100);", "UIView* myView = [[UIView alloc] initWithFrame:viewRect];"], metadata: None }] }] })
+    /// To add a subview to another view, call the [`addSubview:`](https://developer.apple.com/documentation/uikit/uiview/addsubview(_:)) method on the superview. You may add any number of subviews to a view, and sibling views may overlap each other without any issues in iOS. Each call to the [`addSubview:`](https://developer.apple.com/documentation/uikit/uiview/addsubview(_:)) method places the new view on top of all other siblings. You can specify the relative z-order of subview by adding it using the [`insertSubview:aboveSubview:`](https://developer.apple.com/documentation/uikit/uiview/insertsubview(_:abovesubview:)) and [`insertSubview:belowSubview:`](https://developer.apple.com/documentation/uikit/uiview/insertsubview(_:belowsubview:)) methods. You can also exchange the position of already added subviews using the [`exchangeSubviewAtIndex:withSubviewAtIndex:`](https://developer.apple.com/documentation/uikit/uiview/exchangesubview(at:withsubviewat:)) method.
+    ///
+    /// After creating a view, create Auto Layout rules to govern how the size and position of the view change in response to changes in the rest of the view hierarchy. For more information, see [Auto Layout Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853).
+    ///
+    /// ### Draw views
+    ///
+    /// View drawing occurs on an as-needed basis. When a view is first shown, or when all or part of it becomes visible due to layout changes, the system asks the view to draw its contents. For views that contain custom content using UIKit or Core Graphics, the system calls the view’s [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method. Your implementation of this method is responsible for drawing the view’s content into the current graphics context, which is set up by the system automatically prior to calling this method. This creates a static visual representation of your view’s content that can then be displayed on the screen.
+    ///
+    /// When the actual content of your view changes, it’s your responsibility to notify the system that your view needs to be redrawn. You do this by calling your view’s [`setNeedsDisplay`](https://developer.apple.com/documentation/uikit/uiview/setneedsdisplay()) or [`setNeedsDisplayInRect:`](https://developer.apple.com/documentation/uikit/uiview/setneedsdisplay(_:)) method of the view. These methods let the system know that it should update the view during the next drawing cycle. Because it waits until the next drawing cycle to update the view, you can call these methods on multiple views to update them at the same time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you’re using OpenGL ES to do your drawing, you should use the [`GLKView`](https://developer.apple.com/documentation/glkit/glkview) class instead of subclassing [`UIView`](https://developer.apple.com/documentation/uikit/uiview). For more information about how to draw using OpenGL ES, see [OpenGL ES Programming Guide](https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793).
+    ///
+    ///
+    ///
+    /// </div>
+    /// For detailed information about the view drawing cycle and the role your views have in this cycle, see [View Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009503).
+    ///
+    /// ### Animate views
+    ///
+    /// Changes to several view properties can be animated — that is, changing the property creates an animation starting at the current value and ending at the new value that you specify. The following properties of the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class are animatable:
+    ///
+    /// - [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame)
+    ///
+    /// - [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds)
+    ///
+    /// - [`center`](https://developer.apple.com/documentation/uikit/uiview/center)
+    ///
+    /// - [`transform`](https://developer.apple.com/documentation/uikit/uiview/transform)
+    ///
+    /// - [`alpha`](https://developer.apple.com/documentation/uikit/uiview/alpha)
+    ///
+    /// - [`backgroundColor`](https://developer.apple.com/documentation/uikit/uiview/backgroundcolor)
+    ///
+    /// To animate your changes, create a [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) object and use its handler block to change the values of your view’s properties. The [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) class lets you specify the duration and timing of your animations, but it performs the actual animations. You can pause a property-based animator that’s currently running to interrupt the animation and drive it interactively. For more information, see [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator).
+    ///
+    /// ### Threading considerations
+    ///
+    /// Manipulations to your app’s user interface must occur on the main thread. Thus, you should always call the methods of the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class from code running in the main thread of your app. The only time this may not be strictly necessary is when creating the view object itself, but all other manipulations should occur on the main thread.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class is a key subclassing point for visual content that also requires user interactions. Although there are many good reasons to subclass [`UIView`](https://developer.apple.com/documentation/uikit/uiview), it is recommended that you do so only when the basic [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class or the standard system views do not provide the capabilities that you need. Subclassing requires more work on your part to implement the view and to tune its performance.
+    ///
+    /// For information about ways to avoid subclassing, see [Alternatives to subclassing](https://developer.apple.com/documentation/uikit/uiview#alternatives-to-subclassing).
+    ///
+    /// #### Methods to override
+    ///
+    /// When subclassing [`UIView`](https://developer.apple.com/documentation/uikit/uiview), there are only a handful of methods you should override and many methods that you might override depending on your needs. Because [`UIView`](https://developer.apple.com/documentation/uikit/uiview) is a highly configurable class, there are also many ways to implement sophisticated view behaviors without overriding custom methods, which are discussed in the Alternatives to Subclassing section. In the meantime, the following list includes the methods you might consider overriding in your [`UIView`](https://developer.apple.com/documentation/uikit/uiview) subclasses:
+    ///
+    /// - Initialization:
+    ///
+    ///   - [`initWithFrame:`](https://developer.apple.com/documentation/uikit/uiview/init(frame:)) - It is recommended that you implement this method. You can also implement custom initialization methods in addition to, or instead of, this method.
+    ///
+    /// - [`initWithCoder:`](https://developer.apple.com/documentation/uikit/uiview/init(coder:)) - Implement this method if you load your view from storyboards or nib files and your view requires custom initialization.
+    ///
+    /// - [`layerClass`](https://developer.apple.com/documentation/uikit/uiview/layerclass) Use this property only if you want your view to use a different Core Animation layer for its backing store. For example, if your view uses tiling to display a large scrollable area, you might want to set the property to the [`CATiledLayer`](https://developer.apple.com/documentation/quartzcore/catiledlayer) class.
+    ///
+    /// - Drawing and printing:
+    ///
+    ///   - [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) - Implement this method if your view draws custom content. If your view does not do any custom drawing, avoid overriding this method.
+    ///
+    /// - [`drawRect:forViewPrintFormatter:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:for:)) - Implement this method only if you want to draw your view’s content differently during printing.
+    ///
+    /// - Layout and Constraints:
+    ///
+    ///   - [`requiresConstraintBasedLayout`](https://developer.apple.com/documentation/uikit/uiview/requiresconstraintbasedlayout) Use this property if your view class requires constraints to work properly.
+    ///
+    /// - [`updateConstraints`](https://developer.apple.com/documentation/uikit/uiview/updateconstraints()) - Implement this method if your view needs to create custom constraints between your subviews.
+    ///
+    /// - [`alignmentRectForFrame:`](https://developer.apple.com/documentation/uikit/uiview/alignmentrect(forframe:)), [`frameForAlignmentRect:`](https://developer.apple.com/documentation/uikit/uiview/frame(foralignmentrect:)) - Implement these methods to override how your views are aligned to other views.
+    ///
+    /// - [`didAddSubview:`](https://developer.apple.com/documentation/uikit/uiview/didaddsubview(_:)), [`willRemoveSubview:`](https://developer.apple.com/documentation/uikit/uiview/willremovesubview(_:)) - Implement these methods as needed to track the additions and removals of subviews.
+    ///
+    /// - [`willMoveToSuperview:`](https://developer.apple.com/documentation/uikit/uiview/willmove(tosuperview:)), [`didMoveToSuperview`](https://developer.apple.com/documentation/uikit/uiview/didmovetosuperview()) - Implement these methods as needed to track the movement of the current view in your view hierarchy.
+    ///
+    /// - Event Handling:
+    ///
+    ///   - [`gestureRecognizerShouldBegin:`](https://developer.apple.com/documentation/uikit/uiview/gesturerecognizershouldbegin(_:)) - Implement this method if your view handles touch events directly and might want to prevent attached gesture recognizers from triggering additional actions.
+    ///
+    /// - [`touchesBegan:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesbegan(_:with:)), [`touchesMoved:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesmoved(_:with:)), [`touchesEnded:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesended(_:with:)), [`touchesCancelled:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchescancelled(_:with:)) - Implement these methods if you need to handle touch events directly. (For gesture-based input, use gesture recognizers.)
+    ///
+    /// #### Alternatives to subclassing
+    ///
+    /// Many view behaviors can be configured without the need for subclassing. Before you start overriding methods, consider whether modifying the following properties or behaviors would provide the behavior you need.
+    ///
+    /// - [`addConstraint:`](https://developer.apple.com/documentation/uikit/uiview/addconstraint(_:)) - Define automatic layout behavior for the view and its subviews.
+    ///
+    /// - [`autoresizingMask`](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.property) - Provides automatic layout behavior when the superview’s frame changes. These behaviors can be combined with constraints.
+    ///
+    /// - [`contentMode`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.property) - Provides layout behavior for the view’s content, as opposed to the [`frame`](https://developer.apple.com/documentation/uikit/uiview/frame) of the view. This property also affects how the content is scaled to fit the view and whether it is cached or redrawn.
+    ///
+    /// - [`hidden`](https://developer.apple.com/documentation/uikit/uiview/ishidden) or [`alpha`](https://developer.apple.com/documentation/uikit/uiview/alpha) - Change the transparency of the view as a whole rather than hiding or applying alpha to your view’s rendered content.
+    ///
+    /// - [`backgroundColor`](https://developer.apple.com/documentation/uikit/uiview/backgroundcolor) - Set the view’s color rather than drawing that color yourself.
+    ///
+    /// - Subviews - Rather than draw your content using a [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method, embed image and label subviews with the content you want to present.
+    ///
+    /// - Gesture recognizers - Rather than subclass to intercept and handle touch events yourself, you can use gesture recognizers to send an action to a target object.
+    ///
+    /// - Animations - Use the built-in animation support rather than trying to animate changes yourself. The animation support provided by Core Animation is fast and easy to use.
+    ///
+    /// - Image-based backgrounds - For views that display relatively static content, consider using a [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) object with gesture recognizers instead of subclassing and drawing the image yourself. Alternatively, you can also use a generic [`UIView`](https://developer.apple.com/documentation/uikit/uiview) object and assign your image as the content of the view’s [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) object.
+    ///
+    /// Animations are another way to make visible changes to a view without requiring you to subclass and implement complex drawing code. Many properties of the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) class are animatable, which means changes to those properties can trigger system-generated animations. Starting animations requires as little as one line of code to indicate that any changes that follow should be animated. For more information about animation support for views, see [Animate views](https://developer.apple.com/documentation/uikit/uiview#animate-views).
+    ///
+    ///
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1357,16 +1625,16 @@ impl UIView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/axis?language=objc)
+/// Keys that specify a horizontal or vertical layout constraint between objects.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILayoutConstraintAxis(pub NSInteger);
 impl UILayoutConstraintAxis {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/axis/horizontal?language=objc)
+    /// The constraint applied when laying out the horizontal relationship between objects.
     #[doc(alias = "UILayoutConstraintAxisHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/axis/vertical?language=objc)
+    /// The constraint applied when laying out the vertical relationship between objects.
     #[doc(alias = "UILayoutConstraintAxisVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -1455,7 +1723,7 @@ impl UIView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/nointrinsicmetric?language=objc)
+    /// The absence of an intrinsic metric for a given numeric view property.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIViewNoIntrinsicMetric: CGFloat;
 }
@@ -1538,13 +1806,13 @@ impl UIView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/layoutfittingcompressedsize?language=objc)
+    /// The option to use the smallest possible size.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UILayoutFittingCompressedSize: CGSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/layoutfittingexpandedsize?language=objc)
+    /// The option to use the largest possible size.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UILayoutFittingExpandedSize: CGSize;
 }

@@ -7,46 +7,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem?language=objc)
+/// Constants that represent the system tab bar items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarSystemItem(pub NSInteger);
 impl UITabBarSystemItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/more?language=objc)
+    /// The more system item.
     #[doc(alias = "UITabBarSystemItemMore")]
     pub const More: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/favorites?language=objc)
+    /// The favorites system item.
     #[doc(alias = "UITabBarSystemItemFavorites")]
     pub const Favorites: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/featured?language=objc)
+    /// The featured system item.
     #[doc(alias = "UITabBarSystemItemFeatured")]
     pub const Featured: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/toprated?language=objc)
+    /// The top rated system item.
     #[doc(alias = "UITabBarSystemItemTopRated")]
     pub const TopRated: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/recents?language=objc)
+    /// The recents system item.
     #[doc(alias = "UITabBarSystemItemRecents")]
     pub const Recents: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/contacts?language=objc)
+    /// The contacts system item.
     #[doc(alias = "UITabBarSystemItemContacts")]
     pub const Contacts: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/history?language=objc)
+    /// The history system item.
     #[doc(alias = "UITabBarSystemItemHistory")]
     pub const History: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/bookmarks?language=objc)
+    /// The bookmarks system item.
     #[doc(alias = "UITabBarSystemItemBookmarks")]
     pub const Bookmarks: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/search?language=objc)
+    /// The search system item.
     #[doc(alias = "UITabBarSystemItemSearch")]
     pub const Search: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/downloads?language=objc)
+    /// The downloads system item.
     #[doc(alias = "UITabBarSystemItemDownloads")]
     pub const Downloads: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/mostrecent?language=objc)
+    /// The most recent system item.
     #[doc(alias = "UITabBarSystemItemMostRecent")]
     pub const MostRecent: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem/systemitem/mostviewed?language=objc)
+    /// The most viewed system item.
     #[doc(alias = "UITabBarSystemItemMostViewed")]
     pub const MostViewed: Self = Self(11);
 }
@@ -60,7 +60,23 @@ unsafe impl RefEncode for UITabBarSystemItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritem?language=objc)
+    /// An object that describes an item in a tab bar.
+    ///
+    /// ## Overview
+    ///
+    /// A tab bar item is a segment of a tab bar that represents a specific section of your app. A tab bar displays one or more items that allow the user to switch between the different sections. The user can select one item at a time.
+    ///
+    /// The most common approach for displaying a tab bar is to use a tab bar controller. The controller’s tab bar displays an item for each view controller you provide when you set the [`viewControllers`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/viewcontrollers) property or call the [`setViewControllers:animated:`](https://developer.apple.com/documentation/uikit/uitabbarcontroller/setviewcontrollers(_:animated:)) method. You’re responsible for supplying the tab bar items. Do this by setting each view controller’s [`tabBarItem`](https://developer.apple.com/documentation/uikit/uiviewcontroller/tabbaritem) property. When the user selects an item, the tab bar controller displays its view controller. For more information, see [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller).
+    ///
+    /// You can also use a tab bar independent of a tab bar controller. After creating a tab bar, add it to your view hierarchy. Provide the items by setting the tab bar’s [`items`](https://developer.apple.com/documentation/uikit/uitabbar/items) property or by using the [`setItems:animated:`](https://developer.apple.com/documentation/uikit/uitabbar/setitems(_:animated:)) method. In this configuration, you’re responsible for updating the view hierarchy to display the correct content. Use [`UITabBarDelegate`](https://developer.apple.com/documentation/uikit/uitabbardelegate) to know when the selection changes. For more information, see [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar).
+    ///
+    /// The system provides several tab bar items for common use cases. If you need a custom item, create one with a title and an image. You can further customize the item by providing an alternate image that appears when the user selects it. By default, the item doesn’t display the images you provide. Instead, it generates new images from the alpha values of your images and tints them. To prevent this, provide images that use the [`UIImageRenderingModeAlwaysOriginal`](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/alwaysoriginal) rendering mode.
+    ///
+    /// An item can adjust its appearance when in certain conditions. For example, you can specify different appearances for inline and compact inline layouts or for when the item’s state changes. To do this, set the item’s [`standardAppearance`](https://developer.apple.com/documentation/uikit/uitabbaritem/standardappearance) property. If you don’t want this behavior, you can set the individual properties on the item instead.
+    ///
+    /// A tab bar item can display a supplementary value in a badge that provides extra information to the user. For example, the Phone app uses a badge’s value to display the number of missed calls. You can customize the badge’s appearance, including its background color and text attributes.
+    ///
+    ///
     #[unsafe(super(UIBarItem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

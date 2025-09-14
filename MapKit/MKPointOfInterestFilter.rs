@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestfilter?language=objc)
+    /// A filter that includes or excludes point of interest categories from a map view, local search, or local search completer.
+    ///
+    /// ## Overview
+    ///
+    /// You can apply a point of interest filter in a map view ([`pointOfInterestFilter`](https://developer.apple.com/documentation/mapkit/mkmapview/pointofinterestfilter)), a local search request ([`pointOfInterestFilter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter)), a search completer ([`pointOfInterestFilter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter)), and in snapshot options ([`pointOfInterestFilter`](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/options/pointofinterestfilter)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKPointOfInterestFilter;

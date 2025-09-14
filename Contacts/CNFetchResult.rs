@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnfetchresult?language=objc)
+    /// An object that represents the result of a change-history fetch request.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNFetchResult<ValueType: ?Sized = AnyObject>;

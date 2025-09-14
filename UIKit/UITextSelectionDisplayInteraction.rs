@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteractiondelegate?language=objc)
+    /// An object you use to customize the presentation of text selections in your interface.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`UITextSelectionDisplayInteractionDelegate`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteractiondelegate) protocol in a custom type that you use to customize the selection UI implementation. The [`UITextSelectionDisplayInteraction`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction) object manages separate views to draw the text selection, the handles for the selected text range, and the insertion-point caret. Use this protocol if you use a custom view to manage these views instead of the text input view. For example, provide a container view if you draw the selection UI behind your text view’s content.
+    ///
+    ///
     pub unsafe trait UITextSelectionDisplayInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -27,14 +33,25 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that provides the system UI for displaying text selection.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related sessions from WWDC23
+    ///  Session 10058: [What’s new with text and text interactions](https://developer.apple.com/videos/play/wwdc2023/10058/)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Manages a collection of selection views (cursor, highlight, range adjustment) for a particular UITextInput object.
     ///
     /// This is the component that
     /// `UITextInteraction`generally talks to in order to accomplish all selection display
     /// using a collection of "managed subviews", i.e., selection view components that actually manage the display of the selection
     /// and the various affordances for changing the selection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

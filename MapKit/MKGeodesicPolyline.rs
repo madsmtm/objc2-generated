@@ -8,7 +8,13 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeodesicpolyline?language=objc)
+    /// An open polygon overlay consisting of line segments that follow the contours of the Earth to create the shortest path between the specified points.
+    ///
+    /// ## Overview
+    ///
+    /// A geodesic polyline contains a set of points that connect end-to-end in the order that you provide them. The first and last points don’t automatically connect to each other. When displaying on a two-dimensional map view, the line segment between any two points may appear curved.
+    ///
+    ///
     #[unsafe(super(MKPolyline, MKMultiPoint, MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]

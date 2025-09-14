@@ -7,14 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates the device token you use to deliver push notifications to your app.
+    ///
+    /// ## Overview
+    ///
+    /// When registering your app’s push types, PushKit creates a `PKPushCredentials` object for each type your app supports and delivers it to your delegate’s [`pushRegistry:didUpdatePushCredentials:forType:`](https://developer.apple.com/documentation/pushkit/pkpushregistrydelegate/pushregistry(_:didupdate:for:)) method. Don’t create `PKPushCredentials` objects yourself.
+    ///
+    ///
     /// An object that encapsulates the device token you use to deliver push notifications
     /// to your app.
     ///
     /// When registering your app's push types, PushKit creates a ``PushKit/PKPushCredentials``
     /// object for each type your app supports and delivers it to your delegate's ``PushKit/PKPushRegistryDelegate/pushRegistry:didUpdatePushCredentials:forType:``
     /// method. Don't create ``PushKit/PKPushCredentials`` objects yourself.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushcredentials?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPushCredentials;

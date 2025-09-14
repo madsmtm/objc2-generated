@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/update?language=objc)
+    /// Stores information about a single update from a Metal display link instance.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMetalDisplayLinkUpdate;
@@ -60,7 +60,13 @@ impl DefaultRetained for CAMetalDisplayLinkUpdate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylinkdelegate?language=objc)
+    /// A protocol your app implements to respond to callbacks from Core Animation for a Metal display link.
+    ///
+    /// ## Overview
+    ///
+    /// Your app responds to the system on behalf of a [`CAMetalDisplayLink`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink) with this protocol. Implement a type that adopts the protocol and assign an instance of it to a display link’s [`delegate`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/delegate) property.
+    ///
+    ///
     pub unsafe trait CAMetalDisplayLinkDelegate {
         #[unsafe(method(metalDisplayLink:needsUpdate:))]
         #[unsafe(method_family = none)]
@@ -73,7 +79,27 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink?language=objc)
+    /// A class your Metal app uses to register for callbacks to synchronize its animations for a display.
+    ///
+    /// ## Overview
+    ///
+    /// [`CAMetalDisplayLink`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink) instances are a specialized way to interact with variable-rate displays when you need more control over the timing window to render your app’s frames. Controlling the timing window and rendering delay for frames can help you achieve smoother frame rates and avoid visual artifacts.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  When working with less visually intensive apps or apps which don’t use Metal, use [`CADisplayLink`](https://developer.apple.com/documentation/quartzcore/cadisplaylink) to handle variable refresh rates.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Your app initializes a new Metal display link by providing a target [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer). Set this instance’s [`delegate`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/delegate) property to an implementation that encodes the rendering work for Metal to perform. With a set delegate, synchronize the display with a run loop to perform rendering on by calling the [`addToRunLoop:forMode:`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/add(to:formode:)) method.
+    ///
+    /// Once you associate the display link with a run loop, the system calls the delegate’s [`metalDisplayLink:needsUpdate:`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylinkdelegate/metaldisplaylink(_:needsupdate:)) method to request new frames. This method receives update requests based on the [`preferredFrameRateRange`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/preferredframeraterange) and [`preferredFrameLatency`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/preferredframelatency) of the display link. The system makes a best effort to make callbacks at appropriate times. Your app should complete any commits to the Metal device’s [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue) for rendering the display layer before calling [`present`](https://developer.apple.com/documentation/metal/mtldrawable/present()) on a drawable element.
+    ///
+    /// Your app can disable notifications by setting [`paused`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/ispaused) to `true`. When your app finishes with a display link, call [`invalidate`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink/invalidate())to remove it from all run loops and the target.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMetalDisplayLink;

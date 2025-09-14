@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing a diagnostic report for a disk write exception.
+    ///
+    /// ## Overview
+    ///
+    /// A disk write exception occurs when the app writes an excessive amount of data to the disk.
+    ///
+    ///
     /// An MXDiagnostic subclass that encapsulates disk write exception reports.
     ///
     /// Disk write exceptions occur when your application writes data excessively to disk.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiskwriteexceptiondiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]

@@ -6,11 +6,9 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_krsp_handle?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KRSP_HANDLE = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_name-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -37,12 +35,10 @@ unsafe impl RefEncode for cssm_kr_name {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_name-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KR_NAME = cssm_kr_name;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_profile-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -98,17 +94,14 @@ unsafe impl RefEncode for cssm_kr_profile {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_profile-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_PROFILE = cssm_kr_profile;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_profile_ptr?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_PROFILE_PTR = *mut cssm_kr_profile;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_wrappedproductinfo?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -142,17 +135,14 @@ unsafe impl RefEncode for cssm_kr_wrappedproductinfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_wrappedproduct_info?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_WRAPPEDPRODUCT_INFO = cssm_kr_wrappedproductinfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_wrappedproduct_info_ptr?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_WRAPPEDPRODUCT_INFO_PTR = *mut cssm_kr_wrappedproductinfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_krsubservice-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -180,25 +170,20 @@ unsafe impl RefEncode for cssm_krsubservice {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_krsubservice-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KRSUBSERVICE = cssm_krsubservice;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_krsubservice_ptr?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KRSUBSERVICE_PTR = *mut cssm_krsubservice;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_type?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KR_POLICY_TYPE = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_flags?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KR_POLICY_FLAGS = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_list_item-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -236,17 +221,14 @@ unsafe impl RefEncode for cssm_kr_policy_list_item {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_list_item-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_LIST_ITEM = cssm_kr_policy_list_item;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_list_item_ptr?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_LIST_ITEM_PTR = *mut cssm_kr_policy_list_item;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_info-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -274,12 +256,10 @@ unsafe impl RefEncode for cssm_kr_policy_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_INFO = cssm_kr_policy_info;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kr_policy_info_ptr?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_KR_POLICY_INFO_PTR = *mut cssm_kr_policy_info;

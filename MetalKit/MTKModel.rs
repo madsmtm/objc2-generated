@@ -10,26 +10,24 @@ use objc2_model_io::*;
 
 use crate::*;
 
+/// Constants used to declare Model Errors.
 /// MTKModelErrors
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerror?language=objc)
 // NS_TYPED_ENUM
 pub type MTKModelError = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerror/domain?language=objc)
+    /// The error domain used by MetalKit when returning mesh initialization errors.
     pub static MTKModelErrorDomain: &'static MTKModelError;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerror/key?language=objc)
+    /// The key used to retrieve an error string from an error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary.
     pub static MTKModelErrorKey: &'static MTKModelError;
 }
 
 extern_class!(
+    /// An interface for allocating a MetalKit buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
     /// Allocator passed to MDLAsset init method to load vertex and index data directly into Metal buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmeshbufferallocator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMeshBufferAllocator;
@@ -73,11 +71,10 @@ impl MTKMeshBufferAllocator {
 }
 
 extern_class!(
+    /// A buffer that backs the vertex data of a Model I/O mesh, suitable for use in a Metal app.
     /// Mesh buffer created by MTKMeshBufferAllocator when Model I/O needs to memory for vertex or index data backing.
     ///
     /// Memory backing these buffer are Metal buffers.  Model I/O will load index and vertex data from from a model asset directly in to the Metal buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmeshbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMeshBuffer;
@@ -152,11 +149,16 @@ impl MTKMeshBuffer {
 }
 
 extern_class!(
+    /// A container for the index data of a Model I/O submesh, suitable for use in a Metal app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MTKSubmesh`](https://developer.apple.com/documentation/metalkit/mtksubmesh) class provides a container for a segment of mesh data that can be rendered in a single draw call. A submesh can only be initialized as part of a [`MTKMesh`](https://developer.apple.com/documentation/metalkit/mtkmesh) object. Each submesh contains an index buffer with which the parent’s mesh data can be rendered. Actual submesh vertex data resides in the submesh’s parent mesh. For more information on Model I/O submeshes, see [`MDLSubmesh`](https://developer.apple.com/documentation/modelio/mdlsubmesh).
+    ///
+    ///
     /// A segment of a mesh and properties to render the segement.
     ///
     /// Container for data that can be rendered in a single draw call. 1:1 mapping to MDLSubmesh.  Each submesh contains an index Buffer with which the parents mesh data can be rendered.  Actual vertex data resides in the submesh's parent MTKMesh object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtksubmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKSubmesh;
@@ -234,9 +236,8 @@ impl MTKSubmesh {
 }
 
 extern_class!(
+    /// A container for the vertex data of a Model I/O mesh, suitable for use in a Metal app.
     /// Container for vertex data of a mesh and submeshes to render it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKMesh;
@@ -343,11 +344,26 @@ impl MTKMesh {
     );
 }
 
+/// Returns a partially converted Model I/O vertex descriptor.
+///
+/// Parameters:
+/// - metalDescriptor: A Metal vertex descriptor to convert from.
+///
+///
+/// ## Return Value
+///
+/// A Model I/O vertex descriptor object.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is equivalent to the [`MTKModelIOVertexDescriptorFromMetalWithError`](https://developer.apple.com/documentation/metalkit/mtkmodeliovertexdescriptorfrommetalwitherror) function, but does not report errors.
+///
+///
 /// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodeliovertexdescriptorfrommetal(_:)?language=objc)
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
@@ -363,6 +379,25 @@ pub extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a partially converted Model I/O vertex descriptor, reporting any error that occurs.
+///
+/// Parameters:
+/// - metalDescriptor: A Metal vertex descriptor to convert from.
+///
+/// - error: A pointer to an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object if an error occurred, or `nil` if conversion succeeded.
+///
+///
+/// ## Return Value
+///
+/// A Model I/O vertex descriptor object.
+///
+///
+///
+/// ## Discussion
+///
+/// This function can only set vertex format, offset, buffer index, and stride information in the resulting MDLMutableVertexDescriptor object. It does not add any semantic information such as attribute names. Names must be set in the returned MDLMutableVertexDescriptor object before it can be applied to a Model I/O mesh.
+///
+///
 /// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh. If error is nonnull, and the conversion cannot be made, it will be set.
@@ -370,8 +405,6 @@ pub extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodeliovertexdescriptorfrommetalwitherror?language=objc)
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
@@ -389,11 +422,22 @@ pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns a partially converted Metal vertex descriptor.
+///
+/// ## Return Value
+///
+/// A Metal vertex descriptor object.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is equivalent to the [`MTKMetalVertexDescriptorFromModelIOWithError`](https://developer.apple.com/documentation/metalkit/mtkmetalvertexdescriptorfrommodeliowitherror) function, but does not report errors.
+///
+///
 /// Partially converts a Model I/O vertex descriptor to a Metal vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmetalvertexdescriptorfrommodelio(_:)?language=objc)
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
@@ -408,6 +452,25 @@ pub extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// Returns a partially converted Metal vertex descriptor, reporting any error that occurs.
+///
+/// Parameters:
+/// - modelIODescriptor: A Model I/O vertex descriptor to convert from.
+///
+/// - error: A pointer to an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object if an error occurred, or `nil` if conversion succeeded.
+///
+///
+/// ## Return Value
+///
+/// A Metal vertex descriptor object.
+///
+///
+///
+/// ## Discussion
+///
+/// This function can only set vertex format, offset, buffer index, and stride information in the resulting [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) object. The function copies attributes one-for-one, so it is up to you to properly arrange the MDLMutableVertexDescriptor attributes in the correct order so that the resulting [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) object can properly map mesh data to vertex shader inputs. Layout [`stepFunction`](https://developer.apple.com/documentation/metal/mtlvertexbufferlayoutdescriptor/stepfunction) and [`stepRate`](https://developer.apple.com/documentation/metal/mtlvertexbufferlayoutdescriptor/steprate) values for the resulting [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) object must also be set by your application.
+///
+///
 /// Partially converts a Model I/O vertex descriptor to a Metal vertex descriptor
 ///
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.  If error is nonnull, and the conversion cannot be made, it will be set.
@@ -415,8 +478,6 @@ pub extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmetalvertexdescriptorfrommodeliowitherror?language=objc)
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(
@@ -433,11 +494,26 @@ pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// Returns a converted Model I/O vertex format.
+///
+/// Parameters:
+/// - vertexFormat: A Metal vertex format to convert from.
+///
+///
+/// ## Return Value
+///
+/// A Model I/O vertex format value.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns [`MDLVertexFormatInvalid`](https://developer.apple.com/documentation/modelio/mdlvertexformat/invalid) if no matching [`MDLVertexFormat`](https://developer.apple.com/documentation/modelio/mdlvertexformat) exists.
+///
+///
 /// Converts a Metal vertex format to a Model I/O vertex format
 ///
 /// Returns: A Model I/O vertexformat correspoinding to the given Metal vertex format.  Returns MDLVertexFormatInvalid if no matching Model I/O vertex format exists.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodeliovertexformatfrommetal(_:)?language=objc)
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub extern "C-unwind" fn MTKModelIOVertexFormatFromMetal(
@@ -449,11 +525,26 @@ pub extern "C-unwind" fn MTKModelIOVertexFormatFromMetal(
     unsafe { MTKModelIOVertexFormatFromMetal(vertex_format) }
 }
 
+/// Returns a converted Metal vertex format.
+///
+/// Parameters:
+/// - vertexFormat: A Model I/O vertex format to convert from.
+///
+///
+/// ## Return Value
+///
+/// A Metal vertex format value.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns [`MTLVertexFormatInvalid`](https://developer.apple.com/documentation/metal/mtlvertexformat/invalid) if no matching [`MTLVertexFormat`](https://developer.apple.com/documentation/metal/mtlvertexformat) exists.
+///
+///
 /// Converts a Model I/O vertex format to a Metal vertex format
 ///
 /// Returns: A Metal vertexformat correspoinding to the given Model I/O vertex format.  Returns MTLVertexFormatInvalid if no matching Metal vertex format exists.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmetalvertexformatfrommodelio(_:)?language=objc)
 #[cfg(feature = "objc2-model-io")]
 #[inline]
 pub extern "C-unwind" fn MTKMetalVertexFormatFromModelIO(

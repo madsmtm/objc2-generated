@@ -7,20 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNDArrayQuantizationScheme(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNDArrayQuantizationScheme: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme/none?language=objc)
         #[doc(alias = "MPSNDArrayQuantizationTypeNone")]
         const TypeNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme/typeaffine?language=objc)
         #[doc(alias = "MPSNDArrayQuantizationTypeAffine")]
         const TypeAffine = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationscheme/typelut?language=objc)
         #[doc(alias = "MPSNDArrayQuantizationTypeLUT")]
         const TypeLUT = 2;
     }
@@ -38,8 +34,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Common methods for quantization descriptors
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayquantizationdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayQuantizationDescriptor;
@@ -89,8 +83,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Describes an affine quantization scheme
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffinequantizationdescriptor?language=objc)
     #[unsafe(super(MPSNDArrayQuantizationDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayAffineQuantizationDescriptor;
@@ -183,8 +175,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Describes a lookup-table based quantization scheme
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutquantizationdescriptor?language=objc)
     #[unsafe(super(MPSNDArrayQuantizationDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayLUTQuantizationDescriptor;

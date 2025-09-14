@@ -9,14 +9,19 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A description of attributes used to create an MPS matrix.
+    ///
+    /// ## Overview
+    ///
+    /// Matrix data is assumed to be stored in row-major order.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     ///
     /// A MPSMatrixDescriptor describes the sizes, strides, and data type of a
     /// an array of 2-dimensional matrices.  All storage is assumed to be in
     /// "matrix-major".  See the description for MPSMatrix for further details.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrixDescriptor;
@@ -212,14 +217,13 @@ impl MPSMatrixDescriptor {
 }
 
 extern_class!(
+    /// A description of the length and data type of a vector.
     /// Dependencies: This depends on Metal.framework
     ///
     ///
     /// A MPSVectorDescriptor describes the length and data type of a
     /// an array of 1-dimensional vectors.  All vectors are stored as
     /// contiguous arrays of data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsvectordescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSVectorDescriptor;
@@ -351,6 +355,21 @@ impl MPSVectorDescriptor {
 }
 
 extern_class!(
+    /// A 2D array of data that stores the data’s values.
+    ///
+    /// ## Overview
+    ///
+    /// [`MPSMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix) objects serve as inputs and outputs of [`MPSMatrixMultiplication`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixmultiplication) objects. Matrix data is assumed to be stored in row-major order.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  An [`MPSMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix) object maintains its internal storage using a [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) object. Thus, the same rules for maintaining coherency of the buffer’s data between CPU memory and GPU memory also apply to an [`MPSMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix) object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     ///
@@ -368,8 +387,6 @@ extern_class!(
     /// k * matrixBytes + i * rowBytes + j * sizeof(dataType)
     ///
     /// Where matrixBytes is a multiple of rowBytes at least equal to rows * rowBytes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrix;
@@ -568,14 +585,13 @@ impl MPSMatrix {
 }
 
 extern_class!(
+    /// A 1D array of data that stores the data’s values.
     /// Dependencies: This depends on Metal.framework
     ///
     ///
     /// A MPSVector object describes a 1-dimensional array of data and provides storage
     /// for its values.  Some MPSMatrixKernel objects operate on MPSVector objects
     /// for convenience.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsvector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSVector;
@@ -762,12 +778,11 @@ impl MPSVector {
 }
 
 extern_class!(
+    /// A matrix allocated on GPU private memory.
     /// A MPSMatrix allocated on GPU private memory.
     ///
     /// It may alias one or more other MPSTemporaryMatrices. Undesired data destruction
     /// due to aliasing is avoided using the readCount property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporarymatrix?language=objc)
     #[unsafe(super(MPSMatrix, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSTemporaryMatrix;
@@ -934,12 +949,11 @@ impl MPSTemporaryMatrix {
 }
 
 extern_class!(
+    /// A vector allocated on GPU private memory.
     /// A MPSVector allocated on GPU private memory.
     ///
     /// It may alias one or more other MPSTemporaryVector objects. Undesired data destruction
     /// due to aliasing is avoided using the readCount property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryvector?language=objc)
     #[unsafe(super(MPSVector, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSTemporaryVector;

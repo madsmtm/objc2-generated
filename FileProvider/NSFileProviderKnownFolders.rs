@@ -9,8 +9,6 @@ use crate::*;
 
 extern_class!(
     /// Specify the location of a known folder in the replicated tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/location?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocation;
@@ -64,11 +62,10 @@ impl NSFileProviderKnownFolderLocation {
 }
 
 extern_class!(
+    /// A class for working with known-folder locations.
     /// Specify the locations at which known folders should be synced in the replicated tree.
     ///
     /// Desktop and Documents candidate items need to have the same parent folder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocations;
@@ -212,7 +209,7 @@ impl NSFileProviderManager {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfoldersupporting?language=objc)
+    /// A protocol that defines the interface for sharing known-folder locations with the system.
     pub unsafe trait NSFileProviderKnownFolderSupporting: NSObjectProtocol {
         #[cfg(all(feature = "NSFileProviderDomain", feature = "block2"))]
         /// Request suitable locations for known folders.

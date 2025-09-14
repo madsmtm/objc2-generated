@@ -5,11 +5,36 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentref?language=objc)
+/// Defines an opaque data type representing a document’s URL.
+///
+/// ## Discussion
+///
+/// A document URL object is a generic location specification for a document. It is built from a document scheme, a parent document, and a document name. You can convert back and forth between document URL objects and `CFURL` objects using Search Kit’s [`SKDocumentCreateWithURL`](https://developer.apple.com/documentation/coreservices/1442564-skdocumentcreatewithurl) and [`SKDocumentCopyURL`](https://developer.apple.com/documentation/coreservices/1449624-skdocumentcopyurl) functions.
+///
+/// To create a Search Kit document URL object, use [`SKDocumentCreateWithURL`](https://developer.apple.com/documentation/coreservices/1442564-skdocumentcreatewithurl) when you can provide a complete URL, or use [`SKDocumentCreate`](https://developer.apple.com/documentation/coreservices/1443212-skdocumentcreate) when you want to specify document location indirectly using a parent document URL object. For other operations on documents, see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/search_kit#1655072", kind: "article", title: "Working with Documents and Terms", url: "/documentation/coreservices/search_kit#1655072", abstract_: [], role: Some("task") }.
+///
+/// If you create document URL objects with indirect locations using the [`SKDocumentCreate`](https://developer.apple.com/documentation/coreservices/1443212-skdocumentcreate) function, you can resolve the locations by assembling them piece by piece, starting with a document URL object and going up step by step, parent to parent.
+///
+///
 #[doc(alias = "SKDocumentRef")]
 pub type SKDocument = CFType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448891-skdocumentgettypeid?language=objc)
+/// Gets the type identifier for Search Kit document URL objects.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) object containing the type identifier for the document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+///
+///
+///
+/// ## Discussion
+///
+/// Search Kit represents document URL objects with the [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref) opaque type. If your code needs to determine whether a particular data type is a document URL object, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+///
+/// Never hard-code the document URL object type ID because it can change from one release of macOS to another.
+///
+///
 #[inline]
 pub extern "C-unwind" fn SKDocumentGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -18,7 +43,24 @@ pub extern "C-unwind" fn SKDocumentGetTypeID() -> CFTypeID {
     unsafe { SKDocumentGetTypeID() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442564-skdocumentcreatewithurl?language=objc)
+/// Creates a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) from a [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) object.
+///
+/// Parameters:
+/// - inURL: The URL for the document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) you are creating. The scheme of the document URL object gets set to the scheme of the URL used. Only URLs with a scheme of “`file`” can be used with the [`SKIndexAddDocument`](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument) function, but the URL scheme may be anything you like if you use the [`SKIndexAddDocumentWithText`](https://developer.apple.com/documentation/coreservices/1444518-skindexadddocumentwithtext) function. For more information on schemes, see [http://www.iana.org/assignments/uri-schemes.html](https://developer.apple.comhttp://www.iana.org/assignments/uri-schemes.html).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The new document URL object, or `NULL` if the document URL object could not be created.
+///
+///
+///
+/// ## Discussion
+///
+/// Use `SKDocumentCreateWithURL` to create a unique reference to a file or to another, arbitrary URL that your application will use as a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)). When your application no longer needs the document URL object, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+///
+///
 ///
 /// # Safety
 ///
@@ -34,7 +76,24 @@ pub unsafe extern "C-unwind" fn SKDocumentCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449624-skdocumentcopyurl?language=objc)
+/// Builds a [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) object from a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+///
+/// Parameters:
+/// - inDocument: The document URL object that you want a [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) object for.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) object representing a document location, or `NULL` on failure.
+///
+///
+///
+/// ## Discussion
+///
+/// You can use this function to create a [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) object to represent a document’s location. Do this to gain access to the Core Foundation functionality provided by [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl). This functionality includes accessing parts of the URL string, getting properties of the URL, and converting the URL to other representations.
+///
+///
 ///
 /// # Safety
 ///
@@ -50,7 +109,28 @@ pub unsafe extern "C-unwind" fn SKDocumentCopyURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443212-skdocumentcreate?language=objc)
+/// Creates a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) based on a scheme, parent, and name.
+///
+/// Parameters:
+/// - inScheme: The scheme to use—analogous to the scheme of a URL. Only documents referenced with the “`file`” scheme can be read by the [`SKIndexAddDocument`](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument) function. The scheme can be anything you like if you use the [`SKIndexAddDocumentWithText`](https://developer.apple.com/documentation/coreservices/1444518-skindexadddocumentwithtext) function. The scheme can be `NULL`, in which case it will be set to be the same scheme as the document URL object’s parent. For more information on schemes, see [http://www.iana.org/assignments/uri-schemes.html](https://developer.apple.comhttp://www.iana.org/assignments/uri-schemes.html).
+///
+/// - inParent: The document URL object one step up in the document hierarchy. Can be `NULL`.
+///
+/// - inName: The name of the document that you’re creating a document URL object for. For the “`file`” scheme, it is the name of the file or the container, not its path. The path can be constructed by following parent links. The maximum length for a document name is 256 bytes.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The new document URL object, or `NULL` on failure.
+///
+///
+///
+/// ## Discussion
+///
+/// The new document URL object’s parent can be `NULL`, but you must specify either a scheme or a parent. When your application no longer needs the document URL object, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+///
+///
 ///
 /// # Safety
 ///
@@ -75,7 +155,26 @@ pub unsafe extern "C-unwind" fn SKDocumentCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448262-skdocumentgetschemename?language=objc)
+/// Gets the scheme name for a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+///
+/// Parameters:
+/// - inDocument: The document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) whose scheme you want to get.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the document URL object’s scheme name, or `NULL` on failure.
+///
+///
+///
+/// ## Discussion
+///
+/// The scheme of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)), which represents how it can be accessed, can be any character string but is typically “`file`” or “`http`”. The scheme is one of a Search Kit document URL object’s three properties—see [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref) for details.
+///
+/// For more information on schemes, see [http://www.iana.org/assignments/uri-schemes.html](https://developer.apple.comhttp://www.iana.org/assignments/uri-schemes.html)
+///
+///
 ///
 /// # Safety
 ///
@@ -91,7 +190,18 @@ pub unsafe extern "C-unwind" fn SKDocumentGetSchemeName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442657-skdocumentgetname?language=objc)
+/// Gets the name of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+///
+/// Parameters:
+/// - inDocument: The document URL object whose name you want to get.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the document URL object’s name, or `NULL` on failure.
+///
+///
 ///
 /// # Safety
 ///
@@ -107,7 +217,26 @@ pub unsafe extern "C-unwind" fn SKDocumentGetName(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444449-skdocumentgetparent?language=objc)
+/// Gets the parent of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+///
+/// Parameters:
+/// - inDocument: The document URL object whose parent you want to get.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The parent document URL object, or `NULL` on failure.
+///
+///
+///
+/// ## Discussion
+///
+/// Search Kit manages document locations in terms of URLs as Document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)). The parent document URL object typically contains the document’s URL up to but not including the document name.
+///
+/// Typically, document URL objects contain the complete URL to a file-based document. But you can use this function iteratively to build up the complete file-system path for a document that you are managing as part of a document hierarchy. See the description for the [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref) function for more on this.
+///
+///
 ///
 /// # Safety
 ///

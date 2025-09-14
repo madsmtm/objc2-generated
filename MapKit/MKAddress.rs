@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddress?language=objc)
+    /// A class that contains a full address, and, optionally, a short address.
+    ///
+    /// ## Discussion
+    ///
+    /// MapKit capabilities, such as Search and Reverse geocoding, populate the [`MKAddress`](https://developer.apple.com/documentation/mapkit/mkaddress) of a [`MKMapItem`](https://developer.apple.com/documentation/mapkit/mkmapitem) with a full address, and a short address, if the framework has one.
+    ///
+    /// When presenting a Place Card using an [`MKMapItemDetailViewController`](https://developer.apple.com/documentation/mapkit/mkmapitemdetailviewcontroller) or a selection accessory on an annotation you created using an [`MKMapItem`](https://developer.apple.com/documentation/mapkit/mkmapitem), MapKit uses the full address provided if you create the `MKMapitem` using [`initWithLocation:address:`](https://developer.apple.com/documentation/mapkit/mkmapitem/init(location:address:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKAddress;

@@ -9,30 +9,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type of action that triggered the navigation.
 /// The type of action triggering a navigation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationType(pub NSInteger);
 impl WKNavigationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/linkactivated?language=objc)
+    /// A link activation.
+    ///
+    /// ## Discussion
+    ///
+    /// This action occurs when the user activates a link with an `href` attribute.
+    ///
+    ///
     #[doc(alias = "WKNavigationTypeLinkActivated")]
     pub const LinkActivated: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/formsubmitted?language=objc)
+    /// A request to submit a form.
     #[doc(alias = "WKNavigationTypeFormSubmitted")]
     pub const FormSubmitted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/backforward?language=objc)
+    /// A request for the frame’s next or previous item.
+    ///
+    /// ## Discussion
+    ///
+    /// This type of action occurs when the navigation originates from an item in a [`WKBackForwardList`](https://developer.apple.com/documentation/webkit/wkbackforwardlist) object.
+    ///
+    ///
     #[doc(alias = "WKNavigationTypeBackForward")]
     pub const BackForward: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/reload?language=objc)
+    /// A request to reload the webpage.
     #[doc(alias = "WKNavigationTypeReload")]
     pub const Reload: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/formresubmitted?language=objc)
+    /// A request to resubmit a form.
+    ///
+    /// ## Discussion
+    ///
+    /// This type of action occurs when the forward or backward navigation causes the web view to resubmit a form. It also occurs when a reload operation causes the resubmission of the form.
+    ///
+    ///
     #[doc(alias = "WKNavigationTypeFormResubmitted")]
     pub const FormResubmitted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationtype/other?language=objc)
+    /// A navigation request that originates for some other reason.
     #[doc(alias = "WKNavigationTypeOther")]
     pub const Other: Self = Self(-1);
 }
@@ -46,9 +63,14 @@ unsafe impl RefEncode for WKNavigationType {
 }
 
 extern_class!(
-    /// A WKNavigationAction object contains information about an action that may cause a navigation, used for making policy decisions.
+    /// An object that contains information about an action that causes navigation to occur.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationaction?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`WKNavigationAction`](https://developer.apple.com/documentation/webkit/wknavigationaction) object to make policy decisions about whether to allow navigation within your app’s web view. You don’t create [`WKNavigationAction`](https://developer.apple.com/documentation/webkit/wknavigationaction) objects directly. Instead, the web view creates them and delivers them to the appropriate delegate objects. Use the methods of your delegate to analyze the action and determine whether to allow the resulting navigation to occur.
+    ///
+    ///
+    /// A WKNavigationAction object contains information about an action that may cause a navigation, used for making policy decisions.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

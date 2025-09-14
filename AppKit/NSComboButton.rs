@@ -7,20 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.enum?language=objc)
+/// Constants that indicate how a combo button presents its menu.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComboButtonStyle(pub NSInteger);
 impl NSComboButtonStyle {
-    /// The button will be split across 2 segments. The leading segment shows `title`, `image`, or both. If `action` is set, it will be performed when the leading segment is clicked. If `action` is `nil`, the leading segment will be disabled. The trailing segment shows a menu indicator. If `menu` is set, clicking the trailing segment will show it. If `menu` is empty, the trailing segment will be disabled.
+    /// A style that separates the button’s title and image from the menu indicator people use to activate the button.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.enum/split?language=objc)
+    /// ## Discussion
+    ///
+    /// This style displays a system-standard menu control. When this style is active, someone must click the menu control to display the list of alternate actions.
+    ///
+    ///
+    /// The button will be split across 2 segments. The leading segment shows `title`, `image`, or both. If `action` is set, it will be performed when the leading segment is clicked. If `action` is `nil`, the leading segment will be disabled. The trailing segment shows a menu indicator. If `menu` is set, clicking the trailing segment will show it. If `menu` is empty, the trailing segment will be disabled.
     #[doc(alias = "NSComboButtonStyleSplit")]
     pub const Split: Self = Self(0);
-    /// The button will be unified in a single segment. If `action` is set, `menu` will appear on click and hold. If `action` is `nil`, then `menu` will appear on click.
+    /// A style that unifies the button’s title and image with the menu indicator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.enum/unified?language=objc)
+    /// ## Discussion
+    ///
+    /// This style hides the system-supplied menu control. When this style is active, the combo button displays its menu in response to a long-press gesture.
+    ///
+    ///
+    /// The button will be unified in a single segment. If `action` is set, `menu` will appear on click and hold. If `action` is `nil`, then `menu` will appear on click.
     #[doc(alias = "NSComboButtonStyleUnified")]
     pub const Unified: Self = Self(1);
 }
@@ -34,7 +44,17 @@ unsafe impl RefEncode for NSComboButtonStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobutton?language=objc)
+    /// A button with a pull-down menu and a default action.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSComboButton`](https://developer.apple.com/documentation/appkit/nscombobutton) object is a button that displays a title string, image, and an optional control for displaying a menu. Use this control in places where you want to offer a button with a default action and one or more alternative actions. Clicking the title or image executes the default action you provide, and clicking the menu control displays a menu for selecting a different action. If you configure the button to hide the menu control, a long-press gesture displays the menu.
+    ///
+    /// After you create a combo button programmatically or in Interface Builder, choose the button [`style`](https://developer.apple.com/documentation/appkit/nscombobutton/style-swift.property) you want and add a title or image for your content. A combo button has a default action, which you specify at creation time. You can also change that action later using the inherited [`target`](https://developer.apple.com/documentation/appkit/nscontrol/target) and [`action`](https://developer.apple.com/documentation/appkit/nscontrol/action) properties. To specify one or more alternative actions, configure a menu with those actions and assign it to the button’s [`menu`](https://developer.apple.com/documentation/appkit/nscombobutton/menu) property.
+    ///
+    /// This control doesn’t use an [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) object for its underlying implementation. It also doesn’t support the addition of a contextual menu.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

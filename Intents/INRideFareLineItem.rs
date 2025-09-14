@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridefarelineitem?language=objc)
+    /// A specific type of ride-related charge.
+    ///
+    /// ## Overview
+    ///
+    /// Create one or more [`INRideFareLineItem`](https://developer.apple.com/documentation/intents/inridefarelineitem) objects when you need to break down the cost of a ride using different pricing rules. For example, one line item might specify the base charge of the ride and a second line item might specify the per-mile charge. When displaying the ride information to the user, Siri and Maps display the line-item information.
+    ///
+    /// The inclusion of line items in an [`INRideOption`](https://developer.apple.com/documentation/intents/inrideoption) object is optional but recommended when the cost of the ride involves separate charges. When appropriate, create one or more [`INRideFareLineItem`](https://developer.apple.com/documentation/intents/inridefarelineitem) objects and attach them to your ride option object. Siri and Maps use the currency code you specify to apply the appropriate currency designator to the price information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRideFareLineItem;

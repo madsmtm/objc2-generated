@@ -9,18 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Specifies the domain of influence of a physics field.
+/// Options for defining the region of space affected by a physics field, used by the [`scope`](https://developer.apple.com/documentation/scenekit/scnphysicsfield/scope) property.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsfieldscope?language=objc)
+/// ## Overview
+///
+/// You define a region of space for a field using the position of the node containing the field and the field’s [`halfExtent`](https://developer.apple.com/documentation/scenekit/scnphysicsfield/halfextent) and [`usesEllipsoidalExtent`](https://developer.apple.com/documentation/scenekit/scnphysicsfield/usesellipsoidalextent) properties. Then, you use the [`scope`](https://developer.apple.com/documentation/scenekit/scnphysicsfield/scope) property to choose whether the field’s area of effect is the interior of this region or whether it is the entirety of scene space excluding this region.
+///
+///
+/// Specifies the domain of influence of a physics field.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsFieldScope(pub NSInteger);
 impl SCNPhysicsFieldScope {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsfieldscope/insideextent?language=objc)
+    /// The field’s effect applies only to objects within the region of space defined by its position and extent.
     #[doc(alias = "SCNPhysicsFieldScopeInsideExtent")]
     pub const InsideExtent: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsfieldscope/outsideextent?language=objc)
+    /// The field’s effect applies only to objects outside the region of space defined by its position and extent.
     #[doc(alias = "SCNPhysicsFieldScopeOutsideExtent")]
     pub const OutsideExtent: Self = Self(1);
 }
@@ -33,7 +38,35 @@ unsafe impl RefEncode for SCNPhysicsFieldScope {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfieldforceevaluator?language=objc)
+/// The signature for a block that SceneKit calls to determine the effect of a custom field on an object.
+///
+/// ## Discussion
+///
+/// You use this type of block to create a custom physics field with the [`customFieldWithEvaluationBlock:`](https://developer.apple.com/documentation/scenekit/scnphysicsfield/customfield(evaluationblock:)) method. SceneKit calls your block once for each object in the field’s area of effect, on each step of the physics simulation.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  By default, one simulation step occurs for each frame rendered. For example, if your view renders at 60 frames per second and three bodies are in the field’s area of effect, SceneKit runs your block 180 times per second. To avoid reduced rendering performance, take care not to perform extensive computation in this block.
+///
+///
+///
+/// </div>
+/// The block takes the following parameters:
+///
+/// - position: The position of the object affected by the field, in the local coordinate space of the node containing the field.
+///
+/// - velocity: The velocity of the object affected by the field, relative to the local coordinate space of the node containing the field.
+///
+/// - mass: The mass of the object affected by the field. (See the [`mass`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/mass) property for physics bodies and the [`particleMass`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlemass) property for particle systems.)
+///
+/// - charge: The electrical charge of the object affected by the field. (See the [`charge`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/charge) property for physics bodies and the [`particleCharge`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecharge) property for particle systems.)
+///
+/// - time: The elapsed time, in seconds, since the last simulation step.
+///
+/// Your block uses these parameters to compute and return an [`SCNVector3`](https://developer.apple.com/documentation/scenekit/scnvector3) force vector, which SceneKit then applies to the object affected by the field.
+///
+///
 #[cfg(all(
     feature = "SceneKitTypes",
     feature = "block2",
@@ -44,9 +77,16 @@ pub type SCNFieldForceEvaluator = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// SCNPhysicsField is an abstract class that describes a force field that applies in the physics world.
+    /// An object that applies forces, such as gravitation, electromagnetism, and turbulence, to physics bodies within a certain area of effect.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsfield?language=objc)
+    /// ## Overview
+    ///
+    /// You can create many types of field effects, such as gravitation, electromagnetism, and turbulence. To add a field effect to a scene, you create a physics field of the type you want to use and then attach it to the [`physicsField`](https://developer.apple.com/documentation/scenekit/scnnode/physicsfield) property of a node in the scene.
+    ///
+    /// Physics fields can affect both [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) objects and the particles spawned by [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem) objects.
+    ///
+    ///
+    /// SCNPhysicsField is an abstract class that describes a force field that applies in the physics world.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsField;

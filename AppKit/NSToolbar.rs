@@ -9,43 +9,60 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/identifier-swift.typealias?language=objc)
+/// A string value that you use to differentiate your app’s toolbars.
+///
+/// ## Discussion
+///
+/// Multiple toolbar objects can have the same identifier. If two or more toolbars share an identifier, the system synchronizes the state of the toolbars and displays the same items for each one.
+///
+///
 pub type NSToolbarIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier?language=objc)
+/// Constants for the standard toolbar items that the system provides.
+///
+/// ## Overview
+///
+/// If you configure an [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/nstoolbaritem) in Interface Builder with one of the standard identifiers, AppKit configures the toolbar item for you automatically when you load your interface. Similarly, if your toolbar delegate returns them as part of the default or allowed set of items, AppKit handles their configuration. When your delegate provides standard identifiers, AppKit doesn’t call the [`toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:`](https://developer.apple.com/documentation/appkit/nstoolbardelegate/toolbar(_:itemforitemidentifier:willbeinsertedintotoolbar:)) method for them.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSToolbarItemIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaruserinfokey?language=objc)
+/// Constants for specifying toolbar-related information in notifications.
 // NS_TYPED_ENUM
 pub type NSToolbarUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaruserinfokey/itemkey?language=objc)
+    /// A key that specifies the toolbar item associated with the notification.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/nstoolbaritem) object.
+    ///
+    ///
     pub static NSToolbarItemKey: &'static NSToolbarUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaruserinfokey/newindexkey?language=objc)
     pub static NSToolbarNewIndexKey: &'static NSToolbarUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum?language=objc)
+/// Constants that indicate whether the toolbar displays items using a name, icon, or combination of elements.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarDisplayMode(pub NSUInteger);
 impl NSToolbarDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/default?language=objc)
+    /// The default display mode.
     #[doc(alias = "NSToolbarDisplayModeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/iconandlabel?language=objc)
+    /// The toolbar displays an icon and label for each item.
     #[doc(alias = "NSToolbarDisplayModeIconAndLabel")]
     pub const IconAndLabel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/icononly?language=objc)
+    /// The toolbar displays only an icon for each item.
     #[doc(alias = "NSToolbarDisplayModeIconOnly")]
     pub const IconOnly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum/labelonly?language=objc)
+    /// The toolbar displays only a label for each item.
     #[doc(alias = "NSToolbarDisplayModeLabelOnly")]
     pub const LabelOnly: Self = Self(3);
 }
@@ -58,22 +75,22 @@ unsafe impl RefEncode for NSToolbarDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum?language=objc)
+/// Constants that specify toolbar display modes.
 // NS_ENUM
 #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarSizeMode(pub NSUInteger);
 impl NSToolbarSizeMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum/default?language=objc)
+    /// The toolbar uses the system-defined default size, which is `NSToolbarSizeModeRegular`.
     #[doc(alias = "NSToolbarSizeModeDefault")]
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum/regular?language=objc)
+    /// The toolbar uses regular-sized controls and 32 by 32 pixel icons.
     #[doc(alias = "NSToolbarSizeModeRegular")]
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Regular: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum/small?language=objc)
+    /// The toolbar uses small-sized controls and 24 by 24 pixel icons.
     #[doc(alias = "NSToolbarSizeModeSmall")]
     #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
     pub const Small: Self = Self(2);
@@ -88,7 +105,17 @@ unsafe impl RefEncode for NSToolbarSizeMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar?language=objc)
+    /// An object that manages the space above your app’s custom content and either below or integrated with the window’s title bar.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar) object manages the controls and views that apply to the main window’s content area. Toolbars provide convenient access to the commands and features people use most often. Toolbars are also user-configurable and support the display of an interactive customization palette.
+    ///
+    /// Create and configure your toolbar programmatically or using Interface Builder. Add items to the toolbar that correspond to the commands you want to feature in your window. Each item has a corresponding [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/nstoolbaritem) object, which you use to make changes. Each toolbar manages a unique set of items, but you can synchronize the items and state of multiple toolbars by assigning the same value to their [`identifier`](https://developer.apple.com/documentation/appkit/nstoolbar/identifier-swift.property) properties.
+    ///
+    /// For more information about how to use toolbars, see [Integrating a Toolbar and Touch Bar into Your App](https://developer.apple.com/documentation/appkit/integrating-a-toolbar-and-touch-bar-into-your-app).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -336,7 +363,13 @@ impl NSToolbar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbardelegate?language=objc)
+    /// A set of optional methods you use to configure the toolbar and respond to changes.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of [`NSToolbarDelegate`](https://developer.apple.com/documentation/appkit/nstoolbardelegate) to customize the behavior of your toolbars. You might use these methods to track the addition or removal of toolbar items, or use them to prevent someone from rearranging or removing specific items. Adopt this protocol in one of your custom objects and assign that object to the [`delegate`](https://developer.apple.com/documentation/appkit/nstoolbar/delegate) property of the [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar) object you want to manage.
+    ///
+    ///
     pub unsafe trait NSToolbarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSToolbarItem")]
         /// Given an item identifier, this method returns an item.
@@ -436,14 +469,27 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// Notifications
+    /// Posts before the toolbar adds a new item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/willadditemnotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The notification item is the `NSToolbar` object that’s about to add the item. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSToolbarUserInfoKey/itemKey", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "The " }, CodeVoice { code: "NSToolbarItem" }, Text { text: " object being added." }] }]]], alignments: None, metadata: None })
+    ///
+    /// Notifications
     pub static NSToolbarWillAddItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/didremoveitemnotification?language=objc)
+    /// Posted after an item is removed from a toolbar.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification item is the `NSToolbar` object that removed the item. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSToolbarUserInfoKey/itemKey", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "The " }, CodeVoice { code: "NSToolbarItem" }, Text { text: " object that was removed." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSToolbarDidRemoveItemNotification: &'static NSNotificationName;
 }
 

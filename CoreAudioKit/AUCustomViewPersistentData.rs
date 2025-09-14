@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/aucustomviewpersistentdata?language=objc)
+    /// A protocol that defines the methods an Audio Unit host calls to manage view data.
     pub unsafe trait AUCustomViewPersistentData {
         /// Property for accessing custom data to be preserved by the host
         ///

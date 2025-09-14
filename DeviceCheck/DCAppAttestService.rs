@@ -8,6 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A service that you use to validate the instance of your app running on a device.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`sharedService`](https://developer.apple.com/documentation/devicecheck/dcappattestservice/shared) instance of the [`DCAppAttestService`](https://developer.apple.com/documentation/devicecheck/dcappattestservice) class to assert the legitimacy of a particular instance of your app to your server. After ensuring service availability by reading the [`supported`](https://developer.apple.com/documentation/devicecheck/dcappattestservice/issupported) property, you use the service to:
+    ///
+    /// - Create a cryptographic key in the Secure Enclave by calling the [`generateKeyWithCompletionHandler:`](https://developer.apple.com/documentation/devicecheck/dcappattestservice/generatekey(completionhandler:)) method.
+    ///
+    /// - Ask Apple to certify the key by calling the [`attestKey:clientDataHash:completionHandler:`](https://developer.apple.com/documentation/devicecheck/dcappattestservice/attestkey(_:clientdatahash:completionhandler:)) method. - Prepare an assertion of your app’s integrity to accompany any or all server requests using the [`generateAssertion:clientDataHash:completionHandler:`](https://developer.apple.com/documentation/devicecheck/dcappattestservice/generateassertion(_:clientdatahash:completionhandler:)) method.
+    ///
+    /// For more information about how to support App Attest in your app, see [Establishing your app’s integrity](https://developer.apple.com/documentation/devicecheck/establishing-your-app-s-integrity). For information about the complementary procedures you implement on your server, see [Validating apps that connect to your server](https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// To use the App Attest service, your app must have an app ID that you register on the [Apple Developer](https://developer.apple.com/account/) website.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A service that you use to validate the instance of your app running on a
     /// device.
     ///
@@ -36,8 +57,6 @@ extern_class!(
     /// - Note: To use the App Attest service, your app must have an app ID that you
     /// register on the [Apple Developer](https://developer.apple.com/account/)
     /// website.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcappattestservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DCAppAttestService;

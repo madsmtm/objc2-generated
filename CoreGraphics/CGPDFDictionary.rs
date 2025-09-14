@@ -21,11 +21,21 @@ unsafe impl RefEncode for CGPDFDictionary {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFDictionary", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryref?language=objc)
+/// A type that encapsulates a PDF dictionary.
 pub type CGPDFDictionaryRef = *mut CGPDFDictionary;
 
 impl CGPDFDictionary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetcount(_:)?language=objc)
+    /// Returns the number of entries in a PDF dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the number of entries in the dictionary.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -39,7 +49,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetCount(dict) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetobject(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF object associated with a specified key in a PDF dictionary and, if so, retrieves that object.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF object. If the value associated with the specified key is a PDF object, then on return contains that object; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF object associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -64,7 +88,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetObject(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetboolean(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF Boolean value associated with a specified key in a PDF dictionary and, if so, retrieves the Boolean value.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF Boolean value. If the value associated with the specified key is a PDF Boolean value, then on return contains that value; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF Boolean value associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -89,7 +127,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetBoolean(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetinteger(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF integer associated with a specified key in a PDF dictionary and, if so, retrieves that integer.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF integer. If the value associated with the specified key is a PDF integer, then on return contains that value; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF integer associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -114,7 +166,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetInteger(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetnumber(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF number associated with a specified key in a PDF dictionary and, if so, retrieves that number.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF number. If the value associated with the specified key is a PDF number (real or integer), then on return contains that value; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF number associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -139,7 +205,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetNumber(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetname(_:_:_:)?language=objc)
+    /// Returns whether an object with a specified key in a PDF dictionary is a PDF name reference (represented as a constant C string) and, if so, retrieves that name.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF name reference, represented as a constant C string. If the value associated with the specified key is a reference to a PDF name, then on return, the variable points to the name; otherwise, the value is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a character array associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -163,7 +243,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetName(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetstring(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF string associated with a specified key in a PDF dictionary and, if so, retrieves that string.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF string. If the value associated with the specified key is a PDF string, then on return contains that string; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF string associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -188,7 +282,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetString(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetarray(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF array associated with a specified key in a PDF dictionary and, if so, retrieves that array.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, an uninitialized pointer to a PDF array. If the value associated with the specified key is a PDF array, then on return contains that array; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF array associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -213,7 +321,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetArray(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetdictionary(_:_:_:)?language=objc)
+    /// Returns whether there is another PDF dictionary associated with a specified key in a PDF dictionary and, if so, retrieves that dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to retrieve.
+    ///
+    /// - value: On input, a pointer to a PDF dictionary. If the value associated with the specified key is a PDF dictionary, then on return contains that dictionary; otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF dictionary associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -237,7 +359,21 @@ impl CGPDFDictionary {
         unsafe { CGPDFDictionaryGetDictionary(dict, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionarygetstream(_:_:_:)?language=objc)
+    /// Returns whether there is a PDF stream associated with a specified key in a PDF dictionary and, if so, retrieves that stream.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - key: The key for the value to be retrieved.
+    ///
+    /// - value: On input, a pointer to a PDF stream. If the value associated with the specified key is a PDF stream, then on return contains that stream; otherwise, the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if there is a PDF stream associated with the specified key; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -263,13 +399,41 @@ impl CGPDFDictionary {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction?language=objc)
+/// Performs custom processing on a key-value pair from a PDF dictionary, using optional contextual information.
+///
+/// Parameters:
+/// - key: The current key in the dictionary.
+///
+/// - object: The value in the dictionary associated with the key.
+///
+/// - info: The contextual information that your provided in the `info` parameter in [`CGPDFDictionaryApplyFunction`](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplyfunction(_:_:_:)).
+///
+///
+/// ## Discussion
+///
+/// [`CGPDFDictionaryApplierFunction`](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction) defines the callback for [`CGPDFDictionaryApplyFunction`](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplyfunction(_:_:_:)), that enumerates all of the entries in the dictionary, calling your custom applier function once for each entry. The current key, its associated value, and the contextual information are passed to your applier function using the `key`, `value`, and `info` parameters respectively.
+///
+///
 #[cfg(feature = "CGPDFObject")]
 pub type CGPDFDictionaryApplierFunction =
     Option<unsafe extern "C-unwind" fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void)>;
 
 impl CGPDFDictionary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplyfunction(_:_:_:)?language=objc)
+    /// Applies a function to each entry in a dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A PDF dictionary. If this parameter is not a valid PDF dictionary, the behavior is undefined.
+    ///
+    /// - function: The function to apply to each entry in the dictionary.
+    ///
+    /// - info: A pointer to contextual information to pass to the function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function enumerates all of the entries in the dictionary, calling the function once for each. The current key, its associated value, and the contextual information are passed to the function (see also [`CGPDFDictionaryApplierFunction`](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierfunction)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -295,14 +459,11 @@ impl CGPDFDictionary {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFDictionaryApplierBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFDictionary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplyblock(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `dict` must be a valid pointer or null.

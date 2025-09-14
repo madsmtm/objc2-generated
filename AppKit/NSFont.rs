@@ -16,15 +16,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The identify matrix for the font.
     /// ******* Font Matrix ********
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/identitymatrix?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontIdentityMatrix: NonNull<CGFloat>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont?language=objc)
+    /// The representation of a font in an app.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSFont`](https://developer.apple.com/documentation/appkit/nsfont) objects represent fonts to an app, providing access to characteristics of the font and assistance in laying out glyphs relative to one another. Font objects are also used to establish the current font for drawing text directly into a graphics context, using the [`set`](https://developer.apple.com/documentation/appkit/nsfont/set()) method.
+    ///
+    /// You don’t create [`NSFont`](https://developer.apple.com/documentation/appkit/nsfont) objects using the `alloc` and `init` methods. Instead, you use either [`fontWithDescriptor:size:`](https://developer.apple.com/documentation/appkit/nsfont/init(descriptor:size:)) or [`fontWithName:size:`](https://developer.apple.com/documentation/appkit/nsfont/init(name:size:)) to look up an available font and alter its size or matrix to your needs. These methods check for an existing font object with the specified characteristics, returning it if there is one. Otherwise, they look up the font data requested and create the appropriate object. [`NSFont`](https://developer.apple.com/documentation/appkit/nsfont) also defines a number of methods for getting standard system fonts, such as [`systemFontOfSize:`](https://developer.apple.com/documentation/appkit/nsfont/systemfont(ofsize:)), [`userFontOfSize:`](https://developer.apple.com/documentation/appkit/nsfont/userfont(ofsize:)), and [`messageFontOfSize:`](https://developer.apple.com/documentation/appkit/nsfont/messagefont(ofsize:)). To request the default size for these standard fonts, pass a negative number or `0` as the font size. See [macOS Human Interface Guidelines](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html#//apple_ref/doc/uid/20000957) for more information about system fonts.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFont;
@@ -417,45 +424,52 @@ impl DefaultRetained for NSFont {
 }
 
 extern "C" {
+    /// Posted after the threshold for antialiasing changes.
     /// ******* Notifications ********
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/antialiasthresholdchangednotification?language=objc)
     pub static NSAntialiasThresholdChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/fontsetchangednotification?language=objc)
+    /// Posted after the currently-set font changes.
+    ///
+    /// ## Discussion
+    ///
+    ///
     pub static NSFontSetChangedNotification: &'static NSNotificationName;
 }
 
+/// The type used to specify glyphs.
 /// ******* Deprecated API ********
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyph?language=objc)
 pub type NSGlyph = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolglyph?language=objc)
+/// The reserved code for a control glyph.
+///
+/// ## Discussion
+///
+/// An [`NSGlyphGenerator`](https://developer.apple.com/documentation/appkit/nsglyphgenerator) objects generates [`NSControlGlyph`](https://developer.apple.com/documentation/appkit/nscontrolglyph) for all characters in the Unicode General Category C* and U200B (ZERO WIDTH SPACE).
+///
+///
 pub const NSControlGlyph: c_uint = 0x00FFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnullglyph?language=objc)
+/// The reserved code for a null glyph.
 pub const NSNullGlyph: c_uint = 0x0;
 
+/// The font rendering mode.
 /// ******* Screen Font Rendering Mode ********
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontRenderingMode(pub NSUInteger);
 impl NSFontRenderingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/defaultrenderingmode?language=objc)
+    /// Determines the actual mode based on the user preference settings.
     #[doc(alias = "NSFontDefaultRenderingMode")]
     pub const DefaultRenderingMode: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/antialiasedrenderingmode?language=objc)
+    /// Specifies antialiased, floating-point advancements rendering mode (synonymous with printerFont).
     #[doc(alias = "NSFontAntialiasedRenderingMode")]
     pub const AntialiasedRenderingMode: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/integeradvancementsrenderingmode?language=objc)
+    /// Specifies integer advancements rendering mode.
     #[doc(alias = "NSFontIntegerAdvancementsRenderingMode")]
     pub const IntegerAdvancementsRenderingMode: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode/antialiasedintegeradvancementsrenderingmode?language=objc)
+    /// Specifies antialiased, integer advancements rendering mode.
     #[doc(alias = "NSFontAntialiasedIntegerAdvancementsRenderingMode")]
     pub const AntialiasedIntegerAdvancementsRenderingMode: Self = Self(3);
 }
@@ -468,14 +482,20 @@ unsafe impl RefEncode for NSFontRenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultibyteglyphpacking?language=objc)
+/// A constant for glyph packing.
+///
+/// ## Overview
+///
+/// Cocoa stores all text data as Unicode. The text system converts Unicode into glyph IDs and places them in 1-, 2-, or 4-byte storage depending on the context. To render text, you must convert the storage into a format the text engine understands. The following constants describe the glyph packing schemes the text rendering engine can use. They are used to extract glyphs from a font for making a multibyte (or single-byte) array of glyphs for passing to an interpreter, such as the window server, which expects a big-endian multibyte stream (that is, “packed glyphs”) instead of a pure `NSGlyph` stream. They’re used by `glyphPacking`. With Quartz, the engine always expects the format to be in 2-byte short array, so `NSNativeShortGlyphPacking` is the only format currently in use.
+///
+///
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMultibyteGlyphPacking(pub NSUInteger);
 impl NSMultibyteGlyphPacking {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultibyteglyphpacking/nativeshortglyphpacking?language=objc)
+    /// The native format for macOS.
     #[doc(alias = "NSNativeShortGlyphPacking")]
     #[deprecated]
     pub const NativeShortGlyphPacking: Self = Self(5);
@@ -490,7 +510,13 @@ unsafe impl RefEncode for NSMultibyteGlyphPacking {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsconvertglyphstopackedglyphs(_:_:_:_:)?language=objc)
+    /// Prepares a set of glyphs for processing by character-based routines.
+    ///
+    /// ## Discussion
+    ///
+    /// This function takes a buffer of glyphs, specified in the `glBuf` parameter, and packs them into a condensed character array. The character array is returned in the `packedGlyphs` parameter, which should have enough space for at least ((4 * count) + 1) bytes to guarantee that the packed glyphs fit. `count` specifies the number of glyphs in `glBuf`. `packing` specifies how the glyphs are currently packed.
+    ///
+    ///
     ///
     /// # Safety
     ///

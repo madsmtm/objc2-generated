@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration object you use to create the LSTM layer.
     /// The MLCLSTMDescriptor specifies a LSTM descriptor
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclstmdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkspace?language=objc)
+    /// A workspace for running an Automator workflow.
+    ///
+    /// ## Overview
+    ///
+    /// The [`AMWorkspace`](https://developer.apple.com/documentation/automator/amworkspace) class provides access to the shared workspace in the Automator framework, where you can run workflows without a workflow controller. Use [`sharedWorkspace`](https://developer.apple.com/documentation/automator/amworkspace/shared) to access the shared workspace and [`runWorkflowAtPath:withInput:error:`](https://developer.apple.com/documentation/automator/amworkspace/runworkflow(atpath:withinput:)) to run your workflow in it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AMWorkspace;

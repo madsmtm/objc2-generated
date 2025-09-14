@@ -6,23 +6,22 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// A global variable that can be used to enable debug behavior in your app, such as extra logging.
     /// **************    General        ***************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdebugenabled?language=objc)
     pub static NSDebugEnabled: Bool;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszombieenabled?language=objc)
+    /// A global variable related to zombie objects that in practice has no effect.
     pub static NSZombieEnabled: Bool;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdeallocatezombies?language=objc)
+    /// A global variable that determines whether or not the memory of zombie objects is deallocated.
     pub static NSDeallocateZombies: Bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisfreedobject?language=objc)
+/// Returns a Boolean indicating whether the specified object has been freed.
 ///
 /// # Safety
 ///
@@ -36,9 +35,8 @@ pub unsafe extern "C-unwind" fn NSIsFreedObject(an_object: Option<&AnyObject>) -
     unsafe { NSIsFreedObject(an_object) }.as_bool()
 }
 
+/// Returns the value of the frame pointer of the specified frame.
 /// **************    Stack processing    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsframeaddress?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSFrameAddress(frame: NSUInteger) -> *mut c_void {
     extern "C-unwind" {
@@ -47,7 +45,7 @@ pub extern "C-unwind" fn NSFrameAddress(frame: NSUInteger) -> *mut c_void {
     unsafe { NSFrameAddress(frame) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreturnaddress?language=objc)
+/// Returns the value of the return address of the specified frame.
 #[inline]
 pub extern "C-unwind" fn NSReturnAddress(frame: NSUInteger) -> *mut c_void {
     extern "C-unwind" {
@@ -56,7 +54,7 @@ pub extern "C-unwind" fn NSReturnAddress(frame: NSUInteger) -> *mut c_void {
     unsafe { NSReturnAddress(frame) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountframes?language=objc)
+/// Returns the number of call frames on the stack.
 #[inline]
 pub extern "C-unwind" fn NSCountFrames() -> NSUInteger {
     extern "C-unwind" {
@@ -76,12 +74,12 @@ impl NSAutoreleasePool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeepallocationstatistics?language=objc)
+    /// A no-longer-used global variable related to keeping statistics.
     pub static NSKeepAllocationStatistics: Bool;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecordallocationevent?language=objc)
+    /// Notes an object or zone allocation event and various other statistics, such as the time and current thread.
     ///
     /// # Safety
     ///

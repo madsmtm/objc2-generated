@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailprovider?language=objc)
+    /// An abstract base class for creating thumbnails of custom file types.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLThumbnailProvider;

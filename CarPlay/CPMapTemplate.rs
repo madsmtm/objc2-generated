@@ -11,26 +11,25 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection?language=objc)
+/// The directions a user can pan (or move) a map displayed on the CarPlay screen.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPPanDirection(pub NSInteger);
 bitflags::bitflags! {
     impl CPPanDirection: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppandirection/cppandirectionnone?language=objc)
         #[doc(alias = "CPPanDirectionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/left?language=objc)
+/// The user panned the map to the left.
         #[doc(alias = "CPPanDirectionLeft")]
         const Left = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/right?language=objc)
+/// The user panned the map to the right.
         #[doc(alias = "CPPanDirectionRight")]
         const Right = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/up?language=objc)
+/// The user panned the map upward.
         #[doc(alias = "CPPanDirectionUp")]
         const Up = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate/pandirection/down?language=objc)
+/// The user panned the map downward.
         #[doc(alias = "CPPanDirectionDown")]
         const Down = 1<<3;
     }
@@ -44,26 +43,44 @@ unsafe impl RefEncode for CPPanDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle?language=objc)
+/// A display style that determines the visual layout for a maneuver.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPManeuverDisplayStyle(pub NSInteger);
 bitflags::bitflags! {
     impl CPManeuverDisplayStyle: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/cpmaneuverdisplaystyledefault?language=objc)
+/// The default display style for the maneuver.
+///
+/// ## Discussion
+///
+/// The visual layout for this display style is the same as [`leadingSymbol`](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/leadingsymbol).
+///
+///
         #[doc(alias = "CPManeuverDisplayStyleDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/leadingsymbol?language=objc)
+/// The symbol appears before the instructions for the maneuver.
         #[doc(alias = "CPManeuverDisplayStyleLeadingSymbol")]
         const LeadingSymbol = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/trailingsymbol?language=objc)
+/// The symbol appears after the instructions for the maneuver.
         #[doc(alias = "CPManeuverDisplayStyleTrailingSymbol")]
         const TrailingSymbol = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/symbolonly?language=objc)
+/// Only the symbol appears for the maneuver.
+///
+/// ## Discussion
+///
+/// If your app provides lane guidance, include a second maneuver to the navigation session’s [`upcomingManeuvers`](https://developer.apple.com/documentation/carplay/cpnavigationsession/upcomingmaneuvers) array that provides the lane guidance information. The second maneuver should have:
+///
+/// - A [`symbolSet`](https://developer.apple.com/documentation/carplay/cpmaneuver/symbolset) containing dark and light images that fill the full width of the guidance panel with a maximum image size of 120 pt x 18 pt.
+///
+/// - An empty array of [`instructionVariants`](https://developer.apple.com/documentation/carplay/cpmaneuver/instructionvariants).
+///
+/// The map template should include a [`mapDelegate`](https://developer.apple.com/documentation/carplay/cpmaptemplate/mapdelegate) object that conforms to [`CPMapTemplateDelegate`](https://developer.apple.com/documentation/carplay/cpmaptemplatedelegate) and implements the [`mapTemplate:displayStyleForManeuver:`](https://developer.apple.com/documentation/carplay/cpmaptemplatedelegate/maptemplate(_:displaystylefor:)) method, which returns the [`CPManeuverDisplayStyleSymbolOnly`](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/symbolonly) display style for the maneuver.
+///
+///
         #[doc(alias = "CPManeuverDisplayStyleSymbolOnly")]
         const SymbolOnly = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle/instructiononly?language=objc)
+/// Only the instructions appear for the maneuver.
         #[doc(alias = "CPManeuverDisplayStyleInstructionOnly")]
         const InstructionOnly = 4;
     }
@@ -77,22 +94,34 @@ unsafe impl RefEncode for CPManeuverDisplayStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor?language=objc)
+/// The color the system uses when displaying the time remaining for a trip.
+///
+/// ## Overview
+///
+/// The system determines the shade of each color based on the [`tripEstimateStyle`](https://developer.apple.com/documentation/carplay/cpmaptemplate/tripestimatestyle) for the map template.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTimeRemainingColor(pub NSUInteger);
 impl CPTimeRemainingColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/default?language=objc)
+    /// The system default color.
+    ///
+    /// ## Discussion
+    ///
+    /// The color is white when the map template’s [`tripEstimateStyle`](https://developer.apple.com/documentation/carplay/cpmaptemplate/tripestimatestyle) is [`CPTripEstimateStyleDark`](https://developer.apple.com/documentation/carplay/cptripestimatestyle/dark), and black when the style is [`CPTripEstimateStyleLight`](https://developer.apple.com/documentation/carplay/cptripestimatestyle/light).
+    ///
+    ///
     #[doc(alias = "CPTimeRemainingColorDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/green?language=objc)
+    /// A shade of green.
     #[doc(alias = "CPTimeRemainingColorGreen")]
     pub const Green: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/orange?language=objc)
+    /// A shade of orange.
     #[doc(alias = "CPTimeRemainingColorOrange")]
     pub const Orange: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor/red?language=objc)
+    /// A shade of red.
     #[doc(alias = "CPTimeRemainingColorRed")]
     pub const Red: Self = Self(3);
 }
@@ -105,16 +134,16 @@ unsafe impl RefEncode for CPTimeRemainingColor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptripestimatestyle?language=objc)
+/// The set of display styles for trip estimates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTripEstimateStyle(pub NSUInteger);
 impl CPTripEstimateStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptripestimatestyle/light?language=objc)
+    /// The light trip estimate display style.
     #[doc(alias = "CPTripEstimateStyleLight")]
     pub const Light: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptripestimatestyle/dark?language=objc)
+    /// The dark trip estimate display style.
     #[doc(alias = "CPTripEstimateStyleDark")]
     pub const Dark: Self = Self(1);
 }
@@ -128,7 +157,29 @@ unsafe impl RefEncode for CPTripEstimateStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplate?language=objc)
+    /// A template that displays a navigation overlay that your app draws on the map.
+    ///
+    /// ## Overview
+    ///
+    /// After CarPlay calls your scene delegate’s [`templateApplicationScene:didConnectInterfaceController:toWindow:`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate/templateapplicationscene(_:didconnect:to:)) method, create a map template and set it as the root template by calling [`setRootTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/setroottemplate(_:animated:completion:)) on the interface controller the method provides.
+    ///
+    /// The map template appears as an overlay on top of the base view. The template is the control layer, providing a navigation bar and map buttons that users interact with through the CarPlay screen.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The base view is where your app draws its map. CarPlay doesn’t support direct user interactions in this view. Instead, your app uses templates, which overlay the base view, to allow users to interact with your app through the CarPlay screen.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When the user begins to interact with your app through the CarPlay screen, the system displays the navigation bar, hiding it after a brief period of inactivity. You can change this behavior by setting the [`automaticallyHidesNavigationBar`](https://developer.apple.com/documentation/carplay/cpmaptemplate/automaticallyhidesnavigationbar) and [`hidesButtonsWithNavigationBar`](https://developer.apple.com/documentation/carplay/cpmaptemplate/hidesbuttonswithnavigationbar) properties.
+    ///
+    /// The navigation bar includes up to two leading and two trailing buttons. You can change the buttons, including their titles and icon images, by setting the [`leadingNavigationBarButtons`](https://developer.apple.com/documentation/carplay/cpbarbuttonproviding/leadingnavigationbarbuttons) and [`trailingNavigationBarButtons`](https://developer.apple.com/documentation/carplay/cpbarbuttonproviding/trailingnavigationbarbuttons) properties on your template.
+    ///
+    /// You can display additional map buttons by providing an array of [`CPMapButton`](https://developer.apple.com/documentation/carplay/cpmapbutton) objects to [`mapButtons`](https://developer.apple.com/documentation/carplay/cpmaptemplate/mapbuttons). Use these buttons to provide users access to actions, such as entering panning mode or zooming in and out on the map.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -399,7 +450,7 @@ impl CPMapTemplate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaptemplatedelegate?language=objc)
+    /// The protocol an object implements to handle events from a map template.
     pub unsafe trait CPMapTemplateDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "CPTemplate")]
         /// Determines if the template should provide navigation metadata.

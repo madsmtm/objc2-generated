@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class is used to represent a generic action.
+    /// An abstract base class for actions in HomeKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaction?language=objc)
+    /// ## Overview
+    ///
+    /// Actions can be added to [`HMActionSet`](https://developer.apple.com/documentation/homekit/hmactionset) objects. Action sets can then be set for automatic execution in response to specific conditions using [`HMTrigger`](https://developer.apple.com/documentation/homekit/hmtrigger) objects, or manually triggered with [`executeActionSet:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/executeactionset(_:completionhandler:)).
+    ///
+    ///
+    /// This class is used to represent a generic action.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAction;

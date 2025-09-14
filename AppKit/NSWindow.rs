@@ -12,59 +12,77 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcustomsheetposition?language=objc)
+/// The specific version of the AppKit framework that introduced custom sheet positioning.
+///
+/// ## Discussion
+///
+/// Developers should not need to use this constant unless they are writing applications for macOS 10.2 and earlier.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithdeferredwindowdisplaysupport?language=objc)
+/// The specific version of the AppKit framework that introduced support for deferred window display.
+///
+/// ## Discussion
+///
+/// Developers should not need to use this constant unless they are writing applications for OS X v10.5 and earlier.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct?language=objc)
+/// Constants that specify the style of a window, and that you can combine with the C bitwise OR operator.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowStyleMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/borderless?language=objc)
+/// The window displays none of the usual peripheral elements.
+///
+/// ## Discussion
+///
+/// Useful only for display or caching purposes. A window that uses `NSWindowStyleMaskBorderless` can’t become key or main, unless the value of [`canBecomeKeyWindow`](https://developer.apple.com/documentation/appkit/nswindow/canbecomekey) or [`canBecomeMainWindow`](https://developer.apple.com/documentation/appkit/nswindow/canbecomemain) is [`true`](https://developer.apple.com/documentation/swift/true). Note that you can set a window’s or panel’s style mask to `NSWindowStyleMaskBorderless` in Interface Builder by deselecting Title Bar in the Appearance section of the Attributes inspector.
+///
+///
         #[doc(alias = "NSWindowStyleMaskBorderless")]
         const Borderless = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/titled?language=objc)
+/// The window displays a title bar.
         #[doc(alias = "NSWindowStyleMaskTitled")]
         const Titled = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/closable?language=objc)
+/// The window displays a close button.
         #[doc(alias = "NSWindowStyleMaskClosable")]
         const Closable = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/miniaturizable?language=objc)
+/// The window displays a minimize button.
         #[doc(alias = "NSWindowStyleMaskMiniaturizable")]
         const Miniaturizable = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/resizable?language=objc)
+/// The window can be resized by the user.
         #[doc(alias = "NSWindowStyleMaskResizable")]
         const Resizable = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/texturedbackground?language=objc)
+/// The window uses a textured background that darkens when the window is key or main and lightens when it is inactive, and may have a second gradient in the section below the window content.
         #[doc(alias = "NSWindowStyleMaskTexturedBackground")]
 #[deprecated = "Textured window style should no longer be used"]
         const TexturedBackground = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/unifiedtitleandtoolbar?language=objc)
+/// This constant has no effect, because all windows that include a toolbar use the unified style.
         #[doc(alias = "NSWindowStyleMaskUnifiedTitleAndToolbar")]
         const UnifiedTitleAndToolbar = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/fullscreen?language=objc)
+/// The window can appear full screen. A fullscreen window does not draw its title bar, and may have special handling for its toolbar. (This mask is automatically toggled when [`toggleFullScreen:`](https://developer.apple.com/documentation/appkit/nswindow/togglefullscreen(_:)) is called.)
         #[doc(alias = "NSWindowStyleMaskFullScreen")]
         const FullScreen = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/fullsizecontentview?language=objc)
+/// When set, the window’s [`contentView`](https://developer.apple.com/documentation/appkit/nswindow/contentview) consumes the full size of the window. Although you can combine this constant with other window style masks, it is respected only for windows with a title bar. Note that using this mask opts in to layer-backing. Use the [`contentLayoutRect`](https://developer.apple.com/documentation/appkit/nswindow/contentlayoutrect) or the [`contentLayoutGuide`](https://developer.apple.com/documentation/appkit/nswindow/contentlayoutguide) to lay out views underneath the title bar–toolbar area.
         #[doc(alias = "NSWindowStyleMaskFullSizeContentView")]
         const FullSizeContentView = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/utilitywindow?language=objc)
+/// The window is a panel or a subclass of [`NSPanel`](https://developer.apple.com/documentation/appkit/nspanel).
         #[doc(alias = "NSWindowStyleMaskUtilityWindow")]
         const UtilityWindow = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/docmodalwindow?language=objc)
+/// The window is a document-modal panel (or  a subclass of [`NSPanel`](https://developer.apple.com/documentation/appkit/nspanel)).
         #[doc(alias = "NSWindowStyleMaskDocModalWindow")]
         const DocModalWindow = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/nonactivatingpanel?language=objc)
+/// The window is a panel or a subclass of [`NSPanel`](https://developer.apple.com/documentation/appkit/nspanel) that does not activate the owning app.
         #[doc(alias = "NSWindowStyleMaskNonactivatingPanel")]
         const NonactivatingPanel = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct/hudwindow?language=objc)
+/// The window is a HUD panel.
         #[doc(alias = "NSWindowStyleMaskHUDWindow")]
         const HUDWindow = 1<<13;
     }
@@ -78,29 +96,40 @@ unsafe impl RefEncode for NSWindowStyleMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/ok?language=objc)
+/// The presentation or dismissal of the sheet has finished.
 #[cfg(feature = "NSApplication")]
 pub static NSModalResponseOK: NSModalResponse = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/cancel?language=objc)
+/// The presentation or dismissal of the sheet has been canceled.
 #[cfg(feature = "NSApplication")]
 pub static NSModalResponseCancel: NSModalResponse = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/displaywindowrunloopordering?language=objc)
+/// The priority at which windows are displayed.
 pub const NSDisplayWindowRunLoopOrdering: c_uint = 600000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/resetcursorrectsrunloopordering?language=objc)
+/// The priority at which cursor rects are reset.
 pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum?language=objc)
+/// Constants that represent the access levels other processes can have to a window’s content.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowSharingType(pub NSUInteger);
 impl NSWindowSharingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum/none?language=objc)
+    /// A legacy constant that macOS no longer uses.
+    ///
+    /// ## Discussion
+    ///
+    /// `NSWindowSharingNone` can cause content to not be available in certain sharing situations. Don’t use this value to hide or omit content from being captured. Instead, use FairPlay Streaming (FPS). For more information, read [FairPlay Streaming](https://developer.apple.com/streaming/fps/).
+    ///
+    ///
     #[doc(alias = "NSWindowSharingNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum/readonly?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window’s contents can be read but not modified by another process.
+    ///
+    ///
     #[doc(alias = "NSWindowSharingReadOnly")]
     pub const ReadOnly: Self = Self(1);
 }
@@ -113,6 +142,18 @@ unsafe impl RefEncode for NSWindowSharingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Window collection behaviors related to Mission Control, Spaces, and Stage Manager.
+///
+/// ## Overview
+///
+/// Collection behaviors are properties you set on windows to control their display characteristics in window management technologies. Use them to specify a preference on how windows behave in window management technologies like Mission Control, Spaces, and Stage Manager.
+///
+/// To set a collection behavior on a window, assign one or more behavior options to the window’s [`collectionBehavior`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.property) property:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["window.collectionBehavior = .primary"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["window.collectionBehavior = NSWindowCollectionBehaviorPrimary;"], metadata: None }] }] })
+/// Not all collection behaviors apply to all windowing management technologies, and some are mutually exclusive to their respective groups. For example, [`NSWindowCollectionBehaviorPrimary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/primary), [`NSWindowCollectionBehaviorAuxiliary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/auxiliary), and [`NSWindowCollectionBehaviorCanJoinAllApplications`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallapplications) only apply to full screen and Stage Manager. They’re also mutually exclusive. Specify at most one per window.
+///
+///
 /// You may specify at most one of
 /// `NSWindowCollectionBehaviorPrimary,``NSWindowCollectionBehaviorAuxiliary,`or
 /// `NSWindowCollectionBehaviorCanJoinAllApplications.`If unspecified, the window gets the default treatment determined by its other collection behaviors.
@@ -154,60 +195,154 @@ unsafe impl RefEncode for NSWindowSharingType {
 /// `NSWindowCollectionBehaviorFullScreenAllowsTiling.`Even if a window allows itself to be placed in a tile, it still may not be put in the tile if its
 /// `minFullScreenContentSize`is too large to fit. A window can explicitly disallow itself from being placed in a full screen tile by including
 /// `NSWindowCollectionBehaviorFullScreenDisallowsTiling.`This is useful for non-full screen capable windows to explicitly prevent themselves from being tiled. It can also be used by a full screen window to prevent any other windows from being placed in its full screen tile.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowCollectionBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowCollectionBehavior: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior/nswindowcollectionbehaviordefault?language=objc)
+/// The window appears in only one space at a time.
         #[doc(alias = "NSWindowCollectionBehaviorDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallspaces?language=objc)
+/// The window can appear in all spaces.
+///
+/// ## Discussion
+///
+/// The menu bar behaves this way.
+///
+///
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllSpaces")]
         const CanJoinAllSpaces = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/movetoactivespace?language=objc)
+/// When the window becomes active, move it to the active space instead of switching spaces.
         #[doc(alias = "NSWindowCollectionBehaviorMoveToActiveSpace")]
         const MoveToActiveSpace = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/managed?language=objc)
+/// The window participates in Mission Control and Spaces.
+///
+/// ## Discussion
+///
+/// This is the default behavior if `windowLevel` is equal to [`NSNormalWindowLevel`](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/normal).
+///
+///
         #[doc(alias = "NSWindowCollectionBehaviorManaged")]
         const Managed = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/transient?language=objc)
+/// The window floats in Spaces and hides in Mission Control.
+///
+/// ## Discussion
+///
+/// This is the default behavior if `windowLevel` isn’t equal to [`NSNormalWindowLevel`](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/normal).
+///
+///
         #[doc(alias = "NSWindowCollectionBehaviorTransient")]
         const Transient = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/stationary?language=objc)
+/// Mission Control doesn’t affect the window, so it stays visible and stationary, like the desktop window.
         #[doc(alias = "NSWindowCollectionBehaviorStationary")]
         const Stationary = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/participatesincycle?language=objc)
+/// The window participates in the window cycle for use with the Cycle Through Windows menu item.
         #[doc(alias = "NSWindowCollectionBehaviorParticipatesInCycle")]
         const ParticipatesInCycle = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/ignorescycle?language=objc)
+/// The window isn’t part of the window cycle for use with the Cycle Through Windows menu item.
         #[doc(alias = "NSWindowCollectionBehaviorIgnoresCycle")]
         const IgnoresCycle = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenprimary?language=objc)
+/// The window can enter full-screen mode.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenPrimary")]
         const FullScreenPrimary = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenauxiliary?language=objc)
+/// The window displays on the same space as the full screen window.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenAuxiliary")]
         const FullScreenAuxiliary = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreennone?language=objc)
+/// The window doesn’t support full-screen mode.
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenNone")]
         const FullScreenNone = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenallowstiling?language=objc)
+/// The window can be a secondary full screen tile even if it can’t be a full screen window itself.
+///
+/// ## Discussion
+///
+/// The default behavior is to allow any window to participate in full-screen tiling, as long as it isn’t a panel or sheet and it meets certain requirements, such as being resizable. Windows that aren’t full screen capable can still become a secondary tile in full-screen.
+///
+/// A window can explicitly allow the system to place the window into a full-screen tile by including [`NSWindowCollectionBehaviorFullScreenAllowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenallowstiling). Even if a window allows full-screen tiling, the system may not put it in the tile if the window’s [`minFullScreenContentSize`](https://developer.apple.com/documentation/appkit/nswindow/minfullscreencontentsize) is too large.
+///
+/// A window can explicitly disallow the system from placing the window in a full-screen tile by including [`NSWindowCollectionBehaviorFullScreenDisallowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreendisallowstiling). Windows that don’t support full-screen mode can use [`NSWindowCollectionBehaviorFullScreenDisallowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreendisallowstiling) to prevent the system from putting the window into a full-screen tile. Full-screen windows can use [`NSWindowCollectionBehaviorFullScreenDisallowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreendisallowstiling) to prevent the system from placing any other windows in its full-screen tile.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The system raises an exception if you set both [`NSWindowCollectionBehaviorFullScreenAllowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenallowstiling) and [`NSWindowCollectionBehaviorFullScreenDisallowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreendisallowstiling).
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenAllowsTiling")]
         const FullScreenAllowsTiling = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreendisallowstiling?language=objc)
+/// The window doesn’t support being a full-screen tile window, but may support being a full-screen window.
+///
+/// ## Discussion
+///
+/// For more information about full-screen tile window support, see [`NSWindowCollectionBehaviorFullScreenAllowsTiling`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenallowstiling).
+///
+///
         #[doc(alias = "NSWindowCollectionBehaviorFullScreenDisallowsTiling")]
         const FullScreenDisallowsTiling = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/primary?language=objc)
+/// The behavior marking this window as primary for both Stage Manager and full screen.
+///
+/// ## Discussion
+///
+/// Marking a window collection behavior as primary means it becomes primary for both Stage Manager and full screen display modes.
+///
+/// To set a different behavior in full screen while keeping Stage Manager primary, set a more specific behavior just for full screen mode (see [`NSWindowCollectionBehaviorFullScreenAuxiliary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenauxiliary)).
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["window.collectionBehavior = [.primary, .fullScreenAuxiliary]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["window.collectionBehavior |= (NSWindowCollectionBehaviorPrimary | NSWindowCollectionBehaviorFullScreenAuxiliary);"], metadata: None }] }] })
+/// Use this collection behavior for document or viewer windows.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  This property is mutually exclusive. Set only one of [`NSWindowCollectionBehaviorPrimary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/primary), [`NSWindowCollectionBehaviorAuxiliary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/auxiliary), or [`NSWindowCollectionBehaviorCanJoinAllApplications`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallapplications) on a window handled by Stage Manager at a time.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSWindowCollectionBehaviorPrimary")]
         const Primary = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/auxiliary?language=objc)
+/// The behavior marking this window as auxiliary for both Stage Manager and full screen.
+///
+/// ## Discussion
+///
+/// Marking a window collection behavior as auxiliary means it becomes auxiliary for both Stage Manager and full screen display modes. Auxiliary windows prefer being shown alongside primary windows.
+///
+/// To set a different behavior in full screen, while keeping Stage Manager auxiliary, set a more specific behavior just for full screen mode (see [`NSWindowCollectionBehaviorFullScreenNone`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreennone)).
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["window.collectionBehavior = [.auxiliary, .fullScreenNone]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["window.collectionBehavior |= (NSWindowCollectionBehaviorAuxiliary | NSWindowCollectionBehaviorFullScreenNone);"], metadata: None }] }] })
+/// Use this collection behavior for About or Settings windows as well as utility panes.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  This property is mutually exclusive. Set only one of [`NSWindowCollectionBehaviorPrimary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/primary), [`NSWindowCollectionBehaviorAuxiliary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/auxiliary), or [`NSWindowCollectionBehaviorCanJoinAllApplications`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallapplications) on a window handled by Stage Manager at a time.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSWindowCollectionBehaviorAuxiliary")]
         const Auxiliary = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallapplications?language=objc)
+/// The behavior marking this window as one that can join all apps for both Stage Manager and full screen.
+///
+/// ## Discussion
+///
+/// Windows marked with this behavior don’t participate in Stage Manager layout but can join the windows of other apps in full screen spaces when eligible.
+///
+/// Use this collection behavior for floating windows and system overlays. To opt out of joining other apps’ full screen spaces use [`NSWindowCollectionBehaviorFullScreenPrimary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/fullscreenprimary).
+///
+/// <div class="warning">
+///
+/// ### Note
+///  This property is mutually exclusive. Set only one of [`NSWindowCollectionBehaviorPrimary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/primary), [`NSWindowCollectionBehaviorAuxiliary`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/auxiliary), or [`NSWindowCollectionBehaviorCanJoinAllApplications`](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct/canjoinallapplications) on a window handled by Stage Manager at a time.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSWindowCollectionBehaviorCanJoinAllApplications")]
         const CanJoinAllApplications = 1<<18;
     }
@@ -221,25 +356,25 @@ unsafe impl RefEncode for NSWindowCollectionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum?language=objc)
+/// Constants that control the automatic window animation behavior windows use when ordering to the front or out of view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowAnimationBehavior(pub NSInteger);
 impl NSWindowAnimationBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/default?language=objc)
+    /// The automatic animation that’s appropriate to the window type. This is the default.
     #[doc(alias = "NSWindowAnimationBehaviorDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/none?language=objc)
+    /// No automatic animation used. This may be useful when you perform your own window animation.
     #[doc(alias = "NSWindowAnimationBehaviorNone")]
     pub const None: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/documentwindow?language=objc)
+    /// The animation behavior that’s appropriate to the document window style.
     #[doc(alias = "NSWindowAnimationBehaviorDocumentWindow")]
     pub const DocumentWindow: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/utilitywindow?language=objc)
+    /// The animation behavior that’s appropriate to the utility window style.
     #[doc(alias = "NSWindowAnimationBehaviorUtilityWindow")]
     pub const UtilityWindow: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum/alertpanel?language=objc)
+    /// The animation behavior that’s appropriate to the alert window style.
     #[doc(alias = "NSWindowAnimationBehaviorAlertPanel")]
     pub const AlertPanel: Self = Self(5);
 }
@@ -252,19 +387,34 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Options used in `+windowNumbersWithOptions:`.  If no options are specified, the returned list contains window numbers for visible windows on the active space belonging to the calling application.
+/// Options to use when retrieving window numbers from the system.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/numberlistoptions?language=objc)
+/// ## Overview
+///
+/// If you pass `0` instead, then the list the method returns contains window numbers for visible windows on the active space belonging to the calling application.
+///
+///
+/// Options used in `+windowNumbersWithOptions:`.  If no options are specified, the returned list contains window numbers for visible windows on the active space belonging to the calling application.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowNumberListOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowNumberListOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/numberlistoptions/allapplications?language=objc)
+///
+/// ## Discussion
+///
+/// The window numbers of windows visible on any space and belonging to any application.
+///
+///
         #[doc(alias = "NSWindowNumberListAllApplications")]
         const AllApplications = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/numberlistoptions/allspaces?language=objc)
+///
+/// ## Discussion
+///
+/// The window numbers of windows visible on any space and belonging to the calling application.
+///
+///
         #[doc(alias = "NSWindowNumberListAllSpaces")]
         const AllSpaces = 1<<4;
     }
@@ -278,14 +428,14 @@ unsafe impl RefEncode for NSWindowNumberListOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/occlusionstate-swift.struct?language=objc)
+/// Specifies whether the window is occluded.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowOcclusionState: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/occlusionstate-swift.struct/visible?language=objc)
+/// If set, at least part of the window is visible; if not set, the entire window is occluded. A window that has a nonrectangular shape can be entirely occluded onscreen, but if its bounding box falls into a visible region, the window is considered to be visible. Note that a completely transparent window may also be considered visible.
         #[doc(alias = "NSWindowOcclusionStateVisible")]
         const Visible = 1<<1;
     }
@@ -299,50 +449,62 @@ unsafe impl RefEncode for NSWindowOcclusionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct?language=objc)
+/// The standard window levels in macOS.
+///
+/// ## Discussion
+///
+/// The stacking of levels takes precedence over the stacking of windows within each level. That is, even the bottom window in a level will obscure the top window of the next level down. Levels are listed in order from lowest to highest. These constants are mapped (using `#define` statements) to corresponding elements in [`CGWindowLevelKey`](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSWindowLevel = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/normal?language=objc)
+/// The default level for `NSWindow` objects.
 pub static NSNormalWindowLevel: NSWindowLevel = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/floating?language=objc)
+/// Useful for floating palettes.
 pub static NSFloatingWindowLevel: NSWindowLevel = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/submenu?language=objc)
+/// Reserved for submenus. Synonymous with `NSTornOffMenuWindowLevel`, which is preferred.
 pub static NSSubmenuWindowLevel: NSWindowLevel = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/tornoffmenu?language=objc)
+/// The level for a torn-off menu. Synonymous with `NSSubmenuWindowLevel`.
 pub static NSTornOffMenuWindowLevel: NSWindowLevel = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/mainmenu?language=objc)
+/// Reserved for the application’s main menu.
 pub static NSMainMenuWindowLevel: NSWindowLevel = 24;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/statusbar?language=objc)
+/// The level for a status window.
 pub static NSStatusWindowLevel: NSWindowLevel = 25;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/modalpanel?language=objc)
+/// The level for a modal panel.
 pub static NSModalPanelWindowLevel: NSWindowLevel = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/popupmenu?language=objc)
+/// The level for a pop-up menu.
 pub static NSPopUpMenuWindowLevel: NSWindowLevel = 101;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/screensaver?language=objc)
+/// The level for a screen saver.
 pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection?language=objc)
+/// Constants that specify the direction a window is currently using to change the key view.
+///
+/// ## Overview
+///
+/// The window uses these constants for [`keyViewSelectionDirection`](https://developer.apple.com/documentation/appkit/nswindow/keyviewselectiondirection).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionDirection(pub NSUInteger);
 impl NSSelectionDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection/directselection?language=objc)
+    /// The window isn’t traversing the key view loop.
     #[doc(alias = "NSDirectSelection")]
     pub const DirectSelection: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection/selectingnext?language=objc)
+    /// The window is proceeding to the next valid key view.
     #[doc(alias = "NSSelectingNext")]
     pub const SelectingNext: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection/selectingprevious?language=objc)
+    /// The window is proceeding to the previous valid key view.
     #[doc(alias = "NSSelectingPrevious")]
     pub const SelectingPrevious: Self = Self(2);
 }
@@ -355,30 +517,29 @@ unsafe impl RefEncode for NSSelectionDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that provide a way to access standard title bar buttons.
 /// Standard window buttons.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowButton(pub NSUInteger);
 impl NSWindowButton {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/closebutton?language=objc)
+    /// The close button.
     #[doc(alias = "NSWindowCloseButton")]
     pub const CloseButton: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/miniaturizebutton?language=objc)
+    /// The minimize button.
     #[doc(alias = "NSWindowMiniaturizeButton")]
     pub const MiniaturizeButton: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/zoombutton?language=objc)
+    /// The zoom button.
     #[doc(alias = "NSWindowZoomButton")]
     pub const ZoomButton: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/toolbarbutton?language=objc)
+    /// The toolbar button.
     #[doc(alias = "NSWindowToolbarButton")]
     pub const ToolbarButton: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/documenticonbutton?language=objc)
+    /// The document icon button.
     #[doc(alias = "NSWindowDocumentIconButton")]
     pub const DocumentIconButton: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/documentversionsbutton?language=objc)
+    /// The document versions button.
     #[doc(alias = "NSWindowDocumentVersionsButton")]
     pub const DocumentVersionsButton: Self = Self(6);
 }
@@ -391,16 +552,21 @@ unsafe impl RefEncode for NSWindowButton {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/titlevisibility-swift.enum?language=objc)
+/// Specifies the appearance of the window’s title bar area.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTitleVisibility(pub NSInteger);
 impl NSWindowTitleVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/titlevisibility-swift.enum/visible?language=objc)
+    /// The window has the regular window title and title bar buttons.
     #[doc(alias = "NSWindowTitleVisible")]
     pub const Visible: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/titlevisibility-swift.enum/hidden?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window hides the title and moves the toolbar up into the area previously occupied by the title.
+    ///
+    ///
     #[doc(alias = "NSWindowTitleHidden")]
     pub const Hidden: Self = Self(1);
 }
@@ -413,25 +579,25 @@ unsafe impl RefEncode for NSWindowTitleVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum?language=objc)
+/// Styles that determine the appearance and location of the toolbar in relation to the title bar.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowToolbarStyle(pub NSInteger);
 impl NSWindowToolbarStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/automatic?language=objc)
+    /// A style indicating that the system determines the toolbar’s appearance and location.
     #[doc(alias = "NSWindowToolbarStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/expanded?language=objc)
+    /// A style indicating that the toolbar appears below the window title.
     #[doc(alias = "NSWindowToolbarStyleExpanded")]
     pub const Expanded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/preference?language=objc)
+    /// A style indicating that the toolbar appears below the window title with toolbar items centered in the toolbar.
     #[doc(alias = "NSWindowToolbarStylePreference")]
     pub const Preference: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/unified?language=objc)
+    /// A style indicating that the toolbar appears next to the window title.
     #[doc(alias = "NSWindowToolbarStyleUnified")]
     pub const Unified: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum/unifiedcompact?language=objc)
+    /// A style indicating that the toolbar appears next to the window title and with reduced margins to allow more focus on the window’s contents.
     #[doc(alias = "NSWindowToolbarStyleUnifiedCompact")]
     pub const UnifiedCompact: Self = Self(4);
 }
@@ -444,22 +610,34 @@ unsafe impl RefEncode for NSWindowToolbarStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/foreverduration?language=objc)
+/// The longest time duration possible.
 pub static NSEventDurationForever: NSTimeInterval = c_double::MAX as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum?language=objc)
+/// A value that indicates the user’s preference for window tabbing.
+///
+/// ## Overview
+///
+/// The user sets a window-tabbing preference in System Preferences.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowUserTabbingPreference(pub NSInteger);
 impl NSWindowUserTabbingPreference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum/manual?language=objc)
+    /// A value that indicates a window should display as tabs according to the window’s tabbing mode.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [`tabbingMode`](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.property).
+    ///
+    ///
     #[doc(alias = "NSWindowUserTabbingPreferenceManual")]
     pub const Manual: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum/always?language=objc)
+    /// A value that indicates a window should always display as tabs.
     #[doc(alias = "NSWindowUserTabbingPreferenceAlways")]
     pub const Always: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum/infullscreen?language=objc)
+    /// A value that indicates a window should only display as tabs when in full-screen mode.
     #[doc(alias = "NSWindowUserTabbingPreferenceInFullScreen")]
     pub const InFullScreen: Self = Self(2);
 }
@@ -472,19 +650,25 @@ unsafe impl RefEncode for NSWindowUserTabbingPreference {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum?language=objc)
+/// The preferred tabbing behavior of a window.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTabbingMode(pub NSInteger);
 impl NSWindowTabbingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/automatic?language=objc)
+    /// A window that automatically tabs together based on the user’s tabbing preference.
+    ///
+    /// ## Discussion
+    ///
+    /// A window with the [`NSWindowTabbingModeAutomatic`](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/automatic) tabbing mode consults the value of [`userTabbingPreference`](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.type.property) to decide if it should join a tab group with other windows.
+    ///
+    ///
     #[doc(alias = "NSWindowTabbingModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/preferred?language=objc)
+    /// A window that explicitly prefers to tab together with other windows with the same tabbing identifier.
     #[doc(alias = "NSWindowTabbingModePreferred")]
     pub const Preferred: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum/disallowed?language=objc)
+    /// A window that explicitly does not prefer to tab together with other windows.
     #[doc(alias = "NSWindowTabbingModeDisallowed")]
     pub const Disallowed: Self = Self(2);
 }
@@ -497,22 +681,22 @@ unsafe impl RefEncode for NSWindowTabbingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle?language=objc)
+/// Styles that determine the type of separator displayed between the title bar and content of a window.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTitlebarSeparatorStyle(pub NSInteger);
 impl NSTitlebarSeparatorStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/automatic?language=objc)
+    /// A style indicating that the system determines the type of separator.
     #[doc(alias = "NSTitlebarSeparatorStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/none?language=objc)
+    /// A style indicating that there’s no title bar separator.
     #[doc(alias = "NSTitlebarSeparatorStyleNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/line?language=objc)
+    /// A style indicating that the title bar separator is a line.
     #[doc(alias = "NSTitlebarSeparatorStyleLine")]
     pub const Line: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle/shadow?language=objc)
+    /// A style indicating that the title bar separator is a shadow.
     #[doc(alias = "NSTitlebarSeparatorStyleShadow")]
     pub const Shadow: Self = Self(3);
 }
@@ -525,17 +709,35 @@ unsafe impl RefEncode for NSTitlebarSeparatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/frameautosavename-swift.typealias?language=objc)
+/// The type of a window’s frame autosave name.
 pub type NSWindowFrameAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/persistableframedescriptor?language=objc)
+/// The type of a window’s frame descriptor.
 pub type NSWindowPersistableFrameDescriptor = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.typealias?language=objc)
+/// A value that allows a group of related windows.
 pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow?language=objc)
+    /// A window that an app displays on the screen.
+    ///
+    /// ## Overview
+    ///
+    /// A single [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object corresponds to, at most, one on-screen window. Windows perform two principal functions:
+    ///
+    /// - To place views in a provided area
+    ///
+    /// - To accept and distribute mouse and keyboard events the user generates to the appropriate views
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although the [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) class inherits the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol from [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder), the class doesn’t support coding. Legacy support for archivers exists, but its use is deprecated and may not work. Any attempt to archive or unarchive a window object using a keyed coding object raises an [`NSInvalidArgumentException`](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidargumentexception) exception. For details about window restoration, see [`restorationClass`](https://developer.apple.com/documentation/appkit/nswindow/restorationclass).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2306,7 +2508,7 @@ impl NSWindow {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdelegate?language=objc)
+    /// A set of optional methods that a window’s delegate can implement to respond to events, such as window resizing, moving, exposing, and minimizing.
     pub unsafe trait NSWindowDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         #[optional]
@@ -2703,86 +2905,199 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didbecomekeynotification?language=objc)
+    /// A notification that the window object became the key window.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that has become the key window. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidBecomeKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didbecomemainnotification?language=objc)
+    /// A notification that the window object became the main window.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that has become the main window. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidBecomeMainNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangescreennotification?language=objc)
+    /// A notification that a portion of the window object’s frame moved onto or off of a screen.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that has changed screens. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidChangeScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/diddeminiaturizenotification?language=objc)
+    /// A notification that the window is no longer minimized.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that’s no longer minimized. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidDeminiaturizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didexposenotification?language=objc)
+    /// A notification that a window exposed a portion of its nonretained content.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification when a window moves in front of other windows or when other windows move from in front of it, exposing part of its content.
+    ///
+    /// The notification object is the `NSWindow` object that has exposes its content. In the notification’s `userInfo` dictionary, the key `NSExposedRect` specifies an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains the rectangle the window exposed.
+    ///
+    ///
     pub static NSWindowDidExposeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didminiaturizenotification?language=objc)
+    /// A notification that the window object minimized.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that minimized. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidMiniaturizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didmovenotification?language=objc)
+    /// A notification that the window object moved.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that has moved. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The system sends this notification when the window that moved didn’t also change size. See [`NSWindowDidResizeNotification`](https://developer.apple.com/documentation/appkit/nswindow/didresizenotification) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWindowDidMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didresignkeynotification?language=objc)
+    /// A notification that the window object resigned its status as key window.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that resigned its key window status. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidResignKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didresignmainnotification?language=objc)
+    /// A notification that the window object resigned its status as main window.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that resigned its main window status. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidResignMainNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didresizenotification?language=objc)
+    /// A notification that the window object size changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object whose size changed. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didupdatenotification?language=objc)
+    /// A notification that the window object received an update message.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that received the [`update`](https://developer.apple.com/documentation/appkit/nswindow/update()) message. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willclosenotification?language=objc)
+    /// A notification that the window object is about to close.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that’s about to close. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willminiaturizenotification?language=objc)
+    /// A notification that the window object is about to minimize.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that’s about to minimize. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillMiniaturizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willmovenotification?language=objc)
+    /// A notification that the window object is about to move.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that’s about to move. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willbeginsheetnotification?language=objc)
+    /// A notification that the window object is about to open a sheet.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that’s about to open the sheet. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillBeginSheetNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didendsheetnotification?language=objc)
+    /// A notification that the window object closed an attached sheet.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that contained the sheet. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidEndSheetNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification that the window object backing properties changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object whose backing properties changed. This notification contains a `userInfo` dictionary that has backing scale and color space information. See [NSWindowDidChangeBackingPropertiesNotification User Info Properties](https://developer.apple.com/documentation/appkit/nswindowdidchangebackingpropertiesnotification-user-info-properties) for the `userInfo` dictionary keys and values.
+    ///
+    ///
     /// `NSWindowDidChangeBackingPropertiesNotification`is posted on 10.7.3 and later, when a window's
     /// `backingScaleFactor`and/or its
     /// `colorSpace`changes.  When running on a system version where this new notification is available, applications should use it instead of
@@ -2791,105 +3106,185 @@ extern "C" {
     /// `colorSpace.`You can compare these with the window's new
     /// `backingScaleFactor`and
     /// `colorSpace`at the time of the notification, to determine which of these two properties (potentially both) changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangebackingpropertiesnotification?language=objc)
     pub static NSWindowDidChangeBackingPropertiesNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/oldscalefactoruserinfokey?language=objc)
+    /// An NSNumber containing the old scale factor.
     pub static NSBackingPropertyOldScaleFactorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/oldcolorspaceuserinfokey?language=objc)
+    /// An [`NSColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspace) instance containing the old colorspace.
     pub static NSBackingPropertyOldColorSpaceKey: &'static NSString;
 }
 
 extern "C" {
+    /// A notification that the screen containing the window changed.
+    ///
+    /// ## Discussion
+    ///
+    /// NSWindow sends this notification only if the value of [`displaysWhenScreenProfileChanges`](https://developer.apple.com/documentation/appkit/nswindow/displayswhenscreenprofilechanges) is [`true`](https://developer.apple.com/documentation/swift/true), and in the following situations:
+    ///
+    /// - When most of the window moves to a screen whose profile is different from the previous screen
+    ///
+    /// - When the ColorSync profile for the current screen changes
+    ///
+    /// The notification object is the `NSWindow` object whose profile changed. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     /// `NSWindowDidChangeScreenProfileNotification`is posted when a window's display's color profile changes, or when the window moves to a display that has a different color profile.  When running on 10.7.3 or later, this notification is still posted for compatibility, but modern applications should instead watch for
     /// `NSWindowDidChangeBackingPropertiesNotification,`which is posted for both color space and resolution changes, and facilitates handling both in a single update and redisplay pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangescreenprofilenotification?language=objc)
     pub static NSWindowDidChangeScreenProfileNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// `NSWindowWillStartLiveResizeNotification`is sent when the user starts a live resize operation via a mouseDown in the resize corner.  The notification will be sent before the window size is changed.  Note that this notification is sent once for a sequence of window resize operations
+    /// A notification that the user is about to resize the window.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willstartliveresizenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The system sends this notification only once for a series of window resize operations.
+    ///
+    /// The notification object is the `NSWindow` object that the user is about to live resize. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
+    /// `NSWindowWillStartLiveResizeNotification`is sent when the user starts a live resize operation via a mouseDown in the resize corner.  The notification will be sent before the window size is changed.  Note that this notification is sent once for a sequence of window resize operations
     pub static NSWindowWillStartLiveResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// `NSWindowDidEndLiveResizeNotification`is sent after the user ends a live resize operation via a mouseUp in the resize corner.  The notification will be sent after the final window size change.    Note that this notification is sent once for a sequence of window resize operations
+    /// A notification that the user resized the window object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didendliveresizenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The system sends this only once for a series of window resize operations.
+    ///
+    /// The notification object is the `NSWindow` object that changed size. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
+    /// `NSWindowDidEndLiveResizeNotification`is sent after the user ends a live resize operation via a mouseUp in the resize corner.  The notification will be sent after the final window size change.    Note that this notification is sent once for a sequence of window resize operations
     pub static NSWindowDidEndLiveResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willenterfullscreennotification?language=objc)
+    /// A notification that the window will enter full-screen mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that will enter full-screen mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillEnterFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didenterfullscreennotification?language=objc)
+    /// A notification that the window entered full-screen mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that entered full-screen mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidEnterFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willexitfullscreennotification?language=objc)
+    /// A notification that the window object will exit full-screen mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that will exit full-screen mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillExitFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didexitfullscreennotification?language=objc)
+    /// A notification that the window object exited full-screen mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification when a window moves in front of other windows or when other windows move from in front of it, exposing part of its content.
+    ///
+    /// The notification object is the [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object that exposes its content. In the notification’s `userInfo` dictionary, the key `NSExposedRect` specifies an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains the rectangle the window exposed.
+    ///
+    ///
     pub static NSWindowDidExitFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willenterversionbrowsernotification?language=objc)
+    /// A notification that the window object will enter version browser mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that will enter version browser mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillEnterVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didenterversionbrowsernotification?language=objc)
+    /// A notification that the window object entered version browser mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that entered version browser mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidEnterVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willexitversionbrowsernotification?language=objc)
+    /// A notification that the window object will exit version browser mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that will exit version browser mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowWillExitVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didexitversionbrowsernotification?language=objc)
+    /// A notification that the window object exited version browser mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object that exited version browser mode. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSWindowDidExitVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification that the window object’s occlusion state changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSWindow` object whose occlusion state changed. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// This notification indicates a change in the window’s occlusion state; it doesn’t indicate a change in the occlusion region. When you receive this notification, you can get the window’s current occlusion state and—based on the result—you may want to increase responsiveness and save power by halting expensive operations that the user can’t see.
+    ///
+    ///
     /// Upon receiving this notification, you can query the
     /// `NSWindow`for its current occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangeocclusionstatenotification?language=objc)
     pub static NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum?language=objc)
+/// The following constants and the related data type represent a window’s possible backing locations.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowBackingLocation(pub NSUInteger);
 impl NSWindowBackingLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum/default?language=objc)
+    /// Determined by the operating system.
     #[doc(alias = "NSWindowBackingLocationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum/videomemory?language=objc)
+    /// Video memory.
     #[doc(alias = "NSWindowBackingLocationVideoMemory")]
     pub const VideoMemory: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum/mainmemory?language=objc)
+    /// Physical memory.
     #[doc(alias = "NSWindowBackingLocationMainMemory")]
     pub const MainMemory: Self = Self(2);
 }
@@ -3064,81 +3459,117 @@ impl NSWindow {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsborderlesswindowmask?language=objc)
+/// The window displays none of the usual peripheral elements.
+///
+/// ## Discussion
+///
+/// Useful only for display or caching purposes. A window that uses `NSBorderlessWindowMask` can’t become key or main, unless the value of [`canBecomeKey`](https://developer.apple.com/documentation/appkit/nswindow/canbecomekey) or [`canBecomeMain`](https://developer.apple.com/documentation/appkit/nswindow/canbecomemain) is [`true`](https://developer.apple.com/documentation/swift/true). Note that you can set a window’s or panel’s style mask to `NSBorderlessWindowMask` in Interface Builder by deselecting Title Bar in the Appearance section of the Attributes inspector.
+///
+///
 #[deprecated]
 pub static NSBorderlessWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Borderless.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitledwindowmask?language=objc)
+/// The window displays a title bar.
 #[deprecated]
 pub static NSTitledWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::Titled.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclosablewindowmask?language=objc)
+/// The window displays a close button.
 #[deprecated]
 pub static NSClosableWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Closable.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminiaturizablewindowmask?language=objc)
+/// The window displays a minimize button.
 #[deprecated]
 pub static NSMiniaturizableWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Miniaturizable.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsresizablewindowmask?language=objc)
+/// The window displays a resize control.
 #[deprecated]
 pub static NSResizableWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::Resizable.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedbackgroundwindowmask?language=objc)
+/// The window displays with a metal-textured background. Additionally, the window may be moved by clicking and dragging anywhere in the window background. A bordered window with this mask gets rounded bottom corners.
 #[deprecated]
 pub static NSTexturedBackgroundWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::TexturedBackground.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunifiedtitleandtoolbarwindowmask?language=objc)
+/// The window’s title bar and toolbar have a unified look—that is, a continuous background. A horizontal separator line appears under the title bar and toolbar .
 #[deprecated]
 pub static NSUnifiedTitleAndToolbarWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::UnifiedTitleAndToolbar.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullscreenwindowmask?language=objc)
+/// The window can appear full screen. A fullscreen window does not draw its title bar, and may have special handling for its toolbar. This mask is automatically toggled when [`toggleFullScreen(_:)`](https://developer.apple.com/documentation/appkit/nswindow/togglefullscreen(_:)) is called.
 #[deprecated]
 pub static NSFullScreenWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::FullScreen.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullsizecontentviewwindowmask?language=objc)
+/// When set, the content view consumes the full size of the window; it can be combined with other window style masks, but is only respected for windows with a title bar. Using this mask opts in to layer backing. Use the [`contentLayoutRect`](https://developer.apple.com/documentation/appkit/nswindow/contentlayoutrect) or [`contentLayoutGuide`](https://developer.apple.com/documentation/appkit/nswindow/contentlayoutguide) to lay out views underneath the title bar-toolbar area.
 #[deprecated]
 pub static NSFullSizeContentViewWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::FullSizeContentView.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsutilitywindowmask?language=objc)
+/// The panel is created as a floating window.
 #[deprecated]
 pub static NSUtilityWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::UtilityWindow.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocmodalwindowmask?language=objc)
+/// The panel is created as a modal sheet.
 #[deprecated]
 pub static NSDocModalWindowMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::DocModalWindow.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnonactivatingpanelmask?language=objc)
+/// The panel can receive keyboard input without activating the owning app.
+///
+/// ## Discussion
+///
+/// Valid only for an instance of `NSPanel` or its subclasses; not valid for a window.
+///
+///
 #[deprecated]
 pub static NSNonactivatingPanelMask: NSWindowStyleMask =
     NSWindowStyleMask(NSWindowStyleMask::NonactivatingPanel.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshudwindowmask?language=objc)
+/// The panel is created as a transparent panel (sometimes called a “heads-up display”).
+///
+/// ## Discussion
+///
+/// Valid only for an instance of `NSPanel` or its subclasses; not valid for a window.
+///
+/// Using the C bitwise OR operator, `NSHUDWindowMask` can be combined with other style masks (some of which are documented in Window Style Masks) with the following results:
+///
+/// - `NSBorderlessWindowMask`: Borderless window with transparent panel transparency and window level. A panel that uses `NSBorderlessWindowMask` can’t become key unless you implement [`canBecomeKey`](https://developer.apple.com/documentation/appkit/nswindow/canbecomekey) to return [`true`](https://developer.apple.com/documentation/swift/true). Note that you can also set a panel’s style mask to `NSBorderlessWindowMask` in Interface Builder by deselecting Title Bar in the Appearance section of the Attributes inspector.
+///
+/// - `NSTitledWindowMask` `|` `NSUtilityWindowMask`: Titled window with transparent panel transparency and window level. This combination can be additionally combined with any of the following:
+///
+/// - `NSClosableWindowMask`: Titled window with transparent panel close box, transparency, and window level.
+///
+/// - `NSResizableWindowMask`: Titled window with transparent panel resize corner, transparency, and window level.
+///
+/// - `NSNonactivatingPanelMask`: No effect on appearance, but owning app is not necessarily active when this window is the key window.
+///
+/// The following constants cannot be combined with `NSHUDWindowMask`: `NSMiniaturizableWindowMask`, `NSTexturedBackgroundWindowMask`, `NSDocModalWindowMask`, and `NSUnifiedTitleAndToolbarWindowMask`.
+///
+///
 #[deprecated]
 pub static NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleMask::HUDWindow.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunscaledwindowmask?language=objc)
 #[deprecated = "NSUnscaledWindowMask is deprecated and has no effect. The scale factor for a window backing store is dynamic and dependent on the screen it is placed on."]
 pub static NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1 << 11);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/fullscreenbutton?language=objc)
+/// The fullscreen icon button.
 #[deprecated = "The standard window button for NSWindowFullScreenButton is always nil; use NSWindowZoomButton instead"]
 pub static NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/dock?language=objc)
+/// The level for the dock.
 #[deprecated]
 pub static NSDockWindowLevel: NSWindowLevel = 20;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum/readwrite?language=objc)
+///
+/// ## Discussion
+///
+/// The window’s contents can be read and modified by another process.
+///
+///
 #[deprecated = "Use NSWindowSharingReadOnly instead"]
 pub static NSWindowSharingReadWrite: NSWindowSharingType = NSWindowSharingType(2);

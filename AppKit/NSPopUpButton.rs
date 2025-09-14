@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton?language=objc)
+    /// A control for selecting an item from a list.
+    ///
+    /// ## Overview
+    ///
+    /// An `NSPopUpButton` object uses an [`NSPopUpButtonCell`](https://developer.apple.com/documentation/appkit/nspopupbuttoncell) object to implement its user interface.
+    ///
+    /// Note that while a menu is tracking user input, programmatic changes to the menu, such as adding, removing, or changing items on the menu, is not reflected.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Setting a pop up button’s [`image`](https://developer.apple.com/documentation/appkit/nscell/image) property has no effect. The image displayed in a pop up button is taken from the selected menu item (in the case of a pop up menu) or from the first menu item (in the case of a pull-down menu).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -610,6 +626,12 @@ impl NSPopUpButton {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/willpopupnotification?language=objc)
+    /// Posted when an `NSPopUpButton` object receives a mouse-down event—that is, when the user is about to select an item from the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the selected `NSPopUpButton` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSPopUpButtonWillPopUpNotification: &'static NSNotificationName;
 }

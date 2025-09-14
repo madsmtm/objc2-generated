@@ -8,11 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A set of Core ML models from a model deployment.
+    ///
+    /// ## Overview
+    ///
+    /// Use a model collection to access the models from a Core ML Model Deployment. For example, you can use a model collection to replace one or more of your app’s built-in models with a newer version.
+    ///
+    /// To access the newest model collection from a deployment, call the [`beginAccessingModelCollectionWithIdentifier:completionHandler:`](https://developer.apple.com/documentation/coreml/mlmodelcollection/beginaccessingmodelcollectionwithidentifier:completionhandler:) type method. Your app can also get a notification when Core ML receives an update to a model collection (see [`MLModelCollectionDidChangeNotification`](https://developer.apple.com/documentation/coreml/mlmodelcollection/didchangenotification)).
+    ///
+    ///
     /// MLModelCollection
     ///
     /// A collection of models managed as part of Core ML Model Deployment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Background Assets or NSURLSession instead."]
@@ -97,9 +104,36 @@ impl MLModelCollection {
 }
 
 extern "C" {
-    /// Notification posted when the model collection has changed.
+    /// The notification the framework sends when it receives an update to a model collection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollection/didchangenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// Register your app to get notifications when a model collection update is available by calling [`addObserverForName:object:queue:usingBlock:`](https://developer.apple.com/documentation/foundation/notificationcenter/addobserver(forname:object:queue:using:)).
+    ///
+    /// ```swift
+    /// let center = NotificationCenter.default
+    /// var token: NSObjectProtocol?
+    ///
+    /// token = center.addObserver(forName: MLModelCollection.didChangeNotification,
+    ///                            object: nil,
+    ///                            queue: nil) { [unowned self] note in
+    ///     guard let modelCollection = note.object as? MLModelCollection else {
+    ///         print("Model Collection notification's object is not a model collection")
+    ///         return
+    ///     }
+    ///
+    ///     // Use updated model collection ...
+    ///     self.receivedUpdatedModelCollection(modelCollection)
+    ///
+    ///     // Clean up notification registration.
+    ///     center.removeObserver(token!)
+    /// }
+    /// ```
+    ///
+    /// Typically, you register for model collection notifications when your app needs to use the newest models as soon as the collection is available. Your app can always get the newest model collection by calling [`beginAccessingModelCollectionWithIdentifier:completionHandler:`](https://developer.apple.com/documentation/coreml/mlmodelcollection/beginaccessingmodelcollectionwithidentifier:completionhandler:).
+    ///
+    ///
+    /// Notification posted when the model collection has changed.
     #[deprecated = "Use Background Assets or NSURLSession instead."]
     pub static MLModelCollectionDidChangeNotification: &'static NSNotificationName;
 }

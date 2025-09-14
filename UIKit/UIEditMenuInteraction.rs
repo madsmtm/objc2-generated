@@ -9,25 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection?language=objc)
+/// Constants that describe the direction the arrow of the edit menu is pointing.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEditMenuArrowDirection(pub NSInteger);
 impl UIEditMenuArrowDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/automatic?language=objc)
+    /// The arrow is pointing up or down at the object of focus, based on its location in the screen, which is the default.
     #[doc(alias = "UIEditMenuArrowDirectionAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/up?language=objc)
+    /// The arrow is pointing up at the object of focus.
     #[doc(alias = "UIEditMenuArrowDirectionUp")]
     pub const Up: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/down?language=objc)
+    /// The arrow is pointing down at the object of focus.
     #[doc(alias = "UIEditMenuArrowDirectionDown")]
     pub const Down: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/left?language=objc)
+    /// The arrow is pointing left at the object of focus.
     #[doc(alias = "UIEditMenuArrowDirectionLeft")]
     pub const Left: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuarrowdirection/right?language=objc)
+    /// The arrow is pointing right at the object of focus.
     #[doc(alias = "UIEditMenuArrowDirectionRight")]
     pub const Right: Self = Self(4);
 }
@@ -41,7 +41,13 @@ unsafe impl RefEncode for UIEditMenuArrowDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuconfiguration?language=objc)
+    /// An object containing the configuration details for the menu your app presents in response to an edit menu interaction.
+    ///
+    /// ## Overview
+    ///
+    /// You use this object when calling the [`presentEditMenuWithConfiguration:`](https://developer.apple.com/documentation/uikit/uieditmenuinteraction/presenteditmenu(with:)) method of [`UIEditMenuInteraction`](https://developer.apple.com/documentation/uikit/uieditmenuinteraction) to provide the configuration details the interaction’s delegate uses to construct the menu that the interaction displays.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -107,7 +113,60 @@ impl UIEditMenuConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteraction?language=objc)
+    /// An interaction that provides edit operations using a menu.
+    ///
+    /// ## Overview
+    ///
+    /// Edit menu interactions provide edit actions — such as cut, copy, and paste — for the content a view displays. The presentation style the interaction uses to display the actions conforms to the input method of the interaction. For touch interactions, the actions display in an editing menu. When responding to a secondary click on devices with pointer-based input, the actions display in a context menu.
+    ///
+    /// Standard UIKit classes, such as [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview) and [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield), are preconfigured to use edit menu interactions.
+    ///
+    /// To add an edit menu interaction to a generic view:
+    ///
+    /// 1. Create an edit menu interaction object, and pass an optional delegate into the default initializer.
+    ///
+    /// 2. Call the [`addInteraction:`](https://developer.apple.com/documentation/uikit/uiview/addinteraction(_:)) method on your view to add the interaction.
+    ///
+    /// 3. Create a gesture recognizer to trigger the interaction and add it to the view.
+    ///
+    /// The following example creates an edit menu interaction triggered by a long press.
+    ///
+    /// ```swift
+    /// override func viewDidLoad() {
+    ///     super.viewDidLoad()
+    ///
+    ///     // Add the edit menu interaction.
+    ///     editMenuInteraction = UIEditMenuInteraction(delegate: self)
+    ///     interactionView.addInteraction(editMenuInteraction!)
+    ///
+    ///     // Create the gesture recognizer.
+    ///     let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+    ///     longPress.allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]
+    ///     interactionView.addGestureRecognizer(longPress)
+    /// }
+    ///
+    /// @objc func didLongPress(_ recognizer: UIGestureRecognizer) {
+    ///     let location = recognizer.location(in: self.view)
+    ///     let configuration = UIEditMenuConfiguration(identifier: nil, sourcePoint: location)
+    ///
+    ///     if let interaction = editMenuInteraction {
+    ///         // Present the edit menu interaction.
+    ///         interaction.presentEditMenu(with: configuration)
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// By default, an edit menu interaction generates a menu that includes commands for the standard edit actions your view implements. For more information on these actions, see [`UIResponderStandardEditActions`](https://developer.apple.com/documentation/uikit/uiresponderstandardeditactions). You can use the interaction’s delegate to add additional items to the menu and set the target rectangle to display around using methods in the [`UIEditMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uieditmenuinteractiondelegate) protocol. For text views, you can specify the items the menu displays for specific text ranges using methods from the [`UITextViewDelegate`](https://developer.apple.com/documentation/uikit/uitextviewdelegate), [`UITextFieldDelegate`](https://developer.apple.com/documentation/uikit/uitextfielddelegate), or [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocols.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC22
+    ///  Session 10071: [Adopt desktop-class editing interactions](https://developer.apple.com/wwdc22/10071)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -190,7 +249,7 @@ impl UIEditMenuInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteractionanimating?language=objc)
+    /// Methods adopted by system-supplied animator objects when interacting with menus.
     pub unsafe trait UIEditMenuInteractionAnimating:
         NSObjectProtocol + MainThreadOnly
     {
@@ -207,7 +266,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditmenuinteractiondelegate?language=objc)
+    /// The methods for customizing the menu the interaction displays.
+    ///
+    /// ## Overview
+    ///
+    /// You use this protocol to customize the actions or presentation of the menu an [`UIEditMenuInteraction`](https://developer.apple.com/documentation/uikit/uieditmenuinteraction) object displays.
+    ///
+    ///
     pub unsafe trait UIEditMenuInteractionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Called when the interaction begins.

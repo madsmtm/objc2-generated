@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextelement?language=objc)
+    /// An abstract base class that represents the smallest units of text layout such as paragraphs or attachments.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextElement;
@@ -87,7 +87,7 @@ impl DefaultRetained for NSTextElement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextparagraph?language=objc)
+    /// A class that represents a single paragraph backed by an attributed string as the contents.
     #[unsafe(super(NSTextElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextParagraph;

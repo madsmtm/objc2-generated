@@ -6,27 +6,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An enumeration of possible authorization states of an accessory.
 /// A type that defines values for the state of an accessory.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAccessoryState(pub NSInteger);
 impl ASAccessoryState {
     /// The accessory is invalid or unauthorized.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate/unauthorized?language=objc)
+    /// The accessory is invalid or unauthorized.
     #[doc(alias = "ASAccessoryStateUnauthorized")]
     pub const Unauthorized: Self = Self(0);
     /// The accessory is selected, but full authorization is still pending.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate/awaitingauthorization?language=objc)
+    /// The accessory is selected, but full authorization is still pending.
     #[doc(alias = "ASAccessoryStateAwaitingAuthorization")]
     pub const AwaitingAuthorization: Self = Self(10);
     /// The accessory is authorized and available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate/authorized?language=objc)
+    /// The accessory is authorized and available.
     #[doc(alias = "ASAccessoryStateAuthorized")]
     pub const Authorized: Self = Self(20);
 }
@@ -39,18 +35,16 @@ unsafe impl RefEncode for ASAccessoryState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options that affect the behavior of an accessory renaming operation.
 /// Accessory Rename Options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/renameoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAccessoryRenameOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAccessoryRenameOptions: NSUInteger {
+/// An option to change an accessory’s SSID along with its display name.
 /// An option to change an accessory's SSID along with its display name.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/renameoptions/ssid?language=objc)
         #[doc(alias = "ASAccessoryRenameSSID")]
         const SSID = 1<<0;
     }
@@ -64,9 +58,8 @@ unsafe impl RefEncode for ASAccessoryRenameOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options of discoverable accessories.
 /// Accessory Support Options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -74,20 +67,23 @@ pub struct ASAccessorySupportOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAccessorySupportOptions: NSUInteger {
 /// The accessory supports Bluetooth Low Energy pairing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothpairingle?language=objc)
+/// The accessory supports Bluetooth Low Energy pairing.
         #[doc(alias = "ASAccessorySupportBluetoothPairingLE")]
         const BluetoothPairingLE = 1<<1;
 /// The accessory supports bridging to Bluetooth classic transport.
 ///
+/// ## Discussion
+///
 /// This option indicates that when connecting with low energy transport, the accessory supports activating Bluetooth classic transport profiles.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothtransportbridging?language=objc)
+///
+/// The accessory supports bridging to Bluetooth classic transport.
+///
+/// This option indicates that when connecting with low energy transport, the accessory supports activating Bluetooth classic transport profiles.
         #[doc(alias = "ASAccessorySupportBluetoothTransportBridging")]
         const BluetoothTransportBridging = 1<<2;
 /// The accessory supports Bluetooth Low Energy HID service.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothhid?language=objc)
+/// The accessory supports Bluetooth Low Energy HID service.
         #[doc(alias = "ASAccessorySupportBluetoothHID")]
         const BluetoothHID = 1<<3;
     }
@@ -101,11 +97,11 @@ unsafe impl RefEncode for ASAccessorySupportOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/wifiawarepaireddeviceid-swift.typealias?language=objc)
+/// The type used for an accessory’s Wi-Fi Aware Pairing Identifier.
 pub type ASAccessoryWiFiAwarePairedDeviceID = u64;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory?language=objc)
+    /// An accessory discovered by the accessory session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccessory;
@@ -223,11 +219,16 @@ impl ASAccessory {
 extern_class!(
     /// A discovered accessory, for use in creating a customized picker display item.
     ///
+    /// ## Overview
+    ///
+    /// When your app’s picker uses the [`ASPickerDisplaySettingsOptionFilterDiscoveryResults`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct/filterdiscoveryresults) option, you receive [`ASAccessoryEventTypeAccessoryDiscovered`](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessorydiscovered) events that contain this type. Use the discovered accessory’s Bluetooth properties to create a new [`ASDiscoveredDisplayItem`](https://developer.apple.com/documentation/accessorysetupkit/asdiscovereddisplayitem), incorporating traits like a custom accessory name or a newly downloaded product image. You can then add this item to the picker to allow the person using the app to set up the accessory.
+    ///
+    ///
+    /// A discovered accessory, for use in creating a customized picker display item.
+    ///
     /// When your app's picker uses the ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` option, you receive ``ASAccessoryEventType/accessoryDiscovered`` events that contain this type.
     /// Use the discovered accessory's Bluetooth properties to create a new ``ASDiscoveredDisplayItem``, incorporating traits like a custom accessory name or a newly downloaded product image.
     /// You can then add this item to the picker to allow the person using the app to set up the accessory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoveredaccessory?language=objc)
     #[unsafe(super(ASAccessory, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASDiscoveredAccessory;

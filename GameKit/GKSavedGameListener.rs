@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksavedgamelistener?language=objc)
+    /// A protocol that handles events related to saving game data.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the methods in the this protocol to manage conflicts or track changes when saving game data.
+    ///
+    /// Adopt the [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) protocol to listen for and handle a variety of Game Center events for player accounts instead of the individual [`GKChallengeListener`](https://developer.apple.com/documentation/gamekit/gkchallengelistener), [`GKInviteEventListener`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener), [`GKSavedGameListener`](https://developer.apple.com/documentation/gamekit/gksavedgamelistener), and [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocols.
+    ///
+    ///
     pub unsafe trait GKSavedGameListener: NSObjectProtocol {
         #[cfg(all(
             feature = "GKBasePlayer",

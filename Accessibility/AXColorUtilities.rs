@@ -8,7 +8,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnamefromcolor(_:)?language=objc)
+/// Returns a localized description of the color to use in accessibility attributes.
+///
+/// Parameters:
+/// - color: The color that needs a name.
+///
+///
+/// ## Return Value
+///
+/// The name associated with the color.
+///
+///
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn AXNameFromColor(color: &CGColor) -> Retained<NSString> {

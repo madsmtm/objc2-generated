@@ -8,13 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An ordered pair that defines a bounding box for an envelope.
+    ///
+    /// ## Overview
+    ///
+    /// A [`PHASEEnvelope`](https://developer.apple.com/documentation/phase/phaseenvelope) object uses this class to bound the value of its [`range`](https://developer.apple.com/documentation/phase/phaseenvelope/range) and [`domain`](https://developer.apple.com/documentation/phase/phaseenvelope/domain).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A numeric pair.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasenumericpair?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASENumericPair;
@@ -81,6 +86,13 @@ impl PHASENumericPair {
 }
 
 extern_class!(
+    /// A curved portion of an envelope.
+    ///
+    /// ## Overview
+    ///
+    /// This class specifies a curve that determines the _y-_value rate of change over a particular portion of an envelope’s graph. For example, the difference between a [`PHASECurveTypeCubed`](https://developer.apple.com/documentation/phase/phasecurvetype/cubed) segment and an [`PHASECurveTypeInverseCubed`](https://developer.apple.com/documentation/phase/phasecurvetype/inversecubed) segment is that they share opposite rates of change; where the cubed curve’s _y_ value changes fastest in the segment’s domain, the inverse-cubed curve changes slowest, and vice versa.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -89,8 +101,6 @@ extern_class!(
     ///
     /// Envelope segments do 'not' contain a start point.
     /// We do this so we can connect envelope segments together end to end and gaurantee continuity along the x and y axes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseenvelopesegment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEEnvelopeSegment;
@@ -132,13 +142,33 @@ impl PHASEEnvelopeSegment {
 }
 
 extern_class!(
+    /// A collection of segments that connect to graph a complex curve over a linear input.
+    ///
+    /// ## Overview
+    ///
+    /// In traditional audio uses, an _envelope_ defines a complex graph that determines the volume of audio data over an input duration. PHASE uses envelopes in a similar way. Given a value on the envelope’s input axis, the [`evaluateForValue:`](https://developer.apple.com/documentation/phase/phaseenvelope/evaluate(x:)) function plots and returns the result on the output axis. The following are possible uses of this class:
+    ///
+    /// - Sound event nodes, such as [`PHASEBlendNodeDefinition`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition), can shape their volume using an envelope; see [`addRangeWithEnvelope:subtree:`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition/addrange(envelope:subtree:)).
+    ///
+    /// - Distance models shape sounds with a 3D position using an envelope; see [`PHASEEnvelopeDistanceModelParameters`](https://developer.apple.com/documentation/phase/phaseenvelopedistancemodelparameters).
+    ///
+    /// - An envelope can do more than shape audio. To gradually change an envelope’s input value over time, use the [`PHASEMappedMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition) class, which creates a function with a metaparameter value as input. An app can use the numeric result for any purpose. For example, the x-axis can be distance and the y-axis can be playback rate.
+    ///
+    /// At runtime, PHASE determines whether a particular member of the [`segments`](https://developer.apple.com/documentation/phase/phaseenvelope/segments) array slopes up or down along the domain depending on the envelope’s particular use case.
+    ///
+    /// ### Create an Envelope and Shape its Curve
+    ///
+    /// To use an envelope in your app, define its shape by defining a series of segments. Each segment specifies a curve that collectively connect to form a graph. The following code creates an envelope with a single segment that’s shaped like the lettter _s:_
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create a segments array.", "var segments: [PHASEEnvelopeSegment] = []", "", "// Create a single segment with a sigmoid curve to give \"ease in, ", "//  ease out\" movement along the domain. Define an endpoint of (1, 1).", "let segment = PHASEEnvelopeSegment(", "    endPoint: simd_make_double2(1.0, 1.0), curveType: .sigmoid)", "", "// Add the segment to the array.", "segments.append(segment)", "", "// Create the envelope and set the start point to (-1, -1).", "let envelope = PHASEEnvelope(startPoint: simd_make_double2(-1.0, -1.0),", "    segments: segments)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create a segments array.", "NSMutableArray<PHASEEnvelopeSegment*>* segments = ", "    [NSMutableArray new];", "", "// Create a single segment with a sigmoid curve to give \"ease in, ", "//  ease out\" movement along the domain. Define an endpoint of (1, 1).", "PHASEEnvelopeSegment* segment = [[PHASEEnvelopeSegment alloc] ", "    initWithEndPoint:simd_make_double2(1.0, 1.0) ", "    curveType:PHASECurveTypeSigmoid];", "", "// Add the segment to the array.", "[segments addObject:segment];", "", "// Create the envelope and set the start point to (-1, -1).", "PHASEEnvelope* envelope = [[PHASEEnvelope alloc] ", "    initWithStartPoint:simd_make_double2(-1.0, -1.0) ", "    segments:segments];"], metadata: None }] }] })
+    /// The graph flexes at runtime depending on the source content on which the envelope operates. A [`PHASEEnvelope`](https://developer.apple.com/documentation/phase/phaseenvelope) doesn’t constrain the [`evaluateForValue:`](https://developer.apple.com/documentation/phase/phaseenvelope/evaluate(x:)) function’s output to predertermined values. Instead, PHASE applies the envelope’s curves to the source content as a rate of change.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A segmented envelope.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseenvelope?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEEnvelope;

@@ -12,6 +12,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants the web extension controller and web extension context use to indicate tab changes.
 /// Constants used by ``WKWebExtensionController
 /// @
 /// /link and
@@ -31,42 +32,40 @@ use crate::*;
 ///  
 ///
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionTabChangedProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebExtensionTabChangedProperties: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiontabchangedproperties/wkwebextensiontabchangedpropertiesnone?language=objc)
+/// Indicates nothing changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/loading?language=objc)
+/// Indicates the loading state changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesLoading")]
         const Loading = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/muted?language=objc)
+/// Indicates the muted state changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesMuted")]
         const Muted = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/pinned?language=objc)
+/// Indicates the pinned state changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesPinned")]
         const Pinned = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/playingaudio?language=objc)
+/// Indicates the audio playback state changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesPlayingAudio")]
         const PlayingAudio = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/readermode?language=objc)
+/// Indicates the reader mode state changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesReaderMode")]
         const ReaderMode = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/size?language=objc)
+/// Indicates the size changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesSize")]
         const Size = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/title?language=objc)
+/// Indicates the title changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesTitle")]
         const Title = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/url?language=objc)
+/// Indicates the URL changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesURL")]
         const URL = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties/zoomfactor?language=objc)
+/// Indicates the zoom factor changed.
         #[doc(alias = "WKWebExtensionTabChangedPropertiesZoomFactor")]
         const ZoomFactor = 1<<9;
     }
@@ -81,9 +80,8 @@ unsafe impl RefEncode for WKWebExtensionTabChangedProperties {
 }
 
 extern_protocol!(
+    /// A protocol with methods that represent a tab to web extensions.
     /// A class conforming to the ``WKWebExtensionTab`` protocol represents a tab to web extensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiontab?language=objc)
     pub unsafe trait WKWebExtensionTab: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKWebExtensionContext", feature = "WKWebExtensionWindow"))]
         /// Called when the window containing the tab is needed.

@@ -7,27 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// values for the primeMethod property. See further discussion under AVAudioConverterPrimeInfo.
+/// Options for the prime method property.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod?language=objc)
+/// ## Overview
+///
+/// For more information, see [`AVAudioConverterPrimeInfo`](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimeinfo).
+///
+///
+/// values for the primeMethod property. See further discussion under AVAudioConverterPrimeInfo.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioConverterPrimeMethod(pub NSInteger);
 impl AVAudioConverterPrimeMethod {
+    /// An option to prime with leading and trailing input frames.
     /// Primes with leading + trailing input frames.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod/pre?language=objc)
     #[doc(alias = "AVAudioConverterPrimeMethod_Pre")]
     pub const Pre: Self = Self(0);
+    /// An option to prime with trailing (zero latency) frames where the converter assumes the leading frames are silence.
     /// Only primes with trailing (zero latency). Leading frames are assumed to be silence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod/normal?language=objc)
     #[doc(alias = "AVAudioConverterPrimeMethod_Normal")]
     pub const Normal: Self = Self(1);
+    /// An option to prime the converter assumes leading and trailing frames are silence.
     /// Acts in "latency" mode. Both leading and trailing frames assumed to be silence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod/none?language=objc)
     #[doc(alias = "AVAudioConverterPrimeMethod_None")]
     pub const None: Self = Self(2);
 }
@@ -40,6 +42,7 @@ unsafe impl RefEncode for AVAudioConverterPrimeMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Priming information for audio conversion.
 /// This struct is the value of the primeInfo property and specifies priming information.
 ///
 /// When using convertToBuffer:error:withInputFromBlock: (either a single call or a series of calls), some
@@ -91,8 +94,6 @@ unsafe impl RefEncode for AVAudioConverterPrimeMethod {
 /// AVAudioConverterPrimeMethod_None. If no more frames of input are available in the input stream
 /// (because, for example, the desired end frame is at the end of an audio file), then zero
 /// (silent) trailing frames will be synthesized for the client.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimeinfo?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -114,32 +115,28 @@ unsafe impl RefEncode for AVAudioConverterPrimeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An option that indicates the status of an audio converter input block.
 /// You must return one of these codes from your AVAudioConverterInputBlock.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioConverterInputStatus(pub NSInteger);
 impl AVAudioConverterInputStatus {
+    /// A status that indicates the normal case where you supply data to the converter.
     /// This is the normal case where you supply data to the converter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus/havedata?language=objc)
     #[doc(alias = "AVAudioConverterInputStatus_HaveData")]
     pub const HaveData: Self = Self(0);
+    /// A status that indicates you’re out of data.
     /// If you are out of data for now, set *ioNumberOfPackets = 0 and return
     /// AVAudioConverterInputStatus_NoDataNow; it is possible that some of the supplied input data
     /// may not be converted to output immediately, but instead may be converted to output only
     /// if/when more input is provided or the end-of-stream is indicated with the
     /// AVAudioConverterInputStatus_EndOfStream status code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus/nodatanow?language=objc)
     #[doc(alias = "AVAudioConverterInputStatus_NoDataNow")]
     pub const NoDataNow: Self = Self(1);
+    /// A status that indicates you’re at the end of an audio stream.
     /// If you are at the end of stream, set *ioNumberOfPackets = 0 and return
     /// AVAudioConverterInputStatus_EndOfStream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus/endofstream?language=objc)
     #[doc(alias = "AVAudioConverterInputStatus_EndOfStream")]
     pub const EndOfStream: Self = Self(2);
 }
@@ -152,33 +149,34 @@ unsafe impl RefEncode for AVAudioConverterInputStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An option that indicates the return status of an audio converter method.
 /// These values are returned from convertToBuffer:error:withInputFromBlock:
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioConverterOutputStatus(pub NSInteger);
 impl AVAudioConverterOutputStatus {
+    /// A status that indicates that the method returns all of the requested data.
     /// All of the requested data was returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/havedata?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_HaveData")]
     pub const HaveData: Self = Self(0);
+    /// A status that indicates the method doesn’t have enough input available to satisfy the request.
+    ///
+    /// ## Discussion
+    ///
+    /// The output buffer contains as much data as the framework can convert.
+    ///
+    ///
     /// Not enough input was available to satisfy the request at the current time. The output buffer
     /// contains as much as could be converted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/inputrandry?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_InputRanDry")]
     pub const InputRanDry: Self = Self(1);
+    /// A status that indicates the method reaches the end of the stream, and doesn’t return any data.
     /// The end of stream has been reached. No data was returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/endofstream?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_EndOfStream")]
     pub const EndOfStream: Self = Self(2);
+    /// A status that indicates the method encounters an error.
     /// An error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus/error?language=objc)
     #[doc(alias = "AVAudioConverterOutputStatus_Error")]
     pub const Error: Self = Self(3);
 }
@@ -191,6 +189,7 @@ unsafe impl RefEncode for AVAudioConverterOutputStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A block to get input data for conversion, as necessary.
 /// A block which will be called by convertToBuffer:error:withInputFromBlock: to get input data as needed.
 ///
 ///
@@ -217,8 +216,6 @@ unsafe impl RefEncode for AVAudioConverterOutputStatus {
 ///
 /// convertToBuffer:error:withInputFromBlock: will return as much output as could be converted
 /// with the input already supplied.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputblock?language=objc)
 #[cfg(all(
     feature = "AVAudioBuffer",
     feature = "AVAudioTypes",
@@ -229,9 +226,28 @@ pub type AVAudioConverterInputBlock = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// Converts streams of audio between various formats.
+    /// An object that converts streams of audio between formats.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverter?language=objc)
+    /// ## Overview
+    ///
+    /// The audio converter class transforms audio between file formats and audio encodings.
+    ///
+    /// Supported transformations include:
+    ///
+    /// - PCM float, integer, or bit depth conversions
+    ///
+    /// - PCM sample rate conversion
+    ///
+    /// - PCM interleaving and deinterleaving
+    ///
+    /// - Encoding PCM to compressed formats
+    ///
+    /// - Decoding compressed formats to PCM
+    ///
+    /// A single audio converter instance may perform more than one of the above transformations.
+    ///
+    ///
+    /// Converts streams of audio between various formats.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioConverter;

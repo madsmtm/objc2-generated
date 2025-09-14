@@ -6,28 +6,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDLTransformOpRotationOrder(pub NSUInteger);
 impl MDLTransformOpRotationOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/xyz?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderXYZ")]
     pub const XYZ: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/xzy?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderXZY")]
     pub const XZY: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/yxz?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderYXZ")]
     pub const YXZ: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/yzx?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderYZX")]
     pub const YZX: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/zxy?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderZXY")]
     pub const ZXY: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformoprotationorder/zyx?language=objc)
     #[doc(alias = "MDLTransformOpRotationOrderZYX")]
     pub const ZYX: Self = Self(6);
 }
@@ -41,7 +34,6 @@ unsafe impl RefEncode for MDLTransformOpRotationOrder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformop?language=objc)
     pub unsafe trait MDLTransformOp {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -54,7 +46,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformrotatexop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformRotateXOp;
@@ -95,7 +86,6 @@ impl MDLTransformRotateXOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformrotateyop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformRotateYOp;
@@ -136,7 +126,6 @@ impl MDLTransformRotateYOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformrotatezop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformRotateZOp;
@@ -177,7 +166,6 @@ impl MDLTransformRotateZOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformrotateop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformRotateOp;
@@ -218,7 +206,6 @@ impl MDLTransformRotateOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformtranslateop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformTranslateOp;
@@ -259,7 +246,6 @@ impl MDLTransformTranslateOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformscaleop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformScaleOp;
@@ -300,7 +286,6 @@ impl MDLTransformScaleOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformmatrixop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformMatrixOp;
@@ -341,7 +326,6 @@ impl MDLTransformMatrixOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformorientop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformOrientOp;
@@ -382,7 +366,6 @@ impl MDLTransformOrientOp {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformstack?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransformStack;

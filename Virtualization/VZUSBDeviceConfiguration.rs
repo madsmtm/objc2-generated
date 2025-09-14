@@ -8,6 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The protocol for configuring USB devices.
+    ///
+    /// ## Overview
+    ///
+    /// Classes that conform to this protocol represent hot-pluggable USB device configurations.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t use the `VZUSBDeviceConfiguration` protocol with objects outside the Virtualization framework. This protocol only describes capabilities of Virtualization framework objects.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Protocol for USB Device configuration.
     ///
     /// Classes that conform to this protocol represent hot-pluggable USB device configurations.
@@ -15,8 +30,6 @@ extern_protocol!(
     /// This protocol only describes capabilities of Virtualization framework objects.
     ///
     /// See: VZUSBMassStorageDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbdeviceconfiguration?language=objc)
     pub unsafe trait VZUSBDeviceConfiguration: NSObjectProtocol {
         /// Device UUID.
         ///

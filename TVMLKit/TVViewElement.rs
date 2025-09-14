@@ -7,30 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementeventtype?language=objc)
+/// The type of event that has been dispatched.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVElementEventType(pub NSInteger);
 impl TVElementEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementeventtype/play?language=objc)
+    /// A play event has been dispatched.
     #[doc(alias = "TVElementEventTypePlay")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Play: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementeventtype/select?language=objc)
+    /// A select event has been dispatched.
     #[doc(alias = "TVElementEventTypeSelect")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Select: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementeventtype/holdselect?language=objc)
+    /// A hold event has been dispatched.
     #[doc(alias = "TVElementEventTypeHoldSelect")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const HoldSelect: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementeventtype/highlight?language=objc)
+    /// A highlight event has been dispatched.
     #[doc(alias = "TVElementEventTypeHighlight")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Highlight: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementeventtype/change?language=objc)
+    /// A change event has been dispatched.
     #[doc(alias = "TVElementEventTypeChange")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Change: Self = Self(5);
@@ -44,41 +44,36 @@ unsafe impl RefEncode for TVElementEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype?language=objc)
+/// Describes any changes to the DOM tree after it has been reparsed.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementUpdateType(pub NSInteger);
 impl TVElementUpdateType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype/none?language=objc)
+    /// The tree structure did not change.
     #[doc(alias = "TVElementUpdateTypeNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
+    /// A subtree element has been updated without affecting the order of any immediate children.
     /// Signifies that one of the elements in the subtree is updated without
     /// affecting the order of immediate children.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype/subtree?language=objc)
     #[doc(alias = "TVElementUpdateTypeSubtree")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Subtree: Self = Self(1);
     /// Signifies that style property on view elements could have changed as
     /// a result of reevaluating media queries.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype/styles?language=objc)
     #[doc(alias = "TVElementUpdateTypeStyles")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Styles: Self = Self(2);
+    /// The order of child nodes have been updated due to the addition, removal, or replacement of child nodes.
     /// Signifies that the order of children is updated due to addition,
     /// removal or replacement of child nodes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype/children?language=objc)
     #[doc(alias = "TVElementUpdateTypeChildren")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Children: Self = Self(3);
+    /// The current node and its subtree have been modified.
     /// Signifies that the node itself and its subtree is modified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype/node?language=objc)
     #[doc(alias = "TVElementUpdateTypeSelf")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Node: Self = Self(4);
@@ -92,27 +87,24 @@ unsafe impl RefEncode for TVElementUpdateType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The types of properties that can be reset to their default values.
 /// Properties of TVViewElement that can be reset by the client to their
 /// default values. These properties communicate a message from the DOM, as opposed to
 /// define the model, which the client should reset after their values have been
 /// read.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementresettableproperty?language=objc)
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementResettableProperty(pub NSInteger);
 impl TVElementResettableProperty {
+    /// The [`updateType`](https://developer.apple.com/documentation/tvmlkit/tvviewelement/updatetype) property is reset to [`TVElementUpdateTypeNone`](https://developer.apple.com/documentation/tvmlkit/tvelementupdatetype/none).
     /// Maps to updateType property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementresettableproperty/updatetype?language=objc)
     #[doc(alias = "TVElementResettablePropertyUpdateType")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const UpdateType: Self = Self(0);
+    /// The [`autoHighlightIdentifier`](https://developer.apple.com/documentation/tvmlkit/tvviewelement/autohighlightidentifier) property is reset to `nil`.
     /// Maps to autoHighlightIdentifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementresettableproperty/autohighlightidentifier?language=objc)
     #[doc(alias = "TVElementResettablePropertyAutoHighlightIdentifier")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const AutoHighlightIdentifier: Self = Self(1);
@@ -127,13 +119,18 @@ unsafe impl RefEncode for TVElementResettableProperty {
 }
 
 extern_class!(
+    /// A representation of a read-only DOM node.
+    ///
+    /// ## Overview
+    ///
+    /// The `TVViewElement` model object is traversed by the [`TVInterfaceFactory`](https://developer.apple.com/documentation/tvmlkit/tvinterfacefactory) factory to construct views and view controllers, and to render templates. Views and view controllers should use the available dispatch APIs to send user events to JavaScript.
+    ///
+    ///
     /// TVViewElement represents a read only DOM node along with it's
     /// attributes and aggregated style. This model object is traversed
     /// by the factory to construct view/view controllers, to render templates.
     /// View/View controllers should use the avaliable dispatch API's to
     /// send user events to JavaScript.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

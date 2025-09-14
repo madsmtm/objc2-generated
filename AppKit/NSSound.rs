@@ -8,19 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssoundpboardtype?language=objc)
+    /// `NSSound` data
     #[cfg(feature = "NSPasteboard")]
     pub static NSSoundPboardType: &'static NSPasteboardType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssound/name-swift.typealias?language=objc)
 pub type NSSoundName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssound/playbackdeviceidentifier-swift.typealias?language=objc)
 pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssound?language=objc)
+    /// A simple interface for loading and playing audio files.
+    ///
+    /// ## Overview
+    ///
+    /// You create a sound object with an audio file or data, which can be in any format that Core Audio supports. Customize the sound by configuring its properties, such as setting its playback volume and looping behavior. Call the sound’s [`play`](https://developer.apple.com/documentation/appkit/nssound/play()) method to begin playback. The system executes this call asynchronously so that it doesn’t interrupt the functioning of your app.
+    ///
+    /// If you want to play the system beep sound, use the [`beep()`](https://developer.apple.com/documentation/appkit/nssound/beep()) (Swift) or [`NSBeep`](https://developer.apple.com/documentation/appkit/nsbeep) (Objective-C) function.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSound;
@@ -244,7 +250,7 @@ impl NSSound {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssounddelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSSound`](https://developer.apple.com/documentation/appkit/nssound) objects.
     pub unsafe trait NSSoundDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(sound:didFinishPlaying:))]

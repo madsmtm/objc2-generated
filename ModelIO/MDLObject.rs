@@ -8,12 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for objects that are part of a 3D asset, including meshes, cameras, and lights.
+    ///
+    /// ## Overview
+    ///
+    /// When you load content from an asset file using the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class, Model I/O creates instances of the [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) subclasses [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh), [`MDLCamera`](https://developer.apple.com/documentation/modelio/mdlcamera), and [`MDLLight`](https://developer.apple.com/documentation/modelio/mdllight). For asset formats that describe a collection of meshes, cameras, and lights organized in a hierarchy of spatial transforms, Model I/O also creates instances of the [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) class itself to describe the transform nodes that organize the asset’s visual content. Similarly, you use the [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) class and its subclasses when creating an object graph to be exported as an asset file using  the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class.
+    ///
+    /// ### Extending Model I/O with Components
+    ///
+    /// Model I/O allows you to customize the content and relationships in an object graph with _components_. For each aspect of an object’s functionality, you use a component protocol (extending the [`MDLComponent`](https://developer.apple.com/documentation/modelio/mdlcomponent) protocol) to define functionality and a class adopting that protocol to implement it. Then, you can use the [`componentConformingToProtocol:`](https://developer.apple.com/documentation/modelio/mdlobject/componentconforming(to:)) and [`setComponent:forProtocol:`](https://developer.apple.com/documentation/modelio/mdlobject/setcomponent(_:for:)) methods to associate those objects with any instance of the [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) class or of one of its subclasses. For example, you might define a protocol to add gameplay-related information such as scripting triggers to certain meshes, lights, or cameras in a scene.
+    ///
+    /// Model I/O itself uses this mechanism to handle object hierarchies and spatial transforms: The methods listed in [Working with Object Hierarchies](https://developer.apple.com/documentation/modelio/mdlobject#working-with-object-hierarchies) use the [`MDLObjectContainerComponent`](https://developer.apple.com/documentation/modelio/mdlobjectcontainercomponent) protocol to model hierarchic relationships between objects in an asset, and the methods listed in [Working with Objects in Space](https://developer.apple.com/documentation/modelio/mdlobject#working-with-objects-in-space) use the [`MDLTransformComponent`](https://developer.apple.com/documentation/modelio/mdltransformcomponent) protocol to model coordinate space relationships. To add support for an asset file format or object graph that uses other ways to store or compute these relationships, you can use your own classes that adopt these protocols.
+    ///
+    ///
     /// Base class for object in a ModelIO asset hierarchy
     ///
     /// Includes transformation and bounds info, links to parent and
     /// children in the hierachy
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLObject;
@@ -249,13 +260,20 @@ impl MDLObject {
 }
 
 extern_class!(
+    /// A default implementation for handling object hierarchy relationships in a 3D asset.
+    ///
+    /// ## Overview
+    ///
+    /// Model I/O uses the [`MDLObjectContainerComponent`](https://developer.apple.com/documentation/modelio/mdlobjectcontainercomponent) protocol to create object hierarchy relationships for meshes, lights, cameras, and containers loaded from a [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) instance. To create your own containers—for example, to reference in-memory representations, offline databases, or custom asset file formats—create [`MDLObjectContainer`](https://developer.apple.com/documentation/modelio/mdlobjectcontainer) subclasses and add them to a [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) instance using its [`setComponent:forProtocol:`](https://developer.apple.com/documentation/modelio/mdlobject/setcomponent(_:for:)) method.
+    ///
+    /// All methods of this class are defined by the [`MDLObjectContainerComponent`](https://developer.apple.com/documentation/modelio/mdlobjectcontainercomponent) protocol. For discussion of these methods, see [`MDLObjectContainerComponent`](https://developer.apple.com/documentation/modelio/mdlobjectcontainercomponent).
+    ///
+    ///
     /// Default container object
     ///
     /// Subclass the object container to support custom containers. Such
     /// custom containers might reference in memory representations, offline
     /// databases, and so on.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlobjectcontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLObjectContainer;

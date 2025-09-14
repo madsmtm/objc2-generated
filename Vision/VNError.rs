@@ -6,86 +6,98 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrordomain?language=objc)
+    /// The domain of errors that the framework generates.
     pub static VNErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode?language=objc)
+/// Constants that identify errors from the framework.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNErrorCode(pub NSInteger);
 impl VNErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/turicoreerrorcode?language=objc)
+    /// An error occurred during Create ML training due to an invalid transformation or image.
     #[doc(alias = "VNErrorTuriCoreErrorCode")]
     pub const TuriCoreErrorCode: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/ok?language=objc)
+    /// The operation finished without error.
     #[doc(alias = "VNErrorOK")]
     pub const OK: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/requestcancelled?language=objc)
+    /// An app canceled the request.
     #[doc(alias = "VNErrorRequestCancelled")]
     pub const RequestCancelled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/invalidformat?language=objc)
+    /// The format of the image is invalid.
     #[doc(alias = "VNErrorInvalidFormat")]
     pub const InvalidFormat: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/operationfailed?language=objc)
+    /// The requested operation failed.
     #[doc(alias = "VNErrorOperationFailed")]
     pub const OperationFailed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/outofboundserror?language=objc)
+    /// An app attempted to access data that’s out-of-bounds.
     #[doc(alias = "VNErrorOutOfBoundsError")]
     pub const OutOfBoundsError: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/invalidoption?language=objc)
+    /// An app specified an invalid option on a request.
     #[doc(alias = "VNErrorInvalidOption")]
     pub const InvalidOption: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/ioerror?language=objc)
+    /// An I/O error for an image, image sequence, or Core ML model.
     #[doc(alias = "VNErrorIOError")]
     pub const IOError: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/missingoption?language=objc)
+    /// A request is missing a required option.
     #[doc(alias = "VNErrorMissingOption")]
     pub const MissingOption: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/notimplemented?language=objc)
+    /// The method isn’t implemented in the underlying model.
     #[doc(alias = "VNErrorNotImplemented")]
     pub const NotImplemented: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/internalerror?language=objc)
+    /// An internal error occurred within the framework.
     #[doc(alias = "VNErrorInternalError")]
     pub const InternalError: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/outofmemory?language=objc)
+    /// The system doesn’t have enough memory to complete the request.
     #[doc(alias = "VNErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/unknownerror?language=objc)
+    /// An unidentified error occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about the error, see the error description and domain.
+    ///
+    ///
     #[doc(alias = "VNErrorUnknownError")]
     pub const UnknownError: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/invalidoperation?language=objc)
+    /// An app requested an unsupported operation.
     #[doc(alias = "VNErrorInvalidOperation")]
     pub const InvalidOperation: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/invalidimage?language=objc)
+    /// The image is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you pass an invalid image to an operation, such as passing an image with no dimensions.
+    ///
+    ///
     #[doc(alias = "VNErrorInvalidImage")]
     pub const InvalidImage: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/invalidargument?language=objc)
+    /// An app passed an invalid parameter to a request.
     #[doc(alias = "VNErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/invalidmodel?language=objc)
+    /// The Core ML model is incompatible with the request.
     #[doc(alias = "VNErrorInvalidModel")]
     pub const InvalidModel: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/unsupportedrevision?language=objc)
+    /// An app specified an unsupported request revision.
     #[doc(alias = "VNErrorUnsupportedRevision")]
     pub const UnsupportedRevision: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/dataunavailable?language=objc)
+    /// The data isn’t available.
     #[doc(alias = "VNErrorDataUnavailable")]
     pub const DataUnavailable: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/timestampnotfound?language=objc)
+    /// The system can’t find a timestamp.
     #[doc(alias = "VNErrorTimeStampNotFound")]
     pub const TimeStampNotFound: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/unsupportedrequest?language=objc)
+    /// An app attempted an unsupported request.
     #[doc(alias = "VNErrorUnsupportedRequest")]
     pub const UnsupportedRequest: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/timeout?language=objc)
+    /// The requested operation timed out.
     #[doc(alias = "VNErrorTimeout")]
     pub const Timeout: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/unsupportedcomputestage?language=objc)
+    /// An app requested an unsupported compute stage.
     #[doc(alias = "VNErrorUnsupportedComputeStage")]
     pub const UnsupportedComputeStage: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnerrorcode/unsupportedcomputedevice?language=objc)
+    /// An app requested an unsupported compute device.
     #[doc(alias = "VNErrorUnsupportedComputeDevice")]
     pub const UnsupportedComputeDevice: Self = Self(22);
 }

@@ -11,8 +11,7 @@ use crate::*;
 
 extern_protocol!(
     /// Methods that the session calls with the result of a match request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shsessiondelegate?language=objc)
+    /// Methods that the session calls with the result of a match request.
     pub unsafe trait SHSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "SHMatch")]
         /// Tells the delegate that the query signature matches an item in the catalog.
@@ -47,6 +46,53 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.
+    ///
+    /// ## Overview
+    ///
+    /// Prepare to make matches by:
+    ///
+    /// - Creating a session for the catalog that contains the reference signatures
+    ///
+    /// - Adding your delegate that receives the match results
+    ///
+    /// Search for a match in one of two ways:
+    ///
+    /// - Generate a signature for the captured audio and call [`matchSignature:`](https://developer.apple.com/documentation/shazamkit/shsession/match(_:))
+    ///
+    /// - Call [`matchStreamingBuffer:atTime:`](https://developer.apple.com/documentation/shazamkit/shsession/matchstreamingbuffer(_:at:)) with a streaming audio buffer, and ShazamKit generates the signature for you
+    ///
+    /// Searching the catalog is asynchronous. The session calls your delegate methods with the result.
+    ///
+    /// Matching songs in Shazam music requires enabling your app to access the catalog. For more information on enabling your app, see [Enable ShazamKit for an App ID](https://developer.apple.com/help/account/configure-app-services/shazamkit).
+    ///
+    /// The code below shows searching for a match in the Shazam catalog using an existing audio buffer:
+    ///
+    /// ```swift
+    /// // Set up the session.
+    /// let session = SHSession()
+    /// session.delegate = self
+    ///
+    /// // Create a signature from the captured audio buffer.
+    /// let signatureGenerator = SHSignatureGenerator()
+    /// try signatureGenerator.append(buffer, at: audioTime)
+    /// let signature = signatureGenerator.signature()
+    ///
+    /// // Check for a match.
+    /// session.match(signature)
+    ///
+    /// // The delegate method that the session calls when matching a reference item.
+    /// func session(_ session: SHSession, didFind match: SHMatch) {
+    ///     // Do something with the matched results.
+    /// }
+    ///
+    /// // The delegate method that the session calls when there is no match.
+    ///  func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
+    ///     // No match found.
+    /// }
+    /// ```
+    ///
+    ///
     /// An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.
     ///
     /// Prepare to make matches by:
@@ -87,8 +133,6 @@ extern_class!(
     /// // An error occurred.
     /// }
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHSession;

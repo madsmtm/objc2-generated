@@ -10,17 +10,22 @@ use objc2_metal::*;
 
 use crate::*;
 
+///
+/// ## Discussion
+///
+/// Metal buffer based CVPixelBuffer wrapped buffer
+///
+/// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the contents in them. Retaining a CVMetalBuffer is your way to indicate that you’re still using the image in the buffer, and that it should not be recycled yet.
+///
+///
 /// Metal buffer based CVPixelBuffer wrapped buffer
 ///
 /// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the contents in them.
 /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffer?language=objc)
 #[doc(alias = "CVMetalBufferRef")]
 #[cfg(feature = "CVBuffer")]
 pub type CVMetalBuffer = CVBuffer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffergettypeid()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVMetalBufferGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -29,13 +34,27 @@ pub extern "C-unwind" fn CVMetalBufferGetTypeID() -> CFTypeID {
     unsafe { CVMetalBufferGetTypeID() }
 }
 
+///
+/// Parameters:
+/// - buffer: Target CVMetalBuffer
+///
+///
+/// ## Return Value
+///
+/// Metal buffer
+///
+///
+///
+/// ## Discussion
+///
+/// Returns the Metal MTLBuffer object of the CVMetalBufferRef
+///
+///
 /// Returns the Metal MTLBuffer object of the CVMetalBufferRef
 ///
 /// Parameter `buffer`: Target CVMetalBuffer
 ///
 /// Returns: Metal buffer
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffergetbuffer(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "objc2", feature = "objc2-metal"))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]

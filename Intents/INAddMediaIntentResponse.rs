@@ -6,31 +6,67 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode?language=objc)
+/// Codes returned by an app or Intents app extension when handling or confirming an add media intent.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAddMediaIntentResponseCode(pub NSInteger);
 impl INAddMediaIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/unspecified?language=objc)
+    /// An unknown state.
     #[doc(alias = "INAddMediaIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/ready?language=objc)
+    /// The app is ready to add media.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INAddMediaIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/inprogress?language=objc)
+    /// The app is currently trying to process the add media request.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if it may take more than a few seconds to add the media.
+    ///
+    ///
     #[doc(alias = "INAddMediaIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/success?language=objc)
+    /// The app successfully added the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app has successfully added the media.
+    ///
+    ///
     #[doc(alias = "INAddMediaIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/handleinapp?language=objc)
+    /// The system should launch the app in the background to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Because the lifespan of an app extension is short, adding media should happen in your app, not in the Intents app extension. To handle adding media in your app while in the background, return [`INAddMediaIntentResponseCodeHandleInApp`](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/handleinapp) as the response [`code`](https://developer.apple.com/documentation/intents/inaddmediaintentresponse/code).
+    ///
+    ///
     #[doc(alias = "INAddMediaIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/failure?language=objc)
+    /// The app was unable to add the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from adding the media.
+    ///
+    ///
     #[doc(alias = "INAddMediaIntentResponseCodeFailure")]
     pub const Failure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch the app to add media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INAddMediaIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(6);
 }
@@ -44,7 +80,15 @@ unsafe impl RefEncode for INAddMediaIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediaintentresponse?language=objc)
+    /// An intents handler’s response to an add media intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INAddMediaIntentResponse`](https://developer.apple.com/documentation/intents/inaddmediaintentresponse) object to specify the results after the user attempts to add the specified media. After performing the add action using the criteria specified in the [`INAddMediaIntent`](https://developer.apple.com/documentation/intents/inaddmediaintent) object, create an instance of this class with the results of the action. Siri communicates the status from your response to the user at appropriate times.
+    ///
+    /// You create an [`INAddMediaIntentResponse`](https://developer.apple.com/documentation/intents/inaddmediaintentresponse) object in the [`confirmAddMedia:completion:`](https://developer.apple.com/documentation/intents/inaddmediaintenthandling/confirm(intent:completion:)) and [`handleAddMedia:completion:`](https://developer.apple.com/documentation/intents/inaddmediaintenthandling/handle(intent:completion:)) methods of your add media handler object. For more information about implementing your handler object, see [`INAddMediaIntentHandling`](https://developer.apple.com/documentation/intents/inaddmediaintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

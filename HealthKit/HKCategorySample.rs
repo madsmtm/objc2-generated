@@ -7,11 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A sample with values from a short list of possible values.
+    ///
+    /// ## Overview
+    ///
+    /// You can use category samples to record data associated with a [`HKCategoryType`](https://developer.apple.com/documentation/healthkit/hkcategorytype). The value for the sample must come from the appropriate category value enumeration. Each category type uses its own enumeration. Individual samples represent a value and time period. Samples with different values may have overlapping time intervals.
+    ///
+    /// The [`HKCategorySample`](https://developer.apple.com/documentation/healthkit/hkcategorysample) class is a concrete subclass of the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) class. Category samples are immutable: You set the sample’s properties when you create it, and they can’t change.
+    ///
+    /// ### Extend Category Samples
+    ///
+    /// Like many HealthKit classes, don’t subclass the `HKCategorySample` class. You may extend the `HKCategorySample` class by adding metadata with custom keys as appropriate for your app.
+    ///
+    /// For more information, see [`categorySampleWithType:value:startDate:endDate:metadata:`](https://developer.apple.com/documentation/healthkit/hkcategorysample/init(type:value:start:end:metadata:)).
+    ///
+    ///
     /// An HKObject subclass representing an category measurement
     ///
     /// Category samples are samples that can be categorized into an enum of concrete values
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorysample?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -146,6 +159,12 @@ impl HKCategorySample {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue?language=objc)
+    /// The key path for accessing the category sample’s value.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathCategoryValue: &'static NSString;
 }

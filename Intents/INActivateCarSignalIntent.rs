@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintent?language=objc)
+    /// A request to activate the signals on the user’s car.
+    ///
+    /// ## Overview
+    ///
+    /// When the user asks for an audible or visual signal from the car, Siri creates an `INActivateCarSignalIntent` object. This intent object can contain the name of the user’s car and the signal options. Use this object to trigger audible and visual signals from the car.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INActivateCarSignalIntentHandling`](https://developer.apple.com/documentation/intents/inactivatecarsignalintenthandling) protocol. Your handler should confirm the request and create an [`INActivateCarSignalIntentResponse`](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponse) object with the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device?" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Uers can ask Siri to activate their car’s signals in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive, and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Honk my car’s horn." }] }], [Paragraph { inline_content: [Text { text: "Flash my car’s lights." }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "按喇叭。" }] }], [Paragraph { inline_content: [Text { text: "打开双闪。" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "響喇叭。" }] }], [Paragraph { inline_content: [Text { text: "開死火燈。" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "按車子喇叭。" }] }], [Paragraph { inline_content: [Text { text: "打開危險警示燈。" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "响喇叭" }] }], [Paragraph { inline_content: [Text { text: "打开双闪灯" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "اضرب بوق سيارتي" }] }], [Paragraph { inline_content: [Text { text: "شغل إشارات \u{a0}سيارتي" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Dyt med min bil" }] }], [Paragraph { inline_content: [Text { text: "Aktiver min bils blinklys" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Lass mein Auto hupen" }] }], [Paragraph { inline_content: [Text { text: "Schalte die Warnblinkanlage ein" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Toca la bocina de mi coche" }] }], [Paragraph { inline_content: [Text { text: "Enciende los intermitentes del coche" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Tuuttaa auton torvea" }] }], [Paragraph { inline_content: [Text { text: "Väläytä auton valoja" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Fais klaxonner ma voiture." }] }], [Paragraph { inline_content: [Text { text: "Mets en route les feux de détresse de la voiture." }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תצפרי בצופר האוטו שלי" }] }], [Paragraph { inline_content: [Text { text: "תפעיל את האורות אזהרה באוטו שלי" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Fai suonare il clacson della mia auto." }] }], [Paragraph { inline_content: [Text { text: "Accendi le luci di emergenza della mia auto." }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "クラクションを鳴らして" }] }], [Paragraph { inline_content: [Text { text: "車のハザードランプをつけて" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "경적 울려줘" }] }], [Paragraph { inline_content: [Text { text: "비상등 켜줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Bunyikan hon kereta saya" }] }], [Paragraph { inline_content: [Text { text: "Kelipkan lampu kecemasan kereta saya." }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Tut med tuta" }] }], [Paragraph { inline_content: [Text { text: "Blink med lysene til bilen min" }] }]], [[Paragraph { inline_content: [Text { text: "ni" }] }], [Paragraph { inline_content: [Text { text: "Claxonneer met mijn auto." }] }], [Paragraph { inline_content: [Text { text: "Knipper met de knipperlichten van mijn auto." }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Buzinar carro" }] }], [Paragraph { inline_content: [Text { text: "Liga o pisca-alerta" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Нажми на клаксон моей машины." }] }], [Paragraph { inline_content: [Text { text: "Помигай фарами моей машины." }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Tuta min tuta." }] }], [Paragraph { inline_content: [Text { text: "Tänd mina varningsblinkers." }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "บ\u{e35}บแตร" }] }], [Paragraph { inline_content: [Text { text: "เป\u{e34}ดไฟฉ\u{e38}กเฉ\u{e34}น" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Arabamın kornasını çal." }] }], [Paragraph { inline_content: [Text { text: "Arabamın dörtlülerini yak." }] }]]], alignments: None, metadata: None })
+    /// Unlike other SiriKit intents, these phrases do not always require your app’s name. Siri infers the app’s name when possible (for example, based on unique user vocabulary registered by your app). If necessary, Siri verifies the app’s name before launching your extension.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -79,11 +99,18 @@ impl INActivateCarSignalIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for requesting to activate the car’s signals.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the `INActivateCarSignalIntentHandling` protocol to resolve, confirm, and handle requests to activate signals on the user’s car. Adopt this protocol in an object of your Intents extension that is capable of activating the car’s signals.
+    ///
+    /// Siri delivers an [`INActivateCarSignalIntent`](https://developer.apple.com/documentation/intents/inactivatecarsignalintent) object to your handler when the user asks to activate a signal. The provided intent object can contain the car’s name (if specified), and the types of signals (audible or visual).
+    ///
+    ///
     /// Protocol to declare support for handling an INActivateCarSignalIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintenthandling?language=objc)
     pub unsafe trait INActivateCarSignalIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INActivateCarSignalIntentResponse",

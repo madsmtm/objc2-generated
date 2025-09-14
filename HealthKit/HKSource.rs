@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents the entity that created an object stored by HealthKit.
+    /// An object indicating the app or device that created a HealthKit sample
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksource?language=objc)
+    /// ## Overview
+    ///
+    /// Sources include apps and devices that save data to the HealthKit store. Currently, HealthKit supports only the direct import of data from Bluetooth LE heart rate monitors. All other devices need a companion app to collect and save the data to HealthKit.
+    ///
+    ///
+    /// Represents the entity that created an object stored by HealthKit.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSource;

@@ -9,7 +9,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkimage?language=objc)
+    /// A wrapper for images you use with a picker interface.
+    ///
+    /// ## Overview
+    ///
+    /// To create instances of this class, use one of the defined creation methods. Choose the method that best suits the image data you have. After creating the object, you can use associate it with a [`WKPickerItem`](https://developer.apple.com/documentation/watchkit/wkpickeritem) object and use it in your picker interface.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKImage;

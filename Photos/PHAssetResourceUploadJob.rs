@@ -9,11 +9,18 @@ use crate::*;
 extern_class!(
     /// Represents a request to upload a `PHAssetResource`
     ///
-    /// Used within an application's `com.apple.photos.background-upload` extension to represent a request to upload a `PHAssetResource` to a destination `NSURLRequest`.
+    /// ## Overview
+    ///
+    /// Used within an application’s `com.apple.photos.background-upload` extension to represent a request to upload a `PHAssetResource` to a destination `NSURLRequest`.
     ///
     /// When the extensions principal class receives a call to `process` background uploads, it can create new `PHAssetResourceUploadJob`s using `PHAssetResourceUploadJobChangeRequest` and any existing upload jobs can be fetched using `fetchJobsWithAction:options:` and handled by updating their state using a `PHAssetResourceUploadJobChangeRequest` to mark them as acknowledged, or to be retried. The maximum number of jobs that can be a in flight is limited to the `jobLimit`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob?language=objc)
+    ///
+    /// Represents a request to upload a `PHAssetResource`
+    ///
+    /// Used within an application's `com.apple.photos.background-upload` extension to represent a request to upload a `PHAssetResource` to a destination `NSURLRequest`.
+    ///
+    /// When the extensions principal class receives a call to `process` background uploads, it can create new `PHAssetResourceUploadJob`s using `PHAssetResourceUploadJobChangeRequest` and any existing upload jobs can be fetched using `fetchJobsWithAction:options:` and handled by updating their state using a `PHAssetResourceUploadJobChangeRequest` to mark them as acknowledged, or to be retried. The maximum number of jobs that can be a in flight is limited to the `jobLimit`.
     #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]

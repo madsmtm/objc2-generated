@@ -9,19 +9,18 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// The display style of a bar button.
 /// Specifies the style used to display a
 /// `CPBarButton.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPBarButtonStyle(pub NSInteger);
 impl CPBarButtonStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonstyle/none?language=objc)
+    /// A style that provides no additional styling.
     #[doc(alias = "CPBarButtonStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonstyle/rounded?language=objc)
+    /// A style that provides a rounded background.
     #[doc(alias = "CPBarButtonStyleRounded")]
     pub const Rounded: Self = Self(1);
 }
@@ -34,19 +33,18 @@ unsafe impl RefEncode for CPBarButtonStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Types of bar buttons.
 /// Specifies the type of a
 /// `CPBarButton.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton/type?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPBarButtonType(pub NSUInteger);
 impl CPBarButtonType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton/type/text?language=objc)
+    /// A text style bar button.
     #[doc(alias = "CPBarButtonTypeText")]
     pub const Text: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton/type/image?language=objc)
+    /// An image style bar button.
     #[doc(alias = "CPBarButtonTypeImage")]
     pub const Image: Self = Self(1);
 }
@@ -59,14 +57,13 @@ unsafe impl RefEncode for CPBarButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonhandler?language=objc)
+/// A block that CarPlay calls when the user taps a bar button.
 #[cfg(feature = "block2")]
 pub type CPBarButtonHandler = *mut block2::DynBlock<dyn Fn(NonNull<CPBarButton>)>;
 
 extern_class!(
     /// A button for placement in a navigation bar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton?language=objc)
+    /// A button for placement in a navigation bar.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPBarButton;

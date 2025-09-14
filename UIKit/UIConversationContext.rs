@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// A base class that represents a conversation between participants, such as in an email or messaging app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconversationcontext?language=objc)
+    /// A base class that represents a conversation between participants, such as in an email or messaging app.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIConversationContext;

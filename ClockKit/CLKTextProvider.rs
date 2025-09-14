@@ -10,7 +10,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clktextprovider?language=objc)
+    /// The common behavior for displaying text-based data in a complication.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, you don’t create instances of this class yourself. Instead, you create instances of an appropriate subclass, based on the type of text data you’re trying to create. However, you can use the [`init(format:_:)`](https://developer.apple.com/documentation/clockkit/clktextprovider/init(format:_:)) initializer or [`textProviderWithFormat:`](https://developer.apple.com/documentation/clockkit/clktextprovider/textproviderwithformat:) class method to create a compound text provider constructed from a format string and the data from other text providers.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -70,7 +76,15 @@ impl CLKTextProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clksimpletextprovider?language=objc)
+    /// A single line of text to display in your complication interface.
+    ///
+    /// ## Overview
+    ///
+    /// Use a simple text provider to specify strings for your complications. The simple text object handles the formatting of that string in your complication, which may include tinting it to match the color of the clock face.
+    ///
+    /// When creating a simple text provider, you can specify both a long version and a short version of your text. Providing both strings gives you more control over the text displayed by your complication. When the long string doesn’t fit in the available space, the text provider tries to display the value in the [`shortText`](https://developer.apple.com/documentation/clockkit/clksimpletextprovider/shorttext) property instead. If the shorter version is still too long, it displays a truncated version of the longer text.
+    ///
+    ///
     #[unsafe(super(CLKTextProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -178,7 +192,43 @@ impl CLKSimpleTextProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkdatetextprovider?language=objc)
+    /// A formatted string that conveys a date without any time information.
+    ///
+    /// ## Overview
+    ///
+    /// Use a date provider for strings that contain day, month, and year information. The text provider formats the date information consistently and in a way that makes the best use of the available space. It also takes into account the user’s region and locale settings.
+    ///
+    /// When creating the formatted string, the date text provider creates the longest string that fits in the given space. It includes as many of the requested date elements as it can, but may truncate elements or use abbreviations as needed.
+    ///
+    /// ### Date Format Options
+    ///
+    /// When creating a `CLKDateTextProvider` object, you must specify which calendar units you want included in the resulting date. Only the following calendar units are supported:
+    ///
+    /// - [`NSDayCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsdaycalendarunit)
+    ///
+    /// - [`NSMonthCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsmonthcalendarunit)
+    ///
+    /// - [`NSWeekdayCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekdaycalendarunit)
+    ///
+    /// - [`NSYearCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsyearcalendarunit)
+    ///
+    /// All other calendar units are ignored.
+    ///
+    /// When formatting the date, the date text provider drops units starting at the end of the preceding list and working up. In other words, it drops the year first, followed by the weekday information, followed by the month. For example, a text provider configured to display all units for the date December 28, 2014 in the English-US locale would remove elements as follows until it encountered a string that fit the available space:
+    ///
+    /// - `Saturday, December 28, 2015`
+    ///
+    /// - `Saturday, December 28`
+    ///
+    /// - `Saturday, Dec 28`
+    ///
+    /// - `Sat, Dec 28`
+    ///
+    /// - `Dec 28`
+    ///
+    /// - `28`
+    ///
+    ///
     #[unsafe(super(CLKTextProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -295,7 +345,19 @@ impl CLKDateTextProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clktimetextprovider?language=objc)
+    /// A formatted time value.
+    ///
+    /// ## Overview
+    ///
+    /// This provider supports time values in either the 24-hour or 12-hour format and takes into account the user’s region and locale settings. As needed, the provider automatically shortens the string to fit the available space.
+    ///
+    /// When formatting the time, the time text provider drops the morning/evening indicator if it can’t fit the entire time value. For example, a provider configured to display the time 10:09AM in the English-US locale would remove elements as follows until it encountered a string that fit the available space:
+    ///
+    /// - `10:09AM`
+    ///
+    /// - `10:09`
+    ///
+    ///
     #[unsafe(super(CLKTextProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -381,7 +443,25 @@ impl CLKTimeTextProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clktimeintervaltextprovider?language=objc)
+    /// A formatted time range.
+    ///
+    /// ## Overview
+    ///
+    /// This provider creates strings like “10:15–11:15AM” where the time range may span hours, days, or some larger time interval. The text provider takes into account the user’s region and locale settings.
+    ///
+    /// Time interval strings are more appropriate in complication families where there’s sufficient space to draw the full time range, such as the modular large and utilitarian large families. In families where space is more limited, the provider may display only the start date of the time range.
+    ///
+    /// When formatting the time interval, the time text provider drops the morning/evening indicator of the start time when it’s the same as the end time. Time intervals that are more than 24 hours are displayed as a range of days. The following are some examples of formatted time intervals:
+    ///
+    /// - `9:30AM - 3:30PM`
+    ///
+    /// - `9:30 - 10:30AM`
+    ///
+    /// - `Jan 1 - Jan 7`
+    ///
+    /// - `1/1 - 1/7`
+    ///
+    ///
     #[unsafe(super(CLKTextProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -486,32 +566,68 @@ impl CLKTimeIntervalTextProvider {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle?language=objc)
+/// Constants indicating the formatting style for the relative date values.
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKRelativeDateStyle(pub NSInteger);
 impl CLKRelativeDateStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/natural?language=objc)
+    /// A natural date style.
+    ///
+    /// ## Discussion
+    ///
+    /// The text provider breaks the time interval into various components. For example, it formats 10 hours and 9 minutes as “10hrs 9min”.
+    ///
+    ///
     #[doc(alias = "CLKRelativeDateStyleNatural")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Natural: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/offset?language=objc)
+    /// An offset date style.
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting value gives the time offset using a single key unit. For example, values might be “10 hours”, or “9 minutes” depending on the total amount of time between the current date and the date you specified.
+    ///
+    ///
     #[doc(alias = "CLKRelativeDateStyleOffset")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Offset: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/timer?language=objc)
+    /// A timer style.
+    ///
+    /// ## Discussion
+    ///
+    /// Timers convey the number of hours, minutes, and seconds between the two dates. For example, the date text provider formats ten hours and nine minutes as “10:09”.
+    ///
+    ///
     #[doc(alias = "CLKRelativeDateStyleTimer")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Timer: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/naturalabbreviated?language=objc)
+    /// An abbreviated, natural date style.
+    ///
+    /// ## Discussion
+    ///
+    /// The smallest possible abbreviation of the natural date style. For example, ten hours and nine minutes always formats as “10H 9M.” The [`CLKRelativeDateStyleNatural`](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/natural) style may provide a longer string like “10hrs 9min” if there’s enough space.
+    ///
+    ///
     #[doc(alias = "CLKRelativeDateStyleNaturalAbbreviated")]
     pub const NaturalAbbreviated: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/offsetshort?language=objc)
+    /// A short offset date style.
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting value gives the time offset using the abbreviated form of a single key unit. For example, values might be “10 hrs”, or “9 min” depending on the total amount of time between the current date and the date you specified.
+    ///
+    ///
     #[doc(alias = "CLKRelativeDateStyleOffsetShort")]
     pub const OffsetShort: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/naturalfull?language=objc)
+    /// A natural date style using unabbreviated units, when possible.
+    ///
+    /// ## Discussion
+    ///
+    /// The text provider breaks the time interval into various components. If there’s enough space, it uses the full word for the units; otherwise, it abbreviates them. For example, it formats 10 hours and 9 minutes as “10 hours 9 minutes”.
+    ///
+    ///
     #[doc(alias = "CLKRelativeDateStyleNaturalFull")]
     pub const NaturalFull: Self = Self(5);
 }
@@ -525,7 +641,45 @@ unsafe impl RefEncode for CLKRelativeDateStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkrelativedatetextprovider?language=objc)
+    /// A formatted string that conveys the difference in time between the current date and a date that you specify.
+    ///
+    /// ## Overview
+    ///
+    /// You use a relative date text provider to implement timers or other relative time values in an efficient way. Instead of using multiple timeline entries to replicate a countdown timer, create a single timeline entry with a relative date text provider. When the user views the clock face, ClockKit automatically updates the relative time value in your complication, providing up-to-date time information.
+    ///
+    /// When creating the formatted string, the relative date text provider creates the longest string that fits in the given space. It includes as many of the requested date elements as it can, but may truncate elements or use abbreviations as needed. The formatted string takes into account the user’s region and locale settings.
+    ///
+    /// ### Date Format Options
+    ///
+    /// When creating a `CLKRelativeDateTextProvider` object, you must specify which calendar units you want included in the resulting date. Only the following calendar units are supported:
+    ///
+    /// - [`NSYearCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsyearcalendarunit)
+    ///
+    /// - [`NSMonthCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsmonthcalendarunit)
+    ///
+    /// - [`NSWeekOfMonthCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekofmonthcalendarunit)
+    ///
+    /// - [`NSDayCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsdaycalendarunit)
+    ///
+    /// - [`NSHourCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nshourcalendarunit)
+    ///
+    /// - [`NSMinuteCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsminutecalendarunit)
+    ///
+    /// - [`NSSecondCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nssecondcalendarunit)
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When creating a relative date provider using the [`CLKRelativeDateStyleTimer`](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle/timer) style, only the [`NSHourCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nshourcalendarunit), [`NSMinuteCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsminutecalendarunit), and [`NSSecondCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit/nssecondcalendarunit) units are supported.
+    ///
+    ///
+    ///
+    /// </div>
+    /// All other calendar units are ignored.
+    ///
+    /// The format of the relative time value is dependent on the date style you choose when creating the text provider. For a list of possible styles and examples of each, see [`CLKRelativeDateStyle`](https://developer.apple.com/documentation/clockkit/clkrelativedatestyle).
+    ///
+    ///
     #[unsafe(super(CLKTextProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

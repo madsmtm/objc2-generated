@@ -7,7 +7,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolordataformat?language=objc)
 #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -43,8 +42,6 @@ unsafe impl RefEncode for CGColorDataFormat {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconvertcolordatawithformat(_:_:_:_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `dst_data` must be a valid pointer.

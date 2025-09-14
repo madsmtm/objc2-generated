@@ -12,13 +12,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A collection of focus decisions, focus transitions, detections, and detection tracks associated with a movie captured in Cinematic mode and methods to change them.
+    ///
+    /// ## Overview
+    ///
+    /// The Cinematic script provides thread-safe access to information about the focus decisions made in the original recorded Cinematic movie. The script supports changing those decisions and obtaining updated information about where to focus each frame. You can snapshot changes to a script and later reload them.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Look up what you need up front, outside your critical code, and pass the immutable results to where it’s needed. That way, you’re not blocked when you access the information inside the rendering portion of your code.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Database of focus decisions with methods to change them.
     /// Knows what has been detected in each frame and which detection is being focused on.
     /// All operations are executed in a thread-safe manner, but that also means that a long-running update can stall a lookup.
     /// Best practice is to lookup what you need up front (outside your critical code) and pass the immutable results to where it's needed.
     /// That way, you're not blocked when you access the information, say inside the rendering portion of your code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnscript-9e1zn?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNScript;
@@ -271,10 +284,15 @@ impl CNScript {
 }
 
 extern_class!(
+    /// An object that represents a snapshot of the changes made to a movie script, including the added user decisions and detection tracks.
+    ///
+    /// ## Overview
+    ///
+    /// Use as a snapshot to quickly revert to previously saved edits.
+    ///
+    ///
     /// Represents a snapshot of changes made to the cinematic script since recording.
     /// Can be used as a snapshot to quickly revert to previously saved edits via `-[CNScript reloadWithChanges:]`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnscriptchanges?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNScriptChanges;
@@ -329,6 +347,7 @@ impl CNScriptChanges {
 }
 
 extern_class!(
+    /// An object that represents what to focus on, and where to focus, in a given movie frame.
     /// Represents focus
     /// &
     /// detection information at a particular time.
@@ -338,8 +357,6 @@ extern_class!(
     /// Utility methods support looking up a detection by detectionID or detectionGroupID.
     ///
     /// Frames are obtained from the cinematic script using `frame(at:tolerance:)` or `frames(in:)`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnscriptframe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNScriptFrame;

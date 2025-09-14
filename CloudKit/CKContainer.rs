@@ -8,27 +8,89 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A constant that provides the current user’s default name.
     /// Stand-in for the current user's ID; most often used in RecordZoneID->ownerName
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcurrentuserdefaultname?language=objc)
     pub static CKCurrentUserDefaultName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckownerdefaultname?language=objc)
+    /// A constant that provides the default owner’s name.
     #[deprecated]
     pub static CKOwnerDefaultName: &'static NSString;
 }
 
 extern_class!(
+    /// A conduit to your app’s databases.
+    ///
+    /// ## Overview
+    ///
+    /// A container manages all explicit and implicit attempts to access its contents.
+    ///
+    /// Every app has a default container that manages its own content. If you develop a suite of apps, you can access any containers that you have the appropriate entitlements for. Each new container distinguishes between public and private data. CloudKit always stores private data in the appropriate container directory in the user’s iCloud account.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `CKContainer` instances operate with a [`NSQualityOfServiceUserInitiated`](https://developer.apple.com/documentation/foundation/qualityofservice/userinitiated) quality of service level by default. For information about quality of service, see [Prioritize Work with Quality of Service Classes](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html#//apple_ref/doc/uid/TP40015243-CH39) in [Energy Efficiency Guide for iOS Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243) and [Prioritize Work at the Task Level](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/PrioritizeWorkAtTheTaskLevel.html#//apple_ref/doc/uid/TP40013929-CH35) in [Energy Efficiency Guide for Mac Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Interacting with a Container
+    ///
+    /// A container coordinates all interactions between your app and the server. Most of these interactions involve the following tasks:
+    ///
+    /// - Determining whether the user has an iCloud account, which lets you know if you can write data to the user’s personal storage.
+    ///
+    /// - With the user’s permission, discovering other users who the current user knows, and making the current user’s information discoverable.
+    ///
+    /// - Getting the container or one of its databases to use with an operation.
+    ///
+    /// ### Public and Private Databases
+    ///
+    /// Each container provides a public and a private database for storing data. The contents of the public database are accessible to all users of the app, whereas the contents of the private database are, by default, visible only to the current user. Content that is specific to a single user usually belongs in that user’s private database, whereas app-related content that you provide (or that users want to share) belongs in the public database.
+    ///
+    /// The public database is always available, regardless of whether the device has an active iCloud account. When there isn’t an iCloud account, your app can fetch records from and query the public database, but it can’t save changes. Saving records to the public database requires an active iCloud account to identify the owner of those records. Access to the private database always requires an active iCloud account on the device.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The data in a public database counts toward the iCloud storage quota of the app that owns the container. That data doesn’t count toward the storage quota of any single user. Data in the private database counts toward the user’s iCloud storage quota.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Using iCloud
+    ///
+    /// Whenever possible, design your app to run gracefully with or without an active iCloud account. Even without an active iCloud account, apps can fetch records from the public database and display that information to the user. If your app requires the ability to write to the public database or requires access to the private database, notify the user of the reason and encourage them to enable iCloud. You can even provide a button that takes the user directly to Settings so that they can enable iCloud. To implement such a button, have the button’s action open the URL that the [`UIApplicationOpenSettingsURLString`](https://developer.apple.com/documentation/uikit/uiapplication/opensettingsurlstring) constant provides.
+    ///
+    /// ### User Records and Permissions
+    ///
+    /// When a user accesses a container for the first time, CloudKit assigns them a unique identifier and uses it to create two user records — one in the app’s public database and another in that user’s private database. By default, these records don’t contain any identifying personal information, but you can use the record in the user’s private database to store additional, nonsensitive information about that user. Because the public database’s user record is accessible to all users of your app, don’t use it to store information about the user.
+    ///
+    /// While a user record isn’t the same as the user’s [`CKUserIdentity`](https://developer.apple.com/documentation/cloudkit/ckuseridentity), the identity does provide the identifier of their user record that you can use to fetch that record from either the public database or the user’s private database. For more information, see [`userRecordID`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid).
+    ///
+    /// ### Testing Your Code Using the Development Container
+    ///
+    /// At runtime, CloudKit uses your app’s `com.apple.developer.icloud-container-environment` entitlement to discover whether you’re using a `Development` or `Production` version of your provisioning profile. When you configure the entitlement for development, CloudKit configures the app’s containers to use the development server. The development environment is a safe place to make changes during the development process without disrupting users of your app. You can add new fields to records programmatically, and you can delete or modify fields using iCloud Dashboard.
+    ///
+    /// Before shipping your app, always test your app’s behavior in the production environment. The production server generates errors when your app tries to add record types or add new fields to existing record types. Testing in the production environment helps you find and fix the places in your code where you’re making those types of changes. You can use CloudKit Dashboard to modify record types in the development environment, and then migrate those changes to the production environment.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Simulator works only with the development environment. When you’re ready to test your app in a production environment, do so from a device.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A CKContainer, and its CKDatabases, are the main entry points into the CloudKit framework.
     ///
     ///
     /// Several methods in CloudKit accept completion handlers to indicate when they're completed.
     /// All CKOperation subclasses include progress and completion blocks to report significant events in their lifecycles.
     /// Each of these handlers and blocks is invoked on a non-main serial queue.  The receiver is responsible for handling the message on a different queue or thread if it is required.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKContainer;
@@ -156,27 +218,38 @@ impl CKContainer {
     );
 }
 
+/// Constants that indicate the availability of the user’s iCloud account.
 /// credentials in Settings app.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKAccountStatus(pub NSInteger);
 impl CKAccountStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/couldnotdetermine?language=objc)
+    /// CloudKit can’t determine the status of the user’s iCloud account.
     #[doc(alias = "CKAccountStatusCouldNotDetermine")]
     pub const CouldNotDetermine: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/available?language=objc)
+    /// The user’s iCloud account is available.
     #[doc(alias = "CKAccountStatusAvailable")]
     pub const Available: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/restricted?language=objc)
+    /// The system denies access to the user’s iCloud account.
+    ///
+    /// ## Discussion
+    ///
+    /// Your app can’t access the user’s iCloud account due to restrictions that Parental Controls or Mobile Device Management impose.
+    ///
+    ///
     #[doc(alias = "CKAccountStatusRestricted")]
     pub const Restricted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/noaccount?language=objc)
+    /// The device doesn’t have an iCloud account.
     #[doc(alias = "CKAccountStatusNoAccount")]
     pub const NoAccount: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/temporarilyunavailable?language=objc)
+    /// The user’s iCloud account is temporarily unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// You receive this account status when the user’s iCloud account is available, but isn’t ready to support CloudKit operations. Don’t delete any cached data and don’t enqueue any CloudKit operations after receipt of this account status. Instead, use the [`CKAccountChanged`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/ckaccountchanged) notification to listen for when the status changes to [`CKAccountStatusAvailable`](https://developer.apple.com/documentation/cloudkit/ckaccountstatus/available).
+    ///
+    ///
     #[doc(alias = "CKAccountStatusTemporarilyUnavailable")]
     pub const TemporarilyUnavailable: Self = Self(4);
 }
@@ -190,13 +263,18 @@ unsafe impl RefEncode for CKAccountStatus {
 }
 
 extern "C" {
+    /// A notification that a container posts when the status of an iCloud account changes.
+    ///
+    /// ## Discussion
+    ///
+    /// Create an instance of [`CKContainer`](https://developer.apple.com/documentation/cloudkit/ckcontainer) to receive this notification. The container posts the notification using an arbitrary queue. Use the [`accountStatus(completionHandler:)`](https://developer.apple.com/documentation/cloudkit/ckcontainer/accountstatus(completionhandler:)) method to obtain the account’s status.
+    ///
+    ///
     /// This local notification is posted when there has been any change to the logged in iCloud account.
     ///
     ///
     /// On receipt, an updated account status should be obtained by calling
     /// `accountStatusWithCompletionHandler:`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountchangednotification?language=objc)
     pub static CKAccountChangedNotification: &'static NSString;
 }
 
@@ -216,16 +294,15 @@ impl CKContainer {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissions?language=objc)
+/// Constants that represent the permissions that a user grants.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKApplicationPermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKApplicationPermissions: NSUInteger {
+/// The user is discoverable using their email address.
 /// Allows the user's record in CloudKit to be discoverable via the user's email address
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissions/userdiscoverability?language=objc)
         #[doc(alias = "CKApplicationPermissionUserDiscoverability")]
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         const UserDiscoverability = 1<<0;
@@ -240,26 +317,26 @@ unsafe impl RefEncode for CKApplicationPermissions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus?language=objc)
+/// Constants that represent the status of a permission.
 // NS_ENUM
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKApplicationPermissionStatus(pub NSInteger);
 impl CKApplicationPermissionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/initialstate?language=objc)
+    /// The app is yet to request the permission.
     #[doc(alias = "CKApplicationPermissionStatusInitialState")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const InitialState: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/couldnotcomplete?language=objc)
+    /// An error that occurs while processing the permission request.
     #[doc(alias = "CKApplicationPermissionStatusCouldNotComplete")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const CouldNotComplete: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/denied?language=objc)
+    /// The user denies the permission.
     #[doc(alias = "CKApplicationPermissionStatusDenied")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus/granted?language=objc)
+    /// The user grants the permission.
     #[doc(alias = "CKApplicationPermissionStatusGranted")]
     #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
     pub const Granted: Self = Self(3);
@@ -273,7 +350,17 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionblock?language=objc)
+/// A closure that processes the outcome of a permissions request.
+///
+/// ## Discussion
+///
+/// When you request or determine the status of a permission, use this closure to process the result. The closure has no return value and takes the following parameters:
+///
+/// - The permission’s status. For a list of possible values, see [`CKApplicationPermissionStatus`](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus).
+///
+/// - An error if the system can’t fulfill the request, or `nil` if it successfully determines the status.
+///
+///
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =

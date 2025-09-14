@@ -5,28 +5,76 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context?language=objc)
+/// The formatting context for a formatter.
+///
+/// ## Overview
+///
+/// Use formatting contexts to specify where the result of formatting will appear, so that the formatter can provide the most appropriate result.
+///
+/// For example, when formatting a date or date symbol for a French locale, you want the month name to be capitalized if it appears at the beginning of the sentence (“Juin est mon mois de naissance”), but not if it appears elsewhere (“Mon mois de naissance est juin”).
+///
+/// If the formatting context isn’t known ahead of time, specify [`NSFormattingContextDynamic`](https://developer.apple.com/documentation/foundation/formatter/context/dynamic) to have the system determine the context automatically.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFormattingContext(pub NSInteger);
 impl NSFormattingContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/unknown?language=objc)
+    /// An unknown formatting context.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default formatting context.
+    ///
+    ///
     #[doc(alias = "NSFormattingContextUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/dynamic?language=objc)
+    /// A formatting context determined automatically at runtime.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`NSFormattingContextDynamic`](https://developer.apple.com/documentation/foundation/formatter/context/dynamic) context is automatically determined to be one of the following: [`NSFormattingContextStandalone`](https://developer.apple.com/documentation/foundation/formatter/context/standalone), [`NSFormattingContextBeginningOfSentence`](https://developer.apple.com/documentation/foundation/formatter/context/beginningofsentence), or [`NSFormattingContextMiddleOfSentence`](https://developer.apple.com/documentation/foundation/formatter/context/middleofsentence).
+    ///
+    /// When used in combination with [`stringWithFormat:`](https://developer.apple.com/documentation/foundation/nsstring/stringwithformat:), the formatter returns a string proxy, formats the string using [`NSFormattingContextUnknown`](https://developer.apple.com/documentation/foundation/formatter/context/unknown), determines context based on the proxy string’s location, and then reformats the string accordingly.
+    ///
+    ///
     #[doc(alias = "NSFormattingContextDynamic")]
     pub const Dynamic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/standalone?language=objc)
+    /// The formatting context for stand-alone usage.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this context for dates or date symbols in standalone usage, such as an isolated name on a calendar page.
+    ///
+    ///
     #[doc(alias = "NSFormattingContextStandalone")]
     pub const Standalone: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/listitem?language=objc)
+    /// The formatting context for a list or menu item.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this context for dates or date symbols appearing in a list or menu item.
+    ///
+    ///
     #[doc(alias = "NSFormattingContextListItem")]
     pub const ListItem: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/beginningofsentence?language=objc)
+    /// The formatting context for the beginning of a sentence.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this context for dates or date symbols appearing at the beginning of a sentence.
+    ///
+    ///
     #[doc(alias = "NSFormattingContextBeginningOfSentence")]
     pub const BeginningOfSentence: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/context/middleofsentence?language=objc)
+    /// The formatting context for the middle of a sentence.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this context for dates or date symbols appearing at the middle of a sentence.
+    ///
+    ///
     #[doc(alias = "NSFormattingContextMiddleOfSentence")]
     pub const MiddleOfSentence: Self = Self(5);
 }
@@ -39,19 +87,25 @@ unsafe impl RefEncode for NSFormattingContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle?language=objc)
+/// Specifies the width of the unit, determining the textual representation.
+///
+/// ## Overview
+///
+/// The unit is represented in the shortest notation available. For example, for English, when formatting “3 pounds”: [`NSFormattingUnitStyleLong`](https://developer.apple.com/documentation/foundation/formatter/unitstyle/long) is “3 pounds”; [`NSFormattingUnitStyleMedium`](https://developer.apple.com/documentation/foundation/formatter/unitstyle/medium) is “3 lb”; [`NSFormattingUnitStyleShort`](https://developer.apple.com/documentation/foundation/formatter/unitstyle/short) is “3#”.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFormattingUnitStyle(pub NSInteger);
 impl NSFormattingUnitStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle/short?language=objc)
+    /// Specifies a short unit style.
     #[doc(alias = "NSFormattingUnitStyleShort")]
     pub const Short: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle/medium?language=objc)
+    /// Specifies a medium unit style.
     #[doc(alias = "NSFormattingUnitStyleMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter/unitstyle/long?language=objc)
+    /// Specifies a long unit style.
     #[doc(alias = "NSFormattingUnitStyleLong")]
     pub const Long: Self = Self(3);
 }
@@ -65,7 +119,27 @@ unsafe impl RefEncode for NSFormattingUnitStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/formatter?language=objc)
+    /// An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
+    ///
+    /// ## Overview
+    ///
+    /// The Foundation framework provides several concrete subclasses of [`NSFormatter`](https://developer.apple.com/documentation/foundation/formatter), including [`NSByteCountFormatter`](https://developer.apple.com/documentation/foundation/bytecountformatter), [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter), [`NSDateComponentsFormatter`](https://developer.apple.com/documentation/foundation/datecomponentsformatter), [`NSDateIntervalFormatter`](https://developer.apple.com/documentation/foundation/dateintervalformatter), [`NSMeasurementFormatter`](https://developer.apple.com/documentation/foundation/measurementformatter), [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter), and [`NSPersonNameComponentsFormatter`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use implementations of [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) rather than [`NSFormatter`](https://developer.apple.com/documentation/foundation/formatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing Notes
+    ///
+    /// [`NSFormatter`](https://developer.apple.com/documentation/foundation/formatter) is intended for subclassing. A custom formatter can restrict the input and enhance the display of data in novel ways. For example, you could have a custom formatter that ensures that serial numbers entered by a user conform to predefined formats. Before you decide to create a custom formatter, make sure that you cannot configure the public subclasses to satisfy your requirements.
+    ///
+    /// For instructions on how to create your own custom formatter, see [Creating a Custom Formatter](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/Articles/CreatingACustomFormatter.html#//apple_ref/doc/uid/20000196).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFormatter;

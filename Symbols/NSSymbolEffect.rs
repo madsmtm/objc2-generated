@@ -9,8 +9,6 @@ use crate::*;
 
 extern_class!(
     /// The behavior of repetition to use when a symbol effect is animating.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptionsrepeatbehavior?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptionsRepeatBehavior;
@@ -111,9 +109,8 @@ impl NSSymbolEffectOptionsRepeatBehavior {
 }
 
 extern_class!(
+    /// Options that configure how effects apply to symbol-based images.
     /// Options configuring how symbol effects apply to symbol views.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffectoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffectOptions;
@@ -246,11 +243,16 @@ impl NSSymbolEffectOptions {
 }
 
 extern_class!(
+    /// An abstract base class for effects that you can apply to a symbol-based image.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t use this class directly. Instead, use a class that inherits from this one, such as [`NSSymbolBounceEffect`](https://developer.apple.com/documentation/symbols/nssymbolbounceeffect).
+    ///
+    ///
     /// An abstract base class for effects that can be applied to both NSImageViews and UIImageViews that have symbol-based images.
     ///
     /// Don't use this class directly, instead use any of the concrete subclasses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboleffect?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolEffect;
@@ -289,13 +291,29 @@ impl NSSymbolEffect {
 }
 
 extern_class!(
+    /// A type that fades the opacity of some or all layers in a symbol-based image.
+    ///
+    /// ## Overview
+    ///
+    /// A pulse animation applies an opacity ramp to the layers in a symbol. You can choose to animate only layers marked as “always-pulses” or all layers simultaneously. Participating layers reduce their opacity to a minimum value before returning to fully opaque.
+    ///
+    /// ```objc
+    /// // Add an effect in AppKit and UIKit.
+    /// // Pulse only layers marked as "always-pulse."
+    /// NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithNonRepeating];
+    /// [self.imageView1 addSymbolEffect:NSSymbolPulseEffect.effect options: options];
+    ///
+    /// // Pulse all layers three times simultaneously.
+    /// NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithRepeatCount:3];
+    /// [self.imageView2 addSymbolEffect:[NSSymbolPulseEffect.effect effectWithWholeSymbol] options:options];
+    /// ```
+    ///
+    ///
     /// A symbol effect that applies the Pulse animation to
     /// symbol images.
     ///
     /// The Pulse animation fades the opacity of either all layers in
     /// the symbol, or of a subset of the layers in the symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolpulseeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolPulseEffect;
@@ -354,12 +372,27 @@ impl NSSymbolPulseEffect {
 }
 
 extern_class!(
+    /// A type that applies a transitory scaling effect, or bounce, to the layers in a symbol-based image separately or as a whole.
+    ///
+    /// ## Overview
+    ///
+    /// A bounce animation draws attention to a symbol by applying a brief scaling operation to the symbol’s layers. You can choose to scale the symbol up or down as it bounces.
+    ///
+    /// ```objc
+    /// // Add an effect in AppKit and UIKit.
+    /// // Bounce with a scale-up animation.
+    /// [self.imageView1 addSymbolEffect:NSSymbolBounceEffect.bounceUpEffect];
+    ///
+    /// // Bounce three times with a scale-down animation.
+    /// NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithRepeatCount:3];
+    /// [self.imageView2 addSymbolEffect:NSSymbolBounceEffect.bounceDownEffect options:options];
+    /// ```
+    ///
+    ///
     /// A symbol effect that applies the Bounce animation to
     /// symbol images.
     ///
     /// The Bounce animation applies a transitory scaling effect to the symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbounceeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBounceEffect;
@@ -428,6 +461,34 @@ impl NSSymbolBounceEffect {
 }
 
 extern_class!(
+    /// A type that replaces the opacity of variable layers in a symbol-based image in a repeatable sequence.
+    ///
+    /// ## Overview
+    ///
+    /// A variable color animation draws attention to a symbol by changing the opacity of the symbol’s layers. You can choose to apply the effect to layers either cumulatively or iteratively. For cumulative animations, each layer’s opacity remains changed until the end of the animation cycle. For iterative animations, each layer’s opacity changes briefly before returning to its original state.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Variable color animations affect only symbols containing variable color layers.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ```objc
+    /// // Add an effect in AppKit and UIKit.
+    /// // Iteratively activates layers.
+    /// NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithRepeatCount:1];
+    /// [self.imageView1 addSymbolEffect:[NSSymbolVariableColorEffect.effect effectWithIterative] options: options];
+    ///
+    /// // Cumulatively activates layers reversing and repeating three times.
+    /// NSSymbolEffectOptions *options = [NSSymbolEffectOptions optionsWithRepeatCount:3];
+    /// NSSymbolVariableColorEffect *effect =
+    ///     [[NSSymbolVariableColorEffect.effect effectWithHideInactiveLayers] effectWithReversing];
+    /// [self.imageView2 addSymbolEffect:effect options:options];
+    /// ```
+    ///
+    ///
     /// A symbol effect that applies the Variable Color
     /// animation to symbol images.
     ///
@@ -435,8 +496,6 @@ extern_class!(
     /// layers in the symbol by a possibly repeating pattern that moves
     /// up and possibly back down the variable layers. It has no effect
     /// for non-variable color symbol images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolvariablecoloreffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolVariableColorEffect;
@@ -516,9 +575,14 @@ impl NSSymbolVariableColorEffect {
 }
 
 extern_class!(
-    /// A symbol effect that scales symbol images.
+    /// A type that scales the layers in a symbol-based image separately or as a whole.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolscaleeffect?language=objc)
+    /// ## Overview
+    ///
+    /// A scale animation draws attention to a symbol by changing the symbol’s scale indefinitely. You can choose to scale the symbol up or down.
+    ///
+    ///
+    /// A symbol effect that scales symbol images.
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolScaleEffect;
@@ -587,13 +651,18 @@ impl NSSymbolScaleEffect {
 }
 
 extern_class!(
+    /// A type that makes the layers of a symbol-based image appear separately or as a whole.
+    ///
+    /// ## Overview
+    ///
+    /// An appear transition causes a symbol to become visible using a scaling animation. You can choose to scale the image up or down and to animate the symbol by individual layers or as a whole.
+    ///
+    ///
     /// A symbol effect that applies the Appear animation to
     /// symbol images.
     ///
     /// The Appear animation makes the symbol visible either as a whole,
     /// or one motion group at a time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolappeareffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAppearEffect;
@@ -662,13 +731,18 @@ impl NSSymbolAppearEffect {
 }
 
 extern_class!(
+    /// A type that makes the layers of a symbol-based image disappear separately or as a whole.
+    ///
+    /// ## Overview
+    ///
+    /// A disappear transition causes a symbol to become invisible using a scaling animation. You can choose to scale the image up or down and to animate the symbol by individual layers or as a whole.
+    ///
+    ///
     /// A symbol effect that applies the Disappear animation to
     /// symbol images.
     ///
     /// The Disappear animation makes the symbol visible either as a whole,
     /// or one motion group at a time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldisappeareffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolDisappearEffect;
@@ -741,8 +815,6 @@ extern_class!(
     ///
     /// The Wiggle animation applies a transitory translation or rotation effect
     /// to the symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolwiggleeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolWiggleEffect;
@@ -862,8 +934,6 @@ extern_class!(
     ///
     /// The Rotate animation rotates parts of a symbol around a
     /// symbol-provided anchor point.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolrotateeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolRotateEffect;
@@ -936,8 +1006,6 @@ extern_class!(
     /// symbol images.
     ///
     /// The Breathe animation smoothly scales a symbol up and down.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolbreatheeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolBreatheEffect;
@@ -1010,10 +1078,15 @@ impl NSSymbolBreatheEffect {
 extern_class!(
     /// A symbol effect that applies the DrawOn animation to symbol images.
     ///
+    /// ## Overview
+    ///
+    /// The DrawOn animation makes the symbol visible either as a whole, or one motion group at a time, animating parts of the symbol with draw data.
+    ///
+    ///
+    /// A symbol effect that applies the DrawOn animation to symbol images.
+    ///
     /// The DrawOn animation makes the symbol visible either as a whole, or
     /// one motion group at a time, animating parts of the symbol with draw data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldrawoneffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolDrawOnEffect;
@@ -1083,10 +1156,15 @@ impl NSSymbolDrawOnEffect {
 extern_class!(
     /// A symbol effect that applies the DrawOff animation to symbol images.
     ///
+    /// ## Overview
+    ///
+    /// The DrawOff animation makes the symbol hidden either as a whole, or one motion group at a time, animating parts of the symbol with draw data.
+    ///
+    ///
+    /// A symbol effect that applies the DrawOff animation to symbol images.
+    ///
     /// The DrawOff animation makes the symbol hidden either as a whole, or
     /// one motion group at a time, animating parts of the symbol with draw data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymboldrawoffeffect?language=objc)
     #[unsafe(super(NSSymbolEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolDrawOffEffect;
@@ -1164,12 +1242,11 @@ impl NSSymbolDrawOffEffect {
 }
 
 extern_class!(
+    /// An abstract base class for transitions you can apply to symbol-based images.
     /// An abstract base class for transitions that can be applied to both NSImageViews and
     /// UIImageViews that have symbol-based images.
     ///
     /// Don't use this class directly, instead use any of the concrete subclasses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolcontenttransition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolContentTransition;
@@ -1213,8 +1290,6 @@ extern_class!(
     ///
     /// The MagicReplace effect animates common elements across
     /// symbol images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolmagicreplacecontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolMagicReplaceContentTransition;
@@ -1258,10 +1333,21 @@ impl NSSymbolMagicReplaceContentTransition {
 }
 
 extern_class!(
+    /// A type that replaces the layers of one symbol-based image with those of another.
+    ///
+    /// ## Overview
+    ///
+    /// A replace transition animates the change from one symbol image to another. You choose from one of the predefined scaling animations: Down-Up, Off-Up, and Up-Up.
+    ///
+    /// - Down-Up: The initial symbol scales down as it’s removed, and the new symbol scales up as it’s added.
+    ///
+    /// - Off-Up: The initial symbol is removed with no animation, and the new symbol scales up as it’s added.
+    ///
+    /// - Up-Up: The initial symbol scales up as it’s removed, and the new symbol scales up as it’s added.
+    ///
+    ///
     /// A symbol effect that animates the replacement of one symbol image
     /// with another.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolreplacecontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolReplaceContentTransition;
@@ -1345,10 +1431,9 @@ impl NSSymbolReplaceContentTransition {
 }
 
 extern_class!(
+    /// A type that applies the default animation to a symbol-based image in a context-sensitive manner.
     /// The default symbol transition, resolves to a particular transition in a
     /// context-sensitive manner.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/symbols/nssymbolautomaticcontenttransition?language=objc)
     #[unsafe(super(NSSymbolContentTransition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSymbolAutomaticContentTransition;

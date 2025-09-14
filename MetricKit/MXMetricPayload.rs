@@ -7,6 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates a daily metrics report.
     /// A wrapper class which contains a metric payload and associated properties of that payload.
     ///
     /// MXMetricPayload encapsulates currently supported metric types that can be vended by MetricKit. MXMetric subclasses on MXMetricPayload are nullable. If an MXMetric subclass is nil, it indicates that the data is not available for this payload.
@@ -16,8 +17,6 @@ extern_class!(
     /// An MXMetricPayload contains data that covers a 24 hour period of application usage. The properties timeStampBegin and timeStampEnd should be used to determine which time range the payload covers.
     ///
     /// It is possible for an MXMetricPayload to cover regions of time where an application was updated, and thus had multiple different app version strings. The property latestApplicationVersion will always reflect the latest appVersion at the time the metric payload was created. Use includesMultipleApplicationVersions to determine if an application changed versions during the time range the payload covers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetricpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXMetricPayload;

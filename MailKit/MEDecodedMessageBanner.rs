@@ -8,8 +8,6 @@ use crate::*;
 
 extern_class!(
     /// Contains security information in order to populate a banner in the message view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/medecodedmessagebanner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEDecodedMessageBanner;

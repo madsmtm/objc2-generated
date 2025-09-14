@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessoryownershiptoken?language=objc)
+    /// Authentication data that your app provides when adding an accessory to a home.
+    ///
+    /// ## Overview
+    ///
+    /// If you manufacture an accessory that requires user authentication to add the accessory to a home, manage the authentication in your app and produce a token that represents the successful outcome of that process. Wrap the token data in an [`HMAccessoryOwnershipToken`](https://developer.apple.com/documentation/homekit/hmaccessoryownershiptoken) instance and call the [`initWithURL:ownershipToken:`](https://developer.apple.com/documentation/homekit/hmaccessorysetuppayload/init(url:ownershiptoken:)) method to create an authenticated [`HMAccessorySetupPayload`](https://developer.apple.com/documentation/homekit/hmaccessorysetuppayload) instance. Then call the [`addAndSetupAccessoriesWithPayload:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(with:completionhandler:)) method with the payload.
+    ///
+    /// If the user attempts from the Home app to add an accessory that requires a token, the Home app calls the associated app’s [`homeManager:didReceiveAddAccessoryRequest:`](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate/homemanager(_:didreceiveaddaccessoryrequest:)) home manager delegate method to perform the negotiation and provide the token.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessoryOwnershipToken;
@@ -49,7 +57,15 @@ impl HMAccessoryOwnershipToken {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorysetuppayload?language=objc)
+    /// A payload for authenticating a HomeKit accessory.
+    ///
+    /// ## Overview
+    ///
+    /// The setup payload provides a URL to authenticate an accessory. Typically, the URL comes from scanning a QR code on the accessory. Use a setup payload to authenticate devices that are already deployed, for which scanning a QR code would be difficult, or if you need to provide an optional ownership token that you negotiate with the accessory outside of HomeKit.
+    ///
+    /// For details about the payload’s content, please join the [MFi Program](https://developer.apple.com/programs/mfi/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessorySetupPayload;

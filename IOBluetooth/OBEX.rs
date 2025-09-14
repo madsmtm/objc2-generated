@@ -11,109 +11,87 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kcharsetstringiso88591?language=objc)
 pub const kCharsetStringISO88591: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CHARSET=ISO-8859-1\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kcharsetstringutf8?language=objc)
 pub const kCharsetStringUTF8: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UTF-8\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstringquotedprintable?language=objc)
 pub const kEncodingStringQuotedPrintable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"QUOTED-PRINTABLE\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstringbase64?language=objc)
 pub const kEncodingStringBase64: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BASE-64\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstring8bit?language=objc)
 pub const kEncodingString8Bit: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"8BIT\0") };
+/// Codes for OBEX errors. If the return value was not in the following range, then it is most likely resulting from kernel code/IOKit, and you should consult IOReturn.h for those codes.
 /// Codes for OBEX errors. If the return value was not in the following range, then it is most likely resulting
 /// from kernel code/IOKit, and you should consult IOReturn.h for those codes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexerror?language=objc)
 pub type OBEXError = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexerrorcodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXErrorCodes(pub c_int);
 impl OBEXErrorCodes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexerrorrangemin?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Minimum value in OBEX error range.
+    ///
+    ///
     #[doc(alias = "kOBEXErrorRangeMin")]
     pub const ErrorRangeMin: Self = Self(-21850);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexerrorrangemax?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Maximum value in OBEX error range.
+    ///
+    ///
     #[doc(alias = "kOBEXErrorRangeMax")]
     pub const ErrorRangeMax: Self = Self(-21899);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsuccess?language=objc)
     #[doc(alias = "kOBEXSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexgeneralerror?language=objc)
     #[doc(alias = "kOBEXGeneralError")]
     pub const GeneralError: Self = Self(-21850);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnoresourceserror?language=objc)
     #[doc(alias = "kOBEXNoResourcesError")]
     pub const NoResourcesError: Self = Self(-21851);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexunsupportederror?language=objc)
     #[doc(alias = "kOBEXUnsupportedError")]
     pub const UnsupportedError: Self = Self(-21852);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexinternalerror?language=objc)
     #[doc(alias = "kOBEXInternalError")]
     pub const InternalError: Self = Self(-21853);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexbadargumenterror?language=objc)
     #[doc(alias = "kOBEXBadArgumentError")]
     pub const BadArgumentError: Self = Self(-21854);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobextimeouterror?language=objc)
     #[doc(alias = "kOBEXTimeoutError")]
     pub const TimeoutError: Self = Self(-21855);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexbadrequesterror?language=objc)
     #[doc(alias = "kOBEXBadRequestError")]
     pub const BadRequestError: Self = Self(-21856);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexcancellederror?language=objc)
     #[doc(alias = "kOBEXCancelledError")]
     pub const CancelledError: Self = Self(-21857);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexforbiddenerror?language=objc)
     #[doc(alias = "kOBEXForbiddenError")]
     pub const ForbiddenError: Self = Self(-21858);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexunauthorizederror?language=objc)
     #[doc(alias = "kOBEXUnauthorizedError")]
     pub const UnauthorizedError: Self = Self(-21859);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnotacceptableerror?language=objc)
     #[doc(alias = "kOBEXNotAcceptableError")]
     pub const NotAcceptableError: Self = Self(-21860);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconflicterror?language=objc)
     #[doc(alias = "kOBEXConflictError")]
     pub const ConflictError: Self = Self(-21861);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexmethodnotallowederror?language=objc)
     #[doc(alias = "kOBEXMethodNotAllowedError")]
     pub const MethodNotAllowedError: Self = Self(-21862);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnotfounderror?language=objc)
     #[doc(alias = "kOBEXNotFoundError")]
     pub const NotFoundError: Self = Self(-21863);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnotimplementederror?language=objc)
     #[doc(alias = "kOBEXNotImplementedError")]
     pub const NotImplementedError: Self = Self(-21864);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexpreconditionfailederror?language=objc)
     #[doc(alias = "kOBEXPreconditionFailedError")]
     pub const PreconditionFailedError: Self = Self(-21865);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionbusyerror?language=objc)
     #[doc(alias = "kOBEXSessionBusyError")]
     pub const SessionBusyError: Self = Self(-21875);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionnotconnectederror?language=objc)
     #[doc(alias = "kOBEXSessionNotConnectedError")]
     pub const SessionNotConnectedError: Self = Self(-21876);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionbadrequesterror?language=objc)
     #[doc(alias = "kOBEXSessionBadRequestError")]
     pub const SessionBadRequestError: Self = Self(-21877);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionbadresponseerror?language=objc)
     #[doc(alias = "kOBEXSessionBadResponseError")]
     pub const SessionBadResponseError: Self = Self(-21878);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionnotransporterror?language=objc)
     #[doc(alias = "kOBEXSessionNoTransportError")]
     pub const SessionNoTransportError: Self = Self(-21879);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessiontransportdiederror?language=objc)
     #[doc(alias = "kOBEXSessionTransportDiedError")]
     pub const SessionTransportDiedError: Self = Self(-21880);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessiontimeouterror?language=objc)
     #[doc(alias = "kOBEXSessionTimeoutError")]
     pub const SessionTimeoutError: Self = Self(-21881);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionalreadyconnectederror?language=objc)
     #[doc(alias = "kOBEXSessionAlreadyConnectedError")]
     pub const SessionAlreadyConnectedError: Self = Self(-21882);
 }
@@ -129,88 +107,217 @@ unsafe impl RefEncode for OBEXErrorCodes {
 }
 
 /// Identifiers for OBEX Headers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexheaderidentifiers?language=objc)
+/// Identifiers for OBEX Headers.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXHeaderIdentifiers(pub c_uint);
 impl OBEXHeaderIdentifiers {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Name of the object. Null terminated unicode text.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDName")]
     pub const IDName: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderiddescription?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Text description of the object. Null terminated unicode text.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDDescription")]
     pub const IDDescription: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidreservedrangestart?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Range includes all combos of the upper 2 bits. Reserved.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDReservedRangeStart")]
     pub const IDReservedRangeStart: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidreservedrangeend?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Range includes all combos of the upper 2 bits. Reserved.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDReservedRangeEnd")]
     pub const IDReservedRangeEnd: Self = Self(0x2F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderiduserdefinedrangestart?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Range includes all combos of the upper 2 bits. User defined.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDUserDefinedRangeStart")]
     pub const IDUserDefinedRangeStart: Self = Self(0x30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderiduserdefinedrangeend?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Range includes all combos of the upper 2 bits. User defined.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDUserDefinedRangeEnd")]
     pub const IDUserDefinedRangeEnd: Self = Self(0x3F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtype?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Type of object - e.g. text, html, binary, etc. Null terminated ASCII text.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDType")]
     pub const IDType: Self = Self(0x42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtimeiso?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Date/time stamp - ISO8601 version of time. (YYYYMMDDTHHMMSSZ)
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDTimeISO")]
     pub const IDTimeISO: Self = Self(0x44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtarget?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Name of service that operation is destined for.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDTarget")]
     pub const IDTarget: Self = Self(0x46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidhttp?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// An HTTP 1.x header.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDHTTP")]
     pub const IDHTTP: Self = Self(0x47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidbody?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A Chunk of the object body.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDBody")]
     pub const IDBody: Self = Self(0x48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidendofbody?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The last checking of the object body.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDEndOfBody")]
     pub const IDEndOfBody: Self = Self(0x49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidwho?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies the OBEX applications, used to tell if talking to a peer.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDWho")]
     pub const IDWho: Self = Self(0x4A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidappparameters?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Extended application request and resposnse info.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDAppParameters")]
     pub const IDAppParameters: Self = Self(0x4C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidauthorizationchallenge?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Authentication digest-challenge.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDAuthorizationChallenge")]
     pub const IDAuthorizationChallenge: Self = Self(0x4D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidauthorizationresponse?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Authentication digest-reponse.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDAuthorizationResponse")]
     pub const IDAuthorizationResponse: Self = Self(0x4E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobjectclass?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// OBEX Object - class of object.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDObjectClass")]
     pub const IDObjectClass: Self = Self(0x4F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidcount?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Number of objects (used in Connect command).
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDCount")]
     pub const IDCount: Self = Self(0xC0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidlength?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The length of the object in bytes. 4 byte unsigned integer value.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDLength")]
     pub const IDLength: Self = Self(0xC3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidtime4byte?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Date/time stamp - 4 byte version for compat. only. Seconds since Jan 1, 1970.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDTime4Byte")]
     pub const IDTime4Byte: Self = Self(0xC4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidconnectionid?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// An identifier used for OBEX connection multiplexing.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDConnectionID")]
     pub const IDConnectionID: Self = Self(0xCB);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13wanuuid?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used to provide state information when layering OBEX over stateless networks. 16byte UUID.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDOBEX13WANUUID")]
     pub const IDOBEX13WANUUID: Self = Self(0x50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13objectclass?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used to reference the object class and properties. Byte Sequence.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDOBEX13ObjectClass")]
     pub const IDOBEX13ObjectClass: Self = Self(0x51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13sessionparameters?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Byte sequence required for CreateSession, CloseSession and other OBEX commands.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDOBEX13SessionParameters")]
     pub const IDOBEX13SessionParameters: Self = Self(0x52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13sessionsequencenumber?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 1-byte quantitied containing the current sequence number.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDOBEX13SessionSequenceNumber")]
     pub const IDOBEX13SessionSequenceNumber: Self = Self(0x93);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidobex13creatorid?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 4-byte unsigned integer that identifies the creator of the object.
+    ///
+    ///
     #[doc(alias = "kOBEXHeaderIDOBEX13CreatorID")]
     pub const IDOBEX13CreatorID: Self = Self(0xCF);
 }
@@ -226,244 +333,165 @@ unsafe impl RefEncode for OBEXHeaderIdentifiers {
 }
 
 /// Response opCode values.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexopcoderesponsevalues?language=objc)
+/// Response opCode values.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXOpCodeResponseValues(pub c_uint);
 impl OBEXOpCodeResponseValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodereservedrangestart?language=objc)
     #[doc(alias = "kOBEXResponseCodeReservedRangeStart")]
     pub const ResponseCodeReservedRangeStart: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodereservedrangeend?language=objc)
     #[doc(alias = "kOBEXResponseCodeReservedRangeEnd")]
     pub const ResponseCodeReservedRangeEnd: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecontinue?language=objc)
     #[doc(alias = "kOBEXResponseCodeContinue")]
     pub const ResponseCodeContinue: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecontinuewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeContinueWithFinalBit")]
     pub const ResponseCodeContinueWithFinalBit: Self = Self(0x90);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodesuccess?language=objc)
     #[doc(alias = "kOBEXResponseCodeSuccess")]
     pub const ResponseCodeSuccess: Self = Self(0x20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodesuccesswithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeSuccessWithFinalBit")]
     pub const ResponseCodeSuccessWithFinalBit: Self = Self(0xA0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecreated?language=objc)
     #[doc(alias = "kOBEXResponseCodeCreated")]
     pub const ResponseCodeCreated: Self = Self(0x21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodecreatedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeCreatedWithFinalBit")]
     pub const ResponseCodeCreatedWithFinalBit: Self = Self(0xA1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeaccepted?language=objc)
     #[doc(alias = "kOBEXResponseCodeAccepted")]
     pub const ResponseCodeAccepted: Self = Self(0x22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeacceptedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeAcceptedWithFinalBit")]
     pub const ResponseCodeAcceptedWithFinalBit: Self = Self(0xA2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenonauthoritativeinfo?language=objc)
     #[doc(alias = "kOBEXResponseCodeNonAuthoritativeInfo")]
     pub const ResponseCodeNonAuthoritativeInfo: Self = Self(0x23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenonauthoritativeinfowithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNonAuthoritativeInfoWithFinalBit")]
     pub const ResponseCodeNonAuthoritativeInfoWithFinalBit: Self = Self(0xA3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenocontent?language=objc)
     #[doc(alias = "kOBEXResponseCodeNoContent")]
     pub const ResponseCodeNoContent: Self = Self(0x24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenocontentwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNoContentWithFinalBit")]
     pub const ResponseCodeNoContentWithFinalBit: Self = Self(0xA4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderesetcontent?language=objc)
     #[doc(alias = "kOBEXResponseCodeResetContent")]
     pub const ResponseCodeResetContent: Self = Self(0x25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderesetcontentwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeResetContentWithFinalBit")]
     pub const ResponseCodeResetContentWithFinalBit: Self = Self(0xA5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepartialcontent?language=objc)
     #[doc(alias = "kOBEXResponseCodePartialContent")]
     pub const ResponseCodePartialContent: Self = Self(0x26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepartialcontentwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodePartialContentWithFinalBit")]
     pub const ResponseCodePartialContentWithFinalBit: Self = Self(0xA6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemultiplechoices?language=objc)
     #[doc(alias = "kOBEXResponseCodeMultipleChoices")]
     pub const ResponseCodeMultipleChoices: Self = Self(0x30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemultiplechoiceswithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMultipleChoicesWithFinalBit")]
     pub const ResponseCodeMultipleChoicesWithFinalBit: Self = Self(0xB0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedpermanently?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedPermanently")]
     pub const ResponseCodeMovedPermanently: Self = Self(0x31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedpermanentlywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedPermanentlyWithFinalBit")]
     pub const ResponseCodeMovedPermanentlyWithFinalBit: Self = Self(0xB1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedtemporarily?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedTemporarily")]
     pub const ResponseCodeMovedTemporarily: Self = Self(0x32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemovedtemporarilywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMovedTemporarilyWithFinalBit")]
     pub const ResponseCodeMovedTemporarilyWithFinalBit: Self = Self(0xB2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeseeother?language=objc)
     #[doc(alias = "kOBEXResponseCodeSeeOther")]
     pub const ResponseCodeSeeOther: Self = Self(0x33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeseeotherwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeSeeOtherWithFinalBit")]
     pub const ResponseCodeSeeOtherWithFinalBit: Self = Self(0xB3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotmodified?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotModified")]
     pub const ResponseCodeNotModified: Self = Self(0x34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotmodifiedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotModifiedWithFinalBit")]
     pub const ResponseCodeNotModifiedWithFinalBit: Self = Self(0xB4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeuseproxy?language=objc)
     #[doc(alias = "kOBEXResponseCodeUseProxy")]
     pub const ResponseCodeUseProxy: Self = Self(0x35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeuseproxywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeUseProxyWithFinalBit")]
     pub const ResponseCodeUseProxyWithFinalBit: Self = Self(0xB5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadrequest?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadRequest")]
     pub const ResponseCodeBadRequest: Self = Self(0x40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadrequestwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadRequestWithFinalBit")]
     pub const ResponseCodeBadRequestWithFinalBit: Self = Self(0xC0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunauthorized?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnauthorized")]
     pub const ResponseCodeUnauthorized: Self = Self(0x41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunauthorizedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnauthorizedWithFinalBit")]
     pub const ResponseCodeUnauthorizedWithFinalBit: Self = Self(0xC1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepaymentrequired?language=objc)
     #[doc(alias = "kOBEXResponseCodePaymentRequired")]
     pub const ResponseCodePaymentRequired: Self = Self(0x42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepaymentrequiredwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodePaymentRequiredWithFinalBit")]
     pub const ResponseCodePaymentRequiredWithFinalBit: Self = Self(0xC2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeforbidden?language=objc)
     #[doc(alias = "kOBEXResponseCodeForbidden")]
     pub const ResponseCodeForbidden: Self = Self(0x43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeforbiddenwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeForbiddenWithFinalBit")]
     pub const ResponseCodeForbiddenWithFinalBit: Self = Self(0xC3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotfound?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotFound")]
     pub const ResponseCodeNotFound: Self = Self(0x44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotfoundwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotFoundWithFinalBit")]
     pub const ResponseCodeNotFoundWithFinalBit: Self = Self(0xC4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemethodnotallowed?language=objc)
     #[doc(alias = "kOBEXResponseCodeMethodNotAllowed")]
     pub const ResponseCodeMethodNotAllowed: Self = Self(0x45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodemethodnotallowedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeMethodNotAllowedWithFinalBit")]
     pub const ResponseCodeMethodNotAllowedWithFinalBit: Self = Self(0xC5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotacceptable?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotAcceptable")]
     pub const ResponseCodeNotAcceptable: Self = Self(0x46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotacceptablewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotAcceptableWithFinalBit")]
     pub const ResponseCodeNotAcceptableWithFinalBit: Self = Self(0xC6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeproxyauthenticationrequired?language=objc)
     #[doc(alias = "kOBEXResponseCodeProxyAuthenticationRequired")]
     pub const ResponseCodeProxyAuthenticationRequired: Self = Self(0x47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeproxyauthenticationrequiredwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeProxyAuthenticationRequiredWithFinalBit")]
     pub const ResponseCodeProxyAuthenticationRequiredWithFinalBit: Self = Self(0xC7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesttimeout?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestTimeOut")]
     pub const ResponseCodeRequestTimeOut: Self = Self(0x48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesttimeoutwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestTimeOutWithFinalBit")]
     pub const ResponseCodeRequestTimeOutWithFinalBit: Self = Self(0xC8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeconflict?language=objc)
     #[doc(alias = "kOBEXResponseCodeConflict")]
     pub const ResponseCodeConflict: Self = Self(0x49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeconflictwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeConflictWithFinalBit")]
     pub const ResponseCodeConflictWithFinalBit: Self = Self(0xC9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegone?language=objc)
     #[doc(alias = "kOBEXResponseCodeGone")]
     pub const ResponseCodeGone: Self = Self(0x4A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegonewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeGoneWithFinalBit")]
     pub const ResponseCodeGoneWithFinalBit: Self = Self(0xCA);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodelengthrequired?language=objc)
     #[doc(alias = "kOBEXResponseCodeLengthRequired")]
     pub const ResponseCodeLengthRequired: Self = Self(0x4B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodelengthrequiredfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeLengthRequiredFinalBit")]
     pub const ResponseCodeLengthRequiredFinalBit: Self = Self(0xCB);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepreconditionfailed?language=objc)
     #[doc(alias = "kOBEXResponseCodePreconditionFailed")]
     pub const ResponseCodePreconditionFailed: Self = Self(0x4C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodepreconditionfailedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodePreconditionFailedWithFinalBit")]
     pub const ResponseCodePreconditionFailedWithFinalBit: Self = Self(0xCC);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequestedentitytoolarge?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestedEntityTooLarge")]
     pub const ResponseCodeRequestedEntityTooLarge: Self = Self(0x4D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequestedentitytoolargewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestedEntityTooLargeWithFinalBit")]
     pub const ResponseCodeRequestedEntityTooLargeWithFinalBit: Self = Self(0xCD);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesturltoolarge?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestURLTooLarge")]
     pub const ResponseCodeRequestURLTooLarge: Self = Self(0x4E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecoderequesturltoolargewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeRequestURLTooLargeWithFinalBit")]
     pub const ResponseCodeRequestURLTooLargeWithFinalBit: Self = Self(0xCE);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunsupportedmediatype?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnsupportedMediaType")]
     pub const ResponseCodeUnsupportedMediaType: Self = Self(0x4F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeunsupportedmediatypewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeUnsupportedMediaTypeWithFinalBit")]
     pub const ResponseCodeUnsupportedMediaTypeWithFinalBit: Self = Self(0xCF);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeinternalservererror?language=objc)
     #[doc(alias = "kOBEXResponseCodeInternalServerError")]
     pub const ResponseCodeInternalServerError: Self = Self(0x50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeinternalservererrorwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeInternalServerErrorWithFinalBit")]
     pub const ResponseCodeInternalServerErrorWithFinalBit: Self = Self(0xD0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotimplemented?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotImplemented")]
     pub const ResponseCodeNotImplemented: Self = Self(0x51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodenotimplementedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeNotImplementedWithFinalBit")]
     pub const ResponseCodeNotImplementedWithFinalBit: Self = Self(0xD1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadgateway?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadGateway")]
     pub const ResponseCodeBadGateway: Self = Self(0x52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodebadgatewaywithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeBadGatewayWithFinalBit")]
     pub const ResponseCodeBadGatewayWithFinalBit: Self = Self(0xD2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeserviceunavailable?language=objc)
     #[doc(alias = "kOBEXResponseCodeServiceUnavailable")]
     pub const ResponseCodeServiceUnavailable: Self = Self(0x53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodeserviceunavailablewithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeServiceUnavailableWithFinalBit")]
     pub const ResponseCodeServiceUnavailableWithFinalBit: Self = Self(0xD3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegatewaytimeout?language=objc)
     #[doc(alias = "kOBEXResponseCodeGatewayTimeout")]
     pub const ResponseCodeGatewayTimeout: Self = Self(0x54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodegatewaytimeoutwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeGatewayTimeoutWithFinalBit")]
     pub const ResponseCodeGatewayTimeoutWithFinalBit: Self = Self(0xD4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodehttpversionnotsupported?language=objc)
     #[doc(alias = "kOBEXResponseCodeHTTPVersionNotSupported")]
     pub const ResponseCodeHTTPVersionNotSupported: Self = Self(0x55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodehttpversionnotsupportedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeHTTPVersionNotSupportedWithFinalBit")]
     pub const ResponseCodeHTTPVersionNotSupportedWithFinalBit: Self = Self(0xD5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabasefull?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseFull")]
     pub const ResponseCodeDatabaseFull: Self = Self(0x60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabasefullwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseFullWithFinalBit")]
     pub const ResponseCodeDatabaseFullWithFinalBit: Self = Self(0xE0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabaselocked?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseLocked")]
     pub const ResponseCodeDatabaseLocked: Self = Self(0x61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexresponsecodedatabaselockedwithfinalbit?language=objc)
     #[doc(alias = "kOBEXResponseCodeDatabaseLockedWithFinalBit")]
     pub const ResponseCodeDatabaseLockedWithFinalBit: Self = Self(0xE1);
 }
@@ -479,52 +507,37 @@ unsafe impl RefEncode for OBEXOpCodeResponseValues {
 }
 
 /// Operation OpCode values for commands.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexopcodecommandvalues?language=objc)
+/// Operation OpCode values for commands.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXOpCodeCommandValues(pub c_uint);
 impl OBEXOpCodeCommandValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereserved?language=objc)
     #[doc(alias = "kOBEXOpCodeReserved")]
     pub const Reserved: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeconnect?language=objc)
     #[doc(alias = "kOBEXOpCodeConnect")]
     pub const Connect: Self = Self(0x80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodedisconnect?language=objc)
     #[doc(alias = "kOBEXOpCodeDisconnect")]
     pub const Disconnect: Self = Self(0x81);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeput?language=objc)
     #[doc(alias = "kOBEXOpCodePut")]
     pub const Put: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeputwithhighbitset?language=objc)
     #[doc(alias = "kOBEXOpCodePutWithHighBitSet")]
     pub const PutWithHighBitSet: Self = Self(0x82);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeget?language=objc)
     #[doc(alias = "kOBEXOpCodeGet")]
     pub const Get: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodegetwithhighbitset?language=objc)
     #[doc(alias = "kOBEXOpCodeGetWithHighBitSet")]
     pub const GetWithHighBitSet: Self = Self(0x83);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereservedwithhighbitset?language=objc)
     #[doc(alias = "kOBEXOpCodeReservedWithHighBitSet")]
     pub const ReservedWithHighBitSet: Self = Self(0x84);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodesetpath?language=objc)
     #[doc(alias = "kOBEXOpCodeSetPath")]
     pub const SetPath: Self = Self(0x85);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeabort?language=objc)
     #[doc(alias = "kOBEXOpCodeAbort")]
     pub const Abort: Self = Self(0xFF);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereservedrangestart?language=objc)
     #[doc(alias = "kOBEXOpCodeReservedRangeStart")]
     pub const ReservedRangeStart: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodereservedrangeend?language=objc)
     #[doc(alias = "kOBEXOpCodeReservedRangeEnd")]
     pub const ReservedRangeEnd: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeuserdefinedstart?language=objc)
     #[doc(alias = "kOBEXOpCodeUserDefinedStart")]
     pub const UserDefinedStart: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeuserdefinedend?language=objc)
     #[doc(alias = "kOBEXOpCodeUserDefinedEnd")]
     pub const UserDefinedEnd: Self = Self(0x1F);
 }
@@ -540,37 +553,27 @@ unsafe impl RefEncode for OBEXOpCodeCommandValues {
 }
 
 /// Flags for Connect command.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexconnectflagvalues?language=objc)
+/// Flags for Connect command.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXConnectFlagValues(pub c_uint);
 impl OBEXConnectFlagValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflagnone?language=objc)
     #[doc(alias = "kOBEXConnectFlagNone")]
     pub const FlagNone: Self = Self(0 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflagsupportmultipleitlmpconnections?language=objc)
     #[doc(alias = "kOBEXConnectFlagSupportMultipleItLMPConnections")]
     pub const FlagSupportMultipleItLMPConnections: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag1reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag1Reserved")]
     pub const Flag1Reserved: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag2reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag2Reserved")]
     pub const Flag2Reserved: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag3reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag3Reserved")]
     pub const Flag3Reserved: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag4reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag4Reserved")]
     pub const Flag4Reserved: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag5reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag5Reserved")]
     pub const Flag5Reserved: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag6reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag6Reserved")]
     pub const Flag6Reserved: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexconnectflag7reserved?language=objc)
     #[doc(alias = "kOBEXConnectFlag7Reserved")]
     pub const Flag7Reserved: Self = Self(1 << 7);
 }
@@ -587,37 +590,26 @@ unsafe impl RefEncode for OBEXConnectFlagValues {
 
 /// Flags for SetPath command. Not that these are called "PutFlags". That is a mistake, they are not used
 /// with a Put command. We are not changing the names to maintain backwards compatibility.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexputflagvalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXPutFlagValues(pub c_uint);
 impl OBEXPutFlagValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflagnone?language=objc)
     #[doc(alias = "kOBEXPutFlagNone")]
     pub const FlagNone: Self = Self(0 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflaggotoparentdirfirst?language=objc)
     #[doc(alias = "kOBEXPutFlagGoToParentDirFirst")]
     pub const FlagGoToParentDirFirst: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflagdontcreatedirectory?language=objc)
     #[doc(alias = "kOBEXPutFlagDontCreateDirectory")]
     pub const FlagDontCreateDirectory: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag2reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag2Reserved")]
     pub const Flag2Reserved: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag3reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag3Reserved")]
     pub const Flag3Reserved: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag4reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag4Reserved")]
     pub const Flag4Reserved: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag5reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag5Reserved")]
     pub const Flag5Reserved: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag6reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag6Reserved")]
     pub const Flag6Reserved: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexputflag7reserved?language=objc)
     #[doc(alias = "kOBEXPutFlag7Reserved")]
     pub const Flag7Reserved: Self = Self(1 << 7);
 }
@@ -633,37 +625,27 @@ unsafe impl RefEncode for OBEXPutFlagValues {
 }
 
 /// Flags for Nonce command during digest challenge.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexnonceflagvalues?language=objc)
+/// Flags for Nonce command during digest challenge.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXNonceFlagValues(pub c_uint);
 impl OBEXNonceFlagValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflagnone?language=objc)
     #[doc(alias = "kOBEXNonceFlagNone")]
     pub const FlagNone: Self = Self(0 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflagsenduseridinresponse?language=objc)
     #[doc(alias = "kOBEXNonceFlagSendUserIDInResponse")]
     pub const FlagSendUserIDInResponse: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflagaccessmodereadonly?language=objc)
     #[doc(alias = "kOBEXNonceFlagAccessModeReadOnly")]
     pub const FlagAccessModeReadOnly: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag2reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag2Reserved")]
     pub const Flag2Reserved: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag3reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag3Reserved")]
     pub const Flag3Reserved: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag4reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag4Reserved")]
     pub const Flag4Reserved: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag5reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag5Reserved")]
     pub const Flag5Reserved: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag6reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag6Reserved")]
     pub const Flag6Reserved: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexnonceflag7reserved?language=objc)
     #[doc(alias = "kOBEXNonceFlag7Reserved")]
     pub const Flag7Reserved: Self = Self(1 << 7);
 }
@@ -679,43 +661,31 @@ unsafe impl RefEncode for OBEXNonceFlagValues {
 }
 
 /// Values for Realm during digest response.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexrealmvalues?language=objc)
+/// Values for Realm during digest response.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXRealmValues(pub c_uint);
 impl OBEXRealmValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmascii?language=objc)
     #[doc(alias = "kOBEXRealmASCII")]
     pub const ASCII: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88591?language=objc)
     #[doc(alias = "kOBEXRealmISO88591")]
     pub const ISO88591: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88592?language=objc)
     #[doc(alias = "kOBEXRealmISO88592")]
     pub const ISO88592: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88593?language=objc)
     #[doc(alias = "kOBEXRealmISO88593")]
     pub const ISO88593: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88594?language=objc)
     #[doc(alias = "kOBEXRealmISO88594")]
     pub const ISO88594: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88595?language=objc)
     #[doc(alias = "kOBEXRealmISO88595")]
     pub const ISO88595: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88596?language=objc)
     #[doc(alias = "kOBEXRealmISO88596")]
     pub const ISO88596: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88597?language=objc)
     #[doc(alias = "kOBEXRealmISO88597")]
     pub const ISO88597: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88598?language=objc)
     #[doc(alias = "kOBEXRealmISO88598")]
     pub const ISO88598: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmiso88599?language=objc)
     #[doc(alias = "kOBEXRealmISO88599")]
     pub const ISO88599: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexrealmunicode?language=objc)
     #[doc(alias = "kOBEXRealmUNICODE")]
     pub const UNICODE: Self = Self(0xFF);
 }
@@ -731,25 +701,19 @@ unsafe impl RefEncode for OBEXRealmValues {
 }
 
 /// Operation OpCode values for sessions. From the OBEX 1.3 specification.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexopcodesessionvalues?language=objc)
+/// Operation OpCode values for sessions. From the OBEX 1.3 specification.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXOpCodeSessionValues(pub c_uint);
 impl OBEXOpCodeSessionValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodecreatesession?language=objc)
     #[doc(alias = "kOBEXOpCodeCreateSession")]
     pub const CreateSession: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodeclosesession?language=objc)
     #[doc(alias = "kOBEXOpCodeCloseSession")]
     pub const CloseSession: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodesuspendsession?language=objc)
     #[doc(alias = "kOBEXOpCodeSuspendSession")]
     pub const SuspendSession: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcoderesumesession?language=objc)
     #[doc(alias = "kOBEXOpCodeResumeSession")]
     pub const ResumeSession: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexopcodesettimeout?language=objc)
     #[doc(alias = "kOBEXOpCodeSetTimeout")]
     pub const SetTimeout: Self = Self(0x04);
 }
@@ -765,28 +729,21 @@ unsafe impl RefEncode for OBEXOpCodeSessionValues {
 }
 
 /// Tags for SessionParameters.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionparametertags?language=objc)
+/// Tags for SessionParameters.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXSessionParameterTags(pub c_uint);
 impl OBEXSessionParameterTags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagdeviceaddress?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagDeviceAddress")]
     pub const DeviceAddress: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagnonce?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagNonce")]
     pub const Nonce: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagsessionid?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagSessionID")]
     pub const SessionID: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagnextsequencenumber?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagNextSequenceNumber")]
     pub const NextSequenceNumber: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagtimeout?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagTimeout")]
     pub const Timeout: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessionparametertagsessionopcode?language=objc)
     #[doc(alias = "kOBEXSessionParameterTagSessionOpcode")]
     pub const SessionOpcode: Self = Self(0x05);
 }
@@ -802,13 +759,11 @@ unsafe impl RefEncode for OBEXSessionParameterTags {
 }
 
 /// The available/supported OBEX versions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexversions?language=objc)
+/// The available/supported OBEX versions.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXVersions(pub c_uint);
 impl OBEXVersions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexversion10?language=objc)
     #[doc(alias = "kOBEXVersion10")]
     pub const Version10: Self = Self(0x10);
 }
@@ -823,22 +778,16 @@ unsafe impl RefEncode for OBEXVersions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexheaderidentifier?language=objc)
 pub type OBEXHeaderIdentifier = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexversion?language=objc)
 pub type OBEXVersion = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexflags?language=objc)
 pub type OBEXFlags = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexopcode?language=objc)
 pub type OBEXOpCode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexconstants?language=objc)
 pub type OBEXConstants = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexmaxpacketlength?language=objc)
 pub type OBEXMaxPacketLength = u16;
 
 #[repr(C)]
@@ -854,10 +803,15 @@ unsafe impl RefEncode for OpaqueOBEXSessionRef {
         Encoding::Pointer(&Encoding::Struct("OpaqueOBEXSessionRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionref?language=objc)
 pub type OBEXSessionRef = *mut OpaqueOBEXSessionRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexconnectcommandresponsedata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeConnectCommandResponseReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXConnectCommandResponseData {
@@ -889,7 +843,13 @@ unsafe impl RefEncode for OBEXConnectCommandResponseData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexdisconnectcommandresponsedata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeDisconnectCommandResponseReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXDisconnectCommandResponseData {
@@ -915,7 +875,13 @@ unsafe impl RefEncode for OBEXDisconnectCommandResponseData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexputcommandresponsedata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypePutCommandResponseReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXPutCommandResponseData {
@@ -941,7 +907,13 @@ unsafe impl RefEncode for OBEXPutCommandResponseData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexgetcommandresponsedata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeGetCommandResponseReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXGetCommandResponseData {
@@ -967,7 +939,13 @@ unsafe impl RefEncode for OBEXGetCommandResponseData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsetpathcommandresponsedata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeSetPathCommandResponseReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXSetPathCommandResponseData {
@@ -997,7 +975,13 @@ unsafe impl RefEncode for OBEXSetPathCommandResponseData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexabortcommandresponsedata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeAbortCommandResponseReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXAbortCommandResponseData {
@@ -1023,7 +1007,13 @@ unsafe impl RefEncode for OBEXAbortCommandResponseData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexconnectcommanddata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeConnectCommandReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXConnectCommandData {
@@ -1053,7 +1043,13 @@ unsafe impl RefEncode for OBEXConnectCommandData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexdisconnectcommanddata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeDisconnectCommandReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXDisconnectCommandData {
@@ -1074,7 +1070,13 @@ unsafe impl RefEncode for OBEXDisconnectCommandData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexputcommanddata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypePutCommandReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXPutCommandData {
@@ -1100,7 +1102,13 @@ unsafe impl RefEncode for OBEXPutCommandData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexgetcommanddata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeGetCommandReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXGetCommandData {
@@ -1121,7 +1129,13 @@ unsafe impl RefEncode for OBEXGetCommandData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsetpathcommanddata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeSetPathCommandReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXSetPathCommandData {
@@ -1149,7 +1163,13 @@ unsafe impl RefEncode for OBEXSetPathCommandData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexabortcommanddata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeAbortCommandReceived (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXAbortCommandData {
@@ -1170,7 +1190,13 @@ unsafe impl RefEncode for OBEXAbortCommandData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexerrordata?language=objc)
+/// Part of the OBEXSessionEvent structure.
+///
+/// ## Overview
+///
+/// Is readable when the event is of type kOBEXSessionEventTypeError (see OBEXSessionEventTypes).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OBEXErrorData {
@@ -1196,6 +1222,13 @@ unsafe impl RefEncode for OBEXErrorData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Type identifiers for OBEX sessions.
+///
+/// ## Overview
+///
+/// When a new session event occurs, your selector (or C callback) will be given an OBEXSessionEvent pointer, and in it will be a ‘type’ field with one of the following types in it. Based on that type, you can then read the corresponding field in the union to get out interesting data for that event type. For example, if the type of an event is a ‘kOBEXSessionEventTypeConnectCommandResponseReceived’, you should look in the ‘OBEXConnectCommandResponseData’ part of the structure’s union to find more information pased to you in the event. Note that some you will never see, depending on the type of session you are using - a client or server. If you are a client (most likely case), you will never see the “Command” events, but instead you will only receive the “CommandResponse” events since you will be the issuer oft he commands, not the receiver of them. Both types of sessions will receive error type events.
+///
+///
 /// When a new session event occurs, your selector (or C callback) will be given an OBEXSessionEvent pointer,
 /// and in it will be a 'type' field with one of the following types in it. Based on that type, you can then
 /// read the corresponding field in the union to get out interesting data for that event type. For example,
@@ -1205,49 +1238,34 @@ unsafe impl RefEncode for OBEXErrorData {
 /// or server. If you are a client (most likely case), you will never see the "Command" events, but instead
 /// you will only receive the "CommandResponse" events since you will be the issuer oft he commands, not the
 /// receiver of them. Both types of sessions will receive error type events.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessioneventtypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXSessionEventTypes(pub c_uint);
 impl OBEXSessionEventTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeconnectcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeConnectCommandResponseReceived")]
     pub const ConnectCommandResponseReceived: Self = Self(0x4f434543);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypedisconnectcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeDisconnectCommandResponseReceived")]
     pub const DisconnectCommandResponseReceived: Self = Self(0x4f434544);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeputcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypePutCommandResponseReceived")]
     pub const PutCommandResponseReceived: Self = Self(0x4f434550);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypegetcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeGetCommandResponseReceived")]
     pub const GetCommandResponseReceived: Self = Self(0x4f434547);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypesetpathcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeSetPathCommandResponseReceived")]
     pub const SetPathCommandResponseReceived: Self = Self(0x4f434553);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeabortcommandresponsereceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeAbortCommandResponseReceived")]
     pub const AbortCommandResponseReceived: Self = Self(0x4f434541);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeconnectcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeConnectCommandReceived")]
     pub const ConnectCommandReceived: Self = Self(0x4f534543);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypedisconnectcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeDisconnectCommandReceived")]
     pub const DisconnectCommandReceived: Self = Self(0x4f534544);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeputcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypePutCommandReceived")]
     pub const PutCommandReceived: Self = Self(0x4f534550);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypegetcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeGetCommandReceived")]
     pub const GetCommandReceived: Self = Self(0x4f534547);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypesetpathcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeSetPathCommandReceived")]
     pub const SetPathCommandReceived: Self = Self(0x4f534553);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeabortcommandreceived?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeAbortCommandReceived")]
     pub const AbortCommandReceived: Self = Self(0x4f534541);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexsessioneventtypeerror?language=objc)
     #[doc(alias = "kOBEXSessionEventTypeError")]
     pub const Error: Self = Self(0x4f474545);
 }
@@ -1262,7 +1280,6 @@ unsafe impl RefEncode for OBEXSessionEventTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessioneventtype?language=objc)
 pub type OBEXSessionEventType = u32;
 
 #[repr(C)]
@@ -1310,7 +1327,12 @@ unsafe impl RefEncode for OBEXSessionEvent_u {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionevent?language=objc)
+///
+/// ## Overview
+///
+/// When a new session event occurs, your selector (or C callback) will be given an OBEXSessionEvent pointer, and in it will be information you might find interesting so that you can then reply back appropriately. For example, of you receive a kOBEXSessionEventTypeConnectCommandResponseReceived event, you can then parse out the information related to that event, and if all looks well to you, you could them send a “Get” command to get a file off of the OBEX server you just connected to.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct OBEXSessionEvent {
@@ -1344,10 +1366,26 @@ unsafe impl RefEncode for OBEXSessionEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessioneventcallback?language=objc)
 pub type OBEXSessionEventCallback = Option<unsafe extern "C-unwind" fn(*const OBEXSessionEvent)>;
 
 extern "C-unwind" {
+    /// Destroy an OBEX session. If connections are open, they will (eventually) be terminated for you.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid service reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Destroy an OBEX session. If connections are open, they will (eventually) be terminated for you.
     ///
     /// Parameter `inSessionRef`: A valid service reference.
@@ -1361,13 +1399,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_session_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiondelete?language=objc)
     #[deprecated]
     pub fn OBEXSessionDelete(in_session_ref: OBEXSessionRef) -> OBEXError;
 }
 
 extern "C-unwind" {
+    /// Allows you to test the session for an open OBEX connection for a particular session.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - outIsConnected: A valid ptr to an OBEXSessionRef; will contain the newly created session if return value is kOBEXSuccess.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method will return true only if (a) you are transport-connected to another OBEX target and (b) an OBEX Connect command has been issued and received successfully.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Allows you to test the session for an open OBEX connection for a particular session.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1388,8 +1445,6 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_is_connected` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionhasopenobexconnection?language=objc)
     #[deprecated]
     pub fn OBEXSessionHasOpenOBEXConnection(
         in_session_ref: OBEXSessionRef,
@@ -1398,6 +1453,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets current max packet length.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - outLength: Max packet length.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This value _could_ change before and after a connect command has been sent or a connect command response has been received, since the recipient could negotiate a lower max packet size.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Gets current max packet length.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1417,8 +1493,6 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_length` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetmaxpacketlength?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetMaxPacketLength(
         in_session_ref: OBEXSessionRef,
@@ -1427,6 +1501,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets space available for your data for a particular command response you are trying to send.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inOpCode: A command opcode that you are responding to. For example, if you receiving a Put command, and want to send back a “bad request” response, you should still pass in the Put command opcode for that response.
+    ///
+    /// - outLength: Space available for your header data in the payload area for a particular command.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Overview
+    ///
+    /// The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format, allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting and datas requires a small bit of information that varies depending on what command or response you are sending. Thus, you should call this function to find out how much space will be left for your headers before you send the command, allowing you to properly chop up your headers before sending them. This will guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error trying to send too much information at once.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Gets space available for your data for a particular command you are trying to send.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1453,8 +1550,6 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_length` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetavailablecommandpayloadlength?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetAvailableCommandPayloadLength(
         in_session_ref: OBEXSessionRef,
@@ -1464,6 +1559,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets space available for your data for a particular command response you are trying to send.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inOpCode: A command opcode that you are responding to. For example, if you receiving a Put command, and want to send back a “bad request” response, you should still pass in the Put command opcode for that response.
+    ///
+    /// - outLength: Space available for your header data in the payload area for a particular command.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The OBEXSession takes care of packaging OBEX opcodes and other information into the proper packet format, allowing you to focus on sending the proper OBEX headers in your commands and command responses. This formatting and datas requires a small bit of information that varies depending on what command or response you are sending. Thus, you should call this function to find out how much space will be left for your headers before you send the command, allowing you to properly chop up your headers before sending them. This will guarantee that (a) you use up all the available space in a packet and (b) that you do not get an error trying to send too much information at once.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Gets space available for your data for a particular command response you are trying to send.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1492,8 +1610,6 @@ extern "C-unwind" {
     ///
     /// - `in_session_ref` must be a valid pointer.
     /// - `out_length` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetavailablecommandresponsepayloadlength?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetAvailableCommandResponsePayloadLength(
         in_session_ref: OBEXSessionRef,
@@ -1503,6 +1619,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Establishes an OBEX connection to the target device for the session. If a transport connection is not open yet, it will be opened if possible.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inFlags: Flags, as defined in the OBEX spec for this command.
+    ///
+    /// - inMaxPacketLength: Maximum packet length you wish to allow. May be negiotiated with host to be less or more than you specify.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback parameter will result in an error. If you have already established an OBEX connection and you call this again you will get an ‘kOBEXSessionAlreadyConnectedError’ as a result.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Establishes an OBEX connection to the target device for the session. If a transport connection is not
     /// open yet, it will be opened if possible.
     ///
@@ -1539,8 +1686,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionconnect?language=objc)
     #[deprecated]
     pub fn OBEXSessionConnect(
         in_session_ref: OBEXSessionRef,
@@ -1554,6 +1699,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a disconnect command to a remote OBEX server.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a disconnect command to a remote OBEX server.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1583,8 +1755,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiondisconnect?language=objc)
     #[deprecated]
     pub fn OBEXSessionDisconnect(
         in_session_ref: OBEXSessionRef,
@@ -1595,6 +1765,39 @@ extern "C-unwind" {
     ) -> OBEXError;
 }
 
+/// Send a put command to a remote OBEX server.
+///
+/// Parameters:
+/// - inSessionRef: A valid session reference.
+///
+/// - inIsFinalChunk: TRUE or FALSE - is this the last chunk of header data for this PUT.
+///
+/// - inHeadersData: Headers containing data to PUT. Don’t include your body header data here.
+///
+/// - inHeadersDataLength: Size of header data. Don’t include your body header data here.
+///
+/// - inBodyData: Data for the BODY header to PUT. DO NOT package your data in an actual BODY header, this will be done for you, based on the finalChunk flag you pass in above (since based on this flag the header ID will be either a BODY or ENDOFBODY header).
+///
+/// - inBodyDataLength: Size of Data for the BODY header to PUT.
+///
+/// - inCallback: A valid callback. Will be called for progress, errors and completion.
+///
+/// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+///
+///
+/// ## Return Value
+///
+/// An error code value. 0 if successful.
+///
+///
+///
+/// ## Discussion
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+///
+/// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+///
+///
 /// Send a put command to a remote OBEX server.
 ///
 /// Parameter `inSessionRef`: A valid session reference.
@@ -1632,8 +1835,6 @@ extern "C-unwind" {
 /// - `in_body_data` must be a valid pointer.
 /// - `in_callback` must be implemented correctly.
 /// - `in_user_ref_con` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionput?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXSessionPut(
@@ -1674,6 +1875,35 @@ pub unsafe extern "C-unwind" fn OBEXSessionPut(
 
 /// Send a get command to a remote OBEX server.
 ///
+/// Parameters:
+/// - inSessionRef: A valid session reference.
+///
+/// - inIsFinalChunk: TRUE or FALSE - is this the last chunk of header data for this GET.
+///
+/// - inHeadersData: Headers containing data to GET.
+///
+/// - inHeadersDataLength: Size of header data.
+///
+/// - inCallback: A valid callback. Will be called for progress, errors and completion.
+///
+/// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+///
+///
+/// ## Return Value
+///
+/// An error code value. 0 if successful.
+///
+///
+///
+/// ## Discussion
+///
+/// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+///
+/// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+///
+///
+/// Send a get command to a remote OBEX server.
+///
 /// Parameter `inSessionRef`: A valid session reference.
 ///
 /// Parameter `inIsFinalChunk`: TRUE or FALSE - is this the last chunk of header data for this GET.
@@ -1702,8 +1932,6 @@ pub unsafe extern "C-unwind" fn OBEXSessionPut(
 /// - `in_headers_data` must be a valid pointer.
 /// - `in_callback` must be implemented correctly.
 /// - `in_user_ref_con` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionget?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXSessionGet(
@@ -1739,6 +1967,33 @@ pub unsafe extern "C-unwind" fn OBEXSessionGet(
 extern "C-unwind" {
     /// Send an abort command to a remote OBEX server.
     ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
+    /// Send an abort command to a remote OBEX server.
+    ///
     /// Parameter `inSessionRef`: A valid session reference.
     ///
     /// Parameter `inOptionalHeaders`: Ptr to optional headers you can supply to the command. DO NOT dispose of this
@@ -1766,8 +2021,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionabort?language=objc)
     #[deprecated]
     pub fn OBEXSessionAbort(
         in_session_ref: OBEXSessionRef,
@@ -1779,6 +2032,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a set path command to a remote OBEX server.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inFlags: Flags, as defined in the OBEX spec for this command.
+    ///
+    /// - inConstants: Constants, as defined in the OBEX spec for this command.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a set path command to a remote OBEX server.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1812,8 +2096,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionsetpath?language=objc)
     #[deprecated]
     pub fn OBEXSessionSetPath(
         in_session_ref: OBEXSessionRef,
@@ -1827,6 +2109,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a response to a connect command to the remote client.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inResponseOpCode: What response code you want to send to the remote client.
+    ///
+    /// - inFlags: Flags, as defined in the OBEX spec for this command.
+    ///
+    /// - inMaxPacketLength: Max packet length you want to support. Must be smaller or equal to the max packet length specified by the remote client.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a response to a connect command to the remote client.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1863,8 +2178,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionconnectresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionConnectResponse(
         in_session_ref: OBEXSessionRef,
@@ -1879,6 +2192,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a response to a disconnect command to the remote client.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inResponseOpCode: What response code you want to send to the remote client.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a response to a disconnect command to the remote client.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1910,8 +2252,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiondisconnectresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionDisconnectResponse(
         in_session_ref: OBEXSessionRef,
@@ -1924,6 +2264,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a response to a get command to the remote client.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inResponseOpCode: What response code you want to send to the remote client.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a response to a get command to the remote client.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -1955,8 +2324,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessiongetresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionGetResponse(
         in_session_ref: OBEXSessionRef,
@@ -1969,6 +2336,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a response to a put command to the remote client.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inResponseOpCode: What response code you want to send to the remote client.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a response to a put command to the remote client.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -2000,8 +2396,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionputresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionPutResponse(
         in_session_ref: OBEXSessionRef,
@@ -2014,6 +2408,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a response to a abort command to the remote client.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inResponseOpCode: What response code you want to send to the remote client.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a response to a abort command to the remote client.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -2045,8 +2468,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionabortresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionAbortResponse(
         in_session_ref: OBEXSessionRef,
@@ -2059,6 +2480,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Send a response to a set path command to the remote client.
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inResponseOpCode: What response code you want to send to the remote client.
+    ///
+    /// - inOptionalHeaders: Ptr to optional headers you can supply to the command. DO NOT dispose of this pointer until you callback is called with a success.
+    ///
+    /// - inOptionalHeadersLength: Size of data at the specified ptr.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As all commands for OBEX sessions, this command is asynchronous only. A NULL callback paramter will result in an error.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Send a response to a set path command to the remote client.
     ///
     /// Parameter `inSessionRef`: A valid session reference.
@@ -2090,8 +2540,6 @@ extern "C-unwind" {
     /// - `in_optional_headers` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionsetpathresponse?language=objc)
     #[deprecated]
     pub fn OBEXSessionSetPathResponse(
         in_session_ref: OBEXSessionRef,
@@ -2104,6 +2552,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - inSessionRef: A valid session reference.
+    ///
+    /// - inCallback: A valid callback. Will be called for progress, errors and completion by server sessions only.
+    ///
+    /// - inUserRefCon: Optional parameter; can contain anything you wish. Will be returned in your callback just as you passed it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code value. 0 if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sets callback to be used when an event occurs on an OBEXSession. This is important for OBEX servers, as you will need a way to be called back when the first command is sent to you. So, be sure to set yourself up to listen for events when you are ready to receive them.
+    ///
+    /// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+    ///
+    ///
     /// Parameter `inSessionRef`: A valid session reference.
     ///
     /// Parameter `inCallback`: A valid callback. Will be called for progress, errors and completion by server
@@ -2127,8 +2597,6 @@ extern "C-unwind" {
     /// - `in_session_ref` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_user_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionsetservercallback?language=objc)
     #[deprecated]
     pub fn OBEXSessionSetServerCallback(
         in_session_ref: OBEXSessionRef,
@@ -2137,6 +2605,79 @@ extern "C-unwind" {
     ) -> OBEXError;
 }
 
+/// Creates a formatted vCard, ready to be sent over OBEX or whatever.
+///
+/// Parameters:
+/// - inFirstName: Pointer to data with Person’s first name.
+///
+/// - inFirstNameLength: Length of Person’s first name passed in above.
+///
+/// - inLastName: Pointer to data with Person’s last name.
+///
+/// - inLastNameLength: Length of Person’s last name passed in above.
+///
+/// - inFriendlyName: Pointer to data with Person’s Friendly name.
+///
+/// - inFriendlyNameLength: Length of Person’s Friendly name passed in above.
+///
+/// - inNameCharset: A pointer to the charset data used for the name. Pass in a #defined charset for ease of use.
+///
+/// - inNameCharsetLength: Length of name charset assed in above.
+///
+/// - inHomePhone: Pointer to data with Person’s Home phone number.
+///
+/// - inHomePhoneLength: Length of Person’s Home phone number passed in above.
+///
+/// - inWorkPhone: Work phone number.
+///
+/// - inWorkPhoneLength: Length of Person’s Work phone number passed in above.
+///
+/// - inCellPhone: Cell phone number.
+///
+/// - inCellPhoneLength: Length of Person’s Cell phone number passed in above.
+///
+/// - inFaxPhone: Fax phone number.
+///
+/// - inFaxPhoneLength: Length of Person’s Fax phone number passed in above.
+///
+/// - inEMailAddress: EMailAddress of person.
+///
+/// - inEMailAddressLength: Length of Person’s EMailAddress passed in above.
+///
+/// - inEMailAddressCharset: Charset of EMailAddress of person.
+///
+/// - inEMailAddressCharsetLength: Length of Person’s EMailAddress charset passed in above.
+///
+/// - inOrganization: Pointer to Organization/business data.
+///
+/// - inOrganizationLength: Length of Organization/business data.
+///
+/// - inOrganizationCharset: Pointer to the charset the Organization/business is in.
+///
+/// Pointer to the charset the Title is in.
+///
+/// - inOrganizationCharsetLength: Length of data for the Organization/business charset.
+///
+/// Length of data for the Title charset.
+///
+/// - inTitle: Pointer to data with Title of person in biz/org.
+///
+/// - inTitleLength: Length of Title of person in biz/org.
+///
+///
+/// ## Return Value
+///
+/// An CFDataRef containing the compiled data. nil if we failed.
+///
+///
+///
+/// ## Discussion
+///
+/// All parameters are optional. The CFDataRef returned to you is NOT retained. Retain it if you want to keep it.
+///
+/// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+///
+///
 /// Creates a formatted vCard, ready to be sent over OBEX or whatever.
 ///
 /// Parameter `inNameCharset`: A pointer to the charset data used for the name. Pass in a #defined charset
@@ -2220,8 +2761,6 @@ extern "C-unwind" {
 /// - `in_organization_charset` must be a valid pointer.
 /// - `in_title` must be a valid pointer.
 /// - `in_title_charset` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexcreatevcard?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -2322,6 +2861,43 @@ pub unsafe extern "C-unwind" fn OBEXCreateVCard(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Creates a formatted vEvent, ready to be sent over OBEX or whatever. You probably will embed the output in a vCalendar event.
+///
+/// Parameters:
+/// - inCharset: The Charset the passed data is in. Pass in a #defined charset for ease of use.
+///
+/// - inCharsetLength: The length of the Charset passed data.
+///
+/// - inEncoding: The encoding of the summary and location fields.
+///
+/// - inEventStartDate: Start of event date, in the (ISO8601) format: YYYYMMDDTHHMMSS. e.g. 19960415T083000 = 8:30 am on April 15, 1996. All time values should be in LOCAL time.
+///
+/// - inEventEndDate: End of event date.
+///
+/// - inAlarmDate: Date of Alarm for event, in the format: YYYYMMDDTHHMMSS.
+///
+/// - inCategory: Category of event, such as “MEETING” or “PHONE CALL”.
+///
+/// - inSummary: Summary of event. Max length is 36 bytes. Longer will result in a bad argument error.
+///
+/// - inLocation: Summary of event. Max length is 20 bytes. Longer will result in a bad argument error.
+///
+/// - inXIRMCLUID: The IRMC Local Unique Identifier Label, max length 12 bytes. Longer will result in a bad argument error.
+///
+///
+/// ## Return Value
+///
+/// A valid CFDataRef - nil if we failed.
+///
+///
+///
+/// ## Discussion
+///
+/// All parameters are optional. The CFDataRef returned to you is NOT retained. Retain it if you want to keep it. Be aware that certain devices such as Ericsson phones MUST have certain fields, such as a start and end date.
+///
+/// *** DEPRECATED IN BLUETOOTH 2.2 (OS X v10.6) *** You should transition your code to Objective-C equivalents. *** This API may be removed any time in the future.
+///
+///
 /// Creates a formatted vEvent, ready to be sent over OBEX or whatever. You probably will embed the output
 /// in a vCalendar event.
 ///
@@ -2382,8 +2958,6 @@ pub unsafe extern "C-unwind" fn OBEXCreateVCard(
 /// - `in_summary` must be a valid pointer.
 /// - `in_location` must be a valid pointer.
 /// - `in_xirmcluid` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexcreatevevent?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated]
 #[inline]
@@ -2455,143 +3029,171 @@ pub unsafe extern "C-unwind" fn OBEXCreateVEvent(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyname?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytype?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeydescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyDescription: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytimeiso?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyTimeISO: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytime4byte?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyTime4Byte: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeytarget?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyTarget: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyhttp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyHTTP: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeybody?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyBody: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyendofbody?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyEndOfBody: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeywho?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyWho: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyappparameters?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyAppParameters: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyauthorizationchallenge?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyAuthorizationChallenge: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyauthorizationresponse?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyAuthorizationResponse: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyobjectclass?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyObjectClass: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeycount?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyCount: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeylength?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyLength: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyconnectionid?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyConnectionID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeybytesequence?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyByteSequence: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknownunicodetext?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyUnknownUnicodeText: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknownbytesequence?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyUnknownByteSequence: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknown1bytequantity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyUnknown1ByteQuantity: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyunknown4bytequantity?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyUnknown4ByteQuantity: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobexheaderidkeyuserdefined?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kOBEXHeaderIDKeyUserDefined: Option<&'static CFString>;
 }
 
+/// Take a data blob and looks for OBEX headers.
+///
+/// Parameters:
+/// - inData: The data chunk with the headers you are interested in.
+///
+/// - inDataSize: The size of the buffer you are passing in.
+///
+///
+/// ## Return Value
+///
+/// A CFDictionary with the headers found in the data blob inside it.
+///
+///
+///
+/// ## Discussion
+///
+/// You should use this when your callback for PUTs, GETs, etc. give you a data chunk and a size. Pass these params to this function and you will receive a dictionary back full of the parse headers. You can use the CFDictionary calls to get objects out of it, based on the header keys defined above. You are responsible for releasing the CFDictionary returned to you. Example usage:
+///
+/// ```objc
+///  
+///    CFDictionaryRef   dictionary = OBEXGetHeaders( data, dataLength );
+///    if( dictionary )
+///    {
+///    	if( CFDictionaryGetCountOfKey( dictionary, kOBEXHeaderIDKeyName ) > 0 )
+///    	{
+///    		CFStringRef theStringRef;
+///  
+///    		theStringRef = (CFStringRef) CFDictionaryGetValue( dictionary, kOBEXHeaderIDKeyName );
+///    		if( theStringRef )
+///    		{
+///    			// Display it, use it as a filename, whatever.
+///    		}
+///    	}
+///  
+///    	if( CFDictionaryGetCountOfKey( dictionary, kOBEXHeaderIDKeyConnectionID ) > 0 )
+///    	{
+///    		CFDataRef theDataRef;
+///  
+///    		theDataRef = (CFDataRef) CFDictionaryGetValue( dictionary, kOBEXHeaderIDKeyConnectionID );
+///    		if( theDataRef )
+///    		{
+///    			// now we have data representing the connection ID.
+///    		}
+///    	}
+///  
+///    	CFRelease( dictionary );
+///    }
+///  
+/// ```
+///
+///
 /// Take a data blob and looks for OBEX headers.
 ///
 /// Parameter `inData`: The data chunk with the headers you are interested in.
@@ -2639,8 +3241,6 @@ extern "C" {
 /// # Safety
 ///
 /// `in_data` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexgetheaders(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXGetHeaders(
@@ -2657,6 +3257,47 @@ pub unsafe extern "C-unwind" fn OBEXGetHeaders(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Converts a dictionary of headers to a data pointer, from which you can extract as bytes and pass to the OBEX command/response functions.
+///
+/// Parameters:
+/// - dictionaryOfHeaders: Dictionary that you have added headers to with the above OBEXAddXXXHeader functions.
+///
+///
+/// ## Return Value
+///
+/// Mutable data ref containing the bytes of all headers.
+///
+///
+///
+/// ## Discussion
+///
+/// Returns a CFMutableDataRef containing all the header data found in the dictionary, formatted according to the OBEX/IrMC spec. YOU MUST RELEASE IT when you are finished with it (ie. when the OBEX request is complete). All OBEX-specification defined headers are supported and should be returned to the dictionary. Use the keys defined above to get headers from dictionary. Example usage:
+///
+/// ```objc
+///  
+///    Example usage:
+///  
+///    CFMutableDictionaryRef	dictionary;
+///    CFMutableDataRef		mGetHeadersDataRef;
+///    uint8_t* 				headerDataPtr;
+///    uint32_t 				headerDataLength;
+///  
+///    dictionary = CFDictionaryCreateMutable( kCFAllocatorDefault, 0, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks );
+///  
+///    // Package up desired headers.
+///  
+///    OBEXAddTypeHeader( CFSTR( "text/x-vCard" ), dictionary );
+///  
+///    mGetHeadersDataRef = OBEXHeadersToBytes( dictionary );
+///  
+///    headerDataPtr = CFDataGetBytePtr( mGetHeadersDataRef );
+///    headerDataLength = CFDataGetLength( mGetHeadersDataRef );
+///  
+///    // From here I can pass it to any OBEX command, such as OBEXPut...
+///  
+/// ```
+///
+///
 /// Converts a dictionary of headers to a data pointer, from which you can extract as bytes and pass to
 /// the OBEX command/response functions.
 ///
@@ -2699,8 +3340,6 @@ pub unsafe extern "C-unwind" fn OBEXGetHeaders(
 /// - `dictionary_of_headers` generic must be of the correct type.
 /// - `dictionary_of_headers` generic must be of the correct type.
 /// - `dictionary_of_headers` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexheaderstobytes(_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
@@ -2718,6 +3357,25 @@ pub unsafe extern "C-unwind" fn OBEXHeadersToBytes(
 extern "C-unwind" {
     /// Add a CFStringRef to a dictionary of OBEXheaders.
     ///
+    /// Parameters:
+    /// - name: Name you want to add to the OBEX header dictionary.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Name header - OBEX Spec, 2.2.2: (2-byte) Null terminated unicode string.
+    ///
+    ///
+    /// Add a CFStringRef to a dictionary of OBEXheaders.
+    ///
     /// Parameter `name`: name you want to add to the OBEX header dictionary.
     ///
     /// Parameter `dictRef`: dictionary you have allocated to hold the headers. Make sure it's mutable.
@@ -2732,8 +3390,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddnameheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddNameHeader(
         name: Option<&CFString>,
@@ -2742,6 +3398,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add a CFStringRef to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - description: Description you want to add to the OBEX header dictionary.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Description header - OBEX Spec, 2.2.6: (2-byte) Null terminated unicode string.
+    ///
+    ///
     /// Add a CFStringRef to a dictionary of OBEXheaders.
     ///
     /// Parameter `description`: Description you want to add to the OBEX header dictionary.
@@ -2758,8 +3433,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexadddescriptionheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddDescriptionHeader(
         description: Option<&CFString>,
@@ -2768,6 +3441,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add a CFStringRef to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - count: Count value you want to add to the OBEX header dictionary.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Count header - OBEX Spec, 2.2.1: 4 byte unsigned integer
+    ///
+    ///
     /// Add a CFStringRef to a dictionary of OBEXheaders.
     ///
     /// Parameter `count`: Count value you want to add to the OBEX header dictionary.
@@ -2783,13 +3475,30 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddcountheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
 }
 
 extern "C-unwind" {
+    /// Add a CFStringRef to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - time4Byte: 4-byte time value you want to add to the OBEX header dictionary.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Time4Byte headers - OBEX Spec, 2.2.5: 4 Bytes
+    ///
+    ///
     /// Add a CFStringRef to a dictionary of OBEXheaders.
     ///
     /// Parameter `time4Byte`: 4-byte time value you want to add to the OBEX header dictionary.
@@ -2805,8 +3514,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtime4byteheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTime4ByteHeader(
         time4_byte: u32,
@@ -2815,6 +3522,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add a CFStringRef to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - length: Value of Length header you want to add to the OBEX header dictionary.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Length header - OBEX Spec, 2.2.4: 4 byte unsigned integer
+    ///
+    ///
     /// Add a CFStringRef to a dictionary of OBEXheaders.
     ///
     /// Parameter `length`: Value of Length header you want to add to the OBEX header dictionary.
@@ -2830,13 +3556,30 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddlengthheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
 }
 
 extern "C-unwind" {
+    /// Add a CFStringRef to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - type: Description containing the name you want to add to the OBEX header dictionary.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Type header - OBEX Spec, 2.2.3: 1-byte Null terminated ascii string.
+    ///
+    ///
     /// Add a CFStringRef to a dictionary of OBEXheaders.
     ///
     /// Parameter `type`: String containing the type of header to add.
@@ -2853,8 +3596,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtypeheader(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTypeHeader(
         r#type: Option<&CFString>,
@@ -2863,6 +3604,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add bytes to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Time ISO 8601 header data, local times in format YYYYMMDDTHHMMSS and UTC in the format YYYYMMDDTHHMMSSZ.
+    ///
+    /// - inHeaderDataLength: Length of header data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// TimeISO header - OBEX Spec, 2.2.5: Byte Sequence
+    ///
+    ///
     /// Add bytes to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: Time ISO 8601 header data, local times in format YYYYMMDDTHHMMSS and UTC in the format YYYYMMDDTHHMMSSZ.
@@ -2879,8 +3639,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtimeisoheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTimeISOHeader(
         in_header_data: *const c_void,
@@ -2890,6 +3648,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add bytes of data to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Target header data.
+    ///
+    /// - inHeaderDataLength: Length of Target header data.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Target header - OBEX Spec, 2.2.7: Byte Sequence
+    ///
+    ///
     /// Add bytes of data to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: Target header data.
@@ -2908,8 +3687,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddtargetheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTargetHeader(
         in_header_data: *const c_void,
@@ -2919,6 +3696,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add bytes of data to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: HTTP header data.
+    ///
+    /// - inHeaderDataLength: Length of HTTP header data.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP header - OBEX Spec, 2.2.8: Byte Sequence
+    ///
+    ///
     /// Add bytes of data to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: HTTP header data.
@@ -2937,8 +3735,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddhttpheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddHTTPHeader(
         in_header_data: *const c_void,
@@ -2947,6 +3743,29 @@ extern "C-unwind" {
     ) -> OBEXError;
 }
 
+/// Add bytes of data to a dictionary of OBEXheaders.
+///
+/// Parameters:
+/// - inHeaderData: Body header data.
+///
+/// - inHeaderDataLength: Length of Body header data.
+///
+/// - isEndOfBody: Set this flag if you want an end of body header instead of a body header.
+///
+/// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+///
+///
+/// ## Return Value
+///
+/// Error code, kOBEXSuccess (0) if success.
+///
+///
+///
+/// ## Discussion
+///
+/// Body,EndOfBody headers - OBEX Spec, 2.2.9: Byte Sequence
+///
+///
 /// Add bytes of data to a dictionary of OBEXheaders.
 ///
 /// Parameter `inHeaderData`: Body header data.
@@ -2967,8 +3786,6 @@ extern "C-unwind" {
 /// - `dict_ref` generic must be of the correct type.
 /// - `dict_ref` generic must be of the correct type.
 /// - `dict_ref` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddbodyheader(_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
@@ -2998,6 +3815,27 @@ pub unsafe extern "C-unwind" fn OBEXAddBodyHeader(
 extern "C-unwind" {
     /// Add bytes of data to a dictionary of OBEXheaders.
     ///
+    /// Parameters:
+    /// - inHeaderData: Who header data.
+    ///
+    /// - inHeaderDataLength: Length of Who header data.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Who headers - OBEX Spec, 2.2.10: Byte Sequence
+    ///
+    ///
+    /// Add bytes of data to a dictionary of OBEXheaders.
+    ///
     /// Parameter `inHeaderData`: Who header data.
     ///
     /// Parameter `inHeaderDataLength`: Length of Who header data.
@@ -3014,8 +3852,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddwhoheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddWhoHeader(
         in_header_data: *const c_void,
@@ -3025,6 +3861,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add bytes representing a connection ID to a dictionary of OBEX headers.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Connection ID data. Should be 4 bytes in length only.
+    ///
+    /// - inHeaderDataLength: Length of Connection ID data. This should ONLY be set to equal 4.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// ConnectionID headers - OBEX Spec, 2.2.10: Byte Sequence
+    ///
+    /// *** IMPORTANT NOTE: In bluetooth 1.0, using this function will allow you to pass in any value. You should not pass more than 4 bytes ever. In later releases, if the length passed is not 4, a kOBEXBadArgumentError error will be returned. ***
+    ///
+    ///
     /// Add bytes representing a connection ID to a dictionary of OBEX headers.
     ///
     /// Parameter `inHeaderData`: Connection ID data. Should be 4 bytes in length only.
@@ -3047,8 +3906,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddconnectionidheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddConnectionIDHeader(
         in_header_data: *const c_void,
@@ -3058,6 +3915,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add bytes representing an application parameter to a dictionary of OBEX headers.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Application parameter data - should be tag/length/value triplets.
+    ///
+    /// - inHeaderDataLength: Length of application parameter data.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Application Request/Response Parameter headers - OBEX Spec, 2.2.11: Byte Sequence
+    ///
+    ///
     /// Add bytes representing an application parameter to a dictionary of OBEX headers.
     ///
     /// Parameter `inHeaderData`: Application parameter data - should be tag/length/value triplets.
@@ -3076,8 +3954,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddapplicationparameterheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddApplicationParameterHeader(
         in_header_data: *const c_void,
@@ -3087,6 +3963,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add a byte sequence header to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Bytes you want to put in the byte sequence header.
+    ///
+    /// - inHeaderDataLength: Length of the bytes you want to put in the byte sequence header.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Byte Sequence header - OBEX Spec, 2.2.5: Byte sequence. One thing of important note here - since we don’t know what Header Identifier and length you intend to use here, you MUST include your own identifier and length in the data you pass. Thus, your data must be in this format: <1:HI><2:LENGTH><n:()> Also, note that LENGTH = (3 + n), (1 for HI, 2 for the 2 bytes of length information, plus your n bytes of custom data). Be careful here to not mess up these values, as it could adversely affect the ability of the remote-device’s headers parser.
+    ///
+    ///
     /// Add a byte sequence header to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: bytes you want to put in the byte sequence header.
@@ -3121,8 +4018,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddbytesequenceheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddByteSequenceHeader(
         in_header_data: *const c_void,
@@ -3132,6 +4027,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add an object class header to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Bytes you want to put in the object class header.
+    ///
+    /// - inHeaderDataLength: Length of the bytes you want to put in the object class header.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Object Class header - OBEX Spec, 2.2.15: Byte sequence.
+    ///
+    ///
     /// Add an object class header to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: bytes you want to put in the object class header.
@@ -3150,8 +4066,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddobjectclassheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddObjectClassHeader(
         in_header_data: *const c_void,
@@ -3161,6 +4075,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add an authorization challenge header to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Bytes you want to put in the authorization challenge header.
+    ///
+    /// - inHeaderDataLength: Length of the bytes you want to put in authorization challenge header.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Authorization Challenge header - OBEX Spec, 2.2.13: Authorization Challenge.
+    ///
+    ///
     /// Add an authorization challenge header to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: bytes you want to put in the authorization challenge header.
@@ -3179,8 +4114,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddauthorizationchallengeheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationChallengeHeader(
         in_header_data: *const c_void,
@@ -3190,6 +4123,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add an authorization Response header to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Bytes you want to put in the authorization Response header.
+    ///
+    /// - inHeaderDataLength: Length of the bytes you want to put in authorization Response header.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Authorization Response header - OBEX Spec, 2.2.14: Authorization Response.
+    ///
+    ///
     /// Add an authorization Response header to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: bytes you want to put in the authorization Response header.
@@ -3208,8 +4162,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexaddauthorizationresponseheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationResponseHeader(
         in_header_data: *const c_void,
@@ -3219,6 +4171,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Add a user-defined custom header to a dictionary of OBEXheaders.
+    ///
+    /// Parameters:
+    /// - inHeaderData: Bytes you want to put in the user-defined header.
+    ///
+    /// - inHeaderDataLength: Length of the bytes you want to put in user-defined header.
+    ///
+    /// - dictRef: Dictionary you have allocated to hold the headers. Make sure it’s mutable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code, kOBEXSuccess (0) if success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// User Defined header - OBEX Spec, 2.2.20: User Defined Headers.
+    ///
+    ///
     /// Add a user-defined custom header to a dictionary of OBEXheaders.
     ///
     /// Parameter `inHeaderData`: bytes you want to put in the user-defined header.
@@ -3237,8 +4210,6 @@ extern "C-unwind" {
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexadduserdefinedheader(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddUserDefinedHeader(
         in_header_data: *const c_void,

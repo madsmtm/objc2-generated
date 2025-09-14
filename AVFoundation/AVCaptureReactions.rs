@@ -8,74 +8,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate the type of reaction that an effect can perform.
 /// AVCaptureReactionType string constants
 ///
 ///
 /// Constants indicating the type of reaction that can be performed in an effect.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureReactionType = NSString;
 
 extern "C" {
+    /// A reaction that displays a thumbs-up symbol.
     /// Indicates a reaction which features a thumbs-up symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/thumbsup?language=objc)
     pub static AVCaptureReactionTypeThumbsUp: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays a thumbs-down symbol.
     /// Indicates a reaction which features a thumbs-down symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/thumbsdown?language=objc)
     pub static AVCaptureReactionTypeThumbsDown: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays balloons rising through the scene.
     /// Indicates a reaction which features balloons rising through the scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/balloons?language=objc)
     pub static AVCaptureReactionTypeBalloons: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays one or more heart symbols.
     /// Indicates a reaction which features one or more heart symbols.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/heart?language=objc)
     pub static AVCaptureReactionTypeHeart: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays fireworks bursting in the background.
     /// Indicates a reaction which features fireworks bursting in the background.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/fireworks?language=objc)
     pub static AVCaptureReactionTypeFireworks: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays a dark and stormy night.
     /// Indicates a reaction which features a dark and stormy night.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/rain?language=objc)
     pub static AVCaptureReactionTypeRain: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays festive spots of color falling through the scene.
     /// Indicates a reaction which features festive spots of color falling through the scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/confetti?language=objc)
     pub static AVCaptureReactionTypeConfetti: &'static AVCaptureReactionType;
 }
 
 extern "C" {
+    /// A reaction that displays a bright laser show projecting into the scene.
     /// Indicates a reaction which features a bright laser display projecting into the scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/lasers?language=objc)
     pub static AVCaptureReactionTypeLasers: &'static AVCaptureReactionType;
 }
 
+/// Returns the name of a system image that displays the recommended iconography for a specified reaction type.
 /// Returns the name for UIImage or NSImage systemImageNamed: method to obtain the recommended iconography for a specified reaction type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/systemimagename?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AVCaptureReactionSystemImageNameForType(
     reaction_type: &AVCaptureReactionType,
@@ -91,12 +81,19 @@ pub unsafe extern "C-unwind" fn AVCaptureReactionSystemImageNameForType(
 }
 
 extern_class!(
+    /// An object that reports the state of a reaction effect performed on a capture device.
+    ///
+    /// ## Overview
+    ///
+    /// Obtain an instance of this class by querying a capture device’s [`reactionEffectsInProgress`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/reactioneffectsinprogress) property. The system adds new entries to this array when you call [`performEffectForReaction:`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/performeffect(for:)) or by gesture detection in the capture stream when the value of [`reactionEffectGesturesEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/reactioneffectgesturesenabled) is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The system renders the effect before providing frames to your app, and these status objects let you know when it performs the effect.
+    ///
+    ///
     /// Reports the state of a reaction performed on an AVCaptureDevice.
     ///
     ///
     /// AVCaptureReactionEffectState may be obtained by calling -[AVCaptureDevice reactionEffectsInProgress].  When -[AVCaptureDevice canPerformReactionEffects] returns YES, new entries are added either by calling -[AVCaptureDevice performEffectForReaction:], or by gesture detection in the capture stream when AVCaptureDevice.reactionEffectGesturesEnabled.  The effect rendering is done before frames are given to the capture client, and these status objects let you know when these effects are performed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactioneffectstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureReactionEffectState;

@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionstatus?language=objc)
+    /// An object that indicates whether there are any payment cards available to add as Wallet passes.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIssuerProvisioningExtensionStatus;

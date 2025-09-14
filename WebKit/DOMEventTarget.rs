@@ -7,7 +7,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domeventtarget?language=objc)
     #[deprecated]
     pub unsafe trait DOMEventTarget: NSObjectProtocol + NSCopying {
         #[cfg(feature = "DOMEventListener")]

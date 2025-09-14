@@ -4,50 +4,50 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource?language=objc)
+/// Constants indicating the source of audio.
 // NS_ENUM
 #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarAudioSource(pub NSInteger);
 impl INCarAudioSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceunknown?language=objc)
+    /// An unknown source.
     #[doc(alias = "INCarAudioSourceUnknown")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourcecarplay?language=objc)
+    /// A CarPlay source.
     #[doc(alias = "INCarAudioSourceCarPlay")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceCarPlay: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceipod?language=objc)
+    /// An iPod source.
     #[doc(alias = "INCarAudioSourceiPod")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceiPod: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceradio?language=objc)
+    /// A radio source.
     #[doc(alias = "INCarAudioSourceRadio")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceRadio: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourcebluetooth?language=objc)
+    /// A source connected over Bluetooth.
     #[doc(alias = "INCarAudioSourceBluetooth")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceBluetooth: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceaux?language=objc)
+    /// A source connected through an auxiliary jack.
     #[doc(alias = "INCarAudioSourceAUX")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceAUX: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceusb?language=objc)
+    /// A source connected through a USB plug.
     #[doc(alias = "INCarAudioSourceUSB")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceUSB: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourcememorycard?language=objc)
+    /// A memory card source.
     #[doc(alias = "INCarAudioSourceMemoryCard")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceMemoryCard: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceopticaldrive?language=objc)
+    /// An optical drive source such as a CD or DVD.
     #[doc(alias = "INCarAudioSourceOpticalDrive")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceOpticalDrive: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraudiosource/sourceharddrive?language=objc)
+    /// A hard drive source.
     #[doc(alias = "INCarAudioSourceHardDrive")]
     #[deprecated = "INCarAudioSource is deprecated. There is no replacement."]
     pub const SourceHardDrive: Self = Self(9);

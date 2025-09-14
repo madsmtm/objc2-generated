@@ -8,8 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Option mask for requesting reflection information at pipeline build time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection?language=objc)
+/// Option mask for requesting reflection information at pipeline build time.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -17,18 +16,15 @@ pub struct MTL4ShaderReflection(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4ShaderReflection: NSUInteger {
 /// Requests no information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection/mtl4shaderreflectionnone?language=objc)
+/// Requests no information.
         #[doc(alias = "MTL4ShaderReflectionNone")]
         const None = 0;
 /// Requests reflection information for bindings.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection/bindinginfo?language=objc)
+/// Requests reflection information for bindings.
         #[doc(alias = "MTL4ShaderReflectionBindingInfo")]
         const BindingInfo = 1<<0;
 /// Requests reflection information for buffer types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection/buffertypeinfo?language=objc)
+/// Requests reflection information for buffer types.
         #[doc(alias = "MTL4ShaderReflectionBufferTypeInfo")]
         const BufferTypeInfo = 1<<1;
     }
@@ -43,21 +39,18 @@ unsafe impl RefEncode for MTL4ShaderReflection {
 }
 
 /// Enumeration for controlling alpha-to-one state of a pipeline state object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatoonestate?language=objc)
+/// Enumeration for controlling alpha-to-one state of a pipeline state object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4AlphaToOneState(pub NSInteger);
 impl MTL4AlphaToOneState {
     /// Disables alpha-to-one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatoonestate/disabled?language=objc)
+    /// Disables alpha-to-one.
     #[doc(alias = "MTL4AlphaToOneStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables alpha-to-one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatoonestate/enabled?language=objc)
+    /// Enables alpha-to-one.
     #[doc(alias = "MTL4AlphaToOneStateEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -71,21 +64,18 @@ unsafe impl RefEncode for MTL4AlphaToOneState {
 }
 
 /// Enumeration for controlling alpha-to-coverage state of a pipeline state object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatocoveragestate?language=objc)
+/// Enumeration for controlling alpha-to-coverage state of a pipeline state object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4AlphaToCoverageState(pub NSInteger);
 impl MTL4AlphaToCoverageState {
     /// Disables alpha-to-coverage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatocoveragestate/disabled?language=objc)
+    /// Disables alpha-to-coverage.
     #[doc(alias = "MTL4AlphaToCoverageStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables alpha-to-coverage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatocoveragestate/enabled?language=objc)
+    /// Enables alpha-to-coverage.
     #[doc(alias = "MTL4AlphaToCoverageStateEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -99,28 +89,30 @@ unsafe impl RefEncode for MTL4AlphaToCoverageState {
 }
 
 /// Enumeration for controlling the blend state of a pipeline state object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate?language=objc)
+/// Enumeration for controlling the blend state of a pipeline state object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4BlendState(pub NSInteger);
 impl MTL4BlendState {
     /// Disables blending.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate/disabled?language=objc)
+    /// Disables blending.
     #[doc(alias = "MTL4BlendStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables blending.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate/enabled?language=objc)
+    /// Enables blending.
     #[doc(alias = "MTL4BlendStateEnabled")]
     pub const Enabled: Self = Self(1);
     /// Defers determining the blending stage.
     ///
-    /// Behaves as ``MTL4BlendStateDisabled`` until you specialize this pipeline value.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate/unspecialized?language=objc)
+    /// Behaves as [`MTL4BlendStateDisabled`](https://developer.apple.com/documentation/metal/mtl4blendstate/disabled) until you specialize this pipeline value.
+    ///
+    ///
+    /// Defers determining the blending stage.
+    ///
+    /// Behaves as ``MTL4BlendStateDisabled`` until you specialize this pipeline value.
     #[doc(alias = "MTL4BlendStateUnspecialized")]
     pub const Unspecialized: Self = Self(2);
 }
@@ -133,22 +125,19 @@ unsafe impl RefEncode for MTL4BlendState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Enumeration for controlling support for [`MTLIndirectCommandBuffer`](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer).
 /// Enumeration for controlling support for ``MTLIndirectCommandBuffer``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectcommandbuffersupportstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4IndirectCommandBufferSupportState(pub NSInteger);
 impl MTL4IndirectCommandBufferSupportState {
     /// Disables support for indirect command buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectcommandbuffersupportstate/disabled?language=objc)
+    /// Disables support for indirect command buffers.
     #[doc(alias = "MTL4IndirectCommandBufferSupportStateDisabled")]
     pub const Disabled: Self = Self(0);
     /// Enables support for indirect command buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectcommandbuffersupportstate/enabled?language=objc)
+    /// Enables support for indirect command buffers.
     #[doc(alias = "MTL4IndirectCommandBufferSupportStateEnabled")]
     pub const Enabled: Self = Self(1);
 }
@@ -164,9 +153,14 @@ unsafe impl RefEncode for MTL4IndirectCommandBufferSupportState {
 extern_class!(
     /// Provides options controlling how to compile a pipeline state.
     ///
-    /// You provide these options through the ``MTL4PipelineDescriptor`` class at compilation time.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelineoptions?language=objc)
+    /// You provide these options through the [`MTL4PipelineDescriptor`](https://developer.apple.com/documentation/metal/mtl4pipelinedescriptor) class at compilation time.
+    ///
+    ///
+    /// Provides options controlling how to compile a pipeline state.
+    ///
+    /// You provide these options through the ``MTL4PipelineDescriptor`` class at compilation time.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4PipelineOptions;
@@ -232,8 +226,7 @@ impl DefaultRetained for MTL4PipelineOptions {
 
 extern_class!(
     /// Base type for descriptors you use for building pipeline state objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinedescriptor?language=objc)
+    /// Base type for descriptors you use for building pipeline state objects.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4PipelineDescriptor;

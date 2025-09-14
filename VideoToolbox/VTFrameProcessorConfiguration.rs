@@ -12,12 +12,17 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
+    /// A protocol that describes the configuration of a processor to use during a video processing session.
+    ///
+    /// ## Overview
+    ///
+    /// The VTFrameProcessorConfiguration protocol conformance starts a frame processing session. These properties can be queried on an implementation conforming to this protocol without starting a session.
+    ///
+    ///
     /// The protocol that describes the configuration of a processor for a video frame processing session.
     ///
     /// Use `VTFrameProcessorConfiguration` protocol conformance to start a frame processing session. You can query these
     /// properties on an implementation conforming to `VTFrameProcessorConfiguration` without starting a session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorconfiguration?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait VTFrameProcessorConfiguration: NSObjectProtocol + Send + Sync {
         /// Returns a Boolean indicating whether the system supports this processor on the current configuration.

@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractionsupporting?language=objc)
+    /// The interface that determines if an object supports a spring-loaded interaction for drag and drop activities.
     pub unsafe trait UISpringLoadedInteractionSupporting:
         NSObjectProtocol + MainThreadOnly
     {

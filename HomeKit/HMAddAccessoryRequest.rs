@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest?language=objc)
+    /// A request to add an accessory to a particular home.
+    ///
+    /// ## Overview
+    ///
+    /// An [`HMAddAccessoryRequest`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest) instance describes an accessory that your app should add to a home. HomeKit calls your home manager delegate’s [`homeManager:didReceiveAddAccessoryRequest:`](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate/homemanager(_:didreceiveaddaccessoryrequest:)) method with a request.
+    ///
+    /// Use the request’s [`accessoryName`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest/accessoryname) and [`accessoryCategory`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest/accessorycategory) properties to obtain a token by negotiating with the accessory outside of HomeKit. If the [`requiresSetupPayloadURL`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest/requiressetuppayloadurl) property is `true`, also prepare a setup payload URL. Then create a setup payload with either the [`payloadWithURL:ownershipToken:`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest/makepayload(url:ownershiptoken:)) or [`payloadWithOwnershipToken:`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest/makepayload(ownershiptoken:)) method. Complete the request by calling the [`addAndSetupAccessoriesWithPayload:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(with:completionhandler:)) method on the request’s [`home`](https://developer.apple.com/documentation/homekit/hmaddaccessoryrequest/home) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAddAccessoryRequest;

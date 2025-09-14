@@ -6,10 +6,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mediaextensionerrordomain?language=objc)
+    /// The domain of the error.
     pub static MediaExtensionErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// An enumeration that models media extension error codes.
 /// MediaExtension framework error codes.
 ///
 /// These error codes are returned in the NSError object in the event a method fails.
@@ -37,47 +38,51 @@ extern "C" {
 /// Returned if an invalid operation is requested by the client on a byte source.
 ///
 /// Returned if a decoder is asked to decode a sample without decoding the required reference frame dependencies first.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MEError(pub NSInteger);
 impl MEError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature?language=objc)
+    /// An error code that indicates the extension doesn’t support an aspect of the media.
     #[doc(alias = "MEErrorUnsupportedFeature")]
     pub const UnsupportedFeature: Self = Self(-19320);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/allocationfailure?language=objc)
+    /// An error code that indicates the extension can’t allocate memory.
     #[doc(alias = "MEErrorAllocationFailure")]
     pub const AllocationFailure: Self = Self(-19321);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/invalidparameter?language=objc)
+    /// An error code that indicates the extension received an invalid parameter.
     #[doc(alias = "MEErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(-19322);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/parsingfailure?language=objc)
+    /// An error code that indicates the extension encountered an error while parsing the media.
     #[doc(alias = "MEErrorParsingFailure")]
     pub const ParsingFailure: Self = Self(-19323);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/internalfailure?language=objc)
+    /// An error code that indicates the extension encountered an internal operation failure, such as code loading.
     #[doc(alias = "MEErrorInternalFailure")]
     pub const InternalFailure: Self = Self(-19324);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/propertynotsupported?language=objc)
+    /// An error code that indicates the extension encountered a property it doesn’t support reading and writing to.
     #[doc(alias = "MEErrorPropertyNotSupported")]
     pub const PropertyNotSupported: Self = Self(-19325);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/nosuchedit?language=objc)
+    /// An error code that indicates the plug-in track reader received a request to return an edit that’s out of range.
     #[doc(alias = "MEErrorNoSuchEdit")]
     pub const NoSuchEdit: Self = Self(-19326);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/nosamples?language=objc)
+    /// An error code that indicates there are no samples in the track or a request to load a sample buffer fails.
     #[doc(alias = "MEErrorNoSamples")]
     pub const NoSamples: Self = Self(-19327);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/locationnotavailable?language=objc)
+    /// An error code that indicates specific sample isn’t contiguous, spans more than one file, or is for some other reason unsuitable for reading directly from a file.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon receipt of this error call [`loadSampleBufferContainingSamplesToEndCursor:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)).
+    ///
+    ///
     #[doc(alias = "MEErrorLocationNotAvailable")]
     pub const LocationNotAvailable: Self = Self(-19328);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/endofstream?language=objc)
+    /// An error code that indicates the extension reached the end of the source file.
     #[doc(alias = "MEErrorEndOfStream")]
     pub const EndOfStream: Self = Self(-19329);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/permissiondenied?language=objc)
+    /// An error code that indicates the extension received a request to perform an invalid operation on a byte source.
     #[doc(alias = "MEErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(-19330);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/referencemissing?language=objc)
+    /// An error code that indicates the decoder received a request to decode a sample without decoding the required reference frame dependencies first.
     #[doc(alias = "MEErrorReferenceMissing")]
     pub const ReferenceMissing: Self = Self(-19331);
 }

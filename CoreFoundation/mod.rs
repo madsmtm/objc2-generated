@@ -3002,187 +3002,182 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_0?language=objc)
+/// The Core Foundation framework version in macOS 10.0.
 pub const kCFCoreFoundationVersionNumber10_0: c_float = 196.40;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_0_3?language=objc)
+/// The Core Foundation framework version in macOS 10.0.3.
 pub const kCFCoreFoundationVersionNumber10_0_3: c_float = 196.50;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1?language=objc)
+/// The Core Foundation framework version in macOS 10.1.
 pub const kCFCoreFoundationVersionNumber10_1: c_float = 226.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_1?language=objc)
+/// The Core Foundation framework version in macOS 10.1.1.
 pub const kCFCoreFoundationVersionNumber10_1_1: c_float = 226.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_2?language=objc)
+/// The Core Foundation framework version in macOS 10.1.2.
 pub const kCFCoreFoundationVersionNumber10_1_2: c_float = 227.20;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_3?language=objc)
+/// The Core Foundation framework version in macOS 10.1.3.
 pub const kCFCoreFoundationVersionNumber10_1_3: c_float = 227.20;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_1_4?language=objc)
+/// The Core Foundation framework version in macOS 10.1.4.
 pub const kCFCoreFoundationVersionNumber10_1_4: c_float = 227.30;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2?language=objc)
+/// The Core Foundation framework version in macOS 10.2.
 pub const kCFCoreFoundationVersionNumber10_2: c_float = 263.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_1?language=objc)
+/// The Core Foundation framework version in macOS 10.2.1.
 pub const kCFCoreFoundationVersionNumber10_2_1: c_float = 263.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_2?language=objc)
+/// The Core Foundation framework version in macOS 10.2.2.
 pub const kCFCoreFoundationVersionNumber10_2_2: c_float = 263.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_3?language=objc)
+/// The Core Foundation framework version in macOS 10.2.3.
 pub const kCFCoreFoundationVersionNumber10_2_3: c_float = 263.30;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_4?language=objc)
+/// The Core Foundation framework version in macOS 10.2.4.
 pub const kCFCoreFoundationVersionNumber10_2_4: c_float = 263.30;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_5?language=objc)
+/// The Core Foundation framework version in macOS 10.2.5.
 pub const kCFCoreFoundationVersionNumber10_2_5: c_float = 263.50;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_6?language=objc)
+/// The Core Foundation framework version in macOS 10.2.6.
 pub const kCFCoreFoundationVersionNumber10_2_6: c_float = 263.50;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_7?language=objc)
+/// The Core Foundation framework version in macOS version 10.2.7.
 pub const kCFCoreFoundationVersionNumber10_2_7: c_float = 263.50;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_2_8?language=objc)
+/// The Core Foundation framework version in macOS 10.2.8.
 pub const kCFCoreFoundationVersionNumber10_2_8: c_float = 263.50;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3?language=objc)
+/// The Core Foundation framework version in macOS 10.3.
 pub const kCFCoreFoundationVersionNumber10_3: c_float = 299.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_1?language=objc)
+/// The Core Foundation framework version in macOS 10.3.1.
 pub const kCFCoreFoundationVersionNumber10_3_1: c_float = 299.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_2?language=objc)
+/// The Core Foundation framework version in macOS 10.3.2.
 pub const kCFCoreFoundationVersionNumber10_3_2: c_float = 299.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_3?language=objc)
+/// The Core Foundation framework version in macOS 10.3.3.
 pub const kCFCoreFoundationVersionNumber10_3_3: c_float = 299.30;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_4?language=objc)
+/// The Core Foundation framework version in macOS 10.3.4.
 pub const kCFCoreFoundationVersionNumber10_3_4: c_float = 299.31;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_5?language=objc)
+/// The Core Foundation framework version in macOS 10.3.5.
 pub const kCFCoreFoundationVersionNumber10_3_5: c_float = 299.31;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_6?language=objc)
+/// The Core Foundation framework version in macOS 10.3.6.
 pub const kCFCoreFoundationVersionNumber10_3_6: c_float = 299.32;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_7?language=objc)
+/// The Core Foundation framework version in macOS 10.3.7.
 pub const kCFCoreFoundationVersionNumber10_3_7: c_float = 299.33;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_8?language=objc)
+/// The Core Foundation framework version in macOS 10.3.8.
 pub const kCFCoreFoundationVersionNumber10_3_8: c_float = 299.33;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_3_9?language=objc)
+/// The Core Foundation framework version in macOS 10.3.9.
 pub const kCFCoreFoundationVersionNumber10_3_9: c_float = 299.35;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4?language=objc)
+/// The Core Foundation framework version in macOS 10.4.
 pub const kCFCoreFoundationVersionNumber10_4: c_float = 368.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_1?language=objc)
+/// The Core Foundation framework version in macOS 10.4.1.
 pub const kCFCoreFoundationVersionNumber10_4_1: c_float = 368.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_2?language=objc)
+/// The Core Foundation framework version in macOS 10.4.2.
 pub const kCFCoreFoundationVersionNumber10_4_2: c_float = 368.11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_3?language=objc)
+/// The Core Foundation framework version in macOS 10.4.3.
 pub const kCFCoreFoundationVersionNumber10_4_3: c_float = 368.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_4_intel?language=objc)
+/// The Core Foundation framework version in macOS 10.4.4 on Intel-based Mac computers.
 pub const kCFCoreFoundationVersionNumber10_4_4_Intel: c_float = 368.26;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_4_powerpc?language=objc)
+/// The Core Foundation framework version in macOS 10.4.4 on PowerPC-based Mac computers.
 pub const kCFCoreFoundationVersionNumber10_4_4_PowerPC: c_float = 368.25;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_5_intel?language=objc)
+/// The Core Foundation framework version in macOS 10.4.5 on Intel-based Mac computers.
 pub const kCFCoreFoundationVersionNumber10_4_5_Intel: c_float = 368.26;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_5_powerpc?language=objc)
+/// The Core Foundation framework version in macOS 10.4.5 on PowerPC-based Macintosh computers.
 pub const kCFCoreFoundationVersionNumber10_4_5_PowerPC: c_float = 368.25;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_6_intel?language=objc)
+/// The Core Foundation framework version in macOS version 10.4.6 on Intel-based Mac computers.
 pub const kCFCoreFoundationVersionNumber10_4_6_Intel: c_float = 368.26;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_6_powerpc?language=objc)
+/// The Core Foundation framework version in macOS 10.4.6 on PowerPC-based Mac computers.
 pub const kCFCoreFoundationVersionNumber10_4_6_PowerPC: c_float = 368.25;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_7?language=objc)
+/// The Core Foundation framework version in macOS 10.4.7.
 pub const kCFCoreFoundationVersionNumber10_4_7: c_float = 368.27;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_8?language=objc)
+/// The Core Foundation framework version in macOS 10.4.8.
 pub const kCFCoreFoundationVersionNumber10_4_8: c_float = 368.27;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_9?language=objc)
+/// The Core Foundation framework version in macOS 10.4.9.
 pub const kCFCoreFoundationVersionNumber10_4_9: c_float = 368.28;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_10?language=objc)
+/// The Core Foundation framework version in macOS 10.4.10.
 pub const kCFCoreFoundationVersionNumber10_4_10: c_float = 368.28;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_4_11?language=objc)
+/// The Core Foundation framework version in macOS 10.4.11.
 pub const kCFCoreFoundationVersionNumber10_4_11: c_float = 368.31;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5?language=objc)
+/// The Core Foundation framework version in macOS 10.5.
 pub const kCFCoreFoundationVersionNumber10_5: c_float = 476.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_1?language=objc)
+/// The Core Foundation framework version in macOS 10.5.1.
 pub const kCFCoreFoundationVersionNumber10_5_1: c_float = 476.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_2?language=objc)
+/// The Core Foundation framework version in macOS 10.5.2.
 pub const kCFCoreFoundationVersionNumber10_5_2: c_float = 476.10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_3?language=objc)
+/// The Core Foundation framework version in macOS 10.5.3.
 pub const kCFCoreFoundationVersionNumber10_5_3: c_float = 476.13;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_4?language=objc)
+/// The Core Foundation framework version in macOS 10.5.4.
 pub const kCFCoreFoundationVersionNumber10_5_4: c_float = 476.14;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_5?language=objc)
+/// The Core Foundation framework version in macOS 10.5.5.
 pub const kCFCoreFoundationVersionNumber10_5_5: c_float = 476.15;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_6?language=objc)
+/// The Core Foundation framework version in macOS 10.5.6.
 pub const kCFCoreFoundationVersionNumber10_5_6: c_float = 476.17;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_7?language=objc)
+/// The Core Foundation framework version in macOS 10.5.7.
 pub const kCFCoreFoundationVersionNumber10_5_7: c_float = 476.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_5_8?language=objc)
+/// The Core Foundation framework version in macOS 10.5.8.
 pub const kCFCoreFoundationVersionNumber10_5_8: c_float = 476.19;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6?language=objc)
+/// The Core Foundation framework version in macOS 10.6.
 pub const kCFCoreFoundationVersionNumber10_6: c_float = 550.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_1?language=objc)
+/// The Core Foundation framework version in macOS 10.6.1.
 pub const kCFCoreFoundationVersionNumber10_6_1: c_float = 550.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_2?language=objc)
+/// The Core Foundation framework version in macOS 10.6.2.
 pub const kCFCoreFoundationVersionNumber10_6_2: c_float = 550.13;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_3?language=objc)
+/// The Core Foundation framework version in macOS 10.6.3.
 pub const kCFCoreFoundationVersionNumber10_6_3: c_float = 550.19;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_4?language=objc)
+/// The Core Foundation framework version in macOS 10.6.4.
 pub const kCFCoreFoundationVersionNumber10_6_4: c_float = 550.29;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_5?language=objc)
+/// The Core Foundation framework version in macOS 10.6.5.
 pub const kCFCoreFoundationVersionNumber10_6_5: c_float = 550.42;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_6?language=objc)
+/// The Core Foundation framework version in macOS 10.6.6.
 pub const kCFCoreFoundationVersionNumber10_6_6: c_float = 550.42;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_7?language=objc)
+/// The Core Foundation framework version in macOS 10.6.7.
 pub const kCFCoreFoundationVersionNumber10_6_7: c_float = 550.42;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_6_8?language=objc)
+/// The Core Foundation framework version in macOS 10.6.8.
 pub const kCFCoreFoundationVersionNumber10_6_8: c_float = 550.43;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7?language=objc)
+/// The Core Foundation framework version in macOS 10.7.
 pub const kCFCoreFoundationVersionNumber10_7: c_float = 635.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_1?language=objc)
+/// The Core Foundation framework version in macOS 10.7.1.
 pub const kCFCoreFoundationVersionNumber10_7_1: c_float = 635.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_2?language=objc)
+/// The Core Foundation framework version in macOS 10.7.2.
 pub const kCFCoreFoundationVersionNumber10_7_2: c_float = 635.15;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_3?language=objc)
+/// The Core Foundation framework version in macOS 10.7.3.
 pub const kCFCoreFoundationVersionNumber10_7_3: c_float = 635.19;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_4?language=objc)
+/// The Core Foundation framework version in macOS 10.7.4.
 pub const kCFCoreFoundationVersionNumber10_7_4: c_float = 635.21;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_7_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_7_5: c_float = 635.21;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8: c_float = 744.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_1: c_float = 744.00;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_2: c_float = 744.12;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_3: c_float = 744.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_8_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_8_4: c_float = 744.19;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_9?language=objc)
 pub const kCFCoreFoundationVersionNumber10_9: c_float = 855.11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_9_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_9_1: c_float = 855.11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_9_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_9_2: c_float = 855.14;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10: c_float = 1151.16;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_1: c_float = 1151.16;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_2: c_uint = 1152;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_3: c_float = 1153.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_4: c_float = 1153.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_5?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_5: c_float = 1153.18;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_10_max?language=objc)
 pub const kCFCoreFoundationVersionNumber10_10_Max: c_uint = 1199;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11: c_uint = 1253;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_1?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_1: c_float = 1255.1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_2?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_2: c_float = 1256.14;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_3?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_3: c_float = 1256.14;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_4?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_4: c_float = 1258.1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber10_11_max?language=objc)
 pub const kCFCoreFoundationVersionNumber10_11_Max: c_uint = 1299;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatortypeid?language=objc)
 pub type CFAllocatorTypeID = c_ulonglong;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcorefoundationversionnumber?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The current version of the Core Foundation framework. Compare this value to the values in [Framework Version Numbers](https://developer.apple.com/documentation/corefoundation/framework-version-numbers).Although this variable was added to the CFBase.h header file in OS X v10.1, it was available and can be used in OS X v10.0.
+    ///
+    ///
     pub static kCFCoreFoundationVersionNumber: c_double;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstring?language=objc)
+///
+/// ## Overview
+///
+/// CFString provides a suite of efficient string-manipulation and string-conversion functions. It offers seamless Unicode support and facilitates the sharing of data between Cocoa and C-based programs. CFString objects are immutable—use [`CFMutableStringRef`](https://developer.apple.com/documentation/corefoundation/cfmutablestring) to create and manage a string that can be changed after it has been created.
+///
+/// CFString has two primitive functions, [`CFStringGetLength`](https://developer.apple.com/documentation/corefoundation/cfstringgetlength(_:)) and [`CFStringGetCharacterAtIndex`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacteratindex(_:_:)), that provide the basis for all other functions in its interface. The `CFStringGetLength` function returns the total number (in terms of UTF-16 code pairs) of characters in the string. The `CFStringGetCharacterAtIndex` function gives access to each character in the string by index, with index values starting at `0`.
+///
+/// CFString provides functions for finding and comparing strings. It also provides functions for reading numeric values from strings, for combining strings in various ways, and for converting a string to different forms (such as encoding and case changes). A number of functions, for example `CFStringFindWithOptions`, allow you to specify a range over which to operate within a string. The specified range must not exceed the length of the string. Debugging options may help you to catch any errors that arise if a range does exceed a string’s length.
+///
+/// Like other Core Foundation types, you can hash CFStrings using the [`CFHash`](https://developer.apple.com/documentation/corefoundation/cfhash(_:)) function. You should never, though, store a hash value outside of your application and expect it to be useful if you read it back in later (hash values may change between different releases of the operating system).
+///
+/// CFString is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSString *` parameter, you can pass in a `CFStringRef`, and in a function where you see a `CFStringRef` parameter, you can pass in an NSString instance. This also applies to concrete subclasses of NSString. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSString`.
 #[doc(alias = "CFStringRef")]
@@ -3200,7 +3195,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFString"> for CFString {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestring?language=objc)
+///
+/// ## Overview
+///
+/// CFMutableString manages dynamic strings. The basic interface for managing strings is provided by [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). CFMutableString adds functions to modify the contents of a string.
+///
+/// CFMutableString is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSMutableString *` parameter, you can pass in a `CFMutableStringRef`, and in a function where you see a `CFMutableStringRef` parameter, you can pass in an NSMutableString instance. This also applies to concrete subclasses of NSMutableString. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSMutableString`.
 #[doc(alias = "CFMutableStringRef")]
@@ -3218,23 +3220,34 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFString"> for CFMutableString {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylist?language=objc)
+///
+/// ## Overview
+///
+/// CFPropertyList provides functions that convert property list objects to and from several serialized formats such as XML. The [`CFPropertyListRef`](https://developer.apple.com/documentation/corefoundation/cfpropertylist) type that denotes CFPropertyList objects is an abstract type for property list objects. Depending on the contents of the XML data used to create the property list, `CFPropertyListRef` can be any of the property list objects: CFData, CFString, CFArray, CFDictionary, CFDate, CFBoolean, and CFNumber. Note that if you use a property list to generate XML, the keys of any dictionaries in the property list must be CFString objects.
+///
+/// It is important to understand that CFPropertyList provides an abstraction for all the property list types—you can think of CFPropertyList in object-oriented terms as being the superclass of CFString, CFNumber, CFDictionary, and so on. When a Core Foundation function returns a `CFPropertyListRef`, it means that the value may be any of the property list types. For example, [`CFPreferencesCopyAppValue`](https://developer.apple.com/documentation/corefoundation/cfpreferencescopyappvalue(_:_:)) returns a `CFPropertyListRef`. This means that the value returned can be a CFString object, a CFNumber object, a CFDictionary object, and so on again. You can use [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) to determine what type of object a property list value is.
+///
+/// You use one of the `CFPropertyListCreate...` functions to create a property list object given an existing property list object, raw XML data (as in a file), or a stream. You can also convert a property list object to XML using the [`CFPropertyListCreateXMLData`](https://developer.apple.com/documentation/corefoundation/cfpropertylistcreatexmldata(_:_:)) function. You use the [`CFPropertyListWriteToStream`](https://developer.apple.com/documentation/corefoundation/cfpropertylistwritetostream(_:_:_:_:)) function to write a property list to an output stream, and validate a property list object using the [`CFPropertyListIsValid`](https://developer.apple.com/documentation/corefoundation/cfpropertylistisvalid(_:_:)) function. CFPropertyList properly takes care of endian issues—a property list (whether represented by a stream, XML, or a CFData object) created on a PowerPC-based Macintosh is correctly interpreted on an Intel-based Macintosh, and vice versa.
+///
+/// For code examples illustrating how to read and write property list files, see [Property List Programming Topics for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFPropertyLists/CFPropertyLists.html#//apple_ref/doc/uid/10000130i) and in particular [Saving and Restoring Property Lists](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFPropertyLists/Articles/Saving.html#//apple_ref/doc/uid/20001175).
+///
+///
 #[doc(alias = "CFPropertyListRef")]
 pub type CFPropertyList = CFType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult?language=objc)
+/// Constants returned by comparison functions, indicating whether a value is equal to, less than, or greater than another value.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFComparisonResult(pub CFIndex);
 impl CFComparisonResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult/comparelessthan?language=objc)
+    /// Returned by a comparison function if the first value is less than the second value.
     #[doc(alias = "kCFCompareLessThan")]
     pub const CompareLessThan: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult/compareequalto?language=objc)
+    /// Returned by a comparison function if the first value is equal to the second value.
     #[doc(alias = "kCFCompareEqualTo")]
     pub const CompareEqualTo: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult/comparegreaterthan?language=objc)
+    /// Returned by a comparison function if the first value is greater than the second value.
     #[doc(alias = "kCFCompareGreaterThan")]
     pub const CompareGreaterThan: Self = Self(1);
 }
@@ -3249,15 +3262,39 @@ unsafe impl RefEncode for CFComparisonResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparatorfunction?language=objc)
+/// Callback function that compares two values. You provide a pointer to this callback in certain Core Foundation sorting functions.
+///
+/// Parameters:
+/// - val1: The first value to compare.
+///
+/// - val2: The second value to compare.
+///
+/// - context: An untyped pointer to the context of the evaluation.
+///
+/// The meaning of this value and its use are defined by each comparator function. This value is usually passed to a sort function, such as [`CFArraySortValues`](https://developer.apple.com/documentation/corefoundation/cfarraysortvalues(_:_:_:_:)), which then passes it, unchanged, to the comparator function.
+///
+///
+/// ## Return Value
+///
+/// A `CFComparisonResult` value that indicates whether the `val1` is equal to, less than, or greater than `val2`. See [`CFComparisonResult`](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult) for a list of possible values.
+///
+///
+///
+/// ## Discussion
+///
+/// If you need to sort the elements in a collection using special criteria, you can implement a comparator function with the signature defined by this prototype. You pass a pointer to this function in one of the “sort” functions, such as CFArray’s [`CFArraySortValues`](https://developer.apple.com/documentation/corefoundation/cfarraysortvalues(_:_:_:_:)).
+///
+/// You can also pass pointers to standard Core Foundation comparator functions such as [`CFStringCompare`](https://developer.apple.com/documentation/corefoundation/cfstringcompare(_:_:_:)) and [`CFDateCompare`](https://developer.apple.com/documentation/corefoundation/cfdatecompare(_:_:_:)).
+///
+///
 pub type CFComparatorFunction = Option<
     unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void) -> CFComparisonResult,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotfound?language=objc)
+/// A constant that indicates that a search operation did not succeed in locating the target value.
 pub static kCFNotFound: CFIndex = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrange?language=objc)
+/// A structure representing a range of sequential items in a container, such as characters in a buffer or elements in a collection.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFRange {
@@ -3275,7 +3312,14 @@ unsafe impl RefEncode for CFRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnull?language=objc)
+///
+/// ## Overview
+///
+/// The CFNull opaque type defines a unique object used to represent null values in collection objects (which don’t allow `NULL` values). CFNull objects are neither created nor destroyed. Instead, a single CFNull constant object—[`kCFNull`](https://developer.apple.com/documentation/corefoundation/kcfnull)—is defined and is used wherever a null value is needed.
+///
+/// The CFNull opaque type is available in macOS 10.2 and later.
+///
+///
 ///
 /// This is toll-free bridged with `NSNull`.
 #[doc(alias = "CFNullRef")]
@@ -3294,7 +3338,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFNull {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnullgettypeid()?language=objc)
+    /// Returns the type identifier for the CFNull opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFNull opaque type.
+    ///
+    ///
     #[doc(alias = "CFNullGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -3306,11 +3356,16 @@ unsafe impl ConcreteType for CFNull {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnull?language=objc)
+    /// The singleton CFNull object.
     pub static kCFNull: Option<&'static CFNull>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocator?language=objc)
+///
+/// ## Overview
+///
+/// CFAllocator is an opaque type that allocates and deallocates memory for you. You never have to allocate, reallocate, or deallocate memory directly for Core Foundation objects—and rarely should you. You pass CFAllocator objects into functions that create objects; these functions have “Create” embedded in their names, for example, `CFStringCreateWithPascalString`. The creation functions use the allocators to allocate memory for the objects they create.
+///
+///
 #[doc(alias = "CFAllocatorRef")]
 #[repr(C)]
 pub struct CFAllocator {
@@ -3327,64 +3382,198 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault?language=objc)
+    /// This is a synonym for `NULL`.
     pub static kCFAllocatorDefault: Option<&'static CFAllocator>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatorsystemdefault?language=objc)
+    /// Default system allocator.
+    ///
+    /// ## Discussion
+    ///
+    /// You rarely need to use this.
+    ///
+    ///
     pub static kCFAllocatorSystemDefault: Option<&'static CFAllocator>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatormalloc?language=objc)
+    /// This allocator uses `malloc()`, `realloc()`, and `free()`.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically you should not use this allocator, use `kCFAllocatorDefault` instead. This allocator is useful as the `bytesDeallocator` in CFData or `contentsDeallocator` in CFString where the memory was obtained as a result  of `malloc` type functions.
+    ///
+    ///
     pub static kCFAllocatorMalloc: Option<&'static CFAllocator>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatormalloczone?language=objc)
+    /// This allocator explicitly uses the default malloc zone, returned by `malloc_default_zone()`.
+    ///
+    /// ## Discussion
+    ///
+    /// You should only use this when an object is safe to be allocated in non-scanned memory.
+    ///
+    ///
     pub static kCFAllocatorMallocZone: Option<&'static CFAllocator>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatornull?language=objc)
+    /// This allocator does nothing—it allocates no memory.
+    ///
+    /// ## Discussion
+    ///
+    /// This allocator is useful as the `bytesDeallocator` in CFData or `contentsDeallocator` in CFString where the memory should not be freed.
+    ///
+    ///
     pub static kCFAllocatorNull: Option<&'static CFAllocator>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatorusecontext?language=objc)
+    /// Special allocator argument to [`CFAllocatorCreate`](https://developer.apple.com/documentation/corefoundation/cfallocatorcreate(_:_:))—it uses the functions given in the context to allocate the allocator.
     pub static kCFAllocatorUseContext: Option<&'static CFAllocator>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorretaincallback?language=objc)
+/// A prototype for a function callback that retains the given data.
+///
+/// Parameters:
+/// - info: The data to be retained.
+///
+///
+/// ## Discussion
+///
+/// A prototype for a function callback that retains the data pointed to by the `info` field. In implementing this function, retain the data you have defined for the allocator context in this field. (This might make sense only if the data is a Core Foundation object.)
+///
+///
 pub type CFAllocatorRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreleasecallback?language=objc)
+/// A prototype for a function callback that releases the given data.
+///
+/// Parameters:
+/// - info: The data to be released.
+///
+///
+/// ## Discussion
+///
+/// A prototype for a function callback that releases the data pointed to by the `info` field. In implementing this function, release (or free) the data you have defined for the allocator context.
+///
+///
 pub type CFAllocatorReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcopydescriptioncallback?language=objc)
+/// A prototype for a function callback that provides a description of the specified data.
+///
+/// Parameters:
+/// - info: An untyped pointer to program-defined data.
+///
+///
+/// ## Return Value
+///
+/// A CFString object that describes the allocator. The caller is responsible for releasing this object.
+///
+///
+///
+/// ## Discussion
+///
+/// A prototype for a function callback that provides a description of the data pointed to by the `info` field. In implementing this function, return a reference to a CFString object that describes your allocator, particularly some characteristics of your program-defined data.
+///
+///
 pub type CFAllocatorCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatecallback?language=objc)
+/// A prototype for a function callback that allocates memory of a requested size.
+///
+/// Parameters:
+/// - allocSize: This function allocates a block of memory of at least `allocSize` bytes (always greater than 0).
+///
+/// - hint: A bitfield that is currently not used (always set to 0).
+///
+/// - info: An untyped pointer to program-defined data. Allocate memory for the data and assign a pointer to it. This data is often control information for the allocator. It may be `NULL`.
+///
+///
+/// ## Return Value
+///
+/// A pointer to the start of the block.
+///
+///
 pub type CFAllocatorAllocateCallBack =
     Option<unsafe extern "C-unwind" fn(CFIndex, CFOptionFlags, *mut c_void) -> *mut c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocatecallback?language=objc)
+/// A prototype for a function callback that reallocates memory of a requested size for an existing block of memory.
+///
+/// Parameters:
+/// - ptr: The block of memory to resize.
+///
+/// - newsize: The size of the new allocation.
+///
+/// - hint: A bitfield that is currently not used (always set to 0).
+///
+/// - info: An untyped pointer to program-defined data.
+///
+///
+/// ## Return Value
+///
+/// Pointer to the new block of memory.
+///
+///
+///
+/// ## Discussion
+///
+/// In implementing this function, change the size of the block of memory pointed to by `ptr` to the size specified by `newsize` and return the pointer to the larger block of memory. Return NULL on any reallocation failure, leaving the old block of memory untouched. Also return NULL immediately if any of the following conditions if the ptr parameter is NULL or the `newsize` parameter is not greater than 0. Leave the contents of the old block of memory unchanged up to the lesser of the new or old sizes. If the `ptr` parameter is not a block of memory that has been previously allocated by the allocator, the results are undefined; abnormal program termination can occur. The `hint` argument is a bitfield that you should currently not use (that is, assign 0).
+///
+///
 pub type CFAllocatorReallocateCallBack = Option<
     unsafe extern "C-unwind" fn(*mut c_void, CFIndex, CFOptionFlags, *mut c_void) -> *mut c_void,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatordeallocatecallback?language=objc)
+/// A prototype for a function callback that deallocates a block of memory.
+///
+/// Parameters:
+/// - ptr: The block of memory to deallocate.
+///
+/// - info: An untyped pointer to program-defined data.
+///
+///
+/// ## Discussion
+///
+/// A prototype for a function callback that deallocates a given block of memory. In implementing this function, make the block of memory pointed to by `ptr` available for subsequent reuse by the allocator but unavailable for continued use by the program. The `ptr` parameter cannot be NULL and if the `ptr` parameter is not a block of memory that has been previously allocated by the allocator, the results are undefined; abnormal program termination can occur.
+///
+///
 pub type CFAllocatorDeallocateCallBack =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorpreferredsizecallback?language=objc)
+/// A prototype for a function callback that gives the size of memory likely to be allocated, given a certain request.
+///
+/// Parameters:
+/// - size: The amount of memory requested.
+///
+/// - hint: A bitfield that is currently not used (always set to 0).
+///
+/// - info: An untyped pointer to program-defined data.
+///
+///
+/// ## Return Value
+///
+/// The actual size the allocator is likely to allocate given this request.
+///
+///
+///
+/// ## Discussion
+///
+/// A prototype for a function callback that determines whether there is enough free memory to satisfy a request. In implementing this function, return the actual size the allocator is likely to allocate given a request for a block of memory of size `size`. The `hint` argument is a bitfield that you should currently not use.
+///
+///
 pub type CFAllocatorPreferredSizeCallBack =
     Option<unsafe extern "C-unwind" fn(CFIndex, CFOptionFlags, *mut c_void) -> CFIndex>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcontext?language=objc)
+/// A structure that defines the context or operating environment for an allocator (CFAllocator) object. Every Core Foundation allocator object must have a context defined for it.
+///
+/// ## Overview
+///
+/// See the [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i) topic for information on creating a custom CFAllocator object and, as part of that procedure, the steps for creating a properly initialized `CFAllocatorContext` structure.
+///
+///
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -3424,7 +3613,13 @@ unsafe impl RefEncode for CFAllocatorContext {
 }
 
 unsafe impl ConcreteType for CFAllocator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgettypeid()?language=objc)
+    /// Returns the type identifier for the CFAllocator opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFAllocator opaque type.
+    ///
+    ///
     #[doc(alias = "CFAllocatorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -3436,7 +3631,21 @@ unsafe impl ConcreteType for CFAllocator {
 }
 
 impl CFAllocator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorsetdefault(_:)?language=objc)
+    /// Sets the given allocator as the default for the current thread.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to set as the default for the current thread.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `CFAllocatorSetDefault` function sets the allocator that is used in the current thread whenever `NULL` is specified as an allocator argument. Generally, most allocations use the default allocator. Because of this, the default allocator must be prepared to deal with arbitrary memory-allocation requests. In addition, the size and number of requests can change between releases.
+    ///
+    /// A further characteristic of the default allocator is that it can never be released, even if another allocator replaces it as the default. Not only is it impractical to release a default allocator (because there might be caches created somewhere that refer to the allocator) but it is generally safer and more efficient to keep it around.
+    ///
+    /// If you wish to use a custom allocator in a context, the best approach is to specify it in the first parameter of creation functions rather than to set it as the default. Generally, setting the default allocator is not encouraged. If you do set an allocator as the default, either do it for the life time of your application or do it in a nested fashion (that is, restore the previous allocator before you exit your context). The latter approach might be more appropriate for plug-ins or libraries that wish to set the default allocator.
+    ///
+    ///
     #[doc(alias = "CFAllocatorSetDefault")]
     #[inline]
     pub fn set_default(allocator: Option<&CFAllocator>) {
@@ -3446,7 +3655,19 @@ impl CFAllocator {
         unsafe { CFAllocatorSetDefault(allocator) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgetdefault()?language=objc)
+    /// Gets the default allocator object for the current thread.
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the default allocator for the current thread. If none has been explicitly set, returns the generic system allocator, [`kCFAllocatorSystemDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatorsystemdefault). Ownership follows [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the discussion for [`CFAllocatorSetDefault`](https://developer.apple.com/documentation/corefoundation/cfallocatorsetdefault(_:)) for more detail on the default allocator and for advice on how and when to set a custom allocator as the default.
+    ///
+    ///
     #[doc(alias = "CFAllocatorGetDefault")]
     #[inline]
     pub fn default() -> Option<CFRetained<CFAllocator>> {
@@ -3457,7 +3678,25 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcreate(_:_:)?language=objc)
+    /// Creates an allocator object.
+    ///
+    /// Parameters:
+    /// - allocator: The existing allocator to use to allocate memory for the new allocator. Pass the [`kCFAllocatorUseContext`](https://developer.apple.com/documentation/corefoundation/kcfallocatorusecontext) constant for this parameter to allocate memory using the appropriate function callback specified in the `context` parameter. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to allocate memory for the new allocator using the default allocator.
+    ///
+    /// - context: A structure of type [`CFAllocatorContext`](https://developer.apple.com/documentation/corefoundation/cfallocatorcontext). The fields of this structure hold (among other things) function pointers to callbacks used for allocating, reallocating, and deallocating memory.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new allocator object, or `NULL` if there was a problem allocating memory. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create custom allocators which you can then pass into various Core Foundation object-creation functions. You must implement a function callback that allocates memory and assign it to the `allocate` field of this structure. You typically also implement deallocate, reallocate, and preferred-size callbacks.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3479,8 +3718,6 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcreatewithzone?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3502,8 +3739,6 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatetyped(_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -3526,8 +3761,6 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateTyped(allocator, size, descriptor, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocatetyped(_:_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3553,7 +3786,6 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocateTyped(allocator, ptr, newsize, descriptor, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatebytes(_:_:_:)?language=objc)
     #[doc(alias = "CFAllocatorAllocateBytes")]
     #[inline]
     pub fn allocate_bytes(
@@ -3571,8 +3803,6 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocateBytes(allocator, size, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocatebytes(_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -3596,7 +3826,21 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocateBytes(allocator, ptr, newsize, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocate(_:_:_:)?language=objc)
+    /// Allocates memory using the specified allocator.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate the memory. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - size: The size of the memory to allocate.
+    ///
+    /// - hint: A bitfield containing flags that suggest how memory is to be allocated. `0` indicates no hints. No hints are currently defined, so only `0` should be passed for this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the newly allocated memory.
+    ///
+    ///
     #[doc(alias = "CFAllocatorAllocate")]
     #[inline]
     pub fn allocate(
@@ -3614,7 +3858,39 @@ impl CFAllocator {
         unsafe { CFAllocatorAllocate(allocator, size, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorreallocate(_:_:_:_:)?language=objc)
+    /// Reallocates memory using the specified allocator.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for reallocating memory. Pass `NULL` to request the default allocator.
+    ///
+    /// - ptr: An untyped pointer to a block of memory to reallocate to a new size. If `ptr` is `NULL` and `newsize` is greater than 0, memory is allocated (using the `allocate` function callback of the allocator’s context). If `ptr` is `NULL` and `newsize` is 0, the result is `NULL`.
+    ///
+    /// - newsize: The number of bytes to allocate. If you pass `0` and the `ptr` parameter is non-`NULL`, the block of memory that `ptr` points to is typically deallocated. If you pass 0 for this parameter and the `ptr` parameter is `NULL`, nothing happens and the result returned is `NULL`.
+    ///
+    /// - hint: A bitfield of type `CFOptionsFlags`. Pass flags to the allocator that suggest how memory is to be allocated. Zero indicates no hints. No hints are currently defined, only `0` should be passed for this argument.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `CFAllocatorReallocate` function’s primary purpose is to reallocate a block of memory to a new (and usually larger) size. However, based on the values passed in certain of the parameters, this function can also allocate memory afresh or deallocate a given block of memory. The following summarizes the semantic combinations:
+    ///
+    /// - If the `ptr` parameter is non- `NULL` and the `newsize` parameter is greater than `0`, the behavior is to reallocate.
+    ///
+    /// - If the `ptr` parameter is `NULL` and the `newsize` parameter is greater than `0`, the behavior is to allocate.
+    ///
+    /// - If the `ptr` parameter is non- `NULL` and the `newsize` parameter is `0`, the behavior is to deallocate.
+    ///
+    /// The result of the `CFAllocatorReallocate` function is either an untyped pointer to a block of memory or `NULL`. A `NULL` result indicates either a failure to allocate memory or some other outcome, the precise interpretation of which is determined by the values of certain parameters and the presence or absence of callbacks in the allocator context. To summarize, a `NULL` result can mean one of the following:
+    ///
+    /// - An error occurred in the attempt to allocate memory, such as insufficient free space.
+    ///
+    /// - No `allocate`, `reallocate`, or `deallocate` function callback (depending on parameters) was defined in the allocator context.
+    ///
+    /// - The semantic operation is “deallocate” (that is, there is no need to return anything).
+    ///
+    /// - The `ptr` parameter is `NULL` and the requested size is 0.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3639,7 +3915,23 @@ impl CFAllocator {
         unsafe { CFAllocatorReallocate(allocator, ptr, newsize, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatordeallocate(_:_:)?language=objc)
+    /// Deallocates a block of memory with a given allocator.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that was used to allocate the block of memory pointed to by `ptr`.
+    ///
+    /// - ptr: An untyped pointer to a block of memory to deallocate using `allocator`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the allocator does not specify a `deallocate` callback function, the memory is not deallocated.
+    ///
+    /// ### Special Considerations
+    ///
+    /// You must use the same allocator to deallocate memory as was used to allocate it.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3654,7 +3946,31 @@ impl CFAllocator {
         unsafe { CFAllocatorDeallocate(allocator, ptr) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgetpreferredsizeforsize(_:_:_:)?language=objc)
+    /// Obtains the number of bytes likely to be allocated upon a specific request.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use, or `NULL` for the default allocator.
+    ///
+    /// - size: The number of bytes to allocate. If the value is `0` or less, the result is the same value.
+    ///
+    /// - hint: A bitfield of type `CFOptionsFlags`. Pass flags to the allocator that suggest how memory is to be allocated. `0` indicates no hints. No hints are currently defined, only `0` should be passed for this argument.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes likely to be allocated upon a specific request.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The return value depends on the allocator’s internal allocation strategy, and will be equal to or larger than `size`. Calling this function may help you better match your memory allocation or reallocation strategy to that of the allocator.
+    ///
+    /// Note that the return value depends on the internal implementation of the allocator and the results may change from release to release or from platform to platform.
+    ///
+    /// If no function callback is assigned to the `preferredSize` field of the allocator’s context (see the `CFAllocatorContext` structure), then the value of `size` is returned.
+    ///
+    ///
     #[doc(alias = "CFAllocatorGetPreferredSizeForSize")]
     #[inline]
     pub fn preferred_size_for_size(
@@ -3672,7 +3988,19 @@ impl CFAllocator {
         unsafe { CFAllocatorGetPreferredSizeForSize(allocator, size, hint) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorgetcontext(_:_:)?language=objc)
+    /// Obtains the context of the specified allocator or of the default allocator.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to examine. Pass `NULL` to obtain the context of the default allocator.
+    ///
+    /// - context: On return, contains the context of `allocator`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An allocator’s context, a structure of type `CFAllocatorContext`, holds pointers to various function callbacks (particularly those that allocate, reallocate, and deallocate memory for an object). The context also contains a version number and the `info` field for program-defined data. To obtain the value of the `info` field you usually first have to get an allocator’s context.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -3691,7 +4019,23 @@ impl CFAllocator {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)?language=objc)
+/// Returns the unique identifier of an opaque type to which a Core Foundation object belongs.
+///
+/// Parameters:
+/// - cf: The CFType object to examine.
+///
+///
+/// ## Return Value
+///
+/// A value of type [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) that identifies the opaque type of `cf`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns a value that uniquely identifies the opaque type of any Core Foundation object. You can compare this value with the known [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained with a “GetTypeID” function specific to a type, for example [`CFDateGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfdategettypeid()). These values might change from release to release or platform to platform.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
     extern "C-unwind" {
@@ -3700,7 +4044,23 @@ pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
     unsafe { CFGetTypeID(cf) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcopytypeiddescription(_:)?language=objc)
+/// Returns a textual description of a Core Foundation type, as identified by its type ID, which can be used when debugging.
+///
+/// Parameters:
+/// - type_id: An integer of type [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) that uniquely identifies a Core Foundation opaque type.
+///
+///
+/// ## Return Value
+///
+/// A string containing a type description. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// You can use this function for debugging Core Foundation objects in your code. Note, however, that the description for a given object may be different in different releases of the operating system. Do _not_  create dependencies in your code on the content or format of the information returned by this function.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFCopyTypeIDDescription(
     type_id: CFTypeID,
@@ -3712,7 +4072,25 @@ pub extern "C-unwind" fn CFCopyTypeIDDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgetretaincount(_:)?language=objc)
+/// Returns the reference count of a Core Foundation object.
+///
+/// Parameters:
+/// - cf: The CFType object to examine.
+///
+///
+/// ## Return Value
+///
+/// A number representing the reference count of `cf`.
+///
+///
+///
+/// ## Discussion
+///
+/// You increment the reference count using the [`CFRetain`](https://developer.apple.com/documentation/corefoundation/cfretain) function, and decrement the reference count using the [`CFRelease`](https://developer.apple.com/documentation/corefoundation/cfrelease) function.
+///
+/// This function may be useful for debugging memory leaks. You normally do not use this function, otherwise.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
     extern "C-unwind" {
@@ -3721,7 +4099,25 @@ pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
     unsafe { CFGetRetainCount(cf) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)?language=objc)
+/// Determines whether two Core Foundation objects are considered equal.
+///
+/// Parameters:
+/// - cf1: A CFType object to compare to `cf2`.
+///
+/// - cf2: A CFType object to compare to `cf1`.
+///
+///
+/// ## Return Value
+///
+/// `true` if `cf1` and `cf2` are of the same type and considered equal, otherwise `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// Equality is something specific to each Core Foundation opaque type. For example, two CFNumber objects are equal if the numeric values they represent are equal. Two CFString objects are equal if they represent identical sequences of characters, regardless of encoding.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> bool {
     extern "C-unwind" {
@@ -3731,7 +4127,25 @@ pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> 
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfhash(_:)?language=objc)
+/// Returns a code that can be used to identify an object in a hashing structure.
+///
+/// Parameters:
+/// - cf: A CFType object to examine.
+///
+///
+/// ## Return Value
+///
+/// An integer of type [`CFHashCode`](https://developer.apple.com/documentation/corefoundation/cfhashcode) that represents a hashing value for `cf`.
+///
+///
+///
+/// ## Discussion
+///
+/// Two objects that are equal (as determined by the [`CFEqual`](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)) function) have the same hashing value. However, the converse is not true: two objects with the same hashing value might not be equal. That is, hashing values are not necessarily unique.
+///
+/// The hashing value for an object might change from release to release or from platform to platform.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
     extern "C-unwind" {
@@ -3740,7 +4154,25 @@ pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
     unsafe { CFHash(cf) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)?language=objc)
+/// Returns a textual description of a Core Foundation object.
+///
+/// Parameters:
+/// - cf: The CFType object (a generic reference of type [`CFTypeRef`](https://developer.apple.com/documentation/corefoundation/cftyperef)) from which to derive a description.
+///
+///
+/// ## Return Value
+///
+/// A string that contains a description of `cf`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// The nature of the description differs by object. For example, a description of a CFArray object would include descriptions of each of the elements in the collection.
+///
+/// You can use this function for debugging Core Foundation objects in your code. Note, however, that the description for a given object may be different in different releases of the operating system. Do _not_  create dependencies in your code on the content or format of the information returned by this function.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -3750,7 +4182,23 @@ pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFReta
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgetallocator(_:)?language=objc)
+/// Returns the allocator used to allocate a Core Foundation object.
+///
+/// Parameters:
+/// - cf: The CFType object to examine.
+///
+///
+/// ## Return Value
+///
+/// The allocator used to allocate memory for `cf`.
+///
+///
+///
+/// ## Discussion
+///
+/// When you are creating a Core Foundation object sometimes you want to ensure that the block of memory allocated for the object is from the same allocator used for another object. One way to do this is to reuse the allocator assigned to an existing Core Foundation object when you call a “creation” function.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFGetAllocator(cf: Option<&CFType>) -> Option<CFRetained<CFAllocator>> {
     extern "C-unwind" {

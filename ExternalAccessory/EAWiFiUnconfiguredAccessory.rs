@@ -6,25 +6,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options that can be combined using the C bitwise `OR` operator to represent the properties of an unconfigured accessory.
 /// EAWiFiUnconfiguredAccessoryProperties
 ///
 ///
 /// Represents the properties of an EAWiFiUnconfiguredAccessory.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl EAWiFiUnconfiguredAccessoryProperties: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties/propertysupportsairplay?language=objc)
+/// The accessory indicates that it supports AirPlay.
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsAirPlay")]
         const SupportsAirPlay = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties/propertysupportsairprint?language=objc)
+/// The accessory indicates that it supports AirPrint.
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsAirPrint")]
         const SupportsAirPrint = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryproperties/propertysupportshomekit?language=objc)
+/// The accessory indicates that it supports HomeKit.
         #[doc(alias = "EAWiFiUnconfiguredAccessoryPropertySupportsHomeKit")]
         const SupportsHomeKit = 1<<2;
     }
@@ -39,13 +38,12 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryProperties {
 }
 
 extern_class!(
+    /// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
     /// Object representing an unconfigured MFi Wireless Accessory Configuration (WAC) accessory.
     ///
     ///
     /// This class models an unconfigured MFi Wireless Accessory Configuration accessory
     /// discovered via a EAWiFiUnconfiguredAccessoryBrowser search.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAWiFiUnconfiguredAccessory;

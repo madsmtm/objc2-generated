@@ -16,9 +16,45 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// QLPreviewReplyAttachment is used to provide data for attachment in html data-based previews.
+    /// An attachment for a Quick Look preview reply that provides additional content for the system to display a preview.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewreplyattachment?language=objc)
+    /// ## Overview
+    ///
+    /// When providing a data-based Quick Look preview with HTML, use [`QLPreviewReplyAttachment`](https://developer.apple.com/documentation/quicklookui/qlpreviewreplyattachment) to include images, CSS, and other linked content in the HTML of the preview.
+    ///
+    /// Reference content in your html using the `CID` notation for the reference. For instance, if your HTML preview response includes an image, create a [`QLPreviewReplyAttachment`](https://developer.apple.com/documentation/quicklookui/qlpreviewreplyattachment) with the image, add it the reply’s [`attachments`](https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments) with an associated string, and reference the image with the associated string, prefixed by `cid:`. The following example illustrates returning HTML as a preview reply with an image as an attachment:
+    ///
+    /// ```swift
+    /// let reply = QLPreviewReply(dataOfContentType: .html,
+    ///                            contentSize: CGSize(width: 750, height: 500)) { htmlReply in
+    ///     let content = """
+    ///                   <html>
+    ///                   <head></head>
+    ///                   <body>
+    ///                   <h1>Preview</h1>
+    ///                   <img src=\"cid:exampleImage\" width=\"400\">
+    ///                   </body>
+    ///                   </html>
+    ///                   """
+    ///     guard let contentData = content.data(using: .utf8) else {
+    ///         throw PreviewError.previewSetupFailure("Unable to encode preview content")
+    ///     }
+    ///     guard let imageFileURL = Bundle.main.url(forResource: "yourImage",
+    ///                                              withExtension: "jpg") else {
+    ///         throw PreviewError.previewSetupFailure("unable to load image")
+    ///     }
+    ///     let imageData = try Data(contentsOf: imageFileURL)
+    ///     
+    ///     htmlReply.attachments["exampleImage"] = QLPreviewReplyAttachment(data: imageData,
+    ///                                                                      contentType: .jpeg)
+    ///     return contentData
+    /// }
+    /// reply.title = "HTML Preview Example"
+    ///
+    /// ```
+    ///
+    ///
+    /// QLPreviewReplyAttachment is used to provide data for attachment in html data-based previews.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLPreviewReplyAttachment;
@@ -71,9 +107,14 @@ impl QLPreviewReplyAttachment {
 }
 
 extern_class!(
-    /// To provide a data-based preview, you have to return a QLPreviewReply object.
+    /// The class you create when providing a data-based Quick Look preview extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewreply?language=objc)
+    /// ## Overview
+    ///
+    /// Create an instance of [`QLPreviewReply`](https://developer.apple.com/documentation/quicklookui/qlpreviewreply) from the method [`providePreviewForFileRequest:completionHandler:`](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller/providepreview(for:completionhandler:)) in your subclass of [`QLPreviewProvider`](https://developer.apple.com/documentation/quicklookui/qlpreviewprovider). Create an instance to return data; for example, an image, PDF, or HTML; that the system displays as the preview for the content that the system indicates with [`QLFilePreviewRequest`](https://developer.apple.com/documentation/quicklookui/qlfilepreviewrequest).
+    ///
+    ///
+    /// To provide a data-based preview, you have to return a QLPreviewReply object.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLPreviewReply;

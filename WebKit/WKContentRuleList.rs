@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkcontentrulelist?language=objc)
+    /// A compiled list of rules to apply to web content.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKContentRuleList`](https://developer.apple.com/documentation/webkit/wkcontentrulelist) object represents a compiled set of rules for modifying how a webpage loads content. You don’t create a [`WKContentRuleList`](https://developer.apple.com/documentation/webkit/wkcontentrulelist) directly. Instead, you specify your rules in JSON format and compile them using the [`compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:`](https://developer.apple.com/documentation/webkit/wkcontentruleliststore/compilecontentrulelist(foridentifier:encodedcontentrulelist:completionhandler:)) method of [`WKContentRuleListStore`](https://developer.apple.com/documentation/webkit/wkcontentruleliststore). That method compiles your rules into an efficient byte format and returns them in an instance of this class.
+    ///
+    /// Content rule lists use the same syntax as content blocker extensions in Safari. For more information on how to specify the JSON for your rule lists, see [Creating a content blocker](https://developer.apple.com/documentation/safariservices/creating-a-content-blocker).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

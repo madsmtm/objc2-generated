@@ -9,7 +9,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicubictimingparameters?language=objc)
+    /// The timing information for animations in the form of a cubic Bézier curve.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UICubicTimingParameters`](https://developer.apple.com/documentation/uikit/uicubictimingparameters) object to specify custom timing curves when creating animations with objects that adopt the [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) protocol, such as [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator).
+    ///
+    /// A cubic Bézier timing curve consists of a line whose starting point is (`0`, `0`), whose end point is (`1`, `1`), and whose shape is defined by two control points. The slope of the line at each point in time defines the speed of the animation at that time. Steep slopes cause animations to appear to run faster and shallower slopes cause them to appear to run slower. The following graph shows a timing curve where the animations start fast and finish fast but run more slowly through the middle section.
+    ///
+    ///
+    /// ![A graph that shows a cubic Bézier timing curve.](https://docs-assets.developer.apple.com/published/0054ab7fbcfb5dc1810282e7c7d2a202/media-1965827%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -97,7 +109,15 @@ impl UICubicTimingParameters {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringtimingparameters?language=objc)
+    /// The timing information for animations that mimics the behavior of a spring.
+    ///
+    /// ## Overview
+    ///
+    /// The timing provided by a [`UISpringTimingParameters`](https://developer.apple.com/documentation/uikit/uispringtimingparameters) object mimics the behavior of a spring acting on the value of the property being animated. This property’s value accelerates toward its final value according to the relative force of the spring, which you configure. It then oscillates around that final value until it comes to a rest. The speed at which a property animates to its new value is based on the initial velocity of the value and the damping ratio applied to the spring. You can specify those values directly or using analogous spring-related values.
+    ///
+    /// Use instances of this class to specify custom timing curves when creating animations with objects that adopt the [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) protocol, such as [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator). Spring animations are commonly used to modify a view’s position onscreen, but you can apply the timing to any of the view’s properties to get a similar type of animation timing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

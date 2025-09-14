@@ -10,7 +10,15 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshanchor?language=objc)
+    /// An anchor for a physical object that ARKit detects and recreates virtually using a polygonal mesh.
+    ///
+    /// ## Overview
+    ///
+    /// ARKit subdivides the reconstructed, real-world scene surrounding the user into mesh anchors.
+    ///
+    /// Mesh anchors constantly update their data as ARKit refines its understanding of the real world. Although ARKit updates a mesh to reflect a change in the physical environment (such as when a person pulls out a chair), the mesh’s subsequent change is not intended to reflect in real time.
+    ///
+    ///
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype?language=objc)
+/// The modes that determine how the model defines a feature’s image size constraint.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLImageSizeConstraintType(pub NSInteger);
 impl MLImageSizeConstraintType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype/unspecified?language=objc)
+    /// The image size constraint is not configured and should be ignored.
     #[doc(alias = "MLImageSizeConstraintTypeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype/enumerated?language=objc)
+    /// The image feature accepts image sizes listed in an array.
     #[doc(alias = "MLImageSizeConstraintTypeEnumerated")]
     pub const Enumerated: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype/range?language=objc)
+    /// The image feature accepts image sizes defined by a range of widths and a range of heights.
     #[doc(alias = "MLImageSizeConstraintTypeRange")]
     pub const Range: Self = Self(3);
 }

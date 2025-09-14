@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An event that fires at a specified time.
     /// A calendar event which fires at an absolute time. It can also be used to set up a recurring events which will fire at a scheduled time.
     ///
     ///
@@ -16,8 +17,6 @@ extern_class!(
     /// Minutes are used. Other NSDateComponents such as
     /// year, weekday, quarter, week of the year / month are not used in calculation for next fire date.
     /// If its expected to fire on the same day, it should be at least 1 minute ahead or it could get scheduled for the next recurrent day.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcalendarevent?language=objc)
     #[unsafe(super(HMTimeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
@@ -115,9 +114,8 @@ impl HMCalendarEvent {
 }
 
 extern_class!(
+    /// A mutable event that fires at a specified time.
     /// This class is used to represent a calendar event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutablecalendarevent?language=objc)
     #[unsafe(super(HMCalendarEvent, HMTimeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]

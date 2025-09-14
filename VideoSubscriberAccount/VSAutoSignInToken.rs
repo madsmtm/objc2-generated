@@ -7,7 +7,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosignintoken?language=objc)
+    /// A value that represents a person’s account and their consent to Automatic Sign-In.
+    ///
+    /// ## Overview
+    ///
+    /// Automatic Sign-In tokens implement a single sign-on experience for media streaming services for a signed-in Apple Account.
+    ///
+    /// The framework sets [`autoSignInToken`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/autosignintoken-swift.property) to an instance of this structure. The source of the information inside depends on whether the person approves the prompt to opt in to Automatic Sign-In. For more information, see [`requestAutoSignInAuthorization()`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/requestautosigninauthorization()).
+    ///
+    /// Alternatively, if you delete the token value by calling [`deleteAutoSignInToken()`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/deleteautosignintoken()), the framework sets [`value`](https://developer.apple.com/documentation/videosubscriberaccount/vsautosignintoken/value) to `nil` and [`authorization`](https://developer.apple.com/documentation/videosubscriberaccount/vsautosignintoken/authorization) to [`VSUserAccountManager.AutoSignInAuthorization.notDetermined`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/autosigninauthorization/notdetermined).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Only use an Automatic Sign-In token to turn on media streaming. For example, avoid using the token itself as a gate that lets the person manage their account.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information about Automatic Sign-In tokens, see [Signing people in to their media accounts automatically](https://developer.apple.com/documentation/videosubscriberaccount/signing-people-in-to-media-apps-automatically).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAutoSignInToken;

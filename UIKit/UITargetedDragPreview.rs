@@ -9,7 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragpreviewtarget?language=objc)
+    /// A geometric specification for the source or destination of a drag item preview, used by the system when a user drops items or cancels a drag activity.
     #[unsafe(super(UIPreviewTarget, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -79,7 +79,7 @@ impl UIDragPreviewTarget {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitargeteddragpreview?language=objc)
+    /// A drag item preview used by the system during lift, drop, or cancellation animation.
     #[unsafe(super(UITargetedPreview, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

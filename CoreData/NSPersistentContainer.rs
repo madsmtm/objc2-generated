@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcontainer?language=objc)
+    /// A container that encapsulates the Core Data stack in your app.
+    ///
+    /// ## Overview
+    ///
+    /// NSPersistentContainer simplifies the creation and management of the Core Data stack by handling the creation of the managed object model ([`NSManagedObjectModel`](https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel)), persistent store coordinator ([`NSPersistentStoreCoordinator`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator)), and the managed object context ([`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentContainer;

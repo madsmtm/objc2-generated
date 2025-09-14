@@ -8,14 +8,10 @@ use crate::*;
 /// CMIODevice is the base class for all objects that represent a CMIO device.
 ///
 /// CMIODevice is a subclass of CMIOObject. CMIODevices normally contain CMIOStreams and CMIOControls.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceid?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIODeviceID = CMIOObjectID;
 
 /// A CMIODevicePropertyID is an integer that identifies a specific piece of information about the object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicepropertyid?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIODevicePropertyID = CMIOObjectPropertySelector;
 
@@ -24,8 +20,6 @@ pub type CMIODevicePropertyID = CMIOObjectPropertySelector;
 /// The number of streams being described.
 /// Field: mNumberChannels
 /// An array of UInt32's whose length is specified by mNumberStreams. Each element of the array corresponds to a stream and indicates the number of channels it has.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestreamconfiguration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceStreamConfiguration {
@@ -57,8 +51,6 @@ unsafe impl RefEncode for CMIODeviceStreamConfiguration {
 /// The size (in bytes) of the mResponse buffer.
 /// Field: mResponseUsed
 /// The size (in bytes) of the actual number response bytes returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceavccommand?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceAVCCommand {
@@ -98,8 +90,6 @@ unsafe impl RefEncode for CMIODeviceAVCCommand {
 /// The size (in bytes) of the mResponse buffer.
 /// Field: mResponseUsed
 /// The size (in bytes) of the actual number response bytes returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicers422command?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMIODeviceRS422Command {
@@ -145,8 +135,6 @@ unsafe impl RefEncode for CMIODeviceRS422Command {
 /// Parameter `tolerance`: The maximum amount of jitter expected in the frame count. Differences observed outside of this value are an indication of dropped data.
 ///
 /// Returns: An OSStatus indicating success or failure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicegetsmptetimeproc?language=objc)
 pub type CMIODeviceGetSMPTETimeProc =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut u64, *mut Boolean, *mut u32) -> OSStatus>;
 
@@ -155,8 +143,6 @@ pub type CMIODeviceGetSMPTETimeProc =
 /// The CMIODeviceGetSMPTETimeProc to invoke when SMPTE timecode information is needed.
 /// Field: mRefCon
 /// Client supplied private provided when the kCMIODevicePropertySMPTETimeCallback property was set.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicesmptetimecallback?language=objc)
 #[repr(C, packed(4))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -179,199 +165,105 @@ unsafe impl RefEncode for CMIODeviceSMPTETimeCallback {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyscopeinput?language=objc)
 pub const kCMIODevicePropertyScopeInput: c_uint = 0x696e7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyscopeoutput?language=objc)
 pub const kCMIODevicePropertyScopeOutput: c_uint = 0x6f757470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyscopeplaythrough?language=objc)
 pub const kCMIODevicePropertyScopePlayThrough: c_uint = 0x70747275;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceclassid?language=objc)
 pub const kCMIODeviceClassID: c_uint = 0x61646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceunknown?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub const kCMIODeviceUnknown: c_uint = kCMIOObjectUnknown;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_unknown?language=objc)
 pub const kCMIOAVCDeviceType_Unknown: c_uint = 0x756e6b6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dv_ntsc?language=objc)
 pub const kCMIOAVCDeviceType_DV_NTSC: c_uint = 0x64766320;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dv_pal?language=objc)
 pub const kCMIOAVCDeviceType_DV_PAL: c_uint = 0x64766370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro_ntsc?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro_NTSC: c_uint = 0x6476706e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro_pal?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro_PAL: c_uint = 0x64767070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro50_ntsc?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro50_NTSC: c_uint = 0x6476356e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro50_pal?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro50_PAL: c_uint = 0x64763570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro100_ntsc?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro100_NTSC: c_uint = 0x6476316e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro100_pal?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro100_PAL: c_uint = 0x64763170;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcpro100_720p?language=objc)
 pub const kCMIOAVCDeviceType_DVCPro100_720p: c_uint = 0x64766870;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcprohd_1080i50?language=objc)
 pub const kCMIOAVCDeviceType_DVCProHD_1080i50: c_uint = 0x64766835;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_dvcprohd_1080i60?language=objc)
 pub const kCMIOAVCDeviceType_DVCProHD_1080i60: c_uint = 0x64766836;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioavcdevicetype_mpeg2?language=objc)
 pub const kCMIOAVCDeviceType_MPEG2: c_uint = 0x6d706732;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodesd525_60?language=objc)
 pub const kCMIODeviceAVCSignalModeSD525_60: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodesdl525_60?language=objc)
 pub const kCMIODeviceAVCSignalModeSDL525_60: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehd1125_60?language=objc)
 pub const kCMIODeviceAVCSignalModeHD1125_60: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodesd625_50?language=objc)
 pub const kCMIODeviceAVCSignalModeSD625_50: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodesdl625_50?language=objc)
 pub const kCMIODeviceAVCSignalModeSDL625_50: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehd1250_50?language=objc)
 pub const kCMIODeviceAVCSignalModeHD1250_50: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodempeg25mbps_60?language=objc)
 pub const kCMIODeviceAVCSignalModeMPEG25Mbps_60: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehdv1_60?language=objc)
 pub const kCMIODeviceAVCSignalModeHDV1_60: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodempeg12mbps_60?language=objc)
 pub const kCMIODeviceAVCSignalModeMPEG12Mbps_60: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodempeg6mbps_60?language=objc)
 pub const kCMIODeviceAVCSignalModeMPEG6Mbps_60: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodempeg25mbps_50?language=objc)
 pub const kCMIODeviceAVCSignalModeMPEG25Mbps_50: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehdv1_50?language=objc)
 pub const kCMIODeviceAVCSignalModeHDV1_50: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodempeg12mbps_50?language=objc)
 pub const kCMIODeviceAVCSignalModeMPEG12Mbps_50: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodempeg6mbps_50?language=objc)
 pub const kCMIODeviceAVCSignalModeMPEG6Mbps_50: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvhs?language=objc)
 pub const kCMIODeviceAVCSignalModeDVHS: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodevhsntsc?language=objc)
 pub const kCMIODeviceAVCSignalModeVHSNTSC: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodevhsmpal?language=objc)
 pub const kCMIODeviceAVCSignalModeVHSMPAL: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodevhspal?language=objc)
 pub const kCMIODeviceAVCSignalModeVHSPAL: c_uint = 0xa5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodevhsnpal?language=objc)
 pub const kCMIODeviceAVCSignalModeVHSNPAL: c_uint = 0xb5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodevhssecam?language=objc)
 pub const kCMIODeviceAVCSignalModeVHSSECAM: c_uint = 0xc5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodevhsmesecam?language=objc)
 pub const kCMIODeviceAVCSignalModeVHSMESECAM: c_uint = 0xd5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodesvhs525_60?language=objc)
 pub const kCMIODeviceAVCSignalModeSVHS525_60: c_uint = 0x0d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodesvhs625_50?language=objc)
 pub const kCMIODeviceAVCSignalModeSVHS625_50: c_uint = 0xed;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmode8mmntsc?language=objc)
 pub const kCMIODeviceAVCSignalMode8mmNTSC: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmode8mmpal?language=objc)
 pub const kCMIODeviceAVCSignalMode8mmPAL: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehi8ntsc?language=objc)
 pub const kCMIODeviceAVCSignalModeHi8NTSC: c_uint = 0x0e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehi8pal?language=objc)
 pub const kCMIODeviceAVCSignalModeHi8PAL: c_uint = 0x8e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodemicromv12mbps_60?language=objc)
 pub const kCMIODeviceAVCSignalModeMicroMV12Mbps_60: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodemicromv6mbps_60?language=objc)
 pub const kCMIODeviceAVCSignalModeMicroMV6Mbps_60: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodemicromv12mbps_50?language=objc)
 pub const kCMIODeviceAVCSignalModeMicroMV12Mbps_50: c_uint = 0xA4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodemicromv6mbps_50?language=objc)
 pub const kCMIODeviceAVCSignalModeMicroMV6Mbps_50: c_uint = 0xA8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodeaudio?language=objc)
 pub const kCMIODeviceAVCSignalModeAudio: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehdv2_60?language=objc)
 pub const kCMIODeviceAVCSignalModeHDV2_60: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodehdv2_50?language=objc)
 pub const kCMIODeviceAVCSignalModeHDV2_50: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvcpro25_625_50?language=objc)
 pub const kCMIODeviceAVCSignalModeDVCPro25_625_50: c_uint = 0xF8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvcpro25_525_60?language=objc)
 pub const kCMIODeviceAVCSignalModeDVCPro25_525_60: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvcpro50_625_50?language=objc)
 pub const kCMIODeviceAVCSignalModeDVCPro50_625_50: c_uint = 0xF4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvcpro50_525_60?language=objc)
 pub const kCMIODeviceAVCSignalModeDVCPro50_525_60: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvcpro100_50?language=objc)
 pub const kCMIODeviceAVCSignalModeDVCPro100_50: c_uint = 0xF0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeviceavcsignalmodedvcpro100_60?language=objc)
 pub const kCMIODeviceAVCSignalModeDVCPro100_60: c_uint = 0x70;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyplugin?language=objc)
 pub const kCMIODevicePropertyPlugIn: c_uint = 0x706c7567;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydeviceuid?language=objc)
 pub const kCMIODevicePropertyDeviceUID: c_uint = 0x75696420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertymodeluid?language=objc)
 pub const kCMIODevicePropertyModelUID: c_uint = 0x6d756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertytransporttype?language=objc)
 pub const kCMIODevicePropertyTransportType: c_uint = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydeviceisalive?language=objc)
 pub const kCMIODevicePropertyDeviceIsAlive: c_uint = 0x6c69766e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydevicehaschanged?language=objc)
 pub const kCMIODevicePropertyDeviceHasChanged: c_uint = 0x64696666;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydeviceisrunning?language=objc)
 pub const kCMIODevicePropertyDeviceIsRunning: c_uint = 0x676f696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydeviceisrunningsomewhere?language=objc)
 pub const kCMIODevicePropertyDeviceIsRunningSomewhere: c_uint = 0x676f6e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydevicecanbedefaultdevice?language=objc)
 pub const kCMIODevicePropertyDeviceCanBeDefaultDevice: c_uint = 0x64666c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyhogmode?language=objc)
 pub const kCMIODevicePropertyHogMode: c_uint = 0x6f696e6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylatency?language=objc)
 pub const kCMIODevicePropertyLatency: c_uint = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertystreams?language=objc)
 pub const kCMIODevicePropertyStreams: c_uint = 0x73746d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertystreamconfiguration?language=objc)
 pub const kCMIODevicePropertyStreamConfiguration: c_uint = 0x736c6179;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydevicecontrol?language=objc)
 pub const kCMIODevicePropertyDeviceControl: c_uint = 0x706d6e68;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydevicemaster?language=objc)
 #[deprecated]
 pub const kCMIODevicePropertyDeviceMaster: c_uint = kCMIODevicePropertyDeviceControl;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyexcludenondalaccess?language=objc)
 pub const kCMIODevicePropertyExcludeNonDALAccess: c_uint = 0x69786e61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyclientsyncdiscontinuity?language=objc)
 pub const kCMIODevicePropertyClientSyncDiscontinuity: c_uint = 0x706d6373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertysmptetimecallback?language=objc)
 pub const kCMIODevicePropertySMPTETimeCallback: c_uint = 0x706d7363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertycanprocessavccommand?language=objc)
 pub const kCMIODevicePropertyCanProcessAVCCommand: c_uint = 0x706d6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyavcdevicetype?language=objc)
 pub const kCMIODevicePropertyAVCDeviceType: c_uint = 0x706d6174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyavcdevicesignalmode?language=objc)
 pub const kCMIODevicePropertyAVCDeviceSignalMode: c_uint = 0x706d736d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertycanprocessrs422command?language=objc)
 pub const kCMIODevicePropertyCanProcessRS422Command: c_uint = 0x72343232;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylinkedcoreaudiodeviceuid?language=objc)
 pub const kCMIODevicePropertyLinkedCoreAudioDeviceUID: c_uint = 0x706c7564;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyvideodigitizercomponents?language=objc)
 pub const kCMIODevicePropertyVideoDigitizerComponents: c_uint = 0x76646967;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertysuspendedbyuser?language=objc)
 pub const kCMIODevicePropertySuspendedByUser: c_uint = 0x73627975;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylinkedandsyncedcoreaudiodeviceuid?language=objc)
 pub const kCMIODevicePropertyLinkedAndSyncedCoreAudioDeviceUID: c_uint = 0x706c7364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyiidcinitialunitspace?language=objc)
 pub const kCMIODevicePropertyIIDCInitialUnitSpace: c_uint = 0x69756e73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertyiidccsrdata?language=objc)
 pub const kCMIODevicePropertyIIDCCSRData: c_uint = 0x63737264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertycanswitchframerateswithoutframedrops?language=objc)
 pub const kCMIODevicePropertyCanSwitchFrameRatesWithoutFrameDrops: c_uint = 0x66726e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocation?language=objc)
 pub const kCMIODevicePropertyLocation: c_uint = 0x646c6f63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertydevicehasstreamingerror?language=objc)
 pub const kCMIODevicePropertyDeviceHasStreamingError: c_uint = 0x73657272;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocationunknown?language=objc)
 pub const kCMIODevicePropertyLocationUnknown: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocationbuiltindisplay?language=objc)
 pub const kCMIODevicePropertyLocationBuiltInDisplay: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocationexternaldisplay?language=objc)
 pub const kCMIODevicePropertyLocationExternalDisplay: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocationexternaldevice?language=objc)
 pub const kCMIODevicePropertyLocationExternalDevice: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodevicepropertylocationexternalwirelessdevice?language=objc)
 pub const kCMIODevicePropertyLocationExternalWirelessDevice: c_uint = 4;
 
 extern "C-unwind" {
@@ -382,8 +274,6 @@ extern "C-unwind" {
     /// Parameter `streamID`: The CMIOStream to start.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestartstream(_:_:)?language=objc)
     #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
     pub fn CMIODeviceStartStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
 }
@@ -396,8 +286,6 @@ extern "C-unwind" {
     /// Parameter `streamID`: The CMIOStream to stop.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestopstream(_:_:)?language=objc)
     #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
     pub fn CMIODeviceStopStream(device_id: CMIODeviceID, stream_id: CMIOStreamID) -> OSStatus;
 }
@@ -416,8 +304,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_avc_command` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceprocessavccommand(_:_:)?language=objc)
     #[cfg(feature = "CMIOHardwareObject")]
     pub fn CMIODeviceProcessAVCCommand(
         device_id: CMIODeviceID,
@@ -438,8 +324,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_rs422_command` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodeviceprocessrs422command(_:_:)?language=objc)
     #[cfg(feature = "CMIOHardwareObject")]
     pub fn CMIODeviceProcessRS422Command(
         device_id: CMIODeviceID,

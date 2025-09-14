@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The possible states of a Core Bluetooth manager.
 /// Represents the current state of a CBManager.
 ///
 ///
@@ -15,29 +16,39 @@ use crate::*;
 ///
 ///
 /// See also: authorization
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerState(pub NSInteger);
 impl CBManagerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/unknown?language=objc)
+    /// The manager’s state is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a temporary state. After Core Bluetooth initializes or resets, it updates the state value.
+    ///
+    ///
     #[doc(alias = "CBManagerStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/resetting?language=objc)
+    /// A state that indicates the connection with the system service was momentarily lost.
+    ///
+    /// ## Discussion
+    ///
+    /// This state indicates that Bluetooth is trying to reconnect. After it reconnects, Core Bluetooth updates the state value.
+    ///
+    ///
     #[doc(alias = "CBManagerStateResetting")]
     pub const Resetting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/unsupported?language=objc)
+    /// A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
     #[doc(alias = "CBManagerStateUnsupported")]
     pub const Unsupported: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/unauthorized?language=objc)
+    /// A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
     #[doc(alias = "CBManagerStateUnauthorized")]
     pub const Unauthorized: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/poweredoff?language=objc)
+    /// A state that indicates Bluetooth is currently powered off.
     #[doc(alias = "CBManagerStatePoweredOff")]
     pub const PoweredOff: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate/poweredon?language=objc)
+    /// A state that indicates Bluetooth is currently powered on and available to use.
     #[doc(alias = "CBManagerStatePoweredOn")]
     pub const PoweredOn: Self = Self(5);
 }
@@ -50,28 +61,33 @@ unsafe impl RefEncode for CBManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The current authorization state of a Core Bluetooth manager.
 /// Represents the current authorization state of a CBManager.
 ///
 ///
 ///
 /// possibly due to active restrictions such as parental controls being in place.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerAuthorization(pub NSInteger);
 impl CBManagerAuthorization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/notdetermined?language=objc)
+    /// A state that indicates the user has yet to authorize Bluetooth for this app.
     #[doc(alias = "CBManagerAuthorizationNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/restricted?language=objc)
+    /// A state that indicates this app isn’t authorized to use Bluetooth.
+    ///
+    /// ## Discussion
+    ///
+    /// In this state, the user can’t change the Bluetooth authorization status, possibly due to active restrictions such as parental controls.
+    ///
+    ///
     #[doc(alias = "CBManagerAuthorizationRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/denied?language=objc)
+    /// A state that indicates the user explicitly denied Bluetooth access for this app.
     #[doc(alias = "CBManagerAuthorizationDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization/allowedalways?language=objc)
+    /// A state that indicates the user has authorized Bluetooth at any time.
     #[doc(alias = "CBManagerAuthorizationAllowedAlways")]
     pub const AllowedAlways: Self = Self(3);
 }
@@ -85,7 +101,7 @@ unsafe impl RefEncode for CBManagerAuthorization {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanager?language=objc)
+    /// The abstract base class that manages central and peripheral objects.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBManager;

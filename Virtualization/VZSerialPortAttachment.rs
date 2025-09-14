@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The common behaviors for the serial attachment points of your virtual machine.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a [`VZSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzserialportattachment) object directly. Instead, instantiate a concrete subclass such as [`VZFileHandleSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzfilehandleserialportattachment) to configure how the virtual machine’s serial port connects with the host computer.
+    ///
+    ///
     /// Base class for a serial port attachment.
     ///
     /// A serial port attachment defines how the virtual machine's serial port interfaces with the host system.
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZFileHandleSerialPortAttachment
     ///
     /// See: VZFileSerialPortAttachment
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzserialportattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSerialPortAttachment;

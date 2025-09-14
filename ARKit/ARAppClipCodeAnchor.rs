@@ -9,9 +9,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// A value describing app clip code URL decoding state.
+/// The states in the process of decoding an App Clip code URL.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum?language=objc)
+/// ## Overview
+///
+/// The possible states of decoding the [`url`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/url) of an App Clip Code.
+///
+///
+/// A value describing app clip code URL decoding state.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -19,19 +24,44 @@ use crate::*;
 pub struct ARAppClipCodeURLDecodingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARAppClipCodeURLDecodingState {
-    /// App clip code tracking is attempting to decode the URL.
+    /// A state that indicates the continuing process of decoding an App Clip Code’s URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum/decoding?language=objc)
+    /// ## Discussion
+    ///
+    /// The App Clip Code anchor’s [`url`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/url) is `nil` in this state.
+    ///
+    ///
+    /// App clip code tracking is attempting to decode the URL.
     #[doc(alias = "ARAppClipCodeURLDecodingStateDecoding")]
     pub const Decoding: Self = Self(0);
-    /// App clip code tracking failed to decode the URL.
+    /// A state that indicates the failure to decode an App Clip Code’s URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum/failed?language=objc)
+    /// ## Discussion
+    ///
+    /// The decoding of an App Clip Code URL fails under these circumstances:
+    ///
+    /// - The full app or App Clip is missing the associated-domains entitlement from its code signature.
+    ///
+    /// - The host of the resource identified by the App Clip Code URL doesn’t vend an Apple App Site Association (AASA) file.
+    ///
+    /// - The AASA file hosted at the App Clip Code URL’s domain lacks the App Clip’s fully-qualified application identifier.
+    ///
+    /// - The App Clip Code is not associated to the App Clip in an App Clip experience in App Store Connect.
+    ///
+    /// For more information, see [Configuring App Clip experiences](https://developer.apple.com/documentation/appclip/configuring-the-launch-experience-of-your-app-clip).
+    ///
+    ///
+    /// App clip code tracking failed to decode the URL.
     #[doc(alias = "ARAppClipCodeURLDecodingStateFailed")]
     pub const Failed: Self = Self(1);
-    /// App clip code tracking decoded the URL.
+    /// A state that indicates the completed decoding of an App Clip Code URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum/decoded?language=objc)
+    /// ## Discussion
+    ///
+    /// The App Clip Code anchor’s [`url`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/url) is defined in this state.
+    ///
+    ///
+    /// App clip code tracking decoded the URL.
     #[doc(alias = "ARAppClipCodeURLDecodingStateDecoded")]
     pub const Decoded: Self = Self(2);
 }
@@ -48,9 +78,38 @@ unsafe impl RefEncode for ARAppClipCodeURLDecodingState {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An anchor representing an app clip code in the world.
+    /// An anchor that tracks the position and orientation of an App Clip Code in the physical environment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor?language=objc)
+    /// ## Overview
+    ///
+    /// Your App Clip gives users immediate access to critical or context-specific parts of your app’s AR experience, and makes it easy for them to download and launch your full app if they choose.
+    ///
+    /// You can use physical App Clip Codes in the real world to enable users to discover your App Clip. An App Clip Code includes a unique URL and can incorporate an NFC tag. When users hold their iPhone near the code or scan it with the camera or Code Scanner in Control Center, the system offers to launch the code’s associated App Clip.
+    ///
+    /// For more on App Clip Codes, see [`App Clips`](https://developer.apple.com/documentation/appclip). For an app that reacts to App Clip Codes in AR, see [Interacting with App Clip Codes in AR](https://developer.apple.com/documentation/appclip/interacting-with-app-clip-codes-in-ar).
+    ///
+    /// ### Distinguish Between App Clip Codes
+    ///
+    /// There may be multiple App Clip Codes visible in the camera feed that share the same [`url`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/url), so ARKit also relies on the App Clip Code’s location (see [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform)) to distinguish different App Clip Codes in the physical environment.
+    ///
+    /// When the framework recognizes an App Clip Code, it initializes an [`ARAppClipCodeAnchor`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor) and passes it to the session delegate via [`session:didAddAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didadd:)). If a recognized App Clip Code becomes obscured or is no longer visible in the camera feed, the framework sets the anchor’s [`isTracked`](https://developer.apple.com/documentation/arkit/artrackable/istracked) property to [`false`](https://developer.apple.com/documentation/swift/false) and passes it into the [`session:didUpdateAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8) callback. If the same App Clip Code becomes visible once again:
+    ///
+    /// - ARKit sets [`isTracked`](https://developer.apple.com/documentation/arkit/artrackable/istracked) to [`true`](https://developer.apple.com/documentation/swift/true) if the App Clip Code maintained its relative position in the physical environment.
+    ///
+    /// - ARKit intializes a new [`ARAppClipCodeAnchor`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor) if the App Clip Code position in the physical environment changed significantly.
+    ///
+    /// ### Remove App Clip Codes
+    ///
+    /// To prevent App Clip Codes from accumulating in the session, ARKit removes anchors by passing them in to the [`session:didRemoveAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didremove:)) callback. ARKit removes an [`ARAppClipCodeAnchor`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor) if all of the following conditions are true:
+    ///
+    /// - The framework instantiates a new [`ARAppClipCodeAnchor`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor).
+    ///
+    /// - The new anchor’s [`url`](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/url) matches one or more existing anchors with substantially different positions in the physical environment.
+    ///
+    /// - The existing anchors are untracked ([`isTracked`](https://developer.apple.com/documentation/arkit/artrackable/istracked) is [`false`](https://developer.apple.com/documentation/swift/false)).
+    ///
+    ///
+    /// An anchor representing an app clip code in the world.
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

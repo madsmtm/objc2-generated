@@ -8,46 +8,78 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemsaddednotification?language=objc)
+    /// Posted when history items have been added to a web history.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the web history to which the items were added. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Text { text: "@“WebHistoryItemsKey”" }] }], [Paragraph { inline_content: [Text { text: "An " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSArray", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object containing the added items." }] }]]], alignments: None, metadata: None })
+    ///
     #[deprecated]
     pub static WebHistoryItemsAddedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemsremovednotification?language=objc)
+    /// Posted when items have been removed from the web history.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the web history from which the history items were removed. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Text { text: "@“WebHistoryItemsKey”" }] }], [Paragraph { inline_content: [Text { text: "An " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSArray", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object containing the removed items." }] }]]], alignments: None, metadata: None })
+    ///
     #[deprecated]
     pub static WebHistoryItemsRemovedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryallitemsremovednotification?language=objc)
+    /// Posted when all history items have been removed from the web history.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the web history from which the history items were removed. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Text { text: "@“WebHistoryItemsKey”" }] }], [Paragraph { inline_content: [Text { text: "An " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSArray", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object containing the removed items." }] }]]], alignments: None, metadata: None })
+    ///
     #[deprecated]
     pub static WebHistoryAllItemsRemovedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryloadednotification?language=objc)
+    /// Posted when web history items have been loaded from a URL.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the web history that loaded the history items. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebHistoryLoadedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistorysavednotification?language=objc)
+    /// Posted when web history items have been saved to a URL.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the web history that saved the history items. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebHistorySavedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemskey?language=objc)
+    /// The key to access an array containing the added or removed web history items.
     #[deprecated]
     pub static WebHistoryItemsKey: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// `WebHistory` objects are used to maintain the pages visited by users. Visited pages are represented by [`WebHistoryItem`](https://developer.apple.com/documentation/webkit/webhistoryitem) objects. You add and remove history items using the [`addItems:`](https://developer.apple.com/documentation/webkit/webhistory/additems(_:)) and [`removeItems:`](https://developer.apple.com/documentation/webkit/webhistory/removeitems(_:)) methods. These methods post appropriate notifications when items are added or removed so you can update the display. `WebHistory` organizes the `WebHistoryItem` objects by the day they were visited, ordered from most recent to oldest. You can request all the days that contain history items using the [`orderedLastVisitedDays`](https://developer.apple.com/documentation/webkit/webhistory/orderedlastvisiteddays) method or request the items visited on a particular day using the [`orderedItemsLastVisitedOnDay:`](https://developer.apple.com/documentation/webkit/webhistory/ordereditemslastvisited(onday:)) method. `WebHistory` objects can be loaded and saved by specifying a file URL (see [`loadFromURL:error:`](https://developer.apple.com/documentation/webkit/webhistory/load(from:))).
     /// WebHistory is used to track pages that have been loaded
     /// by WebKit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

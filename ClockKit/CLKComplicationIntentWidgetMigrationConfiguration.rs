@@ -9,9 +9,16 @@ use objc2_intents::*;
 use crate::*;
 
 extern_class!(
-    /// Holds data that maps to a Widget specified by an `IntentConfiguration` in a specific extension.
+    /// A configuration object that specifies an intents-based complication in WidgetKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationintentwidgetmigrationconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// These configuration objects use an [`INIntent`](https://developer.apple.com/documentation/intents/inintent) object to provide dynamic configuration information. Use intent-based complications when your app customizes the list of complications available in the complication picker based on the state of your app. For example, if you provide temperature complications for the top cities in the user’s favorites list, use an [`INIntent`](https://developer.apple.com/documentation/intents/inintent) object to describe each city.
+    ///
+    /// For more information, see [Migrating ClockKit complications to WidgetKit](https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app).
+    ///
+    ///
+    /// Holds data that maps to a Widget specified by an `IntentConfiguration` in a specific extension.
     #[unsafe(super(CLKComplicationWidgetMigrationConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLKComplicationWidgetMigrationConfiguration")]

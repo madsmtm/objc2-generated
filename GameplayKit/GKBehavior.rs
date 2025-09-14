@@ -8,10 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A set of goals that together influence the movement of an agent.
+    ///
+    /// ## Overview
+    ///
+    /// By combining multiple goals ([`GKGoal`](https://developer.apple.com/documentation/gameplaykit/gkgoal) objects) you can create complex behavior, such as groups of agents  ([`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) objects) that move together naturally. To assign a set of goals to an agent, use its [`behavior`](https://developer.apple.com/documentation/gameplaykit/gkagent/behavior) property.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A collection of GKGoals or GKBehaviors with weights that can be applied to a GKAgent
     /// The sub-goals or sub-behaviors are summed to produce a total force to be applied to an agent
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkbehavior?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKBehavior;

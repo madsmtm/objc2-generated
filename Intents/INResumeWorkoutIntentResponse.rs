@@ -6,34 +6,76 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INResumeWorkoutIntentResponseCode(pub NSInteger);
 impl INResumeWorkoutIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
     #[doc(alias = "INResumeWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/continueinapp?language=objc)
+    /// A response code that indicates your app extension is ready to transfer control to the app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, SiriKit launches your app and passes it the NSUserActivity object you provided at initialization time. (If you did not provide a user activity object, SiriKit creates one for you). SiriKit adds an INInteraction object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to resume the workout.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to start the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from performing the task.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code only when you cannot resume the workout because of extenuating circumstances. For example, you might use this code if the user must log into your app before resuming workouts and is not currently logged in. Do not use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/failurenomatchingworkout?language=objc)
+    /// A response code that indicates you didn’t find the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user specifies a workout name that your app does not recognize.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/handleinapp?language=objc)
+    /// A response code that indicates you want to handle the intent in your app instead.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you want SiriKit to launch your app in the background so that you can handle the intent there. With this code, the user continues to interact with Siri, but your app has an opportunity to update your workout session or any other workout information.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponsecode/success?language=objc)
+    /// A response code that indicates your app succeeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app successfully resumes the workout.
+    ///
+    ///
     #[doc(alias = "INResumeWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }
@@ -47,7 +89,15 @@ unsafe impl RefEncode for INResumeWorkoutIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponse?language=objc)
+    /// Your app’s response to a resume workout intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INResumeWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponse) object to specify whether your app is able to resume a workout. The response object contains only the status code that indicates whether to launch your app or whether there was a problem.
+    ///
+    /// You create an [`INResumeWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponse) object in the [`handleResumeWorkout:completion:`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling/handle(intent:completion:)) and [`confirmResumeWorkout:completion:`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling/confirm(intent:completion:)) methods of your resume workout handler object. For more information about implementing your handler object, see [`INResumeWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

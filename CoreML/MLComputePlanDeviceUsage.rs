@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The anticipated compute devices to use for executing a layer or operation.
     /// The anticipated compute devices that would be used for executing a layer/operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplandeviceusage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlanDeviceUsage;

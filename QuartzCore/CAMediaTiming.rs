@@ -9,12 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAMediaTimingFillMode = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatiming?language=objc)
+    /// Methods that model a hierarchical timing system, allowing objects to map time between their parent and local time.
+    ///
+    /// ## Overview
+    ///
+    /// Absolute time is defined as mach time converted to seconds. The [`CACurrentMediaTime`](https://developer.apple.com/documentation/quartzcore/cacurrentmediatime()) function is provided as a convenience for getting the current absolute time.
+    ///
+    /// The conversion from parent time to local time has two stages:
+    ///
+    /// 1. Conversion to “active local time.” This includes the point at which the object appears in the parent object’s timeline and how fast it plays relative to the parent.
+    ///
+    /// 2. Conversion from “active local time” to “basic local time.” The timing model allows for objects to repeat their basic duration multiple times and, optionally, to play backwards before repeating.
+    ///
+    ///
     pub unsafe trait CAMediaTiming {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(beginTime))]
@@ -101,21 +112,21 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/forwards?language=objc)
+    /// The receiver remains visible in its final state when the animation is completed.
     pub static kCAFillModeForwards: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/backwards?language=objc)
+    /// The receiver clamps values before zero to zero when the animation is completed.
     pub static kCAFillModeBackwards: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/both?language=objc)
+    /// The receiver clamps values at both ends of the object’s time space
     pub static kCAFillModeBoth: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/removed?language=objc)
+    /// The receiver is removed from the presentation when the animation is completed.
     pub static kCAFillModeRemoved: &'static CAMediaTimingFillMode;
 }

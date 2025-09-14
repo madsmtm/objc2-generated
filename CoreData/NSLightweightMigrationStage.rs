@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nslightweightmigrationstage?language=objc)
+    /// An object that describes a series of models suitable for lightweight migration.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`NSLightweightMigrationStage`](https://developer.apple.com/documentation/coredata/nslightweightmigrationstage) when you have a series of models to migrate and those models are compatible with lightweight migrations. Instances of this class supplement your custom migration stages and help maintain a consistent stage order for the entire migration.
+    ///
+    ///
     #[unsafe(super(NSMigrationStage, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSMigrationStage")]

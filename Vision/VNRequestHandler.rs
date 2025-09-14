@@ -18,20 +18,39 @@ use objc2_image_io::*;
 
 use crate::*;
 
-/// Options keys passed into the VNImageRequestHandler creations or requests that take an auxiliary image. These are options that either describe specific properties of an image like the VNImageOptionCameraIntrinsics or how an image needs to be handled like the VNImageOptionCIContext.
+/// An option key passed into an image request handler that takes an auxiliary image.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption?language=objc)
+/// ## Discussion
+///
+/// Pass an option key into the [`VNImageRequestHandler`](https://developer.apple.com/documentation/vision/vnimagerequesthandler) instance on creation or request.  Option keys are used to describe specific properties of an image or specify how an image needs to be handled.
+///
+///
+/// Options keys passed into the VNImageRequestHandler creations or requests that take an auxiliary image. These are options that either describe specific properties of an image like the VNImageOptionCameraIntrinsics or how an image needs to be handled like the VNImageOptionCIContext.
 // NS_TYPED_ENUM
 pub type VNImageOption = NSString;
 
 extern "C" {
+    /// The dictionary from the image source that contains the metadata for algorithms like horizon detection.
     /// VNImageOptionProperties is the dictionary from CGImageSourceCopyPropertiesAtIndex. This contains metadata that can be used by some algorithms like horizon detection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption/properties?language=objc)
     pub static VNImageOptionProperties: &'static VNImageOption;
 }
 
 extern "C" {
+    /// An option to specify the camera intrinstics.
+    ///
+    /// ## Discussion
+    ///
+    /// The camera intrinsics matrix is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) instance containing a [`matrix_float3x3`](https://developer.apple.comhttps://developer.apple.com/documentation/simd/matrix_float3x3), which is a column-major matrix:
+    ///
+    ///
+    /// ![The camera intrinsics matrix with focal length along the main diagonal](https://docs-assets.developer.apple.com/published/af0173b4c72c1996604b206571a6ae6d/media-2954520%402x.png)
+    ///
+    ///
+    /// `fx` and `fy` are the focal length in pixels. For square pixels, they have the same value.
+    ///
+    /// `ox` and `oy` are the coordinates of the principal point.  The origin is the upper-left corner of the frame.
+    ///
+    ///
     /// VNImageOptionCameraIntrinsics  Specifies the camera intrinsics as an NSData or CFData representing a matrix_float3x3. See kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix for details
     ///
     /// Camera intrinsic matrix is a CFData containing a matrix_float3x3, which is column-major. It has the following contents:
@@ -42,25 +61,35 @@ extern "C" {
     /// ox and oy are the coordinates of the principal point. The origin is the upper left of the frame.
     ///
     /// Note: When using a CMSampleBuffer as an input and that sample buffer has camera intrinsics attached to it, Vision will use the camera intrinsic from there unless overwritten by passing in as an explicit option which will take precedence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption/cameraintrinsics?language=objc)
     pub static VNImageOptionCameraIntrinsics: &'static VNImageOption;
 }
 
 extern "C" {
-    /// VNImageOptionCIContext  Specifies the CIContext to be used in Core Image operations of request handler. If this is not specified, Vision will create its own CIContext. This option is helpful when the passed in CIImage is the result of a CIFilter chain that has been executed on a CIContext or uses outputs of a CIImage on a given CIContext as they don't have to transfer to other contexts.
+    /// An option key to specify the context to use in the handler’s Core Image operations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption/cicontext?language=objc)
+    /// ## Discussion
+    ///
+    /// If this key isn’t specified, Vision will create its own [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext).
+    ///
+    /// Specify a [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext) when you’ve used one in processing an input [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) or executing a [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) chain, so you can save the cost of creating a new context.
+    ///
+    ///
+    /// VNImageOptionCIContext  Specifies the CIContext to be used in Core Image operations of request handler. If this is not specified, Vision will create its own CIContext. This option is helpful when the passed in CIImage is the result of a CIFilter chain that has been executed on a CIContext or uses outputs of a CIImage on a given CIContext as they don't have to transfer to other contexts.
     pub static VNImageOptionCIContext: &'static VNImageOption;
 }
 
 extern_class!(
+    /// An object that processes one or more image-analysis request pertaining to a single image.
+    ///
+    /// ## Overview
+    ///
+    /// Instantiate this handler to perform Vision requests on a single image. You specify the image and, optionally, a completion handler at the time of creation, and call [`performRequests:error:`](https://developer.apple.com/documentation/vision/vnimagerequesthandler/perform(_:)) to begin executing the request.
+    ///
+    ///
     /// Performs requests on a single image.
     ///
     /// The VNImageRequestHandler is created with an image that is used to be used for the requests a client might want to schedule. The VNImageRequestHandler retains, but never modifies, the image source for its entire lifetime. The client also must not modify the content of the image source once the VNImageRequestHandler is created otherwise the results are undefined.
     /// The VNImageRequestHandler can choose to also cache intermediate representation of the image or other request-specific information for the purposes of runtime performance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagerequesthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageRequestHandler;
@@ -432,14 +461,19 @@ impl VNImageRequestHandler {
 }
 
 extern_class!(
+    /// An object that processes image-analysis requests for each frame in a sequence.
+    ///
+    /// ## Overview
+    ///
+    /// Instantiate this handler to perform Vision requests on a series of images. Unlike the [`VNImageRequestHandler`](https://developer.apple.com/documentation/vision/vnimagerequesthandler), you don’t specify the image on creation. Instead, you supply each image frame one by one as you continue to call one of the `perform` methods.
+    ///
+    ///
     /// Performs requests on a sequence of images.
     ///
     /// The VNSequenceRequestHandler is created without any specific image source.  The -performRequests:on
     /// <ImageSource
     /// >:error: methods will retain the image source for no longer than the lifetime of the call.
     /// The VNSequenceRequestHandler can choose to also cache state information related to the previously-processed image sources.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnsequencerequesthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSequenceRequestHandler;

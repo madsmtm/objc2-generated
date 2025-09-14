@@ -13,7 +13,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingview?language=objc)
+    /// A view that hosts a layer hierarchy you manage in another process.
+    ///
+    /// ## Overview
+    ///
+    /// Set the view’s [`handle`](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingview/handle) to a [`BELayerHierarchyHandle`](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhandle) you get from the other process. When you invalidate the associated layer hierarchy, you need to stop displaying the view.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

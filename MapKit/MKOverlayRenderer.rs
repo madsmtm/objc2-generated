@@ -11,7 +11,19 @@ use objc2_core_graphics::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer?language=objc)
+    /// The shared infrastructure for drawing overlays on the map surface.
+    ///
+    /// ## Overview
+    ///
+    /// An overlay renderer draws the visual representation of an overlay object — that is, an object that conforms to the [`MKOverlay`](https://developer.apple.com/documentation/mapkit/mkoverlay) protocol. This class defines the drawing infrastructure the map view uses. Subclasses need to override the [`drawMapRect:zoomScale:inContext:`](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/draw(_:zoomscale:in:)) method to draw the contents of the overlay.
+    ///
+    /// The MapKit framework provides several concrete instances of overlay renderers. Specifically, it provides renderers for each of the concrete overlay objects. You can use one of these existing renderers or define your own subclasses if you want to draw the overlay contents differently.
+    ///
+    /// You can subclass `MKOverlayRenderer` to create overlays based on custom shapes, content, or drawing techniques. The only method subclasses need to override is the [`drawMapRect:zoomScale:inContext:`](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/draw(_:zoomscale:in:)) method. However, if your class contains content that may not be ready for drawing right away, you need to also override the [`canDrawMapRect:zoomScale:`](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/candraw(_:zoomscale:)) method and use it to report when your class is ready and able to draw.
+    ///
+    /// The map view may tile large overlays and distribute the rendering of each tile to separate threads. Therefore, the implementation of your [`drawMapRect:zoomScale:inContext:`](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer/draw(_:zoomscale:in:)) method needs to be safe to run from background threads and from multiple threads simultaneously.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKOverlayRenderer;
@@ -140,7 +152,17 @@ impl MKOverlayRenderer {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroadwidthatzoomscale(_:)?language=objc)
+    /// Returns the width (in screen points) of roads on a map at the specified zoom level.
+    ///
+    /// Parameters:
+    /// - zoomScale: The scale factor currently applied to the map view.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The width of roads, measured in screen points. You can use the returned value to set the width of lines in drawing code that traces the path of a road.
+    ///
+    ///
     #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
     pub fn MKRoadWidthAtZoomScale(zoom_scale: MKZoomScale) -> CGFloat;
 }

@@ -6,53 +6,127 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options?language=objc)
+/// Options used to generate and parse ISO 8601 date representations.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSISO8601DateFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSISO8601DateFormatOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withyear?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the year. The format for year is inferred based on the other specified options.
+///
+/// - If [`NSISO8601DateFormatWithWeekOfYear`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withweekofyear) is specified, `YYYY` is used.
+///
+/// - Otherwise, `yyyy` is used.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithYear")]
         const WithYear = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withmonth?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the month. The format for month is `MM`.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithMonth")]
         const WithMonth = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withweekofyear?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the week of the year. The format for week of year is `ww`, including the `W` prefix.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithWeekOfYear")]
         const WithWeekOfYear = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withday?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the day. The format for day is inferred based on provided options:
+///
+/// - If [`NSISO8601DateFormatWithMonth`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withmonth) is specified, `dd` is used.
+///
+/// - If [`NSISO8601DateFormatWithWeekOfYear`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withweekofyear) is specified, `ee` is used.
+///
+/// - Otherwise, `DDD` is used.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithDay")]
         const WithDay = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withtime?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the time. The format for time is `HH:mm:ss`.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithTime")]
         const WithTime = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withtimezone?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the timezone. The format for timezone is `ZZZZZ`.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithTimeZone")]
         const WithTimeZone = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withspacebetweendateandtime?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation uses a space (` `) instead of `T` between the date and time.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithSpaceBetweenDateAndTime")]
         const WithSpaceBetweenDateAndTime = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withdashseparatorindate?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation uses the dash separator (`-`) in the date.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithDashSeparatorInDate")]
         const WithDashSeparatorInDate = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withcolonseparatorintime?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation uses the colon separator (`:`) in the time.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTime")]
         const WithColonSeparatorInTime = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withcolonseparatorintimezone?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation uses the colon separator (`:`) in the time zone.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTimeZone")]
         const WithColonSeparatorInTimeZone = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfractionalseconds?language=objc)
         #[doc(alias = "NSISO8601DateFormatWithFractionalSeconds")]
         const WithFractionalSeconds = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfulldate?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the year, month, and day. Equivalent to specifying [`NSISO8601DateFormatWithYear`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withyear), [`NSISO8601DateFormatWithMonth`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withmonth), and [`NSISO8601DateFormatWithDay`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withday)
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithFullDate")]
         const WithFullDate = 275;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfulltime?language=objc)
+///
+/// ## Discussion
+///
+/// The date representation includes the hour, minute, and second.
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithFullTime")]
         const WithFullTime = 1632;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withinternetdatetime?language=objc)
+///
+/// ## Discussion
+///
+/// The format used for internet date times, according to the [RFC 3339](https://www.ietf.org/rfc/rfc3339) standard. Equivalent to specifying [`NSISO8601DateFormatWithFullDate`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfulldate), [`NSISO8601DateFormatWithFullTime`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withfulltime), [`NSISO8601DateFormatWithDashSeparatorInDate`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withdashseparatorindate), [`NSISO8601DateFormatWithColonSeparatorInTime`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withcolonseparatorintime), and [`NSISO8601DateFormatWithColonSeparatorInTimeZone`](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options/withcolonseparatorintimezone).
+///
+///
         #[doc(alias = "NSISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = 1907;
     }
@@ -67,7 +141,21 @@ unsafe impl RefEncode for NSISO8601DateFormatOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter?language=objc)
+    /// A formatter that converts between dates and their ISO 8601 string representations.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSISO8601DateFormatter`](https://developer.apple.com/documentation/foundation/iso8601dateformatter) class generates and parses string representations of dates following the [ISO 8601](http://www.iso.org/iso/home/standards/iso8601) standard. Use this class to create ISO 8601 representations of dates and create dates from text strings in ISO 8601 format.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`Date.ISO8601FormatStyle`](https://developer.apple.com/documentation/foundation/date/iso8601formatstyle) rather than [`NSISO8601DateFormatter`](https://developer.apple.com/documentation/foundation/iso8601dateformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand?language=objc)
+    /// An object that specifies a key press perform on a hardware keyboard and the resulting action.
+    ///
+    /// ## Overview
+    ///
+    /// Hardware keyboards allow a user to hold down the Control, Option, Command, or other modifier key and press another key in combination to initiate commands such as Cut, Copy, or Paste. You can use instances of this class to define custom command sequences that your app recognizes and then provide an appropriate response.
+    ///
+    /// To use this class, you create instances and associate them with your app’s responder objects. Each responder has a [`keyCommands`](https://developer.apple.com/documentation/uikit/uiresponder/keycommands) property that you can redefine and use to return the key command objects that responder supports. Key command sequences are generated only for devices with an attached hardware keyboard.
+    ///
+    /// The system always has the first opportunity to handle key commands. Key commands that map to known system events (such as Cut, Copy, and Paste) are automatically routed to the appropriate responder methods. For other key commands, the system looks for an object in the responder chain with a key command object that matches the pressed keys. If it finds such an object, it then searches the responder chain, looking for the first object that implements the corresponding action method, and calls the first one it finds.
+    ///
+    /// iPad apps that run in macOS can use [`UIKeyCommand`](https://developer.apple.com/documentation/uikit/uikeycommand) to create menu elements that have keyboard shortcuts.
+    ///
+    ///
     #[unsafe(super(UICommand, UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

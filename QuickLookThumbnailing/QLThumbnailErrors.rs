@@ -6,32 +6,50 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerrordomain?language=objc)
+    /// The error domain of the QuickLookThumbnailing framework.
     pub static QLThumbnailErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code?language=objc)
+/// Error codes that may be returned when generating a thumbnail.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLThumbnailError(pub NSInteger);
 impl QLThumbnailError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/generationfailed?language=objc)
+    /// The thumbnail couldn’t be created for the given file.
     #[doc(alias = "QLThumbnailErrorGenerationFailed")]
     pub const GenerationFailed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/savingtourlfailed?language=objc)
+    /// The thumbnail couldn’t be saved at the given URL.
     #[doc(alias = "QLThumbnailErrorSavingToURLFailed")]
     pub const SavingToURLFailed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/nocachedthumbnail?language=objc)
+    /// A low-quality thumbnail couldn’t be created.
+    ///
+    /// ## Discussion
+    ///
+    /// In response to a request for a low-quality thumbnail, QuickLookThumbnailing searched for a previously created thumbnail to achieve a lower latency but didn’t find one.
+    ///
+    ///
     #[doc(alias = "QLThumbnailErrorNoCachedThumbnail")]
     pub const NoCachedThumbnail: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/nocloudthumbnail?language=objc)
+    /// The thumbnail for a remote file couldn’t be created.
+    ///
+    /// ## Discussion
+    ///
+    /// The creation of a thumbnail for a remote file stored in a FileProvider extension such as iCloud or another cloud service failed. The request to generate a thumbnail failed because the remote file itself isn’t available locally or couldn’t be used to generate a thumbnail. QuickLookThumbnailing tried to download a thumbnail from the cloud service instead but no thumbnail was available in the cloud service, or an available thumbnail couldn’t be downloaded.
+    ///
+    ///
     #[doc(alias = "QLThumbnailErrorNoCloudThumbnail")]
     pub const NoCloudThumbnail: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/requestinvalid?language=objc)
+    /// The request to create a thumbnail was invalid, for example, there’s no file at a provided URL.
     #[doc(alias = "QLThumbnailErrorRequestInvalid")]
     pub const RequestInvalid: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailerror-swift.struct/code/requestcancelled?language=objc)
+    /// The request to create a thumbnail was canceled.
+    ///
+    /// ## Discussion
+    ///
+    /// An app canceled a request to create a thumbnail using QLThumbnailGenerator’s [`cancelRequest:`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/cancel(_:)) method.
+    ///
+    ///
     #[doc(alias = "QLThumbnailErrorRequestCancelled")]
     pub const RequestCancelled: Self = Self(5);
 }

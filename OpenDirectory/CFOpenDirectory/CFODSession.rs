@@ -7,23 +7,27 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The default session. Used if there is no need to create a specific reference.
     /// is the default type of ODSessionRef used if there is no need to create a specific reference
     ///
     /// is the default type of ODSessionRef used if there is no need to create a specific reference
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessiondefault?language=objc)
     pub static kODSessionDefault: Option<&'static ODSessionRef>;
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODSessionRef {
+    /// Returns the type ID for a session.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID for a session.
+    ///
+    ///
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for ODSession objects
     ///
     /// Returns: a valid CFTypeID for the ODSession object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessiongettypeid()?language=objc)
     #[doc(alias = "ODSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -35,6 +39,21 @@ unsafe impl ConcreteType for ODSessionRef {
 }
 
 impl ODSessionRef {
+    /// Creates a session to be passed to node functions.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - options: A dictionary of options to associate with the session.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created session.
+    ///
+    ///
     /// Creates an ODSession object to be passed to ODNode functions
     ///
     /// Creates an ODSession object to be passed to ODNode functions.
@@ -63,8 +82,6 @@ impl ODSessionRef {
     /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessioncreate(_:_:_:)?language=objc)
     #[doc(alias = "ODSessionCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -84,6 +101,21 @@ impl ODSessionRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the names of nodes registered in a given session.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - session: The session.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of valid node names in the given session.
+    ///
+    ///
     /// Returns the node names that are registered on this ODSession
     ///
     /// Returns the node names that are registered on this ODSession
@@ -101,8 +133,6 @@ impl ODSessionRef {
     /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessioncopynodenames(_:_:_:)?language=objc)
     #[doc(alias = "ODSessionCopyNodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

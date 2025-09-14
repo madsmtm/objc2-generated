@@ -12,277 +12,529 @@ use objc2_core_midi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey?language=objc)
 pub const kAUPresetVersionKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"version\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey?language=objc)
 pub const kAUPresetTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey?language=objc)
 pub const kAUPresetSubtypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"subtype\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey?language=objc)
 pub const kAUPresetManufacturerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"manufacturer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey?language=objc)
 pub const kAUPresetDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"data\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey?language=objc)
 pub const kAUPresetNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey?language=objc)
 pub const kAUPresetNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"preset-number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey?language=objc)
 pub const kAUPresetRenderQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"render-quality\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey?language=objc)
 pub const kAUPresetCPULoadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"cpu-load\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey?language=objc)
 pub const kAUPresetElementNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"element-name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs?language=objc)
 pub const kAUPresetExternalFileRefs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"file-references\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey?language=objc)
+/// VST state from a VST “bank.”
 pub const kAUPresetVSTDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"vstdata\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey?language=objc)
+/// VST state from a VST “preset.”
 pub const kAUPresetVSTPresetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"vstpreset\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey?language=objc)
 pub const kAUPresetMASDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"masdata\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey?language=objc)
+/// If present, distinguishes a global preset that is set on the global scope from a part-based preset that is set on the part scope. The value of this key is defined by the audio unit it applies to.
 pub const kAUPresetPartKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"part\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_hascustomview?language=objc)
 pub const kAudioUnitConfigurationInfo_HasCustomView: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasCustomView\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_channelconfigurations?language=objc)
 pub const kAudioUnitConfigurationInfo_ChannelConfigurations: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ChannelConfigurations\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_initialinputs?language=objc)
 pub const kAudioUnitConfigurationInfo_InitialInputs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InitialInputs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_initialoutputs?language=objc)
 pub const kAudioUnitConfigurationInfo_InitialOutputs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InitialOutputs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_iconurl?language=objc)
 pub const kAudioUnitConfigurationInfo_IconURL: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IconURL\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_buscountwritable?language=objc)
 pub const kAudioUnitConfigurationInfo_BusCountWritable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BusCountWritable\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_supportedchannellayouttags?language=objc)
 pub const kAudioUnitConfigurationInfo_SupportedChannelLayoutTags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SupportedChannelLayoutTags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_midiprotocol?language=objc)
 pub const kAudioUnitConfigurationInfo_MIDIProtocol: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MIDIProtocol\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_migratefromplugin?language=objc)
 pub const kAudioUnitConfigurationInfo_MigrateFromPlugin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MigrateFromPlugin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_availablearchitectures?language=objc)
 pub const kAudioUnitConfigurationInfo_AvailableArchitectures: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AvailableArchitectures\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_global?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Global: AudioUnitScope = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_input?language=objc)
+/// The context for audio data coming into an audio unit.
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Input: AudioUnitScope = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_output?language=objc)
+/// The context for audio data leaving an audio unit.
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Output: AudioUnitScope = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_group?language=objc)
+/// In macOS, a context specific to the control scope of audio unit parameters.
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Group: AudioUnitScope = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_part?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Part: AudioUnitScope = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_note?language=objc)
+/// In macOS, a scope for changes to an individual musical note. The element identifier used with this scope is the unique note identifier returned from a started note (see the `MusicDeviceStartNote` function in `AudioUnit/MusicDevice.h`).
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Note: AudioUnitScope = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_layer?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_Layer: AudioUnitScope = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_layeritem?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitScope_LayerItem: AudioUnitScope = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_classinfo?language=objc)
+/// Describes the state of an audio unit.
+///
+/// ## Discussion
+///
+/// A read/write [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object valid on the audio unit global scope. A macOS audio unit that supports the part scope may, in addition, support presets on that scope that apply to individual parts.
+///
+/// When assigning a class information dictionary to an audio unit with the [`AudioUnitSetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitsetproperty(_:_:_:_:_:_:)) function, you own the reference to the dictionary and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+/// When obtaining a class information dictionary from an audio unit with the [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) function, you also own the reference to the dictionary and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ClassInfo: AudioUnitPropertyID = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_makeconnection?language=objc)
+/// A write-only [`AudioUnitConnection`](https://developer.apple.com/documentation/audiotoolbox/audiounitconnection) data structure valid on the audio unit input scope.
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MakeConnection: AudioUnitPropertyID = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_samplerate?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SampleRate: AudioUnitPropertyID = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameterlist?language=objc)
+/// A list of read-only parameter ID values valid on any audio unit scope.
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterList: AudioUnitPropertyID = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameterinfo?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterInfo: AudioUnitPropertyID = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_cpuload?language=objc)
+/// A read-only `Float64` value valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// The proportion of time that an audio unit is devoting to audio rendering. The value ranges from 0.0 (the audio unit is spending no time rendering) through 1.0 (the audio unit is spending all of its time rendering).
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_CPULoad: AudioUnitPropertyID = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_streamformat?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_StreamFormat: AudioUnitPropertyID = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_elementcount?language=objc)
+/// A read/write `UInt32` value valid on any audio unit scope. The global audio unit scope always has an element count of 1.
+///
+/// ## Discussion
+///
+/// Most audio units implement this property as read-only, indicating that they use a fixed number of input and output buses. An audio unit implemented to support adding and removing buses implements this property as read/write.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ElementCount: AudioUnitPropertyID = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_latency?language=objc)
+/// A read-only `Float64` value valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// The time, in seconds, that it takes an audio unit to move an audio sample from its input to its output.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_Latency: AudioUnitPropertyID = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_supportednumchannels?language=objc)
+/// A read-only array of channel information structures valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// The size of the array indicates the number of [`AUChannelInfo`](https://developer.apple.com/documentation/audiotoolbox/auchannelinfo) structures for an audio unit. Each structure describes the channel configuration for an audio input/output bus. For example, the values (2, 2) indicates a channel configuration of two input channels paired to two output channels on a bus.
+///
+/// A negative value for a field in an [`AUChannelInfo`](https://developer.apple.com/documentation/audiotoolbox/auchannelinfo) structure indicates that an input/output bus supports a variable number of channels, as follows:
+///
+/// - {–1, –1} indicates that a bus supports any number of input or output channels provided that the input and output channel counts match each other. This is the default configuration for effect units.
+///
+/// - {–1, –2} or {–2, –1} indicates that a bus supports any number of input and output channels; the channel counts on input and output can differ from each other.
+///
+/// - {–1, –3} indicates that a bus supports any number of input channels and up to three output channels.
+///
+/// A value of 0 for the `inChannels` field means that an audio unit does not have any audio input buses.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SupportedNumChannels: AudioUnitPropertyID = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_maximumframesperslice?language=objc)
+/// Specifies the maximum number of sample frames an audio unit is prepared to supply on one invocation of its [`AudioUnitRender`](https://developer.apple.com/documentation/audiotoolbox/audiounitrender(_:_:_:_:_:_:)) function.
+///
+/// ## Discussion
+///
+/// A read/write `UInt32` value valid on the audio unit global scope.
+///
+/// The default value of this property is 1,024, corresponding to about 23 ms at a 44.1 kHz sample rate. This default value is sufficient when a host app is using the default hardware buffer size and the device screen is not sleeping. When the device screen sleeps, the system saves power by reducing the frequency at which it requests sample frames. There is a corresponding increase in the number of sample frames requested of an audio unit, per render call.
+///
+/// The following table provides some common slice sizes:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Frame count" }] }], [Paragraph { inline_content: [Text { text: "Milliseconds at 44.1 kHz (approximate)" }] }]], [[Paragraph { inline_content: [Text { text: "Default" }] }], [Paragraph { inline_content: [Text { text: "1024" }] }], [Paragraph { inline_content: [Text { text: "23" }] }]], [[Paragraph { inline_content: [Text { text: "Screen sleep" }] }], [Paragraph { inline_content: [Text { text: "4096" }] }], [Paragraph { inline_content: [Text { text: "93" }] }]], [[Paragraph { inline_content: [Text { text: "Low latency" }] }], [Paragraph { inline_content: [Text { text: "256" }] }], [Paragraph { inline_content: [Text { text: "5" }] }]]], alignments: None, metadata: None })
+/// You never need to set this property for I/O units because they are preconfigured to handle any slice size requested by the system. For all other audio units, you must set this property to a value of 4096 to handle screen sleep—unless audio input is running on the device. When audio input is running, the system maintains a slice size of 1024.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MaximumFramesPerSlice: AudioUnitPropertyID = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parametervaluestrings?language=objc)
+/// An array of names for a named, indexed audio unit parameter. An indexed parameter is one whose unit type is [`kAudioUnitParameterUnit_Indexed`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/indexed). The array’s strings can be used to build a menu for the parameter.
+///
+/// ## Discussion
+///
+/// A read-only [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object whose elements are [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) objects, valid on any audio unit scope.
+///
+/// When obtaining a parameter string array from an audio unit with the [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) function, you own the reference to the array and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+/// Indexed parameters use whole-number index values; the size of this property’s array should be the same as the range between the parameter’s minimum and maximum values.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterValueStrings: AudioUnitPropertyID = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_audiochannellayout?language=objc)
+/// A read/write `AudioChannelLayout` data structure valid on the audio unit input and output scopes.
+///
+/// ## Discussion
+///
+/// The channel order, within a given audio stream, for a specified audio unit element and scope. The number of channels in the layout must match the number of channels set for the scope-element. Each input and output bus in an audio unit can have one instance of this property.
+///
+/// Some audio units require this property. For example, the 3DMixer unit must implement this property on its output bus. If a host application attempts to clear the value of this property on a bus that requires a valid value, the audio unit will return a kAudioUnitErr_InvalidPropertyValue error.
+///
+/// Input and output buses can be in one of three states in regard to Audio channel layout:
+///
+/// 1. Implemented and set
+///
+/// 2. Implemented but not set
+///
+/// 3. Unimplemented
+///
+/// Requesting the value of this property when it is implemented but not set results in a [`kAudioUnitErr_PropertyNotInUse`](https://developer.apple.com/documentation/audiotoolbox/kaudiouniterr_propertynotinuse) error.
+///
+/// Use the `kAudioUnitProperty_AudioChannelLayout` property whenever channel layout is relevant.
+///
+/// For related information, refer to the descriptions for the `ScheduledAudioFileRegion` and [`AudioOutputUnitStartAtTimeParams`](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstartattimeparams) data structures.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_AudioChannelLayout: AudioUnitPropertyID = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_tailtime?language=objc)
+/// A read-only `Float64` value valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// Indicates a time estimate, in seconds, between the last valid input being received by an audio unit and the audio unit’s output becoming silent. For example, a reverb unit’s tail time estimates the “decay” time. The tail time value is usually a conservative estimate that you can depend on.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_TailTime: AudioUnitPropertyID = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_bypasseffect?language=objc)
+/// A read/write `UInt32` value, representing a Boolean value, valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// Indicates if an audio unit’s processing code is being bypassed (`1`) or not (0).
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_BypassEffect: AudioUnitPropertyID = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_lastrendererror?language=objc)
+/// A read-only `OSStatus` value valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// This property is set if a call to the [`AudioUnitRender`](https://developer.apple.com/documentation/audiotoolbox/audiounitrender(_:_:_:_:_:_:)) function returns an error. To be notified of errors, register a callback function as a property listener using the [`AudioUnitAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiounitaddpropertylistener(_:_:_:_:)) function.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_LastRenderError: AudioUnitPropertyID = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_setrendercallback?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SetRenderCallback: AudioUnitPropertyID = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_factorypresets?language=objc)
+/// So-called _factory presets_ (as opposed to user-configured presets) are ones supplied with an audio unit by the manufacturer. You choose the active preset by setting the `kAudioUnitProperty_PresentPreset` property.
+///
+/// ## Discussion
+///
+/// A read-only [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) array of [`AUPreset`](https://developer.apple.com/documentation/audiotoolbox/aupreset) structures.
+///
+/// When obtaining a factory preset array from an audio unit with the [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) function, you own the reference to the array and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_FactoryPresets: AudioUnitPropertyID = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_renderquality?language=objc)
+/// A read/write `UInt32` value valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// A value in the range 0 through 127 that indicates an audio unit’s rendering quality. You should set this property to its maximum value unless doing so results in excessive CPU usage.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_RenderQuality: AudioUnitPropertyID = 26;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_hostcallbacks?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_HostCallbacks: AudioUnitPropertyID = 27;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_inplaceprocessing?language=objc)
+/// A read/write `UInt32` value, representing a Boolean value, valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// Indicates whether an audio unit can process input data directly within its input buffer (`1`) or not (0). You may want to disable in-place processing to allow your host application to manage the processing buffers.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_InPlaceProcessing: AudioUnitPropertyID = 29;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_elementname?language=objc)
+/// The name of the specified element.
+///
+/// ## Discussion
+///
+/// A read/write `CFStringRef` object valid on any audio unit scope.
+///
+/// When assigning an element name string to an audio unit with the [`AudioUnitSetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitsetproperty(_:_:_:_:_:_:)) function, you own the reference to the name and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+/// When obtaining an element name string from an audio unit with the [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) function, you also own the reference to the name and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ElementName: AudioUnitPropertyID = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_supportedchannellayouttags?language=objc)
+/// A read-only array on `AudioChannelLayoutTag` structures, valid on the audio unit input and output scopes.
+///
+/// ## Discussion
+///
+/// Used with GetProperty to ascertain what an audio unit understands about laying out of channel orders. This will typically return one or more of the specified layout tags.
+///
+/// When a specific set of layouts are returned, the client then uses the kAudioUnitProperty_AudioChannelLayout property (with one of those layout tags specified) to set the unit to use that layout. In this case the client (and the audio unit when reporting its AudioChannelLayout) is only expected to have set an AudioChannelLayout which only sets the layout tag as the valid field.
+///
+/// Some audio units may return the tag `kAudioChannelLayoutTag_UseChannelDescriptions`. This indicates a custom channel map.
+///
+/// In this case, the host then can look at supported number of channels on that scope (using the kAudioUnitProperty_SupportedNumChannels), and supply an AudioChannelLayout with the kAudioUnitProperty_AudioChannelLayout property to specify the layout, number of channels and location of each of those channels. This custom channel map MUST have a channel valence that is supported by the Audio Unit.
+///
+/// The UseChannelBitmap field is NOT used within the context of the AudioUnit.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SupportedChannelLayoutTags: AudioUnitPropertyID = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_presentpreset?language=objc)
+/// The active factory preset for an audio unit.
+///
+/// ## Discussion
+///
+/// A read/write [`AUPreset`](https://developer.apple.com/documentation/audiotoolbox/aupreset) data structure valid on the audio unit global scope, The `presetName` field in the struct is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) and follows Core Foundation memory semantics.
+///
+/// When setting the active factory preset on an audio unit with the [`AudioUnitSetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitsetproperty(_:_:_:_:_:_:)) function, you own the reference to the preset name and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+/// When obtaining the active factory preset from an audio unit with the [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) function, you also own the reference to the preset name and are responsible for later releasing it by calling the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_PresentPreset: AudioUnitPropertyID = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_dependentparameters?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_DependentParameters: AudioUnitPropertyID = 45;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_inputsamplesinoutput?language=objc)
+/// A read/write AUInputSamplesInOutputCallbackStruct struct, valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// An audio unit calls this callback at the end of its render call. The audio unit supplies the following information:
+///
+/// - outputTime - The timestamp passed in to the audio unit’s render call. This timestamp represents the time of the first output sample.
+///
+/// - inputSample - The sample number of the first input sample that is present in the output audio.
+///
+/// - numInputSamples - The number of input samples that were used and are present in the output audio.
+///
+/// This property allows a host application to determine which input samples correspond to a sample in the output buffer. It is useful only for audio units that do time-stretching, such as the macOS AUVaripseed and AUTimePitch units, where the relationship between input and output samples is non-trivial. For these units, the range of input samples that correspond to an output buffer typically differs from the range of input samples that were pulled for that render call. This difference arises because of internal buffering, processing latency, and other factors.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_InputSamplesInOutput: AudioUnitPropertyID = 49;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_shouldallocatebuffer?language=objc)
+/// A read/write `UInt32` value valid on the audio unit input and output scopes, settable individually on each element.
+///
+/// ## Discussion
+///
+/// Default value is `true`, which means that the associated audio unit element creates a buffer for rendering into.
+///
+/// If true, the element will create a buffer for rendering into.
+///
+/// If false, the element will not create a buffer for rendering.
+///
+/// For example, if the audio unit is only ever going to have a connection as its input and never a callback, then it should not need to create a buffer (the API contract expects an audio unit to provide a buffer for callbacks, but no buffer for connections).
+///
+/// If the audio unit is always going to be pulled for audio with the client providing audio data buffers to the AudioUnitRender call, then it will never need to create an audio buffer on the output side.
+///
+/// So, this property can be used to control the default allocation strategy of an audio unit. If the audio unit needs a buffer, but one hasn’t been allocated, then an error will be thrown from that call to AudioUnitRender.
+///
+/// This property cannot be set on initialized audio units as it may end up reallocating memory.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ShouldAllocateBuffer: AudioUnitPropertyID = 51;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_frequencyresponse?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_FrequencyResponse: AudioUnitPropertyID = 52;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameterhistoryinfo?language=objc)
+/// For parameters that have the [`kAudioUnitParameterFlag_PlotHistory`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_plothistory) flag set, getting this property fills out the [`AudioUnitParameterHistoryInfo`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo) struct containing the recommended update rate and history duration.
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterHistoryInfo: AudioUnitPropertyID = 53;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_nickname?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_NickName: AudioUnitPropertyID = 54;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_offlinerender?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_OfflineRender: AudioUnitPropertyID = 37;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameteridname?language=objc)
+/// A shortened version of an audio unit parameter name, suitable for compact display situations.
+///
+/// ## Discussion
+///
+/// In your host application, you specify the desired length for the shortened version of the name by setting the `inDesiredLength` field in this property. For the full-length version of an audio unit parameter name, see the `kAudioUnitProperty_ParameterInfo` property.
+///
+/// Value is a read-only [`AudioUnitParameterNameInfo`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo) data structure, valid on any audio unit scope.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterIDName: AudioUnitPropertyID = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameterstringfromvalue?language=objc)
+/// A read-only [`AudioUnitParameterStringFromValue`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterstringfromvalue) struct, valid on any audio unit scope.
+///
+/// ## Discussion
+///
+/// This property is used with parameters that are marked with the kAudioUnitParameterFlag_HasName parameter info flag. This indicates that some (or all) of the values represented by the parameter can and should be represented by a special display string.
+///
+/// This is NOT to be confused with kAudioUnitProperty_ParameterValueStrings. That property is used with parameters that are indexed and is typically used for instance to build a menu item of choices for one of several parameter values.
+///
+/// kAudioUnitProperty_ParameterStringFromValue can have a continuous range, and merely states to the host that if it is displaying those parameter’s values, they should request a name any time any value of the parameter is set when displaying that parameter.
+///
+/// For instance (a trivial example), a unit may present a gain parameter in a dB scale, and wish to display its minimum value as “negative infinity”. In this case, the audio unit will not return names for any parameter value greater than its minimum value - so the host will then just display the parameter value as is. For values less than or equal to the minimum value, the audio unit will return a string for “negative infinity” which the host can use to display appropriately.
+///
+/// A less trivial example might be a parameter that presents its values as seconds. However, in some situations this value should be better displayed in a SMPTE style of display.
+///
+/// ```objc
+/// HH:MM:SS:FF
+/// ```
+///
+/// In this case, the audio unit would return a name for any value of the parameter.
+///
+/// The GetProperty call is used in the same scope and element as the inParamID that is declared in the struct passed in to this property.
+///
+/// If the *inValue member is NULL, then the audio unit should take the current value of the specified parameter. If the *inValue member is NOT NULL, then the audio unit should return the name used for the specified value.
+///
+/// On exit, the outName may point to a CFStringRef (which if so must be released by the caller). If the parameter has no special name that should be applied to that parameter value, then outName will be NULL, and the host should display the parameter value as appropriate.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterStringFromValue: AudioUnitPropertyID = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameterclumpname?language=objc)
+/// A read-only `AudioUnitParameterNameInfo` struct, valid on any audio unit scope.
+///
+/// ## Discussion
+///
+/// This works in a similar manner to the ParameterIDName property, except that the inID value is one of the clumpID’s that are returned with the audio unit’s ParameterInfo structure.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterClumpName: AudioUnitPropertyID = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parametervaluefromstring?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterValueFromString: AudioUnitPropertyID = 38;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_contextname?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ContextName: AudioUnitPropertyID = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_presentationlatency?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_PresentationLatency: AudioUnitPropertyID = 40;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_classinfofromdocument?language=objc)
+/// A read/write CFDictionary object, valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// If the audio unit implements this property then it is going to do different actions establishing its state from a document rather than from a user preset. Thus, a host app should use this property first (instead of kAudioUnitProperty_ClassInfo) when restoring the state of an audio unit when opening a document. If the audio unit returns an error (or doesn’t implement this property) then the host should use the same preset with the kAudioUnitProperty_ClassInfo.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ClassInfoFromDocument: AudioUnitPropertyID = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_requestviewcontroller?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_RequestViewController: AudioUnitPropertyID = 56;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parametersforoverview?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParametersForOverview: AudioUnitPropertyID = 57;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_supportsmpe?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SupportsMPE: AudioUnitPropertyID = 58;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_rendercontextobserver?language=objc)
+/// The block that the system calls when the rendering context changes.
+///
+/// ## Discussion
+///
+/// If your Audio Unit creates auxilliary realtime rendering threads, set the value of this key to the [`AURenderContextObserver`](https://developer.apple.com/documentation/audiotoolbox/aurendercontextobserver) block you want the system to execute. The system executes your block when the rendering context changes.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The block you provide is for system use only. Audio Unit hosts must not attempt to interact with the audio unit through this block.
+///
+///
+///
+/// </div>
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_RenderContextObserver: AudioUnitPropertyID = 60;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_lastrendersampletime?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_LastRenderSampleTime: AudioUnitPropertyID = 61;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_loadedoutofprocess?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_LoadedOutOfProcess: AudioUnitPropertyID = 62;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_fastdispatch?language=objc)
+/// A read-only `void *` value valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// This property supports expedited interaction with an audio unit. To use it, call the [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) function with the `inID` parameter set to the selector constant that corresponds to the audio unit function you want to call quickly. On return, the `outData` parameter contains a function pointer for the selector.
+///
+/// For example, by calling [`AudioUnitGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiounitgetproperty(_:_:_:_:_:_:)) with its `inID` parameter set to `kAudioUnitRenderSelect`, you obtain the function pointer for the [`AudioUnitRender`](https://developer.apple.com/documentation/audiotoolbox/audiounitrender(_:_:_:_:_:_:)) function. You can then invoke audio unit rendering without incurring the overhead of the component dispatch mechanism.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_FastDispatch: AudioUnitPropertyID = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_setexternalbuffer?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SetExternalBuffer: AudioUnitPropertyID = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_getuicomponentlist?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_GetUIComponentList: AudioUnitPropertyID = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_cocoaui?language=objc)
+/// A read-only `AudioUnitCocoaViewInfo` data structure valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// An audio unit’s custom Cocoa views. You can determine the number of views an audio unit provides by querying the size of this property. Typically, audio units provide just one view.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_CocoaUI: AudioUnitPropertyID = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_iconlocation?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_IconLocation: AudioUnitPropertyID = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_auhostidentifier?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_AUHostIdentifier: AudioUnitPropertyID = 46;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_midioutputcallbackinfo?language=objc)
+/// A read-only CFArray object valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// The host will also need to determine how many MIDI output streams the audio unit can generate (and the name for each of these outputs). Each MIDI output is a complete MIDI data stream, such as embodied by a MIDIEndpointRef in CoreMIDI.
+///
+/// To do, the host uses this property and retrieves an array of CFStringRefs.
+///
+/// - the size of the array is the number of MIDI Outputs the audio unit supports
+///
+/// - each item in the array is the name for that output at that index
+///
+/// The host should release the array when it is finished with it.
+///
+/// Once the host has determined the audio unit supports this feature, it then instantiates a callback with the unit that the unit will call with MIDI data (see kAudioUnitProperty_MIDIOutputCallback).
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MIDIOutputCallbackInfo: AudioUnitPropertyID = 47;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_midioutputcallback?language=objc)
+/// A write-only AUMIDIOutputCallbackStruct struct, valid on the audio unit global scope.
+///
+/// ## Discussion
+///
+/// The host sets this property on the audio unit with the callback (and its user data) set appropriately.
+///
+/// Operational Parameters: In the render call, just as is the expected usage of the AUHostCallbacks, the audio unit can call the provided callback to provide MIDI data to the host that it will associate with the current AudioUnitRender call in process.
+///
+/// The audio unit in the callback provides the following:
+///
+/// - the user data provided by the host when the callback was established
+///
+/// - the AudioTimeStamp that was provided to the audio unit for this particular call of AudioUnitRender
+///
+/// - the output number to associate this MIDI data with
+///
+/// - a MIDI Packet List containing MIDI data. The time stamp values contained within the MIDIPackets in this list are **sample offsets*** from the AudioTimeStamp provided
+///
+/// This allows MIDI data to be time-stamped with a sample offset that is directly associated with the audio data it is generating in the current call to the AudioUnitRender function.
+///
+/// There is no implied or expected association between the number (or position) of an audio unit’s audio or MIDI outputs.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MIDIOutputCallback: AudioUnitPropertyID = 48;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_midioutputeventlistcallback?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MIDIOutputEventListCallback: AudioUnitPropertyID = 63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_audiounitmidiprotocol?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_AudioUnitMIDIProtocol: AudioUnitPropertyID = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_hostmidiprotocol?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_HostMIDIProtocol: AudioUnitPropertyID = 65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_midioutputbuffersizehint?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MIDIOutputBufferSizeHint: AudioUnitPropertyID = 66;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_remotecontroleventlistener?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_RemoteControlEventListener: AudioUnitPropertyID = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_isinterappconnected?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_IsInterAppConnected: AudioUnitPropertyID = 101;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_peerurl?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_PeerURL: AudioUnitPropertyID = 102;
 
+/// An audio unit source-to-destination connection specification.
 /// This structure contains the information needed to make a connection between a source
 /// and destination audio unit.
 ///
@@ -293,8 +545,6 @@ pub const kAudioUnitProperty_PeerURL: AudioUnitPropertyID = 102;
 /// The source audio unit's output element to be used in the connection
 ///
 /// The destination audio unit's input element to be used in the connection
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitconnection?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -317,9 +567,8 @@ unsafe impl RefEncode for AudioUnitConnection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The audio input and output channel capabilities for an audio unit.
 /// Define an audio unit's channel handling capabilities
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auchannelinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUChannelInfo {
@@ -336,9 +585,8 @@ unsafe impl RefEncode for AUChannelInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Allows an audio unit host application to tell an audio unit to use a specified buffer for its input callback.
 /// Allow a host to tell an audio unit to use the provided memory for its input callback
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitexternalbuffer?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitExternalBuffer {
@@ -357,9 +605,8 @@ unsafe impl RefEncode for AudioUnitExternalBuffer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Used for registering an input callback function with an audio unit.
 /// Used by a host when registering a callback with the audio unit to provide input
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurendercallbackstruct?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -382,6 +629,7 @@ unsafe impl RefEncode for AURenderCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Used to set factory presets for an audio unit.
 /// Used to publish and set factory presets on an audio unit
 ///
 /// If
@@ -390,8 +638,6 @@ unsafe impl RefEncode for AURenderCallbackStruct {
 /// If >= 0, then this field is used to select the factory preset
 ///
 /// If a factory preset, the name of the specified factory preset
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupreset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -411,28 +657,28 @@ unsafe impl RefEncode for AUPreset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/krenderquality_max?language=objc)
 pub const kRenderQuality_Max: c_uint = 127;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/krenderquality_high?language=objc)
 pub const kRenderQuality_High: c_uint = 96;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/krenderquality_medium?language=objc)
 pub const kRenderQuality_Medium: c_uint = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/krenderquality_low?language=objc)
 pub const kRenderQuality_Low: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/krenderquality_min?language=objc)
 pub const kRenderQuality_Min: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/knumberofresponsefrequencies?language=objc)
+/// The maximum number of frequency response bin structures for the `AudioUnitProperty_FrequencyResponse` property.
 pub const kNumberOfResponseFrequencies: c_uint = 1024;
 
+/// An audio unit’s audio level at a particular frequency.
+///
+/// ## Overview
+///
+/// An array of AudioUnitFrequencyResponseBin are passed in to kAudioUnitProperty_FrequencyResponse with the mFrequency field filled in. The array is returned with the mMagnitude fields filled in. If fewer than kNumberOfResponseFrequencies are needed, then the first unused bin should be marked with a negative frequency.
+///
+///
 /// Structure used to get the magnitude of the frequency response at a particular frequency via kAudioUnitProperty_FrequencyResponse.
 ///
 /// An array of AudioUnitFrequencyResponseBin are passed in to kAudioUnitProperty_FrequencyResponse
 /// with the mFrequency field filled in. The array is returned with the mMagnitude fields filled in.
 /// If fewer than kNumberOfResponseFrequencies are needed, then the first unused bin should be marked with
 /// a negative frequency.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitfrequencyresponsebin?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitFrequencyResponseBin {
@@ -451,6 +697,21 @@ unsafe impl RefEncode for AudioUnitFrequencyResponseBin {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// When called by the system, provides beat and tempo information to an audio unit from a host application.
+///
+/// Parameters:
+/// - inHostUserData: Custom data that you provided when registering your callback with the audio unit.
+///
+/// - outCurrentBeat: On output, the current beat of the music that is playing.
+///
+/// - outCurrentTempo: On output, the current tempo of the music that is playing.
+///
+///
+/// ## Discussion
+///
+/// If you named your callback function `MyHostCallback_GetBeatAndTempo`, you would declare it like this:
+///
+///
 /// Retrieve information about the current beat and/or tempo
 ///
 /// If the host app has set this callback, then the audio unit can use this to get the current
@@ -469,11 +730,28 @@ unsafe impl RefEncode for AudioUnitFrequencyResponseBin {
 /// Parameter `outCurrentBeat`: The current beat, where 0 is the first beat. Tempo is defined as the number of whole-number (integer) beat values (as indicated by the outCurrentBeat field) per minute.
 ///
 /// Parameter `outCurrentTempo`: The current tempo
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getbeatandtempo?language=objc)
 pub type HostCallback_GetBeatAndTempo =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut f64, *mut f64) -> OSStatus>;
 
+/// When called by the system, provides musical timing information to an audio unit from a host application.
+///
+/// Parameters:
+/// - inHostUserData: Custom data that you provided when registering your callback with the audio unit.
+///
+/// - outDeltaSampleOffsetToNextBeat: On output, the number of samples until the next beat.
+///
+/// - outTimeSig_Numerator: On output, the numerator for a musical time signature.
+///
+/// - outTimeSig_Denominator: On output, the denominator for a musical time signature.
+///
+/// - outCurrentMeasureDownBeat:
+///
+///
+/// ## Discussion
+///
+/// If you named your callback function `MyHostCallback_GetMusicalTimeLocation`, you would declare it like this:
+///
+///
 /// Retrieve information about the musical time state of the host
 ///
 /// If the host app has set this callback, then the audio unit can use this to obtain
@@ -496,12 +774,33 @@ pub type HostCallback_GetBeatAndTempo =
 /// Parameter `outTimeSig_Denominator`: The Denominator of the current time signature (4 is a quarter note, etc)
 ///
 /// Parameter `outCurrentMeasureDownBeat`: The beat that corresponds to the downbeat (first beat) of the current measure that is being rendered
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_getmusicaltimelocation?language=objc)
 pub type HostCallback_GetMusicalTimeLocation = Option<
     unsafe extern "C-unwind" fn(*mut c_void, *mut u32, *mut f32, *mut u32, *mut f64) -> OSStatus,
 >;
 
+/// When called by the system, provides audio transport state and timeline information to an audio unit from a host application.
+///
+/// Parameters:
+/// - inHostUserData: Custom data that you provided when registering your callback with the audio unit.
+///
+/// - outIsPlaying: On output, `TRUE` if audio is playing, or `FALSE` otherwise.
+///
+/// - outTransportStateChanged: On output, `TRUE` if the transport state changed since the last time the callback was invoked, or `FALSE` otherwise.
+///
+/// - outCurrentSampleInTimeLine: On output, the sample number, indexed from zero from the beginning of the timeline.
+///
+/// - outIsCycling: On output, `TRUE` if cycling, or `FALSE` otherwise.
+///
+/// - outCycleStartBeat:
+///
+/// - outCycleEndBeat:
+///
+///
+/// ## Discussion
+///
+/// If you named your callback function `MyHostCallback_GetTransportState`, you would declare it like this:
+///
+///
 /// Retrieve information about the time line's (or transport) state of the host.
 ///
 /// If the host app has set this callback, then the audio unit can use this to obtain
@@ -528,8 +827,6 @@ pub type HostCallback_GetMusicalTimeLocation = Option<
 /// Parameter `outCycleStartBeat`: If cycling is true, the start beat of the cycle or loop point in the host's transport
 ///
 /// Parameter `outCycleEndBeat`: If cycling is true, the end beat of the cycle or loop point in the host's transport
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate?language=objc)
 pub type HostCallback_GetTransportState = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -570,8 +867,6 @@ pub type HostCallback_GetTransportState = Option<
 /// Parameter `outCycleStartBeat`: If cycling is true, the start beat of the cycle or loop point in the host's transport
 ///
 /// Parameter `outCycleEndBeat`: If cycling is true, the end beat of the cycle or loop point in the host's transport
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallback_gettransportstate2?language=objc)
 pub type HostCallback_GetTransportState2 = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -585,11 +880,10 @@ pub type HostCallback_GetTransportState2 = Option<
     ) -> OSStatus,
 >;
 
+/// The time- and transport-related callback functions for an audio unit.
 /// Contains the various callbacks for an audio unit to call
 ///
 /// Any callback can be NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallbackinfo?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -618,10 +912,9 @@ unsafe impl RefEncode for HostCallbackInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An audio unit parameter whose value can change in response to a change in its parent metaparameter.
 /// Used to represent a dependent parameter that can change as a result of its parent meta-parameter
 /// changing
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audependentparameter?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -643,13 +936,12 @@ unsafe impl RefEncode for AUDependentParameter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The name and number of custom Cocoa views for an audio unit.
 /// The location and class name of one or more view factory objects an Audio Unit publishes
 ///
 /// Contains the location of the bundle which the host app can then use to locate the bundle
 ///
 /// Contains the names of the classes that implements the required protocol (AUCocoaUIBase). This class is a view factory that creates the NSView object that is the AudioUnit view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitcocoaviewinfo?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -674,9 +966,8 @@ unsafe impl RefEncode for AudioUnitCocoaViewInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The name and version of an audio unit’s host application.
 /// Used to describe the name and version of the audio unit's host
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostversionidentifier?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -698,7 +989,23 @@ unsafe impl RefEncode for AUHostVersionIdentifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputcallback?language=objc)
+/// When called by a host application, gets MIDI data from an audio unit.
+///
+/// Parameters:
+/// - userData: Custom data.
+///
+/// - timeStamp:
+///
+/// - midiOutNum:
+///
+/// - pktlist:
+///
+///
+/// ## Discussion
+///
+/// If you named your callback function `MyAUMIDIOutputCallback`, you would declare it like this:
+///
+///
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
 pub type AUMIDIOutputCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -709,10 +1016,9 @@ pub type AUMIDIOutputCallback = Option<
     ) -> OSStatus,
 >;
 
+/// The callback function and custom data for an audio unit that provides MIDI output.
 /// Set by host application to provide the callback and user data for an audio
 /// unit that provides MIDI output
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputcallbackstruct?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -735,10 +1041,9 @@ unsafe impl RefEncode for AUMIDIOutputCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The callback function and custom data for providing input-to-output sample mapping for an audio unit.
 /// Used by a host when registering a callback with an audio unit, to provide
 /// input-to-output samples mapping
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputsamplesinoutputcallbackstruct?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -764,14 +1069,19 @@ unsafe impl RefEncode for AUInputSamplesInOutputCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The suggested update rate and history duration for parameters which have the [`kAudioUnitParameterFlag_PlotHistory`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_plothistory) flag set.
+///
+/// ## Overview
+///
+/// The structure is filled out by getting the value of the `kAudioUnitProperty_ParameterHistoryInfo` property.
+///
+///
 /// This structure contains the suggested update rate and history duration for parameters which have the kAudioUnitParameterFlag_PlotHistory flag set.
 /// The structure is filled out by getting kAudioUnitProperty_ParameterHistoryInfo.
 ///
 /// This is the number of times per second that it is suggested that the host get the value of this parameter.
 ///
 /// This is the duration in seconds of history that should be plotted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitParameterHistoryInfo {
@@ -792,12 +1102,24 @@ unsafe impl RefEncode for AudioUnitParameterHistoryInfo {
 
 /// Expresses time as a sample count.
 ///
+/// ## Discussion
+///
+/// Sample times are normally positive, but hosts can propagate HAL sample times through audio units, and HAL sample times can be small negative numbers.
+///
+///
+/// Expresses time as a sample count.
+///
 /// Sample times are normally positive, but hosts can propagate HAL sample times through audio
 /// units, and HAL sample times can be small negative numbers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventsampletime?language=objc)
 pub type AUEventSampleTime = i64;
 
+/// The unit-of-measure for an audio unit parameter.
+///
+/// ## Overview
+///
+/// The various units of measure for audio unit parameters are described in `Audio Unit Parameter Units of Measure`.
+///
+///
 /// untyped value generally between 0.0 and 1.0
 ///
 /// takes an integer value (good for menu selections)
@@ -854,95 +1176,224 @@ pub type AUEventSampleTime = i64;
 /// this is the parameter unit type for parameters that present a custom unit name
 ///
 /// a generic MIDI 2.0 controller value with 32-bit range
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitParameterUnit(pub u32);
 impl AudioUnitParameterUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/generic?language=objc)
+    /// A generic unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Expected but not required to range between 0.0 and 1.0.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Generic")]
     pub const Generic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/indexed?language=objc)
+    /// An indexed unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates a particular menu item in a list of menu items, typically using whole-number values starting at 1.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Indexed")]
     pub const Indexed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/boolean?language=objc)
+    /// A Boolean-like unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of 0.0 means `FALSE` and a nonzero value means `TRUE`.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Boolean")]
     pub const Boolean: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/percent?language=objc)
+    /// A percentage unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Most audio unit parameters of this type range from 0 (for 0%) through 100 (for 100%). Some range from from –50 to +50.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Percent")]
     pub const Percent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/seconds?language=objc)
+    /// A whole-seconds unit of measure, indicating either absolute or relative time.
     #[doc(alias = "kAudioUnitParameterUnit_Seconds")]
     pub const Seconds: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/sampleframes?language=objc)
+    /// A sample-frame-count unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// The duration of a sample frame, for fixed frame-rate audio formats, is equal to 1.0/`kAudioUnitProperty_SampleRate` seconds.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_SampleFrames")]
     pub const SampleFrames: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/phase?language=objc)
+    /// An angular degree unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Typical range is –180 through +180 and is intended to represent the phase difference between two signals. See also the [`kAudioUnitParameterUnit_Degrees`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/degrees) property.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Phase")]
     pub const Phase: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/rate?language=objc)
+    /// A multiplication factor unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// A multiplication factor, most often used for playback speed. A value of  2.0, for example, means twice as fast. May also be used for other purposes where a multiplication factor is appropriate.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Rate")]
     pub const Rate: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/hertz?language=objc)
+    /// A hertz unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Absolute frequency or pitch in cycles per second.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Hertz")]
     pub const Hertz: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/cents?language=objc)
+    /// A logarithmic unit of measure for a musical interval between two notes.
+    ///
+    /// ## Discussion
+    ///
+    /// Relative musical pitch in cents, where 1,200 cents are equal to one octave. 100 cents are equal to one semitone. See also the [`kAudioUnitParameterUnit_AbsoluteCents`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/absolutecents) property.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Cents")]
     pub const Cents: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/relativesemitones?language=objc)
+    /// A relative unit of measure for a musical interval between two notes.
+    ///
+    /// ## Discussion
+    ///
+    /// One octave has 12 semitones equal in size. Each semitone is equivalent to 100 cents. This parameter unit is useful for coarse tuning or detuning.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_RelativeSemiTones")]
     pub const RelativeSemiTones: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/midinotenumber?language=objc)
+    /// A whole-number unit of measure corresponding to audio frequency.
+    ///
+    /// ## Discussion
+    ///
+    /// Absolute pitch as defined in the MIDI specification. A standard piano keyboard ranges from MIDI note number 21 (for the A0 note) to 108 (for the C8 note), with MIDI note 60 corresponding to middle C (C4). The frequency for a given MIDI note number may depend on a tuning table.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_MIDINoteNumber")]
     pub const MIDINoteNumber: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/midicontroller?language=objc)
+    /// A whole-number unit of measure corresponding to standard MIDI control numbers.
+    ///
+    /// ## Discussion
+    ///
+    /// Range is from 0 through 127.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_MIDIController")]
     pub const MIDIController: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/decibels?language=objc)
+    /// A logarithmic unit of measure representing the ratio between two audio levels.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically used as a relative measure of audio gain.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Decibels")]
     pub const Decibels: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/lineargain?language=objc)
+    /// A linear unit of measure representing the difference between two audio levels.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically used as a relative measure of audio gain.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_LinearGain")]
     pub const LinearGain: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/degrees?language=objc)
+    /// An angular degree unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Typical range is from –180° through +180° and is intended as a general representation of geometric position, such as for audio sources in a three-dimensional coordinate system. See also the [`kAudioUnitParameterUnit_Phase`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/phase) property.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Degrees")]
     pub const Degrees: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/equalpowercrossfade?language=objc)
+    /// An audio power unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Recommended range is from 0 through 100, representing a crossfade mix of two sources according to `sqrt (x)` and `sqrt (1.0 - x)`.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_EqualPowerCrossfade")]
     pub const EqualPowerCrossfade: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/mixerfadercurve1?language=objc)
+    /// An audio power unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Recommended range is from 0.0 through 1.0. Use `pow (x, 3.0)` to simulate a reasonable linear mixer channel fader response.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_MixerFaderCurve1")]
     pub const MixerFaderCurve1: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/pan?language=objc)
+    /// An audio position unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// For standard left-to-right audio panning.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Pan")]
     pub const Pan: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/meters?language=objc)
+    /// A distance unit of measure, corresponding to meters.
     #[doc(alias = "kAudioUnitParameterUnit_Meters")]
     pub const Meters: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/absolutecents?language=objc)
+    /// An absolute unit of measure for the musical pitch of a note.
+    ///
+    /// ## Discussion
+    ///
+    /// Absolute musical pitch in cents. 1,200 cents are equal to one octave. If `f` is a frequency in hertz, then `absoluteCents = 1200 * log2 (f/440) + 6900`. See also the [`kAudioUnitParameterUnit_Cents`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/cents) property.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_AbsoluteCents")]
     pub const AbsoluteCents: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/octaves?language=objc)
+    /// A relative unit of measure for the musical interval between two notes.
+    ///
+    /// ## Discussion
+    ///
+    /// Octaves in relative pitch, where a value of 1 is equal to an interval of `1200` cents.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Octaves")]
     pub const Octaves: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/bpm?language=objc)
+    /// A whole-number unit of measure for musical tempo, representing beats per minute.
     #[doc(alias = "kAudioUnitParameterUnit_BPM")]
     pub const BPM: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/beats?language=objc)
+    /// A time unit of measure in musical beats.
+    ///
+    /// ## Discussion
+    ///
+    /// 1.0 beats at 120 BPM (beats per minute) equals a duration of 1/2 second.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Beats")]
     pub const Beats: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/milliseconds?language=objc)
+    /// A time unit of measure representing milliseconds.
     #[doc(alias = "kAudioUnitParameterUnit_Milliseconds")]
     pub const Milliseconds: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/ratio?language=objc)
+    /// A unitless ratio unit of measure.
+    ///
+    /// ## Discussion
+    ///
+    /// Useful for representing an amount of compression or expansion, for example.
+    ///
+    ///
     #[doc(alias = "kAudioUnitParameterUnit_Ratio")]
     pub const Ratio: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/customunit?language=objc)
+    /// A custom unit of measure.
     #[doc(alias = "kAudioUnitParameterUnit_CustomUnit")]
     pub const CustomUnit: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit/midi2controller?language=objc)
     #[doc(alias = "kAudioUnitParameterUnit_MIDI2Controller")]
     pub const MIDI2Controller: Self = Self(27);
 }
@@ -955,6 +1406,15 @@ unsafe impl RefEncode for AudioUnitParameterUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Value options for audio unit parameters.
+///
+/// ## Overview
+///
+/// These constants are relevant only in macOS, and not in iOS.
+///
+/// Audio unit parameter flags, for use in the [`AudioUnitParameterInfo`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterinfo) data structure , serve as a dictionary-like set of information about an audio unit parameter. Parameter flag bit position 19 is reserved.
+///
+///
 /// Bit positions 18, 17, and 16 are set aside for display scales. Bit 19 is reserved.
 ///
 ///
@@ -992,78 +1452,64 @@ unsafe impl RefEncode for AudioUnitParameterUnit {
 ///
 /// If set, changing this parameter may change others in the same element as the current
 /// parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitParameterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioUnitParameterOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_cfnamerelease?language=objc)
+/// If an audio unit can generate parameter names dynamically, it should set this flag.
+///
+/// ## Discussion
+///
+/// Audio unit hosting applications should check for this flag being set. If it is, the host should release the audio unit parameter name when it is done using it.
+///
+/// If this flag is not set, the host application can assume that the audio unit will release its parameter names.
+///
+///
         #[doc(alias = "kAudioUnitParameterFlag_CFNameRelease")]
         const Flag_CFNameRelease = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_omitfrompresets?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_OmitFromPresets")]
         const Flag_OmitFromPresets = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_plothistory?language=objc)
+/// If set, getting the `kAudioUnitProperty_ParameterHistoryInfo` property fills out the [`AudioUnitParameterHistoryInfo`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo) struct containing the recommended update rate and history duration.
         #[doc(alias = "kAudioUnitParameterFlag_PlotHistory")]
         const Flag_PlotHistory = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_meterreadonly?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_MeterReadOnly")]
         const Flag_MeterReadOnly = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaymask?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayMask")]
         const Flag_DisplayMask = (7<<16)|(1<<22);
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaysquareroot?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplaySquareRoot")]
         const Flag_DisplaySquareRoot = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaysquared?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplaySquared")]
         const Flag_DisplaySquared = 2<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaycubed?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayCubed")]
         const Flag_DisplayCubed = 3<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaycuberoot?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayCubeRoot")]
         const Flag_DisplayCubeRoot = 4<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displayexponential?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayExponential")]
         const Flag_DisplayExponential = 5<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_hasclump?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_HasClump")]
         const Flag_HasClump = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_valueshavestrings?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_ValuesHaveStrings")]
         const Flag_ValuesHaveStrings = 1<<21;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_displaylogarithmic?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_DisplayLogarithmic")]
         const Flag_DisplayLogarithmic = 1<<22;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_ishighresolution?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsHighResolution")]
         const Flag_IsHighResolution = 1<<23;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_nonrealtime?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_NonRealTime")]
         const Flag_NonRealTime = 1<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_canramp?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_CanRamp")]
         const Flag_CanRamp = 1<<25;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_expertmode?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_ExpertMode")]
         const Flag_ExpertMode = 1<<26;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_hascfnamestring?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_HasCFNameString")]
         const Flag_HasCFNameString = 1<<27;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_isglobalmeta?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsGlobalMeta")]
         const Flag_IsGlobalMeta = 1<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_iselementmeta?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsElementMeta")]
         const Flag_IsElementMeta = 1<<29;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_isreadable?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsReadable")]
         const Flag_IsReadable = 1<<30;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions/flag_iswritable?language=objc)
         #[doc(alias = "kAudioUnitParameterFlag_IsWritable")]
         const Flag_IsWritable = 1<<31;
     }
@@ -1110,8 +1556,6 @@ unsafe impl RefEncode for AudioUnitParameterOptions {
 /// audio unit will (or could) generate a name dynamically, it should set this
 /// flag in the parameter's info. The host should check for this flag, and if
 /// present, release the parameter name when it is finished with it.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterinfo?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1150,19 +1594,23 @@ unsafe impl RefEncode for AudioUnitParameterInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitclumpid_system?language=objc)
+/// Reserved for system use. Use clump ID values other than `0`.
 pub const kAudioUnitClumpID_System: c_uint = 0;
 
 // TODO: pub fn GetAudioUnitParameterDisplayType(flags: AudioUnitParameterOptions,) -> AudioUnitParameterOptions;
 
 // TODO: pub fn SetAudioUnitParameterDisplayType(flags: AudioUnitParameterOptions,display_type: AudioUnitParameterOptions,) -> AudioUnitParameterOptions;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparametername_full?language=objc)
 pub const kAudioUnitParameterName_Full: c_int = -1;
 
-/// Used to provide shorter names for a specified parameter
+/// A short version of the name for an audio unit parameter.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo?language=objc)
+/// ## Discussion
+///
+/// This data structure is used as a value for the [`kAudioUnitProperty_ParameterClumpName`](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameterclumpname) and [`kAudioUnitProperty_ParameterIDName`](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parameteridname) audio unit properties.
+///
+///
+/// Used to provide shorter names for a specified parameter
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1189,13 +1637,18 @@ unsafe impl RefEncode for AudioUnitParameterNameInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteridname?language=objc)
+/// A type definition for a data type that defines the short version of the name for an audio unit parameter.
+///
+/// ## Discussion
+///
+/// `AudioUnitParameterIDName` is a `typedef` for [`AudioUnitParameterNameInfo`](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo).
+///
+///
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 pub type AudioUnitParameterIDName = AudioUnitParameterNameInfo;
 
+/// A string representation of a parameter’s value.
 /// Provide a string representation of a parameter's value
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterstringfromvalue?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1222,9 +1675,8 @@ unsafe impl RefEncode for AudioUnitParameterStringFromValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A parameter’s value based on a string representation of the value.
 /// Provide the parameter's value for a given string representation of it
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluefromstring?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1252,20 +1704,15 @@ unsafe impl RefEncode for AudioUnitParameterValueFromString {
 }
 
 /// In inter-app audio, messages to control the host's transport state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioUnitRemoteControlEvent(pub u32);
 impl AudioUnitRemoteControlEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent/toggleplaypause?language=objc)
     #[doc(alias = "kAudioUnitRemoteControlEvent_TogglePlayPause")]
     pub const TogglePlayPause: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent/togglerecord?language=objc)
     #[doc(alias = "kAudioUnitRemoteControlEvent_ToggleRecord")]
     pub const ToggleRecord: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontrolevent/rewind?language=objc)
     #[doc(alias = "kAudioUnitRemoteControlEvent_Rewind")]
     pub const Rewind: Self = Self(3);
 }
@@ -1279,22 +1726,16 @@ unsafe impl RefEncode for AudioUnitRemoteControlEvent {
 }
 
 /// Block called to receive a remote control event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitremotecontroleventlistener?language=objc)
 #[cfg(feature = "block2")]
 pub type AudioUnitRemoteControlEventListener =
     *mut block2::DynBlock<dyn Fn(AudioUnitRemoteControlEvent)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_allparametermidimappings?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_AllParameterMIDIMappings: AudioUnitPropertyID = 41;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_addparametermidimapping?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_AddParameterMIDIMapping: AudioUnitPropertyID = 42;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_removeparametermidimapping?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_RemoveParameterMIDIMapping: AudioUnitPropertyID = 43;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_hotmapparametermidimapping?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_HotMapParameterMIDIMapping: AudioUnitPropertyID = 44;
 
@@ -1341,30 +1782,22 @@ pub const kAudioUnitProperty_HotMapParameterMIDIMapping: AudioUnitPropertyID = 4
 /// Determines whether the  "on" state of a parameter is mapped to the "on" or "off" state
 /// of the associated MIDI controller. Only valid  if the  kAUParameterMIDIMapping_Bipolar
 /// property is set.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUParameterMIDIMappingFlags(pub u32);
 bitflags::bitflags! {
     impl AUParameterMIDIMappingFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/anychannelflag?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_AnyChannelFlag")]
         const AnyChannelFlag = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/anynoteflag?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_AnyNoteFlag")]
         const AnyNoteFlag = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/subrange?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_SubRange")]
         const SubRange = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/toggle?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_Toggle")]
         const Toggle = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/bipolar?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_Bipolar")]
         const Bipolar = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags/bipolar_on?language=objc)
         #[doc(alias = "kAUParameterMIDIMapping_Bipolar_On")]
         const Bipolar_On = 1<<5;
     }
@@ -1383,8 +1816,6 @@ unsafe impl RefEncode for AUParameterMIDIMappingFlags {
 /// The reserved fields in this structure are for future use. In the current implementation,
 /// they help align the structure to 64 bit size. Do not use the names of these fields in a
 /// host application. They are subject to change.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimapping?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1427,66 +1858,45 @@ unsafe impl RefEncode for AUParameterMIDIMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_midixmlnames?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_MIDIXMLNames: AudioUnitPropertyID = 1006;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_partgroup?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_PartGroup: AudioUnitPropertyID = 1010;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_dualschedulingmode?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_DualSchedulingMode: AudioUnitPropertyID = 1013;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_supportsstartstopnote?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_SupportsStartStopNote: AudioUnitPropertyID = 1014;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicesampleframemask_sampleoffset?language=objc)
 pub const kMusicDeviceSampleFrameMask_SampleOffset: c_uint = 0xFFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdevicesampleframemask_isscheduled?language=objc)
 pub const kMusicDeviceSampleFrameMask_IsScheduled: c_uint = 0x01000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitofflineproperty_inputsize?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitOfflineProperty_InputSize: AudioUnitPropertyID = 3020;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitofflineproperty_outputsize?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitOfflineProperty_OutputSize: AudioUnitPropertyID = 3021;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitofflineproperty_startoffset?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitOfflineProperty_StartOffset: AudioUnitPropertyID = 3022;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitofflineproperty_preflightrequirements?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitOfflineProperty_PreflightRequirements: AudioUnitPropertyID = 3023;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitofflineproperty_preflightname?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitOfflineProperty_PreflightName: AudioUnitPropertyID = 3024;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kofflinepreflight_notrequired?language=objc)
 pub const kOfflinePreflight_NotRequired: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kofflinepreflight_optional?language=objc)
 pub const kOfflinePreflight_Optional: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kofflinepreflight_required?language=objc)
 pub const kOfflinePreflight_Required: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_distanceattenuationdata?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated = "no longer supported"]
 pub const kAudioUnitProperty_DistanceAttenuationData: AudioUnitPropertyID = 3600;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitmigrateproperty_fromplugin?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitMigrateProperty_FromPlugin: AudioUnitPropertyID = 4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitmigrateproperty_oldautomation?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitMigrateProperty_OldAutomation: AudioUnitPropertyID = 4001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kotherpluginformat_undefined?language=objc)
 pub const kOtherPluginFormat_Undefined: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kotherpluginformat_kmas?language=objc)
 pub const kOtherPluginFormat_kMAS: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kotherpluginformat_kvst?language=objc)
 pub const kOtherPluginFormat_kVST: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kotherpluginformat_au?language=objc)
 pub const kOtherPluginFormat_AU: u32 = 3;
 
 /// One of the OtherPluginFormat values
@@ -1504,8 +1914,6 @@ pub const kOtherPluginFormat_AU: u32 = 3;
 /// mType specifies a generic, plug-in format defined descriptor
 /// mSubType is usually left to the manufacturer to use at their discretion
 /// mManufacturer is a registered code to identify all plugins from the same manufacturer
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitotherplugindesc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1529,8 +1937,6 @@ unsafe impl RefEncode for AudioUnitOtherPluginDesc {
 
 /// Used to translate another plug-in's parameter values to  audio unit parameter
 /// values
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluetranslation?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1563,8 +1969,6 @@ unsafe impl RefEncode for AudioUnitParameterValueTranslation {
 
 /// AU-MAS specific structs for the data contained in the "masdata" key of an audio
 /// unit preset dictionary
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settingdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitPresetMAS_SettingData {
@@ -1591,8 +1995,6 @@ unsafe impl RefEncode for AudioUnitPresetMAS_SettingData {
 }
 
 /// See MAS documentation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settings?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitPresetMAS_Settings {
@@ -1622,61 +2024,99 @@ unsafe impl RefEncode for AudioUnitPresetMAS_Settings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_samplerateconvertercomplexity?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SampleRateConverterComplexity: AudioUnitPropertyID = 3014;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsamplerateconvertercomplexity_linear?language=objc)
+/// Basic sample rate conversion using linear interpolation. Fast, but lower quality.
 pub const kAudioUnitSampleRateConverterComplexity_Linear: u32 = 0x6c696e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsamplerateconvertercomplexity_normal?language=objc)
 pub const kAudioUnitSampleRateConverterComplexity_Normal: u32 = 0x6e6f726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsamplerateconvertercomplexity_mastering?language=objc)
+/// Mastering quality sample rate conversion. More computationally expensive.
 pub const kAudioUnitSampleRateConverterComplexity_Mastering: u32 = 0x62617473;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_currentdevice?language=objc)
+/// A read/write audio device ID object, of type `AudioDeviceID`, valid on the audio unit global scope.
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_CurrentDevice: AudioUnitPropertyID = 2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_isrunning?language=objc)
+/// Indicates whether an audio unit is running (`TRUE`) or not (`FALSE`).
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_IsRunning: AudioUnitPropertyID = 2001;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_channelmap?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_ChannelMap: AudioUnitPropertyID = 2002;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_enableio?language=objc)
+/// Specifies whether audio I/O is enabled for an I/O unit bus-scope combination.
+///
+/// ## Discussion
+///
+/// An I/O unit’s bus 0 connects to output hardware, such as for playback through a speaker. Output is enabled by default. To disable output, the bus 0 output scope must be disabled, as follows:
+///
+/// ```objc
+/// UInt32 enableOutput        = 0;    // to disable output
+/// AudioUnitElement outputBus = 0;
+///  
+/// AudioUnitSetProperty (
+///     io_unit_instance,
+///     kAudioOutputUnitProperty_EnableIO,
+///     kAudioUnitScope_Output,
+///     outputBus,
+///     &enableOutput,
+///     sizeof (enableOutput)
+/// );
+/// ```
+///
+/// An I/O unit’s bus 1 connects to input hardware, such as for recording from a microphone. Input is disabled by default. To enable input, the bus 1 input scope must be enabled, as follows:
+///
+/// ```objc
+/// UInt32 enableInput        = 1;    // to enable input
+/// AudioUnitElement inputBus = 1;
+///  
+/// AudioUnitSetProperty (
+///     io_unit_instance,
+///     kAudioOutputUnitProperty_EnableIO,
+///     kAudioUnitScope_Input,
+///     inputBus,
+///     &enableInput,
+///     sizeof (enableInput)
+/// );
+/// ```
+///
+/// A read/write `UInt32` value valid on the input and output scopes.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_EnableIO: AudioUnitPropertyID = 2003;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_starttime?language=objc)
+/// A write-only `AudioOutputUnitStartAtTimeParams` data structure valid on the audio unit global scope. When this property is set on an output unit, it will cause the next Start request (but no subsequent Starts) to use the AudioDeviceStartAtTime function, using the specified timestamp, passing false for `inRequestedStartTimeIsInput`.
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_StartTime: AudioUnitPropertyID = 2004;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_setinputcallback?language=objc)
+/// A read/write `AURenderCallbackStruct` data structure valid on the audio unit global scope. When an output unit has been enabled for input operation, this callback can be used to provide a single callback to the host application from the input I/O proc, in order to notify the host that input is available and may be obtained by calling the `AudioUnitRender` function.
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_SetInputCallback: AudioUnitPropertyID = 2005;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_hasio?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_HasIO: AudioUnitPropertyID = 2006;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_starttimestampsatzero?language=objc)
+/// A read/write `UInt32` value valid on the audio unit global scope.
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_StartTimestampsAtZero: AudioUnitPropertyID = 2007;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_osworkgroup?language=objc)
+/// The workgroup associated with the audio device underlying this Audio Unit.
+///
+/// ## Discussion
+///
+/// The value of this key is an [`os_workgroup_t`](https://developer.apple.com/documentation/os/os_workgroup_t) object.
+///
+/// Workgroups allow multiple threads to coordinate their activities for realtime operations. For Audio Units, this coordination occurs between the Audio Unit and other processes, such as the audio server and host app. The system uses the workgroup to observe the threads’ CPU usage and dynamically balance the competing considerations of power consumption and real-time rendering capacity.
+///
+/// This version 2 property is bridged to the version 3 [`osWorkgroup`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/osworkgroup) property of [`AUAudioUnit`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit).
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_OSWorkgroup: AudioUnitPropertyID = 2015;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_intendedspatialexperience?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_IntendedSpatialExperience: AudioUnitPropertyID = 2016;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_midicallbacks?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_MIDICallbacks: AudioUnitPropertyID = 2010;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_hostreceivesremotecontrolevents?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_HostReceivesRemoteControlEvents: AudioUnitPropertyID = 2011;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_remotecontroltohost?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_RemoteControlToHost: AudioUnitPropertyID = 2012;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_hosttransportstate?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_HostTransportState: AudioUnitPropertyID = 2013;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitproperty_nodecomponentdescription?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOutputUnitProperty_NodeComponentDescription: AudioUnitPropertyID = 2014;
 
@@ -1684,8 +2124,6 @@ pub const kAudioOutputUnitProperty_NodeComponentDescription: AudioUnitPropertyID
 ///
 /// The supplied callback functions are called from the realtime rendering thread, before each
 /// render cycle, to provide any incoming MIDI messages.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitmidicallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1710,7 +2148,7 @@ unsafe impl RefEncode for AudioOutputUnitMIDICallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstartattimeparams?language=objc)
+/// A timestamp for scheduled starting of an I/O audio unit.
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1732,26 +2170,26 @@ unsafe impl RefEncode for AudioOutputUnitStartAtTimeParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_bypassvoiceprocessing?language=objc)
+/// A property that bypasses all processing for microphone uplink done by the voice processing unit.
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_BypassVoiceProcessing: AudioUnitPropertyID = 2100;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_voiceprocessingenableagc?language=objc)
+/// A property to enable automatic gain control on the processed microphone uplink.
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_VoiceProcessingEnableAGC: AudioUnitPropertyID = 2101;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_muteoutput?language=objc)
+/// A property to mute the output of the processed microphone uplink.
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_MuteOutput: AudioUnitPropertyID = 2104;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent?language=objc)
+/// Constants that indicate the state of muted speech.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUVoiceIOSpeechActivityEvent(pub u32);
 impl AUVoiceIOSpeechActivityEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent/hasstarted?language=objc)
+    /// A state that indicates speech started.
     #[doc(alias = "kAUVoiceIOSpeechActivityHasStarted")]
     pub const HasStarted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent/hasended?language=objc)
+    /// A state that indicates speech ended.
     #[doc(alias = "kAUVoiceIOSpeechActivityHasEnded")]
     pub const HasEnded: Self = Self(1);
 }
@@ -1764,40 +2202,48 @@ unsafe impl RefEncode for AUVoiceIOSpeechActivityEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Block called to receive speech activity event while the client is muted.
+/// A block that the system calls to indicate speech activity while the user has the microphone muted.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiomutedspeechactivityeventlistener?language=objc)
+/// Parameters:
+/// - event: An event that indicates whether muted speech started or ended.
+///
+/// Block called to receive speech activity event while the client is muted.
 #[cfg(feature = "block2")]
 pub type AUVoiceIOMutedSpeechActivityEventListener =
     *mut block2::DynBlock<dyn Fn(AUVoiceIOSpeechActivityEvent)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_mutedspeechactivityeventlistener?language=objc)
+/// A property to register a listener that the system calls when it detects speech while the user has the microphone muted.
+///
+/// ## Discussion
+///
+/// To use this API, your app must implement mute using the [`kAUVoiceIOProperty_MuteOutput`](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_muteoutput) property.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_MutedSpeechActivityEventListener: AudioUnitPropertyID = 2106;
 
+/// The ducking level to apply to other non-voice audio.
 /// Ducking level applied to other (i.e. non-voice) audio by AUVoiceIO.
 ///
 /// DuckingLevelDefault = Default ducking level to other audio for typical voice chat.
 /// DuckingLevelMin = minimum ducking to other audio.
 /// DuckingLevelMid = medium ducking to other audio.
 /// DuckingLevelMax = maximum ducking to other audio.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUVoiceIOOtherAudioDuckingLevel(pub u32);
 impl AUVoiceIOOtherAudioDuckingLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/default?language=objc)
+    /// The default ducking level of other non-voice audio in a typical voice chat.
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/min?language=objc)
+    /// The minimum ducking level of other non-voice audio.
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMin")]
     pub const Min: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/mid?language=objc)
+    /// A medium ducking level of other non-voice audio.
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMid")]
     pub const Mid: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/max?language=objc)
+    /// The maximum ducking level of other non-voice audio.
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMax")]
     pub const Max: Self = Self(30);
 }
@@ -1810,14 +2256,21 @@ unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that you use to configure ducking of other non-voice audio in a voice chat.
+///
+/// ## Overview
+///
+/// Use this structure to specify whether to enable advanced ducking and set the ducking level of other non-voice audio in a voice chat. Advanced ducking ducks other non-voice audio based on the presence of voice activity from local and remote chat participants. Setting a higher level of ducking could increase the clarity of voice chat.
+///
+/// If you don’t set this value, the default ducking configuration disables advanced ducking and sets the ducking level to [`kAUVoiceIOOtherAudioDuckingLevelDefault`](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel/default).
+///
+///
 /// The configuration of ducking other (i.e. non-voice) audio
 ///
 ///
 /// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
 ///
 /// Ducking level of other audio
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckingconfiguration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUVoiceIOOtherAudioDuckingConfiguration {
@@ -1839,51 +2292,92 @@ unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingConfiguration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_otheraudioduckingconfiguration?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUVoiceIOProperty_OtherAudioDuckingConfiguration: AudioUnitPropertyID = 2108;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioproperty_voiceprocessingquality?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAUVoiceIOProperty_VoiceProcessingQuality: AudioUnitPropertyID = 2103;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqproperty_numberofbands?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNBandEQProperty_NumberOfBands: AudioUnitPropertyID = 2200;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqproperty_maxnumberofbands?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNBandEQProperty_MaxNumberOfBands: AudioUnitPropertyID = 2201;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunbandeqproperty_biquadcoefficients?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNBandEQProperty_BiquadCoefficients: AudioUnitPropertyID = 2203;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauvoiceioerr_unexpectednumberofinputchannels?language=objc)
+/// An error that indicates that the audio unit encountered an unexpected number of input channels during initialization.
 pub const kAUVoiceIOErr_UnexpectedNumberOfInputChannels: OSStatus = -66784;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_meteringmode?language=objc)
+/// Specifies whether metering is enabled or disabled for a particular scope-element combination.
+///
+/// ## Discussion
+///
+/// A read/write `UInt32` value valid on the input and output scopes.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MeteringMode: AudioUnitPropertyID = 3007;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_matrixlevels?language=objc)
+/// Describes the internal state of a matrix mixer.
+///
+/// ## Discussion
+///
+/// Calculate the size required for this property’s value as follows:
+///
+/// ```objc
+/// (input channel count + 1) * (output channel count + 1)
+/// ```
+///
+/// Obtain the channel counts using the `kAudioUnitProperty_MatrixDimensions` property.
+///
+/// For example, consider a matrix mixer that has 2 input channels and 2 output channels. The value of this property then requires a 3 x 3 array of `Float32` values. You can retrieve specific pieces of information for this example matrix mixer’s state as follows:
+///
+/// - Global volume is stored at `volumes[2][2]`
+///
+/// - Input volumes are stored in the last column: first input channel at `volumes[0][2]`; second input channel at `volumes[1][2]`
+///
+/// - Output volumes are stored in the last row: first output channel at `volumes [2][0]`; second output channel at `volumes[2][1]`
+///
+/// - Cross-point volumes are stored at their expected locations(`volumes[0][1]`, etc)
+///
+/// A read-only two-dimensional array of `Float32` values valid on the audio unit global scope.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MatrixLevels: AudioUnitPropertyID = 3006;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_matrixdimensions?language=objc)
+/// Indicates the total number of channels for input and output of a given matrix mixer.
+///
+/// ## Discussion
+///
+/// A read-only `2 * UInt32` value valid on the audio unit global scope.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MatrixDimensions: AudioUnitPropertyID = 3009;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_meterclipping?language=objc)
+/// Indicates audio clipping that has occurred since this property was last accessed.
+///
+/// ## Discussion
+///
+/// A read-only [`AudioUnitMeterClipping`](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping) data structure valid on the audio unit global scope.
+///
+///
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MeterClipping: AudioUnitPropertyID = 3011;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_inputanchortimestamp?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_InputAnchorTimeStamp: AudioUnitPropertyID = 3016;
 
+/// Audio clipping that has occurred in a mixer unit.
+///
+/// ## Overview
+///
+/// This data structure is used by the `kAudioUnitProperty_MeterClipping` property.
+///
+///
 /// The maximum value seen on the channel since the last time the property was retrieved.
 ///
 /// TRUE if there was an infinite value on this channel.
 ///
 /// TRUE if there was a floating point Not-A-Number value on this channel.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitMeterClipping {
@@ -1903,75 +2397,53 @@ unsafe impl RefEncode for AudioUnitMeterClipping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_reverbroomtype?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ReverbRoomType: AudioUnitPropertyID = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_usesinternalreverb?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_UsesInternalReverb: AudioUnitPropertyID = 1005;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatializationalgorithm?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatializationAlgorithm: AudioUnitPropertyID = 3000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixerrenderingflags?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerRenderingFlags: AudioUnitPropertyID = 3003;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixersourcemode?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerSourceMode: AudioUnitPropertyID = 3005;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixerdistanceparams?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerDistanceParams: AudioUnitPropertyID = 3010;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixerattenuationcurve?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerAttenuationCurve: AudioUnitPropertyID = 3013;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixeroutputtype?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerOutputType: AudioUnitPropertyID = 3100;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixerpointsourceinheadmode?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerPointSourceInHeadMode: AudioUnitPropertyID = 3103;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixerenableheadtracking?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerEnableHeadTracking: AudioUnitPropertyID = 3111;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixerpersonalizedhrtfmode?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerPersonalizedHRTFMode: AudioUnitPropertyID = 3113;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_spatialmixeranyinputisusingpersonalizedhrtf?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: AudioUnitPropertyID =
     3116;
 
 /// Use kSpatializationAlgorithm_UseOutputType with appropriate kAudioUnitProperty_SpatialMixerOutputType
 /// for highest-quality spatial rendering across different hardware.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatializationAlgorithm(pub u32);
 impl AUSpatializationAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_equalpowerpanning?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_EqualPowerPanning")]
     pub const SpatializationAlgorithm_EqualPowerPanning: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_sphericalhead?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_SphericalHead")]
     pub const SpatializationAlgorithm_SphericalHead: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_hrtf?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_HRTF")]
     pub const SpatializationAlgorithm_HRTF: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_soundfield?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_SoundField")]
     pub const SpatializationAlgorithm_SoundField: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_vectorbasedpanning?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_VectorBasedPanning")]
     pub const SpatializationAlgorithm_VectorBasedPanning: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_stereopassthrough?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_StereoPassThrough")]
     pub const SpatializationAlgorithm_StereoPassThrough: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_hrtfhq?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_HRTFHQ")]
     pub const SpatializationAlgorithm_HRTFHQ: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm/spatializationalgorithm_useoutputtype?language=objc)
     #[doc(alias = "kSpatializationAlgorithm_UseOutputType")]
     pub const SpatializationAlgorithm_UseOutputType: Self = Self(7);
 }
@@ -2009,23 +2481,17 @@ unsafe impl RefEncode for AUSpatializationAlgorithm {
 /// The relative directions of the individual channels are specified by the
 /// AudioChannelLayout of the bus. The rotation of the whole bed in the global space is
 /// controlled by azimuth and elevation parameters.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerSourceMode(pub u32);
 impl AUSpatialMixerSourceMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_spatializeifmono?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_SpatializeIfMono")]
     pub const SpatialMixerSourceMode_SpatializeIfMono: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_bypass?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_Bypass")]
     pub const SpatialMixerSourceMode_Bypass: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_pointsource?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_PointSource")]
     pub const SpatialMixerSourceMode_PointSource: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode/spatialmixersourcemode_ambiencebed?language=objc)
     #[doc(alias = "kSpatialMixerSourceMode_AmbienceBed")]
     pub const SpatialMixerSourceMode_AmbienceBed: Self = Self(3);
 }
@@ -2040,50 +2506,35 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
 
 /// Used to specify room type (as identified by a factory preset number) on Apple audio
 /// units that use internal reverb.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUReverbRoomType(pub u32);
 impl AUReverbRoomType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_smallroom?language=objc)
     #[doc(alias = "kReverbRoomType_SmallRoom")]
     pub const ReverbRoomType_SmallRoom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumroom?language=objc)
     #[doc(alias = "kReverbRoomType_MediumRoom")]
     pub const ReverbRoomType_MediumRoom: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largeroom?language=objc)
     #[doc(alias = "kReverbRoomType_LargeRoom")]
     pub const ReverbRoomType_LargeRoom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumhall?language=objc)
     #[doc(alias = "kReverbRoomType_MediumHall")]
     pub const ReverbRoomType_MediumHall: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largehall?language=objc)
     #[doc(alias = "kReverbRoomType_LargeHall")]
     pub const ReverbRoomType_LargeHall: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_plate?language=objc)
     #[doc(alias = "kReverbRoomType_Plate")]
     pub const ReverbRoomType_Plate: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumchamber?language=objc)
     #[doc(alias = "kReverbRoomType_MediumChamber")]
     pub const ReverbRoomType_MediumChamber: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largechamber?language=objc)
     #[doc(alias = "kReverbRoomType_LargeChamber")]
     pub const ReverbRoomType_LargeChamber: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_cathedral?language=objc)
     #[doc(alias = "kReverbRoomType_Cathedral")]
     pub const ReverbRoomType_Cathedral: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largeroom2?language=objc)
     #[doc(alias = "kReverbRoomType_LargeRoom2")]
     pub const ReverbRoomType_LargeRoom2: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumhall2?language=objc)
     #[doc(alias = "kReverbRoomType_MediumHall2")]
     pub const ReverbRoomType_MediumHall2: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_mediumhall3?language=objc)
     #[doc(alias = "kReverbRoomType_MediumHall3")]
     pub const ReverbRoomType_MediumHall3: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype/reverbroomtype_largehall2?language=objc)
     #[doc(alias = "kReverbRoomType_LargeHall2")]
     pub const ReverbRoomType_LargeHall2: Self = Self(12);
 }
@@ -2096,22 +2547,17 @@ unsafe impl RefEncode for AUReverbRoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerAttenuationCurve(pub u32);
 impl AUSpatialMixerAttenuationCurve {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_power?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Power")]
     pub const SpatialMixerAttenuationCurve_Power: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_exponential?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Exponential")]
     pub const SpatialMixerAttenuationCurve_Exponential: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_inverse?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Inverse")]
     pub const SpatialMixerAttenuationCurve_Inverse: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve/spatialmixerattenuationcurve_linear?language=objc)
     #[doc(alias = "kSpatialMixerAttenuationCurve_Linear")]
     pub const SpatialMixerAttenuationCurve_Linear: Self = Self(3);
 }
@@ -2124,7 +2570,6 @@ unsafe impl RefEncode for AUSpatialMixerAttenuationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/mixerdistanceparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MixerDistanceParams {
@@ -2144,17 +2589,14 @@ unsafe impl RefEncode for MixerDistanceParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AUSpatialMixerRenderingFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags/spatialmixerrenderingflags_interauraldelay?language=objc)
         #[doc(alias = "kSpatialMixerRenderingFlags_InterAuralDelay")]
         const SpatialMixerRenderingFlags_InterAuralDelay = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags/spatialmixerrenderingflags_distanceattenuation?language=objc)
         #[doc(alias = "kSpatialMixerRenderingFlags_DistanceAttenuation")]
         const SpatialMixerRenderingFlags_DistanceAttenuation = 1<<2;
     }
@@ -2178,20 +2620,15 @@ unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
 ///
 /// Follow system preferences to choose between personalized vs generic
 /// head-related transfer function (HRTF).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerPersonalizedHRTFMode(pub u32);
 impl AUSpatialMixerPersonalizedHRTFMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode/off?language=objc)
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Off")]
     pub const SpatialMixerPersonalizedHRTFMode_Off: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode/on?language=objc)
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_On")]
     pub const SpatialMixerPersonalizedHRTFMode_On: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode/auto?language=objc)
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Auto")]
     pub const SpatialMixerPersonalizedHRTFMode_Auto: Self = Self(2);
 }
@@ -2216,20 +2653,15 @@ unsafe impl RefEncode for AUSpatialMixerPersonalizedHRTFMode {
 ///
 ///
 /// Render for external speakers based on the mixer's output channel layout.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerOutputType(pub u32);
 impl AUSpatialMixerOutputType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype/spatialmixeroutputtype_headphones?language=objc)
     #[doc(alias = "kSpatialMixerOutputType_Headphones")]
     pub const SpatialMixerOutputType_Headphones: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype/spatialmixeroutputtype_builtinspeakers?language=objc)
     #[doc(alias = "kSpatialMixerOutputType_BuiltInSpeakers")]
     pub const SpatialMixerOutputType_BuiltInSpeakers: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixeroutputtype/spatialmixeroutputtype_externalspeakers?language=objc)
     #[doc(alias = "kSpatialMixerOutputType_ExternalSpeakers")]
     pub const SpatialMixerOutputType_ExternalSpeakers: Self = Self(3);
 }
@@ -2255,17 +2687,13 @@ unsafe impl RefEncode for AUSpatialMixerOutputType {
 /// A point source splits into bypass inside the listener's head. This enables transitions
 /// between traditional, non-spatialized rendering and spatialized sources outside the
 /// listener's head.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerPointSourceInHeadMode(pub u32);
 impl AUSpatialMixerPointSourceInHeadMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode/spatialmixerpointsourceinheadmode_mono?language=objc)
     #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Mono")]
     pub const SpatialMixerPointSourceInHeadMode_Mono: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode/spatialmixerpointsourceinheadmode_bypass?language=objc)
     #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Bypass")]
     pub const SpatialMixerPointSourceInHeadMode_Bypass: Self = Self(1);
 }
@@ -2278,58 +2706,42 @@ unsafe impl RefEncode for AUSpatialMixerPointSourceInHeadMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauaudiomixproperty_spatialaudiomixmetadata?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUAudioMixProperty_SpatialAudioMixMetadata: AudioUnitPropertyID = 5000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kauaudiomixproperty_enablespatialization?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUAudioMixProperty_EnableSpatialization: AudioUnitPropertyID = 5001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_3dmixerdistanceparams?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAudioUnitProperty_3DMixerDistanceParams: AudioUnitPropertyID = 3010;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_3dmixerattenuationcurve?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAudioUnitProperty_3DMixerAttenuationCurve: AudioUnitPropertyID = 3013;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_dopplershift?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAudioUnitProperty_DopplerShift: AudioUnitPropertyID = 3002;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_3dmixerrenderingflags?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAudioUnitProperty_3DMixerRenderingFlags: AudioUnitPropertyID = 3003;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_3dmixerdistanceatten?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAudioUnitProperty_3DMixerDistanceAtten: AudioUnitPropertyID = 3004;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_reverbpreset?language=objc)
 #[cfg(feature = "AUComponent")]
 #[deprecated]
 pub const kAudioUnitProperty_ReverbPreset: AudioUnitPropertyID = 3012;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AU3DMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AU3DMixerRenderingFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_interauraldelay?language=objc)
         const k3DMixerRenderingFlags_InterAuralDelay = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_dopplershift?language=objc)
         const k3DMixerRenderingFlags_DopplerShift = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_distanceattenuation?language=objc)
         const k3DMixerRenderingFlags_DistanceAttenuation = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_distancefilter?language=objc)
         const k3DMixerRenderingFlags_DistanceFilter = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_distancediffusion?language=objc)
         const k3DMixerRenderingFlags_DistanceDiffusion = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_lineardistanceattenuation?language=objc)
         const k3DMixerRenderingFlags_LinearDistanceAttenuation = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags/k3dmixerrenderingflags_constantreverbblend?language=objc)
         const k3DMixerRenderingFlags_ConstantReverbBlend = 1<<6;
     }
 }
@@ -2342,19 +2754,18 @@ unsafe impl RefEncode for AU3DMixerRenderingFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AU3DMixerAttenuationCurve(pub u32);
 impl AU3DMixerAttenuationCurve {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_power?language=objc)
+    /// An equal-power-based attenuation curve.
     pub const k3DMixerAttenuationCurve_Power: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_exponential?language=objc)
+    /// An exponential attenuation curve.
     pub const k3DMixerAttenuationCurve_Exponential: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_inverse?language=objc)
+    /// An inverse attenuation curve.
     pub const k3DMixerAttenuationCurve_Inverse: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve/k3dmixerattenuationcurve_linear?language=objc)
+    /// A linear attenuation curve.
     pub const k3DMixerAttenuationCurve_Linear: Self = Self(3);
 }
 
@@ -2366,13 +2777,10 @@ unsafe impl RefEncode for AU3DMixerAttenuationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_scheduleaudioslice?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduleAudioSlice: AudioUnitPropertyID = 3300;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_schedulestarttimestamp?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduleStartTimeStamp: AudioUnitPropertyID = 3301;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_currentplaytime?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_CurrentPlayTime: AudioUnitPropertyID = 3302;
 
@@ -2393,30 +2801,22 @@ pub const kAudioUnitProperty_CurrentPlayTime: AudioUnitPropertyID = 3302;
 ///
 /// specifies that the buffer should interrupt any previously scheduled buffer,
 /// but only at a loop point in that buffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUScheduledAudioSliceFlags(pub u32);
 bitflags::bitflags! {
     impl AUScheduledAudioSliceFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_complete?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_Complete")]
         const ScheduledAudioSliceFlag_Complete = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_begantorender?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_BeganToRender")]
         const ScheduledAudioSliceFlag_BeganToRender = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_begantorenderlate?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_BeganToRenderLate")]
         const ScheduledAudioSliceFlag_BeganToRenderLate = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_loop?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_Loop")]
         const ScheduledAudioSliceFlag_Loop = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_interrupt?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_Interrupt")]
         const ScheduledAudioSliceFlag_Interrupt = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags/scheduledaudiosliceflag_interruptatloop?language=objc)
         #[doc(alias = "kScheduledAudioSliceFlag_InterruptAtLoop")]
         const ScheduledAudioSliceFlag_InterruptAtLoop = 0x20;
     }
@@ -2430,65 +2830,47 @@ unsafe impl RefEncode for AUScheduledAudioSliceFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_scheduledfileids?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduledFileIDs: AudioUnitPropertyID = 3310;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_scheduledfileregion?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduledFileRegion: AudioUnitPropertyID = 3311;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_scheduledfileprime?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduledFilePrime: AudioUnitPropertyID = 3312;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_scheduledfilebuffersizeframes?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduledFileBufferSizeFrames: AudioUnitPropertyID = 3313;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_scheduledfilenumberbuffers?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ScheduledFileNumberBuffers: AudioUnitPropertyID = 3314;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_usesinternalreverb?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_UsesInternalReverb: AudioUnitPropertyID =
     kAudioUnitProperty_UsesInternalReverb;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_soundbankdata?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_SoundBankData: AudioUnitPropertyID = 1008;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_streamfromdisk?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_StreamFromDisk: AudioUnitPropertyID = 1011;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_soundbankfsref?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_SoundBankFSRef: AudioUnitPropertyID = 1012;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_instrumentname?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_InstrumentName: AudioUnitPropertyID = 1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_instrumentnumber?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_InstrumentNumber: AudioUnitPropertyID = 1004;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_instrumentcount?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_InstrumentCount: AudioUnitPropertyID = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_bankname?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_BankName: AudioUnitPropertyID = 1007;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_soundbankurl?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_SoundBankURL: AudioUnitPropertyID = 1100;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaumidisynthproperty_enablepreload?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUMIDISynthProperty_EnablePreload: AudioUnitPropertyID = 4119;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausamplerproperty_loadinstrument?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUSamplerProperty_LoadInstrument: AudioUnitPropertyID = 4102;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausamplerproperty_loadaudiofiles?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUSamplerProperty_LoadAudioFiles: AudioUnitPropertyID = 4101;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ausamplerinstrumentdata?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2519,119 +2901,80 @@ unsafe impl RefEncode for AUSamplerInstrumentData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumenttype_dlspreset?language=objc)
 pub const kInstrumentType_DLSPreset: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumenttype_sf2preset?language=objc)
 pub const kInstrumentType_SF2Preset: c_uint = kInstrumentType_DLSPreset;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumenttype_aupreset?language=objc)
 pub const kInstrumentType_AUPreset: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumenttype_audiofile?language=objc)
 pub const kInstrumentType_Audiofile: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumenttype_exs24?language=objc)
 pub const kInstrumentType_EXS24: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausampler_defaultpercussionbankmsb?language=objc)
 pub const kAUSampler_DefaultPercussionBankMSB: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausampler_defaultmelodicbankmsb?language=objc)
 pub const kAUSampler_DefaultMelodicBankMSB: c_uint = 0x79;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausampler_defaultbanklsb?language=objc)
 pub const kAUSampler_DefaultBankLSB: c_uint = 0x00;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_deferredrendererpullsize?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_DeferredRendererPullSize: AudioUnitPropertyID = 3320;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_deferredrendererextralatency?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_DeferredRendererExtraLatency: AudioUnitPropertyID = 3321;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_deferredrendererwaitframes?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_DeferredRendererWaitFrames: AudioUnitPropertyID = 3322;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetreceiveproperty_hostname?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetReceiveProperty_Hostname: AudioUnitPropertyID = 3511;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetreceiveproperty_password?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetReceiveProperty_Password: AudioUnitPropertyID = 3512;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendproperty_portnum?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendProperty_PortNum: AudioUnitPropertyID = 3513;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendproperty_transmissionformat?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendProperty_TransmissionFormat: AudioUnitPropertyID = 3514;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendproperty_transmissionformatindex?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendProperty_TransmissionFormatIndex: AudioUnitPropertyID = 3515;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendproperty_servicename?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendProperty_ServiceName: AudioUnitPropertyID = 3516;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendproperty_disconnect?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendProperty_Disconnect: AudioUnitPropertyID = 3517;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendproperty_password?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendProperty_Password: AudioUnitPropertyID = 3518;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_pcmfloat32?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_PCMFloat32: AudioUnitPropertyID = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_pcmint24?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_PCMInt24: AudioUnitPropertyID = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_pcmint16?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_PCMInt16: AudioUnitPropertyID = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_lossless24?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_Lossless24: AudioUnitPropertyID = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_lossless16?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_Lossless16: AudioUnitPropertyID = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_ulaw?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_ULaw: AudioUnitPropertyID = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_ima4?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_IMA4: AudioUnitPropertyID = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_128kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_128kbpspc: AudioUnitPropertyID = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_96kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_96kbpspc: AudioUnitPropertyID = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_80kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_80kbpspc: AudioUnitPropertyID = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_64kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_64kbpspc: AudioUnitPropertyID = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_48kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_48kbpspc: AudioUnitPropertyID = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_40kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_40kbpspc: AudioUnitPropertyID = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_32kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_32kbpspc: AudioUnitPropertyID = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_ld_64kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_LD_64kbpspc: AudioUnitPropertyID = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_ld_48kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_LD_48kbpspc: AudioUnitPropertyID = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_ld_40kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_LD_40kbpspc: AudioUnitPropertyID = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendpresetformat_aac_ld_32kbpspc?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendPresetFormat_AAC_LD_32kbpspc: AudioUnitPropertyID = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunetsendnumpresetformats?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUNetSendNumPresetFormats: AudioUnitPropertyID = 18;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunumversion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUNumVersion {
@@ -2658,8 +3001,6 @@ unsafe impl RefEncode for AUNumVersion {
 }
 
 /// Used to describe the name and version of the audio unit's host
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostidentifier?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2681,50 +3022,35 @@ unsafe impl RefEncode for AUHostIdentifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_global?language=objc)
 pub const kAudioUnitParameterFlag_Global: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_input?language=objc)
 pub const kAudioUnitParameterFlag_Input: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_output?language=objc)
 pub const kAudioUnitParameterFlag_Output: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_group?language=objc)
 pub const kAudioUnitParameterFlag_Group: c_uint = 1 << 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_hasname?language=objc)
 pub const kAudioUnitParameterFlag_HasName: u32 =
     AudioUnitParameterOptions::Flag_ValuesHaveStrings.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_srcalgorithm?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SRCAlgorithm: AudioUnitPropertyID = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_midicontrolmapping?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_MIDIControlMapping: AudioUnitPropertyID = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_currentpreset?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_CurrentPreset: AudioUnitPropertyID = 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_parametervaluename?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_ParameterValueName: AudioUnitPropertyID =
     kAudioUnitProperty_ParameterStringFromValue;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_buscount?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_BusCount: AudioUnitPropertyID = kAudioUnitProperty_ElementCount;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioofflineunitproperty_inputsize?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOfflineUnitProperty_InputSize: AudioUnitPropertyID =
     kAudioUnitOfflineProperty_InputSize;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioofflineunitproperty_outputsize?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioOfflineUnitProperty_OutputSize: AudioUnitPropertyID =
     kAudioUnitOfflineProperty_OutputSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsrcalgorithm_polyphase?language=objc)
 pub const kAudioUnitSRCAlgorithm_Polyphase: u32 = 0x706f6c79;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsrcalgorithm_mediumquality?language=objc)
 pub const kAudioUnitSRCAlgorithm_MediumQuality: u32 = 0x63737263;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmidicontrolmapping?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -2755,7 +3081,6 @@ unsafe impl RefEncode for AudioUnitMIDIControlMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluename?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2782,32 +3107,22 @@ unsafe impl RefEncode for AudioUnitParameterValueName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_groupoutputbus?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_GroupOutputBus: AudioUnitPropertyID = 1002;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kmusicdeviceproperty_soundbankfsspec?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kMusicDeviceProperty_SoundBankFSSpec: AudioUnitPropertyID = 1003;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_pannermode?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_PannerMode: AudioUnitPropertyID = 3008;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_speakerconfiguration?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAudioUnitProperty_SpeakerConfiguration: AudioUnitPropertyID = 3001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kspeakerconfiguration_headphones?language=objc)
 pub const kSpeakerConfiguration_HeadPhones: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kspeakerconfiguration_stereo?language=objc)
 pub const kSpeakerConfiguration_Stereo: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kspeakerconfiguration_quad?language=objc)
 pub const kSpeakerConfiguration_Quad: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kspeakerconfiguration_5_0?language=objc)
 pub const kSpeakerConfiguration_5_0: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kspeakerconfiguration_5_1?language=objc)
 pub const kSpeakerConfiguration_5_1: c_uint = kSpeakerConfiguration_5_0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/ausamplerbankpresetdata?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2838,10 +3153,8 @@ unsafe impl RefEncode for AUSamplerBankPresetData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausamplerproperty_loadpresetfrombank?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUSamplerProperty_LoadPresetFromBank: AudioUnitPropertyID = 4100;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kausamplerproperty_bankandpreset?language=objc)
 #[cfg(feature = "AUComponent")]
 pub const kAUSamplerProperty_BankAndPreset: AudioUnitPropertyID =
     kAUSamplerProperty_LoadPresetFromBank;

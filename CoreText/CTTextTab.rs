@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttab?language=objc)
+/// A tab in a paragraph style, storing an alignment type and location.
+///
+/// ## Overview
+///
+/// Core Text supports five alignment types: [`kCTTextAlignmentLeft`](https://developer.apple.com/documentation/coretext/cttextalignment/left), [`kCTTextAlignmentCenter`](https://developer.apple.com/documentation/coretext/cttextalignment/center), [`kCTTextAlignmentRight`](https://developer.apple.com/documentation/coretext/cttextalignment/right), [`kCTTextAlignmentJustified`](https://developer.apple.com/documentation/coretext/cttextalignment/justified) and [`kCTTextAlignmentNatural`](https://developer.apple.com/documentation/coretext/cttextalignment/natural). These alignment types are absolute, not based on the line sweep direction of text.
+///
+/// For example, tabbed text is always positioned to the left of a right-aligned tab, whether the line sweep direction is left to right or right to left. A tab’s location, on the other hand, is relative to the back margin. A tab set at 1.5 inches, for example, is at 1.5 inches from the right in right-to-left text.
+///
+///
 #[doc(alias = "CTTextTabRef")]
 #[repr(C)]
 pub struct CTTextTab {
@@ -27,9 +35,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTTextTab {
+    /// Returns the Core Foundation type identifier of the text tab object.
     /// Returns the CFType of the text tab object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttabgettypeid()?language=objc)
     #[doc(alias = "CTTextTabGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -54,6 +61,21 @@ extern "C" {
 }
 
 impl CTTextTab {
+    /// Creates and initializes a new text tab object.
+    ///
+    /// Parameters:
+    /// - alignment: The tab’s alignment. This is used to determine the position of text inside the tab column. This parameter must be set to a valid [`CTTextAlignment`](https://developer.apple.com/documentation/coretext/cttextalignment) value or this function returns `NULL`.
+    ///
+    /// - location: The tab’s ruler location, relative to the back margin.
+    ///
+    /// - options: Options to pass in when the tab is created. Currently, the only option available is [`kCTTabColumnTerminatorsAttributeName`](https://developer.apple.com/documentation/coretext/kcttabcolumnterminatorsattributename). This parameter is optional and can be set to `NULL` if not needed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a CTTextTab object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
     /// Creates and initializes a new text tab.
     ///
     ///
@@ -76,8 +98,6 @@ impl CTTextTab {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttabcreate(_:_:_:)?language=objc)
     #[doc(alias = "CTTextTabCreate")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
@@ -101,13 +121,22 @@ impl CTTextTab {
 
     /// Returns the text alignment of the tab.
     ///
+    /// Parameters:
+    /// - tab: The tab whose text alignment is obtained.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The tab’s text alignment value.
+    ///
+    ///
+    /// Returns the text alignment of the tab.
+    ///
     ///
     /// Parameter `tab`: The tab whose text alignment you wish to access.
     ///
     ///
     /// Returns: The tab's text alignment value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttabgetalignment(_:)?language=objc)
     #[doc(alias = "CTTextTabGetAlignment")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
@@ -118,6 +147,17 @@ impl CTTextTab {
         unsafe { CTTextTabGetAlignment(self) }
     }
 
+    /// Returns the tab’s ruler location.
+    ///
+    /// Parameters:
+    /// - tab: The tab whose location is obtained.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The tab’s ruler location relative to the back margin.
+    ///
+    ///
     /// Returns the tab's ruler location.
     ///
     ///
@@ -125,8 +165,6 @@ impl CTTextTab {
     ///
     ///
     /// Returns: The tab's ruler location relative to the back margin.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttabgetlocation(_:)?language=objc)
     #[doc(alias = "CTTextTabGetLocation")]
     #[inline]
     pub fn location(&self) -> c_double {
@@ -138,14 +176,23 @@ impl CTTextTab {
 
     /// Returns the dictionary of attributes associated with the tab.
     ///
+    /// Parameters:
+    /// - tab: The tab whose attributes are obtained.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The dictionary of attributes associated with the tab, or if no dictionary is present, `NULL`.
+    ///
+    ///
+    /// Returns the dictionary of attributes associated with the tab.
+    ///
     ///
     /// Parameter `tab`: The tab whose attributes you wish to access.
     ///
     ///
     /// Returns: The dictionary of attributes associated with the tab or NULL if
     /// no dictionary is present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttabgetoptions(_:)?language=objc)
     #[doc(alias = "CTTextTabGetOptions")]
     #[inline]
     pub fn options(&self) -> Option<CFRetained<CFDictionary>> {

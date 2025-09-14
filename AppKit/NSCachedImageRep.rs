@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscachedimagerep?language=objc)
+    /// An object that stores image data in a form that can be readily transferred to the screen.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSCachedImageRep`](https://developer.apple.com/documentation/appkit/nscachedimagerep) object differs from other image representation objects in that it simply stores the already rendered image, whereas other image representation objects generally have knowledge about how to render the image from source data.
+    ///
+    /// You typically do not use this class directly. Instead, [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) and its other image representation objects create instances of [`NSCachedImageRep`](https://developer.apple.com/documentation/appkit/nscachedimagerep) as needed to cache versions of the rendered image. This caching speeds up screen-based drawing for existing images during subsequent rendering operations. Cached image representations are also used to capture drawing commands for images created programmatically by locking focus on an image.
+    ///
+    ///
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]

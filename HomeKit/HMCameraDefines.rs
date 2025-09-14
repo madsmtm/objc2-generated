@@ -4,32 +4,27 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The states associated with a camera stream.
 /// This enumeration describes the different states of a camera stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HMCameraStreamState(pub NSUInteger);
 impl HMCameraStreamState {
+    /// The state when the camera stream start request is processing.
     /// Start stream request is in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/starting?language=objc)
     #[doc(alias = "HMCameraStreamStateStarting")]
     pub const Starting: Self = Self(1);
+    /// The state when the camera stream is currently in progress.
     /// Streaming is in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/streaming?language=objc)
     #[doc(alias = "HMCameraStreamStateStreaming")]
     pub const Streaming: Self = Self(2);
+    /// The state when the camera stream is stopping.
     /// Stop stream request is in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/stopping?language=objc)
     #[doc(alias = "HMCameraStreamStateStopping")]
     pub const Stopping: Self = Self(3);
+    /// The state when the camera stream is not active.
     /// No streaming is in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamstate/notstreaming?language=objc)
     #[doc(alias = "HMCameraStreamStateNotStreaming")]
     pub const NotStreaming: Self = Self(4);
 }
@@ -42,27 +37,23 @@ unsafe impl RefEncode for HMCameraStreamState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The options associated with a camera’s audio stream.
 /// This enumeration describes the setting for audio on the recipient of the camera stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HMCameraAudioStreamSetting(pub NSUInteger);
 impl HMCameraAudioStreamSetting {
+    /// The setting that mutes both incoming and outgoing audio.
     /// Muted for incoming and outgoing audio.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting/muted?language=objc)
     #[doc(alias = "HMCameraAudioStreamSettingMuted")]
     pub const Muted: Self = Self(1);
+    /// The setting that permits incoming audio.
     /// Only incoming audio is allowed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting/incomingaudioallowed?language=objc)
     #[doc(alias = "HMCameraAudioStreamSettingIncomingAudioAllowed")]
     pub const IncomingAudioAllowed: Self = Self(2);
+    /// The setting that permits both incoming and outgoing audio.
     /// Bidirectional audio is allowed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiostreamsetting/bidirectionalaudioallowed?language=objc)
     #[doc(alias = "HMCameraAudioStreamSettingBidirectionalAudioAllowed")]
     pub const BidirectionalAudioAllowed: Self = Self(3);
 }

@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipinchgesturerecognizer?language=objc)
+    /// A continuous gesture recognizer that interprets pinching gestures involving two touches.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIPinchGestureRecognizer`](https://developer.apple.com/documentation/uikit/uipinchgesturerecognizer) is a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).
+    ///
+    /// The user must press two fingers on a view while pinching it. When the user moves the two fingers toward each other, the conventional meaning is zoom out; when the user moves the two fingers away from each other, the conventional meaning is zoom in.
+    ///
+    /// Pinching is a continuous gesture. The gesture begins ([`UIGestureRecognizerStateBegan`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/began)) when the user moves the two fingers enough to create a pinch gesture. The gesture changes ([`UIGestureRecognizerStateChanged`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/changed)) when a finger moves (while both fingers remain touching). The gesture ends ([`UIGestureRecognizerStateEnded`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/ended)) when the user lifts both fingers from the view.
+    ///
+    ///
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

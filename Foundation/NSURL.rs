@@ -8,973 +8,1437 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey?language=objc)
+/// Keys that apply to file system URLs.
+///
+/// ## Discussion
+///
+/// To request information using one of these keys, pass it to the `forKey:` parameter of the [`getResourceValue:forKey:error:`](https://developer.apple.com/documentation/foundation/nsurl/getresourcevalue(_:forkey:)) instance method.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLResourceKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlfilescheme?language=objc)
+    /// Identifies a URL that points to a file on a mounted volume.
     #[cfg(feature = "NSString")]
     pub static NSURLFileScheme: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/keysofunsetvalueskey?language=objc)
+    /// Key for the resource properties that have not been set after the [`setResourceValues:error:`](https://developer.apple.com/documentation/foundation/nsurl/setresourcevalues(_:)) method returns an error, returned as an array of `NSString` objects.
     #[cfg(feature = "NSString")]
     pub static NSURLKeysOfUnsetValuesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/namekey?language=objc)
+    /// The resource’s name in the file system, returned as an `NSString` object (read-write).
     #[cfg(feature = "NSString")]
     pub static NSURLNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/localizednamekey?language=objc)
+    /// The resource’s localized or extension-hidden name, returned as an `NSString` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLLocalizedNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isregularfilekey?language=objc)
+    /// The key for determining whether the resource is a regular file rather than a directory or a symbolic link.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsRegularFileKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isdirectorykey?language=objc)
+    /// A key for determining whether the resource is a directory.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a read-only Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsDirectoryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/issymboliclinkkey?language=objc)
+    /// Key for determining whether the resource is a symbolic link, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLIsSymbolicLinkKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isvolumekey?language=objc)
+    /// Key for determining whether the resource is the root directory of a volume, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLIsVolumeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ispackagekey?language=objc)
+    /// The key for determining whether the resource is a file package.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object read-write in macOS 10.8 and later, and read-only in previous versions. A `true` value means that the resource is a file package.
+    ///
+    /// If you attempt to set or clear this key’s value on a file instead of a directory, the system ignores your attempt. If the directory as a package due to its filename extension or other reason apart from this key, setting this key’s value to `false` has no effect.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsPackageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isapplicationkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLIsApplicationKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/applicationisscriptablekey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLApplicationIsScriptableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/issystemimmutablekey?language=objc)
+    /// Key for determining whether the resource’s system immutable bit is set, returned as a Boolean `NSNumber` object (read-write).
     #[cfg(feature = "NSString")]
     pub static NSURLIsSystemImmutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isuserimmutablekey?language=objc)
+    /// Key for determining whether the resource’s user immutable bit is set, returned as a Boolean `NSNumber` object (read-write).
     #[cfg(feature = "NSString")]
     pub static NSURLIsUserImmutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ishiddenkey?language=objc)
+    /// Key for determining whether the resource is normally not displayed to users, returned as a Boolean `NSNumber` object (read-write).
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If the resource is hidden because its name begins with a period, setting this value has no effect.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsHiddenKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/hashiddenextensionkey?language=objc)
+    /// Key for determining whether the resource’s extension is normally removed from its localized name, returned as a Boolean `NSNumber` object (read-write).
     #[cfg(feature = "NSString")]
     pub static NSURLHasHiddenExtensionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/creationdatekey?language=objc)
+    /// The time at which the resource was created.
+    ///
+    /// ## Discussion
+    ///
+    /// This key corresponds to an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) value, or `nil` if the volume doesn’t support creation dates.
+    ///
+    /// The corresponding resource is read-write.
+    ///
+    /// A resource’s [`NSURLCreationDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/creationdatekey) value should be less than or equal to the resource’s [`NSURLContentModificationDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentmodificationdatekey) and [`NSURLContentAccessDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentaccessdatekey) values. Otherwise, the file system may change the [`NSURLCreationDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/creationdatekey) to the lesser of those values.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLCreationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/contentaccessdatekey?language=objc)
+    /// The time at which the resource was most recently accessed.
+    ///
+    /// ## Discussion
+    ///
+    /// This key corresponds to an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) value, or `nil` if the volume doesn’t support access dates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Beginning in macOS 10.13, iOS 11, watchOS 4, tvOS 11, and later, [`NSURLContentAccessDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentaccessdatekey) is read-write. Attempts to set a value for this file resource property on earlier systems are ignored.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When you set the [`NSURLContentAccessDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentaccessdatekey) for a resource, also set [`NSURLContentModificationDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentmodificationdatekey) in the same call to the [`setResourceValues:error:`](https://developer.apple.com/documentation/foundation/nsurl/setresourcevalues(_:)) method. Otherwise, the file system may set the [`NSURLContentAccessDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentaccessdatekey) value to the current [`NSURLContentModificationDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentmodificationdatekey) value.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLContentAccessDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/contentmodificationdatekey?language=objc)
+    /// The time at which the resource was most recently modified.
+    ///
+    /// ## Discussion
+    ///
+    /// This key corresponds to an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) value, or `nil` if the volume doesn’t support modification dates.
+    ///
+    /// The corresponding resource is read-write.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLContentModificationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/attributemodificationdatekey?language=objc)
+    /// The time at which the resource’s attributes were most recently modified, returned as an `NSDate` object if the volume supports attribute modification dates, or `nil` if attribute modification dates are unsupported (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLAttributeModificationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/linkcountkey?language=objc)
+    /// The number of hard links to the resource, returned as an `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLLinkCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/parentdirectoryurlkey?language=objc)
+    /// The container directory of the resource.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a read-only `NSURL` object, or `nil` if the resource is the root directory of its volume.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLParentDirectoryURLKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeurlkey?language=objc)
+    /// The root directory of the resource’s volume, returned as an `NSURL` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeURLKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/typeidentifierkey?language=objc)
+    /// The resource’s uniform type identifier (UTI), returned as an `NSString` object (read-only).
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSURLContentTypeKey instead"]
     pub static NSURLTypeIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/contenttypekey?language=objc)
+    /// The resource’s type.
     #[cfg(feature = "NSString")]
     pub static NSURLContentTypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/localizedtypedescriptionkey?language=objc)
+    /// The resource’s localized type description, returned as an `NSString` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLLocalizedTypeDescriptionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/labelnumberkey?language=objc)
+    /// The resource’s label number, returned as an `NSNumber` object (read-write).
     #[cfg(feature = "NSString")]
     pub static NSURLLabelNumberKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/labelcolorkey?language=objc)
+    /// The resource’s label color, returned as an `NSColor` object, or `nil` if the resource has no label color (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLLabelColorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/localizedlabelkey?language=objc)
+    /// The resource’s localized label text, returned as an `NSString` object, or `nil` if the resource has no localized label text (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLLocalizedLabelKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/effectiveiconkey?language=objc)
+    /// The resource’s normal icon, returned as an `NSImage` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLEffectiveIconKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/customiconkey?language=objc)
+    /// The icon stored with the resource, returned as an `NSImage` object, or `nil` if the resource has no custom icon.
     #[cfg(feature = "NSString")]
     pub static NSURLCustomIconKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/fileresourceidentifierkey?language=objc)
+    /// The key for the resource’s unique identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an `id`. You can use this identifier to determine equality between file system resources with the [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method. Two resources are equal if they have the same file-system path or if their paths link to the same inode on the same file system.
+    ///
+    /// The value of this identifier isn’t persistent across system restarts.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeidentifierkey?language=objc)
+    /// The unique identifier of the resource’s volume, returned as an `id` (read-only).
+    ///
+    /// ## Discussion
+    ///
+    /// This identifier can be used with the [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method to determine whether two file system resources are on the same volume.
+    ///
+    /// The value of this identifier is not persistent across system restarts.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/preferredioblocksizekey?language=objc)
+    /// The key for the optimal block size to use when reading or writing the file’s data.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object, or `nil` if the preferred size isn’t available.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLPreferredIOBlockSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isreadablekey?language=objc)
+    /// Key for determining whether the current process (as determined by the EUID) can read the resource, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLIsReadableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/iswritablekey?language=objc)
+    /// Key for determining whether the current process (as determined by the EUID) can write to the resource, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLIsWritableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isexecutablekey?language=objc)
+    /// Key for determining whether the current process (as determined by the EUID) can execute the resource (if it is a file) or search the resource (if it is a directory), returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLIsExecutableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/filesecuritykey?language=objc)
+    /// The key for the resource’s security information.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-write value as an [`NSFileSecurity`](https://developer.apple.com/documentation/foundation/nsfilesecurity) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileSecurityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isexcludedfrombackupkey?language=objc)
+    /// A key for indicating whether the system excludes the resource from all backups of app data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a read-write Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    /// Use this property to exclude cache and other app support files that aren’t necessary in a backup. Set this property each time you save a file because some common file operations cause this property to reset to `false`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsExcludedFromBackupKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/tagnameskey?language=objc)
+    /// The names of tags attached to the resource, returned as an array of `NSString` values (read-write).
     #[cfg(feature = "NSString")]
     pub static NSURLTagNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/pathkey?language=objc)
+    /// The file system path for the URL, returned as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLPathKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/canonicalpathkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The URL’s path as a canonical absolute file system path, returned as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object (read-only).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLCanonicalPathKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ismounttriggerkey?language=objc)
+    /// Key for determining whether the URL is a file system trigger directory, returned as a Boolean `NSNumber` object (read-only). Traversing or opening a file system trigger directory causes an attempt to mount a file system on the directory.
     #[cfg(feature = "NSString")]
     pub static NSURLIsMountTriggerKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/generationidentifierkey?language=objc)
+    /// An opaque generation identifier, returned as an `id <NSCopying, NSCoding, NSObject>` (read-only)
+    ///
+    /// ## Discussion
+    ///
+    /// The generation identifier can be compared using isEqual: to determine if the data in a document has been modified. For URLs which refer to the same file inode, the generation identifier changes when the data in the file’s data fork is changed. Changes to extended attributes or other file system metadata do not change the identifier. For URLs which refer to the same directory inode, the generation identifier changes when direct children of that directory are added, removed or renamed. Changes to the data of the direct children of that directory does not change the generation identifier. The  identifier persists across system restarts. It is tied to a specific document on a specific volume and is not transferred when the document is copied to another volume. This property is not supported by all volumes.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLGenerationIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/documentidentifierkey?language=objc)
+    /// The document identifier returned as an `NSNumber` (read-only).
+    ///
+    /// ## Discussion
+    ///
+    /// The document identifier is a value assigned by the kernel to a file or directory. This value is used to identify the document regardless of where it is moved on a volume. The identifier persists across system restarts. It is not transferred when the file is copied, but it survives “safe save” operations. For example, it remains on the path to which it was assigned, even after calling the [`replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/replaceitem(at:withitemat:backupitemname:options:resultingitemurl:)) method. Document identifiers are only unique within a single volume. This property is not supported by all volumes.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLDocumentIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/addedtodirectorydatekey?language=objc)
+    /// The time at which the resource’s was created or renamed into or within its parent directory, returned as an `NSDate`. Inconsistent behavior may be observed when this attribute is requested on hard-linked items. This property is not supported by all volumes. (read-only)
     #[cfg(feature = "NSString")]
     pub static NSURLAddedToDirectoryDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/quarantinepropertieskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLQuarantinePropertiesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/fileresourcetypekey?language=objc)
+    /// The key for the resource’s object type.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). See [`NSURLFileResourceType`](https://developer.apple.com/documentation/foundation/urlfileresourcetype) for possible values.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/fileidentifierkey?language=objc)
+    /// The key for the file system’s internal inode identifier for the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key isn’t stable for all file systems or across all mounts. Use this value sparingly and don’t persist it. You can use it, for example, to match URLs from the URL enumerator with paths from `FSEvents`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/filecontentidentifierkey?language=objc)
+    /// The key for a value that APFS assigns to identify a file’s content data stream.
+    ///
+    /// ## Discussion
+    ///
+    /// APFS allows only cloned files and their originals to have the same identifier.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileContentIdentifierKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/maysharefilecontentkey?language=objc)
+    /// The key for a Boolean value that indicates whether cloned files and their original files may share data blocks.
     #[cfg(feature = "NSString")]
     pub static NSURLMayShareFileContentKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/mayhaveextendedattributeskey?language=objc)
+    /// The key for a Boolean value that indicates whether the file has extended attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of `false` indicates there are no extended attributes.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLMayHaveExtendedAttributesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ispurgeablekey?language=objc)
+    /// The key for a Boolean value that indicates whether the file system can delete a file when the system needs to free space.
     #[cfg(feature = "NSString")]
     pub static NSURLIsPurgeableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/issparsekey?language=objc)
+    /// The key for a Boolean value that indicates whether the file has sparse regions.
     #[cfg(feature = "NSString")]
     pub static NSURLIsSparseKey: &'static NSURLResourceKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype?language=objc)
+/// Possible values for the type of file resource.
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLFileResourceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/namedpipe?language=objc)
+    /// The resource is a named pipe.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeNamedPipe: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/characterspecial?language=objc)
+    /// The resource is a character special file.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeCharacterSpecial: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/directory?language=objc)
+    /// The resource is a directory.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeDirectory: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/blockspecial?language=objc)
+    /// The resource is a block special file.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeBlockSpecial: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/regular?language=objc)
+    /// The resource is a regular file.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeRegular: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/symboliclink?language=objc)
+    /// The resource is a symbolic link.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeSymbolicLink: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/socket?language=objc)
+    /// The resource is a socket.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeSocket: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileresourcetype/unknown?language=objc)
+    /// The resource’s type is unknown.
     #[cfg(feature = "NSString")]
     pub static NSURLFileResourceTypeUnknown: &'static NSURLFileResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/thumbnaildictionarykey?language=objc)
+    /// A dictionary of NSImage/UIImage objects keyed by size (read-write). See [`NSURLThumbnailDictionaryItem`](https://developer.apple.com/documentation/foundation/urlthumbnaildictionaryitem) for a list of possible keys.
     #[cfg(feature = "NSString")]
     #[deprecated = "Use the QuickLookThumbnailing framework and extension point instead"]
     pub static NSURLThumbnailDictionaryKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/thumbnailkey?language=objc)
+    /// All thumbnails as a single NSImage (read-write).
     #[cfg(feature = "NSString")]
     #[deprecated = "Use the QuickLookThumbnailing framework and extension point instead"]
     pub static NSURLThumbnailKey: &'static NSURLResourceKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlthumbnaildictionaryitem?language=objc)
+/// Possible keys for the [`NSURLThumbnailDictionaryKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/thumbnaildictionarykey) dictionary.
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLThumbnailDictionaryItem = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlthumbnaildictionaryitem/nsthumbnail1024x1024sizekey?language=objc)
+    /// A 1024 x 1024 pixel thumbnail as a `UIImage` on iOS or an `NSImage` in macOS.
     #[cfg(feature = "NSString")]
     #[deprecated = "Use the QuickLookThumbnailing framework and extension point instead"]
     pub static NSThumbnail1024x1024SizeKey: &'static NSURLThumbnailDictionaryItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/filesizekey?language=objc)
+    /// The key for the file’s size, in bytes.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/fileallocatedsizekey?language=objc)
+    /// The key for the total allocated size on-disk for the file.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileAllocatedSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/totalfilesizekey?language=objc)
+    /// The key for the total displayable size of the file, in bytes.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The values includes the size of any file metadata.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLTotalFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/totalfileallocatedsizekey?language=objc)
+    /// The key for the total allocated size of the file, in bytes.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The values includes the size of any file metadata.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLTotalFileAllocatedSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isaliasfilekey?language=objc)
+    /// The key for determining whether the file is an alias.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsAliasFileKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/fileprotectionkey?language=objc)
+    /// The key for the protection level of the file.
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionKey: &'static NSURLResourceKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileprotection?language=objc)
+/// Protection-level values for a URL resource key.
+///
+/// ## Overview
+///
+/// These are values for the [`NSURLResourceKey`](https://developer.apple.com/documentation/foundation/urlresourcekey) key [`NSURLFileProtectionKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/fileprotectionkey).
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLFileProtectionType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileprotection/none?language=objc)
+    /// An option that indicates the file has no special protections associated with it.
+    ///
+    /// ## Discussion
+    ///
+    /// A file with this type of protection can be read from or written to at any time.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionNone: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileprotection/complete?language=objc)
+    /// An option that instructs the system to store the file in an encrypted format on-disk that your app can’t access for reading or writing to while the device is locked or booting.
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionComplete: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileprotection/completeunlessopen?language=objc)
+    /// An option that instructs the system to store the file in an encrypted format on-disk after it closes.
+    ///
+    /// ## Discussion
+    ///
+    /// Files with this type of protection can be created while the device is locked, but once closed, cannot be opened again until the device is unlocked. If the file is opened when unlocked, you may continue to access the file normally, even if the user locks the device. There is a small performance penalty when the file is created and opened, though not when being written to or read from. This can be mitigated by changing the file protection to [`NSURLFileProtectionComplete`](https://developer.apple.com/documentation/foundation/urlfileprotection/complete) when the device is unlocked.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteUnlessOpen: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileprotection/completeuntilfirstuserauthentication?language=objc)
+    /// An option that instructs the system to store the file in an encrypted format on-disk that your app can’t access until after the device boots.
+    ///
+    /// ## Discussion
+    ///
+    /// After the user unlocks the device for the first time, your app can access the file and continue to access it even if the user subsequently locks the device.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteUntilFirstUserAuthentication:
         &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlfileprotection/completewhenuserinactive?language=objc)
+    /// An option that instructs the system to store the file in an encrypted format on-disk that your app can access only after device unlock and before expiration.
+    ///
+    /// ## Discussion
+    ///
+    /// After the first unlock, your app can access the file and continue to access it even if the person using it subsequently locks the device. After access expires, your app can’t access the file until the person using the device unlocks it again.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLFileProtectionCompleteWhenUserInactive: &'static NSURLFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/directoryentrycountkey?language=objc)
+    /// The key for a count of items in the directory.
+    ///
+    /// ## Discussion
+    ///
+    /// Not all file systems can provide this information.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLDirectoryEntryCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumelocalizedformatdescriptionkey?language=objc)
+    /// Key for the volume’s descriptive format name, returned as an `NSString` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeLocalizedFormatDescriptionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumetotalcapacitykey?language=objc)
+    /// Key for the volume’s total capacity in bytes (read-only).
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeTotalCapacityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeavailablecapacitykey?language=objc)
+    /// Key for the volume’s available capacity in bytes (read-only).
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeresourcecountkey?language=objc)
+    /// Key for the total number of resources on the volume, returned as an `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeResourceCountKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportspersistentidskey?language=objc)
+    /// Key for determining whether the volume supports persistent IDs, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsPersistentIDsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportssymboliclinkskey?language=objc)
+    /// Key for determining whether the volume supports symbolic links, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSymbolicLinksKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportshardlinkskey?language=objc)
+    /// Key for determining whether the volume supports hard links, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsHardLinksKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsjournalingkey?language=objc)
+    /// Key for determining whether the volume supports journaling, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsJournalingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisjournalingkey?language=objc)
+    /// A key for determining whether the volume is currently journaling.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsJournalingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportssparsefileskey?language=objc)
+    /// Key for determining whether the volume supports sparse files, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSparseFilesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportszerorunskey?language=objc)
+    /// Key for determining whether the volume supports zero runs, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsZeroRunsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportscasesensitivenameskey?language=objc)
+    /// Key for determining whether the volume supports case-sensitive names, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCaseSensitiveNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportscasepreservednameskey?language=objc)
+    /// Key for determining whether the volume supports case-preserved names, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCasePreservedNamesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsrootdirectorydateskey?language=objc)
+    /// Key for determining whether the volume supports reliable storage of times for the root directory, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsRootDirectoryDatesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsvolumesizeskey?language=objc)
+    /// Key for determining whether the volume supports returning volume size information, returned as a Boolean `NSNumber` object (read-only). If `true`, volume size information is available as values of the [`NSURLVolumeTotalCapacityKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/volumetotalcapacitykey) and[`NSURLVolumeAvailableCapacityKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeavailablecapacitykey) keys.
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsVolumeSizesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsrenamingkey?language=objc)
+    /// Key for determining whether the volume can be renamed, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsadvisoryfilelockingkey?language=objc)
+    /// Key for determining whether the volume implements whole-file advisory locks in the style of flock, along with the `O_EXLOCK` and `O_SHLOCK` flags of the open function, returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsAdvisoryFileLockingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsextendedsecuritykey?language=objc)
+    /// Key for determining whether the volume supports extended security (access control lists), returned as a Boolean `NSNumber` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsExtendedSecurityKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisbrowsablekey?language=objc)
+    /// A key for determining whether the volume is visible in GUI-based file-browsing environments, such as the Desktop or the Finder app.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsBrowsableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumemaximumfilesizekey?language=objc)
+    /// Key for the largest file size supported by the volume in bytes, returned as a Boolean `NSNumber` object, or `nil` if it cannot be determined (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeMaximumFileSizeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisejectablekey?language=objc)
+    /// A key for determining whether the volume is ejectable from the drive mechanism under software control.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsEjectableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisremovablekey?language=objc)
+    /// A key for determining whether the volume is removable from the drive mechanism.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsRemovableKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisinternalkey?language=objc)
+    /// A key for determining whether the volume is connected to an internal bus.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object, or `nil` if the system can’t determine its status.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsInternalKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisautomountedkey?language=objc)
+    /// A key for determining whether the volume is automounted.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsAutomountedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeislocalkey?language=objc)
+    /// A key for determining whether the volume is on a local device.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsLocalKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisreadonlykey?language=objc)
+    /// A key for determining whether the volume is read-only.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsReadOnlyKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumecreationdatekey?language=objc)
+    /// Key for the volume’s creation date, returned as an `NSDate` object, or `NULL` if it cannot be determined (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeCreationDateKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeurlforremountingkey?language=objc)
+    /// Key for the URL needed to remount the network volume, returned as an `NSURL` object, or `nil` if a URL is not available (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeURLForRemountingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeuuidstringkey?language=objc)
+    /// Key for the volume’s persistent UUID, returned as an `NSString` object, or `nil` if a persistent UUID is not available (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeUUIDStringKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumenamekey?language=objc)
+    /// The name of the volume, returned as an string object.
+    ///
+    /// ## Discussion
+    ///
+    /// Settable only if `NSURLVolumeSupportsRenamingKey` is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumelocalizednamekey?language=objc)
+    /// The name of the volume as it should be displayed in the user interface, returned as an `NSString` object (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeLocalizedNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisencryptedkey?language=objc)
+    /// A key for determining whether the volume is encrypted.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsEncryptedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeisrootfilesystemkey?language=objc)
+    /// A key for determining whether the volume is the root file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean `NSNumber` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeIsRootFileSystemKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportscompressionkey?language=objc)
+    /// Whether the volume supports transparent decompression of compressed files using `decmpfs`, returned as `NSNumber` containing a Boolean value (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsCompressionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsfilecloningkey?language=objc)
+    /// Whether the volume supports cloning using `clonefile(2)`, returned as `NSNumber` containing a Boolean value (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsFileCloningKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsswaprenamingkey?language=objc)
+    /// Whether the volume supports renaming using `renamex_np(2)` with the `RENAME_SWAP` option, returned as `NSNumber` containing a Boolean value (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsSwapRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsexclusiverenamingkey?language=objc)
+    /// Whether the volume supports exclusive renaming using `renamex_np(2)` with the `RENAME_EXCL` option, returned as `NSNumber` containing a Boolean value (read-only).
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsExclusiveRenamingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsimmutablefileskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsImmutableFilesKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsaccesspermissionskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsAccessPermissionsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesupportsfileprotectionkey?language=objc)
+    /// A Boolean value that indicates the volume supports data protection for files.
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSupportsFileProtectionKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeavailablecapacityforimportantusagekey?language=objc)
+    /// Key for the volume’s available capacity in bytes for storing important resources (read-only).
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityForImportantUsageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumeavailablecapacityforopportunisticusagekey?language=objc)
+    /// Key for the volume’s available capacity in bytes for storing nonessential resources (read-only).
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeAvailableCapacityForOpportunisticUsageKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumetypenamekey?language=objc)
+    /// The key for the name of the file system type.
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeTypeNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumesubtypekey?language=objc)
+    /// The key for the file system subtype value.
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeSubtypeKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/volumemountfromlocationkey?language=objc)
+    /// The key for the volume mounted-from location.
     #[cfg(feature = "NSString")]
     pub static NSURLVolumeMountFromLocationKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/isubiquitousitemkey?language=objc)
+    /// The key for a Boolean value that indicates whether the item is in iCloud storage.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The value is `true` if this item is in iCloud storage; otherwise, `false` if it’s a local item.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLIsUbiquitousItemKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemhasunresolvedconflictskey?language=objc)
+    /// The key for a Boolean value that indicates whether this item has outstanding conflicts.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The value is `true` if it has conflicts; otherwise, `false`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemHasUnresolvedConflictsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemisdownloadedkey?language=objc)
+    /// The key for a Boolean value that indicates whether the system downloaded this item’s data from iCloud storage.
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSURLUbiquitousItemDownloadingStatusKey instead"]
     pub static NSURLUbiquitousItemIsDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemisdownloadingkey?language=objc)
+    /// The key for a Boolean value that indicates whether the system is downloading the item from iCloud.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The value is `true` if the system is downloading this item from iCloud; otherwise, `false`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsDownloadingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemisuploadedkey?language=objc)
+    /// The key for a Boolean value that indicates whether the system uploads the item’s data to iCloud storage.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The value is `true` if the system uploads this item to iCloud; otherwise, `false`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When waiting for an upload to complete, don’t poll this key from within a block that you pass to [`coordinateReadingItemAtURL:options:error:byAccessor:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/coordinate(readingitemat:options:error:byaccessor:)) because the system can’t perform, the coordinated read necessary to obtain this value until that block completes and returns. Instead, use [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) or an [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) delegate to asynchronously notify your app when the status changes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsUploadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemisuploadingkey?language=objc)
+    /// The key for a Boolean value that indicates whether the system is uploading the item to iCloud.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The value is `true` if the system is uploading this item to iCloud; otherwise, `false`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsUploadingKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitempercentdownloadedkey?language=objc)
+    /// The key for a value that indicates the percentage of data that the system downloaded from iCloud storage.
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSMetadataUbiquitousItemPercentDownloadedKey instead"]
     pub static NSURLUbiquitousItemPercentDownloadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitempercentuploadedkey?language=objc)
+    /// The key for a value that indicates the percentage of data that the system uploaded to iCloud storage.
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSMetadataUbiquitousItemPercentUploadedKey instead"]
     pub static NSURLUbiquitousItemPercentUploadedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemdownloadingstatuskey?language=objc)
+    /// The key for the current download state for the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The value indicates whether a local copy exists and whether that copy is the most current version of the item. See [`NSURLUbiquitousItemDownloadingStatus`](https://developer.apple.com/documentation/foundation/urlubiquitousitemdownloadingstatus) for values for this key.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemdownloadingerrorkey?language=objc)
+    /// The key for an error object that indicates why downloading the item from iCloud fails.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Foundation Constants](https://developer.apple.com/documentation/foundation/foundation-constants) for possible error codes.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingErrorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemuploadingerrorkey?language=objc)
+    /// The key for an error object that indicates why uploading the item to iCloud fails.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Foundation Constants](https://developer.apple.com/documentation/foundation/foundation-constants) for possible error codes.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemUploadingErrorKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemdownloadrequestedkey?language=objc)
+    /// The key for a Boolean value that indicates whether the system has already made a call [`startDownloadingUbiquitousItemAtURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/startdownloadingubiquitousitem(at:)) to download the item.
+    ///
+    /// ## Discussion
+    ///
+    /// The system returns the read-only value as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadRequestedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemcontainerdisplaynamekey?language=objc)
+    /// The key for a string that contains the name of the item’s container as it appears to the user.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemContainerDisplayNameKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemisexcludedfromsynckey?language=objc)
+    /// The key of a Boolean value that indicates whether the system excludes the item from syncing.
+    ///
+    /// ## Discussion
+    ///
+    /// If the system excludes the item from syncing, the item is locally on-disk, but isn’t available on the server. An excluded item is no longer ubiquitous.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsExcludedFromSyncKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemissharedkey?language=objc)
+    /// The key for a Boolean value that indicates a shared item.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsSharedKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousshareditemcurrentuserrolekey?language=objc)
+    /// The key for the role of the current user.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemCurrentUserRoleKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousshareditemcurrentuserpermissionskey?language=objc)
+    /// The key for the current user’s permissions.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemCurrentUserPermissionsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousshareditemownernamecomponentskey?language=objc)
+    /// The key for the name components of the item’s owner.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemOwnerNameComponentsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousshareditemmostrecenteditornamecomponentskey?language=objc)
+    /// The key for the name components of the most recent editor.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey:
         &'static NSURLResourceKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousitemdownloadingstatus?language=objc)
+/// Values that describe the iCloud storage state of a file.
+///
+/// ## Discussion
+///
+/// These constants are possible values for the [`NSURLUbiquitousItemDownloadingStatusKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemdownloadingstatuskey) key.
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLUbiquitousItemDownloadingStatus = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousitemdownloadingstatus/notdownloaded?language=objc)
+    /// This item has not been downloaded yet. Use [`startDownloadingUbiquitousItemAtURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/startdownloadingubiquitousitem(at:)) to download it.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusNotDownloaded:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousitemdownloadingstatus/downloaded?language=objc)
+    /// A local copy of this item exists, but it is stale. The most recent version will be downloaded as soon as possible.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusDownloaded:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousitemdownloadingstatus/current?language=objc)
+    /// A local copy of this item exists and is the most up-to-date version known to the device.
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemDownloadingStatusCurrent:
         &'static NSURLUbiquitousItemDownloadingStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousshareditemrole?language=objc)
+/// The key for the role of a shared item.
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLUbiquitousSharedItemRole = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousshareditemrole/owner?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemRoleOwner: &'static NSURLUbiquitousSharedItemRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousshareditemrole/participant?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemRoleParticipant: &'static NSURLUbiquitousSharedItemRole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousshareditempermissions?language=objc)
+/// The key for the permissions of a shared item.
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSURLUbiquitousSharedItemPermissions = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousshareditempermissions/readonly?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemPermissionsReadOnly:
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlubiquitousshareditempermissions/readwrite?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousSharedItemPermissionsReadWrite:
         &'static NSURLUbiquitousSharedItemPermissions;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemsupportedsynccontrolskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemSupportedSyncControlsKey: &'static NSURLResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemissyncpausedkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSURLUbiquitousItemIsSyncPausedKey: &'static NSURLResourceKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions?language=objc)
+/// Options used when creating bookmark data.
+///
+/// ## Overview
+///
+/// When creating a bookmark, use bitwise `OR` operators to combine the options you want to specify, and provide them to the `options` parameter of the [`bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkdata(options:includingresourcevaluesforkeys:relativeto:)) method.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Security-scoped bookmarks aren’t available in versions of macOS prior to 10.7.3.
+///
+///
+///
+/// </div>
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkCreationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/preferfileidresolution?language=objc)
+/// Specifies that when creating a bookmark, upon resolution, its embedded file ID takes precedence over other sources of information (file system path, for example) when there’s a conflict.
         #[doc(alias = "NSURLBookmarkCreationPreferFileIDResolution")]
 #[deprecated = "Not supported"]
         const PreferFileIDResolution = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/minimalbookmark?language=objc)
+/// Specifies that when creating a bookmark, it includes minimal information.
+///
+/// ## Discussion
+///
+/// This produces a smaller bookmark that can be resolved in fewer ways.
+///
+///
         #[doc(alias = "NSURLBookmarkCreationMinimalBookmark")]
         const MinimalBookmark = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/suitableforbookmarkfile?language=objc)
+/// Specifies that the bookmark data includes the required properties for creating Finder alias files.
         #[doc(alias = "NSURLBookmarkCreationSuitableForBookmarkFile")]
         const SuitableForBookmarkFile = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withsecurityscope?language=objc)
+/// Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read/write access to a file-system resource.
+///
+/// ## Discussion
+///
+/// For use in an app that adopts App Sandbox. For more information, see [App Sandbox Design Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183).
+///
+/// <div class="warning">
+///
+/// ### Note
+///  This flag can’t be used in conjunction with either [`NSURLBookmarkCreationMinimalBookmark`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/minimalbookmark) or [`NSURLBookmarkCreationSuitableForBookmarkFile`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/suitableforbookmarkfile).
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSURLBookmarkCreationWithSecurityScope")]
         const WithSecurityScope = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/securityscopeallowonlyreadaccess?language=objc)
+/// Specifies that when creating a security-scoped bookmark, upon resolution, it provides a security-scoped URL allowing read-only access to a file-system resource.
+///
+/// ## Discussion
+///
+/// This option is only meaningful when used along with the [`NSURLBookmarkCreationWithSecurityScope`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withsecurityscope) option,
+///
+/// Use this option in an app that adopts App Sandbox. For more information, see [App Sandbox Design Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183).
+///
+///
         #[doc(alias = "NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess")]
         const SecurityScopeAllowOnlyReadAccess = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withoutimplicitsecurityscope?language=objc)
+/// Prevents inclusion of a bookmark’s implicit ephemeral security scope, when creating one without security scope.
+///
+/// ## Discussion
+///
+/// Bookmarks that you create without security scope automatically carry implicit ephemeral security scope. This security scope is valid until reboot at the latest, and confers access to the resource to any other process that resolves the bookmark. Using this option prevents inclusion of this ephemeral security scope.
+///
+/// When using this option, other processes can’t call [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) on the resolved URL. The option prevents providing unintended access to resources to other processes, and is also a performance optimization that reduces the size of the bookmark.
+///
+///
         #[doc(alias = "NSURLBookmarkCreationWithoutImplicitSecurityScope")]
         const WithoutImplicitSecurityScope = 1<<29;
     }
@@ -988,23 +1452,41 @@ unsafe impl RefEncode for NSURLBookmarkCreationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions?language=objc)
+/// Options used when resolving bookmark data.
+///
+/// ## Overview
+///
+/// When resolving a bookmark, use bitwise `OR` operators to combine the options you want to specify, and provide them to the `options` parameter of the [`URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:`](https://developer.apple.com/documentation/foundation/nsurl/urlbyresolvingbookmarkdata:options:relativetourl:bookmarkdataisstale:error:) method.
+///
+/// ### Version-Notes
+///
+/// Security-scoped bookmarks are not available in versions of macOS prior to OS X 10.7.3.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLBookmarkResolutionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkResolutionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withoutui?language=objc)
+/// Specifies that no UI feedback should accompany resolution of the bookmark data.
         #[doc(alias = "NSURLBookmarkResolutionWithoutUI")]
         const WithoutUI = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withoutmounting?language=objc)
+/// Specifies that no volume should be mounted during resolution of the bookmark data.
         #[doc(alias = "NSURLBookmarkResolutionWithoutMounting")]
         const WithoutMounting = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withsecurityscope?language=objc)
+/// Specifies that the security scope, applied to the bookmark when it was created, should be used during resolution of the bookmark data.
         #[doc(alias = "NSURLBookmarkResolutionWithSecurityScope")]
         const WithSecurityScope = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkresolutionoptions/withoutimplicitstartaccessing?language=objc)
+/// A property that specifies that resolution doesn’t implicitly start accessing the ephemeral security-scoped resource.
+///
+/// ## Discussion
+///
+/// This option causes an implicit call to [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) on the returned URL when it’s ready to use the resource.
+///
+/// This option isn’t applicable to security-scoped bookmarks.
+///
+///
         #[doc(alias = "NSURLBookmarkResolutionWithoutImplicitStartAccessing")]
         const WithoutImplicitStartAccessing = 1<<15;
     }
@@ -1018,11 +1500,132 @@ unsafe impl RefEncode for NSURLBookmarkResolutionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl/bookmarkfilecreationoptions?language=objc)
+/// Options used when creating file bookmark data
+///
+/// ## Discussion
+///
+/// See [`NSURLBookmarkCreationOptions`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions) for more information.
+///
+///
 pub type NSURLBookmarkFileCreationOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurl?language=objc)
+    /// An object that represents the location of a resource, such as an item on a remote server or the path to a local file.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`URL`](https://developer.apple.com/documentation/foundation/url); use [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// You can use URL objects to construct URLs and access their parts. For URLs that represent local files, you can also manipulate properties of those files directly, such as changing the file’s last modification date. Finally, you can pass URL objects to other APIs to retrieve the contents of those URLs. For example, you can use the [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession), [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection), and [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) classes to access the contents of remote resources, as described in [URL Loading System](https://developer.apple.com/documentation/foundation/url-loading-system).
+    ///
+    /// URL objects are the preferred way to refer to local files. Most objects that read data from or write data to a file have methods that accept an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object instead of a pathname as the file reference. For example, you can get the contents of a local file URL as an `NSString` object using the [`initWithContentsOfURL:encoding:error:`](https://developer.apple.com/documentation/foundation/nsstring/init(contentsofurl:encoding:)-715fw) initializer, or as an `NSData` object using the [`initWithContentsOfURL:options:error:`](https://developer.apple.com/documentation/foundation/nsdata/init(contentsofurl:options:)-5abi3) initializer.
+    ///
+    /// You can also use URLs for interapplication communication. In macOS, the [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) class provides the [`openURL:`](https://developer.apple.com/documentation/appkit/nsworkspace/open(_:)) method to open a location specified by a URL. Similarly, in iOS, the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) class provides the [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) method.
+    ///
+    /// Additionally, you can use URLs when working with pasteboards, as described in NSURL Additions Reference (part of the AppKit framework).
+    ///
+    /// The [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class is “toll-free bridged” with its Core Foundation counterpart, [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`URL`](https://developer.apple.com/documentation/foundation/url) structure, which bridges to the [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class. For more information about value types, see [Classes and Structures](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13) in [The Swift Programming Language (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097) and [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Structure of a URL
+    ///
+    /// An [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object is composed of two parts—a potentially `nil` base URL and a string that is resolved relative to the base URL. An [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object is considered absolute if its string part is fully resolved without a base; all other URLs are considered relative.
+    ///
+    /// For example, when constructing an `NSURL` object, you might specify `file:///path/to/user/` as the base URL and `folder/file.html` as the string part, as follows:
+    ///
+    /// ```objc
+    /// NSURL *baseURL = [NSURL fileURLWithPath:@"file:///path/to/user/"];
+    /// NSURL *URL = [NSURL URLWithString:@"folder/file.html" relativeToURL:baseURL];
+    /// NSLog(@"absoluteURL = %@", [URL absoluteURL]);
+    /// ```
+    ///
+    /// When fully resolved, the absolute URL is `file:///path/to/user/folder/file.html`.
+    ///
+    /// A URL can be also be divided into pieces based on its structure. For example, the URL `https://johnny:p4ssw0rd@www.example.com:443/script.ext;param=value?query=value#ref` contains the following URL components:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Component" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/scheme", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "https" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/user", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "johnny" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/password", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "p4ssw0rd" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/host", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "www.example.com" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/port", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "443" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/path", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "/script.ext" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/pathExtension", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "ext" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/pathComponents", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "[\"/\", \"script.ext\"]" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/parameterString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "param=value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/query", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "query=value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSURL/fragment", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "ref" }] }]]], alignments: None, metadata: None })
+    /// The [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class provides properties that let you examine each of these components.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For apps linked on or after iOS 17 and aligned OS versions, [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) parsing has updated from the obsolete RFC 1738/1808 parsing to the same [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt) parsing as [`NSURLComponents`](https://developer.apple.com/documentation/foundation/nsurlcomponents). This unifies the parsing behaviors of the `NSURL` and `NSURLComponents` APIs. Now, `NSURL` automatically percent- and IDNA-encodes invalid characters to help create a valid URL.
+    ///
+    /// To check if a `URLString` is strictly valid according to the RFC, use the new `[NSURL URLWithString:URLString encodingInvalidCharacters:NO]` method. This method leaves all characters as they are and returns `nil` if `URLString` is explicitly invalid.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For apps linked before iOS 17, the [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class parses URLs according to [RFC 1808](https://tools.ietf.org/html/rfc1808), [RFC 1738](https://tools.ietf.org/html/rfc1738), and [RFC 2732](https://tools.ietf.org/html/rfc2732).
+    ///
+    /// ### Bookmarks and Security Scope
+    ///
+    /// Starting with OS X v10.6 and iOS 4.0, the [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class provides a facility for creating and using bookmark objects. A **bookmark** provides a persistent reference to a file-system resource. When you resolve a bookmark, you obtain a URL to the resource’s current location. A bookmark’s association with a file-system resource (typically a file or folder) usually continues to work if the user moves or renames the resource, or if the user relaunches your app or restarts the system.
+    ///
+    /// For a general introduction to using bookmarks, read [Locating Files Using Bookmarks](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html#//apple_ref/doc/uid/TP40010672-CH3-SW10) in [File System Programming Guide](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672).
+    ///
+    /// In a macOS app that adopts App Sandbox, you can use **security-scoped bookmarks** to gain access to file-system resources outside your app’s sandbox. These bookmarks preserve the user’s intent to give your app access to a resource across app launches. For details on how this works, including information on the entitlements you need in your Xcode project, read [Security-Scoped Bookmarks and Persistent Resource Access](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW16) in [App Sandbox Design Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183). The methods for using security-scoped bookmarks are described in this document in Working with Bookmark Data.
+    ///
+    /// When you resolve a security-scoped bookmark, you get a security-scoped URL.
+    ///
+    /// ### Security-Scoped URLs
+    ///
+    /// Security-scoped URLs provide access to resources outside an app’s sandbox. In macOS, you get access to security-scoped URLs when you resolve a security-scoped bookmark. In iOS, apps that _open_ or _move_ documents using a [`UIDocumentPickerViewController`](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller) also receive security-scoped URLs.
+    ///
+    /// To gain access to a security-scoped URL, you must call the [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) method (or its Core Foundation equivalent, the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) function). For iOS apps, if you use a [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) to access the URL, it automatically manages the security-scoped URL for you.
+    ///
+    /// If `startAccessingSecurityScopedResource` (or `CFUrLStartAccessingSecurityScopedResource`) returns [`true`](https://developer.apple.com/documentation/swift/true), you must relinquish your access by calling the [`stopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/stopaccessingsecurityscopedresource()) method (or its Core Foundation equivalent, the [`CFURLStopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)) function). You should relinquish your access as soon as you have finished using the file. After you call these methods, you immediately lose access to the resource in question.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  If you fail to relinquish your access when you no longer need a file-system resource, your app leaks kernel resources. If sufficient kernel resources are leaked, your app loses its ability to add file-system locations to its sandbox, using Powerbox, security-scoped bookmarks, or similar APIs, until relaunched.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Security-Scoped URLs and String Paths
+    ///
+    /// In a macOS app, when you copy a security-scoped URL, the copy has the security scope of the original. You gain access to the file-system resource (that the URL points to) just as you would with the original URL: by calling the [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) method (or its Core Foundation equivalent).
+    ///
+    /// If you need a security-scoped URL’s path as a string value (as provided by the [`path`](https://developer.apple.com/documentation/foundation/nsurl/path) method), such as to provide to an API that requires a string value, obtain the path from the URL as needed. Note, however, that a string-based path obtained from a security-scoped URL _does not_ have security scope and you cannot use that string to obtain access to a security-scoped resource.
+    ///
+    /// ### iCloud Document Thumbnails
+    ///
+    /// With OS X v10.10 and iOS 8.0, the NSURL class includes the ability to get and set document thumbnails as a resource property for iCloud documents. You can get a dictionary of [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) objects in macOS or [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) objects in iOS using the [`getResourceValue:forKey:error:`](https://developer.apple.com/documentation/foundation/nsurl/getresourcevalue(_:forkey:)) or [`getPromisedItemResourceValue:forKey:error:`](https://developer.apple.com/documentation/foundation/nsurl/getpromiseditemresourcevalue(_:forkey:)) methods.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let URL = self.URLForDocument()", "var thumbnails: AnyObject?", " ", "do {", "    try URL.getResourceValue(&thumbnails, forKey: NSURLThumbnailDictionaryKey)", "    if let thumbnails = thumbnails as? [NSString: NSImage] {", "        let image = thumbnails[NSThumbnail1024x1024SizeKey]", "    }", "} catch {", "    // handle the error", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSURL *URL = [self URLForDocument];", "NSDictionary *thumbnails = nil;", "NSError *error = nil;", " ", "BOOL success = [URL getPromisedItemResourceValue:&thumbnails", "                                          forKey:NSURLThumbnailDictionaryKey", "                                           error:&error];", "if (success) {", "  NSImage *image = thumbnails[NSThumbnail1024x1024SizeKey];", "} else {", "  // handle the error", "}"], metadata: None }] }] })
+    /// In macOS, you can set a dictionary of thumbnails using the [`setResourceValue:forKey:error:`](https://developer.apple.com/documentation/foundation/nsurl/setresourcevalue(_:forkey:)) method. You can also get or set all the thumbnails as an `NSImage` object with multiple representations by using the [`NSURLThumbnailKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/thumbnailkey).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let URL = self.URLForDocument()", "let thumbnail = self.createDocumentThumbnail()", " ", "do {", "    try URL.setResourceValue([NSThumbnail1024x1024SizeKey: thumbnail], forKey: NSURLThumbnailDictionaryKey)", "} catch {", "    // handle the error", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSURL *URL = [self URLForDocument];", "NSImage *thumbnail = [self createDocumentThumbnail];", "NSError *error = nil;", " ", "BOOL success = [URL setResourceValue:@{NSThumbnail1024x1024SizeKey : thumbnail}", "                              forKey:NSURLThumbnailDictionaryKey", "                               error:&error];", " ", "if (!success) {", "  // handle the error", "}"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Do not set the [`NSURLThumbnailDictionaryKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/thumbnaildictionarykey) key directly. Modifying this key interferes with document tracking and can create duplicates of your document, as well as other possible problems.
+    ///
+    /// In iOS, use a [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) subclass to manage your file. Set the thumbnail by overriding the document’s [`fileAttributesToWriteToURL:forSaveOperation:error:`](https://developer.apple.com/documentation/uikit/uidocument/fileattributestowrite(to:for:)) method and returning a dictionary that contains the proper thumbnail keys (along with any other file attributes).
+    ///
+    /// In macOS, follow the instructions for creating thumbnails given in [Quick Look Programming Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Quicklook_Programming_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005020).
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although the thumbnail API is designed to support multiple image resolutions, currently it only supports 1024 x 1024 pixel thumbnails.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURL;
@@ -1612,7 +2215,23 @@ extern_conformance!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlqueryitem?language=objc)
+    /// An object representing a single name/value pair for an item in the query portion of a URL.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`URLQueryItem`](https://developer.apple.com/documentation/foundation/urlqueryitem); use [`NSURLQueryItem`](https://developer.apple.com/documentation/foundation/nsurlqueryitem) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// You use query items with the [`queryItems`](https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems) property of an [`NSURLComponents`](https://developer.apple.com/documentation/foundation/nsurlcomponents) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`URLQueryItem`](https://developer.apple.com/documentation/foundation/urlqueryitem) structure, which bridges to the [`NSURLQueryItem`](https://developer.apple.com/documentation/foundation/nsurlqueryitem) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLQueryItem;
@@ -1696,7 +2315,25 @@ impl DefaultRetained for NSURLQueryItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcomponents?language=objc)
+    /// An object that parses URLs into and constructs URLs from their constituent parts.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`URLComponents`](https://developer.apple.com/documentation/foundation/urlcomponents); use [`NSURLComponents`](https://developer.apple.com/documentation/foundation/nsurlcomponents) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The [`NSURLComponents`](https://developer.apple.com/documentation/foundation/nsurlcomponents) class is a class that is designed to parse URLs based on [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt) and to construct URLs from their constituent parts. Its behavior differs subtly from the [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class, which conforms to older RFCs. However, you can easily obtain an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object based on the contents of a URL components object or vice versa.
+    ///
+    /// You create a URL components object in one of three ways: from an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that contains a URL, from an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object, or from scratch by using the default initializer. From there, you can modify the URL’s individual components and subcomponents by modifying various properties, either in unencoded form or in URL-encoded form. If you set the unencoded property, you can then obtain the encoded equivalent by reading the encoded property value and vice versa.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`URLComponents`](https://developer.apple.com/documentation/foundation/urlcomponents) structure, which bridges to the [`NSURLComponents`](https://developer.apple.com/documentation/foundation/nsurlcomponents) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLComponents;
@@ -2217,7 +2854,13 @@ impl NSURL {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilesecurity?language=objc)
+    /// A stub class that encapsulates security information about a file.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSFileSecurity`](https://developer.apple.com/documentation/foundation/nsfilesecurity) contains no methods of its own. Instead, it is transparently bridged to [`CFFileSecurityRef`](https://developer.apple.com/documentation/corefoundation/cffilesecurity).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileSecurity;

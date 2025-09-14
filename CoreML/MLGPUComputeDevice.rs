@@ -9,9 +9,8 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a GPU compute device.
     /// Represents a GPU compute device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlgpucomputedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLGPUComputeDevice;

@@ -8,23 +8,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define the type of a segment.
 /// Indicates the type of segment.
 ///
 ///
 /// Indicates that the segment is a initialization segment.
 ///
 /// Indicates that the segment is a separable segment.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAssetSegmentType(pub NSInteger);
 impl AVAssetSegmentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype/initialization?language=objc)
+    /// An initialization segment type.
     #[doc(alias = "AVAssetSegmentTypeInitialization")]
     pub const Initialization: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttype/separable?language=objc)
+    /// A separable segment type.
     #[doc(alias = "AVAssetSegmentTypeSeparable")]
     pub const Separable: Self = Self(2);
 }
@@ -38,11 +37,16 @@ unsafe impl RefEncode for AVAssetSegmentType {
 }
 
 extern_class!(
+    /// An object that provides information about segment data.
+    ///
+    /// ## Overview
+    ///
+    /// You receive a segment report through the [`assetWriter:didOutputSegmentData:segmentType:segmentReport:`](https://developer.apple.com/documentation/avfoundation/avassetwriterdelegate/assetwriter(_:didoutputsegmentdata:segmenttype:segmentreport:)) delegate method.
+    ///
+    ///
     /// This class provides information on a segment data.
     ///
     /// Clients may get an instance of AVAssetSegmentReport through the -assetWriter:didOutputSegmentData:segmentType:segmentReport: delegate method, which is defined in AVAssetWriter.h. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmentreport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetSegmentReport;
@@ -91,11 +95,10 @@ impl AVAssetSegmentReport {
 }
 
 extern_class!(
+    /// An object that provides information on a track in segment data.
     /// This class is vended by AVAssetSegmentReport. It will provide information on a track in a segment data.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmenttrackreport?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetSegmentTrackReport;
@@ -183,11 +186,10 @@ impl AVAssetSegmentTrackReport {
 }
 
 extern_class!(
+    /// An object that provides information about sample data in a track.
     /// This class is vended by AVAssetSegmentTrackReport. It will provide information on a sample in a track.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetsegmentreportsampleinformation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetSegmentReportSampleInformation;

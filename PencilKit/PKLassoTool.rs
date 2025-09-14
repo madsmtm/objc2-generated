@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A lasso tool for selecting parts of a drawing.
+    /// A tool for selecting stroked lines and shapes in a canvas view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pklassotoolreference?language=objc)
+    /// ## Overview
+    ///
+    /// A [`PKLassoTool`](https://developer.apple.com/documentation/pencilkit/pklassotoolreference) object supports the selection of content on a [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview). When active, the canvas uses incoming touch events to determine what content to add to the selection.
+    ///
+    /// Create a lasso tool programmatically or display a [`PKToolPicker`](https://developer.apple.com/documentation/pencilkit/pktoolpicker) object from which the user selects the tool. Assign the resulting object to the [`tool`](https://developer.apple.com/documentation/pencilkit/pkcanvasview/tool-6str6) property of your [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview) object. The canvas uses any subsequent touch sequences to select content on the canvas.
+    ///
+    ///
+    /// A lasso tool for selecting parts of a drawing.
     #[unsafe(super(PKTool, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKTool")]

@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification that posts after a racing wheel controller connects to the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`GCRacingWheel`](https://developer.apple.com/documentation/gamecontroller/gcracingwheel) object that connects to the device.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use these constants with NSNotificationCenter to listen to connection and disconnection events.
     ///
     /// Use GCRacingWheelDidConnectNotification for observing connections of racing wheels.
@@ -28,18 +37,24 @@ extern "C" {
     /// See: NSNotificationCenter
     ///
     /// See: GCRacingWheel.connectedRacingWheels
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheeldidconnectnotification?language=objc)
     pub static GCRacingWheelDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheeldiddisconnectnotification?language=objc)
+    /// A notification that posts after a racing wheel controller disconnects from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`GCRacingWheel`](https://developer.apple.com/documentation/gamecontroller/gcracingwheel) object that disconnects from the device.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     pub static GCRacingWheelDidDisconnectNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheel?language=objc)
+    /// An object that represents a physical racing wheel controller connected to a device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheel;

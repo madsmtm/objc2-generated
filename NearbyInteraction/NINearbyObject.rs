@@ -8,46 +8,58 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// A sentinel value indicating that a distance measurement could not be produced
+    /// An object that indicates the peer’s distance is unavailable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectdistancenotavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework sets [`distance`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-9atp7) to the value of this property if it’s unable to acquire distance at any given time.
+    ///
+    ///
+    /// A sentinel value indicating that a distance measurement could not be produced
     pub static NINearbyObjectDistanceNotAvailable: c_float;
 }
 
 extern "C" {
-    /// A sentinel value indicating that an angle could not be produced
+    /// A value that indicates that a nearby object’s horizontal angle is unavailable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectanglenotavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework sets [`horizontalAngle`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-9ibky) to the value of this property when it’s unable to acquire the nearby object’s horizontal angle at any given time.
+    ///
+    ///
+    /// A sentinel value indicating that an angle could not be produced
     pub static NINearbyObjectAngleNotAvailable: c_float;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum?language=objc)
+/// Estimations of a nearby object’s vertical position in relation to the user’s device.
+///
+/// ## Overview
+///
+/// The framework sets a nearby object’s [`verticalDirectionEstimate`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.property) to an option of this enumeration when [`cameraAssistanceEnabled`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled) is `true`.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NINearbyObjectVerticalDirectionEstimate(pub NSInteger);
 impl NINearbyObjectVerticalDirectionEstimate {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/unknown?language=objc)
+    /// An indication that the nearby object resides at an unknown vertical location.
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// An indication that the nearby object resides at an equivalent vertical location as the user’s device.
     /// Represents the nearby object is approximately equal
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/same?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateSame")]
     pub const Same: Self = Self(1);
+    /// An indication that the nearby object resides at a higher vertical location than the user’s device.
     /// Represents the nearby object is above the current device
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/above?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateAbove")]
     pub const Above: Self = Self(2);
+    /// An indication that the nearby object resides at a lower vertical location than the user’s device.
     /// Represents the nearby object  is below the current device
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/below?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateBelow")]
     pub const Below: Self = Self(3);
+    /// An indication that the nearby object doesn’t reside at the same vertical location as the user’s device.
     /// Represents the nearby object  is above or below the current device - i.e. not the same level
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum/aboveorbelow?language=objc)
     #[doc(alias = "NINearbyObjectVerticalDirectionEstimateAboveOrBelow")]
     pub const AboveOrBelow: Self = Self(4);
 }
@@ -61,9 +73,20 @@ unsafe impl RefEncode for NINearbyObjectVerticalDirectionEstimate {
 }
 
 extern_class!(
-    /// A nearby object with distance and direction measurements.
+    /// Location information for a peer device in an interaction session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject?language=objc)
+    /// ## Overview
+    ///
+    /// A nearby object refers to a peer Apple device or third-party accessory.
+    ///
+    /// When the framework is ready to provide your app with information about a nearby object’s relative position, it calls your delegate’s [`session:didUpdateNearbyObjects:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdate:)) implementation.
+    ///
+    /// If a session can’t provide peer direction or distance, it sets the values to `nil`. In Objective-C, the session uses the [`NINearbyObjectDirectionNotAvailable`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectdirectionnotavailable) and [`NINearbyObjectDistanceNotAvailable`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectdistancenotavailable) values to indicate missing direction or distance.
+    ///
+    /// For more information, see [Initiating and maintaining a session](https://developer.apple.com/documentation/nearbyinteraction/initiating-and-maintaining-a-session).
+    ///
+    ///
+    /// A nearby object with distance and direction measurements.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyObject;

@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallcontroller?language=objc)
+    /// A programmatic interface for interacting with and observing calls.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CXCallController`](https://developer.apple.com/documentation/callkit/cxcallcontroller) object interacts with calls by performing actions, which are represented by instances of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction) subclasses. You can request that one or more actions be performed in a single [`CXTransaction`](https://developer.apple.com/documentation/callkit/cxtransaction) object using the [`requestTransaction:completion:`](https://developer.apple.com/documentation/callkit/cxcallcontroller/request(_:completion:)) method. A transaction may be rejected by the system for one of the reasons listed in the [`CXErrorCodeRequestTransactionError`](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code) enumeration.
+    ///
+    /// Each [`CXCallController`](https://developer.apple.com/documentation/callkit/cxcallcontroller) object manages a [`CXCallObserver`](https://developer.apple.com/documentation/callkit/cxcallobserver) object, which can be accessed using the [`callObserver`](https://developer.apple.com/documentation/callkit/cxcallcontroller/callobserver) property. You can provide an object conforming to the [`CXCallObserverDelegate`](https://developer.apple.com/documentation/callkit/cxcallobserverdelegate) protocol to the call observer in order to be notified of any changes to active calls.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallController;

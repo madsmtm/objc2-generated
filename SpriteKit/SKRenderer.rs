@@ -13,9 +13,18 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// A renderer for displaying a SpriteKit scene in an existing Metal workflow.
+    /// An object that renders a scene into a custom Metal rendering pipeline and drives the scene update cycle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skrenderer?language=objc)
+    /// ## Overview
+    ///
+    /// [`SKRenderer`](https://developer.apple.com/documentation/spritekit/skrenderer) allows an app to mix SpriteKit and Metal content by rendering an [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene) into a Metal command buffer. The reasons an app may do this instead of displaying a scene in [`SKView`](https://developer.apple.com/documentation/spritekit/skview) are:
+    ///
+    /// 1. Apps that are built in Metal can mix in SpriteKit content. While it’s possible to add [`SKView`](https://developer.apple.com/documentation/spritekit/skview) as a subview to a Metal view, plugging [`SKRenderer`](https://developer.apple.com/documentation/spritekit/skrenderer) into their Metal pipeline allows layering SpriteKit content at a specific z-position.
+    ///
+    /// 2. You might be writing a SpriteKit app and decide later to take full control over some portion of renderering by implementing it with Metal, yet continue to use SpriteKit for the rest of the app. For example, you might write the environmental effects layer of your app that does fog, clouds, and rain, with custom Metal shaders, and continue to layer content below and above that with SpriteKit.
+    ///
+    ///
+    /// A renderer for displaying a SpriteKit scene in an existing Metal workflow.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKRenderer;

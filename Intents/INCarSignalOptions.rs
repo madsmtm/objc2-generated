@@ -4,17 +4,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incarsignaloptions?language=objc)
+/// The signals produced by the user’s car.
+///
+/// ## Overview
+///
+/// In Swift, you can select more than one option from the option set. In Objective-C, you can select more than one option by combining the enums using a bitwise `OR` operation.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarSignalOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INCarSignalOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incarsignaloptions/audible?language=objc)
+/// An audible signal; for example, honking the car horn.
         #[doc(alias = "INCarSignalOptionAudible")]
         const Audible = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incarsignaloptions/visible?language=objc)
+/// A visual signal; for example, flashing the hazard lights.
         #[doc(alias = "INCarSignalOptionVisible")]
         const Visible = 1<<1;
     }

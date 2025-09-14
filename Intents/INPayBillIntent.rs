@@ -8,7 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintent?language=objc)
+    /// A request to transfer money to facilitate payment of a bill.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INPayBillIntent`](https://developer.apple.com/documentation/intents/inpaybillintent) object when the user asks to pay a bill for a designated payee. A pay bill intent object includes the payment amount, the payment date, and the recipient of the payment. Use that information to validate the transaction and to schedule the payment.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INPayBillIntentHandling`](https://developer.apple.com/documentation/intents/inpaybillintenthandling) protocol. Your handler should confirm the request and create an [`INPayBillIntentResponse`](https://developer.apple.com/documentation/intents/inpaybillintentresponse) object with the results of scheduling the bill payment.
+    ///
+    /// This intent object represents a financial transaction between the user and an entity (such as a utility company or credit card bill) defined in your app. You’re responsible for configuring and managing the entities that accept the payment of bills.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions, Shortcuts app." }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// When performing a search, Siri automatically asks the user to unlock a currently locked device. You don’t need to explicitly ask to unlock the device. In addition, Siri always prompts the user to confirm the request before asking your Intents extension to handle it.
+    ///
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to initiate the payment of a bill in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Pay my water bill" }] }], [Paragraph { inline_content: [Text { text: "Pay my gas bill on November 21st" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "付我的水费账单" }] }], [Paragraph { inline_content: [Text { text: "在十一月二十一日付我的煤气账单" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "幫我俾保險賬單" }] }], [Paragraph { inline_content: [Text { text: "喺十月九號俾水費賬單" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "我想要支付水費帳單" }] }], [Paragraph { inline_content: [Text { text: "付水費帳單於2月21日" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "帮我俾保险账单" }] }], [Paragraph { inline_content: [Text { text: "喺十月九号俾水费账单" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "ادفع فاتورة الكهرباء" }] }], [Paragraph { inline_content: [Text { text: "ادفع فاتورة الغاز في 21 نوفمبر" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Betal min vandregning" }] }], [Paragraph { inline_content: [Text { text: "Betal min gasregning på den 21 november" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Zahle meine Wasser Rechnung" }] }], [Paragraph { inline_content: [Text { text: "Zahle meine Gas Rechnung am 21. November" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Pagar mi factura del agua" }] }], [Paragraph { inline_content: [Text { text: "Pagar mi factura del gas el 21 de Noviembre" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Maksa vesimaksu" }] }], [Paragraph { inline_content: [Text { text: "Maksa sähkölasku marraskuun 21. päivä" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Payer ma facture d’eau" }] }], [Paragraph { inline_content: [Text { text: "Payer ma facture de gaz le 21 novembre" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תשלמי את חשבון המים שלי" }] }], [Paragraph { inline_content: [Text { text: "תשלמי את חשבון הגז שלי ב-21 לנובמבר" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "paga il conto dell’acqua" }] }], [Paragraph { inline_content: [Text { text: "paga il conto del gas il 21 di Novembre" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "PG&Eの請求書を払って" }] }], [Paragraph { inline_content: [Text { text: "11月21日にガスの請求書を払って" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "수도세 내줘" }] }], [Paragraph { inline_content: [Text { text: "가스비 11월 21일에 내줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Bayar bil air saya" }] }], [Paragraph { inline_content: [Text { text: "Bayar bil gas saya pada 21 November" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Betal vannregningen min" }] }], [Paragraph { inline_content: [Text { text: "Betal strømregningen 21. November" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Betaal mijn water factuur" }] }], [Paragraph { inline_content: [Text { text: "Betaal mijn gasrekening op 21 November" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Pagar minha conta de água" }] }], [Paragraph { inline_content: [Text { text: "Pagar minha conta de luz dia 21 de novembro" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Оплати мой счёт за воду" }] }], [Paragraph { inline_content: [Text { text: "Заплатить за газ 21-го ноября" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Betala min elräkning" }] }], [Paragraph { inline_content: [Text { text: "Betala min gasräkning på 21 november" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "จ\u{e48}ายบ\u{e34}ลค\u{e48}าน\u{e49}ำ" }] }], [Paragraph { inline_content: [Text { text: "ว\u{e31}นท\u{e35}\u{e48} 21 พฤศจ\u{e34}กายน จ\u{e48}ายค\u{e48}าน\u{e49}ำ" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Su faturasını öde Elektrik faturasını öde" }] }], [Paragraph { inline_content: [Text { text: "21 Kasım tarihinde doğalgaz faturasını öde" }] }]]], alignments: None, metadata: None })
+    /// In the preceding examples, `<appName>` represents the name of the app whose Intents extension initiates the transaction. If your app uses custom names for contacts, you can tell Siri about those names using the [`INVocabulary`](https://developer.apple.com/documentation/intents/invocabulary) class.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -123,11 +147,18 @@ impl INPayBillIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for paying a bill using money from the user’s account.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INPayBillIntentHandling`](https://developer.apple.com/documentation/intents/inpaybillintenthandling) protocol to resolve, confirm, and handle requests to pay bills. Adopt this protocol in an object of your Intents extension that’s capable of initiating the bill-payment process.
+    ///
+    /// Siri delivers an [`INPayBillIntent`](https://developer.apple.com/documentation/intents/inpaybillintent) object to your handler when the user asks to pay a bill using your app. The provided intent object contains information about the bill, including the amount to pay and the organization to receive the money. Use the methods of this protocol to resolve the organization and payment details and initiate the transaction.
+    ///
+    ///
     /// Protocol to declare support for handling an INPayBillIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintenthandling?language=objc)
     #[deprecated = "INPayBillIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INPayBillIntentHandling: NSObjectProtocol {
         #[cfg(all(

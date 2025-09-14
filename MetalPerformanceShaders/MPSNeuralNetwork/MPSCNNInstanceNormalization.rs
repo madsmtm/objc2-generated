@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that stores information required to execute a gradient pass for instance normalization.
     /// Dependencies: This depends on Metal.framework
     ///
     /// A state to hold information necessary to execute a gradient
@@ -16,8 +17,6 @@ extern_class!(
     /// be created by using the forward kernel's methods.  This will
     /// ensure that the state captures all information necessary to
     /// execute the corresponding gradient pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -191,7 +190,7 @@ impl MPSCNNInstanceNormalizationGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstatebatch?language=objc)
+/// A batch of instance normalization gradient state instances.
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSNNGradientState",
@@ -201,11 +200,10 @@ pub type MPSCNNInstanceNormalizationGradientStateBatch =
     NSArray<MPSCNNInstanceNormalizationGradientState>;
 
 extern_protocol!(
+    /// A protocol that defines methods that an instance normalization uses to initialize scale factors and bias terms.
     /// The MPSCNNInstanceNormalizationDataSource protocol declares the methods that an
     /// instance of MPSCNNInstanceNormalization uses to initialize the
     /// scale factors (gamma) and bias terms (beta).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationdatasource?language=objc)
     pub unsafe trait MPSCNNInstanceNormalizationDataSource:
         NSObjectProtocol + NSCopying
     {
@@ -368,6 +366,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An instance normalization kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This kernel normalizes each image, on a per-channel basis, to
@@ -376,8 +375,6 @@ extern_class!(
     /// for each image:
     /// for each channel:
     /// y = (x - mean) * gamma / sqrt(variance + epsilon) + beta;
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -585,11 +582,10 @@ impl MPSCNNInstanceNormalization {
 }
 
 extern_class!(
+    /// A gradient instance normalization kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This kernel executes a gradient pass corresponding to MPSCNNInstanceNormalization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

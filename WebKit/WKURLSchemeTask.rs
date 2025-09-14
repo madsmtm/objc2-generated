@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkurlschemetask?language=objc)
+    /// An interface that WebKit uses to request custom resources from your app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`WKURLSchemeTask`](https://developer.apple.com/documentation/webkit/wkurlschemetask) protocol defines an interface that WebKit uses to request custom resources. You don’t adopt this interface in your own objects. Instead, WebKit creates objects that adopt this interface and delivers them to your custom scheme handlers — that is, objects that adopt the [`WKURLSchemeHandler`](https://developer.apple.com/documentation/webkit/wkurlschemehandler) protocol. You use the objects that WebKit provides to get information about the requested resources and load them. You also use those objects to report your progress back to WebKit.
+    ///
+    /// When WebKit needs a custom scheme, it places an appropriate URL request in the task’s [`request`](https://developer.apple.com/documentation/webkit/wkurlschemetask/request) property. Upon receiving the request, determine the size of the resource and call the [`didReceiveResponse:`](https://developer.apple.com/documentation/webkit/wkurlschemetask/didreceive(_:)-2u23r) method with an appropriate URL response object. Providing a response mirrors the behavior that a web server performs when it receives a request.
+    ///
+    /// After you load some portion of the resource data, call the [`didReceiveData:`](https://developer.apple.com/documentation/webkit/wkurlschemetask/didreceive(_:)-8t5f8) method to send it to WebKit. You may call that method multiple times to deliver data incrementally, or call it once with all of the data. After you finish delivering all of the data, call the [`didFinish`](https://developer.apple.com/documentation/webkit/wkurlschemetask/didfinish()) method. If an error occurs at any point during the load process, call [`didFailWithError:`](https://developer.apple.com/documentation/webkit/wkurlschemetask/didfailwitherror(_:)) to report it.
+    ///
+    ///
     pub unsafe trait WKURLSchemeTask: NSObjectProtocol {
         /// The request to load for this task.
         #[unsafe(method(request))]

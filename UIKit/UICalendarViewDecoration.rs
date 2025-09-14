@@ -5,19 +5,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize?language=objc)
+/// Constants that indicate the relative size of a decoration in a calendar view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICalendarViewDecorationSize(pub NSInteger);
 impl UICalendarViewDecorationSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize/small?language=objc)
+    /// A small relative decoration size in a calendar view.
     #[doc(alias = "UICalendarViewDecorationSizeSmall")]
     pub const Small: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize/medium?language=objc)
+    /// A medium relative decoration size in a calendar view.
     #[doc(alias = "UICalendarViewDecorationSizeMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decorationsize/large?language=objc)
+    /// A large relative decoration size in a calendar view.
     #[doc(alias = "UICalendarViewDecorationSizeLarge")]
     pub const Large: Self = Self(2);
 }
@@ -31,7 +31,7 @@ unsafe impl RefEncode for UICalendarViewDecorationSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarview/decoration?language=objc)
+    /// A view that a calendar view displays for a specific date.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

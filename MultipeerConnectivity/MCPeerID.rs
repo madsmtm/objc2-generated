@@ -7,7 +7,36 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid?language=objc)
+    /// An  `MCPeerID` object represents a peer in a multipeer session.
+    ///
+    /// ## Overview
+    ///
+    /// You create a single peer ID object that represents the instance of your app running on the local device. The Multipeer Connectivity framework is responsible for creating peer ID objects that represent other devices.
+    ///
+    /// To create a new peer ID for the local app and associate a display name with that ID, call [`initWithDisplayName:`](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid/init(displayname:)). The peer’s name must be no longer than 63 bytes in UTF-8 encoding.
+    ///
+    /// Each peer ID your app creates with [`initWithDisplayName:`](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid/init(displayname:)) is unique, even when supplying the same display name. If you want a device’s peer ID to be stable over time, don’t create a new peer ID every time your app begins advertising or browsing. Instead, archive the ID when you create it, and then unarchive it the next time you need it. If you need the peer ID to be tied to the display name, you can archive the name as well, and only create a new peer ID when the name changes, as illustrated in the following code fragment:
+    ///
+    /// ```objc
+    /// NSString *displayName = <#Get a name#>;
+    ///  
+    /// NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    /// NSString *oldDisplayName = [defaults stringForKey:kDisplayNameKey];
+    /// MCPeerID *peerID;
+    ///  
+    /// if ([oldDisplayName isEqualToString:displayName]) {
+    ///     NSData *peerIDData = [defaults dataForKey:kPeerIDKey];
+    ///     peerID = [NSKeyedUnarchiver unarchiveObjectWithData:peerIDData];
+    /// } else {
+    ///     peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
+    ///     NSData *peerIDData = [NSKeyedArchiver archivedDataWithRootObject:peerID];
+    ///     [defaults setObject:peerIDData forKey:kPeerIDKey];
+    ///     [defaults setObject:displayName forKey:kDisplayNameKey];
+    ///     [defaults synchronize];
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCPeerID;

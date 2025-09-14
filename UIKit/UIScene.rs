@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene?language=objc)
+    /// An object that represents one instance of your app’s user interface.
+    ///
+    /// ## Overview
+    ///
+    /// UIKit creates a scene object for each instance of your app’s UI that the user or your app requests. Typically, UIKit creates a [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene) object instead of a [`UIScene`](https://developer.apple.com/documentation/uikit/uiscene) object, but you use the methods and properties of this class to access information about a scene.
+    ///
+    /// Every scene object has an associated delegate object, an object that adopts the [`UISceneDelegate`](https://developer.apple.com/documentation/uikit/uiscenedelegate) protocol. When the state of the scene changes, the scene object notifies its delegate object and posts appropriate notifications to registered observer objects. Use the delegate object and notifications to respond to changes in the state of the scene. For example, use it to determine when your scene moves to the background.
+    ///
+    /// You don’t create scene objects directly. You can programmatically ask UIKit to create a scene object for your app by calling the [`requestSceneSessionActivation:userActivity:options:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/requestscenesessionactivation(_:useractivity:options:errorhandler:)) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). UIKit also creates scenes in response to user interactions. When configuring your app’s scene support, specify [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene) objects instead of [`UIScene`](https://developer.apple.com/documentation/uikit/uiscene) objects.
+    ///
+    ///
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -127,7 +137,15 @@ impl UIScene {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedelegate?language=objc)
+    /// The core methods you use to respond to life-cycle events occurring within a scene.
+    ///
+    /// ## Overview
+    ///
+    /// Use your [`UISceneDelegate`](https://developer.apple.com/documentation/uikit/uiscenedelegate) object to manage life-cycle events in one instance of your app’s user interface. This interface defines methods for responding to state transitions that affect the scene, including when the scene enters the foreground and becomes active, and when it enters the background. Use your delegate to provide appropriate behavior when these transitions occur. For example, finish critical tasks and quiet your app when it enters the background.
+    ///
+    /// Don’t create [`UISceneDelegate`](https://developer.apple.com/documentation/uikit/uiscenedelegate) objects directly. Instead, specify the name of your custom delegate class as part of the configuration data for your scenes. You can specify this information in your app’s `Info.plist` file, or in the [`UISceneConfiguration`](https://developer.apple.com/documentation/uikit/uisceneconfiguration) object you return from your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)) method. For more information about how to configure scenes, see [Specifying the scenes your app supports](https://developer.apple.com/documentation/uikit/specifying-the-scenes-your-app-supports).
+    ///
+    ///
     pub unsafe trait UISceneDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIResponder",
@@ -235,37 +253,96 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/willconnectnotification?language=objc)
+    /// A notification that indicates that UIKit added a scene to your app.
+    ///
+    /// ## Discussion
+    ///
+    /// When the user or your app requests a new instance of your user interface, UIKit creates an appropriate [`UIScene`](https://developer.apple.com/documentation/uikit/uiscene) object and places it in the [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) property of the notification. Use this notification to respond to the addition of the new scene and to begin loading any data that the scene needs to display.
+    ///
+    /// UIKit also calls the [`scene:willConnectToSession:options:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scene(_:willconnectto:options:)) method of your scene delegate object.
+    ///
+    ///
     pub static UISceneWillConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/diddisconnectnotification?language=objc)
+    /// A notification that indicates that UIKit removed a scene from your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to perform any final cleanup before your scene is purged from memory. For example, use it to release references to files or shared resources and to save user data. UIKit places the affected scene in the [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) property of the notification.
+    ///
+    /// The removal of a scene is a precursor to the destruction of that scene. UIKit disconnects a scene when the user explicitly closes it in the app switcher. UIKit may also disconnect a scene in order to reclaim memory for other processes. UIKit does not automatically disconnect a scene when the user switches to another app.
+    ///
+    /// UIKit also calls the [`sceneDidDisconnect:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scenediddisconnect(_:)) method of your scene delegate object.
+    ///
+    ///
     pub static UISceneDidDisconnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/didactivatenotification?language=objc)
+    /// A notification that indicates that the scene is now onscreen and responding to user events.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to prepare your scene to be onscreen. UIKit posts this notification after loading the interface for your scene, but before that interface appears onscreen. Use it to refresh the contents of views, start timers, or increase frame rates for your UI. UIKit places the scene object in the [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) property of the notification.
+    ///
+    /// UIKit also calls the [`sceneDidBecomeActive:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scenedidbecomeactive(_:)) method of your scene delegate object.
+    ///
+    /// For more information on what to do when your app becomes active, see [Preparing your UI to run in the foreground](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-foreground).
+    ///
+    ///
     pub static UISceneDidActivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/willdeactivatenotification?language=objc)
+    /// A notification that indicates that the scene is about to resign the active state and stop responding to user events.
+    ///
+    /// ## Discussion
+    ///
+    /// UIKit posts this notification for temporary interruptions, such as when displaying system alerts. It also posts this notification before transitioning your app to the background state. UIKit places the scene object in the [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) property of the notification.
+    ///
+    /// Use this notification to quiet your interface and prepare it to stop interacting with the user. Specifically, pause ongoing tasks, disable timers, and decrease frame rates or stop updating your interface altogether. Games should use this notification to pause the game. By the time your handler method returns, your app should be doing minimal work while it waits to transition to the background or to the foreground again.
+    ///
+    /// If your scene has unsaved user data, save that data here to ensure that it isn’t lost. However, never save data solely from your notification handler. Instead, save it at appropriate points from your view controllers, usually in response to user actions. For example, save data when the user dismisses a data-entry screen. Do not rely on specific app transitions to save all of your app’s critical data.
+    ///
+    /// UIKit also calls the [`sceneWillResignActive:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scenewillresignactive(_:)) method of your scene delegate object.
+    ///
+    /// For more information about what to do when your app resigns the active state, see [Preparing your UI to run in the background](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-background).
+    ///
+    ///
     pub static UISceneWillDeactivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/willenterforegroundnotification?language=objc)
+    /// A notification that indicates that a scene is about to begin running in the foreground and become visible to the user.
+    ///
+    /// ## Discussion
+    ///
+    /// UIKit posts this notification before moving a scene to the foreground. This transition occurs both for newly created and connected scenes and for scenes that were running in the background and were brought to the foreground by the system or a user action. A scene enters the foreground as a precursor to becoming visible onscreen, so this method is invariably followed by the posting of a [`UISceneDidActivateNotification`](https://developer.apple.com/documentation/uikit/uiscene/didactivatenotification) notification. UIKit places the scene object in the [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) property of the notification.
+    ///
+    /// UIKit also calls the [`sceneWillEnterForeground:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scenewillenterforeground(_:)) method of your scene delegate object.
+    ///
+    ///
     pub static UISceneWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/didenterbackgroundnotification?language=objc)
+    /// A notification that indicates that the scene is running in the background and is no longer onscreen.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to reduce your scene’s memory usage, free up any shared resources, and clean up your scene’s user interface. Shortly after your notification handler returns, UIKit takes a snapshot of your scene’s interface for display in the app switcher. Make sure your interface doesn’t contain sensitive user information.
+    ///
+    /// UIKit also calls the [`sceneDidEnterBackground:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scenedidenterbackground(_:)) method of your scene delegate object.
+    ///
+    /// For more information about what to do when your app enters the background, see [Preparing your UI to run in the background](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-background).
+    ///
+    ///
     pub static UISceneDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/immersivespaceapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UISceneSessionRoleImmersiveSpaceApplication: &'static UISceneSessionRole;
 }

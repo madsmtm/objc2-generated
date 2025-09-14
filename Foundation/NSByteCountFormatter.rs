@@ -6,44 +6,44 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units?language=objc)
+/// Specifies the units appropriate for the formatter to display. Specifying any units explicitly causes just those units to be used in showing the number.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSByteCountFormatterUnits(pub NSUInteger);
 bitflags::bitflags! {
     impl NSByteCountFormatterUnits: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformatterunits/nsbytecountformatterusedefault?language=objc)
+/// This causes default units appropriate for the platform to be used. This is the default.
         #[doc(alias = "NSByteCountFormatterUseDefault")]
         const UseDefault = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usebytes?language=objc)
+/// Displays bytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseBytes")]
         const UseBytes = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usekb?language=objc)
+/// Displays kilobytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseKB")]
         const UseKB = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usemb?language=objc)
+/// Displays megabytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseMB")]
         const UseMB = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usegb?language=objc)
+/// Displays gigabytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseGB")]
         const UseGB = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usetb?language=objc)
+/// Displays terabytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseTB")]
         const UseTB = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usepb?language=objc)
+/// Displays petabyte in the formatter content.
         #[doc(alias = "NSByteCountFormatterUsePB")]
         const UsePB = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/useeb?language=objc)
+/// Displays exabytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseEB")]
         const UseEB = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/usezb?language=objc)
+/// Displays zettabytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseZB")]
         const UseZB = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/useyborhigher?language=objc)
+/// Displays yottabytes in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseYBOrHigher")]
         const UseYBOrHigher = 0x0FF<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units/useall?language=objc)
+/// Can use any unit in the formatter content.
         #[doc(alias = "NSByteCountFormatterUseAll")]
         const UseAll = 0x0FFFF;
     }
@@ -57,22 +57,22 @@ unsafe impl RefEncode for NSByteCountFormatterUnits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum?language=objc)
+/// Specifies display of file or storage byte counts. The display style is platform specific.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSByteCountFormatterCountStyle(pub NSInteger);
 impl NSByteCountFormatterCountStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/file?language=objc)
+    /// Specifies display of file byte counts. The actual behavior for this is platform-specific; in macOS 10.8, this uses the decimal style, but that may change over time.
     #[doc(alias = "NSByteCountFormatterCountStyleFile")]
     pub const File: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/memory?language=objc)
+    /// Specifies display of memory byte counts. The actual behavior for this is platform-specific; in macOS 10.8, this uses the binary style, but that may change over time.
     #[doc(alias = "NSByteCountFormatterCountStyleMemory")]
     pub const Memory: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/decimal?language=objc)
+    /// Causes 1000 bytes to be shown as 1 KB. It is better to use [`NSByteCountFormatterCountStyleFile`](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/file) or [`NSByteCountFormatterCountStyleMemory`](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/memory) in most cases.
     #[doc(alias = "NSByteCountFormatterCountStyleDecimal")]
     pub const Decimal: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/binary?language=objc)
+    /// Causes 1024 bytes to be shown as 1 KB. It is better to use [`NSByteCountFormatterCountStyleFile`](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/file) or [`NSByteCountFormatterCountStyleMemory`](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum/memory) in most cases.
     #[doc(alias = "NSByteCountFormatterCountStyleBinary")]
     pub const Binary: Self = Self(3);
 }
@@ -86,7 +86,19 @@ unsafe impl RefEncode for NSByteCountFormatterCountStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter?language=objc)
+    /// A formatter that converts a byte count value into a localized description that is formatted with the appropriate byte modifier (KB, MB, GB and so on).
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`ByteCountFormatStyle`](https://developer.apple.com/documentation/foundation/bytecountformatstyle) or [`Measurement.FormatStyle.ByteCount`](https://developer.apple.com/documentation/foundation/measurement/formatstyle/bytecount) rather than [`NSByteCountFormatter`](https://developer.apple.com/documentation/foundation/bytecountformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

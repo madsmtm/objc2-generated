@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration object for the USB Extensible Host Controller Interface (XHCI) controller.
+    ///
+    /// ## Overview
+    ///
+    /// Use this configuration to create a USB XHCI controller device for the guest.
+    ///
+    ///
     /// Configuration for the USB XHCI controller.
     ///
     /// This configuration creates a USB XHCI controller device for the guest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzxhcicontrollerconfiguration?language=objc)
     #[unsafe(super(VZUSBControllerConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZUSBControllerConfiguration")]

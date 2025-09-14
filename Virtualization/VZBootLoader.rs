@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class that defines the management of the initial process of the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// The [`VZBootLoader`](https://developer.apple.com/documentation/virtualization/vzbootloader) abstract class defines the common behaviors for booting a guest operating system into a VM. Don’t create instances of this class directly. Instead, instantiate the subclass that corresponds to the type of operating system you plan to load. For example, to create a boot loader object for a Linux kernel, create a [`VZLinuxBootLoader`](https://developer.apple.com/documentation/virtualization/vzlinuxbootloader) object; to create a boot loader object for installation using an ISO image create a [`VZEFIBootLoader`](https://developer.apple.com/documentation/virtualization/vzefibootloader). For a macOS system create [`VZMacOSBootLoader`](https://developer.apple.com/documentation/virtualization/vzmacosbootloader).
+    ///
+    ///
     /// Base class of boot loader configuration.
     ///
     /// VZVirtualMachineConfiguration requires a boot loader defining how to start the virtual machine.
@@ -20,8 +27,6 @@ extern_class!(
     /// See: VZLinuxBootLoader
     ///
     /// See: VZMacOSBootLoader
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbootloader?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZBootLoader;

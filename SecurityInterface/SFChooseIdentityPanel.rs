@@ -11,9 +11,20 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// SFChooseIdentityPanel is a panel and sheet interface that allows a user to select an identity from a list.
+    /// A panel or sheet containing a list of identities that a user can choose from.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfchooseidentitypanel?language=objc)
+    /// ## Overview
+    ///
+    /// An identity is a digital certificate together with its associated private key. This class also allows the user to display the contents of any certificate in the list.
+    ///
+    /// The following figure shows an example of a choose identity panel.
+    ///
+    ///
+    /// ![Choose identity panel](https://docs-assets.developer.apple.com/published/c01aaf0713be6040b28c73f6d4b63da5/media-1965600.jpg)
+    ///
+    ///
+    ///
+    /// SFChooseIdentityPanel is a panel and sheet interface that allows a user to select an identity from a list.
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFChooseIdentityPanel;

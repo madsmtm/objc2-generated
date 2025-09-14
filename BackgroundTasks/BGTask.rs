@@ -8,10 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract class for the framework’s tasks.
+    ///
+    /// ## Overview
+    ///
+    /// With the exception of [`BGContinuedProcessingTask`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtask), which your app executes in the foreground, the system executes [`BGTask`](https://developer.apple.com/documentation/backgroundtasks/bgtask) subclasses on behalf of your app, while your app is in the background.
+    ///
+    ///
     /// An abstract class representing a task that’s run while the app is in the
     /// background.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTask;
@@ -93,6 +98,17 @@ impl BGTask {
 }
 
 extern_class!(
+    /// A time-consuming processing task that runs while the app is in the background.
+    ///
+    /// ## Overview
+    ///
+    /// Use processing tasks for long data updates, processing data, and app maintenance. Although processing tasks can run for minutes, the system can interrupt the process. Add an expiration handler by setting [`expirationHandler`](https://developer.apple.com/documentation/backgroundtasks/bgtask/expirationhandler) for any required cleanup.
+    ///
+    /// Executing processing tasks requires setting the `processing` [`UIBackgroundModes`](https://developer.apple.com/documentation/bundleresources/information-property-list/uibackgroundmodes) capability. For information on setting this capability, see [`BGTaskScheduler`](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler).
+    ///
+    /// Processing tasks run only when the device is idle. The system terminates any background processing tasks running when the user starts using the device. Background refresh tasks aren’t affected.
+    ///
+    ///
     /// A time-consuming processing task that runs while the app is in the
     /// background.
     ///
@@ -110,8 +126,6 @@ extern_class!(
     /// Processing tasks run only when the device is idle. The system terminates any
     /// background processing tasks running when the user starts using the device.
     /// Background refresh tasks are not affected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgprocessingtask?language=objc)
     #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGProcessingTask;
@@ -139,13 +153,12 @@ impl BGProcessingTask {
 }
 
 extern_class!(
+    /// A time-consuming, necessary processing task that runs while the app is in the background to prepare data essential to a health research study.
     /// A task meant to perform processing on behalf of health research studies.
     ///
     /// Health research tasks may only be used by applications entitled to perform
     /// studies and user's have opted in to the relevant study. These apps must have the
     /// `com.apple.developer.backgroundtasks.healthresearch` entitlement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bghealthresearchtask?language=objc)
     #[unsafe(super(BGProcessingTask, BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGHealthResearchTask;
@@ -173,6 +186,15 @@ impl BGHealthResearchTask {
 }
 
 extern_class!(
+    /// An object representing a short task typically used to refresh content that’s run while the app is in the background.
+    ///
+    /// ## Overview
+    ///
+    /// Use app refresh tasks for updating your app with small bits of information, such as the latest stock values.
+    ///
+    /// Executing app refresh tasks requires setting the `fetch` [`UIBackgroundModes`](https://developer.apple.com/documentation/bundleresources/information-property-list/uibackgroundmodes) capability. For information on setting this capability, see [`BGTaskScheduler`](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler).
+    ///
+    ///
     /// An object representing a short task typically used to refresh content that’s
     /// run while the app is in the background.
     ///
@@ -184,8 +206,6 @@ extern_class!(
     /// ://com.apple.documentation/documentation/bundleresources/information_property_list/uibackgroundmodes>
     /// capability. For information on setting this capability, see
     /// ``BGTaskScheduler``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgapprefreshtask?language=objc)
     #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGAppRefreshTask;
@@ -213,14 +233,25 @@ impl BGAppRefreshTask {
 }
 
 extern_class!(
+    /// A task that starts in the foreground and can continue running in the background as needed.
+    ///
+    /// ## Overview
+    ///
+    /// This task works with [`BGContinuedProcessingTaskRequest`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest).
+    ///
+    /// The system displays the progress of this task in a Live Activity and a person can cancel it through the interface if they wish.
+    ///
+    /// The system can terminate a continuous background task abruptly depending on run-time conditions, for example, under resource constraints. Your implementation needs to report progress using the [`NSProgressReporting`](https://developer.apple.com/documentation/foundation/progressreporting) protocol that this task conforms to. The system prioritizes the termination of tasks that reflect minimal or no progress, when resources become constrained.
+    ///
+    /// For more information on Continuous Background Task requests, see [Performing long-running tasks on iOS and iPadOS](https://developer.apple.com/documentation/backgroundtasks/performing-long-running-tasks-on-ios-and-ipados).
+    ///
+    ///
     /// A task meant to perform processing on behalf of a user initiated request.
     ///
     /// Continued processing tasks will present UI while in progress to provide awareness to the user.
     /// ``BGContinuedProcessingTask``s _must_ report progress via the ``NSProgressReporting`` protocol conformance during
     /// runtime and are subject to expiration based on changing system conditions and user input. Tasks that appear stalled
     /// may be forcibly expired by the scheduler to preserve system resources.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtask?language=objc)
     #[unsafe(super(BGTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGContinuedProcessingTask;

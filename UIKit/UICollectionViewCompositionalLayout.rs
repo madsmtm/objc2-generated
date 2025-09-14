@@ -12,25 +12,31 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference?language=objc)
+/// Constants that describe the reference point of the content insets.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContentInsetsReference(pub NSInteger);
 impl UIContentInsetsReference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/automatic?language=objc)
+    /// Content insets use the system default reference point.
+    ///
+    /// ## Discussion
+    ///
+    /// When you set this value on a section in a collection view, the section defaults to using the content insets reference value of the collection view.
+    ///
+    ///
     #[doc(alias = "UIContentInsetsReferenceAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/none?language=objc)
+    /// Content insets don’t have a reference point in relation to other insets.
     #[doc(alias = "UIContentInsetsReferenceNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/safearea?language=objc)
+    /// Content insets use a reference point in relation to the safe area.
     #[doc(alias = "UIContentInsetsReferenceSafeArea")]
     pub const SafeArea: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/layoutmargins?language=objc)
+    /// Content insets use a reference point in relation to the layout margins.
     #[doc(alias = "UIContentInsetsReferenceLayoutMargins")]
     pub const LayoutMargins: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference/readablecontent?language=objc)
+    /// Content insets use a reference point in relation to the readable content guide.
     #[doc(alias = "UIContentInsetsReferenceReadableContent")]
     pub const ReadableContent: Self = Self(4);
 }
@@ -44,7 +50,16 @@ unsafe impl RefEncode for UIContentInsetsReference {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayoutconfiguration?language=objc)
+    /// An object that defines scroll direction, section spacing, and headers or footers for the layout.
+    ///
+    /// ## Overview
+    ///
+    /// You use a layout configuration to modify a collection view layout’s default scroll direction, add extra spacing between each section of the layout, and add headers or footers to the entire layout.
+    ///
+    /// You can pass in this configuration when creating a [`UICollectionViewCompositionalLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout), or you can set the [`configuration`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/configuration) property on an existing layout. If you modify the configuration on an existing layout, the system invalidates the layout so that it will be updated with the new configuration.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),", "                                             heightDimension: .estimated(44))", "", "let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,", "                                                        elementKind: \"header\",", "                                                          alignment: .top)", "let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,", "                                                        elementKind: \"footer\",", "                                                          alignment: .bottom)", "", "let config = UICollectionViewCompositionalLayoutConfiguration()", "config.interSectionSpacing = 20", "config.scrollDirection = .horizontal", "config.boundarySupplementaryItems = [header, footer]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSize *headerFooterSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension estimatedDimension:44.0]];", "", "NSCollectionLayoutBoundarySupplementaryItem *header = [NSCollectionLayoutBoundarySupplementaryItem boundarySupplementaryItemWithLayoutSize:headerFooterSize elementKind:@\"header\" alignment:NSRectAlignmentTop];", "", "NSCollectionLayoutBoundarySupplementaryItem *footer = [NSCollectionLayoutBoundarySupplementaryItem boundarySupplementaryItemWithLayoutSize:headerFooterSize elementKind:@\"footer\" alignment:NSRectAlignmentBottom];", "", "UICollectionViewCompositionalLayoutConfiguration *config = [[UICollectionViewCompositionalLayoutConfiguration alloc] init];", "[config setInterSectionSpacing:20.0];", "[config setScrollDirection:UICollectionViewScrollDirectionHorizontal];", "[config setBoundarySupplementaryItems:@[header, footer]];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -127,7 +142,23 @@ impl UICollectionViewCompositionalLayoutConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayoutsectionprovider?language=objc)
+/// A closure that creates and returns each of the layout’s sections.
+///
+/// ## Discussion
+///
+/// You use a section provider to create a compositional layout ([`UICollectionViewCompositionalLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout)) that has multiple sections with different layouts. The section provider keeps track of the index of the section that it’s currently creating, so you can configure each section differently.
+///
+/// For example, the following code shows a section provider that creates a two-column layout in the first section, and a four-column layout in each section after the first section.
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func createPerSectionLayout() -> UICollectionViewLayout {", "    let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,", "        layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in", "        ", "        let columns = sectionIndex == 0 ? 2 : 4", "        ", "        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),", "                                             heightDimension: .fractionalHeight(1.0))", "        let item = NSCollectionLayoutItem(layoutSize: itemSize)", "        ", "        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),", "                                              heightDimension: .absolute(44))", "        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,", "                                                          subitem: item,", "                                                            count: columns)", "        ", "        let section = NSCollectionLayoutSection(group: group)", "        return section", "    }", "    return layout", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSectionProvider:^NSCollectionLayoutSection *(NSInteger sectionIndex, id<NSCollectionLayoutEnvironment> layoutEnvironment) {", "    ", "    NSInteger columns = (sectionIndex == 0) ? 2 : 4;", "    ", "    NSCollectionLayoutSize *itemSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension fractionalHeightDimension:1.0]];", "    ", "    NSCollectionLayoutItem *item = [NSCollectionLayoutItem itemWithLayoutSize:itemSize];", "", "    NSCollectionLayoutSize *groupSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];", "", "    NSCollectionLayoutGroup *group = [NSCollectionLayoutGroup horizontalGroupWithLayoutSize:groupSize subitem:item count:columns];", "            ", "    NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithGroup:group];", "    return section;", "}];", "", "return layout;"], metadata: None }] }] })
+/// A section provider is also invoked in response to system events such as changes in device orientation, system font size, and size classes from iPad multitasking. You can use this opportunity to adapt the layout to different layout environments by inspecting information about the current layout environment ([`NSCollectionLayoutEnvironment`](https://developer.apple.com/documentation/uikit/nscollectionlayoutenvironment)) and using that information to configure each section.
+///
+/// For example, the following code shows a section provider that creates a two-column layout when the width of the section’s container is less than 800 points, and a four-column layout otherwise.
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func createAdaptiveLayout() -> UICollectionViewLayout {", "    let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,", "        layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in", "", "        let columns = layoutEnvironment.container.effectiveContentSize.width < 800 ? 2 : 4", "        ", "        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),", "                                             heightDimension: .fractionalHeight(1.0))", "        let item = NSCollectionLayoutItem(layoutSize: itemSize)", "        ", "        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),", "                                              heightDimension: .absolute(44))", "        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,", "                                                          subitem: item,", "                                                            count: columns)", "        ", "        let section = NSCollectionLayoutSection(group: group)", "        return section", "    }", "    return layout", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSectionProvider:^NSCollectionLayoutSection *(NSInteger sectionIndex, id<NSCollectionLayoutEnvironment> layoutEnvironment) {    ", "    NSInteger columns = (layoutEnvironment.container.effectiveContentSize.width < 800) ? 2 : 4;", "    ", "    NSCollectionLayoutSize *itemSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension fractionalHeightDimension:1.0]];", "    ", "    NSCollectionLayoutItem *item = [NSCollectionLayoutItem itemWithLayoutSize:itemSize];", "", "    NSCollectionLayoutSize *groupSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];", "", "    NSCollectionLayoutGroup *group = [NSCollectionLayoutGroup horizontalGroupWithLayoutSize:groupSize subitem:item count:columns];", "            ", "    NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithGroup:group];", "    return section;", "}];", "", "return layout;"], metadata: None }] }] })
+/// In iOS 18 and later, UIKit supports automatic trait tracking inside this closure for traits from the `traitCollection` of the `layoutEnvironment` parameter. For more information, see [Automatic trait tracking](https://developer.apple.com/documentation/uikit/automatic-trait-tracking).
+///
+///
 #[cfg(feature = "block2")]
 pub type UICollectionViewCompositionalLayoutSectionProvider = *mut block2::DynBlock<
     dyn Fn(
@@ -137,7 +168,26 @@ pub type UICollectionViewCompositionalLayoutSectionProvider = *mut block2::DynBl
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout?language=objc)
+    /// A layout object that lets you combine items in highly adaptive and flexible visual arrangements.
+    ///
+    /// ## Overview
+    ///
+    /// A compositional layout is a type of collection view layout. It’s designed to be composable, flexible, and fast, letting you build any kind of visual arrangement for your content by combining — or compositing — each smaller component into a full layout.
+    ///
+    /// A compositional layout is composed of one or more sections that break up the layout into distinct visual groupings. Each section is composed of groups of individual items, the smallest unit of data you want to present. A group might lay out its items in a horizontal row, a vertical column, or a custom arrangement.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/981f0b534b7f4153042bfa97691a1f9b/media-3568664~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/1bcae7456df55cf8e3407bb9324c0d33/media-3568664%402x.png 2x" />
+    ///     <img alt="Schematic representation of the App Store app on iOS, showing a collection view with a compositional layout. The layout is composed of two horizontally-scrolling sections that have different layouts. The top section shows one group with one item visible onscreen, with other groups peeking in from the side of the screen. The bottom section shows one group that’s a column of three cells, each of those cells being an item. Each of the items, groups, and sections are outlined and labeled to show how the pieces fit together." src="https://docs-assets.developer.apple.com/published/981f0b534b7f4153042bfa97691a1f9b/media-3568664~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// You combine the components by building up from items into a group, from groups into a section, and finally into a full layout, like in this example of a basic list layout:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func createBasicListLayout() -> UICollectionViewLayout { ", "    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                  ", "                                         heightDimension: .fractionalHeight(1.0))    ", "    let item = NSCollectionLayoutItem(layoutSize: itemSize)  ", "  ", "    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                          ", "                                          heightDimension: .absolute(44))    ", "    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,                                                   ", "                                                     subitems: [item])  ", "  ", "    let section = NSCollectionLayoutSection(group: group)    ", "", "", "    let layout = UICollectionViewCompositionalLayout(section: section)    ", "    return layout", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (UICollectionViewLayout *)createBasicListLayout {", "    NSCollectionLayoutSize *itemSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension fractionalHeightDimension:1.0]];", "    ", "    NSCollectionLayoutItem *item = [NSCollectionLayoutItem itemWithLayoutSize:itemSize];", "", "    NSCollectionLayoutSize *groupSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];", "", "    NSCollectionLayoutGroup *group = [NSCollectionLayoutGroup horizontalGroupWithLayoutSize:groupSize subitems:@[item]];", "    ", "    NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithGroup:group];", "", "    UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSection:section];", "    ", "    return layout;", "}"], metadata: None }] }] })
+    ///
     #[unsafe(super(UICollectionViewLayout, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -236,30 +286,40 @@ impl UICollectionViewCompositionalLayout {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior?language=objc)
+/// The scrolling behavior of the layout’s sections in relation to the main layout axis.
+///
+/// ## Overview
+///
+/// By default, each section lays out its content along the main axis of its layout, defined by the layout configuration’s [`scrollDirection`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayoutconfiguration/scrolldirection) property. You can change this behavior for a particular section by setting its [`orthogonalScrollingBehavior`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection/orthogonalscrollingbehavior) property to a different value than its default [`UICollectionLayoutSectionOrthogonalScrollingBehaviorNone`](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/none). Setting any other value for this property makes the section lay out its content orthogonally to the main layout axis.
+///
+///
+/// ![Diagram of a collection view layout with multiple sections. The collection view sections are laid out vertically, so the collection view scrolls on the vertical axis to reveal more content. The content in the top section of the collection view scrolls on the horizontal axis, orthogonally to the main layout axis of the collection view’s layout.](https://docs-assets.developer.apple.com/published/4cf72f33e39a4d8db2a13d71d4cc3d70/media-3570451%402x.png)
+///
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutSectionOrthogonalScrollingBehavior(pub NSInteger);
 impl UICollectionLayoutSectionOrthogonalScrollingBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/none?language=objc)
+    /// The section does not allow users to scroll its content orthogonally.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/continuous?language=objc)
+    /// The section allows users to scroll its content orthogonally with continuous scrolling.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorContinuous")]
     pub const Continuous: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/continuousgroupleadingboundary?language=objc)
+    /// The section allows users to scroll its content orthogonally, coming to a natural stop at the leading boundary of the visible group.
     #[doc(
         alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorContinuousGroupLeadingBoundary"
     )]
     pub const ContinuousGroupLeadingBoundary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/paging?language=objc)
+    /// The section allows users to page its content orthogonally.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorPaging")]
     pub const Paging: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/grouppaging?language=objc)
+    /// The section allows users to page its content orthogonally one group at a time.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorGroupPaging")]
     pub const GroupPaging: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior/grouppagingcentered?language=objc)
+    /// The section allows users to page its content orthogonally one group at a time, centering each group.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorGroupPagingCentered")]
     pub const GroupPagingCentered: Self = Self(5);
 }
@@ -272,7 +332,14 @@ unsafe impl RefEncode for UICollectionLayoutSectionOrthogonalScrollingBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutsectionvisibleitemsinvalidationhandler?language=objc)
+/// A closure called before each layout cycle to allow modification of items in a section immediately before they’re displayed.
+///
+/// ## Discussion
+///
+/// Each section of a collection view layout can have a visible items invalidation handler. You use this handler to perform custom animations on the items currently visible within the bounds of that section. The handler is called before each layout cycle, any time an animation occurs in that section due to changes such as adding or removing items, scrolling the section, or rotating the device.
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let section = NSCollectionLayoutSection(group: group)", "    ", "section.visibleItemsInvalidationHandler = { visibleItems, scrollOffset, layoutEnvironment in", "    // Perform animations on the visible items.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithGroup:group];", "", "[section setVisibleItemsInvalidationHandler:^(NSArray<id<NSCollectionLayoutVisibleItem>> *visibleItems, CGPoint contentOffset, id<NSCollectionLayoutEnvironment> layoutEnvironment) {", "    // Perform animations on the visible items.", "}];"], metadata: None }] }] })
+///
 #[cfg(all(
     feature = "UIDynamicBehavior",
     feature = "block2",
@@ -286,45 +353,45 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2:
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct?language=objc)
+/// Constants that specify the rate of deceleration in the orthogonal scrolling section after the scrolling pan gesture ends.
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UICollectionLayoutSectionOrthogonalScrollingDecelerationRate = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct/automatic?language=objc)
+    /// A deceleration rate that matches the parent scroll view’s deceleration rate for the orthogonal scrolling section.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionLayoutSectionOrthogonalScrollingDecelerationRateAutomatic:
         UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct/normal?language=objc)
+    /// The default deceleration rate for the orthogonal scrolling section.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionLayoutSectionOrthogonalScrollingDecelerationRateNormal:
         UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct/fast?language=objc)
+    /// A rapid deceleration rate for the orthogonal scrolling section.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionLayoutSectionOrthogonalScrollingDecelerationRateFast:
         UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum?language=objc)
+/// Constants that specify whether the orthogonal scrolling section bounces past the edge of content and back again.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutSectionOrthogonalScrollingBounce(pub NSInteger);
 impl UICollectionLayoutSectionOrthogonalScrollingBounce {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum/automatic?language=objc)
+    /// The orthogonal scroll view bounces when it encounters a content boundary.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum/always?language=objc)
+    /// The orthogonal scroll view bounces even if the content is smaller than its bounds.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceAlways")]
     pub const Always: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum/never?language=objc)
+    /// The orthogonal scroll view stops scrolling immediately when it encounters a content boundary without bouncing.
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceNever")]
     pub const Never: Self = Self(2);
 }
@@ -338,7 +405,7 @@ unsafe impl RefEncode for UICollectionLayoutSectionOrthogonalScrollingBounce {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties?language=objc)
+    /// An object that specifies properties for a layout section that scrolls orthogonally in relation to the main layout axis.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -402,7 +469,27 @@ impl UICollectionLayoutSectionOrthogonalScrollingProperties {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection?language=objc)
+    /// A container that combines a set of groups into distinct visual groupings.
+    ///
+    /// ## Overview
+    ///
+    /// A collection view layout has one or more sections. Sections provide a way to separate the layout into distinct pieces.
+    ///
+    /// Each section can have the same layout or a different layout than the other sections in the collection view. A section’s layout is determined by the properties of the group ([`NSCollectionLayoutGroup`](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroup)) that’s used to create the section.
+    ///
+    /// In the Photos app, each section in the Years page uses the same layout. In the App Store, the Apps page displays several sections with different content arrangements.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/29142d3707bbfb8205cfef012723bedb/media-3568661~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3a145ace5c9cd5a165dbc9c2759c035f/media-3568661%402x.png 2x" />
+    ///     <img alt="Schematic representation of the App Store app on iOS, showing a collection view with a compositional layout. The layout is composed of two horizontally-scrolling sections that have different layouts. The top section shows one group with one item visible onscreen, with other groups peeking in from the sides of the screen. The bottom section shows one group that’s a column of three cells, each of those cells being an item. The two different sections are highlighted and labeled as sections." src="https://docs-assets.developer.apple.com/published/3a145ace5c9cd5a165dbc9c2759c035f/media-3568661%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Each section can have its own background, header, and footer to distinguish it from other sections.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -569,7 +656,27 @@ impl NSCollectionLayoutSection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutitem?language=objc)
+    /// The most basic component of a collection view’s layout.
+    ///
+    /// ## Overview
+    ///
+    /// An item is a blueprint for how to size, space, and arrange an individual piece of content in your collection view. An item represents a single view that’s rendered onscreen. Generally, an item is a cell, but items can be supplementary views like headers, footers, and other decorations.
+    ///
+    /// For example, in the Photos app, an item might represent a single photo. In the App Store app, an item might be a cell displaying information about an individual app in a list of featured apps, such as the app icon, app name, tagline, and download button.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/5f87b68259e0fb25503940360e298357/media-3568665~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/4969747519bcd95bb15d128d7a712ae1/media-3568665%402x.png 2x" />
+    ///     <img alt="Schematic representation of the App Store app on iOS, showing a collection view with a compositional layout. The layout is composed of two horizontally-scrolling sections that have different layouts. The top section shows one group with one item visible onscreen, with other groups peeking in from the sides of the screen. The bottom section shows one group that’s a column of three cells, each of those cells being an item. The two different types of items are highlighted and labeled as items." src="https://docs-assets.developer.apple.com/published/5f87b68259e0fb25503940360e298357/media-3568665~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Each item specifies its own size in terms of a width dimension and a height dimension. Items can express their dimensions relative to their container, as an absolute value, or as an estimated value that might change at runtime, like in response to a change in system font size. For more information, see [`NSCollectionLayoutDimension`](https://developer.apple.com/documentation/uikit/nscollectionlayoutdimension).
+    ///
+    /// You combine items into groups that determine how those items are arranged in relation to each other. For more information, see [`NSCollectionLayoutGroup`](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroup).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -642,7 +749,15 @@ impl NSCollectionLayoutItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroupcustomitem?language=objc)
+    /// An item used in a group with a custom layout arrangement.
+    ///
+    /// ## Overview
+    ///
+    /// You use a custom item if you want to specify a layout with a custom arrangement, like a radial or diagonal layout. You use custom items within a group that’s created with [`customGroupWithLayoutSize:itemProvider:`](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroup/custom(layoutsize:itemprovider:)).
+    ///
+    /// Instead of providing a layout size for the custom item, like you do when you create an [`NSCollectionLayoutItem`](https://developer.apple.com/documentation/uikit/nscollectionlayoutitem), you provide a frame instead.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -696,7 +811,13 @@ impl NSCollectionLayoutGroupCustomItem {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroupcustomitemprovider?language=objc)
+/// A closure that creates and returns each of the custom group’s items.
+///
+/// ## Discussion
+///
+/// You use a custom item provider to supply the item arrangement when creating a group using the [`customGroupWithLayoutSize:itemProvider:`](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroup/custom(layoutsize:itemprovider:)) initializer.
+///
+///
 #[cfg(feature = "block2")]
 pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::DynBlock<
     dyn Fn(
@@ -705,7 +826,33 @@ pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroup?language=objc)
+    /// A container for a set of items that lays out the items along a path.
+    ///
+    /// ## Overview
+    ///
+    /// Groups determine how the items in a collection view lay out in relation to each other. A group might lay out its items in a horizontal row, a vertical column, or a custom arrangement. A group determines the rules for how items are rendered in relation to each other, but in itself doesn’t render any content.
+    ///
+    /// For example, in the Photos app, a group of items is a row of photos. In the App Store app, a group might be a single column of cells (items) arranged in a vertical column.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6d64c3ffd95d486a938762c7f5e92122/media-3568663~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/fc57f40cd933b8fdf6ee5bc26e52d7fa/media-3568663%402x.png 2x" />
+    ///     <img alt="Schematic representation of the App Store app on iOS, showing a collection view with a compositional layout. The layout is composed of horizontally-scrolling sections that have different layouts. The top section shows one group with one item visible onscreen, with other groups peeking in from the sides of the screen. The bottom section shows one group that’s a column of three cells, each of those cells being an item. The two different types of groups are highlighted and labeled as groups." src="https://docs-assets.developer.apple.com/published/fc57f40cd933b8fdf6ee5bc26e52d7fa/media-3568663%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Each group specifies its own size in terms of a width dimension and a height dimension. Groups can express their dimensions relative to their container, as an absolute value, or as an estimated value that might change at runtime, like in response to a change in system font size. For more information, see [`NSCollectionLayoutDimension`](https://developer.apple.com/documentation/uikit/nscollectionlayoutdimension).
+    ///
+    /// Because a group is a subclass of [`NSCollectionLayoutItem`](https://developer.apple.com/documentation/uikit/nscollectionlayoutitem), it behaves like an item. You can combine a group with other items and groups into more complex layouts.
+    ///
+    ///
+    /// ![Illustration of group nesting in a compositional layout. A larger group contains one large item on the leading side and two smaller items stacked vertically in a nested group on the trailing side.](https://docs-assets.developer.apple.com/published/47daaa6eb89261c15d6bcb264846aa1b/media-3568666%402x.png)
+    ///
+    ///
+    /// After you configure a group, you must initialize a section ([`NSCollectionLayoutSection`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection)) of your collection view layout with that group.
+    ///
+    ///
     #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -845,7 +992,24 @@ impl NSCollectionLayoutGroup {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutdimension?language=objc)
+    /// An individual dimension representing an item’s width or height in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Each item in a collection view has an explicit width dimension and height dimension, which combine to define the item’s size ([`NSCollectionLayoutSize`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsize)).
+    ///
+    /// You can express an item’s dimensions using an absolute, estimated, or fractional value.
+    ///
+    /// Use an _absolute value_ to specify exact dimensions, like a 44 x 44 point square:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let absoluteSize = NSCollectionLayoutSize(widthDimension: .absolute(44),", "                                         heightDimension: .absolute(44))"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSize *absoluteSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension absoluteDimension:44.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];"], metadata: None }] }] })
+    /// Use an _estimated value_ if the size of your content might change at runtime, such as when data is loaded or in response to a change in system font size. You provide an initial estimated size and the system computes the actual value later.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let estimatedSize = NSCollectionLayoutSize(widthDimension: .estimated(200),", "                                          heightDimension: .estimated(100))"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSize *estimatedSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension estimatedDimension:200.0] heightDimension:[NSCollectionLayoutDimension estimatedDimension:100.0]];"], metadata: None }] }] })
+    /// Use a _fractional value_ to define a value that’s relative to a dimension of the item’s container. This option simplifies specifying aspect ratios. For example, the following item has a width and a height that are both equal to 20% of its container’s width, creating a square that grows and shrinks as the size of its container changes.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let fractionalSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),", "                                           heightDimension: .fractionalWidth(0.2))"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSize *fractionalSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:0.2] heightDimension:[NSCollectionLayoutDimension fractionalWidthDimension:0.2]];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -953,7 +1117,13 @@ impl NSCollectionLayoutDimension {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutsize?language=objc)
+    /// The width and the height of an item in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// A size is a pair of dimensions ([`NSCollectionLayoutDimension`](https://developer.apple.com/documentation/uikit/nscollectionlayoutdimension)): a width dimension and a height dimension. Every component of a collection view layout has an explicit size.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1000,7 +1170,21 @@ impl NSCollectionLayoutSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutspacing?language=objc)
+    /// An object that defines the space between or around items in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// In a collection view layout, you use a spacing object to specify both the amount of space and the way in which it’s calculated.
+    ///
+    /// You can express spacing using fixed or flexible spacing.
+    ///
+    /// Use _fixed spacing_ to provide an exact amount of space. For example, the following code creates exactly 200 points of space between the items in the group.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["group.interItemSpacing = .fixed(200.0)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[group setInterItemSpacing: [NSCollectionLayoutSpacing fixedSpacing:200.0]];"], metadata: None }] }] })
+    /// Use _flexible spacing_ to provide a minimum amount of space that can grow as more space becomes available. For example, the following code creates at least 200 points of space between the items in the group. As more space becomes available, items are respaced evenly in the additional space.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["group.interItemSpacing = .flexible(200.0)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[group setInterItemSpacing: [NSCollectionLayoutSpacing flexibleSpacing:200.0]];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1055,7 +1239,25 @@ impl NSCollectionLayoutSpacing {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutedgespacing?language=objc)
+    /// An object that defines the space around the edges of items in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You use edge spacing to create additional spacing around the edges of an item to adjust the position of the item in relation to its container and other items.
+    ///
+    /// The leading and trailing spaces within edge spacing differ in left-to-right versus right-to-left environments. In a left-to-right environment, the leading space is on the left, and the trailing space is on the right. In a right-to-left environment, the leading space is on the right, and the trailing space is on the left. This difference ensures that your collection view layout is built with support for right-to-left languages.
+    ///
+    /// The following diagram shows the difference between adding 2 points of trailing edge spacing in a left-to-right versus a right-to-left environment.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0eb1dca0c8e3363af7104445aa047c88/media-3570381~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a315a0a064f715f044a87ad23b139457/media-3570381%402x.png 2x" />
+    ///     <img alt="Two diagrams that compare edge spacing in a left-to-right and a right-to-left environment. Both diagrams show a group of three square items in a row. The first diagram, labeled trailing in left-to-right environment, shows trailing space on the right of each item, implying that leading space is on the left. The second diagram, labeled trailing in right-to-left environment, shows trailing space on the left of each item, implying that leading space is on the right." src="https://docs-assets.developer.apple.com/published/a315a0a064f715f044a87ad23b139457/media-3570381%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1113,7 +1315,21 @@ impl NSCollectionLayoutEdgeSpacing {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutsupplementaryitem?language=objc)
+    /// An object used to add an extra visual decoration to an item in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You use supplementary items to attach additional views to your content. For example, you might attach a badge to an item or a frame around a group. A supplementary item follows the index path of the item it’s attached to.
+    ///
+    /// If you want to create a header or footer for your layout or its sections, use a boundary supplementary item ([`NSCollectionLayoutBoundarySupplementaryItem`](https://developer.apple.com/documentation/uikit/nscollectionlayoutboundarysupplementaryitem)) instead.
+    ///
+    /// Each type of supplementary item must have a unique element kind. Consider tracking these strings together in a way that makes it straightforward to identify each element, for example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["struct ElementKind {", "    static let badge = \"badge-element-kind\"", "    static let background = \"background-element-kind\"", "    static let sectionHeader = \"section-header-element-kind\"", "    static let sectionFooter = \"section-footer-element-kind\"", "    static let layoutHeader = \"layout-header-element-kind\"", "    static let layoutFooter = \"layout-footer-element-kind\"", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSString* const ELEMENT_KIND_BADGE = @\"badge-element-kind\";", "NSString* const ELEMENT_KIND_BACKGROUND = @\"background-element-kind\";", "NSString* const ELEMENT_KIND_SECTION_HEADER = @\"section-header-element-kind\";", "NSString* const ELEMENT_KIND_SECTION_FOOTER = @\"section-footer-element-kind\";", "NSString* const ELEMENT_KIND_LAYOUT_HEADER = @\"layout-header-element-kind\";", "NSString* const ELEMENT_KIND_LAYOUT_FOOTER = @\"layout-footer-element-kind\";"], metadata: None }] }] })
+    /// Add supplementary items to an item by passing in an array of supplementary items when you construct the item:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(44),", "                                     heightDimension: .absolute(44))", "    ", "let badgeAnchor = NSCollectionLayoutAnchor(edges: [.top, .trailing],", "                                fractionalOffset: CGPoint(x: 0.3, y: -0.3))", "   ", "let badgeSize = NSCollectionLayoutSize(widthDimension: .absolute(20),", "                                      heightDimension: .absolute(20))", "    ", "let badge = NSCollectionLayoutSupplementaryItem(layoutSize: badgeSize,", "                                               elementKind: ElementKind.badge,", "                                           containerAnchor: badgeAnchor)", "    ", "let item = NSCollectionLayoutItem(layoutSize: itemSize,", "                          supplementaryItems: [badge])"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSize *itemSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension absoluteDimension:44.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];", "", "NSCollectionLayoutAnchor *badgeAnchor = [NSCollectionLayoutAnchor layoutAnchorWithEdges: NSDirectionalRectEdgeTop|NSDirectionalRectEdgeTrailing fractionalOffset:CGPointMake(0.3, -0.3)];", "", "NSCollectionLayoutSize *badgeSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension absoluteDimension:20.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:20.0]];", "", "NSCollectionLayoutSupplementaryItem *badge = [NSCollectionLayoutSupplementaryItem supplementaryItemWithLayoutSize:badgeSize elementKind:ELEMENT_KIND_BADGE containerAnchor:badgeAnchor];", "", "NSCollectionLayoutItem *item = [NSCollectionLayoutItem itemWithLayoutSize:itemSize supplementaryItems:@[badge]];", ""], metadata: None }] }] })
+    ///
     #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1199,7 +1415,19 @@ impl NSCollectionLayoutSupplementaryItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutboundarysupplementaryitem?language=objc)
+    /// An object used to add headers or footers to a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// A boundary supplementary item is a specialized type of supplementary item ([`NSCollectionLayoutSupplementaryItem`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsupplementaryitem)). You use boundary supplementary items to add headers or footers to a section of a collection view or the entire collection view.
+    ///
+    /// Each type of supplementary item must have a unique element kind. Consider tracking these strings together in a way that makes it straightforward to identify each element, for example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["struct ElementKind {", "    static let badge = \"badge-element-kind\"", "    static let background = \"background-element-kind\"", "    static let sectionHeader = \"section-header-element-kind\"", "    static let sectionFooter = \"section-footer-element-kind\"", "    static let layoutHeader = \"layout-header-element-kind\"", "    static let layoutFooter = \"layout-footer-element-kind\"", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSString* const ELEMENT_KIND_BADGE = @\"badge-element-kind\";", "NSString* const ELEMENT_KIND_BACKGROUND = @\"background-element-kind\";", "NSString* const ELEMENT_KIND_SECTION_HEADER = @\"section-header-element-kind\";", "NSString* const ELEMENT_KIND_SECTION_FOOTER = @\"section-footer-element-kind\";", "NSString* const ELEMENT_KIND_LAYOUT_HEADER = @\"layout-header-element-kind\";", "NSString* const ELEMENT_KIND_LAYOUT_FOOTER = @\"layout-footer-element-kind\";"], metadata: None }] }] })
+    /// Add boundary supplementary items to a section by setting that section’s [`boundarySupplementaryItems`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection/boundarysupplementaryitems) property:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let section = NSCollectionLayoutSection(group: group)", "", "let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),", "                                             heightDimension: .estimated(44))", "    ", "let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,", "                                                               elementKind: ElementKind.sectionHeader,", "                                                                 alignment: .top)", "let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,", "                                                               elementKind: ElementKind.sectionFooter,", "                                                                 alignment: .bottom)", "    ", "section.boundarySupplementaryItems = [sectionHeader, sectionFooter]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithGroup:group];", "", "NSCollectionLayoutSize *headerFooterSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];", "", "NSCollectionLayoutBoundarySupplementaryItem *sectionHeader = [NSCollectionLayoutBoundarySupplementaryItem boundarySupplementaryItemWithLayoutSize: headerFooterSize elementKind: ELEMENT_KIND_SECTION_HEADER alignment: NSRectAlignmentTop];", "", "NSCollectionLayoutBoundarySupplementaryItem *sectionFooter = [NSCollectionLayoutBoundarySupplementaryItem boundarySupplementaryItemWithLayoutSize: headerFooterSize elementKind: ELEMENT_KIND_SECTION_FOOTER alignment: NSRectAlignmentBottom];", "", "[section setBoundarySupplementaryItems: @[sectionHeader, sectionFooter]];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSCollectionLayoutSupplementaryItem, NSCollectionLayoutItem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1316,7 +1544,17 @@ impl NSCollectionLayoutBoundarySupplementaryItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutdecorationitem?language=objc)
+    /// An object used to add a background to a section of a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Each type of decoration item must have a unique element kind. Consider tracking these strings together in a way that makes it straightforward to identify each element, for example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["struct ElementKind {", "    static let badge = \"badge-element-kind\"", "    static let background = \"background-element-kind\"", "    static let sectionHeader = \"section-header-element-kind\"", "    static let sectionFooter = \"section-footer-element-kind\"", "    static let layoutHeader = \"layout-header-element-kind\"", "    static let layoutFooter = \"layout-footer-element-kind\"", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSString* const ELEMENT_KIND_BADGE = @\"badge-elemn’s-kind\";", "NSString* const ELEMENT_KIND_BACKGROUND = @\"background-element-kind\";", "NSString* const ELEMENT_KIND_SECTION_HEADER = @\"section-header-element-kind\";", "NSString* const ELEMENT_KIND_SECTION_FOOTER = @\"section-footer-element-kind\";", "NSString* const ELEMENT_KIND_LAYOUT_HEADER = @\"layout-header-element-kind\";", "NSString* const ELEMENT_KIND_LAYOUT_FOOTER = @\"layout-footer-element-kind\";"], metadata: None }] }] })
+    /// Add a background to a section by setting that section’s [`decorationItems`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection/decorationitems) property:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let sectionBackground = NSCollectionLayoutDecorationItem.background(", "        elementKind: ElementKind.background)", "", "section.decorationItems = [sectionBackground]", "", "let layout = UICollectionViewCompositionalLayout(section: section)", "layout.register(", "    SectionBackgroundDecorationView.self,", "    forDecorationViewOfKind: ElementKind.background)", "return layout"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutDecorationItem *sectionBackground = [NSCollectionLayoutDecorationItem backgroundDecorationItemWithElementKind: ELEMENT_KIND_BACKGROUND];", "", "[section setDecorationItems: @[sectionBackground]];", "", "UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSection: section];", "[layout registerClass: [SectionBackgroundDecorationView class] forDecorationViewOfKind: ELEMENT_KIND_BACKGROUND];", "return layout;"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSCollectionLayoutItem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1384,7 +1622,42 @@ impl NSCollectionLayoutDecorationItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutanchor?language=objc)
+    /// An object that defines how to attach a supplementary item to an item in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You use an anchor to attach a supplementary item to a specific item. An anchor contains information about where on the item your supplementary item is attached, including:
+    ///
+    /// - An edge or set of edges. You can attach a supplementary item to a single edge, or to a corner by specifying two adjacent edges.
+    ///
+    /// - An offset from the item. By default, the supplementary item is anchored within the specified edges of the item it’s attached to. You can change this location by providing a custom offset when you create an anchor.
+    ///
+    /// ### Edges
+    ///
+    /// The leading and trailing edges for anchors differ in left-to-right versus right-to-left environments. In a left-to-right environment, the leading edge is on the left, and the trailing edge is on the right. In a right-to-left environment, the leading edge is on the right, and the trailing edge is on the left. This difference ensures that your collection view layout is built with support for right-to-left languages.
+    ///
+    /// The following diagram shows anchor placement for the specified edges in a left-to-right environment.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/90a0677fdd2f803d9388e6a44dca75c3/media-3570665~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b7e68b458cab77379003c0ce5e2ef3e9/media-3570665%402x.png 2x" />
+    ///     <img alt="Diagram showing anchor positions. Top, bottom, leading, and trailing anchors are on the halfway point on their respective edges. The anchors defined by the edge combinations top and leading, top and trailing, bottom and leading, and bottom and trailing are in the corners between each of those sets of edges." src="https://docs-assets.developer.apple.com/published/b7e68b458cab77379003c0ce5e2ef3e9/media-3570665%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ### Offset
+    ///
+    /// You can express anchor offset in these ways:
+    ///
+    /// - Absolute value. The offset is calculated as a point value. For example, an absolute x offset of `30.0` means that the origin of the supplementary item is offset by 30 points in the positive x direction.
+    ///
+    /// - Fractional value. The offset is calculated as a fraction of the supplementary item’s dimensions. For example, a fractional x offset of `0.3` means that the origin of the supplementary item is offset by 30% of the supplementary item’s width in the positive x direction.
+    ///
+    /// The following code creates a basic badge and attaches it to an item’s top trailing corner.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(44),", "                                     heightDimension: .absolute(44))", "    ", "let badgeAnchor = NSCollectionLayoutAnchor(edges: [.top, .trailing],", "                                fractionalOffset: CGPoint(x: 0.3, y: -0.3))", "    ", "let badgeSize = NSCollectionLayoutSize(widthDimension: .absolute(20),", "                                      heightDimension: .absolute(20))", "    ", "let badge = NSCollectionLayoutSupplementaryItem(layoutSize: badgeSize,", "                                               elementKind: \"badge\",", "                                           containerAnchor: badgeAnchor)", "    ", "let item = NSCollectionLayoutItem(layoutSize: itemSize,", "                          supplementaryItems: [badge])", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSCollectionLayoutSize *itemSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension absoluteDimension:44.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:44.0]];", "", "NSCollectionLayoutAnchor *badgeAnchor = [NSCollectionLayoutAnchor layoutAnchorWithEdges: NSDirectionalRectEdgeTop|NSDirectionalRectEdgeTrailing fractionalOffset:CGPointMake(0.3, -0.3)];", "", "NSCollectionLayoutSize *badgeSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension absoluteDimension:20.0] heightDimension:[NSCollectionLayoutDimension absoluteDimension:20.0]];", "", "NSCollectionLayoutSupplementaryItem *badge = [NSCollectionLayoutSupplementaryItem supplementaryItemWithLayoutSize:badgeSize elementKind:ELEMENT_KIND_BADGE containerAnchor:badgeAnchor];", "", "NSCollectionLayoutItem *item = [NSCollectionLayoutItem itemWithLayoutSize:itemSize supplementaryItems:@[badge]];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1460,7 +1733,13 @@ impl NSCollectionLayoutAnchor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutcontainer?language=objc)
+    /// A protocol used to provide information about the size and content insets of a layout’s container.
+    ///
+    /// ## Overview
+    ///
+    /// In a section provider, you use the [`container`](https://developer.apple.com/documentation/uikit/nscollectionlayoutenvironment/container) property of the layout environment ([`NSCollectionLayoutEnvironment`](https://developer.apple.com/documentation/uikit/nscollectionlayoutenvironment)) to get information about the container of the layout, such as its size and content insets. Knowing about the container’s size while rendering the layout’s sections helps you make decisions about how to display the layout.
+    ///
+    ///
     pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentSize))]
@@ -1485,7 +1764,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutenvironment?language=objc)
+    /// A protocol used to provide information about the layout’s container and environment traits, such as size classes and display scale factor.
+    ///
+    /// ## Overview
+    ///
+    /// In a section provider, you use the layout environment to get information about the context that the layout appears in. You can get information about the layout’s container, such as its size and content insets, and the traits of its environment, such as size classes, display scale factor, and user interface idiom. You use this information while rendering the layout’s sections to help you make decisions about how to display the layout.
+    ///
+    /// For example, the following code uses the layout environment’s trait collection to check whether the UI is in Dark Mode while creating the layout’s sections.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,", "    layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in", "        ", "    if layoutEnvironment.traitCollection.userInterfaceStyle == .dark {", "        return sectionForUserInterfaceStyle(.dark)", "    } else {", "        return sectionForUserInterfaceStyle(.light)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSectionProvider:^NSCollectionLayoutSection *(NSInteger section, id<NSCollectionLayoutEnvironment> layoutEnvironment) {", "    if (layoutEnvironment.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {", "        return [self sectionForUserInterfaceStyle: UIUserInterfaceStyleDark];", "    } else {", "        return [self sectionForUserInterfaceStyle: UIUserInterfaceStyleLight];", "    }", "}];"], metadata: None }] }] })
+    ///
     pub unsafe trait NSCollectionLayoutEnvironment:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1501,7 +1789,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutvisibleitem?language=objc)
+    /// An item that’s currently visible within the bounds of a section.
+    ///
+    /// ## Overview
+    ///
+    /// A visible item represents an item in a collection view that’s currently visible onscreen, such as a cell, supplementary view, or decoration. You access a specific section’s visible items in its visible item invalidation handler ([`NSCollectionLayoutSectionVisibleItemsInvalidationHandler`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsectionvisibleitemsinvalidationhandler)), stored in the [`visibleItemsInvalidationHandler`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection/visibleitemsinvalidationhandler) property. The handler is called before each layout cycle, any time an animation occurs in that section due to changes such as adding or removing items, scrolling the section, or rotating the device.
+    ///
+    ///
     #[cfg(feature = "UIDynamicBehavior")]
     pub unsafe trait NSCollectionLayoutVisibleItem:
         NSObjectProtocol + UIDynamicItem + MainThreadOnly

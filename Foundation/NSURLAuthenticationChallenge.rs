@@ -7,14 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `URLAuthenticationChallengeSender` protocol represents the interface that the sender of an authentication challenge must implement.
+    ///
+    /// ## Overview
+    ///
+    /// The methods in the protocol are generally sent by a delegate in response to receiving a [`connection:didReceiveAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:didreceive:)): or [`download:didReceiveAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurldownloaddelegate/download(_:didreceive:)-1pc0v):. The different methods provide different ways of responding to authentication challenges.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This protocol is _only_ for use with the legacy [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) and [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) classes. It should not be used with [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession)-based code, for which you respond to authentication challenges by passing [`NSURLSessionAuthChallengeDisposition`](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition) constants to the provided completion handler blocks.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// This protocol represents the sender of an
     /// authentication challenge. It has methods to provide a credential,
     /// to continue without any credential, getting whatever failure
     /// result would happen in that case, cancel a challenge, perform the default
     /// action as defined by the system, or reject the currently supplied protection-space
     /// in the challenge.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlauthenticationchallengesender?language=objc)
     pub unsafe trait NSURLAuthenticationChallengeSender:
         NSObjectProtocol + Send + Sync
     {
@@ -57,11 +70,18 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A challenge from a server requiring authentication from the client.
+    ///
+    /// ## Overview
+    ///
+    /// Your app receives authentication challenges in various [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession), [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection), and [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) delegate methods, such as [`URLSession:task:didReceiveChallenge:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate/urlsession(_:task:didreceive:completionhandler:)). These objects provide the information you’ll need when deciding how to handle a server’s request for authentication.
+    ///
+    /// At the core of that authentication challenge is a _protection space_ that defines the type of authentication being requested, the host and port number, the networking protocol, and (where applicable) the authentication realm (a group of related URLs on the same server that share a single set of credentials).
+    ///
+    ///
     /// This class represents an authentication challenge. It
     /// provides all the information about the challenge, and has a method
     /// to indicate when it's done.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlauthenticationchallenge?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLAuthenticationChallenge;

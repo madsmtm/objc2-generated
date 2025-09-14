@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// Base class for basic arithmetic nodes
     /// Dependencies: This depends on Metal.framework.
     ///
     /// This filter takes two source images, a primary source image and a secondary source image,
@@ -47,8 +48,6 @@ extern_class!(
     /// This filter accepts uint and int data in addition to unorm and floating-point data.
     ///
     /// You must use one of the sub-classes of MPSImageArithmetic.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagearithmetic?language=objc)
     #[unsafe(super(MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -236,13 +235,12 @@ impl MPSImageArithmetic {
 }
 
 extern_class!(
+    /// A filter that returns the element-wise sum of its two input images.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the addition operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) + (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageadd?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -362,13 +360,12 @@ impl MPSImageAdd {
 }
 
 extern_class!(
+    /// A filter that returns the element-wise difference of its two input images.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the subtraction operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) - (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesubtract?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -488,13 +485,12 @@ impl MPSImageSubtract {
 }
 
 extern_class!(
+    /// A filter that returns the element-wise product of its two input images.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the multiplication operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) * (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagemultiply?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -614,13 +610,12 @@ impl MPSImageMultiply {
 }
 
 extern_class!(
+    /// A filter that returns the element-wise quotient of its two input images.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the division operator.
     /// For each pixel in the primary source image (x) and each pixel in a secondary source image (y),
     /// it applies the following function: result = ((primaryScale * x) / (secondaryScale * y)) + bias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedivide?language=objc)
     #[unsafe(super(MPSImageArithmetic, MPSBinaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

@@ -12,12 +12,27 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that provides environmental lighting information for a specific area of space in a world-tracking AR session.
+    ///
+    /// ## Overview
+    ///
+    /// Environment textures depict the view in all directions from a specific point in a scene. In 3D asset rendering, environment textures are the basis for image-based lighting algorithms where surfaces can realistically reflect light from their surroundings. ARKit can generate environment textures during an AR session using camera imagery, allowing SceneKit or a custom-rendering engine to provide realistic image-based lighting for virtual objects in your AR experience.
+    ///
+    /// To enable texture map generation for an AR session, set the [`environmentTexturing`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.property) property:
+    ///
+    /// - With [`AREnvironmentTexturingManual`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/manual) environment texturing, you identify points in the scene for which you want light probe texture maps by creating [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) objects and adding them to the session.
+    ///
+    /// - With [`AREnvironmentTexturingAutomatic`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum/automatic) environment texturing, ARKit automatically creates, positions, and adds [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) objects to the session.
+    ///
+    /// In both cases, ARKit automatically generates environment textures as the session collects camera imagery. Use a delegate method such as [`session:didUpdateAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8) to find out when a texture is available, and access it from the anchor’s [`environmentTexture`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor/environmenttexture) property.
+    ///
+    /// If you display AR content using [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) and the [`automaticallyUpdatesLighting`](https://developer.apple.com/documentation/arkit/arscnview/automaticallyupdateslighting) option, SceneKit automatically retrieves [`AREnvironmentProbeAnchor`](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor) texture maps and uses them to light the scene.
+    ///
+    ///
     /// An object representing an environment probe in the world.
     ///
     /// Environment probes are used to light virtual geometry by producing environment
     /// textures from the probe's location in the world.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arenvironmentprobeanchor?language=objc)
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

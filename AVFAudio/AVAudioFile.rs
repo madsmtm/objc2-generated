@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents an audio file that the system can open for reading or writing.
+    ///
+    /// ## Overview
+    ///
+    /// Regardless of the file format, you read and write using [`AVAudioPCMBuffer`](https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer) objects. These objects contain samples as [`AVAudioCommonFormat`](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat) that the framework refers to as the file’s processing format. You convert to and from using the file’s actual format.
+    ///
+    /// Reads and writes are always sequential. Random access is possible by setting the [`framePosition`](https://developer.apple.com/documentation/avfaudio/avaudiofile/frameposition) property.
+    ///
+    ///
     /// An audio file opened for reading or writing.
     ///
     /// Regardless of the file's actual format, reading and writing the file is done via
@@ -17,8 +26,6 @@ extern_class!(
     ///
     /// Reads and writes are always sequential, but random access is possible by setting the
     /// framePosition property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioFile;

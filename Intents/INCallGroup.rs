@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallgroup?language=objc)
+    /// The details of a group call handled by your app.
+    ///
+    /// ## Overview
+    ///
+    /// An `INCallGroup` object stores details that the user contributed to your app about a group call. Use call group objects to communicate general information about group calls to SiriKit. An `INCallGroup` identifies the calls group name and unique group ID.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INCallGroup;

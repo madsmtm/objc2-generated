@@ -7,10 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates a message sent by JavaScript code from a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`WKScriptMessage`](https://developer.apple.com/documentation/webkit/wkscriptmessage) object to get details about a JavaScript message sent to a custom message handler in your app. You don’t create [`WKScriptMessage`](https://developer.apple.com/documentation/webkit/wkscriptmessage) objects directly. When JavaScript code targets one of your app’s message handlers, the [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object of the web view creates a [`WKScriptMessage`](https://developer.apple.com/documentation/webkit/wkscriptmessage) object and delivers it to the message handler’s delegate method. Use the object you’re provided to process the message and provide an appropriate response.
+    ///
+    /// For more information about handling script messages, see the [`WKScriptMessageHandler`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler) and [`WKScriptMessageHandlerWithReply`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandlerwithreply) protocols. For information about how to register message handlers, see the methods of [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller).
+    ///
+    ///
     /// A WKScriptMessage object contains information about a message sent from
     /// a webpage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessage?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

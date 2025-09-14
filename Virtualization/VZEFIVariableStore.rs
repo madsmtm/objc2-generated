@@ -6,16 +6,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the options available when creating a new Extensible Firmware Interface (EFI) variable store.
 /// Options when creating a new EFI variable store.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore/initializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZEFIVariableStoreInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl VZEFIVariableStoreInitializationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore/initializationoptions/allowoverwrite?language=objc)
+/// A Boolean value that indicates whether the framework can overwrite the EFI variable store.
         #[doc(alias = "VZEFIVariableStoreInitializationOptionAllowOverwrite")]
         const AllowOverwrite = 1<<0;
     }
@@ -30,13 +29,12 @@ unsafe impl RefEncode for VZEFIVariableStoreInitializationOptions {
 }
 
 extern_class!(
+    /// An object that represents the Extensible Firmware Interface (EFI) variable store that contains NVRAM variables the EFI exposes.
     /// EFI variable store
     ///
     /// The EFI variable store contains NVRAM variables exposed by the EFI ROM.
     ///
     /// See also: VZEFIBootLoader
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZEFIVariableStore;

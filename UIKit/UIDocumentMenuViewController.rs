@@ -7,18 +7,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenuorder?language=objc)
+/// The insertion point for custom menu items.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentMenuOrder(pub NSUInteger);
 impl UIDocumentMenuOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenuorder/first?language=objc)
+    /// The top item in the document menu.
     #[doc(alias = "UIDocumentMenuOrderFirst")]
     #[deprecated]
     pub const First: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenuorder/last?language=objc)
+    /// The bottom item in the document menu.
     #[doc(alias = "UIDocumentMenuOrderLast")]
     #[deprecated]
     pub const Last: Self = Self(1);
@@ -33,7 +33,13 @@ unsafe impl RefEncode for UIDocumentMenuOrder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenudelegate?language=objc)
+    /// A set of methods that you must implement to track user interactions with a document menu view controller.
+    ///
+    /// ## Overview
+    ///
+    /// The document menu calls the methods of this protocol when the user selects a document picker or dismisses the menu. If the user selects a document picker, set the picker’s delegate and present it.
+    ///
+    ///
     #[deprecated = "UIDocumentMenuDelegate is deprecated. Use UIDocumentPickerViewController directly."]
     pub unsafe trait UIDocumentMenuDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
@@ -60,7 +66,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentmenuviewcontroller?language=objc)
+    /// A list of all the available document providers for a given file type and mode, in addition to custom menu items that you add.
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

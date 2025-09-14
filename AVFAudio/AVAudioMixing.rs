@@ -7,6 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// A collection of properties that are applicable to the input bus of a mixer node.
+    ///
+    /// ## Overview
+    ///
+    /// Nodes that conform to the `AVAudioMixing` protocol can talk to a mixer node downstream. This is specific to the classes [`AVAudioMixerNode`](https://developer.apple.com/documentation/avfaudio/avaudiomixernode) and [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode). Effect nodes can’t talk to their downstream mixer.
+    ///
+    /// When connecting a source node, the properties that this protocol defines apply to the respective input bus of the mixer.
+    ///
+    /// You can change the state of properties before connecting a source node to the mixer. The system caches your changes and applies them upon connection. It caches the properties again after disconnection.
+    ///
+    /// Source nodes maintain mixing settings when switching between different mixers. For example, an [`AVAudioPlayerNode`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode), in a gaming scenario, can set up 3D mixing settings and then move from one environment to another.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Several classes adopt the `AVAudioMixing` protocol. The protocol itself conforms to [`AVAudio3DMixing`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixing) and [`AVAudioStereoMixing`](https://developer.apple.com/documentation/avfaudio/avaudiostereomixing). Classes that conform to `AVAudioMixing` also conform to those protocols.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Protocol that defines properties applicable to the input bus of a mixer
     /// node
     ///
@@ -34,8 +55,6 @@ extern_protocol!(
     /// one mixer and connected to another mixer with source node's mixing settings intact.
     /// For example, an AVAudioPlayerNode that is being used in a gaming scenario can set up its
     /// 3D mixing settings and then move from one environment to another.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixing?language=objc)
     pub unsafe trait AVAudioMixing: AVAudioStereoMixing + AVAudio3DMixing {
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
         /// Returns the AVAudioMixingDestination object corresponding to specified mixer node and
@@ -85,9 +104,20 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Protocol that defines stereo mixing properties
+    /// A protocol that defines stereo mixing properties a mixer uses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiostereomixing?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) protocol adopts this protocol. As a result, many classes also inherit this protocol by adopting `AVAudioMixing`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Protocol that defines stereo mixing properties
     pub unsafe trait AVAudioStereoMixing: NSObjectProtocol {
         /// Set a bus's stereo pan
         ///
@@ -105,6 +135,15 @@ extern_protocol!(
     }
 );
 
+/// The types of rendering algorithms available per input bus of the environment node.
+///
+/// ## Overview
+///
+/// The rendering algorithms differ in quality and CPU cost. [`AVAudio3DMixingRenderingAlgorithmEqualPowerPanning`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/equalpowerpanning) is the simplest panning algorithm and the least expensive computationally.
+///
+/// When rendering to multichannel hardware, most of the rendering algorithms only render to channels 1 and 2, excluding [`AVAudio3DMixingRenderingAlgorithmSoundField`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/soundfield) and [`AVAudio3DMixingRenderingAlgorithmAuto`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/auto).
+///
+///
 /// Types of rendering algorithms available per input bus of the environment node
 ///
 /// The rendering algorithms differ in terms of quality and cpu cost.
@@ -155,32 +194,76 @@ extern_protocol!(
 /// wired output, it may be necessary to manually set the AVAudioEnvironmentNode's output
 /// type. Multi-channel rendering requires setting a channel layout on the
 /// AVAudioEnvironmentNode's output.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingRenderingAlgorithm(pub NSInteger);
 impl AVAudio3DMixingRenderingAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/equalpowerpanning?language=objc)
+    /// An algorithm that pans the data of the mixer bus into a stereo field.
+    ///
+    /// ## Discussion
+    ///
+    /// This is analogous to the pan knob on a mixing board channel strip.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmEqualPowerPanning")]
     pub const EqualPowerPanning: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/sphericalhead?language=objc)
+    /// An algorithm that emulates 3D space in headphones by simulating interaural time delays and other spatial cues.
+    ///
+    /// ## Discussion
+    ///
+    /// This is slightly less CPU-intensive than [`AVAudio3DMixingRenderingAlgorithmHRTF`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/hrtf).
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmSphericalHead")]
     pub const SphericalHead: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/hrtf?language=objc)
+    /// A high-quality algorithm that uses filtering to emulate 3D space in headphones.
+    ///
+    /// ## Discussion
+    ///
+    /// The head-related transfer function is a CPU-intensive algorithm.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmHRTF")]
     pub const HRTF: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/soundfield?language=objc)
+    /// An algorithm that renders to multichannel hardware.
+    ///
+    /// ## Discussion
+    ///
+    /// This takes data the system renders with [`AVAudio3DMixingRenderingAlgorithmSoundField`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/soundfield) and distributes it among all of the output channels with a weighting toward the location of the sound. This algorithm is very effective for ambient sounds. Those sounds may derive from a specific location, but they fill the listener’s entire space.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmSoundField")]
     pub const SoundField: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/stereopassthrough?language=objc)
+    /// An algorithm to use when the source data doesn’t need localization.
+    ///
+    /// ## Discussion
+    ///
+    /// This takes mono and stereo input and passes it to channels 1 and 2 without localization. If the input and output `AudioChannelLayout` differ, mixing happens according to the [`kAudioFormatProperty_MatrixMixMap`](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_matrixmixmap) property of the layouts.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmStereoPassThrough")]
     pub const StereoPassThrough: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/hrtfhq?language=objc)
+    /// A higher-quality head-related transfer function rendering algorithm.
+    ///
+    /// ## Discussion
+    ///
+    /// In comparison to [`AVAudio3DMixingRenderingAlgorithmHRTF`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/hrtf), this option’s improvements focus on the frequency response and localization of sources in 3D space.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmHRTFHQ")]
     pub const HRTFHQ: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/auto?language=objc)
+    /// Automatically selects the highest-quality rendering algorithm available for the current playback hardware.
+    ///
+    /// ## Discussion
+    ///
+    /// This selects the highest-quality rendering algorithm available for the current playback hardware.
+    ///
+    /// The algorithm may not be identical to other existing algorithms. It may change in the future as new algorithms emerge.
+    ///
+    /// When in manual rendering mode or wired output, you may need to set the [`outputType`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype) on [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode). Multichannel rendering requires setting a channel layout on an [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode) output.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmAuto")]
     pub const Auto: Self = Self(7);
 }
@@ -193,6 +276,13 @@ unsafe impl RefEncode for AVAudio3DMixingRenderingAlgorithm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The source modes for the input bus of the audio environment node.
+///
+/// ## Overview
+///
+/// The source mode determines how the individual channels of an input bus distribute in space.
+///
+///
 /// Source types available per input bus of the environment node
 ///
 /// The source types differ in how the individual channels of an input bus are distributed
@@ -221,23 +311,39 @@ unsafe impl RefEncode for AVAudio3DMixingRenderingAlgorithm {
 /// listener position. The directions of the input channels are specified by the
 /// AudioChannelLayout of the bus. The rotation of the whole bed in the global space is
 /// controlled by the direction of the source node.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingSourceMode(pub NSInteger);
 impl AVAudio3DMixingSourceMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/spatializeifmono?language=objc)
+    /// A mono input bus that renders as a point source at the location of the source node.
+    ///
+    /// ## Discussion
+    ///
+    /// The system bypasses an input bus with more than one channel. This is equivalent to [`AVAudio3DMixingSourceModePointSource`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/pointsource) for a mono bus and [`AVAudio3DMixingSourceModeBypass`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/bypass) for a bus with more than one channel.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingSourceModeSpatializeIfMono")]
     pub const SpatializeIfMono: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/bypass?language=objc)
+    /// A mode that does no spatial rendering.
+    ///
+    /// ## Discussion
+    ///
+    /// If input and output audio channel layouts are equivalent, the framework copies all input channels directly to corresponding output channels. If the input and output audio channel layouts differ, the framework mixes according to the [`kAudioFormatProperty_MatrixMixMap`](https://developer.apple.com/documentation/audiotoolbox/kaudioformatproperty_matrixmixmap) property of the layouts. It applies no occlusion, obstruction, or reverb in this mode.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingSourceModeBypass")]
     pub const Bypass: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/pointsource?language=objc)
+    /// All channels of the bus render as a single source at the location of the source node.
     #[doc(alias = "AVAudio3DMixingSourceModePointSource")]
     pub const PointSource: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/ambiencebed?language=objc)
+    /// The input channels spread around the listener as far-field sources that anchor to global space.
+    ///
+    /// ## Discussion
+    ///
+    /// The rendering depends on listener orientation, but not on listener position. The audio channel layout of the bus specifies the directions of the input channels. The direction of the source node controls the rotation of the bed in the global space.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingSourceModeAmbienceBed")]
     pub const AmbienceBed: Self = Self(3);
 }
@@ -250,6 +356,13 @@ unsafe impl RefEncode for AVAudio3DMixingSourceMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The in-head modes for a point source.
+///
+/// ## Overview
+///
+/// The in-head mode that determines what happens when a [`AVAudio3DMixingSourceModePointSource`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode/pointsource) moves inside the head of the listener. The in-head mode applies when using the [`AVAudio3DMixingRenderingAlgorithmAuto`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/auto) rendering algorithm.
+///
+///
 /// In-head modes available for AVAudio3DMixingSourceModePointSource in AVAudio3DMixingRenderingAlgorithmAuto
 ///
 /// The in-head modes differ in what happens when a point source moves inside the
@@ -263,17 +376,21 @@ unsafe impl RefEncode for AVAudio3DMixingSourceMode {
 /// A point source splits into bypass inside the listener's head. This enables transitions
 /// between traditional, non-spatialized rendering and spatialized sources outside the
 /// listener's head.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingPointSourceInHeadMode(pub NSInteger);
 impl AVAudio3DMixingPointSourceInHeadMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode/mono?language=objc)
+    /// The point source remains a single mono source inside the head of the listener regardless of the channels it consists of.
     #[doc(alias = "AVAudio3DMixingPointSourceInHeadModeMono")]
     pub const Mono: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode/bypass?language=objc)
+    /// The point source distributes into each output channel inside the head of the listener.
+    ///
+    /// ## Discussion
+    ///
+    /// This option enables transitions between traditional, nonspatialized rendering and spatialized sources outside of the listener’s head.
+    ///
+    ///
     #[doc(alias = "AVAudio3DMixingPointSourceInHeadModeBypass")]
     pub const Bypass: Self = Self(1);
 }
@@ -287,9 +404,22 @@ unsafe impl RefEncode for AVAudio3DMixingPointSourceInHeadMode {
 }
 
 extern_protocol!(
-    /// Protocol that defines 3D mixing properties
+    /// A collection of properties that define 3D mixing properties.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixing?language=objc)
+    /// ## Overview
+    ///
+    /// Only the [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode) class implements these properties.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) protocol adopts these properties. As a result, many classes inherit this protocol by adopting `AVAudioMixing`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Protocol that defines 3D mixing properties
     pub unsafe trait AVAudio3DMixing: NSObjectProtocol {
         /// Type of rendering algorithm used
         ///
@@ -426,14 +556,19 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that represents a connection to a mixer node from a node that conforms to the audio mixing protocol.
+    ///
+    /// ## Overview
+    ///
+    /// You can only use a destination instance when a source node provides it. You can’t use it as a standalone instance.
+    ///
+    ///
     /// An object representing a connection to a mixer node from a node that
     /// conforms to AVAudioMixing protocol
     ///
     /// A standalone instance of AVAudioMixingDestination cannot be created.
     /// Only an instance vended by a source node (e.g. AVAudioPlayerNode) can be used
     /// (see `AVAudioMixing`).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixingdestination?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioMixingDestination;

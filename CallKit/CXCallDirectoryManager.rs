@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus?language=objc)
+/// The enabled status of a Call Directory app extension, as reported by the [`getEnabledStatusForExtensionWithIdentifier:completionHandler:`](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/getenabledstatusforextension(withidentifier:completionhandler:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXCallDirectoryEnabledStatus(pub NSInteger);
 impl CXCallDirectoryEnabledStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus/unknown?language=objc)
+    /// Indicates that the enabled status for the extension is unknown.
     #[doc(alias = "CXCallDirectoryEnabledStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus/disabled?language=objc)
+    /// Indicates that the extension is disabled.
     #[doc(alias = "CXCallDirectoryEnabledStatusDisabled")]
     pub const Disabled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager/enabledstatus/enabled?language=objc)
+    /// Indicates that the extension is enabled.
     #[doc(alias = "CXCallDirectoryEnabledStatusEnabled")]
     pub const Enabled: Self = Self(2);
 }
@@ -33,7 +33,7 @@ unsafe impl RefEncode for CXCallDirectoryEnabledStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectorymanager?language=objc)
+    /// The programmatic interface to an object that manages a Call Directory app extension.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallDirectoryManager;

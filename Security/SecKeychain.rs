@@ -8,20 +8,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecunlockstatestatus?language=objc)
+/// Indicates the keychain is unlocked.
 pub const kSecUnlockStateStatus: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecreadpermstatus?language=objc)
+/// Indicates the keychain is readable.
 pub const kSecReadPermStatus: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecwritepermstatus?language=objc)
+/// Indicates the keychain is writable.
 pub const kSecWritePermStatus: u32 = 4;
 
+/// A structure that contains information about keychain settings.
+///
+/// ## Overview
+///
+/// This structure contains information about a keychain’s settings such as locking on sleep and the lock time interval. Use the [`SecKeychainSetSettings`](https://developer.apple.com/documentation/security/seckeychainsetsettings(_:_:)) and [`SecKeychainCopySettings`](https://developer.apple.com/documentation/security/seckeychaincopysettings(_:_:)) functions to set and copy a keychain’s settings.
+///
+///
 /// Contains keychain settings.
 /// Field: version An unsigned 32-bit integer representing the keychain version.
 /// Field: lockOnSleep A boolean value indicating whether the keychain locks when the system sleeps.
 /// Field: useLockInterval A boolean value indicating whether the keychain automatically locks after a certain period of time.
 /// Field: lockInterval An unsigned 32-bit integer representing the number of seconds before the keychain locks.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsettings?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SecKeychainSettings {
@@ -49,37 +54,43 @@ unsafe impl RefEncode for SecKeychainSettings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype?language=objc)
+/// The authentication type to use for an Internet password.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecAuthenticationType(pub FourCharCode);
 impl SecAuthenticationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/ntlm?language=objc)
+    /// Specifies Windows NT LAN Manager authentication.
     #[doc(alias = "kSecAuthenticationTypeNTLM")]
     pub const NTLM: Self = Self(AUTH_TYPE_FIX_!(0x6e746c6d));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/msn?language=objc)
+    /// Specifies Microsoft Network default authentication.
     #[doc(alias = "kSecAuthenticationTypeMSN")]
     pub const MSN: Self = Self(AUTH_TYPE_FIX_!(0x6d736e61));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/dpa?language=objc)
+    /// Specifies Distributed Password authentication.
     #[doc(alias = "kSecAuthenticationTypeDPA")]
     pub const DPA: Self = Self(AUTH_TYPE_FIX_!(0x64706161));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/rpa?language=objc)
+    /// Specifies Remote Password authentication.
     #[doc(alias = "kSecAuthenticationTypeRPA")]
     pub const RPA: Self = Self(AUTH_TYPE_FIX_!(0x72706161));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/httpbasic?language=objc)
+    /// Specifies HTTP Basic authentication.
     #[doc(alias = "kSecAuthenticationTypeHTTPBasic")]
     pub const HTTPBasic: Self = Self(AUTH_TYPE_FIX_!(0x68747470));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/httpdigest?language=objc)
+    /// Specifies HTTP Digest Access authentication.
     #[doc(alias = "kSecAuthenticationTypeHTTPDigest")]
     pub const HTTPDigest: Self = Self(AUTH_TYPE_FIX_!(0x68747464));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/htmlform?language=objc)
+    /// Specifies HTML form based authentication.
     #[doc(alias = "kSecAuthenticationTypeHTMLForm")]
     pub const HTMLForm: Self = Self(AUTH_TYPE_FIX_!(0x666f726d));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/default?language=objc)
+    /// Specifies the default authentication type.
     #[doc(alias = "kSecAuthenticationTypeDefault")]
     pub const Default: Self = Self(AUTH_TYPE_FIX_!(0x64666c74));
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype/any?language=objc)
+    /// Specifies that any authentication type is acceptable.
+    ///
+    /// ## Discussion
+    ///
+    /// When performing a search, use this value to avoid constraining your search results to a particular authentication type.
+    ///
+    ///
     #[doc(alias = "kSecAuthenticationTypeAny")]
     pub const Any: Self = Self(AUTH_TYPE_FIX_!(0));
 }
@@ -94,117 +105,122 @@ unsafe impl RefEncode for SecAuthenticationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The protocol type associated with an Internet password.
 /// Defines the protocol type associated with an AppleShare or Internet password.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecProtocolType(pub FourCharCode);
 impl SecProtocolType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftp?language=objc)
+    /// Indicates FTP.
     #[doc(alias = "kSecProtocolTypeFTP")]
     pub const FTP: Self = Self(0x66747020);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftpaccount?language=objc)
+    /// Indicates a client side FTP account. The usage of this constant is deprecated as of macOS 10.3.
     #[doc(alias = "kSecProtocolTypeFTPAccount")]
     pub const FTPAccount: Self = Self(0x66747061);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/http?language=objc)
+    /// Indicates HTTP.
     #[doc(alias = "kSecProtocolTypeHTTP")]
     pub const HTTP: Self = Self(0x68747470);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/irc?language=objc)
+    /// Indicates IRC.
     #[doc(alias = "kSecProtocolTypeIRC")]
     pub const IRC: Self = Self(0x69726320);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/nntp?language=objc)
+    /// Indicates NNTP.
     #[doc(alias = "kSecProtocolTypeNNTP")]
     pub const NNTP: Self = Self(0x6e6e7470);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/pop3?language=objc)
+    /// Indicates POP3.
     #[doc(alias = "kSecProtocolTypePOP3")]
     pub const POP3: Self = Self(0x706f7033);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/smtp?language=objc)
+    /// Indicates SMTP.
     #[doc(alias = "kSecProtocolTypeSMTP")]
     pub const SMTP: Self = Self(0x736d7470);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/socks?language=objc)
+    /// Indicates SOCKS.
     #[doc(alias = "kSecProtocolTypeSOCKS")]
     pub const SOCKS: Self = Self(0x736f7820);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/imap?language=objc)
+    /// Indicates IMAP.
     #[doc(alias = "kSecProtocolTypeIMAP")]
     pub const IMAP: Self = Self(0x696d6170);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ldap?language=objc)
+    /// Indicates LDAP.
     #[doc(alias = "kSecProtocolTypeLDAP")]
     pub const LDAP: Self = Self(0x6c646170);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/appletalk?language=objc)
+    /// Indicates AFP over AppleTalk.
     #[doc(alias = "kSecProtocolTypeAppleTalk")]
     pub const AppleTalk: Self = Self(0x61746c6b);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/afp?language=objc)
+    /// Indicates AFP over TCP.
     #[doc(alias = "kSecProtocolTypeAFP")]
     pub const AFP: Self = Self(0x61667020);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/telnet?language=objc)
+    /// Indicates Telnet.
     #[doc(alias = "kSecProtocolTypeTelnet")]
     pub const Telnet: Self = Self(0x74656c6e);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ssh?language=objc)
+    /// Indicates SSH.
     #[doc(alias = "kSecProtocolTypeSSH")]
     pub const SSH: Self = Self(0x73736820);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftps?language=objc)
+    /// Indicates FTP over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeFTPS")]
     pub const FTPS: Self = Self(0x66747073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/https?language=objc)
+    /// Indicates HTTP over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeHTTPS")]
     pub const HTTPS: Self = Self(0x68747073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/httpproxy?language=objc)
+    /// Indicates HTTP proxy.
     #[doc(alias = "kSecProtocolTypeHTTPProxy")]
     pub const HTTPProxy: Self = Self(0x68747078);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/httpsproxy?language=objc)
+    /// Indicates HTTPS proxy.
     #[doc(alias = "kSecProtocolTypeHTTPSProxy")]
     pub const HTTPSProxy: Self = Self(0x68747378);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ftpproxy?language=objc)
+    /// Indicates FTP proxy.
     #[doc(alias = "kSecProtocolTypeFTPProxy")]
     pub const FTPProxy: Self = Self(0x66747078);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/cifs?language=objc)
+    /// Indicates CIFS.
     #[doc(alias = "kSecProtocolTypeCIFS")]
     pub const CIFS: Self = Self(0x63696673);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/smb?language=objc)
+    /// Indicates SMB.
     #[doc(alias = "kSecProtocolTypeSMB")]
     pub const SMB: Self = Self(0x736d6220);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/rtsp?language=objc)
+    /// Indicates RTSP.
     #[doc(alias = "kSecProtocolTypeRTSP")]
     pub const RTSP: Self = Self(0x72747370);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/rtspproxy?language=objc)
+    /// Indicates RTSP proxy.
     #[doc(alias = "kSecProtocolTypeRTSPProxy")]
     pub const RTSPProxy: Self = Self(0x72747378);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/daap?language=objc)
+    /// Indicates DAAP.
     #[doc(alias = "kSecProtocolTypeDAAP")]
     pub const DAAP: Self = Self(0x64616170);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/eppc?language=objc)
+    /// Indicates Remote Apple Events.
     #[doc(alias = "kSecProtocolTypeEPPC")]
     pub const EPPC: Self = Self(0x65707063);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ipp?language=objc)
+    /// Indicates IPP.
     #[doc(alias = "kSecProtocolTypeIPP")]
     pub const IPP: Self = Self(0x69707020);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/nntps?language=objc)
+    /// Indicates NNTP over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeNNTPS")]
     pub const NNTPS: Self = Self(0x6e747073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ldaps?language=objc)
+    /// Indicates LDAP over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeLDAPS")]
     pub const LDAPS: Self = Self(0x6c647073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/telnets?language=objc)
+    /// Indicates Telnet over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeTelnetS")]
     pub const TelnetS: Self = Self(0x74656c73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/imaps?language=objc)
+    /// Indicates IMAP4 over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeIMAPS")]
     pub const IMAPS: Self = Self(0x696d7073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/ircs?language=objc)
+    /// Indicates IRC over TLS/SSL.
     #[doc(alias = "kSecProtocolTypeIRCS")]
     pub const IRCS: Self = Self(0x69726373);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/pop3s?language=objc)
+    /// Indicates POP3 over TLS/SSL.
     #[doc(alias = "kSecProtocolTypePOP3S")]
     pub const POP3S: Self = Self(0x706f7073);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/cvspserver?language=objc)
+    /// Indicates CVS pserver.
     #[doc(alias = "kSecProtocolTypeCVSpserver")]
     pub const CVSpserver: Self = Self(0x63767370);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/svn?language=objc)
+    /// Indicates Subversion.
     #[doc(alias = "kSecProtocolTypeSVN")]
     pub const SVN: Self = Self(0x73766e20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype/any?language=objc)
+    /// Indicates that any protocol is acceptable.
+    ///
+    /// ## Discussion
+    ///
+    /// When performing a search, use this constant to avoid constraining your search results to a particular protocol.
+    ///
+    ///
     #[doc(alias = "kSecProtocolTypeAny")]
     pub const Any: Self = Self(0);
 }
@@ -219,43 +235,60 @@ unsafe impl RefEncode for SecProtocolType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Defines the keychain-related event.
+/// The list of keychain events that can trigger a callback.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent?language=objc)
+/// ## Overview
+///
+/// Keychain Services includes one of these events in the callback you register with [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)), using the function signature defined by [`SecKeychainCallback`](https://developer.apple.com/documentation/security/seckeychaincallback), to indicate what event triggered the callback.
+///
+///
+/// Defines the keychain-related event.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecKeychainEvent(pub u32);
 impl SecKeychainEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/lockevent?language=objc)
+    /// Indicates a keychain was locked.
+    ///
+    /// ## Discussion
+    ///
+    /// It is impossible to distinguish between a lock event caused by an explicit request and one caused by a keychain that locked itself because of a timeout. Therefore, the `pid` parameter in the [`SecKeychainCallbackInfo`](https://developer.apple.com/documentation/security/seckeychaincallbackinfo) structure does not contain useful information for this event. Note that when the login session terminates, all keychains become effectively locked; however, no `kSecLockEvent` events are generated in this case.
+    ///
+    ///
     #[doc(alias = "kSecLockEvent")]
     pub const LockEvent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/unlockevent?language=objc)
+    /// Indicates a keychain was successfully unlocked.
+    ///
+    /// ## Discussion
+    ///
+    /// It is impossible to distinguish between an unlock event caused by an explicit request and one that occurred automatically because the keychain was needed to perform an operation. In either case, however, the `pid` parameter in the `SecKeychainCallbackInfo` structure does return the ID of the process whose actions caused the unlock event.
+    ///
+    ///
     #[doc(alias = "kSecUnlockEvent")]
     pub const UnlockEvent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/addevent?language=objc)
+    /// Indicates an item was added to a keychain.
     #[doc(alias = "kSecAddEvent")]
     pub const AddEvent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/deleteevent?language=objc)
+    /// Indicates an item was deleted from a keychain.
     #[doc(alias = "kSecDeleteEvent")]
     pub const DeleteEvent: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/updateevent?language=objc)
+    /// Indicates a keychain item was updated.
     #[doc(alias = "kSecUpdateEvent")]
     pub const UpdateEvent: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/passwordchangedevent?language=objc)
+    /// Indicates the keychain password was changed.
     #[doc(alias = "kSecPasswordChangedEvent")]
     pub const PasswordChangedEvent: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/defaultchangedevent?language=objc)
+    /// Indicates that a different keychain was specified as the default.
     #[doc(alias = "kSecDefaultChangedEvent")]
     pub const DefaultChangedEvent: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/dataaccessevent?language=objc)
+    /// Indicates a process has accessed a keychain item’s data.
     #[doc(alias = "kSecDataAccessEvent")]
     #[deprecated = "Read events are no longer posted"]
     pub const DataAccessEvent: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/keychainlistchangedevent?language=objc)
+    /// Indicates the list of keychains has changed.
     #[doc(alias = "kSecKeychainListChangedEvent")]
     pub const KeychainListChangedEvent: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainevent/trustsettingschangedevent?language=objc)
+    /// Indicates trust settings have changed.
     #[doc(alias = "kSecTrustSettingsChangedEvent")]
     pub const TrustSettingsChangedEvent: Self = Self(12);
 }
@@ -270,47 +303,52 @@ unsafe impl RefEncode for SecKeychainEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Defines keychain event constants
+/// Bit masks corresponding to the events that can trigger a keychain callback.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask?language=objc)
+/// ## Overview
+///
+/// Bitwise `OR` one or more of these masks together to provide the `eventMask` input to the [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)) function to indicate what event or events should trigger your callback.
+///
+///
+/// Defines keychain event constants
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeychainEventMask(pub u32);
 bitflags::bitflags! {
     impl SecKeychainEventMask: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/lockeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when a keychain is locked.
         #[doc(alias = "kSecLockEventMask")]
         const LockEventMask = 1<<SecKeychainEvent::LockEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/unlockeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when a keychain is unlocked.
         #[doc(alias = "kSecUnlockEventMask")]
         const UnlockEventMask = 1<<SecKeychainEvent::UnlockEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/addeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when an item is added to a keychain.
         #[doc(alias = "kSecAddEventMask")]
         const AddEventMask = 1<<SecKeychainEvent::AddEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/deleteeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when an item is deleted from a keychain.
         #[doc(alias = "kSecDeleteEventMask")]
         const DeleteEventMask = 1<<SecKeychainEvent::DeleteEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/updateeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when a keychain item is updated.
         #[doc(alias = "kSecUpdateEventMask")]
         const UpdateEventMask = 1<<SecKeychainEvent::UpdateEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/passwordchangedeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when the keychain password is changed.
         #[doc(alias = "kSecPasswordChangedEventMask")]
         const PasswordChangedEventMask = 1<<SecKeychainEvent::PasswordChangedEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/defaultchangedeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when a different keychain is specified as the default.
         #[doc(alias = "kSecDefaultChangedEventMask")]
         const DefaultChangedEventMask = 1<<SecKeychainEvent::DefaultChangedEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/dataaccesseventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when a process accesses a keychain item’s data.
         #[doc(alias = "kSecDataAccessEventMask")]
 #[deprecated = "Read events are no longer posted"]
         const DataAccessEventMask = 1<<SecKeychainEvent::DataAccessEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/keychainlistchangedmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when a keychain list is changed.
         #[doc(alias = "kSecKeychainListChangedMask")]
         const KeychainListChangedMask = 1<<SecKeychainEvent::KeychainListChangedEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/trustsettingschangedeventmask?language=objc)
+/// If the bit specified by this mask is set, your callback function is invoked when there is a change in certificate trust settings.
         #[doc(alias = "kSecTrustSettingsChangedEventMask")]
         const TrustSettingsChangedEventMask = 1<<SecKeychainEvent::TrustSettingsChangedEvent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask/everyeventmask?language=objc)
+/// If all the bits are set, your callback function is invoked whenever any event occurs.
         #[doc(alias = "kSecEveryEventMask")]
         const EveryEventMask = 0xffffffff;
     }
@@ -326,6 +364,13 @@ unsafe impl RefEncode for SecKeychainEventMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Information about a keychain event that keychain services deliver to your app via a callback function.
+///
+/// ## Overview
+///
+/// This structure contains information about the keychain event of which your application wants to be notified. Keychain services pass a pointer to this structure in the `info` parameter of your callback function. For information on how to write a keychain event callback function, see [`SecKeychainCallback`](https://developer.apple.com/documentation/security/seckeychaincallback).
+///
+///
 /// Contains information about a keychain event.
 /// Field: version The version of this structure.
 /// Field: item A reference to the keychain item associated with this event, if any. Note that some events do not involve a particular keychain item.
@@ -333,8 +378,6 @@ unsafe impl RefEncode for SecKeychainEventMask {
 /// Field: pid The id of the process that generated this event.
 ///
 /// The SecKeychainCallbackInfo type represents a structure that contains information about the keychain event for which your application is being notified. For information on how to write a keychain event callback function, see SecKeychainCallback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincallbackinfo?language=objc)
 #[cfg(all(feature = "SecBase", feature = "libc"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -365,11 +408,22 @@ unsafe impl RefEncode for SecKeychainCallbackInfo {
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecKeychain {
+    /// Returns the unique identifier of the opaque type to which a keychain object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecKeychain instances.
     ///
     /// Returns: The CFTypeID of SecKeychain instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingettypeid()?language=objc)
     #[doc(alias = "SecKeychainGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -382,6 +436,23 @@ unsafe impl ConcreteType for SecKeychain {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {
+    /// Determines the version of keychain services installed on the user’s system.
+    ///
+    /// Parameters:
+    /// - returnVers: On return, a pointer to the version number of keychain services installed on the current system. See `Keychain Settings Version` for a list of values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application can call the [`SecKeychainGetVersion`](https://developer.apple.com/documentation/security/seckeychaingetversion(_:)) function to find out which version of keychain services is installed on the user’s system.
+    ///
+    ///
     /// Determines the version of the Keychain Manager installed on the user�s system.
     ///
     /// Parameter `returnVers`: On return, a pointer to the version number of the Keychain Manager installed on the current system.
@@ -391,8 +462,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `return_vers` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetversion(_:)?language=objc)
     #[doc(alias = "SecKeychainGetVersion")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -403,6 +472,25 @@ impl SecKeychain {
         unsafe { SecKeychainGetVersion(return_vers) }
     }
 
+    /// Opens a keychain.
+    ///
+    /// Parameters:
+    /// - pathName: A constant character string representing the POSIX path to the keychain to open.
+    ///
+    /// - keychain: On return, a pointer to the keychain object. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to retrieve a pointer to a keychain object given the path of the keychain. You don’t need to close the keychain, but do release the memory that the pointer occupies when you are finished with it.
+    ///
+    ///
     /// Create a SecKeychainRef for a keychain at pathName.  This keychain might
     /// not currently exist, use SecKeychainGetStatus if you want to confirm the existence
     /// of this keychain.
@@ -417,8 +505,6 @@ impl SecKeychain {
     ///
     /// - `path_name` must be a valid pointer.
     /// - `keychain` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainopen(_:_:)?language=objc)
     #[doc(alias = "SecKeychainOpen")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -436,6 +522,35 @@ impl SecKeychain {
         unsafe { SecKeychainOpen(path_name, keychain) }
     }
 
+    /// Creates an empty keychain.
+    ///
+    /// Parameters:
+    /// - pathName: A constant character string representing the POSIX path indicating where to store the keychain.
+    ///
+    /// - passwordLength: An unsigned 32-bit integer representing the length of the buffer pointed to by `password`. Pass `0` if the value of `password` is `NULL` and the value of `promptUser` is `TRUE`.
+    ///
+    /// - password: A pointer to the buffer containing the password which is used to protect the new keychain. The password must be in canonical UTF-8 encoding. Pass `NULL` if the value of `passwordLength` is `0` and the value of `promptUser` is `TRUE`.
+    ///
+    /// - promptUser: A Boolean value representing whether to display a password dialog to the user. Set this value to `TRUE` to display a password dialog or `FALSE` otherwise. If you pass `TRUE`, any values passed for `passwordLength` and `password` are ignored, and a dialog for the user to enter a password is presented.
+    ///
+    /// - initialAccess: Ignored. Pass `NULL` for this parameter.
+    ///
+    /// - keychain: On return, a pointer to a keychain object. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an empty keychain. The `keychain`, `password`, and `initialAccess` parameters are optional. If user interaction to create a keychain is posted, the newly-created keychain is automatically unlocked after creation.
+    ///
+    /// The system ensures that a default keychain is created for the user at login, thus, in most cases, you do not need to call this function yourself. Users can create additional keychains, or change the default, by using the Keychain Access application. However, a missing default keychain is not recreated automatically, and you may receive an `errSecNoDefaultKeychain` error from other functions if a default keychain does not exist. In that case, you can use this function followed by [`SecKeychainSetDefault`](https://developer.apple.com/documentation/security/seckeychainsetdefault(_:)), to create a new default keychain. You can also call this function to create a private temporary keychain for your application’s use, in cases where no user interaction can occur.
+    ///
+    ///
     /// Creates a new keychain.
     ///
     /// Parameter `pathName`: The POSIX path to a keychain file.
@@ -457,8 +572,6 @@ impl SecKeychain {
     /// - `path_name` must be a valid pointer.
     /// - `password` must be a valid pointer or null.
     /// - `keychain` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincreate(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -493,13 +606,32 @@ impl SecKeychain {
         }
     }
 
+    /// Deletes one or more keychains from the default keychain search list, and removes the keychain itself if it is a file.
+    ///
+    /// Parameters:
+    /// - keychainOrArray: A single keychain object or a reference to an array of keychains you wish to delete. To delete more than one keychain, create a `CFArray` of keychain references (type `SecKeychainRef`) and pass a reference to the array.
+    ///
+    /// In macOS 10.3 and later, passing `NULL` to this parameter returns an `errSecInvalidKeychain` error code. In OS X 10.2, this parameter was named `keychain` and only took a single keychain object. Passing `NULL` to this parameter deleted the user’s default keychain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecInvalidKeychain`](https://developer.apple.com/documentation/security/errsecinvalidkeychain) is returned if the specified keychain is invalid or if the value of the `keychainOrArray` parameter is invalid or `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The keychain may be a file stored locally, a smart card, or retrieved from a network server using non-file-based database protocols. This function deletes the keychain only if it is a local file.
+    ///
+    /// This function does not release the memory used by the keychain object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release each keychain object when you are finished with it.
+    ///
+    ///
     /// Removes one or more keychains from the current keychain searchlist, and deletes the keychain storage (if the keychains are file-based).
     ///
     /// Parameter `keychainOrArray`: A single keychain reference or a reference to an array of keychains to delete. IMPORTANT: SecKeychainDelete does not dispose the memory occupied by keychain references; use the CFRelease function when you are completely finished with a keychain.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecInvalidKeychain (-25295) may be returned if the keychain parameter is invalid (NULL).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaindelete(_:)?language=objc)
     #[doc(alias = "SecKeychainDelete")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -513,6 +645,19 @@ impl SecKeychain {
 
     /// Changes the settings of a keychain.
     ///
+    /// Parameters:
+    /// - keychain: A reference to a keychain whose settings you wish to change. Pass `NULL` to change the settings of the default keychain.
+    ///
+    /// - newSettings: A pointer to a keychain settings structure that defines whether the keychain locks when sleeping, or locks after a set time period of inactivity.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    /// Changes the settings of a keychain.
+    ///
     /// Parameter `keychain`: A reference to a keychain.
     ///
     /// Parameter `newSettings`: A pointer to the new keychain settings.
@@ -522,8 +667,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `new_settings` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetsettings(_:_:)?language=objc)
     #[doc(alias = "SecKeychainSetSettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -541,6 +684,19 @@ impl SecKeychain {
         unsafe { SecKeychainSetSettings(keychain, new_settings) }
     }
 
+    /// Obtains a keychain’s settings.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain from which to copy its settings.
+    ///
+    /// - outSettings: On return, a pointer to a keychain settings structure. Since this structure is versioned, you must allocate the memory for it and fill in the version of the structure before passing it to the function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Copy the keychain settings.
     ///
     /// Parameter `keychain`: A reference to the keychain from which to copy its settings.
@@ -552,8 +708,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `out_settings` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopysettings(_:_:)?language=objc)
     #[doc(alias = "SecKeychainCopySettings")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -571,6 +725,29 @@ impl SecKeychain {
         unsafe { SecKeychainCopySettings(keychain, out_settings) }
     }
 
+    /// Unlocks a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain to unlock. Pass `NULL` to specify the default keychain. If you pass a locked keychain, this function displays the Unlock Keychain dialog box if you have not provided a password. If the specified keychain is currently unlocked, the Unlock Keychain dialog box is not displayed and this function returns `noErr`. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    /// - passwordLength: An unsigned 32-bit integer representing the length of the password buffer.
+    ///
+    /// - password: A buffer containing the password for the keychain. Pass `NULL` if the user password is unknown. In this case, this function displays the Unlock Keychain dialog to prompt the user for the keychain password.
+    ///
+    /// - usePassword: A Boolean value indicating whether the password parameter is used. You should pass `TRUE` if you are passing a password or `FALSE` if it is to be ignored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecUserCanceled`](https://developer.apple.com/documentation/security/errsecusercanceled) indicates that the user pressed the Cancel button in the Unlock Keychain dialog box. The result code [`errSecAuthFailed`](https://developer.apple.com/documentation/security/errsecauthfailed) indicates that authentication failed because of too many unsuccessful retries. The result code [`errSecInteractionRequired`](https://developer.apple.com/documentation/security/errsecinteractionrequired) indicates that user interaction is required to unlock the keychain.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In most cases, your application does not need to call this function directly, since most Keychain Services functions that require an unlocked keychain do so for you. If your application needs to verify that a keychain is unlocked, call the function [`SecKeychainGetStatus`](https://developer.apple.com/documentation/security/seckeychaingetstatus(_:_:)).
+    ///
+    ///
     /// Unlocks the specified keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain to unlock. Pass NULL to specify the default keychain. If you pass NULL and the default keychain is currently locked, the keychain will appear as the default choice. If you pass a locked keychain, SecKeychainUnlock will use the password provided to unlock it. If the default keychain is currently unlocked, SecKeychainUnlock returns errSecSuccess.
@@ -588,8 +765,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `password` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainUnlock")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -611,13 +786,28 @@ impl SecKeychain {
         unsafe { SecKeychainUnlock(keychain, password_length, password, use_password as _) }
     }
 
+    /// Locks a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain to lock. Pass `NULL` to lock the default keychain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecNoSuchKeychain`](https://developer.apple.com/documentation/security/errsecnosuchkeychain) indicates that specified keychain could not be found. The result code [`errSecInvalidKeychain`](https://developer.apple.com/documentation/security/errsecinvalidkeychain) indicates that the specified keychain is invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application should not call this function unless you are responding to a user’s request to lock a keychain. In general, you should leave the keychain unlocked so that the user does not have to unlock it again in another application.
+    ///
+    ///
     /// Locks the specified keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain to lock.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainlock(_:)?language=objc)
     #[doc(alias = "SecKeychainLock")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -631,9 +821,20 @@ impl SecKeychain {
 
     /// Locks all keychains belonging to the current user.
     ///
-    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
+    /// ## Return Value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainlockall()?language=objc)
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application should not call this function unless you are responding to a user’s request to lock a keychain. In general, you should leave the keychain unlocked so that the user does not have to unlock it again in another application.
+    ///
+    ///
+    /// Locks all keychains belonging to the current user.
+    ///
+    /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     #[doc(alias = "SecKeychainLockAll")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -644,6 +845,17 @@ impl SecKeychain {
         unsafe { SecKeychainLockAll() }
     }
 
+    /// Retrieves a pointer to the default keychain.
+    ///
+    /// Parameters:
+    /// - keychain: On return, a pointer to the default keychain object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecNoDefaultKeychain`](https://developer.apple.com/documentation/security/errsecnodefaultkeychain) indicates that there is no default keychain.
+    ///
+    ///
     /// Retrieves a reference to the default keychain.
     ///
     /// Parameter `keychain`: On return, a pointer to the default keychain reference.
@@ -653,8 +865,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `keychain` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopydefault(_:)?language=objc)
     #[doc(alias = "SecKeychainCopyDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -668,11 +878,26 @@ impl SecKeychain {
 
     /// Sets the default keychain.
     ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain you wish to make the default.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecNoSuchKeychain`](https://developer.apple.com/documentation/security/errsecnosuchkeychain) indicates that the specified keychain could not be found. The result code [`errSecInvalidKeychain`](https://developer.apple.com/documentation/security/errsecinvalidkeychain) indicates that the specified keychain is invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In most cases, your application should not need to set the default keychain, because this is a choice normally made by the user. You may call this function to change where a password or other keychain items are added, but since this is a user choice, you should set the default keychain back to the user specified keychain when you are done.
+    ///
+    ///
+    /// Sets the default keychain.
+    ///
     /// Parameter `keychain`: A reference to the keychain to set as default.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain parameter is invalid (NULL).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetdefault(_:)?language=objc)
     #[doc(alias = "SecKeychainSetDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -686,6 +911,17 @@ impl SecKeychain {
 
     /// Retrieves a keychain search list.
     ///
+    /// Parameters:
+    /// - searchList: On return, the returned keychain search list. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    /// Retrieves a keychain search list.
+    ///
     /// Parameter `searchList`: The returned list of keychains to search. When finished with the array, you must call CFRelease() to release the memory.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
@@ -693,8 +929,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `search_list` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopysearchlist(_:)?language=objc)
     #[doc(alias = "SecKeychainCopySearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -705,6 +939,25 @@ impl SecKeychain {
         unsafe { SecKeychainCopySearchList(search_list) }
     }
 
+    /// Specifies the list of keychains to use in the default keychain search list.
+    ///
+    /// Parameters:
+    /// - searchList: An array of keychain references (of type [`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain)) specifying the list of keychains to use in the default keychain search list. Passing an empty array clears the search list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default keychain search list is used by several functions; see for example [`SecKeychainSearchCreateFromAttributes`](https://developer.apple.com/documentation/security/seckeychainsearchcreatefromattributes), [`SecKeychainFindInternetPassword`](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)), or [`SecKeychainFindGenericPassword`](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)). To obtain the current default keychain search list, use the [`SecKeychainCopySearchList`](https://developer.apple.com/documentation/security/seckeychaincopysearchlist(_:)) function.
+    ///
+    /// The default keychain search list is displayed as the keychain list in the Keychain Access utility. If you use [`SecKeychainSetSearchList`](https://developer.apple.com/documentation/security/seckeychainsetsearchlist(_:)) to change the keychain search list, the list displayed in Keychain Access changes accordingly.
+    ///
+    ///
     /// Specifies the list of keychains to use in a keychain search list.
     ///
     /// Parameter `searchList`: The list of keychains to use in a search list when the SecKeychainCopySearchList function is called. An empty array clears the search list.
@@ -714,8 +967,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `search_list` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetsearchlist(_:)?language=objc)
     #[doc(alias = "SecKeychainSetSearchList")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -727,22 +978,28 @@ impl SecKeychain {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain?language=objc)
+/// The keychain preference domains.
+///
+/// ## Overview
+///
+/// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. The default preference domain for system daemons (that is, for daemons running in the root session) is the system domain. The default preference domain for all other programs is the user domain. A common preference appears for all users and the system. For example, if you add a keychain to the keychain search list using [`kSecPreferencesDomainCommon`](https://developer.apple.com/documentation/security/secpreferencesdomain/common) for the preference domain, the keychain is added to the search list for all users and the system.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecPreferencesDomain(pub c_int);
 impl SecPreferencesDomain {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/user?language=objc)
+    /// Indicates the user preference domain preferences.
     #[doc(alias = "kSecPreferencesDomainUser")]
     pub const User: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/system?language=objc)
+    /// Indicates the system or daemon preference domain preferences.
     #[doc(alias = "kSecPreferencesDomainSystem")]
     pub const System: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/common?language=objc)
+    /// Indicates the preferences are common to everyone.
     #[doc(alias = "kSecPreferencesDomainCommon")]
     pub const Common: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain/dynamic?language=objc)
+    /// Indicates a dynamic search list (typically provided by removable keychains such as smart cards).
     #[doc(alias = "kSecPreferencesDomainDynamic")]
     pub const Dynamic: Self = Self(3);
 }
@@ -759,7 +1016,25 @@ unsafe impl RefEncode for SecPreferencesDomain {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopydomaindefault(_:_:)?language=objc)
+    /// Retrieves the default keychain from a specified preference domain.
+    ///
+    /// Parameters:
+    /// - domain: The preference domain from which you wish to retrieve the default keychain. See [`SecPreferencesDomain`](https://developer.apple.com/documentation/security/secpreferencesdomain) for possible domain values.
+    ///
+    /// - keychain: On return, a pointer to the keychain object of the default keychain in the specified preference domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. Use this function if you want to retrieve the default keychain for a specific preference domain. Use the [`SecKeychainCopyDefault`](https://developer.apple.com/documentation/security/seckeychaincopydefault(_:)) function if you want the default keychain for the current preference domain. See the [`SecKeychainSetPreferenceDomain`](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)) function for a discussion of current and default preference domains.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -781,7 +1056,25 @@ impl SecKeychain {
         unsafe { SecKeychainCopyDomainDefault(domain, keychain) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetdomaindefault(_:_:)?language=objc)
+    /// Sets the default keychain for a specified preference domain.
+    ///
+    /// Parameters:
+    /// - domain: The preference domain for which you wish to set the default keychain. See [`SecPreferencesDomain`](https://developer.apple.com/documentation/security/secpreferencesdomain) for possible domain values.
+    ///
+    /// - keychain: A reference to the keychain you wish to set as default in the specified preference domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. Use this function if you want to set the default keychain for a specific preference domain. Use the [`SecKeychainSetDefault`](https://developer.apple.com/documentation/security/seckeychainsetdefault(_:)) function if you want to set the default keychain for the current preference domain. See the [`SecKeychainSetPreferenceDomain`](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)) function for a discussion of current and default preference domains.
+    ///
+    ///
     #[doc(alias = "SecKeychainSetDomainDefault")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -799,7 +1092,25 @@ impl SecKeychain {
         unsafe { SecKeychainSetDomainDefault(domain, keychain) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopydomainsearchlist(_:_:)?language=objc)
+    /// Retrieves the keychain search list for a specified preference domain.
+    ///
+    /// Parameters:
+    /// - domain: The preference domain from which you wish to retrieve the keychain search list. See [`SecPreferencesDomain`](https://developer.apple.com/documentation/security/secpreferencesdomain) for possible domain values.
+    ///
+    /// - searchList: On return, a pointer to the keychain search list of the specified preference domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. Use this function if you want to retrieve the keychain search list for a specific preference domain. Use the [`SecKeychainCopySearchList`](https://developer.apple.com/documentation/security/seckeychaincopysearchlist(_:)) function if you want the keychain search list for the current preference domain. See the [`SecKeychainSetPreferenceDomain`](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)) function for a discussion of current and default preference domains.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -820,7 +1131,25 @@ impl SecKeychain {
         unsafe { SecKeychainCopyDomainSearchList(domain, search_list) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetdomainsearchlist(_:_:)?language=objc)
+    /// Sets the keychain search list for a specified preference domain.
+    ///
+    /// Parameters:
+    /// - domain: The preference domain for which you wish to set the default keychain search list. See [`SecPreferencesDomain`](https://developer.apple.com/documentation/security/secpreferencesdomain)for possible domain values.
+    ///
+    /// - searchList: A pointer to a keychain search list to set in the preference domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. Use this function if you want to set the keychain search list for a specific preference domain. Use the [`SecKeychainSetSearchList`](https://developer.apple.com/documentation/security/seckeychainsetsearchlist(_:)) function if you want to set the keychain search list for the current preference domain. See the [`SecKeychainSetPreferenceDomain`](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)) function for a discussion of current and default preference domains.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -841,7 +1170,25 @@ impl SecKeychain {
         unsafe { SecKeychainSetDomainSearchList(domain, search_list) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)?language=objc)
+    /// Sets the keychain preference domain.
+    ///
+    /// Parameters:
+    /// - domain: The keychain preference domain to set. See [`SecPreferencesDomain`](https://developer.apple.com/documentation/security/secpreferencesdomain) for possible domain values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. The default preference domain for system daemons (that is, for daemons running in the root session) is the system domain. The default preference domain for all other programs is the user domain.
+    ///
+    /// This function changes the preference domain for all subsequent function calls; for example, if you change from the system domain to the user domain and then call [`SecKeychainLock`](https://developer.apple.com/documentation/security/seckeychainlock(_:)) specifying `NULL` for the keychain, the function locks the default system keychain rather than the default user keychain. You might want to use this function, for example, when launching a system daemon from a user session so that the daemon uses system preferences rather than user preferences.
+    ///
+    ///
     #[doc(alias = "SecKeychainSetPreferenceDomain")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -852,7 +1199,23 @@ impl SecKeychain {
         unsafe { SecKeychainSetPreferenceDomain(domain) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetpreferencedomain(_:)?language=objc)
+    /// Gets the current keychain preference domain.
+    ///
+    /// Parameters:
+    /// - domain: On return, a pointer to the keychain preference domain. See [`SecPreferencesDomain`](https://developer.apple.com/documentation/security/secpreferencesdomain) for possible domain values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preference domain is a set of security-related preferences, such as the default keychain and the current keychain search list. The default preference domain for system daemons (that is, for daemons running in the root session) is the system domain. The default preference domain for all other programs is the user domain. Use the [`SecKeychainSetPreferenceDomain`](https://developer.apple.com/documentation/security/seckeychainsetpreferencedomain(_:)) function to change the preference domain.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -867,6 +1230,25 @@ impl SecKeychain {
         unsafe { SecKeychainGetPreferenceDomain(domain) }
     }
 
+    /// Retrieves status information of a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A keychain object of the keychain whose status you wish to determine for the user session. Pass `NULL` to obtain the status of the default keychain.
+    ///
+    /// - keychainStatus: On return, a pointer to the status of the specified keychain. See [`SecKeychainStatus`](https://developer.apple.com/documentation/security/seckeychainstatus) for valid status constants.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecNoSuchKeychain`](https://developer.apple.com/documentation/security/errsecnosuchkeychain) indicates that the specified keychain could not be found. The result code [`errSecInvalidKeychain`](https://developer.apple.com/documentation/security/errsecinvalidkeychain) indicates that the specified keychain is invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function retrieves the status of a specified keychain. You can use this function to determine if the keychain is unlocked, readable, or writable. Note that the lock status of a keychain can change at any time due to user or system activity. Because the system automatically prompts the user to unlock a keychain when necessary, you do not usually have to worry about the lock status of a keychain. If you do need to track the lock status of a keychain, use the [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)) function to register for keychain notifications.
+    ///
+    ///
     /// Retrieves status information for the specified keychain.
     ///
     /// Parameter `keychain`: A keychain reference. Pass NULL to specify the default keychain.
@@ -878,8 +1260,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `keychain_status` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetstatus(_:_:)?language=objc)
     #[doc(alias = "SecKeychainGetStatus")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -897,6 +1277,23 @@ impl SecKeychain {
         unsafe { SecKeychainGetStatus(keychain, keychain_status) }
     }
 
+    /// Determines the path of a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to a keychain whose path you wish to obtain.
+    ///
+    /// - ioPathLength: On entry, a pointer to a variable containing the length (in bytes) of the buffer specified by `pathName`.
+    ///
+    /// On return, the string length of `pathName`, not including the null termination.
+    ///
+    /// - pathName: On entry, a pointer to a buffer that you have allocated. On return, the buffer contains POSIX path of the keychain as a null-terminated UTF-8 encoded string. The function returns [`errSecBufferTooSmall`](https://developer.apple.com/documentation/security/errsecbuffertoosmall) if the provided buffer is too small to hold the string with the null terminator byte.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Get the path of the specified keychain.
     ///
     /// Parameter `keychain`: A reference to a keychain.
@@ -911,8 +1308,6 @@ impl SecKeychain {
     ///
     /// - `io_path_length` must be a valid pointer.
     /// - `path_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetpath(_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainGetPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -932,6 +1327,37 @@ impl SecKeychain {
         unsafe { SecKeychainGetPath(keychain, io_path_length, path_name) }
     }
 
+    /// Obtains tags for all possible attributes of a given item class.
+    ///
+    /// Parameters:
+    /// - keychain: A keychain object.
+    ///
+    /// - itemID: The relation identifier of the item tags. An `itemID` is a `CSSM_DB_RECORDTYPE` type as defined in `cssmtype.h`.
+    ///
+    /// - info: On return, a pointer to the keychain attribute information. Your application should call the [`SecKeychainFreeAttributeInfo`](https://developer.apple.com/documentation/security/seckeychainfreeattributeinfo(_:)) function to release this structure when done with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call returns more attributes than are supported by the old style Keychain API and passing them into older calls yields an invalid attribute error. The recommended call to retrieve the attribute values is the [`SecKeychainItemCopyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) function.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This is a CSSM-based API. CSSM is deprecated.
+    ///
+    /// For new development, where possible, you should generally use [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) to obtain the attributes of keychain items instead, because that function is based on Core Foundation types.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Obtains tags for all possible attributes for a given item class.
     ///
     /// Parameter `keychain`: A keychain reference.
@@ -947,8 +1373,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributeinfoforitemid(_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAttributeInfoForItemID")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -968,6 +1392,17 @@ impl SecKeychain {
         unsafe { SecKeychainAttributeInfoForItemID(keychain, item_id, info) }
     }
 
+    /// Releases the memory acquired by calling the `SecKeychainAttributeInfoForItemID` function.
+    ///
+    /// Parameters:
+    /// - info: A pointer to the keychain attribute information to release.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Releases the memory acquired by calling the SecKeychainAttributeInfoForItemID function.
     ///
     /// Parameter `info`: A pointer to the keychain attribute information to release.
@@ -977,8 +1412,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainfreeattributeinfo(_:)?language=objc)
     #[doc(alias = "SecKeychainFreeAttributeInfo")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -991,6 +1424,39 @@ impl SecKeychain {
     }
 }
 
+/// A customized callback function that keychain services call when a keychain event has occurred.
+///
+/// Parameters:
+/// - keychainEvent: The keychain event that occurred. The type of event that can trigger your callback depends on the bit mask you passed in the `eventMask` parameter of the function [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)). See [`SecKeychainEvent`](https://developer.apple.com/documentation/security/seckeychainevent) for a list of possible values.
+///
+/// - info: A pointer to a structure of type [`SecKeychainCallbackInfo`](https://developer.apple.com/documentation/security/seckeychaincallbackinfo). This structure provides your callback with information about the keychain event.
+///
+/// - context: A pointer to application-defined storage that your application previously passed to the function [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)). You can use this value to provide information that the callback function needs in order to properly handle the event, such as an object on which the callback function should call a method.
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Codes`.
+///
+///
+///
+/// ## Discussion
+///
+/// You would declare your keychain callback function like this if you were to name it `MyKeychainCallback`:
+///
+/// Listing 1. Declaring a keychain callback function
+///
+/// ```objc
+/// OSStatus MyKeychainCallback (
+///     SecKeychainEvent keychainEvent,
+///     SecKeychainCallbackInfo *info,
+///     void *context
+/// );
+/// ```
+///
+/// To add your callback function, use the [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)) function. To remove your callback function, use the [`SecKeychainRemoveCallback`](https://developer.apple.com/documentation/security/seckeychainremovecallback(_:)) function.
+///
+///
 /// Defines a pointer to a customized callback function.  You supply the customized callback function to do a callback tailored to your application's needs.
 ///
 /// Parameter `keychainEvent`: The keychain event that your application wishes to be notified of. See SecKeychainEvent for a description of possible values. The type of event that can trigger your callback depends on the bit mask you passed in the eventMask parameter of the function SecKeychainAddCallback. For more information, see the discussion.
@@ -1008,8 +1474,6 @@ impl SecKeychain {
 /// void *context);
 ///
 /// To add your callback function, use the SecKeychainAddCallback function.  To remove your callback function, use the SecKeychainRemoveCallback function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincallback?language=objc)
 #[deprecated = "SecKeychain is deprecated"]
 #[cfg(all(feature = "SecBase", feature = "libc"))]
 pub type SecKeychainCallback = Option<
@@ -1022,6 +1486,29 @@ pub type SecKeychainCallback = Option<
 
 #[cfg(feature = "SecBase")]
 impl SecKeychain {
+    /// Registers your keychain event callback function.
+    ///
+    /// Parameters:
+    /// - callbackFunction: A pointer to your keychain event callback function, described in [`SecKeychainCallback`](https://developer.apple.com/documentation/security/seckeychaincallback).
+    ///
+    /// - eventMask: A bit mask indicating the keychain events of which your application wishes to be notified. See [`SecKeychainEventMask`](https://developer.apple.com/documentation/security/seckeychaineventmask) for valid values. Keychain Services tests this mask to determine the keychain events that you wish to receive, and passes these events in the `keychainEvent` parameter of your callback function.
+    ///
+    /// - userContext: A pointer to application-defined storage that will be passed to your callback function. Your application can use this to associate any particular call of this function with any particular call of your keychain event callback function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It is important to note that the current Foundation or Core Foundation run loop must be active when making this call or the callbacks are not registered. In multithreaded programs, the notifications are registered in the run loop of the thread calling [`SecKeychainAddCallback`](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)); therefore, delivery of notifications depends on the functioning of that thread’s run loop. If that thread terminates, or is so busy that it doesn’t operate its run loop in a timely manner, notifications will be delayed, and may eventually be dropped without any notification.
+    ///
+    /// For that reason, it is inadvisable for your program to depend on delivery of notifications caused by your own actions (such as depending on receiving a deletion notification before updating a UI view) unless your program is multithreaded and can take notifications on a thread different from the one generating the events.
+    ///
+    ///
     /// Registers your keychain event callback function
     ///
     /// Parameter `callbackFunction`: A pointer to your keychain event callback function, described in SecKeychainCallback. You indicate the type of keychain events you want to receive by passing a bit mask of the desired events in the eventMask parameter.
@@ -1036,8 +1523,6 @@ impl SecKeychain {
     ///
     /// - `callback_function` must be implemented correctly.
     /// - `user_context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainaddcallback(_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAddCallback")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1057,6 +1542,23 @@ impl SecKeychain {
         unsafe { SecKeychainAddCallback(callback_function, event_mask, user_context) }
     }
 
+    /// Unregisters your keychain event callback function.
+    ///
+    /// Parameters:
+    /// - callbackFunction: The callback function pointer to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once removed, keychain events are not sent to the owner of the callback.
+    ///
+    ///
     /// Unregisters your keychain event callback function. Once removed, keychain events won't be sent to the owner of the callback.
     ///
     /// Parameter `callbackFunction`: The callback function pointer to remove
@@ -1066,8 +1568,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `callback_function` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainremovecallback(_:)?language=objc)
     #[doc(alias = "SecKeychainRemoveCallback")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1079,6 +1579,55 @@ impl SecKeychain {
         unsafe { SecKeychainRemoveCallback(callback_function) }
     }
 
+    /// Adds a new Internet password to a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain in which to store an Internet password. Pass `NULL` to specify the user’s default keychain.
+    ///
+    /// - serverNameLength: The length of the `serverName` character string.
+    ///
+    /// - serverName: A UTF-8 encoded character string representing the server name.
+    ///
+    /// - securityDomainLength: The length of the `securityDomain` character string.
+    ///
+    /// - securityDomain: A UTF-8 encoded character string representing the security domain. This parameter is optional. Pass NULL if the protocol does not require it.
+    ///
+    /// - accountNameLength: The length of the `accountName` character string.
+    ///
+    /// - accountName: A UTF-8 encoded character string representing the account name.
+    ///
+    /// - pathLength: The length of the `path` character string.
+    ///
+    /// - path: A UTF-8 encoded character string representing the path.
+    ///
+    /// - port: The TCP/IP port number. If no specific port number is associated with this password, pass `0`.
+    ///
+    /// - protocol: The protocol associated with this password. See [`SecProtocolType`](https://developer.apple.com/documentation/security/secprotocoltype) for a description of possible values.
+    ///
+    /// - authenticationType: The authentication scheme used. See [`SecAuthenticationType`](https://developer.apple.com/documentation/security/secauthenticationtype) for a description of possible values. Pass the constant `kSecAuthenticationTypeDefault`, to specify the default authentication scheme.
+    ///
+    /// - passwordLength: The length of the `passwordData` buffer.
+    ///
+    /// - passwordData: A pointer to a buffer containing the password data to be stored in the keychain.
+    ///
+    /// - itemRef: On return, a pointer to a reference to the new keychain item. Pass `NULL` if you don’t want to obtain this object. You must allocate the memory for this pointer. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecNoDefaultKeychain`](https://developer.apple.com/documentation/security/errsecnodefaultkeychain) indicates that no default keychain could be found. The result code [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem) indicates that you tried to add a password that already exists in the keychain. The result code [`errSecDataTooLarge`](https://developer.apple.com/documentation/security/errsecdatatoolarge) indicates that you tried to add more data than is allowed for a structure of this type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function adds a new Internet server password to the specified keychain. Required parameters to identify the password are `serverName` and `accountName` (you cannot pass `NULL` for both parameters). In addition, some protocols may require an optional `securityDomain` when authentication is requested. This function optionally returns a reference to the newly added item.
+    ///
+    /// This function sets the initial access rights for the new keychain item so that the application creating the item is given trusted access.
+    ///
+    /// This function automatically calls the function [`SecKeychainUnlock`](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)) to display the Unlock Keychain dialog box if the keychain is currently locked.
+    ///
+    ///
     /// Adds an Internet password to the specified keychain.
     ///
     /// Parameter `keychain`: A reference to a keychain in which to store an Internet password. Pass NULL to specify the user's default keychain.
@@ -1123,8 +1672,6 @@ impl SecKeychain {
     /// - `path` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer.
     /// - `item_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainaddinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAddInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1186,6 +1733,55 @@ impl SecKeychain {
         }
     }
 
+    /// Finds the first Internet password based on the attributes passed.
+    ///
+    /// Parameters:
+    /// - keychainOrArray: A reference to an array of keychains to search, a single keychain or `NULL` to search the user’s default keychain search list.
+    ///
+    /// - serverNameLength: The length of the `serverName` character string.
+    ///
+    /// - serverName: A UTF-8 encoded character string representing the server name.
+    ///
+    /// - securityDomainLength: The length of the `securityDomain` character string.
+    ///
+    /// - securityDomain: A UTF-8 encoded character string representing the security domain. This parameter is optional, as not all protocols require it. Pass `NULL` if it is not required.
+    ///
+    /// - accountNameLength: The length of the `accountName` character string.
+    ///
+    /// - accountName: A UTF-8 encoded character string representing the account name.
+    ///
+    /// - pathLength: The length of the `path` character string.
+    ///
+    /// - path: A UTF-8 encoded character string representing the path.
+    ///
+    /// - port: The TCP/IP port number. Pass `0` to ignore the port number.
+    ///
+    /// - protocol: The protocol associated with this password. See [`SecProtocolType`](https://developer.apple.com/documentation/security/secprotocoltype) for a description of possible values.
+    ///
+    /// - authenticationType: The authentication scheme used. See [`SecAuthenticationType`](https://developer.apple.com/documentation/security/secauthenticationtype) for a description of possible values. Pass the constant `kSecAuthenticationTypeDefault`, to specify the default authentication scheme.
+    ///
+    /// - passwordLength: On return, the length of the buffer pointed to by `passwordData`.
+    ///
+    /// - passwordData: On return, a pointer to a buffer containing the password data. Pass `NULL` if you want to obtain the item object but not the password data. In this case, you must also pass `NULL` in the `passwordLength` parameter. You should use the [`SecKeychainItemFreeContent`](https://developer.apple.com/documentation/security/seckeychainitemfreecontent(_:_:)) function to free the memory pointed to by this parameter.
+    ///
+    /// - itemRef: On return, a pointer to the item object of the Internet password. You are responsible for releasing your reference to this object. Pass `NULL` if you don’t want to obtain this object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function finds the first Internet password item that matches the attributes you provide. This function optionally returns a reference to the found item.
+    ///
+    /// This function decrypts the password before returning it to you. If the calling application is not in the list of trusted applications, the user is prompted before access is allowed. If the access controls for this item do not allow decryption, the function returns the `errSecAuthFailed` result code.
+    ///
+    /// This function automatically calls the function [`SecKeychainUnlock`](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)) to display the Unlock Keychain dialog box if the keychain is currently locked.
+    ///
+    ///
     /// Finds an Internet password based on the attributes passed.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -1232,8 +1828,6 @@ impl SecKeychain {
     /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
     /// - `item_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainFindInternetPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1295,6 +1889,43 @@ impl SecKeychain {
         }
     }
 
+    /// Adds a new generic password to a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain in which to store a generic password. Pass `NULL` to specify the default keychain.
+    ///
+    /// - serviceNameLength: The length of the `serviceName` character string.
+    ///
+    /// - serviceName: A UTF-8 encoded character string representing the service name.
+    ///
+    /// - accountNameLength: The length of the `accountName` character string.
+    ///
+    /// - accountName: A UTF-8 encoded character string representing the account name.
+    ///
+    /// - passwordLength: The length of the `passwordData` buffer.
+    ///
+    /// - passwordData: A pointer to a buffer containing the password data to be stored in the keychain. Before calling this function, allocate enough memory for the buffer to hold the data you want to store.
+    ///
+    /// - itemRef: On return, a pointer to a reference to the new keychain item. Pass `NULL` if you don’t want to obtain this object. You must allocate the memory for this pointer. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The result code [`errSecNoDefaultKeychain`](https://developer.apple.com/documentation/security/errsecnodefaultkeychain) indicates that no default keychain could be found. The result code [`errSecDuplicateItem`](https://developer.apple.com/documentation/security/errsecduplicateitem) indicates that you tried to add a password that already exists in the keychain. The result code [`errSecDataTooLarge`](https://developer.apple.com/documentation/security/errsecdatatoolarge) indicates that you tried to add more data than is allowed for a structure of this type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function adds a new generic password to the specified keychain. Required parameters to identify the password are `serviceName` and `accountName`, which are application-defined strings. This function optionally returns a reference to the newly added item.
+    ///
+    /// You can use this function to add passwords for accounts other than the Internet. For example, you might add AppleShare passwords, or passwords for your database or scheduling programs.
+    ///
+    /// This function sets the initial access rights for the new keychain item so that the application creating the item is given trusted access.
+    ///
+    /// This function automatically calls the function [`SecKeychainUnlock`](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)) to display the Unlock Keychain dialog box if the keychain is currently locked.
+    ///
+    ///
     /// Adds a generic password to the specified keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain in which to store a generic password. Pass NULL to specify the user's default keychain.
@@ -1323,8 +1954,6 @@ impl SecKeychain {
     /// - `account_name` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer.
     /// - `item_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainaddgenericpassword(_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainAddGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1365,6 +1994,41 @@ impl SecKeychain {
         }
     }
 
+    /// Finds the first generic password based on the attributes passed.
+    ///
+    /// Parameters:
+    /// - keychainOrArray: A reference to an array of keychains to search, a single keychain, or `NULL` to search the user’s default keychain search list.
+    ///
+    /// - serviceNameLength: The length of the `serviceName` character string.
+    ///
+    /// - serviceName: A UTF-8 encoded character string representing the service name.
+    ///
+    /// - accountNameLength: The length of the `accountName` character string.
+    ///
+    /// - accountName: A UTF-8 encoded character string representing the account name.
+    ///
+    /// - passwordLength: On return, the length of the buffer pointed to by `passwordData`.
+    ///
+    /// - passwordData: On return, a pointer to a buffer that holds the password data. Pass `NULL` if you want to obtain the item object but not the password data. In this case, you must also pass `NULL` in the `passwordLength` parameter. You should use the [`SecKeychainItemFreeContent`](https://developer.apple.com/documentation/security/seckeychainitemfreecontent(_:_:)) function to free the memory pointed to by this parameter.
+    ///
+    /// - itemRef: On return, a pointer to the item object of the generic password. You are responsible for releasing your reference to this object. Pass `NULL` if you don’t want to obtain this object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function finds the first generic password item that matches the attributes you provide. Most attributes are optional; you should pass only as many as you need to narrow the search sufficiently for your application’s intended use. This function optionally returns a reference to the found item.
+    ///
+    /// This function decrypts the password before returning it to you. If the calling application is not in the list of trusted applications, the user is prompted before access is allowed. If the access controls for this item do not allow decryption, the function returns the `errSecAuthFailed` result code.
+    ///
+    /// This function automatically calls the function [`SecKeychainUnlock`](https://developer.apple.com/documentation/security/seckeychainunlock(_:_:_:_:)) to display the Unlock Keychain dialog box if the keychain is currently locked.
+    ///
+    ///
     /// Find a generic password based on the attributes passed.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -1395,8 +2059,6 @@ impl SecKeychain {
     /// - `password_length` must be a valid pointer or null.
     /// - `password_data` must be a valid pointer or null.
     /// - `item_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeychainFindGenericPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1437,13 +2099,34 @@ impl SecKeychain {
         }
     }
 
+    /// Enables or disables the user interface for keychain services functions that automatically display a user interface.
+    ///
+    /// Parameters:
+    /// - state: A flag that indicates whether the keychain services will display a user interface. If you pass [`true`](https://developer.apple.com/documentation/swift/true), user interaction is allowed. This is the default value. If [`false`](https://developer.apple.com/documentation/swift/false), keychain services functions that normally display a user interface will instead return an error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Certain keychain services functions that require the presence of a keychain automatically display a _Keychain Not Found_ dialog if there is none. Functions that require the keychain to be unlocked automatically display the _Unlock Keychain_ dialog. The [`SecKeychainSetUserInteractionAllowed`](https://developer.apple.com/documentation/security/seckeychainsetuserinteractionallowed(_:)) function enables you to control whether these functions display a user interface. By default, user interaction is permitted.
+    ///
+    /// If you are writing an application that must run unattended on a server, you may wish to disable the user interface so that any subsequent keychain calls that normally bring up the unlock UI will instead return immediately with an [`errSecInteractionRequired`](https://developer.apple.com/documentation/security/errsecinteractionrequired) result). In this case you must programmatically create a keychain or unlock the keychain when necessary.
+    ///
+    /// ### Special Considerations
+    ///
+    /// If you disable user interaction before calling a Keychain Services function, be sure to reenable it when you are finished. Failure to reenable user interaction will affect other clients of the Keychain Services.
+    ///
+    ///
     /// Turns on or off any optional user interaction
     ///
     /// Parameter `state`: A boolean representing the state of user interaction.  You should pass TRUE to allow user interaction, and FALSE to disallow user interaction
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetuserinteractionallowed(_:)?language=objc)
     #[doc(alias = "SecKeychainSetUserInteractionAllowed")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -1454,6 +2137,17 @@ impl SecKeychain {
         unsafe { SecKeychainSetUserInteractionAllowed(state as _) }
     }
 
+    /// Indicates whether keychain services functions that normally display a user interaction are allowed to do so.
+    ///
+    /// Parameters:
+    /// - state: On return, a Boolean value indicating whether user interaction is permitted. If [`true`](https://developer.apple.com/documentation/swift/true), user interaction is allowed, and keychain services functions that display a user interface can do so as appropriate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Retrieves the current state of user interaction.
     ///
     /// Parameter `state`: On return, a pointer to the current state of user interaction.  If this is TRUE then user interaction is allowed, if it is FALSE, then user interaction is not allowed.
@@ -1463,8 +2157,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `state` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetuserinteractionallowed(_:)?language=objc)
     #[doc(alias = "SecKeychainGetUserInteractionAllowed")]
     #[deprecated = "SecKeychain is deprecated"]
     #[inline]
@@ -1475,6 +2167,31 @@ impl SecKeychain {
         unsafe { SecKeychainGetUserInteractionAllowed(state) }
     }
 
+    /// Returns the CSSM CSP handle for the given keychain object.
+    ///
+    /// Parameters:
+    /// - keychain: A keychain object.
+    ///
+    /// - cspHandle: On return, a pointer to the CSSM CSP handle for the given keychain. The handle is valid until the keychain object is released.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. The common security services manager module is no longer used.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns the CSSM_CSP_HANDLE attachment for the given keychain reference. The handle is valid until the keychain reference is released.
     ///
     /// Parameter `keychain`: A keychain reference.
@@ -1488,8 +2205,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `csp_handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetcsphandle?language=objc)
     #[doc(alias = "SecKeychainGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1507,6 +2222,31 @@ impl SecKeychain {
         unsafe { SecKeychainGetCSPHandle(keychain, csp_handle) }
     }
 
+    /// Returns the CSSM database handle for a given keychain object.
+    ///
+    /// Parameters:
+    /// - keychain: A keychain object.
+    ///
+    /// - dldbHandle: On return, a pointer to the CSSM database handle for the given keychain. The handle is valid until the keychain object is released.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. The common security services manager module is no longer used.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns the CSSM_DL_DB_HANDLE for a given keychain reference. The handle is valid until the keychain reference is released.
     ///
     /// Parameter `keychain`: A keychain reference.
@@ -1520,8 +2260,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `dldb_handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaingetdldbhandle?language=objc)
     #[doc(alias = "SecKeychainGetDLDBHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1539,6 +2277,19 @@ impl SecKeychain {
         unsafe { SecKeychainGetDLDBHandle(keychain, dldb_handle) }
     }
 
+    /// Retrieves the application access of a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain from which to copy the access object. Pass `NULL` to specify the default keychain.
+    ///
+    /// - access: A pointer to an access object. On return, this points to the access object of the specified keychain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Retrieves the access for a keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain from which to copy the access.
@@ -1550,8 +2301,6 @@ impl SecKeychain {
     /// # Safety
     ///
     /// `access` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaincopyaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainCopyAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -1569,6 +2318,19 @@ impl SecKeychain {
         unsafe { SecKeychainCopyAccess(keychain, access) }
     }
 
+    /// Sets the application access for a keychain.
+    ///
+    /// Parameters:
+    /// - keychain: A reference to the keychain for which to set the access. Pass `NULL` to specify the default keychain.
+    ///
+    /// - access: An access object of type [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess) containing access control lists for the keychain. See [Access Control Lists](https://developer.apple.com/documentation/security/access-control-lists) for more information about creating an access object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Sets the access for a keychain.
     ///
     /// Parameter `keychain`: A reference to the keychain for which to set the access.
@@ -1576,8 +2338,6 @@ impl SecKeychain {
     /// Parameter `access`: An access reference.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsetaccess(_:_:)?language=objc)
     #[doc(alias = "SecKeychainSetAccess")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

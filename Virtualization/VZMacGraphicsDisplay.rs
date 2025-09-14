@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the graphics display on a Mac.
     /// Class representing a virtual Mac graphics display.
     ///
     /// The VZMacGraphicsDisplay is the runtime counterpart of VZMacGraphicsDisplayConfiguration.
@@ -21,8 +22,6 @@ extern_class!(
     /// See: VZMacGraphicsDisplayConfiguration
     ///
     /// See: VZGraphicsDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdisplay?language=objc)
     #[unsafe(super(VZGraphicsDisplay, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDisplay")]

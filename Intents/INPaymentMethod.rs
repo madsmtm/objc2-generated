@@ -7,7 +7,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethod?language=objc)
+    /// Information about a form of payment supported by your app.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPaymentMethod`](https://developer.apple.com/documentation/intents/inpaymentmethod) object describes a way in which a user can pay for services. A payment method object stores information that you can display to the user when choosing payment options. Specifically, the object stores information about the type of payment, the name of the payment service, and an icon for any related brand information. Typical payment methods include credit cards and bank accounts. For example, you would use a payment method object to specify information about a brand of credit card that you support.
+    ///
+    /// You create payment method objects as needed and include them in any appropriate response objects. The names of payment methods in a single response should be different to avoid confusion, but their types may still be the same. For example, you can have multiple credit card payment methods as long as each one has a unique name.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You do not use payment methods to process actual payments from the user. You are responsible for handling any financial transactions from your app or Intents extension.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPaymentMethod;

@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a console port configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate `VZConsolePortConfiguration` directly, instead use one of its subclasses like [`VZVirtioConsolePortConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfiguration).
+    ///
+    ///
     /// Base class for a console port configuration.
     ///
     /// VZConsolePortConfiguration should not be instantiated directly.
@@ -15,8 +22,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioConsolePortConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzconsoleportconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZConsolePortConfiguration;

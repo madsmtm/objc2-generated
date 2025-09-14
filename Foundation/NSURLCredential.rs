@@ -5,6 +5,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that specify how long the credential will be kept.
+///
+/// ## Overview
+///
+/// In iOS, credentials are stored in the app’s keychain, and can be accessed only by that app (and other apps in the same keychain access group, where applicable).
+///
+/// In macOS, credentials are stored in the user’s keychain. The credential’s initial access control list (ACL) allows access only by that app. However, other apps can see that a password exists for a given host, port, and realm combination, and can request that the user grant permission to use that credential.
+///
+///
 /// Constants defining how long a credential will be kept around
 ///
 ///
@@ -12,23 +21,21 @@ use crate::*;
 ///
 /// Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, on iOS an application can
 /// access only its own credentials.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCredentialPersistence(pub NSUInteger);
 impl NSURLCredentialPersistence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/none?language=objc)
+    /// The credential should not be stored.
     #[doc(alias = "NSURLCredentialPersistenceNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/forsession?language=objc)
+    /// The credential should be stored only for this session.
     #[doc(alias = "NSURLCredentialPersistenceForSession")]
     pub const ForSession: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/permanent?language=objc)
+    /// The credential should be stored in the keychain.
     #[doc(alias = "NSURLCredentialPersistencePermanent")]
     pub const Permanent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum/synchronizable?language=objc)
+    /// The credential should be stored permanently in the keychain, and in addition should be distributed to other devices based on the owning Apple ID.
     #[doc(alias = "NSURLCredentialPersistenceSynchronizable")]
     pub const Synchronizable: Self = Self(3);
 }
@@ -42,9 +49,24 @@ unsafe impl RefEncode for NSURLCredentialPersistence {
 }
 
 extern_class!(
-    /// This class is an immutable object representing an authentication credential.  The actual type of the credential is determined by the constructor called in the categories declared below.
+    /// `A`n authentication credential consisting of information specific to the type of credential and the type of persistent storage to use, if any.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential?language=objc)
+    /// ## Overview
+    ///
+    /// The URL Loading System supports password-based user credentials, certificate-based user credentials, and certificate-based server credentials.
+    ///
+    /// When you create a credential, you can specify it for a single request, persist it temporarily (until your app quits), or persist it permanently. Permanent persistence can be local persistence in the keychain, or synchronized persistence across the user’s devices, based on their Apple ID.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Permanent storage of credentials is only available for password-based credentials. TLS credentials are never stored permanently by [`NSURLCredentialStorage`](https://developer.apple.com/documentation/foundation/urlcredentialstorage). In general, use for-session persistence for TLS credentials.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// This class is an immutable object representing an authentication credential.  The actual type of the credential is determined by the constructor called in the categories declared below.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredential;

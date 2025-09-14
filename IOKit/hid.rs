@@ -12,86 +12,58 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationkey?language=objc)
 pub const kIOHIDPointerAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidtrackpadscrollaccelerationkey?language=objc)
 pub const kIOHIDTrackpadScrollAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDTrackpadScrollAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidtrackpadaccelerationtype?language=objc)
 pub const kIOHIDTrackpadAccelerationType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDTrackpadAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationtypekey?language=objc)
 pub const kIOHIDPointerAccelerationTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAccelerationType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidmousescrollaccelerationkey?language=objc)
 pub const kIOHIDMouseScrollAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseScrollAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidmouseaccelerationtypekey?language=objc)
 pub const kIOHIDMouseAccelerationTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollaccelerationkey?language=objc)
 pub const kIOHIDScrollAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollaccelerationtypekey?language=objc)
 pub const kIOHIDScrollAccelerationTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelerationType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddigitizertipthresholdkey?language=objc)
 pub const kIOHIDDigitizerTipThresholdKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DigitizerTipThreshold\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidsurfacedimensionskey?language=objc)
 pub const kIOHIDSurfaceDimensionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SurfaceDimensions\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidwidthkey?language=objc)
 pub const kIOHIDWidthKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Width\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidheightkey?language=objc)
 pub const kIOHIDHeightKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Height\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohideventdriverhandlesreport?language=objc)
 pub const kIOHIDEventDriverHandlesReport: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDEventDriverHandlesReport\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidserviceaccelerationproperties?language=objc)
 pub const kIOHIDServiceAccelerationProperties: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDSetAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationmultiplierkey?language=objc)
 pub const kIOHIDPointerAccelerationMultiplierKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAccelerationMultiplier\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidpointerreportratekey?language=objc)
 pub const kHIDPointerReportRateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerReportRate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollreportratekey?language=objc)
 pub const kIOHIDScrollReportRateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollReportRate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidaccelparametriccurveskey?language=objc)
 pub const kHIDAccelParametricCurvesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelCurves\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidscrollaccelparametriccurveskey?language=objc)
 pub const kHIDScrollAccelParametricCurvesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelCurves\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionkey?language=objc)
 pub const kIOHIDScrollResolutionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolution\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddropaccelpropertyeventskey?language=objc)
 pub const kIOHIDDropAccelPropertyEventsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DropAccelPropertyEvents\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionxkey?language=objc)
 pub const kIOHIDScrollResolutionXKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolutionX\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionykey?language=objc)
 pub const kIOHIDScrollResolutionYKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolutionY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollresolutionzkey?language=objc)
 pub const kIOHIDScrollResolutionZKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollResolutionZ\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiduselinearscalingmouseaccelerationkey?language=objc)
 pub const kIOHIDUseLinearScalingMouseAccelerationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDUseLinearScalingMouseAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidpointeraccelerationsupportkey?language=objc)
 pub const kIOHIDPointerAccelerationSupportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSupportsPointerAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidscrollaccelerationsupportkey?language=objc)
 pub const kIOHIDScrollAccelerationSupportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSupportsScrollAcceleration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohideventservicesensorcontroloptionskey?language=objc)
 pub const kIOHIDEventServiceSensorControlOptionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDefaultSensorControlOptions\0") };
 pub const kIOHIDMouseAccelerationType: &CStr =
@@ -116,91 +88,409 @@ pub const kIOHIDIdleTimeMicrosecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDIdleTimeMicroseconds\0") };
 pub const kIOHIDServiceCapsLockStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDCapsLockState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddevicedefaultasyncrequesttimeout?language=objc)
 pub const kIOHIDDeviceDefaultAsyncRequestTimeout: c_uint = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddeviceminasyncrequesttimeout?language=objc)
 pub const kIOHIDDeviceMinAsyncRequestTimeout: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddevicemaxasyncrequesttimeout?language=objc)
 pub const kIOHIDDeviceMaxAsyncRequestTimeout: c_uint = 1200000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransportkey?language=objc)
+/// A key for specifying the transport mechanism of the device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a particular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+///
+///
+///
 pub const kIOHIDTransportKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Transport\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvendoridkey?language=objc)
+/// A key for specifying the vendor ID of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is the numerical ID that the USB-IF assigned to the manufacturer.
+///
+///
+///
+///
 pub const kIOHIDVendorIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"VendorID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidproductidkey?language=objc)
+/// A key for specifying the product identifier of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is the numerical ID that the manufacturer assigned to the device.
+///
+///
+///
+///
 pub const kIOHIDProductIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ProductID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidversionnumberkey?language=objc)
+/// A key for specifying the version number of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is a number representing the device's version information.
+///
+///
+///
+///
 pub const kIOHIDVersionNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VersionNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmanufacturerkey?language=objc)
+/// A key that specifies the manufacturer of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is a string that contains the manufacturer's name.
+///
+///
+///
+///
 pub const kIOHIDManufacturerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Manufacturer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidproductkey?language=objc)
+/// A key that describes the product.
+///
+/// ## Discussion
+///
+/// The value of this key is a string that describes the product.
+///
+///
+///
+///
 pub const kIOHIDProductKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Product\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidserialnumberkey?language=objc)
+/// A key that specifies the device's serial number.
+///
+/// ## Discussion
+///
+/// The value of this key is a string that contains the serial number of the device.
+///
+///
+///
+///
 pub const kIOHIDSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SerialNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidcountrycodekey?language=objc)
+/// A key that specifies the country code or region of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is a number that identifies the country or region code stored in the device.
+///
+///
+///
+///
 pub const kIOHIDCountryCodeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CountryCode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidlocationidkey?language=objc)
+/// A key that specifies the location ID of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is a number that contains the location identifier.
+///
+///
+///
+///
 pub const kIOHIDLocationIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LocationID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepairskey?language=objc)
+/// A key that contains the top-level usages of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is an array of dictionaries. The keys and values of each dictionary are the usage pages and usages for which to match your driver. Use this key when the device supports multiple behaviors and you want to match your driver against more than one of these behaviors.
+///
+///
+///
+///
+///
+///
+///
+///
 pub const kIOHIDDeviceUsagePairsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceUsagePairs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceusagekey?language=objc)
+/// A key that specifies a usage type of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is the number for a HID usage type.
+///
+///
+///
+///
+///
+///
+///
+///
 pub const kIOHIDDeviceUsageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceUsage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepagekey?language=objc)
+/// A key that specifies a usage page of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is the number for a HID usage page.
+///
+///
+///
+///
+///
+///
+///
+///
 pub const kIOHIDDeviceUsagePageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceUsagePage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidprimaryusagekey?language=objc)
+/// A key that specifies the primary usage type of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is the number for a HID usage type.
+///
+/// [`kIOHIDPrimaryUsageKey`](https://developer.apple.com/documentation/iokit/kiohidprimaryusagekey) and [`kIOHIDPrimaryUsagePageKey`](https://developer.apple.com/documentation/iokit/kiohidprimaryusagepagekey) are not always rich enough to describe a device’s capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. To support this more complicated scenario, use the following keys instead:
+///
+/// - [`kIOHIDDeviceUsageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagekey)
+///
+/// - [`kIOHIDDeviceUsagePageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepagekey)
+///
+/// - [`kIOHIDDeviceUsagePairsKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepairskey)
+///
+/// To match on only one criterion, add [`kIOHIDDeviceUsageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagekey) and [`kIOHIDDeviceUsagePageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepagekey) to the matching dictionary. To match on multiple criteria, add [`kIOHIDDeviceUsagePairsKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepairskey) to the matching dictionary.
+///
+///
+///
+///
+///
+///
+///
+///
 pub const kIOHIDPrimaryUsageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PrimaryUsage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidprimaryusagepagekey?language=objc)
+/// A key that specifies the primary usage page of the device.
+///
+/// ## Discussion
+///
+/// The value of this key is the number for a HID usage page.
+///
+/// [`kIOHIDPrimaryUsageKey`](https://developer.apple.com/documentation/iokit/kiohidprimaryusagekey) and [`kIOHIDPrimaryUsagePageKey`](https://developer.apple.com/documentation/iokit/kiohidprimaryusagepagekey) are not always rich enough to describe a device’s capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. To support this more complicated scenario, use the following keys instead:
+///
+/// - [`kIOHIDDeviceUsageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagekey)
+///
+/// - [`kIOHIDDeviceUsagePageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepagekey)
+///
+/// - [`kIOHIDDeviceUsagePairsKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepairskey)
+///
+/// To match on only one criterion, add [`kIOHIDDeviceUsageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagekey) and [`kIOHIDDeviceUsagePageKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepagekey) to the matching dictionary. To match on multiple criteria, add [`kIOHIDDeviceUsagePairsKey`](https://developer.apple.com/documentation/iokit/kiohiddeviceusagepairskey) to the matching dictionary.
+///
+///
+///
+///
+///
+///
 pub const kIOHIDPrimaryUsagePageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PrimaryUsagePage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmaxinputreportsizekey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDMaxInputReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxInputReportSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmaxoutputreportsizekey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDMaxOutputReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxOutputReportSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmaxfeaturereportsizekey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDMaxFeatureReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxFeatureReportSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidreportintervalkey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDReportIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportInterval\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidbatchintervalkey?language=objc)
 pub const kIOHIDBatchIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatchInterval\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidrequesttimeoutkey?language=objc)
 pub const kIOHIDRequestTimeoutKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"RequestTimeout\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidreportdescriptorkey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDReportDescriptorKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportDescriptor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidbuiltinkey?language=objc)
 pub const kIOHIDBuiltInKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Built-In\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohidphysicaldeviceuniqueidkey?language=objc)
 pub const kIOHIDPhysicalDeviceUniqueIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PhysicalDeviceUniqueID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/kiohiddeviceaccessentitlementkey?language=objc)
 pub const kIOHIDDeviceAccessEntitlementKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDeviceAccessEntitlement\0") };
 pub const kIOHIDDeviceKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDDevice\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvendoridsourcekey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDVendorIDSourceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VendorIDSource\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstandardtypekey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDStandardTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"StandardType\0") };
 pub const kIOHIDSampleIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SampleInterval\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidresetkey?language=objc)
+/// Keys that represent properties of a paticular device.
+///
+/// ## Discussion
+///
+/// Keys that represent properties of a paticular device. Can be added to your matching dictionary when refining searches for HID devices.
+///
+/// **Please note:**
+///
+/// kIOHIDPrimaryUsageKey and kIOHIDPrimaryUsagePageKey are no longer rich enough to describe a device's capabilities. Take, for example, a device that describes both a keyboard and a mouse in the same descriptor. The previous behavior was to only describe the keyboard behavior with the primary usage and usage page. Needless to say, this would sometimes cause a program interested in mice to skip this device when matching.
+///
+/// Thus we have added 3 additional keys:
+///
+/// - kIOHIDDeviceUsageKey
+///
+/// - kIOHIDDeviceUsagePageKey
+///
+/// - kIOHIDDeviceUsagePairsKey
+///
+/// kIOHIDDeviceUsagePairsKey is used to represent an array of dictionaries containing key/value pairs referenced by kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey. These usage pairs describe all application type collections (behaviors) defined by the device.
+///
+/// An application intersted in only matching on one criteria would only add the kIOHIDDeviceUsageKey and kIOHIDDeviceUsagePageKey keys to the matching dictionary. If it is interested in a device that has multiple behaviors, the application would instead add an array or dictionaries referenced by kIOHIDDeviceUsagePairsKey to his matching dictionary.
+///
+///
 pub const kIOHIDResetKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Reset\0") };
 pub const kIOHIDKeyboardLanguageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"KeyboardLanguage\0") };
@@ -245,114 +535,336 @@ pub const kIOHIDTransportInductiveInBandValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Inductive In-Band\0") };
 pub const kIOHIDCategoryAutomotiveValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Automotive\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementkey?language=objc)
+/// Keys that represents an element property.
+///
+/// ## Discussion
+///
+/// Property for a HID Device or element dictionary. Elements can be heirarchical, so they can contain other elements.
+///
+///
 pub const kIOHIDElementKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Elements\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcookiekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementCookieKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ElementCookie\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementtypekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcollectiontypekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementCollectionTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CollectionType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusagekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementUsageKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Usage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusagepagekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementUsagePageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsagePage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementminkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementMinKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Min\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementmaxkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementMaxKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Max\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementscaledminkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementScaledMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ScaledMin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementscaledmaxkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementScaledMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ScaledMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementsizekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementSizeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Size\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementreportsizekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementReportSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementreportcountkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementReportCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementreportidkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementReportIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReportID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementisarraykey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementIsArrayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsArray\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementisrelativekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementIsRelativeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsRelative\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementiswrappingkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementIsWrappingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsWrapping\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementisnonlinearkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementIsNonLinearKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsNonLinear\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementhaspreferredstatekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementHasPreferredStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasPreferredState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementhasnullstatekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementHasNullStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasNullState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementflagskey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementFlagsKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Flags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementunitkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementUnitKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Unit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementunitexponentkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementUnitExponentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UnitExponent\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementnamekey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementvaluelocationkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementValueLocationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ValueLocation\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementduplicateindexkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementDuplicateIndexKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DuplicateIndex\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementparentcollectionkey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementParentCollectionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ParentCollection\0") };
 pub const kIOHIDElementVariableSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VariableSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementvendorspecifickey?language=objc)
+/// Keys that represent properties of a particular elements.
+///
+/// ## Discussion
+///
+/// These keys can also be added to a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementVendorSpecificKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"VendorSpecific\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcookieminkey?language=objc)
+/// Keys used for matching particular elements.
+///
+/// ## Discussion
+///
+/// These keys should only be used with a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementCookieMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ElementCookieMin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcookiemaxkey?language=objc)
+/// Keys used for matching particular elements.
+///
+/// ## Discussion
+///
+/// These keys should only be used with a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementCookieMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ElementCookieMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusageminkey?language=objc)
+/// Keys used for matching particular elements.
+///
+/// ## Discussion
+///
+/// These keys should only be used with a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementUsageMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsageMin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementusagemaxkey?language=objc)
+/// Keys used for matching particular elements.
+///
+/// ## Discussion
+///
+/// These keys should only be used with a matching dictionary when searching for elements via copyMatchingElements.
+///
+///
 pub const kIOHIDElementUsageMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsageMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationminkey?language=objc)
+/// The minimum bounds for a calibrated value.
 pub const kIOHIDElementCalibrationMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationMin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationmaxkey?language=objc)
+/// The maximum bounds for a calibrated value.
 pub const kIOHIDElementCalibrationMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationsaturationminkey?language=objc)
+/// The mininum tolerance to be used when calibrating a logical element value.
+///
+/// ## Discussion
+///
+/// The saturation property is used to allow for slight differences in the minimum and maximum value returned by an element.
+///
+///
 pub const kIOHIDElementCalibrationSaturationMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationSaturationMin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationsaturationmaxkey?language=objc)
+/// The maximum tolerance to be used when calibrating a logical element value.
+///
+/// ## Discussion
+///
+/// The saturation property is used to allow for slight differences in the minimum and maximum value returned by an element.
+///
+///
 pub const kIOHIDElementCalibrationSaturationMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationSaturationMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationdeadzoneminkey?language=objc)
+/// The minimum bounds near the midpoint of a logical value in which the value is ignored.
+///
+/// ## Discussion
+///
+/// The dead zone property is used to allow for slight differences in the idle value returned by an element.
+///
+///
 pub const kIOHIDElementCalibrationDeadZoneMinKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationDeadZoneMin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationdeadzonemaxkey?language=objc)
+/// The maximum bounds near the midpoint of a logical value in which the value is ignored.
+///
+/// ## Discussion
+///
+/// The dead zone property is used to allow for slight differences in the idle value returned by an element.
+///
+///
 pub const kIOHIDElementCalibrationDeadZoneMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationDeadZoneMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidelementcalibrationgranularitykey?language=objc)
+/// The scale or level of detail returned in a calibrated element value.
+///
+/// ## Discussion
+///
+/// Values are rounded off such that if granularity=0.1, values after calibration are 0, 0.1, 0.2, 0.3, etc.
+///
+///
 pub const kIOHIDElementCalibrationGranularityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CalibrationGranularity\0") };
 pub const kIOHIDKeyboardSupportsEscKey: &CStr =
@@ -405,21 +917,40 @@ pub const kIOHIDKeyboardFunctionKeyCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardFunctionKeyCount\0") };
 /// Describes different type of HID reports.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype?language=objc)
+/// ## Overview
+///
+/// Used by the IOHIDFamily to identify the type of report being processed.
+///
+///
+/// Describes different type of HID reports.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDReportType(pub c_uint);
 impl IOHIDReportType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypeinput?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Input report.
+    ///
+    ///
     #[doc(alias = "kIOHIDReportTypeInput")]
     pub const Input: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypeoutput?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Output report.
+    ///
+    ///
     #[doc(alias = "kIOHIDReportTypeOutput")]
     pub const Output: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypefeature?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Feature report.
+    ///
+    ///
     #[doc(alias = "kIOHIDReportTypeFeature")]
     pub const Feature: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype/kiohidreporttypecount?language=objc)
     #[doc(alias = "kIOHIDReportTypeCount")]
     pub const Count: Self = Self(3);
 }
@@ -446,16 +977,12 @@ unsafe impl RefEncode for IOHIDReportType {
 /// Passing in kIOHIDElementCommitDirectionOut will issue a setReport call to the
 /// device. Before issuing this call, the desired value should be set on the
 /// element with the setValue() or setDataValue() functions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcommitdirection?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDElementCommitDirection(pub c_uint);
 impl IOHIDElementCommitDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcommitdirection/kiohidelementcommitdirectionin?language=objc)
     #[doc(alias = "kIOHIDElementCommitDirectionIn")]
     pub const In: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcommitdirection/kiohidelementcommitdirectionout?language=objc)
     #[doc(alias = "kIOHIDElementCommitDirectionOut")]
     pub const Out: Self = Self(1);
 }
@@ -471,10 +998,16 @@ unsafe impl RefEncode for IOHIDElementCommitDirection {
 }
 
 /// Abstract data type used as a unique identifier for an element.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcookie?language=objc)
+/// Abstract data type used as a unique identifier for an element.
 pub type IOHIDElementCookie = u32;
 
+/// Describes different types of HID elements.
+///
+/// ## Overview
+///
+/// Used by the IOHIDFamily to identify the type of element processed. Represented by the key kIOHIDElementTypeKey in the dictionary describing the element.
+///
+///
 /// Describes different types of HID elements.
 ///
 ///
@@ -507,34 +1040,66 @@ pub type IOHIDElementCookie = u32;
 ///
 /// Field: kIOHIDElementTypeCollection
 /// Element used to identify a relationship between two or more elements.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDElementType(pub c_uint);
 impl IOHIDElementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_misc?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Misc input data field or varying size.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeInput_Misc")]
     pub const Input_Misc: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_button?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// One bit input data field.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeInput_Button")]
     pub const Input_Button: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_axis?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Input data field used to represent an axis.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeInput_Axis")]
     pub const Input_Axis: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_scancodes?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Input data field used to represent a scan code or usage selector.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeInput_ScanCodes")]
     pub const Input_ScanCodes: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeinput_null?language=objc)
     #[doc(alias = "kIOHIDElementTypeInput_NULL")]
     pub const Input_NULL: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypeoutput?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used to represent an output data field in a report.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeOutput")]
     pub const Output: Self = Self(129);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypefeature?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Describes input and output elements not intended for consumption by the end user.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeFeature")]
     pub const Feature: Self = Self(257);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementtype/kiohidelementtypecollection?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Element used to identify a relationship between two or more elements.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementTypeCollection")]
     pub const Collection: Self = Self(513);
 }
@@ -549,28 +1114,25 @@ unsafe impl RefEncode for IOHIDElementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsconstantmask?language=objc)
 pub const kIOHIDElementFlagsConstantMask: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsvariablemask?language=objc)
 pub const kIOHIDElementFlagsVariableMask: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsrelativemask?language=objc)
 pub const kIOHIDElementFlagsRelativeMask: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagswrapmask?language=objc)
 pub const kIOHIDElementFlagsWrapMask: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsnonlinearmask?language=objc)
 pub const kIOHIDElementFlagsNonLinearMask: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsnopreferredmask?language=objc)
 pub const kIOHIDElementFlagsNoPreferredMask: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsnullstatemask?language=objc)
 pub const kIOHIDElementFlagsNullStateMask: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsvolativemask?language=objc)
 pub const kIOHIDElementFlagsVolativeMask: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556673-anonymous/kiohidelementflagsbufferedbytemask?language=objc)
 pub const kIOHIDElementFlagsBufferedByteMask: c_uint = 0x0100;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementflags?language=objc)
 pub type IOHIDElementFlags = u32;
 
+/// Describes different types of HID collections.
+///
+/// ## Overview
+///
+/// Collections identify a relationship between two or more elements.
+///
+///
 /// Describes different types of HID collections.
 ///
 ///
@@ -597,31 +1159,64 @@ pub type IOHIDElementFlags = u32;
 ///
 /// Field: kIOHIDElementCollectionTypeUsageModifier
 /// Modifies the meaning of the usage attached to the encompassing collection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDElementCollectionType(pub c_uint);
 impl IOHIDElementCollectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypephysical?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used for a set of data items that represent data points collected at one geometric point.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypePhysical")]
     pub const Physical: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypeapplication?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies item groups serving different purposes in a single device.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypeApplication")]
     pub const Application: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypelogical?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Used when a set of data items form a composite data structure.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypeLogical")]
     pub const Logical: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypereport?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Wraps all the fields in a report.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypeReport")]
     pub const Report: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypenamedarray?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Contains an array of selector usages.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypeNamedArray")]
     pub const NamedArray: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypeusageswitch?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Modifies the meaning of the usage it contains.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypeUsageSwitch")]
     pub const UsageSwitch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype/kiohidelementcollectiontypeusagemodifier?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Modifies the meaning of the usage attached to the encompassing collection.
+    ///
+    ///
     #[doc(alias = "kIOHIDElementCollectionTypeUsageModifier")]
     pub const UsageModifier: Self = Self(6);
 }
@@ -636,24 +1231,30 @@ unsafe impl RefEncode for IOHIDElementCollectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556676-anonymous/kiohidvaluescaletypecalibrated?language=objc)
+///
+/// ## Discussion
+///
+/// Type for value that is scaled with respect to the calibration properties.
+///
+///
 pub const kIOHIDValueScaleTypeCalibrated: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556676-anonymous/kiohidvaluescaletypephysical?language=objc)
+///
+/// ## Discussion
+///
+/// Type for value that is scaled with respect to the physical min and physical max of the element.
+///
+///
 pub const kIOHIDValueScaleTypePhysical: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556676-anonymous/kiohidvaluescaletypeexponent?language=objc)
 pub const kIOHIDValueScaleTypeExponent: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluescaletype?language=objc)
+/// Describes different types of scaling that can be performed on element values.
 pub type IOHIDValueScaleType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556610-anonymous/kiohidvalueoptionsflagrelativesimple?language=objc)
 pub const kIOHIDValueOptionsFlagRelativeSimple: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556610-anonymous/kiohidvalueoptionsflagprevious?language=objc)
 pub const kIOHIDValueOptionsFlagPrevious: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556610-anonymous/kiohidvalueoptionsupdateelementvalues?language=objc)
 pub const kIOHIDValueOptionsUpdateElementValues: c_uint = 1 << 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvalueoptions?language=objc)
+/// Describes options for gathering element values.
 pub type IOHIDValueOptions = u32;
 
 /// Function called when set/get report completes
@@ -666,8 +1267,6 @@ pub type IOHIDValueOptions = u32;
 ///
 ///
 /// Parameter `status`: Completion status
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletionaction?language=objc)
 pub type IOHIDCompletionAction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void, IOReturn, u32)>;
 
@@ -681,8 +1280,6 @@ pub type IOHIDCompletionAction =
 ///
 ///
 /// The parameter to pass to the action function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcompletion?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -709,22 +1306,22 @@ unsafe impl RefEncode for IOHIDCompletion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1644133-anonymous/kiohidreportoptionnotinterrupt?language=objc)
+///
+/// ## Discussion
+///
+/// Tells method that the report passed was not interrupt driven.
+///
+///
 pub const kIOHIDReportOptionNotInterrupt: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1644133-anonymous/kiohidreportoptionvariablesize?language=objc)
 pub const kIOHIDReportOptionVariableSize: c_uint = 0x200;
 
 /// Type of the report command for DriverKit driver
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/hidreportcommandtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HIDReportCommandType(pub c_uint);
 impl HIDReportCommandType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/hidreportcommandtype/kiohidreportcommandsetreport?language=objc)
     #[doc(alias = "kIOHIDReportCommandSetReport")]
     pub const IOHIDReportCommandSetReport: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/hidreportcommandtype/kiohidreportcommandgetreport?language=objc)
     #[doc(alias = "kIOHIDReportCommandGetReport")]
     pub const IOHIDReportCommandGetReport: Self = Self(1);
 }
@@ -739,62 +1336,83 @@ unsafe impl RefEncode for HIDReportCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556660-anonymous/kiohidoptionstypenone?language=objc)
+///
+/// ## Discussion
+///
+/// Default option.
+///
+///
 pub const kIOHIDOptionsTypeNone: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556660-anonymous/kiohidoptionstypeseizedevice?language=objc)
+///
+/// ## Discussion
+///
+/// Used to open exclusive communication with the device. This will prevent the system and other clients from receiving events from the device.
+///
+///
 pub const kIOHIDOptionsTypeSeizeDevice: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556660-anonymous/kiohidoptionstypemaskprivate?language=objc)
 pub const kIOHIDOptionsTypeMaskPrivate: c_uint = 0xff0000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidoptionstype?language=objc)
+/// Options for opening a device via IOHIDLib.
 pub type IOHIDOptionsType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556688-anonymous/kiohidqueueoptionstypenone?language=objc)
+///
+/// ## Discussion
+///
+/// Default option.
+///
+///
 pub const kIOHIDQueueOptionsTypeNone: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556688-anonymous/kiohidqueueoptionstypeenqueueall?language=objc)
+///
+/// ## Discussion
+///
+/// Force the IOHIDQueue to enqueue all events, relative or absolute, regardless of change.
+///
+///
 pub const kIOHIDQueueOptionsTypeEnqueueAll: c_uint = 0x01;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidqueueoptionstype?language=objc)
+/// Options for creating a queue via IOHIDLib.
 pub type IOHIDQueueOptionsType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556702-anonymous/kiohidstandardtypeansi?language=objc)
+///
+/// ## Discussion
+///
+/// ANSI.
+///
+///
 pub const kIOHIDStandardTypeANSI: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556702-anonymous/kiohidstandardtypeiso?language=objc)
+///
+/// ## Discussion
+///
+/// ISO.
+///
+///
 pub const kIOHIDStandardTypeISO: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556702-anonymous/kiohidstandardtypejis?language=objc)
+///
+/// ## Discussion
+///
+/// JIS.
+///
+///
 pub const kIOHIDStandardTypeJIS: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1556702-anonymous/kiohidstandardtypeunspecified?language=objc)
 pub const kIOHIDStandardTypeUnspecified: c_uint = 0xFFFFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidstandardtype?language=objc)
+/// Type to define what industrial standard the device is referencing.
 pub type IOHIDStandardType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttypeunknown?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutTypeUnknown: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttype101?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType101: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttype103?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType103: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttype102?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType102: c_uint = 0x3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttype104?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType104: c_uint = 0x4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttype106?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutType106: c_uint = 0x5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3929783-anonymous/kiohidkeyboardphysicallayouttypevendor?language=objc)
 pub const kIOHIDKeyboardPhysicalLayoutTypeVendor: c_uint = 0x6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidkeyboardphysicallayouttype?language=objc)
 pub type IOHIDKeyboardPhysicalLayoutType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4160756-anonymous/kiohidaccelerationalgorithmtypetable?language=objc)
 pub const kIOHIDAccelerationAlgorithmTypeTable: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4160756-anonymous/kiohidaccelerationalgorithmtypeparametric?language=objc)
 pub const kIOHIDAccelerationAlgorithmTypeParametric: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4160756-anonymous/kiohidaccelerationalgorithmtypedefault?language=objc)
 pub const kIOHIDAccelerationAlgorithmTypeDefault: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidaccelerationalgorithmtype?language=objc)
 pub type IOHIDAccelerationAlgorithmType = u8;
 
 /// This is the type of a reference to the IOHIDDevice.
@@ -846,17 +1464,26 @@ cf_objc2_type!(
 );
 
 /// Direction for an IOHIDDeviceTransactionInterface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactiondirectiontype?language=objc)
+/// Direction for an IOHIDDeviceTransactionInterface.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDTransactionDirectionType(pub u32);
 impl IOHIDTransactionDirectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactiondirectiontype/kiohidtransactiondirectiontypeinput?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Transaction direction used for requesting element values from a device.
+    ///
+    ///
     #[doc(alias = "kIOHIDTransactionDirectionTypeInput")]
     pub const Input: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactiondirectiontype/kiohidtransactiondirectiontypeoutput?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Transaction direction used for dispatching element values to a device.
+    ///
+    ///
     #[doc(alias = "kIOHIDTransactionDirectionTypeOutput")]
     pub const Output: Self = Self(1);
 }
@@ -871,13 +1498,33 @@ unsafe impl RefEncode for IOHIDTransactionDirectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Discussion
+///
+/// Option to set the default element value to be used with an IOHIDDeviceTransactionInterface of direction kIOHIDTransactionDirectionTypeOutput.
+///
+///
 /// Options to be used in conjuntion with an IOHIDDeviceTransactionInterface.
 ///
 /// IOHIDDeviceTransactionInterface of direction kIOHIDTransactionDirectionTypeOutput.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidtransactionoptiondefaultoutputvalue?language=objc)
 pub static kIOHIDTransactionOptionDefaultOutputValue: IOOptionBits = 0x0001;
 
+///
+/// Parameters:
+/// - context: void * pointer to your data, often a pointer to an object.
+///
+/// - result: Completion result of desired operation.
+///
+/// - refcon: void * pointer to more data.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a completion routine is called.
+///
+///
 /// Type and arguments of callout C function that is used when a completion routine is called.
 ///
 /// Parameter `context`: void * pointer to your data, often a pointer to an object.
@@ -885,10 +1532,32 @@ pub static kIOHIDTransactionOptionDefaultOutputValue: IOOptionBits = 0x0001;
 /// Parameter `result`: Completion result of desired operation.
 ///
 /// Parameter `sender`: Interface instance sending the completion routine.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcallback?language=objc)
 pub type IOHIDCallback = Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void)>;
 
+///
+/// Parameters:
+/// - context: void * pointer to your data, often a pointer to an object.
+///
+/// - result: Completion result of desired operation.
+///
+/// - refcon: void * pointer to more data.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+/// - type: The type of the report that was completed.
+///
+/// - reportID: The ID of the report that was completed.
+///
+/// - report: Pointer to the buffer containing the contents of the report.
+///
+/// - reportLength: Size of the buffer received upon completion.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a HID report completion routine is called.
+///
+///
 /// Type and arguments of callout C function that is used when a HID report completion routine is called.
 ///
 /// Parameter `context`: void * pointer to your data, often a pointer to an object.
@@ -904,8 +1573,6 @@ pub type IOHIDCallback = Option<unsafe extern "C-unwind" fn(*mut c_void, IORetur
 /// Parameter `report`: Pointer to the buffer containing the contents of the report.
 ///
 /// Parameter `reportLength`: Size of the buffer received upon completion.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportcallback?language=objc)
 pub type IOHIDReportCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -935,8 +1602,6 @@ pub type IOHIDReportCallback = Option<
 /// Parameter `reportLength`: Size of the buffer received upon completion.
 ///
 /// Parameter `timeStamp`: The time at which the report arrived.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportwithtimestampcallback?language=objc)
 pub type IOHIDReportWithTimeStampCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -950,6 +1615,22 @@ pub type IOHIDReportWithTimeStampCallback = Option<
     ),
 >;
 
+///
+/// Parameters:
+/// - context: void * pointer to more data.
+///
+/// - result: Completion result of desired operation.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+/// - value: IOHIDValueRef containing the returned element value.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when an element value completion routine is called.
+///
+///
 /// Type and arguments of callout C function that is used when an element value completion routine is called.
 ///
 /// Parameter `context`: void * pointer to more data.
@@ -959,11 +1640,25 @@ pub type IOHIDReportWithTimeStampCallback = Option<
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// Parameter `value`: IOHIDValueRef containing the returned element value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluecallback?language=objc)
 pub type IOHIDValueCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, NonNull<IOHIDValue>)>;
 
+///
+/// Parameters:
+/// - context: void * pointer to more data.
+///
+/// - result: Completion result of desired operation.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+/// - multiple: CFDictionaryRef containing the returned element key value pairs.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when an element value completion routine is called.
+///
+///
 /// Type and arguments of callout C function that is used when an element value completion routine is called.
 ///
 /// Parameter `context`: void * pointer to more data.
@@ -973,11 +1668,23 @@ pub type IOHIDValueCallback =
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// Parameter `multiple`: CFDictionaryRef containing the returned element key value pairs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidvaluemultiplecallback?language=objc)
 pub type IOHIDValueMultipleCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, NonNull<CFDictionary>)>;
 
+///
+/// Parameters:
+/// - context: void * pointer to more data.
+///
+/// - result: Completion result of desired operation.
+///
+/// - device: IOHIDDeviceRef containing the sending device.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a device routine is called.
+///
+///
 /// Type and arguments of callout C function that is used when a device routine is called.
 ///
 /// Parameter `context`: void * pointer to more data.
@@ -985,8 +1692,6 @@ pub type IOHIDValueMultipleCallback =
 /// Parameter `result`: Completion result of desired operation.
 ///
 /// Parameter `device`: IOHIDDeviceRef containing the sending device.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicecallback?language=objc)
 pub type IOHIDDeviceCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, NonNull<IOHIDDevice>)>;
 
@@ -1008,8 +1713,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for IOHIDQueue {
     /// Returns the type identifier of all IOHIDQueue instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545836-iohidqueuegettypeid?language=objc)
+    /// Returns the type identifier of all IOHIDQueue instances.
     #[doc(alias = "IOHIDQueueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1021,6 +1725,30 @@ unsafe impl ConcreteType for IOHIDQueue {
 }
 
 impl IOHIDQueue {
+    /// Creates an IOHIDQueue object for the specified device.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to be used during creation.
+    ///
+    /// - device: IOHIDDevice object
+    ///
+    /// - depth: The number of values that can be handled by the queue.
+    ///
+    /// - options: Reserved for future use.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a new IOHIDQueueRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Take care in specifying an appropriate depth to prevent dropping events.
+    ///
+    ///
     /// Creates an IOHIDQueue object for the specified device.
     ///
     /// Take care in specifying an appropriate depth to prevent dropping
@@ -1035,8 +1763,6 @@ impl IOHIDQueue {
     /// Parameter `options`: Reserved for future use.
     ///
     /// Returns: Returns a new IOHIDQueueRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545840-iohidqueuecreate?language=objc)
     #[doc(alias = "IOHIDQueueCreate")]
     #[inline]
     pub fn new(
@@ -1059,11 +1785,21 @@ impl IOHIDQueue {
 
     /// Obtain the device associated with the queue.
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the a reference to the device.
+    ///
+    ///
+    /// Obtain the device associated with the queue.
+    ///
     /// Parameter `queue`: IOHIDQueue to be queried.
     ///
     /// Returns: Returns the a reference to the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545839-iohidqueuegetdevice?language=objc)
     #[doc(alias = "IOHIDQueueGetDevice")]
     #[inline]
     pub fn device(&self) -> CFRetained<IOHIDDevice> {
@@ -1078,11 +1814,21 @@ impl IOHIDQueue {
 
     /// Obtain the depth of the queue.
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the queue depth.
+    ///
+    ///
+    /// Obtain the depth of the queue.
+    ///
     /// Parameter `queue`: IOHIDQueue to be queried.
     ///
     /// Returns: Returns the queue depth.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545833-iohidqueuegetdepth?language=objc)
     #[doc(alias = "IOHIDQueueGetDepth")]
     #[inline]
     pub fn depth(&self) -> CFIndex {
@@ -1092,6 +1838,13 @@ impl IOHIDQueue {
         unsafe { IOHIDQueueGetDepth(self) }
     }
 
+    /// Sets the depth of the queue. @disussion Set the appropriate depth value based on the number of elements contained in a queue.
+    ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be modified.
+    ///
+    /// - depth: The new queue depth.
+    ///
     /// Sets the depth of the queue.
     ///
     /// Set the appropriate depth value based on the number of elements
@@ -1100,8 +1853,6 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `depth`: The new queue depth.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545846-iohidqueuesetdepth?language=objc)
     #[doc(alias = "IOHIDQueueSetDepth")]
     #[inline]
     pub fn set_depth(&self, depth: CFIndex) {
@@ -1113,11 +1864,16 @@ impl IOHIDQueue {
 
     /// Adds an element to the queue
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be modified.
+    ///
+    /// - element: Element to be added to the queue.
+    ///
+    /// Adds an element to the queue
+    ///
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `element`: Element to be added to the queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545835-iohidqueueaddelement?language=objc)
     #[doc(alias = "IOHIDQueueAddElement")]
     #[inline]
     pub fn add_element(&self, element: &IOHIDElement) {
@@ -1129,11 +1885,16 @@ impl IOHIDQueue {
 
     /// Removes an element from the queue
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be modified.
+    ///
+    /// - element: Element to be removed from the queue.
+    ///
+    /// Removes an element from the queue
+    ///
     /// Parameter `queue`: IOHIDQueue object to be modified.
     ///
     /// Parameter `element`: Element to be removed from the queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545838-iohidqueueremoveelement?language=objc)
     #[doc(alias = "IOHIDQueueRemoveElement")]
     #[inline]
     pub fn remove_element(&self, element: &IOHIDElement) {
@@ -1145,13 +1906,25 @@ impl IOHIDQueue {
 
     /// Queries the queue to determine if elemement has been added.
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be queried.
+    ///
+    /// - element: Element to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns true or false depending if element is present.
+    ///
+    ///
+    /// Queries the queue to determine if elemement has been added.
+    ///
     /// Parameter `queue`: IOHIDQueue object to be queried.
     ///
     /// Parameter `element`: Element to be queried.
     ///
     /// Returns: Returns true or false depending if element is present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545842-iohidqueuecontainselement?language=objc)
     #[doc(alias = "IOHIDQueueContainsElement")]
     #[inline]
     pub fn contains_element(&self, element: &IOHIDElement) -> bool {
@@ -1164,14 +1937,17 @@ impl IOHIDQueue {
 
     /// Starts element value delivery to the queue.
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be started.
+    ///
+    /// Starts element value delivery to the queue.
+    ///
     /// When a dispatch queue is assocaited with the IOHIDQueue
     /// via IOHIDQueueSetDispatchQueue, the queue does not need
     /// to be explicity started, this will be done during activation
     /// when IOHIDQueueActivate is called.
     ///
     /// Parameter `queue`: IOHIDQueue object to be started.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545843-iohidqueuestart?language=objc)
     #[doc(alias = "IOHIDQueueStart")]
     #[inline]
     pub fn start(&self) {
@@ -1183,14 +1959,17 @@ impl IOHIDQueue {
 
     /// Stops element value delivery to the queue.
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be stopped.
+    ///
+    /// Stops element value delivery to the queue.
+    ///
     /// When a dispatch queue is assocaited with the IOHIDQueue
     /// via IOHIDQueueSetDispatchQueue, the queue does not need
     /// to be explicity stopped, this will be done during cancellation
     /// when IOHIDQueueCancel is called.
     ///
     /// Parameter `queue`: IOHIDQueue object to be stopped.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545830-iohidqueuestop?language=objc)
     #[doc(alias = "IOHIDQueueStop")]
     #[inline]
     pub fn stop(&self) {
@@ -1200,6 +1979,21 @@ impl IOHIDQueue {
         unsafe { IOHIDQueueStop(self) }
     }
 
+    /// Schedules queue with run loop.
+    ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be modified.
+    ///
+    /// - runLoop: RunLoop to be used when scheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when scheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally associates queue with client's run loop. Scheduling this queue with the run loop is necessary before making use of any asynchronous APIs.
+    ///
+    ///
     /// Schedules queue with run loop.
     ///
     /// Formally associates queue with client's run loop. Scheduling
@@ -1217,8 +2011,6 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545841-iohidqueueschedulewithrunloop?language=objc)
     #[doc(alias = "IOHIDQueueScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1234,6 +2026,21 @@ impl IOHIDQueue {
 
     /// Unschedules queue with run loop.
     ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be modified.
+    ///
+    /// - runLoop: RunLoop to be used when scheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when scheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally disassociates queue with client's run loop.
+    ///
+    ///
+    /// Unschedules queue with run loop.
+    ///
     /// Formally disassociates queue with client's run loop.
     ///
     /// Parameter `queue`: IOHIDQueue object to be modified.
@@ -1247,8 +2054,6 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545834-iohidqueueunschedulefromrunloop?language=objc)
     #[doc(alias = "IOHIDQueueUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1282,8 +2087,6 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `dispatch_queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042794-iohidqueuesetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDQueueSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1325,8 +2128,6 @@ impl IOHIDQueue {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042793-iohidqueuesetcancelhandler?language=objc)
     #[doc(alias = "IOHIDQueueSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1355,8 +2156,6 @@ impl IOHIDQueue {
     ///
     ///
     /// Parameter `queue`: Reference to an IOHIDQueue
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042791-iohidqueueactivate?language=objc)
     #[doc(alias = "IOHIDQueueActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -1392,8 +2191,6 @@ impl IOHIDQueue {
     ///
     ///
     /// Parameter `queue`: Reference to an IOHIDQueue
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042792-iohidqueuecancel?language=objc)
     #[doc(alias = "IOHIDQueueCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -1403,6 +2200,21 @@ impl IOHIDQueue {
         unsafe { IOHIDQueueCancel(self) }
     }
 
+    /// Sets callback to be used when the queue transitions to non-empty.
+    ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be modified.
+    ///
+    /// - callback: Callback of type IOHIDCallback to be used when data is placed on the queue.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In order to make use of asynchronous behavior, the queue needs to be scheduled with the run loop.
+    ///
+    ///
     /// Sets callback to be used when the queue transitions to non-empty.
     ///
     /// In order to make use of asynchronous behavior, the queue needs
@@ -1420,8 +2232,6 @@ impl IOHIDQueue {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545829-iohidqueueregistervalueavailable?language=objc)
     #[doc(alias = "IOHIDQueueRegisterValueAvailableCallback")]
     #[inline]
     pub unsafe fn register_value_available_callback(
@@ -1439,6 +2249,24 @@ impl IOHIDQueue {
         unsafe { IOHIDQueueRegisterValueAvailableCallback(self, callback, context) }
     }
 
+    /// Dequeues a retained copy of an element value from the head of an IOHIDQueue.
+    ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns valid IOHIDValueRef if data is available.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because the value is a retained copy, it is up to the caller to release the value using CFRelease. Use with setValueCallback to avoid polling the queue for data.
+    ///
+    ///
     /// Dequeues a retained copy of an element value from the head of an
     /// IOHIDQueue.
     ///
@@ -1449,8 +2277,6 @@ impl IOHIDQueue {
     /// Parameter `queue`: IOHIDQueue object to be queried.
     ///
     /// Returns: Returns valid IOHIDValueRef if data is available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545844-iohidqueuecopynextvalue?language=objc)
     #[doc(alias = "IOHIDQueueCopyNextValue")]
     #[inline]
     pub fn next_value(&self) -> Option<CFRetained<IOHIDValue>> {
@@ -1461,6 +2287,26 @@ impl IOHIDQueue {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Dequeues a retained copy of an element value from the head of an IOHIDQueue. This method will block until either a value is available or it times out.
+    ///
+    /// Parameters:
+    /// - queue: IOHIDQueue object to be queried.
+    ///
+    /// - timeout: Timeout before aborting an attempt to dequeue a value from the head of a queue.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns valid IOHIDValueRef if data is available.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because the value is a retained copy, it is up to the caller to release the value using CFRelease. Use with setValueCallback to avoid polling the queue for data.
+    ///
+    ///
     /// Dequeues a retained copy of an element value from the head of an
     /// IOHIDQueue.  This method will block until either a value is
     /// available or it times out.
@@ -1475,8 +2321,6 @@ impl IOHIDQueue {
     /// from the head of a queue.
     ///
     /// Returns: Returns valid IOHIDValueRef if data is available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1545832-iohidqueuecopynextvaluewithtimeo?language=objc)
     #[doc(alias = "IOHIDQueueCopyNextValueWithTimeout")]
     #[inline]
     pub fn next_value_with_timeout(
@@ -1496,8 +2340,7 @@ impl IOHIDQueue {
 
 unsafe impl ConcreteType for IOHIDDevice {
     /// Returns the type identifier of all IOHIDDevice instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588664-iohiddevicegettypeid?language=objc)
+    /// Returns the type identifier of all IOHIDDevice instances.
     #[doc(alias = "IOHIDDeviceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1511,6 +2354,26 @@ unsafe impl ConcreteType for IOHIDDevice {
 impl IOHIDDevice {
     /// Creates an element from an io_service_t.
     ///
+    /// Parameters:
+    /// - allocator: Allocator to be used during creation.
+    ///
+    /// - io_service_t: Reference to service object in the kernel.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a new IOHIDDeviceRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The io_service_t passed in this method must reference an object in the kernel of type IOHIDDevice.
+    ///
+    ///
+    /// Creates an element from an io_service_t.
+    ///
     /// The io_service_t passed in this method must reference an object
     /// in the kernel of type IOHIDDevice.
     ///
@@ -1519,8 +2382,6 @@ impl IOHIDDevice {
     /// Parameter `service`: Reference to service object in the kernel.
     ///
     /// Returns: Returns a new IOHIDDeviceRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588663-iohiddevicecreate?language=objc)
     #[doc(alias = "IOHIDDeviceCreate")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -1540,6 +2401,24 @@ impl IOHIDDevice {
 
     /// Returns the io_service_t for an IOHIDDevice, if it has one.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the io_service_t if the IOHIDDevice has one, or MACH_PORT_NULL if it does not.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the IOHIDDevice references an object in the kernel, this is used to get the io_service_t for that object.
+    ///
+    ///
+    /// Returns the io_service_t for an IOHIDDevice, if it has one.
+    ///
     /// If the IOHIDDevice references an object in the kernel, this is
     /// used to get the io_service_t for that object.
     ///
@@ -1547,8 +2426,6 @@ impl IOHIDDevice {
     ///
     /// Returns: Returns the io_service_t if the IOHIDDevice has one, or
     /// MACH_PORT_NULL if it does not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588646-iohiddevicegetservice?language=objc)
     #[doc(alias = "IOHIDDeviceGetService")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -1559,6 +2436,26 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceGetService(self) }
     }
 
+    /// Opens a HID device for communication.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - options: Option bits to be sent down to the device.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before the client can issue commands that change the state of the device, it must have succeeded in opening the device. This establishes a link between the client's task and the actual device. To establish an exclusive link use the kIOHIDOptionsTypeSeizeDevice option.
+    ///
+    ///
     /// Opens a HID device for communication.
     ///
     /// Before the client can issue commands that change the state of
@@ -1572,8 +2469,6 @@ impl IOHIDDevice {
     /// Parameter `options`: Option bits to be sent down to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588670-iohiddeviceopen?language=objc)
     #[doc(alias = "IOHIDDeviceOpen")]
     #[inline]
     pub fn open(&self, options: IOOptionBits) -> IOReturn {
@@ -1585,6 +2480,26 @@ impl IOHIDDevice {
 
     /// Closes communication with a HID device.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - options: Option bits to be sent down to the device.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This closes a link between the client's task and the actual device.
+    ///
+    ///
+    /// Closes communication with a HID device.
+    ///
     /// This closes a link between the client's task and the actual
     /// device.
     ///
@@ -1593,8 +2508,6 @@ impl IOHIDDevice {
     /// Parameter `options`: Option bits to be sent down to the device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588668-iohiddeviceclose?language=objc)
     #[doc(alias = "IOHIDDeviceClose")]
     #[inline]
     pub fn close(&self, options: IOOptionBits) -> IOReturn {
@@ -1604,6 +2517,38 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceClose(self, options) }
     }
 
+    /// Convenience function that scans the Application Collection elements to see if it conforms to the provided usagePage and usage.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - usagePage: Device usage page
+    ///
+    /// - usage: Device usage
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if device conforms to provided usage.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Examples of Application Collection usages pairs are:
+    ///
+    /// usagePage = kHIDPage_GenericDesktop
+    ///
+    /// usage = kHIDUsage_GD_Mouse
+    ///
+    /// **or**
+    ///
+    /// usagePage = kHIDPage_GenericDesktop
+    ///
+    /// usage = kHIDUsage_GD_Keyboard
+    ///
+    ///
     /// Convenience function that scans the Application Collection
     /// elements to see if it conforms to the provided usagePage
     /// and usage.
@@ -1629,8 +2574,6 @@ impl IOHIDDevice {
     /// Parameter `usage`: Device usage
     ///
     /// Returns: Returns TRUE if device conforms to provided usage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588665-iohiddeviceconformsto?language=objc)
     #[doc(alias = "IOHIDDeviceConformsTo")]
     #[inline]
     pub fn conforms_to(&self, usage_page: u32, usage: u32) -> bool {
@@ -1643,6 +2586,26 @@ impl IOHIDDevice {
 
     /// Obtains a property from an IOHIDDevice.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - key: CFStringRef containing key to be used when querying the device.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns CFTypeRef containing the property.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and declared in <IOKit/hid/IOHIDKeys.h>.
+    ///
+    ///
+    /// Obtains a property from an IOHIDDevice.
+    ///
     /// Property keys are prefixed by kIOHIDDevice and declared in
     /// <IOKit
     /// /hid/IOHIDKeys.h>.
@@ -1653,8 +2616,6 @@ impl IOHIDDevice {
     /// device.
     ///
     /// Returns: Returns CFTypeRef containing the property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588648-iohiddevicegetproperty?language=objc)
     #[doc(alias = "IOHIDDeviceGetProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -1668,6 +2629,28 @@ impl IOHIDDevice {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Sets a property for an IOHIDDevice.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - key: CFStringRef containing key to be used when modifiying the device property.
+    ///
+    /// - property: CFTypeRef containg the property to be set.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and declared in <IOKit/hid/IOHIDKeys.h>.
+    ///
+    ///
     /// Sets a property for an IOHIDDevice.
     ///
     /// Property keys are prefixed by kIOHIDDevice and declared in
@@ -1686,8 +2669,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `property` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588653-iohiddevicesetproperty?language=objc)
     #[doc(alias = "IOHIDDeviceSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -1702,6 +2683,28 @@ impl IOHIDDevice {
         ret != 0
     }
 
+    /// Obtains HID elements that match the criteria contained in the matching dictionary.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - matching: CFDictionaryRef containg element matching criteria.
+    ///
+    /// - options: Reserved for future use.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns CFArrayRef containing multiple IOHIDElement object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDElement and declared in <IOKit/hid/IOHIDKeys.h>. Passing a NULL dictionary will result in all device elements being returned.
+    ///
+    ///
     /// Obtains HID elements that match the criteria contained in the
     /// matching dictionary.
     ///
@@ -1722,8 +2725,6 @@ impl IOHIDDevice {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588671-iohiddevicecopymatchingelements?language=objc)
     #[doc(alias = "IOHIDDeviceCopyMatchingElements")]
     #[inline]
     pub unsafe fn matching_elements(
@@ -1744,6 +2745,21 @@ impl IOHIDDevice {
 
     /// Schedules HID device with run loop.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - runLoop: RunLoop to be used when scheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when scheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally associates device with client's run loop. Scheduling this device with the run loop is necessary before making use of any asynchronous APIs.
+    ///
+    ///
+    /// Schedules HID device with run loop.
+    ///
     /// Formally associates device with client's run loop. Scheduling
     /// this device with the run loop is necessary before making use of
     /// any asynchronous APIs.
@@ -1759,8 +2775,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588660-iohiddeviceschedulewithrunloop?language=objc)
     #[doc(alias = "IOHIDDeviceScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1776,6 +2790,21 @@ impl IOHIDDevice {
 
     /// Unschedules HID device with run loop.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - runLoop: RunLoop to be used when unscheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when unscheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally disassociates device with client's run loop.
+    ///
+    ///
+    /// Unschedules HID device with run loop.
+    ///
     /// Formally disassociates device with client's run loop.
     ///
     /// Parameter `device`: Reference to an IOHIDDevice.
@@ -1789,8 +2818,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588650-iohiddeviceunschedulefromrunloop?language=objc)
     #[doc(alias = "IOHIDDeviceUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -1820,8 +2847,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042784-iohiddevicesetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDDeviceSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1857,8 +2882,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042783-iohiddevicesetcancelhandler?language=objc)
     #[doc(alias = "IOHIDDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1882,8 +2905,6 @@ impl IOHIDDevice {
     /// Calling IOHIDDeviceActivate on an active IOHIDDevice has no effect.
     ///
     /// Parameter `device`: Reference to an IOHIDDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042781-iohiddeviceactivate?language=objc)
     #[doc(alias = "IOHIDDeviceActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -1913,8 +2934,6 @@ impl IOHIDDevice {
     /// IOHIDDeviceCancel(device);
     ///
     /// Parameter `device`: Reference to an IOHIDDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042782-iohiddevicecancel?language=objc)
     #[doc(alias = "IOHIDDeviceCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -1924,6 +2943,21 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceCancel(self) }
     }
 
+    /// Registers a callback to be used when a IOHIDDevice is removed.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In most cases this occurs when a device is unplugged.
+    ///
+    ///
     /// Registers a callback to be used when a IOHIDDevice is removed.
     ///
     /// In most cases this occurs when a device is unplugged.
@@ -1939,8 +2973,6 @@ impl IOHIDDevice {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588673-iohiddeviceregisterremovalcallba?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterRemovalCallback")]
     #[inline]
     pub unsafe fn register_removal_callback(&self, callback: IOHIDCallback, context: *mut c_void) {
@@ -1954,6 +2986,21 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceRegisterRemovalCallback(self, callback, context) }
     }
 
+    /// Registers a callback to be used when an input value is issued by the device.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDValueCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An input element refers to any element of type kIOHIDElementTypeInput and is usually issued by interrupt driven reports. If more specific element values are desired, you can specify matching criteria via IOHIDDeviceSetInputValueMatching and IOHIDDeviceSetInputValueMatchingMultiple.
+    ///
+    ///
     /// Registers a callback to be used when an input value is issued by
     /// the device.
     ///
@@ -1974,8 +3021,6 @@ impl IOHIDDevice {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588672-iohiddeviceregisterinputvaluecal?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterInputValueCallback")]
     #[inline]
     pub unsafe fn register_input_value_callback(
@@ -1993,6 +3038,25 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceRegisterInputValueCallback(self, callback, context) }
     }
 
+    /// Registers a callback to be used when an input report is issued by the device.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - report: Pointer to preallocated buffer in which to copy inbound report data.
+    ///
+    /// - reportLength: Length of preallocated buffer.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDReportCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An input report is an interrupt driver report issued by the device.
+    ///
+    ///
     /// Registers a callback to be used when an input report is issued
     /// by the device.
     ///
@@ -2017,8 +3081,6 @@ impl IOHIDDevice {
     /// - `report` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588666-iohiddeviceregisterinputreportca?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterInputReportCallback")]
     #[inline]
     pub unsafe fn register_input_report_callback(
@@ -2066,8 +3128,6 @@ impl IOHIDDevice {
     /// - `report` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588649-iohiddeviceregisterinputreportwi?language=objc)
     #[doc(alias = "IOHIDDeviceRegisterInputReportWithTimeStampCallback")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
@@ -2097,6 +3157,19 @@ impl IOHIDDevice {
         }
     }
 
+    /// Sets matching criteria for input values received via IOHIDDeviceRegisterInputValueCallback.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDDevice.
+    ///
+    /// - matching: CFDictionaryRef containg device matching criteria.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDElement and declared in <IOKit/hid/IOHIDKeys.h>. Passing a NULL dictionary will result in all devices being enumerated. Any subsequent calls will cause the hid manager to release previously matched input elements and restart the matching process using the revised criteria. If interested in multiple, specific device elements, please defer to using IOHIDDeviceSetInputValueMatchingMultiple.
+    ///
+    ///
     /// Sets matching criteria for input values received via
     /// IOHIDDeviceRegisterInputValueCallback.
     ///
@@ -2118,8 +3191,6 @@ impl IOHIDDevice {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588654-iohiddevicesetinputvaluematching?language=objc)
     #[doc(alias = "IOHIDDeviceSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -2132,6 +3203,19 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceSetInputValueMatching(self, matching) }
     }
 
+    /// Sets multiple matching criteria for input values received via IOHIDDeviceRegisterInputValueCallback.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDDevice.
+    ///
+    /// - multiple: CFArrayRef containing multiple CFDictionaryRef objects containg input element matching criteria.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDElement and declared in <IOKit/hid/IOHIDKeys.h>. This method is useful if interested in multiple, specific elements .
+    ///
+    ///
     /// Sets multiple matching criteria for input values received via
     /// IOHIDDeviceRegisterInputValueCallback.
     ///
@@ -2149,8 +3233,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `multiple` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588645-iohiddevicesetinputvaluematching?language=objc)
     #[doc(alias = "IOHIDDeviceSetInputValueMatchingMultiple")]
     #[inline]
     pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -2163,6 +3245,28 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceSetInputValueMatchingMultiple(self, multiple) }
     }
 
+    /// Sets a value for an element.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - element: IOHIDElementRef whose value is to be modified.
+    ///
+    /// - value: IOHIDValueRef containing value to be set.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves synchronously and will block until the report has been issued to the device. It is only relevent for either output or feature type elements. If setting values for multiple elements you may want to consider using IOHIDDeviceSetValueMultiple or IOHIDTransaction.
+    ///
+    ///
     /// Sets a value for an element.
     ///
     /// This method behaves synchronously and will block until the
@@ -2178,8 +3282,6 @@ impl IOHIDDevice {
     /// Parameter `value`: IOHIDValueRef containing value to be set.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588651-iohiddevicesetvalue?language=objc)
     #[doc(alias = "IOHIDDeviceSetValue")]
     #[inline]
     pub fn set_value(&self, element: &IOHIDElement, value: &IOHIDValue) -> IOReturn {
@@ -2193,6 +3295,26 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceSetValue(self, element, value) }
     }
 
+    /// Sets multiple values for multiple elements.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - muliple: CFDictionaryRef where key is IOHIDElementRef and value is IOHIDValueRef.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves synchronously and will block until the report has been issued to the device. It is only relevent for either output or feature type elements.
+    ///
+    ///
     /// Sets multiple values for multiple elements.
     ///
     /// This method behaves synchronously and will block until the
@@ -2210,8 +3332,6 @@ impl IOHIDDevice {
     ///
     /// - `multiple` generic must be of the correct type.
     /// - `multiple` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588669-iohiddevicesetvaluemultiple?language=objc)
     #[doc(alias = "IOHIDDeviceSetValueMultiple")]
     #[inline]
     pub unsafe fn set_value_multiple(&self, multiple: &CFDictionary) -> IOReturn {
@@ -2224,6 +3344,34 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceSetValueMultiple(self, multiple) }
     }
 
+    /// Sets a value for an element and returns status via a completion callback.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - element: IOHIDElementRef whose value is to be modified.
+    ///
+    /// - value: IOHIDValueRef containing value to be set.
+    ///
+    /// - timeout: CFTimeInterval containing the timeout.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDValueCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves asynchronously and will invoke the callback once the report has been issued to the device. It is only relevent for either output or feature type elements. If setting values for multiple elements you may want to consider using IOHIDDeviceSetValueWithCallback or IOHIDTransaction.
+    ///
+    ///
     /// Sets a value for an element.
     ///
     /// This method currently only behaves synchronously and will not
@@ -2250,8 +3398,6 @@ impl IOHIDDevice {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588667-iohiddevicesetvaluewithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceSetValueWithCallback")]
     #[inline]
     pub unsafe fn set_value_with_callback(
@@ -2275,6 +3421,32 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceSetValueWithCallback(self, element, value, timeout, callback, context) }
     }
 
+    /// Sets multiple values for multiple elements and returns status via a completion callback.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - muliple: CFDictionaryRef where key is IOHIDElementRef and value is IOHIDValueRef.
+    ///
+    /// - timeout: CFTimeInterval containing the timeout.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDValueMultipleCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves asynchronously and will invoke the callback once the report has been issued to the device. It is only relevent for either output or feature type elements.
+    ///
+    ///
     /// Sets multiple values for multiple elements and returns status
     /// via a completion callback.
     ///
@@ -2302,8 +3474,6 @@ impl IOHIDDevice {
     /// - `multiple` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588658-iohiddevicesetvaluemultiplewithc?language=objc)
     #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn set_value_multiple_with_callback(
@@ -2329,6 +3499,28 @@ impl IOHIDDevice {
 
     /// Gets a value for an element.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - element: IOHIDElementRef whose value is to be obtained.
+    ///
+    /// - pValue: Pointer to IOHIDValueRef to be obtained.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves synchronously and return back immediately for input type element. If requesting a value for a feature element, this will block until the report has been issued to the device. If obtaining values for multiple elements you may want to consider using IOHIDDeviceCopyValueMultiple or IOHIDTransaction.
+    ///
+    ///
+    /// Gets a value for an element.
+    ///
     /// This method behaves synchronously and returns immediately
     /// for input type elements. If requesting a value for a feature
     /// element, this will block until the report has been issued to the
@@ -2346,8 +3538,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `p_value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588657-iohiddevicegetvalue?language=objc)
     #[doc(alias = "IOHIDDeviceGetValue")]
     #[inline]
     pub unsafe fn value(
@@ -2366,16 +3556,13 @@ impl IOHIDDevice {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicegetvalueoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDDeviceGetValueOptions(pub u32);
 impl IOHIDDeviceGetValueOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicegetvalueoptions/kiohiddevicegetvaluewithupdate?language=objc)
     #[doc(alias = "kIOHIDDeviceGetValueWithUpdate")]
     pub const WithUpdate: Self = Self(0x00020000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicegetvalueoptions/kiohiddevicegetvaluewithoutupdate?language=objc)
     #[doc(alias = "kIOHIDDeviceGetValueWithoutUpdate")]
     pub const WithoutUpdate: Self = Self(0x00040000);
 }
@@ -2412,8 +3599,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `p_value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2937933-iohiddevicegetvaluewithoptions?language=objc)
     #[doc(alias = "IOHIDDeviceGetValueWithOptions")]
     #[inline]
     pub unsafe fn value_with_options(
@@ -2435,6 +3620,28 @@ impl IOHIDDevice {
 
     /// Copies a values for multiple elements.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - elements: CFArrayRef containing multiple IOHIDElementRefs whose values are to be obtained.
+    ///
+    /// - pMultiple: Pointer to CFDictionaryRef where the keys are the provided elements and the values are the requested values.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves synchronously and return back immediately for input type element. If requesting a value for a feature element, this will block until the report has been issued to the device.
+    ///
+    ///
+    /// Copies a values for multiple elements.
+    ///
     /// This method behaves synchronously and returns immediately
     /// for input type elements. If requesting a value for a feature
     /// element, this will block until the report has been issued to the
@@ -2454,8 +3661,6 @@ impl IOHIDDevice {
     ///
     /// - `elements` generic must be of the correct type.
     /// - `p_multiple` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588652-iohiddevicecopyvaluemultiple?language=objc)
     #[doc(alias = "IOHIDDeviceCopyValueMultiple")]
     #[inline]
     pub unsafe fn copy_value_multiple(
@@ -2473,6 +3678,34 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceCopyValueMultiple(self, elements, p_multiple) }
     }
 
+    /// Gets a value for an element and returns status via a completion callback.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - element: IOHIDElementRef whose value is to be obtained.
+    ///
+    /// - pValue: Pointer to IOHIDValueRef to be passedback.
+    ///
+    /// - timeout: CFTimeInterval containing the timeout.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDValueCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves asynchronusly and is only relevent for either output or feature type elements. If obtaining values for multiple elements you may want to consider using IOHIDDeviceCopyValueMultipleWithCallback or IOHIDTransaction.
+    ///
+    ///
     /// Gets a value for an element.
     ///
     /// This method currently only behaves synchronously and will not
@@ -2500,8 +3733,6 @@ impl IOHIDDevice {
     /// - `p_value` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588647-iohiddevicegetvaluewithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceGetValueWithCallback")]
     #[inline]
     pub unsafe fn value_with_callback(
@@ -2527,6 +3758,34 @@ impl IOHIDDevice {
         }
     }
 
+    /// Copies a values for multiple elements and returns status via a completion callback.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - elements: CFArrayRef containing multiple IOHIDElementRefs whose values are to be obtained.
+    ///
+    /// - pMultiple: Pointer to CFDictionaryRef where the keys are the provided elements and the values are the requested values.
+    ///
+    /// - timeout: CFTimeInterval containing the timeout.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDValueMultipleCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves asynchronusly and is only relevent for either output or feature type elements.
+    ///
+    ///
     /// Copies a values for multiple elements and returns status via a
     /// completion callback.
     ///
@@ -2556,8 +3815,6 @@ impl IOHIDDevice {
     /// - `p_multiple` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588655-iohiddevicecopyvaluemultiplewith?language=objc)
     #[doc(alias = "IOHIDDeviceCopyValueMultipleWithCallback")]
     #[inline]
     pub unsafe fn copy_value_multiple_with_callback(
@@ -2587,6 +3844,32 @@ impl IOHIDDevice {
 
     /// Sends a report to the device.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - reportType: Type of report being sent.
+    ///
+    /// - reportID: ID of the report being sent. If the device supports multiple reports, this should also be set in the first byte of the report.
+    ///
+    /// - report: The report bytes to be sent to the device.
+    ///
+    /// - reportLength: The length of the report to be sent to the device.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves synchronously and will block until the report has been issued to the device. It is only relevent for either output or feature type reports.
+    ///
+    ///
+    /// Sends a report to the device.
+    ///
     /// This method behaves synchronously and will block until the
     /// report has been issued to the device. It is only relevent for
     /// either output or feature type reports.
@@ -2608,8 +3891,6 @@ impl IOHIDDevice {
     /// # Safety
     ///
     /// `report` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588656-iohiddevicesetreport?language=objc)
     #[doc(alias = "IOHIDDeviceSetReport")]
     #[inline]
     pub unsafe fn set_report(
@@ -2631,6 +3912,38 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceSetReport(self, report_type, report_id, report, report_length) }
     }
 
+    /// Sends a report to the device.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - reportType: Type of report being sent.
+    ///
+    /// - reportID: ID of the report being sent. If the device supports multiple reports, this should also be set in the first byte of the report.
+    ///
+    /// - report: The report bytes to be sent to the device.
+    ///
+    /// - reportLength: The length of the report to be sent to the device.
+    ///
+    /// - timeout: CFTimeInterval containing the timeout.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDReportCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves asynchronously and will block until the report has been issued to the device. It is only relevent for either output or feature type reports.
+    ///
+    ///
     /// Sends a report to the device.
     ///
     /// This method behaves asynchronously. It is only relevent for
@@ -2662,8 +3975,6 @@ impl IOHIDDevice {
     /// - `report` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588661-iohiddevicesetreportwithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceSetReportWithCallback")]
     #[inline]
     pub unsafe fn set_report_with_callback(
@@ -2704,6 +4015,32 @@ impl IOHIDDevice {
 
     /// Obtains a report from the device.
     ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - reportType: Type of report being requested.
+    ///
+    /// - reportID: ID of the report being requested.
+    ///
+    /// - report: Pointer to preallocated buffer in which to copy inbound report data.
+    ///
+    /// - pReportLength: Pointer to length of preallocated buffer. This value will be modified to refect the length of the returned report.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves synchronously and will block until the report has been received from the device. This is only intended for feature reports because of sporadic devicesupport for polling input reports. Please defer to using IOHIDDeviceRegisterInputReportCallback for obtaining input reports.
+    ///
+    ///
+    /// Obtains a report from the device.
+    ///
     /// This method behaves synchronously and will block until the
     /// report has been received from the device. It is only relevent for
     /// either output or feature type reports. Please defer to using
@@ -2729,8 +4066,6 @@ impl IOHIDDevice {
     ///
     /// - `report` must be a valid pointer.
     /// - `p_report_length` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588659-iohiddevicegetreport?language=objc)
     #[doc(alias = "IOHIDDeviceGetReport")]
     #[inline]
     pub unsafe fn report(
@@ -2752,6 +4087,38 @@ impl IOHIDDevice {
         unsafe { IOHIDDeviceGetReport(self, report_type, report_id, report, p_report_length) }
     }
 
+    /// Obtains a report from the device.
+    ///
+    /// Parameters:
+    /// - device: Reference to an IOHIDDevice.
+    ///
+    /// - reportType: Type of report being requested.
+    ///
+    /// - reportID: ID of the report being requested.
+    ///
+    /// - report: Pointer to preallocated buffer in which to copy inbound report data.
+    ///
+    /// - pReportLength: Pointer to length of preallocated buffer.
+    ///
+    /// Pointer to length of preallocated buffer. This value will be modified to refect the length of the returned report.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDReportCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method behaves asynchronously and will block until the report has been received from the device. This is only intended for feature reports because of sporadic devicesupport for polling input reports. Please defer to using IOHIDDeviceRegisterInputReportCallback for obtaining input reports.
+    ///
+    ///
     /// Obtains a report from the device.
     ///
     /// This method behaves asynchronously. It is only relevent for
@@ -2787,8 +4154,6 @@ impl IOHIDDevice {
     /// - `p_report_length` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1588662-iohiddevicegetreportwithcallback?language=objc)
     #[doc(alias = "IOHIDDeviceGetReportWithCallback")]
     #[inline]
     pub unsafe fn report_with_callback(
@@ -2830,8 +4195,7 @@ impl IOHIDDevice {
 
 unsafe impl ConcreteType for IOHIDElement {
     /// Returns the type identifier of all IOHIDElement instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564120-iohidelementgettypeid?language=objc)
+    /// Returns the type identifier of all IOHIDElement instances.
     #[doc(alias = "IOHIDElementGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -2843,6 +4207,26 @@ unsafe impl ConcreteType for IOHIDElement {
 }
 
 impl IOHIDElement {
+    /// Creates an element from a dictionary.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to be used during creation.
+    ///
+    /// - dictionary: dictionary containing values in which to create element.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a new IOHIDElementRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary should contain keys defined in IOHIDKeys.h and start with kIOHIDElement. This call is meant be used by a IOHIDDeviceDeviceInterface object.
+    ///
+    ///
     /// Creates an element from a dictionary.
     ///
     /// The dictionary should contain keys defined in IOHIDKeys.h and start with kIOHIDElement.  This call is meant be used by a IOHIDDeviceDeviceInterface object.
@@ -2857,8 +4241,6 @@ impl IOHIDElement {
     ///
     /// - `dictionary` generic must be of the correct type.
     /// - `dictionary` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564115-iohidelementcreatewithdictionary?language=objc)
     #[doc(alias = "IOHIDElementCreateWithDictionary")]
     #[inline]
     pub unsafe fn with_dictionary(
@@ -2879,11 +4261,21 @@ impl IOHIDElement {
 
     /// Obtain the device associated with the element.
     ///
+    /// Parameters:
+    /// - element: IOHIDElement to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the a reference to the device.
+    ///
+    ///
+    /// Obtain the device associated with the element.
+    ///
     /// Parameter `element`: IOHIDElement to be queried.
     ///
     /// Returns: Returns the a reference to the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564139-iohidelementgetdevice?language=objc)
     #[doc(alias = "IOHIDElementGetDevice")]
     #[inline]
     pub fn device(&self) -> CFRetained<IOHIDDevice> {
@@ -2898,13 +4290,29 @@ impl IOHIDElement {
 
     /// Returns the parent for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns an IOHIDElementRef referencing the parent element.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The parent element can be an element of type kIOHIDElementTypeCollection.
+    ///
+    ///
+    /// Returns the parent for the element.
+    ///
     /// The parent element can be an element of type kIOHIDElementTypeCollection.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns an IOHIDElementRef referencing the parent element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564144-iohidelementgetparent?language=objc)
     #[doc(alias = "IOHIDElementGetParent")]
     #[inline]
     pub fn parent(&self) -> Option<CFRetained<IOHIDElement>> {
@@ -2917,13 +4325,29 @@ impl IOHIDElement {
 
     /// Returns the children for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns an CFArrayRef containing element objects of type IOHIDElementRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An element of type kIOHIDElementTypeCollection usually contains children.
+    ///
+    ///
+    /// Returns the children for the element.
+    ///
     /// An element of type kIOHIDElementTypeCollection usually contains children.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns an CFArrayRef containing element objects of type IOHIDElementRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564119-iohidelementgetchildren?language=objc)
     #[doc(alias = "IOHIDElementGetChildren")]
     #[inline]
     pub fn children(&self) -> Option<CFRetained<CFArray>> {
@@ -2936,13 +4360,24 @@ impl IOHIDElement {
 
     /// Establish a relationship between one or more elements.
     ///
+    /// Parameters:
+    /// - element: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// - toAttach: The element to be attached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is useful for grouping HID elements with related functionality.
+    ///
+    ///
+    /// Establish a relationship between one or more elements.
+    ///
     /// This is useful for grouping HID elements with related functionality.
     ///
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Parameter `toAttach`: The element to be attached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564146-iohidelementattach?language=objc)
     #[doc(alias = "IOHIDElementAttach")]
     #[inline]
     pub fn attach(&self, to_attach: &IOHIDElement) {
@@ -2954,13 +4389,24 @@ impl IOHIDElement {
 
     /// Remove a relationship between one or more elements.
     ///
+    /// Parameters:
+    /// - element: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// - toDetach: The element to be detached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is useful for grouping HID elements with related functionality.
+    ///
+    ///
+    /// Remove a relationship between one or more elements.
+    ///
     /// This is useful for grouping HID elements with related functionality.
     ///
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Parameter `toDetach`: The element to be detached. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564116-iohidelementdetach?language=objc)
     #[doc(alias = "IOHIDElementDetach")]
     #[inline]
     pub fn detach(&self, to_detach: &IOHIDElement) {
@@ -2972,13 +4418,29 @@ impl IOHIDElement {
 
     /// Obtain attached elements.
     ///
+    /// Parameters:
+    /// - element: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a copy of the current attached elements.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Attached elements are those that have been grouped via IOHIDElementAttach.
+    ///
+    ///
+    /// Obtain attached elements.
+    ///
     /// Attached elements are those that have been grouped via IOHIDElementAttach.
     ///
     /// Parameter `element`: The element to be modified. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns a copy of the current attached elements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564123-iohidelementcopyattached?language=objc)
     #[doc(alias = "IOHIDElementCopyAttached")]
     #[inline]
     pub fn attached(&self) -> Option<CFRetained<CFArray>> {
@@ -2991,13 +4453,29 @@ impl IOHIDElement {
 
     /// Retrieves the cookie for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the IOHIDElementCookie for the element.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The IOHIDElementCookie represent a unique identifier for an element within a device.
+    ///
+    ///
+    /// Retrieves the cookie for the element.
+    ///
     /// The IOHIDElementCookie represent a unique identifier for an element within a device.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementCookie for the element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564124-iohidelementgetcookie?language=objc)
     #[doc(alias = "IOHIDElementGetCookie")]
     #[inline]
     pub fn cookie(&self) -> IOHIDElementCookie {
@@ -3009,11 +4487,21 @@ impl IOHIDElement {
 
     /// Retrieves the type for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the IOHIDElementType for the element.
+    ///
+    ///
+    /// Retrieves the type for the element.
+    ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementType for the element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564135-iohidelementgettype?language=objc)
     #[doc(alias = "IOHIDElementGetType")]
     #[inline]
     pub fn r#type(&self) -> IOHIDElementType {
@@ -3025,13 +4513,29 @@ impl IOHIDElement {
 
     /// Retrieves the collection type for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the IOHIDElementCollectionType for the element.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The value returned by this method only makes sense if the element type is kIOHIDElementTypeCollection.
+    ///
+    ///
+    /// Retrieves the collection type for the element.
+    ///
     /// The value returned by this method only makes sense if the element type is kIOHIDElementTypeCollection.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the IOHIDElementCollectionType for the element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564132-iohidelementgetcollectiontype?language=objc)
     #[doc(alias = "IOHIDElementGetCollectionType")]
     #[inline]
     pub fn collection_type(&self) -> IOHIDElementCollectionType {
@@ -3043,11 +4547,21 @@ impl IOHIDElement {
 
     /// Retrieves the usage page for an element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the usage page for the element.
+    ///
+    ///
+    /// Retrieves the usage page for an element.
+    ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the usage page for the element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564128-iohidelementgetusagepage?language=objc)
     #[doc(alias = "IOHIDElementGetUsagePage")]
     #[inline]
     pub fn usage_page(&self) -> u32 {
@@ -3059,11 +4573,21 @@ impl IOHIDElement {
 
     /// Retrieves the usage for an element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the usage for the element.
+    ///
+    ///
+    /// Retrieves the usage for an element.
+    ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the usage for the element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564126-iohidelementgetusage?language=objc)
     #[doc(alias = "IOHIDElementGetUsage")]
     #[inline]
     pub fn usage(&self) -> u32 {
@@ -3075,13 +4599,29 @@ impl IOHIDElement {
 
     /// Returns the virtual property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the TRUE if virtual or FALSE if not.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates whether the element is a virtual element.
+    ///
+    ///
+    /// Returns the virtual property for the element.
+    ///
     /// Indicates whether the element is a virtual element.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the TRUE if virtual or FALSE if not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564125-iohidelementisvirtual?language=objc)
     #[doc(alias = "IOHIDElementIsVirtual")]
     #[inline]
     pub fn is_virtual(&self) -> bool {
@@ -3094,14 +4634,30 @@ impl IOHIDElement {
 
     /// Returns the relative property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if relative or FALSE if absolute.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates whether the data is relative (indicating the change in value from the last report) or absolute (based on a fixed origin).
+    ///
+    ///
+    /// Returns the relative property for the element.
+    ///
     /// Indicates whether the data is relative (indicating the change in value from the last report) or absolute
     /// (based on a fixed origin).
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if relative or FALSE if absolute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564129-iohidelementisrelative?language=objc)
     #[doc(alias = "IOHIDElementIsRelative")]
     #[inline]
     pub fn is_relative(&self) -> bool {
@@ -3114,13 +4670,29 @@ impl IOHIDElement {
 
     /// Returns the wrap property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if wrapping or FALSE if non-wrapping.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Wrap indicates whether the data "rolls over" when reaching either the extreme high or low value.
+    ///
+    ///
+    /// Returns the wrap property for the element.
+    ///
     /// Wrap indicates whether the data "rolls over" when reaching either the extreme high or low value.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if wrapping or FALSE if non-wrapping.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564127-iohidelementiswrapping?language=objc)
     #[doc(alias = "IOHIDElementIsWrapping")]
     #[inline]
     pub fn is_wrapping(&self) -> bool {
@@ -3131,6 +4703,26 @@ impl IOHIDElement {
         ret != 0
     }
 
+    /// Returns the array property for the element.
+    ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if array or FALSE if variable.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates whether the element represents variable or array data values. Variable values represent data from a physical control. An array returns an index in each field that corresponds to the pressed button (like keyboard scan codes).
+    ///
+    /// **Note:** The HID Manager will represent most elements as "variable" including the possible usages of an array. Array indices will remain as "array" elements with a usage of 0xffffffff.
+    ///
+    ///
     /// Returns the array property for the element.
     ///
     /// Indicates whether the element represents variable or array data values. Variable values represent data from a
@@ -3146,8 +4738,6 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if array or FALSE if variable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564133-iohidelementisarray?language=objc)
     #[doc(alias = "IOHIDElementIsArray")]
     #[inline]
     pub fn is_array(&self) -> bool {
@@ -3160,14 +4750,30 @@ impl IOHIDElement {
 
     /// Returns the linear property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if non linear or FALSE if linear.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates whether the value for the element has been processed in some way, and no longer represents a linear relationship between what is measured and the value that is reported.
+    ///
+    ///
+    /// Returns the linear property for the element.
+    ///
     /// Indicates whether the value for the element has been processed in some way, and no longer represents a linear
     /// relationship between what is measured and the value that is reported.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if non linear or FALSE if linear.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564131-iohidelementisnonlinear?language=objc)
     #[doc(alias = "IOHIDElementIsNonLinear")]
     #[inline]
     pub fn is_non_linear(&self) -> bool {
@@ -3180,14 +4786,30 @@ impl IOHIDElement {
 
     /// Returns the preferred state property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if preferred state or FALSE if no preferred state.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates whether the element has a preferred state to which it will return when the user is not physically interacting with the control.
+    ///
+    ///
+    /// Returns the preferred state property for the element.
+    ///
     /// Indicates whether the element has a preferred state to which it will return when the user is not physically
     /// interacting with the control.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if preferred state or FALSE if no preferred state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564141-iohidelementhaspreferredstate?language=objc)
     #[doc(alias = "IOHIDElementHasPreferredState")]
     #[inline]
     pub fn has_preferred_state(&self) -> bool {
@@ -3200,13 +4822,29 @@ impl IOHIDElement {
 
     /// Returns the null state property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if null state or FALSE if no null state.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates whether the element has a state in which it is not sending meaningful data.
+    ///
+    ///
+    /// Returns the null state property for the element.
+    ///
     /// Indicates whether the element has a state in which it is not sending meaningful data.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns TRUE if null state or FALSE if no null state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564145-iohidelementhasnullstate?language=objc)
     #[doc(alias = "IOHIDElementHasNullState")]
     #[inline]
     pub fn has_null_state(&self) -> bool {
@@ -3219,11 +4857,21 @@ impl IOHIDElement {
 
     /// Returns the name for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns CFStringRef containing the element name.
+    ///
+    ///
+    /// Returns the name for the element.
+    ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns CFStringRef containing the element name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564117-iohidelementgetname?language=objc)
     #[doc(alias = "IOHIDElementGetName")]
     #[inline]
     pub fn name(&self) -> CFRetained<CFString> {
@@ -3238,13 +4886,29 @@ impl IOHIDElement {
 
     /// Returns the report ID for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the report ID.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The report ID represents what report this particular element belongs to.
+    ///
+    ///
+    /// Returns the report ID for the element.
+    ///
     /// The report ID represents what report this particular element belongs to.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report ID.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564122-iohidelementgetreportid?language=objc)
     #[doc(alias = "IOHIDElementGetReportID")]
     #[inline]
     pub fn report_id(&self) -> u32 {
@@ -3256,6 +4920,18 @@ impl IOHIDElement {
 
     /// Returns the report size in bits for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the report size.
+    ///
+    ///
+    /// Returns the report size in bits for the element.
+    ///
     /// If the element is an array type the total number of bit in the element is equal to
     /// IOHIDElementGetReportSize(element) * IOHIDElementGetReportCount(element). Otherwise this size is the
     /// total number of bits in the element.
@@ -3264,8 +4940,6 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564130-iohidelementgetreportsize?language=objc)
     #[doc(alias = "IOHIDElementGetReportSize")]
     #[inline]
     pub fn report_size(&self) -> u32 {
@@ -3277,6 +4951,18 @@ impl IOHIDElement {
 
     /// Returns the report count for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the report count.
+    ///
+    ///
+    /// Returns the report count for the element.
+    ///
     /// If the IOHIDElementGetReportCount(element) is greater than one and the element does not represent an
     /// array then the element represents a repeated set of usages, the size of each usage in the element is
     /// IOHIDElementGetReportSize(element) / IOHIDElementGetReportCount(element).
@@ -3285,8 +4971,6 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the report count.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564142-iohidelementgetreportcount?language=objc)
     #[doc(alias = "IOHIDElementGetReportCount")]
     #[inline]
     pub fn report_count(&self) -> u32 {
@@ -3298,14 +4982,30 @@ impl IOHIDElement {
 
     /// Returns the unit property for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the unit.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The unit property is described in more detail in Section 6.2.2.7 of the "Device Class Definition for Human Interface Devices(HID)" Specification, Version 1.11.
+    ///
+    ///
+    /// Returns the unit property for the element.
+    ///
     /// The unit property is described in more detail in Section 6.2.2.7 of the
     /// "Device Class Definition for Human Interface Devices(HID)" Specification, Version 1.11.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the unit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564136-iohidelementgetunit?language=objc)
     #[doc(alias = "IOHIDElementGetUnit")]
     #[inline]
     pub fn unit(&self) -> u32 {
@@ -3315,6 +5015,24 @@ impl IOHIDElement {
         unsafe { IOHIDElementGetUnit(self) }
     }
 
+    /// Returns the unit exponenet in base 10 for the element.
+    ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the unit exponent.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The unit exponent property is described in more detail in Section 6.2.2.7 of the "Device Class Definition for Human Interface Devices(HID)" Specification, Version 1.11.
+    ///
+    ///
     /// Returns the code associated with the unit exponent as outlined in the HID spec
     ///
     /// The unit exponent property is described in more detail in Section 6.2.2.7 of the
@@ -3323,8 +5041,6 @@ impl IOHIDElement {
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the unit exponent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564121-iohidelementgetunitexponent?language=objc)
     #[doc(alias = "IOHIDElementGetUnitExponent")]
     #[inline]
     pub fn unit_exponent(&self) -> u32 {
@@ -3336,13 +5052,29 @@ impl IOHIDElement {
 
     /// Returns the minimum value possible for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the logical minimum.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This corresponds to the logical minimun, which indicates the lower bounds of a variable element.
+    ///
+    ///
+    /// Returns the minimum value possible for the element.
+    ///
     /// This corresponds to the logical minimun, which indicates the lower bounds of a variable element.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the logical minimum.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564137-iohidelementgetlogicalmin?language=objc)
     #[doc(alias = "IOHIDElementGetLogicalMin")]
     #[inline]
     pub fn logical_min(&self) -> CFIndex {
@@ -3354,13 +5086,29 @@ impl IOHIDElement {
 
     /// Returns the maximum value possible for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the logical maximum.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This corresponds to the logical maximum, which indicates the upper bounds of a variable element.
+    ///
+    ///
+    /// Returns the maximum value possible for the element.
+    ///
     /// This corresponds to the logical maximum, which indicates the upper bounds of a variable element.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the logical maximum.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564143-iohidelementgetlogicalmax?language=objc)
     #[doc(alias = "IOHIDElementGetLogicalMax")]
     #[inline]
     pub fn logical_max(&self) -> CFIndex {
@@ -3372,13 +5120,29 @@ impl IOHIDElement {
 
     /// Returns the scaled minimum value possible for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the physical minimum.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Minimum value for the physical extent of a variable element. This represents the value for the logical minimum with units applied to it.
+    ///
+    ///
+    /// Returns the scaled minimum value possible for the element.
+    ///
     /// Minimum value for the physical extent of a variable element. This represents the value for the logical minimum with units applied to it.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the physical minimum.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564140-iohidelementgetphysicalmin?language=objc)
     #[doc(alias = "IOHIDElementGetPhysicalMin")]
     #[inline]
     pub fn physical_min(&self) -> CFIndex {
@@ -3390,13 +5154,29 @@ impl IOHIDElement {
 
     /// Returns the scaled maximum value possible for the element.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the physical maximum.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Maximum value for the physical extent of a variable element. This represents the value for the logical maximum with units applied to it.
+    ///
+    ///
+    /// Returns the scaled maximum value possible for the element.
+    ///
     /// Maximum value for the physical extent of a variable element.  This represents the value for the logical maximum with units applied to it.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
     ///
     /// Returns: Returns the physical maximum.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564134-iohidelementgetphysicalmax?language=objc)
     #[doc(alias = "IOHIDElementGetPhysicalMax")]
     #[inline]
     pub fn physical_max(&self) -> CFIndex {
@@ -3408,6 +5188,26 @@ impl IOHIDElement {
 
     /// Returns the an element property.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// - key: The key to be used when querying the element.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the property.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Property keys are prefixed by kIOHIDElement and declared in IOHIDKeys.h.
+    ///
+    ///
+    /// Returns the an element property.
+    ///
     /// Property keys are prefixed by kIOHIDElement and declared in IOHIDKeys.h.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
@@ -3415,8 +5215,6 @@ impl IOHIDElement {
     /// Parameter `key`: The key to be used when querying the element.
     ///
     /// Returns: Returns the property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564118-iohidelementgetproperty?language=objc)
     #[doc(alias = "IOHIDElementGetProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -3432,6 +5230,26 @@ impl IOHIDElement {
 
     /// Sets an element property.
     ///
+    /// Parameters:
+    /// - element: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
+    ///
+    /// - key: The key to be used when querying the element.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method can be used to set arbitrary element properties, such as application specific references.
+    ///
+    ///
+    /// Sets an element property.
+    ///
     /// This method can be used to set arbitrary element properties, such as application specific references.
     ///
     /// Parameter `element`: The element to be queried. If this parameter is not a valid IOHIDElementRef, the behavior is undefined.
@@ -3443,8 +5261,6 @@ impl IOHIDElement {
     /// # Safety
     ///
     /// `property` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1564138-iohidelementsetproperty?language=objc)
     #[doc(alias = "IOHIDElementSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, property: &CFType) -> bool {
@@ -3460,7 +5276,6 @@ impl IOHIDElement {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohideventstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHIDEventStruct {
@@ -3492,6 +5307,22 @@ unsafe impl RefEncode for IOHIDEventStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// Parameters:
+/// - target: void * pointer to your data, often a pointer to an object.
+///
+/// - result: Completion result of desired operation.
+///
+/// - refcon: void * pointer to more data.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a completion routine is called, see IOHIDLib.h:setRemovalCallback().
+///
+///
 /// Type and arguments of callout C function that is used when a
 /// completion routine is called, see
 /// IOHIDLib.h:setRemovalCallback().
@@ -3503,11 +5334,27 @@ unsafe impl RefEncode for IOHIDEventStruct {
 /// Parameter `refcon`: void * pointer to more data.
 ///
 /// Parameter `sender`: Interface instance sending the completion routine.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidcallbackfunction?language=objc)
 pub type IOHIDCallbackFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void)>;
 
+///
+/// Parameters:
+/// - target: void * pointer to your data, often a pointer to an object.
+///
+/// - result: Completion result of desired operation.
+///
+/// - refcon: void * pointer to more data.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+/// - elementCookie: Element within interface instance sending completion.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a completion routine is called, see IOHIDLib.h:setElementValue().
+///
+///
 /// Type and arguments of callout C function that is used when a
 /// completion routine is called, see IOHIDLib.h:setElementValue().
 ///
@@ -3520,8 +5367,6 @@ pub type IOHIDCallbackFunction =
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// Parameter `elementCookie`: Element within interface instance sending completion.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcallbackfunction?language=objc)
 pub type IOHIDElementCallbackFunction = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -3532,6 +5377,24 @@ pub type IOHIDElementCallbackFunction = Option<
     ),
 >;
 
+///
+/// Parameters:
+/// - target: void * pointer to your data, often a pointer to an object.
+///
+/// - result: Completion result of desired operation.
+///
+/// - refcon: void * pointer to more data.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+/// - bufferSize: Size of the buffer received upon completion.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a completion routine is called, see IOHIDLib.h:setReport().
+///
+///
 /// Type and arguments of callout C function that is used when a
 /// completion routine is called, see IOHIDLib.h:setReport().
 ///
@@ -3544,12 +5407,10 @@ pub type IOHIDElementCallbackFunction = Option<
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// Parameter `bufferSize`: Size of the buffer received upon completion.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreportcallbackfunction?language=objc)
 pub type IOHIDReportCallbackFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void, u32)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface?language=objc)
+/// CFPlugin object subclass which provides the primary interface to HID devices.
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -3672,7 +5533,7 @@ unsafe impl RefEncode for IOHIDDeviceInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface121?language=objc)
+/// CFPlugin object subclass which provides the primary interface to HID devices. This class is a subclass of IOHIDDeviceInterface.
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -3795,7 +5656,7 @@ unsafe impl RefEncode for IOHIDDeviceInterface121 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddeviceinterface122?language=objc)
+/// CFPlugin object subclass which provides the primary interface to HID devices. This class is a subclass of IOHIDDeviceInterface121.
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -3937,7 +5798,7 @@ unsafe impl RefEncode for IOHIDDeviceInterface122 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidqueueinterface?language=objc)
+/// CFPlugin object subclass which provides an interface for input queues from HID devices. Created by an IOHIDDeviceInterface object.
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -4019,7 +5880,7 @@ unsafe impl RefEncode for IOHIDQueueInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidoutputtransactioninterface?language=objc)
+/// CFPlugin object subclass which privides interface for output transactions to HID devices. Created by a IOHIDDeviceInterface object.
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -4115,6 +5976,7 @@ unsafe impl RefEncode for IOHIDOutputTransactionInterface {
 }
 
 /// Various options that can be supplied to IOHIDManager functions.
+/// Various options that can be supplied to IOHIDManager functions.
 ///
 /// explicit enough.
 ///
@@ -4154,27 +6016,38 @@ unsafe impl RefEncode for IOHIDOutputTransactionInterface {
 ///
 /// This also means that the manager will not be able to receive input
 /// reports or input values, since the devices may or may not be scheduled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidmanageroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDManagerOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDManagerOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionnone?language=objc)
+///
+/// ## Discussion
+///
+/// For those times when supplying 0 just isn't explicit enough.
+///
+///
         #[doc(alias = "kIOHIDManagerOptionNone")]
         const None = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionusepersistentproperties?language=objc)
+///
+/// ## Discussion
+///
+/// This constant can be supplied to [`IOHIDManagerCreate`](https://developer.apple.com/documentation/iokit/1438383-iohidmanagercreate) to create and/or use a persistent properties store.
+///
+///
         #[doc(alias = "kIOHIDManagerOptionUsePersistentProperties")]
         const UsePersistentProperties = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptiondonotloadproperties?language=objc)
+///
+/// ## Discussion
+///
+/// This constant can be supplied to [`IOHIDManagerCreate`](https://developer.apple.com/documentation/iokit/1438383-iohidmanagercreate)
+///
+///
         #[doc(alias = "kIOHIDManagerOptionDoNotLoadProperties")]
         const DoNotLoadProperties = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptiondonotsaveproperties?language=objc)
         #[doc(alias = "kIOHIDManagerOptionDoNotSaveProperties")]
         const DoNotSaveProperties = 0x4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionindependentdevices?language=objc)
         #[doc(alias = "kIOHIDManagerOptionIndependentDevices")]
         const IndependentDevices = 0x8;
     }
@@ -4208,8 +6081,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for IOHIDManager {
     /// Returns the type identifier of all IOHIDManager instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438375-iohidmanagergettypeid?language=objc)
+    /// Returns the type identifier of all IOHIDManager instances.
     #[doc(alias = "IOHIDManagerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -4221,6 +6093,26 @@ unsafe impl ConcreteType for IOHIDManager {
 }
 
 impl IOHIDManager {
+    /// Creates an IOHIDManager object.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to be used during creation.
+    ///
+    /// - options: Supply [`kIOHIDManagerOptionUsePersistentProperties`](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionusepersistentproperties) to load properties from the default persistent property store. Otherwise supply [`kIOHIDManagerOptionNone`](https://developer.apple.com/documentation/iokit/1645245-anonymous/kiohidmanageroptionnone) (or 0).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a new IOHIDManagerRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The IOHIDManager object is meant as a global management system for communicating with HID devices.
+    ///
+    ///
     /// Creates an IOHIDManager object.
     ///
     /// The IOHIDManager object is meant as a global management system
@@ -4244,8 +6136,6 @@ impl IOHIDManager {
     /// (or 0).
     ///
     /// Returns: Returns a new IOHIDManagerRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438383-iohidmanagercreate?language=objc)
     #[doc(alias = "IOHIDManagerCreate")]
     #[inline]
     pub fn new(allocator: Option<&CFAllocator>, options: IOOptionBits) -> CFRetained<IOHIDManager> {
@@ -4263,6 +6153,26 @@ impl IOHIDManager {
 
     /// Opens the IOHIDManager.
     ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - options: Option bits to be sent down to the manager and device.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This will open both current and future devices that are enumerated. To establish an exclusive link use the kIOHIDOptionsTypeSeizeDevice option.
+    ///
+    ///
+    /// Opens the IOHIDManager.
+    ///
     /// This will open both current and future devices that are
     /// enumerated. To establish an exclusive link use the
     /// kIOHIDOptionsTypeSeizeDevice option.
@@ -4272,8 +6182,6 @@ impl IOHIDManager {
     /// Parameter `options`: Option bits to be sent down to the manager and device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438369-iohidmanageropen?language=objc)
     #[doc(alias = "IOHIDManagerOpen")]
     #[inline]
     pub fn open(&self, options: IOOptionBits) -> IOReturn {
@@ -4285,6 +6193,26 @@ impl IOHIDManager {
 
     /// Closes the IOHIDManager.
     ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - options: Option bits to be sent down to the manager and device.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This will also close all devices that are currently enumerated.
+    ///
+    ///
+    /// Closes the IOHIDManager.
+    ///
     /// This will also close all devices that are currently enumerated.
     ///
     /// Parameter `manager`: Reference to an IOHIDManager.
@@ -4292,8 +6220,6 @@ impl IOHIDManager {
     /// Parameter `options`: Option bits to be sent down to the manager and device.
     ///
     /// Returns: Returns kIOReturnSuccess if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438405-iohidmanagerclose?language=objc)
     #[doc(alias = "IOHIDManagerClose")]
     #[inline]
     pub fn close(&self, options: IOOptionBits) -> IOReturn {
@@ -4303,6 +6229,26 @@ impl IOHIDManager {
         unsafe { IOHIDManagerClose(self, options) }
     }
 
+    /// Obtains a property of an IOHIDManager.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - key: CFStringRef containing key to be used when querying the manager.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns CFTypeRef containing the property.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and declared in <IOKit/hid/IOHIDKeys.h>.
+    ///
+    ///
     /// Obtains a property of an IOHIDManager.
     ///
     /// Property keys are prefixed by kIOHIDDevice and declared in
@@ -4315,8 +6261,6 @@ impl IOHIDManager {
     /// manager.
     ///
     /// Returns: Returns CFTypeRef containing the property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438403-iohidmanagergetproperty?language=objc)
     #[doc(alias = "IOHIDManagerGetProperty")]
     #[inline]
     pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
@@ -4330,6 +6274,28 @@ impl IOHIDManager {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Sets a property for an IOHIDManager.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - key: CFStringRef containing key to be used when modifiying the device property.
+    ///
+    /// - value: CFTypeRef containing the property value to be set.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns TRUE if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Property keys are prefixed by kIOHIDDevice and kIOHIDManager and declared in <IOKit/hid/IOHIDKeys.h>. This method will propagate any relevent properties to current and future devices that are enumerated.
+    ///
+    ///
     /// Sets a property for an IOHIDManager.
     ///
     /// Property keys are prefixed by kIOHIDDevice and kIOHIDManager and
@@ -4351,8 +6317,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438401-iohidmanagersetproperty?language=objc)
     #[doc(alias = "IOHIDManagerSetProperty")]
     #[inline]
     pub unsafe fn set_property(&self, key: &CFString, value: &CFType) -> bool {
@@ -4367,6 +6331,21 @@ impl IOHIDManager {
         ret != 0
     }
 
+    /// Schedules HID manager with run loop.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - runLoop: RunLoop to be used when scheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when scheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally associates manager with client's run loop. Scheduling this device with the run loop is necessary before making use of any asynchronous APIs. This will propagate to current and future devices that are enumerated.
+    ///
+    ///
     /// Schedules HID manager with run loop.
     ///
     /// Formally associates manager with client's run loop. Scheduling
@@ -4385,8 +6364,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438409-iohidmanagerschedulewithrunloop?language=objc)
     #[doc(alias = "IOHIDManagerScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -4400,6 +6377,21 @@ impl IOHIDManager {
         unsafe { IOHIDManagerScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// Unschedules HID manager with run loop.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - runLoop: RunLoop to be used when unscheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when unscheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally disassociates device with client's run loop. This will propagate to current devices that are enumerated.
+    ///
+    ///
     /// Unschedules HID manager with run loop.
     ///
     /// Formally disassociates device with client's run loop. This will
@@ -4416,8 +6408,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438378-iohidmanagerunschedulefromrunloo?language=objc)
     #[doc(alias = "IOHIDManagerUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -4451,8 +6441,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042790-iohidmanagersetdispatchqueue?language=objc)
     #[doc(alias = "IOHIDManagerSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -4494,8 +6482,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042789-iohidmanagersetcancelhandler?language=objc)
     #[doc(alias = "IOHIDManagerSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -4524,8 +6510,6 @@ impl IOHIDManager {
     ///
     ///
     /// Parameter `manager`: Reference to an IOHIDManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042786-iohidmanageractivate?language=objc)
     #[doc(alias = "IOHIDManagerActivate")]
     #[inline]
     pub fn activate(&self) {
@@ -4561,8 +6545,6 @@ impl IOHIDManager {
     ///
     ///
     /// Parameter `manager`: Reference to an IOHIDManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042787-iohidmanagercancel?language=objc)
     #[doc(alias = "IOHIDManagerCancel")]
     #[inline]
     pub fn cancel(&self) {
@@ -4572,6 +6554,19 @@ impl IOHIDManager {
         unsafe { IOHIDManagerCancel(self) }
     }
 
+    /// Sets matching criteria for device enumeration.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - matching: CFDictionaryRef containg device matching criteria.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDDevice and declared in <IOKit/hid/IOHIDKeys.h>. Passing a NULL dictionary will result in all devices being enumerated. Any subsequent calls will cause the hid manager to release previously enumerated devices and restart the enuerate process using the revised criteria. If interested in multiple, specific device classes, please defer to using IOHIDManagerSetDeviceMatchingMultiple.
+    ///
+    ///
     /// Sets matching criteria for device enumeration.
     ///
     /// Matching keys are prefixed by kIOHIDDevice and declared in
@@ -4592,8 +6587,6 @@ impl IOHIDManager {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438371-iohidmanagersetdevicematching?language=objc)
     #[doc(alias = "IOHIDManagerSetDeviceMatching")]
     #[inline]
     pub unsafe fn set_device_matching(&self, matching: Option<&CFDictionary>) {
@@ -4606,6 +6599,19 @@ impl IOHIDManager {
         unsafe { IOHIDManagerSetDeviceMatching(self, matching) }
     }
 
+    /// Sets multiple matching criteria for device enumeration.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - multiple: CFArrayRef containing multiple CFDictionaryRef objects containg device matching criteria.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDDevice and declared in <IOKit/hid/IOHIDKeys.h>. This method is useful if interested in multiple, specific device classes.
+    ///
+    ///
     /// Sets multiple matching criteria for device enumeration.
     ///
     /// Matching keys are prefixed by kIOHIDDevice and declared in
@@ -4622,8 +6628,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `multiple` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438387-iohidmanagersetdevicematchingmul?language=objc)
     #[doc(alias = "IOHIDManagerSetDeviceMatchingMultiple")]
     #[inline]
     pub unsafe fn set_device_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -4638,11 +6642,21 @@ impl IOHIDManager {
 
     /// Obtains currently enumerated devices.
     ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// CFSetRef containing IOHIDDeviceRefs.
+    ///
+    ///
+    /// Obtains currently enumerated devices.
+    ///
     /// Parameter `manager`: Reference to an IOHIDManager.
     ///
     /// Returns: CFSetRef containing IOHIDDeviceRefs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438391-iohidmanagercopydevices?language=objc)
     #[doc(alias = "IOHIDManagerCopyDevices")]
     #[inline]
     pub fn devices(&self) -> Option<CFRetained<CFSet>> {
@@ -4653,6 +6667,21 @@ impl IOHIDManager {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Registers a callback to be used a device is enumerated.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManagerRef.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDDeviceCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Only device matching the set criteria will be enumerated.
+    ///
+    ///
     /// Registers a callback to be used a device is enumerated.
     ///
     /// Only device matching the set criteria will be enumerated.
@@ -4672,8 +6701,6 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438399-iohidmanagerregisterdevicematchi?language=objc)
     #[doc(alias = "IOHIDManagerRegisterDeviceMatchingCallback")]
     #[inline]
     pub unsafe fn register_device_matching_callback(
@@ -4691,6 +6718,21 @@ impl IOHIDManager {
         unsafe { IOHIDManagerRegisterDeviceMatchingCallback(self, callback, context) }
     }
 
+    /// Registers a callback to be used when any enumerated device is removed.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManagerRef.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDDeviceCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In most cases this occurs when a device is unplugged.
+    ///
+    ///
     /// Registers a callback to be used when any enumerated device is
     /// removed.
     ///
@@ -4708,8 +6750,6 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438376-iohidmanagerregisterdeviceremova?language=objc)
     #[doc(alias = "IOHIDManagerRegisterDeviceRemovalCallback")]
     #[inline]
     pub unsafe fn register_device_removal_callback(
@@ -4727,6 +6767,21 @@ impl IOHIDManager {
         unsafe { IOHIDManagerRegisterDeviceRemovalCallback(self, callback, context) }
     }
 
+    /// Registers a callback to be used when an input report is issued by any enumerated device.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManagerRef.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDReportCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An input report is an interrupt driver report issued by a device.
+    ///
+    ///
     /// Registers a callback to be used when an input report is issued by
     /// any enumerated device.
     ///
@@ -4743,8 +6798,6 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438397-iohidmanagerregisterinputreportc?language=objc)
     #[doc(alias = "IOHIDManagerRegisterInputReportCallback")]
     #[inline]
     pub unsafe fn register_input_report_callback(
@@ -4779,8 +6832,6 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3042788-iohidmanagerregisterinputreportw?language=objc)
     #[doc(alias = "IOHIDManagerRegisterInputReportWithTimeStampCallback")]
     #[inline]
     pub unsafe fn register_input_report_with_time_stamp_callback(
@@ -4798,6 +6849,21 @@ impl IOHIDManager {
         unsafe { IOHIDManagerRegisterInputReportWithTimeStampCallback(self, callback, context) }
     }
 
+    /// Registers a callback to be used when an input value is issued by any enumerated device.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManagerRef.
+    ///
+    /// - callback: Pointer to a callback method of type IOHIDValueCallback.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An input element refers to any element of type kIOHIDElementTypeInput and is usually issued by interrupt driven reports.
+    ///
+    ///
     /// Registers a callback to be used when an input value is issued by
     /// any enumerated device.
     ///
@@ -4816,8 +6882,6 @@ impl IOHIDManager {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438367-iohidmanagerregisterinputvalueca?language=objc)
     #[doc(alias = "IOHIDManagerRegisterInputValueCallback")]
     #[inline]
     pub unsafe fn register_input_value_callback(
@@ -4835,6 +6899,19 @@ impl IOHIDManager {
         unsafe { IOHIDManagerRegisterInputValueCallback(self, callback, context) }
     }
 
+    /// Sets matching criteria for input values received via IOHIDManagerRegisterInputValueCallback.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - matching: CFDictionaryRef containg device matching criteria.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDElement and declared in <IOKit/hid/IOHIDKeys.h>. Passing a NULL dictionary will result in all devices being enumerated. Any subsequent calls will cause the hid manager to release previously matched input elements and restart the matching process using the revised criteria. If interested in multiple, specific device elements, please defer to using IOHIDManagerSetInputValueMatchingMultiple.
+    ///
+    ///
     /// Sets matching criteria for input values received via
     /// IOHIDManagerRegisterInputValueCallback.
     ///
@@ -4856,8 +6933,6 @@ impl IOHIDManager {
     ///
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438389-iohidmanagersetinputvaluematchin?language=objc)
     #[doc(alias = "IOHIDManagerSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -4870,6 +6945,19 @@ impl IOHIDManager {
         unsafe { IOHIDManagerSetInputValueMatching(self, matching) }
     }
 
+    /// Sets multiple matching criteria for input values received via IOHIDManagerRegisterInputValueCallback.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - multiple: CFArrayRef containing multiple CFDictionaryRef objects containing input element matching criteria.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matching keys are prefixed by kIOHIDElement and declared in <IOKit/hid/IOHIDKeys.h>. This method is useful if interested in multiple, specific elements .
+    ///
+    ///
     /// Sets multiple matching criteria for input values received via
     /// IOHIDManagerRegisterInputValueCallback.
     ///
@@ -4887,8 +6975,6 @@ impl IOHIDManager {
     /// # Safety
     ///
     /// `multiple` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438379-iohidmanagersetinputvaluematchin?language=objc)
     #[doc(alias = "IOHIDManagerSetInputValueMatchingMultiple")]
     #[inline]
     pub unsafe fn set_input_value_matching_multiple(&self, multiple: Option<&CFArray>) {
@@ -4901,6 +6987,25 @@ impl IOHIDManager {
         unsafe { IOHIDManagerSetInputValueMatchingMultiple(self, multiple) }
     }
 
+    /// Used to write out the current properties to a specific domain.
+    ///
+    /// Parameters:
+    /// - manager: Reference to an IOHIDManager.
+    ///
+    /// - applicationID: Reference to a CFPreferences applicationID.
+    ///
+    /// - userName: Reference to a CFPreferences userName.
+    ///
+    /// - hostName: Reference to a CFPreferences hostName.
+    ///
+    /// - options: Reserved for future use.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Using this function will cause the persistent properties to be saved out replacing any properties that already existed in the specified domain. All arguments must be non-NULL except options.
+    ///
+    ///
     /// Used to write out the current properties to a specific domain.
     ///
     /// Using this function will cause the persistent properties to be saved out
@@ -4916,8 +7021,6 @@ impl IOHIDManager {
     /// Parameter `hostName`: Reference to a CFPreferences hostName.
     ///
     /// Parameter `options`: Reserved for future use.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1438395-iohidmanagersavetopropertydomain?language=objc)
     #[doc(alias = "IOHIDManagerSaveToPropertyDomain")]
     #[inline]
     pub fn save_to_property_domain(
@@ -4942,4779 +7045,2407 @@ impl IOHIDManager {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_undefined?language=objc)
 pub const kHIDPage_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_genericdesktop?language=objc)
 pub const kHIDPage_GenericDesktop: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_simulation?language=objc)
 pub const kHIDPage_Simulation: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_vr?language=objc)
 pub const kHIDPage_VR: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_sport?language=objc)
 pub const kHIDPage_Sport: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_game?language=objc)
 pub const kHIDPage_Game: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_genericdevicecontrols?language=objc)
 pub const kHIDPage_GenericDeviceControls: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_keyboardorkeypad?language=objc)
 pub const kHIDPage_KeyboardOrKeypad: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_leds?language=objc)
 pub const kHIDPage_LEDs: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_button?language=objc)
 pub const kHIDPage_Button: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_ordinal?language=objc)
 pub const kHIDPage_Ordinal: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_telephony?language=objc)
 pub const kHIDPage_Telephony: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_consumer?language=objc)
 pub const kHIDPage_Consumer: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_digitizer?language=objc)
 pub const kHIDPage_Digitizer: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_haptics?language=objc)
 pub const kHIDPage_Haptics: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_pid?language=objc)
 pub const kHIDPage_PID: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_unicode?language=objc)
 pub const kHIDPage_Unicode: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_alphanumericdisplay?language=objc)
 pub const kHIDPage_AlphanumericDisplay: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_sensor?language=objc)
 pub const kHIDPage_Sensor: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_brailledisplay?language=objc)
 pub const kHIDPage_BrailleDisplay: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_monitor?language=objc)
 pub const kHIDPage_Monitor: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_monitorenumerated?language=objc)
 pub const kHIDPage_MonitorEnumerated: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_monitorvirtual?language=objc)
 pub const kHIDPage_MonitorVirtual: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_monitorreserved?language=objc)
 pub const kHIDPage_MonitorReserved: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_powerdevice?language=objc)
 pub const kHIDPage_PowerDevice: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_batterysystem?language=objc)
 pub const kHIDPage_BatterySystem: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_powerreserved?language=objc)
 pub const kHIDPage_PowerReserved: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_powerreserved2?language=objc)
 pub const kHIDPage_PowerReserved2: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_barcodescanner?language=objc)
 pub const kHIDPage_BarCodeScanner: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_weighingdevice?language=objc)
 pub const kHIDPage_WeighingDevice: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_scale?language=objc)
 pub const kHIDPage_Scale: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_magneticstripereader?language=objc)
 pub const kHIDPage_MagneticStripeReader: c_uint = 0x8E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_cameracontrol?language=objc)
 pub const kHIDPage_CameraControl: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_arcade?language=objc)
 pub const kHIDPage_Arcade: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_fido?language=objc)
 pub const kHIDPage_FIDO: c_uint = 0xF1D0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591932-anonymous/khidpage_vendordefinedstart?language=objc)
 pub const kHIDPage_VendorDefinedStart: c_uint = 0xFF00;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592351-anonymous/khidusage_undefined?language=objc)
 pub const kHIDUsage_Undefined: c_uint = 0x00;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_pointer?language=objc)
 pub const kHIDUsage_GD_Pointer: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_mouse?language=objc)
 pub const kHIDUsage_GD_Mouse: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_joystick?language=objc)
 pub const kHIDUsage_GD_Joystick: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_gamepad?language=objc)
 pub const kHIDUsage_GD_GamePad: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_keyboard?language=objc)
 pub const kHIDUsage_GD_Keyboard: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_keypad?language=objc)
 pub const kHIDUsage_GD_Keypad: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_multiaxiscontroller?language=objc)
 pub const kHIDUsage_GD_MultiAxisController: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_tabletpcsystemcontrols?language=objc)
 pub const kHIDUsage_GD_TabletPCSystemControls: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_assistivecontrol?language=objc)
 pub const kHIDUsage_GD_AssistiveControl: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmultiaxiscontroller?language=objc)
 pub const kHIDUsage_GD_SystemMultiAxisController: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_spatialcontroller?language=objc)
 pub const kHIDUsage_GD_SpatialController: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_assistivecontrolcompatible?language=objc)
 pub const kHIDUsage_GD_AssistiveControlCompatible: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_x?language=objc)
 pub const kHIDUsage_GD_X: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_y?language=objc)
 pub const kHIDUsage_GD_Y: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_z?language=objc)
 pub const kHIDUsage_GD_Z: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_rx?language=objc)
 pub const kHIDUsage_GD_Rx: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_ry?language=objc)
 pub const kHIDUsage_GD_Ry: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_rz?language=objc)
 pub const kHIDUsage_GD_Rz: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_slider?language=objc)
 pub const kHIDUsage_GD_Slider: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dial?language=objc)
 pub const kHIDUsage_GD_Dial: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_wheel?language=objc)
 pub const kHIDUsage_GD_Wheel: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_hatswitch?language=objc)
 pub const kHIDUsage_GD_Hatswitch: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_countedbuffer?language=objc)
 pub const kHIDUsage_GD_CountedBuffer: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_bytecount?language=objc)
 pub const kHIDUsage_GD_ByteCount: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_motionwakeup?language=objc)
 pub const kHIDUsage_GD_MotionWakeup: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_start?language=objc)
 pub const kHIDUsage_GD_Start: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_select?language=objc)
 pub const kHIDUsage_GD_Select: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vx?language=objc)
 pub const kHIDUsage_GD_Vx: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vy?language=objc)
 pub const kHIDUsage_GD_Vy: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vz?language=objc)
 pub const kHIDUsage_GD_Vz: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vbrx?language=objc)
 pub const kHIDUsage_GD_Vbrx: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vbry?language=objc)
 pub const kHIDUsage_GD_Vbry: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vbrz?language=objc)
 pub const kHIDUsage_GD_Vbrz: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_vno?language=objc)
 pub const kHIDUsage_GD_Vno: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_featurenotification?language=objc)
 pub const kHIDUsage_GD_FeatureNotification: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_resolutionmultiplier?language=objc)
 pub const kHIDUsage_GD_ResolutionMultiplier: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_qx?language=objc)
 pub const kHIDUsage_GD_Qx: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_qy?language=objc)
 pub const kHIDUsage_GD_Qy: c_uint = 0x4A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_qz?language=objc)
 pub const kHIDUsage_GD_Qz: c_uint = 0x4B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_qw?language=objc)
 pub const kHIDUsage_GD_Qw: c_uint = 0x4C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemcontrol?language=objc)
 pub const kHIDUsage_GD_SystemControl: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systempowerdown?language=objc)
 pub const kHIDUsage_GD_SystemPowerDown: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemsleep?language=objc)
 pub const kHIDUsage_GD_SystemSleep: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemwakeup?language=objc)
 pub const kHIDUsage_GD_SystemWakeUp: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemcontextmenu?language=objc)
 pub const kHIDUsage_GD_SystemContextMenu: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmainmenu?language=objc)
 pub const kHIDUsage_GD_SystemMainMenu: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemappmenu?language=objc)
 pub const kHIDUsage_GD_SystemAppMenu: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenuhelp?language=objc)
 pub const kHIDUsage_GD_SystemMenuHelp: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenuexit?language=objc)
 pub const kHIDUsage_GD_SystemMenuExit: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenuselect?language=objc)
 pub const kHIDUsage_GD_SystemMenuSelect: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenu?language=objc)
 pub const kHIDUsage_GD_SystemMenu: c_uint = kHIDUsage_GD_SystemMenuSelect;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenuright?language=objc)
 pub const kHIDUsage_GD_SystemMenuRight: c_uint = 0x8A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenuleft?language=objc)
 pub const kHIDUsage_GD_SystemMenuLeft: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenuup?language=objc)
 pub const kHIDUsage_GD_SystemMenuUp: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmenudown?language=objc)
 pub const kHIDUsage_GD_SystemMenuDown: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemcoldrestart?language=objc)
 pub const kHIDUsage_GD_SystemColdRestart: c_uint = 0x8E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemwarmrestart?language=objc)
 pub const kHIDUsage_GD_SystemWarmRestart: c_uint = 0x8F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dpadup?language=objc)
 pub const kHIDUsage_GD_DPadUp: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dpaddown?language=objc)
 pub const kHIDUsage_GD_DPadDown: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dpadright?language=objc)
 pub const kHIDUsage_GD_DPadRight: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dpadleft?language=objc)
 pub const kHIDUsage_GD_DPadLeft: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_indextrigger?language=objc)
 pub const kHIDUsage_GD_IndexTrigger: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_palmtrigger?language=objc)
 pub const kHIDUsage_GD_PalmTrigger: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_thumbstick?language=objc)
 pub const kHIDUsage_GD_Thumbstick: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_sfshift?language=objc)
 pub const kHIDUsage_GD_SFShift: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_sfshiftlock?language=objc)
 pub const kHIDUsage_GD_SFShiftLock: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_sfshiftlockindicator?language=objc)
 pub const kHIDUsage_GD_SFShiftLockIndicator: c_uint = 0x99;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdismissnotification?language=objc)
 pub const kHIDUsage_GD_SystemDismissNotification: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_donotdisturb?language=objc)
 pub const kHIDUsage_GD_DoNotDisturb: c_uint = 0x9B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdock?language=objc)
 pub const kHIDUsage_GD_SystemDock: c_uint = 0xA0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemundock?language=objc)
 pub const kHIDUsage_GD_SystemUndock: c_uint = 0xA1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemsetup?language=objc)
 pub const kHIDUsage_GD_SystemSetup: c_uint = 0xA2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systembreak?language=objc)
 pub const kHIDUsage_GD_SystemBreak: c_uint = 0xA3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdebuggerbreak?language=objc)
 pub const kHIDUsage_GD_SystemDebuggerBreak: c_uint = 0xA4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_applicationbreak?language=objc)
 pub const kHIDUsage_GD_ApplicationBreak: c_uint = 0xA5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_applicationdebuggerbreak?language=objc)
 pub const kHIDUsage_GD_ApplicationDebuggerBreak: c_uint = 0xA6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemspeakermute?language=objc)
 pub const kHIDUsage_GD_SystemSpeakerMute: c_uint = 0xA7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemhibernate?language=objc)
 pub const kHIDUsage_GD_SystemHibernate: c_uint = 0xA8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemmicrophonemute?language=objc)
 pub const kHIDUsage_GD_SystemMicrophoneMute: c_uint = 0xA9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayinvert?language=objc)
 pub const kHIDUsage_GD_SystemDisplayInvert: c_uint = 0xB0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayinternal?language=objc)
 pub const kHIDUsage_GD_SystemDisplayInternal: c_uint = 0xB1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayexternal?language=objc)
 pub const kHIDUsage_GD_SystemDisplayExternal: c_uint = 0xB2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayboth?language=objc)
 pub const kHIDUsage_GD_SystemDisplayBoth: c_uint = 0xB3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplaydual?language=objc)
 pub const kHIDUsage_GD_SystemDisplayDual: c_uint = 0xB4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplaytogglemode?language=objc)
 pub const kHIDUsage_GD_SystemDisplayToggleMode: c_uint = 0xB5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayswap?language=objc)
 pub const kHIDUsage_GD_SystemDisplaySwap: c_uint = 0xB6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplaytogglelcdautoscale?language=objc)
 pub const kHIDUsage_GD_SystemDisplayToggleLCDAutoscale: c_uint = 0xB7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_sensorzone?language=objc)
 pub const kHIDUsage_GD_SensorZone: c_uint = 0xC0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_rpm?language=objc)
 pub const kHIDUsage_GD_RPM: c_uint = 0xC1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_coolantlevel?language=objc)
 pub const kHIDUsage_GD_CoolantLevel: c_uint = 0xC2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_coolantcriticallevel?language=objc)
 pub const kHIDUsage_GD_CoolantCriticalLevel: c_uint = 0xC3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_coolantpump?language=objc)
 pub const kHIDUsage_GD_CoolantPump: c_uint = 0xC4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_chassisenclosure?language=objc)
 pub const kHIDUsage_GD_ChassisEnclosure: c_uint = 0xC5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_wirelessradiobutton?language=objc)
 pub const kHIDUsage_GD_WirelessRadioButton: c_uint = 0xC6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_wirelessradioled?language=objc)
 pub const kHIDUsage_GD_WirelessRadioLED: c_uint = 0xC7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_wirelessradiosliderswitch?language=objc)
 pub const kHIDUsage_GD_WirelessRadioSliderSwitch: c_uint = 0xC8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayrotationlockbutton?language=objc)
 pub const kHIDUsage_GD_SystemDisplayRotationLockButton: c_uint = 0xC9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_systemdisplayrotationlocksliderswitch?language=objc)
 pub const kHIDUsage_GD_SystemDisplayRotationLockSliderSwitch: c_uint = 0xCA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_controlenable?language=objc)
 pub const kHIDUsage_GD_ControlEnable: c_uint = 0xCB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledeviceuniqueid?language=objc)
 pub const kHIDUsage_GD_DockableDeviceUniqueID: c_uint = 0xD0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledevicevendorid?language=objc)
 pub const kHIDUsage_GD_DockableDeviceVendorID: c_uint = 0xD1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledeviceprimaryusagepage?language=objc)
 pub const kHIDUsage_GD_DockableDevicePrimaryUsagePage: c_uint = 0xD2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledeviceprimaryusageid?language=objc)
 pub const kHIDUsage_GD_DockableDevicePrimaryUsageID: c_uint = 0xD3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledevicedockingstate?language=objc)
 pub const kHIDUsage_GD_DockableDeviceDockingState: c_uint = 0xD4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledevicedisplayocclusion?language=objc)
 pub const kHIDUsage_GD_DockableDeviceDisplayOcclusion: c_uint = 0xD5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_dockabledeviceobjecttype?language=objc)
 pub const kHIDUsage_GD_DockableDeviceObjectType: c_uint = 0xD6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_callactiveled?language=objc)
 pub const kHIDUsage_GD_CallActiveLED: c_uint = 0xE0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_callmutetoggle?language=objc)
 pub const kHIDUsage_GD_CallMuteToggle: c_uint = 0xE1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_callmuteled?language=objc)
 pub const kHIDUsage_GD_CallMuteLED: c_uint = 0xE2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592534-anonymous/khidusage_gd_reserved?language=objc)
 pub const kHIDUsage_GD_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_flightsimulationdevice?language=objc)
 pub const kHIDUsage_Sim_FlightSimulationDevice: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_automobilesimulationdevice?language=objc)
 pub const kHIDUsage_Sim_AutomobileSimulationDevice: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_tanksimulationdevice?language=objc)
 pub const kHIDUsage_Sim_TankSimulationDevice: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_spaceshipsimulationdevice?language=objc)
 pub const kHIDUsage_Sim_SpaceshipSimulationDevice: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_submarinesimulationdevice?language=objc)
 pub const kHIDUsage_Sim_SubmarineSimulationDevice: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_sailingsimulationdevice?language=objc)
 pub const kHIDUsage_Sim_SailingSimulationDevice: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_motorcyclesimulationdevice?language=objc)
 pub const kHIDUsage_Sim_MotorcycleSimulationDevice: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_sportssimulationdevice?language=objc)
 pub const kHIDUsage_Sim_SportsSimulationDevice: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_airplanesimulationdevice?language=objc)
 pub const kHIDUsage_Sim_AirplaneSimulationDevice: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_helicoptersimulationdevice?language=objc)
 pub const kHIDUsage_Sim_HelicopterSimulationDevice: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_magiccarpetsimulationdevice?language=objc)
 pub const kHIDUsage_Sim_MagicCarpetSimulationDevice: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_bicyclesimulationdevice?language=objc)
 pub const kHIDUsage_Sim_BicycleSimulationDevice: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_flightcontrolstick?language=objc)
 pub const kHIDUsage_Sim_FlightControlStick: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_flightstick?language=objc)
 pub const kHIDUsage_Sim_FlightStick: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_cycliccontrol?language=objc)
 pub const kHIDUsage_Sim_CyclicControl: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_cyclictrim?language=objc)
 pub const kHIDUsage_Sim_CyclicTrim: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_flightyoke?language=objc)
 pub const kHIDUsage_Sim_FlightYoke: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_trackcontrol?language=objc)
 pub const kHIDUsage_Sim_TrackControl: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_aileron?language=objc)
 pub const kHIDUsage_Sim_Aileron: c_uint = 0xB0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_ailerontrim?language=objc)
 pub const kHIDUsage_Sim_AileronTrim: c_uint = 0xB1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_antitorquecontrol?language=objc)
 pub const kHIDUsage_Sim_AntiTorqueControl: c_uint = 0xB2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_autopilotenable?language=objc)
 pub const kHIDUsage_Sim_AutopilotEnable: c_uint = 0xB3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_chaffrelease?language=objc)
 pub const kHIDUsage_Sim_ChaffRelease: c_uint = 0xB4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_collectivecontrol?language=objc)
 pub const kHIDUsage_Sim_CollectiveControl: c_uint = 0xB5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_divebrake?language=objc)
 pub const kHIDUsage_Sim_DiveBrake: c_uint = 0xB6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_electroniccountermeasures?language=objc)
 pub const kHIDUsage_Sim_ElectronicCountermeasures: c_uint = 0xB7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_elevator?language=objc)
 pub const kHIDUsage_Sim_Elevator: c_uint = 0xB8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_elevatortrim?language=objc)
 pub const kHIDUsage_Sim_ElevatorTrim: c_uint = 0xB9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_rudder?language=objc)
 pub const kHIDUsage_Sim_Rudder: c_uint = 0xBA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_throttle?language=objc)
 pub const kHIDUsage_Sim_Throttle: c_uint = 0xBB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_flightcommunications?language=objc)
 pub const kHIDUsage_Sim_FlightCommunications: c_uint = 0xBC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_flarerelease?language=objc)
 pub const kHIDUsage_Sim_FlareRelease: c_uint = 0xBD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_landinggear?language=objc)
 pub const kHIDUsage_Sim_LandingGear: c_uint = 0xBE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_toebrake?language=objc)
 pub const kHIDUsage_Sim_ToeBrake: c_uint = 0xBF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_trigger?language=objc)
 pub const kHIDUsage_Sim_Trigger: c_uint = 0xC0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_weaponsarm?language=objc)
 pub const kHIDUsage_Sim_WeaponsArm: c_uint = 0xC1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_weapons?language=objc)
 pub const kHIDUsage_Sim_Weapons: c_uint = 0xC2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_wingflaps?language=objc)
 pub const kHIDUsage_Sim_WingFlaps: c_uint = 0xC3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_accelerator?language=objc)
 pub const kHIDUsage_Sim_Accelerator: c_uint = 0xC4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_brake?language=objc)
 pub const kHIDUsage_Sim_Brake: c_uint = 0xC5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_clutch?language=objc)
 pub const kHIDUsage_Sim_Clutch: c_uint = 0xC6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_shifter?language=objc)
 pub const kHIDUsage_Sim_Shifter: c_uint = 0xC7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_steering?language=objc)
 pub const kHIDUsage_Sim_Steering: c_uint = 0xC8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_turretdirection?language=objc)
 pub const kHIDUsage_Sim_TurretDirection: c_uint = 0xC9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_barrelelevation?language=objc)
 pub const kHIDUsage_Sim_BarrelElevation: c_uint = 0xCA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_diveplane?language=objc)
 pub const kHIDUsage_Sim_DivePlane: c_uint = 0xCB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_ballast?language=objc)
 pub const kHIDUsage_Sim_Ballast: c_uint = 0xCC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_bicyclecrank?language=objc)
 pub const kHIDUsage_Sim_BicycleCrank: c_uint = 0xCD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_handlebars?language=objc)
 pub const kHIDUsage_Sim_HandleBars: c_uint = 0xCE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_frontbrake?language=objc)
 pub const kHIDUsage_Sim_FrontBrake: c_uint = 0xCF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_rearbrake?language=objc)
 pub const kHIDUsage_Sim_RearBrake: c_uint = 0xD0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591943-anonymous/khidusage_sim_reserved?language=objc)
 pub const kHIDUsage_Sim_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_belt?language=objc)
 pub const kHIDUsage_VR_Belt: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_bodysuit?language=objc)
 pub const kHIDUsage_VR_BodySuit: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_flexor?language=objc)
 pub const kHIDUsage_VR_Flexor: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_glove?language=objc)
 pub const kHIDUsage_VR_Glove: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_headtracker?language=objc)
 pub const kHIDUsage_VR_HeadTracker: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_headmounteddisplay?language=objc)
 pub const kHIDUsage_VR_HeadMountedDisplay: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_handtracker?language=objc)
 pub const kHIDUsage_VR_HandTracker: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_oculometer?language=objc)
 pub const kHIDUsage_VR_Oculometer: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_vest?language=objc)
 pub const kHIDUsage_VR_Vest: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_animatronicdevice?language=objc)
 pub const kHIDUsage_VR_AnimatronicDevice: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_stereoenable?language=objc)
 pub const kHIDUsage_VR_StereoEnable: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_displayenable?language=objc)
 pub const kHIDUsage_VR_DisplayEnable: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592199-anonymous/khidusage_vr_reserved?language=objc)
 pub const kHIDUsage_VR_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_baseballbat?language=objc)
 pub const kHIDUsage_Sprt_BaseballBat: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_golfclub?language=objc)
 pub const kHIDUsage_Sprt_GolfClub: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_rowingmachine?language=objc)
 pub const kHIDUsage_Sprt_RowingMachine: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_treadmill?language=objc)
 pub const kHIDUsage_Sprt_Treadmill: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_oar?language=objc)
 pub const kHIDUsage_Sprt_Oar: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_slope?language=objc)
 pub const kHIDUsage_Sprt_Slope: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_rate?language=objc)
 pub const kHIDUsage_Sprt_Rate: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_stickspeed?language=objc)
 pub const kHIDUsage_Sprt_StickSpeed: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_stickfaceangle?language=objc)
 pub const kHIDUsage_Sprt_StickFaceAngle: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_stickheelortoe?language=objc)
 pub const kHIDUsage_Sprt_StickHeelOrToe: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_stickfollowthrough?language=objc)
 pub const kHIDUsage_Sprt_StickFollowThrough: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_sticktempo?language=objc)
 pub const kHIDUsage_Sprt_StickTempo: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_sticktype?language=objc)
 pub const kHIDUsage_Sprt_StickType: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_stickheight?language=objc)
 pub const kHIDUsage_Sprt_StickHeight: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_putter?language=objc)
 pub const kHIDUsage_Sprt_Putter: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_1iron?language=objc)
 pub const kHIDUsage_Sprt_1Iron: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_2iron?language=objc)
 pub const kHIDUsage_Sprt_2Iron: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_3iron?language=objc)
 pub const kHIDUsage_Sprt_3Iron: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_4iron?language=objc)
 pub const kHIDUsage_Sprt_4Iron: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_5iron?language=objc)
 pub const kHIDUsage_Sprt_5Iron: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_6iron?language=objc)
 pub const kHIDUsage_Sprt_6Iron: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_7iron?language=objc)
 pub const kHIDUsage_Sprt_7Iron: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_8iron?language=objc)
 pub const kHIDUsage_Sprt_8Iron: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_9iron?language=objc)
 pub const kHIDUsage_Sprt_9Iron: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_10iron?language=objc)
 pub const kHIDUsage_Sprt_10Iron: c_uint = 0x5A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_11iron?language=objc)
 pub const kHIDUsage_Sprt_11Iron: c_uint = 0x5B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_sandwedge?language=objc)
 pub const kHIDUsage_Sprt_SandWedge: c_uint = 0x5C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_loftwedge?language=objc)
 pub const kHIDUsage_Sprt_LoftWedge: c_uint = 0x5D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_powerwedge?language=objc)
 pub const kHIDUsage_Sprt_PowerWedge: c_uint = 0x5E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_1wood?language=objc)
 pub const kHIDUsage_Sprt_1Wood: c_uint = 0x5F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_3wood?language=objc)
 pub const kHIDUsage_Sprt_3Wood: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_5wood?language=objc)
 pub const kHIDUsage_Sprt_5Wood: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_7wood?language=objc)
 pub const kHIDUsage_Sprt_7Wood: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_9wood?language=objc)
 pub const kHIDUsage_Sprt_9Wood: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591638-anonymous/khidusage_sprt_reserved?language=objc)
 pub const kHIDUsage_Sprt_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_3dgamecontroller?language=objc)
 pub const kHIDUsage_Game_3DGameController: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_pinballdevice?language=objc)
 pub const kHIDUsage_Game_PinballDevice: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gundevice?language=objc)
 pub const kHIDUsage_Game_GunDevice: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_pointofview?language=objc)
 pub const kHIDUsage_Game_PointofView: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_turnrightorleft?language=objc)
 pub const kHIDUsage_Game_TurnRightOrLeft: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_pitchupordown?language=objc)
 pub const kHIDUsage_Game_PitchUpOrDown: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_rollrightorleft?language=objc)
 pub const kHIDUsage_Game_RollRightOrLeft: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_moverightorleft?language=objc)
 pub const kHIDUsage_Game_MoveRightOrLeft: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_moveforwardorbackward?language=objc)
 pub const kHIDUsage_Game_MoveForwardOrBackward: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_moveupordown?language=objc)
 pub const kHIDUsage_Game_MoveUpOrDown: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_leanrightorleft?language=objc)
 pub const kHIDUsage_Game_LeanRightOrLeft: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_leanforwardorbackward?language=objc)
 pub const kHIDUsage_Game_LeanForwardOrBackward: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_heightofpov?language=objc)
 pub const kHIDUsage_Game_HeightOfPOV: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_flipper?language=objc)
 pub const kHIDUsage_Game_Flipper: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_secondaryflipper?language=objc)
 pub const kHIDUsage_Game_SecondaryFlipper: c_uint = 0x2B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_bump?language=objc)
 pub const kHIDUsage_Game_Bump: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_newgame?language=objc)
 pub const kHIDUsage_Game_NewGame: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_shootball?language=objc)
 pub const kHIDUsage_Game_ShootBall: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_player?language=objc)
 pub const kHIDUsage_Game_Player: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gunbolt?language=objc)
 pub const kHIDUsage_Game_GunBolt: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gunclip?language=objc)
 pub const kHIDUsage_Game_GunClip: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gun?language=objc)
 pub const kHIDUsage_Game_Gun: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gunsingleshot?language=objc)
 pub const kHIDUsage_Game_GunSingleShot: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gunburst?language=objc)
 pub const kHIDUsage_Game_GunBurst: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gunautomatic?language=objc)
 pub const kHIDUsage_Game_GunAutomatic: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gunsafety?language=objc)
 pub const kHIDUsage_Game_GunSafety: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gamepadfireorjump?language=objc)
 pub const kHIDUsage_Game_GamepadFireOrJump: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gamepadtrigger?language=objc)
 pub const kHIDUsage_Game_GamepadTrigger: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gamepadformfitting_compatibility?language=objc)
 pub const kHIDUsage_Game_GamepadFormFitting_Compatibility: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_gamepadformfitting?language=objc)
 pub const kHIDUsage_Game_GamepadFormFitting: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591954-anonymous/khidusage_game_reserved?language=objc)
 pub const kHIDUsage_Game_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592575-anonymous/khidusage_gendevcontrols_backgroundcontrols?language=objc)
 pub const kHIDUsage_GenDevControls_BackgroundControls: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_gendevcontrols_batterystrength?language=objc)
 pub const kHIDUsage_GenDevControls_BatteryStrength: c_uint = 0x20;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarderrorrollover?language=objc)
 pub const kHIDUsage_KeyboardErrorRollOver: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardpostfail?language=objc)
 pub const kHIDUsage_KeyboardPOSTFail: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarderrorundefined?language=objc)
 pub const kHIDUsage_KeyboardErrorUndefined: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarda?language=objc)
 pub const kHIDUsage_KeyboardA: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardb?language=objc)
 pub const kHIDUsage_KeyboardB: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardc?language=objc)
 pub const kHIDUsage_KeyboardC: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardd?language=objc)
 pub const kHIDUsage_KeyboardD: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarde?language=objc)
 pub const kHIDUsage_KeyboardE: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf?language=objc)
 pub const kHIDUsage_KeyboardF: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardg?language=objc)
 pub const kHIDUsage_KeyboardG: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardh?language=objc)
 pub const kHIDUsage_KeyboardH: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardi?language=objc)
 pub const kHIDUsage_KeyboardI: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardj?language=objc)
 pub const kHIDUsage_KeyboardJ: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardk?language=objc)
 pub const kHIDUsage_KeyboardK: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardl?language=objc)
 pub const kHIDUsage_KeyboardL: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardm?language=objc)
 pub const kHIDUsage_KeyboardM: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardn?language=objc)
 pub const kHIDUsage_KeyboardN: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardo?language=objc)
 pub const kHIDUsage_KeyboardO: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardp?language=objc)
 pub const kHIDUsage_KeyboardP: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardq?language=objc)
 pub const kHIDUsage_KeyboardQ: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardr?language=objc)
 pub const kHIDUsage_KeyboardR: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboards?language=objc)
 pub const kHIDUsage_KeyboardS: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardt?language=objc)
 pub const kHIDUsage_KeyboardT: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardu?language=objc)
 pub const kHIDUsage_KeyboardU: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardv?language=objc)
 pub const kHIDUsage_KeyboardV: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardw?language=objc)
 pub const kHIDUsage_KeyboardW: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardx?language=objc)
 pub const kHIDUsage_KeyboardX: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardy?language=objc)
 pub const kHIDUsage_KeyboardY: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardz?language=objc)
 pub const kHIDUsage_KeyboardZ: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard1?language=objc)
 pub const kHIDUsage_Keyboard1: c_uint = 0x1E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard2?language=objc)
 pub const kHIDUsage_Keyboard2: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard3?language=objc)
 pub const kHIDUsage_Keyboard3: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard4?language=objc)
 pub const kHIDUsage_Keyboard4: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard5?language=objc)
 pub const kHIDUsage_Keyboard5: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard6?language=objc)
 pub const kHIDUsage_Keyboard6: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard7?language=objc)
 pub const kHIDUsage_Keyboard7: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard8?language=objc)
 pub const kHIDUsage_Keyboard8: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard9?language=objc)
 pub const kHIDUsage_Keyboard9: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard0?language=objc)
 pub const kHIDUsage_Keyboard0: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardreturnorenter?language=objc)
 pub const kHIDUsage_KeyboardReturnOrEnter: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardescape?language=objc)
 pub const kHIDUsage_KeyboardEscape: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarddeleteorbackspace?language=objc)
 pub const kHIDUsage_KeyboardDeleteOrBackspace: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardtab?language=objc)
 pub const kHIDUsage_KeyboardTab: c_uint = 0x2B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardspacebar?language=objc)
 pub const kHIDUsage_KeyboardSpacebar: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardhyphen?language=objc)
 pub const kHIDUsage_KeyboardHyphen: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardequalsign?language=objc)
 pub const kHIDUsage_KeyboardEqualSign: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardopenbracket?language=objc)
 pub const kHIDUsage_KeyboardOpenBracket: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardclosebracket?language=objc)
 pub const kHIDUsage_KeyboardCloseBracket: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardbackslash?language=objc)
 pub const kHIDUsage_KeyboardBackslash: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardnonuspound?language=objc)
 pub const kHIDUsage_KeyboardNonUSPound: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardsemicolon?language=objc)
 pub const kHIDUsage_KeyboardSemicolon: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardquote?language=objc)
 pub const kHIDUsage_KeyboardQuote: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardgraveaccentandtilde?language=objc)
 pub const kHIDUsage_KeyboardGraveAccentAndTilde: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardcomma?language=objc)
 pub const kHIDUsage_KeyboardComma: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardperiod?language=objc)
 pub const kHIDUsage_KeyboardPeriod: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardslash?language=objc)
 pub const kHIDUsage_KeyboardSlash: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardcapslock?language=objc)
 pub const kHIDUsage_KeyboardCapsLock: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf1?language=objc)
 pub const kHIDUsage_KeyboardF1: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf2?language=objc)
 pub const kHIDUsage_KeyboardF2: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf3?language=objc)
 pub const kHIDUsage_KeyboardF3: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf4?language=objc)
 pub const kHIDUsage_KeyboardF4: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf5?language=objc)
 pub const kHIDUsage_KeyboardF5: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf6?language=objc)
 pub const kHIDUsage_KeyboardF6: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf7?language=objc)
 pub const kHIDUsage_KeyboardF7: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf8?language=objc)
 pub const kHIDUsage_KeyboardF8: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf9?language=objc)
 pub const kHIDUsage_KeyboardF9: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf10?language=objc)
 pub const kHIDUsage_KeyboardF10: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf11?language=objc)
 pub const kHIDUsage_KeyboardF11: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf12?language=objc)
 pub const kHIDUsage_KeyboardF12: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardprintscreen?language=objc)
 pub const kHIDUsage_KeyboardPrintScreen: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardscrolllock?language=objc)
 pub const kHIDUsage_KeyboardScrollLock: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardpause?language=objc)
 pub const kHIDUsage_KeyboardPause: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinsert?language=objc)
 pub const kHIDUsage_KeyboardInsert: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardhome?language=objc)
 pub const kHIDUsage_KeyboardHome: c_uint = 0x4A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardpageup?language=objc)
 pub const kHIDUsage_KeyboardPageUp: c_uint = 0x4B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarddeleteforward?language=objc)
 pub const kHIDUsage_KeyboardDeleteForward: c_uint = 0x4C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardend?language=objc)
 pub const kHIDUsage_KeyboardEnd: c_uint = 0x4D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardpagedown?language=objc)
 pub const kHIDUsage_KeyboardPageDown: c_uint = 0x4E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardrightarrow?language=objc)
 pub const kHIDUsage_KeyboardRightArrow: c_uint = 0x4F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardleftarrow?language=objc)
 pub const kHIDUsage_KeyboardLeftArrow: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarddownarrow?language=objc)
 pub const kHIDUsage_KeyboardDownArrow: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboarduparrow?language=objc)
 pub const kHIDUsage_KeyboardUpArrow: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadnumlock?language=objc)
 pub const kHIDUsage_KeypadNumLock: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadslash?language=objc)
 pub const kHIDUsage_KeypadSlash: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadasterisk?language=objc)
 pub const kHIDUsage_KeypadAsterisk: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadhyphen?language=objc)
 pub const kHIDUsage_KeypadHyphen: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadplus?language=objc)
 pub const kHIDUsage_KeypadPlus: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadenter?language=objc)
 pub const kHIDUsage_KeypadEnter: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad1?language=objc)
 pub const kHIDUsage_Keypad1: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad2?language=objc)
 pub const kHIDUsage_Keypad2: c_uint = 0x5A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad3?language=objc)
 pub const kHIDUsage_Keypad3: c_uint = 0x5B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad4?language=objc)
 pub const kHIDUsage_Keypad4: c_uint = 0x5C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad5?language=objc)
 pub const kHIDUsage_Keypad5: c_uint = 0x5D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad6?language=objc)
 pub const kHIDUsage_Keypad6: c_uint = 0x5E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad7?language=objc)
 pub const kHIDUsage_Keypad7: c_uint = 0x5F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad8?language=objc)
 pub const kHIDUsage_Keypad8: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad9?language=objc)
 pub const kHIDUsage_Keypad9: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypad0?language=objc)
 pub const kHIDUsage_Keypad0: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadperiod?language=objc)
 pub const kHIDUsage_KeypadPeriod: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardnonusbackslash?language=objc)
 pub const kHIDUsage_KeyboardNonUSBackslash: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardapplication?language=objc)
 pub const kHIDUsage_KeyboardApplication: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardpower?language=objc)
 pub const kHIDUsage_KeyboardPower: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadequalsign?language=objc)
 pub const kHIDUsage_KeypadEqualSign: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf13?language=objc)
 pub const kHIDUsage_KeyboardF13: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf14?language=objc)
 pub const kHIDUsage_KeyboardF14: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf15?language=objc)
 pub const kHIDUsage_KeyboardF15: c_uint = 0x6A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf16?language=objc)
 pub const kHIDUsage_KeyboardF16: c_uint = 0x6B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf17?language=objc)
 pub const kHIDUsage_KeyboardF17: c_uint = 0x6C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf18?language=objc)
 pub const kHIDUsage_KeyboardF18: c_uint = 0x6D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf19?language=objc)
 pub const kHIDUsage_KeyboardF19: c_uint = 0x6E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf20?language=objc)
 pub const kHIDUsage_KeyboardF20: c_uint = 0x6F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf21?language=objc)
 pub const kHIDUsage_KeyboardF21: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf22?language=objc)
 pub const kHIDUsage_KeyboardF22: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf23?language=objc)
 pub const kHIDUsage_KeyboardF23: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardf24?language=objc)
 pub const kHIDUsage_KeyboardF24: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardexecute?language=objc)
 pub const kHIDUsage_KeyboardExecute: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardhelp?language=objc)
 pub const kHIDUsage_KeyboardHelp: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardmenu?language=objc)
 pub const kHIDUsage_KeyboardMenu: c_uint = 0x76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardselect?language=objc)
 pub const kHIDUsage_KeyboardSelect: c_uint = 0x77;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardstop?language=objc)
 pub const kHIDUsage_KeyboardStop: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardagain?language=objc)
 pub const kHIDUsage_KeyboardAgain: c_uint = 0x79;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardundo?language=objc)
 pub const kHIDUsage_KeyboardUndo: c_uint = 0x7A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardcut?language=objc)
 pub const kHIDUsage_KeyboardCut: c_uint = 0x7B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardcopy?language=objc)
 pub const kHIDUsage_KeyboardCopy: c_uint = 0x7C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardpaste?language=objc)
 pub const kHIDUsage_KeyboardPaste: c_uint = 0x7D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardfind?language=objc)
 pub const kHIDUsage_KeyboardFind: c_uint = 0x7E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardmute?language=objc)
 pub const kHIDUsage_KeyboardMute: c_uint = 0x7F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardvolumeup?language=objc)
 pub const kHIDUsage_KeyboardVolumeUp: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardvolumedown?language=objc)
 pub const kHIDUsage_KeyboardVolumeDown: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlockingcapslock?language=objc)
 pub const kHIDUsage_KeyboardLockingCapsLock: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlockingnumlock?language=objc)
 pub const kHIDUsage_KeyboardLockingNumLock: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlockingscrolllock?language=objc)
 pub const kHIDUsage_KeyboardLockingScrollLock: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadcomma?language=objc)
 pub const kHIDUsage_KeypadComma: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keypadequalsignas400?language=objc)
 pub const kHIDUsage_KeypadEqualSignAS400: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational1?language=objc)
 pub const kHIDUsage_KeyboardInternational1: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational2?language=objc)
 pub const kHIDUsage_KeyboardInternational2: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational3?language=objc)
 pub const kHIDUsage_KeyboardInternational3: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational4?language=objc)
 pub const kHIDUsage_KeyboardInternational4: c_uint = 0x8A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational5?language=objc)
 pub const kHIDUsage_KeyboardInternational5: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational6?language=objc)
 pub const kHIDUsage_KeyboardInternational6: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational7?language=objc)
 pub const kHIDUsage_KeyboardInternational7: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational8?language=objc)
 pub const kHIDUsage_KeyboardInternational8: c_uint = 0x8E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardinternational9?language=objc)
 pub const kHIDUsage_KeyboardInternational9: c_uint = 0x8F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang1?language=objc)
 pub const kHIDUsage_KeyboardLANG1: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang2?language=objc)
 pub const kHIDUsage_KeyboardLANG2: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang3?language=objc)
 pub const kHIDUsage_KeyboardLANG3: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang4?language=objc)
 pub const kHIDUsage_KeyboardLANG4: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang5?language=objc)
 pub const kHIDUsage_KeyboardLANG5: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang6?language=objc)
 pub const kHIDUsage_KeyboardLANG6: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang7?language=objc)
 pub const kHIDUsage_KeyboardLANG7: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang8?language=objc)
 pub const kHIDUsage_KeyboardLANG8: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardlang9?language=objc)
 pub const kHIDUsage_KeyboardLANG9: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardalternateerase?language=objc)
 pub const kHIDUsage_KeyboardAlternateErase: c_uint = 0x99;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardsysreqorattention?language=objc)
 pub const kHIDUsage_KeyboardSysReqOrAttention: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardcancel?language=objc)
 pub const kHIDUsage_KeyboardCancel: c_uint = 0x9B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardclear?language=objc)
 pub const kHIDUsage_KeyboardClear: c_uint = 0x9C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardprior?language=objc)
 pub const kHIDUsage_KeyboardPrior: c_uint = 0x9D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardreturn?language=objc)
 pub const kHIDUsage_KeyboardReturn: c_uint = 0x9E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardseparator?language=objc)
 pub const kHIDUsage_KeyboardSeparator: c_uint = 0x9F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardout?language=objc)
 pub const kHIDUsage_KeyboardOut: c_uint = 0xA0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardoper?language=objc)
 pub const kHIDUsage_KeyboardOper: c_uint = 0xA1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardclearoragain?language=objc)
 pub const kHIDUsage_KeyboardClearOrAgain: c_uint = 0xA2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardcrselorprops?language=objc)
 pub const kHIDUsage_KeyboardCrSelOrProps: c_uint = 0xA3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardexsel?language=objc)
 pub const kHIDUsage_KeyboardExSel: c_uint = 0xA4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardleftcontrol?language=objc)
 pub const kHIDUsage_KeyboardLeftControl: c_uint = 0xE0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardleftshift?language=objc)
 pub const kHIDUsage_KeyboardLeftShift: c_uint = 0xE1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardleftalt?language=objc)
 pub const kHIDUsage_KeyboardLeftAlt: c_uint = 0xE2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardleftgui?language=objc)
 pub const kHIDUsage_KeyboardLeftGUI: c_uint = 0xE3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardrightcontrol?language=objc)
 pub const kHIDUsage_KeyboardRightControl: c_uint = 0xE4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardrightshift?language=objc)
 pub const kHIDUsage_KeyboardRightShift: c_uint = 0xE5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardrightalt?language=objc)
 pub const kHIDUsage_KeyboardRightAlt: c_uint = 0xE6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboardrightgui?language=objc)
 pub const kHIDUsage_KeyboardRightGUI: c_uint = 0xE7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592915-anonymous/khidusage_keyboard_reserved?language=objc)
 pub const kHIDUsage_Keyboard_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_numlock?language=objc)
 pub const kHIDUsage_LED_NumLock: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_capslock?language=objc)
 pub const kHIDUsage_LED_CapsLock: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_scrolllock?language=objc)
 pub const kHIDUsage_LED_ScrollLock: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_compose?language=objc)
 pub const kHIDUsage_LED_Compose: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_kana?language=objc)
 pub const kHIDUsage_LED_Kana: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_power?language=objc)
 pub const kHIDUsage_LED_Power: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_shift?language=objc)
 pub const kHIDUsage_LED_Shift: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_donotdisturb?language=objc)
 pub const kHIDUsage_LED_DoNotDisturb: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_mute?language=objc)
 pub const kHIDUsage_LED_Mute: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_toneenable?language=objc)
 pub const kHIDUsage_LED_ToneEnable: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_highcutfilter?language=objc)
 pub const kHIDUsage_LED_HighCutFilter: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_lowcutfilter?language=objc)
 pub const kHIDUsage_LED_LowCutFilter: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_equalizerenable?language=objc)
 pub const kHIDUsage_LED_EqualizerEnable: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_soundfieldon?language=objc)
 pub const kHIDUsage_LED_SoundFieldOn: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_surroundon?language=objc)
 pub const kHIDUsage_LED_SurroundOn: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_repeat?language=objc)
 pub const kHIDUsage_LED_Repeat: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_stereo?language=objc)
 pub const kHIDUsage_LED_Stereo: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_samplingratedetect?language=objc)
 pub const kHIDUsage_LED_SamplingRateDetect: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_spinning?language=objc)
 pub const kHIDUsage_LED_Spinning: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_cav?language=objc)
 pub const kHIDUsage_LED_CAV: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_clv?language=objc)
 pub const kHIDUsage_LED_CLV: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_recordingformatdetect?language=objc)
 pub const kHIDUsage_LED_RecordingFormatDetect: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_offhook?language=objc)
 pub const kHIDUsage_LED_OffHook: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_ring?language=objc)
 pub const kHIDUsage_LED_Ring: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_messagewaiting?language=objc)
 pub const kHIDUsage_LED_MessageWaiting: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_datamode?language=objc)
 pub const kHIDUsage_LED_DataMode: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_batteryoperation?language=objc)
 pub const kHIDUsage_LED_BatteryOperation: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_batteryok?language=objc)
 pub const kHIDUsage_LED_BatteryOK: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_batterylow?language=objc)
 pub const kHIDUsage_LED_BatteryLow: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_speaker?language=objc)
 pub const kHIDUsage_LED_Speaker: c_uint = 0x1E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_headset?language=objc)
 pub const kHIDUsage_LED_HeadSet: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_hold?language=objc)
 pub const kHIDUsage_LED_Hold: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_microphone?language=objc)
 pub const kHIDUsage_LED_Microphone: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_coverage?language=objc)
 pub const kHIDUsage_LED_Coverage: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_nightmode?language=objc)
 pub const kHIDUsage_LED_NightMode: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_sendcalls?language=objc)
 pub const kHIDUsage_LED_SendCalls: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_callpickup?language=objc)
 pub const kHIDUsage_LED_CallPickup: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_conference?language=objc)
 pub const kHIDUsage_LED_Conference: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_standby?language=objc)
 pub const kHIDUsage_LED_StandBy: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_cameraon?language=objc)
 pub const kHIDUsage_LED_CameraOn: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_cameraoff?language=objc)
 pub const kHIDUsage_LED_CameraOff: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_online?language=objc)
 pub const kHIDUsage_LED_OnLine: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_offline?language=objc)
 pub const kHIDUsage_LED_OffLine: c_uint = 0x2B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_busy?language=objc)
 pub const kHIDUsage_LED_Busy: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_ready?language=objc)
 pub const kHIDUsage_LED_Ready: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_paperout?language=objc)
 pub const kHIDUsage_LED_PaperOut: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_paperjam?language=objc)
 pub const kHIDUsage_LED_PaperJam: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_remote?language=objc)
 pub const kHIDUsage_LED_Remote: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_forward?language=objc)
 pub const kHIDUsage_LED_Forward: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_reverse?language=objc)
 pub const kHIDUsage_LED_Reverse: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_stop?language=objc)
 pub const kHIDUsage_LED_Stop: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_rewind?language=objc)
 pub const kHIDUsage_LED_Rewind: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_fastforward?language=objc)
 pub const kHIDUsage_LED_FastForward: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_play?language=objc)
 pub const kHIDUsage_LED_Play: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_pause?language=objc)
 pub const kHIDUsage_LED_Pause: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_record?language=objc)
 pub const kHIDUsage_LED_Record: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_error?language=objc)
 pub const kHIDUsage_LED_Error: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_usage?language=objc)
 pub const kHIDUsage_LED_Usage: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_usageinuseindicator?language=objc)
 pub const kHIDUsage_LED_UsageInUseIndicator: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_usagemultimodeindicator?language=objc)
 pub const kHIDUsage_LED_UsageMultiModeIndicator: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatoron?language=objc)
 pub const kHIDUsage_LED_IndicatorOn: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatorflash?language=objc)
 pub const kHIDUsage_LED_IndicatorFlash: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatorslowblink?language=objc)
 pub const kHIDUsage_LED_IndicatorSlowBlink: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatorfastblink?language=objc)
 pub const kHIDUsage_LED_IndicatorFastBlink: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatoroff?language=objc)
 pub const kHIDUsage_LED_IndicatorOff: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_flashontime?language=objc)
 pub const kHIDUsage_LED_FlashOnTime: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_slowblinkontime?language=objc)
 pub const kHIDUsage_LED_SlowBlinkOnTime: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_slowblinkofftime?language=objc)
 pub const kHIDUsage_LED_SlowBlinkOffTime: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_fastblinkontime?language=objc)
 pub const kHIDUsage_LED_FastBlinkOnTime: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_fastblinkofftime?language=objc)
 pub const kHIDUsage_LED_FastBlinkOffTime: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_usageindicatorcolor?language=objc)
 pub const kHIDUsage_LED_UsageIndicatorColor: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatorred?language=objc)
 pub const kHIDUsage_LED_IndicatorRed: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatorgreen?language=objc)
 pub const kHIDUsage_LED_IndicatorGreen: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_indicatoramber?language=objc)
 pub const kHIDUsage_LED_IndicatorAmber: c_uint = 0x4A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_genericindicator?language=objc)
 pub const kHIDUsage_LED_GenericIndicator: c_uint = 0x4B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_systemsuspend?language=objc)
 pub const kHIDUsage_LED_SystemSuspend: c_uint = 0x4C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_externalpowerconnected?language=objc)
 pub const kHIDUsage_LED_ExternalPowerConnected: c_uint = 0x4D;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_indicatorblue?language=objc)
 pub const kHIDUsage_LED_IndicatorBlue: c_uint = 0x4E;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_indicatororange?language=objc)
 pub const kHIDUsage_LED_IndicatorOrange: c_uint = 0x4F;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_goodstatus?language=objc)
 pub const kHIDUsage_LED_GoodStatus: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_warningstatus?language=objc)
 pub const kHIDUsage_LED_WarningStatus: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_rgb_led?language=objc)
 pub const kHIDUsage_LED_RGB_LED: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_redledchannel?language=objc)
 pub const kHIDUsage_LED_RedLEDChannel: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_blueledchannel?language=objc)
 pub const kHIDUsage_LED_BlueLEDChannel: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_greenledchannel?language=objc)
 pub const kHIDUsage_LED_GreenLEDChannel: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_ledintensity?language=objc)
 pub const kHIDUsage_LED_LEDIntensity: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_led_systemmicrophonemute?language=objc)
 pub const kHIDUsage_LED_SystemMicrophoneMute: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_playerindicator?language=objc)
 pub const kHIDUsage_LED_PlayerIndicator: c_uint = 0x4E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player1?language=objc)
 pub const kHIDUsage_LED_Player1: c_uint = 0x4F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player2?language=objc)
 pub const kHIDUsage_LED_Player2: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player3?language=objc)
 pub const kHIDUsage_LED_Player3: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player4?language=objc)
 pub const kHIDUsage_LED_Player4: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player5?language=objc)
 pub const kHIDUsage_LED_Player5: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player6?language=objc)
 pub const kHIDUsage_LED_Player6: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player7?language=objc)
 pub const kHIDUsage_LED_Player7: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_player8?language=objc)
 pub const kHIDUsage_LED_Player8: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592166-anonymous/khidusage_led_reserved?language=objc)
 pub const kHIDUsage_LED_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_1?language=objc)
 pub const kHIDUsage_Button_1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_2?language=objc)
 pub const kHIDUsage_Button_2: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_3?language=objc)
 pub const kHIDUsage_Button_3: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_4?language=objc)
 pub const kHIDUsage_Button_4: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_5?language=objc)
 pub const kHIDUsage_Button_5: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_6?language=objc)
 pub const kHIDUsage_Button_6: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_7?language=objc)
 pub const kHIDUsage_Button_7: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_8?language=objc)
 pub const kHIDUsage_Button_8: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_9?language=objc)
 pub const kHIDUsage_Button_9: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_10?language=objc)
 pub const kHIDUsage_Button_10: c_uint = 0x0a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_11?language=objc)
 pub const kHIDUsage_Button_11: c_uint = 0x0b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_12?language=objc)
 pub const kHIDUsage_Button_12: c_uint = 0x0c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_13?language=objc)
 pub const kHIDUsage_Button_13: c_uint = 0x0d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_14?language=objc)
 pub const kHIDUsage_Button_14: c_uint = 0x0e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_15?language=objc)
 pub const kHIDUsage_Button_15: c_uint = 0x0f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_16?language=objc)
 pub const kHIDUsage_Button_16: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_17?language=objc)
 pub const kHIDUsage_Button_17: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_18?language=objc)
 pub const kHIDUsage_Button_18: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_19?language=objc)
 pub const kHIDUsage_Button_19: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_20?language=objc)
 pub const kHIDUsage_Button_20: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_21?language=objc)
 pub const kHIDUsage_Button_21: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_22?language=objc)
 pub const kHIDUsage_Button_22: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_23?language=objc)
 pub const kHIDUsage_Button_23: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_24?language=objc)
 pub const kHIDUsage_Button_24: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_25?language=objc)
 pub const kHIDUsage_Button_25: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_26?language=objc)
 pub const kHIDUsage_Button_26: c_uint = 0x1a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_27?language=objc)
 pub const kHIDUsage_Button_27: c_uint = 0x1b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_28?language=objc)
 pub const kHIDUsage_Button_28: c_uint = 0x1c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_29?language=objc)
 pub const kHIDUsage_Button_29: c_uint = 0x1d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_30?language=objc)
 pub const kHIDUsage_Button_30: c_uint = 0x1e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_31?language=objc)
 pub const kHIDUsage_Button_31: c_uint = 0x1f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_32?language=objc)
 pub const kHIDUsage_Button_32: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_33?language=objc)
 pub const kHIDUsage_Button_33: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_34?language=objc)
 pub const kHIDUsage_Button_34: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_35?language=objc)
 pub const kHIDUsage_Button_35: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_36?language=objc)
 pub const kHIDUsage_Button_36: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_37?language=objc)
 pub const kHIDUsage_Button_37: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_38?language=objc)
 pub const kHIDUsage_Button_38: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_39?language=objc)
 pub const kHIDUsage_Button_39: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_40?language=objc)
 pub const kHIDUsage_Button_40: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_41?language=objc)
 pub const kHIDUsage_Button_41: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_42?language=objc)
 pub const kHIDUsage_Button_42: c_uint = 0x2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_43?language=objc)
 pub const kHIDUsage_Button_43: c_uint = 0x2b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_44?language=objc)
 pub const kHIDUsage_Button_44: c_uint = 0x2c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_45?language=objc)
 pub const kHIDUsage_Button_45: c_uint = 0x2d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_46?language=objc)
 pub const kHIDUsage_Button_46: c_uint = 0x2e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_47?language=objc)
 pub const kHIDUsage_Button_47: c_uint = 0x2f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_48?language=objc)
 pub const kHIDUsage_Button_48: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_49?language=objc)
 pub const kHIDUsage_Button_49: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_50?language=objc)
 pub const kHIDUsage_Button_50: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_51?language=objc)
 pub const kHIDUsage_Button_51: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_52?language=objc)
 pub const kHIDUsage_Button_52: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_53?language=objc)
 pub const kHIDUsage_Button_53: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_54?language=objc)
 pub const kHIDUsage_Button_54: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_55?language=objc)
 pub const kHIDUsage_Button_55: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_56?language=objc)
 pub const kHIDUsage_Button_56: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_57?language=objc)
 pub const kHIDUsage_Button_57: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_58?language=objc)
 pub const kHIDUsage_Button_58: c_uint = 0x3a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_59?language=objc)
 pub const kHIDUsage_Button_59: c_uint = 0x3b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_60?language=objc)
 pub const kHIDUsage_Button_60: c_uint = 0x3c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_61?language=objc)
 pub const kHIDUsage_Button_61: c_uint = 0x3d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_62?language=objc)
 pub const kHIDUsage_Button_62: c_uint = 0x3e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_63?language=objc)
 pub const kHIDUsage_Button_63: c_uint = 0x3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_64?language=objc)
 pub const kHIDUsage_Button_64: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_65?language=objc)
 pub const kHIDUsage_Button_65: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_66?language=objc)
 pub const kHIDUsage_Button_66: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_67?language=objc)
 pub const kHIDUsage_Button_67: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_68?language=objc)
 pub const kHIDUsage_Button_68: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_69?language=objc)
 pub const kHIDUsage_Button_69: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_70?language=objc)
 pub const kHIDUsage_Button_70: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_71?language=objc)
 pub const kHIDUsage_Button_71: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_72?language=objc)
 pub const kHIDUsage_Button_72: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_73?language=objc)
 pub const kHIDUsage_Button_73: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_74?language=objc)
 pub const kHIDUsage_Button_74: c_uint = 0x4a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_75?language=objc)
 pub const kHIDUsage_Button_75: c_uint = 0x4b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_76?language=objc)
 pub const kHIDUsage_Button_76: c_uint = 0x4c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_77?language=objc)
 pub const kHIDUsage_Button_77: c_uint = 0x4d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_78?language=objc)
 pub const kHIDUsage_Button_78: c_uint = 0x4e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_79?language=objc)
 pub const kHIDUsage_Button_79: c_uint = 0x4f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_80?language=objc)
 pub const kHIDUsage_Button_80: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_81?language=objc)
 pub const kHIDUsage_Button_81: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_82?language=objc)
 pub const kHIDUsage_Button_82: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_83?language=objc)
 pub const kHIDUsage_Button_83: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_84?language=objc)
 pub const kHIDUsage_Button_84: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_85?language=objc)
 pub const kHIDUsage_Button_85: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_86?language=objc)
 pub const kHIDUsage_Button_86: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_87?language=objc)
 pub const kHIDUsage_Button_87: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_88?language=objc)
 pub const kHIDUsage_Button_88: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_89?language=objc)
 pub const kHIDUsage_Button_89: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_90?language=objc)
 pub const kHIDUsage_Button_90: c_uint = 0x5a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_91?language=objc)
 pub const kHIDUsage_Button_91: c_uint = 0x5b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_92?language=objc)
 pub const kHIDUsage_Button_92: c_uint = 0x5c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_93?language=objc)
 pub const kHIDUsage_Button_93: c_uint = 0x5d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_94?language=objc)
 pub const kHIDUsage_Button_94: c_uint = 0x5e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_95?language=objc)
 pub const kHIDUsage_Button_95: c_uint = 0x5f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_96?language=objc)
 pub const kHIDUsage_Button_96: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_97?language=objc)
 pub const kHIDUsage_Button_97: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_98?language=objc)
 pub const kHIDUsage_Button_98: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_99?language=objc)
 pub const kHIDUsage_Button_99: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_100?language=objc)
 pub const kHIDUsage_Button_100: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_101?language=objc)
 pub const kHIDUsage_Button_101: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_102?language=objc)
 pub const kHIDUsage_Button_102: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_103?language=objc)
 pub const kHIDUsage_Button_103: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_104?language=objc)
 pub const kHIDUsage_Button_104: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_105?language=objc)
 pub const kHIDUsage_Button_105: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_106?language=objc)
 pub const kHIDUsage_Button_106: c_uint = 0x6a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_107?language=objc)
 pub const kHIDUsage_Button_107: c_uint = 0x6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_108?language=objc)
 pub const kHIDUsage_Button_108: c_uint = 0x6c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_109?language=objc)
 pub const kHIDUsage_Button_109: c_uint = 0x6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_110?language=objc)
 pub const kHIDUsage_Button_110: c_uint = 0x6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_111?language=objc)
 pub const kHIDUsage_Button_111: c_uint = 0x6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_112?language=objc)
 pub const kHIDUsage_Button_112: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_113?language=objc)
 pub const kHIDUsage_Button_113: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_114?language=objc)
 pub const kHIDUsage_Button_114: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_115?language=objc)
 pub const kHIDUsage_Button_115: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_116?language=objc)
 pub const kHIDUsage_Button_116: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_117?language=objc)
 pub const kHIDUsage_Button_117: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_118?language=objc)
 pub const kHIDUsage_Button_118: c_uint = 0x76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_119?language=objc)
 pub const kHIDUsage_Button_119: c_uint = 0x77;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_120?language=objc)
 pub const kHIDUsage_Button_120: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_121?language=objc)
 pub const kHIDUsage_Button_121: c_uint = 0x79;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_122?language=objc)
 pub const kHIDUsage_Button_122: c_uint = 0x7a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_123?language=objc)
 pub const kHIDUsage_Button_123: c_uint = 0x7b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_124?language=objc)
 pub const kHIDUsage_Button_124: c_uint = 0x7c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_125?language=objc)
 pub const kHIDUsage_Button_125: c_uint = 0x7d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_126?language=objc)
 pub const kHIDUsage_Button_126: c_uint = 0x7e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_127?language=objc)
 pub const kHIDUsage_Button_127: c_uint = 0x7f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_128?language=objc)
 pub const kHIDUsage_Button_128: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_129?language=objc)
 pub const kHIDUsage_Button_129: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_130?language=objc)
 pub const kHIDUsage_Button_130: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_131?language=objc)
 pub const kHIDUsage_Button_131: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_132?language=objc)
 pub const kHIDUsage_Button_132: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_133?language=objc)
 pub const kHIDUsage_Button_133: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_134?language=objc)
 pub const kHIDUsage_Button_134: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_135?language=objc)
 pub const kHIDUsage_Button_135: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_136?language=objc)
 pub const kHIDUsage_Button_136: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_137?language=objc)
 pub const kHIDUsage_Button_137: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_138?language=objc)
 pub const kHIDUsage_Button_138: c_uint = 0x8a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_139?language=objc)
 pub const kHIDUsage_Button_139: c_uint = 0x8b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_140?language=objc)
 pub const kHIDUsage_Button_140: c_uint = 0x8c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_141?language=objc)
 pub const kHIDUsage_Button_141: c_uint = 0x8d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_142?language=objc)
 pub const kHIDUsage_Button_142: c_uint = 0x8e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_143?language=objc)
 pub const kHIDUsage_Button_143: c_uint = 0x8f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_144?language=objc)
 pub const kHIDUsage_Button_144: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_145?language=objc)
 pub const kHIDUsage_Button_145: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_146?language=objc)
 pub const kHIDUsage_Button_146: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_147?language=objc)
 pub const kHIDUsage_Button_147: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_148?language=objc)
 pub const kHIDUsage_Button_148: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_149?language=objc)
 pub const kHIDUsage_Button_149: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_150?language=objc)
 pub const kHIDUsage_Button_150: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_151?language=objc)
 pub const kHIDUsage_Button_151: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_152?language=objc)
 pub const kHIDUsage_Button_152: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_153?language=objc)
 pub const kHIDUsage_Button_153: c_uint = 0x99;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_154?language=objc)
 pub const kHIDUsage_Button_154: c_uint = 0x9a;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_155?language=objc)
 pub const kHIDUsage_Button_155: c_uint = 0x9b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_156?language=objc)
 pub const kHIDUsage_Button_156: c_uint = 0x9c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_157?language=objc)
 pub const kHIDUsage_Button_157: c_uint = 0x9d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_158?language=objc)
 pub const kHIDUsage_Button_158: c_uint = 0x9e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_159?language=objc)
 pub const kHIDUsage_Button_159: c_uint = 0x9f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_160?language=objc)
 pub const kHIDUsage_Button_160: c_uint = 0xa0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_161?language=objc)
 pub const kHIDUsage_Button_161: c_uint = 0xa1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_162?language=objc)
 pub const kHIDUsage_Button_162: c_uint = 0xa2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_163?language=objc)
 pub const kHIDUsage_Button_163: c_uint = 0xa3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_164?language=objc)
 pub const kHIDUsage_Button_164: c_uint = 0xa4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_165?language=objc)
 pub const kHIDUsage_Button_165: c_uint = 0xa5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_166?language=objc)
 pub const kHIDUsage_Button_166: c_uint = 0xa6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_167?language=objc)
 pub const kHIDUsage_Button_167: c_uint = 0xa7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_168?language=objc)
 pub const kHIDUsage_Button_168: c_uint = 0xa8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_169?language=objc)
 pub const kHIDUsage_Button_169: c_uint = 0xa9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_170?language=objc)
 pub const kHIDUsage_Button_170: c_uint = 0xaa;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_171?language=objc)
 pub const kHIDUsage_Button_171: c_uint = 0xab;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_172?language=objc)
 pub const kHIDUsage_Button_172: c_uint = 0xac;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_173?language=objc)
 pub const kHIDUsage_Button_173: c_uint = 0xad;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_174?language=objc)
 pub const kHIDUsage_Button_174: c_uint = 0xae;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_175?language=objc)
 pub const kHIDUsage_Button_175: c_uint = 0xaf;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_176?language=objc)
 pub const kHIDUsage_Button_176: c_uint = 0xb0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_177?language=objc)
 pub const kHIDUsage_Button_177: c_uint = 0xb1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_178?language=objc)
 pub const kHIDUsage_Button_178: c_uint = 0xb2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_179?language=objc)
 pub const kHIDUsage_Button_179: c_uint = 0xb3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_180?language=objc)
 pub const kHIDUsage_Button_180: c_uint = 0xb4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_181?language=objc)
 pub const kHIDUsage_Button_181: c_uint = 0xb5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_182?language=objc)
 pub const kHIDUsage_Button_182: c_uint = 0xb6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_183?language=objc)
 pub const kHIDUsage_Button_183: c_uint = 0xb7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_184?language=objc)
 pub const kHIDUsage_Button_184: c_uint = 0xb8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_185?language=objc)
 pub const kHIDUsage_Button_185: c_uint = 0xb9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_186?language=objc)
 pub const kHIDUsage_Button_186: c_uint = 0xba;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_187?language=objc)
 pub const kHIDUsage_Button_187: c_uint = 0xbb;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_188?language=objc)
 pub const kHIDUsage_Button_188: c_uint = 0xbc;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_189?language=objc)
 pub const kHIDUsage_Button_189: c_uint = 0xbd;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_190?language=objc)
 pub const kHIDUsage_Button_190: c_uint = 0xbe;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_191?language=objc)
 pub const kHIDUsage_Button_191: c_uint = 0xbf;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_192?language=objc)
 pub const kHIDUsage_Button_192: c_uint = 0xc0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_193?language=objc)
 pub const kHIDUsage_Button_193: c_uint = 0xc1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_194?language=objc)
 pub const kHIDUsage_Button_194: c_uint = 0xc2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_195?language=objc)
 pub const kHIDUsage_Button_195: c_uint = 0xc3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_196?language=objc)
 pub const kHIDUsage_Button_196: c_uint = 0xc4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_197?language=objc)
 pub const kHIDUsage_Button_197: c_uint = 0xc5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_198?language=objc)
 pub const kHIDUsage_Button_198: c_uint = 0xc6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_199?language=objc)
 pub const kHIDUsage_Button_199: c_uint = 0xc7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_200?language=objc)
 pub const kHIDUsage_Button_200: c_uint = 0xc8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_201?language=objc)
 pub const kHIDUsage_Button_201: c_uint = 0xc9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_202?language=objc)
 pub const kHIDUsage_Button_202: c_uint = 0xca;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_203?language=objc)
 pub const kHIDUsage_Button_203: c_uint = 0xcb;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_204?language=objc)
 pub const kHIDUsage_Button_204: c_uint = 0xcc;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_205?language=objc)
 pub const kHIDUsage_Button_205: c_uint = 0xcd;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_206?language=objc)
 pub const kHIDUsage_Button_206: c_uint = 0xce;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_207?language=objc)
 pub const kHIDUsage_Button_207: c_uint = 0xcf;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_208?language=objc)
 pub const kHIDUsage_Button_208: c_uint = 0xd0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_209?language=objc)
 pub const kHIDUsage_Button_209: c_uint = 0xd1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_210?language=objc)
 pub const kHIDUsage_Button_210: c_uint = 0xd2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_211?language=objc)
 pub const kHIDUsage_Button_211: c_uint = 0xd3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_212?language=objc)
 pub const kHIDUsage_Button_212: c_uint = 0xd4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_213?language=objc)
 pub const kHIDUsage_Button_213: c_uint = 0xd5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_214?language=objc)
 pub const kHIDUsage_Button_214: c_uint = 0xd6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_215?language=objc)
 pub const kHIDUsage_Button_215: c_uint = 0xd7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_216?language=objc)
 pub const kHIDUsage_Button_216: c_uint = 0xd8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_217?language=objc)
 pub const kHIDUsage_Button_217: c_uint = 0xd9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_218?language=objc)
 pub const kHIDUsage_Button_218: c_uint = 0xda;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_219?language=objc)
 pub const kHIDUsage_Button_219: c_uint = 0xdb;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_220?language=objc)
 pub const kHIDUsage_Button_220: c_uint = 0xdc;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_221?language=objc)
 pub const kHIDUsage_Button_221: c_uint = 0xdd;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_222?language=objc)
 pub const kHIDUsage_Button_222: c_uint = 0xde;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_223?language=objc)
 pub const kHIDUsage_Button_223: c_uint = 0xdf;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_224?language=objc)
 pub const kHIDUsage_Button_224: c_uint = 0xe0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_225?language=objc)
 pub const kHIDUsage_Button_225: c_uint = 0xe1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_226?language=objc)
 pub const kHIDUsage_Button_226: c_uint = 0xe2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_227?language=objc)
 pub const kHIDUsage_Button_227: c_uint = 0xe3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_228?language=objc)
 pub const kHIDUsage_Button_228: c_uint = 0xe4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_229?language=objc)
 pub const kHIDUsage_Button_229: c_uint = 0xe5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_230?language=objc)
 pub const kHIDUsage_Button_230: c_uint = 0xe6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_231?language=objc)
 pub const kHIDUsage_Button_231: c_uint = 0xe7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_232?language=objc)
 pub const kHIDUsage_Button_232: c_uint = 0xe8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_233?language=objc)
 pub const kHIDUsage_Button_233: c_uint = 0xe9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_234?language=objc)
 pub const kHIDUsage_Button_234: c_uint = 0xea;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_235?language=objc)
 pub const kHIDUsage_Button_235: c_uint = 0xeb;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_236?language=objc)
 pub const kHIDUsage_Button_236: c_uint = 0xec;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_237?language=objc)
 pub const kHIDUsage_Button_237: c_uint = 0xed;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_238?language=objc)
 pub const kHIDUsage_Button_238: c_uint = 0xee;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_239?language=objc)
 pub const kHIDUsage_Button_239: c_uint = 0xef;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_240?language=objc)
 pub const kHIDUsage_Button_240: c_uint = 0xf0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_241?language=objc)
 pub const kHIDUsage_Button_241: c_uint = 0xf1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_242?language=objc)
 pub const kHIDUsage_Button_242: c_uint = 0xf2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_243?language=objc)
 pub const kHIDUsage_Button_243: c_uint = 0xf3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_244?language=objc)
 pub const kHIDUsage_Button_244: c_uint = 0xf4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_245?language=objc)
 pub const kHIDUsage_Button_245: c_uint = 0xf5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_246?language=objc)
 pub const kHIDUsage_Button_246: c_uint = 0xf6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_247?language=objc)
 pub const kHIDUsage_Button_247: c_uint = 0xf7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_248?language=objc)
 pub const kHIDUsage_Button_248: c_uint = 0xf8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_249?language=objc)
 pub const kHIDUsage_Button_249: c_uint = 0xf9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_250?language=objc)
 pub const kHIDUsage_Button_250: c_uint = 0xfa;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_251?language=objc)
 pub const kHIDUsage_Button_251: c_uint = 0xfb;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_252?language=objc)
 pub const kHIDUsage_Button_252: c_uint = 0xfc;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_253?language=objc)
 pub const kHIDUsage_Button_253: c_uint = 0xfd;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_254?language=objc)
 pub const kHIDUsage_Button_254: c_uint = 0xfe;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_255?language=objc)
 pub const kHIDUsage_Button_255: c_uint = 0xff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591813-anonymous/khidusage_button_65535?language=objc)
 pub const kHIDUsage_Button_65535: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592380-anonymous/khidusage_ord_instance1?language=objc)
 pub const kHIDUsage_Ord_Instance1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592380-anonymous/khidusage_ord_instance2?language=objc)
 pub const kHIDUsage_Ord_Instance2: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592380-anonymous/khidusage_ord_instance3?language=objc)
 pub const kHIDUsage_Ord_Instance3: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592380-anonymous/khidusage_ord_instance4?language=objc)
 pub const kHIDUsage_Ord_Instance4: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592380-anonymous/khidusage_ord_instance65535?language=objc)
 pub const kHIDUsage_Ord_Instance65535: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phone?language=objc)
 pub const kHIDUsage_Tfon_Phone: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_answeringmachine?language=objc)
 pub const kHIDUsage_Tfon_AnsweringMachine: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_messagecontrols?language=objc)
 pub const kHIDUsage_Tfon_MessageControls: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_handset?language=objc)
 pub const kHIDUsage_Tfon_Handset: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_headset?language=objc)
 pub const kHIDUsage_Tfon_Headset: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_telephonykeypad?language=objc)
 pub const kHIDUsage_Tfon_TelephonyKeyPad: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_programmablebutton?language=objc)
 pub const kHIDUsage_Tfon_ProgrammableButton: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_hookswitch?language=objc)
 pub const kHIDUsage_Tfon_HookSwitch: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_flash?language=objc)
 pub const kHIDUsage_Tfon_Flash: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_feature?language=objc)
 pub const kHIDUsage_Tfon_Feature: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_hold?language=objc)
 pub const kHIDUsage_Tfon_Hold: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_redial?language=objc)
 pub const kHIDUsage_Tfon_Redial: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_transfer?language=objc)
 pub const kHIDUsage_Tfon_Transfer: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_drop?language=objc)
 pub const kHIDUsage_Tfon_Drop: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_park?language=objc)
 pub const kHIDUsage_Tfon_Park: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_forwardcalls?language=objc)
 pub const kHIDUsage_Tfon_ForwardCalls: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_alternatefunction?language=objc)
 pub const kHIDUsage_Tfon_AlternateFunction: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_line?language=objc)
 pub const kHIDUsage_Tfon_Line: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_speakerphone?language=objc)
 pub const kHIDUsage_Tfon_SpeakerPhone: c_uint = 0x2B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_conference?language=objc)
 pub const kHIDUsage_Tfon_Conference: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_ringenable?language=objc)
 pub const kHIDUsage_Tfon_RingEnable: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_ring?language=objc)
 pub const kHIDUsage_Tfon_Ring: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonemute?language=objc)
 pub const kHIDUsage_Tfon_PhoneMute: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_callerid?language=objc)
 pub const kHIDUsage_Tfon_CallerID: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_speeddial?language=objc)
 pub const kHIDUsage_Tfon_SpeedDial: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_storenumber?language=objc)
 pub const kHIDUsage_Tfon_StoreNumber: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_recallnumber?language=objc)
 pub const kHIDUsage_Tfon_RecallNumber: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonedirectory?language=objc)
 pub const kHIDUsage_Tfon_PhoneDirectory: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_voicemail?language=objc)
 pub const kHIDUsage_Tfon_VoiceMail: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_screencalls?language=objc)
 pub const kHIDUsage_Tfon_ScreenCalls: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_donotdisturb?language=objc)
 pub const kHIDUsage_Tfon_DoNotDisturb: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_message?language=objc)
 pub const kHIDUsage_Tfon_Message: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_answeronoroff?language=objc)
 pub const kHIDUsage_Tfon_AnswerOnOrOff: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_insidedialtone?language=objc)
 pub const kHIDUsage_Tfon_InsideDialTone: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_outsidedialtone?language=objc)
 pub const kHIDUsage_Tfon_OutsideDialTone: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_insideringtone?language=objc)
 pub const kHIDUsage_Tfon_InsideRingTone: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_outsideringtone?language=objc)
 pub const kHIDUsage_Tfon_OutsideRingTone: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_priorityringtone?language=objc)
 pub const kHIDUsage_Tfon_PriorityRingTone: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_insideringback?language=objc)
 pub const kHIDUsage_Tfon_InsideRingback: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_priorityringback?language=objc)
 pub const kHIDUsage_Tfon_PriorityRingback: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_linebusytone?language=objc)
 pub const kHIDUsage_Tfon_LineBusyTone: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_reordertone?language=objc)
 pub const kHIDUsage_Tfon_ReorderTone: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_callwaitingtone?language=objc)
 pub const kHIDUsage_Tfon_CallWaitingTone: c_uint = 0x99;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_confirmationtone1?language=objc)
 pub const kHIDUsage_Tfon_ConfirmationTone1: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_confirmationtone2?language=objc)
 pub const kHIDUsage_Tfon_ConfirmationTone2: c_uint = 0x9B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_tonesoff?language=objc)
 pub const kHIDUsage_Tfon_TonesOff: c_uint = 0x9C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_outsideringback?language=objc)
 pub const kHIDUsage_Tfon_OutsideRingback: c_uint = 0x9D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey0?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey0: c_uint = 0xB0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey1?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey1: c_uint = 0xB1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey2?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey2: c_uint = 0xB2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey3?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey3: c_uint = 0xB3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey4?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey4: c_uint = 0xB4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey5?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey5: c_uint = 0xB5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey6?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey6: c_uint = 0xB6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey7?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey7: c_uint = 0xB7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey8?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey8: c_uint = 0xB8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekey9?language=objc)
 pub const kHIDUsage_Tfon_PhoneKey9: c_uint = 0xB9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekeystar?language=objc)
 pub const kHIDUsage_Tfon_PhoneKeyStar: c_uint = 0xBA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekeypound?language=objc)
 pub const kHIDUsage_Tfon_PhoneKeyPound: c_uint = 0xBB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekeya?language=objc)
 pub const kHIDUsage_Tfon_PhoneKeyA: c_uint = 0xBC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekeyb?language=objc)
 pub const kHIDUsage_Tfon_PhoneKeyB: c_uint = 0xBD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekeyc?language=objc)
 pub const kHIDUsage_Tfon_PhoneKeyC: c_uint = 0xBE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_phonekeyd?language=objc)
 pub const kHIDUsage_Tfon_PhoneKeyD: c_uint = 0xBF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592682-anonymous/khidusage_tfon_reserved?language=objc)
 pub const kHIDUsage_TFon_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_consumercontrol?language=objc)
 pub const kHIDUsage_Csmr_ConsumerControl: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_numerickeypad?language=objc)
 pub const kHIDUsage_Csmr_NumericKeyPad: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_programmablebuttons?language=objc)
 pub const kHIDUsage_Csmr_ProgrammableButtons: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_microphone?language=objc)
 pub const kHIDUsage_Csmr_Microphone: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_headphone?language=objc)
 pub const kHIDUsage_Csmr_Headphone: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_graphicequalizer?language=objc)
 pub const kHIDUsage_Csmr_GraphicEqualizer: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_plus10?language=objc)
 pub const kHIDUsage_Csmr_Plus10: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_plus100?language=objc)
 pub const kHIDUsage_Csmr_Plus100: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_amorpm?language=objc)
 pub const kHIDUsage_Csmr_AMOrPM: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_power?language=objc)
 pub const kHIDUsage_Csmr_Power: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_reset?language=objc)
 pub const kHIDUsage_Csmr_Reset: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_sleep?language=objc)
 pub const kHIDUsage_Csmr_Sleep: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_sleepafter?language=objc)
 pub const kHIDUsage_Csmr_SleepAfter: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_sleepmode?language=objc)
 pub const kHIDUsage_Csmr_SleepMode: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_illumination?language=objc)
 pub const kHIDUsage_Csmr_Illumination: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_functionbuttons?language=objc)
 pub const kHIDUsage_Csmr_FunctionButtons: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menu?language=objc)
 pub const kHIDUsage_Csmr_Menu: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menupick?language=objc)
 pub const kHIDUsage_Csmr_MenuPick: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menuup?language=objc)
 pub const kHIDUsage_Csmr_MenuUp: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menudown?language=objc)
 pub const kHIDUsage_Csmr_MenuDown: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menuleft?language=objc)
 pub const kHIDUsage_Csmr_MenuLeft: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menuright?language=objc)
 pub const kHIDUsage_Csmr_MenuRight: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menuescape?language=objc)
 pub const kHIDUsage_Csmr_MenuEscape: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menuvalueincrease?language=objc)
 pub const kHIDUsage_Csmr_MenuValueIncrease: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_menuvaluedecrease?language=objc)
 pub const kHIDUsage_Csmr_MenuValueDecrease: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_dataonscreen?language=objc)
 pub const kHIDUsage_Csmr_DataOnScreen: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_closedcaption?language=objc)
 pub const kHIDUsage_Csmr_ClosedCaption: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_closedcaptionselect?language=objc)
 pub const kHIDUsage_Csmr_ClosedCaptionSelect: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_vcrortv?language=objc)
 pub const kHIDUsage_Csmr_VCROrTV: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_broadcastmode?language=objc)
 pub const kHIDUsage_Csmr_BroadcastMode: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_snapshot?language=objc)
 pub const kHIDUsage_Csmr_Snapshot: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_still?language=objc)
 pub const kHIDUsage_Csmr_Still: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_pictureinpicturetoggle?language=objc)
 pub const kHIDUsage_Csmr_PictureInPictureToggle: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_pictureinpictureswap?language=objc)
 pub const kHIDUsage_Csmr_PictureInPictureSwap: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_redmenubutton?language=objc)
 pub const kHIDUsage_Csmr_RedMenuButton: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_greenmenubutton?language=objc)
 pub const kHIDUsage_Csmr_GreenMenuButton: c_uint = 0x6A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_bluemenubutton?language=objc)
 pub const kHIDUsage_Csmr_BlueMenuButton: c_uint = 0x6B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_yellowmenubutton?language=objc)
 pub const kHIDUsage_Csmr_YellowMenuButton: c_uint = 0x6C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aspect?language=objc)
 pub const kHIDUsage_Csmr_Aspect: c_uint = 0x6D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_3dmodeselect?language=objc)
 pub const kHIDUsage_Csmr_3DModeSelect: c_uint = 0x6E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybrightnessincrement?language=objc)
 pub const kHIDUsage_Csmr_DisplayBrightnessIncrement: c_uint = 0x6F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybrightnessdecrement?language=objc)
 pub const kHIDUsage_Csmr_DisplayBrightnessDecrement: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybrightness?language=objc)
 pub const kHIDUsage_Csmr_DisplayBrightness: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybacklighttoggle?language=objc)
 pub const kHIDUsage_Csmr_DisplayBacklightToggle: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybrightnessminimum?language=objc)
 pub const kHIDUsage_Csmr_DisplayBrightnessMinimum: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybrightnessmaximum?language=objc)
 pub const kHIDUsage_Csmr_DisplayBrightnessMaximum: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_displaybrightnesssetautobrightness?language=objc)
 pub const kHIDUsage_Csmr_DisplayBrightnessSetAutoBrightness: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardbrightnessincrement?language=objc)
 pub const kHIDUsage_Csmr_KeyboardBrightnessIncrement: c_uint = 0x79;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardbrightnessdecrement?language=objc)
 pub const kHIDUsage_Csmr_KeyboardBrightnessDecrement: c_uint = 0x7A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_selection?language=objc)
 pub const kHIDUsage_Csmr_Selection: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_assign?language=objc)
 pub const kHIDUsage_Csmr_Assign: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_modestep?language=objc)
 pub const kHIDUsage_Csmr_ModeStep: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_recalllast?language=objc)
 pub const kHIDUsage_Csmr_RecallLast: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_enterchannel?language=objc)
 pub const kHIDUsage_Csmr_EnterChannel: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_ordermovie?language=objc)
 pub const kHIDUsage_Csmr_OrderMovie: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channel?language=objc)
 pub const kHIDUsage_Csmr_Channel: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselection?language=objc)
 pub const kHIDUsage_Csmr_MediaSelection: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectcomputer?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectComputer: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselecttv?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectTV: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectwww?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectWWW: c_uint = 0x8A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectdvd?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectDVD: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselecttelephone?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectTelephone: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectprogramguide?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectProgramGuide: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectvideophone?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectVideoPhone: c_uint = 0x8E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectgames?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectGames: c_uint = 0x8F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectmessages?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectMessages: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectcd?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectCD: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectvcr?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectVCR: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselecttuner?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectTuner: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_quit?language=objc)
 pub const kHIDUsage_Csmr_Quit: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_help?language=objc)
 pub const kHIDUsage_Csmr_Help: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselecttape?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectTape: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectcable?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectCable: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectsatellite?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectSatellite: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectsecurity?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectSecurity: c_uint = 0x99;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselecthome?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectHome: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mediaselectcall?language=objc)
 pub const kHIDUsage_Csmr_MediaSelectCall: c_uint = 0x9B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelincrement?language=objc)
 pub const kHIDUsage_Csmr_ChannelIncrement: c_uint = 0x9C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channeldecrement?language=objc)
 pub const kHIDUsage_Csmr_ChannelDecrement: c_uint = 0x9D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_media?language=objc)
 pub const kHIDUsage_Csmr_Media: c_uint = 0x9E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_vcrplus?language=objc)
 pub const kHIDUsage_Csmr_VCRPlus: c_uint = 0xA0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_once?language=objc)
 pub const kHIDUsage_Csmr_Once: c_uint = 0xA1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_daily?language=objc)
 pub const kHIDUsage_Csmr_Daily: c_uint = 0xA2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_weekly?language=objc)
 pub const kHIDUsage_Csmr_Weekly: c_uint = 0xA3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_monthly?language=objc)
 pub const kHIDUsage_Csmr_Monthly: c_uint = 0xA4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_play?language=objc)
 pub const kHIDUsage_Csmr_Play: c_uint = 0xB0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_pause?language=objc)
 pub const kHIDUsage_Csmr_Pause: c_uint = 0xB1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_record?language=objc)
 pub const kHIDUsage_Csmr_Record: c_uint = 0xB2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_fastforward?language=objc)
 pub const kHIDUsage_Csmr_FastForward: c_uint = 0xB3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_rewind?language=objc)
 pub const kHIDUsage_Csmr_Rewind: c_uint = 0xB4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_scannexttrack?language=objc)
 pub const kHIDUsage_Csmr_ScanNextTrack: c_uint = 0xB5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_scanprevioustrack?language=objc)
 pub const kHIDUsage_Csmr_ScanPreviousTrack: c_uint = 0xB6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_stop?language=objc)
 pub const kHIDUsage_Csmr_Stop: c_uint = 0xB7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_eject?language=objc)
 pub const kHIDUsage_Csmr_Eject: c_uint = 0xB8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_randomplay?language=objc)
 pub const kHIDUsage_Csmr_RandomPlay: c_uint = 0xB9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_selectdisc?language=objc)
 pub const kHIDUsage_Csmr_SelectDisc: c_uint = 0xBA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_enterdisc?language=objc)
 pub const kHIDUsage_Csmr_EnterDisc: c_uint = 0xBB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_repeat?language=objc)
 pub const kHIDUsage_Csmr_Repeat: c_uint = 0xBC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_tracking?language=objc)
 pub const kHIDUsage_Csmr_Tracking: c_uint = 0xBD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_tracknormal?language=objc)
 pub const kHIDUsage_Csmr_TrackNormal: c_uint = 0xBE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_slowtracking?language=objc)
 pub const kHIDUsage_Csmr_SlowTracking: c_uint = 0xBF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_frameforward?language=objc)
 pub const kHIDUsage_Csmr_FrameForward: c_uint = 0xC0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_frameback?language=objc)
 pub const kHIDUsage_Csmr_FrameBack: c_uint = 0xC1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mark?language=objc)
 pub const kHIDUsage_Csmr_Mark: c_uint = 0xC2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_clearmark?language=objc)
 pub const kHIDUsage_Csmr_ClearMark: c_uint = 0xC3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_repeatfrommark?language=objc)
 pub const kHIDUsage_Csmr_RepeatFromMark: c_uint = 0xC4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_returntomark?language=objc)
 pub const kHIDUsage_Csmr_ReturnToMark: c_uint = 0xC5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_searchmarkforward?language=objc)
 pub const kHIDUsage_Csmr_SearchMarkForward: c_uint = 0xC6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_searchmarkbackwards?language=objc)
 pub const kHIDUsage_Csmr_SearchMarkBackwards: c_uint = 0xC7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_counterreset?language=objc)
 pub const kHIDUsage_Csmr_CounterReset: c_uint = 0xC8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_showcounter?language=objc)
 pub const kHIDUsage_Csmr_ShowCounter: c_uint = 0xC9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_trackingincrement?language=objc)
 pub const kHIDUsage_Csmr_TrackingIncrement: c_uint = 0xCA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_trackingdecrement?language=objc)
 pub const kHIDUsage_Csmr_TrackingDecrement: c_uint = 0xCB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_stoporeject?language=objc)
 pub const kHIDUsage_Csmr_StopOrEject: c_uint = 0xCC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_playorpause?language=objc)
 pub const kHIDUsage_Csmr_PlayOrPause: c_uint = 0xCD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_playorskip?language=objc)
 pub const kHIDUsage_Csmr_PlayOrSkip: c_uint = 0xCE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_voicecommand?language=objc)
 pub const kHIDUsage_Csmr_VoiceCommand: c_uint = 0xCF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_volume?language=objc)
 pub const kHIDUsage_Csmr_Volume: c_uint = 0xE0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_balance?language=objc)
 pub const kHIDUsage_Csmr_Balance: c_uint = 0xE1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mute?language=objc)
 pub const kHIDUsage_Csmr_Mute: c_uint = 0xE2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_bass?language=objc)
 pub const kHIDUsage_Csmr_Bass: c_uint = 0xE3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_treble?language=objc)
 pub const kHIDUsage_Csmr_Treble: c_uint = 0xE4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_bassboost?language=objc)
 pub const kHIDUsage_Csmr_BassBoost: c_uint = 0xE5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_surroundmode?language=objc)
 pub const kHIDUsage_Csmr_SurroundMode: c_uint = 0xE6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_loudness?language=objc)
 pub const kHIDUsage_Csmr_Loudness: c_uint = 0xE7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_mpx?language=objc)
 pub const kHIDUsage_Csmr_MPX: c_uint = 0xE8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_volumeincrement?language=objc)
 pub const kHIDUsage_Csmr_VolumeIncrement: c_uint = 0xE9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_volumedecrement?language=objc)
 pub const kHIDUsage_Csmr_VolumeDecrement: c_uint = 0xEA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_speed?language=objc)
 pub const kHIDUsage_Csmr_Speed: c_uint = 0xF0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_playbackspeed?language=objc)
 pub const kHIDUsage_Csmr_PlaybackSpeed: c_uint = 0xF1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_standardplay?language=objc)
 pub const kHIDUsage_Csmr_StandardPlay: c_uint = 0xF2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_longplay?language=objc)
 pub const kHIDUsage_Csmr_LongPlay: c_uint = 0xF3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_extendedplay?language=objc)
 pub const kHIDUsage_Csmr_ExtendedPlay: c_uint = 0xF4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_slow?language=objc)
 pub const kHIDUsage_Csmr_Slow: c_uint = 0xF5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_fanenable?language=objc)
 pub const kHIDUsage_Csmr_FanEnable: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_fanspeed?language=objc)
 pub const kHIDUsage_Csmr_FanSpeed: c_uint = 0x101;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_lightenable?language=objc)
 pub const kHIDUsage_Csmr_LightEnable: c_uint = 0x102;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_lightilluminationlevel?language=objc)
 pub const kHIDUsage_Csmr_LightIlluminationLevel: c_uint = 0x103;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_climatecontrolenable?language=objc)
 pub const kHIDUsage_Csmr_ClimateControlEnable: c_uint = 0x104;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_roomtemperature?language=objc)
 pub const kHIDUsage_Csmr_RoomTemperature: c_uint = 0x105;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_securityenable?language=objc)
 pub const kHIDUsage_Csmr_SecurityEnable: c_uint = 0x106;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_firealarm?language=objc)
 pub const kHIDUsage_Csmr_FireAlarm: c_uint = 0x107;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_policealarm?language=objc)
 pub const kHIDUsage_Csmr_PoliceAlarm: c_uint = 0x108;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_proximity?language=objc)
 pub const kHIDUsage_Csmr_Proximity: c_uint = 0x109;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_motion?language=objc)
 pub const kHIDUsage_Csmr_Motion: c_uint = 0x10A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_duressalarm?language=objc)
 pub const kHIDUsage_Csmr_DuressAlarm: c_uint = 0x10B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_holdupalarm?language=objc)
 pub const kHIDUsage_Csmr_HoldupAlarm: c_uint = 0x10C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_medicalalarm?language=objc)
 pub const kHIDUsage_Csmr_MedicalAlarm: c_uint = 0x10D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_balanceright?language=objc)
 pub const kHIDUsage_Csmr_BalanceRight: c_uint = 0x150;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_balanceleft?language=objc)
 pub const kHIDUsage_Csmr_BalanceLeft: c_uint = 0x151;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_bassincrement?language=objc)
 pub const kHIDUsage_Csmr_BassIncrement: c_uint = 0x152;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_bassdecrement?language=objc)
 pub const kHIDUsage_Csmr_BassDecrement: c_uint = 0x153;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_trebleincrement?language=objc)
 pub const kHIDUsage_Csmr_TrebleIncrement: c_uint = 0x154;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_trebledecrement?language=objc)
 pub const kHIDUsage_Csmr_TrebleDecrement: c_uint = 0x155;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_speakersystem?language=objc)
 pub const kHIDUsage_Csmr_SpeakerSystem: c_uint = 0x160;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelleft?language=objc)
 pub const kHIDUsage_Csmr_ChannelLeft: c_uint = 0x161;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelright?language=objc)
 pub const kHIDUsage_Csmr_ChannelRight: c_uint = 0x162;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelcenter?language=objc)
 pub const kHIDUsage_Csmr_ChannelCenter: c_uint = 0x163;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelfront?language=objc)
 pub const kHIDUsage_Csmr_ChannelFront: c_uint = 0x164;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelcenterfront?language=objc)
 pub const kHIDUsage_Csmr_ChannelCenterFront: c_uint = 0x165;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelside?language=objc)
 pub const kHIDUsage_Csmr_ChannelSide: c_uint = 0x166;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelsurround?language=objc)
 pub const kHIDUsage_Csmr_ChannelSurround: c_uint = 0x167;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channellowfrequencyenhancement?language=objc)
 pub const kHIDUsage_Csmr_ChannelLowFrequencyEnhancement: c_uint = 0x168;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channeltop?language=objc)
 pub const kHIDUsage_Csmr_ChannelTop: c_uint = 0x169;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_channelunknown?language=objc)
 pub const kHIDUsage_Csmr_ChannelUnknown: c_uint = 0x16A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_subchannel?language=objc)
 pub const kHIDUsage_Csmr_SubChannel: c_uint = 0x170;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_subchannelincrement?language=objc)
 pub const kHIDUsage_Csmr_SubChannelIncrement: c_uint = 0x171;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_subchanneldecrement?language=objc)
 pub const kHIDUsage_Csmr_SubChannelDecrement: c_uint = 0x172;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alternateaudioincrement?language=objc)
 pub const kHIDUsage_Csmr_AlternateAudioIncrement: c_uint = 0x173;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alternateaudiodecrement?language=objc)
 pub const kHIDUsage_Csmr_AlternateAudioDecrement: c_uint = 0x174;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_applicationlaunchbuttons?language=objc)
 pub const kHIDUsage_Csmr_ApplicationLaunchButtons: c_uint = 0x180;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allaunchbuttonconfigurationtool?language=objc)
 pub const kHIDUsage_Csmr_ALLaunchButtonConfigurationTool: c_uint = 0x181;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alprogrammablebuttonconfiguration?language=objc)
 pub const kHIDUsage_Csmr_ALProgrammableButtonConfiguration: c_uint = 0x182;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alconsumercontrolconfiguration?language=objc)
 pub const kHIDUsage_Csmr_ALConsumerControlConfiguration: c_uint = 0x183;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alwordprocessor?language=objc)
 pub const kHIDUsage_Csmr_ALWordProcessor: c_uint = 0x184;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_altexteditor?language=objc)
 pub const kHIDUsage_Csmr_ALTextEditor: c_uint = 0x185;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alspreadsheet?language=objc)
 pub const kHIDUsage_Csmr_ALSpreadsheet: c_uint = 0x186;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_algraphicseditor?language=objc)
 pub const kHIDUsage_Csmr_ALGraphicsEditor: c_uint = 0x187;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alpresentationapp?language=objc)
 pub const kHIDUsage_Csmr_ALPresentationApp: c_uint = 0x188;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aldatabaseapp?language=objc)
 pub const kHIDUsage_Csmr_ALDatabaseApp: c_uint = 0x189;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alemailreader?language=objc)
 pub const kHIDUsage_Csmr_ALEmailReader: c_uint = 0x18A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alnewsreader?language=objc)
 pub const kHIDUsage_Csmr_ALNewsreader: c_uint = 0x18B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alvoicemail?language=objc)
 pub const kHIDUsage_Csmr_ALVoicemail: c_uint = 0x18C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcontactsoraddressbook?language=objc)
 pub const kHIDUsage_Csmr_ALContactsOrAddressBook: c_uint = 0x18D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcalendarorschedule?language=objc)
 pub const kHIDUsage_Csmr_ALCalendarOrSchedule: c_uint = 0x18E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_altaskorprojectmanager?language=objc)
 pub const kHIDUsage_Csmr_ALTaskOrProjectManager: c_uint = 0x18F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allogorjournalortimecard?language=objc)
 pub const kHIDUsage_Csmr_ALLogOrJournalOrTimecard: c_uint = 0x190;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcheckbookorfinance?language=objc)
 pub const kHIDUsage_Csmr_ALCheckbookOrFinance: c_uint = 0x191;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcalculator?language=objc)
 pub const kHIDUsage_Csmr_ALCalculator: c_uint = 0x192;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alaorvcaptureorplayback?language=objc)
 pub const kHIDUsage_Csmr_ALAOrVCaptureOrPlayback: c_uint = 0x193;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allocalmachinebrowser?language=objc)
 pub const kHIDUsage_Csmr_ALLocalMachineBrowser: c_uint = 0x194;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allanorwanbrowser?language=objc)
 pub const kHIDUsage_Csmr_ALLANOrWANBrowser: c_uint = 0x195;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alinternetbrowser?language=objc)
 pub const kHIDUsage_Csmr_ALInternetBrowser: c_uint = 0x196;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alremotenetworkingorispconnect?language=objc)
 pub const kHIDUsage_Csmr_ALRemoteNetworkingOrISPConnect: c_uint = 0x197;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alnetworkconference?language=objc)
 pub const kHIDUsage_Csmr_ALNetworkConference: c_uint = 0x198;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alnetworkchat?language=objc)
 pub const kHIDUsage_Csmr_ALNetworkChat: c_uint = 0x199;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_altelephonyordialer?language=objc)
 pub const kHIDUsage_Csmr_ALTelephonyOrDialer: c_uint = 0x19A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allogon?language=objc)
 pub const kHIDUsage_Csmr_ALLogon: c_uint = 0x19B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allogoff?language=objc)
 pub const kHIDUsage_Csmr_ALLogoff: c_uint = 0x19C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_allogonorlogoff?language=objc)
 pub const kHIDUsage_Csmr_ALLogonOrLogoff: c_uint = 0x19D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alterminallockorscreensaver?language=objc)
 pub const kHIDUsage_Csmr_ALTerminalLockOrScreensaver: c_uint = 0x19E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcontrolpanel?language=objc)
 pub const kHIDUsage_Csmr_ALControlPanel: c_uint = 0x19F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcommandlineprocessororrun?language=objc)
 pub const kHIDUsage_Csmr_ALCommandLineProcessorOrRun: c_uint = 0x1A0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alprocessortaskmanager?language=objc)
 pub const kHIDUsage_Csmr_ALProcessOrTaskManager: c_uint = 0x1A1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_al?language=objc)
 pub const kHIDUsage_Csmr_AL: c_uint = 0x1A2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alnexttaskorapplication?language=objc)
 pub const kHIDUsage_Csmr_ALNextTaskOrApplication: c_uint = 0x1A3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alprevioustaskorapplication?language=objc)
 pub const kHIDUsage_Csmr_ALPreviousTaskOrApplication: c_uint = 0x1A4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alpreemptivehalttaskorapplication?language=objc)
 pub const kHIDUsage_Csmr_ALPreemptiveHaltTaskOrApplication: c_uint = 0x1A5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alintegratedhelpcenter?language=objc)
 pub const kHIDUsage_Csmr_ALIntegratedHelpCenter: c_uint = 0x1A6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aldocuments?language=objc)
 pub const kHIDUsage_Csmr_ALDocuments: c_uint = 0x1A7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_althesaurus?language=objc)
 pub const kHIDUsage_Csmr_ALThesaurus: c_uint = 0x1A8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aldictionary?language=objc)
 pub const kHIDUsage_Csmr_ALDictionary: c_uint = 0x1A9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aldesktop?language=objc)
 pub const kHIDUsage_Csmr_ALDesktop: c_uint = 0x1AA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alspellcheck?language=objc)
 pub const kHIDUsage_Csmr_ALSpellCheck: c_uint = 0x1AB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_algrammercheck?language=objc)
 pub const kHIDUsage_Csmr_ALGrammerCheck: c_uint = 0x1AC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alwirelessstatus?language=objc)
 pub const kHIDUsage_Csmr_ALWirelessStatus: c_uint = 0x1AD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alkeyboardlayout?language=objc)
 pub const kHIDUsage_Csmr_ALKeyboardLayout: c_uint = 0x1AE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alvirusprotection?language=objc)
 pub const kHIDUsage_Csmr_ALVirusProtection: c_uint = 0x1AF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alencryption?language=objc)
 pub const kHIDUsage_Csmr_ALEncryption: c_uint = 0x1B0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alscreensaver?language=objc)
 pub const kHIDUsage_Csmr_ALScreenSaver: c_uint = 0x1B1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alalarms?language=objc)
 pub const kHIDUsage_Csmr_ALAlarms: c_uint = 0x1B2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alclock?language=objc)
 pub const kHIDUsage_Csmr_ALClock: c_uint = 0x1B3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alfilebrowser?language=objc)
 pub const kHIDUsage_Csmr_ALFileBrowser: c_uint = 0x1B4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alpowerstatus?language=objc)
 pub const kHIDUsage_Csmr_ALPowerStatus: c_uint = 0x1B5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alimagebrowser?language=objc)
 pub const kHIDUsage_Csmr_ALImageBrowser: c_uint = 0x1B6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alaudiobrowser?language=objc)
 pub const kHIDUsage_Csmr_ALAudioBrowser: c_uint = 0x1B7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_almoviebrowser?language=objc)
 pub const kHIDUsage_Csmr_ALMovieBrowser: c_uint = 0x1B8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aldigitalrightsmanager?language=objc)
 pub const kHIDUsage_Csmr_ALDigitalRightsManager: c_uint = 0x1B9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aldigitalwallet?language=objc)
 pub const kHIDUsage_Csmr_ALDigitalWallet: c_uint = 0x1BA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alinstantmessaging?language=objc)
 pub const kHIDUsage_Csmr_ALInstantMessaging: c_uint = 0x1BC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aloemfeaturebrowser?language=objc)
 pub const kHIDUsage_Csmr_ALOEMFeatureBrowser: c_uint = 0x1BD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aloemhelp?language=objc)
 pub const kHIDUsage_Csmr_ALOEMHelp: c_uint = 0x1BE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alonlinecommunity?language=objc)
 pub const kHIDUsage_Csmr_ALOnlineCommunity: c_uint = 0x1BF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alentertainmentcontentbrowser?language=objc)
 pub const kHIDUsage_Csmr_ALEntertainmentContentBrowser: c_uint = 0x1C0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alonlineshoppingbrowswer?language=objc)
 pub const kHIDUsage_Csmr_ALOnlineShoppingBrowswer: c_uint = 0x1C1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alsmartcardinformationorhelp?language=objc)
 pub const kHIDUsage_Csmr_ALSmartCardInformationOrHelp: c_uint = 0x1C2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_almarketmonitororfinancebrowser?language=objc)
 pub const kHIDUsage_Csmr_ALMarketMonitorOrFinanceBrowser: c_uint = 0x1C3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcustomizedcorporatenewsbrowser?language=objc)
 pub const kHIDUsage_Csmr_ALCustomizedCorporateNewsBrowser: c_uint = 0x1C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alonlineactivitybrowswer?language=objc)
 pub const kHIDUsage_Csmr_ALOnlineActivityBrowswer: c_uint = 0x1C5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alresearchorsearchbrowswer?language=objc)
 pub const kHIDUsage_Csmr_ALResearchOrSearchBrowswer: c_uint = 0x1C6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alaudioplayer?language=objc)
 pub const kHIDUsage_Csmr_ALAudioPlayer: c_uint = 0x1C7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_almessagestatus?language=objc)
 pub const kHIDUsage_Csmr_ALMessageStatus: c_uint = 0x1C8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcontactsync?language=objc)
 pub const kHIDUsage_Csmr_ALContactSync: c_uint = 0x1C9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alnavigation?language=objc)
 pub const kHIDUsage_Csmr_ALNavigation: c_uint = 0x1CA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_alcontextawaredesktopassistant?language=objc)
 pub const kHIDUsage_Csmr_ALContextawareDesktopAssistant: c_uint = 0x1CB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_genericguiapplicationcontrols?language=objc)
 pub const kHIDUsage_Csmr_GenericGUIApplicationControls: c_uint = 0x200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acnew?language=objc)
 pub const kHIDUsage_Csmr_ACNew: c_uint = 0x201;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acopen?language=objc)
 pub const kHIDUsage_Csmr_ACOpen: c_uint = 0x202;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acclose?language=objc)
 pub const kHIDUsage_Csmr_ACClose: c_uint = 0x203;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acexit?language=objc)
 pub const kHIDUsage_Csmr_ACExit: c_uint = 0x204;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acmaximize?language=objc)
 pub const kHIDUsage_Csmr_ACMaximize: c_uint = 0x205;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acminimize?language=objc)
 pub const kHIDUsage_Csmr_ACMinimize: c_uint = 0x206;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsave?language=objc)
 pub const kHIDUsage_Csmr_ACSave: c_uint = 0x207;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acprint?language=objc)
 pub const kHIDUsage_Csmr_ACPrint: c_uint = 0x208;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acproperties?language=objc)
 pub const kHIDUsage_Csmr_ACProperties: c_uint = 0x209;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acundo?language=objc)
 pub const kHIDUsage_Csmr_ACUndo: c_uint = 0x21A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_accopy?language=objc)
 pub const kHIDUsage_Csmr_ACCopy: c_uint = 0x21B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_accut?language=objc)
 pub const kHIDUsage_Csmr_ACCut: c_uint = 0x21C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpaste?language=objc)
 pub const kHIDUsage_Csmr_ACPaste: c_uint = 0x21D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_ac?language=objc)
 pub const kHIDUsage_Csmr_AC: c_uint = 0x21E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfind?language=objc)
 pub const kHIDUsage_Csmr_ACFind: c_uint = 0x21F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfindandreplace?language=objc)
 pub const kHIDUsage_Csmr_ACFindandReplace: c_uint = 0x220;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsearch?language=objc)
 pub const kHIDUsage_Csmr_ACSearch: c_uint = 0x221;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acgoto?language=objc)
 pub const kHIDUsage_Csmr_ACGoTo: c_uint = 0x222;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_achome?language=objc)
 pub const kHIDUsage_Csmr_ACHome: c_uint = 0x223;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acback?language=objc)
 pub const kHIDUsage_Csmr_ACBack: c_uint = 0x224;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acforward?language=objc)
 pub const kHIDUsage_Csmr_ACForward: c_uint = 0x225;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acstop?language=objc)
 pub const kHIDUsage_Csmr_ACStop: c_uint = 0x226;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acrefresh?language=objc)
 pub const kHIDUsage_Csmr_ACRefresh: c_uint = 0x227;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpreviouslink?language=objc)
 pub const kHIDUsage_Csmr_ACPreviousLink: c_uint = 0x228;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acnextlink?language=objc)
 pub const kHIDUsage_Csmr_ACNextLink: c_uint = 0x229;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acbookmarks?language=objc)
 pub const kHIDUsage_Csmr_ACBookmarks: c_uint = 0x22A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_achistory?language=objc)
 pub const kHIDUsage_Csmr_ACHistory: c_uint = 0x22B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsubscriptions?language=objc)
 pub const kHIDUsage_Csmr_ACSubscriptions: c_uint = 0x22C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aczoomin?language=objc)
 pub const kHIDUsage_Csmr_ACZoomIn: c_uint = 0x22D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aczoomout?language=objc)
 pub const kHIDUsage_Csmr_ACZoomOut: c_uint = 0x22E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aczoom?language=objc)
 pub const kHIDUsage_Csmr_ACZoom: c_uint = 0x22F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfullscreenview?language=objc)
 pub const kHIDUsage_Csmr_ACFullScreenView: c_uint = 0x230;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acnormalview?language=objc)
 pub const kHIDUsage_Csmr_ACNormalView: c_uint = 0x231;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acviewtoggle?language=objc)
 pub const kHIDUsage_Csmr_ACViewToggle: c_uint = 0x232;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acscrollup?language=objc)
 pub const kHIDUsage_Csmr_ACScrollUp: c_uint = 0x233;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acscrolldown?language=objc)
 pub const kHIDUsage_Csmr_ACScrollDown: c_uint = 0x234;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acscroll?language=objc)
 pub const kHIDUsage_Csmr_ACScroll: c_uint = 0x235;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpanleft?language=objc)
 pub const kHIDUsage_Csmr_ACPanLeft: c_uint = 0x236;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpanright?language=objc)
 pub const kHIDUsage_Csmr_ACPanRight: c_uint = 0x237;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpan?language=objc)
 pub const kHIDUsage_Csmr_ACPan: c_uint = 0x238;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acnewwindow?language=objc)
 pub const kHIDUsage_Csmr_ACNewWindow: c_uint = 0x239;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_actilehorizontally?language=objc)
 pub const kHIDUsage_Csmr_ACTileHorizontally: c_uint = 0x23A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_actilevertically?language=objc)
 pub const kHIDUsage_Csmr_ACTileVertically: c_uint = 0x23B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acformat?language=objc)
 pub const kHIDUsage_Csmr_ACFormat: c_uint = 0x23C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acedit?language=objc)
 pub const kHIDUsage_Csmr_ACEdit: c_uint = 0x23D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acbold?language=objc)
 pub const kHIDUsage_Csmr_ACBold: c_uint = 0x23E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acitalics?language=objc)
 pub const kHIDUsage_Csmr_ACItalics: c_uint = 0x23F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acunderline?language=objc)
 pub const kHIDUsage_Csmr_ACUnderline: c_uint = 0x240;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acstrikethrough?language=objc)
 pub const kHIDUsage_Csmr_ACStrikethrough: c_uint = 0x241;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsubscript?language=objc)
 pub const kHIDUsage_Csmr_ACSubscript: c_uint = 0x242;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsuperscript?language=objc)
 pub const kHIDUsage_Csmr_ACSuperscript: c_uint = 0x243;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acallcaps?language=objc)
 pub const kHIDUsage_Csmr_ACAllCaps: c_uint = 0x244;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acrotate?language=objc)
 pub const kHIDUsage_Csmr_ACRotate: c_uint = 0x245;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acresize?language=objc)
 pub const kHIDUsage_Csmr_ACResize: c_uint = 0x246;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfliphorizontal?language=objc)
 pub const kHIDUsage_Csmr_ACFlipHorizontal: c_uint = 0x247;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acflipvertical?language=objc)
 pub const kHIDUsage_Csmr_ACFlipVertical: c_uint = 0x248;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acmirrorhorizontal?language=objc)
 pub const kHIDUsage_Csmr_ACMirrorHorizontal: c_uint = 0x249;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acmirrorvertical?language=objc)
 pub const kHIDUsage_Csmr_ACMirrorVertical: c_uint = 0x24A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfontselect?language=objc)
 pub const kHIDUsage_Csmr_ACFontSelect: c_uint = 0x24B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfontcolor?language=objc)
 pub const kHIDUsage_Csmr_ACFontColor: c_uint = 0x24C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfontsize?language=objc)
 pub const kHIDUsage_Csmr_ACFontSize: c_uint = 0x24D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifyleft?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyLeft: c_uint = 0x24E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifycenterh?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyCenterH: c_uint = 0x24F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifyright?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyRight: c_uint = 0x250;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifyblockh?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyBlockH: c_uint = 0x251;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifytop?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyTop: c_uint = 0x252;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifycenterv?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyCenterV: c_uint = 0x253;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifybottom?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyBottom: c_uint = 0x254;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acjustifyblockv?language=objc)
 pub const kHIDUsage_Csmr_ACJustifyBlockV: c_uint = 0x255;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acindentydecrease?language=objc)
 pub const kHIDUsage_Csmr_ACIndentyDecrease: c_uint = 0x256;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acindentyincrease?language=objc)
 pub const kHIDUsage_Csmr_ACIndentyIncrease: c_uint = 0x257;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acnumberedlist?language=objc)
 pub const kHIDUsage_Csmr_ACNumberedList: c_uint = 0x258;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acrestartnumbering?language=objc)
 pub const kHIDUsage_Csmr_ACRestartNumbering: c_uint = 0x259;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acbulletedlist?language=objc)
 pub const kHIDUsage_Csmr_ACBulletedList: c_uint = 0x25A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpromote?language=objc)
 pub const kHIDUsage_Csmr_ACPromote: c_uint = 0x25B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdemote?language=objc)
 pub const kHIDUsage_Csmr_ACDemote: c_uint = 0x25C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acyes?language=objc)
 pub const kHIDUsage_Csmr_ACYes: c_uint = 0x25D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acno?language=objc)
 pub const kHIDUsage_Csmr_ACNo: c_uint = 0x25E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_accancel?language=objc)
 pub const kHIDUsage_Csmr_ACCancel: c_uint = 0x25F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_accatalog?language=objc)
 pub const kHIDUsage_Csmr_ACCatalog: c_uint = 0x260;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acbuyorcheckout?language=objc)
 pub const kHIDUsage_Csmr_ACBuyOrCheckout: c_uint = 0x261;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acaddtocart?language=objc)
 pub const kHIDUsage_Csmr_ACAddToCart: c_uint = 0x262;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acexpand?language=objc)
 pub const kHIDUsage_Csmr_ACExpand: c_uint = 0x263;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acexpandall?language=objc)
 pub const kHIDUsage_Csmr_ACExpandAll: c_uint = 0x264;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_accollapse?language=objc)
 pub const kHIDUsage_Csmr_ACCollapse: c_uint = 0x265;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_accollapseall?language=objc)
 pub const kHIDUsage_Csmr_ACCollapseAll: c_uint = 0x266;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acprintpreview?language=objc)
 pub const kHIDUsage_Csmr_ACPrintPreview: c_uint = 0x267;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acpastespecial?language=objc)
 pub const kHIDUsage_Csmr_ACPasteSpecial: c_uint = 0x268;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertmode?language=objc)
 pub const kHIDUsage_Csmr_ACInsertMode: c_uint = 0x269;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdelete?language=objc)
 pub const kHIDUsage_Csmr_ACDelete: c_uint = 0x26A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_aclock?language=objc)
 pub const kHIDUsage_Csmr_ACLock: c_uint = 0x26B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acunlock?language=objc)
 pub const kHIDUsage_Csmr_ACUnlock: c_uint = 0x26C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acprotect?language=objc)
 pub const kHIDUsage_Csmr_ACProtect: c_uint = 0x26D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acunprotect?language=objc)
 pub const kHIDUsage_Csmr_ACUnprotect: c_uint = 0x26E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acattachcomment?language=objc)
 pub const kHIDUsage_Csmr_ACAttachComment: c_uint = 0x26F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdetachcomment?language=objc)
 pub const kHIDUsage_Csmr_ACDetachComment: c_uint = 0x270;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acviewcomment?language=objc)
 pub const kHIDUsage_Csmr_ACViewComment: c_uint = 0x271;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselectword?language=objc)
 pub const kHIDUsage_Csmr_ACSelectWord: c_uint = 0x272;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselectsentence?language=objc)
 pub const kHIDUsage_Csmr_ACSelectSentence: c_uint = 0x273;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselectparagraph?language=objc)
 pub const kHIDUsage_Csmr_ACSelectParagraph: c_uint = 0x274;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselectcolumn?language=objc)
 pub const kHIDUsage_Csmr_ACSelectColumn: c_uint = 0x275;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselectrow?language=objc)
 pub const kHIDUsage_Csmr_ACSelectRow: c_uint = 0x276;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselecttable?language=objc)
 pub const kHIDUsage_Csmr_ACSelectTable: c_uint = 0x277;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselectobject?language=objc)
 pub const kHIDUsage_Csmr_ACSelectObject: c_uint = 0x278;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acredoorrepeat?language=objc)
 pub const kHIDUsage_Csmr_ACRedoOrRepeat: c_uint = 0x279;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsort?language=objc)
 pub const kHIDUsage_Csmr_ACSort: c_uint = 0x27A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsortascending?language=objc)
 pub const kHIDUsage_Csmr_ACSortAscending: c_uint = 0x27B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsortdescending?language=objc)
 pub const kHIDUsage_Csmr_ACSortDescending: c_uint = 0x27C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acfilter?language=objc)
 pub const kHIDUsage_Csmr_ACFilter: c_uint = 0x27D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsetclock?language=objc)
 pub const kHIDUsage_Csmr_ACSetClock: c_uint = 0x27E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acviewclock?language=objc)
 pub const kHIDUsage_Csmr_ACViewClock: c_uint = 0x27F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acselecttimezone?language=objc)
 pub const kHIDUsage_Csmr_ACSelectTimeZone: c_uint = 0x280;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acedittimezones?language=objc)
 pub const kHIDUsage_Csmr_ACEditTimeZones: c_uint = 0x281;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsetalarm?language=objc)
 pub const kHIDUsage_Csmr_ACSetAlarm: c_uint = 0x282;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acclearalarm?language=objc)
 pub const kHIDUsage_Csmr_ACClearAlarm: c_uint = 0x283;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsnoozealarm?language=objc)
 pub const kHIDUsage_Csmr_ACSnoozeAlarm: c_uint = 0x284;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acresetalarm?language=objc)
 pub const kHIDUsage_Csmr_ACResetAlarm: c_uint = 0x285;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsynchronize?language=objc)
 pub const kHIDUsage_Csmr_ACSynchronize: c_uint = 0x286;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsendorreceive?language=objc)
 pub const kHIDUsage_Csmr_ACSendOrReceive: c_uint = 0x287;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsendto?language=objc)
 pub const kHIDUsage_Csmr_ACSendTo: c_uint = 0x288;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acreply?language=objc)
 pub const kHIDUsage_Csmr_ACReply: c_uint = 0x289;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acreplyall?language=objc)
 pub const kHIDUsage_Csmr_ACReplyAll: c_uint = 0x28A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acforwardmessage?language=objc)
 pub const kHIDUsage_Csmr_ACForwardMessage: c_uint = 0x28B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsend?language=objc)
 pub const kHIDUsage_Csmr_ACSend: c_uint = 0x28C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acattachfile?language=objc)
 pub const kHIDUsage_Csmr_ACAttachFile: c_uint = 0x28D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acupload?language=objc)
 pub const kHIDUsage_Csmr_ACUpload: c_uint = 0x28E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdownload?language=objc)
 pub const kHIDUsage_Csmr_ACDownload: c_uint = 0x28F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsetborders?language=objc)
 pub const kHIDUsage_Csmr_ACSetBorders: c_uint = 0x290;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertrow?language=objc)
 pub const kHIDUsage_Csmr_ACInsertRow: c_uint = 0x291;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertcolumn?language=objc)
 pub const kHIDUsage_Csmr_ACInsertColumn: c_uint = 0x292;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertfile?language=objc)
 pub const kHIDUsage_Csmr_ACInsertFile: c_uint = 0x293;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertpicture?language=objc)
 pub const kHIDUsage_Csmr_ACInsertPicture: c_uint = 0x294;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertobject?language=objc)
 pub const kHIDUsage_Csmr_ACInsertObject: c_uint = 0x295;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acinsertsymbol?language=objc)
 pub const kHIDUsage_Csmr_ACInsertSymbol: c_uint = 0x296;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsaveandclose?language=objc)
 pub const kHIDUsage_Csmr_ACSaveAndClose: c_uint = 0x297;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acrename?language=objc)
 pub const kHIDUsage_Csmr_ACRename: c_uint = 0x298;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acmerge?language=objc)
 pub const kHIDUsage_Csmr_ACMerge: c_uint = 0x299;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsplit?language=objc)
 pub const kHIDUsage_Csmr_ACSplit: c_uint = 0x29A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdistributeh?language=objc)
 pub const kHIDUsage_Csmr_ACDistributeH: c_uint = 0x29B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdistributev?language=objc)
 pub const kHIDUsage_Csmr_ACDistributeV: c_uint = 0x29C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_ackeyboardlayoutselect?language=objc)
 pub const kHIDUsage_Csmr_ACKeyboardLayoutSelect: c_uint = 0x29D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acnavigationguidance?language=objc)
 pub const kHIDUsage_Csmr_ACNavigationGuidance: c_uint = 0x29E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdesktopshowallwindows?language=objc)
 pub const kHIDUsage_Csmr_ACDesktopShowAllWindows: c_uint = 0x29F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsoftkeyleft?language=objc)
 pub const kHIDUsage_Csmr_ACSoftKeyLeft: c_uint = 0x2A0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acsoftkeyright?language=objc)
 pub const kHIDUsage_Csmr_ACSoftKeyRight: c_uint = 0x2A1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acdesktopshowallapplications?language=objc)
 pub const kHIDUsage_Csmr_ACDesktopShowAllApplications: c_uint = 0x2A2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_acidlekeepalive?language=objc)
 pub const kHIDUsage_Csmr_ACIdleKeepAlive: c_uint = 0x2B0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_extendedkeyboardattributescollection?language=objc)
 pub const kHIDUsage_Csmr_ExtendedKeyboardAttributesCollection: c_uint = 0x2C0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardformfactor?language=objc)
 pub const kHIDUsage_Csmr_KeyboardFormFactor: c_uint = 0x2C1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardkeytype?language=objc)
 pub const kHIDUsage_Csmr_KeyboardKeyType: c_uint = 0x2C2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardphysicallayout?language=objc)
 pub const kHIDUsage_Csmr_KeyboardPhysicalLayout: c_uint = 0x2C3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_vendorspecifickeyboardphysicallayout?language=objc)
 pub const kHIDUsage_Csmr_VendorSpecificKeyboardPhysicalLayout: c_uint = 0x2C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardietflanguagetagindex?language=objc)
 pub const kHIDUsage_Csmr_KeyboardIETFLanguageTagIndex: c_uint = 0x2C5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_implementedkeyboardinputassistcontrols?language=objc)
 pub const kHIDUsage_Csmr_ImplementedKeyboardInputAssistControls: c_uint = 0x2C6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardinputassistprevious?language=objc)
 pub const kHIDUsage_Csmr_KeyboardInputAssistPrevious: c_uint = 0x2C7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardinputassistnext?language=objc)
 pub const kHIDUsage_Csmr_KeyboardInputAssistNext: c_uint = 0x2C8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardinputassistpreviousgroup?language=objc)
 pub const kHIDUsage_Csmr_KeyboardInputAssistPreviousGroup: c_uint = 0x2C9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardinputassistnextgroup?language=objc)
 pub const kHIDUsage_Csmr_KeyboardInputAssistNextGroup: c_uint = 0x2CA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardinputassistaccept?language=objc)
 pub const kHIDUsage_Csmr_KeyboardInputAssistAccept: c_uint = 0x2CB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_keyboardinputassistcancel?language=objc)
 pub const kHIDUsage_Csmr_KeyboardInputAssistCancel: c_uint = 0x2CC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactedited?language=objc)
 pub const kHIDUsage_Csmr_ContactEdited: c_uint = 0x500;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactadded?language=objc)
 pub const kHIDUsage_Csmr_ContactAdded: c_uint = 0x501;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactrecordactive?language=objc)
 pub const kHIDUsage_Csmr_ContactRecordActive: c_uint = 0x502;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactindex?language=objc)
 pub const kHIDUsage_Csmr_ContactIndex: c_uint = 0x503;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactnickname?language=objc)
 pub const kHIDUsage_Csmr_ContactNickname: c_uint = 0x504;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactfirstname?language=objc)
 pub const kHIDUsage_Csmr_ContactFirstName: c_uint = 0x505;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactlastname?language=objc)
 pub const kHIDUsage_Csmr_ContactLastName: c_uint = 0x506;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactfullname?language=objc)
 pub const kHIDUsage_Csmr_ContactFullName: c_uint = 0x507;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactphonenumberpersonal?language=objc)
 pub const kHIDUsage_Csmr_ContactPhoneNumberPersonal: c_uint = 0x508;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactphonenumberbusiness?language=objc)
 pub const kHIDUsage_Csmr_ContactPhoneNumberBusiness: c_uint = 0x509;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactphonenumbermobile?language=objc)
 pub const kHIDUsage_Csmr_ContactPhoneNumberMobile: c_uint = 0x50A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactphonenumberpager?language=objc)
 pub const kHIDUsage_Csmr_ContactPhoneNumberPager: c_uint = 0x50B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactphonenumberfax?language=objc)
 pub const kHIDUsage_Csmr_ContactPhoneNumberFax: c_uint = 0x50C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactphonenumberother?language=objc)
 pub const kHIDUsage_Csmr_ContactPhoneNumberOther: c_uint = 0x50D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactemailpersonal?language=objc)
 pub const kHIDUsage_Csmr_ContactEmailPersonal: c_uint = 0x50E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactemailbusiness?language=objc)
 pub const kHIDUsage_Csmr_ContactEmailBusiness: c_uint = 0x50F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactemailother?language=objc)
 pub const kHIDUsage_Csmr_ContactEmailOther: c_uint = 0x510;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactemailmain?language=objc)
 pub const kHIDUsage_Csmr_ContactEmailMain: c_uint = 0x511;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactspeeddialnumber?language=objc)
 pub const kHIDUsage_Csmr_ContactSpeedDialNumber: c_uint = 0x512;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactstatusflag?language=objc)
 pub const kHIDUsage_Csmr_ContactStatusFlag: c_uint = 0x513;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_contactmisc?language=objc)
 pub const kHIDUsage_Csmr_ContactMisc: c_uint = 0x514;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592162-anonymous/khidusage_csmr_reserved?language=objc)
 pub const kHIDUsage_Csmr_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_digitizer?language=objc)
 pub const kHIDUsage_Dig_Digitizer: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_pen?language=objc)
 pub const kHIDUsage_Dig_Pen: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_lightpen?language=objc)
 pub const kHIDUsage_Dig_LightPen: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_touchscreen?language=objc)
 pub const kHIDUsage_Dig_TouchScreen: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_touchpad?language=objc)
 pub const kHIDUsage_Dig_TouchPad: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_whiteboard?language=objc)
 pub const kHIDUsage_Dig_WhiteBoard: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_coordinatemeasuringmachine?language=objc)
 pub const kHIDUsage_Dig_CoordinateMeasuringMachine: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_3ddigitizer?language=objc)
 pub const kHIDUsage_Dig_3DDigitizer: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_stereoplotter?language=objc)
 pub const kHIDUsage_Dig_StereoPlotter: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_articulatedarm?language=objc)
 pub const kHIDUsage_Dig_ArticulatedArm: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_armature?language=objc)
 pub const kHIDUsage_Dig_Armature: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_multiplepointdigitizer?language=objc)
 pub const kHIDUsage_Dig_MultiplePointDigitizer: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_freespacewand?language=objc)
 pub const kHIDUsage_Dig_FreeSpaceWand: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_deviceconfiguration?language=objc)
 pub const kHIDUsage_Dig_DeviceConfiguration: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_capacitiveheatmapdigitizer?language=objc)
 pub const kHIDUsage_Dig_CapacitiveHeatMapDigitizer: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_stylus?language=objc)
 pub const kHIDUsage_Dig_Stylus: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_puck?language=objc)
 pub const kHIDUsage_Dig_Puck: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_finger?language=objc)
 pub const kHIDUsage_Dig_Finger: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_devicesettings?language=objc)
 pub const kHIDUsage_Dig_DeviceSettings: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacter?language=objc)
 pub const kHIDUsage_Dig_GestureCharacter: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_tippressure?language=objc)
 pub const kHIDUsage_Dig_TipPressure: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_barrelpressure?language=objc)
 pub const kHIDUsage_Dig_BarrelPressure: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_inrange?language=objc)
 pub const kHIDUsage_Dig_InRange: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_touch?language=objc)
 pub const kHIDUsage_Dig_Touch: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_untouch?language=objc)
 pub const kHIDUsage_Dig_Untouch: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_tap?language=objc)
 pub const kHIDUsage_Dig_Tap: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_quality?language=objc)
 pub const kHIDUsage_Dig_Quality: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_datavalid?language=objc)
 pub const kHIDUsage_Dig_DataValid: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_transducerindex?language=objc)
 pub const kHIDUsage_Dig_TransducerIndex: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_tabletfunctionkeys?language=objc)
 pub const kHIDUsage_Dig_TabletFunctionKeys: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_programchangekeys?language=objc)
 pub const kHIDUsage_Dig_ProgramChangeKeys: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_batterystrength?language=objc)
 pub const kHIDUsage_Dig_BatteryStrength: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_invert?language=objc)
 pub const kHIDUsage_Dig_Invert: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_xtilt?language=objc)
 pub const kHIDUsage_Dig_XTilt: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_ytilt?language=objc)
 pub const kHIDUsage_Dig_YTilt: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_azimuth?language=objc)
 pub const kHIDUsage_Dig_Azimuth: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_altitude?language=objc)
 pub const kHIDUsage_Dig_Altitude: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_twist?language=objc)
 pub const kHIDUsage_Dig_Twist: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_tipswitch?language=objc)
 pub const kHIDUsage_Dig_TipSwitch: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_secondarytipswitch?language=objc)
 pub const kHIDUsage_Dig_SecondaryTipSwitch: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_barrelswitch?language=objc)
 pub const kHIDUsage_Dig_BarrelSwitch: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_eraser?language=objc)
 pub const kHIDUsage_Dig_Eraser: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_tabletpick?language=objc)
 pub const kHIDUsage_Dig_TabletPick: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_touchvalid?language=objc)
 pub const kHIDUsage_Dig_TouchValid: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_width?language=objc)
 pub const kHIDUsage_Dig_Width: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_height?language=objc)
 pub const kHIDUsage_Dig_Height: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_contactidentifier?language=objc)
 pub const kHIDUsage_Dig_ContactIdentifier: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_devicemode?language=objc)
 pub const kHIDUsage_Dig_DeviceMode: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_deviceidentifier?language=objc)
 pub const kHIDUsage_Dig_DeviceIdentifier: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_contactcount?language=objc)
 pub const kHIDUsage_Dig_ContactCount: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_contactcountmaximum?language=objc)
 pub const kHIDUsage_Dig_ContactCountMaximum: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_relativescantime?language=objc)
 pub const kHIDUsage_Dig_RelativeScanTime: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_surfaceswitch?language=objc)
 pub const kHIDUsage_Dig_SurfaceSwitch: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterenable?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEnable: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterquality?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterQuality: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterdatalength?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterDataLength: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterdata?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterData: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterencoding?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEncoding: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterencodingutf8?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEncodingUTF8: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterencodingutf16le?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEncodingUTF16LE: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterencodingutf16be?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEncodingUTF16BE: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterencodingutf32le?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEncodingUTF32LE: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_gesturecharacterencodingutf32be?language=objc)
 pub const kHIDUsage_Dig_GestureCharacterEncodingUTF32BE: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_capacitiveheatmapprotocolvendorid?language=objc)
 pub const kHIDUsage_Dig_CapacitiveHeatMapProtocolVendorID: c_uint = 0x6A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_capacitiveheatmapprotocolversion?language=objc)
 pub const kHIDUsage_Dig_CapacitiveHeatMapProtocolVersion: c_uint = 0x6B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_capacitiveheatmapframedata?language=objc)
 pub const kHIDUsage_Dig_CapacitiveHeatMapFrameData: c_uint = 0x6C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_reportrate?language=objc)
 pub const kHIDUsage_Dig_ReportRate: c_uint = 0xA1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591715-anonymous/khidusage_dig_reserved?language=objc)
 pub const kHIDUsage_Dig_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_simplehapticcontroller?language=objc)
 pub const kHIDUsage_Haptics_SimpleHapticController: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformlist?language=objc)
 pub const kHIDUsage_Haptics_WaveformList: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_durationlist?language=objc)
 pub const kHIDUsage_Haptics_DurationList: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_autotrigger?language=objc)
 pub const kHIDUsage_Haptics_AutoTrigger: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_manualtrigger?language=objc)
 pub const kHIDUsage_Haptics_ManualTrigger: c_uint = 0x0021;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_autotriggerassociatedcontrol?language=objc)
 pub const kHIDUsage_Haptics_AutoTriggerAssociatedControl: c_uint = 0x0022;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_intensity?language=objc)
 pub const kHIDUsage_Haptics_Intensity: c_uint = 0x0023;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_repeatcount?language=objc)
 pub const kHIDUsage_Haptics_RepeatCount: c_uint = 0x0024;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_retriggerperiod?language=objc)
 pub const kHIDUsage_Haptics_RetriggerPeriod: c_uint = 0x0025;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformvendorpage?language=objc)
 pub const kHIDUsage_Haptics_WaveformVendorPage: c_uint = 0x0026;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformvendorid?language=objc)
 pub const kHIDUsage_Haptics_WaveformVendorID: c_uint = 0x0027;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformcutofftime?language=objc)
 pub const kHIDUsage_Haptics_WaveformCutoffTime: c_uint = 0x0028;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformnone?language=objc)
 pub const kHIDUsage_Haptics_WaveformNone: c_uint = 0x1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformstop?language=objc)
 pub const kHIDUsage_Haptics_WaveformStop: c_uint = 0x1002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformclick?language=objc)
 pub const kHIDUsage_Haptics_WaveformClick: c_uint = 0x1003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformbuzzcontinuous?language=objc)
 pub const kHIDUsage_Haptics_WaveformBuzzContinuous: c_uint = 0x1004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformrumblecontinuous?language=objc)
 pub const kHIDUsage_Haptics_WaveformRumbleContinuous: c_uint = 0x1005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformpress?language=objc)
 pub const kHIDUsage_Haptics_WaveformPress: c_uint = 0x1006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_waveformrelease?language=objc)
 pub const kHIDUsage_Haptics_WaveformRelease: c_uint = 0x1007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_vendorwaveformfirst?language=objc)
 pub const kHIDUsage_Haptics_VendorWaveformFirst: c_uint = 0x2001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3674539-anonymous/khidusage_haptics_vendorwaveformlast?language=objc)
 pub const kHIDUsage_Haptics_VendorWaveformLast: c_uint = 0x2FFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_physicalinterfacedevice?language=objc)
 pub const kHIDUsage_PID_PhysicalInterfaceDevice: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_normal?language=objc)
 pub const kHIDUsage_PID_Normal: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_seteffectreport?language=objc)
 pub const kHIDUsage_PID_SetEffectReport: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_effectblockindex?language=objc)
 pub const kHIDUsage_PID_EffectBlockIndex: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_paramblockoffset?language=objc)
 pub const kHIDUsage_PID_ParamBlockOffset: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_rom_flag?language=objc)
 pub const kHIDUsage_PID_ROM_Flag: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_effecttype?language=objc)
 pub const kHIDUsage_PID_EffectType: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_constantforce?language=objc)
 pub const kHIDUsage_PID_ET_ConstantForce: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_ramp?language=objc)
 pub const kHIDUsage_PID_ET_Ramp: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_customforcedata?language=objc)
 pub const kHIDUsage_PID_ET_CustomForceData: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_square?language=objc)
 pub const kHIDUsage_PID_ET_Square: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_sine?language=objc)
 pub const kHIDUsage_PID_ET_Sine: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_triangle?language=objc)
 pub const kHIDUsage_PID_ET_Triangle: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_sawtoothup?language=objc)
 pub const kHIDUsage_PID_ET_SawtoothUp: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_sawtoothdown?language=objc)
 pub const kHIDUsage_PID_ET_SawtoothDown: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_spring?language=objc)
 pub const kHIDUsage_PID_ET_Spring: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_damper?language=objc)
 pub const kHIDUsage_PID_ET_Damper: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_inertia?language=objc)
 pub const kHIDUsage_PID_ET_Inertia: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_et_friction?language=objc)
 pub const kHIDUsage_PID_ET_Friction: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_duration?language=objc)
 pub const kHIDUsage_PID_Duration: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_sampleperiod?language=objc)
 pub const kHIDUsage_PID_SamplePeriod: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_gain?language=objc)
 pub const kHIDUsage_PID_Gain: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_triggerbutton?language=objc)
 pub const kHIDUsage_PID_TriggerButton: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_triggerrepeatinterval?language=objc)
 pub const kHIDUsage_PID_TriggerRepeatInterval: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_axesenable?language=objc)
 pub const kHIDUsage_PID_AxesEnable: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_directionenable?language=objc)
 pub const kHIDUsage_PID_DirectionEnable: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_direction?language=objc)
 pub const kHIDUsage_PID_Direction: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_typespecificblockoffset?language=objc)
 pub const kHIDUsage_PID_TypeSpecificBlockOffset: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blocktype?language=objc)
 pub const kHIDUsage_PID_BlockType: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_setenvelopereport?language=objc)
 pub const kHIDUsage_PID_SetEnvelopeReport: c_uint = 0x5A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_attacklevel?language=objc)
 pub const kHIDUsage_PID_AttackLevel: c_uint = 0x5B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_attacktime?language=objc)
 pub const kHIDUsage_PID_AttackTime: c_uint = 0x5C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_fadelevel?language=objc)
 pub const kHIDUsage_PID_FadeLevel: c_uint = 0x5D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_fadetime?language=objc)
 pub const kHIDUsage_PID_FadeTime: c_uint = 0x5E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_setconditionreport?language=objc)
 pub const kHIDUsage_PID_SetConditionReport: c_uint = 0x5F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_cp_offset?language=objc)
 pub const kHIDUsage_PID_CP_Offset: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_positivecoefficient?language=objc)
 pub const kHIDUsage_PID_PositiveCoefficient: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_negativecoefficient?language=objc)
 pub const kHIDUsage_PID_NegativeCoefficient: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_positivesaturation?language=objc)
 pub const kHIDUsage_PID_PositiveSaturation: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_negativesaturation?language=objc)
 pub const kHIDUsage_PID_NegativeSaturation: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_deadband?language=objc)
 pub const kHIDUsage_PID_DeadBand: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_downloadforcesample?language=objc)
 pub const kHIDUsage_PID_DownloadForceSample: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_isochcustomforceenable?language=objc)
 pub const kHIDUsage_PID_IsochCustomForceEnable: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_customforcedatareport?language=objc)
 pub const kHIDUsage_PID_CustomForceDataReport: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_customforcedata?language=objc)
 pub const kHIDUsage_PID_CustomForceData: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_customforcevendordefineddata?language=objc)
 pub const kHIDUsage_PID_CustomForceVendorDefinedData: c_uint = 0x6A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_setcustomforcereport?language=objc)
 pub const kHIDUsage_PID_SetCustomForceReport: c_uint = 0x6B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_customforcedataoffset?language=objc)
 pub const kHIDUsage_PID_CustomForceDataOffset: c_uint = 0x6C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_samplecount?language=objc)
 pub const kHIDUsage_PID_SampleCount: c_uint = 0x6D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_setperiodicreport?language=objc)
 pub const kHIDUsage_PID_SetPeriodicReport: c_uint = 0x6E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_offset?language=objc)
 pub const kHIDUsage_PID_Offset: c_uint = 0x6F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_magnitude?language=objc)
 pub const kHIDUsage_PID_Magnitude: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_phase?language=objc)
 pub const kHIDUsage_PID_Phase: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_period?language=objc)
 pub const kHIDUsage_PID_Period: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_setconstantforcereport?language=objc)
 pub const kHIDUsage_PID_SetConstantForceReport: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_setrampforcereport?language=objc)
 pub const kHIDUsage_PID_SetRampForceReport: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_rampstart?language=objc)
 pub const kHIDUsage_PID_RampStart: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_rampend?language=objc)
 pub const kHIDUsage_PID_RampEnd: c_uint = 0x76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_effectoperationreport?language=objc)
 pub const kHIDUsage_PID_EffectOperationReport: c_uint = 0x77;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_effectoperation?language=objc)
 pub const kHIDUsage_PID_EffectOperation: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_opeffectstart?language=objc)
 pub const kHIDUsage_PID_OpEffectStart: c_uint = 0x79;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_opeffectstartsolo?language=objc)
 pub const kHIDUsage_PID_OpEffectStartSolo: c_uint = 0x7A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_opeffectstop?language=objc)
 pub const kHIDUsage_PID_OpEffectStop: c_uint = 0x7B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_loopcount?language=objc)
 pub const kHIDUsage_PID_LoopCount: c_uint = 0x7C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_devicegainreport?language=objc)
 pub const kHIDUsage_PID_DeviceGainReport: c_uint = 0x7D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_devicegain?language=objc)
 pub const kHIDUsage_PID_DeviceGain: c_uint = 0x7E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_poolreport?language=objc)
 pub const kHIDUsage_PID_PoolReport: c_uint = 0x7F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_ram_poolsize?language=objc)
 pub const kHIDUsage_PID_RAM_PoolSize: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_rom_poolsize?language=objc)
 pub const kHIDUsage_PID_ROM_PoolSize: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_rom_effectblockcount?language=objc)
 pub const kHIDUsage_PID_ROM_EffectBlockCount: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_simultaneouseffectsmax?language=objc)
 pub const kHIDUsage_PID_SimultaneousEffectsMax: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_poolalignment?language=objc)
 pub const kHIDUsage_PID_PoolAlignment: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_poolmovereport?language=objc)
 pub const kHIDUsage_PID_PoolMoveReport: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_movesource?language=objc)
 pub const kHIDUsage_PID_MoveSource: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_movedestination?language=objc)
 pub const kHIDUsage_PID_MoveDestination: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_movelength?language=objc)
 pub const kHIDUsage_PID_MoveLength: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockloadreport?language=objc)
 pub const kHIDUsage_PID_BlockLoadReport: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockloadstatus?language=objc)
 pub const kHIDUsage_PID_BlockLoadStatus: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockloadsuccess?language=objc)
 pub const kHIDUsage_PID_BlockLoadSuccess: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockloadfull?language=objc)
 pub const kHIDUsage_PID_BlockLoadFull: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockloaderror?language=objc)
 pub const kHIDUsage_PID_BlockLoadError: c_uint = 0x8E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockhandle?language=objc)
 pub const kHIDUsage_PID_BlockHandle: c_uint = 0x8F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_blockfreereport?language=objc)
 pub const kHIDUsage_PID_BlockFreeReport: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_typespecificblockhandle?language=objc)
 pub const kHIDUsage_PID_TypeSpecificBlockHandle: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_statereport?language=objc)
 pub const kHIDUsage_PID_StateReport: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_effectplaying?language=objc)
 pub const kHIDUsage_PID_EffectPlaying: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_devicecontrolreport?language=objc)
 pub const kHIDUsage_PID_DeviceControlReport: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_devicecontrol?language=objc)
 pub const kHIDUsage_PID_DeviceControl: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_dc_enableactuators?language=objc)
 pub const kHIDUsage_PID_DC_EnableActuators: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_dc_disableactuators?language=objc)
 pub const kHIDUsage_PID_DC_DisableActuators: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_dc_stopalleffects?language=objc)
 pub const kHIDUsage_PID_DC_StopAllEffects: c_uint = 0x99;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_dc_devicereset?language=objc)
 pub const kHIDUsage_PID_DC_DeviceReset: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_dc_devicepause?language=objc)
 pub const kHIDUsage_PID_DC_DevicePause: c_uint = 0x9B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_dc_devicecontinue?language=objc)
 pub const kHIDUsage_PID_DC_DeviceContinue: c_uint = 0x9C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_devicepaused?language=objc)
 pub const kHIDUsage_PID_DevicePaused: c_uint = 0x9F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_actuatorsenabled?language=objc)
 pub const kHIDUsage_PID_ActuatorsEnabled: c_uint = 0xA0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_safetyswitch?language=objc)
 pub const kHIDUsage_PID_SafetySwitch: c_uint = 0xA4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_actuatoroverrideswitch?language=objc)
 pub const kHIDUsage_PID_ActuatorOverrideSwitch: c_uint = 0xA5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_actuatorpower?language=objc)
 pub const kHIDUsage_PID_ActuatorPower: c_uint = 0xA6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_startdelay?language=objc)
 pub const kHIDUsage_PID_StartDelay: c_uint = 0xA7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_parameterblocksize?language=objc)
 pub const kHIDUsage_PID_ParameterBlockSize: c_uint = 0xA8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_devicemanagedpool?language=objc)
 pub const kHIDUsage_PID_DeviceManagedPool: c_uint = 0xA9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_sharedparameterblocks?language=objc)
 pub const kHIDUsage_PID_SharedParameterBlocks: c_uint = 0xAA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_createneweffectreport?language=objc)
 pub const kHIDUsage_PID_CreateNewEffectReport: c_uint = 0xAB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_ram_poolavailable?language=objc)
 pub const kHIDUsage_PID_RAM_PoolAvailable: c_uint = 0xAC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592264-anonymous/khidusage_pid_reserved?language=objc)
 pub const kHIDUsage_PID_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_alphanumericdisplay?language=objc)
 pub const kHIDUsage_AD_AlphanumericDisplay: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_displayattributesreport?language=objc)
 pub const kHIDUsage_AD_DisplayAttributesReport: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_asciicharacterset?language=objc)
 pub const kHIDUsage_AD_ASCIICharacterSet: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_datareadback?language=objc)
 pub const kHIDUsage_AD_DataReadBack: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_fontreadback?language=objc)
 pub const kHIDUsage_AD_FontReadBack: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_displaycontrolreport?language=objc)
 pub const kHIDUsage_AD_DisplayControlReport: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_cleardisplay?language=objc)
 pub const kHIDUsage_AD_ClearDisplay: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_displayenable?language=objc)
 pub const kHIDUsage_AD_DisplayEnable: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_screensaverdelay?language=objc)
 pub const kHIDUsage_AD_ScreenSaverDelay: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_screensaverenable?language=objc)
 pub const kHIDUsage_AD_ScreenSaverEnable: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_verticalscroll?language=objc)
 pub const kHIDUsage_AD_VerticalScroll: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_horizontalscroll?language=objc)
 pub const kHIDUsage_AD_HorizontalScroll: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_characterreport?language=objc)
 pub const kHIDUsage_AD_CharacterReport: c_uint = 0x2B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_displaydata?language=objc)
 pub const kHIDUsage_AD_DisplayData: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_displaystatus?language=objc)
 pub const kHIDUsage_AD_DisplayStatus: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_statnotready?language=objc)
 pub const kHIDUsage_AD_StatNotReady: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_statready?language=objc)
 pub const kHIDUsage_AD_StatReady: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_errnotaloadablecharacter?language=objc)
 pub const kHIDUsage_AD_ErrNotaloadablecharacter: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_errfontdatacannotberead?language=objc)
 pub const kHIDUsage_AD_ErrFontdatacannotberead: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_cursorpositionreport?language=objc)
 pub const kHIDUsage_AD_CursorPositionReport: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_row?language=objc)
 pub const kHIDUsage_AD_Row: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_column?language=objc)
 pub const kHIDUsage_AD_Column: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_rows?language=objc)
 pub const kHIDUsage_AD_Rows: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_columns?language=objc)
 pub const kHIDUsage_AD_Columns: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_cursorpixelpositioning?language=objc)
 pub const kHIDUsage_AD_CursorPixelPositioning: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_cursormode?language=objc)
 pub const kHIDUsage_AD_CursorMode: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_cursorenable?language=objc)
 pub const kHIDUsage_AD_CursorEnable: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_cursorblink?language=objc)
 pub const kHIDUsage_AD_CursorBlink: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_fontreport?language=objc)
 pub const kHIDUsage_AD_FontReport: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_fontdata?language=objc)
 pub const kHIDUsage_AD_FontData: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_characterwidth?language=objc)
 pub const kHIDUsage_AD_CharacterWidth: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_characterheight?language=objc)
 pub const kHIDUsage_AD_CharacterHeight: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_characterspacinghorizontal?language=objc)
 pub const kHIDUsage_AD_CharacterSpacingHorizontal: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_characterspacingvertical?language=objc)
 pub const kHIDUsage_AD_CharacterSpacingVertical: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_unicodecharacterset?language=objc)
 pub const kHIDUsage_AD_UnicodeCharacterSet: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591841-anonymous/khidusage_ad_reserved?language=objc)
 pub const kHIDUsage_AD_Reserved: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_undefined?language=objc)
 pub const kHIDUsage_Snsr_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_sensor?language=objc)
 pub const kHIDUsage_Snsr_Sensor: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_biometric?language=objc)
 pub const kHIDUsage_Snsr_Biometric: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_biometric_humanpresence?language=objc)
 pub const kHIDUsage_Snsr_Biometric_HumanPresence: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_biometric_humanproximity?language=objc)
 pub const kHIDUsage_Snsr_Biometric_HumanProximity: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_biometric_humantouch?language=objc)
 pub const kHIDUsage_Snsr_Biometric_HumanTouch: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_snsr_biometric_heartrate?language=objc)
 pub const kHIDUsage_Snsr_Biometric_HeartRate: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical?language=objc)
 pub const kHIDUsage_Snsr_Electrical: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_capacitance?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Capacitance: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_current?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Current: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_power?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Power: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_inductance?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Inductance: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_resistance?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Resistance: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_voltage?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Voltage: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_potentiometer?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Potentiometer: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_frequency?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Frequency: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_electrical_period?language=objc)
 pub const kHIDUsage_Snsr_Electrical_Period: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_environmental?language=objc)
 pub const kHIDUsage_Snsr_Environmental: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_environmental_atmosphericpressure?language=objc)
 pub const kHIDUsage_Snsr_Environmental_AtmosphericPressure: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_environmental_humidity?language=objc)
 pub const kHIDUsage_Snsr_Environmental_Humidity: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_environmental_temperature?language=objc)
 pub const kHIDUsage_Snsr_Environmental_Temperature: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_environmental_winddirection?language=objc)
 pub const kHIDUsage_Snsr_Environmental_WindDirection: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_environmental_windspeed?language=objc)
 pub const kHIDUsage_Snsr_Environmental_WindSpeed: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_light?language=objc)
 pub const kHIDUsage_Snsr_Light: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_light_ambientlight?language=objc)
 pub const kHIDUsage_Snsr_Light_AmbientLight: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_light_consumerinfrared?language=objc)
 pub const kHIDUsage_Snsr_Light_ConsumerInfrared: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location?language=objc)
 pub const kHIDUsage_Snsr_Location: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_broadcast?language=objc)
 pub const kHIDUsage_Snsr_Location_Broadcast: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_deadreckoning?language=objc)
 pub const kHIDUsage_Snsr_Location_DeadReckoning: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_gps?language=objc)
 pub const kHIDUsage_Snsr_Location_GPS: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_lookup?language=objc)
 pub const kHIDUsage_Snsr_Location_Lookup: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_other?language=objc)
 pub const kHIDUsage_Snsr_Location_Other: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_static?language=objc)
 pub const kHIDUsage_Snsr_Location_Static: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_location_triangulation?language=objc)
 pub const kHIDUsage_Snsr_Location_Triangulation: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical?language=objc)
 pub const kHIDUsage_Snsr_Mechanical: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_booleanswitch?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_BooleanSwitch: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_booleanswitcharray?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_BooleanSwitchArray: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_multivalueswitch?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_MultivalueSwitch: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_force?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_Force: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_pressure?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_Pressure: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_strain?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_Strain: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_weight?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_Weight: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_hapticvibrator?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_HapticVibrator: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_mechanical_halleffectswitch?language=objc)
 pub const kHIDUsage_Snsr_Mechanical_HallEffectSwitch: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion?language=objc)
 pub const kHIDUsage_Snsr_Motion: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_accelerometer1d?language=objc)
 pub const kHIDUsage_Snsr_Motion_Accelerometer1D: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_accelerometer2d?language=objc)
 pub const kHIDUsage_Snsr_Motion_Accelerometer2D: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_accelerometer3d?language=objc)
 pub const kHIDUsage_Snsr_Motion_Accelerometer3D: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_gyrometer1d?language=objc)
 pub const kHIDUsage_Snsr_Motion_Gyrometer1D: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_gyrometer2d?language=objc)
 pub const kHIDUsage_Snsr_Motion_Gyrometer2D: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_gyrometer3d?language=objc)
 pub const kHIDUsage_Snsr_Motion_Gyrometer3D: c_uint = 0x76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_motiondetector?language=objc)
 pub const kHIDUsage_Snsr_Motion_MotionDetector: c_uint = 0x77;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_speedometer?language=objc)
 pub const kHIDUsage_Snsr_Motion_Speedometer: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_accelerometer?language=objc)
 pub const kHIDUsage_Snsr_Motion_Accelerometer: c_uint = 0x79;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_motion_gyrometer?language=objc)
 pub const kHIDUsage_Snsr_Motion_Gyrometer: c_uint = 0x7A;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_snsr_motion_gravityvector?language=objc)
 pub const kHIDUsage_Snsr_Motion_GravityVector: c_uint = 0x7B;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_snsr_motion_linearaccelerometer?language=objc)
 pub const kHIDUsage_Snsr_Motion_LinearAccelerometer: c_uint = 0x7C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation?language=objc)
 pub const kHIDUsage_Snsr_Orientation: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_compass1d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Compass1D: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_compass2d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Compass2D: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_compass3d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Compass3D: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_inclinometer1d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Inclinometer1D: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_inclinometer2d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Inclinometer2D: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_inclinometer3d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Inclinometer3D: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_distance1d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Distance1D: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_distance2d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Distance2D: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_distance3d?language=objc)
 pub const kHIDUsage_Snsr_Orientation_Distance3D: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_deviceorientation?language=objc)
 pub const kHIDUsage_Snsr_Orientation_DeviceOrientation: c_uint = 0x8A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_compassd?language=objc)
 pub const kHIDUsage_Snsr_Orientation_CompassD: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_inclinometerd?language=objc)
 pub const kHIDUsage_Snsr_Orientation_InclinometerD: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_orientation_distanced?language=objc)
 pub const kHIDUsage_Snsr_Orientation_DistanceD: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_scanner?language=objc)
 pub const kHIDUsage_Snsr_Scanner: c_uint = 0x90;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_scanner_barcode?language=objc)
 pub const kHIDUsage_Snsr_Scanner_Barcode: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_scanner_rfid?language=objc)
 pub const kHIDUsage_Snsr_Scanner_RFID: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_scanner_nfc?language=objc)
 pub const kHIDUsage_Snsr_Scanner_NFC: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_time?language=objc)
 pub const kHIDUsage_Snsr_Time: c_uint = 0xA0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_time_alarmtimer?language=objc)
 pub const kHIDUsage_Snsr_Time_AlarmTimer: c_uint = 0xA1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_time_realtimeclock?language=objc)
 pub const kHIDUsage_Snsr_Time_RealTimeClock: c_uint = 0xA2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_other?language=objc)
 pub const kHIDUsage_Snsr_Other: c_uint = 0xE0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_other_custom?language=objc)
 pub const kHIDUsage_Snsr_Other_Custom: c_uint = 0xE1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_other_generic?language=objc)
 pub const kHIDUsage_Snsr_Other_Generic: c_uint = 0xE2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_other_genericenumerator?language=objc)
 pub const kHIDUsage_Snsr_Other_GenericEnumerator: c_uint = 0xE3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_none?language=objc)
 pub const kHIDUsage_Snsr_Modifier_None: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_changesensitivityabsolute?language=objc)
 pub const kHIDUsage_Snsr_Modifier_ChangeSensitivityAbsolute: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_max?language=objc)
 pub const kHIDUsage_Snsr_Modifier_Max: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_min?language=objc)
 pub const kHIDUsage_Snsr_Modifier_Min: c_uint = 0x3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_accuracy?language=objc)
 pub const kHIDUsage_Snsr_Modifier_Accuracy: c_uint = 0x4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_resolution?language=objc)
 pub const kHIDUsage_Snsr_Modifier_Resolution: c_uint = 0x5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_thresholdhigh?language=objc)
 pub const kHIDUsage_Snsr_Modifier_ThresholdHigh: c_uint = 0x6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_thresholdlow?language=objc)
 pub const kHIDUsage_Snsr_Modifier_ThresholdLow: c_uint = 0x7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_calibrationoffset?language=objc)
 pub const kHIDUsage_Snsr_Modifier_CalibrationOffset: c_uint = 0x8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_calibrationmultiplier?language=objc)
 pub const kHIDUsage_Snsr_Modifier_CalibrationMultiplier: c_uint = 0x9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_reportinterval?language=objc)
 pub const kHIDUsage_Snsr_Modifier_ReportInterval: c_uint = 0xA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_frequencymax?language=objc)
 pub const kHIDUsage_Snsr_Modifier_FrequencyMax: c_uint = 0xB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_periodmax?language=objc)
 pub const kHIDUsage_Snsr_Modifier_PeriodMax: c_uint = 0xC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_changesensitivitypercentrange?language=objc)
 pub const kHIDUsage_Snsr_Modifier_ChangeSensitivityPercentRange: c_uint = 0xD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_changesensitivitypercentrelative?language=objc)
 pub const kHIDUsage_Snsr_Modifier_ChangeSensitivityPercentRelative: c_uint = 0xE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_modifier_vendordefined?language=objc)
 pub const kHIDUsage_Snsr_Modifier_VendorDefined: c_uint = 0xF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event?language=objc)
 pub const kHIDUsage_Snsr_Event: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState: c_uint = 0x0201;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent: c_uint = 0x0202;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_undefined?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_Undefined: c_uint = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_ready?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_Ready: c_uint = 0x0801;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_notavailable?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_NotAvailable: c_uint = 0x0802;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_nodata?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_NoData: c_uint = 0x0803;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_initializing?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_Initializing: c_uint = 0x0804;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_accessdenied?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_AccessDenied: c_uint = 0x0805;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorstate_error?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorState_Error: c_uint = 0x0806;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_unknown?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_Unknown: c_uint = 0x0810;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_statechanged?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_StateChanged: c_uint = 0x0811;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_propertychanged?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_PropertyChanged: c_uint = 0x0812;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_dataupdated?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_DataUpdated: c_uint = 0x0813;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_pollresponse?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_PollResponse: c_uint = 0x0814;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_changesensitivity?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_ChangeSensitivity: c_uint = 0x0815;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_rangemaxreached?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_RangeMaxReached: c_uint = 0x0816;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_rangeminreached?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_RangeMinReached: c_uint = 0x0817;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_highthresholdcrossup?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_HighThresholdCrossUp: c_uint = 0x0818;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_highthresholdcrossdown?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_HighThresholdCrossDown: c_uint = 0x0819;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_lowthresholdcrossup?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_LowThresholdCrossUp: c_uint = 0x081A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_lowthresholdcrossdown?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_LowThresholdCrossDown: c_uint = 0x081B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_zerothresholdcrossup?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_ZeroThresholdCrossUp: c_uint = 0x081C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_zerothresholdcrossdown?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_ZeroThresholdCrossDown: c_uint = 0x081D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_periodexceeded?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_PeriodExceeded: c_uint = 0x081E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_frequencyexceeded?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_FrequencyExceeded: c_uint = 0x081F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_event_sensorevent_complextrigger?language=objc)
 pub const kHIDUsage_Snsr_Event_SensorEvent_ComplexTrigger: c_uint = 0x0820;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property?language=objc)
 pub const kHIDUsage_Snsr_Property: c_uint = 0x0300;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_friendlyname?language=objc)
 pub const kHIDUsage_Snsr_Property_FriendlyName: c_uint = 0x0301;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_persistentuniqueid?language=objc)
 pub const kHIDUsage_Snsr_Property_PersistentUniqueID: c_uint = 0x0302;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_sensorstatus?language=objc)
 pub const kHIDUsage_Snsr_Property_SensorStatus: c_uint = 0x0303;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_minimumreportinterval?language=objc)
 pub const kHIDUsage_Snsr_Property_MinimumReportInterval: c_uint = 0x0304;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_manufacturer?language=objc)
 pub const kHIDUsage_Snsr_Property_Manufacturer: c_uint = 0x0305;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_model?language=objc)
 pub const kHIDUsage_Snsr_Property_Model: c_uint = 0x0306;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_serialnumber?language=objc)
 pub const kHIDUsage_Snsr_Property_SerialNumber: c_uint = 0x0307;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_description?language=objc)
 pub const kHIDUsage_Snsr_Property_Description: c_uint = 0x0308;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_connectiontype?language=objc)
 pub const kHIDUsage_Snsr_Property_ConnectionType: c_uint = 0x0309;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_devicepath?language=objc)
 pub const kHIDUsage_Snsr_Property_DevicePath: c_uint = 0x030A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_hardwarerevision?language=objc)
 pub const kHIDUsage_Snsr_Property_HardwareRevision: c_uint = 0x030B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_firmwareversion?language=objc)
 pub const kHIDUsage_Snsr_Property_FirmwareVersion: c_uint = 0x030C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_releasedata?language=objc)
 pub const kHIDUsage_Snsr_Property_ReleaseData: c_uint = 0x030D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportinterval?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportInterval: c_uint = 0x030E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_changesensitivityabsolute?language=objc)
 pub const kHIDUsage_Snsr_Property_ChangeSensitivityAbsolute: c_uint = 0x030F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_changesensitivitypercentrange?language=objc)
 pub const kHIDUsage_Snsr_Property_ChangeSensitivityPercentRange: c_uint = 0x0310;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_changesensitivitypercentrelative?language=objc)
 pub const kHIDUsage_Snsr_Property_ChangeSensitivityPercentRelative: c_uint = 0x0311;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_accuracy?language=objc)
 pub const kHIDUsage_Snsr_Property_Accuracy: c_uint = 0x0312;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_resolution?language=objc)
 pub const kHIDUsage_Snsr_Property_Resolution: c_uint = 0x0313;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_maximum?language=objc)
 pub const kHIDUsage_Snsr_Property_Maximum: c_uint = 0x0314;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_minimum?language=objc)
 pub const kHIDUsage_Snsr_Property_Minimum: c_uint = 0x0315;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState: c_uint = 0x0316;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_samplingrate?language=objc)
 pub const kHIDUsage_Snsr_Property_SamplingRate: c_uint = 0x0317;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_responsecurve?language=objc)
 pub const kHIDUsage_Snsr_Property_ResponseCurve: c_uint = 0x0318;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState: c_uint = 0x0319;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_maxfifoevents?language=objc)
 pub const kHIDUsage_Snsr_Property_MaxFIFOEvents: c_uint = 0x031A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportlatency?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportLatency: c_uint = 0x031B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_connectiontype_integrated?language=objc)
 pub const kHIDUsage_Snsr_Property_ConnectionType_Integrated: c_uint = 0x0830;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_connectiontype_attached?language=objc)
 pub const kHIDUsage_Snsr_Property_ConnectionType_Attached: c_uint = 0x0831;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_connectiontype_external?language=objc)
 pub const kHIDUsage_Snsr_Property_ConnectionType_External: c_uint = 0x0832;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate_noevents?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState_NoEvents: c_uint = 0x0840;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate_allevents?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState_AllEvents: c_uint = 0x0841;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate_thresholdevents?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState_ThresholdEvents: c_uint = 0x0842;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate_wakenoevents?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState_WakeNoEvents: c_uint = 0x0843;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate_wakeallevents?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState_WakeAllEvents: c_uint = 0x0844;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_reportingstate_wakethresholdevents?language=objc)
 pub const kHIDUsage_Snsr_Property_ReportingState_WakeThresholdEvents: c_uint = 0x0845;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate_undefined?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState_Undefined: c_uint = 0x0850;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate_d0_fullpower?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState_D0_FullPower: c_uint = 0x0851;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate_d1_lowpower?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState_D1_LowPower: c_uint = 0x0852;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate_d2_standby?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState_D2_Standby: c_uint = 0x0853;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate_d3_sleep?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState_D3_Sleep: c_uint = 0x0854;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_powerstate_d4_poweroff?language=objc)
 pub const kHIDUsage_Snsr_Property_PowerState_D4_PowerOff: c_uint = 0x0855;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_light_illuminance?language=objc)
 pub const kHIDUsage_Snsr_Light_Illuminance: c_uint = 0x04D1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location?language=objc)
 pub const kHIDUsage_Snsr_Data_Location: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_reserved?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_Reserved: c_uint = 0x0401;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_altitudeantennasealevel?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AltitudeAntennaSeaLevel: c_uint = 0x0402;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_differentialreferencestationid?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_DifferentialReferenceStationID: c_uint = 0x0403;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_altitudeellipsoiderror?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AltitudeEllipsoidError: c_uint = 0x0404;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_altitudeellipsoid?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AltitudeEllipsoid: c_uint = 0x0405;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_altitudesealevelerror?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AltitudeSeaLevelError: c_uint = 0x0406;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_altitudesealevel?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AltitudeSeaLevel: c_uint = 0x0407;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_differentialgpsdataage?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_DifferentialGPSDataAge: c_uint = 0x0408;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_errorradius?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_ErrorRadius: c_uint = 0x0409;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixquality?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixQuality: c_uint = 0x040A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixqualitynofix?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixQualityNoFix: c_uint = 0x0870;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixqualitygps?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixQualityGPS: c_uint = 0x0871;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixqualitydgps?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixQualityDGPS: c_uint = 0x0872;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtype?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixType: c_uint = 0x040B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypenofix?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeNoFix: c_uint = 0x0880;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypegpsspsmode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeGPSSPSMode: c_uint = 0x0881;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypedgpsspsmode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeDGPSSPSMode: c_uint = 0x0882;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypegpsppsmode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeGPSPPSMode: c_uint = 0x0883;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtyperealtimekinematic?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeRealTimeKinematic: c_uint = 0x0884;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypefloatrtk?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeFloatRTK: c_uint = 0x0885;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypeestimated?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeEstimated: c_uint = 0x0886;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypemanualinputmode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeManualInputMode: c_uint = 0x0887;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_fixtypesimulatormode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_FixTypeSimulatorMode: c_uint = 0x0888;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_geoidalseparation?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GeoidalSeparation: c_uint = 0x040C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsoperationmode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSOperationMode: c_uint = 0x040D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsoperationmodemanual?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSOperationModeManual: c_uint = 0x0890;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsoperationmodeautomatic?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSOperationModeAutomatic: c_uint = 0x0891;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionMode: c_uint = 0x040E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmodeautonomous?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionModeAutonomous: c_uint = 0x08A0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmodedgps?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionModeDGPS: c_uint = 0x08A1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmodeestimated?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionModeEstimated: c_uint = 0x08A2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmodemanualinput?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionModeManualInput: c_uint = 0x08A3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmodesimulator?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionModeSimulator: c_uint = 0x08A4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsselectionmodedatanotvalid?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSSelectionModeDataNotValid: c_uint = 0x08A5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsstatus?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSStatus: c_uint = 0x040F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsstatusdatavalid?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSStatusDataValid: c_uint = 0x08B0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_gpsstatusdatanotvalid?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_GPSStatusDataNotValid: c_uint = 0x08B1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_positiondilutionofprecision?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_PositionDilutionOfPrecision: c_uint = 0x0410;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_horizontaldilutionofprecision?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_HorizontalDilutionOfPrecision: c_uint = 0x0411;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_verticaldilutionofprecision?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_VerticalDilutionOfPrecision: c_uint = 0x0412;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_latitude?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_Latitude: c_uint = 0x0413;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_longitude?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_Longitude: c_uint = 0x0414;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_trueheading?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_TrueHeading: c_uint = 0x0415;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_magneticheading?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_MagneticHeading: c_uint = 0x0416;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_magneticvariation?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_MagneticVariation: c_uint = 0x0417;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_speed?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_Speed: c_uint = 0x0418;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesinview?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesInView: c_uint = 0x0419;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesinviewazimuth?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesInViewAzimuth: c_uint = 0x041A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesinviewelevation?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesInViewElevation: c_uint = 0x041B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesinviewids?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesInViewIDs: c_uint = 0x041C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesinviewprns?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesInViewPRNs: c_uint = 0x041D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesinviewsnratios?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesInViewSNRatios: c_uint = 0x041E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesusedcount?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesUsedCount: c_uint = 0x041F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_satellitesusedprns?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_SatellitesUsedPRNs: c_uint = 0x0420;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_nmeasentence?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_NMEASentence: c_uint = 0x0421;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_addressline1?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AddressLine1: c_uint = 0x0422;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_addressline2?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_AddressLine2: c_uint = 0x0423;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_city?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_City: c_uint = 0x0424;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_stateorprovince?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_StateOrProvince: c_uint = 0x0425;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_countryorregion?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_CountryOrRegion: c_uint = 0x0426;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_location_postalcode?language=objc)
 pub const kHIDUsage_Snsr_Data_Location_PostalCode: c_uint = 0x0427;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_location?language=objc)
 pub const kHIDUsage_Snsr_Property_Location: c_uint = 0x042A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_location_desiredaccuracy?language=objc)
 pub const kHIDUsage_Snsr_Property_Location_DesiredAccuracy: c_uint = 0x042B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_location_accuracydefault?language=objc)
 pub const kHIDUsage_Snsr_Property_Location_AccuracyDefault: c_uint = 0x0860;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_location_accuracyhigh?language=objc)
 pub const kHIDUsage_Snsr_Property_Location_AccuracyHigh: c_uint = 0x0861;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_location_accuracymedium?language=objc)
 pub const kHIDUsage_Snsr_Property_Location_AccuracyMedium: c_uint = 0x0862;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_location_accuracylow?language=objc)
 pub const kHIDUsage_Snsr_Property_Location_AccuracyLow: c_uint = 0x0863;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental: c_uint = 0x0430;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental_atmosphericpressure?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental_AtmosphericPressure: c_uint = 0x0431;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental_reserved?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental_Reserved: c_uint = 0x0432;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental_relativehumidity?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental_RelativeHumidity: c_uint = 0x0433;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental_temperature?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental_Temperature: c_uint = 0x0434;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental_winddirection?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental_WindDirection: c_uint = 0x0435;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_environmental_windspeed?language=objc)
 pub const kHIDUsage_Snsr_Data_Environmental_WindSpeed: c_uint = 0x0436;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_environmental?language=objc)
 pub const kHIDUsage_Snsr_Property_Environmental: c_uint = 0x0440;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_environmental_referencepressure?language=objc)
 pub const kHIDUsage_Snsr_Property_Environmental_ReferencePressure: c_uint = 0x0441;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion: c_uint = 0x0450;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_state?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_State: c_uint = 0x0451;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_acceleration?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_Acceleration: c_uint = 0x0452;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_accelerationaxisx?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AccelerationAxisX: c_uint = 0x0453;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_accelerationaxisy?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AccelerationAxisY: c_uint = 0x0454;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_accelerationaxisz?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AccelerationAxisZ: c_uint = 0x0455;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularvelocity?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularVelocity: c_uint = 0x0456;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularvelocityxaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularVelocityXAxis: c_uint = 0x0457;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularvelocityyaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularVelocityYAxis: c_uint = 0x0458;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularvelocityzaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularVelocityZAxis: c_uint = 0x0459;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularposition?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularPosition: c_uint = 0x045A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularpositionxaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularPositionXAxis: c_uint = 0x045B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularpositionyaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularPositionYAxis: c_uint = 0x045C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_angularpositionzaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_AngularPositionZAxis: c_uint = 0x045D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_speed?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_Speed: c_uint = 0x045E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_motion_intensity?language=objc)
 pub const kHIDUsage_Snsr_Data_Motion_Intensity: c_uint = 0x045F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation: c_uint = 0x0470;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_heading?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_Heading: c_uint = 0x0471;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingxaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingXAxis: c_uint = 0x0472;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingyaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingYAxis: c_uint = 0x0473;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingzaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingZAxis: c_uint = 0x0474;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingcompensatedmagneticnorth?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingCompensatedMagneticNorth: c_uint = 0x0475;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingcompensatedtruenorth?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingCompensatedTrueNorth: c_uint = 0x0476;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingmagneticnorth?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingMagneticNorth: c_uint = 0x0477;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_headingtruenorth?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_HeadingTrueNorth: c_uint = 0x0478;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_distance?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_Distance: c_uint = 0x0479;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_distancexaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_DistanceXAxis: c_uint = 0x047A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_distanceyaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_DistanceYAxis: c_uint = 0x047B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_distancezaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_DistanceZAxis: c_uint = 0x047C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_distanceoutofrange?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_DistanceOutOfRange: c_uint = 0x047D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_tilt?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_Tilt: c_uint = 0x047E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_tiltxaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_TiltXAxis: c_uint = 0x047F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_tiltyaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_TiltYAxis: c_uint = 0x0480;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_tiltzaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_TiltZAxis: c_uint = 0x0481;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_rotationmatrix?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_RotationMatrix: c_uint = 0x0482;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_quaternion?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_Quaternion: c_uint = 0x0483;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_magneticflux?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_MagneticFlux: c_uint = 0x0484;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_magneticfluxxaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_MagneticFluxXAxis: c_uint = 0x0485;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_magneticfluxyaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_MagneticFluxYAxis: c_uint = 0x0486;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_orientation_magneticfluxzaxis?language=objc)
 pub const kHIDUsage_Snsr_Data_Orientation_MagneticFluxZAxis: c_uint = 0x0487;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical: c_uint = 0x0490;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_booleanswitchstate?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_BooleanSwitchState: c_uint = 0x0491;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_booleanswitcharraystates?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_BooleanSwitchArrayStates: c_uint = 0x0492;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_multivalueswitchvalue?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_MultivalueSwitchValue: c_uint = 0x0493;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_force?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_Force: c_uint = 0x0494;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_absolutepressure?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_AbsolutePressure: c_uint = 0x0495;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_gaugepressure?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_GaugePressure: c_uint = 0x0496;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_strain?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_Strain: c_uint = 0x0497;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_mechanical_weight?language=objc)
 pub const kHIDUsage_Snsr_Data_Mechanical_Weight: c_uint = 0x0498;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_mechanical?language=objc)
 pub const kHIDUsage_Snsr_Property_Mechanical: c_uint = 0x04A0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_mechanical_vibrationstate?language=objc)
 pub const kHIDUsage_Snsr_Property_Mechanical_VibrationState: c_uint = 0x04A1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_mechanical_forwardvibrationspeed?language=objc)
 pub const kHIDUsage_Snsr_Property_Mechanical_ForwardVibrationSpeed: c_uint = 0x04A2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_mechanical_backwardvibrationspeed?language=objc)
 pub const kHIDUsage_Snsr_Property_Mechanical_BackwardVibrationSpeed: c_uint = 0x04A3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_biometric?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric: c_uint = 0x04B0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_biometric_humanpresence?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric_HumanPresence: c_uint = 0x04B1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_biometric_humanproximityrange?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric_HumanProximityRange: c_uint = 0x04B2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_biometric_humanproximityoutofrange?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric_HumanProximityOutOfRange: c_uint = 0x04B3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_biometric_humantouchstate?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric_HumanTouchState: c_uint = 0x04B4;
-/// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/khidusage_snsr_data_biometric_heartrate?language=objc)
 pub const kHIDUsage_Snsr_Data_Biometric_HeartRate: c_uint = 0x04B8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light?language=objc)
 pub const kHIDUsage_Snsr_Data_Light: c_uint = 0x04D0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light_illuminance?language=objc)
 pub const kHIDUsage_Snsr_Data_Light_Illuminance: c_uint = 0x04D1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light_colortemperature?language=objc)
 pub const kHIDUsage_Snsr_Data_Light_ColorTemperature: c_uint = 0x04D2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light_chromaticity?language=objc)
 pub const kHIDUsage_Snsr_Data_Light_Chromaticity: c_uint = 0x04D3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light_chromaticityx?language=objc)
 pub const kHIDUsage_Snsr_Data_Light_ChromaticityX: c_uint = 0x04D4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light_chromaticityy?language=objc)
 pub const kHIDUsage_Snsr_Data_Light_ChromaticityY: c_uint = 0x04D5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_light_consumerirsentencereceive?language=objc)
 pub const kHIDUsage_Snsr_Data_Light_ConsumerIRSentenceReceive: c_uint = 0x04D6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_light?language=objc)
 pub const kHIDUsage_Snsr_Property_Light: c_uint = 0x04E0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_light_consumerirsentencesend?language=objc)
 pub const kHIDUsage_Snsr_Property_Light_ConsumerIRSentenceSend: c_uint = 0x04E1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_scanner?language=objc)
 pub const kHIDUsage_Snsr_Data_Scanner: c_uint = 0x04F0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_scanner_rfidtag40bit?language=objc)
 pub const kHIDUsage_Snsr_Data_Scanner_RFIDTag40Bit: c_uint = 0x04F1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_scanner_nfcsentencereceive?language=objc)
 pub const kHIDUsage_Snsr_Data_Scanner_NFCSentenceReceive: c_uint = 0x04F2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_scanner?language=objc)
 pub const kHIDUsage_Snsr_Property_Scanner: c_uint = 0x04F8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_scanner_nfcsentencesend?language=objc)
 pub const kHIDUsage_Snsr_Property_Scanner_NFCSentenceSend: c_uint = 0x0F49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical: c_uint = 0x0500;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_capacitance?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Capacitance: c_uint = 0x0501;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_current?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Current: c_uint = 0x0502;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_electricalpower?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_ElectricalPower: c_uint = 0x0503;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_inductance?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Inductance: c_uint = 0x0504;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_resistance?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Resistance: c_uint = 0x0505;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_voltage?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Voltage: c_uint = 0x0506;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_frequency?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Frequency: c_uint = 0x0507;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_period?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_Period: c_uint = 0x0508;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_electrical_percentofrange?language=objc)
 pub const kHIDUsage_Snsr_Data_Electrical_PercentOfRange: c_uint = 0x0509;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time?language=objc)
 pub const kHIDUsage_Snsr_Data_Time: c_uint = 0x0520;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_year?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Year: c_uint = 0x0521;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_month?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Month: c_uint = 0x0522;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_day?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Day: c_uint = 0x0523;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweek?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeek: c_uint = 0x0524;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweeksunday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekSunday: c_uint = 0x08C0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweekmonday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekMonday: c_uint = 0x08C1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweektuesday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekTuesday: c_uint = 0x08C2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweekwednesday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekWednesday: c_uint = 0x08C3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweekthursday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekThursday: c_uint = 0x08C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweekfriday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekFriday: c_uint = 0x08C5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_dayofweeksaturday?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_DayOfWeekSaturday: c_uint = 0x08C6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_hour?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Hour: c_uint = 0x0525;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_minute?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Minute: c_uint = 0x0526;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_second?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Second: c_uint = 0x0527;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_millisecond?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Millisecond: c_uint = 0x0528;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_timestamp?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_Timestamp: c_uint = 0x0529;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_time_juliandayofyear?language=objc)
 pub const kHIDUsage_Snsr_Data_Time_JulianDayOfYear: c_uint = 0x052A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_time?language=objc)
 pub const kHIDUsage_Snsr_Property_Time: c_uint = 0x0530;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_time_timezoneoffsetfromutc?language=objc)
 pub const kHIDUsage_Snsr_Property_Time_TimeZoneOffsetFromUTC: c_uint = 0x0531;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_time_timezonename?language=objc)
 pub const kHIDUsage_Snsr_Property_Time_TimeZoneName: c_uint = 0x0532;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_time_daylightsavingstimeobserved?language=objc)
 pub const kHIDUsage_Snsr_Property_Time_DaylightSavingsTimeObserved: c_uint = 0x0533;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_time_timetrimadjustment?language=objc)
 pub const kHIDUsage_Snsr_Property_Time_TimeTrimAdjustment: c_uint = 0x0534;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_property_time_armalarm?language=objc)
 pub const kHIDUsage_Snsr_Property_Time_ArmAlarm: c_uint = 0x0535;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom: c_uint = 0x0540;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_usage?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Usage: c_uint = 0x0541;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_booleanarray?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_BooleanArray: c_uint = 0x0542;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value: c_uint = 0x0543;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value1?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value1: c_uint = 0x0544;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value2?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value2: c_uint = 0x0545;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value3?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value3: c_uint = 0x0546;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value4?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value4: c_uint = 0x0547;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value5?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value5: c_uint = 0x0548;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1591698-anonymous/khidusage_snsr_data_custom_value6?language=objc)
 pub const kHIDUsage_Snsr_Data_Custom_Value6: c_uint = 0x0549;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_undefined?language=objc)
 pub const kHIDUsage_BD_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailledisplay?language=objc)
 pub const kHIDUsage_BD_BrailleDisplay: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillerow?language=objc)
 pub const kHIDUsage_BD_BrailleRow: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_8dotbraillecell?language=objc)
 pub const kHIDUsage_BD_8DotBrailleCell: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_6dotbraillecell?language=objc)
 pub const kHIDUsage_BD_6DotBrailleCell: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_numberofbraillecells?language=objc)
 pub const kHIDUsage_BD_NumberOfBrailleCells: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_screenreadercontrol?language=objc)
 pub const kHIDUsage_BD_ScreenReaderControl: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_screenreaderidentifier?language=objc)
 pub const kHIDUsage_BD_ScreenReaderIdentifier: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_routerset1?language=objc)
 pub const kHIDUsage_BD_RouterSet1: c_uint = 0xFA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_routerset2?language=objc)
 pub const kHIDUsage_BD_RouterSet2: c_uint = 0xFB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_routerset3?language=objc)
 pub const kHIDUsage_BD_RouterSet3: c_uint = 0xFC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_routerkey?language=objc)
 pub const kHIDUsage_BD_RouterKey: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_rowrouterkey?language=objc)
 pub const kHIDUsage_BD_RowRouterKey: c_uint = 0x101;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillebuttons?language=objc)
 pub const kHIDUsage_BD_BrailleButtons: c_uint = 0x200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot1?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot1: c_uint = 0x201;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot2?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot2: c_uint = 0x202;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot3?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot3: c_uint = 0x203;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot4?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot4: c_uint = 0x204;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot5?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot5: c_uint = 0x205;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot6?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot6: c_uint = 0x206;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot7?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot7: c_uint = 0x207;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboarddot8?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardDot8: c_uint = 0x208;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboardspace?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardSpace: c_uint = 0x209;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboardleftspace?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardLeftSpace: c_uint = 0x20A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillekeyboardrightspace?language=objc)
 pub const kHIDUsage_BD_BrailleKeyboardRightSpace: c_uint = 0x20B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillefacecontrols?language=objc)
 pub const kHIDUsage_BD_BrailleFaceControls: c_uint = 0x20C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailleleftcontrols?language=objc)
 pub const kHIDUsage_BD_BrailleLeftControls: c_uint = 0x20D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillerightcontrols?language=objc)
 pub const kHIDUsage_BD_BrailleRightControls: c_uint = 0x20E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailletopcontrols?language=objc)
 pub const kHIDUsage_BD_BrailleTopControls: c_uint = 0x20F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillejoystickcenter?language=objc)
 pub const kHIDUsage_BD_BrailleJoystickCenter: c_uint = 0x210;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillejoystickup?language=objc)
 pub const kHIDUsage_BD_BrailleJoystickUp: c_uint = 0x211;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillejoystickdown?language=objc)
 pub const kHIDUsage_BD_BrailleJoystickDown: c_uint = 0x212;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillejoystickleft?language=objc)
 pub const kHIDUsage_BD_BrailleJoystickLeft: c_uint = 0x213;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillejoystickright?language=objc)
 pub const kHIDUsage_BD_BrailleJoystickRight: c_uint = 0x214;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailledpadcenter?language=objc)
 pub const kHIDUsage_BD_BrailleDPadCenter: c_uint = 0x215;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailledpadup?language=objc)
 pub const kHIDUsage_BD_BrailleDPadUp: c_uint = 0x216;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailledpaddown?language=objc)
 pub const kHIDUsage_BD_BrailleDPadDown: c_uint = 0x217;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailledpadleft?language=objc)
 pub const kHIDUsage_BD_BrailleDPadLeft: c_uint = 0x218;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_brailledpadright?language=objc)
 pub const kHIDUsage_BD_BrailleDPadRight: c_uint = 0x219;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillepanleft?language=objc)
 pub const kHIDUsage_BD_BraillePanLeft: c_uint = 0x21A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillepanright?language=objc)
 pub const kHIDUsage_BD_BraillePanRight: c_uint = 0x21B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillerockerup?language=objc)
 pub const kHIDUsage_BD_BrailleRockerUp: c_uint = 0x21C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillerockerdown?language=objc)
 pub const kHIDUsage_BD_BrailleRockerDown: c_uint = 0x21D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359594-anonymous/khidusage_bd_braillerockerpress?language=objc)
 pub const kHIDUsage_BD_BrailleRockerPress: c_uint = 0x21E;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_undefined?language=objc)
 pub const kHIDUsage_PD_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_iname?language=objc)
 pub const kHIDUsage_PD_iName: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_presentstatus?language=objc)
 pub const kHIDUsage_PD_PresentStatus: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_changedstatus?language=objc)
 pub const kHIDUsage_PD_ChangedStatus: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_ups?language=objc)
 pub const kHIDUsage_PD_UPS: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_powersupply?language=objc)
 pub const kHIDUsage_PD_PowerSupply: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_peripheraldevice?language=objc)
 pub const kHIDUsage_PD_PeripheralDevice: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_batterysystem?language=objc)
 pub const kHIDUsage_PD_BatterySystem: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_batterysystemid?language=objc)
 pub const kHIDUsage_PD_BatterySystemID: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_battery?language=objc)
 pub const kHIDUsage_PD_Battery: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_batteryid?language=objc)
 pub const kHIDUsage_PD_BatteryID: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_charger?language=objc)
 pub const kHIDUsage_PD_Charger: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_chargerid?language=objc)
 pub const kHIDUsage_PD_ChargerID: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_powerconverter?language=objc)
 pub const kHIDUsage_PD_PowerConverter: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_powerconverterid?language=objc)
 pub const kHIDUsage_PD_PowerConverterID: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_outletsystem?language=objc)
 pub const kHIDUsage_PD_OutletSystem: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_outletsystemid?language=objc)
 pub const kHIDUsage_PD_OutletSystemID: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_input?language=objc)
 pub const kHIDUsage_PD_Input: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_inputid?language=objc)
 pub const kHIDUsage_PD_InputID: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_output?language=objc)
 pub const kHIDUsage_PD_Output: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_outputid?language=objc)
 pub const kHIDUsage_PD_OutputID: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_flow?language=objc)
 pub const kHIDUsage_PD_Flow: c_uint = 0x1E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_flowid?language=objc)
 pub const kHIDUsage_PD_FlowID: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_outlet?language=objc)
 pub const kHIDUsage_PD_Outlet: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_outletid?language=objc)
 pub const kHIDUsage_PD_OutletID: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_gang?language=objc)
 pub const kHIDUsage_PD_Gang: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_gangid?language=objc)
 pub const kHIDUsage_PD_GangID: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_powersummary?language=objc)
 pub const kHIDUsage_PD_PowerSummary: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_powersummaryid?language=objc)
 pub const kHIDUsage_PD_PowerSummaryID: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_voltage?language=objc)
 pub const kHIDUsage_PD_Voltage: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_current?language=objc)
 pub const kHIDUsage_PD_Current: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_frequency?language=objc)
 pub const kHIDUsage_PD_Frequency: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_apparentpower?language=objc)
 pub const kHIDUsage_PD_ApparentPower: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_activepower?language=objc)
 pub const kHIDUsage_PD_ActivePower: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_percentload?language=objc)
 pub const kHIDUsage_PD_PercentLoad: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_temperature?language=objc)
 pub const kHIDUsage_PD_Temperature: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_humidity?language=objc)
 pub const kHIDUsage_PD_Humidity: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_badcount?language=objc)
 pub const kHIDUsage_PD_BadCount: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configvoltage?language=objc)
 pub const kHIDUsage_PD_ConfigVoltage: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configcurrent?language=objc)
 pub const kHIDUsage_PD_ConfigCurrent: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configfrequency?language=objc)
 pub const kHIDUsage_PD_ConfigFrequency: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configapparentpower?language=objc)
 pub const kHIDUsage_PD_ConfigApparentPower: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configactivepower?language=objc)
 pub const kHIDUsage_PD_ConfigActivePower: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configpercentload?language=objc)
 pub const kHIDUsage_PD_ConfigPercentLoad: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_configtemperature?language=objc)
 pub const kHIDUsage_PD_ConfigTemperature: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_confighumidity?language=objc)
 pub const kHIDUsage_PD_ConfigHumidity: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_switchoncontrol?language=objc)
 pub const kHIDUsage_PD_SwitchOnControl: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_switchoffcontrol?language=objc)
 pub const kHIDUsage_PD_SwitchOffControl: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_togglecontrol?language=objc)
 pub const kHIDUsage_PD_ToggleControl: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_lowvoltagetransfer?language=objc)
 pub const kHIDUsage_PD_LowVoltageTransfer: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_highvoltagetransfer?language=objc)
 pub const kHIDUsage_PD_HighVoltageTransfer: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_delaybeforereboot?language=objc)
 pub const kHIDUsage_PD_DelayBeforeReboot: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_delaybeforestartup?language=objc)
 pub const kHIDUsage_PD_DelayBeforeStartup: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_delaybeforeshutdown?language=objc)
 pub const kHIDUsage_PD_DelayBeforeShutdown: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_test?language=objc)
 pub const kHIDUsage_PD_Test: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_modulereset?language=objc)
 pub const kHIDUsage_PD_ModuleReset: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_audiblealarmcontrol?language=objc)
 pub const kHIDUsage_PD_AudibleAlarmControl: c_uint = 0x5A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_present?language=objc)
 pub const kHIDUsage_PD_Present: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_good?language=objc)
 pub const kHIDUsage_PD_Good: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_internalfailure?language=objc)
 pub const kHIDUsage_PD_InternalFailure: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_voltageoutofrange?language=objc)
 pub const kHIDUsage_PD_VoltageOutOfRange: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_frequencyoutofrange?language=objc)
 pub const kHIDUsage_PD_FrequencyOutOfRange: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_overload?language=objc)
 pub const kHIDUsage_PD_Overload: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_overcharged?language=objc)
 pub const kHIDUsage_PD_OverCharged: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_overtemperature?language=objc)
 pub const kHIDUsage_PD_OverTemperature: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_shutdownrequested?language=objc)
 pub const kHIDUsage_PD_ShutdownRequested: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_shutdownimminent?language=objc)
 pub const kHIDUsage_PD_ShutdownImminent: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_switchonoff?language=objc)
 pub const kHIDUsage_PD_SwitchOnOff: c_uint = 0x6B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_switchable?language=objc)
 pub const kHIDUsage_PD_Switchable: c_uint = 0x6C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_used?language=objc)
 pub const kHIDUsage_PD_Used: c_uint = 0x6D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_boost?language=objc)
 pub const kHIDUsage_PD_Boost: c_uint = 0x6E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_buck?language=objc)
 pub const kHIDUsage_PD_Buck: c_uint = 0x6F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_initialized?language=objc)
 pub const kHIDUsage_PD_Initialized: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_tested?language=objc)
 pub const kHIDUsage_PD_Tested: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_awaitingpower?language=objc)
 pub const kHIDUsage_PD_AwaitingPower: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_communicationlost?language=objc)
 pub const kHIDUsage_PD_CommunicationLost: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_imanufacturer?language=objc)
 pub const kHIDUsage_PD_iManufacturer: c_uint = 0xFD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_iproduct?language=objc)
 pub const kHIDUsage_PD_iProduct: c_uint = 0xFE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592391-anonymous/khidusage_pd_iserialnumber?language=objc)
 pub const kHIDUsage_PD_iserialNumber: c_uint = 0xFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_undefined?language=objc)
 pub const kHIDUsage_BS_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbbatterymode?language=objc)
 pub const kHIDUsage_BS_SMBBatteryMode: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbbatterystatus?language=objc)
 pub const kHIDUsage_BS_SMBBatteryStatus: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbalarmwarning?language=objc)
 pub const kHIDUsage_BS_SMBAlarmWarning: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbchargermode?language=objc)
 pub const kHIDUsage_BS_SMBChargerMode: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbchargerstatus?language=objc)
 pub const kHIDUsage_BS_SMBChargerStatus: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbchargerspecinfo?language=objc)
 pub const kHIDUsage_BS_SMBChargerSpecInfo: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbselectorstate?language=objc)
 pub const kHIDUsage_BS_SMBSelectorState: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbselectorpresets?language=objc)
 pub const kHIDUsage_BS_SMBSelectorPresets: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smbselectorinfo?language=objc)
 pub const kHIDUsage_BS_SMBSelectorInfo: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_optionalmfgfunction1?language=objc)
 pub const kHIDUsage_BS_OptionalMfgFunction1: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_optionalmfgfunction2?language=objc)
 pub const kHIDUsage_BS_OptionalMfgFunction2: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_optionalmfgfunction3?language=objc)
 pub const kHIDUsage_BS_OptionalMfgFunction3: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_optionalmfgfunction4?language=objc)
 pub const kHIDUsage_BS_OptionalMfgFunction4: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_optionalmfgfunction5?language=objc)
 pub const kHIDUsage_BS_OptionalMfgFunction5: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_connectiontosmbus?language=objc)
 pub const kHIDUsage_BS_ConnectionToSMBus: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_outputconnection?language=objc)
 pub const kHIDUsage_BS_OutputConnection: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_chargerconnection?language=objc)
 pub const kHIDUsage_BS_ChargerConnection: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_batteryinsertion?language=objc)
 pub const kHIDUsage_BS_BatteryInsertion: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_usenext?language=objc)
 pub const kHIDUsage_BS_Usenext: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_oktouse?language=objc)
 pub const kHIDUsage_BS_OKToUse: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_batterysupported?language=objc)
 pub const kHIDUsage_BS_BatterySupported: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_selectorrevision?language=objc)
 pub const kHIDUsage_BS_SelectorRevision: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_chargingindicator?language=objc)
 pub const kHIDUsage_BS_ChargingIndicator: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_manufactureraccess?language=objc)
 pub const kHIDUsage_BS_ManufacturerAccess: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_remainingcapacitylimit?language=objc)
 pub const kHIDUsage_BS_RemainingCapacityLimit: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_remainingtimelimit?language=objc)
 pub const kHIDUsage_BS_RemainingTimeLimit: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_atrate?language=objc)
 pub const kHIDUsage_BS_AtRate: c_uint = 0x2B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_capacitymode?language=objc)
 pub const kHIDUsage_BS_CapacityMode: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_broadcasttocharger?language=objc)
 pub const kHIDUsage_BS_BroadcastToCharger: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_primarybattery?language=objc)
 pub const kHIDUsage_BS_PrimaryBattery: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_chargecontroller?language=objc)
 pub const kHIDUsage_BS_ChargeController: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_terminatecharge?language=objc)
 pub const kHIDUsage_BS_TerminateCharge: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_terminatedischarge?language=objc)
 pub const kHIDUsage_BS_TerminateDischarge: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_belowremainingcapacitylimit?language=objc)
 pub const kHIDUsage_BS_BelowRemainingCapacityLimit: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_remainingtimelimitexpired?language=objc)
 pub const kHIDUsage_BS_RemainingTimeLimitExpired: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_charging?language=objc)
 pub const kHIDUsage_BS_Charging: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_discharging?language=objc)
 pub const kHIDUsage_BS_Discharging: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_fullycharged?language=objc)
 pub const kHIDUsage_BS_FullyCharged: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_fullydischarged?language=objc)
 pub const kHIDUsage_BS_FullyDischarged: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_conditioningflag?language=objc)
 pub const kHIDUsage_BS_ConditioningFlag: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_atrateok?language=objc)
 pub const kHIDUsage_BS_AtRateOK: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_smberrorcode?language=objc)
 pub const kHIDUsage_BS_SMBErrorCode: c_uint = 0x4A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_needreplacement?language=objc)
 pub const kHIDUsage_BS_NeedReplacement: c_uint = 0x4B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_atratetimetofull?language=objc)
 pub const kHIDUsage_BS_AtRateTimeToFull: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_atratetimetoempty?language=objc)
 pub const kHIDUsage_BS_AtRateTimeToEmpty: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_averagecurrent?language=objc)
 pub const kHIDUsage_BS_AverageCurrent: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_maxerror?language=objc)
 pub const kHIDUsage_BS_Maxerror: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_relativestateofcharge?language=objc)
 pub const kHIDUsage_BS_RelativeStateOfCharge: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_absolutestateofcharge?language=objc)
 pub const kHIDUsage_BS_AbsoluteStateOfCharge: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_remainingcapacity?language=objc)
 pub const kHIDUsage_BS_RemainingCapacity: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_fullchargecapacity?language=objc)
 pub const kHIDUsage_BS_FullChargeCapacity: c_uint = 0x67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_runtimetoempty?language=objc)
 pub const kHIDUsage_BS_RunTimeToEmpty: c_uint = 0x68;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_averagetimetoempty?language=objc)
 pub const kHIDUsage_BS_AverageTimeToEmpty: c_uint = 0x69;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_averagetimetofull?language=objc)
 pub const kHIDUsage_BS_AverageTimeToFull: c_uint = 0x6A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_cyclecount?language=objc)
 pub const kHIDUsage_BS_CycleCount: c_uint = 0x6B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_battpackmodellevel?language=objc)
 pub const kHIDUsage_BS_BattPackModelLevel: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_internalchargecontroller?language=objc)
 pub const kHIDUsage_BS_InternalChargeController: c_uint = 0x81;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_primarybatterysupport?language=objc)
 pub const kHIDUsage_BS_PrimaryBatterySupport: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_designcapacity?language=objc)
 pub const kHIDUsage_BS_DesignCapacity: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_specificationinfo?language=objc)
 pub const kHIDUsage_BS_SpecificationInfo: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_manufacturerdate?language=objc)
 pub const kHIDUsage_BS_ManufacturerDate: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_serialnumber?language=objc)
 pub const kHIDUsage_BS_SerialNumber: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_imanufacturername?language=objc)
 pub const kHIDUsage_BS_iManufacturerName: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_idevicename?language=objc)
 pub const kHIDUsage_BS_iDevicename: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_idevicechemistry?language=objc)
 pub const kHIDUsage_BS_iDeviceChemistry: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_manufacturerdata?language=objc)
 pub const kHIDUsage_BS_ManufacturerData: c_uint = 0x8A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_rechargable?language=objc)
 pub const kHIDUsage_BS_Rechargable: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_warningcapacitylimit?language=objc)
 pub const kHIDUsage_BS_WarningCapacityLimit: c_uint = 0x8C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_capacitygranularity1?language=objc)
 pub const kHIDUsage_BS_CapacityGranularity1: c_uint = 0x8D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_capacitygranularity2?language=objc)
 pub const kHIDUsage_BS_CapacityGranularity2: c_uint = 0x8E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_ioeminformation?language=objc)
 pub const kHIDUsage_BS_iOEMInformation: c_uint = 0x8F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_inhibitcharge?language=objc)
 pub const kHIDUsage_BS_InhibitCharge: c_uint = 0xC0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_enablepolling?language=objc)
 pub const kHIDUsage_BS_EnablePolling: c_uint = 0xC1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_resettozero?language=objc)
 pub const kHIDUsage_BS_ResetToZero: c_uint = 0xC2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_acpresent?language=objc)
 pub const kHIDUsage_BS_ACPresent: c_uint = 0xD0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_batterypresent?language=objc)
 pub const kHIDUsage_BS_BatteryPresent: c_uint = 0xD1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_powerfail?language=objc)
 pub const kHIDUsage_BS_PowerFail: c_uint = 0xD2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_alarminhibited?language=objc)
 pub const kHIDUsage_BS_AlarmInhibited: c_uint = 0xD3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_thermistorunderrange?language=objc)
 pub const kHIDUsage_BS_ThermistorUnderRange: c_uint = 0xD4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_thermistorhot?language=objc)
 pub const kHIDUsage_BS_ThermistorHot: c_uint = 0xD5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_thermistorcold?language=objc)
 pub const kHIDUsage_BS_ThermistorCold: c_uint = 0xD6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_thermistoroverrange?language=objc)
 pub const kHIDUsage_BS_ThermistorOverRange: c_uint = 0xD7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_voltageoutofrange?language=objc)
 pub const kHIDUsage_BS_VoltageOutOfRange: c_uint = 0xD8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_currentoutofrange?language=objc)
 pub const kHIDUsage_BS_CurrentOutOfRange: c_uint = 0xD9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_currentnotregulated?language=objc)
 pub const kHIDUsage_BS_CurrentNotRegulated: c_uint = 0xDA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_voltagenotregulated?language=objc)
 pub const kHIDUsage_BS_VoltageNotRegulated: c_uint = 0xDB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_mastermode?language=objc)
 pub const kHIDUsage_BS_MasterMode: c_uint = 0xDC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_chargerselectorsupport?language=objc)
 pub const kHIDUsage_BS_ChargerSelectorSupport: c_uint = 0xF0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_chargerspec?language=objc)
 pub const kHIDUsage_BS_ChargerSpec: c_uint = 0xF1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_level2?language=objc)
 pub const kHIDUsage_BS_Level2: c_uint = 0xF2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592687-anonymous/khidusage_bs_level3?language=objc)
 pub const kHIDUsage_BS_Level3: c_uint = 0xF3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_undefined?language=objc)
 pub const kHIDUsage_BCS_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_badgereader?language=objc)
 pub const kHIDUsage_BCS_BadgeReader: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_barcodescanner?language=objc)
 pub const kHIDUsage_BCS_BarCodeScanner: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_dumbbarcodescanner?language=objc)
 pub const kHIDUsage_BCS_DumbBarCodeScanner: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_cordlessscannerbase?language=objc)
 pub const kHIDUsage_BCS_CordlessScannerBase: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_barcodescannercradle?language=objc)
 pub const kHIDUsage_BCS_BarCodeScannerCradle: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_attributereport?language=objc)
 pub const kHIDUsage_BCS_AttributeReport: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_settingsreport?language=objc)
 pub const kHIDUsage_BCS_SettingsReport: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_scanneddatareport?language=objc)
 pub const kHIDUsage_BCS_ScannedDataReport: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_rawscanneddatareport?language=objc)
 pub const kHIDUsage_BCS_RawScannedDataReport: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggerreport?language=objc)
 pub const kHIDUsage_BCS_TriggerReport: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_statusreport?language=objc)
 pub const kHIDUsage_BCS_StatusReport: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_eancontrolreport?language=objc)
 pub const kHIDUsage_BCS_UPC_EANControlReport: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean2_3labelcontrolreport?language=objc)
 pub const kHIDUsage_BCS_EAN2_3LabelControlReport: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code39controlreport?language=objc)
 pub const kHIDUsage_BCS_Code39ControlReport: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_interleaved2of5controlreport?language=objc)
 pub const kHIDUsage_BCS_Interleaved2of5ControlReport: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_standard2of5controlreport?language=objc)
 pub const kHIDUsage_BCS_Standard2of5ControlReport: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_msiplesseycontrolreport?language=objc)
 pub const kHIDUsage_BCS_MSIPlesseyControlReport: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_codabarcontrolreport?language=objc)
 pub const kHIDUsage_BCS_CodabarControlReport: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code128controlreport?language=objc)
 pub const kHIDUsage_BCS_Code128ControlReport: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_misc1dcontrolreport?language=objc)
 pub const kHIDUsage_BCS_Misc1DControlReport: c_uint = 0x1E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_2dcontrolreport?language=objc)
 pub const kHIDUsage_BCS_2DControlReport: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_aiming_pointermide?language=objc)
 pub const kHIDUsage_BCS_Aiming_PointerMide: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_barcodepresentsensor?language=objc)
 pub const kHIDUsage_BCS_BarCodePresentSensor: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_class1alaser?language=objc)
 pub const kHIDUsage_BCS_Class1ALaser: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_class2laser?language=objc)
 pub const kHIDUsage_BCS_Class2Laser: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_heaterpresent?language=objc)
 pub const kHIDUsage_BCS_HeaterPresent: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_contactscanner?language=objc)
 pub const kHIDUsage_BCS_ContactScanner: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_electronicarticlesurveillancenotification?language=objc)
 pub const kHIDUsage_BCS_ElectronicArticleSurveillanceNotification: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_constantelectronicarticlesurveillance?language=objc)
 pub const kHIDUsage_BCS_ConstantElectronicArticleSurveillance: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_errorindication?language=objc)
 pub const kHIDUsage_BCS_ErrorIndication: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_fixedbeeper?language=objc)
 pub const kHIDUsage_BCS_FixedBeeper: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_gooddecodeindication?language=objc)
 pub const kHIDUsage_BCS_GoodDecodeIndication: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_handsfreescanning?language=objc)
 pub const kHIDUsage_BCS_HandsFreeScanning: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_intrinsicallysafe?language=objc)
 pub const kHIDUsage_BCS_IntrinsicallySafe: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_klasseeinslaser?language=objc)
 pub const kHIDUsage_BCS_KlasseEinsLaser: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_longrangescanner?language=objc)
 pub const kHIDUsage_BCS_LongRangeScanner: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_mirrorspeedcontrol?language=objc)
 pub const kHIDUsage_BCS_MirrorSpeedControl: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_notonfileindication?language=objc)
 pub const kHIDUsage_BCS_NotOnFileIndication: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_programmablebeeper?language=objc)
 pub const kHIDUsage_BCS_ProgrammableBeeper: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggerless?language=objc)
 pub const kHIDUsage_BCS_Triggerless: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_wand?language=objc)
 pub const kHIDUsage_BCS_Wand: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_waterresistant?language=objc)
 pub const kHIDUsage_BCS_WaterResistant: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_multirangescanner?language=objc)
 pub const kHIDUsage_BCS_MultiRangeScanner: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_proximitysensor?language=objc)
 pub const kHIDUsage_BCS_ProximitySensor: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_fragmentdecoding?language=objc)
 pub const kHIDUsage_BCS_FragmentDecoding: c_uint = 0x4D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_scannerreadconfidence?language=objc)
 pub const kHIDUsage_BCS_ScannerReadConfidence: c_uint = 0x4E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_dataprefix?language=objc)
 pub const kHIDUsage_BCS_DataPrefix: c_uint = 0x4F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_prefixaimi?language=objc)
 pub const kHIDUsage_BCS_PrefixAIMI: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_prefixnone?language=objc)
 pub const kHIDUsage_BCS_PrefixNone: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_prefixproprietary?language=objc)
 pub const kHIDUsage_BCS_PrefixProprietary: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_activetime?language=objc)
 pub const kHIDUsage_BCS_ActiveTime: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_aiminglaserpattern?language=objc)
 pub const kHIDUsage_BCS_AimingLaserPattern: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_barcodepresent?language=objc)
 pub const kHIDUsage_BCS_BarCodePresent: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_beeperstate?language=objc)
 pub const kHIDUsage_BCS_BeeperState: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_laserontime?language=objc)
 pub const kHIDUsage_BCS_LaserOnTime: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_laserstate?language=objc)
 pub const kHIDUsage_BCS_LaserState: c_uint = 0x5A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_lockouttime?language=objc)
 pub const kHIDUsage_BCS_LockoutTime: c_uint = 0x5B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_motorstate?language=objc)
 pub const kHIDUsage_BCS_MotorState: c_uint = 0x5C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_motortimeout?language=objc)
 pub const kHIDUsage_BCS_MotorTimeout: c_uint = 0x5D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_poweronresetscanner?language=objc)
 pub const kHIDUsage_BCS_PowerOnResetScanner: c_uint = 0x5E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_preventreadofbarcodes?language=objc)
 pub const kHIDUsage_BCS_PreventReadOfBarcodes: c_uint = 0x5F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_initiatebarcoderead?language=objc)
 pub const kHIDUsage_BCS_InitiateBarcodeRead: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggerstate?language=objc)
 pub const kHIDUsage_BCS_TriggerState: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggermode?language=objc)
 pub const kHIDUsage_BCS_TriggerMode: c_uint = 0x62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggermodeblinkinglaseron?language=objc)
 pub const kHIDUsage_BCS_TriggerModeBlinkingLaserOn: c_uint = 0x63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggermodecontinuouslaseron?language=objc)
 pub const kHIDUsage_BCS_TriggerModeContinuousLaserOn: c_uint = 0x64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggermodelaseronwhilepulled?language=objc)
 pub const kHIDUsage_BCS_TriggerModeLaserOnWhilePulled: c_uint = 0x65;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_triggermodelaserstaysonaftertriggerrelease?language=objc)
 pub const kHIDUsage_BCS_TriggerModeLaserStaysOnAfterTriggerRelease: c_uint = 0x66;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_commitparameterstonvm?language=objc)
 pub const kHIDUsage_BCS_CommitParametersToNVM: c_uint = 0x6D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_parameterscanning?language=objc)
 pub const kHIDUsage_BCS_ParameterScanning: c_uint = 0x6E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_parameterschanged?language=objc)
 pub const kHIDUsage_BCS_ParametersChanged: c_uint = 0x6F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_setparameterdefaultvalues?language=objc)
 pub const kHIDUsage_BCS_SetParameterDefaultValues: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_scannerincradle?language=objc)
 pub const kHIDUsage_BCS_ScannerInCradle: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_scannerinrange?language=objc)
 pub const kHIDUsage_BCS_ScannerInRange: c_uint = 0x76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_aimduration?language=objc)
 pub const kHIDUsage_BCS_AimDuration: c_uint = 0x7A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadlampduration?language=objc)
 pub const kHIDUsage_BCS_GoodReadLampDuration: c_uint = 0x7B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadlampintensity?language=objc)
 pub const kHIDUsage_BCS_GoodReadLampIntensity: c_uint = 0x7C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadled?language=objc)
 pub const kHIDUsage_BCS_GoodReadLED: c_uint = 0x7D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadtonefrequency?language=objc)
 pub const kHIDUsage_BCS_GoodReadToneFrequency: c_uint = 0x7E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadtonelength?language=objc)
 pub const kHIDUsage_BCS_GoodReadToneLength: c_uint = 0x7F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadtonevolume?language=objc)
 pub const kHIDUsage_BCS_GoodReadToneVolume: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_noreadmessage?language=objc)
 pub const kHIDUsage_BCS_NoReadMessage: c_uint = 0x82;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_notonfilevolume?language=objc)
 pub const kHIDUsage_BCS_NotOnFileVolume: c_uint = 0x83;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_powerupbeep?language=objc)
 pub const kHIDUsage_BCS_PowerupBeep: c_uint = 0x84;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_sounderrorbeep?language=objc)
 pub const kHIDUsage_BCS_SoundErrorBeep: c_uint = 0x85;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_soundgoodreadbeep?language=objc)
 pub const kHIDUsage_BCS_SoundGoodReadBeep: c_uint = 0x86;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_soundnotonfilebeep?language=objc)
 pub const kHIDUsage_BCS_SoundNotOnFileBeep: c_uint = 0x87;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_goodreadwhentowrite?language=objc)
 pub const kHIDUsage_BCS_GoodReadWhenToWrite: c_uint = 0x88;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_grwtiafterdecode?language=objc)
 pub const kHIDUsage_BCS_GRWTIAfterDecode: c_uint = 0x89;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_grwtibeep_lampaftertransmit?language=objc)
 pub const kHIDUsage_BCS_GRWTIBeep_LampAfterTransmit: c_uint = 0x8A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_grwtinobeep_lampuseatall?language=objc)
 pub const kHIDUsage_BCS_GRWTINoBeep_LampUseAtAll: c_uint = 0x8B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_booklandean?language=objc)
 pub const kHIDUsage_BCS_BooklandEAN: c_uint = 0x91;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_convertean8to13type?language=objc)
 pub const kHIDUsage_BCS_ConvertEAN8To13Type: c_uint = 0x92;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_convertupcatoean_13?language=objc)
 pub const kHIDUsage_BCS_ConvertUPCAToEAN_13: c_uint = 0x93;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_convertupc_etoa?language=objc)
 pub const kHIDUsage_BCS_ConvertUPC_EToA: c_uint = 0x94;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean_13?language=objc)
 pub const kHIDUsage_BCS_EAN_13: c_uint = 0x95;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean_8?language=objc)
 pub const kHIDUsage_BCS_EAN_8: c_uint = 0x96;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean_99_128_mandatory?language=objc)
 pub const kHIDUsage_BCS_EAN_99_128_Mandatory: c_uint = 0x97;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean_99_p5_128_optional?language=objc)
 pub const kHIDUsage_BCS_EAN_99_P5_128_Optional: c_uint = 0x98;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_ean?language=objc)
 pub const kHIDUsage_BCS_UPC_EAN: c_uint = 0x9A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_eancouponcode?language=objc)
 pub const kHIDUsage_BCS_UPC_EANCouponCode: c_uint = 0x9B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_eanperiodicals?language=objc)
 pub const kHIDUsage_BCS_UPC_EANPeriodicals: c_uint = 0x9C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_a?language=objc)
 pub const kHIDUsage_BCS_UPC_A: c_uint = 0x9D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_awith128mandatory?language=objc)
 pub const kHIDUsage_BCS_UPC_AWith128Mandatory: c_uint = 0x9E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_awith128optical?language=objc)
 pub const kHIDUsage_BCS_UPC_AWith128Optical: c_uint = 0x9F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_awithp5optional?language=objc)
 pub const kHIDUsage_BCS_UPC_AWithP5Optional: c_uint = 0xA0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_e?language=objc)
 pub const kHIDUsage_BCS_UPC_E: c_uint = 0xA1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_upc_e1?language=objc)
 pub const kHIDUsage_BCS_UPC_E1: c_uint = 0xA2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodical?language=objc)
 pub const kHIDUsage_BCS_Periodical: c_uint = 0xA9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodicalautodiscriminateplus2?language=objc)
 pub const kHIDUsage_BCS_PeriodicalAutoDiscriminatePlus2: c_uint = 0xAA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodicalonlydecodewithplus2?language=objc)
 pub const kHIDUsage_BCS_PeriodicalOnlyDecodeWithPlus2: c_uint = 0xAB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodicalignoreplus2?language=objc)
 pub const kHIDUsage_BCS_PeriodicalIgnorePlus2: c_uint = 0xAC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodicalautodiscriminateplus5?language=objc)
 pub const kHIDUsage_BCS_PeriodicalAutoDiscriminatePlus5: c_uint = 0xAD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodicalonlydecodewithplus5?language=objc)
 pub const kHIDUsage_BCS_PeriodicalOnlyDecodeWithPlus5: c_uint = 0xAE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_periodicalignoreplus5?language=objc)
 pub const kHIDUsage_BCS_PeriodicalIgnorePlus5: c_uint = 0xAF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_check?language=objc)
 pub const kHIDUsage_BCS_Check: c_uint = 0xB0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdisableprice?language=objc)
 pub const kHIDUsage_BCS_CheckDisablePrice: c_uint = 0xB1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkenable4digitprice?language=objc)
 pub const kHIDUsage_BCS_CheckEnable4DigitPrice: c_uint = 0xB2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkenable5digitprice?language=objc)
 pub const kHIDUsage_BCS_CheckEnable5DigitPrice: c_uint = 0xB3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkenableeuropean4digitprice?language=objc)
 pub const kHIDUsage_BCS_CheckEnableEuropean4DigitPrice: c_uint = 0xB4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkenableeuropean5digitprice?language=objc)
 pub const kHIDUsage_BCS_CheckEnableEuropean5DigitPrice: c_uint = 0xB5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_eantwolabel?language=objc)
 pub const kHIDUsage_BCS_EANTwoLabel: c_uint = 0xB7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_eanthreelabel?language=objc)
 pub const kHIDUsage_BCS_EANThreeLabel: c_uint = 0xB8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean8flagdigit1?language=objc)
 pub const kHIDUsage_BCS_EAN8FlagDigit1: c_uint = 0xB9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean8flagdigit2?language=objc)
 pub const kHIDUsage_BCS_EAN8FlagDigit2: c_uint = 0xBA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean8flagdigit3?language=objc)
 pub const kHIDUsage_BCS_EAN8FlagDigit3: c_uint = 0xBB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean13flagdigit1?language=objc)
 pub const kHIDUsage_BCS_EAN13FlagDigit1: c_uint = 0xBC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean13flagdigit2?language=objc)
 pub const kHIDUsage_BCS_EAN13FlagDigit2: c_uint = 0xBD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ean13flagdigit3?language=objc)
 pub const kHIDUsage_BCS_EAN13FlagDigit3: c_uint = 0xBE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_addean2_3labeldefinition?language=objc)
 pub const kHIDUsage_BCS_AddEAN2_3LabelDefinition: c_uint = 0xBF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_clearallean2_3labeldefinitions?language=objc)
 pub const kHIDUsage_BCS_ClearAllEAN2_3LabelDefinitions: c_uint = 0xC0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_codabar?language=objc)
 pub const kHIDUsage_BCS_Codabar: c_uint = 0xC3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code128?language=objc)
 pub const kHIDUsage_BCS_Code128: c_uint = 0xC4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code39?language=objc)
 pub const kHIDUsage_BCS_Code39: c_uint = 0xC7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code93?language=objc)
 pub const kHIDUsage_BCS_Code93: c_uint = 0xC8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_fullasciiconversion?language=objc)
 pub const kHIDUsage_BCS_FullASCIIConversion: c_uint = 0xC9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_interleaved2of5?language=objc)
 pub const kHIDUsage_BCS_Interleaved2of5: c_uint = 0xCA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_italianpharmacycode?language=objc)
 pub const kHIDUsage_BCS_ItalianPharmacyCode: c_uint = 0xCB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_msi_plessey?language=objc)
 pub const kHIDUsage_BCS_MSI_Plessey: c_uint = 0xCC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_standard2of5iata?language=objc)
 pub const kHIDUsage_BCS_Standard2of5IATA: c_uint = 0xCD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_standard2of5?language=objc)
 pub const kHIDUsage_BCS_Standard2of5: c_uint = 0xCE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_transmitstart_stop?language=objc)
 pub const kHIDUsage_BCS_TransmitStart_Stop: c_uint = 0xD3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_trioptic?language=objc)
 pub const kHIDUsage_BCS_TriOptic: c_uint = 0xD4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ucc_ean_128?language=objc)
 pub const kHIDUsage_BCS_UCC_EAN_128: c_uint = 0xD5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigit?language=objc)
 pub const kHIDUsage_BCS_CheckDigit: c_uint = 0xD6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitdisable?language=objc)
 pub const kHIDUsage_BCS_CheckDigitDisable: c_uint = 0xD7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitenableinterleaved2of5opcc?language=objc)
 pub const kHIDUsage_BCS_CheckDigitEnableInterleaved2of5OPCC: c_uint = 0xD8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitenableinterleaved2of5uss?language=objc)
 pub const kHIDUsage_BCS_CheckDigitEnableInterleaved2of5USS: c_uint = 0xD9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitenablestandard2of5opcc?language=objc)
 pub const kHIDUsage_BCS_CheckDigitEnableStandard2of5OPCC: c_uint = 0xDA;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitenablestandard2of5uss?language=objc)
 pub const kHIDUsage_BCS_CheckDigitEnableStandard2of5USS: c_uint = 0xDB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitenableonemsiplessey?language=objc)
 pub const kHIDUsage_BCS_CheckDigitEnableOneMSIPlessey: c_uint = 0xDC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitenabletwomsiplessey?language=objc)
 pub const kHIDUsage_BCS_CheckDigitEnableTwoMSIPlessey: c_uint = 0xDD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitcodabarenable?language=objc)
 pub const kHIDUsage_BCS_CheckDigitCodabarEnable: c_uint = 0xDE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_checkdigitcode99enable?language=objc)
 pub const kHIDUsage_BCS_CheckDigitCode99Enable: c_uint = 0xDF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_transmitcheckdigit?language=objc)
 pub const kHIDUsage_BCS_TransmitCheckDigit: c_uint = 0xF0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_disablecheckdigittransmit?language=objc)
 pub const kHIDUsage_BCS_DisableCheckDigitTransmit: c_uint = 0xF1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_enablecheckdigittransmit?language=objc)
 pub const kHIDUsage_BCS_EnableCheckDigitTransmit: c_uint = 0xF2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_symbologyidentifier1?language=objc)
 pub const kHIDUsage_BCS_SymbologyIdentifier1: c_uint = 0xFB;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_symbologyidentifier2?language=objc)
 pub const kHIDUsage_BCS_SymbologyIdentifier2: c_uint = 0xFC;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_symbologyidentifier3?language=objc)
 pub const kHIDUsage_BCS_SymbologyIdentifier3: c_uint = 0xFD;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_decodeddata?language=objc)
 pub const kHIDUsage_BCS_DecodedData: c_uint = 0xFE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_decodedatacontinued?language=objc)
 pub const kHIDUsage_BCS_DecodeDataContinued: c_uint = 0xFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_barspacedata?language=objc)
 pub const kHIDUsage_BCS_BarSpaceData: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_scannerdataaccuracy?language=objc)
 pub const kHIDUsage_BCS_ScannerDataAccuracy: c_uint = 0x101;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_rawdatapolarity?language=objc)
 pub const kHIDUsage_BCS_RawDataPolarity: c_uint = 0x102;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_polarityinvertedbarcode?language=objc)
 pub const kHIDUsage_BCS_PolarityInvertedBarCode: c_uint = 0x103;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_polaritynormalbarcode?language=objc)
 pub const kHIDUsage_BCS_PolarityNormalBarCode: c_uint = 0x104;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_minimumlengthtodecode?language=objc)
 pub const kHIDUsage_BCS_MinimumLengthToDecode: c_uint = 0x106;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_maximumlengthtodecode?language=objc)
 pub const kHIDUsage_BCS_MaximumLengthToDecode: c_uint = 0x107;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_firstdiscretelengthtodecode?language=objc)
 pub const kHIDUsage_BCS_FirstDiscreteLengthToDecode: c_uint = 0x108;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_seconddiscretelengthtodecode?language=objc)
 pub const kHIDUsage_BCS_SecondDiscreteLengthToDecode: c_uint = 0x109;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_datalengthmethod?language=objc)
 pub const kHIDUsage_BCS_DataLengthMethod: c_uint = 0x10A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_dlmethodreadany?language=objc)
 pub const kHIDUsage_BCS_DLMethodReadAny: c_uint = 0x10B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_dlmethodcheckinrange?language=objc)
 pub const kHIDUsage_BCS_DLMethodCheckInRange: c_uint = 0x10C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_dlmethodcheckfordiscrete?language=objc)
 pub const kHIDUsage_BCS_DLMethodCheckForDiscrete: c_uint = 0x10D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_azteccode?language=objc)
 pub const kHIDUsage_BCS_AztecCode: c_uint = 0x110;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_bc412?language=objc)
 pub const kHIDUsage_BCS_BC412: c_uint = 0x111;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_channelcode?language=objc)
 pub const kHIDUsage_BCS_ChannelCode: c_uint = 0x112;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code16?language=objc)
 pub const kHIDUsage_BCS_Code16: c_uint = 0x113;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code32?language=objc)
 pub const kHIDUsage_BCS_Code32: c_uint = 0x114;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_code49?language=objc)
 pub const kHIDUsage_BCS_Code49: c_uint = 0x115;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_codeone?language=objc)
 pub const kHIDUsage_BCS_CodeOne: c_uint = 0x116;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_colorcode?language=objc)
 pub const kHIDUsage_BCS_Colorcode: c_uint = 0x117;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_datamatrix?language=objc)
 pub const kHIDUsage_BCS_DataMatrix: c_uint = 0x118;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_maxicode?language=objc)
 pub const kHIDUsage_BCS_MaxiCode: c_uint = 0x119;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_micropdf?language=objc)
 pub const kHIDUsage_BCS_MicroPDF: c_uint = 0x11A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_pdf_417?language=objc)
 pub const kHIDUsage_BCS_PDF_417: c_uint = 0x11B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_posicode?language=objc)
 pub const kHIDUsage_BCS_PosiCode: c_uint = 0x11C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_qrcode?language=objc)
 pub const kHIDUsage_BCS_QRCode: c_uint = 0x11D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_supercode?language=objc)
 pub const kHIDUsage_BCS_SuperCode: c_uint = 0x11E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_ultracode?language=objc)
 pub const kHIDUsage_BCS_UltraCode: c_uint = 0x11F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_usb_5_slugcode?language=objc)
 pub const kHIDUsage_BCS_USB_5_SlugCode: c_uint = 0x120;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592293-anonymous/khidusage_bcs_vericode?language=objc)
 pub const kHIDUsage_BCS_VeriCode: c_uint = 0x121;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_undefined?language=objc)
 pub const kHIDUsage_WD_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weighingdevice?language=objc)
 pub const kHIDUsage_WD_WeighingDevice: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaledevice?language=objc)
 pub const kHIDUsage_WD_ScaleScaleDevice: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassimetriccl?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIMetricCL: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassimetric?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIMetric: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassiimetric?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIIMetric: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassiiimetric?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIIIMetric: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassiiilmetric?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIIILMetric: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassivmetric?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIVMetric: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassiiienglish?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIIIEnglish: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassiiilenglish?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIIILEnglish: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassivenglish?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassIVEnglish: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalescaleclassgeneric?language=objc)
 pub const kHIDUsage_WD_ScaleScaleClassGeneric: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scaleatrributereport?language=objc)
 pub const kHIDUsage_WD_ScaleAtrributeReport: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalecontrolreport?language=objc)
 pub const kHIDUsage_WD_ScaleControlReport: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scaledatareport?language=objc)
 pub const kHIDUsage_WD_ScaleDataReport: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusreport?language=objc)
 pub const kHIDUsage_WD_ScaleStatusReport: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scaleweightlimitreport?language=objc)
 pub const kHIDUsage_WD_ScaleWeightLimitReport: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatisticsreport?language=objc)
 pub const kHIDUsage_WD_ScaleStatisticsReport: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_dataweight?language=objc)
 pub const kHIDUsage_WD_DataWeight: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_datascaling?language=objc)
 pub const kHIDUsage_WD_DataScaling: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunit?language=objc)
 pub const kHIDUsage_WD_WeightUnit: c_uint = 0x50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitmilligram?language=objc)
 pub const kHIDUsage_WD_WeightUnitMilligram: c_uint = 0x51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitgram?language=objc)
 pub const kHIDUsage_WD_WeightUnitGram: c_uint = 0x52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitkilogram?language=objc)
 pub const kHIDUsage_WD_WeightUnitKilogram: c_uint = 0x53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitcarats?language=objc)
 pub const kHIDUsage_WD_WeightUnitCarats: c_uint = 0x54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunittaels?language=objc)
 pub const kHIDUsage_WD_WeightUnitTaels: c_uint = 0x55;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitgrains?language=objc)
 pub const kHIDUsage_WD_WeightUnitGrains: c_uint = 0x56;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitpennyweights?language=objc)
 pub const kHIDUsage_WD_WeightUnitPennyweights: c_uint = 0x57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitmetricton?language=objc)
 pub const kHIDUsage_WD_WeightUnitMetricTon: c_uint = 0x58;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitavoirton?language=objc)
 pub const kHIDUsage_WD_WeightUnitAvoirTon: c_uint = 0x59;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunittroyounce?language=objc)
 pub const kHIDUsage_WD_WeightUnitTroyOunce: c_uint = 0x5A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitounce?language=objc)
 pub const kHIDUsage_WD_WeightUnitOunce: c_uint = 0x5B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_weightunitpound?language=objc)
 pub const kHIDUsage_WD_WeightUnitPound: c_uint = 0x5C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_calibrationcount?language=objc)
 pub const kHIDUsage_WD_CalibrationCount: c_uint = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_rezerocount?language=objc)
 pub const kHIDUsage_WD_RezeroCount: c_uint = 0x61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatus?language=objc)
 pub const kHIDUsage_WD_ScaleStatus: c_uint = 0x70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusfault?language=objc)
 pub const kHIDUsage_WD_ScaleStatusFault: c_uint = 0x71;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusstableatzero?language=objc)
 pub const kHIDUsage_WD_ScaleStatusStableAtZero: c_uint = 0x72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusinmotion?language=objc)
 pub const kHIDUsage_WD_ScaleStatusInMotion: c_uint = 0x73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusweightstable?language=objc)
 pub const kHIDUsage_WD_ScaleStatusWeightStable: c_uint = 0x74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusunderzero?language=objc)
 pub const kHIDUsage_WD_ScaleStatusUnderZero: c_uint = 0x75;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusoverweightlimit?language=objc)
 pub const kHIDUsage_WD_ScaleStatusOverWeightLimit: c_uint = 0x76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusrequirescalibration?language=objc)
 pub const kHIDUsage_WD_ScaleStatusRequiresCalibration: c_uint = 0x77;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_scalestatusrequiresrezeroing?language=objc)
 pub const kHIDUsage_WD_ScaleStatusRequiresRezeroing: c_uint = 0x78;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_zeroscale?language=objc)
 pub const kHIDUsage_WD_ZeroScale: c_uint = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1593209-anonymous/khidusage_wd_enforcedzeroreturn?language=objc)
 pub const kHIDUsage_WD_EnforcedZeroReturn: c_uint = 0x81;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_undefined?language=objc)
 pub const kHIDUsage_MSR_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_devicereadonly?language=objc)
 pub const kHIDUsage_MSR_DeviceReadOnly: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_track1length?language=objc)
 pub const kHIDUsage_MSR_Track1Length: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_track2length?language=objc)
 pub const kHIDUsage_MSR_Track2Length: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_track3length?language=objc)
 pub const kHIDUsage_MSR_Track3Length: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_trackjislength?language=objc)
 pub const kHIDUsage_MSR_TrackJISLength: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_trackdata?language=objc)
 pub const kHIDUsage_MSR_TrackData: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_track1data?language=objc)
 pub const kHIDUsage_MSR_Track1Data: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_track2data?language=objc)
 pub const kHIDUsage_MSR_Track2Data: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_track3data?language=objc)
 pub const kHIDUsage_MSR_Track3Data: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1592136-anonymous/khidusage_msr_trackjisdata?language=objc)
 pub const kHIDUsage_MSR_TrackJISData: c_uint = 0x24;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2998857-anonymous/khidusage_cc_undefined?language=objc)
 pub const kHIDUsage_CC_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2998857-anonymous/khidusage_cc_autofocus?language=objc)
 pub const kHIDUsage_CC_Autofocus: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2998857-anonymous/khidusage_cc_shutter?language=objc)
 pub const kHIDUsage_CC_Shutter: c_uint = 0x21;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3656558-anonymous/khidusage_fido_undefined?language=objc)
 pub const kHIDUsage_FIDO_Undefined: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3656558-anonymous/khidusage_fido_u2fdevice?language=objc)
 pub const kHIDUsage_FIDO_U2FDevice: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3656558-anonymous/khidusage_fido_inputdata?language=objc)
 pub const kHIDUsage_FIDO_InputData: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3656558-anonymous/khidusage_fido_outputdata?language=objc)
 pub const kHIDUsage_FIDO_OutputData: c_uint = 0x21;
 
 unsafe impl ConcreteType for IOHIDValue {
     /// Returns the type identifier of all IOHIDValue instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433293-iohidvaluegettypeid?language=objc)
+    /// Returns the type identifier of all IOHIDValue instances.
     #[doc(alias = "IOHIDValueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -9726,6 +9457,30 @@ unsafe impl ConcreteType for IOHIDValue {
 }
 
 impl IOHIDValue {
+    /// Creates a new element value using an integer value.
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator which should be used to allocate memory for the value. This parameter may be NULL in which case the current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// - element: IOHIDElementRef associated with this value.
+    ///
+    /// - timeStamp: OS absolute time timestamp for this value.
+    ///
+    /// - value: Integer value to be copied to this object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a reference to a new IOHIDValueRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime. To obtain the OS AbsoluteTime, please reference the APIs declared in <mach/mach_time.h>
+    ///
+    ///
     /// Creates a new element value using an integer value.
     ///
     /// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime.
@@ -9744,8 +9499,6 @@ impl IOHIDValue {
     /// Parameter `value`: Integer value to be copied to this object.
     ///
     /// Returns: Returns a reference to a new IOHIDValueRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433294-iohidvaluecreatewithintegervalue?language=objc)
     #[doc(alias = "IOHIDValueCreateWithIntegerValue")]
     #[inline]
     pub fn with_integer_value(
@@ -9771,6 +9524,32 @@ impl IOHIDValue {
 
     /// Creates a new element value using byte data.
     ///
+    /// Parameters:
+    /// - allocator: The CFAllocator which should be used to allocate memory for the value. This parameter may be NULL in which case the current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// - element: IOHIDElementRef associated with this value.
+    ///
+    /// - timeStamp: OS absolute time timestamp for this value.
+    ///
+    /// - bytes: Pointer to a buffer of uint8_t to be copied to this object.
+    ///
+    /// - length: Number of bytes in the passed buffer.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a reference to a new IOHIDValueRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime. To obtain the OS AbsoluteTime, please reference the APIs declared in <mach/mach_time.h>
+    ///
+    ///
+    /// Creates a new element value using byte data.
+    ///
     /// IOHIDValueGetTimeStamp should represent OS AbsoluteTime, not CFAbsoluteTime.
     /// To obtain the OS AbsoluteTime, please reference the APIs declared in
     /// <mach
@@ -9793,8 +9572,6 @@ impl IOHIDValue {
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433290-iohidvaluecreatewithbytes?language=objc)
     #[doc(alias = "IOHIDValueCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -9820,6 +9597,32 @@ impl IOHIDValue {
 
     /// Creates a new element value using byte data without performing a copy.
     ///
+    /// Parameters:
+    /// - allocator: The CFAllocator which should be used to allocate memory for the value. This parameter may be NULL in which case the current default CFAllocator is used. If this reference is not a valid CFAllocator, the behavior is undefined.
+    ///
+    /// - element: IOHIDElementRef associated with this value.
+    ///
+    /// - timeStamp: OS absolute time timestamp for this value.
+    ///
+    /// - bytes: Pointer to a buffer of uint8_t to be referenced by this object.
+    ///
+    /// - length: Number of bytes in the passed buffer.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a reference to a new IOHIDValueRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The timestamp value passed should represent OS AbsoluteTime, not CFAbsoluteTime. To obtain the OS AbsoluteTime, please reference the APIs declared in <mach/mach_time.h>
+    ///
+    ///
+    /// Creates a new element value using byte data without performing a copy.
+    ///
     /// The timestamp value passed should represent OS AbsoluteTime, not CFAbsoluteTime.
     /// To obtain the OS AbsoluteTime, please reference the APIs declared in
     /// <mach
@@ -9842,8 +9645,6 @@ impl IOHIDValue {
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433287-iohidvaluecreatewithbytesnocopy?language=objc)
     #[doc(alias = "IOHIDValueCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -9870,11 +9671,21 @@ impl IOHIDValue {
 
     /// Returns the element value associated with this IOHIDValueRef.
     ///
+    /// Parameters:
+    /// - value: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a IOHIDElementRef referenced by this value.
+    ///
+    ///
+    /// Returns the element value associated with this IOHIDValueRef.
+    ///
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a IOHIDElementRef referenced by this value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433285-iohidvaluegetelement?language=objc)
     #[doc(alias = "IOHIDValueGetElement")]
     #[inline]
     pub fn element(&self) -> CFRetained<IOHIDElement> {
@@ -9889,13 +9700,29 @@ impl IOHIDValue {
 
     /// Returns the timestamp value contained in this IOHIDValueRef.
     ///
+    /// Parameters:
+    /// - value: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a uint64_t representing the timestamp of this value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The timestamp value returned represents OS AbsoluteTime, not CFAbsoluteTime.
+    ///
+    ///
+    /// Returns the timestamp value contained in this IOHIDValueRef.
+    ///
     /// The timestamp value returned represents OS AbsoluteTime, not CFAbsoluteTime.
     ///
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a uint64_t representing the timestamp of this value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433286-iohidvaluegettimestamp?language=objc)
     #[doc(alias = "IOHIDValueGetTimeStamp")]
     #[inline]
     pub fn time_stamp(&self) -> u64 {
@@ -9907,11 +9734,21 @@ impl IOHIDValue {
 
     /// Returns the size, in bytes, of the value contained in this IOHIDValueRef.
     ///
+    /// Parameters:
+    /// - value: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns length of the value.
+    ///
+    ///
+    /// Returns the size, in bytes, of the value contained in this IOHIDValueRef.
+    ///
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns length of the value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433291-iohidvaluegetlength?language=objc)
     #[doc(alias = "IOHIDValueGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -9923,11 +9760,21 @@ impl IOHIDValue {
 
     /// Returns a byte pointer to the value contained in this IOHIDValueRef.
     ///
+    /// Parameters:
+    /// - value: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a pointer to the value.
+    ///
+    ///
+    /// Returns a byte pointer to the value contained in this IOHIDValueRef.
+    ///
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns a pointer to the value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433292-iohidvaluegetbyteptr?language=objc)
     #[doc(alias = "IOHIDValueGetBytePtr")]
     #[inline]
     pub fn byte_ptr(&self) -> NonNull<u8> {
@@ -9940,13 +9787,29 @@ impl IOHIDValue {
 
     /// Returns an integer representaion of the value contained in this IOHIDValueRef.
     ///
+    /// Parameters:
+    /// - value: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns an integer representation of the value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The value is based on the logical element value contained in the report returned by the device.
+    ///
+    ///
+    /// Returns an integer representaion of the value contained in this IOHIDValueRef.
+    ///
     /// The value is based on the logical element value contained in the report returned by the device.
     ///
     /// Parameter `value`: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
     ///
     /// Returns: Returns an integer representation of the value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433289-iohidvaluegetintegervalue?language=objc)
     #[doc(alias = "IOHIDValueGetIntegerValue")]
     #[inline]
     pub fn integer_value(&self) -> CFIndex {
@@ -9956,6 +9819,36 @@ impl IOHIDValue {
         unsafe { IOHIDValueGetIntegerValue(self) }
     }
 
+    /// Returns an scaled representaion of the value contained in this IOHIDValueRef based on the scale type.
+    ///
+    /// Parameters:
+    /// - value: The value to be queried. If this parameter is not a valid IOHIDValueRef, the behavior is undefined.
+    ///
+    /// - type: The type of scaling to be performed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns an scaled floating point representation of the value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The scaled value is based on the range described by the scale type's min and max, such that:
+    ///
+    /// scaledValue = ((value - min) * (scaledMax - scaledMin) / (max - min)) + scaledMin
+    ///
+    /// **Note:**
+    ///
+    /// There are currently two types of scaling that can be applied:
+    ///
+    /// - **kIOHIDValueScaleTypePhysical**: Scales element value using the physical bounds of the device such that **scaledMin = physicalMin** and **scaledMax = physicalMax**.
+    ///
+    /// - **kIOHIDValueScaleTypeCalibrated**: Scales element value such that **scaledMin = -1** and **scaledMax = 1**. This value will also take into account the calibration properties associated with this element.
+    ///
+    ///
     /// Returns an scaled representaion of the value contained in this IOHIDValueRef based on the scale type.
     ///
     /// The scaled value is based on the range described by the scale type's min and max, such that:
@@ -10001,8 +9894,6 @@ impl IOHIDValue {
     /// Parameter `type`: The type of scaling to be performed.
     ///
     /// Returns: Returns an scaled floating point representation of the value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1433288-iohidvaluegetscaledvalue?language=objc)
     #[doc(alias = "IOHIDValueGetScaledValue")]
     #[inline]
     pub fn scaled_value(&self, r#type: IOHIDValueScaleType) -> c_double {
@@ -10028,10 +9919,8 @@ impl IOHIDValue {
 pub struct IOHIDTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDTransactionOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3365998-anonymous/kiohidtransactionoptionsnone?language=objc)
         #[doc(alias = "kIOHIDTransactionOptionsNone")]
         const None = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3365998-anonymous/kiohidtransactionoptionsweakdevice?language=objc)
         #[doc(alias = "kIOHIDTransactionOptionsWeakDevice")]
         const WeakDevice = 0x1;
     }
@@ -10065,8 +9954,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for IOHIDTransaction {
     /// Returns the type identifier of all IOHIDTransaction instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561678-iohidtransactiongettypeid?language=objc)
+    /// Returns the type identifier of all IOHIDTransaction instances.
     #[doc(alias = "IOHIDTransactionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -10078,6 +9966,30 @@ unsafe impl ConcreteType for IOHIDTransaction {
 }
 
 impl IOHIDTransaction {
+    /// Creates an IOHIDTransaction object for the specified device.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to be used during creation.
+    ///
+    /// - device: IOHIDDevice object
+    ///
+    /// - direction: The direction, either in or out, for the transaction.
+    ///
+    /// - options: Reserved for future use.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a new IOHIDTransactionRef.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// IOHIDTransaction objects can be used to either send or receive multiple element values. As such the direction used should represent they type of objects added to the transaction.
+    ///
+    ///
     /// Creates an IOHIDTransaction object for the specified device.
     ///
     /// IOHIDTransaction objects can be used to either send or receive
@@ -10093,8 +10005,6 @@ impl IOHIDTransaction {
     /// Parameter `options`: Reserved for future use.
     ///
     /// Returns: Returns a new IOHIDTransactionRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561689-iohidtransactioncreate?language=objc)
     #[doc(alias = "IOHIDTransactionCreate")]
     #[inline]
     pub fn new(
@@ -10117,11 +10027,21 @@ impl IOHIDTransaction {
 
     /// Obtain the device associated with the transaction.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the a reference to the device.
+    ///
+    ///
+    /// Obtain the device associated with the transaction.
+    ///
     /// Parameter `transaction`: IOHIDTransaction to be queried.
     ///
     /// Returns: Returns the a reference to the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561685-iohidtransactiongetdevice?language=objc)
     #[doc(alias = "IOHIDTransactionGetDevice")]
     #[inline]
     pub fn device(&self) -> CFRetained<IOHIDDevice> {
@@ -10138,11 +10058,21 @@ impl IOHIDTransaction {
 
     /// Obtain the direction of the transaction.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the transaction direction.
+    ///
+    ///
+    /// Obtain the direction of the transaction.
+    ///
     /// Parameter `transaction`: IOHIDTransaction to be queried.
     ///
     /// Returns: Returns the transaction direction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561674-iohidtransactiongetdirection?language=objc)
     #[doc(alias = "IOHIDTransactionGetDirection")]
     #[inline]
     pub fn direction(&self) -> IOHIDTransactionDirectionType {
@@ -10154,6 +10084,13 @@ impl IOHIDTransaction {
         unsafe { IOHIDTransactionGetDirection(self) }
     }
 
+    /// Sets the direction of the transaction @disussion This method is useful for manipulating bi-direction (feature) elements such that you can set or get element values without creating an additional transaction object.
+    ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - direction: The new transaction direction.
+    ///
     /// Sets the direction of the transaction
     ///
     /// This method is useful for manipulating bi-direction (feature)
@@ -10163,8 +10100,6 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `direction`: The new transaction direction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561688-iohidtransactionsetdirection?language=objc)
     #[doc(alias = "IOHIDTransactionSetDirection")]
     #[inline]
     pub fn set_direction(&self, direction: IOHIDTransactionDirectionType) {
@@ -10177,6 +10112,13 @@ impl IOHIDTransaction {
         unsafe { IOHIDTransactionSetDirection(self, direction) }
     }
 
+    /// Adds an element to the transaction @disussion To minimize device traffic it is important to add elements that share a common report type and report id.
+    ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - element: Element to be added to the transaction.
+    ///
     /// Adds an element to the transaction
     ///
     /// To minimize device traffic it is important to add elements that
@@ -10185,8 +10127,6 @@ impl IOHIDTransaction {
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `element`: Element to be added to the transaction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561679-iohidtransactionaddelement?language=objc)
     #[doc(alias = "IOHIDTransactionAddElement")]
     #[inline]
     pub fn add_element(&self, element: &IOHIDElement) {
@@ -10198,11 +10138,16 @@ impl IOHIDTransaction {
 
     /// Removes an element to the transaction
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - element: Element to be removed to the transaction.
+    ///
+    /// Removes an element to the transaction
+    ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Parameter `element`: Element to be removed to the transaction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561686-iohidtransactionremoveelement?language=objc)
     #[doc(alias = "IOHIDTransactionRemoveElement")]
     #[inline]
     pub fn remove_element(&self, element: &IOHIDElement) {
@@ -10217,13 +10162,25 @@ impl IOHIDTransaction {
 
     /// Queries the transaction to determine if elemement has been added.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be queried.
+    ///
+    /// - element: Element to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns true or false depending if element is present.
+    ///
+    ///
+    /// Queries the transaction to determine if elemement has been added.
+    ///
     /// Parameter `transaction`: IOHIDTransaction object to be queried.
     ///
     /// Parameter `element`: Element to be queried.
     ///
     /// Returns: Returns true or false depending if element is present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561680-iohidtransactioncontainselement?language=objc)
     #[doc(alias = "IOHIDTransactionContainsElement")]
     #[inline]
     pub fn contains_element(&self, element: &IOHIDElement) -> bool {
@@ -10237,6 +10194,21 @@ impl IOHIDTransaction {
         ret != 0
     }
 
+    /// Schedules transaction with run loop.
+    ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - runLoop: RunLoop to be used when scheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when scheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally associates transaction with client's run loop. Scheduling this transaction with the run loop is necessary before making use of any asynchronous APIs.
+    ///
+    ///
     /// Schedules transaction with run loop.
     ///
     /// Formally associates transaction with client's run loop.
@@ -10254,8 +10226,6 @@ impl IOHIDTransaction {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561675-iohidtransactionschedulewithrunl?language=objc)
     #[doc(alias = "IOHIDTransactionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -10271,6 +10241,21 @@ impl IOHIDTransaction {
 
     /// Unschedules transaction with run loop.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - runLoop: RunLoop to be used when scheduling any asynchronous activity.
+    ///
+    /// - runLoopMode: Run loop mode to be used when scheduling any asynchronous activity.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Formally disassociates transaction with client's run loop.
+    ///
+    ///
+    /// Unschedules transaction with run loop.
+    ///
     /// Formally disassociates transaction with client's run loop.
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
@@ -10284,8 +10269,6 @@ impl IOHIDTransaction {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561682-iohidtransactionunschedulefromru?language=objc)
     #[doc(alias = "IOHIDTransactionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -10301,6 +10284,23 @@ impl IOHIDTransaction {
 
     /// Sets the value for a transaction element.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - element: Element to be modified after a commit.
+    ///
+    /// - value: Value to be set for the given element.
+    ///
+    /// - options: See IOHIDTransactionOption.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The value set is pended until the transaction is committed and is only used if the transaction direction is kIOHIDTransactionDirectionTypeOutput. Use the kIOHIDTransactionOptionDefaultOutputValue option to set the default element value.
+    ///
+    ///
+    /// Sets the value for a transaction element.
+    ///
     /// The value set is pended until the transaction is committed and
     /// is only used if the transaction direction is
     /// kIOHIDTransactionDirectionTypeOutput.  Use the
@@ -10314,8 +10314,6 @@ impl IOHIDTransaction {
     /// Parameter `value`: Value to be set for the given element.
     ///
     /// Parameter `options`: See IOHIDTransactionOption.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561676-iohidtransactionsetvalue?language=objc)
     #[doc(alias = "IOHIDTransactionSetValue")]
     #[inline]
     pub fn set_value(&self, element: &IOHIDElement, value: &IOHIDValue, options: IOOptionBits) {
@@ -10330,6 +10328,28 @@ impl IOHIDTransaction {
         unsafe { IOHIDTransactionSetValue(self, element, value, options) }
     }
 
+    /// Obtains the value for a transaction element.
+    ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be queried.
+    ///
+    /// - element: Element to be queried.
+    ///
+    /// - options: See IOHIDTransactionOption.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns IOHIDValueRef for the given element.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the transaction direction is kIOHIDTransactionDirectionTypeInput the value represents what was obtained from the device from the transaction. Otherwise, if the transaction direction is kIOHIDTransactionDirectionTypeOutput the value represents the pending value to be sent to the device. Use the kIOHIDTransactionOptionDefaultOutputValue option to get the default element value.
+    ///
+    ///
     /// Obtains the value for a transaction element.
     ///
     /// If the transaction direction is
@@ -10348,8 +10368,6 @@ impl IOHIDTransaction {
     /// Parameter `options`: See IOHIDTransactionOption.
     ///
     /// Returns: Returns IOHIDValueRef for the given element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561683-iohidtransactiongetvalue?language=objc)
     #[doc(alias = "IOHIDTransactionGetValue")]
     #[inline]
     pub fn value(
@@ -10370,12 +10388,28 @@ impl IOHIDTransaction {
 
     /// Synchronously commits element transaction to the device.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In regards to kIOHIDTransactionDirectionTypeOutput direction, default element values will be used if element values are not set. If neither are set, that element will be omitted from the commit. After a transaction is committed, transaction element values will be cleared and default values preserved.
+    ///
+    ///
+    /// Synchronously commits element transaction to the device.
+    ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
     ///
     /// Returns: Returns kIOReturnSuccess if successful or a kern_return_t if
     /// unsuccessful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561681-iohidtransactioncommit?language=objc)
     #[doc(alias = "IOHIDTransactionCommit")]
     #[inline]
     pub fn commit(&self) -> IOReturn {
@@ -10385,6 +10419,32 @@ impl IOHIDTransaction {
         unsafe { IOHIDTransactionCommit(self) }
     }
 
+    /// Commits element transaction to the device.
+    ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    /// - timeout: Timeout for issuing the transaction.
+    ///
+    /// - callback: Callback of type IOHIDCallback to be used when transaction has been completed. If null, this method will behave synchronously.
+    ///
+    /// - context: Pointer to data to be passed to the callback.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if successful or a kern_return_t if unsuccessful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In regards to kIOHIDTransactionDirectionTypeOutput direction, default element values will be used if element values are not set. If neither are set, that element will be omitted from the commit. After a transaction is committed, transaction element values will be cleared and default values preserved.
+    ///
+    /// **Note:** It is possible for elements from different reports to be present in a given transaction causing a commit to transcend multiple reports. Keep this in mind when setting a appropriate timeout.
+    ///
+    ///
     /// Asynchronously commits element transaction to the device.
     ///
     /// It is possible for elements from different reports
@@ -10409,8 +10469,6 @@ impl IOHIDTransaction {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561677-iohidtransactioncommitwithcallba?language=objc)
     #[doc(alias = "IOHIDTransactionCommitWithCallback")]
     #[inline]
     pub unsafe fn commit_with_callback(
@@ -10432,12 +10490,21 @@ impl IOHIDTransaction {
 
     /// Clears element transaction values.
     ///
+    /// Parameters:
+    /// - transaction: IOHIDTransaction object to be modified.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In regards to kIOHIDTransactionDirectionTypeOutput direction, default element values will be preserved.
+    ///
+    ///
+    /// Clears element transaction values.
+    ///
     /// In regards to kIOHIDTransactionDirectionTypeOutput direction,
     /// default element values will be preserved.
     ///
     /// Parameter `transaction`: IOHIDTransaction object to be modified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1561687-iohidtransactionclear?language=objc)
     #[doc(alias = "IOHIDTransactionClear")]
     #[inline]
     pub fn clear(&self) {
@@ -10450,14 +10517,21 @@ impl IOHIDTransaction {
 
 /// The object you use to access HID devices from user space, returned by version 1.5 of the IOHIDFamily.
 ///
+/// ## Overview
+///
+/// The functions listed here will work with any version of the IOHIDDeviceDeviceInterface.
+///
+/// **Note:** Please note that methods declared in this interface follow the copy/get/set conventions.
+///
+///
+/// The object you use to access HID devices from user space, returned by version 1.5 of the IOHIDFamily.
+///
 /// The functions listed here will work with any version of the IOHIDDeviceDeviceInterface.
 ///
 /// <b>
 /// Note:
 /// </b>
 /// Please note that methods declared in this interface follow the copy/get/set conventions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicedeviceinterface?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10579,8 +10653,6 @@ unsafe impl RefEncode for IOHIDDeviceDeviceInterface {
 /// Note:
 /// </b>
 /// Please note that methods declared in this interface follow the copy/get/set conventions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicetimestampeddeviceinterface?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10707,6 +10779,15 @@ unsafe impl RefEncode for IOHIDDeviceTimeStampedDeviceInterface {
 
 /// The object you use to access a HID queue from user space, returned by version 1.5 of the IOHIDFamily.
 ///
+/// ## Overview
+///
+/// The functions listed here will work with any version of the IOHIDDeviceQueueInterface. This behavior is useful when you need to keep track of all values of an input element, rather than just the most recent one.
+///
+/// **Note:**Absolute element values (based on a fixed origin) will only be placed on a queue if there is a change in value.
+///
+///
+/// The object you use to access a HID queue from user space, returned by version 1.5 of the IOHIDFamily.
+///
 /// The functions listed here will work with any version of the IOHIDDeviceQueueInterface.  This behavior is useful when you
 /// need to keep track of all values of an input element, rather than just the most recent one.
 /// <br>
@@ -10714,8 +10795,6 @@ unsafe impl RefEncode for IOHIDDeviceTimeStampedDeviceInterface {
 /// Note:
 /// </b>
 /// Absolute element values (based on a fixed origin) will only be placed on a queue if there is a change in value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicequeueinterface?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -10880,10 +10959,15 @@ unsafe impl RefEncode for IOHIDDeviceQueueInterface {
 
 /// The object you use to access a HID transaction from user space, returned by version 1.5 of the IOHIDFamily.
 ///
+/// ## Overview
+///
+/// The functions listed here will work with any version of the IOHIDDeviceTransactionInterface. This functionality is useful when either setting or getting the values for multiple parsed elements.
+///
+///
+/// The object you use to access a HID transaction from user space, returned by version 1.5 of the IOHIDFamily.
+///
 /// The functions listed here will work with any version of the IOHIDDeviceTransactionInterface. This functionality
 /// is useful when either setting or getting the values for multiple parsed elements.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiddevicetransactioninterface?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -11099,13 +11183,10 @@ unsafe impl RefEncode for IOHIDDeviceTransactionInterface {
 /// Default behavior for keyboard events is to repeat keys if the key has been
 /// held down for a certain amount of time defined in system preferences. Pass
 /// in this option to not apply key repeat logic to this event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidkeyboardeventoptions?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDKeyboardEventOptions(pub c_uint);
 impl IOHIDKeyboardEventOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidkeyboardeventoptions/kiohidkeyboardeventoptionsnokeyrepeat?language=objc)
     #[doc(alias = "kIOHIDKeyboardEventOptionsNoKeyRepeat")]
     pub const NoKeyRepeat: Self = Self(1 << 8);
 }
@@ -11126,13 +11207,10 @@ unsafe impl RefEncode for IOHIDKeyboardEventOptions {
 /// Field: kIOHIDPointerEventOptionsNoAcceleration
 /// Pointer events are subject to an acceleration algorithm. Pass in this option
 /// if you do not wish to have acceleration logic applied to the pointer event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidpointereventoptions?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDPointerEventOptions(pub c_uint);
 impl IOHIDPointerEventOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidpointereventoptions/kiohidpointereventoptionsnoacceleration?language=objc)
     #[doc(alias = "kIOHIDPointerEventOptionsNoAcceleration")]
     pub const NoAcceleration: Self = Self(1 << 8);
 }
@@ -11153,13 +11231,10 @@ unsafe impl RefEncode for IOHIDPointerEventOptions {
 /// Field: kIOHIDScrollEventOptionsNoAcceleration
 /// Scroll events are subject to an acceleration algorithm. Pass in this option
 /// if you do not wish to have acceleration logic applied to the scroll event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidscrolleventoptions?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDScrollEventOptions(pub c_uint);
 impl IOHIDScrollEventOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidscrolleventoptions/kiohidscrolleventoptionsnoacceleration?language=objc)
     #[doc(alias = "kIOHIDScrollEventOptionsNoAcceleration")]
     pub const NoAcceleration: Self = Self(1 << 8);
 }
@@ -11174,24 +11249,27 @@ unsafe impl RefEncode for IOHIDScrollEventOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// List of control options  for sensor controls in HID event system
+///
+/// Options define behavior of HID event system for handling kIOHIDServiceReportIntervalKey & kIOHIDServiceBatchIntervalKey and associated event dispatch to kIOHIDEventSystemClientTypeRateControlled clients
+///
+///
 /// List of control options  for sensor controls in HID event system
 ///
 /// Options define behavior of HID event system for handling kIOHIDServiceReportIntervalKey
 /// &
 /// kIOHIDServiceBatchIntervalKey and associated event dispatch to kIOHIDEventSystemClientTypeRateControlled clients
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOHIDServiceSensorControlOptions(pub u32);
 impl IOHIDServiceSensorControlOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions/kiohidservicesensorcontroldecimation?language=objc)
     #[doc(alias = "kIOHIDServiceSensorControlDecimation")]
     pub const Decimation: Self = Self(0x1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions/kiohidservicesensorcontrolaggregation?language=objc)
     #[doc(alias = "kIOHIDServiceSensorControlAggregation")]
     pub const Aggregation: Self = Self(0x1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/hiddriverkit/iohidservicesensorcontroloptions/kiohidservicesensorcontroldispatchcontrol?language=objc)
     #[doc(alias = "kIOHIDServiceSensorControlDispatchControl")]
     pub const DispatchControl: Self = Self(0x1 << 2);
 }

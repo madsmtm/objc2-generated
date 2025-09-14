@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// WKWindowFeatures specifies optional attributes for the containing window when a new WKWebView is requested.
+    /// Display-related attributes that a webpage requests for its window.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwindowfeatures?language=objc)
+    /// ## Overview
+    ///
+    /// A [`WKWindowFeatures`](https://developer.apple.com/documentation/webkit/wkwindowfeatures) object contains the attributes that a webpage requests from its containing web view. You don’t create a [`WKWindowFeatures`](https://developer.apple.com/documentation/webkit/wkwindowfeatures) object directly. When a navigation action results in the display of a new web view, [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) creates this object and passes it to the [`webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:`](https://developer.apple.com/documentation/webkit/wkuidelegate/webview(_:createwebviewwith:for:windowfeatures:)) method of its UI delegate object. The delegate uses the information in this object to configure and return the new web view.
+    ///
+    ///
+    /// WKWindowFeatures specifies optional attributes for the containing window when a new WKWebView is requested.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

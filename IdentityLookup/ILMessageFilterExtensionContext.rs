@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The extension context for a Message Filter app extension.
     /// Represents a MessageFilter extension request's context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterExtensionContext;

@@ -7,27 +7,33 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointzero?language=objc)
+    /// A point constant with location `(0,0)`. The zero point is equivalent to `CGPointMake(0,0)`.
     pub static CGPointZero: CGPoint;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizezero?language=objc)
+    /// A size constant with width and height of `0`. The zero size is equivalent to `CGSizeMake(0,0)`.
     pub static CGSizeZero: CGSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectzero?language=objc)
+    /// A rectangle constant with location `(0,0)`, and width and height of 0. The zero rectangle is equivalent to `CGRectMake(0,0,0,0)`.
     pub static CGRectZero: CGRect;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectnull?language=objc)
+    /// The null rectangle, representing an invalid value.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the rectangle returned when, for example, you intersect two disjoint rectangles. Note that the null rectangle is not the same as the [`CGRectZero`](https://developer.apple.com/documentation/coregraphics/cgrectzero) rectangle. For example, the union of a rectangle with the null rectangle is the original rectangle (that is, the null rectangle contributes nothing).
+    ///
+    ///
     pub static CGRectNull: CGRect;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectinfinite?language=objc)
+    /// A rectangle that has infinite extent.
     pub static CGRectInfinite: CGRect;
 }
 
@@ -39,7 +45,17 @@ extern "C" {
 
 // TODO: pub fn CGRectMake(x: CGFloat,y: CGFloat,width: CGFloat,height: CGFloat,) -> CGRect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetminx(_:)?language=objc)
+/// Returns the smallest value for the x-coordinate of the rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The smallest value for the x-coordinate of the rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -48,7 +64,17 @@ pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMinX(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmidx(_:)?language=objc)
+/// Returns the x- coordinate that establishes the center of a rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The x-coordinate of the center of the specified rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -57,7 +83,17 @@ pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMidX(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmaxx(_:)?language=objc)
+/// Returns the largest value of the x-coordinate for the rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The largest value of the x-coordinate for the rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -66,7 +102,17 @@ pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMaxX(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetminy(_:)?language=objc)
+/// Returns the smallest value for the y-coordinate of the rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The smallest value for the y-coordinate of the rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -75,7 +121,17 @@ pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMinY(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmidy(_:)?language=objc)
+/// Returns the y-coordinate that establishes the center of the rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The y-coordinate of the center of the specified rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -84,7 +140,17 @@ pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMidY(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetmaxy(_:)?language=objc)
+/// Returns the largest value for the y-coordinate of the rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The largest value for the y-coordinate of the rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -93,7 +159,23 @@ pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetMaxY(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetwidth(_:)?language=objc)
+/// Returns the width of a rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The width of the specified rectangle.
+///
+///
+///
+/// ## Discussion
+///
+/// Regardless of whether the width is stored in the [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) data structure as a positive or negative number, this function returns the width as if the rectangle were standardized.  That is, the result is never a negative number.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -102,7 +184,23 @@ pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetWidth(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectgetheight(_:)?language=objc)
+/// Returns the height of a rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// The height of the specified rectangle.
+///
+///
+///
+/// ## Discussion
+///
+/// Regardless of whether the height is stored in the [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) data structure as a positive or negative number, this function returns the height as if the rectangle were standardized. That is, the result is never a negative number.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
     extern "C-unwind" {
@@ -111,7 +209,7 @@ pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
     unsafe { CGRectGetHeight(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointequaltopoint(_:_:)?language=objc)
+/// Returns whether two points are equal.
 #[inline]
 pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool {
     extern "C-unwind" {
@@ -120,7 +218,7 @@ pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -
     unsafe { CGPointEqualToPoint(point1, point2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizeequaltosize(_:_:)?language=objc)
+/// Returns whether two sizes are equal.
 #[inline]
 pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool {
     extern "C-unwind" {
@@ -129,7 +227,19 @@ pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool
     unsafe { CGSizeEqualToSize(size1, size2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectequaltorect(_:_:)?language=objc)
+/// Returns whether two rectangles are equal in size and position.
+///
+/// Parameters:
+/// - rect1: The first rectangle to examine.
+///
+/// - rect2: The second rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the two specified rectangles have equal size and origin values, or if both rectangles are null rectangles. Otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
@@ -138,7 +248,17 @@ pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool
     unsafe { CGRectEqualToRect(rect1, rect2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectstandardize(_:)?language=objc)
+/// Returns a rectangle with a positive width and height.
+///
+/// Parameters:
+/// - rect: The source rectangle.
+///
+///
+/// ## Return Value
+///
+/// A rectangle that represents the source rectangle, but with positive width and height values. Returns a null rectangle if `rect` is a null rectangle.
+///
+///
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
@@ -148,7 +268,23 @@ pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
     unsafe { CGRectStandardize(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectisempty(_:)?language=objc)
+/// Returns whether a rectangle has zero width or height, or is a null rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the specified rectangle is empty; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// An empty rectangle is either a null rectangle or a valid rectangle with zero height or width.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
     extern "C-unwind" {
@@ -157,7 +293,23 @@ pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
     unsafe { CGRectIsEmpty(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectisnull(_:)?language=objc)
+/// Returns whether the rectangle is equal to the null rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the specified rectangle is null; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// A null rectangle is the equivalent of an empty set. For example, the result of intersecting two disjoint rectangles is a null rectangle. A null rectangle cannot be drawn and interacts with other rectangles in special ways.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
     extern "C-unwind" {
@@ -166,7 +318,23 @@ pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
     unsafe { CGRectIsNull(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectisinfinite(_:)?language=objc)
+/// Returns whether a rectangle is infinite.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the specified rectangle is infinite; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// An infinite rectangle is one that has no defined bounds. Infinite rectangles can be created as output from a tiling filter. For example, the Core Image framework perspective tile filter creates an image whose extent is described by an infinite rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
     extern "C-unwind" {
@@ -175,7 +343,27 @@ pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
     unsafe { CGRectIsInfinite(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectinset(_:_:_:)?language=objc)
+/// Returns a rectangle that is smaller or larger than the source rectangle, with the same center point.
+///
+/// Parameters:
+/// - rect: The source [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure.
+///
+/// - dx: The x-coordinate value to use for adjusting the source rectangle. To create an inset rectangle, specify a positive value. To create a larger, encompassing rectangle, specify a negative value.
+///
+/// - dy: The y-coordinate value to use for adjusting the source rectangle. To create an inset rectangle, specify a positive value. To create a larger, encompassing rectangle, specify a negative value.
+///
+///
+/// ## Return Value
+///
+/// A rectangle. The origin value is offset in the x-axis by the distance specified by the `dx` parameter and in the y-axis by the distance specified by the `dy` parameter, and its size adjusted by `(2*dx,2*dy)`, relative to the source rectangle. If `dx` and `dy` are positive values, then the rectangle’s size is decreased. If `dx` and `dy` are negative values, the rectangle’s size is increased.
+///
+///
+///
+/// ## Discussion
+///
+/// The rectangle is standardized and then the inset parameters are applied. If the resulting rectangle would have a negative height or width, a null rectangle is returned.
+///
+///
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
@@ -185,7 +373,17 @@ pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> 
     unsafe { CGRectInset(rect, dx, dy) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectintegral(_:)?language=objc)
+/// Returns the smallest rectangle that results from converting the source rectangle values to integers.
+///
+/// Parameters:
+/// - rect: The source rectangle.
+///
+///
+/// ## Return Value
+///
+/// A rectangle with the smallest integer values for its origin and size that contains the source rectangle. That is, given a rectangle with fractional origin or size values, `CGRectIntegral` rounds the rectangle’s origin downward and its size upward to the nearest whole integers, such that the result contains the original rectangle. Returns a null rectangle if `rect` is a null rectangle.
+///
+///
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
@@ -195,7 +393,25 @@ pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
     unsafe { CGRectIntegral(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectunion(_:_:)?language=objc)
+/// Returns the smallest rectangle that contains the two source rectangles.
+///
+/// Parameters:
+/// - r1: The first source rectangle.
+///
+/// - r2: The second source rectangle.
+///
+///
+/// ## Return Value
+///
+/// The smallest rectangle that completely contains both of the source rectangles.
+///
+///
+///
+/// ## Discussion
+///
+/// Both rectangles are standardized prior to calculating the union. If either of the rectangles is a null rectangle, a copy of the other rectangle is returned (resulting in a null rectangle if both rectangles are null). Otherwise a rectangle that completely contains the source rectangles is returned.
+///
+///
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
@@ -205,7 +421,25 @@ pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
     unsafe { CGRectUnion(r1, r2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectintersection(_:_:)?language=objc)
+/// Returns the intersection of two rectangles.
+///
+/// Parameters:
+/// - r1: The first source rectangle.
+///
+/// - r2: The second source rectangle.
+///
+///
+/// ## Return Value
+///
+/// A rectangle that represents the intersection of the two specified rectangles. If the two rectangles do not intersect, returns the null rectangle. To check for this condition, use [`CGRectIsNull`](https://developer.apple.com/documentation/coregraphics/cgrectisnull(_:)).
+///
+///
+///
+/// ## Discussion
+///
+/// Both rectangles are standardized prior to calculating the intersection.
+///
+///
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
@@ -215,7 +449,21 @@ pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
     unsafe { CGRectIntersection(r1, r2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectoffset(_:_:_:)?language=objc)
+/// Returns a rectangle with an origin that is offset from that of the source rectangle.
+///
+/// Parameters:
+/// - rect: The source rectangle.
+///
+/// - dx: The offset value for the x-coordinate.
+///
+/// - dy: The offset value for the  y-coordinate.
+///
+///
+/// ## Return Value
+///
+/// A rectangle that is the same size as the source, but with its origin offset by `dx` units along the x-axis and `dy` units along the y-axis with respect to the source. Returns a null rectangle if `rect` is a null rectangle.
+///
+///
 #[must_use]
 #[inline]
 pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
@@ -226,7 +474,25 @@ pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) ->
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectdivide?language=objc)
+    /// Divides a source rectangle into two component rectangles.
+    ///
+    /// Parameters:
+    /// - rect: The source rectangle.
+    ///
+    /// - slice: On input, a pointer to an uninitialized rectangle. On return, the rectangle is filled in with the specified edge and values that extends the distance beyond the edge specified by the `amount` parameter. Must not be `NULL`.
+    ///
+    /// - remainder: On input, a pointer to an uninitialized rectangle. On return, the rectangle contains the portion of the source rectangle that remains after [`CGRectEdge`](https://developer.apple.com/documentation/corefoundation/cgrectedge) produces the “slice” rectangle. Must not be `NULL`.
+    ///
+    /// - amount: A distance from the rectangle side that is specified in the `edge` parameter. This distance defines the line, parallel to the specified side, that Core Graphics uses to divide the source rectangle.
+    ///
+    /// - edge: An edge value that specifies the side of the rectangle from which the distance passed in the `amount` parameter is measured. [`CGRectDivide`](https://developer.apple.com/documentation/coregraphics/cgrectdivide) produces a “slice” rectangle that contains the specified edge and extends `amount` distance beyond it.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `rect` is a null rectangle, this function outputs [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull) for both the `slice` and `remainder` rectangles.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -241,7 +507,25 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcontainspoint(_:_:)?language=objc)
+/// Returns whether a rectangle contains a specified point.
+///
+/// Parameters:
+/// - rect: The rectangle to examine.
+///
+/// - point: The point to examine.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the rectangle is not null or empty and the point is located within the rectangle; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// A point is considered inside the rectangle if its coordinates lie inside the rectangle or on the minimum X or minimum Y edge.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool {
     extern "C-unwind" {
@@ -250,7 +534,19 @@ pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bo
     unsafe { CGRectContainsPoint(rect, point) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcontainsrect(_:_:)?language=objc)
+/// Returns whether the first rectangle contains the second rectangle.
+///
+/// Parameters:
+/// - rect1: The rectangle to examine for containment of the rectangle passed in `rect2`.
+///
+/// - rect2: The rectangle to examine for being contained in the rectangle passed in `rect1`.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the rectangle specified by `rect2` is contained in the rectangle passed in `rect1`; otherwise, [`false`](https://developer.apple.com/documentation/swift/false). The first rectangle contains the second if the union of the two rectangles is equal to the first rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
@@ -259,7 +555,19 @@ pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> boo
     unsafe { CGRectContainsRect(rect1, rect2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectintersectsrect(_:_:)?language=objc)
+/// Returns whether two rectangles intersect.
+///
+/// Parameters:
+/// - rect1: The first rectangle to examine.
+///
+/// - rect2: The second rectangle to examine.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the two specified rectangles intersect; otherwise, [`false`](https://developer.apple.com/documentation/swift/false). The first rectangle intersects the second if the intersection of the rectangles is not equal to the null rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool {
     extern "C-unwind" {
@@ -268,9 +576,18 @@ pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> b
     unsafe { CGRectIntersectsRect(rect1, rect2) }
 }
 
-/// * Persistent representations. **
+/// Returns a dictionary representation of the specified point.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointcreatedictionaryrepresentation(_:)?language=objc)
+/// Parameters:
+/// - point: A point.
+///
+///
+/// ## Return Value
+///
+/// The dictionary representation of the point.
+///
+///
+/// * Persistent representations. **
 #[inline]
 pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
     point: CGPoint,
@@ -284,7 +601,19 @@ pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointmakewithdictionaryrepresentation(_:_:)?language=objc)
+    /// Fills in a point using the contents of the specified dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A dictionary that was previously returned from the function [`CGPointCreateDictionaryRepresentation`](https://developer.apple.com/documentation/coregraphics/cgpointcreatedictionaryrepresentation(_:)).
+    ///
+    /// - point: On return, the point created from the provided dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if successful; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -297,7 +626,17 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizecreatedictionaryrepresentation(_:)?language=objc)
+/// Returns a dictionary representation of the specified size.
+///
+/// Parameters:
+/// - size: A size.
+///
+///
+/// ## Return Value
+///
+/// The dictionary representation of the size.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
     size: CGSize,
@@ -311,7 +650,19 @@ pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizemakewithdictionaryrepresentation(_:_:)?language=objc)
+    /// Fills in a size using the contents of the specified dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A dictionary that was previously returned from the function [`CGSizeCreateDictionaryRepresentation`](https://developer.apple.com/documentation/coregraphics/cgsizecreatedictionaryrepresentation(_:)).
+    ///
+    /// - size: On return, the size created from the specified dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if successful; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -324,7 +675,13 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcreatedictionaryrepresentation(_:)?language=objc)
+/// Returns a dictionary representation of the provided rectangle.
+///
+/// ## Return Value
+///
+/// The dictionary representation of the rectangle.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
     param1: CGRect,
@@ -338,7 +695,19 @@ pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectmakewithdictionaryrepresentation(_:_:)?language=objc)
+    /// Fills in a rectangle using the contents of the specified dictionary.
+    ///
+    /// Parameters:
+    /// - dict: A dictionary that was previously returned from the function [`CGRectCreateDictionaryRepresentation`](https://developer.apple.com/documentation/coregraphics/cgrectcreatedictionaryrepresentation(_:)).
+    ///
+    /// - rect: On return, the rectangle created from the specified dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if successful; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///

@@ -10,6 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Trust evaluation result codes.
+///
+/// ## Overview
+///
+/// You get one of these constants when you call the [`SecTrustGetTrustResult`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) method after evaluating a trust instance with either the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) method or the [`SecTrustEvaluateAsyncWithError`](https://developer.apple.com/documentation/security/sectrustevaluateasyncwitherror(_:_:_:)) method. If evaluation fails and [`SecTrustGetTrustResult`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) reports [`kSecTrustResultRecoverableTrustFailure`](https://developer.apple.com/documentation/security/sectrustresulttype/recoverabletrustfailure), you might be able to change parameters like the evaluation date, and reevaluate to obtain a passing result, as described in [Configuring a Trust](https://developer.apple.com/documentation/security/configuring-a-trust).
+///
+/// See an individual constant below for more information about how to handle that result type in your app.
+///
+///
 /// Specifies the trust result type.
 ///
 /// SecTrustResultType results have two dimensions.  They specify
@@ -49,36 +58,100 @@ use crate::*;
 ///
 /// of trust evaluation. This value may be returned by the SecTrustEvaluate
 /// function but not stored as part of the user trust settings.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustResultType(pub u32);
 impl SecTrustResultType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/invalid?language=objc)
+    /// An indication of an invalid setting or result.
+    ///
+    /// ## Discussion
+    ///
+    /// This result typically indicates that the evaluation failed to complete successfully.
+    ///
+    ///
     #[doc(alias = "kSecTrustResultInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/proceed?language=objc)
+    /// The user granted permission to trust the certificate for the purposes designated in the specified policies.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that the user explicitly chose to trust a certificate in the chain, usually by clicking a button in a certificate trust panel. Your app should trust the chain. The Keychain Access utility refers to this value as “Always Trust.”
+    ///
+    ///
     #[doc(alias = "kSecTrustResultProceed")]
     pub const Proceed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/confirm?language=objc)
+    /// User confirmation is required before proceeding.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that the user previously chose to always be asked for permission before accepting one of the certificates in the chain. The Keychain Access utility refers to this value as “Ask Permission.” This return value is no longer used, but may occur in older versions of macOS.
+    ///
+    /// Either ask the user what to do or reject the certificate. If you ask the user what to do in macOS, use an instance of the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class.
+    ///
+    ///
     #[doc(alias = "kSecTrustResultConfirm")]
     #[deprecated]
     pub const Confirm: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/deny?language=objc)
+    /// The user specified that the certificate should not be trusted.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that the user explicitly chose to not trust a certificate in the chain, usually by clicking the appropriate button in a certificate trust panel. Your app should _not_ trust the chain. The Keychain Access utility refers to this value as “Never Trust.”
+    ///
+    ///
     #[doc(alias = "kSecTrustResultDeny")]
     pub const Deny: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/unspecified?language=objc)
+    /// The user did not specify a trust setting.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that evaluation reached an (implicitly trusted) anchor certificate without any evaluation failures, but never encountered any explicitly stated user-trust preference. This is the most common return value. The Keychain Access utility refers to this value as the “Use System Policy,” which is the default user setting.
+    ///
+    /// When receiving this value, most apps should trust the chain. If you want to ask the user what to do in macOS, use an instance of the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class.
+    ///
+    /// When you evaluate a trust, the evaluation starts with the leaf certificate and works through the chain down to the anchor. The [`SecTrustSettingsCopyTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingscopytrustsettings(_:_:_:)) method returns the user trust settings of the first certificate for which the result code is other than [`kSecTrustResultUnspecified`](https://developer.apple.com/documentation/security/sectrustresulttype/unspecified).
+    ///
+    ///
     #[doc(alias = "kSecTrustResultUnspecified")]
     pub const Unspecified: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/recoverabletrustfailure?language=objc)
+    /// Trust is denied, but recovery may be possible.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that you should not trust the chain as is, but that the chain could be trusted with some minor change to the evaluation context, such as ignoring expired certificates or adding another anchor to the set of trusted anchors.
+    ///
+    /// The way you handle this depends on the situation. For example, if you are performing signature validation and you know when the message was originally received, you should check again using that date to see if the message was valid when you originally received it.
+    ///
+    /// You can also call the [`SecTrustCopyResult`](https://developer.apple.com/documentation/security/sectrustcopyresult(_:)) method to get more information about the results of the trust evaluation. If applicable, you can call one or more of the methods that start with `SecTrustSet` to correct or bypass the problem. Alternatively, in macOS, you can inform the user of the problem and call the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class to let the user change the trust setting for the certificate.
+    ///
+    /// After correcting the problem, reevaluate the trust. Each time you call [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) or [`SecTrustEvaluateAsyncWithError`](https://developer.apple.com/documentation/security/sectrustevaluateasyncwitherror(_:_:_:)), the method discards the results of any previous evaluation and replaces them with the new results.
+    ///
+    /// You might receive the [`kSecTrustResultRecoverableTrustFailure`](https://developer.apple.com/documentation/security/sectrustresulttype/recoverabletrustfailure) value after an evaluation, but you can’t store the value as part of the user trust settings with a call to the [`SecTrustSettingsSetTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)) method.
+    ///
+    ///
     #[doc(alias = "kSecTrustResultRecoverableTrustFailure")]
     pub const RecoverableTrustFailure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/fataltrustfailure?language=objc)
+    /// Trust is denied and no simple fix is available.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that evaluation failed because a certificate in the chain is defective. This usually represents a fundamental defect in the certificate data, such as an invalid encoding for a critical `subjectAltName` extension, an unsupported critical extension, or some other critical portion of the certificate that couldn’t be interpreted. Changing parameter values and reevaluating is unlikely to succeed unless you provide different certificates.
+    ///
+    /// You might receive the [`kSecTrustResultFatalTrustFailure`](https://developer.apple.com/documentation/security/sectrustresulttype/fataltrustfailure) value after an evaluation, but you can’t store the value as part of the user trust settings with a call to the [`SecTrustSettingsSetTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)) method.
+    ///
+    ///
     #[doc(alias = "kSecTrustResultFatalTrustFailure")]
     pub const FatalTrustFailure: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype/othererror?language=objc)
+    /// A value that indicates a failure other than trust evaluation.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates that evaluation failed for some other reason. This can be caused by either a revoked certificate or by OS-level errors that are unrelated to the certificates themselves.
+    ///
+    /// You might receive the [`kSecTrustResultOtherError`](https://developer.apple.com/documentation/security/sectrustresulttype/othererror) value after an evaluation, but you can’t store the value as part of the user trust settings with a call to the [`SecTrustSettingsSetTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)) method.
+    ///
+    ///
     #[doc(alias = "kSecTrustResultOtherError")]
     pub const OtherError: Self = Self(7);
 }
@@ -93,9 +166,8 @@ unsafe impl RefEncode for SecTrustResultType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An object used to evaluate trust.
 /// CFType used for performing X.509 certificate trust evaluations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrust?language=objc)
 #[doc(alias = "SecTrustRef")]
 #[repr(C)]
 pub struct SecTrust {
@@ -112,6 +184,7 @@ cf_objc2_type!(
 );
 
 extern "C" {
+    /// Specifies a key whose value is a string containing the title (display name) of the certificate.
     /// Predefined key constants used to obtain values in a
     /// per-certificate dictionary of trust evaluation results,
     /// as retrieved from a call to SecTrustCopyProperties.
@@ -119,17 +192,22 @@ extern "C" {
     /// CFStringRef containing the title (display name) of this certificate.
     ///
     /// CFStringRef containing the reason for a trust evaluation failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypetitle?language=objc)
     pub static kSecPropertyTypeTitle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpropertytypeerror?language=objc)
+    /// Specifies a key whose value is a string containing the reason for a trust evaluation failure.
     pub static kSecPropertyTypeError: &'static CFString;
 }
 
 extern "C" {
+    /// A key whose value indicates the time that the trust evaluation took place.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present after the results become available from performing the trust evaluation. The value is a [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate) object representing when the evaluation took place.
+    ///
+    ///
     /// Predefined key constants used to obtain values in a
     /// dictionary of trust evaluation results for a certificate chain,
     /// as retrieved from a call to SecTrustCopyResult.
@@ -183,74 +261,134 @@ extern "C" {
     /// expired, exempting them was no longer needed. This key is deprecated
     /// in macOS 10.13 and iOS 11, and is no longer returned in the trust
     /// results dictionary as of those releases.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustevaluationdate?language=objc)
     pub static kSecTrustEvaluationDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustextendedvalidation?language=objc)
+    /// A key whose value is a Boolean used to indicate Extended Validation.
+    ///
+    /// ## Discussion
+    ///
+    /// When the key is present and the value set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), it indicates the chain is validated for Extended Validation (EV).
+    ///
+    ///
     pub static kSecTrustExtendedValidation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustorganizationname?language=objc)
+    /// A key whose value is the organization name field of the subject of the leaf certificate.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) that is meant to be displayed to the user as the validated name of the company or entity that owns the certificate, but only if the [`kSecTrustExtendedValidation`](https://developer.apple.com/documentation/security/ksectrustextendedvalidation) key is present.
+    ///
+    ///
     pub static kSecTrustOrganizationName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustresultvalue?language=objc)
+    /// A key whose value represents the trust evaluation result.
+    ///
+    /// ## Discussion
+    ///
+    /// The key is present after trust evaluation completes. Its value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that holds one of the values listed in [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype), indicating the outcome of the trust evaluation.
+    ///
+    ///
     pub static kSecTrustResultValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustrevocationchecked?language=objc)
+    /// A key whose value indicates the outcome of revocation checking during trust evaluation.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is only present if the evaluation process conducted revocation checking on the chain. The value is a Boolean set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if revocation checking was successful and none of the certificates in the chain were revoked. The value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) if no current revocation status could be obtained for one or more certificates in the chain due to connection problems or timeouts. You can take this outcome as a hint to retry revocation checking again at a later time.
+    ///
+    ///
     pub static kSecTrustRevocationChecked: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustrevocationvaliduntildate?language=objc)
+    /// A key whose value indicates the earliest date at which revocation information becomes stale.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is only present if the [`kSecTrustRevocationChecked`](https://developer.apple.com/documentation/security/ksectrustrevocationchecked) key has a value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue). The value is a [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate) representing the earliest date at which the revocation information for one of the certificates in this chain might change.
+    ///
+    ///
     pub static kSecTrustRevocationValidUntilDate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustcertificatetransparency?language=objc)
+    /// A key whose value is a Boolean used to indicate Certificate Transparency.
+    ///
+    /// ## Discussion
+    ///
+    /// When the key is present and the value set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), it indicates the chain is Certificate Transparency (CT) qualified.
+    ///
+    ///
     pub static kSecTrustCertificateTransparency: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustcertificatetransparencywhitelist?language=objc)
+    /// A key whose value is a Boolean used to indicate the chain satisfies Certificate Transparency by being on the allow list.
+    ///
+    /// ## Discussion
+    ///
+    /// When the key is present and the value set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), it indicates the chain is Extended Validation (EV) and not Certificate Transparency (CT) qualified, but is nonetheless included on the allow list.
+    ///
+    ///
     #[deprecated]
     pub static kSecTrustCertificateTransparencyWhiteList: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustqcstatements?language=objc)
     pub static kSecTrustQCStatements: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksectrustqwacvalidation?language=objc)
     pub static kSecTrustQWACValidation: &'static CFString;
 }
 
+/// A block called with the results of an asynchronous trust evaluation.
+///
+/// Parameters:
+/// - trustRef: The trust that was evaluated.
+///
+/// - trustResult: The result of the trust evaluation. See [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype) for a list of possible values.
+///
+///
+/// ## Discussion
+///
+/// Use a block of this type when making a call to [`SecTrustEvaluateAsync`](https://developer.apple.com/documentation/security/sectrustevaluateasync(_:_:_:)) to receive the result of the trust evaluation.
+///
+///
 /// Delivers the result from an asynchronous trust evaluation.
 ///
 /// Parameter `trustRef`: A reference to the trust object which has been evaluated.
 ///
 /// Parameter `trustResult`: The trust result of the evaluation. Additional status
 /// information can be obtained by calling SecTrustCopyProperties().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcallback?language=objc)
 #[cfg(feature = "block2")]
 pub type SecTrustCallback = *mut block2::DynBlock<dyn Fn(NonNull<SecTrust>, SecTrustResultType)>;
 
 unsafe impl ConcreteType for SecTrust {
+    /// Returns the unique identifier of the opaque type to which a trust object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecTrust instances.
     ///
     /// Returns: The CFTypeID of SecTrust instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgettypeid()?language=objc)
     #[doc(alias = "SecTrustGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -262,6 +400,29 @@ unsafe impl ConcreteType for SecTrust {
 }
 
 impl SecTrust {
+    /// Creates a trust management object based on certificates and policies.
+    ///
+    /// Parameters:
+    /// - certificates: The certificate to be verified, plus any other certificates you think might be useful for verifying the certificate. The certificate to be verified must be the first in the array. If you want to specify only one certificate, you can pass a [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) object; otherwise, pass an array of [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) objects.
+    ///
+    /// - policies: References to one or more policies to be evaluated. You can pass a single [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) object, or an array of one or more [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) objects. If you pass in multiple policies, all policies must verify for the certificate chain to be considered valid. You typically use one of the standard policies, like the one returned by [`SecPolicyCreateBasicX509`](https://developer.apple.com/documentation/security/secpolicycreatebasicx509()).
+    ///
+    /// - trust: On return, points to the newly created trust management object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The trust management object includes a reference to the certificate to be verified, plus pointers to the policies to be evaluated for those certificates. You can optionally include references to other certificates, including anchor certificates, that you think might be in the certificate chain needed to verify the first (leaf) certificate. Any input certificates that turn out to be irrelevant are harmlessly ignored. Call the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function to evaluate the trust management object.
+    ///
+    /// If you omit needed intermediate certificates from the `certificates` parameter, [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) searches for certificates in the user’s keychain and in the system’s store of anchor certificates (see [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:))). You gain a significant performance benefit by passing in the entire certificate chain, in order, in the `certificates` parameter.
+    ///
+    ///
     /// Creates a trust object based on the given certificates and
     /// policies.
     ///
@@ -283,8 +444,6 @@ impl SecTrust {
     /// - `certificates` should be of the correct type.
     /// - `policies` should be of the correct type.
     /// - `trust` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)?language=objc)
     #[doc(alias = "SecTrustCreateWithCertificates")]
     #[inline]
     pub unsafe fn create_with_certificates(
@@ -302,6 +461,27 @@ impl SecTrust {
         unsafe { SecTrustCreateWithCertificates(certificates, policies, trust) }
     }
 
+    /// Sets the policies to use in an evaluation.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object whose policy list you wish to set.
+    ///
+    /// - policies: An array of one or more [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) objects for the policies to be used by this trust management object. A single policy object of type `SecPolicyRef` may also be passed, representing an array of one policy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The policies you set with this function replace any already in the trust management object.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the [`SecTrustCopyCustomAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.
+    ///
+    ///
     /// Set the policies for which trust should be verified.
     ///
     /// Parameter `trust`: A trust reference.
@@ -317,8 +497,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `policies` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetpolicies(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetPolicies")]
     #[inline]
     pub unsafe fn set_policies(&self, policies: &CFType) -> OSStatus {
@@ -328,6 +506,25 @@ impl SecTrust {
         unsafe { SecTrustSetPolicies(self, policies) }
     }
 
+    /// Retrieves the policies used by a given trust management object.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object whose policies you wish to retrieve.
+    ///
+    /// - policies: On return, an array of [`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy) objects for the policies used by this trust management object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetPolicies`](https://developer.apple.com/documentation/security/sectrustsetpolicies(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Returns an array of policies used for this evaluation.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -340,8 +537,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `policies` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopypolicies(_:_:)?language=objc)
     #[doc(alias = "SecTrustCopyPolicies")]
     #[inline]
     pub unsafe fn copy_policies(&self, policies: NonNull<*const CFArray>) -> OSStatus {
@@ -354,6 +549,25 @@ impl SecTrust {
         unsafe { SecTrustCopyPolicies(self, policies) }
     }
 
+    /// Specifies whether a trust evaluation is permitted to fetch missing intermediate certificates from the network.
+    ///
+    /// Parameters:
+    /// - trust: The trust evaluation object to modify.
+    ///
+    /// - allowFetch: If true, and a certificate’s issuer is not present in the trust reference but its network location is known, the evaluation is permitted to attempt to download it automatically. Pass false to disable network fetch for this trust evaluation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, network fetch of missing certificates is enabled if the trust evaluation includes the SSL policy. Otherwise it is disabled.
+    ///
+    ///
     /// Specifies whether a trust evaluation is permitted to fetch missing
     /// intermediate certificates from the network.
     ///
@@ -368,8 +582,6 @@ impl SecTrust {
     ///
     /// By default, network fetch of missing certificates is enabled if
     /// the trust evaluation includes the SSL policy, otherwise it is disabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetnetworkfetchallowed(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetNetworkFetchAllowed")]
     #[inline]
     pub unsafe fn set_network_fetch_allowed(&self, allow_fetch: bool) -> OSStatus {
@@ -379,6 +591,25 @@ impl SecTrust {
         unsafe { SecTrustSetNetworkFetchAllowed(self, allow_fetch as _) }
     }
 
+    /// Indicates whether a trust evaluation is permitted to fetch missing intermediate certificates from the network.
+    ///
+    /// Parameters:
+    /// - trust: The trust evaluation object to query.
+    ///
+    /// - allowFetch: A pointer to a Boolean that the function sets to true to indicate that the trust evaluation process is permitted to download missing certificates from the network, or false otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, network fetch of missing certificates is enabled if the trust evaluation includes the SSL policy. Otherwise it is disabled.
+    ///
+    ///
     /// Returns whether a trust evaluation is permitted to fetch missing
     /// intermediate certificates from the network.
     ///
@@ -395,8 +626,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `allow_fetch` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetnetworkfetchallowed(_:_:)?language=objc)
     #[doc(alias = "SecTrustGetNetworkFetchAllowed")]
     #[inline]
     pub unsafe fn network_fetch_allowed(&self, allow_fetch: NonNull<Boolean>) -> OSStatus {
@@ -409,6 +638,41 @@ impl SecTrust {
         unsafe { SecTrustGetNetworkFetchAllowed(self, allow_fetch) }
     }
 
+    /// Sets the anchor certificates used when evaluating a trust management object.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object containing the certificate you want to evaluate. A trust management object includes the certificate to be verified plus the policy or policies to be used in evaluating trust. It can optionally also include other certificates to be used in verifying the first certificate. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - anchorCertificates: A reference to an array of `SecCertificateRef` objects representing the set of anchor certificates that are to be considered valid (trusted) anchors by the [`SecTrustEvaluate`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function when verifying a certificate. Pass `NULL` to restore the default set of anchor certificates.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function looks for an anchor certificate in the array of certificates specified by the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function, or uses a default set provided by the system. In OS X 10.3, for example, the default set of anchors was in the keychain file /System/Library/Keychains/X509Anchors. If you want to create a set of anchor certificates by modifying the default set, call the [`SecTrustCopyAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopyanchorcertificates(_:)) function to obtain the current set of anchor certificates, modify that set as you wish, and create a new array of certificates. Then call [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) with the modified array.
+    ///
+    /// The list of custom anchor certificates is stored in the trust management object and can be retrieved with the [`SecTrustCopyCustomAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function.
+    ///
+    /// Note that when you call the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function, you are effectively telling the evaluation function to use the anchor certificates in the specified array to evaluate trust regardless of any user-specified trust settings for those certificates. Furthermore, any intermediate certificates based on those anchor certificates are also trusted without consulting user trust settings.
+    ///
+    /// Use the [`SecTrustSetKeychains`](https://developer.apple.com/documentation/security/sectrustsetkeychains(_:_:)) function to set the keychains searched for intermediate certificates in the certificate chain.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the evaluation function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the [`SecTrustCopyCustomAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Calling this function without also calling [`SecTrustSetAnchorCertificatesOnly`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificatesonly(_:_:)) disables the trusting of any anchors other than the ones specified by this function call.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Sets the anchor certificates for a given trust.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -425,8 +689,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `anchor_certificates` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetAnchorCertificates")]
     #[inline]
     pub unsafe fn set_anchor_certificates(
@@ -442,6 +704,25 @@ impl SecTrust {
         unsafe { SecTrustSetAnchorCertificates(self, anchor_certificates) }
     }
 
+    /// Reenables trusting built-in anchor certificates.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object containing the certificate you want to evaluate. A trust management object includes the certificate to be verified plus the policy or policies to be used in evaluating trust. It can optionally also include other certificates to be used in verifying the first certificate. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - anchorCertificatesOnly: If `true`, disables trusting any anchors other than the ones passed in with the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function.  If `false`, the built-in anchor certificates are also trusted. If [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) is called and [`SecTrustSetAnchorCertificatesOnly`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificatesonly(_:_:)) is not called, only the anchors explicitly passed in are trusted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the [`SecTrustCopyCustomAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.
+    ///
+    ///
     /// Reenables trusting anchor certificates in addition to those
     /// passed in via the SecTrustSetAnchorCertificates API.
     ///
@@ -452,8 +733,6 @@ impl SecTrust {
     /// the built in anchor certificates are also trusted.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetanchorcertificatesonly(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetAnchorCertificatesOnly")]
     #[inline]
     pub unsafe fn set_anchor_certificates_only(&self, anchor_certificates_only: bool) -> OSStatus {
@@ -466,6 +745,27 @@ impl SecTrust {
         unsafe { SecTrustSetAnchorCertificatesOnly(self, anchor_certificates_only as _) }
     }
 
+    /// Retrieves the custom anchor certificates, if any, used by a given trust.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object from which you wish to retrieve the custom anchor certificates.
+    ///
+    /// - anchors: On return, a reference to an array of `SecCertificateRef` objects representing the set of anchor certificates that are considered valid (trusted) anchors by the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function when verifying a certificate using the trust management object in the `trust` parameter. Returns `NULL` if no custom anchors have been specified. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function to set custom anchor certificates.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Returns an array of custom anchor certificates used by a given
     /// trust, as set by a prior call to SecTrustSetAnchorCertificates, or NULL if
     /// no custom anchors have been specified.
@@ -481,8 +781,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `anchors` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)?language=objc)
     #[doc(alias = "SecTrustCopyCustomAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_custom_anchor_certificates(
@@ -498,6 +796,27 @@ impl SecTrust {
         unsafe { SecTrustCopyCustomAnchorCertificates(self, anchors) }
     }
 
+    /// Sets the date and time against which the certificates in a trust management object are verified.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object whose verification date you want to set. A trust management object includes one or more certificates plus the policy or policies to be used in evaluating trust. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - verifyDate: The date and time to use when verifying the certificate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function uses the current date and time when verifying a certificate. However, you can use `SecTrustSetVerifyDate` to set another date and time to use when verifying a certificate. For example, you can determine whether the certificate was valid when the document was signed rather than whether it’s valid at the present time.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the evaluation function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the [`SecTrustCopyCustomAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.
+    ///
+    ///
     /// Set the date for which the trust should be verified.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -511,8 +830,6 @@ impl SecTrust {
     /// it was signed, even if the certificate has since expired.) If this function
     /// is not called, the time at which SecTrustEvaluate() is called is used
     /// implicitly as the verification time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetVerifyDate")]
     #[inline]
     pub unsafe fn set_verify_date(&self, verify_date: &CFDate) -> OSStatus {
@@ -522,6 +839,31 @@ impl SecTrust {
         unsafe { SecTrustSetVerifyDate(self, verify_date) }
     }
 
+    /// Gets the absolute time against which the certificates in a trust management object are verified.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object whose verification time you want to get. A trust management object includes one or more certificates plus the policy or policies to be used in evaluating trust. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The absolute time at which the certificates should be checked for validity.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the absolute time returned by:
+    ///
+    /// 1. the [`CFDateGetAbsoluteTime`](https://developer.apple.com/documentation/corefoundation/cfdategetabsolutetime(_:)) function for the date passed in to the [`SecTrustSetVerifyDate`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function, if that was called, or
+    ///
+    /// 2. the last value returned by the [`SecTrustGetVerifyTime`](https://developer.apple.com/documentation/security/sectrustgetverifytime(_:)) function, if it was called before, or
+    ///
+    /// 3. the value returned by the [`CFAbsoluteTimeGetCurrent`](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetcurrent()) function if neither [`SecTrustSetVerifyDate`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) nor [`SecTrustGetVerifyTime`](https://developer.apple.com/documentation/security/sectrustgetverifytime(_:)) were ever called.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get a value from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetVerifyDate`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Returns the verify time.
     ///
     /// Parameter `trust`: A reference to the trust object being verified.
@@ -533,8 +875,6 @@ impl SecTrust {
     /// trust reference, as set by a prior call to SecTrustSetVerifyDate(). If the
     /// verification time has not been set, this function returns a value of 0,
     /// indicating that the current date/time is implicitly used for verification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetverifytime(_:)?language=objc)
     #[doc(alias = "SecTrustGetVerifyTime")]
     #[inline]
     pub unsafe fn verify_time(&self) -> CFAbsoluteTime {
@@ -544,6 +884,97 @@ impl SecTrust {
         unsafe { SecTrustGetVerifyTime(self) }
     }
 
+    /// Evaluates trust for the specified certificate and policies.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object to evaluate. A trust management object includes the certificate to be verified plus the policy or policies to be used in evaluating trust. It can optionally also include other certificates to be used in verifying the first certificate. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - result: On return, points to a result type reflecting the result of this evaluation. See [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype) for descriptions of possible values. See the discussion below for an explanation of how to handle specific values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function evaluates a certificate’s validity to establish trust for a particular use—for example, in creating a digital signature or to establish a Secure Sockets Layer connection.
+    ///
+    /// Before you call this function:
+    ///
+    /// - You can call the [`SecTrustSetVerifyDate`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function before calling `SecTrustEvaluate` to set the date and time to use when verifying the certificate. By default, `SecTrustEvaluate` uses the current date and time. (Note that some APIs such as CMS may set the verification date for you based on a trusted time stamp.)
+    ///
+    /// - In macOS, you can optionally call any of the `SecTrustSet...` functions (such as [`SecTrustSetParameters`](https://developer.apple.com/documentation/security/sectrustsetparameters) or [`SecTrustSetVerifyDate`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:))) to set values for parameters and options.
+    ///
+    /// The `SecTrustEvaluate` function validates a certificate by verifying its signature plus the signatures of the certificates in its certificate chain, up to the anchor certificate, according to the policy or policies included in the trust management object.
+    ///
+    /// For each policy, the function usually evaluates trust according to the user-specified trust setting (see [`SecTrustSettingsSetTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)) and [`SecTrustSettingsCopyTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingscopytrustsettings(_:_:_:))). For an example of user-specified trust settings, use the Keychain Access utility and look at any certificate. As an exception, if your app has previously called [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)), the user-specified trust settings are ignored, and the certificate’s chain must contain one of the specified anchor certificates.
+    ///
+    /// For each policy, `SecTrustEvaluate` constructs a certificate chain based on the policies requested. It then starts with the leaf certificate and checks each certificate in the chain in turn until it either reaches a defective certificate, runs out of certificates, or reaches a certificate with a non-default trust setting—usually an anchor certificate or a certificate that the user has explicitly chosen to trust or distrust—and stores the result of this trust evaluation in the trust management object. This design means that an explicit user-trust setting for a certificate at or near the leaf can override the behavior of a certificate closer to the root, but otherwise a failure at any point in the chain results in a failure.
+    ///
+    /// If some of the certificates needed to verify the leaf certificate are missing from the trust management object, then `SecTrustEvaluate` searches for certificates in the following locations:
+    ///
+    /// - In any keychains currently on the caller’s keychain search list (see [`SecTrustSetKeychains`](https://developer.apple.com/documentation/security/sectrustsetkeychains(_:_:))).
+    ///
+    /// - Any certificates previously provided by calling [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)).
+    ///
+    /// - In a system-provided set of keychains provided for this purpose.
+    ///
+    /// - Over the network if certain extensions are present in the certificate used to build the chain.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although this function searches the user’s keychain (or the application keychain in iOS) for intermediate certificates, it does not search those keychains for anchor (root) certificates. To add an anchor certificate, you must call [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// As a rule, you should handle the various return values as follows:
+    ///
+    /// - [`kSecTrustResultUnspecified`](https://developer.apple.com/documentation/security/sectrustresulttype/unspecified)—Evaluation successfully reached an (implicitly trusted) anchor certificate without any evaluation failures, but never encountered any explicitly stated user-trust preference. This is the most common return value.
+    ///
+    /// Most apps should, by default, trust the chain. If you ask the user what to do, in macOS, you should use the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class in the [`Security Interface`](https://developer.apple.com/documentation/securityinterface).
+    ///
+    /// - [`kSecTrustResultProceed`](https://developer.apple.com/documentation/security/sectrustresulttype/proceed)—The user explicitly chose to trust a certificate in the chain (usually by clicking a button in a certificate trust panel).
+    ///
+    /// Your app should trust the chain.
+    ///
+    /// - [`kSecTrustResultDeny`](https://developer.apple.com/documentation/security/sectrustresulttype/deny)—The user explicitly chose to _not_ trust a certificate in the chain (usually by clicking the appropriate button in a certificate trust panel).
+    ///
+    /// Your app should _not_ trust the chain.
+    ///
+    /// - [`kSecTrustResultConfirm`](https://developer.apple.com/documentation/security/sectrustresulttype/confirm)—The user previously chose to always ask for permission before accepting one of the certificates in the chain. This return value is no longer used, but may occur in older versions of macOS.
+    ///
+    /// Either ask the user what to do or reject the certificate. If you ask the user what to do, in macOS, you should use the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class in the [`Security Interface`](https://developer.apple.com/documentation/securityinterface).
+    ///
+    /// - [`kSecTrustResultRecoverableTrustFailure`](https://developer.apple.com/documentation/security/sectrustresulttype/recoverabletrustfailure)—This means that you should not trust the chain as-is, but that the chain could be trusted with some minor change to the evaluation context, such as ignoring expired certificates or adding an additional anchor to the set of trusted anchors.
+    ///
+    /// The way you handle this depends on the OS.
+    ///
+    /// In iOS, you should typically refuse the certificate. However, if you are performing signature validation and you know when the message was originally received, you should check again using that date to see if the message was valid when you originally received it.
+    ///
+    /// In macOS, you can call the [`SecTrustCopyResult`](https://developer.apple.com/documentation/security/sectrustcopyresult(_:)) function to get more information about the results of the trust evaluation, or the [`SecTrustGetCssmResult`](https://developer.apple.com/documentation/security/sectrustgetcssmresult) function to get information about the evaluation in a form that can be passed to CSSM functions.
+    ///
+    /// Then, as appropriate, you can call one or more of the `SecTrustSet...` functions to correct or bypass the problem, or you can inform the user of the problem and call the `SFCertificateTrustPanel` class to let the user change the trust setting for the certificate.
+    ///
+    /// When you think you have corrected the problem, call `SecTrustEvaluate` again. Each time you call `SecTrustEvaluate`, it discards the results of any previous evaluation and replaces them with the new results.
+    ///
+    /// If the trust failure was caused by an untrusted root certificate and your app asks the user what to do, you should use the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class in the [`Security Interface`](https://developer.apple.com/documentation/securityinterface).
+    ///
+    /// - [`kSecTrustResultFatalTrustFailure`](https://developer.apple.com/documentation/security/sectrustresulttype/fataltrustfailure)—Evaluation failed because a certificate in the chain is defective. This usually represents a fundamental defect in the certificate data, such as an invalid encoding for a critical `subjectAltName` extension, an unsupported critical extension, or some other critical portion of the certificate that could not be successfully interpreted. Changing parameter values and calling `SecTrustEvaluate` again is unlikely to result in a successful reevaluation unless you provide different certificates.
+    ///
+    /// - [`kSecTrustResultOtherError`](https://developer.apple.com/documentation/security/sectrustresulttype/othererror)—Evaluation failed for some other reason. This can be caused by either a revoked certificate or by OS-level errors that are unrelated to the certificates themselves.
+    ///
+    /// ### Special Considerations
+    ///
+    /// It is not safe to call this function concurrently with any other function that uses the same trust management object, or to re-enter this function for the same trust management object.
+    ///
+    /// Because this function might look on the network for certificates in the certificate chain, the function might block while attempting network access. You should never call it from your main thread; call it only from within a function running on a dispatch queue or on a separate thread. Alternatively, in macOS, you can use [`SecTrustEvaluateAsync`](https://developer.apple.com/documentation/security/sectrustevaluateasync(_:_:_:)) from your main thread. In iOS, you can do the same thing using [`dispatch_once`](https://developer.apple.comhttps://developer.apple.com/documentation/dispatch/1447169-dispatch_once).
+    ///
+    ///
     /// Evaluates a trust reference synchronously.
     ///
     /// Parameter `trust`: A reference to the trust object to evaluate.
@@ -562,8 +993,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)?language=objc)
     #[doc(alias = "SecTrustEvaluate")]
     #[deprecated]
     #[inline]
@@ -574,6 +1003,51 @@ impl SecTrust {
         unsafe { SecTrustEvaluate(self, result) }
     }
 
+    /// Evaluates trust for the specified certificate and policies.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object to evaluate. A trust management object includes the certificate to be verified plus the policy or policies to be used in evaluating trust. It can optionally also include other certificates to be used in verifying the first certificate. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - error: An error pointer the method uses to return an error when trust evaluation fails. Set to `nil` to ignore the error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the certificate is trusted; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method evaluates a certificate’s validity to establish trust for a particular use—for example, in creating a digital signature or to establish a Secure Sockets Layer connection. The method validates a certificate by verifying its signature plus the signatures of the certificates in its certificate chain, up to the anchor certificate, according to the policy or policies included in the trust management object.
+    ///
+    /// If the trust management instance lacks some of the certificates needed to verify the leaf certificate, [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) searches for certificates:
+    ///
+    /// - In the user’s keychain.
+    ///
+    /// - Among any certificates you previously provided by calling [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)).
+    ///
+    /// - In a system-provided set of keychains provided for this purpose.
+    ///
+    /// - Over the network, if certain extensions are present in the certificate used to build the chain.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although this method searches the keychain for intermediate certificates, it does not search the keychain for anchor (root) certificates. To add an anchor certificate, you must call [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Before calling [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)), you can optionally call any of the methods that start with `SecTrustSet` to manage the evaluation. For example, you can verify the validity of the certificates in a trust at a particular date and time, rather than using the current date and time, by first calling the [`SecTrustSetVerifyDate`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) method.
+    ///
+    /// The [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:))  method returns a pass or fail indicator and an error describing the reason for any failure. In the case of multiple certificate failures, the error contains a code from [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes) representing the most serious. The localized description indicates the certificate with the most serious problem and the type of error. The underlying error, located in the error’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary as the value for the [`NSUnderlyingErrorKey`](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey) key, contains a localized description of each certificate in the chain that had an error and all errors found with that certificate.
+    ///
+    /// To find out if you can recover from a trust failure, call the [`SecTrustGetTrustResult`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) method. See the [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype) constants to learn how to interpret the value returned by that call.
+    ///
+    /// Don’t call [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) from your app’s main run loop because it might require network access to fetch intermediate certificates, or to perform revocation checking. To perform evaluation asynchronously, use [`SecTrustEvaluateAsyncWithError`](https://developer.apple.com/documentation/security/sectrustevaluateasyncwitherror(_:_:_:)) instead.
+    ///
+    ///
     /// Evaluates a trust reference synchronously.
     ///
     /// Parameter `trust`: A reference to the trust object to evaluate.
@@ -600,8 +1074,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)?language=objc)
     #[doc(alias = "SecTrustEvaluateWithError")]
     #[must_use]
     #[inline]
@@ -613,6 +1085,23 @@ impl SecTrust {
     }
 }
 
+/// A block called with the results of an asynchronous trust evaluation.
+///
+/// Parameters:
+/// - trustRef: The trust that was evaluated.
+///
+/// - result: A Boolean that’s `true` if the certificate is trusted, or `false` if not.
+///
+/// - error: An error that indicates the reason for trust failure, if applicable.
+///
+///
+/// ## Discussion
+///
+/// Provide a block of this type as the final argument to the [`SecTrustEvaluateAsyncWithError`](https://developer.apple.com/documentation/security/sectrustevaluateasyncwitherror(_:_:_:)) method to receive the result of the trust evaluation.
+///
+/// The block provides a pass or fail indicator and an error describing the reason for any failure. In the case of multiple certificate failures, the error contains a code representing the most serious. The localized description indicates the certificate with the most serious problem and the type of error. The underlying error contains a localized description of each certificate in the chain that had an error and all errors found with that certificate.
+///
+///
 /// Delivers the result from an asynchronous trust evaluation.
 ///
 /// Parameter `trustRef`: A reference to the trust object which has been evaluated.
@@ -620,13 +1109,30 @@ impl SecTrust {
 /// Parameter `result`: A boolean value indicating whether the certificate is trusted.
 ///
 /// Parameter `error`: An error if the trust evaluation failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustwitherrorcallback?language=objc)
 #[cfg(feature = "block2")]
 pub type SecTrustWithErrorCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<SecTrust>, bool, *mut CFError)>;
 
 impl SecTrust {
+    /// Returns the result code from the most recent trust evaluation.
+    ///
+    /// Parameters:
+    /// - trust: The trust object from which results should be obtained
+    ///
+    /// - result: A pointer that the function sets to point at a value that is the result type. See [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype) for possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the trust object has not yet been evaluated, the result type is [`kSecTrustResultInvalid`](https://developer.apple.com/documentation/security/sectrustresulttype/invalid).
+    ///
+    ///
     /// Parameter `trust`: A reference to a trust object.
     ///
     /// Parameter `result`: A pointer to the result from the most recent call to
@@ -641,8 +1147,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)?language=objc)
     #[doc(alias = "SecTrustGetTrustResult")]
     #[inline]
     pub unsafe fn trust_result(&self, result: NonNull<SecTrustResultType>) -> OSStatus {
@@ -655,6 +1159,25 @@ impl SecTrust {
         unsafe { SecTrustGetTrustResult(self, result) }
     }
 
+    /// Returns the public key for a leaf certificate after it has been evaluated.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object for the certificate that has been evaluated.  Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The leaf certificate’s public key, or `NULL` if it the public key could not be extracted (this can happen with DSA certificate chains if the parameters in the chain cannot be found). In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function before calling this function.
+    ///
+    /// When you call this function, it attempts to return the public key of the leaf certificate, even if the trust evaluation was unsuccessful. Even if the trust evaluation was successful, this function might still return `NULL`—for example, if the leaf certificate’s key can’t be extracted for some reason.
+    ///
+    ///
     /// Return the public key for a leaf certificate after it has
     /// been evaluated.
     ///
@@ -664,8 +1187,6 @@ impl SecTrust {
     /// not be extracted (this can happen if the public key algorithm is not
     /// supported).  The caller is responsible for calling CFRelease on the
     /// returned key when it is no longer needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopypublickey(_:)?language=objc)
     #[doc(alias = "SecTrustCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -689,8 +1210,6 @@ impl SecTrust {
     /// returned key when it is no longer needed.
     ///
     /// RSA and ECDSA public keys are supported. All other public key algorithms are unsupported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopykey(_:)?language=objc)
     #[doc(alias = "SecTrustCopyKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -702,6 +1221,23 @@ impl SecTrust {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the number of certificates in an evaluated certificate chain.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object for the certificate that has been evaluated.  Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object and the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function to evaluate the certificate chain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of certificates in the certificate chain.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function before calling this function.
+    ///
+    ///
     /// Returns the number of certificates in an evaluated certificate
     /// chain.
     ///
@@ -713,8 +1249,6 @@ impl SecTrust {
     /// this function will evaluate it first before returning. If speed is critical,
     /// you may want to call SecTrustGetTrustResult first to make sure that a
     /// result other than kSecTrustResultInvalid is present for the trust object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcertificatecount(_:)?language=objc)
     #[doc(alias = "SecTrustGetCertificateCount")]
     #[inline]
     pub unsafe fn certificate_count(&self) -> CFIndex {
@@ -724,6 +1258,25 @@ impl SecTrust {
         unsafe { SecTrustGetCertificateCount(self) }
     }
 
+    /// Returns a specific certificate from the certificate chain used to evaluate trust.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object for the certificate that has been evaluated.  Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object and the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function to evaluate the certificate chain.
+    ///
+    /// - ix: The index number of the requested certificate. Index numbers start at 0 for the leaf certificate and end at the anchor (or the last certificate if no anchor was found). Use the [`SecTrustGetCertificateCount`](https://developer.apple.com/documentation/security/sectrustgetcertificatecount(_:)) function to get the total number of certificates in the chain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A certificate object for the requested certificate.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) function before calling this function.
+    ///
+    ///
     /// Returns a certificate from the trust chain.
     ///
     /// Parameter `trust`: Reference to a trust object.
@@ -739,8 +1292,6 @@ impl SecTrust {
     /// trust object may trigger trust evaluations that release the returned certificate or change the
     /// certificate chain as a thread is iterating through the certificate chain. The replacement function
     /// SecTrustCopyCertificateChain provides thread-safe results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcertificateatindex(_:_:)?language=objc)
     #[doc(alias = "SecTrustGetCertificateAtIndex")]
     #[cfg(feature = "SecBase")]
     #[deprecated]
@@ -756,6 +1307,27 @@ impl SecTrust {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns an opaque cookie containing exceptions to trust policies that will allow future evaluations of the current certificate to succeed.
+    ///
+    /// Parameters:
+    /// - trust: The evaluated trust management object whose policies you wish to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An opaque cookie. If you pass this cookie to [`SecTrustSetExceptions`](https://developer.apple.com/documentation/security/sectrustsetexceptions(_:_:)), that function sets a list of exceptions for future processing of the certificate. Once this list of exceptions are set, a subsequent call to [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) for that certificate will return `true`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note: If a new error occurs that did not occur when this function was called originally, the subsequent call to [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) can still fail. For example, if the certificate expires between calling `SecTrustCopyExceptions` and [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)), evaluation will fail.
+    ///
+    /// ## Discussion
+    ///
+    /// Normally this API should only be called after asking the user how to proceed, and even then, only if the user explicitly tells your application to trust the current certificate chain in spite of the errors presented.
+    ///
+    ///
     /// Returns an opaque cookie which will allow future evaluations
     /// of the current certificate to succeed.
     ///
@@ -772,8 +1344,6 @@ impl SecTrust {
     /// been presented to the user and the user decided to trust the current
     /// certificate chain regardless of the errors being presented, for the
     /// current application/server/protocol combination.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyexceptions(_:)?language=objc)
     #[doc(alias = "SecTrustCopyExceptions")]
     #[inline]
     pub unsafe fn exceptions(&self) -> Option<CFRetained<CFData>> {
@@ -784,6 +1354,31 @@ impl SecTrust {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Sets a list of exceptions that should be ignored when the certificate is evaluated.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object whose exception list you wish to modify.
+    ///
+    /// - exceptions: An opaque cookie returned by a prior call to [`SecTrustCopyExceptions`](https://developer.apple.com/documentation/security/sectrustcopyexceptions(_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean that is [`true`](https://developer.apple.com/documentation/swift/true) if the exceptions cookies was valid and matches the current leaf certificate, [`false`](https://developer.apple.com/documentation/swift/false) otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Even if this function returns true, you must still call [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) because the evaluation can still fail if something changes between the initial evaluation and the reevaluation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Set a trust cookie to be used for evaluating this certificate chain.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -810,8 +1405,6 @@ impl SecTrust {
     /// Examples of this context would be the server we are connecting to, the ssid
     /// of the wireless network for which this cert is needed, the account for which
     /// this cert should be considered valid, and so on.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetexceptions(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetExceptions")]
     #[inline]
     pub unsafe fn set_exceptions(&self, exceptions: Option<&CFData>) -> bool {
@@ -821,6 +1414,25 @@ impl SecTrust {
         unsafe { SecTrustSetExceptions(self, exceptions) }
     }
 
+    /// Returns an array containing the properties of a trust object.
+    ///
+    /// Parameters:
+    /// - trust: The trust object from which properties should be copied.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array, or `NULL` if the trust object has not yet been evaluated. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this array’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The result is an ordered array of dictionaries, one per certificate in the chain, beginning with the leaf node at index zero (`0`) and continuing up to the anchor (or the last certificate in the chain if no anchor was found).
+    ///
+    /// The property dictionary at index zero may also include general information about the entire chain’s validity in the context of this trust evaluation. See [Certificate Property Type Values](https://developer.apple.com/documentation/security/certificate-property-type-values) for a list of currently defined keys.
+    ///
+    ///
     /// Return a property array for this trust evaluation.
     ///
     /// Parameter `trust`: A reference to a trust object. If the trust has not been
@@ -836,8 +1448,6 @@ impl SecTrust {
     /// See the "Trust Property Constants" section for a list of currently defined keys.
     /// The error information conveyed via this interface is also conveyed via the
     /// returned error of SecTrustEvaluateWithError.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyproperties(_:)?language=objc)
     #[doc(alias = "SecTrustCopyProperties")]
     #[deprecated]
     #[inline]
@@ -849,6 +1459,23 @@ impl SecTrust {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a dictionary containing information about an evaluated trust.
+    ///
+    /// Parameters:
+    /// - trust: The evaluated trust.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing keys with values that describe the result of the trust evaluation, or `NULL` when no information is available or if the trust has not been evaluated. See [Trust Result Dictionary Keys](https://developer.apple.com/documentation/security/trust-result-dictionary-keys) for the list of possible keys. In Objective-C, use [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to free the dictionary’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call one of the [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) or [`SecTrustEvaluateAsyncWithError`](https://developer.apple.com/documentation/security/sectrustevaluateasyncwitherror(_:_:_:)) methods before calling [`SecTrustCopyResult`](https://developer.apple.com/documentation/security/sectrustcopyresult(_:)).
+    ///
+    ///
     /// Returns a dictionary containing information about the
     /// evaluated certificate chain for use by clients.
     ///
@@ -861,8 +1488,6 @@ impl SecTrust {
     ///
     /// Returns a dictionary for the overall trust evaluation. See the
     /// "Trust Result Constants" section for a list of currently defined keys.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyresult(_:)?language=objc)
     #[doc(alias = "SecTrustCopyResult")]
     #[inline]
     pub unsafe fn result(&self) -> Option<CFRetained<CFDictionary>> {
@@ -873,6 +1498,25 @@ impl SecTrust {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Attaches Online Certificate Status Protocol (OSCP) response data to a trust object.
+    ///
+    /// Parameters:
+    /// - trust: The trust evaluation object to modify.
+    ///
+    /// - responseData: Either a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object containing a single DER-encoded OCSPResponse (per [RFC2560](https://tools.ietf.org/html/rfc2560)), or a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) of these.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allows the caller to provide OCSPResponse data (which may be obtained during a TLS/SSL handshake, per [RFC3546](https://tools.ietf.org/html/rfc3546)) as input to a trust evaluation. If this data is available, it can obviate the need to contact an OCSP server for current revocation information.
+    ///
+    ///
     /// Attach OCSPResponse data to a trust object.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -890,8 +1534,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `response_data` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetocspresponse(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetOCSPResponse")]
     #[inline]
     pub unsafe fn set_ocsp_response(&self, response_data: Option<&CFType>) -> OSStatus {
@@ -904,6 +1546,25 @@ impl SecTrust {
         unsafe { SecTrustSetOCSPResponse(self, response_data) }
     }
 
+    /// Attaches signed certificate timestamp data to a trust object.
+    ///
+    /// Parameters:
+    /// - trust: The trust object to which the timestamp data should be attached.
+    ///
+    /// - sctArray: An array of [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) instances, each of which contains a signed certificate timestamp.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to provide secure certificate timestamps, which might be obtained during a TLS/SSL handshake, as input to a trust evaluation. For more information, see [RFC 6962](https://tools.ietf.org/html/rfc6962).
+    ///
+    ///
     /// Attach SignedCertificateTimestamp data to a trust object.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -919,8 +1580,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `sct_array` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetsignedcertificatetimestamps(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetSignedCertificateTimestamps")]
     #[inline]
     pub unsafe fn set_signed_certificate_timestamps(
@@ -941,8 +1600,6 @@ impl SecTrust {
     /// Parameter `trust`: Reference to a trust object.
     ///
     /// Returns: A CFArray of the SecCertificateRefs for the resulting certificate chain
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopycertificatechain(_:)?language=objc)
     #[doc(alias = "SecTrustCopyCertificateChain")]
     #[inline]
     pub unsafe fn certificate_chain(&self) -> Option<CFRetained<CFArray>> {
@@ -954,6 +1611,13 @@ impl SecTrust {
     }
 }
 
+/// Represents user-specified trust settings.
+///
+/// ## Discussion
+///
+/// See [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype) for possible values.
+///
+///
 /// Specifies a user-specified trust setting value.
 ///
 /// Deprecated in OS X 10.9. User trust settings are managed by
@@ -961,11 +1625,16 @@ impl SecTrust {
 /// SecTrustCopyExceptions and SecTrustSetExceptions functions (starting with
 /// iOS 4 and OS X 10.9). The latter two functions are recommended for both macOS
 /// and iOS, as they avoid the need to explicitly specify these values.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustusersetting?language=objc)
 #[deprecated]
 pub type SecTrustUserSetting = SecTrustResultType;
 
+/// The option flags used to condition a trust evaluation.
+///
+/// ## Overview
+///
+/// Use these flags in calls to the [`SecTrustSetOptions`](https://developer.apple.com/documentation/security/sectrustsetoptions(_:_:)) function.
+///
+///
 /// Options for customizing trust evaluation.
 ///
 ///
@@ -977,33 +1646,31 @@ pub type SecTrustUserSetting = SecTrustResultType;
 /// anchors.
 ///
 /// treated as anchors implicitly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustOptionFlags(pub u32);
 bitflags::bitflags! {
     impl SecTrustOptionFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/allowexpired?language=objc)
+/// Allow expired certificates (except for the root certificate).
         #[doc(alias = "kSecTrustOptionAllowExpired")]
         const AllowExpired = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/leafisca?language=objc)
+/// Allow CA certificates as leaf certificates.
         #[doc(alias = "kSecTrustOptionLeafIsCA")]
         const LeafIsCA = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/fetchissuerfromnet?language=objc)
+/// Allow network downloads of CA certificates.
         #[doc(alias = "kSecTrustOptionFetchIssuerFromNet")]
         const FetchIssuerFromNet = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/allowexpiredroot?language=objc)
+/// Allow expired root certificates.
         #[doc(alias = "kSecTrustOptionAllowExpiredRoot")]
         const AllowExpiredRoot = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/requirerevpercert?language=objc)
+/// Require a positive revocation check for each certificate.
         #[doc(alias = "kSecTrustOptionRequireRevPerCert")]
         const RequireRevPerCert = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/usetrustsettings?language=objc)
+/// Use TrustSettings instead of anchors.
         #[doc(alias = "kSecTrustOptionUseTrustSettings")]
         const UseTrustSettings = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags/implicitanchors?language=objc)
+/// Treat properly self-signed certificates as anchors implicitly.
         #[doc(alias = "kSecTrustOptionImplicitAnchors")]
         const ImplicitAnchors = 0x00000040;
     }
@@ -1020,6 +1687,19 @@ unsafe impl RefEncode for SecTrustOptionFlags {
 }
 
 impl SecTrust {
+    /// Sets option flags for customizing evaluation of a trust object.
+    ///
+    /// Parameters:
+    /// - trustRef: The trust object to modify.
+    ///
+    /// - options: The new set of option flags. For a list of options, see [`SecTrustOptionFlags`](https://developer.apple.com/documentation/security/sectrustoptionflags).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Sets optional flags for customizing a trust evaluation.
     ///
     /// Parameter `trustRef`: A trust reference.
@@ -1032,8 +1712,6 @@ impl SecTrust {
     /// and SecTrustCopyExceptions to modify default trust results, and
     /// SecTrustSetNetworkFetchAllowed to specify whether missing CA certificates
     /// can be fetched from the network.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetoptions(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetOptions")]
     #[inline]
     pub unsafe fn set_options(&self, options: SecTrustOptionFlags) -> OSStatus {
@@ -1043,6 +1721,29 @@ impl SecTrust {
         unsafe { SecTrustSetOptions(self, options) }
     }
 
+    /// Sets the action and action data for a trust management object.
+    ///
+    /// Parameters:
+    /// - trustRef: The trust management object to which you want to add an action or set action data. A trust management object includes one or more certificates plus the policy or policies to be used in evaluating trust. Use the [`SecTrustCreateWithCertificates(_:_:_:)`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - action: A CSSM trust action. Pass `CSSM_TP_ACTION_DEFAULT` for the default action. Other actions available, if any, are described in the documentation for the trust policy module. For the AppleX509TP module, see the [Apple Trust Policy Module Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf).
+    ///
+    /// - actionData: A reference to action data. `CSSM_APPLE_TP_ACTION_FLAGS` lists possible values for this parameter for the AppleX509TP trust policy module’s default action. For other actions (if any), the possible values for the action data are specified in the [Apple Trust Policy Module Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleTrustPolicyModuleSpec/Apple_Trust_Policy_Module_Functional_Specification.pdf).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before you call [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)), you can optionally use this function to set one or more action flags or to set action data. Actions, where available, affect the trust evaluation for all policies being evaluated. For example, if you set the action data for the default action to `CSSM_TP_ACTION_ALLOW_EXPIRED`, then the `SecTrustEvaluate` function ignores the certificate’s expiration date and time.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the [`SecTrustCopyCustomAnchorCertificates(_:_:)`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.
+    ///
+    ///
     /// Sets the action and action data for a trust object.
     ///
     /// Parameter `trustRef`: The reference to the trust to change.
@@ -1058,8 +1759,6 @@ impl SecTrust {
     /// should use SecTrustSetExceptions and SecTrustCopyExceptions to modify default
     /// trust results, and SecTrustSetNetworkFetchAllowed to specify whether missing
     /// CA certificates can be fetched from the network.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetparameters?language=objc)
     #[doc(alias = "SecTrustSetParameters")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1075,6 +1774,29 @@ impl SecTrust {
         unsafe { SecTrustSetParameters(self, action, action_data) }
     }
 
+    /// Sets the keychains searched for intermediate certificates when evaluating a trust management object.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object containing the certificate you want to evaluate. A trust management object includes the certificate to be verified plus the policy or policies to be used in evaluating trust. It can optionally also include other certificates to be used in verifying the first certificate. Use the [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - keychainOrArray: A keychain object for a single keychain to search, an array of keychain objects for a set of keychains to search, or `NULL` to search the user’s default keychain search list. To prevent the [`SecTrustEvaluate`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function from searching any keychains at all, pass a `CFArrayRef` array with no elements.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, [`SecTrustEvaluateWithError`](https://developer.apple.com/documentation/security/sectrustevaluatewitherror(_:_:)) uses the user’s keychain search list to look for intermediate certificates in the certificate chain. Use the `SecTrustSetKeychains` function to change the set of keychains to be searched. If you want to modify the default set of keychains, first call the `SecKeychainCopySearchList` function (see [Keychain services](https://developer.apple.com/documentation/security/keychain-services)) to obtain the current keychain search list, modify that set as you wish, and create a new search list. Then you can call `SecTrustSetKeychains` with the modified list.
+    ///
+    /// Use the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function to set the array of anchor certificates searched.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to change the value of a trust management object that is simultaneously being used by another function. For example, you cannot call this function on one thread at the same time as you are calling the evaluation function for the same trust management object on another thread, but you can call this function and simultaneously evaluate a different trust management object on another thread. Similarly, calls to functions that return information about a trust management object (such as the [`SecTrustCopyCustomAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustcopycustomanchorcertificates(_:_:)) function) may fail or return an unexpected result if this function is simultaneously changing the same trust management object on another thread.
+    ///
+    ///
     /// Sets the keychains for a given trust object.
     ///
     /// Parameter `trust`: A reference to a trust object.
@@ -1095,8 +1817,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `keychain_or_array` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsetkeychains(_:_:)?language=objc)
     #[doc(alias = "SecTrustSetKeychains")]
     #[deprecated]
     #[inline]
@@ -1110,6 +1830,37 @@ impl SecTrust {
         unsafe { SecTrustSetKeychains(self, keychain_or_array) }
     }
 
+    /// Retrieves details on the outcome of a call to the function `SecTrustEvaluate`.
+    ///
+    /// Parameters:
+    /// - trustRef: A trust management object that has previously been sent to the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function for evaluation.
+    ///
+    /// - result: A pointer to the result type returned in the `result` parameter by the `SecTrustEvaluate` function.
+    ///
+    /// - certChain: On return, points to an array of certificates that constitute the certificate chain used to verify the input certificate. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    /// - statusChain: On return, points to an array of `CSSM_TP_APPLE_EVIDENCE_INFO` structures, one for each certificate in the certificate chain. The first item in the array corresponds to the leaf certificate, and the last item corresponds to the anchor (assuming that verification of the chain did not fail before reaching the anchor certificate). Each structure describes the status of one certificate in the chain. This structure is defined in `cssmapple.h`. Do not attempt to free this pointer; it remains valid until the trust management object is released or until the next call to the function `SecTrustEvaluate` that uses this trust management object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function, you can call the [`SecTrustGetResult`](https://developer.apple.com/documentation/security/sectrustgetresult) function or the [`SecTrustGetCssmResult`](https://developer.apple.com/documentation/security/sectrustgetcssmresult) function to get detailed information about the results of the evaluation. Whereas the `SecTrustGetResult` function returns the information in a form that you can interpret without extensive knowledge of CSSM, the [`SecTrustGetCssmResult`](https://developer.apple.com/documentation/security/sectrustgetcssmresult) function returns information in a form that can be passed directly to CSSM functions.
+    ///
+    /// You can call the `SFCertificateTrustPanel` class in the [`Security Interface`](https://developer.apple.com/documentation/securityinterface) to display these results to the user.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetVerifyDate(_:_:)`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function for the same trust management object on another thread.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Use [`SecTrustGetTrustResult(_:_:)`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) for new development instead.
+    ///
+    ///
     /// Returns detailed information on the outcome of an evaluation.
     ///
     /// Parameter `trustRef`: A reference to a trust object.
@@ -1138,8 +1889,6 @@ impl SecTrust {
     /// - `result` must be a valid pointer or null.
     /// - `cert_chain` must be a valid pointer or null.
     /// - `status_chain` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetresult?language=objc)
     #[doc(alias = "SecTrustGetResult")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -1166,6 +1915,27 @@ impl SecTrust {
         unsafe { SecTrustGetResult(self, result, cert_chain, status_chain) }
     }
 
+    /// Retrieves the CSSM trust result.
+    ///
+    /// Parameters:
+    /// - trust: A trust management object that has previously been sent to the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function for evaluation.
+    ///
+    /// - result: On return, points to the CSSM trust result pointer. You should not modify or free this data, as it is owned by the system.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function, you can call the [`SecTrustGetTrustResult(_:_:)`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) function or the `SecTrustGetCssmResult` function to get information about the certificates in the certificate chain and everything that might be wrong with each certificate. Whereas the [`SecTrustGetTrustResult(_:_:)`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) function returns the information in a form that you can interpret without extensive knowledge of CSSM, the `SecTrustGetCssmResult` function returns information in a form that can be passed directly to CSSM functions. See _Common Security: CDSA and CSSM, version 2 (with corrigenda)_ from The Open Group ([http://www.opengroup.org/security/cdsa.htm](http://www.opengroup.org/security/cdsa.htm) for more information about the `CSSM_TP_VERIFY_CONTEXT_RESULT` structure pointed to by the `result` parameter.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetVerifyDate(_:_:)`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Gets the CSSM trust result.
     ///
     /// Parameter `trust`: A reference to a trust.
@@ -1183,8 +1953,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcssmresult?language=objc)
     #[doc(alias = "SecTrustGetCssmResult")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1202,6 +1970,27 @@ impl SecTrust {
         unsafe { SecTrustGetCssmResult(self, result) }
     }
 
+    /// Retrieves the CSSM result code from the most recent trust evaluation for a trust management object.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object for which you wish to retrieve a result code.
+    ///
+    /// - resultCode: On return, the CSSM result code produced by the most recent call to the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function for the trust management object specified in the `trust` parameter.  The value of this parameter is undefined if `SecTrustEvaluate` has not been called.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecTrustNotAvailable`](https://developer.apple.com/documentation/security/errsectrustnotavailable) if the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function has not been called for the specified trust.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Whereas the [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function returns one of the Security Framework result codes (see [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services)), the `SecTrustGetCssmResultCode` function returns the CSSM result code as enumerated in `Security.framework/cssmerr.h`. Call this function to get a more specific reason for a failure than provided by `SecTrustEvaluate`. Other functions that might be of interest are the [`SecTrustGetTrustResult(_:_:)`](https://developer.apple.com/documentation/security/sectrustgettrustresult(_:_:)) function, which returns detailed results for each certificate in the certificate chain, and the [`SecTrustGetCssmResult`](https://developer.apple.com/documentation/security/sectrustgetcssmresult) function, which returns the results in a format that can be passed directly to CSSM functions.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetVerifyDate(_:_:)`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Gets the result code from the most recent call to SecTrustEvaluate
     /// for the specified trust.
     ///
@@ -1224,8 +2013,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `result_code` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgetcssmresultcode?language=objc)
     #[doc(alias = "SecTrustGetCssmResultCode")]
     #[deprecated]
     #[inline]
@@ -1239,6 +2026,27 @@ impl SecTrust {
         unsafe { SecTrustGetCssmResultCode(self, result_code) }
     }
 
+    /// Retrieves the trust policy handle.
+    ///
+    /// Parameters:
+    /// - trust: The trust management object from which to obtain the trust policy handle. A trust management object includes one or more certificates plus the policy or policies to be used in evaluating trust. Use the [`SecTrustCreateWithCertificates(_:_:_:)`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)) function to create a trust management object.
+    ///
+    /// - handle: On return, points to a CSSM trust policy handle. This handle remains valid until the trust management object is released or until the next call to the function [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) that uses this trust management object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The trust policy handle is the CSSM identifier of the trust policy module that is managing the certificate. The trust policy handle is used as an input to a number of CSSM functions.
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetVerifyDate(_:_:)`](https://developer.apple.com/documentation/security/sectrustsetverifydate(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Gets the CSSM trust handle
     ///
     /// Parameter `trust`: A reference to a trust.
@@ -1252,8 +2060,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustgettphandle?language=objc)
     #[doc(alias = "SecTrustGetTPHandle")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -1265,6 +2071,25 @@ impl SecTrust {
         unsafe { SecTrustGetTPHandle(self, handle) }
     }
 
+    /// Retrieves the anchor (root) certificates stored by macOS.
+    ///
+    /// Parameters:
+    /// - anchors: On return, points to an array of certificate objects for trusted anchor (root) certificates, which is the default set of anchors for the caller. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function retrieves the certificates in the system’s store of anchor certificates (see [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:))). You can use the [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) objects retrieved by this function as input to other functions of this API, such as [`SecTrustCreateWithCertificates`](https://developer.apple.com/documentation/security/sectrustcreatewithcertificates(_:_:_:)).
+    ///
+    /// It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the [`SecTrustSetAnchorCertificates`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function for the same trust management object on another thread.
+    ///
+    ///
     /// Returns an array of default anchor (root) certificates used by
     /// the system.
     ///
@@ -1279,8 +2104,6 @@ impl SecTrust {
     /// # Safety
     ///
     /// `anchors` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcopyanchorcertificates(_:)?language=objc)
     #[doc(alias = "SecTrustCopyAnchorCertificates")]
     #[inline]
     pub unsafe fn copy_anchor_certificates(anchors: NonNull<*const CFArray>) -> OSStatus {

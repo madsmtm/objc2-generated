@@ -27,6 +27,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A classification of how the entry was to be stored and rotated at the point when it was created.
+///
+/// ## Overview
+///
+/// The unified logging system keeps entries in one of two locations: a ring buffer in memory, or a persisted data store. Entries rotate out to free up resources; they are rotated out in bulk according to heuristics based on space, time, and entry classification.
+///
+///
 /// A classification of how the entry was to be stored and
 /// rotated at the point when it was created.
 ///
@@ -63,38 +70,72 @@ use crate::*;
 /// was persisted in the filesystem-backed data store, and
 /// rotation of these entries was based on both time and space
 /// considerations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntryStoreCategory(pub NSInteger);
 impl OSLogEntryStoreCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/undefined?language=objc)
+    /// This entry’s purpose is unknown.
     #[doc(alias = "OSLogEntryStoreCategoryUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/metadata?language=objc)
+    /// This entry was generated as information about the other entries or about the sequence of entries as a whole.
     #[doc(alias = "OSLogEntryStoreCategoryMetadata")]
     pub const Metadata: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/shortterm?language=objc)
+    /// This entry was not intended to be long-lived, and was captured in the ring buffer.
     #[doc(alias = "OSLogEntryStoreCategoryShortTerm")]
     pub const ShortTerm: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longtermauto?language=objc)
+    /// The entry was tagged with a hint indicating the system should try to preserve it based on the amount of space available.
+    ///
+    /// ## Discussion
+    ///
+    /// Instead of tagging a hint with a number of days that the entry should be preserved, the `longTermAuto` case is preserved based on the amount of space available. Therefore, it will automatically make determinations on how long to preserve the entry. Entries using this case should be persisted in a filesystem-backed data store.
+    ///
+    ///
     #[doc(alias = "OSLogEntryStoreCategoryLongTermAuto")]
     pub const LongTermAuto: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm1?language=objc)
+    /// The entry was tagged with a hint indicating the system should try to preserve it for approximately 1 day.
+    ///
+    /// ## Discussion
+    ///
+    /// It was persisted in the filesystem-backed date store, and rotation of these entries was based on both time and space considerations.
+    ///
+    ///
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm1")]
     pub const LongTerm1: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm3?language=objc)
+    /// The entry was tagged with a hint indicating the system should try to preserve it for approximately 3 days.
+    ///
+    /// ## Discussion
+    ///
+    /// It was persisted in the filesystem-backed date store, and rotation of these entries was based on both time and space considerations.
+    ///
+    ///
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm3")]
     pub const LongTerm3: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm7?language=objc)
+    /// The entry was tagged with a hint indicating the system should try to preserve it for approximately 7 days.
+    ///
+    /// ## Discussion
+    ///
+    /// It was persisted in the filesystem-backed date store, and rotation of these entries was based on both time and space considerations.
+    ///
+    ///
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm7")]
     pub const LongTerm7: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm14?language=objc)
+    /// The entry was tagged with a hint indicating the system should try to preserve it for approximately 14 days.
+    ///
+    /// ## Discussion
+    ///
+    /// It was persisted in the filesystem-backed date store, and rotation of these entries was based on both time and space considerations.
+    ///
+    ///
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm14")]
     pub const LongTerm14: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum/longterm30?language=objc)
+    /// The entry was tagged with a hint indicating the system should try to preserve it for approximately 30 days.
+    ///
+    /// ## Discussion
+    ///
+    /// It was persisted in the filesystem-backed date store, and rotation of these entries was based on both time and space considerations.
+    ///
+    ///
     #[doc(alias = "OSLogEntryStoreCategoryLongTerm30")]
     pub const LongTerm30: Self = Self(8);
 }
@@ -109,8 +150,7 @@ unsafe impl RefEncode for OSLogEntryStoreCategory {
 
 extern_class!(
     /// A single entry from the unified logging system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry?language=objc)
+    /// A single entry from the unified logging system.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogEntry;
@@ -153,11 +193,10 @@ impl OSLogEntry {
 }
 
 extern_protocol!(
+    /// A protocol that defines subclasses containing metadata about a process.
     /// Entry subclasses conforming to this protocol represent data
     /// that are generated from a process; they have metadata about
     /// the originator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentryfromprocess?language=objc)
     pub unsafe trait OSLogEntryFromProcess {
         /// The activity ID associated with the entry.
         #[unsafe(method(activityIdentifier))]
@@ -188,10 +227,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol defining subclasses that represent entries made using a handle and a format string.
     /// Entry subclasses conforming to this protocol represent
     /// entries that were made using a handle and a format string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrywithpayload?language=objc)
     pub unsafe trait OSLogEntryWithPayload {
         /// The category from the os_log_t handle used.
         #[unsafe(method(category))]
@@ -225,8 +263,7 @@ extern_conformance!(
 
 extern_class!(
     /// An entry generated by an activity event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentryactivity?language=objc)
+    /// An entry generated by an activity event.
     #[unsafe(super(OSLogEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogEntryActivity;
@@ -263,6 +300,7 @@ impl OSLogEntryActivity {
 }
 
 extern_class!(
+    /// The metadata that partitions sequences of other entries.
     /// This entry represents metadata that partitions sequences of
     /// other entries.
     ///
@@ -270,8 +308,6 @@ extern_class!(
     /// For example, this kind of entry is used for boot boundaries.
     /// The data here are currently informational and carried in the
     /// composedMessage property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentryboundary?language=objc)
     #[unsafe(super(OSLogEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogEntryBoundary;
@@ -298,30 +334,65 @@ impl OSLogEntryBoundary {
     );
 }
 
+/// The log level at which the entry was generated.
 /// The level that this entry was generated at.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntryLogLevel(pub NSInteger);
 impl OSLogEntryLogLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/undefined?language=objc)
+    /// The log level was never specified.
+    ///
+    /// ## Discussion
+    ///
+    /// You should never encounter an undefined log level.
+    ///
+    ///
     #[doc(alias = "OSLogEntryLogLevelUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/debug?language=objc)
+    /// A log level that captures diagnostic information.
+    ///
+    /// ## Discussion
+    ///
+    /// This level captures information that may be useful during development or while troubleshooting a specific problem.
+    ///
+    ///
     #[doc(alias = "OSLogEntryLogLevelDebug")]
     pub const Debug: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/info?language=objc)
+    /// The log level that captures additional information.
+    ///
+    /// ## Discussion
+    ///
+    /// This log level captures information that may be helpful but isn’t essential for troubleshooting errors.
+    ///
+    ///
     #[doc(alias = "OSLogEntryLogLevelInfo")]
     pub const Info: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/notice?language=objc)
+    /// The log level that captures notifications.
+    ///
+    /// ## Discussion
+    ///
+    /// This log level captures normal `os_log` entries used to generate notifications on system errors.
+    ///
+    ///
     #[doc(alias = "OSLogEntryLogLevelNotice")]
     pub const Notice: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/error?language=objc)
+    /// The log level that captures errors.
+    ///
+    /// ## Discussion
+    ///
+    /// This log level captures process-level information to report errors in the process.
+    ///
+    ///
     #[doc(alias = "OSLogEntryLogLevelError")]
     pub const Error: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum/fault?language=objc)
+    /// The log level that captures fault information.
+    ///
+    /// ## Discussion
+    ///
+    /// This log level represents system errors.
+    ///
+    ///
     #[doc(alias = "OSLogEntryLogLevelFault")]
     pub const Fault: Self = Self(5);
 }
@@ -335,9 +406,14 @@ unsafe impl RefEncode for OSLogEntryLogLevel {
 }
 
 extern_class!(
-    /// Entries made by the os_log API.
+    /// A log entry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog?language=objc)
+    /// ## Overview
+    ///
+    /// These log entries are generated by the os_log API. To learn more about how to generate a log entry, see [`os_log(_:dso:log:_:_:)`](https://developer.apple.comhttps://developer.apple.com/documentation/os/3019240-os_log) and [`os_log(_:dso:log:type:_:)`](https://developer.apple.comhttps://developer.apple.com/documentation/os/2320718-os_log).
+    ///
+    ///
+    /// Entries made by the os_log API.
     #[unsafe(super(OSLogEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogEntryLog;
@@ -377,24 +453,29 @@ impl OSLogEntryLog {
     );
 }
 
+/// The available signpost types.
 /// The kind of of signpost emitted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntrySignpostType(pub NSInteger);
 impl OSLogEntrySignpostType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/undefined?language=objc)
+    /// The signpost does not have a type.
+    ///
+    /// ## Discussion
+    ///
+    /// You should never encounter an undefined signpost type.
+    ///
+    ///
     #[doc(alias = "OSLogEntrySignpostTypeUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/intervalbegin?language=objc)
+    /// The signpost marks the start of a time interval.
     #[doc(alias = "OSLogEntrySignpostTypeIntervalBegin")]
     pub const IntervalBegin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/intervalend?language=objc)
+    /// The signpost marks the end of a time interval.
     #[doc(alias = "OSLogEntrySignpostTypeIntervalEnd")]
     pub const IntervalEnd: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum/event?language=objc)
+    /// The signpost marks an event.
     #[doc(alias = "OSLogEntrySignpostTypeEvent")]
     pub const Event: Self = Self(3);
 }
@@ -408,9 +489,14 @@ unsafe impl RefEncode for OSLogEntrySignpostType {
 }
 
 extern_class!(
-    /// Entries made by the os_signpost API.
+    /// An entry containing a signpost.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost?language=objc)
+    /// ## Overview
+    ///
+    /// These entries are created by the os_signpost API. To learn more about signposts and how to create a signpost entry, see [`os_signpost(_:dso:log:name:signpostID:)`](https://developer.apple.com/documentation/os/os_signpost(_:dso:log:name:signpostid:)-2oz8u) and [`os_signpost(_:dso:log:name:signpostID:_:_:)`](https://developer.apple.com/documentation/os/os_signpost(_:dso:log:name:signpostid:_:_:)-2om9b).
+    ///
+    ///
+    /// Entries made by the os_signpost API.
     #[unsafe(super(OSLogEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogEntrySignpost;
@@ -460,20 +546,25 @@ impl OSLogEntrySignpost {
     );
 }
 
+/// Option to control the direction of the iteration.
 /// Control the direction of the iteration.
 ///
 ///
 /// Iterate backward in time. If no starting position is specified,
 /// start at the latest entry.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumerator/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEnumeratorOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl OSLogEnumeratorOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumerator/options/reverse?language=objc)
+/// Tells the framework to iterate backwards.
+///
+/// ## Discussion
+///
+/// If there is no starting position specified, start at the latest entry.
+///
+///
         #[doc(alias = "OSLogEnumeratorReverse")]
         const Reverse = 0x01;
     }
@@ -488,9 +579,8 @@ unsafe impl RefEncode for OSLogEnumeratorOptions {
 }
 
 extern_class!(
+    /// An enumerator that can access and list log entries.
     /// An enumerator that views entries in the unified logging system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumerator?language=objc)
     #[unsafe(super(NSEnumerator, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogEnumerator;
@@ -521,33 +611,38 @@ impl OSLogEnumerator {
     );
 }
 
+/// The data type corresponding to the argument provided in a message payload.
+///
+/// ## Overview
+///
+/// For example, `OSLogMessageComponent` can represent the number associated with a `%d` placeholder. This value can be undefined if the argument data cann’t be decoded, for example if it were redacted.
+///
+///
 /// The kind of data corresponding to an argument in a message
 /// payload, like the number associated with a "%d" placeholder.
 /// This value can be undefined if the argument data cannot be
 /// decoded; for example, it may be redacted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogMessageComponentArgumentCategory(pub NSInteger);
 impl OSLogMessageComponentArgumentCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/undefined?language=objc)
+    /// The argument’s type is not defined.
     #[doc(alias = "OSLogMessageComponentArgumentCategoryUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/data?language=objc)
+    /// The argument is an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object.
     #[doc(alias = "OSLogMessageComponentArgumentCategoryData")]
     pub const Data: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/double?language=objc)
+    /// The argument is a double.
     #[doc(alias = "OSLogMessageComponentArgumentCategoryDouble")]
     pub const Double: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/int64?language=objc)
+    /// The argument is a 64-bit signed integer.
     #[doc(alias = "OSLogMessageComponentArgumentCategoryInt64")]
     pub const Int64: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/string?language=objc)
+    /// The argument is a string.
     #[doc(alias = "OSLogMessageComponentArgumentCategoryString")]
     pub const String: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum/uint64?language=objc)
+    /// The argument is a 64-bit unsigned integer.
     #[doc(alias = "OSLogMessageComponentArgumentCategoryUInt64")]
     pub const UInt64: Self = Self(5);
 }
@@ -561,11 +656,16 @@ unsafe impl RefEncode for OSLogMessageComponentArgumentCategory {
 }
 
 extern_class!(
+    /// The message arguments for a particular entry.
+    ///
+    /// ## Overview
+    ///
+    /// There is one component for each placeholder in the formatString plus one component for any text after the last placeholder.
+    ///
+    ///
     /// The message arguments for a particular entry. There is one
     /// component for each placeholder in the formatString plus one
     /// component for any text after the last placeholder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogMessageComponent;
@@ -660,14 +760,19 @@ impl OSLogMessageComponent {
 }
 
 extern_class!(
+    /// A representation of a point in a sequence of entries in the unified logging system.
+    ///
+    /// ## Overview
+    ///
+    /// Generate positions with [`OSLogStore`](https://developer.apple.com/documentation/oslog/oslogstore) instance methods and use them to view entries from a particular starting point.
+    ///
+    ///
     /// An opaque abstraction representing a point in a sequence of
     /// entries in the unified logging system.
     ///
     ///
     /// Generate positions with OSLogStore instance methods and use them
     /// to start viewing entries from a particular starting point.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogposition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogPosition;
@@ -700,17 +805,13 @@ impl OSLogPosition {
 ///
 /// "System" scope indicates the entire system; i.e., all logs. Entries can be
 /// retrieved for the current calling process, i.e., matching pid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore/scope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogStoreScope(pub NSInteger);
 impl OSLogStoreScope {
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore/scope/system?language=objc)
     #[doc(alias = "OSLogStoreSystem")]
     pub const System: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore/scope/currentprocessidentifier?language=objc)
     #[doc(alias = "OSLogStoreCurrentProcessIdentifier")]
     pub const CurrentProcessIdentifier: Self = Self(1);
 }
@@ -724,6 +825,17 @@ unsafe impl RefEncode for OSLogStoreScope {
 }
 
 extern_class!(
+    /// A set of entries from the unified logging system.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class represent a fixed range of entries and may be backed by a `logarchive` or your Mac’s local store.
+    ///
+    /// In Swift, Use the [`getEntries(with:at:matching:)`](https://developer.apple.com/documentation/oslog/oslogstore/getentries(with:at:matching:)) function to retrieve a filtered array of log entries.
+    ///
+    /// In Objective-C, use instances of this class to create [`OSLogEnumerator`](https://developer.apple.com/documentation/oslog/oslogenumerator) objects. One store can support multiple `OSLogEnumerator` instances concurrently.
+    ///
+    ///
     /// A set of entries from the unified logging system. Instances
     /// represent a fixed range of entries and may be backed by a
     /// logarchive or the Mac's local store.
@@ -732,8 +844,6 @@ extern_class!(
     /// Entries in OSLogStore objects are used by OSLogEnumerator
     /// instances; one store can support multiple OSLogEnumerator
     /// instances concurrently.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSLogStore;

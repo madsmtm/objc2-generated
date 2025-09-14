@@ -10,7 +10,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitembehavior?language=objc)
+    /// A base dynamic animation configuration for one or more dynamic items.
+    ///
+    /// ## Overview
+    ///
+    /// A _dynamic item_ is any iOS or custom object that conforms to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol in iOS 7 and later. You can use a custom object as a dynamic item for such purposes as reacting to rotation or position changes computed by a dynamic animator—an instance of the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) class.
+    ///
+    /// One notable and common use of a dynamic item behavior is to confer a velocity to a dynamic item to match the ending velocity of a user gesture.
+    ///
+    /// To use a dynamic item behavior with a dynamic item, perform these two steps:
+    ///
+    /// 1. Associate the item with the behavior using the [`addItem:`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior/additem(_:)) method, or initialize a new dynamic item behavior with an array of items using the [`initWithItems:`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior/init(items:)) method
+    ///
+    /// 2. Enable the behavior by adding it to an animator using the [`addBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/addbehavior(_:)) method
+    ///
+    /// The coordinate system that pertains to a dynamic item behavior, and the types of dynamic items you can use with the behavior, depend on how you initialized the associated animator. For details, see [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).
+    ///
+    /// You can disable rotation for a dynamic item behavior’s items by returning [`false`](https://developer.apple.com/documentation/swift/false) from the [`allowsRotation`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior/allowsrotation) property. To configure interaction among the behavior’s items, use the [`elasticity`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior/elasticity) and [`friction`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior/friction) properties.
+    ///
+    /// You can include a dynamic item behavior in a custom, composite behavior by starting with a [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior) object and adding a dynamic item behavior with the [`addChildBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)) method. If you want to influence a dynamic item behavior at each step of a dynamic animation, implement the inherited [`action`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/action) method.
+    ///
+    /// If you add more than one dynamic item behavior to an animator, you effectively create a behavior tree. Only one configuration of a given property applies to any given dynamic item. For a property configured in more than one dynamic item behavior, the last one in the behavior tree, starting from the dynamic animator and going depth first toward the dynamic item, wins.
+    ///
+    /// In the case of an animator with exactly one dynamic item behavior, you can restore default values for all dynamic item behavior properties by removing the behavior. In the case of an animator to which you’ve applied multiple dynamic item behaviors, removing one takes its property contribution out of the behavior tree.
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

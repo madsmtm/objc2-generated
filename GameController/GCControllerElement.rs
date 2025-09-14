@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A state for handling input when an element is part of a system gesture.
 /// Elements on a GCDevice can be used for system gestures. The system gesture state represents how input is handled in the app
 /// for a controller element that is bound to a system gesture.
 ///
@@ -26,26 +27,39 @@ use crate::*;
 /// See: GCControllerElement.boundToSystemGesture
 ///
 /// See: GCControllerElement.preferredSystemGestureState
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCSystemGestureState(pub NSInteger);
 impl GCSystemGestureState {
-    /// System gesture recognizers will run before input is sent to app, this is the default state
+    /// A state that sends input to your app only after a gesture recognizer doesn’t identify a gesture.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/enabled?language=objc)
+    /// ## Discussion
+    ///
+    /// If you enable system gestures, the system sends the input to the gesture recognizer and only sends it to your app if it doesn’t recognize a gesture. If it does recognize a gesture, it doesn’t send any input to your app.
+    ///
+    ///
+    /// System gesture recognizers will run before input is sent to app, this is the default state
     #[doc(alias = "GCSystemGestureStateEnabled")]
     pub const Enabled: Self = Self(0);
-    /// Input is sent to app and processed by system gesture recognizers simultaneously
+    /// A state that sends input to your app and a gesture recognizer simultaneously.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/alwaysreceive?language=objc)
+    /// ## Discussion
+    ///
+    /// This state removes any delay in your app receiving the input but may trigger a simultaneous system gesture and in-app action.
+    ///
+    ///
+    /// Input is sent to app and processed by system gesture recognizers simultaneously
     #[doc(alias = "GCSystemGestureStateAlwaysReceive")]
     pub const AlwaysReceive: Self = Self(1);
-    /// System gesture recognizers will not run at all. Input is passed directly to app
+    /// A state that sends input to your app directly and not to a gesture recognizer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/disabled?language=objc)
+    /// ## Discussion
+    ///
+    /// This state gives your app full control of the input for this element.
+    ///
+    ///
+    /// System gesture recognizers will not run at all. Input is passed directly to app
     #[doc(alias = "GCSystemGestureStateDisabled")]
     pub const Disabled: Self = Self(2);
 }
@@ -59,9 +73,22 @@ unsafe impl RefEncode for GCSystemGestureState {
 }
 
 extern_class!(
-    /// Every controller element knows which collection it belongs to and whether its input value is analog or digital.
+    /// An input for a physical control, such as a button or thumbstick.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement?language=objc)
+    /// ## Overview
+    ///
+    /// `GCControllerElement` is an abstract superclass for specific types of elements that represent controls on a game controller. Use the respective subclasses to either get the input of an element directly or set a handler that the element calls when the user changes a value. This class provides support for common features.
+    ///
+    /// For complex elements that have subelements, you can get the containing element using the [`collection`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/collection) property. For example, a direction pad ([`GCControllerDirectionPad`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad)) has two axis control and four button subelements.
+    ///
+    /// If the user binds a controller element to a system gesture, the system sends the input to the system gesture recognizer first. If it doesn’t recognize a gesture, the system sends the input to your app but with a delay. If it does recognize a gesture, it doesn’t send any input to your app.
+    ///
+    /// To change this default behavior, you can set the [`preferredSystemGestureState`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/preferredsystemgesturestate) property to [`GCSystemGestureStateAlwaysReceive`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/alwaysreceive) to receive the input simultaneously without delay. Alternatively, set it to [`GCSystemGestureStateDisabled`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate/disabled) to disable the system gesture and receive the input exclusively. Use the [`boundToSystemGesture`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isboundtosystemgesture) property to check whether the user included an element in a system gesture.
+    ///
+    /// Use the [`analog`](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/isanalog) property to determine whether an element’s input value is a range of values or a discrete digital value.
+    ///
+    ///
+    /// Every controller element knows which collection it belongs to and whether its input value is analog or digital.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCControllerElement;

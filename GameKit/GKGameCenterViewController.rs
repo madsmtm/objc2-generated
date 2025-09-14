@@ -10,32 +10,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate?language=objc)
+/// The type of content for the view controller to present.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKGameCenterViewControllerState(pub NSInteger);
 impl GKGameCenterViewControllerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/default?language=objc)
+    /// The view controller should present the default screen.
     #[doc(alias = "GKGameCenterViewControllerStateDefault")]
     pub const Default: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/leaderboards?language=objc)
+    /// The view controller should present leaderboard sets or leaderboards if there are no sets.
     #[doc(alias = "GKGameCenterViewControllerStateLeaderboards")]
     pub const Leaderboards: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/achievements?language=objc)
+    /// The view controller should present a list of achievements.
     #[doc(alias = "GKGameCenterViewControllerStateAchievements")]
     pub const Achievements: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/challenges?language=objc)
+    /// The view controller should present a list of challenges.
     #[doc(alias = "GKGameCenterViewControllerStateChallenges")]
     #[deprecated]
     pub const Challenges: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/localplayerprofile?language=objc)
+    /// The view controller should present the local player’s profile.
     #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerProfile")]
     pub const LocalPlayerProfile: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/dashboard?language=objc)
+    /// The view controller should present the dashboard.
     #[doc(alias = "GKGameCenterViewControllerStateDashboard")]
     pub const Dashboard: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontrollerstate/localplayerfriendslist?language=objc)
+    /// The view controller should present the friends list.
     #[doc(alias = "GKGameCenterViewControllerStateLocalPlayerFriendsList")]
     pub const LocalPlayerFriendsList: Self = Self(5);
 }
@@ -49,9 +49,18 @@ unsafe impl RefEncode for GKGameCenterViewControllerState {
 }
 
 extern_class!(
-    /// View controller that provides the standard user interface for leaderboards, achievements, and challenges. Present modally from the top view controller.
+    /// The dashboard that allows players to access their Game Center data in your game.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// This view controller presents the dashboard from which players can browse and manage their Game Center data. You can present the dashboard in a specific state from which players can navigate to other areas, including their profile. Your game should pause other activities before presenting the dashboard.
+    ///
+    /// To present the dashboard, initialize a new [`GKGameCenterViewController`](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller) object and set its delegate. Optionally, initialize a view controller in a specific state, to show a leaderboard with scores from a set of players or during a time period, or to show a specific achievement. Then present the view controller to the player, and GameKit calls your delegate when the player dismisses it.
+    ///
+    /// For visionOS games, the dashboard appears anchored to the window, scene, or view relative to where you present the view controller. For immersive games, set the parent window to a separate window group than the immersive space window group. For the visionOS location of the dashboard when using the access point, see [Configure the access point on visionOS](https://developer.apple.com/documentation/gamekit/adding-an-access-point-to-your-game#configure-the-access-point-on-visionos).
+    ///
+    ///
+    /// View controller that provides the standard user interface for leaderboards, achievements, and challenges. Present modally from the top view controller.
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -279,7 +288,13 @@ impl GKGameCenterViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamecentercontrollerdelegate?language=objc)
+    /// The delegate that GameKit calls when the player dismisses the dashboard.
+    ///
+    /// ## Overview
+    ///
+    /// Delegates of [`GKGameCenterViewController`](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller) objects conform to the `GKGameCenterControllerDelegate` protocol.
+    ///
+    ///
     #[deprecated]
     pub unsafe trait GKGameCenterControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]

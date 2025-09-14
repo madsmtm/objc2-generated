@@ -6,29 +6,35 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowsntoperatingsystem?language=objc)
+/// Indicates the Windows NT operating system.
 #[deprecated = "Not supported"]
 pub const NSWindowsNTOperatingSystem: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindows95operatingsystem?language=objc)
+/// Indicates the Windows 95 operating system.
 #[deprecated = "Not supported"]
 pub const NSWindows95OperatingSystem: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssolarisoperatingsystem?language=objc)
+/// Indicates the Solaris operating system.
 #[deprecated = "Not supported"]
 pub const NSSolarisOperatingSystem: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshpuxoperatingsystem?language=objc)
+/// Indicates the HP UX operating system.
 #[deprecated = "Not supported"]
 pub const NSHPUXOperatingSystem: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachoperatingsystem?language=objc)
+/// Indicates the macOS operating system.
 #[deprecated = "Not supported"]
 pub const NSMACHOperatingSystem: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssunosoperatingsystem?language=objc)
+/// Indicates the Sun OS operating system.
 #[deprecated = "Not supported"]
 pub const NSSunOSOperatingSystem: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosf1operatingsystem?language=objc)
+/// Indicates the OSF/1 operating system.
 #[deprecated = "Not supported"]
 pub const NSOSF1OperatingSystem: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/operatingsystemversion?language=objc)
+/// A structure that contains version information about the currently executing operating system, including major, minor, and patch version numbers.
+///
+/// ## Overview
+///
+/// Use the [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) property [`operatingSystemVersion`](https://developer.apple.com/documentation/foundation/processinfo/operatingsystemversion) to fetch an instance of this type. You can also pass this type to [`isOperatingSystemAtLeastVersion:`](https://developer.apple.com/documentation/foundation/processinfo/isoperatingsystematleast(_:)) to determine whether the current operating system version is the same or later than the given value.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSOperatingSystemVersion {
@@ -57,7 +63,98 @@ unsafe impl Send for NSOperatingSystemVersion {}
 unsafe impl Sync for NSOperatingSystemVersion {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo?language=objc)
+    /// A collection of information about the current process.
+    ///
+    /// ## Overview
+    ///
+    /// Each process has a single, shared [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) object known as a _process information agent_ that can return information such as arguments, environment variables, host name, and process name. The [`processInfo`](https://developer.apple.com/documentation/foundation/processinfo/processinfo) class method returns the shared agent for the current process. For example, the following line returns the [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) object, which then provides the name of the current process:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let processName = ProcessInfo.processInfo.processName"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSString *processName = [[NSProcessInfo processInfo] processName];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) is thread-safe in macOS 10.7 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) class also includes the [`operatingSystemVersion`](https://developer.apple.com/documentation/foundation/processinfo/operatingsystemversion) property, which returns an [`NSOperatingSystemVersion`](https://developer.apple.com/documentation/foundation/operatingsystemversion) structure identifying the operating system version on which the process is executing.
+    ///
+    /// [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) objects attempt to interpret environment variables and command-line arguments in the user’s default C string encoding if they can’t convert to Unicode as UTF-8 strings. If neither the Unicode nor C string conversion works, the [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) object ignores these values.
+    ///
+    /// ### Manage Activities
+    ///
+    /// The system has heuristics to improve battery life, performance, and responsiveness of applications for the benefit of the user. You can use the following methods to manage _activities_ that give hints to the system that your application has special requirements:
+    ///
+    /// - [`beginActivityWithOptions:reason:`](https://developer.apple.com/documentation/foundation/processinfo/beginactivity(options:reason:))
+    ///
+    /// - [`endActivity:`](https://developer.apple.com/documentation/foundation/processinfo/endactivity(_:))
+    ///
+    /// - [`performActivityWithOptions:reason:usingBlock:`](https://developer.apple.com/documentation/foundation/processinfo/performactivity(options:reason:using:))
+    ///
+    /// In response to creating an activity, the system disables some or all of the heuristics so your application can finish quickly while still providing responsive behavior if the user needs it.
+    ///
+    /// You use activities when your application performs a long-running operation. If the activity can take different amounts of time (for example, calculating the next move in a chess game), it should use this API to ensure correct behavior when the amount of data or the capabilities of the user’s computer varies. Activities fall into two major categories:
+    ///
+    /// - _User-initiated_ activities are explicitly started by the user. Examples include exporting or downloading a user-specified file.
+    ///
+    /// - _Background_ activities perform the normal operations of your application and aren’t explicitly started by the user. Examples include autosaving, indexing, and automatic downloading of files.
+    ///
+    /// In addition, if your application requires high priority input/output (I/O), you can include the [`NSActivityLatencyCritical`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/latencycritical) flag (using a bitwise `OR`). You should only use this flag for activities like audio or video recording that require high priority I/O.
+    ///
+    /// If your activity takes place synchronously inside an event callback on the main thread, you don’t need to use this API.
+    ///
+    /// Be aware that failing to end these activities for an extended period of time can have significant negative impacts on the performance of your user’s computer, so be sure to use only the minimum amount of time required. User preferences may override your application’s request.
+    ///
+    /// You can also use this API to control automatic termination or sudden termination (see [Support Sudden Termination](https://developer.apple.com/documentation/foundation/processinfo#support-sudden-termination)). For example, the following code brackets the work to protect it from sudden termination:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let activity = ProcessInfo.processInfo.beginActivity(", "    options: .automaticTerminationDisabled, ", "    reason: \"Good Reason\")", "// Perform some work.", "ProcessInfo.processInfo.endActivity(activity)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["id activity = [[NSProcessInfo processInfo] beginActivityWithOptions:NSActivityAutomaticTerminationDisabled reason:@\"Good Reason\"];", "// Perform some work.", "[[NSProcessInfo processInfo] endActivity:activity];"], metadata: None }] }] })
+    /// The above example is equivalent to the following code, which uses the [`disableAutomaticTermination:`](https://developer.apple.com/documentation/foundation/processinfo/disableautomatictermination(_:)) method:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["ProcessInfo.processInfo.disableAutomaticTermination(\"Good Reason\")", "// Perform some work.", "ProcessInfo.processInfo.enableAutomaticTermination(\"Good Reason\")"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[[NSProcessInfo processInfo] disableAutomaticTermination:@\"Good Reason\"];", "// Perform some work.", "[[NSProcessInfo processInfo] enableAutomaticTermination:@\"Good Reason\"];"], metadata: None }] }] })
+    /// Because this API returns an object, it may be easier to pair begins and ends than when using the automatic termination API. If your app deallocates the object before the [`endActivity:`](https://developer.apple.com/documentation/foundation/processinfo/endactivity(_:)) call, the activity ends automatically.
+    ///
+    /// This API also provides a mechanism to disable system-wide idle sleep and display idle sleep. These can have a large impact on the user experience, so be careful to end activities that disable sleep (including [`NSActivityUserInitiated`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiated)).
+    ///
+    /// ### Support Sudden Termination
+    ///
+    /// macOS 10.6 and later includes a mechanism that allows the system to log out or shut down more quickly by, whenever possible, killing applications instead of requesting that they quit themselves.
+    ///
+    /// Your application can enable this capability on a global basis and then manually override its availability during actions that could cause data corruption or a poor user experience by allowing sudden termination.
+    ///
+    /// Alternatively, your application can manually enable and disable this functionality. Creating a process assigns a counter that indicates if the process is safe to terminate. You decrement and increment the counter using the methods [`enableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/enablesuddentermination()) and [`disableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/disablesuddentermination()). A value of `0` enables the system to terminate the process without first sending a notification or event.
+    ///
+    /// Your application can support sudden termination upon launch by adding a key to the application’s `Info.plist` file. If the [`NSSupportsSuddenTermination`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssupportssuddentermination) key exists in the `Info.plist` file and has a value of [`true`](https://developer.apple.com/documentation/swift/true), it’s the equivalent of calling [`enableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/enablesuddentermination()) during your application launch. This allows the system to terminate the process immediately. You can still override this behavior by invoking [`disableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/disablesuddentermination()).
+    ///
+    /// Typically, you disable sudden termination whenever your app defers work that the app must complete before it terminates. If, for example, your app defers writing data to disk and enables sudden termination, you should bracket the sensitive operations with a call to [`disableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/disablesuddentermination()), perform the necessary operations, and then send a balancing [`enableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/enablesuddentermination()) message.
+    ///
+    /// In agents or daemon executables that don’t depend on AppKit, you can manually invoke [`enableSuddenTermination`](https://developer.apple.com/documentation/foundation/processinfo/enablesuddentermination()) right away. You can then use the enable and disable methods whenever the process has work it must do before it terminates.
+    ///
+    /// Some AppKit functionality automatically disables sudden termination on a temporary basis to ensure data integrity.
+    ///
+    /// - [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) temporarily disables sudden termination to prevent the process from terminating between the time at which it sets the default and the time at which it writes the preferences file — including that default — to disk.
+    ///
+    /// - [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) temporarily disables sudden termination to prevent the process from terminating between the time at which the user has made a change to a document and the time at which [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) writes the user’s change to disk.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  You can determine the value of the sudden termination using the following LLDB command.
+    ///
+    /// ```objc
+    /// print (long)[[NSClassFromString(@"NSProcessInfo") processInfo] _suddenTerminationDisablingCount]
+    /// ```
+    ///
+    /// Don’t attempt to invoke or override `suddenTerminationDisablingCount` (a private method) in your application. It’s there for this debugging purpose and may disappear at any time.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Monitor Thermal State to Adjust App Performance
+    ///
+    /// _Thermal state_ indicates the level of heat generated by logic components as they run apps. As the thermal state increases, the system decreases heat by reducing the speed of the processors. Optimize your app’s performance by monitoring the thermal state and reducing system usage as the thermal state increases. Query the current state with [`thermalState`](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.property) to determine if your app needs to reduce system usage. You can register the [`NSProcessInfoThermalStateDidChangeNotification`](https://developer.apple.com/documentation/foundation/processinfo/thermalstatedidchangenotification) for notifications of a change in thermal state. For recommended actions, see [`NSProcessInfoThermalState`](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSProcessInfo;
@@ -207,44 +304,122 @@ impl DefaultRetained for NSProcessInfo {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions?language=objc)
+/// Option flags used with [`beginActivityWithOptions:reason:`](https://developer.apple.com/documentation/foundation/processinfo/beginactivity(options:reason:)) and [`performActivityWithOptions:reason:usingBlock:`](https://developer.apple.com/documentation/foundation/processinfo/performactivity(options:reason:using:)).
+///
+/// ## Overview
+///
+/// To include one of these individual flags in one of the sets, use bitwise `OR`; for example, during a presentation you might use:
+///
+/// ```objc
+/// NSActivityUserInitiated | NSActivityIdleDisplaySleepDisabled
+/// ```
+///
+/// To exclude from one of the sets, use bitwise `AND` with `NOT`; for example, during a user initiated action that may be safely terminated with no application interaction in case of logout you might use:
+///
+/// ```objc
+/// NSActivityUserInitiated & ~NSActivitySuddenTerminationDisabled
+/// ```
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSActivityOptions(pub u64);
 bitflags::bitflags! {
     impl NSActivityOptions: u64 {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/idledisplaysleepdisabled?language=objc)
+/// A flag to require the screen to stay powered on.
         #[doc(alias = "NSActivityIdleDisplaySleepDisabled")]
         const IdleDisplaySleepDisabled = 1<<40;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/idlesystemsleepdisabled?language=objc)
+/// A flag to prevent idle sleep.
+///
+/// ## Discussion
+///
+/// This is negated by [`NSActivityUserInitiatedAllowingIdleSystemSleep`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiatedallowingidlesystemsleep).
+///
+///
         #[doc(alias = "NSActivityIdleSystemSleepDisabled")]
         const IdleSystemSleepDisabled = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/suddenterminationdisabled?language=objc)
+/// A flag to prevent sudden termination.
+///
+/// ## Discussion
+///
+/// This is included by [`NSActivityUserInitiatedAllowingIdleSystemSleep`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiatedallowingidlesystemsleep).
+///
+///
         #[doc(alias = "NSActivitySuddenTerminationDisabled")]
         const SuddenTerminationDisabled = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/automaticterminationdisabled?language=objc)
+/// A flag to prevent automatic termination.
+///
+/// ## Discussion
+///
+/// This is included by [`NSActivityUserInitiatedAllowingIdleSystemSleep`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiatedallowingidlesystemsleep).
+///
+///
         #[doc(alias = "NSActivityAutomaticTerminationDisabled")]
         const AutomaticTerminationDisabled = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled?language=objc)
+/// A flag to track the activity with an animation signpost interval.
+///
+/// ## Discussion
+///
+/// To help you investigate perfomance issues in your app, use [`NSActivityAnimationTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled) to track the timing of a user interaction by annotating the beginning and end of an activity using an animation signpost interval.
+///
+/// Calling [`beginActivityWithOptions:reason:`](https://developer.apple.com/documentation/foundation/processinfo/beginactivity(options:reason:)) to begin the activity returns an object token that you retain for the duration of the activity. The logging system produces a distinct message, useful in debugging, if the object token is de-allocated before you call [`endActivity:`](https://developer.apple.com/documentation/foundation/processinfo/endactivity(_:)).
+///
+/// The flag [`NSActivityAnimationTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled) differs from [`NSActivityTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/trackingenabled) in the type of interval signposts the logging system emits. Use [`NSActivityAnimationTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled) when the interaction involves an animation.
+///
+///
         #[doc(alias = "NSActivityAnimationTrackingEnabled")]
         const AnimationTrackingEnabled = 1<<45;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/trackingenabled?language=objc)
+/// A flag to track the activity with a signpost interval.
+///
+/// ## Discussion
+///
+/// To help you investigate perfomance issues in your app, use [`NSActivityTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/trackingenabled) to track the timing of a user interaction by annotating the beginning and end of an activity using a signpost interval.
+///
+/// Calling [`beginActivityWithOptions:reason:`](https://developer.apple.com/documentation/foundation/processinfo/beginactivity(options:reason:)) to begin the activity returns an object token that you retain for the duration of the activity. The logging system produces a distinct message, useful in debugging, if the object token is de-allocated before you call [`endActivity:`](https://developer.apple.com/documentation/foundation/processinfo/endactivity(_:)).
+///
+/// The flag [`NSActivityTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/trackingenabled) differs from [`NSActivityAnimationTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled) in the type of interval signposts the logging system emits. Use [`NSActivityAnimationTrackingEnabled`](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/animationtrackingenabled) when the interaction involves an animation.
+///
+///
         #[doc(alias = "NSActivityTrackingEnabled")]
         const TrackingEnabled = 1<<46;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiated?language=objc)
+/// A flag to indicate the app is performing a user-requested action.
+///
+/// ## Discussion
+///
+/// Examples of user initiated actions are exporting or downloading a user-specified file or dismissing a form sheet.
+///
+///
         #[doc(alias = "NSActivityUserInitiated")]
         const UserInitiated = 0x00FFFFFF|NSActivityOptions::IdleSystemSleepDisabled.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinitiatedallowingidlesystemsleep?language=objc)
+/// A flag to indicate the app is performing a user-requested action, but that the system can sleep on idle.
         #[doc(alias = "NSActivityUserInitiatedAllowingIdleSystemSleep")]
         const UserInitiatedAllowingIdleSystemSleep = NSActivityOptions::UserInitiated.0&!NSActivityOptions::IdleSystemSleepDisabled.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/background?language=objc)
+/// A flag to indicate the app has initiated some kind of work, but not as the direct result of user request.
         #[doc(alias = "NSActivityBackground")]
         const Background = 0x000000FF;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/latencycritical?language=objc)
+/// A flag to indicate the activity requires the highest amount of timer and I/O precision available.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Very few applications should need to use this constant.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSActivityLatencyCritical")]
         const LatencyCritical = 0xFF00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions/userinteractive?language=objc)
+/// A flag to indicate the app is responding to user interaction.
+///
+/// ## Discussion
+///
+/// Examples of user-interactive actions include scrolling and interactively dismissing from a navigation controller.
+///
+///
         #[doc(alias = "NSActivityUserInteractive")]
         const UserInteractive = NSActivityOptions::UserInitiated.0|NSActivityOptions::LatencyCritical.0;
     }
@@ -316,22 +491,66 @@ impl NSProcessInfo {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum?language=objc)
+/// Values used to indicate the system’s thermal state.
+///
+/// ## Overview
+///
+/// These values are used by the [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) class as return values for [`thermalState`](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.property).
+///
+/// For information about testing your app under different thermal states, see [Test under adverse device conditions](https://help.apple.com/xcode/mac/current/#/dev308429d42).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSProcessInfoThermalState(pub NSInteger);
 impl NSProcessInfoThermalState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/nominal?language=objc)
+    /// The thermal state is within normal limits.
     #[doc(alias = "NSProcessInfoThermalStateNominal")]
     pub const Nominal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/fair?language=objc)
+    /// The thermal state is slightly elevated.
+    ///
+    /// ## Discussion
+    ///
+    /// The system takes steps to reduce thermal state, like running fans and stopping background services that aren’t doing work immediately needed by the user.
+    ///
+    /// Reduce or defer background work, like prefetching content over the network or updating database indexes.
+    ///
+    ///
     #[doc(alias = "NSProcessInfoThermalStateFair")]
     pub const Fair: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/serious?language=objc)
+    /// The thermal state is high.
+    ///
+    /// ## Discussion
+    ///
+    /// The system takes moderate steps to reduce thermal state, which reduces performance. Fans are running at maximum speed.
+    ///
+    /// Reduce usage of resources that generate heat and consume battery, for example:
+    ///
+    /// - Reduce or defer I/O operations, such as networking and Bluetooth
+    ///
+    /// - Reduce the requested level of accuracy for location
+    ///
+    /// - Reduce CPU and GPU usage by stopping or deferring work
+    ///
+    /// - Reduce the target framerate from 60 FPS to 30 FPS
+    ///
+    /// - Reduce the level of detail in rendered content by using fewer particles or lower-resolution textures
+    ///
+    /// For more details on how to reduce your app’s use of these resources, see [Energy Efficiency Guide for iOS Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/index.html#//apple_ref/doc/uid/TP40015243) and [Energy Efficiency Guide for Mac Apps](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/power_efficiency_guidelines_osx/index.html#//apple_ref/doc/uid/TP40013929).
+    ///
+    ///
     #[doc(alias = "NSProcessInfoThermalStateSerious")]
     pub const Serious: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum/critical?language=objc)
+    /// The thermal state is significantly impacting the performance of the system and the device needs to cool down.
+    ///
+    /// ## Discussion
+    ///
+    /// The system takes significant steps to reduce thermal state. Fans are running at maximum speed.
+    ///
+    /// Reduce usage of the CPU, GPU, and I/O such as Bluetooth or network to the minimum level required for user interaction. If possible, stop using peripherals such as the camera, flash, microphone, and speaker.
+    ///
+    ///
     #[doc(alias = "NSProcessInfoThermalStateCritical")]
     pub const Critical: Self = Self(3);
 }
@@ -363,13 +582,29 @@ impl NSProcessInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstatedidchangenotification?language=objc)
+    /// Posts when the thermal state of the system changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) instance.
+    ///
+    /// To receive [`NSProcessInfoThermalStateDidChangeNotification`](https://developer.apple.com/documentation/foundation/processinfo/thermalstatedidchangenotification), you must access the [`thermalState`](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.property) prior to registering for the notification.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsprocessinfopowerstatedidchange?language=objc)
+    /// Posts when the power state of a device changes.
+    ///
+    /// ## Discussion
+    ///
+    /// After your observer receives this notification, query the [`lowPowerModeEnabled`](https://developer.apple.com/documentation/foundation/processinfo/islowpowermodeenabled) property to determine the current power state of the device. If Low Power Mode is active, take appropriate steps to reduce activity in your app. Otherwise, your app can resume normal operations.
+    ///
+    /// The notification object is a [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) instance.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName;
 }

@@ -10,12 +10,17 @@ use crate::*;
 extern_class!(
     /// A view that extends content to fill its own bounds.
     ///
+    /// ## Overview
+    ///
+    /// A background extension view can be laid out to extend outside the safe area, such as under the titlebar, sidebar, or inspector. By default it lays out its content to stay within the safe area, and uses modifications of the content along the edges to fill the container view.
+    ///
+    ///
+    /// A view that extends content to fill its own bounds.
+    ///
     /// A background extension view can be laid out to extend outside the safe area,
     /// such as under the titlebar, sidebar, or inspector. By default it lays out
     /// its content to stay within the safe area, and uses modifications of the
     /// content along the edges to fill the container view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundextensionview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

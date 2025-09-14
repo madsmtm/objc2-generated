@@ -10,12 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A slider control that selects a value from a bounded range.
+    ///
+    /// ## Overview
+    ///
+    /// Sliders are appropriate for controls that provide a single float value.
+    ///
+    ///
     /// An `AVCaptureControl` for selecting a value from a bounded range of values.
     ///
     ///
     /// `AVCaptureSlider` is ideal when your control only needs a single float value. Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureslider?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]

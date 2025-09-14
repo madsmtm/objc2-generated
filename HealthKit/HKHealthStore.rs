@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The HKHealthStore class provides an interface for accessing and storing the user's health data.
+    /// The access point for all data managed by HealthKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthstore?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`HKHealthStore`](https://developer.apple.com/documentation/healthkit/hkhealthstore) object to request permission to share or read HealthKit data. After you have permission, you can use the HealthKit store to save new samples to the store, or to manage the samples that your app saved. Additionally, you can use the HealthKit store to start, stop, and manage queries.
+    ///
+    /// For more information, see [Setting up HealthKit](https://developer.apple.com/documentation/healthkit/setting-up-healthkit).
+    ///
+    ///
+    /// The HKHealthStore class provides an interface for accessing and storing the user's health data.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKHealthStore;
@@ -581,14 +588,21 @@ impl HKHealthStore {
 }
 
 extern "C" {
+    /// Notifies observers whenever the user changes his or her preferred units.
+    ///
+    /// ## Discussion
+    ///
+    /// The preferred units are the units that the user prefers for a given measurement type. By default, the preferred units are based on the device’s current locale. For example, in the US, the preferred units for the [`bodyMass`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodymass) identifier are pounds. Other regions may use kilograms or stones. However, users can change their preferred units in the Health app at any time.
+    ///
+    /// Each `HKHealthStore` object posts its own `HKUserPreferencesDidChangeNotification` notification. To avoid receiving duplicate notifications, always pass a health store instance to the notification center when adding observers.
+    ///
+    ///
     /// A notification posted every time the user updates their preferred units.
     ///
     /// Each HKHealthStore posts a HKUserPreferencesDidChangeNotification notification when the preferred unit
     /// for a HKQuantityType is changed by the user. To guarantee your listener will only receive a single
     /// notification when this occurs, it is necessary to provide an HKHealthStore instance for the object
     /// parameter of NSNotificationCenter's addObserver methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserpreferencesdidchangenotification?language=objc)
     pub static HKUserPreferencesDidChangeNotification: &'static NSString;
 }
 

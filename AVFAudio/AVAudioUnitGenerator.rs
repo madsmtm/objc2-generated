@@ -10,14 +10,19 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
+    /// An object that generates audio output.
+    ///
+    /// ## Overview
+    ///
+    /// A generator represents an [`AudioUnit`](https://developer.apple.com/documentation/audiotoolbox/audiounit) of type `kAudioUnitType_Generator` or `kAudioUnitType_RemoteGenerator`. A generator has no audio input, but produces audio output. An example is a tone generator.
+    ///
+    ///
     /// an AVAudioUnit that generates audio output
     ///
     /// An AVAudioUnitGenerator represents an audio unit of type kAudioUnitType_Generator or
     /// kAudioUnitType_RemoteGenerator.
     /// A generator will have no audio input, but will just produce audio output.
     /// A tone generator is an example of this.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitgenerator?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]

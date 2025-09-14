@@ -8,7 +8,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3d?language=objc)
+/// The standard transform matrix used throughout Core Animation.
+///
+/// ## Overview
+///
+/// The transform matrix is used to rotate, scale, translate, skew, and project the layer content. Functions are provided for creating, concatenating, and modifying CATransform3D data.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -62,14 +68,20 @@ unsafe impl RefEncode for CATransform3D {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3didentity?language=objc)
+    /// The identity transform: `[1 0 0 0; 0 1 0 0; 0 0 1 0; 0 0 0 1]`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static CATransform3DIdentity: CATransform3D;
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 impl CATransform3D {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3disidentity(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the transform is the identity transform.
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `t` is the identity transform, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CATransform3DIsIdentity")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -80,7 +92,13 @@ impl CATransform3D {
         unsafe { CATransform3DIsIdentity(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dequaltotransform(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the two transforms are exactly equal.
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `a` and `b` are exactly equal, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CATransform3DEqualToTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -91,7 +109,13 @@ impl CATransform3D {
         unsafe { CATransform3DEqualToTransform(self, b) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmaketranslation(_:_:_:)?language=objc)
+    /// Returns a transform that translates by `(tx, ty, tz)`.
+    ///
+    /// ## Discussion
+    ///
+    /// `t =  [1 0 0 0; 0 1 0 0; 0 0 1 0; tx ty tz 1].`
+    ///
+    ///
     #[doc(alias = "CATransform3DMakeTranslation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -103,7 +127,13 @@ impl CATransform3D {
         unsafe { CATransform3DMakeTranslation(tx, ty, tz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmakescale(_:_:_:)?language=objc)
+    /// Returns a transform that scales by `(sx, sy, sz)`.
+    ///
+    /// ## Discussion
+    ///
+    /// `t = [sx 0 0 0; 0 sy 0 0; 0 0 sz 0; 0 0 0 1].`
+    ///
+    ///
     #[doc(alias = "CATransform3DMakeScale")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -114,7 +144,13 @@ impl CATransform3D {
         unsafe { CATransform3DMakeScale(sx, sy, sz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmakerotation(_:_:_:_:)?language=objc)
+    /// Returns a transform that rotates by `angle` radians about the vector `(x, y, z)`.
+    ///
+    /// ## Discussion
+    ///
+    /// If the vector has length zero, this function returns the identity transform.
+    ///
+    ///
     #[doc(alias = "CATransform3DMakeRotation")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -130,7 +166,7 @@ impl CATransform3D {
         unsafe { CATransform3DMakeRotation(angle, x, y, z) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dtranslate(_:_:_:_:)?language=objc)
+    /// Translates `t` by `(tx, ty, tz)` and returns the result: `t` `= translate(tx, ty, tz) * t`.
     #[doc(alias = "CATransform3DTranslate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -146,7 +182,7 @@ impl CATransform3D {
         unsafe { CATransform3DTranslate(self, tx, ty, tz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dscale(_:_:_:_:)?language=objc)
+    /// Scales `t` by `(sx, sy, sz)` and returns the result: `t = scale(sx, sy, sz) * t`.
     #[doc(alias = "CATransform3DScale")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -162,7 +198,13 @@ impl CATransform3D {
         unsafe { CATransform3DScale(self, sx, sy, sz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3drotate(_:_:_:_:_:)?language=objc)
+    /// Rotates `t` by `angle` radians about the vector `(x, y, z)` and returns the result.
+    ///
+    /// ## Discussion
+    ///
+    /// If the vector has zero length, the behavior is undefined: `t` = `rotation(angle, x, y, z) * t`.
+    ///
+    ///
     #[doc(alias = "CATransform3DRotate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -179,7 +221,7 @@ impl CATransform3D {
         unsafe { CATransform3DRotate(self, angle, x, y, z) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dconcat(_:_:)?language=objc)
+    /// Concatenates `b` to `a` and returns the result: `t = a * b`.
     #[doc(alias = "CATransform3DConcat")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -190,7 +232,13 @@ impl CATransform3D {
         unsafe { CATransform3DConcat(self, b) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dinvert(_:)?language=objc)
+    /// Inverts `t` and returns the result.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns the original matrix if `t` has no inverse.
+    ///
+    ///
     #[doc(alias = "CATransform3DInvert")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -201,7 +249,7 @@ impl CATransform3D {
         unsafe { CATransform3DInvert(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dmakeaffinetransform(_:)?language=objc)
+    /// Returns a transform with the same effect as affine transform `m`.
     #[doc(alias = "CATransform3DMakeAffineTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -212,7 +260,13 @@ impl CATransform3D {
         unsafe { CATransform3DMakeAffineTransform(m) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3disaffine(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a transform can be exactly represented by an affine transform.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if `t` can be exactly represented by an affine transform.
+    ///
+    ///
     #[doc(alias = "CATransform3DIsAffine")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -223,7 +277,13 @@ impl CATransform3D {
         unsafe { CATransform3DIsAffine(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransform3dgetaffinetransform(_:)?language=objc)
+    /// Returns the affine transform represented by `t`.
+    ///
+    /// ## Discussion
+    ///
+    /// If `t` can not be exactly represented as an affine transform, the return value is undefined.
+    ///
+    ///
     #[doc(alias = "CATransform3DGetAffineTransform")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

@@ -11,9 +11,42 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Standard view controller for sending friend requests to other players. Present modally from the top view controller.
+    /// Your game uses the `GKFriendRequestComposeViewController` class to present a screen that allows the local player to send friend requests to other players.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your game must initialize a local player before you can use any Game Center classes. If there is no initialized player, your game receives a [`GKErrorNotAuthenticated`](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated) error. For more information, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To show a friend request, initialize a new `GKFriendRequestComposeViewController` object and set the delegate. Optionally, you can customize the request by adding a text message or a list of recipients. Then, present the new view controller and wait for the delegate to be called. Once the delegate is called, dismiss the view controller.
+    ///
+    /// On iOS, you present and dismiss the view controller from another view controller in your game, using the methods provided by the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class. In macOS, you use the [`GKDialogController`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller) class to present and dismiss the view controller. The listing below shows one way your view controller can allow a player to send a request to other players. For this method, an array of [`GKPlayer`](https://developer.apple.com/documentation/gamekit/gkplayer) objects is passed in as a parameter. The method instantiates a `GKFriendRequestComposeViewController` object, sets its delegate, and adds the list of players intended to receive the invitation. The view controller then presents the friend request and returns.
+    ///
+    /// ```objc
+    /// - (void) inviteFriends: (NSArray*) players
+    /// {
+    ///     GKFriendRequestComposeViewController *friendRequestViewController = [[GKFriendRequestComposeViewController alloc] init];
+    ///     friendRequestViewController.composeViewDelegate = self;
+    ///     if (players.count)
+    ///     {
+    ///         [friendRequestViewController addRecipientPlayers: players];
+    ///     }
+    ///     [self presentViewController: friendRequestViewController animated: YES completion:nil];
+    ///     [friendRequestViewController release];
+    /// }
+    /// ```
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The [`GKFriendRequestComposeViewController`](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller) class is not intended to be subclassed.
+    ///
+    ///
+    /// Standard view controller for sending friend requests to other players. Present modally from the top view controller.
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -169,9 +202,8 @@ impl GKFriendRequestComposeViewController {
 }
 
 extern_protocol!(
+    /// The [`GKFriendRequestComposeViewControllerDelegate`](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontrollerdelegate) protocol is implemented by delegates of the [`GKFriendRequestComposeViewController`](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontroller) class. The delegate is called when the player dismisses the friend request.
     /// Optional delegate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkfriendrequestcomposeviewcontrollerdelegate?language=objc)
     #[deprecated = "No longer supported."]
     pub unsafe trait GKFriendRequestComposeViewControllerDelegate {
         #[cfg(feature = "objc2-app-kit")]

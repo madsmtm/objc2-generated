@@ -8,7 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest?language=objc)
+    /// A request to create, delete, or modify a Photos collection list, for use in a photo library change block.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`PHCollectionListChangeRequest`](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest) class to request changes for [`PHCollectionList`](https://developer.apple.com/documentation/photos/phcollectionlist) objects. To make changes to collection lists (such as folders containing user-created albums) in the Photos library, create a change request using the appropriate class method for the change you want to perform.
+    ///
+    /// - Call the [`creationRequestForCollectionListWithTitle:`](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/creationrequestforcollectionlist(withtitle:)) method to create a new asset collection.
+    ///
+    /// - Call the [`deleteCollectionLists:`](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/deletecollectionlists(_:)) method to delete existing asset collections.
+    ///
+    /// - Call the [`changeRequestForCollectionList:`](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/init(for:)) or [`changeRequestForCollectionList:childCollections:`](https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/init(for:childcollections:)) method to modify a collection’s metadata or its list of child collections.
+    ///
+    /// Before creating a change request, use the [`canPerformEditOperation:`](https://developer.apple.com/documentation/photos/phcollection/canperform(_:)) method to verify that the collection allows the edit operation you’re requesting. If you attempt to perform an unsupported edit operation, Photos throws an exception.
+    ///
+    /// A change request for creating or modifying a collection list works like a mutable version of the collection list object. Use the change request’s properties and instance methods to request changes to the collection list itself. For example, the following code removes an album from a folder.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["PHPhotoLibrary.shared().performChanges {", "            ", "    let request = PHCollectionListChangeRequest(for: folder,", "                                                childCollections: folderContentsFetchResult)", "            ", "    request!.removeChildCollections([album!] as NSFastEnumeration)", "            ", "} completionHandler: { success, error in", "    print(\"Finished removing the album from the folder. \\(success ? \"Success\" : String(describing: error))\")", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{", "        ", "    PHCollectionListChangeRequest *request =", "        [PHCollectionListChangeRequest changeRequestForCollectionList:folder", "                                                     childCollections:folderContentsFetchResult];", "        ", "    [request removeChildCollections:@[ album ]];", "     ", "} completionHandler:^(BOOL success, NSError *error) {", "    NSLog(@\"Finished removing the album from the folder. %@\", (success ? @\"Success\" : error));", "}];"], metadata: None }] }] })
+    /// After Photos runs the change block and calls your completion handler, the collection list’s state reflects the changes you requested in the block.
+    ///
+    /// If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivisualeffect?language=objc)
+    /// An initializer for visual effect views and blur and vibrancy effect objects.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -53,8 +53,7 @@ impl UIVisualEffect {
 
 extern_class!(
     /// A visual effect that applies a solid color background.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicoloreffect?language=objc)
+    /// A visual effect that applies a solid color background.
     #[unsafe(super(UIVisualEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

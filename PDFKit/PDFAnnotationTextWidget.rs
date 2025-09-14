@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtextwidget?language=objc)
+    /// A `PDFAnnotationTextWidget` object allows you to manage the appearance and content of text fields.
+    ///
+    /// ## Overview
+    ///
+    /// `PDFAnnotationTextWidget` objects support interactive forms in a PDF document. This object is comparable to an editable `NSTextField` in Cocoa or an edit text view in Carbon.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

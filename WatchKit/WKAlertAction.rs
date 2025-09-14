@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle?language=objc)
+/// Constants indicating the style of the action button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAlertActionStyle(pub NSInteger);
 impl WKAlertActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle/default?language=objc)
+    /// The default style. Use this for most of your buttons.
     #[doc(alias = "WKAlertActionStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle/cancel?language=objc)
+    /// A cancel action. Use this style for an action that cancels the operation without making changes.
     #[doc(alias = "WKAlertActionStyleCancel")]
     pub const Cancel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionstyle/destructive?language=objc)
+    /// An action that causes destructive behavior to the user’s data or the app. Destructive actions are styled in a way that warns the user of the destructive nature of the action.
     #[doc(alias = "WKAlertActionStyleDestructive")]
     pub const Destructive: Self = Self(2);
 }
@@ -32,12 +32,24 @@ unsafe impl RefEncode for WKAlertActionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionhandler?language=objc)
+/// A block to perform in response to an action.
+///
+/// ## Discussion
+///
+/// This block takes no parameters and returns no value. You use this type of block to perform a task when one of your actions is selected by the user. Your block does not need to dismiss the alert or action sheet itself. WatchKit automatically dismisses the sheet when the user taps in any of your action buttons.
+///
+///
 #[cfg(feature = "block2")]
 pub type WKAlertActionHandler = *mut block2::DynBlock<dyn Fn()>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertaction?language=objc)
+    /// An object that encapsulates information about a button displayed in an alert or action sheet.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of this class using the [`actionWithTitle:style:handler:`](https://developer.apple.com/documentation/watchkit/wkalertaction/init(title:style:handler:)) method and pass them to the [`presentAlertControllerWithTitle:message:preferredStyle:actions:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/presentalert(withtitle:message:preferredstyle:actions:)) method of one of your interface controllers. The sheet uses your action objects to create the corresponding buttons. When creating an alert action, you specify the title and visual style to apply to the button and a block to execute when the button is tapped. Use the defined visual styles to convey the purpose of the button to the user.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKAlertAction;

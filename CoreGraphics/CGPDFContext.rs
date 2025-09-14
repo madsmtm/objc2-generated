@@ -8,7 +8,27 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/init(consumer:mediabox:_:)?language=objc)
+/// Creates a PDF graphics context.
+///
+/// Parameters:
+/// - consumer: The data consumer to receive the PDF output data.
+///
+/// - mediaBox: A pointer to a rectangle that defines the size and location of the PDF page, or `NULL`. The origin of the rectangle should typically be `(0,0)`. Core Graphics uses this rectangle as the default bounds of the page’s media box. If you pass `NULL`, Core Graphics uses a default page size of 8.5 by 11 inches (612 by 792 points).
+///
+/// - auxiliaryInfo: A dictionary that specifies any additional information to be used by the PDF context when generating the PDF file, or `NULL`. The dictionary is retained by the new context, so on return you may safely release it. See [Auxiliary Dictionary Keys](https://developer.apple.com/documentation/coregraphics/auxiliary-dictionary-keys) for keys you can include in the dictionary.
+///
+///
+/// ## Return Value
+///
+/// A new PDF context, or `NULL` if the context cannot be created. In Objective-C, you’re responsible for releasing this object using [`CGContextRelease`](https://developer.apple.com/documentation/coregraphics/cgcontextrelease).
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a PDF drawing environment to your specifications. When you draw into the new context, Core Graphics renders your drawing as a sequence of PDF drawing commands that are passed to the data consumer object.
+///
+///
 ///
 /// # Safety
 ///
@@ -33,7 +53,27 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/init(_:mediabox:_:)?language=objc)
+/// Creates a URL-based PDF graphics context.
+///
+/// Parameters:
+/// - url: A Core Foundation URL that specifies where you want to place the resulting PDF file.
+///
+/// - mediaBox: A rectangle that specifies the bounds of the PDF. The origin of the rectangle should typically be `(0,0)`. The `CGPDFContextCreateWithURL` function uses this rectangle as the default page media bounding box. If you pass `NULL`, `CGPDFContextCreateWithURL` uses a default page size of 8.5 by 11 inches (612 by 792 points).
+///
+/// - auxiliaryInfo: A dictionary that specifies any additional information to be used by the PDF context when generating the PDF file, or `NULL`. The dictionary is retained by the new context, so on return you may safely release it.
+///
+///
+/// ## Return Value
+///
+/// A new PDF context, or `NULL` if a context could not be created. In Objective-C, you’re responsible for releasing this object using [`CGContextRelease`](https://developer.apple.com/documentation/coregraphics/cgcontextrelease).
+///
+///
+///
+/// ## Discussion
+///
+/// When you call this function, Core Graphics creates a PDF drawing environment—that is, a graphics context—to your specifications. When you draw into the resulting context, Core Graphics renders your drawing as a series of PDF drawing commands stored in the specified location.
+///
+///
 ///
 /// # Safety
 ///
@@ -58,7 +98,17 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/closepdf()?language=objc)
+/// Closes a PDF document.
+///
+/// Parameters:
+/// - context: A PDF graphics context.
+///
+///
+/// ## Discussion
+///
+/// After closing the context, all pending data is written to the context destination, and the PDF file is completed. No additional data can be written to the destination context after the PDF document is closed.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
@@ -69,7 +119,19 @@ pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpdfpage(_:)?language=objc)
+    /// Begins a new page in a PDF graphics context.
+    ///
+    /// Parameters:
+    /// - context: A PDF graphics context.
+    ///
+    /// - pageInfo: A dictionary that contains key-value pairs that define the page properties.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call the function [`CGPDFContextEndPage`](https://developer.apple.com/documentation/coregraphics/cgcontext/endpdfpage()) to signal the end of the page.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -79,7 +141,17 @@ extern "C-unwind" {
     pub fn CGPDFContextBeginPage(context: Option<&CGContext>, page_info: Option<&CFDictionary>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/endpdfpage()?language=objc)
+/// Ends the current page in the PDF graphics context.
+///
+/// Parameters:
+/// - context: A PDF graphics context.
+///
+///
+/// ## Discussion
+///
+/// You can call [`CGPDFContextEndPage`](https://developer.apple.com/documentation/coregraphics/cgcontext/endpdfpage()) only after you call the function [`CGPDFContextBeginPage`](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpdfpage(_:)).
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextEndPage(context: Option<&CGContext>) {
@@ -89,7 +161,13 @@ pub extern "C-unwind" fn CGPDFContextEndPage(context: Option<&CGContext>) {
     unsafe { CGPDFContextEndPage(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/adddocumentmetadata(_:)?language=objc)
+/// Associates custom metadata with the PDF document.
+///
+/// Parameters:
+/// - context: A PDF graphics context.
+///
+/// - metadata: A stream of XML data that is formatted according to the Extensible Metadata Platform, as described in section 10.2.2., “Metadata Streams”, of the PDF 1.7 specification.
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
@@ -103,8 +181,6 @@ pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetparenttree(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `parent_tree_dictionary` must be a valid pointer.
@@ -116,8 +192,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetidtree(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `id_tree_dictionary` must be a valid pointer.
@@ -129,8 +203,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetpagetagstructuretree(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
@@ -142,7 +214,15 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/seturl(_:for:)?language=objc)
+/// Sets the URL associated with a rectangle in a PDF graphics context.
+///
+/// Parameters:
+/// - context: A PDF graphics context.
+///
+/// - url: A URL that specifies the destination of the contents associated with the rectangle.
+///
+/// - rect: A rectangle specified in default user space (not device space).
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextSetURLForRect(
@@ -156,7 +236,15 @@ pub extern "C-unwind" fn CGPDFContextSetURLForRect(
     unsafe { CGPDFContextSetURLForRect(context, url, rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/adddestination(_:at:)?language=objc)
+/// Sets a destination to jump to when a point in the current page of a PDF graphics context is clicked.
+///
+/// Parameters:
+/// - context: A PDF graphics context.
+///
+/// - name: A destination name.
+///
+/// - point: A location in the current page of the PDF graphics context.
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
@@ -174,7 +262,15 @@ pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
     unsafe { CGPDFContextAddDestinationAtPoint(context, name, point) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setdestination(_:for:)?language=objc)
+/// Sets a destination to jump to when a rectangle in the current PDF page is clicked.
+///
+/// Parameters:
+/// - context: A PDF graphics context.
+///
+/// - name: A destination name.
+///
+/// - rect: A rectangle that specifies an area of the current page of a PDF graphics context. The rectangle is specified in default user space (not device space).
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextSetDestinationForRect(
@@ -193,128 +289,234 @@ pub extern "C-unwind" fn CGPDFContextSetDestinationForRect(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextmediabox?language=objc)
+    /// The media box for the document or for a given page.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is optional. If present, the value of this key must be a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) (stored by value, not by reference).
+    ///
+    ///
     pub static kCGPDFContextMediaBox: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcropbox?language=objc)
+    /// The crop box for the document or for a given page.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is optional. If present, the value of this key must be a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) (stored by value, not by reference).
+    ///
+    ///
     pub static kCGPDFContextCropBox: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextbleedbox?language=objc)
+    /// The bleed box for the document or for a given page.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is optional. If present, the value of this key must be a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) (stored by value, not by reference).
+    ///
+    ///
     pub static kCGPDFContextBleedBox: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontexttrimbox?language=objc)
+    /// The trim box for the document or for a given page.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is optional. If present, the value of this key must be a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) (stored by value, not by reference).
+    ///
+    ///
     pub static kCGPDFContextTrimBox: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextartbox?language=objc)
+    /// The art box for the document or for a given page.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is optional. If present, the value of this key must be a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that contains a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) (stored by value, not by reference).
+    ///
+    ///
     pub static kCGPDFContextArtBox: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontexttitle?language=objc)
+    /// The corresponding value is a string that represents the title of the document. This key is optional.
     pub static kCGPDFContextTitle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextauthor?language=objc)
+    /// The corresponding value is a string that represents the name of the person who created the document. This key is optional.
     pub static kCGPDFContextAuthor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextsubject?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The subject of a document. Optional; if present, the value of this key must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     pub static kCGPDFContextSubject: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextkeywords?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The keywords for this document. This key is optional. If the value of  this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object, the `/Keywords` entry will be the specified  string. If the value of this key is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object, then it must be an array  of [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) objects. The `/Keywords` entry will, in this case, be the concatenation  of the specified strings separated by commas (`","`). In addition, an  entry with the key `"/AAPL:Keywords"` is stored in the document  information dictionary; its value is an array consisting of each of the  specified strings. The value of this key must be in one of the above  forms; otherwise, this key is ignored.
+    ///
+    ///
     pub static kCGPDFContextKeywords: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcreator?language=objc)
+    /// The corresponding value is a string that represents the name of the application used to produce the document. This key is optional.
     pub static kCGPDFContextCreator: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextownerpassword?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The owner password of the PDF document. If this key is specified, the document is encrypted using the value as the owner password; otherwise, the document will not be encrypted. The value of this key must be a CFString object that can be represented in ASCII encoding. Only the first 32 bytes are used for the password. There is no default value for this key. If the value of this key cannot be represented in ASCII, the document is not created and the creation function returns `NULL`.
+    ///
+    ///
     pub static kCGPDFContextOwnerPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextuserpassword?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The user password of the PDF document. If the document is encrypted, then the value of this key will be the user password for the document. If not specified, the user password is the empty string. The value of this key must be a CFString object that can be represented in ASCII encoding; only the first 32 bytes will be used for the password. If the value of this key cannot be represented in ASCII, the document is not created and the creation function returns `NULL`.
+    ///
+    ///
     pub static kCGPDFContextUserPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextencryptionkeylength?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The encryption key length in bits; see Table 3.18 “Entries  common to all encryption dictionaries”, PDF Reference: Adobe PDF version 1.5 (4th ed.) for more information. Optional; if present, the value of this key  must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object with value which is a multiple of 8 between 40 and  128, inclusive. If this key is absent or invalid, the encryption key  length defaults to 40 bits.
+    ///
+    ///
     pub static kCGPDFContextEncryptionKeyLength: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextallowsprinting?language=objc)
+    /// Whether the document allows printing when unlocked with the user password.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value of this key is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static kCGPDFContextAllowsPrinting: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextallowscopying?language=objc)
+    /// Whether the document allows copying when unlocked with the user password.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value of this key is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static kCGPDFContextAllowsCopying: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintent?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The output intent `PDF/X`. This key is optional. If present, the value of this key must be a CFDictionary object. The dictionary is added to the `/OutputIntents` entry in the PDF file document catalog. The keys and values contained in the dictionary must match those specified in section 9.10.4 of the PDF 1.4 specification, ISO/DIS 15930-3 document published by ISO/TC 130, and Adobe Technical Note #5413.
+    ///
+    ///
     pub static kCGPDFContextOutputIntent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputintentsubtype?language=objc)
+    /// The output intent subtype. This key is required.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object equal to `"GTS_PDFX"`; otherwise, the dictionary is ignored.
+    ///
+    ///
     pub static kCGPDFXOutputIntentSubtype: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputconditionidentifier?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string identifying the intended output device or production condition in a human- or machine-readable form. This key is required. The value of this key must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. For best results, the string should be restricted to characters in the ASCII character set.
+    ///
+    ///
     pub static kCGPDFXOutputConditionIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputcondition?language=objc)
+    /// A text string identifying the intended output device or production condition in a human-readable form.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is optional. If present, the value of this key must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     pub static kCGPDFXOutputCondition: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxregistryname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A string identifying the registry in which the condition designated by [`kCGPDFXOutputConditionIdentifier`](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputconditionidentifier) is defined. This key is optional. If present, the value of this key must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. For best results, the string should be lossless in ASCII encoding.
+    ///
+    ///
     pub static kCGPDFXRegistryName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxinfo?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A human-readable text string containing additional information or comments about the intended target device or production condition. This key is required if the value of [`kCGPDFXOutputConditionIdentifier`](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputconditionidentifier) does not specify a standard production condition. It is optional otherwise. If present, the value of this key must be a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     pub static kCGPDFXInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxdestinationoutputprofile?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// An ICC profile stream defining the transformation from the PDF document’s source colors to output device colorants. This key is required if the value of [`kCGPDFXOutputConditionIdentifier`](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputconditionidentifier) does not specify a standard production condition. It is optional otherwise. If present, the value of this key must be an ICC-based color space specified as a `CGColorSpace` object.
+    ///
+    ///
     pub static kCGPDFXDestinationOutputProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintents?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Output intent dictionaries. This key is optional. If present, the value must be an array of one or more [`kCGPDFContextOutputIntent`](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintent) dictionaries. The array is added to the PDF document in the `/OutputIntents` entry in the PDF file’s document catalog. Each dictionary in the array must be of form specified for the [`kCGPDFContextOutputIntent`](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintent) key, except that only the first dictionary in the array is required to contain the “S” key with a value of `GTS_PDFX`. If both the [`kCGPDFContextOutputIntent`](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintent) and [`kCGPDFContextOutputIntents`](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintents) keys are specified, the former is ignored.
+    ///
+    ///
     pub static kCGPDFContextOutputIntents: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextaccesspermissions?language=objc)
     pub static kCGPDFContextAccessPermissions: &'static CFString;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextsetoutline(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `outline` generic must be of the correct type.
@@ -324,169 +526,116 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcreatelinearizedpdf?language=objc)
     pub static kCGPDFContextCreateLinearizedPDF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcreatepdfa?language=objc)
     pub static kCGPDFContextCreatePDFA: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPDFTagType(pub i32);
 impl CGPDFTagType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/document?language=objc)
     #[doc(alias = "CGPDFTagTypeDocument")]
     pub const Document: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/part?language=objc)
     #[doc(alias = "CGPDFTagTypePart")]
     pub const Part: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/art?language=objc)
     #[doc(alias = "CGPDFTagTypeArt")]
     pub const Art: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/section?language=objc)
     #[doc(alias = "CGPDFTagTypeSection")]
     pub const Section: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/div?language=objc)
     #[doc(alias = "CGPDFTagTypeDiv")]
     pub const Div: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/blockquote?language=objc)
     #[doc(alias = "CGPDFTagTypeBlockQuote")]
     pub const BlockQuote: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/caption?language=objc)
     #[doc(alias = "CGPDFTagTypeCaption")]
     pub const Caption: Self = Self(106);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/toc?language=objc)
     #[doc(alias = "CGPDFTagTypeTOC")]
     pub const TOC: Self = Self(107);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/toci?language=objc)
     #[doc(alias = "CGPDFTagTypeTOCI")]
     pub const TOCI: Self = Self(108);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/index?language=objc)
     #[doc(alias = "CGPDFTagTypeIndex")]
     pub const Index: Self = Self(109);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/nonstructure?language=objc)
     #[doc(alias = "CGPDFTagTypeNonStructure")]
     pub const NonStructure: Self = Self(110);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/private?language=objc)
     #[doc(alias = "CGPDFTagTypePrivate")]
     pub const Private: Self = Self(111);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/paragraph?language=objc)
     #[doc(alias = "CGPDFTagTypeParagraph")]
     pub const Paragraph: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader")]
     pub const Header: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header1?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader1")]
     pub const Header1: Self = Self(202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header2?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader2")]
     pub const Header2: Self = Self(203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header3?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader3")]
     pub const Header3: Self = Self(204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header4?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader4")]
     pub const Header4: Self = Self(205);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header5?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader5")]
     pub const Header5: Self = Self(206);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/header6?language=objc)
     #[doc(alias = "CGPDFTagTypeHeader6")]
     pub const Header6: Self = Self(207);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/list?language=objc)
     #[doc(alias = "CGPDFTagTypeList")]
     pub const List: Self = Self(300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/listitem?language=objc)
     #[doc(alias = "CGPDFTagTypeListItem")]
     pub const ListItem: Self = Self(301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/label?language=objc)
     #[doc(alias = "CGPDFTagTypeLabel")]
     pub const Label: Self = Self(302);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/listbody?language=objc)
     #[doc(alias = "CGPDFTagTypeListBody")]
     pub const ListBody: Self = Self(303);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/table?language=objc)
     #[doc(alias = "CGPDFTagTypeTable")]
     pub const Table: Self = Self(400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tablerow?language=objc)
     #[doc(alias = "CGPDFTagTypeTableRow")]
     pub const TableRow: Self = Self(401);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tableheadercell?language=objc)
     #[doc(alias = "CGPDFTagTypeTableHeaderCell")]
     pub const TableHeaderCell: Self = Self(402);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tabledatacell?language=objc)
     #[doc(alias = "CGPDFTagTypeTableDataCell")]
     pub const TableDataCell: Self = Self(403);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tableheader?language=objc)
     #[doc(alias = "CGPDFTagTypeTableHeader")]
     pub const TableHeader: Self = Self(404);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tablebody?language=objc)
     #[doc(alias = "CGPDFTagTypeTableBody")]
     pub const TableBody: Self = Self(405);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/tablefooter?language=objc)
     #[doc(alias = "CGPDFTagTypeTableFooter")]
     pub const TableFooter: Self = Self(406);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/span?language=objc)
     #[doc(alias = "CGPDFTagTypeSpan")]
     pub const Span: Self = Self(500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/quote?language=objc)
     #[doc(alias = "CGPDFTagTypeQuote")]
     pub const Quote: Self = Self(501);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/note?language=objc)
     #[doc(alias = "CGPDFTagTypeNote")]
     pub const Note: Self = Self(502);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/reference?language=objc)
     #[doc(alias = "CGPDFTagTypeReference")]
     pub const Reference: Self = Self(503);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/bibliography?language=objc)
     #[doc(alias = "CGPDFTagTypeBibliography")]
     pub const Bibliography: Self = Self(504);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/code?language=objc)
     #[doc(alias = "CGPDFTagTypeCode")]
     pub const Code: Self = Self(505);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/link?language=objc)
     #[doc(alias = "CGPDFTagTypeLink")]
     pub const Link: Self = Self(506);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/annotation?language=objc)
     #[doc(alias = "CGPDFTagTypeAnnotation")]
     pub const Annotation: Self = Self(507);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/ruby?language=objc)
     #[doc(alias = "CGPDFTagTypeRuby")]
     pub const Ruby: Self = Self(600);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/rubybasetext?language=objc)
     #[doc(alias = "CGPDFTagTypeRubyBaseText")]
     pub const RubyBaseText: Self = Self(601);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/rubyannotationtext?language=objc)
     #[doc(alias = "CGPDFTagTypeRubyAnnotationText")]
     pub const RubyAnnotationText: Self = Self(602);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/rubypunctuation?language=objc)
     #[doc(alias = "CGPDFTagTypeRubyPunctuation")]
     pub const RubyPunctuation: Self = Self(603);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/warichu?language=objc)
     #[doc(alias = "CGPDFTagTypeWarichu")]
     pub const Warichu: Self = Self(604);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/warichutext?language=objc)
     #[doc(alias = "CGPDFTagTypeWarichuText")]
     pub const WarichuText: Self = Self(605);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/warichupunctiation?language=objc)
     #[doc(alias = "CGPDFTagTypeWarichuPunctiation")]
     pub const WarichuPunctiation: Self = Self(606);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/figure?language=objc)
     #[doc(alias = "CGPDFTagTypeFigure")]
     pub const Figure: Self = Self(700);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/formula?language=objc)
     #[doc(alias = "CGPDFTagTypeFormula")]
     pub const Formula: Self = Self(701);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/form?language=objc)
     #[doc(alias = "CGPDFTagTypeForm")]
     pub const Form: Self = Self(702);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/object?language=objc)
     #[doc(alias = "CGPDFTagTypeObject")]
     pub const Object: Self = Self(800);
 }
@@ -502,7 +651,6 @@ unsafe impl RefEncode for CGPDFTagType {
 }
 
 impl CGPDFTagType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype/name?language=objc)
     #[doc(alias = "CGPDFTagTypeGetName")]
     #[inline]
     pub fn name(self) -> *const c_char {
@@ -513,33 +661,26 @@ impl CGPDFTagType {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty?language=objc)
 // NS_TYPED_ENUM
 pub type CGPDFTagProperty = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/actualtext?language=objc)
     pub static kCGPDFTagPropertyActualText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/alternativetext?language=objc)
     pub static kCGPDFTagPropertyAlternativeText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/titletext?language=objc)
     pub static kCGPDFTagPropertyTitleText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/languagetext?language=objc)
     pub static kCGPDFTagPropertyLanguageText: &'static CGPDFTagProperty;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextbegintag(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `tag_properties` generic must be of the correct type.
@@ -552,7 +693,6 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontextendtag(_:)?language=objc)
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGPDFContextEndTag(context: &CGContext) {

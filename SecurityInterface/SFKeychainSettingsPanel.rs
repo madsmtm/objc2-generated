@@ -11,7 +11,27 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfkeychainsettingspanel?language=objc)
+    /// A panel or sheet that allows users to change their keychain settings.
+    ///
+    /// ## Overview
+    ///
+    /// Keychain settings include:
+    ///
+    /// - Lock after a set period of inactivity
+    ///
+    /// - Lock on sleep
+    ///
+    /// - Synchronize using .Mac
+    ///
+    /// The following figure shows an example of a keychain settings panel.
+    ///
+    ///
+    /// ![Keychain settings panel](https://docs-assets.developer.apple.com/published/807c5e2eae2ca1b565a06adb351a2b21/media-1965595.png)
+    ///
+    ///
+    /// For more information, see [Keychain Services Programming Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/keychainServConcepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000897).
+    ///
+    ///
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFKeychainSettingsPanel;

@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseatresolutionresult?language=objc)
+    /// A resolution result for a specific seat of the car.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INCarSeatResolutionResult`](https://developer.apple.com/documentation/intents/incarseatresolutionresult) object is what you return when resolving parameters containing a [`INCarSeat`](https://developer.apple.com/documentation/intents/incarseat) value. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

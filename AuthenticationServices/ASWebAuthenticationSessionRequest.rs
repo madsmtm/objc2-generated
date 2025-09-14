@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionrequestdelegate?language=objc)
+    /// An interface through which the session request can inform its delegate, which is typically a browser, about the outcome of the authentication attempt.
     pub unsafe trait ASWebAuthenticationSessionRequestDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(authenticationSessionRequest:didCompleteWithCallbackURL:))]
@@ -31,7 +31,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionrequest?language=objc)
+    /// A login session request that a web browser receives from an app.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSessionRequest;

@@ -6,13 +6,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbl2cappsm?language=objc)
+/// The type of PSM identifiers.
 pub type CBL2CAPPSM = u16;
 
 extern_class!(
+    /// A live L2CAP connection to a remote device.
     /// A CBL2CAPChannel represents a live L2CAP connection to a remote device
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbl2capchannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBL2CAPChannel;

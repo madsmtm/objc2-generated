@@ -6,27 +6,50 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The orientation of the prism correction, represented by the location of the prism’s base (the thickest part of the prism).
 /// Represents the prism base for rectangular coordinates
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKPrismBase(pub NSInteger);
 impl HKPrismBase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/none?language=objc)
+    /// No prism correction.
     #[doc(alias = "HKPrismBaseNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/up?language=objc)
+    /// The prism’s base is at the top of the lens.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this value for the prism’s [`verticalBase`](https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalbase).
+    ///
+    ///
     #[doc(alias = "HKPrismBaseUp")]
     pub const Up: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/down?language=objc)
+    /// The prism’s base is at the bottom of the lens.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this value for the prism’s [`verticalBase`](https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalbase).
+    ///
+    ///
     #[doc(alias = "HKPrismBaseDown")]
     pub const Down: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/in?language=objc)
+    /// The prism base is on the inside edge of the lens.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this value for the prism’s [`horizontalBase`](https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase).
+    ///
+    ///
     #[doc(alias = "HKPrismBaseIn")]
     pub const In: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprismbase/out?language=objc)
+    /// The prism base is on the outside edge of the lens.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this value for the prism’s [`horizontalBase`](https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalbase).
+    ///
+    ///
     #[doc(alias = "HKPrismBaseOut")]
     pub const Out: Self = Self(4);
 }
@@ -39,18 +62,17 @@ unsafe impl RefEncode for HKPrismBase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that specifies the eye for a vision prescription.
 /// Represents an eye
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVisionEye(pub NSInteger);
 impl HKVisionEye {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye/left?language=objc)
+    /// The left eye.
     #[doc(alias = "HKVisionEyeLeft")]
     pub const Left: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisioneye/right?language=objc)
+    /// The right eye.
     #[doc(alias = "HKVisionEyeRight")]
     pub const Right: Self = Self(2);
 }
@@ -64,10 +86,57 @@ unsafe impl RefEncode for HKVisionEye {
 }
 
 extern_class!(
+    /// Prescription data for eye alignment.
+    ///
+    /// ## Overview
+    ///
+    /// To include prism information in a glasses prescription, start by creating an [`HKVisionPrism`](https://developer.apple.com/documentation/healthkit/hkvisionprism) object.
+    ///
+    /// ```swift
+    /// // The correction for eye alignment.
+    /// let prismQuantity = HKQuantity(unit: .prismDiopter(), doubleValue: +0.25)
+    /// let angle = HKQuantity(unit: .degreeAngle(), doubleValue: 15.0)
+    /// let prism = HKVisionPrism(amount: prismQuantity,
+    ///                           angle: angle,
+    ///                           eye: .right)
+    /// ```
+    ///
+    /// Then, pass this value to the [`HKGlassesLensSpecification`](https://developer.apple.com/documentation/healthkit/hkglasseslensspecification)’s initializer.
+    ///
+    /// ```swift
+    /// // The prescription for the right eye.
+    /// let glassesRightEye = HKGlassesLensSpecification(sphere: sphere,
+    ///                                                  cylinder: cylinder,
+    ///                                                  axis: axis,
+    ///                                                  addPower: addPower,
+    ///                                                  vertexDistance: vertexDistance,
+    ///                                                  prism: prism,
+    ///                                                  farPupillaryDistance: farDistance,
+    ///                                                  nearPupillaryDistance: nearDistance)
+    /// ```
+    ///
+    /// Finally, create the glasses prescription and save it to the HealthKit store.
+    ///
+    /// ```swift
+    /// // The glasses prescription.
+    /// let prescription = HKGlassesPrescription(rightEyeSpecification: glassesRightEye,
+    ///                                                leftEyeSpecification: glassesLeftEye,
+    ///                                                dateIssued: dateIssued,
+    ///                                                expirationDate: expirationDate,
+    ///                                                device: HKDevice.local(),
+    ///                                                metadata: nil)
+    /// // Save the sample to the HealthKit store.
+    /// do {
+    ///     try await store.save(prescription)
+    /// } catch {
+    ///     // Handle the error here.
+    ///     fatalError("*** An error occurred while saving the prescription sample to the HealthKit store \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    ///
     /// An object subclass representing prism vision fields used in eye glasses to correct double vision.
     /// The prism aligns the two images so only one is seen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprism?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKVisionPrism;

@@ -14,9 +14,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A SpriteKit node that applies frame buffer effects to the rendered results of its child nodes. This is done continuously on live content and is not a simple snapshot of the rendered result at one instant of time.
+    /// A node that renders its children into a separate buffer, optionally applying an effect, before drawing the final result.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skeffectnode?language=objc)
+    /// ## Overview
+    ///
+    /// An [`SKEffectNode`](https://developer.apple.com/documentation/spritekit/skeffectnode) object renders its children into a buffer and optionally applies a Core Image filter to this rendered output. Because effect nodes conform to [`SKWarpable`](https://developer.apple.com/documentation/spritekit/skwarpable), you can also use them to apply distortions to nodes that don’t implement the protocol, such as shape and video nodes. Use effect nodes to incorporate sophisticated special effects into a scene or to cache the contents of a static subtree for faster rendering performance.
+    ///
+    /// Each time a new frame is rendered using the effect node, the effect node follows these steps:
+    ///
+    /// 1. It draws its children into a private framebuffer.
+    ///
+    /// 2. It applies a Core Image effect to the private framebuffer. This stage is optional; see the [`filter`](https://developer.apple.com/documentation/spritekit/skeffectnode/filter) and [`shouldEnableEffects`](https://developer.apple.com/documentation/spritekit/skeffectnode/shouldenableeffects) properties.
+    ///
+    /// 3. It blends the contents of its private framebuffer into its parent’s framebuffer, using one of the standard sprite blend modes.
+    ///
+    /// 4. It discards its private framebuffer. This step is optional; see the [`shouldRasterize`](https://developer.apple.com/documentation/spritekit/skeffectnode/shouldrasterize) property.
+    ///
+    ///
+    /// A SpriteKit node that applies frame buffer effects to the rendered results of its child nodes. This is done continuously on live content and is not a simple snapshot of the rendered result at one instant of time.
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

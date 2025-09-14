@@ -4,46 +4,45 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktype?language=objc)
+/// The type that defines the shape of stroked lines.
 // NS_TYPED_ENUM
 pub type PKInkType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypepen?language=objc)
+    /// An inking tool that creates the appearance of drawing with a pen.
     pub static PKInkTypePen: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypepencil?language=objc)
+    /// An inking tool that creates the appearance of drawing with a pencil.
     pub static PKInkTypePencil: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypemarker?language=objc)
+    /// An inking tool that creates the appearance of a felt-tip marker.
     pub static PKInkTypeMarker: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypemonoline?language=objc)
+    /// An inking tool that creates the appearance of a monoline pen.
     pub static PKInkTypeMonoline: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypefountainpen?language=objc)
+    /// An inking tool that creates the appearance of a calligraphy pen.
     pub static PKInkTypeFountainPen: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypewatercolor?language=objc)
+    /// An inking tool that creates the appearance of a watercolor brush.
     pub static PKInkTypeWatercolor: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypereed?language=objc)
     pub static PKInkTypeReed: Option<&'static PKInkType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinktypecrayon?language=objc)
+    /// An inking tool that creates the appearance of a crayon.
     pub static PKInkTypeCrayon: Option<&'static PKInkType>;
 }

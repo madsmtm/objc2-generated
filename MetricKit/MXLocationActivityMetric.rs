@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about the use of location-tracking features of a device.
     /// An MXMetric subclass that encapsulates location metrics
     ///
     /// The metrics contained in this class describe properties of location activity. See MXAppRunTimeMetric for time spent performing location activities.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxlocationactivitymetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

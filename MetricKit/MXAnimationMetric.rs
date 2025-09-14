@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about the responsiveness of animation in the app.
     /// An MXMetric subclass that encapsulates app animation metrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxanimationmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

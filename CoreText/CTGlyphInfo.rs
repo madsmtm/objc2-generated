@@ -11,7 +11,7 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfo?language=objc)
+/// Override a font’s specified mapping from Unicode to the glyph ID.
 ///
 /// This is toll-free bridged with `NSGlyphInfo`.
 #[doc(alias = "CTGlyphInfoRef")]
@@ -30,9 +30,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTGlyphInfo {
+    /// Returns the Core Foundation type identifier of the glyph info object
     /// Returns the CFType of the glyph info object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfogettypeid()?language=objc)
     #[doc(alias = "CTGlyphInfoGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -43,6 +42,7 @@ unsafe impl ConcreteType for CTGlyphInfo {
     }
 }
 
+/// Constants that specify character collections.
 /// These constants specify character collections.
 ///
 ///
@@ -63,48 +63,46 @@ unsafe impl ConcreteType for CTGlyphInfo {
 ///
 ///
 /// Indicates the Adobe-Korea1 mapping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCharacterCollection(pub u16);
 impl CTCharacterCollection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/identitymapping?language=objc)
+    /// The character identifier is equal to the glyph index.
     #[doc(alias = "kCTCharacterCollectionIdentityMapping")]
     pub const IdentityMapping: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/adobecns1?language=objc)
+    /// The Adobe-CNS1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeCNS1")]
     pub const AdobeCNS1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/adobegb1?language=objc)
+    /// The Adobe-GB1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeGB1")]
     pub const AdobeGB1: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/adobejapan1?language=objc)
+    /// The Adobe-Japan1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeJapan1")]
     pub const AdobeJapan1: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/adobejapan2?language=objc)
+    /// The Adobe-Japan2 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeJapan2")]
     pub const AdobeJapan2: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/adobekorea1?language=objc)
+    /// The Adobe-Korea1 mapping.
     #[doc(alias = "kCTCharacterCollectionAdobeKorea1")]
     pub const AdobeKorea1: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctidentitymappingcharactercollection?language=objc)
+    /// The character identifier is equal to the glyph index.
     #[deprecated = "Deprecated"]
     pub const kCTIdentityMappingCharacterCollection: Self =
         Self(CTCharacterCollection::IdentityMapping.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctadobecns1charactercollection?language=objc)
+    /// The Adobe-CNS1 mapping.
     #[deprecated = "Deprecated"]
     pub const kCTAdobeCNS1CharacterCollection: Self = Self(CTCharacterCollection::AdobeCNS1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctadobegb1charactercollection?language=objc)
+    /// The Adobe-GB1 mapping.
     #[deprecated = "Deprecated"]
     pub const kCTAdobeGB1CharacterCollection: Self = Self(CTCharacterCollection::AdobeGB1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctadobejapan1charactercollection?language=objc)
+    /// The Adobe-Japan1 mapping.
     #[deprecated = "Deprecated"]
     pub const kCTAdobeJapan1CharacterCollection: Self = Self(CTCharacterCollection::AdobeJapan1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctadobejapan2charactercollection?language=objc)
+    /// The Adobe-Japan2 mapping.
     #[deprecated = "Deprecated"]
     pub const kCTAdobeJapan2CharacterCollection: Self = Self(CTCharacterCollection::AdobeJapan2.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctadobekorea1charactercollection?language=objc)
+    /// The Adobe-Korea1 mapping.
     #[deprecated = "Deprecated"]
     pub const kCTAdobeKorea1CharacterCollection: Self = Self(CTCharacterCollection::AdobeKorea1.0);
 }
@@ -120,6 +118,27 @@ unsafe impl RefEncode for CTCharacterCollection {
 }
 
 impl CTGlyphInfo {
+    /// Creates an immutable glyph info object with a glyph name.
+    ///
+    /// Parameters:
+    /// - glyphName: The name of the glyph.
+    ///
+    /// - font: The font to be associated with the returned CTGlyphInfo object.
+    ///
+    /// - baseString: The part of the string the returned object is intended to override.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid reference to an immutable CTGlyphInfo object if glyph info creation was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable glyph info object for a glyph name such as `copyright` using a specified font.
+    ///
+    ///
     /// Creates an immutable glyph info object.
     ///
     ///
@@ -138,8 +157,6 @@ impl CTGlyphInfo {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfocreatewithglyphname(_:_:_:)?language=objc)
     #[doc(alias = "CTGlyphInfoCreateWithGlyphName")]
     #[cfg(feature = "CTFont")]
     #[inline]
@@ -159,6 +176,27 @@ impl CTGlyphInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an immutable glyph info object with a glyph index.
+    ///
+    /// Parameters:
+    /// - glyph: The index of the glyph.
+    ///
+    /// - font: The font to be associated with the returned CTGlyphInfo object.
+    ///
+    /// - baseString: The part of the string the returned object is intended to override.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid reference to an immutable CTGlyphInfo object, If glyph info creation was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable glyph info object for a glyph index using a specified font.
+    ///
+    ///
     /// Creates an immutable glyph info object.
     ///
     ///
@@ -177,8 +215,6 @@ impl CTGlyphInfo {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfocreatewithglyph(_:_:_:)?language=objc)
     #[doc(alias = "CTGlyphInfoCreateWithGlyph")]
     #[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
     #[inline]
@@ -198,6 +234,27 @@ impl CTGlyphInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an immutable glyph info object with a character identifier.
+    ///
+    /// Parameters:
+    /// - cid: A character identifier.
+    ///
+    /// - collection: A character collection identifier.
+    ///
+    /// - baseString: The part of the string the returned object is intended to override.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid reference to an immutable CTGlyphInfo object if glyph info creation was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable glyph info object for a character identifier and a character collection.
+    ///
+    ///
     /// Creates an immutable glyph info object.
     ///
     ///
@@ -216,8 +273,6 @@ impl CTGlyphInfo {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfocreatewithcharacteridentifier(_:_:_:)?language=objc)
     #[doc(alias = "CTGlyphInfoCreateWithCharacterIdentifier")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -237,6 +292,17 @@ impl CTGlyphInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves the glyph name for a glyph info object, if that object exists.
+    ///
+    /// Parameters:
+    /// - glyphInfo: The glyph info object from which to get the glyph name. This parameter must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A glyph name, if the glyph info object was created with a name; otherwise, `NULL`.
+    ///
+    ///
     /// Gets the glyph name for a glyph info, if applicable.
     ///
     ///
@@ -248,8 +314,6 @@ impl CTGlyphInfo {
     ///
     /// Returns: If the glyph info object was created with a glyph name, it will
     /// be returned. Otherwise, this function will return NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfogetglyphname(_:)?language=objc)
     #[doc(alias = "CTGlyphInfoGetGlyphName")]
     #[inline]
     pub fn glyph_name(&self) -> Option<CFRetained<CFString>> {
@@ -260,6 +324,17 @@ impl CTGlyphInfo {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Retrieves the glyph for a glyph info, if that object exists.
+    ///
+    /// Parameters:
+    /// - glyphInfo: The glyph info object from which to get the glyph.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CGGlyph`](https://developer.apple.com/documentation/coregraphics/cgglyph) value, if the glyph info object was created with a font; otherwise, `0`.
+    ///
+    ///
     /// Gets the glyph for a glyph info, if applicable.
     ///
     ///
@@ -271,8 +346,6 @@ impl CTGlyphInfo {
     ///
     /// Returns: If the glyph info object was created with a font, it will be
     /// returned. Otherwise, this function will return 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfogetglyph(_:)?language=objc)
     #[doc(alias = "CTGlyphInfoGetGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -283,6 +356,17 @@ impl CTGlyphInfo {
         unsafe { CTGlyphInfoGetGlyph(self) }
     }
 
+    /// Gets the character identifier for a glyph info object.
+    ///
+    /// Parameters:
+    /// - glyphInfo: The glyph info from which to get the character identifier. May not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The character identifier of the given glyph info object.
+    ///
+    ///
     /// Gets the character identifier for a glyph info.
     ///
     ///
@@ -294,8 +378,6 @@ impl CTGlyphInfo {
     ///
     /// Returns: If the glyph info object was created with a character identifier,
     /// it will be returned. Otherwise, this function will return 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfogetcharacteridentifier(_:)?language=objc)
     #[doc(alias = "CTGlyphInfoGetCharacterIdentifier")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -306,6 +388,23 @@ impl CTGlyphInfo {
         unsafe { CTGlyphInfoGetCharacterIdentifier(self) }
     }
 
+    /// Gets the character collection for a glyph info object.
+    ///
+    /// Parameters:
+    /// - glyphInfo: The glyph info from which to get the character collection. May not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The character collection of the given glyph info object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the glyph info object was created with a glyph name or a glyph index, its character collection is [`kCTIdentityMappingCharacterCollection`](https://developer.apple.com/documentation/coretext/ctcharactercollection/kctidentitymappingcharactercollection).
+    ///
+    ///
     /// Gets the character collection for a glyph info.
     ///
     ///
@@ -320,8 +419,6 @@ impl CTGlyphInfo {
     ///
     /// Returns: This function will return the character collection of the given
     /// glyph info.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfogetcharactercollection(_:)?language=objc)
     #[doc(alias = "CTGlyphInfoGetCharacterCollection")]
     #[inline]
     pub fn character_collection(&self) -> CTCharacterCollection {

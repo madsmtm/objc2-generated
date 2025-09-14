@@ -9,35 +9,52 @@ use objc2_io_surface::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopengltexturecompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether OpenGL can create a valid texture object from the IOSurface-backed pixel buffer.
     pub static kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglfbocompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether OpenGL can create a valid texture for use as a color buffer attachment.
+    ///
+    /// ## Discussion
+    ///
+    /// This key indicates whether the texture OpenGL creates from the pixel buffer’s underlying IOSurface instance is valid to use as a color buffer attachment to an OpenGL frame buffer object.
+    ///
+    ///
     pub static kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfacecoreanimationcompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether Core Animation can display the pixel buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is of type [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean). You can use this key instead of explicit pixel format keys. When you use this key with other media frameworks, [`Video Toolbox`](https://developer.apple.com/documentation/videotoolbox) chooses the best pixel format for Core Animation to use.
+    ///
+    ///
     pub static kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglestexturecompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether OpenGL ES can create a valid texture object from the IOSurface-backed pixel buffer.
     pub static kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglesfbocompatibilitykey?language=objc)
+    /// A key to a Boolean value that indicates whether OpenGL ES can create a valid texture for use as a color buffer attachment.
+    ///
+    /// ## Discussion
+    ///
+    /// This key indicates whether the texture OpenGL ES creates from the pixel buffer’s underlying IOSurface instance is valid to use as a color buffer attachment to an OpenGL ES frame buffer object.
+    ///
+    ///
     pub static kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: &'static CFString;
 }
 
+/// Returns the IOSurface backing the pixel buffer, or `NULL` if it is not backed by an IOSurface.
 /// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
 ///
 /// Parameter `pixelBuffer`: Target PixelBuffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffergetiosurface(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -59,6 +76,39 @@ pub extern "C-unwind" fn CVPixelBufferGetIOSurface(
 }
 
 extern "C-unwind" {
+    /// Creates a single pixel buffer for the IO surface that you specify.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer pool. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) for the `allocator` parameter to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - surface: The IOSurface to use in the pixel buffer.
+    ///
+    /// - pixelBufferAttributes: An optional dictionary that contains the attributes for the pixel buffer. See [Pixel Buffer Attribute Keys](https://developer.apple.com/documentation/corevideo/pixel-buffer-attribute-keys) for possible values.
+    ///
+    /// - pixelBufferOut: On output, the newly created pixel buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`CVPixelBufferRelease`](https://developer.apple.com/documentation/corevideo/cvpixelbufferrelease) to release ownership of the `pixelBufferOut` object when you’re done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you are using IOSurface to share CVPixelBuffers between processes and those CVPixelBuffers are allocated via a CVPixelBufferPool, it is important that the CVPixelBufferPool does not reuse CVPixelBuffers whose IOSurfaces are still in use in other processes.
+    ///
+    /// CoreVideo and IOSurface will take care of this for if you use IOSurfaceCreateMachPort and IOSurfaceLookupFromMachPort, but NOT if you pass IOSurfaceIDs.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Call to create a single CVPixelBuffer for a passed-in IOSurface.
     ///
     /// The CVPixelBuffer will retain the IOSurface.
@@ -82,8 +132,6 @@ extern "C-unwind" {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbuffercreatewithiosurface(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "CVBuffer",
         feature = "CVImageBuffer",

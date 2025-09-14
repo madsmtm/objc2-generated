@@ -10,7 +10,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickerdelegate?language=objc)
+    /// A set of methods for tracking when the user selects a document or destination, or cancels the operation.
     pub unsafe trait UIDocumentPickerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
@@ -41,26 +41,26 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode?language=objc)
+/// Modes that define the type of file transfer operation that the document picker uses.
 // NS_ENUM
 #[deprecated = "Use appropriate initializers instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentPickerMode(pub NSUInteger);
 impl UIDocumentPickerMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/import?language=objc)
+    /// The document picker imports a file from outside the app’s sandbox.
     #[doc(alias = "UIDocumentPickerModeImport")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const Import: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/open?language=objc)
+    /// The document picker opens an external file outside the app’s sandbox.
     #[doc(alias = "UIDocumentPickerModeOpen")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const Open: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/exporttoservice?language=objc)
+    /// The document picker exports a local file to a destination outside the app’s sandbox.
     #[doc(alias = "UIDocumentPickerModeExportToService")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const ExportToService: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode/movetoservice?language=objc)
+    /// The document picker moves a local file outside the app’s sandbox and provides access to it as an external file.
     #[doc(alias = "UIDocumentPickerModeMoveToService")]
     #[deprecated = "Use appropriate initializers instead"]
     pub const MoveToService: Self = Self(3);
@@ -75,7 +75,31 @@ unsafe impl RefEncode for UIDocumentPickerMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller?language=objc)
+    /// A view controller that provides access to documents or destinations outside your app’s sandbox.
+    ///
+    /// ## Overview
+    ///
+    /// Use a document picker view controller to select a document to open or export, and optionally copy. Don’t copy the document if you can avoid it. The document picker operates in two modes:
+    ///
+    /// - Open a document. The user selects a document. The document picker provides access to the document, and the user can edit the document in place. Optionally, you can specify that the document picker makes a copy of the document, leaving the original unchanged.
+    ///
+    /// - Export a local document. The user selects a destination. The document picker moves the document, and the user can access it and edit it in place. Optionally, you can specify that the document picker makes a copy of the document, leaving the original unchanged.
+    ///
+    /// ### Work with external documents
+    ///
+    /// Both the open and export operations grant access to documents outside your app’s sandbox. This access gives users an unprecedented amount of flexibility when working with their documents. However, it also adds a layer of complexity to your file handling. External documents have the following additional requirements:
+    ///
+    /// - The open and move operations provide security-scoped URLs for all external documents. Call the [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) method to access or bookmark these documents, and the [`stopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/stopaccessingsecurityscopedresource()) method to release them. If you’re using a `UIDocument` subclass to manage your document, it automatically manages the security-scoped URL for you.
+    ///
+    /// - Always use file coordinators (see [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator)) to read and write to external documents.
+    ///
+    /// - Always use a file presenter (see [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter)) when displaying the contents of an external document.
+    ///
+    /// - Don’t save URLs that the open and move operations provide. You can, however, save a bookmark to these URLs after calling [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) to ensure you have access. Call the [`bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkdata(options:includingresourcevaluesforkeys:relativeto:)) method and pass in the [`NSURLBookmarkCreationWithSecurityScope`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withsecurityscope) option, creating a bookmark that contains a security-scoped URL.
+    ///
+    /// For more information about working with external documents, see [Providing access to directories](https://developer.apple.com/documentation/uikit/providing-access-to-directories) and [Adding a document browser to your app](https://developer.apple.com/documentation/uikit/adding-a-document-browser-to-your-app).
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

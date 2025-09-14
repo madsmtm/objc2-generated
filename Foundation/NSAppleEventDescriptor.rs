@@ -9,44 +9,32 @@ use objc2_core_services::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAppleEventSendOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAppleEventSendOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/noreply?language=objc)
         #[doc(alias = "NSAppleEventSendNoReply")]
         const NoReply = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/queuereply?language=objc)
         #[doc(alias = "NSAppleEventSendQueueReply")]
         const QueueReply = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/waitforreply?language=objc)
         #[doc(alias = "NSAppleEventSendWaitForReply")]
         const WaitForReply = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/neverinteract?language=objc)
         #[doc(alias = "NSAppleEventSendNeverInteract")]
         const NeverInteract = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/caninteract?language=objc)
         #[doc(alias = "NSAppleEventSendCanInteract")]
         const CanInteract = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/alwaysinteract?language=objc)
         #[doc(alias = "NSAppleEventSendAlwaysInteract")]
         const AlwaysInteract = 48;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/canswitchlayer?language=objc)
         #[doc(alias = "NSAppleEventSendCanSwitchLayer")]
         const CanSwitchLayer = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/dontrecord?language=objc)
         #[doc(alias = "NSAppleEventSendDontRecord")]
         const DontRecord = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/dontexecute?language=objc)
         #[doc(alias = "NSAppleEventSendDontExecute")]
         const DontExecute = 8192;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/dontannotate?language=objc)
         #[doc(alias = "NSAppleEventSendDontAnnotate")]
         const DontAnnotate = 65536;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/sendoptions/defaultoptions?language=objc)
         #[doc(alias = "NSAppleEventSendDefaultOptions")]
         const DefaultOptions = 35;
     }
@@ -61,7 +49,37 @@ unsafe impl RefEncode for NSAppleEventSendOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor?language=objc)
+    /// A wrapper for the Apple event descriptor data type.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of [`NSAppleEventDescriptor`](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor) represents a descriptor—the basic building block for Apple events. This class is a wrapper for the underlying Apple event descriptor data type, [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc). Scriptable Cocoa applications frequently work with instances of [`NSAppleEventDescriptor`](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor), but should rarely need to work directly with the [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc) data structure.
+    ///
+    /// A _descriptor_ is a data structure that stores data and an accompanying four-character code. A descriptor can store a value, or it can store a list of other descriptors (which may also be lists). All the information in an Apple event is stored in descriptors and lists of descriptors, and every Apple event is itself a descriptor list that matches certain criteria.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An instance of `NSAppleEventDescriptor` can represent any kind of descriptor, from a simple value descriptor, to a descriptor list, to a full-fledged Apple event.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Descriptors can be used to build arbitrarily complex containers, so that one Apple event can represent a script statement such as `tell application "TextEdit" to get word 3 of paragraph 6 of document 3`.
+    ///
+    /// In working with Apple event descriptors, it can be useful to understand some of the underlying data types. You’ll find terms such as descriptor, descriptor list, Apple event record, and Apple event defined in Building an Apple Event in Apple Events Programming Guide. You’ll also find information on the four-character codes used to identify information within a descriptor. Apple event data types are defined in [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager). The values of many four-character codes used by Apple (and in some cases reused by developers) can be found in [AppleScript Terminology and Apple Event Codes](http://developer.apple.com/releasenotes/AppleScript/ASTerminology_AppleEventCodes/TermsAndCodes.html).
+    ///
+    /// The most common reason to construct an Apple event with an instance of `NSAppleEventDescriptor` is to supply information in a return Apple event. The most common situation where you might need to extract information from an Apple event (as an instance of `NSAppleEventDescriptor`) is when an Apple event handler installed by your application is invoked, as described in “Installing an Apple Event Handler” in [How Cocoa Applications Handle Apple Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239). In addition, if you execute an AppleScript script using the `NSAppleScript` class, you get an instance of `NSAppleEventDescriptor` as the return value, from which you can extract any required information.
+    ///
+    /// When you work with an instance of `NSAppleEventDescriptor`, you can access the underlying descriptor directly, if necessary, with the [`aeDesc`](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/aedesc) method. Other methods, including [`descriptorWithDescriptorType:bytes:length:`](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/descriptorwithdescriptortype:bytes:length:) make it possible to create and initialize instances of `NSAppleEventDescriptor` without creating temporary instances of `NSData`.
+    ///
+    /// The designated initializer for `NSAppleEventDescriptor` is [`initWithAEDescNoCopy:`](https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/init(aedescnocopy:)). However, it is unlikely that you will need to create a subclass of `NSAppleEventDescriptor`.
+    ///
+    /// Cocoa doesn’t currently provide a mechanism for applications to directly send raw Apple events (though compiling and executing an AppleScript script with `NSAppleScript` may result in Apple events being sent). However, Cocoa applications have full access to the Apple Event Manager C APIs for working with Apple events. So, for example, you might use an instance of  `NSAppleEventDescriptor` to assemble an Apple event and call the Apple Event Manager function `AESend(_:_:_:_:_:_:_:)` to send it.
+    ///
+    /// If you need to send Apple events, or if you need more information on some of the Apple event concepts described here, see Apple Events Programming Guide and [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventDescriptor;

@@ -11,23 +11,43 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct?language=objc)
+/// The various types of thumbnails that you can request.
+///
+/// ## Overview
+///
+/// Thumbnails come in one of three different types:
+///
+/// - [`QLThumbnailGenerationRequestRepresentationTypeIcon`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/icon): A file icon representation.
+///
+/// - [`QLThumbnailGenerationRequestRepresentationTypeLowQualityThumbnail`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/lowqualitythumbnail): A faster to generate version of the thumbnail that may sacrifice quality for speed.
+///
+/// - [`QLThumbnailGenerationRequestRepresentationTypeThumbnail`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/thumbnail): A high-quality thumbnail.
+///
+/// To request all thumbnail representations, use [`QLThumbnailGenerationRequestRepresentationTypeAll`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/all).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLThumbnailGenerationRequestRepresentationTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl QLThumbnailGenerationRequestRepresentationTypes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/icon?language=objc)
+/// A file icon representation of a file.
+///
+/// ## Discussion
+///
+/// Files of the same type share the same file icon.
+///
+///
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeIcon")]
         const Icon = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/lowqualitythumbnail?language=objc)
+/// A faster to generate version of the thumbnail that may sacrifice quality for speed.
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeLowQualityThumbnail")]
         const LowQualityThumbnail = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/thumbnail?language=objc)
+/// A thumbnail representation of a file.
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeThumbnail")]
         const Thumbnail = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct/all?language=objc)
+/// The thumbnail type to generate all possible thumbnail representations.
         #[doc(alias = "QLThumbnailGenerationRequestRepresentationTypeAll")]
         const All = NSUIntegerMax as _;
     }
@@ -42,7 +62,7 @@ unsafe impl RefEncode for QLThumbnailGenerationRequestRepresentationTypes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request?language=objc)
+    /// A request to generate a thumbnail for a file.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLThumbnailGenerationRequest;

@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate?language=objc)
+/// Constants that describe the cell’s drag state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellConfigurationDragState(pub NSInteger);
 impl UICellConfigurationDragState {
+    /// The system hasn’t associated the cell with a drag session.
     /// The cell is not associated with a drag session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate/uicellconfigurationdragstatenone?language=objc)
     #[doc(alias = "UICellConfigurationDragStateNone")]
     pub const None: Self = Self(0);
+    /// A user interaction is lifting the cell, but it isn’t yet part of an active drag session.
     /// The cell is being lifted, before has joined a drag session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate/uicellconfigurationdragstatelifting?language=objc)
     #[doc(alias = "UICellConfigurationDragStateLifting")]
     pub const Lifting: Self = Self(1);
     /// The cell is part of an active drag session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate/uicellconfigurationdragstatedragging?language=objc)
+    /// The cell is part of an active drag session.
     #[doc(alias = "UICellConfigurationDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }
@@ -38,26 +35,23 @@ unsafe impl RefEncode for UICellConfigurationDragState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate?language=objc)
+/// Constants that describe the cell’s drop state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellConfigurationDropState(pub NSInteger);
 impl UICellConfigurationDropState {
+    /// The system hasn’t associated the cell with a drag session.
     /// The cell is not associated with a drag session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate/uicellconfigurationdropstatenone?language=objc)
     #[doc(alias = "UICellConfigurationDropStateNone")]
     pub const None: Self = Self(0);
+    /// A drag session is active and can perform a drop in the cell’s container, but the cell itself isn’t the drop target.
     /// A drag session is active and may perform a drop in the cell's container, but the cell itself
     /// is not the drop target.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate/uicellconfigurationdropstatenottargeted?language=objc)
     #[doc(alias = "UICellConfigurationDropStateNotTargeted")]
     pub const NotTargeted: Self = Self(1);
     /// The cell is the drop target for a drag session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate/uicellconfigurationdropstatetargeted?language=objc)
+    /// The cell is the drop target for a drag session.
     #[doc(alias = "UICellConfigurationDropStateTargeted")]
     pub const Targeted: Self = Self(2);
 }
@@ -71,7 +65,17 @@ unsafe impl RefEncode for UICellConfigurationDropState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationstate-c.class?language=objc)
+    /// An object that encapsulates a cell’s state.
+    ///
+    /// ## Overview
+    ///
+    /// A cell configuration state encompasses a trait collection along with all of the common states that affect a cell’s appearance — view states like selected, focused, or disabled, and cell states like editing or swiped. A cell configuration state encapsulates the inputs that configure a cell for any possible state or combination of states. You use a cell configuration state with background and content configurations to obtain the default appearance for a specific state.
+    ///
+    /// Typically, you don’t create a configuration state yourself. To obtain a configuration state, override the [`updateConfiguration(using:)`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/updateconfiguration(using:)) method in your cell subclass and use the state parameter. Outside of this method, you can get a cell’s configuration state by using its [`configurationState`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/configurationstate-4u37h) property.
+    ///
+    /// You can create your own custom states to add to a cell configuration state by defining a custom state key using [`UIConfigurationStateCustomKey`](https://developer.apple.com/documentation/uikit/uiconfigurationstatecustomkey).
+    ///
+    ///
     #[unsafe(super(UIViewConfigurationState, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

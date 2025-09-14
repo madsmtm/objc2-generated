@@ -4,190 +4,114 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmallocationfailure?language=objc)
 pub const kPMAllocationFailure: c_int = -108;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminternalerror?language=objc)
 #[cfg(feature = "PMDefinitions")]
 pub const kPMInternalError: c_int = kPMGeneralError;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidindex?language=objc)
+/// An array index is invalid.
 pub const kPMInvalidIndex: c_int = -30882;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmstringconversionfailure?language=objc)
+/// An internal error occurred while converting a string.
 pub const kPMStringConversionFailure: c_int = -30883;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmxmlparseerror?language=objc)
+/// An error occurred while parsing XML data.
 pub const kPMXMLParseError: c_int = -30884;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidjobtemplate?language=objc)
+/// An internal error occurred while creating a job template.
 pub const kPMInvalidJobTemplate: c_int = -30885;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidprinterinfo?language=objc)
+/// The printer information is invalid.
 pub const kPMInvalidPrinterInfo: c_int = -30886;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidconnection?language=objc)
+/// The printer connection type is invalid.
 pub const kPMInvalidConnection: c_int = -30887;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidkey?language=objc)
+/// The key in a ticket, job template, or dictionary is invalid.
 pub const kPMInvalidKey: c_int = -30888;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidvalue?language=objc)
+/// The value in a ticket, job template, or dictionary is missing.
 pub const kPMInvalidValue: c_int = -30889;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidallocator?language=objc)
+/// The specified memory allocator is invalid.
 pub const kPMInvalidAllocator: c_int = -30890;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidticket?language=objc)
+/// The job ticket is invalid.
 pub const kPMInvalidTicket: c_int = -30891;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvaliditem?language=objc)
+/// The item being added to a ticket is invalid.
 pub const kPMInvalidItem: c_int = -30892;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidtype?language=objc)
+/// The data type in a ticket, job template, or dictionary is not the expected type.
 pub const kPMInvalidType: c_int = -30893;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidreply?language=objc)
+/// A remote server or client sent an invalid reply.
 pub const kPMInvalidReply: c_int = -30894;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidfiletype?language=objc)
+/// The file type is invalid.
 pub const kPMInvalidFileType: c_int = -30895;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidobject?language=objc)
+/// The object is invalid.
 pub const kPMInvalidObject: c_int = -30896;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidpaper?language=objc)
+/// Your application passed an invalid paper object.
 pub const kPMInvalidPaper: c_int = -30897;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidcalibrationtarget?language=objc)
+/// The dictionary specifying a printer calibration target is invalid.
 pub const kPMInvalidCalibrationTarget: c_int = -30898;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmnodefaultitem?language=objc)
 pub const kPMNoDefaultItem: c_int = -9500;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmnodefaultsettings?language=objc)
 pub const kPMNoDefaultSettings: c_int = -9501;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidpdecontext?language=objc)
 pub const kPMInvalidPDEContext: c_int = -9530;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmdontswitchpdeerror?language=objc)
 pub const kPMDontSwitchPDEError: c_int = -9531;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmunabletofindprocess?language=objc)
 pub const kPMUnableToFindProcess: c_int = -9532;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmfeaturenotinstalled?language=objc)
 pub const kPMFeatureNotInstalled: c_int = -9533;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidpbmref?language=objc)
 pub const kPMInvalidPBMRef: c_int = -9540;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmnoselectedprinters?language=objc)
 pub const kPMNoSelectedPrinters: c_int = -9541;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidlookupspec?language=objc)
 pub const kPMInvalidLookupSpec: c_int = -9542;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmsyncrequestfailed?language=objc)
 pub const kPMSyncRequestFailed: c_int = -9543;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmeditrequestfailed?language=objc)
 pub const kPMEditRequestFailed: c_int = -9544;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmprbrowsernoui?language=objc)
 pub const kPMPrBrowserNoUI: c_int = -9545;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmtickettypenotfound?language=objc)
 pub const kPMTicketTypeNotFound: c_int = -9580;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmupdateticketfailed?language=objc)
 pub const kPMUpdateTicketFailed: c_int = -9581;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmvalidateticketfailed?language=objc)
 pub const kPMValidateTicketFailed: c_int = -9582;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmsubticketnotfound?language=objc)
 pub const kPMSubTicketNotFound: c_int = -9583;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidsubticket?language=objc)
 pub const kPMInvalidSubTicket: c_int = -9584;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmdeletesubticketfailed?language=objc)
 pub const kPMDeleteSubTicketFailed: c_int = -9585;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmitemislocked?language=objc)
 pub const kPMItemIsLocked: c_int = -9586;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmticketislocked?language=objc)
 pub const kPMTicketIsLocked: c_int = -9587;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmtemplateislocked?language=objc)
 pub const kPMTemplateIsLocked: c_int = -9588;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmkeynotfound?language=objc)
 pub const kPMKeyNotFound: c_int = -9589;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmkeynotunique?language=objc)
 pub const kPMKeyNotUnique: c_int = -9590;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmunknowndatatype?language=objc)
 pub const kPMUnknownDataType: c_int = -9591;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmcreatemessagefailed?language=objc)
 pub const kPMCreateMessageFailed: c_int = -9620;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmservercommunicationfailed?language=objc)
 pub const kPMServerCommunicationFailed: c_int = -9621;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmkeyorvaluenotfound?language=objc)
 pub const kPMKeyOrValueNotFound: c_int = -9623;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmmessagingerror?language=objc)
 pub const kPMMessagingError: c_int = -9624;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmservernotfound?language=objc)
 pub const kPMServerNotFound: c_int = -9630;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmserveralreadyrunning?language=objc)
 pub const kPMServerAlreadyRunning: c_int = -9631;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmserversuspended?language=objc)
 pub const kPMServerSuspended: c_int = -9632;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmserverattributerestricted?language=objc)
 pub const kPMServerAttributeRestricted: c_int = -9633;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmfileordiroperationfailed?language=objc)
 pub const kPMFileOrDirOperationFailed: c_int = -9634;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmuserorgroupnotfound?language=objc)
 pub const kPMUserOrGroupNotFound: c_int = -9635;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmpermissionerror?language=objc)
 pub const kPMPermissionError: c_int = -9636;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmunknownmessage?language=objc)
 pub const kPMUnknownMessage: c_int = -9637;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmqueuenotfound?language=objc)
 pub const kPMQueueNotFound: c_int = -9638;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmqueuealreadyexists?language=objc)
 pub const kPMQueueAlreadyExists: c_int = -9639;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmqueuejobfailed?language=objc)
 pub const kPMQueueJobFailed: c_int = -9640;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobnotfound?language=objc)
 pub const kPMJobNotFound: c_int = -9641;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobbusy?language=objc)
 pub const kPMJobBusy: c_int = -9642;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobcanceled?language=objc)
 pub const kPMJobCanceled: c_int = -9643;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmdocumentnotfound?language=objc)
 pub const kPMDocumentNotFound: c_int = -9644;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmpmsymbolnotfound?language=objc)
 pub const kPMPMSymbolNotFound: c_int = -9660;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmiomsymbolnotfound?language=objc)
 pub const kPMIOMSymbolNotFound: c_int = -9661;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmcvmsymbolnotfound?language=objc)
 pub const kPMCVMSymbolNotFound: c_int = -9662;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidpmcontext?language=objc)
 pub const kPMInvalidPMContext: c_int = -9663;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidiomcontext?language=objc)
 pub const kPMInvalidIOMContext: c_int = -9664;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidcvmcontext?language=objc)
 pub const kPMInvalidCVMContext: c_int = -9665;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidjobid?language=objc)
 pub const kPMInvalidJobID: c_int = -9666;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmnoprinterjobid?language=objc)
 pub const kPMNoPrinterJobID: c_int = -9667;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobstreamopenfailed?language=objc)
 pub const kPMJobStreamOpenFailed: c_int = -9668;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobstreamreadfailed?language=objc)
 pub const kPMJobStreamReadFailed: c_int = -9669;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobstreamenderror?language=objc)
 pub const kPMJobStreamEndError: c_int = -9670;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobmanageraborted?language=objc)
 pub const kPMJobManagerAborted: c_int = -9671;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobgetticketbadformaterror?language=objc)
 pub const kPMJobGetTicketBadFormatError: c_int = -9672;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmjobgetticketreaderror?language=objc)
 pub const kPMJobGetTicketReadError: c_int = -9673;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmpluginnotfound?language=objc)
 pub const kPMPluginNotFound: c_int = -9701;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmpluginregisterationfailed?language=objc)
 pub const kPMPluginRegisterationFailed: c_int = -9702;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmfontnotfound?language=objc)
 pub const kPMFontNotFound: c_int = -9703;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmfontnametoolong?language=objc)
 pub const kPMFontNameTooLong: c_int = -9704;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmgeneralcgerror?language=objc)
 pub const kPMGeneralCGError: c_int = -9705;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidstate?language=objc)
 pub const kPMInvalidState: c_int = -9706;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmunexpectedimagingerror?language=objc)
 pub const kPMUnexpectedImagingError: c_int = -9707;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpminvalidprinteraddress?language=objc)
 pub const kPMInvalidPrinterAddress: c_int = -9780;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmopenfailed?language=objc)
 pub const kPMOpenFailed: c_int = -9781;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmreadfailed?language=objc)
 pub const kPMReadFailed: c_int = -9782;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmwritefailed?language=objc)
 pub const kPMWriteFailed: c_int = -9783;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmstatusfailed?language=objc)
 pub const kPMStatusFailed: c_int = -9784;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmclosefailed?language=objc)
 pub const kPMCloseFailed: c_int = -9785;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmunsupportedconnection?language=objc)
 pub const kPMUnsupportedConnection: c_int = -9786;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmioattrnotavailable?language=objc)
 pub const kPMIOAttrNotAvailable: c_int = -9787;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmreadgotzerodata?language=objc)
 pub const kPMReadGotZeroData: c_int = -9788;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1570866-anonymous/kpmlasterrorcodetomakemaintenanceofthislisteasier?language=objc)
 pub const kPMLastErrorCodeToMakeMaintenanceOfThisListEasier: c_int = -9799;

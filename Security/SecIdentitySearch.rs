@@ -10,8 +10,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// Contains information about an identity search.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearch?language=objc)
+/// Contains information about an identity search.
 #[doc(alias = "SecIdentitySearchRef")]
 #[repr(C)]
 pub struct SecIdentitySearch {
@@ -28,13 +27,24 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SecIdentitySearch {
+    /// Returns the unique identifier of the opaque type to which a `SecIdentitySearch` object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecIdentitySearch`](https://developer.apple.com/documentation/security/secidentitysearch) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecIdentitySearch`](https://developer.apple.com/documentation/security/secidentitysearch) object. You can compare this value to the `CFTypeID` identifier obtained by calling the `CFGetTypeID` function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecIdentitySearch instances.
     ///
     /// Returns: The CFTypeID of SecIdentitySearch instances.
     ///
     /// This API is deprecated in 10.7. The SecIdentitySearchRef type is no longer used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearchgettypeid?language=objc)
     #[doc(alias = "SecIdentitySearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -46,6 +56,27 @@ unsafe impl ConcreteType for SecIdentitySearch {
 }
 
 impl SecIdentitySearch {
+    /// Creates a search object for finding identities.
+    ///
+    /// Parameters:
+    /// - keychainOrArray: A keychain object for a single keychain to search, an array of keychain objects for a set of keychains to search, or `NULL` to search the user’s default keychain search list.
+    ///
+    /// - keyUsage: A CSSM key use value as defined in `Security.framework/cssmtype.h`. (Note that, because key recovery is not implemented, the `SIGN_RECOVER` and `VERIFY_RECOVER` constants are not supported.) Use this parameter to filter the search by specifying the key use for the identity. Pass `0` if you want all identities returned by this search. Pass `CSSM_KEYUSE_ANY` to limit the identities returned to those that can be used for every operation.
+    ///
+    /// - searchRef: On return, points to the identity search object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are done with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can OR `CSSM_KEYUSE` values together to set more than one value for key use. Use the returned search object in calls to the [`SecIdentitySearchCopyNext`](https://developer.apple.com/documentation/security/secidentitysearchcopynext) function to obtain identities that match the search criteria.
+    ///
+    ///
     /// Creates a search reference for finding identities.
     ///
     /// Parameter `keychainOrArray`: An reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -63,8 +94,6 @@ impl SecIdentitySearch {
     ///
     /// - `keychain_or_array` should be of the correct type.
     /// - `search_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearchcreate?language=objc)
     #[doc(alias = "SecIdentitySearchCreate")]
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -84,6 +113,19 @@ impl SecIdentitySearch {
         unsafe { SecIdentitySearchCreate(keychain_or_array, key_usage, search_ref) }
     }
 
+    /// Finds the next identity matching specified search criteria
+    ///
+    /// Parameters:
+    /// - searchRef: An identity search object specifying the search criteria for this search. You create the identity search object by calling the [`SecIdentitySearchCreate`](https://developer.apple.com/documentation/security/secidentitysearchcreate) function.
+    ///
+    /// - identity: On return, points to the identity object of the next matching identity (if any). In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). When there are no more identities that match the parameters specified to [`SecIdentitySearchCreate`](https://developer.apple.com/documentation/security/secidentitysearchcreate), [`errSecItemNotFound`](https://developer.apple.com/documentation/security/errsecitemnotfound) is returned.
+    ///
+    ///
     /// Finds the next identity matching the given search criteria, as previously specified by a call to SecIdentitySearchCreate or SecIdentitySearchCreateWithAttributes.
     ///
     /// Parameter `searchRef`: A reference to the current identity search. You create the identity search reference by calling either SecIdentitySearchCreate or SecIdentitySearchCreateWithAttributes.
@@ -97,8 +139,6 @@ impl SecIdentitySearch {
     /// # Safety
     ///
     /// `identity` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysearchcopynext?language=objc)
     #[doc(alias = "SecIdentitySearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated]

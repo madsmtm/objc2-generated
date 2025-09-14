@@ -13,12 +13,17 @@ use objc2_io_kit::*;
 use crate::*;
 
 extern_class!(
+    /// The class for accessing USB-related services.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to create pipes, retrieve descriptors, send device requests, and enable power savings. Create an instance of the class with [`initWithIOService:options:queue:error:interestHandler:`](https://developer.apple.com/documentation/iousbhost/iousbhostobject/initwithioservice:options:queue:error:interesthandler:).
+    ///
+    ///
     /// The IOUSBHostObject representing a USB interface
     ///
     /// This class provides functionality to send control requests to the default control endpoint, as well as
     /// create IOUSBHostPipe objects to transfer data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinterface?language=objc)
     #[unsafe(super(IOUSBHostObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOUSBHostObject")]

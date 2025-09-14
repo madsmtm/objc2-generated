@@ -9,7 +9,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpolylinerenderer?language=objc)
+    /// A visual representation of any polyline overlay object.
+    ///
+    /// ## Overview
+    ///
+    /// This renderer strokes the line only; it doesn’t fill it. You can change the color and other drawing attributes of the polyline by modifying the properties it inherits from the main class. You typically use this class as-is and don’t subclass it.
+    ///
+    ///
     #[unsafe(super(MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]

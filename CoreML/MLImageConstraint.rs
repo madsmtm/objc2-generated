@@ -7,11 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The width, height, and pixel format constraints of an image feature.
+    ///
+    /// ## Overview
+    ///
+    /// In CoreML, an _image_ is a collection of pixels represented by [CVPixelBuffer](https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e) (Swift) or [`CVPixelBufferRef`](https://developer.apple.com/documentation/corevideo/cvpixelbuffer) (Objective-C). An _image feature_ is a model input or output that accepts or produces, respectively, an image bundled in an [`MLFeatureValue`](https://developer.apple.com/documentation/coreml/mlfeaturevalue). `MLImageConstraint` defines the image feature’s limitations for the images within an `MLFeatureValue`.
+    ///
+    /// If a model has an image feature for an input or output, the model author uses an _image feature description_ by creating an [`MLFeatureDescription`](https://developer.apple.com/documentation/coreml/mlfeaturedescription). The feature description for an image input or output has:
+    ///
+    /// - Its [`type`](https://developer.apple.com/documentation/coreml/mlfeaturedescription/type) property set to [`MLFeatureTypeImage`](https://developer.apple.com/documentation/coreml/mlfeaturetype/image)
+    ///
+    /// - Its [`imageConstraint`](https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint) property set to an [`MLImageConstraint`](https://developer.apple.com/documentation/coreml/mlimageconstraint) instance configured to the image feature’s size and format
+    ///
+    /// Image features that support additional image sizes provide a range of sizes, or a list of discrete sizes, in their image constraint’s [`sizeConstraint`](https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint) property.
+    ///
+    ///
     /// MLImageConstraint
     ///
     /// Constraint on image properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimageconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLImageConstraint;

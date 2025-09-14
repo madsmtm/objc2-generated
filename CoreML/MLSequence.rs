@@ -7,10 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A machine learning collection type that stores a series of strings or integers.
+    ///
+    /// ## Overview
+    ///
+    /// A sequence stores a series of integers or strings of any length as the underlying type of an `MLFeatureValue`. Some classifier models — typically natural language models, such as an [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) — produce an [`MLSequence`](https://developer.apple.com/documentation/coreml/mlsequence) feature value from their output features.
+    ///
+    ///
     /// An immutable container holding an ordered collection of feature values
     /// of the same type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlsequence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLSequence;

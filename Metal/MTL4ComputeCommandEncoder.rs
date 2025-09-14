@@ -10,11 +10,16 @@ use crate::*;
 extern_protocol!(
     /// Encodes a compute pass and other memory operations into a command buffer.
     ///
+    /// ## Overview
+    ///
+    /// Use instances of this abstraction to encode a compute pass into [`MTL4CommandBuffer`](https://developer.apple.com/documentation/metal/mtl4commandbuffer) instances, as well as commands that copy and modify the underlying memory of various Metal resources, and commands that build or refit acceleration structures.
+    ///
+    ///
+    /// Encodes a compute pass and other memory operations into a command buffer.
+    ///
     /// Use instances of this abstraction to encode a compute pass into ``MTL4CommandBuffer`` instances, as well as commands
     /// that copy and modify the underlying memory of various Metal resources, and commands that build or refit acceleration
     /// structures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4computecommandencoder?language=objc)
     #[cfg(feature = "MTL4CommandEncoder")]
     pub unsafe trait MTL4ComputeCommandEncoder: MTL4CommandEncoder {
         #[cfg(feature = "MTLCommandEncoder")]

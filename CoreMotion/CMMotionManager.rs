@@ -7,26 +7,132 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaccelerometerhandler?language=objc)
+/// The type of block callback for handling accelerometer data.
+///
+/// ## Discussion
+///
+/// Blocks of type `CMAccelerometerHandler` are called when there is accelerometer data to process. You pass the block into [`startAccelerometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startaccelerometerupdates(to:withhandler:)) as the second argument. Blocks of this type return no value but take two arguments:
+///
+/// - `accelerometerData`: An object that encapsulates a [`CMAcceleration`](https://developer.apple.com/documentation/coremotion/cmacceleration) structure with fields holding acceleration values for the three axes of movement.
+///
+/// - `error`: An error object representing an error encountered in providing accelerometer updates. If an error occurs, you should stop accelerometer updates and inform the user of the problem. If there is no error, this argument is `nil`. Core Motion errors are of the [`CMErrorDomain`](https://developer.apple.com/documentation/coremotion/cmerrordomain) domain and the [`CMError`](https://developer.apple.com/documentation/coremotion/cmerror) type.
+///
+///
 #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem", feature = "block2"))]
 pub type CMAccelerometerHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMAccelerometerData, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmgyrohandler?language=objc)
+/// The type of block callback for handling gyroscope data.
+///
+/// ## Discussion
+///
+/// Blocks of type `CMGyroHandler` are called when there is gyroscope data to process. You pass the block into [`startGyroUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startgyroupdates(to:withhandler:)) as the second argument. Blocks of this type return no value but take two arguments:
+///
+/// - `gyroData`: An object that encapsulates a [`CMRotationRate`](https://developer.apple.com/documentation/coremotion/cmrotationrate) structure with fields holding rotation-rate values for the three axes of movement.
+///
+/// - `error`: An error object representing an error encountered in providing gyroscope data. If an error occurs, you should stop gyroscope updates and inform the user of the problem. If there is no error, this argument is `nil`. Core Motion errors are of the [`CMErrorDomain`](https://developer.apple.com/documentation/coremotion/cmerrordomain) domain and the [`CMError`](https://developer.apple.com/documentation/coremotion/cmerror) type.
+///
+///
 #[cfg(all(feature = "CMGyro", feature = "CMLogItem", feature = "block2"))]
 pub type CMGyroHandler = *mut block2::DynBlock<dyn Fn(*mut CMGyroData, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotionhandler?language=objc)
+/// The type of block callback for handling device-motion data.
+///
+/// ## Discussion
+///
+/// Blocks of type `CMDeviceMotionHandler` are called when there is device-motion data to process. You pass the block into [`startDeviceMotionUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(to:withhandler:)) as the second argument. Blocks of this type return no value but take two arguments:
+///
+/// - `motion`: A [`CMDeviceMotion`](https://developer.apple.com/documentation/coremotion/cmdevicemotion) object, which encapsulates other objects and a structure representing attitude, rotation rate, gravity, and user acceleration.
+///
+/// - `error`: An error object representing an error encountered in providing device-motion data. If an error occurs, you should stop device-motion data updates and inform the user of the problem. If there is no error, this argument is `nil`. Core Motion errors are of the [`CMErrorDomain`](https://developer.apple.com/documentation/coremotion/cmerrordomain) domain and the [`CMError`](https://developer.apple.com/documentation/coremotion/cmerror) type.
+///
+///
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
 pub type CMDeviceMotionHandler = *mut block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagnetometerhandler?language=objc)
+/// The type of block callback for handling magnetometer data.
+///
+/// ## Discussion
+///
+/// Blocks of type `CMMagnetometerHandler` are called when there is magnetometer data to process. You pass the block into the [`startMagnetometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startmagnetometerupdates(to:withhandler:)) method as the second argument. Blocks of this type return no value but take two arguments:
+///
+/// - `magnetometerData`: An object that encapsulates a [`CMMagneticField`](https://developer.apple.com/documentation/coremotion/cmmagneticfield) structure with fields holding magnetic-field values for the three axes of movement.
+///
+/// - `error`: An error object representing an error encountered in providing magnetometer data. If an error occurs, you should stop magnetometer updates and inform the user of the problem. If there is no error, this argument is `nil`. Core Motion errors are of the [`CMErrorDomain`](https://developer.apple.com/documentation/coremotion/cmerrordomain) domain and the [`CMError`](https://developer.apple.com/documentation/coremotion/cmerror) type.
+///
+///
 #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer", feature = "block2"))]
 pub type CMMagnetometerHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMMagnetometerData, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionmanager?language=objc)
+    /// The object for starting and managing motion services.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager) object to start the services that report movement detected by the device’s onboard sensors. Use this object to receive four types of motion data:
+    ///
+    /// - **Accelerometer data**, indicating the instantaneous acceleration of the device in three dimensional space.
+    ///
+    /// - **Gyroscope data**, indicating the instantaneous rotation around the device’s three primary axes.
+    ///
+    /// - **Magnetometer data**, indicating the device’s orientation relative to Earth’s magnetic field.
+    ///
+    /// - **Device-motion data**, indicating key motion-related attributes such as the device’s user-initiated acceleration, its attitude, rotation rates, orientation relative to calibrated magnetic fields, and orientation relative to gravity. Core Motion’s sensor fusion algorithms provide this data.
+    ///
+    /// The processed device-motion data gives the device’s attitude, rotation rate, calibrated magnetic fields, the direction of gravity, and the amount of acceleration the user contributes to the device.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Create only one [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager) object for your app. Multiple instances of this class can affect the rate at which the system receives data from the accelerometer and gyroscope.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can receive live sensor data at a specified update interval, or you can let the sensors collect data and store it for retrieval later. With both of these approaches,  call the appropriate stop method ([`stopAccelerometerUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/stopaccelerometerupdates()), [`stopGyroUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/stopgyroupdates()), [`stopMagnetometerUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/stopmagnetometerupdates()), and [`stopDeviceMotionUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/stopdevicemotionupdates())) when you no longer need the data.
+    ///
+    /// ### Receive regular motion updates
+    ///
+    /// To receive motion data at specific intervals, the app calls a start method that takes an operation queue (instance of [`NSOperationQueue`](https://developer.apple.com/documentation/foundation/operationqueue)) and a block handler of a specific type for processing those updates.  The motion data is passed into the block handler. The frequency of updates is determined by the value of an interval property.
+    ///
+    /// - **Accelerometer.** Set the [`accelerometerUpdateInterval`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerupdateinterval) property to specify an update interval. Call  the [`startAccelerometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startaccelerometerupdates(to:withhandler:)) method, passing in a block of type [`CMAccelerometerHandler`](https://developer.apple.com/documentation/coremotion/cmaccelerometerhandler). Accelerometer data is passed into the block as [`CMAccelerometerData`](https://developer.apple.com/documentation/coremotion/cmaccelerometerdata) objects.
+    ///
+    /// - **Gyroscope.** Set the [`gyroUpdateInterval`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/gyroupdateinterval) property to specify an update interval. Call  the [`startGyroUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startgyroupdates(to:withhandler:)) method, passing in a block of type [`CMGyroHandler`](https://developer.apple.com/documentation/coremotion/cmgyrohandler). Rotation-rate data is passed into the block as [`CMGyroData`](https://developer.apple.com/documentation/coremotion/cmgyrodata) objects.
+    ///
+    /// - **Magnetometer.** Set the [`magnetometerUpdateInterval`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerupdateinterval) property to specify an update interval. Call the [`startMagnetometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startmagnetometerupdates(to:withhandler:)) method, passing a block of type [`CMMagnetometerHandler`](https://developer.apple.com/documentation/coremotion/cmmagnetometerhandler). Magnetic-field data is passed into the block as [`CMMagnetometerData`](https://developer.apple.com/documentation/coremotion/cmmagnetometerdata) objects.
+    ///
+    /// - **Device motion.** Set the [`deviceMotionUpdateInterval`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/devicemotionupdateinterval) property to specify an update interval. Call the [`startDeviceMotionUpdatesUsingReferenceFrame:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:))or [`startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:to:withhandler:)) or [`startDeviceMotionUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(to:withhandler:)) method, passing in a block of type [`CMDeviceMotionHandler`](https://developer.apple.com/documentation/coremotion/cmdevicemotionhandler). With the former method, you can specify a reference frame to be used for the attitude estimates. Rotation-rate data is passed into the block as [`CMDeviceMotion`](https://developer.apple.com/documentation/coremotion/cmdevicemotion) objects.
+    ///
+    /// ### Sample motion data periodically
+    ///
+    /// To sample motion data periodically, start a motion service using a method that takes no parameters and periodically access the properties of the [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager). This approach is the recommended approach for apps such as games. Handling accelerometer data in a block introduces additional overhead, and most game apps are only interested in the latest sample of motion data when they render a frame.
+    ///
+    /// - **Accelerometer.** Call [`startAccelerometerUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startaccelerometerupdates()) to begin updates and periodically access [`CMAccelerometerData`](https://developer.apple.com/documentation/coremotion/cmaccelerometerdata) objects by reading the [`accelerometerData`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata) property.
+    ///
+    /// - **Gyroscope.** Call [`startGyroUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startgyroupdates()) to begin updates and periodically access [`CMGyroData`](https://developer.apple.com/documentation/coremotion/cmgyrodata) objects by reading the [`gyroData`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/gyrodata) property.
+    ///
+    /// - **Magnetometer.** Call [`startMagnetometerUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startmagnetometerupdates()) to begin updates and periodically access [`CMMagnetometerData`](https://developer.apple.com/documentation/coremotion/cmmagnetometerdata) objects by reading the [`magnetometerData`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata) property.
+    ///
+    /// - **Device motion.** Call the [`startDeviceMotionUpdatesUsingReferenceFrame:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:)) or [`startDeviceMotionUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates()) method to begin updates and periodically access [`CMDeviceMotion`](https://developer.apple.com/documentation/coremotion/cmdevicemotion) objects by reading the [`deviceMotion`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/devicemotion) property. The [`startDeviceMotionUpdatesUsingReferenceFrame:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:)) method lets you specify a reference frame for the attitude estimates.
+    ///
+    /// ### Determine hardware availability and state
+    ///
+    /// If a hardware feature (for example, a gyroscope) is not available on a device, calling a start method related to that feature has no effect. You can find out whether a hardware feature is available or active by checking the appropriate property; for example, for gyroscope data, you can check the value of the [`gyroAvailable`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable) or [`gyroActive`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive) properties.
+    ///
+    /// ### Identify the coordinate axes of the device
+    ///
+    /// To interpret accelerometer, gyroscope, or attitude information, you need to know the orientation of the device’s coordinate axes. The following illustration shows the positive x-axis, positive y-axis, and positive z-axis for motion-capable Apple devices.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/82453ebe5f6e848f8ef4532e4e7265be/media-4302073~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b702f8aa95f1359d3b1b7a05b575569b/media-4302073%402x.png 2x" />
+    ///     <img alt="An illustration showing iPhone, iPad, Apple Watch, and Apple Vision Pro with labels representing the positive x-axis, positive y-axis, and positive z-axis on each device." src="https://docs-assets.developer.apple.com/published/b702f8aa95f1359d3b1b7a05b575569b/media-4302073%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMotionManager;

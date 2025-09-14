@@ -12,6 +12,15 @@ use crate::*;
 extern "C" {
     /// A push type for Voice-over-IP (VoIP) call invitations.
     ///
+    /// ## Discussion
+    ///
+    /// Use this type of notification to initiate live voice calls over the network. Apps receiving VoIP push notifications must report the call quickly to CallKit, so it can alert the user to the presence of the incoming call. For apps linked against the iOS 13 SDK or later, the system terminates your app if you fail to report these notifications to CallKit. If your app repeatedly fails to report VoIP notifications to CallKit, the system stops launching your app for VoIP push notifications.
+    ///
+    /// Don’t use this type of notification for anything other than initiating VoIP calls. If you don’t want to post the CallKit call interface, handle notifications with the [`User Notifications`](https://developer.apple.com/documentation/usernotifications) framework instead of PushKit. When sending encrypted content, use a Notification Service Extension to decrypt that content before displaying it to the user. You can also use a Notification Content Extension to display a custom interface for your app’s notifications. For more information, see [Modifying content in newly delivered notifications](https://developer.apple.com/documentation/usernotifications/modifying-content-in-newly-delivered-notifications) and [Customizing the Appearance of Notifications](https://developer.apple.com/documentation/usernotificationsui/customizing-the-appearance-of-notifications).
+    ///
+    ///
+    /// A push type for Voice-over-IP (VoIP) call invitations.
+    ///
     /// Use this type of notification to initiate live voice calls over the network.
     /// Apps receiving VoIP push notifications must report the call quickly to
     /// CallKit, so it can alert the user to the presence of the incoming call. For
@@ -34,13 +43,22 @@ extern "C" {
     /// and
     /// <doc
     /// ://com.apple.documentation/documentation/usernotificationsui/customizing_the_appearance_of_notifications>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype/voip?language=objc)
     #[cfg(feature = "PKDefines")]
     pub static PKPushTypeVoIP: &'static PKPushType;
 }
 
 extern "C" {
+    /// A push type for watchOS complications.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type of notification to deliver updated data related for your watchOS app’s complication. The watchOS app’s complication must be active on the user’s current clock face. If it is not, the system does not deliver pushes of this type. For watchOS 6 and later, send the push notification directly to Apple Watch. For watchOS 5 and earlier, you must send it to the iOS companion instead.
+    ///
+    /// The time your watchOS app spends processing these push notifications counts against the budget allotted to your complication for updating itself. Don’t start any long-running tasks when processing the notification payload. In fact, it is recommended that you include all needed data in the payload so that your app can process that data quickly.
+    ///
+    /// The system limits you to 50 push notifications per day. If you exceed the limit, subsequent pushes are not delivered.
+    ///
+    ///
     /// A push type for watchOS complications.
     ///
     /// Use this type of notification to deliver updated data related for your
@@ -58,8 +76,6 @@ extern "C" {
     ///
     /// The system limits you to 50 push notifications per day. If you exceed the
     /// limit, subsequent pushes are not delivered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype/complication?language=objc)
     #[cfg(feature = "PKDefines")]
     #[deprecated = "Complication pushes are supported directly on watchOS now, so this should no longer be used on iOS."]
     pub static PKPushTypeComplication: &'static PKPushType;
@@ -68,17 +84,36 @@ extern "C" {
 extern "C" {
     /// A push type for file provider updates.
     ///
+    /// ## Discussion
+    ///
+    /// Use file provider notifications to update your File Provider extension’s content from your server. For more information, see doc://com.apple.documentation/documentation/fileprovider/nonreplicated_file_provider_extension/content_and_change_tracking/tracking_your_file_provider_s_changes.
+    ///
+    ///
+    /// A push type for file provider updates.
+    ///
     /// Use file provider notifications to update your File Provider extension's content
     /// from your server. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/fileprovider/nonreplicated_file_provider_extension/content_and_change_tracking/tracking_your_file_provider_s_changes>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype/fileprovider?language=objc)
     #[cfg(feature = "PKDefines")]
     pub static PKPushTypeFileProvider: &'static PKPushType;
 }
 
 extern_class!(
+    /// An object that requests the delivery and handles the receipt of PushKit notifications.
+    ///
+    /// ## Overview
+    ///
+    /// A `PKPushRegistry` object manages only certain types of notifications, such as high-priority notifications needed by a VoIP app. PushKit wakes up your app as needed to deliver incoming notifications and delivers the notifications directly to the push registry object that requested them.
+    ///
+    /// Every time your app launches, whether in the foreground or in the background, create a push registry object and configure it. Typically, you keep the push registry object running for the duration of your app. Each push registry object delivers incoming notifications to its [`delegate`](https://developer.apple.com/documentation/pushkit/pkpushregistry/delegate) object, which also handles the responses for registration requests. Listing 1 shows how to create a push registry object and request VoIP notifications. Always assign an appropriate delegate object before modifying the [`desiredPushTypes`](https://developer.apple.com/documentation/pushkit/pkpushregistry/desiredpushtypes) property.
+    ///
+    /// Listing 1. Creating and configuring a push registry object
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func registerForVoIPPushes() {", "    self.voipRegistry = PKPushRegistry(queue: nil)", "    self.voipRegistry.delegate = self", "    self.voipRegistry.desiredPushTypes = [PKPushTypeVoIP]", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void) registerForVoIPPushes {", "   self.voipRegistry = [[PKPushRegistry alloc] initWithQueue:nil];", "   self.voipRegistry.delegate = self;", " ", "   // Initiate registration.", "   self.voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];", "}"], metadata: None }] }] })
+    /// Assigning a new value to the [`desiredPushTypes`](https://developer.apple.com/documentation/pushkit/pkpushregistry/desiredpushtypes) property registers the push registry object with the PushKit servers. The server reports the success or failure of your registration attempts asynchronously to the push registry, which then reports those results to its delegate object. The push registry also delivers all received notifications to the delegate object. For more information about the delegate methods, see [`PKPushRegistryDelegate`](https://developer.apple.com/documentation/pushkit/pkpushregistrydelegate).
+    ///
+    ///
     /// An object that requests the delivery and handles the receipt of PushKit notifications.
     ///
     /// A `PKPushRegistry` object manages only certain types of notifications,
@@ -127,8 +162,6 @@ extern_class!(
     ///
     /// - ``PushKit/PKPushRegistry/desiredPushTypes``
     /// - ``PushKit/PKPushRegistry/pushTokenForType:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushregistry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPushRegistry;
@@ -241,6 +274,13 @@ impl PKPushRegistry {
 }
 
 extern_protocol!(
+    /// The methods that you use to handle incoming PushKit notifications and registration events.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the methods of this protocol in an object of your app and assign that object to the [`delegate`](https://developer.apple.com/documentation/pushkit/pkpushregistry/delegate) property of your `PKPushRegistry` object. Use the methods of this protocol to process incoming notifications and to react to token registration and invalidation.
+    ///
+    ///
     /// The methods that you use to handle incoming PushKit notifications and registration
     /// events.
     ///
@@ -263,8 +303,6 @@ extern_protocol!(
     /// ### Deprecated Methods
     ///
     /// - ``PushKit/PKPushRegistryDelegate/pushRegistry:didReceiveIncomingPushWithPayload:forType:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushregistrydelegate?language=objc)
     pub unsafe trait PKPushRegistryDelegate: NSObjectProtocol {
         #[cfg(all(feature = "PKDefines", feature = "PKPushCredentials"))]
         /// Tells the delegate that the system updated the credentials for the specified type

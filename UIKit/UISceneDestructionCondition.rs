@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// Specifies when UIKit destroys the current scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedestructioncondition?language=objc)
+    /// Specifies when UIKit destroys the current scene.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

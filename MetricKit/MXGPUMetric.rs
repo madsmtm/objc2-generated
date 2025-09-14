@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about the use of the GPU.
     /// An MXMetric subclass that encapsulates GPU metrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxgpumetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

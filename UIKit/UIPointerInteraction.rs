@@ -9,7 +9,21 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerinteraction?language=objc)
+    /// An interaction that enables support for effects on a view or customizes the pointer’s appearance within a region of an app.
+    ///
+    /// ## Overview
+    ///
+    /// If you use a [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton) as an interface object, use the button’s [`pointerInteractionEnabled`](https://developer.apple.com/documentation/uikit/uibutton/ispointerinteractionenabled) and [`pointerStyleProvider`](https://developer.apple.com/documentation/uikit/uibutton/pointerstyleprovider-1d4d2) to customize the proposed effect before constructing your own custom pointer effect using a [`UIPointerInteraction`](https://developer.apple.com/documentation/uikit/uipointerinteraction).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In iPadOS, the visual interactions when using mouse or trackpad input versus Apple Pencil input are slightly different: For example, pointer styles such as the system pointer aren’t visible while using Apple Pencil. However, both input devices support effect-based pointers, but have a slightly different visual appearance depending on which device is in use.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -70,7 +84,7 @@ impl UIPointerInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerinteractiondelegate?language=objc)
+    /// An interface for handling pointer movements within the interaction’s view.
     pub unsafe trait UIPointerInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -160,7 +174,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerregionrequest?language=objc)
+    /// An object to describe the pointer’s location in the interaction’s view.
+    ///
+    /// ## Overview
+    ///
+    /// The `UIPointerRegionRequest` is given to the `UIPointerInteractionDelegate` to allow for changes to the pointer interaction.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -201,7 +221,7 @@ impl UIPointerRegionRequest {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerinteractionanimating?language=objc)
+    /// An interface for modifying an interaction animation in coordination with the pointer effect animations.
     pub unsafe trait UIPointerInteractionAnimating:
         NSObjectProtocol + MainThreadOnly
     {

@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncwidgetcontroller?language=objc)
+    /// An object used to specify whether a Today widget has content to display.
+    ///
+    /// ## Overview
+    ///
+    /// The `NCWidgetController` class defines an object that both a Today widget and the containing app that delivers the widget can use to specify whether the widget has content to display. Because this class helps a widget and its containing app coordinate the display of the widget’s content, a widget that doesn’t communicate with its containing app is unlikely to use this class.
+    ///
+    /// Typically, a widget appears in the Today view when it has content to display. If a currently running widget no longer has content to display, it can get a widget controller and set the flag in the [`setHasContent:forWidgetWithBundleIdentifier:`](https://developer.apple.com/documentation/notificationcenter/ncwidgetcontroller/sethascontent(_:forwidgetwithbundleidentifier:)) method to `false`. If the containing app later determines that there is content this widget should display, the app can get a widget controller and update the flag, even while the widget isn’t running.
+    ///
+    /// The `NCWidgetController` class should not be subclassed.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]

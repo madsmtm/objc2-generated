@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpickertouchbaritem?language=objc)
+    /// A bar item that provides a system-defined color picker.
+    ///
+    /// ## Overview
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/macos/touch-bar/touch-bar-controls-and-views/#color-pickers).
+    ///
+    ///
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]

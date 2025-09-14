@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The buffer options that control the playback scheduling.
 /// Options controlling buffer scheduling.
 ///
 ///
@@ -16,21 +17,19 @@ use crate::*;
 /// The buffer interrupts any buffer already playing, at its loop point.
 ///
 /// API_AVAILABLE(macos(10.10), ios(8.0), watchos(2.0), tvos(9.0))
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioPlayerNodeBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioPlayerNodeBufferOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions/loops?language=objc)
+/// An option that indicates the buffer loops indefinitely.
         #[doc(alias = "AVAudioPlayerNodeBufferLoops")]
         const Loops = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions/interrupts?language=objc)
+/// An option that indicates the buffer interrupts any buffer in a playing state.
         #[doc(alias = "AVAudioPlayerNodeBufferInterrupts")]
         const Interrupts = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions/interruptsatloop?language=objc)
+/// An option that indicates the buffer interrupts any buffer in a playing state at its loop point.
         #[doc(alias = "AVAudioPlayerNodeBufferInterruptsAtLoop")]
         const InterruptsAtLoop = 1<<2;
     }
@@ -44,6 +43,7 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that specify when the framework must invoke the completion handler.
 /// Specifies when the completion handler must be invoked.
 ///
 ///
@@ -59,20 +59,32 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
 /// (possibly significant) latency in the audio playback device.
 ///
 /// API_AVAILABLE(macos(10.13), ios(11.0), watchos(4.0), tvos(11.0));
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioPlayerNodeCompletionCallbackType(pub NSInteger);
 impl AVAudioPlayerNodeCompletionCallbackType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype/dataconsumed?language=objc)
+    /// A completion handler that indicates the player consumes the buffer or file data.
     #[doc(alias = "AVAudioPlayerNodeCompletionDataConsumed")]
     pub const DataConsumed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype/datarendered?language=objc)
+    /// A completion handler that indicates the player renders the buffer or file data.
+    ///
+    /// ## Discussion
+    ///
+    /// This case doesn’t account for any signal processing latencies downstream of the player in the engine.
+    ///
+    ///
     #[doc(alias = "AVAudioPlayerNodeCompletionDataRendered")]
     pub const DataRendered: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype/dataplayedback?language=objc)
+    /// A completion handler that indicates the player finishes the buffer or file data.
+    ///
+    /// ## Discussion
+    ///
+    /// The completion handler is applicable when the engine is rendering to or from an audio device.
+    ///
+    /// It accounts for both signal processing latencies downstream of the player in the engine, and (possibly significant) latency in the audio playback device.
+    ///
+    ///
     #[doc(alias = "AVAudioPlayerNodeCompletionDataPlayedBack")]
     pub const DataPlayedBack: Self = Self(2);
 }
@@ -85,6 +97,11 @@ unsafe impl RefEncode for AVAudioPlayerNodeCompletionCallbackType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The callback handler for buffer or file completion.
+///
+/// Parameters:
+/// - callbackType: The option to specify when the system must call the completion handler.
+///
 /// Buffer or file completion callback handler.
 ///
 /// Parameter `callbackType`: Indicates the type of buffer or file completion when the callback is invoked.
@@ -102,13 +119,80 @@ unsafe impl RefEncode for AVAudioPlayerNodeCompletionCallbackType {
 /// Setting or getting properties on an AVAudioPlayerNode while the AVAudioEngine is running requires
 /// some synchronisation between the calling threads internally. If you want to call player node API within this
 /// completion handler block, calls should be synchronised to the same thread/queue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type AVAudioPlayerNodeCompletionHandler =
     *mut block2::DynBlock<dyn Fn(AVAudioPlayerNodeCompletionCallbackType)>;
 
 extern_class!(
+    /// An object for scheduling the playback of buffers or segments of audio files.
+    ///
+    /// ## Overview
+    ///
+    /// This audio node supports scheduling the playback of [`AVAudioPCMBuffer`](https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer) instances, or segments of audio files that you open through [`AVAudioFile`](https://developer.apple.com/documentation/avfaudio/avaudiofile). You can schedule buffers and segments to play at specific points in time or to play immediately following preceding segments.
+    ///
+    /// Generally, you want to configure the node’s output format with the same number of channels as in the files and buffers. Otherwise, the node drops or adds channels as necessary. It’s usually preferable to use an [`AVAudioMixerNode`](https://developer.apple.com/documentation/avfaudio/avaudiomixernode) for this configuration.
+    ///
+    /// Similarly, when playing file segments, the node makes sample rate conversions, if necessary. It’s preferable to configure the node’s output sample rate to match that of the files, and to use a mixer to perform the rate conversion.
+    ///
+    /// When playing buffers, there’s an implicit assumption that the buffers are at the same sample rate as the node’s output format.
+    ///
+    /// The [`stop`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode/stop()) method unschedules all previously scheduled buffers and file segments, and returns the player timeline to sample time `0`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `AVAudioPlayerNode` class isn’t key-value observing compliant, and may indicate that Combine publishers are available. Don’t use them for monitoring changes.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Player Timeline
+    ///
+    /// The usual [`AVAudioNode`](https://developer.apple.com/documentation/avfaudio/avaudionode) sample times, which [`lastRenderTime`](https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime) observes, have an arbitrary zero point. The `AVAudioPlayerNode` class superimposes a second player timeline on top of this to reflect when the player starts and intervals when it pauses. The methods [`nodeTimeForPlayerTime:`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode/nodetime(forplayertime:)) and [`playerTimeForNodeTime:`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode/playertime(fornodetime:)) convert between the two.
+    ///
+    /// ### Scheduling Playback Time
+    ///
+    /// The [`scheduleBuffer:atTime:options:completionHandler:`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode/schedulebuffer(_:at:options:completionhandler:)), [`scheduleFile:atTime:completionHandler:`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode/schedulefile(_:at:completionhandler:)), and [`scheduleSegment:startingFrame:frameCount:atTime:completionHandler:`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode/schedulesegment(_:startingframe:framecount:at:completionhandler:)) methods take an [`AVAudioTime`](https://developer.apple.com/documentation/avfaudio/avaudiotime) `when` parameter, and you interpret it as follows:
+    ///
+    /// - If the `when` parameter is `nil`:
+    ///
+    /// - If there are previous commands, the new one plays immediately following the last one.
+    ///
+    /// - Otherwise, if the node is in a playing state, the event plays in the very near future.
+    ///
+    /// - Otherwise, the command plays at sample time `0`.
+    ///
+    /// - If the `when` parameter is a sample time, the parameter interprets it as such.
+    ///
+    /// - If the `when` parameter is a host time, the system ignores it unless the sample time is invalid when the engine is rendering to an audio device.
+    ///
+    /// The scheduling methods fail if:
+    ///
+    /// - A buffer’s channel count doesn’t match that of the node’s output format.
+    ///
+    /// - The system can’t access a file.
+    ///
+    /// - An [`AVAudioTime`](https://developer.apple.com/documentation/avfaudio/avaudiotime) doesn’t specify a valid sample time or a host time.
+    ///
+    /// - A segment’s start frame or frame count is a negative value.
+    ///
+    /// ### Handling Buffer or File Completion
+    ///
+    /// The buffer of file completion handlers are a means to schedule more data if available on the player node. For more information on the different completion callback types, see [`AVAudioPlayerNodeCompletionCallbackType`](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t stop a player within a completion handler callback because it can deadlock while trying to unschedule already scheduled buffers.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Rendering Offline
+    ///
+    /// When you use a player node with the engine operating in manual rendering mode, you use the buffer or file completion handlers — [`lastRenderTime`](https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime), [`latency`](https://developer.apple.com/documentation/avfaudio/avaudionode/latency), and [`outputPresentationLatency`](https://developer.apple.com/documentation/avfaudio/avaudionode/outputpresentationlatency) — to track how much data the player rendered and how much remains to render.
+    ///
+    ///
     /// Play buffers or segments of audio files.
     ///
     /// AVAudioPlayerNode supports scheduling the playback of `AVAudioBuffer` instances,
@@ -181,8 +265,6 @@ extern_class!(
     /// buffer/file completion handlers, `lastRenderTime` and the latencies (`latency` and
     /// `outputPresentationLatency`) can be used to track how much data the player has rendered and
     /// how much more data is left to render.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

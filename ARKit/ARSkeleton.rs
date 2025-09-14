@@ -10,13 +10,22 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// The interface for the skeleton of a tracked body.
+    ///
+    /// ## Overview
+    ///
+    /// As a collection of joints, this protocol describes the state of a human body whose movements ARKit can track.
+    ///
+    /// The [`ARSkeleton3D`](https://developer.apple.com/documentation/arkit/arskeleton3d) subclass provides you with the position of a tracked body’s joints in 3D space, specifically with its [`jointLocalTransforms`](https://developer.apple.com/documentation/arkit/arskeleton3d/jointlocaltransforms-1m5a1) and [`jointModelTransforms`](https://developer.apple.com/documentation/arkit/arskeleton3d/jointmodeltransforms-dno4) properties.
+    ///
+    /// The [`ARSkeleton2D`](https://developer.apple.com/documentation/arkit/arskeleton2d) subclass provides you with the position of a tracked body’s joints in 2D space, by way of its [`jointLandmarks`](https://developer.apple.com/documentation/arkit/arskeleton2d/jointlandmarks-3en0x) property.
+    ///
+    ///
     /// An object representing a skeleton.
     ///
     /// A skeleton's structure is defined by a skeleton definition.
     ///
     /// See: ARSkeletonDefinition
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -83,9 +92,14 @@ impl ARSkeleton {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An object representing a skeleton in 3D.
+    /// The skeleton of a human body that ARKit tracks in 3D space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton3d?language=objc)
+    /// ## Overview
+    ///
+    /// An [`ARBodyAnchor`](https://developer.apple.com/documentation/arkit/arbodyanchor) contains one instance of this [`ARSkeleton`](https://developer.apple.com/documentation/arkit/arskeleton) subclass to provide its joint positions in 3D space. The [`jointLocalTransforms`](https://developer.apple.com/documentation/arkit/arskeleton3d/jointlocaltransforms-1m5a1) property describes a joint’s 3D offset from its parent joint. The [`jointModelTransforms`](https://developer.apple.com/documentation/arkit/arskeleton3d/jointmodeltransforms-dno4) property describes a joint’s 3D offset from the body anchor’s [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform).
+    ///
+    ///
+    /// An object representing a skeleton in 3D.
     #[unsafe(super(ARSkeleton, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -119,9 +133,16 @@ impl ARSkeleton3D {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An object representing a skeleton in 2D.
+    /// An object that describes the locations of a body’s joints in the camera feed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton2d?language=objc)
+    /// ## Overview
+    ///
+    /// [`ARSkeleton2D`](https://developer.apple.com/documentation/arkit/arskeleton2d) provides you with a 2D body’s joints in a flat hierarchy so you can access them efficiently. The joint locations are normalized within the range [0..1] in the coordinate space of the current frame’s camera image, where 0 is the upper left, and 1 is the bottom right.
+    ///
+    /// To access a skeleton’s joints by name, you use [`landmarkForJointNamed:`](https://developer.apple.com/documentation/arkit/arskeleton2d/landmarkforjointnamed:). To access a named joint by index (for example, for performance reasons), you query the definition for the named joint index using [`index(for:)`](https://developer.apple.com/documentation/arkit/arskeletondefinition/index(for:)), then access [`jointLandmarks`](https://developer.apple.com/documentation/arkit/arskeleton2d/jointlandmarks-12vkw) using the resulting index.
+    ///
+    ///
+    /// An object representing a skeleton in 2D.
     #[unsafe(super(ARSkeleton, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -155,6 +176,17 @@ impl ARSkeleton2D {
 
 #[cfg(feature = "objc2")]
 impl ARSkeleton {
+    /// Returns a joint name that corresponds to a key point defined in a human body pose.
+    ///
+    /// Parameters:
+    /// - recognizedPointKey: The argument key point.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function matches human body key points defined by the Vision framework with joint names defined by ARKit. This function may return `nil` if the key point doesn’t map to a joint name. For more information about key points, see [Detecting Human Body Poses in Images](https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images).
+    ///
+    ///
     /// Returns the landmark joint name that corresponds to a key point defined in Vision framework.
     ///
     /// See: VNRecognizedPointKey, VNDetectHumanBodyPoseRequest
@@ -165,8 +197,6 @@ impl ARSkeleton {
     /// Parameter `recognizedPointKey`: Recognized key point.
     ///
     /// Returns: Joint name that could be mapped to a ARSkeleton2D. Nil if no mapping exists.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/init(_:)?language=objc)
     #[doc(alias = "ARSkeletonJointNameForRecognizedPointKey")]
     #[cfg(all(
         feature = "ARSkeletonDefinition",

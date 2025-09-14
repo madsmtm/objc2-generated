@@ -9,7 +9,46 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutanchor?language=objc)
+    /// A factory class for creating layout constraint objects using a fluent API.
+    ///
+    /// ## Overview
+    ///
+    /// Use these constraints to programatically define your layout using Auto Layout. Instead of creating [`NSLayoutConstraint`](https://developer.apple.com/documentation/appkit/nslayoutconstraint) objects directly, start with an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or [`NSLayoutGuide`](https://developer.apple.com/documentation/appkit/nslayoutguide) object you wish to constrain, and select one of that object’s anchor properties. These properties correspond to the main [`NSLayoutAttribute`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute) values used in Auto Layout, and provide an appropriate [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) subclass for creating constraints to that attribute. Use the anchor’s methods to construct your constraint.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Creating constraints using NSLayoutConstraint", "NSLayoutConstraint(item: subview,", "                   attribute: .leading,", "                   relatedBy: .equal,", "                   toItem: view,", "                   attribute: .leadingMargin,", "                   multiplier: 1.0,", "                   constant: 0.0).isActive = true", "", "NSLayoutConstraint(item: subview,", "                   attribute: .trailing,", "                   relatedBy: .equal,", "                   toItem: view,", "                   attribute: .trailingMargin,", "                   multiplier: 1.0,", "                   constant: 0.0).isActive = true", "", "", "// Creating the same constraints using Layout Anchors", "let margins = view.layoutMarginsGuide", "", "subview.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true", "subview.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Creating constraints using NSLayoutConstraint", "[NSLayoutConstraint", " constraintWithItem:subview", " attribute:NSLayoutAttributeLeading", " relatedBy:NSLayoutRelationEqual", " toItem:self.view", " attribute:NSLayoutAttributeLeadingMargin", " multiplier:1.0", " constant:0.0].active = YES;", " ", "[NSLayoutConstraint", " constraintWithItem:subview", " attribute:NSLayoutAttributeTrailing", " relatedBy:NSLayoutRelationEqual", " toItem:self.view", " attribute:NSLayoutAttributeTrailingMargin", " multiplier:1.0", " constant:0.0].active = YES;", " ", "// Creating the same constraints using Layout Anchors", "NSLayoutGuide *margin = self.view.layoutMarginsGuide;", " ", "[subview.leadingAnchor constraintEqualToAnchor:margin.leadingAnchor].active = YES;", "[subview.trailingAnchor constraintEqualToAnchor:margin.trailingAnchor].active = YES;"], metadata: None }] }] })
+    /// As you can see from these examples, the [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) class provides several advantages over using the [`NSLayoutConstraint`](https://developer.apple.com/documentation/appkit/nslayoutconstraint) API directly.
+    ///
+    /// - The code is cleaner, more concise, and easier to read.
+    ///
+    /// - The [`NSLayoutAttribute`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute) subclasses provide additional type checking, preventing you from creating invalid constraints.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  While the [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) class provides additional type checking, it is still possible to create invalid constraints. For example, the compiler allows you to constrain one view’s [`leadingAnchor`](https://developer.apple.com/documentation/appkit/nsview/leadinganchor) with another view’s [`leftAnchor`](https://developer.apple.com/documentation/appkit/nsview/leftanchor), since they are both [`NSLayoutXAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor) instances. However, Auto Layout does not allow constraints that mix leading and trailing attributes with left or right attributes. As a result, this constraint crashes at runtime.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information on the anchor properties, see [`bottomAnchor`](https://developer.apple.com/documentation/appkit/nsview/bottomanchor) in the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or [`NSLayoutGuide`](https://developer.apple.com/documentation/appkit/nslayoutguide).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You never use the [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) class directly. Instead, use one of its subclasses, based on the type of constraint you wish to create.
+    ///
+    /// - Use [`NSLayoutXAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor) to create horizontal constraints.
+    ///
+    /// - Use [`NSLayoutYAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutyaxisanchor) to create vertical constraints.
+    ///
+    /// - Use [`NSLayoutDimension`](https://developer.apple.com/documentation/appkit/nslayoutdimension) to create constraints that affect the view’s height or width.
+    ///
+    /// However, since you access [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) objects using the anchor properties of an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or [`NSLayoutGuide`](https://developer.apple.com/documentation/appkit/nslayoutguide), a correct subclass is automatically provided.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutAnchor<AnchorType: ?Sized = AnyObject>;
@@ -144,7 +183,16 @@ impl<AnchorType: Message> DefaultRetained for NSLayoutAnchor<AnchorType> {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor?language=objc)
+    /// A factory class for creating horizontal layout constraint objects using a fluent API.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSLayoutXAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor) adds type information to the methods inherited from [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor). Specifically, the generic methods declared by [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) must now take a matching [`NSLayoutXAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutxaxisanchor) object.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// This constraint is valid", "cancelButton.leadingAnchor.constraintEqualToAnchor(saveButton.trailingAnchor, constant: 8.0).isActive = true", " ", "// This constraint generates an incompatible pointer type warning", "cancelButton.leadingAnchor.constraintEqualToAnchor(saveButton.topAnchor, constant: 8.0).isActive = true"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// This constraint is valid", "[self.cancelButton.leadingAnchor constraintEqualToAnchor:self.saveButton.trailingAnchor  constant: 8.0].active = true;", " ", "// This constraint generates an incompatible pointer type warning", "[self.cancelButton.leadingAnchor constraintEqualToAnchor:self.saveButton.topAnchor constant: 8.0].active = true;"], metadata: None }] }] })
+    /// For more information on using layout anchors, see [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor).
+    ///
+    ///
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[derive(Debug)]
     pub struct NSLayoutXAxisAnchor;
@@ -228,7 +276,16 @@ impl DefaultRetained for NSLayoutXAxisAnchor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutyaxisanchor?language=objc)
+    /// A factory class for creating vertical layout constraint objects using a fluent API.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSLayoutYAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutyaxisanchor) adds type information to the methods inherited from [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor). Specifically, the generic methods declared by [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) must now take a matching [`NSLayoutYAxisAnchor`](https://developer.apple.com/documentation/appkit/nslayoutyaxisanchor) object.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// This constraint is valid", "cancelButton.topAnchor.constraintEqualToAnchor(saveButton.topAnchor, constant: 8.0).isActive = true", " ", "// This constraint generates an incompatible pointer type warning", "cancelButton.topAnchor.constraintEqualToAnchor(saveButton.trailingAnchor, constant: 8.0).isActive = true"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// This constraint is valid", "[self.cancelButton.leadingAnchor constraintEqualToAnchor:self.saveButton.trailingAnchor  constant: 8.0].active = true;", " ", "// This constraint generates an incompatible pointer type warning", "[self.cancelButton.topAnchor constraintEqualToAnchor:self.saveButton.trailingAnchor constant: 8.0].active = true;"], metadata: None }] }] })
+    /// For more information on using layout anchors, see [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor).
+    ///
+    ///
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[derive(Debug)]
     pub struct NSLayoutYAxisAnchor;
@@ -312,7 +369,16 @@ impl DefaultRetained for NSLayoutYAxisAnchor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutdimension?language=objc)
+    /// A factory class for creating size-based layout constraint objects using a fluent API.
+    ///
+    /// ## Overview
+    ///
+    /// Use these constraints to programmatically define your layout using Auto Layout. All sizes are measured in points. In addition to providing size-specific methods for creating constraints, this class adds type information to the methods inherited from [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor). Specifically, the generic methods declared by [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor) must now take a matching [`NSLayoutDimension`](https://developer.apple.com/documentation/appkit/nslayoutdimension) object.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// This code works as expected.", "saveButton.widthAnchor.constraint(equalTo: cancelButton.widthAnchor).isActive = true", "", "// This code generates an incompatible pointer type warning.", "saveButton.widthAnchor.constraint(equalTo: cancelButton.leadingAnchor).isActive = true"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// This code works as expected.", "[self.saveButton.widthAnchor constraintEqualToAnchor:self.cancelButton.widthAnchor].active = YES;", " ", "// This code generates an incompatible pointer type warning.", "[self.saveButton.widthAnchor constraintEqualToAnchor:self.cancelButton.leadingAnchor].active = YES;"], metadata: None }] }] })
+    /// For more information on using layout anchors, see [`NSLayoutAnchor`](https://developer.apple.com/documentation/appkit/nslayoutanchor).
+    ///
+    ///
     #[unsafe(super(NSLayoutAnchor, NSObject))]
     #[derive(Debug)]
     pub struct NSLayoutDimension;

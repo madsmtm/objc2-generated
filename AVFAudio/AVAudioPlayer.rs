@@ -8,7 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayer?language=objc)
+    /// An object that plays audio data from a file or buffer.
+    ///
+    /// ## Overview
+    ///
+    /// Use an audio player to:
+    ///
+    /// - Play audio of any duration from a file or buffer
+    ///
+    /// - Control the volume, panning, rate, and looping behavior of the played audio
+    ///
+    /// - Access playback-level metering data
+    ///
+    /// - Play multiple sounds simultaneously by synchronizing the playback of multiple players
+    ///
+    /// For more information about preparing your app to play audio, see [Configuring your app for media playback](https://developer.apple.com/documentation/avfoundation/configuring-your-app-for-media-playback).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For more advanced playback capabilities, like playing streaming or positional audio, use [`AVAudioEngine`](https://developer.apple.com/documentation/avfaudio/avaudioengine) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioPlayer;
@@ -243,7 +267,13 @@ impl AVAudioPlayer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayerdelegate?language=objc)
+    /// A protocol that defines the methods to respond to audio playback events and decoding errors.
+    ///
+    /// ## Overview
+    ///
+    /// All of the methods in this protocol are optional.
+    ///
+    ///
     pub unsafe trait AVAudioPlayerDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(audioPlayerDidFinishPlaying:successfully:))]

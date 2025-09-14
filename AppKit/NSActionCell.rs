@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsactioncell?language=objc)
+    /// An active area inside a control.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSActionCell`](https://developer.apple.com/documentation/appkit/nsactioncell) does three things: it displays text or an icon; it provides the target object and action method used by its [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol) object; and it handles mouse (cursor) tracking by properly highlighting its area and sending action messages to its target based on cursor movement.
+    ///
+    /// The [`controlView`](https://developer.apple.com/documentation/appkit/nscell/controlview) of an [`NSActionCell`](https://developer.apple.com/documentation/appkit/nsactioncell) is the view in which the receiver was last drawn.
+    ///
+    /// ### Obtaining and Setting Cell Values
+    ///
+    /// The [`floatValue`](https://developer.apple.com/documentation/appkit/nscell/floatvalue), [`intValue`](https://developer.apple.com/documentation/appkit/nscell/intvalue), and [`integerValue`](https://developer.apple.com/documentation/appkit/nscell/integervalue) methods return the value with their corresponding types after validating any editing of cell content. If the cell is not a text-type cell or the cell value is not scannable to the appropriate type, these return 0.
+    ///
+    /// The [`stringValue`](https://developer.apple.com/documentation/appkit/nscell/stringvalue) method returns the receiver’s value as a string object as converted by the cell’s formatter, if one exists. If no formatter exists and the value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), returns the value as a plain, attributed, or localized formatted string. If the value is not an `NSString` or cannot be converted to one, returns an empty string. The method supplements the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) implementation by validating and retaining any editing changes being made to cell text.
+    ///
+    /// Calling `setObjectValue:` discards any editing of the receiver’s text and sets its object value to the specified object. After doing so, if the object value is different from what it was before the method was invoked, the method marks the receiver as needing redisplay.
+    ///
+    /// ### Configuring an NSActionCell Object
+    ///
+    /// The `NSActionCell` implementation of [`setFloatingPointFormat:left:right:`](https://developer.apple.com/documentation/appkit/nscell/setfloatingpointformat:left:right:) supplements the `NSCell` implementation by marking the receiver as needing redisplay after discarding any editing changes that were being made to cell text.
+    ///
+    ///
     #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]

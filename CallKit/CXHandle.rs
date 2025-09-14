@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype?language=objc)
+/// The possible types of handles.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXHandleType(pub NSInteger);
 impl CXHandleType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype/generic?language=objc)
+    /// An unspecified type of handle.
     #[doc(alias = "CXHandleTypeGeneric")]
     pub const Generic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype/phonenumber?language=objc)
+    /// A phone number.
     #[doc(alias = "CXHandleTypePhoneNumber")]
     pub const PhoneNumber: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle/handletype/emailaddress?language=objc)
+    /// An email address.
     #[doc(alias = "CXHandleTypeEmailAddress")]
     pub const EmailAddress: Self = Self(3);
 }
@@ -32,7 +32,13 @@ unsafe impl RefEncode for CXHandleType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxhandle?language=objc)
+    /// A way to reach a call recipient, such as a phone number or email address.
+    ///
+    /// ## Overview
+    ///
+    /// When the telephony provider receives an incoming call or the user starts an outgoing call, the other caller is identified by a [`CXHandle`](https://developer.apple.com/documentation/callkit/cxhandle) object. For a caller identified by a phone number, the handle type is [`CXHandleTypePhoneNumber`](https://developer.apple.com/documentation/callkit/cxhandle/handletype/phonenumber) and the value is a sequence of digits. For a caller identified by an email address, the handle type is [`CXHandleTypeEmailAddress`](https://developer.apple.com/documentation/callkit/cxhandle/handletype/emailaddress) and the value is an email address. For a caller identified in any other way, the handle type is [`CXHandleTypeGeneric`](https://developer.apple.com/documentation/callkit/cxhandle/handletype/generic) and the value typically follows some domain-specific format, such as a username, numeric ID, or URL.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXHandle;

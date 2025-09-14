@@ -12,80 +12,115 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsymbolictraits?language=objc)
+/// A symbolic description of stylistic aspects of a font.
+///
+/// ## Discussion
+///
+/// The upper 16 bits is used to describe appearance of the font (see [`NSFontFamilyClass`](https://developer.apple.com/documentation/appkit/nsfontfamilyclass)) whereas the lower 16 bits is used for typeface information (see [Typeface Information](https://developer.apple.com/documentation/appkit/typeface-information)). The font appearance information represented by the upper 16 bits can be used for stylistic font matching. The symbolic traits supersede the existing [`NSFontTraitMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask) type used by [`NSFontManager`](https://developer.apple.com/documentation/appkit/nsfontmanager). The corresponding values are kept compatible between [`NSFontTraitMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask) and [`NSFontSymbolicTraits`](https://developer.apple.com/documentation/appkit/nsfontsymbolictraits).
+///
+///
 pub type NSFontSymbolicTraits = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct?language=objc)
+/// A symbolic description of the stylistic aspects of a font.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontDescriptorSymbolicTraits(pub u32);
 bitflags::bitflags! {
     impl NSFontDescriptorSymbolicTraits: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/italic?language=objc)
+/// The font’s style is italic.
         #[doc(alias = "NSFontDescriptorTraitItalic")]
         const TraitItalic = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/bold?language=objc)
+/// The font’s style is boldface.
         #[doc(alias = "NSFontDescriptorTraitBold")]
         const TraitBold = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/expanded?language=objc)
+/// The font’s characters have an expanded width.
+///
+/// ## Discussion
+///
+/// Expanded and condensed traits are mutually exclusive.
+///
+///
         #[doc(alias = "NSFontDescriptorTraitExpanded")]
         const TraitExpanded = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/condensed?language=objc)
+/// The font’s characters have a condensed width.
+///
+/// ## Discussion
+///
+/// Expanded and condensed traits are mutually exclusive.
+///
+///
         #[doc(alias = "NSFontDescriptorTraitCondensed")]
         const TraitCondensed = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/monospace?language=objc)
+/// The font’s characters all have the same width.
+///
+/// ## Discussion
+///
+/// The font uses fixed-pitch glyphs, if available, and may have multiple glyph advances (many CJK glyphs contain two spaces).
+///
+///
         #[doc(alias = "NSFontDescriptorTraitMonoSpace")]
         const TraitMonoSpace = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/vertical?language=objc)
+/// The font uses vertical glyph variants and metrics.
         #[doc(alias = "NSFontDescriptorTraitVertical")]
         const TraitVertical = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/uioptimized?language=objc)
+/// The font synthesizes appropriate attributes for user interface rendering, such as in control titles, if necessary.
         #[doc(alias = "NSFontDescriptorTraitUIOptimized")]
         const TraitUIOptimized = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/tightleading?language=objc)
+/// The font uses a leading value that’s less than the default.
         #[doc(alias = "NSFontDescriptorTraitTightLeading")]
         const TraitTightLeading = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/looseleading?language=objc)
+/// The font uses a leading value that’s greater than the default.
         #[doc(alias = "NSFontDescriptorTraitLooseLeading")]
         const TraitLooseLeading = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsymbolictraits/nsfontdescriptortraitemphasized?language=objc)
         #[doc(alias = "NSFontDescriptorTraitEmphasized")]
         const TraitEmphasized = NSFontDescriptorSymbolicTraits::TraitBold.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classmask?language=objc)
+/// The font family class mask that you use to access font descriptor values.
         #[doc(alias = "NSFontDescriptorClassMask")]
         const ClassMask = 0xF0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsymbolictraits/nsfontdescriptorclassunknown?language=objc)
+/// The font has no design classification.
         #[doc(alias = "NSFontDescriptorClassUnknown")]
         const ClassUnknown = 0<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classoldstyleserifs?language=objc)
+/// The font’s characters include serifs, and reflect the Latin printing style of the 15th to 17th centuries.
         #[doc(alias = "NSFontDescriptorClassOldStyleSerifs")]
         const ClassOldStyleSerifs = 1<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classtransitionalserifs?language=objc)
+/// The font’s characters include serifs, and reflect the Latin printing style of the 18th to 19th centuries.
         #[doc(alias = "NSFontDescriptorClassTransitionalSerifs")]
         const ClassTransitionalSerifs = 2<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classmodernserifs?language=objc)
+/// The font’s characters include serifs, and reflect the Latin printing style of the 20th century.
         #[doc(alias = "NSFontDescriptorClassModernSerifs")]
         const ClassModernSerifs = 3<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classclarendonserifs?language=objc)
+/// The font’s characters include variations of old style and transitional serifs.
         #[doc(alias = "NSFontDescriptorClassClarendonSerifs")]
         const ClassClarendonSerifs = 4<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classslabserifs?language=objc)
+/// The font’s characters use square transitions, without brackets, between strokes and serifs.
         #[doc(alias = "NSFontDescriptorClassSlabSerifs")]
         const ClassSlabSerifs = 5<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classfreeformserifs?language=objc)
+/// The font’s characters include serifs, and don’t generally fit within other serif design classifications.
         #[doc(alias = "NSFontDescriptorClassFreeformSerifs")]
         const ClassFreeformSerifs = 7<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classsansserif?language=objc)
+/// The font’s characters don’t have serifs.
+///
+/// ## Discussion
+///
+/// The font, excluding Scripts and Ornamentals, includes most basic letter forms without serifs on the strokes.
+///
+///
         #[doc(alias = "NSFontDescriptorClassSansSerif")]
         const ClassSansSerif = 8<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classornamentals?language=objc)
+/// The font’s characters use highly decorated or stylized character shapes.
         #[doc(alias = "NSFontDescriptorClassOrnamentals")]
         const ClassOrnamentals = 9<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classscripts?language=objc)
+/// The font’s characters simulate handwriting.
         #[doc(alias = "NSFontDescriptorClassScripts")]
         const ClassScripts = 10<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct/classsymbolic?language=objc)
+/// The font’s characters consist mainly of symbols rather than letters and numbers.
+///
+/// ## Discussion
+///
+/// This trait is suitable for special characters like icons, dingbats, technical symbols, and others that work equally well with any font.
+///
+///
         #[doc(alias = "NSFontDescriptorClassSymbolic")]
         const ClassSymbolic = 12<<28;
     }
@@ -99,46 +134,91 @@ unsafe impl RefEncode for NSFontDescriptorSymbolicTraits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename?language=objc)
+/// Constants for the names of font attributes.
+///
+/// ## Discussion
+///
+/// You can retrieve the values for these attributes using [`objectForKey:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/object(forkey:)).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFontDescriptorAttributeName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey?language=objc)
+/// Constants that can be used as keys to retrieve information about a font descriptor from its trait dictionary.
+///
+/// ## Discussion
+///
+/// These keys are used with [`NSFontTraitsAttribute`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/traits).
+///
+///
 // NS_TYPED_ENUM
 pub type NSFontDescriptorTraitKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey?language=objc)
+/// Constants that can be used as keys to retrieve information about a font descriptor from its variation axis dictionary.
+///
+/// ## Discussion
+///
+/// These keys are used with [`NSFontVariationAttribute`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/variation).
+///
+///
 // NS_TYPED_ENUM
 pub type NSFontDescriptorVariationKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey?language=objc)
+/// Constants to use as keys to retrieve information about a font descriptor from its feature dictionary.
+///
+/// ## Discussion
+///
+/// These keys are used with [`NSFontFeatureSettingsAttribute`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/featuresettings).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFontDescriptorFeatureKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight?language=objc)
+/// System-defined font-weight values.
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSFontWeight = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSFontWidth = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign?language=objc)
+/// Constants for font designs, such as monospace, rounded, and serif.
 // NS_TYPED_ENUM
 pub type NSFontDescriptorSystemDesign = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle?language=objc)
+/// Constants that specify the preferred text styles you use with fonts.
+///
+/// ## Discussion
+///
+/// Pass these constants to [`preferredFontForTextStyle:options:`](https://developer.apple.com/documentation/appkit/nsfont/preferredfont(fortextstyle:options:)) or [`preferredFontDescriptorForTextStyle:options:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/preferredfontdescriptor(fortextstyle:options:)) to retrieve the corresponding font or font descriptor.
+///
+///
 // NS_TYPED_ENUM
 pub type NSFontTextStyle = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyleoptionkey?language=objc)
+/// The options that you apply when requesting the font or font descriptor of a preferred text style.
+///
+/// ## Discussion
+///
+/// Pass a dictionary that contains any combination of these keys and their corresponding values to [`preferredFontForTextStyle:options:`](https://developer.apple.com/documentation/appkit/nsfont/preferredfont(fortextstyle:options:)) or [`preferredFontDescriptorForTextStyle:options:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/preferredfontdescriptor(fortextstyle:options:)) to further configure the returned font or font descriptor.
+///
+///
 // NS_TYPED_ENUM
 pub type NSFontTextStyleOptionKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor?language=objc)
+    /// A dictionary of attributes that describe a font.
+    ///
+    /// ## Overview
+    ///
+    /// A font descriptor can be used to create or modify an [`NSFont`](https://developer.apple.com/documentation/appkit/nsfont) object. The system provides a font matching capability, so that you can partially describe a font by creating a font descriptor with, for example, just a family name. You can then find all the available fonts on the system with a matching family name using [`matchingFontDescriptorsWithMandatoryKeys:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/matchingfontdescriptors(withmandatorykeys:)).
+    ///
+    /// There are several ways to create a new [`NSFontDescriptor`](https://developer.apple.com/documentation/appkit/nsfontdescriptor) object. You can use `alloc` and  [`initWithFontAttributes:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/init(fontattributes:)), [`fontDescriptorWithFontAttributes:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/fontdescriptorwithfontattributes:), [`fontDescriptorWithName:matrix:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/init(name:matrix:)), or [`fontDescriptorWithName:size:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/init(name:size:)). to create a font descriptor based on either your custom attributes dictionary or on a specific font’s name and size. Alternatively you can use one of the `fontDescriptor…` instance methods (such as [`fontDescriptorWithFace:`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/withface(_:))) to create a modified version of an existing descriptor. The latter methods are useful if you have an existing descriptor and simply want to change one aspect.
+    ///
+    /// All attributes in the attributes dictionary are optional.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontDescriptor;
@@ -335,319 +415,465 @@ impl DefaultRetained for NSFontDescriptor {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/family?language=objc)
+    /// An optional string object that specifies the font family.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSFontFamilyAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/name?language=objc)
+    /// An optional string object that specifies the font name.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSFontNameAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/face?language=objc)
+    /// An optional string object that specifies the font face.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSFontFaceAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/size?language=objc)
+    /// An optional floating-point number that specifies the font size.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating-point value.
+    ///
+    ///
     pub static NSFontSizeAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/visiblename?language=objc)
+    /// An optional string object that specifies the font’s visible name.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSFontVisibleNameAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/matrix?language=objc)
+    /// An affine transform that specifies the font’s transformation matrix.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform) object. The default value is the identity matrix.
+    ///
+    ///
     pub static NSFontMatrixAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/variation?language=objc)
+    /// A dictionary that describes the font’s variation axis.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object. The default value is supplied by the font. See [`NSFontDescriptorVariationKey`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey) for dictionary keys.
+    ///
+    ///
     pub static NSFontVariationAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/characterset?language=objc)
+    /// The set of Unicode characters covered by the font.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset) object. The default value is supplied by the font.
+    ///
+    ///
     pub static NSFontCharacterSetAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/cascadelist?language=objc)
+    /// An array, each member of which is a sub-descriptor.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object. The default value is the system default cascading list for user’s locale.
+    ///
+    ///
     pub static NSFontCascadeListAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/traits?language=objc)
+    /// A dictionary that fully describes the font traits.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object. The default value is supplied by the font. See [`NSFontDescriptorTraitKey`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey) for dictionary keys.
+    ///
+    ///
     pub static NSFontTraitsAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/fixedadvance?language=objc)
+    /// A floating-point value that overrides the glyph advancement specified by the font.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The default value is `0.0`.
+    ///
+    ///
     pub static NSFontFixedAdvanceAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/featuresettings?language=objc)
+    /// An array of dictionaries representing non-default font feature settings.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) of [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) objects. Each dictionary contains [`NSFontFeatureTypeIdentifierKey`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey/typeidentifier) and [`NSFontFeatureSelectorIdentifierKey`](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey/selectoridentifier).
+    ///
+    ///
     pub static NSFontFeatureSettingsAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/symbolic?language=objc)
+    /// The symbolic traits value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     pub static NSFontSymbolicTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/weight?language=objc)
+    /// The normalized weight value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The valid value range is from `-1.0` to `1.0`. The value of `0.0` corresponds to the regular or medium font weight.
+    ///
+    ///
     pub static NSFontWeightTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/width?language=objc)
+    /// The relative inter-glyph spacing value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The valid value range is from `-1.0` to `1.0`. The value of `0.0` corresponds to the regular glyph spacing.
+    ///
+    ///
     pub static NSFontWidthTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/slant?language=objc)
+    /// The relative slant angle value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The valid value range is from `-1.0` to `1.0`. The value of `0.0` corresponds to `0` degree clockwise rotation from the vertical and `1.0` corresponds to `30` degrees clockwise rotation.
+    ///
+    ///
     pub static NSFontSlantTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/identifier?language=objc)
+    /// The axis identifier value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     pub static NSFontVariationAxisIdentifierKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/minimumvalue?language=objc)
+    /// The minimum axis value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     pub static NSFontVariationAxisMinimumValueKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/maximumvalue?language=objc)
+    /// The maximum axis value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     pub static NSFontVariationAxisMaximumValueKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/defaultvalue?language=objc)
+    /// The default axis value as a number object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     pub static NSFontVariationAxisDefaultValueKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/name?language=objc)
+    /// The localized variation axis name.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSFontVariationAxisNameKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey/typeidentifier?language=objc)
+    /// A key that indicates the type of the font feature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object specifying a font feature type such as ligature, character shape, and so on. For more information on Apple Fonts see[ Fonts for Apple platforms](https://developer.apple.com/fonts/) and the [AAT Font Feature Registry](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM09/AppendixF.html).
+    ///
+    ///
     pub static NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey/selectoridentifier?language=objc)
+    /// A key that indicates the selector of the font feature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object specifying a font feature selector such as common ligature off, traditional character shape, and so on. For more information on Apple Fonts see[ Fonts for Apple platforms](https://developer.apple.com/fonts/) and the [AAT Font Feature Registry](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM09/AppendixF.html).
+    ///
+    ///
     pub static NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/ultralight?language=objc)
+    /// The font weight for system ultra light font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightUltraLight: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/thin?language=objc)
+    /// The font weight for system thin font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightThin: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/light?language=objc)
+    /// The font weight for system light font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightLight: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/regular?language=objc)
+    /// The font weight for system regular font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightRegular: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/medium?language=objc)
+    /// The font weight for system medium font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightMedium: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/semibold?language=objc)
+    /// The font weight for system semibold font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightSemibold: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/bold?language=objc)
+    /// The font weight for system bold font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightBold: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/heavy?language=objc)
+    /// The font weight for system heavy font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightHeavy: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/black?language=objc)
+    /// The font weight for system black font.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightBlack: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/compressed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthCompressed: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/condensed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthCondensed: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/standard?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthStandard: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/expanded?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthExpanded: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/default?language=objc)
+    /// The default font design.
     pub static NSFontDescriptorSystemDesignDefault: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/serif?language=objc)
+    /// A font with a serif design.
     pub static NSFontDescriptorSystemDesignSerif: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/monospaced?language=objc)
+    /// A font with a monospace appearance.
     pub static NSFontDescriptorSystemDesignMonospaced: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/rounded?language=objc)
+    /// A font with a rounded appearance.
     pub static NSFontDescriptorSystemDesignRounded: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/largetitle?language=objc)
+    /// The font you use for large titles.
     pub static NSFontTextStyleLargeTitle: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/title1?language=objc)
+    /// The font you use for first-level hierarchical headings.
     pub static NSFontTextStyleTitle1: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/title2?language=objc)
+    /// The font you use for second-level hierarchical headings.
     pub static NSFontTextStyleTitle2: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/title3?language=objc)
+    /// The font you use for third-level hierarchical headings.
     pub static NSFontTextStyleTitle3: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/headline?language=objc)
+    /// The font you use for headings.
     pub static NSFontTextStyleHeadline: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/subheadline?language=objc)
+    /// The font you use for subheadings.
     pub static NSFontTextStyleSubheadline: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/body?language=objc)
+    /// The font you use for body text.
     pub static NSFontTextStyleBody: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/callout?language=objc)
+    /// The font you use for callouts.
     pub static NSFontTextStyleCallout: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/footnote?language=objc)
+    /// The font you use in footnotes.
     pub static NSFontTextStyleFootnote: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/caption1?language=objc)
+    /// The font you use for standard captions.
     pub static NSFontTextStyleCaption1: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/caption2?language=objc)
+    /// The font you use for alternate captions.
     pub static NSFontTextStyleCaption2: &'static NSFontTextStyle;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfamilyclass?language=objc)
+/// Constants that classify certain stylistic qualities of the font.
+///
+/// ## Discussion
+///
+/// These values correspond closely to the font class values in the OpenType OS/2 table. The class values are bundled in the upper four bits of [`NSFontSymbolicTraits`](https://developer.apple.com/documentation/appkit/nsfontsymbolictraits) and can be accessed via [`NSFontFamilyClassMask`](https://developer.apple.com/documentation/appkit/nsfontfamilyclassmask). For more information about the specific meaning of each identifier, refer to the OpenType specification.
+///
+///
 pub type NSFontFamilyClass = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontunknownclass?language=objc)
+/// A font with no design classification.
 pub const NSFontUnknownClass: c_int = 0 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontoldstyleserifsclass?language=objc)
+/// A font where the style is based on the Latin printing style of the 15th to 17th century.
 pub const NSFontOldStyleSerifsClass: c_int = 1 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttransitionalserifsclass?language=objc)
+/// A font where the style is based on the Latin printing style of the 18th to 19th century.
 pub const NSFontTransitionalSerifsClass: c_int = 2 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontmodernserifsclass?language=objc)
+/// A font where the style is based on the Latin printing style of the 20th century.
 pub const NSFontModernSerifsClass: c_int = 3 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontclarendonserifsclass?language=objc)
+/// A font where the style is a variation of the Oldstyle Serifs and the Transitional Serifs.
 pub const NSFontClarendonSerifsClass: c_int = 4 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontslabserifsclass?language=objc)
+/// A font where the style is characterized by serifs with a square transition between the strokes and the serifs (no brackets).
 pub const NSFontSlabSerifsClass: c_int = 5 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfreeformserifsclass?language=objc)
+/// A font where the style includes serifs, but it expresses a design freedom that does not generally fit within the other serif design classifications.
 pub const NSFontFreeformSerifsClass: c_int = 7 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsansserifclass?language=objc)
+/// A font where the style includes most basic letter forms (excluding Scripts and Ornamentals) that do not have serifs on the strokes.
 pub const NSFontSansSerifClass: c_int = 8 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontornamentalsclass?language=objc)
+/// A font where the style includes highly decorated or stylized character shapes such as those typically used in headlines.
 pub const NSFontOrnamentalsClass: c_int = 9 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontscriptsclass?language=objc)
+/// A font where the style is among those typefaces designed to simulate handwriting.
 pub const NSFontScriptsClass: c_int = 10 << 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsymbolicclass?language=objc)
+/// A font where the style is generally design independent, making it suitable for special characters (icons, dingbats, technical symbols, and so on) that may be used equally well with any font.
 pub const NSFontSymbolicClass: c_int = 12 << 28;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfamilyclassmask?language=objc)
+/// Constant you use to access `NSFontFamilyClass` values in the upper four bits of `NSFontSymbolicTraits`.
+///
+/// ## Discussion
+///
+/// The font family class mask you use to access `NSFontFamilyClass` values.
+///
+///
 pub const NSFontFamilyClassMask: c_uint = 0xF0000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontitalictrait?language=objc)
+/// The font’s typestyle is italic.
 pub const NSFontItalicTrait: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontboldtrait?language=objc)
+/// The font’s typestyle is boldface.
 pub const NSFontBoldTrait: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontexpandedtrait?language=objc)
+/// The font’s typestyle is expanded. Expanded and condensed traits are mutually exclusive.
 pub const NSFontExpandedTrait: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcondensedtrait?language=objc)
+/// The font’s typestyle is condensed. Expanded and condensed traits are mutually exclusive.
 pub const NSFontCondensedTrait: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontmonospacetrait?language=objc)
+/// The font uses fixed-pitch glyphs if available. The font may have multiple glyph advances (many CJK glyphs contain two spaces).
 pub const NSFontMonoSpaceTrait: c_uint = 1 << 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontverticaltrait?language=objc)
+/// The font uses vertical glyph variants and metrics.
 pub const NSFontVerticalTrait: c_uint = 1 << 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontuioptimizedtrait?language=objc)
+/// The font synthesizes appropriate attributes for user interface rendering, such as control titles, if necessary.
 pub const NSFontUIOptimizedTrait: c_uint = 1 << 12;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcolorattribute?language=objc)
+    /// An optional `NSData` object that specifies the font color.
     #[deprecated]
     pub static NSFontColorAttribute: &'static NSString;
 }

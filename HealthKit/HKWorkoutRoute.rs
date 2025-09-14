@@ -7,7 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutroute?language=objc)
+    /// A sample that contains a workout’s route data.
+    ///
+    /// ## Overview
+    ///
+    /// When creating a workout route, you do not instantiate the [`HKWorkoutRoute`](https://developer.apple.com/documentation/healthkit/hkworkoutroute) objects directly. Instead, create a [`HKWorkoutRouteBuilder`](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder) object, and provide it with location data throughout the workout. After the workout ends, call the route builder’s  [`finishRouteWithWorkout:metadata:completion:`](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder/finishroute(with:metadata:completion:)) method to create the route. For detailed instructions, see [Creating a workout route](https://developer.apple.com/documentation/healthkit/creating-a-workout-route).
+    ///
+    /// The route’s location data is stored as an array of [`CLLocation`](https://developer.apple.com/documentation/corelocation/cllocation) objects. Because the route may contain a large number of location objects, use a [`HKWorkoutRouteQuery`](https://developer.apple.com/documentation/healthkit/hkworkoutroutequery) object to asynchronously read the location data from the HealthKit store in batches. For more information, see [Reading route data](https://developer.apple.com/documentation/healthkit/reading-route-data).
+    ///
+    /// ### Using workout routes
+    ///
+    /// Like many HealthKit classes, the [`HKWorkoutRoute`](https://developer.apple.com/documentation/healthkit/hkworkoutroute) class should not be subclassed. You can extend [`HKWorkoutRoute`](https://developer.apple.com/documentation/healthkit/hkworkoutroute) objects by adding custom metadata keys and values to the metadata dictionary when the object is created.
+    ///
+    ///
     #[unsafe(super(HKSeriesSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample", feature = "HKSeriesSample"))]

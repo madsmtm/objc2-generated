@@ -10,7 +10,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchresult?language=objc)
+    /// A protocol that defines properties of a search result.
     pub unsafe trait NSFileProviderSearchResult {
         #[cfg(feature = "NSFileProviderItem")]
         /// The identifier for this search result.
@@ -48,7 +48,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchenumerationobserver?language=objc)
+    /// A protocol that defines a type that receives enumerations of search results from your extension.
     pub unsafe trait NSFileProviderSearchEnumerationObserver: NSObjectProtocol {
         #[unsafe(method(didEnumerateSearchResults:))]
         #[unsafe(method_family = none)]
@@ -88,7 +88,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchenumerator?language=objc)
+    /// A protocol that defines methods for providing search results and canceling searches.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol by implementing the [`enumerateSearchResultsForObserver:startingAtPage:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchenumerator/enumeratesearchresults(for:startingat:)) method to perform your search and deliver pages of results to the [`NSFileProviderSearchEnumerationObserver`](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchenumerationobserver) that you receive as the first parameter.
+    ///
+    ///
     pub unsafe trait NSFileProviderSearchEnumerator: NSObjectProtocol {
         /// Called when the system wants to cancel a currently running enumeration, or when the system is finished using this enumerator object.
         ///
@@ -122,7 +128,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderstringsearchrequest?language=objc)
+    /// A type that contains details of a string-based search request.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderStringSearchRequest;
@@ -161,7 +167,31 @@ impl NSFileProviderStringSearchRequest {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearching?language=objc)
+    /// A protocol you implement to support searching in your file provider.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol in your provider’s principal class to support searching files in cloud storage. To make search available to the person using the device, also set the property [`supportsStringSearchRequest`](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/supportsstringsearchrequest) to `true`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    /// You don’t need to implement this protocol if you only want to expose the contents of the working set to system search.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When the person using the device performs a search, the system calls the `NSFileProviderSearching` implementation for all the accounts they’ve chosen to search. Your implementation returns a [`NSFileProviderSearchEnumerator`](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchenumerator), which receives repeated callbacks to [`enumerateSearchResultsForObserver:startingAtPage:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidersearchenumerator/enumeratesearchresults(for:startingat:)) until one of the following occurs:
+    ///
+    /// - The system has received enough results.
+    ///
+    /// - The system has received all results.
+    ///
+    /// - The person enters another character into the query string, thereby canceling this search and starting another.
+    ///
+    /// - The person explicitly cancels the search.
+    ///
+    ///
     pub unsafe trait NSFileProviderSearching: NSObjectProtocol {
         /// Called by the system to retrieve search results for a user search query.
         #[unsafe(method(searchEnumeratorForStringSearchRequest:))]

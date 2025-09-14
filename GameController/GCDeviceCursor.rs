@@ -6,10 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A control element for the cursor used as a directional pad.
+    ///
+    /// ## Overview
+    ///
+    /// This controller element allows you to use the cursor as a directional pad with the values of the [`xAxis`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/xaxis) and [`yAxis`](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/yaxis) elements scaled to the width and height of the screen, not ranging from `-1` to `1`.
+    ///
+    ///
     /// A cursor is a Direction Pad that has its axis extended from [-1; 1] to [width; height] range
     /// Up, down, left, right allows to use mouse to simulate DirectionaPad or Thumbstick since values are normalized for these elements
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicecursor?language=objc)
     #[unsafe(super(GCControllerDirectionPad, GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCControllerDirectionPad", feature = "GCControllerElement"))]

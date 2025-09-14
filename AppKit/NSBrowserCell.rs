@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercell?language=objc)
+    /// The user interface of a browser.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSBrowserCell`](https://developer.apple.com/documentation/appkit/nsbrowsercell) class is the subclass of [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) used by default to display data in the columns of an [`NSBrowser`](https://developer.apple.com/documentation/appkit/nsbrowser) object. (Each column contains an [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) object filled with [`NSBrowserCell`](https://developer.apple.com/documentation/appkit/nsbrowsercell) objects.)
+    ///
+    ///
     #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]

@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus?language=objc)
+/// Possible values for the real user indicator.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserDetectionStatus(pub NSInteger);
 impl ASUserDetectionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus/unsupported?language=objc)
+    /// The system can’t determine this user’s status as a real person.
     #[doc(alias = "ASUserDetectionStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus/unknown?language=objc)
+    /// The system hasn’t determined whether the user might be a real person.
     #[doc(alias = "ASUserDetectionStatusUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus/likelyreal?language=objc)
+    /// The user appears to be a real person.
     #[doc(alias = "ASUserDetectionStatusLikelyReal")]
     pub const LikelyReal: Self = Self(2);
 }
@@ -31,19 +31,15 @@ unsafe impl RefEncode for ASUserDetectionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserAgeRange(pub NSInteger);
 impl ASUserAgeRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange/unknown?language=objc)
     #[doc(alias = "ASUserAgeRangeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange/child?language=objc)
     #[doc(alias = "ASUserAgeRangeChild")]
     pub const Child: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange/notchild?language=objc)
     #[doc(alias = "ASUserAgeRangeNotChild")]
     pub const NotChild: Self = Self(2);
 }
@@ -57,7 +53,7 @@ unsafe impl RefEncode for ASUserAgeRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential?language=objc)
+    /// A credential that results from a successful Apple ID authentication.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationAppleIDCredential;

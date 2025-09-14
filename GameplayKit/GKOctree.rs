@@ -6,10 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A helper class for managing the objects you organize in an octree.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly; instead, a [`GKOctree`](https://developer.apple.com/documentation/gameplaykit/gkoctree) object provides you with a [`GKOctreeNode`](https://developer.apple.com/documentation/gameplaykit/gkoctreenode) instance when you add an element to a tree. If you plan to remove elements from the tree, keep references to the corresponding nodes so you can use the [`removeElement:withNode:`](https://developer.apple.com/documentation/gameplaykit/gkoctree/remove(_:using:)) method for better performance.
+    ///
+    ///
     /// The individual node(s) that make up a GKOctree.
     /// Used as a hint for faster removal via [GKOctree removeData:WithNode:]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkoctreenode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKOctreeNode;
@@ -37,10 +42,27 @@ impl GKOctreeNode {
 }
 
 extern_class!(
+    /// A data structure for organizing objects based on their locations in a three-dimensional space.
+    ///
+    /// ## Overview
+    ///
+    /// An octree manages its structure to optimize for spatial searches—unlike a basic data structure such as an array or dictionary, an octree can find all elements occupying a specific position or volume very quickly. The octree partitioning strategy divides space into eight octants at each level, as illustrated in [Figure 1](/documentation/gameplaykit/gkoctree#1965708). When an octant contains more than one object, the tree subdivides that region into eight smaller octants, adding a level to the tree.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/7438d4db9a93c3bf5caf8148b6562337/media-1965708%402x.png)
+    ///
+    ///
+    /// Octrees can be useful for many tasks in game design. For example:
+    ///
+    /// - Deciding which game characters are close enough to each other for interaction
+    ///
+    /// - Deciding which portions of a large game world need to be processed at a given time
+    ///
+    /// The [`GKOctree`](https://developer.apple.com/documentation/gameplaykit/gkoctree) class is one of three spatial partitioning data structures that GameplayKit provides, and the only one suited to three-dimensional data. See the `GKQuadTree` class for the two-dimensional analogue of an octree, and the [`GKRTree`](https://developer.apple.com/documentation/gameplaykit/gkrtree) class for different ways to organize two-dimensional data.
+    ///
+    ///
     /// A tree data structure where each level has 8 children that subdivide a given space into the eight octants.
     /// Stores arbitrary NSObject elements via points and boxes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkoctree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKOctree<ElementType: ?Sized = AnyObject>;

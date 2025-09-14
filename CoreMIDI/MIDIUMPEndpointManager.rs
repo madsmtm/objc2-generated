@@ -13,8 +13,6 @@ extern "C" {
     ///
     ///
     /// The MIDIUMPEndpoint sent in userInfo is the endpoint which was recently discovered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/endpointwasaddednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointWasAddedNotification: &'static NSNotificationName;
 }
@@ -28,8 +26,6 @@ extern "C" {
     /// associated with the UMP endpoint may no longer be valid. If this notification is posted,
     /// any resources related to communication with this UMP endpoint may be safely
     /// disposed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/endpointwasremovednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointWasRemovedNotification: &'static NSNotificationName;
 }
@@ -40,8 +36,6 @@ extern "C" {
     ///
     ///
     /// If this notification is posted, an Endpoint Info Notification was sent from the UMP endpoint in userInfo.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/endpointwasupdatednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointWasUpdatedNotification: &'static NSNotificationName;
 }
@@ -52,29 +46,22 @@ extern "C" {
     ///
     /// If this notification is posted, the supplied Function Block in userInfo has had a change to its
     /// enabled state, Group configuration, UI hint, MIDI 1.0 status, etc..
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/functionblockwasupdatednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPFunctionBlockWasUpdatedNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/dictionarykey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-foundation")]
 pub type MIDIUMPEndpointManagerDictionaryKey = NSString;
 
 extern "C" {
     /// Value is a MIDIUMPEndpoint
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/dictionarykey/endpointobject?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointObjectKey: &'static MIDIUMPEndpointManagerDictionaryKey;
 }
 
 extern "C" {
     /// Value is a MIDIUMPFunctionBlock
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager/dictionarykey/functionblockobject?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPFunctionBlockObjectKey: &'static MIDIUMPEndpointManagerDictionaryKey;
 }
@@ -86,8 +73,6 @@ extern_class!(
     ///
     /// MIDIUMPEndpointManager is used to retrieve information about UMP Endpoint
     /// pairs detected by or explicitly declared to the MIDI UMP subsystem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

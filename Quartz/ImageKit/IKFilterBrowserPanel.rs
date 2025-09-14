@@ -9,11 +9,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Presents a user interface for browsing filters.
+    ///
+    /// ## Overview
+    ///
+    /// The `IKFilterBrowserPanel` class provides a user interface that allows users to browse Core Image filters ([`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class)), to preview a filter, and to get additional information about the filter, such as its description.
+    ///
+    /// An `IKFilterBrowserPanel` object can be displayed as:
+    ///
+    /// - a separate panel, that is, a utility window that floats on top of document windows
+    ///
+    /// - a modal dialog
+    ///
+    /// - a sheet, that is, a dialog that is attached to its parent window and must be dismissed by the user
+    ///
+    /// - a view that an application can insert into a custom user  interface
+    ///
+    /// An `IKFilterBrowserPanel` object can be configured through a style mask to use either the default or brushed metal look for windows. The size and number of visible controls are specified through an options dictionary. An `IKFilterBrowserPanel` object communicates selection changes through notifications.
+    ///
+    /// The `IKFilterBrowserPanel` class allows the user to create filter collections that are stored with the `filterCollections` key in the `com.apple.CoreImageKit.plist` property list located in `~/Library/Preferences/`.
+    ///
+    ///
     /// The IKFilterBrowserPanel provides the shared IKFilterBrowser with its runtime model.
     ///
     /// See information in the introduction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserpanel?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKFilterBrowserPanel;
@@ -262,73 +281,101 @@ impl IKFilterBrowserPanel {
 }
 
 extern "C" {
+    /// Posted when the user clicks a filter name in the filter browser.
+    ///
+    /// ## Discussion
+    ///
+    /// The name of the selected filter is sent as the object in the notification.
+    ///
+    ///
     /// IKFilterBrowserFilterSelectedNotification
     ///
     /// Send when the user clicked on a filter in the Filter Browser. The name of the selected filter is send as the object in the notification
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserfilterselectednotification?language=objc)
     pub static IKFilterBrowserFilterSelectedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// Posted when the user double-clicks a filter in the filter browser.
+    ///
+    /// ## Discussion
+    ///
+    /// The name of the selected filter is send as the object in the notification.
+    ///
+    ///
     /// IKFilterBrowserFilterDoubleClickNotification
     ///
     /// Send when the user made a double click on a filter in the Filter Browser. The name of the selected filter is send as the object in the notification
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserfilterdoubleclicknotification?language=objc)
     pub static IKFilterBrowserFilterDoubleClickNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// Posted before showing a filter preview, allowing an application to set the parameters of a filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The selected filter is sent as the object in the notification.
+    ///
+    ///
     /// IKFilterBrowserWillPreviewFilterNotification
     ///
     /// Send before a filter is previewed allowing for setting parameters of that filter. The selected CIFilter object is send as the object in the notification
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserwillpreviewfilternotification?language=objc)
     pub static IKFilterBrowserWillPreviewFilterNotification: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The key for showing categories. The associated value is a  `BOOL` value that determines if the filter browser should show the category list.
     /// IKFilterBrowserShowCategories
     ///
     /// BOOL - Determines if the filter browser should show the category list
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowsershowcategories?language=objc)
     pub static IKFilterBrowserShowCategories: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The associated value is a  `BOOL` value that determines if the filter browser should provide a preview.
     /// IKFilterBrowserShowPreview
     ///
     /// BOOL - Determines if the filter browser should show the preview well
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowsershowpreview?language=objc)
     pub static IKFilterBrowserShowPreview: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The key for excluding filter categories.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object that lists the categories that you do _not_ want to display in the filter browser.
+    ///
+    ///
     /// IKFilterBrowserExcludeCategories
     ///
     /// NSArray - The categories in this array will not be displayed in the browser
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserexcludecategories?language=objc)
     pub static IKFilterBrowserExcludeCategories: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The key for excluding filters.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object that lists the filters that you do _not_ want to display in the filter browser.
+    ///
+    ///
     /// IKFilterBrowserExcludeFilters
     ///
     /// NSArray - The filters in this array will not be displayed in the browser
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserexcludefilters?language=objc)
     pub static IKFilterBrowserExcludeFilters: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The key for the default input image.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is the [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object to use as the default input image for the filter preview. Setting the image to `nil` causes Image Kit to use the image supplied by the framework. You can also set the input image and other parameters during the notification [`IKFilterBrowserWillPreviewFilterNotification`](https://developer.apple.com/documentation/quartz/ikfilterbrowserwillpreviewfilternotification).
+    ///
+    ///
     /// IKFilterBrowserDefaultInputImage - Allows you to set a custom image to be used as the inputImage for the filter preview.
     ///
     /// CIImage* - You can also set the inputImage among other parameters during the IKFilterBrowserWillPreviewFilterNotification. This image will be set before the notification is called. Setting the image to nil falls back to the image suplied by the framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserdefaultinputimage?language=objc)
     pub static IKFilterBrowserDefaultInputImage: Option<&'static NSString>;
 }

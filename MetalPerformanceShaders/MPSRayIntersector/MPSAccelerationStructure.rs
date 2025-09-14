@@ -8,17 +8,15 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A block of code that’s invoked when an operation on an acceleration structure has completed.
 /// A block of code invoked when an operation on an MPSAccelerationStructure is completed
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurecompletionhandler?language=objc)
 #[deprecated]
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSAccelerationStructureCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut MPSAccelerationStructure)>;
 
+/// Options that describe how an acceleration structure will be used.
 /// Options describing how an acceleration structure will be used
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -27,27 +25,23 @@ pub struct MPSAccelerationStructureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSAccelerationStructureUsage: NSUInteger {
 /// No usage options specified
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage/mpsaccelerationstructureusagenone?language=objc)
         #[doc(alias = "MPSAccelerationStructureUsageNone")]
 #[deprecated]
         const None = 0;
+/// Option that enables support for refitting the acceleration structure after it has been built.
 /// Enable support for refitting the acceleration structure after it has been built.
 /// This option may reduce raytracing performance so do not use it unless the acceleration
 /// structure will be refit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage/refit?language=objc)
         #[doc(alias = "MPSAccelerationStructureUsageRefit")]
 #[deprecated]
         const Refit = 1;
+/// Option indicating that the acceleration structure will be rebuilt frequently.
 /// Option indicating that the acceleration structure will be rebuilt frequently. In this
 /// case, the acceleration structure may choose a higher performance but lower quality
 /// acceleration structure construction algorithm. This option may reduce raytracing performance
 /// performance so do not use it unless reduced acceleration structure build time is
 /// worth reduced raytracing performance. This option may be useful if, for example, the user
 /// is interactively editing a live view of the scene.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage/frequentrebuild?language=objc)
         #[doc(alias = "MPSAccelerationStructureUsageFrequentRebuild")]
 #[deprecated]
         const FrequentRebuild = 2;
@@ -55,8 +49,6 @@ bitflags::bitflags! {
 /// structure will be built on the GPU when possible. However, in some cases such as very small
 /// triangle counts, the acceleration structure may be built on the CPU. This option will force
 /// the acceleration structure to be always be built on the GPU whenever possible.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage/prefergpubuild?language=objc)
         #[doc(alias = "MPSAccelerationStructureUsagePreferGPUBuild")]
 #[deprecated]
         const PreferGPUBuild = 4;
@@ -64,8 +56,6 @@ bitflags::bitflags! {
 /// structure will be built on the GPU when possible, which is typically much faster than
 /// building on the CPU. However, in some cases it may be preferable to build on the CPU such as
 /// to avoid framerate hitches when the GPU is rendering the user interface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructureusage/prefercpubuild?language=objc)
         #[doc(alias = "MPSAccelerationStructureUsagePreferCPUBuild")]
 #[deprecated]
         const PreferCPUBuild = 8;
@@ -80,9 +70,8 @@ unsafe impl RefEncode for MPSAccelerationStructureUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate an acceleration structure build state.
 /// Possible values of the acceleration structure status property
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurestatus?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -90,14 +79,10 @@ unsafe impl RefEncode for MPSAccelerationStructureUsage {
 pub struct MPSAccelerationStructureStatus(pub NSUInteger);
 impl MPSAccelerationStructureStatus {
     /// The acceleration structure has not been built yet
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurestatus/unbuilt?language=objc)
     #[doc(alias = "MPSAccelerationStructureStatusUnbuilt")]
     #[deprecated]
     pub const Unbuilt: Self = Self(0);
     /// The acceleration structure has finished building
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructurestatus/built?language=objc)
     #[doc(alias = "MPSAccelerationStructureStatusBuilt")]
     #[deprecated]
     pub const Built: Self = Self(1);
@@ -112,6 +97,7 @@ unsafe impl RefEncode for MPSAccelerationStructureStatus {
 }
 
 extern_class!(
+    /// The base class for data structures that are built over geometry and used to accelerate ray tracing.
     /// A data structure built over geometry used to accelerate ray tracing
     ///
     ///
@@ -358,8 +344,6 @@ extern_class!(
     /// and rebuilding acceleration structures from multiple threads result in undefined behavior.
     /// However, it is safe to encode intersection tests with a single acceleration structure
     /// from multiple threads as long as each thread uses its own MPSRayIntersector.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

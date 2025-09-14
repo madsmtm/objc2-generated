@@ -8,80 +8,69 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Daily situations for a relevance provider.
 /// A relevant daily routine situation.
 ///
 /// See also: INDailyRoutineRelevanceProvider
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDailyRoutineSituation(pub NSInteger);
 impl INDailyRoutineSituation {
+    /// A situation that occurs during the morning.
     /// A situation that occurs in the morning, around the time the user wakes up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/morning?language=objc)
     #[doc(alias = "INDailyRoutineSituationMorning")]
     pub const Morning: Self = Self(0);
+    /// A situation that occurs in the evening.
     /// A situation that occurs in the evening, around the time the user goes to bed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/evening?language=objc)
     #[doc(alias = "INDailyRoutineSituationEvening")]
     pub const Evening: Self = Self(1);
+    /// A situation that occurs at the user’s home.
     /// A situation that occurs when the user is at home.
     ///
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/home?language=objc)
     #[doc(alias = "INDailyRoutineSituationHome")]
     pub const Home: Self = Self(2);
+    /// A situation that occurs at the user’s place of work.
     /// A situation that occurs when the user is at work.
     ///
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/work?language=objc)
     #[doc(alias = "INDailyRoutineSituationWork")]
     pub const Work: Self = Self(3);
+    /// A situation that occurs at the user’s school.
     /// A situation that occurs when the user is at school.
     ///
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/school?language=objc)
     #[doc(alias = "INDailyRoutineSituationSchool")]
     pub const School: Self = Self(4);
+    /// A situation that occurs at the gym.
     /// A situation that occurs when the user is at the gym.
     ///
     /// Note: Your app needs Always location authorization to use this situation.
     ///
     /// See also: CLLocationManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/gym?language=objc)
     #[doc(alias = "INDailyRoutineSituationGym")]
     pub const Gym: Self = Self(5);
+    /// A situation that occurs during a daily commute.
     /// A situation that occurs when the user is commuting, for example driving into work.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/commute?language=objc)
     #[doc(alias = "INDailyRoutineSituationCommute")]
     pub const Commute: Self = Self(6);
+    /// A situation that occurs with connected headphones.
     /// A situation that occurs when the user connects headphones.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/headphonesconnected?language=objc)
     #[doc(alias = "INDailyRoutineSituationHeadphonesConnected")]
     pub const HeadphonesConnected: Self = Self(7);
+    /// A situation that occurs during an active workout.
     /// A situation that occurs when the user is currently in a workout.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/activeworkout?language=objc)
     #[doc(alias = "INDailyRoutineSituationActiveWorkout")]
     pub const ActiveWorkout: Self = Self(8);
+    /// A situation occurs that causes a physical activity to become incomplete.
     /// A situation that occurs when the user is expected to perform more physical activity during the day.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider/situation-swift.enum/physicalactivityincomplete?language=objc)
     #[doc(alias = "INDailyRoutineSituationPhysicalActivityIncomplete")]
     pub const PhysicalActivityIncomplete: Self = Self(9);
 }
@@ -95,9 +84,8 @@ unsafe impl RefEncode for INDailyRoutineSituation {
 }
 
 extern_class!(
+    /// An abstract class that represents a relevance provider.
     /// A relevance provider represents a piece of relevance information that can be used by Siri when predicting relevant shortcuts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevanceprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRelevanceProvider;
@@ -142,9 +130,8 @@ impl INRelevanceProvider {
 }
 
 extern_class!(
+    /// The provider class that specifies a relevant day and time.
     /// A relevance provider to indicate relevance at a date or date interval.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indaterelevanceprovider?language=objc)
     #[unsafe(super(INRelevanceProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INDateRelevanceProvider;
@@ -217,7 +204,13 @@ impl INDateRelevanceProvider {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationrelevanceprovider?language=objc)
+    /// The provider class that specifies a relevant location.
+    ///
+    /// ## Overview
+    ///
+    /// Ask the user for permission to use their location before providing shortcuts to [`INRelevantShortcutStore`](https://developer.apple.com/documentation/intents/inrelevantshortcutstore) that include a location relevance provider. If the user gives your app permission to access their location While In Use or Always_,_ shortcuts your app provides can influence widget stacks and the Siri watch face.
+    ///
+    ///
     #[unsafe(super(INRelevanceProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INLocationRelevanceProvider;
@@ -281,11 +274,16 @@ impl INLocationRelevanceProvider {
 }
 
 extern_class!(
+    /// The provider class that specifies a relevant daily routine.
+    ///
+    /// ## Overview
+    ///
+    /// Ask the user for permission to use their location before providing shortcuts to [`INRelevantShortcutStore`](https://developer.apple.com/documentation/intents/inrelevantshortcutstore) that include a daily routine relevance provider. If the user gives your app permission to access their location Always, shortcuts your app provides can influence widget stacks.
+    ///
+    ///
     /// A relevance provider that specifies relevance during a specific situation.
     ///
     /// See also: INDailyRoutineSituation
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinerelevanceprovider?language=objc)
     #[unsafe(super(INRelevanceProvider, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INDailyRoutineRelevanceProvider;

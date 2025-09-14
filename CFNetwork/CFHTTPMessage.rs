@@ -11,61 +11,61 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpversion1_0?language=objc)
+    /// Specifies HTTP version 1.0.
     pub static kCFHTTPVersion1_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpversion1_1?language=objc)
+    /// Specifies HTTP version 1.1.
     pub static kCFHTTPVersion1_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpversion2_0?language=objc)
+    /// HTTP version 2.0.
     pub static kCFHTTPVersion2_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpversion3_0?language=objc)
+    /// HTTP version 3.0.
     pub static kCFHTTPVersion3_0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschemebasic?language=objc)
+    /// Request the HTTP basic authentication scheme.
     pub static kCFHTTPAuthenticationSchemeBasic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschemedigest?language=objc)
+    /// Request the HTTP digest authentication scheme.
     pub static kCFHTTPAuthenticationSchemeDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschementlm?language=objc)
+    /// Request the HTTP NTLM authentication scheme.
     pub static kCFHTTPAuthenticationSchemeNTLM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschemekerberos?language=objc)
+    /// Request the HTTP Kerberos authentication scheme.
     pub static kCFHTTPAuthenticationSchemeKerberos: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschemenegotiate?language=objc)
+    /// Request the HTTP Negotiate authentication scheme.
     pub static kCFHTTPAuthenticationSchemeNegotiate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschemenegotiate2?language=objc)
+    /// Request the HTTP Negotiate v2 authentication scheme.
     pub static kCFHTTPAuthenticationSchemeNegotiate2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationschemexmobilemeauthtoken?language=objc)
+    /// Request the HTTP XMobileMeAuthToken authentication scheme.
     pub static kCFHTTPAuthenticationSchemeXMobileMeAuthToken: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessage?language=objc)
+/// An opaque reference representing an HTTP message.
 #[doc(alias = "CFHTTPMessageRef")]
 #[repr(C)]
 pub struct CFHTTPMessage {
@@ -82,7 +82,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFHTTPMessage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagegettypeid()?language=objc)
+    /// Returns the Core Foundation type identifier for the `CFHTTPMessage` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for the `CFHTTPMessage` opaque type.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -94,7 +100,29 @@ unsafe impl ConcreteType for CFHTTPMessage {
 }
 
 impl CFHTTPMessage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreaterequest(_:_:_:_:)?language=objc)
+    /// Creates and returns a `CFHTTPMessage` object for an HTTP request.
+    ///
+    /// Parameters:
+    /// - requestMethod: The request method for the request. Use any of the request methods allowed by the HTTP version specified by `httpVersion`.
+    ///
+    /// - url: The URL to which the request will be sent.
+    ///
+    /// - httpVersion: The HTTP version for this message. Pass `kCFHTTPVersion1_0` or `kCFHTTPVersion1_1`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFHTTPMessage` object, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a `CFHTTPMessage` object that you can use to build an HTTP request. Continue building the request by calling[`CFHTTPMessageSetBody`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetbody(_:_:)) to set the message’s body. Call [`CFHTTPMessageCopyHeaderFieldValue`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyheaderfieldvalue(_:_:)) to set the message’s headers.
+    ///
+    /// If you are using a `CFReadStream` object to send the message, call [`CFReadStreamCreateForHTTPRequest`](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforhttprequest(_:_:)) to create a read stream for the request. If you are not using `CFReadStream`, call [`CFHTTPMessageCopySerializedMessage`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyserializedmessage(_:)) to make the message ready for transmission by serializing it.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCreateRequest")]
     #[inline]
     pub unsafe fn new_request(
@@ -117,7 +145,27 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreateresponse(_:_:_:_:)?language=objc)
+    /// Creates and returns a `CFHTTPMessage` object for an HTTP response.
+    ///
+    /// Parameters:
+    /// - statusCode: The status code for this message response. The status code can be any of the status codes defined in section 6.1.1 of RFC 2616.
+    ///
+    /// - statusDescription: The description that corresponds to the status code. Pass NULL to use the standard description for the given status code, as found in RFC 2616.
+    ///
+    /// - httpVersion: The HTTP version for this message response. Pass `kCFHTTPVersion1_0` or `kCFHTTPVersion1_1`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFHTTPMessage` object, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a `CFHTTPMessage` object that you can use to build an HTTP response. Continue building the response by calling[`CFHTTPMessageSetBody`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetbody(_:_:)) to set the message’s body. Call [`CFHTTPMessageSetHeaderFieldValue`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetheaderfieldvalue(_:_:_:)) to set the message’s headers. Then call [`CFHTTPMessageCopySerializedMessage`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyserializedmessage(_:)) to make the message ready for transmission by serializing it.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCreateResponse")]
     #[inline]
     pub unsafe fn new_response(
@@ -142,7 +190,23 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreateempty(_:_:)?language=objc)
+    /// Creates and returns a new, empty `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - isRequest: A flag that determines whether to create an empty message request or an empty message response. Pass `TRUE` to create an empty request message; pass `FALSE` to create an empty response message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFHTTPMessage` object or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call [`CFHTTPMessageAppendBytes`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageappendbytes(_:_:_:)) to store an incoming, serialized HTTP request or response message in the empty message object.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCreateEmpty")]
     #[inline]
     pub unsafe fn new_empty(
@@ -161,7 +225,23 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreatecopy(_:_:)?language=objc)
+    /// Gets a copy of a CFHTTPMessage object.
+    ///
+    /// Parameters:
+    /// - message: The message to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFHTTPMessageRef`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessage) object, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a copy of a [`CFHTTPMessageRef`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessage) object that you can modify, for example, by calling [`CFHTTPMessageCopyHeaderFieldValue`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyheaderfieldvalue(_:_:)) or by calling [`CFHTTPMessageSetBody`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetbody(_:_:)). Then you can serialize the message by calling [`CFHTTPMessageCopySerializedMessage`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyserializedmessage(_:)) and send the serialized message to a client or a server.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -180,7 +260,7 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageisrequest(_:)?language=objc)
+    /// Returns a Boolean indicating whether the HTTP message is a request or a response.
     #[doc(alias = "CFHTTPMessageIsRequest")]
     #[inline]
     pub unsafe fn is_request(&self) -> bool {
@@ -191,7 +271,17 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyversion(_:)?language=objc)
+    /// Gets the HTTP version from a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - message: The message to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFString` object or `NULL`, if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopyVersion")]
     #[inline]
     pub unsafe fn version(&self) -> CFRetained<CFString> {
@@ -204,7 +294,17 @@ impl CFHTTPMessage {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopybody(_:)?language=objc)
+    /// Gets the body from a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - message: The message to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFData` object or `NULL` if there was a problem creating the object or if the there is no message body. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopyBody")]
     #[inline]
     pub unsafe fn body(&self) -> Option<CFRetained<CFData>> {
@@ -215,7 +315,13 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetbody(_:_:)?language=objc)
+    /// Sets the body of a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - message: The message to modify.
+    ///
+    /// - bodyData: The data that is to be set as the body of the message.
+    ///
     #[doc(alias = "CFHTTPMessageSetBody")]
     #[inline]
     pub unsafe fn set_body(&self, body_data: &CFData) {
@@ -225,7 +331,19 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetBody(self, body_data) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyheaderfieldvalue(_:_:)?language=objc)
+    /// Gets the value of a header field from a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - message: The message to examine.
+    ///
+    /// - headerField: The header field to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFString` object containing a copy of the field specified by `headerField`, or `NULL` if there was a problem creating the object of if the specified header does not exist. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopyHeaderFieldValue")]
     #[inline]
     pub unsafe fn header_field_value(
@@ -242,7 +360,27 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyallheaderfields(_:)?language=objc)
+    /// Gets all header fields from a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - message: The message to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFDictionaryRef` object containing keys and values that are `CFStringRef` objects, where the key is the header fieldname and the dictionary value is the header field’s value. Returns `NULL` if the header fields could not be copied. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP headers are case insensitive. To simplify your code, certain header field names are canonicalized into their standard form. For example, if the server sends a `content-length` header, it is automatically adjusted to be `Content-Length`.
+    ///
+    /// The returned dictionary of headers is configured to be case-preserving during the set operation (unless the key already exists with a different case), and case-insensitive when looking up keys.
+    ///
+    /// For example, if you set the header `X-foo`, and then later set the header `X-Foo`, the dictionary’s key will be `X-foo`, but the value will taken from the `X-Foo` header.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopyAllHeaderFields")]
     #[inline]
     pub unsafe fn all_header_fields(&self) -> Option<CFRetained<CFDictionary>> {
@@ -255,7 +393,15 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagesetheaderfieldvalue(_:_:_:)?language=objc)
+    /// Sets the value of a header field in an HTTP message.
+    ///
+    /// Parameters:
+    /// - message: The message to modify.
+    ///
+    /// - headerField: The header field to set.
+    ///
+    /// - value: The value to set.
+    ///
     #[doc(alias = "CFHTTPMessageSetHeaderFieldValue")]
     #[inline]
     pub unsafe fn set_header_field_value(&self, header_field: &CFString, value: Option<&CFString>) {
@@ -269,7 +415,31 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageSetHeaderFieldValue(self, header_field, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageappendbytes(_:_:_:)?language=objc)
+    /// Appends data to a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - message: The message to modify.
+    ///
+    /// - newBytes: A reference to the data to append.
+    ///
+    /// - numBytes: The length of the data pointed to by `newBytes`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the data was successfully appended, otherwise `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function appends the data specified by `newBytes` to the specified message object which was created by calling [`CFHTTPMessageCreateEmpty`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecreateempty(_:_:)). The data is an incoming serialized HTTP request or response received from a client or a server. While appending the data, this function deserializes it, removes any HTTP-based formatting that the message may contain, and stores the message in the message object. You can then call [`CFHTTPMessageCopyVersion`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyversion(_:)), [`CFHTTPMessageCopyBody`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopybody(_:)), [`CFHTTPMessageCopyHeaderFieldValue`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyheaderfieldvalue(_:_:)), and [`CFHTTPMessageCopyAllHeaderFields`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyallheaderfields(_:)) to get the message’s HTTP version, the message’s body, a specific header field, and all of the message’s headers, respectively.
+    ///
+    /// If the message is a request, you can also call [`CFHTTPMessageCopyRequestURL`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyrequesturl(_:)) and [`CFHTTPMessageCopyRequestMethod`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyrequestmethod(_:)) to get the message’s request URL and request method, respectively.
+    ///
+    /// If the message is a response, you can also call [`CFHTTPMessageGetResponseStatusCode`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagegetresponsestatuscode(_:)) and [`CFHTTPMessageCopyResponseStatusLine`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyresponsestatusline(_:)) to get the message’s status code and status line, respectively.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -288,7 +458,17 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageisheadercomplete(_:)?language=objc)
+    /// Determines whether a message header is complete.
+    ///
+    /// Parameters:
+    /// - message: The message to verify.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After calling [`CFHTTPMessageAppendBytes`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageappendbytes(_:_:_:)), call this function to see if the message header is complete.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageIsHeaderComplete")]
     #[inline]
     pub unsafe fn is_header_complete(&self) -> bool {
@@ -299,7 +479,19 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyserializedmessage(_:)?language=objc)
+    /// Serializes a CFHTTPMessage object.
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFData` object containing the serialized message, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a copy of a `CFHTTPMessage` object in serialized format that is ready for transmission.
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopySerializedMessage")]
     #[inline]
     pub unsafe fn serialized_message(&self) -> Option<CFRetained<CFData>> {
@@ -312,9 +504,18 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// ******************
+    /// Gets the URL from a `CFHTTPMessage` object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyrequesturl(_:)?language=objc)
+    /// Parameters:
+    /// - request: The message to examine. This must be a request message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFURLRef` object containing the URL or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ******************
     #[doc(alias = "CFHTTPMessageCopyRequestURL")]
     #[inline]
     pub unsafe fn request_url(&self) -> Option<CFRetained<CFURL>> {
@@ -325,7 +526,17 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyrequestmethod(_:)?language=objc)
+    /// Gets the request method from a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - request: The message to examine. This must be a request message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFString` object containing a copy of the message’s request method, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopyRequestMethod")]
     #[inline]
     pub unsafe fn request_method(&self) -> Option<CFRetained<CFString>> {
@@ -337,7 +548,35 @@ impl CFHTTPMessage {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageaddauthentication(_:_:_:_:_:_:)?language=objc)
+    /// Adds authentication information to a request.
+    ///
+    /// Parameters:
+    /// - request: The message to which to add authentication information.
+    ///
+    /// - authenticationFailureResponse: The response message that contains authentication failure information.
+    ///
+    /// - username: The username to add to the request.
+    ///
+    /// - password: The password to add to the request.
+    ///
+    /// - authenticationScheme: The authentication scheme to use (`kCFHTTPAuthenticationSchemeBasic`, `kCFHTTPAuthenticationSchemeNegotiate`, `kCFHTTPAuthenticationSchemeNTLM`, or `kCFHTTPAuthenticationSchemeDigest`), or pass `NULL` to use the strongest supported authentication scheme provided in the `authenticationFailureResponse` parameter.
+    ///
+    /// - forProxy: A flag indicating whether the authentication data that is being added is for a proxy’s use (`TRUE`) or for a remote server’s use (`FALSE`). If the error code provided by the `authenticationFailureResponse` parameter is 407, set `forProxy` to `TRUE`. If the error code is 401, set `forProxy` to `FALSE`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the authentication information was successfully added, otherwise `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function adds the authentication information specified by the `username`, `password`, `authenticationScheme`, and `forProxy` parameters to the specified request message. The message referred to by the `authenticationFailureResponse` parameter typically contains a 401 or a 407 error code.
+    ///
+    /// This function is best suited for sending a single request to the server. If you need to send multiple requests, use [`CFHTTPMessageApplyCredentials`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentials(_:_:_:_:_:)).
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageAddAuthentication")]
     #[inline]
     pub unsafe fn add_authentication(
@@ -371,9 +610,12 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    /// *******************
+    /// Gets the status code from a `CFHTTPMessage` object representing an HTTP response.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagegetresponsestatuscode(_:)?language=objc)
+    /// Parameters:
+    /// - response: The message to examine. This must be a response message.
+    ///
+    /// *******************
     #[doc(alias = "CFHTTPMessageGetResponseStatusCode")]
     #[inline]
     pub unsafe fn response_status_code(&self) -> CFIndex {
@@ -383,7 +625,17 @@ impl CFHTTPMessage {
         unsafe { CFHTTPMessageGetResponseStatusCode(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessagecopyresponsestatusline(_:)?language=objc)
+    /// Gets the status line from a `CFHTTPMessage` object.
+    ///
+    /// Parameters:
+    /// - response: The message to examine. This must be a response message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the message’s status line, or `NULL` if there was a problem creating the object. The status line includes the message’s protocol version and a success or error code. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFHTTPMessageCopyResponseStatusLine")]
     #[inline]
     pub unsafe fn response_status_line(&self) -> Option<CFRetained<CFString>> {

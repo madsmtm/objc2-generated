@@ -11,26 +11,23 @@ extern "C" {
     /// The object returned for this key should be an array of UIActivityCollaborationModeRestriction instances
     /// For supported behaviour, this array should have a maximum size of one less than the amount of possible Share Sheet modes
     /// Currently at most one object should be provided
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/collaborationmoderestrictions?language=objc)
     #[cfg(feature = "UIActivityItemsConfigurationReading")]
     pub static UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
+/// A value that defines how the system shares an item.
 /// Represents the types of sharing (collaborating on an item vs. sending a copy of the item)
 /// Share Sheet supports up to two modes, each of which corresponds to one of these types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivityCollaborationMode(pub NSInteger);
 impl UIActivityCollaborationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode/sendcopy?language=objc)
+    /// The system sends a copy of the item.
     #[doc(alias = "UIActivityCollaborationModeSendCopy")]
     pub const SendCopy: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmode/collaborate?language=objc)
+    /// The system allows collaboration on a shared item.
     #[doc(alias = "UIActivityCollaborationModeCollaborate")]
     pub const Collaborate: Self = Self(1);
 }
@@ -44,12 +41,11 @@ unsafe impl RefEncode for UIActivityCollaborationMode {
 }
 
 extern_class!(
+    /// An object that disables the sharing mode and optionally displays an alert.
     /// Specifies whether any types of sharing should be disabled in Share Sheet, and if so, whether they should provide a reason when tapped
     /// If a reason is provided, the corresponding mode will show up as an option, but an alert explaining why it is disabled will show if it is chosen, and the mode will switch back to the supported one
     /// Optionally, an extra alert button can be provided for a "recovery suggestion". This can give a user a way to fix whatever is causing this type of sharing to be disabled
     /// If no reason is provided, the corresponding mode will not show up as an option
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/collaborationmoderestriction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivityCollaborationModeRestriction;

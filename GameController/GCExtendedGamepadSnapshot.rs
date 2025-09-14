@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A recording of all of the values provided by a [`GCExtendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad) object.
+    ///
+    /// ## Overview
+    ///
+    /// To create a gamepad snapshot, call the [`saveSnapshot`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/savesnapshot()) method on a [`GCExtendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad) object. The [`GCExtendedGamepadSnapshot`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot) class is a subclass of the [`GCExtendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad) class, so you use the parent class’s properties to read the individual element values. The snapshot is stored in a device independent format. To get the flattened data representation of the snapshot data, read the [`snapshotData`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata) property.
+    ///
+    ///
     /// A GCExtendedGamepadSnapshot snapshot is a concrete GCExtendedGamepad implementation. It can be used directly in an
     /// application to implement controller input replays. It is also returned as the result of polling a controller.
     ///
@@ -18,8 +25,6 @@ extern_class!(
     ///
     ///
     /// See: -[GCExtendedGamepad saveSnapshot]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]
@@ -79,18 +84,15 @@ impl GCExtendedGamepadSnapshot {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion?language=objc)
 // NS_ENUM
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCExtendedGamepadSnapshotDataVersion(pub NSInteger);
 impl GCExtendedGamepadSnapshotDataVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion/version1?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion1")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub const Version1: Self = Self(0x0100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdataversion/version2?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapshotDataVersion2")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub const Version2: Self = Self(0x0101);
@@ -105,12 +107,10 @@ unsafe impl RefEncode for GCExtendedGamepadSnapshotDataVersion {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccurrentextendedgamepadsnapshotdataversion?language=objc)
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     pub static GCCurrentExtendedGamepadSnapshotDataVersion: GCExtendedGamepadSnapshotDataVersion;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdata?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCExtendedGamepadSnapshotData {
@@ -175,8 +175,6 @@ impl GCExtendedGamepadSnapshotData {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatafromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
@@ -203,8 +201,6 @@ impl GCExtendedGamepadSnapshotData {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcextendedgamepadsnapshotdata(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
@@ -219,7 +215,7 @@ pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapshotData(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatav100?language=objc)
+/// A structure that holds a snapshot of an extended gamepad controller’s input data.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCExtendedGamepadSnapShotDataV100 {
@@ -270,6 +266,19 @@ unsafe impl RefEncode for GCExtendedGamepadSnapShotDataV100 {
 }
 
 impl GCExtendedGamepadSnapShotDataV100 {
+    /// Copies the recorded data from an extended gamepad snapshot into a readable structure.
+    ///
+    /// Parameters:
+    /// - snapshotData: A pointer to memory to fill with the shapshot data.
+    ///
+    /// - data: An [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object that contains recorded data. Often, this is obtained by calling the [`snapshotData`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata) method of a [`GCExtendedGamepadSnapshot`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot) object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the data could be copied, [`false`](https://developer.apple.com/documentation/swift/false) if `snapshotData` is `nil`, `data` is `nil`, or if the contents of `data` do not contain a compatible snapshot.
+    ///
+    ///
     /// Fills out a v100 snapshot from any compatible NSData source
     ///
     ///
@@ -278,8 +287,6 @@ impl GCExtendedGamepadSnapShotDataV100 {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshotdatav100fromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCExtendedGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
     #[inline]
@@ -297,6 +304,23 @@ impl GCExtendedGamepadSnapShotDataV100 {
     }
 }
 
+/// Encapsulates the controller data from an extended gamepad structure into a data object.
+///
+/// Parameters:
+/// - snapshotData: A pointer to memory that contains a set of extended gamepad control values.
+///
+///
+/// ## Return Value
+///
+/// A new [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object that contains the snapshot data, or `nil` if an error occurred.
+///
+///
+///
+/// ## Discussion
+///
+/// If the version and size is not set in the snapshot the data will automatically have a version of `0x100` and a size equal to `sizeof(GCExtendedGamepadSnapShotDataV100)`.
+///
+///
 /// Creates an NSData object from a v100 snapshot.
 /// If the version and size is not set in the snapshot the data will automatically have version 0x100 and sizeof(GCExtendedGamepadSnapShotDataV100) set as the values implicitly.
 ///
@@ -306,8 +330,6 @@ impl GCExtendedGamepadSnapShotDataV100 {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcextendedgamepadsnapshotdatav100(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithExtendedGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCExtendedGamepadSnapShotDataV100(

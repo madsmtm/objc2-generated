@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// A reference to the tracked medication and the details a person can customize.
     ///
+    /// ## Overview
+    ///
     /// The details are relevant to the medication tracking experience.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication?language=objc)
+    ///
+    /// A reference to the tracked medication and the details a person can customize.
+    ///
+    /// The details are relevant to the medication tracking experience.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKUserAnnotatedMedication;
@@ -114,19 +119,29 @@ impl HKUserAnnotatedMedication {
 }
 
 extern "C" {
+    /// The key path you use to create predicates for the medication’s archived status.
+    ///
+    /// ## Discussion
+    ///
+    /// Use to predicate against the [`isArchived`](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/isarchived) property of a medication.
+    ///
+    ///
     /// The key path you use to create predicates for the medication's archived status.
     ///
     /// Use to predicate against the ``HKUserAnnotatedMedication/isArchived`` property of a medication.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationpredicatekeypathisarchived?language=objc)
     pub static HKUserAnnotatedMedicationPredicateKeyPathIsArchived: &'static NSString;
 }
 
 extern "C" {
     /// The key path you use to create predicates for whether or not a medication has a schedule.
     ///
-    /// Use to predicate against the ``HKUserAnnotatedMedication/hasSchedule`` property of a medication.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationpredicatekeypathhasschedule?language=objc)
+    /// Use to predicate against the [`hasSchedule`](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication/hasschedule) property of a medication.
+    ///
+    ///
+    /// The key path you use to create predicates for whether or not a medication has a schedule.
+    ///
+    /// Use to predicate against the ``HKUserAnnotatedMedication/hasSchedule`` property of a medication.
     pub static HKUserAnnotatedMedicationPredicateKeyPathHasSchedule: &'static NSString;
 }

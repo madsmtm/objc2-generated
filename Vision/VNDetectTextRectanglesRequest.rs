@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-analysis request that finds regions of visible text in an image.
+    ///
+    /// ## Overview
+    ///
+    /// This request returns detected text characters as rectangular bounding boxes with origin and size.
+    ///
+    ///
     /// A request that will detect regions of text in an image.
     ///
     ///
     /// This request will generate VNTextObservation objects describing the locations of text detected in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -93,5 +98,5 @@ impl VNDetectTextRectanglesRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the text rectangles detection request.
 pub static VNDetectTextRectanglesRequestRevision1: NSUInteger = 1;

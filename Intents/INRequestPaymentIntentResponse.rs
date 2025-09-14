@@ -7,49 +7,121 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRequestPaymentIntentResponseCode(pub NSInteger);
 impl INRequestPaymentIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
     #[doc(alias = "INRequestPaymentIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your Intents extension is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/inprogress?language=objc)
+    /// You are in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the payment request details, but you haven’t sent the request to the intended user.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully sent the payment request to the intended user.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failure?language=objc)
+    /// You were unable to deliver the payment request.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from delivering the request.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to make the payment request.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot make the payment request for a reason not covered by any other response code. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurecredentialsunverified?language=objc)
+    /// The request failed because you couldn’t verify one of the user’s credentials.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you are unable to verify the credentials of the request’s sender or recipient.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureCredentialsUnverified")]
     pub const FailureCredentialsUnverified: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurepaymentsamountbelowminimum?language=objc)
+    /// The request failed because the specified amount was below the required minimum established by your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the requested amount is below the minimum transaction amount required by your app.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailurePaymentsAmountBelowMinimum")]
     pub const FailurePaymentsAmountBelowMinimum: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurepaymentsamountabovemaximum?language=objc)
+    /// The request failed because the specified amount was above the allowed maximum established by your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the requested amount is above the maximum transaction amount allowed by your app.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailurePaymentsAmountAboveMaximum")]
     pub const FailurePaymentsAmountAboveMaximum: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurepaymentscurrencyunsupported?language=objc)
+    /// The request failed because your app does not support the specified currency.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the requested currency is not one that your app supports.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailurePaymentsCurrencyUnsupported")]
     pub const FailurePaymentsCurrencyUnsupported: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurenobankaccount?language=objc)
+    /// The request failed because you couldn’t determine a user’s bank account information.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the sender or recipient of the request does not have an account capable of handling the payment.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureNoBankAccount")]
     pub const FailureNoBankAccount: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failurenoteligible?language=objc)
+    /// The request failed because a user was not eligible to perform the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the sender or recipient of the request is ineligible to take part in monetary transfers.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureNotEligible")]
     pub const FailureNotEligible: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponsecode/failuretermsandconditionsacceptancerequired?language=objc)
+    /// The request failed because the user must accept the app’s terms and conditions.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the sender of the request must accept your app’s payment-related terms and conditions.
+    ///
+    ///
     #[doc(alias = "INRequestPaymentIntentResponseCodeFailureTermsAndConditionsAcceptanceRequired")]
     pub const FailureTermsAndConditionsAcceptanceRequired: Self = Self(12);
 }
@@ -63,7 +135,15 @@ unsafe impl RefEncode for INRequestPaymentIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponse?language=objc)
+    /// Your app’s response to a request payment intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INRequestPaymentIntentResponse`](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponse) object to specify the details of a payment request that you make. After creating the object, assign the details of the payment transaction to the [`paymentRecord`](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponse/paymentrecord) property, the details of which Siri communicates to the user at appropriate times.
+    ///
+    /// You create an [`INRequestPaymentIntentResponse`](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponse) object in the [`confirmRequestPayment:completion:`](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling/confirm(intent:completion:)) and [`handleRequestPayment:completion:`](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INRequestPaymentIntentHandling`](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

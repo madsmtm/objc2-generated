@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquery?language=objc)
+    /// An abstract class for all the query classes in HealthKit.
+    ///
+    /// ## Overview
+    ///
+    /// The [`HKQuery`](https://developer.apple.com/documentation/healthkit/hkquery) class is the basis for all the query objects that retrieve data from the HealthKit store. The [`HKQuery`](https://developer.apple.com/documentation/healthkit/hkquery) class is an abstract class. You should never instantiate it directly. Instead, you always work with one of its concrete subclasses.
+    ///
+    /// ### Filter queries using predicates
+    ///
+    /// All the concrete `HKQuery` subclasses take a predicate. You can use this predicate to filter the samples returned by the query. When HealthKit runs a query, it converts the predicate to SQL and executes the SQL on the underlying store. This has two important side effects.
+    ///
+    /// - Predicates improve the performance of your query, both in terms of speed and memory usage. Because the store executes the predicate, it restricts the number of HealthKit objects that it instantiates and returns.
+    ///
+    /// - Since the store executes these predicates, it limits the type of predicates that you can use. Specifically, HealthKit provides several predicate key paths (for example, [`HKPredicateKeyPathUUID`](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid) and [`HKPredicateKeyPathMetadata`](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata)). You can create predicates using only these key paths.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuery;
@@ -54,22 +68,39 @@ impl HKQuery {
     );
 }
 
+/// Constants that describe how a sample’s time period overlaps with the target time period.
 /// Time interval options are used to describe how an HKSample's time period overlaps with a given time period.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKQueryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKQueryOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions/hkqueryoptionnone?language=objc)
+/// The sample’s time period must overlap part of the target time period.
+///
+/// ## Discussion
+///
+/// The sample’s end time must be equal to or later than the target’s start time, and the sample’s start time must be earlier than the target’s end time.
+///
+///
         #[doc(alias = "HKQueryOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions/strictstartdate?language=objc)
+/// The sample’s start time must fall within the target time period.
+///
+/// ## Discussion
+///
+/// The sample’s start time must be equal to or later than the target’s start time, and the sample’s start time must also be earlier than the target’s end time.
+///
+///
         #[doc(alias = "HKQueryOptionStrictStartDate")]
         const StrictStartDate = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions/strictenddate?language=objc)
+/// The sample’s end time must fall within the target time period.
+///
+/// ## Discussion
+///
+/// The sample’s end time must be equal to or later than the target’s start time, and the sample’s end time must also be earlier than the target’s end time.
+///
+///
         #[doc(alias = "HKQueryOptionStrictEndDate")]
         const StrictEndDate = 1<<1;
     }

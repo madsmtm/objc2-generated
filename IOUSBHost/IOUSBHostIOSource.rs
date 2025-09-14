@@ -7,6 +7,13 @@ use objc2_io_kit::*;
 
 use crate::*;
 
+/// The descriptors for a single endpoint.
+///
+/// ## Overview
+///
+/// The [`IOUSBHostIOSourceDescriptors`](https://developer.apple.com/documentation/iousbhost/iousbhostiosourcedescriptors) structure initializes and adjusts pipes in the system.
+///
+///
 /// Encapsulates descriptors for a single endpoint
 ///
 /// The IOUSBHostIOSourceDescriptors struct is used to initialize and adjust
@@ -17,8 +24,6 @@ use crate::*;
 /// required for bcdUSB versions 0x0300 and greater, depending on device operating
 /// speed and values set in the descriptors.  See USB 3.1 § 9.5 for more information on
 /// when these descriptors may be required.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostiosourcedescriptors?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -48,11 +53,16 @@ unsafe impl RefEncode for IOUSBHostIOSourceDescriptors {
 }
 
 extern_class!(
+    /// This class provides basic functionality for deriving pipe and stream classes.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create objects of this class or use this class as a subclass. Instead, use [`copyPipeWithAddress:error:`](https://developer.apple.com/documentation/iousbhost/iousbhostinterface/copypipe(withaddress:)) and [`copyStreamWithStreamID:error:`](https://developer.apple.com/documentation/iousbhost/iousbhostpipe/copystream(withstreamid:)) when creating an [`IOUSBHostIOSource`](https://developer.apple.com/documentation/iousbhost/iousbhostiosource).
+    ///
+    ///
     /// The abstract class IOUSBHostPipe and IOUSBHostStream derive from.
     ///
     /// Defines common methods that are shared between IOUSBHostPipe and IOUSBHostStream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostiosource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOUSBHostIOSource;

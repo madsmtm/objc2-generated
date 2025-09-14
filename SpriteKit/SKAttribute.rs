@@ -7,37 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype?language=objc)
+/// Options that specify an attribute’s data type.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKAttributeType(pub NSInteger);
 impl SKAttributeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/none?language=objc)
     #[doc(alias = "SKAttributeTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/float?language=objc)
     #[doc(alias = "SKAttributeTypeFloat")]
     pub const Float: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorfloat2?language=objc)
     #[doc(alias = "SKAttributeTypeVectorFloat2")]
     pub const VectorFloat2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorfloat3?language=objc)
     #[doc(alias = "SKAttributeTypeVectorFloat3")]
     pub const VectorFloat3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorfloat4?language=objc)
     #[doc(alias = "SKAttributeTypeVectorFloat4")]
     pub const VectorFloat4: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/halffloat?language=objc)
     #[doc(alias = "SKAttributeTypeHalfFloat")]
     pub const HalfFloat: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorhalffloat2?language=objc)
     #[doc(alias = "SKAttributeTypeVectorHalfFloat2")]
     pub const VectorHalfFloat2: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorhalffloat3?language=objc)
     #[doc(alias = "SKAttributeTypeVectorHalfFloat3")]
     pub const VectorHalfFloat3: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributetype/vectorhalffloat4?language=objc)
     #[doc(alias = "SKAttributeTypeVectorHalfFloat4")]
     pub const VectorHalfFloat4: Self = Self(8);
 }
@@ -51,7 +42,31 @@ unsafe impl RefEncode for SKAttributeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattribute?language=objc)
+    /// A specification for dynamic per-node data used with a custom shader.
+    ///
+    /// ## Overview
+    ///
+    /// To define an attribute for your shader, you create an [`SKAttribute`](https://developer.apple.com/documentation/spritekit/skattribute) object with a unique name and data type, which is a [`SKAttributeType`](https://developer.apple.com/documentation/spritekit/skattributetype) enum. After creating an [`SKShader`](https://developer.apple.com/documentation/spritekit/skshader) object, custom attributes are added to its [`attributes`](https://developer.apple.com/documentation/spritekit/skshader/attributes) array. Attribute values are set on the parent node with [`setValue:forAttributeNamed:`](https://developer.apple.com/documentation/spritekit/sknode/setvalue(_:forattribute:)) and can change for each execution of a shader without the need for recompilation.
+    ///
+    /// The following listing shows how you can use an attribute to pass the size of a sprite into a shader using an attribute. In this example, `a_sprite_size` is available as a global `vec2` within the GLSL code.
+    ///
+    /// Listing 1. Passing an attribute to a shader.
+    ///
+    /// ```objc
+    /// let attributeBasedShader = SKShader(fileNamed: "UsingAttributes.fsh")
+    /// attributeBasedShader.attributes = [
+    ///     SKAttribute(name: "a_sprite_size", type: .vectorFloat2)]
+    ///
+    /// let sprite = SKSpriteNode()
+    /// sprite.shader = attributeBasedShader
+    /// sprite.size = CGSize(width: 10, height: 10)
+    /// let spriteSize = vector_float2(Float(sprite.frame.size.width),
+    ///                                Float(sprite.frame.size.height))
+    /// sprite.setValue(SKAttributeValue(vectorFloat2: spriteSize),
+    ///                 forAttribute: "a_sprite_size")
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAttribute;
@@ -110,7 +125,33 @@ impl SKAttribute {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skattributevalue?language=objc)
+    /// A container for dynamic shader data associated with a node.
+    ///
+    /// ## Overview
+    ///
+    /// SpriteKit nodes that are rendered with a custom shader can use [`SKAttributeValue`](https://developer.apple.com/documentation/spritekit/skattributevalue) objects to pass dynamic values which can change without requiring that shader to be recompiled. An attribute value is passed to a shader using a node’s [`setValue:forAttributeNamed:`](https://developer.apple.com/documentation/spritekit/sknode/setvalue(_:forattribute:)) method using the relevant attribute’s name. For example, given a shader with a [`SKAttributeTypeFloat`](https://developer.apple.com/documentation/spritekit/skattributetype/float) attribute named `a_radius`:
+    ///
+    /// Listing 1. Creating an attribute
+    ///
+    /// ```objc
+    /// let attribute = SKAttribute(name: "a_radius",
+    ///                             type: SKAttributeType.float)
+    /// ```
+    ///
+    /// The following code sets the value of this attribute to `10` and passes it to a [`SKSpriteNode`](https://developer.apple.com/documentation/spritekit/skspritenode) object’s shader:
+    ///
+    /// Listing 2. Setting an attribute value
+    ///
+    /// ```objc
+    /// node.setValue(SKAttributeValue(float: 10),
+    ///               forAttribute: "a_radius")
+    /// ```
+    ///
+    /// The attribute, `a_radius`, is available as a global floating-point variable within the shader code.
+    ///
+    /// Using this technique, a single shader can be shared across many nodes and each nodes can supply its own attributes. This approach is an alternative to using [`SKUniform`](https://developer.apple.com/documentation/spritekit/skuniform) objects which would require a recompilation for each distinct set of parameters.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAttributeValue;

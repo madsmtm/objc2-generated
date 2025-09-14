@@ -9,46 +9,82 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype?language=objc)
+/// Options for the shape and style of illumination provided by a light, used by the [`lightType`](https://developer.apple.com/documentation/modelio/mdllight/lighttype) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLLightType(pub NSUInteger);
 impl MDLLightType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/unknown?language=objc)
+    /// The type of the light is unknown or has not been initialized.
     #[doc(alias = "MDLLightTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/ambient?language=objc)
+    /// The light source should illuminate a scene evenly regardless of position or direction.
     #[doc(alias = "MDLLightTypeAmbient")]
     pub const Ambient: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/directional?language=objc)
+    /// The light source illuminates a scene from a uniform direction regardless of its position.
     #[doc(alias = "MDLLightTypeDirectional")]
     pub const Directional: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/spot?language=objc)
+    /// The light source illuminates a scene from a specific position and direction.
     #[doc(alias = "MDLLightTypeSpot")]
     pub const Spot: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/point?language=objc)
+    /// The light source illuminates a scene in all directions from a specific position.
     #[doc(alias = "MDLLightTypePoint")]
     pub const Point: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/linear?language=objc)
+    /// The light source illuminates a scene in all directions from an area in the shape of a line.
+    ///
+    /// ## Discussion
+    ///
+    /// This light type is exclusive to the [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight) class.
+    ///
+    ///
     #[doc(alias = "MDLLightTypeLinear")]
     pub const Linear: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/discarea?language=objc)
+    /// The light source illuminates a scene in all directions from an area in the shape of a disc.
+    ///
+    /// ## Discussion
+    ///
+    /// This light type is exclusive to the [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight) class.
+    ///
+    ///
     #[doc(alias = "MDLLightTypeDiscArea")]
     pub const DiscArea: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/rectangulararea?language=objc)
+    /// The light source illuminates a scene in all directions from an area in the shape of a rectangle.
+    ///
+    /// ## Discussion
+    ///
+    /// This light type is exclusive to the [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight) class.
+    ///
+    ///
     #[doc(alias = "MDLLightTypeRectangularArea")]
     pub const RectangularArea: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/superelliptical?language=objc)
+    /// The light source illuminates a scene in all directions from an area in the shape of a superellipse.
+    ///
+    /// ## Discussion
+    ///
+    /// A superellipse is a two-dimensional curve that varies in shape between a four-point star, diamond, circle, or rounded rectangle depending on additional parameters. This light type is exclusive to the [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight) class.
+    ///
+    ///
     #[doc(alias = "MDLLightTypeSuperElliptical")]
     pub const SuperElliptical: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/photometric?language=objc)
+    /// The illumination from the light is determined by a photometric profile.
+    ///
+    /// ## Discussion
+    ///
+    /// This light type is exclusive to the [`MDLPhotometricLight`](https://developer.apple.com/documentation/modelio/mdlphotometriclight) class.
+    ///
+    ///
     #[doc(alias = "MDLLightTypePhotometric")]
     pub const Photometric: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/probe?language=objc)
+    /// The illumination from the light is determined by texture images representing a sample of a scene at a specific point.
+    ///
+    /// ## Discussion
+    ///
+    /// This light type is exclusive to the [`MDLLightProbe`](https://developer.apple.com/documentation/modelio/mdllightprobe) class.
+    ///
+    ///
     #[doc(alias = "MDLLightTypeProbe")]
     pub const Probe: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllighttype/environment?language=objc)
+    /// The illumination from the light is determined by texture images representing a sample of the surrounding environment for a scene.
     #[doc(alias = "MDLLightTypeEnvironment")]
     pub const Environment: Self = Self(11);
 }
@@ -62,7 +98,13 @@ unsafe impl RefEncode for MDLLightType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllight?language=objc)
+    /// The abstract superclass for objects that describe light sources in a scene.
+    ///
+    /// ## Overview
+    ///
+    /// When you load lights from an asset file using the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class or create lights when building an asset for export, you use one or more of the concrete subclasses [`MDLPhysicallyPlausibleLight`](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblelight), [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight), [`MDLPhotometricLight`](https://developer.apple.com/documentation/modelio/mdlphotometriclight), or [`MDLLightProbe`](https://developer.apple.com/documentation/modelio/mdllightprobe).
+    ///
+    ///
     #[unsafe(super(MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -119,6 +161,7 @@ impl MDLLight {
 }
 
 extern_class!(
+    /// A light source for use in shading models based on real-world physics.
     /// A light with characteristics representing plausible real world lights
     ///
     ///
@@ -128,8 +171,6 @@ extern_class!(
     /// quadratically attenuates to zero.
     ///
     /// light is maximally bright.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblelight?language=objc)
     #[unsafe(super(MDLLight, MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -229,7 +270,15 @@ impl MDLPhysicallyPlausibleLight {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlarealight?language=objc)
+    /// A light source that illuminates a 3D scene from an area with a specific shape.
+    ///
+    /// ## Overview
+    ///
+    /// Unlike other light sources that illuminate a scene from a single point or direction, an area light has a specific shape. The shape of an area light is a two-dimensional figure in the xy-plane of the light’s local coordinate space, and its illumination is directed in the negative z-axis direction (spreading out from that direction according to the inherited [`innerConeAngle`](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblelight/innerconeangle) and [`outerConeAngle`](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblelight/outerconeangle) properties).
+    ///
+    /// Both the [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight) and [`MDLPhotometricLight`](https://developer.apple.com/documentation/modelio/mdlphotometriclight) classes can describe lights with interesting shapes. An area light offers a simpler design that can be implemented with better rendering performance, and a photometric light offers design that better models real-world light fixtures at the cost of higher computational complexity.
+    ///
+    ///
     #[unsafe(super(MDLPhysicallyPlausibleLight, MDLLight, MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -284,6 +333,19 @@ impl MDLAreaLight {
 }
 
 extern_class!(
+    /// A light source whose shape, direction, and intensity of illumination are determined by a photometric profile.
+    ///
+    /// ## Overview
+    ///
+    /// You create a photometric light from a file in the IES format, containing physical measurements of a light source. Many manufacturers of real-world light fixtures publish such files describing the lighting characteristics of their products. This photometry data measures the light web surrounding a light source—measurements of the light’s intensity in all directions around the source.The [`MDLPhotometricLight`](https://developer.apple.com/documentation/modelio/mdlphotometriclight) provides two ways to interpret a light web:
+    ///
+    /// - As a cube map texture. Use the [`generateCubemapFromLight:`](https://developer.apple.com/documentation/modelio/mdlphotometriclight/generatecubemap(fromlight:)) method to generate a texture, then use the [`lightCubeMap`](https://developer.apple.com/documentation/modelio/mdlphotometriclight/lightcubemap) property to access the texture. In this texture, each texel represents the light’s intensity in the direction from the cube’s center to the texel’s position on the cube.
+    ///
+    /// - **As spherical harmonics.** Use the [`generateSphericalHarmonicsFromLight:`](https://developer.apple.com/documentation/modelio/mdlphotometriclight/generatesphericalharmonics(fromlight:)) method to generate a set of spherical harmonic coefficients, and then use the [`sphericalHarmonicsLevel`](https://developer.apple.com/documentation/modelio/mdlphotometriclight/sphericalharmonicslevel) and [`sphericalHarmonicsCoefficients`](https://developer.apple.com/documentation/modelio/mdlphotometriclight/sphericalharmonicscoefficients) properties to access these coefficients. Spherical harmonic coefficients provide a more compact representation of the same information as the cube map texture, so you can use them during shading without the performance cost of a texture lookup.
+    ///
+    /// Both the [`MDLPhotometricLight`](https://developer.apple.com/documentation/modelio/mdlphotometriclight) and [`MDLAreaLight`](https://developer.apple.com/documentation/modelio/mdlarealight) classes can describe lights with interesting shapes—an area light offers a simpler design that can be implemented with better rendering performance, and a photometric light offers design that better models real-world light fixtures at the cost of higher computational complexity.
+    ///
+    ///
     /// A light created from measurements at various angles.
     ///
     ///
@@ -292,8 +354,6 @@ extern_class!(
     /// used to calculate the spherical harmonics coefficients
     ///
     /// calculated by generateSphericalHarmonicsFromLight:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlphotometriclight?language=objc)
     #[unsafe(super(MDLPhysicallyPlausibleLight, MDLLight, MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -376,7 +436,21 @@ impl MDLPhotometricLight {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllightprobe?language=objc)
+    /// A light source described in terms of the variations in color and intensity of its illumination in all directions.
+    ///
+    /// ## Overview
+    ///
+    /// A light probe represents this variation either as a cube map texture or as a set of spherical harmonic coefficients. In addition to describing such light sources, the [`MDLLightProbe`](https://developer.apple.com/documentation/modelio/mdllightprobe) class provides methods for generating light probe textures based on the contents of a scene and for generating spherical harmonic coefficients from a texture.
+    ///
+    /// A light probe consists of two cube map textures, where each texel represents the color and intensity of light in a particular direction from the cube’s center:
+    ///
+    /// - The [`reflectiveTexture`](https://developer.apple.com/documentation/modelio/mdllightprobe/reflectivetexture) cube map, also known as an _environment map_, contains a rendering of a scene as viewed from the light probe’s position. A renderer can use this texture to create reflections on surfaces with metallic materials.
+    ///
+    /// - The [`irradianceTexture`](https://developer.apple.com/documentation/modelio/mdllightprobe/irradiancetexture) cube map contains samples of the total light arriving at the light probe’s position from every direction. A renderer can use this texture to create diffuse lighting effects. You can derive an irradiance map from an environment map with methods on the [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) class, or when creating a light probe with the [`lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:`](https://developer.apple.com/documentation/modelio/mdllightprobe/init(texturesize:forlocation:lightstoconsider:objectstoconsider:reflectivecubemap:irradiancecubemap:)) method.
+    ///
+    /// Using cube map textures for light-probe-based rendering offers great visual fidelity, but adversely affects performance due to the cost of texture lookups during rendering. In addition, a cube map texture often contains more detail than is necessary for lighting. A set of spherical harmonic coefficients can represent the same information with less detail, and can be used in shader calculations with much less performance cost. To use spherical harmonics, call the [`generateSphericalHarmonicsFromIrradiance:`](https://developer.apple.com/documentation/modelio/mdllightprobe/generatesphericalharmonics(fromirradiance:)) method, then access the generated data in the [`sphericalHarmonicsCoefficients`](https://developer.apple.com/documentation/modelio/mdllightprobe/sphericalharmonicscoefficients) property.
+    ///
+    ///
     #[unsafe(super(MDLLight, MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]

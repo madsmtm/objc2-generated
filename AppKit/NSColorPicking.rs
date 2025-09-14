@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpickingdefault?language=objc)
+    /// A set of methods that provides basic behavior for a color picker.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSColorPickingDefault`](https://developer.apple.com/documentation/appkit/nscolorpickingdefault) protocol, together with the [`NSColorPickingCustom`](https://developer.apple.com/documentation/appkit/nscolorpickingcustom) protocol (which provides implementation-specific behavior), provides an interface for adding color pickers to an app’s color panel.
+    ///
+    ///
     pub unsafe trait NSColorPickingDefault: MainThreadOnly {
         #[cfg(all(
             feature = "NSColorPanel",
@@ -79,7 +85,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpickingcustom?language=objc)
+    /// A set of methods that provides a way to add color pickers—custom user interfaces for color selection—to an app’s color panel.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSColorPickingCustom`](https://developer.apple.com/documentation/appkit/nscolorpickingcustom) works with the [`NSColorPickingDefault`](https://developer.apple.com/documentation/appkit/nscolorpickingdefault) protocol—which provides basic behavior for a color picker—to enable custom color pickers.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This protocol must be implemented by a custom picker, or an error will occur.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSColorPickingCustom: NSColorPickingDefault + MainThreadOnly {
         #[cfg(feature = "NSColorPanel")]
         #[unsafe(method(supportsMode:))]

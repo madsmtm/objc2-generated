@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification that posts after a controller connects to the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object that connects to the device.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use these constants with NSNotificationCenter to listen to connection and disconnection events.
     ///
     /// Use GCControllerDidConnectNotification for observing connections of controllers.
@@ -30,17 +39,32 @@ extern "C" {
     /// See: NSNotificationCenter
     ///
     /// See: GCController.controllers
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdidconnectnotification?language=objc)
     pub static GCControllerDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdiddisconnectnotification?language=objc)
+    /// A notification that posts after a controller disconnects from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object that disconnects from the device.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     pub static GCControllerDidDisconnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// A notification that posts when a controller becomes the current controller.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object that’s current.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use these constants with NSNotificationCenter to listen to a controller becoming the most recently used controller.
     /// This is a good time to swap out UI to match the new current controller, and unregister any handlers with
     /// the old current controller.
@@ -58,17 +82,32 @@ extern "C" {
     /// See: NSNotificationCenter
     ///
     /// See: GCController.controllers
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdidbecomecurrentnotification?language=objc)
     pub static GCControllerDidBecomeCurrentNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdidstopbeingcurrentnotification?language=objc)
+    /// A notification that posts when a controller stops being the current controller.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object that’s no longer current.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     pub static GCControllerDidStopBeingCurrentNotification: &'static NSString;
 }
 
 extern "C" {
+    /// A notification that posts when the user customizes the button mappings or other settings of a controller.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to update your interface when the mappings change. The notification object is the [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object that the user customizes.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use this constant with NSNotificationCenter to listen to controller user customization events.
     ///
     /// When a user customizes the button mappings or other settings of a controller this notification will be
@@ -89,34 +128,31 @@ extern "C" {
     /// See: NSNotificationCenter
     ///
     /// See: GCController.controllers
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerusercustomizationsdidchangenotification?language=objc)
     pub static GCControllerUserCustomizationsDidChangeNotification: &'static NSString;
 }
 
+/// The possible values for controller player indices.
 /// This is the player index that a connected controller will have if it has never been assigned a player index on the current system.
 /// Controllers retain the player index they have been assigned between game sessions, so if you wish to unset the player index of a
 /// controller set it back to this value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCControllerPlayerIndex(pub NSInteger);
 impl GCControllerPlayerIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/indexunset?language=objc)
+    /// The default index for a player on a controller.
     #[doc(alias = "GCControllerPlayerIndexUnset")]
     pub const IndexUnset: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index1?language=objc)
+    /// Player one is using the controller.
     #[doc(alias = "GCControllerPlayerIndex1")]
     pub const Index1: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index2?language=objc)
+    /// Player two is using the controller.
     #[doc(alias = "GCControllerPlayerIndex2")]
     pub const Index2: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index3?language=objc)
+    /// Player three is using the controller.
     #[doc(alias = "GCControllerPlayerIndex3")]
     pub const Index3: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerplayerindex/index4?language=objc)
+    /// Player four is using the controller.
     #[doc(alias = "GCControllerPlayerIndex4")]
     pub const Index4: Self = Self(3);
 }
@@ -130,6 +166,23 @@ unsafe impl RefEncode for GCControllerPlayerIndex {
 }
 
 extern_class!(
+    /// A representation of a real game controller, a virtual controller, or a snapshot of a controller.
+    ///
+    /// ## Overview
+    ///
+    /// This class represents a real or virtual controller that a user interacts with during a game. A _real controller_ is a physical controller that connects directly or wirelessly to the device. A real controller can be formfitting or can attach closely to a device so players can use controls on both simultaneously. A _virtual controller_ is a software emulation of a real controller.
+    ///
+    /// You discover controllers, and then you process the input from those controllers during gameplay. Use the [`controllers`](https://developer.apple.com/documentation/gamecontroller/gccontroller/controllers()) method to get the currently connected controllers. If necessary, use the [`startWirelessControllerDiscoveryWithCompletionHandler:`](https://developer.apple.com/documentation/gamecontroller/gccontroller/startwirelesscontrollerdiscovery(completionhandler:)) method to connect with wireless controllers.
+    ///
+    /// This framework supports multiple connected game controllers. To identify which player is using a controller in a multiplayer game, check the [`playerIndex`](https://developer.apple.com/documentation/gamecontroller/gccontroller/playerindex) property and set it, if necessary. For single-player games, use the [`current`](https://developer.apple.com/documentation/gamecontroller/gccontroller/current) property to get the controller that the player is actively using.
+    ///
+    /// A controller’s profile encapsulates the details about a controller’s buttons, pads, axis, and other input elements. Get the controller’s profile using one of the profile properties, such as [`extendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad), and then process the input from its elements.
+    ///
+    /// You can either get the values of input elements on each iteration of your game loop, or set handlers to receive callbacks when those values change. For example, use the [`leftThumbstick`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick) property of the [`GCExtendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad) profile to get the thumbstick state. Use the [`valueChangedHandler`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/valuechangedhandler) property to set a handler that you implement to process any input values that change in the profile.
+    ///
+    /// Alternatively, you can create a snapshot of a real or virtual controller using the [`capture`](https://developer.apple.com/documentation/gamecontroller/gccontroller/capture()) method. A _snapshot_ is a copy of a controller at a moment in time with its current element values. Creating a snapshot may impact performance, and over time a snapshot doesn’t stay current. Unlike other types of controllers, you can set the values of elements in a snapshot.
+    ///
+    ///
     /// Controllers are available to an application that links to GameController.framework. There are 2 ways to access controllers
     /// paired to the system, adopt both to ensure the best user experience:
     ///
@@ -139,8 +192,6 @@ extern_class!(
     /// Only controllers that support one of the allowed profiles, such as GCExtendedGamepad, will be enumerated. Check for the profile
     /// supported before using a controller in your application. Ignore a controller that doesn't support a profile that suits
     /// your application, as the user will expect their controller to either be fully supported or not supported at all.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCController;

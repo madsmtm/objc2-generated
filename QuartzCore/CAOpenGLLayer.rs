@@ -17,7 +17,13 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caopengllayer?language=objc)
+    /// A layer that provides a layer suitable for rendering OpenGL content.
+    ///
+    /// ## Overview
+    ///
+    /// To provide OpenGL content you subclass `CAOpenGLLayer` and override [`drawInCGLContext:pixelFormat:forLayerTime:displayTime:`](https://developer.apple.com/documentation/quartzcore/caopengllayer/draw(incglcontext:pixelformat:forlayertime:displaytime:)). You can specify that the OpenGL content is static by setting the [`asynchronous`](https://developer.apple.com/documentation/quartzcore/caopengllayer/isasynchronous) property to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]

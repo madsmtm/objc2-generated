@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that produces a floating-point number that represents the capture quality of a face in a photo.
+    ///
+    /// ## Overview
+    ///
+    /// This request produces or updates a [`VNFaceObservation`](https://developer.apple.com/documentation/vision/vnfaceobservation) object’s property [`faceCaptureQuality`](https://developer.apple.com/documentation/vision/vnfaceobservation/facecapturequality-bjg5) with a floating-point value. The value ranges from `0` to `1`. Faces with quality closer to `1` are better lit, sharper, and more centrally positioned than faces with quality closer to `0`.
+    ///
+    /// If you don’t execute the request, or the request fails, the property [`faceCaptureQuality`](https://developer.apple.com/documentation/vision/vnfaceobservation/facecapturequality-bjg5) is [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0).
+    ///
+    ///
     /// A request that will produce or update a VNFaceObservation's property faceCaptureQuality with a float value.
     /// faceCaptureQuality is a float (wrapped by a NSNumber) that represents the capture quality of a given face in a photo.
     /// The float will be a value between 0 and 1, with 1 being the highest face capture quality and 0 being the lowest.
@@ -14,8 +23,6 @@ extern_class!(
     ///
     ///
     /// This request will generate VNFaceObservation objects with the face quality variable populated with information .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -90,13 +97,12 @@ impl VNDetectFaceCaptureQualityRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the face capture detection request.
 pub static VNDetectFaceCaptureQualityRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision2?language=objc)
+/// Revision 2 of the request algorithm.
 pub static VNDetectFaceCaptureQualityRequestRevision2: NSUInteger = 2;
 
+/// A value that indicates the third revision for a face capture-quality request.
 /// The revision shows better correlation with human judgement on a larger and more diverse dataset. It is also more stable with respect to minor image variations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequestrevision3?language=objc)
 pub static VNDetectFaceCaptureQualityRequestRevision3: NSUInteger = 3;

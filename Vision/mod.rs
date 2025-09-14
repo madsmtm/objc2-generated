@@ -968,6 +968,6 @@ use core::ffi::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvisionversionnumber?language=objc)
+    /// The current version number of the Vision framework.
     pub static VNVisionVersionNumber: c_double;
 }

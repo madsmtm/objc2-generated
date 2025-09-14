@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that applies layer normalization over inputs.
     /// The layer normalizaion layer.  For more information, refer to https://pytorch.org/docs/stable/nn.html#layernorm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

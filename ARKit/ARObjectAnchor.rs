@@ -10,9 +10,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An anchor representing an object in the world.
+    /// An anchor for a real-world 3D object that ARKit detects in the physical environment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arobjectanchor?language=objc)
+    /// ## Overview
+    ///
+    /// When you run a world-tracking AR session and specify [`ARReferenceObject`](https://developer.apple.com/documentation/arkit/arreferenceobject) objects for the session configuration’s [`detectionObjects`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionobjects) property, ARKit searches for those objects in the real-world environment. When the session recognizes an object, it automatically adds to its list of anchors an [`ARObjectAnchor`](https://developer.apple.com/documentation/arkit/arobjectanchor) for each detected object.
+    ///
+    /// To place virtual 3D content that matches the position or size of the detected object, use the anchor’s inherited [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) property together with the [`center`](https://developer.apple.com/documentation/arkit/arreferenceobject/center) and [`extent`](https://developer.apple.com/documentation/arkit/arreferenceobject/extent) of the anchor’s [`referenceObject`](https://developer.apple.com/documentation/arkit/arobjectanchor/referenceobject).
+    ///
+    ///
+    /// An anchor representing an object in the world.
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

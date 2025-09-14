@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkrecurringpaymentrequest?language=objc)
+    /// A class that represents a request to set up a recurring payment, typically a subscription.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must set the [`recurringPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/recurringpaymentrequest) property on a [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) object to use this class to request a recurring payment.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use a [`PKRecurringPaymentRequest`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentrequest) object to provide the user with payment details and a way to manage payment methods for a recurring payment. You can optionally display a billing agreement and set up merchant token life cycle notifications for the request.
+    ///
+    /// For more information about the merchant token life cycle notifications, see Apple Pay Merchant Token Management API.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKRecurringPaymentRequest;

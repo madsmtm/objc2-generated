@@ -6,22 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit?language=objc)
+/// The units supported by the `NSEnergyFormatter` class.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEnergyFormatterUnit(pub NSInteger);
 impl NSEnergyFormatterUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/joule?language=objc)
+    /// The joule unit.
     #[doc(alias = "NSEnergyFormatterUnitJoule")]
     pub const Joule: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/kilojoule?language=objc)
+    /// The kilojoule unit.
     #[doc(alias = "NSEnergyFormatterUnitKilojoule")]
     pub const Kilojoule: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/calorie?language=objc)
+    /// The calorie unit. This unit is often used in chemistry. It is abbreviated as “cal.”
     #[doc(alias = "NSEnergyFormatterUnitCalorie")]
     pub const Calorie: Self = Self((7 << 8) + 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter/unit/kilocalorie?language=objc)
+    /// The kilocalorie unit. This unit is used for food calories in some locales. In general, it is abbreviated as “kcal.” However, it may be abbreviated as “C” when used to represent food calories.
     #[doc(alias = "NSEnergyFormatterUnitKilocalorie")]
     pub const Kilocalorie: Self = Self((7 << 8) + 2);
 }
@@ -35,7 +35,19 @@ unsafe impl RefEncode for NSEnergyFormatterUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/energyformatter?language=objc)
+    /// A formatter that provides localized descriptions of energy values.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  As of iOS 10, macOS 10.12, tvOS 10, and watchOS 3, Foundation provides the [`NSMeasurementFormatter`](https://developer.apple.com/documentation/foundation/measurementformatter) class, which can be used to represent quantities of [`NSUnitEnergy`](https://developer.apple.com/documentation/foundation/unitenergy) to provide equivalent functionality to [`NSEnergyFormatter`](https://developer.apple.com/documentation/foundation/energyformatter). You are encouraged to transition to these new Foundation Units and Measurements APIs whenever possible.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

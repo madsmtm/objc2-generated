@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype?language=objc)
+/// The types of events that generate dial tones.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXPlayDTMFCallActionType(pub NSInteger);
 impl CXPlayDTMFCallActionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype/singletone?language=objc)
+    /// Indicates that the user tapped a digit on the in-call keypad.
     #[doc(alias = "CXPlayDTMFCallActionTypeSingleTone")]
     pub const SingleTone: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype/softpause?language=objc)
+    /// Indicates that the user included digits after a soft pause in their dial string. A soft pause is indicated by a comma (`,`) and waits a few seconds before dialing the additional digits.
     #[doc(alias = "CXPlayDTMFCallActionTypeSoftPause")]
     pub const SoftPause: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction/actiontype/hardpause?language=objc)
+    /// Indicates that the user included digits after a hard pause in their dial string. A hard pause is indicated by a semicolon (`;`) and waits for further user interaction before dialing the additional digits.
     #[doc(alias = "CXPlayDTMFCallActionTypeHardPause")]
     pub const HardPause: Self = Self(3);
 }
@@ -33,7 +33,17 @@ unsafe impl RefEncode for CXPlayDTMFCallActionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction?language=objc)
+    /// An encapsulation of the act of playing a dual tone multifrequency (DTMF) sequence.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXPlayDTMFCallAction`](https://developer.apple.com/documentation/callkit/cxplaydtmfcallaction) is a concrete subclass of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction). Whenever digits are transmitted during a call, whether from a user interacting with a number pad or following a hard or soft pause, the provider sends [`provider:performPlayDTMFCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-4htxt) to its delegate. The provider’s delegate calls the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method to indicate that the action was successfully performed.
+    ///
+    /// The provider sends [`provider:performPlayDTMFCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-4htxt) for successive actions only after the current action is fulfilled. When interacting with the number pad, each entered digit constitutes its own action. Digits following a hard or soft pause, however, are passed to [`provider:performPlayDTMFCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-4htxt) as a single string of digits. For example, if a user taps the 4 button on the number pad, followed by the 2 button, the delegate is sent [`provider:performPlayDTMFCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-4htxt) for the digit `4` and waits for the action to be fulfilled; after the action is fulfilled, the delegate is sent [`provider:performPlayDTMFCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-4htxt) for the digit `2`.
+    ///
+    /// CallKit automatically plays the corresponding DTMF frequencies for any digits transmitted over a call. The app is responsible for managing the timing and handling of digits as part of fulfilling the action.
+    ///
+    ///
     #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

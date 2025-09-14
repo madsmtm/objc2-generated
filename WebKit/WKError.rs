@@ -7,67 +7,106 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerrordomain?language=objc)
+    /// String that identifies the WebKit error domain.
     pub static WKErrorDomain: &'static NSString;
 }
 
+/// Possible error values that WebKit APIs can return.
 /// Constants used by NSError to indicate errors in the WebKit domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKErrorCode(pub NSInteger);
 impl WKErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/unknown?language=objc)
+    /// An error that indicates an unknown issue occurred.
     #[doc(alias = "WKErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/webcontentprocessterminated?language=objc)
+    /// An error that indicates the web process that contains the content is no longer running.
     #[doc(alias = "WKErrorWebContentProcessTerminated")]
     pub const WebContentProcessTerminated: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/webviewinvalidated?language=objc)
+    /// An error that indicates the web view was invalidated.
     #[doc(alias = "WKErrorWebViewInvalidated")]
     pub const WebViewInvalidated: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptexceptionoccurred?language=objc)
+    /// An error that indicates a JavaScript exception occurred.
     #[doc(alias = "WKErrorJavaScriptExceptionOccurred")]
     pub const JavaScriptExceptionOccurred: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptresulttypeisunsupported?language=objc)
+    /// An error that indicates the result of JavaScript execution could not be returned.
     #[doc(alias = "WKErrorJavaScriptResultTypeIsUnsupported")]
     pub const JavaScriptResultTypeIsUnsupported: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststorecompilefailed?language=objc)
+    /// An error that indicates the compilation of a rule list failed.
+    ///
+    /// ## Discussion
+    ///
+    /// Check the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary of the error object for an explanation of the compilation error that occurred.
+    ///
+    ///
     #[doc(alias = "WKErrorContentRuleListStoreCompileFailed")]
     pub const ContentRuleListStoreCompileFailed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststorelookupfailed?language=objc)
+    /// An error that indicates a content rule list data store didn’t find a rule list with the specified identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// This error might occur if you previously deleted the rule list.
+    ///
+    ///
     #[doc(alias = "WKErrorContentRuleListStoreLookUpFailed")]
     pub const ContentRuleListStoreLookUpFailed: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststoreremovefailed?language=objc)
+    /// An error that indicates a failure to remove a content rule list from the rule list data store object.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`WKContentRuleListStore`](https://developer.apple.com/documentation/webkit/wkcontentruleliststore) object might return this error if it’s unable to delete the persistent copy of the rule list from the user’s system.
+    ///
+    ///
     #[doc(alias = "WKErrorContentRuleListStoreRemoveFailed")]
     pub const ContentRuleListStoreRemoveFailed: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/contentruleliststoreversionmismatch?language=objc)
+    /// An error that indicates the rule list version is outdated and cannot be read.
     #[doc(alias = "WKErrorContentRuleListStoreVersionMismatch")]
     pub const ContentRuleListStoreVersionMismatch: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/attributedstringcontentfailedtoload?language=objc)
+    /// An error that indicates the failure to navigate to web content from an attributed string.
     #[doc(alias = "WKErrorAttributedStringContentFailedToLoad")]
     pub const AttributedStringContentFailedToLoad: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/attributedstringcontentloadtimedout?language=objc)
+    /// An error that indicates a timeout occurred while trying to load web content from an attributed string.
     #[doc(alias = "WKErrorAttributedStringContentLoadTimedOut")]
     pub const AttributedStringContentLoadTimedOut: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptinvalidframetarget?language=objc)
+    /// An error that indicates your content referenced an invalid web frame.
+    ///
+    /// ## Discussion
+    ///
+    /// WebKit might report this error in the following situations:
+    ///
+    /// - An evaluated script removes a frame that you reference.
+    ///
+    /// - Navigation to a different frame occurred and triggered the destruction of the specified frame.
+    ///
+    ///
     #[doc(alias = "WKErrorJavaScriptInvalidFrameTarget")]
     pub const JavaScriptInvalidFrameTarget: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/navigationappbounddomain?language=objc)
+    /// An error that indicates navigation failed due to an app-bound domain restriction.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when the web view navigates away from an app-bound domain.
+    ///
+    ///
     #[doc(alias = "WKErrorNavigationAppBoundDomain")]
     pub const NavigationAppBoundDomain: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/javascriptappbounddomain?language=objc)
+    /// An error that indicates JavaScript execution failed due to an app-bound domain restriction.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when a script targets a frame that is not in an app-bound domain.
+    ///
+    ///
     #[doc(alias = "WKErrorJavaScriptAppBoundDomain")]
     pub const JavaScriptAppBoundDomain: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/duplicatecredential?language=objc)
+    /// An error that indicates the system found a duplicate passkey during an import.
     #[doc(alias = "WKErrorDuplicateCredential")]
     pub const DuplicateCredential: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/malformedcredential?language=objc)
+    /// An error that indicates the system could not parse passkey data during an import.
     #[doc(alias = "WKErrorMalformedCredential")]
     pub const MalformedCredential: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code/credentialnotfound?language=objc)
+    /// An error that indicates the system could not find a passkey during an export.
     #[doc(alias = "WKErrorCredentialNotFound")]
     pub const CredentialNotFound: Self = Self(17);
 }

@@ -10,9 +10,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// Chart or graph container elements may adopt this protocol to enable Audio Graph support.
+    /// A protocol that declares the minimum interface necessary for an accessibility element to act as a chart.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchart?language=objc)
+    /// ## Overview
+    ///
+    /// Use this protocol when you want to create an accessible representation of a chart — a view that displays a graphical representation of a data set — for VoiceOver to play as an audio graph.
+    ///
+    /// Adopt the [`AXChart`](https://developer.apple.com/documentation/accessibility/axchart) protocol on your chart’s view model, and set the [`accessibilityChartDescriptor`](https://developer.apple.com/documentation/accessibility/axchart/accessibilitychartdescriptor) property to an [`AXChartDescriptor`](https://developer.apple.com/documentation/accessibility/axchartdescriptor) that contains all the semantic information you need to represent your chart through an audio interface, like the chart’s title, axes, data points, and a summary of the chart’s key takeaways.
+    ///
+    ///
+    /// Chart or graph container elements may adopt this protocol to enable Audio Graph support.
     pub unsafe trait AXChart: NSObjectProtocol {
         #[unsafe(method(accessibilityChartDescriptor))]
         #[unsafe(method_family = none)]
@@ -29,11 +36,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The basic interface for a data axis in a chart.
+    ///
+    /// ## Overview
+    ///
+    /// Each [`AXChart`](https://developer.apple.com/documentation/accessibility/axchart) requires at least two [`AXDataAxisDescriptor`](https://developer.apple.com/documentation/accessibility/axdataaxisdescriptor) objects to describe an x-axis and a y-axis.
+    ///
+    ///
     /// Describes a data axis for the chart (e.g. X, Y, etc.)
     /// Each AXChart requires at least two AXDataAxis objects
     /// to describe, at minimum, and X and a Y axis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataaxisdescriptor?language=objc)
     pub unsafe trait AXDataAxisDescriptor: NSCopying {
         /// The name or title of this axis.
         #[unsafe(method(title))]
@@ -62,19 +74,19 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum?language=objc)
+/// Constants that describe the scale of a numeric axis.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXNumericDataAxisDescriptorScale(pub NSInteger);
 impl AXNumericDataAxisDescriptorScale {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum/linear?language=objc)
+    /// A linear scale.
     #[doc(alias = "AXScaleTypeLinear")]
     pub const ScaleTypeLinear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum/log10?language=objc)
+    /// A log scale.
     #[doc(alias = "AXScaleTypeLog10")]
     pub const ScaleTypeLog10: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum/ln?language=objc)
+    /// A natural log scale.
     #[doc(alias = "AXScaleTypeLn")]
     pub const ScaleTypeLn: Self = Self(2);
 }
@@ -88,7 +100,7 @@ unsafe impl RefEncode for AXNumericDataAxisDescriptorScale {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor?language=objc)
+    /// An object that represents an axis of numerical data.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXNumericDataAxisDescriptor;
@@ -220,7 +232,13 @@ impl AXNumericDataAxisDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcategoricaldataaxisdescriptor?language=objc)
+    /// An object that represents an axis of categorical data.
+    ///
+    /// ## Overview
+    ///
+    /// A categorical data axis divides information into groups, or categories. For example, a categorical axis may represent blood type data divided into the possible categories _AB_, _A_, _B_, and _O_.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXCategoricalDataAxisDescriptor;
@@ -286,11 +304,16 @@ impl AXCategoricalDataAxisDescriptor {
 }
 
 extern_class!(
+    /// A single data value.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AXDataPointValue`](https://developer.apple.com/documentation/accessibility/axdatapointvalue) can be either numeric or categorical. Data points in a numeric axis use the [`number`](https://developer.apple.com/documentation/accessibility/axdatapointvalue/number) property, and data points in a categorical axis use the [`category`](https://developer.apple.com/documentation/accessibility/axdatapointvalue/category) property.
+    ///
+    ///
     /// Describes a single data value, either numeric or categorical. Only the `number`
     /// property will be used for data points in a numeric axis, and only the `category`
     /// property will be used for data points in a categorical axis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapointvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPointValue;
@@ -349,9 +372,8 @@ impl AXDataPointValue {
 }
 
 extern_class!(
+    /// An object that represents a single data point in a chart.
     /// Provides axis values for a single data point within a series.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdatapoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataPoint;
@@ -472,9 +494,8 @@ impl AXDataPoint {
 }
 
 extern_class!(
+    /// An object that represents a series of data points.
     /// Provides information about a data series. A chart may have one or many data series.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axdataseriesdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXDataSeriesDescriptor;
@@ -569,31 +590,36 @@ impl AXDataSeriesDescriptor {
     );
 }
 
+/// A constant that describes the content direction of the chart.
+///
+/// ## Overview
+///
+/// Use content direction to specify the direction of the x-axis, which the audio graph represents as time. For example, a bar chart might have a content direction of [`AXChartContentDirectionLeftToRight`](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/lefttoright), and a pie chart might have a content direction of [`AXChartContentDirectionRadialClockwise`](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/radialclockwise).
+///
+///
 /// Describes the content direction of the chart (i.e. the direction in which the X axis is rendered).
 /// For example, a bar chart might be leftToRight, while a pie chart might be radialClockwise.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXChartDescriptorContentDirection(pub NSInteger);
 impl AXChartDescriptorContentDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/lefttoright?language=objc)
+    /// A content direction with an x-axis that increases from left to right.
     #[doc(alias = "AXChartContentDirectionLeftToRight")]
     pub const ContentDirectionLeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/righttoleft?language=objc)
+    /// A content direction with an x-axis that increases from right to left.
     #[doc(alias = "AXChartContentDirectionRightToLeft")]
     pub const ContentDirectionRightToLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/toptobottom?language=objc)
+    /// A content direction with an x-axis that increases from top to bottom.
     #[doc(alias = "AXChartContentDirectionTopToBottom")]
     pub const ContentDirectionTopToBottom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/bottomtotop?language=objc)
+    /// A content direction with an x-axis that increases from bottom to top.
     #[doc(alias = "AXChartContentDirectionBottomToTop")]
     pub const ContentDirectionBottomToTop: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/radialclockwise?language=objc)
+    /// A content direction with a radial x-axis that increases clockwise.
     #[doc(alias = "AXChartContentDirectionRadialClockwise")]
     pub const ContentDirectionRadialClockwise: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum/radialcounterclockwise?language=objc)
+    /// A content direction with a radial x-axis that increases counterclockwise.
     #[doc(alias = "AXChartContentDirectionRadialCounterClockwise")]
     pub const ContentDirectionRadialCounterClockwise: Self = Self(5);
 }
@@ -607,9 +633,8 @@ unsafe impl RefEncode for AXChartDescriptorContentDirection {
 }
 
 extern_class!(
+    /// An object that contains all the semantic information about an accessible chart.
     /// The top-level descriptor object for an accessible chart.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXChartDescriptor;
@@ -800,7 +825,13 @@ impl AXChartDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axliveaudiograph?language=objc)
+    /// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`AXLiveAudioGraph`](https://developer.apple.com/documentation/accessibility/axliveaudiograph) to interact with an ongoing, continuous stream of data that updates with new data in real time.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXLiveAudioGraph;

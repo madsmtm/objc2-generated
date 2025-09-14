@@ -9,6 +9,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Prototype of a callback function used to retain a value or key being added to a dictionary.
+///
+/// Parameters:
+/// - allocator: The dictionary’s allocator.
+///
+/// - value: The value being added to the dictionary.
+///
+///
+/// ## Return Value
+///
+/// The value or key to store in the dictionary, which is usually the `value` parameter passed to this callback, but may be a different   value if a different value should be stored in the collection.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFDictionaryCreate`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)) in a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) and [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks) structure.
+///
+///
 /// Structure containing the callbacks for keys of a CFDictionary.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFDictionary creation functions.
@@ -31,28 +50,76 @@ use crate::*;
 /// equality.
 /// Field: hash The callback used to compute a hash code for keys as they
 /// are used to access, add, or remove values in the dictionary.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
 pub type CFDictionaryRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
+/// Prototype of a callback function used to release a key-value pair before it’s removed from a dictionary.
+///
+/// Parameters:
+/// - allocator: The dictionary’s allocator.
+///
+/// - value: The value being removed from the dictionary.
+///
 pub type CFDictionaryReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
+/// Prototype of a callback function used to get a description of a value or key in a dictionary.
+///
+/// Parameters:
+/// - value: The value to be described.
+///
+///
+/// ## Return Value
+///
+/// A text description of `value`.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFDictionaryCreate`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)) in a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure or [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks). This callback is used by the [`CFCopyDescription`](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)) function.
+///
+///
 pub type CFDictionaryCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryequalcallback?language=objc)
+/// Prototype of a callback function used to determine if two values or keys in a dictionary are equal.
+///
+/// Parameters:
+/// - value1: A value in the dictionary.
+///
+/// - value2: Another value in the dictionary.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFDictionaryCreate`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)) in a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) and [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks) structure.
+///
+///
 pub type CFDictionaryEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryhashcallback?language=objc)
+/// Prototype of a callback function invoked to compute a hash code for a key. Hash codes are used when key-value pairs are accessed, added, or removed from a collection.
+///
+/// Parameters:
+/// - value: The value used to compute the hash code.
+///
+///
+/// ## Return Value
+///
+/// An integer that can be used as a table address in a hash table structure.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFDictionaryCreate`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)) in a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure.
+///
+///
 pub type CFDictionaryHashCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks?language=objc)
+/// This structure contains the callbacks used to retain, release, describe, and compare the keys in a dictionary.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -86,25 +153,44 @@ unsafe impl RefEncode for CFDictionaryKeyCallBacks {
 }
 
 extern "C" {
+    /// Predefined [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure containing a set of callbacks appropriate for use when the keys of a CFDictionary are all CFType-derived objects.
+    ///
+    /// ## Discussion
+    ///
+    /// The retain callback is `CFRetain`, the release callback is `CFRelease`, the copy callback is `CFCopyDescription`, the equal callback is `CFEqual`. Therefore, if you use a pointer to this constant when creating the dictionary, keys are automatically retained when added to the collection, and released when removed from the collection.
+    ///
+    ///
     /// Predefined CFDictionaryKeyCallBacks structure containing a
     /// set of callbacks appropriate for use when the keys of a
     /// CFDictionary are all CFTypes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypedictionarykeycallbacks?language=objc)
     pub static kCFTypeDictionaryKeyCallBacks: CFDictionaryKeyCallBacks;
 }
 
 extern "C" {
+    /// Predefined [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure containing a set of callbacks appropriate for use when the keys of a CFDictionary are all CFString objects, which may be mutable and need to be copied in order to serve as constant keys for the values in the dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// You typically use a pointer to this constant when creating a new dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For performance reasons, the default `kCFCopyStringDictionaryKeyCallBacks` behavior uses [`CFEqual`](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)) which does not normalize the strings. This means that, for example, it does not consider CFStrings to be equal when they are the same but one is in pre-composed form (say, originating from a UTF-16 text file) and the other in decomposed form (say, originating from a file name). In cases where you use strings from different sources, you may want to pre-normalize the keys or else use a different set of functions to perform the comparison.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Predefined CFDictionaryKeyCallBacks structure containing a
     /// set of callbacks appropriate for use when the keys of a
     /// CFDictionary are all CFStrings, which may be mutable and
     /// need to be copied in order to serve as constant keys for
     /// the values in the dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringdictionarykeycallbacks?language=objc)
     pub static kCFCopyStringDictionaryKeyCallBacks: CFDictionaryKeyCallBacks;
 }
 
+/// This structure contains the callbacks used to retain, release, describe, and compare the values in a dictionary.
 /// Structure containing the callbacks for values of a CFDictionary.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFDictionary creation functions.
@@ -125,8 +211,6 @@ extern "C" {
 /// is used by the CFCopyDescription() function.
 /// Field: equal The callback used to compare values in the dictionary for
 /// equality in some operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -158,14 +242,34 @@ unsafe impl RefEncode for CFDictionaryValueCallBacks {
 }
 
 extern "C" {
+    /// Predefined [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks) structure containing a set of callbacks appropriate for use when the values in a CFDictionary are all CFType-derived objects.
+    ///
+    /// ## Discussion
+    ///
+    /// The retain callback is `CFRetain`, the release callback is `CFRelease`, the copy callback is `CFCopyDescription`, and the equal callback is `CFEqual`. Therefore, if you use a pointer to this constant when creating the dictionary, values are automatically retained when added to the collection, and released when removed from the collection.
+    ///
+    ///
     /// Predefined CFDictionaryValueCallBacks structure containing a set
     /// of callbacks appropriate for use when the values in a CFDictionary
     /// are all CFTypes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypedictionaryvaluecallbacks?language=objc)
     pub static kCFTypeDictionaryValueCallBacks: CFDictionaryValueCallBacks;
 }
 
+/// Prototype of a callback function that may be applied to every key-value pair in a dictionary.
+///
+/// Parameters:
+/// - key: The key associated with the current key-value pair.
+///
+/// - value: The value associated with the current key-value pair.
+///
+/// - context: The program-defined context parameter given to the apply   function.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to the [`CFDictionaryApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplyfunction(_:_:_:)) function which iterates over the key-value pairs in a dictionary and applies the behavior defined in the applier function to each key-value pair in a dictionary.
+///
+///
 /// Type of the callback function used by the apply functions of
 /// CFDictionarys.
 ///
@@ -175,16 +279,30 @@ extern "C" {
 ///
 /// Parameter `context`: The user-defined context parameter given to the apply
 /// function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplierfunction?language=objc)
 pub type CFDictionaryApplierFunction =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void, *mut c_void)>;
 
+///
+/// ## Overview
+///
+/// CFDictionary and its derived mutable type, [`CFMutableDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary), manage associations of key-value pairs. CFDictionary creates static dictionaries where you set the key-value pairs when first creating a dictionary and cannot modify them afterward; CFMutableDictionary creates dynamic dictionaries where you can add or delete key-value pairs at any time, and the dictionary automatically allocates memory as needed.
+///
+/// A key-value pair within a dictionary is called an entry. Each entry consists of one object that represents the key and a second object that is that key’s value. Within a dictionary, the keys are unique. That is, no two keys in a single dictionary are equal (as determined by the equal callback). Internally, a dictionary uses a hash table to organize its storage and to provide rapid access to a value given the corresponding key.
+///
+/// Keys for a CFDictionary may be of any C type, however note that if you want to convert a CFPropertyList to XML, any dictionary’s keys must be CFString objects.
+///
+/// You create static dictionaries using either the [`CFDictionaryCreate`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)) or [`CFDictionaryCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatecopy(_:_:)) function. Key-value pairs are passed as parameters to [`CFDictionaryCreate`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)). When adding key-value pairs to a dictionary, the keys and values are not copied—they are retained so they are not invalidated before the dictionary is deallocated.
+///
+/// CFDictionary provides functions for querying the values of a dictionary. The function [`CFDictionaryGetCount`](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcount(_:)) returns the number of key-value pairs in a dictionary; the [`CFDictionaryContainsValue`](https://developer.apple.com/documentation/corefoundation/cfdictionarycontainsvalue(_:_:)) function checks if a value is in a dictionary; and [`CFDictionaryGetKeysAndValues`](https://developer.apple.com/documentation/corefoundation/cfdictionarygetkeysandvalues(_:_:_:)) returns a C array containing all the values and a C array containing all the keys in a dictionary.
+///
+/// The [`CFDictionaryApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplyfunction(_:_:_:)) function lets you apply a function to all key-value pairs in a dictionary.
+///
+/// CFDictionary is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSDictionary *` parameter, you can pass in a `CFDictionaryRef`, and in a function where you see a `CFDictionaryRef` parameter, you can pass in an NSDictionary instance. This also applies to concrete subclasses of NSDictionary. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to immutable CFDictionarys.
 ///
 /// This is toll-free bridged with `NSDictionary`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc)
 #[doc(alias = "CFDictionaryRef")]
 #[repr(C)]
 pub struct CFDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
@@ -219,11 +337,19 @@ impl<K: ?Sized, V: ?Sized> CFDictionary<K, V> {
     }
 }
 
+///
+/// ## Overview
+///
+/// CFMutableDictionary manages dynamic dictionaries. The basic interface for managing dictionaries is provided by [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). CFMutableDictionary adds functions to modify the contents of a dictionary.
+///
+/// You create a mutable dictionary object using either the [`CFDictionaryCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatemutable(_:_:_:_:)) or [`CFDictionaryCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatemutablecopy(_:_:_:)) function. You can add key-value pairs using the [`CFDictionaryAddValue`](https://developer.apple.com/documentation/corefoundation/cfdictionaryaddvalue(_:_:_:)) and [`CFDictionarySetValue`](https://developer.apple.com/documentation/corefoundation/cfdictionarysetvalue(_:_:_:)) functions. When adding key-value pairs to a dictionary, the keys and values are not copied—they are retained so they are not invalidated before the dictionary is deallocated. You can remove key-value pairs using the [`CFDictionaryRemoveValue`](https://developer.apple.com/documentation/corefoundation/cfdictionaryremovevalue(_:_:)) function. When removing key-value pairs from a dictionary, the keys and values are released.
+///
+/// CFMutableDictionary is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSMutableDictionary`](https://developer.apple.com/documentation/foundation/nsmutabledictionary). What this means is that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. This means that in a method where you see an `NSMutableDictionary *` parameter, you can pass in a `CFMutableDictionaryRef`, and in a function where you see a `CFMutableDictionaryRef` parameter, you can pass in an NSMutableDictionary instance. This also applies to concrete subclasses of NSMutableDictionary. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to mutable CFDictionarys.
 ///
 /// This is toll-free bridged with `NSMutableDictionary`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary?language=objc)
 #[doc(alias = "CFMutableDictionaryRef")]
 #[repr(C)]
 pub struct CFMutableDictionary<K: ?Sized = Opaque, V: ?Sized = Opaque> {
@@ -261,9 +387,20 @@ impl<K: ?Sized, V: ?Sized> CFMutableDictionary<K, V> {
 }
 
 unsafe impl ConcreteType for CFDictionary {
-    /// Returns the type identifier of all CFDictionary instances.
+    /// Returns the type identifier for the CFDictionary opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFDictionary opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableDictionary objects have the same type identifier as CFDictionary objects.
+    ///
+    ///
+    /// Returns the type identifier of all CFDictionary instances.
     #[doc(alias = "CFDictionaryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -275,6 +412,35 @@ unsafe impl ConcreteType for CFDictionary {
 }
 
 impl CFDictionary {
+    /// Creates an immutable dictionary containing the specified key-value pairs.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new dictionary. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - keys: A C array of the pointer-sized keys to be in the new dictionary. This value may be `NULL` if the `numValues` parameter is `0`. This C array is not changed or freed by this function. The value must be a valid pointer to a C array of at least `numValues` pointers.
+    ///
+    /// - values: A C array of the pointer-sized values to be in the new dictionary. This value may be `NULL` if the `numValues` parameter is `0`. This C array is not changed or freed by this function. The value must be a valid pointer to a C array of at least `numValues` elements.
+    ///
+    /// - numValues: The number of key-value pairs to copy from the `keys` and `values` C arrays into the new dictionary. This number will be the count of the dictionary; it must be non-negative and less than or equal to the actual number of keys or values.
+    ///
+    /// - keyCallBacks: A pointer to a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare keys in the dictionary. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations.
+    ///
+    /// This value may be `NULL`, which is treated as if a valid structure of version `0` with all fields `NULL` had been passed in. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure, the behavior is undefined. If any of the keys put into the collection is not one understood by one of the callback functions the behavior when that callback function is used is undefined.
+    ///
+    /// If the collection will contain CFType objects only, then pass a pointer to [`kCFTypeDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypedictionarykeycallbacks) as this parameter to use the default callback functions.
+    ///
+    /// - valueCallBacks: A pointer to a [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare values in the dictionary. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations.
+    ///
+    /// This value may be `NULL`, which is treated as if a valid structure of version `0` with all fields `NULL` had been passed in. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks) structure, the behavior is undefined. If any value put into the collection is not one understood by one of the callback functions the behavior when that callback function is used is undefined.
+    ///
+    /// If the collection will contain CFType objects only, then pass a pointer to [`kCFTypeDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypedictionaryvaluecallbacks) as this parameter to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dictionary, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable dictionary with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -369,8 +535,6 @@ impl CFDictionary {
     /// - `values` must be a valid pointer.
     /// - `key_call_backs` must be a valid pointer.
     /// - `value_call_backs` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreate(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreate")]
     #[inline]
     pub unsafe fn new(
@@ -404,6 +568,19 @@ impl CFDictionary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates and returns a new immutable dictionary with the key-value pairs of another dictionary.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new dictionary. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theDict: The dictionary to copy. The keys and values from the dictionary are copied as pointers into the new dictionary. However, the keys and values are also retained by the new dictionary. The count of the new dictionary is the same as the count of `theDict`. The new dictionary uses the same callbacks as `theDict`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dictionary that contains the same key-value pairs as `theDict`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable dictionary with the key-value pairs from
     /// the given dictionary.
     ///
@@ -425,8 +602,6 @@ impl CFDictionary {
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFDictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -445,6 +620,33 @@ impl CFDictionary {
 }
 
 impl CFMutableDictionary {
+    /// Creates a new mutable dictionary.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new dictionary and its storage for key-value pairs. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of key-value pairs that can be contained by the new dictionary. The dictionary starts empty and can grow to this number of key-value pairs (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. The value must not be negative.
+    ///
+    /// - keyCallBacks: A pointer to a [`CFDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionarykeycallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare keys in the dictionary. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations.
+    ///
+    /// This value may be `NULL`, which is treated as a valid structure of version `0` with all fields `NULL`. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this value is not a valid pointer to a `CFDictionaryKeyCallBacks` structure, the behavior is undefined. If any of the keys put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    /// If the dictionary will contain only CFType objects, then pass a pointer to [`kCFTypeDictionaryKeyCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypedictionarykeycallbacks) as this parameter to use the default callback functions.
+    ///
+    /// - valueCallBacks: A pointer to a [`CFDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/cfdictionaryvaluecallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare values in the dictionary. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations.
+    ///
+    /// This value may be `NULL`, which is treated as a valid structure of version `0` with all fields `NULL`. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this value is not a valid pointer to a `CFDictionaryValueCallBacks` structure, the behavior is undefined. If any value put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    /// If the dictionary will contain CFType objects only, then pass a pointer to [`kCFTypeDictionaryValueCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypedictionaryvaluecallbacks) as this parameter to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dictionary, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable dictionary.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -524,8 +726,6 @@ impl CFMutableDictionary {
     /// - `value_call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
     /// - The returned generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatemutable(_:_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -548,6 +748,23 @@ impl CFMutableDictionary {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new mutable dictionary with the key-value pairs from another dictionary.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new dictionary and its storage for key-value pairs. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of key-value pairs that can be contained by the new dictionary. The dictionary starts with the same number of key-value pairs as `theDict` and can grow to this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. If non-`0`, `capacity` must be greater than or equal to the count of `theDict`.
+    ///
+    /// - theDict: The dictionary to copy. The keys and values from the dictionary are copied as pointers into the new dictionary, not that which the values point to (if anything). The keys and values are also retained by the new dictionary. The count of the new dictionary is the same as the count of `theDict`. The new dictionary uses the same callbacks as `theDict`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new dictionary that contains the same values as `theDict`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable dictionary with the key-value pairs from
     /// the given dictionary.
     ///
@@ -588,8 +805,6 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - The returned generic must be of the correct type.
     /// - The returned generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -610,14 +825,23 @@ impl CFMutableDictionary {
 }
 
 impl CFDictionary {
+    /// Returns the number of key-value pairs in a dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of number of key-value pairs in `theDict`.
+    ///
+    ///
     /// Returns the number of values currently in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be queried. If this parameter is
     /// not a valid CFDictionary, the behavior is undefined.
     ///
     /// Returns: The number of values in the dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcount(_:)?language=objc)
     #[doc(alias = "CFDictionaryGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -627,6 +851,19 @@ impl CFDictionary {
         unsafe { CFDictionaryGetCount(self) }
     }
 
+    /// Returns the number of times a key occurs in a dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - key: The key for which to find matches in `theDict`. The key hash and equal callbacks provided when the dictionary was created are used to compare. If the hash callback was `NULL`, the key is treated as a pointer and converted to an integer. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `key`, or any of the keys in the dictionary, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `1` if a matching key is used by the dictionary, otherwise `0`.
+    ///
+    ///
     /// Counts the number of times the given key occurs in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be searched. If this parameter is
@@ -649,8 +886,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcountofkey(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetCountOfKey")]
     #[inline]
     pub unsafe fn count_of_key(&self, key: *const c_void) -> CFIndex {
@@ -660,6 +895,19 @@ impl CFDictionary {
         unsafe { CFDictionaryGetCountOfKey(self, key) }
     }
 
+    /// Counts the number of times a given value occurs in the dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - value: The value for which to find matches in `theDict`. The value equal callback provided when the dictionary was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in the dictionary, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of times the `value` occurs in `theDict`.
+    ///
+    ///
     /// Counts the number of times the given value occurs in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be searched. If this parameter is
@@ -679,8 +927,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetcountofvalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -693,6 +939,19 @@ impl CFDictionary {
         unsafe { CFDictionaryGetCountOfValue(self, value) }
     }
 
+    /// Returns a Boolean value that indicates whether a given key is in a dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - key: The key for which to find matches in `theDict`. The key hash and equal callbacks provided when the dictionary was created, are used to compare. If the hash callback is `NULL`, `key` is treated as a pointer and converted to an integer. If the equal callback is `NULL`, pointer equality (in C, ==) is used. If `key`, or any of the keys in the dictionary, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `key` is in the dictionary, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the key is in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be searched. If this parameter is
@@ -714,8 +973,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycontainskey(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryContainsKey")]
     #[inline]
     pub unsafe fn contains_ptr_key(&self, key: *const c_void) -> bool {
@@ -726,6 +983,19 @@ impl CFDictionary {
         ret != 0
     }
 
+    /// Returns a Boolean value that indicates whether a given value is in a dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - value: The value for which to find matches in `theDict`. The value equal callback provided when the dictionary was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in the dictionary, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `value` is in the dictionary, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the value is in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be searched. If this parameter is
@@ -745,8 +1015,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycontainsvalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryContainsValue")]
     #[inline]
     pub unsafe fn contains_ptr_value(&self, value: *const c_void) -> bool {
@@ -757,6 +1025,19 @@ impl CFDictionary {
         ret != 0
     }
 
+    /// Returns the value associated with a given key.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - key: The key for which to find a match in `theDict`. The key hash and equal callbacks provided when the dictionary was created are used to compare. If the hash callback was `NULL`, the key is treated as a pointer and converted to an integer. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `key`, or any of the keys in `theDict`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value associated with `key` in `theDict`, or `NULL` if no key-value pair matching `key` exists. Since `NULL` is also a valid value in some dictionaries, use [`CFDictionaryGetValueIfPresent`](https://developer.apple.com/documentation/corefoundation/cfdictionarygetvalueifpresent(_:_:_:)) to distinguish between a value that is not found, and a `NULL` value. If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Retrieves the value associated with the given key.
     ///
     /// Parameter `theDict`: The dictionary to be queried. If this parameter is
@@ -782,8 +1063,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetvalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetValue")]
     #[inline]
     pub unsafe fn value(&self, key: *const c_void) -> *const c_void {
@@ -793,6 +1072,21 @@ impl CFDictionary {
         unsafe { CFDictionaryGetValue(self, key) }
     }
 
+    /// Returns a Boolean value that indicates whether a given value for a given key is in a dictionary, and returns that value indirectly if it exists.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - key: The key for which to find a match in `theDict`. The key hash and equal callbacks provided when the dictionary was created are used to compare. If the hash callback was `NULL`, `key` is treated as a pointer and converted to an integer. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `key`, or any of the keys in `theDict`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    /// - value: A pointer to memory which, on return, is filled with the pointer-sized value if a matching key is found. If no key match is found, the contents of the storage pointed to by this parameter are undefined. This value may be `NULL`, in which case the value from the dictionary is not returned (but the return value of this function still indicates whether or not the key-value pair was present). If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if a matching key was found, otherwise `false`.
+    ///
+    ///
     /// Retrieves the value associated with the given key.
     ///
     /// Parameter `theDict`: The dictionary to be queried. If this parameter is
@@ -823,8 +1117,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetvalueifpresent(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(&self, key: *const c_void, value: *mut *const c_void) -> bool {
@@ -839,6 +1131,15 @@ impl CFDictionary {
         ret != 0
     }
 
+    /// Fills two buffers with the keys and values from a dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to examine.
+    ///
+    /// - keys: A C array of pointer-sized values that, on return, is filled with keys from the `theDict`. The keys and values C arrays are parallel to each other (that is, the items at the same indices form a key-value pair from the dictionary). This value must be a valid pointer to a C array of the appropriate type and size (that is, a size equal to the count of `theDict`), or `NULL` if the keys are not required. If the keys are Core Foundation objects, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    /// - values: A C array of pointer-sized values that, on return, is filled with values from the `theDict`. The keys and values C arrays are parallel to each other (that is, the items at the same indices form a key-value pair from the dictionary). This value must be a valid pointer to a C array of the appropriate type and size (that is, a size equal to the count of `theDict`), or `NULL` if the values are not required. If the values are Core Foundation objects, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
     /// Fills the two buffers with the keys and values from the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be queried. If this parameter is
@@ -866,8 +1167,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `keys` must be a valid pointer.
     /// - `values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarygetkeysandvalues(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
     #[inline]
     pub unsafe fn keys_and_values(&self, keys: *mut *const c_void, values: *mut *const c_void) {
@@ -881,6 +1180,21 @@ impl CFDictionary {
         unsafe { CFDictionaryGetKeysAndValues(self, keys, values) }
     }
 
+    /// Calls a function once for each key-value pair in a dictionary.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to operate upon.
+    ///
+    /// - applier: The callback function to call once for each key-value pair in `theDict`. If this parameter is not a pointer to a function of the correct prototype, the behavior is undefined. If there are keys or values which the `applier` function does not expect or cannot properly apply to, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized program-defined value, which is passed as the third parameter to the applier function, but is otherwise unused by this function. The value must be appropriate for the `applier` function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function iterates over a mutable collection, it is unsafe for the `applier` function to change the contents of the collection.
+    ///
+    ///
     /// Calls a function once for each value in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be queried. If this parameter is
@@ -905,8 +1219,6 @@ impl CFDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryapplyfunction(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -926,6 +1238,15 @@ impl CFDictionary {
 }
 
 impl CFMutableDictionary {
+    /// Adds a key-value pair to a dictionary if the specified key is not already present.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to modify. If the dictionary is a fixed-capacity dictionary and it is full before this operation, the behavior is undefined.
+    ///
+    /// - key: The key for the value to add to the dictionary—a CFType object or a pointer value. The `key` is retained by the dictionary using the retain callback provided when the dictionary was created, so must be of the type expected by the callback. If a key which matches `key` is already present in the dictionary, this function does nothing (“add if absent”).
+    ///
+    /// - value: A CFType object or a pointer value to add to the dictionary. The `value` is retained by the dictionary using the retain callback provided when the dictionary was created, so must be of the type expected by the callback.
+    ///
     /// Adds the key-value pair to the dictionary if no such key already exists.
     ///
     /// Parameter `theDict`: The dictionary to which the value is to be added. If this
@@ -951,8 +1272,6 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryaddvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryAddValue")]
     #[inline]
     pub unsafe fn add_value(
@@ -970,6 +1289,17 @@ impl CFMutableDictionary {
         unsafe { CFDictionaryAddValue(the_dict, key, value) }
     }
 
+    /// Sets the value corresponding to a given key.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to modify. If this parameter is a fixed-capacity dictionary and it is full before this operation, and the key does not exist in the dictionary, the behavior is undefined.
+    ///
+    /// - key: The key of the value to set in `theDict`. If a key which matches `key` is already present in the dictionary, only the value for the key is changed (“add if absent, replace if present”). If no key matches `key`, the key-value pair is added to the dictionary.
+    ///
+    /// If a key-value pair is added, both `key` and `value` are retained by the dictionary, using the retain callback provided when `theDict` was created. `key` must be of the type expected by the key retain callback.
+    ///
+    /// - value: The value to add to or replace in `theDict`. `value` is retained using the value retain callback provided when `theDict` was created, and the previous value if any is released. `value` must be of the type expected by the retain and release callbacks.
+    ///
     /// Sets the value of the key in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to which the value is to be set. If this
@@ -998,8 +1328,6 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarysetvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionarySetValue")]
     #[inline]
     pub unsafe fn set_value(
@@ -1017,6 +1345,15 @@ impl CFMutableDictionary {
         unsafe { CFDictionarySetValue(the_dict, key, value) }
     }
 
+    /// Replaces a value corresponding to a given key.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to modify.
+    ///
+    /// - key: The key of the value to replace in `theDict`. If a key which matches `key` is present in the dictionary, the value is changed to the `value`, otherwise this function does nothing (“replace if present”).
+    ///
+    /// - value: The new value for `key`. The `value` object is retained by `theDict` using the retain callback provided when `theDict` was created, and the old value is released. `value` must be of the type expected by the retain and release callbacks.
+    ///
     /// Replaces the value of the key in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to which the value is to be replaced. If this
@@ -1041,8 +1378,6 @@ impl CFMutableDictionary {
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreplacevalue(_:_:_:)?language=objc)
     #[doc(alias = "CFDictionaryReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(
@@ -1060,6 +1395,13 @@ impl CFMutableDictionary {
         unsafe { CFDictionaryReplaceValue(the_dict, key, value) }
     }
 
+    /// Removes a key-value pair.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to modify.
+    ///
+    /// - key: The key of the value to remove from `theDict`. If a key which matches `key` is present in `theDict`, the key-value pair is removed from the dictionary, otherwise this function does nothing (“remove if present”).
+    ///
     /// Removes the value of the key from the dictionary.
     ///
     /// Parameter `theDict`: The dictionary from which the value is to be removed. If this
@@ -1077,8 +1419,6 @@ impl CFMutableDictionary {
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryremovevalue(_:_:)?language=objc)
     #[doc(alias = "CFDictionaryRemoveValue")]
     #[inline]
     pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary>, key: *const c_void) {
@@ -1088,13 +1428,16 @@ impl CFMutableDictionary {
         unsafe { CFDictionaryRemoveValue(the_dict, key) }
     }
 
+    /// Removes all the key-value pairs from a dictionary, making it empty.
+    ///
+    /// Parameters:
+    /// - theDict: The dictionary to modify.
+    ///
     /// Removes all the values from the dictionary, making it empty.
     ///
     /// Parameter `theDict`: The dictionary from which all of the values are to be
     /// removed. If this parameter is not a valid mutable
     /// CFDictionary, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFDictionaryRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(the_dict: Option<&CFMutableDictionary>) {

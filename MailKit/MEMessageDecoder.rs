@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An object that decrypts messages and provides details about digital signatures.
     /// Methods in this protocol can be used by a mail app extension to decode messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagedecoder?language=objc)
     pub unsafe trait MEMessageDecoder: NSObjectProtocol {
         #[cfg(feature = "MEDecodedMessage")]
         /// This is invoked while a message is being decoded. The returned value should be an

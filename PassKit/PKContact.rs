@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontact?language=objc)
+    /// An object that encapsulates contact information needed for billing and shipping.
+    ///
+    /// ## Overview
+    ///
+    /// Instances contain only the information needed for the given transaction. All other properties are set to `nil`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKContact;

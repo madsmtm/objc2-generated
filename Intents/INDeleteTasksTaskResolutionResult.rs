@@ -6,18 +6,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason?language=objc)
+/// Constants that indicate the reason the app can’t support the delete task request.
 // NS_ENUM
 #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksTaskUnsupportedReason(pub NSInteger);
 impl INDeleteTasksTaskUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason/notasksfound?language=objc)
+    /// No relevant tasks found.
     #[doc(alias = "INDeleteTasksTaskUnsupportedReasonNoTasksFound")]
     #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTasksFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason/notasksinapp?language=objc)
+    /// No tasks exist in the app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this reason when there are no tasks in the app. If tasks exist, but do not match the user’s intent, use [`INDeleteTasksTaskUnsupportedReasonNoTasksFound`](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason/notasksfound)
+    ///
+    ///
     #[doc(alias = "INDeleteTasksTaskUnsupportedReasonNoTasksInApp")]
     #[deprecated = "INDeleteTasksTaskUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTasksInApp: Self = Self(2);
@@ -32,7 +38,15 @@ unsafe impl RefEncode for INDeleteTasksTaskUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstaskresolutionresult?language=objc)
+    /// A resolution result for deleting tasks.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INDeleteTasksTaskResolutionResult`](https://developer.apple.com/documentation/intents/indeletetaskstaskresolutionresult) object when resolving parameters containing an [`INDeleteTasksTaskUnsupportedReason`](https://developer.apple.com/documentation/intents/indeletetaskstaskunsupportedreason) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INTaskResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

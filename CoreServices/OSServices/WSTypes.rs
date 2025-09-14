@@ -8,39 +8,39 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwsinternalerror?language=objc)
+/// An internal framework error occured.
 pub const errWSInternalError: c_int = -65793;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwstransporterror?language=objc)
+/// A network error occured.
 pub const errWSTransportError: c_int = -65794;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwsparseerror?language=objc)
+/// The server response was not valid XML.
 pub const errWSParseError: c_int = -65795;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwstimeouterror?language=objc)
+/// The method invocation timed out.
 pub const errWSTimeoutError: c_int = -65796;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid?language=objc)
+/// Web Services Core uses the following enumeration when serializing between Core Foundation and XML types. Because CFTypes are defined at runtime, it isn't always possible to produce a static mapping to a particular CFTypeRef.  This enum and associated API allows for static determination of the expected serialization.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WSTypeID(pub c_uint);
 impl WSTypeID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsunknowntype?language=objc)
+    /// No mapping is known for this type.
     pub const eWSUnknownType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsnulltype?language=objc)
+    /// Maps to `CFNullRef`.
     pub const eWSNullType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsbooleantype?language=objc)
+    /// Maps to `CFBooleanRef`.
     pub const eWSBooleanType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsintegertype?language=objc)
+    /// Maps to `CFNumberRef` for 8, 16, 32 bit integers.
     pub const eWSIntegerType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdoubletype?language=objc)
+    /// Maps to `CFNumberRef` for long, double, or real numbers.
     pub const eWSDoubleType: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsstringtype?language=objc)
+    /// Maps to `CFStringRef`.
     pub const eWSStringType: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdatetype?language=objc)
+    /// Maps to `CFDateRef`.
     pub const eWSDateType: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdatatype?language=objc)
+    /// Maps to `CFDataRef`.
     pub const eWSDataType: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsarraytype?language=objc)
+    /// Maps to `CFArrayRef`.
     pub const eWSArrayType: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid/ewsdictionarytype?language=objc)
+    /// Maps to `CFDictionaryRef`.
     pub const eWSDictionaryType: Self = Self(9);
 }
 
@@ -54,18 +54,76 @@ unsafe impl RefEncode for WSTypeID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontextretaincallbackprocptr?language=objc)
+/// This is the callback that retains the information.
+///
+/// Parameters:
+/// - info: Private callback data to be retained.
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MyInfoRetainCallback, declare it like this:
+///
+/// <a id="1681542"></a>
+/// ### Discussion
+///
+/// Your callback is passed a  a pointer to private data for you to retain.
+///
+///
 pub type WSClientContextRetainCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontextreleasecallbackprocptr?language=objc)
+/// This is the callback that releases the information.
+///
+/// Parameters:
+/// - info: Private callback data to be released.
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MyInfoReleaseCallback, declare it like this:
+///
+/// <a id="1681548"></a>
+/// ### Discussion
+///
+/// Your callback is passed a  a pointer to private data for you to release.
+///
+///
 pub type WSClientContextReleaseCallBackProcPtr = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontextcopydescriptioncallbackprocptr?language=objc)
+/// This is the callback that copies the information.
+///
+/// Parameters:
+/// - info: Private callback data to be coped.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A CFStringRef containing the client context information.
+///
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MyInfoCopyCallback, declare it like this:
+///
+/// <a id="1681561"></a>
+/// ### Discussion
+///
+/// Your callback is passed a  a pointer to private data for you to copy.
+///
+///
 pub type WSClientContextCopyDescriptionCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsclientcontext?language=objc)
+/// An optional context that can contain data you want passed to your callback.
+///
+/// ## Overview
+///
+/// Several calls in the Web Services Core framework take a callback with an optional context pointer.  The context is copied and the info pointer retained.  When the callback is made, the info pointer is passed to the callback.
+///
+///
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -97,25 +155,42 @@ unsafe impl RefEncode for WSClientContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsxmlrpcprotocol?language=objc)
+    /// XML-RPC protocol.
     #[deprecated = "No longer supported"]
     pub static kWSXMLRPCProtocol: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoap1999protocol?language=objc)
+    /// SOAP v1.1 protocol.
     #[deprecated = "No longer supported"]
     pub static kWSSOAP1999Protocol: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoap2001protocol?language=objc)
+    /// SOAP v1.2 protocol.
     #[deprecated = "No longer supported"]
     pub static kWSSOAP2001Protocol: Option<&'static CFString>;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508442-wsgetwstypeidfromcftype?language=objc)
+    /// Returns the `WSTypeID` associated with a given `CFTypeRef`.
+    ///
+    /// Parameters:
+    /// - ref: A `CFTypeRef` object. An actual instance of a CFType must be passed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// the `WSTypeID` used in serializing the object.  If no `WSTypeID` matches, `eWSUnknownType` is returned.  
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns the `WSTypeID` associated with `CFTypeRef`.  Because there is not a one to one mapping between `CFTypeID` and `WSTypesID` an actual instance of a CFType must be passed.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -125,7 +200,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508451-wsgetcftypeidfromwstypeid?language=objc)
+    /// Gets the CFType associated with a given WSType
+    ///
+    /// Parameters:
+    /// - typeID: The `WSTypeID` for which you need a `CFTypeID`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a `CFTypeID`, or 0 if not found
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns the `CFTypeID` that is associated with a given `WSTypeID`.  `CFTypeIDs` are only valid during a particular instance of a process and should not be used as static values.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub fn WSGetCFTypeIDFromWSTypeID(type_id: WSTypeID) -> CFTypeID;
 }

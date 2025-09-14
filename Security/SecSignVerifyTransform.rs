@@ -6,37 +6,68 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyattributename?language=objc)
+    /// The cryptographic key associated with a transform.
     pub static kSecKeyAttributeName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsignatureattributename?language=objc)
+    /// The cryptographic signature associated with a transform.
     pub static kSecSignatureAttributeName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecinputisattributename?language=objc)
+    /// The type of input to the transform.
+    ///
+    /// ## Discussion
+    ///
+    /// Use one of the values listed in [Input Types](https://developer.apple.com/documentation/security/transform-attributes#input-types).
+    ///
+    ///
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecInputIsAttributeName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecinputisplaintext?language=objc)
+    /// The input is plain text.
     pub static kSecInputIsPlainText: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecinputisdigest?language=objc)
+    /// The input is a digest of the original data.
     pub static kSecInputIsDigest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecinputisraw?language=objc)
+    /// The input is raw.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this type of input can be cryptographically unsafe (for example if you don’t blind a DSA or ECDSA signature you give away the key very quickly). You are strongly discouraged from using it..
+    ///
+    ///
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecInputIsRaw: &'static CFString;
 }
 
+/// Creates a signing transform object.
+///
+/// Parameters:
+/// - key: A [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) with the private key used for signing.
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `NULL` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which computes a cryptographic signature. The [`kSecInputIsAttributeName`](https://developer.apple.com/documentation/security/ksecinputisattributename) attribute defaults to [`kSecInputIsPlainText`](https://developer.apple.com/documentation/security/ksecinputisplaintext), and the [`kSecDigestTypeAttribute`](https://developer.apple.com/documentation/security/ksecdigesttypeattribute) and [`kSecDigestLengthAttribute`](https://developer.apple.com/documentation/security/ksecdigestlengthattribute) attributes default to something appropriate for the type of key you have supplied.
+///
+///
 /// Creates a sign computation object.
 ///
 /// Parameter `key`: A SecKey with the private key used for signing.
@@ -58,8 +89,6 @@ extern "C" {
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secsigntransformcreate(_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -77,6 +106,27 @@ pub unsafe extern "C-unwind" fn SecSignTransformCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Creates a verify transform object.
+///
+/// Parameters:
+/// - key: A [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) with the public key used for signing.
+///
+/// - signature: A [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) with the signature. This value may be `NULL`, and you may connect a transform to kSecTransformSignatureAttributeName to supply it from another signature.
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `NULL` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which verifies a cryptographic signature. The [`kSecInputIsAttributeName`](https://developer.apple.com/documentation/security/ksecinputisattributename) attribute defaults to [`kSecInputIsPlainText`](https://developer.apple.com/documentation/security/ksecinputisplaintext), and the [`kSecDigestTypeAttribute`](https://developer.apple.com/documentation/security/ksecdigesttypeattribute) and [`kSecDigestLengthAttribute`](https://developer.apple.com/documentation/security/ksecdigestlengthattribute) attributes default to something appropriate for the type of key you have supplied.
+///
+///
 /// Creates a verify computation object.
 ///
 /// Parameter `key`: A SecKey with the public key used for signing.
@@ -102,8 +152,6 @@ pub unsafe extern "C-unwind" fn SecSignTransformCreate(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secverifytransformcreate(_:_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

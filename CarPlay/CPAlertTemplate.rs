@@ -7,10 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A template that displays a modal alert.
+    ///
+    /// ## Overview
+    ///
+    /// You must present alerts modally by calling the [`presentTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/presenttemplate(_:animated:completion:)) method available on your app’s instance of [`CPInterfaceController`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller). The user dismisses the alert by pressing a button, or you can dismiss it by calling the interface controller’s [`dismissTemplateAnimated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/dismisstemplate(animated:completion:)) method.
+    ///
+    ///
     /// `CPAlertTemplate`represents a modal alert that must be dismissed with a button press
     /// before the user may return to using the app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalerttemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

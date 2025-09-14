@@ -7,28 +7,40 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterrordomain?language=objc)
+    /// The error domain for PassKit errors.
     pub static PKPassKitErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code?language=objc)
+/// Errors that the PassKit framework uses.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPassKitErrorCode(pub NSInteger);
 impl PKPassKitErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/unknownerror?language=objc)
+    /// Unknown error.
     #[doc(alias = "PKUnknownError")]
     pub const UnknownError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/invaliddataerror?language=objc)
+    /// Invalid pass data.
     #[doc(alias = "PKInvalidDataError")]
     pub const InvalidDataError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/unsupportedversionerror?language=objc)
+    /// Unsupported pass version.
     #[doc(alias = "PKUnsupportedVersionError")]
     pub const UnsupportedVersionError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/invalidsignature?language=objc)
+    /// Invalid pass signature.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the pass type identifier in the certificate and the pass do not match, or the certificate has expired or was revoked.
+    ///
+    ///
     #[doc(alias = "PKInvalidSignature")]
     pub const InvalidSignature: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code/notentitlederror?language=objc)
+    /// Error caused by absence of the required entitlements for the given operation.
+    ///
+    /// ## Discussion
+    ///
+    /// Apps require appropriate entitlements to read, update or delete passes. To add these entitlements, enable the Wallet capabilities in Xcode.
+    ///
+    ///
     #[doc(alias = "PKNotEntitledError")]
     pub const NotEntitledError: Self = Self(4);
 }
@@ -42,31 +54,111 @@ unsafe impl RefEncode for PKPassKitErrorCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrordomain?language=objc)
+    /// The error domain for specific errors associated with Apple Pay in-app or web payments.
     pub static PKPaymentErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code?language=objc)
+/// An error code that you provide to indicate problems with address or contact information on an Apple Pay sheet.
+///
+/// ## Overview
+///
+/// The user must resolve any errors that you report on the Apple Pay sheet before they’re able to authorize the transaction.  You return any errors in [`PKPaymentAuthorizationResult`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationresult) or [`PKPaymentRequestShippingContactUpdate`](https://developer.apple.com/documentation/passkit/pkpaymentrequestshippingcontactupdate).
+///
+/// You can build your own payment error ([`NSError`](https://developer.apple.com/documentation/foundation/nserror)), or use one of the following convenience methods from [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) to build it for you.
+///
+/// For an error with contact information: [`paymentContactInvalidErrorWithContactField:localizedDescription:`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentcontactinvaliderror(withcontactfield:localizeddescription:)).
+///
+/// For a shipping address that is unserviceable: [`paymentShippingAddressUnserviceableErrorWithLocalizedDescription:`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentshippingaddressunserviceableerror(withlocalizeddescription:)).
+///
+/// For an error with the billing address: [`paymentBillingAddressInvalidErrorWithKey:localizedDescription:`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentbillingaddressinvaliderror(withkey:localizeddescription:)).
+///
+/// For an error with the shipping address: [`paymentShippingAddressInvalidErrorWithKey:localizedDescription:`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentshippingaddressinvaliderror(withkey:localizeddescription:)).
+///
+/// The following code example shows:
+///
+/// - How to create a payment error directly.
+///
+/// - How to create a payment error using a convenience method.
+///
+/// Creating payment errors:
+///
+/// ```objc
+/// // Creating a general shipping address error with NSError
+/// NSError *addressError = [[NSError alloc] initWithDomain:PKPaymentErrorDomain
+///                         code:PKPaymentShippingContactInvalidError
+///                         userInfo:@{NSLocalizedDescriptionKey: @"Address is invalid",
+///                         PKPaymentErrorContactFieldUserInfoKey: PKContactFieldPostalAddress}];
+///
+/// // Creating a shipping address error specific to the zip code:
+/// NSError *zipCodeError = [[NSError alloc] initWithDomain:PKPaymentErrorDomain
+///                         code:PKPaymentShippingContactInvalidError
+///                         userInfo:@{NSLocalizedDescriptionKey: @"Zip code is invalid",
+///                         PKPaymentErrorContactFieldUserInfoKey: PKContactFieldPostalAddress,                      
+///                         PKPaymentErrorPostalAddressUserInfoKey:CNPostalAddressPostalCodeKey}];
+///
+/// // Creating a billing address error specific to the street with a convenience method
+/// NSError *billingAddressInvalidStreet = [PKPaymentRequest
+///                              paymentBillingAddressInvalidErrorWithKey:CNPostalAddressStreetKey
+///                              localizedDescription:@"Invalid Street"];
+/// ```
+///
+///
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPaymentErrorCode(pub NSInteger);
 impl PKPaymentErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/unknownerror?language=objc)
+    /// The error code that indicates an unknown error.
+    ///
+    /// ## Discussion
+    ///
+    /// User this error code if an unknown but non-fatal error occurred during payment processing.  The user can attempt to authorize the transaction again.
+    ///
+    ///
     #[doc(alias = "PKPaymentUnknownError")]
     pub const UnknownError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/shippingcontactinvaliderror?language=objc)
+    /// The error code that indicates an invalid shipping address, email, phone, or name.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this error code if the shipping contact information on the Apple Pay sheet has an error in the address, email, phone, or name.
+    ///
+    ///
     #[doc(alias = "PKPaymentShippingContactInvalidError")]
     pub const ShippingContactInvalidError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/billingcontactinvaliderror?language=objc)
+    /// The error code that indicates an invalid billing address or billing name.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this error code if the billing contact information on the Apple Pay sheet has an error in the address or name.
+    ///
+    ///
     #[doc(alias = "PKPaymentBillingContactInvalidError")]
     pub const BillingContactInvalidError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/shippingaddressunserviceableerror?language=objc)
+    /// The error code that indicates an unserviceable shipping address.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this error code for a shipping address that is otherwise valid, but is unserviceable. For example, the address is in a country or region you don’t ship to, or it’s a P.O. box and you can’t deliver to P.O. boxes.
+    ///
+    ///
     #[doc(alias = "PKPaymentShippingAddressUnserviceableError")]
     pub const ShippingAddressUnserviceableError: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/couponcodeinvaliderror?language=objc)
+    /// The error code that indicates an invalid coupon.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this error code if the coupon code entered in the payment sheet is invalid. You can use [`paymentCouponCodeInvalidError(localizedDescription:)`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentcouponcodeinvaliderror(localizeddescription:)) to create an expired coupon error object.
+    ///
+    ///
     #[doc(alias = "PKPaymentCouponCodeInvalidError")]
     pub const CouponCodeInvalidError: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/couponcodeexpirederror?language=objc)
+    /// The error code that indicates an expired coupon.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this error code if the coupon code entered in the payment sheet has expired. You can use [`paymentCouponCodeExpiredError(localizedDescription:)`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentcouponcodeexpirederror(localizeddescription:)) to create an expired coupon error object.
+    ///
+    ///
     #[doc(alias = "PKPaymentCouponCodeExpiredError")]
     pub const CouponCodeExpiredError: Self = Self(5);
 }
@@ -79,38 +171,79 @@ unsafe impl RefEncode for PKPaymentErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorkey?language=objc)
+/// Additional details about an error on the Apple Pay sheet.
+///
+/// ## Discussion
+///
+/// Use payment error keys if you are creating a payment error without using one of the convenience methods in [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) (such as [`paymentBillingAddressInvalidErrorWithKey:localizedDescription:`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentbillingaddressinvaliderror(withkey:localizeddescription:)) or others).
+///
+/// The payment error keys indicate a specific field that has an error, for example, the street field of an address.
+///
+///
 // NS_TYPED_ENUM
 pub type PKPaymentErrorKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorkey/contactfielduserinfokey?language=objc)
+    /// Payment error key that indicates errors with the contact information.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`PKContactField`](https://developer.apple.com/documentation/passkit/pkcontactfield) for the values to use with this key.
+    ///
+    /// Use this key with the error code [`PKPaymentShippingContactInvalidError`](https://developer.apple.com/documentation/passkit/pkpaymenterror/code/shippingcontactinvaliderror) to indicate an error in the name, email address, phone number, or the shipping address as a whole.
+    ///
+    /// Use this key with the error code [`billingContactInvalidError`](https://developer.apple.com/documentation/passkit/pkpaymenterror/billingcontactinvaliderror)  to indicate an error with the billing address as a whole, or billing name.
+    ///
+    /// The example code in [Listing 1](https://developer.apple.com/library/archive/qa/qa1639/_index.html#//apple_ref/doc/uid/DTS40008751-CH1-SOURCECODE2) shows the [`PKPaymentErrorContactFieldUserInfoKey`](https://developer.apple.com/documentation/passkit/pkpaymenterrorkey/contactfielduserinfokey) used to indicate a phone number error.
+    ///
+    /// The following example shows an error indicating a problem with the shipping contact’s phone number.
+    ///
+    /// ```swift
+    /// let phoneError = NSError.init(domain: PKPaymentErrorDomain,
+    ///                                code: PKPaymentError.shippingContactInvalidError.rawValue,
+    ///                                userInfo: [NSLocalizedDescriptionKey:"Phone number is invalid",
+    ///                                PKPaymentErrorKey.contactFieldUserInfoKey:PKContactField.phoneNumber])
+    /// ```
+    ///
+    ///
     pub static PKPaymentErrorContactFieldUserInfoKey: &'static PKPaymentErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorkey/postaladdressuserinfokey?language=objc)
+    /// Payment error key that indicates errors with the postal address.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`CNPostalAddress`](https://developer.apple.com/documentation/contacts/cnpostaladdress) for the values that can be used with this key. These values point to the specific area of the address that is at fault, for example, [`CNPostalAddressStreetKey`](https://developer.apple.com/documentation/contacts/cnpostaladdressstreetkey) indicates the street. When you supply the key values in a payment error, the Apple Pay sheet highlights the appropriate field, enabling the user to correct errors.
+    ///
+    ///
     pub static PKPaymentErrorPostalAddressUserInfoKey: &'static PKPaymentErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerrordomain?language=objc)
+    /// The error domain to use for errors with in-app disbursements.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`PKDisbursementErrorDomain`](https://developer.apple.com/documentation/passkit/pkdisbursementerrordomain) to create your own [`PKDisbursementError`](https://developer.apple.com/documentation/passkit/pkdisbursementerror) objects, and return them to indicate problems with a transfer.
+    ///
+    ///
     pub static PKDisbursementErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code?language=objc)
+/// Values that describe errors that can occur while processing the disbursement.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKDisbursementErrorCode(pub NSInteger);
 impl PKDisbursementErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code/unknownerror?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "PKDisbursementUnknownError")]
     pub const UnknownError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code/unsupportedcarderror?language=objc)
+    /// The framework doesn’t support the card the individual presented.
     #[doc(alias = "PKDisbursementUnsupportedCardError")]
     pub const UnsupportedCardError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code/recipientcontactinvaliderror?language=objc)
+    /// The recipient’s contact information wasn’t valid.
     #[doc(alias = "PKDisbursementRecipientContactInvalidError")]
     pub const RecipientContactInvalidError: Self = Self(2);
 }
@@ -123,28 +256,28 @@ unsafe impl RefEncode for PKDisbursementErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerrorkey?language=objc)
+/// Values that describe errors that can occur when processing disbursements.
 // NS_TYPED_ENUM
 pub type PKDisbursementErrorKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerrorkey/contactfielduserinfokey?language=objc)
+    /// The contact field the error relates to.
     pub static PKDisbursementErrorContactFieldUserInfoKey: &'static PKDisbursementErrorKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror?language=objc)
+/// Error codes for adding payment passes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddPaymentPassError(pub NSInteger);
 impl PKAddPaymentPassError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror/unsupported?language=objc)
+    /// The app cannot add cards to Apple Pay.
     #[doc(alias = "PKAddPaymentPassErrorUnsupported")]
     pub const Unsupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror/usercancelled?language=objc)
+    /// The user canceled the request to add a card to Apple Pay.
     #[doc(alias = "PKAddPaymentPassErrorUserCancelled")]
     pub const UserCancelled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror/systemcancelled?language=objc)
+    /// The system canceled the request to add a card to Apple Pay.
     #[doc(alias = "PKAddPaymentPassErrorSystemCancelled")]
     pub const SystemCancelled: Self = Self(2);
 }
@@ -158,39 +291,38 @@ unsafe impl RefEncode for PKAddPaymentPassError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserrordomain?language=objc)
+    /// The error domain for errors that occur when adding a secure pass.
     pub static PKAddSecureElementPassErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code?language=objc)
+/// Error codes for problems that occur when you add a secure element passes.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddSecureElementPassErrorCode(pub NSInteger);
 impl PKAddSecureElementPassErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/genericerror?language=objc)
+    /// Represents the default error case.
     #[doc(alias = "PKAddSecureElementPassGenericError")]
     pub const GenericError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserrorcode/pkaddsecureelementpassunknownerror?language=objc)
+    /// The system canceled adding the pass due to an unknown failure.
     #[doc(alias = "PKAddSecureElementPassUnknownError")]
     #[deprecated = "Use PKAddSecureElementPassGenericError instead."]
     pub const UnknownError: Self = Self(PKAddSecureElementPassErrorCode::GenericError.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/usercancelederror?language=objc)
+    /// The user canceled adding the pass.
     #[doc(alias = "PKAddSecureElementPassUserCanceledError")]
     pub const UserCanceledError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/unavailableerror?language=objc)
+    /// Provisioning for secure element passes isn’t available on the device, or the app is missing the entitlement.
     #[doc(alias = "PKAddSecureElementPassUnavailableError")]
     pub const UnavailableError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/invalidconfigurationerror?language=objc)
+    /// The configuration for the pass is invalid for either Wallet or the reader.
     #[doc(alias = "PKAddSecureElementPassInvalidConfigurationError")]
     pub const InvalidConfigurationError: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/devicenotsupportederror?language=objc)
+    /// The reader for the pass isn’t supported or has an invalid version.
     #[doc(alias = "PKAddSecureElementPassDeviceNotSupportedError")]
     pub const DeviceNotSupportedError: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/devicenotreadyerror?language=objc)
+    /// The reader for the pass isn’t ready to start pairing.
     #[doc(alias = "PKAddSecureElementPassDeviceNotReadyError")]
     pub const DeviceNotReadyError: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code/osversionnotsupportederror?language=objc)
     #[doc(alias = "PKAddSecureElementPassOSVersionNotSupportedError")]
     pub const OSVersionNotSupportedError: Self = Self(6);
 }
@@ -204,20 +336,16 @@ unsafe impl RefEncode for PKAddSecureElementPassErrorCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserrordomain?language=objc)
     pub static PKShareSecureElementPassErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKShareSecureElementPassErrorCode(pub NSInteger);
 impl PKShareSecureElementPassErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserror/code/unknownerror?language=objc)
     #[doc(alias = "PKShareSecureElementPassUnknownError")]
     pub const UnknownError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserror/code/setuperror?language=objc)
     #[doc(alias = "PKShareSecureElementPassSetupError")]
     pub const SetupError: Self = Self(1);
 }

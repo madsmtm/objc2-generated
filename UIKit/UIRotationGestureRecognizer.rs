@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirotationgesturerecognizer?language=objc)
+    /// A continuous gesture recognizer that interprets rotation gestures involving two touches.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIRotationGestureRecognizer`](https://developer.apple.com/documentation/uikit/uirotationgesturerecognizer) is a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).
+    ///
+    /// The user must press two fingers on a view while rotating it. When the user moves the fingers opposite each other in a circular motion, the underlying view rotates in a corresponding direction and speed.
+    ///
+    /// Rotation is a continuous gesture. It begins when the user moves the two fingers enough to create a rotation gesture. The gesture changes when a finger moves while both fingers remain touching. It ends when the user lifts both fingers. At each stage in the gesture, the gesture recognizer sends its action message.
+    ///
+    ///
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

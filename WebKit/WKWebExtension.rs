@@ -13,45 +13,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Indicates a web extension error.
     /// Indicates a ``WKWebExtension`` error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/errordomain?language=objc)
     pub static WKWebExtensionErrorDomain: &'static NSErrorDomain;
 }
 
+/// Constants that indicate errors in the [`WKWebExtension`](https://developer.apple.com/documentation/webkit/wkwebextension) domain.
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtension`` domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionError(pub NSInteger);
 impl WKWebExtensionError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/unknown?language=objc)
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/resourcenotfound?language=objc)
+    /// Indicates that a specified resource was not found on disk.
     #[doc(alias = "WKWebExtensionErrorResourceNotFound")]
     pub const ResourceNotFound: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidresourcecodesignature?language=objc)
+    /// Indicates that a resource failed the bundle’s code signature checks.
     #[doc(alias = "WKWebExtensionErrorInvalidResourceCodeSignature")]
     pub const InvalidResourceCodeSignature: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidmanifest?language=objc)
+    /// Indicates that an invalid `manifest.json` was encountered.
     #[doc(alias = "WKWebExtensionErrorInvalidManifest")]
     pub const InvalidManifest: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/unsupportedmanifestversion?language=objc)
+    /// Indicates that the manifest version is not supported.
     #[doc(alias = "WKWebExtensionErrorUnsupportedManifestVersion")]
     pub const UnsupportedManifestVersion: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidmanifestentry?language=objc)
+    /// Indicates that an invalid manifest entry was encountered.
     #[doc(alias = "WKWebExtensionErrorInvalidManifestEntry")]
     pub const InvalidManifestEntry: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invaliddeclarativenetrequestentry?language=objc)
+    /// Indicates that an invalid declarative net request entry was encountered.
     #[doc(alias = "WKWebExtensionErrorInvalidDeclarativeNetRequestEntry")]
     pub const InvalidDeclarativeNetRequestEntry: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidbackgroundpersistence?language=objc)
+    /// Indicates that the extension specified background persistence that was not compatible with the platform or features requested.
     #[doc(alias = "WKWebExtensionErrorInvalidBackgroundPersistence")]
     pub const InvalidBackgroundPersistence: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code/invalidarchive?language=objc)
+    /// Indicates that the archive file is invalid or corrupt.
     #[doc(alias = "WKWebExtensionErrorInvalidArchive")]
     pub const InvalidArchive: Self = Self(9);
 }
@@ -65,11 +63,16 @@ unsafe impl RefEncode for WKWebExtensionError {
 }
 
 extern_class!(
+    /// An object that encapsulates a web extension’s resources that the manifest file defines.
+    ///
+    /// ## Overview
+    ///
+    /// This class reads and parses the `manifest.json` file along with the supporting resources like icons and localizations.
+    ///
+    ///
     /// A ``WKWebExtension`` object encapsulates a web extension’s resources that are defined by a `manifest.json`` file.
     ///
     /// This class handles the reading and parsing of the manifest file along with the supporting resources like icons and localizations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

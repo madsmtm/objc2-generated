@@ -7,22 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// The home data authorization status of the client process.
+/// The possible home-access states.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus?language=objc)
+/// ## Overview
+///
+/// Inspect the home manager’s [`authorizationStatus`](https://developer.apple.com/documentation/homekit/hmhomemanager/authorizationstatus) property for one or more of the bits defined by [`HMHomeManagerAuthorizationStatus`](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus).
+///
+///
+/// The home data authorization status of the client process.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMHomeManagerAuthorizationStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl HMHomeManagerAuthorizationStatus: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus/determined?language=objc)
+/// The user has set the app’s level of access to home data.
         #[doc(alias = "HMHomeManagerAuthorizationStatusDetermined")]
         const Determined = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus/restricted?language=objc)
+/// The app doesn’t have access to home data.
         #[doc(alias = "HMHomeManagerAuthorizationStatusRestricted")]
         const Restricted = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerauthorizationstatus/authorized?language=objc)
+/// The app has access to home data.
         #[doc(alias = "HMHomeManagerAuthorizationStatusAuthorized")]
         const Authorized = 1<<2;
     }
@@ -37,12 +42,37 @@ unsafe impl RefEncode for HMHomeManagerAuthorizationStatus {
 }
 
 extern_class!(
+    /// The manager for a collection of one or more of a user’s homes.
+    ///
+    /// ## Overview
+    ///
+    /// HomeKit stores the user’s home automation information in a database that’s shared among Apple’s built-in iOS Home app, your HomeKit-enabled app, and apps from other developers. All these apps access the database as peers using the HomeKit framework.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4dcf3b55a0525bee421c436bce74817c/media-3111423~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/1d1af3529d72cebfde9b21706f91cb43/media-3111423%402x.png 2x" />
+    ///     <img alt="Diagram showing how different apps use HomeKit to access the shared HomeKit database." src="https://docs-assets.developer.apple.com/published/4dcf3b55a0525bee421c436bce74817c/media-3111423~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Each app creates a single [`HMHomeManager`](https://developer.apple.com/documentation/homekit/hmhomemanager) instance to coordinate its HomeKit-related activities. The manager’s [`homes`](https://developer.apple.com/documentation/homekit/hmhomemanager/homes) array gives your app access to a collection of [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome) instances that represent the user’s homes. These in turn contain references to the home automation accessories that your app can inspect and control.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0a853498ff99cc139c55fe113f1169a1/media-3111594~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/0a853498ff99cc139c55fe113f1169a1/media-3111594%402x.png 2x" />
+    ///     <img alt="Diagram showing a collection of homes within the home manager, each of which has a collection of accessories." src="https://docs-assets.developer.apple.com/published/0a853498ff99cc139c55fe113f1169a1/media-3111594~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Adopt the [`HMHomeManagerDelegate`](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate) protocol in your app to stay informed of any changes to the set of homes made outside your app.
+    ///
+    ///
     /// Manages collection of one or more homes.
     ///
     ///
     /// This class is responsible for managing a collection of homes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMHomeManager;
@@ -193,9 +223,18 @@ impl HMHomeManager {
 }
 
 extern_protocol!(
-    /// This delegate receives updates on homes being managed via the home manager.
+    /// An interface the home manager uses to communicate changes to the state of the home network.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// Adopt this protocol to find out about changes made outside your app to the set of homes in the HomeKit database, like when homes are added or removed by another app. You also rely on this protocol when you first create an [`HMHomeManager`](https://developer.apple.com/documentation/homekit/hmhomemanager) instance. The home manager calls the [`homeManagerDidUpdateHomes:`](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate/homemanagerdidupdatehomes(_:)) method to indicate that it has finished its initial load of data from the HomeKit database.
+    ///
+    /// Changes that your app initiates—even those made asynchronously followed by a call to a completion handler—generate delegate callbacks in other apps, but not in your own. As a result, your app must update its internal data store or user interface from both the completion handler of an asynchronous call, and the delegate callback that corresponds to the same kind of change made by another app.
+    ///
+    /// To be alerted about changes made within a particular home, adopt the [`HMHomeDelegate`](https://developer.apple.com/documentation/homekit/hmhomedelegate) protocol. To find out about changes made to specific accessories, adopt the [`HMAccessoryDelegate`](https://developer.apple.com/documentation/homekit/hmaccessorydelegate) protocol.
+    ///
+    ///
+    /// This delegate receives updates on homes being managed via the home manager.
     pub unsafe trait HMHomeManagerDelegate: NSObjectProtocol {
         /// Informs the delegate a change in authorization status has occurred.
         ///

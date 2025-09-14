@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilldetails?language=objc)
+    /// The detailed information associated with a bill.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INBillDetails`](https://developer.apple.com/documentation/intents/inbilldetails) object contains the details surrounding the payment of a bill. You create instances of this class when handling bill payment-related intents. For example, you create instances of this class when searching for the user’s bill payments. The details include the recipient of the funds, the amount that’s due, and the date of payment.
+    ///
+    /// When creating instances of this class, specify as many details as possible. During searches or when paying a bill, Siri may display some of the bill details to the user. Omitting an important piece of information, such as the payee, might cause the user to cancel a bill payment.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "INBillDetails is deprecated. There is no replacement."]

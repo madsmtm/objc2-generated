@@ -8,91 +8,101 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeyclass?language=objc)
+/// Type uint32 (`CSSM_KEYCLASS`); value is one of `CSSM_KEYCLASS_PUBLIC_KEY`, `CSSM_KEYCLASS_PRIVATE_KEY` or `CSSM_KEYCLASS_SESSION_KEY`.
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeyClass: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyprintname?language=objc)
+/// Type blob; human readable name of the key. Same as `kSecLabelItemAttr` for typical keychain items.
 #[deprecated = "No longer supported"]
 pub const kSecKeyPrintName: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalias?language=objc)
+/// Type blob; currently unused.
 #[deprecated = "No longer supported"]
 pub const kSecKeyAlias: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeypermanent?language=objc)
+/// Type uint32; value is nonzero. This key is permanent (stored in some keychain) and is always `1`.
 #[deprecated = "No longer supported"]
 pub const kSecKeyPermanent: c_int = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyprivate?language=objc)
+/// Type uint32; value is nonzero. This key is protected by a user login, a password, or both.
 #[deprecated = "No longer supported"]
 pub const kSecKeyPrivate: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeymodifiable?language=objc)
+/// Type uint32; value is nonzero. Attributes of this key can be modified.
 #[deprecated = "No longer supported"]
 pub const kSecKeyModifiable: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeylabel?language=objc)
+///
+/// ## Discussion
+///
+/// Type blob; for private and public keys this contains the hash of the public key.  This is used to associate certificates and keys.  Its value matches the value of the `kSecPublicKeyHashItemAttr` attribute of a certificate and it’s used to construct an identity from a certificate and a key. For symmetric keys this is whatever the creator of the key passed in when they generated the key.
+///
+///
 #[deprecated = "No longer supported"]
 pub const kSecKeyLabel: c_int = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyapplicationtag?language=objc)
+/// Type blob; currently unused.
 #[deprecated = "No longer supported"]
 pub const kSecKeyApplicationTag: c_int = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeycreator?language=objc)
+/// Type data. The data points to a `CSSM_GUID` structure representing the module ID of the CSP owning this key.
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeyCreator: c_int = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeytype?language=objc)
+/// Type uint32; value is a CSSM algorithm (`CSSM_ALGORITHMS`) representing the algorithm associated with this key.
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeyType: c_int = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeysizeinbits?language=objc)
+/// Type uint32; value is the number of bits in this key.
 #[deprecated = "No longer supported"]
 pub const kSecKeyKeySizeInBits: c_int = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyeffectivekeysize?language=objc)
+/// Type uint32; value is the effective number of bits in this key.  For example, a DES key has a key size in bits (`kSecKeyKeySizeInBits`) of 64 but a value for `kSecKeyEffectiveKeySize` of 56.
 #[deprecated = "No longer supported"]
 pub const kSecKeyEffectiveKeySize: c_int = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeystartdate?language=objc)
+/// Type `CSSM_DATE`.  Earliest date at which this key may be used.  If the value is all zeros or not present, no restriction applies.
 #[deprecated = "No longer supported"]
 pub const kSecKeyStartDate: c_int = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyenddate?language=objc)
+/// Type `CSSM_DATE`.  Latest date at which this key may be used.  If the value is all zeros or not present, no restriction applies.
 #[deprecated = "No longer supported"]
 pub const kSecKeyEndDate: c_int = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysensitive?language=objc)
+/// Type uint32; value is nonzero. This key cannot be wrapped with `CSSM_ALGID_NONE`.
 #[deprecated = "No longer supported"]
 pub const kSecKeySensitive: c_int = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalwayssensitive?language=objc)
+/// Type uint32; value is nonzero. This key has always been marked sensitive.
 #[deprecated = "No longer supported"]
 pub const kSecKeyAlwaysSensitive: c_int = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyextractable?language=objc)
+/// Type uint32; value is nonzero. This key can be wrapped.
 #[deprecated = "No longer supported"]
 pub const kSecKeyExtractable: c_int = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyneverextractable?language=objc)
+/// Type uint32; value is nonzero. This key was never marked extractable.
 #[deprecated = "No longer supported"]
 pub const kSecKeyNeverExtractable: c_int = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyencrypt?language=objc)
+/// Type uint32; value is nonzero. This key can be used in an encrypt operation.
 #[deprecated = "No longer supported"]
 pub const kSecKeyEncrypt: c_int = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeydecrypt?language=objc)
+/// Type uint32; value is nonzero. This key can be used in a decrypt operation.
 #[deprecated = "No longer supported"]
 pub const kSecKeyDecrypt: c_int = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyderive?language=objc)
+/// Type uint32; value is nonzero. This key can be used in a key derivation operation.
 #[deprecated = "No longer supported"]
 pub const kSecKeyDerive: c_int = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysign?language=objc)
+/// Type uint32, value is nonzero. This key can be used in a sign operation.
 #[deprecated = "No longer supported"]
 pub const kSecKeySign: c_int = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyverify?language=objc)
+/// Type uint32, value is nonzero. This key can be used in a verify operation.
 #[deprecated = "No longer supported"]
 pub const kSecKeyVerify: c_int = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeysignrecover?language=objc)
+/// Type uint32.
 #[deprecated = "No longer supported"]
 pub const kSecKeySignRecover: c_int = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyverifyrecover?language=objc)
+/// Type uint32. This key can unwrap other keys.
 #[deprecated = "No longer supported"]
 pub const kSecKeyVerifyRecover: c_int = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeywrap?language=objc)
+/// Type uint32; value is nonzero. This key can wrap other keys.
 #[deprecated = "No longer supported"]
 pub const kSecKeyWrap: c_int = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyunwrap?language=objc)
+/// Type uint32; value is nonzero. This key can unwrap other keys.
 #[deprecated = "No longer supported"]
 pub const kSecKeyUnwrap: c_int = 26;
 
-/// Determines the type of credential returned by SecKeyGetCredentials.
+/// The credential type to be returned by [`SecKeyGetCredentials`](https://developer.apple.com/documentation/security/seckeygetcredentials).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype?language=objc)
+/// ## Overview
+///
+/// See the section “Servers and the Keychain” in the [macOS Keychain Services Tasks](https://developer.apple.com/library/archive/documentation/Security/Conceptual/keychainServConcepts/03tasks/tasks.html#//apple_ref/doc/uid/TP30000897-CH205) chapter of [Keychain Services Programming Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/keychainServConcepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000897) for information on the use of UI with keychain tasks.
+///
+///
+/// Determines the type of credential returned by SecKeyGetCredentials.
 // NS_ENUM
 #[cfg(feature = "cssmconfig")]
 #[deprecated = "No longer supported"]
@@ -101,15 +111,21 @@ pub const kSecKeyUnwrap: c_int = 26;
 pub struct SecCredentialType(pub uint32);
 #[cfg(feature = "cssmconfig")]
 impl SecCredentialType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype/default?language=objc)
+    /// The default setting for determining whether to present UI is used.
+    ///
+    /// ## Discussion
+    ///
+    /// The default setting can be changed with a call to [`SecKeychainSetUserInteractionAllowed`](https://developer.apple.com/documentation/security/seckeychainsetuserinteractionallowed(_:)).
+    ///
+    ///
     #[doc(alias = "kSecCredentialTypeDefault")]
     #[deprecated = "No longer supported"]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype/withui?language=objc)
+    /// Keychain operations on keys that have this credential are allowed to present UI if required.
     #[doc(alias = "kSecCredentialTypeWithUI")]
     #[deprecated = "No longer supported"]
     pub const WithUI: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccredentialtype/noui?language=objc)
+    /// Keychain operations on keys that have this credential are not allowed to present UI, and will fail if UI is required.
     #[doc(alias = "kSecCredentialTypeNoUI")]
     #[deprecated = "No longer supported"]
     pub const NoUI: Self = Self(2);
@@ -125,9 +141,8 @@ unsafe impl RefEncode for SecCredentialType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The types of padding to use when you create or verify a digital signature.
 /// Supported padding types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpadding?language=objc)
 // NS_OPTIONS
 #[deprecated = "Replaced with SecKeyAlgorithm"]
 #[repr(transparent)]
@@ -135,47 +150,93 @@ unsafe impl RefEncode for SecCredentialType {
 pub struct SecPadding(pub u32);
 bitflags::bitflags! {
     impl SecPadding: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/ksecpaddingnone?language=objc)
+/// No padding.
         #[doc(alias = "kSecPaddingNone")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1?language=objc)
+/// PKCS1 padding.
+///
+/// ## Discussion
+///
+/// For elliptic curve, defaults to a signature in x9.62 DER encoding.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/oaep?language=objc)
         #[doc(alias = "kSecPaddingOAEP")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const OAEP = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/sigraw?language=objc)
         #[doc(alias = "kSecPaddingSigRaw")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const SigRaw = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1md2?language=objc)
+/// Data to be signed is an MD2 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding is done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1MD2")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1MD2 = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1md5?language=objc)
+/// Data to be signed is an MD5 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding is done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1MD5")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1MD5 = 0x8001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha1?language=objc)
+/// Data to be signed is a SHA1 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding will be done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1SHA1")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA1 = 0x8002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha224?language=objc)
+/// Data to be signed is a SHA224 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding will be done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1SHA224")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA224 = 0x8003;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha256?language=objc)
+/// Data to be signed is a SHA256 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding will be done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1SHA256")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA256 = 0x8004;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha384?language=objc)
+/// Data to be signed is a SHA384 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding will be done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1SHA384")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA384 = 0x8005;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secpadding/pkcs1sha512?language=objc)
+/// Data to be signed is a SHA512 hash.
+///
+/// ## Discussion
+///
+/// Standard ASN.1 padding will be done, as well as PKCS1 padding of the underlying RSA operation. Used with [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) only.
+///
+///
         #[doc(alias = "kSecPaddingPKCS1SHA512")]
 #[deprecated = "Replaced with SecKeyAlgorithm"]
         const PKCS1SHA512 = 0x8006;
@@ -192,56 +253,55 @@ unsafe impl RefEncode for SecPadding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The supported sizes for keys of various common types.
 /// Supported key lengths.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeySizes(pub u32);
 impl SecKeySizes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secdefaultkeysize?language=objc)
+    /// The default key size for the specified type.
     #[doc(alias = "kSecDefaultKeySize")]
     #[deprecated = "No longer supported"]
     pub const SecDefaultKeySize: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/sec3des192?language=objc)
+    /// 192-bit DES.
     #[doc(alias = "kSec3DES192")]
     #[deprecated = "No longer supported"]
     pub const Sec3DES192: Self = Self(192);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secaes128?language=objc)
+    /// 128-bit AES.
     #[doc(alias = "kSecAES128")]
     #[deprecated = "No longer supported"]
     pub const SecAES128: Self = Self(128);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secaes192?language=objc)
+    /// 192-bit AES.
     #[doc(alias = "kSecAES192")]
     #[deprecated = "No longer supported"]
     pub const SecAES192: Self = Self(192);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secaes256?language=objc)
+    /// 256-bit AES.
     #[doc(alias = "kSecAES256")]
     #[deprecated = "No longer supported"]
     pub const SecAES256: Self = Self(256);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp192r1?language=objc)
+    /// 192-bit ECC Keys for Suite-B from RFC 4492 section 5.1.1.
     #[doc(alias = "kSecp192r1")]
     #[deprecated = "No longer supported"]
     pub const Secp192r1: Self = Self(192);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp256r1?language=objc)
+    /// 256-bit ECC Keys for Suite-B from RFC 4492 section 5.1.1.
     #[doc(alias = "kSecp256r1")]
     #[deprecated = "No longer supported"]
     pub const Secp256r1: Self = Self(256);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp384r1?language=objc)
+    /// 384-bit ECC Keys for Suite-B from RFC 4492 section 5.1.1.
     #[doc(alias = "kSecp384r1")]
     #[deprecated = "No longer supported"]
     pub const Secp384r1: Self = Self(384);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secp521r1?language=objc)
+    /// 521-bit ECC Keys for Suite-B from RFC 4492 section 5.1.1.
     #[doc(alias = "kSecp521r1")]
     #[deprecated = "No longer supported"]
     pub const Secp521r1: Self = Self(521);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secrsamin?language=objc)
+    /// 1024 bits is the minimum size for an RSA key.
     #[doc(alias = "kSecRSAMin")]
     #[deprecated = "No longer supported"]
     pub const SecRSAMin: Self = Self(1024);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeysizes/secrsamax?language=objc)
+    /// 4096 bits is the maximum size for an RSA key.
     #[doc(alias = "kSecRSAMax")]
     #[deprecated = "No longer supported"]
     pub const SecRSAMax: Self = Self(4096);
@@ -258,6 +318,13 @@ unsafe impl RefEncode for SecKeySizes {
 }
 
 extern "C" {
+    /// A key whose value is a dictionary of cryptographic key attributes specific to a private key.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) containing key-value pairs for attributes specific to the private key to be generated.
+    ///
+    ///
     /// Predefined key constants used to get or set values in a dictionary.
     /// These are used to provide explicit parameters to key generation functions
     /// when non-default values are desired. See the description of the
@@ -266,23 +333,38 @@ extern "C" {
     /// containing attributes specific for the private key to be generated.
     ///
     /// containing attributes specific for the public key to be generated.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecprivatekeyattrs?language=objc)
     pub static kSecPrivateKeyAttrs: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecpublickeyattrs?language=objc)
+    /// A key whose value is a dictionary of cryptographic key attributes specific to a public key.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) containing key-value pairs for attributes specific to the public key to be generated.
+    ///
+    ///
     pub static kSecPublicKeyAttrs: &'static CFString;
 }
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecKey {
+    /// Returns the unique identifier of the opaque type to which a key object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecKey instances.
     ///
     /// Returns: The CFTypeID of SecKey instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygettypeid()?language=objc)
     #[doc(alias = "SecKeyGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -295,6 +377,45 @@ unsafe impl ConcreteType for SecKey {
 
 #[cfg(feature = "SecBase")]
 impl SecKey {
+    /// Creates an asymmetric key pair and stores it in a keychain.
+    ///
+    /// Parameters:
+    /// - keychainRef: The keychain object for the keychain in which to store the private and public key items. Specify `NULL` for the default keychain.
+    ///
+    /// - algorithm: The algorithm to use to generate the key pair. Possible values are defined in `Security.framework/cssmtype.h`. Algorithms supported by the AppleCSP module are listed in [Apple Cryptographic Service Provider Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleCryptoSpec/Apple_Cryptographic_Service_Provider_Functional_Specification.pdf). This parameter is ignored if the `contextHandle` parameter is not `0`.
+    ///
+    /// - keySizeInBits: A key size for the key pair. See [Apple Cryptographic Service Provider Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleCryptoSpec/Apple_Cryptographic_Service_Provider_Functional_Specification.pdf) for permissible key sizes for each algorithm supported by the AppleCSP module.
+    ///
+    /// - contextHandle: A CSSM CSP handle, or `0`. If this argument is not `0`, the `algorithm` and `keySizeInBits` parameters are ignored.
+    ///
+    /// - publicKeyUsage: A bit mask indicating all permitted uses for the new public key. The possible values for the `CSSM_KEYUSE` data type are defined in `Security.framework/cssmtype.h`.
+    ///
+    /// - publicKeyAttr: A bit mask defining attribute values for the new public key. The bit mask values are equivalent to those defined for `CSSM_KEYATTR_FLAGS` in `Security.framework/cssmtype.h`.
+    ///
+    /// - privateKeyUsage: A bit mask indicating all permitted uses for the new private key. The possible values for the `CSSM_KEYUSE` data type are defined in `Security.framework/cssmtype.h`.
+    ///
+    /// - privateKeyAttr: A bit mask defining attribute values for the new private key. The bit mask values are defined in `CSSM_KEYATTR_FLAGS` in `Security.framework/cssmtype.h`. Supported values are `CSSM_KETATTR_EXTRACTABLE` (the key can be taken out of the keychain) and `CSSM_KEYATTR_SENSITIVE` (an extractable key can be taken out of the keychain only in wrapped form—that is, encrypted). (Note that you must set _both_ of these bits if you want the key to be extractable in wrapped form.) For any other value of this attribute, the key cannot be taken out of the keychain under any circumstances.
+    ///
+    /// - initialAccess: An access object that sets the initial access control list for each of the keys returned. See Creating an Access Object in [Keychain services](https://developer.apple.com/documentation/security/keychain-services) for functions that create an access object. For default access, specify `NULL`. The default is free access to the tool or application that calls this function, with attempted access to sensitive information by any other application causing a confirmation dialog to be displayed.
+    ///
+    /// - publicKey: On return, points to the keychain item object of the new public key. Use this object as input to the [`SecKeyGetCSSMKey`](https://developer.apple.com/documentation/security/seckeygetcssmkey) function to obtain the `CSSM_KEY` structure containing the key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    /// - privateKey: On return, points to the keychain item object of the new private key. Use this object as input to the [`SecKeyGetCSSMKey`](https://developer.apple.com/documentation/security/seckeygetcssmkey) function to obtain the `CSSM_KEY` structure containing the key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses default values for any attributes required by specific key-generation algorithms. Algorithms supported by the AppleCSP module are listed in [Apple Cryptographic Service Provider Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleCryptoSpec/Apple_Cryptographic_Service_Provider_Functional_Specification.pdf). For details about algorithms and default values for key-generation parameters, download the CDSA security framework from Apple’s Open Source website at [https://opensource.apple.com/](https://opensource.apple.com/) and read the file `Supported_CSP_Algorithms.doc` in the Documentation folder.
+    ///
+    /// If you need extra parameters to generate a key—as required by some algorithms—call [`SecKeychainGetCSPHandle`](https://developer.apple.com/documentation/security/seckeychaingetcsphandle) to obtain a CSSM CSP handle and then call `CSSM_CSP_CreateKeyGenContext` to create a context. With this context, use `CSSM_UpdateContextAttributes` to add additional parameters. Finally, call `CSSM_DeleteContext` to dispose of the context after calling this function.
+    ///
+    ///
     /// Creates an asymmetric key pair and stores it in a specified keychain.
     ///
     /// Parameter `keychainRef`: A reference to the keychain in which to store the private and public key items. Specify NULL for the default keychain.
@@ -327,8 +448,6 @@ impl SecKey {
     ///
     /// - `public_key` must be a valid pointer or null.
     /// - `private_key` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatepair?language=objc)
     #[doc(alias = "SecKeyCreatePair")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -378,6 +497,43 @@ impl SecKey {
         }
     }
 
+    /// Creates a symmetric key and optionally stores it in a keychain.
+    ///
+    /// Parameters:
+    /// - keychainRef: The keychain in which to store the generated key. Specify `NULL` to generate a transient key.
+    ///
+    /// - algorithm: The algorithm to use in generating the symmetric key. Possible values are defined in `cssmtype.h`. Algorithms supported by the AppleCSP module are listed in [Apple Cryptographic Service Provider Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleCryptoSpec/Apple_Cryptographic_Service_Provider_Functional_Specification.pdf). This parameter is ignored if the `contextHandle` parameter is not `0`.
+    ///
+    /// - keySizeInBits: A key size for the key pair. This parameter is ignored if the `contextHandle` parameter is not `0`.
+    ///
+    /// - contextHandle: A CSSM CSP handle, or `0`. If this argument is not `0`, the `algorithm` and `keySizeInBits` parameters are ignored.
+    ///
+    /// - keyUsage: A bit mask indicating all permitted uses for the new key. The possible values for the `CSSM_KEYUSE` data type are defined in `cssmtype.h`.
+    ///
+    /// - keyAttr: A bit mask defining attribute values for the new key. The bit mask values are defined in `CSSM_KEYATTR_FLAGS` in `cssmtype.h`.
+    ///
+    /// - initialAccess: An access object that sets the initial access control list for the key returned. See Creating an Access Object in [Keychain services](https://developer.apple.com/documentation/security/keychain-services) for functions that create an access object. This parameter is ignored if you specify `NULL` for the `keychainRef` parameter.
+    ///
+    /// - keyRef: On return, points to the keychain item object of the new public key. Use this object as input to the [`SecKeyGetCSSMKey`](https://developer.apple.com/documentation/security/seckeygetcssmkey) function to obtain the `CSSM_KEY` structure containing the key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Key-generation algorithms supported by the AppleCSP module are listed in [Apple Cryptographic Service Provider Functional Specification](https://developer.apple.com/library/archive/documentation/Security/Reference/SecAppleCryptoSpec/Apple_Cryptographic_Service_Provider_Functional_Specification.pdf). For details about algorithms and default values for key-generation parameters, download the CDSA security framework from Apple’s Open Source website at [https://opensource.apple.com/](https://opensource.apple.com/) and read the file `Supported_CSP_Algorithms.doc` in the Documentation folder.
+    ///
+    /// If you need extra parameters to generate a key—as required by some algorithms—call [`SecKeychainGetCSPHandle`](https://developer.apple.com/documentation/security/seckeychaingetcsphandle) to obtain a CSSM CSP handle and then call `CSSM_CSP_CreateKeyGenContext` to create a context. With this context, use `CSSM_UpdateContextAttributes` to add additional parameters. Finally, call `CSSM_DeleteContext` to dispose of the context after calling this function.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Use [`SecKeyGenerateSymmetric(_:_:)`](https://developer.apple.com/documentation/security/seckeygeneratesymmetric(_:_:)) instead.
+    ///
+    ///
     /// Creates a symmetric key and optionally stores it in a specified keychain.
     ///
     /// Parameter `keychainRef`: (optional) A reference to the keychain in which to store the generated key. Specify NULL to generate a transient key.
@@ -403,8 +559,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `key_ref` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygenerate?language=objc)
     #[doc(alias = "SecKeyGenerate")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -445,6 +599,25 @@ impl SecKey {
         }
     }
 
+    /// Retrieves a pointer to the `CSSM_KEY` structure containing the key stored in a keychain item.
+    ///
+    /// Parameters:
+    /// - key: A keychain key item object.
+    ///
+    /// - cssmKey: A pointer to a `CSSM_KEY` structure for the specified key. You should not modify or free this data, because it is owned by the system.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `CSSM_KEY` structure is used to represent keys in CSSM and is used as an input value to several CSSM functions. The `CSSM_KEY` structure is valid until the keychain item object is released.
+    ///
+    ///
     /// Returns a pointer to the CSSM_KEY for the given key item reference.
     ///
     /// Parameter `key`: A keychain key item reference. The key item must be of class type kSecPublicKeyItemClass, kSecPrivateKeyItemClass, or kSecSymmetricKeyItemClass.
@@ -458,8 +631,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `cssm_key` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetcssmkey?language=objc)
     #[doc(alias = "SecKeyGetCSSMKey")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -476,6 +647,25 @@ impl SecKey {
         unsafe { SecKeyGetCSSMKey(self, cssm_key) }
     }
 
+    /// Returns the CSSM CSP handle for a key.
+    ///
+    /// Parameters:
+    /// - keyRef: The key for which you want a CSSM CSP handle.
+    ///
+    /// - cspHandle: On return, points to the CSSM CSP handle for the specified key. This pointer remains valid until the key reference is released. Do not attempt to modify or free this data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A CSSM CSP handle is required as an input to a number of CSSM functions.
+    ///
+    ///
     /// Returns the CSSM_CSP_HANDLE for the given key reference. The handle is valid until the key reference is released.
     ///
     /// Parameter `keyRef`: A key reference.
@@ -489,8 +679,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `csp_handle` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetcsphandle?language=objc)
     #[doc(alias = "SecKeyGetCSPHandle")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -505,6 +693,29 @@ impl SecKey {
         unsafe { SecKeyGetCSPHandle(self, csp_handle) }
     }
 
+    /// Returns an access credential for a key.
+    ///
+    /// Parameters:
+    /// - keyRef: The key for which you want an access credential.
+    ///
+    /// - operation: The type of operation to be performed with this key. Possible values are listed under “Authorization tag types” in `Security.framework/cssmtype.h`.
+    ///
+    /// - credentialType: The type of credential requested. See [`SecCredentialType`](https://developer.apple.com/documentation/security/seccredentialtype) for possible values.
+    ///
+    /// - outCredentials: On return, points to an access credential for the specified key. This pointer remains valid until the key reference is released. Do not attempt to modify or free this data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An access credential is required as an input to a number of CSSM functions.
+    ///
+    ///
     /// For a given key, return a pointer to a CSSM_ACCESS_CREDENTIALS structure which will allow the key to be used.
     ///
     /// Parameter `keyRef`: The key for which a credential is requested.
@@ -520,8 +731,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `out_credentials` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetcredentials?language=objc)
     #[doc(alias = "SecKeyGetCredentials")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -548,6 +757,45 @@ impl SecKey {
         unsafe { SecKeyGetCredentials(self, operation, credential_type, out_credentials) }
     }
 
+    /// Generates a random symmetric key.
+    ///
+    /// Parameters:
+    /// - parameters: A key generation parameter dictionary. At minimum, this must contain [`kSecAttrKeyType`](https://developer.apple.com/documentation/security/ksecattrkeytype) and [`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits). In addition, this function assumes default values for the following keys:
+    ///
+    /// - [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel) defaults to `NULL`.
+    ///
+    /// - [`kSecAttrIsPermanent`](https://developer.apple.com/documentation/security/ksecattrispermanent) if this key is present and has a value of [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), the key or key pair will be added to the default keychain.
+    ///
+    /// - [`kSecAttrApplicationTag`](https://developer.apple.com/documentation/security/ksecattrapplicationtag) defaults to `NULL`.
+    ///
+    /// - [`kSecAttrEffectiveKeySize`](https://developer.apple.com/documentation/security/ksecattreffectivekeysize) defaults to `NULL`, which means the effective key size is the same as the key size ([`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits)).
+    ///
+    /// - [`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt) defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for private keys, [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for public keys.
+    ///
+    /// - [`kSecAttrCanDecrypt`](https://developer.apple.com/documentation/security/ksecattrcandecrypt) defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for private keys, [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for public keys.
+    ///
+    /// - [`kSecAttrCanDerive`](https://developer.apple.com/documentation/security/ksecattrcanderive) defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    /// - [`kSecAttrCanSign`](https://developer.apple.com/documentation/security/ksecattrcansign) defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for private keys, [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for public keys.
+    ///
+    /// - [`kSecAttrCanVerify`](https://developer.apple.com/documentation/security/ksecattrcanverify) defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for private keys, [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for public keys.
+    ///
+    /// - [`kSecAttrCanWrap`](https://developer.apple.com/documentation/security/ksecattrcanwrap) defaults to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for private keys, [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for public keys.
+    ///
+    /// - [`kSecAttrCanUnwrap`](https://developer.apple.com/documentation/security/ksecattrcanunwrap) defaults to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) for private keys, [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) for public keys.
+    ///
+    /// These default values can be overridden by adding a value for the associated key in the parameter dictionary.
+    ///
+    /// When used as a replacement for [`SecKeyGenerate`](https://developer.apple.com/documentation/security/seckeygenerate), set the [`kSecUseKeychain`](https://developer.apple.com/documentation/security/ksecusekeychain) key to the keychain ([`SecKeychainRef`](https://developer.apple.com/documentation/security/seckeychain)) into which the key should be stored, [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel) to a user-visible label for the key, and [`kSecAttrApplicationLabel`](https://developer.apple.com/documentation/security/ksecattrapplicationlabel) to an identifier defined by your application, for subsequent use in calls to [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)). Additionally, you can specify keychain access controls for the key by setting [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) to a [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess) object.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A newly generated symmetric key, or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the key’s memory when you are done with it.
+    ///
+    ///
     /// Generates a random symmetric key with the specified length
     /// and algorithm type.
     ///
@@ -596,8 +844,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratesymmetric(_:_:)?language=objc)
     #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -616,6 +862,39 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Constructs a SecKeyRef object for a symmetric key.
+    ///
+    /// Parameters:
+    /// - parameters: A parameter dictionary that describes the key. See the discussion for details.
+    ///
+    /// - keyData: A `CFDataRef` object that contains the raw key data.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A symmetric key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the key’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The parameters dictionary must contain (at minimum) an entry for the [`kSecAttrKeyType`](https://developer.apple.com/documentation/security/ksecattrkeytype) key with a value of [`kSecAttrKeyTypeAES`](https://developer.apple.com/documentation/security/ksecattrkeytypeaes) or any other key type defined in Key Type Value.
+    ///
+    /// The keys below may be optionally set in the parameters dictionary (with a `CFBooleanRef` value) to override the default key usage values:
+    ///
+    /// - [`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt)
+    ///
+    /// - [`kSecAttrCanDecrypt`](https://developer.apple.com/documentation/security/ksecattrcandecrypt)
+    ///
+    /// - [`kSecAttrCanWrap`](https://developer.apple.com/documentation/security/ksecattrcanwrap)
+    ///
+    /// - [`kSecAttrCanUnwrap`](https://developer.apple.com/documentation/security/ksecattrcanunwrap)
+    ///
+    /// These values default to `true` if no value is specified.
+    ///
+    ///
     /// Creates a symmetric key with the given data and sets the
     /// algorithm type specified.
     ///
@@ -645,8 +924,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatefromdata(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -668,6 +945,7 @@ impl SecKey {
     }
 }
 
+/// A block called with the results of a call to [`SecKeyGeneratePairAsync`](https://developer.apple.com/documentation/security/seckeygeneratepairasync(_:_:_:)).
 /// Delivers the result from an asynchronous key pair generation.
 ///
 /// Parameter `publicKey`: - the public key generated.   You must retain publicKey if you wish to use it after your block returns.
@@ -675,14 +953,47 @@ impl SecKey {
 /// Parameter `privateKey`: - the private key generated.  You must retain publicKey if you wish to use it after your block returns.
 ///
 /// Parameter `error`: - Any errors returned.   You must retain error if you wish to use it after your block returns.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratepairblock?language=objc)
 #[cfg(all(feature = "SecBase", feature = "block2"))]
 pub type SecKeyGeneratePairBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<SecKey>, NonNull<SecKey>, NonNull<CFError>)>;
 
 #[cfg(feature = "SecBase")]
 impl SecKey {
+    /// Returns a key object in which the key data is derived from a password.
+    ///
+    /// Parameters:
+    /// - password: The password from which the key should be derived.
+    ///
+    /// - parameters: A set of parameters for deriving the password.
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The derived key object, or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the key’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The parameters dictionary must contain at least the following keys:
+    ///
+    /// - [`kSecKeyKeyType`](https://developer.apple.com/documentation/security/kseckeykeytype)—the type of symmetric key to generate.
+    ///
+    /// - [`kSecAttrSalt`](https://developer.apple.com/documentation/security/ksecattrsalt)—a `CFDataRef` object containing the salt value that is mixed into the pseudorandom rounds.
+    ///
+    /// The parameters dictionary may contain the following optional keys:
+    ///
+    /// - [`kSecAttrPRF`](https://developer.apple.com/documentation/security/ksecattrprf) - the algorithm to use for the pseudorandom-function.
+    ///
+    /// If zero, this defaults to [`kSecAttrPRFHmacAlgSHA1`](https://developer.apple.com/documentation/security/ksecattrprfhmacalgsha1). For a list of possible values, see `kSecAttrPRF Value Constants`.
+    ///
+    /// - [`kSecAttrRounds`](https://developer.apple.com/documentation/security/ksecattrrounds)—the number of times to call the pseudorandom function. If zero, the count is computed so that computation will take 1/10 of a second (on average).
+    ///
+    /// - [`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits)—a `CFNumberRef` value containing the requested key size in bits. The key size must be valid for the key type. Defaults to 128 if not provided.
+    ///
+    ///
     /// Derives a symmetric key from a password.
     ///
     ///
@@ -719,8 +1030,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyderivefrompassword(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -741,6 +1050,23 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Wraps a symmetric key with another key.
+    ///
+    /// Parameters:
+    /// - keyToWrap: The key to wrap.
+    ///
+    /// - wrappingKey: The key to use when wrapping `keyToWrap`.
+    ///
+    /// - parameters: A parameter list for the unwrapping process. This is usually either an empty dictionary or a dictionary containing a value for [`kSecAttrSalt`](https://developer.apple.com/documentation/security/ksecattrsalt).
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The wrapped key, or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the data’s memory when you are done with it.
+    ///
+    ///
     /// Wraps a symmetric key with a symmetric key.
     ///
     ///
@@ -765,8 +1091,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeywrapsymmetric(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -789,6 +1113,23 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Unwraps a wrapped symmetric key.
+    ///
+    /// Parameters:
+    /// - keyToUnwrap: The wrapped key to unwrap.
+    ///
+    /// - unwrappingKey: The key that must be used to unwrap `keyToUnwrap`.
+    ///
+    /// - parameters: A parameter list for the unwrapping process. This is usually either an empty dictionary or a dictionary containing a value for [`kSecAttrSalt`](https://developer.apple.com/documentation/security/ksecattrsalt).
+    ///
+    /// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) variable where an error object is stored upon failure. If not `NULL`, the caller is responsible for checking this variable and releasing the resulting object if it exists.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The unwrapped key, or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the key’s memory when you are done with it.
+    ///
+    ///
     /// Unwrap a wrapped symmetric key.
     ///
     ///
@@ -814,8 +1155,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyunwrapsymmetric(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "No longer supported"]
@@ -839,6 +1178,59 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Creates an asymmetric key pair.
+    ///
+    /// Parameters:
+    /// - parameters: A dictionary of key-value pairs that specify the type of keys to be generated.
+    ///
+    /// - publicKey: On return, points to the keychain item object of the new public key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    /// - privateKey: On return, points to the keychain item object of the new private key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In order to generate a key pair, the dictionary passed in the `parameters` parameter must contain at least the following key-value pairs:
+    ///
+    /// - A [`kSecAttrKeyType`](https://developer.apple.com/documentation/security/ksecattrkeytype) key with a value of any key type defined in `SecItem.h` (see [Keychain services](https://developer.apple.com/documentation/security/keychain-services)), for example, [`kSecAttrKeyTypeRSA`](https://developer.apple.com/documentation/security/ksecattrkeytypersa).
+    ///
+    /// - A [`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits) key with a value specifying the requested key size in bits. This can be specified as either a `CFNumberRef` or `CFStringRef` value. For example, RSA keys may have key size values of 512, 768, 1024, or 2048.
+    ///
+    /// In addition, you can specify a number of other optional attributes for the public and private keys. The way you do this depends on whether you are writing code for macOS or iOS:
+    ///
+    /// - In macOS, add the key-value pairs to the `parameters` dictionary directly. The specified attributes are applied to both the public and private keys.
+    ///
+    /// - In iOS, add dictionaries for the keys [`kSecPublicKeyAttrs`](https://developer.apple.com/documentation/security/ksecpublickeyattrs) and [`kSecPrivateKeyAttrs`](https://developer.apple.com/documentation/security/ksecprivatekeyattrs) to the `parameters` dictionary, and provide the attributes in those dictionaries. The attributes specified in these dictionaries are added to either the public or private key, respectively, allowing you to apply separate attributes to each key.
+    ///
+    /// The possible attributes are as follows; for details on each attribute, see [Keychain services](https://developer.apple.com/documentation/security/keychain-services):
+    ///
+    /// - [`kSecAttrLabel`](https://developer.apple.com/documentation/security/ksecattrlabel)—Default `NULL`.
+    ///
+    /// - [`kSecAttrIsPermanent`](https://developer.apple.com/documentation/security/ksecattrispermanent)—If this key is present and has a Boolean value of `true`, the key or key pair is added to the default       keychain.
+    ///
+    /// - [`kSecAttrApplicationTag`](https://developer.apple.com/documentation/security/ksecattrapplicationtag)—Default `NULL`.
+    ///
+    /// - [`kSecAttrEffectiveKeySize`](https://developer.apple.com/documentation/security/ksecattreffectivekeysize)—Default (`NULL`) sets the effective key size to the same as the total key size (`kSecAttrKeySizeInBits`).
+    ///
+    /// - [`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt)—Default `false` for private keys, `true` for public keys.
+    ///
+    /// - [`kSecAttrCanDecrypt`](https://developer.apple.com/documentation/security/ksecattrcandecrypt)—Default `true` for private keys, `false` for public keys.
+    ///
+    /// - [`kSecAttrCanDerive`](https://developer.apple.com/documentation/security/ksecattrcanderive)—Default `true`.
+    ///
+    /// - [`kSecAttrCanSign`](https://developer.apple.com/documentation/security/ksecattrcansign)—Default `true` for private keys, `false` for public keys.
+    ///
+    /// - [`kSecAttrCanVerify`](https://developer.apple.com/documentation/security/ksecattrcanverify)—Default `false` for private keys, `true` for public keys.
+    ///
+    /// - [`kSecAttrCanUnwrap`](https://developer.apple.com/documentation/security/ksecattrcanunwrap)—Default `true` for private keys, `false` for public keys.
+    ///
+    ///
     /// Generate a private/public keypair.
     ///
     /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
@@ -898,8 +1290,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `public_key` must be a valid pointer or null.
     /// - `private_key` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygeneratepair(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyGeneratePair")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "Use SecKeyCreateRandomKey"]
@@ -919,6 +1309,25 @@ impl SecKey {
         unsafe { SecKeyGeneratePair(parameters, public_key, private_key) }
     }
 
+    /// Generates a new public-private key pair.
+    ///
+    /// Parameters:
+    /// - parameters: A dictionary you use to specify the attributes of the generated keys. See [Key Generation Attributes](https://developer.apple.com/documentation/security/key-generation-attributes) for details.
+    ///
+    /// - error: An error reference pointer that [`SecKeyCreateRandomKey`](https://developer.apple.com/documentation/security/seckeycreaterandomkey(_:_:)) populates with a suitable error instance on failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly generated private key, or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the key when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To get the associated public key, use [`SecKeyCopyPublicKey`](https://developer.apple.com/documentation/security/seckeycopypublickey(_:)). [`SecKeyCreateRandomKey`](https://developer.apple.com/documentation/security/seckeycreaterandomkey(_:_:)) fails and returns [`errSecInteractionNotAllowed`](https://developer.apple.com/documentation/security/errsecinteractionnotallowed) if you call it in the background on iPhone or iPad while the device is locked.
+    ///
+    ///
     /// Generates a new public/private key pair.
     ///
     /// Parameter `parameters`: A dictionary containing one or more key-value pairs.
@@ -966,8 +1375,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreaterandomkey(_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -985,6 +1392,25 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Restores a key from an external representation of that key.
+    ///
+    /// Parameters:
+    /// - keyData: Data representing the key. The format of the data depends on the type of key being created. See the description of the return value of the [`SecKeyCopyExternalRepresentation`](https://developer.apple.com/documentation/security/seckeycopyexternalrepresentation(_:_:)) function for details.
+    ///
+    /// - attributes: A dictionary containing attributes describing the key to be imported. This dictionary must include at least the following keys:
+    ///
+    /// - [`kSecAttrKeyType`](https://developer.apple.com/documentation/security/ksecattrkeytype)
+    ///
+    /// - [`kSecAttrKeyClass`](https://developer.apple.com/documentation/security/ksecattrkeyclass)
+    ///
+    /// - error: The address of a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object. If an error occurs, this is set to point at an error instance that describes the failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The restored key or `NULL` on failure. In Objective-C, call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to free the key’s memory when you are done with it.
+    ///
+    ///
     /// Create a SecKey from a well-defined external representation.
     ///
     /// Parameter `keyData`: CFData representing the key. The format of the data depends on the type of key being created.
@@ -1010,8 +1436,6 @@ impl SecKey {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatewithdata(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1031,6 +1455,17 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Gets the block length associated with a cryptographic key.
+    ///
+    /// Parameters:
+    /// - key: The key for which you want the block length.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The block length associated with the key in bytes. If the key is an RSA key, for example, this is the size of the modulus.
+    ///
+    ///
     /// Returns block length of the key in bytes.
     ///
     /// Parameter `key`: The key for which the block length is requested.
@@ -1039,8 +1474,6 @@ impl SecKey {
     ///
     /// If for example key is an RSA key the value returned by
     /// this function is the size of the modulus.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeygetblocksize(_:)?language=objc)
     #[doc(alias = "SecKeyGetBlockSize")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1051,6 +1484,27 @@ impl SecKey {
         unsafe { SecKeyGetBlockSize(self) }
     }
 
+    /// Returns an external representation of the given key suitable for the key’s type.
+    ///
+    /// Parameters:
+    /// - key: The key to export.
+    ///
+    /// - error: The address of a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object. If an error occurs, this is set to point at an error instance that describes the failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data object representing the key in a format suitable for the key type or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the key’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The operation fails if the key is not exportable, for example if it is bound to a smart card or to the Secure Enclave. It also fails in macOS if the key has the attribute [`kSecKeyExtractable`](https://developer.apple.com/documentation/security/kseckeyextractable) set to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// The method returns data in the PKCS #1 format for an RSA key. For an elliptic curve public key, the format follows the ANSI X9.63 standard using a byte string of `04 || X || Y.` For an elliptic curve private key, the output is formatted as the public key concatenated with the big endian encoding of the secret scalar, or `04 || X || Y || K`. All of these representations use constant size integers, including leading zeros as needed.
+    ///
+    ///
     /// Create an external representation for the given key suitable for the key's type.
     ///
     /// Parameter `key`: The key to be exported.
@@ -1068,8 +1522,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopyexternalrepresentation(_:_:)?language=objc)
     #[doc(alias = "SecKeyCopyExternalRepresentation")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1087,6 +1539,17 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Gets the attributes of a given key.
+    ///
+    /// Parameters:
+    /// - key: The key whose attributes you want.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the key’s attributes. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this dictionary’s memory when you are done with it.
+    ///
+    ///
     /// Retrieve keychain attributes of a key.
     ///
     /// Parameter `key`: The key whose attributes are to be retrieved.
@@ -1106,8 +1569,6 @@ impl SecKey {
     /// kSecAttrTokenID
     /// kSecAttrApplicationLabel
     /// The set of values is not fixed. Future versions may return more values in this dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopyattributes(_:)?language=objc)
     #[doc(alias = "SecKeyCopyAttributes")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1119,6 +1580,23 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Gets the public key associated with the given private key.
+    ///
+    /// Parameters:
+    /// - key: The private key for which you want the corresponding public key.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The public key corresponding to the given private key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this key’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned public key may be `nil` if the app that created the private key didn’t also store the corresponding public key in the keychain, or if the system can’t reconstruct the corresponding public key.
+    ///
+    ///
     /// Retrieve the public key from a key pair or private key.
     ///
     /// Parameter `key`: The key from which to retrieve a public key.
@@ -1126,8 +1604,6 @@ impl SecKey {
     /// Returns: The public key or NULL if public key is not available for specified key.
     ///
     /// Fails if key does not contain a public key or no public key can be computed from it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopypublickey(_:)?language=objc)
     #[doc(alias = "SecKeyCopyPublicKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -1140,6 +1616,7 @@ impl SecKey {
     }
 }
 
+/// The algorithms that cryptographic keys enable.
 /// Available algorithms for performing cryptographic operations with SecKey object.  String representation
 /// of constant can be used for logging or debugging purposes, because they contain human readable names of the algorithm.
 ///
@@ -1568,457 +2045,402 @@ impl SecKey {
 /// Compute shared secret using ECDH algorithm without cofactor, suitable only for kSecAttrKeyTypeECSECPrimeRandom keys
 /// and apply ANSI X9.63 KDF with SHA512 as hashing function.  Requires kSecKeyKeyExchangeParameterRequestedSize and allows
 /// kSecKeyKeyExchangeParameterSharedInfo parameters to be used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm?language=objc)
 // NS_TYPED_ENUM
 pub type SecKeyAlgorithm = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignatureraw?language=objc)
     pub static kSecKeyAlgorithmRSASignatureRaw: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15raw?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15Raw: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha1?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha224?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha256?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha384?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha512?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha1?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha224?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha256?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha384?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha512?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754?language=objc)
+    /// An algorithm for generating message digest signatures.
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha1?language=objc)
+    /// An algorithm for generating signatures of SHA1 message digests.
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha224?language=objc)
+    /// An algorithm for generating signatures of SHA224 message digests.
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha256?language=objc)
+    /// An algorithm for generating signatures of SHA256 message digests.
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha384?language=objc)
+    /// An algorithm for generating signatures of SHA384 message digests.
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha512?language=objc)
+    /// An algorithm for generating signatures of SHA512 message digests.
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha1?language=objc)
+    /// An algorithm for generating message signatures by calculating and signing the SHA1 message digest.
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha224?language=objc)
+    /// An algorithm for generating message signatures by calculating and signing the SHA224 message digest.
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha256?language=objc)
+    /// An algorithm for generating message signatures by calculating and signing the SHA256 message digest.
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha384?language=objc)
+    /// An algorithm for generating message signatures by calculating and signing the SHA384 message digest.
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha512?language=objc)
+    /// An algorithm for generating message signatures by calculating and signing the SHA512 message digest.
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturerfc4754?language=objc)
     #[deprecated]
     pub static kSecKeyAlgorithmECDSASignatureRFC4754: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionraw?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionRaw: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionpkcs1?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionPKCS1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha1?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha224?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha256?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha384?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha512?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha1aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA1AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA224AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA384AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA512AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha1aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA1AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA224AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA256AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA384AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA512AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha1aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA1AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA224AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA256AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA384AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA512AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA224AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA384AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA512AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA224AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA256AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA384AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA512AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandard?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandard: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha1?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha224?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha256?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha384?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha512?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactor?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactor: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha1?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha224?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha256?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha384?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha512?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA512: &'static SecKeyAlgorithm;
 }
 
 #[cfg(feature = "SecBase")]
 impl SecKey {
+    /// Creates the cryptographic signature for a block of data using a private key and specified algorithm.
+    ///
+    /// Parameters:
+    /// - key: The private key to use in creating the signature.
+    ///
+    /// - algorithm: The signing algorithm to use. Use one of the signing algorithms listed in [`SecKeyAlgorithm`](https://developer.apple.com/documentation/security/seckeyalgorithm). You can use the [`SecKeyIsAlgorithmSupported`](https://developer.apple.com/documentation/security/seckeyisalgorithmsupported(_:_:_:)) function to test that the key is suitable for the algorithm.
+    ///
+    /// - dataToSign: The data whose signature you want.
+    ///
+    /// - error: The address of a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object. If an error occurs, this is set to point at an error instance that describes the failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The digital signature or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the data’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You later evaluate the combined data and signature with the corresponding public key and a call to the [`SecKeyVerifySignature`](https://developer.apple.com/documentation/security/seckeyverifysignature(_:_:_:_:_:)) function.
+    ///
+    ///
     /// Given a private key and data to sign, generate a digital signature.
     ///
     /// Parameter `key`: Private key with which to sign.
@@ -2038,8 +2460,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatesignature(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateSignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2061,6 +2481,25 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Verifies the cryptographic signature of a block of data using a public key and specified algorithm.
+    ///
+    /// Parameters:
+    /// - key: The public key to use in evaluating the signature.
+    ///
+    /// - algorithm: The algorithm that was used to create the signature. Use one of the signing algorithms listed in [`SecKeyAlgorithm`](https://developer.apple.com/documentation/security/seckeyalgorithm). You can use the [`SecKeyIsAlgorithmSupported`](https://developer.apple.com/documentation/security/seckeyisalgorithmsupported(_:_:_:)) function to test that the key is suitable for the algorithm.
+    ///
+    /// - signedData: The data that was signed.
+    ///
+    /// - signature: The signature that was created with a call to the [`SecKeyCreateSignature`](https://developer.apple.com/documentation/security/seckeycreatesignature(_:_:_:_:)) function.
+    ///
+    /// - error: The address of a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object. If an error occurs, this is set to point at an error instance that describes the failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean indicating whether or not the data and signature are intact.
+    ///
+    ///
     /// Given a public key, data which has been signed, and a signature, verify the signature.
     ///
     /// Parameter `key`: Public key with which to verify the signature.
@@ -2082,8 +2521,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyverifysignature(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyVerifySignature")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2107,6 +2544,29 @@ impl SecKey {
         ret != 0
     }
 
+    /// Encrypts a block of data using a public key and specified algorithm.
+    ///
+    /// Parameters:
+    /// - key: The public key to use to perform the encryption.
+    ///
+    /// - algorithm: The encryption algorithm to use. Use one of the encryption algorithms listed in [`SecKeyAlgorithm`](https://developer.apple.com/documentation/security/seckeyalgorithm). You can use the [`SecKeyIsAlgorithmSupported`](https://developer.apple.com/documentation/security/seckeyisalgorithmsupported(_:_:_:)) function to test that the key is suitable for the algorithm.
+    ///
+    /// - plaintext: The data to be encrypted.
+    ///
+    /// - error: The address of a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object. If an error occurs, this is set to point at an error instance that describes the failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The encrypted data or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the data’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can decrypt this data with the corresponding private key and a call to [`SecKeyCreateDecryptedData`](https://developer.apple.com/documentation/security/seckeycreatedecrypteddata(_:_:_:_:)).
+    ///
+    ///
     /// Encrypt a block of plaintext.
     ///
     /// Parameter `key`: Public key with which to encrypt the data.
@@ -2127,8 +2587,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreateencrypteddata(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateEncryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2150,6 +2608,23 @@ impl SecKey {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Decrypts a block of data using a private key and specified algorithm.
+    ///
+    /// Parameters:
+    /// - key: The private key to use to perform the decryption.
+    ///
+    /// - algorithm: The algorithm that was used to encrypt the data in the first place. Use one of the encryption algorithms listed in [`SecKeyAlgorithm`](https://developer.apple.com/documentation/security/seckeyalgorithm). You can use the [`SecKeyIsAlgorithmSupported`](https://developer.apple.com/documentation/security/seckeyisalgorithmsupported(_:_:_:)) function to test that the key is suitable for the algorithm.
+    ///
+    /// - ciphertext: The data, produced with the corresponding public key and a call to the [`SecKeyCreateEncryptedData`](https://developer.apple.com/documentation/security/seckeycreateencrypteddata(_:_:_:_:)) function, that you want to decrypt.
+    ///
+    /// - error: The address of a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object. If an error occurs, this is set to point at an error instance that describes the failure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The decrypted data or `NULL` on failure. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the data’s memory when you are done with it.
+    ///
+    ///
     /// Decrypt a block of ciphertext.
     ///
     /// Parameter `key`: Private key with which to decrypt the data.
@@ -2170,8 +2645,6 @@ impl SecKey {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycreatedecrypteddata(_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCreateDecryptedData")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2194,24 +2667,34 @@ impl SecKey {
     }
 }
 
-/// for KDF (key derivation function).
+/// The dictionary keys used to specify Diffie-Hellman key exchange parameters.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeykeyexchangeparameter?language=objc)
+/// ## Discussion
+///
+/// Use these constants as keys in the dictionary that you input to the [`SecKeyCopyKeyExchangeResult`](https://developer.apple.com/documentation/security/seckeycopykeyexchangeresult(_:_:_:_:_:)) function as a means to refine the process of Diffie-Hellman key exchange.
+///
+///
+/// for KDF (key derivation function).
 // NS_TYPED_ENUM
 pub type SecKeyKeyExchangeParameter = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeykeyexchangeparameter/requestedsize?language=objc)
     pub static kSecKeyKeyExchangeParameterRequestedSize: &'static SecKeyKeyExchangeParameter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeykeyexchangeparameter/sharedinfo?language=objc)
     pub static kSecKeyKeyExchangeParameterSharedInfo: &'static SecKeyKeyExchangeParameter;
 }
 
 #[cfg(feature = "SecBase")]
 impl SecKey {
+    /// Performs the Diffie-Hellman style of key exchange with optional key-derivation steps.
+    ///
+    /// ## Return Value
+    ///
+    /// A data object representing the result of the key exchange operation or `NULL` on failure. In Objective-C, call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to free the data object’s memory when you are done with it.
+    ///
+    ///
     /// Perform Diffie-Hellman style of key exchange operation, optionally with additional key-derivation steps.
     ///
     /// Parameter `algorithm`: One of SecKeyAlgorithm constants suitable to perform this operation.
@@ -2231,8 +2714,6 @@ impl SecKey {
     /// - `parameters` generic must be of the correct type.
     /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeycopykeyexchangeresult(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -2258,6 +2739,7 @@ impl SecKey {
     }
 }
 
+/// The types of operations that you can use a cryptographic key to perform.
 /// Defines types of cryptographic operations available with SecKey instance.
 ///
 ///
@@ -2274,26 +2756,19 @@ impl SecKey {
 ///
 ///
 /// Represents SecKeyCopyKeyExchangeResult()
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyOperationType(pub CFIndex);
 impl SecKeyOperationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/sign?language=objc)
     #[doc(alias = "kSecKeyOperationTypeSign")]
     pub const Sign: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/verify?language=objc)
     #[doc(alias = "kSecKeyOperationTypeVerify")]
     pub const Verify: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/encrypt?language=objc)
     #[doc(alias = "kSecKeyOperationTypeEncrypt")]
     pub const Encrypt: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/decrypt?language=objc)
     #[doc(alias = "kSecKeyOperationTypeDecrypt")]
     pub const Decrypt: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype/keyexchange?language=objc)
     #[doc(alias = "kSecKeyOperationTypeKeyExchange")]
     pub const KeyExchange: Self = Self(4);
 }
@@ -2310,6 +2785,21 @@ unsafe impl RefEncode for SecKeyOperationType {
 
 #[cfg(feature = "SecBase")]
 impl SecKey {
+    /// Returns a Boolean indicating whether a key is suitable for an operation using a certain algorithm.
+    ///
+    /// Parameters:
+    /// - key: The key whose suitability you want to test.
+    ///
+    /// - operation: The operation that you want to perform with the key. Use one of the values from [`SecKeyOperationType`](https://developer.apple.com/documentation/security/seckeyoperationtype).
+    ///
+    /// - algorithm: The algorithm that you want to perform with the key. Use one of the values from [`SecKeyAlgorithm`](https://developer.apple.com/documentation/security/seckeyalgorithm).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean indicating whether the key can be used for the given operation and algorithm.
+    ///
+    ///
     /// Checks whether key supports specified algorithm for specified operation.
     ///
     /// Parameter `key`: Key to query
@@ -2319,8 +2809,6 @@ impl SecKey {
     /// Parameter `algorithm`: Algorithm which is queried
     ///
     /// Returns: True if key supports specified algorithm for specified operation, False otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyisalgorithmsupported(_:_:_:)?language=objc)
     #[doc(alias = "SecKeyIsAlgorithmSupported")]
     #[cfg(feature = "SecBase")]
     #[inline]

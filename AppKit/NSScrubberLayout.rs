@@ -10,6 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The layout of a scrubber item.
+    ///
+    /// ## Overview
+    ///
+    /// A layout attributes object is the model for the layout of a single item in a scrubber control.
+    ///
+    /// If you require model attributes in addition to those provided by this class, create a subclass and add appropriate attributes. Subclasses must implement [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)), [`hash`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/hash) and the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) protocol.
+    ///
+    ///
     /// `NSScrubberLayoutAttributes`describes the layout of a single
     /// `NSScrubber`item.
     ///
@@ -18,8 +27,6 @@ extern_class!(
     /// `NSScrubberLayoutAttributes`must implement
     /// `isEqual:,``hash,`and the
     /// `NSCopying`protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberlayoutattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberLayoutAttributes;
@@ -95,10 +102,15 @@ impl DefaultRetained for NSScrubberLayoutAttributes {
 }
 
 extern_class!(
+    /// An abstract class that describes the layout of items within a scrubber control.
+    ///
+    /// ## Overview
+    ///
+    /// To determine the layout of items in a scrubber, use one of the built-in subclasses ([`NSScrubberProportionalLayout`](https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout) or [`NSScrubberFlowLayout`](https://developer.apple.com/documentation/appkit/nsscrubberflowlayout)), or create a custom subclass to implement your own layout.
+    ///
+    ///
     /// `NSScrubberLayout`is an abstract class that describes the layout of items within a
     /// `NSScrubber`control.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberlayout?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -229,7 +241,13 @@ impl NSScrubberLayout {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate?language=objc)
+    /// A protocol that a scrubber delegate can adopt to provide the size of an item.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol conforms to the [`NSScrubberDelegate`](https://developer.apple.com/documentation/appkit/nsscrubberdelegate) protocol. Create an object that conforms to [`NSScrubberFlowLayoutDelegate`](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate) and assign it to the [`delegate`](https://developer.apple.com/documentation/appkit/nsscrubber/delegate) property of your scrubber object.
+    ///
+    ///
     #[cfg(feature = "NSScrubber")]
     pub unsafe trait NSScrubberFlowLayoutDelegate: NSScrubberDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -246,6 +264,13 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A concrete layout object that arranges items end-to-end in a linear strip.
+    ///
+    /// ## Overview
+    ///
+    /// To set the size of items on a per-item basis, ensure that your scrubber delegate conforms to the [`NSScrubberFlowLayoutDelegate`](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate) protocol, and provides an implementation of the [`scrubber:layout:sizeForItemAtIndex:`](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate/scrubber(_:layout:sizeforitemat:)) method.
+    ///
+    ///
     /// `NSScrubberFlowLayout`is a concrete layout object that arranges items end-to-end in a linear strip. It supports a fixed inter-item spacing and both fixed- and variable-sized items.
     ///
     /// If the associated scrubber's
@@ -255,8 +280,6 @@ extern_class!(
     /// `NSScrubberFlowLayout`will obtain the item size from the delegate. If the delegate does not implement that method, or if the method returns
     /// `NSZeroSize,`it will fall back to using the layout's
     /// `itemSize`property. By default, NSScrubberFlowLayout does not invalidate its layout on selection change, highlight change, or visible rectangle change.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberflowlayout?language=objc)
     #[unsafe(super(NSScrubberLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberFlowLayout;
@@ -326,9 +349,8 @@ impl NSScrubberFlowLayout {
 }
 
 extern_class!(
+    /// A concrete layout object that sizes each item to some fraction of the scrubber’s visible size.
     /// `NSScrubberProportionalLayout`is a concrete layout object that sizes each item to some fraction of the scrubber's visible size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout?language=objc)
     #[unsafe(super(NSScrubberLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScrubberProportionalLayout;

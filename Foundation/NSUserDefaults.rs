@@ -7,30 +7,98 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// The domain consisting of defaults meant to be seen by all applications.
     /// NSGlobalDomain identifies a domain shared between all applications for a given user. NSGlobalDomain is automatically included in all search lists, after the entries for the search list's domain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/globaldomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGlobalDomain: &'static NSString;
 }
 
 extern "C" {
+    /// The domain consisting of defaults parsed from the application’s arguments. These are one or more pairs of the form _-default value_ included in the command-line invocation of the application.
     /// NSArgumentDomain identifies a search list entry containing the commandline arguments the application was launched with, if any. Arguments must be formatted as '-key plistvalue'. NSArgumentDomain is automatically included in all search lists, after forced defaults, but before all other entries. This can be useful for testing purposes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/argumentdomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSArgumentDomain: &'static NSString;
 }
 
 extern "C" {
+    /// The domain consisting of a set of temporary defaults whose values can be set by the application to ensure that searches will always be successful.
     /// NSRegistrationDomain identifies a search list entry containing all defaults set with -registerDefaults:, if any. NSRegistrationDomain is automatically included as the final entry of all search lists.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/registrationdomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSRegistrationDomain: &'static NSString;
 }
 
 extern_class!(
+    /// An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) class provides a programmatic interface for interacting with the defaults system. The defaults system allows an app to customize its behavior to match a user’s preferences. For example, you can allow users to specify their preferred units of measurement or media playback speed. Apps store these preferences by assigning values to a set of parameters in a user’s defaults database. The parameters are referred to as _defaults_ because they’re commonly used to determine an app’s default state at startup or the way it acts by default.
+    ///
+    /// At runtime, you use [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) objects to read the defaults that your app uses from a user’s defaults database. [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) caches the information to avoid having to open the user’s defaults database each time you need a default value. When you set a default value, it’s changed synchronously within your process, and asynchronously to persistent storage and other processes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t try to access the preferences subsystem directly. Modifying preference property list files may result in loss of changes, delay of reflecting changes, and app crashes. To configure preferences, use the `defaults` command-line utility in macOS instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// With the exception of managed devices in educational institutions, a user’s defaults are stored locally on a single device, and persisted for backup and restore. To synchronize preferences and other data across a user’s connected devices, use [`NSUbiquitousKeyValueStore`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore) instead.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Storing Default Objects
+    ///
+    /// The [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) class provides convenience methods for accessing common types such as floats, doubles, integers, Boolean values, and URLs. These methods are described in Setting Default Values.
+    ///
+    /// A default object must be a property list—that is, an instance of (or for collections, a combination of instances of) [`NSData`](https://developer.apple.com/documentation/foundation/nsdata), [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber), [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate), [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), or [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary). If you want to store any other type of object, you should typically archive it to create an instance of [NSData](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169).
+    ///
+    /// Values returned from [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) are immutable, even if you set a mutable object as the value. For example, if you set a mutable string as the value for “MyStringDefault”, the string you later retrieve using the [`stringForKey:`](https://developer.apple.com/documentation/foundation/userdefaults/string(forkey:)) method will be immutable. If you set a mutable string as a default value and later mutate the string, the default value won’t reflect the mutated string value unless you call [`setObject:forKey:`](https://developer.apple.com/documentation/foundation/userdefaults/set(_:forkey:)-8ab6d) again.
+    ///
+    /// For more details, see [Preferences and Settings Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i).
+    ///
+    /// ### Persisting File References
+    ///
+    /// A file URL specifies a location in the file system. If you use the [`setURL:forKey:`](https://developer.apple.com/documentation/foundation/userdefaults/set(_:forkey:)-2bqjt) method to store the location for a particular file and the user moves that file, your app may not be able to locate that file on next launch. To store a reference to a file by its file system identity, you can instead create [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) bookmark data using the [`bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkdata(options:includingresourcevaluesforkeys:relativeto:)) method and persist it using the [`setObject:forKey:`](https://developer.apple.com/documentation/foundation/userdefaults/set(_:forkey:)-8ab6d) method. You can then use the [`URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:`](https://developer.apple.com/documentation/foundation/nsurl/urlbyresolvingbookmarkdata:options:relativetourl:bookmarkdataisstale:error:) method to resolve the bookmark data stored in user defaults to a file URL.
+    ///
+    /// ### Responding to Defaults Changes
+    ///
+    /// You can use key-value observing to be notified of any updates to a particular default value. You can also register as an observer for [`NSUserDefaultsDidChangeNotification`](https://developer.apple.com/documentation/foundation/userdefaults/didchangenotification) on the [`defaultCenter`](https://developer.apple.com/documentation/foundation/notificationcenter/default) notification center in order to be notified of all updates to a local defaults database.
+    ///
+    /// For more details, see [Key-Value Observing Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i) and [Notification Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043i).
+    ///
+    /// ### Using Defaults in Managed Environments
+    ///
+    /// If your app supports managed environments, you can use [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) to determine which preferences are managed by an administrator for the benefit of the user. In a managed environment, such as a computer lab or classroom, an administrator or teacher can configure the systems by establishing a set of default preferences for users. If a preference is managed in this manner (as determined by the methods described in Accessing Managed Environment Keys), your app should prevent users from editing that preference by disabling or hiding controls.
+    ///
+    /// For more details, see [Mobile Device Management Protocol Reference](https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/MobileDeviceManagementProtocolRef/1-Introduction/Introduction.html#//apple_ref/doc/uid/TP40017387).
+    ///
+    /// An app running on a device managed by an educational institution can use the iCloud key-value store to share small amounts of data with other instances of itself on the user’s other devices. For example, a textbook app might store the current page number being read by the user so that other instances of the app can open to the same page when launched.
+    ///
+    /// For more information, see [Storing Preferences in iCloud](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/StoringPreferenceDatainiCloud/StoringPreferenceDatainiCloud.html#//apple_ref/doc/uid/10000059i-CH7) in [Preferences and Settings Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i).
+    ///
+    /// ### Sandbox Considerations
+    ///
+    /// A sandboxed app cannot access or modify the preferences for any other app, with the following exceptions:
+    ///
+    /// - App extensions on macOS and iOS
+    ///
+    /// - Other apps in your application group on macOS
+    ///
+    /// Adding a third-party app’s domain using the [`addSuiteNamed:`](https://developer.apple.com/documentation/foundation/userdefaults/addsuite(named:)) method doesn’t allow your app to access to that app’s preferences. Attempting to access or modify  another app’s preferences doesn’t result in an error; instead, macOS reads and writes files located within your app’s container, rather than the actual preference files for the other application.
+    ///
+    /// ### Thread Safety
+    ///
+    /// The [UserDefaults](https://developer.apple.com/library/archive/samplecode/UserDefaults/Introduction/Intro.html#//apple_ref/doc/uid/DTS40008874-Intro) class is thread-safe.
+    ///
+    ///
     /// NSUserDefaults is a hierarchical persistent interprocess (optionally distributed) key-value store, optimized for storing user settings.
     ///
     /// Hierarchical: NSUserDefaults has a list of places to look for data called the "search list". A search list is referred to by an arbitrary string called the "suite identifier" or "domain identifier". When queried, NSUserDefaults checks each entry of its search list until it finds one that contains the key in question, or has searched the whole list. The list is (note: "current host + current user" preferences are unimplemented on iOS, watchOS, and tvOS, and "any user" preferences are not generally useful for applications on those operating systems):
@@ -59,8 +127,6 @@ extern_class!(
     /// The 'App' CFPreferences functions in CoreFoundation act on the same search lists that NSUserDefaults does.
     ///
     /// NSUserDefaults can be observed using Key-Value Observing for any key stored in it. Using NSKeyValueObservingOptionPrior to observe changes from other processes or devices will behave as though NSKeyValueObservingOptionPrior was not specified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserDefaults;
@@ -362,37 +428,63 @@ impl DefaultRetained for NSUserDefaults {
 }
 
 extern "C" {
-    /// NSUserDefaultsSizeLimitExceededNotification is posted on the main queue when more data is stored in user defaults than is allowed. Currently there is no limit for local user defaults except on tvOS, where a warning notification will be posted at 512kB, and the process terminated at 1MB. For ubiquitous defaults, the limit depends on the logged in iCloud user.
+    /// Posted when more data is stored in user defaults than is allowed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/sizelimitexceedednotification?language=objc)
+    /// ## Discussion
+    ///
+    /// This notification is posted on the main queue.
+    ///
+    /// Currently, there is only a size limit for data stored to local user defaults on tvOS, which posts a warning notification when user defaults storage reaches 512kB in size, and terminates apps when user defaults storage reaches 1MB in size.
+    ///
+    /// For ubiquitous defaults, the limit depends on the logged in iCloud user.
+    ///
+    ///
+    /// NSUserDefaultsSizeLimitExceededNotification is posted on the main queue when more data is stored in user defaults than is allowed. Currently there is no limit for local user defaults except on tvOS, where a warning notification will be posted at 512kB, and the process terminated at 1MB. For ubiquitous defaults, the limit depends on the logged in iCloud user.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUserDefaultsSizeLimitExceededNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// Posted when a cloud default is set, but no iCloud user is logged in.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is posted to the default notification center on the main queue.
+    ///
+    /// This notification doesn’t necessarily indicate an error; ubiquitous defaults set when no iCloud user is logged in are uploaded the next time one is available if configured to do so.
+    ///
+    ///
     /// NSUbiquitousUserDefaultsNoCloudAccountNotification is posted on the main queue to the default notification center when a cloud default is set, but no iCloud user is logged in.
     ///
     /// This is not necessarily an error: ubiquitous defaults set when no iCloud user is logged in will be uploaded the next time one is available if configured to do so.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/nocloudaccountnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// NSUbiquitousUserDefaultsDidChangeAccountsNotification is posted on the main queue to the default notification center when the user changes the primary iCloud account. The keys and values in the local key-value store have been replaced with those from the new account, regardless of the relative timestamps.
+    /// Posted when the user changes the primary iCloud account.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/didchangecloudaccountsnotification?language=objc)
+    /// ## Discussion
+    ///
+    /// This notification is posted to the default notification center on the main queue.The keys and values in the local key-value store are replaced with those from the new account, regardless of the relative timestamps.
+    ///
+    ///
+    /// NSUbiquitousUserDefaultsDidChangeAccountsNotification is posted on the main queue to the default notification center when the user changes the primary iCloud account. The keys and values in the local key-value store have been replaced with those from the new account, regardless of the relative timestamps.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// NSUbiquitousUserDefaultsCompletedInitialSyncNotification is posted on the main queue when ubiquitous defaults finish downloading the first time a device is connected to an iCloud account, and when a user switches their primary iCloud account.
+    /// Posted when ubiquitous defaults finish downloading data, either the first time a device is connected to an iCloud account or when a user switches their primary iCloud account.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/completedinitialcloudsyncnotification?language=objc)
+    /// ## Discussion
+    ///
+    /// This notification is posted on the main queue.
+    ///
+    ///
+    /// NSUbiquitousUserDefaultsCompletedInitialSyncNotification is posted on the main queue when ubiquitous defaults finish downloading the first time a device is connected to an iCloud account, and when a user switches their primary iCloud account.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsCompletedInitialSyncNotification:
@@ -400,190 +492,331 @@ extern "C" {
 }
 
 extern "C" {
-    /// NSUserDefaultsDidChangeNotification is posted whenever any user defaults changed within the current process, but is not posted when ubiquitous defaults change, or when an outside process changes defaults. Using key-value observing to register observers for the specific keys of interest will inform you of all updates, regardless of where they're from.
+    /// Posted when user defaults are changed within the current process.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/didchangenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// This notification is posted on the thread that changes the user defaults. The notification object is the [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) object. The notification doesn’t contain a [`userInfo`](https://developer.apple.com/documentation/foundation/nsnotification/userinfo) dictionary.
+    ///
+    /// This notification isn’t posted when changes are made outside the current process, or when ubiquitous defaults change. You can use key-value observing to register observers for specific keys of interest in order to be notified of all updates, regardless of whether changes are made within or outside the current process.
+    ///
+    ///
+    /// NSUserDefaultsDidChangeNotification is posted whenever any user defaults changed within the current process, but is not posted when ubiquitous defaults change, or when an outside process changes defaults. Using key-value observing to register observers for the specific keys of interest will inform you of all updates, regardless of where they're from.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUserDefaultsDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsweekdaynamearray?language=objc)
+    /// Key for an array of strings that specify the names for the days of the week, affecting strings that use the `%A` format specifier.
+    ///
+    /// ## Discussion
+    ///
+    /// Sunday should be the first day of the week.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSWeekDayNameArray: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshortweekdaynamearray?language=objc)
+    /// Key for an array of strings that specify the abbreviations for the days of the week, affecting strings that use the %a format specifier.
+    ///
+    /// ## Discussion
+    ///
+    /// Sunday should be the first day of the week.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSShortWeekDayNameArray: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmonthnamearray?language=objc)
+    /// Key for the value that specifies the names for the months, affecting strings that use the `%B` format specifier.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSMonthNameArray: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshortmonthnamearray?language=objc)
+    /// Key for an array of strings that specify the abbreviations for the months, affecting strings that use the `%b` format specifier.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSShortMonthNameArray: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimeformatstring?language=objc)
+    /// Key for a format string that specifies how dates with times are printed.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is to use a 12-hour clock.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSTimeFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateformatstring?language=objc)
+    /// Key for the format string that specifies how dates are printed using the date format specifiers.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is to use weekday names with full month names and full years, as in “Saturday, March 24, 2001.”
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSDateFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimedateformatstring?language=objc)
+    /// Key for the value that specifies how dates with times are printed, affecting strings that use the format specifiers `%c`, `%X`, or `%x`.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is to use full month names and days with a 24-hour clock, as in “Sunday, January 01, 2001 23:00:00 Pacific Standard Time.”
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSTimeDateFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshorttimedateformatstring?language=objc)
+    /// Key for a format string that specifies how times and dates are abbreviated.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is to use dashes to separate the day, month, and year and to use a 12-hour clock, as in “31-Jan-01 1:30 PM.”]
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSShortTimeDateFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrencysymbol?language=objc)
+    /// A string that specifies the symbol used to denote currency in this language.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is “$”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSCurrencySymbol: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalseparator?language=objc)
+    /// A string that specifies the decimal separator.
+    ///
+    /// ## Discussion
+    ///
+    /// The decimal separator separates the ones place from the tenths place. The default is “`.`”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSDecimalSeparator: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthousandsseparator?language=objc)
+    /// A string that specifies the separator character for the thousands place of a decimal number.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is a comma.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSThousandsSeparator: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimaldigits?language=objc)
+    /// Strings that identify the decimal digits in addition to or instead of the ASCII digits.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSDecimalDigits: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsampmdesignation?language=objc)
+    /// Key for the value that specifies how the morning and afternoon designations are printed, affecting strings that use the `%p` format specifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The defaults are “AM” and “PM”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSAMPMDesignation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshournamedesignations?language=objc)
+    /// Key for strings that identify the time of day.
+    ///
+    /// ## Discussion
+    ///
+    /// These strings should be bound to an hour. The default is this array of arrays: (0, midnight), (10, morning), (12, noon, lunch), (14, afternoon), (19, dinner).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHourNameDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsyearmonthweekdesignations?language=objc)
+    /// Key for an array of strings that specify the words for year, month, and week in the current locale.
+    ///
+    /// ## Discussion
+    ///
+    /// The defaults are “year,” “month,” and “week.”
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSYearMonthWeekDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsearliertimedesignations?language=objc)
+    /// Key for an array of strings that denote a time in the past.
+    ///
+    /// ## Discussion
+    ///
+    /// These are adjectives that modify values from `NSYearMonthWeekDesignations`. The defaults are “prior,” “last,” “past,” and “ago.”
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSEarlierTimeDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslatertimedesignations?language=objc)
+    /// Key for an array of strings that denote a time in the future.
+    ///
+    /// ## Discussion
+    ///
+    /// Strings in this array are adjectives that modify a value from `NSYearMonthWeekDesignations`.
+    ///
+    /// The default is an array that contains a single string, “next”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSLaterTimeDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthisdaydesignations?language=objc)
+    /// Key for an array of strings that specify what this day is called.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is an array containing two strings, “today” and “now”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSThisDayDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextdaydesignations?language=objc)
+    /// Key for an array of strings that denote the day after today.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is an array that contains a single string, “tomorrow”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSNextDayDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextnextdaydesignations?language=objc)
+    /// Key for an array of strings that denote the day after tomorrow.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is an array that contains a single string, “nextday”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSNextNextDayDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspriordaydesignations?language=objc)
+    /// Key for an array of strings that denote the day before today.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is an array that contains a single string, “yesterday”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSPriorDayDesignations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatetimeordering?language=objc)
+    /// Key for the string that specifies how to use ambiguous numbers in date strings.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify this value as a permutation of the letters M (month), D (day), Y (year), and H (hour). For example, MDYH treats “2/3/01 10” as the 3rd day of February 2001 at 10:00 am, whereas DMYH treats the same value as the 2nd day of March 2001 at 10:00 am. If fewer numbers are specified than are needed, the numbers are prioritized to satisfy day first, then month, and then year. For example, if you supply only the value 12, it means the 12th day of this month in this year because the day must be specified. If you supply “2 12” it means either February 12 or December 2, depending on if the ordering is “MDYH” or “DMYH.”
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSDateTimeOrdering: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternationalcurrencystring?language=objc)
+    /// A string containing a three-letter abbreviation for currency, following the ISO 4217 standard.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSInternationalCurrencyString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshortdateformatstring?language=objc)
+    /// Key for a format string that specifies how dates are abbreviated.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is to separate the day month and year with slashes and to put the day first, as in 31/10/01.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSShortDateFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositivecurrencyformatstring?language=objc)
+    /// A format string that specifies how positive numbers are printed when representing a currency value.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is `$9,999.00`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSPositiveCurrencyFormatString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnegativecurrencyformatstring?language=objc)
+    /// A format string that specifies how negative numbers are printed when representing a currency value.
+    ///
+    /// ## Discussion
+    ///
+    /// The default is `–$9,999.00`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSNegativeCurrencyFormatString: &'static NSString;

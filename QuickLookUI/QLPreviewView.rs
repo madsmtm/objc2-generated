@@ -10,8 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Styles for a Preview View.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewviewstyle?language=objc)
+/// Styles for a Preview View.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -19,18 +18,28 @@ pub struct QLPreviewViewStyle(pub NSUInteger);
 impl QLPreviewViewStyle {
     /// Provides the default preview style for larger, full-sized previews.
     ///
+    /// ## Discussion
+    ///
+    /// The default style for a [`QLPreviewView`](https://developer.apple.com/documentation/quicklookui/qlpreviewview) object. Use this style should for larger, full-size previews.
+    ///
+    ///
+    /// Provides the default preview style for larger, full-sized previews.
+    ///
     /// The default style for a ``QuickLookUI/QLPreviewView`` object. Use this
     /// style should for larger, full-size previews.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewviewstyle/normal?language=objc)
     #[doc(alias = "QLPreviewViewStyleNormal")]
     pub const Normal: Self = Self(0);
     /// Provides a compact preview style suited for smaller previews or inspectors.
     ///
+    /// ## Discussion
+    ///
+    /// A more compact style for a [`QLPreviewView`](https://developer.apple.com/documentation/quicklookui/qlpreviewview) object. Use this style for smaller previews or inspectors.
+    ///
+    ///
+    /// Provides a compact preview style suited for smaller previews or inspectors.
+    ///
     /// A more compact style for a ``QuickLookUI/QLPreviewView`` object. Use this
     /// style for smaller previews or inspectors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewviewstyle/compact?language=objc)
     #[doc(alias = "QLPreviewViewStyleCompact")]
     pub const Compact: Self = Self(1);
 }
@@ -45,8 +54,7 @@ unsafe impl RefEncode for QLPreviewViewStyle {
 
 extern_class!(
     /// A Quick Look preview of an item that you can embed into your view hierarchy.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewview?language=objc)
+    /// A Quick Look preview of an item that you can embed into your view hierarchy.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

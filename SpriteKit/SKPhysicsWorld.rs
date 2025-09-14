@@ -10,7 +10,51 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicscontactdelegate?language=objc)
+    /// Methods your app can implement to respond when physics bodies come into contact.
+    ///
+    /// ## Overview
+    ///
+    /// An object that implements the [`SKPhysicsContactDelegate`](https://developer.apple.com/documentation/spritekit/skphysicscontactdelegate) protocol can respond when two physics bodies with overlapping [`contactTestBitMask`](https://developer.apple.com/documentation/spritekit/skphysicsbody/contacttestbitmask) values are in contact with each other in a physics world. To receive contact messages, you set the [`contactDelegate`](https://developer.apple.com/documentation/spritekit/skphysicsworld/contactdelegate) property of a [`SKPhysicsWorld`](https://developer.apple.com/documentation/spritekit/skphysicsworld) object. The delegate is called when a contact starts or ends.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The physics contact delegate methods are called during the physics simulation step. During that time, the physics world can’t be modified and the behavior of any changes to the physics bodies in the simulation is undefined. If you need to make such changes, set a flag inside [`didBeginContact:`](https://developer.apple.com/documentation/spritekit/skphysicscontactdelegate/didbegin(_:)) or [`didEndContact:`](https://developer.apple.com/documentation/spritekit/skphysicscontactdelegate/didend(_:)) and make changes in response to that flag in the [`update:forScene:`](https://developer.apple.com/documentation/spritekit/skscenedelegate/update(_:for:)) method in a [`SKSceneDelegate`](https://developer.apple.com/documentation/spritekit/skscenedelegate).
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can use the contact delegate to play a sound or execute game logic, such as increasing a player’s score, when a contact event occurs. The following code shows how to display a shockwave effect when two nodes with the name `ball` come into contact. The code only creates the effect when the collision impulse is above a specified threshold:
+    ///
+    /// Listing 1. Creating a shockwave effect when objects come into contact
+    ///
+    /// ```swift
+    /// let shockWaveAction: SKAction = {
+    ///     let growAndFadeAction = SKAction.group([SKAction.scale(to: 50, duration: 0.5),
+    ///                                             SKAction.fadeOut(withDuration: 0.5)])
+    ///     
+    ///     let sequence = SKAction.sequence([growAndFadeAction,
+    ///                                       SKAction.removeFromParent()])
+    ///     
+    ///     return sequence
+    /// }()
+    ///
+    /// func didBegin(_ contact: SKPhysicsContact) {
+    ///     if contact.collisionImpulse > 5 &&
+    ///         contact.bodyA.node?.name == "ball" &&
+    ///         contact.bodyB.node?.name == "ball" {
+    ///         
+    ///         let shockwave = SKShapeNode(circleOfRadius: 1)
+    ///
+    ///         shockwave.position = contact.contactPoint
+    ///         scene.addChild(shockwave)
+    ///         
+    ///         shockwave.run(shockWaveAction)
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
     pub unsafe trait SKPhysicsContactDelegate: NSObjectProtocol {
         #[cfg(feature = "SKPhysicsContact")]
         #[optional]
@@ -27,7 +71,23 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsworld?language=objc)
+    /// The driver of the physics engine in a scene; it exposes the ability for you to configure and query the physics system.
+    ///
+    /// ## Overview
+    ///
+    /// `SKPhysicsWorld` runs the physics engine of a scene and is the place that contact detection occurs. Do not create a `SKPhysicsWorld` directly; the system creates a physics world and adds it to the scene’s [`physicsWorld`](https://developer.apple.com/documentation/spritekit/skscene/physicsworld) property.
+    ///
+    /// The physics world allows you to:
+    ///
+    /// - Set important properties like [`gravity`](https://developer.apple.com/documentation/spritekit/skphysicsworld/gravity)
+    ///
+    /// - Join two physics bodies using an [`SKPhysicsJoint`](https://developer.apple.com/documentation/spritekit/skphysicsjoint)
+    ///
+    /// - Respond to collision between two physics bodies using [`contactDelegate`](https://developer.apple.com/documentation/spritekit/skphysicsworld/contactdelegate)
+    ///
+    /// - Do custom collisions detection or hit testing
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsWorld;

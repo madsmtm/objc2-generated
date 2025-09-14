@@ -7,8 +7,7 @@ use crate::*;
 
 extern_class!(
     /// Styles for a scroll view’s edge effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrolledgeeffectstyle?language=objc)
+    /// Styles for a scroll view’s edge effect.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

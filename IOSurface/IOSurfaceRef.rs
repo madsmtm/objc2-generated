@@ -10,190 +10,298 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceallocsize?language=objc)
+    /// CFNumber of the total allocation size of the buffer including all planes.
+    ///
+    /// ## Discussion
+    ///
+    /// Defaults to BufferHeight * BytesPerRow if not specified. Must be specified for dimensionless buffers.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceAllocSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacewidth?language=objc)
+    /// CFNumber for the width of the IOSurface buffer in pixels.
+    ///
+    /// ## Discussion
+    ///
+    /// Required for planar IOSurfaces.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceheight?language=objc)
+    /// CFNumber for the height of the IOSurface buffer in pixels.
+    ///
+    /// ## Discussion
+    ///
+    /// Required for planar IOSurfaces.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacebytesperrow?language=objc)
+    /// CFNumber for the bytes per row of the buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// If not specified, IOSurface will first calculate the number full elements required on each row (by rounding up), multiplied by the bytes per element for this buffer. That value will then be appropriately aligned.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceBytesPerRow: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacebytesperelement?language=objc)
+    /// CFNumber for the total number of bytes in an element.
+    ///
+    /// ## Discussion
+    ///
+    /// Default to 1.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceBytesPerElement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceelementwidth?language=objc)
+    /// CFNumber for how many pixels wide each element is.
+    ///
+    /// ## Discussion
+    ///
+    /// Defaults to 1.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceElementWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceelementheight?language=objc)
+    /// CFNumber for how many pixels high each element is.
+    ///
+    /// ## Discussion
+    ///
+    /// Defaults to 1.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceElementHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceoffset?language=objc)
+    /// CFNumber for the starting offset into the buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// Defaults to 0.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceOffset: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneinfo?language=objc)
+    /// CFArray describing each image plane in the buffer as a CFDictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The CFArray must have at least one entry.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanewidth?language=objc)
+    /// CFNumber for the width of this plane in pixels.
+    ///
+    /// ## Discussion
+    ///
+    /// Required for image planes.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneheight?language=objc)
+    /// CFNumber for the height of this plane in pixels.
+    ///
+    /// ## Discussion
+    ///
+    /// Required for image planes.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebytesperrow?language=objc)
+    /// CFNumber for the bytes per row of this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If not specified, IOSurface will first calculate the number full elements required on each row (by rounding up), multiplied by the bytes per element for this plane. That value will then be appropriately aligned.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneBytesPerRow: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneoffset?language=objc)
+    /// CFNumber for the offset into the buffer for this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If not specified then IOSurface will lay out each plane sequentially based on the previous plane’s allocation size.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneOffset: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanesize?language=objc)
+    /// CFNumber for the total data size of this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// Defaults to plane height * plane bytes per row if not specified.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebase?language=objc)
+    /// CFNumber for the base offset into the buffer for this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// Optional, defaults to the plane offset
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneBase: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebitsperelement?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneBitsPerElement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebytesperelement?language=objc)
+    /// CFNumber for the bytes per element of this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// Optional, default is 1.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneBytesPerElement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneelementwidth?language=objc)
+    /// CFNumber for the element width of this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// Optional, default is 1.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneElementWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneelementheight?language=objc)
+    /// CFNumber for the element height of this plane.
+    ///
+    /// ## Discussion
+    ///
+    /// Optional, default is 1.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneElementHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecachemode?language=objc)
+    /// CFNumber for the CPU cache mode to be used for the allocation.
+    ///
+    /// ## Discussion
+    ///
+    /// Default is `kIOMapDefaultCache`.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceCacheMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceisglobal?language=objc)
+    /// CFBoolean If true, the IOSurface may be looked up by any task in the system by its ID.
+    ///
+    /// ## Discussion
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Global surfaces are insecure"]
     pub static kIOSurfaceIsGlobal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacepixelformat?language=objc)
+    /// A 32-bit unsigned integer doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd that stores the traditional macOS buffer format.
+    ///
+    /// ## Discussion
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePixelFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacepixelsizecastingallowed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePixelSizeCastingAllowed: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentbitdepths?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneComponentBitDepths: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentbitoffsets?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneComponentBitOffsets: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacename?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceName: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentName(pub i32);
 impl IOSurfaceComponentName {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/unknown?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/alpha?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameAlpha")]
     pub const Alpha: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/red?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameRed")]
     pub const Red: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/green?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameGreen")]
     pub const Green: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/blue?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameBlue")]
     pub const Blue: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/luma?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameLuma")]
     pub const Luma: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/chromared?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameChromaRed")]
     pub const ChromaRed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname/chromablue?language=objc)
     #[doc(alias = "kIOSurfaceComponentNameChromaBlue")]
     pub const ChromaBlue: Self = Self(7);
 }
@@ -213,30 +321,23 @@ unsafe impl Send for IOSurfaceComponentName {}
 unsafe impl Sync for IOSurfaceComponentName {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentnames?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneComponentNames: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentType(pub i32);
 impl IOSurfaceComponentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/unknown?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/unsignedinteger?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeUnsignedInteger")]
     pub const UnsignedInteger: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/signedinteger?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeSignedInteger")]
     pub const SignedInteger: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/float?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeFloat")]
     pub const Float: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype/signednormalized?language=objc)
     #[doc(alias = "kIOSurfaceComponentTypeSignedNormalized")]
     pub const SignedNormalized: Self = Self(4);
 }
@@ -256,27 +357,21 @@ unsafe impl Send for IOSurfaceComponentType {}
 unsafe impl Sync for IOSurfaceComponentType {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponenttypes?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneComponentTypes: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentRange(pub i32);
 impl IOSurfaceComponentRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/unknown?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/fullrange?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeFullRange")]
     pub const FullRange: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/videorange?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeVideoRange")]
     pub const VideoRange: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange/widerange?language=objc)
     #[doc(alias = "kIOSurfaceComponentRangeWideRange")]
     pub const WideRange: Self = Self(3);
 }
@@ -296,30 +391,23 @@ unsafe impl Send for IOSurfaceComponentRange {}
 unsafe impl Sync for IOSurfaceComponentRange {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentranges?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfacePlaneComponentRanges: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceSubsampling(pub i32);
 impl IOSurfaceSubsampling {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsamplingunknown?language=objc)
     #[doc(alias = "kIOSurfaceSubsamplingUnknown")]
     pub const SubsamplingUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsamplingnone?language=objc)
     #[doc(alias = "kIOSurfaceSubsamplingNone")]
     pub const SubsamplingNone: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsampling422?language=objc)
     #[doc(alias = "kIOSurfaceSubsampling422")]
     pub const Subsampling422: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsampling420?language=objc)
     #[doc(alias = "kIOSurfaceSubsampling420")]
     pub const Subsampling420: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling/subsampling411?language=objc)
     #[doc(alias = "kIOSurfaceSubsampling411")]
     pub const Subsampling411: Self = Self(4);
 }
@@ -339,14 +427,12 @@ unsafe impl Send for IOSurfaceSubsampling {}
 unsafe impl Sync for IOSurfaceSubsampling {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacesubsampling?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceSubsampling: &'static CFString;
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for IOSurfaceRef {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegettypeid()?language=objc)
     #[doc(alias = "IOSurfaceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -358,7 +444,7 @@ unsafe impl ConcreteType for IOSurfaceRef {
 }
 
 impl IOSurfaceRef {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecreate(_:)?language=objc)
+    /// Creates a brand new IOSurface object
     ///
     /// # Safety
     ///
@@ -375,7 +461,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelookup(_:)?language=objc)
+    /// Performs an atomic lookup and retain of an IOSurface by its IOSurfaceID.
     #[doc(alias = "IOSurfaceLookup")]
     #[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
     #[inline]
@@ -387,7 +473,7 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetid(_:)?language=objc)
+    /// Retrieves the unique [`IOSurfaceID`](https://developer.apple.com/documentation/iosurface/iosurfaceid) value for an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface).
     #[doc(alias = "IOSurfaceGetID")]
     #[cfg(feature = "IOSurfaceTypes")]
     #[inline]
@@ -398,7 +484,27 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetID(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelock(_:_:_:)?language=objc)
+    /// “Lock” an IOSurface for reading or writing.
+    ///
+    /// ## Discussion
+    ///
+    /// The term “lock” is used loosely in this context, and is used along with the “unlock” information to put a bound on CPU access to the raw [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface) data.
+    ///
+    /// If the seed parameter is non-NULL, [`IOSurfaceLock`](https://developer.apple.com/documentation/iosurface/iosurfacelock(_:_:_:)) will store the buffer’s internal modification seed value at the time you made the lock call. You can compare this value to a value returned previously to determine of the contents of the buffer has been changed since the last lock.
+    ///
+    /// In the case of [`IOSurfaceUnlock`](https://developer.apple.com/documentation/iosurface/iosurfaceunlock(_:_:_:)), the seed value returned will be the internal seed value at the time of the unlock. If you locked the buffer for writing, this value will be incremented as the unlock is performed and the new value will be returned.
+    ///
+    /// See `IOSurface lock flags` for more information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Locking and unlocking an IOSurface is not a particularly cheap operation, so care should be taken to avoid the calls whenever possible. The seed values are particularly useful for keeping a cache of the buffer contents.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -421,7 +527,27 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceLock(self, options, seed) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceunlock(_:_:_:)?language=objc)
+    /// “Unlock” an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface) for reading or writing.
+    ///
+    /// ## Discussion
+    ///
+    /// The term “lock” is used loosely in this context, and is used along with the “unlock” information to put a bound on CPU access to the raw [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface) data.
+    ///
+    /// If the seed parameter is non-NULL, [`IOSurfaceLock`](https://developer.apple.com/documentation/iosurface/iosurfacelock(_:_:_:)) will store the buffer’s internal modification seed value at the time you made the lock call. You can compare this value to a value returned previously to determine of the contents of the buffer has been changed since the last lock.
+    ///
+    /// In the case of [`IOSurfaceUnlock`](https://developer.apple.com/documentation/iosurface/iosurfaceunlock(_:_:_:)), the seed value returned will be the internal seed value at the time of the unlock. If you locked the buffer for writing, this value will be incremented as the unlock is performed and the new value will be returned.
+    ///
+    /// See the kIOSurfaceLock enums for more information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Locking and unlocking an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface) is not a particularly cheap operation, so care should be taken to avoid the calls whenever possible. The seed values are particularly useful for keeping a cache of the buffer contents.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -444,7 +570,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceUnlock(self, options, seed) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetallocsize(_:)?language=objc)
+    /// Returns the total allocation size of the buffer including all planes.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetAllocSize")]
     #[inline]
     pub fn alloc_size(&self) -> usize {
@@ -454,7 +586,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetAllocSize(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetwidth(_:)?language=objc)
+    /// Returns the width of the IOSurface buffer in pixels.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetWidth")]
     #[inline]
     pub fn width(&self) -> usize {
@@ -464,7 +602,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetWidth(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetheight(_:)?language=objc)
+    /// Returns the height of the IOSurface buffer in pixels.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetHeight")]
     #[inline]
     pub fn height(&self) -> usize {
@@ -474,7 +618,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetHeight(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperelement(_:)?language=objc)
+    /// Returns the length (in bytes) of each element in a particular buffer.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetBytesPerElement")]
     #[inline]
     pub fn bytes_per_element(&self) -> usize {
@@ -484,7 +634,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerElement(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperrow(_:)?language=objc)
+    /// Returns the length (in bytes) of each row in a particular buffer.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetBytesPerRow")]
     #[inline]
     pub fn bytes_per_row(&self) -> usize {
@@ -494,7 +650,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerRow(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbaseaddress(_:)?language=objc)
+    /// Returns the address of the first byte of data in a particular buffer.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns NULL if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetBaseAddress")]
     #[inline]
     pub fn base_address(&self) -> NonNull<c_void> {
@@ -505,7 +667,13 @@ impl IOSurfaceRef {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementwidth(_:)?language=objc)
+    /// Returns the width (in pixels) of each element in a particular buffer.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetElementWidth")]
     #[inline]
     pub fn element_width(&self) -> usize {
@@ -515,7 +683,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementWidth(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementheight(_:)?language=objc)
+    /// Returns the height (in pixels) of each element in a particular buffer.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetElementHeight")]
     #[inline]
     pub fn element_height(&self) -> usize {
@@ -525,7 +699,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementHeight(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetpixelformat(_:)?language=objc)
+    /// Returns an unsigned integer that contains the traditional macOS buffer format.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns 0 if buffer is invalid.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetPixelFormat")]
     #[inline]
     pub fn pixel_format(&self) -> OSType {
@@ -535,7 +715,12 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPixelFormat(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetseed(_:)?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// This will return the current seed value of the buffer and is a cheap call to make to see if the contents of the buffer have changed since the last lock/unlock.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetSeed")]
     #[inline]
     pub fn seed(&self) -> u32 {
@@ -545,7 +730,12 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetSeed(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetplanecount(_:)?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Return the number of planes in this buffer. May be 0. Returns 0 for an invalid or NULL buffer pointer.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetPlaneCount")]
     #[inline]
     pub fn plane_count(&self) -> usize {
@@ -555,7 +745,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPlaneCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetwidthofplane(_:_:)?language=objc)
+    /// Returns the width of the specified plane (in pixels).
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetWidthOfPlane")]
     #[inline]
     pub fn width_of_plane(&self, plane_index: usize) -> usize {
@@ -565,7 +761,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetWidthOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetheightofplane(_:_:)?language=objc)
+    /// Returns the height of the specified plane (in pixels).
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetHeightOfPlane")]
     #[inline]
     pub fn height_of_plane(&self, plane_index: usize) -> usize {
@@ -575,7 +777,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetHeightOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperelementofplane(_:_:)?language=objc)
+    /// Returns the size of each element (in bytes) in the specified plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetBytesPerElementOfPlane")]
     #[inline]
     pub fn bytes_per_element_of_plane(&self, plane_index: usize) -> usize {
@@ -588,7 +796,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerElementOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbytesperrowofplane(_:_:)?language=objc)
+    /// Returns the size of each row (in bytes) in the specified plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetBytesPerRowOfPlane")]
     #[inline]
     pub fn bytes_per_row_of_plane(&self, plane_index: usize) -> usize {
@@ -598,7 +812,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBytesPerRowOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbaseaddressofplane(_:_:)?language=objc)
+    /// Returns the address of the first byte of data in the specified plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetBaseAddressOfPlane")]
     #[inline]
     pub fn base_address_of_plane(&self, plane_index: usize) -> NonNull<c_void> {
@@ -612,7 +832,13 @@ impl IOSurfaceRef {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementwidthofplane(_:_:)?language=objc)
+    /// Returns the width (in pixels) of each element in the specified plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetElementWidthOfPlane")]
     #[inline]
     pub fn element_width_of_plane(&self, plane_index: usize) -> usize {
@@ -622,7 +848,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementWidthOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetelementheightofplane(_:_:)?language=objc)
+    /// Returns the height (in pixels) of each element in the specified plane.
+    ///
+    /// ## Discussion
+    ///
+    /// If the planeIndex is greater than or equal to the plane count of the IOSurface, zero is returned…. with one exception. If this IOSurface has zero planes and a planeIndex of zero is passed in, the routines function just like the non-planar APIs. This is to allow higher level code to treat planar and non-planar buffers is a more uniform fashion.
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetElementHeightOfPlane")]
     #[inline]
     pub fn element_height_of_plane(&self, plane_index: usize) -> usize {
@@ -633,7 +865,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetElementHeightOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetnumberofcomponentsofplane(_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetNumberOfComponentsOfPlane")]
     #[inline]
     pub fn number_of_components_of_plane(&self, plane_index: usize) -> usize {
@@ -646,7 +877,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetNumberOfComponentsOfPlane(self, plane_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetnameofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetNameOfComponentOfPlane")]
     #[inline]
     pub fn name_of_component_of_plane(
@@ -664,7 +894,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetNameOfComponentOfPlane(self, plane_index, component_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegettypeofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetTypeOfComponentOfPlane")]
     #[inline]
     pub fn type_of_component_of_plane(
@@ -682,7 +911,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetTypeOfComponentOfPlane(self, plane_index, component_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetrangeofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetRangeOfComponentOfPlane")]
     #[inline]
     pub fn range_of_component_of_plane(
@@ -700,7 +928,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetRangeOfComponentOfPlane(self, plane_index, component_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbitdepthofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBitDepthOfComponentOfPlane")]
     #[inline]
     pub fn bit_depth_of_component_of_plane(
@@ -718,7 +945,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBitDepthOfComponentOfPlane(self, plane_index, component_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetbitoffsetofcomponentofplane(_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceGetBitOffsetOfComponentOfPlane")]
     #[inline]
     pub fn bit_offset_of_component_of_plane(
@@ -736,7 +962,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetBitOffsetOfComponentOfPlane(self, plane_index, component_index) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetsubsampling(_:)?language=objc)
     #[doc(alias = "IOSurfaceGetSubsampling")]
     #[inline]
     pub fn subsampling(&self) -> IOSurfaceSubsampling {
@@ -748,25 +973,36 @@ impl IOSurfaceRef {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecolorspace?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceiccprofile?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceICCProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecontentheadroom?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kIOSurfaceContentHeadroom: &'static CFString;
 }
 
 impl IOSurfaceRef {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetvalue(_:_:_:)?language=objc)
+    /// Sets a value in the dictionary associated with the buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This call lets you attach CF property list types to an IOSurface buffer. This call is expensive (it must essentially serialize the data into the kernel) and thus should be avoided whenever possible.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This function cannot be used to change the underlying surface properties.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -781,7 +1017,21 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceSetValue(self, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecopyvalue(_:_:)?language=objc)
+    /// Retrieves a value from the dictionary associated with the buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This call lets you attach CF property list types to an IOSurface buffer. This call is expensive (it must essentially serialize the data into the kernel) and thus should be avoided whenever possible.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This function cannot be used to change the underlying surface properties.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "IOSurfaceCopyValue")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -794,7 +1044,21 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceremovevalue(_:_:)?language=objc)
+    /// Deletes a value in the dictionary associated with the buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This call lets you attach CF property list types to an IOSurface buffer. This call is expensive (it must essentially serialize the data into the kernel) and thus should be avoided whenever possible.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This function cannot be used to change the underlying surface properties.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "IOSurfaceRemoveValue")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -805,8 +1069,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceRemoveValue(self, key) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetvalues(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `keys_and_values` generic must be of the correct type.
@@ -821,7 +1083,6 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceSetValues(self, keys_and_values) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecopyallvalues(_:)?language=objc)
     #[doc(alias = "IOSurfaceCopyAllValues")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -833,7 +1094,6 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceremoveallvalues(_:)?language=objc)
     #[doc(alias = "IOSurfaceRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(&self) {
@@ -843,7 +1103,21 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceRemoveAllValues(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecreatemachport(_:)?language=objc)
+    /// Returns a mach_port_t that holds a reference to the IOSurface.
+    ///
+    /// ## Discussion
+    ///
+    /// This is useful if you need to atomically or securely pass an IOSurface to another task without making the surface global to the entire system. The returned port must be deallocated with mach_port_deallocate or the equivalent.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Any live mach ports created from an IOSurfaceRef implicitly increase the IOSurface’s global use count by one until the port is deleted.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "IOSurfaceCreateMachPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -854,7 +1128,21 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceCreateMachPort(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelookupfrommachport(_:)?language=objc)
+    /// Recreates an IOSurfaceRef from a mach port.
+    ///
+    /// ## Discussion
+    ///
+    /// This call takes a mach_port_t created via IOSurfaceCreatePort() and recreates an IOSurfaceRef from it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This call does NOT destroy the port.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "IOSurfaceLookupFromMachPort")]
     #[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
     #[inline]
@@ -868,7 +1156,29 @@ impl IOSurfaceRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetpropertymaximum(_:)?language=objc)
+    /// Returns the maximum value for a given property that is guaranteed to be compatible with all of the current devices (GPUs, etc.) in the system.
+    ///
+    /// ## Discussion
+    ///
+    /// The most important values to obtain are:
+    ///
+    /// - `kIOSurfaceBytesPerRow`
+    ///
+    /// - `kIOSurfaceWidth`
+    ///
+    /// - `kIOSurfaceHeight`
+    ///
+    /// - `kIOSurfacePlaneBytesPerRow`
+    ///
+    /// - `kIOSurfacePlaneWidth`
+    ///
+    /// - `kIOSurfacePlaneHeight`
+    ///
+    /// For the width and height properties, the maximum values are the largest that are guaranteed to work for both reading and writing. In OpenGL terms this translates into the largest size that will work for both textures and render targets.
+    ///
+    /// This function returns 0 for properties that have no predefined limit or where the concept of a limit would be considered invalid (such as `kIOSurfacePixelFormat`).
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetPropertyMaximum")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -879,7 +1189,23 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPropertyMaximum(property) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetpropertyalignment(_:)?language=objc)
+    /// Returns the alignment requirements for a property (if any).
+    ///
+    /// ## Discussion
+    ///
+    /// If the property has no alignment requirement then this function returns 1. The following properties should always be aligned if you choose to calculate them yourself:
+    ///
+    /// - `kIOSurfaceBytesPerRow`
+    ///
+    /// - `kIOSurfaceOffset`
+    ///
+    /// - `kIOSurfacePlaneBase`
+    ///
+    /// - `kIOSurfacePlaneOffset`
+    ///
+    /// - `kIOSurfacePlaneBytesPerRow`
+    ///
+    ///
     #[doc(alias = "IOSurfaceGetPropertyAlignment")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -890,7 +1216,13 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetPropertyAlignment(property) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacealignproperty(_:_:)?language=objc)
+    /// Returns the smallest aligned value greater than or equal to the specified value.
+    ///
+    /// ## Discussion
+    ///
+    /// For properties with no alignment requirements, the original value is returned.
+    ///
+    ///
     #[doc(alias = "IOSurfaceAlignProperty")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -901,7 +1233,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceAlignProperty(property, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceincrementusecount(_:)?language=objc)
+    /// Increments the per-process usage count for an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface).
     #[doc(alias = "IOSurfaceIncrementUseCount")]
     #[inline]
     pub fn increment_use_count(&self) {
@@ -911,7 +1243,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceIncrementUseCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacedecrementusecount(_:)?language=objc)
+    /// Decrements the per-process usage count for an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface).
     #[doc(alias = "IOSurfaceDecrementUseCount")]
     #[inline]
     pub fn decrement_use_count(&self) {
@@ -921,7 +1253,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceDecrementUseCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacegetusecount(_:)?language=objc)
+    /// Returns the per-process usage count for an [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface).
     #[doc(alias = "IOSurfaceGetUseCount")]
     #[inline]
     pub fn use_count(&self) -> i32 {
@@ -931,7 +1263,7 @@ impl IOSurfaceRef {
         unsafe { IOSurfaceGetUseCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceisinuse(_:)?language=objc)
+    /// Returns true of an IOSurface is in use by any process in the system, otherwise false.
     #[doc(alias = "IOSurfaceIsInUse")]
     #[inline]
     pub fn is_in_use(&self) -> bool {
@@ -942,7 +1274,6 @@ impl IOSurfaceRef {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceallowspixelsizecasting(_:)?language=objc)
     #[doc(alias = "IOSurfaceAllowsPixelSizeCasting")]
     #[inline]
     pub fn allows_pixel_size_casting(&self) -> bool {
@@ -953,8 +1284,6 @@ impl IOSurfaceRef {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetpurgeable(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `old_state` must be a valid pointer or null.
@@ -973,25 +1302,19 @@ impl IOSurfaceRef {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceMemoryLedgerTags(pub c_int);
 impl IOSurfaceMemoryLedgerTags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/default?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagDefault")]
     pub const Default: Self = Self(0x00000001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/network?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagNetwork")]
     pub const Network: Self = Self(0x00000002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/media?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagMedia")]
     pub const Media: Self = Self(0x00000003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/graphics?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagGraphics")]
     pub const Graphics: Self = Self(0x00000004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgertags/neural?language=objc)
     #[doc(alias = "kIOSurfaceMemoryLedgerTagNeural")]
     pub const Neural: Self = Self(0x00000005);
 }
@@ -1010,14 +1333,12 @@ unsafe impl Send for IOSurfaceMemoryLedgerTags {}
 
 unsafe impl Sync for IOSurfaceMemoryLedgerTags {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgerflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceMemoryLedgerFlags(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceMemoryLedgerFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgerflags/nofootprint?language=objc)
         #[doc(alias = "kIOSurfaceMemoryLedgerFlagNoFootprint")]
         const NoFootprint = 1<<0;
     }
@@ -1038,7 +1359,6 @@ unsafe impl Send for IOSurfaceMemoryLedgerFlags {}
 unsafe impl Sync for IOSurfaceMemoryLedgerFlags {}
 
 impl IOSurfaceRef {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesetownershipidentity(_:_:_:_:)?language=objc)
     #[doc(alias = "IOSurfaceSetOwnershipIdentity")]
     #[cfg(feature = "libc")]
     #[inline]

@@ -6,34 +6,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define types of badges for display.
+///
+/// ## Overview
+///
+/// The predefined strings that display are localizable and automatically handle any pluralization of [`itemCount`](https://developer.apple.com/documentation/appkit/nsmenuitembadge/itemcount).
+///
+///
 /// The badge type is used to specify one of the pre-defined or custom
 /// string portions of a menu item badge, ensuring appropriate localization
 /// and pluralization behaviors automatically when using a pre-defined type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuItemBadgeType(pub NSInteger);
 impl NSMenuItemBadgeType {
+    /// A badge with no string portion.
     /// The badge should have no string portion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/none?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeNone")]
     pub const None: Self = Self(0);
+    /// A badge representing the number of available updates.
     /// The badge represents the number of available updates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/updates?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeUpdates")]
     pub const Updates: Self = Self(1);
+    /// A badge representing the number of new items.
     /// The badge represents the number of new items.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/newitems?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeNewItems")]
     pub const NewItems: Self = Self(2);
+    /// A badge representing the number of alerts.
     /// The badge represents the number of alerts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype/alerts?language=objc)
     #[doc(alias = "NSMenuItemBadgeTypeAlerts")]
     pub const Alerts: Self = Self(3);
 }
@@ -47,10 +48,42 @@ unsafe impl RefEncode for NSMenuItemBadgeType {
 }
 
 extern_class!(
+    /// A control that provides additional quantitative information specific to a menu item, such as the number of available updates.
+    ///
+    /// ## Overview
+    ///
+    /// You create a badge using an initializer or a predefined factory method, and then you assign it to the [`badge`](https://developer.apple.com/documentation/appkit/nsmenuitem/badge) property of a [`NSMenuItem`](https://developer.apple.com/documentation/appkit/nsmenuitem) for display.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0ea05cdbb64a1b5f3ff299264ca887a0/media-4304515~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/23a4abb17eb26672bddbe46fb5b592dd/media-4304515%402x.png 2x" />
+    ///     <img alt="A menu containing five menu items with each menu item displaying a different style of badge. A NSMenuItem callout points to a menu item in the menu. A NSMenuItemBadge call out points to the badge that displays to the right of the menu item." src="https://docs-assets.developer.apple.com/published/23a4abb17eb26672bddbe46fb5b592dd/media-4304515%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For example, to display a badge with a count, use the [`initWithCount:`](https://developer.apple.com/documentation/appkit/nsmenuitembadge/init(count:)) initalizer, passing in the value of `count` as an `Int`.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let menu = NSMenu()", "", "// Create a menu item.", "let menuItem = NSMenuItem(title: \"Messages\", action: nil, keyEquivalent: \"\")", "", "// Set the badge to display \"6\".", "menuItem.badge = NSMenuItemBadge(count: 6)", "", "// Add the item to the menu.", "menu.addItem(menuItem)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSMenu *menu = [[NSMenu alloc] init];", "", "// Create a menu item.", "NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@\"Messages\" action:nil keyEquivalent:@\"\"];", "", "// Set the badge to display \"6\".", "menuItem.badge = [[NSMenuItemBadge alloc] initWithCount:6];", "", "// Add the item to the menu.", "[menu addItem:menuItem];"], metadata: None }] }] })
+    /// To display a badge with a custom string, use the [`initWithString:`](https://developer.apple.com/documentation/appkit/nsmenuitembadge/init(string:)) initializer, passing in the string you want to display.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let updateCount = 3", "let menu = NSMenu()", "", "// Create a menu item.", "let menuItem = NSMenuItem(title: \"Changes\", action: nil, keyEquivalent: \"\")", "", "// Set the badge to display \"3 changes\".", "menuItem.badge = NSMenuItemBadge(string: \"\\(updateCount) changes\")", "", "// Add the item to the menu.", "menu.addItem(menuItem)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSInteger updateCount = 3;", "NSMenu *menu = [[NSMenu alloc] init];", "", "// Create a menu item.", "NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:@\"Changes\" action:nil keyEquivalent:@\"\"];", "", "// Set the badge to display \"3 changes\".", "menuItem.badge = [[NSMenuItemBadge alloc] initWithString:[NSString stringWithFormat:@\"%ld changes\", (long)updateCount]];", "", "// Add the item to the menu.", "[menu addItem:menuItem];"], metadata: None }] }] })
+    /// To display a badge using a predefined [`NSMenuItemBadgeType`](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype), use a factory method such as [`newItemsWithCount:`](https://developer.apple.com/documentation/appkit/nsmenuitembadge/newitems(count:)), passing in the `count` of the badge to display.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let menu = NSMenu()", "", "// Add a new items style badge.", "let newItemsItem = NSMenuItem(title: \"New Items\", action: nil, keyEquivalent: \"\")", "newItemsItem.badge = NSMenuItemBadge.newItems(count: 3)", "menu.addItem(newItemsItem)", "", "// Add an alerts style badge.", "let alertsItem = NSMenuItem(title: \"Alerts\", action: nil, keyEquivalent: \"\")", "alertsItem.badge = NSMenuItemBadge.alerts(count: 4)", "menu.addItem(alertsItem)", "", "// Add an update style badge.", "let updatesItem = NSMenuItem(title: \"Updates\", action: nil, keyEquivalent: \"\")", "updatesItem.badge = NSMenuItemBadge.updates(count: 5)", "menu.addItem(updatesItem)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSMenu *menu = [[NSMenu alloc] init];", "", "// Add a new items style badge.", "NSMenuItem *newItemsItem = [[NSMenuItem alloc] initWithTitle:@\"New Items\" action:nil keyEquivalent:@\"\"];", "newItemsItem.badge = [NSMenuItemBadge newItemsWithCount:3];", "[menu addItem:newItemsItem];", "", "// Add an alerts style badge.", "NSMenuItem *alertsItem = [[NSMenuItem alloc] initWithTitle:@\"New Items\" action:nil keyEquivalent:@\"\"];", "alertsItem.badge = [NSMenuItemBadge alertsWithCount:4];", "[menu addItem:alertsItem];", "", "// Add an update style badge.", "NSMenuItem *updatesItem = [[NSMenuItem alloc] initWithTitle:@\"Updates\" action:nil keyEquivalent:@\"\"];", "updatesItem.badge = [NSMenuItemBadge updatesWithCount:5];", "[menu addItem:updatesItem];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you use one of the predefined badge types, the system localizes and pluralizes the string for you. If you create your own custom badge string, you need to localize and pluralize that string yourself. For more information on how to localize and pluralize text, see [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The default value of this property is `nil`.
+    ///
+    ///
     /// A badge used to provide additional quantitative information specific
     /// to the menu item, such as the number of available updates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMenuItemBadge;

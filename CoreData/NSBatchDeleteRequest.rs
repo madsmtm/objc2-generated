@@ -8,7 +8,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleterequest?language=objc)
+    /// A request that deletes objects in the SQLite persistent store without loading them into memory.
+    ///
+    /// ## Overview
+    ///
+    /// `NSBatchDeleteRequest` — available only when using a SQLite persistent store — deletes managed objects at the SQL level of the persistent store. This request is quicker and more efficient than using a context to fetch a large number of objects into memory, delete them, and then save those deletions back to the store. You create a request using an instance of [`NSFetchRequest`](https://developer.apple.com/documentation/coredata/nsfetchrequest) that identifies the objects to delete. Alternatively, you can provide an array of identifiers from specific objects of the same entity type; mixing entity types results in an error when you execute the request.
+    ///
+    /// [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) doesn’t automatically merge a request’s deletions because they happen at the SQL level. Subsequently, you must remove any deleted objects from memory after the request finishes. To determine the objects a request deletes, configure it to return the [`NSManagedObjectID`](https://developer.apple.com/documentation/coredata/nsmanagedobjectid) of each deleted object and use those identifiers to update your contexts, as the following example shows:
+    ///
+    /// ```swift
+    /// // Configure the request to return the IDs of the objects it deletes.
+    /// request.resultType = .resultTypeObjectIDs
+    ///
+    /// do {
+    ///     // Execute the request.
+    ///     let deleteResult = try context.execute(request) as? NSBatchDeleteResult
+    ///     
+    ///     // Extract the IDs of the deleted managed objectss from the request's result.
+    ///     if let objectIDs = deleteResult?.result as? [NSManagedObjectID] {
+    ///         
+    ///         // Merge the deletions into the app's managed object context.
+    ///         NSManagedObjectContext.mergeChanges(
+    ///             fromRemoteContextSave: [NSDeletedObjectsKey: objectIDs],
+    ///             into: [context]
+    ///         )
+    ///     }
+    /// } catch {
+    ///     // Handle any thrown errors.
+    /// }
+    /// ```
+    ///
+    /// Alternatively, you can use persistent history tracking to make your contexts aware of changes that happen at the persistent store level. For more information, see [Consuming relevant store changes](https://developer.apple.com/documentation/coredata/consuming-relevant-store-changes).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Ensure that a request’s changes don’t violate the validation rules in your data model beyond basic delete rules, such as reducing a relationship count below the specified minimum. The Deny delete rule isn’t compatible with `NSBatchDeleteRequest`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]

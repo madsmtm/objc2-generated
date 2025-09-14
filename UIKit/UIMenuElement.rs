@@ -7,19 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state?language=objc)
+/// Constants that indicate the state of an action- or command-based menu element.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementState(pub NSInteger);
 impl UIMenuElementState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state/off?language=objc)
+    /// A constant indicating the menu element is in the “off” state.
     #[doc(alias = "UIMenuElementStateOff")]
     pub const Off: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state/on?language=objc)
+    /// A constant indicating the menu element is in the “on” state.
     #[doc(alias = "UIMenuElementStateOn")]
     pub const On: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state/mixed?language=objc)
+    /// A constant indicating the menu element is in the “mixed” state.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`UIMenuElementStateMixed`](https://developer.apple.com/documentation/uikit/uimenuelement/state/mixed) state is one that’s neither “on” or “off”. The menu system displays a mixed-mark, such as a checkmark or hyphen, next to the menu element.
+    ///
+    ///
     #[doc(alias = "UIMenuElementStateMixed")]
     pub const Mixed: Self = Self(2);
 }
@@ -32,27 +38,52 @@ unsafe impl RefEncode for UIMenuElementState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes?language=objc)
+/// Attributes that determine the style of the menu element.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIMenuElementAttributes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/disabled?language=objc)
+/// An attribute indicating the disabled style.
+///
+/// ## Discussion
+///
+/// When you use this attribute, the user can’t select the menu element.
+///
+///
         #[doc(alias = "UIMenuElementAttributesDisabled")]
         const Disabled = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/destructive?language=objc)
+/// An attribute indicating the destructive style.
+///
+/// ## Discussion
+///
+/// When you use this attribute, the menu system displays the menu element in a more prominent style, such as with red text.
+///
+///
         #[doc(alias = "UIMenuElementAttributesDestructive")]
         const Destructive = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/hidden?language=objc)
+/// An attribute indicating the hidden style.
+///
+/// ## Discussion
+///
+/// When you use this attribute, the menu system doesn’t display the menu element. However, if the menu element is a [`UIKeyCommand`](https://developer.apple.com/documentation/uikit/uikeycommand) object, the user can still select it using the keyboard shortcut specified by the key command object.
+///
+///
         #[doc(alias = "UIMenuElementAttributesHidden")]
         const Hidden = 1<<2;
+/// An attribute indicating that the menu remains presented after firing the element’s action instead of dismissing.
+///
+/// ## Discussion
+///
+/// Use this attribute to allow a person to perform a menu action multiple times without dismissing the menu in between.
+///
+/// This attribute doesn’t have an effect if you build your app with Mac Catalyst.
+///
+///
 /// Indicates that the menu should remain presented after firing
 /// the element's action rather than dismissing as it normally does.
 /// This attribute has no effect on Mac Catalyst.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes/keepsmenupresented?language=objc)
         #[doc(alias = "UIMenuElementAttributesKeepsMenuPresented")]
         const KeepsMenuPresented = 1<<3;
     }
@@ -67,26 +98,22 @@ unsafe impl RefEncode for UIMenuElementAttributes {
 }
 
 /// Possible repeat behaviors for a menu element.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior?language=objc)
+/// Possible repeat behaviors for a menu element.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementRepeatBehavior(pub NSInteger);
 impl UIMenuElementRepeatBehavior {
     /// Automatically uses the appropriate repeat behavior for this element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior/automatic?language=objc)
+    /// Automatically uses the appropriate repeat behavior for this element.
     #[doc(alias = "UIMenuElementRepeatBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The element should be allowed to repeat.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior/repeatable?language=objc)
+    /// The element should be allowed to repeat.
     #[doc(alias = "UIMenuElementRepeatBehaviorRepeatable")]
     pub const Repeatable: Self = Self(1);
     /// The element should not be repeatable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior/nonrepeatable?language=objc)
+    /// The element should not be repeatable.
     #[doc(alias = "UIMenuElementRepeatBehaviorNonRepeatable")]
     pub const NonRepeatable: Self = Self(2);
 }
@@ -100,7 +127,13 @@ unsafe impl RefEncode for UIMenuElementRepeatBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement?language=objc)
+    /// An object representing a menu, action, or command.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIMenuElement`](https://developer.apple.com/documentation/uikit/uimenuelement) defines the behavior shared by all menus, actions, and commands. You don’t create [`UIMenuElement`](https://developer.apple.com/documentation/uikit/uimenuelement) objects directly. Instead, you create an appropriate object that inherits from this class, such as [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu), [`UIAction`](https://developer.apple.com/documentation/uikit/uiaction), or [`UICommand`](https://developer.apple.com/documentation/uikit/uicommand).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

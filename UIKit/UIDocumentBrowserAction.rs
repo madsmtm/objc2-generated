@@ -7,17 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct?language=objc)
+/// Values that determine where the action can appear in the document browser.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserActionAvailability(pub NSInteger);
 bitflags::bitflags! {
     impl UIDocumentBrowserActionAvailability: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct/menu?language=objc)
+/// An action that appears in the Edit Menu when the user long presses a supported document.
         #[doc(alias = "UIDocumentBrowserActionAvailabilityMenu")]
         const Menu = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct/navigationbar?language=objc)
+/// An action that appears in the navigation bar when the user puts the document browser in Select mode.
+///
+/// ## Discussion
+///
+/// The system enables this action as soon as the user makes a valid selection, as determined by the [`supportedContentTypes`](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/supportedcontenttypes) and [`supportsMultipleItems`](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/supportsmultipleitems) properties.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  In Mac apps built with Mac Catalyst, the system shows [`UIDocumentBrowserActionAvailabilityNavigationBar`](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct/navigationbar) actions as [`UIDocumentBrowserActionAvailabilityMenu`](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction/availability-swift.struct/menu) actions.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "UIDocumentBrowserActionAvailabilityNavigationBar")]
         const NavigationBar = 1<<1;
     }
@@ -32,9 +46,22 @@ unsafe impl RefEncode for UIDocumentBrowserActionAvailability {
 }
 
 extern_class!(
-    /// UIDocumentBrowserAction instances are custom, contextual actions that are presented to the user by a UIDocumentBrowserViewController.
+    /// A custom action that you can create and add to a document browser’s Edit menu or navigation bar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction?language=objc)
+    /// ## Overview
+    ///
+    /// By default, the system provides a number of standard actions (copy, move, rename, delete, and share). To add custom actions, assign an array of [`UIDocumentBrowserAction`](https://developer.apple.com/documentation/uikit/uidocumentbrowseraction) objects to the browser’s [`customActions`](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/customactions) property.
+    ///
+    /// Document browser actions can appear in either the navigation bar or the Edit menu.
+    ///
+    /// - _Navigation bar_ actions appear in the navigation bar when the user places the browser into the Select mode.
+    ///
+    /// - _Menu_ actions appear in the Edit Menu when the user long presses on a document or folder.
+    ///
+    /// When triggered, these actions are passed the URLs of the currently selected items.
+    ///
+    ///
+    /// UIDocumentBrowserAction instances are custom, contextual actions that are presented to the user by a UIDocumentBrowserViewController.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDocumentBrowserAction;

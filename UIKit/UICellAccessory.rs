@@ -9,25 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate?language=objc)
+/// Constants that describe the cell-editing states that the accessory appears in.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellAccessoryDisplayedState(pub NSInteger);
 impl UICellAccessoryDisplayedState {
+    /// The accessory always displays.
     /// The accessory is always displayed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate/uicellaccessorydisplayedalways?language=objc)
     #[doc(alias = "UICellAccessoryDisplayedAlways")]
     pub const Always: Self = Self(0);
+    /// The accessory displays only when the cell is in editing mode.
     /// The accessory is displayed only when the cell is editing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate/uicellaccessorydisplayedwhenediting?language=objc)
     #[doc(alias = "UICellAccessoryDisplayedWhenEditing")]
     pub const WhenEditing: Self = Self(1);
+    /// The accessory displays only when the cell isn’t in editing mode.
     /// The accessory is displayed only when the cell is not editing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate/uicellaccessorydisplayedwhennotediting?language=objc)
     #[doc(alias = "UICellAccessoryDisplayedWhenNotEditing")]
     pub const WhenNotEditing: Self = Self(2);
 }
@@ -41,18 +38,45 @@ unsafe impl RefEncode for UICellAccessoryDisplayedState {
 }
 
 extern "C" {
+    /// The system standard layout dimension for accessories.
     /// A special constant that can be set to the `reservedLayoutWidth` property. This requests the
     /// system standard layout width.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorystandarddimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICellAccessoryStandardDimension: CGFloat;
 }
 
 extern_class!(
-    /// Abstract base class. Do not instantiate directly.
+    /// An accessory in a collection view list cell.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessory-c.class?language=objc)
+    /// ## Overview
+    ///
+    /// A cell accessory is a visual element that you can add to a list cell ([`UICollectionViewListCell`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell)). You use a cell accessory as a visual indicator or to let a user perform a cell-specific action like selecting, reordering, or deleting the cell. A cell accessory appears either on the leading or the trailing edge of a cell, outside of the cell’s content view.
+    ///
+    /// UIKit defines a set of standard system cell accessories. System accessories have default system-defined appearances, but you can make some customizations to them, like setting a custom tint color. You can’t customize the placement of system accessories. If you want additional customization, you can create a custom accessory with [`UICellAccessoryCustomView`](https://developer.apple.com/documentation/uikit/uicellaccessorycustomview).
+    ///
+    /// You add accessories to a list cell by setting its [`accessories`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell/accessories-88j0f) array.
+    ///
+    /// ```objc
+    /// UICellAccessoryDisclosureIndicator *disclosure = [[UICellAccessoryDisclosureIndicator alloc] init];
+    /// [disclosure setTintColor:[UIColor systemGrayColor]];
+    ///
+    /// [cell setAccessories: @[ [[UICellAccessoryCheckmark alloc] init],
+    ///                          disclosure,
+    ///                          [[UICellAccessoryDelete alloc] init],
+    ///                          [[UICellAccessoryReorder alloc] init]
+    ///                       ]];
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system throws an exception if you include more than one instance of any system accessory. You can include multiple custom accessories.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Abstract base class. Do not instantiate directly.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -155,9 +179,16 @@ impl UICellAccessory {
 }
 
 extern_class!(
-    /// A disclosure chevron that points in the trailing direction.
+    /// The disclosure indicator system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisclosureindicator?language=objc)
+    /// ## Overview
+    ///
+    /// A disclosure indicator is a chevron that points in the trailing direction. This accessory appears on the trailing edge of the cell.
+    ///
+    /// Use this cell accessory to indicate that users can tap on the cell to disclose additional content.
+    ///
+    ///
+    /// A disclosure chevron that points in the trailing direction.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -217,9 +248,14 @@ impl UICellAccessoryDisclosureIndicator {
 }
 
 extern_class!(
-    /// A detail (info) button.
+    /// The detail system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydetail?language=objc)
+    /// ## Overview
+    ///
+    /// A detail cell accessory displays as the system information button. This accessory appears on the trailing edge of the cell.
+    ///
+    ///
+    /// A detail (info) button.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -293,9 +329,14 @@ impl UICellAccessoryDetail {
 }
 
 extern_class!(
-    /// A checkmark with default green color.
+    /// The checkmark system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorycheckmark?language=objc)
+    /// ## Overview
+    ///
+    /// A checkmark accessory is a checkmark with the default system green color. This accessory appears on the trailing edge of the cell.
+    ///
+    ///
+    /// A checkmark with default green color.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -355,9 +396,14 @@ impl UICellAccessoryCheckmark {
 }
 
 extern_class!(
-    /// A delete control (minus sign inside a circle) with default red color.
+    /// The delete system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydelete?language=objc)
+    /// ## Overview
+    ///
+    /// A delete accessory is a minus sign inside of a circle with the default system red color. This accessory appears on the leading edge of the cell.
+    ///
+    ///
+    /// A delete control (minus sign inside a circle) with default red color.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -443,9 +489,14 @@ impl UICellAccessoryDelete {
 }
 
 extern_class!(
-    /// An insert control (plus sign inside a circle) with default green color.
+    /// The insert system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryinsert?language=objc)
+    /// ## Overview
+    ///
+    /// An insert accessory is a plus sign inside of a circle with the default system green color. This accessory appears on the leading edge of the cell.
+    ///
+    ///
+    /// An insert control (plus sign inside a circle) with default green color.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -531,10 +582,17 @@ impl UICellAccessoryInsert {
 }
 
 extern_class!(
+    /// The reorder system accessory.
+    ///
+    /// ## Overview
+    ///
+    /// A reorder accessory is three horizontal lines with the default system gray color. This accessory appears on the trailing edge of the cell.
+    ///
+    /// If your collection view supports interactive reordering of its cells, a user can drag the cell by its reorder accessory to change the order of the cell in the collection view.
+    ///
+    ///
     /// A reorder control (three horizontal lines) with default gray color that automatically initiates interactive
     /// reordering on the collection view when dragged (if supported).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryreorder?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -604,10 +662,15 @@ impl UICellAccessoryReorder {
 }
 
 extern_class!(
+    /// The multiselect system accessory.
+    ///
+    /// ## Overview
+    ///
+    /// A multiselect cell accessory changes its apperance according to the cell’s selection state. The accessory displays as an empty circle for an unselected cell and as a filled circle with a checkmark for a selected cell. This accessory appears on the leading edge of the cell.
+    ///
+    ///
     /// A two-state control whose appearance follows the selection state of the cell (empty circle when deselected,
     /// filled circle with checkmark when selected).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorymultiselect?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -678,27 +741,36 @@ impl UICellAccessoryMultiselect {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle?language=objc)
+/// Constants that describe the style of the outline disclosure accessory.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellAccessoryOutlineDisclosureStyle(pub NSInteger);
 impl UICellAccessoryOutlineDisclosureStyle {
+    /// The system automatically determines the style depending on whether the cell’s configuration is as a section header.
     /// The style will be automatically determined based on whether the cell is configured to be a section header or not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle/uicellaccessoryoutlinedisclosurestyleautomatic?language=objc)
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The style to use for a section header.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this style, a tap anywhere in the header toggles the expansion state of the item. The cell itself is not selectable when using this style.
+    ///
+    ///
     /// A style appropriate for a section header, where a tap anywhere in the header will toggle the expansion state
     /// of the item (the cell cannot be selected).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle/uicellaccessoryoutlinedisclosurestyleheader?language=objc)
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleHeader")]
     pub const Header: Self = Self(1);
+    /// The style to use for a selectable cell with nested children.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this style, a tap on the outline disclosure accessory toggles the expansion state of the item. A tap on the cell selects the item itself.
+    ///
+    ///
     /// A style appropriate for a cell which can be selected itself and also has nested children, where only taps on the
     /// outline disclosure will toggle the expansion state of the item; taps on the cell will select the item as normal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle/uicellaccessoryoutlinedisclosurestylecell?language=objc)
     #[doc(alias = "UICellAccessoryOutlineDisclosureStyleCell")]
     pub const Cell: Self = Self(2);
 }
@@ -712,9 +784,16 @@ unsafe impl RefEncode for UICellAccessoryOutlineDisclosureStyle {
 }
 
 extern_class!(
-    /// A rotating disclosure chevron for use with outlines, used to indicate and toggle the expanded/collapsed state of the item.
+    /// The outline disclosure system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosure?language=objc)
+    /// ## Overview
+    ///
+    /// An outline disclosure is a rotating chevron for use in outlines. In iOS and for headers in Mac Catalyst, this accessory appears on the trailing edge. For cells in Mac Catalyst, this accessory appears on the leading edge.
+    ///
+    /// Use this cell accessory to indicate that an item can expand and collapse, and to enable the user to toggle between the expanded and collapsed states.
+    ///
+    ///
+    /// A rotating disclosure chevron for use with outlines, used to indicate and toggle the expanded/collapsed state of the item.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -799,9 +878,14 @@ impl UICellAccessoryOutlineDisclosure {
 }
 
 extern_class!(
-    /// Up/down chevrons that indicate a tap anywhere in the cell presents a pop-up menu.
+    /// The popup menu system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypopupmenu?language=objc)
+    /// ## Overview
+    ///
+    /// A popup menu accessory is a pair of chevrons that point upward and downward. This accessory indicates that tapping anywhere in the cell presents a popup menu. This accessory appears on the trailing edge of the cell.
+    ///
+    ///
+    /// Up/down chevrons that indicate a tap anywhere in the cell presents a pop-up menu.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -885,9 +969,14 @@ impl UICellAccessoryPopUpMenu {
 }
 
 extern_class!(
-    /// A label displaying a short string of text, typically a small number such as a count for the associated item.
+    /// The label system accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorylabel?language=objc)
+    /// ## Overview
+    ///
+    /// A label cell accessory appears on the trailing edge of the cell. Use this cell accessory to display a short string of text, like a small number showing the count for the associated item.
+    ///
+    ///
+    /// A label displaying a short string of text, typically a small number such as a count for the associated item.
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -970,20 +1059,18 @@ impl UICellAccessoryLabel {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement?language=objc)
+/// Constants that describe the placement of the accessory within the cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellAccessoryPlacement(pub NSInteger);
 impl UICellAccessoryPlacement {
+    /// The accessory appears on the leading edge of the cell.
     /// Accessory placed on the leading edge.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement/uicellaccessoryplacementleading?language=objc)
     #[doc(alias = "UICellAccessoryPlacementLeading")]
     pub const Leading: Self = Self(0);
+    /// The accessory appears on the trailing edge of the cell.
     /// Accessory placed on the trailing edge.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement/uicellaccessoryplacementtrailing?language=objc)
     #[doc(alias = "UICellAccessoryPlacementTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -996,22 +1083,20 @@ unsafe impl RefEncode for UICellAccessoryPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The index position of the cell accessory in relation to the other accessories in the specified array.
 /// Return an index to insert the accessory at, given an array of the existing accessories on the edge (in leading to trailing order).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryposition?language=objc)
 #[cfg(feature = "block2")]
 pub type UICellAccessoryPosition =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
 
 impl UICellAccessory {
+    /// Provides a position before the accessory that matches the specified class, or at the beginning if there’s no matching class.
     /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.
     ///
     /// # Safety
     ///
     /// - `accessory_class` probably has further requirements.
     /// - The returned block's argument must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypositionbeforeaccessoryofclass?language=objc)
     #[doc(alias = "UICellAccessoryPositionBeforeAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1026,14 +1111,13 @@ impl UICellAccessory {
         unsafe { UICellAccessoryPositionBeforeAccessoryOfClass(accessory_class) }
     }
 
+    /// Provides a position after the accessory that matches the specified class, or at the end if there’s no matching class.
     /// Positions the accessory after the accessory matching the class specified, or at the end if not found.
     ///
     /// # Safety
     ///
     /// - `accessory_class` probably has further requirements.
     /// - The returned block's argument must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorypositionafteraccessoryofclass?language=objc)
     #[doc(alias = "UICellAccessoryPositionAfterAccessoryOfClass")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1050,9 +1134,8 @@ impl UICellAccessory {
 }
 
 extern_class!(
+    /// A custom cell accessory.
     /// An accessory using a custom view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorycustomview?language=objc)
     #[unsafe(super(UICellAccessory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

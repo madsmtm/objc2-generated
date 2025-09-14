@@ -10,7 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/translationref?language=objc)
 #[doc(alias = "TranslationRef")]
 #[repr(C)]
 pub struct Translation {
@@ -26,19 +25,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueTranslationRef"> for Translation {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1560806-anonymous/badtranslationreferr?language=objc)
 pub const badTranslationRefErr: c_int = -3031;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/translationflags?language=objc)
 pub type TranslationFlags = OptionBits;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1560805-anonymous/ktranslationdatatranslation?language=objc)
 pub const kTranslationDataTranslation: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1560805-anonymous/ktranslationfiletranslation?language=objc)
 pub const kTranslationFileTranslation: c_uint = 1 << 1;
 
 unsafe impl ConcreteType for Translation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463809-translationgettypeid?language=objc)
     #[doc(alias = "TranslationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -50,8 +44,6 @@ unsafe impl ConcreteType for Translation {
 }
 
 impl Translation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459231-translationcreate?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_source_type` might not allow `None`.
@@ -83,8 +75,6 @@ impl Translation {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464306-translationcreatewithsourcearray?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_source_types` generic must be of the correct type.
@@ -117,8 +107,6 @@ impl Translation {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460828-translationperformfordata?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_source_data` might not allow `None`.
@@ -140,8 +128,6 @@ impl Translation {
         unsafe { TranslationPerformForData(self, in_source_data, out_destination_data) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460118-translationperformforurl?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_source_url` might not allow `None`.
@@ -168,8 +154,6 @@ impl Translation {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459344-translationcopysourcetype?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_source_type` must be a valid pointer.
@@ -185,8 +169,6 @@ impl Translation {
         unsafe { TranslationCopySourceType(self, out_source_type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459620-translationcopydestinationtype?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_destination_type` must be a valid pointer.
@@ -205,8 +187,6 @@ impl Translation {
         unsafe { TranslationCopyDestinationType(self, out_destination_type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459307-translationgettranslationflags?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_translation_flags` must be a valid pointer.

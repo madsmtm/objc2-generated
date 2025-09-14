@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingcontext?language=objc)
+    /// An object that manages metrics for drawing attributed strings.
+    ///
+    /// ## Overview
+    ///
+    /// Prior to drawing, you can create an instance of this class and use it to specify the minimum scale factor and tracking adjustments for a string. After drawing, you can retrieve the actual values that were used during drawing.
+    ///
+    /// To use this class, allocate and initialize a new instance, set the minimum values, and pass your object to one of the corresponding [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) methods that take the context object as a parameter. Upon completion of drawing, you can use the actual drawing values to make adjustments or record where the string was actually drawn.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStringDrawingContext;
@@ -144,45 +152,60 @@ pub unsafe trait NSAttributedStringNSStringDrawing:
 impl private_NSAttributedStringNSStringDrawing::Sealed for NSAttributedString {}
 unsafe impl NSAttributedStringNSStringDrawing for NSAttributedString {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions?language=objc)
+/// Constants that specify the rendering options for drawing a string.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringDrawingOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSStringDrawingOptions: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawinguseslinefragmentorigin?language=objc)
+/// Uses the line fragment origin instead of the baseline origin.
         #[doc(alias = "NSStringDrawingUsesLineFragmentOrigin")]
         const UsesLineFragmentOrigin = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawingusesfontleading?language=objc)
+/// Uses the font leading for calculating line heights.
         #[doc(alias = "NSStringDrawingUsesFontLeading")]
         const UsesFontLeading = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawingusesdevicemetrics?language=objc)
+/// Uses image glyph bounds instead of typographic bounds.
         #[doc(alias = "NSStringDrawingUsesDeviceMetrics")]
         const UsesDeviceMetrics = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawingtruncateslastvisibleline?language=objc)
+/// Truncates and adds the ellipsis character to the last visible line if the text doesn’t fit into the specified bounds.
+///
+/// ## Discussion
+///
+/// This option is ignored if `NSStringDrawingUsesLineFragmentOrigin` is not also set. In addition, the line break mode must be either `NSLineBreakByWordWrapping` or `NSLineBreakByCharWrapping` for this option to take effect. The line break mode can be specified in a paragraph style passed in the attributes dictionary argument of the drawing methods.
+///
+///
         #[doc(alias = "NSStringDrawingTruncatesLastVisibleLine")]
         const TruncatesLastVisibleLine = 1<<5;
-/// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+/// Specifies the behavior for resolving `NSTextAlignment.natural` to the visual alignment.
+///
+/// ## Discussion
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawingoptionsresolvesnaturalalignmentwithbasewritingdirection?language=objc)
+///
+/// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
+///
+/// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
         #[doc(alias = "NSStringDrawingOptionsResolvesNaturalAlignmentWithBaseWritingDirection")]
         const OptionsResolvesNaturalAlignmentWithBaseWritingDirection = 1<<9;
+/// An option that disables screen font substitution.
+///
+/// ## Discussion
+///
+/// This option is equivalent to setting [`usesScreenFonts`](https://developer.apple.com/documentation/appkit/nslayoutmanager/usesscreenfonts) to [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawingdisablescreenfontsubstitution?language=objc)
         #[doc(alias = "NSStringDrawingDisableScreenFontSubstitution")]
 #[deprecated]
         const DisableScreenFontSubstitution = 1<<2;
+/// Suppresses caching layout information.
 /// Specifies the behavior for resolving ``NSTextAlignment.natural`` to the visual alignment.
 ///
 /// When set, the resolved visual alignment is determined by the resolved base writing direction; otherwise, it is using the user’s preferred language.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions/nsstringdrawingoneshot?language=objc)
         #[doc(alias = "NSStringDrawingOneShot")]
 #[deprecated]
         const OneShot = 1<<4;

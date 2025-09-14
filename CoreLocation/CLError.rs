@@ -6,70 +6,123 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code?language=objc)
+/// Error codes returned by the location manager object.
+///
+/// ## Overview
+///
+/// Instances of [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object delivered to the delegate use these error codes for the [`code`](https://developer.apple.com/documentation/foundation/nserror/code) property of the error object.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLError(pub NSInteger);
 impl CLError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/locationunknown?language=objc)
+    /// A constant that indicates the location manager was unable to obtain a location value right now.
     #[doc(alias = "kCLErrorLocationUnknown")]
     pub const LocationUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/denied?language=objc)
+    /// A constant that indicates the user denied access to the location service.
     #[doc(alias = "kCLErrorDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/network?language=objc)
+    /// A constant that indicates the network was unavailable or a network error occurred.
     #[doc(alias = "kCLErrorNetwork")]
     pub const Network: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/headingfailure?language=objc)
+    /// A constant that indicates the location manager can’t determine the heading.
     #[doc(alias = "kCLErrorHeadingFailure")]
     pub const HeadingFailure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/regionmonitoringdenied?language=objc)
+    /// A constant that indicates the user denied access to the region monitoring service.
     #[doc(alias = "kCLErrorRegionMonitoringDenied")]
     pub const RegionMonitoringDenied: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/regionmonitoringfailure?language=objc)
+    /// A constant that indicates the location manager failed to monitor a registered region.
+    ///
+    /// ## Discussion
+    ///
+    /// Monitoring can fail if the app exceeds the maximum number of regions that it can monitor simultaneously. Monitoring can also fail if the region’s radius distance is too large.
+    ///
+    ///
     #[doc(alias = "kCLErrorRegionMonitoringFailure")]
     pub const RegionMonitoringFailure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/regionmonitoringsetupdelayed?language=objc)
+    /// A constant that indicates Core Location failed to initialize the region monitoring feature.
     #[doc(alias = "kCLErrorRegionMonitoringSetupDelayed")]
     pub const RegionMonitoringSetupDelayed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/regionmonitoringresponsedelayed?language=objc)
+    /// A constant that indicates Core Location will deliver events but they may be delayed.
+    ///
+    /// ## Discussion
+    ///
+    /// The user information dictionary might contain an alternate region that you can monitor instead. Use [`kCLErrorUserInfoAlternateRegionKey`](https://developer.apple.com/documentation/corelocation/kclerroruserinfoalternateregionkey) to retrieve the [`CLRegion`](https://developer.apple.com/documentation/corelocation/clregion) object.
+    ///
+    ///
     #[doc(alias = "kCLErrorRegionMonitoringResponseDelayed")]
     pub const RegionMonitoringResponseDelayed: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/geocodefoundnoresult?language=objc)
+    /// A constant that indicates the geocode request yielded no result.
     #[doc(alias = "kCLErrorGeocodeFoundNoResult")]
     pub const GeocodeFoundNoResult: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/geocodefoundpartialresult?language=objc)
+    /// A constant that indicates the geocode request yielded a partial result.
     #[doc(alias = "kCLErrorGeocodeFoundPartialResult")]
     pub const GeocodeFoundPartialResult: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/geocodecanceled?language=objc)
+    /// A constant that indicates the geocode request was canceled.
     #[doc(alias = "kCLErrorGeocodeCanceled")]
     pub const GeocodeCanceled: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/deferredfailed?language=objc)
+    /// A constant that indicates the location manager didn’t enter deferred mode for an unknown reason.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur if GPS is unavailable, not active, or is temporarily interrupted. If you get this error on a device that has GPS hardware, the solution is to try again.
+    ///
+    ///
     #[doc(alias = "kCLErrorDeferredFailed")]
     pub const DeferredFailed: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/deferrednotupdatinglocation?language=objc)
+    /// A constant that indicates the location manager didn’t enter deferred mode because location updates were already disabled or paused.
     #[doc(alias = "kCLErrorDeferredNotUpdatingLocation")]
     pub const DeferredNotUpdatingLocation: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/deferredaccuracytoolow?language=objc)
+    /// A constant that indicates deferred mode isn’t supported for the requested accuracy.
+    ///
+    /// ## Discussion
+    ///
+    /// The accuracy must be set to [`kCLLocationAccuracyBest`](https://developer.apple.com/documentation/corelocation/kcllocationaccuracybest) or [`kCLLocationAccuracyBestForNavigation`](https://developer.apple.com/documentation/corelocation/kcllocationaccuracybestfornavigation).
+    ///
+    ///
     #[doc(alias = "kCLErrorDeferredAccuracyTooLow")]
     pub const DeferredAccuracyTooLow: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/deferreddistancefiltered?language=objc)
+    /// A constant that indicates deferred mode doesn’t support distance filters.
+    ///
+    /// ## Discussion
+    ///
+    /// Set the distance filter to [`kCLDistanceFilterNone`](https://developer.apple.com/documentation/corelocation/kcldistancefilternone).
+    ///
+    ///
     #[doc(alias = "kCLErrorDeferredDistanceFiltered")]
     pub const DeferredDistanceFiltered: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/deferredcanceled?language=objc)
+    /// A constant that indicates your app or the location manager canceled the request for deferred updates.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is returned if you call the [`disallowDeferredLocationUpdates`](https://developer.apple.com/documentation/corelocation/cllocationmanager/disallowdeferredlocationupdates()) method or schedule a new deferred update before the previous deferred update request is processed. The location manager may also report this error too. For example, if the app is in the foreground when a new location is determined, the location manager cancels deferred updates and delivers the location data to your app.
+    ///
+    ///
     #[doc(alias = "kCLErrorDeferredCanceled")]
     pub const DeferredCanceled: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/rangingunavailable?language=objc)
+    /// A constant that indicates ranging is disabled.
+    ///
+    /// ## Discussion
+    ///
+    /// This might happen if the device is in Airplane mode or if Bluetooth or location services are disabled.
+    ///
+    ///
     #[doc(alias = "kCLErrorRangingUnavailable")]
     pub const RangingUnavailable: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/rangingfailure?language=objc)
+    /// A constant that indicates a general ranging error occurred.
     #[doc(alias = "kCLErrorRangingFailure")]
     pub const RangingFailure: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/promptdeclined?language=objc)
+    /// A constant that indicates the user didn’t grant the requested temporary authorization.
+    ///
+    /// ## Discussion
+    ///
+    /// If the prompt was shown to the user, who declined, or if an error prevented the prompt from being displayed, then `requestTemporaryPreciseLocationAuthorization(withPurposeKey:completion:)` throws this error.
+    ///
+    ///
     #[doc(alias = "kCLErrorPromptDeclined")]
     pub const PromptDeclined: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/historicallocationerror?language=objc)
     #[doc(alias = "kCLErrorHistoricalLocationError")]
     pub const HistoricalLocationError: Self = Self(19);
 }
@@ -83,6 +136,12 @@ unsafe impl RefEncode for CLError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kclerroruserinfoalternateregionkey?language=objc)
+    /// A key in the user information dictionary of an error relating to a delayed region-monitoring response.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is included in an error of type [`regionMonitoringResponseDelayed`](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/regionmonitoringresponsedelayed). The value is a [`CLRegion`](https://developer.apple.com/documentation/corelocation/clregion) object containing the region that location services can monitor more effectively.
+    ///
+    ///
     pub static kCLErrorUserInfoAlternateRegionKey: &'static NSString;
 }

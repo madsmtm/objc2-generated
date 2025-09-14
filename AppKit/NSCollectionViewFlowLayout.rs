@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrolldirection?language=objc)
+/// Constants indicating the scrolling direction for the layout.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewScrollDirection(pub NSInteger);
 impl NSCollectionViewScrollDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrolldirection/vertical?language=objc)
+    /// The layout scrolls content vertically.
     #[doc(alias = "NSCollectionViewScrollDirectionVertical")]
     pub const Vertical: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrolldirection/horizontal?language=objc)
+    /// The layout scrolls content horizontally.
     #[doc(alias = "NSCollectionViewScrollDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }
@@ -32,21 +32,29 @@ unsafe impl RefEncode for NSCollectionViewScrollDirection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindsectionheader?language=objc)
+    /// A supplementary view that acts as a header for a given section.
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindSectionHeader:
         &'static NSCollectionViewSupplementaryElementKind;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindsectionfooter?language=objc)
+    /// A supplementary view that acts as a footer for a given section.
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindSectionFooter:
         &'static NSCollectionViewSupplementaryElementKind;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayoutinvalidationcontext?language=objc)
+    /// An object that identifies the portions of a flow layout object that need to be updated.
+    ///
+    /// ## Overview
+    ///
+    /// Layout objects use invalidation contexts to optimize the layout process and avoid unnecessary work. You use this class to specify whether the [`NSCollectionViewFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout) object should fetch new size information from its delegate. You can also prevent the flow layout object from updating its layout information altogether.
+    ///
+    /// When you want to invalidate your flow layout object, call the [`invalidationContextClass`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidationcontextclass) method of your layout object and instantiate the resulting class. (The implementation of that method in [`NSCollectionViewFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout) returns this class.) After instantiating this class, set the properties to appropriate values and pass the object to the [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidatelayout(with:)) method of the layout object.
+    ///
+    ///
     #[unsafe(super(NSCollectionViewLayoutInvalidationContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]
@@ -99,7 +107,15 @@ impl NSCollectionViewFlowLayoutInvalidationContext {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdelegateflowlayout?language=objc)
+    /// A set of methods that a delegate implements to provide layout information to a flow layout object in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the methods of this protocol when you want to customize the layout behavior and perhaps return different values for different items or sections.
+    ///
+    /// All of the methods in this protocol are optional, so you can implement only the methods you need to achieve the desired layout. If you do not implement a particular method, the flow layout object obtains default values from its own properties and applies them uniformly. Implement your methods in the object you assign to the [`delegate`](https://developer.apple.com/documentation/appkit/nscollectionview/delegate) property of the collection view itself.
+    ///
+    ///
     #[cfg(feature = "NSCollectionView")]
     pub unsafe trait NSCollectionViewDelegateFlowLayout:
         NSCollectionViewDelegate + MainThreadOnly
@@ -199,7 +215,123 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout?language=objc)
+    /// A layout that organizes items into a flexible and configurable arrangement.
+    ///
+    /// ## Overview
+    ///
+    /// In a flow layout, the first item is positioned in the top-left corner and other items are laid out either horizontally or vertically based on the scroll direction, which is configurable. Items may be the same size or different sizes, and you may use the flow layout object or the collection view’s delegate object to specify the size of items and the spacing around them. The flow layout also lets you specify custom header and footer views for each section.
+    ///
+    /// You can use an [`NSCollectionViewFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout) object as-is or subclass it to modify more aspects of the layout behavior. There are several ways to customize the basic layout behavior that do not require subclassing. For example, you can use a delegate object to change the size and spacing of items dynamically. Subclassing is appropriate for more advanced layout changes, such as adding supplementary views or decoration views, supporting custom layout attributes, or customizing the layout animations when inserting or deleting items.
+    ///
+    /// ### Configuring a Collection View to Use a Flow Layout
+    ///
+    /// You can configure a collection view to use a flow layout object programmatically or at design time:
+    ///
+    /// - At design time, set the Layout attribute of your collection view to Flow.
+    ///
+    /// - Create an `NSCollectionViewFlowLayout` object programmatically and assign it to the collection view’s [`collectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout) property.
+    ///
+    /// Normally, you specify the size of items and their spacing using the properties of this class. If you want to customize the values for your items, implement the methods of the [`NSCollectionViewDelegateFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegateflowlayout) protocol in the object assigned as the collection view’s [`delegate`](https://developer.apple.com/documentation/appkit/nscollectionview/delegate). The delegate methods let you adjust layout information dynamically and change the values later as needed. If you do not provide a delegate, the flow layout object uses the same values for all items.
+    ///
+    /// For more information about customizing the layout dynamically using a delegate, see [`NSCollectionViewDelegateFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegateflowlayout).
+    ///
+    /// ### Adding Header and Footer Views to Sections
+    ///
+    /// The flow layout supports custom header and footer views for each section, displaying them as supplementary views in the layout. [Figure 1](/documentation/appkit/nscollectionviewflowlayout#1965629) shows how header and footer views are presented in your layout. The header view appears above the items in a section and the footer view appears below those items.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/a62776fd8038549a225bc69c1df45a04/media-1965629%402x.png)
+    ///
+    ///
+    /// The size of the header and footer views is configurable using the [`headerReferenceSize`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/headerreferencesize) and [`footerReferenceSize`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/footerreferencesize) properties of this class or using the delegate object. For a vertically scrolling flow layout, the header and footer views span the width of the collection view and the height is based on the values you specify. For a horizontal layout, the footers span the height of the collection view and the width is configurable.
+    ///
+    /// To add header or footer views to your flow layout, you must do the following:
+    ///
+    /// 1. Register your header and footer views using the [`registerClass:forSupplementaryViewOfKind:withIdentifier:`](https://developer.apple.com/documentation/appkit/nscollectionview/register(_:forsupplementaryviewofkind:withidentifier:)-3dqa) or [`registerNib:forSupplementaryViewOfKind:withIdentifier:`](https://developer.apple.com/documentation/appkit/nscollectionview/register(_:forsupplementaryviewofkind:withidentifier:)-7gvf2) method.
+    ///
+    /// 2. Implement the [`collectionView:viewForSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:viewforsupplementaryelementofkind:at:)) method in your collection view’s data source object.
+    ///
+    /// When registering your header view, specify [`NSCollectionElementKindSectionHeader`](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindsectionheader) for the kind string. When registering your footer view, specify the [`NSCollectionElementKindSectionFooter`](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindsectionfooter) string. You also pass those strings to the [`makeSupplementaryViewOfKind:withIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makesupplementaryview(ofkind:withidentifier:for:)) method when creating new views in your data source object.
+    ///
+    /// You configure the contents of your header and footer views in the same way you configure items. Use your app data to configure the content of the supplementary view and its subviews. When you want to update the content in a header or footer, call the [`reloadSections:`](https://developer.apple.com/documentation/appkit/nscollectionview/reloadsections(_:)) method and force the collection view to update the section, including its headers and footers. Reloading the section is safer than maintaining references to the views themselves because of how the collection view recycles views. If you do want to update views directly, use the methods of the [`NSCollectionViewDelegate`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate) protocol to track when your views are added and removed from the collection view.
+    ///
+    /// ### Understanding How the Flow Layout is Generated
+    ///
+    /// The flow layout builds its grid dynamically, using the item size and spacing information to place items sequentially into rows (for a vertically scrolling layout) or columns (for a horizontally scrolling layout). The number of items displayed in each row or column is determined by the collection view’s size and the size of the items in that row. When items have a uniform size, the number of items in each row is the same, but when items are different sizes, some rows may contain more or fewer items. [Figure 2](/documentation/appkit/nscollectionviewflowlayout#1965630) illustrates how the flow layout places items in a row until there is no more space and then begins a new row and continues the layout process.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/58a0ee07f5b8a63d901639753d08e975/media-1965630%402x.png)
+    ///
+    ///
+    /// The flow layout follows a specific set of steps to determine the size of each item. Whenever possible, the flow layout uses previously calculated information. When that information is not available, it falls back on other techniques to retrieve the size of the item. Specifically, the flow layout takes the following steps, stopping when it acquires a valid item size:
+    ///
+    /// 1. Get the size of the item from the already computed layout attributes.
+    ///
+    /// 2. Call the [`collectionView:layout:sizeForItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegateflowlayout/collectionview(_:layout:sizeforitemat:)) method of the delegate to get the item size.
+    ///
+    /// 3. Use the [`estimatedItemSize`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/estimateditemsize) property, if it is not set to [`NSZeroSize`](https://developer.apple.com/documentation/foundation/nszerosize).
+    ///
+    /// 4. Use the [`itemSize`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout/itemsize) property to get the size.
+    ///
+    /// Individual spacing between items and between different lines of items is controlled by the properties of this class and the delegate. For line spacing, the largest item in the line defines the line’s height and thereby controls the spacing between that line and other lines. The minimum inter-item spacing controls only how many items are placed on the line, and does not set the spacing between items.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// When you want to do more than specify the size or spacing of items, subclass `NSCollectionViewFlowLayout` and override the appropriate methods. When subclassing, the best approach is to take advantage of the built-in flow layout behavior and then make tweaks as needed.
+    ///
+    /// #### Adding New Supplementary or Decoration Views to the Layout
+    ///
+    /// The standard flow layout object supports only header and footer supplementary views for each section. To support additional supplementary views, or to add decoration views, you must override the following methods:
+    ///
+    /// - [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:)) (Required)
+    ///
+    /// - [`layoutAttributesForItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforitem(at:)) (Required)
+    ///
+    /// - [`layoutAttributesForSupplementaryViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforsupplementaryview(ofkind:at:)) (Required only if you are adding supplementary views)
+    ///
+    /// - [`layoutAttributesForDecorationViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesfordecorationview(ofkind:at:)) (Required only if you are adding decoration views)
+    ///
+    /// Your implementations of these methods should adjust the position of items and views to accommodate your custom content. For each of your implementations, call `super` first so that you can modify the attributes returned by the default flow layout behavior before adding any custom layout attributes.
+    ///
+    /// #### Tweaking the Layout Attributes
+    ///
+    /// To tweak the flow layout algorithm, override the [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:)) method and any other methods that return layout attributes that you need to modify. In each method, call `super` first and then modify the attributes returned by the default flow layout behavior.
+    ///
+    /// #### Changing the Initial or Final Attributes of Elements
+    ///
+    /// To customize the insertion or deletion animations performed by the layout, override some or all of the following methods:
+    ///
+    /// - [`initialLayoutAttributesForAppearingItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/initiallayoutattributesforappearingitem(at:))
+    ///
+    /// - [`initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/initiallayoutattributesforappearingsupplementaryelement(ofkind:at:))
+    ///
+    /// - [`initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/initiallayoutattributesforappearingdecorationelement(ofkind:at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finallayoutattributesfordisappearingitem(at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finallayoutattributesfordisappearingsupplementaryelement(ofkind:at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finallayoutattributesfordisappearingdecorationelement(ofkind:at:))
+    ///
+    /// In your custom implementations, specify the layout attributes for each item or view being inserted or deleted. The flow layout handles the creation of the appropriate animations, using the initial or final attributes that you provide. It is also recommended that you override the [`prepareForCollectionViewUpdates:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/prepare(forcollectionviewupdates:)) and [`finalizeCollectionViewUpdates`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finalizecollectionviewupdates()) methods to track the insertions and deletions.
+    ///
+    /// #### Supporting Custom Layout Attributes
+    ///
+    /// Subclassing is required if you want the flow layout to manage attributes other than the size and visibility of items and views. If you subclass [`NSCollectionViewLayoutAttributes`](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutattributes) and define additional layout attributes, you must also subclass `NSCollectionViewFlowLayout` to provide values for those attributes . In your flow layout subclass, override the following:
+    ///
+    /// - [`layoutAttributesClass`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesclass)
+    ///
+    /// - [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:))
+    ///
+    /// - [`layoutAttributesForItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforitem(at:))
+    ///
+    /// - All other methods that return layout attributes
+    ///
+    /// The implementations of your custom methods should set the values of any layout attributes that you define. Call `super` first to retrieve the default layout attributes objects and then modify the returned objects by adding your custom data.
+    ///
+    /// For more information about defining custom layout attributes, see [`NSCollectionViewLayoutAttributes`](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutattributes).
+    ///
+    ///
     #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]

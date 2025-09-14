@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintent?language=objc)
+    /// A request for a visual code to use for exchanging payment and contact information.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INGetVisualCodeIntent`](https://developer.apple.com/documentation/intents/ingetvisualcodeintent) object when the user asks for a visual code to use with a scanner. A visual code is a bar code or QR code that embeds information about a transaction. For example, an app might provide a visual code to facilitate payment for services. Apps can also use visual codes to communicate a user’s contact information.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetVisualCodeIntentHandling`](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling) protocol. Your handler should confirm the request and create an [`INGetVisualCodeIntentResponse`](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponse) object with an image containing the visual code. Siri handles the display of the provided visual code in order to scan it.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// When performing a search, Siri automatically asks the user to unlock a currently locked device. You don’t need to explicitly ask to unlock the device. In addition, Siri always prompts the user to confirm the request before asking your Intents extension to handle it.
+    ///
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to display visual codes in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Show my personal QR code" }] }], [Paragraph { inline_content: [Text { text: "Display my payment code" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "显示我的个人二维码" }] }], [Paragraph { inline_content: [Text { text: "显示我的支付码" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "顯示我嘅二維碼" }] }], [Paragraph { inline_content: [Text { text: "顯示我嘅支付碼" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "顯示我的通訊錄二維碼" }] }], [Paragraph { inline_content: [Text { text: "顯示我的支付二維碼" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "显示我嘅二维码" }] }], [Paragraph { inline_content: [Text { text: "显示我嘅支付码" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "أرني رمز QR الخاص بي" }] }], [Paragraph { inline_content: [Text { text: "اعرض رمز الدفع الخاص بي" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "vis min qr kode" }] }], [Paragraph { inline_content: [Text { text: "vis min betalings kode" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Zeige meinen persönlichen QR-Code" }] }], [Paragraph { inline_content: [Text { text: "Zeige meinen Zahlungscode" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Muestra mi código QR" }] }], [Paragraph { inline_content: [Text { text: "Muestra mi código de pago" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Näytä oma QR-koodini" }] }], [Paragraph { inline_content: [Text { text: "Näytä maksukoodini" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Montre-moi mon code QR personnel" }] }], [Paragraph { inline_content: [Text { text: "Affiche mon code de paiement" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תראי את הקוד QR הפרטי שלי" }] }], [Paragraph { inline_content: [Text { text: "תראי את הקוד תשלום שלי" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Mostrami il mio codice QR personale" }] }], [Paragraph { inline_content: [Text { text: "Mostra il mio codice di pagamento" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "自分のQRコードを表示" }] }], [Paragraph { inline_content: [Text { text: "自分の支払いコードを表示" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "나의 개인 QR 코드 보여줘" }] }], [Paragraph { inline_content: [Text { text: "나의 결제 코드 보여줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Tunjukkan kod QR peribadi saya" }] }], [Paragraph { inline_content: [Text { text: "Paparkan kod bayaran saya" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Vis min personlige QR-kode" }] }], [Paragraph { inline_content: [Text { text: "Vis betalingskoden min" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Toon mijn persoonlijke QR-code" }] }], [Paragraph { inline_content: [Text { text: "Geef mijn betalingscode weer" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Mostre meu código QR pessoal" }] }], [Paragraph { inline_content: [Text { text: "Mostra meu código QR de pagamento" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Покажи мой личный QR-код" }] }], [Paragraph { inline_content: [Text { text: "Отобрази мой код оплаты" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Visa min QR-kod" }] }], [Paragraph { inline_content: [Text { text: "Visa min betalkod" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "โชว\u{e4c}ค\u{e34}วอาร\u{e4c}โค\u{e49}ดของฉ\u{e31}น" }] }], [Paragraph { inline_content: [Text { text: "แสดงโค\u{e49}ดการจ\u{e48}ายเง\u{e34}นของฉ\u{e31}น" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "QR kodumu göster" }] }], [Paragraph { inline_content: [Text { text: "Ödeme kodumu görüntüle" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -76,11 +96,18 @@ impl INGetVisualCodeIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for displaying your app’s visual codes.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INGetVisualCodeIntentHandling`](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling) protocol to resolve, confirm, and handle requests to display visual codes such as QR codes. Adopt this protocol in an object of your Intents extension that’s capable of displaying an image representing the code.
+    ///
+    /// Siri delivers an [`INGetVisualCodeIntent`](https://developer.apple.com/documentation/intents/ingetvisualcodeintent) object to your handler when the user asks your app to display a relevant visual code. The provided intent object contains information about the type of code to display. Use the methods of this protocol to resolve the account information and display the corresponding image.
+    ///
+    ///
     /// Protocol to declare support for handling an INGetVisualCodeIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling?language=objc)
     #[deprecated = "INGetVisualCodeIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INGetVisualCodeIntentHandling: NSObjectProtocol {
         #[cfg(all(

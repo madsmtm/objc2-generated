@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An NSObject that represents a verifiable clinical record subject.
+    /// The subject associated with a signed clinical record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject?language=objc)
+    /// ## Overview
+    ///
+    /// [`HKVerifiableClinicalRecordSubject`](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject) objects contain data about the subject from a SMART Health Card.  These cards combine both the user’s identity and clinical data into a cryptographically-signed bundle. To protect the subject’s privacy, SMART Health Cards provide the minimum required data. For more information, see [SMART Health Cards Framework](https://smarthealth.cards).
+    ///
+    ///
+    /// An NSObject that represents a verifiable clinical record subject.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKVerifiableClinicalRecordSubject;

@@ -9,24 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The allowed rotations for a given tile.
 /// Adjust the rotation of the tile definition image, in 90 degree increments.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileDefinitionRotation(pub NSUInteger);
 impl SKTileDefinitionRotation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation0?language=objc)
     #[doc(alias = "SKTileDefinitionRotation0")]
     pub const Rotation0: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation90?language=objc)
     #[doc(alias = "SKTileDefinitionRotation90")]
     pub const Rotation90: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation180?language=objc)
     #[doc(alias = "SKTileDefinitionRotation180")]
     pub const Rotation180: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinitionrotation/rotation270?language=objc)
     #[doc(alias = "SKTileDefinitionRotation270")]
     pub const Rotation270: Self = Self(3);
 }
@@ -40,9 +35,16 @@ unsafe impl RefEncode for SKTileDefinitionRotation {
 }
 
 extern_class!(
-    /// A tile definition contains the information needed to represent a single type of tile within a tile map.
+    /// A single tile that can be repeated in a tile map.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktiledefinition?language=objc)
+    /// ## Overview
+    ///
+    /// To define the visual representation of a single tile, you create an [`SKTileDefinition`](https://developer.apple.com/documentation/spritekit/sktiledefinition) object with texture and size information. Tile definitions support separate normal textures, for simulating 3D lighting, and arrays of textures for animation with speed controlled by the [`timePerFrame`](https://developer.apple.com/documentation/spritekit/sktiledefinition/timeperframe) property. Textures can be rotated in 90˚ increments or flipped either vertically or horizontally.
+    ///
+    /// Once a tile definition has been created, you encapsulate it in a [`SKTileGroup`](https://developer.apple.com/documentation/spritekit/sktilegroup) which is added to a [`SKTileSet`](https://developer.apple.com/documentation/spritekit/sktileset) which, in turn, is displayed in the scene with a [`SKTileMapNode`](https://developer.apple.com/documentation/spritekit/sktilemapnode).
+    ///
+    ///
+    /// A tile definition contains the information needed to represent a single type of tile within a tile map.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTileDefinition;

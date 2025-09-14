@@ -10,12 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that detects the trajectories of shapes moving along a parabolic path.
+    ///
+    /// ## Overview
+    ///
+    /// After the request detects a trajectory, it produces an observation that contains the shape’s detected points and an equation describing the parabola.
+    ///
+    ///
     /// A request that detects trajectories of shapes (even small ones) that follow a parabolic path in a sequence of images.
     ///
     ///
     /// This request detects objects moving and (once their path follows the constraint of a parabola), a VNTrajectoryObservation will be returned with the detected points and the equation describing the parabola.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -172,5 +177,5 @@ impl VNDetectTrajectoriesRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the trajectories detection request.
 pub static VNDetectTrajectoriesRequestRevision1: NSUInteger = 1;

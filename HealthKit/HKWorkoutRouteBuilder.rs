@@ -10,14 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A builder object that incrementally constructs a workout route.
+    ///
+    /// ## Overview
+    ///
+    /// To create a workout route, use [`seriesBuilderForType:`](https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/seriesbuilder(for:)) to instantiate a [`HKWorkoutRouteBuilder`](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder), and provide it with location data throughout the workout. After the workout ends, call the builder’s [`finishRouteWithWorkout:metadata:completion:`](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder/finishroute(with:metadata:completion:)) method to construct the route. Instantiating a [`HKWorkoutRouteBuilder`](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder) directly is discouraged. For detailed instructions, see [Creating a workout route](https://developer.apple.com/documentation/healthkit/creating-a-workout-route).
+    ///
+    ///
     /// An HKWorkoutRouteBuilder is used to generate an HKWorkoutRoute.
     ///
     /// This class is intended for generating long-running location data collection such as
     /// might be associated with a workout. If the discard method is called, collected data will be deleted.
     /// Calling finishRouteWithWorkout:metadata: will stop and complete the route. If the builder is deleted,
     /// or the client goes away before calling the finish method, data will be lost.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder?language=objc)
     #[unsafe(super(HKSeriesBuilder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKSeriesBuilder")]

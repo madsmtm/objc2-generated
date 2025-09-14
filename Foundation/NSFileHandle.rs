@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filehandle?language=objc)
+    /// An object-oriented wrapper for a file descriptor.
+    ///
+    /// ## Overview
+    ///
+    /// You use file handle objects to access data associated with files, sockets, pipes, and devices. For files, you can read, write, and seek within the file. For sockets, pipes, and devices, you can use a file handle object to monitor the device and process data asynchronously.
+    ///
+    /// Most creation methods for [`NSFileHandle`](https://developer.apple.com/documentation/foundation/filehandle) cause the file handle object to take ownership of the associated file descriptor. This means that the file handle object both creates the file descriptor and is responsible for closing it later, usually when the system deallocates the file handle object. If you want to use a file handle object with a file descriptor that you created, use the [`initWithFileDescriptor:`](https://developer.apple.com/documentation/foundation/filehandle/init(filedescriptor:)) method or use the [`initWithFileDescriptor:closeOnDealloc:`](https://developer.apple.com/documentation/foundation/filehandle/init(filedescriptor:closeondealloc:)) method and pass [`false`](https://developer.apple.com/documentation/swift/false) for the `flag` parameter.
+    ///
+    /// ### Run Loop Considerations
+    ///
+    /// When using a file handle object to communicate asynchronously with a socket, you must initiate the corresponding operations from a thread with an active run loop. Although the read, accept, and wait operations themselves are performed asynchronously on background threads, the file handle uses a run loop source to monitor the operations and notify your code appropriately. Therefore, you must call those methods from your application’s main thread or from any thread where you’ve configured a run loop and are using it to process events.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileHandle;
@@ -199,49 +211,96 @@ impl NSFileHandle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/filehandleoperationexception?language=objc)
+    /// Raised by `NSFileHandle` if attempts to determine file-handle type fail or if attempts to read from a file or channel fail.
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSFileHandleOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filehandle/readcompletionnotification?language=objc)
+    /// Posted when the file handle reads the data currently available in a file or at a communications channel.
+    ///
+    /// ## Discussion
+    ///
+    /// It makes the data available to observers by putting it in the `userInfo` dictionary. To cause the posting of this notification, you must send either [`readInBackgroundAndNotify`](https://developer.apple.com/documentation/foundation/filehandle/readinbackgroundandnotify()) or [`readInBackgroundAndNotifyForModes:`](https://developer.apple.com/documentation/foundation/filehandle/readinbackgroundandnotify(formodes:)) to an appropriate `NSFileHandle` object.
+    ///
+    /// The notification object is the `NSFileHandle` object that sent the notification. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSFileHandleNotificationDataItem" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSData" }, Text { text: " object containing the available data read from a socket connection." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSFileHandleError\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing an integer representing the UNIX-type error which occurred." }] }]]], alignments: None, metadata: None })
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandlereadtoendoffilecompletion?language=objc)
+    /// Posted when the file handle reads all data in the file or, in a communications channel, until the other process signals the end of data.
+    ///
+    /// ## Discussion
+    ///
+    /// It makes the data available to observers by putting it in the `userInfo` dictionary. To cause the posting of this notification, you must send either [`readToEndOfFileInBackgroundAndNotify`](https://developer.apple.com/documentation/foundation/filehandle/readtoendoffileinbackgroundandnotify()) or [`readToEndOfFileInBackgroundAndNotifyForModes:`](https://developer.apple.com/documentation/foundation/filehandle/readtoendoffileinbackgroundandnotify(formodes:)) to an appropriate `NSFileHandle` object.
+    ///
+    /// The notification object is the `NSFileHandle` object that sent the notification. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSFileHandleNotificationDataItem" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSData" }, Text { text: " object containing the available data read from a socket connection." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSFileHandleError\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing an integer representing the UNIX-type error which occurred." }] }]]], alignments: None, metadata: None })
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandleconnectionaccepted?language=objc)
+    /// Posted when a file handle object establishes a socket connection between two processes, creates a file handle object for one end of the connection, and makes this object available to observers.
+    ///
+    /// ## Discussion
+    ///
+    /// To cause the posting of this notification, you must send either [`acceptConnectionInBackgroundAndNotify`](https://developer.apple.com/documentation/foundation/filehandle/acceptconnectioninbackgroundandnotify()) or [`acceptConnectionInBackgroundAndNotifyForModes:`](https://developer.apple.com/documentation/foundation/filehandle/acceptconnectioninbackgroundandnotify(formodes:)) to an `NSFileHandle` object representing a server stream-type socket.
+    ///
+    /// The notification object is the `NSFileHandle` object that sent the notification. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSFileHandleNotificationFileHandleItem" }] }], [Paragraph { inline_content: [Text { text: "The " }, CodeVoice { code: "NSFileHandle" }, Text { text: " object representing the “near” end of a socket connection." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSFileHandleError\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing an integer representing the UNIX-type error which occurred." }] }]]], alignments: None, metadata: None })
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandledataavailable?language=objc)
+    /// Posted when the file handle determines that data is currently available for reading in a file or at a communications channel.
+    ///
+    /// ## Discussion
+    ///
+    /// The observers can then issue the appropriate messages to begin reading the data. To cause the posting of this notification, you must send either [`waitForDataInBackgroundAndNotify`](https://developer.apple.com/documentation/foundation/filehandle/waitfordatainbackgroundandnotify()) or [`waitForDataInBackgroundAndNotifyForModes:`](https://developer.apple.com/documentation/foundation/filehandle/waitfordatainbackgroundandnotify(formodes:)) to an appropriate `NSFileHandle` object.
+    ///
+    /// The notification object is the `NSFileHandle` object that sent the notification. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleDataAvailableNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationdataitem?language=objc)
+    /// A key in the userinfo dictionary in a [`NSFileHandleReadCompletionNotification`](https://developer.apple.com/documentation/foundation/filehandle/readcompletionnotification) and [`NSFileHandleReadToEndOfFileCompletionNotification`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandlereadtoendoffilecompletion).
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSData` object containing the available data read from a socket connection.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationDataItem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationfilehandleitem?language=objc)
+    /// A key in the userinfo dictionary in a [`NSFileHandleConnectionAcceptedNotification`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandleconnectionaccepted) notification.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is the `NSFileHandle` object representing the “near” end of a socket connection.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileHandleNotificationFileHandleItem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlenotificationmonitormodes?language=objc)
+    /// Currently unused.
     #[cfg(feature = "NSString")]
     #[deprecated = "Not supported"]
     pub static NSFileHandleNotificationMonitorModes: &'static NSString;
@@ -413,7 +472,13 @@ impl NSFileHandle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/pipe?language=objc)
+    /// A one-way communications channel between related processes.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSPipe`](https://developer.apple.com/documentation/foundation/pipe) objects provide an object-oriented interface for accessing pipes. An [`NSPipe`](https://developer.apple.com/documentation/foundation/pipe) object represents both ends of a pipe and enables communication through the pipe. A pipe is a one-way communications channel between related processes; one process writes data, while the other process reads that data. The data that passes through the pipe is buffered; the size of the buffer is determined by the underlying operating system. [`NSPipe`](https://developer.apple.com/documentation/foundation/pipe) is an abstract class, the public interface of a class cluster.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPipe;

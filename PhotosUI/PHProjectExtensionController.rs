@@ -8,11 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol defining the life cycle and supported types of project extensions.
+    ///
+    /// ## Overview
+    ///
+    /// The principal view controller for a Photos project extension must conform to this protocol. Methods in this protocol define the basic life cycle of the extension controller. They allow you to define any number of project types that your extension supports; the Photos app displays these project types to the user as choices when creating a new project. To enable this entry point into the extension, the Info.plist must include this key/value pair in its `NSExtensionAttributes` dictionary.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/86c872c3e22fedca46b8b565ef4cfd7c/media-3029168~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/df0b4ba300d51821cc4981d6d29e07f1/media-3029168%402x.png 2x" />
+    ///     <img alt="Screenshot showing the slideshow category in the information property list for a Photos project extension." src="https://docs-assets.developer.apple.com/published/df0b4ba300d51821cc4981d6d29e07f1/media-3029168%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Once enabled, Photos asks the extension for its list of supported project types. The option that the user selects when creating a project is passed to the extension as an attribute of [`PHProjectInfo`](https://developer.apple.com/documentation/photosui/phprojectinfo).
+    ///
+    ///
     /// The principal view controller for any Photos Project Extension must conform to the PHProjectExtensionController protocol.
     /// Methods in this protocol define the basic lifecycle of the extension controller as well as optionally allow for
     /// definition of project types supported by the extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontroller?language=objc)
     pub unsafe trait PHProjectExtensionController: NSObjectProtocol {
         #[cfg(feature = "PHProjectTypeDescription")]
         /// Extensions can define any number of project types which are displayed to the user as choices in the Photos app upon

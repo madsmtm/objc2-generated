@@ -6,34 +6,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetAudioSourceInCarIntentResponseCode(pub NSInteger);
 impl INSetAudioSourceInCarIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/unspecified?language=objc)
+    /// A response code indicating that the status isn’t specified.
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeReady")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the audio source information and are working on it, but that you haven’t yet confirmed completion of the change.
+    ///
+    ///
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully changed the audio source to the newly requested one.
+    ///
+    ///
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/failure?language=objc)
+    /// You were unable to change the audio source.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from changing the audio source.
+    ///
+    ///
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeFailure")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to change the audio source.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSetAudioSourceInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetAudioSourceInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
@@ -48,7 +78,15 @@ unsafe impl RefEncode for INSetAudioSourceInCarIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponse?language=objc)
+    /// Your app’s response to a set audio source in car intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSetAudioSourceInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponse) object contains the status of changing the audio source in the user’s vehicle. You create instances of this class when confirming or handling a set audio source in car intent.
+    ///
+    /// You create an [`INSetAudioSourceInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentresponse) object in the [`confirmSetAudioSourceInCar:completion:`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintenthandling/confirm(intent:completion:)) and [`handleSetAudioSourceInCar:completion:`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintenthandling/handle(intent:completion:)) methods of your set audio source in car handler object. For more information about implementing your handler object, see [`INSetAudioSourceInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment?language=objc)
+/// Constants that specify the visual alignment of the text.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListContentTextAlignment(pub NSInteger);
 impl UIListContentTextAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment/uilistcontenttextalignmentnatural?language=objc)
+    /// The text uses the default alignment that the system associates with the current localization of the app.
     #[doc(alias = "UIListContentTextAlignmentNatural")]
     pub const Natural: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment/uilistcontenttextalignmentcenter?language=objc)
+    /// The text has centered alignment.
     #[doc(alias = "UIListContentTextAlignmentCenter")]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment/uilistcontenttextalignmentjustified?language=objc)
+    /// The text has justified alignment.
     #[doc(alias = "UIListContentTextAlignmentJustified")]
     pub const Justified: Self = Self(2);
 }
@@ -34,22 +34,22 @@ unsafe impl RefEncode for UIListContentTextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform?language=objc)
+/// Constants that specify the transform to apply to the text.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListContentTextTransform(pub NSInteger);
 impl UIListContentTextTransform {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformnone?language=objc)
+    /// The text doesn’t have a transform.
     #[doc(alias = "UIListContentTextTransformNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformuppercase?language=objc)
+    /// Displays the text in all uppercase characters.
     #[doc(alias = "UIListContentTextTransformUppercase")]
     pub const Uppercase: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformlowercase?language=objc)
+    /// Displays the text in all lowercase characters.
     #[doc(alias = "UIListContentTextTransformLowercase")]
     pub const Lowercase: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform/uilistcontenttexttransformcapitalized?language=objc)
+    /// Displays the text with the first character capitalized.
     #[doc(alias = "UIListContentTextTransformCapitalized")]
     pub const Capitalized: Self = Self(3);
 }
@@ -63,7 +63,7 @@ unsafe impl RefEncode for UIListContentTextTransform {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextproperties?language=objc)
+    /// Properties that affect the list content configuration’s text.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

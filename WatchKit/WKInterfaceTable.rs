@@ -8,7 +8,88 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacetable?language=objc)
+    /// An object that creates and manages the contents of a single-column table interface.
+    ///
+    /// ## Overview
+    ///
+    /// You use a table object to set the number and type of rows and to configure the data objects for those rows. Take the following steps to configure a table object and fill it with data:
+    ///
+    /// 1. Define one or more row controller types in your storyboard.
+    ///
+    /// 2. Define a custom data class to manage the contents of each row type.
+    ///
+    /// 3. Tell the table object how many rows (and of what type) to display at runtime.
+    ///
+    /// 4. Use instances of your custom data class to configure each row’s contents.
+    ///
+    /// Don’t subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a table object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myTable: WKInterfaceTable!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceTable* myTable;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the table.
+    ///
+    /// ### Define Your Table’s Rows
+    ///
+    /// After adding a table object to your storyboard, configure the row controller that comes with the table. A row controller defines the appearance of a specific type of row. A table comes with one row type initially and you can add more later. Each row controller in your table requires some minimal configuration to be usable at runtime.
+    ///
+    /// - Each row controller must have a name, which you set using the Identifier property in the Attributes inspector. You use this name to create rows of that type later.
+    ///
+    /// - Each row controller must have an associated class, which you set in the Identity inspector. At runtime, the table creates instances of your row controller classes for each row in the table.
+    ///
+    /// To configure the contents of a row controller, drag elements from the library and drop them onto the row’s group. For most rows, use a group object as the top-level object. You can also nest group objects to create vertical and horizontal arrangements for your interface objects. To that group, add the objects needed to display the row’s contents.
+    ///
+    ///
+    /// ![A screenshot showing a Table in a storyboard, with the row controller and the corresponding row highlighted.](https://docs-assets.developer.apple.com/published/ba9c3f732c2aa7f009883c9478a4220f/media-1965698%402x.png)
+    ///
+    ///
+    /// Each row controller needs a class to manage the contents of the row at runtime. The class acts as a proxy for the row in your code and stores the outlets you need to configure the contents of the row.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["class MyRowController: NSObject {", "    @IBOutlet weak var itemLabel: WKInterfaceLabel!", "    @IBOutlet weak var itemImage: WKInterfaceImage!", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@interface MyRowController : NSObject", "@property (weak, nonatomic) IBOutlet WKInterfaceLabel* itemLabel;", "@property (weak, nonatomic) IBOutlet WKInterfaceImage* itemImage;", "@end"], metadata: None }] }] })
+    /// ### Set the Number of Rows at Runtime
+    ///
+    /// To fill a table interface object with data, use the [`setRowTypes:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setrowtypes(_:)) or [`setNumberOfRows:withRowType:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setnumberofrows(_:withrowtype:)) method. These methods specify the type (and number) of rows to add to the table. If all rows are of the same type, use the [`setNumberOfRows:withRowType:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setnumberofrows(_:withrowtype:)) method. If you use more than one row controller in your table, use the [`setRowTypes:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setrowtypes(_:)) method. The row type string corresponds to the name you entered into the Identifier property for that row controller in your storyboard.
+    ///
+    /// When you add rows to a table, WatchKit creates the rows in your Watch app and instantiates the classes corresponding to those rows in your WatchKit extension. The table object stores the newly instantiated classes internally and makes them available to you through the [`rowControllerAtIndex:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/rowcontroller(at:)) method. Use that method to retrieve each row controller object and configure the contents of the row.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func loadTodoItems() {", "    // Fetch the to-do items", "    let items = myFetchToDoList()", "    ", "    // Configure the table object and get the row controllers.", "    myTable.setNumberOfRows(items.count, withRowType: \"MainRowType\")", "    ", "    // Iterate over the rows and set the label and image for each one.", "    for (index, item) in items.enumerated() {", "        let row = myTable.rowController(at: index) as! MyRowController", "        row.itemImage.setImage(item.image)", "        row.itemLabel.setText(item.title)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)loadTodoItems {", "    // Fetch the to-do items", "    NSArray<Item*>* items = [self fetchTodoList];", " ", "    // Configure the table object and get the row controllers.", "    NSInteger rowCount = items.count;", "    [self.myTable setNumberOfRows:rowCount withRowType:@\"MainRowType\"];", " ", "    // Iterate over the rows and set the label and image for each one.", "    for (NSInteger i = 0; i < rowCount; i++) {", "        // Set the values for the row controller", "        MyRowController* row = [self.myTable rowControllerAtIndex:i];", " ", "        [row.itemImage setImage:items[i].image];", "        [row.itemLabel setText:items[i].title];", "    }", "}"], metadata: None }] }] })
+    /// In this example, the table gets the data for the rows, and then calls the table’s [`setNumberOfRows:withRowType:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setnumberofrows(_:withrowtype:)) method to create the rows. It then iterates over the newly created row controller objects, configuring each one’s label with the text for the to-do item.
+    ///
+    /// When you want to update the contents of a table, call [`setRowTypes:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setrowtypes(_:)) or [`setNumberOfRows:withRowType:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/setnumberofrows(_:withrowtype:)) again with the new row type information. Calling these methods again forces the table to discard the old rows and create new ones. To insert new rows without removing the old ones, use the [`insertRowsAtIndexes:withRowType:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/insertrows(at:withrowtype:)) method.
+    ///
+    /// ### Respond to Taps in Table Rows
+    ///
+    /// In your storyboard, create a segue between a row controller and a destination interface controller. When the user taps on a row of that type, the system automatically pushes the destination interface controller onto the screen. To pass data to the destination controller, override your current interface controller’s [`contextForSegueWithIdentifier:inTable:rowIndex:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/contextforsegue(withidentifier:in:rowindex:)) method, and return context data based on the selected row.
+    ///
+    /// Alternatively, you can explicitly respond to taps in a table row by implementing your interface controller’s [`table:didSelectRowAtIndex:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/table(_:didselectrowat:)) method. Use that method to present a different interface controller or to perform any other relevant tasks.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Row controllers that include controls such as switches, sliders, and buttons must use action methods to respond to interactions with those controls. The system doesn’t deliver taps in controls to your interface controller’s [`table:didSelectRowAtIndex:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/table(_:didselectrowat:)) method.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Support Item Pagination
+    ///
+    /// Item Pagination lets users easily navigate through lists of items. When the user selects an item from the table, the app displays a detailed view for the item. The user can then scroll up and down to navigate between other sibling items from that table. For example if the user selects a stock symbol in the Stocks app, it loads the details for that stock. They can then scroll vertically to navigate to other stocks.
+    ///
+    /// Item Pagination is disabled by default. To enable it, perform the following steps:
+    ///
+    /// 1. In the storyboard, enable the table’s Item Pagination option in the Attributes inspector.
+    ///
+    /// 2. In the storyboard, define segues for all of the table’s row controllers. Your table must use segues to drive its navigation.
+    ///
+    /// 3. If you programmatically navigate through a table’s items (for example, when launching from a complication to a specific interface controller), be sure to use the table’s [`performSegueForRow:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/performsegue(forrow:)) method, instead of the interface controller’s [`pushControllerWithName:context:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/pushcontroller(withname:context:)) method. The [`performSegueForRow:`](https://developer.apple.com/documentation/watchkit/wkinterfacetable/performsegue(forrow:)) method lets watchOS know which table and which row initiated the segue. The system needs this information to provide the correct sibling items as the user scrolls.
+    ///
+    /// ### Configure the Table’s Attributes
+    ///
+    /// Xcode lets you configure information about your table interface object in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Rows" }] }], [Paragraph { inline_content: [Text { text: "The number of row controllers supported by the table. Change the value to add or remove new row controller objects to the storyboard file." }] }]], [[Paragraph { inline_content: [Text { text: "Spacing" }] }], [Paragraph { inline_content: [Text { text: "The amount of spacing (in points) between rows." }] }]], [[Paragraph { inline_content: [Text { text: "Background" }] }], [Paragraph { inline_content: [Text { text: "The background image to display behind the table’s items. Don’t set an image if you want the background color or image of the underlying interface controller to be visible." }] }]], [[Paragraph { inline_content: [Text { text: "Color" }] }], [Paragraph { inline_content: [Text { text: "The background color for the table. Set the color to clear if you want the background color or image of the underlying interface controller to be visible." }] }]], [[Paragraph { inline_content: [Text { text: "Item Pagination" }] }], [Paragraph { inline_content: [Text { text: "A checkbox that enables Item Pagination. For more information on Item Pagination, see " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable#Support-Item-Pagination", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// For each row controller in your table, The following table lists the attributes you can configure and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Identifier" }] }], [Paragraph { inline_content: [Text { text: "The name used to identify the row controller’s type to the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable/setRowTypes(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTable/setNumberOfRows(_:withRowType:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Selectable" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the table responds to taps within the row. When disabled, tapping the row doesn’t highlight the row or report the action to the table." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

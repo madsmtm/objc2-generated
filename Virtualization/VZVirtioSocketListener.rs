@@ -7,6 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that listens for port-based connection requests from the guest operating system.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtioSocketListener`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener) object to route connection requests to your associated delegate object. The socket listener object handles incoming connection requests from the guest operating system and directs them to the methods of its associated [`delegate`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener/delegate) object. You may use the same listener object to monitor connections on multiple ports.
+    ///
+    /// After creating a [`VZVirtioSocketListener`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener) object, assign a custom object to its [`delegate`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener/delegate) property. The delegate must implement the [`VZVirtioSocketListenerDelegate`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistenerdelegate) protocol. To connect the listener to a port, call the [`setSocketListener:forPort:`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice/setsocketlistener(_:forport:)) method of your virtual machine’s [`VZVirtioSocketDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice) object.
+    ///
+    ///
     /// The VZVirtioSocketListener object represents a listener for the Virtio socket device.
     ///
     /// The listener encompasses a VZVirtioSocketListenerDelegate object.
@@ -16,8 +25,6 @@ extern_class!(
     /// See: VZVirtioSocketDevice
     ///
     /// See: VZVirtioSocketListenerDelegate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSocketListener;
@@ -62,6 +69,13 @@ impl VZVirtioSocketListener {
 }
 
 extern_protocol!(
+    /// An interface you use to manage connections between the guest operating system and host computer.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`VZVirtioSocketListenerDelegate`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistenerdelegate) protocol in a custom object and use it to accept or reject socket-based connection attempts from the guest operating system to the host computer. You may use the same object to manage connection attempts on multiple ports.
+    ///
+    ///
     /// Delegate object for VZVirtioSocketListener.
     ///
     /// A class conforming to VZVirtioSocketListenerDelegate protocol can provide a method to establish a new connection to the socket.
@@ -71,8 +85,6 @@ extern_protocol!(
     /// See: VZVirtioSocketListener
     ///
     /// See: VZVirtioSocketConnection
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketlistenerdelegate?language=objc)
     pub unsafe trait VZVirtioSocketListenerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "VZSocketDevice",

@@ -5,6 +5,24 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Returns a dictionary containing the metadata attributesfor the specified UTI type.
+///
+/// Parameters:
+/// - utiType: The UTI type.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A dictionary containing `kMDAttributeDisplayValues` and `kMDAttributeAllValues` keys.Returns `NULL` if the UTItype is unknown.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns the metadata attributes for the specifiedUTI type only.
+///
+///
 /// Returns an dictionary attributes to display or show the
 /// user for a given UTI type. This function does not walk up the
 /// UTI hiearchy and perform a union of the information.
@@ -16,8 +34,6 @@ use crate::*;
 /// # Safety
 ///
 /// `content_type_uti` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444459-mdschemacopyattributesforcontent?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
     content_type_uti: Option<&CFString>,
@@ -31,6 +47,18 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns a dictionary describing the values for the specifiedmetadata attribute key.
+///
+/// Parameters:
+/// - name: The name of the metadata attribute key.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A dictionary describingthe schema of the metadata attribute key.
+///
+///
 /// Returns an dictionary of the meta attributes of attribute
 ///
 /// Parameter `name`: the attribute whose schema you are interested in.
@@ -40,8 +68,6 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAttributesForContentType(
 /// # Safety
 ///
 /// `name` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450052-mdschemacopymetaattributesforatt?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
     name: Option<&CFString>,
@@ -55,11 +81,10 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyMetaAttributesForAttribute(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns an array containing all the metadata attributesdefined in the schema.
 /// Returns an array of all of the attributes defined in the schema
 ///
 /// Returns: A CFArray of the attribute names.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445665-mdschemacopyallattributes?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -69,6 +94,18 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns the localized display name of a metadata attributekey.
+///
+/// Parameters:
+/// - name: The name of the metadata attribute key.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The localized displayname of the metadata attribute, or `NULL` ifno localized display name is available.
+///
+///
 /// Returns the localized name of an attribute
 ///
 /// Parameter `name`: the attribute whose localization you are interested in
@@ -79,8 +116,6 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyAllAttributes() -> Option<CFRetained
 /// # Safety
 ///
 /// `name` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450203-mdschemacopydisplaynameforattrib?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
     name: Option<&CFString>,
@@ -94,6 +129,18 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns the localized description of a metadata attributekey.
+///
+/// Parameters:
+/// - name: The name of the metadata attribute key.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The localized descriptionof the metadata attribute, or `NULL` ifno localized description is available.
+///
+///
 /// Returns the localized description of an attribute.
 ///
 /// Parameter `name`: the attribute whose localization you are interested in
@@ -104,8 +151,6 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayNameForAttribute(
 /// # Safety
 ///
 /// `name` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442582-mdschemacopydisplaydescriptionfo?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayDescriptionForAttribute(
     name: Option<&CFString>,
@@ -120,36 +165,36 @@ pub unsafe extern "C-unwind" fn MDSchemaCopyDisplayDescriptionForAttribute(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributedisplayvalues?language=objc)
+    /// An array of strings containing the availabledisplay metadata attribute keys, or `NULL` ifthe type is not known by the system.
     pub static kMDAttributeDisplayValues: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributeallvalues?language=objc)
+    /// An array of strings containing the availablemetadata attribute keys, or `NULL` ifthe type is not known by the system.
     pub static kMDAttributeAllValues: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributereadonlyvalues?language=objc)
+    /// An array of strings containing the read-onlymetadata attribute keys, or `NULL` ifthe type is not known by the system.
     pub static kMDAttributeReadOnlyValues: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdexporteravaliable?language=objc)
+    /// A CFBoolean that indicates if an exporter is available for this UTI type.
     pub static kMDExporterAvaliable: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributename?language=objc)
+    /// A string containing the name of the metadataattribute key.
     pub static kMDAttributeName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributetype?language=objc)
+    /// A CFNumberRef or CFTypeId describing thetype of data returned as the value of the metadata attribute key.
     pub static kMDAttributeType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdattributemultivalued?language=objc)
+    /// A boolean that indicates if the metadataattribute value is multi-valued. If this is `TRUE`,the metadata attribute value is an array of the types specifiedin `kMDAttributeType`.
     pub static kMDAttributeMultiValued: Option<&'static CFString>;
 }

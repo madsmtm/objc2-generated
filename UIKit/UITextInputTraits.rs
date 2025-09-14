@@ -7,22 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype?language=objc)
+/// The autocapitalization behavior of a text-based view.
+///
+/// ## Overview
+///
+/// Use these constants with the [`autocapitalizationType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/autocapitalizationtype) property. If the script system doesn’t support capitalization, the keyboard input method ignores these constants.
+///
+/// Some keyboard types don’t support autocapitalization. Specifically, if the [`keyboardType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/keyboardtype) property is set to [`UIKeyboardTypeNumberPad`](https://developer.apple.com/documentation/uikit/uikeyboardtype/numberpad), [`UIKeyboardTypePhonePad`](https://developer.apple.com/documentation/uikit/uikeyboardtype/phonepad), or [`UIKeyboardTypeNamePhonePad`](https://developer.apple.com/documentation/uikit/uikeyboardtype/namephonepad), the system ignores these constants.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAutocapitalizationType(pub NSInteger);
 impl UITextAutocapitalizationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/none?language=objc)
+    /// Specifies that there is no automatic text capitalization.
     #[doc(alias = "UITextAutocapitalizationTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/words?language=objc)
+    /// Specifies automatic capitalization of the first letter of each word.
     #[doc(alias = "UITextAutocapitalizationTypeWords")]
     pub const Words: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/sentences?language=objc)
+    /// Specifies automatic capitalization of the first letter of each sentence.
     #[doc(alias = "UITextAutocapitalizationTypeSentences")]
     pub const Sentences: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype/allcharacters?language=objc)
+    /// Specifies automatic capitalization of all characters, such as for entry of two-character state abbreviations for the United States.
     #[doc(alias = "UITextAutocapitalizationTypeAllCharacters")]
     pub const AllCharacters: Self = Self(3);
 }
@@ -35,19 +43,25 @@ unsafe impl RefEncode for UITextAutocapitalizationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype?language=objc)
+/// The autocorrection behavior of a text-based view.
+///
+/// ## Overview
+///
+/// Use these constants with the [`autocorrectionType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/autocorrectiontype) property. If the script system doesn’t support inline autocorrection, the keyboard input method ignores these constants.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAutocorrectionType(pub NSInteger);
 impl UITextAutocorrectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/default?language=objc)
+    /// Specifies an appropriate autocorrection behavior for the current script system.
     #[doc(alias = "UITextAutocorrectionTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/no?language=objc)
+    /// Disables autocorrection behavior.
     #[doc(alias = "UITextAutocorrectionTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype/yes?language=objc)
+    /// Enables autocorrection behavior.
     #[doc(alias = "UITextAutocorrectionTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -60,19 +74,31 @@ unsafe impl RefEncode for UITextAutocorrectionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype?language=objc)
+/// The spell-checking behavior of a text-based view.
+///
+/// ## Overview
+///
+/// Use these constants with the [`spellCheckingType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/spellcheckingtype) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSpellCheckingType(pub NSInteger);
 impl UITextSpellCheckingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype/default?language=objc)
+    /// Specifies the default spell-checking behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// The default behavior is to enable spell-checking whenever autocorrection is also enabled.
+    ///
+    ///
     #[doc(alias = "UITextSpellCheckingTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype/no?language=objc)
+    /// Disables spell-checking behavior.
     #[doc(alias = "UITextSpellCheckingTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype/yes?language=objc)
+    /// Enables spell-checking behavior.
     #[doc(alias = "UITextSpellCheckingTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -85,19 +111,25 @@ unsafe impl RefEncode for UITextSpellCheckingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype?language=objc)
+/// Constants that indicate whether to enable or disable smart quotes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartQuotesType(pub NSInteger);
 impl UITextSmartQuotesType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/default?language=objc)
+    /// Use the default smart quote behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// This option selectively enables the smart quote behavior based on the keyboard type. For example, smart quotes are disabled for email address and password keyboards.
+    ///
+    ///
     #[doc(alias = "UITextSmartQuotesTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/no?language=objc)
+    /// Disable smart quotes.
     #[doc(alias = "UITextSmartQuotesTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/yes?language=objc)
+    /// Enable smart quotes.
     #[doc(alias = "UITextSmartQuotesTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -110,19 +142,25 @@ unsafe impl RefEncode for UITextSmartQuotesType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype?language=objc)
+/// Constants that specify the automatic conversion behavior between hyphens and en or em dashes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartDashesType(pub NSInteger);
 impl UITextSmartDashesType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/default?language=objc)
+    /// Use the default smart dash behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// This option selectively enables the smart dash behavior based on the keyboard type. For example, smart dashes are disabled for email address and password keyboards.
+    ///
+    ///
     #[doc(alias = "UITextSmartDashesTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/no?language=objc)
+    /// Disable smart dashes.
     #[doc(alias = "UITextSmartDashesTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/yes?language=objc)
+    /// Enable smart dashes.
     #[doc(alias = "UITextSmartDashesTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -135,19 +173,25 @@ unsafe impl RefEncode for UITextSmartDashesType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype?language=objc)
+/// Constants that specify whether to automatically insert extra spaces after a paste operation or to delete them after a cut or delete operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartInsertDeleteType(pub NSInteger);
 impl UITextSmartInsertDeleteType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype/default?language=objc)
+    /// Use the default behavior for inserting and deleting space characters.
+    ///
+    /// ## Discussion
+    ///
+    /// This option selectively enables the automatic deletion of one or two neighboring spaces after a cut or delete, and the insertion of an extra space after a paste. For example, this option disables the behavior for email address and password keyboards.
+    ///
+    ///
     #[doc(alias = "UITextSmartInsertDeleteTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype/no?language=objc)
+    /// Disable the insertion or deletion of extra spaces.
     #[doc(alias = "UITextSmartInsertDeleteTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype/yes?language=objc)
+    /// Enable the insertion or deletion of extra spaces.
     #[doc(alias = "UITextSmartInsertDeleteTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -160,19 +204,25 @@ unsafe impl RefEncode for UITextSmartInsertDeleteType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype?language=objc)
+/// Constants that identify the behavior of inline text predictions for a text-entry area.
+///
+/// ## Overview
+///
+/// Use these constants with the [`inlinePredictionType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/inlinepredictiontype) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextInlinePredictionType(pub NSInteger);
 impl UITextInlinePredictionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype/default?language=objc)
+    /// A constant that determines the behavior of inline text predictions according to the context.
     #[doc(alias = "UITextInlinePredictionTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype/no?language=objc)
+    /// A constant that turns off inline text predictions.
     #[doc(alias = "UITextInlinePredictionTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype/yes?language=objc)
+    /// A constant that turns on inline text predictions.
     #[doc(alias = "UITextInlinePredictionTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -185,19 +235,15 @@ unsafe impl RefEncode for UITextInlinePredictionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextMathExpressionCompletionType(pub NSInteger);
 impl UITextMathExpressionCompletionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype/default?language=objc)
     #[doc(alias = "UITextMathExpressionCompletionTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype/no?language=objc)
     #[doc(alias = "UITextMathExpressionCompletionTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype/yes?language=objc)
     #[doc(alias = "UITextMathExpressionCompletionTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -210,49 +256,91 @@ unsafe impl RefEncode for UITextMathExpressionCompletionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype?language=objc)
+/// Constants that specify the type of keyboard to display for a text-based view.
+///
+/// ## Overview
+///
+/// Use these constants with the [`keyboardType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/keyboardtype) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyboardType(pub NSInteger);
 impl UIKeyboardType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/default?language=objc)
+    /// Specifies the default keyboard for the current input method.
     #[doc(alias = "UIKeyboardTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/asciicapable?language=objc)
+    /// Specifies a keyboard that displays standard ASCII characters.
     #[doc(alias = "UIKeyboardTypeASCIICapable")]
     pub const ASCIICapable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/numbersandpunctuation?language=objc)
+    /// Specifies the numbers and punctuation keyboard.
     #[doc(alias = "UIKeyboardTypeNumbersAndPunctuation")]
     pub const NumbersAndPunctuation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/url?language=objc)
+    /// Specifies a keyboard for URL entry.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyboard type prominently features the period (”`.`”) and slash (”/”) characters and the “`.com`” string.
+    ///
+    ///
     #[doc(alias = "UIKeyboardTypeURL")]
     pub const URL: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/numberpad?language=objc)
+    /// Specifies a numeric keypad for PIN entry.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyboard type prominently features the numbers `0` through `9`. This keyboard type does not support auto-capitalization.
+    ///
+    ///
     #[doc(alias = "UIKeyboardTypeNumberPad")]
     pub const NumberPad: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/phonepad?language=objc)
+    /// Specifies a keypad for entering telephone numbers.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyboard type prominently features the numbers `0` through `9` and the “`*`” and “`#`” characters. This keyboard type does not support auto-capitalization.
+    ///
+    ///
     #[doc(alias = "UIKeyboardTypePhonePad")]
     pub const PhonePad: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/namephonepad?language=objc)
+    /// Specifies a keypad for entering a person’s name or phone number.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyboard type does not support auto-capitalization.
+    ///
+    ///
     #[doc(alias = "UIKeyboardTypeNamePhonePad")]
     pub const NamePhonePad: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/emailaddress?language=objc)
+    /// Specifies a keyboard for entering email addresses.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyboard type prominently features the at (”`@`”), period (”`.`”) and space characters.
+    ///
+    ///
     #[doc(alias = "UIKeyboardTypeEmailAddress")]
     pub const EmailAddress: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/decimalpad?language=objc)
+    /// Specifies a keyboard with numbers and a decimal point.
     #[doc(alias = "UIKeyboardTypeDecimalPad")]
     pub const DecimalPad: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/twitter?language=objc)
+    /// Specifies a keyboard for Twitter text entry, with easy access to the at (”`@`”) and hash (”`#`”) characters.
     #[doc(alias = "UIKeyboardTypeTwitter")]
     pub const Twitter: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/websearch?language=objc)
+    /// Specifies a keyboard for web search terms and URL entry.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyboard type prominently features the space and period (”`.`”) characters.
+    ///
+    ///
     #[doc(alias = "UIKeyboardTypeWebSearch")]
     pub const WebSearch: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/asciicapablenumberpad?language=objc)
+    /// Specifies a number pad that outputs only ASCII digits.
     #[doc(alias = "UIKeyboardTypeASCIICapableNumberPad")]
     pub const ASCIICapableNumberPad: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype/alphabet?language=objc)
+    /// Specifies a keyboard for alphabetic entry.
     #[doc(alias = "UIKeyboardTypeAlphabet")]
     pub const Alphabet: Self = Self(UIKeyboardType::ASCIICapable.0);
 }
@@ -265,22 +353,34 @@ unsafe impl RefEncode for UIKeyboardType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance?language=objc)
+/// Constants that specify the appearance of the keyboard for a text-based view.
+///
+/// ## Overview
+///
+/// Use these constants with the [`keyboardAppearance`](https://developer.apple.com/documentation/uikit/uitextinputtraits/keyboardappearance) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyboardAppearance(pub NSInteger);
 impl UIKeyboardAppearance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/default?language=objc)
+    /// Specifies the default keyboard appearance for the current input method.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant corresponds to the [`UIKeyboardAppearanceLight`](https://developer.apple.com/documentation/uikit/uikeyboardappearance/light) value.
+    ///
+    ///
     #[doc(alias = "UIKeyboardAppearanceDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/dark?language=objc)
+    /// Specifies a keyboard appearance suitable for a dark UI look.
     #[doc(alias = "UIKeyboardAppearanceDark")]
     pub const Dark: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/light?language=objc)
+    /// Specifies a keyboard appearance suitable for a light UI look.
     #[doc(alias = "UIKeyboardAppearanceLight")]
     pub const Light: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance/alert?language=objc)
+    /// Specifies a keyboard appearance suitable for an alert panel.
     #[doc(alias = "UIKeyboardAppearanceAlert")]
     pub const Alert: Self = Self(UIKeyboardAppearance::Dark.0);
 }
@@ -293,46 +393,52 @@ unsafe impl RefEncode for UIKeyboardAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype?language=objc)
+/// Constants that specify the type of Return key the keyboard displays.
+///
+/// ## Overview
+///
+/// Use these constants with the [`returnKeyType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/returnkeytype) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIReturnKeyType(pub NSInteger);
 impl UIReturnKeyType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/default?language=objc)
+    /// Specifies that the Return key displays an indication to accept the user’s input.
     #[doc(alias = "UIReturnKeyDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/go?language=objc)
+    /// Specifies that the Return key displays an indication to proceed.
     #[doc(alias = "UIReturnKeyGo")]
     pub const Go: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/google?language=objc)
+    /// Specifies that the Return key displays an indication to search using Google.
     #[doc(alias = "UIReturnKeyGoogle")]
     pub const Google: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/join?language=objc)
+    /// Specifies that the Return key displays an indication to join something, such as a meeting.
     #[doc(alias = "UIReturnKeyJoin")]
     pub const Join: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/next?language=objc)
+    /// Specifies that the Return key displays an indication to proceed forward.
     #[doc(alias = "UIReturnKeyNext")]
     pub const Next: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/route?language=objc)
+    /// Specifies that the Return key displays an indication to plan a route to a location.
     #[doc(alias = "UIReturnKeyRoute")]
     pub const Route: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/search?language=objc)
+    /// Specifies that the Return key displays an indication to perform a search.
     #[doc(alias = "UIReturnKeySearch")]
     pub const Search: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/send?language=objc)
+    /// Specifies that the Return key displays an indication to send something, such as an email.
     #[doc(alias = "UIReturnKeySend")]
     pub const Send: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/yahoo?language=objc)
+    /// Specifies that the Return key displays an indication to search using Yahoo.
     #[doc(alias = "UIReturnKeyYahoo")]
     pub const Yahoo: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/done?language=objc)
+    /// Specifies that the Return key displays an indication to accept the user’s input.
     #[doc(alias = "UIReturnKeyDone")]
     pub const Done: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/emergencycall?language=objc)
+    /// Specifies that the Return key displays an indication to place an emergency phone call.
     #[doc(alias = "UIReturnKeyEmergencyCall")]
     pub const EmergencyCall: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype/continue?language=objc)
+    /// Specifies that the Return key displays an indication to continue what the user is doing.
     #[doc(alias = "UIReturnKeyContinue")]
     pub const Continue: Self = Self(11);
 }
@@ -345,30 +451,38 @@ unsafe impl RefEncode for UIReturnKeyType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior?language=objc)
+/// Constants that specify the writing tools experience for the underlying view.
+///
+/// ## Overview
+///
+/// Writing tools provide proofreading and rewriting support for the content of text views. On devices that support writing tools features, people engage the system UI to choose how to rewrite all or part of the available text. These constants indicate whether people experience writing tools inline with their text, in an overlay panel, or not at all.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsBehavior(pub NSInteger);
 impl UIWritingToolsBehavior {
+    /// An option to prevent the writing tools from modifying the text in the view.
     /// Writing Tools will ignore this view
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/none?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorNone")]
     pub const None: Self = Self(-1);
-    /// System-defined behavior, may resolve to `None`, `Complete`, or `Limited`
+    /// An option to let the system determine the best way to enable writing tools for the view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/default?language=objc)
+    /// ## Discussion
+    ///
+    /// The system chooses a complete, limited, or none experience based on the device-level support for the feature.
+    ///
+    ///
+    /// System-defined behavior, may resolve to `None`, `Complete`, or `Limited`
     #[doc(alias = "UIWritingToolsBehaviorDefault")]
     pub const Default: Self = Self(0);
+    /// An option to provide the complete writing tools experience for the text view.
     /// The complete inline-editing experience will be provided if possible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/complete?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorComplete")]
     pub const Complete: Self = Self(1);
+    /// An option to provide a limited, overlay-panel experience for the text view.
     /// The limited, overlay-panel experience will be provided if possible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/limited?language=objc)
     #[doc(alias = "UIWritingToolsBehaviorLimited")]
     pub const Limited: Self = Self(2);
 }
@@ -381,7 +495,13 @@ unsafe impl RefEncode for UIWritingToolsBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions?language=objc)
+/// Constants to specify what type of content to allow in Writing Tools suggestions or rewrites.
+///
+/// ## Overview
+///
+/// When configuring a text view, specify what type of text input you want Writing Tools to deliver to your view. You can ask it to return plain text without any attributes, or you can ask it to apply relevant formatting attributes to the text. You can even encourage it to return items in a list or format them in a table.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -389,33 +509,27 @@ pub struct UIWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIWritingToolsResultOptions: NSUInteger {
 /// System-defined behavior
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/uiwritingtoolsresultdefault?language=objc)
+/// System-defined behavior
         #[doc(alias = "UIWritingToolsResultDefault")]
         const Default = 0;
+/// An option to allow only plain text without any attributes in the returned text.
 /// Writing Tools will provide plain text in proofreading suggestions or rewrites
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/plaintext?language=objc)
         #[doc(alias = "UIWritingToolsResultPlainText")]
         const PlainText = 1<<0;
+/// An option to include style attributes consistent with the RTF format in the returned text.
 /// As well as plain text, Writing Tools will provide text attributes in proofreading suggestions or rewrites that are natively supported or known to be easily adopted (such as lists)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/richtext?language=objc)
         #[doc(alias = "UIWritingToolsResultRichText")]
         const RichText = 1<<1;
+/// An option to allow list-style formatting in the returned text.
 /// implies `RichText`,  and Writing Tools may provide attributes for list layout
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/list?language=objc)
         #[doc(alias = "UIWritingToolsResultList")]
         const List = 1<<2;
+/// An option to allow tabular layout attributes in the returned text.
 /// implies `RichText`,  and Writing Tools may provide attributes for tabular layout
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/table?language=objc)
         #[doc(alias = "UIWritingToolsResultTable")]
         const Table = 1<<3;
 /// implies `RichText`, `List`, and `Table`, and Writing Tools may provide text with presentation intent attributes. Writing Tools will use `NSPresentationIntent` instead of `NSTextList` and `NSTextTable` to represent lists and tables.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions/presentationintent?language=objc)
+/// implies `RichText`, `List`, and `Table`, and Writing Tools may provide text with presentation intent attributes. Writing Tools will use `NSPresentationIntent` instead of `NSTextList` and `NSTextTable` to represent lists and tables.
         #[doc(alias = "UIWritingToolsResultPresentationIntent")]
         const PresentationIntent = 1<<4;
     }
@@ -429,12 +543,18 @@ unsafe impl RefEncode for UIWritingToolsResultOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype?language=objc)
+/// Constants that identify the semantic meaning for a text-entry area.
+///
+/// ## Overview
+///
+/// Use these constants with the [`textContentType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/textcontenttype) property.
+///
+///
 // NS_TYPED_ENUM
 pub type UITextContentType = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputpasswordrules?language=objc)
+    /// A class that represents password rules for a text input field.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -485,7 +605,13 @@ impl UITextInputPasswordRules {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtraits?language=objc)
+    /// A set of methods that defines features for keyboard input to a text object.
+    ///
+    /// ## Overview
+    ///
+    /// For a custom text object to support keyboard input, it must adopt this protocol to interact properly with the text-input management system. The [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield) and [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview) classes automatically support this protocol.
+    ///
+    ///
     pub unsafe trait UITextInputTraits: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(autocapitalizationType))]
@@ -714,234 +840,230 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/name?language=objc)
+    /// A property that defines the content in a text input area as a name.
     pub static UITextContentTypeName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/nameprefix?language=objc)
+    /// A property that defines the content in a text input area as a prefix or title, such as _Dr_.
     pub static UITextContentTypeNamePrefix: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/givenname?language=objc)
+    /// A property that defines the content in a text input area as a first name.
     pub static UITextContentTypeGivenName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/middlename?language=objc)
+    /// A property that defines the content in a text input area as a middle name.
     pub static UITextContentTypeMiddleName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/familyname?language=objc)
+    /// A property that defines the content in a text input area as a family name, or last name.
     pub static UITextContentTypeFamilyName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/namesuffix?language=objc)
+    /// A property that defines the content in a text input area as a suffix, such as _Jr_.
     pub static UITextContentTypeNameSuffix: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/nickname?language=objc)
+    /// A property that defines the content in a text input area as a nickname.
     pub static UITextContentTypeNickname: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/jobtitle?language=objc)
+    /// A property that defines the content in a text input area as a job title.
     pub static UITextContentTypeJobTitle: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/organizationname?language=objc)
+    /// A property that defines the content in a text input area as an organization name.
     pub static UITextContentTypeOrganizationName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/location?language=objc)
+    /// A property that defines the content in a text input area as a location, such as a point of interest, an address, or another identifier for a location.
     pub static UITextContentTypeLocation: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/fullstreetaddress?language=objc)
+    /// A property that defines the content in a text input area as a street address that fully identifies a location.
     pub static UITextContentTypeFullStreetAddress: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/streetaddressline1?language=objc)
+    /// A property that defines the content in a text input area as the first line of a street address.
     pub static UITextContentTypeStreetAddressLine1: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/streetaddressline2?language=objc)
+    /// A property that defines the content in a text input area as the second line of a street address.
     pub static UITextContentTypeStreetAddressLine2: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/addresscity?language=objc)
+    /// A property that defines the content in a text input area as a city name.
     pub static UITextContentTypeAddressCity: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/addressstate?language=objc)
+    /// A property that defines the content in a text input area as a state name.
     pub static UITextContentTypeAddressState: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/addresscityandstate?language=objc)
+    /// A property that defines the content in a text input area as a city name with a state name.
     pub static UITextContentTypeAddressCityAndState: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/sublocality?language=objc)
+    /// A property that defines the content in a text input area as a sublocality.
     pub static UITextContentTypeSublocality: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/countryname?language=objc)
+    /// A property that defines the content in a text input area as a country or region name.
     pub static UITextContentTypeCountryName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/postalcode?language=objc)
+    /// A property that defines the content in a text input area as a postal code.
     pub static UITextContentTypePostalCode: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/telephonenumber?language=objc)
+    /// A property that defines the content in a text input area as a telephone number.
     pub static UITextContentTypeTelephoneNumber: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/emailaddress?language=objc)
+    /// A property that defines the content in a text input area as an email address.
     pub static UITextContentTypeEmailAddress: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/url?language=objc)
+    /// A property that defines the content in a text input area as a URL.
     pub static UITextContentTypeURL: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardnumber?language=objc)
+    /// A property that defines the content in a text input area as a credit card number.
     pub static UITextContentTypeCreditCardNumber: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/username?language=objc)
+    /// A property that defines the content in a text input area as an account or login name.
     pub static UITextContentTypeUsername: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/password?language=objc)
+    /// A property that defines the content in a text input area as a password.
     pub static UITextContentTypePassword: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/newpassword?language=objc)
+    /// A property that defines the content in a text input area as a new password.
     pub static UITextContentTypeNewPassword: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/onetimecode?language=objc)
+    /// A property that defines the content in a text input area as a one-time code.
     pub static UITextContentTypeOneTimeCode: &'static UITextContentType;
 }
 
 extern "C" {
+    /// A property that defines the content in a text input area as a parcel tracking number.
     /// Parcel tracking numbers such as "FedEx 8602 9191 3550", "1Z50T0536891664106", and "729445720428778".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/shipmenttrackingnumber?language=objc)
     pub static UITextContentTypeShipmentTrackingNumber: &'static UITextContentType;
 }
 
 extern "C" {
+    /// A property that defines the content in a text input area as an airline flight number.
     /// Airline flight numbers such as "CZ # 1234", "AA212", and "SW Flight 573".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/flightnumber?language=objc)
     pub static UITextContentTypeFlightNumber: &'static UITextContentType;
 }
 
 extern "C" {
+    /// A property that defines the content in a text input area as a date, time, or duration.
     /// Dates, times, or durations such as "7-3-2021" or "This Saturday", "12:30", and "10-11am", respectively.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/datetime?language=objc)
     pub static UITextContentTypeDateTime: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdate?language=objc)
+    /// A property that defines the content in a text input area as a date of birth.
     pub static UITextContentTypeBirthdate: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdateday?language=objc)
+    /// A property that defines the content in a text input area as the day component of a birthdate.
     pub static UITextContentTypeBirthdateDay: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdatemonth?language=objc)
+    /// A property that defines the content in a text input area as the month component of a birthdate.
     pub static UITextContentTypeBirthdateMonth: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdateyear?language=objc)
+    /// A property that defines the content in a text input area as the year component of a birthdate.
     pub static UITextContentTypeBirthdateYear: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardsecuritycode?language=objc)
+    /// A property that defines the content in a text input area as a credit card security code.
     pub static UITextContentTypeCreditCardSecurityCode: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardname?language=objc)
+    /// A property that defines the content in a text input area as a name on a credit card.
     pub static UITextContentTypeCreditCardName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardgivenname?language=objc)
+    /// A property that defines the content in a text input area as a first name on a credit card.
     pub static UITextContentTypeCreditCardGivenName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardmiddlename?language=objc)
+    /// A property that defines the content in a text input area as a middle name on a credit card.
     pub static UITextContentTypeCreditCardMiddleName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardfamilyname?language=objc)
+    /// A property that defines the content in a text input area as a family name, or last name, on a credit card.
     pub static UITextContentTypeCreditCardFamilyName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardexpiration?language=objc)
+    /// A property that defines the content in a text input area as an expiration date on a credit card.
     pub static UITextContentTypeCreditCardExpiration: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardexpirationmonth?language=objc)
+    /// A property that defines the content in a text input area as the month component of an expiration date on a credit card.
     pub static UITextContentTypeCreditCardExpirationMonth: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardexpirationyear?language=objc)
+    /// A property that defines the content in a text input area as the year component of an expiration date on a credit card.
     pub static UITextContentTypeCreditCardExpirationYear: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardtype?language=objc)
+    /// A property that defines the content in a text input area as a credit card type.
     pub static UITextContentTypeCreditCardType: &'static UITextContentType;
 }
 
 extern "C" {
+    /// A property that defines the content in a text input area to contain an embedded identity document number for an eSIM.
     /// eSIM activation
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/cellulareid?language=objc)
     pub static UITextContentTypeCellularEID: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/cellularimei?language=objc)
+    /// A property that defines the content in a text input area to contain an international mobile equipment identity number for an eSIM.
     pub static UITextContentTypeCellularIMEI: &'static UITextContentType;
 }

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspeakablestring?language=objc)
+    /// A custom phrase to be resolved by an Intents extension.
+    ///
+    /// ## Overview
+    ///
+    /// When creating your Intents extension, you can define custom vocabulary for some types of intents. For example, a workout app may provide a custom `AppIntentVocabulary.plist` file with the names of standard workouts that are shared by all users of the app. In places where those terms might be used, the intent object contains an [`INSpeakableString`](https://developer.apple.com/documentation/intents/inspeakablestring) object.
+    ///
+    /// Use the contents of an [`INSpeakableString`](https://developer.apple.com/documentation/intents/inspeakablestring) object to resolve the specified term during the handling of an intent. If the user spoke a term that is defined in your `AppIntentVocabulary.plist` file, Siri includes the identifier of that term in the string’s [`identifier`](https://developer.apple.com/documentation/intents/inspeakable/identifier) property. For unrecognized terms, the identifier is `nil`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INSpeakableString;

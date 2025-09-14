@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpreferences?language=objc)
+    /// The preferences and authorization related to using SiriKit.
+    ///
+    /// ## Overview
+    ///
+    /// Use the class methods of [`INPreferences`](https://developer.apple.com/documentation/intents/inpreferences) to perform tasks related to the use of SiriKit. An iOS app must request authorization to use SiriKit before Siri or Maps are allowed to call on its Intents extension to handle intents. To request authorization, call the [`requestSiriAuthorization:`](https://developer.apple.com/documentation/intents/inpreferences/requestsiriauthorization(_:)) method at some point during your app’s execution. The first time you call this method, the user is prompted to grant or deny authorization for your app. The user can change the authorization settings for your app later in the system settings. You can get your app’s current authorization status using the [`siriAuthorizationStatus`](https://developer.apple.com/documentation/intents/inpreferences/siriauthorizationstatus()) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPreferences;

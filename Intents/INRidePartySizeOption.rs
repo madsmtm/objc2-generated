@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridepartysizeoption?language=objc)
+    /// The price of a ride involving the specified number of people.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRidePartySizeOption`](https://developer.apple.com/documentation/intents/inridepartysizeoption) object describes many passengers and the special pricing that applies to a party of that size. When configuring a [`INRideOption`](https://developer.apple.com/documentation/intents/inrideoption) object, you create one or more instances of this class to specify pricing for the user’s party. Present this information to the user along with the other ride option information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRidePartySizeOption;

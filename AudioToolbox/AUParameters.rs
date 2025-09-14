@@ -8,17 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 /// A value of an audio unit parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvalue?language=objc)
+/// A value of an audio unit parameter.
 pub type AUValue = c_float;
 
+/// A numeric identifier for an audio unit parameter.
+///
+/// ## Discussion
+///
+/// Parameter addresses are not necessarily persistent, unless the individual audio unit promises to maintain its addressing scheme. Hosts should bind to parameter key paths instead of parameter addresses.
+///
+///
 /// Numeric identifier for audio unit parameter.
 ///
 /// Note that parameter addresses are not necessarily persistent, unless the individual audio
 /// unit documents a promise to maintain its addressing scheme. Hosts should bind to parameters'
 /// key paths.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameteraddress?language=objc)
 pub type AUParameterAddress = u64;
 
 /// Identifies the different types of parameter automation events.
@@ -34,20 +38,15 @@ pub type AUParameterAddress = u64;
 /// The event marks an initial "touch" gesture on a UI element.
 ///
 /// The event marks a final "release" gesture on a UI element.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUParameterAutomationEventType(pub u32);
 impl AUParameterAutomationEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype/value?language=objc)
     #[doc(alias = "AUParameterAutomationEventTypeValue")]
     pub const Value: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype/touch?language=objc)
     #[doc(alias = "AUParameterAutomationEventTypeTouch")]
     pub const Touch: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationeventtype/release?language=objc)
     #[doc(alias = "AUParameterAutomationEventTypeRelease")]
     pub const Release: Self = Self(2);
 }
@@ -61,8 +60,7 @@ unsafe impl RefEncode for AUParameterAutomationEventType {
 }
 
 /// An event recording the changing of a parameter at a particular host time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurecordedparameterevent?language=objc)
+/// An event recording the changing of a parameter at a particular host time.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AURecordedParameterEvent {
@@ -91,8 +89,6 @@ unsafe impl RefEncode for AURecordedParameterEvent {
 
 /// An event recording the changing of a parameter, possibly including events
 /// such as touch and release gestures, at a particular host time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUParameterAutomationEvent {
@@ -124,6 +120,17 @@ unsafe impl RefEncode for AUParameterAutomationEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A block called after the value of a parameter changes.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - address: The address of the parameter.
+///
+/// - value: The current value of the parameter.
+///
+///
 /// A block called to signal that the value of a parameter has changed.
 ///
 /// See the discussion of -[AUParameterNode tokenByAddingParameterObserver:].
@@ -131,11 +138,20 @@ unsafe impl RefEncode for AUParameterAutomationEvent {
 /// Parameter `address`: The address of the parameter whose value changed.
 ///
 /// Parameter `value`: The current value of the parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterObserver = *mut block2::DynBlock<dyn Fn(AUParameterAddress, AUValue)>;
 
+/// A block called to record parameter changes as automation events.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - numberEvents: The number of events being delivered.
+///
+/// - events: The events being delivered.
+///
+///
 /// A block called to record parameter changes as automation events.
 ///
 /// See the discussion of -[AUParameterNode tokenByAddingParameterRecordingObserver:].
@@ -143,8 +159,6 @@ pub type AUParameterObserver = *mut block2::DynBlock<dyn Fn(AUParameterAddress, 
 /// Parameter `numberEvents`: The number of events being delivered.
 ///
 /// Parameter `events`: The events being delivered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterrecordingobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterRecordingObserver =
     *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<AURecordedParameterEvent>)>;
@@ -156,24 +170,32 @@ pub type AUParameterRecordingObserver =
 /// Parameter `numberEvents`: The number of events being delivered.
 ///
 /// Parameter `events`: The events being delivered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterAutomationObserver =
     *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<AUParameterAutomationEvent>)>;
 
+/// A token representing an installed parameter observer block.
+///
+/// ## Discussion
+///
+/// The token may represent an [`AUParameterObserver`](https://developer.apple.com/documentation/audiotoolbox/auparameterobserver) or [`AUParameterRecordingObserver`](https://developer.apple.com/documentation/audiotoolbox/auparameterrecordingobserver) block.
+///
+///
 /// A token representing an installed AUParameterObserver, AUParameterRecordingObserver,
 /// or AUParameterAutomationObserver.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterobservertoken?language=objc)
 pub type AUParameterObserverToken = *mut c_void;
 
 extern_class!(
+    /// An object that represents a node in an audio unit’s parameter tree.
+    ///
+    /// ## Overview
+    ///
+    /// Nodes are instances of either an [`AUParameter`](https://developer.apple.com/documentation/audiotoolbox/auparameter) or [`AUParameterGroup`](https://developer.apple.com/documentation/audiotoolbox/auparametergroup) class.
+    ///
+    ///
     /// A node in an audio unit's tree of parameters.
     ///
     /// Nodes are instances of either AUParameterGroup or AUParameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameternode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUParameterNode;
@@ -333,14 +355,19 @@ impl AUParameterNode {
 }
 
 extern_class!(
+    /// A parameter group object represents a group of related audio unit parameters.
+    ///
+    /// ## Overview
+    ///
+    /// A parameter group is KVC-compliant for its children. For example, calling the parameter group’s [`valueForKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/value(forkey:)) method, with a key value of _volume_, returns a child whose [`identifier`](https://developer.apple.com/documentation/audiotoolbox/auparameternode/identifier) value matches that key.
+    ///
+    ///
     /// A group of related parameters.
     ///
     /// A parameter group is KVC-compliant for its children; e.g. valueForKey:
     /// "
     /// volume" will
     /// return a child parameter whose identifier is "volume".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametergroup?language=objc)
     #[unsafe(super(AUParameterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUParameterGroup;
@@ -386,6 +413,15 @@ impl AUParameterGroup {
 }
 
 extern_class!(
+    /// An object that represents a top-level group node that contains all of an audio unit’s parameters.
+    ///
+    /// ## Overview
+    ///
+    /// An audio unit’s parameters are organized into a tree containing groups and parameters (groups may be nested).
+    ///
+    /// The parameter tree is KVO-compliant. An audio unit may choose to dynamically rearrange the tree; when doing so, it must issue a KVO notification on the audio unit’s [`parameterTree`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/parametertree) property.
+    ///
+    ///
     /// The top level group node, representing all of an audio unit's parameters.
     ///
     /// An audio unit's parameters are organized into a tree containing groups and parameters.
@@ -399,8 +435,6 @@ extern_class!(
     /// issue a KVO notification on the audio unit's parameterTree property. The tree's elements are
     /// mostly immutable (except for values and implementor hooks); the only way to modify them
     /// is to publish a new tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametertree?language=objc)
     #[unsafe(super(AUParameterGroup, AUParameterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUParameterTree;
@@ -464,9 +498,8 @@ impl AUParameterTree {
 }
 
 extern_class!(
+    /// An object that represents a single audio unit parameter.
     /// A node representing a single parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameter?language=objc)
     #[unsafe(super(AUParameterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUParameter;

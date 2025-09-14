@@ -9,7 +9,6 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXTemporalDenoisedScalerDescriptor;
@@ -423,7 +422,6 @@ impl MTLFXTemporalDenoisedScalerDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscalerbase?language=objc)
     #[cfg(feature = "MTLFXTemporalScaler")]
     pub unsafe trait MTLFXTemporalDenoisedScalerBase:
         MTLFXFrameInterpolatableScaler
@@ -989,7 +987,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporaldenoisedscaler?language=objc)
     #[cfg(feature = "MTLFXTemporalScaler")]
     pub unsafe trait MTLFXTemporalDenoisedScaler: MTLFXTemporalDenoisedScalerBase {
         /// Encode this scaler denoiser's work into a command buffer.

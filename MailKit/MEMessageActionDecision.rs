@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactiondecision?language=objc)
+    /// The action that the system performs on a message, or a request to ask the action handler again later when the message content is available.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageActionDecision;

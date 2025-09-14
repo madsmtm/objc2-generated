@@ -12,9 +12,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The handle to manage a connection-oriented service.
 /// This is the handle to manage a connection-oriented service.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnection?language=objc)
 #[doc(alias = "SCNetworkConnectionRef")]
 #[repr(C)]
 pub struct SCNetworkConnection {
@@ -30,6 +29,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCNetworkConnection"> for SCNetworkConnection {}
 );
 
+/// A structure containing user-specified data and callbacks for a network connection.
 /// Structure containing user-specified data and callbacks
 /// for a SCNetworkConnection.
 /// Field: version The version number of the structure type being passed
@@ -45,8 +45,6 @@ cf_objc2_type!(
 /// The value may be NULL.
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -77,6 +75,13 @@ unsafe impl RefEncode for SCNetworkConnectionContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The current status of the network connection.
+///
+/// ## Overview
+///
+/// This status is intended to be generic and high level. An extended status, specific to the type of network connection, is also available for applications that need additonal information.
+///
+///
 /// Status of the network connection.
 /// This status is intended to be generic and high level.
 /// An extended status, specific to the type of network
@@ -92,26 +97,24 @@ unsafe impl RefEncode for SCNetworkConnectionContext {
 /// The network connection is connected.
 ///
 /// The network connection is disconnecting.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionStatus(pub i32);
 impl SCNetworkConnectionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/invalid?language=objc)
+    /// The network connection refers to an invalid service.
     #[doc(alias = "kSCNetworkConnectionInvalid")]
     pub const Invalid: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/disconnected?language=objc)
+    /// The network connection is disconnected.
     #[doc(alias = "kSCNetworkConnectionDisconnected")]
     pub const Disconnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/connecting?language=objc)
+    /// The network connection is connecting.
     #[doc(alias = "kSCNetworkConnectionConnecting")]
     pub const Connecting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/connected?language=objc)
+    /// The network connection is connected.
     #[doc(alias = "kSCNetworkConnectionConnected")]
     pub const Connected: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus/disconnecting?language=objc)
+    /// The network connection is disconnecting.
     #[doc(alias = "kSCNetworkConnectionDisconnecting")]
     pub const Disconnecting: Self = Self(3);
 }
@@ -126,6 +129,13 @@ unsafe impl RefEncode for SCNetworkConnectionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The PPP-specific status of the network connection.
+///
+/// ## Overview
+///
+/// This status is returned as part of the extended information for a PPP service. Note that additional status might be returned in the future. Therefore, your application should be prepared to receive an unknown value.
+///
+///
 /// PPP-specific status of the network connection.
 /// This status is returned as part of the extended information
 /// for a PPP service.
@@ -167,53 +177,51 @@ unsafe impl RefEncode for SCNetworkConnectionStatus {
 /// example, when a V.92 Modem is On Hold).
 ///
 /// PPP has found a busy server and is waiting for redial.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionPPPStatus(pub i32);
 impl SCNetworkConnectionPPPStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/disconnected?language=objc)
+    /// PPP is disconnected.
     #[doc(alias = "kSCNetworkConnectionPPPDisconnected")]
     pub const Disconnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/initializing?language=objc)
+    /// PPP is initializing.
     #[doc(alias = "kSCNetworkConnectionPPPInitializing")]
     pub const Initializing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/connectinglink?language=objc)
+    /// PPP is connecting the lower connection layer (for example, the modem is dialing out).
     #[doc(alias = "kSCNetworkConnectionPPPConnectingLink")]
     pub const ConnectingLink: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/dialontraffic?language=objc)
+    /// PPP is waiting for networking traffic to automatically establish the connection.
     #[doc(alias = "kSCNetworkConnectionPPPDialOnTraffic")]
     pub const DialOnTraffic: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/negotiatinglink?language=objc)
+    /// The PPP lower layer is connected and PPP is negotiating the link layer (LCP protocol).
     #[doc(alias = "kSCNetworkConnectionPPPNegotiatingLink")]
     pub const NegotiatingLink: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/authenticating?language=objc)
+    /// PPP is authenticating to the server (PAP, CHAP, MS-CHAP, or EAP protocols).
     #[doc(alias = "kSCNetworkConnectionPPPAuthenticating")]
     pub const Authenticating: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/waitingforcallback?language=objc)
+    /// PPP is waiting for the server to call back.
     #[doc(alias = "kSCNetworkConnectionPPPWaitingForCallBack")]
     pub const WaitingForCallBack: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/negotiatingnetwork?language=objc)
+    /// PPP is now authenticated and negotiating the networking layer (IPCP or IPv6CP protocols).
     #[doc(alias = "kSCNetworkConnectionPPPNegotiatingNetwork")]
     pub const NegotiatingNetwork: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/connected?language=objc)
+    /// PPP is now fully connected for at least one networking layer. Additional networking protocol might still be negotiating.
     #[doc(alias = "kSCNetworkConnectionPPPConnected")]
     pub const Connected: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/terminating?language=objc)
+    /// PPP networking and link protocols are terminating.
     #[doc(alias = "kSCNetworkConnectionPPPTerminating")]
     pub const Terminating: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/disconnectinglink?language=objc)
+    /// PPP is disconnecting the lower level (for example, the modem is hanging up).
     #[doc(alias = "kSCNetworkConnectionPPPDisconnectingLink")]
     pub const DisconnectingLink: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/holdinglinkoff?language=objc)
+    /// PPP is disconnected and maintaining the link temporarily off.
     #[doc(alias = "kSCNetworkConnectionPPPHoldingLinkOff")]
     pub const HoldingLinkOff: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/suspended?language=objc)
+    /// PPP is suspended as a result of the suspend command (for example, when a V.92 Modem is On Hold).
     #[doc(alias = "kSCNetworkConnectionPPPSuspended")]
     pub const Suspended: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus/waitingforredial?language=objc)
+    /// PPP has found a busy server and is waiting for redial.
     #[doc(alias = "kSCNetworkConnectionPPPWaitingForRedial")]
     pub const WaitingForRedial: Self = Self(13);
 }
@@ -228,6 +236,15 @@ unsafe impl RefEncode for SCNetworkConnectionPPPStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The type of callback function used when a status event is delivered.
+///
+/// Parameters:
+/// - connection: The network connection.
+///
+/// - status: The connection status.
+///
+/// - info: Application-specific information.
+///
 /// Type of the callback function used when a
 /// status event is delivered.
 ///
@@ -236,8 +253,6 @@ unsafe impl RefEncode for SCNetworkConnectionPPPStatus {
 /// Parameter `connection`: The connection reference.
 ///
 /// Parameter `info`: Application-specific information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncallback?language=objc)
 pub type SCNetworkConnectionCallBack = Option<
     unsafe extern "C-unwind" fn(
         NonNull<SCNetworkConnection>,
@@ -247,10 +262,15 @@ pub type SCNetworkConnectionCallBack = Option<
 >;
 
 unsafe impl ConcreteType for SCNetworkConnection {
+    /// Returns the type identifier of all `SCNetworkConnection` instances.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCNetworkConnection` instances.
+    ///
+    ///
     /// Returns the type identifier of all SCNetworkConnection
     /// instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectiongettypeid()?language=objc)
     #[doc(alias = "SCNetworkConnectionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -262,6 +282,27 @@ unsafe impl ConcreteType for SCNetworkConnection {
 }
 
 impl SCNetworkConnection {
+    /// Provides the default service ID and a dictionary of user options for the specified connection.
+    ///
+    /// Parameters:
+    /// - selectionOptions: Currently unimplemented. Pass `NULL`.
+    ///
+    /// - serviceID: On output, a reference to the default service ID for starting connections.
+    ///
+    /// - userOptions: On output, a reference to the default user options dictionary for starting connections.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if there is a valid service to dial; `FALSE` if the function was unable to retrieve a service to dial.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the service ID and user options values returned by this function to open a connection on the fly.
+    ///
+    ///
     /// Provides the default service ID and a dictionary of user
     /// options for the connection.  Applications can use the
     /// returned serviceID and userOptions values to open a
@@ -285,8 +326,6 @@ impl SCNetworkConnection {
     /// - `selection_options` generic must be of the correct type.
     /// - `service_id` must be a valid pointer.
     /// - `user_options` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyuserpreferences(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
     #[inline]
     pub unsafe fn user_preferences(
@@ -307,6 +346,23 @@ impl SCNetworkConnection {
         ret != 0
     }
 
+    /// Creates a new connection reference to use for getting the status or for connecting or disconnecting the associated service.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for the connection structure. This parameter may be `NULL`, in which case the current default allocator is used. If this reference is not a valid allocator, the behavior is undefined.
+    ///
+    /// - serviceID: The service identifier of the connection. This value uniquely identifies service in the system configuration database.
+    ///
+    /// - callout: The function to be called when the status of the connection changes. If this parameter is `NULL`, the application receives notifications of status change and will need to poll for updates.
+    ///
+    /// - context: User-specified data associated with the connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a new network connection.
+    ///
+    ///
     /// Creates a new connection reference to use for getting
     /// the status or for connecting or disconnecting the associated
     /// service.
@@ -335,8 +391,6 @@ impl SCNetworkConnection {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncreatewithserviceid(_:_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCreateWithServiceID")]
     #[inline]
     pub unsafe fn with_service_id(
@@ -359,13 +413,22 @@ impl SCNetworkConnection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the service ID associated with the specified network connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The service ID associated with the network connection.
+    ///
+    ///
     /// Returns the service ID associated with the SCNetworkConnection.
     ///
     /// Parameter `connection`: The SCNetworkConnection to obtain status from.
     ///
     /// Returns: Returns the service ID associated with the SCNetworkConnection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyserviceid(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyServiceID")]
     #[inline]
     pub fn service_id(&self) -> Option<CFRetained<CFString>> {
@@ -378,6 +441,17 @@ impl SCNetworkConnection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the status of the specified network connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The status of the network connection. See [`SCNetworkConnectionStatus`](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus) for a list of possible values.
+    ///
+    ///
     /// Returns the status of the SCNetworkConnection.
     /// A status is one of the following values:
     /// <pre>
@@ -396,8 +470,6 @@ impl SCNetworkConnection {
     /// Parameter `connection`: The SCNetworkConnection to obtain status from.
     ///
     /// Returns: Returns the status value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectiongetstatus(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionGetStatus")]
     #[inline]
     pub fn status(&self) -> SCNetworkConnectionStatus {
@@ -409,6 +481,28 @@ impl SCNetworkConnection {
         unsafe { SCNetworkConnectionGetStatus(self) }
     }
 
+    /// Returns the extended status of the connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The status dictionary, or `NULL` if an error occurred (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An extended status dictionary contains specific dictionaries describing the status for each subcomponent of the service. For example, a status dictionary contains the following sub-dictionaries, keys, and values:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Sub-dictionary" }] }], [Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Text { text: "IPv4" }] }], [Paragraph { inline_content: [CodeVoice { code: "Addresses" }] }], [Paragraph { inline_content: [Text { text: "The assigned IP address" }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "Status" }] }], [Paragraph { inline_content: [Text { text: "The PPP-specific status (see " }, Reference { identifier: "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/SCNetworkConnectionPPPStatus", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " for possible values)" }] }]], [[Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "LastCause" }] }], [Paragraph { inline_content: [Text { text: "Available when the status is “Disconnected” and contains the last error associated with connecting or disconnecting." }] }]], [[Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "ConnectTime" }] }], [Paragraph { inline_content: [Text { text: "The time when the connection was established." }] }]], [[Paragraph { inline_content: [Text { text: "Modem" }] }], [Paragraph { inline_content: [CodeVoice { code: "ConnectSpeed" }] }], [Paragraph { inline_content: [Text { text: "The speed of the modem connection in bits per second." }] }]]], alignments: None, metadata: None })
+    /// Other dictionaries can be present for PPoE, PPTP, and L2TP.
+    ///
+    /// The status dictionary may be extended in the future to contain additional information.
+    ///
+    ///
     /// Returns the extended status of the connection.
     /// An extended status dictionary contains specific dictionaries
     /// describing the status for each subcomponent of the service.
@@ -452,8 +546,6 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns the status dictionary.
     /// If NULL is returned, the error can be retrieved using the SCError function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyextendedstatus(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyExtendedStatus")]
     #[inline]
     pub fn extended_status(&self) -> Option<CFRetained<CFDictionary>> {
@@ -466,6 +558,26 @@ impl SCNetworkConnection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the statistics of the specified connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The statistics dictionary, or `NULL` if an error occurred (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A statistics dictionary contains specific dictionaries with statistics for each subcomponent of the service. For example, a statistics dictionary for PPP contains the following sub-dictionaries, keys, and values:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Sub-dictionary" }] }], [Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "BytesIn" }] }], [Paragraph { inline_content: [Text { text: "The number of bytes going up into the network stack for any networking protocol without the PPP headers and trailers." }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "BytesOut" }] }], [Paragraph { inline_content: [Text { text: "The number of bytes coming out of the network stack for any networking protocol without the PPP headers and trailers." }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "PacketsIn" }] }], [Paragraph { inline_content: [Text { text: "The number of packets going up into the network stack for any networking protocol without the PPP headers and trailers." }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "PacketsOut" }] }], [Paragraph { inline_content: [Text { text: "The number of packets coming out of the network stack for any networking protocol without the PPP headers and trailers." }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "ErrorsIn" }] }], [Paragraph { inline_content: [Text { text: "The number of errors going up into the network stack for any networking protocol without the PPP headers and trailers." }] }]], [[Paragraph { inline_content: [Text { text: "PPP" }] }], [Paragraph { inline_content: [CodeVoice { code: "ErrorsOut" }] }], [Paragraph { inline_content: [Text { text: "The number of errors coming out of the network stack for any networking protocol without the PPP headers and trailers." }] }]]], alignments: None, metadata: None })
+    /// See [Statistics Dictionary Keys](https://developer.apple.com/documentation/systemconfiguration/statistics-dictionary-keys) for the keys to use in the statistics dictionary.
+    ///
+    ///
     /// Returns the statistics of the SCNetworkConnection.
     /// A statistic dictionary contains specific dictionaries
     /// with statistics for each subcomponent of the service.
@@ -503,8 +615,6 @@ impl SCNetworkConnection {
     ///
     /// Returns: Returns the statistics dictionary.
     /// If NULL is returned, the error can be retrieved using the SCError function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopystatistics(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyStatistics")]
     #[inline]
     pub fn statistics(&self) -> Option<CFRetained<CFDictionary>> {
@@ -517,6 +627,37 @@ impl SCNetworkConnection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Starts the connection process for the specified network connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection to start.
+    ///
+    /// - userOptions: The options with which to start the connection. If `userOptions` is `NULL`, the default settings are used. If `userOptions` are specified, they must be in the same format as network services stored in the system configuration preferences schema. The options override the default settings defined for the service.
+    ///
+    /// For security reasons, not all options can be overridden; the appropriate merging of all settings is done before the connection is established, and inappropriate options are ignored.
+    ///
+    /// - linger: A Boolean value indicating whether the connection can persist when the application no longer has interest in it. A typical application should pass `FALSE`, in which case the connection is automatically stopped when the reference is released or the application quits. If the application passes `TRUE`, the application can release the reference or exit and the connection is maintained until a timeout event, until a specific stop request occurs, or until an error occurs.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the connection was correctly started (the actual connection is not established yet, and the connection status needs to be periodically checked); `FALSE` if the connection request was not started (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The connection process is asynchronous and this function returns immediately. The connection status can be obtained by polling or by callback. The connection is made with the default settings from the administrator. Some of the settings can be overridden for the duration of the connection. These are specified in an options dictionary. The options dictionary uses the same format as a network service defined in the system configuration preferences schema.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Starting and stopping of connections is implicitly arbitrated. Calling `SCNetworkConnectionStart` on a connection already started indicates that the application has interest in the connection and it shouldn’t be stopped by anyone else.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Starts the connection for the SCNetworkConnection.
     /// The connection process is asynchronous and the function will
     /// return immediately.  The connection status can be obtained
@@ -567,8 +708,6 @@ impl SCNetworkConnection {
     ///
     /// - `user_options` generic must be of the correct type.
     /// - `user_options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstart(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionStart")]
     #[inline]
     pub unsafe fn start(&self, user_options: Option<&CFDictionary>, linger: bool) -> bool {
@@ -583,6 +722,19 @@ impl SCNetworkConnection {
         ret != 0
     }
 
+    /// Stops the connection process for the specified network connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection to stop.
+    ///
+    /// - forceDisconnect: Pass `TRUE` to stop the connection regardless of other applications that might have interest in it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the disconnection request succeeded; `FALSE` (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
     /// Stops the connection for the SCNetworkConnection.
     /// The disconnection process is asynchronous and the function
     /// will return immediately.  The connection status can be
@@ -601,8 +753,6 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the disconnection request succeeded;
     /// FALSE if the disconnection request failed.
     /// The error must be retrieved from the SCError function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstop(_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionStop")]
     #[inline]
     pub fn stop(&self, force_disconnect: bool) -> bool {
@@ -616,6 +766,23 @@ impl SCNetworkConnection {
         ret != 0
     }
 
+    /// Gets the user options used to start the specified connection.
+    ///
+    /// Parameters:
+    /// - connection: The network connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The service dictionary containing the connection options (the dictionary can be empty if no user options were used), or `NULL` if an error occurred (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A client can call this function to retrieve the user options previously passed to the [`SCNetworkConnectionStart`](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstart(_:_:_:)) function.
+    ///
+    ///
     /// Copies the user options used to start the connection.
     /// This is a mechanism a client can use to retrieve the user options
     /// previously passed to the SCNetworkConnectionStart function.
@@ -625,8 +792,6 @@ impl SCNetworkConnection {
     /// Returns: Returns the service dictionary containing the connection options.
     /// The dictionary can be empty if no user options were used.
     /// If NULL is returned, the error can be retrieved using the SCError function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectioncopyuseroptions(_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionCopyUserOptions")]
     #[inline]
     pub fn user_options(&self) -> Option<CFRetained<CFDictionary>> {
@@ -639,6 +804,21 @@ impl SCNetworkConnection {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Schedules the specified connection with the specified run loop.
+    ///
+    /// Parameters:
+    /// - connection: The network connection to schedule.
+    ///
+    /// - runLoop: The run loop with which to schedule the network connection.
+    ///
+    /// - runLoopMode: The run loop mode.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the connection is scheduled successfully; `FALSE` (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
     /// Schedules a connection with the run loop.
     ///
     /// Parameter `connection`: The SCNetworkConnection to schedule.
@@ -650,8 +830,6 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the connection is scheduled successfully;
     /// FALSE if the scheduling failed.
     /// The error can be retrieved using the SCError function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionScheduleWithRunLoop")]
     #[inline]
     pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -666,6 +844,21 @@ impl SCNetworkConnection {
         ret != 0
     }
 
+    /// Unschedules the specified connection from the specified run loop.
+    ///
+    /// Parameters:
+    /// - connection: The network connection to unschedule.
+    ///
+    /// - runLoop: The run loop from which to unschedule the network connection.
+    ///
+    /// - runLoopMode: The run loop mode.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the connection is unscheduled successfully; `FALSE` (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
     /// Unschedules a connection from the run loop.
     ///
     /// Parameter `connection`: The SCNetworkConnection to unschedule.
@@ -677,8 +870,6 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the connection is unscheduled successfully;
     /// FALSE if the unscheduling failed.
     /// The error can be retrieved using the SCError function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionUnscheduleFromRunLoop")]
     #[inline]
     pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -694,6 +885,19 @@ impl SCNetworkConnection {
         ret != 0
     }
 
+    /// Specifies a dispatch queue to use for the connection’s callback function and enables notifications.
+    ///
+    /// Parameters:
+    /// - connection: The network connection to notify.
+    ///
+    /// - queue: The queue on which to run the connection’s callback function. Pass `NULL` to disable notifications and release the queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if successful; otherwise, `FALSE` (use the [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) function to retrieve the specific error).
+    ///
+    ///
     /// Caller provides a dispatch queue on which the callback contained in connection will run.
     ///
     /// Parameter `connection`: The SCNetworkConnection to notify.
@@ -708,8 +912,6 @@ impl SCNetworkConnection {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionsetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCNetworkConnectionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

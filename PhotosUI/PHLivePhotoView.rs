@@ -15,19 +15,31 @@ use objc2_photos::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle?language=objc)
+/// Options for how much of the motion and sound content of a Live Photo to play, used in the [`startPlaybackWithStyle:`](https://developer.apple.com/documentation/photosui/phlivephotoview/startplayback(with:)) method and in messages to the view’s [`delegate`](https://developer.apple.com/documentation/photosui/phlivephotoview/delegate) object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoViewPlaybackStyle(pub NSInteger);
 impl PHLivePhotoViewPlaybackStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/undefined?language=objc)
+    /// This value is invalid for use.
     #[doc(alias = "PHLivePhotoViewPlaybackStyleUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/full?language=objc)
+    /// Plays back the entire motion and sound content of the Live Photo, including transition effects at the start and end.
+    ///
+    /// ## Discussion
+    ///
+    /// This style matches the effect seen when pressing on a photo in the Photos app.
+    ///
+    ///
     #[doc(alias = "PHLivePhotoViewPlaybackStyleFull")]
     pub const Full: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/hint?language=objc)
+    /// Plays back only a brief section of the motion content of the Live Photo, without sound.
+    ///
+    /// ## Discussion
+    ///
+    /// This style matches the effect seen in various iOS interface elements for hinting to the user when an asset contains Live Photo content.
+    ///
+    ///
     #[doc(alias = "PHLivePhotoViewPlaybackStyleHint")]
     pub const Hint: Self = Self(2);
 }
@@ -44,16 +56,16 @@ unsafe impl Send for PHLivePhotoViewPlaybackStyle {}
 
 unsafe impl Sync for PHLivePhotoViewPlaybackStyle {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode?language=objc)
+/// The enumerated Live Photo content modes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoViewContentMode(pub NSInteger);
 impl PHLivePhotoViewContentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode/aspectfit?language=objc)
+    /// A mode that resizes the content to fit the view’s bounds, while preserving the content’s aspect ratio.
     #[doc(alias = "PHLivePhotoViewContentModeAspectFit")]
     pub const AspectFit: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode/aspectfill?language=objc)
+    /// A mode that resizes the content to fill its horizontal or vertical dimension.
     #[doc(alias = "PHLivePhotoViewContentModeAspectFill")]
     pub const AspectFill: Self = Self(1);
 }
@@ -71,7 +83,25 @@ unsafe impl Send for PHLivePhotoViewContentMode {}
 unsafe impl Sync for PHLivePhotoViewContentMode {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoview?language=objc)
+    /// A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.
+    ///
+    /// ## Overview
+    ///
+    /// Use a Live Photo view to display the photo and control playback of its motion and sound content. In iOS and tvOS, you can obtain Live Photo objects from the Photos library, using the [`PHPickerViewController`](https://developer.apple.com/documentation/photosui/phpickerviewcontroller) or [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) and [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager) classes, or by creating one from asset resources exported from a Photos library. In macOS, Live Photo objects are available only when editing Live Photo content in a photo editing extension that runs in the Photos app—see the [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) class to access Live Photo content in an editing session.
+    ///
+    /// By default, a Live Photo view uses its own gesture recognizer to allow the user to play the motion and sound content of a Live Photo with the same interactions and visual effects seen in the Photos app. To customize this gesture recognizer—for example, to install it on a different view for proper event handling in your app’s view hierarchy—use the [`playbackGestureRecognizer`](https://developer.apple.com/documentation/photosui/phlivephotoview/playbackgesturerecognizer) property.
+    ///
+    /// To animate the view briefly to hint that a picture is a Live Photo, use the [`startPlaybackWithStyle:`](https://developer.apple.com/documentation/photosui/phlivephotoview/startplayback(with:)) method with the [`PHLivePhotoViewPlaybackStyleHint`](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle/hint) option.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  This class displays Live Photos in native iOS and tvOS apps and macOS photo editing extensions. To display Live Photo content on the web, use the [`LivePhotosKit JS`](https://developer.apple.com/documentation/livephotoskitjs) framework.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -266,7 +296,7 @@ impl PHLivePhotoView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewdelegate?language=objc)
+    /// The [`PHLivePhotoViewDelegate`](https://developer.apple.com/documentation/photosui/phlivephotoviewdelegate) protocol describes messages sent by a [`PHLivePhotoView`](https://developer.apple.com/documentation/photosui/phlivephotoview) instance in response to playback events when playing the motion and sound content associated with a Live Photo. To receive these messages, implement the methods in this protocol in one of your controller objects and assign that object to the [`delegate`](https://developer.apple.com/documentation/photosui/phlivephotoview/delegate) property of a Live Photo view.
     pub unsafe trait PHLivePhotoViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

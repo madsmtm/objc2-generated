@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteractionmode?language=objc)
+/// Modes that determine the selection behaviors that a text interaction provides.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextInteractionMode(pub NSInteger);
 impl UITextInteractionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteractionmode/editable?language=objc)
+    /// A mode indicating that the text interaction should provide selection behaviors for editable text.
     #[doc(alias = "UITextInteractionModeEditable")]
     pub const Editable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteractionmode/noneditable?language=objc)
+    /// A mode indicating that the text interaction should provide selection behaviors for non-editable, read-only text.
     #[doc(alias = "UITextInteractionModeNonEditable")]
     pub const NonEditable: Self = Self(1);
 }
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UITextInteractionMode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteractiondelegate?language=objc)
+    /// An interface that an object implements to receive information about text interaction events.
     pub unsafe trait UITextInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
@@ -57,7 +57,55 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinteraction?language=objc)
+    /// An interaction that provides text selection gestures and UI to custom text views.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`UITextInteraction`](https://developer.apple.com/documentation/uikit/uitextinteraction) to provide your custom text views the same text selection gestures and UI available in native text views like [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview) and [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield). When creating a text interaction, choose a mode that matches the state of the text, [`UITextInteractionModeEditable`](https://developer.apple.com/documentation/uikit/uitextinteractionmode/editable) or [`UITextInteractionModeNonEditable`](https://developer.apple.com/documentation/uikit/uitextinteractionmode/noneditable). Then set the [`textInput`](https://developer.apple.com/documentation/uikit/uitextinteraction/textinput) property to an object that conforms to [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput), and add the interaction to a view.
+    ///
+    /// ```swift
+    /// // Create a selection interaction for non-editable content.
+    /// let selectionInteraction = UITextInteraction(for: .nonEditable)
+    ///
+    /// // Assign `textInput` to your view that implements the `UITextInput` protocol
+    /// // to get more control over the selection behavior and the text input system.
+    /// selectionInteraction.textInput = customTextView
+    ///
+    /// // Add the interaction to the view.
+    /// customTextView.addInteraction(selectionInteraction)
+    /// ```
+    ///
+    /// If your custom text view supports editable and non-editable text, create two interactions — one for each mode — and add the interaction that matches the state of text to the view while removing the other interaction.
+    ///
+    /// ```swift
+    /// override func becomeFirstResponder() -> Bool {
+    ///     let isFirstResponder = self.isFirstResponder
+    ///     let result = super.becomeFirstResponder()
+    ///     
+    ///     if isFirstResponder == false && self.isFirstResponder == true {
+    ///         customTextView.removeInteraction(nonEditableTextInteraction)
+    ///         customTextView.addInteraction(editableTextInteraction)
+    ///     }
+    ///     
+    ///     return result
+    /// }
+    ///
+    /// override func resignFirstResponder() -> Bool {
+    ///     let isFirstResponder = self.isFirstResponder
+    ///     let result = super.resignFirstResponder()
+    ///     
+    ///     if isFirstResponder == true && self.isFirstResponder == false {
+    ///         customTextView.removeInteraction(editableTextInteraction)
+    ///         customTextView.addInteraction(nonEditableTextInteraction)
+    ///     }
+    ///     
+    ///     return result
+    /// }
+    /// ```
+    ///
+    /// If your app provides other gestures in the same view hierarchy, you can use the [`requireGestureRecognizerToFail:`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/require(tofail:)) method to set up failure requirements between your app’s gestures and the text interaction gestures listed in the [`gesturesForFailureRequirements`](https://developer.apple.com/documentation/uikit/uitextinteraction/gesturesforfailurerequirements) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

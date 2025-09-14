@@ -15,6 +15,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the available button states.
 /// Normal or default state of the picker.
 ///
 /// Highlighted state of the picker. The picker has this state when a mouse-down event occurs inside the button. It loses this highlight when a mouse-up event occurs.
@@ -22,23 +23,21 @@ use crate::*;
 /// Active state of the picker. The picker has this state when AirPlay is active.
 ///
 /// Highlighted state of the active picker. The picker has this state when it is highlighted and AirPlay is active.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonState(pub NSInteger);
 impl AVRoutePickerViewButtonState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/normal?language=objc)
+    /// The normal, or default, button state.
     #[doc(alias = "AVRoutePickerViewButtonStateNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/normalhighlighted?language=objc)
+    /// The highlighted button state when a mouse-down event occurs inside the button.
     #[doc(alias = "AVRoutePickerViewButtonStateNormalHighlighted")]
     pub const NormalHighlighted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/active?language=objc)
+    /// The button state when AirPlay is active.
     #[doc(alias = "AVRoutePickerViewButtonStateActive")]
     pub const Active: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate/activehighlighted?language=objc)
+    /// The highlighted button state when AirPlay is active.
     #[doc(alias = "AVRoutePickerViewButtonStateActiveHighlighted")]
     pub const ActiveHighlighted: Self = Self(3);
 }
@@ -51,25 +50,36 @@ unsafe impl RefEncode for AVRoutePickerViewButtonState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define the button styles a route picker view supports.
 /// A system style for the route picker button.
 ///
 /// A plain style for the route picker button, which has the same appearance as the system style without the blurred background view.
 ///
 /// A custom style for the route picker button, which allows customizing the background view and focused appearance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonStyle(pub NSInteger);
 impl AVRoutePickerViewButtonStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle/system?language=objc)
+    /// A system-defined button style.
     #[doc(alias = "AVRoutePickerViewButtonStyleSystem")]
     pub const System: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle/plain?language=objc)
+    /// A plain button style.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style to set the button to match the system style, except without a blurred background view.
+    ///
+    ///
     #[doc(alias = "AVRoutePickerViewButtonStylePlain")]
     pub const Plain: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle/custom?language=objc)
+    /// A custom button style.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this button style to customize the background view and focus appearance for a route picker view.
+    ///
+    ///
     #[doc(alias = "AVRoutePickerViewButtonStyleCustom")]
     pub const Custom: Self = Self(2);
 }
@@ -83,7 +93,71 @@ unsafe impl RefEncode for AVRoutePickerViewButtonStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview?language=objc)
+    /// A view that presents a list of nearby media receivers.
+    ///
+    /// ## Overview
+    ///
+    /// This view represents a button that users tap to stream audio/video content to a media receiver, such as a Mac or Apple TV.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3a3f6355a7c19800b72b40de1ed6f633/media-4084059~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b62ddb41af36e4323c32e1cd22e5e55f/media-4084059%402x.png 2x" />
+    ///     <img alt="A screenshot of an AV route picker view that composes a button with text that says Choose output device on the left, and an icon of a computer screen next to a set-top box remote on the right." src="https://docs-assets.developer.apple.com/published/b62ddb41af36e4323c32e1cd22e5e55f/media-4084059%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// When the user taps the button, the system presents a popover that displays all of the nearby AirPlay devices that can receive and play back media. If your app prefers video content, the system displays video-capable devices higher in the list.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/73c076105da5a2cab76b11cc41837bee/media-4084052~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/2d268c04aeb272901d3f6ca873f668ba/media-4084052%402x.png 2x" />
+    ///     <img alt="A screenshot of a popover with a list of items. The top item is an iPad icon with a check mark to the right. Below that is the title Speakers and TVs with a list of six subitems. The first subitem says Third-party device, followed by AirPlay and Third-party protocol. The remaining subitems are Sunset Beach with an Apple TV icon on the left, Link with TV code with a globe icon on the left, and Show more." src="https://docs-assets.developer.apple.com/published/73c076105da5a2cab76b11cc41837bee/media-4084052~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// In iOS 16 and later, you can add devices to the list that implement custom protocols. For more information about displaying third-party routes, see [`AVRouting`](https://developer.apple.com/documentation/avrouting).
+    ///
+    /// ### Configure the button’s text, color, and media preference
+    ///
+    /// The following code example creates the view alongside custom text:
+    ///
+    /// ```swift
+    /// HStack {
+    ///     Text("Choose output device")
+    ///         .font(.title)
+    ///         .frame(maxWidth: .infinity, alignment: .center)
+    ///         .fixedSize()
+    ///         .padding(.leading)
+    ///
+    ///     if routeDetected {
+    ///         DevicePickerView() // See implementation below.
+    ///         .frame(width: 60, height: 60)
+    ///         .padding(.trailing)
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// Your app configures the button’s color scheme and indicates whether your app prefers video content, as the following code demonstrates:
+    ///
+    /// ```swift
+    /// struct DevicePickerView: UIViewRepresentable {
+    ///     func makeUIView(context: Context) -> UIView {
+    ///         let routePickerView = AVRoutePickerView()
+    ///
+    ///         // Configure the button's color.
+    ///         routePickerView.delegate = context.coordinator
+    ///         routePickerView.backgroundColor = UIColor.white
+    ///         routePickerView.tintColor = UIColor.black
+    ///
+    ///         // Indicate whether your app prefers video content.
+    ///         routePickerView.prioritizesVideoDevices = true
+    ///
+    ///         return routePickerView
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -306,9 +380,8 @@ impl AVRoutePickerView {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to adopt to respond to route picker view presentation events.
     /// Defines an interface for delegates of AVRoutePickerView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewdelegate?language=objc)
     pub unsafe trait AVRoutePickerViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

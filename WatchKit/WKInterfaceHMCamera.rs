@@ -9,7 +9,18 @@ use objc2_home_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacehmcamera?language=objc)
+    /// An interface element that displays either a video stream or a single snapshot from an IP camera connected to HomeKit.
+    ///
+    /// ## Overview
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define an outlet in your interface controller class and connect it to the corresponding object in your storyboard file. For example, to refer to a camera interface object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myCamera: WKInterfaceHMCamera!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceHMCamera* myCamera;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates the camera interface object and assigns it to its associated outlet. At that point, you can use the camera interface object to change to the onscreen content.
+    ///
+    /// The camera interface object in your Watch app must be connected to a [`WKInterfaceHMCamera`](https://developer.apple.com/documentation/watchkit/wkinterfacehmcamera) outlet in your WatchKit extension for the camera to be visible in your watchOS app’s user interface.
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

@@ -9,242 +9,351 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunimplemented?language=objc)
+/// Unimplemented code signing feature.
 pub const errSecCSUnimplemented: OSStatus = -67072;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidobjectref?language=objc)
+/// Invalid API object reference.
 pub const errSecCSInvalidObjectRef: OSStatus = -67071;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidflags?language=objc)
+/// Invalid or inappropriate API flags specified.
 pub const errSecCSInvalidFlags: OSStatus = -67070;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsobjectrequired?language=objc)
+/// A required pointer argument was null.
 pub const errSecCSObjectRequired: OSStatus = -67069;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsstaticcodenotfound?language=objc)
+/// Cannot find code object on disk.
+///
+/// ## Discussion
+///
+/// You can get this error if you specify a location on disk and the system can’t find the code at that location or if the system is checking the validity of running code and it can’t find the code on disk that was the source for the code in memory.
+///
+///
 pub const errSecCSStaticCodeNotFound: OSStatus = -67068;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunsupportedguestattributes?language=objc)
+/// Cannot locate guest code using this attribute set.
+///
+/// ## Discussion
+///
+/// When calling the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) function or the [`SecCodeCopyGuestWithAttributes`](https://developer.apple.com/documentation/security/seccodecopyguestwithattributes(_:_:_:_:)) function, you passed a key that either isn’t understood, recognized, or supported.
+///
+///
 pub const errSecCSUnsupportedGuestAttributes: OSStatus = -67067;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidattributevalues?language=objc)
+/// An attribute value associated with a key is out of range or is the wrong type.
 pub const errSecCSInvalidAttributeValues: OSStatus = -67066;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsnosuchcode?language=objc)
+/// Code signing host has no guest code with the requested attributes.
 pub const errSecCSNoSuchCode: OSStatus = -67065;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsmultipleguests?language=objc)
+/// Code signing host has more than one block of guest code with this attribute value.
 pub const errSecCSMultipleGuests: OSStatus = -67064;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsguestinvalid?language=objc)
+/// The identity of guest code has been invalidated.
 pub const errSecCSGuestInvalid: OSStatus = -67063;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunsigned?language=objc)
+/// Code object is not signed.
 pub const errSecCSUnsigned: OSStatus = -67062;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssignaturefailed?language=objc)
+/// Code or signature modified.
 pub const errSecCSSignatureFailed: OSStatus = -67061;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssignaturenotverifiable?language=objc)
+/// Signature cannot be read.
+///
+/// ## Discussion
+///
+/// This error might be due to a filesystem that maps root to an unprivileged user, for example.
+///
+///
 pub const errSecCSSignatureNotVerifiable: OSStatus = -67060;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssignatureunsupported?language=objc)
+/// Unsupported type or version of signature.
 pub const errSecCSSignatureUnsupported: OSStatus = -67059;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbaddictionaryformat?language=objc)
+/// A required information property list (Info.plist) file or resource is malformed.
 pub const errSecCSBadDictionaryFormat: OSStatus = -67058;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsresourcesnotsealed?language=objc)
+/// Resources are not sealed by the signature.
 pub const errSecCSResourcesNotSealed: OSStatus = -67057;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsresourcesnotfound?language=objc)
+/// Cannot find sealed resources in code.
 pub const errSecCSResourcesNotFound: OSStatus = -67056;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsresourcesinvalid?language=objc)
+/// The sealed resource directory is invalid.
 pub const errSecCSResourcesInvalid: OSStatus = -67055;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadresource?language=objc)
+/// A sealed resource is missing or invalid.
 pub const errSecCSBadResource: OSStatus = -67054;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsresourcerulesinvalid?language=objc)
+/// Invalid resource selection rule or rules.
 pub const errSecCSResourceRulesInvalid: OSStatus = -67053;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsreqinvalid?language=objc)
+/// Invalid or corrupted code requirements.
 pub const errSecCSReqInvalid: OSStatus = -67052;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsrequnsupported?language=objc)
+/// Unsupported type or version of code requirements.
 pub const errSecCSReqUnsupported: OSStatus = -67051;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsreqfailed?language=objc)
+/// The code failed to satisfy one of the code requirements.
 pub const errSecCSReqFailed: OSStatus = -67050;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadobjectformat?language=objc)
+/// The object file format invalid or unsuitable.
 pub const errSecCSBadObjectFormat: OSStatus = -67049;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinternalerror?language=objc)
+/// Internal error in Code Signing Services subsystem.
 pub const errSecCSInternalError: OSStatus = -67048;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostreject?language=objc)
+/// Code rejected its host.
+///
+/// ## Discussion
+///
+/// This error indicates that there’s an internal requirement in the signature on the guest code that specifies conditions that the code host must meet, and the host failed to meet that requirement. For example, if the guest requires that the host be signed by Apple and it wasn’t, the system returns this error when validating requirements.
+///
+///
 pub const errSecCSHostReject: OSStatus = -67047;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsnotahost?language=objc)
+/// This code is not a code signing host.
 pub const errSecCSNotAHost: OSStatus = -67046;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssignatureinvalid?language=objc)
+/// Invalid format for signature.
 pub const errSecCSSignatureInvalid: OSStatus = -67045;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolrelativepath?language=objc)
+/// Host protocol violation: absolute guest path required.
 pub const errSecCSHostProtocolRelativePath: OSStatus = -67044;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolcontradiction?language=objc)
+/// Host protocol violation: contradictory hosting modes.
 pub const errSecCSHostProtocolContradiction: OSStatus = -67043;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocoldedicationerror?language=objc)
+/// Host protocol violation: operation not allowed with or for a dedicated guest.
 pub const errSecCSHostProtocolDedicationError: OSStatus = -67042;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolnotproxy?language=objc)
+/// Host protocol violation: proxy hosting not engaged.
 pub const errSecCSHostProtocolNotProxy: OSStatus = -67041;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolstateerror?language=objc)
+/// Host protocol violation: invalid guest state change request.
 pub const errSecCSHostProtocolStateError: OSStatus = -67040;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolunrelated?language=objc)
+/// Host protocol violation: the specified code is not a guest of the specified code signing host.
 pub const errSecCSHostProtocolUnrelated: OSStatus = -67039;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsnotsupported?language=objc)
+/// Operation not supported for this type of code.
 pub const errSecCSNotSupported: OSStatus = -67037;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccscmstoolarge?language=objc)
+/// The signature is too large to embed.
 pub const errSecCSCMSTooLarge: OSStatus = -67036;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolinvalidhash?language=objc)
+/// Host protocol violation: invalid hash of guest code.
 pub const errSecCSHostProtocolInvalidHash: OSStatus = -67035;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsstaticcodechanged?language=objc)
+/// The code on disk has been modified after the code started running.
 pub const errSecCSStaticCodeChanged: OSStatus = -67034;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsdbdenied?language=objc)
+/// Access to signature database denied.
+///
+/// ## Database
+///
+/// This error is returned when the system is attempting to sign unsigned code ad-hoc and couldn’t write to the signature database because of a permission problem.
+///
+///
 pub const errSecCSDBDenied: OSStatus = -67033;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsdbaccess?language=objc)
+/// Cannot access signature database.
+///
+/// ## Discussion
+///
+/// This error is returned when the system is attempting to sign unsigned code ad-hoc and couldn’t write to the signature database because of some problem other than a permission problem. For example, the signature database might be missing or corrupted.
+///
+///
 pub const errSecCSDBAccess: OSStatus = -67032;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssigdbdenied?language=objc)
+/// Access to signature database denied.
+///
+/// ## Discussion
+///
+/// This error is returned when the system is attempting to sign unsigned code ad-hoc and couldn’t write to the signature database because of a permission problem.
+///
+///
 pub const errSecCSSigDBDenied: OSStatus = -67033;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssigdbaccess?language=objc)
+/// Can’t access signature database.
+///
+/// ## Discussion
+///
+/// This error is returned when the system is attempting to sign unsigned code ad-hoc and couldn’t write to the signature database because of some problem other than a permission problem. For example, the signature database might be missing or corrupted.
+///
+///
 pub const errSecCSSigDBAccess: OSStatus = -67032;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshostprotocolinvalidattribute?language=objc)
+/// Code signing host returned invalid or inconsistent attributes for guest code.
 pub const errSecCSHostProtocolInvalidAttribute: OSStatus = -67031;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinfoplistfailed?language=objc)
+/// The Info.plist file or the signature has been modified.
 pub const errSecCSInfoPlistFailed: OSStatus = -67030;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsnomainexecutable?language=objc)
+/// The code has no main executable file.
 pub const errSecCSNoMainExecutable: OSStatus = -67029;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadbundleformat?language=objc)
+/// The bundle format is unrecognized, invalid, or unsuitable.
 pub const errSecCSBadBundleFormat: OSStatus = -67028;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsnomatches?language=objc)
+/// No matches were found for a search or update operation.
 pub const errSecCSNoMatches: OSStatus = -67027;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsfilehardquarantined?language=objc)
+/// File open or execution not allowed.
+///
+/// ## Discussion
+///
+/// File has quarantine flags indicating that it should not be opened or executed under any circumstances. This usually occurs because the file was downloaded by a sandboxed application that does not have file download entitlements.
+///
+///
 pub const errSecCSFileHardQuarantined: OSStatus = -67026;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsoutdated?language=objc)
+/// The presented data is out of date.
 pub const errSecCSOutdated: OSStatus = -67025;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsdbcorrupt?language=objc)
+/// A system database or file is corrupt.
 pub const errSecCSDbCorrupt: OSStatus = -67024;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsresourcedirectoryfailed?language=objc)
+/// A directory or its signature has been modified and is therefore invalid.
 pub const errSecCSResourceDirectoryFailed: OSStatus = -67023;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunsignednestedcode?language=objc)
+/// Nested code is unsigned.
 pub const errSecCSUnsignedNestedCode: OSStatus = -67022;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadnestedcode?language=objc)
+/// The nested code is modified or invalid.
 pub const errSecCSBadNestedCode: OSStatus = -67021;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadcallbackvalue?language=objc)
+/// The monitor callback returned invalid value.
 pub const errSecCSBadCallbackValue: OSStatus = -67020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccshelperfailed?language=objc)
+/// The codesign_allocate helper tool can’t be found or used.
 pub const errSecCSHelperFailed: OSStatus = -67019;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsvetoed?language=objc)
 pub const errSecCSVetoed: OSStatus = -67018;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadlvarch?language=objc)
+/// The library validation flag cannot be used with an i386 binary.
 pub const errSecCSBadLVArch: OSStatus = -67017;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsresourcenotsupported?language=objc)
+/// Found an unsupported resource.
+///
+/// ## Discussion
+///
+/// Resources other than directories, plain files, and symbolic links are not supported.
+///
+///
 pub const errSecCSResourceNotSupported: OSStatus = -67016;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsregularfile?language=objc)
+/// The main executable or Info.plist must be a regular file (and not, for example, a symbolic link).
 pub const errSecCSRegularFile: OSStatus = -67015;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunsealedapproot?language=objc)
+/// Unsealed contents present in the bundle root.
 pub const errSecCSUnsealedAppRoot: OSStatus = -67014;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsweakresourcerules?language=objc)
+/// The resource envelope is obsolete (custom omit rules).
 pub const errSecCSWeakResourceRules: OSStatus = -67013;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsdsstoresymlink?language=objc)
+/// A `.DS_Store` file can’t be a symlink.
 pub const errSecCSDSStoreSymlink: OSStatus = -67012;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsambiguousbundleformat?language=objc)
+/// The bundle could be an app or a framework.
 pub const errSecCSAmbiguousBundleFormat: OSStatus = -67011;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadmainexecutable?language=objc)
+/// The main executable failed strict validation.
 pub const errSecCSBadMainExecutable: OSStatus = -67010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadframeworkversion?language=objc)
+/// The embedded framework contains a modified or invalid version.
 pub const errSecCSBadFrameworkVersion: OSStatus = -67009;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunsealedframeworkroot?language=objc)
+/// Unsealed contents present in the root directory of an embedded framework.
 pub const errSecCSUnsealedFrameworkRoot: OSStatus = -67008;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsweakresourceenvelope?language=objc)
+/// The resource envelope is obsolete (version 1 signature).
 pub const errSecCSWeakResourceEnvelope: OSStatus = -67007;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccscancelled?language=objc)
+/// The operation was terminated by explicit cancellation.
 pub const errSecCSCancelled: OSStatus = -67006;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidplatform?language=objc)
+/// Invalid platform identifier or platform mismatch.
 pub const errSecCSInvalidPlatform: OSStatus = -67005;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccstoobig?language=objc)
+/// The code is too big for current signing format.
 pub const errSecCSTooBig: OSStatus = -67004;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidsymlink?language=objc)
+/// Invalid destination for symbolic link in bundle.
 pub const errSecCSInvalidSymlink: OSStatus = -67003;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsnotapplike?language=objc)
+/// The code is valid but does not seem to be an app.
 pub const errSecCSNotAppLike: OSStatus = -67002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbaddiskimageformat?language=objc)
+/// The disk image format unrecognized, invalid, or unsuitable.
 pub const errSecCSBadDiskImageFormat: OSStatus = -67001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsunsupporteddigestalgorithm?language=objc)
+/// The signature digest algorithm(s) specified are not supported.
 pub const errSecCSUnsupportedDigestAlgorithm: OSStatus = -67000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidassociatedfiledata?language=objc)
+/// Resource fork, Finder information, or similar detritus not allowed.
 pub const errSecCSInvalidAssociatedFileData: OSStatus = -66999;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidteamidentifier?language=objc)
+/// A Team Identifier string is invalid.
 pub const errSecCSInvalidTeamIdentifier: OSStatus = -66998;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsbadteamidentifier?language=objc)
+/// A Team Identifier is wrong or inappropriate.
 pub const errSecCSBadTeamIdentifier: OSStatus = -66997;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccssignatureuntrusted?language=objc)
+/// The signature is valid but signer isn’t trusted.
 pub const errSecCSSignatureUntrusted: OSStatus = -66996;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmultipleexecsegments?language=objc)
+/// The image contains multiple executable segments.
 pub const errSecMultipleExecSegments: OSStatus = -66995;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidentitlements?language=objc)
+/// Encountered an invalid entitlement plist.
 pub const errSecCSInvalidEntitlements: OSStatus = -66994;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsinvalidruntimeversion?language=objc)
+/// An invalid runtime version was explicity set.
 pub const errSecCSInvalidRuntimeVersion: OSStatus = -66993;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsrevokednotarization?language=objc)
+/// Notarization indicates this code has been revoked.
 pub const errSecCSRevokedNotarization: OSStatus = -66992;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccscmsconstructionfailed?language=objc)
 pub const errSecCSCMSConstructionFailed: OSStatus = -66991;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccsremotesignerfailed?language=objc)
 pub const errSecCSRemoteSignerFailed: OSStatus = -66990;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorarchitecture?language=objc)
+    /// A key whose value is a string containing the name of the architecture that is causing the problem.
     pub static kSecCFErrorArchitecture: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorpattern?language=objc)
+    /// A key whose value is a string containing a regular expression that’s part of a resource specification that did not parse correctly.
+    ///
+    /// ## Discussion
+    ///
+    /// A resource specification is an information property list (`Info.plist` file) that says which files are resources and which are not. This error is returned if any part of the resource specification can’t be parsed.
+    ///
+    ///
     pub static kSecCFErrorPattern: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorresourceseal?language=objc)
+    /// A key whose value is a Core Foundation object containing the part of the resource seal that had a problem.
+    ///
+    /// ## Discussion
+    ///
+    /// The `CodeResources` file that gets generated as part of the code signing process serves as the bundle’s seal. This file is a CFDictionary that contains a listing of all the files found within your bundle coupled with their respective hash values and a set of rule definitions. The type of object returned depends on which item in the dictionary had a problem. See [macOS Code Signing In Depth](https://developer.apple.com/library/archive/technotes/tn2206/_index.html#//apple_ref/doc/uid/DTS40007919) for more information on the `CodeResources` file.
+    ///
+    ///
     pub static kSecCFErrorResourceSeal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorresourceadded?language=objc)
+    /// A key whose value is a URL pointing to the resource on disk that is not included in the signed resources for the code.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present when an unsealed resource is found.
+    ///
+    ///
     pub static kSecCFErrorResourceAdded: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorresourcealtered?language=objc)
+    /// A key whose value is a URL pointing to the resource on disk that has been altered.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present when a modified resource is found.
+    ///
+    ///
     pub static kSecCFErrorResourceAltered: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorresourcemissing?language=objc)
+    /// A key whose value is a URL indicating the location of the missing resource as it is specified in the `CodeResources` file.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present when a non-optional sealed resource is missing.
+    ///
+    ///
     pub static kSecCFErrorResourceMissing: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorresourcesideband?language=objc)
+    /// A key whose value is a URL representing a sealed resource with invalid sideband data (resource fork, etc.).
     pub static kSecCFErrorResourceSideband: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorresourcerecursive?language=objc)
     pub static kSecCFErrorResourceRecursive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorinfoplist?language=objc)
+    /// A key whose value is a Core Foundation object identifying the invalid component or key in the dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present when the `Info.plist` dictionary or other component has been found to be invalid.
+    ///
+    ///
     pub static kSecCFErrorInfoPlist: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorguestattributes?language=objc)
+    /// A key whose value is a Core Foundation object containing an attribute that is unrecognized or that contains a value of the wrong type.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present when you pass a bad guest attribute to the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) or [`SecHostSetGuestStatus`](https://developer.apple.com/documentation/security/sechostsetgueststatus) function.
+    ///
+    ///
     pub static kSecCFErrorGuestAttributes: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorrequirementsyntax?language=objc)
+    /// A key whose value is a string containing a compilation error generated when parsing a requirement.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is present when a call to the [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function results in a compilation error during the processing of the code requirement string.
+    ///
+    ///
     pub static kSecCFErrorRequirementSyntax: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccferrorpath?language=objc)
+    /// A key whose value is a URL indicating the subcomponent containing the error.
     pub static kSecCFErrorPath: &'static CFString;
 }
 
+/// A code object representing signed code running on the system.
+///
+/// ## Overview
+///
+/// In many function calls, a value of type [`SecCodeRef`](https://developer.apple.com/documentation/security/seccode) can be passed to a parameter that is typed as a [`SecStaticCodeRef`](https://developer.apple.com/documentation/security/secstaticcode). In these cases, the function performs an implicit call to the [`SecCodeCopyStaticCode`](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)) function and operates on the result.
+///
+///
 /// This is the type of a reference to running code.
 ///
 /// In many (but not all) calls, this can be passed to a SecStaticCodeRef
 /// argument, which performs an implicit SecCodeCopyStaticCode call and
 /// operates on the result.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccode?language=objc)
 #[doc(alias = "SecCodeRef")]
 #[repr(C)]
 pub struct SecCode {
@@ -260,9 +369,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecCode"> for SecCode {}
 );
 
-/// This is the type of a reference to static code on disk.
+/// A static code object representing signed code on disk.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcode?language=objc)
+/// ## Discussion
+///
+/// Compare with [`SecCodeRef`](https://developer.apple.com/documentation/security/seccode).
+///
+///
+/// This is the type of a reference to static code on disk.
 #[doc(alias = "SecStaticCodeRef")]
 #[repr(C)]
 pub struct SecStaticCode {
@@ -278,9 +392,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecCode"> for SecStaticCode {}
 );
 
+/// A code requirement object.
 /// This is the type of a reference to a code requirement.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirement?language=objc)
 #[doc(alias = "SecRequirementRef")]
 #[repr(C)]
 pub struct SecRequirement {
@@ -296,17 +409,35 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecRequirement"> for SecRequirement {}
 );
 
+/// A reference to a guest object, which identifies a particular block of guest code in the context of its code signing host.
+///
+/// ## Discussion
+///
+/// Guest handles are assigned by the host at will, with [`kSecNoGuest`](https://developer.apple.com/documentation/security/ksecnoguest) being reserved as the `NULL` value. They can be reused for new children if desired.
+///
+///
 /// An abstract handle to identify a particular Guest in the context of its Host.
 ///
 /// Guest handles are assigned by the host at will, with kSecNoGuest (zero) being
 /// reserved as the null value. They can be reused for new children if desired.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secguestref?language=objc)
 pub type SecGuestRef = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecnoguest?language=objc)
+/// Not a valid `SecGuestRef` object.
+///
+/// ## Discussion
+///
+/// Some functions in the API use this value to indicate that there is no guest, and some functions use it to indicate that the function applies to the host itself rather than to a guest.
+///
+///
 pub const kSecNoGuest: SecGuestRef = 0;
 
+/// Values that can be used in the `flags` parameter to most code signing functions.
+///
+/// ## Overview
+///
+/// All of the bits in the [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) enumeration are reserved by Apple. If you set any bits not defined here, the behavior is undefined.
+///
+///
 /// This is the type of flags arguments to Code Signing API calls.
 /// It provides a bit mask of request and option flags. All of the bits in these
 /// masks are reserved to Apple; if you set any bits not defined in these headers,
@@ -330,42 +461,50 @@ pub const kSecNoGuest: SecGuestRef = 0;
 /// like online certificate revocation and notarization checks by removing potentially
 /// slow network requests that can delay evaluations. This flag has always been usable for
 /// SecStaticCode objects and is usable with SecCode objects starting with macOS 11.3.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCSFlags(pub u32);
 bitflags::bitflags! {
     impl SecCSFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags?language=objc)
+/// No flags (use the default behavior).
+///
+/// ## Discussion
+///
+/// Do not mix this value with other flag values.
+///
+///
         #[doc(alias = "kSecCSDefaultFlags")]
         const DefaultFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/considerexpiration?language=objc)
+/// Consider expired certificates invalid.
+///
+/// ## Discussion
+///
+/// When passed to a function that performs code validation, this flag requests that code signatures made by expired certificates be rejected. By default, expiration of participating certificates is not automatic grounds for rejection.
+///
+///
         #[doc(alias = "kSecCSConsiderExpiration")]
         const ConsiderExpiration = 1<<31;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/enforcerevocationchecks?language=objc)
+///
+/// ## Discussion
+///
+/// Forces checking of certificates against revocation lists or OCSP (online certificate status protocol) regardless of preference settings.
+///
+///
         #[doc(alias = "kSecCSEnforceRevocationChecks")]
         const EnforceRevocationChecks = 1<<30;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/nonetworkaccess?language=objc)
         #[doc(alias = "kSecCSNoNetworkAccess")]
         const NoNetworkAccess = 1<<29;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/reportprogress?language=objc)
         #[doc(alias = "kSecCSReportProgress")]
         const ReportProgress = 1<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/checktrustedanchors?language=objc)
         #[doc(alias = "kSecCSCheckTrustedAnchors")]
         const CheckTrustedAnchors = 1<<27;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/quickcheck?language=objc)
         #[doc(alias = "kSecCSQuickCheck")]
         const QuickCheck = 1<<26;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/applyembeddedpolicy?language=objc)
         #[doc(alias = "kSecCSApplyEmbeddedPolicy")]
         const ApplyEmbeddedPolicy = 1<<25;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/stripdisallowedxattrs?language=objc)
         #[doc(alias = "kSecCSStripDisallowedXattrs")]
         const StripDisallowedXattrs = 1<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags/matchguestrequirementinkernel?language=objc)
         #[doc(alias = "kSecCSMatchGuestRequirementInKernel")]
         const MatchGuestRequirementInKernel = 1<<23;
     }
@@ -381,6 +520,13 @@ unsafe impl RefEncode for SecCSFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Specify option flags that can be embedded in a code signature during signing and that govern the use of the signature.
+///
+/// ## Overview
+///
+/// Some of these flags can be set through the `codesign(1)` command’s `--options` argument and some are set implicitly based on signing circumstances. The flags here appear as the value associated with the [`kSecCodeInfoFlags`](https://developer.apple.com/documentation/security/kseccodeinfoflags) key in the signing information dictionary. See [Signing Information Dictionary Keys](https://developer.apple.com/documentation/security/signing-information-dictionary-keys).
+///
+///
 /// This is the type of option flags that can be embedded in a code signature
 /// during signing, and that govern the use of the signature thereafter.
 /// Some of these flags can be set through the codesign(1) command's --options
@@ -415,42 +561,69 @@ unsafe impl RefEncode for SecCSFlags {
 ///
 /// The code was automatically signed by the linker. This signature should be
 /// ignored in any new signing operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCodeSignatureFlags(pub u32);
 bitflags::bitflags! {
     impl SecCodeSignatureFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/host?language=objc)
+/// May host guest code.
+///
+/// ## Discussion
+///
+/// Indicates that the code may act as a host that controls and supervises guest code. If this flag is not set in a code signature, the code is never considered eligible to be a host, and any attempt to act like one is ignored or rejected.
+///
+///
         #[doc(alias = "kSecCodeSignatureHost")]
         const Host = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/adhoc?language=objc)
+/// Must be used without a signing identity.
+///
+/// ## Discussion
+///
+/// The code has been sealed without a signing identity. No identity may be retrieved from it, and any code requirement placing restrictions on the signing identity will fail. This flag is set by Code Signing Services when you create an ad-hoc signature, and cannot be set explicitly. An ad-hoc signature is created by signing with the pseudo-identity “-” (a dash).
+///
+///
         #[doc(alias = "kSecCodeSignatureAdhoc")]
         const Adhoc = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/forcehard?language=objc)
+/// Always set the [`kSecCodeStatusHard`](https://developer.apple.com/documentation/security/seccodestatus/hard) status flag on launch.
+///
+/// ## Discussion
+///
+/// The `kSecCodeStatusHard` flag indicates that the code prefers to be denied access to a resource if gaining such access would cause its invalidation. Once the hard bit is set, it cannot be cleared. Therefore, setting this option flag guarantees that the code will always have the `kSecCodeStatusHard` flag set.
+///
+///
         #[doc(alias = "kSecCodeSignatureForceHard")]
         const ForceHard = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/forcekill?language=objc)
+/// Always set the termination status flag on launch.
+///
+/// ## Discussion
+///
+/// The `kSecCodeStatusKill` flag indicates that the code wishes to be terminated if it is ever invalidated. Once this is set, it cannot be cleared. Therefore, setting this option flag guarantees that the running code will always be valid, since it will die immediately if it becomes invalid.
+///
+///
         #[doc(alias = "kSecCodeSignatureForceKill")]
         const ForceKill = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/forceexpiration?language=objc)
+/// Always set the [`kSecCSConsiderExpiration`](https://developer.apple.com/documentation/security/seccsflags/considerexpiration) flag when validating the code.
+///
+/// ## Discussion
+///
+/// When passed to a function that performs code validation, the `kSecCSConsiderExpiration` flag requests that code signatures made by expired certificates be rejected. By default, expiration of participating certificates is not automatic grounds for rejection.
+///
+///
         #[doc(alias = "kSecCodeSignatureForceExpiration")]
         const ForceExpiration = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/restrict?language=objc)
+/// Restrict dyld loading.
         #[doc(alias = "kSecCodeSignatureRestrict")]
         const Restrict = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/enforcement?language=objc)
+/// Enforce code signing.
         #[doc(alias = "kSecCodeSignatureEnforcement")]
         const Enforcement = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/libraryvalidation?language=objc)
+/// Require library validation.
         #[doc(alias = "kSecCodeSignatureLibraryValidation")]
         const LibraryValidation = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/runtime?language=objc)
+/// Apply runtime hardening policies as required by the hardened runtime version.
         #[doc(alias = "kSecCodeSignatureRuntime")]
         const Runtime = 0x10000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags/linkersigned?language=objc)
         #[doc(alias = "kSecCodeSignatureLinkerSigned")]
         const LinkerSigned = 0x20000;
     }
@@ -466,6 +639,15 @@ unsafe impl RefEncode for SecCodeSignatureFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Operational flags attached by code signing services to running code.
+///
+/// ## Overview
+///
+/// These flags are maintained by the code’s host, and can be read by anyone. Running code may change its own flags, and root may change anyone’s flags. However, each of these flags can change in only one direction and never back, for the lifetime of the code. Not even root can violate this restriction.
+///
+/// All of the bits in the [`SecCodeStatus`](https://developer.apple.com/documentation/security/seccodestatus) enumeration are reserved by Apple. If you set any bits not defined here, the behavior is undefined.
+///
+///
 /// The code signing system attaches a set of status flags to each running code.
 /// These flags are maintained by the code's host, and can be read by anyone.
 /// A code may change its own flags, a host may change its guests' flags,
@@ -510,27 +692,49 @@ unsafe impl RefEncode for SecCodeSignatureFlags {
 ///
 ///
 /// Indicates the code is platform code, shipping with the operating system and signed by Apple.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCodeStatus(pub u32);
 bitflags::bitflags! {
     impl SecCodeStatus: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/valid?language=objc)
+/// The code is dynamically valid.
+///
+/// ## Discussion
+///
+/// Code that’s dynamically valid is running code that started properly signed and has not been invalidated since it started. The valid bit can not be set on running code; it can only be cleared. If you do not set the `kSecCodeStatusValid` flag during creation of the guest with the [`SecCodeGetTypeID`](https://developer.apple.com/documentation/security/seccodegettypeid()) function, then the new guest is created dynamically invalid and can never become dynamically valid. Note that this bit does not make any representations about the static validity of the code.
+///
+///
         #[doc(alias = "kSecCodeStatusValid")]
         const Valid = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/hard?language=objc)
+/// The code prefers to be denied access to resources if gaining access would invalidate it.
+///
+/// ## Discussion
+///
+/// This bit can not be cleared on running code; it can only be set. It is undefined whether code that has the hard flag set but that starts out with the valid bit cleared (that is, it’s already invalid) will still be denied access to a resource that would invalidate it if it were still valid. That is, the code may or may not get access to such a resource while being invalid.
+///
+///
         #[doc(alias = "kSecCodeStatusHard")]
         const Hard = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/kill?language=objc)
+/// The code wants to be terminated if it ever loses its validity.
+///
+/// ## Discussion
+///
+/// This bit can not be cleared on running code; it can only be set. Running code that has this flag set is guaranteed to be valid, because if it were invalid it would have been terminated.
+///
+///
         #[doc(alias = "kSecCodeStatusKill")]
         const Kill = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/debugged?language=objc)
+/// The code has been debugged by another process that was allowed to do so.
+///
+/// ## Discussion
+///
+/// The debugger sets this flag when it attaches.
+///
+///
         #[doc(alias = "kSecCodeStatusDebugged")]
         const Debugged = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus/platform?language=objc)
+/// The code ships with the operating system and is signed by Apple.
         #[doc(alias = "kSecCodeStatusPlatform")]
         const Platform = 0x04000000;
     }
@@ -548,31 +752,48 @@ unsafe impl RefEncode for SecCodeStatus {
 
 /// An enumeration indicating different types of internal requirements for code.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype?language=objc)
+/// ## Overview
+///
+/// These constants are indexes into requirement sets and are not currently used in any public API.
+///
+///
+/// An enumeration indicating different types of internal requirements for code.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SecRequirementType(pub u32);
 impl SecRequirementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/hostrequirementtype?language=objc)
+    /// What hosts may run this code.
     #[doc(alias = "kSecHostRequirementType")]
     pub const HostRequirementType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/guestrequirementtype?language=objc)
+    /// What guests this code may run.
     #[doc(alias = "kSecGuestRequirementType")]
     pub const GuestRequirementType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/designatedrequirementtype?language=objc)
+    /// A designated requirement.
     #[doc(alias = "kSecDesignatedRequirementType")]
     pub const DesignatedRequirementType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/libraryrequirementtype?language=objc)
+    /// What libraries this code may link against.
     #[doc(alias = "kSecLibraryRequirementType")]
     pub const LibraryRequirementType: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/pluginrequirementtype?language=objc)
+    /// What plug-ins this code may load.
     #[doc(alias = "kSecPluginRequirementType")]
     pub const PluginRequirementType: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/invalidrequirementtype?language=objc)
+    /// Invalid type of requirement.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant is for Apple internal use.
+    ///
+    ///
     #[doc(alias = "kSecInvalidRequirementType")]
     pub const InvalidRequirementType: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secrequirementtype/requirementtypecount?language=objc)
+    /// The number of valid requirement types.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant is for Apple internal use.
+    ///
+    ///
     #[doc(alias = "kSecRequirementTypeCount")]
     pub const RequirementTypeCount: Self = Self(SecRequirementType::InvalidRequirementType.0);
 }
@@ -587,6 +808,13 @@ unsafe impl RefEncode for SecRequirementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The list of digest algorithms available for code signatures.
+///
+/// ## Overview
+///
+/// Use these values with the [`kSecCodeInfoDigestAlgorithm`](https://developer.apple.com/documentation/security/kseccodeinfodigestalgorithm) and [`kSecCodeInfoDigestAlgorithms`](https://developer.apple.com/documentation/security/kseccodeinfodigestalgorithms) keys described in [Signing Information Dictionary Keys](https://developer.apple.com/documentation/security/signing-information-dictionary-keys).
+///
+///
 /// Types of cryptographic digests (hashes) used to hold code signatures
 /// together.
 ///
@@ -597,29 +825,21 @@ unsafe impl RefEncode for SecRequirementType {
 /// to its subordinate data structures (code pages, resources, etc.)
 /// They do not directly control other uses of hashes (such as those used
 /// within X.509 certificates and CMS blobs).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCSDigestAlgorithm(pub u32);
 impl SecCSDigestAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturenohash?language=objc)
     #[doc(alias = "kSecCodeSignatureNoHash")]
     pub const CodeSignatureNoHash: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha1?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA1")]
     pub const CodeSignatureHashSHA1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha256?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA256")]
     pub const CodeSignatureHashSHA256: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha256truncated?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA256Truncated")]
     pub const CodeSignatureHashSHA256Truncated: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha384?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA384")]
     pub const CodeSignatureHashSHA384: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm/codesignaturehashsha512?language=objc)
     #[doc(alias = "kSecCodeSignatureHashSHA512")]
     pub const CodeSignatureHashSHA512: Self = Self(5);
 }

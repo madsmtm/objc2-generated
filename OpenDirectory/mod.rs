@@ -106,6 +106,5 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odframeworkerrordomain?language=objc)
     pub static ODFrameworkErrorDomain: Option<&'static NSString>;
 }

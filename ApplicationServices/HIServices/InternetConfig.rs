@@ -11,230 +11,141 @@ use objc2_core_services::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicreservedkey?language=objc)
 pub const kICReservedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pkICReservedKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicarchieall?language=objc)
 pub const kICArchieAll: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pArchieAll\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicarchiepreferred?language=objc)
 pub const kICArchiePreferred: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pArchiePreferred\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kiccharacterset?language=objc)
 pub const kICCharacterSet: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pCharacterSet\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicdocumentfont?language=objc)
 pub const kICDocumentFont: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pDocumentFont\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicdownloadfolder?language=objc)
 pub const kICDownloadFolder: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pDownloadFolder\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicemail?language=objc)
 pub const kICEmail: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pEmail\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicftphost?language=objc)
 pub const kICFTPHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pFTPHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicftpproxyaccount?language=objc)
 pub const kICFTPProxyAccount: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pFTPProxyAccount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicftpproxyhost?language=objc)
 pub const kICFTPProxyHost: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pFTPProxyHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicftpproxypassword?language=objc)
 pub const kICFTPProxyPassword: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pFTPProxyPassword\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicftpproxyuser?language=objc)
 pub const kICFTPProxyUser: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pFTPProxyUser\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicfingerhost?language=objc)
 pub const kICFingerHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pFingerHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicgopherhost?language=objc)
 pub const kICGopherHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pGopherHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicgopherproxy?language=objc)
 pub const kICGopherProxy: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pGopherProxy\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kichttpproxyhost?language=objc)
 pub const kICHTTPProxyHost: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pHTTPProxyHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kichelper?language=objc)
 pub const kICHelper: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pHelper\xA5\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kichelperdesc?language=objc)
 pub const kICHelperDesc: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pHelperDesc\xA5\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kichelperlist?language=objc)
 pub const kICHelperList: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pHelperList\xA5\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicirchost?language=objc)
 pub const kICIRCHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pIRCHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicinfomacall?language=objc)
 pub const kICInfoMacAll: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pInfoMacAll\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicinfomacpreferred?language=objc)
 pub const kICInfoMacPreferred: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pInfoMacPreferred\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicldapsearchbase?language=objc)
 pub const kICLDAPSearchbase: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pLDAPSearchbase\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicldapserver?language=objc)
 pub const kICLDAPServer: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pLDAPServer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kiclistfont?language=objc)
 pub const kICListFont: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pListFont\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicmacsearchhost?language=objc)
 pub const kICMacSearchHost: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pMacSearchHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicmailaccount?language=objc)
 pub const kICMailAccount: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pMailAccount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicmailheaders?language=objc)
 pub const kICMailHeaders: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pMailHeaders\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicmailpassword?language=objc)
 pub const kICMailPassword: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pMailPassword\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicmapping?language=objc)
 pub const kICMapping: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pMapping\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnntphost?language=objc)
 pub const kICNNTPHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNNTPHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicntphost?language=objc)
 pub const kICNTPHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNTPHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewmaildialog?language=objc)
 pub const kICNewMailDialog: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewMailDialog\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewmailflashicon?language=objc)
 pub const kICNewMailFlashIcon: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewMailFlashIcon\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewmailplaysound?language=objc)
 pub const kICNewMailPlaySound: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewMailPlaySound\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewmailsoundname?language=objc)
 pub const kICNewMailSoundName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewMailSoundName\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewsauthpassword?language=objc)
 pub const kICNewsAuthPassword: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewsAuthPassword\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewsauthusername?language=objc)
 pub const kICNewsAuthUsername: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewsAuthUsername\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnewsheaders?language=objc)
 pub const kICNewsHeaders: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNewsHeaders\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicnoproxydomains?language=objc)
 pub const kICNoProxyDomains: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pNoProxyDomains\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicorganization?language=objc)
 pub const kICOrganization: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pOrganization\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicphhost?language=objc)
 pub const kICPhHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pPhHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicplan?language=objc)
 pub const kICPlan: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pPlan\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicprinterfont?language=objc)
 pub const kICPrinterFont: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pPrinterFont\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicquotingstring?language=objc)
 pub const kICQuotingString: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pQuotingString\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicrealname?language=objc)
 pub const kICRealName: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pRealName\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicrtspproxyhost?language=objc)
 pub const kICRTSPProxyHost: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pRTSPProxyHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicsmtphost?language=objc)
 pub const kICSMTPHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pSMTPHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicscreenfont?language=objc)
 pub const kICScreenFont: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pScreenFont\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicservices?language=objc)
 pub const kICServices: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pServices\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicsignature?language=objc)
 pub const kICSignature: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pSignature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicsnailmailaddress?language=objc)
 pub const kICSnailMailAddress: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pSnailMailAddress\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicsockshost?language=objc)
 pub const kICSocksHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pSocksHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kictelnethost?language=objc)
 pub const kICTelnetHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pTelnetHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicumichall?language=objc)
 pub const kICUMichAll: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUMichAll\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicumichpreferred?language=objc)
 pub const kICUMichPreferred: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUMichPreferred\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicuseftpproxy?language=objc)
 pub const kICUseFTPProxy: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUseFTPProxy\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicusegopherproxy?language=objc)
 pub const kICUseGopherProxy: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUseGopherProxy\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicusehttpproxy?language=objc)
 pub const kICUseHTTPProxy: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUseHTTPProxy\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicusepassiveftp?language=objc)
 pub const kICUsePassiveFTP: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUsePassiveFTP\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicusertspproxy?language=objc)
 pub const kICUseRTSPProxy: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUseRTSPProxy\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicusesocks?language=objc)
 pub const kICUseSocks: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pUseSocks\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwaisgateway?language=objc)
 pub const kICWAISGateway: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pWAISGateway\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwwwhomepage?language=objc)
 pub const kICWWWHomePage: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pWWWHomePage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwebbackgroundcolour?language=objc)
 pub const kICWebBackgroundColour: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pWebBackgroundColour\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwebreadcolor?language=objc)
 pub const kICWebReadColor: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\p646F6777\xA5WebReadColor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwebsearchpageprefs?language=objc)
 pub const kICWebSearchPagePrefs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pWebSearchPagePrefs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwebtextcolor?language=objc)
 pub const kICWebTextColor: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pWebTextColor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwebunderlinelinks?language=objc)
 pub const kICWebUnderlineLinks: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\p646F6777\xA5WebUnderlineLinks\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwebunreadcolor?language=objc)
 pub const kICWebUnreadColor: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"\\p646F6777\xA5WebUnreadColor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kicwhoishost?language=objc)
 pub const kICWhoisHost: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"\\pWhoisHost\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icprefnotfounderr?language=objc)
 pub const icPrefNotFoundErr: c_int = -666;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icpermerr?language=objc)
 pub const icPermErr: c_int = -667;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icprefdataerr?language=objc)
 pub const icPrefDataErr: c_int = -668;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icinternalerr?language=objc)
 pub const icInternalErr: c_int = -669;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/ictruncatederr?language=objc)
 pub const icTruncatedErr: c_int = -670;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icnomorewriterserr?language=objc)
 pub const icNoMoreWritersErr: c_int = -671;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icnothingtooverrideerr?language=objc)
 pub const icNothingToOverrideErr: c_int = -672;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icnourlerr?language=objc)
 pub const icNoURLErr: c_int = -673;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icconfignotfounderr?language=objc)
 pub const icConfigNotFoundErr: c_int = -674;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icconfiginappropriateerr?language=objc)
 pub const icConfigInappropriateErr: c_int = -675;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/icprofilenotfounderr?language=objc)
 pub const icProfileNotFoundErr: c_int = -676;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578531-anonymous/ictoomanyprofileserr?language=objc)
 pub const icTooManyProfilesErr: c_int = -677;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578527-anonymous/kiccomponentinterfaceversion0?language=objc)
 pub const kICComponentInterfaceVersion0: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578527-anonymous/kiccomponentinterfaceversion1?language=objc)
 pub const kICComponentInterfaceVersion1: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578527-anonymous/kiccomponentinterfaceversion2?language=objc)
 pub const kICComponentInterfaceVersion2: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578527-anonymous/kiccomponentinterfaceversion3?language=objc)
 pub const kICComponentInterfaceVersion3: c_uint = 0x00030000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578527-anonymous/kiccomponentinterfaceversion4?language=objc)
 pub const kICComponentInterfaceVersion4: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578527-anonymous/kiccomponentinterfaceversion?language=objc)
 pub const kICComponentInterfaceVersion: c_uint = kICComponentInterfaceVersion4;
 
 #[repr(C)]
@@ -252,93 +163,60 @@ unsafe impl RefEncode for OpaqueICInstance {
 /// **********************************************************************************************
 /// opaque type for preference reference
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icinstance?language=objc)
 pub type ICInstance = *mut OpaqueICInstance;
 
 /// **********************************************************************************************
 /// preference attributes type, bit number constants, and mask constants
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icattr?language=objc)
 pub type ICAttr = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578499-anonymous/kicattrlockedbit?language=objc)
 pub const kICAttrLockedBit: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578499-anonymous/kicattrvolatilebit?language=objc)
 pub const kICAttrVolatileBit: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578529-anonymous/kicattrnochange?language=objc)
 pub const kICAttrNoChange: c_uint = 0xFFFFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578529-anonymous/kicattrlockedmask?language=objc)
 pub const kICAttrLockedMask: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578529-anonymous/kicattrvolatilemask?language=objc)
 pub const kICAttrVolatileMask: c_uint = 0x00000002;
 
 /// **********************************************************************************************
 /// permissions for use with ICBegin
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icperm?language=objc)
 pub type ICPerm = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578537-anonymous/icnoperm?language=objc)
 pub const icNoPerm: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578537-anonymous/icreadonlyperm?language=objc)
 pub const icReadOnlyPerm: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578537-anonymous/icreadwriteperm?language=objc)
 pub const icReadWritePerm: c_uint = 2;
 
 /// **********************************************************************************************
 /// profile IDs
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icprofileid?language=objc)
 pub type ICProfileID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icprofileidptr?language=objc)
 pub type ICProfileIDPtr = *mut ICProfileID;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578541-anonymous/kicnilprofileid?language=objc)
 pub const kICNilProfileID: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578516-anonymous/kicnouserinteractionbit?language=objc)
 pub const kICNoUserInteractionBit: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578530-anonymous/kicnouserinteractionmask?language=objc)
 pub const kICNoUserInteractionMask: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578538-anonymous/kicfiletype?language=objc)
 pub const kICFileType: c_uint = 0x49434170;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578538-anonymous/kiccreator?language=objc)
 pub const kICCreator: c_uint = 0x49434170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578521-anonymous/kinterneteventclass?language=objc)
 pub const kInternetEventClass: c_uint = 0x4755524c;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578521-anonymous/kaegeturl?language=objc)
 pub const kAEGetURL: c_uint = 0x4755524c;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578521-anonymous/kaefetchurl?language=objc)
 pub const kAEFetchURL: c_uint = 0x4655524c;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578521-anonymous/keyaeattaching?language=objc)
 pub const keyAEAttaching: c_uint = 0x41746368;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578535-anonymous/kiceditpreferenceeventclass?language=objc)
 pub const kICEditPreferenceEventClass: c_uint = 0x49434170;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578535-anonymous/kiceditpreferenceevent?language=objc)
 pub const kICEditPreferenceEvent: c_uint = 0x49434170;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578535-anonymous/keyiceditpreferencedestination?language=objc)
 pub const keyICEditPreferenceDestination: c_uint = 0x64657374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578524-anonymous/kiccomponentversion?language=objc)
 pub const kICComponentVersion: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578524-anonymous/kicnumversion?language=objc)
 pub const kICNumVersion: c_uint = 1;
 
 /// **********************************************************************************************
 /// types and constants for use with kICDocumentFont, et. al.
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icfontrecord?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICFontRecord {
@@ -366,17 +244,13 @@ unsafe impl RefEncode for ICFontRecord {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icfontrecordptr?language=objc)
 pub type ICFontRecordPtr = *mut ICFontRecord;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icfontrecordhandle?language=objc)
 pub type ICFontRecordHandle = *mut ICFontRecordPtr;
 
 /// **********************************************************************************************
 /// types and constants for use with kICCharacterSet, et. al.
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icchartable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICCharTable {
@@ -397,17 +271,13 @@ unsafe impl RefEncode for ICCharTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icchartableptr?language=objc)
 pub type ICCharTablePtr = *mut ICCharTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icchartablehandle?language=objc)
 pub type ICCharTableHandle = *mut ICCharTablePtr;
 
 /// **********************************************************************************************
 /// types and constants for use with kICHelper, et. al.
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspec?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICAppSpec {
@@ -426,13 +296,10 @@ unsafe impl RefEncode for ICAppSpec {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspecptr?language=objc)
 pub type ICAppSpecPtr = *mut ICAppSpec;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspechandle?language=objc)
 pub type ICAppSpecHandle = *mut ICAppSpecPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspeclist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICAppSpecList {
@@ -453,23 +320,17 @@ unsafe impl RefEncode for ICAppSpecList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspeclistptr?language=objc)
 pub type ICAppSpecListPtr = *mut ICAppSpecList;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icappspeclisthandle?language=objc)
 pub type ICAppSpecListHandle = *mut ICAppSpecListPtr;
 
 /// **********************************************************************************************
 /// types and constants for use with ICMapFilename, et. al.
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icmapentryflags?language=objc)
 pub type ICMapEntryFlags = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icfixedlength?language=objc)
 pub type ICFixedLength = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icmapentry?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICMapEntry {
@@ -513,49 +374,31 @@ unsafe impl RefEncode for ICMapEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icmapentryptr?language=objc)
 pub type ICMapEntryPtr = *mut ICMapEntry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icmapentryhandle?language=objc)
 pub type ICMapEntryHandle = *mut ICMapEntryPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578484-anonymous/kicmapfixedlength?language=objc)
 pub const kICMapFixedLength: c_uint = 22;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578497-anonymous/kicmapbinarybit?language=objc)
 pub const kICMapBinaryBit: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578497-anonymous/kicmapresourceforkbit?language=objc)
 pub const kICMapResourceForkBit: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578497-anonymous/kicmapdataforkbit?language=objc)
 pub const kICMapDataForkBit: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578497-anonymous/kicmappostbit?language=objc)
 pub const kICMapPostBit: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578497-anonymous/kicmapnotincomingbit?language=objc)
 pub const kICMapNotIncomingBit: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578497-anonymous/kicmapnotoutgoingbit?language=objc)
 pub const kICMapNotOutgoingBit: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578491-anonymous/kicmapbinarymask?language=objc)
 pub const kICMapBinaryMask: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578491-anonymous/kicmapresourceforkmask?language=objc)
 pub const kICMapResourceForkMask: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578491-anonymous/kicmapdataforkmask?language=objc)
 pub const kICMapDataForkMask: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578491-anonymous/kicmappostmask?language=objc)
 pub const kICMapPostMask: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578491-anonymous/kicmapnotincomingmask?language=objc)
 pub const kICMapNotIncomingMask: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578491-anonymous/kicmapnotoutgoingmask?language=objc)
 pub const kICMapNotOutgoingMask: c_uint = 0x00000020;
 
 /// **********************************************************************************************
 /// types and constants for use with kICServices, et. al.
 /// **********************************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icserviceentryflags?language=objc)
 pub type ICServiceEntryFlags = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icserviceentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICServiceEntry {
@@ -581,23 +424,16 @@ unsafe impl RefEncode for ICServiceEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icserviceentryptr?language=objc)
 pub type ICServiceEntryPtr = *mut ICServiceEntry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icserviceentryhandle?language=objc)
 pub type ICServiceEntryHandle = *mut ICServiceEntryPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578496-anonymous/kicservicestcpbit?language=objc)
 pub const kICServicesTCPBit: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578496-anonymous/kicservicesudpbit?language=objc)
 pub const kICServicesUDPBit: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578525-anonymous/kicservicestcpmask?language=objc)
 pub const kICServicesTCPMask: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578525-anonymous/kicservicesudpmask?language=objc)
 pub const kICServicesUDPMask: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icservices?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ICServices {
@@ -618,10 +454,8 @@ unsafe impl RefEncode for ICServices {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icservicesptr?language=objc)
 pub type ICServicesPtr = *mut ICServices;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icserviceshandle?language=objc)
 pub type ICServicesHandle = *mut ICServicesPtr;
 
 extern "C-unwind" {
@@ -668,15 +502,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `inst` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578513-icstart?language=objc)
     #[deprecated]
     pub fn ICStart(inst: *mut ICInstance, signature: OSType) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578518-icstop?language=objc)
-    ///
     /// # Safety
     ///
     /// `inst` must be a valid pointer.
@@ -685,8 +515,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578536-icgetversion?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -695,8 +523,6 @@ extern "C-unwind" {
     pub fn ICGetVersion(inst: ICInstance, which_version: c_long, version: *mut u32) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578511-icgetconfigname?language=objc)
-///
 /// # Safety
 ///
 /// - `inst` must be a valid pointer.
@@ -719,8 +545,6 @@ pub unsafe extern "C-unwind" fn ICGetConfigName(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578514-icgetseed?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -730,8 +554,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578492-icgetperm?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -741,8 +563,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578517-icbegin?language=objc)
-    ///
     /// # Safety
     ///
     /// `inst` must be a valid pointer.
@@ -751,8 +571,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578522-icgetpref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -771,8 +589,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578533-icsetpref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -789,8 +605,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578526-icfindprefhandle?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -807,8 +621,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578489-icgetprefhandle?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -825,8 +637,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578545-icsetprefhandle?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -842,8 +652,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578542-iccountpref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -853,8 +661,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578503-icgetindpref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -864,8 +670,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578534-icdeletepref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -875,8 +679,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578544-icend?language=objc)
-    ///
     /// # Safety
     ///
     /// `inst` must be a valid pointer.
@@ -885,8 +687,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578528-icgetdefaultpref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -897,8 +697,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578512-iceditpreferences?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -908,8 +706,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578504-iclaunchurl?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -929,8 +725,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578515-icparseurl?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -952,8 +746,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578532-iccreategurlevent?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -970,8 +762,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578487-icsendgurlevent?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -982,8 +772,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578490-icmapfilename?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -998,8 +786,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578520-icmaptypecreator?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1016,8 +802,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578539-icmapentriesfilename?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1034,8 +818,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578486-icmapentriestypecreator?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1054,8 +836,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578509-iccountmapentries?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1066,8 +846,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578493-icgetindmapentry?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1085,8 +863,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578510-icgetmapentry?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1102,8 +878,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578540-icsetmapentry?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1119,8 +893,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578488-icdeletemapentry?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1130,8 +902,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578495-icaddmapentry?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1142,8 +912,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578505-icgetcurrentprofile?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1153,8 +921,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578485-icsetcurrentprofile?language=objc)
-    ///
     /// # Safety
     ///
     /// `inst` must be a valid pointer.
@@ -1163,8 +929,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578494-iccountprofiles?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1174,8 +938,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578519-icgetindprofile?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1185,8 +947,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578523-icgetprofilename?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1200,8 +960,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578501-icsetprofilename?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1215,8 +973,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578498-icaddprofile?language=objc)
-    ///
     /// # Safety
     ///
     /// - `inst` must be a valid pointer.
@@ -1230,8 +986,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1578483-icdeleteprofile?language=objc)
-    ///
     /// # Safety
     ///
     /// `inst` must be a valid pointer.

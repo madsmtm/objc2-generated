@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode?language=objc)
+/// Constants indicating the circulation mode for the climate system.
 // NS_ENUM
 #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarAirCirculationMode(pub NSInteger);
 impl INCarAirCirculationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode/unknown?language=objc)
+    /// Unknown circulation mode.
     #[doc(alias = "INCarAirCirculationModeUnknown")]
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode/freshair?language=objc)
+    /// Fresh air.
     #[doc(alias = "INCarAirCirculationModeFreshAir")]
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const FreshAir: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incaraircirculationmode/recirculateair?language=objc)
+    /// Recirculated air.
     #[doc(alias = "INCarAirCirculationModeRecirculateAir")]
     #[deprecated = "INCarAirCirculationMode is deprecated. There is no replacement."]
     pub const RecirculateAir: Self = Self(2);

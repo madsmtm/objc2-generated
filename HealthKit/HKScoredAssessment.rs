@@ -8,8 +8,6 @@ use crate::*;
 
 extern_class!(
     /// An abstract HKSample subclass representing the results of a scored assessment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessment?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

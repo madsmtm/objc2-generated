@@ -7,7 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmacceleration?language=objc)
+/// The type of a structure containing 3-axis acceleration values.
+///
+/// ## Overview
+///
+/// A G is a unit of gravitation force equal to that exerted by the earth’s gravitational field (9.81 m s−2).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMAcceleration {
@@ -32,7 +38,13 @@ unsafe impl RefEncode for CMAcceleration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaccelerometerdata?language=objc)
+    /// A data sample from the device’s three accelerometers.
+    ///
+    /// ## Overview
+    ///
+    /// An application accesses `CMAccelerometerData` objects through the block handler specified as the last parameter of the [`startAccelerometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startaccelerometerupdates(to:withhandler:)) method and through the [`accelerometerData`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata) property, both declared by the `CMMotionManager` class. The superclass of `CMAccelerometerData`, [`CMLogItem`](https://developer.apple.com/documentation/coremotion/cmlogitem), defines a [`timestamp`](https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp) property that records when the acceleration measurement was taken.
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

@@ -15,28 +15,30 @@ use objc2_ui_kit::*;
 use crate::*;
 
 /// Constants that specify styles for the location arrow icon on the button.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon?language=objc)
+/// Constants that specify styles for the location arrow icon on the button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLocationButtonIcon(pub NSInteger);
 impl CLLocationButtonIcon {
+    /// A style that doesn’t display an icon.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a different icon style if [`label`](https://developer.apple.com/documentation/corelocationui/cllocationbutton/label) is [`CLLocationButtonLabelNone`](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/none).
+    ///
+    ///
     /// A style that doesn't display an icon.
     ///
     /// Use a different icon style if ``CLLocationButton/label`` is ``CLLocationButtonLabel/none``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/none?language=objc)
     #[doc(alias = "CLLocationButtonIconNone")]
     pub const None: Self = Self(0);
     /// A style that displays a filled arrow icon.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/arrowfilled?language=objc)
+    /// A style that displays a filled arrow icon.
     #[doc(alias = "CLLocationButtonIconArrowFilled")]
     pub const ArrowFilled: Self = Self(1);
     /// A style that displays an unfilled, outline arrow icon.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/arrowoutline?language=objc)
+    /// A style that displays an unfilled, outline arrow icon.
     #[doc(alias = "CLLocationButtonIconArrowOutline")]
     pub const ArrowOutline: Self = Self(2);
 }
@@ -50,8 +52,7 @@ unsafe impl RefEncode for CLLocationButtonIcon {
 }
 
 /// Constants that specify the text of the button label.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel?language=objc)
+/// Constants that specify the text of the button label.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -59,34 +60,34 @@ pub struct CLLocationButtonLabel(pub NSInteger);
 impl CLLocationButtonLabel {
     /// A style that doesn’t display a text label.
     ///
-    /// Use a different label style if ``CLLocationButton/icon`` is ``CLLocationButtonIcon/none``.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/none?language=objc)
+    /// Use a different label style if [`icon`](https://developer.apple.com/documentation/corelocationui/cllocationbutton/icon) is [`CLLocationButtonIconNone`](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon/none).
+    ///
+    ///
+    /// A style that doesn’t display a text label.
+    ///
+    /// Use a different label style if ``CLLocationButton/icon`` is ``CLLocationButtonIcon/none``.
     #[doc(alias = "CLLocationButtonLabelNone")]
     pub const None: Self = Self(0);
     /// A button label with the text _Current Location_.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/currentlocation?language=objc)
+    /// A button label with the text _Current Location_.
     #[doc(alias = "CLLocationButtonLabelCurrentLocation")]
     pub const CurrentLocation: Self = Self(1);
     /// A button label with the text _Send Current Location_.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sendcurrentlocation?language=objc)
+    /// A button label with the text _Send Current Location_.
     #[doc(alias = "CLLocationButtonLabelSendCurrentLocation")]
     pub const SendCurrentLocation: Self = Self(2);
     /// A button label with the text _Send My Current Location_.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sendmycurrentlocation?language=objc)
+    /// A button label with the text _Send My Current Location_.
     #[doc(alias = "CLLocationButtonLabelSendMyCurrentLocation")]
     pub const SendMyCurrentLocation: Self = Self(3);
     /// A button label with the text _Share Current Location_.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sharecurrentlocation?language=objc)
+    /// A button label with the text _Share Current Location_.
     #[doc(alias = "CLLocationButtonLabelShareCurrentLocation")]
     pub const ShareCurrentLocation: Self = Self(4);
     /// A button label with the text _Share My Current Location_.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel/sharemycurrentlocation?language=objc)
+    /// A button label with the text _Share My Current Location_.
     #[doc(alias = "CLLocationButtonLabelShareMyCurrentLocation")]
     pub const ShareMyCurrentLocation: Self = Self(5);
 }
@@ -100,6 +101,47 @@ unsafe impl RefEncode for CLLocationButtonLabel {
 }
 
 extern_class!(
+    /// A button that grants one-time location authorization.
+    ///
+    /// ## Overview
+    ///
+    /// `CLLocationButton` simplifies requesting one-time authorization to access location data. Add this button to your user interface in situations when users may want to grant temporary access to their location data each time they use a particular feature of your app.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/1736f8280311161eb34c692241ba7ae7/cllocationbutton-1~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/d9ccebc87fa27074b42df3d0e9a3e263/cllocationbutton-1%402x.png 2x" />
+    ///     <img alt="Screenshot of the location button with an icon that uses the filled arrow" src="https://docs-assets.developer.apple.com/published/d9ccebc87fa27074b42df3d0e9a3e263/cllocationbutton-1%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The first time a user taps this button, [`Core Location`](https://developer.apple.com/documentation/corelocation) asks the user to confirm that they’re comfortable using this UI element when they want to grant temporary access to their location data. If the user agrees, the app receives temporary [`kCLAuthorizationStatusAuthorizedWhenInUse`](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorizedwheninuse) authorization, like when the user chooses _Allow Once_ in response to your app’s standard location authorization request. This temporary authorization expires when your app is no longer in use.
+    ///
+    /// After the user agrees to using `CLLocationButton`, the button becomes approved to request future authorizations without displaying an additional alert to the user. The next time the user taps it, this button simply grants one-time authorization without requiring confirmation.
+    ///
+    /// After you receive this temporary authorization, fetch the user’s location using the [`Core Location`](https://developer.apple.com/documentation/corelocation) API and perform any app-specific tasks related to that location data. Connect the button to initiate the tasks you want to perform after getting authorization by adding a target and action to the button. Keep in mind that this action activates every time the user taps this button, regardless of whether the app already has location authorization.
+    ///
+    /// Create a `CLLocationButton` in Interface Builder or in code, like this:
+    ///
+    /// ```swift
+    /// let locationButton = CLLocationButton()
+    /// locationButton.icon = .arrowFilled
+    /// locationButton.label = .currentLocation
+    /// locationButton.cornerRadius = 25.0
+    /// locationButton.addTarget(self, action: #selector(userPressedLocationButton), for: .touchUpInside)
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// When a user taps the button, it only provides one-time authorization to fetch location data — not the location data itself. For more details about fetching location data, see [Configuring your app to use location services](https://developer.apple.com/documentation/corelocation/configuring-your-app-to-use-location-services).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Configure the button’s content by specifying its [`icon`](https://developer.apple.com/documentation/corelocationui/cllocationbutton/icon) and [`label`](https://developer.apple.com/documentation/corelocationui/cllocationbutton/label) styles. Customize its appearance using the [`cornerRadius`](https://developer.apple.com/documentation/corelocationui/cllocationbutton/cornerradius) and [`fontSize`](https://developer.apple.com/documentation/corelocationui/cllocationbutton/fontsize) properties, or the standard view appearance properties [`backgroundColor`](https://developer.apple.com/documentation/uikit/uiview/backgroundcolor) and [`tintColor`](https://developer.apple.com/documentation/uikit/uiview/tintcolor). For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/).
+    ///
+    ///
     /// A button that grants one-time location authorization.
     ///
     /// `CLLocationButton` simplifies requesting one-time authorization to access
@@ -164,8 +206,6 @@ extern_class!(
     /// ://com.apple.documentation/documentation/uikit/uiview/1622467-tintcolor>.
     /// For design guidance, see [Human Interface
     /// Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/accessing-user-data/).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbutton?language=objc)
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

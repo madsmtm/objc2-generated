@@ -10,6 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// An instance that optimizes memory allocation when working with large blocks of memory.
 /// CMMemoryPool.h
 ///
 /// Memory pool for optimizing repeated large block allocation.
@@ -38,8 +39,6 @@ use crate::*;
 /// (This period may be overridden by specifying kCMMemoryPoolOption_AgeOutPeriod.)
 /// Such "aging out" is done during the pool's CFAllocatorAllocate and
 /// CFAllocatorDeallocate methods.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypool?language=objc)
 #[doc(alias = "CMMemoryPoolRef")]
 #[repr(C)]
 pub struct CMMemoryPool {
@@ -59,13 +58,19 @@ unsafe impl Send for CMMemoryPool {}
 
 unsafe impl Sync for CMMemoryPool {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_allocationfailed?language=objc)
+/// An error that indicates the system failed to allocate an internal data structure.
 pub const kCMMemoryPoolError_AllocationFailed: OSStatus = -15490;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_invalidparameter?language=objc)
+/// An error that indicates you called an API with an invalid parameter.
 pub const kCMMemoryPoolError_InvalidParameter: OSStatus = -15491;
 
 unsafe impl ConcreteType for CMMemoryPool {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolgettypeid()?language=objc)
+    /// Returns the type identifier of memory pool objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier.
+    ///
+    ///
     #[doc(alias = "CMMemoryPoolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -77,23 +82,37 @@ unsafe impl ConcreteType for CMMemoryPool {
 }
 
 extern "C" {
+    /// The period of time before the pool recycles its memory.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass a value for this option to the [`CMMemoryPoolCreate`](https://developer.apple.com/documentation/coremedia/cmmemorypoolcreate(options:)) function.
+    ///
+    ///
     /// Specifies how long memory should be allowed to hang out in the pool before being deallocated.
     ///
     /// Pass this in the options dictionary to CMMemoryPoolCreate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypooloption_ageoutperiod?language=objc)
     pub static kCMMemoryPoolOption_AgeOutPeriod: &'static CFString;
 }
 
 impl CMMemoryPool {
+    /// Creates a memory pool.
+    ///
+    /// Parameters:
+    /// - options: A dictionary that defines the age-out period for the pool.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new memory pool.
+    ///
+    ///
     /// Creates a new CMMemoryPool.
     ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolcreate(options:)?language=objc)
     #[doc(alias = "CMMemoryPoolCreate")]
     #[inline]
     pub unsafe fn new(options: Option<&CFDictionary>) -> CFRetained<CMMemoryPool> {
@@ -106,9 +125,18 @@ impl CMMemoryPool {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// Returns the pool's CFAllocator.
+    /// Returns the allocator for the memory pool.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolgetallocator(_:)?language=objc)
+    /// Parameters:
+    /// - pool: The memory pool from which to retrieve its allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The memory pool’s allocator.
+    ///
+    ///
+    /// Returns the pool's CFAllocator.
     #[doc(alias = "CMMemoryPoolGetAllocator")]
     #[inline]
     pub unsafe fn allocator(&self) -> CFRetained<CFAllocator> {
@@ -121,9 +149,12 @@ impl CMMemoryPool {
         unsafe { CFRetained::retain(ret) }
     }
 
-    /// Deallocates all memory the pool was holding for recycling.
+    /// Deallocates all memory the pool holds.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolflush(_:)?language=objc)
+    /// Parameters:
+    /// - pool: The memory pool to flush.
+    ///
+    /// Deallocates all memory the pool was holding for recycling.
     #[doc(alias = "CMMemoryPoolFlush")]
     #[inline]
     pub unsafe fn flush(&self) {
@@ -133,14 +164,17 @@ impl CMMemoryPool {
         unsafe { CMMemoryPoolFlush(self) }
     }
 
+    /// Invalidates the memory pool, which causes its allocator to stop recycling memory.
+    ///
+    /// Parameters:
+    /// - pool: The memory pool to invalidate.
+    ///
     /// Stops the pool from recycling.
     ///
     /// When CMMemoryPoolInvalidate is called the pool's allocator stops recycling memory.
     /// The pool deallocates any memory it was holding for recycling.
     /// This also happens when the retain count of the CMMemoryPool drops to zero,
     /// except that under GC it may be delayed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolinvalidate(_:)?language=objc)
     #[doc(alias = "CMMemoryPoolInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {

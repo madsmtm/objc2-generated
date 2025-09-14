@@ -9,6 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Object representing a device inquiry that finds Bluetooth devices in-range of the computer, and (optionally) retrieves name information for them.
+    ///
+    /// ## Overview
+    ///
+    /// You should only use this object if your application needs to know about in-range devices and cannot use the GUI provided by the IOBluetoothUI framework. It will not let you perform unlimited back-to-back inquiries, but will instead throttle the number of attempted inquiries if too many are attempted within a small window of time. Important Note: DO NOT perform remote name requests on devices from delegate methods or while this object is in use. If you wish to do your own remote name requests on devices, do them after you have stopped this object. If you do not heed this warning, you could potentially deadlock your process.
+    ///
+    ///
     /// Object representing a device inquiry that finds Bluetooth devices in-range of the computer,
     /// and (optionally) retrieves name information for them.
     ///
@@ -19,8 +26,6 @@ extern_class!(
     /// Important Note: DO NOT perform remote name requests on devices from delegate methods or while this
     /// object is in use. If you wish to do your own remote name requests on devices, do them after you have
     /// stopped this object. If you do not heed this warning, you could potentially deadlock your process.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceinquiry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothDeviceInquiry;
@@ -208,12 +213,11 @@ impl IOBluetoothDeviceInquiry {
 }
 
 extern_protocol!(
+    /// This category on NSObject describes the delegate methods for the IOBluetoothDeviceInquiry object. All methods are optional, but it is highly recommended you implement them all. Do NOT invoke remote name requests on found IOBluetoothDevice objects unless the inquiry object has been stopped. Doing so may deadlock your process.
     /// This category on NSObject describes the delegate methods for the IOBluetoothDeviceInquiry object. All
     /// methods are optional, but it is highly recommended you implement them all. Do NOT invoke remote name
     /// requests on found IOBluetoothDevice objects unless the inquiry object has been stopped. Doing so may
     /// deadlock your process.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceinquirydelegate?language=objc)
     pub unsafe trait IOBluetoothDeviceInquiryDelegate: NSObjectProtocol {
         /// This message will be delivered when the inquiry actually starts. Since the inquiry could be throttled, this
         /// message may not be received immediately after called -start.

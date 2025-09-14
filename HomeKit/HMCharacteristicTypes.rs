@@ -6,1061 +6,1764 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The characteristic supports event notifications.
     /// This constant specifies that the characteristic supports notifications
     /// using the event connection established by the controller. The
     /// event connection provides unidirectional communication from the
     /// accessory to the controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertysupportseventnotification-19wy1?language=objc)
     pub static HMCharacteristicPropertySupportsEventNotification: &'static NSString;
 }
 
 extern "C" {
+    /// The characteristic is readable.
     /// This constant specifies that the characteristic is readable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertyreadable?language=objc)
     pub static HMCharacteristicPropertyReadable: &'static NSString;
 }
 
 extern "C" {
+    /// The characteristic is writable.
     /// This constant specifies that the characteristic is writable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertywritable?language=objc)
     pub static HMCharacteristicPropertyWritable: &'static NSString;
 }
 
 extern "C" {
+    /// The characteristic should be hidden from the user.
     /// This constant specifies that the characteristic should be hidden from the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertyhidden?language=objc)
     pub static HMCharacteristicPropertyHidden: &'static NSString;
 }
 
 extern "C" {
+    /// A variable that specifies that the characteristic requires authorization data to write.
     /// This constant specifies that the characteristic requires authorization data for a write.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertyrequiresauthorizationdata?language=objc)
     pub static HMCharacteristicPropertyRequiresAuthorizationData: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target relative humidity. The value of the characteristic is a float value in percent.
+    /// The target relative humidity for the accessory to achieve.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetrelativehumidity?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point percentage representing the desired relative humidity. This is a measure of the amount of water in the air relative to the maximum it can hold at the current temperature.
+    ///
+    ///
+    /// Characteristic type for target relative humidity. The value of the characteristic is a float value in percent.
     pub static HMCharacteristicTypeTargetRelativeHumidity: &'static NSString;
 }
 
 extern "C" {
+    /// The state of an outlet.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean which is set to `true` when the outlet is in use, and `false` otherwise.
+    ///
+    ///
     /// Characteristic type for outlet in use. The value of the characteristic is a boolean, which is true
     /// if the outlet is in use.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeoutletinuse?language=objc)
     pub static HMCharacteristicTypeOutletInUse: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for logs. The value of the characteristic is TLV8 data wrapped in an NSData.
+    /// Log data for the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelogs?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is TLV8-encoded data.
+    ///
+    ///
+    /// Characteristic type for logs. The value of the characteristic is TLV8 data wrapped in an NSData.
     pub static HMCharacteristicTypeLogs: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for audio feedback. The value of the characteristic is a boolean.
+    /// An indicator of whether audio feedback, like a beep or other external sound mechanism, is enabled.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeaudiofeedback?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding Boolean value indicates whether audio feedback is enabled.
+    ///
+    ///
+    /// Characteristic type for audio feedback. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeAudioFeedback: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for admin only access. The value of the characteristic is a boolean.
+    /// An indicator of whether the accessory accepts only administrator access.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeadminonlyaccess?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean that’s `true` if the accessory accepts only administrator access.
+    ///
+    ///
+    /// Characteristic type for admin only access. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeAdminOnlyAccess: &'static NSString;
 }
 
 extern "C" {
+    /// The alarm trigger state.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueSecuritySystemAlarmType`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesecuritysystemalarmtype) enumeration.
+    ///
+    ///
     /// Characteristic type for Security System Alarm Type. The value of the characteristic is a uint8.
     /// indicating the type of alarm triggered by a security system service. This characteristic has a value
     /// of 1 when the alarm type is not known and a value of 0 indicates that the alarm conditions are cleared.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesecuritysystemalarmtype?language=objc)
     pub static HMCharacteristicTypeSecuritySystemAlarmType: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for motion detected. The value of the characteristic is a boolean.
+    /// An indicator of whether the accessory has detected motion.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypemotiondetected?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean and is `true` when motion has been detected.
+    ///
+    ///
+    /// Characteristic type for motion detected. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeMotionDetected: &'static NSString;
 }
 
 extern "C" {
+    /// The last known action of the locking mechanism.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueLockMechanismLastKnownAction`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction) enumeration.
+    ///
+    ///
     /// Characteristic type for the last known action for a lock mechanism. The value of the characteristic is one of the values
     /// defined for HMCharacteristicValueLockMechanismLastKnownAction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelockmechanismlastknownaction?language=objc)
     pub static HMCharacteristicTypeLockMechanismLastKnownAction: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for the control point for lock management. The characteristic is write-only that takes TLV8 data wrapped in an NSData.
+    /// A control that accepts vendor-specific actions for lock management.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelockmanagementcontrolpoint?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding write-only value takes data in a format specified by the accessory’s manufacturer.
+    ///
+    ///
+    /// Characteristic type for the control point for lock management. The characteristic is write-only that takes TLV8 data wrapped in an NSData.
     pub static HMCharacteristicTypeLockManagementControlPoint: &'static NSString;
 }
 
 extern "C" {
+    /// The automatic timeout for a lockable accessory that supports automatic lockout.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is the number of seconds the accessory waits after entering the [`HMCharacteristicValueLockMechanismStateUnsecured`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate/unsecured) state until it attempts to enter the [`HMCharacteristicValueLockMechanismStateSecured`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate/secured) state. Write a value of `0` to disable this feature.
+    ///
+    ///
     /// Characteristic type for the auto secure timeout for lock management. The value of the characteristic is an unsigned
     /// 32-bit integer representing the number of seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelockmanagementautosecuretimeout?language=objc)
     pub static HMCharacteristicTypeLockManagementAutoSecureTimeout: &'static NSString;
 }
 
 extern "C" {
+    /// The density of air-particulate matter.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of air-particulate matter. The value of the characteristic is
     /// in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeairparticulatedensity?language=objc)
     pub static HMCharacteristicTypeAirParticulateDensity: &'static NSString;
 }
 
 extern "C" {
+    /// The size of the air-particulate matter.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants enumerated in [`HMCharacteristicValueAirParticulateSize`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairparticulatesize).
+    ///
+    ///
     /// Characteristic type for size of air-particulate matter. The value of the characteristic is
     /// one of the values defined for HMCharacteristicValueAirParticulateSize.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeairparticulatesize?language=objc)
     pub static HMCharacteristicTypeAirParticulateSize: &'static NSString;
 }
 
 extern "C" {
+    /// The air quality.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants enumerated in [`HMCharacteristicValueAirQuality`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality).
+    ///
+    ///
     /// Characteristic type for air quality. The value of the characteristic is
     /// one of the values defined for HMCharacteristicValueAirQuality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeairquality?language=objc)
     pub static HMCharacteristicTypeAirQuality: &'static NSString;
 }
 
 extern "C" {
+    /// An indicator of abnormally high levels of carbon dioxide.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCarbonDioxideDetectionStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbondioxidedetectionstatus) enumeration.
+    ///
+    ///
     /// Characteristic type for carbon dioxide detected. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates carbon dioxide levels are normal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecarbondioxidedetected?language=objc)
     pub static HMCharacteristicTypeCarbonDioxideDetected: &'static NSString;
 }
 
 extern "C" {
+    /// The measured carbon dioxide level.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in units of parts per million.
+    ///
+    ///
     /// Characteristic type for carbon dioxide level.
     /// The value of the characteristic is a float value in units of ppm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecarbondioxidelevel?language=objc)
     pub static HMCharacteristicTypeCarbonDioxideLevel: &'static NSString;
 }
 
 extern "C" {
+    /// The highest recorded level of carbon dioxide.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in units of parts per million.
+    ///
+    ///
     /// Characteristic type for carbon dioxide peak level.
     /// The value of the characteristic is a float value in units of ppm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecarbondioxidepeaklevel?language=objc)
     pub static HMCharacteristicTypeCarbonDioxidePeakLevel: &'static NSString;
 }
 
 extern "C" {
+    /// An indicator of abnormally high levels of carbon monoxide.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCarbonMonoxideDetectionStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbonmonoxidedetectionstatus) enumeration.
+    ///
+    ///
     /// Characteristic type for carbon monoxide detected. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates carbon monoxide levels are normal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecarbonmonoxidedetected?language=objc)
     pub static HMCharacteristicTypeCarbonMonoxideDetected: &'static NSString;
 }
 
 extern "C" {
+    /// The measured carbon monoxide level.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in units of parts per million.
+    ///
+    ///
     /// Characteristic type for carbon monoxide level.
     /// The value of the characteristic is a float value in units of ppm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecarbonmonoxidelevel?language=objc)
     pub static HMCharacteristicTypeCarbonMonoxideLevel: &'static NSString;
 }
 
 extern "C" {
+    /// The highest recorded level of carbon monoxide.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in units of parts per million.
+    ///
+    ///
     /// Characteristic type for carbon monoxide peak level.
     /// The value of the characteristic is a float value in units of ppm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecarbonmonoxidepeaklevel?language=objc)
     pub static HMCharacteristicTypeCarbonMonoxidePeakLevel: &'static NSString;
 }
 
 extern "C" {
+    /// The state of a contact sensor.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueContactState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecontactstate) enumeration.
+    ///
+    ///
     /// Characteristic type for Contact sensor state. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates that contact is detected; a value of 1 indicates no contact is detected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecontactstate?language=objc)
     pub static HMCharacteristicTypeContactState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current horizontal tilt angle. The value is a float representing the angle in arc degrees.
+    /// The current tilt angle of a horizontal slat for an accessory like a window or a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrenthorizontaltilt?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the angle in degrees, with a value between -90 and 90.
+    ///
+    /// A value of -90 indicates the slats are fully closed and rotated such that the user-facing edge is higher than the opposing edge. A value of 0 indicates that the edges are at the same level, with the slats fully open.
+    ///
+    ///
+    /// Characteristic type for current horizontal tilt angle. The value is a float representing the angle in arc degrees.
     pub static HMCharacteristicTypeCurrentHorizontalTilt: &'static NSString;
 }
 
 extern "C" {
+    /// The current position of a door, window, awning, or window covering.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer percentage. A value of `0` indicates a door or window is fully closed, or that awnings or shades permit the least possible light. A value of `100` indicates the opposite.
+    ///
+    ///
     /// Characteristic type for current position of a door/window. The value of the characteristic is an
     /// uint8 value in percent. A value of 0 indicates closed/most shade/least light allowed state and a
     /// value of 100 indicates open/no shade/most light allowed state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentposition?language=objc)
     pub static HMCharacteristicTypeCurrentPosition: &'static NSString;
 }
 
 extern "C" {
+    /// The current security system state.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentSecuritySystemState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate) enumeration.
+    ///
+    ///
     /// Characteristic type for current security system state. The value of the characteristic is one of
     /// the values defined for HMCharacteristicValueCurrentSecuritySystemState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentsecuritysystemstate?language=objc)
     pub static HMCharacteristicTypeCurrentSecuritySystemState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current vertical tilt angle. The value is a float representing the angle in arc degrees.
+    /// The current tilt angle of a vertical slat for an accessory like a window or a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentverticaltilt?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the angle in degrees, with a value between -90 and 90.
+    ///
+    /// A value of -90 indicates the slats are fully closed and rotated such that the user-facing edge is to the left of the opposing edge. A value of 0 indicates that the edges are aligned, with the slats fully open.
+    ///
+    ///
+    /// Characteristic type for current vertical tilt angle. The value is a float representing the angle in arc degrees.
     pub static HMCharacteristicTypeCurrentVerticalTilt: &'static NSString;
 }
 
 extern "C" {
+    /// A control for holding the position of an accessory like a door or window.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a write-only Boolean. Write a value of `true` to indicate that the current position should be maintained. The accessory ignores a written value of `false`. Write a value to the [`HMCharacteristicTypeTargetPosition`](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetposition) characteristic to release the hold.
+    ///
+    ///
     /// Characteristic type for Hold Position. The value of the characteristic is a boolean
     /// indicating that the current position should be held/maintained.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeholdposition?language=objc)
     pub static HMCharacteristicTypeHoldPosition: &'static NSString;
 }
 
 extern "C" {
+    /// A leak detection indicator.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueLeakStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueleakstatus) enumeration. This characteristic typically applies to water, but can also be used for other fluids, like natural gas.
+    ///
+    ///
     /// Characteristic type for leak detected. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates no leak is detected; a value of 1 indicates that a leak is detected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeleakdetected?language=objc)
     pub static HMCharacteristicTypeLeakDetected: &'static NSString;
 }
 
 extern "C" {
+    /// An indicator of whether the home is occupied.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueOccupancyStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueoccupancystatus) enumeration.
+    ///
+    ///
     /// Characteristic type for Occupancy Detected. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates no occupancy is detected; a value of 1 indicates that occupancy is detected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeoccupancydetected?language=objc)
     pub static HMCharacteristicTypeOccupancyDetected: &'static NSString;
 }
 
 extern "C" {
+    /// The output state of a programmable switch.
+    ///
+    /// ## Discussion
+    ///
+    /// The value represents the state of a programmable switch. For a binary switch, a value of `1` indicates that the switch is in the `ON` position.
+    ///
+    ///
     /// Characteristic type for programmable switch output state. This value is to be used for presentation
     /// purposes. For a binary programmable switch, a value of 1 can be used to present a state of ON.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeoutputstate?language=objc)
     pub static HMCharacteristicTypeOutputState: &'static NSString;
 }
 
 extern "C" {
+    /// The position of an accessory like a door, window, awning, or window covering.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValuePositionState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepositionstate) enumeration.
+    ///
+    ///
     /// Characteristic type for Position state. The value of the characteristic is one of the
     /// one of the values defined for HMCharacteristicValuePositionState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypepositionstate?language=objc)
     pub static HMCharacteristicTypePositionState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type to indicate status of a service is active. The value of the characteristic is a boolean.
+    /// An indicator of whether the service is working.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypestatusactive?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean. A value of `true` indicates the service is working.
+    ///
+    ///
+    /// Characteristic type to indicate status of a service is active. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeStatusActive: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type to indicate status of a service is fault. The value of the characteristic is a uint8 value.
+    /// An indicator of whether the accessory has experienced a fault.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypestatusfault?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueStatusFault`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluestatusfault) enumeration. It indicates whether the accessory has experienced a fault that interferes with normal functioning, such as when a humidifier runs out of water.
+    ///
+    ///
+    /// Characteristic type to indicate status of a service is fault. The value of the characteristic is a uint8 value.
     pub static HMCharacteristicTypeStatusFault: &'static NSString;
 }
 
 extern "C" {
+    /// An indicator of whether an accessory is jammed.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueJammedStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluejammedstatus) enumeration.
+    ///
+    ///
     /// Characteristic type to indicate status of a service is jammed. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates that the service is not jammed; a value of 1 indicates that the service is jammed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypestatusjammed?language=objc)
     pub static HMCharacteristicTypeStatusJammed: &'static NSString;
 }
 
 extern "C" {
+    /// An indicator of whether an accessory has been tampered with.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTamperedStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetamperedstatus) enumeration.
+    ///
+    ///
     /// Characteristic type to indicate status of a service is tampered. The value of the characteristic is a uint8 value.
     /// A value of 0 indicates no tampering has been detected; a value of 1 indicates that a tampering has been detected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypestatustampered?language=objc)
     pub static HMCharacteristicTypeStatusTampered: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target horizontal tilt angle. The value is a float representing the angle in arc degrees.
+    /// The target tilt angle of a horizontal slat for an accessory like a window or a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargethorizontaltilt?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the angle in degrees, with a value between -90 and 90.
+    ///
+    /// A value of -90 indicates the slats should be fully closed and rotated such that the user-facing edge is higher than the opposing edge. A value of 0 indicates that the edges should be at the same level, with the slats fully open.
+    ///
+    ///
+    /// Characteristic type for target horizontal tilt angle. The value is a float representing the angle in arc degrees.
     pub static HMCharacteristicTypeTargetHorizontalTilt: &'static NSString;
 }
 
 extern "C" {
+    /// The target security system state.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTargetSecuritySystemState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetsecuritysystemstate) enumeration.
+    ///
+    ///
     /// Characteristic type for target security system state. The value of the characteristic is one of
     /// the values defined for HMCharacteristicValueTargetSecuritySystemState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetsecuritysystemstate?language=objc)
     pub static HMCharacteristicTypeTargetSecuritySystemState: &'static NSString;
 }
 
 extern "C" {
+    /// The target position of a door, window, awning, or window covering.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer percentage. A value of `0` indicates a door or window should be fully closed, or that awnings or shades should permit the least possible light. A value of `100` indicates the opposite.
+    ///
+    ///
     /// Characteristic type for target position of a door/window/window covering. The value of the
     /// characteristic is an uint8 value in percent. A value of 0 indicates closed/most shade/least
     /// light allowed state and a value of 100 indicates open/no shade/most light allowed state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetposition?language=objc)
     pub static HMCharacteristicTypeTargetPosition: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target vertical tilt angle. The value is a float representing the angle in arc degrees.
+    /// The target tilt angle of a vertical slat for an accessory like a window or a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetverticaltilt?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the angle in degrees, with a value between -90 and 90.
+    ///
+    /// A value of -90 indicates the slats should be fully closed and rotated such that the user-facing edge is to the left of the opposing edge. A value of 0 indicates that the edges should be aligned, with the slats fully open.
+    ///
+    ///
+    /// Characteristic type for target vertical tilt angle. The value is a float representing the angle in arc degrees.
     pub static HMCharacteristicTypeTargetVerticalTilt: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for streaming status. The value is a tlv8 data.
+    /// A description of the status of the Real-time Transport Protocol (RTP) stream management service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypestreamingstatus?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is TLV8-encoded data.
+    ///
+    ///
+    /// Characteristic type for streaming status. The value is a tlv8 data.
     pub static HMCharacteristicTypeStreamingStatus: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for setup stream endpoint. The value is a tlv8 data.
+    /// The stream’s endpoint configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesetupstreamendpoint?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is TLV8-encoded data.
+    ///
+    ///
+    /// Characteristic type for setup stream endpoint. The value is a tlv8 data.
     pub static HMCharacteristicTypeSetupStreamEndpoint: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for supported video stream configuration. The value is a tlv8 data.
+    /// The video stream’s configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesupportedvideostreamconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is TLV8-encoded data.
+    ///
+    ///
+    /// Characteristic type for supported video stream configuration. The value is a tlv8 data.
     pub static HMCharacteristicTypeSupportedVideoStreamConfiguration: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for supported RTP stream configuration. The value is a tlv8 data.
+    /// The supported Real-time Transport Protocol (RTP) configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesupportedrtpconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a TLV8-encoded list of supported RTP parameters and their values.
+    ///
+    ///
+    /// Characteristic type for supported RTP stream configuration. The value is a tlv8 data.
     pub static HMCharacteristicTypeSupportedRTPConfiguration: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for selected stream configuration. The value is a tlv8 data.
+    /// The selected stream’s configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeselectedstreamconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is TLV8-encoded data.
+    ///
+    ///
+    /// Characteristic type for selected stream configuration. The value is a tlv8 data.
     pub static HMCharacteristicTypeSelectedStreamConfiguration: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for camera optical zoom. The value is float.
+    /// The optical zoom setting of the camera sourcing a video Real-time Transport Protocol (RTP) service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeopticalzoom?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number representing the optical zoom setting of the camera.
+    ///
+    ///
+    /// Characteristic type for camera optical zoom. The value is float.
     pub static HMCharacteristicTypeOpticalZoom: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for camera digital zoom. The value is float.
+    /// The digital zoom of a video Real-time Transport Protocol (RTP) service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypedigitalzoom?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number used as a multiplier on the image sourced by the video RTP service.
+    ///
+    ///
+    /// Characteristic type for camera digital zoom. The value is float.
     pub static HMCharacteristicTypeDigitalZoom: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for camera image rotation. The value is float with valid values: 0, 90, 180 and 270
+    /// The angle of rotation for an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeimagerotation?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number representing an angle in degrees that the image should be rotated. The only valid values are `0`, `90`, `180`, and `270`.
+    ///
+    ///
+    /// Characteristic type for camera image rotation. The value is float with valid values: 0, 90, 180 and 270
     pub static HMCharacteristicTypeImageRotation: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for image mirroring. The value is boolean.
+    /// An indicator of whether the image should be flipped about the vertical axis.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeimagemirroring?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean. Set the value to `false` to disable mirroring. Set the value to `true` to enable mirroring.
+    ///
+    ///
+    /// Characteristic type for image mirroring. The value is boolean.
     pub static HMCharacteristicTypeImageMirroring: &'static NSString;
 }
 
 extern "C" {
+    /// The naming schema used to label the services on an accessory with multiple services of the same type.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueLabelNamespace`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelabelnamespace) enumeration.
+    ///
+    ///
     /// Characteristic type for label namespace used to label the services on an accessory with
     /// multiple services of the same type. The value of the characteristic is one of the values
     /// defined for HMCharacteristicValueLabelNamespace.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelabelnamespace?language=objc)
     pub static HMCharacteristicTypeLabelNamespace: &'static NSString;
 }
 
 extern "C" {
+    /// The index of the label for the service on an accessory with multiple instances of the same service.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer that’s greater than or equal to `1`. When the value for the label namespace characteristic is [`HMCharacteristicValueLabelNamespaceDot`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelabelnamespace/dot), the label index indicates the number of dots, like `.`, `..`, `...`, and so on. When the value for the label namespace characteristic is [`HMCharacteristicValueLabelNamespaceNumeral`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelabelnamespace/numeral), the label index indicates the arabic numeral, like `1`, `2`, `3`, and so on.
+    ///
+    ///
     /// Characteristic type describing the index of the label for the service on accessory with multiple
     /// instances of the same service. The value is an integer and starts from 1.
     /// For a label namespace of HMCharacteristicValueLabelNamespaceDot, label index indicates the
     /// number of dots - ., .., ..., and so on.
     /// For a label namespace of HMCharacteristicValueLabelNamespaceNumeral, label index indicates the arabic
     /// numeral - 1, 2, 3, and so on.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelabelindex?language=objc)
     pub static HMCharacteristicTypeLabelIndex: &'static NSString;
 }
 
 extern "C" {
+    /// The current air purifier state.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentAirPurifierState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentairpurifierstate) enumeration.
+    ///
+    ///
     /// Characteristic type for air purifier current state. The value is
     /// one of the value defined for HMCharacteristicValueCurrentAirPurifierState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentairpurifierstate?language=objc)
     pub static HMCharacteristicTypeCurrentAirPurifierState: &'static NSString;
 }
 
 extern "C" {
+    /// The target air purifier state.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTargetAirPurifierState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetairpurifierstate) enumeration.
+    ///
+    ///
     /// Characteristic type for air purifier target state. The value is
     /// one of the value defined for HMCharacteristicValueTargetAirPurifierState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetairpurifierstate?language=objc)
     pub static HMCharacteristicTypeTargetAirPurifierState: &'static NSString;
 }
 
 extern "C" {
+    /// The current state of slats on an accessory like a window or a fan.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentSlatState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentslatstate) enumeration.
+    ///
+    ///
     /// Characteristic type for current slat state. The value is
     /// one of the values defined for HMCharacteristicValueCurrentSlatState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentslatstate?language=objc)
     pub static HMCharacteristicTypeCurrentSlatState: &'static NSString;
 }
 
 extern "C" {
+    /// A filter’s change indicator.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueFilterChange`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluefilterchange) enumeration.
+    ///
+    ///
     /// Characteristic type for filter change indication. The value is
     /// one of the values defined for HMCharacteristicValueFilterChange.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypefilterchangeindication?language=objc)
     pub static HMCharacteristicTypeFilterChangeIndication: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for filter life level. The value is in percentage units.
+    /// The amount of useful life remaining in a filter.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypefilterlifelevel?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is the percentage of remaining life.
+    ///
+    ///
+    /// Characteristic type for filter life level. The value is in percentage units.
     pub static HMCharacteristicTypeFilterLifeLevel: &'static NSString;
 }
 
 extern "C" {
+    /// A reset control for a filter change notification.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a write-only Boolean value that your app sets to `true` to reset the filter change indicator.
+    ///
+    ///
     /// Characteristic type for resetting filter change indication. The characteristic
     /// is write-only that takes a boolean value of 1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypefilterresetchangeindication?language=objc)
     pub static HMCharacteristicTypeFilterResetChangeIndication: &'static NSString;
 }
 
 extern "C" {
+    /// The type of slat on an accessory like a window or a fan.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueSlatType`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueslattype) enumeration.
+    ///
+    ///
     /// Characteristic type for slat type. The value is
     /// one of the values defined for HMCharacteristicValueSlatType.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeslattype?language=objc)
     pub static HMCharacteristicTypeSlatType: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current tilt angle. The value is a float representing the angle in arc degrees.
+    /// The current tilt angle of a slat for an accessory like a window or a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrenttilt?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the angle in degrees, with a value between -90 and 90.
+    ///
+    /// For horizontal slats, a value of -90 indicates the slats are fully closed and rotated such that the user-facing edge is higher than the opposing edge. For vertical slats, this value indicates that the user-facing edge is to the left of the opposing edge. In either case, a value of 0 indicates that the edges are aligned, with the slats fully open.
+    ///
+    ///
+    /// Characteristic type for current tilt angle. The value is a float representing the angle in arc degrees.
     pub static HMCharacteristicTypeCurrentTilt: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target tilt angle. The value is a float representing the angle in arc degrees.
+    /// The target tilt angle of a slat for an accessory like a window or a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargettilt?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the angle in degrees, with a value between -90 and 90.
+    ///
+    /// For horizontal slats, a value of -90 indicates the slats should be fully closed and rotated such that the user-facing edge is higher than the opposing edge. For vertical slats, this value indicates that the user-facing edge should be to the left of the opposing edge. In either case, a value of 0 indicates that the edges should be aligned, with the slats fully open.
+    ///
+    ///
+    /// Characteristic type for target tilt angle. The value is a float representing the angle in arc degrees.
     pub static HMCharacteristicTypeTargetTilt: &'static NSString;
 }
 
 extern "C" {
+    /// The measured density of ozone.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of ozone. The value of the characteristic is
     /// in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeozonedensity?language=objc)
     pub static HMCharacteristicTypeOzoneDensity: &'static NSString;
 }
 
 extern "C" {
+    /// The measured density of nitrogen dioxide.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of nitrogen dioxide. The value of the characteristic is
     /// in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypenitrogendioxidedensity?language=objc)
     pub static HMCharacteristicTypeNitrogenDioxideDensity: &'static NSString;
 }
 
 extern "C" {
+    /// The measured density of sulphur dioxide.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of sulphur dioxide. The value of the characteristic is
     /// in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesulphurdioxidedensity?language=objc)
     pub static HMCharacteristicTypeSulphurDioxideDensity: &'static NSString;
 }
 
 extern "C" {
+    /// The measured density of air-particulate matter of size 2.5 micrograms.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of air-particulate matter of size 2.5 micrograms. The
     /// value of the characteristic is in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypepm2_5density?language=objc)
     pub static HMCharacteristicTypePM2_5Density: &'static NSString;
 }
 
 extern "C" {
+    /// The measured density of air-particulate matter of size 10 micrograms.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of air-particulate matter of size 10 micrograms. The
     /// value of the characteristic is in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypepm10density?language=objc)
     pub static HMCharacteristicTypePM10Density: &'static NSString;
 }
 
 extern "C" {
+    /// The measured density of volatile organic compounds.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of micrograms per cubic meter.
+    ///
+    ///
     /// Characteristic type for density of volatile organic compounds. The value of the
     /// characteristic is in units of micrograms/m^3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypevolatileorganiccompounddensity?language=objc)
     pub static HMCharacteristicTypeVolatileOrganicCompoundDensity: &'static NSString;
 }
 
 extern "C" {
+    /// The current mode of the accessory’s scheduled programs.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueProgramMode`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueprogrammode) enumeration.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This characteristic type doesn’t add, modify, or delete the schedule itself. The user must set or modify the schedule through the accessory’s user interface, or using an app designed to communicate directly with the accessory (for example, using an API provided by the accessory’s manufacturer).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Characteristic type for program mode. The value of the characteristic is one of the values defined
     /// for HMCharacteristicValueProgramMode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeprogrammode?language=objc)
     pub static HMCharacteristicTypeProgramMode: &'static NSString;
 }
 
 extern "C" {
+    /// The current usage state of an accessory.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueUsageState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueusagestate) enumeration.
+    ///
+    ///
     /// Characteristic type for in use. The value of the characteristic is one of the values
     /// defined for HMCharacteristicValueUsageState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeinuse?language=objc)
     pub static HMCharacteristicTypeInUse: &'static NSString;
 }
 
 extern "C" {
+    /// The duration of the activity being carried out by the accessory.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer in units of seconds.
+    ///
+    ///
     /// Characteristic type for set duration. The value of the characteristic is an int value in
     /// seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesetduration?language=objc)
     pub static HMCharacteristicTypeSetDuration: &'static NSString;
 }
 
 extern "C" {
+    /// The number of seconds remaining for the activity being carried out by the accessory.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer in units of seconds.
+    ///
+    ///
     /// Characteristic type for remaining duration. The value of the characteristic is an int value in
     /// seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictyperemainingduration?language=objc)
     pub static HMCharacteristicTypeRemainingDuration: &'static NSString;
 }
 
 extern "C" {
+    /// The type of automated valve that controls fluid flow.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueValveType`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevalvetype) enumeration.
+    ///
+    ///
     /// Characteristic type for valve type. The value of the characteristic is one of the values
     /// defined for HMCharacteristicValueValveType.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypevalvetype?language=objc)
     pub static HMCharacteristicTypeValveType: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for volume control type. The value of the characteristic is one of the values defined for HMCharacteristicValueVolumeControlType.
+    /// The volume control capabilities of an accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypevolumecontroltype?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueVolumeControlType`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumecontroltype) enumeration.
+    ///
+    ///
+    /// Characteristic type for volume control type. The value of the characteristic is one of the values defined for HMCharacteristicValueVolumeControlType.
     pub static HMCharacteristicTypeVolumeControlType: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for volume selector. The value of the characteristic is one of the values defined for HMCharacteristicValueVolumeSelector.
+    /// The mechanism to increment or decrement the volume by the default step value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypevolumeselector?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueVolumeSelector`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumeselector) enumeration.
+    ///
+    ///
+    /// Characteristic type for volume selector. The value of the characteristic is one of the values defined for HMCharacteristicValueVolumeSelector.
     pub static HMCharacteristicTypeVolumeSelector: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for brightness. The value of the characteristic is an int value in percent.
+    /// The brightness of a light.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypebrightness?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer representing a percentage of the maximum brightness.
+    ///
+    ///
+    /// Characteristic type for brightness. The value of the characteristic is an int value in percent.
     pub static HMCharacteristicTypeBrightness: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for cooling threshold. The value of the characteristic is a float value in Celsius.
+    /// The temperature above which cooling will be active.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecoolingthreshold?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in degrees Celsius.
+    ///
+    ///
+    /// Characteristic type for cooling threshold. The value of the characteristic is a float value in Celsius.
     pub static HMCharacteristicTypeCoolingThreshold: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current door state. The value of the characteristic is one of the values defined for HMCharacteristicValueDoorState.
+    /// The current door state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentdoorstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueDoorState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current door state. The value of the characteristic is one of the values defined for HMCharacteristicValueDoorState.
     pub static HMCharacteristicTypeCurrentDoorState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current heating/cooling. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentHeatingCooling.
+    /// The current heating or cooling mode for a thermostat.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentheatingcooling?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueHeatingCooling`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling) enumeration.
+    ///
+    ///
+    /// Characteristic type for current heating/cooling. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentHeatingCooling.
     pub static HMCharacteristicTypeCurrentHeatingCooling: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current relative humidity. The value of the characteristic is a float value in percent.
+    /// The current relative humidity measured by the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentrelativehumidity?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point percentage representing the current relative humidity. This is a measure of the amount of water in the air relative to the maximum it can hold at the current temperature.
+    ///
+    ///
+    /// Characteristic type for current relative humidity. The value of the characteristic is a float value in percent.
     pub static HMCharacteristicTypeCurrentRelativeHumidity: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current temperature. The value of the characteristic is a float value in Celsius.
+    /// The current temperature measured by the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrenttemperature?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in degrees Celsius.
+    ///
+    ///
+    /// Characteristic type for current temperature. The value of the characteristic is a float value in Celsius.
     pub static HMCharacteristicTypeCurrentTemperature: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for heating threshold. The value of the characteristic is a float value in Celsius.
+    /// The temperature below which heating will be active.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeheatingthreshold?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in degrees Celsius.
+    ///
+    ///
+    /// Characteristic type for heating threshold. The value of the characteristic is a float value in Celsius.
     pub static HMCharacteristicTypeHeatingThreshold: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for hue. The value of the characteristic is a float value in arc degrees.
+    /// The hue of the color used by a light.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypehue?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in units of arc degrees. Values range from 0 to 360, representing the color spectrum starting from red, through yellow, green, cyan, blue, and finally magenta, before wrapping back to red.
+    ///
+    ///
+    /// Characteristic type for hue. The value of the characteristic is a float value in arc degrees.
     pub static HMCharacteristicTypeHue: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for identify. The value of the characteristic is a boolean.
+    /// A control you can use to ask the accessory to identify itself.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeidentify?language=objc)
+    /// ## Discussion
+    ///
+    /// Use the corresponding write-only Boolean value to ask the accessory to identify itself in the physical world. The identification mechanism, if supported, is specific to the accessory. For example, a light bulb might change state briefly, flashing on or off, to indicate that it has received this command.
+    ///
+    ///
+    /// Characteristic type for identify. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeIdentify: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current lock mechanism state. The value of the characteristic is one of the values defined for HMCharacteristicValueLockMechanismState.
+    /// The current state of the locking mechanism.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentlockmechanismstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueLockMechanismState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current lock mechanism state. The value of the characteristic is one of the values defined for HMCharacteristicValueLockMechanismState.
     pub static HMCharacteristicTypeCurrentLockMechanismState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target lock mechanism state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetLockMechanismState.
+    /// The target state for the locking mechanism.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetlockmechanismstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueLockMechanismState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for target lock mechanism state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetLockMechanismState.
     pub static HMCharacteristicTypeTargetLockMechanismState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for manufacturer. The value of the characteristic is a string.
+    /// The manufacturer of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypemanufacturer?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for manufacturer. The value of the characteristic is a string.
     #[deprecated]
     pub static HMCharacteristicTypeManufacturer: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for model. The value of the characteristic is a string.
+    /// The model of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypemodel?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for model. The value of the characteristic is a string.
     #[deprecated]
     pub static HMCharacteristicTypeModel: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for name. The value of the characteristic is a string.
+    /// The name of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypename?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for name. The value of the characteristic is a string.
     pub static HMCharacteristicTypeName: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for obstruction detected. The value of the characteristic is a boolean.
+    /// An indicator of whether an obstruction is detected, as when something prevents a garage door from closing.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeobstructiondetected?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding Boolean value is `true` when the accessory detects an obstruction.
+    ///
+    ///
+    /// Characteristic type for obstruction detected. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeObstructionDetected: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for power state. The value of the characteristic is a boolean.
+    /// The power state of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypepowerstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean indicating the power state of an accessory. A value of `true` indicates that the accessory is powered on.
+    ///
+    ///
+    /// Characteristic type for power state. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypePowerState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for rotation direction. The value of the characteristic is one of the values defined for HMCharacteristicValueRotationDirection.
+    /// The rotation direction of an accessory like a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictyperotationdirection?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueRotationDirection`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerotationdirection) enumeration.
+    ///
+    ///
+    /// Characteristic type for rotation direction. The value of the characteristic is one of the values defined for HMCharacteristicValueRotationDirection.
     pub static HMCharacteristicTypeRotationDirection: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for rotation speed. The value of the characteristic is a float.
+    /// The rotation speed of an accessory like a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictyperotationspeed?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number representing the percentage of the maximum speed.
+    ///
+    ///
+    /// Characteristic type for rotation speed. The value of the characteristic is a float.
     pub static HMCharacteristicTypeRotationSpeed: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for saturation. The value of the characteristic is a float value in percent.
+    /// The saturation of the color used by a light.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesaturation?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point percentage of maximum saturation.
+    ///
+    ///
+    /// Characteristic type for saturation. The value of the characteristic is a float value in percent.
     pub static HMCharacteristicTypeSaturation: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for serial number. The value of the characteristic is a string.
+    /// The serial number of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeserialnumber?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for serial number. The value of the characteristic is a string.
     #[deprecated = "No longer supported"]
     pub static HMCharacteristicTypeSerialNumber: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target door state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetDoorState.
+    /// The target door state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetdoorstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueDoorState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate) enumeration.
+    ///
+    /// Doors take time to move between states, so the target door state may not match the current door state at a given moment in time.
+    ///
+    ///
+    /// Characteristic type for target door state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetDoorState.
     pub static HMCharacteristicTypeTargetDoorState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target heating/cooling. The value of the characteristic is one of the values defined for HMCharacteristicValueHeatingCooling.
+    /// The target heating or cooling mode for a thermostat.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetheatingcooling?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueHeatingCooling`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling) enumeration.
+    ///
+    ///
+    /// Characteristic type for target heating/cooling. The value of the characteristic is one of the values defined for HMCharacteristicValueHeatingCooling.
     pub static HMCharacteristicTypeTargetHeatingCooling: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target temperature. The value of the characteristic is a float value in Celsius.
+    /// The target temperature for the accessory to achieve.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargettemperature?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point number in degrees Celsius.
+    ///
+    ///
+    /// Characteristic type for target temperature. The value of the characteristic is a float value in Celsius.
     pub static HMCharacteristicTypeTargetTemperature: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for temperature units. The value of the characteristic is one of the values defined for HMCharacteristicValueTemperatureUnit.
+    /// The units of temperature currently active on the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetemperatureunits?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants from the [`HMCharacteristicValueTemperatureUnit`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetemperatureunit) enumeration.
+    ///
+    /// HomeKit always reports temperature values in degrees Celsius, but your app should display the temperature in units chosen by the user.
+    ///
+    ///
+    /// Characteristic type for temperature units. The value of the characteristic is one of the values defined for HMCharacteristicValueTemperatureUnit.
     pub static HMCharacteristicTypeTemperatureUnits: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for version. The value of the characteristic is a string.
+    /// The version of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeversion?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for version. The value of the characteristic is a string.
     pub static HMCharacteristicTypeVersion: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for firmware version. The value of the characteristic is a string.
+    /// The firmware version of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypefirmwareversion?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for firmware version. The value of the characteristic is a string.
     #[deprecated]
     pub static HMCharacteristicTypeFirmwareVersion: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for hardware version. The value of the characteristic is a string.
+    /// The hardware version of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypehardwareversion?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for hardware version. The value of the characteristic is a string.
     pub static HMCharacteristicTypeHardwareVersion: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for software version. The value of the characteristic is a string.
+    /// The software version of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesoftwareversion?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a string.
+    ///
+    ///
+    /// Characteristic type for software version. The value of the characteristic is a string.
     pub static HMCharacteristicTypeSoftwareVersion: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for battery level. The value of the characteristic is a uint8 value in percent.
+    /// The battery level of the accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypebatterylevel?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer that’s the percentage of total battery capacity remaining.
+    ///
+    ///
+    /// Characteristic type for battery level. The value of the characteristic is a uint8 value in percent.
     pub static HMCharacteristicTypeBatteryLevel: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current light level. The value of the characteristic is a float value in lux.
+    /// The current light level.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentlightlevel?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a number in units of lux.
+    ///
+    ///
+    /// Characteristic type for current light level. The value of the characteristic is a float value in lux.
     pub static HMCharacteristicTypeCurrentLightLevel: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for input event. The value of the characteristic is one of the values defined for HMCharacteristicValueInputEvent.
+    /// The input event of a programmable switch.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeinputevent?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueInputEvent`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputevent) enumeration.
+    ///
+    ///
+    /// Characteristic type for input event. The value of the characteristic is one of the values defined for HMCharacteristicValueInputEvent.
     pub static HMCharacteristicTypeInputEvent: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for smoke detected. The value of the characteristic is one of the values defined for HMCharacteristicValueSmokeDetectionStatus.
+    /// A smoke detection indicator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesmokedetected?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueSmokeDetectionStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesmokedetectionstatus) enumeration.
+    ///
+    ///
+    /// Characteristic type for smoke detected. The value of the characteristic is one of the values defined for HMCharacteristicValueSmokeDetectionStatus.
     pub static HMCharacteristicTypeSmokeDetected: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for status low battery. The value of the characteristic is one of the values defined for HMCharacteristicValueBatteryStatus.
+    /// A low battery indicator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypestatuslowbattery?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueBatteryStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluebatterystatus) enumeration.
+    ///
+    ///
+    /// Characteristic type for status low battery. The value of the characteristic is one of the values defined for HMCharacteristicValueBatteryStatus.
     pub static HMCharacteristicTypeStatusLowBattery: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for charging state. The value of the characteristic is one of the values defined for HMCharacteristicValueChargingState.
+    /// The charging state of a battery.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypechargingstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueChargingState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluechargingstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for charging state. The value of the characteristic is one of the values defined for HMCharacteristicValueChargingState.
     pub static HMCharacteristicTypeChargingState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for lock physical controls. The value of the characteristic is one of the values defined for HMCharacteristicValueLockPhysicalControlsState.
+    /// The lock’s physical control state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypelockphysicalcontrols?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueLockPhysicalControlsState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockphysicalcontrolsstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for lock physical controls. The value of the characteristic is one of the values defined for HMCharacteristicValueLockPhysicalControlsState.
     pub static HMCharacteristicTypeLockPhysicalControls: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current fan state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentFanState.
+    /// The current state of a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentfanstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentFanState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentfanstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current fan state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentFanState.
     pub static HMCharacteristicTypeCurrentFanState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for active. The value of the characteristic is one of the values defined for HMCharacteristicValueActivationState.
+    /// The current status of an accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeactive?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueActivationState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueactivationstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for active. The value of the characteristic is one of the values defined for HMCharacteristicValueActivationState.
     pub static HMCharacteristicTypeActive: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current heater-cooler state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentHeaterCoolerState.
+    /// The current state for a device that heats or cools, like an oven or a refrigerator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentheatercoolerstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentHeaterCoolerState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatercoolerstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current heater-cooler state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentHeaterCoolerState.
     pub static HMCharacteristicTypeCurrentHeaterCoolerState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target heater-cooler state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetHeaterCoolerState.
+    /// The target state for a device that heats or cools, like an oven or a refrigerator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetheatercoolerstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTargetHeaterCoolerState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetheatercoolerstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for target heater-cooler state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetHeaterCoolerState.
     pub static HMCharacteristicTypeTargetHeaterCoolerState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current humidifier-dehumidifier state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentHumidifierDehumidifierState.
+    /// The current state of a humidifier or dehumidifier accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrenthumidifierdehumidifierstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentHumidifierDehumidifierState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrenthumidifierdehumidifierstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current humidifier-dehumidifier state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentHumidifierDehumidifierState.
     pub static HMCharacteristicTypeCurrentHumidifierDehumidifierState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target humidifier-dehumidifier state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetHumidifierDehumidifierState.
+    /// The state that a humidifier or dehumidifier accessory should try to achieve.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargethumidifierdehumidifierstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTargetHumidifierDehumidifierState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargethumidifierdehumidifierstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for target humidifier-dehumidifier state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetHumidifierDehumidifierState.
     pub static HMCharacteristicTypeTargetHumidifierDehumidifierState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for water level. The value of the characteristic is a float value in percent.
+    /// The water level measured by an accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypewaterlevel?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a percentage of the maximum amount of water that the accessory, like a humidifier, can hold.
+    ///
+    ///
+    /// Characteristic type for water level. The value of the characteristic is a float value in percent.
     pub static HMCharacteristicTypeWaterLevel: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for swing mode. The value of the characteristic is one of the values defined for HMCharacteristicValueSwingMode.
+    /// An indicator of whether a fan swings back and forth during operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeswingmode?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueSwingMode`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueswingmode) enumeration.
+    ///
+    ///
+    /// Characteristic type for swing mode. The value of the characteristic is one of the values defined for HMCharacteristicValueSwingMode.
     pub static HMCharacteristicTypeSwingMode: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target fan state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetFanState.
+    /// The target state of a fan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetfanstate?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTargetFanState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetfanstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for target fan state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetFanState.
     pub static HMCharacteristicTypeTargetFanState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for dehumidifier threshold. The value of the characteristic is a float value in percent.
+    /// The humidity above which a dehumidifier should begin to work.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypedehumidifierthreshold?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point percentage representing the relative humidity threshold. Relative humidity is a measure of the amount of water in the air relative to the maximum it can hold at the current temperature.
+    ///
+    ///
+    /// Characteristic type for dehumidifier threshold. The value of the characteristic is a float value in percent.
     pub static HMCharacteristicTypeDehumidifierThreshold: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for humidifier threshold. The value of the characteristic is a float value in percent.
+    /// The humidity below which a humidifier should begin to work.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypehumidifierthreshold?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a floating point percentage representing the relative humidity threshold. Relative humidity is a measure of the amount of water in the air relative to the maximum it can hold at the current temperature.
+    ///
+    ///
+    /// Characteristic type for humidifier threshold. The value of the characteristic is a float value in percent.
     pub static HMCharacteristicTypeHumidifierThreshold: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for color temperature. The value of the characteristic is an int.
+    /// The color temperature of a light.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecolortemperature?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is an integer representing the color temperature in micro-reciprocal degrees (mired), which is 1,000,000 divided by the color temperature in kelvins. For example, to emulate a traditional tungsten light with a color temperature of 3200 K, use a mired value of about 312.
+    ///
+    ///
+    /// Characteristic type for color temperature. The value of the characteristic is an int.
     pub static HMCharacteristicTypeColorTemperature: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for is configured. The value of the characteristic is one of the values defined for HMCharacteristicValueConfigurationState.
+    /// The configuration state of an accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeisconfigured?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueConfigurationState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueconfigurationstate) enumeration.
+    ///
+    ///
+    /// Characteristic type for is configured. The value of the characteristic is one of the values defined for HMCharacteristicValueConfigurationState.
     pub static HMCharacteristicTypeIsConfigured: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for input source type. The value of the characteristic is one of the values defined for HMCharacteristicValueInputSourceType.
+    /// The accessory input source type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeinputsourcetype?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueInputSourceType`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype) enumeration.
+    ///
+    ///
+    /// Characteristic type for input source type. The value of the characteristic is one of the values defined for HMCharacteristicValueInputSourceType.
     pub static HMCharacteristicTypeInputSourceType: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for input device type. The value of the characteristic is one of the values defined for HMCharacteristicValueInputDeviceType.
+    /// The accessory input device type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeinputdevicetype?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueInputDeviceType`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype) enumeration.
+    ///
+    ///
+    /// Characteristic type for input device type. The value of the characteristic is one of the values defined for HMCharacteristicValueInputDeviceType.
     pub static HMCharacteristicTypeInputDeviceType: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for closed captions. The value of the characteristic is one of the values defined for HMCharacteristicValueClosedCaptions.
+    /// An indictator of whether closed captions are enabled or disabled.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeclosedcaptions?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueClosedCaptions`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueclosedcaptions) enumeration.
+    ///
+    ///
+    /// Characteristic type for closed captions. The value of the characteristic is one of the values defined for HMCharacteristicValueClosedCaptions.
     pub static HMCharacteristicTypeClosedCaptions: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for power mode selection. The value of the characteristic is one of the values defined for HMCharacteristicValuePowerModeSelection.
+    /// The selected power mode.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypepowermodeselection?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValuePowerModeSelection`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepowermodeselection) enumeration.
+    ///
+    ///
+    /// Characteristic type for power mode selection. The value of the characteristic is one of the values defined for HMCharacteristicValuePowerModeSelection.
     pub static HMCharacteristicTypePowerModeSelection: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current media state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentMediaState.
+    /// The current state of the media.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentmediastate?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentMediaState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current media state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentMediaState.
     pub static HMCharacteristicTypeCurrentMediaState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for remote key. The value of the characteristic is one of the values defined for HMCharacteristicValueRemoteKey.
+    /// The accessory remote control key.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictyperemotekey?language=objc)
+    /// ## Overview
+    ///
+    /// `HMCharacteristicTypeRemoteKey` describes a mechanism to send control key presses to televisions. The handling of the key presses depend on the current active input source, or the application that is running. The corresponding value is one of the constants in the [`HMCharacteristicValueRemoteKey`](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey) enumeration.
+    ///
+    ///
+    /// Characteristic type for remote key. The value of the characteristic is one of the values defined for HMCharacteristicValueRemoteKey.
     pub static HMCharacteristicTypeRemoteKey: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for picture mode. The value of the characteristic is one of the values defined for HMCharacteristicValuePictureMode.
+    /// The selected picture mode.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypepicturemode?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValuePictureMode`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode) enumeration.
+    ///
+    ///
+    /// Characteristic type for picture mode. The value of the characteristic is one of the values defined for HMCharacteristicValuePictureMode.
     pub static HMCharacteristicTypePictureMode: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for configured name. The value of the characteristic is a string.
+    /// A `UTF‑8` encoded user visible name on an accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeconfiguredname?language=objc)
+    /// ## Overview
+    ///
+    /// The `HMCharacteristicTypeConfiguredName` must not be defined as an empty string unless you define a nonempty `HMCharacteristicTypeName`. The initial value will be the current or default name that is set on the television. `HMCharacteristicTypeConfiguredName` is an editable text from either the accessory or the controller. When it’s an empty string, use [`HMCharacteristicTypeName`](https://developer.apple.com/documentation/homekit/hmcharacteristictypename) as the name for this input source.
+    ///
+    ///
+    /// Characteristic type for configured name. The value of the characteristic is a string.
     pub static HMCharacteristicTypeConfiguredName: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for identifier. The value of the characteristic is a uint32.
+    /// The identifier for an accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeidentifier?language=objc)
+    /// ## Overview
+    ///
+    /// In the Input Source Ordering Profile, `HMCharacteristicTypeIdentifier` identifies an instance of the Input Source service. The value for each instance of this service must be unique within the list of input source services linked to a television service. A value of `0` isn’t valid for the instance of this characteristic included in the Input Source service.
+    ///
+    ///
+    /// Characteristic type for identifier. The value of the characteristic is a uint32.
     pub static HMCharacteristicTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for active identifier. The value of the characteristic is a uint32.
+    /// An index that maps to the current active Input Source service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypeactiveidentifier?language=objc)
+    /// ## Discussion
+    ///
+    /// This characteristic describes the current input source of a television by referencing the [`HMServiceTypeInputSource`](https://developer.apple.com/documentation/homekit/hmservicetypeinputsource). The Active Identifier characteristic’s value should be a valid value within the identifiers of the Input Source service instances linked to the television service. The value of the characteristic is a `UInt32` integer.
+    ///
+    ///
+    /// Characteristic type for active identifier. The value of the characteristic is a uint32.
     pub static HMCharacteristicTypeActiveIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for supported audio stream configuration. The value of the characteristic is TLV8 encoded data.
+    /// The audio stream’s configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypesupportedaudiostreamconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is TLV8-encoded data.
+    ///
+    ///
+    /// Characteristic type for supported audio stream configuration. The value of the characteristic is TLV8 encoded data.
     pub static HMCharacteristicTypeSupportedAudioStreamConfiguration: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for volume. The value of the characteristic is a uint8 value in percent.
+    /// The input or output volume of an audio device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypevolume?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value represents the percentage of the maximum volume supported by the service.
+    ///
+    ///
+    /// Characteristic type for volume. The value of the characteristic is a uint8 value in percent.
     pub static HMCharacteristicTypeVolume: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for mute. The value of the characteristic is a boolean.
+    /// A control for muting audio.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypemute?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding Boolean is `true` when the audio is muted.
+    ///
+    ///
+    /// Characteristic type for mute. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeMute: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for night vision. The value of the characteristic is a boolean.
+    /// An indicator of whether night vision is enabled on a video Real-time Transport Protocol (RTP) service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypenightvision?language=objc)
+    /// ## Discussion
+    ///
+    /// The corresponding value is a Boolean. Set the value to `true` to enable night vision. Set it to `false` to disable night vision.
+    ///
+    ///
+    /// Characteristic type for night vision. The value of the characteristic is a boolean.
     pub static HMCharacteristicTypeNightVision: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target visibility state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetVisibilityState.
+    /// The target visibility state for a service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetvisibilitystate?language=objc)
+    /// ## Overview
+    ///
+    /// This variable indicates if the application shows or hides the service. The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentVisibilityState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate) enumeration.
+    ///
+    ///
+    /// Characteristic type for target visibility state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetVisibilityState.
     pub static HMCharacteristicTypeTargetVisibilityState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for current visibility state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentVisibilityState.
+    /// The current visibility state for a service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypecurrentvisibilitystate?language=objc)
+    /// ## Overview
+    ///
+    /// This variable indicates if applications show or hide the service. The corresponding value is one of the constants in the [`HMCharacteristicValueCurrentVisibilityState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate) enumeration.
+    ///
+    ///
+    /// Characteristic type for current visibility state. The value of the characteristic is one of the values defined for HMCharacteristicValueCurrentVisibilityState.
     pub static HMCharacteristicTypeCurrentVisibilityState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for target media state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetMediaState.
+    /// The target media state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypetargetmediastate?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueTargetMediaState`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetmediastate) enumeration.
+    ///
+    ///
+    /// Characteristic type for target media state. The value of the characteristic is one of the values defined for HMCharacteristicValueTargetMediaState.
     pub static HMCharacteristicTypeTargetMediaState: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for router status. The value of the characteristic is one of the values defined for HMCharacteristicValueRouterStatus.
+    /// The current status of the router.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictyperouterstatus?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueRouterStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerouterstatus) enumeration.
+    ///
+    ///
+    /// Characteristic type for router status. The value of the characteristic is one of the values defined for HMCharacteristicValueRouterStatus.
     pub static HMCharacteristicTypeRouterStatus: &'static NSString;
 }
 
 extern "C" {
+    /// The WAN status list of an accessory.
     /// Characteristic type for wan status list. The value of the characteristic is TLV8 encoded data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypewanstatuslist?language=objc)
     pub static HMCharacteristicTypeWANStatusList: &'static NSString;
 }
 
 extern "C" {
-    /// Characteristic type for Wi-Fi satellite status. The value of the characteristic is one of the values defined for HMCharacteristicValueWiFiSatelliteStatus.
+    /// The network status of the WiFi satellite accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristictypewifisatellitestatus?language=objc)
+    /// ## Overview
+    ///
+    /// The corresponding value is one of the constants in the [`HMCharacteristicValueWiFiSatelliteStatus`](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluewifisatellitestatus) enumeration.
+    ///
+    ///
+    /// Characteristic type for Wi-Fi satellite status. The value of the characteristic is one of the values defined for HMCharacteristicValueWiFiSatelliteStatus.
     pub static HMCharacteristicTypeWiFiSatelliteStatus: &'static NSString;
 }

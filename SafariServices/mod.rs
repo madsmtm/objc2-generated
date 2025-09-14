@@ -115,28 +115,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion?language=objc)
+/// The version of Safari services.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFSafariServicesVersion(pub NSInteger);
 impl SFSafariServicesVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion/version10_0?language=objc)
     #[doc(alias = "SFSafariServicesVersion10_0")]
     pub const Version10_0: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion/version10_1?language=objc)
     #[doc(alias = "SFSafariServicesVersion10_1")]
     pub const Version10_1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion/version11_0?language=objc)
     #[doc(alias = "SFSafariServicesVersion11_0")]
     pub const Version11_0: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion/version12_0?language=objc)
     #[doc(alias = "SFSafariServicesVersion12_0")]
     pub const Version12_0: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion/version12_1?language=objc)
     #[doc(alias = "SFSafariServicesVersion12_1")]
     pub const Version12_1: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariservicesversion/version13_0?language=objc)
     #[doc(alias = "SFSafariServicesVersion13_0")]
     pub const Version13_0: Self = Self(5);
 }

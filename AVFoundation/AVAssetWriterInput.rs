@@ -16,6 +16,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that appends media samples to a track in an asset writer’s output file.
+    ///
+    /// ## Overview
+    ///
+    /// Create an asset writer input to write a single track of media, and optional track-level metadata, to the output file. To write multiple concurrent tracks with ideal interleaving of media data, observe the value of the [`readyForMoreMediaData`](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/isreadyformoremediadata) property of each input.
+    ///
+    /// You can use an asset writer input to create tracks in a QuickTime movie file that aren’t self-contained, and instead reference sample data that exists in another file.
+    ///
+    ///
     /// AVAssetWriterInput defines an interface for appending either new media samples or references to existing media samples packaged as CMSampleBuffer objects to a single track of the output file of an AVAssetWriter.
     ///
     /// Clients that need to write multiple concurrent tracks of media data should use one AVAssetWriterInput instance per track. In order to write multiple concurrent tracks with ideal interleaving of media data, clients should observe the value returned by the readyForMoreMediaData property of each AVAssetWriterInput instance.
@@ -23,8 +32,6 @@ extern_class!(
     /// AVAssetWriterInput also supports writing per-track metadata collections to the output file.
     ///
     /// As of macOS 10.10 and iOS 8.0 AVAssetWriterInput can also be used to create tracks that are not self-contained. Such tracks reference sample data that is located in another file. This is currently supported only for instances of AVAssetWriterInput attached to an instance of AVAssetWriter that writes files of type AVFileTypeQuickTimeMovie.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriterInput;
@@ -435,30 +442,27 @@ impl AVAssetWriterInput {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct?language=objc)
+/// A structure that indicates how to lay out and interleave media data.
 // NS_TYPED_ENUM
 pub type AVAssetWriterInputMediaDataLocation = NSString;
 
 extern "C" {
+    /// A value that indicates to interleave the input’s media data with other media data.
     /// Indicates that the media data should be interleaved with all other media data with this constant.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct/interleavedwithmainmediadata?language=objc)
     pub static AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData:
         &'static AVAssetWriterInputMediaDataLocation;
 }
 
 extern "C" {
+    /// A value that indicates to use noninterleaved data, and write it before interleaved data.
     /// Indicates that the media data should be laid out before all the media data with AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData and not be interleaved.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct/beforemainmediadatanotinterleaved?language=objc)
     pub static AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved:
         &'static AVAssetWriterInputMediaDataLocation;
 }
 
 extern "C" {
     /// Indicates that there may be large segments of time without any media data from this track. When mediaDataLocation is set to this value, AVAssetWriter will interleave the media data, but will not wait for media data from this track to achieve tight interleaving with other tracks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct/sparselyinterleavedwithmainmediadata?language=objc)
+    /// Indicates that there may be large segments of time without any media data from this track. When mediaDataLocation is set to this value, AVAssetWriter will interleave the media data, but will not wait for media data from this track to achieve tight interleaving with other tracks.
     pub static AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData:
         &'static AVAssetWriterInputMediaDataLocation;
 }
@@ -734,11 +738,10 @@ impl AVAssetWriterInput {
 }
 
 extern_class!(
+    /// An object that defines the interface to query for the requirements of the current pass.
     /// Defines an interface for querying information about the requirements of the current pass, such as the time ranges of media data to append.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputpassdescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriterInputPassDescription;
@@ -778,7 +781,13 @@ impl AVAssetWriterInputPassDescription {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputpixelbufferadaptor?language=objc)
+    /// An object that appends video samples to an asset writer input.
+    ///
+    /// ## Overview
+    ///
+    /// A pixel buffer adaptor provides a pixel buffer pool that you use to allocate pixel buffers to the output file. Using the provided pool for buffer allocation is typically more efficient than managing your own pool.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriterInputPixelBufferAdaptor;
@@ -917,7 +926,13 @@ impl AVAssetWriterInputPixelBufferAdaptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputtaggedpixelbuffergroupadaptor?language=objc)
+    /// An object that appends tagged buffer groups to an asset writer input.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides a [CVPixelBufferPool](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool-77o) to use for allocating the pixel buffers of tagged buffer groups to write to the output file. Using the provided pixel buffer pool for buffer allocation is typically more efficient than appending pixel buffers allocated using a separate pool.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriterInputTaggedPixelBufferGroupAdaptor;
@@ -1079,7 +1094,13 @@ impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor?language=objc)
+    /// An object that appends timed metadata groups to an asset writer input.
+    ///
+    /// ## Overview
+    ///
+    /// Use a metadata adaptor to append track-level metadata, packaged as instances of [`AVTimedMetadataGroup`](https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup), to an asset writer input.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriterInputMetadataAdaptor;
@@ -1167,7 +1188,7 @@ impl AVAssetWriterInputMetadataAdaptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputcaptionadaptor?language=objc)
+    /// An object that appends captions to an asset writer input.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriterInputCaptionAdaptor;

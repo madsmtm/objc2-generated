@@ -6,1810 +6,2123 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The reserved key __LINK__.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscresvlink-swift.var?language=objc)
     pub static kSCResvLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscresvinactive-swift.var?language=objc)
+    /// The reserved key __INACTIVE__.
     pub static kSCResvInactive: &'static CFString;
 }
 
 extern "C" {
+    /// The generic key `InterfaceName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropinterfacename-swift.var?language=objc)
     pub static kSCPropInterfaceName: &'static CFString;
 }
 
 extern "C" {
+    /// The generic key `MACAddress`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropmacaddress-swift.var?language=objc)
     pub static kSCPropMACAddress: &'static CFString;
 }
 
 extern "C" {
+    /// The generic key `UserDefinedName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropuserdefinedname-swift.var?language=objc)
     pub static kSCPropUserDefinedName: &'static CFString;
 }
 
 extern "C" {
+    /// The generic key `Version`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropversion-swift.var?language=objc)
     pub static kSCPropVersion: &'static CFString;
 }
 
 extern "C" {
+    /// The preference key `CurrentSet`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscprefcurrentset-swift.var?language=objc)
     pub static kSCPrefCurrentSet: &'static CFString;
 }
 
 extern "C" {
+    /// The preference key for the `NetworkServices` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscprefnetworkservices-swift.var?language=objc)
     pub static kSCPrefNetworkServices: &'static CFString;
 }
 
 extern "C" {
+    /// The preference key for the `Sets` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscprefsets-swift.var?language=objc)
     pub static kSCPrefSets: &'static CFString;
 }
 
 extern "C" {
+    /// The preference key for the `System` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscprefsystem-swift.var?language=objc)
     pub static kSCPrefSystem: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompnetwork-swift.var?language=objc)
+    /// The Component key `Network`.
     pub static kSCCompNetwork: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompservice-swift.var?language=objc)
+    /// The Component key `Service`.
     pub static kSCCompService: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompglobal-swift.var?language=objc)
+    /// The Component key `Global`.
     pub static kSCCompGlobal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccomphostnames-swift.var?language=objc)
+    /// The Component key `HostNames`.
     pub static kSCCompHostNames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompinterface-swift.var?language=objc)
+    /// The Component key `Interface`.
     pub static kSCCompInterface: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompsystem-swift.var?language=objc)
+    /// The Component key `System`.
     pub static kSCCompSystem: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompusers-swift.var?language=objc)
+    /// The Component key Users.
     pub static kSCCompUsers: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/ksccompanyregex-swift.var?language=objc)
+    /// A regular expression pattern that matches any component.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant represents the regular expression pattern `[^/]+`.
+    ///
+    ///
     pub static kSCCompAnyRegex: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `AirPort` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetairport-swift.var?language=objc)
     pub static kSCEntNetAirPort: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `DHCP` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetdhcp-swift.var?language=objc)
     pub static kSCEntNetDHCP: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `DNS` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetdns-swift.var?language=objc)
     pub static kSCEntNetDNS: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `Ethernet` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetethernet-swift.var?language=objc)
     pub static kSCEntNetEthernet: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `FireWire` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetfirewire-swift.var?language=objc)
     pub static kSCEntNetFireWire: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `Interface` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetinterface-swift.var?language=objc)
     pub static kSCEntNetInterface: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `IPSec` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetipsec-swift.var?language=objc)
     pub static kSCEntNetIPSec: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `IPv4` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetipv4-swift.var?language=objc)
     pub static kSCEntNetIPv4: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `IPv6` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetipv6-swift.var?language=objc)
     pub static kSCEntNetIPv6: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `L2TP` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetl2tp-swift.var?language=objc)
     pub static kSCEntNetL2TP: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `Link` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetlink-swift.var?language=objc)
     pub static kSCEntNetLink: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `Modem` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetmodem-swift.var?language=objc)
     pub static kSCEntNetModem: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `PPP` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetppp-swift.var?language=objc)
     pub static kSCEntNetPPP: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `PPPoE` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetpppoe-swift.var?language=objc)
     pub static kSCEntNetPPPoE: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `PPPSerial` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetpppserial-swift.var?language=objc)
     pub static kSCEntNetPPPSerial: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `PPTP` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetpptp-swift.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCEntNetPPTP: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `Proxies` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetproxies-swift.var?language=objc)
     pub static kSCEntNetProxies: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `SMB` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnetsmb-swift.var?language=objc)
     pub static kSCEntNetSMB: &'static CFString;
 }
 
 extern "C" {
+    /// The network entity key for the `6to4` dictionary.
     /// Value is a CFDictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentnet6to4-swift.var?language=objc)
     pub static kSCEntNet6to4: &'static CFString;
 }
 
 extern "C" {
+    /// The Network key `OverridePrimary`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetoverrideprimary-swift.var?language=objc)
     pub static kSCPropNetOverridePrimary: &'static CFString;
 }
 
 extern "C" {
+    /// The Network key `ServiceOrder`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetserviceorder-swift.var?language=objc)
     pub static kSCPropNetServiceOrder: &'static CFString;
 }
 
 extern "C" {
+    /// The Network key `PPPOverridePrimary`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppoverrideprimary-swift.var?language=objc)
     pub static kSCPropNetPPPOverridePrimary: &'static CFString;
 }
 
 extern "C" {
+    /// The Network key `Interfaces`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfaces-swift.var?language=objc)
     pub static kSCPropNetInterfaces: &'static CFString;
 }
 
 extern "C" {
+    /// The Network key `LocalHostName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetlocalhostname-swift.var?language=objc)
     pub static kSCPropNetLocalHostName: &'static CFString;
 }
 
 extern "C" {
+    /// The AirPort key `AllowNetCreation`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportallownetcreation-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortAllowNetCreation: &'static CFString;
 }
 
 extern "C" {
+    /// The AirPort key `AuthPassword`, whose value is of type `CFData`.
     /// Value is a CFData
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportauthpassword-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortAuthPassword: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The AirPort key `AuthPasswordEncryption`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportauthpasswordencryption-c.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetAirPortAuthPasswordEncryptionKeychain`, which has the value `Keychain`
+    ///
+    ///
+    /// Value is a CFString
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortAuthPasswordEncryption: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The AirPort key `JoinMode`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportjoinmode-c.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetAirPortJoinModeAutomatic`, which has the value `Automatic`
+    ///
+    /// - `kSCValNetAirPortJoinModePreferred`, which has the value `Preferred`
+    ///
+    /// - `kSCValNetAirPortJoinModeRanked`, which has the value `Ranked`
+    ///
+    /// - `kSCValNetAirPortJoinModeRecent`, which has the value `Recent`
+    ///
+    /// - `kSCValNetAirPortJoinModeStrongest`, which has the value `Strongest`
+    ///
+    ///
+    /// Value is a CFString
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortJoinMode: &'static CFString;
 }
 
 extern "C" {
+    /// The AirPort key `PowerEnabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportpowerenabled-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortPowerEnabled: &'static CFString;
 }
 
 extern "C" {
+    /// The AirPort key `PreferredNetwork`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportpreferrednetwork-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortPreferredNetwork: &'static CFString;
 }
 
 extern "C" {
+    /// The AirPort key `SavePasswords`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetairportsavepasswords-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetAirPortSavePasswords: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmodeautomatic-c.var?language=objc)
+    /// The deprecated value Automatic.
     #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeAutomatic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmodepreferred-c.var?language=objc)
+    /// The deprecated value Preferred.
     #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModePreferred: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmoderanked-c.var?language=objc)
+    /// The deprecated value Ranked.
     #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeRanked: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmoderecent-c.var?language=objc)
+    /// The deprecated value Recent.
     #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeRecent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportjoinmodestrongest-c.var?language=objc)
+    /// The deprecated value Strongest.
     #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortJoinModeStrongest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetairportauthpasswordencryptionkeychain-c.var?language=objc)
+    /// The deprecated value Keychain.
     #[deprecated = "No longer supported"]
     pub static kSCValNetAirPortAuthPasswordEncryptionKeychain: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `DomainName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnsdomainname-swift.var?language=objc)
     pub static kSCPropNetDNSDomainName: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `Options`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnsoptions-swift.var?language=objc)
     pub static kSCPropNetDNSOptions: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `SearchDomains`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnssearchdomains-swift.var?language=objc)
     pub static kSCPropNetDNSSearchDomains: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `SearchOrder`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnssearchorder-swift.var?language=objc)
     pub static kSCPropNetDNSSearchOrder: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `ServerAddresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnsserveraddresses-swift.var?language=objc)
     pub static kSCPropNetDNSServerAddresses: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `ServerPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnsserverport-swift.var?language=objc)
     pub static kSCPropNetDNSServerPort: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `ServerTimeout`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnsservertimeout-swift.var?language=objc)
     pub static kSCPropNetDNSServerTimeout: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `SortList`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnssortlist-swift.var?language=objc)
     pub static kSCPropNetDNSSortList: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `SupplementalMatchDomains`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnssupplementalmatchdomains-swift.var?language=objc)
     pub static kSCPropNetDNSSupplementalMatchDomains: &'static CFString;
 }
 
 extern "C" {
+    /// The DNS key `SupplementalMatchOrders`, whose value is of type `CFArray`, containing elements of type `CFNumber`.
     /// Value is a CFArray[CFNumber]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetdnssupplementalmatchorders-swift.var?language=objc)
     pub static kSCPropNetDNSSupplementalMatchOrders: &'static CFString;
 }
 
 extern "C" {
+    /// The Ethernet key `MediaSubType`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetethernetmediasubtype-swift.var?language=objc)
     pub static kSCPropNetEthernetMediaSubType: &'static CFString;
 }
 
 extern "C" {
+    /// The Ethernet key `MediaOptions`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetethernetmediaoptions-swift.var?language=objc)
     pub static kSCPropNetEthernetMediaOptions: &'static CFString;
 }
 
 extern "C" {
+    /// The Ethernet key `MTU`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetethernetmtu-swift.var?language=objc)
     pub static kSCPropNetEthernetMTU: &'static CFString;
 }
 
 extern "C" {
+    /// The Interface key `DeviceName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacedevicename-swift.var?language=objc)
     pub static kSCPropNetInterfaceDeviceName: &'static CFString;
 }
 
 extern "C" {
+    /// The Interface key `Hardware`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacehardware-swift.var?language=objc)
     pub static kSCPropNetInterfaceHardware: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The Interface key `Type`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacetype-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetInterfaceTypeEthernet`, which has the value `Ethernet`
+    ///
+    /// - `kSCValNetInterfaceTypeFireWire`, which has the value `FireWire`
+    ///
+    /// - `kSCValNetInterfaceTypePPP`, which has the value `PPP`
+    ///
+    /// - `kSCValNetInterfaceType6to4`, which has the value `6to4`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetInterfaceType: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The Interface key `SubType`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesubtype-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants when the `Type` key has the value `PPP`:
+    ///
+    /// - `kSCValNetInterfaceSubTypePPPoE`, which has the value `PPPoE`
+    ///
+    /// - `kSCValNetInterfaceSubTypePPPSerial`, which has the value `PPPSerial`
+    ///
+    /// - `kSCValNetInterfaceSubTypePPTP`, which has the value `PPTP`
+    ///
+    /// - `kSCValNetInterfaceSubTypeL2TP`, which has the value `L2TP`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetInterfaceSubType: &'static CFString;
 }
 
 extern "C" {
+    /// The Interface key `SupportsModemOnHold`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesupportsmodemonhold-swift.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetInterfaceSupportsModemOnHold: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacetypeethernet-swift.var?language=objc)
+    /// The constant value Ethernet.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceTypeEthernet: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacetypefirewire-swift.var?language=objc)
+    /// The constant value FireWire.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceTypeFireWire: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacetypeppp-swift.var?language=objc)
+    /// The constant value PPP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceTypePPP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacetype6to4-swift.var?language=objc)
+    /// The constant value 6to4.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceType6to4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacetypeipsec-swift.var?language=objc)
+    /// The constant value IPSec.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceTypeIPSec: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacesubtypepppoe-swift.var?language=objc)
+    /// The constant value PPPoE.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceSubType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesubtype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceSubTypePPPoE: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacesubtypepppserial-swift.var?language=objc)
+    /// The constant value PPPSerial.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceSubType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesubtype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceSubTypePPPSerial: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacesubtypepptp-swift.var?language=objc)
+    /// The constant value PPTP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceSubType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesubtype-swift.var) key.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static kSCValNetInterfaceSubTypePPTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetinterfacesubtypel2tp-swift.var?language=objc)
+    /// The constant value L2TP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetInterfaceSubType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetinterfacesubtype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetInterfaceSubTypeL2TP: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key `AuthenticationMethod`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecauthenticationmethod-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetIPSecAuthenticationMethodSharedSecret`, which has the value `SharedSecret`
+    ///
+    /// - `kSCValNetIPSecAuthenticationMethodCertificate`, which has the value `Certificate`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecAuthenticationMethod: &'static CFString;
 }
 
 extern "C" {
+    /// The IPSec key `LocalCertificate`, whose value is of type `CFData`.
     /// Value is a CFData
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipseclocalcertificate-swift.var?language=objc)
     pub static kSCPropNetIPSecLocalCertificate: &'static CFString;
 }
 
 extern "C" {
+    /// The IPSec key `LocalIdentifier`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipseclocalidentifier-swift.var?language=objc)
     pub static kSCPropNetIPSecLocalIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key `LocalIdentifierType`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipseclocalidentifiertype-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constant:
+    ///
+    /// - `kSCValNetIPSecLocalIdentifierTypeKeyID`, which has the value `KeyID`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecLocalIdentifierType: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key `SharedSecret`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecsharedsecret-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constant:
+    ///
+    /// - `kSCValNetIPSecSharedSecretEncryptionKeychain`, which has the value `KeyChain`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecSharedSecret: &'static CFString;
 }
 
 extern "C" {
+    /// The IPSec key `SharedSecretEncryption`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecsharedsecretencryption-swift.var?language=objc)
     pub static kSCPropNetIPSecSharedSecretEncryption: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFNumber
+    /// The IPSec key ConnectTime.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecconnecttime-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
+    /// Value is a CFNumber
     pub static kSCPropNetIPSecConnectTime: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key RemoteAddress.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecremoteaddress-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecRemoteAddress: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFNumber
+    /// The IPSec key Status.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecstatus-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
+    /// Value is a CFNumber
     pub static kSCPropNetIPSecStatus: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFNumber (0 or 1)
+    /// The IPSec key XAuthEnabled.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecxauthenabled-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
+    /// Value is a CFNumber (0 or 1)
     pub static kSCPropNetIPSecXAuthEnabled: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key XAuthName.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecxauthname-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecXAuthName: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key XAuthPassword.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecxauthpassword-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecXAuthPassword: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPSec key XAuthPasswordEncryption.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecxauthpasswordencryption-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). This key can accept the following constants:
+    ///
+    /// - [`kSCValNetIPSecXAuthPasswordEncryptionKeychain`](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecxauthpasswordencryptionkeychain-swift.var), which has the value `Keychain`
+    ///
+    /// - [`kSCValNetIPSecXAuthPasswordEncryptionPrompt`](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecxauthpasswordencryptionprompt-swift.var), which has the value `Prompt`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPSecXAuthPasswordEncryption: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecauthenticationmethodsharedsecret-swift.var?language=objc)
+    /// The constant value SharedSecret.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecAuthenticationMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecauthenticationmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecAuthenticationMethodSharedSecret: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecauthenticationmethodcertificate-swift.var?language=objc)
+    /// The constant value Certificate.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecAuthenticationMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecauthenticationmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecAuthenticationMethodCertificate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecauthenticationmethodhybrid-swift.var?language=objc)
+    /// The constant value Hybrid.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecAuthenticationMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecauthenticationmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecAuthenticationMethodHybrid: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipseclocalidentifiertypekeyid-swift.var?language=objc)
+    /// The constant value KeyID.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecLocalIdentifierType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipseclocalidentifiertype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecLocalIdentifierTypeKeyID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecsharedsecretencryptionkeychain-swift.var?language=objc)
+    /// The constant value Keychain.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecSharedSecretEncryption`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecsharedsecretencryption-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecSharedSecretEncryptionKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecxauthpasswordencryptionkeychain-swift.var?language=objc)
+    /// The constant value Keychain.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecXAuthPasswordEncryption`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecxauthpasswordencryption-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecXAuthPasswordEncryptionKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipsecxauthpasswordencryptionprompt-swift.var?language=objc)
+    /// The constant value Prompt.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPSecXAuthPasswordEncryption`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipsecxauthpasswordencryption-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPSecXAuthPasswordEncryptionPrompt: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv4 key `Addresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4addresses-swift.var?language=objc)
     pub static kSCPropNetIPv4Addresses: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPv4 key `ConfigMethod`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetIPv4ConfigMethodBOOTP`, which has the value `BOOTP`
+    ///
+    /// - `kSCValNetIPv4ConfigMethodDHCP`, which has the value `DHCP`
+    ///
+    /// - `kSCValNetIPv4ConfigMethodINFORM`, which has the value `INFORM`
+    ///
+    /// - `kSCValNetIPv4ConfigMethodLinkLocal`, which has the value `LinkLocal`
+    ///
+    /// - `kSCValNetIPv4ConfigMethodManual`, which has the value `Manual`
+    ///
+    /// - `kSCValNetIPv4ConfigMethodPPP`, which has the value `PPP`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPv4ConfigMethod: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv4 key `DHCPClientID`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4dhcpclientid-swift.var?language=objc)
     pub static kSCPropNetIPv4DHCPClientID: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv4 key `Router`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4router-swift.var?language=objc)
     pub static kSCPropNetIPv4Router: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv4 key `SubnetMasks`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4subnetmasks-swift.var?language=objc)
     pub static kSCPropNetIPv4SubnetMasks: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv4 key `DestAddresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4destaddresses-swift.var?language=objc)
     pub static kSCPropNetIPv4DestAddresses: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv4 key `BroadcastAddresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4broadcastaddresses-swift.var?language=objc)
     pub static kSCPropNetIPv4BroadcastAddresses: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethodautomatic-swift.var?language=objc)
+    /// The constant value Automatic.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodAutomatic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethodbootp-swift.var?language=objc)
+    /// The constant value BOOTP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodBOOTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethoddhcp-swift.var?language=objc)
+    /// The constant value DHCP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodDHCP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethodinform-swift.var?language=objc)
+    /// The constant value INFORM.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodINFORM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethodlinklocal-swift.var?language=objc)
+    /// The constant value LinkLocal.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodLinkLocal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethodmanual-swift.var?language=objc)
+    /// The constant value Manual.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodManual: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv4configmethodppp-swift.var?language=objc)
+    /// The constant value PPP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv4ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv4configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv4ConfigMethodPPP: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv6 key `Addresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6addresses-swift.var?language=objc)
     pub static kSCPropNetIPv6Addresses: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The IPv6 key `ConfigMethod`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6configmethod-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetIPv6ConfigMethodAutomatic`, which has the value `Automatic`
+    ///
+    /// - `kSCValNetIPv6ConfigMethodManual`, which has the value `Manual`
+    ///
+    /// - `kSCValNetIPv6ConfigMethodRouterAdvertisement`, which has the value `RouterAdvertisement`
+    ///
+    /// - `kSCValNetIPv6ConfigMethod6to4`, which has the value `6to4`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetIPv6ConfigMethod: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv6 key `DestAddresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6destaddresses-swift.var?language=objc)
     pub static kSCPropNetIPv6DestAddresses: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv6 key `Flags`, whose value is of type `CFNumber`.
     /// Value is a CFArray[CFNumber]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6flags-swift.var?language=objc)
     pub static kSCPropNetIPv6Flags: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv6 key `PrefixLength`, whose value is of type `CFArray`, containing elements of type `CFNumber`.
     /// Value is a CFArray[CFNumber]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6prefixlength-swift.var?language=objc)
     pub static kSCPropNetIPv6PrefixLength: &'static CFString;
 }
 
 extern "C" {
+    /// The IPv6 key `Router`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6router-swift.var?language=objc)
     pub static kSCPropNetIPv6Router: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv6configmethodautomatic-swift.var?language=objc)
+    /// The constant value Automatic.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv6ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv6ConfigMethodAutomatic: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv6configmethodlinklocal-swift.var?language=objc)
+    /// The constant value LinkLocal.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv6ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv6ConfigMethodLinkLocal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv6configmethodmanual-swift.var?language=objc)
+    /// The constant value Manual.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv6ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv6ConfigMethodManual: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv6configmethodrouteradvertisement-swift.var?language=objc)
+    /// The constant value RouterAdvertisement.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv6ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv6ConfigMethodRouterAdvertisement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetipv6configmethod6to4-swift.var?language=objc)
+    /// The constant value 6to4.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetIPv6ConfigMethod`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetipv6configmethod-swift.var) key.
+    ///
+    ///
     pub static kSCValNetIPv6ConfigMethod6to4: &'static CFString;
 }
 
 extern "C" {
+    /// The 6to4 key `Relay`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnet6to4relay-swift.var?language=objc)
     pub static kSCPropNet6to4Relay: &'static CFString;
 }
 
 extern "C" {
+    /// The Link key `Active`, whose value is of type `CFBoolean`.
     /// Value is a CFBoolean
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetlinkactive-swift.var?language=objc)
     pub static kSCPropNetLinkActive: &'static CFString;
 }
 
 extern "C" {
+    /// The Link key `Detaching`, whose value is of type `CFBoolean`.
     /// Value is a CFBoolean
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetlinkdetaching-swift.var?language=objc)
     pub static kSCPropNetLinkDetaching: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `AccessPointName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemaccesspointname-swift.var?language=objc)
     pub static kSCPropNetModemAccessPointName: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `ConnectionPersonality`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemconnectionpersonality-swift.var?language=objc)
     pub static kSCPropNetModemConnectionPersonality: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `ConnectionScript`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemconnectionscript-swift.var?language=objc)
     pub static kSCPropNetModemConnectionScript: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `ConnectSpeed`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemconnectspeed-swift.var?language=objc)
     pub static kSCPropNetModemConnectSpeed: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `DataCompression`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdatacompression-swift.var?language=objc)
     pub static kSCPropNetModemDataCompression: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `DeviceContextID`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdevicecontextid-swift.var?language=objc)
     pub static kSCPropNetModemDeviceContextID: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `DeviceModel`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdevicemodel-swift.var?language=objc)
     pub static kSCPropNetModemDeviceModel: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `DeviceVendor`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdevicevendor-swift.var?language=objc)
     pub static kSCPropNetModemDeviceVendor: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The Modem key `DialMode`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdialmode-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetModemDialModeIgnoreDialTone`, which has the value `IgnoreDialTone`
+    ///
+    /// - `kSCValNetModemDialModeManual`, which has the value `Manual`
+    ///
+    /// - `kSCValNetModemDialModeWaitForDialTone`, which has the value `WaitForDialTone`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetModemDialMode: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `ErrorCorrection`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemerrorcorrection-swift.var?language=objc)
     pub static kSCPropNetModemErrorCorrection: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `HoldCallWaitingAudibleAlert`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemholdcallwaitingaudiblealert-swift.var?language=objc)
     pub static kSCPropNetModemHoldCallWaitingAudibleAlert: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `HoldDisconnectOnAnswer`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemholddisconnectonanswer-swift.var?language=objc)
     pub static kSCPropNetModemHoldDisconnectOnAnswer: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `HoldEnabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemholdenabled-swift.var?language=objc)
     pub static kSCPropNetModemHoldEnabled: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `HoldReminder`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemholdreminder-swift.var?language=objc)
     pub static kSCPropNetModemHoldReminder: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `HoldReminderTime`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemholdremindertime-swift.var?language=objc)
     pub static kSCPropNetModemHoldReminderTime: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `Note`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemnote-swift.var?language=objc)
     pub static kSCPropNetModemNote: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `PulseDial`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodempulsedial-swift.var?language=objc)
     pub static kSCPropNetModemPulseDial: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `Speaker`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemspeaker-swift.var?language=objc)
     pub static kSCPropNetModemSpeaker: &'static CFString;
 }
 
 extern "C" {
+    /// The Modem key `Speed`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemspeed-swift.var?language=objc)
     pub static kSCPropNetModemSpeed: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetmodemdialmodeignoredialtone-swift.var?language=objc)
+    /// The constant value IgnoreDialTone.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetModemDialMode`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdialmode-swift.var) key.
+    ///
+    ///
     pub static kSCValNetModemDialModeIgnoreDialTone: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetmodemdialmodemanual-swift.var?language=objc)
+    /// The constant value Manual.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetModemDialMode`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdialmode-swift.var) key.
+    ///
+    ///
     pub static kSCValNetModemDialModeManual: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetmodemdialmodewaitfordialtone-swift.var?language=objc)
+    /// The constant value WaitForDialTone.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetModemDialMode`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetmodemdialmode-swift.var) key.
+    ///
+    ///
     pub static kSCValNetModemDialModeWaitForDialTone: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `ACSPEnabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppacspenabled-swift.var?language=objc)
     pub static kSCPropNetPPPACSPEnabled: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `ConnectTime`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppconnecttime-swift.var?language=objc)
     pub static kSCPropNetPPPConnectTime: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DeviceLastCause`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdevicelastcause-swift.var?language=objc)
     pub static kSCPropNetPPPDeviceLastCause: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DialOnDemand`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdialondemand-swift.var?language=objc)
     pub static kSCPropNetPPPDialOnDemand: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DisconnectOnFastUserSwitch`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdisconnectonfastuserswitch-swift.var?language=objc)
     pub static kSCPropNetPPPDisconnectOnFastUserSwitch: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DisconnectOnIdle`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdisconnectonidle-swift.var?language=objc)
     pub static kSCPropNetPPPDisconnectOnIdle: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DisconnectOnIdleTimer`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdisconnectonidletimer-swift.var?language=objc)
     pub static kSCPropNetPPPDisconnectOnIdleTimer: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DisconnectOnLogout`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdisconnectonlogout-swift.var?language=objc)
     pub static kSCPropNetPPPDisconnectOnLogout: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DisconnectOnSleep`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdisconnectonsleep-swift.var?language=objc)
     pub static kSCPropNetPPPDisconnectOnSleep: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `DisconnectTime`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppdisconnecttime-swift.var?language=objc)
     pub static kSCPropNetPPPDisconnectTime: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `IdleReminder`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppidlereminder-swift.var?language=objc)
     pub static kSCPropNetPPPIdleReminder: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `IdleReminderTimer`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppidleremindertimer-swift.var?language=objc)
     pub static kSCPropNetPPPIdleReminderTimer: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LastCause`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplastcause-swift.var?language=objc)
     pub static kSCPropNetPPPLastCause: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `Logfile`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplogfile-swift.var?language=objc)
     pub static kSCPropNetPPPLogfile: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `Plugins`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppplugins-swift.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetPPPPlugins: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `RetryConnectTime`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppretryconnecttime-swift.var?language=objc)
     pub static kSCPropNetPPPRetryConnectTime: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `SessionTimer`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppsessiontimer-swift.var?language=objc)
     pub static kSCPropNetPPPSessionTimer: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `Status`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppstatus-swift.var?language=objc)
     pub static kSCPropNetPPPStatus: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `UseSessionTimer`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppusesessiontimer-swift.var?language=objc)
     pub static kSCPropNetPPPUseSessionTimer: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `VerboseLogging`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppverboselogging-swift.var?language=objc)
     pub static kSCPropNetPPPVerboseLogging: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `AuthEAPPlugins`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppautheapplugins-swift.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetPPPAuthEAPPlugins: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `AuthName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthname-swift.var?language=objc)
     pub static kSCPropNetPPPAuthName: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `AuthPassword`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthpassword-swift.var?language=objc)
     pub static kSCPropNetPPPAuthPassword: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The PPP key `AuthPasswordEncryption`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthpasswordencryption-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetPPPAuthPasswordEncryptionKeychain`, which has the value `Keychain`
+    ///
+    /// - `kSCValNetPPPAuthPasswordEncryptionToken`, which has the value `Token`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetPPPAuthPasswordEncryption: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The PPP key `AuthPrompt`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprompt-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetPPPAuthPromptBefore`, which has the value `Before`
+    ///
+    /// - `kSCValNetPPPAuthPromptAfter`, which has the value `After`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetPPPAuthPrompt: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFArray[CFString]
+    /// The PPP key `AuthProtocol`, whose value is of type `CFArray`, containing elements of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprotocol-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetPPPAuthProtocolCHAP`, which has the value `CHAP`
+    ///
+    /// - `kSCValNetPPPAuthProtocolEAP`, which has the value `EAP`
+    ///
+    /// - `kSCValNetPPPAuthProtocolMSCHAP1`, which has the value `MSCHAP1`
+    ///
+    /// - `kSCValNetPPPAuthProtocolMSCHAP2`, which has the value `MSCHAP2`
+    ///
+    /// - `kSCValNetPPPAuthProtocolPAP`, which has the value `PAP`
+    ///
+    ///
+    /// Value is a CFArray[CFString]
     pub static kSCPropNetPPPAuthProtocol: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthpasswordencryptionkeychain-swift.var?language=objc)
+    /// The constant value Keychain.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthPasswordEncryption`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthpasswordencryption-swift.var) key.
+    ///
+    ///
     pub static kSCValNetPPPAuthPasswordEncryptionKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthpasswordencryptiontoken-swift.var?language=objc)
+    /// The constant value Token.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthPasswordEncryption`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthpasswordencryption-swift.var) key.
+    ///
+    ///
     pub static kSCValNetPPPAuthPasswordEncryptionToken: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value Before.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthpromptbefore-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthPrompt`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprompt-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthPromptBefore: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value After.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthpromptafter-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthPrompt`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprompt-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthPromptAfter: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value CHAP.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthprotocolchap-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthProtocol`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprotocol-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthProtocolCHAP: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value EAP.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthprotocoleap-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthProtocol`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprotocol-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthProtocolEAP: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value MSCHAP1.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthprotocolmschap1-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthProtocol`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprotocol-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthProtocolMSCHAP1: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value MSCHAP2.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthprotocolmschap2-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthProtocol`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprotocol-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthProtocolMSCHAP2: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The constant value PAP.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetpppauthprotocolpap-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetPPPAuthProtocol`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppauthprotocol-swift.var) key.
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCValNetPPPAuthProtocolPAP: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommAlternateRemoteAddress`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommalternateremoteaddress-swift.var?language=objc)
     pub static kSCPropNetPPPCommAlternateRemoteAddress: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommConnectDelay`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommconnectdelay-swift.var?language=objc)
     pub static kSCPropNetPPPCommConnectDelay: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommDisplayTerminalWindow`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommdisplayterminalwindow-swift.var?language=objc)
     pub static kSCPropNetPPPCommDisplayTerminalWindow: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommRedialCount`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommredialcount-swift.var?language=objc)
     pub static kSCPropNetPPPCommRedialCount: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommRedialEnabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommredialenabled-swift.var?language=objc)
     pub static kSCPropNetPPPCommRedialEnabled: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommRedialInterval`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommredialinterval-swift.var?language=objc)
     pub static kSCPropNetPPPCommRedialInterval: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommRemoteAddress`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommremoteaddress-swift.var?language=objc)
     pub static kSCPropNetPPPCommRemoteAddress: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommTerminalScript`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommterminalscript-swift.var?language=objc)
     pub static kSCPropNetPPPCommTerminalScript: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CommUseTerminalScript`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppcommuseterminalscript-swift.var?language=objc)
     pub static kSCPropNetPPPCommUseTerminalScript: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CCPEnabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppccpenabled-swift.var?language=objc)
     pub static kSCPropNetPPPCCPEnabled: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CCPMPPE40Enabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppccpmppe40enabled-swift.var?language=objc)
     pub static kSCPropNetPPPCCPMPPE40Enabled: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `CCPMPPE128Enabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppccpmppe128enabled-swift.var?language=objc)
     pub static kSCPropNetPPPCCPMPPE128Enabled: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `IPCPCompressionVJ`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppipcpcompressionvj-swift.var?language=objc)
     pub static kSCPropNetPPPIPCPCompressionVJ: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `IPCPUsePeerDNS`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetpppipcpusepeerdns-swift.var?language=objc)
     pub static kSCPropNetPPPIPCPUsePeerDNS: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPEchoEnabled`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpechoenabled-swift.var?language=objc)
     pub static kSCPropNetPPPLCPEchoEnabled: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPEchoFailure`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpechofailure-swift.var?language=objc)
     pub static kSCPropNetPPPLCPEchoFailure: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPEchoInterval`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpechointerval-swift.var?language=objc)
     pub static kSCPropNetPPPLCPEchoInterval: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPCompressionACField`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpcompressionacfield-swift.var?language=objc)
     pub static kSCPropNetPPPLCPCompressionACField: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPCompressionPField`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpcompressionpfield-swift.var?language=objc)
     pub static kSCPropNetPPPLCPCompressionPField: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPMRU`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpmru-swift.var?language=objc)
     pub static kSCPropNetPPPLCPMRU: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPMTU`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpmtu-swift.var?language=objc)
     pub static kSCPropNetPPPLCPMTU: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPReceiveACCM`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcpreceiveaccm-swift.var?language=objc)
     pub static kSCPropNetPPPLCPReceiveACCM: &'static CFString;
 }
 
 extern "C" {
+    /// The PPP key `LCPTransmitACCM`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetppplcptransmitaccm-swift.var?language=objc)
     pub static kSCPropNetPPPLCPTransmitACCM: &'static CFString;
 }
 
 extern "C" {
+    /// The L2TP key `IPSecSharedSecret`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetl2tpipsecsharedsecret-swift.var?language=objc)
     pub static kSCPropNetL2TPIPSecSharedSecret: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The L2TP key `IPSecSharedSecretEncryption`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetl2tpipsecsharedsecretencryption-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constant:
+    ///
+    /// - `kSCValNetL2TPIPSecSharedSecretEncryptionKeychain`, which has the value `Keychain`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetL2TPIPSecSharedSecretEncryption: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The L2TP key `Transport`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetl2tptransport-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetL2TPTransportIP`, which has the value `IP`
+    ///
+    /// - `kSCValNetL2TPTransportIPSec`, which has the value `IPSec`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetL2TPTransport: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetl2tpipsecsharedsecretencryptionkeychain-swift.var?language=objc)
+    /// The constant value Keychain.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetL2TPIPSecSharedSecretEncryption`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetl2tpipsecsharedsecretencryption-swift.var) key.
+    ///
+    ///
     pub static kSCValNetL2TPIPSecSharedSecretEncryptionKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetl2tptransportip-swift.var?language=objc)
+    /// The constant value IP.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetL2TPTransport`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetl2tptransport-swift.var) key.
+    ///
+    ///
     pub static kSCValNetL2TPTransportIP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetl2tptransportipsec-swift.var?language=objc)
+    /// The constant value IPSec.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetL2TPTransport`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetl2tptransport-swift.var) key.
+    ///
+    ///
     pub static kSCValNetL2TPTransportIPSec: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `ExceptionsList`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesexceptionslist-swift.var?language=objc)
     pub static kSCPropNetProxiesExceptionsList: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `ExcludeSimpleHostnames`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesexcludesimplehostnames-swift.var?language=objc)
     pub static kSCPropNetProxiesExcludeSimpleHostnames: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `FTPEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesftpenable-swift.var?language=objc)
     pub static kSCPropNetProxiesFTPEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `FTPPassive`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesftppassive-swift.var?language=objc)
     pub static kSCPropNetProxiesFTPPassive: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `FTPPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesftpport-swift.var?language=objc)
     pub static kSCPropNetProxiesFTPPort: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `FTPProxy`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesftpproxy-swift.var?language=objc)
     pub static kSCPropNetProxiesFTPProxy: &'static CFString;
 }
 
 extern "C" {
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesftpuser-swift.var?language=objc)
     pub static kSCPropNetProxiesFTPUser: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `GopherEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesgopherenable-swift.var?language=objc)
     pub static kSCPropNetProxiesGopherEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `GopherPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesgopherport-swift.var?language=objc)
     pub static kSCPropNetProxiesGopherPort: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `GopherProxy`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesgopherproxy-swift.var?language=objc)
     pub static kSCPropNetProxiesGopherProxy: &'static CFString;
 }
 
 extern "C" {
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesgopheruser-swift.var?language=objc)
     pub static kSCPropNetProxiesGopherUser: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `HTTPEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpenable-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `HTTPPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpport-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPPort: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `HTTPProxy`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpproxy-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPProxy: &'static CFString;
 }
 
 extern "C" {
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpuser-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPUser: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `HTTPSEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpsenable-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPSEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `HTTPSPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpsport-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPSPort: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `HTTPSProxy`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpsproxy-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPSProxy: &'static CFString;
 }
 
 extern "C" {
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxieshttpsuser-swift.var?language=objc)
     pub static kSCPropNetProxiesHTTPSUser: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `RTSPEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesrtspenable-swift.var?language=objc)
     pub static kSCPropNetProxiesRTSPEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `RTSPPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesrtspport-swift.var?language=objc)
     pub static kSCPropNetProxiesRTSPPort: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `RTSPProxy`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesrtspproxy-swift.var?language=objc)
     pub static kSCPropNetProxiesRTSPProxy: &'static CFString;
 }
 
 extern "C" {
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesrtspuser-swift.var?language=objc)
     pub static kSCPropNetProxiesRTSPUser: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `SOCKSEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiessocksenable-swift.var?language=objc)
     pub static kSCPropNetProxiesSOCKSEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `SOCKSPort`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiessocksport-swift.var?language=objc)
     pub static kSCPropNetProxiesSOCKSPort: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `SOCKSProxy`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiessocksproxy-swift.var?language=objc)
     pub static kSCPropNetProxiesSOCKSProxy: &'static CFString;
 }
 
 extern "C" {
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiessocksuser-swift.var?language=objc)
     pub static kSCPropNetProxiesSOCKSUser: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `ProxyAutoConfigEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesproxyautoconfigenable-swift.var?language=objc)
     pub static kSCPropNetProxiesProxyAutoConfigEnable: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The Proxies key ProxyAutoConfigJavaScript.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesproxyautoconfigjavascript-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetProxiesProxyAutoConfigJavaScript: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `ProxyAutoConfigURLString`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesproxyautoconfigurlstring-swift.var?language=objc)
     pub static kSCPropNetProxiesProxyAutoConfigURLString: &'static CFString;
 }
 
 extern "C" {
+    /// The Proxies key `ProxyAutoDiscoveryEnable`, whose value is of type `CFNumber` and is equal to `0` or `1`.
     /// Value is a CFNumber (0 or 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetproxiesproxyautodiscoveryenable-swift.var?language=objc)
     pub static kSCPropNetProxiesProxyAutoDiscoveryEnable: &'static CFString;
 }
 
 extern "C" {
+    /// The SMB key `NetBIOSName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosname-swift.var?language=objc)
     pub static kSCPropNetSMBNetBIOSName: &'static CFString;
 }
 
 extern "C" {
-    /// Value is a CFString
+    /// The SMB key `NetBIOSNodeType`, whose value is of type `CFString`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosnodetype-swift.var?language=objc)
+    /// ## Discussion
+    ///
+    /// This key can be passed the following constants:
+    ///
+    /// - `kSCValNetSMBNetBIOSNodeTypeBroadcast`, which has the value `Broadcast`
+    ///
+    /// - `kSCValNetSMBNetBIOSNodeTypePeer`, which has the value `Peer`
+    ///
+    /// - `kSCValNetSMBNetBIOSNodeTypeMixed`, which has the value `Mixed`
+    ///
+    /// - `kSCValNetSMBNetBIOSNodeTypeHybrid`, which has the value `Hybrid`
+    ///
+    ///
+    /// Value is a CFString
     pub static kSCPropNetSMBNetBIOSNodeType: &'static CFString;
 }
 
 extern "C" {
+    /// The SMB key `NetBIOSScope`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosscope-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropNetSMBNetBIOSScope: &'static CFString;
 }
 
 extern "C" {
+    /// The SMB key `WINSAddresses`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbwinsaddresses-swift.var?language=objc)
     pub static kSCPropNetSMBWINSAddresses: &'static CFString;
 }
 
 extern "C" {
+    /// The SMB key `Workgroup`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbworkgroup-swift.var?language=objc)
     pub static kSCPropNetSMBWorkgroup: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetsmbnetbiosnodetypebroadcast-swift.var?language=objc)
+    /// The constant value Broadcast.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetSMBNetBIOSNodeType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosnodetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetSMBNetBIOSNodeTypeBroadcast: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetsmbnetbiosnodetypepeer-swift.var?language=objc)
+    /// The constant value Peer.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetSMBNetBIOSNodeType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosnodetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetSMBNetBIOSNodeTypePeer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetsmbnetbiosnodetypemixed-swift.var?language=objc)
+    /// The constant value Mixed.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetSMBNetBIOSNodeType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosnodetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetSMBNetBIOSNodeTypeMixed: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscvalnetsmbnetbiosnodetypehybrid-swift.var?language=objc)
+    /// The constant value Hybrid.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies to the [`kSCPropNetSMBNetBIOSNodeType`](https://developer.apple.com/documentation/systemconfiguration/kscpropnetsmbnetbiosnodetype-swift.var) key.
+    ///
+    ///
     pub static kSCValNetSMBNetBIOSNodeTypeHybrid: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscentusersconsoleuser-swift.var?language=objc)
+    /// The CompUsers key `ConsoleUser`.
     pub static kSCEntUsersConsoleUser: &'static CFString;
 }
 
 extern "C" {
+    /// The CompSystem key `ComputerName`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropsystemcomputername-swift.var?language=objc)
     pub static kSCPropSystemComputerName: &'static CFString;
 }
 
 extern "C" {
+    /// The CompSystem key `ComputerNameEncoding`, whose value is of type `CFNumber`.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropsystemcomputernameencoding-swift.var?language=objc)
     pub static kSCPropSystemComputerNameEncoding: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoredomainfile-swift.var?language=objc)
+    /// The `File:` prefix.
     pub static kSCDynamicStoreDomainFile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoredomainplugin-swift.var?language=objc)
+    /// The `Plugin:` prefix.
     pub static kSCDynamicStoreDomainPlugin: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoredomainsetup-swift.var?language=objc)
+    /// The `Setup:` prefix.
     pub static kSCDynamicStoreDomainSetup: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoredomainstate-swift.var?language=objc)
+    /// The `State:` prefix.
     pub static kSCDynamicStoreDomainState: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoredomainprefs-swift.var?language=objc)
+    /// The `Prefs:` prefix.
     pub static kSCDynamicStoreDomainPrefs: &'static CFString;
 }
 
 extern "C" {
+    /// The dynamic store key `CurrentSet`, whose value is of type `CFNumber`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstorepropsetupcurrentset-swift.var?language=objc)
     pub static kSCDynamicStorePropSetupCurrentSet: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstorepropsetuplastupdated-swift.var?language=objc)
+    /// The dynamic store key `LastUpdated`.
     pub static kSCDynamicStorePropSetupLastUpdated: &'static CFString;
 }
 
 extern "C" {
+    /// The dynamic store key `Interfaces`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstorepropnetinterfaces-swift.var?language=objc)
     pub static kSCDynamicStorePropNetInterfaces: &'static CFString;
 }
 
 extern "C" {
+    /// The dynamic store key `PrimaryInterface`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstorepropnetprimaryinterface-swift.var?language=objc)
     pub static kSCDynamicStorePropNetPrimaryInterface: &'static CFString;
 }
 
 extern "C" {
+    /// The dynamic store key `PrimaryService`, whose value is of type `CFString`.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstorepropnetprimaryservice-swift.var?language=objc)
     pub static kSCDynamicStorePropNetPrimaryService: &'static CFString;
 }
 
 extern "C" {
+    /// The dynamic store key `ServiceIDs`, whose value is of type `CFArray`, containing elements of type `CFString`.
     /// Value is a CFArray[CFString]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstorepropnetserviceids-swift.var?language=objc)
     pub static kSCDynamicStorePropNetServiceIDs: &'static CFString;
 }
 
 extern "C" {
+    /// The deprecated key Name.
     /// Value is a CFString
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropusersconsoleusername-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropUsersConsoleUserName: &'static CFString;
 }
 
 extern "C" {
+    /// The deprecated key UID.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropusersconsoleuseruid-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropUsersConsoleUserUID: &'static CFString;
 }
 
 extern "C" {
+    /// The deprecated key GID.
     /// Value is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscpropusersconsoleusergid-c.var?language=objc)
     #[deprecated = "No longer supported"]
     pub static kSCPropUsersConsoleUserGID: &'static CFString;
 }

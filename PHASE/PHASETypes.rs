@@ -5,6 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Modes that determine when the framework consumes API calls and updates internal state.
+///
+/// ## Overview
+///
+/// To define the manner in which PHASE processes commands and updates internal state, select an option from this enumeration and pass it to the `updateMode` parameter of the [`PHASEEngine`](https://developer.apple.com/documentation/phase/phaseengine) initializer, [`initWithUpdateMode:`](https://developer.apple.com/documentation/phase/phaseengine/init(updatemode:)).
+///
+///
 /// Update mode for the engine.
 ///
 /// The engine update mode determines the rate at which the engine consumes client commands, performs internal updates, and calls any registered handlers.
@@ -23,17 +30,27 @@ use crate::*;
 /// API calls between calls to [PHASEEngine update] are guaranteed to be synchronized.
 /// For example, the client can move two sources into place, request to start two sound events (one per source), then call [PHASEEngine update].
 /// These calls will be guaranteed to be processed at the same time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/updatemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEUpdateMode(pub NSInteger);
 impl PHASEUpdateMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/updatemode/automatic?language=objc)
+    /// A mode that indicates PHASE sets the timing of state adjustments.
+    ///
+    /// ## Discussion
+    ///
+    /// In this mode, the framework updates internal states at an optimized rate opaque to the app.
+    ///
+    ///
     #[doc(alias = "PHASEUpdateModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/updatemode/manual?language=objc)
+    /// A mode that indicates the app controls when the framework adjusts state.
+    ///
+    /// ## Discussion
+    ///
+    /// In this mode, the framework waits for the app to call [`update`](https://developer.apple.com/documentation/phase/phaseengine/update()) before processing the app’s API calls and adjusting internal states.
+    ///
+    ///
     #[doc(alias = "PHASEUpdateModeManual")]
     pub const Manual: Self = Self(1);
 }
@@ -46,6 +63,13 @@ unsafe impl RefEncode for PHASEUpdateMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Modes that determine whether the system renders audio in process or out of process.
+///
+/// ## Overview
+///
+/// To define the manner in which PHASE renders audio content, select an option from this enumeration and pass it to the `renderingMode` parameter of the [`PHASEEngine`](https://developer.apple.com/documentation/phase/phaseengine) initializer, [`initWithUpdateMode:renderingMode:`](https://developer.apple.com/documentation/phase/phaseengine/init(updatemode:renderingmode:)).
+///
+///
 /// Rendering Mode for a PHASE Engine.
 ///
 /// A local engine is connected to an audio device and renders audio in real-time in the application process.
@@ -56,17 +80,27 @@ unsafe impl RefEncode for PHASEUpdateMode {
 /// In this mode the engine receives inputs from the client and renders in a server.
 /// In supported platforms this allows the server to apply privacy sensitive effects such as room virtual acoustics, low latency head-tracking and personalized Spatial Audio.
 /// Updating an engine configured with `PHASERenderingModeClient` syncs any pending API commands to the server for processing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/renderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingMode(pub NSInteger);
 impl PHASERenderingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/renderingmode/local?language=objc)
+    /// A mode that indicates that the system renders audio in process.
+    ///
+    /// ## Discussion
+    ///
+    /// In this mode, the engine is connected to an audio device and renders audio in real-time in the application process. The engine receives all of its inputs, for example, acoustic configuration, from the client. Updating an engine that has a `local` configuration executes any pending API commands locally.
+    ///
+    ///
     #[doc(alias = "PHASERenderingModeLocal")]
     pub const Local: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/renderingmode/client?language=objc)
+    /// A mode that instructs the system to render audio in a secure process.
+    ///
+    /// ## Discussion
+    ///
+    /// In this mode, the engine is connected to an audio device and renders audio in real-time in a secure process. The engine receives inputs from the client and renders in a server. Updating an engine that has a `client` configuration syncs pending API commands with the server for processing.
+    ///
+    ///
     #[doc(alias = "PHASERenderingModeClient")]
     pub const Client: Self = Self(1);
 }
@@ -79,6 +113,17 @@ unsafe impl RefEncode for PHASERenderingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The playback status of audio.
+///
+/// ## Overview
+///
+/// This enumeration defines the possible values of:
+///
+/// - A sound event’s [`renderingState`](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.property) property
+///
+/// - The engine’s [`renderingState`](https://developer.apple.com/documentation/phase/phaseengine/renderingstate) property
+///
+///
 /// Rendering state for sound events.
 ///
 /// The sound event is stopped.
@@ -86,20 +131,18 @@ unsafe impl RefEncode for PHASERenderingMode {
 /// The sound event is playing back.
 ///
 /// The sound event is paused.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingState(pub NSInteger);
 impl PHASERenderingState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum/stopped?language=objc)
+    /// A state in which sound event playback stops.
     #[doc(alias = "PHASERenderingStateStopped")]
     pub const Stopped: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum/started?language=objc)
+    /// A state in which sound event playback starts.
     #[doc(alias = "PHASERenderingStateStarted")]
     pub const Started: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum/paused?language=objc)
+    /// A state in which sound event playback pauses.
     #[doc(alias = "PHASERenderingStatePaused")]
     pub const Paused: Self = Self(2);
 }
@@ -112,6 +155,13 @@ unsafe impl RefEncode for PHASERenderingState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The manner in which PHASE outputs spatial audio.
+///
+/// ## Overview
+///
+/// When your app outputs audio through a spatial mixer, [`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition), the PHASE engine requires your app to choose an option of this enumeration and assign it to the [`outputSpatializationMode`](https://developer.apple.com/documentation/phase/phaseengine/outputspatializationmode) property.
+///
+///
 /// Spatialization mode.
 ///
 /// Automatically select the spatialization mode based on the current output device.
@@ -121,20 +171,42 @@ unsafe impl RefEncode for PHASERenderingState {
 ///
 /// Always use the appropriate channel-based panning algorithm for the output layout.
 /// Note that when rendering channel-based over headphones, the sound will play back in stereo.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESpatializationMode(pub NSInteger);
 impl PHASESpatializationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode/automatic?language=objc)
+    /// A mode that indicates that the framework chooses the spatialization mode.
+    ///
+    /// ## Discussion
+    ///
+    /// This setting instructs the framework to automatically set a mode that determines how PHASE positions and orients sound in 3D space. The framework chooses a mode based on the output device:
+    ///
+    /// - `PHASESpatializationMode.binaural`: Headphones (Bluetooth or line output) and the internal speakers of supported Mac or iOS devices.
+    ///
+    /// - `PHASESpatializationMode.channelBased`: External speakers with 2 or more channels.
+    ///
+    ///
     #[doc(alias = "PHASESpatializationModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode/alwaysusebinaural?language=objc)
+    /// A mode that introduces special processing to replicate a realistic spatial listening experience.
+    ///
+    /// ## Discussion
+    ///
+    /// Enable this mode to override a system or user preference and implement binaural audio output. When binaural mode plays through internal speakers on supported Apple devices, the framework applies additional effects to the output to achieve a sound experience comparable to one with headphones.
+    ///
+    ///
     #[doc(alias = "PHASESpatializationModeAlwaysUseBinaural")]
     pub const AlwaysUseBinaural: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode/alwaysusechannelbased?language=objc)
+    /// A mode that adds a 3D position and orientation to sound by panning across the available output channels.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework selects a channel layout for the output audio that’s compatible with the device’s channel configuration in Settings.
+    ///
+    /// This mode applies the same effect regardless of the current output device.
+    ///
+    ///
     #[doc(alias = "PHASESpatializationModeAlwaysUseChannelBased")]
     pub const AlwaysUseChannelBased: Self = Self(2);
 }
@@ -147,51 +219,58 @@ unsafe impl RefEncode for PHASESpatializationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Reverb preset
+/// The manner in which PHASE diffuses resonating sound.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset?language=objc)
+/// ## Overview
+///
+/// The PHASE engine requires your app to choose an option of this enumeration and assign it to the [`defaultReverbPreset`](https://developer.apple.com/documentation/phase/phaseengine/defaultreverbpreset) property.
+///
+/// The value you choose adds resonation to sound that simulates the experience of hearing it in a particular environment. For example, a small room, [`PHASEReverbPresetSmallRoom`](https://developer.apple.com/documentation/phase/phasereverbpreset/smallroom), adds very little reverberation compared to a large chamber, [`PHASEReverbPresetLargeChamber`](https://developer.apple.com/documentation/phase/phasereverbpreset/largechamber).
+///
+///
+/// Reverb preset
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEReverbPreset(pub NSInteger);
 impl PHASEReverbPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/none?language=objc)
+    /// An option that adds no reverberation to a sound.
     #[doc(alias = "PHASEReverbPresetNone")]
     pub const None: Self = Self(0x724e6f6e);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/smallroom?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a small room with specific dimensions.
     #[doc(alias = "PHASEReverbPresetSmallRoom")]
     pub const SmallRoom: Self = Self(0x7253526d);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumroom?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a medium-size room with specific dimensions.
     #[doc(alias = "PHASEReverbPresetMediumRoom")]
     pub const MediumRoom: Self = Self(0x724d526d);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largeroom?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a large room with specific dimensions.
     #[doc(alias = "PHASEReverbPresetLargeRoom")]
     pub const LargeRoom: Self = Self(0x724c5231);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largeroom2?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in one kind of large room with specific dimensions.
     #[doc(alias = "PHASEReverbPresetLargeRoom2")]
     pub const LargeRoom2: Self = Self(0x724c5232);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumchamber?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a medium-size chamber with specific dimensions.
     #[doc(alias = "PHASEReverbPresetMediumChamber")]
     pub const MediumChamber: Self = Self(0x724d4368);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largechamber?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a large chamber with specific dimensions.
     #[doc(alias = "PHASEReverbPresetLargeChamber")]
     pub const LargeChamber: Self = Self(0x724c4368);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumhall?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a medium-size hall with specific dimensions.
     #[doc(alias = "PHASEReverbPresetMediumHall")]
     pub const MediumHall: Self = Self(0x724d4831);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumhall2?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in one kind of medium-size hall with specific dimensions.
     #[doc(alias = "PHASEReverbPresetMediumHall2")]
     pub const MediumHall2: Self = Self(0x724d4832);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/mediumhall3?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in another kind of medium-size hall with specific dimensions.
     #[doc(alias = "PHASEReverbPresetMediumHall3")]
     pub const MediumHall3: Self = Self(0x724d4833);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largehall?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a large hall with specific dimensions.
     #[doc(alias = "PHASEReverbPresetLargeHall")]
     pub const LargeHall: Self = Self(0x724c4831);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/largehall2?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in one kind of large hall with specific dimensions.
     #[doc(alias = "PHASEReverbPresetLargeHall2")]
     pub const LargeHall2: Self = Self(0x724c4832);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasereverbpreset/cathedral?language=objc)
+    /// A resonation that simulates the experience of hearing a sound in a cathedral.
     #[doc(alias = "PHASEReverbPresetCathedral")]
     pub const Cathedral: Self = Self(0x72437468);
 }
@@ -205,24 +284,34 @@ unsafe impl RefEncode for PHASEReverbPreset {
 }
 
 extern "C" {
-    /// The NSErrorDomain for general PHASE errors
+    /// A unique error domain for the framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// For more information on Core Foundation error domains, see [Error domains](https://developer.apple.com/documentation/corefoundation/error-domains).
+    ///
+    ///
+    /// The NSErrorDomain for general PHASE errors
     pub static PHASEErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// Codes that identify errors in PHASE.
 /// General PHASE error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEError(pub NSInteger);
 impl PHASEError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror-swift.struct/code/initializefailed?language=objc)
+    /// An error that indicates the engine failed to initialize.
     #[doc(alias = "PHASEErrorInitializeFailed")]
     pub const InitializeFailed: Self = Self(0x50484561);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror-swift.struct/code/invalidobject?language=objc)
+    /// An error that indicates an object is invalid in a specific context.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`addChild:error:`](https://developer.apple.com/documentation/phase/phaseobject/addchild(_:)) function throws this error if the specified child already has a parent in the scene graph hierarchy.
+    ///
+    ///
     #[doc(alias = "PHASEErrorInvalidObject")]
     pub const InvalidObject: Self = Self(0x50484562);
 }
@@ -236,36 +325,40 @@ unsafe impl RefEncode for PHASEError {
 }
 
 extern "C" {
-    /// The NSErrorDomain for PHASE sound event errors.
+    /// A unique error domain for sound events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// For more information on Core Foundation error domains, see [Error domains](https://developer.apple.com/documentation/corefoundation/error-domains).
+    ///
+    ///
+    /// The NSErrorDomain for PHASE sound event errors.
     pub static PHASESoundEventErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// Codes that identify sound event errors.
 /// Sound event error.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASESoundEventError(pub NSInteger);
 impl PHASESoundEventError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/notfound?language=objc)
+    /// An error the framework throws when it fails to find a particular sound event.
     #[doc(alias = "PHASESoundEventErrorNotFound")]
     pub const NotFound: Self = Self(0x50487461);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/baddata?language=objc)
+    /// An error that indicates a sound event contains invalid data.
     #[doc(alias = "PHASESoundEventErrorBadData")]
     pub const BadData: Self = Self(0x50487462);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/invalidinstance?language=objc)
+    /// An error that indicates a sound event object is no longer valid.
     #[doc(alias = "PHASESoundEventErrorInvalidInstance")]
     pub const InvalidInstance: Self = Self(0x50487463);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/apimisuse?language=objc)
+    /// An error that indicates the app misconfigures data or calls the framework in unsupported succession.
     #[doc(alias = "PHASESoundEventErrorAPIMisuse")]
     pub const APIMisuse: Self = Self(0x50487464);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/systemnotinitialized?language=objc)
+    /// An error the framework throws when engine initialization interrupts sound event playback.
     #[doc(alias = "PHASESoundEventErrorSystemNotInitialized")]
     pub const SystemNotInitialized: Self = Self(0x50487465);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code/outofmemory?language=objc)
+    /// An error the framework throws when a sound event depletes system memory.
     #[doc(alias = "PHASESoundEventErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(0x50487466);
 }
@@ -279,36 +372,40 @@ unsafe impl RefEncode for PHASESoundEventError {
 }
 
 extern "C" {
-    /// The NSErrorDomain for PHASE Asset errors
+    /// A unique error domain for PHASE assets.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// For more information on Core Foundation error domains, see [Error domains](https://developer.apple.com/documentation/corefoundation/error-domains).
+    ///
+    ///
+    /// The NSErrorDomain for PHASE Asset errors
     pub static PHASEAssetErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// Codes that identify framework asset errors.
 /// Asset error
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEAssetError(pub NSInteger);
 impl PHASEAssetError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/failedtoload?language=objc)
+    /// An error that indicates an asset failed to load.
     #[doc(alias = "PHASEAssetErrorFailedToLoad")]
     pub const FailedToLoad: Self = Self(0x50486161);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/invalidengineinstance?language=objc)
+    /// An error that indicates an asset registry call references an invalid engine.
     #[doc(alias = "PHASEAssetErrorInvalidEngineInstance")]
     pub const InvalidEngineInstance: Self = Self(0x50486162);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/badparameters?language=objc)
+    /// An error that indicates an asset registry call contains invalid data.
     #[doc(alias = "PHASEAssetErrorBadParameters")]
     pub const BadParameters: Self = Self(0x50486163);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/alreadyexists?language=objc)
+    /// An error the asset registry throws when the app registers an asset twice by the same name.
     #[doc(alias = "PHASEAssetErrorAlreadyExists")]
     pub const AlreadyExists: Self = Self(0x50486164);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/generalerror?language=objc)
+    /// An error the asset registry throws when an unspecified problem occurs.
     #[doc(alias = "PHASEAssetErrorGeneralError")]
     pub const GeneralError: Self = Self(0x50486165);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code/memoryallocation?language=objc)
+    /// An error the framework throws when an asset depletes system memory.
     #[doc(alias = "PHASEAssetErrorMemoryAllocation")]
     pub const MemoryAllocation: Self = Self(0x50486166);
 }
@@ -321,21 +418,26 @@ unsafe impl RefEncode for PHASEAssetError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Sound event prepare handler reason
+/// Indicates the results of sound-event preparation.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason?language=objc)
+/// ## Overview
+///
+/// The sound event [`prepareWithCompletion:`](https://developer.apple.com/documentation/phase/phasesoundevent/prepare(completion:)) function passes an instance of this class to its argument completion closure to communicate the results of the call.
+///
+///
+/// Sound event prepare handler reason
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventPrepareHandlerReason(pub NSInteger);
 impl PHASESoundEventPrepareHandlerReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason/failure?language=objc)
+    /// Indicates an error occurs during sound-event preparation.
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonFailure")]
     pub const Failure: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason/prepared?language=objc)
+    /// Indicates the completion of sound-event preparation.
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonPrepared")]
     pub const Prepared: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason/terminated?language=objc)
+    /// Indicates sound-event preparation stops abruptly.
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonTerminated")]
     pub const Terminated: Self = Self(2);
 }
@@ -348,21 +450,26 @@ unsafe impl RefEncode for PHASESoundEventPrepareHandlerReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Sound event start handler reason
+/// Indicates the status after starting a sound event.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason?language=objc)
+/// ## Overview
+///
+/// When your app starts a sound event by calling [`startWithCompletion:`](https://developer.apple.com/documentation/phase/phasesoundevent/start(completion:)), the framework invokes the argument closure when starting succeeds or fails. PHASE passes an instance of this enumeration to the closure to describe the results of the call.
+///
+///
+/// Sound event start handler reason
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventStartHandlerReason(pub NSInteger);
 impl PHASESoundEventStartHandlerReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason/failure?language=objc)
+    /// Indicates an error occurred while starting the sound event.
     #[doc(alias = "PHASESoundEventStartHandlerReasonFailure")]
     pub const Failure: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason/finishedplaying?language=objc)
+    /// Indicates the framework successfully started the sound event.
     #[doc(alias = "PHASESoundEventStartHandlerReasonFinishedPlaying")]
     pub const FinishedPlaying: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason/terminated?language=objc)
+    /// Indicates the framework terminated the sound event abruptly.
     #[doc(alias = "PHASESoundEventStartHandlerReasonTerminated")]
     pub const Terminated: Self = Self(2);
 }
@@ -375,21 +482,26 @@ unsafe impl RefEncode for PHASESoundEventStartHandlerReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Sound event seek handler reason
+/// Indicates the status after a sound event changes its playback position.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason?language=objc)
+/// ## Overview
+///
+/// When your app changes the playback position of a sound event by calling [`seekToTime:completion:`](https://developer.apple.com/documentation/phase/phasesoundevent/seek(to:completion:)), the framework invokes the argument closure when the seek succeeds or fails. PHASE passes an instance of this enumeration to the closure to describe the results of the call.
+///
+///
+/// Sound event seek handler reason
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventSeekHandlerReason(pub NSInteger);
 impl PHASESoundEventSeekHandlerReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason/failure?language=objc)
+    /// Indicates the sound event fails to update its playback position.
     #[doc(alias = "PHASESoundEventSeekHandlerReasonFailure")]
     pub const Failure: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason/failureseekalreadyinprogress?language=objc)
+    /// Indicates the sound event is still updating its playback position.
     #[doc(alias = "PHASESoundEventSeekHandlerReasonFailureSeekAlreadyInProgress")]
     pub const FailureSeekAlreadyInProgress: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason/seeksuccessful?language=objc)
+    /// Indicates the sound event successfully updated its playback position.
     #[doc(alias = "PHASESoundEventSeekHandlerReasonSeekSuccessful")]
     pub const SeekSuccessful: Self = Self(2);
 }
@@ -402,21 +514,20 @@ unsafe impl RefEncode for PHASESoundEventSeekHandlerReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Indicates the state of sound-event preparation.
 /// Sound event prepare state
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventPrepareState(pub NSInteger);
 impl PHASESoundEventPrepareState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum/preparenotstarted?language=objc)
+    /// Indicates that the sound event awaits preparation.
     #[doc(alias = "PHASESoundEventPrepareStatePrepareNotStarted")]
     pub const PrepareNotStarted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum/prepareinprogress?language=objc)
+    /// Indicates that the sound event prepares for playback.
     #[doc(alias = "PHASESoundEventPrepareStatePrepareInProgress")]
     pub const PrepareInProgress: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum/prepared?language=objc)
+    /// Indicates that the sound event preparation is complete.
     #[doc(alias = "PHASESoundEventPrepareStatePrepared")]
     pub const Prepared: Self = Self(2);
 }
@@ -429,6 +540,13 @@ unsafe impl RefEncode for PHASESoundEventPrepareState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options that determine how PHASE manages sound assets in memory.
+///
+/// ## Overview
+///
+/// To prepare for playback, the framework can decompress a sound asset or perform a format conversion, or both, depending on the type of the underlying asset data.
+///
+///
 /// Asset types.
 ///
 /// Determines how assets are loaded into memory and prepared for playback.
@@ -440,17 +558,27 @@ unsafe impl RefEncode for PHASESoundEventPrepareState {
 ///
 /// If the asset is on disk, it is streamed from disk into memory and prepared during playback.
 /// If the asset is in memory, it is streamed from memory and prepared during playback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset/assettype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEAssetType(pub NSInteger);
 impl PHASEAssetType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset/assettype/resident?language=objc)
+    /// A sound asset that plays after fully loading in memory.
+    ///
+    /// ## Discussion
+    ///
+    /// If the sound asset is in memory, the framework prepares it for playback. If the asset is on disk, the framework loads it into memory, and prepares it for playback.
+    ///
+    ///
     #[doc(alias = "PHASEAssetTypeResident")]
     pub const Resident: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset/assettype/streamed?language=objc)
+    /// A sound asset that streams from disk into memory as it plays.
+    ///
+    /// ## Discussion
+    ///
+    /// If the asset is on disk, the framework streams the asset’s data from disk into memory and prepares the asset during playback. If the asset is in memory, the framework streams from memory and prepares the asset during playback.
+    ///
+    ///
     #[doc(alias = "PHASEAssetTypeStreamed")]
     pub const Streamed: Self = Self(1);
 }
@@ -463,6 +591,31 @@ unsafe impl RefEncode for PHASEAssetType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options that apply a mathematical function to an input value.
+///
+/// ## Overview
+///
+/// PHASE applies curves in several places across the framework:
+///
+/// - A [`PHASEEnvelopeSegment`](https://developer.apple.com/documentation/phase/phaseenvelopesegment) object represents one curved portion of an envelope’s graph.
+///
+/// - The [`PHASEGroup`](https://developer.apple.com/documentation/phase/phasegroup) class applies a curve type to its sounds by fading its volume with the [`fadeGain:duration:curveType:`](https://developer.apple.com/documentation/phase/phasegroup/fadegain(gain:duration:curvetype:)) function, and to its rate, with [`fadeRate:duration:curveType:`](https://developer.apple.com/documentation/phase/phasegroup/faderate(rate:duration:curvetype:)).
+///
+/// - Each [`PHASEGroupPresetSetting`](https://developer.apple.com/documentation/phase/phasegrouppresetsetting) applies a curve to control a setting’s rate of change.
+///
+/// ### Apply a Curve as a Rate of Change
+///
+/// In most cases, PHASE applies curves to output a rate of change. For example, an  envelope segment’s [`curveType`](https://developer.apple.com/documentation/phase/phaseenvelopesegment/curvetype) determines where along the segment’s domain the y-value changes more quickly. The following figure compares all the curves’ rate of change by plotting their input over the range `(0,0)` to `(1,1)`.
+///
+///
+/// <picture>
+///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/10d1d3d8e233a948de19c4367d7ff78b/media-3887371~dark%402x.png 2x" />
+///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/028d81d5ddeb5d8960e44a5222c95d85/media-3887371%402x.png 2x" />
+///     <img alt="A certesian graph plots all curve types for comparison. The graph encompases the first cartesian quadrant, where each curve begins at coordinate (0,0) and ends at coordinate (1,1). The linear curve plots in a straight line between the two coordinates. An arc that occupies the furthest area from the linear line to the upper left is the inverse cube curve. The next furthest arc from the linear line to the upper left is the inverse squared curve. And the third-furthest arc from the linear line to the upper left is the inverse sine curve. An arc that occupies the furthest area from the linear line to the lower right is the cube curve. The next furthest arc from the linear line to the lower right is the squared curve. And the third-furthest arc from the linear line to the lower right is the sine curve. The sigmoid and inverse sigmoid curves occupy the central area of the graph and center on top of the linear line. The sigmoid curve shapes like the letter S and begins by extending more quickly in the X direction. The inverse sigmoid curve shapes like an inverted letter S and begins by extending more quickly in the Y direction." src="https://docs-assets.developer.apple.com/published/10d1d3d8e233a948de19c4367d7ff78b/media-3887371~dark%402x.png" />
+/// </picture>
+///
+///
+///
 /// Curve types.
 ///
 /// A curve of the form y = x.
@@ -488,44 +641,108 @@ unsafe impl RefEncode for PHASEAssetType {
 /// Holds the start value for the duration of the curve.
 ///
 /// Jumps to the end value and holds it for the duration of the curve.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASECurveType(pub NSInteger);
 impl PHASECurveType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/linear?language=objc)
+    /// A curve that increases uniformly with its input.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `x` shapes this curve.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeLinear")]
     pub const Linear: Self = Self(0x63724c6e);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/squared?language=objc)
+    /// A curve that increases at a rate that squares its input.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `x^2` shapes this curve.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeSquared")]
     pub const Squared: Self = Self(0x63725371);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversesquared?language=objc)
+    /// A curve that increases at a rate of one divided by the input’s square.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `1` `/` `x^2` shapes this curve.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeInverseSquared")]
     pub const InverseSquared: Self = Self(0x63724951);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/cubed?language=objc)
+    /// A curve that increases at a rate that cubes its input.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `x^3` shapes this curve.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeCubed")]
     pub const Cubed: Self = Self(0x63724375);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversecubed?language=objc)
+    /// A curve that increases at a rate of one divided by the input’s cube.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `1` `/` `x^3` shapes this curve.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeInverseCubed")]
     pub const InverseCubed: Self = Self(0x63724943);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/sine?language=objc)
+    /// A sine curve.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `sin(x)` shapes this curve. For a linear input along the `x`-axis, a sine curve gradually moves upward then downward in the `y`-direction, in a repeating fashion.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeSine")]
     pub const Sine: Self = Self(0x6372536e);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversesine?language=objc)
+    /// An inverse sine curve.
+    ///
+    /// ## Discussion
+    ///
+    /// The function `y` `=` `sin^-1(x)` shapes this curve. The inverse sine curve behaves like [`PHASECurveTypeSine`](https://developer.apple.com/documentation/phase/phasecurvetype/sine), only rotated `90` degrees.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeInverseSine")]
     pub const InverseSine: Self = Self(0x63724953);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/sigmoid?language=objc)
+    /// A sigmoid curve.
+    ///
+    /// ## Discussion
+    ///
+    /// Also known as an _s-curve_, the sigmoid curve’s path movement is slow at either end and quick in the middle.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeSigmoid")]
     pub const Sigmoid: Self = Self(0x63725367);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/inversesigmoid?language=objc)
+    /// An inverse sigmoid curve.
+    ///
+    /// ## Discussion
+    ///
+    /// Also known as an _inverse s-curve_, the inverse sigmoid curve’s path movement is quick at either end and slow in the middle.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeInverseSigmoid")]
     pub const InverseSigmoid: Self = Self(0x63724947);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/holdstartvalue?language=objc)
+    /// A curve that equals its start value for the entire duration.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type for step function curves, such as when mapping a continuously varying input value to a discrete set of output values.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeHoldStartValue")]
     pub const HoldStartValue: Self = Self(0x63724853);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecurvetype/jumptoendvalue?language=objc)
+    /// A curve that equals its end value for the entire duration.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type for step function curves, such as when mapping a continuously varying input value to a discrete set of output values.
+    ///
+    ///
     #[doc(alias = "PHASECurveTypeJumpToEndValue")]
     pub const JumpToEndValue: Self = Self(0x63724a45);
 }
@@ -538,6 +755,13 @@ unsafe impl RefEncode for PHASECurveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The actions the engine takes when it culls sound.
+///
+/// ## Overview
+///
+/// Culling refers to the temporary removal of a sound from the audio output. This enumeration determines the actions a sampler node performs after the engine culls its sound or queues it for culling. To indicate a preference, the app sets a sampler node’s [`cullOption`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition/culloption) property.
+///
+///
 /// Cull option.
 ///
 /// Determines what the engine should do when a sound asset becomes cullable.
@@ -551,26 +775,24 @@ unsafe impl RefEncode for PHASECurveType {
 /// If cullable, the sound asset will be put to sleep. Upon waking, start playback at realtime offset.
 ///
 /// If cullable, continue playback, even if the sound is inaudible.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECullOption(pub NSInteger);
 impl PHASECullOption {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/terminate?language=objc)
+    /// An option that culls sound by stopping playback.
     #[doc(alias = "PHASECullOptionTerminate")]
     pub const Terminate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/sleepwakeatzero?language=objc)
+    /// An option that pauses playback and resumes at the beginning.
     #[doc(alias = "PHASECullOptionSleepWakeAtZero")]
     pub const SleepWakeAtZero: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/sleepwakeatrandomoffset?language=objc)
+    /// An option that pauses playback and resumes at a random position.
     #[doc(alias = "PHASECullOptionSleepWakeAtRandomOffset")]
     pub const SleepWakeAtRandomOffset: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/sleepwakeatrealtimeoffset?language=objc)
+    /// An option that pauses playback and resumes where it left off.
     #[doc(alias = "PHASECullOptionSleepWakeAtRealtimeOffset")]
     pub const SleepWakeAtRealtimeOffset: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption/donotcull?language=objc)
+    /// An option that indicates the framework takes no action to cull sound.
     #[doc(alias = "PHASECullOptionDoNotCull")]
     pub const DoNotCull: Self = Self(4);
 }
@@ -583,22 +805,27 @@ unsafe impl RefEncode for PHASECullOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Loop options for audio playback.
+///
+/// ## Overview
+///
+/// This class defines the options for a sampler node’s [`playbackMode`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode). These options control whether the node’s sound event automatically plays back its audio asset from the beginning after finishing.
+///
+///
 /// Playback mode.
 ///
 /// Play the sound asset once, then stop.
 ///
 /// Loop the sound asset indefinitely.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPlaybackMode(pub NSInteger);
 impl PHASEPlaybackMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode/oneshot?language=objc)
+    /// An option that plays a sound only once.
     #[doc(alias = "PHASEPlaybackModeOneShot")]
     pub const OneShot: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode/looping?language=objc)
+    /// An option that restarts a sound from the begining after it finishes.
     #[doc(alias = "PHASEPlaybackModeLooping")]
     pub const Looping: Self = Self(1);
 }
@@ -611,6 +838,15 @@ unsafe impl RefEncode for PHASEPlaybackMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options that determine whether the framework adjusts a sound asset’s loudness for the user’s output device.
+///
+/// ## Overview
+///
+/// Different output devices feature loudness characteristics that require the audio engine to adjust the volume of the input audio to achieve a consistent listening experience across devices.
+///
+/// PHASE callibrates sound asset and stream loudness automatically when the app chooses [`PHASENormalizationModeDynamic`](https://developer.apple.com/documentation/phase/phasenormalizationmode/dynamic). If an app chooses [`PHASENormalizationModeNone`](https://developer.apple.com/documentation/phase/phasenormalizationmode/none), the app needs to implement custom loudness normalizaton manually, by adjusting sound asset and stream signal strength for the user’s output device.
+///
+///
 /// Normalization mode
 ///
 /// Determines how sound assets are normalized for calibrated loudness on the output device.
@@ -621,17 +857,27 @@ unsafe impl RefEncode for PHASEPlaybackMode {
 /// No normalization is applied. In this case, it's advised that the client perform custom normalization.
 ///
 /// Dynamic Normalization is applied.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASENormalizationMode(pub NSInteger);
 impl PHASENormalizationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode/none?language=objc)
+    /// A mode that instructs the framework not to adjust a sound’s volume according to the user’s output device.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [`PHASENormalizationMode`](https://developer.apple.com/documentation/phase/phasenormalizationmode).
+    ///
+    ///
     #[doc(alias = "PHASENormalizationModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode/dynamic?language=objc)
+    /// A mode that instructs the framework to adjust a sound’s volume according to the user’s output device.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [`PHASENormalizationMode`](https://developer.apple.com/documentation/phase/phasenormalizationmode).
+    ///
+    ///
     #[doc(alias = "PHASENormalizationModeDynamic")]
     pub const Dynamic: Self = Self(1);
 }
@@ -644,6 +890,7 @@ unsafe impl RefEncode for PHASENormalizationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Calibration options for sound pressure level.
 /// Calibration mode.
 ///
 /// Note: In general, clients are advised use a calibrated input mode. Setting the value to PHASECalibrationModeNone is not advised.
@@ -653,20 +900,24 @@ unsafe impl RefEncode for PHASENormalizationMode {
 /// SPL relative to a device-tuned SPL (when available).
 ///
 /// Absolute SPL. The system will hit the value 'if it can' (depending on the capabilities of the current output device).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECalibrationMode(pub NSInteger);
 impl PHASECalibrationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode/none?language=objc)
+    /// An option that specifies no loudness calibration.
+    ///
+    /// ## Discussion
+    ///
+    /// For a consistent user experience across platforms and output devices, avoid [`PHASECalibrationModeNone`](https://developer.apple.com/documentation/phase/phasecalibrationmode/none) by correcting loudness with [`PHASECalibrationModeAbsoluteSpl`](https://developer.apple.com/documentation/phase/phasecalibrationmode/absolutespl) or [`PHASECalibrationModeRelativeSpl`](https://developer.apple.com/documentation/phase/phasecalibrationmode/relativespl).
+    ///
+    ///
     #[doc(alias = "PHASECalibrationModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode/relativespl?language=objc)
+    /// A sound pressure level that’s tuned for the device.
     #[doc(alias = "PHASECalibrationModeRelativeSpl")]
     pub const RelativeSpl: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode/absolutespl?language=objc)
+    /// A sound pressure level based on the current output device.
     #[doc(alias = "PHASECalibrationModeAbsoluteSpl")]
     pub const AbsoluteSpl: Self = Self(2);
 }
@@ -679,23 +930,33 @@ unsafe impl RefEncode for PHASECalibrationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Automatic Head-Tracking flags.
+///
+/// ```text
+/// On capable devices, listener orientation will be automatically rotated based on user's head-orientation.
+/// ```
+///
+/// ```text
+/// On capable devices, listener position will be automatically set based on user's position.
+/// ```
+///
+///
 /// Automatic Head-Tracking flags.
 ///
 /// On capable devices, listener orientation will be automatically rotated based on user's head-orientation.
 ///
 /// On capable devices, listener position will be automatically set based on user's position.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEAutomaticHeadTrackingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEAutomaticHeadTrackingFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags/orientation?language=objc)
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagOrientation")]
         const Orientation = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags/position?language=objc)
         #[doc(alias = "PHASEAutomaticHeadTrackingFlagPosition")]
         const Position = 1<<1;
     }

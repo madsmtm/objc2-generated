@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflowview?language=objc)
+    /// An object that lets you view and edit Automator workflows in your app.
+    ///
+    /// ## Overview
+    ///
+    /// A workflow view displays an instance of [`AMWorkflow`](https://developer.apple.com/documentation/automator/amworkflow).
+    ///
+    /// You can use Interface Builder to add an instance of [`AMWorkflowView`](https://developer.apple.com/documentation/automator/amworkflowview) to a window in your app. You can then add an [`AMWorkflowView`](https://developer.apple.com/documentation/automator/amworkflowview) object to the nib window and use the controller’s [`workflowView`](https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property) outlet to connect it to the workflow view. The controller object also has [`run:`](https://developer.apple.com/documentation/automator/amworkflowcontroller/run(_:)) and [`stop:`](https://developer.apple.com/documentation/automator/amworkflowcontroller/stop(_:)) actions that can be connected to buttons or other user interface elements.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

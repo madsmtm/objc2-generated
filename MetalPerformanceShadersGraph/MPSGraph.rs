@@ -13,31 +13,26 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 /// The options available to a graph.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions?language=objc)
+/// The options available to a graph.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphOptions(pub u64);
 impl MPSGraphOptions {
     /// No Options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/none?language=objc)
+    /// No Options.
     #[doc(alias = "MPSGraphOptionsNone")]
     pub const None: Self = Self(0);
     /// The graph synchronizes results to the CPU using a blit encoder if on a discrete GPU at the end of execution.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/synchronizeresults?language=objc)
+    /// The graph synchronizes results to the CPU using a blit encoder if on a discrete GPU at the end of execution.
     #[doc(alias = "MPSGraphOptionsSynchronizeResults")]
     pub const SynchronizeResults: Self = Self(1);
     /// The framework prints more logging info.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/verbose?language=objc)
+    /// The framework prints more logging info.
     #[doc(alias = "MPSGraphOptionsVerbose")]
     pub const Verbose: Self = Self(2);
     /// The framework uses these options as default if not overriden.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions/default?language=objc)
+    /// The framework uses these options as default if not overriden.
     #[doc(alias = "MPSGraphOptionsDefault")]
     pub const Default: Self = Self(MPSGraphOptions::SynchronizeResults.0);
 }
@@ -51,21 +46,18 @@ unsafe impl RefEncode for MPSGraphOptions {
 }
 
 /// The optimization levels to trade compilation time for even more runtime performance by running more passes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization?language=objc)
+/// The optimization levels to trade compilation time for even more runtime performance by running more passes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphOptimization(pub u64);
 impl MPSGraphOptimization {
     /// Graph performs core optimizations only.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization/level0?language=objc)
+    /// Graph performs core optimizations only.
     #[doc(alias = "MPSGraphOptimizationLevel0")]
     pub const Level0: Self = Self(0);
     /// Graph performs additional Optimizations, like using the placement pass to dispatch across different HW blocks like the NeuralEngine and CPU along with the GPU.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization/level1?language=objc)
+    /// Graph performs additional Optimizations, like using the placement pass to dispatch across different HW blocks like the NeuralEngine and CPU along with the GPU.
     #[doc(alias = "MPSGraphOptimizationLevel1")]
     pub const Level1: Self = Self(1);
 }
@@ -79,21 +71,18 @@ unsafe impl RefEncode for MPSGraphOptimization {
 }
 
 /// The optimization profile used as a heuristic as the graph compiler optimizes the network.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile?language=objc)
+/// The optimization profile used as a heuristic as the graph compiler optimizes the network.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphOptimizationProfile(pub u64);
 impl MPSGraphOptimizationProfile {
     /// Default, graph optimized for performance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile/performance?language=objc)
+    /// Default, graph optimized for performance.
     #[doc(alias = "MPSGraphOptimizationProfilePerformance")]
     pub const Performance: Self = Self(0);
     /// Graph optimized for power efficiency.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile/powerefficiency?language=objc)
+    /// Graph optimized for power efficiency.
     #[doc(alias = "MPSGraphOptimizationProfilePowerEfficiency")]
     pub const PowerEfficiency: Self = Self(1);
 }
@@ -107,16 +96,14 @@ unsafe impl RefEncode for MPSGraphOptimizationProfile {
 }
 
 /// Execution events that can be used with shared events.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutionstage?language=objc)
+/// Execution events that can be used with shared events.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphExecutionStage(pub u64);
 impl MPSGraphExecutionStage {
     /// stage when execution of the graph completes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutionstage/completed?language=objc)
+    /// stage when execution of the graph completes.
     #[doc(alias = "MPSGraphExecutionStageCompleted")]
     pub const Completed: Self = Self(0);
 }
@@ -130,8 +117,7 @@ unsafe impl RefEncode for MPSGraphExecutionStage {
 }
 
 /// MPSGraph could use these reduced precision paths to deliver faster math, but it is not guaranteed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath?language=objc)
+/// MPSGraph could use these reduced precision paths to deliver faster math, but it is not guaranteed.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -139,23 +125,19 @@ pub struct MPSGraphReducedPrecisionFastMath(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSGraphReducedPrecisionFastMath: NSUInteger {
 /// Full precision math with maximum accuracy.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/none?language=objc)
+/// Full precision math with maximum accuracy.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathNone")]
         const None = 0;
 /// Execute winograd transform intermediate as FP16.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/allowfp16conv2dwinogradtransformintermediate?language=objc)
+/// Execute winograd transform intermediate as FP16.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Conv2DWinogradTransformIntermediate")]
         const AllowFP16Conv2DWinogradTransformIntermediate = 1<<1;
 /// Curated list allowing intermediates for multi-pass GPU kernels to be FP16.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/allowfp16intermediates?language=objc)
+/// Curated list allowing intermediates for multi-pass GPU kernels to be FP16.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathAllowFP16Intermediates")]
         const AllowFP16Intermediates = MPSGraphReducedPrecisionFastMath::AllowFP16Conv2DWinogradTransformIntermediate.0;
 /// Default selection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath/mpsgraphreducedprecisionfastmathdefault?language=objc)
+/// Default selection.
         #[doc(alias = "MPSGraphReducedPrecisionFastMathDefault")]
         const Default = MPSGraphReducedPrecisionFastMath::None.0;
     }
@@ -170,8 +152,7 @@ unsafe impl RefEncode for MPSGraphReducedPrecisionFastMath {
 }
 
 /// A dictionary of tensors and corresponding tensor data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordatadictionary?language=objc)
+/// A dictionary of tensors and corresponding tensor data.
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -180,18 +161,22 @@ unsafe impl RefEncode for MPSGraphReducedPrecisionFastMath {
 pub type MPSGraphTensorDataDictionary = NSDictionary<MPSGraphTensor, MPSGraphTensorData>;
 
 /// A dictionary of tensors and corresponding shapes for them.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensorshapedtypedictionary?language=objc)
+/// A dictionary of tensors and corresponding shapes for them.
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphTensor"))]
 pub type MPSGraphTensorShapedTypeDictionary = NSDictionary<MPSGraphTensor, MPSGraphShapedType>;
 
 /// A notification that appears when graph execution finishes.
 ///
+/// Parameters:
+/// - resultsDictionary: If no error, the results dictionary produced by the graph operation.
+///
+/// - error: If an error occurs, more information might be found here.
+///
+/// A notification that appears when graph execution finishes.
+///
 /// - Parameters:
 /// - resultsDictionary: If no error, the results dictionary produced by the graph operation.
 /// - error: If an error occurs, more information might be found here.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompletionhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -203,11 +188,16 @@ pub type MPSGraphCompletionHandler =
 
 /// A notification that appears when graph execution schedules.
 ///
+/// Parameters:
+/// - resultsDictionary: If no error, the results dictionary produced by the graph operation. If Graph has not yet allocated, the results will be `NSNull`.
+///
+/// - error: If an error occurs, more information might be found here.
+///
+/// A notification that appears when graph execution schedules.
+///
 /// - Parameters:
 /// - resultsDictionary: If no error, the results dictionary produced by the graph operation. If Graph has not yet allocated, the results will be `NSNull`.
 /// - error: If an error occurs, more information might be found here.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscheduledhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -219,11 +209,16 @@ pub type MPSGraphScheduledHandler =
 
 /// A notification that appears when compilation finishes.
 ///
+/// Parameters:
+/// - executable: If no error, the executable produced by the compilation.
+///
+/// - error: If an error occurs, more information might be found here.
+///
+/// A notification that appears when compilation finishes.
+///
 /// - Parameters:
 /// - executable: If no error, the executable produced by the compilation.
 /// - error: If an error occurs, more information might be found here.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationcompletionhandler?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphExecutable",
@@ -233,15 +228,13 @@ pub type MPSGraphCompilationCompletionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<MPSGraphExecutable>, *mut NSError)>;
 
 /// A dictionary of symbol names and the corresponding executables for them.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcallablemap?language=objc)
+/// A dictionary of symbol names and the corresponding executables for them.
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphExecutable"))]
 pub type MPSGraphCallableMap = NSDictionary<NSString, MPSGraphExecutable>;
 
 extern_class!(
     /// A class that consists of all the levers for compiling graphs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor?language=objc)
+    /// A class that consists of all the levers for compiling graphs.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -395,8 +388,7 @@ impl MPSGraphCompilationDescriptor {
 
 extern_class!(
     /// A class that consists of all the levers  to synchronize and schedule graph execution.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor?language=objc)
+    /// A class that consists of all the levers  to synchronize and schedule graph execution.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -551,9 +543,14 @@ impl MPSGraphExecutionDescriptor {
 extern_class!(
     /// The optimized representation of a compute graph of operations and tensors.
     ///
+    /// ## Overview
+    ///
     /// An MPSGraph is a symbolic representation of operations to be utilized to execute compute graphs on a device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph?language=objc)
+    ///
+    /// The optimized representation of a compute graph of operations and tensors.
+    ///
+    /// An MPSGraph is a symbolic representation of operations to be utilized to execute compute graphs on a device.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

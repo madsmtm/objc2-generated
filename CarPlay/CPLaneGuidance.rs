@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that provides information that describes the number of lanes on a roadway and navigation instruction variants.
     /// `CPLaneGuidance`represents guidance to give the user which lane or lanes are preferred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplaneguidance?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPLaneGuidance;

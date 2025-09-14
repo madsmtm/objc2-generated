@@ -9,11 +9,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewtransitionlayout/animatedkey?language=objc)
 pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewtransitionlayout?language=objc)
+    /// An object that implements custom behaviors when changing from one layout to another in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Transition layout objects are commonly used to implement interactive transitions between layouts, where the transition itself is driven by a gesture recognizer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In macOS 10.11, collection views do not provide built-in support for driving layout transitions.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridecompletionstatus?language=objc)
+    /// Additional details about whether a ride completed successfully or someone canceled the ride.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRideCompletionStatus`](https://developer.apple.com/documentation/intents/inridecompletionstatus) object contains detailed information about the status of a completed ride. Use this object to provide details about whether the ride was successful or canceled. You can also provide details related to the cost of the ride and whether the rider made payment.
+    ///
+    /// When updating the status of a ride, you provide a response object that contains an [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object with details about the status. When the ride reaches the completed phase, create an instance of this class and assign it to the [`completionStatus`](https://developer.apple.com/documentation/intents/inridestatus/completionstatus) property of the ride status object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRideCompletionStatus;

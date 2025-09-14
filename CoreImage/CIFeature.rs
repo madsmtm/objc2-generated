@@ -12,6 +12,21 @@ use crate::*;
 extern_class!(
     /// The abstract superclass for objects representing notable features detected in an image.
     ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes for identifying and analyzing image features. See [`VNObservation`](https://developer.apple.com/documentation/vision/vnobservation))
+    ///
+    ///
+    ///
+    /// </div>
+    /// A `CIFeature` object represents a portion of an image that a detector believes matches its criteria. Subclasses of CIFeature holds additional information specific to the detector that discovered the feature.
+    ///
+    ///
+    /// The abstract superclass for objects representing notable features detected in an image.
+    ///
     /// > Note: In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes
     /// for identifying and analyzing image features.
     /// See
@@ -20,8 +35,6 @@ extern_class!(
     ///
     /// A `CIFeature` object represents a portion of an image that a detector believes matches its criteria.
     /// Subclasses of CIFeature holds additional information specific to the detector that discovered the feature.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFeature;
@@ -70,48 +83,91 @@ impl CIFeature {
 extern "C" {
     /// A Core Image feature type for person’s face.
     ///
+    /// ## Discussion
+    ///
+    /// To detect faces in an image or video, pass this to [`detectorOfType:context:options:`](https://developer.apple.com/documentation/coreimage/cidetector/init(oftype:context:options:))
+    ///
+    /// Use the [`CIFaceFeature`](https://developer.apple.com/documentation/coreimage/cifacefeature) class to find more information about the detected face.
+    ///
+    ///
+    /// A Core Image feature type for person’s face.
+    ///
     /// To detect faces in an image or video, pass this to ``/CIDetector/detectorOfType:context:options:``
     ///
     /// Use the ``CIFaceFeature`` class to find more information about the detected face.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeface?language=objc)
     pub static CIFeatureTypeFace: &'static NSString;
 }
 
 extern "C" {
     /// A Core Image feature type for rectangular object.
     ///
+    /// ## Discussion
+    ///
+    /// To detect rectangles in an image or video, pass this to [`detectorOfType:context:options:`](https://developer.apple.com/documentation/coreimage/cidetector/init(oftype:context:options:))
+    ///
+    /// Use the [`CIRectangleFeature`](https://developer.apple.com/documentation/coreimage/cirectanglefeature) class to find more information about the detected rectangle.
+    ///
+    ///
+    /// A Core Image feature type for rectangular object.
+    ///
     /// To detect rectangles in an image or video, pass this to ``/CIDetector/detectorOfType:context:options:``
     ///
     /// Use the ``CIRectangleFeature`` class to find more information about the detected rectangle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle?language=objc)
     pub static CIFeatureTypeRectangle: &'static NSString;
 }
 
 extern "C" {
     /// A Core Image feature type for QR code object.
     ///
+    /// ## Discussion
+    ///
+    /// To detect QR codes in an image or video, pass this to [`detectorOfType:context:options:`](https://developer.apple.com/documentation/coreimage/cidetector/init(oftype:context:options:))
+    ///
+    /// Use the [`CIQRCodeFeature`](https://developer.apple.com/documentation/coreimage/ciqrcodefeature) class to find more information about the detected QR code.
+    ///
+    ///
+    /// A Core Image feature type for QR code object.
+    ///
     /// To detect QR codes in an image or video, pass this to ``/CIDetector/detectorOfType:context:options:``
     ///
     /// Use the ``CIQRCodeFeature`` class to find more information about the detected QR code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode?language=objc)
     pub static CIFeatureTypeQRCode: &'static NSString;
 }
 
 extern "C" {
     /// A Core Image feature type for text.
     ///
+    /// ## Discussion
+    ///
+    /// To detect text in an image or video, pass this to [`detectorOfType:context:options:`](https://developer.apple.com/documentation/coreimage/cidetector/init(oftype:context:options:))
+    ///
+    /// Use the [`CITextFeature`](https://developer.apple.com/documentation/coreimage/citextfeature) class to find more information about the detected text.
+    ///
+    ///
+    /// A Core Image feature type for text.
+    ///
     /// To detect text in an image or video, pass this to ``/CIDetector/detectorOfType:context:options:``
     ///
     /// Use the ``CITextFeature`` class to find more information about the detected text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifeaturetypetext?language=objc)
     pub static CIFeatureTypeText: &'static NSString;
 }
 
 extern_class!(
+    /// Information about a face detected in a still or video image.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces this class for identifying and analyzing image features. See `VNDetectFaceRectanglesRequest`. See [`VNDetectFaceRectanglesRequest`](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest))
+    ///
+    ///
+    ///
+    /// </div>
+    /// The properties of a `CIFaceFeature` object provide information about the face’s eyes and mouth. A face object in a video can also have properties that track its location over time, tracking ID and frame count.
+    ///
+    ///
     /// Information about a face detected in a still or video image.
     ///
     /// > Note: In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces this
@@ -122,8 +178,6 @@ extern_class!(
     ///
     /// The properties of a `CIFaceFeature` object provide information about the face’s eyes and mouth.
     /// A face object in a video can also have properties that track its location over time, tracking ID and frame count.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifacefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFaceFeature;
@@ -260,6 +314,25 @@ impl CIFaceFeature {
 extern_class!(
     /// Information about a rectangular region detected in a still or video image.
     ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes for identifying and analyzing image features. See [`VNDetectFaceRectanglesRequest`](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest))
+    ///
+    ///
+    ///
+    /// </div>
+    /// A detected rectangle feature is not necessarily rectangular in the plane of the image; rather, the feature identifies a shape that may be rectangular in space (for example a book on a desk) but which appears as a four-sided polygon in the image. The properties of a `CIRectangleFeature` object identify its four corners in image coordinates.
+    ///
+    /// You can use rectangle feature detection together with the `CIPerspectiveCorrection` filter to transform the feature to a normal orientation.
+    ///
+    /// To detect rectangles in an image or video, choose [`CIDetectorTypeRectangle`](https://developer.apple.com/documentation/coreimage/cidetectortyperectangle) when initializing a [`CIDetector`](https://developer.apple.com/documentation/coreimage/cidetector) object, and use the `CIDetectorAspectRatio` and `CIDetectorFocalLength` options to specify the approximate shape of rectangular features to search for. The detector returns at most one rectangle feature, the most prominent found in the image.
+    ///
+    ///
+    /// Information about a rectangular region detected in a still or video image.
+    ///
     /// > Note: In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes
     /// for identifying and analyzing image features.
     /// See
@@ -278,8 +351,6 @@ extern_class!(
     /// ``CIDetector`` object, and use the `CIDetectorAspectRatio` and `CIDetectorFocalLength` options to
     /// specify the approximate shape of rectangular features to search for. The detector returns at
     /// most one rectangle feature, the most prominent found in the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirectanglefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIRectangleFeature;
@@ -344,6 +415,23 @@ impl CIRectangleFeature {
 extern_class!(
     /// Information about a Quick Response code detected in a still or video image.
     ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes for identifying and analyzing image features. See [`VNDetectBarcodesRequest`](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest))
+    ///
+    ///
+    ///
+    /// </div>
+    /// A QR code is a two-dimensional barcode using the ISO/IEC 18004:2006 standard. The properties of a CIQRCodeFeature object identify the corners of the barcode in the image perspective and provide the decoded message.
+    ///
+    /// To detect QR codes in an image or video, choose [`CIDetectorTypeQRCode`](https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode) type when initializing a [`CIDetector`](https://developer.apple.com/documentation/coreimage/cidetector) object.
+    ///
+    ///
+    /// Information about a Quick Response code detected in a still or video image.
+    ///
     /// > Note: In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes
     /// for identifying and analyzing image features.
     /// See
@@ -356,8 +444,6 @@ extern_class!(
     ///
     /// To detect QR codes in an image or video, choose ``CIDetectorTypeQRCode`` type when initializing a
     /// ``CIDetector`` object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodefeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIQRCodeFeature;
@@ -452,6 +538,23 @@ impl CIQRCodeFeature {
 extern_class!(
     /// Information about a text that was detected in a still or video image.
     ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes for identifying and analyzing image features. See [`VNRecognizeTextRequest`](https://developer.apple.com/documentation/vision/vnrecognizetextrequest))
+    ///
+    ///
+    ///
+    /// </div>
+    /// A detected text feature is not necessarily rectangular in the plane of the image; rather, the feature identifies a shape that may be rectangular in space (for example a text on a sign) but which appears as a four-sided polygon in the image. The properties of a `CITextFeature` object identify its four corners in image coordinates.
+    ///
+    /// To detect text in an image or video, choose the [`CIDetectorTypeText`](https://developer.apple.com/documentation/coreimage/cidetectortypetext) type when initializing a [`CIDetector`](https://developer.apple.com/documentation/coreimage/cidetector) object, and use the `CIDetectorImageOrientation` option to specify the desired orientation for finding upright text.
+    ///
+    ///
+    /// Information about a text that was detected in a still or video image.
+    ///
     /// > Note: In macOS 10.13, iOS 11, and tvOS 11 or later, the Vision framework replaces these classes
     /// for identifying and analyzing image features.
     /// See
@@ -466,8 +569,6 @@ extern_class!(
     /// To detect text in an image or video, choose the ``CIDetectorTypeText`` type when initializing a
     /// ``CIDetector`` object, and use the `CIDetectorImageOrientation` option to specify the desired
     /// orientation for finding upright text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citextfeature?language=objc)
     #[unsafe(super(CIFeature, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CITextFeature;

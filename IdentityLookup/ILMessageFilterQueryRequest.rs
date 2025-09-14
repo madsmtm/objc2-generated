@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request for a Message Filter app extension to determine the status of a message received from an unknown sender.
     /// A request to query a MessageFilter extension about how to interpret a received message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterqueryrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterQueryRequest;

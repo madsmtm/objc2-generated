@@ -4,6 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that define the types of analysis a player view controller may perform on a paused video frame.
 /// The types of items that AVPlayerViewController analyzes in a paused video frame.
 ///
 ///
@@ -19,30 +20,28 @@ use crate::*;
 /// Objects, landmarks, art, etc. recognized visually in a paused video frame.
 ///
 /// Machine-readable codes, such as QR codes, that appear in a paused video frame.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVideoFrameAnalysisType(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVideoFrameAnalysisType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/avvideoframeanalysistypenone?language=objc)
+/// A type that performs no analysis.
         #[doc(alias = "AVVideoFrameAnalysisTypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/default?language=objc)
+/// The default types of analysis to perform.
         #[doc(alias = "AVVideoFrameAnalysisTypeDefault")]
         const Default = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/text?language=objc)
+/// A type that finds text in a paused video frame.
         #[doc(alias = "AVVideoFrameAnalysisTypeText")]
         const Text = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/subject?language=objc)
+/// A type that finds a subject that a user can copy out of frame.
         #[doc(alias = "AVVideoFrameAnalysisTypeSubject")]
         const Subject = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/visualsearch?language=objc)
+/// A type that identifies objects, landmarks, art, and so on.
         #[doc(alias = "AVVideoFrameAnalysisTypeVisualSearch")]
         const VisualSearch = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype/machinereadablecode?language=objc)
+/// A type that recognizes machine-readable codes, such as QR codes.
         #[doc(alias = "AVVideoFrameAnalysisTypeMachineReadableCode")]
         const MachineReadableCode = 1<<4;
     }
@@ -57,31 +56,26 @@ unsafe impl RefEncode for AVVideoFrameAnalysisType {
 }
 
 /// Describes how High Dynamic Range (HDR) video content renders.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange?language=objc)
+/// Describes how High Dynamic Range (HDR) video content renders.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDisplayDynamicRange(pub NSInteger);
 impl AVDisplayDynamicRange {
     /// Defines an automatic dynamic range. Indicates that the dynamic range will be set automatically.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/automatic?language=objc)
+    /// Defines an automatic dynamic range. Indicates that the dynamic range will be set automatically.
     #[doc(alias = "AVDisplayDynamicRangeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Defines a standard dynamic range. Restricts the video content dynamic range to the standard range regardless of the actual range of the video content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/standard?language=objc)
+    /// Defines a standard dynamic range. Restricts the video content dynamic range to the standard range regardless of the actual range of the video content.
     #[doc(alias = "AVDisplayDynamicRangeStandard")]
     pub const Standard: Self = Self(1);
     /// Defines a constrained high dynamic range. Allows for constrained High Dynamic Range (HDR) video content which is useful for mixing HDR and Standard Dynamic Range (SDR) content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/constrainedhigh?language=objc)
+    /// Defines a constrained high dynamic range. Allows for constrained High Dynamic Range (HDR) video content which is useful for mixing HDR and Standard Dynamic Range (SDR) content.
     #[doc(alias = "AVDisplayDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(2);
     /// Defines a high dynamic range. Allows video content to use extended dynamic range if it has dynamic range content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange/high?language=objc)
+    /// Defines a high dynamic range. Allows video content to use extended dynamic range if it has dynamic range content.
     #[doc(alias = "AVDisplayDynamicRangeHigh")]
     pub const High: Self = Self(3);
 }

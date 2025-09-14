@@ -9,14 +9,21 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A control that adjusts the video zoom factor of a capture device within the system-recommended range.
+    ///
+    /// ## Overview
+    ///
+    /// The system sets the slider’s range to the value of the [`systemRecommendedVideoZoomRange`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/systemrecommendedvideozoomrange) property of the device’s active format. If a device’s [`activeFormat`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat) value changes, the slider updates its range to the new format’s recommendation.
+    ///
+    /// To use this control, add it to the capture session by calling the session’s [`addControl:`](https://developer.apple.com/documentation/avfoundation/avcapturesession/addcontrol(_:)) method.
+    ///
+    ///
     /// The system's recommended continuous zoom control for `-[AVCaptureDevice videoZoomFactor]`.
     ///
     ///
     /// `AVCaptureSystemZoomSlider` uses the range specified by the `systemRecommendedVideoZoomRange` on the `activeFormat` from the `AVCaptureDevice` specified during initialization. As the device's `activeFormat` changes, the slider updates its range with the new format's `systemRecommendedVideoZoomRange`.
     ///
     /// Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemzoomslider?language=objc)
     #[unsafe(super(AVCaptureControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureControl")]

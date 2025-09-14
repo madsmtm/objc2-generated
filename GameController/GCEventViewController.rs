@@ -11,11 +11,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A view controller that delivers input either from the responder chain to views, or from game controllers to profiles.
+    ///
+    /// ## Overview
+    ///
+    /// On systems, such as tvOS, where the player uses the game controller to both navigate the system interface and play your game, use a [`GCEventViewController`](https://developer.apple.com/documentation/gamecontroller/gceventviewcontroller) object as the root view controller to selectively receive input directly from the game controller. You can’t simultaneously process input through the responder chain and Game Controller input elements.
+    ///
+    /// By default the system delivers input events to your app using the responder chain. To get the input values through the game controller objects, set a [`GCEventViewController`](https://developer.apple.com/documentation/gamecontroller/gceventviewcontroller) object as the root view controller. The view controller delivers the input for its views and their subviews to the game controller’s profile. To switch back to the responder chain, set the view controller’s [`controllerUserInteractionEnabled`](https://developer.apple.com/documentation/gamecontroller/gceventviewcontroller/controlleruserinteractionenabled) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// A view controller subclass that allows fine grained control of the user interface system's handling
     /// of game controller events. Set an instance of this class as your root view controller if you intend
     /// to use GCController APIs for handling game controllers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gceventviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

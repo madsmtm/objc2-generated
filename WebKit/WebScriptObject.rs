@@ -146,6 +146,21 @@ impl private_NSObjectWebScripting::Sealed for NSObject {}
 unsafe impl NSObjectWebScripting for NSObject {}
 
 extern_class!(
+    /// A `WebScriptObject` object is an Objective-C wrapper for a scripting object passed to your application from the scripting environment.
+    ///
+    /// ## Overview
+    ///
+    /// You can not create a `WebScriptObject` object directly. You get a window `WebScriptObject` object by sending [`windowScriptObject`](https://developer.apple.com/documentation/webkit/webview-swift.class/windowscriptobject) to your `WebView` object.
+    ///
+    /// You can use key-value coding methods—for example, `setValue:forKey:` and `valueForKey:`—to get and set properties of a `WebScriptObject` object. You can also access properties by index using the [`setWebScriptValueAtIndex:value:`](https://developer.apple.com/documentation/webkit/webscriptobject/setwebscriptvalueat(_:value:)) and [`webScriptValueAtIndex:`](https://developer.apple.com/documentation/webkit/webscriptobject/webscriptvalue(at:)) methods. Use the [`removeWebScriptKey:`](https://developer.apple.com/documentation/webkit/webscriptobject/removewebscriptkey(_:)) method to remove a scripting object property.
+    ///
+    /// Not all properties and methods of a class are exported. Use the [`setValue:forUndefinedKey:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1413490-setvalue) and [`valueForUndefinedKey:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1413457-value) methods to intercept access to properties that are not exported. Similarly, use the [`invokeUndefinedMethodFromWebScript:withArguments:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/invokeundefinedmethod(fromwebscript:witharguments:)) method to intercept method invocations that are not exported.
+    ///
+    /// If you want access to properties and methods defined in your own classes, use the methods in the WebScripting informal protocol to specify the properties and methods the class should export to WebKit’s JavaScript environment.
+    ///
+    /// Use the [`callWebScriptMethod:withArguments:`](https://developer.apple.com/documentation/webkit/webscriptobject/callwebscriptmethod(_:witharguments:)) and [`evaluateWebScript:`](https://developer.apple.com/documentation/webkit/webscriptobject/evaluatewebscript(_:)) methods to execute scripts in the scripting environment.
+    ///
+    ///
     /// WebScriptObjects are used to wrap script objects passed from
     /// script environments to Objective-C. WebScriptObjects cannot be created
     /// directly. In normal uses of WebKit, you gain access to the script
@@ -167,8 +182,6 @@ extern_class!(
     ///
     /// - (id)webScriptValueAtIndex:(unsigned)index;
     /// - (void)setWebScriptValueAtIndex:(unsigned)index value:(id)value;
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webscriptobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -335,7 +348,7 @@ impl WebScriptObject {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webundefined?language=objc)
+    /// `WebUndefined` objects are simply used to represent the JavaScript “undefined” value in methods when bridging between JavaScript and Objective-C. For example, if you invoke a JavaScript function that returns the JavaScript “undefined” value, then a `WebUndefined` object is returned to the Objective-C calling context.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

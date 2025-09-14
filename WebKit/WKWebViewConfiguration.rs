@@ -7,6 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The policy that determines the directionality of user interface elements in a web view.
+///
+/// ## Overview
+///
+/// When `WKUserInterfaceDirectionPolicyContent` is specified, the directionality of user interface elements is affected by the `dir` attribute or the `direction` CSS property. When `WKUserInterfaceDirectionPolicySystem` is specified, the directionality of user interface elements is affected by the direction of the view.
+///
+///
 /// The policy used to determine the directionality of user interface elements inside a web view.
 ///
 /// specifications.
@@ -17,17 +24,27 @@ use crate::*;
 /// elements is affected by the "dir" attribute or the "direction" CSS property. When
 /// WKUserInterfaceDirectionPolicySystem is specified, the directionality of user interface elements is
 /// affected by the direction of the view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserInterfaceDirectionPolicy(pub NSInteger);
 impl WKUserInterfaceDirectionPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy/content?language=objc)
+    /// The directionality follows the CSS/HTML/XHTML specifications.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default value of [`userInterfaceDirectionPolicy`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy).
+    ///
+    ///
     #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
     pub const Content: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy/system?language=objc)
+    /// The directionality follows the view’s user interface layout direction.
+    ///
+    /// ## Discussion
+    ///
+    /// The web view adheres to the direction in its [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection) property.
+    ///
+    ///
     #[doc(alias = "WKUserInterfaceDirectionPolicySystem")]
     pub const System: Self = Self(1);
 }
@@ -40,25 +57,30 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The types of audiovisual media which will require a user gesture to begin playing.
+/// The media types that require a user gesture to begin playing.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes?language=objc)
+/// ## Overview
+///
+/// To indicate that no user gestures are required to play media, use an empty set of audio/visual media types, indicated by the empty array literal, `[]`. For example, `let myAudiovisualMediaType: WKAudiovisualMediaTypes = []`.
+///
+///
+/// The types of audiovisual media which will require a user gesture to begin playing.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudiovisualMediaTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl WKAudiovisualMediaTypes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/wkaudiovisualmediatypenone?language=objc)
+/// No media types require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/audio?language=objc)
+/// Media types that contain audio require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeAudio")]
         const Audio = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/video?language=objc)
+/// Media types that contain video require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeVideo")]
         const Video = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes/all?language=objc)
+/// All media types require a user gesture to begin playing.
         #[doc(alias = "WKAudiovisualMediaTypeAll")]
         const All = NSUIntegerMax as _;
     }
@@ -73,6 +95,27 @@ unsafe impl RefEncode for WKAudiovisualMediaTypes {
 }
 
 extern_class!(
+    /// A collection of properties that you use to initialize a web view.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object provides information about how to configure a [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) object. Use your configuration object to specify:
+    ///
+    /// - The initial cookies to make available to your web content
+    ///
+    /// - Handlers for any custom URL schemes your web content uses
+    ///
+    /// - Settings for how to handle media content
+    ///
+    /// - Information about how to manage selections within the web view
+    ///
+    /// - Custom scripts to inject into the webpage
+    ///
+    /// - Custom rules that determine how to render content
+    ///
+    /// You create a [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object in your code, configure its properties, and pass it to the initializer of your [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) object. The web view incorporates your configuration settings only at creation time; you cannot change those settings dynamically later.
+    ///
+    ///
     /// A WKWebViewConfiguration object is a collection of properties with
     /// which to initialize a web view.
     ///
@@ -83,8 +126,6 @@ extern_class!(
     /// ```
     ///
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

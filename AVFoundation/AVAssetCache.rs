@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that you use to inspect locally cached media data.
+    ///
+    /// ## Overview
+    ///
+    /// You can download HTTP Live Streaming assets to an iOS device using the [`AVAssetDownloadURLSession`](https://developer.apple.com/documentation/avfoundation/avassetdownloadurlsession) and [`AVAssetDownloadTask`](https://developer.apple.com/documentation/avfoundation/avassetdownloadtask) classes.
+    ///
+    ///
     /// AVAssetCache is a class vended by an AVAsset used for the inspection of locally available media data.
     ///
     /// AVAssetCaches are vended by AVURLAsset's assetCache property.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcache?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetCache;

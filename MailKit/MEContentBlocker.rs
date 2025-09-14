@@ -7,9 +7,36 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// Methods in this protocol can be used by a mail app extension to block content in mail messages.
+    /// An object that provides a set of rules to block content when displaying a message.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecontentblocker?language=objc)
+    /// ## Overview
+    ///
+    /// A mail content blocker is similar to content blockers for Safari. Mail uses content blockers when it displays message content in a user’s mailbox. If your extension’s `Info.plist` file contains `MEContentBlocker` in the list of [`MEExtensionCapabilities`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/meextensioncapabilities), MailKit invokes [`handlerForContentBlocker`](https://developer.apple.com/documentation/mailkit/meextension/handlerforcontentblocker()) to get the object that provides content-blocking rules. The handler returns the content-blocking rules as JSON data from the [`contentRulesJSON`](https://developer.apple.com/documentation/mailkit/mecontentblocker/contentrulesjson()) method.
+    ///
+    /// For more information about content blockers, see [Creating a content blocker](https://developer.apple.com/documentation/safariservices/creating-a-content-blocker).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  MailKit always applies content-blocking rules for enabled extensions. This is true even if the user clicks the “Load remote content” button on the banner that Mail displays when remote content isn’t loaded.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To indicate that your extension contains a content blocker, add `MEContentBlocker` to the `MEExtensionCapabilities` array in the extension’s `Info.plist` file:
+    ///
+    /// ```plist
+    /// <key>NSExtensionAttributes</key>
+    /// <dict>
+    ///     <key>MEExtensionCapabilities</key>
+    ///     <array>
+    ///         <string>MEContentBlocker</string>
+    ///     </array>
+    /// </dict>
+    /// ```
+    ///
+    ///
+    /// Methods in this protocol can be used by a mail app extension to block content in mail messages.
     pub unsafe trait MEContentBlocker: NSObjectProtocol {
         /// This is invoked when Mail configures its
         /// `WKWebViewConfiguration`or if the extension is enabled. The returned data should contain UTF8 encoded String data with the filter list.

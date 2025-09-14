@@ -7,6 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// `SBElementArray` is subclass of `NSMutableArray` that manages collections of related [`SBObject`](https://developer.apple.com/documentation/scriptingbridge/sbobject) objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an `SBElementArray` containing Scripting Bridge objects representing those items.
+    ///
+    /// ## Overview
+    ///
+    /// `SBElementArray` defines methods beyond those of [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) for obtaining individual objects. In addition to [`objectAtIndex:`](https://developer.apple.com/documentation/foundation/nsarray/object(at:)), `SBElementArray` also defines [`objectWithName:`](https://developer.apple.com/documentation/scriptingbridge/sbelementarray/object(withname:)), [`objectWithID:`](https://developer.apple.com/documentation/scriptingbridge/sbelementarray/object(withid:)), and [`objectAtLocation:`](https://developer.apple.com/documentation/scriptingbridge/sbelementarray/object(atlocation:)).
+    ///
+    /// ## Subclassing Notes
+    ///
+    /// The `SBElementArray` class is not designed for subclassing.
+    ///
+    ///
     /// `SBElementArray` is subclass of `NSMutableArray` that manages collections of
     /// related
     /// ``SBObject``
@@ -27,8 +38,6 @@ extern_class!(
     /// ## Subclassing Notes
     ///
     /// The `SBElementArray` class is not designed for subclassing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scriptingbridge/sbelementarray?language=objc)
     #[unsafe(super(NSMutableArray<ObjectType>, NSArray<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct SBElementArray<ObjectType: ?Sized = AnyObject>;

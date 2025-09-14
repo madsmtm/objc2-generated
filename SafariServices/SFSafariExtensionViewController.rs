@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariextensionviewcontroller?language=objc)
+    /// The view controller for a popover associated with your app extension.
+    ///
+    /// ## Overview
+    ///
+    /// If your toolbar item has a popover, your popover view controller should be a subclass of this class. As with other macOS development, typically you want to add your own outlets and actions to the view controller, and provide an XIB file for its user interface.
+    ///
+    /// Your view controller’s contents must use Auto Layout.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

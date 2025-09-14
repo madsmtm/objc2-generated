@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsquerygenerationtoken?language=objc)
+    /// A token that indicates which generation of the persistent store is being accessed.
+    ///
+    /// ## Overview
+    ///
+    /// When a managed object context is pinned to a specific generation of the app data, a query generation token will be associated with that context.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSQueryGenerationToken;

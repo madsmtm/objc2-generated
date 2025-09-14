@@ -6,25 +6,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus?language=objc)
+/// Constants indicating whether the app is allowed to schedule notifications.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAuthorizationStatus(pub NSInteger);
 impl UNAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/notdetermined?language=objc)
+    /// The user hasn’t yet made a choice about whether the app is allowed to schedule notifications.
     #[doc(alias = "UNAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/denied?language=objc)
+    /// The app isn’t authorized to schedule or receive notifications.
     #[doc(alias = "UNAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/authorized?language=objc)
+    /// The app is authorized to schedule or receive notifications.
     #[doc(alias = "UNAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/provisional?language=objc)
+    /// The application is provisionally authorized to post noninterruptive user notifications.
     #[doc(alias = "UNAuthorizationStatusProvisional")]
     pub const Provisional: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus/ephemeral?language=objc)
+    /// The app is authorized to schedule or receive notifications for a limited amount of time.
+    ///
+    /// ## Discussion
+    ///
+    /// An App Clip may have the ability to schedule or receive notifications for a limited amount of time. For more information, see [Enabling notifications in App Clips](https://developer.apple.com/documentation/appclip/enabling-notifications-in-app-clips).
+    ///
+    ///
     #[doc(alias = "UNAuthorizationStatusEphemeral")]
     pub const Ephemeral: Self = Self(4);
 }
@@ -37,19 +43,19 @@ unsafe impl RefEncode for UNAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting?language=objc)
+/// Constants indicating the style previewing a notification’s content.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNShowPreviewsSetting(pub NSInteger);
 impl UNShowPreviewsSetting {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting/always?language=objc)
+    /// The notification’s content is always shown, even when the device is locked.
     #[doc(alias = "UNShowPreviewsSettingAlways")]
     pub const Always: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting/whenauthenticated?language=objc)
+    /// The notification’s content is shown only when the device is unlocked.
     #[doc(alias = "UNShowPreviewsSettingWhenAuthenticated")]
     pub const WhenAuthenticated: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting/never?language=objc)
+    /// The notification’s content is never shown, even when the device is unlocked
     #[doc(alias = "UNShowPreviewsSettingNever")]
     pub const Never: Self = Self(2);
 }
@@ -62,19 +68,19 @@ unsafe impl RefEncode for UNShowPreviewsSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting?language=objc)
+/// Constants that indicate the current status of a notification setting.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationSetting(pub NSInteger);
 impl UNNotificationSetting {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting/notsupported?language=objc)
+    /// The setting is not available to your app.
     #[doc(alias = "UNNotificationSettingNotSupported")]
     pub const NotSupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting/disabled?language=objc)
+    /// The setting is disabled.
     #[doc(alias = "UNNotificationSettingDisabled")]
     pub const Disabled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting/enabled?language=objc)
+    /// The setting is enabled.
     #[doc(alias = "UNNotificationSettingEnabled")]
     pub const Enabled: Self = Self(2);
 }
@@ -87,19 +93,31 @@ unsafe impl RefEncode for UNNotificationSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle?language=objc)
+/// Constants indicating the presentation styles for alerts.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAlertStyle(pub NSInteger);
 impl UNAlertStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle/none?language=objc)
+    /// No alert.
     #[doc(alias = "UNAlertStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle/banner?language=objc)
+    /// Banner alerts.
+    ///
+    /// ## Discussion
+    ///
+    /// Alerts are displayed as a slide-down banner. Banners appear for a short time and then disappear automatically if the user does nothing.
+    ///
+    ///
     #[doc(alias = "UNAlertStyleBanner")]
     pub const Banner: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle/alert?language=objc)
+    /// Modal alerts.
+    ///
+    /// ## Discussion
+    ///
+    /// Alerts are displayed in a modal window that must be dismissed explicitly by the user.
+    ///
+    ///
     #[doc(alias = "UNAlertStyleAlert")]
     pub const Alert: Self = Self(2);
 }
@@ -113,7 +131,17 @@ unsafe impl RefEncode for UNAlertStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsettings?language=objc)
+    /// The object for managing notification-related settings and the authorization status of your app.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UNNotificationSettings`](https://developer.apple.com/documentation/usernotifications/unnotificationsettings) object contains the current authorization status and notification-related settings for your app. Apps must receive authorization to schedule notifications and to interact with the user. Apps that run in CarPlay must similarly receive authorization to do so. Use this object to determine what notification-related actions your app can perform. You might then use that information to enable, disable, or adjust your app’s notification-related behaviors. Regardless of whether you take action, the system enforces your app’s settings by preventing denied interactions from occurring.
+    ///
+    /// You don’t create instances of this class directly. Instead, call the [`getNotificationSettingsWithCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/getnotificationsettings(completionhandler:)) method of your app’s [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) object to get the current settings.
+    ///
+    /// For more information about requesting authorization for user interactions, see [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationSettings;

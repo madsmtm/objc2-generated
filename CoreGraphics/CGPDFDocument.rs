@@ -10,7 +10,17 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument?language=objc)
+/// A document that contains PDF (Portable Document Format) drawing information.
+///
+/// ## Overview
+///
+/// PDF provides an efficient format for cross-platform exchange of documents with rich content. PDF files can contain multiple pages of images and text. A PDF document object contains all the information relating to a PDF document, including its catalog and contents.
+///
+/// Note that PDF documents may be encrypted, and that some operations may be restricted until a valid password is supplied—see the functions listed in [Working with an Encrypted PDF Document](https://developer.apple.com/documentation/coregraphics/cgpdfdocument#working-with-an-encrypted-pdf-document).  Core Graphics also supports decrypting encrypted documents.
+///
+/// Core Graphics can both display and generate files that are compliant with the PDF standard.
+///
+///
 #[doc(alias = "CGPDFDocumentRef")]
 #[repr(C)]
 pub struct CGPDFDocument {
@@ -26,35 +36,26 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGPDFDocument"> for CGPDFDocument {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPDFAccessPermissions(pub u32);
 bitflags::bitflags! {
     impl CGPDFAccessPermissions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowslowqualityprinting?language=objc)
         #[doc(alias = "kCGPDFAllowsLowQualityPrinting")]
         const AllowsLowQualityPrinting = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowshighqualityprinting?language=objc)
         #[doc(alias = "kCGPDFAllowsHighQualityPrinting")]
         const AllowsHighQualityPrinting = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowsdocumentchanges?language=objc)
         #[doc(alias = "kCGPDFAllowsDocumentChanges")]
         const AllowsDocumentChanges = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowsdocumentassembly?language=objc)
         #[doc(alias = "kCGPDFAllowsDocumentAssembly")]
         const AllowsDocumentAssembly = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowscontentcopying?language=objc)
         #[doc(alias = "kCGPDFAllowsContentCopying")]
         const AllowsContentCopying = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowscontentaccessibility?language=objc)
         #[doc(alias = "kCGPDFAllowsContentAccessibility")]
         const AllowsContentAccessibility = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowscommenting?language=objc)
         #[doc(alias = "kCGPDFAllowsCommenting")]
         const AllowsCommenting = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions/allowsformfieldentry?language=objc)
         #[doc(alias = "kCGPDFAllowsFormFieldEntry")]
         const AllowsFormFieldEntry = 1<<7;
     }
@@ -71,27 +72,39 @@ unsafe impl RefEncode for CGPDFAccessPermissions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinetitle?language=objc)
     pub static kCGPDFOutlineTitle: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinechildren?language=objc)
     pub static kCGPDFOutlineChildren: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinedestination?language=objc)
     pub static kCGPDFOutlineDestination: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinedestinationrect?language=objc)
     pub static kCGPDFOutlineDestinationRect: &'static CFString;
 }
 
 impl CGPDFDocument {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/init(_:)-gbq6?language=objc)
+    /// Creates a Core Graphics PDF document using a data provider.
+    ///
+    /// Parameters:
+    /// - provider: A data provider that supplies the PDF document data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new Core Graphics PDF document, or `NULL` if a document can not be created. In Objective-C, you’re responsible for releasing the object using [`CGPDFDocumentRelease`](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Distributing individual pages of a PDF document to separate threads is not supported. If you want to use threads, consider creating a separate document for each thread and operating on a block of pages per thread.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentCreateWithProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -105,7 +118,23 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/init(_:)-2gtsd?language=objc)
+    /// Creates a Core Graphics PDF document using data specified by a URL.
+    ///
+    /// Parameters:
+    /// - url: The URL address at which the PDF document data is located.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new Core Graphics PDF document, or `NULL` if a document could not be created. In Objective-C, you’re responsible for releasing the object using [`CGPDFDocumentRelease`](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Distributing individual pages of a PDF document to separate threads is not supported. If you want to use threads, consider creating a separate document for each thread and operating on a block of pages per thread.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentCreateWithURL")]
     #[inline]
     pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGPDFDocument>> {
@@ -116,7 +145,21 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/getversion(majorversion:minorversion:)?language=objc)
+    /// Returns the major and minor version numbers of a Core Graphics PDF document.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    /// - majorVersion: On return, contains the major version number of the document.
+    ///
+    /// - minorVersion: On return, contains the minor version number of the document.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the values of the `majorVersion` and `minorVersion` parameters are set to the major and minor version numbers of the document respectively.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -139,7 +182,23 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetVersion(document, major_version, minor_version) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/isencrypted?language=objc)
+    /// Returns whether the specified PDF file is encrypted.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean that, if [`true`](https://developer.apple.com/documentation/swift/true), indicates that the document is encrypted. If the value is [`false`](https://developer.apple.com/documentation/swift/false), the document is not encrypted.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the document is encrypted, a password must be supplied before certain operations are enabled. For more information, see [`CGPDFDocumentUnlockWithPassword`](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/unlockwithpassword(_:)).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentIsEncrypted")]
     #[inline]
     pub fn is_encrypted(document: Option<&CGPDFDocument>) -> bool {
@@ -149,7 +208,33 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsEncrypted(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/unlockwithpassword(_:)?language=objc)
+    /// Unlocks an encrypted PDF document when a valid password is supplied.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    /// - password: A pointer to a string that contains the password.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean that, if [`true`](https://developer.apple.com/documentation/swift/true), indicates that the document has been successfully unlocked. If the value is [`false`](https://developer.apple.com/documentation/swift/false), the document has not been unlocked.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Given an encrypted PDF document and a password, this function does the following:
+    ///
+    /// - Sets the lock state of the document, based on the validity of the password.
+    ///
+    /// - Returns [`true`](https://developer.apple.com/documentation/swift/true) if the document is unlocked.
+    ///
+    /// - Returns [`false`](https://developer.apple.com/documentation/swift/false) if the document cannot be unlocked with the specified password.
+    ///
+    /// Unlocking a PDF document makes it possible to decrypt the document and perform other privileged operations. Different passwords enable different operations.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -169,7 +254,27 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentUnlockWithPassword(document, password) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/isunlocked?language=objc)
+    /// Returns whether the specified PDF document is currently unlocked.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean that, if [`true`](https://developer.apple.com/documentation/swift/true), indicates that the document is not locked. If the value is [`false`](https://developer.apple.com/documentation/swift/false), the document is locked.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// There are two possible reasons why a PDF document is unlocked:
+    ///
+    /// - The document is not encrypted.
+    ///
+    /// - The document is encrypted, and a valid password was previously specified using [`CGPDFDocumentUnlockWithPassword`](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/unlockwithpassword(_:)).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentIsUnlocked")]
     #[inline]
     pub fn is_unlocked(document: Option<&CGPDFDocument>) -> bool {
@@ -179,7 +284,23 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsUnlocked(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/allowsprinting?language=objc)
+    /// Returns whether a PDF document allows printing.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean that, if [`true`](https://developer.apple.com/documentation/swift/true), indicates that the document allows printing. If the value is [`false`](https://developer.apple.com/documentation/swift/false), the document does not allow printing.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the document is encrypted and the current password doesn’t grant permission to perform printing, this returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentAllowsPrinting")]
     #[inline]
     pub fn allows_printing(document: Option<&CGPDFDocument>) -> bool {
@@ -189,7 +310,23 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentAllowsPrinting(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/allowscopying?language=objc)
+    /// Returns whether the specified PDF document allows copying.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean that, if [`true`](https://developer.apple.com/documentation/swift/true), indicates that the document allows copying. If the value is [`false`](https://developer.apple.com/documentation/swift/false), the document does not allow copying.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the document is encrypted and the current password doesn’t grant permission to perform copying, this returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentAllowsCopying")]
     #[inline]
     pub fn allows_copying(document: Option<&CGPDFDocument>) -> bool {
@@ -199,7 +336,17 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentAllowsCopying(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/numberofpages?language=objc)
+    /// Returns the number of pages in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The total number of pages in the PDF document.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetNumberOfPages")]
     #[inline]
     pub fn number_of_pages(document: Option<&CGPDFDocument>) -> usize {
@@ -209,7 +356,19 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetNumberOfPages(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/page(at:)?language=objc)
+    /// Returns a page from a Core Graphics PDF document.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    /// - pageNumber: The number of the page requested.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Return the PDF page corresponding to the specified page number, or `NULL` if no such page exists in the document. Pages are numbered starting at 1.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
@@ -227,7 +386,23 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/catalog?language=objc)
+    /// Returns the document catalog of a Core Graphics PDF document.
+    ///
+    /// Parameters:
+    /// - document: A PDF document.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The document catalog of the specified document.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The entries in a PDF document catalog recursively describe the contents of the PDF document. You can access the contents of a PDF document catalog by calling the function [`CGPDFDocumentGetCatalog`](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/catalog). For information on accessing PDF metadata, see [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetCatalog")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -238,7 +413,17 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetCatalog(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/info?language=objc)
+    /// Gets the information dictionary for a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The document whose dictionary you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The information dictionary for the document.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetInfo")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -249,7 +434,23 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetInfo(document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/fileidentifier?language=objc)
+    /// Gets the file identifier for a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The document whose file identifier you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the file identifier for the document.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A PDF file identifier is defined in the PDF specification as an array of two strings, the first of which is a permanent identifier that doesn’t change even when the file is updated. The second string changes each time the file is updated. For more information, see _PDF Reference: Version 1.3 (Second Edition)_, Adobe Systems Incorporated.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetID")]
     #[cfg(feature = "CGPDFArray")]
     #[inline]
@@ -262,7 +463,13 @@ impl CGPDFDocument {
 }
 
 unsafe impl ConcreteType for CGPDFDocument {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/typeid?language=objc)
+    /// Returns the type identifier for Core Graphics PDF documents.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the type [`CGPDFDocumentRef`](https://developer.apple.com/documentation/coregraphics/cgpdfdocument).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -274,7 +481,6 @@ unsafe impl ConcreteType for CGPDFDocument {
 }
 
 impl CGPDFDocument {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/outline?language=objc)
     #[doc(alias = "CGPDFDocumentGetOutline")]
     #[inline]
     pub fn outline(&self) -> Option<CFRetained<CFDictionary>> {
@@ -285,7 +491,6 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument/accesspermissions?language=objc)
     #[doc(alias = "CGPDFDocumentGetAccessPermissions")]
     #[inline]
     pub fn access_permissions(&self) -> CGPDFAccessPermissions {
@@ -297,7 +502,27 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetAccessPermissions(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetmediabox?language=objc)
+    /// Returns the media box of a page in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    /// - page: An integer that specifies the number of the page to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that represents the media box for the specified page, expressed in default PDF user space units (points).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The replacement function for this one is [`getBoxRect(_:)`](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)), which gets the rectangle associated with a type of box (art, media, crop, bleed trim) that represents a content region or page dimensions of a PDF page. For more information see [`CGPDFPage`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    /// The media box defines the location and size of the physical medium on which the page is intended to be displayed or printed. For example, if the page size is 8.5 by 11 inches, this function returns the coordinate pairs `(0,0)` and (`612,792)`.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetMediaBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -308,7 +533,27 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetMediaBox(document, page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetcropbox?language=objc)
+    /// Returns the crop box of a page in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    /// - page: An integer that specifies the number of the page to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that represents the crop box for the specified page, expressed in default PDF user space units (points).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The replacement function for this one is [`getBoxRect(_:)`](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)), which gets the rectangle associated with a type of box (art, media, crop, bleed trim) that represents a content region or page dimensions of a PDF page. For more information see [`CGPDFPage`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    /// The crop box defines the region to which the contents of the page are to be clipped (or cropped) when displayed or printed. Unlike the other boxes, the crop box has no defined meaning in terms of physical page geometry or intended use—it merely suggests where the page should be clipped.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetCropBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -319,7 +564,27 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetCropBox(document, page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetbleedbox?language=objc)
+    /// Returns the bleed box of a page in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    /// - page: An integer that specifies the number of the page to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that represents the bleed box for the specified page, expressed in default PDF user space units (points).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The replacement function for this one is [`getBoxRect(_:)`](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)), which gets the rectangle associated with a type of box (art, media, crop, bleed trim) that represents a content region or page dimensions of a PDF page. For more information see [`CGPDFPage`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    /// The bleed box defines the bounds to which the contents of the page should be clipped when output in a production environment. The default value is the page’s crop box.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetBleedBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -330,7 +595,27 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetBleedBox(document, page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgettrimbox?language=objc)
+    /// Returns the trim box of a page in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    /// - page: A value specifying the number of the page to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a rectangle that represents the trim box for the specified page, expressed in default PDF user space units (points).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The replacement function for this one is [`getBoxRect(_:)`](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)), which gets the rectangle associated with a type of box (art, media, crop, bleed trim) that represents a content region or page dimensions of a PDF page. For more information see [`CGPDFPage`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    /// The trim box defines the intended dimensions of the finished page after trimming. It may be smaller than the media box, to allow for production-related content such as printing instructions, cut marks, or color bars. The default value is the page’s crop box.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetTrimBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -341,7 +626,27 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetTrimBox(document, page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetartbox?language=objc)
+    /// Returns the art box of a page in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    /// - page: An integer that specifies the number of the page to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that represents the art box for the specified page, expressed in default PDF user space units (points).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The replacement function for this one is [`getBoxRect(_:)`](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)), which gets the rectangle associated with a type of box (art, media, crop, bleed trim) that represents a content region or page dimensions of a PDF page. For more information see [`CGPDFPage`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    /// The art box defines the extent of the page’s meaningful content (including potential white space) as intended by the document creator. The default value is the page’s crop box.
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetArtBox")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -352,7 +657,25 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentGetArtBox(document, page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentgetrotationangle?language=objc)
+    /// Returns the rotation angle of a page in a PDF document.
+    ///
+    /// Parameters:
+    /// - document: The PDF document to examine.
+    ///
+    /// - page: An integer that specifies the number of the page to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rotation angle of the page, expressed in degrees. If the specified page does not exist, returns `0`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The replacement function for this one is [`rotationAngle`](https://developer.apple.com/documentation/coregraphics/cgpdfpage/rotationangle). For more information see [`CGPDFPage`](https://developer.apple.com/documentation/coregraphics/cgpdfpage).
+    ///
+    ///
     #[doc(alias = "CGPDFDocumentGetRotationAngle")]
     #[deprecated = "No longer supported"]
     #[inline]

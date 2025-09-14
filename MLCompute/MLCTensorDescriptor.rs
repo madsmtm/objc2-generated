@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The MLCTensorDescriptor specifies a tensor descriptor.
+    /// A configuration object you use to create a tensor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensordescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// This class contains the mathematical properties of a tensor, such as data type and shape. It also includes initializers that help you create a tensor descriptor for common use cases, such as convolutional neural networks and recurrent neural networks.
+    ///
+    ///
+    /// The MLCTensorDescriptor specifies a tensor descriptor.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

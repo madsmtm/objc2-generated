@@ -7,19 +7,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode(pub NSInteger);
 impl INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app was successful in providing a set of default values.
+    ///
+    ///
     #[doc(alias = "INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponsecode/failure?language=objc)
+    /// You were unable to provide a set of default values.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from retrieving the information.
+    ///
+    ///
     #[doc(alias = "INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponsecode/unspecified?language=objc)
+    /// You chose not to provide default values.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if you were able to provide defaults but chose not to do so.
+    ///
+    ///
     #[doc(
         alias = "INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCodeUnspecified"
     )]
@@ -35,7 +53,17 @@ unsafe impl RefEncode for INGetAvailableRestaurantReservationBookingDefaultsInte
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponse?language=objc)
+    /// Your app’s response to a get available restaurant reservation booking defaults intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetAvailableRestaurantReservationBookingDefaultsIntentResponse`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponse) object contains the default values to use when booking a reservation at a restaurant. You create instances of this class when confirming or handling an [`INGetAvailableRestaurantReservationBookingDefaultsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent) object.
+    ///
+    /// The system uses the information to improve the overall user experience. Restaurants may have requirements for the minimum or maximum size of a party. Similarly, your service might be able to provide a default date that reflects the first time when reservations are available. The system uses this information both to gather an initial set of valid reservation options and to show the user what requirements the restaurant may impose. Although providing default values is not required, it is highly recommended.
+    ///
+    /// You create an [`INGetAvailableRestaurantReservationBookingDefaultsIntentResponse`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponse) object in the [`confirmGetAvailableRestaurantReservationBookingDefaults:completion:`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling/confirm(getavailablerestaurantreservationbookingdefaults:completion:)) and [`handleGetAvailableRestaurantReservationBookingDefaults:completion:`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling/handle(getavailablerestaurantreservationbookingdefaults:completion:)) methods of handler object. For more information about implementing your handler object, see [`INGetAvailableRestaurantReservationBookingDefaultsIntentHandling`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

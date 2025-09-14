@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innote?language=objc)
+    /// The content and metadata associated with a single note entry in your app.
+    ///
+    /// ## Overview
+    ///
+    /// When SiriKit asks you to create a note, use an instance of this class to specify the contents of the note.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INNote;

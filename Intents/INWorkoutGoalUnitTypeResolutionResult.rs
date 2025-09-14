@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittyperesolutionresult?language=objc)
+    /// A resolution result for the units of a workout goal.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INWorkoutGoalUnitTypeResolutionResult`](https://developer.apple.com/documentation/intents/inworkoutgoalunittyperesolutionresult) object is what you return when resolving parameters that contain a [`INWorkoutGoalUnitType`](https://developer.apple.com/documentation/intents/inworkoutgoalunittype) value. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

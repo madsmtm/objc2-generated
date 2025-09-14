@@ -6,34 +6,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetClimateSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetClimateSettingsInCarIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a resonse code.
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeReady")]
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the climate control settings and initiated the changes, but you haven’t yet received confirmation of the completed changes.
+    ///
+    ///
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully changed the climate control settings to the new values.
+    ///
+    ///
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode/failure?language=objc)
+    /// You were unable to change the climate control settings.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from changing the settings.
+    ///
+    ///
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeFailure")]
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to change the climate control settings.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
@@ -48,7 +78,15 @@ unsafe impl RefEncode for INSetClimateSettingsInCarIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponse?language=objc)
+    /// Your app’s response to a set climate settings in car intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSetClimateSettingsInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponse) object contains the status of changing the climate control settings in the user’s vehicle. You create instances of this class when confirming or handling a set climate settings in car intent.
+    ///
+    /// You create an [`INSetClimateSettingsInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponse) object in the [`confirmSetClimateSettingsInCar:completion:`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling/confirm(intent:completion:)) and [`handleSetClimateSettingsInCar:completion:`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling/handle(intent:completion:)) methods of your set climate settings in car handler object. For more information about implementing your handler object, see [`INSetClimateSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

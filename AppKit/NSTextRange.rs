@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlocation?language=objc)
+    /// An interface you implement that represents an abstract location inside your document’s content.
     pub unsafe trait NSTextLocation: NSObjectProtocol {
         #[unsafe(method(compare:))]
         #[unsafe(method_family = none)]
@@ -16,6 +16,13 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A class that represents a contiguous range between two locations inside document contents.
+    ///
+    /// ## Overview
+    ///
+    /// An `NSTextRange` consists of the starting and terminating locations. There the two basic properties: [`location`](https://developer.apple.com/documentation/appkit/nstextrange/location) and [`endLocation`](https://developer.apple.com/documentation/appkit/nstextrange/endlocation), respectively. The terminating [`location`](https://developer.apple.com/documentation/appkit/nstextrange/location), [`endLocation`](https://developer.apple.com/documentation/appkit/nstextrange/endlocation), is directly following the last location in the range. For example, a location contains a range if `(range.location <= location) && (location < range.endLocation)` is `true`.
+    ///
+    ///
     /// A class that represents a contiguous range between two locations inside document contents.
     ///
     /// An `NSTextRange` consists of the starting and terminating locations. There
@@ -30,8 +37,6 @@ extern_class!(
     /// (location
     /// <
     /// range.endLocation)` is `true`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextrange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextRange;

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialeventtriggerresolutionresult?language=objc)
+    /// A resolution result for the location-based trigger associated with a task.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INSpatialEventTriggerResolutionResult`](https://developer.apple.com/documentation/intents/inspatialeventtriggerresolutionresult) object when resolving parameters containing an [`INSpatialEventTrigger`](https://developer.apple.com/documentation/intents/inspatialeventtrigger) object. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

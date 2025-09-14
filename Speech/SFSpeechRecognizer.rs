@@ -7,34 +7,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The app’s authorization to perform speech recognition.
 /// The app's authorization to perform speech recognition.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFSpeechRecognizerAuthorizationStatus(pub NSInteger);
 impl SFSpeechRecognizerAuthorizationStatus {
+    /// The app’s authorization status has not yet been determined.
+    ///
+    /// ## Discussion
+    ///
+    /// When your app’s status is not determined, calling the [`requestAuthorization:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/requestauthorization(_:)) method prompts the user to grant or deny authorization.
+    ///
+    ///
     /// The app's authorization status has not yet been determined.
     ///
     /// When your app's status is not determined, calling the ``SFSpeechRecognizer/requestAuthorization(_:)`` method prompts the user to grant or deny authorization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/notdetermined?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// The user denied your app’s request to perform speech recognition.
     /// The user denied your app's request to perform speech recognition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/denied?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
     /// The device prevents your app from performing speech recognition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/restricted?language=objc)
+    /// The device prevents your app from performing speech recognition.
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
+    /// The user granted your app’s request to perform speech recognition.
     /// The user granted your app's request to perform speech recognition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus/authorized?language=objc)
     #[doc(alias = "SFSpeechRecognizerAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -48,6 +49,51 @@ unsafe impl RefEncode for SFSpeechRecognizerAuthorizationStatus {
 }
 
 extern_class!(
+    /// An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SFSpeechRecognizer`](https://developer.apple.com/documentation/speech/sfspeechrecognizer) object is the central object for managing the speech recognizer process. Use this object to:
+    ///
+    /// - Request authorization to use speech recognition services.
+    ///
+    /// - Specify the language to use during the recognition process.
+    ///
+    /// - Initiate new speech recognition tasks.
+    ///
+    /// ### Set up speech recognition
+    ///
+    /// Each speech recognizer supports only one language, which you specify at creation time. The successful creation of a speech recognizer does not guarantee that speech recognition services are available. For some languages, the recognizer might require an Internet connection. Use the [`available`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/isavailable) property to find out if speech recognition services are available for the current language.
+    ///
+    /// To initiate the speech recognition process, do the following:
+    ///
+    /// 1. Request authorization to use speech recognition. See [Asking Permission to Use Speech Recognition](https://developer.apple.com/documentation/speech/asking-permission-to-use-speech-recognition).
+    ///
+    /// 2. Create an [`SFSpeechRecognizer`](https://developer.apple.com/documentation/speech/sfspeechrecognizer) object.
+    ///
+    /// 3. Verify the availability of services using the [`available`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/isavailable) property of your speech recognizer object.
+    ///
+    /// 4. Prepare your audio content.
+    ///
+    /// 5. Create a recognition request object—an object that descends from [`SFSpeechRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest).
+    ///
+    /// 6. Call the [`recognitionTaskWithRequest:delegate:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:delegate:)) or [`recognitionTaskWithRequest:resultHandler:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:resulthandler:)) method to begin the recognition process.
+    ///
+    /// The type of recognition request object you create depends on whether you are processing an existing audio file or an incoming stream of audio. For existing audio files, create a [`SFSpeechURLRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest) object. For audio streams, create a [`SFSpeechAudioBufferRecognitionRequest`](https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest) object.
+    ///
+    /// ### Create a great user experience for speech recognition
+    ///
+    /// Here are some tips to consider when adding speech recognition support to your app.
+    ///
+    /// - **Be prepared to handle failures caused by speech recognition limits.** Because speech recognition is a network-based service, limits are enforced so that the service can remain freely available to all apps. Individual devices may be limited in the number of recognitions that can be performed per day, and each app may be throttled globally based on the number of requests it makes per day. If a recognition request fails quickly (within a second or two of starting), check to see if the recognition service became unavailable. If it is, you may want to ask users to try again later.
+    ///
+    /// - **Plan for a one-minute limit on audio duration.** Speech recognition places a relatively high burden on battery life and network usage. To minimize this burden, the framework stops speech recognition tasks that last longer than one minute. This limit is similar to the one for keyboard-related dictation.
+    ///
+    /// - **Remind the user when your app is recording.** For example, display a visual indicator and play sounds at the beginning and end of speech recognition to help users understand that they’re being actively recorded. You can also display speech as it is being recognized so that users understand what your app is doing and see any mistakes made during the recognition process.
+    ///
+    /// - **Do not perform speech recognition on private or sensitive information.** Some speech is not appropriate for recognition. Don’t send passwords, health or financial data, and other sensitive speech for recognition.
+    ///
+    ///
     /// An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
     ///
     /// An ``SFSpeechRecognizer`` object is the central object for managing the speech recognizer process. Use this object to:
@@ -81,8 +127,6 @@ extern_class!(
     /// - **Plan for a one-minute limit on audio duration.** Speech recognition places a relatively high burden on battery life and network usage. To minimize this burden, the framework stops speech recognition tasks that last longer than one minute. This limit is similar to the one for keyboard-related dictation.
     /// - **Remind the user when your app is recording.** For example, display a visual indicator and play sounds at the beginning and end of speech recognition to help users understand that they're being actively recorded. You can also display speech as it is being recognized so that users understand what your app is doing and see any mistakes made during the recognition process.
     /// - **Do not perform speech recognition on private or sensitive information.** Some speech is not appropriate for recognition. Don't send passwords, health or financial data, and other sensitive speech for recognition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognizer;
@@ -304,9 +348,14 @@ impl SFSpeechRecognizer {
 extern_protocol!(
     /// A protocol that you adopt in your objects to track the availability of a speech recognizer.
     ///
-    /// A speech recognizer's availability can change due to the device's Internet connection or other factors. Use this protocol's optional method to track those changes and provide an appropriate response. For example, when speech recognition becomes unavailable, you might disable related features in your app.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerdelegate?language=objc)
+    /// A speech recognizer’s availability can change due to the device’s Internet connection or other factors. Use this protocol’s optional method to track those changes and provide an appropriate response. For example, when speech recognition becomes unavailable, you might disable related features in your app.
+    ///
+    ///
+    /// A protocol that you adopt in your objects to track the availability of a speech recognizer.
+    ///
+    /// A speech recognizer's availability can change due to the device's Internet connection or other factors. Use this protocol's optional method to track those changes and provide an appropriate response. For example, when speech recognition becomes unavailable, you might disable related features in your app.
     pub unsafe trait SFSpeechRecognizerDelegate: NSObjectProtocol {
         /// Tells the delegate that the availability of its associated speech recognizer changed.
         ///

@@ -4,16 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationactiontype?language=objc)
+/// Constants that describe the type of reservation action.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INReservationActionType(pub NSInteger);
 impl INReservationActionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationactiontype/unknown?language=objc)
+    /// An unknown state.
     #[doc(alias = "INReservationActionTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservationactiontype/checkin?language=objc)
+    /// A check-in action.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`validDuration`](https://developer.apple.com/documentation/intents/inreservationaction/validduration) property determines the earliest and latest times that the user can check in for their reservation.
+    ///
+    ///
     #[doc(alias = "INReservationActionTypeCheckIn")]
     pub const CheckIn: Self = Self(1);
 }

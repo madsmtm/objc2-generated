@@ -7,6 +7,21 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A base class that represents a network device in a virtual machine.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate a [`VZNetworkDevice`](https://developer.apple.com/documentation/virtualization/vznetworkdevice) directly. When you create a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) instance with a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) the system creates the number of network devices based on the number of [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) objects you specify in the VM configuration. Before initializing the virtual machine (VM), validate the configuration using [`validateWithError:`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/validate()) to ensure the user’s computer supports the number of network and other devices you’ve specified.
+    ///
+    /// For many purposes, a single network that uses a Network Address Translation (NAT) attachment and connects the VM to the host computer’s network is sufficient. You can use additional network interfaces for purposes of your own design, such as:
+    ///
+    /// - Bridging several physical interfaces to connect to multiple networks.
+    ///
+    /// - Using the file descriptor attachment to create specialized connections for different purposes.
+    ///
+    /// You access the network devices through the `VZVirtualMachine`.[`networkDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/networkdevices) property. The network devices map to their respective configurations in a one to one relationship, where index `i` of `VZVirtualMachine.networkDevices` corresponds to the network device configuration at index `i` set on `VZVirtualMachineConfiguration`.[`networkDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices).
+    ///
+    ///
     /// Class representing a network device in a virtual machine.
     ///
     /// VZNetworkDevice should not be instantiated directly.
@@ -16,8 +31,6 @@ extern_class!(
     ///
     ///
     /// See: VZNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZNetworkDevice;

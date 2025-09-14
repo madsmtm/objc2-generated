@@ -8,29 +8,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchivedomain?language=objc)
+    /// The domain for Metal binary archive errors.
     pub static MTLBinaryArchiveDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code?language=objc)
+/// Error codes when creating binary archives of compiled shader code.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBinaryArchiveError(pub NSUInteger);
 impl MTLBinaryArchiveError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/none?language=objc)
+    /// An error code that represents the absence of any problems.
     #[doc(alias = "MTLBinaryArchiveErrorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/invalidfile?language=objc)
+    /// An error code that indicates an app is using an invalid reference to an archive file, typically related to a URL.
     #[doc(alias = "MTLBinaryArchiveErrorInvalidFile")]
     pub const InvalidFile: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/unexpectedelement?language=objc)
+    /// An error code that indicates a problem with a configuration, typically in a descriptor or an archive’s inability to add linked functions.
     #[doc(alias = "MTLBinaryArchiveErrorUnexpectedElement")]
     pub const UnexpectedElement: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/compilationfailure?language=objc)
+    /// An error code that indicates the archive’s inability to compile its contents, typically when serializing it to a URL.
     #[doc(alias = "MTLBinaryArchiveErrorCompilationFailure")]
     pub const CompilationFailure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchiveerror-swift.struct/code/internalerror?language=objc)
+    /// An error code that indicates the Metal framework has an internal problem.
+    ///
+    /// ## Discussion
+    ///
+    /// You can report the scenario that generated this error code with [Feedback Assistant](https://feedbackassistant.apple.com).
+    ///
+    ///
     #[doc(alias = "MTLBinaryArchiveErrorInternalError")]
     pub const InternalError: Self = Self(4);
 }
@@ -44,9 +50,8 @@ unsafe impl RefEncode for MTLBinaryArchiveError {
 }
 
 extern_class!(
+    /// A description of a binary shader archive that you want to create.
     /// A class used to indicate how an archive should be created
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchivedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLBinaryArchiveDescriptor;
@@ -101,6 +106,7 @@ impl DefaultRetained for MTLBinaryArchiveDescriptor {
 }
 
 extern_protocol!(
+    /// A container for pipeline state descriptors and their associated compiled shader code.
     /// A container of pipeline state descriptors and their associated compiled code.
     ///
     /// A MTLBinaryArchive allows to persist compiled pipeline state objects for a device, which can be used to skip recompilation on a subsequent run of the app.
@@ -116,8 +122,6 @@ extern_protocol!(
     /// Use MTLBinaryArchive to augment that cache by accelerating pipeline state creation even on the first run of an app.
     /// Updating a MTLBinaryArchive at runtime in a shipping app configuration is not recommended; such a scenario requires corruption resiliency, careful storage space management and may cache hard-to-reproduce errors.
     /// These kind of issues are handled transparently by the Metal maintained cache, therefore we recommend that MTLBinaryArchive is populated during development time and shipped as an asset.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbinaryarchive?language=objc)
     pub unsafe trait MTLBinaryArchive: NSObjectProtocol {
         /// A string to help identify this object.
         #[unsafe(method(label))]

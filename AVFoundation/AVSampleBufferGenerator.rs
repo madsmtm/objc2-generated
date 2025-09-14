@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffergenerator?language=objc)
+    /// An object that creates sample buffers.
+    ///
+    /// ## Overview
+    ///
+    /// Each request for `CMSampleBuffer` creation is described in an `AVSampleBufferRequest` object. The [`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) opaque objects are returned synchronously. If requested, sample data may be loaded asynchronously (depending on file format support).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferGenerator;
@@ -128,6 +134,7 @@ impl AVSampleBufferGenerator {
     );
 }
 
+/// The modes that describe the buffer request direction.
 /// Indicates the direction in which the samples should be generated for the AVSampleBufferRequest.
 ///
 ///
@@ -136,20 +143,36 @@ impl AVSampleBufferGenerator {
 /// Indicates zero or more following samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
 ///
 /// Indicates zero or more preceeding samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestDirection(pub NSInteger);
 impl AVSampleBufferRequestDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum/forward?language=objc)
+    /// The number of following samples may be zero or greater.
+    ///
+    /// ## Discussion
+    ///
+    /// The number of following samples allowed is subject to the [`limitCursor`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/limitcursor), [`preferredMinSampleCount`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/preferredminsamplecount), and [`maxSampleCount`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/maxsamplecount) property values.
+    ///
+    ///
     #[doc(alias = "AVSampleBufferRequestDirectionForward")]
     pub const Forward: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum/none?language=objc)
+    /// A single sample will be loaded.
+    ///
+    /// ## Discussion
+    ///
+    /// When this constant is set, the [`limitCursor`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/limitcursor), [`preferredMinSampleCount`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/preferredminsamplecount), and [`maxSampleCount`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/maxsamplecount) properties are ignored.
+    ///
+    ///
     #[doc(alias = "AVSampleBufferRequestDirectionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum/reverse?language=objc)
+    /// The number of previous samples may be zero or greater.
+    ///
+    /// ## Discussion
+    ///
+    /// The number of previous samples allowed is subject to the [`limitCursor`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/limitcursor), [`preferredMinSampleCount`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/preferredminsamplecount), and [`maxSampleCount`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/maxsamplecount) property values.
+    ///
+    ///
     #[doc(alias = "AVSampleBufferRequestDirectionReverse")]
     pub const Reverse: Self = Self(-1);
 }
@@ -162,6 +185,7 @@ unsafe impl RefEncode for AVSampleBufferRequestDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The modes in which a sample buffer generator processes a request.
 /// Defines the allowed values for AVSampleBufferRequest's mode property.
 ///
 ///
@@ -170,20 +194,32 @@ unsafe impl RefEncode for AVSampleBufferRequestDirection {
 /// AVSampleBufferRequestModeScheduled indicates that a request is needed by the time AVSampleBufferGenerator's timebase reaches the CMSampleBuffer's presentationTime or, if specificed, AVSampleBufferRequest's overrideTime. The AVSampleBufferGenerator will attempt to deliver sample data with sufficient leeway for downstream processing. It will also attempt to hold off on loading data until the CMSampleBuffer is needed. If AVSampleBufferGenerator's timebase has a rate of zero, this mode behaves like AVSampleBufferRequestModeImmediate.
 ///
 /// The AVSampleBufferGenerator will attempt to read data for opportunistic requests as soon as possible. However, in situations with multiple competing requests, the AVSampleBufferGenerator may defer an opportunistic request in favor of another immediate request or a scheduled requests with a presentation time close to the timebase time. Because a request with AVSampleBufferRequestModeOpportunistic may be postponed indefinitely, this mode should not be used for time-sensitive processing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestMode(pub NSInteger);
 impl AVSampleBufferRequestMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum/immediate?language=objc)
+    /// A mode that indicates that sample buffer creation requests load data as soon as possible.
     #[doc(alias = "AVSampleBufferRequestModeImmediate")]
     pub const Immediate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum/scheduled?language=objc)
+    /// A mode that indicates that sample buffer creation requests load data according to a scheduled deadline.
     #[doc(alias = "AVSampleBufferRequestModeScheduled")]
     pub const Scheduled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum/opportunistic?language=objc)
+    /// A mode that indicates that opportunistic sample buffer creation requests load data as soon as possible.
+    ///
+    /// ## Discussion
+    ///
+    /// In situations with multiple competing requests, a sample buffer generator may defer an opportunistic request in favor of another immediate request, or a scheduled requests with a presentation time close to the timebase time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The system may postpone an opportunistic request indefinitely. Don’t use this mode for time-sensitive processing.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "AVSampleBufferRequestModeOpportunistic")]
     pub const Opportunistic: Self = Self(2);
 }
@@ -197,9 +233,8 @@ unsafe impl RefEncode for AVSampleBufferRequestMode {
 }
 
 extern_class!(
+    /// An object that describes a sample buffer creation request.
     /// An AVSampleBufferRequest describes a CMSampleBuffer creation request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferRequest;
@@ -293,14 +328,19 @@ impl AVSampleBufferRequest {
 }
 
 extern_class!(
+    /// An object that generates sample buffers in a batch.
+    ///
+    /// ## Overview
+    ///
+    /// The benefit of batching is it aggregates adjacent I/O requests and overlaps them when possible for all sample buffers within the batch.
+    ///
+    ///
     /// An AVSampleBufferGeneratorBatch provides an optimized way to load sample data asynchronously for multiple CMSampleBuffers in an asset.
     ///
     /// The AVSampleBufferGeneratorBatch loads sample data asynchronously, by aggregating adjacent I/O requests and overlapping them when possible for all CMSampleBuffers within a batch.
     /// An AVSampleBufferGeneratorBatch is associated with an AVSampleBufferGenerator. See -[AVSampleBufferGenerator makeBatch] to create an AVSampleBufferGeneratorBatch.
     /// See -[AVSampleBufferGeneratorBatch createSampleBufferForRequest: addingToBatch: error:] to create a CMSampleBuffer, defer I/O for its data, and build up a batch.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffergeneratorbatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferGeneratorBatch;

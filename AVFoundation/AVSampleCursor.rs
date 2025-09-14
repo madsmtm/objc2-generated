@@ -9,7 +9,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursor?language=objc)
+    /// An object that provides information about the media sample at the cursor’s current position.
+    ///
+    /// ## Overview
+    ///
+    /// You position a sample cursor at a specific media sample in a sequence of samples contained in a higher-level object, like an [`AVAssetTrack`](https://developer.apple.com/documentation/avfoundation/avassettrack). You can move it to a new position in that sequence either backwards or forwards, either in decode order or in presentation order. You can also request moving it according to a count of samples or a delta in time.
+    ///
+    /// Use a sample cursor to get information about the media sample such as its duration, timestamps, dependency information, and so on. You can also use them to synchronously to perform I/O in order to load media data of one or more media samples into memory.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleCursor;
@@ -172,6 +180,7 @@ impl AVSampleCursor {
     );
 }
 
+/// A structure that describes the attributes of media samples to consider when resynchronizing a decoder.
 /// A struct for describing attributes of a media sample for consideration when resynchronizing a decoder.
 /// Field: sampleIsFullSync
 /// Indicates whether the sample is a full sync sample, also known as an Instantaneous Decoder Refresh sample, and is sufficient in itself to completely resynchronize a decoder.
@@ -179,8 +188,6 @@ impl AVSampleCursor {
 /// Indicates whether the sample is a partial sync sample.
 /// Field: sampleIsDroppable
 /// Indicates whether the sample is droppable.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorsyncinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVSampleCursorSyncInfo {
@@ -198,6 +205,7 @@ unsafe impl RefEncode for AVSampleCursorSyncInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value for describing dependencies between a media sample and other media samples in the same sample sequence.
 /// A struct for describing dependencies between a media sample and other media samples in the same sample sequence.
 /// Field: sampleIndicatesWhetherItHasDependentSamples
 /// Indicates whether the presence or absence of other samples that are dependent on the sample is known.
@@ -211,8 +219,6 @@ unsafe impl RefEncode for AVSampleCursorSyncInfo {
 /// Indicates whether the presence of redundant coding of the sample is known.
 /// Field: sampleHasRedundantCoding
 /// If sampleIndicatesWhetherItHasRedundantCoding is YES, indicates whether the sample has redundant coding.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursordependencyinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVSampleCursorDependencyInfo {
@@ -242,13 +248,12 @@ unsafe impl RefEncode for AVSampleCursorDependencyInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that describes the independent decodability of audio samples.
 /// A struct for describing the independent decodability of audio samples
 /// Field: audioSampleIsIndependentlyDecodable
 /// Indicates whether the sample is independently decodable.  Will be YES for Immediate Playout Frames (IPFs) and Independent Frames (IFs).
 /// Field: audioSamplePacketRefreshCount
 /// If audioSampleIsIndependentlyDecodable is YES, indicates how many samples, starting at this sample, must be fed to the decoder to achieve full decoder refresh.  Will be zero for Immediate Playout Frames (IPFs).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursoraudiodependencyinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVSampleCursorAudioDependencyInfo {
@@ -360,6 +365,7 @@ impl AVSampleCursor {
     );
 }
 
+/// A structure that indicates the offset and length of storage for a media sample or its chunk.
 /// A struct for indicating the offset and length of storage occupied by a media sample or its chunk.
 /// Field: offset
 /// The offset of the first byte of storage occupied by a media sample or its chunk.
@@ -367,8 +373,6 @@ impl AVSampleCursor {
 /// The count of bytes of storage occupied by a media sample or its chunk.
 ///
 /// Like NSRange, but rangier.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorstoragerange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVSampleCursorStorageRange {
@@ -384,6 +388,7 @@ unsafe impl RefEncode for AVSampleCursorStorageRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that provides information about a chunk of media samples.
 /// Provides information about a chunk of media samples.
 /// Field: chunkSampleCount
 /// The count of media samples in the chunk.
@@ -393,8 +398,6 @@ unsafe impl RefEncode for AVSampleCursorStorageRange {
 /// YES if all of the samples in the chunk have the same duration.
 /// Field: currentChunkHasUniformFormatDescriptions
 /// YES if all of the samples in the chunk have the same format description.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplecursorchunkinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVSampleCursorChunkInfo {

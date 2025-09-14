@@ -12,43 +12,49 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
+    /// The maximum size of a message list item’s image.
+    ///
+    /// ## Discussion
+    ///
+    /// At runtime, use this value to determine the maximum size of an image that a message list item can display in its leading and trailing regions.
+    ///
+    ///
     /// Maximum size of an image or accessory image in a
     /// `CPMessageListItem.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaximummessageitemimagesize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static CPMaximumMessageItemImageSize: CGSize;
 }
 
 extern "C" {
     /// Maximum size of an image for the detailed text leading image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaximummessageitemleadingdetailtextimagesize?language=objc)
+    /// Maximum size of an image for the detailed text leading image.
     #[cfg(feature = "objc2-core-foundation")]
     pub static CPMaximumMessageItemLeadingDetailTextImageSize: CGSize;
 }
 
-/// Types of glyphs that may appear in the leading region of a message cell.
+/// The accessories that a message list item can display in its leading region.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem?language=objc)
+/// ## Overview
+///
+/// Use these constants when creating instances of [`CPMessageListItemLeadingConfiguration`](https://developer.apple.com/documentation/carplay/cpmessagelistitemleadingconfiguration). A leading item can provide additional context for a list item’s contents, or help communicate its behavior.
+///
+///
+/// Types of glyphs that may appear in the leading region of a message cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPMessageLeadingItem(pub NSInteger);
 impl CPMessageLeadingItem {
+    /// Don’t show a leading item.
     /// The list item will render without a leading glyph.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem/none?language=objc)
     #[doc(alias = "CPMessageLeadingItemNone")]
     pub const None: Self = Self(0);
+    /// Show a pin icon.
     /// The list item will render with a pin glyph on the leading side.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem/pin?language=objc)
     #[doc(alias = "CPMessageLeadingItemPin")]
     pub const Pin: Self = Self(1);
+    /// Show a star icon.
     /// The list item will render with a star glyph on the leading side.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem/star?language=objc)
     #[doc(alias = "CPMessageLeadingItemStar")]
     pub const Star: Self = Self(2);
 }
@@ -61,22 +67,25 @@ unsafe impl RefEncode for CPMessageLeadingItem {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Types of glyphs that may appear in the trailing region of a message cell.
+/// The accessories that a message list item can display in its trailing region.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem?language=objc)
+/// ## Overview
+///
+/// Use these constants when creating instances of [`CPMessageListItemTrailingConfiguration`](https://developer.apple.com/documentation/carplay/cpmessagelistitemtrailingconfiguration). A trailing item can provide additional context for a list item’s contents, or help communicate its behavior.
+///
+///
+/// Types of glyphs that may appear in the trailing region of a message cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPMessageTrailingItem(pub NSInteger);
 impl CPMessageTrailingItem {
+    /// Don’t show a trailing item.
     /// The list item will render without a trailing glyph.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem/none?language=objc)
     #[doc(alias = "CPMessageTrailingItemNone")]
     pub const None: Self = Self(0);
+    /// Show a muted speaker icon.
     /// The list item will render with a mute glyph on the trailing side.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem/mute?language=objc)
     #[doc(alias = "CPMessageTrailingItemMute")]
     pub const Mute: Self = Self(1);
 }
@@ -90,10 +99,17 @@ unsafe impl RefEncode for CPMessageTrailingItem {
 }
 
 extern_class!(
+    /// An object that describes the appearance of a message list item’s leading region.
+    ///
+    /// ## Overview
+    ///
+    /// Use a leading configuration to describe the visual elements that a message list item’s leading region contains. The region can show a [`CPMessageLeadingItem`](https://developer.apple.com/documentation/carplay/cpmessageleadingitem), an image, and an unread indicator.
+    ///
+    /// Configurations are immutable. To modify the list item’s leading configuration, update its [`leadingConfiguration`](https://developer.apple.com/documentation/carplay/cpmessagelistitem/leadingconfiguration) property with a new configuration. CarPlay detects the change and redraws the message list item.
+    ///
+    ///
     /// `CPMessageListItemLeadingConfiguration`encapsulates the configuration options for
     /// the leading side of your message list cell.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagelistitemleadingconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPMessageListItemLeadingConfiguration;
@@ -165,10 +181,17 @@ impl CPMessageListItemLeadingConfiguration {
 }
 
 extern_class!(
+    /// An object that describes the appearance of a message list item’s trailing region.
+    ///
+    /// ## Overview
+    ///
+    /// Use a trailing configuration to describe the visual elements that a message list item’s trailing region contains. The region can show a [`CPMessageTrailingItem`](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem) and an image.
+    ///
+    /// Configurations are immutable. To modify the list item’s trailing configuration, update its [`trailingConfiguration`](https://developer.apple.com/documentation/carplay/cpmessagelistitem/trailingconfiguration) property with a new configuration. CarPlay detects the change and redraws the message list item.
+    ///
+    ///
     /// `CPMessageListItemTrailingConfiguration`encapsulates the configuration options for
     /// the trailing side of your message list cell.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagelistitemtrailingconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPMessageListItemTrailingConfiguration;
@@ -231,6 +254,27 @@ impl CPMessageListItemTrailingConfiguration {
 }
 
 extern_class!(
+    /// A list template row that represents a conversation or contact.
+    ///
+    /// ## Overview
+    ///
+    /// Use `CPMessageListItem` to display information about a conversation or a contact in a list template. Unlike [`CPListItem`](https://developer.apple.com/documentation/carplay/cplistitem), you don’t provide a selection handler. Instead, when the user selects the row, CarPlay invokes Siri using the parameters you provide and begins a message compose, read, or reply flow.
+    ///
+    /// The behavior of the list item when the user selects it depends on how you initialize or configure it. If the item has a phone number or email address, Siri launches the message compose flow. If the list item has an unread indicator, Siri launches the message read flow. Otherwise, Siri launches the message reply flow.
+    ///
+    /// `CPMessageListItem` can display various auxiliary items in its leading and trailing regions. You describe these using a configuration object for each region. See [`leadingConfiguration`](https://developer.apple.com/documentation/carplay/cpmessagelistitem/leadingconfiguration) and [`trailingConfiguration`](https://developer.apple.com/documentation/carplay/cpmessagelistitem/trailingconfiguration) for more information.
+    ///
+    /// CarPlay doesn’t support custom list item types. Instead, use the [`userInfo`](https://developer.apple.com/documentation/carplay/cpmessagelistitem/userinfo) property to attach a value to the list item that provides additional context, such as specifying  a model object that corresponds to the item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `CPMessageListItem` is available only in apps that have the communication entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// `CPMessageListItem`is a special variant of a list item for use in a
     /// `CPListTemplate.`Unlike
     /// `CPListItem,`your application will not receive a callback when the user
@@ -248,8 +292,6 @@ extern_class!(
     /// `CPMessageListItem`initializer that
     /// accepts a full name and phone/email. When the user selects this item, Siri will perform
     /// a message compose flow.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagelistitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPMessageListItem;

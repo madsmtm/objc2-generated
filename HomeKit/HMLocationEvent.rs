@@ -10,10 +10,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An event that is evaluated based on entry to or exit from a region.
     /// This class represents an event that is evaluated based on entry to and/or
     /// exit from a Region
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmlocationevent?language=objc)
     #[unsafe(super(HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]
@@ -116,10 +115,9 @@ impl HMLocationEvent {
 }
 
 extern_class!(
+    /// A mutable event that is evaluated based on entry to or exit from a region.
     /// This class represents an event that is evaluated based on entry to and/or
     /// exit from a Region
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutablelocationevent?language=objc)
     #[unsafe(super(HMLocationEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]

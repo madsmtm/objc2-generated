@@ -9,29 +9,90 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// SensitivityAnalysis Policy on device, represents type of interventions when enabled
+/// Configurations that represent the way the framework checks for sensitive content and how the app responds.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy?language=objc)
+/// ## Overview
+///
+/// This enumeration defines the possible values for the [`SCSensitivityAnalyzer`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer) property [`analysisPolicy`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analysispolicy). The values of the policy determine how your app manages sensitive content detection.
+///
+/// ```swift
+/// // Check the current analysis policy.
+/// let policy = analyzer.analysisPolicy
+/// if policy == .disabled { return }
+/// else if policy == .simpleInterventions {
+///     // The Sensitive Content Warning setting is active.
+/// } else if policy == .descriptiveInterventions {
+///     // The Communication Safety setting is active.
+/// }
+/// ```
+///
+/// For guidance about observing the active analysis policy, see [Detecting nudity in media and providing intervention options](https://developer.apple.com/documentation/sensitivecontentanalysis/detecting-nudity-in-media-and-providing-intervention-options).
+///
+///
+/// SensitivityAnalysis Policy on device, represents type of interventions when enabled
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCSensitivityAnalysisPolicy(pub NSInteger);
 impl SCSensitivityAnalysisPolicy {
-    /// No feature enabled that is requiring Sensitive Analysis on device, analysis will be disabled
+    /// An indicator that the app lacks access to use the framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/disabled?language=objc)
+    /// ## Discussion
+    ///
+    /// If [`analysisPolicy`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analysispolicy) is this value, the framework doesn’t detect nudity. The system disables sensitive content analysis under any of the following conditions:
+    ///
+    /// - The app lacks the necessary [`com.apple.developer.sensitivecontentanalysis.client`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.sensitivecontentanalysis.client) entitlement.
+    ///
+    /// - Neither the Sensitive Content Warning user preference nor the Communication Safety parental control in Screen Time are active.
+    ///
+    /// - The user disables the Sensitive Content Warnings toggle in your app’s Settings.
+    ///
+    ///
+    /// No feature enabled that is requiring Sensitive Analysis on device, analysis will be disabled
     #[doc(alias = "SCSensitivityAnalysisPolicyDisabled")]
     pub const Disabled: Self = Self(0);
+    /// An indicator that user preference requests discrete detection of sensitive content.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`analysisPolicy`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analysispolicy) is this value, it indicates that the user enables both of the following:
+    ///
+    /// - Sensitive Content Warnings user preference
+    ///
+    /// - Sensitive Content Warnings in your app’s settings
+    ///
+    /// When your app detects nudity under this policy, your app needs to:
+    ///
+    /// - Keep the intervention minimal by describing the issue briefly and updating your app’s UI unobstructively. For example, consider blurring and annotating the area that otherwise presents the sensitive content versus raising a new fullscreen alert.
+    ///
+    /// - Intervene on the receipt of sensitve content over the network but allow the app to transmit content over the network unchecked.
+    ///
+    ///
     /// Sensitive Analysis is enabled on device through "Sensitive Content Warning" in Settings.
     /// It is expected that brief/inline UI, like simple "show" button.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/simpleinterventions?language=objc)
     #[doc(alias = "SCSensitivityAnalysisPolicySimpleInterventions")]
     pub const SimpleInterventions: Self = Self(1);
+    /// An indicator that user preference requests overt detection of sensitive content.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`analysisPolicy`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analysispolicy) is this value, it indicates that the user enables both of the following:
+    ///
+    /// - Communication Safety parental control in Screen Time
+    ///
+    /// - Sensitive Content Warnings in your app’s settings
+    ///
+    /// When your app detects nudity under this policy, your app needs to:
+    ///
+    /// - Use child-appropriate language, such as broadly understood vocabulary
+    ///
+    /// - Present an alert that fills the full screen.
+    ///
+    /// - Intervene on the receipt of sensitve content over a network and before transmitting sensitive content over a network.
+    ///
+    ///
     /// Sensitive Analysis is enabled for kids or teens in ScreenTime through "Communications Safety" feature.
     /// It's expected to have more descriptive UI for the user, explaining potential risks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/descriptiveinterventions?language=objc)
     #[doc(alias = "SCSensitivityAnalysisPolicyDescriptiveInterventions")]
     pub const DescriptiveInterventions: Self = Self(2);
 }
@@ -45,9 +106,36 @@ unsafe impl RefEncode for SCSensitivityAnalysisPolicy {
 }
 
 extern_class!(
-    /// Main class for content sensitivity analysis
+    /// An object that analyzes media for sensitive content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer?language=objc)
+    /// ## Overview
+    ///
+    /// To check an image for nudity, call one of this class’s `analyzeImage` methods and pass in a user-provided image, or a URL to the image.
+    ///
+    /// ```swift
+    /// // Analyze an image file at a particular URL.
+    /// let response = try await analyzer.analyzeImage(at: url)
+    /// ```
+    ///
+    /// To analyze a video file, pass a URL to a video on disk into [`videoAnalysis(forFileAt:)`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysis(forfileat:)) and wait for the [`hasSensitiveContent()`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/videoanalysishandler/hassensitivecontent()) method to complete.
+    ///
+    /// ```swift
+    /// let handler = analyzer.videoAnalysis(forFileAt: videoFileUrl)
+    /// let response = try await handler.hasSensitiveContent()
+    /// ```
+    ///
+    /// This class successfully detects nudity only when [`analysisPolicy`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analysispolicy) is a value other than [`SCSensitivityAnalysisPolicyDisabled`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy/disabled).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To analyze a video stream rather than static files, see [`SCVideoStreamAnalyzer`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Main class for content sensitivity analysis
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCSensitivityAnalyzer;

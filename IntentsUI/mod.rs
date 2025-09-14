@@ -64,14 +64,10 @@ use crate::*;
 
 extern "C" {
     /// Project version number for IntentsUI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intentsui/intentsuiversionnumber?language=objc)
     pub static IntentsUIVersionNumber: c_double;
 }
 
 extern "C" {
     /// Project version string for IntentsUI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intentsui/intentsuiversionstring?language=objc)
     pub static IntentsUIVersionString: *mut c_uchar;
 }

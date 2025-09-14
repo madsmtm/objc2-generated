@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnection?language=objc)
+    /// An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.
+    ///
+    /// ## Overview
+    ///
+    /// Connection objects form the backbone of the distributed objects mechanism and normally operate in the background. You use the methods of [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) explicitly when vending an object to other applications, when accessing such a vended object through a proxy, and when altering default communication parameters. At other times, you simply interact with a vended object or its proxy.
+    ///
+    /// A single connection object may be shared by multiple threads and used to access a vended object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -339,21 +347,41 @@ impl DefaultRetained for NSConnection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectionreplymode?language=objc)
+    /// The mode to indicate an `NSConnection` object waiting for replies.
+    ///
+    /// ## Discussion
+    ///
+    /// You should rarely need to use this mode.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionReplyMode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondiddienotification?language=objc)
+    /// Posted when an `NSConnection` object is deallocated or when it’s notified that its `NSPort` object has become invalid. The notification object is the `NSConnection` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// An `NSConnection` object attached to a remote `NSSocketPort` object cannot detect when the remote port becomes invalid, even if the remote port is on the same machine. Therefore, it cannot post this notification when the connection is lost. Instead, you must detect the timeout error when the next message is sent.
+    ///
+    /// The `NSConnection` object posting this notification is no longer useful, so all receivers should unregister themselves for any notifications involving the `NSConnection` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionDidDieNotification: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondelegate?language=objc)
+    /// An interface for interacting with low-level, interprocess connections.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsconnectiondelegate) protocol defines the optional methods implemented by delegates of [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) objects.
+    ///
+    ///
     #[deprecated = "Use NSXPCConnection instead"]
     pub unsafe trait NSConnectionDelegate: NSObjectProtocol {
         #[deprecated = "Use NSXPCConnection instead"]
@@ -415,21 +443,31 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfailedauthenticationexception?language=objc)
+    /// Raised by `NSConnection` on receipt of a remote message the delegate doesn’t authenticate.
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSFailedAuthenticationException: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconnectiondidinitializenotification?language=objc)
+    /// Posted when an `NSConnection` object is initialized using [`initWithReceivePort:sendPort:`](https://developer.apple.com/documentation/foundation/nsconnection/initwithreceiveport:sendport:) (the designated initializer for `NSConnection`). The notification object is the `NSConnection` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// ## Discussion
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "Use NSXPCConnection instead"]
     pub static NSConnectionDidInitializeNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobjectrequest?language=objc)
+    /// An object used by the distributed objects system to help handle invocations between different processes.
+    ///
+    /// ## Overview
+    ///
+    /// Do not create [`NSDistantObjectRequest`](https://developer.apple.com/documentation/foundation/nsdistantobjectrequest) objects directly. Unless you are getting involved with the low-level details of distributed objects, there should never be a need to access an [`NSDistantObjectRequest`](https://developer.apple.com/documentation/foundation/nsdistantobjectrequest). To intercept and possibly process requests yourself, implement the [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) delegate method [`connection:handleRequest:`](https://developer.apple.com/documentation/foundation/nsconnectiondelegate/connection:handlerequest:).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]

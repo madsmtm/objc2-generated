@@ -8,7 +8,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarmanager?language=objc)
+    /// An object that describes the configuration of the status bar.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIStatusBarManager`](https://developer.apple.com/documentation/uikit/uistatusbarmanager) object to get the current configuration of the status bar for its associated scene. You don’t create [`UIStatusBarManager`](https://developer.apple.com/documentation/uikit/uistatusbarmanager) objects directly. Instead, you retrieve an existing object from the [`statusBarManager`](https://developer.apple.com/documentation/uikit/uiwindowscene/statusbarmanager) property of a [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene) object.
+    ///
+    /// You don’t use this object to modify the configuration of the status bar. Instead, you set the status bar configuration individually for each of your [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) objects. For example, to modify the default visibility of the status bar, override the [`prefersStatusBarHidden`](https://developer.apple.com/documentation/uikit/uiviewcontroller/prefersstatusbarhidden) property of your view controller.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// An abstract base class for storing reference signatures and their associated metadata.
     ///
+    /// ## Overview
+    ///
     /// This is the base class of your custom catalog.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shcatalog?language=objc)
+    ///
+    /// An abstract base class for storing reference signatures and their associated metadata.
+    ///
+    /// This is the base class of your custom catalog.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHCatalog;

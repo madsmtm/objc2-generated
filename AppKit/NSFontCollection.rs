@@ -10,20 +10,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility?language=objc)
+/// Constants that specify the visibility of font collections.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontCollectionVisibility(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionVisibility: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility/process?language=objc)
+/// The font collection is visible within this process and is not persistent.
         #[doc(alias = "NSFontCollectionVisibilityProcess")]
         const Process = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility/user?language=objc)
+/// The font collection is visible to all processes and is stored persistently.
         #[doc(alias = "NSFontCollectionVisibilityUser")]
         const User = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility/computer?language=objc)
+/// The font collection is visible to all users and is stored persistently.
         #[doc(alias = "NSFontCollectionVisibilityComputer")]
         const Computer = 1<<2;
     }
@@ -37,33 +37,45 @@ unsafe impl RefEncode for NSFontCollectionVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionmatchingoptionkey?language=objc)
+/// These constants are used by the [`matchingDescriptorsWithOptions:`](https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors(options:)) and [`matchingDescriptorsForFamily:options:`](https://developer.apple.com/documentation/appkit/nsfontcollection/matchingdescriptors(forfamily:options:)) options dictionary parameters.
 // NS_TYPED_ENUM
 pub type NSFontCollectionMatchingOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionmatchingoptionkey/includedisabledfontsoption?language=objc)
+    /// An NSNumber object containing a Boolean value specifying whether disabled fonts should be included in the list of matching descriptors.
+    ///
+    /// ## Discussion
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) indicates they should be included. When unspecified, CoreText assumes [`false`](https://developer.apple.com/documentation/swift/false). This option is intended only for font management applications. This option will make descriptor matching slower.
+    ///
+    ///
     pub static NSFontCollectionIncludeDisabledFontsOption:
         &'static NSFontCollectionMatchingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionmatchingoptionkey/removeduplicatesoption?language=objc)
+    /// An NSNumber object containing a Boolean value controlling whether more than one copy of a font with the same PostScript name should be included in the list of matching descriptors.
     pub static NSFontCollectionRemoveDuplicatesOption: &'static NSFontCollectionMatchingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionmatchingoptionkey/disallowautoactivationoption?language=objc)
+    /// An NSNumber object containing a Boolean value specifying that auto-activation should not be used to find missing fonts.
     pub static NSFontCollectionDisallowAutoActivationOption:
         &'static NSFontCollectionMatchingOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/name?language=objc)
+/// The constants represent the standard mutable collection names—these names are included in the list of [`allFontCollectionNames`](https://developer.apple.com/documentation/appkit/nsfontcollection/allfontcollectionnames)–they have special meaning to the Cocoa font system and should not be hidden or renamed.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFontCollectionName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection?language=objc)
+    /// A font collection, which is a group of font descriptors taken together as a single object.
+    ///
+    /// ## Overview
+    ///
+    /// You can publicize the font collection as a named collection and it is presented through the System user interface such as the font panel and Font Book. The queries can be modified using the [`NSMutableFontCollection`](https://developer.apple.com/documentation/appkit/nsmutablefontcollection) subclass.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFontCollection;
@@ -231,7 +243,13 @@ impl DefaultRetained for NSFontCollection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmutablefontcollection?language=objc)
+    /// A mutable collection of font descriptors taken together as a single object.
+    ///
+    /// ## Overview
+    ///
+    /// You can use this class to modify the search queries for the font descriptors used by the parent [`NSFontCollection`](https://developer.apple.com/documentation/appkit/nsfontcollection) class.
+    ///
+    ///
     #[unsafe(super(NSFontCollection, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableFontCollection;
@@ -371,69 +389,75 @@ impl DefaultRetained for NSMutableFontCollection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/didchangenotification?language=objc)
+    /// Posted whenever a font collection is changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s object is the font collection that was affected. The notification’s `userInfo` dictionary contains information about the the collection change containing the keys defined in [`NSFontCollectionUserInfoKey`](https://developer.apple.com/documentation/appkit/nsfontcollection/userinfokey) and the corresponding values.
+    ///
+    ///
     pub static NSFontCollectionDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/userinfokey?language=objc)
+/// These constants are used as keys in the [`NSFontCollectionDidChangeNotification`](https://developer.apple.com/documentation/appkit/nsfontcollection/didchangenotification) `userInfo` dictionary to indicate the changes that have taken place.
 // NS_TYPED_ENUM
 pub type NSFontCollectionUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/actionuserinfokey?language=objc)
+    /// An action was taken. See `NSFontCollectionAction Key Values` for the possible values. An `NSString`.
     pub static NSFontCollectionActionKey: &'static NSFontCollectionUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/nameuserinfokey?language=objc)
+    /// The font collection’s name. If renamed, this is the new name. An `NSString`.
     pub static NSFontCollectionNameKey: &'static NSFontCollectionUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/oldnameuserinfokey?language=objc)
+    /// Included as a value for the [`NSFontCollectionOldNameKey`](https://developer.apple.com/documentation/appkit/nsfontcollection/oldnameuserinfokey) key, if present. This is the previous name. An `NSString`.
     pub static NSFontCollectionOldNameKey: &'static NSFontCollectionUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/visibilityuserinfokey?language=objc)
+    /// The visibly of the font collection. An NSNumber containing a value from the [`NSFontCollectionVisibility`](https://developer.apple.com/documentation/appkit/nsfontcollection/visibility) enum.
     pub static NSFontCollectionVisibilityKey: &'static NSFontCollectionUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/actiontypekey?language=objc)
+/// The following actions are possible values of the [`NSFontCollectionActionKey`](https://developer.apple.com/documentation/appkit/nsfontcollection/actionuserinfokey) in the [`NSFontCollectionDidChangeNotification`](https://developer.apple.com/documentation/appkit/nsfontcollection/didchangenotification) `userInfo` method.
 // NS_TYPED_ENUM
 pub type NSFontCollectionActionTypeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/actiontypekey/shown?language=objc)
+    /// The font collection was shown.
     pub static NSFontCollectionWasShown: &'static NSFontCollectionActionTypeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/actiontypekey/hidden?language=objc)
+    /// The font collection was hidden.
     pub static NSFontCollectionWasHidden: &'static NSFontCollectionActionTypeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/actiontypekey/renamed?language=objc)
+    /// The font collection was renamed.
     pub static NSFontCollectionWasRenamed: &'static NSFontCollectionActionTypeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/name/allfonts?language=objc)
+    /// All fonts in the system.
     pub static NSFontCollectionAllFonts: &'static NSFontCollectionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/name/user?language=objc)
+    /// Per-user unmodifiable collection.
     pub static NSFontCollectionUser: &'static NSFontCollectionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/name/favorites?language=objc)
+    /// Font collection of the user’s preferred font descriptors.
     pub static NSFontCollectionFavorites: &'static NSFontCollectionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollection/name/recentlyused?language=objc)
+    /// Font collection automatically maintained by NSFontManager.
     pub static NSFontCollectionRecentlyUsed: &'static NSFontCollectionName;
 }

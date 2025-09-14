@@ -9,20 +9,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneljoinreason?language=objc)
+/// Identifies the type that indicates the join reason.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelJoinReason(pub NSInteger);
 impl PTChannelJoinReason {
+    /// A join reason that indicates the app calls the join channel method while in the foreground.
     /// The app joined via a programmatic call to requestJoinChannelWithUUID:descriptor: while in the foreground
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneljoinreason/developerrequest?language=objc)
     #[doc(alias = "PTChannelJoinReasonDeveloperRequest")]
     pub const DeveloperRequest: Self = Self(0);
+    /// A join reason that indicates the app rejoined a channel through channel restoration.
     /// Rejoined via channel restoration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneljoinreason/channelrestoration?language=objc)
     #[doc(alias = "PTChannelJoinReasonChannelRestoration")]
     pub const ChannelRestoration: Self = Self(1);
 }
@@ -35,28 +33,25 @@ unsafe impl RefEncode for PTChannelJoinReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason?language=objc)
+/// Identifies the type that indicates the leave reason.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelLeaveReason(pub NSInteger);
 impl PTChannelLeaveReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/unknown?language=objc)
+    /// A leave reason that indicates an unknown reason.
     #[doc(alias = "PTChannelLeaveReasonUnknown")]
     pub const Unknown: Self = Self(0);
+    /// A leave reason that indicates a user pressed the leave button in the user interface.
     /// User pressed the leave button in the system UI
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/userrequest?language=objc)
     #[doc(alias = "PTChannelLeaveReasonUserRequest")]
     pub const UserRequest: Self = Self(1);
+    /// A leave reason that indicates the app calls the leave channel method.
     /// The app made a call to leaveChannelWithUUID:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/developerrequest?language=objc)
     #[doc(alias = "PTChannelLeaveReasonDeveloperRequest")]
     pub const DeveloperRequest: Self = Self(2);
+    /// A leave reason that indicates a new device restriction is in effect.
     /// For example, a new managed device restriction has come into effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason/systempolicy?language=objc)
     #[doc(alias = "PTChannelLeaveReasonSystemPolicy")]
     pub const SystemPolicy: Self = Self(3);
 }
@@ -69,28 +64,25 @@ unsafe impl RefEncode for PTChannelLeaveReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource?language=objc)
+/// Identifies the type that indicates the transmission request source.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelTransmitRequestSource(pub NSInteger);
 impl PTChannelTransmitRequestSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/unknown?language=objc)
+    /// A transmission request that indicates an unknown reason.
     #[doc(alias = "PTChannelTransmitRequestSourceUnknown")]
     pub const Unknown: Self = Self(0);
+    /// A transmission request that indicates the user pressed the transmit button in the system user interface.
     /// User pressed the transmit button in the on-screen system user interface
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/userrequest?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceUserRequest")]
     pub const UserRequest: Self = Self(1);
+    /// A transmission request that indicates the app calls the begin transmission method.
     /// The app made a call to requestBeginTransmittingWithChannelUUID:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/developerrequest?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceDeveloperRequest")]
     pub const DeveloperRequest: Self = Self(2);
+    /// A transmission request that indicates a user pressed a button on a hands-free device.
     /// User pressed a button on a hands-free device such as a wired headset
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource/handsfreebutton?language=objc)
     #[doc(alias = "PTChannelTransmitRequestSourceHandsfreeButton")]
     pub const HandsfreeButton: Self = Self(3);
 }
@@ -104,7 +96,7 @@ unsafe impl RefEncode for PTChannelTransmitRequestSource {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelmanagerdelegate?language=objc)
+    /// A type that represents your life cycle of a channel manager.
     pub unsafe trait PTChannelManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "PTChannelManager")]
         /// This method is called when your channel becomes active in the system user interface

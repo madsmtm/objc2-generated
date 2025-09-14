@@ -6,49 +6,75 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The possible reasons for the framework’s Camera Assistance status.
+///
+/// ## Discussion
+///
+/// The framework provides the app with one or more reasons for the current convergence status. Reasons detail specific user actions the framework believes will get the Camera Assistance feature operational.
+///
+/// At runtime, the app needs to check the status in the `convergence` object provided by [`session(_:didUpdateAlgorithmConvergence:for:)`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatealgorithmconvergence:for:)). If the status indicates that Camera Assistance requires user intervention, the app needs to coach the user, such as by presenting text that explains what to do, for every value in the [`reasons`](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergence/reasons) field.
+///
+///
 /// Reasons for the convergence state.
 ///
 /// Multiple reasons may be present simultaenously.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreason?language=objc)
 // NS_TYPED_ENUM
 pub type NIAlgorithmConvergenceStatusReason = NSString;
 
 extern "C" {
-    /// Tell user to sweep device horizontally from side to side.
+    /// Indicates that the camera needs to view the user’s environment from different horizontal angles.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficienthorizontalsweep?language=objc)
+    /// ## Discussion
+    ///
+    /// Coach the user to resolve the issue, such as by presenting text that instructs the user to sweep the device horizontally from side to side.
+    ///
+    ///
+    /// Tell user to sweep device horizontally from side to side.
     pub static NIAlgorithmConvergenceStatusReasonInsufficientHorizontalSweep:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
 extern "C" {
-    /// Tell user to sweep device verically up and down.
+    /// Indicates that the camera needs to view the user’s environment from different vertical angles.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientverticalsweep?language=objc)
+    /// ## Discussion
+    ///
+    /// Coach the user to resolve the issue, such as by presenting text that instructs the user to sweep the device vertically up and down.
+    ///
+    ///
+    /// Tell user to sweep device verically up and down.
     pub static NIAlgorithmConvergenceStatusReasonInsufficientVerticalSweep:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
 extern "C" {
-    /// Tell user to move around.
+    /// Indicates that the device needs to move from its current position in the physical environment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientmovement?language=objc)
+    /// ## Discussion
+    ///
+    /// Coach the user to resolve the issue, such as by presenting text that instructs the user to move around.
+    ///
+    ///
+    /// Tell user to move around.
     pub static NIAlgorithmConvergenceStatusReasonInsufficientMovement:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
 extern "C" {
-    /// Tell user to turn on the light.
+    /// Indicates that the camera needs to view the phsyical environment under better lighting conditions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasoninsufficientlighting?language=objc)
+    /// ## Discussion
+    ///
+    /// Coach the user to resolve the issue, such as by presenting text that asks the user to turn on the lights.
+    ///
+    ///
+    /// Tell user to turn on the light.
     pub static NIAlgorithmConvergenceStatusReasonInsufficientLighting:
         &'static NIAlgorithmConvergenceStatusReason;
 }
 
+/// A human-readable description for a particular convergence status reason.
 /// Helper methods for getting the localized description of the convergence reason
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatusreasondescription?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn NIAlgorithmConvergenceStatusReasonDescription(
     reason: &NIAlgorithmConvergenceStatusReason,

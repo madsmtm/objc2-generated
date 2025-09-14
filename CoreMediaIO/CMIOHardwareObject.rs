@@ -12,8 +12,6 @@ use crate::*;
 ///
 /// The property selector specifies the general classification of the property such as volume, streamID format, latency, etc. Note that each class has a different set of
 /// selectors. A subclass inherits it's super class's set of selectors, although it may not implement them all.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertyselector?language=objc)
 pub type CMIOObjectPropertySelector = u32;
 
 /// A CMIOObjectPropertyScope is a four char code that identifies, along with the CMIOObjectPropertySelector and CMIOObjectPropertyElement, a specific piece of
@@ -21,8 +19,6 @@ pub type CMIOObjectPropertySelector = u32;
 ///
 /// The scope specifies the section of the object in which to look for the property, such as input, output, global, etc. Note that each class has a different set of scopes. A
 /// subclass inherits it's superclass's set of scopes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertyscope?language=objc)
 pub type CMIOObjectPropertyScope = u32;
 
 /// A CMIOObjectPropertyElement is an integer that identifies, along with the CMIOObjectPropertySelector and CMIOObjectPropertyScope, a specific piece of information
@@ -31,8 +27,6 @@ pub type CMIOObjectPropertyScope = u32;
 /// The element selects one of possibly many items in the section of the object in which to look for the property. Elements are numbered sequentially where 0 represents the
 /// main element. Elements are particular to an instance of a class, meaning that two instances can have different numbers of elements in the same scope. There is no
 /// inheritance of elements.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertyelement?language=objc)
 pub type CMIOObjectPropertyElement = u32;
 
 /// A CMIOObjectPropertyAddress collects the three parts that identify a specific property together in a struct for easy transmission.
@@ -42,8 +36,6 @@ pub type CMIOObjectPropertyElement = u32;
 /// The CMIOObjectPropertyScope for the property.
 /// Field: mElement
 /// The CMIOObjectPropertyElement for the property.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertyaddress?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMIOObjectPropertyAddress {
@@ -67,23 +59,16 @@ unsafe impl RefEncode for CMIOObjectPropertyAddress {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyselectorwildcard?language=objc)
 pub const kCMIOObjectPropertySelectorWildcard: c_uint = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopewildcard?language=objc)
 pub const kCMIOObjectPropertyScopeWildcard: c_uint = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementwildcard?language=objc)
 pub const kCMIOObjectPropertyElementWildcard: c_uint = 0xFFFFFFFF;
 
 /// CMIOClassIDs are used to identify the class of a CMIOObject.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioclassid?language=objc)
 pub type CMIOClassID = u32;
 
 /// CMIOObject is the base class for all the objects in the DAL.
 ///
 /// CMIOObjects have properties and can contain other CMIOObjects.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectid?language=objc)
 pub type CMIOObjectID = u32;
 
 /// Clients register a CMIOObjectPropertyListenerProc with a CMIOObject in order to receive notifications when the properties of the object change.
@@ -101,8 +86,6 @@ pub type CMIOObjectID = u32;
 /// Parameter `clientData`: A pointer to client data established when the listener proc was registered with the CMIOObject.
 ///
 /// Returns: The return value is currently unused and should always be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertylistenerproc?language=objc)
 pub type CMIOObjectPropertyListenerProc = Option<
     unsafe extern "C-unwind" fn(
         CMIOObjectID,
@@ -121,55 +104,34 @@ pub type CMIOObjectPropertyListenerProc = Option<
 /// Parameter `numberAddresses`: The number of elements in the addresses array.
 ///
 /// Parameter `addresses`: An array of CMIOObjectPropertyAddresses indicating which properties changed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertylistenerblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CMIOObjectPropertyListenerBlock =
     *mut block2::DynBlock<dyn Fn(u32, *mut CMIOObjectPropertyAddress)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopeglobal?language=objc)
 pub const kCMIOObjectPropertyScopeGlobal: c_uint = 0x676c6f62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementmain?language=objc)
 pub const kCMIOObjectPropertyElementMain: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementmaster?language=objc)
 #[deprecated]
 pub const kCMIOObjectPropertyElementMaster: c_uint = kCMIOObjectPropertyElementMain;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectclassid?language=objc)
 pub const kCMIOObjectClassID: c_uint = 0x616f626a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectclassidwildcard?language=objc)
 pub const kCMIOObjectClassIDWildcard: c_uint = 0x2a2a2a2a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectunknown?language=objc)
 pub const kCMIOObjectUnknown: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyclass?language=objc)
 pub const kCMIOObjectPropertyClass: c_uint = 0x636c6173;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyowner?language=objc)
 pub const kCMIOObjectPropertyOwner: c_uint = 0x73746476;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertycreator?language=objc)
 pub const kCMIOObjectPropertyCreator: c_uint = 0x6f706c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyname?language=objc)
 pub const kCMIOObjectPropertyName: c_uint = 0x6c6e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertymanufacturer?language=objc)
 pub const kCMIOObjectPropertyManufacturer: c_uint = 0x6c6d616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementname?language=objc)
 pub const kCMIOObjectPropertyElementName: c_uint = 0x6c63686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementcategoryname?language=objc)
 pub const kCMIOObjectPropertyElementCategoryName: c_uint = 0x6c63636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyelementnumbername?language=objc)
 pub const kCMIOObjectPropertyElementNumberName: c_uint = 0x6c636e6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyownedobjects?language=objc)
 pub const kCMIOObjectPropertyOwnedObjects: c_uint = 0x6f776e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylisteneradded?language=objc)
 pub const kCMIOObjectPropertyListenerAdded: c_uint = 0x6c697361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertylistenerremoved?language=objc)
 pub const kCMIOObjectPropertyListenerRemoved: c_uint = 0x6c697372;
 
 extern "C-unwind" {
     /// Prints to standard out a textural description of the CMIOObject.
     ///
     /// Parameter `objectID`: The CMIOObject to show.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectshow(_:)?language=objc)
     pub fn CMIOObjectShow(object_id: CMIOObjectID);
 }
 
@@ -184,8 +146,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `address` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjecthasproperty(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMIOObjectHasProperty(
     object_id: CMIOObjectID,
@@ -216,8 +176,6 @@ extern "C-unwind" {
     ///
     /// - `address` must be a valid pointer.
     /// - `is_settable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectispropertysettable(_:_:_:)?language=objc)
     pub fn CMIOObjectIsPropertySettable(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -246,8 +204,6 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `qualifier_data` must be a valid pointer.
     /// - `data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectgetpropertydatasize(_:_:_:_:_:)?language=objc)
     pub fn CMIOObjectGetPropertyDataSize(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -283,8 +239,6 @@ extern "C-unwind" {
     /// - `qualifier_data` must be a valid pointer.
     /// - `data_used` must be a valid pointer.
     /// - `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectgetpropertydata(_:_:_:_:_:_:_:)?language=objc)
     pub fn CMIOObjectGetPropertyData(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -321,8 +275,6 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `qualifier_data` must be a valid pointer.
     /// - `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectsetpropertydata(_:_:_:_:_:_:)?language=objc)
     pub fn CMIOObjectSetPropertyData(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -351,8 +303,6 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `listener` must be implemented correctly.
     /// - `client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectaddpropertylistener(_:_:_:_:)?language=objc)
     pub fn CMIOObjectAddPropertyListener(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -379,8 +329,6 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `listener` must be implemented correctly.
     /// - `client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectremovepropertylistener(_:_:_:_:)?language=objc)
     pub fn CMIOObjectRemovePropertyListener(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
@@ -411,8 +359,6 @@ extern "C-unwind" {
     /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
     /// - `listener` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectaddpropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectAddPropertyListenerBlock(
         object_id: CMIOObjectID,
@@ -443,8 +389,6 @@ extern "C-unwind" {
     /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
     /// - `listener` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectremovepropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectRemovePropertyListenerBlock(
         object_id: CMIOObjectID,

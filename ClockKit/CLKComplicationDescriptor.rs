@@ -7,7 +7,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationdescriptor?language=objc)
+    /// A descriptor that defines a complication and the families that it supports.
+    ///
+    /// ## Overview
+    ///
+    /// Use complication descriptors to define the different types of complications that your app supports. Each descriptor provides a unique identifier for the complication, and the list of families that the complication supports. ClockKit defines the available families using the [`CLKComplicationFamily`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily) enumeration, while your app can define as many identifiers as it needs. Each unique [`identifier`](https://developer.apple.com/documentation/clockkit/clkcomplication/identifier) within your app represents a separate complication in the complication picker. For example, a weather app may have separate descriptors for `Condition`, `Temperature`, and `Precipitation.`
+    ///
+    /// ```swift
+    /// // Create the condition descriptor.
+    /// let conditionDescriptor = CLKComplicationDescriptor(
+    ///     identifier: complicationConditionIdentifier,
+    ///     displayName: "Weather Condition",
+    ///     supportedFamilies: mySupportedFamilies)
+    ///
+    /// // Create the temperature descriptor.
+    /// let temperatureDescriptor = CLKComplicationDescriptor(
+    ///     identifier: complicationTemperatureIdentifier,
+    ///     displayName: "Temperature",
+    ///     supportedFamilies: mySupportedFamilies)
+    ///
+    /// // Create the precipitation descriptor.
+    /// let precipitationDescriptor = CLKComplicationDescriptor(
+    ///     identifier: complicationPrecipitationIdentifier,
+    ///     displayName: "Percipitation",
+    ///     supportedFamilies: mySupportedFamilies)
+    /// ```
+    ///
+    /// You can dynamically create unique identifiers to further customize the complications. For example, if the weather app provides separate complications for all the cities in the user’s favorite city list, it can create a separate descriptor for each city and weather data pair. The app can create unique identifiers by appending the city name and the weather data’s name.
+    ///
+    /// ```swift
+    /// func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
+    ///     var descriptors = [CLKComplicationDescriptor]()
+    ///     
+    ///     for city in myData.favoriteCities {
+    ///         
+    ///         let conditionIdentifier = complicationConditionIdentifier + ": \(city.id)"
+    ///         let temperatureIdentifier = complicationTemperatureIdentifier + ": \(city.id)"
+    ///         let perceptionIdentifier = complicationPrecipitationIdentifier + ": \(city.id)"
+    ///         
+    ///         // Create the descriptors for the city.
+    ///         descriptors.append(CLKComplicationDescriptor(
+    ///                             identifier: conditionIdentifier,
+    ///                             displayName: "\(city.abbreviation) Weather Condition",
+    ///                             supportedFamilies: CLKComplicationFamily.allCases,
+    ///                             userInfo: [myCityIDKey: city.id,
+    ///                                        myTypeIdentifierKey: conditionIdentifier]))
+    ///
+    ///         descriptors.append(CLKComplicationDescriptor(
+    ///                             identifier: temperatureIdentifier,
+    ///                             displayName: "\(city.abbreviation) Temperature",
+    ///                             supportedFamilies: CLKComplicationFamily.allCases,
+    ///                             userInfo: [myCityIDKey: city.id,
+    ///                                        myTypeIdentifierKey: temperatureIdentifier]))
+    ///
+    ///         descriptors.append(CLKComplicationDescriptor(
+    ///                             identifier: perceptionIdentifier,
+    ///                             displayName: "\(city.abbreviation) Percipitation",
+    ///                             supportedFamilies: CLKComplicationFamily.allCases,
+    ///                             userInfo: [myCityIDKey: city.id,
+    ///                                        myTypeIdentifierKey: perceptionIdentifier]))
+    ///         
+    ///     }
+    ///     
+    ///     // The order of the descriptors array
+    ///     // determines the order in the complication picker.
+    ///     handler(descriptors)
+    /// }
+    /// ```
+    ///
+    /// When dynamically creating identifiers, consider using the descriptor’s [`userInfo`](https://developer.apple.com/documentation/clockkit/clkcomplicationdescriptor/userinfo) property to contain any additional information your app needs to create timeline entries for the complication. In the above example, the weather app adds the `myCityIDKey` and `myTypeIdentifierKey` `keys` so that it can access the city and weather data type without parsing the `identifier` string.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLKComplicationDescriptor;

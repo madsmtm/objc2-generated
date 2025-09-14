@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewconfigurationstate-c.class?language=objc)
+    /// A structure that encapsulates a view’s state.
+    ///
+    /// ## Overview
+    ///
+    /// A view configuration state encompasses a trait collection along with all of the common states that affect a view’s appearance — states like selected, focused, or disabled. A view configuration state encapsulates the inputs that configure a view for any possible state or combination of states. You use a view configuration state with background and content configurations to obtain the default appearance for a specific state.
+    ///
+    /// Typically, you don’t create a configuration state yourself. To obtain a configuration state, override the [`updateConfiguration(using:)`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/updateconfiguration(using:)) method in your view subclass and use the state parameter. Outside of this method, you can get a view’s configuration state by using its [`configurationState`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/configurationstate-4u37h) property.
+    ///
+    /// You can create your own custom states to add to a view configuration state by defining a custom state key using [`UIConfigurationStateCustomKey`](https://developer.apple.com/documentation/uikit/uiconfigurationstatecustomkey).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

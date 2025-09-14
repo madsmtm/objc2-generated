@@ -8,8 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Enumerates possible behaviors of how a pipeline maps its logical outputs to its color attachments.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4logicaltophysicalcolorattachmentmappingstate?language=objc)
+/// Enumerates possible behaviors of how a pipeline maps its logical outputs to its color attachments.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -17,17 +16,27 @@ pub struct MTL4LogicalToPhysicalColorAttachmentMappingState(pub NSInteger);
 impl MTL4LogicalToPhysicalColorAttachmentMappingState {
     /// Treats the logical color attachment descriptor array for render and tile render pipelines to match the physical one.
     ///
+    /// ## Discussion
+    ///
     /// This is the default behavior, which produces an identity mapping.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4logicaltophysicalcolorattachmentmappingstate/identity?language=objc)
+    ///
+    /// Treats the logical color attachment descriptor array for render and tile render pipelines to match the physical one.
+    ///
+    /// This is the default behavior, which produces an identity mapping.
     #[doc(alias = "MTL4LogicalToPhysicalColorAttachmentMappingStateIdentity")]
     pub const Identity: Self = Self(0);
     /// Deduces the color attachment mapping by inheriting it from the color attachment map of the current encoder.
     ///
+    /// ## Discussion
+    ///
+    /// Use this setting to indicate Metal should inherit the mapping from the `colorAttachmentMap` property of the current [`MTL4RenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtl4rendercommandencoder) or [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) in use at draw time.
+    ///
+    ///
+    /// Deduces the color attachment mapping by inheriting it from the color attachment map of the current encoder.
+    ///
     /// Use this setting to indicate Metal should inherit the mapping from the ``colorAttachmentMap`` property of the current
     /// ``MTL4RenderCommandEncoder`` or ``MTLRenderCommandEncoder`` in use at draw time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4logicaltophysicalcolorattachmentmappingstate/inherited?language=objc)
     #[doc(alias = "MTL4LogicalToPhysicalColorAttachmentMappingStateInherited")]
     pub const Inherited: Self = Self(1);
 }
@@ -41,7 +50,6 @@ unsafe impl RefEncode for MTL4LogicalToPhysicalColorAttachmentMappingState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderpipelinecolorattachmentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4RenderPipelineColorAttachmentDescriptor;
@@ -219,8 +227,7 @@ impl DefaultRetained for MTL4RenderPipelineColorAttachmentDescriptor {
 
 extern_class!(
     /// An array of color attachment descriptions for a render pipeline.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderpipelinecolorattachmentdescriptorarray?language=objc)
+    /// An array of color attachment descriptions for a render pipeline.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4RenderPipelineColorAttachmentDescriptorArray;
@@ -305,8 +312,7 @@ impl DefaultRetained for MTL4RenderPipelineColorAttachmentDescriptorArray {
 
 extern_class!(
     /// Allows you to specify additional binary functions to link to each stage of a render pipeline.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderpipelinebinaryfunctionsdescriptor?language=objc)
+    /// Allows you to specify additional binary functions to link to each stage of a render pipeline.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4RenderPipelineBinaryFunctionsDescriptor;
@@ -461,10 +467,15 @@ impl DefaultRetained for MTL4RenderPipelineBinaryFunctionsDescriptor {
 extern_class!(
     /// Groups together properties to create a render pipeline state object.
     ///
+    /// ## Overview
+    ///
+    /// Compared to [`MTLRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor), this interface doesn’t offer a mechanism to hint to Metal mutability of vertex and fragment buffers. Additionally, using this descriptor, you don’t specify binary archives.
+    ///
+    ///
+    /// Groups together properties to create a render pipeline state object.
+    ///
     /// Compared to ``MTLRenderPipelineDescriptor``, this interface doesn't offer a mechanism to hint to Metal mutability of
     /// vertex and fragment buffers. Additionally, using this descriptor, you don't specify binary archives.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderpipelinedescriptor?language=objc)
     #[unsafe(super(MTL4PipelineDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4PipelineState")]

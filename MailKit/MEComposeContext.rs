@@ -7,31 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 /// An enumeration corresponding to the action user took to start a new mail compose window.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MEComposeUserAction(pub NSInteger);
 impl MEComposeUserAction {
     /// Compose a new message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction/newmessage?language=objc)
     #[doc(alias = "MEComposeUserActionNewMessage")]
     pub const NewMessage: Self = Self(1);
     /// Reply to the sender of an original email.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction/reply?language=objc)
     #[doc(alias = "MEComposeUserActionReply")]
     pub const Reply: Self = Self(2);
     /// Reply to the sender and all the recipeients of original email.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction/replyall?language=objc)
     #[doc(alias = "MEComposeUserActionReplyAll")]
     pub const ReplyAll: Self = Self(3);
     /// Forward an original message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposeuseraction/forward?language=objc)
     #[doc(alias = "MEComposeUserActionForward")]
     pub const Forward: Self = Self(4);
 }
@@ -46,8 +36,6 @@ unsafe impl RefEncode for MEComposeUserAction {
 
 extern_class!(
     /// An object encapsulating additional information about the message being composed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/mecomposecontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEComposeContext;

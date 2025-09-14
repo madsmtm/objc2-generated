@@ -7,34 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate?language=objc)
+/// The states that a download operation can be in.
 // NS_CLOSED_ENUM
 #[deprecated = "Hosted content is no longer supported"]
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKDownloadState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/waiting?language=objc)
+    /// Indicates that the download has not started yet.
     #[doc(alias = "SKDownloadStateWaiting")]
     #[deprecated = "Hosted content is no longer supported"]
     #[default]
     Waiting = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/active?language=objc)
+    /// Indicates that the content is currently being downloaded.
     #[doc(alias = "SKDownloadStateActive")]
     #[deprecated = "Hosted content is no longer supported"]
     Active = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/paused?language=objc)
+    /// Indicates that your app paused the download.
     #[doc(alias = "SKDownloadStatePaused")]
     #[deprecated = "Hosted content is no longer supported"]
     Paused = 2,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/finished?language=objc)
+    /// Indicates that the content was successfully downloaded.
     #[doc(alias = "SKDownloadStateFinished")]
     #[deprecated = "Hosted content is no longer supported"]
     Finished = 3,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/failed?language=objc)
+    /// Indicates that an error occurred while the file was being downloaded.
     #[doc(alias = "SKDownloadStateFailed")]
     #[deprecated = "Hosted content is no longer supported"]
     Failed = 4,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate/cancelled?language=objc)
+    /// Indicates that your app canceled the download.
     #[doc(alias = "SKDownloadStateCancelled")]
     #[deprecated = "Hosted content is no longer supported"]
     Cancelled = 5,
@@ -49,13 +49,23 @@ unsafe impl RefEncode for SKDownloadState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadtimeremainingunknown?language=objc)
+    /// Indicates that the system cannot determine how much time is needed to finish downloading the content.
     #[deprecated = "Hosted content is no longer supported"]
     pub static SKDownloadTimeRemainingUnknown: NSTimeInterval;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownload?language=objc)
+    /// Downloadable content associated with a product.
+    ///
+    /// ## Overview
+    ///
+    /// When you create a product in App Store Connect, you can associate one or more pieces of downloadable content with it. At runtime, when a product is purchased by a user, your app uses [`SKDownload`](https://developer.apple.com/documentation/storekit/skdownload) objects to download the content from the App Store.
+    ///
+    /// Your app never directly creates a [`SKDownload`](https://developer.apple.com/documentation/storekit/skdownload) object. Instead, after a payment is processed, your app reads the transaction object’s [`downloads`](https://developer.apple.com/documentation/storekit/skpaymenttransaction/downloads) property to retrieve an array of [`SKDownload`](https://developer.apple.com/documentation/storekit/skdownload) objects associated with the transaction.
+    ///
+    /// To download the content, you queue a download object on the payment queue and wait for the content to be downloaded. After a download completes, read the download object’s [`contentURL`](https://developer.apple.com/documentation/storekit/skdownload/contenturl) property to get a URL to the downloaded content. Your app must process the downloaded file before completing the transaction. For example, it might copy the file into a directory whose contents are persistent. When all downloads are complete, you finish the transaction. After the transaction is finished, the download objects cannot be queued to the payment queue and any URLs to the downloaded content are invalid.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Hosted content is no longer supported"]

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A tensor object
+    /// The data object you use throughout the framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensor?language=objc)
+    /// ## Overview
+    ///
+    /// Create a tensor with or without data. For example, create a tensor with data for weights used by convolution or mean, variance, beta, and gamma parameters with batch normalization. Create a tensor without data to use as an input tensor when you build a graph.
+    ///
+    ///
+    /// A tensor object
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

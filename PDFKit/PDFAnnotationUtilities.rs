@@ -10,28 +10,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle?language=objc)
+/// The following constants specify the available line ending styles.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFLineStyle(pub NSInteger);
 impl PDFLineStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/none?language=objc)
+    /// No line ending.
     #[doc(alias = "kPDFLineStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/square?language=objc)
+    /// A square line ending filled with the annotation’s interior color, if any.
     #[doc(alias = "kPDFLineStyleSquare")]
     pub const Square: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/circle?language=objc)
+    /// A circular line ending filled with the annotation’s interior color, if any.
     #[doc(alias = "kPDFLineStyleCircle")]
     pub const Circle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/diamond?language=objc)
+    /// A diamond-shaped line ending filled with the annotation’s interior color, if any.
     #[doc(alias = "kPDFLineStyleDiamond")]
     pub const Diamond: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/openarrow?language=objc)
+    /// An open arrowhead line ending, composed from two short lines meeting in an acute angle at the line end.
     #[doc(alias = "kPDFLineStyleOpenArrow")]
     pub const OpenArrow: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle/closedarrow?language=objc)
+    /// A closed arrowhead line ending, consisting of a triangle with the acute vertex at the line end and filled with the annotation’s interior color, if any.
     #[doc(alias = "kPDFLineStyleClosedArrow")]
     pub const ClosedArrow: Self = Self(5);
 }
@@ -44,31 +44,31 @@ unsafe impl RefEncode for PDFLineStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype?language=objc)
+/// The types of icons that a text annotation can use.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFTextAnnotationIconType(pub NSInteger);
 impl PDFTextAnnotationIconType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/comment?language=objc)
+    /// Comment annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconComment")]
     pub const Comment: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/key?language=objc)
+    /// Key annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconKey")]
     pub const Key: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/note?language=objc)
+    /// Note annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconNote")]
     pub const Note: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/help?language=objc)
+    /// Help annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconHelp")]
     pub const Help: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/newparagraph?language=objc)
+    /// New Paragraph annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconNewParagraph")]
     pub const NewParagraph: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/paragraph?language=objc)
+    /// Paragraph annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconParagraph")]
     pub const Paragraph: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype/insert?language=objc)
+    /// Insert annotation icon.
     #[doc(alias = "kPDFTextAnnotationIconInsert")]
     pub const Insert: Self = Self(6);
 }
@@ -81,22 +81,22 @@ unsafe impl RefEncode for PDFTextAnnotationIconType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype?language=objc)
+/// The styles available for markup annotations in PDFKit.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFMarkupType(pub NSInteger);
 impl PDFMarkupType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/highlight?language=objc)
+    /// Highlight style for the markup.
     #[doc(alias = "kPDFMarkupTypeHighlight")]
     pub const Highlight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/strikeout?language=objc)
+    /// Strikethrough style for the markup.
     #[doc(alias = "kPDFMarkupTypeStrikeOut")]
     pub const StrikeOut: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/underline?language=objc)
+    /// Underline style for the markup.
     #[doc(alias = "kPDFMarkupTypeUnderline")]
     pub const Underline: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype/redact?language=objc)
+    /// The redaction style for markup.
     #[doc(alias = "kPDFMarkupTypeRedact")]
     pub const Redact: Self = Self(3);
 }
@@ -109,22 +109,22 @@ unsafe impl RefEncode for PDFMarkupType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype?language=objc)
+/// The types of annotation buttons.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFWidgetControlType(pub NSInteger);
 impl PDFWidgetControlType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/unknowncontrol?language=objc)
+    /// Unknown control type.
     #[doc(alias = "kPDFWidgetUnknownControl")]
     pub const UnknownControl: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/pushbuttoncontrol?language=objc)
+    /// Push button control.
     #[doc(alias = "kPDFWidgetPushButtonControl")]
     pub const PushButtonControl: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/radiobuttoncontrol?language=objc)
+    /// Radio button control.
     #[doc(alias = "kPDFWidgetRadioButtonControl")]
     pub const RadioButtonControl: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype/checkboxcontrol?language=objc)
+    /// Check box control.
     #[doc(alias = "kPDFWidgetCheckBoxControl")]
     pub const CheckBoxControl: Self = Self(2);
 }
@@ -137,19 +137,19 @@ unsafe impl RefEncode for PDFWidgetControlType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate?language=objc)
+/// The state of a button annotation, either on, off, or mixed.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFWidgetCellState(pub NSInteger);
 impl PDFWidgetCellState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate/mixedstate?language=objc)
+    /// The button widget is in a mixed state, neither on nor off.
     #[doc(alias = "kPDFWidgetMixedState")]
     pub const MixedState: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate/offstate?language=objc)
+    /// The button widget is in an unselected state.
     #[doc(alias = "kPDFWidgetOffState")]
     pub const OffState: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate/onstate?language=objc)
+    /// The button widget is in a selected state.
     #[doc(alias = "kPDFWidgetOnState")]
     pub const OnState: Self = Self(1);
 }
@@ -163,201 +163,202 @@ unsafe impl RefEncode for PDFWidgetCellState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/text?language=objc)
+    /// An annotation that displays a collapsible note that contains text.
+    ///
+    /// ## Discussion
+    ///
+    /// A common use for this annotation type is with a pop-up annotation to create a note.
+    ///
+    ///
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeText: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/link?language=objc)
+    /// An annotation that provides a hyperlink to a location in the document, or an action to perform when the user clicks or taps it.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeLink: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/freetext?language=objc)
+    /// An annotation that displays an editable text field.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeFreeText: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/line?language=objc)
+    /// An annotation that displays a single straight line.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeLine: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/square?language=objc)
+    /// An annotation that displays a square shape.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeSquare: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/circle?language=objc)
+    /// An annotation that renders a circle shape.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeCircle: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/highlight?language=objc)
+    /// An annotation that highlights text.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeHighlight: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/underline?language=objc)
+    /// An annotation that underlines text.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeUnderline: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/strikeout?language=objc)
+    /// An annotation that strikes out text.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeStrikeOut: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/ink?language=objc)
+    /// An annotation that represents a freehand scribble.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeInk: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/stamp?language=objc)
+    /// An annotation that displays text or a graphic as if a rubber stamp imprints it on the page.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeStamp: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/popup?language=objc)
+    /// An annotation that displays text in a pop-up window for entry and editing.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypePopup: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/widget?language=objc)
+    /// An annotation that displays interactive form elements, including text or signature fields, radio buttons, checkboxes, push buttons, pop-ups, and tables.
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeWidget: &'static PDFAnnotationSubtype;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype?language=objc)
 // NS_TYPED_ENUM
 pub type PDFAnnotationWidgetSubtype = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/button?language=objc)
+    /// A button widget type, including push buttons, checkboxes, and radio buttons.
     pub static PDFAnnotationWidgetSubtypeButton: &'static PDFAnnotationWidgetSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/choice?language=objc)
+    /// A type that presents a list of choices the user can choose from.
     pub static PDFAnnotationWidgetSubtypeChoice: &'static PDFAnnotationWidgetSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/signature?language=objc)
+    /// A digital signature widget type.
     pub static PDFAnnotationWidgetSubtypeSignature: &'static PDFAnnotationWidgetSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/text?language=objc)
+    /// A text field the user can type text in.
     pub static PDFAnnotationWidgetSubtypeText: &'static PDFAnnotationWidgetSubtype;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle?language=objc)
 // NS_TYPED_ENUM
 pub type PDFAnnotationLineEndingStyle = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/none?language=objc)
     pub static PDFAnnotationLineEndingStyleNone: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/square?language=objc)
+    /// A style that displays a square line ending and fills it with the annotation’s interior color.
     pub static PDFAnnotationLineEndingStyleSquare: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/circle?language=objc)
+    /// A style that displays a circle line ending and fills it with the annotation’s interior color.
     pub static PDFAnnotationLineEndingStyleCircle: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/diamond?language=objc)
     pub static PDFAnnotationLineEndingStyleDiamond: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/openarrow?language=objc)
+    /// A style that displays an open arrowhead line ending.
     pub static PDFAnnotationLineEndingStyleOpenArrow: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/closedarrow?language=objc)
+    /// A style that displays a closed arrowhead line ending and fills it with the annotation’s interior color.
     pub static PDFAnnotationLineEndingStyleClosedArrow: &'static PDFAnnotationLineEndingStyle;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype?language=objc)
+/// Constants for icon type values in text annotation property dictionaries.
 // NS_TYPED_ENUM
 pub type PDFAnnotationTextIconType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/comment?language=objc)
+    /// An icon that represents a comment.
     pub static PDFAnnotationTextIconTypeComment: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/key?language=objc)
+    /// An icon that represents a key.
     pub static PDFAnnotationTextIconTypeKey: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/note?language=objc)
+    /// An icon that represents a note.
     pub static PDFAnnotationTextIconTypeNote: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/help?language=objc)
+    /// An icon that indicates help information is available.
     pub static PDFAnnotationTextIconTypeHelp: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/newparagraph?language=objc)
+    /// An icon that represents a new paragraph.
     pub static PDFAnnotationTextIconTypeNewParagraph: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/paragraph?language=objc)
+    /// An icon that represents a paragraph.
     pub static PDFAnnotationTextIconTypeParagraph: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/insert?language=objc)
+    /// An icon that represents an insertion command.
     pub static PDFAnnotationTextIconTypeInsert: &'static PDFAnnotationTextIconType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode?language=objc)
 // NS_TYPED_ENUM
 pub type PDFAnnotationHighlightingMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/none?language=objc)
+    /// A highlight mode that doesn’t change the appearance of the annotation.
     pub static PDFAnnotationHighlightingModeNone: &'static PDFAnnotationHighlightingMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/invert?language=objc)
+    /// A highlight mode that inverts the content of the annotation.
     pub static PDFAnnotationHighlightingModeInvert: &'static PDFAnnotationHighlightingMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/outline?language=objc)
+    /// A highlight mode that inverts the annotation’s border.
     pub static PDFAnnotationHighlightingModeOutline: &'static PDFAnnotationHighlightingMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/push?language=objc)
+    /// A highlight mode that renders a pressed appearance for the annotation.
     pub static PDFAnnotationHighlightingModePush: &'static PDFAnnotationHighlightingMode;
 }
 

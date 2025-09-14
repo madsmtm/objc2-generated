@@ -9,7 +9,6 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarybase?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -273,7 +272,6 @@ impl MPSNDArrayMultiaryBase {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarykernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -483,7 +481,6 @@ impl MPSNDArrayMultiaryKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarygradientkernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -633,7 +630,6 @@ impl MPSNDArrayMultiaryGradientKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -858,7 +854,6 @@ impl MPSNDArrayUnaryKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarygradientkernel?language=objc)
     #[unsafe(super(
         MPSNDArrayMultiaryGradientKernel,
         MPSNDArrayMultiaryBase,
@@ -1004,7 +999,6 @@ impl MPSNDArrayUnaryGradientKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -1288,8 +1282,6 @@ impl MPSNDArrayBinaryKernel {
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinaryprimarygradientkernel?language=objc)
     #[unsafe(super(
         MPSNDArrayMultiaryGradientKernel,
         MPSNDArrayMultiaryBase,
@@ -1438,8 +1430,6 @@ impl MPSNDArrayBinaryPrimaryGradientKernel {
 
 extern_class!(
     /// Dependencies: This depends on Metal.framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarysecondarygradientkernel?language=objc)
     #[unsafe(super(
         MPSNDArrayMultiaryGradientKernel,
         MPSNDArrayMultiaryBase,

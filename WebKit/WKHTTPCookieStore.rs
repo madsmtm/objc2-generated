@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/cookiepolicy?language=objc)
+/// An enumeration with cases that indicate whether a cookie store allows cookie storage.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKCookiePolicy(pub NSInteger);
 impl WKCookiePolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/cookiepolicy/allow?language=objc)
+    /// A case that indicates the cookie store allows cookie storage.
     #[doc(alias = "WKCookiePolicyAllow")]
     pub const Allow: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/cookiepolicy/disallow?language=objc)
+    /// A case that indicates the cookie store does not allow cookie storage.
     #[doc(alias = "WKCookiePolicyDisallow")]
     pub const Disallow: Self = Self(1);
 }
@@ -30,7 +30,13 @@ unsafe impl RefEncode for WKCookiePolicy {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestoreobserver?language=objc)
+    /// The methods to adopt in an object that monitors changes to a webpage’s cookies.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the methods of the [`WKHTTPCookieStoreObserver`](https://developer.apple.com/documentation/webkit/wkhttpcookiestoreobserver) protocol to track changes to cookies associated with a webpage. To observe the actual cookie changes, call the [`addObserver:`](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/add(_:)) method of the [`WKHTTPCookieStore`](https://developer.apple.com/documentation/webkit/wkhttpcookiestore) you use to manage cookies. When a cookie changes, the cookie store notifies all observers of the changes.
+    ///
+    ///
     pub unsafe trait WKHTTPCookieStoreObserver: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(cookiesDidChangeInCookieStore:))]
@@ -40,9 +46,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A WKHTTPCookieStore object allows managing the HTTP cookies associated with a particular WKWebsiteDataStore.
+    /// An object that manages the HTTP cookies associated with a particular web view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkhttpcookiestore?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`WKHTTPCookieStore`](https://developer.apple.com/documentation/webkit/wkhttpcookiestore) to specify the initial cookies for your webpages, and to manage cookies for your web content. For example, you might use this object to delete the cookie for the current session when the user logs out. To detect when the webpage changes a cookie, install a cookie observer using the [`addObserver:`](https://developer.apple.com/documentation/webkit/wkhttpcookiestore/add(_:)) method.
+    ///
+    /// You don’t create a [`WKHTTPCookieStore`](https://developer.apple.com/documentation/webkit/wkhttpcookiestore) object directly. Instead, retrieve this object from the [`WKWebsiteDataStore`](https://developer.apple.com/documentation/webkit/wkwebsitedatastore) object in your web view’s configuration object.
+    ///
+    ///
+    /// A WKHTTPCookieStore object allows managing the HTTP cookies associated with a particular WKWebsiteDataStore.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

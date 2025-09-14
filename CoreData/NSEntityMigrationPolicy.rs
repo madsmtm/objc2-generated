@@ -7,37 +7,79 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationmanagerkey?language=objc)
+    /// Key for the migration manager.
+    ///
+    /// ## Discussion
+    ///
+    /// To access this key in a custom value expression string in the Xcode mapping model editor use `$manager`.
+    ///
+    ///
     pub static NSMigrationManagerKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationsourceobjectkey?language=objc)
+    /// Key for the source object.
+    ///
+    /// ## Discussion
+    ///
+    /// To access this key in a custom value expression string in the Xcode mapping model editor use `$source`.
+    ///
+    ///
     pub static NSMigrationSourceObjectKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationdestinationobjectkey?language=objc)
+    /// Key for the destination object.
+    ///
+    /// ## Discussion
+    ///
+    /// To access this key in a custom value expression string in the Xcode mapping model editor use `$destination`.
+    ///
+    ///
     pub static NSMigrationDestinationObjectKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationentitymappingkey?language=objc)
+    /// Key for the entity mapping object.
+    ///
+    /// ## Discussion
+    ///
+    /// To access this key in a custom value expression string in the Xcode mapping model editor use `$entityMapping`.
+    ///
+    ///
     pub static NSMigrationEntityMappingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationpropertymappingkey?language=objc)
+    /// Key for the property mapping object.
+    ///
+    /// ## Discussion
+    ///
+    /// To access this key in a custom value expression string in the Xcode mapping model editor use `$propertyMapping`.
+    ///
+    ///
     pub static NSMigrationPropertyMappingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationentitypolicykey?language=objc)
+    /// Key for the entity migration policy object.
+    ///
+    /// ## Discussion
+    ///
+    /// To access this key in a custom value expression string in the Xcode mapping model editor use `$entityPolicy`.
+    ///
+    ///
     pub static NSMigrationEntityPolicyKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymigrationpolicy?language=objc)
+    /// A policy instance that customizes the migration process for an entity mapping.
+    ///
+    /// ## Overview
+    ///
+    /// You set the policy for an entity mapping by passing the name of the migration policy class as the argument to [`entityMigrationPolicyClassName`](https://developer.apple.com/documentation/coredata/nsentitymapping/entitymigrationpolicyclassname). Typically, you specify the name in the Xcode mapping model editor.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEntityMigrationPolicy;

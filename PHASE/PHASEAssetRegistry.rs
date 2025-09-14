@@ -9,13 +9,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A base class that adds a name to framework assets.
+    ///
+    /// ## Overview
+    ///
+    /// Through inheritance, this class adds a string [`identifier`](https://developer.apple.com/documentation/phase/phaseasset/identifier) to subclasses, for example, [`PHASESoundAsset`](https://developer.apple.com/documentation/phase/phasesoundasset) and [`PHASESoundEventNodeAsset`](https://developer.apple.com/documentation/phase/phasesoundeventnodeasset).
+    ///
+    /// PHASE generates objects of this type based on template [`PHASEDefinition`](https://developer.apple.com/documentation/phase/phasedefinition) subclasses. For example, PHASE gives you a [`PHASESoundEventNodeAsset`](https://developer.apple.com/documentation/phase/phasesoundeventnodeasset) when you register a [`PHASESoundEventNodeDefinition`](https://developer.apple.com/documentation/phase/phasesoundeventnodedefinition) with the asset registry via [`registerSoundEventAssetWithRootNode:identifier:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registersoundeventasset(rootnode:identifier:)).
+    ///
+    ///
     /// ***********************************************************************************************
     ///
     ///
     ///
     /// An object that represents a registered asset in the asset registry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEAsset;
@@ -43,13 +50,18 @@ impl PHASEAsset {
 }
 
 extern_class!(
+    /// A sound resource stored in the asset registry.
+    ///
+    /// ## Overview
+    ///
+    /// This class wraps source audio data that an app intends to play. The framework requires a mixer to play a sound asset, and sound event nodes like [`PHASESamplerNodeDefinition`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition) combine the asset with a mixer. To provide a sound asset to a sound-event node, refer to the asset by the `identifier` you pass into the [`registerSoundAssetAtURL:identifier:assetType:channelLayout:normalizationMode:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registersoundasset(url:identifier:assettype:channellayout:normalizationmode:)) function.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object that represents a registered sound asset in the asset registry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundasset?language=objc)
     #[unsafe(super(PHASEAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASESoundAsset;
@@ -88,13 +100,24 @@ impl PHASESoundAsset {
 }
 
 extern_class!(
+    /// A template object for sounds that can play in reaction to environmental state.
+    ///
+    /// ## Overview
+    ///
+    /// This object refers by name to a collection of sound event nodes that connect to form a tree, or hierarchy. To retrieve an instance of this class, add a sound-event node definition to the asset registry using [`registerSoundEventAssetWithRootNode:identifier:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registersoundeventasset(rootnode:identifier:)). Choose the `rootNode` argument from the subclasses in [Sound Event Nodes](https://developer.apple.com/documentation/phase/sound-event-nodes) based on the playback features your app requires.
+    ///
+    /// To play a single audio asset, register a `rootNode` with only one audio-providing node. Alternatively, to create a sound event that can change its audio based on your app’s current state, register a `rootNode` that contains children. By adding multiple nodes that play varying audio as children to a control node, PHASE plays the right audio for the moment based on control logic that you define.
+    ///
+    /// To create a playable sound event from this class, pass [`identifier`](https://developer.apple.com/documentation/phase/phaseasset/identifier) to the `assetIdentifier` parameter of the sound event intializer, [`initWithEngine:assetIdentifier:error:`](https://developer.apple.com/documentation/phase/phasesoundevent/init(engine:assetidentifier:)). Then, invoke the sound event by calling [`startWithCompletion:`](https://developer.apple.com/documentation/phase/phasesoundevent/start(completion:)).
+    ///
+    /// As an opaque derived object, this class adds no properties to its base class.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object that represents a registered sound event asset in the asset registry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventnodeasset?language=objc)
     #[unsafe(super(PHASEAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASESoundEventNodeAsset;
@@ -117,13 +140,20 @@ impl PHASESoundEventNodeAsset {
 }
 
 extern_class!(
+    /// A reference to a registered metaparameter that the app can share with multiple sound events or sources.
+    ///
+    /// ## Overview
+    ///
+    /// The engine’s [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)) function returns an instance of this class for a parameter you register. Then, you access the actual metaparameter by using this class’s [`identifier`](https://developer.apple.com/documentation/phase/phaseasset/identifier) as the key for metaparameter dictionary, for example, a sound event’s [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) or the asset registry’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters).
+    ///
+    /// As an opaque derived object, this class adds no properties to the subclass.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object that represents a registered global metaparameter asset in the asset registry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseglobalmetaparameterasset?language=objc)
     #[unsafe(super(PHASEAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEGlobalMetaParameterAsset;
@@ -146,13 +176,24 @@ impl PHASEGlobalMetaParameterAsset {
 }
 
 extern_class!(
+    /// A central repository of audio assets.
+    ///
+    /// ## Overview
+    ///
+    /// This class manages audio by registering two types of assets throughout the app’s life cycle:
+    ///
+    /// - [`PHASESoundAsset`](https://developer.apple.com/documentation/phase/phasesoundasset): A sound asset identifies the particular audio data that your app intends to play.
+    ///
+    /// - [`PHASESoundEventNodeAsset`](https://developer.apple.com/documentation/phase/phasesoundeventnodeasset): A sound event asset provides audio with an avenue to the output device, and either represents a single sound or a dynamic set of sounds that play individually, depending on the app’s state.
+    ///
+    /// When you’re done with a sound asset, call [`unregisterAssetWithIdentifier:completion:`](https://developer.apple.com/documentation/phase/phaseassetregistry/unregisterasset(identifier:completion:)) to free up its system resources.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Asset registry
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseassetregistry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEAssetRegistry;

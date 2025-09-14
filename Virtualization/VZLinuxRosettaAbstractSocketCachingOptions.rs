@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Caching options for an abstract socket.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to configure Rosetta to communicate with the Rosetta daemon using an abstract socket.
+    ///
+    ///
     /// Caching options for an Abstract Socket.
     ///
     /// This object configures Rosetta to communicate with the Rosetta daemon using an Abstract Socket.
     ///
     /// See: VZLinuxRosettaCachingOptions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaabstractsocketcachingoptions?language=objc)
     #[unsafe(super(VZLinuxRosettaCachingOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]

@@ -8,11 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A type that describes the structure and behavior of an identity document.
+    ///
+    /// ## Overview
+    ///
+    /// A descriptor object describes the type of document that your app can request or check whether a document is available to request. For example, you use a [`PKIdentityDriversLicenseDescriptor`](https://developer.apple.com/documentation/passkit/pkidentitydriverslicensedescriptor) to request information from a user’s driver’s license (or equivalent document).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Different document types behave differently, requiring different properties or response formats. Don’t define your own implementation of this protocol or subclass an existing implementation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// "Descriptor" objects describe types of documents that can be requested. Different document
     /// types may have different sets of supported elements, functionality, or response formats.
     /// Clients should not define their own implementations of this protocol or subclass existing implementations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentitydocumentdescriptor?language=objc)
     pub unsafe trait PKIdentityDocumentDescriptor: NSObjectProtocol {
         #[cfg(feature = "PKIdentityElement")]
         /// Set of elements that will be requested from the document.
@@ -44,9 +57,27 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Used to request information from a user's driver's license (or equivalent document).
+    /// An object for requesting information from a user’s driver’s license or equivalent document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentitydriverslicensedescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// For the elements you request, the response contains the corresponding elements present in the user’s identity document. The table below maps the elements you request using [`PKIdentityElement`](https://developer.apple.com/documentation/passkit/pkidentityelement) with the ISO and American Association of Motor Vehicle Administrators (AAMVA) namespaces in the response.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When you verify a person’s driving privileges from a U.S. driver’s license, use `domestic_driving_privileges` from the `org.iso.18013.5.1.aamva` namespace instead of `driving_privileges` from the `org.iso.18013.5.1` namespace because the former maps more directly to state laws. For more information about implementation, see [AAMVA Mobile Driver’s License (mDL) Implementation Guidelines](https://www.aamva.org/topics/mobile-driver-license#?wst=4a3b89462cc2cff2cbe0c7accde57421).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The framework allows for requesting the Boolean [`ageThresholdElementWithAge:`](https://developer.apple.com/documentation/passkit/pkidentityelement/age(atleast:)) element for any age between `1` and `125` only if the issuer includes it. If an app requests [`ageThresholdElementWithAge:`](https://developer.apple.com/documentation/passkit/pkidentityelement/age(atleast:)) and the `age_over_XX` element isn’t present in the mobile driver’s license, the framework falls back to a request for the [`ageElement`](https://developer.apple.com/documentation/passkit/pkidentityelement/age) element.
+    ///
+    /// An app can’t include both an [`ageThresholdElementWithAge:`](https://developer.apple.com/documentation/passkit/pkidentityelement/age(atleast:)) element and an [`ageElement`](https://developer.apple.com/documentation/passkit/pkidentityelement/age) element in the same request.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Identity element" }] }], [Paragraph { inline_content: [Text { text: "ISO namespace" }] }], [Paragraph { inline_content: [Text { text: "AAMVA namespace" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "givenName" }] }], [Paragraph { inline_content: [CodeVoice { code: "given_name" }] }], [Paragraph { inline_content: [CodeVoice { code: "given_name_truncation" }, Text { text: ", " }, CodeVoice { code: "aka_given_name" }, Text { text: ", " }, CodeVoice { code: "name_suffix" }, Text { text: ", " }, CodeVoice { code: "aka_suffix" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "familyName" }] }], [Paragraph { inline_content: [CodeVoice { code: "family_name" }] }], [Paragraph { inline_content: [CodeVoice { code: "family_name_truncation" }, Text { text: ", " }, CodeVoice { code: "aka_family_name" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "portrait" }] }], [Paragraph { inline_content: [CodeVoice { code: "portrait" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "address" }] }], [Paragraph { inline_content: [CodeVoice { code: "resident_address" }, Text { text: ", " }, CodeVoice { code: "resident_city" }, Text { text: ", " }, CodeVoice { code: "resident_country" }, Text { text: ", " }, CodeVoice { code: "resident_postal_code" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "issuingAuthority" }] }], [Paragraph { inline_content: [CodeVoice { code: "issuing_authority" }, Text { text: ", " }, CodeVoice { code: "issuing_jurisdiction" }, Text { text: ", " }, CodeVoice { code: "issuing_country" }, Text { text: ", " }, CodeVoice { code: "un_distinguishing_sign" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentExpirationDate" }] }], [Paragraph { inline_content: [CodeVoice { code: "expiry_date" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentIssueDate" }] }], [Paragraph { inline_content: [CodeVoice { code: "document_issue_date" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentNumber" }] }], [Paragraph { inline_content: [CodeVoice { code: "document_number" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "drivingPrivileges" }] }], [Paragraph { inline_content: [CodeVoice { code: "driving_privileges" }] }], [Paragraph { inline_content: [CodeVoice { code: "domestic_driving_privileges" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "age" }] }], [Paragraph { inline_content: [CodeVoice { code: "age_in_years" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "dateOfBirth" }] }], [Paragraph { inline_content: [CodeVoice { code: "birth_date" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "age(atLeast: XX)" }] }], [Paragraph { inline_content: [CodeVoice { code: "age_over_XX" }] }], [Paragraph { inline_content: [] }]]], alignments: None, metadata: None })
+    ///
+    /// Used to request information from a user's driver's license (or equivalent document).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityDriversLicenseDescriptor;
@@ -78,9 +109,33 @@ impl PKIdentityDriversLicenseDescriptor {
 }
 
 extern_class!(
-    /// Used to request information from a user's national id card (or equivalent document).
+    /// An object for requesting information from a user’s national ID card.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentitynationalidcarddescriptor?language=objc)
+    /// ## Discussion
+    ///
+    /// For the elements you request, the response contains the corresponding elements present in the user’s identity document. The table below maps the elements you request using [`PKIdentityElement`](https://developer.apple.com/documentation/passkit/pkidentityelement) with the ISO and JP namespace in the response.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can retrieve elements specific to Japan only when you have set the API region to `JP`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Identity element" }] }], [Paragraph { inline_content: [Text { text: "ISO namespace" }] }], [Paragraph { inline_content: [Text { text: "JP namespace" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "givenName" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "full_name_unicode" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "familyName" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "full_name_unicode" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "portrait" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "portrait" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "address" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "resident_address_unicode, local_gov_code_unicode" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentNumber" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "individual_number_unicode" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "sex" }] }], [Paragraph { inline_content: [CodeVoice { code: "sex" }] }], [Paragraph { inline_content: [CodeVoice { code: "sex_unicode" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "age" }] }], [Paragraph { inline_content: [CodeVoice { code: "age_in_years" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [CodeVoice { code: "dateOfBirth" }] }], [Paragraph { inline_content: [CodeVoice { code: "birth_date" }] }], [Paragraph { inline_content: [CodeVoice { code: "birth_date_unicode" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "age(atLeast: XX)" }] }], [Paragraph { inline_content: [CodeVoice { code: "age_over_XX" }] }], [Paragraph { inline_content: [] }]]], alignments: None, metadata: None })
+    /// This API requires a special entitlement issued by Apple. After you receive the entitlement, configure your Xcode project to use it:
+    ///
+    /// 1. Add the entitlement to the property list specified in your target.
+    ///
+    /// 2. In the `entitlements.plist` for the entitlement, add a new document-types item.
+    ///
+    /// 3. Add a new element string.
+    ///
+    /// Building an app with this entitlement requires macOS 13 or later. For more information about the entitlement, see [Getting started with the Verify with Wallet API](https://developer.apple.com/wallet/get-started-with-verify-with-wallet/).
+    ///
+    ///
+    /// Used to request information from a user's national id card (or equivalent document).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityNationalIDCardDescriptor;
@@ -124,9 +179,17 @@ impl PKIdentityNationalIDCardDescriptor {
 }
 
 extern_class!(
-    /// Used to request information from a user's photo ID (or equivalent document).
+    /// An object you use to request information from a user’s photo ID or equivalent document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityphotoiddescriptor?language=objc)
+    /// ### Discussion
+    ///
+    /// Use this class to help create a digital ID in Wallet, which is an Apple issued ID credential based on government-issued ICAO compliant passport. This ID is available to use in person, within apps, and on the web.
+    ///
+    /// For the elements you request, the response contains the corresponding elements present in the user’s identity document. The following table shows the mapping from [`PKIdentityElement`](https://developer.apple.com/documentation/passkit/pkidentityelement) to elements in the `PKIdentityPhotoIDDescriptor`. If the [`PKIdentityElement`](https://developer.apple.com/documentation/passkit/pkidentityelement) corresponds to more than one of the mobile doc elements, all of the elements are returned.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Identity element" }] }], [Paragraph { inline_content: [Text { text: "ISO 23220_1 namespace" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "familyNameElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "family_name_unicode" }, Text { text: ", " }, CodeVoice { code: "family_name_latin1" }] }], [Paragraph { inline_content: [Text { text: "Last name, surname, or primary identifier, of the holder." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "givenNameElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "given_name_unicode" }, Text { text: ", " }, CodeVoice { code: "given_name_latin1" }] }], [Paragraph { inline_content: [Text { text: "First name(s), other name(s), or secondary identifier, of the holder." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "portraitElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "portrait" }] }], [Paragraph { inline_content: [Text { text: "Portrait data as specified in ISO/IEC 18013-2:2020, C.4.5." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "addressElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "resident_address_unicode" }, Text { text: ", " }, CodeVoice { code: "resident_city_unicode" }, Text { text: ", " }, CodeVoice { code: "resident_city_latin1" }, Text { text: ", " }, CodeVoice { code: "resident_postal_code" }, Text { text: ", " }, CodeVoice { code: "resident_country" }] }], [Paragraph { inline_content: [Text { text: "The place where the ID holder resides and may be contacted." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "issuingAuthority" }] }], [Paragraph { inline_content: [CodeVoice { code: "issuing_authority_unicode" }, Text { text: ", " }, CodeVoice { code: "issuing_subdivision" }, Text { text: ", " }, CodeVoice { code: "issuing_country" }] }], [Paragraph { inline_content: [Text { text: "The issuer of the digital ID credential." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentIssueDateElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "issue_date" }] }], [Paragraph { inline_content: [Text { text: "The issue date for the underlying physical ID." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentExpirationDateElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "expiry_date" }] }], [Paragraph { inline_content: [Text { text: "Date when the ID expires (Note: This is intended to be the date of the underlying physical document, if appropriate. The mdoc-specific dates are included in the ValidityInfo within the MSO.)" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "documentNumberElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "document_number" }] }], [Paragraph { inline_content: [Text { text: "The number assigned or calculated by the issuing authority." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "sexElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "sex_unicode" }] }], [Paragraph { inline_content: [Text { text: "The ID holder’s sex using values as defined in ISO/IEC 5218." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "dateOfBirthElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "birth_date_unicode" }] }], [Paragraph { inline_content: [Text { text: "The date when the ID holder was born." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "ageElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "age_in_years" }] }], [Paragraph { inline_content: [Text { text: "The age of the ID holder." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "ageThresholdElement" }] }], [Paragraph { inline_content: [CodeVoice { code: "age_over_NN" }] }], [Paragraph { inline_content: [Text { text: "Age attestation used to convey to a verifier, in a data-minimized fashion, if the holder is older than a specified age." }] }]]], alignments: None, metadata: None })
+    ///
+    /// Used to request information from a user's photo ID (or equivalent document).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityPhotoIDDescriptor;
@@ -158,9 +221,14 @@ impl PKIdentityPhotoIDDescriptor {
 }
 
 extern_class!(
-    /// Used to request information from multiple identity documents.
+    /// An object you use to request information from multiple identity documents.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityanyofdescriptor?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this class to support requests for one or more identity documents or when multiple identity documents are requested. For example, this class supports the return of a driver’s license or digital ID, or the request for a driver’s license and a digital ID.
+    ///
+    ///
+    /// Used to request information from multiple identity documents.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityAnyOfDescriptor;

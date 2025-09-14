@@ -12,36 +12,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The modes that describe how the source and destination pixel colors are used to calculate the new destination color.
 /// Blend modes that the SKNode uses to compose with the framebuffer to produce blended colors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKBlendMode(pub NSInteger);
 impl SKBlendMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/alpha?language=objc)
+    /// The source and destination colors are blended by multiplying the source alpha value.
     #[doc(alias = "SKBlendModeAlpha")]
     pub const Alpha: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/add?language=objc)
+    /// The source and destination colors are added together.
     #[doc(alias = "SKBlendModeAdd")]
     pub const Add: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/subtract?language=objc)
+    /// The source color is subtracted from the destination color.
     #[doc(alias = "SKBlendModeSubtract")]
     pub const Subtract: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/multiply?language=objc)
+    /// The source color is multiplied by the destination color.
     #[doc(alias = "SKBlendModeMultiply")]
     pub const Multiply: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/multiplyx2?language=objc)
+    /// The source color is multiplied by the destination color and then doubled.
     #[doc(alias = "SKBlendModeMultiplyX2")]
     pub const MultiplyX2: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/screen?language=objc)
+    /// The source color is added to the destination color times the inverted source color.
     #[doc(alias = "SKBlendModeScreen")]
     pub const Screen: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/replace?language=objc)
+    /// The source color replaces the destination color.
     #[doc(alias = "SKBlendModeReplace")]
     pub const Replace: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode/multiplyalpha?language=objc)
     #[doc(alias = "SKBlendModeMultiplyAlpha")]
     pub const MultiplyAlpha: Self = Self(7);
 }
@@ -54,19 +52,25 @@ unsafe impl RefEncode for SKBlendMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior?language=objc)
+/// Options for the focusable states of a SpriteKit node.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKNodeFocusBehavior(pub NSInteger);
 impl SKNodeFocusBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior/none?language=objc)
+    /// Node is not focusable.
+    ///
+    /// ## Discussion
+    ///
+    /// This behavior is the default for a node.
+    ///
+    ///
     #[doc(alias = "SKNodeFocusBehaviorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior/occluding?language=objc)
+    /// Node is not focusable and prevents nodes that it visually obscures from becoming focusable.
     #[doc(alias = "SKNodeFocusBehaviorOccluding")]
     pub const Occluding: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior/focusable?language=objc)
+    /// Node is focusable and prevents nodes that it visually obscures from becoming focusable.
     #[doc(alias = "SKNodeFocusBehaviorFocusable")]
     pub const Focusable: Self = Self(2);
 }
@@ -80,7 +84,15 @@ unsafe impl RefEncode for SKNodeFocusBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknode?language=objc)
+    /// The base class of all SpriteKit nodes.
+    ///
+    /// ## Overview
+    ///
+    /// `SKNode` provides base properties for its subclasses and it can be used as a container or layout tool for other nodes. For example, you might add a collection of nodes as children to an `SKNode` that all move together within the scene; because nodes inherit the properties of their parent, changing the parent node’s [`position`](https://developer.apple.com/documentation/spritekit/sknode/position) propagates the change to its children as well.
+    ///
+    /// `SKNode` does not draw any content itself. Its visual counterparts are listed in Nodes that Draw in [Nodes for Scene Building](https://developer.apple.com/documentation/spritekit/nodes-for-scene-building).
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

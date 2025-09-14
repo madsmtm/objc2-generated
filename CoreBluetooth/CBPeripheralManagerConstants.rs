@@ -6,6 +6,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A Boolean value specifying whether the system should warn if Bluetooth is in the powered-off state when instantiating the peripheral manager.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). If the key isn’t specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the system should, if Bluetooth is powered off when
     /// <code>
     /// CBPeripheralManager
@@ -15,12 +22,19 @@ extern "C" {
     ///
     ///
     /// See: initWithDelegate:queue:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanageroptionshowpoweralertkey?language=objc)
     pub static CBPeripheralManagerOptionShowPowerAlertKey: &'static NSString;
 }
 
 extern "C" {
+    /// A unique identifier (UID) with which to instantiate the peripheral manager.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    /// The system uses this UID to identify a specific peripheral manager. As a result, the UID must remain the same for subsequent executions of the app for successful restoration of the peripheral manager.
+    ///
+    ///
     /// An NSString containing a unique identifier (UID) for the
     /// <code>
     /// CBPeripheralManager
@@ -37,12 +51,19 @@ extern "C" {
     /// See: initWithDelegate:queue:options:
     ///
     /// See also: centralManager:willRestoreState:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanageroptionrestoreidentifierkey?language=objc)
     pub static CBPeripheralManagerOptionRestoreIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// An array of restored peripheral services.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) of [`CBMutableService`](https://developer.apple.com/documentation/corebluetooth/cbmutableservice) objects. It contains all of the services that previously published to the local peripheral’s database when the system quit the app.
+    ///
+    /// Restoration includes all information about a service, including any included services, characteristics, characteristic descriptors, and subscribed centrals.
+    ///
+    ///
     /// An NSArray of
     /// <code>
     /// CBMutableService
@@ -55,19 +76,22 @@ extern "C" {
     /// See: peripheralManager:willRestoreState:
     ///
     /// See also: addService:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerrestoredstateserviceskey?language=objc)
     pub static CBPeripheralManagerRestoredStateServicesKey: &'static NSString;
 }
 
 extern "C" {
+    /// A dictionary of restored advertising data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) that contains the data advertised by the peripheral manager at the time the system quit the app.
+    ///
+    ///
     /// An NSDictionary containing the data being advertised at the time the application was terminated by the system.
     ///
     ///
     /// See: peripheralManager:willRestoreState:
     ///
     /// See also: startAdvertising:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerrestoredstateadvertisementdatakey?language=objc)
     pub static CBPeripheralManagerRestoredStateAdvertisementDataKey: &'static NSString;
 }

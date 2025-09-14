@@ -9,6 +9,24 @@ use crate::*;
 
 /// The non-maximum suppression coordinate mode.
 ///
+/// ## Overview
+///
+/// The coordinate mode to use. At initialization defaults to MPSGraphNonMaximumSuppressionCoordinateModeCornersHeightFirst. This mode specifies the representation used for the 4 box coordinate values. Center coordinate modes define a centered box and the box dimensions.
+///
+/// ```md
+/// CornersHeightFirst:
+///     [h_start, w_start, h_end, w_end]
+/// CornersWidthFirst:
+///     [w_start, h_start, w_end, h_end]
+/// CentersHeightFirst:
+///     [h_center, w_center, box_height, box_width]
+/// CentersWidthFirst:
+///     [w_center, w_center, box_height, box_width]
+/// ```
+///
+///
+/// The non-maximum suppression coordinate mode.
+///
 /// The coordinate mode to use. At initialization defaults to MPSGraphNonMaximumSuppressionCoordinateModeCornersHeightFirst.
 /// This mode specifies the representation used for the 4 box coordinate values.
 /// Center coordinate modes define a centered box and the box dimensions.
@@ -22,23 +40,17 @@ use crate::*;
 /// CentersWidthFirst:
 /// [w_center, w_center, box_height, box_width]
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphNonMaximumSuppressionCoordinateMode(pub NSUInteger);
 impl MPSGraphNonMaximumSuppressionCoordinateMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/explicit?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCornersHeightFirst")]
     pub const CornersHeightFirst: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/cornerswidthfirst?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCornersWidthFirst")]
     pub const CornersWidthFirst: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/centersheightfirst?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCentersHeightFirst")]
     pub const CentersHeightFirst: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphnonmaximumsuppressioncoordinatemode/centerswidthfirst?language=objc)
     #[doc(alias = "MPSGraphNonMaximumSuppressionCoordinateModeCentersWidthFirst")]
     pub const CentersWidthFirst: Self = Self(3);
 }

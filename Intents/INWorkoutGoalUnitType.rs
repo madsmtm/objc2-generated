@@ -4,43 +4,43 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype?language=objc)
+/// Describes the unit of measure with constants for a workout.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INWorkoutGoalUnitType(pub NSInteger);
 impl INWorkoutGoalUnitType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/unknown?language=objc)
+    /// An unknown unit.
     #[doc(alias = "INWorkoutGoalUnitTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/inch?language=objc)
+    /// A measurement of the goal in inches.
     #[doc(alias = "INWorkoutGoalUnitTypeInch")]
     pub const Inch: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/meter?language=objc)
+    /// A measurement of the goal in meters.
     #[doc(alias = "INWorkoutGoalUnitTypeMeter")]
     pub const Meter: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/foot?language=objc)
+    /// A measurement of the goal in feet.
     #[doc(alias = "INWorkoutGoalUnitTypeFoot")]
     pub const Foot: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/mile?language=objc)
+    /// A measurement of the goal in miles.
     #[doc(alias = "INWorkoutGoalUnitTypeMile")]
     pub const Mile: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/yard?language=objc)
+    /// A measurement of the goal in yards.
     #[doc(alias = "INWorkoutGoalUnitTypeYard")]
     pub const Yard: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/second?language=objc)
+    /// A measurement of the goal in seconds.
     #[doc(alias = "INWorkoutGoalUnitTypeSecond")]
     pub const Second: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/minute?language=objc)
+    /// A measurement of the goal in minutes.
     #[doc(alias = "INWorkoutGoalUnitTypeMinute")]
     pub const Minute: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/hour?language=objc)
+    /// A measurement of the goal in hours.
     #[doc(alias = "INWorkoutGoalUnitTypeHour")]
     pub const Hour: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/joule?language=objc)
+    /// A measurement of the goal in joules.
     #[doc(alias = "INWorkoutGoalUnitTypeJoule")]
     pub const Joule: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutgoalunittype/kilocalorie?language=objc)
+    /// A measurement of the goal in kilo caleries.
     #[doc(alias = "INWorkoutGoalUnitTypeKiloCalorie")]
     pub const KiloCalorie: Self = Self(10);
 }

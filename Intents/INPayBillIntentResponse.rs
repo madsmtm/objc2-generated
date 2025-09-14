@@ -7,42 +7,90 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPayBillIntentResponseCode(pub NSInteger);
 impl INPayBillIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeUnspecified")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to fulfill the intent. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeReady")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/inprogress?language=objc)
+    /// You’ve received the payment details and are in the process of scheduling the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the transaction details, but have not yet scheduled the transaction. Return this code if you’re unable to schedule the transaction from your handler method within a few seconds of receiving it.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeInProgress")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/success?language=objc)
+    /// You successfully scheduled the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after scheduling the transaction successfully. Returning this code doesn’t requirea transfer of funds. It only means that you’ve recorded the transaction are making the payment on the date specified in the intent object.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeSuccess")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failure?language=objc)
+    /// You were unable to schedule the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from scheduling the transaction.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeFailure")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to schedule the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you require additional information from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failurecredentialsunverified?language=objc)
+    /// The transaction failed because you were unable to verify the credentials of the user or the payee.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you’re unable to verify the credentials of the user or the payee. You might use this response code if the user is currently logged out of your app or is unknown to you. You might also use it if the user didn’t set up any payees in advance.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeFailureCredentialsUnverified")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCredentialsUnverified: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponsecode/failureinsufficientfunds?language=objc)
+    /// The transaction failed because the user’s account didn’t contain sufficient funds.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the user’s account doesn’t have the funds needed to make the payment.
+    ///
+    ///
     #[doc(alias = "INPayBillIntentResponseCodeFailureInsufficientFunds")]
     #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureInsufficientFunds: Self = Self(7);
@@ -57,7 +105,15 @@ unsafe impl RefEncode for INPayBillIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaybillintentresponse?language=objc)
+    /// Your app’s response to a request to pay a bill.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INPayBillIntentResponse`](https://developer.apple.com/documentation/intents/inpaybillintentresponse) object to specify the details of the bill payment operation that you perform. After creating the object, fill in the details of the transaction, including the amount to transfer, the user account involved, the payee, and the date for the transaction to occur. Siri communicates the bill details back to the user at appropriate times.
+    ///
+    /// You create an [`INPayBillIntentResponse`](https://developer.apple.com/documentation/intents/inpaybillintentresponse) object in the [`confirmPayBill:completion:`](https://developer.apple.com/documentation/intents/inpaybillintenthandling/confirm(intent:completion:)) and [`handlePayBill:completion:`](https://developer.apple.com/documentation/intents/inpaybillintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INPayBillIntentHandling`](https://developer.apple.com/documentation/intents/inpaybillintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

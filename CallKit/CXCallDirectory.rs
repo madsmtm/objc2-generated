@@ -3,8 +3,8 @@
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumber?language=objc)
+/// A value that represents a phone number consisting of a country calling code followed by a sequence of digits.
 pub type CXCallDirectoryPhoneNumber = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumbermax?language=objc)
+/// The maximum allowable value for a phone number.
 pub static CXCallDirectoryPhoneNumberMax: CXCallDirectoryPhoneNumber = INT64_MAX - 1;

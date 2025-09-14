@@ -7,97 +7,405 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype?language=objc)
+/// Constants for system-provided icons.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIApplicationShortcutIconType(pub NSInteger);
 impl UIApplicationShortcutIconType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/compose?language=objc)
+    /// An icon for a quick action that lets a user compose new content.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/9b9b4206e8fa3b5c4b4e10be3eb3c5d7/media-2934509%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeCompose")]
     pub const Compose: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/play?language=objc)
+    /// An icon for a quick action that plays media.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/96f5b782c732681301f83d633a1d6167/media-2934510~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/646622700589f91f24be85a458d53ec6/media-2934510%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/96f5b782c732681301f83d633a1d6167/media-2934510~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypePlay")]
     pub const Play: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/pause?language=objc)
+    /// An icon for  a quick action that pauses media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/a4cf2ad984b107ee615314440df0dc5d/media-2934511%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypePause")]
     pub const Pause: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/add?language=objc)
+    /// An icon for a quick action that adds an item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7ce1e323668f1fef9c23c76260726042/media-2934512~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/21485e633ff9bd98868ad097220ef8eb/media-2934512%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/7ce1e323668f1fef9c23c76260726042/media-2934512~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeAdd")]
     pub const Add: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/location?language=objc)
+    /// An icon for a quick action that accesses the user’s current location.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/8ebdb0db8b21398d57e0f374a696d018/media-2934513%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeLocation")]
     pub const Location: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/search?language=objc)
+    /// An icon a quick action that offers search.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cb830781fdbc1ac198edc0ee1da35d51/media-2934514~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e714f926d92cd33825f1dd6a64c1359c/media-2934514%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e714f926d92cd33825f1dd6a64c1359c/media-2934514%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeSearch")]
     pub const Search: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/share?language=objc)
+    /// An icon for a quick action that offers content sharing.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/1c222356499a9299bcb7135772e2070d/media-2934515~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/ec9bbb29a05ee2c74c64ae489406dc86/media-2934515%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/ec9bbb29a05ee2c74c64ae489406dc86/media-2934515%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeShare")]
     pub const Share: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/prohibit?language=objc)
+    /// An icon for a quick action that disallows something.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ebd162ce3fbebc2eeb5465c4c5a125c4/media-2934516~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f5f7cad8bd103460fc06bd970cf53ad1/media-2934516%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/f5f7cad8bd103460fc06bd970cf53ad1/media-2934516%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeProhibit")]
     pub const Prohibit: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/contact?language=objc)
+    /// An icon for a quick action that chooses a generic contact.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/9653c596851805b5c8e89a25b8412208/media-2934517%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeContact")]
     pub const Contact: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/home?language=objc)
+    /// An icon for a quick action that indicates home.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/846af9376f8eaededfb191460a234dca/media-2934518~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/722dedc7b0879e0a0990f185e35e489f/media-2934518%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/846af9376f8eaededfb191460a234dca/media-2934518~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeHome")]
     pub const Home: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/marklocation?language=objc)
+    /// An icon for a quick action that lets a user mark a location.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c4fcc4f12a36a1f6880f859f83199454/media-2934519~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/0198dd7d5b36b359d16ba61372c67d1b/media-2934519%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/c4fcc4f12a36a1f6880f859f83199454/media-2934519~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeMarkLocation")]
     pub const MarkLocation: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/favorite?language=objc)
+    /// An icon for a quick action that lets a user designate a favorite item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e70765445245987cddb966db1afbfe11/media-2934520~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/56c7ef8e7f0a04d87b9c202463022156/media-2934520%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e70765445245987cddb966db1afbfe11/media-2934520~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeFavorite")]
     pub const Favorite: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/love?language=objc)
+    /// An icon for a quick action that lets a user designate a loved item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/9eb5f1ba68d0b7acf9a328ea1f8a6586/media-2934521%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeLove")]
     pub const Love: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/cloud?language=objc)
+    /// An icon for a quick action that offers cloud access.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/971d1c274db80efce3c7d888f434a8a8/media-2934522~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/08a992bf0cf4a3dd5fe9785525fac1f2/media-2934522%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/971d1c274db80efce3c7d888f434a8a8/media-2934522~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeCloud")]
     pub const Cloud: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/invitation?language=objc)
+    /// An icon for a quick action that indicates an invitation.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/2621365c418c4ad550454493b82733e7/media-2934523~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/44b13014d8a6b751d3a26e6e88340fb0/media-2934523%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/44b13014d8a6b751d3a26e6e88340fb0/media-2934523%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeInvitation")]
     pub const Invitation: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/confirmation?language=objc)
+    /// An icon for a quick action that indicates confirmation.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/dae52dacb9646bd714de31163e1ea12c/media-2934524%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeConfirmation")]
     pub const Confirmation: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/mail?language=objc)
+    /// An icon for a quick action that offers use of mail.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/98efcbf4cae5c2e90088d157242e38da/media-2934525~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/da083acdc4e98b1368d921c30ffba4e0/media-2934525%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/da083acdc4e98b1368d921c30ffba4e0/media-2934525%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeMail")]
     pub const Mail: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/message?language=objc)
+    /// An icon for a quick action that offers use of messaging.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/1f467aabd52fd18981bbcf707a29fcc1/media-2934526%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeMessage")]
     pub const Message: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/date?language=objc)
+    /// An icon for a quick action that offers use of a calendar.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/646d0632ee6827b37e0bec55bafa3b09/media-2934527~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/5e0178b7a22bf3c4df0f32ec2e50d427/media-2934527%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/646d0632ee6827b37e0bec55bafa3b09/media-2934527~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeDate")]
     pub const Date: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/time?language=objc)
+    /// An icon for a quick action that offers use of a clock or timer.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/1401b103ee816e9509b85805260f4f31/media-2934528~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/133748bc2357092889f7d8df9118c4d6/media-2934528%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/1401b103ee816e9509b85805260f4f31/media-2934528~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeTime")]
     pub const Time: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/capturephoto?language=objc)
+    /// An icon for a quick action that offers photo capture.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c389f32f57806de0a461cdf89183e372/media-2934529~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b6b2d703ede802610a75162d13ce70c1/media-2934529%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/c389f32f57806de0a461cdf89183e372/media-2934529~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeCapturePhoto")]
     pub const CapturePhoto: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/capturevideo?language=objc)
+    /// An icon for a quick action that offers video capture.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/dc75aa106b4286335f9d5360cfacaf1a/media-2934530%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeCaptureVideo")]
     pub const CaptureVideo: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/task?language=objc)
+    /// An icon for a quick action that offers task creation.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7bd8f859dbfe616ea287a3901ed3d31c/media-2934531~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/c9b98cf2cf8f8edfb0ababa96883b625/media-2934531%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/c9b98cf2cf8f8edfb0ababa96883b625/media-2934531%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeTask")]
     pub const Task: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/taskcompleted?language=objc)
+    /// An icon for a quick action that offers task completion.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/1566c5c886736da3f13e7db3e66c5847/media-2934532~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7893f87da6ed941dd2256b72ee3267ee/media-2934532%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/7893f87da6ed941dd2256b72ee3267ee/media-2934532%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeTaskCompleted")]
     pub const TaskCompleted: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/alarm?language=objc)
+    /// An icon for a quick action that offers creation of an alarm.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/570de8b94abdb3a2feeb9394c6829dd1/media-2934533~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/42d430284b96c085d29e0306d80a3555/media-2934533%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/570de8b94abdb3a2feeb9394c6829dd1/media-2934533~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeAlarm")]
     pub const Alarm: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/bookmark?language=objc)
+    /// An icon for a quick action that offers creation of a bookmark.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/8aa8d4f360e649c57a568c044bccc0d2/media-2934534~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b43be745b3230ab74b46652b6f012671/media-2934534%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/b43be745b3230ab74b46652b6f012671/media-2934534%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeBookmark")]
     pub const Bookmark: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/shuffle?language=objc)
+    /// An icon for a quick action that offers shuffle mode.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/8bb86b3ee6b7a561ab13b922f1e0911f/media-2934535%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeShuffle")]
     pub const Shuffle: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/audio?language=objc)
+    /// An icon for a quick action that offers use of audio.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/c565b94e13100aaa574b8865339a8d7f/media-2934536%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeAudio")]
     pub const Audio: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype/update?language=objc)
+    /// An icon for a quick action that offers updating.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4769eb1b53c24615faa320d1263dcd8e/media-2934537~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/23a534175cad292b9e51f3d927180cb8/media-2934537%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/4769eb1b53c24615faa320d1263dcd8e/media-2934537~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "UIApplicationShortcutIconTypeUpdate")]
     pub const Update: Self = Self(28);
 }
@@ -111,7 +419,21 @@ unsafe impl RefEncode for UIApplicationShortcutIconType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon?language=objc)
+    /// An image you can optionally associate with a Home Screen quick action to improve its appearance and usability.
+    ///
+    /// ## Overview
+    ///
+    /// To associate an icon with a quick action, pass it to the quick action item’s initialization method, as described in [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem).
+    ///
+    /// There are three types of quick action icon:
+    ///
+    /// - An icon from a system-provided library of common types, as described in the [`UIApplicationShortcutIconType`](https://developer.apple.com/documentation/uikit/uiapplicationshortcuticon/icontype) enumeration
+    ///
+    /// - An icon derived from a custom template image in your app’s bundle and preferably in an asset catalog (see [Managing assets with asset catalogs](https://developer.apple.com/documentation/xcode/managing-assets-with-asset-catalogs))
+    ///
+    /// - An icon representing a contact in the user’s address book, which you access through the [`Contacts UI`](https://developer.apple.com/documentation/contactsui) framework
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIApplicationShortcutIcon;
@@ -166,7 +488,42 @@ impl DefaultRetained for UIApplicationShortcutIcon {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem?language=objc)
+    /// An application shortcut item, also called a Home Screen dynamic quick action, that specifies a user-initiated action for your app.
+    ///
+    /// ## Overview
+    ///
+    /// On a device that supports 3D Touch, a person invokes the quick action by pressing your app’s icon on the Home Screen and then selecting the quick action’s title. Your app delegate receives and handles the quick action.
+    ///
+    /// You must specify the characteristics of your [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem) instances during initialization, before you register them with your app object. The quick actions you’ve registered with your app object are immutable.
+    ///
+    /// ### Register an array of dynamic quick actions with your app
+    ///
+    /// To register an array of Home Screen dynamic quick actions, set the value of your shared app object’s [`shortcutItems`](https://developer.apple.com/documentation/uikit/uiapplication/shortcutitems) property with an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) instance containing your defined dynamic Home Screen quick actions.
+    ///
+    /// ### Change your app’s dynamic quick actions
+    ///
+    /// To change your app’s Home Screen dynamic quick actions, replace your app object’s [`shortcutItems`](https://developer.apple.com/documentation/uikit/uiapplication/shortcutitems) array by setting a new value for the property. As a convenience for working with registered quick actions, this class has a mutable subclass, [`UIMutableApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uimutableapplicationshortcutitem). The following code snippet illustrates one way to use the [`mutableCopy`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/mutablecopy()) method, along with mutable quick actions, to change the title of a dynamic Home Screen quick action:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var shortcutItems = UIApplication.shared.shortcutItems ?? []", "if let existingShortcutItem = shortcutItems.first {", "    guard let mutableShortcutItem = existingShortcutItem.mutableCopy() as? UIMutableApplicationShortcutItem", "        else { preconditionFailure(\"Expected a UIMutableApplicationShortcutItem\") }", "    guard let index = shortcutItems.index(of: existingShortcutItem)", "        else { preconditionFailure(\"Expected a valid index\") }", "", "    mutableShortcutItem.localizedTitle = \"New Title\"", "    shortcutItems[index] = mutableShortcutItem", "    UIApplication.shared.shortcutItems = shortcutItems", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["    NSArray <UIApplicationShortcutItem *> *existingShortcutItems = [[UIApplication sharedApplication] shortcutItems];", "    UIApplicationShortcutItem *existingShortcutItem = [existingShortcutItems firstObject];", "    NSMutableArray <UIApplicationShortcutItem *> *updatedShortcutItems = [existingShortcutItems mutableCopy];", "    UIMutableApplicationShortcutItem *mutableShortcutItem = [existingShortcutItem mutableCopy];", "    NSInteger index = [existingShortcutItems indexOfObject:existingShortcutItem];", "    [mutableShortcutItem setLocalizedTitle: @\"New Title\"];", "    [updatedShortcutItems replaceObjectAtIndex: index withObject: mutableShortcutItem];", "    [[UIApplication sharedApplication] setShortcutItems: updatedShortcutItems];"], metadata: None }] }] })
+    /// ### Dynamic and static quick actions
+    ///
+    /// Although immutable, a [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem) instance is considered _dynamic_ to distinguish it from a _static_ quick action you specify at build time.
+    ///
+    /// - Define Home Screen _dynamic_ quick actions using this class. Your code creates dynamic quick actions, and registers them with your app object, at runtime.
+    ///
+    /// - Define Home Screen _static_ quick actions in the [UIApplicationShortcutItems](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36) array in your Xcode project’s `Info.plist` file, as described in the [iOS Keys](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252) chapter in [Information Property List Key Reference](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247). The system registers your static quick actions when your app is installed.
+    ///
+    /// The system limits the number of quick actions displayed when a user presses a Home Screen app icon. Within the limited set of displayed quick action titles, your static quick actions are shown first, starting at the topmost position in the list. If your static items don’t consume the permissible number for display and you’ve also defined dynamic quick actions using this class, then one or more of your dynamic quick actions is displayed.
+    ///
+    /// ### App launch and app update considerations for quick actions
+    ///
+    /// When a user chooses one of your Home Screen quick actions, the system launches or resumes your app and UIKit calls the [`application:performActionForShortcutItem:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:performactionfor:completionhandler:)) method in your app delegate. Be sure to read the description of that method in [`UIApplicationDelegate`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate) for information on how to ensure the method is called only when it should be.
+    ///
+    /// After a user first installs your app and before they first launch it, pressing your Home Screen icon displays only the app’s static quick actions. After first launch, your dynamic quick actions (if you’ve defined any and there’s room in the list to accommodate them) are displayed as well.
+    ///
+    /// If a user installs an update for your app but hasn’t yet launched the update, pressing your Home Screen icon shows the dynamic quick actions for the previously installed version. One way to gracefully handle this scenario is to provide app version information in the `userInfo` dictionary of a quick action.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIApplicationShortcutItem;
@@ -258,7 +615,13 @@ impl UIApplicationShortcutItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableapplicationshortcutitem?language=objc)
+    /// A mutable Home Screen dynamic quick action, which is an item that specifies a configurable user-initiated action for your app.
+    ///
+    /// ## Overview
+    ///
+    /// This class is a convenience subclass of [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem), helping you work with registered, and therefore immutable, quick actions. For information about how to use objects of this class in your app, read the overview in [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem).
+    ///
+    ///
     #[unsafe(super(UIApplicationShortcutItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMutableApplicationShortcutItem;

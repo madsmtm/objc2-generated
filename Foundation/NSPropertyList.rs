@@ -5,20 +5,20 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/mutabilityoptions?language=objc)
+/// These constants specify mutability options in property lists.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPropertyListMutabilityOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistmutabilityoptions/nspropertylistimmutable?language=objc)
+/// Causes the returned property list to contain immutable objects.
         #[doc(alias = "NSPropertyListImmutable")]
         const Immutable = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/mutabilityoptions/mutablecontainers?language=objc)
+/// Causes the returned property list to have mutable containers but immutable leaves.
         #[doc(alias = "NSPropertyListMutableContainers")]
         const MutableContainers = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/mutabilityoptions/mutablecontainersandleaves?language=objc)
+/// Causes the returned property list to have mutable containers and leaves.
         #[doc(alias = "NSPropertyListMutableContainersAndLeaves")]
         const MutableContainersAndLeaves = 2;
     }
@@ -32,19 +32,31 @@ unsafe impl RefEncode for NSPropertyListMutabilityOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat?language=objc)
+/// These constants are used to specify a property list serialization format.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPropertyListFormat(pub NSUInteger);
 impl NSPropertyListFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat/openstep?language=objc)
+    /// Specifies the ASCII property list format inherited from the OpenStep APIs.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `NSPropertyListOpenStepFormat` constant is not supported for writing. It can be used only for reading old-style property lists.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSPropertyListOpenStepFormat")]
     pub const OpenStepFormat: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat/xml?language=objc)
+    /// Specifies the XML property list format.
     #[doc(alias = "NSPropertyListXMLFormat_v1_0")]
     pub const XMLFormat_v1_0: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/propertylistformat/binary?language=objc)
+    /// Specifies the binary property list format.
     #[doc(alias = "NSPropertyListBinaryFormat_v1_0")]
     pub const BinaryFormat_v1_0: Self = Self(200);
 }
@@ -57,14 +69,21 @@ unsafe impl RefEncode for NSPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/readoptions?language=objc)
+/// The only read options supported are described in [`NSPropertyListMutabilityOptions`](https://developer.apple.com/documentation/foundation/propertylistserialization/mutabilityoptions).
 pub type NSPropertyListReadOptions = NSPropertyListMutabilityOptions;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization/writeoptions?language=objc)
 pub type NSPropertyListWriteOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/propertylistserialization?language=objc)
+    /// An object that converts between a property list and one of several serialized representations.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSPropertyListSerialization`](https://developer.apple.com/documentation/foundation/propertylistserialization) class provides methods that convert a property list to and from several serialized formats. A property list is itself an array or dictionary that contains only [`NSData`](https://developer.apple.com/documentation/foundation/nsdata), [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary), [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate), and [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) objects.
+    ///
+    /// Property list objects are toll-free bridged with their respective Core Foundation types ([`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata), [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring), and so on). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2)  for more information on toll-free bridging.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertyListSerialization;

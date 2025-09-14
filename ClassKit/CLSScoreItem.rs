@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// CLSScoreItem represents user generated score information.
+    /// Activity information that signifies a score out of a possible maximum.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsscoreitem?language=objc)
+    /// ## Overview
+    ///
+    /// Use an activity item of this type to indicate the relative success in completing a task, like the number of correctly answered questions on a quiz.
+    ///
+    ///
+    /// CLSScoreItem represents user generated score information.
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]

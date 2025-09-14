@@ -7,22 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.enum?language=objc)
+/// The set of predefined appearances for a popover.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopoverAppearance(pub NSInteger);
 impl NSPopoverAppearance {
+    /// The popover draws with a minimal appearance.
     /// The popover will use the default, light content appearance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.enum/minimal?language=objc)
     #[doc(alias = "NSPopoverAppearanceMinimal")]
     #[deprecated]
     pub const Minimal: Self = Self(0);
+    /// The popover draws with a HUD appearance.
     /// The popover will draw with a HUD appearance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.enum/hud?language=objc)
     #[doc(alias = "NSPopoverAppearanceHUD")]
     #[deprecated]
     pub const HUD: Self = Self(1);
@@ -36,19 +34,37 @@ unsafe impl RefEncode for NSPopoverAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum?language=objc)
+/// The appearance and disappearance behavior of a popover.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopoverBehavior(pub NSInteger);
 impl NSPopoverBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum/applicationdefined?language=objc)
+    /// Your application assumes responsibility for closing the popover.
+    ///
+    /// ## Discussion
+    ///
+    /// The system will still close the popover in a limited number of circumstances. For instance, the system will attempt to close the popover when the window of its positioningView is closed. The exact interactions in which AppKit will close the popover are not guaranteed. You may consider implementing -cancel: to close the popover when the escape key is pressed.
+    ///
+    ///
     #[doc(alias = "NSPopoverBehaviorApplicationDefined")]
     pub const ApplicationDefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum/transient?language=objc)
+    /// The system will close the popover when the user interacts with a user interface element outside the popover.
+    ///
+    /// ## Discussion
+    ///
+    /// Note that interacting with menus or panels that become key only when needed will not cause a transient popover to close. The exact interactions that will cause transient popovers to close are not specified.
+    ///
+    ///
     #[doc(alias = "NSPopoverBehaviorTransient")]
     pub const Transient: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum/semitransient?language=objc)
+    /// The system will close the popover when the user interacts with user interface elements in the window containing the popover’s positioning view.
+    ///
+    /// ## Discussion
+    ///
+    /// Semi-transient popovers cannot be shown relative to views in other popovers, nor can they be shown relative to views in child windows. The exact interactions that cause semi-transient popovers to close are not specified.
+    ///
+    ///
     #[doc(alias = "NSPopoverBehaviorSemitransient")]
     pub const Semitransient: Self = Self(2);
 }
@@ -62,7 +78,17 @@ unsafe impl RefEncode for NSPopoverBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover?language=objc)
+    /// A means to display additional content related to existing content on the screen.
+    ///
+    /// ## Overview
+    ///
+    /// The popover is positioned relative to the existing content and an anchor is used to express the relation between these two units of content. A popover has an appearance that specifies its visual characteristics, as well as a behavior that determines which user interactions will cause the popover to close. A transient popover is closed in response to most user interactions, whereas a semi-transient popover is closed when the user interacts with the window containing the popover’s positioning view. Popovers with application-defined behavior are not usually closed on the developer’s behalf.
+    ///
+    /// The system automatically positions each popover relative to its positioning view and moves the popover whenever its positioning view moves. A positioning rectangle within the positioning view can be specified for additional granularity.
+    ///
+    /// Popovers can be detached to become a separate window when they are dragged by implementing the appropriate delegate method.
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
@@ -266,46 +292,64 @@ impl NSPopover {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereasonuserinfokey?language=objc)
+    /// The `userInfo` key containing the reason for the [`NSPopoverWillCloseNotification`](https://developer.apple.com/documentation/appkit/nspopover/willclosenotification).
     pub static NSPopoverCloseReasonKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereason?language=objc)
+/// Values that specify the reason for the [`NSPopoverWillCloseNotification`](https://developer.apple.com/documentation/appkit/nspopover/willclosenotification) notification.
 // NS_TYPED_ENUM
 pub type NSPopoverCloseReasonValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereason/standard?language=objc)
+    /// Specifies that the popover has been closed in a standard way.
     pub static NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereason/detachtowindow?language=objc)
+    /// Specifies that the popover has been closed because it is being detached to a window.
     pub static NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/willshownotification?language=objc)
+    /// Sent before the popover is shown.
     pub static NSPopoverWillShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/didshownotification?language=objc)
+    /// Sent after the popover has finished animating onscreen.
     pub static NSPopoverDidShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/willclosenotification?language=objc)
+    /// Sent before the popover is closed.
+    ///
+    /// ## Discussion
+    ///
+    /// The `userInfo` key [`NSPopoverCloseReasonKey`](https://developer.apple.com/documentation/appkit/nspopover/closereasonuserinfokey) specifies the reason for closing. It can currently be either [`NSPopoverCloseReasonStandard`](https://developer.apple.com/documentation/appkit/nspopover/closereason/standard) or [`NSPopoverCloseReasonDetachToWindow`](https://developer.apple.com/documentation/appkit/nspopover/closereason/detachtowindow), although more reasons for closing may be added in the future.
+    ///
+    ///
     pub static NSPopoverWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/didclosenotification?language=objc)
+    /// Sent after the popover has finished animating offscreen.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of the `userInfo` key [`NSPopoverCloseReasonKey`](https://developer.apple.com/documentation/appkit/nspopover/closereasonuserinfokey) specifies the reason for closing. It can currently be either [`NSPopoverCloseReasonStandard`](https://developer.apple.com/documentation/appkit/nspopover/closereason/standard) or [`NSPopoverCloseReasonDetachToWindow`](https://developer.apple.com/documentation/appkit/nspopover/closereason/detachtowindow), although more reasons for closing may be added in the future.
+    ///
+    ///
     pub static NSPopoverDidCloseNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverdelegate?language=objc)
+    /// A set of optional methods that a popover delegate can implement to provide additional or custom functionality.
+    ///
+    /// ## Overview
+    ///
+    /// See [`NSPopover`](https://developer.apple.com/documentation/appkit/nspopover) for more information on popovers in general.
+    ///
+    ///
     pub unsafe trait NSPopoverDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         /// The popover invokes this method on its delegate whenever it is about to close to give the delegate a chance to veto the close.

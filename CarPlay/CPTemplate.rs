@@ -10,9 +10,16 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// Abstract superclass for a template object.
+    /// An abstract base class for interface templates.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplate?language=objc)
+    /// ## Overview
+    ///
+    /// `CPTemplate` is an abstract base class for defining CarPlay user interface templates. It provides the common functionality present in all templates.
+    ///
+    /// You don’t use this class directly, or create your own subclasses. Instead, you must use one of the prebuilt templates, such as [`CPListTemplate`](https://developer.apple.com/documentation/carplay/cplisttemplate) or [`CPGridTemplate`](https://developer.apple.com/documentation/carplay/cpgridtemplate).
+    ///
+    ///
+    /// Abstract superclass for a template object.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

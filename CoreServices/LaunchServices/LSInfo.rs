@@ -7,17 +7,31 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsacceptanceflags?language=objc)
+/// The specification that determines whether an app can accept (open) an item.
+///
+/// ## Overview
+///
+/// These flags are passed to the functions `LSCanRefAcceptItem` and `LSCanURLAcceptURL`.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LSAcceptanceFlags(pub OptionBits);
 bitflags::bitflags! {
     impl LSAcceptanceFlags: OptionBits {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsacceptanceflags/klsacceptdefault?language=objc)
+/// Requests the default behavior that does not require the user interface to log in be presented.
         #[doc(alias = "kLSAcceptDefault")]
         const AcceptDefault = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsacceptanceflags/klsacceptallowloginui?language=objc)
+/// Requests that the user interface to log in be presented.
+///
+/// ## Discussion
+///
+/// If `LSCanRefAcceptItem` or `LSCanURLAcceptURL` is called during a drag-and-drop operation, showing a server login dialog would be an inappropriate user experience. If the target designated in the function call is an alias to an application, Launch Services needs to resolve the alias to ascertain what file types the application can open.
+///
+/// If the application is on a server that needs to be authenticated, Launch Services will fail to resolve the alias to avoid having to present the login interface.To override this default behavior by allowing the server login interface, set the `kLSAcceptAllowLoginUI` flag.
+///
+///
         #[doc(alias = "kLSAcceptAllowLoginUI")]
         const AcceptAllowLoginUI = 0x00000002;
     }
@@ -33,6 +47,28 @@ unsafe impl RefEncode for LSAcceptanceFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns the app that opens an item.
+///
+/// Parameters:
+/// - inURL: The URL of the item for which the app is requested.
+///
+/// - inRoleMask: Whether to return the editor or viewer for `inURL`. If you don't care which, use [`kLSRolesAll`](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsrolesall).
+///
+/// - outError: On failure, set to a [`CFError`](https://developer.apple.com/documentation/corefoundation/cferror) describing the problem. If you are not interested in this information, pass `NULL`. The caller is responsible for releasing this object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If an acceptable app is found, its URL is returned. If the URL is a `file://` URL, the application bound to the specified file or directory's type is returned. If the URL's scheme is something else, its default scheme handler is returned. If no app could be found, `NULL` is returned and outError (if not `NULL`) is populated with [`kLSApplicationNotFoundErr`](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsapplicationnotfounderr). The caller is responsible for releasing this URL.
+///
+///
+///
+/// ## Discussion
+///
+/// Consults the binding tables to return the application that would be used to open inURL if it were double-clicked in the Finder. This application will be the user-specified override if appropriate or the default otherwise.
+///
+///
 /// Return the application used to open an item.
 ///
 ///
@@ -65,8 +101,6 @@ unsafe impl RefEncode for LSAcceptanceFlags {
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448824-lscopydefaultapplicationurlforur?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
@@ -86,6 +120,28 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns the app that opens a content type.
+///
+/// Parameters:
+/// - inContentType: The Uniform Type Identifier (UTI) of the item for which the app is requested.
+///
+/// - inRoleMask: Whether to return the editor or viewer for `inContentType`. If you don't care which, use [`kLSRolesAll`](https://developer.apple.com/documentation/coreservices/lsrolesmask/klsrolesall).
+///
+/// - outError: On failure, set to a [`CFError`](https://developer.apple.com/documentation/corefoundation/cferror) describing the problem. If you are not interested in this information, pass `NULL`. The caller is responsible for releasing this object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If an acceptable app is found, its URL is returned. If no app could be found, `NULL` is returned and `outError` (if not `NULL`) is populated with [`kLSApplicationNotFoundErr`](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsapplicationnotfounderr). The caller is responsible for releasing this URL.
+///
+///
+///
+/// ## Discussion
+///
+/// Consults the binding tables to return the application that would be used to open a file of type `inContentType` if it were double-clicked in the Finder. This app will be the user-specified override if appropriate or the default otherwise.
+///
+///
 /// Return the application used to open a content type (UTI).
 ///
 ///
@@ -116,8 +172,6 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForURL(
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447734-lscopydefaultapplicationurlforco?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
@@ -139,6 +193,24 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForContentType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Locates all URLs for apps that correspond to the specified bundle identifier.
+///
+/// Parameters:
+/// - inBundleIdentifier: The bundle identifier of interest, such as "com.apple.finder". Must not be `NULL`.
+///
+/// - outError: On failure, set to a `CFError` describing the problem. If you aren't interested in this information, pass `NULL`. The caller is responsible for releasing this object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The URLs for any applications with the specified bundle identifier returned in a `CFArray`. If no application is found, `NULL` is returned and `outError` (if not `NULL`) is populated with [`kLSApplicationNotFoundErr`](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsapplicationnotfounderr).
+///
+/// In macOS 10.15 and later, the returned array is sorted with the first element containing the best available application with the specified bundle identifier. Prior to macOS 10.15, the order of elements in the array was undefined.
+///
+/// The caller is responsible for releasing this array.
+///
+///
 /// Given a bundle identifier (such as com.apple.finder), find all URLs to the corresponding application.
 ///
 ///
@@ -165,8 +237,6 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultApplicationURLForContentType(
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449290-lscopyapplicationurlsforbundleid?language=objc)
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsWithBundleIdentifier:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
@@ -183,6 +253,33 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Locates all known apps suitable for opening an item for the specified URL.
+///
+/// Parameters:
+/// - inURL: A Core Foundation URL reference designating the item for which all suitable apps are requested. See `CFURL` for a description of the `CFURLRef` data type.
+///
+/// - inRolesMask: A bit mask specifying the apps’ role or roles with respect to the designated item. See [`LSRolesMask`](https://developer.apple.com/documentation/coreservices/lsrolesmask) for a description of this mask. This parameter applies only to URLs with a scheme component of `file`, and is ignored for all other schemes. If the role is unimportant, pass `kLSRolesAll`.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// An array of Core Foundation URL references, one for each app that can open the designated item with at least one of the specified roles. You are responsible for releasing the array object. If no suitable apps are found in the Launch Services database, the function will return `NULL.`
+///
+/// In macOS 10.15 and later, the returned array is sorted with the first element containing the best available apps for opening the specified URL. Prior to macOS 10.15, the order of elements in the array was undefined.
+///
+///
+///
+/// ## Discussion
+///
+/// If the item URL’s scheme is `file` (designating either a file or a directory), the selection of suitable applications is based on the designated item’s filename extension, file type, and creator signature, along with the role specified by the `inRolesMask` parameter. Otherwise, the selection is based on the URL scheme (such as `http`, `ftp`, or `mailto`).
+///
+/// <a id="1675582"></a>
+/// ### Version Notes
+///
+/// Thread-safe since macOS 10.3.
+///
+///
 /// Returns an array of URLs to applications that offer the requested
 /// role(s) for the input item.
 ///
@@ -207,8 +304,6 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForBundleIdentifier(
 ///
 /// The order of the resulting array is undefined. If you need the
 /// default application for the specified URL, use LSCopyDefaultApplicationURLForURL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445148-lscopyapplicationurlsforurl?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenURL:] instead."]
 #[inline]
@@ -227,6 +322,37 @@ pub unsafe extern "C-unwind" fn LSCopyApplicationURLsForURL(
 }
 
 extern "C-unwind" {
+    /// Tests whether an app can accept (open) an item for a URL.
+    ///
+    /// Parameters:
+    /// - inItemURL: A Core Foundation URL reference designating the source item (the item to test for acceptance by the target application); see the _CFURL Reference_ in the Core Foundation Reference Documentation for a description of the `CFURLRef` data type.
+    ///
+    /// - inTargetURL: A Core Foundation URL reference designating the target application; see the _CFURL Reference_ in the Core Foundation Reference Documentation for a description of the `CFURLRef` data type. The URL must have scheme `file` and contain a valid path to an application file or application bundle.
+    ///
+    /// - inRolesMask: A bit mask specifying the target app’s desired role or roles with respect to the source item; see [`LSRolesMask`](https://developer.apple.com/documentation/coreservices/lsrolesmask) for a description of this mask. This parameter applies only to URLs with a scheme component of `file`, and is ignored for all other schemes. If the role is unimportant, pass `kLSRolesAll`.
+    ///
+    /// - inFlags: Flags specifying behavior to observe during the acceptance test; see [`LSAcceptanceFlags`](https://developer.apple.com/documentation/coreservices/lsacceptanceflags) for a description of these flags.
+    ///
+    /// - outAcceptsItem: A pointer to a Boolean value that, on return, will indicate whether the target application can accept the source item with at least one of the specified roles.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code; see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/launch_services#1661359", kind: "article", title: "Result Codes", url: "/documentation/coreservices/launch_services#1661359", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the item URL’s scheme is `file` (designating either a file or a directory), the acceptance test is based on the designated item’s filename extension, file type, and creator signature, along with the role specified by the `inRolesMask` parameter; otherwise, it is based on the URL scheme (such as `http`, `ftp`, or `mailto`).
+    ///
+    /// <a id="1675609"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread-safe since Mac OS version 10.2.
+    ///
+    ///
     /// Determine whether an item can accept another item.
     ///
     ///
@@ -254,8 +380,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_accepts_item` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441854-lscanurlaccepturl?language=objc)
     #[cfg(feature = "LSConstants")]
     pub fn LSCanURLAcceptURL(
         in_item_url: &CFURL,
@@ -266,6 +390,31 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Registers an app, using a URL, in the Launch Services database.
+///
+/// Parameters:
+/// - inFileURL: A Core Foundation URL reference designating the app to be registered; see the _CFURL Reference_ in the Core Foundation Reference Documentation for a description of the `CFURLRef` data type. The URL must have scheme `file` and contain a valid path to an app file or app bundle.
+///
+/// - inUpdate: A Boolean value specifying whether Launch Services should update existing information registered for the app, if any. If this parameter is `false`, the app will not be registered if it has already been registered previously and its current modification date has not changed from when it was last registered; if the parameter is `true`, the app’s registered information will be updated even if its modification date has not changed.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code; see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/launch_services#1661359", kind: "article", title: "Result Codes", url: "/documentation/coreservices/launch_services#1661359", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// This function adds the designated application and its document and URL claims (if any) to the Launch Services database, making the application a candidate for document and URL binding.
+///
+/// <a id="1676155"></a>
+/// ### Version-Notes
+///
+/// Thread-safe since Mac OS version 10.3.
+///
+///
 /// If the specified URL refers to an application or other bundle
 /// claiming to handle documents or URLs, add the bundle's document
 /// and URL claims to the Launch Services database.
@@ -284,8 +433,6 @@ extern "C-unwind" {
 /// Returns: An OSStatus value: noErr - Success kLSNoRegistrationInfoErr - The
 /// item does not contain info requiring registration kLSDataErr -
 /// The item's property list info is malformed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446350-lsregisterurl?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -> OSStatus {
     extern "C-unwind" {
@@ -294,6 +441,33 @@ pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -
     unsafe { LSRegisterURL(in_url, in_update as _) }
 }
 
+/// Returns the bundle identifier of the user’s preferred default handler for the specified content type with the specified role.
+///
+/// Parameters:
+/// - inContentType: The content type. The content type is a uniform type identifier.
+///
+/// - inRole: The role. Pass `kLSRolesAll` if any role is acceptable. For additional possible values, see [`LSRolesMask`](https://developer.apple.com/documentation/coreservices/lsrolesmask).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The bundle identifier of the default handler for the specified content type in the specified roles, or `NULL` if no handler is available.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns the user’s currently preferred default handler for the specified content type. Say, for example, that [`LSSetDefaultRoleHandlerForContentType`](https://developer.apple.com/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten) has been used to set “com.Apple.TextEdit” for the “public.xml” content type. When a file whose content type is “public.xml” is double-clicked, TextEdit will be launched to open the file. If you call `LSCopyDefaultRoleHandlerForContentType(CFSTR(“public.xml”), kLSRolesAll)`, the string `com.apple.TextEdit` is returned.
+///
+/// The [`CFBundleDocumentTypes`](https://developer.apple.com/documentation/bundleresources/information-property-list/cfbundledocumenttypes) key in an app’s `Info.plist` can be used to set an app’s content handling capabilities. The `LSItemContentTypes` key is particularly useful because it supports the use of UTIs in document claims.
+///
+/// <a id="1818366"></a>
+/// ### Version-Notes
+///
+/// Thread-safe since OS X v10.4.
+///
+///
 /// Returns the application bundle identifier of the default handler
 /// for the specified content type (UTI), in the specified role(s).
 /// For any role, specify kLSRolesAll. Returns NULL if no handler
@@ -306,8 +480,6 @@ pub unsafe extern "C-unwind" fn LSRegisterURL(in_url: &CFURL, in_update: bool) -
 ///
 ///
 /// Returns: an application bundle identifier which is the default handler for the given type and role, or NULL if there is no default handler
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenContentType:] instead."]
 #[inline]
@@ -325,6 +497,35 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultRoleHandlerForContentType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Locates an array of bundle identifiers for apps capable of handling a specified content type with the specified roles.
+///
+/// Parameters:
+/// - inContentType: The content type. The content type is a uniform type identifier.
+///
+/// - inRole: The role. Pass `kLSRolesAll` if any role is acceptable. For additional possible values, see [`LSRolesMask`](https://developer.apple.com/documentation/coreservices/lsrolesmask).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The bundle identifiers for apps capable of handling the specified content type in the specified roles, or `NULL` if no handlers are available.
+///
+/// In macOS 10.15 and later, the returned array is sorted so that the first element contains the bundle identifier of the best available app for opening the content type. Prior to macOS 10.15, the order of elements in the array was undefined.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns all of the bundle identifiers that are capable of handling the specified content type in the specified roles.
+///
+/// The [CFBundleDocumentTypes](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-101685) key in an app’s `Info.plist` can be used to set an app’s content handling capabilities. The [`LSItemContentTypes`](https://developer.apple.com/documentation/bundleresources/information-property-list/cfbundledocumenttypes/lsitemcontenttypes) key is particularly useful because it supports the use of UTIs in document claims.
+///
+/// <a id="1818345"></a>
+/// ### Version Notes
+///
+/// Thread-safe since macOS 10.4.
+///
+///
 /// Returns an array of application bundle identifiers for
 /// applications capable of handling the specified content type
 /// (UTI) with the specified role(s). Application content handling
@@ -339,8 +540,6 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultRoleHandlerForContentType(
 ///
 ///
 /// Returns: an array of of CFStringRef bundle identifiers, or NULL
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448020-lscopyallrolehandlersforcontentt?language=objc)
 #[cfg(feature = "LSConstants")]
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenContentType:] instead."]
 #[inline]
@@ -359,6 +558,33 @@ pub unsafe extern "C-unwind" fn LSCopyAllRoleHandlersForContentType(
 }
 
 extern "C-unwind" {
+    /// Sets the user’s preferred default handler for the specified content type in the specified roles.
+    ///
+    /// Parameters:
+    /// - inContentType: The content type for which the default role handler is being set. The content type is a uniform type identifier.
+    ///
+    /// - inRole: The roles for which the default role handler is being set. Pass `kLSRolesAll` to specify all roles. For additional possible values, see [`LSRolesMask`](https://developer.apple.com/documentation/coreservices/lsrolesmask).
+    ///
+    /// - inHandlerBundleID: The bundle identifier that is to be set as the default handler for the specified content type and roles.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code; see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/launch_services#1661359", kind: "article", title: "Result Codes", url: "/documentation/coreservices/launch_services#1661359", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call [`LSCopyDefaultRoleHandlerForContentType`](https://developer.apple.com/documentation/coreservices/1449868-lscopydefaultrolehandlerforconte) to get the current setting of the user’s preferred default handler for a specified content type.
+    ///
+    /// <a id="1676309"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread-safe since OS X v10.4.
+    ///
+    ///
     /// Sets the user's preferred handler for the specified content
     /// type (UTI) in the specified role(s). For all roles, specify
     /// kLSRolesAll. The handler is specified as an application
@@ -373,8 +599,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: noErr on success, or an error indicating why the call failed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444955-lssetdefaultrolehandlerforconten?language=objc)
     #[cfg(feature = "LSConstants")]
     #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenContentType:completionHandler:] instead."]
     pub fn LSSetDefaultRoleHandlerForContentType(
@@ -384,6 +608,31 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Returns the bundle identifier of the user’s preferred default handler for the specified URL scheme.
+///
+/// Parameters:
+/// - inURLScheme: The URL scheme for which the application bundle identifier is to be returned.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The application bundle identifier of the specified URL scheme.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns the user’s currently preferred default handler for the specified URL scheme.
+///
+/// URL handling capability is determined according to the value of the `CFBundleURLTypes` key in an application’s `Info.plist`. For information on the `CFBundleURLTypes` key, see the section “CFBundleURLTypes” in _macOS Runtime Configuration Guidelines_.
+///
+/// <a id="1818406"></a>
+/// ### Version-Notes
+///
+/// Thread-safe since OS X v10.4.
+///
+///
 /// Returns the bundle identifier of the default handler for
 /// the specified URL scheme. Returns NULL if no handler
 /// is available.
@@ -393,8 +642,6 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: a CFStringRef bundle identifier of the default handler, or NULL if no handler is available
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441725-lscopydefaulthandlerforurlscheme?language=objc)
 #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
@@ -407,6 +654,33 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Locates app bundle identifiers for apps capable of handling the specified URL scheme.
+///
+/// Parameters:
+/// - inURLScheme: The URL scheme for which the application bundle identifiers are to be returned.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// An array containing the application bundle identifiers for applications capable of handling the URL scheme specified by `inURLScheme`, or `NULL` if no handlers are available.
+///
+/// In macOS 10.15 and later, the returned array is sorted so that the first element contains the best available application for opening the specified URL scheme. Prior to macOS 10.15, the order of elements in the array was undefined.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns all of the application bundle identifiers that are capable of handling the specified URL scheme.
+///
+/// URL handling capability is determined according to the value of the [CFBundleURLTypes](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-102207) key in an application’s `Info.plist`.
+///
+/// <a id="1818393"></a>
+/// ### Version Notes
+///
+/// Thread-safe since macOS 10.4.
+///
+///
 /// Returns an array of application bundle identifiers for
 /// applications capable of handling the specified URL scheme.
 /// URL handling capability is determined according to the
@@ -418,8 +692,6 @@ pub unsafe extern "C-unwind" fn LSCopyDefaultHandlerForURLScheme(
 ///
 ///
 /// Returns: An array of bundle identifier strings
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443240-lscopyallhandlersforurlscheme?language=objc)
 #[deprecated = "Use -[NSWorkspace URLsForApplicationsToOpenURL:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn LSCopyAllHandlersForURLScheme(
@@ -433,6 +705,33 @@ pub unsafe extern "C-unwind" fn LSCopyAllHandlersForURLScheme(
 }
 
 extern "C-unwind" {
+    /// Sets the user’s preferred default handler for the specified URL scheme.
+    ///
+    /// Parameters:
+    /// - inURLScheme: The URL scheme for which the handler is to be set.
+    ///
+    /// - inHandlerBundleID: The bundle identifier that is to be set as the handler for the URL scheme specified by `inURLScheme`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code; see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/launch_services#1661359", kind: "article", title: "Result Codes", url: "/documentation/coreservices/launch_services#1661359", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call [`LSCopyDefaultHandlerForURLScheme`](https://developer.apple.com/documentation/coreservices/1441725-lscopydefaulthandlerforurlscheme) to get the current setting of the user’s preferred default handler for a specified content type.
+    ///
+    /// URL handling capability is determined according to the value of the `CFBundleURLTypes` key in an app’s `Info.plist`. For information on the `CFBundleURLTypes` key, see the section “CFBundleURLTypes” in _macOS Runtime Configuration Guidelines_.
+    ///
+    /// <a id="1818418"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread-safe since OS X v10.4.
+    ///
+    ///
     /// Sets the user's preferred handler for the specified URL
     /// scheme. The handler is specified as an application
     /// bundle identifier.
@@ -441,8 +740,6 @@ extern "C-unwind" {
     /// Parameter `inURLScheme`: the url scheme to set a default handler for
     ///
     /// Parameter `inHandlerBundleID`: the bundle identifier to be set as the default handler for the given scheme
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447760-lssetdefaulthandlerforurlscheme?language=objc)
     #[deprecated = "Use -[NSWorkspace setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:] instead."]
     pub fn LSSetDefaultHandlerForURLScheme(
         in_url_scheme: &CFString,

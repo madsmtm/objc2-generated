@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintent?language=objc)
+    /// A request to cancel an active workout.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates an [`INCancelWorkoutIntent`](https://developer.apple.com/documentation/intents/incancelworkoutintent) object when the user asks to cancel a currently running workout. Canceling a workout stops the workout and doesn’t record any progress toward the workout goals. Use this intent object to get the workout parameters.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INCancelWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling) protocol. Your handler should confirm the request and create an [`INCancelWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/incancelworkoutintentresponse) object to indicate it’s possible to cancel the workout. For the successful handling of the intent, SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that your app must then use to cancel the workout.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +86,18 @@ impl INCancelWorkoutIntent {
 }
 
 extern_protocol!(
+    /// The interface that handles requests to cancel a workout.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INCancelWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling) protocol to resolve, confirm, and handle requests to cancel a workout using your app. Adopt this protocol in an object of your Intents extension capable of validating the workout name.
+    ///
+    /// You don’t actually cancel the workout from your Intents extension. When your [`handleCancelWorkout:completion:`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling/handle(intent:completion:)) returns, SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that contains the cancel workout intent object and your response. Your app uses the information in those objects to handle the cancellation.
+    ///
+    ///
     /// Protocol to declare support for handling an INCancelWorkoutIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling?language=objc)
     pub unsafe trait INCancelWorkoutIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INCancelWorkoutIntentResponse",

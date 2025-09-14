@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol that credential identity classes conform to that uniquely identifies credentials.
     /// An ASCredentialIdentity is used to describe an identity that can use a service upon successful authentication.
     /// Use this class to save entries into ASCredentialIdentityStore.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentity?language=objc)
     pub unsafe trait ASCredentialIdentity: NSObjectProtocol {
         #[cfg(feature = "ASCredentialServiceIdentifier")]
         /// Get the service identifier.

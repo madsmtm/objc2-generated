@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilcallcommunication?language=objc)
+    /// A concrete subclass representing a  phone call.
     #[unsafe(super(ILCommunication, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ILCommunication")]

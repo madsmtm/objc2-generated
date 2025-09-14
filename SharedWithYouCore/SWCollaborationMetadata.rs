@@ -7,20 +7,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A unique identifier for a collaboration.
 /// Represents a globally unique identifier for a single collaboration item.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type SWCollaborationIdentifier = NSString;
 
+/// A local identifier for a collaboration.
 /// Represents a locally unique identifier for a collaboration item
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swlocalcollaborationidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type SWLocalCollaborationIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationmetadata?language=objc)
+    /// A model object for conveying data during a collaboration.
+    ///
+    /// ## Overview
+    ///
+    /// Use `SWCollaborationMetadata` to share content without using iCloud. The system wraps the metadata object in an [`NSItemProvider`](https://developer.apple.com/documentation/foundation/nsitemprovider) object to implement a custom collaboration infrastructure.
+    ///
+    /// If your app uses SwiftUI, `SWCollaborationMetadata` is compatible with the [`Transferable`](https://developer.apple.com/documentation/coretransferable/transferable) protocol and the [`ShareLink`](https://developer.apple.com/documentation/swiftui/sharelink) view.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWCollaborationMetadata;

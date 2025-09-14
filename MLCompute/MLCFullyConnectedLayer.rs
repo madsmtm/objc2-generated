@@ -6,12 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that connects each input to each output within its layer.
+    ///
+    /// ## Overview
+    ///
+    /// This is also known as a dense layer.
+    ///
+    ///
     /// A fully connected layer a.k.a a dense layer
     ///
     /// For C:input feature channel, C':output feature channel, the layer maps (*,C) --> (*,C') where * can be 1, 2 or 3 dimesnion.
     /// There is an exception for the case of (N,C,1,1) which gets mapped to (N,C',1,1).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

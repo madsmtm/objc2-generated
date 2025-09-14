@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiopenurlcontext?language=objc)
+    /// A system-provided object that contains the information you need to open a single URL.
+    ///
+    /// ## Overview
+    ///
+    /// UIKit provides a [`UIOpenURLContext`](https://developer.apple.com/documentation/uikit/uiopenurlcontext) object when your app receives a URL to open, such as in your implementation of [`scene:openURLContexts:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scene(_:openurlcontexts:)). The object contains the URL itself and any options needed to handle the URL correctly. Don’t create [`UIOpenURLContext`](https://developer.apple.com/documentation/uikit/uiopenurlcontext) objects yourself.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -11,7 +11,13 @@ use objc2_core_graphics::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageaccumulator?language=objc)
+    /// An object that manages feedback-based image processing for tasks such as painting or fluid simulation.
+    ///
+    /// ## Overview
+    ///
+    /// The `CIImageAccumulator` class enables feedback-based image processing for such things as iterative painting operations or fluid dynamics simulations. You use `CIImageAccumulator` objects in conjunction with other Core Image classes, such as  [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class), [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage), [`CIVector`](https://developer.apple.com/documentation/coreimage/civector), and [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext), to take advantage of the built-in Core Image filters when processing images.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImageAccumulator;

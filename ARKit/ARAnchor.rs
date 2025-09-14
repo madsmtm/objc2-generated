@@ -10,9 +10,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// An anchor object that can be copied from values of an existing anchor.
+    /// Support for custom anchor subclasses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/aranchorcopying?language=objc)
+    /// ## Overview
+    ///
+    /// An [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) (or an instance of any anchor subclass) represents a position and orientation in world space, and optionally associates extra information with that point (like a name, or plane or image detection data). Each time ARKit generates an [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) object (describing the current environment as of a specific frame of live camera video), ARKit updates the [`anchors`](https://developer.apple.com/documentation/arkit/arframe/anchors) associated with the session as of that moment. Because anchor objects are immutable, ARKit must copy them to make changes from one [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) to the next.
+    ///
+    /// If you create your own ARAnchor subclass, you must implement the [`initWithAnchor:`](https://developer.apple.com/documentation/arkit/aranchorcopying/init(anchor:)) initializer required by this protocol. To ensure that any custom information in your subclass is maintained between successive frames, your implementation should copy any custom properties it declares.
+    ///
+    ///
+    /// An anchor object that can be copied from values of an existing anchor.
     #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
     pub unsafe trait ARAnchorCopying: NSCopying {
         /// Initializes a new anchor object copying values from an existing anchor.
@@ -29,9 +36,24 @@ extern_protocol!(
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// A real world object or location in the scene that is being tracked.
+    /// An interface for objects that track the location of real-world objects or locations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackable?language=objc)
+    /// ## Overview
+    ///
+    /// This protocol is adopted by ARKit classes, such as the [`ARFaceAnchor`](https://developer.apple.com/documentation/arkit/arfaceanchor) class, that represent moving objects in a scene.
+    ///
+    /// ARKit automatically manages representations of such objects in an active AR session, ensuring that changes in the real-world object’s position and orientation (the [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) property for anchors) are reflected in corresponding ARKit objects. The [`isTracked`](https://developer.apple.com/documentation/arkit/artrackable/istracked) property indicates whether the current transform is valid with respect to movement of the real-world object.
+    ///
+    /// Trackable anchor classes affect other ARKit behaviors:
+    ///
+    /// - The [`getCurrentWorldMapWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)) method automatically includes only non-trackable anchors in the [`ARWorldMap`](https://developer.apple.com/documentation/arkit/arworldmap) it creates. (After you create a world map, you can add other anchors to it if you choose.)
+    ///
+    /// - [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) and [`ARSKView`](https://developer.apple.com/documentation/arkit/arskview) automatically hide the nodes for anchors whose [`isTracked`](https://developer.apple.com/documentation/arkit/artrackable/istracked) property is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// - World-tracking sessions use non-trackable anchors to optimize tracking quality in the area around each anchor. Trackable anchors do not affect world tracking.
+    ///
+    ///
+    /// A real world object or location in the scene that is being tracked.
     #[cfg(feature = "objc2")]
     pub unsafe trait ARTrackable: NSObjectProtocol {
         /// Tracking state of the anchor
@@ -46,9 +68,36 @@ extern_protocol!(
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Object representing a physical location and orientation in 3D space.
+    /// An object that specifies the position and orientation of an item in the physical environment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/aranchor?language=objc)
+    /// ## Overview
+    ///
+    /// To track the static positions and orientations of real or virtual objects relative to the camera, create anchor objects and use the [`addAnchor:`](https://developer.apple.com/documentation/arkit/arsession/add(anchor:)) method to add them to your AR session.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Adding an anchor to the session helps ARKit to optimize world-tracking accuracy in the area around that anchor, so that virtual objects appear to stay in place relative to the real world. If a virtual object moves, remove the corresponding anchor from the old position and add one at the new position.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Some ARKit features automatically add special anchors to a session. World-tracking sessions can add [`ARPlaneAnchor`](https://developer.apple.com/documentation/arkit/arplaneanchor), [`ARObjectAnchor`](https://developer.apple.com/documentation/arkit/arobjectanchor), and [`ARImageAnchor`](https://developer.apple.com/documentation/arkit/arimageanchor) objects if you enable the corresponding features; face-tracking sessions add [`ARFaceAnchor`](https://developer.apple.com/documentation/arkit/arfaceanchor) objects.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// In addition to creating your own `ARAnchor` instances to track the real-world positions of your virtual content, you can also subclass `ARAnchor` to associate custom data with anchors you create. Ensure that your anchor classes behave correctly when ARKit updates frames or saves and loads anchors in an [`ARWorldMap`](https://developer.apple.com/documentation/arkit/arworldmap):
+    ///
+    /// - Anchor subclasses must fullfill the requirements of the [`ARAnchorCopying`](https://developer.apple.com/documentation/arkit/aranchorcopying) protocol. ARKit calls [`initWithAnchor:`](https://developer.apple.com/documentation/arkit/aranchorcopying/init(anchor:)) (on a background thread) to copy instances of your anchor class from each [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) to the next. Your implementation of this initializer should copy the values of any custom properties your subclass adds.
+    ///
+    /// - Anchor subclasses must also adopt the [`NSSecureCoding`](https://developer.apple.com/documentation/foundation/nssecurecoding) protocol. Override [`encodeWithCoder:`](https://developer.apple.com/documentation/foundation/nscoding/encode(with:)) and doc://com.apple.documentation/documentation/oslog/oslogentry/init(coder:) to save and restore the values your subclass’ custom properties when ARKit saves and loads them in a world map.
+    ///
+    /// - Anchors are considered equal based on their [`identifier`](https://developer.apple.com/documentation/arkit/aranchor/identifier) property.
+    ///
+    /// - Only anchors that do not adopt [`ARTrackable`](https://developer.apple.com/documentation/arkit/artrackable) are included when you save a world map.
+    ///
+    ///
+    /// Object representing a physical location and orientation in 3D space.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

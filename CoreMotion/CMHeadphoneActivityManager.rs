@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/status?language=objc)
+/// Headphone connection status updates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMHeadphoneActivityStatus(pub NSInteger);
 impl CMHeadphoneActivityStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/status/disconnected?language=objc)
+    /// The headphones disconnected.
     #[doc(alias = "CMHeadphoneActivityStatusDisconnected")]
     pub const Disconnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/status/connected?language=objc)
+    /// A compatible set of headphones is connected.
     #[doc(alias = "CMHeadphoneActivityStatusConnected")]
     pub const Connected: Self = Self(1);
 }
@@ -29,12 +29,12 @@ unsafe impl RefEncode for CMHeadphoneActivityStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/statushandler?language=objc)
+/// The type for a handler to be invoked with status updates.
 #[cfg(feature = "block2")]
 pub type CMHeadphoneActivityStatusHandler =
     *mut block2::DynBlock<dyn Fn(CMHeadphoneActivityStatus, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/activityhandler?language=objc)
+/// The type for a handler to be invoked when headphone motion activity data is available.
 #[cfg(all(
     feature = "CMLogItem",
     feature = "CMMotionActivity",
@@ -44,7 +44,23 @@ pub type CMHeadphoneActivityHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMMotionActivity, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager?language=objc)
+    /// An object that starts and manages headphone activity services.
+    ///
+    /// ## Overview
+    ///
+    /// This class delivers headphone activity updates to your app. Use an instance of the manager to determine if the device supports headphone activity updates, and to start and stop updates. Before using this class, check [`activityAvailable`](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/isactivityavailable) and [`statusAvailable`](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/isstatusavailable) to make sure the features are available.
+    ///
+    /// This class provides similar information to [`CMMotionActivityManager`](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager), except the activity information comes from headphone motion, rather than from device motion.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In iOS and macOS, include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file. If this key is absent, trying to start headphone activity updates terminates your app.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMHeadphoneActivityManager;

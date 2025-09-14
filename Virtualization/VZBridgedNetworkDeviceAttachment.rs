@@ -6,6 +6,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A network device that interacts directly with a physical network interface on the host computer.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZBridgedNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment) object represents a physical interface on the host computer. Use this object when configuring a network interface for your virtual machine. A bridged network device sends and receives packets on the same physical interface as the host computer, but does so using a different network layer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use this attachment, your app must have the [`com.apple.vm.networking`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.vm.networking) entitlement. If it doesn’t, the use of this attachment point results in an invalid [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To configure a network device with a bridged network interface:
+    ///
+    /// 1. Obtain a reference to one of the host’s physical network interfaces from the [`networkInterfaces`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/networkinterfaces) property of [`VZBridgedNetworkInterface`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface).
+    ///
+    /// 2. Create the [`VZBridgedNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment) object using the network interface.
+    ///
+    /// 3. Assign the attachment object to the [`attachment`](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment) property of a [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object.
+    ///
+    /// 4. Add the [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object to the [`networkDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration).
+    ///
+    ///
     /// Network device attachment bridging a host physical interface with a virtual network device.
     ///
     /// A bridged network allows the virtual machine to use the same physical interface as the host. Both host and virtual machine
@@ -21,8 +46,6 @@ extern_class!(
     /// See: VZNetworkDeviceConfiguration
     ///
     /// See: VZVirtioNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment?language=objc)
     #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]

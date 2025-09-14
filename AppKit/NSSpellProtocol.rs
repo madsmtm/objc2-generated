@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nschangespelling?language=objc)
+    /// A protocol that responder objects can implement to correct a misspelled word.
     pub unsafe trait NSChangeSpelling {
         /// # Safety
         ///
@@ -18,7 +18,28 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsignoremisspelledwords?language=objc)
+    /// A protocol that enables the Ignore button in the Spelling panel to function properly.
+    ///
+    /// ## Overview
+    ///
+    /// The Ignore button allows the user to accept a word that the spelling checker believes is misspelled. In order for this action to update the “ignored words” list for the document being checked, the [`NSIgnoreMisspelledWords`](https://developer.apple.com/documentation/appkit/nsignoremisspelledwords) protocol must be implemented.
+    ///
+    /// This protocol is necessary because a list of ignored words is useful only if it pertains to the entire document being checked, but the spelling checker (that is, an [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker) object) does not check the entire document for spelling at once. The spelling checker returns as soon as it finds a misspelled word. Thus, it checks only a subset of the document at any one time. The user usually wants to check the entire document, so usually several spelling checks are run in succession until no misspelled words are found. This protocol allows the list of ignored words to be maintained per document, even though the spelling checks are not run per document.
+    ///
+    /// The [`NSIgnoreMisspelledWords`](https://developer.apple.com/documentation/appkit/nsignoremisspelledwords) protocol specifies a  method, [`ignoreSpelling:`](https://developer.apple.com/documentation/appkit/nsignoremisspelledwords/ignorespelling(_:)), which should be implemented like this:
+    ///
+    /// ```objc
+    /// - (void)ignoreSpelling:(id)sender {
+    ///     [[NSSpellChecker sharedSpellChecker] ignoreWord:[[sender selectedCell] stringValue]
+    ///                                         inSpellDocumentWithTag: myDocumentTag];
+    /// }
+    /// ```
+    ///
+    /// The second argument to the [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker) method [`ignoreWord:inSpellDocumentWithTag:`](https://developer.apple.com/documentation/appkit/nsspellchecker/ignoreword(_:inspelldocumentwithtag:)) is a tag that the spell checker can use to distinguish the documents being checked. When the spell checker can distinguish the various documents, it can append new ignored words to the appropriate list.
+    ///
+    /// To make the ignored words feature useful, the application must store a document’s ignored words list with the document. See the [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker) class description for more information.
+    ///
+    ///
     pub unsafe trait NSIgnoreMisspelledWords {
         /// # Safety
         ///

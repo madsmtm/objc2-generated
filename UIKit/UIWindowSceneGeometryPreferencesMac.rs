@@ -9,9 +9,14 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Use this class to express macOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
+    /// An object that represents the geometry preferences for a window scene in an app built with Mac Catalyst.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/mac?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to express macOS-specific geometry preferences when you call [`requestGeometryUpdateWithPreferences:errorHandler:`](https://developer.apple.com/documentation/uikit/uiwindowscene/requestgeometryupdate(_:errorhandler:)).
+    ///
+    ///
+    /// Use this class to express macOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

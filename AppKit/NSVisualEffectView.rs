@@ -7,111 +7,117 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants to specify the material shown by the visual effect view.
 /// The main material that this view displays.  Materials are dynamic, and their exact look depends on the view's effectiveAppearance, blendingMode, state, emphasized, and possibly other factors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVisualEffectMaterial(pub NSInteger);
 impl NSVisualEffectMaterial {
+    /// The material for a window’s titlebar.
     /// The material used by window titlebars.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/titlebar?language=objc)
     #[doc(alias = "NSVisualEffectMaterialTitlebar")]
     pub const Titlebar: Self = Self(3);
+    /// The material used to indicate a selection.
     /// The material used in some table views, menus, etc., to indicate selection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/selection?language=objc)
     #[doc(alias = "NSVisualEffectMaterialSelection")]
     pub const Selection: Self = Self(4);
+    /// The material for menus.
     /// The material used by menus.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/menu?language=objc)
     #[doc(alias = "NSVisualEffectMaterialMenu")]
     pub const Menu: Self = Self(5);
+    /// The material for the background of popover windows.
     /// The material used in the background of NSPopover windows.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/popover?language=objc)
     #[doc(alias = "NSVisualEffectMaterialPopover")]
     pub const Popover: Self = Self(6);
+    /// The material for the background of window sidebars.
     /// The material used in the background of window sidebars.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/sidebar?language=objc)
     #[doc(alias = "NSVisualEffectMaterialSidebar")]
     pub const Sidebar: Self = Self(7);
+    /// The material for in-line header or footer views.
     /// The material used in various in-line header or footer views (e.g., by NSTableView).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/headerview?language=objc)
     #[doc(alias = "NSVisualEffectMaterialHeaderView")]
     pub const HeaderView: Self = Self(10);
+    /// The material for the background of sheet windows.
     /// The material used as the background of sheet windows.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/sheet?language=objc)
     #[doc(alias = "NSVisualEffectMaterialSheet")]
     pub const Sheet: Self = Self(11);
-    /// The material used by opaque window backgrounds.
+    /// The material for the background of opaque windows.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/windowbackground?language=objc)
+    /// ## Discussion
+    ///
+    /// This material supports Desktop Tinting in Dark Mode. With Desktop Tinting, the system modifies the material’s color dynamically by incorporating some of the color from the underlying desktop image.
+    ///
+    ///
+    /// The material used by opaque window backgrounds.
     #[doc(alias = "NSVisualEffectMaterialWindowBackground")]
     pub const WindowBackground: Self = Self(12);
+    /// The material for the background of heads-up display (HUD) windows.
     /// The material used as the background of heads-up display (HUD) windows.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/hudwindow?language=objc)
     #[doc(alias = "NSVisualEffectMaterialHUDWindow")]
     pub const HUDWindow: Self = Self(13);
+    /// The material for the background of a full-screen modal interface.
     /// The material used as the background of full-screen modal UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/fullscreenui?language=objc)
     #[doc(alias = "NSVisualEffectMaterialFullScreenUI")]
     pub const FullScreenUI: Self = Self(15);
+    /// The material for the background of a tool tip.
     /// The material used as the background of tool tips.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/tooltip?language=objc)
     #[doc(alias = "NSVisualEffectMaterialToolTip")]
     pub const ToolTip: Self = Self(17);
-    /// The material used as the opaque background of content (e.g., by NSScrollView, NSTableView, NSCollectionView, etc.).
+    /// The material for the background of opaque content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/contentbackground?language=objc)
+    /// ## Discussion
+    ///
+    /// You might use this material as the background for content in a scroll view, table view, or collection view.
+    ///
+    /// This material supports Desktop Tinting in Dark Mode. With Desktop Tinting, the system modifies the material’s color dynamically by incorporating some of the color from the underlying desktop image.
+    ///
+    ///
+    /// The material used as the opaque background of content (e.g., by NSScrollView, NSTableView, NSCollectionView, etc.).
     #[doc(alias = "NSVisualEffectMaterialContentBackground")]
     pub const ContentBackground: Self = Self(18);
-    /// The material used under window backgrounds.
+    /// The material to show under a window’s background.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/underwindowbackground?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this material on a visual effect view with a [`blendingMode`](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.property) of [`NSVisualEffectBlendingModeBehindWindow`](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum/behindwindow) to create a sense of peeking through the back of the window. This effect creates an illusion that the background of the window has peeled away to reveal what’s under it.
+    ///
+    ///
+    /// The material used under window backgrounds.
     #[doc(alias = "NSVisualEffectMaterialUnderWindowBackground")]
     pub const UnderWindowBackground: Self = Self(21);
-    /// The material used as the background behind document pages.
+    /// The material for the area behind the pages of a document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/underpagebackground?language=objc)
+    /// ## Discussion
+    ///
+    /// This material supports Desktop Tinting in Dark Mode. With Desktop Tinting, the system modifies the material’s color dynamically by incorporating some of the color from the underlying desktop image.
+    ///
+    ///
+    /// The material used as the background behind document pages.
     #[doc(alias = "NSVisualEffectMaterialUnderPageBackground")]
     pub const UnderPageBackground: Self = Self(22);
+    /// A default material for the view’s effective appearance.
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/appearancebased?language=objc)
     #[doc(alias = "NSVisualEffectMaterialAppearanceBased")]
     #[deprecated = "Use a specific semantic material instead."]
     pub const AppearanceBased: Self = Self(0);
+    /// A material with a light effect.
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/light?language=objc)
     #[doc(alias = "NSVisualEffectMaterialLight")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const Light: Self = Self(1);
+    /// A material with a dark effect.
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/dark?language=objc)
     #[doc(alias = "NSVisualEffectMaterialDark")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const Dark: Self = Self(2);
+    /// A material with a medium-light effect.
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/mediumlight?language=objc)
     #[doc(alias = "NSVisualEffectMaterialMediumLight")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const MediumLight: Self = Self(8);
+    /// A material with an ultra-dark effect.
     /// A default material appropriate for the view's effectiveAppearance.  You should instead choose an appropriate semantic material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/ultradark?language=objc)
     #[doc(alias = "NSVisualEffectMaterialUltraDark")]
     #[deprecated = "Use a semantic material instead.  To force the appearance of a view hierarchy, set the `appearance` property to an appropriate NSAppearance value."]
     pub const UltraDark: Self = Self(9);
@@ -125,20 +131,30 @@ unsafe impl RefEncode for NSVisualEffectMaterial {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum?language=objc)
+/// Constants that specify whether the visual effect view blends with what’s either behind or within the window.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVisualEffectBlendingMode(pub NSInteger);
 impl NSVisualEffectBlendingMode {
-    /// Blend with the area behind the window (such as the Desktop or other windows).
+    /// A mode that blends and blurs the visual effect view with the contents behind the window, such as the desktop or other windows.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum/behindwindow?language=objc)
+    /// ## Discussion
+    ///
+    /// Views using this blending mode can overlap, and the view lower in the hierarchy “wins”.
+    ///
+    ///
+    /// Blend with the area behind the window (such as the Desktop or other windows).
     #[doc(alias = "NSVisualEffectBlendingModeBehindWindow")]
     pub const BehindWindow: Self = Self(0);
-    /// Blend with the area behind the view in the window.
+    /// A mode that blends and blurs the visual effect view with contents behind the view in the current window only.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum/withinwindow?language=objc)
+    /// ## Discussion
+    ///
+    /// Views using this blending mode must not overlap each other.
+    ///
+    ///
+    /// Blend with the area behind the view in the window.
     #[doc(alias = "NSVisualEffectBlendingModeWithinWindow")]
     pub const WithinWindow: Self = Self(1);
 }
@@ -151,25 +167,22 @@ unsafe impl RefEncode for NSVisualEffectBlendingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum?language=objc)
+/// Constants to specify how the material appearance should reflect window activity state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVisualEffectState(pub NSInteger);
 impl NSVisualEffectState {
+    /// The backdrop should automatically appear active when the window is active, and inactive when it is not.
     /// Use the active look only when the containing window is active.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum/followswindowactivestate?language=objc)
     #[doc(alias = "NSVisualEffectStateFollowsWindowActiveState")]
     pub const FollowsWindowActiveState: Self = Self(0);
+    /// The backdrop should always appear active.
     /// Use the active look always.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum/active?language=objc)
     #[doc(alias = "NSVisualEffectStateActive")]
     pub const Active: Self = Self(1);
+    /// The backdrop should always appear inactive.
     /// Use the inactive look always.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum/inactive?language=objc)
     #[doc(alias = "NSVisualEffectStateInactive")]
     pub const Inactive: Self = Self(2);
 }
@@ -183,7 +196,63 @@ unsafe impl RefEncode for NSVisualEffectState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview?language=objc)
+    /// A view that adds translucency and vibrancy effects to the views in your interface.
+    ///
+    /// ## Overview
+    ///
+    /// Use visual effect views primarily as background views for your app’s content. A visual effect view makes your foreground content more prominent by employing the following effects:
+    ///
+    /// - **Translucency** and the blurring of background content adds depth to your interface.
+    ///
+    /// - **Vibrancy** is a subtle blending of foreground and background colors to increase the contrast and make the foreground content stand out visually.
+    ///
+    /// The material and blending mode you assign determines the exact appearance of the visual effect. Not all materials support transparency, and materials apply vibrancy in different ways. The appearance and behavior of materials can also change based on system settings, so always pick a material based on its intended use. For example, use the [`NSVisualEffectMaterialSidebar`](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum/sidebar) material when your view serves as the background of your window’s sidebar.  Don’t select materials based on the apparent colors they impart on your interface.
+    ///
+    /// AppKit creates visual effect views automatically for window titlebars, popovers, and source list table views. You don’t need to add visual effect views to those elements of your interface.
+    ///
+    /// ### Choosing a Translucency Effect for Your View
+    ///
+    /// For visual effect views you create yourself, use the [`blendingMode`](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.property) property to specify how and where you want the translucency applied.
+    ///
+    /// - **Behind-window blending** uses the content behind the window as the background for your visual effect view. Behind-window blending makes your entire window stand out above other windows and apps on the desktop. Sheets and popovers use behind-window blending.
+    ///
+    /// - **In-window blending** uses the window’s content as the background for your visual effect view. Typically, you use in-window blending with scrolling content, so that the scrolled content remains partially visible under other parts of your window chrome. Toolbars always use in-window blending.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7451253852f601584211e2a9147510d1/media-3198506~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/153ccb58867a13d8d8a600691c57adf7/media-3198506%402x.png 2x" />
+    ///     <img alt="An illustration of a window whose title bar and side bar use visual effect views with different blending options. The title bar uses in-window blending which blends content from the window with the bar. The side bar uses behind-window blending, which allows part of the desktop to show through. " src="https://docs-assets.developer.apple.com/published/7451253852f601584211e2a9147510d1/media-3198506~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ### Enabling Vibrancy for Foreground Content
+    ///
+    /// The presence of a visual effect view in your view hierarchy does not automatically add vibrancy to your content. For custom views, you must explicitly enable vibrancy by overriding the [`allowsVibrancy`](https://developer.apple.com/documentation/appkit/nsview/allowsvibrancy) property and returning [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  AppKit views and controls automatically add vibrancy where appropriate. For example, [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) enables vibrancy to increase the contrast between the text and background. Don’t change the vibrancy settings of standard AppKit views and controls.
+    ///
+    ///
+    ///
+    /// </div>
+    /// It is recommended that you enable vibrancy only in the leaf views of your view hierarchy. Subviews inherit the vibrancy of their parent. Once enabled in a parent view, a subview cannot turn off vibrancy. As a result, enabling vibrancy in a parent view can lead to subviews that look incorrect if they are not designed to take advantage of the vibrancy effect.
+    ///
+    /// Vibrancy works best when your custom views contain grayscale content. Combining a grayscale foreground with a color background works well, because AppKit improves the contrast while only subtly changing the foreground hue. The same isn’t always true when blending two different color values. Dramatically different foreground and background hues can cancel each other out or result in colors that don’t match your original designs.
+    ///
+    /// Instead of defining custom grayscale color assets, consider using the built-in colors [`labelColor`](https://developer.apple.com/documentation/appkit/nscolor/labelcolor), [`secondaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/secondarylabelcolor), [`tertiaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/tertiarylabelcolor), and [`quaternaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/quaternarylabelcolor). While typically used with text, these colors are applicable with any app content. The built-in colors represent varying levels of contrast for your content, with [`labelColor`](https://developer.apple.com/documentation/appkit/nscolor/labelcolor) offering the most contrast, and [`quaternaryLabelColor`](https://developer.apple.com/documentation/appkit/nscolor/quaternarylabelcolor) offering the least contrast.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// If you subclass `NSVisualEffectView`:
+    ///
+    /// - Always call `super` if you override [`viewDidMoveToWindow`](https://developer.apple.com/documentation/appkit/nsview/viewdidmovetowindow()) or [`viewWillMoveToWindow:`](https://developer.apple.com/documentation/appkit/nsview/viewwillmove(towindow:)).
+    ///
+    /// - Do not override [`drawRect:`](https://developer.apple.com/documentation/appkit/nsview/draw(_:)) or [`updateLayer`](https://developer.apple.com/documentation/appkit/nsview/updatelayer()).
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

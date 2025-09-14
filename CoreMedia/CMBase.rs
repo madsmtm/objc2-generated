@@ -4,14 +4,14 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmitemcount?language=objc)
+/// A datatype that represents an item count.
 pub type CMItemCount = CFIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmitemindex?language=objc)
+/// A datatype that represents an item index.
 pub type CMItemIndex = CFIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpersistenttrackid?language=objc)
+/// A datatype that represents a persistent track identifier.
 pub type CMPersistentTrackID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmpersistenttrackid_invalid?language=objc)
+/// Indicates an invalid track ID.
 pub const kCMPersistentTrackID_Invalid: CMPersistentTrackID = 0;

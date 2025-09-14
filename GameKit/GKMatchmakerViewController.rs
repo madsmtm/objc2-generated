@@ -10,22 +10,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode?language=objc)
+/// Possible modes that a multiplayer game uses to find matches.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchmakingMode(pub NSInteger);
 impl GKMatchmakingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/default?language=objc)
+    /// The default matchmaking mode.
     #[doc(alias = "GKMatchmakingModeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/nearbyonly?language=objc)
+    /// A mode that matches the local player only with nearby players.
     #[doc(alias = "GKMatchmakingModeNearbyOnly")]
     pub const NearbyOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/automatchonly?language=objc)
+    /// A mode that matches the local player only with players who are also actively looking for a match.
     #[doc(alias = "GKMatchmakingModeAutomatchOnly")]
     pub const AutomatchOnly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakingmode/inviteonly?language=objc)
+    /// A mode that matches the local player only with players who they invite, and doesn’t use automatch to fill empty slots.
     #[doc(alias = "GKMatchmakingModeInviteOnly")]
     pub const InviteOnly: Self = Self(3);
 }
@@ -39,7 +39,29 @@ unsafe impl RefEncode for GKMatchmakingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller?language=objc)
+    /// An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.
+    ///
+    /// ## Overview
+    ///
+    /// Before you create a `GKMatchmakerViewController` object, create a [`GKMatchRequest`](https://developer.apple.com/documentation/gamekit/gkmatchrequest) object and configure it according to the parameters of your game. Then pass the match request to the [`initWithMatchRequest:`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/init(matchrequest:)) initializer to create the view controller.
+    ///
+    /// Configure the view controller and set its delegate before you present it to the local player. The view controller allows the local player to choose other players and, optionally, fill empty slots using automatch. If you add the Group Activities capability to your Xcode project, the player can invite others using SharePlay. See [Configuring Group Activities](https://developer.apple.com/documentation/xcode/configuring-group-activities).
+    ///
+    /// Implement the [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) and [`GKMatchmakerViewControllerDelegate`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate) protocols to handle when players send and accept invitations. Implement the [`player:didAcceptInvite:`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener/player(_:didaccept:)) delegate method to present a `GKMatchmakerViewController` object, which you create using the [`initWithInvite:`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/init(invite:)) initializer, to the player who accepts an invitation. Then, implement the [`matchmakerViewController:didFindMatch:`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate/matchmakerviewcontroller(_:didfind:)) delegate method to dismiss the view controller and start the game when all players accept their invitations.
+    ///
+    /// In iOS, you present and dismiss the view controller from another view controller in your game, using the methods from the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class. If you use SwiftUI, you can get the root view controller from the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object.
+    ///
+    /// ```swift
+    /// let rootViewController = UIApplication.shared.windows.first!.rootViewController
+    /// ```
+    ///
+    /// For visionOS games, the view controller appears anchored to the window, scene, or view relative to where you present the view controller. For immersive games, set the parent window to a separate window group than the immersive space window group.
+    ///
+    /// For macOS games, use the [`GKDialogController`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller) class to present and dismiss the view controller.
+    ///
+    /// For the complete matchmaking flow with code fragments, see [Finding multiple players for a game](https://developer.apple.com/documentation/gamekit/finding-multiple-players-for-a-game).
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -256,7 +278,13 @@ impl GKMatchmakerViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate?language=objc)
+    /// An object that handles when the status of matchmaking changes.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate of a [`GKMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller) object implements this protocol to handle when players accept invitations, the player cancels matchmaking, or an error occurs. In all these cases, except when a hosted player accepts a invitation, for example, [`matchmakerViewController:hostedPlayerDidAccept:`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate/matchmakerviewcontroller(_:hostedplayerdidaccept:)), the delegate needs to dismiss the view controller.
+    ///
+    ///
     pub unsafe trait GKMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

@@ -8,118 +8,152 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserrordomain?language=objc)
 #[cfg(feature = "NSString")]
 pub type NSErrorDomain = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscocoaerrordomain?language=objc)
+    /// Cocoa errors
     #[cfg(feature = "NSString")]
     pub static NSCocoaErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsposixerrordomain?language=objc)
+    /// POSIX/BSD errors
     #[cfg(feature = "NSString")]
     pub static NSPOSIXErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsosstatuserrordomain?language=objc)
+    /// Mac OS 9/Carbon errors
     #[cfg(feature = "NSString")]
     pub static NSOSStatusErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacherrordomain?language=objc)
+    /// Mach errors
     #[cfg(feature = "NSString")]
     pub static NSMachErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserror/userinfokey?language=objc)
+/// These keys may exist in the user info dictionary.
 #[cfg(feature = "NSString")]
 pub type NSErrorUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey?language=objc)
+    /// The corresponding value is an error that was encountered in an underlying implementation and caused the error that the receiver represents to occur.
     #[cfg(feature = "NSString")]
     pub static NSUnderlyingErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmultipleunderlyingerrorskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMultipleUnderlyingErrorsKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizeddescriptionkey?language=objc)
+    /// The corresponding value is a localized string representation of the error that, if present, will be returned by [`localizedDescription`](https://developer.apple.com/documentation/foundation/nserror/localizeddescription).
     #[cfg(feature = "NSString")]
     pub static NSLocalizedDescriptionKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedfailurereasonerrorkey?language=objc)
+    /// The corresponding value is a localized string representation containing the reason for the failure that, if present, will be returned by [`localizedFailureReason`](https://developer.apple.com/documentation/foundation/nserror/localizedfailurereason).
     #[cfg(feature = "NSString")]
     pub static NSLocalizedFailureReasonErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoverysuggestionerrorkey?language=objc)
+    /// The corresponding value is a string containing the localized recovery suggestion for the error.
+    ///
+    /// ## Discussion
+    ///
+    /// This string is suitable for displaying as the secondary message in an alert panel.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSLocalizedRecoverySuggestionErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedrecoveryoptionserrorkey?language=objc)
+    /// The corresponding value is an array containing the localized titles of buttons appropriate for displaying in an alert panel.
+    ///
+    /// ## Discussion
+    ///
+    /// The first string is the title of the right-most and default button, the second the one to the left, and so on. The recovery options should be appropriate for the recovery suggestion returned by [`localizedRecoverySuggestion`](https://developer.apple.com/documentation/foundation/nserror/localizedrecoverysuggestion).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSLocalizedRecoveryOptionsErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecoveryattemptererrorkey?language=objc)
+    /// The corresponding value is an object that conforms to the NSErrorRecoveryAttempting informal protocol.
+    ///
+    /// ## Discussion
+    ///
+    /// The recovery attempter must be an object that can correctly interpret an index into the array returned by [`recoveryAttempter`](https://developer.apple.com/documentation/foundation/nserror/recoveryattempter).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSRecoveryAttempterErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshelpanchorerrorkey?language=objc)
+    /// The corresponding value is an `NSString` containing the localized help corresponding to the help button. See [`helpAnchor`](https://developer.apple.com/documentation/foundation/nserror/helpanchor) for more information.
     #[cfg(feature = "NSString")]
     pub static NSHelpAnchorErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdebugdescriptionerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSDebugDescriptionErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizedfailureerrorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedFailureErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingerrorkey?language=objc)
+    /// The corresponding value is an `NSNumber` object containing the `NSStringEncoding` value.
     #[cfg(feature = "NSString")]
     pub static NSStringEncodingErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrorkey?language=objc)
+    /// The corresponding value is an `NSURL` object.
     #[cfg(feature = "NSString")]
     pub static NSURLErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepatherrorkey?language=objc)
+    /// Contains the file path of the error.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSString` object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFilePathErrorKey: &'static NSErrorUserInfoKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserror?language=objc)
+    /// Information about an error condition including a domain, a domain-specific error code, and application-specific information.
+    ///
+    /// ## Overview
+    ///
+    /// Objective-C methods can signal an error condition by returning an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object by reference, which provides additional information about the kind of error and any underlying cause, if one can be determined. An [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object may also provide localized error descriptions suitable for display to the user in its user info dictionary. See [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806) for more information.
+    ///
+    /// Methods in Foundation and other Cocoa frameworks most often produce errors in the Cocoa error domain ([`NSCocoaErrorDomain`](https://developer.apple.com/documentation/foundation/nscocoaerrordomain)); error codes for the Cocoa Error Domain are documented in the [Foundation Constants](https://developer.apple.com/documentation/foundation/foundation-constants). There are also predefined domains corresponding to Mach ([`NSMachErrorDomain`](https://developer.apple.com/documentation/foundation/nsmacherrordomain)), POSIX ([`NSPOSIXErrorDomain`](https://developer.apple.com/documentation/foundation/nsposixerrordomain)), and Carbon ([`NSOSStatusErrorDomain`](https://developer.apple.com/documentation/foundation/nsosstatuserrordomain)) errors.
+    ///
+    /// [`NSError`](https://developer.apple.com/documentation/foundation/nserror) is “toll-free bridged” with its Core Foundation counterpart, [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Applications may choose to create subclasses of `NSError`, for example, to provide better localized error strings by overriding [`localizedDescription`](https://developer.apple.com/documentation/foundation/nserror/localizeddescription).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSError;

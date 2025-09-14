@@ -9,7 +9,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationtrigger?language=objc)
+    /// The common behavior for subclasses that trigger the delivery of a local or remote notification.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UNNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unnotificationtrigger) class is an abstract class for representing an event that triggers the delivery of a notification. You don’t create instances of this class directly. Instead, you instantiate the concrete subclass that defines the trigger condition you want for your notification. You then assign the resulting object to the [`UNNotificationRequest`](https://developer.apple.com/documentation/usernotifications/unnotificationrequest) object that you use to schedule your notification.
+    ///
+    /// Concrete trigger classes include the following:
+    ///
+    /// - [`UNTimeIntervalNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/untimeintervalnotificationtrigger)
+    ///
+    /// - [`UNCalendarNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/uncalendarnotificationtrigger)
+    ///
+    /// - [`UNLocationNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger)
+    ///
+    /// - [`UNPushNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unpushnotificationtrigger)
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationTrigger;
@@ -57,7 +73,13 @@ impl UNNotificationTrigger {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unpushnotificationtrigger?language=objc)
+    /// A trigger condition that indicates Apple Push Notification Service (APNs) has sent the notification.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class yourself. The system creates [`UNPushNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unpushnotificationtrigger) objects and associates them with requests that originated from Apple Push Notification service. You encounter instances of this class when managing your app’s delivered notification requests, which store an object of this type in their [`trigger`](https://developer.apple.com/documentation/usernotifications/unnotificationrequest/trigger) property.
+    ///
+    ///
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNPushNotificationTrigger;
@@ -106,7 +128,18 @@ impl UNPushNotificationTrigger {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/untimeintervalnotificationtrigger?language=objc)
+    /// A trigger condition that causes the system to deliver a notification after the amount of time you specify elapses.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UNTimeIntervalNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/untimeintervalnotificationtrigger) object when you want to schedule the delivery of a local notification after the number of seconds you specify elapses. You use this type of trigger to implement timers.
+    ///
+    /// Listing 1 creates a trigger that delivers its notification one time after 30 minutes have elapsed.
+    ///
+    /// Listing 1. Creating a trigger that fires in 30 minutes
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Fire in 30 minutes (60 seconds times 30)", "let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (30*60), repeats: false)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Fire in 30 minutes (60 seconds times 30)", "UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger", "                     triggerWithTimeInterval:(30*60) repeats: NO];"], metadata: None }] }] })
+    ///
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNTimeIntervalNotificationTrigger;
@@ -170,7 +203,18 @@ impl UNTimeIntervalNotificationTrigger {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/uncalendarnotificationtrigger?language=objc)
+    /// A trigger condition that causes a notification the system delivers at a specific date and time.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UNCalendarNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/uncalendarnotificationtrigger) object when you want to schedule the delivery of a local notification at the date and time you specify. You use an [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) object to specify only the time values that you want the system to use to determine the matching date and time.
+    ///
+    /// Listing 1 creates a trigger that delivers its notification every morning at 8:30. The repeating behavior is achieved by specifying `true` for the `repeats` parameter when creating the trigger.
+    ///
+    /// Listing 1. Creating a trigger that repeats at a specific time
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var date = DateComponents()", "date.hour = 8", "date.minute = 30 ", "let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDateComponents* date = [[NSDateComponents alloc] init];", "date.hour = 8;", "date.minute = 30; ", "UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger", "                     triggerWithDateMatchingComponents:date repeats:YES];"], metadata: None }] }] })
+    ///
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNCalendarNotificationTrigger;
@@ -234,7 +278,28 @@ impl UNCalendarNotificationTrigger {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger?language=objc)
+    /// A trigger condition that causes the system to deliver a notification when the user’s device enters or exits a geographic region you specify.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UNLocationNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger) object when you want to schedule the delivery of a local notification when the device enters or leaves a specific geographic region. The system limits the number of location-based triggers that it schedules at the same time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before scheduling any notifications using this trigger, your app must have authorization to use Core Location and must have when-in-use permissions. (Because the system actually monitors the regions, you don’t need to request always permissions for your app). For information about how to request authorization, see [Requesting authorization to use location services](https://developer.apple.com/documentation/corelocation/requesting-authorization-to-use-location-services).
+    ///
+    ///
+    ///
+    /// </div>
+    /// When configuring the region, use the [`notifyOnEntry`](https://developer.apple.com/documentation/corelocation/clregion/notifyonentry) and [`notifyOnExit`](https://developer.apple.com/documentation/corelocation/clregion/notifyonexit) properties to specify whether you want the system to deliver notifications on entry, on exit, or both. Listing 1 shows the creation of a trigger that fires only once when the user’s device enters a circular region with a 2-kilometer radius.
+    ///
+    /// Listing 1. Creating a location-based trigger
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)", "let region = CLCircularRegion(center: center, radius: 2000.0, identifier: \"Headquarters\")", "region.notifyOnEntry = true", "region.notifyOnExit = false", "let trigger = UNLocationNotificationTrigger(region: region, repeats: false)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["CLLocationCoordinate2D center = CLLocationCoordinate2DMake(37.335400, -122.009201);", "", "CLCircularRegion* region = [[CLCircularRegion alloc] initWithCenter:center", "         isn’t  radius:2000.0 identifier:@\"Headquarters\"];", "region.notifyOnEntry = YES;", "region.notifyOnExit = NO;", "", "UNLocationNotificationTrigger* trigger = [UNLocationNotificationTrigger", "                 triggerWithRegion:region repeats:NO];"], metadata: None }] }] })
+    /// The system doesn’t immediately trigger region-based notifications when the edge of the boundary is crossed. The system applies heuristics to ensure that the boundary crossing represents a deliberate event and isn’t the result of spurious location data. For more information about the heuristics, see [Monitoring the user’s proximity to geographic regions](https://developer.apple.com/documentation/corelocation/monitoring-the-user-s-proximity-to-geographic-regions).
+    ///
+    ///
     #[unsafe(super(UNNotificationTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNLocationNotificationTrigger;

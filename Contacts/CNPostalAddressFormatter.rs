@@ -7,17 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants for postal formatting styles.
 /// The formatting styles for postal addresses.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNPostalAddressFormatterStyle(pub NSInteger);
 impl CNPostalAddressFormatterStyle {
+    /// A style that combines the postal address components into a multi-line mailing address.
     /// Combine the postal address components into a multi-line mailing address.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle/mailingaddress?language=objc)
     #[doc(alias = "CNPostalAddressFormatterStyleMailingAddress")]
     pub const MailingAddress: Self = Self(0);
 }
@@ -31,12 +29,17 @@ unsafe impl RefEncode for CNPostalAddressFormatterStyle {
 }
 
 extern_class!(
+    /// An object that you use to format a contact’s postal addresses.
+    ///
+    /// ## Overview
+    ///
+    /// A `CNPostalAddressFormatter` object handles international formatting of postal addresses. It is recommended that you create an instance of this class when formatting many postal addresses, and use the instance methods; otherwise use the class methods.
+    ///
+    ///
     /// Formats a postal address.
     ///
     ///
     /// This formatter handles international formatting of a postal address.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNPostalAddressFormatter;
@@ -169,11 +172,23 @@ impl CNPostalAddressFormatter {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresspropertyattribute?language=objc)
+    /// An attribute that identifies the purpose of a range of characters in an attributed string.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a string constant that specifies the meaning of the range of characters. For example, the value is [`CNPostalAddressCityKey`](https://developer.apple.com/documentation/contacts/cnpostaladdresscitykey) when the characters specify the city portion of the address.
+    ///
+    ///
     pub static CNPostalAddressPropertyAttribute: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdresslocalizedpropertynameattribute?language=objc)
+    /// An attribute that identifies the localized property of postal address.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant is a key in the attributed string whose value is a localized version of the CNPostalAddress property key. This label takes a string value.
+    ///
+    ///
     pub static CNPostalAddressLocalizedPropertyNameAttribute: &'static NSString;
 }

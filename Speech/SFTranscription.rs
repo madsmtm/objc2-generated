@@ -10,6 +10,21 @@ use crate::*;
 extern_class!(
     /// A textual representation of the specified speech in its entirety, as recognized by the speech recognizer.
     ///
+    /// ## Overview
+    ///
+    /// Use `SFTranscription` to obtain all the recognized utterances from your audio content. An _utterance_ is a vocalized word or group of words that represent a single meaning to the speech recognizer ([`SFSpeechRecognizer`](https://developer.apple.com/documentation/speech/sfspeechrecognizer)).
+    ///
+    /// Use the [`formattedString`](https://developer.apple.com/documentation/speech/sftranscription/formattedstring) property to retrieve the entire transcription of utterances, or use the [`segments`](https://developer.apple.com/documentation/speech/sftranscription/segments) property to retrieve an individual utterance ([`SFTranscriptionSegment`](https://developer.apple.com/documentation/speech/sftranscriptionsegment)).
+    ///
+    /// You don’t create an `SFTranscription` directly. Instead, you retrieve it from an [`SFSpeechRecognitionResult`](https://developer.apple.com/documentation/speech/sfspeechrecognitionresult) instance. The speech recognizer sends a speech recognition result to your app in one of two ways, depending on how your app started a speech recognition task.
+    ///
+    /// You can start a speech recognition task by using the speech recognizer’s [`recognitionTaskWithRequest:resultHandler:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:resulthandler:)) method. When the task is complete, the speech recognizer sends an [`SFSpeechRecognitionResult`](https://developer.apple.com/documentation/speech/sfspeechrecognitionresult) instance to your `resultHandler` closure. Alternatively, you can use the speech recognizer’s [`recognitionTaskWithRequest:delegate:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:delegate:)) method to start a speech recognition task. When the task is complete, the speech recognizer uses your [`SFSpeechRecognitionTaskDelegate`](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate) to send an [`SFSpeechRecognitionResult`](https://developer.apple.com/documentation/speech/sfspeechrecognitionresult) by using the delegate’s [`speechRecognitionTask:didFinishRecognition:`](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate/speechrecognitiontask(_:didfinishrecognition:)) method.
+    ///
+    /// An `SFTranscription` represents only a potential version of the speech. It might not be an accurate representation of the utterances.
+    ///
+    ///
+    /// A textual representation of the specified speech in its entirety, as recognized by the speech recognizer.
+    ///
     /// Use `SFTranscription` to obtain all the recognized utterances from your audio content. An _utterance_ is a vocalized word or group of words that represent a single meaning to the speech recognizer (``SFSpeechRecognizer``).
     ///
     /// Use the ``formattedString`` property to retrieve the entire transcription of utterances, or use the ``segments`` property to retrieve an individual utterance (``SFTranscriptionSegment``).
@@ -19,8 +34,6 @@ extern_class!(
     /// You can start a speech recognition task by using the speech recognizer's ``SFSpeechRecognizer/recognitionTask(with:resultHandler:)`` method. When the task is complete, the speech recognizer sends an ``SFSpeechRecognitionResult`` instance to your `resultHandler` closure. Alternatively, you can use the speech recognizer's ``SFSpeechRecognizer/recognitionTask(with:delegate:)`` method to start a speech recognition task. When the task is complete, the speech recognizer uses your ``SFSpeechRecognitionTaskDelegate`` to send an ``SFSpeechRecognitionResult`` by using the delegate's ``SFSpeechRecognitionTaskDelegate/speechRecognitionTask(_:didFinishRecognition:)`` method.
     ///
     /// An `SFTranscription` represents only a potential version of the speech. It might not be an accurate representation of the utterances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sftranscription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFTranscription;

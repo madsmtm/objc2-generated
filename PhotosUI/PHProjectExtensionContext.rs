@@ -11,10 +11,15 @@ use objc2_photos::*;
 use crate::*;
 
 extern_class!(
+    /// An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
+    ///
+    /// ## Overview
+    ///
+    /// When a Photos project extension is initialized, it is handed an extension context object. This object provides the extension with access to the underlying project, as well as the photo library from which assets are fetched and edited.
+    ///
+    ///
     /// When a Photos project extension is initialized, it is handed a PHProjectExtensionContext object.
     /// This object provides the extension access to the underlying project as well as the photo library from which assets can be fetched.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectExtensionContext;

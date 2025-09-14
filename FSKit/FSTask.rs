@@ -10,9 +10,14 @@ use crate::*;
 extern_class!(
     /// A class that enables a file system module to pass log messages and completion notifications to clients.
     ///
+    /// ## Overview
+    ///
     /// FSKit creates an instance of this class for each long-running operations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fstask?language=objc)
+    ///
+    /// A class that enables a file system module to pass log messages and completion notifications to clients.
+    ///
+    /// FSKit creates an instance of this class for each long-running operations.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSTask;

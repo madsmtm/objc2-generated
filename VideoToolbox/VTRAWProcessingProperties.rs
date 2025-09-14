@@ -5,28 +5,44 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// This property requests that the Metal device corresponding to the specified registryID be used for any Metal related processing.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is not supported by all RAW processors.
+    ///
+    ///
     /// This property, if supported, requests that the Metal device corresponding to the specified registryID be used for any Metal related processing
     ///
     /// This property is not supported by all RAWProcessors
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_metaldeviceregistryid?language=objc)
     pub static kVTRAWProcessingPropertyKey_MetalDeviceRegistryID: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// The color-related image buffer keys and values that will be attachments to the returned pixel buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// This property may not be supported by all RAW Processors. Only color-related keys from `CVImageBuffer.h` are permitted in the returned dictionary.
+    ///
+    ///
     /// Returns the color-related CVImageBuffer keys and values that will be attachments to the returned pixel buffers.
     ///
     /// This property may not be supported by all RAW Processors. Only color-related keys from CVImageBuffer.h are permitted in the returned dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_outputcolorattachments?language=objc)
     pub static kVTRAWProcessingPropertyKey_OutputColorAttachments: Option<&'static CFString>;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// This property, if supported, returns the current processing metadata on the RAW Processor. The returned value can be used by the caller to create, or overwrite an existing sidecar file.
     ///
     /// This property is not supported by all RAWProcessors. The metadata returned represents a fully-formed sidecar file, and should be compatible with the MediaExtension FormatReader.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingpropertykey_metadataforsidecarfile?language=objc)
+    ///
+    /// This property, if supported, returns the current processing metadata on the RAW Processor. The returned value can be used by the caller to create, or overwrite an existing sidecar file.
+    ///
+    /// This property is not supported by all RAWProcessors. The metadata returned represents a fully-formed sidecar file, and should be compatible with the MediaExtension FormatReader.
     pub static kVTRAWProcessingPropertyKey_MetadataForSidecarFile: Option<&'static CFString>;
 }

@@ -6,15 +6,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
+///
+/// ## Overview
+///
 /// Represents the conduction type used for an HKAudiogramSensitivityTest
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramconductiontype?language=objc)
+///
+/// Represents the conduction type used for an HKAudiogramSensitivityTest
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAudiogramConductionType(pub NSInteger);
 impl HKAudiogramConductionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramconductiontype/air?language=objc)
     #[doc(alias = "HKAudiogramConductionTypeAir")]
     pub const Air: Self = Self(0);
 }
@@ -27,18 +30,20 @@ unsafe impl RefEncode for HKAudiogramConductionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
 /// Represents the test side used for an HKAudiogramSensitivityTest
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside?language=objc)
+///
+/// Represents the test side used for an HKAudiogramSensitivityTest
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAudiogramSensitivityTestSide(pub NSInteger);
 impl HKAudiogramSensitivityTestSide {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside/left?language=objc)
     #[doc(alias = "HKAudiogramSensitivityTestSideLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside/right?language=objc)
     #[doc(alias = "HKAudiogramSensitivityTestSideRight")]
     pub const Right: Self = Self(1);
 }
@@ -52,7 +57,6 @@ unsafe impl RefEncode for HKAudiogramSensitivityTestSide {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSensitivityTest;

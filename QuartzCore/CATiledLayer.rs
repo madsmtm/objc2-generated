@@ -10,7 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catiledlayer?language=objc)
+    /// A layer that provides a way to asynchronously provide tiles of the layer’s content, potentially cached at multiple levels of detail.
+    ///
+    /// ## Overview
+    ///
+    /// As more data is required by the renderer, the layer’s [`drawInContext:`](https://developer.apple.com/documentation/quartzcore/calayer/draw(in:)) method is called on one or more background threads to supply the drawing operations to fill in one tile of data. The clip bounds and current transformation matrix (CTM) of the drawing context can be used to determine the bounds and resolution of the tile being requested.
+    ///
+    /// Regions of the layer may be invalidated using the [`setNeedsDisplayInRect:`](https://developer.apple.com/documentation/quartzcore/calayer/setneedsdisplay(_:)) method however the update will be asynchronous. While the next display update will most likely not contain the updated content, a future update will.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Do not attempt to directly modify the [`contents`](https://developer.apple.com/documentation/quartzcore/calayer/contents) property of a [`CATiledLayer`](https://developer.apple.com/documentation/quartzcore/catiledlayer) object. Doing so disables the ability of a tiled layer to asynchronously provide tiled content, effectively turning the layer into a regular [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]

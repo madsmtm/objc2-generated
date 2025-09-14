@@ -7,23 +7,29 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle?language=objc)
+/// Defines the stylistic appearance of different types of views.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarStyle(pub NSInteger);
 impl UIBarStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/default?language=objc)
+    /// The default style normally associated with the given view.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, navigation bars typically use a white background with dark content.
+    ///
+    ///
     #[doc(alias = "UIBarStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/black?language=objc)
+    /// A black background with light content.
     #[doc(alias = "UIBarStyleBlack")]
     pub const Black: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/blackopaque?language=objc)
+    /// A deprecated opaque style.
     #[doc(alias = "UIBarStyleBlackOpaque")]
     #[deprecated = "Use UIBarStyleBlack instead."]
     pub const BlackOpaque: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle/blacktranslucent?language=objc)
+    /// A deprecated translucent style.
     #[doc(alias = "UIBarStyleBlackTranslucent")]
     #[deprecated = "Use UIBarStyleBlack and set the translucent property to YES instead."]
     pub const BlackTranslucent: Self = Self(2);
@@ -37,19 +43,19 @@ unsafe impl RefEncode for UIBarStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass?language=objc)
+/// Constants that indicate the size class of a view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceSizeClass(pub NSInteger);
 impl UIUserInterfaceSizeClass {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass/unspecified?language=objc)
+    /// Indicates the size class hasn’t been specified.
     #[doc(alias = "UIUserInterfaceSizeClassUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass/compact?language=objc)
+    /// Indicates a compact size class.
     #[doc(alias = "UIUserInterfaceSizeClassCompact")]
     pub const Compact: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass/regular?language=objc)
+    /// Indicates a regular size class.
     #[doc(alias = "UIUserInterfaceSizeClassRegular")]
     pub const Regular: Self = Self(2);
 }
@@ -62,19 +68,25 @@ unsafe impl RefEncode for UIUserInterfaceSizeClass {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle?language=objc)
+/// Constants that indicate the interface style for the app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceStyle(pub NSInteger);
 impl UIUserInterfaceStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle/unspecified?language=objc)
+    /// An unspecified interface style.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this option when you want to follow the system’s interface style.
+    ///
+    ///
     #[doc(alias = "UIUserInterfaceStyleUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle/light?language=objc)
+    /// The light interface style.
     #[doc(alias = "UIUserInterfaceStyleLight")]
     pub const Light: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle/dark?language=objc)
+    /// The dark interface style.
     #[doc(alias = "UIUserInterfaceStyleDark")]
     pub const Dark: Self = Self(2);
 }
@@ -87,16 +99,28 @@ unsafe impl RefEncode for UIUserInterfaceStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelayoutdirection?language=objc)
+/// Constants that specify the directional flow of the user interface.
+///
+/// ## Overview
+///
+/// One of these constants is returned by the [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/uikit/uiapplication/userinterfacelayoutdirection) property. It indicates the directionality of the language in the user interface of the app.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceLayoutDirection(pub NSInteger);
 impl UIUserInterfaceLayoutDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelayoutdirection/lefttoright?language=objc)
+    /// The layout direction is left to right.
     #[doc(alias = "UIUserInterfaceLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelayoutdirection/righttoleft?language=objc)
+    /// The layout direction right to left.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is appropriate when running with localizations such as Arabic or Hebrew that should have the user interface layout origin on the right edge of the coordinate system.
+    ///
+    ///
     #[doc(alias = "UIUserInterfaceLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -109,19 +133,19 @@ unsafe impl RefEncode for UIUserInterfaceLayoutDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection?language=objc)
+/// Constants that indicate the layout direction associated with the current environment.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITraitEnvironmentLayoutDirection(pub NSInteger);
 impl UITraitEnvironmentLayoutDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection/unspecified?language=objc)
+    /// An unknown layout direction.
     #[doc(alias = "UITraitEnvironmentLayoutDirectionUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection/lefttoright?language=objc)
+    /// A left-to-right layout direction.
     #[doc(alias = "UITraitEnvironmentLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(UIUserInterfaceLayoutDirection::LeftToRight.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection/righttoleft?language=objc)
+    /// A right-to-left layout direction.
     #[doc(alias = "UITraitEnvironmentLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(UIUserInterfaceLayoutDirection::RightToLeft.0);
 }
@@ -134,19 +158,19 @@ unsafe impl RefEncode for UITraitEnvironmentLayoutDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut?language=objc)
+/// Constants that indicate the gamut of the current display.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDisplayGamut(pub NSInteger);
 impl UIDisplayGamut {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut/unspecified?language=objc)
+    /// An unspecified gamut value.
     #[doc(alias = "UIDisplayGamutUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut/srgb?language=objc)
+    /// The sRGB display gamut.
     #[doc(alias = "UIDisplayGamutSRGB")]
     pub const SRGB: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut/p3?language=objc)
+    /// The P3 display gamut.
     #[doc(alias = "UIDisplayGamutP3")]
     pub const P3: Self = Self(1);
 }
@@ -159,19 +183,19 @@ unsafe impl RefEncode for UIDisplayGamut {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast?language=objc)
+/// Constants that indicate the accessibility contrast setting.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityContrast(pub NSInteger);
 impl UIAccessibilityContrast {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast/unspecified?language=objc)
+    /// An unspecified contrast.
     #[doc(alias = "UIAccessibilityContrastUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast/normal?language=objc)
+    /// A normal contrast level.
     #[doc(alias = "UIAccessibilityContrastNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast/high?language=objc)
+    /// A high contrast level.
     #[doc(alias = "UIAccessibilityContrastHigh")]
     pub const High: Self = Self(1);
 }
@@ -184,19 +208,19 @@ unsafe impl RefEncode for UIAccessibilityContrast {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight?language=objc)
+/// Constants that indicate the weight to apply to text in your interface.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILegibilityWeight(pub NSInteger);
 impl UILegibilityWeight {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight/unspecified?language=objc)
+    /// An unspecified text weight.
     #[doc(alias = "UILegibilityWeightUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight/regular?language=objc)
+    /// A regular font weight.
     #[doc(alias = "UILegibilityWeightRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight/bold?language=objc)
+    /// A bold font weight.
     #[doc(alias = "UILegibilityWeightBold")]
     pub const Bold: Self = Self(1);
 }
@@ -209,19 +233,25 @@ unsafe impl RefEncode for UILegibilityWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel?language=objc)
+/// Constants that indicate the visual level for content in the window.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceLevel(pub NSInteger);
 impl UIUserInterfaceLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel/unspecified?language=objc)
+    /// An unspecified interface level.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this option when you want to follow the inherited level.
+    ///
+    ///
     #[doc(alias = "UIUserInterfaceLevelUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel/base?language=objc)
+    /// The level for your window’s main content.
     #[doc(alias = "UIUserInterfaceLevelBase")]
     pub const Base: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel/elevated?language=objc)
+    /// The level for content visually above your window’s main content.
     #[doc(alias = "UIUserInterfaceLevelElevated")]
     pub const Elevated: Self = Self(1);
 }
@@ -234,19 +264,19 @@ unsafe impl RefEncode for UIUserInterfaceLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance?language=objc)
+/// Constants that indicate whether the user interface has an active appearance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceActiveAppearance(pub NSInteger);
 impl UIUserInterfaceActiveAppearance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance/unspecified?language=objc)
+    /// The interface has an unspecified appearance.
     #[doc(alias = "UIUserInterfaceActiveAppearanceUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance/inactive?language=objc)
+    /// The interface has an inactive appearance.
     #[doc(alias = "UIUserInterfaceActiveAppearanceInactive")]
     pub const Inactive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance/active?language=objc)
+    /// The interface has an active appearance.
     #[doc(alias = "UIUserInterfaceActiveAppearanceActive")]
     pub const Active: Self = Self(1);
 }
@@ -259,22 +289,28 @@ unsafe impl RefEncode for UIUserInterfaceActiveAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize?language=objc)
+/// Constants that specify the presentation size of a toolbar item in an AppKit toolbar.
+///
+/// ## Overview
+///
+/// Use these constants with [`toolbarItemPresentationSize`](https://developer.apple.com/documentation/uikit/uitraitcollection/toolbaritempresentationsize) to determine what size an [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar) expects its toolbar items to be.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINSToolbarItemPresentationSize(pub NSInteger);
 impl UINSToolbarItemPresentationSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/unspecified?language=objc)
+    /// An unspecified presentation size.
     #[doc(alias = "UINSToolbarItemPresentationSizeUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/regular?language=objc)
+    /// The default, regular presentation size.
     #[doc(alias = "UINSToolbarItemPresentationSizeRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/small?language=objc)
+    /// The smallest presentation size.
     #[doc(alias = "UINSToolbarItemPresentationSizeSmall")]
     pub const Small: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize/large?language=objc)
+    /// The largest presentation size.
     #[doc(alias = "UINSToolbarItemPresentationSizeLarge")]
     pub const Large: Self = Self(3);
 }
@@ -287,30 +323,21 @@ unsafe impl RefEncode for UINSToolbarItemPresentationSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageDynamicRange(pub NSInteger);
 impl UIImageDynamicRange {
     /// Do not specify a preferred dynamic range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/unspecified?language=objc)
     #[doc(alias = "UIImageDynamicRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
     /// Restrict the image content dynamic range to the standard range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/standard?language=objc)
     #[doc(alias = "UIImageDynamicRangeStandard")]
     pub const Standard: Self = Self(0);
     /// Allow image content to use some extended range. This is appropriate for mixing content with standard and high dynamic ranges.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/constrainedhigh?language=objc)
     #[doc(alias = "UIImageDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(1);
     /// Allow image content to use unrestricted extended range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange/high?language=objc)
     #[doc(alias = "UIImageDynamicRangeHigh")]
     pub const High: Self = Self(2);
 }
@@ -323,25 +350,21 @@ unsafe impl RefEncode for UIImageDynamicRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIHDRHeadroomUsageLimit(pub NSInteger);
 impl UIHDRHeadroomUsageLimit {
     /// Headroom usage limits are not defined
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit/unspecified?language=objc)
+    /// Headroom usage limits are not defined
     #[doc(alias = "UIHDRHeadroomUsageLimitUnspecified")]
     pub const Unspecified: Self = Self(-1);
     /// Headroom usage limits are in effect, HDR headroom usage should be restricted
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit/active?language=objc)
+    /// Headroom usage limits are in effect, HDR headroom usage should be restricted
     #[doc(alias = "UIHDRHeadroomUsageLimitActive")]
     pub const Active: Self = Self(0);
     /// Headroom usage limits are disabled, HDR headroom usage is unrestricted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit/inactive?language=objc)
+    /// Headroom usage limits are disabled, HDR headroom usage is unrestricted.
     #[doc(alias = "UIHDRHeadroomUsageLimitInactive")]
     pub const Inactive: Self = Self(1);
 }

@@ -10,9 +10,8 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
+    /// An object that allows control of the playback rate.
     /// an AVAudioUnitTimeEffect that can be used to control the playback rate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitvarispeed?language=objc)
     #[unsafe(super(AVAudioUnitTimeEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -9,19 +9,31 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum?language=objc)
+/// Display styles for an alert’s action button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAlertActionStyle(pub NSUInteger);
 impl CPAlertActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum/default?language=objc)
+    /// The default display style for an action button.
     #[doc(alias = "CPAlertActionStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum/cancel?language=objc)
+    /// The display style indicating that the action leaves data unchanged.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style when providing a cancel action on the alert.
+    ///
+    ///
     #[doc(alias = "CPAlertActionStyleCancel")]
     pub const Cancel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum/destructive?language=objc)
+    /// The style indicating that the action changes or deletes data.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style when the action does something destructive, such as deleting data.
+    ///
+    ///
     #[doc(alias = "CPAlertActionStyleDestructive")]
     pub const Destructive: Self = Self(2);
 }
@@ -34,11 +46,22 @@ unsafe impl RefEncode for CPAlertActionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertactionhandler?language=objc)
+/// The declaration for an alert action handler.
+///
+/// Parameters:
+/// - action: The alert action that invoked the block.
+///
 #[cfg(feature = "block2")]
 pub type CPAlertActionHandler = *mut block2::DynBlock<dyn Fn(NonNull<CPAlertAction>)>;
 
 extern_class!(
+    /// An object that encapsulates an action the user can perform on an action sheet or alert.
+    ///
+    /// ## Overview
+    ///
+    /// Use an alert action to display a button on an alert. The combination of the alert and the action styles determines the appearance of the action button. To perform an action after the user taps the button, provide a block to the action’s [`handler`](https://developer.apple.com/documentation/carplay/cpalertaction/handler) property.
+    ///
+    ///
     /// `CPAlertAction`represents a single action that appears inside of a
     /// `CPActionSheetTemplate`or
     /// `CPAlertTemplate.`
@@ -48,8 +71,6 @@ extern_class!(
     ///
     /// The action has a customizable title, style, and a block callback
     /// that is invoked when the user taps this button.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPAlertAction;

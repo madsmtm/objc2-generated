@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// These constants specify the possible media kinds of a media item.
 /// These constants specify the possible media kinds of a iTunes media item.
 ///
 /// The media item kind is unknown.
@@ -44,65 +45,63 @@ use crate::*;
 /// The media item is a PDF treated as Books in the UI unless overridden by the user.
 ///
 /// The media item is an audio tone on an iOS device which is not a protected ringtone.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ITLibMediaItemMediaKind(pub NSUInteger);
 impl ITLibMediaItemMediaKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindunknown?language=objc)
+    /// The media item kind is unknown.
     #[doc(alias = "ITLibMediaItemMediaKindUnknown")]
     pub const KindUnknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindsong?language=objc)
+    /// The media item is a song.
     #[doc(alias = "ITLibMediaItemMediaKindSong")]
     pub const KindSong: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindmovie?language=objc)
+    /// The media item is a movie.
     #[doc(alias = "ITLibMediaItemMediaKindMovie")]
     pub const KindMovie: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindpodcast?language=objc)
+    /// The media item is an audio or a video podcast.
     #[doc(alias = "ITLibMediaItemMediaKindPodcast")]
     pub const KindPodcast: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindaudiobook?language=objc)
+    /// The media item is an audiobook.
     #[doc(alias = "ITLibMediaItemMediaKindAudiobook")]
     pub const KindAudiobook: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindpdfbooklet?language=objc)
+    /// The media item is an unwrapped PDF file that’s part of a music album.
     #[doc(alias = "ITLibMediaItemMediaKindPDFBooklet")]
     pub const KindPDFBooklet: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindmusicvideo?language=objc)
+    /// The media item is a music video.
     #[doc(alias = "ITLibMediaItemMediaKindMusicVideo")]
     pub const KindMusicVideo: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindtvshow?language=objc)
+    /// The media item is a TV show.
     #[doc(alias = "ITLibMediaItemMediaKindTVShow")]
     pub const KindTVShow: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindinteractivebooklet?language=objc)
+    /// The media item is a QuickTime movie with embedded Flash.
     #[doc(alias = "ITLibMediaItemMediaKindInteractiveBooklet")]
     pub const KindInteractiveBooklet: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindhomevideo?language=objc)
+    /// The media item is a non-iTunes Store movie.
     #[doc(alias = "ITLibMediaItemMediaKindHomeVideo")]
     pub const KindHomeVideo: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindringtone?language=objc)
+    /// The media item is an iOS ringtone.
     #[doc(alias = "ITLibMediaItemMediaKindRingtone")]
     pub const KindRingtone: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kinddigitalbooklet?language=objc)
+    /// The media item is an iTunes Extra or an iTunes LP item.
     #[doc(alias = "ITLibMediaItemMediaKindDigitalBooklet")]
     pub const KindDigitalBooklet: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindiosapplication?language=objc)
+    /// The media item is an iOS app.
     #[doc(alias = "ITLibMediaItemMediaKindIOSApplication")]
     pub const KindIOSApplication: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindvoicememo?language=objc)
+    /// The media item is a recorded voice memo.
     #[doc(alias = "ITLibMediaItemMediaKindVoiceMemo")]
     pub const KindVoiceMemo: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kinditunesu?language=objc)
+    /// The media item is an iTunes U audio or video file.
     #[doc(alias = "ITLibMediaItemMediaKindiTunesU")]
     pub const KindiTunesU: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindbook?language=objc)
+    /// The media item is an EPUB file or an iBooks Author book.
     #[doc(alias = "ITLibMediaItemMediaKindBook")]
     pub const KindBook: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindpdfbook?language=objc)
+    /// The media item is a PDF file that iTunes treats as a book unless the user overrides it.
     #[doc(alias = "ITLibMediaItemMediaKindPDFBook")]
     pub const KindPDFBook: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemmediakind/kindalerttone?language=objc)
+    /// The media item is an audio tone that’s not a protected ringtone on an iOS device.
     #[doc(alias = "ITLibMediaItemMediaKindAlertTone")]
     pub const KindAlertTone: Self = Self(21);
 }
@@ -116,26 +115,25 @@ unsafe impl RefEncode for ITLibMediaItemMediaKind {
 }
 
 /// These constants specify the possible ratings of media item lyrics.
+/// These constants specify the possible ratings of media item lyrics.
 ///
 /// No rating information for the media item lyrics.
 ///
 /// The media item lyrics contain explicit language.
 ///
 /// The media item lyrics do not contain explicit language.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLyricsContentRating(pub NSUInteger);
 impl ITLibMediaItemLyricsContentRating {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating/none?language=objc)
+    /// There is no rating information for the media item lyrics.
     #[doc(alias = "ITLibMediaItemLyricsContentRatingNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating/explicit?language=objc)
+    /// The media item lyrics contain explicit language.
     #[doc(alias = "ITLibMediaItemLyricsContentRatingExplicit")]
     pub const Explicit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating/clean?language=objc)
+    /// The media item lyrics don’t contain explicit language.
     #[doc(alias = "ITLibMediaItemLyricsContentRatingClean")]
     pub const Clean: Self = Self(2);
 }
@@ -149,6 +147,7 @@ unsafe impl RefEncode for ITLibMediaItemLyricsContentRating {
 }
 
 /// These constants specify the location type of a media item.
+/// These constants specify the location type of a media item.
 ///
 /// The media item location type is not known.
 ///
@@ -157,23 +156,21 @@ unsafe impl RefEncode for ITLibMediaItemLyricsContentRating {
 /// The media item location refers to a URL (for example, a podcast).
 ///
 /// The media item location refers to a remote file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLocationType(pub NSUInteger);
 impl ITLibMediaItemLocationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/unknown?language=objc)
+    /// The media item location type is unknown.
     #[doc(alias = "ITLibMediaItemLocationTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/file?language=objc)
+    /// The media item location refers to a local file.
     #[doc(alias = "ITLibMediaItemLocationTypeFile")]
     pub const File: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/url?language=objc)
+    /// The media item location refers to a URL, such as a podcast.
     #[doc(alias = "ITLibMediaItemLocationTypeURL")]
     pub const URL: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype/remote?language=objc)
+    /// The media item location refers to a remote file.
     #[doc(alias = "ITLibMediaItemLocationTypeRemote")]
     pub const Remote: Self = Self(3);
 }
@@ -186,6 +183,7 @@ unsafe impl RefEncode for ITLibMediaItemLocationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// These constants specify the play status of the media item.
 /// These constants specify the "blue dot" play status of this media item.
 ///
 /// The item has been played (see playCount) or the play status is not tracked for this type of media item.
@@ -193,20 +191,24 @@ unsafe impl RefEncode for ITLibMediaItemLocationType {
 /// The media item has been partially played.
 ///
 /// The media item has not been played.  Note that the user can also set this state manually.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemPlayStatus(pub NSUInteger);
 impl ITLibMediaItemPlayStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/none?language=objc)
+    /// The user has played the media item or iTunes doesn’t track the play status for this kind of media item.
     #[doc(alias = "ITLibMediaItemPlayStatusNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/partiallyplayed?language=objc)
+    /// The user has partially played the media item.
     #[doc(alias = "ITLibMediaItemPlayStatusPartiallyPlayed")]
     pub const PartiallyPlayed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/unplayed?language=objc)
+    /// The user hasn’t played the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// The user can also set this state manually.
+    ///
+    ///
     #[doc(alias = "ITLibMediaItemPlayStatusUnplayed")]
     pub const Unplayed: Self = Self(2);
 }
@@ -220,12 +222,17 @@ unsafe impl RefEncode for ITLibMediaItemPlayStatus {
 }
 
 extern_class!(
+    /// This class describes a media item (a track) in the iTunes library, such as a song, a video, or a podcast.
+    ///
+    /// ## Overview
+    ///
+    /// Like all media entities, each media item has a unique identifier and a set of properties.
+    ///
+    ///
     /// A media item represents a single piece of media (such as a song, a video, a podcast, etc) in the iTunes library.
     /// A media item has an overall unique identifier, accessed using the persistentID property. The media item
     /// metadata may be accessed through its individual properties or via the ITLibMediaEntity general property accessor
     /// methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitem?language=objc)
     #[unsafe(super(ITLibMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ITLibMediaEntity")]
@@ -509,353 +516,379 @@ impl ITLibMediaItem {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumtitle?language=objc)
+    /// The title of the media item’s album.
     pub static ITLibMediaItemPropertyAlbumTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysortalbumtitle?language=objc)
+    /// The title of the media item’s album, for use when sorting.
     pub static ITLibMediaItemPropertySortAlbumTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumartist?language=objc)
+    /// The name of the artist that iTunes associates with the media item’s album.
     pub static ITLibMediaItemPropertyAlbumArtist: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumrating?language=objc)
+    /// The rating of the media item’s album.
     pub static ITLibMediaItemPropertyAlbumRating: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumratingcomputed?language=objc)
+    /// This property indicates whether iTunes computes the rating of the media item’s album from the ratings of individual tracks in the album.
     pub static ITLibMediaItemPropertyAlbumRatingComputed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysortalbumartist?language=objc)
+    /// The name of the artist that iTunes associates with the media item’s album, for use when sorting.
     pub static ITLibMediaItemPropertySortAlbumArtist: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumisgapless?language=objc)
+    /// This property indicates whether the media item’s album is gapless.
     pub static ITLibMediaItemPropertyAlbumIsGapless: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumiscompilation?language=objc)
+    /// This property indicates whether the album of the media item is a compilation.
     pub static ITLibMediaItemPropertyAlbumIsCompilation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumdisccount?language=objc)
+    /// The number of discs in the media item’s album.
     pub static ITLibMediaItemPropertyAlbumDiscCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumdiscnumber?language=objc)
+    /// The disc number in the media item’s album.
     pub static ITLibMediaItemPropertyAlbumDiscNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyalbumtrackcount?language=objc)
+    /// The track count of the media item’s album.
     pub static ITLibMediaItemPropertyAlbumTrackCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyartistname?language=objc)
+    /// The name of the artist that iTunes associates with the media item.
     pub static ITLibMediaItemPropertyArtistName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysortartistname?language=objc)
+    /// The name of the media item’s artist, for use when sorting.
     pub static ITLibMediaItemPropertySortArtistName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideoishd?language=objc)
+    /// This property indicates whether a video media item is high-definition.
     pub static ITLibMediaItemPropertyVideoIsHD: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideowidth?language=objc)
+    /// The width in pixels, if the media item is a video.
     pub static ITLibMediaItemPropertyVideoWidth: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideoheight?language=objc)
+    /// The height in pixels, if the media item is a video.
     pub static ITLibMediaItemPropertyVideoHeight: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideoseries?language=objc)
+    /// The name of the corresponding TV series, if the media item is an episode in a TV series.
     pub static ITLibMediaItemPropertyVideoSeries: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideosortseries?language=objc)
+    /// The sorting name of the corresponding TV series, if the media item is an episode in a TV series.
     pub static ITLibMediaItemPropertyVideoSortSeries: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideoseason?language=objc)
+    /// The corresponding TV season, if the media item is an episode of a TV series.
     pub static ITLibMediaItemPropertyVideoSeason: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideoepisode?language=objc)
+    /// The name of the episode, if the media item is an episode of a TV series.
     pub static ITLibMediaItemPropertyVideoEpisode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvideoepisodeorder?language=objc)
+    /// The order of the episode, if the media item is an episode of a TV series.
     pub static ITLibMediaItemPropertyVideoEpisodeOrder: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyhasartwork?language=objc)
+    /// This property indicates whether the media item has artwork.
     pub static ITLibMediaItemPropertyHasArtwork: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertybitrate?language=objc)
+    /// The bitrate of the media item in kbit/s.
     pub static ITLibMediaItemPropertyBitRate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertybeatsperminute?language=objc)
+    /// The beats-per-minute (BPM) of the media item.
     pub static ITLibMediaItemPropertyBeatsPerMinute: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertycategory?language=objc)
+    /// The podcast category of the media item, if the media item is a podcast.
     pub static ITLibMediaItemPropertyCategory: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertycomments?language=objc)
+    /// Any comments that iTunes associates with the media item.
     pub static ITLibMediaItemPropertyComments: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertycomposer?language=objc)
+    /// The name of the composer that iTunes associates with the media item.
     pub static ITLibMediaItemPropertyComposer: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysortcomposer?language=objc)
+    /// The name of the composer that iTunes associates with the media item, for use when sorting.
+    ///
+    /// ## Discussion
+    ///
+    /// If `nil`, use [`ITLibMediaItemPropertyComposer`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertycomposer).
+    ///
+    ///
     pub static ITLibMediaItemPropertySortComposer: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertycontentrating?language=objc)
+    /// The extended content rating of the media item.
     pub static ITLibMediaItemPropertyContentRating: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertylyricscontentrating?language=objc)
+    /// The content rating of the media item’s lyrics.
     pub static ITLibMediaItemPropertyLyricsContentRating: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyaddeddate?language=objc)
+    /// The date and time the user added the media item to the iTunes library.
     pub static ITLibMediaItemPropertyAddedDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertymodifieddate?language=objc)
+    /// The date and time that iTunes last modified the media item.
     pub static ITLibMediaItemPropertyModifiedDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertydescription?language=objc)
+    /// A podcast description of the media item, if the media item is a podcast.
     pub static ITLibMediaItemPropertyDescription: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyisuserdisabled?language=objc)
+    /// This property indicates whether the user disabled the media item.
     pub static ITLibMediaItemPropertyIsUserDisabled: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyfiletype?language=objc)
+    /// The file type of the media item.
     #[deprecated]
     pub static ITLibMediaItemPropertyFileType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertygenre?language=objc)
+    /// The genre that iTunes associates with the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This property can be empty.
+    ///
+    ///
     pub static ITLibMediaItemPropertyGenre: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertygrouping?language=objc)
+    /// The grouping of the media item.
     pub static ITLibMediaItemPropertyGrouping: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyisvideo?language=objc)
+    /// This property indicates whether the media item is a video media item, such as a video podcast or movie.
     pub static ITLibMediaItemPropertyIsVideo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertykind?language=objc)
+    /// The kind of media item file, such as an MPEG audio file.
     pub static ITLibMediaItemPropertyKind: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertytitle?language=objc)
+    /// The title of the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This property can be empty.
+    ///
+    ///
     pub static ITLibMediaItemPropertyTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysorttitle?language=objc)
+    /// The title of the media item to use when sorting.
+    ///
+    /// ## Discussion
+    ///
+    /// If `nil`, use [`ITLibMediaItemPropertyTitle`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertytitle).
+    ///
+    ///
     pub static ITLibMediaItemPropertySortTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvolumenormalizationenergy?language=objc)
+    /// The volume normalization energy that iTunes applies to the media item to bring the average or peak amplitude to a target level.
     pub static ITLibMediaItemPropertyVolumeNormalizationEnergy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyplaycount?language=objc)
+    /// The number of times the user has played the media item in iTunes.
     pub static ITLibMediaItemPropertyPlayCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertylastplaydate?language=objc)
+    /// The date and time the user last played the media item in iTunes, or `nil` if the user hasn’t played the media item.
     pub static ITLibMediaItemPropertyLastPlayDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyplaystatus?language=objc)
+    /// The play status of the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// Represents partially played and unplayed states for videos and podcasts. Other media kinds always return [`ITLibMediaItemPlayStatusNone`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus/none).
+    ///
+    ///
     pub static ITLibMediaItemPropertyPlayStatus: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyisdrmprotected?language=objc)
+    /// This property indicates whether the media item has digital rights management (DRM) protection.
     pub static ITLibMediaItemPropertyIsDRMProtected: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyispurchased?language=objc)
+    /// This property indicates whether the media item is a purchased media item.
     pub static ITLibMediaItemPropertyIsPurchased: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertymovementcount?language=objc)
     pub static ITLibMediaItemPropertyMovementCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertymovementname?language=objc)
     pub static ITLibMediaItemPropertyMovementName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertymovementnumber?language=objc)
     pub static ITLibMediaItemPropertyMovementNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyrating?language=objc)
+    /// The rating of the media item.
     pub static ITLibMediaItemPropertyRating: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyratingcomputed?language=objc)
+    /// This property indicates whether iTunes computes the media item’s rating.
     pub static ITLibMediaItemPropertyRatingComputed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyreleasedate?language=objc)
+    /// The release date of the media item.
     pub static ITLibMediaItemPropertyReleaseDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysamplerate?language=objc)
+    /// The sample rate of the media item in samples-per-second.
     pub static ITLibMediaItemPropertySampleRate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertysize?language=objc)
+    /// The size in bytes of the media item on disk.
     pub static ITLibMediaItemPropertySize: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyfilesize?language=objc)
+    /// The size in bytes of the media item on disk.
     pub static ITLibMediaItemPropertyFileSize: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyuserskipcount?language=objc)
+    /// The number of times that the user skipped the media item.
     pub static ITLibMediaItemPropertyUserSkipCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyskipdate?language=objc)
+    /// The date and time that the user last skipped the media item.
     pub static ITLibMediaItemPropertySkipDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertystarttime?language=objc)
+    /// If nonzero, the actual time that playback for the media item starts instead of 0:00 (in milliseconds).
     pub static ITLibMediaItemPropertyStartTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertystoptime?language=objc)
+    /// If nonzero, the actual time that playback for the media item stops versus the total time (in milliseconds).
     pub static ITLibMediaItemPropertyStopTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertytotaltime?language=objc)
+    /// The length of the media item in milliseconds.
     pub static ITLibMediaItemPropertyTotalTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertytracknumber?language=objc)
+    /// The numerical position of the media item within its album.
     pub static ITLibMediaItemPropertyTrackNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertylocationtype?language=objc)
+    /// The type of the media item with respect to its location.
     pub static ITLibMediaItemPropertyLocationType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvoiceoverlanguage?language=objc)
+    /// The voice-over language of the media item.
     #[deprecated]
     pub static ITLibMediaItemPropertyVoiceOverLanguage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyvolumeadjustment?language=objc)
+    /// The volume adjustment for the media item, if any.
     pub static ITLibMediaItemPropertyVolumeAdjustment: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertywork?language=objc)
     pub static ITLibMediaItemPropertyWork: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyyear?language=objc)
+    /// The release year of the media item.
     pub static ITLibMediaItemPropertyYear: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertymediakind?language=objc)
+    /// The media kind of the media item.
     pub static ITLibMediaItemPropertyMediaKind: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertylocation?language=objc)
+    /// The location of the media item on disk.
     pub static ITLibMediaItemPropertyLocation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitempropertyartwork?language=objc)
+    /// The artwork for the media item.
     pub static ITLibMediaItemPropertyArtwork: &'static NSString;
 }

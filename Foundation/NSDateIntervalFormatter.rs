@@ -6,25 +6,57 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style?language=objc)
+/// Formatting styles for individual date and time values.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateIntervalFormatterStyle(pub NSUInteger);
 impl NSDateIntervalFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/none?language=objc)
+    /// No information for the date or time. Use this style when you do not want to include date or time information in the resulting string.
     #[doc(alias = "NSDateIntervalFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/short?language=objc)
+    /// An abbreviated date or time format.
+    ///
+    /// ## Discussion
+    ///
+    /// For dates, this style displays the day, month, and year in numerical form using a format appropriate for the current locale. For example, formatting the date January 15, 2015 with this style results in the value “1/15/15” for US English and the value “15.1.15” for German.
+    ///
+    /// For times, this style displays hours and minutes using a format appropriate for the current locale. For example, 12 hours and 33 minutes in the afternoon using a 12-hour clock results in the value “12:33 PM” for US English format and “12:33 nachm.” for German.
+    ///
+    ///
     #[doc(alias = "NSDateIntervalFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/medium?language=objc)
+    /// A medium length date or time format.
+    ///
+    /// ## Discussion
+    ///
+    /// For dates, this style displays the numerical day and year and an abbreviated spelling of the month using a format appropriate for the current locale. For example, formatting the date January 15, 2015 with this style results in the value “Jan 15, 2015” for US English and the value “15. Jan. 2015” for German.
+    ///
+    /// For times, this style displays hours, minutes, and seconds using a format appropriate for the current locale. For example, 12 hours, 33 minutes, and 29 seconds in the afternoon using a 12-hour clock results in the value “12:33:29 PM” for US English 12-hour format and “12:33:29 nachm.” for German.
+    ///
+    ///
     #[doc(alias = "NSDateIntervalFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/long?language=objc)
+    /// A long length date or time format.
+    ///
+    /// ## Discussion
+    ///
+    /// For dates, this style displays the numerical day and year and a spelled out version of the month using a format appropriate for the current locale. For example, formatting the date January 15, 2015 with this style results in the value “January 15, 2015” for US English and the value “15. Januar 2015” for German.
+    ///
+    /// For times, this style displays hours, minutes, seconds, and time zone information using a format appropriate for the current locale. For example, 12 hours, 33 minutes, and 29 seconds in the afternoon using a 12-hour clock and the Pacific Time Zone results in the value “12:33:29 PM PST” for US English without daylight savings in effect and “12:33:29 GMT-8” for German.
+    ///
+    ///
     #[doc(alias = "NSDateIntervalFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter/style/full?language=objc)
+    /// A fully spelled out date or time format.
+    ///
+    /// ## Discussion
+    ///
+    /// For dates, this style displays the numerical day and year and a spelled out version of the month and day of week using a format appropriate for the current locale. For example, formatting the date January 15, 2015 with this style results in the value “Thursday, January 15, 2015” for US English and the value “Donnerstag, 15. Januar 2015” for German.
+    ///
+    /// For times, this style displays hours, minutes, seconds, and the spelled-out time zone information using a format appropriate for the current locale. For example, 12 hours, 33 minutes, and 29 seconds in the afternoon using a 12-hour clock and the Pacific Time Zone results in the value “12:33:29 PM Pacific Standard Time” for US English without daylight savings in effect and “12:33:29 Nordamerikanische Westküsten-Normalzeit” for German.
+    ///
+    ///
     #[doc(alias = "NSDateIntervalFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }
@@ -38,7 +70,36 @@ unsafe impl RefEncode for NSDateIntervalFormatterStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateintervalformatter?language=objc)
+    /// A formatter that creates string representations of time intervals.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSDateIntervalFormatter`](https://developer.apple.com/documentation/foundation/dateintervalformatter) object creates user-readable strings from pairs of dates. Use a date interval formatter to create user-readable strings of the form _<start>_ `-` _<end>_ for your app’s interface, where _<start>_ and _<end>_ are date values that you supply. The formatter uses locale and language information, along with custom formatting options, to define the content of the resulting string. You can specify different styles for the date and time information in each date value.
+    ///
+    /// To use this class, create an instance, configure its properties, and call the [`stringFromDate:toDate:`](https://developer.apple.com/documentation/foundation/dateintervalformatter/string(from:to:)) method to generate a string. The properties of this class let you configure the calendar and specify the style to apply to date and time values. Given a current date of January 16, 2015, Configuring the Formatter Options shows how to configure a formatter object and generate the string “1/16/15 - 1/17/15”.
+    ///
+    /// Configuring a formatter object
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let formatter = DateIntervalFormatter()", "formatter.dateStyle = .short", "formatter.timeStyle = .none", "", "// Create two dates that are exactly 1 day apart.", "let startDate = Date()", "let endDate = Date(timeInterval: 86400, since: startDate)", "", "// Use the configured formatter to generate the string.", "let outputString = formatter.string(from: startDate, to: endDate)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDateIntervalFormatter* formatter = [[NSDateIntervalFormatter alloc] init];", "formatter.dateStyle = NSDateIntervalFormatterShortStyle;", "formatter.timeStyle = NSDateIntervalFormatterNoStyle;", " ", "// Create two dates that are exactly 1 day apart.", "NSDate* startDate = [NSDate date];", "NSDate* endDate = [NSDate dateWithTimeInterval:86400 sinceDate:startDate];", " ", "// Use the configured formatter to generate the string.", "NSString* outputString = [formatter stringFromDate:startDate toDate:endDate];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Always set to the [`dateStyle`](https://developer.apple.com/documentation/foundation/dateintervalformatter/datestyle) and [`timeStyle`](https://developer.apple.com/documentation/foundation/dateintervalformatter/timestyle) properties to appropriate values before generating any strings.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`stringFromDate:toDate:`](https://developer.apple.com/documentation/foundation/dateintervalformatter/string(from:to:)) method may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`Date.IntervalFormatStyle`](https://developer.apple.com/documentation/foundation/date/intervalformatstyle) rather than [`NSDateIntervalFormatter`](https://developer.apple.com/documentation/foundation/dateintervalformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

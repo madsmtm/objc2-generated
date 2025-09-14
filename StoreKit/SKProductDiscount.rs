@@ -6,22 +6,60 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum?language=objc)
+/// Values representing the payment modes for a product discount.
+///
+/// ## Overview
+///
+/// The payment mode indicates if the discount price is charged one time, multiple times, or if the discount is a free trial.
+///
+/// The payment mode may determine the wording you choose to phrase the offer in your app’s UI.
+///
+///
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductDiscountPaymentMode(pub NSUInteger);
 impl SKProductDiscountPaymentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum/payasyougo?language=objc)
+    /// A constant that indicates a product discount that applies over a single billing period or multiple billing periods.
+    ///
+    /// ## Discussion
+    ///
+    /// With a pay as you go payment mode, users pay the discounted price at each billing period during the discount period.
+    ///
+    ///
+    /// ![Example of a subscription timeline with a pay as you go payment mode. The  introductory price is billed three times.](https://docs-assets.developer.apple.com/published/cdf7424c589eb68fe7962e3c551ebba1/media-2942132%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const PayAsYouGo: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum/payupfront?language=objc)
+    /// A constant that indicates that the system applies the product discount up front.
+    ///
+    /// ## Discussion
+    ///
+    /// With a pay up front payment mode, users pay the discounted price one time, and receive the product for duration of the discount period.
+    ///
+    ///
+    /// ![Example of a subscription timeline with a pay up front payment mode. The introductory price is billed one time.](https://docs-assets.developer.apple.com/published/d4efc45f4203f1875f488fa0f304656f/media-2942133%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "SKProductDiscountPaymentModePayUpFront")]
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const PayUpFront: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/paymentmode-swift.enum/freetrial?language=objc)
+    /// A constant that indicates that the payment mode is a free trial.
+    ///
+    /// ## Discussion
+    ///
+    /// With a free trial payment mode, the price is 0, so users pay nothing during the discount period.
+    ///
+    ///
+    /// ![Example of a subscription timeline starting with a free trial. After the free introductory period, the subscription renews at regular price. ](https://docs-assets.developer.apple.com/published/0ee556ad1cee3517fb03233a341235b3/media-2942195%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "SKProductDiscountPaymentModeFreeTrial")]
     #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
     pub const FreeTrial: Self = Self(2);
@@ -35,18 +73,30 @@ unsafe impl RefEncode for SKProductDiscountPaymentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/type-swift.enum?language=objc)
+/// Values representing the types of discount offers an app can present.
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductDiscountType(pub NSUInteger);
 impl SKProductDiscountType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/type-swift.enum/introductory?language=objc)
+    /// A constant indicating the discount type is an introductory offer.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [Implementing introductory offers in your app](https://developer.apple.com/documentation/storekit/implementing-introductory-offers-in-your-app).
+    ///
+    ///
     #[doc(alias = "SKProductDiscountTypeIntroductory")]
     #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     pub const Introductory: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount/type-swift.enum/subscription?language=objc)
+    /// A constant indicating the discount type is a promotional offer.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about promotional offers, see [Implementing promotional offers in your app](https://developer.apple.com/documentation/storekit/implementing-promotional-offers-in-your-app).
+    ///
+    ///
     #[doc(alias = "SKProductDiscountTypeSubscription")]
     #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
     pub const Subscription: Self = Self(1);
@@ -61,7 +111,15 @@ unsafe impl RefEncode for SKProductDiscountType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductdiscount?language=objc)
+    /// The details of an introductory offer or a promotional offer for an auto-renewable subscription.
+    ///
+    /// ## Overview
+    ///
+    /// You set up introductory and promotional offers in App Store Connect. [`SKProductDiscount`](https://developer.apple.com/documentation/storekit/skproductdiscount) contains the offer information as retrieved from the App Store.
+    ///
+    /// For more information about setting up offers, see [Set an introductory offer for an auto-renewable subscription](https://help.apple.com/app-store-connect/#/deve1d49254f) and [Set up promotional offers for auto-renewable subscriptions](https://help.apple.com/app-store-connect/#/dev16dfca448).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.SubscriptionOffer"]

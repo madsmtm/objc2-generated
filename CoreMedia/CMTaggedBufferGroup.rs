@@ -11,21 +11,20 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// Error codes returned by Core Media when working with tagged buffer groups.
 /// The OSStatus errors returned from the CMTaggedBufferGroup routines.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergrouperror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTaggedBufferGroupError(pub OSStatus);
 impl CMTaggedBufferGroupError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergrouperror/kcmtaggedbuffergrouperror_paramerr?language=objc)
+    /// Indicates a parameter to a function was of the wrong type or didn’t meet a necessary condition.
     #[doc(alias = "kCMTaggedBufferGroupError_ParamErr")]
     pub const ParamErr: Self = Self(-15780);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergrouperror/kcmtaggedbuffergrouperror_allocationfailed?language=objc)
+    /// Indicates an internal allocation failed.
     #[doc(alias = "kCMTaggedBufferGroupError_AllocationFailed")]
     pub const AllocationFailed: Self = Self(-15781);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergrouperror/kcmtaggedbuffergrouperror_internalerror?language=objc)
+    /// Indicates an error occurred inside of the Core Media framework.
     #[doc(alias = "kCMTaggedBufferGroupError_InternalError")]
     pub const InternalError: Self = Self(-15782);
 }
@@ -40,9 +39,8 @@ unsafe impl RefEncode for CMTaggedBufferGroupError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A reference to a tagged buffer group instance.
 /// An object gathering zero or more buffers (CMSampleBuffer, CVPixelBuffer) each with a CMTagCollection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref?language=objc)
 #[doc(alias = "CMTaggedBufferGroupRef")]
 #[repr(C)]
 pub struct CMTaggedBufferGroup {
@@ -59,7 +57,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CMTaggedBufferGroup {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgettypeid?language=objc)
+    /// Gets the internal type ID for a tagged buffer group.
     #[doc(alias = "CMTaggedBufferGroupGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -71,6 +69,29 @@ unsafe impl ConcreteType for CMTaggedBufferGroup {
 }
 
 impl CMTaggedBufferGroup {
+    /// Creates a new tagged buffer group from a pair of buffers and the tags to associate with them.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - tagCollections: The tag collections to apply to each buffer, in order.
+    ///
+    /// - buffers: An array of buffer instances to place in the tagged buffer group.
+    ///
+    /// - groupOut: The output destination for the new tagged buffer group.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tagged Buffer Group Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Buffers strongly retain their references when creating a new tagged buffer group, rather than performing a copy. The number of elements in `tagCollections` and `buffers` must be the same.
+    ///
+    ///
     /// Creates a new tagged buffer group.
     ///
     /// Parameter `allocator`: The CFAllocator to use for allocating this buffer group.  May be NULL.
@@ -89,8 +110,6 @@ impl CMTaggedBufferGroup {
     /// - `tag_collections` generic must be of the correct type.
     /// - `buffers` generic must be of the correct type.
     /// - `group_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupcreate?language=objc)
     #[doc(alias = "CMTaggedBufferGroupCreate")]
     #[inline]
     pub unsafe fn create(
@@ -110,6 +129,27 @@ impl CMTaggedBufferGroup {
         unsafe { CMTaggedBufferGroupCreate(allocator, tag_collections, buffers, group_out) }
     }
 
+    /// Creates a new tagged buffer group from an array of existing tagged buffer groups.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - taggedBufferGroups: An array of tagged buffer groups to combine into the new, single buffer group.
+    ///
+    /// - groupOut: The output destination for the new tagged buffer group.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tagged Buffer Group Error Codes on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Buffers strongly retain their references when creating a new tagged buffer group, rather than performing a copy.
+    ///
+    ///
     /// Creates a new tagged buffer group by combining all the tagged buffer groups in an array.
     ///
     /// Parameter `allocator`: The CFAllocator to use for allocating this buffer group.  May be NULL.
@@ -124,8 +164,6 @@ impl CMTaggedBufferGroup {
     ///
     /// - `tagged_buffer_groups` generic must be of the correct type.
     /// - `group_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupcreatecombined?language=objc)
     #[doc(alias = "CMTaggedBufferGroupCreateCombined")]
     #[inline]
     pub unsafe fn create_combined(
@@ -143,13 +181,12 @@ impl CMTaggedBufferGroup {
         unsafe { CMTaggedBufferGroupCreateCombined(allocator, tagged_buffer_groups, group_out) }
     }
 
+    /// Gets the number of buffers contained within a tagged buffer group.
     /// Returns the number of buffers in a CMTaggedBufferGroup.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the count from.
     ///
     /// Returns: Returns the number of buffers, or 0 on failure or if the group is empty.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcount?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCount")]
     #[cfg(feature = "CMBase")]
     #[inline]
@@ -160,6 +197,7 @@ impl CMTaggedBufferGroup {
         unsafe { CMTaggedBufferGroupGetCount(self) }
     }
 
+    /// Gets the collection of tags for a buffer at a given index in the group.
     /// Returns a CMTagCollection from a CMTaggedBufferGroup by sequential indexing.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the tag collection from.
@@ -167,8 +205,6 @@ impl CMTaggedBufferGroup {
     /// Parameter `index`: An index from 0 to count-1.
     ///
     /// Returns: Returns the tag collection, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgettagcollectionatindex?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetTagCollectionAtIndex")]
     #[cfg(feature = "CMTagCollection")]
     #[inline]
@@ -186,6 +222,13 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the pixel buffer at a given index in the buffer group.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the sample buffer at index, or `NULL` if the index is out of bounds or points to a sample buffer.
+    ///
+    ///
     /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by sequential indexing.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
@@ -193,8 +236,6 @@ impl CMTaggedBufferGroup {
     /// Parameter `index`: An index from 0 to count-1.
     ///
     /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcvpixelbufferatindex?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferAtIndex")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -212,6 +253,21 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the single pixel buffer in a group which contains a given tag, if present.
+    ///
+    /// Parameters:
+    /// - group: The tagged buffer group to inspect.
+    ///
+    /// - tag: The tag to match in the buffer group.
+    ///
+    /// - indexOut: A pointer to the index of the retrieved pixel buffer. The value of indexOut is `NULL` when the function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the unique pixel buffer associated with tag, or `NULL` if there were multiple pixel buffers or no pixel buffer could be found.
+    ///
+    ///
     /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
@@ -225,8 +281,6 @@ impl CMTaggedBufferGroup {
     /// # Safety
     ///
     /// `index_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcvpixelbufferfortag?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferForTag")]
     #[cfg(all(feature = "CMTag", feature = "objc2-core-video"))]
     #[inline]
@@ -246,6 +300,21 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the single pixel buffer in a group which contains a given tag collection, if present.
+    ///
+    /// Parameters:
+    /// - group: The tagged buffer group to inspect.
+    ///
+    /// - tagCollection: The tag collection to match in the buffer group.
+    ///
+    /// - indexOut: A pointer to the index of the retrieved pixel buffer. The value of indexOut is `NULL` when the function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the unique pixel buffer associated with `tagCollection`, or `NULL` if there were multiple pixel buffers or no pixel buffer could be found.
+    ///
+    ///
     /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
@@ -259,8 +328,6 @@ impl CMTaggedBufferGroup {
     /// # Safety
     ///
     /// `index_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcvpixelbufferfortagcollection?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCVPixelBufferForTagCollection")]
     #[cfg(all(feature = "CMTagCollection", feature = "objc2-core-video"))]
     #[inline]
@@ -282,6 +349,13 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the sample buffer at a given index in the buffer group.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the sample buffer at index, or `NULL` if the index is out of bounds or points to a pixel buffer.
+    ///
+    ///
     /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by sequential indexing.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
@@ -289,8 +363,6 @@ impl CMTaggedBufferGroup {
     /// Parameter `index`: An index from 0 to count-1.
     ///
     /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcmsamplebufferatindex?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferAtIndex")]
     #[cfg(feature = "CMSampleBuffer")]
     #[inline]
@@ -308,6 +380,21 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the single sample buffer in a group which contains a given tag, if present.
+    ///
+    /// Parameters:
+    /// - group: The tagged buffer group to inspect.
+    ///
+    /// - tag: The tag to match in the buffer group.
+    ///
+    /// - indexOut: A pointer to the index of the retrieved sample buffer. The value of indexOut is `NULL` when the function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the unique sample buffer associated with tag, or `NULL` if there were multiple sample buffers or no sample buffer could be found.
+    ///
+    ///
     /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
@@ -321,8 +408,6 @@ impl CMTaggedBufferGroup {
     /// # Safety
     ///
     /// `index_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcmsamplebufferfortag?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferForTag")]
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTag"))]
     #[inline]
@@ -342,6 +427,21 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the single sample buffer in a group which contains a given tag collection, if present.
+    ///
+    /// Parameters:
+    /// - group: The tagged buffer group to inspect.
+    ///
+    /// - tagCollection: The tag collection to match in the buffer group.
+    ///
+    /// - indexOut: A pointer to the index of the retrieved sample buffer. The value of indexOut is `NULL` when the function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the unique sample buffer associated with `tagCollection`, or `NULL` if there were multiple sample buffers or no sample buffer could be found.
+    ///
+    ///
     /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
     ///
     /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
@@ -355,8 +455,6 @@ impl CMTaggedBufferGroup {
     /// # Safety
     ///
     /// `index_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetcmsamplebufferfortagcollection?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetCMSampleBufferForTagCollection")]
     #[cfg(all(feature = "CMSampleBuffer", feature = "CMTagCollection"))]
     #[inline]
@@ -378,6 +476,19 @@ impl CMTaggedBufferGroup {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Gets the number of buffers in the group associated with a given tag collection.
+    ///
+    /// Parameters:
+    /// - group: The tagged buffer group to inspect.
+    ///
+    /// - tagCollection: The collection of tags to search the buffer group for.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When this function returns a value other than `1`, avoid using the `tagCollection` to retrieve a buffer from this group. The results of retrieving a buffer with `tagCollection` is `NULL`, since either the group doesn’t contain those tags or the match is ambiguous.
+    ///
+    ///
     /// Returns the number of matches that a tag collection has in a CMTaggedBufferGroup.
     ///
     /// If the returned count is less than or greater than 1, buffer lookups using this tag collection will fail and return NULL, since the lookups must be unique and unambiguous.
@@ -387,8 +498,6 @@ impl CMTaggedBufferGroup {
     /// Parameter `tagCollection`: The tag collection to look up.
     ///
     /// Returns: Returns the number of entries in the CMTaggedBufferGroup that match tagCollection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupgetnumberofmatchesfortagcollection?language=objc)
     #[doc(alias = "CMTaggedBufferGroupGetNumberOfMatchesForTagCollection")]
     #[cfg(all(feature = "CMBase", feature = "CMTagCollection"))]
     #[inline]
@@ -405,6 +514,21 @@ impl CMTaggedBufferGroup {
         unsafe { CMTaggedBufferGroupGetNumberOfMatchesForTagCollection(self, tag_collection) }
     }
 
+    /// Creates a new format description for a tagged buffer group.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the format description. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - taggedBufferGroup: The tagged buffer group to inspect.
+    ///
+    /// - formatDescriptionOut: The output destination for the new format description.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from Tagged Buffer Group Error Codes on failure.
+    ///
+    ///
     /// Creates a format description for a CMTaggedBufferGroup.
     ///
     /// Parameter `allocator`: CFAllocator to be used when creating the CMFormatDescription. Pass kCFAllocatorDefault to use the default allocator.
@@ -423,8 +547,6 @@ impl CMTaggedBufferGroup {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescriptioncreatefortaggedbuffergroup?language=objc)
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
@@ -449,6 +571,24 @@ impl CMTaggedBufferGroup {
         }
     }
 
+    ///
+    /// Parameters:
+    /// - allocator: CFAllocator to be used when creating the CMFormatDescription. Pass kCFAllocatorDefault to use the default allocator.
+    ///
+    /// - taggedBufferGroup: The tagged buffer group for which we are creating the format description.
+    ///
+    /// - extensions: Dictionary of extension key/value pairs.  Keys are always CFStrings. Values are always property list objects (ie. CFData, CFString, CFArray, CFDictionary, CFDate, CFBoolean, or CFNumber). Can be NULL.
+    ///
+    /// - formatDescriptionOut: Returned newly-created tagged buffer group CMFormatDescription
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a format description for a CMTaggedBufferGroup with extensions.
+    ///
+    /// The returned CMTaggedBufferGroupFormatDescription could be used to create a CMSampleBuffer wrapping the CMTaggedBufferGroup using CMSampleBufferCreateForTaggedBufferGroup. If you are going to call CMSampleBufferCreateForTaggedBufferGroup on a series of matching CMTaggedBufferGroups, it is more efficient to create the CMTaggedBufferGroupFormatDescription once and use it for all of the CMSampleBuffers. The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
+    ///
+    ///
     /// Creates a format description for a CMTaggedBufferGroup with extensions.
     ///
     /// Parameter `allocator`: CFAllocator to be used when creating the CMFormatDescription. Pass kCFAllocatorDefault to use the default allocator.
@@ -472,8 +612,6 @@ impl CMTaggedBufferGroup {
     /// - `extensions` generic must be of the correct type.
     /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescriptioncreatefortaggedbuffergroupwithextensions?language=objc)
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
@@ -501,6 +639,19 @@ impl CMTaggedBufferGroup {
         }
     }
 
+    /// Checks to see if a tagged buffer group’s format matches an existing format description.
+    ///
+    /// Parameters:
+    /// - desc: A tagged buffer format description, created by [`CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescriptioncreatefortaggedbuffergroup).
+    ///
+    /// - taggedBufferGroup: The tagged buffer group to inspect the format of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `YES` when the format description of `taggedBufferGroup` is equal to the description `desc`.
+    ///
+    ///
     /// Checks to see if a given format description matches a tagged buffer group.
     ///
     /// Parameter `desc`: The format description to validate.
@@ -509,8 +660,6 @@ impl CMTaggedBufferGroup {
     ///
     /// Returns true if the CMTaggedBufferGroupFormatDescription could be used to create a
     /// CMSampleBuffer wrapping the CMTaggedBufferGroup using CMSampleBufferCreateForTaggedBufferGroup.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupformatdescriptionmatchestaggedbuffergroup?language=objc)
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup")]
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
@@ -532,6 +681,27 @@ impl CMTaggedBufferGroup {
 }
 
 extern "C-unwind" {
+    /// Creates a new sample buffer from a tagged buffer group.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for the new tag collection. Pass `kCFAllocatorDefault` to use the default global allocator.
+    ///
+    /// - taggedBufferGroup: The tagged buffer group to create a new sample buffer from.
+    ///
+    /// - sbufPTS: The presentation time, in seconds, for the sample buffer.
+    ///
+    /// - sbufDuration: The duration, in seconds, of the sample buffer.
+    ///
+    /// - formatDescription: The format description for the tagged buffer group.
+    ///
+    /// - sBufOut: The output destination for the new sample buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `0` on success and a value from [Sample Buffer Error Codes](https://developer.apple.com/documentation/coremedia/sample-buffer-errors) on failure.
+    ///
+    ///
     /// Creates a new CMSampleBuffer object with the specified CMTaggedBufferGroup.
     ///
     /// Parameter `allocator`: CFAllocator with which to create the CMSampleBuffer object. Pass kCFAllocatorDefault to use the default allocator.
@@ -557,8 +727,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `s_buf_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffercreatefortaggedbuffergroup?language=objc)
     #[cfg(all(
         feature = "CMFormatDescription",
         feature = "CMSampleBuffer",
@@ -576,6 +744,13 @@ extern "C-unwind" {
 
 #[cfg(feature = "CMSampleBuffer")]
 impl CMSampleBuffer {
+    /// Gets the tagged buffer group of a sample buffer.
+    ///
+    /// ## Return Value
+    ///
+    /// The sample buffer’s tagged buffer group, or `NULL` if the sample buffer doesn’t belong to a tagged buffer group.
+    ///
+    ///
     /// Returns a CMSampleBuffer's TaggedBufferGroup of media data.
     ///
     /// Parameter `sbuf`: CMSampleBuffer being interrogated.
@@ -583,8 +758,6 @@ impl CMSampleBuffer {
     /// The caller does not own the returned CMTaggedBufferGroup, and must retain it explicitly if the caller needs to maintain a reference to it.
     ///
     /// Returns: CMTaggedBufferGroup of media data. The result will be NULL if the CMSampleBuffer does not contain a CMTaggedBufferGroup, or if there is some other error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffergettaggedbuffergroup?language=objc)
     #[doc(alias = "CMSampleBufferGetTaggedBufferGroup")]
     #[cfg(feature = "CMSampleBuffer")]
     #[inline]

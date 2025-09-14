@@ -7,16 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintPanelResult(pub NSInteger);
 impl NSPrintPanelResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/result/cancelled?language=objc)
     #[doc(alias = "NSPrintPanelResultCancelled")]
     pub const Cancelled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/result/printed?language=objc)
     #[doc(alias = "NSPrintPanelResultPrinted")]
     pub const Printed: Self = Self(1);
 }
@@ -29,35 +26,83 @@ unsafe impl RefEncode for NSPrintPanelResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct?language=objc)
+/// Constants that specify options for configuring the contents of the main Print panel.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPrintPanelOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showscopies?language=objc)
+/// The Print panel includes a field for manipulating the number of copies being printed.
+///
+/// ## Discussion
+///
+/// This field is separate from any accessory views.
+///
+///
         #[doc(alias = "NSPrintPanelShowsCopies")]
         const ShowsCopies = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspagerange?language=objc)
+/// The Print panel includes a set of fields for manipulating the range of pages being printed.
+///
+/// ## Discussion
+///
+/// These fields are separate from any accessory views.
+///
+///
         #[doc(alias = "NSPrintPanelShowsPageRange")]
         const ShowsPageRange = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspapersize?language=objc)
+/// The Print panel includes a control for manipulating the paper size of the printer.
+///
+/// ## Discussion
+///
+/// This control is separate from any accessory views.
+///
+///
         #[doc(alias = "NSPrintPanelShowsPaperSize")]
         const ShowsPaperSize = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showsorientation?language=objc)
+/// The Print panel includes a control for manipulating the page orientation.
+///
+/// ## Discussion
+///
+/// This control is separate from any accessory views.
+///
+///
         #[doc(alias = "NSPrintPanelShowsOrientation")]
         const ShowsOrientation = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showsscaling?language=objc)
+/// The Print panel includes a control for scaling the printed output.
+///
+/// ## Discussion
+///
+/// This control is separate from any accessory views.
+///
+///
         #[doc(alias = "NSPrintPanelShowsScaling")]
         const ShowsScaling = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showsprintselection?language=objc)
+/// The Print panel includes an additional selection option for paper range.
+///
+/// ## Discussion
+///
+/// This control is separate from any accessory views.
+///
+///
         #[doc(alias = "NSPrintPanelShowsPrintSelection")]
         const ShowsPrintSelection = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspagesetupaccessory?language=objc)
+/// The Print panel includes a separate accessory view for manipulating the paper size, orientation, and scaling attributes.
+///
+/// ## Discussion
+///
+/// Page setup fields that are already configured for display on the main portion of the Print panel appear there and not on this accessory panel.
+///
+///
         #[doc(alias = "NSPrintPanelShowsPageSetupAccessory")]
         const ShowsPageSetupAccessory = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/options-swift.struct/showspreview?language=objc)
+/// The Print panel displays a built-in preview of the document contents.
+///
+/// ## Discussion
+///
+/// This option is only appropriate when the Print panel is used in conjunction with an [`NSPrintOperation`](https://developer.apple.com/documentation/appkit/nsprintoperation) object to print a document.
+///
+///
         #[doc(alias = "NSPrintPanelShowsPreview")]
         const ShowsPreview = 1<<17;
     }
@@ -71,42 +116,78 @@ unsafe impl RefEncode for NSPrintPanelOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/jobstylehint-swift.struct?language=objc)
+/// Constants that specify job style hints for activating the simplified Print panel interface and setting the options to display.
 // NS_TYPED_ENUM
 pub type NSPrintPanelJobStyleHint = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/jobstylehint-swift.struct/photo?language=objc)
+    /// Output contains photographic data.
     pub static NSPrintPhotoJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/jobstylehint-swift.struct/allpresets?language=objc)
+    /// Output appropriate to all graphics types.
+    ///
+    /// ## Discussion
+    ///
+    /// Equivalent to Core Printing’s `kPMPresetGraphicsTypeAll`.
+    ///
+    ///
     pub static NSPrintAllPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/jobstylehint-swift.struct/nopresets?language=objc)
+    /// Output excludes all graphics printing.
+    ///
+    /// ## Discussion
+    ///
+    /// Equivalent to Core Printing’s `kPMPresetGraphicsTypeNone`.
+    ///
+    ///
     pub static NSPrintNoPresetsJobStyleHint: &'static NSPrintPanelJobStyleHint;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/accessorysummarykey?language=objc)
+/// Constants that specify the accessory panel keys.
+///
+/// ## Discussion
+///
+/// These keys must be included in the dictionaries returned by the [`localizedSummaryItems`](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorizing/localizedsummaryitems()) method.
+///
+///
 // NS_TYPED_ENUM
 pub type NSPrintPanelAccessorySummaryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/accessorysummarykey/itemname?language=objc)
+    /// A key that specifies the name of the accessory panel setting.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value should be an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSPrintPanelAccessorySummaryItemNameKey: &'static NSPrintPanelAccessorySummaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel/accessorysummarykey/itemdescription?language=objc)
+    /// A key that identfies the current value of the accessory panel setting.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value should be an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static NSPrintPanelAccessorySummaryItemDescriptionKey:
         &'static NSPrintPanelAccessorySummaryKey;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorizing?language=objc)
+    /// A set of methods that a Print panel object can use to get information from a printing accessory controller.
+    ///
+    /// ## Overview
+    ///
+    /// A printing accessory controller manages a custom print panel accessory view and is used to coordinate print settings. If you are implementing a custom printing accessory view, your controller must support this protocol. Implementation of only one method in the protocol is actually required. The other method is considered optional and is used to support the print panel’s built-in preview facilities.
+    ///
+    ///
     pub unsafe trait NSPrintPanelAccessorizing: MainThreadOnly {
         #[unsafe(method(localizedSummaryItems))]
         #[unsafe(method_family = none)]
@@ -122,7 +203,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanel?language=objc)
+    /// The Print panel that queries the user for information about a print job.
+    ///
+    /// ## Overview
+    ///
+    /// A Print panel may let the user select the range of pages to print and the number of copies before executing the Print command. Print panels can display a simplified interface when printing certain types of data. For example, the panel can display a list of print-setting presets, which lets the user enable print settings in groups as opposed to individually. Assigning an appropriate string to the [`jobStyleHint`](https://developer.apple.com/documentation/appkit/nsprintpanel/jobstylehint-swift.property) property activates the simplified interface and identifies which presets to display.
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/macos/system-capabilities/printing/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

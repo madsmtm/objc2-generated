@@ -10,26 +10,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate?language=objc)
+/// The state of a challenge.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKChallengeState(pub NSInteger);
 impl GKChallengeState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/invalid?language=objc)
+    /// The challenge isn’t valid because an error occurred.
     #[doc(alias = "GKChallengeStateInvalid")]
     #[deprecated]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/pending?language=objc)
+    /// The player issued a challenge, but the other player hasn’t accepted or refused it.
     #[doc(alias = "GKChallengeStatePending")]
     #[deprecated]
     pub const Pending: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/completed?language=objc)
+    /// The player successfully completed the challenge.
     #[doc(alias = "GKChallengeStateCompleted")]
     #[deprecated]
     pub const Completed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengestate/declined?language=objc)
+    /// The player declined the challenge.
     #[doc(alias = "GKChallengeStateDeclined")]
     #[deprecated]
     pub const Declined: Self = Self(3);
@@ -44,7 +44,29 @@ unsafe impl RefEncode for GKChallengeState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallenge?language=objc)
+    /// A challenge issued by the local player to another player.
+    ///
+    /// ## Overview
+    ///
+    /// Players can use Game Center to challenge other players to beat their scores and achievements that they earn in your game. When a player issues a challenge to another player, Game Center sends a push notification to the other player. That player can then accept or refuse the challenge. If the player accepts the challenge, Game Center adds the challenge to the player’s list of challenges. Later, if the player beats the challenge, Game Center notifies both players.
+    ///
+    /// Game Center supports two kinds of challenges:
+    ///
+    /// - score challenge ([`GKScoreChallenge`](https://developer.apple.com/documentation/gamekit/gkscorechallenge)): When a player challenges another player to beat their leaderboard score. When the player beats the score, Game Center issues a new score challenge to the player who initiated the challenge and continues issuing challenges between the players until a player refuses the challenge.
+    ///
+    /// - achievement challenge ([`GKAchievementChallenge`](https://developer.apple.com/documentation/gamekit/gkachievementchallenge)): When a player challenges another player to earn an achievement. This challenge ends when the player earns the achievement.
+    ///
+    /// You never subclass the [`GKChallenge`](https://developer.apple.com/documentation/gamekit/gkchallenge) class directly. However, you can subclass [`GKScoreChallenge`](https://developer.apple.com/documentation/gamekit/gkscorechallenge) or [`GKAchievementChallenge`](https://developer.apple.com/documentation/gamekit/gkachievementchallenge) to create specific kinds of challenges.
+    ///
+    /// ### Enable Challenges
+    ///
+    /// You must enable challenges for your game in App Store Connect before you can use the challenges features. For details, see [Enable challenges](https://developer.apple.com/help/app-store-connect/configure-game-center/enable-challenges/) in App Store Connect Help.
+    ///
+    /// ### Load and Issue Challenges
+    ///
+    /// You can load the challenges issued by the local player using the [`loadReceivedChallengesWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkchallenge/loadreceivedchallenges(completionhandler:)) class method. You can issue challenges with the player’s permission using the [`challengeComposeControllerWithMessage:players:completion:`](https://developer.apple.com/documentation/gamekit/gkscore/challengecomposecontroller(withmessage:players:completion:)) method in the [`GKLeaderboardEntry`](https://developer.apple.com/documentation/gamekit/gkleaderboard/entry), [`GKScore`](https://developer.apple.com/documentation/gamekit/gkscore), or [`GKAchievement`](https://developer.apple.com/documentation/gamekit/gkachievement) class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -151,7 +173,13 @@ impl GKChallenge {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkscorechallenge?language=objc)
+    /// A type of challenge where a player must beat the leaderboard score of another player.
+    ///
+    /// ## Overview
+    ///
+    /// To complete the challenge, the player must score an equal or better score than the other player. When the player completes the challenge, Game Center issues a new score challenge to the player who initiated the challenge and continues issuing challenges between the players until a player refuses the challenge.
+    ///
+    ///
     #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -201,7 +229,7 @@ impl GKScoreChallenge {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementchallenge?language=objc)
+    /// A type of challenge where a player must earn another player’s achievement.
     #[unsafe(super(GKChallenge, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -348,14 +376,30 @@ impl GKAchievement {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposecompletionblock?language=objc)
+/// A completion block that provides information about the player who issues a challenge and the players who receive it.
+///
+/// Parameters:
+/// - composeController: View controller for the challenge.
+///
+/// - didIssueChallenge: A Boolean value that indicates whether the player issues the challenge.
+///
+/// - sentPlayerIDs: The identifiers for the players that receive the challenge.
+///
 #[deprecated]
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeCompletionBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposehandler?language=objc)
+/// A completion block that provides information about the player who issues a challenge and the players who receive it.
+///
+/// Parameters:
+/// - composeController: The view controller for the challenge.
+///
+/// - didIssueChallenge: A Boolean value that indicates whether the player issues the challenge.
+///
+/// - sentPlayers: The players that receive the challenge.
+///
 #[deprecated]
 #[cfg(all(
     feature = "GKBasePlayer",

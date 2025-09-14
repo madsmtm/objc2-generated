@@ -7,109 +7,103 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype?language=objc)
+/// Constants that describe the kinds of content a message can contain.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMessageType(pub NSInteger);
 impl INMessageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/unspecified?language=objc)
+    /// The message content isn’t specified.
     #[doc(alias = "INMessageTypeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/text?language=objc)
+    /// The message content is text-based.
     #[doc(alias = "INMessageTypeText")]
     pub const Text: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/audio?language=objc)
+    /// The message contains audio content.
     #[doc(alias = "INMessageTypeAudio")]
     pub const Audio: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/digitaltouch?language=objc)
+    /// The message contains digital touch content.
     #[doc(alias = "INMessageTypeDigitalTouch")]
     pub const DigitalTouch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/handwriting?language=objc)
+    /// The message contains handwritten content.
     #[doc(alias = "INMessageTypeHandwriting")]
     pub const Handwriting: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/sticker?language=objc)
+    /// The message contains sticker content.
     #[doc(alias = "INMessageTypeSticker")]
     pub const Sticker: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackliked?language=objc)
+    /// Content indicating that the user liked something.
     #[doc(alias = "INMessageTypeTapbackLiked")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackLiked: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackdisliked?language=objc)
+    /// Content indicating that the user disliked something.
     #[doc(alias = "INMessageTypeTapbackDisliked")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackDisliked: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackemphasized?language=objc)
+    /// Content indicating that the user emphasized something.
     #[doc(alias = "INMessageTypeTapbackEmphasized")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackEmphasized: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackloved?language=objc)
+    /// Content indicating that the user loved something.
     #[doc(alias = "INMessageTypeTapbackLoved")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackLoved: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbackquestioned?language=objc)
+    /// Content indicating that the user questioned something.
     #[doc(alias = "INMessageTypeTapbackQuestioned")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackQuestioned: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/tapbacklaughed?language=objc)
+    /// Content indicating that the user laughed at something.
     #[doc(alias = "INMessageTypeTapbackLaughed")]
     #[deprecated = "Use INMessageReaction"]
     pub const TapbackLaughed: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediacalendar?language=objc)
+    /// Media content containing calendar data.
     #[doc(alias = "INMessageTypeMediaCalendar")]
     pub const MediaCalendar: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/medialocation?language=objc)
+    /// Media content containing location data.
     #[doc(alias = "INMessageTypeMediaLocation")]
     pub const MediaLocation: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaaddresscard?language=objc)
+    /// Media content containing an address card.
     #[doc(alias = "INMessageTypeMediaAddressCard")]
     pub const MediaAddressCard: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaimage?language=objc)
+    /// Media content containing an image.
     #[doc(alias = "INMessageTypeMediaImage")]
     pub const MediaImage: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediavideo?language=objc)
+    /// Media content containing video.
     #[doc(alias = "INMessageTypeMediaVideo")]
     pub const MediaVideo: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediapass?language=objc)
+    /// Media content containing PassKit data.
     #[doc(alias = "INMessageTypeMediaPass")]
     pub const MediaPass: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaaudio?language=objc)
+    /// Media content containing audio.
     #[doc(alias = "INMessageTypeMediaAudio")]
     pub const MediaAudio: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/paymentsent?language=objc)
+    /// Content indicating the message contains sent payment information.
     #[doc(alias = "INMessageTypePaymentSent")]
     pub const PaymentSent: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/paymentrequest?language=objc)
+    /// Content indicating the message contains payment request information.
     #[doc(alias = "INMessageTypePaymentRequest")]
     pub const PaymentRequest: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/paymentnote?language=objc)
+    /// Content indicating the message contains notes about a payment.
     #[doc(alias = "INMessageTypePaymentNote")]
     pub const PaymentNote: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/animoji?language=objc)
+    /// The message content is an animoji.
     #[doc(alias = "INMessageTypeAnimoji")]
     pub const Animoji: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/activitysnippet?language=objc)
+    /// The message contains an activity snippet.
     #[doc(alias = "INMessageTypeActivitySnippet")]
     pub const ActivitySnippet: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/file?language=objc)
+    /// The message contains a file.
     #[doc(alias = "INMessageTypeFile")]
     pub const File: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/link?language=objc)
+    /// The message contains link content.
     #[doc(alias = "INMessageTypeLink")]
     pub const Link: Self = Self(25);
     /// The message contains a reaction to another message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/reaction?language=objc)
     #[doc(alias = "INMessageTypeReaction")]
     pub const Reaction: Self = Self(26);
     /// Media content containing an animated image, such as a GIF.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/mediaanimatedimage?language=objc)
     #[doc(alias = "INMessageTypeMediaAnimatedImage")]
     pub const MediaAnimatedImage: Self = Self(27);
     /// The message contains an attachment from a third party application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagetype/thirdpartyattachment?language=objc)
     #[doc(alias = "INMessageTypeThirdPartyAttachment")]
     pub const ThirdPartyAttachment: Self = Self(28);
 }
@@ -123,7 +117,13 @@ unsafe impl RefEncode for INMessageType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessage?language=objc)
+    /// An object that describes a sent or received message.
+    ///
+    /// ## Overview
+    ///
+    /// When your app responds to an [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent), you create instances of this class to provide Siri with information about the messages in your app. Each message contains a unique identifier, the participants’ details, and the content. You can group messages into larger discussions and, if you app supports multiple services, identify the service that delivers each message.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INMessage;

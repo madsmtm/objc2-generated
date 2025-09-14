@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectid?language=objc)
+    /// A compact, universal identifier for a managed object.
+    ///
+    /// ## Overview
+    ///
+    /// This identifier forms the basis for uniquing in the Core Data Framework. A managed object ID uniquely identifies the same managed object both between managed object contexts in a single application, and in multiple applications (as in distributed systems). Identifiers contain the information needed to exactly describe an object in a persistent store (like the primary key in the database), although the detailed information is not exposed. The framework completely encapsulates the “external” information and presents a clean object oriented interface.
+    ///
+    /// Object IDs can be transformed into a URI representation which can be archived and recreated later to refer back to a given object (using [`managedObjectIDForURIRepresentation:`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator/managedobjectid(forurirepresentation:)) (`NSPersistentStoreCoordinator`) and [`objectWithID:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/object(with:)) (`NSManagedObjectContext`). For example, the last selected group in an application could be stored in the user defaults through the group object’s ID. You can also use object ID URI representations to store “weak” relationships across persistent stores (where no hard join is possible).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObjectID;

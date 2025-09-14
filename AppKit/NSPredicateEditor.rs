@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspredicateeditor?language=objc)
+    /// A defined set of rules that allows the editing of predicate objects.
+    ///
+    /// ## Overview
+    ///
+    /// `NSPredicateEditor` provides an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) property—[`objectValue`](https://developer.apple.com/documentation/appkit/nscontrol/objectvalue) (inherited from [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol))—that you can get and set directly, and that you can bind using Cocoa bindings (you typically configure a predicate editor in Interface Builder). `NSPredicateEditor` depends on another class, [`NSPredicateEditorRowTemplate`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate), that describes the available predicates and how to display them.
+    ///
+    /// Unlike `NSRuleEditor`, `NSPredicateEditor` does not depend on its delegate to populate its rows (and _does not call the populating delegate methods_). Instead, its rows are populated from its `objectValue` property (an instance of `NSPredicate`). `NSPredicateEditor` relies on instances [`NSPredicateEditorRowTemplate`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate), which are responsible for mapping back and forth between the displayed view values and various predicates.
+    ///
+    /// `NSPredicateEditor` exposes one property, [`rowTemplates`](https://developer.apple.com/documentation/appkit/nspredicateeditor/rowtemplates), which is an array of [`NSPredicateEditorRowTemplate`](https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate) objects.
+    ///
+    ///
     #[unsafe(super(NSRuleEditor, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

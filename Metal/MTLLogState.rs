@@ -7,30 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The supported log levels for shader logging.
 /// The level of the log entry.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLogLevel(pub NSInteger);
 impl MTLLogLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/undefined?language=objc)
+    /// The log level when the log level hasn’t been configured.
     #[doc(alias = "MTLLogLevelUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/debug?language=objc)
+    /// The log level that captures diagnostic information.
     #[doc(alias = "MTLLogLevelDebug")]
     pub const Debug: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/info?language=objc)
+    /// The log level that captures additional information.
     #[doc(alias = "MTLLogLevelInfo")]
     pub const Info: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/notice?language=objc)
+    /// The log level that captures notifications.
     #[doc(alias = "MTLLogLevelNotice")]
     pub const Notice: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/error?language=objc)
+    /// The log level that captures error information.
     #[doc(alias = "MTLLogLevelError")]
     pub const Error: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloglevel/fault?language=objc)
+    /// The log level that captures fault information.
     #[doc(alias = "MTLLogLevelFault")]
     pub const Fault: Self = Self(5);
 }
@@ -44,7 +43,17 @@ unsafe impl RefEncode for MTLLogLevel {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstate?language=objc)
+    /// A container for shader log messages.
+    ///
+    /// ## Overview
+    ///
+    /// Create an [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue) or [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) with a log state to hold messages logged from shaders. Attach a log state to a command buffer by assigning it to the command buffer descriptor’s [`logState`](https://developer.apple.com/documentation/metal/mtlcommandbufferdescriptor/logstate). Similarly, to attach a log state to a command queue, use the command queue descriptor’s [`logState`](https://developer.apple.com/documentation/metal/mtlcommandqueuedescriptor/logstate).
+    ///
+    /// When you attach a log state to a command queue, the command queue shares the log state with all the command buffers it creates. If you attach different log states to a command buffer and command queue, then the system uses the state attached to the command buffer.
+    ///
+    /// Because logging incurs an overhead, regardless of whether the system prints messages, you must explicitly enable logging with [`enableLogging`](https://developer.apple.com/documentation/metal/mtlcompileoptions/enablelogging).
+    ///
+    ///
     pub unsafe trait MTLLogState: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "block2")]
         /// Add a function block to handle log message output.
@@ -65,7 +74,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstatedescriptor?language=objc)
+    /// An interface that represents a log state configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Configure the descriptor to create an [`MTLLogState`](https://developer.apple.com/documentation/metal/mtllogstate) by calling [`newLogStateWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makelogstate(descriptor:)).
+    ///
+    /// If you’ve set the environment variables `MTL_LOG_BUFFER_SIZE` or `MTL_LOG_LEVEL`, then the system automatically enables logging. If any command buffer or command queue has an attached log state, then the system uses the log state’s settings instead of the environment variable values.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLLogStateDescriptor;
@@ -134,22 +151,17 @@ impl DefaultRetained for MTLLogStateDescriptor {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerrordomain?language=objc)
     pub static MTLLogStateErrorDomain: &'static NSErrorDomain;
 }
 
 /// NSErrors raised when creating a logstate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLLogStateError(pub NSUInteger);
 impl MTLLogStateError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror/invalidsize?language=objc)
     #[doc(alias = "MTLLogStateErrorInvalidSize")]
     pub const InvalidSize: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogstateerror/invalid?language=objc)
     #[doc(alias = "MTLLogStateErrorInvalid")]
     pub const Invalid: Self = Self(2);
 }

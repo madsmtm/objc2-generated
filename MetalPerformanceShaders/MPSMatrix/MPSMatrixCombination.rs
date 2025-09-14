@@ -8,9 +8,8 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A description of matrix copy operations.
 /// A description of each copy operation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopyoffsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSMatrixCopyOffsets {
@@ -41,14 +40,13 @@ unsafe impl RefEncode for MPSMatrixCopyOffsets {
 }
 
 extern_class!(
+    /// A description of multiple matrix copy operations.
     /// A list of copy operations
     ///
     /// The MPSMatrixCopy filter can do multiple copy operations.  For RNN filters, these
     /// copies are often small, and are more efficient when grouped together.
     /// The MPSMatriceCopyDescriptor provides a container to list the operations.
     /// The operations occur in any order, and may not alias.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrixCopyDescriptor;
@@ -154,7 +152,7 @@ impl MPSMatrixCopyDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopy?language=objc)
+    /// A class that can perform multiple matrix copy operations.
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

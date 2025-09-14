@@ -8,9 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The HKQuantity class provides an encapsulation of a quantity value and the unit of measurement.
+    /// An object that stores a value for a given unit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantity?language=objc)
+    /// ## Overview
+    ///
+    /// HealthKit uses quantity objects to store numerical data. When you create a quantity, you provide both the quantity’s value and unit.
+    ///
+    /// Quantities are immutable objects: Their values are set when the object is first created and cannot change.
+    ///
+    /// ### Converting Units
+    ///
+    /// You can request the value from a quantity object in any compatible units. For example,  if you create a length quantity in feet, you can then request the length in meters. The quantity object automatically converts its value to the requested units.
+    ///
+    /// ### Using Quantities
+    ///
+    /// Like many HealthKit classes, the [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) class is not extendible and should not be subclassed. To help promote sharing data between apps, [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) objects use only the units defined by the [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit) class.
+    ///
+    ///
+    /// The HKQuantity class provides an encapsulation of a quantity value and the unit of measurement.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantity;

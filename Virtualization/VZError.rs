@@ -6,10 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerrordomain?language=objc)
+    /// The error domain for the Virtualization framework.
     pub static VZErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// Errors you might encounter when configuring or using a virtual machine.
+///
+/// ## Overview
+///
+/// The domain for these errors is [`VZErrorDomain`](https://developer.apple.com/documentation/virtualization/vzerrordomain). When an error originates in a different component, the [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object contains the domain of that component.
+///
+///
 /// Error type returned by the Virtualization framework.
 /// The NSError domain is VZErrorDomain, the code is one of the VZErrorCode constants.
 ///
@@ -65,86 +72,114 @@ extern "C" {
 /// Device initialization failure.
 ///
 /// Device not found.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZErrorCode(pub NSInteger);
 impl VZErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/internalerror?language=objc)
+    /// An internal error, such as the VM unexpectedly stopping.
     #[doc(alias = "VZErrorInternal")]
     pub const Internal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/invalidvirtualmachineconfiguration?language=objc)
+    /// An invalid configuration error.
+    ///
+    /// ## Discussion
+    ///
+    /// This error indicates that your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object contains invalid data.
+    ///
+    ///
     #[doc(alias = "VZErrorInvalidVirtualMachineConfiguration")]
     pub const InvalidVirtualMachineConfiguration: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/invalidvirtualmachinestate?language=objc)
+    /// An invalid state error.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when the virtual machine is in the wrong state for the current operation. For example, you might receive this error when you attempt to interact with a stopped or paused virtual machine.
+    ///
+    ///
     #[doc(alias = "VZErrorInvalidVirtualMachineState")]
     pub const InvalidVirtualMachineState: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/invalidvirtualmachinestatetransition?language=objc)
+    /// An invalid state transition error.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you attempt to change the state of the virtual machine in an invalid way. For example, it occurs when you attempt to start a virtual machine when its [`canStart`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/canstart) property is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "VZErrorInvalidVirtualMachineStateTransition")]
     pub const InvalidVirtualMachineStateTransition: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/invaliddiskimage?language=objc)
+    /// An invalid disk-image error.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you supply a disk image in an unrecognized format, when there’s damage to the disk image, or the disk image is invalid.
+    ///
+    ///
     #[doc(alias = "VZErrorInvalidDiskImage")]
     pub const InvalidDiskImage: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/virtualmachinelimitexceeded?language=objc)
+    /// Unable to create an additional VM.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when starting a VM would exceed the system’s limit on the number of simultaneously running virtual machines.
+    ///
+    ///
     #[doc(alias = "VZErrorVirtualMachineLimitExceeded")]
     pub const VirtualMachineLimitExceeded: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/networkerror?language=objc)
+    /// A network error, such as a failed connection error, occurred.
     #[doc(alias = "VZErrorNetworkError")]
     pub const NetworkError: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/outofdiskspace?language=objc)
+    /// The host is out of disk space.
     #[doc(alias = "VZErrorOutOfDiskSpace")]
     pub const OutOfDiskSpace: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/operationcancelled?language=objc)
+    /// The code that indicates user canceled the installation of Rosetta or the app canceled the installation of a guest OS.
     #[doc(alias = "VZErrorOperationCancelled")]
     pub const OperationCancelled: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/notsupported?language=objc)
+    /// The host computer or operating system isn’t supported.
     #[doc(alias = "VZErrorNotSupported")]
     pub const NotSupported: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/save?language=objc)
+    /// The VM failed to save to the save file.
     #[doc(alias = "VZErrorSave")]
     pub const Save: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/restore?language=objc)
+    /// The VM failed to restore from save file.
     #[doc(alias = "VZErrorRestore")]
     pub const Restore: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/restoreimagecatalogloadfailed?language=objc)
+    /// The restore image catalog failed to load.
     #[doc(alias = "VZErrorRestoreImageCatalogLoadFailed")]
     pub const RestoreImageCatalogLoadFailed: Self = Self(10001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/invalidrestoreimagecatalog?language=objc)
+    /// The restore image catalog is invalid.
     #[doc(alias = "VZErrorInvalidRestoreImageCatalog")]
     pub const InvalidRestoreImageCatalog: Self = Self(10002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/nosupportedrestoreimagesincatalog?language=objc)
+    /// The restore image catalog has no supported restore images.
     #[doc(alias = "VZErrorNoSupportedRestoreImagesInCatalog")]
     pub const NoSupportedRestoreImagesInCatalog: Self = Self(10003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/restoreimageloadfailed?language=objc)
+    /// The restore image failed to load.
     #[doc(alias = "VZErrorRestoreImageLoadFailed")]
     pub const RestoreImageLoadFailed: Self = Self(10004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/invalidrestoreimage?language=objc)
+    /// The restore image is invalid.
     #[doc(alias = "VZErrorInvalidRestoreImage")]
     pub const InvalidRestoreImage: Self = Self(10005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/installationrequiresupdate?language=objc)
+    /// The VM requires a software update in order to complete the installation.
     #[doc(alias = "VZErrorInstallationRequiresUpdate")]
     pub const InstallationRequiresUpdate: Self = Self(10006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/installationfailed?language=objc)
+    /// An error occurred during installation.
     #[doc(alias = "VZErrorInstallationFailed")]
     pub const InstallationFailed: Self = Self(10007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/networkblockdevicenegotiationfailed?language=objc)
+    /// The connection or the negotiation with the network block device server failed.
     #[doc(alias = "VZErrorNetworkBlockDeviceNegotiationFailed")]
     pub const NetworkBlockDeviceNegotiationFailed: Self = Self(20001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/networkblockdevicedisconnected?language=objc)
+    /// The network block device client disconnected from the server.
     #[doc(alias = "VZErrorNetworkBlockDeviceDisconnected")]
     pub const NetworkBlockDeviceDisconnected: Self = Self(20002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/usbcontrollernotfound?language=objc)
+    /// The framework can’t find the controller.
     #[doc(alias = "VZErrorUSBControllerNotFound")]
     pub const USBControllerNotFound: Self = Self(30001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/devicealreadyattached?language=objc)
+    /// The device already has an attachment to the VM.
     #[doc(alias = "VZErrorDeviceAlreadyAttached")]
     pub const DeviceAlreadyAttached: Self = Self(30002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/deviceinitializationfailure?language=objc)
+    /// A device initialization failure.
     #[doc(alias = "VZErrorDeviceInitializationFailure")]
     pub const DeviceInitializationFailure: Self = Self(30003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzerror/code/devicenotfound?language=objc)
+    /// The framework can’t find the device.
     #[doc(alias = "VZErrorDeviceNotFound")]
     pub const DeviceNotFound: Self = Self(30004);
 }

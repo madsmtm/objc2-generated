@@ -8,7 +8,46 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscompositeattributedescription?language=objc)
+    /// A description of an attribute that derives its value by composing other attributes.
+    ///
+    /// ## Overview
+    ///
+    /// Composite attributes enable you to define and store complex data types, and then query, index, and apply constraints to those types. Model classes use dictionaries to represent those composites in-memory, where each dictionary contains keys corresponding to the names of the underlying attributes. You may use composite attributes anywhere you use standard attributes, including lightweight migrations and CloudKit, through [`NSPersistentCloudKitContainer`](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer). You can even nest composites inside other composites to create complex object hierarchies without additional model classes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Composite attributes are available only to persistent stores that you configure with the [`sqlite`](https://developer.apple.com/documentation/coredata/nspersistentstore/storetype/sqlite) store type.
+    ///
+    ///
+    ///
+    /// </div>
+    /// In most scenarios, prefer to use Xcode’s model editor to add composite attributes to your entities and then regenerate your model classes. However, if you need to create composites dynamically at runtime, create an instance of this class and populate its [`elements`](https://developer.apple.com/documentation/coredata/nscompositeattributedescription/elements) property with the necessary attribute descriptions.
+    ///
+    /// You can access a composite’s underlying attributes using namespaced key paths and property-like setters and getters, as the following example demonstrates:
+    ///
+    /// ```swift
+    /// // A model class that represents the Quake entity.
+    /// class Quake: NSManagedObject {
+    ///     @NSManaged var code: String?
+    ///     @NSManaged var place: String?
+    ///     @NSManaged var date: Date?
+    ///
+    ///     // A composite attribute that uses a dictionary for its in-memory storage.
+    ///     @NSManaged var magnitude: [String: Any]?
+    /// }
+    ///
+    /// // Use namespaced key paths to access a composite's indvidual attributes.
+    /// let request = NSFetchRequest(entityName: "Quake")
+    /// request.predicate = NSPredicate(format: "magnitude.richter > 4.5")
+    ///
+    /// // Use property-like setters and getters to manage the underlying attributes directly.
+    /// quake.magnitude.richter = 4.6
+    /// print(quake.magnitude.richter)
+    ///
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSAttributeDescription, NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]

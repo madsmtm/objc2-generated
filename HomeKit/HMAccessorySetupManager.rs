@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that setups up new accessories.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to provides steps for the user to add one or more accessories to a particular home, and follow up with additional setup. These APIs don’t require that the current app has home data authorization.
+    ///
+    ///
     /// This class can be used to launch system UI that will allow the user to go through the process
     /// of adding one or more accessories to a particular home and follow up with additional setup.
     /// These APIs do not require that the current app has home data authorization
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorysetupmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessorySetupManager;

@@ -9,71 +9,119 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationexternalformlength?language=objc)
+/// The number of bytes in an external form structure’s array.
 pub const kAuthorizationExternalFormLength: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationsuccess?language=objc)
+/// The operation completed successfully.
+///
+/// ## Discussion
+///
+/// This result code is an alias for [`errSecSuccess`](https://developer.apple.com/documentation/security/errsecsuccess).
+///
+///
 pub const errAuthorizationSuccess: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinvalidset?language=objc)
+/// The set parameter is invalid.
 pub const errAuthorizationInvalidSet: OSStatus = -60001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinvalidref?language=objc)
+/// The authorization parameter is invalid.
 pub const errAuthorizationInvalidRef: OSStatus = -60002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinvalidtag?language=objc)
+/// The tag parameter is invalid.
 pub const errAuthorizationInvalidTag: OSStatus = -60003;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinvalidpointer?language=objc)
+/// The authorizedRights parameter is invalid.
 pub const errAuthorizationInvalidPointer: OSStatus = -60004;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationdenied?language=objc)
+/// The Security Server denied authorization for one or more requested rights.
+///
+/// ## Discussion
+///
+/// This error is also returned if there was no definition found in the policy database, or a definition could not be created.
+///
+///
 pub const errAuthorizationDenied: OSStatus = -60005;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationcanceled?language=objc)
+/// The user canceled the operation.
 pub const errAuthorizationCanceled: OSStatus = -60006;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinteractionnotallowed?language=objc)
+/// The Security Server denied authorization because no user interaction is allowed.
 pub const errAuthorizationInteractionNotAllowed: OSStatus = -60007;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinternal?language=objc)
+/// An unrecognized internal error occurred.
 pub const errAuthorizationInternal: OSStatus = -60008;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationexternalizenotallowed?language=objc)
+/// The Security Server denied externalization of the authorization reference.
 pub const errAuthorizationExternalizeNotAllowed: OSStatus = -60009;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinternalizenotallowed?language=objc)
+/// The Security Server denied internalization of the authorization reference.
 pub const errAuthorizationInternalizeNotAllowed: OSStatus = -60010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationinvalidflags?language=objc)
+/// The flags parameter is invalid.
 pub const errAuthorizationInvalidFlags: OSStatus = -60011;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationtoolexecutefailure?language=objc)
+/// The tool failed to execute.
 pub const errAuthorizationToolExecuteFailure: OSStatus = -60031;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationtoolenvironmenterror?language=objc)
+/// The attempt to execute the tool failed to return a success or an error code.
 pub const errAuthorizationToolEnvironmentError: OSStatus = -60032;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationbadaddress?language=objc)
+/// The requested socket address is invalid.
+///
+/// ## Discussion
+///
+/// The socket address must be in the range (0, 1023) inclusive.
+///
+///
 pub const errAuthorizationBadAddress: OSStatus = -60033;
 
+/// The flags used to specify authorization options.
+///
+/// ## Overview
+///
+/// These flags instruct the Security Server how to proceed with the function in which you pass them. You bitwise `OR` them together to specify more than one at a time. Set all unused bits to `0` to allow for future expansion.
+///
+/// Use these flags in calls to the [`AuthorizationCreate`](https://developer.apple.com/documentation/security/authorizationcreate(_:_:_:_:)), [`AuthorizationFree`](https://developer.apple.com/documentation/security/authorizationfree(_:_:)), [`AuthorizationCopyRights`](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)), and [`AuthorizationCopyRightsAsync`](https://developer.apple.com/documentation/security/authorizationcopyrightsasync(_:_:_:_:_:)) functions.
+///
+///
 /// Optional flags passed in to several Authorization APIs.
 /// See the description of AuthorizationCreate, AuthorizationCopyRights and AuthorizationFree for a description of how they affect those calls.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AuthorizationFlags(pub u32);
 bitflags::bitflags! {
     impl AuthorizationFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/kauthorizationflagdefaults?language=objc)
+/// An empty flag set that you use as a placeholder when you don’t want any of the other flags.
         #[doc(alias = "kAuthorizationFlagDefaults")]
         const Defaults = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed?language=objc)
+/// A flag that permits user interaction as needed.
+///
+/// ## Discussion
+///
+/// If this flag is set, the Security Server is permitted to interact with the user as needed.
+///
+///
         #[doc(alias = "kAuthorizationFlagInteractionAllowed")]
         const InteractionAllowed = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/extendrights?language=objc)
+/// A flag that permits the Security Server to attempt to grant the rights requested.
+///
+/// ## Discussion
+///
+/// Once the Security Server denies one right, it ignores the remaining requested rights.
+///
+///
         #[doc(alias = "kAuthorizationFlagExtendRights")]
         const ExtendRights = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/partialrights?language=objc)
+/// A flag that permits the Security Server to grant rights on an individual basis.
+///
+/// ## Discussion
+///
+/// If this and the [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) flags are set, the Security Server grants or denies rights on an individual basis and all rights are checked.
+///
+///
         #[doc(alias = "kAuthorizationFlagPartialRights")]
         const PartialRights = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/destroyrights?language=objc)
+/// A flag that instructs the Security Server to revoke authorization.
+///
+/// ## Discussion
+///
+/// If this flag is set, the Security Server revokes authorization from the process as well as from any other process that is sharing the authorization. If not set, the Security Server revokes authorization from the process but not from other processes that share the authorization.
+///
+///
         #[doc(alias = "kAuthorizationFlagDestroyRights")]
         const DestroyRights = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/preauthorize?language=objc)
+/// A flag that instructs the Security Server to preauthorize the rights requested.
         #[doc(alias = "kAuthorizationFlagPreAuthorize")]
         const PreAuthorize = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/skipinternalauth?language=objc)
         #[doc(alias = "kAuthorizationFlagSkipInternalAuth")]
         const SkipInternalAuth = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationflags/nodata?language=objc)
+/// Private flag. Do not use.
         #[doc(alias = "kAuthorizationFlagNoData")]
         const NoData = 1<<20;
     }
@@ -89,7 +137,7 @@ unsafe impl RefEncode for AuthorizationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationflagcannotpreauthorize?language=objc)
+/// Indicates the Security Server could not preauthorizethe right.
 pub const kAuthorizationFlagCanNotPreAuthorize: c_uint = 1;
 
 #[repr(C)]
@@ -105,16 +153,37 @@ unsafe impl RefEncode for AuthorizationOpaqueRef {
         Encoding::Pointer(&Encoding::Struct("AuthorizationOpaqueRef", &[]));
 }
 
-/// Opaque reference to an authorization object.
+/// A pointer to an opaque authorization reference structure.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationref?language=objc)
+/// ## Discussion
+///
+/// This data type points to a structure the Security Server uses to store information about the authorization session. Use the functions described in [Authorization Services](https://developer.apple.com/documentation/security/authorization-services) to create, access, and free the authorization reference.
+///
+///
+/// Opaque reference to an authorization object.
 pub type AuthorizationRef = *const AuthorizationOpaqueRef;
 
-/// A zero terminated string in UTF-8 encoding.
+/// A zero-terminated string in UTF-8 encoding.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationstring?language=objc)
+/// ## Discussion
+///
+/// Use this in a call to the [`AuthorizationCopyInfo`](https://developer.apple.com/documentation/security/authorizationcopyinfo(_:_:_:)) function for the `tag` parameter.
+///
+///
+/// A zero terminated string in UTF-8 encoding.
 pub type AuthorizationString = *const c_char;
 
+/// A structure containing information about an authorization right or the authorization environment.
+///
+/// ## Overview
+///
+/// When using an authorization item to contain a right, set the [`name`](https://developer.apple.com/documentation/security/authorizationitem/name) field to the name of the right—for example, `"com.myOrganization.myProduct.myRight"`, the [`valueLength`](https://developer.apple.com/documentation/security/authorizationitem/valuelength) and [`flags`](https://developer.apple.com/documentation/security/authorizationitem/flags) fields to `0`, and the value field to `nil`. For more information on naming rights, read [Authorization Services Programming Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995)
+///
+/// When using an authorization item for the [`AuthorizationExecuteWithPrivileges`](https://developer.apple.com/documentation/security/authorizationexecutewithprivileges) function, set the [`name`](https://developer.apple.com/documentation/security/authorizationitem/name) field to [`kAuthorizationRightExecute`](https://developer.apple.com/documentation/security/kauthorizationrightexecute), and the [`flags`](https://developer.apple.com/documentation/security/authorizationitem/flags) field to `0`. Set the [`value`](https://developer.apple.com/documentation/security/authorizationitem/value) field to the full POSIX pathname of the tool to execute and the [`valueLength`](https://developer.apple.com/documentation/security/authorizationitem/valuelength) field to the byte length of the value in the [`value`](https://developer.apple.com/documentation/security/authorizationitem/value) field.
+///
+/// When using an authorization item to contain environment data, set the [`name`](https://developer.apple.com/documentation/security/authorizationitem/name) field to the name of the environment data—for example, [`kAuthorizationEnvironmentUsername`](https://developer.apple.com/documentation/security/kauthorizationenvironmentusername)—and the [`flags`](https://developer.apple.com/documentation/security/authorizationitem/flags) field to `0`. Set the [`value`](https://developer.apple.com/documentation/security/authorizationitem/value) field, in this case, to the actual user name and the [`valueLength`](https://developer.apple.com/documentation/security/authorizationitem/valuelength) field to the byte length of the value in the [`value`](https://developer.apple.com/documentation/security/authorizationitem/value) field.
+///
+///
 /// Each AuthorizationItem describes a single string-named item with optional
 /// parameter value. The value must be contiguous memory of valueLength bytes;
 /// internal structure is defined separately for each name.
@@ -124,8 +193,6 @@ pub type AuthorizationString = *const c_char;
 /// Field: value Pointer to the optional parameter value associated with name.
 /// Must be NULL if no parameter value.
 /// Field: flags Reserved field. Must be set to 0 on creation. Do not modify after that.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationitem?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationItem {
@@ -153,12 +220,17 @@ unsafe impl RefEncode for AuthorizationItem {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure containing a set of authorization items.
+///
+/// ## Overview
+///
+/// Because it is actually a set, the list of items should not contain any duplicates.
+///
+///
 /// An AuthorizationItemSet structure represents a set of zero or more AuthorizationItems.  Since it is a set it should not contain any identical AuthorizationItems.
 ///
 /// Field: count Number of items identified by items.
 /// Field: items Pointer to an array of items.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationitemset?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationItemSet {
@@ -177,6 +249,13 @@ unsafe impl RefEncode for AuthorizationItemSet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The external representation of an authorization reference.
+///
+/// ## Overview
+///
+/// Authorization references are bound by session, process, and time limits, so you can’t store the authorization references for another process to use. Use the functions [`AuthorizationMakeExternalForm`](https://developer.apple.com/documentation/security/authorizationmakeexternalform(_:_:)) and [`AuthorizationCreateFromExternalForm`](https://developer.apple.com/documentation/security/authorizationcreatefromexternalform(_:_:)) to externalize and internalize the authorization reference. Apps should take care not to disclose the external authorization reference to potential attackers since any process can use this external authorization reference to access the authorization reference.
+///
+///
 /// An AuthorizationExternalForm structure can hold the externalized form of
 /// an AuthorizationRef. As such, it can be transmitted across IPC channels
 /// to other processes, which can re-internalize it to recover a valid AuthorizationRef
@@ -185,8 +264,6 @@ unsafe impl RefEncode for AuthorizationItemSet {
 ///
 /// SECURITY NOTE: Applications should take care to not disclose the AuthorizationExternalForm to
 /// potential attackers since it would authorize rights to them.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationexternalform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AuthorizationExternalForm {
@@ -203,19 +280,76 @@ unsafe impl RefEncode for AuthorizationExternalForm {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An authorization item set designated to represent a set of rights.
+///
+/// ## Discussion
+///
+/// The argument value of each item in the set is as defined for the specific right it belongs to. Argument values may not contain pointers so they remain portable between different address spaces. This set is actually an instance of an [`AuthorizationItemSet`](https://developer.apple.com/documentation/security/authorizationitemset).
+///
+///
 /// An AuthorizationItemSet representing a set of rights each with an associated argument (value).
 /// Each argument value is as defined for the specific right they belong to.  Argument values may not contain pointers as the should be copyable to different address spaces.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrights?language=objc)
 pub type AuthorizationRights = AuthorizationItemSet;
 
+/// An authorization item set designated to hold environment information relevant to authorization decisions.
+///
+/// ## Discussion
+///
+/// The authorization items in the set represent data about the environment, such as user name and other information gathered during evaluation of authorization.
+///
+/// This set is actually an instance of an [`AuthorizationItemSet`](https://developer.apple.com/documentation/security/authorizationitemset).
+///
+///
 /// An AuthorizationItemSet representing environmental information of potential use
 /// to authorization decisions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationenvironment?language=objc)
 pub type AuthorizationEnvironment = AuthorizationItemSet;
 
 extern "C-unwind" {
+    /// Creates a new authorization reference and provides an option to authorize or preauthorize rights.
+    ///
+    /// Parameters:
+    /// - rights: A pointer to a set of authorization rights you create. Pass `nil` if the application requires no rights at this time.
+    ///
+    /// - environment: An [`AuthorizationItemSet`](https://developer.apple.com/documentation/security/authorizationitemset) structure used when authorizing or preauthorizing rights. Not used in OS X v10.2 and earlier. In macOS 10.3 and later, you can pass icon or prompt data to be used in the authentication dialog box. In macOS 10.4 and later, you can also pass a user name and password in order to authorize a user without user interaction. Possible values for this parameter are listed in `Security.framework/Headers/AuthorizationTags.h`. The data passed in this parameter is not stored in the authorization reference; it is used only during authorization. If you are not passing any data in this parameter, pass the constant [`kAuthorizationEmptyEnvironment`](https://developer.apple.com/documentation/security/kauthorizationemptyenvironment). For a list of possible keys in the authorization set, see [Authorization Name Tags](https://developer.apple.com/documentation/security/authorization-name-tags). For the data structure itself, see [`AuthorizationItemSet`](https://developer.apple.com/documentation/security/authorizationitemset).
+    ///
+    /// - flags: A bit mask constructed at the bitwise `OR` of one or more [`AuthorizationFlags`](https://developer.apple.com/documentation/security/authorizationflags) for specifying authorization options. Use one of the following option sets:
+    ///
+    /// - Use the constant [`kAuthorizationFlagDefaults`](https://developer.apple.com/documentation/security/authorizationflags/kauthorizationflagdefaults) if no options are necessary.
+    ///
+    /// - Use the [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) flag to request rights. You can also add the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) flag to allow user interaction.
+    ///
+    /// - Specify the [`kAuthorizationFlagPartialRights`](https://developer.apple.com/documentation/security/authorizationflags/partialrights) and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) flags to request partial rights. You can also add the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) flag to allow user interaction.
+    ///
+    /// - Specify the [`kAuthorizationFlagPreAuthorize`](https://developer.apple.com/documentation/security/authorizationflags/preauthorize) and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) flags to preauthorize rights.
+    ///
+    /// - Specify the [`kAuthorizationFlagDestroyRights`](https://developer.apple.com/documentation/security/authorizationflags/destroyrights) flag to prevent the Security Server from preserving the rights obtained during this call.
+    ///
+    /// - authorization: A pointer to an authorization reference. On return, this parameter refers to the authorization session the Security Server creates. Pass `nil` if you require a function result but no authorization reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The primary purpose of this function is to create the opaque authorization reference structure associated with the authorization reference. You use the authorization reference in other authorization functions.
+    ///
+    /// You can use this function to authorize all or partial rights. Authorizing rights with this function is most useful for applications that require a one-time authorization. By passing `nil` to the `authorization` parameter, the Security Server attempts to authorize the requested rights and returns the appropriate result code without actually granting the rights. If you are not going to call any other authorization functions, use this method to determine if a user has authorization without granting any rights.
+    ///
+    /// You can also use this function to preauthorize rights by specifying the [`kAuthorizationFlagPreAuthorize`](https://developer.apple.com/documentation/security/authorizationflags/preauthorize) mask. Preauthorization is most useful when a right has a zero timeout. For example, you can preauthorize in the application and if it succeeds, call the helper tool and request authorization. This eliminates calling the helper tool if the user cannot later authorize the specified rights.
+    ///
+    /// If you do not specify the [`kAuthorizationFlagPartialRights`](https://developer.apple.com/documentation/security/authorizationflags/partialrights) mask and the Security Server denies at least one right, then the status of this function on return is [`errAuthorizationDenied`](https://developer.apple.com/documentation/security/errauthorizationdenied).
+    ///
+    /// If you do not specify the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) mask and the Security Server requires user interaction, then the status of this function on return is [`errAuthorizationInteractionNotAllowed`](https://developer.apple.com/documentation/security/errauthorizationinteractionnotallowed).
+    ///
+    /// If you specify the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) mask and the user cancels the authentication process, then the status of this function on return is [`errAuthorizationCanceled`](https://developer.apple.com/documentation/security/errauthorizationcanceled).
+    ///
+    /// When your application no longer needs the authorization reference, use the function [`AuthorizationFree`](https://developer.apple.com/documentation/security/authorizationfree(_:_:)) to free the memory associated with it.
+    ///
+    ///
     /// Create a new autorization object which can be used in other authorization calls.  When the authorization is no longer needed AuthorizationFree should be called.
     ///
     /// When the kAuthorizationFlagInteractionAllowed flag is set, user interaction will happen when required.  Failing to set this flag will result in this call failing with a errAuthorizationInteractionNotAllowed status when interaction is required.
@@ -254,8 +388,6 @@ extern "C-unwind" {
     /// - `rights` must be a valid pointer or null.
     /// - `environment` must be a valid pointer or null.
     /// - `authorization` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcreate(_:_:_:_:)?language=objc)
     pub fn AuthorizationCreate(
         rights: *const AuthorizationRights,
         environment: *const AuthorizationEnvironment,
@@ -265,6 +397,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Frees the memory associated with an authorization reference.
+    ///
+    /// Parameters:
+    /// - authorization: The authorization reference to free.
+    ///
+    /// - flags: A bit mask. In most cases, pass the constant [`kAuthorizationFlagDefaults`](https://developer.apple.com/documentation/security/authorizationflags/kauthorizationflagdefaults). To remove all shared and non-shared authorizations, pass the constant [`kAuthorizationFlagDestroyRights`](https://developer.apple.com/documentation/security/authorizationflags/destroyrights).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function when your application no longer needs the authorization reference you created using the function [`AuthorizationCreate`](https://developer.apple.com/documentation/security/authorizationcreate(_:_:_:_:)).
+    ///
+    ///
     /// Destroy an AutorizationRef object. If the kAuthorizationFlagDestroyRights flag is passed,
     /// any rights associated with the authorization are lost. Otherwise, only local resources
     /// are released, and the rights may still be available to other clients.
@@ -285,8 +436,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `authorization` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationfree(_:_:)?language=objc)
     pub fn AuthorizationFree(
         authorization: AuthorizationRef,
         flags: AuthorizationFlags,
@@ -294,6 +443,51 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Authorizes and preauthorizes rights synchronously.
+    ///
+    /// Parameters:
+    /// - authorization: An authorization reference referring to the authorization session.
+    ///
+    /// - rights: A pointer to a set of authorization rights you create. Pass `nil` if the application requires no rights at this time.
+    ///
+    /// - environment: Data used when authorizing or preauthorizing rights. Not used in OS X v10.2 and earlier. In macOS 10.3 and later, you can pass icon or prompt data to be used in the authentication dialog box. In macOS 10.4 and later, you can also pass a user name and password in order to authorize a user without displaying the authentication dialog box. Possible values for this parameter are listed in `Security.framework/Headers/AuthorizationTags.h`. The data passed in this parameter is not stored in the authorization reference; it is used only during authorization. If you are not passing any data in this parameter, pass the constant [`kAuthorizationEmptyEnvironment`](https://developer.apple.com/documentation/security/kauthorizationemptyenvironment).
+    ///
+    /// - flags: A bit mask for specifying authorization options. Use the following option sets.
+    ///
+    /// - Pass the constant [`kAuthorizationFlagDefaults`](https://developer.apple.com/documentation/security/authorizationflags/kauthorizationflagdefaults) if no options are necessary.
+    ///
+    /// - Specify the [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) mask to request rights. You can also specify the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) mask to allow user interaction.
+    ///
+    /// - Specify the [`kAuthorizationFlagPartialRights`](https://developer.apple.com/documentation/security/authorizationflags/partialrights) and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) masks to request partial rights. You can also specify the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) mask to allow user interaction.
+    ///
+    /// - Specify the [`kAuthorizationFlagPreAuthorize`](https://developer.apple.com/documentation/security/authorizationflags/preauthorize) and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) masks to preauthorize rights.
+    ///
+    /// - Specify the [`kAuthorizationFlagDestroyRights`](https://developer.apple.com/documentation/security/authorizationflags/destroyrights) mask to prevent the Security Server from preserving the rights obtained during this call.
+    ///
+    /// - authorizedRights: A pointer to a newly allocated [`AuthorizationRights`](https://developer.apple.com/documentation/security/authorizationrights) structure. On return, this structure contains the rights granted by the Security framework. If you do not require this information, pass `nil`. If you specify the [`kAuthorizationFlagPreAuthorize`](https://developer.apple.com/documentation/security/authorizationflags/preauthorize) mask in the `flags` parameter, the method returns all the requested rights, including those not granted, but the flags of the rights that could not be preauthorized include the [`kAuthorizationFlagCanNotPreAuthorize`](https://developer.apple.com/documentation/security/kauthorizationflagcannotpreauthorize) bit. Free the memory associated with this set by calling the function [`AuthorizationFreeItemSet`](https://developer.apple.com/documentation/security/authorizationfreeitemset(_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// There are three main reasons to use this function. The first reason is to preauthorize rights by specifying the [`kAuthorizationFlagPreAuthorize`](https://developer.apple.com/documentation/security/authorizationflags/preauthorize), [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed), and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) masks as authorization options. Preauthorization is most useful when a right has a zero timeout. For example, you can preauthorize in the application and if it succeeds, call the helper tool and request authorization. This eliminates calling the helper tool if the Security Server cannot later authorize the specified rights.
+    ///
+    /// The second reason to use this function is to authorize rights before performing a privileged operation by specifying the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed), and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) masks as authorization options.
+    ///
+    /// The third reason to use this function is to authorize partial rights. By specifying the [`kAuthorizationFlagPartialRights`](https://developer.apple.com/documentation/security/authorizationflags/partialrights), [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed), and [`kAuthorizationFlagExtendRights`](https://developer.apple.com/documentation/security/authorizationflags/extendrights) masks as authorization options, the Security Server grants all rights it can authorize. On return, the authorized set contains all the rights.
+    ///
+    /// If you do not specify the [`kAuthorizationFlagPartialRights`](https://developer.apple.com/documentation/security/authorizationflags/partialrights) mask and the Security Server denies at least one right, then the status of this function on return is [`errAuthorizationDenied`](https://developer.apple.com/documentation/security/errauthorizationdenied).
+    ///
+    /// If you do not specify the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) mask and the Security Server requires user interaction, then the status of this function on return is [`errAuthorizationInteractionNotAllowed`](https://developer.apple.com/documentation/security/errauthorizationinteractionnotallowed).
+    ///
+    /// If you specify the [`kAuthorizationFlagInteractionAllowed`](https://developer.apple.com/documentation/security/authorizationflags/interactionallowed) mask and the user cancels the authentication process, then the status of this function on return is [`errAuthorizationCanceled`](https://developer.apple.com/documentation/security/errauthorizationcanceled).
+    ///
+    ///
     /// Given a set of rights, return the subset that is currently authorized
     /// by the AuthorizationRef given.
     ///
@@ -335,8 +529,6 @@ extern "C-unwind" {
     /// - `rights` must be a valid pointer.
     /// - `environment` must be a valid pointer or null.
     /// - `authorized_rights` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)?language=objc)
     pub fn AuthorizationCopyRights(
         authorization: AuthorizationRef,
         rights: NonNull<AuthorizationRights>,
@@ -346,19 +538,49 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// A block used as a callback for the asynchronous version of copying authorization rights.
+///
+/// Parameters:
+/// - err: A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes). This is equivalent to the return value from the [`AuthorizationCopyRights`](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)) function.
+///
+/// - blockAuthorizedRights: The authorized rights. This is equivalent to the authorizedRights parameter of the [`AuthorizationCopyRights`](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)) function. Free this object using the [`AuthorizationFreeItemSet`](https://developer.apple.com/documentation/security/authorizationfreeitemset(_:)) function when you are done with it.
+///
+///
+/// ## Discussion
+///
+/// Use a block of this type as the callback parameter to the [`AuthorizationCopyRightsAsync`](https://developer.apple.com/documentation/security/authorizationcopyrightsasync(_:_:_:_:_:)) function.
+///
+///
 /// Callback block passed to AuthorizationCopyRightsAsync.
 ///
 ///
 /// Parameter `err`: (output) The result of the AuthorizationCopyRights call.
 ///
 /// Parameter `blockAuthorizedRights`: (output) The authorizedRights from the AuthorizationCopyRights call to be deallocated by calling AuthorizationFreeItemSet() when it is no longer needed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationasynccallback?language=objc)
 #[cfg(feature = "block2")]
 pub type AuthorizationAsyncCallback =
     *mut block2::DynBlock<dyn Fn(OSStatus, *mut AuthorizationRights)>;
 
 extern "C-unwind" {
+    /// Authorizes and preauthorizes rights asynchronously.
+    ///
+    /// Parameters:
+    /// - authorization: An authorization reference referring to the authorization session.
+    ///
+    /// - rights: A pointer to a set of authorization rights you create. Pass `nil` if the application requires no rights at this time.
+    ///
+    /// - environment: Data used when authorizing or preauthorizing rights. Not used in OS X v10.2 and earlier. In macOS 10.3 and later, you can pass icon or prompt data to be used in the authentication dialog box. In macOS 10.4 and later, you can also pass a user name and password in order to authorize a user without displaying the authentication dialog box. Possible values for this parameter are listed in `Security.framework/Headers/AuthorizationTags.h`. The data passed in this parameter is not stored in the authorization reference; it is used only during authorization. If you are not passing any data in this parameter, pass the constant [`kAuthorizationEmptyEnvironment`](https://developer.apple.com/documentation/security/kauthorizationemptyenvironment).
+    ///
+    /// - flags: A bit mask for specifying authorization options. Use one of the options sets defined for the flags parameter in the [`AuthorizationCopyRights`](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)) function.
+    ///
+    /// - callbackBlock: A callback that you provide for the function to call when it finishes asynchronously. Use a function with the signature defined by [`AuthorizationAsyncCallback`](https://developer.apple.com/documentation/security/authorizationasynccallback).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See the discussion for [`AuthorizationCopyRights`](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)). This function behaves similarly, except that it performs its operations asynchronously and calls back to you upon completion.
+    ///
+    ///
     /// An asynchronous version of AuthorizationCopyRights.
     ///
     ///
@@ -370,8 +592,6 @@ extern "C-unwind" {
     /// - `rights` must be a valid pointer.
     /// - `environment` must be a valid pointer or null.
     /// - `callback_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyrightsasync(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AuthorizationCopyRightsAsync(
         authorization: AuthorizationRef,
@@ -383,6 +603,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieves supporting data such as the user name and other information gathered during evaluation of authorization.
+    ///
+    /// Parameters:
+    /// - authorization: An authorization reference referring to the authorization session.
+    ///
+    /// - tag: An [`AuthorizationString`](https://developer.apple.com/documentation/security/authorizationstring) specifying the type of data the Security Server should return. Pass `nil` to retrieve all available information.
+    ///
+    /// - info: A pointer to an authorization set the Security Server creates. On return, this set contains side-band authorization data. When this set is no longer needed, free the memory associated with it by calling the function [`AuthorizationFreeItemSet`](https://developer.apple.com/documentation/security/authorizationfreeitemset(_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An authorization plug-in can store the results of an authentication operation by calling the [`SetContextValue`](https://developer.apple.com/documentation/security/authorizationcallbacks/setcontextvalue) function. You can use the [`AuthorizationCopyInfo`](https://developer.apple.com/documentation/security/authorizationcopyinfo(_:_:_:)) function to retrieve this information.
+    ///
+    ///
     /// Returns sideband information (e.g. access credentials) obtained from a call to AuthorizationCreate.  The format of this data depends of the tag specified.
     ///
     ///
@@ -406,8 +647,6 @@ extern "C-unwind" {
     /// - `authorization` must be a valid pointer.
     /// - `tag` must be a valid pointer or null.
     /// - `info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyinfo(_:_:_:)?language=objc)
     pub fn AuthorizationCopyInfo(
         authorization: AuthorizationRef,
         tag: AuthorizationString,
@@ -416,6 +655,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an external representation of an authorization reference.
+    ///
+    /// Parameters:
+    /// - authorization: An authorization reference referring to the authorization session.
+    ///
+    /// - extForm: A pointer to an external authorization reference. On return, this points to the external representation of the authorization reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an external representation of an authorization reference so that you can transmit it between processes. Authorizations are bound by session, process, and time limits, so you cannot store the authorization reference for another process to use. Instead, you must create an external representation of the authorization reference and pass it securely to the other process. Use the function [`AuthorizationCreateFromExternalForm`](https://developer.apple.com/documentation/security/authorizationcreatefromexternalform(_:_:)) to internalize the external representation of the authorization reference.
+    ///
+    /// If it is necessary for your application to perform some privileged operations, it is good programming practice to isolate all of the privileged operations in a separate process, referred to as a _helper tool_ (see [Authorization Services Programming Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995) for details). In this case, you must pass your authorization reference to the helper tool so that Authorization Services can tell that the helper tool is operating on behalf of your application. Doing so allows the authorization dialog to show your application’s path rather than the path to the helper tool and it allows the system to determine whether the authorization dialog should have keyboard focus.
+    ///
+    ///
     /// Turn an Authorization into an external "byte blob" form so it can be
     /// transmitted to another process.
     /// Note that *storing* the external form somewhere will probably not do what
@@ -438,8 +698,6 @@ extern "C-unwind" {
     ///
     /// - `authorization` must be a valid pointer.
     /// - `ext_form` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmakeexternalform(_:_:)?language=objc)
     pub fn AuthorizationMakeExternalForm(
         authorization: AuthorizationRef,
         ext_form: NonNull<AuthorizationExternalForm>,
@@ -447,6 +705,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Internalizes the external representation of an authorization reference.
+    ///
+    /// Parameters:
+    /// - extForm: A pointer to the external representation of the authorization reference you retrieve from the calling process.
+    ///
+    /// - authorization: A pointer to an authorization reference. On return, this points to the local copy of the authorization reference. The Security Server allocates the authorization reference for you, so you do not need to call the function [`AuthorizationCreate`](https://developer.apple.com/documentation/security/authorizationcreate(_:_:_:_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When passing an authorization reference between processes, use this function to internalize the external representation of the authorization reference you created using the function [`AuthorizationMakeExternalForm`](https://developer.apple.com/documentation/security/authorizationmakeexternalform(_:_:)).
+    ///
+    ///
     /// Internalize the external "byte blob" form of an authorization reference.
     ///
     ///
@@ -461,8 +738,6 @@ extern "C-unwind" {
     ///
     /// - `ext_form` must be a valid pointer.
     /// - `authorization` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcreatefromexternalform(_:_:)?language=objc)
     pub fn AuthorizationCreateFromExternalForm(
         ext_form: NonNull<AuthorizationExternalForm>,
         authorization: NonNull<AuthorizationRef>,
@@ -470,6 +745,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Frees the memory associated with a set of authorization items.
+    ///
+    /// Parameters:
+    /// - set: A pointer to the authorization set to free.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your application no longer needs the authorization item sets created by the Security Server in the [`AuthorizationCopyRights`](https://developer.apple.com/documentation/security/authorizationcopyrights(_:_:_:_:_:)) and [`AuthorizationCopyInfo`](https://developer.apple.com/documentation/security/authorizationcopyinfo(_:_:_:)) functions, call this function to free it.
+    ///
+    ///
     /// Release the memory allocated for an AuthorizationItemSet that was allocated
     /// by an API call.
     ///
@@ -484,12 +776,37 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `set` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationfreeitemset(_:)?language=objc)
     pub fn AuthorizationFreeItemSet(set: NonNull<AuthorizationItemSet>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Retrieves the authorization reference passed by the AuthorizationExecuteWithPrivileges function.
+    ///
+    /// Parameters:
+    /// - authorization: A pointer to an authorization reference. The Security Server allocates the authorization reference for you, so you do not need to call the function [`AuthorizationCreate(_:_:_:_:)`](https://developer.apple.com/documentation/security/authorizationcreate(_:_:_:_:)). On return, it points to a copy of the authorization reference used in the call to the [`AuthorizationExecuteWithPrivileges`](https://developer.apple.com/documentation/security/authorizationexecutewithprivileges) function.
+    ///
+    /// - flags: Reserved options. Pass the [`kAuthorizationFlagDefaults`](https://developer.apple.com/documentation/security/authorizationflags/kauthorizationflagdefaults) constant.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use a `launchd`-launched helper tool and/or the Service Management framework for this functionality.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This function retrieves the authorization reference you pass in the function [`AuthorizationExecuteWithPrivileges`](https://developer.apple.com/documentation/security/authorizationexecutewithprivileges). The new process can use the authorization reference to verify authorizations obtained by the calling process.
+    ///
+    ///
     /// From within a tool launched via the AuthorizationExecuteWithPrivileges function
     /// ONLY, retrieve the AuthorizationRef originally passed to that function.
     /// While AuthorizationExecuteWithPrivileges already verified the authorization to
@@ -504,8 +821,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `authorization` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcopyprivilegedreference?language=objc)
     #[deprecated]
     pub fn AuthorizationCopyPrivilegedReference(
         authorization: NonNull<AuthorizationRef>,

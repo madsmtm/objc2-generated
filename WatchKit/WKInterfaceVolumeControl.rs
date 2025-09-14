@@ -8,16 +8,16 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacevolumecontrol/origin?language=objc)
+/// The source of the audio managed by the volume control.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceVolumeControlOrigin(pub NSInteger);
 impl WKInterfaceVolumeControlOrigin {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacevolumecontrol/origin/local?language=objc)
+    /// Audio playing on Apple Watch.
     #[doc(alias = "WKInterfaceVolumeControlOriginLocal")]
     pub const Local: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacevolumecontrol/origin/companion?language=objc)
+    /// Audio playing on iPhone.
     #[doc(alias = "WKInterfaceVolumeControlOriginCompanion")]
     pub const Companion: Self = Self(1);
 }
@@ -31,7 +31,25 @@ unsafe impl RefEncode for WKInterfaceVolumeControlOrigin {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacevolumecontrol?language=objc)
+    /// An interface element that provides control of the audio volume from the watch or a paired iPhone.
+    ///
+    /// ## Overview
+    ///
+    /// Configure your app’s audio source and the appearance of the volume control in your storyboard file. Use the [`WKInterfaceVolumeControl`](https://developer.apple.com/documentation/watchkit/wkinterfacevolumecontrol) instance to change the volume’s tint color at runtime.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a volume control in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myVolumeControl: WKInterfaceVolumeControl!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceVolumeControl* myVolumeControl;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the onscreen control.
+    ///
+    /// After selecting the volume control, the user can increase or decrease the audio’s volume using the crown. The system automatically handles changing the audio source’s volume. You cannot access or change the volume programmatically in your app.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure your volume control in your storyboard file. The following table lists the attributes you can configure and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Controls Local Volume" }] }], [Paragraph { inline_content: [Text { text: "The volume control’s audio source. If checked, the control affects the volume of long-form audio playing on the watch.  If unchecked, it affects the volume of audio playing on the paired iPhone. " }, Image { identifier: "spacer", metadata: None }, Text { text: " You must set this value at design time. You cannot change its value programmatically." }] }]], [[Paragraph { inline_content: [Text { text: "Tint Color" }] }], [Paragraph { inline_content: [Text { text: "The tint color for the volume control.  By default, the system uses the application’s tint color. " }, Image { identifier: "spacer", metadata: None }, Text { text: " The system only applies the tint color to the control’s default state (when the crown is not being used to adjust the volume). " }, Image { identifier: "spacer", metadata: None }, Text { text: " You can change this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceVolumeControl/setTintColor(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

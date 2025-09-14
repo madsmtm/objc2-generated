@@ -10,12 +10,25 @@ use crate::*;
 extern_class!(
     /// An interface for apps and daemons to interact with FSKit.
     ///
+    /// ## Overview
+    ///
+    /// FSClient is the primary management interface for FSKit. Use this class to discover FSKit extensions installed on the system, including your own.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Don’t subclass `FSClient`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An interface for apps and daemons to interact with FSKit.
+    ///
     /// FSClient is the primary management interface for FSKit.
     /// Use this class to discover FSKit extensions installed on the system, including your own.
     ///
     /// > Important: Don't subclass `FSClient`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsclient?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSClient;

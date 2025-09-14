@@ -10,14 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A view that allows user interaction with a VM.
+    ///
+    /// ## Overview
+    ///
+    /// The `VZVirtualMachineView` is a UI element that shows the contents of the VM frame buffer that you can optionally configure to respond to changes in the host’s display settings. If the VM configuration includes a keyboard and a pointing device, the view forwards keyboard and mouse events to the VM through those devices.
+    ///
+    ///
     /// A view that allows user interaction with a virtual machine.
     ///
     /// The VZVirtualMachineView shows the contents of the virtual machine framebuffer. If the virtual machine configuration includes a keyboard and a pointing device,
     /// the view forwards keyboard and mouse events to the virtual machine via those devices.
     ///
     /// See also: VZVirtualMachine
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

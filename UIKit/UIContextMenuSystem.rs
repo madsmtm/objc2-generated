@@ -7,8 +7,7 @@ use crate::*;
 
 extern_class!(
     /// The context menu system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenusystem?language=objc)
+    /// The context menu system.
     #[unsafe(super(UIMenuSystem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -9,7 +9,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplacemarkresolutionresult?language=objc)
+    /// A resolution result for placemark information associated with an intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPlacemarkResolutionResult`](https://developer.apple.com/documentation/intents/inplacemarkresolutionresult) object is what you return when resolving parameters containing an [`CLPlacemark`](https://developer.apple.com/documentation/corelocation/clplacemark) object. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

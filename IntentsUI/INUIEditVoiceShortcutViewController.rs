@@ -13,13 +13,18 @@ use objc2_intents::*;
 use crate::*;
 
 extern_class!(
+    /// A view controller that lets the user edit or remove an existing shortcut.
+    ///
+    /// ## Overview
+    ///
+    /// To let the user edit or remove a shortcut, create an instance of [`INUIEditVoiceShortcutViewController`](https://developer.apple.com/documentation/intentsui/inuieditvoiceshortcutviewcontroller) with the [`INVoiceShortcut`](https://developer.apple.com/documentation/intents/invoiceshortcut). Then present the view controller to the user. To receive notifications of changes made to the shortcut, set the controller’s [`delegate`](https://developer.apple.com/documentation/intentsui/inuieditvoiceshortcutviewcontroller/delegate) to an object that conforms to the [`INUIEditVoiceShortcutViewControllerDelegate`](https://developer.apple.com/documentation/intentsui/inuieditvoiceshortcutviewcontrollerdelegate) protocol.
+    ///
+    ///
     /// A view controller that shows the details of a voice shortcut, and lets the user edit the phrase.
     ///
     /// To have the user edit a voice shortcut, create an
     /// `INUIEditVoiceShortcutViewController`object with the
     /// `INVoiceShortcut`that they wish to edit, and set its delegate. Then, present the view controller modally from another view controller in your app. Your delegate must dismiss the view controller when the user finishes editing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuieditvoiceshortcutviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -129,7 +134,7 @@ impl INUIEditVoiceShortcutViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuieditvoiceshortcutviewcontrollerdelegate?language=objc)
+    /// The protocol an object implements to receive notifications from the view controller that edits or removes a shortcut in Siri.
     pub unsafe trait INUIEditVoiceShortcutViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-intents"))]
         #[cfg(target_os = "macos")]

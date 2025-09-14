@@ -7,11 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputsourceidentifier?language=objc)
 pub type NSTextInputSourceIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontext?language=objc)
+    /// An object that represents the Cocoa text input system.
+    ///
+    /// ## Overview
+    ///
+    /// The text input system communicates primarily with the client of the activated input context via the [`NSTextInputClient`](https://developer.apple.com/documentation/appkit/nstextinputclient) protocol.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -149,9 +154,8 @@ impl NSTextInputContext {
 }
 
 extern "C" {
+    /// Posted after the selected text input source changes.
     /// ** Notifications ***
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardselectiondidchangenotification?language=objc)
     pub static NSTextInputContextKeyboardSelectionDidChangeNotification:
         &'static NSNotificationName;
 }

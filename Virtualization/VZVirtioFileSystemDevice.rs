@@ -8,6 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object the defines a VIRTIO file system device.
+    ///
+    /// ## Overview
+    ///
+    /// This device exposes host resources to the guest as a file system mount. The directory share defines which resources the host exposes to the guest.
+    ///
+    /// Create this device by instantiating a [`VZVirtioFileSystemDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration) in a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration). The file system device is available in the `VZVirtualMachine`.[`directorySharingDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices) property. The guest can use the [`tag`](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdevice/tag) label to mount and access the host resources.
+    ///
+    /// With `VZVirtioFileSystemDevice`, the framework enforces several permissions policies for shared directories:
+    ///
+    /// - The framework reads and writes files using the user ID (UID) of the effective user, which is the UID of the current user, rather than the UID of the system process.
+    ///
+    /// - The framework doesn’t allow reading or overwriting of files with permissions where the file is inaccessible to the current user.
+    ///
+    /// - The framework ignores requests from guest operating systems to change the UID or group ID (GID) of files on the host.
+    ///
+    ///
     /// Virtio File System Device
     ///
     /// This is a device that exposes host resources to the guest as a file system mount.
@@ -21,8 +38,6 @@ extern_class!(
     /// See: VZSingleDirectoryShare
     ///
     /// See: VZMultipleDirectoryShare
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdevice?language=objc)
     #[unsafe(super(VZDirectorySharingDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectorySharingDevice")]

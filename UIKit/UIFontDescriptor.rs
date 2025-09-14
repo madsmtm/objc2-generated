@@ -10,74 +10,122 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct?language=objc)
+/// Constants that describe the stylistic aspects of a font.
+///
+/// ## Overview
+///
+/// The lower 16 bits represent the typeface, and the upper 16 bits describe appearance of the font. The font appearance information represented by the upper 16 bits of [`NSFontSymbolicTraits`](https://developer.apple.com/documentation/appkit/nsfontsymbolictraits) can be used for stylistic font matching. [`UIFontDescriptorClass`](https://developer.apple.com/documentation/uikit/uifontdescriptor/class) constants classify certain stylistic qualities of the font.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFontDescriptorSymbolicTraits(pub u32);
 bitflags::bitflags! {
     impl UIFontDescriptorSymbolicTraits: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traititalic?language=objc)
+/// The font’s style is italic.
         #[doc(alias = "UIFontDescriptorTraitItalic")]
         const TraitItalic = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traitbold?language=objc)
+/// The font’s style is boldface.
         #[doc(alias = "UIFontDescriptorTraitBold")]
         const TraitBold = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traitexpanded?language=objc)
+/// The font’s characters have an expanded width.
+///
+/// ## Discussion
+///
+/// Expanded and condensed traits are mutually exclusive.
+///
+///
         #[doc(alias = "UIFontDescriptorTraitExpanded")]
         const TraitExpanded = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traitcondensed?language=objc)
+/// The font’s characters have a condensed width.
+///
+/// ## Discussion
+///
+/// Expanded and condensed traits are mutually exclusive.
+///
+///
         #[doc(alias = "UIFontDescriptorTraitCondensed")]
         const TraitCondensed = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traitmonospace?language=objc)
+/// The font’s characters all have the same width.
+///
+/// ## Discussion
+///
+/// The font uses fixed-pitch glyphs, if available, and may have multiple glyph advances (many CJK glyphs contain two spaces).
+///
+///
         #[doc(alias = "UIFontDescriptorTraitMonoSpace")]
         const TraitMonoSpace = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traitvertical?language=objc)
+/// The font uses vertical glyph variants and metrics.
         #[doc(alias = "UIFontDescriptorTraitVertical")]
         const TraitVertical = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traituioptimized?language=objc)
+/// The font synthesizes appropriate attributes for user interface rendering, such as in control titles, if necessary.
         #[doc(alias = "UIFontDescriptorTraitUIOptimized")]
         const TraitUIOptimized = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traittightleading?language=objc)
+/// The font uses a leading value that’s less than the default.
+///
+/// ## Discussion
+///
+/// For fonts that you create using [`UIFontTextStyle`](https://developer.apple.com/documentation/uikit/uifont/textstyle), tight leading subtracts 2 points from the current leading value.
+///
+///
         #[doc(alias = "UIFontDescriptorTraitTightLeading")]
         const TraitTightLeading = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/traitlooseleading?language=objc)
+/// The font uses a leading value that’s greater than the default.
+///
+/// ## Discussion
+///
+/// For fonts that you create using [`UIFontTextStyle`](https://developer.apple.com/documentation/uikit/uifont/textstyle), loose leading adds 2 points to the current leading value.
+///
+///
         #[doc(alias = "UIFontDescriptorTraitLooseLeading")]
         const TraitLooseLeading = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classmask?language=objc)
+/// The font family class mask that you use to access font descriptor values.
         #[doc(alias = "UIFontDescriptorClassMask")]
         const ClassMask = 0xF0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsymbolictraits/uifontdescriptorclassunknown?language=objc)
+/// The font has no design classification.
         #[doc(alias = "UIFontDescriptorClassUnknown")]
         const ClassUnknown = 0<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classoldstyleserifs?language=objc)
+/// The font’s characters include serifs, and reflect the Latin printing style of the 15th to 17th centuries.
         #[doc(alias = "UIFontDescriptorClassOldStyleSerifs")]
         const ClassOldStyleSerifs = 1<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classtransitionalserifs?language=objc)
+/// The font’s characters include serifs, and reflect the Latin printing style of the 18th to 19th centuries.
         #[doc(alias = "UIFontDescriptorClassTransitionalSerifs")]
         const ClassTransitionalSerifs = 2<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classmodernserifs?language=objc)
+/// The font’s characters include serifs, and reflect the Latin printing style of the 20th century.
         #[doc(alias = "UIFontDescriptorClassModernSerifs")]
         const ClassModernSerifs = 3<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classclarendonserifs?language=objc)
+/// The font’s characters include variations of old style and transitional serifs.
         #[doc(alias = "UIFontDescriptorClassClarendonSerifs")]
         const ClassClarendonSerifs = 4<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classslabserifs?language=objc)
+/// The font’s characters use square transitions, without brackets, between strokes and serifs.
         #[doc(alias = "UIFontDescriptorClassSlabSerifs")]
         const ClassSlabSerifs = 5<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classfreeformserifs?language=objc)
+/// The font’s characters include serifs, and don’t generally fit within other serif design classifications.
         #[doc(alias = "UIFontDescriptorClassFreeformSerifs")]
         const ClassFreeformSerifs = 7<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classsansserif?language=objc)
+/// The font’s characters don’t have serifs.
+///
+/// ## Discussion
+///
+/// The font, excluding Scripts and Ornamentals, includes most basic letter forms without serifs on the strokes.
+///
+///
         #[doc(alias = "UIFontDescriptorClassSansSerif")]
         const ClassSansSerif = 8<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classornamentals?language=objc)
+/// The font’s characters use highly decorated or stylized character shapes.
         #[doc(alias = "UIFontDescriptorClassOrnamentals")]
         const ClassOrnamentals = 9<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classscripts?language=objc)
+/// The font’s characters simulate handwriting.
         #[doc(alias = "UIFontDescriptorClassScripts")]
         const ClassScripts = 10<<28;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classsymbolic?language=objc)
+/// The font’s characters consist mainly of symbols rather than letters and numbers.
+///
+/// ## Discussion
+///
+/// This trait is suitable for special characters like icons, dingbats, technical symbols, and others that work equally well with any font.
+///
+///
         #[doc(alias = "UIFontDescriptorClassSymbolic")]
         const ClassSymbolic = 12<<28;
     }
@@ -91,61 +139,148 @@ unsafe impl RefEncode for UIFontDescriptorSymbolicTraits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/class?language=objc)
+/// Constants that classify certain stylistic qualities of the font.
+///
+/// ## Discussion
+///
+/// These values correspond closely to the font class values in the OpenType OS/2 table. The class values are bundled in the upper four bits of the [`UIFontDescriptorSymbolicTraits`](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct) and can be accessed through [`UIFontDescriptorClassMask`](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct/classmask). For additional information about the specific meaning of each identifier, refer to the OpenType specification.
+///
+///
 pub type UIFontDescriptorClass = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle?language=objc)
+/// Constants that describe the preferred styles for fonts.
+///
+/// ## Overview
+///
+/// Pass these constants to the [`preferredFontForTextStyle:`](https://developer.apple.com/documentation/uikit/uifont/preferredfont(fortextstyle:)) method of [`UIFont`](https://developer.apple.com/documentation/uikit/uifont) or the [`preferredFontDescriptorWithTextStyle:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/preferredfontdescriptor(withtextstyle:)) method of [`UIFontDescriptor`](https://developer.apple.com/documentation/uikit/uifontdescriptor) to retrieve the corresponding font information.
+///
+///
 // NS_TYPED_ENUM
 pub type UIFontTextStyle = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename?language=objc)
+/// Constants that describe font attributes.
 // NS_TYPED_ENUM
 pub type UIFontDescriptorAttributeName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey?language=objc)
+/// Keys for retrieving the font descriptor’s trait information.
+///
+/// ## Overview
+///
+/// Use these keys to fetch values from the dictionary associated with the [`UIFontDescriptorTraitsAttribute`](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/traits) key.
+///
+///
 // NS_TYPED_ENUM
 pub type UIFontDescriptorTraitKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey?language=objc)
+/// Keys for retrieving feature settings.
+///
+/// ## Overview
+///
+/// Use these keys when retrieving information from one of the dictionaries associated with the [`UIFontDescriptorFeatureSettingsAttribute`](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/featuresettings) key.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFontDescriptorFeatureKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight?language=objc)
+/// Constants that represent standard typeface styles.
+///
+/// ## Overview
+///
+/// Use system-defined constants as interchangeable values for [`UIFontWeightTrait`](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/weight). Each constant corresponds to a different value that indicates the weight of a font. Use these constants to specify the weight parameter in [`systemFontOfSize:weight:`](https://developer.apple.com/documentation/uikit/uifont/systemfont(ofsize:weight:)). When providing a weight that doesn’t precisely match a font face in the family, the system locates a face that most closely matches the request.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Font [`familyNames`](https://developer.apple.com/documentation/uikit/uifont/familynames) don’t include all system-defined font constants.
+///
+///
+///
+/// </div>
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIFontWeight = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIFontWidth = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign?language=objc)
+/// Constants that describe the system-defined typeface designs.
+///
+/// ## Overview
+///
+/// Use these constants to specify a system-provided typeface design, such as:
+///
+/// - SF Pro in iOS or SF Compact in watchOS ([`UIFontDescriptorSystemDesignDefault`](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/default))
+///
+/// - SF Pro Rounded in iOS or SF Compact Rounded in watchOS ([`UIFontDescriptorSystemDesignRounded`](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/rounded))
+///
+/// - SF Mono ([`UIFontDescriptorSystemDesignMonospaced`](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/monospaced))
+///
+/// - New York ([`UIFontDescriptorSystemDesignSerif`](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/serif))
+///
+///
 // NS_TYPED_ENUM
 pub type UIFontDescriptorSystemDesign = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/default?language=objc)
+    /// The default typeface for an app’s user interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The returned typeface depends on the system. In iOS, using this constant with [`fontDescriptorWithDesign:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/withdesign(_:)) returns SF Pro, while in watchOS that returns SF Compact.
+    ///
+    ///
     pub static UIFontDescriptorSystemDesignDefault: &'static UIFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/rounded?language=objc)
+    /// The rounded variant of the default typeface.
+    ///
+    /// ## Discussion
+    ///
+    /// The returned typeface depends on the system. iOS returns SF Pro Rounded, while watchOS returns SF Compact Rounded.
+    ///
+    ///
     pub static UIFontDescriptorSystemDesignRounded: &'static UIFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/serif?language=objc)
+    /// The serif variant of the default typeface.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this constant with [`fontDescriptorWithDesign:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/withdesign(_:)) returns [New York](https://developer.apple.com/fonts/).
+    ///
+    ///
     pub static UIFontDescriptorSystemDesignSerif: &'static UIFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/monospaced?language=objc)
+    /// The monospace variant of the default typeface.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this constant with [`fontDescriptorWithDesign:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/withdesign(_:)) returns SF Mono.
+    ///
+    ///
     pub static UIFontDescriptorSystemDesignMonospaced: &'static UIFontDescriptorSystemDesign;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor?language=objc)
+    /// A collection of attributes that describes a font.
+    ///
+    /// ## Overview
+    ///
+    /// A font descriptor can be used to create or modify a [`UIFont`](https://developer.apple.com/documentation/uikit/uifont) object. Font descriptors have a font matching capability, so that you can partially describe a font by creating a font descriptor with, for example, just a family name. You can use [`matchingFontDescriptorsWithMandatoryKeys:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/matchingfontdescriptors(withmandatorykeys:)) to find all the available fonts in the system with a matching family name. Font descriptors can also be archived and unarchived.
+    ///
+    /// There are several ways to create a new [`UIFontDescriptor`](https://developer.apple.com/documentation/uikit/uifontdescriptor) object. To take advantage of text styles and respect the user’s current content size category, use [`preferredFontDescriptorWithTextStyle:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/preferredfontdescriptor(withtextstyle:)). You can also use `alloc` and [`initWithFontAttributes:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/init(fontattributes:)), [`fontDescriptorWithFontAttributes:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/fontdescriptorwithfontattributes:), [`fontDescriptorWithName:matrix:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/init(name:matrix:)), or [`fontDescriptorWithName:size:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/init(name:size:)) to create a font descriptor based on your custom attributes dictionary or on a specific font’s name and size. Alternatively you can use one of the `fontDescriptor…` instance methods (such as [`fontDescriptorWithFace:`](https://developer.apple.com/documentation/uikit/uifontdescriptor/withface(_:))) to create a modified version of an existing descriptor. The latter methods are useful if you have an existing descriptor and simply want to change one aspect.
+    ///
+    /// All attributes in the attributes dictionary are optional.
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFontDescriptor;
@@ -385,234 +520,357 @@ impl DefaultRetained for UIFontDescriptor {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/family?language=objc)
+    /// The font family attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an optional [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that specifies the font family.
+    ///
+    ///
     pub static UIFontDescriptorFamilyAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/name?language=objc)
+    /// The font name attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an optional [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that specifies the PostScript name of the font.
+    ///
+    ///
     pub static UIFontDescriptorNameAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/face?language=objc)
+    /// The font face attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an optional [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that specifies the font face.
+    ///
+    ///
     pub static UIFontDescriptorFaceAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/size?language=objc)
+    /// The font size attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an optional [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a float value. This float value specifies the font size.
+    ///
+    ///
     pub static UIFontDescriptorSizeAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/visiblename?language=objc)
+    /// The font’s visible name attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an optional [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that specifies the font’s visible name.
+    ///
+    ///
     pub static UIFontDescriptorVisibleNameAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/matrix?language=objc)
+    /// The font’s transformation matrix attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CGAffineTransform`](https://developer.apple.com/documentation/corefoundation/cgaffinetransform) instance that specifies the font’s transformation matrix. The default value is the identity matrix.
+    ///
+    /// Because the system applies the matrix to the text matrix at rendering time, translation isn’t available. The rendering engine determines the translation independently.
+    ///
+    ///
     pub static UIFontDescriptorMatrixAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/characterset?language=objc)
+    /// The character set attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset) instance that represents the set of Unicode characters that the font covers. The font supplies the default value.
+    ///
+    ///
     pub static UIFontDescriptorCharacterSetAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/cascadelist?language=objc)
+    /// The cascading list attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) instance, where each member of the array is a subdescriptor. The default value is the system default cascading list for the user’s locale.
+    ///
+    ///
     pub static UIFontDescriptorCascadeListAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/traits?language=objc)
+    /// The font traits dictionary attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) instance that fully describes the font traits. The font supplies the default value.
+    ///
+    ///
     pub static UIFontDescriptorTraitsAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/fixedadvance?language=objc)
+    /// The glyph advancement attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) instance that contains a float value. This float value overrides the glyph advancement that the font specifies. The default value is `0.0`.
+    ///
+    ///
     pub static UIFontDescriptorFixedAdvanceAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/featuresettings?language=objc)
+    /// The font feature settings attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an array of dictionaries that represents nondefault font feature settings. Each dictionary contains a [`type`](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey/type) and [`selector`](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey/selector) key.
+    ///
+    ///
     pub static UIFontDescriptorFeatureSettingsAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/textstyle?language=objc)
+    /// The text style attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that contains the specified text style.
+    ///
+    ///
     pub static UIFontDescriptorTextStyleAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/symbolic?language=objc)
+    /// The symbolic font traits.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key with a trait dictionary to get the symbolic traits value as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
     pub static UIFontSymbolicTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/weight?language=objc)
+    /// The numerical value that corresponds to a font face.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The valid value range is from `-1.0` to `1.0`, where `0.0` corresponds to the [`UIFontWeightRegular`](https://developer.apple.com/documentation/uikit/uifont/weight/regular) weight constant. The negative side of the value range indicates that the font is light or thin; the positive side means the font is heavier or bolder. For example, the font face [`UIFontWeightUltraLight`](https://developer.apple.com/documentation/uikit/uifont/weight/ultralight) has the approximate value of `-0.8`, and [`UIFontWeightBlack`](https://developer.apple.com/documentation/uikit/uifont/weight/black) has the approximate value of `0.62`. When providing a weight that doesn’t precisely match a font face in the family, the system locates an available face that represents the closest match.
+    ///
+    /// You can use a font face constant to specify a weight; for a list of constants, see [`UIFontWeight`](https://developer.apple.com/documentation/uikit/uifont/weight).
+    ///
+    /// To access the weight of a font, first retrieve the font’s [`UIFontDescriptorTraitsAttribute`](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/traits) dictionary information:
+    ///
+    /// ```swift
+    /// let font = UIFont.systemFont(ofSize: 21, weight: .bold)
+    /// if let traits = font.fontDescriptor.object(forKey: .traits) as? [UIFontDescriptor.TraitKey: Any]{
+    ///     let weightValue = traits[.weight]
+    /// }
+    /// ```
+    ///
+    ///
     pub static UIFontWeightTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/width?language=objc)
+    /// The inter-glyph spacing of the font.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The valid value range is from `-1.0` to `1.0`. The value of `0.0` corresponds to the regular glyph spacing.
+    ///
+    ///
     pub static UIFontWidthTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/slant?language=objc)
+    /// The relative slant angle of the font.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The valid value range is from `-1.0` to `1.0`. The value of `0.0` corresponds to `0` degree clockwise rotation from the vertical and `1.0` corresponds to `30` degrees clockwise rotation.
+    ///
+    ///
     pub static UIFontSlantTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/ultralight?language=objc)
+    /// The ultra-light font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightUltraLight: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/thin?language=objc)
+    /// The thin font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightThin: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/light?language=objc)
+    /// The light font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightLight: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/regular?language=objc)
+    /// The regular font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightRegular: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/medium?language=objc)
+    /// The medium font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightMedium: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/semibold?language=objc)
+    /// The semibold font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightSemibold: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/bold?language=objc)
+    /// The bold font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightBold: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/heavy?language=objc)
+    /// The heavy font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightHeavy: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/black?language=objc)
+    /// The black font weight.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightBlack: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/condensed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthCondensed: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/standard?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthStandard: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/expanded?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthExpanded: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/compressed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthCompressed: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey/featureidentifier?language=objc)
+    /// A key for identifying a font feature type.
     pub static UIFontFeatureTypeIdentifierKey: &'static UIFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey/typeidentifier?language=objc)
+    /// A key for identifying the font feature selector.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object specifying the ligature, character shape, or other font feature.
+    ///
+    ///
     pub static UIFontFeatureSelectorIdentifierKey: &'static UIFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/largetitle?language=objc)
+    /// The font style for large titles.
     pub static UIFontTextStyleLargeTitle: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/extralargetitle?language=objc)
+    /// The font style for extra large titles.
     pub static UIFontTextStyleExtraLargeTitle: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/extralargetitle2?language=objc)
+    /// The font style for extra extra large titles.
     pub static UIFontTextStyleExtraLargeTitle2: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/title1?language=objc)
+    /// The font for first-level hierarchical headings.
     pub static UIFontTextStyleTitle1: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/title2?language=objc)
+    /// The font for second-level hierarchical headings.
     pub static UIFontTextStyleTitle2: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/title3?language=objc)
+    /// The font for third-level hierarchical headings.
     pub static UIFontTextStyleTitle3: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/headline?language=objc)
+    /// The font for headings.
     pub static UIFontTextStyleHeadline: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/subheadline?language=objc)
+    /// The font for subheadings.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  On tvOS, text used for subheadings should be in an all-caps format.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static UIFontTextStyleSubheadline: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/body?language=objc)
+    /// The font for body text.
     pub static UIFontTextStyleBody: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/callout?language=objc)
+    /// The font for callouts.
     pub static UIFontTextStyleCallout: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/footnote?language=objc)
+    /// The font for footnotes.
     pub static UIFontTextStyleFootnote: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/caption1?language=objc)
+    /// The font for standard captions.
     pub static UIFontTextStyleCaption1: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/caption2?language=objc)
+    /// The font for alternate captions.
     pub static UIFontTextStyleCaption2: &'static UIFontTextStyle;
 }

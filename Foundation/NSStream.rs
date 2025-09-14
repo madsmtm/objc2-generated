@@ -8,39 +8,39 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/propertykey?language=objc)
+/// `NSStream` defines these string constants as keys for accessing stream properties using [`propertyForKey:`](https://developer.apple.com/documentation/foundation/stream/property(forkey:)) and setting properties with [`setProperty:forKey:`](https://developer.apple.com/documentation/foundation/stream/setproperty(_:forkey:)):
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamPropertyKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status?language=objc)
+/// The type declared for the constants listed in doc:stream/stream_status_constants.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamStatus(pub NSUInteger);
 impl NSStreamStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/notopen?language=objc)
+    /// The stream is not open for reading or writing. This status is returned before the underlying call to open a stream but after it’s been created.
     #[doc(alias = "NSStreamStatusNotOpen")]
     pub const NotOpen: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/opening?language=objc)
+    /// The stream is in the process of being opened for reading or for writing. For network streams, this status might include the time after the stream was opened, but while network DNS resolution is happening.
     #[doc(alias = "NSStreamStatusOpening")]
     pub const Opening: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/open?language=objc)
+    /// The stream is open, but no reading or writing is occurring.
     #[doc(alias = "NSStreamStatusOpen")]
     pub const Open: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/reading?language=objc)
+    /// Data is being read from the stream. This status would be returned if code on another thread were to call [`streamStatus`](https://developer.apple.com/documentation/foundation/stream/streamstatus) on the stream while a [`read:maxLength:`](https://developer.apple.com/documentation/foundation/inputstream/read(_:maxlength:)) call ([`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream)) was in progress.
     #[doc(alias = "NSStreamStatusReading")]
     pub const Reading: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/writing?language=objc)
+    /// Data is being written to the stream. This status would be returned if code on another thread were to call [`streamStatus`](https://developer.apple.com/documentation/foundation/stream/streamstatus) on the stream while a [`write:maxLength:`](https://developer.apple.com/documentation/foundation/outputstream/write(_:maxlength:)) call ([`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream)) was in progress.
     #[doc(alias = "NSStreamStatusWriting")]
     pub const Writing: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/atend?language=objc)
+    /// There is no more data to read, or no more data can be written to the stream. When this status is returned, the stream is in a “non-blocking” mode and no data are available.
     #[doc(alias = "NSStreamStatusAtEnd")]
     pub const AtEnd: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/closed?language=objc)
+    /// The stream is closed ([`close`](https://developer.apple.com/documentation/foundation/stream/close()) has been called on it).
     #[doc(alias = "NSStreamStatusClosed")]
     pub const Closed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/status/error?language=objc)
+    /// The remote end of the connection can’t be contacted, or the connection has been severed for some other reason.
     #[doc(alias = "NSStreamStatusError")]
     pub const Error: Self = Self(7);
 }
@@ -53,29 +53,29 @@ unsafe impl RefEncode for NSStreamStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event?language=objc)
+/// Describes the constants that may be sent to the delegate as a bit field in the second parameter of [`stream:handleEvent:`](https://developer.apple.com/documentation/foundation/streamdelegate/stream(_:handle:)) to specify the kind of stream event.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamEvent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStreamEvent: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamevent/nsstreameventnone?language=objc)
+/// No event has occurred.
         #[doc(alias = "NSStreamEventNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/opencompleted?language=objc)
+/// The open has completed successfully.
         #[doc(alias = "NSStreamEventOpenCompleted")]
         const OpenCompleted = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/hasbytesavailable?language=objc)
+/// The stream has bytes to be read.
         #[doc(alias = "NSStreamEventHasBytesAvailable")]
         const HasBytesAvailable = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/hasspaceavailable?language=objc)
+/// The stream can accept bytes for writing.
         #[doc(alias = "NSStreamEventHasSpaceAvailable")]
         const HasSpaceAvailable = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/erroroccurred?language=objc)
+/// An error has occurred on the stream.
         #[doc(alias = "NSStreamEventErrorOccurred")]
         const ErrorOccurred = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/event/endencountered?language=objc)
+/// The end of the stream has been reached.
         #[doc(alias = "NSStreamEventEndEncountered")]
         const EndEncountered = 1<<4;
     }
@@ -90,7 +90,47 @@ unsafe impl RefEncode for NSStreamEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream?language=objc)
+    /// An abstract class representing a stream.
+    ///
+    /// ## Overview
+    ///
+    /// This class’s interface is common to all Cocoa stream classes, including its concrete subclasses [`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream) and [`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream).
+    ///
+    /// [`NSStream`](https://developer.apple.com/documentation/foundation/stream) objects provide an easy way to read and write data to and from a variety of media in a device-independent way. You can create stream objects for data located in memory, in a file, or on a network (using sockets), and you can use stream objects without loading all of the data into memory at once.
+    ///
+    /// By default, [`NSStream`](https://developer.apple.com/documentation/foundation/stream) instances that aren’t file-based are non-seekable, one-way streams (although custom seekable subclasses are possible). After you provide or consume data, you can’t retrieve the data from the stream.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// [`NSStream`](https://developer.apple.com/documentation/foundation/stream) is an abstract class, incapable of instantiation and intended for you to subclass it. It publishes a programmatic interface that all subclasses must adopt and provide implementations for. The two Apple-provided concrete subclasses of [`NSStream`](https://developer.apple.com/documentation/foundation/stream), [`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream) and [`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream), are suitable for most purposes. However, there might be situations when you want a peer subclass to [`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream) and [`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream). For example, you might want a class that implements a full-duplex (two-way) stream, or a class whose instances are capable of seeking through a stream.
+    ///
+    /// #### Methods to Override
+    ///
+    /// All subclasses must fully implement the following methods:
+    ///
+    /// - [`open`](https://developer.apple.com/documentation/foundation/stream/open()) and [`close`](https://developer.apple.com/documentation/foundation/stream/close())
+    ///
+    /// Implement [`open`](https://developer.apple.com/documentation/foundation/stream/open()) to open the stream for reading or writing and make the stream available to the client directly or, if the stream object is scheduled on a run loop, to the delegate. Implement [`close`](https://developer.apple.com/documentation/foundation/stream/close()) to close the stream and remove the stream object from the run loop, if necessary. A closed stream should still be able to accept new properties and report its current properties. Once you close a stream, you can’t reopen it.
+    ///
+    /// - [`delegate`](https://developer.apple.com/documentation/foundation/stream/delegate)
+    ///
+    /// Return and set the delegate. By a default, a stream object must be its own delegate; so a [`delegate`](https://developer.apple.com/documentation/foundation/stream/delegate) message with an argument of `nil` should restore this delegate. Don’t retain the delegate to prevent retain cycles.
+    ///
+    /// To learn about delegates and delegation, read “Delegation” in Cocoa Fundamentals Guide.
+    ///
+    /// - [`scheduleInRunLoop:forMode:`](https://developer.apple.com/documentation/foundation/stream/schedule(in:formode:)) and [`removeFromRunLoop:forMode:`](https://developer.apple.com/documentation/foundation/stream/remove(from:formode:))
+    ///
+    /// Implement [`scheduleInRunLoop:forMode:`](https://developer.apple.com/documentation/foundation/stream/schedule(in:formode:)) to schedule the stream object on the specified run loop for the specified mode. Implement [`removeFromRunLoop:forMode:`](https://developer.apple.com/documentation/foundation/stream/remove(from:formode:)) to remove the object from the run loop. See the documentation of the [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) class for details. Once the stream object for an open stream is scheduled on a run loop, it is the responsibility of the subclass as it processes stream data to send [`stream:handleEvent:`](https://developer.apple.com/documentation/foundation/streamdelegate/stream(_:handle:)) messages to its delegate.
+    ///
+    /// - [`propertyForKey:`](https://developer.apple.com/documentation/foundation/stream/property(forkey:)) and [`setProperty:forKey:`](https://developer.apple.com/documentation/foundation/stream/setproperty(_:forkey:))
+    ///
+    /// Implement these methods to return and set, respectively, the property value for the specified key. You may add custom properties, but be sure to handle all properties defined by [`NSStream`](https://developer.apple.com/documentation/foundation/stream) as well.
+    ///
+    /// - [`streamStatus`](https://developer.apple.com/documentation/foundation/stream/streamstatus) and [`streamError`](https://developer.apple.com/documentation/foundation/stream/streamerror)
+    ///
+    /// Implement [`streamStatus`](https://developer.apple.com/documentation/foundation/stream/streamstatus) to return the current status of the stream as a [`NSStreamStatus`](https://developer.apple.com/documentation/foundation/stream/status) constant; you may define new [`NSStreamStatus`](https://developer.apple.com/documentation/foundation/stream/status) constants, but be sure to handle the system defined constants properly. Implement [`streamError`](https://developer.apple.com/documentation/foundation/stream/streamerror) to return an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object representing the current error. You might decide to return a custom [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object that can provide complete and localized information about the error.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStream;
@@ -199,7 +239,33 @@ impl DefaultRetained for NSStream {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/inputstream?language=objc)
+    /// A stream that provides read-only stream functionality.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSInputStream`](https://developer.apple.com/documentation/foundation/inputstream) is “toll-free bridged” with its Core Foundation counterpart, [`CFReadStreamRef`](https://developer.apple.com/documentation/corefoundation/cfreadstream). For more information on toll-free bridging, see [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSInputStream` is an abstract superclass of a _class cluster_ consisting of concrete subclasses of `NSStream` that provide standard read-only access to stream data. Although `NSInputStream` is probably sufficient for most situations requiring access to stream data, you can create a subclass of `NSInputStream` if you want more specialized behavior (for example, you want to record statistics on the data in a stream).
+    ///
+    /// #### Methods to Override
+    ///
+    /// To create a subclass of `NSInputStream` you may have to implement initializers for the type of stream data supported and suitably re-implement existing initializers. You must also provide complete implementations of the following methods:
+    ///
+    /// - [`read:maxLength:`](https://developer.apple.com/documentation/foundation/inputstream/read(_:maxlength:))
+    ///
+    /// From the current read index, take up to the number of bytes specified in the second parameter from the stream and place them in the client-supplied buffer (first parameter). The buffer must be of the size specified by the second parameter. Return the actual number of bytes placed in the buffer; if there is nothing left in the stream, return `0`. Reset the index into the stream for the next read operation.
+    ///
+    /// - [`getBuffer:length:`](https://developer.apple.com/documentation/foundation/inputstream/getbuffer(_:length:))
+    ///
+    /// Return in 0(1) a pointer to the subclass-allocated buffer (first parameter). Return by reference in the second parameter the number of bytes actually put into the buffer. The buffer’s contents are valid only until the next stream operation. Return [`false`](https://developer.apple.com/documentation/swift/false) if you cannot access data in the buffer; otherwise, return [`true`](https://developer.apple.com/documentation/swift/true). If this method is not appropriate for your type of stream, you may return [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// - [`hasBytesAvailable`](https://developer.apple.com/documentation/foundation/inputstream/hasbytesavailable)
+    ///
+    /// Return [`true`](https://developer.apple.com/documentation/swift/true) if there is more data to read in the stream, [`false`](https://developer.apple.com/documentation/swift/false) if there is not. If you want to be semantically compatible with `NSInputStream`, return [`true`](https://developer.apple.com/documentation/swift/true) if a read must be attempted to determine if bytes are available.
+    ///
+    ///
     #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInputStream;
@@ -283,7 +349,35 @@ impl DefaultRetained for NSInputStream {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/outputstream?language=objc)
+    /// A stream that provides write-only stream functionality.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSOutputStream`](https://developer.apple.com/documentation/foundation/outputstream) is “toll-free bridged” with its Core Foundation counterpart, [`CFWriteStreamRef`](https://developer.apple.com/documentation/corefoundation/cfwritestream). For more information on toll-free bridging, see [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSOutputStream` is a concrete subclass of `NSStream` that lets you write data to a stream. Although `NSOutputStream` is probably sufficient for most situations requiring this capability, you can create a subclass of `NSOutputStream` if you want more specialized behavior (for example, you want to record statistics on the data in a stream).
+    ///
+    /// #### Methods to Override
+    ///
+    /// To create a subclass of `NSOutputStream` you may have to implement initializers for the type of stream data supported and suitably reimplement existing initializers. You must also provide complete implementations of the following methods:
+    ///
+    /// - [`write:maxLength:`](https://developer.apple.com/documentation/foundation/outputstream/write(_:maxlength:))
+    ///
+    /// From the current write pointer, take up to the number of bytes specified in the `maxLength:` parameter from the client-supplied buffer (first parameter) and put them onto the stream. The buffer must be of the size specified by the second parameter. To prepare for the next operation, offset the write pointer by the number of bytes written. Return a signed integer based on the outcome of the current operation:
+    ///
+    /// - If the write operation is successful, return the actual number of bytes put onto the stream.
+    ///
+    /// - If the stream is of a fixed length and has reached its capacity, return `0`.
+    ///
+    /// - If there was an error writing to the stream, return `-1`.
+    ///
+    /// - [`hasSpaceAvailable`](https://developer.apple.com/documentation/foundation/outputstream/hasspaceavailable)
+    ///
+    /// Return [`true`](https://developer.apple.com/documentation/swift/true) if the stream can currently accept more data, [`false`](https://developer.apple.com/documentation/swift/false) if it cannot. If you want to be semantically compatible with `NSOutputStream`, return [`true`](https://developer.apple.com/documentation/swift/true) if a write must be attempted to determine if space is available.
+    ///
+    ///
     #[unsafe(super(NSStream, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOutputStream;
@@ -479,7 +573,7 @@ impl NSOutputStream {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamdelegate?language=objc)
+    /// An interface that delegates of a stream instance use to handle events on the stream.
     pub unsafe trait NSStreamDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(stream:handleEvent:))]
@@ -489,165 +583,191 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/propertykey/socketsecuritylevelkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The security level of the target stream. See `Secure-Socket Layer (SSL) Security Level` for a list of possible values.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelKey: &'static NSStreamPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocketsecuritylevel?language=objc)
+/// `NSStream` defines these string constants for specifying the secure-socket layer (SSL) security level.
+///
+/// ## Discussion
+///
+/// You access and set these values using the `NSStreamSocketSecurityLevelKey` property key.
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSocketSecurityLevel = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocketsecuritylevel/none?language=objc)
+    /// Specifies that no security level be set for a socket stream.
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNone: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocketsecuritylevel/sslv2?language=objc)
+    /// Specifies that SSL version 2 be set as the security protocol for a socket stream.
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv2: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocketsecuritylevel/sslv3?language=objc)
+    /// Specifies that SSL version 3 be set as the security protocol for a socket stream.
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelSSLv3: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocketsecuritylevel/tlsv1?language=objc)
+    /// Specifies that TLS version 1 be set as the security protocol for a socket stream.
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelTLSv1: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocketsecuritylevel/negotiatedssl?language=objc)
+    /// Specifies that the highest level security protocol that can be negotiated be set as the security protocol for a socket stream.
     #[cfg(feature = "NSString")]
     pub static NSStreamSocketSecurityLevelNegotiatedSSL: &'static NSStreamSocketSecurityLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/propertykey/socksproxyconfigurationkey?language=objc)
+    /// Value is an `NSDictionary` object containing SOCKS proxy configuration information.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary returned from the System Configuration framework for SOCKS proxies usually suffices.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyConfigurationKey: &'static NSStreamPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyconfiguration?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSOCKSProxyConfiguration = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyconfiguration/hostkey?language=objc)
+    /// Value is an `NSString` object that represents the SOCKS proxy host.
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyHostKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyconfiguration/portkey?language=objc)
+    /// Value is an `NSNumber` object containing an integer that represents the port on which the proxy listens.
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPortKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyconfiguration/versionkey?language=objc)
+    /// Value is either `NSStreamSOCKSProxyVersion4` or `NSStreamSOCKSProxyVersion5`.
+    ///
+    /// ## Discussion
+    ///
+    /// If this key is not present, `NSStreamSOCKSProxyVersion5` is used by default.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersionKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyconfiguration/userkey?language=objc)
+    /// Value is an `NSString` object containing the user’s name.
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyUserKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyconfiguration/passwordkey?language=objc)
+    /// Value is an `NSString` object containing the user’s password.
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyPasswordKey: &'static NSStreamSOCKSProxyConfiguration;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyversion?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamSOCKSProxyVersion = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyversion/version4?language=objc)
+    /// Possible value for `NSStreamSOCKSProxyVersionKey`.
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion4: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamsocksproxyversion/version5?language=objc)
+    /// Possible value for `NSStreamSOCKSProxyVersionKey`.
     #[cfg(feature = "NSString")]
     pub static NSStreamSOCKSProxyVersion5: &'static NSStreamSOCKSProxyVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/propertykey/datawrittentomemorystreamkey?language=objc)
+    /// Value is an `NSData` instance containing the data written to a memory stream.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this property when you have an output-stream object instantiated to collect written data in memory. The value of this property is read-only.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSStreamDataWrittenToMemoryStreamKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/propertykey/filecurrentoffsetkey?language=objc)
+    /// Value is an `NSNumber` object containing the current absolute offset of the stream.
     #[cfg(feature = "NSString")]
     pub static NSStreamFileCurrentOffsetKey: &'static NSStreamPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain?language=objc)
+    /// The error domain used by `NSError` when reporting SSL errors.
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSocketSSLErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain?language=objc)
+    /// The error domain used by `NSError` when reporting SOCKS errors.
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSStreamSOCKSErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stream/propertykey/networkservicetype?language=objc)
+    /// The type of service for the stream. Providing the service type allows the system to properly handle certain attributes of the stream, including routing and suspension behavior. Most streams do not need to set this property. See `Stream Service Types` for a list of possible values.
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceType: &'static NSStreamPropertyKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamnetworkservicetypevalue?language=objc)
+/// `NSStream` defines these string constants for specifying the service type of a stream.
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSStreamNetworkServiceTypeValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamnetworkservicetypevalue/voip?language=objc)
+    /// Specifies that the stream is providing VoIP service.
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoIP: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamnetworkservicetypevalue/video?language=objc)
+    /// Specifies that the stream is providing video service.
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVideo: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamnetworkservicetypevalue/background?language=objc)
+    /// Specifies that the stream is providing a background service.
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeBackground: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamnetworkservicetypevalue/voice?language=objc)
+    /// Specifies that the stream is providing voice service.
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeVoice: &'static NSStreamNetworkServiceTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/streamnetworkservicetypevalue/callsignaling?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSStreamNetworkServiceTypeCallSignaling: &'static NSStreamNetworkServiceTypeValue;
 }

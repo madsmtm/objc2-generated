@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus?language=objc)
+/// Values that describe the status or preferability of a lane.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPLaneStatus(pub NSInteger);
 impl CPLaneStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus/notgood?language=objc)
+    /// The lane status is not good.
     #[doc(alias = "CPLaneStatusNotGood")]
     pub const NotGood: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus/good?language=objc)
+    /// The lane status is good.
     #[doc(alias = "CPLaneStatusGood")]
     pub const Good: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplanestatus/preferred?language=objc)
+    /// The lane status is preferred.
     #[doc(alias = "CPLaneStatusPreferred")]
     pub const Preferred: Self = Self(2);
 }
@@ -33,9 +33,8 @@ unsafe impl RefEncode for CPLaneStatus {
 }
 
 extern_class!(
+    /// A class that describes characteristics of a lane on a roadway.
     /// `CPLane`represents information about a single lane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplane?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPLane;

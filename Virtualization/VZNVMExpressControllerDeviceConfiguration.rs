@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration object that represents an NVM Express Controller storage device.
+    ///
+    /// ## Overview
+    ///
+    /// This device configuration creates a storage device that conforms to the [NVM Express specification revision 1.1b](https://nvmexpress.org/wp-content/uploads/NVM-Express-1_1b-1.pdf).
+    ///
+    /// The device configuration is valid only if used with [`VZGenericPlatformConfiguration`](https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration).
+    ///
+    ///
     /// Configuration of an NVM Express Controller storage device.
     ///
     /// This device configuration creates a storage device that conforms to the NVM Express specification revision 1.1b.
@@ -14,8 +23,6 @@ extern_class!(
     /// The device configuration is valid only if used with VZGenericPlatformConfiguration.
     ///
     /// See: VZGenericPlatformConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznvmexpresscontrollerdeviceconfiguration?language=objc)
     #[unsafe(super(VZStorageDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceConfiguration")]

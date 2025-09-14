@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol?language=objc)
+    /// A set of methods that declares the interface for objects that draw text attachment icons and handle mouse events on their icons.
+    ///
+    /// ## Overview
+    ///
+    /// With the exceptions of [`cellBaselineOffset`](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol/cellbaselineoffset()), [`attachment`](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol/attachment), and [`attachment`](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol/attachment), all of these methods are implemented by the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) class.For general information on text attachments, see [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) and [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview).
+    ///
+    ///
     #[doc(alias = "NSTextAttachmentCell")]
     #[name = "NSTextAttachmentCell"]
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
@@ -141,7 +147,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcell-swift.class?language=objc)
+    /// An object that implements the functionality of the text attachment cell protocol.
+    ///
+    /// ## Overview
+    ///
+    /// This specification describes only those methods whose implementations have features that are particular to this class. For a general discussion of the protocol’s methods, see [`NSTextAttachmentCell`](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol).
+    ///
+    ///
     #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]

@@ -4,37 +4,55 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype?language=objc)
+/// Constants describing the type of the call.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallRecordType(pub NSInteger);
 impl INCallRecordType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/unknown?language=objc)
+    /// An unknown type of call.
     #[doc(alias = "INCallRecordTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/outgoing?language=objc)
+    /// A call initiated by the current user.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant for calls that your app initiates.
+    ///
+    ///
     #[doc(alias = "INCallRecordTypeOutgoing")]
     pub const Outgoing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/missed?language=objc)
+    /// A received call that the user did not answer.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant for calls that were not picked up by the user.
+    ///
+    ///
     #[doc(alias = "INCallRecordTypeMissed")]
     pub const Missed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/received?language=objc)
+    /// A received call that the user answered.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant for calls that your app receives from another user.
+    ///
+    ///
     #[doc(alias = "INCallRecordTypeReceived")]
     pub const Received: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/latest?language=objc)
+    /// The most recent call involving the user.
     #[doc(alias = "INCallRecordTypeLatest")]
     pub const Latest: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/voicemail?language=objc)
+    /// A voicemail left from a missed call.
     #[doc(alias = "INCallRecordTypeVoicemail")]
     pub const Voicemail: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/ringing?language=objc)
+    /// An incoming call that is currently causing the user’s phone to ring.
     #[doc(alias = "INCallRecordTypeRinging")]
     pub const Ringing: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/inprogress?language=objc)
+    /// A received call that is currently in progress.
     #[doc(alias = "INCallRecordTypeInProgress")]
     pub const InProgress: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordtype/onhold?language=objc)
+    /// A received call that the user has put on hold.
     #[doc(alias = "INCallRecordTypeOnHold")]
     pub const OnHold: Self = Self(8);
 }

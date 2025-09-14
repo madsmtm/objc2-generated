@@ -28,18 +28,22 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__MDQuery"> for MDQuery {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags?language=objc)
+/// Specify the execution mode for a query.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDQueryOptionFlags(pub c_uint);
 impl MDQueryOptionFlags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdquerysynchronous?language=objc)
+    /// Specifies that a query should block during the initial gather phase. The query’s run loop will run in the default mode. If this option is not specified the query function returns immediately after starting the query asynchronously.
     #[doc(alias = "kMDQuerySynchronous")]
     pub const Synchronous: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdquerywantsupdates?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies that a query should provide live-updates to the result list after the initial gathering phase. Updates occur during the live-update phase if a change in a file occurs such that it no longer matches the query or if it begins to match the query. Files which begin to match the query are added to the result list, and files which no longer match the query expression are removed from the result list. Currently, this option is ignored if the `kMDQuerySynchronous` parameter is specified. This is subject to change, and you should always pass the value appropriate to the required behavior.
+    ///
+    ///
     #[doc(alias = "kMDQueryWantsUpdates")]
     pub const WantsUpdates: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdqueryallowfstranslation?language=objc)
     #[doc(alias = "kMDQueryAllowFSTranslation")]
     pub const AllowFSTranslation: Self = Self(8);
 }
@@ -55,9 +59,8 @@ unsafe impl RefEncode for MDQueryOptionFlags {
 }
 
 unsafe impl ConcreteType for MDQuery {
+    /// Returns the type identifier of all MDQuery instances
     /// Returns the type identifier of all MDQuery instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413037-mdquerygettypeid?language=objc)
     #[doc(alias = "MDQueryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -69,6 +72,24 @@ unsafe impl ConcreteType for MDQuery {
 }
 
 impl MDQuery {
+    /// Creates a new query instance.
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator object to be used to allocate memory for the new object. Pass `NULL` or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - queryString: The query expression string for this query.
+    ///
+    /// - valueListAttrs: An optional array of attribute names. The query will collect the values of these attributes into uniqued lists that can be used to summarize the results of the query and allow the user to further qualify the search. This parameter may be `NULL` if no value lists are required. Value list collection increases CPU usage and significantly increases the memory usage of an MDQuery. The attribute names are CFStrings.
+    ///
+    /// - sortingAttrs: A n array of attribute names used to sort the results, or `NULL` if no sorting is required. The first name in the array is used as the primary sort key, the second as the secondary key, and so on. The comparison of like-typed values is a simple, literal comparison. Sorting increases memory usage and significantly increases the CPU usage of an MDQuery. It is usually more efficient to allow the MDQuery to sort the results than retrieving the values and sorting the results yourself. The attribute names are CFStrings.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An MDQueryRef, or `NULL` on failure. If the query string is empty or malformed the function returns NULL.
+    ///
+    ///
     /// Creates a new query with the given query expression.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -114,8 +135,6 @@ impl MDQuery {
     /// - `value_list_attrs` might not allow `None`.
     /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413029-mdquerycreate?language=objc)
     #[doc(alias = "MDQueryCreate")]
     #[inline]
     pub unsafe fn new(
@@ -137,6 +156,26 @@ impl MDQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new query that is a subset of the specified parentquery.
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator object to be used to allocate memory for the new object. Pass NULL or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - query: The parent query
+    ///
+    /// - queryString: The query expression string for this query.
+    ///
+    /// - valueListAttrs: An optional array of attribute names. The query will collect the values of these attributes into uniqued lists that can be used to summarize the results of the query and allow the user to further qualify the search. This parameter may be `NULL` if no value lists are required. Value list collection increases CPU usage and significantly increases the memory usage of an MDQuery. The attribute names are CFStrings.
+    ///
+    /// - sortingAttrs: A n array of attribute names used to sort the results, or `NULL` if no sorting is required. The first name in the array is used as the primary sort key, the second as the secondary key, and so on. The comparison of like-typed values is a simple, literal comparison. Sorting increases memory usage and significantly increases the CPU usage of an MDQuery. It is usually more efficient to allow the MDQuery to sort the results than retrieving the values and sorting the results yourself. The attribute names are CFStrings.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An MDQueryRef, or `NULL` on failure. If the query string is empty or malformed the function returns NULL.
+    ///
+    ///
     /// Creates a new query, which is a subset of the given query. Only
     /// results matched by the given query can be matched by the
     /// query expression of this query.
@@ -188,8 +227,6 @@ impl MDQuery {
     /// - `value_list_attrs` might not allow `None`.
     /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413027-mdquerycreatesubset?language=objc)
     #[doc(alias = "MDQueryCreateSubset")]
     #[inline]
     pub unsafe fn new_subset(
@@ -270,8 +307,6 @@ impl MDQuery {
     /// - `sorting_attrs` might not allow `None`.
     /// - `items` generic must be of the correct type.
     /// - `items` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413031-mdquerycreateforitems?language=objc)
     #[doc(alias = "MDQueryCreateForItems")]
     #[inline]
     pub unsafe fn new_for_items(
@@ -304,11 +339,21 @@ impl MDQuery {
 
     /// Returns the query string of the query.
     ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFStringRef containing the query string.
+    ///
+    ///
+    /// Returns the query string of the query.
+    ///
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The query string of the query.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413004-mdquerycopyquerystring?language=objc)
     #[doc(alias = "MDQueryCopyQueryString")]
     #[inline]
     pub unsafe fn query_string(&self) -> Option<CFRetained<CFString>> {
@@ -319,14 +364,24 @@ impl MDQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the list of attribute names for which values are being collected by the query.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArrayRef containing the attribute names of the collected values.
+    ///
+    ///
     /// Returns the list of attribute names for which the query is
     /// collecting the lists of values.
     ///
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The list of value list attribute names of the query.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413071-mdquerycopyvaluelistattributes?language=objc)
     #[doc(alias = "MDQueryCopyValueListAttributes")]
     #[inline]
     pub unsafe fn value_list_attributes(&self) -> Option<CFRetained<CFArray>> {
@@ -337,14 +392,24 @@ impl MDQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the list of attribute names used to sort the results.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArrayRef containing the attribute names used to sort the query results.
+    ///
+    ///
     /// Returns the list of attribute names the query is using to sort
     /// the results.
     ///
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The list of sorting attribute names of the query.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413059-mdquerycopysortingattributes?language=objc)
     #[doc(alias = "MDQueryCopySortingAttributes")]
     #[inline]
     pub unsafe fn sorting_attributes(&self) -> Option<CFRetained<CFArray>> {
@@ -356,6 +421,13 @@ impl MDQuery {
     }
 }
 
+/// Structure containing the progress notification batchingparameters of a MDQuery.
+///
+/// ## Overview
+///
+/// The default batching parameters are undefined and subjectto change.
+///
+///
 /// Structure containing the progress notification batching
 /// parameters of an MDQuery. The first notification can be
 /// triggered by the either first_max_num or first_max_ms limit
@@ -396,8 +468,6 @@ impl MDQuery {
 /// have passed since the query began accumulating results",
 /// but generally not very long after, for update notifications
 /// after the gathering phase of the query has finished.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerybatchingparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MDQueryBatchingParams {
@@ -430,6 +500,18 @@ unsafe impl RefEncode for MDQueryBatchingParams {
 }
 
 impl MDQuery {
+    /// Returns the current parameters that control the batching of progress notifications.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An MDQueryBatchingParams structure with the current batching parameters.
+    ///
+    ///
     /// Returns the current parameters that control batching of progress
     /// notifications.
     ///
@@ -437,8 +519,6 @@ impl MDQuery {
     ///
     /// Returns: An MDQueryBatchingParams structure with the current
     /// batching parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413006-mdquerygetbatchingparameters?language=objc)
     #[doc(alias = "MDQueryGetBatchingParameters")]
     #[inline]
     pub unsafe fn batching_parameters(&self) -> MDQueryBatchingParams {
@@ -448,12 +528,17 @@ impl MDQuery {
         unsafe { MDQueryGetBatchingParameters(self) }
     }
 
+    /// Set the query batching parameters.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - params: An MDQueryBatchingParams structure with the batching parameters to set.
+    ///
     /// Parameter `query`: The query whose batching parameters are to be set.
     ///
     /// Parameter `params`: An MDQueryBatchingParams structure with the batching
     /// parameters to set.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413103-mdquerysetbatchingparameters?language=objc)
     #[doc(alias = "MDQuerySetBatchingParameters")]
     #[inline]
     pub unsafe fn set_batching_parameters(&self, params: MDQueryBatchingParams) {
@@ -464,6 +549,28 @@ impl MDQuery {
     }
 }
 
+/// Callback function used to create the result objects stored and returned by a query.
+///
+/// Parameters:
+/// - query: The query instance.
+///
+/// - item: The default MDItemRef for the result.
+///
+/// - context: The user-defined context parameter provided to the `MDQuerySetCreateResultFunction` function.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The function mustreturn a pointer-sized value that can be managed with the callbackswhich were set at the same time the create function was given tothe query. The value must be returned with a reference (such asif the retain callback had been called on it), as implied by theCreate name. If this function doesn't wish to create a new objectit can return the given MDItemRef, but must also return it witha new retain, and the callbacks must be able to handle an MDItemRefas an input value. If this function returns NULL, NULL will be storedfor the moment in the query, MDQueryGetResultAtIndex() may returnNULL for that result, and the next time the query wants the result,it will call this function again.
+///
+///
+///
+/// ## Discussion
+///
+/// The function may hold onto the given attribute name and/orvalue in some other data structure, but must retain them for themto remain valid.
+///
+///
 /// Type of the callback function used to create the result objects
 /// stored and returned by an MDQuery. The function may
 /// hold onto the given MDItemRef in some other data
@@ -494,13 +601,28 @@ impl MDQuery {
 /// moment in the query, MDQueryGetResultAtIndex() may return
 /// NULL for that result, and the next time the query wants
 /// the result, it will call this function again.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerycreateresultfunction?language=objc)
 #[cfg(feature = "MDItem")]
 pub type MDQueryCreateResultFunction =
     Option<unsafe extern "C-unwind" fn(*mut MDQuery, *mut MDItem, *mut c_void) -> *const c_void>;
 
 impl MDQuery {
+    /// Sets the function used to create the result objects of the MDQuery.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - func: The callback function the MDQuery will use to create its results, such as those returned by the function `MDQueryGetResultAtIndex`. This parameter may be `NULL`, in which case any previous result creation settings are cancelled and the MDQuery will subsequently produce MDItemRefs. If a function is specified and is not of type `MDQueryCreateResultFunction` or does not behave as a `MDQueryCreateResultFunction` must, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized user-defined value, that is passed as the third parameter to the create function. MDQuery does not use this value, does not retain the context in any way, and requires that the context be valid for the lifetime of the query. If the context is not what is expected by the create function, the behavior is undefined.
+    ///
+    /// - cb: A pointer to a `CFArrayCallBacks` structure initialized with the callbacks for the query to use to manage the created result objects. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in, or can be reused for multiple query creations. Only version 0 of the `CFArrayCallBacks` is supported. The retain field may be `NULL`, in which case the MDQuery will not add a retain to the created results for the query. The release field may be `NULL`, in which case the MDQuery will not remove the query's retain (such as the one it gets from the create function) on the result objects when the query is destroyed. If the `copyDescription` field is `NULL`, the query will create a simple description for the result objects. If the `equal` field is `NULL`, the query will use pointer equality to test for equality of results. This callbacks parameter itself may be `NULL` in which case it is treated as a valid version 0 structure with all fields NULL. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a `CFArrayCallBacks` callbacks structure, the behavior is undefined. If any of the value values returned from the create function is not one understood by one or more of the callback functions, the behavior when those callback functions are used is undefined. For example, if the create function can return `NULL`, then `NULL` must be understood by the callback functions as a possible parameter. The retain and release callbacks must be a matched set, you should not assume that the retain function will be unused or that additional reference counts will not be taken on the created results.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If no create function is specified for an MDQuery, the default result objects are MDItemRefs. Results created after the function `MDQuerySetCreateResultFunction` is called are created through the specified create function, but values created before the function was set, or after it is unset, are not modified. It is not advisable to change this function after the function `MDQueryExecute` has been called. The create-result function is called lazily as results are requested from a query, it is not called on all results, and may not be called at all. This avoids the cost of creating potentially hundreds of thousands of what might be temporary objects.
+    ///
+    ///
     /// Sets the function used to create the result objects of the
     /// MDQuery. If no create function is set on an MDQuery,
     /// the default result objects are MDItemRefs. Results
@@ -573,8 +695,6 @@ impl MDQuery {
     /// - `func` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `cb` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413064-mdquerysetcreateresultfunction?language=objc)
     #[doc(alias = "MDQuerySetCreateResultFunction")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -596,6 +716,30 @@ impl MDQuery {
     }
 }
 
+/// Callback function usedto create the value objects stored and returned by a query.
+///
+/// Parameters:
+/// - query: The query instance.
+///
+/// - attrName: The attribute name of the value.
+///
+/// - attrValue: The default value of the value.
+///
+/// - context: The user-defined context parameter provided in the `MDQuerySetCreateValueFunction` function.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The function must return a pointer-sized value that can be managed with the callback which were set at the same time the create function was given to the query. The value must be returned with a reference (such as if the retain callback had been called on it), as implied by the Create name. If this function doesn't wish to create a new object, it can return the given CFTypeRef, but must also return it with a new retain, and the callbacks must be able to handle a `CFTypeRef` as an input value.
+///
+///
+///
+/// ## Discussion
+///
+/// The function may hold onto the given attribute name and/or value in some other data structure, but must retain them for them to remain valid
+///
+///
 /// Type of the callback function used to create the value objects
 /// stored and returned by an MDQuery. The function may
 /// hold onto the given attribute name and/or value in some
@@ -620,8 +764,6 @@ impl MDQuery {
 /// new object, it can return the given CFTypeRef, but must
 /// also return it with a new retain, and the callbacks must
 /// be able to handle a CFTypeRef as an input value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerycreatevaluefunction?language=objc)
 pub type MDQueryCreateValueFunction = Option<
     unsafe extern "C-unwind" fn(
         *mut MDQuery,
@@ -632,6 +774,23 @@ pub type MDQueryCreateValueFunction = Option<
 >;
 
 impl MDQuery {
+    /// Sets the function used to create the value objects of the MDQuery.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - func: The callback function the MDQuery should use to create the value list values, such as those returned by the function `MDQueryCopyValuesOfAttribute`. This parameter may be `NULL`, in which case any previous value creation settings are cancelled and the MDQuery will subsequently produce the default CFTypeRefs. If a function is specified and is not of type `MDQueryCreateValueFunction` or does not behave as a `MDQueryCreateValueFunction` must, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized user-defined value, that is passed as the third parameter to the create function. MDQuery does not use this value, does not retain the context in any way, and requires that the context be valid for the lifetime of the query. If the context is not what is expected by the create function, the behavior is undefined.
+    ///
+    /// - cb: A pointer to a CFArrayCallBacks structure initialized with the callbacks for the query to use to manage the created value objects. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in, or can be reused for multiple query creations. Only version 0 of the `CFArrayCallBacks` is supported. The retain field may be `NULL`, in which case the MDQuery will not add a retain to the created values. The release field may be `NULL`, in which case the MDQuery will do nothing to remove the query's retain (such as the one it gets from the create function) on the value objects when the query is destroyed. If the `copyDescription` field is `NULL`, the query will create a simple description for the value objects. If the `equal` field is `NULL`, the query will use pointer equality to test for equality of values. This callbacks parameter itself may be `NULL` in which case it is treated as a valid version 0 structure with all fields `NULL`. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a `CFArrayCallBacks` callbacks structure, the behavior is undefined. If any of the value values returned from the create function is not one understood by one or more of the callback functions, the behavior when those callback functions are used is undefined. For example, if the create function can return `NULL`, then `NULL` must be understood by the callback functions as a possible parameter. The retain and release callbacks must be a matched set, you should not assume that the retain function will be unused or that additional reference counts will not be taken on the created results.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Values created after a create function is set will be created using the newly specified function, but existing values are not modified. It is not advisable to change this function after `MDQueryExecute` has been called with the query.
+    ///
+    ///
     /// Sets the function used to create the value objects of the
     /// MDQuery. These are the values of the value lists that
     /// were requested when the query was created. If no create
@@ -702,8 +861,6 @@ impl MDQuery {
     /// - `func` must be implemented correctly.
     /// - `context` must be a valid pointer.
     /// - `cb` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413017-mdquerysetcreatevaluefunction?language=objc)
     #[doc(alias = "MDQuerySetCreateValueFunction")]
     #[inline]
     pub unsafe fn set_create_value_function(
@@ -723,6 +880,21 @@ impl MDQuery {
         unsafe { MDQuerySetCreateValueFunction(self, func, context, cb) }
     }
 
+    /// Sets the dispatch queue on which query results will be delivered by MDQueryExecute.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - queue: The dispatch queue on which results should be delivered.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It is not advisable to change set dispatch queue after [`MDQueryExecute`](https://developer.apple.com/documentation/coreservices/1413099-mdqueryexecute) has been called with the query.
+    ///
+    /// Setting the dispatch queue for a synchronous query ([`kMDQuerySynchronous`](https://developer.apple.com/documentation/coreservices/mdqueryoptionflags/kmdquerysynchronous)) has no effect.
+    ///
+    ///
     /// Set the dispatch queue on which query results will be delivered
     /// by MDQueryExecute. It is not advisable to change set
     /// dispatch queue after MDQueryExecute() has been called with
@@ -737,8 +909,6 @@ impl MDQuery {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413019-mdquerysetdispatchqueue?language=objc)
     #[doc(alias = "MDQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -749,6 +919,30 @@ impl MDQuery {
         unsafe { MDQuerySetDispatchQueue(self, queue) }
     }
 
+    /// Run the query, and populate the query with the results.
+    ///
+    /// Parameters:
+    /// - query: The query to execute.
+    ///
+    /// - optionFlags: A bitwise OR of the `MDQueryOptionFlags` to be used by the query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns `TRUE` if the query was started, `FALSE` otherwise. Queries cannot be executed more than once.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Queries only gather results or process updates while the current thread's run loop is running.
+    ///
+    /// Queries have two phases: the initial gathering phase that collects all currently matching results and a second live-update phase. Updates occur during the live-update phase if a change in a file occurs such that it no longer matches the query or if it begins to match the query. Files which begin to match the query are added to the result list, and files which no longer match the query expression are removed from the result list.
+    ///
+    /// Query notifications are posted within the context of the same thread which executes the query.
+    ///
+    ///
     /// Run the query, and populate the query with the results. Queries
     /// only gather results or process updates while the current
     /// thread's run loop is running. Queries normally operate
@@ -783,8 +977,6 @@ impl MDQuery {
     /// Returns: Returns true if the query was started (executed in the case
     /// of a synchronous query), false otherwise. Queries cannot be
     /// executed more than once.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413099-mdqueryexecute?language=objc)
     #[doc(alias = "MDQueryExecute")]
     #[inline]
     pub unsafe fn execute(&self, option_flags: CFOptionFlags) -> bool {
@@ -795,6 +987,17 @@ impl MDQuery {
         ret != 0
     }
 
+    /// Stops the query from generating more results.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Queries may be executed only once and cannot be restarted. The query will first complete processing any unprocessed results.do. That may trigger a progress notification, so be aware of that if you are stopping a query from within your progress note handler; that is, during this function, a recursive progress and/or finished notification might occur, which might recursively call your notification handler. It is safe to call this function recursively. You would call this function to stop a query that is generating way too many results to be useful, but still want to access the results that have come in so far. If a query is stopped before the gathering phase finishes, it will not report itself as finished, nor will it send out a finished notification.
+    ///
+    ///
     /// Stops the query from ever generating more results. Queries may be
     /// executed only once, so a stopped query cannot be
     /// restarted. The query will also not generate any result
@@ -816,8 +1019,6 @@ impl MDQuery {
     /// notification.
     ///
     /// Parameter `query`: The query to stop.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413077-mdquerystop?language=objc)
     #[doc(alias = "MDQueryStop")]
     #[inline]
     pub unsafe fn stop(&self) {
@@ -827,6 +1028,17 @@ impl MDQuery {
         unsafe { MDQueryStop(self) }
     }
 
+    /// Disables updates to the query result list.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function should be called before iterating over query results that could change due to live-updates. The disabled state is a counter and disabling can be done recursively and from different threads.
+    ///
+    ///
     /// Disables updates to the query result list. This should be called
     /// before iterating through the list of results to prevent
     /// the result list from changing during the iteration. The
@@ -837,8 +1049,6 @@ impl MDQuery {
     ///
     /// Returns: The generation number of the query. This changes each time the query's
     /// result set has changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413041-mdquerydisableupdates?language=objc)
     #[doc(alias = "MDQueryDisableUpdates")]
     #[inline]
     pub unsafe fn disable_updates(&self) {
@@ -848,6 +1058,17 @@ impl MDQuery {
         unsafe { MDQueryDisableUpdates(self) }
     }
 
+    /// Enables updates to the query result list.
+    ///
+    /// Parameters:
+    /// - query:  The query.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function should be called when finished iterating through the list of results. Live-updates to the query results will continue when all the disables have been matched by a corresponding enable.
+    ///
+    ///
     /// Re-enables updates to the query result list. This should be called
     /// when finished iterating through the list of results, to
     /// allow changes to the result list to occur. Changes will
@@ -855,8 +1076,6 @@ impl MDQuery {
     /// corresponding enable.
     ///
     /// Parameter `query`: The query for which updates are to be enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413066-mdqueryenableupdates?language=objc)
     #[doc(alias = "MDQueryEnableUpdates")]
     #[inline]
     pub unsafe fn enable_updates(&self) {
@@ -866,6 +1085,18 @@ impl MDQuery {
         unsafe { MDQueryEnableUpdates(self) }
     }
 
+    /// Returns true if the first phase of a query, the initial result gathering, has finished.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns `TRUE` if the first phase of a query has completed, otherwise `FALSE`.
+    ///
+    ///
     /// Returns true if the first phase of a query, the initial result
     /// gathering, has finished.
     ///
@@ -873,8 +1104,6 @@ impl MDQuery {
     ///
     /// Returns: A boolean indicating whether or not the first phase
     /// of a query has completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413032-mdqueryisgatheringcomplete?language=objc)
     #[doc(alias = "MDQueryIsGatheringComplete")]
     #[inline]
     pub unsafe fn is_gathering_complete(&self) -> bool {
@@ -886,14 +1115,30 @@ impl MDQuery {
     }
 
     /// Returns the number of results currently collected by the query.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The number of results in the query.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that the number of results in a query will change over time as the query's result list is updated.
+    ///
+    ///
+    /// Returns the number of results currently collected by the query.
     /// Note that the number of results in a query will change
     /// over time as the query's result list is updated.
     ///
     /// Parameter `query`: The query to be interrogated.
     ///
     /// Returns: The number of results in the query.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413008-mdquerygetresultcount?language=objc)
     #[doc(alias = "MDQueryGetResultCount")]
     #[inline]
     pub unsafe fn result_count(&self) -> CFIndex {
@@ -903,6 +1148,28 @@ impl MDQuery {
         unsafe { MDQueryGetResultCount(self) }
     }
 
+    /// Returns the current result at the given index.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - idx: The index into the query's result list. If the index is negative, or is equal to or larger than the current number of results in the query, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the MDItemRef currently at the given index, or if a result-creation function has been set, returns the result returned by that function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function causes the result object to be created if it hasn't been created already. For performance reasons you should only request objects that you require. If possible, call this function to fetch only the results you need to display or otherwise process.
+    ///
+    /// Note that the index of a particular result can change over time if the query is configured to allow live-updates.
+    ///
+    ///
     /// Returns the current result at the given index. This function
     /// causes the result object to be created if it hasn't
     /// been created already. For performance reasons, it is
@@ -922,8 +1189,6 @@ impl MDQuery {
     /// Returns: Returns the MDItemRef currently at the given index, or
     /// if a result-create function has been set, returns the
     /// result returned by that function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413055-mdquerygetresultatindex?language=objc)
     #[doc(alias = "MDQueryGetResultAtIndex")]
     #[inline]
     pub unsafe fn result_at_index(&self, idx: CFIndex) -> *const c_void {
@@ -933,6 +1198,28 @@ impl MDQuery {
         unsafe { MDQueryGetResultAtIndex(self, idx) }
     }
 
+    /// Returns the current index of the given result.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - result: The result object to search for. If a custom create-result function has been set and this parameter is not a valid result object that the provided callbacks can handle, the behavior is undefined. If a custom create-result function has not been set this parameter must be a valid MDItemRef.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The index of the given result, or `kCFNotFound` if the value is not one of the query's existing results. If you provided a custom result creation function result, the result will be objects created by that function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a result-create function has been set, and the equal callback is non-`NULL`, it will be used to test the query's results against the candidate result.
+    ///
+    /// Note that the index of a result can change over time if the query allows live-updates.
+    ///
+    ///
     /// Returns the current index of the given result. If a result-create
     /// function has been set, and the equal callback is non-NULL,
     /// it will be used to test the query's results against the
@@ -957,8 +1244,6 @@ impl MDQuery {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413093-mdquerygetindexofresult?language=objc)
     #[doc(alias = "MDQueryGetIndexOfResult")]
     #[inline]
     pub unsafe fn index_of_result(&self, result: *const c_void) -> CFIndex {
@@ -968,6 +1253,22 @@ impl MDQuery {
         unsafe { MDQueryGetIndexOfResult(self, result) }
     }
 
+    /// Returns the value of the named attribute for the result at the given index.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - name: The attribute name to return the values of. If the attribute is not one of those requested in the `valueListAttrs` or `sortingAttrs` parameters to one of the query creation functions, the result will be `NULL`.
+    ///
+    /// - idx: The index into the query's result list. If the index is negative or is equal to or larger than the current number of results in the query, the behavior is undefined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The value of the attribute, or `NULL` if the attribute doesn't exist for the specified result.
+    ///
+    ///
     /// Returns the value of the named attribute for the result at
     /// the given index.
     ///
@@ -988,8 +1289,6 @@ impl MDQuery {
     /// # Safety
     ///
     /// `name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413046-mdquerygetattributevalueofresult?language=objc)
     #[doc(alias = "MDQueryGetAttributeValueOfResultAtIndex")]
     #[inline]
     pub unsafe fn attribute_value_of_result_at_index(
@@ -1007,6 +1306,20 @@ impl MDQuery {
         unsafe { MDQueryGetAttributeValueOfResultAtIndex(self, name, idx) }
     }
 
+    /// Returns the list of values from the results of the query for the specified attribute.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - name: The attribute name to return the value of. If the attribute is not one of those requested when the query was created the behavior is undefined
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArrayRef containing the value objects for the specified attribute. The array contents are not ordered and contain only one occurrence of each value. The array contents may change over time if the query is configured for live-updates.
+    ///
+    ///
     /// Returns the list of values, from the results of the query, of the
     /// named attribute. The list is not ordered in any way. The
     /// list contains only one occurrence of each value. Note that
@@ -1025,8 +1338,6 @@ impl MDQuery {
     /// # Safety
     ///
     /// `name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413105-mdquerycopyvaluesofattribute?language=objc)
     #[doc(alias = "MDQueryCopyValuesOfAttribute")]
     #[inline]
     pub unsafe fn values_of_attribute(
@@ -1043,6 +1354,28 @@ impl MDQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the number of results which have the given attribute and attribute value.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - name: The attribute name to return the result count of. If the attribute is not one of those requested in the `valueListAttrs` parameter, the behavior is undefined.
+    ///
+    /// - value: The attribute value for which to return the number of results with that value. This parameter may be `NULL`, in which case the number of results that do not contain the specified attribute is returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The number of results containing that attribute and value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This count may change over time if the query allows live-updates.
+    ///
+    ///
     /// Returns the number of results which have the given attribute and
     /// attribute value. Note that this count may change over time,
     /// as the query's result list is updated.
@@ -1067,8 +1400,6 @@ impl MDQuery {
     /// - `name` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413009-mdquerygetcountofresultswithattr?language=objc)
     #[doc(alias = "MDQueryGetCountOfResultsWithAttributeValue")]
     #[inline]
     pub unsafe fn count_of_results_with_attribute_value(
@@ -1102,8 +1433,6 @@ impl MDQuery {
     ///
     /// - `sorting_attrs` generic must be of the correct type.
     /// - `sorting_attrs` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413096-mdquerysetsortorder?language=objc)
     #[doc(alias = "MDQuerySetSortOrder")]
     #[inline]
     pub unsafe fn set_sort_order(&self, sorting_attrs: Option<&CFArray>) -> bool {
@@ -1115,12 +1444,10 @@ impl MDQuery {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerysortoptionflags?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDQuerySortOptionFlags(pub c_uint);
 impl MDQuerySortOptionFlags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerysortoptionflags/kmdqueryreversesortorderflag?language=objc)
     #[doc(alias = "kMDQueryReverseSortOrderFlag")]
     pub const ReverseSortOrderFlag: Self = Self(1 << 0);
 }
@@ -1150,8 +1477,6 @@ impl MDQuery {
     /// # Safety
     ///
     /// `field_name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413075-mdquerysetsortoptionflagsforattr?language=objc)
     #[doc(alias = "MDQuerySetSortOptionFlagsForAttribute")]
     #[inline]
     pub unsafe fn set_sort_option_flags_for_attribute(
@@ -1181,8 +1506,6 @@ impl MDQuery {
     /// # Safety
     ///
     /// `field_name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413013-mdquerygetsortoptionflagsforattr?language=objc)
     #[doc(alias = "MDQueryGetSortOptionFlagsForAttribute")]
     #[inline]
     pub unsafe fn sort_option_flags_for_attribute(&self, field_name: Option<&CFString>) -> u32 {
@@ -1196,6 +1519,24 @@ impl MDQuery {
     }
 }
 
+/// Callback function used to sort the results of a query.
+///
+/// Parameters:
+/// - query: The query instance.
+///
+/// - attrs1: A C array of attribute values for a result. The values occur in the array in the same order and position that the attribute names were passed in the `sortingAttrs` array when the query was created. The values of the attributes will be `NULL` if the attribute doesn't exist for a result or if read access to that attribute is not allowed.
+///
+/// - attrs2: A C array of attribute values for a result. The values occur in the array in the same order and position that the attribute names were passed in the `sortingAttrs` array when the query was created. The values of the attributes will be `NULL` if the attribute doesn't exist for a result or if read access to that attribute is not allowed.
+///
+/// - context: The user-defined context parameter provided in the function `MDQuerySetSortComparator`.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The function must return one of the CFComparisonResults `kCFCompareLessThan`, `kCFCompareEqualTo`, or `kCFCompareGreaterThan`. There is no provision for unordered results. The comparison should be a total order relation and produce the same results for the same inputs.
+///
+///
 /// Type of the callback function used to sort the results of an
 /// MDQuery.
 ///
@@ -1227,8 +1568,6 @@ impl MDQuery {
 /// and additionally produce temporally identical results (that
 /// is, produce the same results for the same inputs in the
 /// future as now), for the sort results to be predictable.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerysortcomparatorfunction?language=objc)
 pub type MDQuerySortComparatorFunction = Option<
     unsafe extern "C-unwind" fn(
         *mut *const CFType,
@@ -1238,6 +1577,15 @@ pub type MDQuerySortComparatorFunction = Option<
 >;
 
 impl MDQuery {
+    /// Sets the function used to sort the results of an MDQuery.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - comparator: The callback function the MDQuery uses to sort the results list. This parameter may be `NULL` which cancels previous sort comparator settings. If a function is specified and is not of type `MDQuerySortComparatorFunction` or does not behave as a `MDQuerySortComparatorFunction` must, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized user-defined value, that is passed as the third parameter to the create function. MDQuery does not use this value, does not retain the context in any way, and requires that the context be valid for the lifetime of the query. If the context is not what is expected by the create function, the behavior is undefined.
+    ///
     /// Sets the function used to sort the results of an MDQuery. You
     /// may set the comparator function as many times as you
     /// like, even while the query is executing. Whenever the
@@ -1272,8 +1620,6 @@ impl MDQuery {
     ///
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413087-mdquerysetsortcomparator?language=objc)
     #[doc(alias = "MDQuerySetSortComparator")]
     #[inline]
     pub unsafe fn set_sort_comparator(
@@ -1291,7 +1637,23 @@ impl MDQuery {
         unsafe { MDQuerySetSortComparator(self, comparator, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413021-mdquerysetsortcomparatorblock?language=objc)
+    /// Sets the block used to sort the results of an MDQuery.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - comparator: The callback block the MDQuery will use to sort its results. The comparator may be called on multiple threads in parallel, and must be reentrant. To take advantage of parallel sorting, it is best to avoid any locking in the comparator.
+    ///
+    /// The block may be `NULL` to cancel any custom comparator.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You may set the comparator block as many times as you like, even while the query is executing. Whenever the comparator block is set, all results are re-sorted using the new comparator block before the function returns. The block can be NULL to cancel custom sorting and revert to the default sorting.
+    ///
+    /// The default sort provided by [`MDQueryCreate`](https://developer.apple.com/documentation/coreservices/1413029-mdquerycreate) is an ascending sort. Strings are compared using [`CFStringCompare(_:_:_:)`](https://developer.apple.com/documentation/corefoundation/cfstringcompare(_:_:_:)) with the options [`compareNonliteral`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenonliteral) | [`compareLocalized`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparelocalized) | [`compareNumerically`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenumerically). `CFDataRefs` are compared by using `memcmp()` of the data pointers.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1320,6 +1682,7 @@ impl MDQuery {
 }
 
 extern "C" {
+    /// Notification posted to indicate that a change has occurred to the query’s results list during the initial result-gathering phase of execution.
     /// The name of the notification sent to indicate changes to the
     /// query's results list during the initial gathering phase
     /// of a query's execution. Mostly adds will occur during
@@ -1333,12 +1696,11 @@ extern "C" {
     /// progress notifications (to avoid the cost of creating
     /// the result objects). These notifications are sent out
     /// by a query before the kMDQueryDidFinishNotification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryprogressnotification?language=objc)
     pub static kMDQueryProgressNotification: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Posted to indicate that the query has finished the initial result-gathering phase.
     /// The name of the notification sent to indicate that the query has
     /// finished with the initial result-gathering phase, and may
     /// now proceed into the live-update phase (if that option
@@ -1347,12 +1709,11 @@ extern "C" {
     /// It is usually not necessary to update any displayed UI in
     /// response to this notification, since it doesn't indicate
     /// any change in the result list of a query.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdquerydidfinishnotification?language=objc)
     pub static kMDQueryDidFinishNotification: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Notification posted to indicate that a change has occurred to the query’s results list during the live-update phase of a query’s execution.
     /// The name of the notification sent to indicate changes to the
     /// query's results list during the second, live-update, phase
     /// of a query's execution. This notification can carry the
@@ -1363,24 +1724,22 @@ extern "C" {
     /// if there are no changes of that particular type. These
     /// notifications are sent out by a query after the
     /// kMDQueryDidUpdateNotification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdquerydidupdatenotification?language=objc)
     pub static kMDQueryDidUpdateNotification: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// An array that identifies the items that have been added to the query results. This list only contains result objects that have previously been created, result objects that have not been created are not included.
     /// The name of the key in a query notification's info dictionary
     /// which identifies the list of added results. A result is
     /// added if the file contents or some metadata attribute
     /// of it is changed, and it now matches the query. Result
     /// objects are created for the newly added results, to be
     /// put in the list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryupdateaddeditems?language=objc)
     pub static kMDQueryUpdateAddedItems: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// An array that identifies the items that have changed in the query results. This list only contains result objects that have previously been created, result objects that have not been created are not included.
     /// The name of the key in a query notification's info dictionary
     /// which identifies the list of changed results. A result
     /// is changed if the file contents or some metadata
@@ -1393,12 +1752,11 @@ extern "C" {
     /// result objects just to represent a change of a result
     /// which has not been looked at, but this semantic may
     /// change.]]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryupdatechangeditems?language=objc)
     pub static kMDQueryUpdateChangedItems: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// An array that identifies the items that have been removed from the query results. This list only contains result objects that have previously been created, result objects that have not been created are not included.
     /// The name of the key in a query notification's info dictionary
     /// which identifies the list of removed results. A result
     /// can be removed if it no longer matches the query. The
@@ -1409,12 +1767,11 @@ extern "C" {
     /// [[This is for performance reasons, to avoid creating
     /// temporary result objects just to represent the deletion
     /// of the result, but this semantic may change.]]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryupdateremoveditems?language=objc)
     pub static kMDQueryUpdateRemovedItems: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// A CFNumberRef with a floating point value between 0.0 and 1.0 inclusive.
     /// The name of a query-specific attribute for use in sorting.
     /// The relevance of an item is a CFNumberRef with a
     /// floating point value. This is the relevance for
@@ -1438,12 +1795,25 @@ extern "C" {
     /// computed, it is treated as an attribute on the
     /// item which does not exist (for sorting purposes,
     /// for example).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryresultcontentrelevance?language=objc)
     pub static kMDQueryResultContentRelevance: Option<&'static CFString>;
 }
 
 impl MDQuery {
+    /// Sets the search scope for a query instance.
+    ///
+    /// Parameters:
+    /// - query: The query object to modify.
+    ///
+    /// - scopeDirectories: A CFArray of CFStringRef or CFURLRef objects which specify where to search. For convenience the `kMDQueryScopeHome`, `kMDQueryScopeComputer` and `kMDQueryScopeNetwork` constants may also be included in the array.
+    ///
+    /// - scopeOptions: Additional options for modifying the search. Currently you must pass 0.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     /// Use MDQuerySetSearchScope to limit the results
     /// returned by the query engine to those MDItemRefs that
     /// appear  within the specified directories.  This may be
@@ -1466,8 +1836,6 @@ impl MDQuery {
     ///
     /// - `scope_directories` generic must be of the correct type.
     /// - `scope_directories` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413048-mdquerysetsearchscope?language=objc)
     #[doc(alias = "MDQuerySetSearchScope")]
     #[inline]
     pub unsafe fn set_search_scope(
@@ -1487,66 +1855,71 @@ impl MDQuery {
 }
 
 extern "C" {
+    /// Specifies that the query should be restricted to the volume and directory that contains the current user’s home directory.
     /// A constant, which can be passed in the scopeDirectories array, to specify
     /// that the search should be restricted to the volume and directory that contains
     /// the current user's home directory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopehome?language=objc)
     pub static kMDQueryScopeHome: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Specifies that the query should be restricted to all locally mounted volumes, plus the user’s home directory (which may be on a remote volume).
     /// A constant, which can be passed in the scopeDirectories array, to specify
     /// that the search should be restricted to all locally mounted volumes, plus the user's
     /// home directory (which may be on a remote volume).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopecomputer?language=objc)
     pub static kMDQueryScopeComputer: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Specifies that the query should include all user mounted remote volumes.
     /// A constant, which can be passed in the scopeDirectories array, to specify
     /// that the search should include all user mounted remote volumes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopenetwork?language=objc)
     pub static kMDQueryScopeNetwork: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Specifies that the search should be restricted to indexed, locally mounted volumes and indexed user mounted remote volumes, plus the user's home directory.
     /// A constant, which can be passed in the scopeDirectories array, to specify
     /// that the search should be restricted to indexed, locally mounted volumes and
     /// indexed user mounted remote volumes, plus the user's home directory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopeallindexed?language=objc)
     pub static kMDQueryScopeAllIndexed: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Specifies that the search should be restricted to indexed, locally mounted volumes, plus the user's home directory (which may be on a remote volume).
     /// A constant, which can be passed in the scopeDirectories array, to specify
     /// that the search should be restricted to indexed, locally mounted volumes, plus the user's
     /// home directory (which may be on a remote volume).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopecomputerindexed?language=objc)
     pub static kMDQueryScopeComputerIndexed: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Specifies that the search should include indexed user mounted remote volumes.
     /// A constant, which can be passed in the scopeDirectories array, to specify
     /// that the search should include indexed user mounted remote volumes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdqueryscopenetworkindexed?language=objc)
     pub static kMDQueryScopeNetworkIndexed: Option<&'static CFString>;
 }
 
 impl MDQuery {
+    /// Sets the maximum number of results returned.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - size: The maximum number of return results.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This must be called before the query is executed.
+    ///
+    ///
     /// Use MDQuerySetMaxCount to limit the number of results
     /// returned by the query engine.  This must be called before the query is executed.
     ///
     /// Parameter `query`: The query object to modify.
     ///
     /// Parameter `size`: The maximum number of results desired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1413085-mdquerysetmaxcount?language=objc)
     #[doc(alias = "MDQuerySetMaxCount")]
     #[inline]
     pub unsafe fn set_max_count(&self, size: CFIndex) {

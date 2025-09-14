@@ -13,7 +13,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetchangerequest?language=objc)
+    /// A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) class to request changes for [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) objects. To make changes to assets in the Photos library, create a change request by using the appropriate class method for the change you want to perform.
+    ///
+    /// - Call one of the methods listed in Adding New Assets to create a new asset from an image or video file.
+    ///
+    /// - Call the [`deleteAssets:`](https://developer.apple.com/documentation/photos/phassetchangerequest/deleteassets(_:)) method to delete existing assets.
+    ///
+    /// - Call the [`changeRequestForAsset:`](https://developer.apple.com/documentation/photos/phassetchangerequest/init(for:)) method to modify an asset’s content or metadata.
+    ///
+    /// A change request for creating or modifying an asset works like a mutable version of the asset object. Use the change request’s properties to request changes to the corresponding properties of the asset itself. For example, the following code uses the [`favorite`](https://developer.apple.com/documentation/photos/phassetchangerequest/isfavorite) property of a change request to mark an asset as a favorite:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func toggleFavorite(for asset: PHAsset) {        ", "    PHPhotoLibrary.shared().performChanges {", "        // Create a change request from the asset to be modified.", "        let request = PHAssetChangeRequest(for: asset)", "        // Set a property of the request to change the asset itself.", "        request.isFavorite = !asset.isFavorite", "    } completionHandler: { success, error in", "        print(\"Finished updating asset. \" + (success ? \"Success.\" : error!.localizedDescription))", "    }  ", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)toggleFavoriteForAsset:(PHAsset *)asset {", "    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{", "        // Create a change request from the asset to be modified.", "        PHAssetChangeRequest *request = [PHAssetChangeRequest changeRequestForAsset:asset];", "        // Set a property of the request to change the asset itself.", "        request.favorite = !asset.favorite;", "    } completionHandler:^(BOOL success, NSError *error) {", "        NSLog(@\"Finished updating asset. %@\", (success ? @\"Success.\" : error));", "    }];", "}"], metadata: None }] }] })
+    /// After Photos runs the change block and calls your completion handler, the asset’s state reflects the changes that you requested in the block.
+    ///
+    /// If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]
@@ -135,11 +154,25 @@ impl PHAssetChangeRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestid?language=objc)
+/// An identifier for an asset content editing session.
+///
+/// ## Discussion
+///
+/// To begin editing the content of an asset, call the [`requestContentEditingInputWithOptions:completionHandler:`](https://developer.apple.com/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)) method to retrieve a [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object that provides data for editing. This method asynchronously prepares an editing input and calls your completion handler block when the editing input is ready. To abandon editing before Photos calls the completion handler, call the [`cancelContentEditingInputRequest:`](https://developer.apple.com/documentation/photos/phasset/cancelcontenteditinginputrequest(_:)) method, passing the [`PHContentEditingInputRequestID`](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestid) you received when requesting an edit.
+///
+///
 pub type PHContentEditingInputRequestID = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions?language=objc)
+    /// A set of options affecting the delivery of image or video data when you request to edit the content of a Photos asset.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`PHContentEditingInputRequestOptions`](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions) class with the [`requestContentEditingInputWithOptions:completionHandler:`](https://developer.apple.com/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)) method for editing the contents of a [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) object.
+    ///
+    /// This class doesn’t affect photo editing extensions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHContentEditingInputRequestOptions;
@@ -244,17 +277,35 @@ impl PHAsset {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputresultisincloudkey?language=objc)
+    /// A Boolean value indicating whether the asset data is stored on the local device or must be downloaded from iCloud. (`NSNumber`)
+    ///
+    /// ## Discussion
+    ///
+    /// If `true`, no asset data was provided because the asset data must be downloaded from iCloud. To do this, submit another request, specifying `true` for the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phcontenteditinginputrequestoptions/isnetworkaccessallowed) option.
+    ///
+    ///
     pub static PHContentEditingInputResultIsInCloudKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputcancelledkey?language=objc)
+    /// A Boolean value indicating whether the image request was canceled. (`NSNumber`)
+    ///
+    /// ## Discussion
+    ///
+    /// If you call the [`cancelContentEditingInputRequest:`](https://developer.apple.com/documentation/photos/phasset/cancelcontenteditinginputrequest(_:)) method to cancel a request, Photos calls your result handler block with the value `true` for this key.
+    ///
+    ///
     pub static PHContentEditingInputCancelledKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginputerrorkey?language=objc)
+    /// An error that occurred while attempting to load the asset data. (`NSError`)
+    ///
+    /// ## Discussion
+    ///
+    /// Photos provides an error object for this key if it cannot provide asset data for your handler block’s `contentEditingInput` parameter. Examine the error object for information about the cause of the error.
+    ///
+    ///
     pub static PHContentEditingInputErrorKey: &'static NSString;
 }
 

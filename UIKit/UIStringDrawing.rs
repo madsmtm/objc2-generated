@@ -6,57 +6,119 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributefont?language=objc)
+    /// The key to the font in a text attributes dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`UIFont`](https://developer.apple.com/documentation/uikit/uifont).
+    ///
+    /// Use a font with size `0.0` to get the default font size for the current context.
+    ///
+    ///
     #[deprecated]
     pub static UITextAttributeFont: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextcolor?language=objc)
+    /// The key to the text color in a text attributes dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor).
+    ///
+    ///
     #[deprecated]
     pub static UITextAttributeTextColor: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextshadowcolor?language=objc)
+    /// The key to the text shadow color in a text attributes dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor).
+    ///
+    ///
     #[deprecated = "Use NSShadowAttributeName with an NSShadow instance as the value"]
     pub static UITextAttributeTextShadowColor: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributetextshadowoffset?language=objc)
+    /// The key to the offset for the text shadow in a text attributes dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an instance of [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) wrapping a [`UIOffset`](https://developer.apple.com/documentation/uikit/uioffset) struct.
+    ///
+    ///
     #[deprecated = "Use NSShadowAttributeName with an NSShadow instance as the value"]
     pub static UITextAttributeTextShadowOffset: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode?language=objc)
+/// Options for wrapping and truncating text.
+///
+/// ## Overview
+///
+/// For methods that draw at a specified point (as opposed to those that draw in a rectangular region), these options specify the clipping behavior that UIKit applies to the string.
+///
+///
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILineBreakMode(pub NSInteger);
 impl UILineBreakMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodewordwrap?language=objc)
+    /// Wrap or clip the string only at word boundaries.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default wrapping option.
+    ///
+    ///
     #[doc(alias = "UILineBreakModeWordWrap")]
     #[deprecated]
     pub const WordWrap: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodecharacterwrap?language=objc)
+    /// Wrap or clip the string at the closest character boundary.
     #[doc(alias = "UILineBreakModeCharacterWrap")]
     #[deprecated]
     pub const CharacterWrap: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodeclip?language=objc)
+    /// Clip the text when reaching the end of the drawing rectangle.
+    ///
+    /// ## Discussion
+    ///
+    /// This option could result in a partially rendered character at the end of a string.
+    ///
+    ///
     #[doc(alias = "UILineBreakModeClip")]
     #[deprecated]
     pub const Clip: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodeheadtruncation?language=objc)
+    /// Truncate text (as necessary) from the beginning of the line.
+    ///
+    /// ## Discussion
+    ///
+    /// For multiple lines of text, only text on the first line truncates.
+    ///
+    ///
     #[doc(alias = "UILineBreakModeHeadTruncation")]
     #[deprecated]
     pub const HeadTruncation: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodetailtruncation?language=objc)
+    /// Truncate text (as necessary) from the end of the line.
+    ///
+    /// ## Discussion
+    ///
+    /// For multiple lines of text, only text on the last line truncates.
+    ///
+    ///
     #[doc(alias = "UILineBreakModeTailTruncation")]
     #[deprecated]
     pub const TailTruncation: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilinebreakmode/uilinebreakmodemiddletruncation?language=objc)
+    /// Truncate text (as necessary) from the middle of the line.
+    ///
+    /// ## Discussion
+    ///
+    /// For multiple lines of text, text truncates only at the midpoint of the line.
+    ///
+    ///
     #[doc(alias = "UILineBreakModeMiddleTruncation")]
     #[deprecated]
     pub const MiddleTruncation: Self = Self(5);
@@ -70,22 +132,22 @@ unsafe impl RefEncode for UILineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment?language=objc)
+/// Options for aligning text horizontally.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAlignment(pub NSInteger);
 impl UITextAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment/uitextalignmentleft?language=objc)
+    /// Align text along the left edge.
     #[doc(alias = "UITextAlignmentLeft")]
     #[deprecated]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment/uitextalignmentcenter?language=objc)
+    /// Align text equally along both sides of the center line.
     #[doc(alias = "UITextAlignmentCenter")]
     #[deprecated]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalignment/uitextalignmentright?language=objc)
+    /// Align text along the right edge.
     #[doc(alias = "UITextAlignmentRight")]
     #[deprecated]
     pub const Right: Self = Self(2);
@@ -99,19 +161,31 @@ unsafe impl RefEncode for UITextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment?language=objc)
+/// Vertical adjustment options.
+///
+/// ## Overview
+///
+/// Baseline adjustment options determine how to adjust the position of text in cases where the text must be drawn using a different font size than the one originally specified. For example, with the [`UIBaselineAdjustmentAlignBaselines`](https://developer.apple.com/documentation/uikit/uibaselineadjustment/alignbaselines) option, the position of the baseline remains fixed at its initial location while the text appears to move toward that baseline. Similarly, the [`UIBaselineAdjustmentNone`](https://developer.apple.com/documentation/uikit/uibaselineadjustment/none) option makes it appear as if the text is moving upwards toward the top-left corner of the bounding box.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBaselineAdjustment(pub NSInteger);
 impl UIBaselineAdjustment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment/alignbaselines?language=objc)
+    /// Adjust text relative to the position of its baseline.
     #[doc(alias = "UIBaselineAdjustmentAlignBaselines")]
     pub const AlignBaselines: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment/aligncenters?language=objc)
+    /// Adjust text relative to the center of its bounding box.
     #[doc(alias = "UIBaselineAdjustmentAlignCenters")]
     pub const AlignCenters: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment/none?language=objc)
+    /// Adjust text relative to the top-left corner of the bounding box.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default adjustment.
+    ///
+    ///
     #[doc(alias = "UIBaselineAdjustmentNone")]
     pub const None: Self = Self(2);
 }

@@ -5,7 +5,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability?language=objc)
+    /// An interface that adds Boolean values that indicate an interaction session feature support.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NISession`](https://developer.apple.com/documentation/nearbyinteraction/nisession) class property [`deviceCapabilities`](https://developer.apple.com/documentation/nearbyinteraction/nisession/devicecapabilities) adopts this protocol. At runtime, inspect this property to determine the available features of an interaction session on the person’s device.
+    ///
+    /// In a compatible iPad or iPhone app running in visionOS, the framework reports that all capabilities are unavailable.
+    ///
+    ///
     pub unsafe trait NIDeviceCapability {
         /// Whether or not this device is capable of participating in a nearby interaction session with precise ranging
         #[unsafe(method(supportsPreciseDistanceMeasurement))]

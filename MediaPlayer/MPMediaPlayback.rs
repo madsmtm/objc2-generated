@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplayback?language=objc)
+    /// A protocol that defines the interface for controlling audio media playback.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol supports basic transport operations including start, stop, and pause, and also lets you seek forward and back through media or to a specific point in its timeline.
+    ///
+    ///
     pub unsafe trait MPMediaPlayback {
         #[unsafe(method(prepareToPlay))]
         #[unsafe(method_family = none)]
@@ -62,7 +68,13 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaybackispreparedtoplaydidchangenotification?language=objc)
+    /// Indicates that the prepared to play status of the media player has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// Posted upon change in the prepared-to-play state of an object conforming to the [`MPMediaPlayback`](https://developer.apple.com/documentation/mediaplayer/mpmediaplayback) protocol. The object whose state has changed is available as the object associated with the notification.
+    ///
+    ///
     #[deprecated = "Use AVPlayerViewController in AVKit."]
     pub static MPMediaPlaybackIsPreparedToPlayDidChangeNotification: Option<&'static NSString>;
 }

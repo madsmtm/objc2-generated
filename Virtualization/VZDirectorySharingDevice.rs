@@ -6,6 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The base class that represents a directory sharing device in a VM.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate `VZDirectorySharingDevice` directly; configure a directory sharing device first by using [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) through a subclass of [`VZDirectorySharingDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzdirectorysharingdeviceconfiguration).
+    ///
+    /// When you create a [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) from the configuration, the directory sharing devices are available through the `VZVirtualMachine.directorySharingDevices` property.
+    ///
+    /// The real type of `VZDirectorySharingDevice` corresponds to the type used by the configuration. For example, a [`VZVirtioFileSystemDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdeviceconfiguration) leads to a device of type [`VZVirtioFileSystemDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiofilesystemdevice).
+    ///
+    ///
     /// Base class representing a directory sharing device in a virtual machine.
     ///
     /// VZDirectorySharingDevice should not be instantiated directly.
@@ -19,8 +30,6 @@ extern_class!(
     /// See: VZVirtioFileSystemDevice
     ///
     /// See: VZVirtioFileSystemDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdirectorysharingdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZDirectorySharingDevice;

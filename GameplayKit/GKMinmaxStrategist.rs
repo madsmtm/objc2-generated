@@ -7,13 +7,40 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An AI that chooses moves in turn-based games using a _deterministic_ strategy.
+    ///
+    /// ## Overview
+    ///
+    /// To use this strategy, you provide scores that rate possible states of your game model for their desirability to a player, and the strategist exhaustively searches all possible game model states in order to make choices that maximize the rating for its own moves and minimize the rating for an opponent’s moves. You provide information about your game model to the strategist by implementing the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel), [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer), and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols in your custom classes, and then use the strategist’s methods to find optimal moves.
+    ///
+    /// ### Choosing a Strategist
+    ///
+    /// GameplayKit provides multiple strategist classes. The advantage of the [`GKMinmaxStrategist`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist) class is its deterministic, exhaustive strategy: If allowed, the minmax strategist searches the entire space of possible moves and the game states they lead to, so it can find the best possible move at any time. The cost of this strategy is performance: searching every possible game state takes time, especially for complex games where many moves are possible at any given time. Additionally, this strategy requires that your game model implement the [`scoreForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/score(for:)) method to rate the desirability of each game state.
+    ///
+    /// See the [`GKStrategist`](https://developer.apple.com/documentation/gameplaykit/gkstrategist) protocol for alternate strategies, as well as the methods and properties supported by all strategist classes.
+    ///
+    /// ### Using a Minmax Strategist
+    ///
+    /// Using the minmax strategist in a game requires the following steps:
+    ///
+    /// 1. Create classes describing your gameplay model, adopting the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel), [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer), and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols.
+    ///
+    /// 2. Create [`GKMinmaxStrategist`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist) instance and configure its properties [`maxLookAheadDepth`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist/maxlookaheaddepth) and [`randomSource`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/randomsource) to determine its gameplay behavior.
+    ///
+    /// 3. Point the minmax strategist’s [`gameModel`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel) property at the instance of your game model class (that is, your class that implements the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel) protocol) representing the current state of the game in play.
+    ///
+    /// 4. Use the [`bestMoveForActivePlayer`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/bestmoveforactiveplayer()) method to select the best possible move for the current player. This method returns a move object (that is, an instance of the custom class you create to adopt the [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocol).
+    ///
+    /// 5. Examine the move object to make use of the move selected by the strategist. You created this instance in the [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method of your game model class to describe a possible move in your game, so examining the object gives you the information needed to perform that move.
+    ///
+    /// For more information about describing your gameplay model and using strategists, see [The Minmax Strategist](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// The Minmax Strategist is a generic AI that selects a game model update for a given player that maximises
     /// potential gain, while minimising potential loss. It does this by examining all of the updates available
     /// to the player in question, extrapolating the potential moves opposing players may take, projecting out
     /// maxLookAheadDepth number of turns. The selected update will result in the greatest potential gain, balanced
     /// against the potential gain of other players.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMinmaxStrategist;

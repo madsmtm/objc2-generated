@@ -7,23 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A constant indicating whether the workout session takes place indoors or outdoors.
 /// This enumerated type is used to represent the location type of a workout session.
 ///
 /// This value represents whether a workout is performed indoors or outdoors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWorkoutSessionLocationType(pub NSInteger);
 impl HKWorkoutSessionLocationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/unknown?language=objc)
+    /// It is not known whether the workout session is taking place indoors or outdoors.
     #[doc(alias = "HKWorkoutSessionLocationTypeUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/indoor?language=objc)
+    /// The workout session is indoors.
     #[doc(alias = "HKWorkoutSessionLocationTypeIndoor")]
     pub const Indoor: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionlocationtype/outdoor?language=objc)
+    /// The workout session is outdoors.
     #[doc(alias = "HKWorkoutSessionLocationTypeOutdoor")]
     pub const Outdoor: Self = Self(3);
 }
@@ -37,9 +36,14 @@ unsafe impl RefEncode for HKWorkoutSessionLocationType {
 }
 
 extern_class!(
-    /// An HKWorkoutConfiguration is an object that can be used to describe the workout activity.
+    /// An object that contains configuration information about a workout session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// Like many HealthKit classes, the [`HKWorkoutConfiguration`](https://developer.apple.com/documentation/healthkit/hkworkoutconfiguration) class is not extendable and should not be subclassed.
+    ///
+    ///
+    /// An HKWorkoutConfiguration is an object that can be used to describe the workout activity.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutConfiguration;

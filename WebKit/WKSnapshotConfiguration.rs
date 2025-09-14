@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wksnapshotconfiguration?language=objc)
+    /// The configuration data to use when generating an image from a web view’s contents.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`WKSnapshotConfiguration`](https://developer.apple.com/documentation/webkit/wksnapshotconfiguration) object when you want to generate an image based on your web view’s content. Use this object to specify the portion of the web view to capture and the capture behavior. To generate the snapshot, pass the configuration object to the [`takeSnapshotWithConfiguration:completionHandler:`](https://developer.apple.com/documentation/webkit/wkwebview/takesnapshot(with:completionhandler:)) method of [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview), which returns a platform-native image for you to use.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

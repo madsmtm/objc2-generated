@@ -12,8 +12,7 @@ use crate::*;
 
 extern_class!(
     /// An NSWindowController subclass that supports the creation of an IOBluetoothObjectPushUIController object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothobjectpushuicontroller?language=objc)
+    /// An NSWindowController subclass that supports the creation of an IOBluetoothObjectPushUIController object.
     #[unsafe(super(NSWindowController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothObjectPushUIController;

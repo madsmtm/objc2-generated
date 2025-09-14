@@ -5,19 +5,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewlayoutregionadaptivityaxis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewLayoutRegionAdaptivityAxis(pub NSUInteger);
 impl UIViewLayoutRegionAdaptivityAxis {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewlayoutregionadaptivityaxis/uiviewlayoutregionadaptivityaxisnone?language=objc)
     #[doc(alias = "UIViewLayoutRegionAdaptivityAxisNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewlayoutregionadaptivityaxis/uiviewlayoutregionadaptivityaxishorizontal?language=objc)
     #[doc(alias = "UIViewLayoutRegionAdaptivityAxisHorizontal")]
     pub const Horizontal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewlayoutregionadaptivityaxis/uiviewlayoutregionadaptivityaxisvertical?language=objc)
     #[doc(alias = "UIViewLayoutRegionAdaptivityAxisVertical")]
     pub const Vertical: Self = Self(2);
 }
@@ -31,7 +27,6 @@ unsafe impl RefEncode for UIViewLayoutRegionAdaptivityAxis {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewlayoutregion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewLayoutRegion;

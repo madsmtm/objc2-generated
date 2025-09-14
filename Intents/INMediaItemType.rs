@@ -4,73 +4,79 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype?language=objc)
+/// The type of content the media item describes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaItemType(pub NSInteger);
 impl INMediaItemType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/unknown?language=objc)
+    /// A media type that indicates an unknown type.
     #[doc(alias = "INMediaItemTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/song?language=objc)
+    /// A media type that indicates a song.
     #[doc(alias = "INMediaItemTypeSong")]
     pub const Song: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/album?language=objc)
+    /// A media type that indicates an album.
     #[doc(alias = "INMediaItemTypeAlbum")]
     pub const Album: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/artist?language=objc)
+    /// A media type that indicates an artist.
     #[doc(alias = "INMediaItemTypeArtist")]
     pub const Artist: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/genre?language=objc)
+    /// A media type that indicates a genre.
     #[doc(alias = "INMediaItemTypeGenre")]
     pub const Genre: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/playlist?language=objc)
+    /// A media type that indicates a playlist of music.
     #[doc(alias = "INMediaItemTypePlaylist")]
     pub const Playlist: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/podcastshow?language=objc)
+    /// A media type that indicates a podcast show.
     #[doc(alias = "INMediaItemTypePodcastShow")]
     pub const PodcastShow: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/podcastepisode?language=objc)
+    /// A media type that indicates a podcast episode.
     #[doc(alias = "INMediaItemTypePodcastEpisode")]
     pub const PodcastEpisode: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/podcastplaylist?language=objc)
+    /// A media type that indicates a playlist of podcast episodes.
     #[doc(alias = "INMediaItemTypePodcastPlaylist")]
     pub const PodcastPlaylist: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/musicstation?language=objc)
+    /// A media type that indicates a music station.
     #[doc(alias = "INMediaItemTypeMusicStation")]
     pub const MusicStation: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/audiobook?language=objc)
+    /// A media type that indicates an audio book.
     #[doc(alias = "INMediaItemTypeAudioBook")]
     pub const AudioBook: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/movie?language=objc)
+    /// A media type that indicates a movie.
     #[doc(alias = "INMediaItemTypeMovie")]
     pub const Movie: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/tvshow?language=objc)
+    /// A media type that indicates a TV show or series.
     #[doc(alias = "INMediaItemTypeTVShow")]
     pub const TVShow: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/tvshowepisode?language=objc)
+    /// A media type that indicates an episode of a TV show or series.
     #[doc(alias = "INMediaItemTypeTVShowEpisode")]
     pub const TVShowEpisode: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/musicvideo?language=objc)
+    /// A media type that indicates a music video.
     #[doc(alias = "INMediaItemTypeMusicVideo")]
     pub const MusicVideo: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/podcaststation?language=objc)
+    /// A media type that indicates a podcast station.
     #[doc(alias = "INMediaItemTypePodcastStation")]
     pub const PodcastStation: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/radiostation?language=objc)
+    /// A media type that indicates a radio station.
     #[doc(alias = "INMediaItemTypeRadioStation")]
     pub const RadioStation: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/station?language=objc)
+    /// A media type that indicates a station.
     #[doc(alias = "INMediaItemTypeStation")]
     pub const Station: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/music?language=objc)
+    /// A media type that indicates music.
     #[doc(alias = "INMediaItemTypeMusic")]
     pub const Music: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/algorithmicradiostation?language=objc)
+    /// A media type that indicates related content.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this media type when your app plays a station based on the user’s request, rather than the exact media the user requested.
+    ///
+    ///
     #[doc(alias = "INMediaItemTypeAlgorithmicRadioStation")]
     pub const AlgorithmicRadioStation: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaitemtype/news?language=objc)
+    /// A media type that indicates news.
     #[doc(alias = "INMediaItemTypeNews")]
     pub const News: Self = Self(20);
 }

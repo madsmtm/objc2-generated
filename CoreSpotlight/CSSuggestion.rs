@@ -7,23 +7,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestionhighlightattributename?language=objc)
     pub static CSSuggestionHighlightAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum?language=objc)
+/// The suggestion type that determines how the system handles a suggestion.
+///
+/// ## Overview
+///
+/// Suggestions that the system returns from the query handler have [`CSSuggestionKindDefault`](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/default).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CSSuggestionKind(pub NSInteger);
 impl CSSuggestionKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/none?language=objc)
+    /// Blocks the system from displaying the suggestion.
     #[doc(alias = "CSSuggestionKindNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/custom?language=objc)
+    /// Sorts the custom suggestions together.
     #[doc(alias = "CSSuggestionKindCustom")]
     pub const Custom: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum/default?language=objc)
+    /// Displays the suggestion normally.
     #[doc(alias = "CSSuggestionKindDefault")]
     pub const Default: Self = Self(2);
 }
@@ -37,7 +42,13 @@ unsafe impl RefEncode for CSSuggestionKind {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion?language=objc)
+    /// The kind of suggestion to use in a query.
+    ///
+    /// ## Overview
+    ///
+    /// Your app uses `CSSuggestion` objects to populate a contextual menu of suggestions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSSuggestion;

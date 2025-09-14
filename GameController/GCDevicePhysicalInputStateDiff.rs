@@ -6,27 +6,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange?language=objc)
+/// Possible values that describe whether the input value of an element changes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCDevicePhysicalInputElementChange(pub NSInteger);
 impl GCDevicePhysicalInputElementChange {
+    /// It’s unknown whether there’s a change to the input value.
+    ///
+    /// ## Discussion
+    ///
+    /// This occurs if Game Controller removes older input states from the queue.
+    ///
+    ///
     /// Indicates that a change could not be determined.  This is typically
     /// because the input state queue filled up and older input state snapshots
     /// were dropped.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange/unknownchange?language=objc)
     #[doc(alias = "GCDevicePhysicalInputElementUnknownChange")]
     pub const UnknownChange: Self = Self(-1);
+    /// There’s no change to the input value.
     /// Indicates that no value of the element changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange/nochange?language=objc)
     #[doc(alias = "GCDevicePhysicalInputElementNoChange")]
     pub const NoChange: Self = Self(0);
+    /// There’s a change to the input value.
     /// Indicates that a value of the element changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange/changed?language=objc)
     #[doc(alias = "GCDevicePhysicalInputElementChanged")]
     pub const Changed: Self = Self(1);
 }
@@ -40,14 +43,19 @@ unsafe impl RefEncode for GCDevicePhysicalInputElementChange {
 }
 
 extern_protocol!(
+    /// The common functions for objects that contain the differences between a current and previous input state object.
+    ///
+    /// ## Overview
+    ///
+    /// Use the `GCDevicePhysicalInput` [`nextInputState`](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput/nextinputstate()) method to get an input state object conforming to this protocol.
+    ///
+    ///
     /// An object conforming to the
     /// `GCDevicePhysicalInputStateDiff`protocol
     /// contains the input state differences between the current and previous
     /// `GCDevicePhysicalInputState`objects returned from the
     /// `-nextInputState`method of
     /// `GCDevicePhysicalInput.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstatediff?language=objc)
     pub unsafe trait GCDevicePhysicalInputStateDiff: NSObjectProtocol {
         #[cfg(feature = "GCPhysicalInputElement")]
         /// Check if a value of

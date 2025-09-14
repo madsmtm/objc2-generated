@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontrollerdelegate?language=objc)
+    /// The delegate protocol to inform about changes in color selection.
+    ///
+    /// ## Overview
+    ///
+    /// By implementing the [`UIColorPickerViewControllerDelegate`](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontrollerdelegate) functions, your app can react to a color-selection change or the dismissal of the color picker.
+    ///
+    ///
     pub unsafe trait UIColorPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -61,7 +67,39 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller?language=objc)
+    /// A view controller that manages the interface for selecting a color.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIColorPickerViewController`](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller) provides a standard interface to select colors. Use this class instead of [`UIColorWell`](https://developer.apple.com/documentation/uikit/uicolorwell) if you need more fine-grained control over the presentation.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6428f38ec7cf7ac32266258dae28d00a/media-4195196~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7a8215c6fe7d69222d5d869b01ef7f46/media-4195196%402x.png 2x" />
+    ///     <img alt="Screenshot of a color picker in a popover presentation style, showing a spectrum of color options. The title of the color picker is Colors." src="https://docs-assets.developer.apple.com/published/7a8215c6fe7d69222d5d869b01ef7f46/media-4195196%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// You typically present a [`UIColorPickerViewController`](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller) as a popover:
+    ///
+    /// ```swift
+    /// // This example code appears in a subclass of UIViewController that conforms to
+    /// // UIColorPickerViewControllerDelegate.
+    /// func presentColorPicker() {
+    ///     let colorPicker = UIColorPickerViewController()
+    ///     colorPicker.title = "Background Color"
+    ///     colorPicker.supportsAlpha = false
+    ///     colorPicker.delegate = self
+    ///     colorPicker.modalPresentationStyle = .popover
+    ///     colorPicker.popoverPresentationController?.sourceItem = self.navigationItem.rightBarButtonItem
+    ///     self.present(colorPicker, animated: true)
+    /// }
+    /// ```
+    ///
+    /// You can also react to the color-selection change or the dismissal of the color picker by implementing the [`UIColorPickerViewControllerDelegate`](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontrollerdelegate) functions.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A mutable representation of the postal address for a contact.
+    ///
+    /// ## Overview
+    ///
+    /// `CNMutablePostalAddress` is not a thread-safe class. To remove properties when saving a mutable postal address, set string properties to empty values.
+    ///
+    ///
     /// A mutable value object representing a postal address.
     ///
     ///
@@ -15,8 +22,6 @@ extern_class!(
     ///
     ///
     /// Note: To remove properties when saving a mutable postal address, set string properties to empty values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnmutablepostaladdress?language=objc)
     #[unsafe(super(CNPostalAddress, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNPostalAddress")]

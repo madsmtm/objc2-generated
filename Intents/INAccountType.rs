@@ -4,34 +4,34 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype?language=objc)
+/// Constants indicating the type of account involved in a financial transaction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAccountType(pub NSInteger);
 impl INAccountType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/unknown?language=objc)
+    /// An unknown type of account.
     #[doc(alias = "INAccountTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/checking?language=objc)
+    /// A checking account.
     #[doc(alias = "INAccountTypeChecking")]
     pub const Checking: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/credit?language=objc)
+    /// A credit card account.
     #[doc(alias = "INAccountTypeCredit")]
     pub const Credit: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/debit?language=objc)
+    /// A debit account.
     #[doc(alias = "INAccountTypeDebit")]
     pub const Debit: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/investment?language=objc)
+    /// An investment account.
     #[doc(alias = "INAccountTypeInvestment")]
     pub const Investment: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/mortgage?language=objc)
+    /// A mortgage account.
     #[doc(alias = "INAccountTypeMortgage")]
     pub const Mortgage: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/prepaid?language=objc)
+    /// A prepaid account.
     #[doc(alias = "INAccountTypePrepaid")]
     pub const Prepaid: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttype/saving?language=objc)
+    /// A savings account.
     #[doc(alias = "INAccountTypeSaving")]
     pub const Saving: Self = Self(7);
 }

@@ -10,29 +10,35 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglglobaloption?language=objc)
+/// Constants that specify OpenGL options.
+///
+/// ## Overview
+///
+/// These constants are option names for [`NSOpenGLSetOption`](https://developer.apple.com/documentation/appkit/nsopenglsetoption) and [`NSOpenGLGetOption`](https://developer.apple.com/documentation/appkit/nsopenglgetoption).
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSOpenGLGlobalOption(pub u32);
 impl NSOpenGLGlobalOption {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglglobaloption/formatcachesize?language=objc)
+    /// Sets the size of the pixel format cache.
     #[doc(alias = "NSOpenGLGOFormatCacheSize")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGOFormatCacheSize: Self = Self(501);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglglobaloption/clearformatcache?language=objc)
+    /// Resets the pixel format cache if true.
     #[doc(alias = "NSOpenGLGOClearFormatCache")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGOClearFormatCache: Self = Self(502);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglglobaloption/retainrenderers?language=objc)
+    /// Whether to retain loaded renderers in memory.
     #[doc(alias = "NSOpenGLGORetainRenderers")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGORetainRenderers: Self = Self(503);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglglobaloption/usebuildcache?language=objc)
+    /// Whether to enable the function compilation block cache. This is off by default. It must be enabled at startup.
     #[doc(alias = "NSOpenGLGOUseBuildCache")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GLGOUseBuildCache: Self = Self(506);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglglobaloption/nsopenglgoresetlibrary?language=objc)
+    /// Does a soft reset of the CGL library if true.
     #[doc(alias = "NSOpenGLGOResetLibrary")]
     #[deprecated]
     pub const GLGOResetLibrary: Self = Self(504);
@@ -46,7 +52,13 @@ unsafe impl RefEncode for NSOpenGLGlobalOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglsetoption?language=objc)
+/// Sets global OpenGL options.
+///
+/// ## Discussion
+///
+/// Sets the value of the global OpenGL parameter `pname` to `param`. The available options are enumerated by the [`NSOpenGLGlobalOption`](https://developer.apple.com/documentation/appkit/nsopenglglobaloption) type.
+///
+///
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_vendor = "apple")]
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
@@ -59,7 +71,13 @@ pub extern "C-unwind" fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: G
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglgetoption?language=objc)
+    /// Returns global OpenGL options.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns in `param` the value of the global OpenGL parameter `pname`. The available options are enumerated by the [`NSOpenGLGlobalOption`](https://developer.apple.com/documentation/appkit/nsopenglglobaloption) type.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -71,7 +89,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglgetversion?language=objc)
+    /// Returns the NSOpenGL version numbers.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns by reference the major and minor version numbers of the NSOpenGL implementation. This function is not the same as the OpenGL version.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -83,140 +107,198 @@ extern "C-unwind" {
     pub fn NSOpenGLGetVersion(major: *mut GLint, minor: *mut GLint);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaallrenderers?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that the pixel format selection is open to all available renderers, including debug and special-purpose renderers that are not OpenGL compliant.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAllRenderers: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfatriplebuffer?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only triple-buffered pixel formats are considered. Otherwise, only single-buffered pixel formats are considered.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFATripleBuffer: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfadoublebuffer?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only double-buffered pixel formats are considered. Otherwise, only single-buffered pixel formats are considered.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFADoubleBuffer: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaauxbuffers?language=objc)
+/// Value is a nonnegative integer that indicates the desired number of auxiliary buffers. Pixel formats with the smallest number of auxiliary buffers that meets or exceeds the specified number are preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAuxBuffers: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfacolorsize?language=objc)
+/// Value is a nonnegative buffer size specification. A color buffer that most closely matches the specified size is preferred. If unspecified, OpenGL chooses a color size that matches the screen.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAColorSize: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaalphasize?language=objc)
+/// Value is a nonnegative buffer size specification. An alpha buffer that most closely matches the specified size is preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAlphaSize: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfadepthsize?language=objc)
+/// Value is a nonnegative depth buffer size specification. A depth buffer that most closely matches the specified size is preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFADepthSize: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfastencilsize?language=objc)
+/// Value is a nonnegative integer that indicates the desired number of stencil bitplanes. The smallest stencil buffer of at least the specified size is preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAStencilSize: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaaccumsize?language=objc)
+/// Value is a nonnegative buffer size specification. An accumulation buffer that most closely matches the specified size is preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAccumSize: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaminimumpolicy?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that the pixel format choosing policy is altered for the color, depth, and accumulation buffers such that only buffers of size greater than or equal to the desired size are considered.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAMinimumPolicy: c_uint = 51;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfamaximumpolicy?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that the pixel format choosing policy is altered for the color, depth, and accumulation buffers such that, if a nonzero buffer size is requested, the largest available buffer is preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAMaximumPolicy: c_uint = 52;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfasamplebuffers?language=objc)
+/// Value is a nonnegative number indicating the number of multisample buffers.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFASampleBuffers: c_uint = 55;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfasamples?language=objc)
+/// Value is a nonnegative indicating the number of samples per multisample buffer.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFASamples: c_uint = 56;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaauxdepthstencil?language=objc)
+/// Each auxiliary buffer has its own depth stencil.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAuxDepthStencil: c_uint = 57;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfacolorfloat?language=objc)
+///
+/// ## Discussion
+///
+/// A Boolean attribute. If present, this attribute indicates that only renderers that are capable using buffers storing floating point pixels are considered. This should be accompanied by a `NSOpenGLPFAColorSize` of 64 (for half float pixel components) or 128 (for full float pixel components). Note, not all hardware supports floating point color buffers thus the returned pixel format could be NULL.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAColorFloat: c_uint = 58;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfamultisample?language=objc)
+///
+/// ## Discussion
+///
+/// A Boolean attribute. If present and used with `NSOpenGLPFASampleBuffers` and `NSOpenGLPFASamples`, this attribute hints to OpenGL to prefer multi-sampling. Multi-sampling will sample textures at the back buffer dimensions vice the multi-sample buffer dimensions and use that single sample for all fragments with coverage on the back buffer location. This means less total texture samples than with super-sampling (by a factor of the number of samples requested) and will likely be faster though less accurate (texture sample wise) than super-sampling. If the underlying video card does not have enough VRAM to support this feature, this hint does nothing.
+///
+/// The `NSOpenGLPFASampleBuffers` and `NSOpenGLPFASamples` attributes must be configured to request anti-aliasing as follows:
+///
+/// ```objc
+/// NSOpenGLPFAMultisample,
+/// NSOpenGLPFASampleBuffers, (NSOpenGLPixelFormatAttribute)1
+/// NSOpenGLPFASamples, (NSOpenGLPixelFormatAttribute)4,
+/// ```
+///
+/// If after adding these options, multisamping still does not work, try removing the `NSOpenGLPFAPixelBuffer` attribute (if present). Some graphics cards may not support this option in specific versions of macOS. If removing the attribute still does not enable multisampling, try adding the `NSOpenGLPFANoRecovery` attribute.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAMultisample: c_uint = 59;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfasupersample?language=objc)
+///
+/// ## Discussion
+///
+/// A Boolean attribute. If present and used with `NSOpenGLPFASampleBuffers` and `NSOpenGLPFASamples`, this attribute hints to OpenGL to prefer super-sampling. Super-sampling will process fragments with a texture sample per fragment and would likely be slower than multi-sampling. If the pixel format is not requesting anti-aliasing, this hint does nothing.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFASupersample: c_uint = 60;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfasamplealpha?language=objc)
+/// A Boolean attribute. If present and used with [`NSOpenGLPFASampleBuffers`](https://developer.apple.com/documentation/appkit/nsopenglpfasamplebuffers) and [`NSOpenGLPFASampleBuffers`](https://developer.apple.com/documentation/appkit/nsopenglpfasamplebuffers), this attribute hints to OpenGL to update multi-sample alpha values to ensure the most accurate rendering. If pixel format is not requesting antialiasing then this hint does nothing.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFASampleAlpha: c_uint = 61;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfarendererid?language=objc)
+///
+/// ## Discussion
+///
+/// Value is a nonnegative renderer ID number. OpenGL renderers that match the specified ID are preferred. Constants to select specific renderers are provided in the `CGLRenderers.h` header of the OpenGL framework. Of note is `kCGLRendererGenericID` which selects the Apple software renderer. The other constants select renderers for specific hardware vendors.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFARendererID: c_uint = 70;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfanorecovery?language=objc)
+///
+/// ## Discussion
+///
+/// A Boolean attribute. If present, this attribute indicates that OpenGL’s failure recovery mechanisms are disabled. Normally, if an accelerated renderer fails due to lack of resources, OpenGL automatically switches to another renderer. This attribute disables these features so that rendering is always performed by the chosen renderer. This attribute is not generally useful.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFANoRecovery: c_uint = 72;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaaccelerated?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only hardware-accelerated renderers are considered. If not present, accelerated renderers are still preferred.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAccelerated: c_uint = 73;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaclosestpolicy?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that the pixel format choosing policy is altered for the color buffer such that the buffer closest to the requested size is preferred, regardless of the actual color buffer depth of the supported graphics device.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAClosestPolicy: c_uint = 74;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfabackingstore?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that OpenGL only considers renderers that have a back color buffer the full size of the drawable (regardless of window visibility) and that guarantee the back buffer contents to be valid after a call to `NSOpenGLContext` object’s [`flushBuffer`](https://developer.apple.com/documentation/appkit/nsopenglcontext/flushbuffer()).
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFABackingStore: c_uint = 76;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfascreenmask?language=objc)
+///
+/// ## Discussion
+///
+/// Value is a bit mask of supported physical screens. All screens specified in the bit mask are guaranteed to be supported by the pixel format. Screens not specified in the bit mask may still be supported. The bit mask is managed by the CoreGraphics’s **DirectDisplay**, available in the `CGDirectDisplay.h` header of the ApplicationServices umbrella framework. A `CGDirectDisplayID` must be converted to an OpenGL display mask using the function `CGDisplayIDToOpenGLDisplayMask`. This attribute is not generally useful.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAScreenMask: c_uint = 84;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaallowofflinerenderers?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that offline renderers may be used.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAllowOfflineRenderers: c_uint = 96;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaacceleratedcompute?language=objc)
+/// If present, this attribute indicates that only renderers that can execute OpenCL programs should be used.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAAcceleratedCompute: c_uint = 97;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaopenglprofile?language=objc)
+/// A constant that represents an OpenGL profile.
+///
+/// ## Discussion
+///
+/// The associated value can be any of the constants defined in [OpenGL Profiles](https://developer.apple.com/documentation/appkit/opengl-profiles). If it is present in the attribute arrays, only renderers capable of supporting an OpenGL context that provides the functionality promised by the profile are considered.
+///
+///
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAOpenGLProfile: c_uint = 99;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfavirtualscreencount?language=objc)
+/// The number of virtual screens in this format.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLPFAVirtualScreenCount: c_uint = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfastereo?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only stereo pixel formats are considered. Otherwise, only monoscopic pixel formats are considered.
 #[deprecated]
 pub const NSOpenGLPFAStereo: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaoffscreen?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only renderers that are capable of rendering to an offscreen memory area and have buffer depth exactly equal to the desired buffer depth are considered. The `NSOpenGLPFAClosestPolicy` attribute is implied.
 #[deprecated]
 pub const NSOpenGLPFAOffScreen: c_uint = 53;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfafullscreen?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only renderers that are capable of rendering to a full-screen drawable are considered. The `NSOpenGLPFASingleRenderer` attribute is implied.
 #[deprecated]
 pub const NSOpenGLPFAFullScreen: c_uint = 54;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfasinglerenderer?language=objc)
+///
+/// ## Discussion
+///
+/// A Boolean attribute. If present, this attribute indicates that a single rendering engine is chosen. On systems with multiple screens, this disables OpenGL’s ability to drive different monitors through different graphics accelerator cards with a single context. This attribute is not generally useful.
+///
+///
 #[deprecated]
 pub const NSOpenGLPFASingleRenderer: c_uint = 71;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfarobust?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only renderers that do not have any failure modes associated with a lack of video card resources are considered. This attribute is not generally useful.
 #[deprecated]
 pub const NSOpenGLPFARobust: c_uint = 75;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfampsafe?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that the renderer is multi-processor safe.
 #[deprecated]
 pub const NSOpenGLPFAMPSafe: c_uint = 78;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfawindow?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only renderers that are capable of rendering to a window are considered. This attribute is implied if neither `NSOpenGLPFAFullScreen` nor `NSOpenGLPFAOffScreen` is specified.
 #[deprecated]
 pub const NSOpenGLPFAWindow: c_uint = 80;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfamultiscreen?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that only renderers capable of driving multiple screens are considered. This attribute is not generally useful.
 #[deprecated]
 pub const NSOpenGLPFAMultiScreen: c_uint = 81;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfacompliant?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that pixel format selection is only open to OpenGL-compliant renderers. This attribute is implied unless `NSOpenGLPFAAllRenderers` is specified. This attribute is not useful in the attribute array.
 #[deprecated]
 pub const NSOpenGLPFACompliant: c_uint = 83;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfapixelbuffer?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that rendering to a pixel buffer is enabled.
 #[deprecated]
 pub const NSOpenGLPFAPixelBuffer: c_uint = 90;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaremotepixelbuffer?language=objc)
+/// A Boolean attribute. If present, this attribute indicates that rendering to a pixel buffer on an offline renderer is enabled.
 #[deprecated]
 pub const NSOpenGLPFARemotePixelBuffer: c_uint = 91;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpixelformatattribute?language=objc)
+/// Pixel format attributes for OpenGL.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub type NSOpenGLPixelFormatAttribute = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglprofileversionlegacy?language=objc)
+/// The requested profile is a legacy (pre-OpenGL 3.0) profile.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLProfileVersionLegacy: c_uint = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglprofileversion3_2core?language=objc)
+/// The requested profile must implement the OpenGL 3.2 core functionality.
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLProfileVersion3_2Core: c_uint = 0x3200;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglprofileversion4_1core?language=objc)
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 pub const NSOpenGLProfileVersion4_1Core: c_uint = 0x4100;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpixelformat?language=objc)
+    /// An object that specifies the types of buffers and other attributes of the OpenGL context.
+    ///
+    /// ## Overview
+    ///
+    /// To render with OpenGL into an [`NSOpenGLContext`](https://developer.apple.com/documentation/appkit/nsopenglcontext), you must specify the context’s pixel format.
+    ///
+    /// Every [`NSOpenGLPixelFormat`](https://developer.apple.com/documentation/appkit/nsopenglpixelformat) object wraps a low-level, platform-specific Core OpenGL (CGL) pixel format object. Your application can retrieve the CGL pixel format object by calling the [`CGLPixelFormatObj`](https://developer.apple.com/documentation/appkit/nsopenglpixelformat/cglpixelformatobj) method. For more information on the underling CGL pixel format object, see `CGL`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use Metal or MetalKit."]
@@ -328,11 +410,26 @@ impl DefaultRetained for NSOpenGLPixelFormat {
 }
 
 extern_class!(
+    /// An object that provides access to accelerated offscreen rendering.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Deprecated
+    /// The OpenGL API is deprecated. Use [`Metal`](https://developer.apple.com/documentation/metal) and [`MetalKit`](https://developer.apple.com/documentation/metalkit) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Using offscreen rendering you could, for example, draw into the pixel buffer, then use the contents as a texture map elsewhere. Typically you initialize an [`NSOpenGLPixelBuffer`](https://developer.apple.com/documentation/appkit/nsopenglpixelbuffer) object using the [`initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:`](https://developer.apple.com/documentation/appkit/nsopenglpixelbuffer/initwithtexturetarget:textureinternalformat:texturemaxmipmaplevel:pixelswide:pixelshigh:) method and attach the resulting object to an OpenGL context with the [`setPixelBuffer:cubeMapFace:mipMapLevel:currentVirtualScreen:`](https://developer.apple.com/documentation/appkit/nsopenglcontext/setpixelbuffer:cubemapface:mipmaplevel:currentvirtualscreen:) method of [`NSOpenGLContext`](https://developer.apple.com/documentation/appkit/nsopenglcontext).
+    ///
+    /// Every [`NSOpenGLPixelBuffer`](https://developer.apple.com/documentation/appkit/nsopenglpixelbuffer) object wraps a low-level, platform-specific Core OpenGL (CGL) pixel buffer object. Your application can retrieve the CGL pixel buffer by calling the [`CGLPBufferObj`](https://developer.apple.com/documentation/appkit/nsopenglpixelbuffer/cglpbufferobj) method. For more information on the underling CGL pixel buffer, see `CGL`.
+    ///
+    ///
     /// *******************
     /// * NSOpenGLPixelBuffer
     /// *******************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpixelbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use GL_EXT_framebuffer_object instead"]
@@ -435,74 +532,78 @@ impl DefaultRetained for NSOpenGLPixelBuffer {
     }
 }
 
+/// Constants that specify context parameters.
+///
+/// ## Overview
+///
+/// These attribute names are used by [`setValues:forParameter:`](https://developer.apple.com/documentation/appkit/nsopenglcontext/setvalues(_:for:)) and [`getValues:forParameter:`](https://developer.apple.com/documentation/appkit/nsopenglcontext/getvalues(_:for:)).
+///
+///
 /// ***************
 /// * NSOpenGLContext
 /// ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter?language=objc)
 // NS_ENUM
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSOpenGLContextParameter(pub NSInteger);
 impl NSOpenGLContextParameter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/swapinterval?language=objc)
+    /// Set or get the swap interval.
     #[doc(alias = "NSOpenGLContextParameterSwapInterval")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SwapInterval: Self = Self(222);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/surfaceorder?language=objc)
+    /// Set or get the surface order.
     #[doc(alias = "NSOpenGLContextParameterSurfaceOrder")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SurfaceOrder: Self = Self(235);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/surfaceopacity?language=objc)
+    /// Set or get the surface opacity.
     #[doc(alias = "NSOpenGLContextParameterSurfaceOpacity")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SurfaceOpacity: Self = Self(236);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/surfacebackingsize?language=objc)
+    /// Set or get the height and width of the back buffer.
     #[doc(alias = "NSOpenGLContextParameterSurfaceBackingSize")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const SurfaceBackingSize: Self = Self(304);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/reclaimresources?language=objc)
+    /// Enable or disable reclaiming resources.
     #[doc(alias = "NSOpenGLContextParameterReclaimResources")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const ReclaimResources: Self = Self(308);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/currentrendererid?language=objc)
+    /// Get the current renderer ID.
     #[doc(alias = "NSOpenGLContextParameterCurrentRendererID")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const CurrentRendererID: Self = Self(309);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/gpuvertexprocessing?language=objc)
+    /// Get whether the CPU is currently processing vertices with the GPU.
     #[doc(alias = "NSOpenGLContextParameterGPUVertexProcessing")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GPUVertexProcessing: Self = Self(310);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/gpufragmentprocessing?language=objc)
+    /// Get whether the CPU is currently processing fragments with the GPU.
     #[doc(alias = "NSOpenGLContextParameterGPUFragmentProcessing")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const GPUFragmentProcessing: Self = Self(311);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/hasdrawable?language=objc)
+    /// Returns a Boolean that indicates whether a drawable is attached to the context.
     #[doc(alias = "NSOpenGLContextParameterHasDrawable")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const HasDrawable: Self = Self(314);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/mpswapsinflight?language=objc)
+    /// The number of frames that the multithreaded OpenGL engine can process before stalling.
     #[doc(alias = "NSOpenGLContextParameterMPSwapsInFlight")]
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
     pub const MPSwapsInFlight: Self = Self(315);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/swaprectangle?language=objc)
+    /// Sets or gets the swap rectangle.
     #[doc(alias = "NSOpenGLContextParameterSwapRectangle")]
     #[deprecated]
     pub const SwapRectangle: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/swaprectangleenable?language=objc)
+    /// Enables or disables the swap rectangle in the context’s drawable object.
     #[doc(alias = "NSOpenGLContextParameterSwapRectangleEnable")]
     #[deprecated]
     pub const SwapRectangleEnable: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/rasterizationenable?language=objc)
+    /// If disabled, all rasterization of 2D and 3D primitives is disabled.
     #[doc(alias = "NSOpenGLContextParameterRasterizationEnable")]
     #[deprecated]
     pub const RasterizationEnable: Self = Self(221);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/statevalidation?language=objc)
+    /// If enabled, OpenGL inspects the context state each time the update method is called to ensure that it is in an appropriate state for switching between renderers.
     #[doc(alias = "NSOpenGLContextParameterStateValidation")]
     #[deprecated]
     pub const StateValidation: Self = Self(301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter/surfacesurfacevolatile?language=objc)
     #[doc(alias = "NSOpenGLContextParameterSurfaceSurfaceVolatile")]
     #[deprecated]
     pub const SurfaceSurfaceVolatile: Self = Self(306);
@@ -517,7 +618,15 @@ unsafe impl RefEncode for NSOpenGLContextParameter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext?language=objc)
+    /// An object that represents an OpenGL graphics context, into which all OpenGL calls are rendered.
+    ///
+    /// ## Overview
+    ///
+    /// An OpenGL context is created using an [`NSOpenGLPixelFormat`](https://developer.apple.com/documentation/appkit/nsopenglpixelformat)object that specifies the context’s buffer types and other attributes. A context can be full-screen, offscreen, or associated with an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object. A context draws into its _drawable object_, which is the frame buffer that is the target of OpenGL drawing operations.
+    ///
+    /// Every [`NSOpenGLContext`](https://developer.apple.com/documentation/appkit/nsopenglcontext) object wraps a low-level, platform-specific Core OpenGL (CGL) context. Your application can retrieve the CGL context by calling the [`CGLContextObj`](https://developer.apple.com/documentation/appkit/nsopenglcontext/cglcontextobj) method. For more information on the underling CGL context, see `CGL`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use Metal or MetalKit."]
@@ -756,77 +865,118 @@ impl NSOpenGLContext {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpswapinterval?language=objc)
+/// Sets or gets the swap interval.
+///
+/// ## Discussion
+///
+/// The swap interval is represented as one `long`. If the swap interval is set to `0` (the default), the [`flushBuffer()`](https://developer.apple.com/documentation/appkit/nsopenglcontext/flushbuffer()) method executes as soon as possible, without regard to the vertical refresh rate of the monitor. If the swap interval is set to `1`, the buffers are swapped only during the vertical retrace of the monitor.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPSwapInterval: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SwapInterval.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfaceorder?language=objc)
+/// Get or set the surface order.
+///
+/// ## Discussion
+///
+/// If the surface order is set to 1 (the default), the order is above the window (default). If the value is –1, the order is below the window.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPSurfaceOrder: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceOrder.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfaceopacity?language=objc)
+/// Set or get the surface opacity.
+///
+/// ## Discussion
+///
+/// If the opacity is set to 1 (the default), the surface is opaque. If the value is 0, the surface is non-opaque.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPSurfaceOpacity: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceOpacity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfacebackingsize?language=objc)
+/// Set or get the height and width of the back buffer. You can use this to let the system scale an image automatically on swapping to a variable-size buffer. The back buffer size remains fixed at the size that you set up regardless of whether the image is resized to display larger onscreen.
 #[deprecated]
 pub static NSOpenGLCPSurfaceBackingSize: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceBackingSize.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpreclaimresources?language=objc)
+/// Enable or disable reclaiming resources.
 #[deprecated]
 pub static NSOpenGLCPReclaimResources: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::ReclaimResources.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpcurrentrendererid?language=objc)
+/// The current renderer ID. You can get this setting.
 #[deprecated]
 pub static NSOpenGLCPCurrentRendererID: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::CurrentRendererID.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpgpuvertexprocessing?language=objc)
+/// The CPU is currently processing vertices with the GPU. You can get this state.
 #[deprecated]
 pub static NSOpenGLCPGPUVertexProcessing: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::GPUVertexProcessing.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpgpufragmentprocessing?language=objc)
+/// The CPU is currently processing fragments with the GPU. You can get this state.
 #[deprecated]
 pub static NSOpenGLCPGPUFragmentProcessing: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::GPUFragmentProcessing.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcphasdrawable?language=objc)
+/// Returns a Boolean that indicates whether a drawable is attached to the context.
 #[deprecated]
 pub static NSOpenGLCPHasDrawable: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::HasDrawable.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpmpswapsinflight?language=objc)
+/// The number of frames that the multithreaded OpenGL engine can process before stalling. The default value is 1. New frames are queued when the application calls the [`flushBuffer()`](https://developer.apple.com/documentation/appkit/nsopenglcontext/flushbuffer()) method. A larger number may improve overall performance, but adds latency between when a frame is rendered and when a frame is displayed. Interactive applications should leave this value at the default.
 #[deprecated]
 pub static NSOpenGLCPMPSwapsInFlight: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::MPSwapsInFlight.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpswaprectangle?language=objc)
+/// Sets or gets the swap rectangle.
+///
+/// ## Discussion
+///
+/// The swap rectangle is represented as an array of four `long`s: `{x, y, width, height}`.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPSwapRectangle: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SwapRectangle.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpswaprectangleenable?language=objc)
+/// Enables or disables the swap rectangle in the context’s drawable object.
+///
+/// ## Discussion
+///
+/// If enabled, the area that is affected by the [`flushBuffer()`](https://developer.apple.com/documentation/appkit/nsopenglcontext/flushbuffer()) method is restricted to a rectangle specified by the values of `NSOpenGLCPSwapRectangle`. However, the portion of the drawable object that lies outside of the swap rectangle may still be flushed to the screen by a visibility change or other user interface action.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPSwapRectangleEnable: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SwapRectangleEnable.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcprasterizationenable?language=objc)
+/// If disabled, all rasterization of 2D and 3D primitives is disabled.
+///
+/// ## Discussion
+///
+/// This state is useful for debugging and to characterize the performance of an OpenGL driver without actually rendering.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPRasterizationEnable: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::RasterizationEnable.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpstatevalidation?language=objc)
+/// If enabled, OpenGL inspects the context state each time the [`update()`](https://developer.apple.com/documentation/appkit/nsopenglcontext/update()) method is called to ensure that it is in an appropriate state for switching between renderers.
+///
+/// ## Discussion
+///
+/// Normally, the state is inspected only when it is actually necessary to switch renderers. This is useful when using a single monitor system to test that an application performs correctly on a multiple-monitor system.
+///
+///
 #[deprecated]
 pub static NSOpenGLCPStateValidation: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::StateValidation.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcpsurfacesurfacevolatile?language=objc)
 #[deprecated]
 pub static NSOpenGLCPSurfaceSurfaceVolatile: NSOpenGLContextParameter =
     NSOpenGLContextParameter(NSOpenGLContextParameter::SurfaceSurfaceVolatile.0);

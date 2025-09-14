@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingcoordinatordelegate?language=objc)
+    /// The methods that delegates of text-formatting coordinators implement to apply font panel settings to the currently selected text.
     pub unsafe trait UITextFormattingCoordinatorDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -26,7 +26,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingcoordinator?language=objc)
+    /// An object that coordinates text formatting using the standard Mac font panel.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

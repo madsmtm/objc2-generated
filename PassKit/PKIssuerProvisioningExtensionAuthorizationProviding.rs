@@ -5,16 +5,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionauthorizationresult?language=objc)
+/// A value that indicates the result of authorizing the addition of a payment card.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKIssuerProvisioningExtensionAuthorizationResult(pub NSInteger);
 impl PKIssuerProvisioningExtensionAuthorizationResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionauthorizationresult/canceled?language=objc)
+    /// A result that indicates the user canceled authorization or wasn’t authorized to add the payment card.
     #[doc(alias = "PKIssuerProvisioningExtensionAuthorizationResultCanceled")]
     pub const Canceled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionauthorizationresult/authorized?language=objc)
+    /// A result that indicates the user successfully authorized adding the payment pass.
     #[doc(alias = "PKIssuerProvisioningExtensionAuthorizationResultAuthorized")]
     pub const Authorized: Self = Self(1);
 }
@@ -28,7 +28,21 @@ unsafe impl RefEncode for PKIssuerProvisioningExtensionAuthorizationResult {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionauthorizationproviding?language=objc)
+    /// A protocol for a UI app extension to authorize a user to add a payment card to Wallet.
+    ///
+    /// ## Overview
+    ///
+    /// The principal class of your app’s authorization user interface extension target must conform to the `PKIssuerProvisioningExtensionAuthorizationProviding` protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before you can add a payment card provisioning UI extension you need an entitlement from Apple. For more information on requesting an entitlement, contact apple-pay-inquiries@apple.com.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait PKIssuerProvisioningExtensionAuthorizationProviding:
         NSObjectProtocol
     {

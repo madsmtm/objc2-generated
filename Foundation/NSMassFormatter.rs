@@ -6,25 +6,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit?language=objc)
+/// The units supported by the `NSMassFormatter` class.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMassFormatterUnit(pub NSInteger);
 impl NSMassFormatterUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/gram?language=objc)
+    /// The gram unit.
     #[doc(alias = "NSMassFormatterUnitGram")]
     pub const Gram: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/kilogram?language=objc)
+    /// The kilogram unit.
     #[doc(alias = "NSMassFormatterUnitKilogram")]
     pub const Kilogram: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/ounce?language=objc)
+    /// The ounce unit.
     #[doc(alias = "NSMassFormatterUnitOunce")]
     pub const Ounce: Self = Self((6 << 8) + 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/pound?language=objc)
+    /// The pound unit.
     #[doc(alias = "NSMassFormatterUnitPound")]
     pub const Pound: Self = Self((6 << 8) + 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter/unit/stone?language=objc)
+    /// The stone unit.
     #[doc(alias = "NSMassFormatterUnitStone")]
     pub const Stone: Self = Self((6 << 8) + 3);
 }
@@ -38,7 +38,19 @@ unsafe impl RefEncode for NSMassFormatterUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/massformatter?language=objc)
+    /// A formatter that provides localized descriptions of mass and weight values.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  As of iOS 10, macOS 10.12, tvOS 10, and watchOS 3, Foundation provides the [`NSMeasurementFormatter`](https://developer.apple.com/documentation/foundation/measurementformatter) class, which can be used to represent quantities of [`NSUnitMass`](https://developer.apple.com/documentation/foundation/unitmass) to provide equivalent functionality to [`NSMassFormatter`](https://developer.apple.com/documentation/foundation/massformatter). You are encouraged to transition to these new Foundation Units and Measurements APIs whenever possible.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

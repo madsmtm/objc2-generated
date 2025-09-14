@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindinteractiondelegate?language=objc)
+    /// A delegate object that provides a session object to manage the search state for a find interaction and receives notifications of search session lifetimes.
     pub unsafe trait UIFindInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIFindSession", feature = "UIResponder", feature = "UIView"))]
         /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
@@ -50,7 +50,62 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindinteraction?language=objc)
+    /// An interaction that provides text finding and replacing operations using a system find panel.
+    ///
+    /// ## Overview
+    ///
+    /// Use a find interaction to add text-finding capabilities to your view.
+    ///
+    /// When invoking the interaction, the system displays a find panel for entering a string to search, with buttons for navigating between results. When supporting replacement, this also includes a field for the text replacing matches. The find panel presents as a part of the onscreen keyboard when visible, or inline as part of the receiver’s view hierarchy.
+    ///
+    /// Input from a hardware keyboard triggers a find interaction using standard system shortcuts such as Command+F for find, Command+G for find next, and Command+Shift+G for find previous. Adding the interaction also enables these commands in the menu bar on macOS when your view becomes first responder. You can also trigger the interaction by calling the [`presentFindNavigatorShowingReplace:`](https://developer.apple.com/documentation/uikit/uifindinteraction/presentfindnavigator(showingreplace:)) method on the interaction object, providing access to find and replace operations programatically.
+    ///
+    /// Some classes, such as [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview), [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview), and [`PDFView`](https://developer.apple.com/documentation/pdfkit/pdfview), support built-in find interactions. To enable the interaction on these views, set [`findInteractionEnabled`](https://developer.apple.com/documentation/uikit/uitextview/isfindinteractionenabled) to `true`.
+    ///
+    /// ```swift
+    /// textView.isFindInteractionEnabled = true
+    /// ```
+    ///
+    /// To add find and replace operations to other views:
+    ///
+    /// 1. Create the find interaction object, passing a delegate into the default initializer.
+    ///
+    /// 2. Add the interaction by calling the [`addInteraction:`](https://developer.apple.com/documentation/uikit/uiview/addinteraction(_:)) method on the view.
+    ///
+    /// 3. Provide a [`UIFindSession`](https://developer.apple.com/documentation/uikit/uifindsession) object to manage the search performed on the content displayed in the view. You return this object through the [`findInteraction:sessionForView:`](https://developer.apple.com/documentation/uikit/uifindinteractiondelegate/findinteraction(_:sessionfor:)) method on the delegate.
+    ///
+    /// The following example creates a find interaction for a view that presents searchable content for a document.
+    ///
+    /// ```swift
+    /// let document = Document(string: "")
+    /// lazy var interactionView = InteractionView(document: document)
+    ///
+    /// lazy var findInteraction = UIFindInteraction(sessionDelegate: self)
+    ///
+    /// override func viewDidLoad() {
+    ///     super.viewDidLoad()
+    ///
+    ///     // Add the find interaction.
+    ///     interactionView.addInteraction(findInteraction)
+    /// }
+    ///
+    /// func findInteraction(_ interaction: UIFindInteraction, sessionFor view: UIView) -> UIFindSession? {
+    ///     // Return a searchable object.
+    ///     return UITextSearchingFindSession(searchableObject: document)
+    /// }
+    /// ```
+    ///
+    /// Implement the [`UITextSearching`](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq) protocol on the class that encapsulates the searchable content for your view to use an instance of [`UITextSearchingFindSession`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession) as the session object. Alternatively, you can subclass [`UIFindSession`](https://developer.apple.com/documentation/uikit/uifindsession) when you want to manage the details of the session using a custom class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC22
+    ///  Session 10071: [Adopt desktop-class editing interactions](https://developer.apple.com/wwdc22/10071)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

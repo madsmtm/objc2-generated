@@ -10,7 +10,15 @@ use objc2_osa_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amapplescriptaction?language=objc)
+    /// An object that represents Automator actions whose runtime behavior is driven by an AppleScript script.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AMAppleScriptAction`](https://developer.apple.com/documentation/automator/amapplescriptaction) object holds the compiled script as an instance of the `OSAScript` class. By default, the `OSAScript` object is instantiated from the script in the Xcode project file `main.applescript`.
+    ///
+    /// When you create a Automator Applescript Action project in Xcode, the project template supplies an [`AMAppleScriptAction`](https://developer.apple.com/documentation/automator/amapplescriptaction) instance as File’s Owner of the action bundle. This ready-made instance provides a default implementation of the [`AMAction`](https://developer.apple.com/documentation/automator/amaction) [`runWithInput:error:`](https://developer.apple.com/documentation/automator/amaction/run(withinput:)) method that uses the logic defined in the script. You can substitute your own subclass of [`AMAppleScriptAction`](https://developer.apple.com/documentation/automator/amapplescriptaction) for File’s Owner if you need to.
+    ///
+    ///
     #[unsafe(super(AMBundleAction, AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]

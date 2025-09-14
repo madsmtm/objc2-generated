@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// A half-open interval from a lower bound up to, but not including, an upper bound.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shrange?language=objc)
+    /// A half-open interval from a lower bound up to, but not including, an upper bound.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHRange;

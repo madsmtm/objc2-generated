@@ -9,25 +9,61 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity?language=objc)
+/// The gravity areas available in a stack view.
+///
+/// ## Overview
+///
+/// The layout of a stack view is partitioned into three distinct areas in which you can place views. These are known as _gravity areas_. You can use these constants to configure a stack view by way of the [`insertView:atIndex:inGravity:`](https://developer.apple.com/documentation/appkit/nsstackview/insertview(_:at:in:)) and [`setViews:inGravity:`](https://developer.apple.com/documentation/appkit/nsstackview/setviews(_:in:)) methods.
+///
+/// In a horizontally oriented stack view, the three gravity areas are [`NSStackViewGravityLeading`](https://developer.apple.com/documentation/appkit/nsstackview/gravity/leading), [`NSStackViewGravityCenter`](https://developer.apple.com/documentation/appkit/nsstackview/gravity/center), and [`NSStackViewGravityTrailing`](https://developer.apple.com/documentation/appkit/nsstackview/gravity/trailing). The ordering of these areas depends on the user interface language, unless you’ve explicitly specified the stack view’s user interface layout direction by calling the inherited [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection) method. For a [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection) property value of [`NSUserInterfaceLayoutDirectionLeftToRight`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection/lefttoright), the leading gravity area is on the left.
+///
+/// In a vertically oriented stack view, the three gravity areas are always [`NSStackViewGravityTop`](https://developer.apple.com/documentation/appkit/nsstackview/gravity/top), [`NSStackViewGravityCenter`](https://developer.apple.com/documentation/appkit/nsstackview/gravity/center), and [`NSStackViewGravityBottom`](https://developer.apple.com/documentation/appkit/nsstackview/gravity/bottom).
+///
+/// The center gravity area is constrained to remain geometrically centered with an Auto Layout priority of [`NSLayoutPriorityDefaultLow`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/defaultlow). For information about geometric spacing between gravity areas, see the description of the [`spacing`](https://developer.apple.com/documentation/appkit/nsstackview/spacing) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSStackViewGravity(pub NSInteger);
 impl NSStackViewGravity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/top?language=objc)
+    /// The topmost gravity area in a vertically oriented stack view.
+    ///
+    /// ## Discussion
+    ///
+    /// Use only when the value of the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property is [`NSUserInterfaceLayoutOrientationVertical`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/vertical).
+    ///
+    ///
     #[doc(alias = "NSStackViewGravityTop")]
     pub const Top: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/leading?language=objc)
+    /// The leftmost or rightmost gravity area in a horizontally oriented stack view, based on the user interface language or the explicitly set user interface layout direction.
+    ///
+    /// ## Discussion
+    ///
+    /// For a left to right layout direction, the leading gravity area is on the left. Use only when the value of the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property is [`NSUserInterfaceLayoutOrientationHorizontal`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/horizontal).
+    ///
+    ///
     #[doc(alias = "NSStackViewGravityLeading")]
     pub const Leading: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/center?language=objc)
+    /// The center gravity area, regardless of stack view layout direction or user interface language.
     #[doc(alias = "NSStackViewGravityCenter")]
     pub const Center: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/bottom?language=objc)
+    /// The bottommost gravity area in a vertically oriented stack view.
+    ///
+    /// ## Discussion
+    ///
+    /// Use only when the value of the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property is [`NSUserInterfaceLayoutOrientationVertical`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/vertical).
+    ///
+    ///
     #[doc(alias = "NSStackViewGravityBottom")]
     pub const Bottom: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity/trailing?language=objc)
+    /// The leftmost or rightmost gravity area in a horizontally oriented stack view, based on the user interface language or the explicitly set user interface layout direction.
+    ///
+    /// ## Discussion
+    ///
+    /// For a left to right layout direction, the trailing gravity area is on the right. Use only when the value of the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property is [`NSUserInterfaceLayoutOrientationHorizontal`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/horizontal).
+    ///
+    ///
     #[doc(alias = "NSStackViewGravityTrailing")]
     pub const Trailing: Self = Self(3);
 }
@@ -40,40 +76,27 @@ unsafe impl RefEncode for NSStackViewGravity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStackViewDistribution(pub NSInteger);
 impl NSStackViewDistribution {
     /// Default value. NSStackView will not have any special distribution behavior, relying on behavior described by gravity areas and set hugging priorities along the stacking axis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/gravityareas?language=objc)
     #[doc(alias = "NSStackViewDistributionGravityAreas")]
     pub const GravityAreas: Self = Self(-1);
     /// The effective hugging priority in the stacking axis is NSLayoutPriorityRequired, causing the stacked views to tightly fill the container along the stacking axis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/fill?language=objc)
     #[doc(alias = "NSStackViewDistributionFill")]
     pub const Fill: Self = Self(0);
     /// Stacked views will have sizes maintained to be equal as much as possible along the stacking axis. The effective hugging priority in the stacking axis is NSLayoutPriorityRequired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/fillequally?language=objc)
     #[doc(alias = "NSStackViewDistributionFillEqually")]
     pub const FillEqually: Self = Self(1);
     /// Stacked views will have sizes maintained to be equal, proportionally to their intrinsicContentSizes, as much as possible. The effective hugging priority in the stacking axis is NSLayoutPriorityRequired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/fillproportionally?language=objc)
     #[doc(alias = "NSStackViewDistributionFillProportionally")]
     pub const FillProportionally: Self = Self(2);
     /// The space separating stacked views along the stacking axis are maintained to be equal as much as possible while still maintaining the minimum spacing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/equalspacing?language=objc)
     #[doc(alias = "NSStackViewDistributionEqualSpacing")]
     pub const EqualSpacing: Self = Self(3);
     /// Equal center-to-center spacing of the items is maintained as much as possible while still maintaining the minimum spacing between each view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum/equalcentering?language=objc)
     #[doc(alias = "NSStackViewDistributionEqualCentering")]
     pub const EqualCentering: Self = Self(4);
 }
@@ -86,26 +109,73 @@ unsafe impl RefEncode for NSStackViewDistribution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority?language=objc)
+/// The various Auto Layout priorities for a view in the stack view to remain attached.
+///
+/// ## Discussion
+///
+/// For an explanation of how visibility priority interacts with clipping resistance to determine the detachment behavior of a stack view’s views, see the discussions for the [`setClippingResistancePriority:forOrientation:`](https://developer.apple.com/documentation/appkit/nsstackview/setclippingresistancepriority(_:for:)) and [`setVisibilityPriority:forView:`](https://developer.apple.com/documentation/appkit/nsstackview/setvisibilitypriority(_:for:)) methods.
+///
+/// A view in a detached state is not present in the stack view’s view hierarchy, but it still consumes memory.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSStackViewVisibilityPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/musthold?language=objc)
+/// The default value, and maximum Auto Layout priority, that results in a view never detaching from the stack view.
 pub static NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/detachonlyifnecessary?language=objc)
+/// The Auto Layout priority that results in detachment of a view when there is insufficient space in the stack view to display it fully.
 pub static NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority =
     900 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/notvisible?language=objc)
+/// The minimum Auto Layout priority that forces a view to detach from the stack view.
 pub static NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/usedefaultspacing?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub static NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview?language=objc)
+    /// A view that arranges an array of views horizontally or vertically and updates their placement and sizing when the window size changes.
+    ///
+    /// ## Overview
+    ///
+    /// A stack view employs Auto Layout (the system’s constraint-based layout feature) to arrange and align an array of views according to your specification. To use a stack view effectively, you need to understand the basics of Auto Layout constraints as described in [Auto Layout Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853).
+    ///
+    /// ### Basic Features of Stack Views
+    ///
+    /// A stack view supports vertical and horizontal layouts and interacts dynamically with window resizing and Cocoa animations. You can easily reconfigure the contents of a stack view at runtime. That is, after you create and configure a stack view in Interface Builder, you can add or remove views dynamically without explicitly working with layout constraints. For example, if you configure a stack view with three checkboxes and dynamically add a fourth, the stack view automatically adds constraints as needed, according to the stack view’s configuration. The new checkbox gains dynamic layout configuration from the stack view.
+    ///
+    /// Stack views are nestable: a stack view is a valid element in the [`views`](https://developer.apple.com/documentation/appkit/nsstackview/views) array of another stack view.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Do not add views or constraints to a stack view’s private views. A stack view’s private views might change in future versions of macOS and are not guaranteed to be encoded or decoded with the [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) class.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information on [`NSStackView`](https://developer.apple.com/documentation/appkit/nsstackview), see [Organize Your User Interface with a Stack View](https://developer.apple.com/documentation/appkit/organize-your-user-interface-with-a-stack-view).
+    ///
+    /// ### Layout Direction and Gravity Areas
+    ///
+    /// A stack view has three so-called _gravity areas_ that each identify a section of the stack view’s layout. A horizontal stack view, which is the default type, has a leading, a center, and a trailing gravity area. The ordering of these areas depends on the value of the stack view’s [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection) property (inherited from the [`NSView`](https://developer.apple.com/documentation/appkit/nsview) class). In a left to right language, the leading gravity area in a horizontal stack view is on the left. To enforce a left to right layout independently of language, explicitly set the layout direction by calling the inherited [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection) method on your stack view instance.
+    ///
+    /// To specify vertical layout, use the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property and the [`NSUserInterfaceLayoutOrientationVertical`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/vertical) constant from the [`NSUserInterfaceLayoutOrientation`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation) enumeration. In a vertical stack view, the gravity areas always are top, center, and bottom.
+    ///
+    /// ### View Detachment and Hiding
+    ///
+    /// A stack view can automatically detach and reattach its views in response to layout changes, such as window resizing performed by the user, or resizing/repositioning of another view in the same view hierarchy. A view in a detached state is not present in the stack view’s view hierarchy, but it still consumes memory. A view that is hidden, but not detached, remains part of the view hierarchy and continues to participate in Auto Layout, but it is not visible and doesn’t receive input events.
+    ///
+    /// To allow views to detach, set the so-called _clipping resistance_ for a stack view to a value lower than its default of [`NSLayoutPriorityRequired`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/required). See the [`setClippingResistancePriority:forOrientation:`](https://developer.apple.com/documentation/appkit/nsstackview/setclippingresistancepriority(_:for:)) method.
+    ///
+    /// You can influence which views detach first (and reattach last). Do this by setting the so-called _visibility priority_ for each view whose detachment order you want to specify. A view with a lower visibility priority detaches before one with a higher priority, and reattaches after it. See the [`NSStackViewVisibilityPriority`](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority) enumeration and the [`setVisibilityPriority:forView:`](https://developer.apple.com/documentation/appkit/nsstackview/setvisibilitypriority(_:for:)) method.
+    ///
+    /// To explicitly detach a view from a stack view, call the [`setVisibilityPriority:forView:`](https://developer.apple.com/documentation/appkit/nsstackview/setvisibilitypriority(_:for:)) method with a value of [`NSStackViewVisibilityPriorityNotVisible`](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/notvisible). To explicitly reattach a view to a stack view, call the same method with a value of [`NSStackViewVisibilityPriorityMustHold`](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/musthold). If you hide a view that belongs to a stack view (by setting the view’s [`hidden`](https://developer.apple.com/documentation/appkit/nsview/ishidden) property to [`true`](https://developer.apple.com/documentation/swift/true)), the view detaches from the stack view by default. Use the [`detachesHiddenViews`](https://developer.apple.com/documentation/appkit/nsstackview/detacheshiddenviews) property to change the default behavior.
+    ///
+    /// The system calls a stack view delegate method when a view is about to be detached and when a view has been reattached, giving you the opportunity to run code at those times. See [`NSStackViewDelegate`](https://developer.apple.com/documentation/appkit/nsstackviewdelegate).
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -377,7 +447,13 @@ impl NSStackView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewdelegate?language=objc)
+    /// A set of methods you use to respond to a stack view detaching and reattaching views.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol in a custom object and use it to track the addition and removal of views from the stack view’s view hierarchy. For an explanation of detachment and reattachment of a stack view’s views, see [`NSStackView`](https://developer.apple.com/documentation/appkit/nsstackview).
+    ///
+    ///
     pub unsafe trait NSStackViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]

@@ -7,11 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaconnectionidnone?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates an invalid connection.
+///
+///
 pub const EAConnectionIDNone: c_uint = 0;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessory?language=objc)
+    /// An object that contains information about a single, connected hardware accessory.
+    ///
+    /// ## Overview
+    ///
+    /// An [`EAAccessory`](https://developer.apple.com/documentation/externalaccessory/eaaccessory) object gives your app information about a single connected hardware accessory. You can use the information in this class to determine whether your app is able to open a session to a given accessory. After you have an open session, you can also associate a custom delegate with the accessory object to be notified to changes in the accessory state. Your delegate must adopt the [`EAAccessoryDelegate`](https://developer.apple.com/documentation/externalaccessory/eaaccessorydelegate) protocol.
+    ///
+    /// You use an accessory object to create an [`EASession`](https://developer.apple.com/documentation/externalaccessory/easession) object, which itself provides the communications channel to and from the accessory hardware. The accessory object provides information about the communications protocols the accessory supports, along with information about current hardware and firmware revisions.
+    ///
+    /// When deciding whether to connect to an accessory, you should always first check the accessory’s declared protocols in the [`protocolStrings`](https://developer.apple.com/documentation/externalaccessory/eaaccessory/protocolstrings) array. This list indicates the types of data the accessory is capable of processing at that moment, which may not be the full list of protocols for which the accessory is designed. For example, an accessory that is connected but not yet authenticated will report no supported protocols until authentication is successful. Don’t connect to the accessory unless and until the list includes the protocol you intend to use.
+    ///
+    /// Accessories can be physically connected to the device through the Lightning connector (or through the 30-pin connector on older devices) or wirelessly using Bluetooth.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAAccessory;
@@ -99,7 +116,7 @@ impl EAAccessory {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eaaccessorydelegate?language=objc)
+    /// A protocol that defines an optional method for receiving notifications when the associated accessory object is disconnected.
     pub unsafe trait EAAccessoryDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(accessoryDidDisconnect:))]

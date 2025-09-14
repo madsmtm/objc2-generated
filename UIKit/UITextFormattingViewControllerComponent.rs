@@ -7,113 +7,90 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Predefined text formatting view controller components.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey?language=objc)
 // NS_TYPED_ENUM
 pub type UITextFormattingViewControllerComponentKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/formattingstyles?language=objc)
     pub static UITextFormattingViewControllerFormattingStylesComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/fontattributes?language=objc)
     pub static UITextFormattingViewControllerFontAttributesComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/fontpicker?language=objc)
     pub static UITextFormattingViewControllerFontPickerComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/fontsize?language=objc)
     pub static UITextFormattingViewControllerFontSizeComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/fontpointsize?language=objc)
     pub static UITextFormattingViewControllerFontPointSizeComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/textalignment?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/textalignmentandjustification?language=objc)
     pub static UITextFormattingViewControllerTextAlignmentAndJustificationComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/textindentation?language=objc)
     pub static UITextFormattingViewControllerTextIndentationComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/lineheight?language=objc)
     pub static UITextFormattingViewControllerLineHeightComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/liststyles?language=objc)
     pub static UITextFormattingViewControllerListStylesComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/textcolor?language=objc)
     pub static UITextFormattingViewControllerTextColorComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/highlight?language=objc)
     pub static UITextFormattingViewControllerHighlightComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentkey/highlightpicker?language=objc)
     pub static UITextFormattingViewControllerHighlightPickerComponentKey:
         &'static UITextFormattingViewControllerComponentKey;
 }
 
 /// Sizes of text formatting view controller components.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextFormattingViewControllerComponentSize(pub NSInteger);
 impl UITextFormattingViewControllerComponentSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/automatic?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/mini?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeMini")]
     pub const Mini: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/small?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeSmall")]
     pub const Small: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/regular?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeRegular")]
     pub const Regular: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/large?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeLarge")]
     pub const Large: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentsize/extralarge?language=objc)
     #[doc(alias = "UITextFormattingViewControllerComponentSizeExtraLarge")]
     pub const ExtraLarge: Self = Self(5);
 }
@@ -128,8 +105,6 @@ unsafe impl RefEncode for UITextFormattingViewControllerComponentSize {
 
 extern_class!(
     /// Defines text formatting view component.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/component?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponent;
@@ -192,8 +167,6 @@ impl UITextFormattingViewControllerComponent {
 
 extern_class!(
     /// Defines grouping of text formatting components in view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/componentgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerComponentGroup;

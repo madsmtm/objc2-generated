@@ -10,7 +10,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransaction?language=objc)
+    /// A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.
+    ///
+    /// ## Overview
+    ///
+    /// `CATransaction` is the Core Animation mechanism for batching multiple layer-tree operations into atomic updates to the render tree. Every modification to a layer tree must be part of a transaction. Nested transactions are supported.
+    ///
+    /// Core Animation supports two types of transactions: _implicit_ transactions and _explicit_ transactions. Implicit transactions are created automatically when the layer tree is modified by a thread without an active transaction and are committed automatically when the thread’s runloop next iterates. Explicit transactions occur when the the application sends the [`CATransaction`](https://developer.apple.com/documentation/quartzcore/catransaction) class a [`begin`](https://developer.apple.com/documentation/quartzcore/catransaction/begin()) message before modifying the layer tree, and a [`commit`](https://developer.apple.com/documentation/quartzcore/catransaction/commit()) message afterwards.
+    ///
+    /// [`CATransaction`](https://developer.apple.com/documentation/quartzcore/catransaction) allows you to override default animation properties that are set for animatable properties. You can customize duration, timing function, whether changes to properties trigger animations, and provide a handler that informs you when all animations from the transaction group are completed.
+    ///
+    /// During a transaction you can temporarily acquire a recursive spin lock for managing property atomicity.
+    ///
+    /// [`CATransaction`](https://developer.apple.com/documentation/quartzcore/catransaction) supports nested transactions. The following code shows how you can fade out a layer (named `transitioningLayer`) over a 2 second duration while scaling it to three times its original size. The scale animation is within a nested transaction with its own duration of 1 second. After the outer transaction completes, a completion block removes `transitioningLayer` from its parent layer.
+    ///
+    /// ```swift
+    /// let transitioningLayer = CALayer()
+    ///      
+    /// // Outer transaction animates `opacity` to 0 over 2 seconds
+    /// CATransaction.begin()
+    /// CATransaction.setAnimationDuration(2)
+    /// CATransaction.setCompletionBlock {
+    ///     transitioningLayer.removeFromSuperlayer()
+    /// }
+    ///     
+    /// transitioningLayer.opacity = 0
+    ///      
+    /// // Inner transaction animates scale to (3, 3, 3) over 1 second
+    /// CATransaction.begin()
+    /// CATransaction.setAnimationDuration(1)
+    ///      
+    /// transitioningLayer.transform = CATransform3DMakeScale(3, 3, 3)
+    ///      
+    /// CATransaction.commit() // Commits inner transaction
+    /// CATransaction.commit() // Commits outer transaction
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CATransaction;
@@ -107,23 +143,44 @@ impl CATransaction {
 }
 
 extern "C" {
-    /// Transaction property ids. *
+    /// Duration, in seconds, for animations triggered within the transaction group.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactionanimationduration?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key must be an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    ///
+    /// Transaction property ids. *
     pub static kCATransactionAnimationDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactiondisableactions?language=objc)
+    /// A key whose value indicates whether implicit actions for property changes made within the transaction group are suppressed.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), implicit actions for property changes made within the transaction group are suppressed.  The value for this key must be an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    ///
     pub static kCATransactionDisableActions: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactionanimationtimingfunction?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// An instance of [`CAMediaTimingFunction`](https://developer.apple.com/documentation/quartzcore/camediatimingfunction) that overrides the timing function for all animations triggered within the transaction group.
+    ///
+    ///
     pub static kCATransactionAnimationTimingFunction: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransactioncompletionblock?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A completion block object that is guaranteed to be called (on the main thread) as soon as all animations subsequently added by this transaction group have completed (or have been removed.) If no animations are added before the current transaction group is committed (or the completion block is set to a different value,) the block will be invoked immediately.
+    ///
+    ///
     pub static kCATransactionCompletionBlock: &'static NSString;
 }

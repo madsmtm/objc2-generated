@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilderdelegate?language=objc)
+    /// A protocol for monitoring live workout builders.
     pub unsafe trait HKLiveWorkoutBuilderDelegate: NSObjectProtocol {
         #[cfg(all(feature = "HKObjectType", feature = "HKWorkoutBuilder"))]
         /// Called every time new samples are added to the workout builder.
@@ -71,7 +71,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder?language=objc)
+    /// A builder object that constructs a workout incrementally based on live data from an active workout session.
+    ///
+    /// ## Overview
+    ///
+    /// Use a live workout builder to create an [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) sample during an active [`HKWorkoutSession`](https://developer.apple.com/documentation/healthkit/hkworkoutsession). For complete instructions on running workout sessions on Apple Watch, see [Running workout sessions](https://developer.apple.com/documentation/healthkit/running-workout-sessions).
+    ///
+    ///
     #[unsafe(super(HKWorkoutBuilder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKWorkoutBuilder")]

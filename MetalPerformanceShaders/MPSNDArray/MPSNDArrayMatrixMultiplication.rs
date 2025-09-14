@@ -27,8 +27,6 @@ extern_class!(
     ///
     /// If an input's 3rd or 4th dimension is 1 its data will be broadcast as
     /// appropriate to the remaining input's 3rd or 4th dimension respectively.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymatrixmultiplication?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

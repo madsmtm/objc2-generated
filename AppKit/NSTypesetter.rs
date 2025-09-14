@@ -10,7 +10,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesetter?language=objc)
+    /// An abstract class that performs various type layout tasks.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) uses concrete subclasses of [`NSTypesetter`](https://developer.apple.com/documentation/appkit/nstypesetter) to perform line layout, which includes word wrapping, hyphenation, and line breaking in either vertical or horizontal rectangles. By default, the text system uses the concrete subclass [`NSATSTypesetter`](https://developer.apple.com/documentation/appkit/nsatstypesetter).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Use this class with [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) in macOS11 and earlier. In macOS12 and later, consider using [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) which provides improved support for international scripts.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing Notes
+    ///
+    /// `NSTypesetter` provides concrete subclasses with default implementation interfacing with the Cocoa text system. By subclassing `NSTypesetter`, an application can override the [`layoutParagraphAtPoint:`](https://developer.apple.com/documentation/appkit/nstypesetter/layoutparagraph(at:)) method to integrate a custom typesetting engine into the Cocoa text system. On the other hand, an application can subclass [`NSATSTypesetter`](https://developer.apple.com/documentation/appkit/nsatstypesetter) and override the glyph storage interface to integrate the concrete subclass into its own custom layout system.
+    ///
+    /// `NSTypesetter` methods belong to three categories: glyph storage interface methods, layout phase interface methods, and core typesetter methods. The glyph storage interface methods map to [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) methods. The typesetter itself calls these methods, and their default implementations call the Cocoa layout manager. An `NSTypesetter` subclass can override these methods to call its own glyph storage facility, in which case it should override all of them. (This doesn’t preclude the overridden method calling its superclass implementation if appropriate).
+    ///
+    /// The layout phase interface provides control points similar to delegate methods; if implemented, the system invokes these methods to notify an `NSTypesetter` subclass of events in the layout process so it can intervene as needed.
+    ///
+    /// The remainder of the `NSTypesetter` methods are primitive, core typesetter methods. The core typesetter methods correlate with typesetting state attributes; the layout manager calls these methods to store its values before starting the layout process. If you subclass `NSTypesetter` and override the glyph storage interface methods, you can call the core methods to control the typesetter directly.
+    ///
+    /// #### Glyph Storage Interface
+    ///
+    /// Override these methods to use `NSTypesetter`’s built-in concrete subclass, [`NSATSTypesetter`](https://developer.apple.com/documentation/appkit/nsatstypesetter), with a custom glyph storage and layout system other than the Cocoa layout manager and text container mechanism.
+    ///
+    /// - [`characterRangeForGlyphRange:actualGlyphRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/characterrange(forglyphrange:actualglyphrange:))
+    ///
+    /// - [`glyphRangeForCharacterRange:actualCharacterRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/glyphrange(forcharacterrange:actualcharacterrange:))
+    ///
+    /// - [`getGlyphsInRange:glyphs:characterIndexes:glyphInscriptions:elasticBits:bidiLevels:`](https://developer.apple.com/documentation/appkit/nstypesetter/getglyphs(in:glyphs:characterindexes:glyphinscriptions:elasticbits:bidilevels:))
+    ///
+    /// - [`getLineFragmentRect:usedRect:remainingRect:forStartingGlyphAtIndex:proposedRect:lineSpacing:paragraphSpacingBefore:paragraphSpacingAfter:`](https://developer.apple.com/documentation/appkit/nstypesetter/getlinefragmentrect(_:usedrect:remaining:forstartingglyphat:proposedrect:linespacing:paragraphspacingbefore:paragraphspacingafter:))
+    ///
+    /// - [`setLineFragmentRect:forGlyphRange:usedRect:baselineOffset:`](https://developer.apple.com/documentation/appkit/nstypesetter/setlinefragmentrect(_:forglyphrange:usedrect:baselineoffset:))
+    ///
+    /// - [`substituteGlyphsInRange:withGlyphs:`](https://developer.apple.com/documentation/appkit/nstypesetter/substituteglyphs(in:withglyphs:))
+    ///
+    /// - [`insertGlyph:atGlyphIndex:characterIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/insertglyph(_:atglyphindex:characterindex:))
+    ///
+    /// - [`deleteGlyphsInRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/deleteglyphs(in:))
+    ///
+    /// - [`setNotShownAttribute:forGlyphRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/setnotshownattribute(_:forglyphrange:))
+    ///
+    /// - [`setDrawsOutsideLineFragment:forGlyphRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/setdrawsoutsidelinefragment(_:forglyphrange:))
+    ///
+    /// - [`setLocation:withAdvancements:forStartOfGlyphRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/setlocation(_:withadvancements:forstartofglyphrange:))
+    ///
+    /// - [`setAttachmentSize:forGlyphRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/setattachmentsize(_:forglyphrange:))
+    ///
+    /// - [`setBidiLevels:forGlyphRange:`](https://developer.apple.com/documentation/appkit/nstypesetter/setbidilevels(_:forglyphrange:))
+    ///
+    /// #### Layout Phase Interface
+    ///
+    /// Override these methods to customize the text layout process, including modifying line fragments, controlling line breaking and hyphenation, and controlling the behavior of tabs and other control glyphs.
+    ///
+    /// - [`willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:`](https://developer.apple.com/documentation/appkit/nstypesetter/willsetlinefragmentrect(_:forglyphrange:usedrect:baselineoffset:))
+    ///
+    /// - [`shouldBreakLineByWordBeforeCharacterAtIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/shouldbreakline(bywordbeforecharacterat:))
+    ///
+    /// - [`shouldBreakLineByHyphenatingBeforeCharacterAtIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/shouldbreakline(byhyphenatingbeforecharacterat:))
+    ///
+    /// - [`hyphenationFactorForGlyphAtIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/hyphenationfactor(forglyphat:))
+    ///
+    /// - [`hyphenCharacterForGlyphAtIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/hyphencharacter(forglyphat:))
+    ///
+    /// - [`boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/boundingbox(forcontrolglyphat:for:proposedlinefragment:glyphposition:characterindex:))
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTypesetter;
@@ -466,29 +536,29 @@ impl NSTypesetter {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction?language=objc)
+/// The following constants are possible values returned by the [`actionForControlCharacterAtIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/actionforcontrolcharacter(at:)) method to determine the action associated with a control character.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTypesetterControlCharacterAction(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTypesetterControlCharacterAction: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/zeroadvancementaction?language=objc)
+/// Glyphs with this action are filtered out from layout `(notShownAttribute == YES)`.
         #[doc(alias = "NSTypesetterZeroAdvancementAction")]
         const ZeroAdvancementAction = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/whitespaceaction?language=objc)
+/// The width for glyphs with this action are determined by [`boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:`](https://developer.apple.com/documentation/appkit/nstypesetter/boundingbox(forcontrolglyphat:for:proposedlinefragment:glyphposition:characterindex:)), if the method is implemented; otherwise, same as `NSTypesetterZeroAdvancementAction`.
         #[doc(alias = "NSTypesetterWhitespaceAction")]
         const WhitespaceAction = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/horizontaltabaction?language=objc)
+/// Treated as tab character.
         #[doc(alias = "NSTypesetterHorizontalTabAction")]
         const HorizontalTabAction = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/linebreakaction?language=objc)
+/// Causes line break.
         #[doc(alias = "NSTypesetterLineBreakAction")]
         const LineBreakAction = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/paragraphbreakaction?language=objc)
+/// Causes paragraph break; the value returned by [`firstLineHeadIndent`](https://developer.apple.com/documentation/appkit/nsparagraphstyle/firstlineheadindent) is the advancement used for the following glyph.
         #[doc(alias = "NSTypesetterParagraphBreakAction")]
         const ParagraphBreakAction = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesettercontrolcharacteraction/containerbreakaction?language=objc)
+/// Causes container break.
         #[doc(alias = "NSTypesetterContainerBreakAction")]
         const ContainerBreakAction = 1<<5;
     }

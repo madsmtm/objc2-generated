@@ -6,39 +6,69 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfoundationversionwithfilemanagerresourceforksupport?language=objc)
+/// The version of the Foundation framework in which `NSFileManager` first supported resource forks.
 pub const NSFoundationVersionWithFileManagerResourceForkSupport: c_uint = 412;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey?language=objc)
+/// Keys in dictionaries used to get and set file attributes.
+///
+/// ## Discussion
+///
+/// These keys are used with the methods listed in the Getting and Setting Attributes topic of [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileAttributeKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype?language=objc)
+/// Values representing a file’s type attribute.
+///
+/// ## Discussion
+///
+/// These strings are the possible values for the [`NSFileType`](https://developer.apple.com/documentation/foundation/fileattributekey/type) attribute key contained in the dictionary object returned by [`attributesOfItemAtPath:error:`](https://developer.apple.com/documentation/foundation/filemanager/attributesofitem(atpath:)).
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileAttributeType = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileprotectiontype?language=objc)
+/// Protection level values that can be associated with a file attribute key.
+///
+/// ## Overview
+///
+/// These values are associated with the [`NSFileProtectionKey`](https://developer.apple.com/documentation/foundation/fileattributekey/protectionkey) key.
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileProtectionType = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileproviderservicename?language=objc)
+/// The name used to identify a File Provider service.
+///
+/// ## Discussion
+///
+/// The team providing the protocol also defines the name. To create a new service’s name:
+///
+/// - Use reverse domain name notation for the interfaces name (for example, `com.example.MyInterface`).
+///
+/// - (Optional) Incorporate versioning by appending a version number to the end of the name (`com.example.MyInterface.v2`).
+///
+/// For more information on defining a service’s protocol, see [Defining the Service’s Protocol](https://developer.apple.com/documentation/foundation/nsfileproviderservice#defining-the-services-protocol).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSFileProviderServiceName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/volumeenumerationoptions?language=objc)
+/// Options for enumerating mounted volumes with the [`mountedVolumeURLsIncludingResourceValuesForKeys:options:`](https://developer.apple.com/documentation/foundation/filemanager/mountedvolumeurls(includingresourcevaluesforkeys:options:)) method.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVolumeEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVolumeEnumerationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/volumeenumerationoptions/skiphiddenvolumes?language=objc)
+/// The enumeration skips hidden volumes.
         #[doc(alias = "NSVolumeEnumerationSkipHiddenVolumes")]
         const SkipHiddenVolumes = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/volumeenumerationoptions/producefilereferenceurls?language=objc)
+/// The enumeration produces file reference URLs rather than path-based URLs.
         #[doc(alias = "NSVolumeEnumerationProduceFileReferenceURLs")]
         const ProduceFileReferenceURLs = 1<<2;
     }
@@ -52,26 +82,30 @@ unsafe impl RefEncode for NSVolumeEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions?language=objc)
+/// Options for enumerating the contents of directories.
+///
+/// ## Overview
+///
+/// These options are used with the [`contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:`](https://developer.apple.com/documentation/foundation/filemanager/contentsofdirectory(at:includingpropertiesforkeys:options:)) method.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDirectoryEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectoryEnumerationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/skipssubdirectorydescendants?language=objc)
+/// An option to perform a shallow enumeration that doesn’t descend into directories.
         #[doc(alias = "NSDirectoryEnumerationSkipsSubdirectoryDescendants")]
         const SkipsSubdirectoryDescendants = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/skipspackagedescendants?language=objc)
+/// An option to treat packages like files and not descend into their contents.
         #[doc(alias = "NSDirectoryEnumerationSkipsPackageDescendants")]
         const SkipsPackageDescendants = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/skipshiddenfiles?language=objc)
+/// An option to skip hidden files.
         #[doc(alias = "NSDirectoryEnumerationSkipsHiddenFiles")]
         const SkipsHiddenFiles = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/includesdirectoriespostorder?language=objc)
         #[doc(alias = "NSDirectoryEnumerationIncludesDirectoriesPostOrder")]
         const IncludesDirectoriesPostOrder = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerationoptions/producesrelativepathurls?language=objc)
         #[doc(alias = "NSDirectoryEnumerationProducesRelativePathURLs")]
         const ProducesRelativePathURLs = 1<<4;
     }
@@ -85,17 +119,23 @@ unsafe impl RefEncode for NSDirectoryEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/itemreplacementoptions?language=objc)
+/// Options for specifying the behavior of file replacement operations.
+///
+/// ## Overview
+///
+/// These options are used by [`replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/replaceitem(at:withitemat:backupitemname:options:resultingitemurl:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerItemReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerItemReplacementOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/itemreplacementoptions/usingnewmetadataonly?language=objc)
+/// Only metadata from the new item is used, and metadata from the original item isn’t preserved (default).
         #[doc(alias = "NSFileManagerItemReplacementUsingNewMetadataOnly")]
         const UsingNewMetadataOnly = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/itemreplacementoptions/withoutdeletingbackupitem?language=objc)
+/// The backup item remains in place after a successful replacement.
         #[doc(alias = "NSFileManagerItemReplacementWithoutDeletingBackupItem")]
         const WithoutDeletingBackupItem = 1<<1;
     }
@@ -109,19 +149,19 @@ unsafe impl RefEncode for NSFileManagerItemReplacementOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship?language=objc)
+/// Constants indicating the relationship between a directory and an item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRelationship(pub NSInteger);
 impl NSURLRelationship {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship/contains?language=objc)
+    /// The directory contains the specified item.
     #[doc(alias = "NSURLRelationshipContains")]
     pub const Contains: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship/same?language=objc)
+    /// The directory and the item are the same. This relationship occurs when the value of the [`NSURLFileResourceIdentifierKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/fileresourceidentifierkey) is the same for the directory and item.
     #[doc(alias = "NSURLRelationshipSame")]
     pub const Same: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/urlrelationship/other?language=objc)
+    /// The directory does not contain the item and is not the same as the item.
     #[doc(alias = "NSURLRelationshipOther")]
     pub const Other: Self = Self(2);
 }
@@ -134,17 +174,29 @@ unsafe impl RefEncode for NSURLRelationship {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/unmountoptions?language=objc)
+/// Options that specify the behavior of an unmount operation.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerUnmountOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerUnmountOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/unmountoptions/allpartitionsandejectdisk?language=objc)
+/// Specifies that all partitions on an unmountable disk should be unmounted.
+///
+/// ## Discussion
+///
+/// If the volume is on a partitioned disk, this option unmounts all volumes on that disk. Then, then the disk is ejected (if it is ejectable).
+///
+///
         #[doc(alias = "NSFileManagerUnmountAllPartitionsAndEjectDisk")]
         const AllPartitionsAndEjectDisk = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/unmountoptions/withoutui?language=objc)
+/// Specifies that no UI should accompany the unmount operation.
+///
+/// ## Discussion
+///
+/// If this option is not specified when calling [`unmountVolumeAtURL:options:completionHandler:`](https://developer.apple.com/documentation/foundation/filemanager/unmountvolume(at:options:completionhandler:)), any needed UI will delay completion of the completion handler.
+///
+///
         #[doc(alias = "NSFileManagerUnmountWithoutUI")]
         const WithoutUI = 1<<1;
     }
@@ -159,22 +211,41 @@ unsafe impl RefEncode for NSFileManagerUnmountOptions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountdissentingprocessidentifiererrorkey?language=objc)
+    /// The process identifier of the process that prevented a volume from unmounting.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`unmountVolumeAtURL:options:completionHandler:`](https://developer.apple.com/documentation/foundation/filemanager/unmountvolume(at:options:completionhandler:)) fails, the error sent to its completion handler will contain a `userInfo` dictionary with this string as one of its keys. The value is the process identifier of the process that prevented the unmounting, as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileManagerUnmountDissentingProcessIdentifierErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsubiquityidentitydidchange?language=objc)
+    /// Sent after the iCloud (“ubiquity”) identity has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The system generates this notification when the user logs into or out of an iCloud account or enables or disables the syncing of documents and data. This notification is your cue to update caches and any interface elements displaying iCloud–related content. For example, hide all references to iCloud files when the user logs out of iCloud.
+    ///
+    /// When your app receives this notification, get the new token from the [`ubiquityIdentityToken`](https://developer.apple.com/documentation/foundation/filemanager/ubiquityidentitytoken) instance property. The value of that token is `nil` if the user disabled iCloud or logged out. There is no `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquityIdentityDidChangeNotification: &'static NSNotificationName;
 }
 
 /// An option set of the sync controls available for an item.
 ///
-/// Get an instance of this type by calling ``URL/resourceValues(forKeys:)`` on a ``URL`` instance (Swift) or ``NSURL/getResourceValue:forKey:error:`` on an ``NSURL`` (Swift or Objective-C) and passing in the key ``NSURLUbiquitousItemSupportedSyncControlsKey``.
+/// ## Overview
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols?language=objc)
+/// Get an instance of this type by calling [`resourceValues(forKeys:)`](https://developer.apple.com/documentation/foundation/url/resourcevalues(forkeys:)) on a [`URL`](https://developer.apple.com/documentation/foundation/url) instance (Swift) or [`getResourceValue:forKey:error:`](https://developer.apple.com/documentation/foundation/nsurl/getresourcevalue(_:forkey:)) on an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) (Swift or Objective-C) and passing in the key [`NSURLUbiquitousItemSupportedSyncControlsKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemsupportedsynccontrolskey).
+///
+///
+/// An option set of the sync controls available for an item.
+///
+/// Get an instance of this type by calling ``URL/resourceValues(forKeys:)`` on a ``URL`` instance (Swift) or ``NSURL/getResourceValue:forKey:error:`` on an ``NSURL`` (Swift or Objective-C) and passing in the key ``NSURLUbiquitousItemSupportedSyncControlsKey``.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -182,13 +253,11 @@ pub struct NSFileManagerSupportedSyncControls(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerSupportedSyncControls: NSUInteger {
 /// The file provider supports pausing the sync on the item.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols/pausesync?language=objc)
+/// The file provider supports pausing the sync on the item.
         #[doc(alias = "NSFileManagerSupportedSyncControlsPauseSync")]
         const PauseSync = 1<<0;
 /// The file provider supports failing an upload if the local and server versions conflict.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols/failuploadonconflict?language=objc)
+/// The file provider supports failing an upload if the local and server versions conflict.
         #[doc(alias = "NSFileManagerSupportedSyncControlsFailUploadOnConflict")]
         const FailUploadOnConflict = 1<<1;
     }
@@ -204,10 +273,15 @@ unsafe impl RefEncode for NSFileManagerSupportedSyncControls {
 
 /// The behaviors the file manager can apply to resolve conflicts when resuming a sync.
 ///
+/// ## Overview
+///
+/// You use this type when calling [`resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:`](https://developer.apple.com/documentation/foundation/filemanager/resumesyncforubiquitousitem(at:with:completionhandler:)) to resume synchronizing. In most situations, the [`NSFileManagerResumeSyncBehaviorPreserveLocalChanges`](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/preservelocalchanges) behavior is the best choice to avoid risk of data loss.
+///
+///
+/// The behaviors the file manager can apply to resolve conflicts when resuming a sync.
+///
 /// You use this type when calling ``FileManager/resumeSyncForUbiquitousItem(at:with:completionHandler:)`` to resume synchronizing.
 /// In most situations, the ``NSFileManagerResumeSyncBehavior/preserveLocalChanges`` behavior is the best choice to avoid risk of data loss.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -215,12 +289,26 @@ pub struct NSFileManagerResumeSyncBehavior(pub NSInteger);
 impl NSFileManagerResumeSyncBehavior {
     /// Resumes synchronizing by uploading the local version of the file.
     ///
+    /// ## Discussion
+    ///
+    /// If the server has a newer version, the server may create a conflict copy of the file, or may automatically pick the winner of the conflict. Apps can choose to implement conflict handling themselves by passing `NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict`.
+    ///
+    ///
+    /// Resumes synchronizing by uploading the local version of the file.
+    ///
     /// If the server has a newer version, the server may create a conflict copy of the file, or may automatically pick the winner of the conflict.
     /// Apps can choose to implement conflict handling themselves by passing `NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/preservelocalchanges?language=objc)
     #[doc(alias = "NSFileManagerResumeSyncBehaviorPreserveLocalChanges")]
     pub const PreserveLocalChanges: Self = Self(0);
+    /// Resumes sync by first uploading the local version of the file, failing if the provider detects a conflict.
+    ///
+    /// ## Discussion
+    ///
+    /// If the upload succeeds, the sync resumes with the [`NSFileManagerResumeSyncBehaviorPreserveLocalChanges`](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/preservelocalchanges) behavior.
+    ///
+    /// If the provider detects a conflict, the upload fails with an  [`NSFileWriteUnknownError`](https://developer.apple.com/documentation/foundation/nsfilewriteunknownerror-c.enum.case), with the underlying error of [`localVersionConflictingWithServer`](https://developer.apple.com/documentation/fileprovider/nsfileprovidererror/localversionconflictingwithserver). In this case, the app needs to call [`fetchLatestRemoteVersionOfItemAtURL:completionHandler:`](https://developer.apple.com/documentation/foundation/filemanager/fetchlatestremoteversionofitem(at:completionhandler:)), rebase local changes on top of the newly fetched version to resolve the conflict, and try again to resume sync. This scenario is only available on paused items for which the file provider supports the fail-on-conflict behavior. To check that the file provider supports the behavior, get the [`NSURLUbiquitousItemSupportedSyncControlsKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemsupportedsynccontrolskey) URL resource and verify that [`NSFileManagerSupportedSyncControlsFailUploadOnConflict`](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols/failuploadonconflict) is `true`.
+    ///
+    ///
     /// Resumes sync by first uploading the local version of the file, failing if the provider detects a conflict.
     ///
     /// If the upload succeeds, the sync resumes with the ``preserveLocalChanges`` behavior.
@@ -231,16 +319,19 @@ impl NSFileManagerResumeSyncBehavior {
     /// In this case, the app needs to call ``FileManager/fetchLatestRemoteVersionOfItem(at:completionHandler:)``, rebase local changes on top of the newly fetched version to resolve the conflict, and try again to resume sync.
     /// This scenario is only available on paused items for which the file provider supports the fail-on-conflict behavior.
     /// To check that the file provider supports the behavior, get the ``NSURLUbiquitousItemSupportedSyncControlsKey`` URL resource and verify that ``NSFileManagerSupportedSyncControls/failUploadOnConflict`` is `true`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/afteruploadwithfailonconflict?language=objc)
     #[doc(alias = "NSFileManagerResumeSyncBehaviorAfterUploadWithFailOnConflict")]
     pub const AfterUploadWithFailOnConflict: Self = Self(1);
     /// Resumes synchronizing by overwriting any local changes with the remote version of the file.
     ///
+    /// ## Discussion
+    ///
+    /// If a conflict occurs, the file manager stores the local changes as an alternate version. Only use this behavior if you provide a separate means of resolving and merging conflicts.
+    ///
+    ///
+    /// Resumes synchronizing by overwriting any local changes with the remote version of the file.
+    ///
     /// If a conflict occurs, the file manager stores the local changes as an alternate version.
     /// Only use this behavior if you provide a separate means of resolving and merging conflicts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior/droplocalchanges?language=objc)
     #[doc(alias = "NSFileManagerResumeSyncBehaviorDropLocalChanges")]
     pub const DropLocalChanges: Self = Self(2);
 }
@@ -254,18 +345,25 @@ unsafe impl RefEncode for NSFileManagerResumeSyncBehavior {
 }
 
 /// The policies the file manager can apply to resolve conflicts when uploading a local version of a file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy?language=objc)
+/// The policies the file manager can apply to resolve conflicts when uploading a local version of a file.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerUploadLocalVersionConflictPolicy(pub NSInteger);
 impl NSFileManagerUploadLocalVersionConflictPolicy {
     /// Resolves the conflict using the policy defined by the file provider.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy/conflictpolicydefault?language=objc)
+    /// Resolves the conflict using the policy defined by the file provider.
     #[doc(alias = "NSFileManagerUploadConflictPolicyDefault")]
     pub const ConflictPolicyDefault: Self = Self(0);
+    /// Resolves the conflict by causing the upload to fail.
+    ///
+    /// ## Discussion
+    ///
+    /// This policy causes an upload to fail if the local version of a file, with any local changes applied, doesn’t match the server version. In this scenario, call [`fetchLatestRemoteVersionOfItemAtURL:completionHandler:`](https://developer.apple.com/documentation/foundation/filemanager/fetchlatestremoteversionofitem(at:completionhandler:)), rebase local changes on top of the newly fetched version, and retry the upload.
+    ///
+    /// This policy is only available on paused items for which the file provider supports the fail-on-conflict behavior. To check that the file provider supports the behavior, get the [`NSURLUbiquitousItemSupportedSyncControlsKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/ubiquitousitemsupportedsynccontrolskey) URL resource and verify that [`NSFileManagerSupportedSyncControlsFailUploadOnConflict`](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols/failuploadonconflict) is `true`.
+    ///
+    ///
     /// Resolves the conflict by causing the upload to fail.
     ///
     /// This policy causes an upload to fail if the local version of a file, with any local changes applied, doesn't match the server version.
@@ -273,8 +371,6 @@ impl NSFileManagerUploadLocalVersionConflictPolicy {
     ///
     /// This policy is only available on paused items for which the file provider supports the fail-on-conflict behavior.
     /// To check that the file provider supports the behavior, get the ``NSURLUbiquitousItemSupportedSyncControlsKey`` URL resource and verify that ``NSFileManagerSupportedSyncControls/failUploadOnConflict`` is `true`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy/conflictpolicyfailonconflict?language=objc)
     #[doc(alias = "NSFileManagerUploadConflictPolicyFailOnConflict")]
     pub const ConflictPolicyFailOnConflict: Self = Self(1);
 }
@@ -288,7 +384,27 @@ unsafe impl RefEncode for NSFileManagerUploadLocalVersionConflictPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager?language=objc)
+    /// A convenient interface to the contents of the file system, and the primary means of interacting with it.
+    ///
+    /// ## Overview
+    ///
+    /// A file manager object lets you examine the contents of the file system and make changes to it. The [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) class provides convenient access to a shared file manager object that is suitable for most types of file-related manipulations. A file manager object is typically your primary mode of interaction with the file system. You use it to locate, create, copy, and move files and directories. You also use it to get information about a file or directory or change some of its attributes.
+    ///
+    /// When specifying the location of files, you can use either [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) or [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects. The use of the [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) class is generally preferred for specifying file-system items because URLs can convert path information to a more efficient representation internally. You can also obtain a bookmark from an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object, which is similar to an alias and offers a more sure way of locating the file or directory later.
+    ///
+    /// If you are moving, copying, linking, or removing files or directories, you can use a delegate in conjunction with a file manager object to manage those operations. The delegate’s role is to affirm the operation and to decide whether to proceed when errors occur. In macOS 10.7 and later, the delegate must conform to the [`NSFileManagerDelegate`](https://developer.apple.com/documentation/foundation/filemanagerdelegate) protocol.
+    ///
+    /// In iOS 5.0 and later and in macOS 10.7 and later, [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) includes methods for managing items stored in iCloud. Files and directories tagged for cloud storage are synced to iCloud so that they can be made available to the user’s iOS devices and Macintosh computers. Changes to an item in one location are propagated to all other locations to ensure the items stay in sync.
+    ///
+    /// ### Sync control
+    ///
+    /// A [package](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/DocumentPackages/DocumentPackages.html#//apple_ref/doc/uid/10000123i-CH106-SW1) is a directory that the system presents as a single file to the person using the device. Apps with documents that contain multiple files can use packages to manage contents like media assets. In iOS 26 and macOS 26 and later, [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) introduces methods for controlling how a file provider syncs these items. By pausing sync when your app opens a package and resuming when it closes, your app can prevent the file provider from changing the contents of the package in unexpected ways, which potentially leaves the document in an inconsistent state. You can also use this pause and resume API on regular “flat” files.
+    ///
+    /// ### Threading considerations
+    ///
+    /// The methods of the shared [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) object can be called from multiple threads safely. However, if you use a delegate to receive notifications about the status of move, copy, remove, and link operations, you should create a unique instance of the file manager object, assign your delegate to that object, and use that file manager to initiate your operations.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileManager;
@@ -1109,7 +1225,17 @@ impl NSFileManager {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanagerdelegate?language=objc)
+    /// The interface a file manager’s delegate uses to intervene during operations or if an error occurs.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSFileManagerDelegate`](https://developer.apple.com/documentation/foundation/filemanagerdelegate) protocol defines optional methods for managing operations involving the copying, moving, linking, or removal of files and directories. When you use an [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) object to initiate a copy, move, link, or remove operation, the file manager asks its delegate whether the operation should begin at all and whether it should proceed when an error occurs.
+    ///
+    /// The methods of this protocol accept either [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) or [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects. The file manager always prefers methods that take an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object over those that take an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// You should associate your delegate with a unique instance of the [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) class, as opposed to the shared instance.
+    ///
+    ///
     pub unsafe trait NSFileManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "NSString")]
         #[optional]
@@ -1294,7 +1420,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator?language=objc)
+    /// An object that enumerates the contents of a directory.
+    ///
+    /// ## Overview
+    ///
+    /// You obtain a directory enumerator using [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager)’s [`enumeratorAtPath:`](https://developer.apple.com/documentation/foundation/filemanager/enumerator(atpath:)) method. The enumeration provides the pathnames of all files and directories contained within that directory. These pathnames are relative to the directory.
+    ///
+    /// An enumeration is recursive, including the files of all subdirectories, and crosses device boundaries. An enumeration does not resolve symbolic links, or attempt to traverse symbolic links that point to directories.
+    ///
+    ///
     #[unsafe(super(NSEnumerator<ObjectType>, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSEnumerator")]
@@ -1384,7 +1518,37 @@ impl<ObjectType: Message> DefaultRetained for NSDirectoryEnumerator<ObjectType> 
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileproviderservice?language=objc)
+    /// A service that provides a custom communication channel between your app and a File Provider extension.
+    ///
+    /// ## Overview
+    ///
+    /// To communicate, both your app and the File Provider extension must implement their part of the service:
+    ///
+    /// - Your app requests the proxy object, and calls its methods.
+    ///
+    /// - The File Provider extension declares the supported services and vends a proxy object that implements the protocol for each service.
+    ///
+    /// The app and File Provider extension communicate using an XPC service. This service performs actions only on items managed by the File Provider extension. For more information, see [Creating XPC Services](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingXPCServices.html#//apple_ref/doc/uid/10000172i-SW6).
+    ///
+    /// ### Defining the Service’s Protocol
+    ///
+    /// Services let you define custom actions that are not provided by Apple’s APIs. Both the app and the File Provider extension must agree upon the service’s name and protocol.  Communicate the name and protocol through an outside source (for example, posting a header file that defines both the name and protocol, or publishing a library that includes them both).
+    ///
+    /// The service can be defined by either the app or the File Provider extension:
+    ///
+    /// - Apps can define a service for features they would like to use. File providers can then choose to support those features by implementing the service.
+    ///
+    /// - File Provider extensions can provide a service for the features they support. Apps can then choose to use the specified service.
+    ///
+    /// When defining a service’s protocol, the parameters for each method must adhere to the following rules:
+    ///
+    /// - The parameter’s class must conform to [`NSSecureCoding`](https://developer.apple.com/documentation/foundation/nssecurecoding).
+    ///
+    /// - The parameter’s class must be defined in both the app and the File Provider extension (for example, standard system types or classes defined in a library imported by both sides).
+    ///
+    /// - If a collection parameter contains types other than property list types (see [Property List Types and Objects](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/PropertyList.html#//apple_ref/doc/uid/TP40008195-CH44-SW2)), declare the valid types using the [`NSXPCInterface`](https://developer.apple.com/documentation/foundation/nsxpcinterface) class’s [`classesForSelector:argumentIndex:ofReply:`](https://developer.apple.com/documentation/foundation/nsxpcinterface/classes(for:argumentindex:ofreply:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderService;
@@ -1435,217 +1599,420 @@ impl DefaultRetained for NSFileProviderService {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/type?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s type.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object (see `NSFileType Attribute Values` for possible values).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileType: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typedirectory?language=objc)
+    /// A directory.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeDirectory: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typeregular?language=objc)
+    /// A regular file.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeRegular: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typesymboliclink?language=objc)
+    /// A symbolic link.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeSymbolicLink: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typesocket?language=objc)
+    /// A socket.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeSocket: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typecharacterspecial?language=objc)
+    /// A character special file.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeCharacterSpecial: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typeblockspecial?language=objc)
+    /// A block special file.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeBlockSpecial: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributetype/typeunknown?language=objc)
+    /// A file whose type is unknown.
     #[cfg(feature = "NSString")]
     pub static NSFileTypeUnknown: &'static NSFileAttributeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/size?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s size in bytes.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `unsigned long long`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If the file has a resource fork, the returned value does _not_ include the size of the resource fork.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSize: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/modificationdate?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s last modified date.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileModificationDate: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/referencecount?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s reference count.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `unsigned long`.
+    ///
+    /// The number specifies the number of hard links to a file.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileReferenceCount: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/deviceidentifier?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the identifier for the device on which the file resides.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `unsigned long`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileDeviceIdentifier: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/owneraccountname?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the name of the file’s owner.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileOwnerAccountName: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/groupowneraccountname?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the group name of the file’s owner.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileGroupOwnerAccountName: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/posixpermissions?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s Posix permissions.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. Use the [`shortValue`](https://developer.apple.com/documentation/foundation/nsnumber/int16value) method to retrieve the integer value for the permissions.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFilePosixPermissions: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/systemnumber?language=objc)
+    /// The key in a file system attribute dictionary whose value indicates the filesystem number of the file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the filesystem number of the file system. The value corresponds to the value of `st_dev`, as returned by `stat`(2).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSystemNumber: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/systemfilenumber?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s filesystem file number.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `unsigned long`. The value corresponds to the value of `st_ino`, as returned by `stat`(2).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSystemFileNumber: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/extensionhidden?language=objc)
+    /// The key in a file attribute dictionary whose value indicates whether the file’s extension is hidden.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileExtensionHidden: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/hfscreatorcode?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s HFS creator code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `OSType` (unsigned 32-bit integer). See HFS File Types for possible values.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileHFSCreatorCode: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/hfstypecode?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s HFS type code.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `OSType` (unsigned 32-bit integer). See HFS File Types for possible values.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileHFSTypeCode: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/immutable?language=objc)
+    /// The key in a file attribute dictionary whose value indicates whether the file is mutable.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileImmutable: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/appendonly?language=objc)
+    /// The key in a file attribute dictionary whose value indicates whether the file is read-only.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileAppendOnly: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/creationdate?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s creation date.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileCreationDate: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/owneraccountid?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s owner’s account ID.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `unsigned long`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileOwnerAccountID: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/groupowneraccountid?language=objc)
+    /// The key in a file attribute dictionary whose value indicates the file’s group ID.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an `unsigned long`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileGroupOwnerAccountID: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/busy?language=objc)
+    /// The key in a file attribute dictionary whose value indicates whether the file is busy.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileBusy: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/protectionkey?language=objc)
+    /// The key in a file attribute dictionary whose value identifies the protection level for this file.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) value. For a list of possible values, see `File Protection Values`.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionKey: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileprotectiontype/none?language=objc)
+    /// The file has no special protections associated with it.
+    ///
+    /// ## Discussion
+    ///
+    /// A file with this type of protection can be read from or written to at any time.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionNone: &'static NSFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileprotectiontype/complete?language=objc)
+    /// The file is stored in an encrypted format on disk and cannot be read from or written to while the device is locked or booting.
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionComplete: &'static NSFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileprotectiontype/completeunlessopen?language=objc)
+    /// The file is stored in an encrypted format on disk after it is closed.
+    ///
+    /// ## Discussion
+    ///
+    /// Files with this type of protection can be created while the device is locked, but once closed, cannot be opened again until the device is unlocked. If the file is opened when unlocked, you may continue to access the file normally, even if the user locks the device. There is a small performance penalty when the file is created and opened, though not when being written to or read from. This can be mitigated by changing the file protection to [`NSFileProtectionComplete`](https://developer.apple.com/documentation/foundation/fileprotectiontype/complete) when the device is unlocked.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionCompleteUnlessOpen: &'static NSFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileprotectiontype/completeuntilfirstuserauthentication?language=objc)
+    /// The file is stored in an encrypted format on disk and cannot be accessed until after the device has booted.
+    ///
+    /// ## Discussion
+    ///
+    /// After the user unlocks the device for the first time, your app can access the file and continue to access it even if the user subsequently locks the device.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionCompleteUntilFirstUserAuthentication: &'static NSFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileprotectiontype/completewhenuserinactive?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSFileProtectionCompleteWhenUserInactive: &'static NSFileProtectionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/systemsize?language=objc)
+    /// The key in a file system attribute dictionary whose value indicates the size of the file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the size of the file system in bytes. The value is determined by `statfs()`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSystemSize: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/systemfreesize?language=objc)
+    /// The key in a file system attribute dictionary whose value indicates the amount of free space on the file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the amount of free space on the file system in bytes. The value is determined by `statfs()`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s `PrivacyInfo.xcprivacy` file. For more information, including the list of valid reasons for using the API, see [Describing use of required reason API](https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSystemFreeSize: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/systemnodes?language=objc)
+    /// The key in a file system attribute dictionary whose value indicates the number of nodes in the file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the number of nodes in the file system.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSystemNodes: &'static NSFileAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/fileattributekey/systemfreenodes?language=objc)
+    /// The key in a file system attribute dictionary whose value indicates the number of free nodes in the file system.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the number of free nodes in the file system.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSFileSystemFreeNodes: &'static NSFileAttributeKey;
 }

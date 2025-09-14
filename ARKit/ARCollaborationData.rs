@@ -8,9 +8,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// A value describing the priority of the collaboration data.
+/// Options that help you choose the appropriate network protocol or settings for a given data instance.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.enum?language=objc)
+/// ## Discussion
+///
+/// When you send [`ARCollaborationData`](https://developer.apple.com/documentation/arkit/arsession/collaborationdata) over the network by using a protocol that allows you to specify varying reliability, this property provides you with a hint about which reliability setting to use for a given collaboration data instance. Depending on its priority, you may also choose to send a given collaboration data instance using different protocols.
+///
+///
+/// A value describing the priority of the collaboration data.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -18,15 +23,25 @@ use crate::*;
 pub struct ARCollaborationDataPriority(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARCollaborationDataPriority {
-    /// The data is important for establishing or continuing a collaborative session. For best results, use network transmission mechanisms that ensure delivery, such as MCSessionSendDataModeReliable.
+    /// A priority that indicates that collaboration depends on this data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.enum/critical?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit sets the data [`priority`](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.property) to  [`ARCollaborationDataPriorityCritical`](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.enum/critical)  when it’s needed to establish or continue a collaborative session.
+    ///
+    ///
+    /// The data is important for establishing or continuing a collaborative session. For best results, use network transmission mechanisms that ensure delivery, such as MCSessionSendDataModeReliable.
     #[doc(alias = "ARCollaborationDataPriorityCritical")]
     pub const Critical: Self = Self(0);
+    /// A priority that indicates that collaboration can continue without this data.
+    ///
+    /// ## Discussion
+    ///
+    /// ARKit sets the data [`priority`](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.property) to [`ARCollaborationDataPriorityOptional`](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.enum/optional) when the data is important and time-sensitive but the session can continue if it’s not received.
+    ///
+    ///
     /// The data is time-sensitive but not important to collaborative session quality. Timely synchronization of this data between participants produces a smoother shared session, but the session can continue if the data is not received.
     /// For best results, use network transmission mechanisms that prioritize speed over delivery guarantees, such as MCSessionSendDataModeUnreliable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.enum/optional?language=objc)
     #[doc(alias = "ARCollaborationDataPriorityOptional")]
     pub const Optional: Self = Self(1);
 }
@@ -43,12 +58,17 @@ unsafe impl RefEncode for ARCollaborationDataPriority {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that holds information that a user has collected about the physical environment.
+    ///
+    /// ## Overview
+    ///
+    /// To create a multiuser AR experience, you enable collaboration on a world tracking session. ARKit regularly outputs [`ARCollaborationData`](https://developer.apple.com/documentation/arkit/arsession/collaborationdata) that users share with each other, which enables everyone to view the same virtual content from their own perspective. For more information, see [`collaborationEnabled`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/iscollaborationenabled).
+    ///
+    ///
     /// Object representing data for collaborative session.
     ///
     ///
     /// This data needs to be sent to each participants in the collaborative session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/collaborationdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

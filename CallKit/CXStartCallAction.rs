@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxstartcallaction?language=objc)
+    /// An encapsulation of the act of initiating an outgoing call.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXStartCallAction`](https://developer.apple.com/documentation/callkit/cxstartcallaction) is a concrete subclass of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction). When the user initiates an outgoing call, the provider sends [`provider:performStartCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-2lem5) to its delegate. The provider’s delegate calls the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method to indicate that the action was successfully performed. To indicate that the call started at a time other than the current time, you can instead call the [`fulfillWithDateStarted:`](https://developer.apple.com/documentation/callkit/cxstartcallaction/fulfill(withdatestarted:)).
+    ///
+    ///
     #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

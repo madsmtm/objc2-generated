@@ -17,64 +17,83 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodenone?language=objc)
+    /// No tool is set.
     pub static IKToolModeNone: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodemove?language=objc)
+    /// The move tool.
     pub static IKToolModeMove: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselect?language=objc)
+    /// The selection tool.
     pub static IKToolModeSelect: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselectrect?language=objc)
+    /// Same as `IKToolModeSelect`.
     pub static IKToolModeSelectRect: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselectellipse?language=objc)
+    /// The selection ellipse.
     pub static IKToolModeSelectEllipse: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeselectlasso?language=objc)
+    /// The selection lasso.
     pub static IKToolModeSelectLasso: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodecrop?language=objc)
+    /// The crop tool.
     pub static IKToolModeCrop: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmoderotate?language=objc)
+    /// The rotation tool.
     pub static IKToolModeRotate: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/iktoolmodeannotate?language=objc)
+    /// The annotation tool.
     pub static IKToolModeAnnotate: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikoverlaytypebackground?language=objc)
+    /// A background.
     pub static IKOverlayTypeBackground: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikoverlaytypeimage?language=objc)
+    /// An image.
     pub static IKOverlayTypeImage: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// The IKImageView class provides an efficient way to display images in a view while at the same time supporting a number of image editing operations.
+    /// A view that allows displaying and minor editing of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimageview?language=objc)
+    /// ## Overview
+    ///
+    /// The `IKImageView` class provides an efficient way to display images in a view while at the same time supporting a number of image editing operations such as rotating, zooming, and cropping. If possible, image rendering uses hardware acceleration to achieve optimal performance. The `IKImageView` class is implemented as a subclass of [`NSView`](https://developer.apple.com/documentation/appkit/nsview). Similar to [`NSImageView`](https://developer.apple.com/documentation/appkit/nsimageview), the `IKImageView` class is used to display a single image.
+    ///
+    /// You can provide an images for the view in any of these formats:
+    ///
+    /// - File reference ([`NSURL`](https://developer.apple.com/documentation/foundation/nsurl), [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl), or a path)
+    ///
+    /// - [`CGImageSourceRef`](https://developer.apple.com/documentation/imageio/cgimagesource)
+    ///
+    /// - Data ([`NSData`](https://developer.apple.com/documentation/foundation/nsdata) or [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata))
+    ///
+    /// - Image ([`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage) or [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage))
+    ///
+    /// Providing a file reference is the preferred way to set the the image for a view because in addition to the actual image data, `IKImageView` also handles the image metadata embedded in the file. The image view automatically fetches the metadata from a file reference, whereas for the other sources (except for a [`CGImageSourceRef`](https://developer.apple.com/documentation/imageio/cgimagesource) source), it cannot. For images set from other sources, you need to set the metadata separately.
+    ///
+    /// `IKImageView` supports multi-frame images (TIFF, GIF, and so forth) and animated images.
+    ///
+    ///
+    /// The IKImageView class provides an efficient way to display images in a view while at the same time supporting a number of image editing operations.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKImageView;

@@ -11,8 +11,7 @@ use crate::*;
 
 extern_protocol!(
     /// An object that represents a granted capability.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beprocesscapabilitygrant?language=objc)
+    /// An object that represents a granted capability.
     pub unsafe trait BEProcessCapabilityGrant: NSObjectProtocol {
         /// Invalidates the grant, removing the capability from the process it was granted to.
         #[unsafe(method(invalidate))]
@@ -28,8 +27,7 @@ extern_protocol!(
 
 extern_class!(
     /// An object that represents a media playback environment
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bemediaenvironment-n91a?language=objc)
+    /// An object that represents a media playback environment
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEMediaEnvironment;
@@ -81,8 +79,7 @@ impl BEMediaEnvironment {
 
 extern_class!(
     /// An object representing capabilities that can be granted to a helper extension process.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beprocesscapability-7av05?language=objc)
+    /// An object representing capabilities that can be granted to a helper extension process.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEProcessCapability;

@@ -10,13 +10,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalpointsofinterestrequest/maxradius?language=objc)
+    /// The maximum distance respected for fetching points of interest from the center of the region.
     #[cfg(feature = "objc2-core-location")]
     pub static MKPointsOfInterestRequestMaxRadius: CLLocationDistance;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalpointsofinterestrequest?language=objc)
+    /// A structured request to use when searching for points of interest.
+    ///
+    /// ## Overview
+    ///
+    /// You create an [`MKLocalPointsOfInterestRequest`](https://developer.apple.com/documentation/mapkit/mklocalpointsofinterestrequest) to fetch points of interest within a rectangular bounding box or circular area.
+    ///
+    /// To leverage the phone’s viewport to request points of interest, create a request with a rectangular bounding box using an [`MKCoordinateRegion`](https://developer.apple.com/documentation/mapkit/mkcoordinateregion). The request fetches points of interest within the rectangular region.
+    ///
+    /// To retrieve points of interest nearby or “around the user,” create a request with a circular area defined by [`CLLocationCoordinate2D`](https://developer.apple.com/documentation/corelocation/cllocationcoordinate2d) and a [`CLLocationDistance`](https://developer.apple.com/documentation/corelocation/cllocationdistance) in meters. The fetch returns points of interest up to the maximum distance defined by [`MKPointsOfInterestRequestMaxRadius`](https://developer.apple.com/documentation/mapkit/mklocalpointsofinterestrequest/maxradius).
+    ///
+    /// You may optionally specifying an [`MKPointOfInterestFilter`](https://developer.apple.com/documentation/mapkit/mkpointofinterestfilter) describing categories to include or exclude. The default behavior of the fetch returns all points of interest.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalPointsOfInterestRequest;

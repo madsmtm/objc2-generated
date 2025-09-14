@@ -13,61 +13,48 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectionid?language=objc)
+/// A structure representing a unique identifier assigned by the Cinematic script to all detections of the same subject and detection type across time.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CNDetectionID = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiongroupid?language=objc)
+/// A structure representing a unique number representing the detection to focus on if this is a group decision.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CNDetectionGroupID = i64;
 
+/// The type of object detected, such as face, torso, cat, dog and so on.
 /// The type of object that was detected.
 ///
 /// Special detection types include:
 /// - autoFocus: from the autofocus system of the camera
 /// - fixedFocus: an explicit request to focus at a fixed disparity
 /// - custom: an object tracked via a custom tracker
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNDetectionType(pub NSInteger);
 impl CNDetectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/unknown?language=objc)
     #[doc(alias = "CNDetectionTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/humanface?language=objc)
     #[doc(alias = "CNDetectionTypeHumanFace")]
     pub const HumanFace: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/humanhead?language=objc)
     #[doc(alias = "CNDetectionTypeHumanHead")]
     pub const HumanHead: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/humantorso?language=objc)
     #[doc(alias = "CNDetectionTypeHumanTorso")]
     pub const HumanTorso: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/catbody?language=objc)
     #[doc(alias = "CNDetectionTypeCatBody")]
     pub const CatBody: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/dogbody?language=objc)
     #[doc(alias = "CNDetectionTypeDogBody")]
     pub const DogBody: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/cathead?language=objc)
     #[doc(alias = "CNDetectionTypeCatHead")]
     pub const CatHead: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/doghead?language=objc)
     #[doc(alias = "CNDetectionTypeDogHead")]
     pub const DogHead: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/sportsball?language=objc)
     #[doc(alias = "CNDetectionTypeSportsBall")]
     pub const SportsBall: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/autofocus?language=objc)
     #[doc(alias = "CNDetectionTypeAutoFocus")]
     pub const AutoFocus: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/fixedfocus?language=objc)
     #[doc(alias = "CNDetectionTypeFixedFocus")]
     pub const FixedFocus: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype/custom?language=objc)
     #[doc(alias = "CNDetectionTypeCustom")]
     pub const Custom: Self = Self(102);
 }
@@ -81,13 +68,20 @@ unsafe impl RefEncode for CNDetectionType {
 }
 
 extern_class!(
+    /// A structure that represents a detected subject, face, torso or pet at a particular time.
+    ///
+    /// ## Overview
+    ///
+    /// Specifies the type, distance bounds, and time of the detection. Detections obtained from the Cinematic script include a unique number that can tracks the detection over time.
+    ///
+    /// Some types of detections also include a unique group number that associates related detections (for example, the face and torso of the same person).
+    ///
+    ///
     /// A cinematic detection of a subject.
     ///
     /// Specifies the type, distance (as disparity), bounds (as a normalized rectangle), and time (as CMTime) of the detection.
     /// Detections obtained from the cinematic script include a detectionID that can be used to track the detection over time.
     /// Some types of detections also include a detectionGroupID that associates related detections (e.g. the face and torso of the same person).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNDetection;

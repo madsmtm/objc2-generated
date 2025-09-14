@@ -11,16 +11,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode?language=objc)
 // NS_TYPED_ENUM
 pub type CATextLayerTruncationMode = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode?language=objc)
 // NS_TYPED_ENUM
 pub type CATextLayerAlignmentMode = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayer?language=objc)
+    /// A layer that provides simple text layout and rendering of plain or attributed strings.
+    ///
+    /// ## Overview
+    ///
+    /// The first line is aligned to the top of the layer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `CATextLayer` disables sub-pixel antialiasing when rendering text. Text can only be drawn using sub-pixel antialiasing when it is composited into an existing opaque background at the same time that it’s rasterized. There is no way to draw text with sub-pixel antialiasing by itself, whether into an image or a layer, in advance of having the background pixels to weave the text pixels into. Setting the `opacity` property of the layer to [`true`](https://developer.apple.com/documentation/swift/true) does not change the rendering mode.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In macOS, when a `CATextLayer` instance is positioned using the [`CAConstraintLayoutManager`](https://developer.apple.com/documentation/quartzcore/caconstraintlayoutmanager) class the bounds of the layer is resized to fit the text content.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -185,46 +205,52 @@ impl DefaultRetained for CATextLayer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/none?language=objc)
+    /// Each line is displayed so that the text is either wrapped or clipped.
+    ///
+    /// ## Discussion
+    ///
+    /// If the [`wrapped`](https://developer.apple.com/documentation/quartzcore/catextlayer/iswrapped) property is [`true`](https://developer.apple.com/documentation/swift/true), the text is wrapped to the receiver’s bounds, otherwise the text is clipped to the receiver’s bounds.
+    ///
+    ///
     pub static kCATruncationNone: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/start?language=objc)
+    /// Each line is displayed so that the end fits in the container and the missing text is indicated by some kind of ellipsis glyph.
     pub static kCATruncationStart: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/end?language=objc)
+    /// Each line is displayed so that the beginning fits in the container and the missing text is indicated by some kind of ellipsis glyph.
     pub static kCATruncationEnd: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/middle?language=objc)
+    /// Each line is displayed so that the beginning and end fit in the container and the missing text is indicated by some kind of ellipsis glyph in the middle.
     pub static kCATruncationMiddle: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/natural?language=objc)
+    /// Use the natural alignment of the text’s script.
     pub static kCAAlignmentNatural: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/left?language=objc)
+    /// Text is visually left aligned.
     pub static kCAAlignmentLeft: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/right?language=objc)
+    /// Text is visually right aligned.
     pub static kCAAlignmentRight: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/center?language=objc)
+    /// Text is visually center aligned.
     pub static kCAAlignmentCenter: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/justified?language=objc)
+    /// Text is justified.
     pub static kCAAlignmentJustified: &'static CATextLayerAlignmentMode;
 }

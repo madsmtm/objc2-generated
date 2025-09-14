@@ -6,87 +6,99 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory?language=objc)
+/// Constants that indicate the preferred size of your content.
 // NS_TYPED_ENUM
 pub type UIContentSizeCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/unspecified?language=objc)
+    /// An unspecified font size.
     pub static UIContentSizeCategoryUnspecified: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extrasmall?language=objc)
+    /// An extra-small font.
     pub static UIContentSizeCategoryExtraSmall: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/small?language=objc)
+    /// A small font.
     pub static UIContentSizeCategorySmall: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/medium?language=objc)
+    /// A medium-sized font.
     pub static UIContentSizeCategoryMedium: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/large?language=objc)
+    /// A large font.
     pub static UIContentSizeCategoryLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extralarge?language=objc)
+    /// An extra-large font.
     pub static UIContentSizeCategoryExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extraextralarge?language=objc)
+    /// A font that is larger than the extra-large font but smaller than the largest font size available.
     pub static UIContentSizeCategoryExtraExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extraextraextralarge?language=objc)
+    /// The largest font size.
     pub static UIContentSizeCategoryExtraExtraExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilitymedium?language=objc)
+    /// A medium font size that reflects the current accessibility settings.
     pub static UIContentSizeCategoryAccessibilityMedium: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilitylarge?language=objc)
+    /// A large font size that reflects the current accessibility settings.
     pub static UIContentSizeCategoryAccessibilityLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilityextralarge?language=objc)
+    /// An extra-large font size that reflects the current accessibility settings.
     pub static UIContentSizeCategoryAccessibilityExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilityextraextralarge?language=objc)
+    /// A font that is larger than the extra-large font but not the largest available, reflecting the current accessibility settings.
     pub static UIContentSizeCategoryAccessibilityExtraExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilityextraextraextralarge?language=objc)
+    /// The largest font size that reflects the current accessibility settings.
     pub static UIContentSizeCategoryAccessibilityExtraExtraExtraLarge:
         &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/didchangenotification?language=objc)
+    /// A notification that posts when the user changes the preferred content size setting.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is sent when the value in the [`preferredContentSizeCategory`](https://developer.apple.com/documentation/uikit/uiapplication/preferredcontentsizecategory) property changes. The `userInfo` dictionary of the notification contains the [`UIContentSizeCategoryNewValueKey`](https://developer.apple.com/documentation/uikit/uicontentsizecategory/newvalueuserinfokey) key, which reflects the new setting.
+    ///
+    ///
     pub static UIContentSizeCategoryDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/newvalueuserinfokey?language=objc)
+    /// A key that reflects the new preferred content size.
+    ///
+    /// ## Discussion
+    ///
+    /// This key’s value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that reflects the new value of the [`preferredContentSizeCategory`](https://developer.apple.com/documentation/uikit/uiapplication/preferredcontentsizecategory) property.
+    ///
+    ///
     pub static UIContentSizeCategoryNewValueKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryisaccessibilitycategory?language=objc)
+/// Returns a Boolean value that indicates whether the content size category belongs to the group of accessibility-related sizes.
 #[inline]
 pub extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
     category: &UIContentSizeCategory,
@@ -97,7 +109,7 @@ pub extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
     unsafe { UIContentSizeCategoryIsAccessibilityCategory(category) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorycomparetocategory?language=objc)
+/// Compares two content size category values to determine whether they are equal or whether one is larger than the other.
 #[inline]
 pub extern "C-unwind" fn UIContentSizeCategoryCompareToCategory(
     lhs: &UIContentSizeCategory,

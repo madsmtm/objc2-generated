@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// A class that represents an email conversation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext?language=objc)
+    /// A class that represents an email conversation.
     #[unsafe(super(UIConversationContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIConversationContext")]

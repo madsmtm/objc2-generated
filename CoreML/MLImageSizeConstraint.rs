@@ -7,7 +7,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlimagesizeconstraint?language=objc)
+    /// A list or range of sizes that augment an image constraint’s default size.
+    ///
+    /// ## Overview
+    ///
+    /// You use an `MLImageSizeConstraint` to express what image sizes of an image feature a model will accept as input or produce as output.
+    ///
+    /// Use [`type`](https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/type) to determine which properties describe what image sizes the model’s image feature expects as input or produces as output.
+    ///
+    /// If `type` is:
+    ///
+    /// - [`MLImageSizeConstraintTypeRange`](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype/range), the image feature accepts any image that has a width in [`pixelsWideRange`](https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/pixelswiderange) and a height in [`pixelsHighRange`](https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/pixelshighrange).
+    ///
+    /// - [`MLImageSizeConstraintTypeEnumerated`](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype/enumerated), the image feature accepts any image size listed in [`enumeratedImageSizes`](https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes).
+    ///
+    /// - [`MLImageSizeConstraintTypeUnspecified`](https://developer.apple.com/documentation/coreml/mlimagesizeconstrainttype/unspecified), the `MLImageSizeConstraint` instance is not configured and should be ignored. Instead, use the image feature’s default image size constraint, defined by [`pixelsWide`](https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelswide) and [`pixelsHigh`](https://developer.apple.com/documentation/coreml/mlimageconstraint/pixelshigh).
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/afe7b7918b6b468719cbceade898210e/media-3027121~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/d99ccb61d4b994effa121d2a119b98ff/media-3027121%402x.png 2x" />
+    ///     <img alt="Graph diagram showing the constraint’s rectangle defined by the width and height ranges of the constraint, and a blue rectangle, representing a valid image size. The diagram’s X-axis spans from 0 to 250 pixels and the Y-axis spans from 0 to 200 pixels. The constraint rectangle, which has a dashed outline, has a width that spans from 50 to 250 pixels, and a height that spans from 100 to 200 pixels. The sample image size has its lower-left corner at the graph’s origin and its upper-right corner is within the bounds of the constraint rectangle, at 150 pixels wide by 180 pixels high." src="https://docs-assets.developer.apple.com/published/d99ccb61d4b994effa121d2a119b98ff/media-3027121%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLImageSizeConstraint;

@@ -7,9 +7,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Data-based preview extensions should subclass QLPreviewProvider in their principal object. The subclass should conform to QLPreviewingController.
+    /// A class that you subclass to provide a data-based Quick Look preview extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewprovider?language=objc)
+    /// ## Overview
+    ///
+    /// When you subclass [`QLPreviewProvider`](https://developer.apple.com/documentation/quicklookui/qlpreviewprovider), conform your subclass [`QLPreviewingController`](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller).
+    ///
+    /// To provide a data-based Quick Look extension, make the following modifications to your Info.plist file:
+    ///
+    /// - Set the Boolean key `QLIsDataBasedPreview` to `true`.
+    ///
+    /// - Add the type identifiers for your extension’s supported content types to the `QLSupportedContentTypes` array.
+    ///
+    /// - Change the value of `NSExtensionPrincipalClass` to the name of your subclass. For example, if you named your subclass `PreviewProvider`, set the value to `$(PRODUCT_MODULE_NAME).PreviewProvider`.
+    ///
+    /// After updating the extension’s `Info.plist` file, implement the [`providePreviewForFileRequest:completionHandler:`](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller/providepreview(for:completionhandler:)) method to return a [`QLPreviewReply`](https://developer.apple.com/documentation/quicklookui/qlpreviewreply) for the provided [`QLFilePreviewRequest`](https://developer.apple.com/documentation/quicklookui/qlfilepreviewrequest).
+    ///
+    ///
+    /// Data-based preview extensions should subclass QLPreviewProvider in their principal object. The subclass should conform to QLPreviewingController.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLPreviewProvider;

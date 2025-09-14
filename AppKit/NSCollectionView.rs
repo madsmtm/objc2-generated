@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/dropoperation?language=objc)
+/// These constants specify if acceptance of a drop should be at the item it is dropped on or before the item. These constants are used by the  [`collectionView:acceptDrop:index:dropOperation:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:acceptdrop:index:dropoperation:)) and [`collectionView:validateDrop:proposedIndex:dropOperation:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:validatedrop:proposedindex:dropoperation:)) methods in [`NSCollectionViewDelegate`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewDropOperation(pub NSInteger);
 impl NSCollectionViewDropOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/dropoperation/on?language=objc)
+    /// The drop occurs at the collection view item to which the item was dragged.
     #[doc(alias = "NSCollectionViewDropOn")]
     pub const On: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/dropoperation/before?language=objc)
+    /// The drop occurs before the collection view item to which the item was dragged.
     #[doc(alias = "NSCollectionViewDropBefore")]
     pub const Before: Self = Self(1);
 }
@@ -29,22 +29,22 @@ unsafe impl RefEncode for NSCollectionViewDropOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum?language=objc)
+/// Constants indicating the type of highlight applied to an item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewItemHighlightState(pub NSInteger);
 impl NSCollectionViewItemHighlightState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/none?language=objc)
+    /// No highlight state.
     #[doc(alias = "NSCollectionViewItemHighlightNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/forselection?language=objc)
+    /// The selected highlight state. This type of highlight is applied when an item is selected. During interactive highlighting, this state is also applied to indicate that the item will become highlighted.
     #[doc(alias = "NSCollectionViewItemHighlightForSelection")]
     pub const ForSelection: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/fordeselection?language=objc)
+    /// The deselection highlight state. During interactive selection, this state is used to indicate that the item will become deselected when interactions end. After interactions end, the highlight state returns to [`NSCollectionViewItemHighlightNone`](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/none).
     #[doc(alias = "NSCollectionViewItemHighlightForDeselection")]
     pub const ForDeselection: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/asdroptarget?language=objc)
+    /// The drop target highlight state. This type of highlight is applied when the item is the target of a drop operation on the collection view. After the drop operation completes, the highlight state returns to [`NSCollectionViewItemHighlightNone`](https://developer.apple.com/documentation/appkit/nscollectionviewitem/highlightstate-swift.enum/none).
     #[doc(alias = "NSCollectionViewItemHighlightAsDropTarget")]
     pub const AsDropTarget: Self = Self(3);
 }
@@ -57,44 +57,44 @@ unsafe impl RefEncode for NSCollectionViewItemHighlightState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition?language=objc)
+/// Constants indicating the options for scrolling the collection view’s content.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewScrollPosition(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCollectionViewScrollPosition: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewscrollposition/nscollectionviewscrollpositionnone?language=objc)
+/// Do not scroll.
         #[doc(alias = "NSCollectionViewScrollPositionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/top?language=objc)
+/// Scroll so that the top edge of the selected items’ bounding box is adjacent to the top edge of the collection view’s bounds. This option must not be combined with the [`NSCollectionViewScrollPositionCenteredVertically`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredvertically), [`NSCollectionViewScrollPositionBottom`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/bottom), and [`NSCollectionViewScrollPositionNearestHorizontalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearesthorizontaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionTop")]
         const Top = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredvertically?language=objc)
+/// Scroll so that the bounding box of the selected items is centered vertically in the collection view’s bounds. This option must not be combined with the [`NSCollectionViewScrollPositionTop`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/top), [`NSCollectionViewScrollPositionBottom`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/bottom), or [`NSCollectionViewScrollPositionNearestHorizontalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearesthorizontaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionCenteredVertically")]
         const CenteredVertically = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/bottom?language=objc)
+/// Scroll so that the bottom edge of the bounding box is adjacent to the bottom of the collection view’s bounds. This option must not be combined with the [`NSCollectionViewScrollPositionTop`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/top), [`NSCollectionViewScrollPositionCenteredVertically`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredvertically), or [`NSCollectionViewScrollPositionNearestHorizontalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearesthorizontaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionBottom")]
         const Bottom = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearesthorizontaledge?language=objc)
+/// Scroll so that the bounding box is adjacent to the nearest edge (top or bottom) of the collection view. This option must not be combined with the [`NSCollectionViewScrollPositionTop`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/top), [`NSCollectionViewScrollPositionCenteredVertically`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredvertically), or [`NSCollectionViewScrollPositionBottom`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/bottom) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionNearestHorizontalEdge")]
         const NearestHorizontalEdge = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left?language=objc)
+/// Scroll so that the left edge of the selected items’ bounding box is adjacent to the left edge of the collection view’s bounds. This option must not be combined with the [`NSCollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally), [`NSCollectionViewScrollPositionRight`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right), [`NSCollectionViewScrollPositionLeadingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge), [`NSCollectionViewScrollPositionTrailingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge), or [`NSCollectionViewScrollPositionNearestVerticalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionLeft")]
         const Left = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally?language=objc)
+/// Scroll so that the selected items’ bounding box is centered horizontally in the collection view’s bounds. This option must not be combined with the [`NSCollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left),  [`NSCollectionViewScrollPositionRight`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right), [`NSCollectionViewScrollPositionLeadingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge), [`NSCollectionViewScrollPositionTrailingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge), or [`NSCollectionViewScrollPositionNearestVerticalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionCenteredHorizontally")]
         const CenteredHorizontally = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right?language=objc)
+/// Scroll so that the right edge of the selected items’ bounding box is adjacent to the right edge of the collection view’s bounds. This option must not be combined with the [`NSCollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left), [`NSCollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally), [`NSCollectionViewScrollPositionLeadingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge), [`NSCollectionViewScrollPositionTrailingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge), or [`NSCollectionViewScrollPositionNearestVerticalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionRight")]
         const Right = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge?language=objc)
+/// Scroll so that the leading edge of the selected items’ bounding box is adjacent to the leading edge of the collection view’s bounds. Use this option to support both left-to-right and right-to-left layouts appropriately. This option must not be combined with the [`NSCollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left), [`NSCollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally), [`NSCollectionViewScrollPositionRight`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right), [`NSCollectionViewScrollPositionTrailingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge), or [`NSCollectionViewScrollPositionNearestVerticalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionLeadingEdge")]
         const LeadingEdge = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge?language=objc)
+/// Scroll so that the trailing edge of the selected items’ bounding box is adjacent to the trailing edge of the collection view’s bounds. Use this option to support both left-to-right and right-to-left layouts appropriately. This option must not be combined with the [`NSCollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left), [`NSCollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally), [`NSCollectionViewScrollPositionRight`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right), [`NSCollectionViewScrollPositionLeadingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge), or [`NSCollectionViewScrollPositionNearestVerticalEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionTrailingEdge")]
         const TrailingEdge = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/nearestverticaledge?language=objc)
+/// Scroll so that the bounding box is adjacent to the nearest edge (leading or trailing) of the collection view. Use this option to support both left-to-right and right-to-left layouts appropriately. This option must not be combined with the [`NSCollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/left), [`NSCollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/centeredhorizontally), [`NSCollectionViewScrollPositionRight`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/right), [`NSCollectionViewScrollPositionLeadingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/leadingedge), or [`NSCollectionViewScrollPositionTrailingEdge`](https://developer.apple.com/documentation/appkit/nscollectionview/scrollposition/trailingedge) options, but may be combined with other options.
         #[doc(alias = "NSCollectionViewScrollPositionNearestVerticalEdge")]
         const NearestVerticalEdge = 1<<8;
     }
@@ -108,11 +108,18 @@ unsafe impl RefEncode for NSCollectionViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/supplementaryelementkind?language=objc)
 pub type NSCollectionViewSupplementaryElementKind = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewelement?language=objc)
+    /// A set of methods that you use to manage the content in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol in the classes that you use to display content for items, supplementary views, and decoration views in a collection view. The methods of this protocol are optional and provide support for applying layout attributes and for cleaning up elements when they move offscreen and are recycled.
+    ///
+    /// Collection view items—that is, instances of the [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) class—already adopt this protocol. For supplementary and decoration views, adopt this protocol in the custom view classes you use to represent that content.
+    ///
+    ///
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewElement:
         NSObjectProtocol + NSUserInterfaceItemIdentification + MainThreadOnly
@@ -160,7 +167,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewsectionheaderview?language=objc)
+    /// A protocol that defines a button to control the collapse of a collection view’s section.
+    ///
+    /// ## Overview
+    ///
+    /// A collection view can support a section that can collapse into a single horizontally scrollable row, similar to the groupings in the icon view in Finder. To ensure that the collection view can communicate with the button that controls the collapsing of a section, the section header view object should conform to this protocol and connect the button’s outlet to [`sectionCollapseButton`](https://developer.apple.com/documentation/appkit/nscollectionviewsectionheaderview/sectioncollapsebutton).
+    ///
+    ///
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub unsafe trait NSCollectionViewSectionHeaderView:
         NSCollectionViewElement + MainThreadOnly
@@ -193,7 +206,63 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitem?language=objc)
+    /// The visual representation for a single data element in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Item objects are view controllers, and you use their view hierarchies to display your content. The default implementation of this class supports the creation of a simple item that displays a single image or string. If the appearance or layout of your items is more sophisticated, you can subclass and configure the view hierarchy based on your needs.
+    ///
+    /// Items are the most common types of elements displayed by a collection view, and every collection view must have at least one type of item. You use items to represent the main content of your collection view interface. For example, a photo browser app would use items to display individual photos. Remember that items are only the visual interpretation of your app’s underlying data. The actual data is always managed by your app and exposed to the collection view through the data source object, which uses the data to configure the items that are displayed.
+    ///
+    /// The use of items with a collection view requires doing the following:
+    ///
+    /// - Define the visual appearance of your items by specifying what views they contain and how those views are arranged.
+    ///
+    /// - When your interface is first loaded, register your items with the collection view. (You must register your items before the collection view tries to display any content.)
+    ///
+    /// - In your data source object, create and configure items when the collection view asks for them; see [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource).
+    ///
+    /// At runtime, items merely present the data they are given. Your app’s data structures are always the original source of content, and the item contains only a copy of that data to present to the user. When the underlying data associated with an item changes, the data source should invalidate the item by calling the [`reloadItemsAtIndexPaths:`](https://developer.apple.com/documentation/appkit/nscollectionview/reloaditems(at:)) method of the collection view. Invalidating an item forces the collection view to dispose of it so that the collection view can create a new one with the updated content.
+    ///
+    /// For information about how the collection view displays items to the user, see [`NSCollectionView`](https://developer.apple.com/documentation/appkit/nscollectionview).
+    ///
+    /// ### Configuring an Item’s Views
+    ///
+    /// You configure the views of an item in one of two ways:
+    ///
+    /// - Subclass `NSCollectionViewItem` and create any custom views programmatically.
+    ///
+    /// - Create a nib file containing a single top-level `NSCollectionViewItem` object. Embed any custom views in the root view of the item.
+    ///
+    /// When creating the views programmatically, you typically override the item’s [`loadView`](https://developer.apple.com/documentation/appkit/nsviewcontroller/loadview()) method as you would for any view controller. In your implementation, create the views and add them as subviews to the view controller’s root view. Add accessor properties to your subclass so that you can access the views later and configure them.
+    ///
+    /// When using a nib file, you can use a generic `NSCollectionViewItem` object if your item contains only an image or text field. For more complex item content, subclass `NSCollectionViewItem` and add outlets for any views you need to access later. In Interface Builder, connect your outlets to the views you add to the nib file.
+    ///
+    /// ### Registering Items
+    ///
+    /// Before you can ask the collection view to create items, you must register those items using one of the following methods:
+    ///
+    /// - Use the [`registerClass:forItemWithIdentifier:`](https://developer.apple.com/documentation/appkit/nscollectionview/register(_:foritemwithidentifier:)-6s4i) method when your `NSCollectionViewItem` subclass handles the creation of its own views.
+    ///
+    /// - Use the [`registerNib:forItemWithIdentifier:`](https://developer.apple.com/documentation/appkit/nscollectionview/register(_:foritemwithidentifier:)-90h1i) method when you store the item’s views in a nib file.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A single collection view can support multiple item types, each with its own distinct appearance, and you can mix and match item types in the same collection view if you want.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You must register at least one item type before trying to display content from your collection view. The collection view’s data source uses the [`makeItemWithIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makeitem(withidentifier:for:)) method to fetch an empty item for configuration. During the initial configuration of the collection view, that method creates all items using the registered classes and nib files you provided. Later on, the method may return a recycled item that can be repurposed with new data.
+    ///
+    /// For more information about how how to register items, see [`NSCollectionView`](https://developer.apple.com/documentation/appkit/nscollectionview). For information about how the data source object creates and configures items, see [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource).
+    ///
+    /// ### Legacy Item Support
+    ///
+    /// For apps built before OS X 10.11, you created a template item and assigned it to the [`itemPrototype`](https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype) property of your collection view. To create new instances of the item, you called the collection view’s [`newItemForRepresentedObject:`](https://developer.apple.com/documentation/appkit/nscollectionview/newitem(forrepresentedobject:)) method. For more information about how to support older collection view configurations, see Collection View Programming Guide for macOS.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -361,7 +430,94 @@ impl NSCollectionViewItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview?language=objc)
+    /// An ordered collection of data items displayed in a customizable layout.
+    ///
+    /// ## Overview
+    ///
+    /// The simplest type of collection view displays its items in a grid, but you can define layouts to arrange items however you like. For example, you might create a layout where items are arranged in a circle. You can also change layouts dynamically at runtime whenever you need to present items differently.
+    ///
+    /// You can add collection views to your interface using Interface Builder or create them programmatically in your view controller or window controller code. It is recommended that you configure your collection view with a data source object, which is an object that conforms to the [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource) protocol. Data sources support multiple sections and the modern layout architecture and are the preferred way for specifying your data.
+    ///
+    /// In addition to displaying items, collection views support the display of supplementary and decoration views. Support for supplementary and decoration views is defined by the current layout object, but both types of views add to the visual presentation of your content. Supplementary views are associated with a specific section and can be used to create header and footer views for a related group of items. Decoration views are purely visual adornments and can be used to implement dynamic backgrounds or other types of configurable visual content.
+    ///
+    /// The layout of a collection view can be changed dynamically by assigning a new layout object to the [`collectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout) property. Changing the layout object updates the appearance of the collection view without animating the changes.
+    ///
+    /// ### The Objects of a Collection View Interface
+    ///
+    /// An `NSCollectionView` object itself is a facilitator, taking information from disparate sources and merging them together to create an overall interface:
+    ///
+    /// - The data source object provides both the data and the views used to display that data. You define the data source object by implementing the methods of the [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource) protocol in one of your app’s objects.
+    ///
+    /// - The visual representation of items is provided by the [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) class. Item objects are view controllers and you use their views to display your app’s data. The data source creates items on demand and returns them to the collection view for display.
+    ///
+    /// - The collection view delegate makes decisions about behaviors. The delegate also coordinates the dragging and dropping of items. You define the delegate by implementing the methods of the [`NSCollectionViewDelegate`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate) protocol in one of your app’s objects.
+    ///
+    /// - The layout object specifies the position and appearance of items onscreen. AppKit defines layout objects that you can use as-is, but you can also define custom layouts by subclassing [`NSCollectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout).
+    ///
+    /// [Figure 1](/documentation/appkit/nscollectionview#1965644) illustrates how the collection view works with its other objects to create its final appearance. The collection view obtains the views for items and supplementary views from its data source, which creates the views and fills them with data. The layout object provides the layout attributes needed to position those items and supplementary views onscreen. The collection view merges the two sets of information to create the final appearance that the user sees onscreen.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/812d124f9141eefafb5973d46a8c1e92/media-1965644%402x.png)
+    ///
+    ///
+    /// There are other helper classes and protocols that you can use to customize the layout behavior and other aspects of the collection view interface. For example, when using a flow layout object ([`NSCollectionViewFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout)), you can modify the flow layout’s behavior using the methods of the [`NSCollectionViewDelegateFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegateflowlayout) protocol. When implementing a custom layout, you might also work with [`NSCollectionViewUpdateItem`](https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem) and [`NSCollectionViewLayoutInvalidationContext`](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext) objects, which help the layout object manage updates.
+    ///
+    /// ### Managing the Collection View’s Content
+    ///
+    /// Data for the collection view is managed by the _data source object_—that is an object that adopts the methods of the [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource) protocol. You are responsible for defining the data source used by your collection view. The data source provides information about the number of sections and items in the collection view and it provides the visual representation of that data. Every data source object is required to implement the following methods:
+    ///
+    /// - [`collectionView:numberOfItemsInSection:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:numberofitemsinsection:))
+    ///
+    /// - [`collectionView:itemForRepresentedObjectAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:itemforrepresentedobjectat:))
+    ///
+    /// The [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) class defines the visual appearance of items in the collection view. Your data source object vends items from its [`collectionView:itemForRepresentedObjectAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:itemforrepresentedobjectat:)) method, creating and configuring the item in one step. Each item is essentially a snapshot of the data it represents. Items are often short-lived because they can be recycled by the collection view and reused to display new data. As a result, never store references to items in your app.
+    ///
+    /// Supplementary views are another way to display data in your interface. Each layout object defines the supplementary views it supports, and different layouts can define supplementary views for different purposes. For example, an [`NSCollectionViewFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout) object lets you add header and footer views to each section. Your data source must know enough about the layout to know which supplementary views are supported by the layout object and how those views are displayed. The data source can then provide supplementary views when asked for them.
+    ///
+    /// When your content changes in a way that requires you to update what the collection view displays, call the [`reloadData`](https://developer.apple.com/documentation/appkit/nscollectionview/reloaddata()), [`reloadSections:`](https://developer.apple.com/documentation/appkit/nscollectionview/reloadsections(_:)), or [`reloadItemsAtIndexPaths:`](https://developer.apple.com/documentation/appkit/nscollectionview/reloaditems(at:)) method to perform that update. These methods cause the collection view to discard the views currently being used to display your content and ask for new ones. Never try to modify the views associated with your items directly. The collection view does not maintain views for all items, only those that are currently being displayed. Reloading the items ensures that the views are updated correctly.
+    ///
+    /// For more information on defining your data source object, see [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource).
+    ///
+    /// ### Inserting, Deleting, and Moving Content
+    ///
+    /// The collection view includes methods for inserting, deleting, and moving items and sections. All of these methods affect only what the collection view displays onscreen; they do not change the data in the associated data source object. As a result, when updating your collection view’s content, always do the following:
+    ///
+    /// 1. Update the internal structures of your data source object first.
+    ///
+    /// 2. Call the `NSCollectionView` methods to insert, delete, or move items and sections.
+    ///
+    /// When you call methods like [`insertItemsAtIndexPaths:`](https://developer.apple.com/documentation/appkit/nscollectionview/insertitems(at:)) or [`deleteSections:`](https://developer.apple.com/documentation/appkit/nscollectionview/deletesections(_:)), the collection view fetches any new data from your data source object and then updates the layout. When inserting, moving, or deleting items, the collection view updates the layout for all affected items, which might include items not directly affected by the operation. For example, inserting one item might require adjusting the onscreen position of many other items. When the layout attributes for any visible items changes, the collection view animates those changes into place automatically.
+    ///
+    /// The layout object determines how inserted and deleted items are animated into position. Because newly inserted items are not onscreen initially, the layout object provides the initial layout attributes for those items. Similarly, the layout object provides the final layout attributes for any items that are being deleted. For example, the layout object might specify final layout attributes that are offscreen so that a deleted item animates out of the visible rectangle.
+    ///
+    /// Because individual methods for inserting, deleting, and moving content animate their changes right away, you must use the [`performBatchUpdates:completionHandler:`](https://developer.apple.com/documentation/appkit/nscollectionview/performbatchupdates(_:completionhandler:)) method when you want to animate multiple changes together. The [`performBatchUpdates:completionHandler:`](https://developer.apple.com/documentation/appkit/nscollectionview/performbatchupdates(_:completionhandler:)) method takes a block containing all of the insert, delete, move, and reload method calls you need to update the collection view. All of those operations are captured and performed as a single animated sequence.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your collection view in your storyboard and nib files. The table below shows the basic collection view attributes. Additional attributes are available based on the selected value for the Layout attribute.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Layout" }] }], [Paragraph { inline_content: [Text { text: "The type of layout object to use. The Flow, Grid, and Custom options are preferred because they enable the modern collection view behavior." }] }]], [[Paragraph { inline_content: [Text { text: "Colors" }] }], [Paragraph { inline_content: [Text { text: "The option to specify alternating colors for the collection view’s background." }] }]], [[Paragraph { inline_content: [Text { text: "Primary" }] }], [Paragraph { inline_content: [Text { text: "The primary color to use with the collection view." }] }]], [[Paragraph { inline_content: [Text { text: "Secondary" }] }], [Paragraph { inline_content: [Text { text: "The secondary color to use with the collection view." }] }]], [[Paragraph { inline_content: [Text { text: "Selection" }] }], [Paragraph { inline_content: [Text { text: "The options for selecting items. Use these options to enable or disable selections altogether and to specify whether the collection view supports the selection of multiple items or no items." }] }]]], alignments: None, metadata: None })
+    /// The table below shows the attributes you can configure when you set the Layout attribute to Flow.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Scroll Direction" }] }], [Paragraph { inline_content: [Text { text: "The scrolling direction for content. The flow layout allows scrolling in one dimension only. The other dimension is pinned to the size of the collection view itself. For example, when vertical scrolling is selected, the width of the content area is set to the width of the collection view." }] }]], [[Paragraph { inline_content: [Text { text: "Item Size" }] }], [Paragraph { inline_content: [Text { text: "The default size of newly created items. The collection view’s delegate can override the default size values and specify different values for each item." }] }]], [[Paragraph { inline_content: [Text { text: "Header Size" }] }], [Paragraph { inline_content: [Text { text: "The default size of header views. The layout object uses only the dimension that does not match the current scrolling direction. For example, for a vertically scrolling collection view, the layout sets only the width of the footer to the specified value. The collection view’s delegate can override the default size values." }] }]], [[Paragraph { inline_content: [Text { text: "Footer Size" }] }], [Paragraph { inline_content: [Text { text: "The default size of footer views. The layout object uses only the dimension that does not match the current scrolling direction. For example, for a vertically scrolling collection view, the layout sets only the width of the footer to the specified value. The collection view’s delegate can override the default size values using methods of the " }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegateFlowLayout", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " protocol." }] }]], [[Paragraph { inline_content: [Text { text: "Min Spacing" }] }], [Paragraph { inline_content: [Text { text: "The minimum spacing between items and lines. The item spacing is the minimum amount of space for items in the same row or column (depending on the scroll direction). The line spacing is the minimum space between rows or columns. The actual amount of space used between items and lines may be greater than the minimum." }] }]], [[Paragraph { inline_content: [Text { text: "Section Inset" }] }], [Paragraph { inline_content: [Text { text: "The margins imposed on each section. Margins set the distance between the header view and the items, between the sides of the collection view and the items, and between the items and the footer view." }] }]]], alignments: None, metadata: None })
+    /// The table below shows the attributes you can configure when you set the Layout attribute to Grid.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Dimensions" }] }], [Paragraph { inline_content: [Text { text: "The number of rows and columns to display. Use these attributes to configure the grid dimensions." }] }]], [[Paragraph { inline_content: [Text { text: "Min Item Size" }] }], [Paragraph { inline_content: [Text { text: "The minimum width and height for items." }] }]], [[Paragraph { inline_content: [Text { text: "Max Item Size" }] }], [Paragraph { inline_content: [Text { text: "The maximum width and height for items." }] }]]], alignments: None, metadata: None })
+    /// The table below shows the attributes you can configure when you set the Layout attribute to Custom.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Class" }] }], [Paragraph { inline_content: [Text { text: "The name of the " }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCollectionViewLayout", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " subclass you want to use." }] }]], [[Paragraph { inline_content: [Text { text: "Module" }] }], [Paragraph { inline_content: [Text { text: "The Swift module containing the class. Leave this attribute blank for classes in the current module." }] }]]], alignments: None, metadata: None })
+    /// The table below shows the attributes you can configure when you set the Layout attribute to Content Array (Legacy).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Dimensions" }] }], [Paragraph { inline_content: [Text { text: "The number of rows and columns to display. Use these attributes to configure the grid dimensions." }] }]]], alignments: None, metadata: None })
+    /// ### Legacy Collection View Support
+    ///
+    /// Prior to OS X v10.11, the collection view always displayed its contents in a grid structure that could not be changed. The data for the collection view was stored in the [`content`](https://developer.apple.com/documentation/appkit/nscollectionview/content) property, which was often populated with data using bindings. You specified the visual appearance for the collection view’s data by creating an [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) object and assigning it to the [`itemPrototype`](https://developer.apple.com/documentation/appkit/nscollectionview/itemprototype) property. That item object acted as a template and was used to create all of the items in the collection view.
+    ///
+    /// You are encouraged to use the modern collection view architecture when configuring collection views in macOS 10.11 and later. Use the legacy architecture only for apps that must run in earlier versions of macOS.
+    ///
+    /// For more information about how to configure a collection view using the legacy architecture, see Collection View Programming Guide for macOS.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -916,7 +1072,54 @@ impl NSCollectionView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource?language=objc)
+    /// A set of methods that a data source object implements to provide the information and view objects that a collection view requires to present content.
+    ///
+    /// ## Overview
+    ///
+    /// A data source object vends information about your app’s data model to the collection view when asked. For example, it tells the collection view how many items are present. It also handles the creation and configuration of the views used to represent items and used to decorate the collection view’s content area.
+    ///
+    /// All data source objects must implement the [`collectionView:numberOfItemsInSection:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:numberofitemsinsection:)) and [`collectionView:itemForRepresentedObjectAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:itemforrepresentedobjectat:)) methods. These methods provide the collection view with the basic information it needs to display your items. The remaining methods of the protocol are optional and are needed only if your collection view organizes items into sections or provides supplementary views.
+    ///
+    /// To associate your data source object with a collection view, assign the object to the [`dataSource`](https://developer.apple.com/documentation/appkit/nscollectionview/datasource) property of that collection view. You can also connect the data source to your collection view in Interface Builder. For more information about how a collection view works with its data source to present content, see [`NSCollectionView`](https://developer.apple.com/documentation/appkit/nscollectionview).
+    ///
+    /// ### Organizing Your Data Structures
+    ///
+    /// How you implement your data source object has implications for the associated collection view. Your data source object acts as the bridge between your app’s underlying data and the presentation of that data by the collection view. Because the methods of your data source object are called many times while the collection view is onscreen, the implementations of those methods need to return data as quickly as possible. Therefore, you should create data structures that adapt easily to the organization of the collection view itself.
+    ///
+    /// Data in a collection view is organized into one or more _sections_, and each section contains zero or more _items_ in a specific order. You specify how many sections and items your collection view has based on your data. You define what the content of an item is, but usually the items in a section represent your primary data. For example, items in a photo browser app would be the photos themselves, and each section in the app would define a different group of related photos. Items can contain any data that you want. In the case of a photo browser, an item might also include descriptive information such as the date the photo was taken, the exposure settings used, the location, and so on.
+    ///
+    /// The data structures you use for your sections and items are separate from the views and view controllers that you use to present them. Sections have no default visual representation, but layouts may support section-specific supplementary views. For example, the flow layout supports header and footer views for each section. Items are presented using instances of the [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) class, which your data source is responsible for configuring in its [`collectionView:itemForRepresentedObjectAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:itemforrepresentedobjectat:)) method.
+    ///
+    /// When organizing your data, create data structures that map efficiently to the section and item model. One simple way to organize your data is to use an [`NSMutableArray`](https://developer.apple.com/documentation/foundation/nsmutablearray) object to store the items for each section. Whatever data structures you choose, make sure that they can return the needed information quickly. For example, you need to return the total number of sections and the number of items in each section. You also need to be able to fetch items based on section and item indexes quickly.
+    ///
+    /// ### Configuring Items and Supplementary Views
+    ///
+    /// When the collection view determines that an item or supplementary view needs to be displayed, it asks your data source to provide the corresponding visual element. The visual representation of an item is provided by the [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) class. The visual representation of a supplementary view is provided by an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object. The steps for configuring an item or supplementary view are essentially the same. The only thing that changes is the specific methods you call.
+    ///
+    /// 1. Ask the collection view to provide an instance of the element you need using the [`makeItemWithIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makeitem(withidentifier:for:)) or [`makeSupplementaryViewOfKind:withIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makesupplementaryview(ofkind:withidentifier:for:)) method.
+    ///
+    /// 2. Configure the views of the element with the data you want to display.
+    ///
+    /// 3. Return the element back to the collection view.
+    ///
+    /// When you call the [`makeItemWithIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makeitem(withidentifier:for:)) or [`makeSupplementaryViewOfKind:withIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makesupplementaryview(ofkind:withidentifier:for:)) method, the collection view recycles or creates the appropriate element for you. Using these methods is more efficient than creating the elements yourself. As elements move offscreen, the collection view recycles them and places them on a reuse queue. When you ask for a new element, the collection view returns a recycled element whenever one is available, thereby eliminating the need to create one from scratch.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You must register the items and supplementary views of your app before trying to recycle or create them. For each element, you can register a class or nib file to use when creating new instances of the item. For more information about registering the elements for your collection view, see [`NSCollectionView`](https://developer.apple.com/documentation/appkit/nscollectionview).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The listing below shows how to create and configure an item in the [`collectionView:itemForRepresentedObjectAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:itemforrepresentedobjectat:)) method of your data source. After retrieving an item using the [`makeItemWithIdentifier:forIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionview/makeitem(withidentifier:for:)) method, you configure the properties of that item with your custom data. In this case, the code assigns an image to the built-in image view provided by the [`NSCollectionViewItem`](https://developer.apple.com/documentation/appkit/nscollectionviewitem) class. If you defined a custom item class with additional views or controls, you would configure those views before returning the item from this method. You must fully configure the item before returning it.
+    ///
+    /// Listing 1. Creating and configuring an item
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func collectionView(collectionView: NSCollectionView, itemForRepresentedObjectAtIndexPath", "    indexPath: NSIndexPath) -> NSCollectionViewItem {", "    // Recycle or create an item.", "    let item = self.collectionView.makeItemWithIdentifier(\"dataSourceItem\", forIndexPath: indexPath)", "    ", "    // Configure the item with an image from the app's data structures", "    let image = myImageData.objectAtIndex(indexPath.item)", "    item.imageView!.image = image as? NSImage", "    ", "    return item", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (NSCollectionViewItem*)collectionView:(NSCollectionView *)collectionView", "        itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {", "   // Recycle or create an item.", "   NSCollectionViewItem* item = [self.collectionView makeItemWithIdentifier:@\"dataSourceItem\"", "                                                     forIndexPath:indexPath];", " ", "   // Configure the item with an image from the app's data structures", "   NSImage* theImage = [myImageData objectAtIndex:indexPath.item];", "   item.imageView.image = theImage;", " ", "   return item;", "}"], metadata: None }] }] })
+    /// After returning an item object from your [`collectionView:itemForRepresentedObjectAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource/collectionview(_:itemforrepresentedobjectat:)) method, you do not modify that object again. If the underlying data for an item changes, ask the collection view to reload the item by calling the [`reloadItemsAtIndexPaths:`](https://developer.apple.com/documentation/appkit/nscollectionview/reloaditems(at:)) method. Calling that method causes the collection view to discard the current item and ask your data source to provide a new one.
+    ///
+    ///
     pub unsafe trait NSCollectionViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(collectionView:numberOfItemsInSection:))]
@@ -961,7 +1164,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewprefetching?language=objc)
     pub unsafe trait NSCollectionViewPrefetching: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(collectionView:prefetchItemsAtIndexPaths:))]
@@ -985,7 +1187,29 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate?language=objc)
+    /// A set of methods that you use to manage the behavior of a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You use the methods of this protocol to facilitate the user-initiated selection and highlighting of items, to track changes to the collection view’s visual elements, and to implement drag and drop support. The methods of this protocol are optional, but for some features, you must implement specific methods to support the feature.
+    ///
+    /// Implement the methods of this protocol in an object that you use to manage your collection view. Typically, you implement delegate support in the view controller or window controller that manages the collection view itself, but you can implement these methods in another object if you prefer. Assign your delegate object to the collection view either programmatically (by setting the value of the collection view’s [`delegate`](https://developer.apple.com/documentation/appkit/nscollectionview/delegate) property) or at design time in Interface Builder.
+    ///
+    /// To implement drag and drop support in your collection view, implement the following methods:
+    ///
+    /// - To support the dragging of content from the collection view, implement either the  [`collectionView:pasteboardWriterForItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:pasteboardwriterforitemat:)-5eyyl) or [`collectionView:writeItemsAtIndexPaths:toPasteboard:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:writeitemsat:to:)-23ozm) method.
+    ///
+    /// - To support the dropping of content into the collection view, implement the [`collectionView:validateDrop:proposedIndexPath:dropOperation:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:validatedrop:proposedindexpath:dropoperation:)) and [`collectionView:acceptDrop:indexPath:dropOperation:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:acceptdrop:indexpath:dropoperation:)) methods.
+    ///
+    /// - To support multi-image drag and drop, you must implement the [`collectionView:pasteboardWriterForItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:pasteboardwriterforitemat:)-5eyyl) and [`collectionView:updateDraggingItemsForDrag:`](https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/collectionview(_:updatedraggingitemsfordrag:)) methods.
+    ///
+    /// For more information about handling drag and drop operations, see [Drag and Drop Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DragandDrop/DragandDrop.html#//apple_ref/doc/uid/10000069i).
+    ///
+    /// ### Legacy Support
+    ///
+    /// Before OS X 10.11, collection views supported only a single section of items organized in a grid layout. The drag and drop methods of this protocol include variants that take a single index or an [`NSIndexSet`](https://developer.apple.com/documentation/foundation/nsindexset) as a parameter. Although you can use those methods to implement your drag and drop support, it is recommended that you use the newer methods that take [`NSIndexPath`](https://developer.apple.com/documentation/foundation/nsindexpath) objects instead.
+    ///
+    ///
     pub unsafe trait NSCollectionViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[optional]

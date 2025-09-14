@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing the record for a signpost interval or event.
     /// A class that represents a record of signpost instance.
     ///
     /// Signpost instances are either Signpost intervals or events and MXSignpostRecord captures information reagarding such signpost instances
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxsignpostrecord?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXSignpostRecord;

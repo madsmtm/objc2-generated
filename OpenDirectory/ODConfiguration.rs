@@ -9,39 +9,28 @@ use objc2_security_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketsigningdisabled?language=objc)
 pub const ODPacketSigningDisabled: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketsigningallow?language=objc)
 pub const ODPacketSigningAllow: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketsigningrequired?language=objc)
 pub const ODPacketSigningRequired: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketencryptiondisabled?language=objc)
 pub const ODPacketEncryptionDisabled: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketencryptionallow?language=objc)
 pub const ODPacketEncryptionAllow: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketencryptionrequired?language=objc)
 pub const ODPacketEncryptionRequired: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odpacketencryptionssl?language=objc)
 pub const ODPacketEncryptionSSL: c_uint = 3;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odtrusttypejoined?language=objc)
     pub static ODTrustTypeJoined: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odtrusttypeusingcredentials?language=objc)
     pub static ODTrustTypeUsingCredentials: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odtrusttypeanonymous?language=objc)
     pub static ODTrustTypeAnonymous: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODConfiguration;

@@ -6,6 +6,25 @@ use objc2_io_kit::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Obtains the next descriptor in a configuration descriptor.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - currentDescriptor: A description header within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method advances the current descriptor by its length, and validates that the new descriptor fits within the bounds of `configurationDescriptor`. Use `nil` for `currentDescriptor` to return the first descriptor after the configuration descriptor.
+    ///
+    ///
     /// Get the next descriptor in a configuration descriptor
     ///
     /// This method will advance currentDescriptor by its bLength, and validate that the new descriptor fits withing the bounds of configurationDescriptor.  Using NULL for currentDescriptor will return the first descriptor after the configuration descriptor.
@@ -20,8 +39,6 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -30,6 +47,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next descriptor in a configuration descriptor that matches the type.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    /// - type: The descriptor type to find.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextDescriptor`](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptor(_:_:)), and further validates that the returned descriptor’s `bDescriptorType` field matches the type parameter.
+    ///
+    ///
     /// Find the next descriptor matching a given type within a configuration descriptor
     ///
     /// This method uses getNextDescriptor, and further validates that the returned descriptor's bDescriptorType field matches the type parameter.
@@ -46,8 +84,6 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptorwithtype(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextDescriptorWithType(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -57,6 +93,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next associated descriptor in a configuration descriptor.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - parentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextDescriptor`](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptor(_:_:)), but returns `nil` if it finds another descriptor with a `bDescriptorType` field that matches the value for `parentDescripto`r’s `bDescriptorType`. Use `nil` for `currentDescriptor` to return the first descriptor after `parentDescriptor`.
+    ///
+    ///
     /// Get the next descriptor in a configuration descriptor that belongs to another container descriptor
     ///
     /// This method uses getNextDescriptor, but will return NULL if another descriptor is found whose bDescriptorType field matches the value used for parentDescriptor's bDescriptorType.  Using NULL for currentDescriptor will return the first descriptor after parentDescriptor.
@@ -74,8 +131,6 @@ extern "C-unwind" {
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `parent_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextassociateddescriptor(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextAssociatedDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -85,6 +140,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next associated descriptor in a configuration descriptor and matches the type.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - parentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    /// - type: The descriptor type to find.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextAssociatedDescriptor`](https://developer.apple.com/documentation/iousbhost/iousbgetnextassociateddescriptor(_:_:_:)), and further validates that the returned descriptor’s `bDescriptorType` field matches the type that the parameter passes.
+    ///
+    ///
     /// Find the next descriptor matching a given type within a configuration descriptor that belongs to another container descriptor
     ///
     /// This method uses getNextAssociatedDescriptor, and further validates that the returned descriptor's bDescriptorType field matches the type passed parameter.
@@ -104,8 +182,6 @@ extern "C-unwind" {
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `parent_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextassociateddescriptorwithtype(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextAssociatedDescriptorWithType(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -116,6 +192,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next interface association descriptor in a configuration descriptor.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The next interface assocation descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptorwithtype(_:_:_:)) to find the next interface association descriptor.
+    ///
+    ///
     /// Find the next interface association descriptor in a configuration descriptor
     ///
     /// This method uses getNextDescriptorWithType to fetch the next interface association descriptor
@@ -130,8 +225,6 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextinterfaceassociationdescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextInterfaceAssociationDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -140,6 +233,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next interface descriptor in a configuration descriptor.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The next interface descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextdescriptorwithtype(_:_:_:)) to find the next interface descriptor.
+    ///
+    ///
     /// Find the next interface descriptor in a configuration descriptor
     ///
     /// This method uses getNextDescriptorWithType to fetch the next interface descriptor
@@ -154,8 +266,6 @@ extern "C-unwind" {
     ///
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextinterfacedescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextInterfaceDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -164,6 +274,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next endpoint descriptor for an interface descriptor.
+    ///
+    /// Parameters:
+    /// - configurationDescriptor: A configuration descriptor that contains the descriptors to iterate through.
+    ///
+    /// - interfaceDescriptor: An interface descriptor within the bounds of `configurationDescriptor`.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextAssociatedDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextassociateddescriptorwithtype(_:_:_:_:)) to find the next endpoint descriptor for a specific interface descriptor.
+    ///
+    ///
     /// Find the next endpoint descriptor associated with an interface descriptor
     ///
     /// This method uses getNextAssociatedDescriptorWithType to fetch the next endpoint descriptor associated with a specific interface descriptor
@@ -181,8 +312,6 @@ extern "C-unwind" {
     /// - `configuration_descriptor` must be a valid pointer.
     /// - `interface_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextendpointdescriptor(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextEndpointDescriptor(
         configuration_descriptor: *const IOUSBConfigurationDescriptor,
@@ -192,6 +321,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next device capability descriptor in a BOS descriptor.
+    ///
+    /// Parameters:
+    /// - bosDescriptor: A BOS descriptor that contains the descriptors to iterate through.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A device capability descriptor pointer, or `nil` if no descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method advances the current descriptor by its length, and validates that the new descriptor fits within the bounds of `bosDescriptor`. Use `nil` for `currentDescriptor` to return the first descriptor after the BOS descriptor.
+    ///
+    ///
     /// Get the next device capability descriptor in a BOS descriptor
     ///
     /// This method will advance currentDescriptor by its bLength, and validate that the new descriptor fits withing the bounds of bosDescriptor.  Using NULL for currentDescriptor will return the first descriptor after the BOS descriptor.
@@ -206,8 +354,6 @@ extern "C-unwind" {
     ///
     /// - `bos_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptor(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -216,6 +362,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the next descriptor matching a specific type within a BOS descriptor.
+    ///
+    /// Parameters:
+    /// - bosDescriptor: A BOS descriptor that contains the descriptors to iterate through.
+    ///
+    /// - currentDescriptor: A descriptor pointer within the bounds of `configurationDescriptor`, or `nil`.
+    ///
+    /// - type: The descriptor type to find.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A device capability descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextCapabilityDescriptor`](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptor(_:_:)), and further validates that the returned descriptor’s `bDevCapabilityType` field matches the type parameter.
+    ///
+    ///
     /// Find the next descriptor matching a given type within a BOS descriptor
     ///
     /// This method uses getNextCapabilityDescriptor, and further validates that the returned descriptor's bDevCapabilityType field matches the type parameter.
@@ -232,8 +399,6 @@ extern "C-unwind" {
     ///
     /// - `bos_descriptor` must be a valid pointer.
     /// - `current_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptorwithtype(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetNextCapabilityDescriptorWithType(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -243,6 +408,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the first USB 2.0 extension capability descriptor in a BOS descriptor.
+    ///
+    /// Parameters:
+    /// - bosDescriptor: A BOS descriptor that contains the descriptors to iterate through.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The device capability extension pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextCapabilityDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptorwithtype(_:_:_:)) to find the first device capability extension.
+    ///
+    ///
     /// Find the first USB20ExtensionCapabilityDescriptor in a BOS descriptor
     ///
     /// This method uses getNextCapabilityDescriptorWithType to fetch the first USB20ExtensionCapabilityDescriptor
@@ -254,8 +436,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetusb20extensiondevicecapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetUSB20ExtensionDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -263,6 +443,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the first SuperSpeed capability descriptor in a BOS descriptor.
+    ///
+    /// Parameters:
+    /// - bosDescriptor: A BOS descriptor that contains the descriptors to iterate through.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A SuperSpeed capability pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextCapabilityDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptorwithtype(_:_:_:)) to find the first SuperSpeed capability descriptor.
+    ///
+    ///
     /// Find the first SuperSpeedUSBDeviceCapabilityDescriptor in a BOS descriptor
     ///
     /// This method uses getNextCapabilityDescriptorWithType to fetch the first SuperSpeedUSBDeviceCapabilityDescriptor
@@ -274,8 +471,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetsuperspeeddevicecapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetSuperSpeedDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -294,8 +489,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetsuperspeedplusdevicecapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetSuperSpeedPlusDeviceCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -303,6 +496,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the first container ID capability descriptor in a BOS descriptor.
+    ///
+    /// Parameters:
+    /// - bosDescriptor: A BOS descriptor that contains the descriptors to iterate through.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A container ID capability descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextCapabilityDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptorwithtype(_:_:_:)) to find the first container ID capability descriptor.
+    ///
+    ///
     /// Find the first ContainerIDCapabilityDescriptor in a BOS descriptor
     ///
     /// This method uses getNextCapabilityDescriptorWithType to fetch the first ContainerIDCapabilityDescriptor
@@ -314,8 +524,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetcontaineriddescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetContainerIDDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -334,8 +542,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetplatformcapabilitydescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetPlatformCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -357,8 +563,6 @@ extern "C-unwind" {
     ///
     /// - `bos_descriptor` must be a valid pointer.
     /// - `uuid` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetplatformcapabilitydescriptorwithuuid(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetPlatformCapabilityDescriptorWithUUID(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -367,6 +571,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the first billboard capability descriptor in a BOS descriptor.
+    ///
+    /// Parameters:
+    /// - bosDescriptor: A BOS descriptor that contains the descriptors to iterate through.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A billboard capability descriptor pointer, or `nil` if no matching descriptor returns.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method uses [`IOUSBGetNextCapabilityDescriptorWithType`](https://developer.apple.com/documentation/iousbhost/iousbgetnextcapabilitydescriptorwithtype(_:_:_:)) to find the first billboard capability descriptor.
+    ///
+    ///
     /// Find the first BillboardCapabilityDescriptor in a BOS descriptor
     ///
     /// This method uses getNextCapabilityDescriptorWithType to fetch the first BillboardCapabilityDescriptor
@@ -378,8 +599,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `bos_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetbillboarddescriptor(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetBillboardDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
@@ -387,6 +606,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the direction of an endpoint from an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - descriptor: An endpoint descriptor to parse. Control endpoints return [`kIOUSBEndpointDirectionUnknown`](https://developer.apple.com/documentation/kernel/tiousbendpointdirection/kiousbendpointdirectionunknown).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The endpoint descriptor indicating the direction.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor to determine its transfer direction.
+    ///
+    ///
     /// Extract the direction of an endpoint from an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor to determine its transfer direction
@@ -398,13 +634,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointdirection(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointDirection(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
 
 extern "C-unwind" {
+    /// Obtains the direction and number of an endpoint from an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - descriptor: An endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The direction and endpoint number.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor to determine its address.
+    ///
+    ///
     /// Extract the direction and number of an endpoint from an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor to determine its address
@@ -416,13 +667,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointaddress(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointAddress(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
 
 extern "C-unwind" {
+    /// Obtains the number of an endpoint from an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - descriptor: An endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The representing endpoint number.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor to determine its number, excluding the endpoint’s data direction.
+    ///
+    ///
     /// Extract the number of an endpoint from an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor to determine its number, excluding direction
@@ -434,13 +700,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointnumber(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointNumber(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
 
 extern "C-unwind" {
+    /// Obtains the type of an endpoint from an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - descriptor: An endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The type found.
+    ///
+    ///
     /// Extract the type of an endpoint from an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor to determine its type
@@ -452,8 +727,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointtype(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -470,8 +743,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointusagetype(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointUsageType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
@@ -488,13 +759,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointsynchronizationtype(_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointSynchronizationType(descriptor: *const IOUSBEndpointDescriptor) -> u8;
 }
 
 extern "C-unwind" {
+    /// Obtains the maximum packet size from an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The maximum packet size in bytes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor to determine its maximum packet size, which doesn’t include mult or burst factors.
+    ///
+    ///
     /// Extract the max packet size from an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor to determine its max packet size, which does not take into account mult or burst factors.
@@ -508,8 +796,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmaxpacketsize(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxPacketSize(
         usb_device_speed: u32,
@@ -537,8 +823,6 @@ extern "C-unwind" {
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
     /// - `ssp_companion_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointburstsize(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointBurstSize(
         usb_device_speed: u32,
@@ -568,8 +852,6 @@ extern "C-unwind" {
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
     /// - `ssp_companion_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmult(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMult(
         usb_device_speed: u32,
@@ -580,6 +862,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the interval of an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The encoded endpoint interval.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor and returns the service interval as _n_ in _(2^(n-1))_ microframes.
+    ///
+    ///
     /// Extract the interval of an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor and returns the service interval as n in (2^(n-1)) microframes
@@ -593,8 +894,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointintervalencodedmicroframes(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalEncodedMicroframes(
         usb_device_speed: u32,
@@ -603,6 +902,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the interval of an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The endpoint interval in microframes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor and returns the service interval in microframes.
+    ///
+    ///
     /// Extract the interval of an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor and returns the service interval in microframes
@@ -616,8 +934,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointintervalmicroframes(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalMicroframes(
         usb_device_speed: u32,
@@ -626,6 +942,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the interval of an endpoint descriptor.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The endpoint descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The endpoint interval in frames.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses an endpoint descriptor and returns the service interval in frames.
+    ///
+    ///
     /// Extract the interval of an endpoint descriptor
     ///
     /// This method parses an endpoint descriptor and returns the service interval in frames
@@ -639,8 +974,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointintervalframes(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointIntervalFrames(
         usb_device_speed: u32,
@@ -649,6 +982,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the number of streams that an endpoint supports.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The endpoint descriptor to parse.
+    ///
+    /// - companionDescriptor: The companion descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The encoded number of streams.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses endpoint descriptors and returns the number of supported streams as _n_ in _(2^n)_.
+    ///
+    ///
     /// Extract the number of streams supported by an endpoint
     ///
     /// This method parses endpoint descriptors and returns the number of streams supported as n in (2^n)
@@ -665,8 +1019,6 @@ extern "C-unwind" {
     ///
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmaxstreamsencoded(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxStreamsEncoded(
         usb_device_speed: u32,
@@ -676,6 +1028,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the number of supported streams.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The endpoint descriptor of the device.
+    ///
+    /// - companionDescriptor: The companion descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of streams.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses endpoint descriptors and returns the number of supported streams.
+    ///
+    ///
     /// Extract the number of streams supported by an endpoint
     ///
     /// This method parses endpoint descriptors and returns the number of streams supported
@@ -692,8 +1065,6 @@ extern "C-unwind" {
     ///
     /// - `descriptor` must be a valid pointer.
     /// - `companion_descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetendpointmaxstreams(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetEndpointMaxStreams(
         usb_device_speed: u32,
@@ -703,6 +1074,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Obtains the maximum bus current that a configuration descriptor requires.
+    ///
+    /// Parameters:
+    /// - usbDeviceSpeed: The operational speed of the device.
+    ///
+    /// - descriptor: The configuration descriptor to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of milliamps necessary.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method parses a configuration descriptor and returns the number of milliamps necessary to power the device.
+    ///
+    ///
     /// Extract the maximum bus current required by a configuration descriptor
     ///
     /// This method parses a configuration descriptor and returns the number of milliamps required to power the device
@@ -716,8 +1106,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `descriptor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbgetconfigurationmaxpowermilliamps(_:_:)?language=objc)
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetConfigurationMaxPowerMilliAmps(
         usb_device_speed: u32,

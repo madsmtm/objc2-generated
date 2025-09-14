@@ -6,22 +6,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLParserExternalEntityResolvingPolicy(pub NSUInteger);
 impl NSXMLParserExternalEntityResolvingPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.enum/never?language=objc)
     #[doc(alias = "NSXMLParserResolveExternalEntitiesNever")]
     pub const ResolveExternalEntitiesNever: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.enum/nonetwork?language=objc)
     #[doc(alias = "NSXMLParserResolveExternalEntitiesNoNetwork")]
     pub const ResolveExternalEntitiesNoNetwork: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.enum/sameoriginonly?language=objc)
     #[doc(alias = "NSXMLParserResolveExternalEntitiesSameOriginOnly")]
     pub const ResolveExternalEntitiesSameOriginOnly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.enum/always?language=objc)
     #[doc(alias = "NSXMLParserResolveExternalEntitiesAlways")]
     pub const ResolveExternalEntitiesAlways: Self = Self(3);
 }
@@ -35,7 +30,21 @@ unsafe impl RefEncode for NSXMLParserExternalEntityResolvingPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser?language=objc)
+    /// An event driven parser of XML documents (including DTD declarations).
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser) notifies its delegate about the items (elements, attributes, CDATA blocks, comments, and so on) that it encounters as it processes an XML document. It does not itself do anything with those parsed items except report them. It also reports parsing errors. For convenience, an [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser) object in the following descriptions is sometimes referred to as a parser object. Unless used in a callback, the [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser) is a thread-safe class as long as any given instance is only used in one thread.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Namespace support was implemented in [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser) starting in macOS 10.4. Namespace-related methods of [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser) prior to this version have no effect.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLParser;
@@ -195,7 +204,7 @@ impl NSXMLParser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparserdelegate?language=objc)
+    /// The interface an XML parser uses to inform its delegate about the content of the parsed document.
     pub unsafe trait NSXMLParserDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(parserDidStartDocument:))]
@@ -386,294 +395,300 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errordomain?language=objc)
+    /// Indicates an error in XML parsing.
+    ///
+    /// ## Discussion
+    ///
+    /// Used by `NSError`.
+    ///
+    ///
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSXMLParserErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode?language=objc)
+/// The following error codes are defined by `NSXMLParser`. For error codes not listed here, see the `<libxml/xmlerror.h>` header file.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLParserError(pub NSInteger);
 impl NSXMLParserError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/internalerror?language=objc)
+    /// The parser object encountered an internal error.
     #[doc(alias = "NSXMLParserInternalError")]
     pub const InternalError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/outofmemoryerror?language=objc)
+    /// The parser object ran out of memory.
     #[doc(alias = "NSXMLParserOutOfMemoryError")]
     pub const OutOfMemoryError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/documentstarterror?language=objc)
+    /// The parser object is unable to start parsing.
     #[doc(alias = "NSXMLParserDocumentStartError")]
     pub const DocumentStartError: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/emptydocumenterror?language=objc)
+    /// The document is empty.
     #[doc(alias = "NSXMLParserEmptyDocumentError")]
     pub const EmptyDocumentError: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/prematuredocumentenderror?language=objc)
+    /// The document ended unexpectedly.
     #[doc(alias = "NSXMLParserPrematureDocumentEndError")]
     pub const PrematureDocumentEndError: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidhexcharacterreferror?language=objc)
+    /// Invalid hexadecimal character reference encountered.
     #[doc(alias = "NSXMLParserInvalidHexCharacterRefError")]
     pub const InvalidHexCharacterRefError: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invaliddecimalcharacterreferror?language=objc)
+    /// Invalid decimal character reference encountered.
     #[doc(alias = "NSXMLParserInvalidDecimalCharacterRefError")]
     pub const InvalidDecimalCharacterRefError: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidcharacterreferror?language=objc)
+    /// Invalid character reference encountered.
     #[doc(alias = "NSXMLParserInvalidCharacterRefError")]
     pub const InvalidCharacterRefError: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidcharactererror?language=objc)
+    /// Invalid character encountered.
     #[doc(alias = "NSXMLParserInvalidCharacterError")]
     pub const InvalidCharacterError: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/characterrefateoferror?language=objc)
+    /// Target of character reference cannot be found.
     #[doc(alias = "NSXMLParserCharacterRefAtEOFError")]
     pub const CharacterRefAtEOFError: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/characterrefinprologerror?language=objc)
+    /// Invalid character found in the prolog.
     #[doc(alias = "NSXMLParserCharacterRefInPrologError")]
     pub const CharacterRefInPrologError: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/characterrefinepilogerror?language=objc)
+    /// Invalid character found in the epilog.
     #[doc(alias = "NSXMLParserCharacterRefInEpilogError")]
     pub const CharacterRefInEpilogError: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/characterrefindtderror?language=objc)
+    /// Invalid character encountered in the DTD.
     #[doc(alias = "NSXMLParserCharacterRefInDTDError")]
     pub const CharacterRefInDTDError: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityrefateoferror?language=objc)
+    /// Target of entity reference is not found.
     #[doc(alias = "NSXMLParserEntityRefAtEOFError")]
     pub const EntityRefAtEOFError: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityrefinprologerror?language=objc)
+    /// Invalid entity reference found in the prolog.
     #[doc(alias = "NSXMLParserEntityRefInPrologError")]
     pub const EntityRefInPrologError: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityrefinepilogerror?language=objc)
+    /// Invalid entity reference found in the epilog.
     #[doc(alias = "NSXMLParserEntityRefInEpilogError")]
     pub const EntityRefInEpilogError: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityrefindtderror?language=objc)
+    /// Invalid entity reference found in the DTD.
     #[doc(alias = "NSXMLParserEntityRefInDTDError")]
     pub const EntityRefInDTDError: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefateoferror?language=objc)
+    /// Target of parsed entity reference is not found.
     #[doc(alias = "NSXMLParserParsedEntityRefAtEOFError")]
     pub const ParsedEntityRefAtEOFError: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefinprologerror?language=objc)
+    /// Target of parsed entity reference is not found in prolog.
     #[doc(alias = "NSXMLParserParsedEntityRefInPrologError")]
     pub const ParsedEntityRefInPrologError: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefinepilogerror?language=objc)
+    /// Target of parsed entity reference is not found in epilog.
     #[doc(alias = "NSXMLParserParsedEntityRefInEpilogError")]
     pub const ParsedEntityRefInEpilogError: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefininternalsubseterror?language=objc)
+    /// Target of parsed entity reference is not found in internal subset.
     #[doc(alias = "NSXMLParserParsedEntityRefInInternalSubsetError")]
     pub const ParsedEntityRefInInternalSubsetError: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityreferencewithoutnameerror?language=objc)
+    /// Entity reference is without name.
     #[doc(alias = "NSXMLParserEntityReferenceWithoutNameError")]
     pub const EntityReferenceWithoutNameError: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityreferencemissingsemierror?language=objc)
+    /// Entity reference is missing semicolon.
     #[doc(alias = "NSXMLParserEntityReferenceMissingSemiError")]
     pub const EntityReferenceMissingSemiError: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefnonameerror?language=objc)
+    /// Parsed entity reference is without an entity name.
     #[doc(alias = "NSXMLParserParsedEntityRefNoNameError")]
     pub const ParsedEntityRefNoNameError: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefmissingsemierror?language=objc)
+    /// Parsed entity reference is missing semicolon.
     #[doc(alias = "NSXMLParserParsedEntityRefMissingSemiError")]
     pub const ParsedEntityRefMissingSemiError: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/undeclaredentityerror?language=objc)
+    /// Entity is not declared.
     #[doc(alias = "NSXMLParserUndeclaredEntityError")]
     pub const UndeclaredEntityError: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/unparsedentityerror?language=objc)
+    /// Cannot parse entity.
     #[doc(alias = "NSXMLParserUnparsedEntityError")]
     pub const UnparsedEntityError: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityisexternalerror?language=objc)
+    /// Cannot parse external entity.
     #[doc(alias = "NSXMLParserEntityIsExternalError")]
     pub const EntityIsExternalError: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityisparametererror?language=objc)
+    /// Entity is a parameter.
     #[doc(alias = "NSXMLParserEntityIsParameterError")]
     pub const EntityIsParameterError: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/unknownencodingerror?language=objc)
+    /// Document encoding is unknown.
     #[doc(alias = "NSXMLParserUnknownEncodingError")]
     pub const UnknownEncodingError: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/encodingnotsupportederror?language=objc)
+    /// Document encoding is not supported.
     #[doc(alias = "NSXMLParserEncodingNotSupportedError")]
     pub const EncodingNotSupportedError: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/stringnotstartederror?language=objc)
+    /// String is not started.
     #[doc(alias = "NSXMLParserStringNotStartedError")]
     pub const StringNotStartedError: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/stringnotclosederror?language=objc)
+    /// String is not closed.
     #[doc(alias = "NSXMLParserStringNotClosedError")]
     pub const StringNotClosedError: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/namespacedeclarationerror?language=objc)
+    /// Invalid namespace declaration encountered.
     #[doc(alias = "NSXMLParserNamespaceDeclarationError")]
     pub const NamespaceDeclarationError: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entitynotstartederror?language=objc)
+    /// Entity is not started.
     #[doc(alias = "NSXMLParserEntityNotStartedError")]
     pub const EntityNotStartedError: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entitynotfinishederror?language=objc)
+    /// Entity is not finished.
     #[doc(alias = "NSXMLParserEntityNotFinishedError")]
     pub const EntityNotFinishedError: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/lessthansymbolinattributeerror?language=objc)
+    /// Angle bracket is used in attribute.
     #[doc(alias = "NSXMLParserLessThanSymbolInAttributeError")]
     pub const LessThanSymbolInAttributeError: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/attributenotstartederror?language=objc)
+    /// Attribute is not started.
     #[doc(alias = "NSXMLParserAttributeNotStartedError")]
     pub const AttributeNotStartedError: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/attributenotfinishederror?language=objc)
+    /// Attribute is not finished.
     #[doc(alias = "NSXMLParserAttributeNotFinishedError")]
     pub const AttributeNotFinishedError: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/attributehasnovalueerror?language=objc)
+    /// Attribute doesn’t contain a value.
     #[doc(alias = "NSXMLParserAttributeHasNoValueError")]
     pub const AttributeHasNoValueError: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/attributeredefinederror?language=objc)
+    /// Attribute is redefined.
     #[doc(alias = "NSXMLParserAttributeRedefinedError")]
     pub const AttributeRedefinedError: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/literalnotstartederror?language=objc)
+    /// Literal is not started.
     #[doc(alias = "NSXMLParserLiteralNotStartedError")]
     pub const LiteralNotStartedError: Self = Self(43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/literalnotfinishederror?language=objc)
+    /// Literal is not finished.
     #[doc(alias = "NSXMLParserLiteralNotFinishedError")]
     pub const LiteralNotFinishedError: Self = Self(44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/commentnotfinishederror?language=objc)
+    /// Comment is not finished.
     #[doc(alias = "NSXMLParserCommentNotFinishedError")]
     pub const CommentNotFinishedError: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/processinginstructionnotstartederror?language=objc)
+    /// Processing instruction is not started.
     #[doc(alias = "NSXMLParserProcessingInstructionNotStartedError")]
     pub const ProcessingInstructionNotStartedError: Self = Self(46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/processinginstructionnotfinishederror?language=objc)
+    /// Processing instruction is not finished.
     #[doc(alias = "NSXMLParserProcessingInstructionNotFinishedError")]
     pub const ProcessingInstructionNotFinishedError: Self = Self(47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/notationnotstartederror?language=objc)
+    /// Notation is not started.
     #[doc(alias = "NSXMLParserNotationNotStartedError")]
     pub const NotationNotStartedError: Self = Self(48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/notationnotfinishederror?language=objc)
+    /// Notation is not finished.
     #[doc(alias = "NSXMLParserNotationNotFinishedError")]
     pub const NotationNotFinishedError: Self = Self(49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/attributelistnotstartederror?language=objc)
+    /// Attribute list is not started.
     #[doc(alias = "NSXMLParserAttributeListNotStartedError")]
     pub const AttributeListNotStartedError: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/attributelistnotfinishederror?language=objc)
+    /// Attribute list is not finished.
     #[doc(alias = "NSXMLParserAttributeListNotFinishedError")]
     pub const AttributeListNotFinishedError: Self = Self(51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/mixedcontentdeclnotstartederror?language=objc)
+    /// Mixed content declaration is not started.
     #[doc(alias = "NSXMLParserMixedContentDeclNotStartedError")]
     pub const MixedContentDeclNotStartedError: Self = Self(52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/mixedcontentdeclnotfinishederror?language=objc)
+    /// Mixed content declaration is not finished.
     #[doc(alias = "NSXMLParserMixedContentDeclNotFinishedError")]
     pub const MixedContentDeclNotFinishedError: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/elementcontentdeclnotstartederror?language=objc)
+    /// Element content declaration is not started.
     #[doc(alias = "NSXMLParserElementContentDeclNotStartedError")]
     pub const ElementContentDeclNotStartedError: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/elementcontentdeclnotfinishederror?language=objc)
+    /// Element content declaration is not finished.
     #[doc(alias = "NSXMLParserElementContentDeclNotFinishedError")]
     pub const ElementContentDeclNotFinishedError: Self = Self(55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/xmldeclnotstartederror?language=objc)
+    /// XML declaration is not started.
     #[doc(alias = "NSXMLParserXMLDeclNotStartedError")]
     pub const XMLDeclNotStartedError: Self = Self(56);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/xmldeclnotfinishederror?language=objc)
+    /// XML declaration is not finished.
     #[doc(alias = "NSXMLParserXMLDeclNotFinishedError")]
     pub const XMLDeclNotFinishedError: Self = Self(57);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/conditionalsectionnotstartederror?language=objc)
+    /// Conditional section is not started.
     #[doc(alias = "NSXMLParserConditionalSectionNotStartedError")]
     pub const ConditionalSectionNotStartedError: Self = Self(58);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/conditionalsectionnotfinishederror?language=objc)
+    /// Conditional section is not finished.
     #[doc(alias = "NSXMLParserConditionalSectionNotFinishedError")]
     pub const ConditionalSectionNotFinishedError: Self = Self(59);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/externalsubsetnotfinishederror?language=objc)
+    /// External subset is not finished.
     #[doc(alias = "NSXMLParserExternalSubsetNotFinishedError")]
     pub const ExternalSubsetNotFinishedError: Self = Self(60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/doctypedeclnotfinishederror?language=objc)
+    /// Document type declaration is not finished.
     #[doc(alias = "NSXMLParserDOCTYPEDeclNotFinishedError")]
     pub const DOCTYPEDeclNotFinishedError: Self = Self(61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/misplacedcdataendstringerror?language=objc)
+    /// Misplaced CDATA end string.
     #[doc(alias = "NSXMLParserMisplacedCDATAEndStringError")]
     pub const MisplacedCDATAEndStringError: Self = Self(62);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/cdatanotfinishederror?language=objc)
+    /// CDATA block is not finished.
     #[doc(alias = "NSXMLParserCDATANotFinishedError")]
     pub const CDATANotFinishedError: Self = Self(63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/misplacedxmldeclarationerror?language=objc)
+    /// Misplaced XML declaration.
     #[doc(alias = "NSXMLParserMisplacedXMLDeclarationError")]
     pub const MisplacedXMLDeclarationError: Self = Self(64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/spacerequirederror?language=objc)
+    /// Space is required.
     #[doc(alias = "NSXMLParserSpaceRequiredError")]
     pub const SpaceRequiredError: Self = Self(65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/separatorrequirederror?language=objc)
+    /// Separator is required.
     #[doc(alias = "NSXMLParserSeparatorRequiredError")]
     pub const SeparatorRequiredError: Self = Self(66);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/nmtokenrequirederror?language=objc)
+    /// Name token is required.
     #[doc(alias = "NSXMLParserNMTOKENRequiredError")]
     pub const NMTOKENRequiredError: Self = Self(67);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/namerequirederror?language=objc)
+    /// Name is required.
     #[doc(alias = "NSXMLParserNAMERequiredError")]
     pub const NAMERequiredError: Self = Self(68);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/pcdatarequirederror?language=objc)
+    /// CDATA is required.
     #[doc(alias = "NSXMLParserPCDATARequiredError")]
     pub const PCDATARequiredError: Self = Self(69);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/urirequirederror?language=objc)
+    /// URI is required.
     #[doc(alias = "NSXMLParserURIRequiredError")]
     pub const URIRequiredError: Self = Self(70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/publicidentifierrequirederror?language=objc)
+    /// Public identifier is required.
     #[doc(alias = "NSXMLParserPublicIdentifierRequiredError")]
     pub const PublicIdentifierRequiredError: Self = Self(71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/ltrequirederror?language=objc)
+    /// Left angle bracket is required.
     #[doc(alias = "NSXMLParserLTRequiredError")]
     pub const LTRequiredError: Self = Self(72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/gtrequirederror?language=objc)
+    /// Right angle bracket is required.
     #[doc(alias = "NSXMLParserGTRequiredError")]
     pub const GTRequiredError: Self = Self(73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/ltslashrequirederror?language=objc)
+    /// Left angle bracket slash is required.
     #[doc(alias = "NSXMLParserLTSlashRequiredError")]
     pub const LTSlashRequiredError: Self = Self(74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/equalexpectederror?language=objc)
+    /// Equal sign expected.
     #[doc(alias = "NSXMLParserEqualExpectedError")]
     pub const EqualExpectedError: Self = Self(75);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/tagnamemismatcherror?language=objc)
+    /// Tag name mismatch.
     #[doc(alias = "NSXMLParserTagNameMismatchError")]
     pub const TagNameMismatchError: Self = Self(76);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/unfinishedtagerror?language=objc)
+    /// Unfinished tag found.
     #[doc(alias = "NSXMLParserUnfinishedTagError")]
     pub const UnfinishedTagError: Self = Self(77);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/standalonevalueerror?language=objc)
+    /// Standalone value found.
     #[doc(alias = "NSXMLParserStandaloneValueError")]
     pub const StandaloneValueError: Self = Self(78);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidencodingnameerror?language=objc)
+    /// Invalid encoding name found.
     #[doc(alias = "NSXMLParserInvalidEncodingNameError")]
     pub const InvalidEncodingNameError: Self = Self(79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/commentcontainsdoublehyphenerror?language=objc)
+    /// Comment contains double hyphen.
     #[doc(alias = "NSXMLParserCommentContainsDoubleHyphenError")]
     pub const CommentContainsDoubleHyphenError: Self = Self(80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidencodingerror?language=objc)
+    /// Invalid encoding.
     #[doc(alias = "NSXMLParserInvalidEncodingError")]
     pub const InvalidEncodingError: Self = Self(81);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/externalstandaloneentityerror?language=objc)
+    /// External standalone entity.
     #[doc(alias = "NSXMLParserExternalStandaloneEntityError")]
     pub const ExternalStandaloneEntityError: Self = Self(82);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidconditionalsectionerror?language=objc)
+    /// Invalid conditional section.
     #[doc(alias = "NSXMLParserInvalidConditionalSectionError")]
     pub const InvalidConditionalSectionError: Self = Self(83);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityvaluerequirederror?language=objc)
+    /// Entity value is required.
     #[doc(alias = "NSXMLParserEntityValueRequiredError")]
     pub const EntityValueRequiredError: Self = Self(84);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/notwellbalancederror?language=objc)
+    /// Document is not well balanced.
     #[doc(alias = "NSXMLParserNotWellBalancedError")]
     pub const NotWellBalancedError: Self = Self(85);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/extracontenterror?language=objc)
+    /// Error in content found.
     #[doc(alias = "NSXMLParserExtraContentError")]
     pub const ExtraContentError: Self = Self(86);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidcharacterinentityerror?language=objc)
+    /// Invalid character in entity found.
     #[doc(alias = "NSXMLParserInvalidCharacterInEntityError")]
     pub const InvalidCharacterInEntityError: Self = Self(87);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/parsedentityrefininternalerror?language=objc)
+    /// Internal error in parsed entity reference found.
     #[doc(alias = "NSXMLParserParsedEntityRefInInternalError")]
     pub const ParsedEntityRefInInternalError: Self = Self(88);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityreflooperror?language=objc)
+    /// Entity reference loop encountered.
     #[doc(alias = "NSXMLParserEntityRefLoopError")]
     pub const EntityRefLoopError: Self = Self(89);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/entityboundaryerror?language=objc)
+    /// Entity boundary error.
     #[doc(alias = "NSXMLParserEntityBoundaryError")]
     pub const EntityBoundaryError: Self = Self(90);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/invalidurierror?language=objc)
+    /// Invalid URI specified.
     #[doc(alias = "NSXMLParserInvalidURIError")]
     pub const InvalidURIError: Self = Self(91);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/urifragmenterror?language=objc)
+    /// URI fragment.
     #[doc(alias = "NSXMLParserURIFragmentError")]
     pub const URIFragmentError: Self = Self(92);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/nodtderror?language=objc)
+    /// Missing DTD.
     #[doc(alias = "NSXMLParserNoDTDError")]
     pub const NoDTDError: Self = Self(94);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode/delegateabortedparseerror?language=objc)
+    /// Delegate aborted parse.
     #[doc(alias = "NSXMLParserDelegateAbortedParseError")]
     pub const DelegateAbortedParseError: Self = Self(512);
 }

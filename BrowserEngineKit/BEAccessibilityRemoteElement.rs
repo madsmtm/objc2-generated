@@ -8,9 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
     /// BEAccessibilityRemoteHostElement connects the accessibility hierarchy of two separate processes. The remote host and remote elements share the same identifier to facilitate this connection. To use this, return this remote element from an object in your view hierarchy via its `accessibilityElements` method.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilityremotehostelement?language=objc)
+    ///
+    /// BEAccessibilityRemoteHostElement connects the accessibility hierarchy of two separate processes. The remote host and remote elements share the same identifier to facilitate this connection. To use this, return this remote element from an object in your view hierarchy via its `accessibilityElements` method.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEAccessibilityRemoteHostElement;
@@ -70,9 +74,13 @@ impl BEAccessibilityRemoteHostElement {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
     /// BEAccessibilityRemoteElement represents the destination of a BEAccessibilityRemoteHostElement in a different process. The elements it contains are defined by the `accessibilityElements` API. `BEAccessibilityRemoteElement` does not need to be returned in any element array.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilityremoteelement?language=objc)
+    ///
+    /// BEAccessibilityRemoteElement represents the destination of a BEAccessibilityRemoteHostElement in a different process. The elements it contains are defined by the `accessibilityElements` API. `BEAccessibilityRemoteElement` does not need to be returned in any element array.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEAccessibilityRemoteElement;

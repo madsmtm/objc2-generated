@@ -12,22 +12,28 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection?language=objc)
+/// Constants that determine how the system hosts the navigation bar in an AppKit toolbar.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationBarNSToolbarSection(pub NSInteger);
 impl UINavigationBarNSToolbarSection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/none?language=objc)
+    /// A constant that disables hosting the navigation bar in the toolbar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value to disable [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar) hosting. This value is equivalent to setting the [`preferredBehavioralStyle`](https://developer.apple.com/documentation/uikit/uinavigationbar/preferredbehavioralstyle) of the navigation bar to [`UIBehavioralStylePad`](https://developer.apple.com/documentation/uikit/uibehavioralstyle/pad).
+    ///
+    ///
     #[doc(alias = "UINavigationBarNSToolbarSectionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/sidebar?language=objc)
+    /// A constant that hosts the navigation bar in the toolbar’s sidebar column.
     #[doc(alias = "UINavigationBarNSToolbarSectionSidebar")]
     pub const Sidebar: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/supplementary?language=objc)
+    /// A constant that hosts the navigation bar in the toolbar’s supplementary column.
     #[doc(alias = "UINavigationBarNSToolbarSectionSupplementary")]
     pub const Supplementary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar/nstoolbarsection/content?language=objc)
+    /// A constant that hosts the navigation bar in the toolbar’s content column.
     #[doc(alias = "UINavigationBarNSToolbarSectionContent")]
     pub const Content: Self = Self(3);
 }
@@ -41,7 +47,96 @@ unsafe impl RefEncode for UINavigationBarNSToolbarSection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbar?language=objc)
+    /// Navigational controls that display in a bar along the top of the screen, usually in conjunction with a navigation controller.
+    ///
+    /// ## Overview
+    ///
+    /// A `UINavigationBar` object is a bar, typically displayed at the top of the window, containing buttons for navigating within a hierarchy of screens. The primary components are a left (back) button, a center title and optional subtitle, and optional right button(s). You can use a navigation bar as a standalone object or in conjunction with a navigation controller object.
+    ///
+    /// You most frequently use a navigation bar within a navigation controller. The [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller) object creates, displays, and manages its associated navigation bar, and uses attributes of the view controllers you add to control the content displayed in the navigation bar.
+    ///
+    /// To control a navigation bar when using a navigation controller, follow these steps:
+    ///
+    /// - Create a navigation controller in Interface Builder or in the code.
+    ///
+    /// - Configure the appearance of the navigation bar using the [`navigationBar`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/navigationbar) property on the [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller) object.
+    ///
+    /// - Control the content of the navigation bar by setting the [`title`](https://developer.apple.com/documentation/uikit/uiviewcontroller/title) and [`navigationItem`](https://developer.apple.com/documentation/uikit/uiviewcontroller/navigationitem) properties on each [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) you push onto the navigation controller’s stack.
+    ///
+    /// You can also use a standalone navigation bar, without using a navigation controller. To add a navigation bar to your interface, follow these steps:
+    ///
+    /// - Set up Auto Layout rules to govern the position of the navigation bar in your interface.
+    ///
+    /// - Create a root navigation item to supply the initial title.
+    ///
+    /// - Configure a delegate object to handle user interactions with the navigation bar.
+    ///
+    /// - Customize the appearance of the navigation bar.
+    ///
+    /// - Configure your app to push and pop relevant navigation items as the user navigates through the hierarchical screens.
+    ///
+    /// ### Use a navigation bar with a navigation controller
+    ///
+    /// If you use a navigation controller to manage the navigation between different screens of content, the navigation controller creates a navigation bar automatically and pushes and pops navigation items when appropriate.
+    ///
+    /// A navigation controller uses the [`navigationItem`](https://developer.apple.com/documentation/uikit/uiviewcontroller/navigationitem) property on [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) to provide the model objects to its navigation bar when navigating a stack of view controllers. The default navigation item uses the view controller’s title, but you can override the [`navigationItem`](https://developer.apple.com/documentation/uikit/uiviewcontroller/navigationitem) on a [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) subclass to gain complete control of the navigation bar’s content.
+    ///
+    /// A navigation controller automatically assigns itself as the delegate of its navigation bar object. Therefore, when using a navigation controller, don’t assign a custom delegate object to the corresponding navigation bar.
+    ///
+    /// To access the navigation bar associated with a navigation controller, use the [`navigationBar`](https://developer.apple.com/documentation/uikit/uinavigationcontroller/navigationbar) property on [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller). See [Customize the appearance of a navigation bar](https://developer.apple.com/documentation/uikit/uinavigationbar#customize-the-appearance-of-a-navigation-bar) for details on appearance customization.
+    ///
+    /// For more information about navigation controllers, see [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller).
+    ///
+    /// ### Add content to a standalone navigation bar
+    ///
+    /// In the vast majority of scenarios, you use a navigation bar as part of a navigation controller. However, there are situations for which you might want to use the navigation bar UI and implement your own approach to content navigation. In these situations, you can use a standalone navigation bar.
+    ///
+    /// When you use a navigation bar as a standalone object, you’re responsible for providing its content. Unlike other types of views, you don’t add subviews to a navigation bar directly. Instead, you use a navigation item (an instance of the [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem) class) to specify what buttons or custom views you want displayed. A navigation item has properties for specifying views on the left, right, and center of the navigation bar and for specifying a custom prompt string.
+    ///
+    /// A navigation bar manages a stack of [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem) objects. Although the stack is there mostly to support navigation controllers, you can use it to implement your own custom navigation interface. The topmost item in the stack represents the navigation item whose contents are currently displayed by the navigation bar. You push new navigation items onto the stack using the [`pushNavigationItem:animated:`](https://developer.apple.com/documentation/uikit/uinavigationbar/pushitem(_:animated:)) method and pop items off the stack using the [`popNavigationItemAnimated:`](https://developer.apple.com/documentation/uikit/uinavigationbar/popitem(animated:)) method. Both of these changes can be animated for the benefit of the user.
+    ///
+    /// In addition to pushing and popping items, you can also set the contents of the stack directly using either the [`items`](https://developer.apple.com/documentation/uikit/uinavigationbar/items) property or the [`setItems:animated:`](https://developer.apple.com/documentation/uikit/uinavigationbar/setitems(_:animated:)) method. You might use this method at launch time to restore your interface to its previous state or to push or pop more than one navigation item at a time. The following figure shows the part of the [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) API responsible for managing the stack of navigation items:
+    ///
+    ///
+    /// ![A flowchart diagram of the navigation bar and a stack of navigation items. A new navigation item enters the navigation bar from the left side of the diagram. In the center, the UINavigationBar contains properties that provide access to items in the stack, and methods that allow mutation by pushing on and popping off the stack, depicted on the right of the diagram.](https://docs-assets.developer.apple.com/published/22a4cdb2afd3e24633e4a5ec88b1c4ae/media-2759892%402x.png)
+    ///
+    ///
+    /// If you’re using a navigation bar as a standalone object, assign a custom delegate object to the [`delegate`](https://developer.apple.com/documentation/uikit/uinavigationbar/delegate) property and use that object to intercept messages coming from the navigation bar. Delegate objects must conform to the [`UINavigationBarDelegate`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate) protocol. The delegate notifications let you track when navigation items are pushed or popped from the stack. You use these notifications to update the rest of your app’s user interface.
+    ///
+    /// For more information about creating navigation items, see [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem). For more information about implementing a delegate object, see [`UINavigationBarDelegate`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate).
+    ///
+    /// ### Customize the appearance of a navigation bar
+    ///
+    /// Navigation bars are transparent and feature bar button items constructed with Liquid Glass. Don’t add a background or apply a tint color to the navigation bar, as that may interfere with the Liquid Glass presentation.
+    ///
+    /// Customize the color of the text or image in a bar button item by setting the [`tintColor`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/tintcolor) property. To customize the background color of a bar button item, set the bar button’s tint color, then set the bar button’s [`style`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.property) property to the value [`UIBarButtonItemStyleProminent`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/prominent).
+    ///
+    /// The [`titleTextAttributes`](https://developer.apple.com/documentation/uikit/uinavigationbar/titletextattributes) property specifies the attributes for displaying the bar’s title text. You can specify the font, text color, text shadow color, and text shadow offset for the title in the text attributes dictionary using the [`NSFontAttributeName`](https://developer.apple.com/documentation/uikit/nsfontattributename), [`NSForegroundColorAttributeName`](https://developer.apple.com/documentation/uikit/nsforegroundcolorattributename), and [`NSShadowAttributeName`](https://developer.apple.com/documentation/uikit/nsshadowattributename) keys.
+    ///
+    /// Use the [`setTitleVerticalPositionAdjustment:forBarMetrics:`](https://developer.apple.com/documentation/uikit/uinavigationbar/settitleverticalpositionadjustment(_:for:)) method to adjust the vertical position of the title. This method allows you to specify the adjustment dependent on the bar height, which is represented by the [`UIBarMetrics`](https://developer.apple.com/documentation/uikit/uibarmetrics) enumeration.
+    ///
+    /// See [Customizing your app’s navigation bar](https://developer.apple.com/documentation/uikit/customizing-your-app-s-navigation-bar) for customization examples.
+    ///
+    /// ### Customize a navigation bar with Interface Builder
+    ///
+    /// The following table lists the Interface Builder attributes that affect the appearance of the navigation bar’s title.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Title Font" }] }], [Paragraph { inline_content: [Text { text: "The font for the title in the center of the navigation bar. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/NSFontAttributeName", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " key in the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UINavigationBar/titleTextAttributes", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " dictionary." }] }]], [[Paragraph { inline_content: [Text { text: "Title Color" }] }], [Paragraph { inline_content: [Text { text: "The color for the navigation bar title. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/NSForegroundColorAttributeName", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " key in the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UINavigationBar/titleTextAttributes", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " dictionary." }] }]], [[Paragraph { inline_content: [Text { text: "Title Shadow" }] }], [Paragraph { inline_content: [Text { text: "The color and offset of the shadow for the navigation bar’s title. Access these values at runtime from the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UINavigationBar/titleTextAttributes", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " dictionary, using the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/NSShadowAttributeName", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " key." }] }]]], alignments: None, metadata: None })
+    /// ### Localize a navigation bar
+    ///
+    /// To localize navigation bars, specify a localized string for each of the displayed string properties of the navigation item model objects.
+    ///
+    /// For more information about localizing your interface, see [Localization](https://developer.apple.com/documentation/xcode/localization).
+    ///
+    /// ### Make a navigation bar accessible
+    ///
+    /// Navigation bars are accessible by default. The default accessibility trait for a navigation bar is User Interaction Enabled.
+    ///
+    /// With VoiceOver enabled on an iOS device, after someone navigates to a new view in the hierarchy, VoiceOver reads the navigation bar’s title, followed by the name of the left bar button item. When someone taps an element in a navigation bar, VoiceOver reads the name and the type of the element, for example, “General back button,” “Keyboard heading,” and “Edit button.”
+    ///
+    /// For general information about making your interface accessible, see [Accessibility for UIKit](https://developer.apple.com/documentation/uikit/accessibility-for-uikit).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -492,7 +587,17 @@ impl UINavigationBar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationbardelegate?language=objc)
+    /// Methods that a navigation bar calls before and after it modifies its stack of navigation items.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UINavigationBarDelegate`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate) protocol defines optional methods that a [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) [`delegate`](https://developer.apple.com/documentation/uikit/uinavigationbar/delegate) implements to update its views when items push or pop from the stack. The navigation bar represents only the bar at the top of the screen, not the view below. It’s the application’s responsibility to implement the behavior when the top item changes.
+    ///
+    /// You can control whether a navigation bar pushes an item on or pops an item from the stack by implementing the [`navigationBar:shouldPushItem:`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate/navigationbar(_:shouldpush:)) and [`navigationBar:shouldPopItem:`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate/navigationbar(_:shouldpop:)) methods. These methods return [`true`](https://developer.apple.com/documentation/swift/true) if the action is allowed; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// The screen always reflects the top item on the navigation bar. You implement the [`navigationBar:didPushItem:`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate/navigationbar(_:didpush:)) method to update the view below the navigation bar to reflect the new item. Similarly, you implement the [`navigationBar:didPopItem:`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate/navigationbar(_:didpop:)) method to replace the view below the navigation bar.
+    ///
+    ///
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UINavigationBarDelegate:
         UIBarPositioningDelegate + MainThreadOnly

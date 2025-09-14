@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdeferredpaymentsummaryitem?language=objc)
+    /// An object that defines a summary item for a payment that occurs at a later date, such as a pre-order.
     #[unsafe(super(PKPaymentSummaryItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKPaymentSummaryItem")]

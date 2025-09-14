@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpdashboardcontroller?language=objc)
+    /// A controller that provides shortcut buttons for the CarPlay Dashboard.
+    ///
+    /// ## Overview
+    ///
+    /// A dashboard controller manages up to two shortcut buttons that CarPlay displays in the dashboard when there’s no active navigation session. You don’t create the dashboard controller. Instead, CarPlay creates one for you and passes it to the delegate of [`CPTemplateApplicationDashboardScene`](https://developer.apple.com/documentation/carplay/cptemplateapplicationdashboardscene) when it connects the dashboard scene.
+    ///
+    /// After receiving the controller, set [`shortcutButtons`](https://developer.apple.com/documentation/carplay/cpdashboardcontroller/shortcutbuttons) to an array that contains a maximum of two shortcut buttons. CarPlay manages hiding or showing the buttons on the dashboard at the appropriate times.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPDashboardController;

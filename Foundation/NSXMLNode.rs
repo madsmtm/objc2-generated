@@ -6,49 +6,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum?language=objc)
+/// `NSXMLNode` declares the following constants of type NSXMLNodeKind for specifying a node’s kind in the initializer methods [`initWithKind:`](https://developer.apple.com/documentation/foundation/xmlnode/init(kind:)) and [`initWithKind:options:`](https://developer.apple.com/documentation/foundation/xmlnode/init(kind:options:)):
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLNodeKind(pub NSUInteger);
 impl NSXMLNodeKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/invalid?language=objc)
+    /// Indicates a node object created without a valid kind being specified (as returned by the [`kind`](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.property) method).
     #[doc(alias = "NSXMLInvalidKind")]
     pub const InvalidKind: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/document?language=objc)
+    /// Specifies a document node.
     #[doc(alias = "NSXMLDocumentKind")]
     pub const DocumentKind: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/element?language=objc)
+    /// Specifies an element node.
     #[doc(alias = "NSXMLElementKind")]
     pub const ElementKind: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/attribute?language=objc)
+    /// Specifies an attribute node
     #[doc(alias = "NSXMLAttributeKind")]
     pub const AttributeKind: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/namespace?language=objc)
+    /// Specifies a namespace node.
     #[doc(alias = "NSXMLNamespaceKind")]
     pub const NamespaceKind: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/processinginstruction?language=objc)
+    /// Specifies a processing-instruction node.
     #[doc(alias = "NSXMLProcessingInstructionKind")]
     pub const ProcessingInstructionKind: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/comment?language=objc)
+    /// Specifies a comment node.
     #[doc(alias = "NSXMLCommentKind")]
     pub const CommentKind: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/text?language=objc)
+    /// Specifies a text node.
     #[doc(alias = "NSXMLTextKind")]
     pub const TextKind: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/dtdkind?language=objc)
+    /// Specifies a document-type declaration (DTD) node.
     #[doc(alias = "NSXMLDTDKind")]
     pub const DTDKind: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/entitydeclaration?language=objc)
+    /// Specifies an entity-declaration node.
     #[doc(alias = "NSXMLEntityDeclarationKind")]
     pub const EntityDeclarationKind: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/attributedeclaration?language=objc)
+    /// Specifies an attribute-list declaration node.
     #[doc(alias = "NSXMLAttributeDeclarationKind")]
     pub const AttributeDeclarationKind: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/elementdeclaration?language=objc)
+    /// Specifies an element declaration node.
     #[doc(alias = "NSXMLElementDeclarationKind")]
     pub const ElementDeclarationKind: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum/notationdeclaration?language=objc)
+    /// Specifies a notation declaration node.
     #[doc(alias = "NSXMLNotationDeclarationKind")]
     pub const NotationDeclarationKind: Self = Self(12);
 }
@@ -62,9 +62,31 @@ unsafe impl RefEncode for NSXMLNodeKind {
 }
 
 extern_class!(
-    /// The basic unit of an XML document.
+    /// The nodes in the abstract, logical tree structure that represents an XML document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode?language=objc)
+    /// ## Overview
+    ///
+    /// Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument)) represents an XML document in its entirety. [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes.
+    ///
+    /// Among the XML family of classes (excluding [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser)) the [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) class is the base class. Inheriting from it are the classes [`NSXMLElement`](https://developer.apple.com/documentation/foundation/xmlelement), [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument), [`NSXMLDTD`](https://developer.apple.com/documentation/foundation/xmldtd), and [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode). [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You can subclass [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) if you want nodes of kinds different from the supported ones, You can also create a subclass with more specialized attributes or behavior than [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode).
+    ///
+    /// #### Methods to Override
+    ///
+    /// To subclass [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) you need to override the primary initializer, [`initWithKind:options:`](https://developer.apple.com/documentation/foundation/xmlnode/init(kind:options:)), and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/kind-swift.property", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/parent", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/name", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/child(at:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/name", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/childCount", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/objectValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/children", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/objectValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/detach()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/stringValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/localName", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/setStringValue(_:resolvingEntities:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/prefix", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/index", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/XMLNode/uri", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// By default [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) implements the `NSObject` [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method to perform a deep comparison: two [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison looks at the node and its children, but does not include the node’s parent. If you want a different standard of comparison, override `isEqual:`.
+    ///
+    /// #### Special Considerations
+    ///
+    /// Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) class method [`replacementClassForClass:`](https://developer.apple.com/documentation/foundation/xmldocument/replacementclass(for:)) to return your custom class in place of an NSXML class. If your custom class has no direct NSXML counterpart—for example, it is a subclass of [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.
+    ///
+    ///
+    /// The basic unit of an XML document.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLNode;

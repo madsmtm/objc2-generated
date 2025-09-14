@@ -8,12 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that detects the contours of the edges of an image.
     /// A request that will detect the contours for the edges in an image.
     ///
     ///
     /// This request will produce a VNContoursObservation which describes the contours.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectcontoursrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -140,5 +139,5 @@ impl VNDetectContoursRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectcontourrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the contours detection request.
 pub static VNDetectContourRequestRevision1: NSUInteger = 1;

@@ -6,25 +6,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersonNameComponentsFormatterStyle(pub NSInteger);
 impl NSPersonNameComponentsFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/default?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The form with minimally necessary features for differentiation in a casual setting. See “[Default](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter#default)” for details about its specific behavior. Equivalent to [`NSPersonNameComponentsFormatterStyleMedium`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/medium).
+    ///
+    ///
     #[doc(alias = "NSPersonNameComponentsFormatterStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/short?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The shortened form appropriate for display in space-constrained settings, contingent on user preferences and language defaults. See “[Short](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter#short)” for details about its specific behavior.
+    ///
+    ///
     #[doc(alias = "NSPersonNameComponentsFormatterStyleShort")]
     pub const Short: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/medium?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Equivalent to [`NSPersonNameComponentsFormatterStyleDefault`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/default).
+    ///
+    ///
     #[doc(alias = "NSPersonNameComponentsFormatterStyleMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/long?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The fully qualified form complete with all known components. See “[Long](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter#long)” for details about its specific behavior.
+    ///
+    ///
     #[doc(alias = "NSPersonNameComponentsFormatterStyleLong")]
     pub const Long: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/abbreviated?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The maximally abbreviated form of a name. See “[Abbreviated](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter#abbreviated)” for details about its specific behavior.
+    ///
+    ///
     #[doc(alias = "NSPersonNameComponentsFormatterStyleAbbreviated")]
     pub const Abbreviated: Self = Self(4);
 }
@@ -37,14 +61,13 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersonNameComponentsFormatterOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersonNameComponentsFormatterOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/options/phonetic?language=objc)
+/// The formatter should format the component object’s `phoneticRepresentation` components instead of its own components.
         #[doc(alias = "NSPersonNameComponentsFormatterPhonetic")]
         const Phonetic = 1<<1;
     }
@@ -59,7 +82,120 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter?language=objc)
+    /// A formatter that provides localized representations of the components of a person’s name.
+    ///
+    /// ## Overview
+    ///
+    /// Each locale has its own set of rules and conventions for how personal names are structured and represented. These rules vary widely across different locales in a several ways, including the sort and display order of given and family names, the use of salutations and honorifics, and other concerns related to the grammar, spelling, punctuation, and formatting. About the only thing that _is_ consistent across all locales is that personal names are significant and meaningful. For this reason, names deserve careful and respectful treatment—perhaps more than any other kind of information your app interacts with.
+    ///
+    /// Formatters can be configured to represent names in a variety of styles, which are described in detail below.
+    ///
+    /// - Default ([`NSPersonNameComponentsFormatterStyleDefault`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/default))
+    ///
+    /// - Short ([`NSPersonNameComponentsFormatterStyleShort`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/short))
+    ///
+    /// - Long ([`NSPersonNameComponentsFormatterStyleLong`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/long))
+    ///
+    /// - Abbreviated ([`NSPersonNameComponentsFormatterStyleAbbreviated`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/abbreviated))
+    ///
+    /// When determining how to represent a name in a particular style, a formatter takes a number of factors into consideration, in order of priority:
+    ///
+    /// 1. **Script derived behaviors** Scripts may specify a strict sort or display order of given and family names, and the availability of styles.
+    ///
+    /// 2. **User specified preferences** Users can enable and configure the display of short names, as well as whether or not to display nicknames when available. Users can also override the default sort and display order of given and family names for their current locale.
+    ///
+    /// 3. **Locale derived defaults** Locales specify a default sort and display order for given and family names.
+    ///
+    /// 4. **Developer specified configuration** The style property value set for the `NSPersonNameComponentsFormatter` object.
+    ///
+    /// When the behavior specified in one factor conflicts with any other factors, the behavior specified by the factor with the most precedence is used. For example, the U.S. English (`en-US`) locale specifies that names be displayed in “given name followed by the family name” (for example,“John Appleseed”). This behavior would be overridden if the user changed their system preferences to have names displayed as family name followed by given name (for example, “Appleseed, John”), because user-specified preferences take precedence over locale-derived defaults. Furthermore, if the name to be formatted were Japanese (for example, given name: “泰夫”, family name: “木田”), the behavior derived for the name’s script (CJK, for Chinese, Japanese, and Korean languages) would take precedence over any locale-derived defaults or user-specified preferences to have the name displayed as family name followed by given name (for example, “木田 泰夫”).
+    ///
+    /// These considerations extend to the availability of certain formatter styles as well. Because developer-specified configurations have the lowest precedence in determining behavior, the value set for the formatter’s style property can be invalidated if it’s not supported for the locale, user preferences, or script. If the specified style is not available, the next longest valid style is used. For example, a name in Arabic script (for example, “أحمد الراجحي”) does not support the Abbreviated style, so the Short style is used instead. A name that contains more than one script (for example, given name: “John”, family name: “王”) is detected to have “Unknown” script, which has its own set of behaviors and characteristics.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`PersonNameComponents.FormatStyle`](https://developer.apple.com/documentation/foundation/personnamecomponents/formatstyle) rather than [`NSPersonNameComponentsFormatter`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Styles
+    ///
+    /// `NSPersonNameComponentsFormatter` can be configured to format names in the following styles:
+    ///
+    /// - [`NSPersonNameComponentsFormatterStyleDefault`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/default): The minimally necessary features for differentiation in a casual setting. Equivalent to [`NSPersonNameComponentsFormatterStyleMedium`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/medium).
+    ///
+    /// - [`NSPersonNameComponentsFormatterStyleShort`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/short): Relies on user preferences and language defaults to display shortened form appropriate for display in space-constrained settings.
+    ///
+    /// - [`NSPersonNameComponentsFormatterStyleLong`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/long): The fully qualified name complete with all known components.
+    ///
+    /// - [`NSPersonNameComponentsFormatterStyleAbbreviated`](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum/abbreviated): The maximally abbreviated form of a name.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [CodeVoice { code: "namePrefix" }] }], [Paragraph { inline_content: [CodeVoice { code: "givenName" }] }], [Paragraph { inline_content: [CodeVoice { code: "middleName" }] }], [Paragraph { inline_content: [CodeVoice { code: "familyName" }] }], [Paragraph { inline_content: [CodeVoice { code: "nameSuffix" }] }], [Paragraph { inline_content: [CodeVoice { code: "nickname" }] }]], [[Paragraph { inline_content: [Text { text: "Arabic " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(ar-SA)" }] }], [Paragraph { inline_content: [Text { text: ".د" }] }], [Paragraph { inline_content: [Text { text: "أحمد" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "محمدالمصري" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "Chinese " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(zh-Hans)" }] }], [Paragraph { inline_content: [Text { text: "物理学博士" }] }], [Paragraph { inline_content: [Text { text: "振宁" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "杨" }] }], [Paragraph { inline_content: [Text { text: "先生" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "English " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(en-US)" }] }], [Paragraph { inline_content: [Text { text: "Dr." }] }], [Paragraph { inline_content: [Text { text: "Jonathan" }] }], [Paragraph { inline_content: [Text { text: "Maple" }] }], [Paragraph { inline_content: [Text { text: "Appleseed" }] }], [Paragraph { inline_content: [Text { text: "Esq." }] }], [Paragraph { inline_content: [Text { text: "Johnny" }] }]], [[Paragraph { inline_content: [Text { text: "French " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(fr-FR)" }] }], [Paragraph { inline_content: [Text { text: "Père" }] }], [Paragraph { inline_content: [Text { text: "Jean-Philippe" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "de Zélicourt" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "JP" }] }]], [[Paragraph { inline_content: [Text { text: "German " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(de-DE)" }] }], [Paragraph { inline_content: [Text { text: "Dr. med." }] }], [Paragraph { inline_content: [Text { text: "Max" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Mustermann" }] }], [Paragraph { inline_content: [Text { text: "junior, M.A." }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "Hindi " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(hi-IN)" }] }], [Paragraph { inline_content: [Text { text: "डॉ." }] }], [Paragraph { inline_content: [Text { text: "रिय" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "साहिल" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "Japanese " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(ja-JP)" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "泰夫" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "木田" }] }], [Paragraph { inline_content: [Text { text: "先生" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "Spanish " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(es-ES)" }] }], [Paragraph { inline_content: [Text { text: "Dr." }] }], [Paragraph { inline_content: [Text { text: "José Ramiro" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Martín González de Rivera" }] }], [Paragraph { inline_content: [Text { text: "júnior, PhD" }] }], [Paragraph { inline_content: [Text { text: "Ramiro" }] }]], [[Paragraph { inline_content: [Text { text: "Thai " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, CodeVoice { code: "(th-TH)" }] }], [Paragraph { inline_content: [Text { text: "ฯพณฯ" }] }], [Paragraph { inline_content: [Text { text: "สมชาย" }] }], [Paragraph { inline_content: [Text { text: "ป\u{e35}เตอร\u{e4c}" }] }], [Paragraph { inline_content: [Text { text: "ร\u{e31}ตนเร\u{e37}องรองบวรท\u{e34}พย\u{e4c}" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [] }]]], alignments: None, metadata: None })
+    /// #### Default
+    ///
+    /// The Default, or Medium, style presents names in a way that is suitable for most contexts. It uses the given and family names, as well as a nickname, if provided and enabled by the user in System Preferences.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Default style" }] }]], [[Paragraph { inline_content: [Text { text: "Arabic (ar-SA)" }] }], [Paragraph { inline_content: [Text { text: "أحمد محمﺩﺍلمصﺭﻱ" }] }]], [[Paragraph { inline_content: [Text { text: "Chinese (zh-Hans)" }] }], [Paragraph { inline_content: [Text { text: "杨振宁" }] }]], [[Paragraph { inline_content: [Text { text: "English (en-US)" }] }], [Paragraph { inline_content: [Text { text: "Jonathan Appleseed" }] }]], [[Paragraph { inline_content: [Text { text: "French (fr-FR)" }] }], [Paragraph { inline_content: [Text { text: "Jean-Philippe de Zélicourt" }] }]], [[Paragraph { inline_content: [Text { text: "German (de-DE)" }] }], [Paragraph { inline_content: [Text { text: "Max Mustermann" }] }]], [[Paragraph { inline_content: [Text { text: "Hindi (hi-IN)" }] }], [Paragraph { inline_content: [Text { text: "रिय साहिल" }] }]], [[Paragraph { inline_content: [Text { text: "Japanese (ja-JP)" }] }], [Paragraph { inline_content: [Text { text: "木田泰夫" }] }]], [[Paragraph { inline_content: [Text { text: "Spanish (es-ES)" }] }], [Paragraph { inline_content: [Text { text: "José Ramiro Martín González de Rivera" }] }]], [[Paragraph { inline_content: [Text { text: "Thai (th-TH)" }] }], [Paragraph { inline_content: [Text { text: "สมชาย ร\u{e31}ตนเร\u{e37}องรอง บวรท\u{e34}พย\u{e4c}" }] }]]], alignments: None, metadata: None })
+    /// #### Short
+    ///
+    /// The Short style offers an alternative display method for names whose default representation may exceed a certain length constraint. It is only available if the user has enabled “Short Names” in System Preferences, and only for names with a script that supports Short style. Otherwise, a formatter configured to display with Short style is displayed with Medium style instead.
+    ///
+    /// If a user has enabled the use of short names, the user can choose from one of four variations:
+    ///
+    /// - Given Name - Family Initial
+    ///
+    /// - Family Name - Given Initial
+    ///
+    /// - Given Name Only
+    ///
+    /// - Family Name Only
+    ///
+    /// Short style is not available for names in CJK script and is restricted to Given Name Only or Family Name Only for names in Arabic or Devanagari script. If the specified Short style is unavailable, the Medium style is used instead.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Given Name - Family Initial" }] }], [Paragraph { inline_content: [Text { text: "Family Name - Given Initial" }] }], [Paragraph { inline_content: [Text { text: "Given Name Only" }] }], [Paragraph { inline_content: [Text { text: "Family Name Only" }] }]], [[Paragraph { inline_content: [Text { text: "Arabic (ar-SA)" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Text { text: "أحمد" }] }], [Paragraph { inline_content: [Text { text: "محمﺩﺍلمصﺭﻱ" }] }]], [[Paragraph { inline_content: [Text { text: "Chinese (zh-Hans)" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }]], [[Paragraph { inline_content: [Text { text: "English (en-US)" }] }], [Paragraph { inline_content: [Text { text: "Jonathan A" }] }], [Paragraph { inline_content: [Text { text: "J Appleseed" }] }], [Paragraph { inline_content: [Text { text: "Jonathan" }] }], [Paragraph { inline_content: [Text { text: "Appleseed" }] }]], [[Paragraph { inline_content: [Text { text: "French (fr-FR)" }] }], [Paragraph { inline_content: [Text { text: "Jean-Philippe d" }] }], [Paragraph { inline_content: [Text { text: "J de Zélicourt" }] }], [Paragraph { inline_content: [Text { text: "Jean-Philippe" }] }], [Paragraph { inline_content: [Text { text: "de Zélicourt" }] }]], [[Paragraph { inline_content: [Text { text: "German (de-DE)" }] }], [Paragraph { inline_content: [Text { text: "Max M" }] }], [Paragraph { inline_content: [Text { text: "M Mustermann" }] }], [Paragraph { inline_content: [Text { text: "Max" }] }], [Paragraph { inline_content: [Text { text: "Mustermann" }] }]], [[Paragraph { inline_content: [Text { text: "Hindi (hi-IN)" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Text { text: "रिय" }] }], [Paragraph { inline_content: [Text { text: "साहिल" }] }]], [[Paragraph { inline_content: [Text { text: "Japanese (ja-JP)" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }]], [[Paragraph { inline_content: [Text { text: "Spanish (es-ES)" }] }], [Paragraph { inline_content: [Text { text: "José Ramiro M" }] }], [Paragraph { inline_content: [Text { text: "J Martín González de Rivera" }] }], [Paragraph { inline_content: [Text { text: "José Ramiro" }] }], [Paragraph { inline_content: [Text { text: "Martín González de Rivera" }] }]], [[Paragraph { inline_content: [Text { text: "Thai (th-TH)" }] }], [Paragraph { inline_content: [Text { text: "สมชาย ร" }] }], [Paragraph { inline_content: [Text { text: "ส ร\u{e31}ตนเร\u{e37}องรองบวรท\u{e34}พย\u{e4c}" }] }], [Paragraph { inline_content: [Text { text: "สมชาย" }] }], [Paragraph { inline_content: [Text { text: "ร\u{e31}ตนเร\u{e37}องรองบวรท\u{e34}พย\u{e4c}" }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `NSPersonNameComponentsFormatter` does not currently account for prepositional particles. Representations using the Short style that specify a family name initial naively use the first letter unit of the particle as the initial.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Long
+    ///
+    /// The Long style provides the most explicit representation of names. It uses all available name components, with the exception of nickname.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Long style" }] }]], [[Paragraph { inline_content: [Text { text: "Arabic (ar-SA)" }] }], [Paragraph { inline_content: [Text { text: "ﺩ. أحمد محمﺩﺍلمصﺭﻱ" }] }]], [[Paragraph { inline_content: [Text { text: "Chinese (zh-Hans)" }] }], [Paragraph { inline_content: [Text { text: "物理学博士杨振宁先生" }] }]], [[Paragraph { inline_content: [Text { text: "English (en-US)" }] }], [Paragraph { inline_content: [Text { text: "Dr. Jonathan Maple Appleseed Esq." }] }]], [[Paragraph { inline_content: [Text { text: "French (fr-FR)" }] }], [Paragraph { inline_content: [Text { text: "Père Jean-Philippe de Zélicourt" }] }]], [[Paragraph { inline_content: [Text { text: "German (de-DE)" }] }], [Paragraph { inline_content: [Text { text: "Dr. med. Max Mustermann junior, M.A." }] }]], [[Paragraph { inline_content: [Text { text: "Hindi (hi-IN)" }] }], [Paragraph { inline_content: [Text { text: "डॉ. रिय साहिल" }] }]], [[Paragraph { inline_content: [Text { text: "Japanese (ja-JP)" }] }], [Paragraph { inline_content: [Text { text: "木田泰夫先生" }] }]], [[Paragraph { inline_content: [Text { text: "Spanish (es-ES)" }] }], [Paragraph { inline_content: [Text { text: "Dr. José Ramiro Martín González de Rivera júnior, PhD" }] }]], [[Paragraph { inline_content: [Text { text: "Thai (th-TH)" }] }], [Paragraph { inline_content: [Text { text: "ฯพณฯ สมชาย ป\u{e35}เตอร\u{e4c} ร\u{e31}ตนเร\u{e37}องรอง บวรท\u{e34}พย\u{e4c}" }] }]]], alignments: None, metadata: None })
+    /// #### Abbreviated
+    ///
+    /// The Abbreviated style offers the most compact representation of names, similar to a monogram.
+    ///
+    /// Abbreviated style is supported for names in several scripts, with the following general characteristics:
+    ///
+    /// - For names in Cyrillic, Greek, or Latin script, the first characters of `givenName`, `middleName`, and `familyName` may be used.
+    ///
+    /// - For names in Chinese or Japanese script, `familyName` may be used. If `familyName` is too long, or if the family name is `nil`, the Short or Medium style may be used instead.
+    ///
+    /// - For names in Korean script, `givenName` may be used. If `givenName` is too long, the first character of `givenName` may be used. If `givenName` is `nil`, the `familyName` may be used instead.
+    ///
+    /// - For names in Bengali, Devanagari, Gujarati, Gurmukhi, Kannada, Malayalam, Oriya, Sinhala, Tamil, Telugu, Tibetan, or Thai script, the first character of `givenName` may be used. If `givenName` is `nil`, the first character of `familyName` may be used instead.
+    ///
+    /// - For names that contain more than one script, the abbreviated style may use the `familyName`, `givenName`, or the first characters of `givenName` and/or `familyName`.
+    ///
+    /// If the Abbreviated style is unavailable, the Short style is used instead—unless that too is unsupported, in which case the Medium style is used instead.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Abbreviated style" }] }]], [[Paragraph { inline_content: [Text { text: "Arabic (ar-SA)" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "N/A" }] }] }]], [[Paragraph { inline_content: [Text { text: "Chinese (zh-Hans)" }] }], [Paragraph { inline_content: [Text { text: "杨" }] }]], [[Paragraph { inline_content: [Text { text: "English (en-US)" }] }], [Paragraph { inline_content: [Text { text: "JMA" }] }]], [[Paragraph { inline_content: [Text { text: "French (fr-FR)" }] }], [Paragraph { inline_content: [Text { text: "Jd" }] }]], [[Paragraph { inline_content: [Text { text: "German (de-DE)" }] }], [Paragraph { inline_content: [Text { text: "MM" }] }]], [[Paragraph { inline_content: [Text { text: "Hindi (hi-IN)" }] }], [Paragraph { inline_content: [Text { text: "मि" }] }]], [[Paragraph { inline_content: [Text { text: "Japanese (ja-JP)" }] }], [Paragraph { inline_content: [Text { text: "木田" }] }]], [[Paragraph { inline_content: [Text { text: "Spanish (es-ES)" }] }], [Paragraph { inline_content: [Text { text: "JM" }] }]], [[Paragraph { inline_content: [Text { text: "Thai (th-TH)" }] }], [Paragraph { inline_content: [Text { text: "ส" }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `NSPersonNameComponentsFormatter` doesn’t currently account for prepositional particles or compound names. Representations using the Abbreviated style uses the first letter unit of each name component, regardless.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]
@@ -197,49 +333,91 @@ impl DefaultRetained for NSPersonNameComponentsFormatter {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) constant identifying the personal name component represented in the attribute range. For possible values, see [Attributed String Components](https://developer.apple.com/documentation/foundation/attributed-string-components).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentgivenname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a given name component.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentGivenName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentfamilyname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a family name component.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentFamilyName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentmiddlename?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a middle name component.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentMiddleName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentprefix?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a name prefix component.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentPrefix: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsuffix?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a name suffix component.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentSuffix: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentnickname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Identifies a nickname component.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentNickname: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentdelimiter?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The character or characters used to separate name components.
+    ///
+    /// For names in CJK languages, there is no delimiter.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSPersonNameComponentDelimiter: &'static NSString;
 }

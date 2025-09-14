@@ -12,14 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The object that provides a thumbnail for a custom file type.
     /// To provide a thumbnail for a request, you have to return a QLThumbnailReply object.
     ///
     ///
     /// To provide a thumbnail, you have two options:
     /// 1. Draw the thumbnail, by providing a QLThumbnailReply created with a drawing block.
     /// 2. Pass the thumbnail file URL, by providing a QLThumbnailReply created with a file URL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailreply?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLThumbnailReply;

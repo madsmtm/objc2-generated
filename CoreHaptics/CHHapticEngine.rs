@@ -9,18 +9,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhaptictimeimmediate?language=objc)
+/// A time constant used to schedule a command immediately.
 pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
+/// A typealias for a completion handler that the engine calls after starting or stopping.
 /// A block which is called asynchronously when a call to start or stop the haptic engine completes.
 ///
 /// Parameter `error`: If the call fails, this is set to a valid NSError describing the error.
 ///
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/completionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
+/// Possible actions to take after the haptic engine finishes execution.
 /// Constants indicating what the engine should do in response to the finished handler being called.
 ///
 ///
@@ -28,17 +28,15 @@ pub type CHHapticCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>
 ///
 ///
 /// Do not stop the engine.  This is useful if the client expects more activity.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticEngineFinishedAction(pub NSInteger);
 impl CHHapticEngineFinishedAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedaction/stopengine?language=objc)
+    /// Stops the engine after it finishes playing all haptic patterns.
     #[doc(alias = "CHHapticEngineFinishedActionStopEngine")]
     pub const StopEngine: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedaction/leaveenginerunning?language=objc)
+    /// Keeps the engine running after it finishes playing all haptic patterns.
     #[doc(alias = "CHHapticEngineFinishedActionLeaveEngineRunning")]
     pub const LeaveEngineRunning: Self = Self(2);
 }
@@ -51,18 +49,18 @@ unsafe impl RefEncode for CHHapticEngineFinishedAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type alias for a completion handler to execute after finishing haptic playback.
 /// A block which is called asynchronously when the engine detects that all active pattern players have finished.  The
 /// return value tells the system what action to take as a result of this (see `CHHapticEngineFinishedAction`).
 ///
 /// Parameter `error`: If the engine detects the players have stopped due to an error, this is set to a valid NSError describing the error.
 ///
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineFinishedHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSError) -> CHHapticEngineFinishedAction>;
 
+/// The enumeration of reasons the haptic engine stopped running.
 /// Constants indicating the reason why the CHHapticEngine has stopped.
 ///
 ///
@@ -85,32 +83,74 @@ pub type CHHapticEngineFinishedHandler =
 ///
 ///
 /// An error has occurred.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticEngineStoppedReason(pub NSInteger);
 impl CHHapticEngineStoppedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/audiosessioninterrupt?language=objc)
+    /// The system interrupted the audio session.
+    ///
+    /// ## Discussion
+    ///
+    /// Audio session interruptions occur due to interactions with other audio apps. For example, the system interrupts music playback when a user receives a phone call. When an interruption occurs, restart the engine before it starts another pattern player.
+    ///
+    ///
     #[doc(alias = "CHHapticEngineStoppedReasonAudioSessionInterrupt")]
     pub const AudioSessionInterrupt: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/applicationsuspended?language=objc)
+    /// The system suspended your app.
+    ///
+    /// ## Discussion
+    ///
+    /// This condition occurs if the system suspended your app while it was in the background. Restart the engine when your app returns to the foreground to ensure proper haptic playback.
+    ///
+    ///
     #[doc(alias = "CHHapticEngineStoppedReasonApplicationSuspended")]
     pub const ApplicationSuspended: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/idletimeout?language=objc)
+    /// The engine shut down because you’ve enabled automatic shutdown, and the engine reached its idle timeout.
+    ///
+    /// ## Discussion
+    ///
+    /// If there’s a time-critical pattern to play, restart the engine. Otherwise, do nothing and the engine will automatically restart when the next pattern plays.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Delegating engine restart to the system can add a slight delay to the start of the pattern.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CHHapticEngineStoppedReasonIdleTimeout")]
     pub const IdleTimeout: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/notifywhenfinished?language=objc)
+    /// You’ve asked the system to notify you when it shuts down the engine.
+    ///
+    /// ## Discussion
+    ///
+    /// Restart the engine before starting another pattern player.
+    ///
+    ///
     #[doc(alias = "CHHapticEngineStoppedReasonNotifyWhenFinished")]
     pub const NotifyWhenFinished: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/enginedestroyed?language=objc)
+    /// The system destroyed the engine.
+    ///
+    /// ## Discussion
+    ///
+    /// This reason typically indicates a programming error. Maintain a strong reference to the engine to for as long as you need to execute haptics.
+    ///
+    ///
     #[doc(alias = "CHHapticEngineStoppedReasonEngineDestroyed")]
     pub const EngineDestroyed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/gamecontrollerdisconnect?language=objc)
+    /// The engine stopped because the associated game controller disconnected from the device.
     #[doc(alias = "CHHapticEngineStoppedReasonGameControllerDisconnect")]
     pub const GameControllerDisconnect: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason/systemerror?language=objc)
+    /// A system error stopped the engine.
+    ///
+    /// ## Discussion
+    ///
+    /// Your app should attempt to restart the engine. If the restart attempt fails multiple times, treat the condition as fatal.
+    ///
+    ///
     #[doc(alias = "CHHapticEngineStoppedReasonSystemError")]
     pub const SystemError: Self = Self(-1);
 }
@@ -123,6 +163,21 @@ unsafe impl RefEncode for CHHapticEngineStoppedReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A typealias for the block that the haptic engine calls after it stops due to an external cause.
+///
+/// ## Discussion
+///
+/// The system calls the stopped handler for when it’s stopped by an external event like an audio session interruption or an auto-shutdown.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The stopped handler isn’t called if you explicitly stop the engine by calling the [`stopWithCompletionHandler:`](https://developer.apple.com/documentation/corehaptics/chhapticengine/stop(completionhandler:)) method.
+///
+///
+///
+/// </div>
+///
 /// A block which is called asynchronously when the engine has stopped due to external causes such as
 /// an audio session interruption or autoShutdown.
 ///
@@ -130,25 +185,31 @@ unsafe impl RefEncode for CHHapticEngineStoppedReason {
 ///
 /// This handler is NOT called if the client directly calls stopWithCompletionHandler:.
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedhandler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineStoppedHandler = *mut block2::DynBlock<dyn Fn(CHHapticEngineStoppedReason)>;
 
+/// A typealias for the block that the haptic engine calls after being reset.
 /// A block which is called asynchronously if the haptic engine has reset itself due a server failure.
 ///
 /// In response to this handler, the app must reload all custom audio resources and recreate all necessary
 /// pattern players.  The engine must of course be restarted.  CHHapticPatterns do not need to be re-created.
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/resethandler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineResetHandler = *mut block2::DynBlock<dyn Fn()>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourcekey?language=objc)
+/// A type alias for a key that identifies the playback behavior of an audio resource.
 pub type CHHapticAudioResourceKey = NSString;
 
 extern "C" {
+    /// A key for a Boolean value that indicates whether audio file playback fades in and out using an envelope.
+    ///
+    /// ## Discussion
+    ///
+    /// Fading, or ramping, the volume of an audio resource can prevent clicks during playback. It’s also useful in cases where the app modulates the envelope to use different attack and release times.
+    ///
+    /// The default value is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// Keys used to configure the playback behavior of a custom waveform.
     ///
     /// Indicates whether the audio file playback should be ramped in and out with an envelope.  This can be useful for preventing clicks during playback,
@@ -159,20 +220,54 @@ extern "C" {
     /// Indicates whether the audio file will be looped when played back.  The default loop range is the entire file.
     /// Value type: boolean.  Default is
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourcekeyusevolumeenvelope?language=objc)
     pub static CHHapticAudioResourceKeyUseVolumeEnvelope: &'static CHHapticAudioResourceKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourcekeyloopenabled?language=objc)
+    /// A key for a Boolean value that indicates whether to loop audio playback.
+    ///
+    /// ## Discussion
+    ///
+    /// Set a [`true`](https://developer.apple.com/documentation/swift/true) value for this key to loop the contents of an audio file.
+    ///
+    /// The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static CHHapticAudioResourceKeyLoopEnabled: &'static CHHapticAudioResourceKey;
 }
 
 extern_class!(
-    /// Represents the connection with the haptic server.
+    /// An object that represents the connection to the haptic server.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine?language=objc)
+    /// ## Overview
+    ///
+    /// If you want your app to play custom haptics, you need to create a haptic engine. The haptic engine establishes the connection between your app and the underlying device hardware. Even though you can define a haptic pattern without an engine, you need the engine to play that pattern.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cedcd4ecf6e8ff4b966ed1e55d18f7fe/media-3242669~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/66a613deacd96bc7ac01d5a15e3eae73/media-3242669%402x.png 2x" />
+    ///     <img alt="A dictionary defines a pattern, from which the haptic engine creates a pattern player for playing the haptic." src="https://docs-assets.developer.apple.com/published/cedcd4ecf6e8ff4b966ed1e55d18f7fe/media-3242669~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Even though your app makes a request through the haptic engine, the operating system could still override the request with system services, like haptics from system notifications.
+    ///
+    /// ### Prepare Your App To Play Haptics
+    ///
+    /// To prepare your app to play haptics, follow these steps, as demonstrated in the code below:
+    ///
+    /// 1. Create a haptic engine instance. Maintain a strong reference to it so it doesn’t go out of scope while the haptic is playing.
+    ///
+    /// 2. Call the haptic engine’s [`startWithCompletionHandler:`](https://developer.apple.com/documentation/corehaptics/chhapticengine/start(completionhandler:)) for an asynchronous start, or [`startAndReturnError:`](https://developer.apple.com/documentation/corehaptics/chhapticengine/start()) to start the engine synchronously (immediately).
+    ///
+    /// 3. Stop the engine by calling [`stopWithCompletionHandler:`](https://developer.apple.com/documentation/corehaptics/chhapticengine/stop(completionhandler:)) when your app finishes haptic playback.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["do {", "    // 1. Create a haptic engine instance.", "    hapticEngine = try CHHapticEngine()", "", "    // 2. Start the haptic engine.", "    try hapticEngine.start()", "} catch let error {", "    print(\"Engine Error: \\(error)\")", "}", "", "// 3. Stop the engine.", "hapticEngine.stop(completionHandler: { (_) -> Void in", "    // Insert code to call after engine stops.", "})"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create an error variable through which the engine returns error information.", "NSError* error = nil;", "", "// (1.) Create an instance of a haptic engine.", "self.hapticEngine = [[CHHapticEngine alloc] initAndReturnError:&error];", "", "// (2.) Start the haptic engine.", "[self.hapticEngine startAndReturnError:&error];", "", "// (3.) Stop the engine.", "[self.hapticEngine stopWithCompletionHandler:^(NSError* error){", "    // Insert code to call after engine stops.", "}];"], metadata: None }] }] })
+    /// Although it’s possible to create content—[`CHHapticPattern`](https://developer.apple.com/documentation/corehaptics/chhapticpattern) instances—independent of a CHHapticEngine, your app must use an engine to play that content.
+    ///
+    ///
+    /// Represents the connection with the haptic server.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticEngine;

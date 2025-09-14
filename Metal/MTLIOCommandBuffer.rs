@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus?language=objc)
+/// Represents the state of an input/output command buffer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOStatus(pub NSInteger);
 impl MTLIOStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/pending?language=objc)
+    /// Indicates the GPU hasn’t finished executing the input/output command buffer.
     #[doc(alias = "MTLIOStatusPending")]
     pub const Pending: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/cancelled?language=objc)
+    /// Indicates the GPU has successfully abandoned the input/output command buffer.
     #[doc(alias = "MTLIOStatusCancelled")]
     pub const Cancelled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/error?language=objc)
+    /// Indicates the GPU experienced a problem with the input/output command buffer.
     #[doc(alias = "MTLIOStatusError")]
     pub const Error: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliostatus/complete?language=objc)
+    /// Indicates the GPU has successfully finished executing the input/output command buffer.
     #[doc(alias = "MTLIOStatusComplete")]
     pub const Complete: Self = Self(3);
 }
@@ -35,15 +35,24 @@ unsafe impl RefEncode for MTLIOStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandbufferhandler?language=objc)
+/// A convenience type that defines the signature of an input/output command buffer’s completion handler.
+///
+/// Parameters:
+/// - inputOutputCommandBuffer: The [`MTLIOCommandBuffer`](https://developer.apple.com/documentation/metal/mtliocommandbuffer) instance that has finished executing is calling your completion handler.
+///
 #[cfg(feature = "block2")]
 pub type MTLIOCommandBufferHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLIOCommandBuffer>>)>;
 
 extern_protocol!(
-    /// represents a list of IO commands for a queue to execute
+    /// A command buffer that contains input/output commands that work with files in the file systems and Metal resources.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandbuffer?language=objc)
+    /// ## Overview
+    ///
+    /// Add commands an input/output command buffer to load assets from the file system directly into Metal resources. Your app can then use those resources with other commands it submits to [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue).
+    ///
+    ///
+    /// represents a list of IO commands for a queue to execute
     pub unsafe trait MTLIOCommandBuffer: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Add a block to be called when this command buffer has completed execution.

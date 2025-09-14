@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A type used to uniquely discover and identify a device in a nearby interaction session.
+    /// An object that uniquely identifies a peer that participates in an interaction session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidiscoverytoken?language=objc)
+    /// ## Overview
+    ///
+    /// Use `NIDiscoveryToken` to determine the peer device’s nearby interaction capabilities by examining the [`deviceCapabilities`](https://developer.apple.com/documentation/nearbyinteraction/nidiscoverytoken/devicecapabilities) that describes the available capabilities on a person’s device.
+    ///
+    ///
+    /// A type used to uniquely discover and identify a device in a nearby interaction session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIDiscoveryToken;
@@ -59,9 +64,14 @@ impl NIDiscoveryToken {
 }
 
 extern_class!(
-    /// An object to describe and configure parameters to be used in a nearby interaction session.
+    /// An abstract base class for interaction configurations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/niconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// The [`NIConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/niconfiguration) class serves as the common identity for configuration objects. Don’t instantiate this class directly. Instead, instantiate one if its concrete subclasses: [`NINearbyPeerConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration) or [`NINearbyAccessoryConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration). Use your configuration object to specify the features you want to enable in a Nearby Interaction session, and pass the object to the session’s [`runWithConfiguration:`](https://developer.apple.com/documentation/nearbyinteraction/nisession/run(_:)) method.
+    ///
+    ///
+    /// An object to describe and configure parameters to be used in a nearby interaction session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIConfiguration;
@@ -101,11 +111,22 @@ impl NIConfiguration {
 }
 
 extern_class!(
+    /// A configuration that enables interaction between iPhone or Apple Watch devices.
+    ///
+    /// ## Overview
+    ///
+    /// A peer interaction session enables two Apple devices to share their respective distance and direction through the device’s Ultra Wideband (UWB) chip. To start a peer interaction session, create a [`NINearbyPeerConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration) instance and pass it to an [`NISession`](https://developer.apple.com/documentation/nearbyinteraction/nisession) instance with the [`runWithConfiguration:`](https://developer.apple.com/documentation/nearbyinteraction/nisession/run(_:)) function.
+    ///
+    /// For an example app that demonstrates this configuration, see [Implementing Interactions Between Users in Close Proximity](https://developer.apple.com/documentation/nearbyinteraction/implementing-interactions-between-users-in-close-proximity).
+    ///
+    /// ### Enable Precision Finding for stationary objects
+    ///
+    /// In iOS 16, you can combine the visual spatial power of ARKit with the radio sensitivity of the UWB chip to locate stationary nearby objects with considerable precision. To do that, set [`cameraAssistanceEnabled`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled) to `true` and optionally provide the interaction session with an [`ARSession`](https://developer.apple.com/documentation/arkit/arsession) instance through [`setARSession:`](https://developer.apple.com/documentation/nearbyinteraction/nisession/setarsession(_:)) before running the session. Together, the UWB chip and ARKit’s assistance enable Nearby Interaction to provide the same Precision Finding capabilities present in AirTag.
+    ///
+    ///
     /// An object to describe and configure parameters to be used in a nearby interaction session for mutual relative positional measurements.
     ///
     /// Devices engaged in a session run with an NINearbyPeerConfiguration are able to continuously generate positional measurements relative to one another.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration?language=objc)
     #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyPeerConfiguration;
@@ -196,9 +217,44 @@ impl NINearbyPeerConfiguration {
 }
 
 extern_class!(
-    /// A session configuration that enables interaction with supported accessories.
+    /// A configuration that enables interaction between iPhone and third-party accessories.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to interact with a third-party accessory that you partner with or develop.
+    ///
+    /// For an example app that demonstrates this configuration, see [Implementing spatial interactions with third-party accessories](https://developer.apple.com/documentation/nearbyinteraction/implementing-spatial-interactions-with-third-party-accessories).
+    ///
+    /// ### Discover the accessory and create a configuration
+    ///
+    /// To begin the interaction, your app discovers the nearby accessory using a technology you choose — like [`Core Bluetooth`](https://developer.apple.com/documentation/corebluetooth), the local network, or a secure internet connection — and establishes a two-way data link.
+    ///
+    /// Over the data link, the accessory sends your app configuration data for this property’s [`initWithData:error:`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/init(data:)) initializer. The accessory formats the data according to the [Ultra Wideband (UWB) third-party device specification](https://developer.apple.com/nearby-interaction/specification).
+    ///
+    /// ### Enable background interaction for Bluetooth accessories
+    ///
+    /// In iOS 16, third-party UWB accessories paired to the device through Bluetooth can interact with your app while it’s in the background. This enables a new class of hands-free experiences. For example, the user’s phone can be in their pocket and prompt an eBike to power on when mounted, or prompt lights to turn on and music to play as the user enters a room.
+    ///
+    /// To enable background interaction:
+    ///
+    /// - The accessory implements the Bluetooth requirements described in the [UWB third-party device specification](https://developer.apple.com/nearby-interaction/specification).
+    ///
+    /// - The app connects and pairs to the accessory using [`Core Bluetooth`](https://developer.apple.com/documentation/corebluetooth).
+    ///
+    /// - The app calls the [`initWithAccessoryData:bluetoothPeerIdentifier:error:`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/init(accessorydata:bluetoothpeeridentifier:)) initializer and passes in the accessory’s Bluetooth identifier.
+    ///
+    /// ### Start a session and share configuration data
+    ///
+    /// To start a session, the app creates an [`NISession`](https://developer.apple.com/documentation/nearbyinteraction/nisession) instance and passes an instance of this class into the session’s [`runWithConfiguration:`](https://developer.apple.com/documentation/nearbyinteraction/nisession/run(_:)) function. After your app sets the session [`delegate`](https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate), the system invokes the delegate’s [`session:didGenerateShareableConfigurationData:forObject:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didgenerateshareableconfigurationdata:for:)) callback and provides your device’s configuration data.
+    ///
+    /// Over the data link, your app sends your device’s configuration data to the accessory, which enables the two devices to start receiving location updates. When the system gathers location updates for the accessory, Nearby Interaction calls your delegate’s [`session:didUpdateNearbyObjects:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdate:)) implementation. To match [`distance`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/distance-676dm) updates that your app receives through [`session:didUpdateNearbyObjects:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdate:)) with the accessory, compare the argument object’s discovery token with the value of this property’s [`accessoryDiscoveryToken`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/accessorydiscoverytoken).
+    ///
+    /// ### Enable Precision Finding for stationary objects
+    ///
+    /// In iOS 16, you can combine the visual-spatial power of ARKit with the radio sensitivity of the Ultra Wideband (UWB) chip to locate stationary nearby objects with considerable precision. To do that, set [`cameraAssistanceEnabled`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration/iscameraassistanceenabled) to `true` and optionally provide the interaction session with an [`ARSession`](https://developer.apple.com/documentation/arkit/arsession) instance through [`setARSession:`](https://developer.apple.com/documentation/nearbyinteraction/nisession/setarsession(_:)) before running the session. Together, the UWB chip and ARKit’s assistance enable Nearby Interaction to provide the same Precision Finding capabilities present in AirTag.
+    ///
+    ///
+    /// A session configuration that enables interaction with supported accessories.
     #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NINearbyAccessoryConfiguration;
@@ -293,9 +349,24 @@ impl NINearbyAccessoryConfiguration {
 }
 
 extern_class!(
-    /// A session configuration that enables UWB Down Link Time Difference of Arrival(DL-TDoA) ranging with nearby anchors.
+    /// A configuration that enables Downlink Time-Difference-of-Arrival ranging.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoaconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// Run an instance of this configuration to participate in a session that supports the Downlink Time-Difference-of-Arrival (DL-TDoA) feature. Before creating an instance of this class, call [`supportsDLTDOAMeasurement`](https://developer.apple.com/documentation/nearbyinteraction/nidevicecapability/supportsdltdoameasurement) first to ensure device support.
+    ///
+    /// DL-TDoA is an Ultra Wideband (UWB) ranging strategy that can produce sub-meter (0.5 - 1 meter) location support for tracked devices in a well-defined area. The solution works by installing base stations, or _anchors_, within the tracked area. The anchors send messages to receiver devices that support DL-TDoA, such as iPhone 12 and later, and the receivers use the messages to calculate their location.
+    ///
+    /// ### Receive measurements and calculate the device’s location
+    ///
+    /// When a device receives a message from an anchor, the framework creates the measurement object [`NIDLTDOAMeasurement`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement) and provides it to your app by invoking the  [`session:didUpdateDLTDOAMeasurements:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatedltdoa:)) callback. The measurement contains the coordinates of the anchor in the physical environment and the time it takes the message to arrive. Your app uses the anchor’s coordinates and the elapsed message-transmission time to calculate the device’s location. The calculation consists of a comparison of measurements from multiple anchors, and in particular, the difference in their arrival time to the receiver.
+    ///
+    /// ### Distinguish and determine the tracked area
+    ///
+    /// Provide a network identifier when instantiating this class to distinguish among different tracked areas when there are multiple tracked areas in the vicinity. The network identifier is the session ID in the anchor’s DL-TDoA configuration. Your app can infer the range of an anchor by changes in its signal strength. The anchor’s range, coordinates, and network ID together compose the bounds of the tracked area.
+    ///
+    ///
+    /// A session configuration that enables UWB Down Link Time Difference of Arrival(DL-TDoA) ranging with nearby anchors.
     #[unsafe(super(NIConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIDLTDOAConfiguration;

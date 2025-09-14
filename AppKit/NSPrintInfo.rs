@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paperorientation?language=objc)
+/// Constants that describe the orientation of printing on a page.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPaperOrientation(pub NSInteger);
 impl NSPaperOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paperorientation/portrait?language=objc)
+    /// Pages are printed in portrait orientation.
     #[doc(alias = "NSPaperOrientationPortrait")]
     pub const Portrait: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paperorientation/landscape?language=objc)
+    /// Pages are printed in landscape orientation.
     #[doc(alias = "NSPaperOrientationLandscape")]
     pub const Landscape: Self = Self(1);
 }
@@ -31,19 +31,22 @@ unsafe impl RefEncode for NSPaperOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode?language=objc)
+/// Constants that specify the different ways in which an image is divided into pages.
+///
+/// ## Overview
+///
+/// These constants are used by [`horizontalPagination`](https://developer.apple.com/documentation/appkit/nsprintinfo/horizontalpagination) and [`verticalPagination`](https://developer.apple.com/documentation/appkit/nsprintinfo/verticalpagination).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingPaginationMode(pub NSUInteger);
 impl NSPrintingPaginationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode/automatic?language=objc)
     #[doc(alias = "NSPrintingPaginationModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode/fit?language=objc)
     #[doc(alias = "NSPrintingPaginationModeFit")]
     pub const Fit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/paginationmode/clip?language=objc)
     #[doc(alias = "NSPrintingPaginationModeClip")]
     pub const Clip: Self = Self(2);
 }
@@ -56,189 +59,283 @@ unsafe impl RefEncode for NSPrintingPaginationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey?language=objc)
+/// Constants that specify print job attributes.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPrintInfoAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/papername?language=objc)
+    /// An `NSString` object containing the paper name.
     pub static NSPrintPaperName: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/papersize?language=objc)
+    /// An `NSSize` value specifying the height and width of paper in points.
     pub static NSPrintPaperSize: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/orientation?language=objc)
+    /// An `NSNumber` object containing an `NSPrintingOrientation`.
+    ///
+    /// ## Discussion
+    ///
+    /// `NSPortraitOrientation` or `NSLandscapeOrientation`
+    ///
+    ///
     pub static NSPrintOrientation: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/scalingfactor?language=objc)
+    /// Scale factor percentage before pagination.
     pub static NSPrintScalingFactor: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/leftmargin?language=objc)
+    /// `NSNumber`, containing a floating-point value that specifies the left margin, in points.
     pub static NSPrintLeftMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/rightmargin?language=objc)
+    /// `NSNumber`, containing a floating-point value that specifies the right margin, in points.
     pub static NSPrintRightMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/topmargin?language=objc)
+    /// `NSNumber`, containing a floating-point value that specifies the top margin, in points.
     pub static NSPrintTopMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/bottommargin?language=objc)
+    /// `NSNumber`, containing a floating-point value that specifies the bottom margin, in points.
     pub static NSPrintBottomMargin: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/horizontallycentered?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to horizontally center pages.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), pages are centered horizontally.
+    ///
+    ///
     pub static NSPrintHorizontallyCentered: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/verticallycentered?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to vertically center pages.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), pages are centered vertically.
+    ///
+    ///
     pub static NSPrintVerticallyCentered: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/horizontalpagination?language=objc)
+    /// `NSNumber`, containing a `NSPrintingPaginationMode` value.
+    ///
+    /// ## Discussion
+    ///
+    /// `NSAutoPagination`, `NSFitPagination`, or `NSClipPagination`. See [`horizontalPagination`](https://developer.apple.com/documentation/appkit/nsprintinfo/horizontalpagination) for details.
+    ///
+    ///
     pub static NSPrintHorizontalPagination: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/verticalpagination?language=objc)
+    /// `NSNumber`, containing a `NSPrintingPaginationMode` value.
+    ///
+    /// ## Discussion
+    ///
+    /// `NSAutoPagination`, `NSFitPagination`, or `NSClipPagination`. See [`verticalPagination`](https://developer.apple.com/documentation/appkit/nsprintinfo/verticalpagination) for details.
+    ///
+    ///
     pub static NSPrintVerticalPagination: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/printer?language=objc)
+    /// An `NSPrinter` object—the printer to use.
     pub static NSPrintPrinter: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/copies?language=objc)
+    /// An `NSNumber` object containing an integer—the number of copies to spool.
     pub static NSPrintCopies: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/allpages?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to include all pages.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), includes all pages in output.
+    ///
+    ///
     pub static NSPrintAllPages: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/firstpage?language=objc)
+    /// An `NSNumber` object containing an integer value that specifies the first page in the print job.
     pub static NSPrintFirstPage: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/lastpage?language=objc)
+    /// An `NSNumber` object containing an integer value that specifies the last page in the print job.
     pub static NSPrintLastPage: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/mustcollate?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to collate output.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), collates output.
+    ///
+    ///
     pub static NSPrintMustCollate: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/reversepageorder?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to print pages in reverse order.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), prints first page last.
+    ///
+    ///
     pub static NSPrintReversePageOrder: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/jobdisposition?language=objc)
+    /// An `NSString` object that specifies the job disposition.
+    ///
+    /// ## Discussion
+    ///
+    /// `NSPrintSpoolJob`, `NSPrintPreviewJob`, `NSPrintSaveJob`, or `NSPrintCancelJob`. See [`jobDisposition`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.property) for details.
+    ///
+    ///
     pub static NSPrintJobDisposition: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/pagesacross?language=objc)
+    /// An `NSNumber` object that specifies the number of logical pages to be tiled horizontally on a physical sheet of paper.
     pub static NSPrintPagesAcross: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/pagesdown?language=objc)
+    /// An `NSNumber` object that specifies the number of logical pages to be tiled vertically on a physical sheet of paper.
     pub static NSPrintPagesDown: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/time?language=objc)
+    /// An `NSDate` object that specifies the time at which printing should begin.
     pub static NSPrintTime: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/detailederrorreporting?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to produce detailed error reports.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), produce detailed reports when an error occurs.
+    ///
+    ///
     pub static NSPrintDetailedErrorReporting: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/faxnumber?language=objc)
+    /// An `NSString` object that specifies a fax number.
     pub static NSPrintFaxNumber: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/printername?language=objc)
+    /// An `NSString` object that specifies the name of a printer.
     pub static NSPrintPrinterName: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/selectiononly?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to print the current selection.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), only the current selection is printed.
+    ///
+    ///
     pub static NSPrintSelectionOnly: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/jobsavingurl?language=objc)
+    /// An `NSURL` containing the location to which the job file will be saved when the [`jobDisposition`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.property) is [`NSPrintSaveJob`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/save).
     pub static NSPrintJobSavingURL: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/jobsavingfilenameextensionhidden?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to hide the job’s file name extension.
+    ///
+    /// ## Discussion
+    ///
+    /// This value indicates whether the job’s file name extension should be hidden when the [`jobDisposition`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.property) is [`NSPrintSaveJob`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/save). The default is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static NSPrintJobSavingFileNameExtensionHidden: &'static NSPrintInfoAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/headerandfooter?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies whether to include a header and footer.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), a standard header and footer are added outside the margins of each page.
+    ///
+    ///
     pub static NSPrintHeaderAndFooter: &'static NSPrintInfoAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct?language=objc)
+/// Constants that specify values for the print job disposition.
+///
+/// ## Discussion
+///
+/// These constants are used by the [`jobDisposition`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.property) property.
+///
+///
 // NS_TYPED_ENUM
 pub type NSPrintJobDispositionValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/spool?language=objc)
+    /// Normal print job.
     pub static NSPrintSpoolJob: &'static NSPrintJobDispositionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/preview?language=objc)
+    /// Send to Preview application.
     pub static NSPrintPreviewJob: &'static NSPrintJobDispositionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/save?language=objc)
+    /// Save to a file.
     pub static NSPrintSaveJob: &'static NSPrintJobDispositionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/cancel?language=objc)
+    /// Cancel print job.
     pub static NSPrintCancelJob: &'static NSPrintJobDispositionValue;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/settingkey?language=objc)
+/// The type you use to specify a print info setting key.
 pub type NSPrintInfoSettingKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo?language=objc)
+    /// An object that stores information that’s used to generate printed output.
+    ///
+    /// ## Overview
+    ///
+    /// A shared [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) object is automatically created for an app and is used by default for all printing jobs for that app. The printing information in an [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) object is stored in a dictionary. To access the standard attributes in the dictionary directly, this class defines a set of keys and provides the [`dictionary`](https://developer.apple.com/documentation/appkit/nsprintinfo/dictionary()) method. You can also initialize an instance of this class using the [`initWithDictionary:`](https://developer.apple.com/documentation/appkit/nsprintinfo/init(dictionary:)) method.
+    ///
+    /// You can use this dictionary to store custom information associated with a print job. Any non-object values should be stored as [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) or [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) objects in the dictionary. See [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) for a list of types which should be stored as numbers. For other non-object values, use the [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) class.
+    ///
+    /// To store custom information that belongs in printing presets you should use the dictionary returned by the [`printSettings`](https://developer.apple.com/documentation/appkit/nsprintinfo/printsettings) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrintInfo;
@@ -543,53 +640,84 @@ impl NSPrintInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintformname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated. Do not use.
+    ///
+    ///
     #[deprecated = "NSPrintInfo does not recognize this attribute"]
     pub static NSPrintFormName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintjobfeatures?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated. Do not use.
+    ///
+    ///
     #[deprecated = "NSPrintInfo does not recognize this attribute. -[NSPrintInfo setUpPrintOperationDefaultValues] sets a default value of an empty dictionary"]
     pub static NSPrintJobFeatures: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintmanualfeed?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated. Do not use.
+    ///
+    ///
     #[deprecated = "NSPrintInfo does not recognize this attribute"]
     pub static NSPrintManualFeed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpagespersheet?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated. Do not use.
+    ///
+    ///
     #[deprecated = "NSPrintInfo does not recognize this attribute. -[NSPrintInfo setUpPrintOperationDefaultValues] sets a default value of 1"]
     pub static NSPrintPagesPerSheet: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpaperfeed?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated. Do not use.
+    ///
+    ///
     #[deprecated = "NSPrintInfo does not recognize this attribute"]
     pub static NSPrintPaperFeed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintsavepath?language=objc)
+    /// An `NSString` object that specifies the pathname to which the job file will be saved when the [`jobDisposition`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.property) is [`save`](https://developer.apple.com/documentation/appkit/nsprintinfo/jobdisposition-swift.struct/save)..
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`jobSavingURL`](https://developer.apple.com/documentation/appkit/nsprintinfo/attributekey/jobsavingurl) instead.
+    ///
+    ///
     #[deprecated = "Use NSPrintJobSavingURL instead"]
     pub static NSPrintSavePath: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.enum?language=objc)
+/// Constants that specify page orientations.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingOrientation(pub NSUInteger);
 impl NSPrintingOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.enum/portraitorientation?language=objc)
+    /// Orientation is portrait (page is taller than it is wide).
     #[doc(alias = "NSPortraitOrientation")]
     #[deprecated]
     pub const PortraitOrientation: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintinfo/orientation-swift.enum/landscapeorientation?language=objc)
+    /// Orientation is landscape (page is wider than it is tall).
     #[doc(alias = "NSLandscapeOrientation")]
     #[deprecated]
     pub const LandscapeOrientation: Self = Self(1);
@@ -603,17 +731,17 @@ unsafe impl RefEncode for NSPrintingOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsautopagination?language=objc)
+/// The image is divided into equal-sized rectangles and placed in one column of pages.
 #[deprecated]
 pub static NSAutoPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Automatic.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfitpagination?language=objc)
+/// The image is scaled to produce one column or one row of pages.
 #[deprecated]
 pub static NSFitPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Fit.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclippagination?language=objc)
+/// The image is clipped to produce one column or row of pages.
 #[deprecated]
 pub static NSClipPagination: NSPrintingPaginationMode =
     NSPrintingPaginationMode(NSPrintingPaginationMode::Clip.0);

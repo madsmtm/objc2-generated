@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about the condition of the cellular network.
     /// An MXMetric subclass that encapsulates cellular condition metrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

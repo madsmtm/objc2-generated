@@ -7,28 +7,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants representing a subscriber’s level of access to your content.
 /// Describes the level of access to content.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel?language=objc)
 // NS_ENUM
 #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSSubscriptionAccessLevel(pub NSInteger);
 impl VSSubscriptionAccessLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel/unknown?language=objc)
+    /// The default access level.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  An error occurs if you try to set a `VSSubscriptionAccessLevel` type to this value.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "VSSubscriptionAccessLevelUnknown")]
     #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const Unknown: Self = Self(0);
-    /// The default access level. Setting a subscription with this level will raise an exception.
+    /// The user has access to free content with a valid account.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel/freewithaccount?language=objc)
+    /// ## Discussion
+    ///
+    /// This value corresponds to content in your availability feed with the _account_ offering type.
+    ///
+    ///
+    /// The default access level. Setting a subscription with this level will raise an exception.
     #[doc(alias = "VSSubscriptionAccessLevelFreeWithAccount")]
     #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const FreeWithAccount: Self = Self(1);
-    /// The customer has access to content that is offered for free to users with a valid account.  This value corresponds content in your availability feed with the "account" offering type.
+    /// The user has access to content that requires a paid subscription.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscriptionaccesslevel/paid?language=objc)
+    /// ## Discussion
+    ///
+    /// This value corresponds to content in your availability feed with the _subscription_ offering type. Subscribers with this access level can also access free content.
+    ///
+    ///
+    /// The customer has access to content that is offered for free to users with a valid account.  This value corresponds content in your availability feed with the "account" offering type.
     #[doc(alias = "VSSubscriptionAccessLevelPaid")]
     #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
     pub const Paid: Self = Self(2);
@@ -43,10 +64,15 @@ unsafe impl RefEncode for VSSubscriptionAccessLevel {
 }
 
 extern_class!(
+    /// An object that describes a subscriber’s access to content.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `VSSubscription` object to set user subscription information, such as account access type, proximity billing group, expiration date, and content catalog tier identifiers.
+    ///
+    ///
     /// A VSSubscription instance describes the extent to which a subscriber has
     /// access to content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vssubscription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use VSUserAccount instead."]

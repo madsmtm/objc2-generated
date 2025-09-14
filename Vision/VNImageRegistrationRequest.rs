@@ -17,12 +17,17 @@ use objc2_image_io::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract superclass for image-analysis requests that align images according to their content.
+    ///
+    /// ## Overview
+    ///
+    /// This abstract superclass forms the basis of image alignment or registration requests. Make specific requests through one of its subclasses, [`VNTranslationalImageRegistrationRequest`](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest) or [`VNHomographicImageRegistrationRequest`](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest). Don’t create an instance of this superclass yourself.
+    ///
+    ///
     /// A request that will calculate a transformation for morphing a "floating" image onto an unchanging "reference" image.
     ///
     ///
     /// The request is created with the targeted image acting as the floating image. Processing the request will calculate the transformations that morph the floating image onto the reference image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageregistrationrequest?language=objc)
     #[unsafe(super(VNTargetedImageRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
@@ -681,12 +686,17 @@ impl VNImageRegistrationRequest {
 }
 
 extern_class!(
+    /// An image-analysis request that determines the affine transform necessary to align the content of two images.
+    ///
+    /// ## Overview
+    ///
+    /// Create and perform a translational image registration request to align content in two images through translation.
+    ///
+    ///
     /// An image registration request that will calculate a translational transformation for morphing a "floating" image onto an unchanging "reference" image.
     ///
     ///
     /// The request is created with the targeted image acting as the floating image. Processing the request will calculate the affine transformations that morph the floating image onto the reference image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest?language=objc)
     #[unsafe(super(
         VNImageRegistrationRequest,
         VNTargetedImageRequest,
@@ -1358,17 +1368,33 @@ impl VNTranslationalImageRegistrationRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the translational image registration request.
+///
+/// ## Discussion
+///
+/// The revision number is a constant that you pass on a per-request basis to indicate to the Vision framework which version of the translational image registration algorithm to use for that request. Each OS release in which the framework improves aspects of the algorithm (recognition speed, accuracy, number of languages supported, and so forth), the revision number increments by 1.
+///
+/// By default, recognition requests use the latest—the highest—revision number for the SDK that your app links against. If you don’t recompile your app against a newer SDK, your app binary will use the revision that was the default at the time you last compiled it. If you do recompile, your app uses the default of the new SDK.
+///
+/// If your app must support users on older OS versions that don’t have access to the latest Vision framework, you may want to specify an earlier revision. For example, your algorithm may depend on specific behavior from a Vision request, such as writing your image processing algorithm to assume the size or aspect ratio of bounding boxes from an older revision of the face detector. In such a scenario, you can support earlier versions of the algorithm by specifying lower numbers:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["visionRequest.revision = VNTranslationalImageRegistrationRequestRevision1"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["visionRequest.revision = VNTranslationalImageRegistrationRequestRevision1;"], metadata: None }] }] })
+///
 pub static VNTranslationalImageRegistrationRequestRevision1: NSUInteger = 1;
 
 extern_class!(
+    /// An image-analysis request that determines the perspective warp matrix necessary to align the content of two images.
+    ///
+    /// ## Overview
+    ///
+    /// Create and perform a homographic image registration request to align content in two images through a homography. A _homography_ is an isomorphism of projected spaces, a bijection that maps lines to lines.
+    ///
+    ///
     /// An image registration request that will calculate a homographic transformation for morphing a "floating" image onto an unchanging "reference" image.
     ///
     ///
     /// The request is created with the targeted image acting as the floating image. Processing the request will calculate the matrix warp transform that morph the floating image onto the reference image.
     /// Note that the request will fail unless the pixel dimensions of the reference image do not exactly match the resolved region of interest of the floating image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest?language=objc)
     #[unsafe(super(
         VNImageRegistrationRequest,
         VNTargetedImageRequest,
@@ -2040,5 +2066,5 @@ impl VNHomographicImageRegistrationRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the homographic image registration request.
 pub static VNHomographicImageRegistrationRequestRevision1: NSUInteger = 1;

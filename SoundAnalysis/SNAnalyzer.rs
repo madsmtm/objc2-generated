@@ -10,11 +10,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object you create to analyze a stream of audio data and provide the results to your app.
+    ///
+    /// ## Overview
+    ///
+    /// Run an [`SNRequest`](https://developer.apple.com/documentation/soundanalysis/snrequest) on an audio stream by creating an `SNAudioStreamAnalyzer`. You can run the same sound analysis request on multiple stream analyzers, and each analyzer can process multiple requests. An audio file analyzer generates an [`SNResult`](https://developer.apple.com/documentation/soundanalysis/snresult) each time any of its active requests recognizes a sound.
+    ///
+    ///
     /// Analyzes a stream of audio data and provides analysis results to the client
     ///
     /// SNAudioStreamAnalyzer should be used to analyze a stream of audio, represented by a sequence of audio buffers over time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snaudiostreamanalyzer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNAudioStreamAnalyzer;
@@ -113,9 +118,14 @@ impl SNAudioStreamAnalyzer {
 }
 
 extern_class!(
-    /// Analyzes an audio file and provides analysis results to the client
+    /// An analyzer that runs sound classification requests on an audio file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snaudiofileanalyzer?language=objc)
+    /// ## Overview
+    ///
+    /// Run an [`SNRequest`](https://developer.apple.com/documentation/soundanalysis/snrequest) on an audio file by creating an `SNAudioFileAnalyzer`. You can run the same sound analysis request on multiple file analyzers, and each analyzer can process multiple requests. An audio file analyzer generates an [`SNResult`](https://developer.apple.com/documentation/soundanalysis/snresult) each time any of its active requests recognizes a sound.
+    ///
+    ///
+    /// Analyzes an audio file and provides analysis results to the client
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNAudioFileAnalyzer;

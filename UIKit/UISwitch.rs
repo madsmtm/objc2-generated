@@ -12,19 +12,31 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum?language=objc)
+/// Styles that determine the appearance of the switch.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISwitchStyle(pub NSInteger);
 impl UISwitchStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/automatic?language=objc)
+    /// A style indicating that the system chooses the appearance of the switch according to the current user interface idiom.
+    ///
+    /// ## Discussion
+    ///
+    /// The system chooses the [`UISwitchStyleCheckbox`](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/checkbox) style when the user interface idiom is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac); otherwise, it chooses the [`UISwitchStyleSliding`](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/sliding) style.
+    ///
+    ///
     #[doc(alias = "UISwitchStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/checkbox?language=objc)
+    /// A style indicating that the switch appears as a Mac-style checkbox.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is only available to Mac apps built with Mac Catalyst that use the [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac) idiom. For more information about the Mac idiom, see [Choosing a user interface idiom for your Mac app](https://developer.apple.com/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app).
+    ///
+    ///
     #[doc(alias = "UISwitchStyleCheckbox")]
     pub const Checkbox: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch/style-swift.enum/sliding?language=objc)
+    /// A style indicating that the switch appears as an on/off slider.
     #[doc(alias = "UISwitchStyleSliding")]
     pub const Sliding: Self = Self(2);
 }
@@ -38,7 +50,17 @@ unsafe impl RefEncode for UISwitchStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswitch?language=objc)
+    /// A control that offers a binary choice, such as on/off.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UISwitch`](https://developer.apple.com/documentation/uikit/uiswitch) class declares a property and a method to control its on/off state. When a person manipulates the switch control (“flips” it), it triggers the [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) event.
+    ///
+    /// You can customize the appearance of the switch by changing the color used to tint the switch when it’s on or off.
+    ///
+    /// For information about basic view behaviors, see [View Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009503).
+    ///
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

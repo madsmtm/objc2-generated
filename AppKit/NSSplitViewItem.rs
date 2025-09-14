@@ -9,22 +9,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum?language=objc)
+/// Constants that describe the behavior of the split view item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSplitViewItemBehavior(pub NSInteger);
 impl NSSplitViewItemBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/default?language=objc)
+    /// The default split view item behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// This behavior corresponds to split view items that you create using [`splitViewItemWithViewController:`](https://developer.apple.com/documentation/appkit/nssplitviewitem/init(viewcontroller:)).
+    ///
+    ///
     #[doc(alias = "NSSplitViewItemBehaviorDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/sidebar?language=objc)
+    /// The sidebar behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// This behavior corresponds to split view items that you create using [`sidebarWithViewController:`](https://developer.apple.com/documentation/appkit/nssplitviewitem/init(sidebarwithviewcontroller:)).
+    ///
+    ///
     #[doc(alias = "NSSplitViewItemBehaviorSidebar")]
     pub const Sidebar: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/contentlist?language=objc)
+    /// The content list behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// This behavior corresponds to split view items that you create using [`contentListWithViewController:`](https://developer.apple.com/documentation/appkit/nssplitviewitem/init(contentlistwithviewcontroller:)).
+    ///
+    ///
     #[doc(alias = "NSSplitViewItemBehaviorContentList")]
     pub const ContentList: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum/inspector?language=objc)
+    /// The inspector behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// This behavior corresponds to split view items that you create using  [`inspectorWithViewController:`](https://developer.apple.com/documentation/appkit/nssplitviewitem/init(inspectorwithviewcontroller:)).
+    ///
+    ///
     #[doc(alias = "NSSplitViewItemBehaviorInspector")]
     pub const Inspector: Self = Self(3);
 }
@@ -37,30 +61,44 @@ unsafe impl RefEncode for NSSplitViewItemBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum?language=objc)
+/// Constants that describe the split view item’s collapsing behavior.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSplitViewItemCollapseBehavior(pub NSInteger);
 impl NSSplitViewItemCollapseBehavior {
+    /// The item uses the default collapsing behavior.
     /// The item uses the default collapsing behavior for its set `behavior`. The default may change over time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/default?language=objc)
     #[doc(alias = "NSSplitViewItemCollapseBehaviorDefault")]
     pub const Default: Self = Self(0);
-    /// The item prefers to keep the other panes at their current size and position on screen, potentially growing or shrinking the window in the direction to best preserve that. But it will break that preference in order to keep the window fully on screen or when in full screen.
+    /// The item’s preference is to keep the other panes at their current size and position onscreen, potentially growing or shrinking the window in the direction to best preserve that.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/preferresizingsplitviewwithfixedsiblings?language=objc)
+    /// ## Discussion
+    ///
+    /// The split view item breaks this preference in full-screen mode, and to keep the window fully onscreen during resizing.
+    ///
+    ///
+    /// The item prefers to keep the other panes at their current size and position on screen, potentially growing or shrinking the window in the direction to best preserve that. But it will break that preference in order to keep the window fully on screen or when in full screen.
     #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSplitViewWithFixedSiblings")]
     pub const PreferResizingSplitViewWithFixedSiblings: Self = Self(1);
-    /// The item prefers to resize the other split panes. This will be broken when uncollapsing if the item can't fully uncollapse before hitting the minimum size of the other panes or the window.
+    /// The item’s preference is to resize the other split panes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/preferresizingsiblingswithfixedsplitview?language=objc)
+    /// ## Discussion
+    ///
+    /// The split view item breaks this preference if it can’t fully expand without causing the other split panes to resize below their minimum size threshold.
+    ///
+    ///
+    /// The item prefers to resize the other split panes. This will be broken when uncollapsing if the item can't fully uncollapse before hitting the minimum size of the other panes or the window.
     #[doc(alias = "NSSplitViewItemCollapseBehaviorPreferResizingSiblingsWithFixedSplitView")]
     pub const PreferResizingSiblingsWithFixedSplitView: Self = Self(2);
-    /// The item will collapse/uncollapse purely from a constraint animation, with a constraint priority of the item’s `holdingPriority`. This could result in a partial internal content resize and window resize, and has no implications for keeping the window on screen. External constraints can be used to tweak exactly how the animation affects item, sibling, and window size and positions.
+    /// The item collapses and expands using a constraint animation, with a constraint priority of the item’s holding priority.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum/useconstraints?language=objc)
+    /// ## Discussion
+    ///
+    /// This collapse behavior may result in a partial internal content resize and window resize, and doesn’t affect whether the window stays onscreen. You can use external constraints to adjust how the animation affects the item, its sibling items, and the window’s size and position.
+    ///
+    ///
+    /// The item will collapse/uncollapse purely from a constraint animation, with a constraint priority of the item’s `holdingPriority`. This could result in a partial internal content resize and window resize, and has no implications for keeping the window on screen. External constraints can be used to tweak exactly how the animation affects item, sibling, and window size and positions.
     #[doc(alias = "NSSplitViewItemCollapseBehaviorUseConstraints")]
     pub const UseConstraints: Self = Self(3);
 }
@@ -74,19 +112,31 @@ unsafe impl RefEncode for NSSplitViewItemCollapseBehavior {
 }
 
 extern "C" {
+    /// A constant that resets a dimension’s value.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant with any sizing-related [`NSSplitViewItem`](https://developer.apple.com/documentation/appkit/nssplitviewitem) property to reset its value to the standard system default.
+    ///
+    ///
     /// This constant can be used with any sizing related
     /// `NSSplitViewItem`properties to unset their values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/unspecifieddimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSplitViewItemUnspecifiedDimension: CGFloat;
 }
 
 extern_class!(
+    /// An item in a split view controller.
+    ///
+    /// ## Overview
+    ///
+    /// A split view item represents a single pane in a split view controller ([`NSSplitViewController`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller)). Each split view item contains information about a child view controller in the split view controller, like its preferred thickness, holding priority, and collapsed state.
+    ///
+    /// To add one or more accessory views to the top or bottom of a split view item, such as a search field above a list, use the [`topAlignedAccessoryViewControllers`](https://developer.apple.com/documentation/appkit/nssplitviewitem/topalignedaccessoryviewcontrollers) and [`bottomAlignedAccessoryViewControllers`](https://developer.apple.com/documentation/appkit/nssplitviewitem/bottomalignedaccessoryviewcontrollers) properties to specify  [`NSSplitViewItemAccessoryViewController`](https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller) types.
+    ///
+    ///
     /// NSSplitViewItem implements the items used in an NSSplitViewController.
     /// The item describes a child ViewController's state in a SplitViewController, e.g. its collapsibility, holding priority and other metrics, and collapsed state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSplitViewItem;

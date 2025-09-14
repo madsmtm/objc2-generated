@@ -78,7 +78,21 @@ impl AVAudioSession {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessiondelegate?language=objc)
+    /// A protocol that defines responses to changes in state for the audio session.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate of an `AVAudioSession` object must adopt the `AVAudioSessionDelegate` protocol. The methods in this protocol are optional. They allow a delegate to respond to the following sorts of changes in state:
+    ///
+    /// - Changes to the availability of audio input
+    ///
+    /// - Audio session interruption, or end of audio session interruption
+    ///
+    /// An `AVAudioSession` delegate can respond to interruptions at the audio session level. You can use this interface along with any iOS audio technology. For example, your `AVAudioSession` delegate can handle interruptions for OpenAL and audio unit playback.
+    ///
+    /// When using the AVFoundation framework for recording or playback, you can also respond to interruptions at the individual recorder or player level. To do this, create audio recorder or audio player delegates using the protocols described in [`AVAudioRecorderDelegate`](https://developer.apple.com/documentation/avfaudio/avaudiorecorderdelegate) and [`AVAudioPlayerDelegate`](https://developer.apple.com/documentation/avfaudio/avaudioplayerdelegate).
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub unsafe trait AVAudioSessionDelegate: NSObjectProtocol {
         #[deprecated = "No longer supported"]
@@ -106,10 +120,22 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionflags_shouldresume?language=objc)
+/// Indicates that your audio session is active and ready for use.
+///
+/// ## Discussion
+///
+/// Your app can resume the interrupted audio operation. See [Handling audio interruptions](https://developer.apple.com/documentation/avfaudio/handling-audio-interruptions) for more information.
+///
+///
 #[deprecated]
 pub const AVAudioSessionInterruptionFlags_ShouldResume: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsetactiveflags_notifyothersondeactivation?language=objc)
+/// A flag that indicates that when your audio session deactivates, any audio sessions that your audio session interrupted can reactivate themselves.
+///
+/// ## Discussion
+///
+/// This flag works when passed in the `flags` parameter of the [`setActive:withFlags:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setactive(_:withflags:)) instance method. You use this flag only when deactivating your audio session.
+///
+///
 #[deprecated]
 pub const AVAudioSessionSetActiveFlags_NotifyOthersOnDeactivation: c_uint = 1;

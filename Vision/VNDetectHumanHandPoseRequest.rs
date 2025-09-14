@@ -7,207 +7,207 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname?language=objc)
+/// The supported joint names for the hand pose.
 // NS_TYPED_ENUM
 #[cfg(feature = "VNTypes")]
 pub type VNHumanHandPoseObservationJointName = VNRecognizedPointKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/wrist?language=objc)
+    /// The wrist.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameWrist:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbcmc?language=objc)
+    /// The thumb’s carpometacarpal (CMC) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbCMC:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbmp?language=objc)
+    /// The thumb’s metacarpophalangeal (MP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbMP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbip?language=objc)
+    /// The thumb’s interphalangeal (IP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbtip?language=objc)
+    /// The tip of the thumb.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indexmcp?language=objc)
+    /// The index finger’s metacarpophalangeal (MCP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indexpip?language=objc)
+    /// The index finger’s proximal interphalangeal (PIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexPIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indexdip?language=objc)
+    /// The index finger’s distal interphalangeal (DIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indextip?language=objc)
+    /// The tip of the index finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middlemcp?language=objc)
+    /// The middle finger’s metacarpophalangeal (MCP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddleMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middlepip?language=objc)
+    /// The middle finger’s proximal interphalangeal (PIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddlePIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middledip?language=objc)
+    /// The middle finger’s distal interphalangeal (DIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddleDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middletip?language=objc)
+    /// The tip of the middle finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddleTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringmcp?language=objc)
+    /// The ring finger’s metacarpophalangeal (MCP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringpip?language=objc)
+    /// The ring finger’s proximal interphalangeal (PIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingPIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringdip?language=objc)
+    /// The ring finger’s distal interphalangeal (DIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringtip?language=objc)
+    /// The tip of the ring finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littlemcp?language=objc)
+    /// The little finger’s metacarpophalangeal (MCP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittleMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littlepip?language=objc)
+    /// The little finger’s proximal interphalangeal (PIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittlePIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littledip?language=objc)
+    /// The little finger’s distal interphalangeal (DIP) joint.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittleDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littletip?language=objc)
+    /// The tip of the little finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittleTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname?language=objc)
+/// The supported joint group names for the hand pose.
 // NS_TYPED_ENUM
 #[cfg(feature = "VNTypes")]
 pub type VNHumanHandPoseObservationJointsGroupName = VNRecognizedPointGroupKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/thumb?language=objc)
+    /// The thumb.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameThumb:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/indexfinger?language=objc)
+    /// The index finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameIndexFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/middlefinger?language=objc)
+    /// The middle finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameMiddleFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/ringfinger?language=objc)
+    /// The ring finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameRingFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/littlefinger?language=objc)
+    /// The little finger.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameLittleFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/all?language=objc)
+    /// All hand group names.
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameAll:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation?language=objc)
+    /// An observation that provides the hand points the analysis recognized.
     #[unsafe(super(VNRecognizedPointsObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNObservation")]
@@ -332,11 +332,16 @@ impl VNHumanHandPoseObservation {
 }
 
 extern_class!(
+    /// A request that detects a human hand pose.
+    ///
+    /// ## Overview
+    ///
+    /// The framework provides the detected hand pose as a `VNIdentifiedPointsObservation`.
+    ///
+    ///
     /// Detects specific landmark points on human hands.
     ///
     /// This request will produce a collection of VNRecognizedPointsObservation objects which describe the pose of each detected human hand.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanhandposerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -472,5 +477,5 @@ impl VNDetectHumanHandPoseRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanhandposerequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the hand pose detection request.
 pub static VNDetectHumanHandPoseRequestRevision1: NSUInteger = 1;

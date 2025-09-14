@@ -18,8 +18,6 @@ extern_class!(
     ///
     /// This API is not realtime-safe, all interaction with the function block should be done on the
     /// main thread.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpmutablefunctionblock?language=objc)
     #[unsafe(super(MIDIUMPFunctionBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]

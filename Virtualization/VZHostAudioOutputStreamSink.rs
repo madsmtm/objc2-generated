@@ -6,14 +6,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// Host audio output stream sink plays audio to the host system’s default output device.
+    ///
+    /// ## Overview
+    ///
+    /// Host output data goes to the same device that [`AudioQueueNewOutput`](https://developer.apple.com/documentation/audiotoolbox/audioqueuenewoutput(_:_:_:_:_:_:_:)) uses.
+    ///
+    ///
     /// Host audio output stream sink plays audio to the host system's default output device.
     ///
     /// Host output data goes to the same device that AudioQueueNewOutput uses.
     ///
     ///
     /// See: VZVirtioSoundDeviceOutputStreamConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzhostaudiooutputstreamsink?language=objc)
     #[unsafe(super(VZAudioOutputStreamSink, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZAudioOutputStreamSink")]

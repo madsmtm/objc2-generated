@@ -9,64 +9,82 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype?language=objc)
+/// The kinds of assignable content a context can contain.
+///
+/// ## Overview
+///
+/// When you initialize a new context with [`initWithType:identifier:title:`](https://developer.apple.com/documentation/classkit/clscontext/init(type:identifier:title:)), you specify its [`type`](https://developer.apple.com/documentation/classkit/clscontext/type) to provide an indication of how your content is structured. The type doesn’t affect the context’s behavior, but it does provide an important indicator to teachers trying to understand your app’s content.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSContextType(pub NSInteger);
 impl CLSContextType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/none?language=objc)
+    /// No type is assigned.
     #[doc(alias = "CLSContextTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/app?language=objc)
+    /// An app context.
+    ///
+    /// ## Discussion
+    ///
+    /// This context type is typically reserved for the main app context.
+    ///
+    ///
     #[doc(alias = "CLSContextTypeApp")]
     pub const App: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/chapter?language=objc)
+    /// A chapter context.
     #[doc(alias = "CLSContextTypeChapter")]
     pub const Chapter: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/section?language=objc)
+    /// A section context.
     #[doc(alias = "CLSContextTypeSection")]
     pub const Section: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/level?language=objc)
+    /// A level context.
     #[doc(alias = "CLSContextTypeLevel")]
     pub const Level: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/page?language=objc)
+    /// A page context.
     #[doc(alias = "CLSContextTypePage")]
     pub const Page: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/task?language=objc)
+    /// A task context.
     #[doc(alias = "CLSContextTypeTask")]
     pub const Task: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/challenge?language=objc)
+    /// A challenge context.
     #[doc(alias = "CLSContextTypeChallenge")]
     pub const Challenge: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/quiz?language=objc)
+    /// A quiz context.
     #[doc(alias = "CLSContextTypeQuiz")]
     pub const Quiz: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/exercise?language=objc)
+    /// An exercise context.
     #[doc(alias = "CLSContextTypeExercise")]
     pub const Exercise: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/lesson?language=objc)
+    /// A lesson context.
     #[doc(alias = "CLSContextTypeLesson")]
     pub const Lesson: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/book?language=objc)
+    /// A book context.
     #[doc(alias = "CLSContextTypeBook")]
     pub const Book: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/game?language=objc)
+    /// A game context.
     #[doc(alias = "CLSContextTypeGame")]
     pub const Game: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/document?language=objc)
+    /// A document context.
     #[doc(alias = "CLSContextTypeDocument")]
     pub const Document: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/audio?language=objc)
+    /// An audio context.
     #[doc(alias = "CLSContextTypeAudio")]
     pub const Audio: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/video?language=objc)
+    /// A video context.
     #[doc(alias = "CLSContextTypeVideo")]
     pub const Video: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/course?language=objc)
+    /// A context that represents an entire course.
     #[doc(alias = "CLSContextTypeCourse")]
     pub const Course: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttype/custom?language=objc)
+    /// A context for assignable content that isn’t represented by one of the built-in context types.
+    ///
+    /// ## Discussion
+    ///
+    /// If you use the [`CLSContextTypeCustom`](https://developer.apple.com/documentation/classkit/clscontexttype/custom) type, you can provide a user-visible name for the type by setting the [`customTypeName`](https://developer.apple.com/documentation/classkit/clscontext/customtypename) property.
+    ///
+    ///
     #[doc(alias = "CLSContextTypeCustom")]
     pub const Custom: Self = Self(17);
 }
@@ -79,59 +97,72 @@ unsafe impl RefEncode for CLSContextType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic?language=objc)
+/// The areas of study to which contexts may relate.
+///
+/// ## Discussion
+///
+/// After you initialize a context, you can assign it a topic by setting its [`topic`](https://developer.apple.com/documentation/classkit/clscontext/topic) property. Doing so helps teachers browsing your app’s content to understand what your app offers.
+///
+///
 // NS_TYPED_ENUM
 pub type CLSContextTopic = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/math?language=objc)
+    /// Mathematics.
     pub static CLSContextTopicMath: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/science?language=objc)
+    /// Science.
     pub static CLSContextTopicScience: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/literacyandwriting?language=objc)
+    /// Literacy and writing.
     pub static CLSContextTopicLiteracyAndWriting: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/worldlanguage?language=objc)
+    /// Language acquisition.
     pub static CLSContextTopicWorldLanguage: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/socialscience?language=objc)
+    /// Social science.
     pub static CLSContextTopicSocialScience: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/computerscienceandengineering?language=objc)
+    /// Computer science and engineering.
     pub static CLSContextTopicComputerScienceAndEngineering: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/artsandmusic?language=objc)
+    /// Arts and music.
     pub static CLSContextTopicArtsAndMusic: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/healthandfitness?language=objc)
+    /// Health and fitness.
     pub static CLSContextTopicHealthAndFitness: &'static CLSContextTopic;
 }
 
 extern_class!(
+    /// An area of your app that represents an assignable task, like a quiz or a chapter.
+    ///
+    /// ## Overview
+    ///
+    /// Make it easy for teachers to understand the app content a context represents by configuring it with information like a clear, concise title localized for the regions that your app supports.
+    ///
+    /// A context can contain groups of other contexts, like a book that contains chapters or a chapter that contains sections. You can assemble contexts into a hierarchy of up to eight levels that acts as a table of contents for teachers who want to assign your app content. See [Advertising your app’s assignable content](https://developer.apple.com/documentation/classkit/advertising-your-app-s-assignable-content) for more details.
+    ///
+    ///
     /// Contexts represent activities, documents, and areas within your app.
     ///
     /// Contexts have two major components.
     ///
     /// (1) Child contexts, used to model your app hierarchy.
     /// (2) Activity, holds user generated data that pertains to this context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontext?language=objc)
     #[unsafe(super(CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLSObject")]

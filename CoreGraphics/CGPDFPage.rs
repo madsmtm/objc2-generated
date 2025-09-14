@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage?language=objc)
+/// A type that represents a page in a PDF document.
 #[doc(alias = "CGPDFPageRef")]
 #[repr(C)]
 pub struct CGPDFPage {
@@ -26,25 +26,25 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGPDFPage"> for CGPDFPage {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox?language=objc)
+/// Box types for a PDF page.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPDFBox(pub i32);
 impl CGPDFBox {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/mediabox?language=objc)
+    /// The page media box—a rectangle, expressed in default user space units, that defines the boundaries of the physical medium on which the page is intended to be displayed or printed
     #[doc(alias = "kCGPDFMediaBox")]
     pub const MediaBox: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/cropbox?language=objc)
+    /// The page crop box—a rectangle, expressed in default user space units, that defines the visible region of default user space. When the page is displayed or printed, its contents are to be clipped to this rectangle.
     #[doc(alias = "kCGPDFCropBox")]
     pub const CropBox: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/bleedbox?language=objc)
+    /// The page bleed box—a rectangle, expressed in default user space units, that defines the region to which the contents of the page should be clipped when output in a production environment.
     #[doc(alias = "kCGPDFBleedBox")]
     pub const BleedBox: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/trimbox?language=objc)
+    /// The page trim box—a rectangle, expressed in default user space units, that defines the intended dimensions of the finished page after trimming.
     #[doc(alias = "kCGPDFTrimBox")]
     pub const TrimBox: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox/artbox?language=objc)
+    /// The page art box—a rectangle, expressed in default user space units, defining the extent of the page’s meaningful content (including potential white space) as intended by the page’s creator.
     #[doc(alias = "kCGPDFArtBox")]
     pub const ArtBox: Self = Self(4);
 }
@@ -60,7 +60,17 @@ unsafe impl RefEncode for CGPDFBox {
 }
 
 impl CGPDFPage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/document?language=objc)
+    /// Returns the document for a page.
+    ///
+    /// Parameters:
+    /// - page: A PDF page.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The PDF document with which the specified page is associated.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[inline]
@@ -72,7 +82,17 @@ impl CGPDFPage {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/pagenumber?language=objc)
+    /// Returns the page number of the specified PDF page.
+    ///
+    /// Parameters:
+    /// - page: A PDF page.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the page number of the specified page.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetPageNumber")]
     #[inline]
     pub fn page_number(page: Option<&CGPDFPage>) -> usize {
@@ -82,7 +102,25 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetPageNumber(page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getboxrect(_:)?language=objc)
+    /// Returns the rectangle that represents a type of box for a content region or page dimensions of a PDF page.
+    ///
+    /// Parameters:
+    /// - page: A PDF page.
+    ///
+    /// - box: A constant that specifies the type of box. For possible values, see [`CGPDFBox`](https://developer.apple.com/documentation/coregraphics/cgpdfbox).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the rectangle associated with the type of box specified by the `box` parameter in the specified page.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns the rectangle associated with the specified box in the specified page. This is the value of the corresponding entry (such as `/MediaBox`, `/ArtBox`, and so on) in the page’s dictionary.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetBoxRect")]
     #[inline]
     pub fn box_rect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect {
@@ -92,7 +130,23 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetBoxRect(page, r#box) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/rotationangle?language=objc)
+    /// Returns the rotation angle of a PDF page, in degrees.
+    ///
+    /// Parameters:
+    /// - page: A PDF page.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rotation angle of the specified page.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned value is the value of the `/Rotate` entry in the page’s dictionary.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetRotationAngle")]
     #[inline]
     pub fn rotation_angle(page: Option<&CGPDFPage>) -> c_int {
@@ -102,7 +156,39 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetRotationAngle(page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/getdrawingtransform(_:rect:rotate:preserveaspectratio:)?language=objc)
+    /// Returns the affine transform that maps a box to a given rectangle on a PDF page.
+    ///
+    /// Parameters:
+    /// - page: A PDF page.
+    ///
+    /// - box: A constant that specifies the type of box. For possible values, see [`CGPDFBox`](https://developer.apple.com/documentation/coregraphics/cgpdfbox).
+    ///
+    /// - rect: A Quartz rectangle.
+    ///
+    /// - rotate: An integer, that must be a multiple of `90`, that specifies the angle by which the specified rectangle is rotated clockwise.
+    ///
+    /// - preserveAspectRatio: A Boolean value that specifies whether or not the aspect ratio should be preserved. A value of [`true`](https://developer.apple.com/documentation/swift/true) specifies that the aspect ratio should be preserved.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An affine transform that maps the box specified by the `box` parameter to the rectangle specified by the `rect` parameter.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Quartz constructs the affine transform as follows:
+    ///
+    /// - Computes the effective rectangle by intersecting the rectangle associated with `box` and the `/MediaBox` entry of the specified page.
+    ///
+    /// - Rotates the effective rectangle according to the page’s `/Rotate` entry.
+    ///
+    /// - Centers the resulting rectangle on `rect`.If the value of the `rotate` parameter is non-zero, then the rectangle is rotated clockwise by rotate degrees. The value of `rotate` must be a multiple of 90.
+    ///
+    /// - Scales the rectangle, if necessary, so that it coincides with the edges of `rect`. If the value of `preserveAspectRatio` parameter is [`true`](https://developer.apple.com/documentation/swift/true), then the final rectangle coincides with the edges of `rect` only in the more restrictive dimension.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetDrawingTransform")]
     #[inline]
     pub fn drawing_transform(
@@ -124,7 +210,17 @@ impl CGPDFPage {
         unsafe { CGPDFPageGetDrawingTransform(page, r#box, rect, rotate, preserve_aspect_ratio) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/dictionary?language=objc)
+    /// Returns the dictionary of a PDF page.
+    ///
+    /// Parameters:
+    /// - page: A PDF page.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the PDF dictionary for the specified page.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
@@ -137,7 +233,13 @@ impl CGPDFPage {
 }
 
 unsafe impl ConcreteType for CGPDFPage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage/typeid?language=objc)
+    /// Returns the CFType ID for PDF page objects.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the Core Foundation type for a PDF page.
+    ///
+    ///
     #[doc(alias = "CGPDFPageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

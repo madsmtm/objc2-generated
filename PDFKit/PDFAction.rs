@@ -7,7 +7,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfaction?language=objc)
+    /// An action that is performed when, for example, a PDF annotation is activated or an outline item is clicked.
+    ///
+    /// ## Overview
+    ///
+    /// A `PDFAction` object represents an action associated with a PDF element, such as an annotation or a link, that the viewer application can perform. See the Adobe PDF Specification for more about actions and action types.
+    ///
+    /// `PDFAction` is an abstract superclass of the following concrete classes:
+    ///
+    /// - `PDFActionGoTo`
+    ///
+    /// - `PDFActionNamed`
+    ///
+    /// - `PDFActionRemoteGoTo`
+    ///
+    /// - `PDFActionResetForm`
+    ///
+    /// - `PDFActionURL`
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFAction;

@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensioncontext?language=objc)
+    /// The host app context from which an app extension is invoked.
+    ///
+    /// ## Overview
+    ///
+    /// When a host app sends a request to an app extension, it provides an extension context. For many app extensions, the most important part of the context is the data the user wants to work with, which is contained in the [`inputItems`](https://developer.apple.com/documentation/foundation/nsextensioncontext/inputitems) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExtensionContext;
@@ -77,31 +83,65 @@ impl DefaultRetained for NSExtensionContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey?language=objc)
+    /// The extension items and errors key.
+    ///
+    /// ## Discussion
+    ///
+    /// This key appears in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary of the [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object that [`cancelRequestWithError:`](https://developer.apple.com/documentation/foundation/nsextensioncontext/cancelrequest(witherror:)) returns.
+    ///
+    /// This key’s value is a dictionary of [`NSExtensionItem`](https://developer.apple.com/documentation/foundation/nsextensionitem) objects and associated [`NSError`](https://developer.apple.com/documentation/foundation/nserror) instances.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemsAndErrorsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostwillenterforeground?language=objc)
+    /// Posted when the extension’s host app begins running in the foreground.
+    ///
+    /// ## Discussion
+    ///
+    /// Extensions can use this notification to restart tasks that it stopped when they moved to the background. The `object` parameter contains the `NSExtensionContext` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostdidenterbackground?language=objc)
+    /// Posted when the extension’s host app begins running in the background.
+    ///
+    /// ## Discussion
+    ///
+    /// Extensions can use this notification to stop tasks and prepare the extension to be suspended. The `object` parameter contains the `NSExtensionContext` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// Extensions receive only a short amount of time to perform any background work. If you need more time to complete critical tasks, use the methods of the [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) class to request that time.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostwillresignactive?language=objc)
+    /// Posted when the extension’s host app moves from the active to the inactive state.
+    ///
+    /// ## Discussion
+    ///
+    /// Extensions can use this notification to adjust their activity when they become inactive. For example, you might use this notification to save any unsaved data to prevent it from being lost. The `object` parameter contains the `NSExtensionContext` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillResignActiveNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostdidbecomeactive?language=objc)
+    /// Posted when the extension’s host app moves from the inactive to the active state.
+    ///
+    /// ## Discussion
+    ///
+    /// Extensions can use this notification to adjust their activity when they become active. The `object` parameter contains the `NSExtensionContext` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>;
 }

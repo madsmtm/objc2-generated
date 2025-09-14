@@ -7,37 +7,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A synchronization point that represents the last batch of changes returned by the enumerator.
+///
+/// ## Discussion
+///
+/// Your file provider should populate the sync anchor with the information it needs to identify and enumerate only the changes that occurred after the synchronization point. For example, a simple sync anchor could use the time and date of the last update successfully downloaded from the server. A request to enumerate changes from that sync anchor would then return only the changes downloaded after that date.
+///
+/// The system only retains the last anchor passed to it. After the system calls [`enumerateChangesForObserver:fromSyncAnchor:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerator/enumeratechanges(for:from:)) with a sync anchor, it’s safe to deallocate any older sync anchors.
+///
+///
 /// A user-defined chunk of data that defines a starting point to enumerate changes
 /// from.
 ///
 /// The size of a sync anchor should not exceed a combined 500 bytes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidersyncanchor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderSyncAnchor = NSData;
 
+/// A synchronization point that represents the next batch of items to be returned by an enumerator.
+///
+/// ## Discussion
+///
+/// Your file provider should populate the page with the information it needs to partition items into batches and to systematically return a batch of data at a time. For example, a simple page could contain the index of the next item to return. A request to enumerate items from that page would then return a batch of items starting at the specified index.
+///
+///
 /// A user- or system-defined chunk of data that defines a page to continue the
 /// enumeration from.  Initial enumeration is started from one of the below
 /// system-defined pages.
 ///
 /// The size of a page should not exceed 500 bytes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpage?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderPage = NSData;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpage/initialpagesortedbydate?language=objc)
+    /// The initial batch of items when sorted by date.
     pub static NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPage;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpage/initialpagesortedbyname?language=objc)
+    /// The initial batch of items when sorted by name.
     pub static NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerationobserver?language=objc)
+    /// An observer that receives batches of items during enumeration.
     pub unsafe trait NSFileProviderEnumerationObserver: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderItem")]
         #[unsafe(method(didEnumerateItems:))]
@@ -79,7 +91,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderchangeobserver?language=objc)
+    /// An observer that receives changes and deletions during enumeration.
     pub unsafe trait NSFileProviderChangeObserver: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderItem")]
         /// Send updates to existing items, or insert new items.
@@ -153,7 +165,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerator?language=objc)
+    /// A protocol for enumerating items and changes.
     pub unsafe trait NSFileProviderEnumerator: NSObjectProtocol {
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]

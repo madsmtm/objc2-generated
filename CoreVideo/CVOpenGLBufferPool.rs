@@ -9,7 +9,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpool?language=objc)
+/// A reference to an OpenGL buffer pool object.
 #[doc(alias = "CVOpenGLBufferPoolRef")]
 #[repr(C)]
 pub struct CVOpenGLBufferPool {
@@ -26,19 +26,25 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolminimumbuffercountkey?language=objc)
+    /// The minimum number of buffers to be kept in the pool (type `CFNumber`).
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferPoolMinimumBufferCountKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolmaximumbufferagekey?language=objc)
+    /// The maximum time that unused buffers should be kept before they are deallocated (type `CFAbsoluteTime`).
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCVOpenGLBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 
 unsafe impl ConcreteType for CVOpenGLBufferPool {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolgettypeid()?language=objc)
+    /// Obtains the Core Foundation ID for the OpenGL buffer pool type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation ID for this data type.
+    ///
+    ///
     #[doc(alias = "CVOpenGLBufferPoolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -50,6 +56,23 @@ unsafe impl ConcreteType for CVOpenGLBufferPool {
 }
 
 impl CVOpenGLBufferPool {
+    /// Creates a new OpenGL buffer pool.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for allocating this buffer pool. Pass `NULL` to specify the default allocator.
+    ///
+    /// - poolAttributes: A Core Foundation dictionary containing the attributes to be used for the pool itself.
+    ///
+    /// - openGLBufferAttributes: A Core Foundation dictionary containing the attributes to be used for creating new OpenGL buffers within the pool.
+    ///
+    /// - poolOut: On output, `poolOut` points to the new OpenGL buffer pool.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See[Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
     /// Creates a new OpenGL Buffer pool.
     ///
     /// Equivalent to CFRelease, but NULL safe
@@ -71,8 +94,6 @@ impl CVOpenGLBufferPool {
     /// - `open_gl_buffer_attributes` generic must be of the correct type.
     /// - `open_gl_buffer_attributes` generic must be of the correct type.
     /// - `pool_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -101,13 +122,22 @@ impl CVOpenGLBufferPool {
         }
     }
 
+    /// Returns the pool attributes dictionary for an Open GL buffer pool.
+    ///
+    /// Parameters:
+    /// - pool: The OpenGL buffer pool containing the attributes to be retrieved.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The buffer-pool attributes Core Foundation dictionary, or `NULL` on failure.
+    ///
+    ///
     /// Returns the pool attributes dictionary for a CVOpenGLBufferPool
     ///
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolgetattributes(_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
@@ -121,6 +151,23 @@ impl CVOpenGLBufferPool {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the attributes of OpenGL buffers that will be created from a buffer pool.
+    ///
+    /// Parameters:
+    /// - pool: The OpenGL buffer pool containing the attributes to be retrieved.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The OpenGL buffer attributes Core Foundation dictionary, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to obtain information about the OpenGL buffers that will be created from the buffer pool.
+    ///
+    ///
     /// Returns the attributes of OpenGL buffers that will be created from this pool.
     ///
     /// This function is provided for those cases where you may need to know some information about the buffers that
@@ -129,8 +176,6 @@ impl CVOpenGLBufferPool {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolgetopenglbufferattributes(_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
@@ -144,6 +189,27 @@ impl CVOpenGLBufferPool {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Creates a new OpenGL buffer from an OpenGL buffer pool.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer.  May be `NULL` to specify the default allocator.
+    ///
+    /// - openGLBufferPool: The OpenGL buffer pool that should create the new OpenGL buffer.
+    ///
+    /// - openGLBufferOut: On output, `OpenGLBufferOut` points to the new OpenGL buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Core Video Constants](https://developer.apple.com/documentation/corevideo/core-video-constants) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function creates a new OpenGL buffer using the OpenGL buffer attributes specified in the [`CVOpenGLBufferPoolCreate`](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolcreate(_:_:_:_:)) call. This buffer has default attachments as specified in the `openGLBufferAttributes` parameter of [`CVOpenGLBufferPoolCreate`](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolcreate(_:_:_:_:)) (using either the `kCVBufferPropagatedAttachmentsKey` or `kCVBufferNonPropagatedAttachmentsKey` attributes).
+    ///
+    ///
     /// Creates a new OpenGLBuffer object from the pool.
     ///
     /// The function creates a new CVOpenGLBuffer with the default attachments using the OpenGL buffer attributes specifed during pool creation.
@@ -159,8 +225,6 @@ impl CVOpenGLBufferPool {
     /// # Safety
     ///
     /// `open_gl_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolcreateopenglbuffer(_:_:_:)?language=objc)
     #[doc(alias = "CVOpenGLBufferPoolCreateOpenGLBuffer")]
     #[cfg(all(
         feature = "CVBuffer",

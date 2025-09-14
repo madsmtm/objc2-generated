@@ -6,36 +6,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Possible values for the [`WebActionNavigationTypeKey`](https://developer.apple.com/documentation/webkit/webactionnavigationtypekey) key that appears in an action dictionary.
 /// The type of action that triggered a possible navigation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebNavigationType(pub NSInteger);
 impl WebNavigationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/linkclicked?language=objc)
+    /// A link (an `href`) was clicked.
     #[doc(alias = "WebNavigationTypeLinkClicked")]
     #[deprecated]
     pub const LinkClicked: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/formsubmitted?language=objc)
+    /// A form was submitted.
     #[doc(alias = "WebNavigationTypeFormSubmitted")]
     #[deprecated]
     pub const FormSubmitted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/backforward?language=objc)
+    /// The user clicked back or forward button.
     #[doc(alias = "WebNavigationTypeBackForward")]
     #[deprecated]
     pub const BackForward: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/reload?language=objc)
+    /// The user hit the reload button.
     #[doc(alias = "WebNavigationTypeReload")]
     #[deprecated]
     pub const Reload: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/formresubmitted?language=objc)
+    /// A form was resubmitted (through a back, forward or reload action).
     #[doc(alias = "WebNavigationTypeFormResubmitted")]
     #[deprecated]
     pub const FormResubmitted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webnavigationtype/other?language=objc)
+    /// Navigation is taking place for some other reason.
     #[doc(alias = "WebNavigationTypeOther")]
     #[deprecated]
     pub const Other: Self = Self(5);
@@ -50,42 +49,47 @@ unsafe impl RefEncode for WebNavigationType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionnavigationtypekey?language=objc)
+    /// The navigation type of the action. Can be any of the values defined in [`WebNavigationType`](https://developer.apple.com/documentation/webkit/webnavigationtype) below.
     #[deprecated]
     pub static WebActionNavigationTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionelementkey?language=objc)
+    /// A dictionary containing element information. See `WebView` for a description of the key-value pairs in this dictionary.
     #[deprecated]
     pub static WebActionElementKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionbuttonkey?language=objc)
+    /// An NSNumber object where `0` indicates the left button, `1` indicates the middle button, and `2` indicates the right button.
     #[deprecated]
     pub static WebActionButtonKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionmodifierflagskey?language=objc)
+    /// An unsigned number that indicates the modifier flag.
     #[deprecated]
     pub static WebActionModifierFlagsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webactionoriginalurlkey?language=objc)
+    /// The URL that initiated the action.
     #[deprecated]
     pub static WebActionOriginalURLKey: Option<&'static NSString>;
 }
 
 extern_protocol!(
+    /// This protocol enables `WebView` policy delegates to communicate with listener objects. A listener object conforming to this protocol is passed as one of the arguments to web view policy delegate methods.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol allows delegates to handle download decisions asynchronously. For example, the policy delegate may display a sheet, and the listener object gets notified only after the user clicks an OK or Cancel button. You do not directly create objects that conform to this protocol.
+    ///
+    ///
     /// This protocol is used to call back with the results of a
     /// policy decision. This provides the ability to make these decisions
     /// asyncrhonously, which means the decision can be made by prompting
     /// with a sheet, for example.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpolicydecisionlistener?language=objc)
     #[deprecated]
     pub unsafe trait WebPolicyDecisionListener: NSObjectProtocol {
         /// Use the resource
@@ -158,8 +162,6 @@ extern_protocol!(
     /// document, also known as "server push". In this case, multiple
     /// documents come in one navigation, with each replacing the last. In
     /// this case, conent policy will be checked for each one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webpolicydelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebPolicyDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]

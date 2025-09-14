@@ -19,11 +19,16 @@ unsafe impl RefEncode for GLKEffectPropertyPrv {
         Encoding::Pointer(&Encoding::Struct("GLKEffectPropertyPrv", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectpropertyprvptr?language=objc)
 pub type GLKEffectPropertyPrvPtr = *mut GLKEffectPropertyPrv;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectproperty?language=objc)
+    /// The abstract superclass for configuration information used in GLKit rendering effects.
+    ///
+    /// ## Overview
+    ///
+    /// Subclasses of [`GLKEffectProperty`](https://developer.apple.com/documentation/glkit/glkeffectproperty) provide one or more Objective-C properties that define how that state can be configured for an effect.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKEffectProperty;

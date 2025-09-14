@@ -7,10 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract base class for tools used by a canvas view.
+    ///
+    /// ## Overview
+    ///
+    /// A [`PKTool`](https://developer.apple.com/documentation/pencilkit/pktool-c.class) object is an abstract base class for tool types associated with a [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview). Tools are user-facing, and the selected tool determines how the canvas interprets incoming gestures.
+    ///
+    /// Don’t create [`PKTool`](https://developer.apple.com/documentation/pencilkit/pktool-c.class) objects directly. Instead, create one of its subclasses to provide users with the desired the tool behavior.
+    ///
+    ///
     /// An interaction behavior for a PKCanvasView.
     /// Should not be subclassed outside of the PencilKit framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pktool-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKTool;

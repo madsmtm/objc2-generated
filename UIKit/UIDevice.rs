@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum?language=objc)
+/// Constants that describe the battery power state of the device.
+///
+/// ## Overview
+///
+/// These constants are used by the [`batteryState`](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDeviceBatteryState(pub NSInteger);
 impl UIDeviceBatteryState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/unknown?language=objc)
+    /// The battery state for the device can’t be determined.
     #[doc(alias = "UIDeviceBatteryStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/unplugged?language=objc)
+    /// The device isn’t plugged into power; the battery is discharging.
     #[doc(alias = "UIDeviceBatteryStateUnplugged")]
     pub const Unplugged: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/charging?language=objc)
+    /// The device is plugged into power and the battery is less than 100% charged.
     #[doc(alias = "UIDeviceBatteryStateCharging")]
     pub const Charging: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum/full?language=objc)
+    /// The device is plugged into power and the battery is 100% charged.
     #[doc(alias = "UIDeviceBatteryStateFull")]
     pub const Full: Self = Self(3);
 }
@@ -35,31 +41,57 @@ unsafe impl RefEncode for UIDeviceBatteryState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom?language=objc)
+/// Constants that indicate the interface type for the device or an object that has a trait environment, such as a view and view controller.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceIdiom(pub NSInteger);
 impl UIUserInterfaceIdiom {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/unspecified?language=objc)
+    /// An unspecified idiom.
+    ///
+    /// ## Discussion
+    ///
+    /// Used when an object has a trait collection, but it isn’t in an environment yet. For example, a view that’s created, but not put into a view hierarchy.
+    ///
+    ///
     #[doc(alias = "UIUserInterfaceIdiomUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/phone?language=objc)
+    /// An interface designed for iPhone and iPod touch.
     #[doc(alias = "UIUserInterfaceIdiomPhone")]
     pub const Phone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/pad?language=objc)
+    /// An interface designed for iPad.
     #[doc(alias = "UIUserInterfaceIdiomPad")]
     pub const Pad: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/tv?language=objc)
+    /// An interface designed for tvOS and Apple TV.
     #[doc(alias = "UIUserInterfaceIdiomTV")]
     pub const TV: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/carplay?language=objc)
+    /// An interface designed for an in-car experience.
     #[doc(alias = "UIUserInterfaceIdiomCarPlay")]
     pub const CarPlay: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac?language=objc)
+    /// An interface designed for the Mac.
+    ///
+    /// ## Discussion
+    ///
+    /// This idiom is available to Mac apps built with Mac Catalyst. For more information, see [Choosing a user interface idiom for your Mac app](https://developer.apple.com/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app).
+    ///
+    ///
     #[doc(alias = "UIUserInterfaceIdiomMac")]
     pub const Mac: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/vision?language=objc)
+    /// An interface designed for visionOS and Apple Vision Pro.
+    ///
+    /// ## Discussion
+    ///
+    /// If your app has existing code that runs in the [`UIUserInterfaceIdiomPad`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/pad) idiom, you might want to reuse the same code in the [`UIUserInterfaceIdiomVision`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/vision) idiom. The following code shows how to check for these idioms:
+    ///
+    /// ```swift
+    /// if idiom == .pad || idiom == .vision {
+    ///    // Code to run in the iPad or Apple Vision Pro idioms.
+    /// } else {
+    ///    // Code to run in other idioms.
+    /// }
+    /// ```
+    ///
+    ///
     #[doc(alias = "UIUserInterfaceIdiomVision")]
     pub const Vision: Self = Self(6);
 }
@@ -73,7 +105,17 @@ unsafe impl RefEncode for UIUserInterfaceIdiom {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice?language=objc)
+    /// A representation of the current device.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIDevice`](https://developer.apple.com/documentation/uikit/uidevice) object to get information about the device such as assigned name, device model, and operating-system name and version. You also use the `UIDevice` instance to detect changes in the device’s characteristics, such as physical orientation. You get the current orientation using the [`orientation`](https://developer.apple.com/documentation/uikit/uidevice/orientation) property or receive change notifications by registering for the [`UIDeviceOrientationDidChangeNotification`](https://developer.apple.com/documentation/uikit/uidevice/orientationdidchangenotification) notification. Before using either of these techniques to get orientation data, you must enable data delivery using the [`beginGeneratingDeviceOrientationNotifications`](https://developer.apple.com/documentation/uikit/uidevice/begingeneratingdeviceorientationnotifications()) method. When you no longer need to track the device orientation, call the [`endGeneratingDeviceOrientationNotifications`](https://developer.apple.com/documentation/uikit/uidevice/endgeneratingdeviceorientationnotifications()) method to disable the delivery of notifications.
+    ///
+    /// Similarly, you can use the `UIDevice` instance to obtain information and notifications about changes to the battery’s charge state (described by the [`batteryState`](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.property) property) and charge level (described by the [`batteryLevel`](https://developer.apple.com/documentation/uikit/uidevice/batterylevel) property). The `UIDevice` instance also provides access to the proximity sensor state (described by the [`proximityState`](https://developer.apple.com/documentation/uikit/uidevice/proximitystate) property). The proximity sensor detects whether the user is holding the device close to their face. Enable battery monitoring or proximity sensing only when you need it.
+    ///
+    /// You can also use the [`playInputClick`](https://developer.apple.com/documentation/uikit/uidevice/playinputclick()) instance method to play keyboard input clicks in custom input and keyboard accessory views.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -189,7 +231,15 @@ impl UIDevice {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputviewaudiofeedback?language=objc)
+    /// A property that enables a custom input or keyboard accessory view to play standard keyboard input clicks.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol in your custom subclass of [`UIView`](https://developer.apple.com/documentation/uikit/uiview) that you associate with your custom input nib file. For more information, see [Text Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542).
+    ///
+    /// Implementation of this protocol is optional but expected.
+    ///
+    ///
     pub unsafe trait UIInputViewAudioFeedback: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(enableInputClicksWhenVisible))]
@@ -203,21 +253,51 @@ impl UIUserInterfaceIdiom {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/orientationdidchangenotification?language=objc)
+    /// A notification that posts when the orientation of the device changes.
+    ///
+    /// ## Discussion
+    ///
+    /// You can obtain the new orientation by getting the value of the [`orientation`](https://developer.apple.com/documentation/uikit/uidevice/orientation) property.
+    ///
+    ///
     pub static UIDeviceOrientationDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystatedidchangenotification?language=objc)
+    /// A notification that posts when battery state changes.
+    ///
+    /// ## Discussion
+    ///
+    /// For this notification to be sent, you must set the [`batteryMonitoringEnabled`](https://developer.apple.com/documentation/uikit/uidevice/isbatterymonitoringenabled) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// You can obtain the battery state by getting the value of the [`batteryState`](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.property) property.
+    ///
+    ///
     pub static UIDeviceBatteryStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batteryleveldidchangenotification?language=objc)
+    /// A notification that posts when the battery level changes.
+    ///
+    /// ## Discussion
+    ///
+    /// For this notification to be sent, you must set the [`batteryMonitoringEnabled`](https://developer.apple.com/documentation/uikit/uidevice/isbatterymonitoringenabled) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// Notifications for battery level change are sent no more frequently than once per minute. Don’t attempt to calculate battery drainage rate or battery time remaining; drainage rate can change frequently depending on built-in applications as well as your application.
+    ///
+    /// You can obtain the battery level by getting the value of the [`batteryLevel`](https://developer.apple.com/documentation/uikit/uidevice/batterylevel) property.
+    ///
+    ///
     pub static UIDeviceBatteryLevelDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/proximitystatedidchangenotification?language=objc)
+    /// A notification that posts when the state of the proximity sensor changes.
+    ///
+    /// ## Discussion
+    ///
+    /// You can obtain the proximity state by getting the value of the [`proximityState`](https://developer.apple.com/documentation/uikit/uidevice/proximitystate) property.
+    ///
+    ///
     pub static UIDeviceProximityStateDidChangeNotification: &'static NSNotificationName;
 }

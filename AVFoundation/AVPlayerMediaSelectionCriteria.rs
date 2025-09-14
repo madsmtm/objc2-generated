@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that specifies the preferred languages and media characteristics for a player.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of this object represents the languages and media characteristics of assets that contain media selection options that a player attempts to select automatically when preparing and playing items. It lists the languages and media characteristics in their preferred order.
+    ///
+    ///
     /// The preferred languages and media characteristics for a player.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerMediaSelectionCriteria;

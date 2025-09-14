@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastoredelegate?language=objc)
+    /// An interface the data store uses to request new contexts.
+    ///
+    /// ## Overview
+    ///
+    /// When you request a context from the data store, for example using a call to the [`descendantMatchingIdentifierPath:completion:`](https://developer.apple.com/documentation/classkit/clscontext/descendant(matchingidentifierpath:completion:)) method, the data store first tries to locate an existing context matching the search criterion (an identifier path in this case) in its database. Depending on certain conditions, the context might already exist in the database from the last time you requested it. If it does, the data store returns the stored context. But if it doesn’t exist, the data store asks its delegate to build a new context.
+    ///
+    /// Adopt the data store delegate protocol to provide contexts on demand.
+    ///
+    /// You can alternatively build contexts directly without relying on the delegate callback. However, it’s generally most efficient to use the delegate protocol, building contexts only when they’re missing from the data store.
+    ///
+    ///
     pub unsafe trait CLSDataStoreDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CLSContext", feature = "CLSObject"))]
         /// Implement to return a new context with the supplied identifier as a child of the parent context.
@@ -50,9 +60,20 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// The data store maintains and syncs your app's contexts.
+    /// A container for all the ClassKit data in your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsdatastore?language=objc)
+    /// ## Overview
+    ///
+    /// Use the ClassKit data store to build and access contexts ([`CLSContext`](https://developer.apple.com/documentation/classkit/clscontext) instances) that you use to advertise your app’s assignable content. Contexts in turn provide access to activities ([`CLSActivity`](https://developer.apple.com/documentation/classkit/clsactivity) instances) and activity items ([`CLSScoreItem`](https://developer.apple.com/documentation/classkit/clsscoreitem), [`CLSBinaryItem`](https://developer.apple.com/documentation/classkit/clsbinaryitem), and [`CLSQuantityItem`](https://developer.apple.com/documentation/classkit/clsquantityitem) instances) that you use to record progress through assignments. You don’t instantiate a data store yourself. Instead, use the single [`shared`](https://developer.apple.com/documentation/classkit/clsdatastore/shared) data store instance throughout your app.
+    ///
+    /// The data store provides access to the app’s one and only main context through the [`mainAppContext`](https://developer.apple.com/documentation/classkit/clsdatastore/mainappcontext) property. This property acts as the root context in your context hierarchy that you can use as a starting point when searching for descendant contexts.
+    ///
+    /// To build contexts, you adopt the [`CLSDataStoreDelegate`](https://developer.apple.com/documentation/classkit/clsdatastoredelegate) protocol in one of your classes, typically one that exists for the lifetime of your app, and assign an instance of that class as the shared data store’s [`delegate`](https://developer.apple.com/documentation/classkit/clsdatastore/delegate) property. Then, when the data store needs a context that it’s never seen before, it asks your delegate to build it.
+    ///
+    /// After you make changes to any context, activity, or activity item, call the data store’s [`saveWithCompletion:`](https://developer.apple.com/documentation/classkit/clsdatastore/save(completion:)) method to commit the changes, and propagate them through the network.
+    ///
+    ///
+    /// The data store maintains and syncs your app's contexts.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLSDataStore;

@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that performs edge-aware filtering on an image.
     /// Perform Guided Filter to produce a coefficients image
     /// The filter is broken into two stages:
     /// - Regression
@@ -25,8 +26,6 @@ extern_class!(
     /// There is also support for an optional weight texture that can be used to discard values in the source data.
     ///
     /// Guided Filter is described at https://arxiv.org/pdf/1505.00996.pdf.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageguidedfilter?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

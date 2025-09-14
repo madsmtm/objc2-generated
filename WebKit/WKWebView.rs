@@ -14,22 +14,22 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate?language=objc)
+/// An enumeration that describes whether an audio or video presentation is playing, paused, or suspended.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaPlaybackState(pub NSInteger);
 impl WKMediaPlaybackState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/none?language=objc)
+    /// There is no media to play back.
     #[doc(alias = "WKMediaPlaybackStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/playing?language=objc)
+    /// The media is playing.
     #[doc(alias = "WKMediaPlaybackStatePlaying")]
     pub const Playing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/paused?language=objc)
+    /// The media playback is paused.
     #[doc(alias = "WKMediaPlaybackStatePaused")]
     pub const Paused: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate/suspended?language=objc)
+    /// The media is not playing, and cannot be resumed until the user revokes the suspension.
     #[doc(alias = "WKMediaPlaybackStateSuspended")]
     pub const Suspended: Self = Self(3);
 }
@@ -42,19 +42,19 @@ unsafe impl RefEncode for WKMediaPlaybackState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate?language=objc)
+/// An enumeration that describes whether a media device, like a camera or microphone, is currently capturing audio or video.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaCaptureState(pub NSInteger);
 impl WKMediaCaptureState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate/none?language=objc)
+    /// The media device is off.
     #[doc(alias = "WKMediaCaptureStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate/active?language=objc)
+    /// The media device is actively capturing audio or video.
     #[doc(alias = "WKMediaCaptureStateActive")]
     pub const Active: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate/muted?language=objc)
+    /// The media device is muted, and not actively capturing audio or video.
     #[doc(alias = "WKMediaCaptureStateMuted")]
     pub const Muted: Self = Self(2);
 }
@@ -67,22 +67,17 @@ unsafe impl RefEncode for WKMediaCaptureState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKFullscreenState(pub NSInteger);
 impl WKFullscreenState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/notinfullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateNotInFullscreen")]
     pub const NotInFullscreen: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/enteringfullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateEnteringFullscreen")]
     pub const EnteringFullscreen: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/infullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateInFullscreen")]
     pub const InFullscreen: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum/exitingfullscreen?language=objc)
     #[doc(alias = "WKFullscreenStateExitingFullscreen")]
     pub const ExitingFullscreen: Self = Self(3);
 }
@@ -95,14 +90,12 @@ unsafe impl RefEncode for WKFullscreenState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewdatatype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebViewDataType(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebViewDataType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewdatatype/sessionstorage?language=objc)
         #[doc(alias = "WKWebViewDataTypeSessionStorage")]
         const SessionStorage = 1<<0;
     }
@@ -117,7 +110,68 @@ unsafe impl RefEncode for WKWebViewDataType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview?language=objc)
+    /// An object that displays interactive web content, such as for an in-app browser.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) object is a platform-native view that you use to incorporate web content seamlessly into your app’s UI. A web view supports a full web-browsing experience, and presents HTML, CSS, and JavaScript content alongside your app’s native views. Use it when web technologies satisfy your app’s layout and styling requirements more readily than native views. For example, you might use it when your app’s content changes frequently.
+    ///
+    /// A web view offers control over the navigation and user experience through delegate objects. Use the navigation delegate to react when the user clicks links in your web content, or interacts with the content in a way that affects navigation. For example, you might prevent the user from navigating to new content unless specific conditions are met. Use the UI delegate to present native UI elements, such as alerts or contextual menus, in response to interactions with your web content.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) replaces the [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) class in iOS 8 and later, and it replaces the [`WebView`](https://developer.apple.com/documentation/webkit/webview-swift.class) class in macOS 10.10 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Embed a [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) object programmatically into your view hierarchy, or add it using Interface Builder. Interface Builder supports many customizations, such as configuring data detectors, media playback, and interaction behaviors. For more extensive customizations, create your web view programmatically using a [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object. For example, use a web view configuration object to specify handlers for custom URL schemes, manage cookies, and customize preferences for your web content.
+    ///
+    /// Before your web view appears onscreen, load content from a web server using a [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) structure or load content directly from a local file or HTML string. The web view automatically loads embedded resources such as images or videos as part of the initial load request. It then renders your content and displays the results inside the view’s bounds rectangle. The following code example shows a view controller that replaces its default view with a custom [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) object.
+    ///
+    /// ```swift
+    /// import UIKit
+    /// import WebKit
+    ///
+    /// class ViewController: UIViewController, WKUIDelegate {
+    ///     
+    ///     var webView: WKWebView!
+    ///     
+    ///     override func loadView() {
+    ///         let webConfiguration = WKWebViewConfiguration()
+    ///         webView = WKWebView(frame: .zero, configuration: webConfiguration)
+    ///         webView.uiDelegate = self
+    ///         view = webView
+    ///     }
+    ///
+    ///     override func viewDidLoad() {
+    ///         super.viewDidLoad()
+    ///         
+    ///         let myURL = URL(string:"https://www.apple.com")
+    ///         let myRequest = URLRequest(url: myURL!)
+    ///         webView.load(myRequest)
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// A web view automatically converts telephone numbers that appear in web content to Phone links. When the user taps a Phone link, the Phone app launches and dials the number. Use the [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object to change the default data detector behavior.
+    ///
+    /// You can also use [`setMagnification:centeredAtPoint:`](https://developer.apple.com/documentation/webkit/wkwebview/setmagnification(_:centeredat:)) to programmatically set the scale of web content the first time it appears in a web view. Thereafter, the user can change the scale using gestures.
+    ///
+    /// ### Manage the navigation through your web content
+    ///
+    /// [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) provides a complete browsing experience, including the ability to navigate between different webpages using links, forward and back buttons, and more. When the user clicks a link in your content, the web view acts like a browser and displays the content at that link. To disallow navigation, or to customize your web view’s navigation behavior, provide your web view with a navigation delegate — an object that conforms to the [`WKNavigationDelegate`](https://developer.apple.com/documentation/webkit/wknavigationdelegate) protocol. Use your navigation delegate to modify the web view’s navigation behavior, or to track the loading progress of new content.
+    ///
+    /// You can also use the methods of [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) to navigate programmatically through your content, or to trigger navigation from other parts of your app’s interface. For example, if your UI includes forward and back buttons, connect those buttons to the [`goBack:`](https://developer.apple.com/documentation/webkit/wkwebview/goback(_:)) and [`goForward:`](https://developer.apple.com/documentation/webkit/wkwebview/goforward(_:)) methods of your web view to trigger the corresponding web navigation. Use the [`canGoBack`](https://developer.apple.com/documentation/webkit/wkwebview/cangoback) and [`canGoForward`](https://developer.apple.com/documentation/webkit/wkwebview/cangoforward) properties to determine when to enable or disable your buttons.
+    ///
+    /// ### Provide sharing options
+    ///
+    /// People may want to share the contents of your web view with an app or other people. Use a [`UIActivityViewController`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller) to present a share sheet offering all the ways people can share the web content.
+    ///
+    /// If your app has the [`com.apple.developer.web-browser`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.web-browser) entitlement, the iOS share sheet can offer Add to Home Screen for an `http` or `https` webpage, creating a convenient link to a web app or bookmark. To allow someone to add the current webpage to the Home Screen, include the [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) instance in the `activityItems` array when you call [`initWithActivityItems:applicationActivities:`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/init(activityitems:applicationactivities:)) to create the [`UIActivityViewController`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller). For more information about building a browser app, see [Preparing your app to be the default web browser](https://developer.apple.com/documentation/xcode/preparing-your-app-to-be-the-default-browser).
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

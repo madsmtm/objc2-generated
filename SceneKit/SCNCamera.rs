@@ -9,16 +9,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameraprojectiondirection?language=objc)
+/// Options for the axis used to determine field of view or orthographic projection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNCameraProjectionDirection(pub NSInteger);
 impl SCNCameraProjectionDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameraprojectiondirection/vertical?language=objc)
+    /// The camera’s field of view or orthographic scale are measured vertically.
+    ///
+    /// ## Discussion
+    ///
+    /// If a camera’s [`projectionDirection`](https://developer.apple.com/documentation/scenekit/scncamera/projectiondirection) property has this value:
+    ///
+    /// - The [`fieldOfView`](https://developer.apple.com/documentation/scenekit/scncamera/fieldofview) property measures the vertical viewing angle, and SceneKit automatically calculates the horizontal angle according to the aspect ratio of the view presenting the scene.
+    ///
+    /// - Or, if the camera uses an orthographic projection, the [`orthographicScale`](https://developer.apple.com/documentation/scenekit/scncamera/orthographicscale) property measures the vertical scale factor, and SceneKit automatically calculates the horizontal factor according to  aspect ratio.
+    ///
+    ///
     #[doc(alias = "SCNCameraProjectionDirectionVertical")]
     pub const Vertical: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameraprojectiondirection/horizontal?language=objc)
+    /// The camera’s field of view or orthographic scale are measured horizontally.
+    ///
+    /// ## Discussion
+    ///
+    /// If a camera’s [`projectionDirection`](https://developer.apple.com/documentation/scenekit/scncamera/projectiondirection) property has this value:
+    ///
+    /// - The [`fieldOfView`](https://developer.apple.com/documentation/scenekit/scncamera/fieldofview) property measures the horizontal viewing angle, and SceneKit automatically calculates the vertical angle according to the aspect ratio of the view presenting the scene.
+    ///
+    /// - Or, if the camera uses an orthographic projection, the [`orthographicScale`](https://developer.apple.com/documentation/scenekit/scncamera/orthographicscale) property measures the horizontal scale factor, and SceneKit automatically calculates the vertical factor according to  aspect ratio.
+    ///
+    ///
     #[doc(alias = "SCNCameraProjectionDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }
@@ -32,11 +52,24 @@ unsafe impl RefEncode for SCNCameraProjectionDirection {
 }
 
 extern_class!(
+    /// A set of camera attributes that can be attached to a node to provide a point of view for displaying the scene.
+    ///
+    /// ## Overview
+    ///
+    /// To display a scene, you must designate a node whose [`camera`](https://developer.apple.com/documentation/scenekit/scncamera/camera) property contains a camera object as the point of view.
+    ///
+    /// The [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object containing a camera defines a point of view—that is, the position and orientation of the camera. A camera’s direction of view is always along the negative z-axis of the node’s local coordinate system. To point the camera at different parts of your scene, use the [`position`](https://developer.apple.com/documentation/scenekit/scnnode/position), [`rotation`](https://developer.apple.com/documentation/scenekit/scnnode/rotation), or [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) property of the node containing it. (Alternatively, to ensure that a camera always points at a particular element of your scene even when that element moves, attach a [`SCNLookAtConstraint`](https://developer.apple.com/documentation/scenekit/scnlookatconstraint) object to the node containing the camera.)
+    ///
+    /// An [`SCNCamera`](https://developer.apple.com/documentation/scenekit/scncamera) object itself defines the shape and, in part, the appearance of the rendered scene as seen from its point of view. By default, a camera defines a perspective projection, whose field of view (FOV) and near and far visibility limits you control using the properties listed in Adjusting Camera Perspective and illustrated below.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/95a05c81bd3d55307b809c94ef53c2c4/media-2929769%402x.png)
+    ///
+    ///
+    ///
     /// SCNCamera represents a camera that can be attached to a SCNNode.
     ///
     /// A node with a camera can be used as a point of view to visualize a 3D scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncamera?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNCamera;

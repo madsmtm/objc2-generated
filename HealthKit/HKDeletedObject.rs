@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A class representing an HKObject that was deleted from the HealtKit database.
+    /// An object that represents a sample that has been deleted from the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeletedobject?language=objc)
+    /// ## Overview
+    ///
+    /// Use [`HKAnchoredObjectQuery`](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery) queries to generate a list of recently deleted objects. Create a query using the [`initWithType:predicate:anchor:limit:resultsHandler:`](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery/init(type:predicate:anchor:limit:resultshandler:))method. When the system calls the result handler, it passes the `deletedObject` parameter an array of [`HKDeletedObject`](https://developer.apple.com/documentation/healthkit/hkdeletedobject) instances matching the query.
+    ///
+    /// Deleted objects are temporary; the system may remove them from the HealthKit store at any time to free up space. To guarantee that you receive notifications for all deleted objects, create an [`HKObserverQuery`](https://developer.apple.com/documentation/healthkit/hkobserverquery) and register it for background delivery. The system then wakes your app and calls the observer query’s update handler whenever the matching objects change—including deletions. However, the query does not provide a list of deleted objects. To determine which objects were deleted, use the observer query’s update handler to create an anchored object query for the newly deleted objects.
+    ///
+    ///
+    /// A class representing an HKObject that was deleted from the HealtKit database.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDeletedObject;

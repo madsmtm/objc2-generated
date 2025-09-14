@@ -7,7 +7,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmethodsignature?language=objc)
+    /// A record of the type information for the return value and parameters of a method.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`NSMethodSignature`](https://developer.apple.com/documentation/foundation/nsmethodsignature) object to forward messages that the receiving object does not respond to—most notably in the case of distributed objects. You typically create an [`NSMethodSignature`](https://developer.apple.com/documentation/foundation/nsmethodsignature) object using the [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) [`methodSignatureForSelector:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571960-methodsignatureforselector) instance method (in macOS 10.5 and later you can also use [`signatureWithObjCTypes:`](https://developer.apple.com/documentation/foundation/nsmethodsignature/signaturewithobjctypes:)). It is then used to create an [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) object, which is passed as the argument to a [`forwardInvocation:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571955-forwardinvocation) message to send the invocation on to whatever other object can handle the message. In the default case, [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) invokes [`doesNotRecognizeSelector(_:)`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/doesnotrecognizeselector(_:)), which raises an exception. For distributed objects, the [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) object is encoded using the information in the [`NSMethodSignature`](https://developer.apple.com/documentation/foundation/nsmethodsignature) object and sent to the real object represented by the receiver of the message.
+    ///
+    /// ### Type Encodings
+    ///
+    /// An `NSMethodSignature` object is initialized with an array of characters representing the string encoding of return and argument types for a method. You can get the string encoding of a particular type using the `@encode()` compiler directive. Because string encodings are implementation-specific, you should not hard-code these values.
+    ///
+    /// A method signature consists of one or more characters for the method return type, followed by the string encodings of the implicit arguments `self` and `_cmd`, followed by zero or more explicit arguments. You can determine the string encoding and the length of a return type using [`methodReturnType`](https://developer.apple.com/documentation/foundation/nsmethodsignature/methodreturntype) and [`methodReturnLength`](https://developer.apple.com/documentation/foundation/nsmethodsignature/methodreturnlength) properties. You can access arguments individually using the [`getArgumentTypeAtIndex:`](https://developer.apple.com/documentation/foundation/nsmethodsignature/getargumenttypeatindex:) method and [`numberOfArguments`](https://developer.apple.com/documentation/foundation/nsmethodsignature/numberofarguments) property.
+    ///
+    /// For example, the `NSString` instance method [`contains(_:)`](https://developer.apple.com/documentation/foundation/nsstring/contains(_:)) has a method signature with the following arguments:
+    ///
+    /// 1. `@encode(BOOL)` (`c`) for the return type
+    ///
+    /// 2. `@encode(id)` (`@`) for the receiver (`self`)
+    ///
+    /// 3. `@encode(SEL)` (`:`) for the selector (`_cmd`)
+    ///
+    /// 4. `@encode(NSString *)` (`@`) for the first explicit argument
+    ///
+    /// See [Type Encodings](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100) in [Objective-C Runtime Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048) for more information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMethodSignature;

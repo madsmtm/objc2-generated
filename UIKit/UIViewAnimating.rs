@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate?language=objc)
+/// Constants indicating the current state of the animation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimatingState(pub NSInteger);
 impl UIViewAnimatingState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate/inactive?language=objc)
+    /// The animations have not yet started executing. This is the initial state of the animator object.
     #[doc(alias = "UIViewAnimatingStateInactive")]
     pub const Inactive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate/active?language=objc)
+    /// The animator object is active and animations are either running or paused. An animator moves to this state after the first call to [`startAnimation`](https://developer.apple.com/documentation/uikit/uiviewanimating/startanimation()) or [`pauseAnimation`](https://developer.apple.com/documentation/uikit/uiviewanimating/pauseanimation()). It stays in the active state until the animations finish naturally or until you call the [`stopAnimation:`](https://developer.apple.com/documentation/uikit/uiviewanimating/stopanimation(_:)) method.
     #[doc(alias = "UIViewAnimatingStateActive")]
     pub const Active: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate/stopped?language=objc)
+    /// The animation is stopped. Putting an animation into this state ends the animation and leaves any animatable properties at their current values, instead of updating them to their intended final values. An animation cannot be started while in this state.
     #[doc(alias = "UIViewAnimatingStateStopped")]
     pub const Stopped: Self = Self(2);
 }
@@ -34,19 +34,19 @@ unsafe impl RefEncode for UIViewAnimatingState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition?language=objc)
+/// Constants indicating positions within the animation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimatingPosition(pub NSInteger);
 impl UIViewAnimatingPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition/end?language=objc)
+    /// The end point of the animation. Use this constant when you want the final values for any animatable properties—that is, you want to refer to the values you specified in your animation blocks.
     #[doc(alias = "UIViewAnimatingPositionEnd")]
     pub const End: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition/start?language=objc)
+    /// The beginning of the animation. Use this constant when you want the starting values for any animatable properties—that is, the values of the properties before you applied any animations.
     #[doc(alias = "UIViewAnimatingPositionStart")]
     pub const Start: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition/current?language=objc)
+    /// The current position. Use this constant when you want the most recent value set by an animator object.
     #[doc(alias = "UIViewAnimatingPositionCurrent")]
     pub const Current: Self = Self(2);
 }
@@ -60,7 +60,29 @@ unsafe impl RefEncode for UIViewAnimatingPosition {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimating?language=objc)
+    /// An interface for implementing custom animator objects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) protocol defines the methods for implementing the basic flow control for animations, including the ability to start, stop, and pause animations. There are also several properties for reflecting the current state of the animation and for modifying that state while an animation is in progress.
+    ///
+    /// Normally, you use the methods of this protocol to manage animations associated with a [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) object. Specifically, you use these methods to start and stop your animations, to reverse animations, and to change the completion progress of the animation. You might also use these capabilities to implement interactive animations. You can also adopt this protocol to implement custom animator objects.
+    ///
+    /// ### Understand animation states
+    ///
+    /// Animator objects move through a set of states during the processing of a set of animations. These states define the animator’s behavior, including how it handles changes. When implementing your own animators, you must respect these state transitions and keep the [`state`](https://developer.apple.com/documentation/uikit/uiviewanimating/state) property updated accurately. The following image shows the states and the state transitions that occur.
+    ///
+    ///
+    /// ![A diagram of state transitions for an animator object.](https://docs-assets.developer.apple.com/published/d05c16c168537552aca846c612890f4c/media-1965743%402x.png)
+    ///
+    ///
+    /// The inactive state is the animator’s initial state. Every newly created animator starts off in the inactive state. Similarly, an animator that has finished its animations returns to the inactive state. While in the inactive state, you configure the animations that you want to execute for the full duration that you specify.
+    ///
+    /// When you call the [`startAnimation`](https://developer.apple.com/documentation/uikit/uiviewanimating/startanimation()) or [`pauseAnimation`](https://developer.apple.com/documentation/uikit/uiviewanimating/pauseanimation()) method, the animator moves to the active state. An animator in this state is either running its animations or is paused so that you can modify those animations. When the current animations run to their intended end, the animator returns to the inactive state so that it can be reconfigured with a new set of animations.
+    ///
+    /// Calling the [`stopAnimation:`](https://developer.apple.com/documentation/uikit/uiviewanimating/stopanimation(_:)) method stops any running animations and updates the properties of the corresponding views to their current in-progress values. After calling this method, the animator object moves to the stopped or inactive state and must be reconfigured before it can be used again.
+    ///
+    ///
     pub unsafe trait UIViewAnimating: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
@@ -113,7 +135,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewimplicitlyanimating?language=objc)
+    /// An interface for modifying an animation while it’s running.
+    ///
+    /// ## Overview
+    ///
+    /// Animator objects used in interruptible view controller transitions adopt the [`UIViewImplicitlyAnimating`](https://developer.apple.com/documentation/uikit/uiviewimplicitlyanimating) protocol to modify in-flight transition animations. This protocol also conforms to the [`UIViewAnimating`](https://developer.apple.com/documentation/uikit/uiviewanimating) protocol, which specifies methods for starting and stopping animations and for updating their state.
+    ///
+    /// The [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) class adopts this protocol and implements all of its methods. You can adopt this protocol in your own classes to implement custom animator objects. When adopting this protocol, it’s recommended that you implement all of the methods.
+    ///
+    ///
     pub unsafe trait UIViewImplicitlyAnimating: UIViewAnimating + MainThreadOnly {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[optional]

@@ -10,11 +10,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a buffer of audio data with a format.
     /// A buffer of audio data, with a format.
     ///
     /// AVAudioBuffer represents a buffer of audio data and its format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiobuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioBuffer;
@@ -80,12 +79,17 @@ impl AVAudioBuffer {
 }
 
 extern_class!(
+    /// An object that represents an audio buffer you use with PCM audio formats.
+    ///
+    /// ## Overview
+    ///
+    /// The PCM buffer class provides methods that are useful for manipulating buffers of audio in PCM format.
+    ///
+    ///
     /// A subclass of AVAudioBuffer for use with PCM audio formats.
     ///
     /// AVAudioPCMBuffer provides a number of methods useful for manipulating buffers of
     /// audio in PCM format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiopcmbuffer?language=objc)
     #[unsafe(super(AVAudioBuffer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioPCMBuffer;
@@ -252,9 +256,8 @@ impl AVAudioPCMBuffer {
 }
 
 extern_class!(
+    /// An object that represents an audio buffer that you use for compressed audio formats.
     /// A subclass of AVAudioBuffer for use with compressed audio formats.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocompressedbuffer?language=objc)
     #[unsafe(super(AVAudioBuffer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioCompressedBuffer;

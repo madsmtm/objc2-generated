@@ -11,7 +11,17 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssavepanel?language=objc)
+    /// A panel that prompts the user for information about where to save a file.
+    ///
+    /// ## Overview
+    ///
+    /// The Save panel provides an interface for specifying the location to save a file and the name of that file. You present this panel when the user attempts to save a new document, or when the user saves a copy of an existing document to a new location. The panel includes UI for browsing the file system, selecting a directory, and specifying the new name for the file. You can also add custom UI for your app using an accessory view.
+    ///
+    /// An [`NSSavePanel`](https://developer.apple.com/documentation/appkit/nssavepanel) object reports user interactions to its associated [`delegate`](https://developer.apple.com/documentation/appkit/nssavepanel/delegate) object, which must adopt the [`NSOpenSavePanelDelegate`](https://developer.apple.com/documentation/appkit/nsopensavepaneldelegate) protocol. Use your delegate object to validate the user’s selection and respond to user interactions with the panel.
+    ///
+    /// In macOS 10.15, the system always displays the Save dialog in a separate process, regardless of whether the app is sandboxed. When the user saves the document, macOS adds the saved file to the app’s sandbox (if necessary) so that the app can write to the file. Prior to macOS 10.15, the system used a separate process only for sandboxed apps.
+    ///
+    ///
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
@@ -500,7 +510,7 @@ impl NSSavePanel {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopensavepaneldelegate?language=objc)
+    /// A set of methods for managing interactions with an open or save panel.
     pub unsafe trait NSOpenSavePanelDelegate: NSObjectProtocol + MainThreadOnly {
         /// Optional — Enabling URLs.
         /// `NSSavePanel`: This method is not sent. All urls are always disabled.

@@ -6,29 +6,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The directions that a physical input source involves.
 /// One or more directions associated with a
 /// `GCPhysicalInputSource.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCPhysicalInputSourceDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl GCPhysicalInputSourceDirection: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/gcphysicalinputsourcedirectionnotapplicable?language=objc)
+/// The physical input source doesn’t support directions.
         #[doc(alias = "GCPhysicalInputSourceDirectionNotApplicable")]
         const NotApplicable = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/up?language=objc)
+/// The physical input source contains a value for the up direction.
         #[doc(alias = "GCPhysicalInputSourceDirectionUp")]
         const Up = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/right?language=objc)
+/// The physical input source supports the right direction.
         #[doc(alias = "GCPhysicalInputSourceDirectionRight")]
         const Right = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/down?language=objc)
+/// The physical input source supports the down direction.
         #[doc(alias = "GCPhysicalInputSourceDirectionDown")]
         const Down = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsourcedirection/left?language=objc)
+/// The physical input source supports the left direction.
         #[doc(alias = "GCPhysicalInputSourceDirectionLeft")]
         const Left = 1<<3;
     }
@@ -43,6 +42,13 @@ unsafe impl RefEncode for GCPhysicalInputSourceDirection {
 }
 
 extern_protocol!(
+    /// A protocol for a description of an element without any system-level remapping of the controls.
+    ///
+    /// ## Overview
+    ///
+    /// If necessary, use the properties in this protocol to get the actual input element aliases, localized name, and symbols without the user’s remapping of the controls in the System Game Controller settings. Otherwise, use the [`localizedName`](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelement/localizedname) and [`sfSymbolsName`](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelement/sfsymbolsname) in the [`GCPhysicalInputElement`](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelement) protocol in your interface.
+    ///
+    ///
     /// A description of the actual physical input element that a user interacts
     /// with to manipulate the the value of an input that is exposed to the app.
     ///
@@ -75,8 +81,6 @@ extern_protocol!(
     /// `GCPhysicalInputSource`protocol are vended by the
     /// GameController framework.  You should not conform to this protocol in your
     /// own types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputsource?language=objc)
     pub unsafe trait GCPhysicalInputSource: NSObjectProtocol {
         #[cfg(feature = "GCInputNames")]
         /// The set of aliases for the element that the user interacts with.

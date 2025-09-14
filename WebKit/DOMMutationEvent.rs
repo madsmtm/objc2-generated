@@ -7,18 +7,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_modification?language=objc)
 #[deprecated]
 pub const DOM_MODIFICATION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_addition?language=objc)
 #[deprecated]
 pub const DOM_ADDITION: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_removal?language=objc)
 #[deprecated]
 pub const DOM_REMOVAL: c_uint = 3;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dommutationevent?language=objc)
     #[unsafe(super(DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

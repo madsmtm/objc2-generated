@@ -14,105 +14,69 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceuidkey?language=objc)
 pub const kAudioEndPointDeviceUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicenamekey?language=objc)
 pub const kAudioEndPointDeviceNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceendpointlistkey?language=objc)
 pub const kAudioEndPointDeviceEndPointListKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"endpoints\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemainendpointkey?language=objc)
 pub const kAudioEndPointDeviceMainEndPointKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"main\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicemasterendpointkey?language=objc)
 pub const kAudioEndPointDeviceMasterEndPointKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceisprivatekey?language=objc)
 pub const kAudioEndPointDeviceIsPrivateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointuidkey?language=objc)
 pub const kAudioEndPointUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointnamekey?language=objc)
 pub const kAudioEndPointNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointinputchannelskey?language=objc)
 pub const kAudioEndPointInputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-in\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointoutputchannelskey?language=objc)
 pub const kAudioEndPointOutputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-out\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceuidkey?language=objc)
 pub const kAudioAggregateDeviceUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicenamekey?language=objc)
 pub const kAudioAggregateDeviceNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicesubdevicelistkey?language=objc)
 pub const kAudioAggregateDeviceSubDeviceListKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"subdevices\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemainsubdevicekey?language=objc)
 pub const kAudioAggregateDeviceMainSubDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceclockdevicekey?language=objc)
 pub const kAudioAggregateDeviceClockDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"clock\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceisprivatekey?language=objc)
 pub const kAudioAggregateDeviceIsPrivateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"private\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceisstackedkey?language=objc)
 pub const kAudioAggregateDeviceIsStackedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"stacked\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicetaplistkey?language=objc)
 pub const kAudioAggregateDeviceTapListKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"taps\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicetapautostartkey?language=objc)
 pub const kAudioAggregateDeviceTapAutoStartKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"tapautostart\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceuidkey?language=objc)
 pub const kAudioSubDeviceUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicenamekey?language=objc)
 pub const kAudioSubDeviceNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceinputchannelskey?language=objc)
 pub const kAudioSubDeviceInputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-in\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceoutputchannelskey?language=objc)
 pub const kAudioSubDeviceOutputChannelsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channels-out\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceextrainputlatencykey?language=objc)
 pub const kAudioSubDeviceExtraInputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-in\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceextraoutputlatencykey?language=objc)
 pub const kAudioSubDeviceExtraOutputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-out\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationkey?language=objc)
 pub const kAudioSubDeviceDriftCompensationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationqualitykey?language=objc)
 pub const kAudioSubDeviceDriftCompensationQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift quality\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapuidkey?language=objc)
 pub const kAudioSubTapUIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"uid\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapextrainputlatencykey?language=objc)
 pub const kAudioSubTapExtraInputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-in\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapextraoutputlatencykey?language=objc)
 pub const kAudioSubTapExtraOutputLatencyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"latency-out\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapdriftcompensationkey?language=objc)
 pub const kAudioSubTapDriftCompensationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapdriftcompensationqualitykey?language=objc)
 pub const kAudioSubTapDriftCompensationQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"drift quality\0") };
 /// A UInt32 that provides a handle on a specific AudioObject.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectid?language=objc)
 pub type AudioObjectID = u32;
 
 /// AudioClassIDs are used to identify the class of an AudioObject.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioclassid?language=objc)
 pub type AudioClassID = u32;
 
 /// An AudioObjectPropertySelector is a four char code that identifies, along with
@@ -123,8 +87,6 @@ pub type AudioClassID = u32;
 /// as volume, stream format, latency, etc. Note that each class has a different set
 /// of selectors. A subclass inherits its super class's set of selectors, although
 /// it may not implement them all.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertyselector?language=objc)
 pub type AudioObjectPropertySelector = u32;
 
 /// An AudioObjectPropertyScope is a four char code that identifies, along with the
@@ -134,8 +96,6 @@ pub type AudioObjectPropertySelector = u32;
 /// The scope specifies the section of the object in which to look for the property,
 /// such as input, output, global, etc. Note that each class has a different set of
 /// scopes. A subclass inherits its superclass's set of scopes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertyscope?language=objc)
 pub type AudioObjectPropertyScope = u32;
 
 /// An AudioObjectPropertyElement is an integer that identifies, along with the
@@ -147,8 +107,6 @@ pub type AudioObjectPropertyScope = u32;
 /// represents the main element. Elements are particular to an instance of a
 /// class, meaning that two instances can have different numbers of elements in the
 /// same scope. There is no inheritance of elements.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertyelement?language=objc)
 pub type AudioObjectPropertyElement = u32;
 
 /// An AudioObjectPropertyAddress collects the three parts that identify a specific
@@ -159,8 +117,6 @@ pub type AudioObjectPropertyElement = u32;
 /// The AudioObjectPropertyScope for the property.
 /// Field: mElement
 /// The AudioObjectPropertyElement for the property.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertyaddress?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioObjectPropertyAddress {
@@ -186,261 +142,147 @@ unsafe impl RefEncode for AudioObjectPropertyAddress {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenoerror?language=objc)
 pub const kAudioHardwareNoError: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenotrunningerror?language=objc)
 pub const kAudioHardwareNotRunningError: OSStatus = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunspecifiederror?language=objc)
 pub const kAudioHardwareUnspecifiedError: OSStatus = 0x77686174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunknownpropertyerror?language=objc)
 pub const kAudioHardwareUnknownPropertyError: OSStatus = 0x77686f3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadpropertysizeerror?language=objc)
 pub const kAudioHardwareBadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareillegaloperationerror?language=objc)
 pub const kAudioHardwareIllegalOperationError: OSStatus = 0x6e6f7065;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadobjecterror?language=objc)
 pub const kAudioHardwareBadObjectError: OSStatus = 0x216f626a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebaddeviceerror?language=objc)
 pub const kAudioHardwareBadDeviceError: OSStatus = 0x21646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarebadstreamerror?language=objc)
 pub const kAudioHardwareBadStreamError: OSStatus = 0x21737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwareunsupportedoperationerror?language=objc)
 pub const kAudioHardwareUnsupportedOperationError: OSStatus = 0x756e6f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarenotreadyerror?language=objc)
 pub const kAudioHardwareNotReadyError: OSStatus = 0x6e726479;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceunsupportedformaterror?language=objc)
 pub const kAudioDeviceUnsupportedFormatError: OSStatus = 0x21646174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepermissionserror?language=objc)
 pub const kAudioDevicePermissionsError: OSStatus = 0x21686f67;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectunknown?language=objc)
 pub const kAudioObjectUnknown: AudioObjectID = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeglobal?language=objc)
 pub const kAudioObjectPropertyScopeGlobal: AudioObjectPropertyScope = 0x676c6f62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeinput?language=objc)
 pub const kAudioObjectPropertyScopeInput: AudioObjectPropertyScope = 0x696e7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeoutput?language=objc)
 pub const kAudioObjectPropertyScopeOutput: AudioObjectPropertyScope = 0x6f757470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopeplaythrough?language=objc)
 pub const kAudioObjectPropertyScopePlayThrough: AudioObjectPropertyScope = 0x70747275;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementmain?language=objc)
 pub const kAudioObjectPropertyElementMain: AudioObjectPropertyScope = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementmaster?language=objc)
 #[deprecated]
 pub const kAudioObjectPropertyElementMaster: AudioObjectPropertyScope =
     kAudioObjectPropertyElementMain;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyselectorwildcard?language=objc)
 pub const kAudioObjectPropertySelectorWildcard: AudioObjectPropertySelector = 0x2a2a2a2a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyscopewildcard?language=objc)
 pub const kAudioObjectPropertyScopeWildcard: AudioObjectPropertyScope = 0x2a2a2a2a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementwildcard?language=objc)
 pub const kAudioObjectPropertyElementWildcard: AudioObjectPropertyElement = 0xFFFFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectclassidwildcard?language=objc)
 pub const kAudioObjectClassIDWildcard: AudioClassID = 0x2a2a2a2a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectclassid?language=objc)
 pub const kAudioObjectClassID: AudioClassID = 0x616f626a;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertybaseclass?language=objc)
 pub const kAudioObjectPropertyBaseClass: AudioObjectPropertySelector = 0x62636c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyclass?language=objc)
 pub const kAudioObjectPropertyClass: AudioObjectPropertySelector = 0x636c6173;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyowner?language=objc)
 pub const kAudioObjectPropertyOwner: AudioObjectPropertySelector = 0x73746476;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyname?language=objc)
 pub const kAudioObjectPropertyName: AudioObjectPropertySelector = 0x6c6e616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertymodelname?language=objc)
 pub const kAudioObjectPropertyModelName: AudioObjectPropertySelector = 0x6c6d6f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertymanufacturer?language=objc)
 pub const kAudioObjectPropertyManufacturer: AudioObjectPropertySelector = 0x6c6d616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementname?language=objc)
 pub const kAudioObjectPropertyElementName: AudioObjectPropertySelector = 0x6c63686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementcategoryname?language=objc)
 pub const kAudioObjectPropertyElementCategoryName: AudioObjectPropertySelector = 0x6c63636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyelementnumbername?language=objc)
 pub const kAudioObjectPropertyElementNumberName: AudioObjectPropertySelector = 0x6c636e6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyownedobjects?language=objc)
 pub const kAudioObjectPropertyOwnedObjects: AudioObjectPropertySelector = 0x6f776e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyidentify?language=objc)
 pub const kAudioObjectPropertyIdentify: AudioObjectPropertySelector = 0x6964656e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyserialnumber?language=objc)
 pub const kAudioObjectPropertySerialNumber: AudioObjectPropertySelector = 0x736e756d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertyfirmwareversion?language=objc)
 pub const kAudioObjectPropertyFirmwareVersion: AudioObjectPropertySelector = 0x6677766e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginclassid?language=objc)
 pub const kAudioPlugInClassID: AudioClassID = 0x61706c67;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertybundleid?language=objc)
 pub const kAudioPlugInPropertyBundleID: AudioObjectPropertySelector = 0x70696964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertydevicelist?language=objc)
 pub const kAudioPlugInPropertyDeviceList: AudioObjectPropertySelector = 0x64657623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtodevice?language=objc)
 pub const kAudioPlugInPropertyTranslateUIDToDevice: AudioObjectPropertySelector = 0x75696464;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyboxlist?language=objc)
 pub const kAudioPlugInPropertyBoxList: AudioObjectPropertySelector = 0x626f7823;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtobox?language=objc)
 pub const kAudioPlugInPropertyTranslateUIDToBox: AudioObjectPropertySelector = 0x75696462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertyclockdevicelist?language=objc)
 pub const kAudioPlugInPropertyClockDeviceList: AudioObjectPropertySelector = 0x636c6b23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopluginpropertytranslateuidtoclockdevice?language=objc)
 pub const kAudioPlugInPropertyTranslateUIDToClockDevice: AudioObjectPropertySelector = 0x75696463;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerclassid?language=objc)
 pub const kAudioTransportManagerClassID: AudioClassID = 0x7472706d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertyendpointlist?language=objc)
 pub const kAudioTransportManagerPropertyEndPointList: AudioObjectPropertySelector = 0x656e6423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertytranslateuidtoendpoint?language=objc)
 pub const kAudioTransportManagerPropertyTranslateUIDToEndPoint: AudioObjectPropertySelector =
     0x75696465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerpropertytransporttype?language=objc)
 pub const kAudioTransportManagerPropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxclassid?language=objc)
 pub const kAudioBoxClassID: AudioClassID = 0x61626f78;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyboxuid?language=objc)
 pub const kAudioBoxPropertyBoxUID: AudioObjectPropertySelector = 0x62756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertytransporttype?language=objc)
 pub const kAudioBoxPropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasaudio?language=objc)
 pub const kAudioBoxPropertyHasAudio: AudioObjectPropertySelector = 0x62686175;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasvideo?language=objc)
 pub const kAudioBoxPropertyHasVideo: AudioObjectPropertySelector = 0x62687669;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyhasmidi?language=objc)
 pub const kAudioBoxPropertyHasMIDI: AudioObjectPropertySelector = 0x62686d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyisprotected?language=objc)
 pub const kAudioBoxPropertyIsProtected: AudioObjectPropertySelector = 0x6270726f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyacquired?language=objc)
 pub const kAudioBoxPropertyAcquired: AudioObjectPropertySelector = 0x62786f6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyacquisitionfailed?language=objc)
 pub const kAudioBoxPropertyAcquisitionFailed: AudioObjectPropertySelector = 0x62786f66;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertydevicelist?language=objc)
 pub const kAudioBoxPropertyDeviceList: AudioObjectPropertySelector = 0x62647623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioboxpropertyclockdevicelist?language=objc)
 pub const kAudioBoxPropertyClockDeviceList: AudioObjectPropertySelector = 0x62636c23;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceclassid?language=objc)
 pub const kAudioDeviceClassID: AudioClassID = 0x61646576;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeunknown?language=objc)
 pub const kAudioDeviceTransportTypeUnknown: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebuiltin?language=objc)
 pub const kAudioDeviceTransportTypeBuiltIn: u32 = 0x626c746e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeaggregate?language=objc)
 pub const kAudioDeviceTransportTypeAggregate: u32 = 0x67727570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypevirtual?language=objc)
 pub const kAudioDeviceTransportTypeVirtual: u32 = 0x76697274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypepci?language=objc)
 pub const kAudioDeviceTransportTypePCI: u32 = 0x70636920;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeusb?language=objc)
 pub const kAudioDeviceTransportTypeUSB: u32 = 0x75736220;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypefirewire?language=objc)
 pub const kAudioDeviceTransportTypeFireWire: u32 = 0x31333934;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebluetooth?language=objc)
 pub const kAudioDeviceTransportTypeBluetooth: u32 = 0x626c7565;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypebluetoothle?language=objc)
 pub const kAudioDeviceTransportTypeBluetoothLE: u32 = 0x626c6561;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypehdmi?language=objc)
 pub const kAudioDeviceTransportTypeHDMI: u32 = 0x68646d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypedisplayport?language=objc)
 pub const kAudioDeviceTransportTypeDisplayPort: u32 = 0x64707274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeairplay?language=objc)
 pub const kAudioDeviceTransportTypeAirPlay: u32 = 0x61697270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeavb?language=objc)
 pub const kAudioDeviceTransportTypeAVB: u32 = 0x65617662;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypethunderbolt?language=objc)
 pub const kAudioDeviceTransportTypeThunderbolt: u32 = 0x7468756e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewired?language=objc)
 pub const kAudioDeviceTransportTypeContinuityCaptureWired: u32 = 0x63637764;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapturewireless?language=objc)
 pub const kAudioDeviceTransportTypeContinuityCaptureWireless: u32 = 0x6363776c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypecontinuitycapture?language=objc)
 #[deprecated = "Please use kAudioDeviceTransportTypeContinuityCaptureWired and kAudioDeviceTransportTypeContinuityCaptureWireless to describe Continuity Capture devices."]
 pub const kAudioDeviceTransportTypeContinuityCapture: u32 = 0x63636170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyconfigurationapplication?language=objc)
 pub const kAudioDevicePropertyConfigurationApplication: AudioObjectPropertySelector = 0x63617070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceuid?language=objc)
 pub const kAudioDevicePropertyDeviceUID: AudioObjectPropertySelector = 0x75696420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertymodeluid?language=objc)
 pub const kAudioDevicePropertyModelUID: AudioObjectPropertySelector = 0x6d756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertytransporttype?language=objc)
 pub const kAudioDevicePropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyrelateddevices?language=objc)
 pub const kAudioDevicePropertyRelatedDevices: AudioObjectPropertySelector = 0x616b696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdomain?language=objc)
 pub const kAudioDevicePropertyClockDomain: AudioObjectPropertySelector = 0x636c6b64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisalive?language=objc)
 pub const kAudioDevicePropertyDeviceIsAlive: AudioObjectPropertySelector = 0x6c69766e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisrunning?language=objc)
 pub const kAudioDevicePropertyDeviceIsRunning: AudioObjectPropertySelector = 0x676f696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicecanbedefaultdevice?language=objc)
 pub const kAudioDevicePropertyDeviceCanBeDefaultDevice: AudioObjectPropertySelector = 0x64666c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicecanbedefaultsystemdevice?language=objc)
 pub const kAudioDevicePropertyDeviceCanBeDefaultSystemDevice: AudioObjectPropertySelector =
     0x73666c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertylatency?language=objc)
 pub const kAudioDevicePropertyLatency: AudioObjectPropertySelector = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreams?language=objc)
 pub const kAudioDevicePropertyStreams: AudioObjectPropertySelector = 0x73746d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycontrollist?language=objc)
 pub const kAudioObjectPropertyControlList: AudioObjectPropertySelector = 0x6374726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysafetyoffset?language=objc)
 pub const kAudioDevicePropertySafetyOffset: AudioObjectPropertySelector = 0x73616674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertynominalsamplerate?language=objc)
 pub const kAudioDevicePropertyNominalSampleRate: AudioObjectPropertySelector = 0x6e737274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyavailablenominalsamplerates?language=objc)
 pub const kAudioDevicePropertyAvailableNominalSampleRates: AudioObjectPropertySelector = 0x6e737223;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyicon?language=objc)
 pub const kAudioDevicePropertyIcon: AudioObjectPropertySelector = 0x69636f6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyishidden?language=objc)
 pub const kAudioDevicePropertyIsHidden: AudioObjectPropertySelector = 0x6869646e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannelsforstereo?language=objc)
 pub const kAudioDevicePropertyPreferredChannelsForStereo: AudioObjectPropertySelector = 0x64636832;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertypreferredchannellayout?language=objc)
 pub const kAudioDevicePropertyPreferredChannelLayout: AudioObjectPropertySelector = 0x73726e64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdeviceclassid?language=objc)
 pub const kAudioClockDeviceClassID: AudioObjectPropertySelector = 0x61636c6b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceuid?language=objc)
 pub const kAudioClockDevicePropertyDeviceUID: AudioObjectPropertySelector = 0x63756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertytransporttype?language=objc)
 pub const kAudioClockDevicePropertyTransportType: AudioObjectPropertySelector = 0x7472616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertyclockdomain?language=objc)
 pub const kAudioClockDevicePropertyClockDomain: AudioObjectPropertySelector = 0x636c6b64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceisalive?language=objc)
 pub const kAudioClockDevicePropertyDeviceIsAlive: AudioObjectPropertySelector = 0x6c69766e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertydeviceisrunning?language=objc)
 pub const kAudioClockDevicePropertyDeviceIsRunning: AudioObjectPropertySelector = 0x676f696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertylatency?language=objc)
 pub const kAudioClockDevicePropertyLatency: AudioObjectPropertySelector = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertycontrollist?language=objc)
 pub const kAudioClockDevicePropertyControlList: AudioObjectPropertySelector = 0x6374726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertynominalsamplerate?language=objc)
 pub const kAudioClockDevicePropertyNominalSampleRate: AudioObjectPropertySelector = 0x6e737274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclockdevicepropertyavailablenominalsamplerates?language=objc)
 pub const kAudioClockDevicePropertyAvailableNominalSampleRates: AudioObjectPropertySelector =
     0x6e737223;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdeviceclassid?language=objc)
 pub const kAudioEndPointDeviceClassID: AudioClassID = 0x65646576;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertycomposition?language=objc)
 pub const kAudioEndPointDevicePropertyComposition: AudioObjectPropertySelector = 0x61636f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertyendpointlist?language=objc)
 pub const kAudioEndPointDevicePropertyEndPointList: AudioObjectPropertySelector = 0x61677270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointdevicepropertyisprivate?language=objc)
 pub const kAudioEndPointDevicePropertyIsPrivate: AudioObjectPropertySelector = 0x70726976;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioendpointclassid?language=objc)
 pub const kAudioEndPointClassID: AudioClassID = 0x656e6470;
 
 /// This structure allows a specific sample rate range to be associated with an
@@ -460,8 +302,6 @@ pub const kAudioEndPointClassID: AudioClassID = 0x656e6470;
 /// format supports the range of sample rates described by this structure.
 /// Otherwise, the minimum will be the same as the maximum which will be the
 /// same as the mSampleRate field of mFormat.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamrangeddescription?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -486,152 +326,88 @@ unsafe impl RefEncode for AudioStreamRangedDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamclassid?language=objc)
 pub const kAudioStreamClassID: AudioClassID = 0x61737472;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeunknown?language=objc)
 pub const kAudioStreamTerminalTypeUnknown: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeline?language=objc)
 pub const kAudioStreamTerminalTypeLine: u32 = 0x6c696e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypedigitalaudiointerface?language=objc)
 pub const kAudioStreamTerminalTypeDigitalAudioInterface: u32 = 0x73706466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypespeaker?language=objc)
 pub const kAudioStreamTerminalTypeSpeaker: u32 = 0x73706b72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeheadphones?language=objc)
 pub const kAudioStreamTerminalTypeHeadphones: u32 = 0x68647068;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypelfespeaker?language=objc)
 pub const kAudioStreamTerminalTypeLFESpeaker: u32 = 0x6c666573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypereceiverspeaker?language=objc)
 pub const kAudioStreamTerminalTypeReceiverSpeaker: u32 = 0x7273706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypemicrophone?language=objc)
 pub const kAudioStreamTerminalTypeMicrophone: u32 = 0x6d696372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypeheadsetmicrophone?language=objc)
 pub const kAudioStreamTerminalTypeHeadsetMicrophone: u32 = 0x686d6963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypereceivermicrophone?language=objc)
 pub const kAudioStreamTerminalTypeReceiverMicrophone: u32 = 0x726d6963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypetty?language=objc)
 pub const kAudioStreamTerminalTypeTTY: u32 = 0x7474795f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypehdmi?language=objc)
 pub const kAudioStreamTerminalTypeHDMI: u32 = 0x68646d69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamterminaltypedisplayport?language=objc)
 pub const kAudioStreamTerminalTypeDisplayPort: u32 = 0x64707274;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyisactive?language=objc)
 pub const kAudioStreamPropertyIsActive: AudioObjectPropertySelector = 0x73616374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertydirection?language=objc)
 pub const kAudioStreamPropertyDirection: AudioObjectPropertySelector = 0x73646972;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyterminaltype?language=objc)
 pub const kAudioStreamPropertyTerminalType: AudioObjectPropertySelector = 0x7465726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertystartingchannel?language=objc)
 pub const kAudioStreamPropertyStartingChannel: AudioObjectPropertySelector = 0x7363686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertylatency?language=objc)
 pub const kAudioStreamPropertyLatency: AudioObjectPropertySelector = kAudioDevicePropertyLatency;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyvirtualformat?language=objc)
 pub const kAudioStreamPropertyVirtualFormat: AudioObjectPropertySelector = 0x73666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyavailablevirtualformats?language=objc)
 pub const kAudioStreamPropertyAvailableVirtualFormats: AudioObjectPropertySelector = 0x73666d61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyphysicalformat?language=objc)
 pub const kAudioStreamPropertyPhysicalFormat: AudioObjectPropertySelector = 0x70667420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyavailablephysicalformats?language=objc)
 pub const kAudioStreamPropertyAvailablePhysicalFormats: AudioObjectPropertySelector = 0x70667461;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolclassid?language=objc)
 pub const kAudioControlClassID: AudioClassID = 0x6163746c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyscope?language=objc)
 pub const kAudioControlPropertyScope: AudioObjectPropertySelector = 0x63736370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyelement?language=objc)
 pub const kAudioControlPropertyElement: AudioObjectPropertySelector = 0x63656c6d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolclassid?language=objc)
 pub const kAudioSliderControlClassID: AudioClassID = 0x736c6472;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolpropertyvalue?language=objc)
 pub const kAudioSliderControlPropertyValue: AudioObjectPropertySelector = 0x73647276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioslidercontrolpropertyrange?language=objc)
 pub const kAudioSliderControlPropertyRange: AudioObjectPropertySelector = 0x73647272;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolclassid?language=objc)
 pub const kAudioLevelControlClassID: AudioClassID = 0x6c65766c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiovolumecontrolclassid?language=objc)
 pub const kAudioVolumeControlClassID: AudioClassID = 0x766c6d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolfevolumecontrolclassid?language=objc)
 pub const kAudioLFEVolumeControlClassID: AudioClassID = 0x73756276;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyscalarvalue?language=objc)
 pub const kAudioLevelControlPropertyScalarValue: AudioObjectPropertySelector = 0x6c637376;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelvalue?language=objc)
 pub const kAudioLevelControlPropertyDecibelValue: AudioObjectPropertySelector = 0x6c636476;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelrange?language=objc)
 pub const kAudioLevelControlPropertyDecibelRange: AudioObjectPropertySelector = 0x6c636472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyconvertscalartodecibels?language=objc)
 pub const kAudioLevelControlPropertyConvertScalarToDecibels: AudioObjectPropertySelector =
     0x6c637364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertyconvertdecibelstoscalar?language=objc)
 pub const kAudioLevelControlPropertyConvertDecibelsToScalar: AudioObjectPropertySelector =
     0x6c636473;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobooleancontrolclassid?language=objc)
 pub const kAudioBooleanControlClassID: AudioClassID = 0x746f676c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiomutecontrolclassid?language=objc)
 pub const kAudioMuteControlClassID: AudioClassID = 0x6d757465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosolocontrolclassid?language=objc)
 pub const kAudioSoloControlClassID: AudioClassID = 0x736f6c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiojackcontrolclassid?language=objc)
 pub const kAudioJackControlClassID: AudioClassID = 0x6a61636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolfemutecontrolclassid?language=objc)
 pub const kAudioLFEMuteControlClassID: AudioClassID = 0x7375626d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiophantompowercontrolclassid?language=objc)
 pub const kAudioPhantomPowerControlClassID: AudioClassID = 0x7068616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiophaseinvertcontrolclassid?language=objc)
 pub const kAudioPhaseInvertControlClassID: AudioClassID = 0x70687369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocliplightcontrolclassid?language=objc)
 pub const kAudioClipLightControlClassID: AudioClassID = 0x636c6970;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotalkbackcontrolclassid?language=objc)
 pub const kAudioTalkbackControlClassID: AudioClassID = 0x74616c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolistenbackcontrolclassid?language=objc)
 pub const kAudioListenbackControlClassID: AudioClassID = 0x6c736e62;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobooleancontrolpropertyvalue?language=objc)
 pub const kAudioBooleanControlPropertyValue: AudioObjectPropertySelector = 0x6263766c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolclassid?language=objc)
 pub const kAudioSelectorControlClassID: AudioClassID = 0x736c6374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodatasourcecontrolclassid?language=objc)
 pub const kAudioDataSourceControlClassID: AudioClassID = 0x64737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodatadestinationcontrolclassid?language=objc)
 pub const kAudioDataDestinationControlClassID: AudioClassID = 0x64657374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourcecontrolclassid?language=objc)
 pub const kAudioClockSourceControlClassID: AudioClassID = 0x636c636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolinelevelcontrolclassid?language=objc)
 pub const kAudioLineLevelControlClassID: AudioClassID = 0x6e6c766c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohighpassfiltercontrolclassid?language=objc)
 pub const kAudioHighPassFilterControlClassID: AudioClassID = 0x68697066;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertycurrentitem?language=objc)
 pub const kAudioSelectorControlPropertyCurrentItem: AudioObjectPropertySelector = 0x73636369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyavailableitems?language=objc)
 pub const kAudioSelectorControlPropertyAvailableItems: AudioObjectPropertySelector = 0x73636169;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyitemname?language=objc)
 pub const kAudioSelectorControlPropertyItemName: AudioObjectPropertySelector = 0x7363696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolpropertyitemkind?language=objc)
 pub const kAudioSelectorControlPropertyItemKind: AudioObjectPropertySelector = 0x636c6b6b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioselectorcontrolitemkindspacer?language=objc)
 pub const kAudioSelectorControlItemKindSpacer: u32 = 0x73706372;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourceitemkindinternal?language=objc)
 pub const kAudioClockSourceItemKindInternal: u32 = 0x696e7420;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolclassid?language=objc)
 pub const kAudioStereoPanControlClassID: AudioClassID = 0x7370616e;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertyvalue?language=objc)
 pub const kAudioStereoPanControlPropertyValue: AudioObjectPropertySelector = 0x73706376;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostereopancontrolpropertypanningchannels?language=objc)
 pub const kAudioStereoPanControlPropertyPanningChannels: AudioObjectPropertySelector = 0x73706363;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectsystemobject?language=objc)
 pub const kAudioObjectSystemObject: c_int = 1;
 
 /// Clients register an AudioObjectPropertyListenerProc with an AudioObject in order
@@ -655,8 +431,6 @@ pub const kAudioObjectSystemObject: c_int = 1;
 /// with the AudioObject.
 ///
 /// Returns: The return value is currently unused and should always be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertylistenerproc?language=objc)
 pub type AudioObjectPropertyListenerProc = Option<
     unsafe extern "C-unwind" fn(
         AudioObjectID,
@@ -680,25 +454,18 @@ pub type AudioObjectPropertyListenerProc = Option<
 ///
 /// Parameter `inAddresses`: An array of AudioObjectPropertyAddresses indicating which properties
 /// changed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertylistenerblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AudioObjectPropertyListenerBlock =
     *mut block2::DynBlock<dyn Fn(u32, NonNull<AudioObjectPropertyAddress>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycreator?language=objc)
 pub const kAudioObjectPropertyCreator: AudioObjectPropertySelector = 0x6f706c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertylisteneradded?language=objc)
 pub const kAudioObjectPropertyListenerAdded: AudioObjectPropertySelector = 0x6c697361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertylistenerremoved?language=objc)
 pub const kAudioObjectPropertyListenerRemoved: AudioObjectPropertySelector = 0x6c697372;
 
 extern "C-unwind" {
     /// Prints to standard out a textural description of the AudioObject.
     ///
     /// Parameter `inObjectID`: The AudioObject to show.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectshow(_:)?language=objc)
     pub fn AudioObjectShow(in_object_id: AudioObjectID);
 }
 
@@ -713,8 +480,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `in_address` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjecthasproperty(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioObjectHasProperty(
     in_object_id: AudioObjectID,
@@ -746,8 +511,6 @@ extern "C-unwind" {
     ///
     /// - `in_address` must be a valid pointer.
     /// - `out_is_settable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectispropertysettable(_:_:_:)?language=objc)
     pub fn AudioObjectIsPropertySettable(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -779,8 +542,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `out_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectgetpropertydatasize(_:_:_:_:_:)?language=objc)
     pub fn AudioObjectGetPropertyDataSize(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -820,8 +581,6 @@ extern "C-unwind" {
     /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectgetpropertydata(_:_:_:_:_:_:)?language=objc)
     pub fn AudioObjectGetPropertyData(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -863,8 +622,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_qualifier_data` must be a valid pointer or null.
     /// - `in_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectsetpropertydata(_:_:_:_:_:_:)?language=objc)
     pub fn AudioObjectSetPropertyData(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -895,8 +652,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectaddpropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioObjectAddPropertyListener(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -925,8 +680,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectremovepropertylistener(_:_:_:_:)?language=objc)
     pub fn AudioObjectRemovePropertyListener(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
@@ -963,8 +716,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_listener` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectaddpropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectAddPropertyListenerBlock(
         in_object_id: AudioObjectID,
@@ -994,8 +745,6 @@ extern "C-unwind" {
     /// - `in_address` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_listener` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectremovepropertylistenerblock(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectRemovePropertyListenerBlock(
         in_object_id: AudioObjectID,
@@ -1005,7 +754,6 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosystemobjectclassid?language=objc)
 pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 
 /// The values for kAudioHardwarePropertyPowerHint
@@ -1023,17 +771,13 @@ pub const kAudioSystemObjectClassID: AudioClassID = 0x61737973;
 ///
 /// The system will choose to save power even at the expense of latency. The
 /// info.plist value is "Favor Saving Power"
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepowerhint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioHardwarePowerHint(pub u32);
 impl AudioHardwarePowerHint {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepowerhint/none?language=objc)
     #[doc(alias = "kAudioHardwarePowerHintNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepowerhint/favorsavingpower?language=objc)
     #[doc(alias = "kAudioHardwarePowerHintFavorSavingPower")]
     pub const FavorSavingPower: Self = Self(1);
 }
@@ -1048,66 +792,37 @@ unsafe impl RefEncode for AudioHardwarePowerHint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydevices?language=objc)
 pub const kAudioHardwarePropertyDevices: AudioObjectPropertySelector = 0x64657623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultinputdevice?language=objc)
 pub const kAudioHardwarePropertyDefaultInputDevice: AudioObjectPropertySelector = 0x64496e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultoutputdevice?language=objc)
 pub const kAudioHardwarePropertyDefaultOutputDevice: AudioObjectPropertySelector = 0x644f7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydefaultsystemoutputdevice?language=objc)
 pub const kAudioHardwarePropertyDefaultSystemOutputDevice: AudioObjectPropertySelector = 0x734f7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtodevice?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToDevice: AudioObjectPropertySelector = 0x75696464;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertymixstereotomono?language=objc)
 pub const kAudioHardwarePropertyMixStereoToMono: AudioObjectPropertySelector = 0x73746d6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypluginlist?language=objc)
 pub const kAudioHardwarePropertyPlugInList: AudioObjectPropertySelector = 0x706c6723;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatebundleidtoplugin?language=objc)
 pub const kAudioHardwarePropertyTranslateBundleIDToPlugIn: AudioObjectPropertySelector = 0x62696470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytransportmanagerlist?language=objc)
 pub const kAudioHardwarePropertyTransportManagerList: AudioObjectPropertySelector = 0x746d6723;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatebundleidtotransportmanager?language=objc)
 pub const kAudioHardwarePropertyTranslateBundleIDToTransportManager: AudioObjectPropertySelector =
     0x746d6269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyboxlist?language=objc)
 pub const kAudioHardwarePropertyBoxList: AudioObjectPropertySelector = 0x626f7823;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtobox?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToBox: AudioObjectPropertySelector = 0x75696462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyclockdevicelist?language=objc)
 pub const kAudioHardwarePropertyClockDeviceList: AudioObjectPropertySelector = 0x636c6b23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtoclockdevice?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToClockDevice: AudioObjectPropertySelector = 0x75696463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessismain?language=objc)
 pub const kAudioHardwarePropertyProcessIsMain: AudioObjectPropertySelector = 0x6d61696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyisinitingorexiting?language=objc)
 pub const kAudioHardwarePropertyIsInitingOrExiting: AudioObjectPropertySelector = 0x696e6f74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyuseridchanged?language=objc)
 pub const kAudioHardwarePropertyUserIDChanged: AudioObjectPropertySelector = 0x65756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessinputmute?language=objc)
 pub const kAudioHardwarePropertyProcessInputMute: AudioObjectPropertySelector = 0x706d696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessisaudible?language=objc)
 pub const kAudioHardwarePropertyProcessIsAudible: AudioObjectPropertySelector = 0x706d7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertysleepingisallowed?language=objc)
 pub const kAudioHardwarePropertySleepingIsAllowed: AudioObjectPropertySelector = 0x736c6570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyunloadingisallowed?language=objc)
 pub const kAudioHardwarePropertyUnloadingIsAllowed: AudioObjectPropertySelector = 0x756e6c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyhogmodeisallowed?language=objc)
 pub const kAudioHardwarePropertyHogModeIsAllowed: AudioObjectPropertySelector = 0x686f6772;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyusersessionisactiveorheadless?language=objc)
 pub const kAudioHardwarePropertyUserSessionIsActiveOrHeadless: AudioObjectPropertySelector =
     0x75736572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyservicerestarted?language=objc)
 pub const kAudioHardwarePropertyServiceRestarted: AudioObjectPropertySelector = 0x73727374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypowerhint?language=objc)
 pub const kAudioHardwarePropertyPowerHint: AudioObjectPropertySelector = 0x706f7768;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessobjectlist?language=objc)
 pub const kAudioHardwarePropertyProcessObjectList: AudioObjectPropertySelector = 0x70727323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslatepidtoprocessobject?language=objc)
 pub const kAudioHardwarePropertyTranslatePIDToProcessObject: AudioObjectPropertySelector =
     0x69643270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytaplist?language=objc)
 pub const kAudioHardwarePropertyTapList: AudioObjectPropertySelector = 0x74707323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertytranslateuidtotap?language=objc)
 pub const kAudioHardwarePropertyTranslateUIDToTap: AudioObjectPropertySelector = 0x75696474;
 
 extern "C-unwind" {
@@ -1116,8 +831,6 @@ extern "C-unwind" {
     /// routine essentially returns the HAL to its uninitialized state.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareunload()?language=objc)
     pub fn AudioHardwareUnload() -> OSStatus;
 }
 
@@ -1136,8 +849,6 @@ extern "C-unwind" {
     /// - `in_description` generic must be of the correct type.
     /// - `in_description` generic must be of the correct type.
     /// - `out_device_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarecreateaggregatedevice(_:_:)?language=objc)
     pub fn AudioHardwareCreateAggregateDevice(
         in_description: &CFDictionary,
         out_device_id: NonNull<AudioObjectID>,
@@ -1153,19 +864,13 @@ extern "C-unwind" {
     /// Parameter `inDeviceID`: The AudioObjectID of the AudioAggregateDevice to destroy.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaredestroyaggregatedevice(_:)?language=objc)
     pub fn AudioHardwareDestroyAggregateDevice(in_device_id: AudioObjectID) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioplugincreateaggregatedevice?language=objc)
 pub const kAudioPlugInCreateAggregateDevice: AudioObjectPropertySelector = 0x63616767;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioplugindestroyaggregatedevice?language=objc)
 pub const kAudioPlugInDestroyAggregateDevice: AudioObjectPropertySelector = 0x64616767;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagercreateendpointdevice?language=objc)
 pub const kAudioTransportManagerCreateEndPointDevice: AudioObjectPropertySelector = 0x63646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotransportmanagerdestroyendpointdevice?language=objc)
 pub const kAudioTransportManagerDestroyEndPointDevice: AudioObjectPropertySelector = 0x64646576;
 
 /// An AudioDeviceIOProc is called by an AudioDevice to provide input data read from
@@ -1208,8 +913,6 @@ pub const kAudioTransportManagerDestroyEndPointDevice: AudioObjectPropertySelect
 /// registered with the AudioDevice.
 ///
 /// Returns: The return value is currently unused and should always be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceioproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioDeviceIOProc = Option<
     unsafe extern "C-unwind" fn(
@@ -1256,8 +959,6 @@ pub type AudioDeviceIOProc = Option<
 /// Parameter `inOutputTime`: An AudioTimeStamp that indicates the time at which the first frame in the
 /// data will be passed to the hardware. If the device has no output streams,
 /// the time stamp will be zeroed out.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceioblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
 pub type AudioDeviceIOBlock = *mut block2::DynBlock<
     dyn Fn(
@@ -1274,8 +975,6 @@ pub type AudioDeviceIOBlock = *mut block2::DynBlock<
 /// use a regular IOProc. The purpose for an AudioDeviceIOProcID is to allow a
 /// client to register the same function pointer as an IOProc with a device multiple
 /// times provided
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceioprocid?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioDeviceIOProcID = AudioDeviceIOProc;
 
@@ -1289,8 +988,6 @@ pub type AudioDeviceIOProcID = AudioDeviceIOProc;
 /// An array of UInt32's whose length is specified by mNumberStreams. Each
 /// element of the array corresponds to a stream. A value of 0 means the stream
 /// is not to be enabled. Any other value means the stream is to be used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareioprocstreamusage?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioHardwareIOProcStreamUsage {
@@ -1316,155 +1013,86 @@ unsafe impl RefEncode for AudioHardwareIOProcStreamUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimeisinputflag?language=objc)
 pub const kAudioDeviceStartTimeIsInputFlag: u32 = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimedontconsultdeviceflag?language=objc)
 pub const kAudioDeviceStartTimeDontConsultDeviceFlag: u32 = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicestarttimedontconsulthalflag?language=objc)
 pub const kAudioDeviceStartTimeDontConsultHALFlag: u32 = 1 << 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplugin?language=objc)
 pub const kAudioDevicePropertyPlugIn: AudioObjectPropertySelector = 0x706c7567;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicehaschanged?language=objc)
 pub const kAudioDevicePropertyDeviceHasChanged: AudioObjectPropertySelector = 0x64696666;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydeviceisrunningsomewhere?language=objc)
 pub const kAudioDevicePropertyDeviceIsRunningSomewhere: AudioObjectPropertySelector = 0x676f6e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceprocessoroverload?language=objc)
 pub const kAudioDeviceProcessorOverload: AudioObjectPropertySelector = 0x6f766572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiostoppedabnormally?language=objc)
 pub const kAudioDevicePropertyIOStoppedAbnormally: AudioObjectPropertySelector = 0x73747064;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhogmode?language=objc)
 pub const kAudioDevicePropertyHogMode: AudioObjectPropertySelector = 0x6f696e6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybufferframesize?language=objc)
 pub const kAudioDevicePropertyBufferFrameSize: AudioObjectPropertySelector = 0x6673697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybufferframesizerange?language=objc)
 pub const kAudioDevicePropertyBufferFrameSizeRange: AudioObjectPropertySelector = 0x66737a23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyusesvariablebufferframesizes?language=objc)
 pub const kAudioDevicePropertyUsesVariableBufferFrameSizes: AudioObjectPropertySelector =
     0x7666737a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiocycleusage?language=objc)
 pub const kAudioDevicePropertyIOCycleUsage: AudioObjectPropertySelector = 0x6e637963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamconfiguration?language=objc)
 pub const kAudioDevicePropertyStreamConfiguration: AudioObjectPropertySelector = 0x736c6179;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyioprocstreamusage?language=objc)
 pub const kAudioDevicePropertyIOProcStreamUsage: AudioObjectPropertySelector = 0x73757365;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyactualsamplerate?language=objc)
 pub const kAudioDevicePropertyActualSampleRate: AudioObjectPropertySelector = 0x61737274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclockdevice?language=objc)
 pub const kAudioDevicePropertyClockDevice: AudioObjectPropertySelector = 0x61706364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyiothreadosworkgroup?language=objc)
+/// The device’s workgroup object, which you use to coordinate your threads with the threads of the device.
 pub const kAudioDevicePropertyIOThreadOSWorkgroup: AudioObjectPropertySelector = 0x6f737767;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyprocessmute?language=objc)
 pub const kAudioDevicePropertyProcessMute: AudioObjectPropertySelector = 0x6170706d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyjackisconnected?language=objc)
 pub const kAudioDevicePropertyJackIsConnected: AudioObjectPropertySelector = 0x6a61636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumescalar?language=objc)
 pub const kAudioDevicePropertyVolumeScalar: AudioObjectPropertySelector = 0x766f6c6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibels?language=objc)
 pub const kAudioDevicePropertyVolumeDecibels: AudioObjectPropertySelector = 0x766f6c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumerangedecibels?language=objc)
 pub const kAudioDevicePropertyVolumeRangeDecibels: AudioObjectPropertySelector = 0x76646223;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumescalartodecibels?language=objc)
 pub const kAudioDevicePropertyVolumeScalarToDecibels: AudioObjectPropertySelector = 0x76326462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibelstoscalar?language=objc)
 pub const kAudioDevicePropertyVolumeDecibelsToScalar: AudioObjectPropertySelector = 0x64623276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystereopan?language=objc)
 pub const kAudioDevicePropertyStereoPan: AudioObjectPropertySelector = 0x7370616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystereopanchannels?language=objc)
 pub const kAudioDevicePropertyStereoPanChannels: AudioObjectPropertySelector = 0x73706e23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertymute?language=objc)
 pub const kAudioDevicePropertyMute: AudioObjectPropertySelector = 0x6d757465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysolo?language=objc)
 pub const kAudioDevicePropertySolo: AudioObjectPropertySelector = 0x736f6c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyphantompower?language=objc)
 pub const kAudioDevicePropertyPhantomPower: AudioObjectPropertySelector = 0x7068616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyphaseinvert?language=objc)
 pub const kAudioDevicePropertyPhaseInvert: AudioObjectPropertySelector = 0x70687369;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertycliplight?language=objc)
 pub const kAudioDevicePropertyClipLight: AudioObjectPropertySelector = 0x636c6970;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertytalkback?language=objc)
 pub const kAudioDevicePropertyTalkback: AudioObjectPropertySelector = 0x74616c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertylistenback?language=objc)
 pub const kAudioDevicePropertyListenback: AudioObjectPropertySelector = 0x6c736e62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasource?language=objc)
 pub const kAudioDevicePropertyDataSource: AudioObjectPropertySelector = 0x73737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasources?language=objc)
 pub const kAudioDevicePropertyDataSources: AudioObjectPropertySelector = 0x73736323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcenameforidcfstring?language=objc)
 pub const kAudioDevicePropertyDataSourceNameForIDCFString: AudioObjectPropertySelector = 0x6c73636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcekindforid?language=objc)
 pub const kAudioDevicePropertyDataSourceKindForID: AudioObjectPropertySelector = 0x7373636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksource?language=objc)
 pub const kAudioDevicePropertyClockSource: AudioObjectPropertySelector = 0x63737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksources?language=objc)
 pub const kAudioDevicePropertyClockSources: AudioObjectPropertySelector = 0x63736323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcenameforidcfstring?language=objc)
 pub const kAudioDevicePropertyClockSourceNameForIDCFString: AudioObjectPropertySelector =
     0x6c63736e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcekindforid?language=objc)
 pub const kAudioDevicePropertyClockSourceKindForID: AudioObjectPropertySelector = 0x6373636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythru?language=objc)
 pub const kAudioDevicePropertyPlayThru: AudioObjectPropertySelector = 0x74687275;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrusolo?language=objc)
 pub const kAudioDevicePropertyPlayThruSolo: AudioObjectPropertySelector = 0x74687273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumescalar?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeScalar: AudioObjectPropertySelector = 0x6d767363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibels?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeDecibels: AudioObjectPropertySelector = 0x6d766462;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumerangedecibels?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeRangeDecibels: AudioObjectPropertySelector = 0x6d766423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumescalartodecibels?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeScalarToDecibels: AudioObjectPropertySelector =
     0x6d763264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibelstoscalar?language=objc)
 pub const kAudioDevicePropertyPlayThruVolumeDecibelsToScalar: AudioObjectPropertySelector =
     0x6d763273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrustereopan?language=objc)
 pub const kAudioDevicePropertyPlayThruStereoPan: AudioObjectPropertySelector = 0x6d73706e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrustereopanchannels?language=objc)
 pub const kAudioDevicePropertyPlayThruStereoPanChannels: AudioObjectPropertySelector = 0x6d737023;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestination?language=objc)
 pub const kAudioDevicePropertyPlayThruDestination: AudioObjectPropertySelector = 0x6d646473;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinations?language=objc)
 pub const kAudioDevicePropertyPlayThruDestinations: AudioObjectPropertySelector = 0x6d646423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinationnameforidcfstring?language=objc)
 pub const kAudioDevicePropertyPlayThruDestinationNameForIDCFString: AudioObjectPropertySelector =
     0x6d646463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevel?language=objc)
 pub const kAudioDevicePropertyChannelNominalLineLevel: AudioObjectPropertySelector = 0x6e6c766c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevels?language=objc)
 pub const kAudioDevicePropertyChannelNominalLineLevels: AudioObjectPropertySelector = 0x6e6c7623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevelnameforidcfstring?language=objc)
 pub const kAudioDevicePropertyChannelNominalLineLevelNameForIDCFString:
     AudioObjectPropertySelector = 0x6c636e6c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersetting?language=objc)
 pub const kAudioDevicePropertyHighPassFilterSetting: AudioObjectPropertySelector = 0x68697066;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettings?language=objc)
 pub const kAudioDevicePropertyHighPassFilterSettings: AudioObjectPropertySelector = 0x68697023;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettingnameforidcfstring?language=objc)
 pub const kAudioDevicePropertyHighPassFilterSettingNameForIDCFString: AudioObjectPropertySelector =
     0x6869706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumescalar?language=objc)
 pub const kAudioDevicePropertySubVolumeScalar: AudioObjectPropertySelector = 0x73766c6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibels?language=objc)
 pub const kAudioDevicePropertySubVolumeDecibels: AudioObjectPropertySelector = 0x73766c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumerangedecibels?language=objc)
 pub const kAudioDevicePropertySubVolumeRangeDecibels: AudioObjectPropertySelector = 0x73766423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumescalartodecibels?language=objc)
 pub const kAudioDevicePropertySubVolumeScalarToDecibels: AudioObjectPropertySelector = 0x73763264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibelstoscalar?language=objc)
 pub const kAudioDevicePropertySubVolumeDecibelsToScalar: AudioObjectPropertySelector = 0x73643276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubmute?language=objc)
 pub const kAudioDevicePropertySubMute: AudioObjectPropertySelector = 0x736d7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionenable?language=objc)
 pub const kAudioDevicePropertyVoiceActivityDetectionEnable: AudioObjectPropertySelector =
     0x7641642b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvoiceactivitydetectionstate?language=objc)
 pub const kAudioDevicePropertyVoiceActivityDetectionState: AudioObjectPropertySelector = 0x76416453;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantscontrolsrestored?language=objc)
 pub const kAudioDevicePropertyWantsControlsRestored: AudioObjectPropertySelector = 0x72657363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertywantsstreamformatsrestored?language=objc)
 pub const kAudioDevicePropertyWantsStreamFormatsRestored: AudioObjectPropertySelector = 0x72657366;
 
 extern "C-unwind" {
@@ -1490,8 +1118,6 @@ extern "C-unwind" {
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
     /// - `out_io_proc_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicecreateioprocid(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceCreateIOProcID(
         in_device: AudioObjectID,
@@ -1524,8 +1150,6 @@ extern "C-unwind" {
     /// - `out_io_proc_id` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_io_block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicecreateioprocidwithblock(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -1554,8 +1178,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_io_proc_id` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicedestroyioprocid(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceDestroyIOProcID(
         in_device: AudioObjectID,
@@ -1579,8 +1201,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc_id` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicestart(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStart(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
 }
@@ -1608,8 +1228,6 @@ extern "C-unwind" {
     ///
     /// - `in_proc_id` must be implemented correctly.
     /// - `io_requested_start_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicestartattime(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStartAtTime(
         in_device: AudioObjectID,
@@ -1631,8 +1249,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc_id` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicestop(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceStop(in_device: AudioObjectID, in_proc_id: AudioDeviceIOProcID) -> OSStatus;
 }
@@ -1654,8 +1270,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetcurrenttime(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceGetCurrentTime(
         in_device: AudioObjectID,
@@ -1683,8 +1297,6 @@ extern "C-unwind" {
     ///
     /// - `in_time` must be a valid pointer.
     /// - `out_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicetranslatetime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceTranslateTime(
         in_device: AudioObjectID,
@@ -1722,8 +1334,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_requested_start_time` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetneareststarttime(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioDeviceGetNearestStartTime(
         in_device: AudioObjectID,
@@ -1732,96 +1342,59 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedeviceclassid?language=objc)
 pub const kAudioAggregateDeviceClassID: AudioClassID = 0x61616767;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyfullsubdevicelist?language=objc)
 pub const kAudioAggregateDevicePropertyFullSubDeviceList: AudioObjectPropertySelector = 0x67727570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyactivesubdevicelist?language=objc)
 pub const kAudioAggregateDevicePropertyActiveSubDeviceList: AudioObjectPropertySelector =
     0x61677270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertycomposition?language=objc)
 pub const kAudioAggregateDevicePropertyComposition: AudioObjectPropertySelector = 0x61636f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertymainsubdevice?language=objc)
 pub const kAudioAggregateDevicePropertyMainSubDevice: AudioObjectPropertySelector = 0x616d7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertyclockdevice?language=objc)
 pub const kAudioAggregateDevicePropertyClockDevice: AudioObjectPropertySelector = 0x61706364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertytaplist?language=objc)
 pub const kAudioAggregateDevicePropertyTapList: AudioObjectPropertySelector = 0x74617023;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertysubtaplist?language=objc)
 pub const kAudioAggregateDevicePropertySubTapList: AudioObjectPropertySelector = 0x61746170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationminquality?language=objc)
 pub const kAudioAggregateDriftCompensationMinQuality: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationlowquality?language=objc)
 pub const kAudioAggregateDriftCompensationLowQuality: u32 = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationmediumquality?language=objc)
 pub const kAudioAggregateDriftCompensationMediumQuality: u32 = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationhighquality?language=objc)
 pub const kAudioAggregateDriftCompensationHighQuality: u32 = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedriftcompensationmaxquality?language=objc)
 pub const kAudioAggregateDriftCompensationMaxQuality: u32 = 0x7F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdeviceclassid?language=objc)
 pub const kAudioSubDeviceClassID: AudioClassID = 0x61737562;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationminquality?language=objc)
 #[deprecated]
 pub const kAudioSubDeviceDriftCompensationMinQuality: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationlowquality?language=objc)
 #[deprecated]
 pub const kAudioSubDeviceDriftCompensationLowQuality: u32 = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationmediumquality?language=objc)
 #[deprecated]
 pub const kAudioSubDeviceDriftCompensationMediumQuality: u32 = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationhighquality?language=objc)
 #[deprecated]
 pub const kAudioSubDeviceDriftCompensationHighQuality: u32 = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicedriftcompensationmaxquality?language=objc)
 #[deprecated]
 pub const kAudioSubDeviceDriftCompensationMaxQuality: u32 = 0x7F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertyextralatency?language=objc)
 pub const kAudioSubDevicePropertyExtraLatency: AudioObjectPropertySelector = 0x786c7463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertydriftcompensation?language=objc)
 pub const kAudioSubDevicePropertyDriftCompensation: AudioObjectPropertySelector = 0x64726674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubdevicepropertydriftcompensationquality?language=objc)
 pub const kAudioSubDevicePropertyDriftCompensationQuality: AudioObjectPropertySelector = 0x64726671;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtapclassid?language=objc)
 pub const kAudioSubTapClassID: AudioClassID = 0x73746170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertyextralatency?language=objc)
 pub const kAudioSubTapPropertyExtraLatency: AudioObjectPropertySelector = 0x786c7463;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertydriftcompensation?language=objc)
 pub const kAudioSubTapPropertyDriftCompensation: AudioObjectPropertySelector = 0x64726674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiosubtappropertydriftcompensationquality?language=objc)
 pub const kAudioSubTapPropertyDriftCompensationQuality: AudioObjectPropertySelector = 0x64726671;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocessclassid?language=objc)
 pub const kAudioProcessClassID: AudioClassID = 0x636c6e74;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertypid?language=objc)
 pub const kAudioProcessPropertyPID: AudioObjectPropertySelector = 0x70706964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertybundleid?language=objc)
 pub const kAudioProcessPropertyBundleID: AudioObjectPropertySelector = 0x70626964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertydevices?language=objc)
 pub const kAudioProcessPropertyDevices: AudioObjectPropertySelector = 0x70647623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunning?language=objc)
 pub const kAudioProcessPropertyIsRunning: AudioObjectPropertySelector = 0x7069723f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunninginput?language=objc)
 pub const kAudioProcessPropertyIsRunningInput: AudioObjectPropertySelector = 0x70697269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioprocesspropertyisrunningoutput?language=objc)
 pub const kAudioProcessPropertyIsRunningOutput: AudioObjectPropertySelector = 0x7069726f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotapclassid?language=objc)
 pub const kAudioTapClassID: AudioClassID = 0x74636c73;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertyuid?language=objc)
 pub const kAudioTapPropertyUID: AudioObjectPropertySelector = 0x74756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertydescription?language=objc)
 pub const kAudioTapPropertyDescription: AudioObjectPropertySelector = 0x74647363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiotappropertyformat?language=objc)
 pub const kAudioTapPropertyFormat: AudioObjectPropertySelector = 0x74666d74;
 
 extern "C-unwind" {
@@ -1837,8 +1410,6 @@ extern "C-unwind" {
     ///
     /// - `in_description` might not allow `None`.
     /// - `out_tap_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarecreateprocesstap(_:_:)?language=objc)
     #[cfg(feature = "objc2")]
     pub fn AudioHardwareCreateProcessTap(
         in_description: Option<&CATapDescription>,
@@ -1852,8 +1423,6 @@ extern "C-unwind" {
     /// Parameter `inTapID`: The AudioObjectID of the Tap to destroy.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaredestroyprocesstap(_:)?language=objc)
     pub fn AudioHardwareDestroyProcessTap(in_tap_id: AudioObjectID) -> OSStatus;
 }
 
@@ -1865,8 +1434,6 @@ extern "C-unwind" {
 ///
 /// Audio is captured by the tap and also sent to the audio hardware until the tap is read by another audio client.
 /// For the duration of the read activity on the tap no audio is sent to the audio hardware.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -1874,13 +1441,10 @@ extern "C-unwind" {
 pub struct CATapMuteBehavior(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl CATapMuteBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior/unmuted?language=objc)
     #[doc(alias = "CATapUnmuted")]
     pub const Unmuted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior/muted?language=objc)
     #[doc(alias = "CATapMuted")]
     pub const Muted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapmutebehavior/mutedwhentapped?language=objc)
     #[doc(alias = "CATapMutedWhenTapped")]
     pub const MutedWhenTapped: Self = Self(2);
 }
@@ -1898,8 +1462,6 @@ unsafe impl RefEncode for CATapMuteBehavior {
 #[cfg(feature = "objc2")]
 extern_class!(
     /// This class describes a tap object that contains an input stream.  The input stream is a mix of all of the specified processes output audio.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/catapdescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

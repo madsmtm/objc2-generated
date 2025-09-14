@@ -8,13 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Encapsulates an immutable configuration for an AirPort WLAN interface.
     /// Encapsulates the system configuration for a given Wi-Fi interface.
     ///
     ///
     /// The CWConfiguration class contains basic network configuration settings and also the list of preferred networks.
     /// CWConfiguration is an immutable object. For changing configuration settings and/or the preferred networks list, see CWMutableConfiguration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWConfiguration;
@@ -169,12 +168,17 @@ impl CWConfiguration {
 }
 
 extern_class!(
+    /// Encapsulates a mutable configuration for an AirPort WLAN interface.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to change configuration settings or the preferred networks list. To commit configuration changes, use [`commitConfiguration:authorization:error:`](https://developer.apple.com/documentation/corewlan/cwinterface/commitconfiguration(_:authorization:)).
+    ///
+    ///
     /// Mutable subclass of CWConfiguration.  Use this class for changing configuration settings and/or the preferred networks list.
     ///
     ///
     /// To commit configuration changes, use -[CWInterface commitConfiguration:authorization:error:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmutableconfiguration?language=objc)
     #[unsafe(super(CWConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableConfiguration;

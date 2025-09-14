@@ -7,34 +7,72 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCreateTaskListIntentResponseCode(pub NSInteger);
 impl INCreateTaskListIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INCreateTaskListIntentResponseCodeUnspecified")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to create the task list. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INCreateTaskListIntentResponseCodeReady")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/inprogress?language=objc)
+    /// Task list creation is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you initiated the task list creation process but didn’t receive a timely response. You might use this code when a server handles creation and you haven’t yet received a confirmation from that server.
+    ///
+    /// When handling the intent, you might want to first configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INCreateTaskListIntentResponseCodeInProgress")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/success?language=objc)
+    /// You successfully created the task list.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after creating the task list successfully. Your response should contain the details of the task list that you created.
+    ///
+    ///
     #[doc(alias = "INCreateTaskListIntentResponseCodeSuccess")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/failure?language=objc)
+    /// You were unable to create the task list.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from creating the task list.
+    ///
+    ///
     #[doc(alias = "INCreateTaskListIntentResponseCodeFailure")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must create the task list from within your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t create the task list from your Intents extension but the user can create it in your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INCreateTaskListIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
@@ -49,7 +87,15 @@ unsafe impl RefEncode for INCreateTaskListIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatetasklistintentresponse?language=objc)
+    /// Your app’s response to a request to create a task list.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INCreateTaskListIntentResponse`](https://developer.apple.com/documentation/intents/increatetasklistintentresponse) object to return information about the task list that your app created. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INCreateTaskListIntentResponse`](https://developer.apple.com/documentation/intents/increatetasklistintentresponse) object in the [`confirmCreateTaskList:completion:`](https://developer.apple.com/documentation/intents/increatetasklistintenthandling/confirm(intent:completion:)) and [`handleCreateTaskList:completion:`](https://developer.apple.com/documentation/intents/increatetasklistintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INCreateTaskListIntentHandling`](https://developer.apple.com/documentation/intents/increatetasklistintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

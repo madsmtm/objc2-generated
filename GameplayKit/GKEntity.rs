@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object relevant to gameplay, with functionality entirely provided by a collection of component objects.
+    ///
+    /// ## Overview
+    ///
+    /// A [`GKEntity`](https://developer.apple.com/documentation/gameplaykit/gkentity) object represents an entity in games with Entity-Component architecture. In this design, an _entity_ is a general type for objects relevant to the game. Entities typically define no functionality of their own—instead, you define an entity’s features through composition, by adding _components_ that each handle specific aspects of an entity’s behavior in a general way. Because components ([`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent) subclasses) are general and reusable, you can add many kinds of entities to a game by combining components in different ways, without needing to design new entity classes.
+    ///
+    /// For more information on Entity-Component architecture, read [Entities and Components](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// An entity is the general purpose object in an entity-component system.
     /// Entites have many components but components are associated with only a single entity.
     ///
@@ -17,8 +26,6 @@ extern_class!(
     /// See: GKComponent
     ///
     /// See: GKComponentSystem
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKEntity;

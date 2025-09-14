@@ -18,9 +18,56 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// View for rendering metal content
+    /// A specialized view that creates, configures, and displays Metal objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkview?language=objc)
+    /// ## Overview
+    ///
+    /// The [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) class provides a default implementation of a Metal-aware view that you can use to render graphics using Metal and display them onscreen. When asked, the view provides a [`MTLRenderPassDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassdescriptor) object that points at a texture for you to render new contents into. Optionally, an [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) can create depth and stencil textures for you and any intermediate textures needed for antialiasing. The view uses a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) to manage the Metal drawable objects.
+    ///
+    /// The view requires a [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) object to manage the Metal objects it creates for you. You must set the [`device`](https://developer.apple.com/documentation/metalkit/mtkview/device) property and, optionally, modify the view’s drawable properties before drawing.
+    ///
+    /// ### Configuring the Drawing Behavior
+    ///
+    /// The MTKView class supports three drawing modes:
+    ///
+    /// - Timed updates: The view redraws its contents based on an internal timer. In this case, which is the default behavior, both [`paused`](https://developer.apple.com/documentation/metalkit/mtkview/ispaused) and [`enableSetNeedsDisplay`](https://developer.apple.com/documentation/metalkit/mtkview/enablesetneedsdisplay) are set to [`false`](https://developer.apple.com/documentation/swift/false). Use this mode for games and other animated content that’s regularly updated.
+    ///
+    /// - Draw notifications: The view redraws itself when something invalidates its contents, usually because of a call to [`setNeedsDisplay`](https://developer.apple.com/documentation/uikit/uiview/setneedsdisplay()) or some other view-related behavior. In this case, set [`paused`](https://developer.apple.com/documentation/metalkit/mtkview/ispaused) and [`enableSetNeedsDisplay`](https://developer.apple.com/documentation/metalkit/mtkview/enablesetneedsdisplay) to [`true`](https://developer.apple.com/documentation/swift/true). Use this mode for apps with a more traditional workflow, where updates happen when data changes, but not on a regular timed interval.
+    ///
+    /// - Explicit drawing: The view redraws its contents only when you explicitly call the [`draw`](https://developer.apple.com/documentation/metalkit/mtkview/draw()) method. In this case, set [`paused`](https://developer.apple.com/documentation/metalkit/mtkview/ispaused) to [`true`](https://developer.apple.com/documentation/swift/true) and [`enableSetNeedsDisplay`](https://developer.apple.com/documentation/metalkit/mtkview/enablesetneedsdisplay) to [`false`](https://developer.apple.com/documentation/swift/false). Use this mode to create your own custom workflow.
+    ///
+    /// ### Drawing the View’s Contents
+    ///
+    /// Regardless of drawing mode, when the view needs to update its contents, it calls the [`drawRect:`](https://developer.apple.com/documentation/appkit/nsview/draw(_:)) method when that method has been overridden by a subclass, or [`drawInMTKView:`](https://developer.apple.com/documentation/metalkit/mtkviewdelegate/draw(in:)) on the view’s delegate if the subclass doesn’t override it. You should either subclass [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) or provide a delegate, but not both.
+    ///
+    /// In your drawing method, you obtain a render pass descriptor from the view, render into it, and then present the associated drawable.
+    ///
+    /// ### Obtaining a Drawable from a MetalKit View
+    ///
+    /// Each [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) is backed by a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer). In your renderer, implement the [`MTKViewDelegate`](https://developer.apple.com/documentation/metalkit/mtkviewdelegate) protocol to interact with a MetalKit view. Call the MetalKit view’s [`currentRenderPassDescriptor`](https://developer.apple.com/documentation/metalkit/mtkview/currentrenderpassdescriptor) property to obtain a render pass descriptor configured for the current frame:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// BEGIN encoding your onscreen render pass.", "// Obtain a render pass descriptor generated from the drawable's texture.", "// (`currentRenderPassDescriptor` implicitly obtains the current drawable.)", "// If there's a valid render pass descriptor, use it to render to the current drawable.", "if let onscreenDescriptor = view.currentRenderPassDescriptor"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// BEGIN encoding your onscreen render pass.", "// Obtain a render pass descriptor generated from the drawable's texture.", "// (`currentRenderPassDescriptor` implicitly obtains the current drawable.)", "MTLRenderPassDescriptor* onscreenDescriptor = view.currentRenderPassDescriptor;"], metadata: None }] }] })
+    /// When you read this property, Core Animation implicitly obtains a drawable for the current frame and stores it in the [`currentDrawable`](https://developer.apple.com/documentation/metalkit/mtkview/currentdrawable) property. It then configures a render pass descriptor to draw into that drawable, including any depth, stencil, and antialiasing textures as necessary. The view configures this render pass using the default store and load actions. You can adjust the descriptor further before using it to create a [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder).
+    ///
+    /// Obtain drawables as late as possible; preferably, immediately before encoding your onscreen render pass.
+    ///
+    /// ### Registering the Drawable’s Presentation
+    ///
+    /// After rendering the contents, you must present the drawable to update the view’s contents. The most convenient way to present the content is to call the [`presentDrawable:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/present(_:)) method on the command buffer. Then, call the [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()) method to submit the command buffer to a GPU:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["if let onscreenDescriptor = view.currentRenderPassDescriptor,", "let onscreenCommandEncoder = onscreenCommandBuffer.makeRenderCommandEncoder(descriptor: onscreenDescriptor) {", "    /* Set render state and resources.", "       ...", "     */", "    /* Issue draw calls.", "       ...", "     */", "    onscreenCommandEncoder.endEncoding()", "    // END encoding your onscreen render pass.", "    ", "    // Register the drawable's presentation.", "    if let currentDrawable = view.currentDrawable {", "        onscreenCommandBuffer.present(currentDrawable)", "    }", "}", "", "// Finalize your onscreen CPU work and commit the command buffer to a GPU.", "onscreenCommandBuffer.commit()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// If there's a valid render pass descriptor, use it to render to the current drawable.", "if(onscreenDescriptor != nil) {", "    id<MTLRenderCommandEncoder> onscreenCommandEncoder = [onscreenCommandBuffer renderCommandEncoderWithDescriptor:onscreenDescriptor];", "    /* Set render state and resources.", "       ...", "     */", "    /* Issue draw calls.", "       ...", "     */", "    [onscreenCommandEncoder endEncoding];", "    // END encoding your onscreen render pass.", "", "    // Register the drawable's presentation.", "    [onscreenCommandBuffer presentDrawable:view.currentDrawable];", "}", "", "// Finalize your onscreen CPU work and commit the command buffer to a GPU.", "[onscreenCommandBuffer commit];"], metadata: None }] }] })
+    /// When a command queue schedules a command buffer for execution, the drawable tracks all render or write requests on itself in that command buffer. The operating system doesn’t present the drawable onscreen until the commands have finished executing. By asking the command buffer to present the drawable, you guarantee that presentation happens after the command queue has scheduled this command buffer. Don’t wait for the command buffer to finish executing before registering the drawable’s presentation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  For better performance, only retrieve the render pass descriptor when you’re ready to render the contents, and hold onto it and the related drawable object as little as possible. Release it as soon as you finish with it. For more information, see [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// View for rendering metal content
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -446,9 +493,14 @@ impl MTKView {
 }
 
 extern_protocol!(
-    /// Allows an object to render into the view and respond to resize events
+    /// Methods for responding to a MetalKit view’s drawing and resizing events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkviewdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// You can set an object that implements the [`MTKViewDelegate`](https://developer.apple.com/documentation/metalkit/mtkviewdelegate) protocol as a [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) object’s delegate. Use a delegate to provide a drawing method to a [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) object and respond to rendering events without subclassing the [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) class.
+    ///
+    ///
+    /// Allows an object to render into the view and respond to resize events
     pub unsafe trait MTKViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]

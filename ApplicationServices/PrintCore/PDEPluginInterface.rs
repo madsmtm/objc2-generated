@@ -16,8 +16,6 @@ extern_protocol!(
     /// of printer panel needed (page setup or print dialog) as well as
     /// the current printer. It can use this information to determine which
     /// PDEPanels should be created.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pdeplugin?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait PDEPlugIn: NSObjectProtocol {
         #[cfg(feature = "objc2-foundation")]
@@ -79,8 +77,6 @@ extern_protocol!(
     /// A print dialog plugin should have an instance implementing methods
     /// from the PDEPanel protocol. Each such instance handles a single
     /// print dialog panel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pdepanel?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait PDEPanel: NSObjectProtocol {
         /// The panel should complete any final preperations it needs
@@ -295,8 +291,6 @@ extern_protocol!(
     /// to query the print system for relevant information. The PDEPlugin can
     /// pass the instance implementing PDEPlugInCallbackProtocol to PDEPanels
     /// as needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pdeplugincallbackprotocol?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait PDEPlugInCallbackProtocol {
         #[cfg(feature = "PMDefinitions")]

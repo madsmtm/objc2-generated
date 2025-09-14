@@ -6,161 +6,213 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// No padding will be used when encrypting or decrypting.
     /// Indicates that no padding will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingnonekey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingNoneKey: &'static CFString;
 }
 
 extern "C" {
+    /// PKCS1 padding will be used when encrypting or decrypting.
     /// Indicates that PKCS1 padding will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingpkcs1key?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingPKCS1Key: &'static CFString;
 }
 
 extern "C" {
+    /// PKCS5 padding will be used when encrypting or decrypting.
     /// Indicates that PKCS5 padding will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingpkcs5key?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingPKCS5Key: &'static CFString;
 }
 
 extern "C" {
+    /// PKCS7 padding will be used when encrypting or decrypting.
     /// Indicates that PKCS7 padding will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingpkcs7key?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingPKCS7Key: &'static CFString;
 }
 
 extern "C" {
-    /// Indicates that PKCS7 padding will be used when encrypting or decrypting.
+    /// PKCS7 padding will be used when encrypting or decrypting.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingoaepkey?language=objc)
+    /// ## Discussion
+    ///
+    /// When using this padding type, consider also setting the [`kSecOAEPMessageLengthAttributeName`](https://developer.apple.com/documentation/security/ksecoaepmessagelengthattributename), [`kSecOAEPEncodingParametersAttributeName`](https://developer.apple.com/documentation/security/ksecoaepencodingparametersattributename), and [`kSecOAEPMGF1DigestAlgorithmAttributeName`](https://developer.apple.com/documentation/security/ksecoaepmgf1digestalgorithmattributename) attributes.
+    ///
+    ///
+    /// Indicates that PKCS7 padding will be used when encrypting or decrypting.
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingOAEPKey: &'static CFString;
 }
 
 extern "C" {
+    /// No mode will be used when encrypting or decrypting.
     /// Indicates that no mode will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodenonekey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeNoneKey: &'static CFString;
 }
 
 extern "C" {
+    /// ECB mode will be used when encrypting or decrypting.
     /// Indicates that ECB mode will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodeecbkey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeECBKey: &'static CFString;
 }
 
 extern "C" {
+    /// CBC mode will be used when encrypting or decrypting.
     /// Indicates that CBC mode will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodecbckey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeCBCKey: &'static CFString;
 }
 
 extern "C" {
+    /// CFB mode will be used when encrypting or decrypting.
     /// Indicates that CFB mode will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodecfbkey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeCFBKey: &'static CFString;
 }
 
 extern "C" {
+    /// OFB mode will be used when encrypting or decrypting.
     /// Indicates that OFB mode will be used when encrypting or decrypting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecmodeofbkey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecModeOFBKey: &'static CFString;
 }
 
 extern "C" {
+    /// The encryption key for the transform.
     /// This attribute holds the encryption key for the transform. (ReadOnly)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencryptkey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncryptKey: &'static CFString;
 }
 
 extern "C" {
+    /// The kind of padding to use.
+    ///
+    /// ## Discussion
+    ///
+    /// If you do not supply a value for this key, an appropriate value will be supplied for you. See [Padding Types](https://developer.apple.com/documentation/security/transform-attributes#padding-types) for a list of valid values.
+    ///
+    ///
     /// Key for setting padding.
     ///
     /// This key is optional.  If you do not supply a value for this key,
     /// an appropriate value will be supplied for you.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecpaddingkey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecPaddingKey: &'static CFString;
 }
 
 extern "C" {
+    /// The setting for an initialization vector.
+    ///
+    /// ## Discussion
+    ///
+    /// The key’s associated value is an initialization vector. Provide random bytes for this value—for example, created by calling the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) method—unless your specification requires something else. The number of bytes in the vector should match the block size of the underlying block cipher. For example, use 16 bytes for AES encryption.
+    ///
+    /// If you don’t supply a value for this key, any operations that require an initialization vector use a value of zero by default, which can compromise the security of your encryption.
+    ///
+    ///
     /// Key for setting an initialization vector.
     ///
     /// This key is optional.  If you do not supply a
     /// value for this key, an appropriate value will be supplied for you.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecivkey?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecIVKey: &'static CFString;
 }
 
 extern "C" {
+    /// The encryption mode.
+    ///
+    /// ## Discussion
+    ///
+    /// If you do not supply this key, an appropriate value will be supplied for you. See [Encryption Modes](https://developer.apple.com/documentation/security/transform-attributes#encryption-modes) for a list of possible values.
+    ///
+    ///
     /// Specifies the encryption mode.
     ///
     /// This key is optional.  If you do not supply this key,
     /// an appropriate value will be supplied for you.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencryptionmode?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncryptionMode: &'static CFString;
 }
 
 extern "C" {
+    /// The OAEP message length.
+    ///
+    /// ## Discussion
+    ///
+    /// Optionally set the value to a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) indicating a specific message size when the [`kSecPaddingKey`](https://developer.apple.com/documentation/security/ksecpaddingkey) attribute is set to [`kSecPaddingOAEPKey`](https://developer.apple.com/documentation/security/ksecpaddingoaepkey). If you don’t set this attribute, the minimum padding is used by default.
+    ///
+    /// This attribute is ignored when padding is not set to OAEP.
+    ///
+    ///
     /// Specifies the OAEP message length.
     ///
     /// This should be set to a CFNumberRef when the padding is set to OAEP,
     /// and a specific messages size is desired.   If unset the minimum padding
     /// will be added.   It is ignored when the padding mode is not OAEP.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecoaepmessagelengthattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecOAEPMessageLengthAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The OAEP encoding parameters.
+    ///
+    /// ## Discussion
+    ///
+    /// Set this value to a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object when the [`kSecPaddingKey`](https://developer.apple.com/documentation/security/ksecpaddingkey) attribute is set to [`kSecPaddingOAEPKey`](https://developer.apple.com/documentation/security/ksecpaddingoaepkey). If you don’t set this attribute, a zero length data object is used by default.
+    ///
+    /// This attribute is ignored when padding is not set to OAEP.
+    ///
+    ///
     /// Specifies the OAEP encoding paramaters
     ///
     /// This should be set to a CFDataRef when the padding is set to OAEP.
     /// If unset a zero length CFDataRef is used.   It is ignored by non
     /// OAEP padding modes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecoaepencodingparametersattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecOAEPEncodingParametersAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The OAEP MGF1 digest algorithm.
+    ///
+    /// ## Discussion
+    ///
+    /// Set this value to one of the digest algorithms listed in [Digest Types](https://developer.apple.com/documentation/security/transform-attributes#digest-types) when the [`kSecPaddingKey`](https://developer.apple.com/documentation/security/ksecpaddingkey) attribute is set to [`kSecPaddingOAEPKey`](https://developer.apple.com/documentation/security/ksecpaddingoaepkey). If you don’t set this attribute, [`kSecDigestSHA1`](https://developer.apple.com/documentation/security/ksecdigestsha1) is used by default.
+    ///
+    /// This attribute is ignored when padding is not set to OAEP.
+    ///
+    ///
     /// Specifies the OAEP MGF1 digest algorithm.
     ///
     /// This should be set to a digest algorithm when the padding is set to OAEP.
     /// If unset SHA1 is used.   It is ifnored by non OAEP padding modes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecoaepmgf1digestalgorithmattributename?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecOAEPMGF1DigestAlgorithmAttributeName: &'static CFString;
 }
 
+/// Creates an encryption transform object.
+///
+/// Parameters:
+/// - keyRef: The key for the encryption operation
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `nil` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which encrypts data.
+///
+///
 /// Creates an encryption SecTransform  object.
 ///
 /// Parameter `keyRef`: The key for the encryption operation
@@ -179,8 +231,6 @@ extern "C" {
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secencrypttransformcreate(_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -199,6 +249,25 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Creates a decryption transform object.
+///
+/// Parameters:
+/// - keyRef: The key for the operation
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `NULL` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `nil` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which decrypts data.
+///
+///
 /// Creates an encryption SecTransform  object.
 ///
 /// Parameter `keyRef`: The key for the operation
@@ -217,8 +286,6 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdecrypttransformcreate(_:_:)?language=objc)
 #[cfg(all(feature = "SecBase", feature = "SecTransform"))]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -237,11 +304,16 @@ pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns the unique identifier of the opaque type to which a decryption transform belongs.
+///
+/// ## Return Value
+///
+/// A value that identifies the opaque type of a [`SecTransformRef`](https://developer.apple.com/documentation/security/sectransform) object meant for decryption.
+///
+///
 /// Returns the CFTypeID for a decrypt transform.
 ///
 /// Returns: the CFTypeID
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdecrypttransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecDecryptTransformGetTypeID() -> CFTypeID {
@@ -251,11 +323,16 @@ pub extern "C-unwind" fn SecDecryptTransformGetTypeID() -> CFTypeID {
     unsafe { SecDecryptTransformGetTypeID() }
 }
 
+/// Returns the unique identifier of the opaque type to which an encryption transform belongs.
+///
+/// ## Return Value
+///
+/// A value that identifies the opaque type of a [`SecTransformRef`](https://developer.apple.com/documentation/security/sectransform) object meant for encryption.
+///
+///
 /// Returns the CFTypeID for a decrypt transform.
 ///
 /// Returns: the CFTypeID
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secencrypttransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecEncryptTransformGetTypeID() -> CFTypeID {

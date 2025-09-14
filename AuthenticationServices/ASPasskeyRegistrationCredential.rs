@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredential?language=objc)
+    /// A passkey registration credential.
+    ///
+    /// ## Overview
+    ///
+    /// Create a passkey registration credential to provide a response to a passkey registration request from your credential provider extension. Call [`completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:`](https://developer.apple.com/documentation/authenticationservices/ascredentialproviderextensioncontext/completeregistrationrequest(using:completionhandler:)), passing your passkey registration credential.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyRegistrationCredential;

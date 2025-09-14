@@ -7,9 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// struct containing arguments for intersection function buffers.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionbufferarguments?language=objc)
+/// ## Overview
+///
+/// Struct containing arguments for intersection function buffers.
+///
+///
+/// struct containing arguments for intersection function buffers.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLIntersectionFunctionBufferArguments {
@@ -34,78 +38,95 @@ unsafe impl RefEncode for MTLIntersectionFunctionBufferArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants for specifying different types of custom intersection functions.
+///
+/// ## Overview
+///
+/// For more information on declaring intersection functions in MSL, see [Metal Shading Language Specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf).
+///
+///
 /// Signature defining what data is provided to an intersection function. The signature
 /// must match across the shading language declaration of the intersection function table,
 /// intersection functions in the table, and the intersector using the table.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIntersectionFunctionSignature(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLIntersectionFunctionSignature: NSUInteger {
+/// A constant indicating that the function uses the default signature.
 /// No signature
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/mtlintersectionfunctionsignaturenone?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureNone")]
         const None = 0;
+/// A flag indicating that function signature uses instancing.
+///
+/// ## Discussion
+///
+/// The corresponding MSL function must contain the `instancing` tag in its declaration.
+///
+///
 /// The intersection functions can read the built-in instance_id as described in
 /// the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/instancing?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureInstancing")]
         const Instancing = 1<<0;
+/// A flag indicating that function signature uses triangle data.
+///
+/// ## Discussion
+///
+/// The corresponding MSL function must contain the `triangle_data` tag in its declaration.
+///
+///
 /// The triangle intersection functions can read the built-in barycentric_coord
 /// and front_facing as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/triangledata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureTriangleData")]
         const TriangleData = 1<<1;
+/// A flag indicating that function signature uses world space data.
+///
+/// ## Discussion
+///
+/// The corresponding MSL function must contain the `world_space_data` tag in its declaration.
+///
+///
 /// The intersection functions can query world_space_origin and
 /// world_space_direction as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/worldspacedata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureWorldSpaceData")]
         const WorldSpaceData = 1<<2;
 /// The intersection functions may be called from intersectors using the
 /// instance_motion intersection tag as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/instancemotion?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureInstanceMotion")]
         const InstanceMotion = 1<<3;
 /// The intersection functions can query time, motion_start_time,
 /// motion_end_time and key_frame_count as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/primitivemotion?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignaturePrimitiveMotion")]
         const PrimitiveMotion = 1<<4;
 /// The intersection functions may be called from intersectors using the
 /// extended_limits intersection tag as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/extendedlimits?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureExtendedLimits")]
         const ExtendedLimits = 1<<5;
 /// The intersection functions may be called from intersectors using the
 /// max_levels intersection tag as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/maxlevels?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureMaxLevels")]
         const MaxLevels = 1<<6;
 /// The curve intersection functions can read the built-in curve_parameter
 /// as described in the Metal Shading Language Guide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/curvedata?language=objc)
         #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
         const CurveData = 1<<7;
+///
+/// ## Discussion
+///
 /// The intersection function will be used with intersection function buffers
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/intersectionfunctionbuffer?language=objc)
+///
+/// The intersection function will be used with intersection function buffers
         #[doc(alias = "MTLIntersectionFunctionSignatureIntersectionFunctionBuffer")]
         const IntersectionFunctionBuffer = 1<<8;
+///
+/// ## Discussion
+///
 /// The intersection function uses the intersection function buffer user_data pointer
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionsignature/userdata?language=objc)
+///
+/// The intersection function uses the intersection function buffer user_data pointer
         #[doc(alias = "MTLIntersectionFunctionSignatureUserData")]
         const UserData = 1<<9;
     }
@@ -120,7 +141,7 @@ unsafe impl RefEncode for MTLIntersectionFunctionSignature {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctiontabledescriptor?language=objc)
+    /// A specification of how to create an intersection function table.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIntersectionFunctionTableDescriptor;
@@ -179,7 +200,21 @@ impl DefaultRetained for MTLIntersectionFunctionTableDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctiontable?language=objc)
+    /// A table of intersection functions that Metal calls to perform ray-tracing intersection tests.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol yourself. Instead create an [`MTLIntersectionFunctionTableDescriptor`](https://developer.apple.com/documentation/metal/mtlintersectionfunctiontabledescriptor) instance and configure its properties. Then call the appropriate method on the pipeline state that you want to use this table with:
+    ///
+    /// - Compute pipeline: [`newIntersectionFunctionTableWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate/makeintersectionfunctiontable(descriptor:))
+    ///
+    /// - Render pipeline: [`newIntersectionFunctionTableWithDescriptor:stage:`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate/makeintersectionfunctiontable(descriptor:stage:))
+    ///
+    /// If you use the same ray-tracing functions with more than one pipeline, make a separate table for each.
+    ///
+    /// Use the methods on this instance to set the table entries to point at the intersection functions, and to provide buffers as arguments for those functions. For more information about intersection functions, see [Metal Shading Language Specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf).
+    ///
+    ///
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[cfg(feature = "MTLBuffer")]

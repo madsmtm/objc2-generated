@@ -6,19 +6,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The string identifier for the tag that maps to filename extensions.
     /// The tag class for filename extensions such as
     /// `"txt".`
     /// The leading period character is not part of the filename extension and
     /// should not be included in the tag.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttagclassfilenameextension?language=objc)
     pub static UTTagClassFilenameExtension: &'static NSString;
 }
 
 extern "C" {
+    /// The string identifier for the tag that maps to MIME types.
     /// The tag class for MIME types such as
     /// `"text/plain".`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttagclassmimetype?language=objc)
     pub static UTTagClassMIMEType: &'static NSString;
 }

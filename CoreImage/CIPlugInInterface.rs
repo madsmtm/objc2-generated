@@ -6,11 +6,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// The interface for loading Core Image image units.
+    ///
+    /// ## Overview
+    ///
+    /// The principal class of an image unit—a loadable bundle containing custom Core Image filters for macOS—must support this protocol.
+    ///
+    ///
     /// This protocol defines the calls made by the host to the CIPlugIn when initializing it
     ///
     /// The principal class of a CIPlugIn must support the CIPlugInRegistration protocol
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipluginregistration?language=objc)
     pub unsafe trait CIPlugInRegistration {
         /// the plugin gets a chance to do custom initialization (like registration check ) here
         ///

@@ -11,9 +11,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// View controller that provides the standard user interface for achievements. Present modally from the top view controller.
+    /// An `GKAchievementViewController` object provides a standard user interface to display achievement progress for the local player. If the [`GKGameCenterViewController`](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller) class is available, you should use it instead.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your game must initialize a local player before you can use any Game Center classes. If there is no initialized player, your game receives a [`GKErrorNotAuthenticated`](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated) error. For more information, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To show achievements for the local player, initialize a new `GKAchievementViewController` object and set the delegate. Then present the new view controller and wait for the delegate to be called. Once the delegate is called, dismiss the view controller.
+    ///
+    /// On iOS, you present and dismiss the view controller from another view controller in your game, using the methods provided by the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class. In macOS, you use the [`GKDialogController`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller) class to present and dismiss the view controller in a window.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The `GKAchievementViewController` class is not intended to be subclassed.
+    ///
+    ///
+    /// View controller that provides the standard user interface for achievements. Present modally from the top view controller.
     #[unsafe(super(GKGameCenterViewController, NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
@@ -138,9 +157,8 @@ impl GKAchievementViewController {
 }
 
 extern_protocol!(
+    /// An object implementing the [`GKAchievementViewControllerDelegate`](https://developer.apple.com/documentation/gamekit/gkachievementviewcontrollerdelegate) protocol is called when the user dismisses the achievements view controller. Typically, this protocol is implemented by the object in your game that originally displayed the achievements user interface.
     /// Optional delegate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementviewcontrollerdelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKAchievementViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]

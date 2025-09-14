@@ -8,25 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The key to access the match offset property of a matched media item.
     /// How far in seconds is this match from the start of the reference audio
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/matchoffset?language=objc)
     #[cfg(feature = "SHMediaItem")]
     pub static SHMediaItemMatchOffset: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the frequency skew property of a matched media item.
     /// How much the match differs in frequency from reference material
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/frequencyskew?language=objc)
     #[cfg(feature = "SHMediaItem")]
     pub static SHMediaItemFrequencySkew: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/confidence?language=objc)
+    /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
     #[cfg(feature = "SHMediaItem")]
     pub static SHMediaItemConfidence: &'static SHMediaItemProperty;
 }
@@ -34,9 +31,14 @@ extern "C" {
 extern_class!(
     /// An object that represents the metadata for a matched reference signature.
     ///
-    /// To access properties for custom media items, use subscripting. For more information, see ``SHMediaItem``.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmatchedmediaitem?language=objc)
+    /// To access properties for custom media items, use subscripting. For more information, see [`SHMediaItem`](https://developer.apple.com/documentation/shazamkit/shmediaitem).
+    ///
+    ///
+    /// An object that represents the metadata for a matched reference signature.
+    ///
+    /// To access properties for custom media items, use subscripting. For more information, see ``SHMediaItem``.
     #[unsafe(super(SHMediaItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SHMediaItem")]

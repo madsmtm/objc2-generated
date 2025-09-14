@@ -5,6 +5,33 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Enables a helper executable in the main app-bundle directory.
+///
+/// Parameters:
+/// - identifier: The identifier of the helper executable bundle.
+///
+/// - enabled: A Boolean value that represents the state of the helper executable. This value is effective only for the currently logged-in user. If [`true`](https://developer.apple.com/documentation/swift/true), the helper tool executable immediately (and upon subsequent logins) and keeps running. If [`false`](https://developer.apple.com/documentation/swift/false), the helper executable stops.
+///
+///
+/// ## Return Value
+///
+/// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the requested change has taken effect.
+///
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  To enable or disable `LoginItems` in macOS 13 and later, use the [`registerAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/register()) and [`unregisterAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/unregister()) methods instead.
+///
+///
+///
+/// </div>
+/// The build system places helper executables in the app’s bundle in the `Contents/Library/LoginItems` directory.
+///
+///
 /// Enable a helper application located in the main application bundle's
 /// Contents/Library/LoginItems directory.
 ///
@@ -25,8 +52,6 @@ use crate::*;
 /// # Safety
 ///
 /// `identifier` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smloginitemsetenabled(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Please use SMAppService instead"]
 #[inline]

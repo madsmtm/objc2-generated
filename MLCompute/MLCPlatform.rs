@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A utility class for setting global properties in the framework.
     /// Utility class to set MLCompute global properties
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcplatform?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

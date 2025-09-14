@@ -9,8 +9,6 @@ use crate::*;
 
 extern_class!(
     /// Methods in this class allow the host app to interact with their Mail extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meextensionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEExtensionManager;

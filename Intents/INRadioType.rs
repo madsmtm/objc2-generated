@@ -4,34 +4,34 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype?language=objc)
+/// Constants indicating the type of radio.
 // NS_ENUM
 #[deprecated = "INRadioType is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRadioType(pub NSInteger);
 impl INRadioType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype/unknown?language=objc)
+    /// An unknown radio type.
     #[doc(alias = "INRadioTypeUnknown")]
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype/am?language=objc)
+    /// AM radio.
     #[doc(alias = "INRadioTypeAM")]
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const AM: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype/fm?language=objc)
+    /// FM radio.
     #[doc(alias = "INRadioTypeFM")]
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const FM: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype/hd?language=objc)
+    /// High-definition radio.
     #[doc(alias = "INRadioTypeHD")]
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const HD: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype/satellite?language=objc)
+    /// Satellite radio.
     #[doc(alias = "INRadioTypeSatellite")]
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const Satellite: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiotype/dab?language=objc)
+    /// Digital audio broadcasting.
     #[doc(alias = "INRadioTypeDAB")]
     #[deprecated = "INRadioType is deprecated. There is no replacement."]
     pub const DAB: Self = Self(5);

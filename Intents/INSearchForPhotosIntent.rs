@@ -10,7 +10,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintent?language=objc)
+    /// A request for the list of photos that match the specified criteria.
+    ///
+    /// ## Overview
+    ///
+    /// The system creates an [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent) object when the user asks to search for photos in an app. The intent object contains the parameters to use during the search, including the possible name of a photo album, the people in the photos, or the location of the photos. Use this intent object to validate the search parameters and to begin the search process. When performing the search, use only the provided parameters and ignore any that have no values.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSearchForPhotosIntentHandling`](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling) protocol. Your handler should confirm the request and create an [`INSearchForPhotosIntentResponse`](https://developer.apple.com/documentation/intents/insearchforphotosintentresponse) object with the results of the search. For successful searches, Siri offers the user a way to launch your app and see the results.
+    ///
+    /// For a list of other intents in the photos domain, see [`INPhotosDomainHandling`](https://developer.apple.com/documentation/intents/inphotosdomainhandling).
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -135,11 +150,18 @@ impl INSearchForPhotosIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for searching the user’s photos.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSearchForPhotosIntentHandling`](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling) protocol to resolve, confirm, and handle requests to search the photos in your app. Adopt this protocol in an object of your Intents extension that’s capable of performing the search and determining the number of results. Siri doesn’t display the photos found during the search. After a successful search, Siri launches your app to display the photos.
+    ///
+    /// Siri delivers an [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent) object to your handler when the user asks to search their photos. The provided intent object contains the parameters to use when searching for the photos. Use the methods of this protocol to resolve the search parameters, to perform the search, and to return the number of photos that match the criteria.
+    ///
+    ///
     /// Protocol to declare support for handling an INSearchForPhotosIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling?language=objc)
     #[deprecated = "INSearchForPhotosIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSearchForPhotosIntentHandling: NSObjectProtocol {
         #[cfg(all(

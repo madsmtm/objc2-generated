@@ -12,52 +12,52 @@ use objc2_image_io::*;
 
 use crate::*;
 
+/// A structure that defines the types of segmentation matte images that you can capture along with the primary image.
 /// AVSemanticSegmentationMatteType string constants
 ///
 ///
 /// AVSemanticSegmentationMatteType string constants describe specific types of semantic segmentation matting images that may be captured and stored along with a primary image and may be used to improve the rendering of various effects on that image.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVSemanticSegmentationMatteType = NSString;
 
 extern "C" {
+    /// A matting image that segments the skin from all people in the visible field of view of an image.
     /// A matting image segmenting all skin from all persons in the visible field-of-view of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/skin?language=objc)
     pub static AVSemanticSegmentationMatteTypeSkin: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
+    /// A matting image that segments the hair from all people in the visible field of view of an image.
     /// A matting image segmenting all hair from all persons in the visible field-of-view of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/hair?language=objc)
     pub static AVSemanticSegmentationMatteTypeHair: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
+    /// A matting image that segments the teeth from all people in the visible field of view of an image.
     /// A matting image segmenting all teeth from all persons in the visible field-of-view of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/teeth?language=objc)
     pub static AVSemanticSegmentationMatteTypeTeeth: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
+    /// A matting image that segments eyeglasses and sunglasses from all people in the visible field of view of an image.
     /// A matting image segmenting all glasses ( e.g. eyeglasses, sunglasses ) from all persons wearing glasses in the visible field-of-view of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/glasses?language=objc)
     pub static AVSemanticSegmentationMatteTypeGlasses: &'static AVSemanticSegmentationMatteType;
 }
 
 extern_class!(
+    /// An object that wraps a matting image for a particular semantic segmentation.
+    ///
+    /// ## Overview
+    ///
+    /// The matting image stores its pixel data as [CVPixelBuffer](https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e) objects in [`kCVPixelFormatType_OneComponent8`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_onecomponent8) format. The image file contains the semantic segmentation matte as an auxiliary image, accessible using the ImageIO framework’s [`CGImageSourceCopyAuxiliaryDataInfoAtIndex`](https://developer.apple.com/documentation/imageio/cgimagesourcecopyauxiliarydatainfoatindex(_:_:_:)) function.
+    ///
+    ///
     /// An object wrapping a matting image for a particular semantic segmentation.
     ///
     ///
     /// The pixel data in the matting image is represented in CVPixelBuffers as kCVPixelFormatType_OneComponent8 ('L008'). It is stored in image files as an auxiliary image, accessible using CGImageSourceCopyAuxiliaryDataInfoAtIndex using data types defined in
     /// <ImageIO
     /// /CGImageProperties.h>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSemanticSegmentationMatte;

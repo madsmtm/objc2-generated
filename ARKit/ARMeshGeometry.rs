@@ -12,9 +12,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A container for vector data of a geometry.
+    /// Mesh data in a buffer-based array.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometrysource?language=objc)
+    /// ## Overview
+    ///
+    /// Mesh-anchor geometry ([`ARMeshGeometry`](https://developer.apple.com/documentation/arkit/armeshgeometry)) uses geometry sources to hold 3D data like vertices, and normals, in an efficent, array-like format. A Metal buffer wraps the data, and other properties specify  how to interpret that data.
+    ///
+    /// In the case that [`componentsPerVector`](https://developer.apple.com/documentation/arkit/argeometrysource/componentspervector) is greater than 1, the element type of the geometry-source array is itself a sequence (pairs, triplets, and so on).
+    ///
+    ///
+    /// A container for vector data of a geometry.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -124,9 +131,14 @@ impl ARGeometrySource {
     );
 }
 
-/// The primitive that defines how vertices are connected.
+/// The kind of connection between vertices.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometryprimitivetype?language=objc)
+/// ## Overview
+///
+/// When you enable [`sceneReconstruction`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/scenereconstruction) on a world-tracking configuration, ARKit provies a wireframe mesh that models the shape of the real world using a collection of connected vertices. ARKit uses [`ARGeometryPrimitiveType`](https://developer.apple.com/documentation/arkit/argeometryprimitivetype) to indicate how a particular property of that mesh is interpreted. For example, a mesh geometry’s [`faces`](https://developer.apple.com/documentation/arkit/armeshgeometry/faces) property specifies that each face within the geometry is of type [`ARGeometryPrimitiveTypeTriangle`](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/triangle).
+///
+///
+/// The primitive that defines how vertices are connected.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -134,14 +146,12 @@ impl ARGeometrySource {
 pub struct ARGeometryPrimitiveType(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeometryPrimitiveType {
+    /// A line segment in which a line connects two vertices.
     /// The geometry element is a sequence of line segments, where each line segment is described by two new vertices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/line?language=objc)
     #[doc(alias = "ARGeometryPrimitiveTypeLine")]
     pub const Line: Self = Self(0);
+    /// Three vertices that connect to form a triangle.
     /// The geometry element is a sequence of triangles, where each triangle is described by three new vertices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/triangle?language=objc)
     #[doc(alias = "ARGeometryPrimitiveTypeTriangle")]
     pub const Triangle: Self = Self(1);
 }
@@ -158,9 +168,24 @@ unsafe impl RefEncode for ARGeometryPrimitiveType {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A container for index data describing how vertices connect to define a geometry.
+    /// A container for index data, such as vertex indices of a face.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeometryelement?language=objc)
+    /// ## Overview
+    ///
+    /// [`ARMeshGeometry`](https://developer.apple.com/documentation/arkit/armeshgeometry) uses geometry-elements to store face data (see [`faces`](https://developer.apple.com/documentation/arkit/armeshgeometry/faces)). Each face is defined by the primitive type, for example, [`ARGeometryPrimitiveTypeTriangle`](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/triangle).
+    ///
+    /// To demonstrate, an [`ARMeshGeometry`](https://developer.apple.com/documentation/arkit/armeshgeometry) instance with two triangle-type faces results in the following configuration:
+    ///
+    /// - `faces` [`count`](https://developer.apple.com/documentation/arkit/argeometryelement/count) `= 2`
+    ///
+    /// - `faces` [`indexCountPerPrimitive`](https://developer.apple.com/documentation/arkit/argeometryelement/indexcountperprimitive) `= 3` (because [`primitiveType`](https://developer.apple.com/documentation/arkit/argeometryelement/primitivetype) is [`ARGeometryPrimitiveTypeTriangle`](https://developer.apple.com/documentation/arkit/argeometryprimitivetype/triangle))
+    ///
+    /// - `faces` [`bytesPerIndex`](https://developer.apple.com/documentation/arkit/argeometryelement/bytesperindex) `= 4` (because vertex indices are the type [`UInt32`](https://developer.apple.com/documentation/swift/uint32))
+    ///
+    /// - The buffer’s total size in bytes `=` [`count`](https://developer.apple.com/documentation/arkit/argeometryelement/count) `*` [`indexCountPerPrimitive`](https://developer.apple.com/documentation/arkit/argeometryelement/indexcountperprimitive) `*` [`bytesPerIndex`](https://developer.apple.com/documentation/arkit/argeometryelement/bytesperindex) (which in this case, is `2 * 3 * 4 = 24` bytes)
+    ///
+    ///
+    /// A container for index data describing how vertices connect to define a geometry.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -262,9 +287,16 @@ impl ARGeometryElement {
     );
 }
 
-/// A value describing the classification of a mesh face.
+/// Enumeration of different classes of real-world objects that ARKit can identify.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification?language=objc)
+/// ## Overview
+///
+/// When you enable [`sceneReconstruction`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/scenereconstruction) on a world-tracking configuration, ARKit provides several mesh anchors ([`ARMeshAnchor`](https://developer.apple.com/documentation/arkit/armeshanchor)) that collectively estimate the shape of the physical environment. Within that model of the real world, ARKit may identify specific objects, like seats, windows, tables, or walls. ARKit shares that information by exposing one or more [`ARMeshClassification`](https://developer.apple.com/documentation/arkit/armeshclassification) instances in a mesh’s [`geometry`](https://developer.apple.com/documentation/arkit/armeshanchor/geometry) property.
+///
+/// For a sample app that demonstrates mesh classification, see [Visualizing and interacting with a reconstructed scene](https://developer.apple.com/documentation/arkit/visualizing-and-interacting-with-a-reconstructed-scene).
+///
+///
+/// A value describing the classification of a mesh face.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -272,28 +304,28 @@ impl ARGeometryElement {
 pub struct ARMeshClassification(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARMeshClassification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/none?language=objc)
+    /// A face ARKit can’t classify.
     #[doc(alias = "ARMeshClassificationNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/wall?language=objc)
+    /// The face is a part of a real-world wall.
     #[doc(alias = "ARMeshClassificationWall")]
     pub const Wall: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/floor?language=objc)
+    /// The face is a part of a real-world floor.
     #[doc(alias = "ARMeshClassificationFloor")]
     pub const Floor: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/ceiling?language=objc)
+    /// The face is a part of a real-world ceiling.
     #[doc(alias = "ARMeshClassificationCeiling")]
     pub const Ceiling: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/table?language=objc)
+    /// The face is a part of a real-world table.
     #[doc(alias = "ARMeshClassificationTable")]
     pub const Table: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/seat?language=objc)
+    /// The face is a part of a real-world seat.
     #[doc(alias = "ARMeshClassificationSeat")]
     pub const Seat: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/window?language=objc)
+    /// The face is a part of a real-world window.
     #[doc(alias = "ARMeshClassificationWindow")]
     pub const Window: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshclassification/door?language=objc)
+    /// The face is a part of a real-world door.
     #[doc(alias = "ARMeshClassificationDoor")]
     pub const Door: Self = Self(7);
 }
@@ -310,9 +342,14 @@ unsafe impl RefEncode for ARMeshClassification {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A three-dimensional shape that represents the geometry of a mesh.
+    /// Mesh information stored in an efficient, array-based format.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armeshgeometry?language=objc)
+    /// ## Overview
+    ///
+    /// The information in this class holds the geometry data for a single anchor of the scene mesh. Each vertex in the anchor’s mesh represents one connection point. Every three-vertex combination forms a unique triangle called a _face_. Each face includes an outside-directional normal and a [`classification`](https://developer.apple.com/documentation/arkit/armeshgeometry/classification). If ARKit cannot classify a particular face, the value is `0`, –– the raw value for [`ARMeshClassificationNone`](https://developer.apple.com/documentation/arkit/armeshclassification/none).
+    ///
+    ///
+    /// A three-dimensional shape that represents the geometry of a mesh.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

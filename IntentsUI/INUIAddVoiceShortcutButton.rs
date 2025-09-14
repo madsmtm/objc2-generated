@@ -14,28 +14,26 @@ use objc2_intents::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle?language=objc)
+/// The styles for the _Add to Siri_ button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INUIAddVoiceShortcutButtonStyle(pub NSUInteger);
 impl INUIAddVoiceShortcutButtonStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/white?language=objc)
+    /// A button with a white background.
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleWhite")]
     pub const White: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/whiteoutline?language=objc)
+    /// A button with a white background, and a border outlining the button.
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleWhiteOutline")]
     pub const WhiteOutline: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/black?language=objc)
+    /// A button with a black background.
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleBlack")]
     pub const Black: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/blackoutline?language=objc)
+    /// A button with a black background, and a border outlining the button.
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleBlackOutline")]
     pub const BlackOutline: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/automatic?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleAutomatic")]
     pub const Automatic: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttonstyle/automaticoutline?language=objc)
     #[doc(alias = "INUIAddVoiceShortcutButtonStyleAutomaticOutline")]
     pub const AutomaticOutline: Self = Self(5);
 }
@@ -49,7 +47,7 @@ unsafe impl RefEncode for INUIAddVoiceShortcutButtonStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttondelegate?language=objc)
+    /// The protocol an object implements to receive notifications from the Siri Shortcut button.
     pub unsafe trait INUIAddVoiceShortcutButtonDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "INUIAddVoiceShortcutViewController",
@@ -80,7 +78,46 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton?language=objc)
+    /// A button that allows the user to add or edit a shortcut.
+    ///
+    /// ## Overview
+    ///
+    /// When the user performs an action such as placing an order for tomato soup, the app should provide the option to add the action to Siri as a shortcut. To present this option in your app, use [`INUIAddVoiceShortcutButton`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton) to display an “Add to Siri” button. Using this button makes your app consistent with other apps that support Siri Shortcuts.
+    ///
+    /// Set the [`shortcut`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/shortcut) property on the button to have it automatically update the status of the shortcut. If the user has already added the shortcut to Siri, the button displays “Added” instead of “Add” and includes the phrase that the user chose when adding the shortcut. The methods in [`INUIAddVoiceShortcutButtonDelegate`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbuttondelegate) aren’t called unless the [`shortcut`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/shortcut) property is set.
+    ///
+    /// After creating the button, assign its action to a method that displays [`INUIAddVoiceShortcutViewController`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontroller). This controller guides the user through the process of adding the shortcut to Siri.
+    ///
+    /// The code listing below adds an “Add to Siri” button to a view and lets the user record an invocation phrase
+    ///
+    /// ```swift
+    /// // Add an "Add to Siri" button to a view.
+    /// func addSiriButton(to view: UIView) {
+    ///     let button = INUIAddVoiceShortcutButton(style: .blackOutline)
+    ///     button.translatesAutoresizingMaskIntoConstraints = false
+    ///
+    ///     view.addSubview(button)
+    ///     view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+    ///     view.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
+    ///
+    ///     button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
+    /// }
+    ///
+    /// // Present the Add Shortcut view controller after the
+    /// // user taps the "Add to Siri" button.
+    /// @objc
+    /// func addToSiri(_ sender: Any) {
+    ///     if let shortcut = INShortcut(intent: orderSoupOfTheDayIntent) {
+    ///         let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+    ///         viewController.modalPresentationStyle = .formSheet
+    ///         viewController.delegate = self // Object conforming to `INUIAddVoiceShortcutViewControllerDelegate`.
+    ///         present(viewController, animated: true, completion: nil)
+    ///     }
+    /// }
+    ///
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

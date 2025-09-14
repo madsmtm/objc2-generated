@@ -7,79 +7,79 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerrordomain?language=objc)
+    /// The error domain for game sessions.
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub static GKGameSessionErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code?language=objc)
+/// Error codes for the game session domain.
 // NS_ENUM
 #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKGameSessionErrorCode(pub NSInteger);
 impl GKGameSessionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/unknown?language=objc)
+    /// The requested operation could not be completed due to an unknown error.
     #[doc(alias = "GKGameSessionErrorUnknown")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/notauthenticated?language=objc)
+    /// The requested operation could not be completed because you are not signed in to iCloud.
     #[doc(alias = "GKGameSessionErrorNotAuthenticated")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const NotAuthenticated: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/sessionconflict?language=objc)
+    /// The requested operation could not be completed because the session has been updated on the server, causing a conflict.
     #[doc(alias = "GKGameSessionErrorSessionConflict")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SessionConflict: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/sessionnotshared?language=objc)
+    /// The requested operation could not be completed because this session has not been shared with other players.
     #[doc(alias = "GKGameSessionErrorSessionNotShared")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SessionNotShared: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/connectioncancelledbyuser?language=objc)
+    /// The requested operation could not be completed because the connection to the session was cancelled.
     #[doc(alias = "GKGameSessionErrorConnectionCancelledByUser")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const ConnectionCancelledByUser: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/connectionfailed?language=objc)
+    /// The requested operation could not be completed because the session could not find other players to connect to.
     #[doc(alias = "GKGameSessionErrorConnectionFailed")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const ConnectionFailed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/sessionhasmaxconnectedplayers?language=objc)
+    /// The requested operation could not be completed because the session has reached the maximum number of connected players.
     #[doc(alias = "GKGameSessionErrorSessionHasMaxConnectedPlayers")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SessionHasMaxConnectedPlayers: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/senddatanotconnected?language=objc)
+    /// The requested operation could not be completed because you are not connected to the session.
     #[doc(alias = "GKGameSessionErrorSendDataNotConnected")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SendDataNotConnected: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/senddatanorecipients?language=objc)
+    /// The requested operation could not be completed because there are no recipients connected to session.
     #[doc(alias = "GKGameSessionErrorSendDataNoRecipients")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SendDataNoRecipients: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/senddatanotreachable?language=objc)
+    /// The requested operation could not be completed because one or more players is not reachable.
     #[doc(alias = "GKGameSessionErrorSendDataNotReachable")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SendDataNotReachable: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/sendratelimitreached?language=objc)
+    /// The requested operation could not be completed because you have reached the limits for save data request.
     #[doc(alias = "GKGameSessionErrorSendRateLimitReached")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const SendRateLimitReached: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/badcontainer?language=objc)
+    /// The requested operation could not be completed because the iCloud container is invalid.
     #[doc(alias = "GKGameSessionErrorBadContainer")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const BadContainer: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/cloudquotaexceeded?language=objc)
+    /// The requested operation could not be completed because the user’s iCloud quota would be exceeded.
     #[doc(alias = "GKGameSessionErrorCloudQuotaExceeded")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const CloudQuotaExceeded: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/networkfailure?language=objc)
+    /// The requested operation could not be completed due to an error communicating with the server.
     #[doc(alias = "GKGameSessionErrorNetworkFailure")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const NetworkFailure: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/clouddrivedisabled?language=objc)
+    /// The requested operation could not be completed because iCloud Drive has been disabled for the application.
     #[doc(alias = "GKGameSessionErrorCloudDriveDisabled")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const CloudDriveDisabled: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code/invalidsession?language=objc)
+    /// The requested operation could not be completed because the Game Session does not exist or the player is not part of the game session.
     #[doc(alias = "GKGameSessionErrorInvalidSession")]
     #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
     pub const InvalidSession: Self = Self(16);

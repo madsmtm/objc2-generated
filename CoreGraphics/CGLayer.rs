@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer?language=objc)
+/// An offscreen context for reusing content drawn with Core Graphics.
 #[doc(alias = "CGLayerRef")]
 #[repr(C)]
 pub struct CGLayer {
@@ -27,7 +27,27 @@ cf_objc2_type!(
 );
 
 impl CGLayer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/init(_:size:auxiliaryinfo:)?language=objc)
+    /// Creates a layer object that is associated with a graphics context.
+    ///
+    /// Parameters:
+    /// - context: The graphics context you want to create the layer relative to. The layer uses this graphics context as a reference for initialization.
+    ///
+    /// - size: The size, in default user space units, of the layer relative to the graphics context.
+    ///
+    /// - auxiliaryInfo: Reserved for future use. Pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CGLayer object. In Objective-C, you’re responsible for releasing this object using the function [`CGLayerRelease`](https://developer.apple.com/documentation/coregraphics/cglayerrelease) when you no longer need the layer.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After you create a [`CGLayerRef`](https://developer.apple.com/documentation/coregraphics/cglayer) object, you should reuse it whenever you can to facilitate the Core Graphics caching strategy. Core Graphics caches any objects that are reused, including [`CGLayerRef`](https://developer.apple.com/documentation/coregraphics/cglayer) objects. Objects that are reused frequently remain in the cache. In contrast, objects that are used once in a while may be moved in and out of the cache according to their frequency of use. If you don’t reuse [`CGLayerRef`](https://developer.apple.com/documentation/coregraphics/cglayer) objects, Core Graphics won’t cache them. This means that you lose an opportunity to improve the performance of your application.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -52,7 +72,17 @@ impl CGLayer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/size?language=objc)
+    /// Returns the width and height of a layer object.
+    ///
+    /// Parameters:
+    /// - layer: The layer whose width and height you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The width and height of the layer, in default user space coordinates.
+    ///
+    ///
     #[doc(alias = "CGLayerGetSize")]
     #[inline]
     pub fn size(layer: Option<&CGLayer>) -> CGSize {
@@ -62,7 +92,23 @@ impl CGLayer {
         unsafe { CGLayerGetSize(layer) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/context?language=objc)
+    /// Returns the graphics context associated with a layer object.
+    ///
+    /// Parameters:
+    /// - layer: The layer whose graphics context you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The graphics context associated with the layer.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context that’s returned is the context for the layer itself, not the context that you specified when you created the layer.
+    ///
+    ///
     #[doc(alias = "CGLayerGetContext")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -77,7 +123,21 @@ impl CGLayer {
 
 #[cfg(feature = "CGContext")]
 impl CGContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawlayerinrect?language=objc)
+    /// Draws the contents of a layer object into the specified rectangle.
+    ///
+    /// Parameters:
+    /// - context: The graphics context associated with the layer.
+    ///
+    /// - rect: The rectangle, in current user space coordinates, to draw to.
+    ///
+    /// - layer: The layer whose contents you want to draw.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The contents are scaled, if necessary, to fit into the rectangle.
+    ///
+    ///
     #[doc(alias = "CGContextDrawLayerInRect")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -92,7 +152,21 @@ impl CGContext {
         unsafe { CGContextDrawLayerInRect(context, rect, layer) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawlayeratpoint?language=objc)
+    /// Draws the contents of a CGLayer object at the specified point.
+    ///
+    /// Parameters:
+    /// - context: The graphics context associated with the layer.
+    ///
+    /// - point: The location, in current user space coordinates, to use as the origin for the drawing.
+    ///
+    /// - layer: The layer whose contents you want to draw.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling the function `CGContextDrawLayerAtPoint` is equivalent to calling the function `CGContextDrawLayerInRect` with a rectangle that has its origin at `point` and its size equal to the size of the layer.
+    ///
+    ///
     #[doc(alias = "CGContextDrawLayerAtPoint")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -113,7 +187,19 @@ impl CGContext {
 }
 
 unsafe impl ConcreteType for CGLayer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer/typeid?language=objc)
+    /// Returns the unique type identifier used for [`CGLayerRef`](https://developer.apple.com/documentation/coregraphics/cglayer) objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for CGLayer objects.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A type identifier is an integer that identifies the opaque type to which a Core Foundation object belongs. You use type IDs in various contexts, such as when you are operating on heterogeneous collections.
+    ///
+    ///
     #[doc(alias = "CGLayerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

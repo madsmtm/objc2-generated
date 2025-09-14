@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum?language=objc)
+/// These constants determine how [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) objects behave when an [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) object is tracking the mouse.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMatrixMode(pub NSUInteger);
 impl NSMatrixMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/radiomodematrix?language=objc)
+    /// Selects no more than one [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) at a time.
+    ///
+    /// ## Discussion
+    ///
+    /// Any time an [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) is selected, the previously selected [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) is unselected.
+    ///
+    ///
     #[doc(alias = "NSRadioModeMatrix")]
     pub const RadioModeMatrix: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/highlightmodematrix?language=objc)
+    /// An [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) is highlighted before it’s asked to track the mouse, then unhighlighted when it’s done tracking.
     #[doc(alias = "NSHighlightModeMatrix")]
     pub const HighlightModeMatrix: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/listmodematrix?language=objc)
+    /// [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) objects are highlighted, but don’t track the mouse.
     #[doc(alias = "NSListModeMatrix")]
     pub const ListModeMatrix: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix/mode-swift.enum/trackmodematrix?language=objc)
+    /// The [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) objects are asked to track the mouse with [`trackMouse:inRect:ofView:untilMouseUp:`](https://developer.apple.com/documentation/appkit/nscell/trackmouse(with:in:of:untilmouseup:)) whenever the cursor is inside their bounds. No highlighting is performed.
     #[doc(alias = "NSTrackModeMatrix")]
     pub const TrackModeMatrix: Self = Self(3);
 }
@@ -36,7 +42,23 @@ unsafe impl RefEncode for NSMatrixMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrix?language=objc)
+    /// A legacy interface for grouping radio buttons or other types of cells together.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Use of NSMatrix is discouraged in apps that run in macOS 10.8 and later. If you need to create a radio button group in an app that runs in macOS 10.8 and later, create instances of [NSButton](https://developer.apple.com/library/archive/technotes/tn2219/_index.html#//apple_ref/doc/uid/DTS10004624-CH1-SUBSECTION12) that each specify a button type of `NSRadioButton` and specify the same action and the same superview for each button in the group.
+    ///
+    ///
+    ///
+    /// </div>
+    /// `NSMatrix` uses flipped coordinates by default. The cells in an [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) object are numbered by row and column, each starting with 0; for example, the top left [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) would be at (0, 0), and the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) that’s second down and third across would be at (1, 2).
+    ///
+    /// The [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) class has the notion of a single selected cell, which is the cell that was most recently clicked or that was so designated by a [`selectCellAtRow:column:`](https://developer.apple.com/documentation/appkit/nsmatrix/selectcell(atrow:column:)) or [`selectCellWithTag:`](https://developer.apple.com/documentation/appkit/nsmatrix/selectcell(withtag:)) message. The selected cell is the cell chosen for action messages except for [`performClick:`](https://developer.apple.com/documentation/appkit/nscell/performclick(_:)) ([`NSCell`](https://developer.apple.com/documentation/appkit/nscell)), which is assigned to the key cell. (The key cell is generally identical to the selected cell, but can be given click focus while leaving the selected cell unchanged.) If the user has selected multiple cells, the selected cell is the one lowest and furthest to the right in the matrix of cells.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -718,7 +740,13 @@ impl NSMatrix {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrixdelegate?language=objc)
+    /// The `NSMatrixDelegate` protocol defines the optional methods implemented by delegates of `NSMatrix` objects.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol simply adopts the `NSControlTextEditingDelegate` protocol, adding no additional methods. See [`NSControlTextEditingDelegate`](https://developer.apple.com/documentation/appkit/nscontroltexteditingdelegate) for more information.
+    ///
+    ///
     #[cfg(feature = "NSControl")]
     pub unsafe trait NSMatrixDelegate: NSControlTextEditingDelegate {}
 );

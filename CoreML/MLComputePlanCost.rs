@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents the estimated cost of executing a layer or operation.
     /// A class representing the estimated cost of executing a layer/operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplancost?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlanCost;

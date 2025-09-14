@@ -9,9 +9,8 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that performs a Euclidean distance transform on an image.
     /// Perform a Euclidean Distance Transform
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageeuclideandistancetransform?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

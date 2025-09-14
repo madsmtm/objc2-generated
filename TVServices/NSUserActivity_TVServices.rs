@@ -6,15 +6,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// The activity type used to continue browsing a TV channel programming guide.
+    /// An activity for viewing your app’s channel guide.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvuseractivitytypebrowsingchannelguide?language=objc)
+    /// ## Discussion
+    ///
+    /// Support this [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) activity type in your app to display a channel guide or content browser when the user presses the Guide button on a remote. For more details on implementing a channel guide, see [Providing Channel Navigation](https://developer.apple.com/documentation/tvservices/providing-channel-navigation).
+    ///
+    ///
+    /// The activity type used to continue browsing a TV channel programming guide.
     pub static TVUserActivityTypeBrowsingChannelGuide: &'static NSString;
 }
 
 extern "C" {
     /// The activity type used to open the main screen of the TV Provider app
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvuseractivitytypebrowsingentertainmentcontent?language=objc)
+    /// The activity type used to open the main screen of the TV Provider app
     pub static TVUserActivityTypeBrowsingEntertainmentContent: &'static NSString;
 }

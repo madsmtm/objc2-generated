@@ -10,9 +10,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Provides a description of the creation and rendering of marks on a canvas.
     /// PKInk provides a description of how marks on a PKCanvas render and are created.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinkreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKInk;

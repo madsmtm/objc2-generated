@@ -15,6 +15,13 @@ use crate::*;
 extern_class!(
     /// A configuration object to initiate a frame processor and use temporal noise-filter processor.
     ///
+    /// ## Overview
+    ///
+    /// The class properties of `VTTemporalNoiseFilterConfiguration` help to identify the capabilities of temporal noise filter processor on the current platform, prior to initiating a session. You can confirm the availability of temporal noise-filter processor in the current platform by checking the [`supported`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/issupported) class property. Verify the processor’s capability to process source frames by ensuring that the dimensions are no less than [`minimumDimensions`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/minimumdimensions) and no greater than [`maximumDimensions`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/maximumdimensions). Use the instance properties such as [`frameSupportedPixelFormats`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/framesupportedpixelformats), [`sourcePixelBufferAttributes`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/sourcepixelbufferattributes), and [`destinationPixelBufferAttributes`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/destinationpixelbufferattributes) to ensure that the input and output pixel buffer formats and attributes of the processor align with the client’s specific requirements. The properties [`previousFrameCount`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/previousframecount) and [`nextFrameCount`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration/nextframecount) represent the maximum number of preceding and subsequent reference frames, used in the processing of a source frame, to achieve optimum noise-reduction quality.
+    ///
+    ///
+    /// A configuration object to initiate a frame processor and use temporal noise-filter processor.
+    ///
     /// The class properties of `VTTemporalNoiseFilterConfiguration` help to identify the capabilities of temporal noise
     /// filter processor on the current platform, prior to initiating a session. You can confirm the availability of temporal
     /// noise-filter processor in the current platform by checking the ``isSupported`` class property. Verify the processor's
@@ -24,8 +31,6 @@ extern_class!(
     /// buffer formats and attributes of the processor align with the client's specific requirements. The properties
     /// ``previousFrameCount`` and ``nextFrameCount`` represent the maximum number of preceding and subsequent reference
     /// frames, used in the processing of a source frame, to achieve optimum noise-reduction quality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -192,6 +197,13 @@ impl VTTemporalNoiseFilterConfiguration {
 extern_class!(
     /// Encapsulates the frame-level parameters necessary for processing a source frame using temporal noise-filter processor.
     ///
+    /// ## Overview
+    ///
+    /// This object is intended for sending input parameters into the `processWithParameters` method of the `VTFrameProcessor` class. Temporal noise-filter processor utilizes past and future reference frames, provided in presentation time order, to reduce noise from the source frame. The `previousFrameCount` and `nextFrameCount` properties in [`VTTemporalNoiseFilterConfiguration`](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterconfiguration) represent the maximum number of past and future reference frames that the processor can use to achieve optimum noise reduction quality. The number of reference frames provided shall depend on their availability, but at a minimum, you must provide one reference frame, either past or future. The parameter `destinationFrame` stores the output frame that the processor returns to the caller upon the successful completion of the `processWithParameters` operation.
+    ///
+    ///
+    /// Encapsulates the frame-level parameters necessary for processing a source frame using temporal noise-filter processor.
+    ///
     /// This object is intended for sending input parameters into the `processWithParameters` method of the `VTFrameProcessor`
     /// class. Temporal noise-filter processor utilizes past and future reference frames, provided in presentation time order,
     /// to reduce noise from the source frame. The `previousFrameCount` and `nextFrameCount` properties in
@@ -200,8 +212,6 @@ extern_class!(
     /// on their availability, but at a minimum, you must provide one reference frame, either past or future. The parameter
     /// `destinationFrame` stores the output frame that the processor returns to the caller upon the successful completion
     /// of the `processWithParameters` operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vttemporalnoisefilterparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

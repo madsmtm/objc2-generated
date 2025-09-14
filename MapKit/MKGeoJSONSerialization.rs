@@ -7,12 +7,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsonobject?language=objc)
+    /// Objects that the GeoJSON decoder can return.
+    ///
+    /// ## Overview
+    ///
+    /// Classes that conform to this protocol represent the types that the GeoJSON decoder can return.
+    ///
+    /// There’s no reason to create your own classes that conform to this protocol; only MapKit can define classes that the GeoJSON decoder uses.
+    ///
+    ///
     pub unsafe trait MKGeoJSONObject: NSObjectProtocol {}
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsondecoder?language=objc)
+    /// An object that decodes GeoJSON objects into MapKit types.
+    ///
+    /// ## Overview
+    ///
+    /// The GeoJSON decoder returns objects that conform to the [`MKGeoJSONObject`](https://developer.apple.com/documentation/mapkit/mkgeojsonobject) protocol.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeoJSONDecoder;
@@ -47,7 +61,15 @@ impl MKGeoJSONDecoder {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsonfeature?language=objc)
+    /// The decoded representation of a GeoJSON feature.
+    ///
+    /// ## Overview
+    ///
+    /// A feature is an object with associated geometry and optional properties in JSON that you define. MapKit exposes these optional properties, but treats them as opaque. [`MKGeoJSONFeature`](https://developer.apple.com/documentation/mapkit/mkgeojsonfeature) is one of the classes that the GeoJSON decoder ([`MKGeoJSONDecoder`](https://developer.apple.com/documentation/mapkit/mkgeojsondecoder)) can return.
+    ///
+    /// See the GeoJSON standards specification [RFC 7946](https://tools.ietf.org/html/rfc7946#section-3.2) for more information about `Feature` objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKGeoJSONFeature;

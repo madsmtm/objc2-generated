@@ -9,6 +9,25 @@ use crate::*;
 
 /// Custom render pass options you specify at encoder creation time.
 ///
+/// ## Overview
+///
+/// Use these options to implement parallel encoding of render passes across multiple CPU threads by providing these values to the `options` parameter of [`renderCommandEncoderWithDescriptor:options:`](https://developer.apple.com/documentation/metal/mtl4commandbuffer/makerendercommandencoder(descriptor:options:)) and observing these requirements:
+///
+/// 1. Commit all command encoders together in an array you provide to [`commit:count:`](https://developer.apple.com/documentation/metal/mtl4commandqueue/commit:count:) or [`commit:count:options:`](https://developer.apple.com/documentation/metal/mtl4commandqueue/commit:count:options:)
+///
+/// 2. The first command buffer in the array contains a render pass that you start with option [`MTL4RenderEncoderOptionSuspending`](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/suspending)
+///
+/// 3. The last command buffer in the array contains the same render pass that you start with option [`MTL4RenderEncoderOptionResuming`](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/resuming)
+///
+/// 4. All intermediate command buffers between the first and last in the array contain the same render pass that you start with both [`MTL4RenderEncoderOptionResuming`](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/resuming) and [`MTL4RenderEncoderOptionSuspending`](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/suspending) options.
+///
+/// 5. The sequence of render passes, in submission order, doesn’t intermix with compute, blit, acceleration structure or machine learning encoding.
+///
+/// 6. A command buffer shouldn’t contain a render pass that you start with option [`MTL4RenderEncoderOptionSuspending`](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/suspending) if it already contains a render pass that you start with option [`MTL4RenderEncoderOptionResuming`](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/resuming).
+///
+///
+/// Custom render pass options you specify at encoder creation time.
+///
 /// Use these options to implement parallel encoding of render passes across multiple CPU threads by providing these
 /// values to the `options` parameter of ``MTL4CommandBuffer/renderCommandEncoderWithDescriptor:options:`` and
 /// observing these requirements:
@@ -22,33 +41,40 @@ use crate::*;
 /// or machine learning encoding.
 /// 6. A command buffer shouldn't contain a render pass that you start with option ``MTL4RenderEncoderOptionSuspending`` if
 /// it already contains a render pass that you start with option ``MTL4RenderEncoderOptionResuming``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4RenderEncoderOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4RenderEncoderOptions: NSUInteger {
+/// Declares that this render pass doesn’t suspend nor resume.
 /// Declares that this render pass doesn't suspend nor resume.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/mtl4renderencoderoptionnone?language=objc)
         #[doc(alias = "MTL4RenderEncoderOptionNone")]
         const None = 0;
+/// Configures the render pass as _suspending_.
+///
+/// ## Discussion
+///
+/// Pass this option to [`renderCommandEncoderWithDescriptor:options:`](https://developer.apple.com/documentation/metal/mtl4commandbuffer/makerendercommandencoder(descriptor:options:)) to specify that Metal can stitch the work a render command encoder encodes with a subsequent “resuming” render command encoder.
+///
+///
 /// Configures the render pass as *suspending*.
 ///
 /// Pass this option to ``MTL4CommandBuffer/renderCommandEncoderWithDescriptor:options:`` to specify that Metal can
 /// stitch the work a render command encoder encodes with a subsequent "resuming" render command encoder.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/suspending?language=objc)
         #[doc(alias = "MTL4RenderEncoderOptionSuspending")]
         const Suspending = 1<<0;
+/// Configures the render pass to as _resuming_.
+///
+/// ## Discussion
+///
+/// Pass this option to [`renderCommandEncoderWithDescriptor:options:`](https://developer.apple.com/documentation/metal/mtl4commandbuffer/makerendercommandencoder(descriptor:options:)) to specify that Metal can stitch the work a render command encoder encodes with a prior “suspending” render command encoder.
+///
+///
 /// Configures the render pass to as *resuming*.
 ///
 /// Pass this option to ``MTL4CommandBuffer/renderCommandEncoderWithDescriptor:options:`` to specify that Metal can
 /// stitch the work a render command encoder encodes with a prior "suspending" render command encoder.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderencoderoptions/resuming?language=objc)
         #[doc(alias = "MTL4RenderEncoderOptionResuming")]
         const Resuming = 1<<1;
     }
@@ -64,8 +90,7 @@ unsafe impl RefEncode for MTL4RenderEncoderOptions {
 
 extern_protocol!(
     /// Encodes a render pass into a command buffer, including all its draw calls and configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4rendercommandencoder?language=objc)
+    /// Encodes a render pass into a command buffer, including all its draw calls and configuration.
     #[cfg(feature = "MTL4CommandEncoder")]
     pub unsafe trait MTL4RenderCommandEncoder: MTL4CommandEncoder {
         /// Sets the width of a tile for this render pass.

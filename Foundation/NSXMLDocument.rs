@@ -6,24 +6,35 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Define what type of document this is.
+/// Type used to define the kind of document content.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind?language=objc)
+/// ## Overview
+///
+/// For possible values, see doc:xmldocument/document_content_types.
+///
+///
+/// Define what type of document this is.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSXMLDocumentContentKind(pub NSUInteger);
 impl NSXMLDocumentContentKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/xml?language=objc)
+    /// The default type of document content type, which is XML.
     #[doc(alias = "NSXMLDocumentXMLKind")]
     pub const XMLKind: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/xhtml?language=objc)
+    /// The document output is XHTML.
+    ///
+    /// ## Discussion
+    ///
+    /// This is set automatically if the `NSXMLDocumentTidyHTML` option is set and NSXML detects HTML.
+    ///
+    ///
     #[doc(alias = "NSXMLDocumentXHTMLKind")]
     pub const XHTMLKind: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/html?language=objc)
+    /// Outputs empty tags in HTML without a close tag, such as `<br>`.
     #[doc(alias = "NSXMLDocumentHTMLKind")]
     pub const HTMLKind: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind/text?language=objc)
+    /// Outputs the string value of the document by extracting the string values from all text nodes.
     #[doc(alias = "NSXMLDocumentTextKind")]
     pub const TextKind: Self = Self(3);
 }
@@ -37,11 +48,58 @@ unsafe impl RefEncode for NSXMLDocumentContentKind {
 }
 
 extern_class!(
+    /// An XML document as internalized into a logical tree structure.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) object can have multiple child nodes but only one element, the root element. Any other node must be a [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) object representing a comment or a processing instruction. If you attempt to add any other kind of child node to an [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) object, such as an attribute, namespace, another document object, or an element other than the root, [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) raises an exception. If you add a valid child node and that object already has a parent, [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) raises an exception. An [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) object may also have document-global attributes, such as XML version, character encoding, referenced DTD, and MIME type.
+    ///
+    /// The initializers of the [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) class read an external source of XML, whether it be a local file or remote website, parse it, and process it into the tree representation. You can also construct an [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) programmatically. There are accessor methods for getting and setting document attributes, methods for transforming documents using XSLT, a method for dynamically validating a document, and methods for printing out the content of an [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) as XML, XHTML, HTML, or plain text.
+    ///
+    /// The [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) class is thread-safe as long as any given instance is used only in one thread.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// #### Methods to Override
+    ///
+    /// To subclass `NSXMLDocument` you need to override the primary initializer, [`initWithData:options:error:`](https://developer.apple.com/documentation/foundation/xmldocument/init(data:options:)), and the methods listed below. In most cases, you need only invoke the superclass implementation, adding any subclass-specific code before or after the invocation, as necessary.
+    ///
+    /// - [`rootElement`](https://developer.apple.com/documentation/foundation/xmldocument/rootelement())
+    ///
+    /// - [`setChildren:`](https://developer.apple.com/documentation/foundation/xmldocument/setchildren(_:))
+    ///
+    /// - [`removeChildAtIndex:`](https://developer.apple.com/documentation/foundation/xmldocument/removechild(at:))
+    ///
+    /// - [`insertChild:atIndex:`](https://developer.apple.com/documentation/foundation/xmldocument/insertchild(_:at:))
+    ///
+    /// - [`characterEncoding`](https://developer.apple.com/documentation/foundation/xmldocument/characterencoding)
+    ///
+    /// - [`characterEncoding`](https://developer.apple.com/documentation/foundation/xmldocument/characterencoding)
+    ///
+    /// - [`documentContentKind`](https://developer.apple.com/documentation/foundation/xmldocument/documentcontentkind)
+    ///
+    /// - [`documentContentKind`](https://developer.apple.com/documentation/foundation/xmldocument/documentcontentkind)
+    ///
+    /// - [`DTD`](https://developer.apple.com/documentation/foundation/xmldocument/dtd)
+    ///
+    /// - [`MIMEType`](https://developer.apple.com/documentation/foundation/xmldocument/mimetype)
+    ///
+    /// - [`standalone`](https://developer.apple.com/documentation/foundation/xmldocument/isstandalone)
+    ///
+    /// - [`version`](https://developer.apple.com/documentation/foundation/xmldocument/version)
+    ///
+    /// - [`version`](https://developer.apple.com/documentation/foundation/xmldocument/version)
+    ///
+    /// By default `NSXMLDocument` implements the `NSObject` [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method to perform a deep comparison: two `NSXMLDocument` objects are not considered equal unless they have the same name, same child nodes, same attributes, and so on. The comparison does not consider the parent node (and hence the node’s location). If you want a different standard of comparison, override `isEqual:`.
+    ///
+    /// #### Special Considerations
+    ///
+    /// Because of the architecture and data model of NSXML, when it parses and processes a source of XML it cannot know about your subclass unless you override the class method [`replacementClassForClass:`](https://developer.apple.com/documentation/foundation/xmldocument/replacementclass(for:)) to return your custom class in place of an `NSXML` class. If your custom class has no direct `NSXML` counterpart—for example, it is a subclass of `NSXMLNode` that represents CDATA sections—then you can walk the tree after it has been created and insert the new node where appropriate.
+    ///
+    ///
     /// An XML Document
     ///
     /// Note: if the application of a method would result in more than one element in the children array, an exception is thrown. Trying to add a document, namespace, attribute, or node with a parent also throws an exception. To add a node with a parent first detach or create a copy of it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

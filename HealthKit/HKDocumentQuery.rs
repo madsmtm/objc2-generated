@@ -8,9 +8,67 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A concrete subclass of HKQuery that provides an interface to retrieve documents from the Health store.
+    /// A query that returns a snapshot of all matching documents currently saved in the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumentquery?language=objc)
+    /// ## Overview
+    ///
+    /// Use an `HKDocumentQuery` object to search for documents in the HealthKit store. You can provide a predicate to filter the search results, a sort order for the returned samples, or even a limit to the number of samples returned.
+    ///
+    /// Document queries are immutable: The query’s properties are set when the query is first created. They cannot change.
+    ///
+    /// ### Executing Queries
+    ///
+    /// To create and execute a query, perform the following steps:
+    ///
+    /// 1. Create the document type by calling the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class’s [`documentTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/documenttype(foridentifier:)) method.
+    ///
+    /// 2. (optionally) Create an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) object to filter the search results.
+    ///
+    /// 3. (optionally) Create an array of [`NSSortDescriptor`](https://developer.apple.com/documentation/foundation/nssortdescriptor) objects to provide the sort order for the results.
+    ///
+    /// 4. Instantiate a new query by calling the [`initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:`](https://developer.apple.com/documentation/healthkit/hkdocumentquery/init(documenttype:predicate:limit:sortdescriptors:includedocumentdata:resultshandler:)) method.
+    ///
+    /// 5. In the results handler, handle any errors and process the results.
+    ///
+    /// Note, the query returns the results in batches and may call the results handler more than once. If the `done` parameter is set to [`false`](https://developer.apple.com/documentation/swift/false), the query is still active and will call the results handler with additional results. If the `done` parameter is set to [`true`](https://developer.apple.com/documentation/swift/true), the query is complete.
+    ///
+    /// ```swift
+    /// guard let cdaType = HKObjectType.documentType(forIdentifier: .CDA) else {
+    ///     fatalError("Unable to create a CDA document type.")
+    /// }
+    ///  
+    /// var allDocuments = [HKDocumentSample]()
+    /// let cdaQuery = HKDocumentQuery(documentType: cdaType,
+    ///                                predicate: nil,
+    ///                                limit: HKObjectQueryNoLimit,
+    ///                                sortDescriptors: nil,
+    ///                                includeDocumentData: false) {
+    ///                                 
+    ///                                 (query, resultsOrNil, done, errorOrNil) in
+    ///                                 
+    ///                                 guard let results = resultsOrNil else {
+    ///                                     if let queryError = errorOrNil {
+    ///                                         // Handle the query error here...
+    ///                                     }
+    ///                                     
+    ///                                     return
+    ///                                 }
+    ///                                 
+    ///                                 allDocuments += results
+    ///                                 
+    ///                                 if done {
+    ///                                     // the allDocuments array now contains all the samples returned by the query.
+    ///                                     // Handle the documents here...
+    ///                                 }
+    /// }
+    /// ```
+    ///
+    /// ### Subclassing Document Queries
+    ///
+    /// Like many HealthKit classes, the `HKDocumentQuery` class should not be subclassed.
+    ///
+    ///
+    /// A concrete subclass of HKQuery that provides an interface to retrieve documents from the Health store.
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

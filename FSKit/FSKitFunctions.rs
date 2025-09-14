@@ -8,8 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Creates an error object for the given POSIX error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fs_errorforposixerror(_:)?language=objc)
+/// Creates an error object for the given POSIX error code.
 #[inline]
 pub unsafe extern "C-unwind" fn fs_errorForPOSIXError(param1: c_int) -> Retained<NSError> {
     extern "C-unwind" {
@@ -21,8 +20,7 @@ pub unsafe extern "C-unwind" fn fs_errorForPOSIXError(param1: c_int) -> Retained
 }
 
 /// Creates an error object for the given Mach error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fs_errorformacherror(_:)?language=objc)
+/// Creates an error object for the given Mach error code.
 #[inline]
 pub unsafe extern "C-unwind" fn fs_errorForMachError(error_code: c_int) -> Retained<NSError> {
     extern "C-unwind" {
@@ -34,8 +32,7 @@ pub unsafe extern "C-unwind" fn fs_errorForMachError(error_code: c_int) -> Retai
 }
 
 /// Creates an error object for the given Cocoa error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fs_errorforcocoaerror(_:)?language=objc)
+/// Creates an error object for the given Cocoa error code.
 #[inline]
 pub unsafe extern "C-unwind" fn fs_errorForCocoaError(error_code: c_int) -> Retained<NSError> {
     extern "C-unwind" {

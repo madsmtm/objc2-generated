@@ -9,13 +9,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfboolean?language=objc)
+/// A PDF Boolean value.
 pub type CGPDFBoolean = c_uchar;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfinteger?language=objc)
+/// A PDF integer value.
 pub type CGPDFInteger = c_long;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfreal?language=objc)
+/// A PDF real value.
 pub type CGPDFReal = CGFloat;
 
 #[repr(C)]
@@ -30,40 +30,40 @@ unsafe impl RefEncode for CGPDFObject {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFObject", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectref?language=objc)
+/// A type that contains information about a PDF object.
 pub type CGPDFObjectRef = *mut CGPDFObject;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype?language=objc)
+/// Types of PDF object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPDFObjectType(pub i32);
 impl CGPDFObjectType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/null?language=objc)
+    /// The type for a PDF null.
     #[doc(alias = "kCGPDFObjectTypeNull")]
     pub const Null: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/boolean?language=objc)
+    /// The type for a PDF Boolean.
     #[doc(alias = "kCGPDFObjectTypeBoolean")]
     pub const Boolean: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/integer?language=objc)
+    /// The type for a PDF integer.
     #[doc(alias = "kCGPDFObjectTypeInteger")]
     pub const Integer: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/real?language=objc)
+    /// The type for a PDF real.
     #[doc(alias = "kCGPDFObjectTypeReal")]
     pub const Real: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/name?language=objc)
+    /// Type for a PDF name.
     #[doc(alias = "kCGPDFObjectTypeName")]
     pub const Name: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/string?language=objc)
+    /// The type for a PDF string.
     #[doc(alias = "kCGPDFObjectTypeString")]
     pub const String: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/array?language=objc)
+    /// Type for a PDF array.
     #[doc(alias = "kCGPDFObjectTypeArray")]
     pub const Array: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/dictionary?language=objc)
+    /// The type for a PDF dictionary.
     #[doc(alias = "kCGPDFObjectTypeDictionary")]
     pub const Dictionary: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/stream?language=objc)
+    /// The type for a PDF stream.
     #[doc(alias = "kCGPDFObjectTypeStream")]
     pub const Stream: Self = Self(9);
 }
@@ -79,7 +79,17 @@ unsafe impl RefEncode for CGPDFObjectType {
 }
 
 impl CGPDFObject {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectgettype(_:)?language=objc)
+    /// Returns the PDF type identifier of an object.
+    ///
+    /// Parameters:
+    /// - object: A PDF object. If the value if not a PDF object, the behavior is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the type of the `object` parameter. See [Abstract Types for PDF Document Content](https://developer.apple.com/documentation/coregraphics/cgpdfdocument#abstract-types-for-pdf-document-content).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -93,7 +103,33 @@ impl CGPDFObject {
         unsafe { CGPDFObjectGetType(object) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectgetvalue(_:_:_:)?language=objc)
+    /// Returns whether an object is of a given type and if it is, retrieves its value.
+    ///
+    /// Parameters:
+    /// - object: A PDF object.
+    ///
+    /// - type: A PDF object type.
+    ///
+    /// - value: If the `object` parameter is a PDF object of the specified type, then on return contains that object, otherwise the value is unspecified.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the specified object is a PDF object of the specified type, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function gets the value of the `object` parameter. If the type of `object` is equal to the type specified, then:
+    ///
+    /// - If the `value` parameter is not a null pointer, then the value of `object` is copied to `value`, and the function returns [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// - If the `value` parameter is a null pointer, then the function simply returns [`true`](https://developer.apple.com/documentation/swift/true). This allows you to test whether `object` is of the type specified.
+    ///
+    /// If the type of `object` is [`kCGPDFObjectTypeInteger`](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/integer) and `type` is equal to [`kCGPDFObjectTypeReal`](https://developer.apple.com/documentation/coregraphics/cgpdfobjecttype/real), then the value of `object` is converted to floating point, the result copied to `value`, and the function returns [`true`](https://developer.apple.com/documentation/swift/true). If none of the preceding conditions is met, returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///

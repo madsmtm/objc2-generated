@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent?language=objc)
+    /// A request for the current power level of the user’s car.
+    ///
+    /// ## Overview
+    ///
+    /// When asked for the car’s power level, Siri creates an `INGetCarPowerLevelStatusIntent` object. This intent object can contain the name of the user’s car. Use this object to provide information about the car’s current power level.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetCarPowerLevelStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling) protocol. Your handler should confirm the request and create an [`INGetCarPowerLevelStatusIntentResponse`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponse) object with the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device?" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri for their car’s power level in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive, and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "How much gas is left in my car?" }] }], [Paragraph { inline_content: [Text { text: "How far can I drive my car on the current charge?" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "我的车还剩多少油？" }] }], [Paragraph { inline_content: [Text { text: "当前电量够我开多远？" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "部車仲有幾多油" }] }], [Paragraph { inline_content: [Text { text: "以而家嘅油量，我架車仲可以行幾遠？" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "車子還剩多少油？" }] }], [Paragraph { inline_content: [Text { text: "車子電量還可以開多久？" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "部车仲有几多油" }] }], [Paragraph { inline_content: [Text { text: "我架车剩低嘅油仲可以行几远？" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "كم تبقى من الوقود في سيارتي؟" }] }], [Paragraph { inline_content: [Text { text: "إلى أي مدى يمكن أن أقود سيارتي على الطاقة الحالية؟" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Hvor meget benzin er der tilbage i min bil" }] }], [Paragraph { inline_content: [Text { text: "Hvor langt kan jeg køre på denne opladning" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Wie viel Benzin habe ich noch?" }] }], [Paragraph { inline_content: [Text { text: "Wie weit komme ich noch mit der Batterieladung meines Autos?" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "¿Cuánta gasolina me queda en el coche?" }] }], [Paragraph { inline_content: [Text { text: "¿Cuánta carga tiene el auto?" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Miten paljon autossa on bensaa jäljellä" }] }], [Paragraph { inline_content: [Text { text: "Miten pitkälle autolla pääsee nykyisellä latauksella" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "combien me reste-t-il d’essence dans ma voiture ?" }] }], [Paragraph { inline_content: [Text { text: "combien de kilomètres je peux encore parcourir" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "כמה דלק נשאר לי באוטו" }] }], [Paragraph { inline_content: [Text { text: "כמה רחוק אני יכולה לנסוע עם מצב הצמיגים הנוכחי" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Quanta benzina ho nella mia auto?" }] }], [Paragraph { inline_content: [Text { text: "Quanti chilometri posso percorrere con la mia auto?" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "この車のガソリンはどれくらい残っている?" }] }], [Paragraph { inline_content: [Text { text: "今の充電量でこの車はあとどれくらい走れる?" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "기름 얼마나 남았어?" }] }], [Paragraph { inline_content: [Text { text: "현재 충전량으로 얼마나 운전할 수 있어?" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Apakah baki petrol dalam kereta saya?" }] }], [Paragraph { inline_content: [Text { text: "Berapa jauh boleh saya pandu kereta saya pada cas semasa?" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Hvor mye bensin er det igjen på bilen min?" }] }], [Paragraph { inline_content: [Text { text: "Hvor langt kan jeg kjøre med nåværende ladning?" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Hoeveel benzine is er nog in de auto?" }] }], [Paragraph { inline_content: [Text { text: "Hoe ver kan mijn auto nog rijden?" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Quanto de combustível meu carro ainda tem?" }] }], [Paragraph { inline_content: [Text { text: "Quantos quilômetros posso dirigir com a carga atual?" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Сколько бензина осталось в моей машине?" }] }], [Paragraph { inline_content: [Text { text: "Как далеко я могу проехать на текущеи\u{306} зарядке?" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Hur mycket bensin finns det kvar i bilen?" }] }], [Paragraph { inline_content: [Text { text: "Hur långt kan jag köra på den nuvarande laddningen?" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "รถเหล\u{e37}อน\u{e49}ำม\u{e31}นเท\u{e48}าไหร\u{e48}" }] }], [Paragraph { inline_content: [Text { text: "รถเหล\u{e37}อพล\u{e31}งงานแบตเตอร\u{e35}\u{e48}ไปได\u{e49}อ\u{e35}กไกลเท\u{e48}าไหร\u{e48}" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Arabada ne kadar benzin kaldı?" }] }], [Paragraph { inline_content: [Text { text: "Arabada kalan şarjla ne kadar yol gidebilirim?" }] }]]], alignments: None, metadata: None })
+    /// Users are likely to ask for specific types of data (fuel, charge, or distance), but the intent doesn’t distinguish between these requests. Always return all the data you can from the car. For example, return the percentage of fuel remaining for a fuel-driven car, the percentage of charge remaining for an electric car, and (wherever possible) an estimated distance remaining.
+    ///
+    /// Unlike other SiriKit intents, these phrases do not always require your app’s name. Siri infers the app name when possible (for example, based on unique user vocabulary registered by your app). If necessary, Siri verifies the app’s name before launching your extension.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +95,22 @@ impl INGetCarPowerLevelStatusIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for requesting a car’s current power level.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the `INGetCarPowerLevelStatusIntentHandling` protocol to resolve, confirm, and handle requests for the current power level of one of the user’s electric vehicles. Adopt this protocol in an object of your Intents extension that can access the vehicle’s power level.
+    ///
+    /// Siri delivers an [`INGetCarPowerLevelStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent) object to your handler when the user asks for the power level of a particular vehicle. The provided intent object can contain the car’s name (if available). Maps delivers the same intent to your handler when requesting information about the electric vehicle for route planning and navigation purposes.
+    ///
+    /// During an active navigation session, Maps frequently asks for the vehicle’s power level status using `INGetCarPowerLevelStatusIntent`. When the navigation session begins, Maps may ask you to notify it about abrupt changes in the vehicle’s power level by calling the [`startSendingUpdatesForGetCarPowerLevelStatus:toObserver:`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling/startsendingupdates(for:to:)) method of your handler.
+    ///
+    /// Use the observer the method provides to deliver updates to Maps. For more information on providing updates using the observer, see [`INGetCarPowerLevelStatusIntentResponseObserver`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponseobserver).
+    ///
+    ///
     /// Protocol to declare support for handling an INGetCarPowerLevelStatusIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling?language=objc)
     pub unsafe trait INGetCarPowerLevelStatusIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INGetCarPowerLevelStatusIntentResponse",
@@ -178,7 +211,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponseobserver?language=objc)
+    /// The interface for providing updates of a vehicle’s power level.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol allows adopting objects to provide the system with an updated power level of a vehicle. You do not adopt this protocol in your own objects. Instead, the system provides an object that adopts this protocol, and you call its [`getCarPowerLevelStatusResponseDidUpdate:`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponseobserver/didupdate(getcarpowerlevelstatus:)) method to provide the vehicle’s current power level.
+    ///
+    /// When the system requests power level updates, it passes an object that conforms to this protocol to the [`startSendingUpdatesForGetCarPowerLevelStatus:toObserver:`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling/startsendingupdates(for:to:)) method of your power level status handler—your custom object that adopts the [`INGetCarPowerLevelStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling) protocol. Your handler must store a reference to this object and use it to deliver regular updates about the power level.
+    ///
+    ///
     pub unsafe trait INGetCarPowerLevelStatusIntentResponseObserver:
         NSObjectProtocol
     {

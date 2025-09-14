@@ -9,76 +9,76 @@ use objc2_audio_toolbox::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset?language=objc)
+/// Constants that represent preset audio distortions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioUnitDistortionPreset(pub NSInteger);
 impl AVAudioUnitDistortionPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/drumsbitbrush?language=objc)
+    /// A preset that represents a bit brush drums distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetDrumsBitBrush")]
     pub const DrumsBitBrush: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/drumsbufferbeats?language=objc)
+    /// A preset that represents a buffer beat drums distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetDrumsBufferBeats")]
     pub const DrumsBufferBeats: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/drumslofi?language=objc)
+    /// A preset that represents a low fidelity drums distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetDrumsLoFi")]
     pub const DrumsLoFi: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multibrokenspeaker?language=objc)
+    /// A preset that represents a broken speaker distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiBrokenSpeaker")]
     pub const MultiBrokenSpeaker: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multicellphoneconcert?language=objc)
+    /// A preset that represents a cellphone concert distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiCellphoneConcert")]
     pub const MultiCellphoneConcert: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidecimated1?language=objc)
+    /// A preset that represents a variant of the decimated distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDecimated1")]
     pub const MultiDecimated1: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidecimated2?language=objc)
+    /// A preset that represents a variant of the decimated distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDecimated2")]
     pub const MultiDecimated2: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidecimated3?language=objc)
+    /// A preset that represents a variant of the decimated distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDecimated3")]
     pub const MultiDecimated3: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidecimated4?language=objc)
+    /// A preset that represents a variant of the decimated distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDecimated4")]
     pub const MultiDecimated4: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidistortedfunk?language=objc)
+    /// A preset that represents a distorted funk distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDistortedFunk")]
     pub const MultiDistortedFunk: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidistortedcubed?language=objc)
+    /// A preset that represents a distorted cubed distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDistortedCubed")]
     pub const MultiDistortedCubed: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multidistortedsquared?language=objc)
+    /// A preset that represents a distorted squared distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiDistortedSquared")]
     pub const MultiDistortedSquared: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multiecho1?language=objc)
+    /// A preset that represents a variant of an echo distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiEcho1")]
     pub const MultiEcho1: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multiecho2?language=objc)
+    /// A preset that represents a variant of an echo distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiEcho2")]
     pub const MultiEcho2: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multiechotight1?language=objc)
+    /// A preset that represents a variant of a tight echo distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiEchoTight1")]
     pub const MultiEchoTight1: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multiechotight2?language=objc)
+    /// A preset that represents a variant of a tight echo distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiEchoTight2")]
     pub const MultiEchoTight2: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/multieverythingisbroken?language=objc)
+    /// A preset that represents an everything-is-broken distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetMultiEverythingIsBroken")]
     pub const MultiEverythingIsBroken: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/speechalienchatter?language=objc)
+    /// A preset that represents an alien chatter distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetSpeechAlienChatter")]
     pub const SpeechAlienChatter: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/speechcosmicinterference?language=objc)
+    /// A preset that represents a cosmic interference distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetSpeechCosmicInterference")]
     pub const SpeechCosmicInterference: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/speechgoldenpi?language=objc)
+    /// A preset that represents a golden pi distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetSpeechGoldenPi")]
     pub const SpeechGoldenPi: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/speechradiotower?language=objc)
+    /// A preset that represents a radio tower distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetSpeechRadioTower")]
     pub const SpeechRadioTower: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortionpreset/speechwaves?language=objc)
+    /// A preset that represents a speech wave distortion.
     #[doc(alias = "AVAudioUnitDistortionPresetSpeechWaves")]
     pub const SpeechWaves: Self = Self(21);
 }
@@ -92,9 +92,8 @@ unsafe impl RefEncode for AVAudioUnitDistortionPreset {
 }
 
 extern_class!(
+    /// An object that implements a multistage distortion effect.
     /// An AVAudioUnitEffect that implements a multi-stage distortion effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdistortion?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

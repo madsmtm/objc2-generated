@@ -13,10 +13,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A view controller that displays a new, unknown, or existing contact.
+    ///
+    /// ## Overview
+    ///
+    /// Present a `CNContactViewController` object when you want to display information about one of the user’s contacts. At creation time, you specify the type of contact you want to display: new, unknown, or existing.
+    ///
+    ///
     /// A view controller to display and edit a
     /// `CNContact.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

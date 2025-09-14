@@ -7,6 +7,23 @@ use crate::*;
 extern "C-unwind" {
     /// Increments the reference count of the specified object.
     ///
+    /// Parameters:
+    /// - obj: The object to retain. If this parameter is an Objective-C object, the function is equivalent to calling the [`retain`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobjectprotocol/1571946-retain) method of that object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The retained object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t call this function in Swift code or on types you manage using automatic reference counting (ARC).
+    ///
+    ///
+    /// Increments the reference count of the specified object.
+    ///
     /// - Parameters:
     /// - obj: The object to retain. If this parameter is an Objective-C object,
     /// the function is equivalent to calling the `retain` method of that object.
@@ -18,12 +35,21 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_retain?language=objc)
     pub fn cp_retain(obj: *mut c_void) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// Decrements the reference count of the specified object.
+    ///
+    /// Parameters:
+    /// - obj: The object to release. If this parameter is an Objective-C object, the function is equivalent to calling the [`release`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobjectprotocol/1571957-release) method of that object.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t call this function in Swift code or on types you manage using automatic reference counting (ARC).
+    ///
+    ///
     /// Decrement the reference count of the specified object.
     ///
     /// - Parameters:
@@ -36,7 +62,5 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_release?language=objc)
     pub fn cp_release(obj: *mut c_void);
 }

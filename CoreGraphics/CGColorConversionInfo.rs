@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo?language=objc)
+/// An object that describes how to convert between color spaces for use by other system services.
+///
+/// ## Overview
+///
+/// A [`CGColorConversionInfoRef`](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo) object specifies a conversion between two or more color spaces, including information about the intent of the conversion. You use color conversion objects to specify the work to be done by an [`MPSImageConversion`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion) filter, which can then perform GPU-accelerated image conversion.
+///
+///
 #[doc(alias = "CGColorConversionInfoRef")]
 #[repr(C)]
 pub struct CGColorConversionInfo {
@@ -27,7 +33,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CGColorConversionInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for a color conversion info data type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for [`CGColorConversionInfoRef`](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo).
+    ///
+    ///
     #[doc(alias = "CGColorConversionInfoGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,19 +50,19 @@ unsafe impl ConcreteType for CGColorConversionInfo {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype?language=objc)
+/// Constants describing how a color conversion uses color spaces.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorConversionInfoTransformType(pub u32);
 impl CGColorConversionInfoTransformType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype/transformfromspace?language=objc)
+    /// Specifies a color conversion from a device color space to a color profile.
     #[doc(alias = "kCGColorConversionTransformFromSpace")]
     pub const TransformFromSpace: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype/transformtospace?language=objc)
+    /// Specifies a color conversion from a color profile to a device color space.
     #[doc(alias = "kCGColorConversionTransformToSpace")]
     pub const TransformToSpace: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype/transformapplyspace?language=objc)
+    /// Specifies a color conversion between one color profile and another.
     #[doc(alias = "kCGColorConversionTransformApplySpace")]
     pub const TransformApplySpace: Self = Self(2);
 }
@@ -66,7 +78,27 @@ unsafe impl RefEncode for CGColorConversionInfoTransformType {
 }
 
 impl CGColorConversionInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/init(src:dst:)?language=objc)
+    /// Creates a conversion between two specified color spaces.
+    ///
+    /// Parameters:
+    /// - src: The source color space from which color values are to be converted.
+    ///
+    /// - dst: The destination color space to which colors are to be converted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A color conversion object, or `nil` if no conversion between the specified color spaces is allowed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The source and destination color spaces must be calibrated color spaces (that is, not device-specific or indexed color spaces).
+    ///
+    /// You can use a color conversion object to create [`MPSImageConversion`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion) filters that perform GPU-accelerated color space conversion.
+    ///
+    ///
     #[doc(alias = "CGColorConversionInfoCreate")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -84,8 +116,6 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/init(optionssrc:dst:options:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -109,8 +139,6 @@ impl CGColorConversionInfo {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/init(src:srcheadroom:dst:dstheadroom:tonemapping:options:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -154,7 +182,6 @@ impl CGColorConversionInfo {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorbufferformat?language=objc)
 #[cfg(feature = "CGImage")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -186,8 +213,6 @@ unsafe impl RefEncode for CGColorBufferFormat {
 }
 
 impl CGColorConversionInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo/convert(width:height:to:format:from:format:options:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `dst_data` must be a valid pointer.
@@ -228,12 +253,17 @@ impl CGColorConversionInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/conversionblackpointcompensation?language=objc)
+    /// An option for whether to apply black point compensation when converting between color profiles.
+    ///
+    /// ## Discussion
+    ///
+    /// ICC profiles specify how to convert the lightest level of white between color spaces, but they do not specify how black should be converted. To account for this, set a value of [`true`](https://developer.apple.com/documentation/swift/true) for this key when creating a color conversion with the [`CGColorConversionInfoCreateFromList`](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfocreatefromlist) function.
+    ///
+    ///
     pub static kCGColorConversionBlackPointCompensation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/conversiontrcsize?language=objc)
     pub static kCGColorConversionTRCSize: &'static CFString;
 }
 

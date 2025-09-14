@@ -9,16 +9,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode?language=objc)
+/// The interpolation formulas for blending between target geometries.
+///
+/// ## Overview
+///
+/// A morpher computes its current surface by summing weighted geometry elements from the base geometry and all target geometries. The position of a vertex on the surface is produced by adding the position vector of a point on the base geometry to the position vectors of the corresponding points on all target geometries. The morpher’s [`calculationMode`](https://developer.apple.com/documentation/scenekit/scnmorpher/calculationmode) property selects the formula used to calculate this sum.
+///
+/// If the mode is [`SCNMorpherCalculationModeNormalized`](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode/normalized), the position from the base geometry is weighted by one minus the sum of all target weights, as in the following formula:
+///
+/// ```objc
+/// Position = (1 - weight0 - weight1 - ...) * Base + weight0 * Target0 + weight1 * Target1 + ...
+/// ```
+///
+/// If the mode is [`SCNMorpherCalculationModeAdditive`](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode/additive), the position from the base geometry is not weighted, and SceneKit uses the following formula instead:
+///
+/// ```objc
+/// Position = Base + weight0 * Target0 + weight1 * Target1 + ...
+/// ```
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNMorpherCalculationMode(pub NSInteger);
 impl SCNMorpherCalculationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode/normalized?language=objc)
+    /// Target weights must be in the range between `0.0` and `1.0`, and the contribution of the base geometry to the morphed surface is related to the sum of target weights. This is the default mode.
     #[doc(alias = "SCNMorpherCalculationModeNormalized")]
     pub const Normalized: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmorphercalculationmode/additive?language=objc)
+    /// Target weights may take on any value, and weighted contributions for each target are added to the base geometry,
     #[doc(alias = "SCNMorpherCalculationModeAdditive")]
     pub const Additive: Self = Self(1);
 }
@@ -32,9 +50,32 @@ unsafe impl RefEncode for SCNMorpherCalculationMode {
 }
 
 extern_class!(
-    /// SCNMorpher controls the deformation of morphed geometries
+    /// An object that manages smooth transitions between a node’s base geometry and one or more target geometries.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmorpher?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/68916ebf85cf5b3fb1d8c3a2d75abf89/media-2929789%402x.png)
+    ///
+    ///
+    /// You control these transitions by associating an [`SCNMorpher`](https://developer.apple.com/documentation/scenekit/scnmorpher) object with a node using its [`morpher`](https://developer.apple.com/documentation/scenekit/scnnode/morpher) property. The morpher maintains an array of target geometries and a set of weights associated with each. When all weights are zero, the surface takes the form of the base geometry (from the node’s [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property). When you use the [`setWeight:forTargetAtIndex:`](https://developer.apple.com/documentation/scenekit/scnmorpher/setweight(_:fortargetat:)) method to increase a weight to `1.0`, the surface takes the form of the geometry at the corresponding index in the morpher’s [`targets`](https://developer.apple.com/documentation/scenekit/scnmorpher/targets) array. If you use a variety of weight values for several targets, the surface takes a form that proportionally interpolates between the target geometries.
+    ///
+    /// You can also animate weights implicitly or explicitly using keypath animations. For example, the following code creates a morph animation that transitions one target weight back and forth repeatedly:
+    ///
+    /// ```objc
+    /// CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"morpher.weights[0]"];
+    /// animation.fromValue = @0.0;
+    /// animation.toValue = @1.0;
+    /// animation.autoreverses = YES;
+    /// animation.repeatCount = INFINITY;
+    /// animation.duration = 5;
+    /// [node addAnimation:animation forKey:nil];
+    /// ```
+    ///
+    /// A morpher and its target geometries may be loaded from a scene file or created programmatically. The base geometry and all target geometries must be topologically identical—that is, they must contain the same number and structural arrangement of vertices.
+    ///
+    ///
+    /// SCNMorpher controls the deformation of morphed geometries
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNMorpher;

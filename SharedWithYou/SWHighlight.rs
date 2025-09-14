@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a universal link to share by any number of contacts in one or more conversations.
+    ///
+    /// ## Overview
+    ///
+    /// The system doesn’t expose the identities of the contacts to the app. It tracks shared universal links for the current user and determines which links to elevate for consumption in an app. When the system deems a link to be useful, it surfaces that link to the hosting app in the form of an `SWHighlight` object.
+    ///
+    ///
     /// A model object representing a universal link shared by any number of contacts, in any number of conversations. The identities of the contacts are not exposed to the application.
     ///
     /// The system tracks universal links shared with the current user, and decides which links to elevate for consumption in an app. When the system deems a link to be useful, it surfaces that link to the hosting app in the form of an `SWHighlight` object. Only universal links can be surfaced in this way.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlight?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWHighlight;

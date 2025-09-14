@@ -10,7 +10,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshareablepassmetadata/preview-swift.class?language=objc)
     #[unsafe(super(PKAddPassMetadataPreview, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKAddSecureElementPassConfiguration")]
@@ -89,7 +88,7 @@ impl PKShareablePassMetadataPreview {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshareablepassmetadata?language=objc)
+    /// Information that you use to configure the sharing sheet for a pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKShareablePassMetadata;
@@ -253,16 +252,16 @@ impl PKShareablePassMetadata {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddshareablepassconfigurationprimaryaction?language=objc)
+/// The kind of add action that the system performs with a pass.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddShareablePassConfigurationPrimaryAction(pub NSUInteger);
 impl PKAddShareablePassConfigurationPrimaryAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddshareablepassconfigurationprimaryaction/add?language=objc)
+    /// A constant that indicates the system adds a pass to a device.
     #[doc(alias = "PKAddShareablePassConfigurationPrimaryActionAdd")]
     pub const Add: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddshareablepassconfigurationprimaryaction/share?language=objc)
+    /// A constant that indicates the system shares the pass with another user.
     #[doc(alias = "PKAddShareablePassConfigurationPrimaryActionShare")]
     pub const Share: Self = Self(1);
 }
@@ -276,7 +275,7 @@ unsafe impl RefEncode for PKAddShareablePassConfigurationPrimaryAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddshareablepassconfiguration?language=objc)
+    /// An object that represents the data and action for a shared copy of pass.
     #[unsafe(super(PKAddSecureElementPassConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKAddSecureElementPassConfiguration")]

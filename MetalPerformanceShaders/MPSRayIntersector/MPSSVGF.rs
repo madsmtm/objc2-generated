@@ -9,8 +9,6 @@ use objc2_metal::*;
 use crate::*;
 
 /// Controls how samples are weighted over time
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalweighting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -18,8 +16,6 @@ pub struct MPSTemporalWeighting(pub NSUInteger);
 impl MPSTemporalWeighting {
     /// Compute an average of all samples. This will fully utilize all samples but may lead
     /// to excessive ghosting artifacts under motion. Therefore, this is best for static images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalweighting/average?language=objc)
     #[doc(alias = "MPSTemporalWeightingAverage")]
     pub const Average: Self = Self(0);
     /// Compute an exponential moving average by blending linearly between the previous
@@ -27,8 +23,6 @@ impl MPSTemporalWeighting {
     /// property. This will cause older samples to lose their contribution over time, which will
     /// prevent ghosting artifacts but will also never converge to a stable value. Therefore, this
     /// is best for images with motion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalweighting/exponentialmovingaverage?language=objc)
     #[doc(alias = "MPSTemporalWeightingExponentialMovingAverage")]
     pub const ExponentialMovingAverage: Self = Self(1);
 }
@@ -114,8 +108,6 @@ extern_class!(
     ///
     /// Refer to "Spatiotemporal Variance-Guided Filtering: Real-Time Reconstruction for Path-Traced
     /// Global Illumination" for more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -981,8 +973,6 @@ extern_protocol!(
     /// Protocol dictating how texture allocator objects should operate so that they can be used
     /// by an MPSSVGFDenoiser object to allocate and reuse intermediate and output textures during the
     /// denoising process.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgftextureallocator?language=objc)
     pub unsafe trait MPSSVGFTextureAllocator: NSObjectProtocol {
         /// Returns an autoreleased Metal 2D texture with a matching pixel format, width, and height.
         #[unsafe(method(textureWithPixelFormat:width:height:))]
@@ -1012,8 +1002,6 @@ extern_class!(
     /// A default implementation of the MPSSVGFTextureAllocator protocol. Maintains a cache of
     /// textures which is checked first when a texture is requested. If there is no suitable texture in
     /// the cache, allocates a texture directly from the Metal device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdefaulttextureallocator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSSVGFDefaultTextureAllocator;
@@ -1125,8 +1113,6 @@ extern_class!(
     ///
     ///      id <MTLTexture> cleanTexture = denoiser.destinationTexture;
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgfdenoiser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSSVGFDenoiser;

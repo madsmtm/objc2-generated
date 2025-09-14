@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcell?language=objc)
+    /// An `NSSegmentedCell` object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the [`NSSegmentedControl`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol) class to implement a segmented control.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of `NSSegmentedCell` to customize the attributes of a segmented control. To customize the appearance of individual segments, you can also subclass and override the [`drawSegment:inFrame:withView:`](https://developer.apple.com/documentation/appkit/nssegmentedcell/drawsegment(_:inframe:with:)) method.
+    ///
+    ///
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]

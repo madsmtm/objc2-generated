@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont?language=objc)
+/// A set of character glyphs and layout information for drawing text.
+///
+/// ## Overview
+///
+/// A glyph can represent a single character (such as ‘b’), more than one character (such as the “ﬁ” ligature), or a special character such as a space. Core Graphics retrieves the glyphs for the font from ATS (Apple Type Services) and paints the glyphs based on the relevant parameters of the current graphics state.
+///
+/// Core Graphics provides a limited, low-level interface for drawing text. For information on text-drawing functions, see [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext). For full Unicode and text-layout support,  use the services provided by TextKit).
+///
+///
 #[doc(alias = "CGFontRef")]
 #[repr(C)]
 pub struct CGFont {
@@ -26,25 +34,57 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGFont"> for CGFont {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontindex?language=objc)
+/// An index into a font table.
+///
+/// ## Discussion
+///
+/// This integer type provides an additional way to specify a glyph identifier. [`CGFontIndex`](https://developer.apple.com/documentation/coregraphics/cgfontindex) is equivalent to [`CGGlyph`](https://developer.apple.com/documentation/coregraphics/cgglyph), and you can use constants of either type interchangeably.
+///
+///
 pub type CGFontIndex = c_ushort;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyph?language=objc)
+/// An index into the internal glyph table of a font.
+///
+/// ## Discussion
+///
+/// When drawing text, you typically specify a sequence of characters. However, Core Graphics also allows you to use [`CGGlyph`](https://developer.apple.com/documentation/coregraphics/cgglyph) values to specify glyphs. In either case, Core Graphics renders the text using font data provided by the Apple Type Services (ATS) framework.
+///
+/// You provide [`CGGlyph`](https://developer.apple.com/documentation/coregraphics/cgglyph) values to the functions [`CGContextShowGlyphs`](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphs(g:count:)) and [`CGContextShowGlyphsAtPoint`](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphsatpoint(x:y:glyphs:count:)). These functions display an array of glyphs at the current text position or at a position you specify, respectively.
+///
+///
 pub type CGGlyph = CGFontIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat?language=objc)
+/// Possible formats for a PostScript font subset.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGFontPostScriptFormat(pub i32);
 impl CGFontPostScriptFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat/type1?language=objc)
+    /// A Type 1 font format.
+    ///
+    /// ## Discussion
+    ///
+    /// This is documented in _Adobe Type 1 Font Format_, which is available from [http://partners.adobe.com/](http://partners.adobe.com/).
+    ///
+    ///
     #[doc(alias = "kCGFontPostScriptFormatType1")]
     pub const Type1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat/type3?language=objc)
+    /// A Type 3 PostScript format.
+    ///
+    /// ## Description
+    ///
+    /// This is documented in _PostScript Language Reference, 3rd edition_, which is available from [http://partners.adobe.com/](http://partners.adobe.com/).
+    ///
+    ///
     #[doc(alias = "kCGFontPostScriptFormatType3")]
     pub const Type3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontpostscriptformat/type42?language=objc)
+    /// A constant representing a Type 42 font format.
+    ///
+    /// ## Description
+    ///
+    /// This is documented in _Adobe Technical Note 5012, The Type 42 Font Format Specification_, which is available from [http://partners.adobe.com/](http://partners.adobe.com/).
+    ///
+    ///
     #[doc(alias = "kCGFontPostScriptFormatType42")]
     pub const Type42: Self = Self(42);
 }
@@ -59,17 +99,23 @@ unsafe impl RefEncode for CGFontPostScriptFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontindexmax?language=objc)
+/// The maximum allowed value of a [`CGFontIndex`](https://developer.apple.com/documentation/coregraphics/cgfontindex).
 pub static kCGFontIndexMax: CGFontIndex = 65534;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontindexinvalid?language=objc)
+/// An invalid font index (a value which never represents a valid glyph).
 pub static kCGFontIndexInvalid: CGFontIndex = 65535;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgglyphmax?language=objc)
+/// The maximum allowed value of a [`CGGlyph`](https://developer.apple.com/documentation/coregraphics/cgglyph).
 pub static kCGGlyphMax: CGFontIndex = kCGFontIndexMax;
 
 unsafe impl ConcreteType for CGFont {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for Core Graphics fonts.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation identifier for the opaque type [`CGFontRef`](https://developer.apple.com/documentation/coregraphics/cgfont).
+    ///
+    ///
     #[doc(alias = "CGFontGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -81,7 +127,27 @@ unsafe impl ConcreteType for CGFont {
 }
 
 impl CGFont {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontcreatewithplatformfont?language=objc)
+    /// Creates a font object from an Apple Type Services (ATS) font.
+    ///
+    /// Parameters:
+    /// - platformFontReference: A generic pointer to a font object. The font should be of a type appropriate to the platform on which your program is running. For macOS, you should pass a pointer to an ATS font.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font object, or `NULL` if the platform font could not be located. In Objective-C, you’re responsible for releasing this object using [`CGFontRelease`](https://developer.apple.com/documentation/coregraphics/cgfontrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before drawing text in a Core Graphics context, you must set the font in the current graphics state. For ATS Fonts, call this function to create a font, and pass it to [`setFont(_:)`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfont(_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated because it takes a pointer to an `ATSFontRef` object—itself deprecated—and is used almost solely by QuickDraw-based applications. There’s no direct one-to-one replacement for the function. Clients using ATSUI and QuickDraw should move to Core Text and Core Graphics instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -101,7 +167,23 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/init(_:)-9aour?language=objc)
+    /// Creates a font object from data supplied from a data provider.
+    ///
+    /// Parameters:
+    /// - provider: A data provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font object or `NULL` if the font can’t be created. In Objective-C, you’re responsible for releasing this object using [`CGFontRelease`](https://developer.apple.com/documentation/coregraphics/cgfontrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before drawing text in a Core Graphics context, you must set the font in the current graphics state by calling the function [`CGContextSetFontSize`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfontsize(_:)).
+    ///
+    ///
     #[doc(alias = "CGFontCreateWithDataProvider")]
     #[cfg(feature = "CGDataProvider")]
     #[inline]
@@ -113,7 +195,23 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/init(_:)-1p4b?language=objc)
+    /// Creates a font object corresponding to the font specified by a PostScript or full name.
+    ///
+    /// Parameters:
+    /// - name: The PostScript or full name of a font.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font object or `NULL` if the font can’t be created. In Objective-C, you’re responsible for releasing this object using [`CGFontRelease`](https://developer.apple.com/documentation/coregraphics/cgfontrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before drawing text in a Core Graphics context, you must set the font in the current graphics state by calling the function [`CGContextSetFont`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfont(_:)).
+    ///
+    ///
     #[doc(alias = "CGFontCreateWithFontName")]
     #[inline]
     pub fn with_font_name(name: Option<&CFString>) -> Option<CFRetained<CGFont>> {
@@ -124,7 +222,19 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/copy(withvariations:)?language=objc)
+    /// Creates a copy of a font using a variation specification dictionary.
+    ///
+    /// Parameters:
+    /// - font: The font to copy.
+    ///
+    /// - variations: A variation specification dictionary that contains keys corresponding to the variation axis names of the font. Each key in the dictionary is a variation axis name. The value for each key is the value specified for that particular variation axis represented as a CFNumber object. If a variation axis name is not specified in `variations`, then the current value from `font` is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -146,7 +256,17 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/numberofglyphs?language=objc)
+    /// Returns the number of glyphs in a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of glyphs in the provided font.
+    ///
+    ///
     #[doc(alias = "CGFontGetNumberOfGlyphs")]
     #[inline]
     pub fn number_of_glyphs(font: Option<&CGFont>) -> usize {
@@ -156,7 +276,17 @@ impl CGFont {
         unsafe { CGFontGetNumberOfGlyphs(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/unitsperem?language=objc)
+    /// Returns the number of glyph space units per em for the provided font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of glyph space units per em for the provided font.
+    ///
+    ///
     #[doc(alias = "CGFontGetUnitsPerEm")]
     #[inline]
     pub fn units_per_em(font: Option<&CGFont>) -> c_int {
@@ -166,7 +296,23 @@ impl CGFont {
         unsafe { CGFontGetUnitsPerEm(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/postscriptname?language=objc)
+    /// Obtains the PostScript name of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The PostScript name of the font.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on PostScript format, see _Adobe Type 1 Font Format_, which is available from [http://partners.adobe.com/](http://partners.adobe.com/).
+    ///
+    ///
     #[doc(alias = "CGFontCopyPostScriptName")]
     #[inline]
     pub fn post_script_name(font: Option<&CGFont>) -> Option<CFRetained<CFString>> {
@@ -177,7 +323,17 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/fullname?language=objc)
+    /// Returns the full name associated with a font object.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The full name associated with the font.
+    ///
+    ///
     #[doc(alias = "CGFontCopyFullName")]
     #[inline]
     pub fn full_name(font: Option<&CGFont>) -> Option<CFRetained<CFString>> {
@@ -188,7 +344,23 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/ascent?language=objc)
+    /// Returns the ascent of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ascent of the font.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The ascent is the maximum distance above the baseline of glyphs in a font. The value is specified in glyph space  units.
+    ///
+    ///
     #[doc(alias = "CGFontGetAscent")]
     #[inline]
     pub fn ascent(font: Option<&CGFont>) -> c_int {
@@ -198,7 +370,23 @@ impl CGFont {
         unsafe { CGFontGetAscent(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/descent?language=objc)
+    /// Returns the descent of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The descent of the font .
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The descent is the maximum distance below the baseline of glyphs in a font. The value is specified in glyph space units.
+    ///
+    ///
     #[doc(alias = "CGFontGetDescent")]
     #[inline]
     pub fn descent(font: Option<&CGFont>) -> c_int {
@@ -208,7 +396,23 @@ impl CGFont {
         unsafe { CGFontGetDescent(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/leading?language=objc)
+    /// Returns the leading of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The leading of the font.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The leading is the spacing between consecutive lines of text in a font. The value is specified in glyph space units.
+    ///
+    ///
     #[doc(alias = "CGFontGetLeading")]
     #[inline]
     pub fn leading(font: Option<&CGFont>) -> c_int {
@@ -218,7 +422,23 @@ impl CGFont {
         unsafe { CGFontGetLeading(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/capheight?language=objc)
+    /// Returns the cap height of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The cap height of the font.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The cap height is the distance above the baseline of the top of flat capital letters of glyphs in a font. The value is specified in glyph space units.
+    ///
+    ///
     #[doc(alias = "CGFontGetCapHeight")]
     #[inline]
     pub fn cap_height(font: Option<&CGFont>) -> c_int {
@@ -228,7 +448,23 @@ impl CGFont {
         unsafe { CGFontGetCapHeight(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/xheight?language=objc)
+    /// Returns the x-height of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The x-height of the font.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The x-height is the distance above the baseline of the top of flat, non-ascending lowercase letters (such as `x`) of glyphs in a font. The value is specified in glyph space units.
+    ///
+    ///
     #[doc(alias = "CGFontGetXHeight")]
     #[inline]
     pub fn x_height(font: Option<&CGFont>) -> c_int {
@@ -238,7 +474,23 @@ impl CGFont {
         unsafe { CGFontGetXHeight(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/fontbbox?language=objc)
+    /// Returns the bounding box of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bounding box of the font.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The font bounding box is the union of all of the bounding boxes for all the glyphs in a font. The value is specified in glyph space units.
+    ///
+    ///
     #[doc(alias = "CGFontGetFontBBox")]
     #[inline]
     pub fn font_b_box(font: Option<&CGFont>) -> CGRect {
@@ -248,7 +500,17 @@ impl CGFont {
         unsafe { CGFontGetFontBBox(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/italicangle?language=objc)
+    /// Returns the italic angle of a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The italic angle of the font, measured in degrees counter-clockwise from the vertical.
+    ///
+    ///
     #[doc(alias = "CGFontGetItalicAngle")]
     #[inline]
     pub fn italic_angle(font: Option<&CGFont>) -> CGFloat {
@@ -258,7 +520,17 @@ impl CGFont {
         unsafe { CGFontGetItalicAngle(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/stemv?language=objc)
+    /// Returns the thickness of the dominant vertical stems of glyphs in a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The thickness of the dominant vertical stems of glyphs in a font.
+    ///
+    ///
     #[doc(alias = "CGFontGetStemV")]
     #[inline]
     pub fn stem_v(font: Option<&CGFont>) -> CGFloat {
@@ -268,7 +540,23 @@ impl CGFont {
         unsafe { CGFontGetStemV(font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxes?language=objc)
+    /// Returns an array of the variation axis dictionaries for a font.
+    ///
+    /// Parameters:
+    /// - font: A CGFont object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of the variation axis dictionaries. Returns `NULL` if the font doesn’t support variations.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A variation axis is a range included in a font by the font designer that allows a font to produce different type styles. Each variation axis dictionary contains key-value pairs that specify the variation axis name and the minimum, maximum, and default values for that variation axis.
+    ///
+    ///
     #[doc(alias = "CGFontCopyVariationAxes")]
     #[inline]
     pub fn variation_axes(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
@@ -279,7 +567,23 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variations?language=objc)
+    /// Returns the variation specification dictionary for a font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The variation specification dictionary for the font. Returns `NULL` if the font doesn’t support variations.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The variation specification dictionary contains keys that correspond to the variation axis names of the font. Each key is a variation axis name. The value for each key is the value specified for that particular variation axis represented as a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd object.
+    ///
+    ///
     #[doc(alias = "CGFontCopyVariations")]
     #[inline]
     pub fn variations(font: Option<&CGFont>) -> Option<CFRetained<CFDictionary>> {
@@ -290,7 +594,23 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/getglyphadvances(glyphs:count:advances:)?language=objc)
+    /// Gets the advance width of each glyph in the provided array.
+    ///
+    /// Parameters:
+    /// - font: The font object associated with the provided glyphs.
+    ///
+    /// - glyphs: An array of glyphs.
+    ///
+    /// - count: The number of glyphs in the array.
+    ///
+    /// - advances: On output, an array of advance widths for the provided glyphs.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) unless the advance widths can’t be provided for some reason.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -315,7 +635,23 @@ impl CGFont {
         unsafe { CGFontGetGlyphAdvances(font, glyphs, count, advances) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/getglyphbboxes(glyphs:count:bboxes:)?language=objc)
+    /// Get the bounding box of each glyph in an array.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    /// - glyphs: A array of glyphs.
+    ///
+    /// - count: The number of items in the `glyphs` array.
+    ///
+    /// - bboxes: On return, the bounding boxes for each glyph.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `false` if bounding boxes can’t be retrieved for any reason; `true`  otherwise.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -340,7 +676,19 @@ impl CGFont {
         unsafe { CGFontGetGlyphBBoxes(font, glyphs, count, bboxes) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/getglyphwithglyphname(name:)?language=objc)
+    /// Returns the glyph for the glyph name associated with the specified font object.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    /// - name: The name of the desired glyph.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The named glyph, or `0` if the named glyph isn’t associated with the font.
+    ///
+    ///
     #[doc(alias = "CGFontGetGlyphWithGlyphName")]
     #[inline]
     pub fn glyph_with_glyph_name(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph {
@@ -353,7 +701,19 @@ impl CGFont {
         unsafe { CGFontGetGlyphWithGlyphName(font, name) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/name(for:)?language=objc)
+    /// Returns the glyph name of the specified glyph in the specified font.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    /// - glyph: The glyph whose name is desired.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The name of the specified glyph, or `nil` if the glyph isn’t associated with the font object.
+    ///
+    ///
     #[doc(alias = "CGFontCopyGlyphNameForGlyph")]
     #[inline]
     pub fn glyph_name_for_glyph(
@@ -370,7 +730,25 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/cancreatepostscriptsubset(_:)?language=objc)
+    /// Determines whether Core Graphics can create a subset of the font in PostScript format.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    /// - format: A PostScript font format.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if a subset in the PostScript format can be created for the font; `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on PostScript format, see _Adobe Type 1 Font Format_, which is available from [http://partners.adobe.com/](http://partners.adobe.com/).
+    ///
+    ///
     #[doc(alias = "CGFontCanCreatePostScriptSubset")]
     #[inline]
     pub fn can_create_post_script_subset(
@@ -386,7 +764,27 @@ impl CGFont {
         unsafe { CGFontCanCreatePostScriptSubset(font, format) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/tabletags?language=objc)
+    /// Returns an array of tags that correspond to the font tables for a font.
+    ///
+    /// Parameters:
+    /// - font: A CGFont object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of font table tags.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each entry in the returned array is a four-byte value that represents a single TrueType or OpenType font table tag. To obtain a tag at index `k` in a manner that is appropriate for 32-bit and 64-bit architectures, you need to use code similar to the following:
+    ///
+    /// ```objc
+    /// tag = (uint32_t)(uintptr_t)CFArrayGetValue(table, k);
+    /// ```
+    ///
+    ///
     #[doc(alias = "CGFontCopyTableTags")]
     #[inline]
     pub fn table_tags(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
@@ -397,7 +795,19 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/table(for:)?language=objc)
+    /// Returns the font table that corresponds to the provided tag.
+    ///
+    /// Parameters:
+    /// - font: A font object.
+    ///
+    /// - tag: The tag for the table you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font table that corresponds to the tag, or `nil` if no such table exists.
+    ///
+    ///
     #[doc(alias = "CGFontCopyTableForTag")]
     #[inline]
     pub fn table_for_tag(font: Option<&CGFont>, tag: u32) -> Option<CFRetained<CFData>> {
@@ -410,38 +820,60 @@ impl CGFont {
 }
 
 extern "C" {
-    /// * Keys for the font variation axis dictionary. **
+    /// The key used to obtain the variation axis name from a variation axis dictionary.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxisname?language=objc)
+    /// ## Description
+    ///
+    /// The value obtained with this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) that specifies the name of the variation axis.
+    ///
+    ///
+    /// * Keys for the font variation axis dictionary. **
     pub static kCGFontVariationAxisName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxisminvalue?language=objc)
+    /// The key used to obtain the minimum variation axis value from a variation axis dictionary.
+    ///
+    /// ## Description
+    ///
+    /// The value obtained with this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that specifies the minimum value of the variation axis.
+    ///
+    ///
     pub static kCGFontVariationAxisMinValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxismaxvalue?language=objc)
+    /// The key used to obtain the maximum variation axis value from a variation axis dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value obtained with this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that specifies the maximum value of the variation axis.
+    ///
+    ///
     pub static kCGFontVariationAxisMaxValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxisdefaultvalue?language=objc)
+    /// The key used to obtain the default variation axis value from a variation axis dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value obtained with this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that specifies the default value of the variation axis.
+    ///
+    ///
     pub static kCGFontVariationAxisDefaultValue: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyphdeprecatedenum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGGlyphDeprecatedEnum(pub i32);
 impl CGGlyphDeprecatedEnum {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyphdeprecatedenum/min?language=objc)
+    /// Minimum font index value.
     #[doc(alias = "CGGlyphMin")]
     #[deprecated]
     pub const Min: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyphdeprecatedenum/max?language=objc)
+    /// Maximum font index value.
     #[doc(alias = "CGGlyphMax")]
     #[deprecated]
     pub const Max: Self = Self(1);

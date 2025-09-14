@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpayment?language=objc)
+    /// Represents the result of authorizing a payment request and contains payment information, encrypted in the payment token.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPayment;

@@ -14,6 +14,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate which user interface controls the view displays.
 /// No controls pane is associated with the view.
 ///
 /// The inline controls pane is associated with the view.
@@ -23,26 +24,36 @@ use crate::*;
 /// The minimal controls pane is associated with the view.
 ///
 /// The default controls pane is associated with the view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewControlsStyle(pub NSInteger);
 impl AVPlayerViewControlsStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/none?language=objc)
+    /// The view displays no playback controls.
     #[doc(alias = "AVPlayerViewControlsStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/inline?language=objc)
+    /// The view displays playback controls in a bar along the view’s bottom edge.
     #[doc(alias = "AVPlayerViewControlsStyleInline")]
     pub const Inline: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/floating?language=objc)
+    /// The view displays playback controls in a floating window over the video content.
+    ///
+    /// ## Discussion
+    ///
+    /// This style matches the look of QuickTime Player’s playback controls.
+    ///
+    ///
     #[doc(alias = "AVPlayerViewControlsStyleFloating")]
     pub const Floating: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/minimal?language=objc)
+    /// The view presents basic controls to play and pause playback.
     #[doc(alias = "AVPlayerViewControlsStyleMinimal")]
     pub const Minimal: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/default?language=objc)
+    /// The view’s default controls style.
+    ///
+    /// ## Discussion
+    ///
+    /// The default controls style is [`AVPlayerViewControlsStyleInline`](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle/inline).
+    ///
+    ///
     #[doc(alias = "AVPlayerViewControlsStyleDefault")]
     pub const Default: Self = Self(AVPlayerViewControlsStyle::Inline.0);
 }
@@ -56,9 +67,28 @@ unsafe impl RefEncode for AVPlayerViewControlsStyle {
 }
 
 extern_class!(
-    /// AVPlayerView is a subclass of NSView that can be used to display the visual content of an AVPlayer object and the standard playback controls.
+    /// A view that displays content from a player and presents a native user interface to control playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerview?language=objc)
+    /// ## Overview
+    ///
+    /// The player view supports several controls styles, ranging from no controls to controls matching the look of QuickTime Player. This makes it easy for you to tailor the presentation to best match your use of the player view. Regardless of the selected controls style, the player view always supports the following standard set of keyboard shortcuts to control playback:
+    ///
+    /// - The Space bar plays and pauses playback.
+    ///
+    /// - The right and left arrow keys step frame-by-frame through the video.
+    ///
+    /// - JKL navigation:
+    ///
+    /// - The J key rewinds. Press it multiple times to cycle through rewind speeds.
+    ///
+    /// - The K key stops playback.
+    ///
+    /// - The L key fast-forwards. Press it multiple times to cycle through fast-forward speeds.
+    ///
+    /// The player view also makes it simple to add trimming capabilities to your player. Call the view’s [`beginTrimmingWithCompletionHandler:`](https://developer.apple.com/documentation/avkit/avplayerview/begintrimming(completionhandler:)) method to present a trimming UI that matches the QuickTime Player interface.
+    ///
+    ///
+    /// AVPlayerView is a subclass of NSView that can be used to display the visual content of an AVPlayer object and the standard playback controls.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -423,20 +453,19 @@ impl AVPlayerView {
     );
 }
 
+/// Constants that specify an action a user takes when trimming media in a player view.
 /// The user selected the Trim button.
 ///
 /// The user selected the Cancel button.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewTrimResult(pub NSInteger);
 impl AVPlayerViewTrimResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult/okbutton?language=objc)
+    /// The user clicked the Trim button.
     #[doc(alias = "AVPlayerViewTrimOKButton")]
     pub const OKButton: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult/cancelbutton?language=objc)
+    /// The user clicked the Cancel button.
     #[doc(alias = "AVPlayerViewTrimCancelButton")]
     pub const CancelButton: Self = Self(1);
 }
@@ -532,9 +561,8 @@ impl AVPlayerView {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to implement to participate in the player view’s full-screen presentation life cycle.
     /// A protocol for delegates of AVPlayerView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewdelegate?language=objc)
     pub unsafe trait AVPlayerViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -595,7 +623,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewpictureinpicturedelegate?language=objc)
+    /// A protocol that defines the methods to implement to respond to Picture in Picture playback events.
     pub unsafe trait AVPlayerViewPictureInPictureDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

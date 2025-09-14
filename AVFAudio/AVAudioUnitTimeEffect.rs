@@ -10,13 +10,18 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
+    /// An object that processes audio in nonreal time.
+    ///
+    /// ## Overview
+    ///
+    /// A time effect audio unit represents an [`AVAudioUnit`](https://developer.apple.com/documentation/avfaudio/avaudiounit) with a type `kAudioUnitType_FormatConverter` (`aufc)`. These effects don’t process audio in real time. The [`AVAudioUnitVarispeed`](https://developer.apple.com/documentation/avfaudio/avaudiounitvarispeed) class is an example of a time effect unit.
+    ///
+    ///
     /// an AVAudioUnit that processes audio in non real-time
     ///
     /// An AVAudioUnitTimeEffect represents an audio unit of type aufc.
     /// These effects do not process audio in real-time. The varispeed
     /// unit is an example of a time effect unit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittimeeffect?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]

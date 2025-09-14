@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcredential?language=objc)
+    /// An interface that all credentials share.
     pub unsafe trait ASAuthorizationCredential:
         NSObjectProtocol + NSCopying + NSSecureCoding
     {

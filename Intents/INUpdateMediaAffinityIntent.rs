@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent?language=objc)
+    /// A request to update the user’s affinity for a media item.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INUpdateMediaAffinityIntent`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent) object when the user expresses a preference for or disinterest in a media item. The intent object contains the media to update.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INUpdateMediaAffinityIntentHandling`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintenthandling) protocol. Your handler should confirm the request and create an [`INUpdateMediaAffinityIntentResponse`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponse) object with the media to update.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents (audio only)" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -89,11 +102,18 @@ impl INUpdateMediaAffinityIntent {
 }
 
 extern_protocol!(
+    /// The interface that handles requests to update the user’s preference for a media item.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INUpdateMediaAffinityIntentHandling`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintenthandling) protocol to resolve, confirm, and handle requests that indicate the user’s preference for a media item. Adopt this protocol in an object of your Intents extension capable of providing feedback for media.
+    ///
+    /// Siri delivers an [`INUpdateMediaAffinityIntent`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent) object to your handler when the user asks to modify their preference for a media item using your app. Use the methods of this protocol to resolve the parameters and update the user’s preference for the media.
+    ///
+    ///
     /// Protocol to declare support for handling an INUpdateMediaAffinityIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintenthandling?language=objc)
     pub unsafe trait INUpdateMediaAffinityIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

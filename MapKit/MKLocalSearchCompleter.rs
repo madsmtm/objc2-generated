@@ -7,18 +7,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/filtertype-swift.enum?language=objc)
+/// Constants indicating the types of search completions to return.
 // NS_ENUM
 #[deprecated = "Use MKLocalSearchCompleterResultType"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKSearchCompletionFilterType(pub NSInteger);
 impl MKSearchCompletionFilterType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/filtertype-swift.enum/locationsandqueries?language=objc)
+    /// Points of interest and query suggestions. Specify this value when you want both map-based points of interest and common query terms used to find locations. For example, the search string `cof` yields a completion for _coffee_.
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
     pub const LocationsAndQueries: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/filtertype-swift.enum/locationsonly?language=objc)
+    /// Points of interest only. Specify this value when you want the search string to yield completions that correspond to a specific point-of-interest on the map.
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsOnly")]
     #[deprecated = "Use MKLocalSearchCompleterResultType"]
     pub const LocationsOnly: Self = Self(1);
@@ -32,23 +32,29 @@ unsafe impl RefEncode for MKSearchCompletionFilterType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype?language=objc)
+/// Options that indicate types of search completions.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLocalSearchCompleterResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKLocalSearchCompleterResultType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/address?language=objc)
+/// A value that indicates that the search completer includes address completions in the result.
         #[doc(alias = "MKLocalSearchCompleterResultTypeAddress")]
         const Address = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/pointofinterest?language=objc)
+/// A value that indicates that the search completer includes point-of-interest completions in the result.
         #[doc(alias = "MKLocalSearchCompleterResultTypePointOfInterest")]
         const PointOfInterest = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/query?language=objc)
+/// A value that indicates that the search completer includes query completions in the result.
+///
+/// ## Discussion
+///
+/// For example, the search string `cof` yields a completion for _coffee_.
+///
+///
         #[doc(alias = "MKLocalSearchCompleterResultTypeQuery")]
         const Query = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype/physicalfeature?language=objc)
+/// A value that indicates that the search completer includes physical feature completions in the result.
         #[doc(alias = "MKLocalSearchCompleterResultTypePhysicalFeature")]
         const PhysicalFeature = 1<<3;
     }
@@ -63,7 +69,20 @@ unsafe impl RefEncode for MKLocalSearchCompleterResultType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter?language=objc)
+    /// A utility object for generating a list of completion strings based on a partial search string that you provide.
+    ///
+    /// ## Overview
+    ///
+    /// You use an [`MKLocalSearchCompleter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter) object to retrieve auto-complete suggestions for your own map-based search controls. As the user types text, you feed the current text string into the search completer object, which delivers possible string completions that match locations or points of interest.
+    ///
+    /// You create and configure [`MKLocalSearchCompleter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter) objects yourself. You must always assign a delegate object to the search completer so that you can receive the search results that it generates. Specify a search region to restrict results to a designated area. The following code shows a simple example of a view controller that stores the [`MKLocalSearchCompleter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter) object in a property. The view controller itself acts as the delegate for the completer and the view controller uses the region associated with an [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) object that’s part of the view controller’s interface. Completer objects are long-lived objects, so you can store strong references to them and reuse them later in your code.
+    ///
+    /// Listing 1. Creating and configuring a search completer
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["override func viewDidLoad() {", "    super.viewDidLoad()", "", "    completer = MKLocalSearchCompleter()", "    completer.delegate = self", "      ", "    // Limit search results to the map view's current region.", "    completer.region = myMapView.region", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)viewDidLoad {", "   [super viewDidLoad];", " ", "   self.completer = [[MKLocalSearchCompleter alloc] init];", "   self.completer.delegate = self;", " ", "   // Limit search results to the map view's current region.", "   self.completer.region = self.myMapView.region;", "}"], metadata: None }] }] })
+    /// Update the value of the completer’s [`queryFragment`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment) property to begin a search query. You can update this property in real time as the user types new characters into a text field because the completer object waits a short amount of time for the query string to stabilize. When modifications to the query string stop, the completer initiates a new search and returns the results to your delegate as an array of [`MKLocalSearchCompletion`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompletion) objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchCompleter;
@@ -201,7 +220,13 @@ impl MKLocalSearchCompleter {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleterdelegate?language=objc)
+    /// Methods the delegate calls with search completion data.
+    ///
+    /// ## Overview
+    ///
+    /// You use this protocol when implementing an autocomplete solution for a map in your app. As the user types search terms, use an [`MKLocalSearchCompleter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter) object to start searching for valid completions. The delegate you assign to that object needs to conform to this protocol. As it receives completions, the local search completer calls the methods of this protocol to deliver the results.
+    ///
+    ///
     pub unsafe trait MKLocalSearchCompleterDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(completerDidUpdateResults:))]
@@ -220,7 +245,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompletion?language=objc)
+    /// A fully formed string that completes a partial string.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you use an [`MKLocalSearchCompleter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter) to initiate a search based on a set of partial search strings. That object stores any matches in its results property. Retrieve any `MKLocalSearchCompletion` objects from that property and display the search terms in your interface, or use one to initiate a search for content based on that search term.
+    ///
+    /// When displaying text completions for a partial search term in your user interface, you might want to use a bold version of a font or add some other highlighting to the portion of the completion string that causes it to match the partial search term. To help you add this styling, the completion object includes highlight ranges for the title and subtitle strings.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchCompletion;

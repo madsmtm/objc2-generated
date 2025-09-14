@@ -12,6 +12,7 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// A reference to a pixel rotation session.
 /// A reference to a Video Toolbox Pixel Rotation Session.
 ///
 /// A pixel rotation session supports the rotating of images from source CVPixelBuffers to
@@ -21,8 +22,6 @@ use crate::*;
 /// then to transfer pixels, call VTPixelRotationSessionRotateImage.
 /// When you are done with the session, you should call CFRelease to tear it down
 /// and release your object reference.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsession?language=objc)
 #[doc(alias = "VTPixelRotationSessionRef")]
 #[repr(C)]
 pub struct VTPixelRotationSession {
@@ -39,6 +38,13 @@ cf_objc2_type!(
 );
 
 impl VTPixelRotationSession {
+    /// Creates a session to rotate images between pixel buffers.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the session. Specify `NULL` to use the default allocator.
+    ///
+    /// - pixelRotationSessionOut: On output, an initialized pixel rotation session.
+    ///
     /// Creates a session for rotating images between CVPixelBuffers.
     ///
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
@@ -48,8 +54,6 @@ impl VTPixelRotationSession {
     /// # Safety
     ///
     /// `pixel_rotation_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessioncreate(_:_:)?language=objc)
     #[doc(alias = "VTPixelRotationSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -67,13 +71,22 @@ impl VTPixelRotationSession {
 
     /// Tears down a pixel rotation session.
     ///
+    /// Parameters:
+    /// - session: The pixel rotation session to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When a pixel rotation session’s retain count reaches zero, the system automatically invalidates it. However, because other processes may retain a session, it can be hard to predict when the invalidation occurs. Calling this function ensures a deterministic, orderly teardown.
+    ///
+    ///
+    /// Tears down a pixel rotation session.
+    ///
     /// When you are done with an image rotation session you created, call VTPixelRotationSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
     /// When an pixel rotation session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelRotationSessionInvalidate ensures a deterministic, orderly teardown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTPixelRotationSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -85,9 +98,14 @@ impl VTPixelRotationSession {
 }
 
 unsafe impl ConcreteType for VTPixelRotationSession {
-    /// Returns the CFTypeID for pixel rotation sessions.
+    /// Returns the Core Foundation type identifier for the rotation session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessiongettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of the rotation session object.
+    ///
+    ///
+    /// Returns the CFTypeID for pixel rotation sessions.
     #[doc(alias = "VTPixelRotationSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -99,6 +117,25 @@ unsafe impl ConcreteType for VTPixelRotationSession {
 }
 
 impl VTPixelRotationSession {
+    /// Rotates a source pixel buffer and writes the output to the destination pixel buffer.
+    ///
+    /// Parameters:
+    /// - session: The pixel rotation session.
+    ///
+    /// - sourceBuffer: A pixel buffer that contains the source image.
+    ///
+    /// - destinationBuffer: A pixel buffer into which to write the output.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For 90 and 270 degree rotations, the width and height of destination must be the inverse of the source buffer.
+    ///
+    /// For 180 degree rotations, the dimensions of the source and destination buffers must match.
+    ///
+    /// By default, this operation removes all existing attachments on destination buffer and sets new attachments describing the transferred image. This function propagates unrecognized attachment on the source to the destination buffer.
+    ///
+    ///
     /// Rotates a pixel buffer.
     ///
     /// Rotates sourceBuffer and places the output in destinationBuffer.
@@ -117,8 +154,6 @@ impl VTPixelRotationSession {
     /// Parameter `destinationBuffer`: The destination buffer.
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelRotationNotSupportedErr.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixelrotationsessionrotateimage(_:_:_:)?language=objc)
     #[doc(alias = "VTPixelRotationSessionRotateImage")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]

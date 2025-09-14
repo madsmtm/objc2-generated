@@ -8,10 +8,38 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A container for data protected by a right.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`LARightStore`](https://developer.apple.com/documentation/localauthentication/larightstore) along with an [`LARight`](https://developer.apple.com/documentation/localauthentication/laright) to make secrets accessible only after certain conditions, including authentication, are met. Storing secrets this way lets you tie the availability of sensitive resources to the authorization status of the user.
+    ///
+    /// The following stores a named access token behind the default authorization requirements:
+    ///
+    /// ```swift
+    /// func storeBackendAccessToken(_ token: Data) async throws {
+    ///     let loginRight = LARight()
+    ///     _ = try await LARightStore.shared.saveRight(loginRight, identifier: "access-token", secret: token)
+    /// }
+    /// ```
+    ///
+    /// The system stores your secret in the keychain and protects it with a unique key in the Secure Enclave. The system associates the key with your right and with an access control list that ensures that the data is only accessible after your access requirements are met.
+    ///
+    /// You can retrieve stored secrets later using the right’s identifier:
+    ///
+    /// ```swift
+    /// func fetchBackendAccessToken() async throws -> Data {
+    ///     let loginRight = try await LARightStore.shared.right(forIdentifier: "access-token")
+    ///
+    ///     // Authorize the right or else the secret is unavailable.
+    ///     try await loginRight.authorize(localizedReason: "Access sandcastle competition server")
+    ///     return try await loginRight.secret.rawData
+    /// }
+    /// ```
+    ///
+    ///
     /// Persistent storage for
     /// `LARight`instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/larightstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LARightStore;

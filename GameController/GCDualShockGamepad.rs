@@ -6,14 +6,43 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A controller profile that supports the DualShock 4 controller.
+    ///
+    /// ## Overview
+    ///
+    /// The DualShock 4 controller profile is similar to an extended gamepad ([`GCExtendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad)), but has a touchpad with a button and two-finger tracking.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/94414cbe29a8d56086d97f91c0da2097/media-3830806~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/5c84f963dd6a6fcfc5c95a53c75f49d3/media-3830806%402x.png 2x" />
+    ///     <img alt="An illustration of a DualShock 4 controller showing the touchpad." src="https://docs-assets.developer.apple.com/published/94414cbe29a8d56086d97f91c0da2097/media-3830806~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// This profile also supports motion — that is, the controller’s [`motion`](https://developer.apple.com/documentation/gamecontroller/gccontroller/motion) property is non-nil. If you hold the controller in front of you, the direction of the axes are:
+    ///
+    /// - The positive x-axis points to your right.
+    ///
+    /// - The positive y-axis points up.
+    ///
+    /// - The positive z-axis starts at the touchpad and points to you.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3d28905926746299a6cddb3f30b5ed76/media-3856422~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3e9dc14944907fc3a25e41e2cee2a320/media-3856422%402x.png 2x" />
+    ///     <img alt="An illustration of a DualShock 4 controller showing the directions of the x, y, and z axes." src="https://docs-assets.developer.apple.com/published/3e9dc14944907fc3a25e41e2cee2a320/media-3856422%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// The GCDualShockGamepad profile represents any supported DualShock 4 controller.
     ///
     ///
     /// See: GCExtendedGamepad
     ///
     /// See: GCMotion
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]

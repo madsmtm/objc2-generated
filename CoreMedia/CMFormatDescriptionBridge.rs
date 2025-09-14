@@ -5,47 +5,43 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_invalidparameter?language=objc)
+/// A bridge error that indicates that the function recieves an empty value for a parameter it requires.
 pub const kCMFormatDescriptionBridgeError_InvalidParameter: OSStatus = -12712;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_allocationfailed?language=objc)
+/// A bridge error that indicates when an allocation fails.
 pub const kCMFormatDescriptionBridgeError_AllocationFailed: OSStatus = -12713;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_invalidserializedsampledescription?language=objc)
+/// A bridge error that indicates that the sample isn’t valid.
 pub const kCMFormatDescriptionBridgeError_InvalidSerializedSampleDescription: OSStatus = -12714;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_invalidformatdescription?language=objc)
+/// A bridge error that indicates the format description isn’t valid.
 pub const kCMFormatDescriptionBridgeError_InvalidFormatDescription: OSStatus = -12715;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_incompatibleformatdescription?language=objc)
+/// A bridge error that indicates the format description has an unknown format.
 pub const kCMFormatDescriptionBridgeError_IncompatibleFormatDescription: OSStatus = -12716;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_unsupportedsampledescriptionflavor?language=objc)
+/// A bridge error that indicates the sample isn’t supported for the format flavor you specify.
 pub const kCMFormatDescriptionBridgeError_UnsupportedSampleDescriptionFlavor: OSStatus = -12717;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionbridgeerror_invalidslice?language=objc)
+/// A bridge error that indicates the slice isn’t valid.
 pub const kCMFormatDescriptionBridgeError_InvalidSlice: OSStatus = -12719;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor?language=objc)
+/// Types that represent image format descriptions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMImageDescriptionFlavor = CFString;
 
 extern "C" {
+    /// An image description that selects the QuickTime format.
     /// Chooses the QuickTime Movie Image Description format.
     ///
     /// Passing NULL is equivalent to passing this constant.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/quicktimemovie?language=objc)
     pub static kCMImageDescriptionFlavor_QuickTimeMovie: &'static CMImageDescriptionFlavor;
 }
 
 extern "C" {
     /// Chooses the ISO family sample description format, used in MP4
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/isofamily?language=objc)
     pub static kCMImageDescriptionFlavor_ISOFamily: &'static CMImageDescriptionFlavor;
 }
 
 extern "C" {
+    /// An image description that selects the 3GP family sample format.
     /// Chooses the 3GP family sample description format.
     ///
     /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/mobile3gpfamily?language=objc)
     pub static kCMImageDescriptionFlavor_3GPFamily: &'static CMImageDescriptionFlavor;
 }
 
@@ -53,13 +49,26 @@ extern "C" {
     /// Chooses the ISO family sample description format with use of Apple extensions where appropriate for M4V and M4A.
     ///
     /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the .m4a, .m4b, and .m4v file formats.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/isofamilywithappleextensions?language=objc)
     pub static kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions:
         &'static CMImageDescriptionFlavor;
 }
 
 extern "C-unwind" {
+    /// Creates a video format description from a big-endian image description structure.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMVideoFormatDescription` object. May be `NULL`.
+    ///
+    /// - imageDescriptionData: ImageDescription data structure in big-endian byte ordering.
+    ///
+    /// - size: Size of ImageDescription data structure.
+    ///
+    /// - stringEncoding: Pass [`CFStringGetSystemEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringgetsystemencoding()) or `GetApplicationTextEncoding()`.
+    ///
+    /// - flavor: `kCMImageDescriptionFlavor` constant or `NULL` for QuickTimeMovie flavor.
+    ///
+    /// - formatDescriptionOut: Receives new `CMVideoFormatDescription`.
+    ///
     /// Creates a CMVideoFormatDescription from a big-endian ImageDescription data structure.
     ///
     ///
@@ -79,8 +88,6 @@ extern "C-unwind" {
     ///
     /// - `image_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefrombigendianimagedescriptiondata(allocator:bigendianimagedescriptiondata:size:stringencoding:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -93,6 +100,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a video format description from a big-endian image description inside a buffer.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMVideoFormatDescription` object. May be `NULL`.
+    ///
+    /// - imageDescriptionBlockBuffer: CMBlockBuffer containing ImageDescription data structure in big-endian byte ordering.
+    ///
+    /// - stringEncoding: Pass [`CFStringGetSystemEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringgetsystemencoding()) or `GetApplicationTextEncoding()`.
+    ///
+    /// - flavor: `kCMImageDescriptionFlavor` constant or `NULL` for QuickTimeMovie flavor.
+    ///
+    /// - formatDescriptionOut: Receives new `CMVideoFormatDescription`.
+    ///
     /// Creates a CMVideoFormatDescription from a big-endian ImageDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -109,8 +129,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefrombigendianimagedescriptionblockbuffer(allocator:bigendianimagedescriptionblockbuffer:stringencoding:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -122,6 +140,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a video format description to a buffer in big-endian byte ordering.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMBlockBuffer` object. May be `NULL`.
+    ///
+    /// - videoFormatDescription: The `CMVideoFormatDescription` to be copied.
+    ///
+    /// - stringEncoding: Pass [`CFStringGetSystemEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringgetsystemencoding()) or `GetApplicationTextEncoding`.
+    ///
+    /// - flavor: `kCMImageDescriptionFlavor` constant or `NULL` for QuickTimeMovie flavor.
+    ///
+    /// - blockBufferOut: Receives a new `CMBlockBuffer` containing ImageDescription data structure in big-endian byte ordering.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `dataRefIndex` field of the SampleDescription is intentionally filled with placeholder values (`0xFFFF`). The caller must overwrite these values with a valid `dataRefIndex` if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies the contents of a CMVideoFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -143,8 +188,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncopyasbigendianimagedescriptionblockbuffer(allocator:videoformatdescription:stringencoding:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -156,6 +199,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts an image description data structure from big-endian to host-endian, in place.
+    ///
+    /// Parameters:
+    /// - imageDescriptionData: ImageDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// - imageDescriptionSize: Size of ImageDescription data structure.
+    ///
     /// Converts an ImageDescription data structure from big-endian to host-endian in place.
     ///
     ///
@@ -166,8 +216,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `image_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendianimagedescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianImageDescriptionToHost(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
@@ -175,6 +223,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts an image description data structure from host-endian to big-endian, in place.
+    ///
+    /// Parameters:
+    /// - imageDescriptionData: ImageDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// - imageDescriptionSize: Size of ImageDescription data structure.
+    ///
     /// Converts an ImageDescription data structure from host-endian to big-endian in place.
     ///
     ///
@@ -185,55 +240,62 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `image_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendianimagedescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianImageDescriptionToBig(
         image_description_data: NonNull<u8>,
         image_description_size: usize,
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor?language=objc)
+/// Types that represent sound format descriptions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMSoundDescriptionFlavor = CFString;
 
 extern "C" {
+    /// A sound description that selects the QuickTime movie format.
     /// Chooses the most backwards-compatible QuickTime Movie Sound Description format.
     ///
     /// A V1 sound description will be written if possible.
     /// If a V1 sound description is written for CBR or PCM audio, the sample tables will need to use the legacy CBR layout.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/quicktimemovie?language=objc)
     pub static kCMSoundDescriptionFlavor_QuickTimeMovie: &'static CMSoundDescriptionFlavor;
 }
 
 extern "C" {
+    /// A sound description that selects the second version of the QuickTime movie format.
     /// Chooses the QuickTime Movie Sound Description V2 format.
     ///
     /// A V2 sound description will be written.
     /// V2 Sound Descriptions contain no legacy CBR layout, and use 'lpcm' for all flavors of PCM.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/quicktimemoviev2?language=objc)
     pub static kCMSoundDescriptionFlavor_QuickTimeMovieV2: &'static CMSoundDescriptionFlavor;
 }
 
 extern "C" {
+    /// A sound description that selects the ISO family sample format.
     /// Chooses the ISO family sample description format, used in MP4, M4A, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/isofamily?language=objc)
     pub static kCMSoundDescriptionFlavor_ISOFamily: &'static CMSoundDescriptionFlavor;
 }
 
 extern "C" {
+    /// A sound description that selects the 3GP family sample format.
     /// Chooses the 3GP family sample description format.
     ///
     /// This implies kCMSoundDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/mobile3gpfamily?language=objc)
     pub static kCMSoundDescriptionFlavor_3GPFamily: &'static CMSoundDescriptionFlavor;
 }
 
 extern "C-unwind" {
+    /// Creates an audio format description from a big-endian sound description data structure.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMAudioFormatDescription object. May be NULL.
+    ///
+    /// - soundDescriptionData: SoundDescription data structure in big-endian byte ordering.
+    ///
+    /// - size: Size of SoundDescription data structure.
+    ///
+    /// - flavor: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// - formatDescriptionOut: Receives new CMAudioFormatDescription.
+    ///
     /// Creates a CMAudioFormatDescription from a big-endian SoundDescription data structure.
     ///
     ///
@@ -251,8 +313,6 @@ extern "C-unwind" {
     ///
     /// - `sound_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncreatefrombigendiansounddescriptiondata(allocator:bigendiansounddescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -264,6 +324,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an audio format description from a big-endian sound description data structure in a buffer.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMAudioFormatDescription object. May be NULL.
+    ///
+    /// - soundDescriptionBlockBuffer: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
+    ///
+    /// - flavor: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// - formatDescriptionOut: Receives new CMAudioFormatDescription.
+    ///
     /// Creates a CMAudioFormatDescription from a big-endian SoundDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -278,8 +349,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncreatefrombigendiansounddescriptionblockbuffer(allocator:bigendiansounddescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -290,6 +359,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of an audio format description to a buffer in big-endian byte ordering.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// - audioFormatDescription: CMAudioFormatDescription to be copied.
+    ///
+    /// - flavor: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+    ///
+    /// - blockBufferOut: Receives new CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the caller owns the returned `CMBlockBuffer`, and must release it when done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `dataRefIndex` field of the SampleDescription is intentionally filled with placeholder values (`0xFFFF`). The caller must overwrite these values with a valid `dataRefIndex` if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies the contents of a CMAudioFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -309,8 +403,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioformatdescriptioncopyasbigendiansounddescriptionblockbuffer(allocator:audioformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -320,14 +412,19 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Returns a Boolean value that indicates whether the sample tables need to use the legacy constant bit-rate encoding layout.
+///
+/// Parameters:
+/// - soundDescriptionBlockBuffer: `CMBlockBuffer` containing SoundDescription data structure in big-endian byte ordering.
+///
+/// - flavor: `kCMSoundDescriptionFlavor` constant or `NULL` for QuickTimeMovie flavor.
+///
 /// Examine a big-endian SoundDescription data structure in a CMBlockBuffer, and report whether the sample tables will need to use the legacy CBR layout.
 ///
 ///
 /// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
 ///
 /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmdoesbigendiansounddescriptionrequirelegacycbrsampletablelayout(_:flavor:)?language=objc)
 #[cfg(feature = "CMBlockBuffer")]
 #[inline]
 pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
@@ -350,6 +447,13 @@ pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRS
 }
 
 extern "C-unwind" {
+    /// Converts a sound description data structure from big-endian to host-endian, in place.
+    ///
+    /// Parameters:
+    /// - soundDescriptionData: SoundDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// - soundDescriptionSize: The size of the SoundDescription data structure.
+    ///
     /// Converts a SoundDescription data structure from big-endian to host-endian in place.
     ///
     ///
@@ -360,8 +464,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sound_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendiansounddescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianSoundDescriptionToHost(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
@@ -369,6 +471,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a sound description data structure from host-endian to big-endian, in place.
+    ///
+    /// Parameters:
+    /// - soundDescriptionData: SoundDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// - soundDescriptionSize: The size of the SoundDescription data structure.
+    ///
     /// Converts a SoundDescription data structure from host-endian to big-endian in place.
     ///
     ///
@@ -379,19 +488,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `sound_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendiansounddescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianSoundDescriptionToBig(
         sound_description_data: NonNull<u8>,
         sound_description_size: usize,
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdescriptionflavor?language=objc)
+/// Types that represent text format descriptions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMTextDescriptionFlavor = CFString;
 
 extern "C-unwind" {
+    /// Creates a text format description from a big-endian text description structure.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMTextFormatDescription object. May be NULL.
+    ///
+    /// - textDescriptionData: TextDescription data structure in big-endian byte ordering.
+    ///
+    /// - size: Size of TextDescription data structure.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - mediaType: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
+    ///
+    /// - formatDescriptionOut: Receives new CMTextFormatDescription.
+    ///
     /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure.
     ///
     ///
@@ -411,8 +533,6 @@ extern "C-unwind" {
     ///
     /// - `text_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptioncreatefrombigendiantextdescriptiondata(allocator:bigendiantextdescriptiondata:size:flavor:mediatype:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -425,6 +545,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a text format description from a big-endian text description structure inside a buffer.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMTextFormatDescription object. May be NULL.
+    ///
+    /// - textDescriptionBlockBuffer: CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - mediaType: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
+    ///
+    /// - formatDescriptionOut: Receives new CMTextFormatDescription.
+    ///
     /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -441,8 +574,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptioncreatefrombigendiantextdescriptionblockbuffer(allocator:bigendiantextdescriptionblockbuffer:flavor:mediatype:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -454,6 +585,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a text format description to a buffer in big-endian byte order.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// - textFormatDescription: CMTextFormatDescription to be copied.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - blockBufferOut: Receives new CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `dataRefIndex` field of the SampleDescription is intentionally filled with garbage values (`0xFFFF`).  The caller must overwrite these values with a valid `dataRefIndex` if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies the contents of a CMTextFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -473,8 +629,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextformatdescriptioncopyasbigendiantextdescriptionblockbuffer(allocator:textformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -485,6 +639,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a text description structure from big-endian to host-endian, in place.
+    ///
+    /// Parameters:
+    /// - textDescriptionData: TextDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// - textDescriptionSize: Size of TextDescription data structure.
+    ///
     /// Converts a TextDescription data structure from big-endian to host-endian in place.
     ///
     ///
@@ -495,8 +656,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `text_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendiantextdescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianTextDescriptionToHost(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
@@ -504,6 +663,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a text description structure from host-endian to big-endian, in place.
+    ///
+    /// Parameters:
+    /// - textDescriptionData: TextDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// - textDescriptionSize: Size of TextDescription data structure.
+    ///
     /// Converts a TextDescription data structure from host-endian to big-endian in place.
     ///
     ///
@@ -514,19 +680,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `text_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendiantextdescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianTextDescriptionToBig(
         text_description_data: NonNull<u8>,
         text_description_size: usize,
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptiondescriptionflavor?language=objc)
+/// Types that represent closed caption format descriptions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMClosedCaptionDescriptionFlavor = CFString;
 
 extern "C-unwind" {
+    /// Creates a closed caption format description from a big-endian closed caption description structure.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMClosedCaptionFormatDescription` object. May be `NULL`.
+    ///
+    /// - closedCaptionDescriptionData: ClosedCaptionDescription data structure in big-endian byte ordering.
+    ///
+    /// - size: Size of ClosedCaptionDescription data structure.
+    ///
+    /// - flavor: Reserved for future use. Pass `NULL` for QuickTime Movie or ISO flavor.
+    ///
+    /// - formatDescriptionOut: Receives new `CMClosedCaptionFormatDescription`.
+    ///
     /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure.
     ///
     ///
@@ -544,8 +721,6 @@ extern "C-unwind" {
     ///
     /// - `closed_caption_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptioncreatefrombigendianclosedcaptiondescriptiondata(allocator:bigendianclosedcaptiondescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -557,6 +732,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a closed caption format description from a big-endian closed caption description structure in a buffer.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMClosedCaptionFormatDescription` object. May be `NULL`.
+    ///
+    /// - closedCaptionDescriptionBlockBuffer: `CMBlockBuffer` containing ClosedCaptionDescription data structure in big-endian byte ordering.
+    ///
+    /// - flavor: Reserved for future use. Pass `NULL` for QuickTime Movie or ISO flavor.
+    ///
+    /// - formatDescriptionOut: Receives new `CMClosedCaptionFormatDescription`.
+    ///
     /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -571,8 +757,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptioncreatefrombigendianclosedcaptiondescriptionblockbuffer(allocator:bigendianclosedcaptiondescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -583,6 +767,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a closed caption format description to a buffer in big-endian byte order.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMBlockBuffer` object. May be `NULL`.
+    ///
+    /// - closedCaptionFormatDescription: The `CMClosedCaptionFormatDescription` to be copied.
+    ///
+    /// - flavor: Reserved for future use. Pass `NULL` for QuickTime Movie or ISO flavor.
+    ///
+    /// - blockBufferOut: Receives new `CMBlockBuffer` containing ClosedCaptionDescription data structure in big-endian byte ordering.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `dataRefIndex` field of the SampleDescription is intentionally filled with placeholder values (`0xFFFF`). The caller must overwrite these values with a valid `dataRefIndex` if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies the contents of a CMClosedCaptionFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -602,8 +811,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptionformatdescriptioncopyasbigendianclosedcaptiondescriptionblockbuffer(allocator:closedcaptionformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -614,6 +821,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a closed caption description structure from big-endian to host-endian, in place.
+    ///
+    /// Parameters:
+    /// - closedCaptionDescriptionData: ClosedCaptionDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// - closedCaptionDescriptionSize: Size of ClosedCaptionDescription data structure.
+    ///
     /// Converts a ClosedCaptionDescription data structure from big-endian to host-endian in place.
     ///
     ///
@@ -624,8 +838,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `closed_caption_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendianclosedcaptiondescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianClosedCaptionDescriptionToHost(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
@@ -633,6 +845,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a closed caption description structure from host-endian to big-endian, in place.
+    ///
+    /// Parameters:
+    /// - closedCaptionDescriptionData: ClosedCaptionDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// - closedCaptionDescriptionSize: Size of ClosedCaptionDescription data structure.
+    ///
     /// Converts a ClosedCaptionDescription data structure from host-endian to big-endian in place.
     ///
     ///
@@ -643,19 +862,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `closed_caption_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendianclosedcaptiondescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianClosedCaptionDescriptionToBig(
         closed_caption_description_data: NonNull<u8>,
         closed_caption_description_size: usize,
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodedescriptionflavor?language=objc)
+/// Types that represent time code format descriptions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMTimeCodeDescriptionFlavor = CFString;
 
 extern "C-unwind" {
+    /// Creates a time code format description from a big-endian time code description structure.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMTimeCodeFormatDescription object. May be NULL.
+    ///
+    /// - timeCodeDescriptionData: TimeCodeDescription data structure in big-endian byte ordering.
+    ///
+    /// - size: Size of TimeCodeDescription data structure.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - formatDescriptionOut: Receives new CMTimeCodeFormatDescription.
+    ///
     /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure.
     ///
     ///
@@ -673,8 +903,6 @@ extern "C-unwind" {
     ///
     /// - `time_code_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncreatefrombigendiantimecodedescriptiondata(allocator:bigendiantimecodedescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -686,6 +914,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a time code format description from a big-endian time code description data structure in a buffer.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMTimeCodeFormatDescription object. May be NULL.
+    ///
+    /// - timeCodeDescriptionBlockBuffer: CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - formatDescriptionOut: Receives new CMTimeCodeFormatDescription.
+    ///
     /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -700,8 +939,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncreatefrombigendiantimecodedescriptionblockbuffer(allocator:bigendiantimecodedescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -712,6 +949,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a time code format description to a buffer in big-endian byte order.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// - timeCodeFormatDescription: CMTimeCodeFormatDescription to be copied.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - blockBufferOut: Receives new CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The dataRefIndex field of the SampleDescription is intentionally filled with garbage values (0xFFFF).  The caller must overwrite these values with a valid dataRefIndex if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies the contents of a CMTimeCodeFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -731,8 +993,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodeformatdescriptioncopyasbigendiantimecodedescriptionblockbuffer(allocator:timecodeformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -743,6 +1003,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a time code description data structure from big-endian to host-endian, in place.
+    ///
+    /// Parameters:
+    /// - timeCodeDescriptionData: TimeCodeDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// - timeCodeDescriptionSize: Size of TimeCodeDescription data structure.
+    ///
     /// Converts a TimeCodeDescription data structure from big-endian to host-endian in place.
     ///
     ///
@@ -753,8 +1020,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `time_code_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendiantimecodedescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianTimeCodeDescriptionToHost(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
@@ -762,6 +1027,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a time code description data structure from host-endian to big-endian, in place.
+    ///
+    /// Parameters:
+    /// - timeCodeDescriptionData: TimeCodeDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// - timeCodeDescriptionSize: Size of TimeCodeDescription data structure.
+    ///
     /// Converts a TimeCodeDescription data structure from host-endian to big-endian in place.
     ///
     ///
@@ -772,19 +1044,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `time_code_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendiantimecodedescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianTimeCodeDescriptionToBig(
         time_code_description_data: NonNull<u8>,
         time_code_description_size: usize,
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadescriptionflavor?language=objc)
+/// Types that represent metadata format descriptions.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CMMetadataDescriptionFlavor = CFString;
 
 extern "C-unwind" {
+    /// Creates a metadata format description from a big-endian metadata description structure.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMMetadataFormatDescription object. May be `NULL`.
+    ///
+    /// - metadataDescriptionData: MetadataDescription data structure in big-endian byte ordering.
+    ///
+    /// - size: Size of MetadataDescription data structure.
+    ///
+    /// - flavor: Reserved for future use. Pass `NULL` for QuickTime Movie or ISO flavor.
+    ///
+    /// - formatDescriptionOut: Receives new CMMetadataFormatDescriptionRef.
+    ///
     /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure.
     ///
     ///
@@ -802,8 +1085,6 @@ extern "C-unwind" {
     ///
     /// - `metadata_description_data` must be a valid pointer.
     /// - `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatefrombigendianmetadatadescriptiondata(allocator:bigendianmetadatadescriptiondata:size:flavor:formatdescriptionout:)?language=objc)
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
         allocator: Option<&CFAllocator>,
@@ -815,6 +1096,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a metadata format description from a big-endian metadata description structure inside a buffer.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the `CMMetadataFormatDescription` object. May be `NULL`.
+    ///
+    /// - metadataDescriptionBlockBuffer: `CMBlockBuffer` containing MetadataDescription data structure in big-endian byte ordering.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - formatDescriptionOut: Receives new CMMetadataFormatDescriptionRef.
+    ///
     /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure in a CMBlockBuffer.
     ///
     ///
@@ -829,8 +1121,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `format_description_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncreatefrombigendianmetadatadescriptionblockbuffer(allocator:bigendianmetadatadescriptionblockbuffer:flavor:formatdescriptionout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -841,6 +1131,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the contents of a metadata format description to a buffer in big-endian byte order.
+    ///
+    /// Parameters:
+    /// - allocator: Allocator to use for allocating the CMBlockBuffer object. May be NULL.
+    ///
+    /// - metadataFormatDescription: CMMetadataFormatDescriptionRef to be copied.
+    ///
+    /// - flavor: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
+    ///
+    /// - blockBufferOut: Receives new CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `dataRefIndex` field of the SampleDescription is intentionally filled with garbage values (`0xFFFF`).  The caller must overwrite these values with a valid `dataRefIndex` if writing the SampleDescription to a QuickTime/ISO file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Copies the contents of a CMMetadataFormatDescription to a CMBlockBuffer in big-endian byte ordering.
     ///
     /// On return, the caller owns the returned CMBlockBuffer, and must release it when done with it.
@@ -860,8 +1175,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadataformatdescriptioncopyasbigendianmetadatadescriptionblockbuffer(allocator:metadataformatdescription:flavor:blockbufferout:)?language=objc)
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -872,6 +1185,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a metadata description data structure from big-endian to host-endian, in place.
+    ///
+    /// Parameters:
+    /// - metadataDescriptionData: MetadataDescription data structure in big-endian byte ordering to be converted to host-endian byte ordering.
+    ///
+    /// - metadataDescriptionSize: Size of MetadataDescription data structure.
+    ///
     /// Converts a MetadataDescription data structure from big-endian to host-endian in place.
     ///
     ///
@@ -882,8 +1202,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `metadata_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswapbigendianmetadatadescriptiontohost(_:_:)?language=objc)
     pub fn CMSwapBigEndianMetadataDescriptionToHost(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,
@@ -891,6 +1209,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts a metadata description data structure from host-endian to big-endian, in place.
+    ///
+    /// Parameters:
+    /// - metadataDescriptionData: MetadataDescription data structure in host-endian byte ordering to be converted to big-endian byte ordering.
+    ///
+    /// - metadataDescriptionSize: Size of MetadataDescription data structure.
+    ///
     /// Converts a MetadataDescription data structure from host-endian to big-endian in place.
     ///
     ///
@@ -901,8 +1226,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `metadata_description_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmswaphostendianmetadatadescriptiontobig(_:_:)?language=objc)
     pub fn CMSwapHostEndianMetadataDescriptionToBig(
         metadata_description_data: NonNull<u8>,
         metadata_description_size: usize,

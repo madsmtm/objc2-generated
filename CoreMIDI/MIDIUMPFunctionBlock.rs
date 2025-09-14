@@ -18,8 +18,6 @@ extern_class!(
     /// properly. Unless the owning MIDIUMPEndpoint has a static Function Block configuration,
     /// any Function Block metadata may change in response to a configuration change in the
     /// owning UMP endpoint.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblock?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

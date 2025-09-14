@@ -8,21 +8,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Possible values for the [`SCNHitTestOptionSearchMode`](https://developer.apple.com/documentation/scenekit/scnhittestoption/searchmode) option used with hit-testing methods.
 /// hit test modes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNHitTestSearchMode(pub NSInteger);
 impl SCNHitTestSearchMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode/closest?language=objc)
+    /// The hit test should return only the closes object found.
     #[doc(alias = "SCNHitTestSearchModeClosest")]
     pub const Closest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode/all?language=objc)
+    /// The hit test should return all possible results, sorted from nearest to farthest.
     #[doc(alias = "SCNHitTestSearchModeAll")]
     pub const All: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode/any?language=objc)
+    /// The hit test should return only the first object found, regardless of distance.
     #[doc(alias = "SCNHitTestSearchModeAny")]
     pub const Any: Self = Self(2);
 }
@@ -35,71 +34,138 @@ unsafe impl RefEncode for SCNHitTestSearchMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options affecting the behavior of SceneKit hit-testing methods.
 /// Hit-test options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption?language=objc)
 // NS_TYPED_ENUM
 pub type SCNHitTestOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/cliptozrange?language=objc)
+    /// An option to search for objects only within the depth range of the current point of view.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`true`](https://developer.apple.com/documentation/swift/true), specifying that hit-testing searches only objects between the [`zNear`](https://developer.apple.com/documentation/scenekit/scncamera/znear) and [`zFar`](https://developer.apple.com/documentation/scenekit/scncamera/zfar) distances of the [`pointOfView`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/pointofview) camera. Specify [`false`](https://developer.apple.com/documentation/swift/false) to include objects outside this depth range in the search.
+    ///
+    /// This option is valid only when hit-testing in the screen space of an [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer) object with the [`hitTest:options:`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/hittest(_:options:)) method.
+    ///
+    ///
     pub static SCNHitTestClipToZRangeKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/backfaceculling?language=objc)
+    /// An option to ignore faces not oriented toward the camera.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`true`](https://developer.apple.com/documentation/swift/true), specifying that back-facing polygons will not be returned as hit-test results.
+    ///
+    ///
     pub static SCNHitTestBackFaceCullingKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/boundingboxonly?language=objc)
+    /// An option to search for objects by bounding box only.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false), specifying that hit-testing searches should test against node geometry. Specifying [`true`](https://developer.apple.com/documentation/swift/true) for this option increases search performance at the expense of geometric accuracy.
+    ///
+    ///
     pub static SCNHitTestBoundingBoxOnlyKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/ignorechildnodes?language=objc)
+    /// An option to ignore child nodes when searching.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false), specifying that hit-testing may return objects from any portion of the node hierarchy. Specify [`true`](https://developer.apple.com/documentation/swift/true) to search only the node specified by the [`SCNHitTestRootNodeKey`](https://developer.apple.com/documentation/scenekit/scnhittestoption/rootnode) key.
+    ///
+    ///
     pub static SCNHitTestIgnoreChildNodesKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/rootnode?language=objc)
+    /// The root of the node hierarchy to be searched.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object. Hit-testing searches only the child node hierarchy under this node. When hit-testing takes place in the screen space of an [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer) object with the [`hitTest:options:`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/hittest(_:options:)) method, the default value is the presented scene’s root node. When hit-testing is in a node using its [`hitTestWithSegmentFromPoint:toPoint:options:`](https://developer.apple.com/documentation/scenekit/scnnode/hittestwithsegment(from:to:options:)), the default value is the node.
+    ///
+    ///
     pub static SCNHitTestRootNodeKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/ignorehiddennodes?language=objc)
+    /// An option to ignore hidden nodes when searching.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`true`](https://developer.apple.com/documentation/swift/true), specifying that hit-testing should not return nodes whose hidden property value is [`true`](https://developer.apple.com/documentation/swift/true). Specify [`false`](https://developer.apple.com/documentation/swift/false) to search nodes regardless of their visibility.
+    ///
+    ///
     pub static SCNHitTestIgnoreHiddenNodesKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/categorybitmask?language=objc)
+    /// An option to search only for objects matching a specified bitmask.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an integer value. If present, the search will return only nodes that both satisfy the hit test and have a [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnnode/categorybitmask) value overlapping this bitmask.
+    ///
+    ///
     pub static SCNHitTestOptionCategoryBitMask: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/searchmode?language=objc)
+    /// An option for the number and order of hit test results to provide.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing the raw integer value of an [`SCNHitTestSearchMode`](https://developer.apple.com/documentation/scenekit/scnhittestsearchmode) constant.
+    ///
+    ///
     pub static SCNHitTestOptionSearchMode: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/ignorelightarea?language=objc)
     pub static SCNHitTestOptionIgnoreLightArea: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/firstfoundonly?language=objc)
+    /// An option to return only the first object found.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false), specifying that hit-testing should return all objects found. If you specify [`true`](https://developer.apple.com/documentation/swift/true), the array of hit-test results contains only the first object found (which is not necessarily the nearest).
+    ///
+    ///
     pub static SCNHitTestFirstFoundOnlyKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/sortresults?language=objc)
+    /// An option to sort the results of a hit-test.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`true`](https://developer.apple.com/documentation/swift/true), specifying that the array of hit-test results is sorted from nearest to farthest. (When using the [`hitTestWithSegmentFromPoint:toPoint:options:`](https://developer.apple.com/documentation/scenekit/scnnode/hittestwithsegment(from:to:options:)) method, “nearest” is defined as closer to the point specified in the first parameter.) If you specify [`false`](https://developer.apple.com/documentation/swift/false), results are returned in an arbitrary order.
+    ///
+    ///
     pub static SCNHitTestSortResultsKey: &'static SCNHitTestOption;
 }
 
 extern_class!(
-    /// Results returned by the hit-test methods.
+    /// Information about the result of a scene-space or view-space search for scene elements.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestresult?language=objc)
+    /// ## Overview
+    ///
+    /// Hit-testing is the process of finding elements of a scene located at a specified point, or along a specified line segment (or _ray_). An [`SCNHitTestResult`](https://developer.apple.com/documentation/scenekit/scnhittestresult) object provides details about one result from a hit-test search. There are three ways to perform a hit-test search. Use the [`hitTest:options:`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/hittest(_:options:)) method of an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object (or other scene renderer), the [`hitTestWithSegmentFromPoint:toPoint:options:`](https://developer.apple.com/documentation/scenekit/scnnode/hittestwithsegment(from:to:options:)) method of a node, or the [`rayTestWithSegmentFromPoint:toPoint:options:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/raytestwithsegment(from:to:options:)) method of your scene’s physics world.
+    ///
+    /// When you perform a hit-test search, SceneKit looks for [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) objects along the ray you specify. For each intersection between the ray and and a geometry, SceneKit creates a hit-test result to provide information about both the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object containing the geometry and the location of the intersection on the geometry’s surface.
+    ///
+    ///
+    /// Results returned by the hit-test methods.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNHitTestResult;

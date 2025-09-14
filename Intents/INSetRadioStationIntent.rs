@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintent?language=objc)
+    /// A request to change the current radio station.
+    ///
+    /// ## Overview
+    ///
+    /// When the user asks Siri to change the current radio station, SiriKit creates an [`INSetRadioStationIntent`](https://developer.apple.com/documentation/intents/insetradiostationintent) object and delivers it to the app’s Intents extension. You use the intent to identify which radio station the user wants. Automotive vendors can use this intent to change the settings on a vehicle’s built-in entertainment system.
+    ///
+    /// This properties of this class support identifying a radio station in several different ways, but a given instance of this class contains doesn’t populate all of those properties. When resolving and confirming the parameters of this intent, use the properties that are available to change the station.
+    ///
+    /// The object that handles this intent must adopt the [`INSetRadioStationIntentHandling`](https://developer.apple.com/documentation/intents/insetradiostationintenthandling) protocol. Use this intent object to identify the selected station and to create an [`INSetRadioStationIntentResponse`](https://developer.apple.com/documentation/intents/insetradiostationintentresponse) object indicating the results of changing the station.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// There are many ways in which users can ask Siri to change the radio station. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Tune into 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Switch to FM radio preset 3" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "转到FM88.5" }] }], [Paragraph { inline_content: [Text { text: "转到预设的FM三台" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "校去FM88.5" }] }], [Paragraph { inline_content: [Text { text: "轉去FM收音機三號台" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "轉到FM88.5" }] }], [Paragraph { inline_content: [Text { text: "換到FM收音機三號預設台" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "轉到FM88.5" }] }], [Paragraph { inline_content: [Text { text: "转去FM收音机三号台" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Stil ind på 88,5 FM" }] }], [Paragraph { inline_content: [Text { text: "Skift til FM Radio 3" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Stelle Radio auf 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Wechsele zu Radiostation 3" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Sintoniza 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Escuchar radio FM" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Viritä radio taajuudelle 88.5 MHz" }] }], [Paragraph { inline_content: [Text { text: "Laita radio esivalinnalle 3" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Mets la radio sur 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Mets la radio sur 3" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Sintonizza 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Metti la radio FM al preset tre" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "88.5FMに合わせて" }] }], [Paragraph { inline_content: [Text { text: "FMラジオのプリセット3をかけて" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "FM 88.5 켜줘" }] }], [Paragraph { inline_content: [Text { text: "FM 라디오 프리셋 3으로 변경해줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Dengarkan frekuensi 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Tukar ke pratetap radio 3" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Still inn 88,5 FM" }] }], [Paragraph { inline_content: [Text { text: "Bytt til kanal 3" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Stem af op 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Verander naar FM radio voorkeuze 3" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Sintonizar na 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Trocar para rádio FM número 3" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Включи 88.5 FM" }] }], [Paragraph { inline_content: [Text { text: "Включи радио на настройку 3" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Skruva in 88,5 FM" }] }], [Paragraph { inline_content: [Text { text: "Ändra FM radion till kanal 3" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "เปล\u{e35}\u{e48}ยนเป\u{e47}น FM 88.5" }] }], [Paragraph { inline_content: [Text { text: "เปล\u{e35}\u{e48}ยนไปท\u{e35}\u{e48}ช\u{e48}องว\u{e34}ทย\u{e38}เบอร\u{e4c} 3" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "88.5 FM’i aç" }] }], [Paragraph { inline_content: [Text { text: "3 numarada kayıtlı radyoya geç" }] }]]], alignments: None, metadata: None })
+    /// When managing CarPlay features, users don’t need to include the name of the app in the phrases that they speak. Siri knows automatically when CarPlay is active and routes CarPlay-related intents to the app of the corresponding automotive vendor.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -100,11 +122,18 @@ impl INSetRadioStationIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for changing a radio station.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSetRadioStationIntentHandling`](https://developer.apple.com/documentation/intents/insetradiostationintenthandling) protocol to resolve, confirm, and handle requests to change radio stations from your app. Your extension should be able to change the radio station based on the provided information. For example, automotive vendors should be able to use the information to update the settings of a vehicle’s entertainment system.
+    ///
+    /// Siri delivers an [`INSetRadioStationIntent`](https://developer.apple.com/documentation/intents/insetradiostationintent) object to your handler when the user asks to change the current radio station. The provided intent object contains information that you use to determine the new station.
+    ///
+    ///
     /// Protocol to declare support for handling an INSetRadioStationIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintenthandling?language=objc)
     #[deprecated = "INSetRadioStationIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSetRadioStationIntentHandling: NSObjectProtocol {
         #[cfg(all(

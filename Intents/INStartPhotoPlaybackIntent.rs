@@ -10,7 +10,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintent?language=objc)
+    /// A request to search for photos and initiate a slideshow with the results.
+    ///
+    /// ## Overview
+    ///
+    /// The system creates an [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent) object when the user asks to start a slideshow of a set of photos. This intent object contains the parameters to use when searching for the photos, including the possible name of a photo album, the people in the photos, or the location of the photos. Use this intent object to perform the search and initiate the slideshow in your app. When performing the search, use only the parameters provided and ignore any that have no values.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INStartPhotoPlaybackIntentHandling`](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling) protocol. Your handler should confirm the request and create an [`INStartPhotoPlaybackIntentResponse`](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponse) object with the results of the search. After a successful search, Siri launches your app so that it can begin the slideshow.
+    ///
+    /// For a list of other intents in the photos domain, see [`INPhotosDomainHandling`](https://developer.apple.com/documentation/intents/inphotosdomainhandling).
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -135,11 +150,18 @@ impl INStartPhotoPlaybackIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for searching the user’s photos and the playback of the results.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INStartPhotoPlaybackIntentHandling`](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling) protocol to resolve, confirm, and handle requests to search the user’s photos and initiate playback of a slideshow. Adopt this protocol in an object of your Intents extension that’s capable of performing the search and determining the number of results. Siri doesn’t display the photos found during the search. After a successful search, Siri launches your app so that it can begin the slideshow.
+    ///
+    /// Siri delivers an [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent) object to your handler when the user asks to start a slideshow. The provided intent object contains the search parameters to use for matching photos to include in the slideshow. Use the methods of this protocol to resolve the search parameters, to perform the search, and to return the number of photos that match the criteria.
+    ///
+    ///
     /// Protocol to declare support for handling an INStartPhotoPlaybackIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling?language=objc)
     #[deprecated = "INStartPhotoPlaybackIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INStartPhotoPlaybackIntentHandling: NSObjectProtocol {
         #[cfg(all(

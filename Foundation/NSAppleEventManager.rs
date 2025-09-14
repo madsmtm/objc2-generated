@@ -23,27 +23,43 @@ unsafe impl RefEncode for __NSAppleEventManagerSuspension {
         Encoding::Pointer(&Encoding::Struct("__NSAppleEventManagerSuspension", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanager/suspensionid?language=objc)
+/// Identifies an Apple event whose handling has been suspended. Can be used to resume handling of the Apple event.
 pub type NSAppleEventManagerSuspensionID = *const __NSAppleEventManagerSuspension;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutdefault?language=objc)
+    /// Specifies that an event-processing operation should continue until a timeout occurs based on a value determined by the Apple Event Manager (about 1 minute). Not currently used by applications.
     pub static NSAppleEventTimeOutDefault: c_double;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventtimeoutnone?language=objc)
+    /// Specifies that the application is willing to wait indefinitely for the current operation to complete. Not currently used by applications.
     pub static NSAppleEventTimeOutNone: c_double;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsappleeventmanagerwillprocessfirstevent?language=objc)
+    /// Posted by `NSAppleEventManager` before it first dispatches an Apple event. Your application can use this notification to avoid registering any Apple event handlers until the first time at which they may be needed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSAppleEventManager`. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanager?language=objc)
+    /// A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
+    ///
+    /// ## Overview
+    ///
+    /// Cocoa provides built-in scriptability support that uses scriptability information supplied by an application to automatically convert Apple events into script command objects that perform the desired operation. However, some applications may want to perform more basic Apple event handling, in which an application registers handlers for the Apple events it can process, then calls on the Apple Event Manager to dispatch received Apple events to the appropriate handler. `NSAppleEventManager` supports these mechanisms by providing methods to register and remove handlers and to dispatch Apple events to the appropriate handler, if one exists. For related information, see [How Cocoa Applications Handle Apple Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239)
+    ///
+    /// Each application has at most one instance of `NSAppleEventManager`. To obtain a reference to it, you call the class method [`sharedAppleEventManager`](https://developer.apple.com/documentation/foundation/nsappleeventmanager/shared()), which creates the instance if it doesn’t already exist.
+    ///
+    /// For information about the Apple Event Manager, see [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager) and Apple Events Programming Guide.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleEventManager;

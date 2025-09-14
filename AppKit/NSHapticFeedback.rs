@@ -6,19 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern?language=objc)
+/// A pattern of haptic feedback to be provided to the user.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHapticFeedbackPattern(pub NSInteger);
 impl NSHapticFeedbackPattern {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern/generic?language=objc)
+    /// A general haptic feedback pattern. Use this when no other feedback patterns apply.
     #[doc(alias = "NSHapticFeedbackPatternGeneric")]
     pub const Generic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern/alignment?language=objc)
+    /// A haptic feedback pattern to be used in response to the alignment of an object the user is dragging around. For example, this pattern of feedback could be used in a drawing app when the user drags a shape into alignment with another shape. Other scenarios where this type of feedback could be used might include scaling an object to fit within specific dimensions, positioning an object at a preferred location, or reaching the beginning/minimum or end/maximum of something, such as a track view in an audio/video app.
     #[doc(alias = "NSHapticFeedbackPatternAlignment")]
     pub const Alignment: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/feedbackpattern/levelchange?language=objc)
+    /// A haptic feedback pattern to be used as the user moves between discrete levels of pressure. This pattern of feedback is used by multilevel accelerator buttons (class [`NSMultiLevelAcceleratorButton`](https://developer.apple.com/documentation/appkit/nsmultilevelacceleratorbutton)).
     #[doc(alias = "NSHapticFeedbackPatternLevelChange")]
     pub const LevelChange: Self = Self(2);
 }
@@ -31,19 +31,19 @@ unsafe impl RefEncode for NSHapticFeedbackPattern {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime?language=objc)
+/// A time at which to provide haptic feedback to the user.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHapticFeedbackPerformanceTime(pub NSUInteger);
 impl NSHapticFeedbackPerformanceTime {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime/default?language=objc)
+    /// Allows the system to choose the most appropriate time for feedback to be provided. Currently, this is the next time the screen is updated.
     #[doc(alias = "NSHapticFeedbackPerformanceTimeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime/now?language=objc)
+    /// Instructs the system to provide immediate haptic feedback to the user, rather than waiting for synchronization to occur with something visual occurring on screen.
     #[doc(alias = "NSHapticFeedbackPerformanceTimeNow")]
     pub const Now: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/performancetime/drawcompleted?language=objc)
+    /// Instructs the system to provide haptic feedback to the user the next time the screen is updated.
     #[doc(alias = "NSHapticFeedbackPerformanceTimeDrawCompleted")]
     pub const DrawCompleted: Self = Self(2);
 }
@@ -57,7 +57,23 @@ unsafe impl RefEncode for NSHapticFeedbackPerformanceTime {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackperformer?language=objc)
+    /// A set of methods and constants that a haptic feedback performer implements.
+    ///
+    /// ## Overview
+    ///
+    /// To retrieve a haptic feedback performer object based on the current input device, accessibility settings, and user preferences, call the [`defaultPerformer`](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager/defaultperformer) method of the [`NSHapticFeedbackManager`](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager) class.
+    ///
+    /// To provide the user with haptic feedback while using a Force Touch trackpad, call the [`performFeedbackPattern:performanceTime:`](https://developer.apple.com/documentation/appkit/nshapticfeedbackperformer/perform(_:performancetime:)) method of this protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Haptic feedback is intended to be provided in response to a user action, such as aligning one object to another. Do not use it to provide feedback for events that are not user initiated. Excessive or unnecessary haptic feedback could be interpreted by the user as a malfunction and could encourage the user to disable haptic feedback entirely.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSHapticFeedbackPerformer: NSObjectProtocol {
         #[unsafe(method(performFeedbackPattern:performanceTime:))]
         #[unsafe(method_family = none)]
@@ -70,7 +86,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackmanager?language=objc)
+    /// An object that provides access to the haptic feedback management attributes on a system with a Force Touch trackpad.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHapticFeedbackManager;

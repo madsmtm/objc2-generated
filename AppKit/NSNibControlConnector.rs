@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibcontrolconnector?language=objc)
+    /// A control connection between two Interface Builder objects.
     #[unsafe(super(NSNibConnector, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSNibConnector")]

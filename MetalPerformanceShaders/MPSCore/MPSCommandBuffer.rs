@@ -24,8 +24,6 @@ extern_class!(
     /// the predicate is considered to be true.
     /// NOTE: It is advisable to release MPSPredicate objects promptly as they take a reference
     /// to a MTLBuffer object and therefore can keep the memory allocated for long periods of time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSPredicate;
@@ -130,7 +128,6 @@ impl MPSPredicate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsheapprovider?language=objc)
     pub unsafe trait MPSHeapProvider: NSObjectProtocol {
         /// Return a heap of the size indicated
         ///
@@ -182,8 +179,6 @@ extern_class!(
     /// NOTE: the options that contain metal resources will be referenced by this object and
     /// therefore it is advisable to make the lifetime of this object as short as possible as is the
     /// case for all command buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCommandBuffer;

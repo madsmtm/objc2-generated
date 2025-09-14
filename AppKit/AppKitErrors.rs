@@ -4,67 +4,48 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextreadinapplicabledocumenttypeerror?language=objc)
+/// Indicates a problem reading data with the specified format.
 pub const NSTextReadInapplicableDocumentTypeError: c_uint = 65806;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextwriteinapplicabledocumenttypeerror?language=objc)
+/// Indicates a problem writing data of the specified format.
 pub const NSTextWriteInapplicableDocumentTypeError: c_uint = 66062;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextreadwriteerrorminimum?language=objc)
+/// The beginning of a range of error codes reserved for future use.
 pub const NSTextReadWriteErrorMinimum: c_uint = 65792;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextreadwriteerrormaximum?language=objc)
+/// The end of a range of error codes reserved for future use.
 pub const NSTextReadWriteErrorMaximum: c_uint = 66303;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontassetdownloaderror?language=objc)
 pub const NSFontAssetDownloadError: c_uint = 66304;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonterrorminimum?language=objc)
 pub const NSFontErrorMinimum: c_uint = 66304;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonterrormaximum?language=objc)
 pub const NSFontErrorMaximum: c_uint = 66335;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceapplicationnotfounderror?language=objc)
+/// The service provider could not be found.
 pub const NSServiceApplicationNotFoundError: c_uint = 66560;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceapplicationlaunchfailederror?language=objc)
+/// The service providing application could not be launched.  This will typically contain an underlying error with an Launch Services error code.
 pub const NSServiceApplicationLaunchFailedError: c_uint = 66561;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsservicerequesttimedouterror?language=objc)
+/// The service providing application did not open its service listening port in time, or the app didn’t respond to the request in time; see the Console log to figure out which (the errors are typically reported the same way to the user).
 pub const NSServiceRequestTimedOutError: c_uint = 66562;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceinvalidpasteboarddataerror?language=objc)
+/// The service providing app did not return a pasteboard with any of the promised types, or we couldn’t write the data from the pasteboard to the object receiving the returned data.
 pub const NSServiceInvalidPasteboardDataError: c_uint = 66563;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsservicemalformedservicedictionaryerror?language=objc)
+/// The service dictionary did not contain the necessary keys.  Messages will typically be logged to the console giving more details.
 pub const NSServiceMalformedServiceDictionaryError: c_uint = 66564;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsservicemiscellaneouserror?language=objc)
+/// Other errors, representing programmatic mistakes in the service consuming application.  These show a generic error message to the user.
 pub const NSServiceMiscellaneousError: c_uint = 66800;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceerrorminimum?language=objc)
+/// Inclusive service error range, for checking future error codes.
 pub const NSServiceErrorMinimum: c_uint = 66560;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceerrormaximum?language=objc)
+/// Inclusive service error range, for checking future error codes.
 pub const NSServiceErrorMaximum: c_uint = 66817;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenotconfigurederror?language=objc)
 pub const NSSharingServiceNotConfiguredError: c_uint = 67072;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingserviceerrorminimum?language=objc)
 pub const NSSharingServiceErrorMinimum: c_uint = 67072;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingserviceerrormaximum?language=objc)
 pub const NSSharingServiceErrorMaximum: c_uint = 67327;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceauthorizationinvaliderror?language=objc)
+/// The provided workspace authorization credentials expired or are invalid.
 pub const NSWorkspaceAuthorizationInvalidError: c_uint = 67328;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceerrorminimum?language=objc)
 pub const NSWorkspaceErrorMinimum: c_uint = 67328;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceerrormaximum?language=objc)
 pub const NSWorkspaceErrorMaximum: c_uint = 67455;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingrequestalreadyrequested?language=objc)
 pub const NSWindowSharingRequestAlreadyRequested: c_uint = 67456;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingrequestnoeligiblesession?language=objc)
 pub const NSWindowSharingRequestNoEligibleSession: c_uint = 67457;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingrequestunspecifiederror?language=objc)
 pub const NSWindowSharingRequestUnspecifiedError: c_uint = 67458;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingerrorminimum?language=objc)
 pub const NSWindowSharingErrorMinimum: c_uint = 67456;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingerrormaximum?language=objc)
 pub const NSWindowSharingErrorMaximum: c_uint = 67466;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardmiscellaneouserror?language=objc)
 pub const NSPasteboardMiscellaneousError: c_uint = 67584;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardcommunicationerror?language=objc)
 pub const NSPasteboardCommunicationError: c_uint = 67585;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardinvalidargumenterror?language=objc)
 pub const NSPasteboardInvalidArgumentError: c_uint = 67586;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardcontentsnotavailableerror?language=objc)
 pub const NSPasteboardContentsNotAvailableError: c_uint = 67587;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarderrorminimum?language=objc)
 pub const NSPasteboardErrorMinimum: c_uint = 67584;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarderrormaximum?language=objc)
 pub const NSPasteboardErrorMaximum: c_uint = 67839;

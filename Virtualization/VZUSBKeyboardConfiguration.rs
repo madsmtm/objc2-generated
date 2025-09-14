@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A device that defines the configuration for a USB keyboard.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZVirtualMachineView`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview) can use this device to send key events to the VM.
+    ///
+    ///
     /// Configuration for a USB keyboard.
     ///
     /// This device can be used by VZVirtualMachineView to send key events to the virtual machine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbkeyboardconfiguration?language=objc)
     #[unsafe(super(VZKeyboardConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZKeyboardConfiguration")]

@@ -9,27 +9,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/drawingactions?language=objc)
+/// A closure for drawing an image.
+///
+/// ## Discussion
+///
+/// `UIGraphicsImageDrawingActions` defines a block type that takes a [`UIGraphicsImageRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext) object as an argument and has no return value.
+///
+/// You provide a block of this type as an argument to the image drawing methods on [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer). Your block should use the provided image renderer context to perform the drawing operations you want the renderer to execute.
+///
+/// See [Creating an image with an image renderer](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer#creating-an-image-with-an-image-renderer) for an example use of a `UIGraphicsImageDrawingActions` block.
+///
+///
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsImageDrawingActions =
     *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range?language=objc)
+/// Constants that specify the color range of the image renderer context.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGraphicsImageRendererFormatRange(pub NSInteger);
 impl UIGraphicsImageRendererFormatRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/unspecified?language=objc)
+    /// The image renderer context doesn’t specify a color range.
+    ///
+    /// ## Discussion
+    ///
+    /// In general, avoid specifying this value for an image renderer format. Some color spaces that you access using the [`imageRendererFormat`](https://developer.apple.com/documentation/uikit/uiimage/imagerendererformat) property of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) may use this value.
+    ///
+    ///
     #[doc(alias = "UIGraphicsImageRendererFormatRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/automatic?language=objc)
+    /// The system automatically chooses the image renderer context’s pixel format according to the color range of its content.
     #[doc(alias = "UIGraphicsImageRendererFormatRangeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/extended?language=objc)
+    /// The image renderer context supports wide color.
     #[doc(alias = "UIGraphicsImageRendererFormatRangeExtended")]
     pub const Extended: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range/standard?language=objc)
+    /// The image renderer context doesn’t support extended colors.
+    ///
+    /// ## Discussion
+    ///
+    /// If you draw wide-color content into an image renderer context that uses the standard color range, you may lose color information. The system matches the colors to the standard range of their corresponding color space.
+    ///
+    ///
     #[doc(alias = "UIGraphicsImageRendererFormatRangeStandard")]
     pub const Standard: Self = Self(2);
 }
@@ -43,7 +65,15 @@ unsafe impl RefEncode for UIGraphicsImageRendererFormatRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat?language=objc)
+    /// A set of drawing attributes that represents the configuration of an image renderer context.
+    ///
+    /// ## Overview
+    ///
+    /// Use an instance of [`UIGraphicsImageRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat) to initialize a [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) object with nondefault attributes.
+    ///
+    /// The image renderer format object contains properties that determine the attributes of the underlying Core Graphics contexts that the image renderer creates. Use the [`defaultFormat`](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat/default()) class method to create an image renderer format instance optimized for the current device.
+    ///
+    ///
     #[unsafe(super(UIGraphicsRendererFormat, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -158,7 +188,23 @@ impl DefaultRetained for UIGraphicsImageRendererFormat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext?language=objc)
+    /// The drawing environment for an image renderer.
+    ///
+    /// ## Overview
+    ///
+    /// When using the [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) drawing methods, you must pass a block of type [`UIGraphicsImageDrawingActions`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/drawingactions) as an argument, which provides a [`UIGraphicsImageRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext) instance as an argument. Use the context object to access high-level drawing functions and the underlying Core Graphics context.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `UIGraphicsImageRendererContext` inherits much of its functionality from its abstract superclass [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To learn how to use a `UIGraphicsImageRendererContext` object in combination with an image renderer, see [Creating a graphics image renderer](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer#creating-a-graphics-image-renderer).
+    ///
+    ///
     #[unsafe(super(UIGraphicsRendererContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -203,7 +249,73 @@ impl DefaultRetained for UIGraphicsImageRendererContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer?language=objc)
+    /// A graphics renderer for creating Core Graphics-backed images.
+    ///
+    /// ## Overview
+    ///
+    /// You can use image renderers to accomplish drawing tasks, without having to handle configuration such as color depth and image scale, or manage Core Graphics contexts. You initialize an image renderer with parameters such as image output dimensions and format. You then use one or more of the drawing functions to render images that share these properties.
+    ///
+    /// To render an image:
+    ///
+    /// 1. Optionally, create a [`UIGraphicsImageRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat) object to specify nondefault parameters the renderer should use to create its context.
+    ///
+    /// 2. Instantiate a [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) object, providing the dimensions of the output image and a format object. The renderer uses default values for the current device if you don’t provide format object, as demonstrated in [Creating a graphics image renderer](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer#creating-a-graphics-image-renderer).
+    ///
+    /// 3. Choose one of the rendering methods depending on the output you desire: [`imageWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/image(actions:)) returns a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object; [`JPEGDataWithCompressionQuality:actions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/jpegdata(withcompressionquality:actions:)) returns a JPEG-encoded [`Data`](https://developer.apple.com/documentation/foundation/data) object; and [`PNGDataWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/pngdata(actions:)) returns a PNG-encoded [`Data`](https://developer.apple.com/documentation/foundation/data) object.
+    ///
+    /// 4. Execute your chosen method, providing Core Graphics drawing instructions as the closure argument, as shown in [Creating an image with an image renderer](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer#creating-an-image-with-an-image-renderer). [Using blend mode](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer#using-blend-mode) demonstrates some of the more advanced rendering features you can use in your drawing instructions.
+    ///
+    /// 5. Optionally, you can use Core Graphics drawing code within the drawing instructions you provide to the rendering method, as shown in [Using Core Graphics rendering functions](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer#using-core-graphics-rendering-functions).
+    ///
+    /// After initializing an image renderer, you can use it to draw multiple images with the same configuration. An image renderer keeps a cache of Core Graphics contexts, so reusing the same renderer can be more efficient than creating new renderers.
+    ///
+    /// ### Creating a graphics image renderer
+    ///
+    /// Create an image renderer, providing the size of the output image:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let renderer = UIGraphicsImageRenderer(size: CGSize(width: 200, height: 200))"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(200, 200)];"], metadata: None }] }] })
+    /// You can instead use one of the other [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) initializers to specify a renderer format ([`UIGraphicsImageRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat)) in addition to the size. This allows you to configure the underlying Core Graphics context for wide color and retina images.
+    ///
+    /// If you don’t provide a format, the renderer uses the [`defaultFormat`](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat/default()) format, which creates a context best suited for the current device.
+    ///
+    /// ### Creating an image with an image renderer
+    ///
+    /// Use the [`imageWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/image(actions:)) method to create an image ([`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object) with an image renderer. This method takes a closure that represents the drawing actions. Within this closure, the renderer creates a Core Graphics context using the parameters provided during renderer initialization, and sets this Core Graphics context to be the current context.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let image = renderer.image { (context) in", "  UIColor.darkGray.setStroke()", "  context.stroke(renderer.format.bounds)", "  UIColor(colorLiteralRed: 158/255, green: 215/255, blue: 245/255, alpha: 1).setFill()", "  context.fill(CGRect(x: 1, y: 1, width: 140, height: 140))", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["  UIImage *image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull context) {", "    [[UIColor darkGrayColor] setStroke];", "    [context strokeRect:renderer.format.bounds];", "    [[UIColor colorWithRed:158/255.0 green:215/255.0 blue:245/255.0 alpha:1] setFill];", "    [context fillRect:CGRectMake(1, 1, 140, 140)];", "  }];"], metadata: None }] }] })
+    /// The drawing actions closure takes a single argument of type [`UIGraphicsImageRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext). This provides access to some high-level drawing functions, such as [`fillRect:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext/fill(_:)), through the [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) superclass.
+    ///
+    /// The above code creates the following image:
+    ///
+    ///
+    /// ![Image showing a blue square in the top left of a larger white squares](https://docs-assets.developer.apple.com/published/120452bcd4ba5d1e1217df3088cb4c20/media-2874999%402x.png)
+    ///
+    ///
+    /// In addition to the [`imageWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/image(actions:)) method that creates an [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object, [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) also has [`JPEGDataWithCompressionQuality:actions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/jpegdata(withcompressionquality:actions:)) and [`PNGDataWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/pngdata(actions:)) methods that create [`Data`](https://developer.apple.com/documentation/foundation/data) objects containing the image encoded as a JPEG or a PNG respectively. All three methods take the same approach as detailed here, accepting a block that represents the drawing actions.
+    ///
+    /// ### Using blend mode
+    ///
+    /// The utility methods on [`UIGraphicsImageRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext) also offer a variant that accepts a [`CGBlendMode`](https://developer.apple.com/documentation/coregraphics/cgblendmode) value. This value determines how to combine the pixel values when painting.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let image = renderer.image { (context) in", "  UIColor.darkGray.setStroke()", "  context.stroke(renderer.format.bounds)", "  UIColor(colorLiteralRed: 158/255, green: 215/255, blue: 245/255, alpha: 1).setFill()", "  context.fill(CGRect(x: 1, y: 1, width: 140, height: 140))", "  UIColor(colorLiteralRed: 145/255, green: 211/255, blue: 205/255, alpha: 1).setFill()", "  context.fill(CGRect(x: 60, y: 60, width: 140, height: 140), blendMode: .multiply)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["  UIImage *image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull context) {", "    [[UIColor darkGrayColor] setStroke];", "    [context strokeRect:renderer.format.bounds];", "    [[UIColor colorWithRed:158/255.0 green:215/255.0 blue:245/255.0 alpha:1] setFill];", "    [context fillRect:CGRectMake(1, 1, 140, 140)];", "    [[UIColor colorWithRed:145/255.0 green:211/255.0 blue:205/255.0 alpha:1] setFill];", "    [context fillRect:CGRectMake(60, 60, 140, 140) blendMode:kCGBlendModeMultiply];", "  }];"], metadata: None }] }] })
+    /// This code draws a second square, using a blend mode of multiply. The following image shows the result.
+    ///
+    ///
+    /// ![Image showing two overlapping squares, one blue, the other turquoise, in the top-left and bottom-right of a white background square respectively.](https://docs-assets.developer.apple.com/published/80b9801ced2dfb67ba11c15a666db490/media-2875000%402x.png)
+    ///
+    ///
+    /// ### Using Core Graphics rendering functions
+    ///
+    /// The [`UIGraphicsImageRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext) available in the image closure has a [`CGContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext/cgcontext) property, which allows you to use Core Graphics rendering functions directly. For example, the following code demonstrates how to add a circle to the image:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let image = renderer.image { (context) in", "  UIColor.darkGray.setStroke()", "  context.stroke(renderer.format.bounds)", "  UIColor(colorLiteralRed: 158/255, green: 215/255, blue: 245/255, alpha: 1).setFill()", "  context.fill(CGRect(x: 1, y: 1, width: 140, height: 140))", "  UIColor(colorLiteralRed: 145/255, green: 211/255, blue: 205/255, alpha: 1).setFill()", "  context.fill(CGRect(x: 60, y: 60, width: 140, height: 140), blendMode: .multiply)", "  ", "  UIColor(colorLiteralRed: 203/255, green: 222/255, blue: 116/255, alpha: 0.6).setFill()", "  context.cgContext.fillEllipse(in: CGRect(x: 60, y: 60, width: 140, height: 140))", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["  UIImage *image = [renderer imageWithActions:^(UIGraphicsImageRendererContext * _Nonnull context) {", "    [[UIColor darkGrayColor] setStroke];", "    [context strokeRect:renderer.format.bounds];", "    [[UIColor colorWithRed:158/255.0 green:215/255.0 blue:245/255.0 alpha:1] setFill];", "    [context fillRect:CGRectMake(1, 1, 140, 140)];", "    [[UIColor colorWithRed:145/255.0 green:211/255.0 blue:205/255.0 alpha:1] setFill];", "    [context fillRect:CGRectMake(60, 60, 140, 140) blendMode:kCGBlendModeMultiply];", "    ", "    [[UIColor colorWithRed:203/255.0 green:222/255.0 blue:116/255.0 alpha:0.6] setFill];", "    CGContextFillEllipseInRect(context.CGContext, CGRectMake(60, 60, 140, 140));", "  }];"], metadata: None }] }] })
+    /// This code uses the [`CGContextFillEllipseInRect`](https://developer.apple.com/documentation/coregraphics/cgcontext/fillellipse(in:)) method on [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) to draw a green circle on the blue and turquoise squares image; the following image shows the result.
+    ///
+    ///
+    /// ![An image showing two overlapping squares and an overlaid green circle.](https://docs-assets.developer.apple.com/published/4493395a1867556cb03a84fee2c59ed7/media-2875001%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(UIGraphicsRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]

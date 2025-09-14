@@ -6,7 +6,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateinterval?language=objc)
+    /// An object representing the span of time between a specific start date and end date.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`DateInterval`](https://developer.apple.com/documentation/foundation/dateinterval); use [`NSDateInterval`](https://developer.apple.com/documentation/foundation/nsdateinterval) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// An `NSDateInterval` object represents a closed interval between two dates. The `NSDateInterval` class provides a programmatic interface for calculating the duration of a time interval and determining whether a date falls within it, as well as comparing date intervals and checking to see whether they intersect.
+    ///
+    /// An `NSDateInterval` object consists of a [`startDate`](https://developer.apple.com/documentation/foundation/nsdateinterval/startdate) and an [`endDate`](https://developer.apple.com/documentation/foundation/nsdateinterval/enddate). The [`startDate`](https://developer.apple.com/documentation/foundation/nsdateinterval/startdate) and [`endDate`](https://developer.apple.com/documentation/foundation/nsdateinterval/enddate) of a date interval can be equal, in which case its [`duration`](https://developer.apple.com/documentation/foundation/nsdateinterval/duration) is `0`. However, [`endDate`](https://developer.apple.com/documentation/foundation/nsdateinterval/enddate) cannot occur earlier than [`startDate`](https://developer.apple.com/documentation/foundation/nsdateinterval/startdate).
+    ///
+    /// You can use the [`NSDateIntervalFormatter`](https://developer.apple.com/documentation/foundation/dateintervalformatter) class to create string representations of `NSDateInterval` objects that are suitable for display in the current locale.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`DateInterval`](https://developer.apple.com/documentation/foundation/dateinterval) structure, which bridges to the `NSDateInterval` class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateInterval;

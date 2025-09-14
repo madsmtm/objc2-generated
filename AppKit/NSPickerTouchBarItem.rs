@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum?language=objc)
+/// Constants that specify selection modes for picker bar items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPickerTouchBarItemSelectionMode(pub NSInteger);
 impl NSPickerTouchBarItemSelectionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum/selectone?language=objc)
+    /// A mode in which a person can only select one option in the control at a time.
     #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum/selectany?language=objc)
+    /// A mode in which a person can select one or more options in the control at a time.
     #[doc(alias = "NSPickerTouchBarItemSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum/momentary?language=objc)
+    /// A mode in which an option is only selected while a person is interacting within the bounds of that option.
     #[doc(alias = "NSPickerTouchBarItemSelectionModeMomentary")]
     pub const Momentary: Self = Self(2);
 }
@@ -32,19 +32,19 @@ unsafe impl RefEncode for NSPickerTouchBarItemSelectionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum?language=objc)
+/// Constants that specify display styles for picker bar items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPickerTouchBarItemControlRepresentation(pub NSInteger);
 impl NSPickerTouchBarItemControlRepresentation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum/automatic?language=objc)
+    /// The system dynamically changes the display mode based on the available space.
     #[doc(alias = "NSPickerTouchBarItemControlRepresentationAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum/expanded?language=objc)
+    /// The system displays the control and all of its options directly.
     #[doc(alias = "NSPickerTouchBarItemControlRepresentationExpanded")]
     pub const Expanded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum/collapsed?language=objc)
+    /// The system displays the control’s options through a popover.
     #[doc(alias = "NSPickerTouchBarItemControlRepresentationCollapsed")]
     pub const Collapsed: Self = Self(2);
 }
@@ -58,7 +58,7 @@ unsafe impl RefEncode for NSPickerTouchBarItemControlRepresentation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem?language=objc)
+    /// A bar item that provides a picker control with multiple options.
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]

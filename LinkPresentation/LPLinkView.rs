@@ -13,6 +13,27 @@ use crate::*;
 extern_class!(
     /// A rich visual representation of a link.
     ///
+    /// ## Overview
+    ///
+    /// [`LPLinkView`](https://developer.apple.com/documentation/linkpresentation/lplinkview) presents a link based on its available metadata. Use it to show a link’s title and icon, associated images, inline audio, video playback, and maps in a familiar and consistent style.
+    ///
+    /// ## Present a rich link
+    ///
+    /// To present a rich link in your app, create an [`LPLinkView`](https://developer.apple.com/documentation/linkpresentation/lplinkview), passing an [`LPLinkMetadata`](https://developer.apple.com/documentation/linkpresentation/lplinkmetadata) instance into its initializer. Then add the [`LPLinkView`](https://developer.apple.com/documentation/linkpresentation/lplinkview) to your view.
+    ///
+    /// For example, to present links in a table view, add an [`LPLinkView`](https://developer.apple.com/documentation/linkpresentation/lplinkview) instance as a subview when populating each cell.
+    ///
+    /// ```swift
+    /// let linkView = LPLinkView(metadata: metadata)
+    /// cell.contentView.addSubview(linkView)
+    /// linkView.sizeToFit()
+    /// ```
+    ///
+    /// [`LPLinkView`](https://developer.apple.com/documentation/linkpresentation/lplinkview) has an intrinsic size, but it also responds to [`sizeToFit`](https://developer.apple.com/documentation/uikit/uiview/sizetofit()) to present a layout at any size.
+    ///
+    ///
+    /// A rich visual representation of a link.
+    ///
     /// ``LPLinkView`` presents a link based on its available metadata. Use it to
     /// show a link’s title and icon, associated images, inline audio, video
     /// playback, and maps in a familiar and consistent style.
@@ -36,8 +57,6 @@ extern_class!(
     /// <doc
     /// ://com.apple.documentation/documentation/uikit/uiview/1622630-sizetofit>
     /// to present a layout at any size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lplinkview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

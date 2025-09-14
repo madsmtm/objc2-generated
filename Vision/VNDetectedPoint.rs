@@ -10,11 +10,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a normalized point in an image, along with a confidence value.
     /// VNDetectedPoint is a VNPoint with a confidence value.
     ///
     /// It should be noted that VNDetectedPoint is not intended as an overall replacement of CGPoint, NSPoint or vec2, but is used by observations that detect points of interest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedpoint?language=objc)
     #[unsafe(super(VNPoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]
@@ -79,11 +78,10 @@ impl VNDetectedPoint {
 }
 
 extern_class!(
+    /// An object that represents a normalized point in an image, along with an identifier label and a confidence value.
     /// An extension of VNDetectedPoint that associates an identifier to the point.
     ///
     /// It should be noted that VNRecognizedPoint is not intended as an overall replacement of CGPoint, NSPoint or vec2, but is used by observations that recognize labeled points of interest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint?language=objc)
     #[unsafe(super(VNDetectedPoint, VNPoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]

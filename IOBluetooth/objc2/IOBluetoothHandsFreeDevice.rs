@@ -9,11 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object you use to manage phone calls on a connected Bluetooth hands-free phone or headset.
     /// APIs for managing a hands free device
     ///
     /// (c) 2010 by Apple Inc. All rights reserved.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevice?language=objc)
     #[unsafe(super(IOBluetoothHandsFree, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOBluetoothHandsFree")]
@@ -272,7 +271,7 @@ impl IOBluetoothHandsFreeDevice {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicedelegate?language=objc)
+    /// A set of optional methods for receiving status change updates and information about a connected Bluetooth hands-free phone or headset.
     #[cfg(feature = "IOBluetoothHandsFree")]
     pub unsafe trait IOBluetoothHandsFreeDeviceDelegate:
         IOBluetoothHandsFreeDelegate

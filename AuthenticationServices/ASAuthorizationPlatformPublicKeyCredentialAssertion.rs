@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertion?language=objc)
+    /// A class that represents the platform credential assertion type.
+    ///
+    /// ## Overview
+    ///
+    /// The device creates an assertion when signing in with an existing credential. Use this class to verify the platform credential assertion when the authorization controller calls [`authorizationController:didCompleteWithAuthorization:`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerdelegate/authorizationcontroller(controller:didcompletewithauthorization:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPlatformPublicKeyCredentialAssertion;

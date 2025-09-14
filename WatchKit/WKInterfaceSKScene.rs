@@ -7,7 +7,20 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceskscene?language=objc)
+    /// A visual WatchKit element that displays a SpriteKit scene.
+    ///
+    /// ## Overview
+    ///
+    /// Present a scene by calling the interface’s [`presentScene:`](https://developer.apple.com/documentation/watchkit/wkinterfaceskscene/presentscene(_:)) or [`presentScene:transition:`](https://developer.apple.com/documentation/watchkit/wkinterfaceskscene/presentscene(_:transition:)) method and passing in a [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene) object. When a scene is presented, it alternates between running its simulation (which animates the content) and rendering the content for display. You can pause the scene by setting the interface’s [`paused`](https://developer.apple.com/documentation/watchkit/wkinterfaceskscene/ispaused) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, drag a SpriteKit Scene object from your Object Library and add it to your storyboard. Then define an outlet in your interface controller class and connect it to the SpriteKit Scene object. For example, to refer to a scene object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var sceneInterface: WKInterfaceSKScene!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceSKScene* sceneInterface;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the SpriteKit scene.
+    ///
+    /// The SpriteKit scene in your Watch app must be connected to a [`WKInterfaceSKScene`](https://developer.apple.com/documentation/watchkit/wkinterfaceskscene) outlet in your WatchKit extension for the scene to be visible in your watchOS app’s user interface.
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

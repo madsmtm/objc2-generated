@@ -9,25 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle?language=objc)
+/// PDF Kit annotation borders may have the following styles.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFBorderStyle(pub NSInteger);
 impl PDFBorderStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/solid?language=objc)
+    /// Solid border.
     #[doc(alias = "kPDFBorderStyleSolid")]
     pub const Solid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/dashed?language=objc)
+    /// Dashed border.
     #[doc(alias = "kPDFBorderStyleDashed")]
     pub const Dashed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/beveled?language=objc)
+    /// Beveled border.
     #[doc(alias = "kPDFBorderStyleBeveled")]
     pub const Beveled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/inset?language=objc)
+    /// Inset border.
     #[doc(alias = "kPDFBorderStyleInset")]
     pub const Inset: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderstyle/underline?language=objc)
+    /// Underline border.
     #[doc(alias = "kPDFBorderStyleUnderline")]
     pub const Underline: Self = Self(4);
 }
@@ -40,27 +40,23 @@ unsafe impl RefEncode for PDFBorderStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey?language=objc)
 // NS_TYPED_ENUM
 pub type PDFBorderKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey/linewidth?language=objc)
     pub static PDFBorderKeyLineWidth: &'static PDFBorderKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey/style?language=objc)
     pub static PDFBorderKeyStyle: &'static PDFBorderKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey/dashpattern?language=objc)
     pub static PDFBorderKeyDashPattern: &'static PDFBorderKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborder?language=objc)
+    /// An optional border for an annotation that lies completely within the annotation rectangle.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFBorder;

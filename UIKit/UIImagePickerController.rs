@@ -9,20 +9,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum?language=objc)
+/// Constants that describe the source to use when picking an image or when determining available media types.
+///
+/// ## Overview
+///
+/// A given source may not be available on a given device because the source is not physically present or because it cannot currently be accessed.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerSourceType(pub NSInteger);
 impl UIImagePickerControllerSourceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/photolibrary?language=objc)
+    /// Specifies the device’s photo library as the source for the image picker controller.
     #[doc(alias = "UIImagePickerControllerSourceTypePhotoLibrary")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const PhotoLibrary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/camera?language=objc)
+    /// Specifies the device’s built-in camera as the source for the image picker controller.
+    ///
+    /// ## Discussion
+    ///
+    /// Indicate the specific camera you want (front or rear, as available) by using the [`cameraDevice`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.property) property.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerSourceTypeCamera")]
     pub const Camera: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/savedphotosalbum?language=objc)
+    /// Specifies the device’s Camera Roll album as the source for the image picker controller.
+    ///
+    /// ## Discussion
+    ///
+    /// If the device does not have a camera, specifies the Saved Photos album as the source.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerSourceTypeSavedPhotosAlbum")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const SavedPhotosAlbum: Self = Self(2);
@@ -36,28 +54,78 @@ unsafe impl RefEncode for UIImagePickerControllerSourceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype?language=objc)
+/// Constants that describe video quality settings for movies that are recorded with the built-in camera, or that are transcoded when they’re displayed in the image picker.
+///
+/// ## Overview
+///
+/// The constants in this enumeration are for use as values of the [`videoQuality`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/videoquality) property.
+///
+/// The video quality setting applies to transcoding as well as to recording. Specifically, if the video quality setting is lower than the video quality of an existing movie, displaying that movie in the picker results in transcoding the movie to the lower quality.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerQualityType(pub NSInteger);
 impl UIImagePickerControllerQualityType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typehigh?language=objc)
+    /// If recording, specifies that you want to use the highest-quality video recording supported for the active camera on the device.
+    ///
+    /// ## Discussion
+    ///
+    /// Recorded files are suitable for on-device playback and for wired transfer to the Desktop using Image Capture; they are likely to be too large for transfer using Wi-Fi.
+    ///
+    /// If displaying a recorded movie in the image picker, specifies that you do not want to reduce the video quality of the movie.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerQualityTypeHigh")]
     pub const TypeHigh: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typemedium?language=objc)
+    /// If recording, specifies that you want to use medium-quality video recording.
+    ///
+    /// ## Discussion
+    ///
+    /// Recorded files can usually be transferred using Wi-Fi. This is the default video quality setting.
+    ///
+    /// If displaying a recorded movie in the image picker, specifies that you want to transcode higher-quality movies to medium video quality.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerQualityTypeMedium")]
     pub const TypeMedium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typelow?language=objc)
+    /// If recording, specifies that you want to use low-quality video recording.
+    ///
+    /// ## Discussion
+    ///
+    /// Recorded files can usually be transferred over the cellular network.
+    ///
+    /// If displaying a recorded movie in the image picker, specifies that you want to transcode higher-quality movies to low video quality.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerQualityTypeLow")]
     pub const TypeLow: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/type640x480?language=objc)
+    /// If recording, specifies that you want to use VGA-quality video recording (pixel dimensions of 640x480).
+    ///
+    /// ## Discussion
+    ///
+    /// If displaying a recorded movie in the image picker, specifies that you want to transcode higher-quality movies to VGA video quality.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerQualityType640x480")]
     pub const Type640x480: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typeiframe1280x720?language=objc)
+    /// If recording, specifies that you want to use 1280x720 iFrame format.
+    ///
+    /// ## Discussion
+    ///
+    /// The Apple iFrame format supports video editing by keeping content in its native recorded format while editing.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerQualityTypeIFrame1280x720")]
     pub const TypeIFrame1280x720: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/qualitytype/typeiframe960x540?language=objc)
+    /// If recording, specifies that you want to use 960x540 iFrame format.
+    ///
+    /// ## Discussion
+    ///
+    /// The Apple iFrame format supports video editing by keeping content in its native recorded format while editing.
+    ///
+    ///
     #[doc(alias = "UIImagePickerControllerQualityTypeIFrame960x540")]
     pub const TypeIFrame960x540: Self = Self(5);
 }
@@ -70,16 +138,22 @@ unsafe impl RefEncode for UIImagePickerControllerQualityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum?language=objc)
+/// Constants that specify the category of media for the camera to capture.
+///
+/// ## Overview
+///
+/// The constants in this enumeration are for use as values of the [`cameraCaptureMode`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraCaptureMode(pub NSInteger);
 impl UIImagePickerControllerCameraCaptureMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum/photo?language=objc)
+    /// Specifies that the camera captures still images.
     #[doc(alias = "UIImagePickerControllerCameraCaptureModePhoto")]
     pub const Photo: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum/video?language=objc)
+    /// Specifies that the camera captures movies.
     #[doc(alias = "UIImagePickerControllerCameraCaptureModeVideo")]
     pub const Video: Self = Self(1);
 }
@@ -92,16 +166,22 @@ unsafe impl RefEncode for UIImagePickerControllerCameraCaptureMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.enum?language=objc)
+/// Constants that specify the camera to use for image or movie capture.
+///
+/// ## Overview
+///
+/// The constants in this enumeration are for use as values of the [`cameraDevice`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraDevice(pub NSInteger);
 impl UIImagePickerControllerCameraDevice {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.enum/rear?language=objc)
+    /// Specifies the camera on the rear of the device.
     #[doc(alias = "UIImagePickerControllerCameraDeviceRear")]
     pub const Rear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.enum/front?language=objc)
+    /// Specifies the camera on the front of the device.
     #[doc(alias = "UIImagePickerControllerCameraDeviceFront")]
     pub const Front: Self = Self(1);
 }
@@ -114,19 +194,35 @@ unsafe impl RefEncode for UIImagePickerControllerCameraDevice {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum?language=objc)
+/// Constants that specify the flash mode to use with the active camera.
+///
+/// ## Overview
+///
+/// The constants in this enumeration are for use as values of the [`cameraFlashMode`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.property) property.
+///
+/// The behavior of the flash depends on the camera capture mode.
+///
+/// - For a [`cameraCaptureMode`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.property) value of [`UIImagePickerControllerCameraCaptureModePhoto`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum/photo), flash is used to transiently illuminate the subject during still image capture.
+///
+/// - For a [`cameraCaptureMode`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.property) value of [`UIImagePickerControllerCameraCaptureModeVideo`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameracapturemode-swift.enum/video), flash is used to continuously illuminate the subject during movie capture.
+///
+/// For a given camera on a device, flash may or may not be available. You specify the active camera by way of the [`cameraDevice`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameradevice-swift.property) property. You can determine if the active camera has flash available by calling the [`isFlashAvailableForCameraDevice:`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/isflashavailable(for:)) class method.
+///
+/// You can manipulate the flash directly to provide effects such as a strobe light. Present a picker interface set to use video capture mode. Then, turn the flash LED on or off by setting the [`cameraFlashMode`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.property) property to [`UIImagePickerControllerCameraFlashModeOn`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/on) or [`UIImagePickerControllerCameraFlashModeOff`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/off).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraFlashMode(pub NSInteger);
 impl UIImagePickerControllerCameraFlashMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/off?language=objc)
+    /// Specifies that flash illumination is always off, no matter what the ambient light conditions are.
     #[doc(alias = "UIImagePickerControllerCameraFlashModeOff")]
     pub const Off: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/auto?language=objc)
+    /// Specifies that the device should consider ambient light conditions to automatically determine whether or not to use flash illumination.
     #[doc(alias = "UIImagePickerControllerCameraFlashModeAuto")]
     pub const Auto: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/on?language=objc)
+    /// Specifies that flash illumination is always on, no matter what the ambient light conditions are.
     #[doc(alias = "UIImagePickerControllerCameraFlashModeOn")]
     pub const On: Self = Self(1);
 }
@@ -139,18 +235,18 @@ unsafe impl RefEncode for UIImagePickerControllerCameraFlashMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/imageurlexportpreset?language=objc)
+/// Constants that indicate how to export images to the client app.
 // NS_ENUM
 #[deprecated = "Will be removed in a future release, use PHPicker."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerImageURLExportPreset(pub NSInteger);
 impl UIImagePickerControllerImageURLExportPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/imageurlexportpreset/compatible?language=objc)
+    /// A preset for converting HEIF formatted images to JPEG.
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCompatible")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const Compatible: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/imageurlexportpreset/current?language=objc)
+    /// A preset for passing image data as-is to the client.
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCurrent")]
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub const Current: Self = Self(1);
@@ -164,64 +260,203 @@ unsafe impl RefEncode for UIImagePickerControllerImageURLExportPreset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey?language=objc)
+/// Keys you use to retrieve information from the editing dictionary about the media that the user selected.
 // NS_TYPED_ENUM
 pub type UIImagePickerControllerInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/mediatype?language=objc)
+    /// The media type selected by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing a type code such as `kUTTypeImage` or `kUTTypeMovie`.
+    ///
+    ///
     pub static UIImagePickerControllerMediaType: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/originalimage?language=objc)
+    /// The original, uncropped image selected by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object.
+    ///
+    ///
     pub static UIImagePickerControllerOriginalImage: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/editedimage?language=objc)
+    /// An image edited by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object.
+    ///
+    ///
     pub static UIImagePickerControllerEditedImage: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/croprect?language=objc)
+    /// The cropping rectangle that was applied to the original image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) opaque type.
+    ///
+    ///
     pub static UIImagePickerControllerCropRect: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/mediaurl?language=objc)
+    /// The filesystem URL for the movie.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object.
+    ///
+    ///
     pub static UIImagePickerControllerMediaURL: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/referenceurl?language=objc)
+    /// The Assets Library URL for the original version of the picked item.
+    ///
+    /// ## Discussion
+    ///
+    /// After the user edits a picked item—such as by cropping an image or trimming a movie—the URL continues to point to the original version of the picked item.
+    ///
+    /// The value for this key is an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object.
+    ///
+    ///
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub static UIImagePickerControllerReferenceURL: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/mediametadata?language=objc)
+    /// Metadata for a newly-captured photograph.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is valid only when using an image picker whose source type is set to [`UIImagePickerControllerSourceTypeCamera`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/camera), and applies only to still images.
+    ///
+    /// The value for this key is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object that contains the metadata of the photo that was just captured. To store the metadata along with the image in the Camera Roll, use the [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) class from the Photos framework.
+    ///
+    ///
     pub static UIImagePickerControllerMediaMetadata: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/livephoto?language=objc)
+    /// The Live Photo representation of the selected or captured photo.
+    ///
+    /// ## Discussion
+    ///
+    /// A Live Photo is a picture, that includes motion and sound from the moments just before and after its capture. On compatible devices, the Camera app captures all photos as Live Photos by default, but the [`imagePickerController:didFinishPickingImage:editingInfo:`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller:didfinishpickingimage:editinginfo:) method’s `image` parameter contains only the still image representation.
+    ///
+    /// To obtain the motion and sound content of a live photo for display (using the [`PHLivePhotoView`](https://developer.apple.com/documentation/photosui/phlivephotoview) class), include the `kUTTypeImage` and `kUTTypeLivePhoto` identifiers in the allowed media types when configuring an image picker controller. When the user picks or captures a Live Photo, the `editingInfo` dictionary contains the [`UIImagePickerControllerLivePhoto`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/livephoto) key, with a [`PHLivePhoto`](https://developer.apple.com/documentation/photos/phlivephoto) representation of the photo as the corresponding value.
+    ///
+    ///
     pub static UIImagePickerControllerLivePhoto: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/phasset?language=objc)
+    /// A Photos asset for the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) object.
+    ///
+    ///
     #[deprecated = "Will be removed in a future release, use PHPicker."]
     pub static UIImagePickerControllerPHAsset: &'static UIImagePickerControllerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/imageurl?language=objc)
+    /// The URL of the image file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) that you can use to retrieve the image file. The image in this file matches the image found in the [`UIImagePickerControllerOriginalImage`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/originalimage) key of the dictionary.
+    ///
+    ///
     pub static UIImagePickerControllerImageURL: &'static UIImagePickerControllerInfoKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontroller?language=objc)
+    /// A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.
+    ///
+    /// ## Overview
+    ///
+    /// An image picker controller manages user interactions and delivers the results of those interactions to a delegate object. The role and appearance of an image picker controller depend on the _source type_ you assign to it before you present it.
+    ///
+    /// - A [`sourceType`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.property) of [`UIImagePickerControllerSourceTypeCamera`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/camera) provides a user interface for taking a new picture or movie (on devices that support media capture).
+    ///
+    /// - A [`sourceType`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.property) of [`UIImagePickerControllerSourceTypePhotoLibrary`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/photolibrary) or [`UIImagePickerControllerSourceTypeSavedPhotosAlbum`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/savedphotosalbum) provides a user interface for choosing among saved pictures and movies.
+    ///
+    /// To use an image picker controller containing its default controls, perform these steps:
+    ///
+    /// 1. Verify that the device is capable of picking content from the desired source. Do this by calling the [`isSourceTypeAvailable:`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/issourcetypeavailable(_:)) class method, providing a constant from the [`UIImagePickerControllerSourceType`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum) enumeration.
+    ///
+    /// 2. Check which media types are available for the source type you’re using, by calling the [`availableMediaTypesForSourceType:`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/availablemediatypes(for:)) class method. This lets you distinguish between a camera that can be used for video recording and one that can be used only for still images.
+    ///
+    /// 3. Tell the image picker controller to adjust the UI according to the media types you want to make available — still images, movies, or both — by setting the [`mediaTypes`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/mediatypes) property.
+    ///
+    /// 4. Present the user interface. On iPhone or iPod touch, do this modally (full screen) by calling the [`presentViewController:animated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/present(_:animated:completion:)) method of the currently active view controller, passing your configured image picker controller as the new view controller.
+    ///
+    /// On iPad, the correct way to present an image picker depends on its source type, as summarized in this table:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Camera" }] }], [Paragraph { inline_content: [Text { text: "Photo Library" }] }], [Paragraph { inline_content: [Text { text: "Saved Photos Album" }] }]], [[Paragraph { inline_content: [Text { text: "Use full screen" }] }], [Paragraph { inline_content: [Text { text: "Must use a popover" }] }], [Paragraph { inline_content: [Text { text: "Must use a popover" }] }]]], alignments: None, metadata: None })
+    /// The table indicates that on iPad, if you specify a source type of [`UIImagePickerControllerSourceTypePhotoLibrary`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/photolibrary) or [`UIImagePickerControllerSourceTypeSavedPhotosAlbum`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/savedphotosalbum), you must present the image picker using a popover controller (to learn how to do this, see [`UIPopoverPresentationController`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller)). If you attempt to present an image picker modally (full screen) for choosing among saved pictures and movies, the system raises an exception.
+    ///
+    /// On iPad, if you specify a source type of [`UIImagePickerControllerSourceTypeCamera`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/sourcetype-swift.enum/camera), you can present the image picker modally (full screen) or by using a popover. However, Apple recommends that you present the camera interface only full screen.
+    ///
+    /// 5. When the user taps a button to pick a newly captured or saved image or movie, or cancels the operation, dismiss the image picker using your delegate object. For newly captured media, your delegate can then save it to the photo library on the device. For previously saved media, your delegate can then use the image data according to the purpose of your app.
+    ///
+    /// For details on these steps, refer to [Taking Pictures and Movies](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Articles/TakingPicturesAndMovies.html#//apple_ref/doc/uid/TP40010406).
+    ///
+    /// You can customize an image picker controller to manage user interactions yourself. To do this, provide an overlay view containing the controls you want to display, and use the methods described in [Capturing still images or movies](https://developer.apple.com/documentation/uikit/uiimagepickercontroller#capturing-still-images-or-movies). You can display your custom overlay view in addition to, or instead of, the default controls. Custom overlay views for the `UIImagePickerController` class are available in iOS 3.1 and later by way of the [`cameraOverlayView`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraoverlayview) property. For a code example, see the [Customizing an image picker controller](https://developer.apple.com/documentation/uikit/customizing-an-image-picker-controller) sample code project.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The `UIImagePickerController` class supports portrait mode only. This class is intended to be used as-is and doesn’t support subclassing. The view hierarchy for this class is private and must not be modified, with one exception. You can assign a custom view to the [`cameraOverlayView`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraoverlayview) property and use that view to present additional information or manage the interactions between the camera interface and your code.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Provide a delegate object
+    ///
+    /// To use an image picker controller, you must provide a delegate that conforms to the [`UIImagePickerControllerDelegate`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate) protocol. Starting in iOS 4.1, you can use the delegate to save still-image metadata to the photo library along with the image. See [`UIImagePickerControllerDelegate`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate).
+    ///
+    /// ### Observe required viewing standards
+    ///
+    /// As a view controller that renders on top of your app for the temporary purpose of selecting images, the picker controller expects your app to keep its contents visible as a prerequisite to operation. In iOS 17 and later, the picker controller ignores touch events while its opacity is anything other than fully opaque. If your app alters the controller’s visibility, such as by adjusting the [`opacity`](https://developer.apple.com/documentation/quartzcore/calayer/opacity) of its view’s layer, the picker controller disables user interaction.
+    ///
+    /// ### Adjust flash mode
+    ///
+    /// In iOS 4.0 and later, you can provide custom controls to let the user adjust flash mode (on devices that have a flash LED), pick which camera to use (on devices that have a front and rear camera), and switch between still image and movie capture. You can also manage these settings programmatically. You can also manipulate the flash directly to provide effects, such as a strobe light. Present a picker interface set to use video capture mode. Then, turn the flash LED on or off by setting the [`cameraFlashMode`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.property) property to [`UIImagePickerControllerCameraFlashModeOn`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/on) or [`UIImagePickerControllerCameraFlashModeOff`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/cameraflashmode-swift.enum/off).
+    ///
+    /// ### Work with movies
+    ///
+    /// Movie capture has a default duration limit of 10 minutes but can be adjusted using the [`videoMaximumDuration`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/videomaximumduration) property. When a person taps the Share button to send a movie to MMS, YouTube, or another destination, the system applies duration and video quality limitations.
+    ///
+    /// The default camera interface supports editing movies in the photo library. Editing involves trimming from the start or end of the movie, then saving the trimmed movie. To display an interface dedicated to movie editing, rather than one that also supports recording new movies, use the [`UIVideoEditorController`](https://developer.apple.com/documentation/uikit/uivideoeditorcontroller) class instead of this one. See [`UIVideoEditorController`](https://developer.apple.com/documentation/uikit/uivideoeditorcontroller).
+    ///
+    /// ### Work with Live Photos
+    ///
+    /// Live Photos is a Camera app feature on supported devices, enabling a picture to be not just a single moment in time but to include motion and sound from the moments just before and after its capture. A [`PHLivePhoto`](https://developer.apple.com/documentation/photos/phlivephoto) object represents a Live Photo, and the [`PHLivePhotoView`](https://developer.apple.com/documentation/photosui/phlivephotoview) class provides a system-standard, interactive user interface for displaying a Live Photo and playing back its content.
+    ///
+    /// Although Live Photos include sound and motion, they remain photos. When you use an image picker controller to capture or choose still images (by including only the `kUTTypeImage` type in the [`mediaTypes`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/mediatypes) array), assets that were captured as Live Photos continue to appear in the picker. However, when the user chooses an asset, your [`delegate`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/delegate) object receives only a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object containing a still-image representation of the Live Photo.
+    ///
+    /// To obtain the full motion and sound content when the user chooses a Live Photo with the image picker, you must include _both_ the `kUTTypeImage` and `kUTTypeLivePhoto` types in the [`mediaTypes`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/mediatypes) array. For more information, see [`UIImagePickerControllerLivePhoto`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/livephoto) in [`UIImagePickerControllerDelegate`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate).
+    ///
+    /// ### Perform fully customized media capture and browsing
+    ///
+    /// To perform fully customized image or movie capture, instead use the [`AVFoundation`](https://developer.apple.com/documentation/avfoundation) framework as described in [Still and Video Media Capture](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW10). Camera access using the AVFoundation framework is available starting in iOS 4.0.
+    ///
+    /// To create a fully customized image picker for browsing the photo library, use classes from the Photos framework. For example, you could create a custom image picker that displays larger thumbnail images generated and cached by iOS, that makes use of image metadata including timestamp and location information, or that integrates with other features such as MapKit and iCloud Photo Sharing. For more information, see [PhotoKit](https://developer.apple.com/documentation/photokit). Media browsing using the Photos framework is available starting in iOS 8.0.
+    ///
+    ///
     #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -593,7 +828,17 @@ impl UIImagePickerController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate?language=objc)
+    /// A set of methods that your delegate object must implement to interact with the image picker interface.
+    ///
+    /// ## Overview
+    ///
+    /// The methods of this protocol notify your delegate when the user either picks an image or movie, or cancels the picker operation. The delegate methods are responsible for dismissing the picker when the operation completes. To dismiss the picker, call the [`dismissViewControllerAnimated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)) method of the parent controller responsible for displaying the [`UIImagePickerController`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller) object.
+    ///
+    /// To save a still image to the user’s Camera Roll album, call the [`UIImageWriteToSavedPhotosAlbum`](https://developer.apple.com/documentation/uikit/uiimagewritetosavedphotosalbum(_:_:_:_:)) function from within the body of the [`imagePickerController:didFinishPickingMediaWithInfo:`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller(_:didfinishpickingmediawithinfo:)) method. To save a movie to the user’s Camera Roll album, instead call the [`UISaveVideoAtPathToSavedPhotosAlbum`](https://developer.apple.com/documentation/uikit/uisavevideoatpathtosavedphotosalbum(_:_:_:_:)) function. These functions, described in `UIKit Functions`, save the image or movie only; they don’t save metadata.
+    ///
+    /// To write additional metadata when saving an image to the Camera Roll, use the [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) class from the Photos framework. See the description for the [`UIImagePickerControllerMediaMetadata`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller/infokey/mediametadata) key.
+    ///
+    ///
     pub unsafe trait UIImagePickerControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -648,7 +893,33 @@ extern_protocol!(
 
 #[cfg(feature = "UIImage")]
 impl UIImage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagewritetosavedphotosalbum(_:_:_:_:)?language=objc)
+    /// Adds the specified image to the user’s Camera Roll album.
+    ///
+    /// Parameters:
+    /// - image: The image to write to the Camera Roll album.
+    ///
+    /// - completionTarget: Optionally, the object whose selector should be called after the image has been written to the Camera Roll album.
+    ///
+    /// - completionSelector: The method selector of the `completionTarget` object to call. This optional method should conform to the following signature:
+    ///
+    /// ```objc
+    /// - (void)image:(UIImage *)image
+    ///     didFinishSavingWithError:(NSError *)error
+    ///                  contextInfo:(void *)contextInfo;
+    /// ```
+    ///
+    /// - contextInfo: An optional pointer to any context-specific data that you want passed to the completion selector.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When used with an image picker controller, you would typically call this function within your [`imagePickerController:didFinishPickingMediaWithInfo:`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller(_:didfinishpickingmediawithinfo:)) delegate method implementation.
+    ///
+    /// The use of the `completionTarget`, `completionSelector`, and `contextInfo` parameters is optional and necessary only if you want to be notified asynchronously when the function finishes writing the image to the user’s Camera Roll or Saved Photos album. If you do not want to be notified, pass `nil` for these parameters.
+    ///
+    /// When used on an iOS device without a camera, this method adds the image to the Saved Photos album rather than to the Camera Roll album.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -683,7 +954,25 @@ impl UIImage {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivideoatpathiscompatiblewithsavedphotosalbum(_:)?language=objc)
+/// Returns a Boolean value that indicates whether the specified video is compatible to save to the user’s Camera Roll album.
+///
+/// Parameters:
+/// - videoPath: The filesystem path to the movie file you want to save.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the video can be saved to the Camera Roll album or [`false`](https://developer.apple.com/documentation/swift/false) if it cannot.
+///
+///
+///
+/// ## Discussion
+///
+/// Not all devices are able to play video files placed in the user’s Camera Roll album. Before attempting to save a video, call this function and check its return value to ensure that saving the video is supported for the current device. For a code example, refer to [Camera Programming Topics for iOS](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010400).
+///
+/// When used on an iOS device without a camera, this method indicates whether the specified movie can be saved to the Saved Photos album rather than to the Camera Roll album.
+///
+///
 #[inline]
 pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
     video_path: &NSString,
@@ -695,7 +984,43 @@ pub extern "C-unwind" fn UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisavevideoatpathtosavedphotosalbum(_:_:_:_:)?language=objc)
+    /// Adds the movie from the specified path to the user’s Camera Roll album.
+    ///
+    /// Parameters:
+    /// - videoPath: The filesystem path to the movie file you want to save to the Camera Roll album.
+    ///
+    /// - completionTarget: Optionally, the object whose selector the system calls after it writes the movie to the Camera Roll album.
+    ///
+    /// - completionSelector: The method selector of the `completionTarget` object to call. Make this optional method conform to the following signature:
+    ///
+    /// ```swift
+    /// // Swift
+    /// func video(_ videoPath: String?,
+    ///            didFinishSavingWithError error: Error?,
+    ///            contextInfo: UnsafeMutableRawPointer?) {}
+    /// ```
+    ///
+    /// ```objc
+    /// // Objective-C
+    /// - (void)video: (NSString *) videoPath
+    ///     didFinishSavingWithError: (NSError *) error
+    ///               contextInfo: (void *) contextInfo;
+    /// ```
+    ///
+    /// - contextInfo: An optional pointer to any context-specific data that you want the system to pass to the completion selector.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you use this function with an image picker controller, you’d typically call it within your [`imagePickerController:didFinishPickingMediaWithInfo:`](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerdelegate/imagepickercontroller(_:didfinishpickingmediawithinfo:)) delegate method implementation.
+    ///
+    /// Before calling this function, call the [`UIVideoAtPathIsCompatibleWithSavedPhotosAlbum`](https://developer.apple.com/documentation/uikit/uivideoatpathiscompatiblewithsavedphotosalbum(_:)) function to determine if it’s possible to save movies to the Camera Roll album. For a code example, refer to [Camera Programming Topics for iOS](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010400).
+    ///
+    /// The use of the `completionTarget`, `completionSelector`, and `contextInfo` parameters is optional and necessary only if you want to receive an asynchronous notification when the function finishes writing the movie to the user’s Camera Roll or Saved Photos album. If you don’t want to receive a notification, pass `nil` for these parameters.
+    ///
+    /// When an iOS device without a camera uses it, this method adds the movie to the Saved Photos album rather than to the Camera Roll album.
+    ///
+    ///
     ///
     /// # Safety
     ///

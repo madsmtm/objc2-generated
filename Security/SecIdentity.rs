@@ -7,11 +7,22 @@ use crate::*;
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecIdentity {
+    /// Returns the unique identifier of the opaque type to which an identity object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecIdentity instances.
     ///
     /// Returns: The CFTypeID of SecIdentity instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitygettypeid()?language=objc)
     #[doc(alias = "SecIdentityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -24,6 +35,28 @@ unsafe impl ConcreteType for SecIdentity {
 
 #[cfg(feature = "SecBase")]
 impl SecIdentity {
+    ///
+    /// Parameters:
+    /// - allocator: CFAllocator to allocate the identity object. Pass NULL to use the default allocator.
+    ///
+    /// - certificate: A certificate reference.
+    ///
+    /// - privateKey: A private key reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An identity reference.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Create a new identity object from the provided certificate and its associated private key.
+    ///
+    /// This interface returns null if the private does not key correspond to the public key in the certifcate.
+    ///
+    ///
     /// create a new identity object from the provided certificate and its associated private key.
     ///
     /// Parameter `allocator`: CFAllocator to allocate the identity object. Pass NULL to use the default allocator.
@@ -35,8 +68,6 @@ impl SecIdentity {
     /// Returns: An identity reference.
     ///
     /// This interface returns null if the private does not key correspond to the public key in the certifcate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycreate(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCreate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -56,6 +87,27 @@ impl SecIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new identity for a certificate and its associated private key.
+    ///
+    /// Parameters:
+    /// - keychainOrArray: A reference to a keychain or an array of keychains to search for the associated private key. Specify `NULL` to search the user’s default keychain search list.
+    ///
+    /// - certificateRef: The certificate for which you want to create an identity.
+    ///
+    /// - identityRef: On return, an identity object for the certificate and its associated private key. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the associated private key is not found in one of the specified keychains, this function fails with an appropriate error code (usually [`errSecItemNotFound`](https://developer.apple.com/documentation/security/errsecitemnotfound)), and does not return anything in the `identityRef` parameter.
+    ///
+    ///
     /// Creates a new identity reference for the given certificate, assuming the associated private key is in one of the specified keychains.
     ///
     /// Parameter `keychainOrArray`: A reference to an array of keychains to search, a single keychain, or NULL to search the user's default keychain search list.
@@ -70,8 +122,6 @@ impl SecIdentity {
     ///
     /// - `keychain_or_array` should be of the correct type.
     /// - `identity_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycreatewithcertificate(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCreateWithCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -92,6 +142,27 @@ impl SecIdentity {
         }
     }
 
+    /// Retrieves a certificate associated with an identity.
+    ///
+    /// Parameters:
+    /// - identityRef: The identity object for the identity whose certificate you wish to retrieve.
+    ///
+    /// - certificateRef: On return, points to the certificate object associated with the specified identity. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An identity is a digital certificate together with its associated private key.
+    ///
+    /// For a certificate in a keychain, you can cast the `SecCertificateRef` data type to a `SecKeychainItemRef` for use with Keychain Services functions.
+    ///
+    ///
     /// Returns a reference to a certificate for the given identity
     /// reference.
     ///
@@ -106,8 +177,6 @@ impl SecIdentity {
     /// # Safety
     ///
     /// `certificate_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopycertificate(_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopyCertificate")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -124,6 +193,25 @@ impl SecIdentity {
         unsafe { SecIdentityCopyCertificate(self, certificate_ref) }
     }
 
+    /// Retrieves the private key associated with an identity.
+    ///
+    /// Parameters:
+    /// - identityRef: The identity object for the identity whose private key you wish to retrieve.
+    ///
+    /// - privateKeyRef: On return, points to the private key object for the specified identity. The private key must be of class type [`kSecPrivateKeyItemClass`](https://developer.apple.com/documentation/security/secitemclass/privatekeyitemclass). In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An identity is a digital certificate together with its associated private key.
+    ///
+    ///
     /// Returns the private key associated with an identity.
     ///
     /// Parameter `identityRef`: An identity reference.
@@ -137,8 +225,6 @@ impl SecIdentity {
     /// # Safety
     ///
     /// `private_key_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopyprivatekey(_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopyPrivateKey")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -152,6 +238,33 @@ impl SecIdentity {
         unsafe { SecIdentityCopyPrivateKey(self, private_key_ref) }
     }
 
+    /// Returns the preferred identity for the specified name and key use.
+    ///
+    /// Parameters:
+    /// - name: A string containing a URI, RFC822 email address, DNS hostname, or other name that uniquely identifies the service requiring an identity.
+    ///
+    /// - keyUsage: A key use value, as defined in `Security.framework/cssmtype.h`. Pass `0` if you don’t want to specify a particular key use.
+    ///
+    /// - validIssuers: An array of `CFDataRef` instances whose contents are the subject names of allowable issuers, as returned by a call to `SSLCopyDistinguishedNames` (`Security.framework/SecureTransport.h`). Pass `NULL` if you don’t want to limit the search to specific issuers.
+    ///
+    /// - identity: On return, a reference to the preferred identity, or `NULL` if none was found. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a preferred identity has not been set for the specified name, the returned identity reference is `NULL`. You should then typically perform a search for possible identities, using [`SecIdentitySearchCreate`](https://developer.apple.com/documentation/security/secidentitysearchcreate) and [`SecIdentitySearchCopyNext`](https://developer.apple.com/documentation/security/secidentitysearchcopynext), allowing the user to choose from a list if more than one is found.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Use [`SecIdentityCopyPreferred(_:_:_:)`](https://developer.apple.com/documentation/security/secidentitycopypreferred(_:_:_:)) for new development instead.
+    ///
+    ///
     /// Returns the preferred identity for the specified name and key usage, optionally limiting the result to an identity issued by a certificate whose subject is one of the distinguished names in validIssuers. If a preferred identity does not exist, NULL is returned.
     ///
     /// Parameter `name`: A string containing a URI, RFC822 email address, DNS hostname, or other name which uniquely identifies the service requiring an identity.
@@ -170,8 +283,6 @@ impl SecIdentity {
     ///
     /// - `valid_issuers` generic must be of the correct type.
     /// - `identity` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopypreference?language=objc)
     #[doc(alias = "SecIdentityCopyPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -193,6 +304,27 @@ impl SecIdentity {
         unsafe { SecIdentityCopyPreference(name, key_usage, valid_issuers, identity) }
     }
 
+    /// Retrieves the preferred identity for the specified name and key use.
+    ///
+    /// Parameters:
+    /// - name: A string containing an email address (RFC 822) or other name for which a preferred identity is requested.
+    ///
+    /// - keyUsage: An array containing a list of usage attributes ([`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt), for example), or `NULL` if you do not want to request an identity for a particular usage. See Attribute Item Keys for a complete list of possible usage attributes.
+    ///
+    /// - validIssuers: An array of `CFDataRef` objects whose contents are the subject names of allowable issuers, as returned by a call to [`SSLCopyDistinguishedNames`](https://developer.apple.com/documentation/security/sslcopydistinguishednames(_:_:)). Pass `NULL` to allow any issuer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns an identity, or `nil` if no identity from one of the specified issuers has been set as the preferred identity for the specified name and usage. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free the identity’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a preferred identity has not been set for the supplied name, this function returns `NULL`. Your code should then perform a search for possible identities by calling [`SecItemCopyMatching`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)).
+    ///
+    ///
     /// Returns the preferred identity for the specified name and key usage, optionally limiting the result to an identity issued by a certificate whose subject is one of the distinguished names in validIssuers. If a preferred identity does not exist, NULL is returned.
     ///
     /// Parameter `name`: A string containing a URI, RFC822 email address, DNS hostname, or other name which uniquely identifies the service requiring an identity.
@@ -209,8 +341,6 @@ impl SecIdentity {
     ///
     /// - `key_usage` generic must be of the correct type.
     /// - `valid_issuers` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopypreferred(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopyPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -230,6 +360,27 @@ impl SecIdentity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Sets the preferred identity for the specified name and key use.
+    ///
+    /// Parameters:
+    /// - identity: A reference to the preferred identity.
+    ///
+    /// - name: A string containing a URI, RFC822 email address, DNS host name, or other name that uniquely identifies a service requiring this identity.
+    ///
+    /// - keyUsage: A key use value, as defined in `Security.framework/cssmtype.h`. Pass `0` if you don’t want to specify a particular key use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`SecIdentitySetPreferred(_:_:_:)`](https://developer.apple.com/documentation/security/secidentitysetpreferred(_:_:_:)) for new development instead.
+    ///
+    ///
     /// Sets the preferred identity for the specified name and key usage.
     ///
     /// Parameter `identity`: A reference to the identity which will be preferred.
@@ -241,8 +392,6 @@ impl SecIdentity {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     ///
     /// This API is deprecated in 10.7. Please use the SecIdentitySetPreferred API instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysetpreference?language=objc)
     #[doc(alias = "SecIdentitySetPreference")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
@@ -258,6 +407,21 @@ impl SecIdentity {
         unsafe { SecIdentitySetPreference(self, name, key_usage) }
     }
 
+    /// Sets the identity that should be preferred for the specified name and key use.
+    ///
+    /// Parameters:
+    /// - identity: The identity to set as preferred for the specified name and key usage.
+    ///
+    /// - name: A string containing an email address (RFC 822) or other name for which a preferred certificate is requested.
+    ///
+    /// - keyUsage: An array containing a list of usage attributes ([`kSecAttrCanEncrypt`](https://developer.apple.com/documentation/security/ksecattrcanencrypt), for example), or `NULL` if you want this identity to be preferred for any usage. See Attribute Item Keys for a complete list of possible usage attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Sets the preferred identity for the specified name and key usage.
     ///
     /// Parameter `identity`: A reference to the identity which will be preferred. If NULL is passed, any existing preference for the specified name is cleared instead.
@@ -273,8 +437,6 @@ impl SecIdentity {
     /// # Safety
     ///
     /// `key_usage` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysetpreferred(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentitySetPreferred")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -293,6 +455,27 @@ impl SecIdentity {
         unsafe { SecIdentitySetPreferred(identity, name, key_usage) }
     }
 
+    /// Obtains the system identity associated with a specified domain.
+    ///
+    /// Parameters:
+    /// - domain: The domain for which you want to find an identity, typically in reverse DNS notation, such as `com.apple.security`. You may also pass the values defined in [System Identity Domains](https://developer.apple.com/documentation/security/system-identity-domains).
+    ///
+    /// - idRef: On return, the identity object of the system-wide identity associated with the specified domain. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    /// - actualDomain: On return, the actual domain name of the returned identity object is returned here. This may be different from the requested domain. Pass `NULL` if you do not want this information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If no system identity exists for the specified domain, a domain specific alternate may be returned instead. This is typically (but not exclusively) the system default identity. ([`kSecIdentityDomainDefault`](https://developer.apple.com/documentation/security/ksecidentitydomaindefault)).
+    ///
+    ///
     /// Obtain the system-wide SecIdentityRef associated with
     /// a specified domain.
     ///
@@ -318,8 +501,6 @@ impl SecIdentity {
     ///
     /// - `id_ref` must be a valid pointer.
     /// - `actual_domain` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitycopysystemidentity(_:_:_:)?language=objc)
     #[doc(alias = "SecIdentityCopySystemIdentity")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -338,6 +519,25 @@ impl SecIdentity {
         unsafe { SecIdentityCopySystemIdentity(domain, id_ref, actual_domain) }
     }
 
+    /// Assigns the system identity to be associated with a specified domain.
+    ///
+    /// Parameters:
+    /// - domain: The domain to which the specified identity will be assigned, typically in reverse DNS notation, such as `com.apple.security`.  You may also pass the values defined in [System Identity Domains](https://developer.apple.com/documentation/security/system-identity-domains).
+    ///
+    /// - idRef: The identity to be assigned to the specified domain. Pass `NULL` to delete any currently-assigned identity for the specified domain; in this case, it is not an error if no identity exists for the specified domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller must be running as root.
+    ///
+    ///
     /// Assign the supplied SecIdentityRef to the specified
     /// domain.
     ///
@@ -352,8 +552,6 @@ impl SecIdentity {
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
     ///
     /// The caller must be running as root.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentitysetsystemidentity(_:_:)?language=objc)
     #[doc(alias = "SecIdentitySetSystemIdentity")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -369,12 +567,12 @@ impl SecIdentity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomaindefault?language=objc)
+    /// The system-wide default identity.
     pub static kSecIdentityDomainDefault: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecidentitydomainkerberoskdc?language=objc)
+    /// Kerberos Key Distribution Center (KDC) identity.
     pub static kSecIdentityDomainKerberosKDC: &'static CFString;
 }
 

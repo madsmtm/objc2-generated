@@ -6,19 +6,48 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentbearer?language=objc)
+/// An object that can carry attachments.
+///
+/// ## Discussion
+///
+/// A `CMAttachmentBearer` is a Core Foundation-based object that supports the suite of key/value/mode attachment APIs. Since “plain” C has no type subclassing, the framework uses `CFType` as the basis for the `CMAttachmentBearer` type. Not all `CFTypes` support `CMAttachmentBearer` methods, so if you call a `CMAttachmentBearer` method on a Core Foundation object that doesn’t support it, it fails.
+///
+///
 #[doc(alias = "CMAttachmentBearerRef")]
 pub type CMAttachmentBearer = CFType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentmode?language=objc)
+/// The mode to use when propagating attachments.
+///
+/// ## Discussion
+///
+/// Set these attributes when adding attachments to a [`CMAttachmentBearerRef`](https://developer.apple.com/documentation/coremedia/cmattachmentbearer) object.
+///
+///
 pub type CMAttachmentMode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmattachmentmode_shouldnotpropagate?language=objc)
+/// A mode that doesn’t propagate attachments to another object.
 pub const kCMAttachmentMode_ShouldNotPropagate: CMAttachmentMode = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmattachmentmode_shouldpropagate?language=objc)
+/// A mode that propagates attachments to another object.
 pub const kCMAttachmentMode_ShouldPropagate: CMAttachmentMode = 1;
 
 extern "C-unwind" {
+    /// Sets or adds an attachment to an attachment bearer object.
+    ///
+    /// Parameters:
+    /// - target: The `CMAttachmentBearer` object on which to add or set attachments.
+    ///
+    /// - key: A `CFString` key identifying the desired attachment.
+    ///
+    /// - value: A Core Foundation object attachment. If this parameter is `NULL`, the function returns an error.
+    ///
+    /// - attachmentMode: Specifies the attachment mode for this attachment. Any given attachment key may exist in only one mode at a time.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can attach any Core Foundation object to a `CMAttachmentBearer` object to store additional information. `CMSetAttachment` stores an attachment identified by a key. If the key doesn’t currently exist for the `CMAttachmentBearer` object when you call this function, the function adds the new attachment. If the key does exist, the function replaces the existing attachment. In both cases the function increments the retain count of the attachment. The value can be any `CFType` but a `NULL` value results in an error. Given a [`CVBufferRef`](https://developer.apple.com/documentation/corevideo/cvbuffer), `CMSetAttachment` is equivalent to `CVBufferSetAttachment`.
+    ///
+    ///
     /// Sets or adds a attachment of a CMAttachmentBearer
     ///
     /// You can attach any CF object to a CMAttachmentBearer object to store additional information. CMSetAttachment stores an attachment identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In both cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.  Given a CVBufferRef, CMSetAttachment is equivalent to CVBufferSetAttachment.
@@ -36,8 +65,6 @@ extern "C-unwind" {
     ///
     /// - `target` should be of the correct type.
     /// - `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsetattachment(_:key:value:attachmentmode:)?language=objc)
     pub fn CMSetAttachment(
         target: &CMAttachmentBearer,
         key: &CFString,
@@ -46,6 +73,27 @@ extern "C-unwind" {
     );
 }
 
+/// Returns an attachment from an attachment bearer object.
+///
+/// Parameters:
+/// - target: Specifies the `CMAttachmentBearer` whose attachment you want to retrieve.
+///
+/// - key: Key in the form of a `CFString` identifying the desired attachment.
+///
+/// - attachmentModeOut: On output, `attachmentMode` points to the mode of the attachment. See [`CMAttachmentMode`](https://developer.apple.com/documentation/coremedia/cmattachmentmode)for possible values. May be `NULL`.
+///
+///
+/// ## Return Value
+///
+/// The requested attachment object or `NULL` if not found.
+///
+///
+///
+/// ## Discussion
+///
+/// You can attach any Core Foundation object to a `CMAttachmentBearer` to store additional information. `CMGetAttachment` retrieves an attachment identified by a key. Given a [`CVBufferRef`](https://developer.apple.com/documentation/corevideo/cvbuffer), `CMGetAttachment` is equivalent to [`CVBufferCopyAttachment`](https://developer.apple.com/documentation/corevideo/cvbuffercopyattachment(_:_:_:)).
+///
+///
 /// Returns a specific attachment of a CMAttachmentBearer
 ///
 /// You can attach any CF object to a CMAttachmentBearer to store additional information. CMGetAttachment retrieves an attachment identified by a key.  Given a CVBufferRef, CMGetAttachment is equivalent to CVBufferGetAttachment.
@@ -62,8 +110,6 @@ extern "C-unwind" {
 ///
 /// - `target` should be of the correct type.
 /// - `attachment_mode_out` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmgetattachment(_:key:attachmentmodeout:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMGetAttachment(
     target: &CMAttachmentBearer,
@@ -82,6 +128,19 @@ pub unsafe extern "C-unwind" fn CMGetAttachment(
 }
 
 extern "C-unwind" {
+    /// Removes a specific attachment from an attachment bearer object.
+    ///
+    /// Parameters:
+    /// - target: The `CMAttachmentBearer` containing the attachment to remove.
+    ///
+    /// - key: Key in the form of a Core Foundation string identifying the desired attachment.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the attachment exists, the function removes the attachment and decrements the retain count. Given a [`CVBufferRef`](https://developer.apple.com/documentation/corevideo/cvbuffer), `CMRemoveAttachment` is equivalent to `CVBufferRemoveAttachment`.
+    ///
+    ///
     /// Removes a specific attachment of a CMAttachmentBearer
     ///
     /// CMRemoveAttachment removes an attachment identified by a key. If found the attachment is removed and the retain count decremented.  Given a CVBufferRef, CMRemoveAttachment is equivalent to CVBufferRemoveAttachment.
@@ -93,12 +152,21 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `target` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmremoveattachment(_:key:)?language=objc)
     pub fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
 }
 
 extern "C-unwind" {
+    /// Removes all attachments from an attachment bearer object.
+    ///
+    /// Parameters:
+    /// - target: The `CMAttachmentBearer` whose attachment you want to remove.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// While `CMRemoveAttachment` removes a specific attachment identified by a key, `CMRemoveAllAttachments` removes all attachments of a `CMAttachmentBearer` and decrements their retain counts.  Given a [`CVBufferRef`](https://developer.apple.com/documentation/corevideo/cvbuffer), `CMRemoveAllAttachments` is equivalent to `CVBufferRemoveAllAttachments`.
+    ///
+    ///
     /// Removes all attachments of a CMAttachmentBearer
     ///
     /// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
@@ -108,11 +176,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `target` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmremoveallattachments(_:)?language=objc)
     pub fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
 }
 
+/// Returns a dictionary of all attachments for an attachment bearer object.
+///
+/// Parameters:
+/// - allocator: Allocator for the new dictionary; pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) or `NULL` to use the default allocator.
+///
+/// - target: Specifies the [`CMAttachmentBearerRef`](https://developer.apple.com/documentation/coremedia/cmattachmentbearer) whose attachments you want to obtain.
+///
+/// - attachmentMode: The mode of the attachments you want to obtain. See [`CMAttachmentMode`](https://developer.apple.com/documentation/coremedia/cmattachmentmode) for possible values.
+///
+///
+/// ## Return Value
+///
+/// A Core Foundation dictionary with all attachments identified by their keys. If no attachment is present, the dictionary is empty. Returns `NULL` for an invalid attachment mode.
+///
+///
+///
+/// ## Discussion
+///
+/// `CMCopyDictionaryOfAttachments` is a convenience call that returns all attachments with their corresponding keys in a new [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). Given a `CVBufferRef`, `CMCopyDictionaryOfAttachments` is similar to `CVBufferGetAttachments`, except that the `CFDictionary` that `CMCopyDictionaryOfAttachments` returns isn’t updated for later changes to the attachments.
+///
+///
 /// Returns all attachments of a CMAttachmentBearer
 ///
 /// CMCopyDictionaryOfAttachments is a convenience call that returns all attachments with their corresponding keys in a new CFDictionary that the caller must dispose by calling CFRelease.  Given a CVBufferRef, CMCopyDictionaryOfAttachments is similar to CVBufferGetAttachments, except that CVBufferGetAttachments returns a CFDictionary that may change if attachments are added later.
@@ -127,8 +214,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `target` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmcopydictionaryofattachments(allocator:target:attachmentmode:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
     allocator: Option<&CFAllocator>,
@@ -147,6 +232,21 @@ pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
 }
 
 extern "C-unwind" {
+    /// Sets a dictionary of attachments on an attachment bearer object.
+    ///
+    /// Parameters:
+    /// - target: The target `CMAttachmentBearer` to set the attachment to.
+    ///
+    /// - theAttachments: The attachments to set, in the form of a Core Foundation dictionary.
+    ///
+    /// - attachmentMode: Specifies the attachment mode for this attachment. A particular attachment key can only exist in a single mode at a time.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `CMSetAttachments` is a convenience call that in turn calls `CMSetAttachment` for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a [`CVBufferRef`](https://developer.apple.com/documentation/corevideo/cvbuffer), `CMSetAttachments` is equivalent to `CVBufferSetAttachments`.
+    ///
+    ///
     /// Sets a set of attachments for a CMAttachmentBearer
     ///
     /// CMSetAttachments is a convenience call that in turn calls CMSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a CVBufferRef, CMSetAttachments is equivalent to CVBufferSetAttachments.
@@ -158,8 +258,6 @@ extern "C-unwind" {
     /// - `target` should be of the correct type.
     /// - `the_attachments` generic must be of the correct type.
     /// - `the_attachments` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsetattachments(_:attachments:attachmentmode:)?language=objc)
     pub fn CMSetAttachments(
         target: &CMAttachmentBearer,
         the_attachments: &CFDictionary,
@@ -168,6 +266,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies all propagable attachments from one attachment bearer object to another.
+    ///
+    /// Parameters:
+    /// - source: `CMAttachmentBearer` to copy attachments from.
+    ///
+    /// - destination: `CMAttachmentBearer` to copy attachments to.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `CMPropagateAttachments` is a convenience call that copies all attachments with a mode of `kCMAttachmentMode_ShouldPropagate` from one buffer to another.  Given a [`CVBufferRef`](https://developer.apple.com/documentation/corevideo/cvbuffer), `CMPropagateAttachments` is equivalent to `CVBufferPropagateAttachments`.
+    ///
+    ///
     /// Copy all propagatable attachments from one buffer to another.
     ///
     /// CMPropagateAttachments is a convenience call that copies all attachments with a mode of kCMAttachmentMode_ShouldPropagate from one
@@ -181,7 +292,5 @@ extern "C-unwind" {
     ///
     /// - `source` should be of the correct type.
     /// - `destination` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmpropagateattachments(_:destination:)?language=objc)
     pub fn CMPropagateAttachments(source: &CMAttachmentBearer, destination: &CMAttachmentBearer);
 }

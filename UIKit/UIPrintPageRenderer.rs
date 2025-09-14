@@ -9,16 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintrenderingquality?language=objc)
+/// Constants that represent the rendering quality for a print operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintRenderingQuality(pub NSInteger);
 impl UIPrintRenderingQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintrenderingquality/best?language=objc)
+    /// A constant that renders the printing at the best possible quality, regardless of speed.
     #[doc(alias = "UIPrintRenderingQualityBest")]
     pub const Best: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintrenderingquality/responsive?language=objc)
+    /// A constant that reduces rendering quality by the smallest possible amount to increase speed and maintain a responsive user interface.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option if you determine that rendering at the best quality using [`UIPrintRenderingQualityBest`](https://developer.apple.com/documentation/uikit/uiprintrenderingquality/best) reduces the responsiveness of the user interface.
+    ///
+    ///
     #[doc(alias = "UIPrintRenderingQualityResponsive")]
     pub const Responsive: Self = Self(1);
 }
@@ -32,7 +38,27 @@ unsafe impl RefEncode for UIPrintRenderingQuality {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintpagerenderer?language=objc)
+    /// An object that draws pages of content to print, with or without the assistance of print formatters.
+    ///
+    /// ## Overview
+    ///
+    /// A page renderer is an instance of a custom subclass of [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer). When you compose a print job using the shared instance of [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller), you assign the page renderer to the [`printPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printpagerenderer) property of that instance. The subclass typically overrides one or more of the five `draw...` methods.
+    ///
+    /// The [`drawPageAtIndex:inRect:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/drawpage(at:in:)) by default calls each of the other draw methods, in the order listed below. Your app can override it if you want to have complete control over what to draw for printing.
+    ///
+    /// - Override [`drawHeaderForPageAtIndex:inRect:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/drawheaderforpage(at:in:)) to draw content in the header.
+    ///
+    /// - Override [`drawContentForPageAtIndex:inRect:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/drawcontentforpage(at:in:)) to draw the main content of the print job in the area between the header and the footer.
+    ///
+    /// - Override [`drawPrintFormatter:forPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/drawprintformatter(_:forpageat:)) to intermix custom drawing with the drawing that an associated print formatter performs. The system calls this method for each print formatter associated with a particular page.
+    ///
+    /// - Override [`drawFooterForPageAtIndex:inRect:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/drawfooterforpage(at:in:)) to draw content in the footer.
+    ///
+    /// [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer) usually requires you to specify the number of pages of printable content by overriding [`numberOfPages`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/numberofpages). It also allows you to specify the heights of page headers and footers.
+    ///
+    /// You may assign one or more print formatters — [`UIPrintFormatter`](https://developer.apple.com/documentation/uikit/uiprintformatter) objects that can lay out printable content of a certain kind — to specific page ranges of the content. For example, if your printable content is partially HTML, you may assign an instance of the [`UIMarkupTextPrintFormatter`](https://developer.apple.com/documentation/uikit/uimarkuptextprintformatter) object to the starting page of HTML content. You assign a print formatter using the [`addPrintFormatter:startingAtPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/addprintformatter(_:startingatpageat:)) method and you can get the print formatters for a particular page by calling [`printFormattersForPageAtIndex:`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer/printformattersforpage(at:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintPageRenderer;

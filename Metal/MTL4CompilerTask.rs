@@ -7,31 +7,26 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Represents the status of a compiler task.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus?language=objc)
+/// Represents the status of a compiler task.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4CompilerTaskStatus(pub NSInteger);
 impl MTL4CompilerTaskStatus {
     /// No status.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/none?language=objc)
+    /// No status.
     #[doc(alias = "MTL4CompilerTaskStatusNone")]
     pub const None: Self = Self(0);
     /// The compiler task is currently scheduled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/scheduled?language=objc)
+    /// The compiler task is currently scheduled.
     #[doc(alias = "MTL4CompilerTaskStatusScheduled")]
     pub const Scheduled: Self = Self(1);
     /// The compiler task is currently compiling.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/compiling?language=objc)
+    /// The compiler task is currently compiling.
     #[doc(alias = "MTL4CompilerTaskStatusCompiling")]
     pub const Compiling: Self = Self(2);
     /// The compiler task is finished.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskstatus/finished?language=objc)
+    /// The compiler task is finished.
     #[doc(alias = "MTL4CompilerTaskStatusFinished")]
     pub const Finished: Self = Self(3);
 }
@@ -46,8 +41,7 @@ unsafe impl RefEncode for MTL4CompilerTaskStatus {
 
 extern_protocol!(
     /// A reference to an asynchronous compilation task that you initiate from a compiler instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertask?language=objc)
+    /// A reference to an asynchronous compilation task that you initiate from a compiler instance.
     pub unsafe trait MTL4CompilerTask: NSObjectProtocol {
         #[cfg(feature = "MTL4Compiler")]
         /// Returns the compiler instance that this asynchronous compiler task belongs to.

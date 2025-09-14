@@ -11,12 +11,77 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernelroicallback?language=objc)
+/// The signature for a block that computes the region of interest (ROI) for a given area of destination image pixels. Core Image calls this block when applying the kernel. You specify this block when using the [`applyWithExtent:roiCallback:arguments:`](https://developer.apple.com/documentation/coreimage/cikernel/apply(extent:roicallback:arguments:)) method.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - index: For a general-purpose kernel or color kernel routine that supports multiple input images, the index of the source image for which Core Image is requesting ROI information. For all other kernel routines, this parameter is always zero.
+///
+/// - rect: The rectangle in destination image pixels for which Core Image is requesting ROI information.
+///
+/// The block returns a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure describing the region of interest for the specified rectangle.
+///
+/// When applying a filter kernel, the region of interest is the area of source image pixels that must be processed to produce a given area of destination image pixels. (For a more detailed definition, see [The Region of Interest](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_advanced_concepts/ci.advanced_concepts.html#//apple_ref/doc/uid/TP30001185-CH9-SW12).) For example, a kernel that applies a blur effect in a ten-pixel radius must sample source image pixels ten pixels away in each direction from every output pixel. Thus, its region of interest is a rectangle ten pixels larger on each side than the destination rectangle:
+///
+/// ```objc
+/// CIKernelROICallback callback = ^(int index, CGRect rect) {
+///     return CGRectInset(rect, -10, -10);
+/// };
+/// ```
+///
+/// If your kernel does not need the image at `index` to produce output in the rectangle `rect`, your block should return [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+///
+///
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
 pub type CIKernelROICallback = *mut block2::DynBlock<dyn Fn(c_int, CGRect) -> CGRect>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernel?language=objc)
+    /// A GPU-based image-processing routine used to create custom Core Image filters.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your custom filter uses both color and geometry information, but does not require processing both at the same time, you can improve performance by separating your image processing code: use a [`CIColorKernel`](https://developer.apple.com/documentation/coreimage/cicolorkernel) object for the color processing step and a [`CIWarpKernel`](https://developer.apple.com/documentation/coreimage/ciwarpkernel) object for the geometry processing step.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The kernel language routine for a general-purpose filter kernel has the following characteristics:
+    ///
+    /// - Its return type is `vec4` (Core Image Kernel Language) or `float4` (Metal Shading Language); that is, it returns a pixel color for the output image.
+    ///
+    /// - It may use zero or more input images. Each input image is represented by a parameter of type `sampler`.
+    ///
+    /// A kernel routine typically produces its output by calculating source image coordinates (using the `destCoord` and `samplerTransform` functions or the `samplerTransform` function), samples from the source images (using the `sample` function), and computes a final pixel color (output using the `return` keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged.
+    ///
+    /// ```c
+    /// #include <CoreImage/CoreImage.h>
+    ///  
+    /// extern "C" {
+    ///     namespace coreimage {
+    ///         float4 do_nothing(sampler src) {
+    ///             return src.sample(src.coord());
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The equivalent code in Core Image Kernel Language is:
+    ///
+    /// ```c
+    /// kernel vec4 do_nothing(sampler image) {
+    ///     vec2 dc = destCoord();
+    ///     return sample(image, samplerTransform(image, dc));
+    /// }
+    /// ```
+    ///
+    /// The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See [Core Image Kernel Language Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CIKernelLangRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004397) and [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185) for more details.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIKernel;
@@ -114,7 +179,41 @@ impl CIKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorkernel?language=objc)
+    /// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
+    ///
+    /// ## Overview
+    ///
+    /// The kernel language routine for a color kernel has the following characteristics:
+    ///
+    /// - Its return type is `vec4` (Core Image Kernel Language) or `float4` (Metal Shading Language); that is, it returns a pixel color for the output image.
+    ///
+    /// - It may use zero or more input images. Each input image is represented by a parameter of type `__sample` (Core Image Kernel Language) or `sample_t` (Metal Shading Language), which can be treated as a single pixel color of type `vec4` (Core Image Kernel Language) or `float4` (Metal Shading Language);.
+    ///
+    /// A color kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the `return` keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged.
+    ///
+    /// ```c
+    /// #include <CoreImage/CoreImage.h>
+    ///  
+    /// extern "C" {
+    ///     namespace coreimage {
+    ///         float4 do_nothing(sample_t s) {
+    ///             return s;
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The equivalent code in Core Image Kernel Language is:
+    ///
+    /// ```c
+    /// kernel vec4 do_nothing(__sample s) {
+    ///     return s.rgba;
+    /// }
+    /// ```
+    ///
+    /// The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See [Core Image Kernel Language Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CIKernelLangRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004397) and [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185) for more details.
+    ///
+    ///
     #[unsafe(super(CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIColorKernel;
@@ -184,7 +283,41 @@ impl CIColorKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciwarpkernel?language=objc)
+    /// A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
+    ///
+    /// ## Overview
+    ///
+    /// The kernel language routine for a warp kernel has the following characteristics:
+    ///
+    /// - It uses exactly one input image.
+    ///
+    /// - Its return type is `vec2` (Core Image Kernel Language) or `float2` (Metal Shading Language), specifying a position in source image coordinates.
+    ///
+    /// A warp kernel routine requires no input parameters (but can use additional custom parameters you declare). Typically, a warp kernel uses the destination coordinate function to look up the coordinates of the destination pixel currently being rendered, then computes a corresponding position in source image coordinates (output using the `return` keyword). Core Image then samples from the source image at the returned coordinates to produce a pixel color for the output image. For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged.
+    ///
+    /// ```c
+    /// #include <CoreImage/CoreImage.h>
+    ///  
+    /// extern "C" {
+    ///     namespace coreimage {
+    ///         float2 do_nothing(destination dest) {
+    ///             return dest.coord();
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The equivalent code in Core Image Kernel Language is:
+    ///
+    /// ```c
+    /// kernel vec2 do_nothing() {
+    ///     return destCoord();
+    /// }
+    /// ```
+    ///
+    /// The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See [Core Image Kernel Language Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CIKernelLangRef/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004397) and [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185) for more details.
+    ///
+    ///
     #[unsafe(super(CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIWarpKernel;
@@ -261,7 +394,29 @@ impl CIWarpKernel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciblendkernel?language=objc)
+    /// A GPU-based image-processing routine that is optimized for blending two images.
+    ///
+    /// ## Overview
+    ///
+    /// The blend kernel function has the following characteristics:
+    ///
+    /// - It has two arguments of type `__sample` (Core Image Kernel Language) or `sample_t` (Metal Shading Language), representing the foreground and background images.
+    ///
+    /// - Its return type is `vec4` (Core Image Kernel Language) or `float4` (Metal Shading Language); that is, it returns a pixel color for the output image.
+    ///
+    /// A blend kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the return keyword). For example, the Metal Shading Language source below implements a filter that returns the average of its two input images.
+    ///
+    /// ```c
+    /// #include <CoreImage/CoreImage.h>
+    ///  
+    /// float4 averageBlend(sample_t foreground, sample_t background) {
+    ///     return (foreground + background) / 2.0;
+    /// }
+    /// ```
+    ///
+    /// Generally, the extent of the output image is the union of the extents of the foreground and background images.
+    ///
+    ///
     #[unsafe(super(CIColorKernel, CIKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIBlendKernel;

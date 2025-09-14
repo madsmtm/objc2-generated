@@ -16,9 +16,14 @@ use crate::*;
 extern_protocol!(
     /// The protocol for the Distance Gradient From Red Mask filter.
     ///
+    /// ## Overview
+    ///
     /// Produces an infinite image where the red channel contains the distance in pixels from each pixel to the mask.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidistancegradientfromredmask?language=objc)
+    ///
+    /// The protocol for the Distance Gradient From Red Mask filter.
+    ///
+    /// Produces an infinite image where the red channel contains the distance in pixels from each pixel to the mask.
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDistanceGradientFromRedMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -46,11 +51,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Gaussian gradient filter.
     /// The protocol for the Gaussian Gradient filter.
     ///
     /// Generates a gradient that varies from one color to another using a Gaussian distribution.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cigaussiangradient?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaussianGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -102,11 +106,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a hue-saturation-value gradient filter.
     /// The protocol for the Hue/Saturation/Value Gradient filter.
     ///
     /// Generates a color wheel that shows hues and saturations for a specified value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cihuesaturationvaluegradient?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHueSaturationValueGradient: CIFilterProtocol {
         /// The color value used to generate the color wheel.
@@ -164,11 +167,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a linear gradient filter.
     /// The protocol for the Linear Gradient filter.
     ///
     /// Generates a gradient that varies along a linear axis between two defined endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilineargradient?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILinearGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -222,11 +224,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a radial gradient filter.
     /// The protocol for the Radial Gradient filter.
     ///
     /// Generates a gradient that varies radially between two circles having the same center. It is valid for one of the two circles to have a radius of 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciradialgradient?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRadialGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -290,9 +291,14 @@ extern_protocol!(
 extern_protocol!(
     /// The protocol for the Signed Distance Gradient From Red Mask filter.
     ///
+    /// ## Overview
+    ///
     /// Produces an infinite image where the red channel contains the distance in pixels from each pixel to the mask.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisigneddistancegradientfromredmask?language=objc)
+    ///
+    /// The protocol for the Signed Distance Gradient From Red Mask filter.
+    ///
+    /// Produces an infinite image where the red channel contains the distance in pixels from each pixel to the mask.
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISignedDistanceGradientFromRedMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -320,11 +326,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a smooth linear gradient filter.
     /// The protocol for the Smooth Linear Gradient filter.
     ///
     /// Generates a gradient that varies along a linear axis between two defined endpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cismoothlineargradient?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISmoothLinearGradient: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -378,11 +383,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a sharpen luminance filter.
     /// The protocol for the Sharpen Luminance filter.
     ///
     /// Increases image detail by sharpening. It operates on the luminance of the image; the chrominance of the pixels remains unaffected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisharpenluminance?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISharpenLuminance: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -420,11 +424,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an unsharp mask filter.
     /// The protocol for the Unsharp Mask filter.
     ///
     /// Increases the contrast of the edges between pixels of different colors in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciunsharpmask?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIUnsharpMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -462,11 +465,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a circular screen filter.
     /// The protocol for the Circular Screen filter.
     ///
     /// Simulates a circular-shaped halftone screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicircularscreen?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircularScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -516,11 +518,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a CMYK halftone filter.
     /// The protocol for the CMYK Halftone filter.
     ///
     /// Creates a color, halftoned rendition of the source image, using cyan, magenta, yellow, and black inks over a white page.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicmykhalftone?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICMYKHalftone: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -600,11 +601,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a dot screen filter.
     /// The protocol for the Dot Screen filter.
     ///
     /// Simulates the dot patterns of a halftone screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidotscreen?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDotScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -664,11 +664,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a hatched screen filter.
     /// The protocol for the Hatched Screen filter.
     ///
     /// Simulates the hatched pattern of a halftone screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cihatchedscreen?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHatchedScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -728,11 +727,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a line screen filter.
     /// The protocol for the Line Screen filter.
     ///
     /// Simulates the line pattern of a halftone screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilinescreen?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILineScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -792,10 +790,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a geometry adjustment filters that requires four coordinates.
     /// A protocol for filters that adjust the geometry of an image
     /// given four control points in the coordinate space of the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifourcoordinategeometryfilter?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourCoordinateGeometryFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -861,11 +858,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a bicubic scale transform filter.
     /// The protocol for the Bicubic Scale Transform filter.
     ///
     /// Produces a high-quality, scaled version of a source image. The parameters of B and C for this filter determine the sharpness or softness of the resampling. The most commonly used B and C values are 0.0 and 0.75, respectively.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibicubicscaletransform?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBicubicScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -923,11 +919,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an edge preserve upsample filter.
     /// The protocol for the Edge Preserve Upsample Filter filter.
     ///
     /// Upsamples a small image to the size of the input image using the luminance of the input image as a guide to preserve detail.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciedgepreserveupsample?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdgePreserveUpsample: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -977,11 +972,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a keystone correction combined filter.
     /// The protocol for the Combined Keystone Correction filter.
     ///
     /// Apply keystone correction to an image with combined horizontal and vertical guides.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikeystonecorrectioncombined?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKeystoneCorrectionCombined: CIFourCoordinateGeometryFilter {
         /// 35mm equivalent focal length of the input image.
@@ -997,11 +991,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a keystone correction horizontal filter.
     /// The protocol for the Horizontal Keystone Correction filter.
     ///
     /// Apply horizontal keystone correction to an image with guides.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikeystonecorrectionhorizontal?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKeystoneCorrectionHorizontal: CIFourCoordinateGeometryFilter {
         /// 35mm equivalent focal length of the input image.
@@ -1017,11 +1010,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a keystone correction vertical filter.
     /// The protocol for the Vertical Keystone Correction filter.
     ///
     /// Apply vertical keystone correction to an image with guides.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikeystonecorrectionvertical?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKeystoneCorrectionVertical: CIFourCoordinateGeometryFilter {
         /// 35mm equivalent focal length of the input image.
@@ -1037,11 +1029,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Lanczos scale transform filter.
     /// The protocol for the Lanczos Scale Transform filter.
     ///
     /// Produces a high-quality, scaled version of a source image. You typically use this filter to scale down an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilanczosscaletransform?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILanczosScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -1082,8 +1073,6 @@ extern_protocol!(
     /// The protocol for the Maximum Scale Transform filter.
     ///
     /// Produces a scaled version of a source image that uses the maximum of neighboring pixels instead of linear averaging.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimaximumscaletransform?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaximumScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -1121,11 +1110,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a perspective correction filter.
     /// The protocol for the Perspective Correction filter.
     ///
     /// Apply a perspective correction to an image. This geometry maps four control points in the input image to a rectangle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciperspectivecorrection?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveCorrection: CIFourCoordinateGeometryFilter {
         /// If true then the filter crops the output image to the rectangle that the points map to. If false, then pixels from outside the four control points remain in the output image
@@ -1141,11 +1129,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a perspective rotate filter.
     /// The protocol for the Perspective Rotate filter.
     ///
     /// Apply a homogenous rotation transform to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciperspectiverotate?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveRotate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -1203,21 +1190,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a perspective transform filter.
     /// The protocol for the Perspective Transform filter.
     ///
     /// Alters the geometry of an image to simulate the observer changing viewing position. You can use the perspective filter to skew an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciperspectivetransform?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveTransform: CIFourCoordinateGeometryFilter {}
 );
 
 extern_protocol!(
+    /// The properties you use to configure a perspective transform with extent filter.
     /// The protocol for the Perspective Transform with Extent filter.
     ///
     /// Alters the geometry of an image to simulate the observer changing viewing position. You can use the perspective filter to skew an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciperspectivetransformwithextent?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveTransformWithExtent:
         CIFourCoordinateGeometryFilter
@@ -1237,11 +1222,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a straighten filter.
     /// The protocol for the Straighten filter.
     ///
     /// Rotates a source image by the specified angle in radians. The image is then scaled and cropped so that the rotated image fits the extent of the input image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cistraighten?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStraighten: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -1269,9 +1253,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a transition filter.
     /// A protocol for filters that perform an animatable transition between two images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citransitionfilter?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITransitionFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -1311,11 +1294,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an accordion fold transition filter.
     /// The protocol for the Accordion Fold Transition filter.
     ///
     /// Transitions from one image to another of a differing dimensions by unfolding.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciaccordionfoldtransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAccordionFoldTransition: CITransitionFilter {
         /// The height in pixels from the bottom of the image to the bottom of the folded part of the transition.
@@ -1351,11 +1333,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a bars swipe transition filter.
     /// The protocol for the Bars Swipe Transition filter.
     ///
     /// Transitions from one image to another by swiping rectangular portions of the foreground image to disclose the target image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibarsswipetransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBarsSwipeTransition: CITransitionFilter {
         /// The angle in radians of the bars.
@@ -1391,11 +1372,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a copy machine transition filter.
     /// The protocol for the Copy Machine filter.
     ///
     /// Transitions from one image to another by simulating the effect of a copy machine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicopymachinetransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICopyMachineTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
@@ -1455,11 +1435,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a disintegrate-with-mask transition filter.
     /// The protocol for the Disintegrate With Mask filter.
     ///
     /// Transitions from one image to another using the shape defined by a mask.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidisintegratewithmasktransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisintegrateWithMaskTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
@@ -1509,21 +1488,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a dissolve transition filter.
     /// The protocol for the Dissolve filter.
     ///
     /// Uses a dissolve to transition from one image to another.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidissolvetransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDissolveTransition: CITransitionFilter {}
 );
 
 extern_protocol!(
+    /// The properties you use to configure a flash transition filter.
     /// The protocol for the Flash filter.
     ///
     /// Transitions from one image to another by creating a flash. The flash originates from a point you specify. Small at first, it rapidly expands until the image frame is completely filled with the flash color. As the color fades, the target image begins to appear.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciflashtransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFlashTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
@@ -1605,11 +1582,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a mod transition filter.
     /// The protocol for the Mod filter.
     ///
     /// Transitions from one image to another by revealing the target image through irregularly shaped holes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimodtransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIModTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
@@ -1657,11 +1633,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a page curl transition filter.
     /// The protocol for the Page Curl filter.
     ///
     /// Transitions from one image to another by simulating a curling page, revealing the new image as the page curls.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipagecurltransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPageCurlTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
@@ -1723,11 +1698,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a page-curl-with-shadow transition filter.
     /// The protocol for the Page Curl With Shadow filter.
     ///
     /// Transitions from one image to another by simulating a curling page, revealing the new image as the page curls.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipagecurlwithshadowtransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPageCurlWithShadowTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
@@ -1809,11 +1783,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a ripple transition filter.
     /// The protocol for the Ripple filter.
     ///
     /// Transitions from one image to another by creating a circular wave that expands from the center point, revealing the new image in the wake of the wave.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirippletransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRippleTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
@@ -1875,11 +1848,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a swipe transition filter.
     /// The protocol for the Swipe filter.
     ///
     /// Transitions from one image to another by simulating a swiping action.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciswipetransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISwipeTransition: CITransitionFilter {
         #[cfg(feature = "objc2-core-foundation")]
@@ -1939,11 +1911,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a composite operation filter.
     /// The protocol for the Addition filter.
     ///
     /// Adds color components to achieve a brightening effect. This filter is typically used to add highlights and lens flare effects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicompositeoperation?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICompositeOperation: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -1976,8 +1947,6 @@ extern_protocol!(
     /// The protocol for the Color Absolute Difference filter.
     ///
     /// Produces an image that is the absolute value of the color difference between two images. The alpha channel of the result will be the product of the two image alpha channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorabsolutedifference?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorAbsoluteDifference: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2007,11 +1976,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color clamp filter.
     /// The protocol for the Color Clamp filter.
     ///
     /// Clamp color to a certain range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorclamp?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorClamp: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2053,11 +2021,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color controls filter.
     /// The protocol for the Color Controls filter.
     ///
     /// Adjusts saturation, brightness, and contrast values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorcontrols?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorControls: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2105,11 +2072,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color matrix filter.
     /// The protocol for the Color Matrix filter.
     ///
     /// Multiplies source color values and adds a bias factor to each color component.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolormatrix?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMatrix: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2187,11 +2153,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color polynomial filter.
     /// The protocol for the Color Polynomial filter.
     ///
     /// Adjusts the color of an image with polynomials.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorpolynomial?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorPolynomial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2260,8 +2225,6 @@ extern_protocol!(
     /// The protocol for the Color Threshold filter.
     ///
     /// Produces a binarized image from an image and a threshold value. The red, green and blue channels of the resulting image will be one if its value is greater than the threshold and zero otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorthreshold?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorThreshold: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2292,8 +2255,6 @@ extern_protocol!(
     /// The protocol for the Color Threshold Otsu filter.
     ///
     /// Produces a binarized image from an image with finite extent. The threshold is calculated from the image histogram using Otsu’s method. The red, green and blue channels of the resulting image will be one if its value is greater than the threshold and zero otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorthresholdotsu?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorThresholdOtsu: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2311,11 +2272,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a depth-to-disparity filter.
     /// The protocol for the Depth To Disparity filter.
     ///
     /// Convert a depth data image to disparity data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidepthtodisparity?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDepthToDisparity: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2333,11 +2293,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a disparity-to-depth filter.
     /// The protocol for the Disparity To Depth filter.
     ///
     /// Convert a disparity data image to depth data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidisparitytodepth?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisparityToDepth: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2355,11 +2314,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an exposure adjust filter.
     /// The protocol for the Exposure Adjust filter.
     ///
     /// Adjusts the exposure setting for an image similar to the way you control exposure for a camera when you change the F-stop.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciexposureadjust?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIExposureAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2387,11 +2345,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a gamma adjust filter.
     /// The protocol for the Gamma Adjust filter.
     ///
     /// Adjusts midtone brightness. This filter is typically used to compensate for nonlinear effects of displays. Adjusting the gamma effectively changes the slope of the transition between black and white.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cigammaadjust?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGammaAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2419,11 +2376,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a hue adjust filter.
     /// The protocol for the Hue Adjust filter.
     ///
     /// Changes the overall hue, or tint, of the source pixels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cihueadjust?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHueAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2451,11 +2407,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a linear-to-sRGB filter.
     /// The protocol for the Linear to sRGB Tone Curve filter.
     ///
     /// Converts an image in linear space to sRGB space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilineartosrgbtonecurve?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILinearToSRGBToneCurve: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2473,11 +2428,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an sRGB-to-linear filter.
     /// The protocol for the sRGB Tone Curve to Linear filter.
     ///
     /// Converts an image in sRGB space to linear space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisrgbtonecurvetolinear?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISRGBToneCurveToLinear: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2497,9 +2451,14 @@ extern_protocol!(
 extern_protocol!(
     /// The protocol for the System Tone Map filter.
     ///
+    /// ## Overview
+    ///
     /// Apply a global tone curve to an image that reduces colors of the input image to a desired dynamic range consistent with other frameworks.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisystemtonemap?language=objc)
+    ///
+    /// The protocol for the System Tone Map filter.
+    ///
+    /// Apply a global tone curve to an image that reduces colors of the input image to a desired dynamic range consistent with other frameworks.
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISystemToneMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2540,11 +2499,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a temperature and tint filter.
     /// The protocol for the Temperature and Tint filter.
     ///
     /// Adapt the reference white point for an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citemperatureandtint?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITemperatureAndTint: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2586,11 +2544,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a tone curve filter.
     /// The protocol for the Tone Curve filter.
     ///
     /// Adjusts tone response of the R, G, and B channels of an image. The input points are five x,y values that are interpolated using a spline curve. The curve is applied in a perceptual (gamma 2) version of the working space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citonecurve?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIToneCurve: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2681,8 +2638,6 @@ extern_protocol!(
     /// The protocol for the Tone Map Headroom filter.
     ///
     /// Apply a global tone curve to an image that reduces colors from a source headroom value to a target headroom value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citonemapheadroom?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIToneMapHeadroom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2720,11 +2675,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a vibrance filter.
     /// The protocol for the Vibrance filter.
     ///
     /// Adjusts the saturation of an image while keeping pleasing skin tones.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/civibrance?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVibrance: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2752,11 +2706,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a white-point adjust filter.
     /// The protocol for the White Point Adjust filter.
     ///
     /// Adjusts the reference white point for an image and maps all colors in the source using the new reference.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciwhitepointadjust?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIWhitePointAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2786,11 +2739,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color cross-polynomial filter.
     /// The protocol for the Color Cross Polynomial filter.
     ///
     /// Adjusts the color of an image with polynomials.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorcrosspolynomial?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCrossPolynomial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2844,11 +2796,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color cube filter.
     /// The protocol for the Color Cube filter.
     ///
     /// Uses a three-dimensional color table to transform the source image pixels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorcube?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCube: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2896,11 +2847,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color cube mixed with mask filter.
     /// The protocol for the Color Cubes Mixed With Mask filter.
     ///
     /// Uses two three-dimensional color tables in a specified colorspace to transform the source image pixels. The mask image is used as an interpolant to mix the output of the two cubes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorcubesmixedwithmask?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCubesMixedWithMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -2982,11 +2932,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color cube with color space filter.
     /// The protocol for the Color Cube with ColorSpace filter.
     ///
     /// Uses a three-dimensional color table in a specified colorspace to transform the source image pixels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorcubewithcolorspace?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCubeWithColorSpace: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3046,11 +2995,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color curves filter.
     /// The protocol for the Color Curves filter.
     ///
     /// Uses a three-channel one-dimensional color table to transform the source image pixels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorcurves?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCurves: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3102,11 +3050,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color invert filter.
     /// The protocol for the Color Invert filter.
     ///
     /// Inverts the colors in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorinvert?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorInvert: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3124,11 +3071,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color map filter.
     /// The protocol for the Color Map filter.
     ///
     /// Performs a nonlinear transformation of source color values using mapping values provided in a table.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolormap?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3158,11 +3104,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color monochrome filter.
     /// The protocol for the Color Monochrome filter.
     ///
     /// Remaps colors so they fall within shades of a single color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolormonochrome?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMonochrome: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3202,11 +3147,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a color posterize filter.
     /// The protocol for the Color Posterize filter.
     ///
     /// Remaps red, green, and blue color components to the number of brightness values you specify for each color component. This filter flattens colors to achieve a look similar to that of a silk-screened poster.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolorposterize?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorPosterize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3235,8 +3179,6 @@ extern_protocol!(
 
 extern_protocol!(
     /// A protocol for filters that convert an image between CIELAB color space and the Core Image RGB working space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciconvertlab?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIConvertLab: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3266,11 +3208,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a dither filter.
     /// The protocol for the Dither filter.
     ///
     /// Apply dithering to an image. This operation is usually performed in a perceptual color space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidither?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDither: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3298,11 +3239,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a document enhancer filter.
     /// The protocol for the Document Enhancer filter.
     ///
     /// Enhance a document image by removing unwanted shadows, whitening the background, and enhancing contrast.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidocumentenhancer?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDocumentEnhancer: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3330,11 +3270,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a false color filter.
     /// The protocol for the False Color filter.
     ///
     /// Maps luminance to a color ramp of two colors. False color is often used to process astronomical and other scientific data, such as ultraviolet and X-ray images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifalsecolor?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFalseColor: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3376,11 +3315,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Lab Delta E filter.
     /// The protocol for the Lab ∆E filter.
     ///
     /// Produces an image with the Lab ∆E difference values between two images. The result image will contain ∆E 1994 values between 0.0 and 100.0 where 2.0 is considered a just noticeable difference.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilabdeltae?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILabDeltaE: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3410,11 +3348,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a mask-to-alpha filter.
     /// The protocol for the Mask to Alpha filter.
     ///
     /// Converts a grayscale image to a white image that is masked by alpha. The white values from the source image produce the inside of the mask; the black values become completely transparent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimasktoalpha?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaskToAlpha: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3432,11 +3369,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a maximum component filter.
     /// The protocol for the Maximum Component filter.
     ///
     /// Converts an image to grayscale using the maximum of the three color components.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimaximumcomponent?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaximumComponent: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3454,11 +3390,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a minimum component filter.
     /// The protocol for the Minimum Component filter.
     ///
     /// Converts an image to grayscale using the minimum of the three color components.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciminimumcomponent?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMinimumComponent: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3476,11 +3411,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a palette centroid filter.
     /// The protocol for the Palette Centroid filter.
     ///
     /// Calculate the mean (x,y) image coordinates of a color palette.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipalettecentroid?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPaletteCentroid: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3520,11 +3454,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a palettize filter.
     /// The protocol for the Palettize filter.
     ///
     /// Paint an image from a color palette obtained using “CIKMeans“.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipalettize?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPalettize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3564,11 +3497,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a photo-effect filter.
     /// The protocol for the Photo Effect Chrome filter.
     ///
     /// Apply a “Chrome” style effect to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciphotoeffect?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPhotoEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3596,11 +3528,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a sepia-tone filter.
     /// The protocol for the Sepia Tone filter.
     ///
     /// Maps the colors of an image to various shades of brown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisepiatone?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISepiaTone: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3628,11 +3559,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a thermal filter.
     /// The protocol for the Thermal filter.
     ///
     /// Apply a “Thermal” style effect to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cithermal?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIThermal: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3650,11 +3580,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a vignette filter.
     /// The protocol for the Vignette filter.
     ///
     /// Applies a vignette shading to the corners of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/civignette?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVignette: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3692,11 +3621,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a vignette-effect filter.
     /// The protocol for the Vignette Effect filter.
     ///
     /// Applies a vignette shading to the corners of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/civignetteeffect?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVignetteEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3756,11 +3684,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an X-ray filter.
     /// The protocol for the X-Ray filter.
     ///
     /// Apply an “XRay” style effect to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cixray?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIXRay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3781,8 +3708,6 @@ extern_protocol!(
     /// The protocol for the Bump Distortion filter.
     ///
     /// Creates a concave or convex bump that originates at a specified point in the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibumpdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBumpDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3835,8 +3760,6 @@ extern_protocol!(
     /// The protocol for the Bump Distortion Linear filter.
     ///
     /// Creates a bump that originates from a linear portion of the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibumpdistortionlinear?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBumpDistortionLinear: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3899,8 +3822,6 @@ extern_protocol!(
     /// The protocol for the Circle Splash Distortion filter.
     ///
     /// Distorts the pixels starting at the circumference of a circle and emanating outward.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicirclesplashdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircleSplashDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3943,8 +3864,6 @@ extern_protocol!(
     /// The protocol for the Circular Wrap Distortion filter.
     ///
     /// Wraps an image around a transparent circle. The distortion of the image increases with the distance from the center of the circle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicircularwrap?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircularWrap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -3997,8 +3916,6 @@ extern_protocol!(
     /// The protocol for the Displacement Distortion filter.
     ///
     /// Applies the grayscale values of the second image to the first image. The output image has a texture defined by the grayscale values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidisplacementdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisplacementDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4041,8 +3958,6 @@ extern_protocol!(
     /// The protocol for the Droste filter.
     ///
     /// The Droste effect produces an infinite image by distorting an image into a spiral of the image within itself.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidroste?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDroste: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4127,8 +4042,6 @@ extern_protocol!(
     /// The protocol for the Glass Distortion filter.
     ///
     /// Distorts an image by applying a glass-like texture. The raised portions of the output image are the result of applying a texture map.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciglassdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlassDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4183,8 +4096,6 @@ extern_protocol!(
     /// The protocol for the Glass Lozenge filter.
     ///
     /// Creates a lozenge-shaped lens and distorts the portion of the image over which the lens is placed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciglasslozenge?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlassLozenge: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4249,8 +4160,6 @@ extern_protocol!(
     /// The protocol for the Hole Distortion filter.
     ///
     /// Creates a circular area that pushes the image pixels outward, distorting those pixels closest to the circle the most.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciholedistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHoleDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4293,8 +4202,6 @@ extern_protocol!(
     /// The protocol for the Light Tunnel Distortion filter.
     ///
     /// Light tunnel distortion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilighttunnel?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILightTunnel: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4347,8 +4254,6 @@ extern_protocol!(
     /// The protocol for the Nine Part Stretched filter.
     ///
     /// Distorts an image by stretching an image based on two input breakpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cininepartstretched?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINinePartStretched: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4405,8 +4310,6 @@ extern_protocol!(
     /// The protocol for the Nine Part Tiled filter.
     ///
     /// Distorts an image by tiling an image based on two input breakpoints.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cinineparttiled?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINinePartTiled: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4473,8 +4376,6 @@ extern_protocol!(
     /// The protocol for the Pinch Distortion filter.
     ///
     /// Creates a rectangular-shaped area that pinches source pixels inward, distorting those pixels closest to the rectangle the most.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipinchdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPinchDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4527,8 +4428,6 @@ extern_protocol!(
     /// The protocol for the Stretch Crop filter.
     ///
     /// Distorts an image by stretching and or cropping to fit a target size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cistretchcrop?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStretchCrop: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4581,8 +4480,6 @@ extern_protocol!(
     /// The protocol for the Torus Lens Distortion filter.
     ///
     /// Creates a torus-shaped lens and distorts the portion of the image over which the lens is placed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citoruslensdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITorusLensDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4645,8 +4542,6 @@ extern_protocol!(
     /// The protocol for the Twirl Distortion filter.
     ///
     /// Rotates pixels around a point to give a twirling effect. You can specify the number of rotations as well as the center and radius of the effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citwirldistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITwirlDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4699,8 +4594,6 @@ extern_protocol!(
     /// The protocol for the Vortex Distortion filter.
     ///
     /// Rotates pixels around a point to simulate a vortex. You can specify the number of rotations as well the center and radius of the effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/civortexdistortion?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVortexDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4750,11 +4643,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an affine clamp filter.
     /// The protocol for the Affine Clamp filter.
     ///
     /// Performs an affine transformation on a source image and then clamps the pixels at the edge of the transformed image, extending them outwards. This filter performs similarly to the “Affine Transform” filter except that it produces an image with infinite extent. You can use this filter when you need to blur an image but you want to avoid a soft, black fringe along the edges.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciaffineclamp?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAffineClamp: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4784,11 +4676,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an affine tile filter.
     /// The protocol for the Affine Tile filter.
     ///
     /// Applies an affine transformation to an image and then tiles the transformed image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciaffinetile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAffineTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4818,11 +4709,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an eightfold reflected tile filter.
     /// The protocol for the Eightfold Reflected Tile filter.
     ///
     /// Produces a tiled image from a source image by applying an 8-way reflected symmetry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cieightfoldreflectedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEightfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4872,11 +4762,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a fourfold reflected tile filter.
     /// The protocol for the Fourfold Reflected Tile filter.
     ///
     /// Produces a tiled image from a source image by applying a 4-way reflected symmetry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifourfoldreflectedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4936,11 +4825,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a fourfold rotated tile filter.
     /// The protocol for the Fourfold Rotated Tile filter.
     ///
     /// Produces a tiled image from a source image by rotating the source at increments of 90 degrees.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifourfoldrotatedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldRotatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -4990,11 +4878,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a fourfold translated tile filter.
     /// The protocol for the Fourfold Translated Tile filter.
     ///
     /// Produces a tiled image from a source image by applying 4 translation operations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifourfoldtranslatedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldTranslatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5054,11 +4941,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a glide reflected tile filter.
     /// The protocol for the Glide Reflected Tile filter.
     ///
     /// Produces a tiled image from a source image by translating and smearing the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciglidereflectedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlideReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5108,11 +4994,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a kaleidoscope filter.
     /// The protocol for the Kaleidoscope filter.
     ///
     /// Produces a kaleidoscopic image from a source image by applying 12-way symmetry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikaleidoscope?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKaleidoscope: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5162,11 +5047,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an optical tile filter.
     /// The protocol for the Op Tile filter.
     ///
     /// Segments an image, applying any specified scaling and rotation, and then assembles the image again to give an op art appearance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cioptile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIOpTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5226,11 +5110,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a parallelogram tile filter.
     /// The protocol for the Parallelogram Tile filter.
     ///
     /// Warps an image by reflecting it in a parallelogram, and then tiles the result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciparallelogramtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIParallelogramTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5290,11 +5173,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a perspective tile filter.
     /// The protocol for the Perspective Tile filter.
     ///
     /// Applies a perspective transform to an image and then tiles the result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciperspectivetile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5360,11 +5242,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a sixfold reflected tile filter.
     /// The protocol for the Sixfold Reflected Tile filter.
     ///
     /// Produces a tiled image from a source image by applying a 6-way reflected symmetry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisixfoldreflectedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISixfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5414,11 +5295,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a sixfold rotated tile filter.
     /// The protocol for the Sixfold Rotated Tile filter.
     ///
     /// Produces a tiled image from a source image by rotating the source at increments of 60 degrees.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisixfoldrotatedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISixfoldRotatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5468,11 +5348,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a triangle kaleidoscope filter.
     /// The protocol for the Triangle Kaleidoscope filter.
     ///
     /// Maps a triangular portion of image to a triangular area and then generates a kaleidoscope effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citrianglekaleidoscope?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITriangleKaleidoscope: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5532,11 +5411,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a triangle tile filter.
     /// The protocol for the Triangle Tile filter.
     ///
     /// Maps a triangular portion of image to a triangular area and then tiles the result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citriangletile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITriangleTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5586,11 +5464,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a twelvefold reflected tile filter.
     /// The protocol for the Twelvefold Reflected Tile filter.
     ///
     /// Produces a tiled image from a source image by applying a 12-way reflected symmetry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citwelvefoldreflectedtile?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITwelvefoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -5640,11 +5517,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an attributed-text image generator filter.
     /// The protocol for the Attributed Text Image Generator filter.
     ///
     /// Generate an image attributed string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciattributedtextimagegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAttributedTextImageGenerator: CIFilterProtocol {
         /// The attributed text to render.
@@ -5680,11 +5556,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an Aztec code generator filter.
     /// The protocol for the Aztec Code Generator filter.
     ///
     /// Generate an Aztec barcode image for message data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciazteccodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAztecCodeGenerator: CIFilterProtocol {
         /// The message to encode in the Aztec Barcode
@@ -5730,11 +5605,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a barcode generator filter.
     /// The protocol for the Barcode Generator filter.
     ///
     /// Generate a barcode image from a CIBarcodeDescriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibarcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBarcodeGenerator: CIFilterProtocol {
         #[cfg(feature = "CIBarcodeDescriptor")]
@@ -5755,8 +5629,6 @@ extern_protocol!(
     /// The protocol for the Blurred Rectangle Generator filter.
     ///
     /// Generates a blurred rectangle image with the specified extent, blur sigma, and color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciblurredrectanglegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBlurredRectangleGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -5798,9 +5670,14 @@ extern_protocol!(
 extern_protocol!(
     /// The protocol for the Blurred Rounded Rectangle Generator filter.
     ///
+    /// ## Overview
+    ///
     /// Generates a blurred rounded rectangle image with the specified extent, corner radius, blur sigma, and color.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciblurredroundedrectanglegenerator?language=objc)
+    ///
+    /// The protocol for the Blurred Rounded Rectangle Generator filter.
+    ///
+    /// Generates a blurred rounded rectangle image with the specified extent, corner radius, blur sigma, and color.
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBlurredRoundedRectangleGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -5860,11 +5737,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a checkerboard generator filter.
     /// The protocol for the Checkerboard filter.
     ///
     /// Generates a pattern of squares of alternating colors. You can specify the size, colors, and the sharpness of the pattern.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicheckerboardgenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICheckerboardGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -5926,11 +5802,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Code 128 barcode generator filter.
     /// The protocol for the Code 128 Barcode Generator filter.
     ///
     /// Generate a Code 128 barcode image for message data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicode128barcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICode128BarcodeGenerator: CIFilterProtocol {
         /// The message to encode in the Code 128 Barcode
@@ -5966,11 +5841,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a lenticular halo generator filter.
     /// The protocol for the Lenticular Halo filter.
     ///
     /// Simulates a halo that is generated by the diffraction associated with the spread of a lens. This filter is typically applied to another image to simulate lens flares and similar effects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilenticularhalogenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILenticularHaloGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -6059,11 +5933,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a mesh generator filter.
     /// The protocol for the Mesh Generator filter.
     ///
     /// Generates a mesh from an array of line segments.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimeshgenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMeshGenerator: CIFilterProtocol {
         /// The width in pixels of the effect.
@@ -6105,11 +5978,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a PDF417 barcode generator filter.
     /// The protocol for the PDF417 Barcode Generator filter.
     ///
     /// Generate a PDF417 barcode image for message data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipdf417barcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPDF417BarcodeGenerator: CIFilterProtocol {
         /// The message to encode in the PDF417 Barcode
@@ -6235,11 +6107,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a QR code generator filter.
     /// The protocol for the QR Code Generator filter.
     ///
     /// Generate a QR Code image for message data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIQRCodeGenerator: CIFilterProtocol {
         /// The message to encode in the QR Code
@@ -6265,11 +6136,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a random generator filter.
     /// The protocol for the Random Generator filter.
     ///
     /// Generates an image of infinite extent whose pixel values are made up of four independent, uniformly-distributed random numbers in the 0 to 1 range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirandomgenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRandomGenerator: CIFilterProtocol {}
 );
@@ -6277,9 +6147,14 @@ extern_protocol!(
 extern_protocol!(
     /// The protocol for the Rounded QR Code Generator filter.
     ///
+    /// ## Overview
+    ///
     /// Generate a QR Code image for message data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciroundedqrcodegenerator?language=objc)
+    ///
+    /// The protocol for the Rounded QR Code Generator filter.
+    ///
+    /// Generate a QR Code image for message data.
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRoundedQRCodeGenerator: CIFilterProtocol {
         /// The message to encode in the QR Code
@@ -6369,11 +6244,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a rounded rectangle generator filter.
     /// The protocol for the Rounded Rectangle Generator filter.
     ///
     /// Generates a rounded rectangle image with the specified extent, corner radius, and color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciroundedrectanglegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRoundedRectangleGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -6426,8 +6300,6 @@ extern_protocol!(
     /// The protocol for the Rounded Rectangle Stroke Generator filter.
     ///
     /// Generates a rounded rectangle stroke image with the specified extent, corner radius, stroke width, and color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciroundedrectanglestrokegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRoundedRectangleStrokeGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -6487,11 +6359,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a star-shine generator filter.
     /// The protocol for the Star Shine filter.
     ///
     /// Generates a starburst pattern. The output image is typically used as input to another filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cistarshinegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStarShineGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -6581,11 +6452,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a stripes generator filter.
     /// The protocol for the Stripes filter.
     ///
     /// Generates a stripe pattern. You can control the color of the stripes, the spacing, and the contrast.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cistripesgenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStripesGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -6647,11 +6517,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a sunbeams generator filter.
     /// The protocol for the Sunbeams filter.
     ///
     /// Generates a sun effect. You typically use the output of the sunbeams filter as input to a composite filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisunbeamsgenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISunbeamsGenerator: CIFilterProtocol {
         #[cfg(feature = "objc2-core-foundation")]
@@ -6731,11 +6600,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a text image generator filter.
     /// The protocol for the Text Image Generator filter.
     ///
     /// Generate an image from a string and font information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/citextimagegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITextImageGenerator: CIFilterProtocol {
         /// The text to render.
@@ -6791,11 +6659,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a blend with mask filter.
     /// The protocol for the Blend With Alpha Mask filter.
     ///
     /// Uses values from a mask image to interpolate between an image and the background. When a mask alpha value is 0.0, the result is the background. When the mask alpha value is 1.0, the result is the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciblendwithmask?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBlendWithMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -6837,11 +6704,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a bloom filter.
     /// The protocol for the Bloom filter.
     ///
     /// Softens edges and applies a pleasant glow to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibloom?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBloom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -6882,8 +6748,6 @@ extern_protocol!(
     /// The protocol for the Canny Edge Detector filter.
     ///
     /// Applies the Canny Edge Detection algorithm to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicannyedgedetector?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICannyEdgeDetector: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -6951,11 +6815,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a comic effect filter.
     /// The protocol for the Comic Effect filter.
     ///
     /// Simulates a comic book drawing by outlining edges and applying a color halftone effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicomiceffect?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIComicEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -6973,11 +6836,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a convolution filter.
     /// The protocol for the 3 by 3 Convolution filter.
     ///
     /// Convolution with 3 by 3 matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciconvolution?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIConvolution: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7017,11 +6879,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Core ML model filter.
     /// The protocol for the CoreML Model Filter filter.
     ///
     /// Generates output image by applying input CoreML model to the input image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicoremlmodel?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICoreMLModel: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7071,11 +6932,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a crystalize filter.
     /// The protocol for the Crystallize filter.
     ///
     /// Creates polygon-shaped color blocks by aggregating source pixel-color values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicrystallize?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICrystallize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7115,13 +6975,12 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a depth-of-field filter.
     /// The protocol for the Depth of Field filter.
     ///
     /// Simulates miniaturization effect created by Tilt
     /// &
     /// Shift lens by performing depth of field effects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidepthoffield?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDepthOfField: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7203,11 +7062,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an edges filter.
     /// The protocol for the Edges filter.
     ///
     /// Finds all edges in an image and displays them in color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciedges?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdges: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7235,11 +7093,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure an edge-work filter.
     /// The protocol for the Edge Work filter.
     ///
     /// Produces a stylized black-and-white rendition of an image that looks similar to a woodblock cutout.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciedgework?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdgeWork: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7267,11 +7124,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Gabor gradients filter.
     /// The protocol for the Gabor Gradients filter.
     ///
     /// Applies multichannel 5 by 5 Gabor gradient filter to an image. The resulting image has maximum horizontal gradient in the red channel and the maximum vertical gradient in the green channel. The gradient values can be positive or negative.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cigaborgradients?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaborGradients: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7289,11 +7145,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a gloom filter.
     /// The protocol for the Gloom filter.
     ///
     /// Dulls the highlights of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cigloom?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGloom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7331,11 +7186,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a height-field-from-mask filter.
     /// The protocol for the Height Field From Mask filter.
     ///
     /// Produces a continuous three-dimensional, loft-shaped height field from a grayscale mask. The white values of the mask define those pixels that are inside the height field while the black values define those pixels that are outside. The field varies smoothly and continuously inside the mask, reaching the value 0 at the edge of the mask. You can use this filter with the Shaded Material filter to produce extremely realistic shaded objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciheightfieldfrommask?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHeightFieldFromMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7363,11 +7217,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a hexagonal pixellate filter.
     /// The protocol for the Hexagonal Pixelate filter.
     ///
     /// Displays an image as colored hexagons whose color is an average of the pixels they replace.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cihexagonalpixellate?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHexagonalPixellate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7407,11 +7260,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a highlight-shadow adjust filter.
     /// The protocol for the Highlight and Shadow Adjust filter.
     ///
     /// Adjust the tonal mapping of an image while preserving spatial detail.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cihighlightshadowadjust?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHighlightShadowAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7459,11 +7311,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a line overlay filter.
     /// The protocol for the Line Overlay filter.
     ///
     /// Creates a sketch that outlines the edges of an image in black, leaving the non-outlined portions of the image transparent. The result has alpha and is rendered in black, so it won’t look like much until you render it over another image using source over compositing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cilineoverlay?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILineOverlay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7531,11 +7382,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a mix filter.
     /// The protocol for the Mix filter.
     ///
     /// Uses an amount parameter to interpolate between an image and a background image. When value is 0.0 or less, the result is the background image. When the value is 1.0 or more, the result is the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimix?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMix: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7578,8 +7428,6 @@ extern_protocol!(
     /// The protocol for the Person Segmentation filter.
     ///
     /// Returns a segmentation mask that is red in the portions of an image that are likely to be persons. The returned image may have a different size and aspect ratio from the input image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipersonsegmentation?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPersonSegmentation: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7607,11 +7455,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a pixellate filter.
     /// The protocol for the Pixelate filter.
     ///
     /// Makes an image blocky.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipixellate?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPixellate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7651,11 +7498,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a pointillize filter.
     /// The protocol for the Pointillize filter.
     ///
     /// Renders the source image in a pointillistic style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipointillize?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPointillize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7695,11 +7541,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a saliency map filter.
     /// The protocol for the Saliency Map Filter filter.
     ///
     /// Generates output image as a saliency map of the input image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisaliencymap?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISaliencyMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7717,11 +7562,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a shaded material filter.
     /// The protocol for the Shaded Material filter.
     ///
     /// Produces a shaded image from a height field. The height field is defined to have greater heights with lighter shades, and lesser heights (lower areas) with darker shades. You can combine this filter with the “Height Field From Mask” filter to produce quick shadings of masks, such as text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cishadedmaterial?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIShadedMaterial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7764,8 +7608,6 @@ extern_protocol!(
     /// The protocol for the Sobel Gradients filter.
     ///
     /// Applies multichannel 3 by 3 Sobel gradient filter to an image. The resulting image has maximum horizontal gradient in the red channel and the maximum vertical gradient in the green channel. The gradient values can be positive or negative.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cisobelgradients?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISobelGradients: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7783,11 +7625,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a spot color filter.
     /// The protocol for the Spot Color filter.
     ///
     /// Replaces one or more color ranges with spot colors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cispotcolor?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISpotColor: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -7937,11 +7778,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a spotlight filter.
     /// The protocol for the Spot Light filter.
     ///
     /// Applies a directional spotlight effect to an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cispotlight?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISpotLight: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8015,11 +7855,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a bokeh blur filter.
     /// The protocol for the Bokeh Blur filter.
     ///
     /// Smooths an image using a disc-shaped convolution kernel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cibokehblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBokehBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8077,11 +7916,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a box blur filter.
     /// The protocol for the Box Blur filter.
     ///
     /// Smooths or sharpens an image using a box-shaped convolution kernel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciboxblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBoxBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8109,11 +7947,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a disc blur filter.
     /// The protocol for the Disc Blur filter.
     ///
     /// Smooths an image using a disc-shaped convolution kernel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidiscblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDiscBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8141,11 +7978,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a Gaussian blur filter.
     /// The protocol for the Gaussian Blur filter.
     ///
     /// Spreads source pixels by an amount specified by a Gaussian distribution.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cigaussianblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaussianBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8173,11 +8009,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a masked variable blur filter.
     /// The protocol for the Masked Variable Blur filter.
     ///
     /// Blurs an image according to the brightness levels in a mask image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimaskedvariableblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaskedVariableBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8217,11 +8052,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a median filter.
     /// The protocol for the Median filter.
     ///
     /// Computes the median value for a group of neighboring pixels and replaces each pixel value with the median. The effect is to reduce noise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimedian?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMedian: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8239,11 +8073,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a morphology gradient filter.
     /// The protocol for the Morphology Gradient filter.
     ///
     /// Finds the edges of an image by returning the difference between the morphological minimum and maximum operations to the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimorphologygradient?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyGradient: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8271,11 +8104,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a morphology maximum filter.
     /// The protocol for the Morphology Maximum filter.
     ///
     /// Lightens areas of an image by applying a circular morphological maximum operation to the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimorphologymaximum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyMaximum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8303,11 +8135,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a morphology minimum filter.
     /// The protocol for the Morphology Minimum filter.
     ///
     /// Darkens areas of an image by applying a circular morphological maximum operation to the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimorphologyminimum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyMinimum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8335,11 +8166,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a morphology rectangle maximum filter.
     /// The protocol for the Morphology Rectangle Maximum filter.
     ///
     /// Lightens areas of an image by applying a rectangular morphological maximum operation to the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimorphologyrectanglemaximum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyRectangleMaximum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8377,11 +8207,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a morphology rectangle minimum filter.
     /// The protocol for the Morphology Rectangle Minimum filter.
     ///
     /// Darkens areas of an image by applying a rectangular morphological maximum operation to the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimorphologyrectangleminimum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyRectangleMinimum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8419,11 +8248,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a motion blur filter.
     /// The protocol for the Motion Blur filter.
     ///
     /// Blurs an image to simulate the effect of using a camera that moves a specified angle and distance while capturing the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cimotionblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMotionBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8461,11 +8289,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a noise reduction filter.
     /// The protocol for the Noise Reduction filter.
     ///
     /// Reduces noise using a threshold value to define what is considered noise. Small changes in luminance below that value are considered noise and get a noise reduction treatment, which is a local blur. Changes above the threshold value are considered edges, so they are sharpened.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cinoisereduction?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINoiseReduction: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8503,11 +8330,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The properties you use to configure a zoom blur filter.
     /// The protocol for the Zoom Blur filter.
     ///
     /// Simulates the effect of zooming the camera while capturing the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cizoomblur?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIZoomBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8548,8 +8374,6 @@ extern_protocol!(
 
 extern_protocol!(
     /// A protocol for filters that perform a reduction calculation on an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareareductionfilter?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaReductionFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8583,8 +8407,6 @@ extern_protocol!(
     /// The protocol for the Area Average filter.
     ///
     /// Calculates the average color for the specified area in an image, returning the result in a pixel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaaverage?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaAverage: CIAreaReductionFilter {}
 );
@@ -8592,9 +8414,14 @@ extern_protocol!(
 extern_protocol!(
     /// The protocol for the Area Average and Maximum Red filter.
     ///
+    /// ## Overview
+    ///
     /// Calculates the average and maximum red component value for the specified area in an image. The result is returned in the red and green channels of a one pixel image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaaveragemaximumred?language=objc)
+    ///
+    /// The protocol for the Area Average and Maximum Red filter.
+    ///
+    /// Calculates the average and maximum red component value for the specified area in an image. The result is returned in the red and green channels of a one pixel image.
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaAverageMaximumRed: CIAreaReductionFilter {}
 );
@@ -8603,8 +8430,6 @@ extern_protocol!(
     /// The protocol for the Area Bounds Red filter.
     ///
     /// Calculates the approximate bounding box of pixels within the specified area of an image where the red component values are non-zero. The result is 1x1 pixel image where the RGBA values contain the normalized X,Y,W,H dimensions of the bounding box.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaboundsred?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaBoundsRed: CIAreaReductionFilter {}
 );
@@ -8613,8 +8438,6 @@ extern_protocol!(
     /// The protocol for the Area Histogram filter.
     ///
     /// Calculates histograms of the R, G, B, and A channels of the specified area of an image. The output image is a one pixel tall image containing the histogram data for all four channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareahistogram?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaHistogram: CIAreaReductionFilter {
         /// The scale value to use for the histogram values. If the scale is 1.0, then the bins in the resulting image will add up to 1.0.
@@ -8643,8 +8466,6 @@ extern_protocol!(
     /// The protocol for the Area Logarithmic Histogram filter.
     ///
     /// Calculates histogram of the R, G, B, and A channels of the specified area of an image. Before binning, the R, G, and B channel values are transformed by the log base two function. The output image is a one pixel tall image containing the histogram data for all four channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciarealogarithmichistogram?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaLogarithmicHistogram: CIAreaReductionFilter {
         /// The amount of the effect.
@@ -8693,8 +8514,6 @@ extern_protocol!(
     /// The protocol for the Area Maximum filter.
     ///
     /// Calculates the maximum component values for the specified area in an image, returning the result in a pixel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareamaximum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMaximum: CIAreaReductionFilter {}
 );
@@ -8703,8 +8522,6 @@ extern_protocol!(
     /// The protocol for the Area Maximum Alpha filter.
     ///
     /// Finds and returns the pixel with the maximum alpha value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareamaximumalpha?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMaximumAlpha: CIAreaReductionFilter {}
 );
@@ -8713,8 +8530,6 @@ extern_protocol!(
     /// The protocol for the Area Minimum filter.
     ///
     /// Calculates the minimum component values for the specified area in an image, returning the result in a pixel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminimum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinimum: CIAreaReductionFilter {}
 );
@@ -8723,8 +8538,6 @@ extern_protocol!(
     /// The protocol for the Area Minimum Alpha filter.
     ///
     /// Finds and returns the pixel with the minimum alpha value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminimumalpha?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinimumAlpha: CIAreaReductionFilter {}
 );
@@ -8733,8 +8546,6 @@ extern_protocol!(
     /// The protocol for the Area Min and Max filter.
     ///
     /// Calculates the per-component minimum and maximum value for the specified area in an image. The result is returned in a 2x1 image where the component minimum values are stored in the pixel on the left.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminmax?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinMax: CIAreaReductionFilter {}
 );
@@ -8743,8 +8554,6 @@ extern_protocol!(
     /// The protocol for the Area Min and Max Red filter.
     ///
     /// Calculates the minimum and maximum red component value for the specified area in an image. The result is returned in the red and green channels of a one pixel image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminmaxred?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinMaxRed: CIAreaReductionFilter {}
 );
@@ -8753,8 +8562,6 @@ extern_protocol!(
     /// The protocol for the Column Average filter.
     ///
     /// Calculates the average color for each column of the specified area in an image, returning the result in a 1D image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolumnaverage?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColumnAverage: CIAreaReductionFilter {}
 );
@@ -8763,8 +8570,6 @@ extern_protocol!(
     /// The protocol for the Histogram Display filter.
     ///
     /// Generates a displayable histogram image from the output of the “Area Histogram” filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cihistogramdisplay?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHistogramDisplay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
@@ -8815,8 +8620,6 @@ extern_protocol!(
     /// The protocol for the KMeans filter.
     ///
     /// Create a palette of the most common colors found in the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikmeans?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKMeans: CIAreaReductionFilter {
         #[cfg(feature = "CIImage")]
@@ -8867,8 +8670,6 @@ extern_protocol!(
     /// The protocol for the Row Average filter.
     ///
     /// Calculates the average color for each row of the specified area in an image, returning the result in a 1D image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirowaverage?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRowAverage: CIAreaReductionFilter {}
 );

@@ -9,23 +9,39 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style?language=objc)
+/// Constants that specify the appearance and interaction modes for a color well.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorWellStyle(pub NSInteger);
 impl NSColorWellStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style/default?language=objc)
+    /// The default style for color wells.
+    ///
+    /// ## Discussion
+    ///
+    /// This style yields a color well that accepts drags and drops of colors. When someone clicks the color well, it displays the system color panel.
+    ///
+    ///
     #[doc(alias = "NSColorWellStyleDefault")]
     pub const Default: Self = Self(0);
-    /// The default `colorWellStyle`. A well that accepts drag/drop of colors as well as reveals the color panel when clicked.
+    /// A style that adds minimal adornments to the color well.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style/minimal?language=objc)
+    /// ## Discussion
+    ///
+    /// This style displays a rectangular area with the selected color. Clicks in the color area display a popover with a color picker. If you specified a custom action using the [`pulldownAction`](https://developer.apple.com/documentation/appkit/nscolorwell/pulldownaction) and [`pulldownTarget`](https://developer.apple.com/documentation/appkit/nscolorwell/pulldowntarget) properties, clicks in the color area execute your action method instead.
+    ///
+    ///
+    /// The default `colorWellStyle`. A well that accepts drag/drop of colors as well as reveals the color panel when clicked.
     #[doc(alias = "NSColorWellStyleMinimal")]
     pub const Minimal: Self = Self(1);
-    /// A minimally adorned well. By default shows a popover color picker when clicked; this interaction behavior can be customized.
+    /// A style that supports a color picker popover for fast interactions, and adds a dedicated button to display the color panel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell/style/expanded?language=objc)
+    /// ## Discussion
+    ///
+    /// This style displays a dedicated button and a rectangular area with the selected color. Clicks in the dedicated button always display the system color panel. Clicks in the color area display a popover with a color picker. If you specified a custom action using the [`pulldownAction`](https://developer.apple.com/documentation/appkit/nscolorwell/pulldownaction) and [`pulldownTarget`](https://developer.apple.com/documentation/appkit/nscolorwell/pulldowntarget) properties, clicks in the color area execute your action method instead.
+    ///
+    ///
+    /// A minimally adorned well. By default shows a popover color picker when clicked; this interaction behavior can be customized.
     #[doc(alias = "NSColorWellStyleExpanded")]
     pub const Expanded: Self = Self(2);
 }
@@ -39,7 +55,15 @@ unsafe impl RefEncode for NSColorWellStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorwell?language=objc)
+    /// A control that displays a color value and lets the user change that color value.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSColorWell`](https://developer.apple.com/documentation/appkit/nscolorwell) object lets people select colors from your interface. Incorporate this type of control if your app supports custom color selection. For example, a drawing app might include a color well to let someone choose the color to use when drawing. A color well control displays the currently selected color, and interactions with the color well display interfaces for selecting new colors.
+    ///
+    /// When you create a color well programmatically or in Interface Builder, specify the appearance and interaction style you want. The color well supports color selection using a color picker popover or the system [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel) object. When someone selects a new color in one of these interfaces, the color well updates its selected color to match. You can also provide your own color selection process using a custom action and update the color yourself.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

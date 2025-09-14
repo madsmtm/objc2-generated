@@ -11,41 +11,52 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values that represent the current state of a central manager object.
 /// Represents the current state of a CBCentralManager.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCentralManagerState(pub NSInteger);
 impl CBCentralManagerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/unknown?language=objc)
+    /// The manager’s state is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a temporary state. Once Core Bluetooth initializes or resets, it updates the state value.
+    ///
+    ///
     #[doc(alias = "CBCentralManagerStateUnknown")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/resetting?language=objc)
+    /// A state that indicates the connection with the system service was momentarily lost.
+    ///
+    /// ## Discussion
+    ///
+    /// This state indicates that Bluetooth is trying to reconnect. Once it does, Core Bluetooth updates the state value.
+    ///
+    ///
     #[doc(alias = "CBCentralManagerStateResetting")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/unsupported?language=objc)
+    /// A state that indicates this device doesn’t support the Bluetooth low energy central or client role.
     #[doc(alias = "CBCentralManagerStateUnsupported")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/unauthorized?language=objc)
+    /// A state that indicates the application isn’t authorized to use the Bluetooth low energy role.
     #[doc(alias = "CBCentralManagerStateUnauthorized")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/poweredoff?language=objc)
+    /// A state that indicates Bluetooth is currently powered off.
     #[doc(alias = "CBCentralManagerStatePoweredOff")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/poweredon?language=objc)
+    /// A state that indicates Bluetooth is currently powered on and available to use.
     #[doc(alias = "CBCentralManagerStatePoweredOn")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
@@ -60,18 +71,17 @@ unsafe impl RefEncode for CBCentralManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A change to the connection state of a peer.
 /// Represents the connection state of a peer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBConnectionEvent(pub NSInteger);
 impl CBConnectionEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent/peerdisconnected?language=objc)
+    /// The peer has disconnected from the local device.
     #[doc(alias = "CBConnectionEventPeerDisconnected")]
     pub const PeerDisconnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent/peerconnected?language=objc)
+    /// The peer has connected to the local device.
     #[doc(alias = "CBConnectionEventPeerConnected")]
     pub const PeerConnected: Self = Self(1);
 }
@@ -84,16 +94,15 @@ unsafe impl RefEncode for CBConnectionEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An option set of device-specific features.
 /// The set of device specific features.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/feature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCentralManagerFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCentralManagerFeature: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/feature/extendedscanandconnect?language=objc)
+/// The hardware supports extended scans and enhanced connection creation.
         #[doc(alias = "CBCentralManagerFeatureExtendedScanAndConnect")]
         const ExtendedScanAndConnect = 1<<0;
     }
@@ -108,13 +117,20 @@ unsafe impl RefEncode for CBCentralManagerFeature {
 }
 
 extern_class!(
+    /// An object that scans for, discovers, connects to, and manages peripherals.
+    ///
+    /// ## Overview
+    ///
+    /// [`CBCentralManager`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager) objects manage discovered or connected remote peripheral devices (represented by [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) objects), including scanning for, discovering, and connecting to advertising peripherals.
+    ///
+    /// Before calling the [`CBCentralManager`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager) methods, set the state of the central manager object to powered on, as indicated by the [`CBCentralManagerStatePoweredOn`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerstate/poweredon) constant. This state indicates that the central device (your iPhone or iPad, for instance) supports Bluetooth low energy and that Bluetooth is on and available for use.
+    ///
+    ///
     /// Entry point to the central role. Commands should only be issued when its state is
     /// <code>
     /// CBCentralManagerStatePoweredOn
     /// </code>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager?language=objc)
     #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
@@ -458,6 +474,13 @@ impl CBCentralManager {
 }
 
 extern_protocol!(
+    /// A protocol that provides updates for the discovery and management of peripheral devices.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CBCentralManagerDelegate`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate) protocol defines the methods that a delegate of a [`CBCentralManager`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager) object must adopt. The optional methods of the protocol allow the delegate to monitor the discovery, connectivity, and retrieval of peripheral devices. The only required method is [`centralManagerDidUpdateState:`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/centralmanagerdidupdatestate(_:)); the central manager calls this when its state updates, thereby indicating the availability of the central manager.
+    ///
+    ///
     /// The delegate of a {
     ///
     /// ```text
@@ -468,8 +491,6 @@ extern_protocol!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate?language=objc)
     pub unsafe trait CBCentralManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CBManager")]
         /// Parameter `central`: The central manager whose state has changed.

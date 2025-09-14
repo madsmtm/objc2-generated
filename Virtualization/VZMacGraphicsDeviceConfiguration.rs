@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Configuration for a display attached to a Mac graphics device.
+    ///
+    /// ## Overview
+    ///
+    /// Use this device to attach a display that’s shown in a [`VZVirtualMachineView`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview).
+    ///
+    ///
     /// Configuration for a Mac graphics device.
     ///
     /// This device can be used to attach a display to be shown in a VZVirtualMachineView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdeviceconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]

@@ -7,9 +7,28 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// GKChallengeEventHandler's delegate must implement the following protocol to be notified of challenge-related events. All of these methods are called on the main thread.
+    /// You implement the [`GKChallengeEventHandlerDelegate`](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandlerdelegate) delegate to control how challenges are displayed in your game.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandlerdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// By default, GameKit briefly displays a banner over your game when any of the following events occur:
+    ///
+    /// - The local player receives a challenge.
+    ///
+    /// - The local player completes a challenge.
+    ///
+    /// - A remote player completes a challenge issued by the local player.
+    ///
+    /// Your event handler can override or extend this behavior:
+    ///
+    /// - It can prevent a banner from being displayed.
+    ///
+    /// - It can be notified when a player taps in a banner.
+    ///
+    /// - It can handle the events directly.
+    ///
+    ///
+    /// GKChallengeEventHandler's delegate must implement the following protocol to be notified of challenge-related events. All of these methods are called on the main thread.
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]
     pub unsafe trait GKChallengeEventHandlerDelegate: NSObjectProtocol {
         #[cfg(feature = "GKChallenge")]
@@ -108,9 +127,22 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A singleton object responsible for dispatching challenge-related events to its delegate
+    /// The `GKChallengeEventHandler` class is used to respond to events related to challenges sent or received by the local player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your game must initialize a local player before you can use any Game Center classes. If there is no initialized player, your game receives a [`GKErrorNotAuthenticated`](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated) error. For more information, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To use it, call the [`challengeEventHandler`](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/challengeeventhandler) class method to get the [Singleton](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Singleton.html#//apple_ref/doc/uid/TP40008195-CH49) instance and assign an object that implements the [`GKChallengeEventHandlerDelegate`](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandlerdelegate) protocol to its [`delegate`](https://developer.apple.com/documentation/gamekit/gkchallengeeventhandler/delegate) property. You should assign a challenge event handler immediately after initializing the local player, because your game may have launched in response to a challenge notification being received by the player.
+    ///
+    ///
+    /// A singleton object responsible for dispatching challenge-related events to its delegate
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "You should instead implement the GKChallengeListener protocol and register a listener with GKLocalPlayer."]

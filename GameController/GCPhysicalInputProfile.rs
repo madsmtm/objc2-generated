@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for controller profiles that support physical buttons, thumbsticks, and directional pads.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides properties and methods for accessing common elements of controllers, and for creating snapshots of profiles.
+    ///
+    ///
     /// A game controller profile representing physical buttons, thumbsticks, dpads, etc... on a controller.
     ///
     /// All controller profiles provide a base level of information about the controller they belong to.
     ///
     /// A profile maps the hardware notion of a controller into a logical controller. One that a developer can design for
     /// and depend on, no matter the underlying hardware.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCPhysicalInputProfile;

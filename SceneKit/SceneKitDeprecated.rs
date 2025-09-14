@@ -10,49 +10,54 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The distance from the light at which its intensity begins to diminish.
     /// Light Attributes
     ///
     /// Attributes affecting the lighting computations.
     ///
     /// These keys are deprecated in 10.10. Please use the properties of SCNLight instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationstartkey?language=objc)
     #[deprecated = "Use SCNLight.attenuationStartDistance instead"]
     pub static SCNLightAttenuationStartKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationendkey?language=objc)
+    /// The distance from the light at which its intensity is completely diminished.
     #[deprecated = "Use SCNLight.attenuationEndDistance instead"]
     pub static SCNLightAttenuationEndKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightattenuationfalloffexponentkey?language=objc)
+    /// The transition curve for the light’s intensity between its attenuation start and end distances.
     #[deprecated = "Use SCNLight.attenuationFalloffExponent instead"]
     pub static SCNLightAttenuationFalloffExponentKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotinneranglekey?language=objc)
+    /// The angle, in degrees, of the area fully lit by a spotlight.
     #[deprecated = "Use SCNLight.spotInnerAngle instead"]
     pub static SCNLightSpotInnerAngleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightspotouteranglekey?language=objc)
+    /// The angle, in degrees, of the area partially lit by a spotlight.
+    ///
+    /// ## Discussion
+    ///
+    /// This attribute’s default value is `45.0`.
+    ///
+    ///
     #[deprecated = "Use SCNLight.spotOuterAngle instead"]
     pub static SCNLightSpotOuterAngleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadownearclippingkey?language=objc)
+    /// The minimum distance between the light and a visible surface for casting shadows.
     #[deprecated = "Use SCNLight.zNear instead"]
     pub static SCNLightShadowNearClippingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightshadowfarclippingkey?language=objc)
+    /// The maximum distance between the light and a visible surface for casting shadows.
     #[deprecated = "Use SCNLight.zFar instead"]
     pub static SCNLightShadowFarClippingKey: &'static NSString;
 }

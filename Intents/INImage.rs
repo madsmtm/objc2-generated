@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inimage?language=objc)
+    /// Image data inside an Intents extension or Intents UI extension.
+    ///
+    /// ## Overview
+    ///
+    /// [`INImage`](https://developer.apple.com/documentation/intents/inimage) is a wrapper for image data that you include in a response to an intent. When providing a response to an intent, you must specify any image parameters using instances of this class. [`INImage`](https://developer.apple.com/documentation/intents/inimage) supports the same formats as the underlying platform.
+    ///
+    /// When confirming or handling an intent, you provide a response object with details about how your app handles that intent. When that response contains an image, use the [`imageSizeForIntentResponse:`](https://developer.apple.com/documentation/intents/inimage/imagesize(for:)) method to determine the required image size and then create an instance of this class with the corresponding image data.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INImage;

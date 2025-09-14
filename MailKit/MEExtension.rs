@@ -6,9 +6,30 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// A protocol which must be adopted by the class set as extension's `NSExtensionPrincipalClass`.
+    /// A type that provides objects for manipulating email messages, such as performing actions on messages or blocking content when users view messages.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meextension?language=objc)
+    /// ## Overview
+    ///
+    /// To implement an app extension, you provide an object that conforms to the [`MEExtension`](https://developer.apple.com/documentation/mailkit/meextension) protocol. The [`MEExtensionCapabilities`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/meextensioncapabilities) key of your extension’s `Info.plist` defines the capabilities that you support, as follows:
+    ///
+    /// ```plist
+    /// <key>NSExtensionAttributes</key>
+    /// <dict>
+    ///     <key>MEExtensionCapabilities</key>
+    ///     <array>
+    ///         <string>MEContentBlocker</string>
+    ///         <string>MEMessageActionHandler</string>
+    ///         <string>MEComposeSessionHandler</string>
+    ///         <string>MEMessageSecurityHandler</string>
+    ///     </array>
+    /// </dict>
+    /// ```
+    ///
+    /// For each capability that your extension defines, you provide an object that implements the capability. MailKit uses the following methods to request the object for a given capability. The capability also specifies a protocol that the handler implements.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Capability Key" }] }], [Paragraph { inline_content: [Text { text: "Method" }] }], [Paragraph { inline_content: [Text { text: "Protocol" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "MEContentBlocker" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEExtension/handler(for:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEContentBlocker", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "MEMessageActionHandler" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEExtension/handlerForMessageActions()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEMessageActionHandler", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "MEComposeSessionHandler" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEExtension/handlerForContentBlocker()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEComposeSessionHandler", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "MEMessageSecurityHandler" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEExtension/handlerForMessageSecurity()", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.mailkit/documentation/MailKit/MEMessageSecurityHandler", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    ///
+    /// A protocol which must be adopted by the class set as extension's `NSExtensionPrincipalClass`.
     pub unsafe trait MEExtension: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "MEComposeSession")]
         /// A factory method for returning an instance of

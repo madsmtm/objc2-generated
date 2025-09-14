@@ -13,6 +13,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate how to prioritize photo quality relative to capture speed.
 /// Constants indicating how photo quality should be prioritized against speed.
 ///
 ///
@@ -21,20 +22,18 @@ use crate::*;
 /// Indicates that photo quality and speed of delivery are balanced in priority.
 ///
 /// Indicates that photo quality is paramount, even at the expense of shot-to-shot time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCapturePhotoQualityPrioritization(pub NSInteger);
 impl AVCapturePhotoQualityPrioritization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization/speed?language=objc)
+    /// Speed of photo delivery is most important, even at the expense of quality.
     #[doc(alias = "AVCapturePhotoQualityPrioritizationSpeed")]
     pub const Speed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization/balanced?language=objc)
+    /// Priority is balanced between photo quality and speed of delivery.
     #[doc(alias = "AVCapturePhotoQualityPrioritizationBalanced")]
     pub const Balanced: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization/quality?language=objc)
+    /// Photo quality is most important, even at the expense of shot-to-shot time.
     #[doc(alias = "AVCapturePhotoQualityPrioritizationQuality")]
     pub const Quality: Self = Self(3);
 }
@@ -47,6 +46,7 @@ unsafe impl RefEncode for AVCapturePhotoQualityPrioritization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate whether the output is ready to receive capture requests.
 /// Constants indicating whether the output is ready to receive capture requests.
 ///
 ///
@@ -59,26 +59,24 @@ unsafe impl RefEncode for AVCapturePhotoQualityPrioritization {
 /// Indicates that the output is not ready to receive requests for a longer duration because it is busy capturing.
 ///
 /// Indicates that the output is not ready to receive requests for a longer duration because it is busy processing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePhotoOutputCaptureReadiness(pub NSInteger);
 impl AVCapturePhotoOutputCaptureReadiness {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/sessionnotrunning?language=objc)
+    /// Indicates that the session isn’t running and the output isn’t ready to receive requests.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessSessionNotRunning")]
     pub const SessionNotRunning: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/ready?language=objc)
+    /// Indicates that the output is ready to receive new requests.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/notreadymomentarily?language=objc)
+    /// Indicates that the output isn’t ready to receive requests, but may be ready shortly.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyMomentarily")]
     pub const NotReadyMomentarily: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/notreadywaitingforcapture?language=objc)
+    /// Indicates that the output isn’t ready to receive requests for a longer duration because it’s busy capturing.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyWaitingForCapture")]
     pub const NotReadyWaitingForCapture: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum/notreadywaitingforprocessing?language=objc)
+    /// Indicates that the output isn’t ready to receive requests for a longer duration because it’s busy processing.
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessNotReadyWaitingForProcessing")]
     pub const NotReadyWaitingForProcessing: Self = Self(4);
 }
@@ -92,6 +90,33 @@ unsafe impl RefEncode for AVCapturePhotoOutputCaptureReadiness {
 }
 
 extern_class!(
+    /// A capture output for still image, Live Photos, and other photography workflows.
+    ///
+    /// ## Overview
+    ///
+    /// [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) provides an interface for capture workflows related to still photography. In addition to basic capture of still images, a photo output supports RAW-format capture, bracketed capture of multiple images, Live Photos, and wide-gamut color. You can output captured photos in a variety of formats and codecs, including RAW format DNG files, HEVC format HEIF files, and JPEG files.
+    ///
+    /// To capture photos with the [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) class, follow these steps:
+    ///
+    /// 1. Create an [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) object. Use its properties to determine supported capture settings and to enable certain features (for example, whether to capture Live Photos).
+    ///
+    /// 2. Create and configure an [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object to choose features and settings for a specific capture (for example, whether to enable image stabilization or flash).
+    ///
+    /// 3. Capture an image by passing your photo settings object to the [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method along with a delegate object implementing the [`AVCapturePhotoCaptureDelegate`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate) protocol. The photo capture output then calls your delegate to notify you of significant events during the capture process.
+    ///
+    /// Some photo capture settings, such as the [`flashMode`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode) property, include options for automatic behavior. For such settings, the photo output determines whether to use that feature at the moment of capture—you don’t know when requesting a capture whether the feature will be enabled when the capture completes. When the photo capture output calls your [`AVCapturePhotoCaptureDelegate`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate) methods with information about the completed or in-progress capture, it also provides an [`AVCaptureResolvedPhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings) object that details which automatic features are set for that capture. The resolved settings object’s [`uniqueID`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings/uniqueid) property matches the [`uniqueID`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid) value of the [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object you used to request capture.
+    ///
+    /// Enabling certain photo features (Live Photo capture and high resolution capture) requires a reconfiguration of the capture render pipeline. To opt into these features, set the [`highResolutionCaptureEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/ishighresolutioncaptureenabled), [`livePhotoCaptureEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocaptureenabled), and [`livePhotoAutoTrimmingEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotoautotrimmingenabled) properties before calling your [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) object’s [`startRunning`](https://developer.apple.com/documentation/avfoundation/avcapturesession/startrunning()) method. Changing any of these properties while the session is running disrupts the capture render pipeline: Live Photo captures in progress end immediately, unfulfilled photo requests abort, and video preview temporarily freezes.
+    ///
+    /// Using a photo capture output adds other requirements to your [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) object:
+    ///
+    /// - A capture session can’t support both Live Photo capture and movie file output. If your capture session includes an [`AVCaptureMovieFileOutput`](https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput) object, the [`livePhotoCaptureSupported`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesupported) property becomes [`false`](https://developer.apple.com/documentation/swift/false). (As an alternative, you can use the [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput) class to output video buffers at the same resolution as a simultaneous Live Photo capture).
+    ///
+    /// - A capture session can’t contain both an [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) object and an [`AVCaptureStillImageOutput`](https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput) object. The [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) class includes all functionality of (and deprecates) the [`AVCaptureStillImageOutput`](https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput) class.
+    ///
+    /// The [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) class implicitly supports wide-gamut color photography. If the source [`AVCaptureDevice`](https://developer.apple.com/documentation/avfoundation/avcapturedevice) object’s [`activeColorSpace`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activecolorspace) value is [`AVCaptureColorSpace_P3_D65`](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace/p3_d65), the capture output produces photos with wide color information (unless your [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object specifies an output format that doesn’t support wide color).
+    ///
+    ///
     /// AVCapturePhotoOutput is a concrete subclass of AVCaptureOutput that supersedes AVCaptureStillImageOutput as the preferred interface for capturing photos. In addition to capturing all flavors of still image supported by AVCaptureStillImageOutput, it supports Live Photo capture, preview-sized image delivery, wide color, RAW, RAW+JPG and RAW+DNG formats.
     ///
     ///
@@ -106,8 +131,6 @@ extern_class!(
     /// AVCaptureStillImageOutput and AVCapturePhotoOutput may not both be added to a capture session. You must use one or the other. If you add both to a session, a NSInvalidArgumentException is thrown.
     ///
     /// AVCapturePhotoOutput implicitly supports wide color photo capture, following the activeColorSpace of the source AVCaptureDevice. If the source device's activeColorSpace is AVCaptureColorSpace_P3_D65, photos are encoded with wide color information, unless you've specified an output format of '420v', which does not support wide color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -915,12 +938,19 @@ impl AVCapturePhotoOutput {
 }
 
 extern_class!(
+    /// An object that monitors changes to a photo output’s capture readiness.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to coordinate user interface updates on the main queue with a [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) that runs on a background queue. Adopt the [`AVCapturePhotoOutputReadinessCoordinatorDelegate`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputreadinesscoordinatordelegate) protocol in your app and set its implementation as the coordinator’s delegate object to receive callbacks as the associated photo output’s [`captureReadiness`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property) state changes.
+    ///
+    /// You can track additional capture requests with this object by calling its [`startTrackingCaptureRequestUsingPhotoSettings:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputreadinesscoordinator/starttrackingcapturerequest(using:)) method. You can use it to synchronously update shutter button availability and appearance and on the main thread while calling the photo output’s [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method asynchronously on a background queue.
+    ///
+    ///
     /// AVCapturePhotoOutputReadinessCoordinator notifies its delegate of changes in an AVCapturePhotoOutput's captureReadiness property and can be used to coordinate UI updates on the main queue with use of AVCapturePhotoOutput on a background queue.
     ///
     ///
     /// AVCapturePhotoOutputReadinessCoordinator tracks its output's captureReadiness and incorporates additional requests registered via -startTrackingCaptureRequestUsingPhotoSettings:. This allows clients to synchronously update shutter button availability and appearance and on the main thread while calling -[AVCapturePhotoOutput capturePhotoWithSettings:delegate:] asynchronously on a background queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputreadinesscoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCapturePhotoOutputReadinessCoordinator;
@@ -1007,7 +1037,7 @@ impl AVCapturePhotoOutputReadinessCoordinator {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputreadinesscoordinatordelegate?language=objc)
+    /// A delegate protocol to receive updates about a photo output’s capture readiness.
     pub unsafe trait AVCapturePhotoOutputReadinessCoordinatorDelegate:
         NSObjectProtocol
     {
@@ -1114,6 +1144,27 @@ impl AVCapturePhotoOutput {
 }
 
 extern_protocol!(
+    /// Methods for monitoring progress and receiving results from a photo capture output.
+    ///
+    /// ## Overview
+    ///
+    /// You implement methods in the [`AVCapturePhotoCaptureDelegate`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate) protocol to be notified of progress and results when capturing photos with the [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) class.
+    ///
+    /// To capture a photo, you pass an object implementing this protocol to the [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method, along with a settings object that describes the capture to be performed. As the capture proceeds, the photo output calls several of the methods in this protocol on your delegate object, providing information about the capture’s progress and delivering the resulting photos.
+    ///
+    /// Which delegate methods the photo output calls depends on the photo settings you initiate capture with. All methods in this protocol are optional at compile time, but at run time your delegate object must respond to certain methods depending on your photo settings:
+    ///
+    /// - If you request a still photo capture (by specifying image formats or file types), your delegate either must implement the [`captureOutput:didFinishProcessingPhoto:error:`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingphoto:error:)) method, or must implement methods listed in `Receiving Capture Results (Deprecated)` corresponding to whether you request capture in RAW format, processed format, or both.
+    ///
+    /// - If you request Live Photo capture (by setting the [`livePhotoMovieFileURL`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotomoviefileurl) property to a non-`nil` value), your delegate must implement the [`captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessinglivephototomoviefileat:duration:photodisplaytime:resolvedsettings:error:)) method.
+    ///
+    /// The capture output validates these requirements when you call the [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method. If your delegate does not meet these requirements, that method raises an exception.
+    ///
+    /// You must use a unique [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object for each capture request. When the photo output calls your delegate methods, it provides an [`AVCaptureResolvedPhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings) object whose [`uniqueID`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid) property matches that of the photo settings you requested capture with. When making multiple captures, use this unique ID to determine which delegate method calls correspond to which requests.
+    ///
+    /// The photo output always calls each method listed in Monitoring Capture Progress exactly once for each capture request. For methods listed in Receiving Capture Results, you may receive a call more than once, or not at all, depending on your photo settings. See the description of each method for details.
+    ///
+    ///
     /// A set of delegate callbacks to be implemented by a client who calls AVCapturePhotoOutput's -capturePhotoWithSettings:delegate.
     ///
     ///
@@ -1124,8 +1175,6 @@ extern_protocol!(
     /// - If you set livePhotoMovieFileURL to non-nil, your delegate must respond to -captureOutput:didFinishProcessingLivePhotoToMovieFileAtURL:duration:photoDisplayTime:resolvedSettings:error:.
     ///
     /// In the event of an error, all expected callbacks are fired with an appropriate error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate?language=objc)
     pub unsafe trait AVCapturePhotoCaptureDelegate: NSObjectProtocol {
         #[cfg(feature = "AVCaptureOutputBase")]
         /// A callback fired as soon as the capture settings have been resolved.
@@ -1379,12 +1428,29 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A specification of the features and settings to use for a single photo capture request.
+    ///
+    /// ## Overview
+    ///
+    /// To take a photo, you create and configure a [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object, then pass it to the [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method.
+    ///
+    /// A [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) instance can include any combination of settings, regardless of whether that combination is valid for a given capture session. When you initiate a capture by passing a photo settings object to the [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method, the photo capture output validates your settings to ensure deterministic behavior. For example, the [`flashMode`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode) setting must specify a value that’s present in the photo output’s [`supportedFlashModes`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/supportedflashmodes-4u69s) array. For detailed validation rules, see each property description below.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can’t reuse a [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) instance for multiple captures. Calling the [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method throws an exception ([`NSInvalidArgumentException`](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidargumentexception)) if the `settings` object’s [`uniqueID`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid) value matches that of any previously used settings object.
+    ///
+    /// To reuse a specific combination of settings, use the [`photoSettingsFromPhotoSettings:`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/init(from:)) initializer to create a new, unique [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) instance from an existing photo settings object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A mutable settings object encapsulating all the desired properties of a photo capture.
     ///
     ///
     /// To take a picture, a client instantiates and configures an AVCapturePhotoSettings object, then calls AVCapturePhotoOutput's -capturePhotoWithSettings:delegate:, passing the settings and a delegate to be informed when events relating to the photo capture occur. Since AVCapturePhotoSettings has no reference to the AVCapturePhotoOutput instance with which it will be used, minimal validation occurs while you configure an AVCapturePhotoSettings instance. The bulk of the validation is executed when you call AVCapturePhotoOutput's -capturePhotoWithSettings:delegate:.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCapturePhotoSettings;
@@ -2131,6 +2197,46 @@ impl AVCapturePhotoSettings {
 }
 
 extern_class!(
+    /// A specification of the features and settings to use for a photo capture request that captures multiple images with varied settings.
+    ///
+    /// ## Overview
+    ///
+    /// To take a bracketed capture, you create and configure an [`AVCapturePhotoBracketSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings) object, using [`AVCaptureBracketedStillImageSettings`](https://developer.apple.com/documentation/avfoundation/avcapturebracketedstillimagesettings) objects to describe the individual captures in the bracket, and then pass it to the [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method.
+    ///
+    /// To request a bracketed capture, follow these steps:
+    ///
+    /// 1. Create an array of [`AVCaptureBracketedStillImageSettings`](https://developer.apple.com/documentation/avfoundation/avcapturebracketedstillimagesettings) objects describing the number of images to capture in the bracket and the variations on capture settings between them.
+    ///
+    /// 2. Create a bracketed photo settings object with the [`photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:`](https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/init(rawpixelformattype:processedformat:bracketedsettings:)) initializer, passing the array of bracketed still image settings, along with the processed format (such as JPEG) or RAW format to capture images in.
+    ///
+    /// 3. Configure other settings to share across all images in the bracket, such as the [`lensStabilizationEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings/islensstabilizationenabled) property and certain inherited properties.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Bracketed capture supports only the [`highResolutionPhotoEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/ishighresolutionphotoenabled) and [`previewPhotoFormat`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat) settings defined by the [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) superclass. Bracketed capture does not support flash, auto stabilization, or Live Photos—attempting to set any of the corresponding properties raises an exception.
+    ///
+    ///
+    ///
+    /// </div>
+    /// 4. Initiate capture by passing the bracketed photo settings object to your photo output’s [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method, along with a delegate object to receive messages about the progress and results of the capture.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Capturing a multiple-image bracket may require allocation of additional resources. See the [`setPreparedPhotoSettingsArray:completionHandler:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/setpreparedphotosettingsarray(_:completionhandler:)) method.
+    ///
+    ///
+    ///
+    /// </div>
+    /// 5. The photo output calls your delegate’s [`captureOutput:didFinishProcessingPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingphoto:previewphoto:resolvedsettings:bracketsettings:error:)) or [`captureOutput:didFinishProcessingRawPhotoSampleBuffer:previewPhotoSampleBuffer:resolvedSettings:bracketSettings:error:`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate/photooutput(_:didfinishprocessingrawphoto:previewphoto:resolvedsettings:bracketsettings:error:)) methods many times corresponding to the number of captures in the bracket. Each call provides the [`AVCaptureBracketedStillImageSettings`](https://developer.apple.com/documentation/avfoundation/avcapturebracketedstillimagesettings) object indicating which capture in the bracket the captured image corresponds to.
+    ///
+    /// The following code example illustrates capturing a bracket of three RAW images with varying exposure value settings.
+    ///
+    /// Listing 1. Capturing a Multi-Exposure Bracket
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func captureRAWAutoExposureBracket() {", "    guard myCapturePhotoOutput.maxBracketedCapturePhotoCount >= 3 else { return }", "    ", "    // Specify a 3-shot bracket, where exposure compensation varies between each shot.", "    let makeSettings = AVCaptureAutoExposureBracketedStillImageSettings.autoExposureSettingsWithExposureTargetBias", "    let bracketedStillImageSettings = [-2, 0, 2].map { makeSettings(Float($0))! }", "    let rawFormat = myCapturePhotoOutput.availableRawPhotoCVPixelFormatTypes.first!.unsignedIntValue as OSType", "    ", "    let settings = AVCapturePhotoBracketSettings(format: nil, rawPixelFormatType: rawFormat, bracketedSettings: bracketedStillImageSettings)", "    settings.lensStabilizationEnabled = myCapturePhotoOutput.lensStabilizationDuringBracketedCaptureSupported", "    ", "    myCapturePhotoOutput.capturePhotoWithSettings(settings, delegate: self)", "    // Three RAW photos will be delivered.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)captureRAWAutoExposureBracket {", "    if ( myCapturePhotoOutput.maxBracketedCapturePhotoCount < 3 ) { return; }", " ", "    // Specify a 3-shot bracket, where exposure compensation varies between each shot.", "    NSArray *bracketedStillImageSettings = @[ [AVCaptureAutoExposureBracketedStillImageSettings autoExposureSettingsWithExposureTargetBias:-2.],", "                              [AVCaptureAutoExposureBracketedStillImageSettings autoExposureSettingsWithExposureTargetBias:0.],", "                              [AVCaptureAutoExposureBracketedStillImageSettings autoExposureSettingsWithExposureTargetBias:2.] ];", "     OSType rawFormat = [[myCapturePhotoOutput.availableRawPhotoCVPixelFormatTypes firstObject] intValue];", " ", "    AVCapturePhotoBracketSettings *settings = [[AVCapturePhotoBracketSettings alloc] initWithFormat:nil rawPixelFormatType:rawFormat bracketedSettings:bracketedStillImageSettings];", "    settings.lensStabilizationEnabled = myCapturePhotoOutput.isLensStabilizationDuringBracketedCaptureSupported;", " ", "    [myCapturePhotoOutput capturePhotoWithSettings:settings delegate:self];", "    // Three RAW photos will be delivered to the delegate.", "}"], metadata: None }] }] })
+    ///
     /// A concrete subclass of AVCapturePhotoSettings that describes a bracketed capture.
     ///
     ///
@@ -2139,8 +2245,6 @@ extern_class!(
     /// = AVCapturePhotoOutput's -maxBracketedCapturePhotoCount. Capturing a photo bracket may require the allocation of additional resources.
     ///
     /// When you request a bracketed capture, your AVCapturePhotoCaptureDelegate's -captureOutput:didFinishProcessing{Photo | RawPhoto}... callbacks are called back bracketSettings.count times and provided with the corresponding AVCaptureBracketedStillImageSettings object from your request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotobracketsettings?language=objc)
     #[unsafe(super(AVCapturePhotoSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCapturePhotoBracketSettings;
@@ -2382,12 +2486,23 @@ impl AVCapturePhotoBracketSettings {
 }
 
 extern_class!(
+    /// A description of the features and settings in use for an in-progress or complete photo capture request.
+    ///
+    /// ## Overview
+    ///
+    /// When you request a photo capture using the [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) [`capturePhotoWithSettings:delegate:`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturephoto(with:delegate:)) method, you describe the settings for that capture request in an [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object. When the capture begins, the photo output calls your delegate methods and provides an [`AVCaptureResolvedPhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings) object detailing the settings that are in effect for that capture. Resolved photo settings objects are immutable; they describe a request that has already been made.
+    ///
+    /// The [`uniqueID`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings/uniqueid) property of a resolved photo settings object passed to one of your [`AVCapturePhotoCaptureDelegate`](https://developer.apple.com/documentation/avfoundation/avcapturephotocapturedelegate) methods matches the [`uniqueID`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid) value of the [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) object you passed when requesting capture. Use this value to determine which delegate method calls correspond to which capture requests.
+    ///
+    /// Some photo capture settings are automatic, such as the [`flashMode`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode) property. For such settings, the photo output determines whether to use that feature at the moment of capture—you don’t know when requesting a capture whether the feature is active when the capture completes. When the photo output calls your delegate methods, the provided [`AVCaptureResolvedPhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings) object details which automatic features have been set for that capture.
+    ///
+    /// Likewise, the dimensions of an output image or movie may not be set until the moment of capture. For example, when you specify a thumbnail size with the [`previewPhotoFormat`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat) setting, the photo output chooses dimensions that best match your requested size while preserving the aspect ratio of the captured photo. When the photo output calls your delegate methods, use the [`previewDimensions`](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings/previewdimensions) property of the resolved settings to find the actual preview image dimensions. See the methods listed in Examining Output Dimensions for other cases where output dimensions can change at capture time.
+    ///
+    ///
     /// An immutable object produced by callbacks in each and every AVCapturePhotoCaptureDelegate protocol method.
     ///
     ///
     /// When you initiate a photo capture request using -capturePhotoWithSettings:delegate:, some of your settings are not yet certain. For instance, auto flash and auto still image stabilization allow the AVCapturePhotoOutput to decide just in time whether to employ flash or still image stabilization, depending on the current scene. Once the request is issued, AVCapturePhotoOutput begins the capture, resolves the uncertain settings, and in its first callback informs you of its choices through an AVCaptureResolvedPhotoSettings object. This same object is presented to all the callbacks fired for a particular photo capture request. Its uniqueID property matches that of the AVCapturePhotoSettings instance you used to initiate the photo request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureresolvedphotosettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureResolvedPhotoSettings;
@@ -2552,12 +2667,21 @@ impl AVCaptureResolvedPhotoSettings {
 }
 
 extern_class!(
+    /// A container for image data from a photo capture output.
+    ///
+    /// ## Overview
+    ///
+    /// When you capture photos with the [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) class, your delegate object receives each resulting image and related data in the form of an [`AVCapturePhoto`](https://developer.apple.com/documentation/avfoundation/avcapturephoto) object. This object is an immutable wrapper from which you can retrieve various results of the photo capture.
+    ///
+    /// In addition to the photo image pixel buffer, an AVCapturePhoto object can also contain a preview-sized pixel buffer, capture metadata, and, on supported devices, depth data and camera calibration data. From an [`AVCapturePhoto`](https://developer.apple.com/documentation/avfoundation/avcapturephoto) object, you can generate data appropriate for writing to a file, such as HEVC encoded image data containerized in the HEIC file format and including a preview image, depth data and other attachments.
+    ///
+    /// An [`AVCapturePhoto`](https://developer.apple.com/documentation/avfoundation/avcapturephoto) instance wraps a single image result. For example, if you request a bracketed capture of three images, your callback is called three times, each time delivering a single [`AVCapturePhoto`](https://developer.apple.com/documentation/avfoundation/avcapturephoto) object.
+    ///
+    ///
     /// An object representing a photo in memory, produced by the -captureOutput:didFinishingProcessingPhoto:error: in the AVCapturePhotoCaptureDelegate protocol method.
     ///
     ///
     /// Beginning in iOS 11, AVCapturePhotoOutput's AVCapturePhotoCaptureDelegate supports a simplified callback for delivering image data, namely -captureOutput:didFinishingProcessingPhoto:error:. This callback presents each image result for your capture request as an AVCapturePhoto object, an immutable wrapper from which various properties of the photo capture may be queried, such as the photo's preview pixel buffer, metadata, depth data, camera calibration data, and image bracket specific properties. AVCapturePhoto can wrap file-containerized photo results, such as HEVC encoded image data, containerized in the HEIC file format. CMSampleBufferRef, on the other hand, may only be used to express non file format containerized photo data. For this reason, the AVCapturePhotoCaptureDelegate protocol methods that return CMSampleBuffers have been deprecated in favor of -captureOutput:didFinishingProcessingPhoto:error:. A AVCapturePhoto wraps a single image result. For instance, if you've requested a bracketed capture of 3 images, your callback is called 3 times, each time delivering an AVCapturePhoto.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephoto?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCapturePhoto;
@@ -2812,6 +2936,7 @@ impl AVCapturePhoto {
     );
 }
 
+/// Constants that indicate the status of optical image stabilization hardware during a bracketed photo capture.
 /// Constants indicating the status of the lens stabilization module (aka OIS).
 ///
 ///
@@ -2824,26 +2949,24 @@ impl AVCapturePhoto {
 /// Indicates that device motion or capture duration exceeded the stabilization module's correction limits.
 ///
 /// Indicates that the lens stabilization module was unavailable for use at the time of capture. The module may be available in subsequent captures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureLensStabilizationStatus(pub NSInteger);
 impl AVCaptureLensStabilizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/unsupported?language=objc)
+    /// Lens stabilization isn’t available on the device or device configuration that captured this photo.
     #[doc(alias = "AVCaptureLensStabilizationStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/off?language=objc)
+    /// Lens stabilization isn’t specified for this photo capture.
     #[doc(alias = "AVCaptureLensStabilizationStatusOff")]
     pub const Off: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/active?language=objc)
+    /// Lens stabilization was active for the full duration of the photo capture.
     #[doc(alias = "AVCaptureLensStabilizationStatusActive")]
     pub const Active: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/outofrange?language=objc)
+    /// Lens stabilization was enabled for the photo capture, but device motion or capture duration exceeded the stabilization module’s correction limits.
     #[doc(alias = "AVCaptureLensStabilizationStatusOutOfRange")]
     pub const OutOfRange: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus/unavailable?language=objc)
+    /// Lens stabilization was temporarily unavailable during the photo capture.
     #[doc(alias = "AVCaptureLensStabilizationStatusUnavailable")]
     pub const Unavailable: Self = Self(4);
 }
@@ -2889,6 +3012,13 @@ impl AVCapturePhoto {
 }
 
 extern_class!(
+    /// A lightly-processed photo with data that the system may use to process and fetch a higher-resolution asset at a later time.
+    ///
+    /// ## Overview
+    ///
+    /// A photo proxy behaves like a normal [`AVCapturePhoto`](https://developer.apple.com/documentation/avfoundation/avcapturephoto), and approximates the look of the final rendered image. This object represents intermediate data that the system can render into a final image and ingested into the user’s photo library using the [PhotoKit](https://developer.apple.com/documentation/photokit) framework. The intermediate data aren’t accessible by the calling process.
+    ///
+    ///
     /// A lightly-processed photo whose data may be used to process and fetch a higher-resolution asset at a later time.
     ///
     ///
@@ -2939,8 +3069,6 @@ extern_class!(
     /// <AVCapturePhotoFileDataRepresentationCustomizer
     /// >)customizer;
     /// You may call either of the above two methods to create a NSData representation of the image, but note that it is only the proxy image quality being packaged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeferredphotoproxy?language=objc)
     #[unsafe(super(AVCapturePhoto, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeferredPhotoProxy;
@@ -2963,12 +3091,17 @@ impl AVCaptureDeferredPhotoProxy {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to implement to customize the packaging of photo data.
+    ///
+    /// ## Overview
+    ///
+    /// AVCapturePhoto is a wrapper representing a photo in a file container. To flatten the photo to an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object to write to file, call [`fileDataRepresentation`](https://developer.apple.com/documentation/avfoundation/avcapturephoto/filedatarepresentation()). For more complex flattening operations such as replacing or stripping metadata, call [`fileDataRepresentationWithCustomizer:`](https://developer.apple.com/documentation/avfoundation/avcapturephoto/filedatarepresentation(with:)) and provide a delegate for customized replacement or stripping behavior. This delegate’s methods are called synchronously before the flattening process begins.
+    ///
+    ///
     /// A set of delegate callbacks to be implemented by a client who calls AVCapturePhoto's -fileDataRepresentationWithCustomizer:.
     ///
     ///
     /// AVCapturePhoto is a wrapper representing a file-containerized photo in memory. If you simply wish to flatten the photo to an NSData to be written to a file, you may call -[AVCapturePhoto fileDataRepresentation]. For more complex flattening operations in which you wish to replace or strip metadata, you should call -[AVCapturePhoto fileDataRepresentationWithCustomizer:] instead, providing a delegate for customized stripping / replacing behavior. This delegate's methods are called synchronously before the flattening process commences.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotofiledatarepresentationcustomizer?language=objc)
     pub unsafe trait AVCapturePhotoFileDataRepresentationCustomizer:
         NSObjectProtocol
     {

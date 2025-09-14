@@ -8,13 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A specification for a named parameter with a constant value.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class provide an app with dynamic control of various properies of live audio playback. This is a base class for the [`PHASENumberMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition) and [`PHASEStringMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasestringmetaparameterdefinition) subclasses.
+    ///
+    /// You create a single instance of one of the subclasses for a specific property you want to adjust. By passing the definition subclass to the framework, you spawn one or more [`PHASEMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemetaparameterdefinition) objects for discrete use across your app. For example, when you initialize a [`PHASEBlendNodeDefinition`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition) with a number metaparameter definition, PHASE registers a [`PHASENumberMetaParameter`](https://developer.apple.com/documentation/phase/phasenumbermetaparameter) in the corresponding sound event’s [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) dictionary.
+    ///
+    /// Put metaparameter definitions that you wish to share across different sounds in the asset registery’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary. To add global metaparameter definitions to the dictionary, call  [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)). Then pass the definition into several sound event node defintions, such as [`PHASESamplerNodeDefinition`](https://developer.apple.com/documentation/phase/phasesamplernodedefinition).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A base object for metaparameter definitions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemetaparameterdefinition?language=objc)
     #[unsafe(super(PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -45,13 +54,26 @@ impl PHASEMetaParameterDefinition {
 }
 
 extern_class!(
+    /// A specification for a metaparameter defined by a number.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to spawn discrete instances of [`PHASENumberMetaParameter`](https://developer.apple.com/documentation/phase/phasenumbermetaparameter), for example, a “player speed” metaparameter that the app changes gradually from `0.0` to `1.0`.
+    ///
+    /// To use a number metaparameter, create an instance of this class and:
+    ///
+    /// - Register it with the engine by calling [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)), then access the instance of this class in the engine’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary.
+    ///
+    /// - Pass it to the [`PHASEBlendNodeDefinition`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition) initializer, [`initWithBlendMetaParameterDefinition:identifier:`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition/init(blendmetaparameterdefinition:identifier:)), and then access the instance of this class in a sound event’s [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) dictionary.
+    ///
+    /// - Pass it into the [`PHASEMappedMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition) initializer, [`initWithInputMetaParameterDefinition:envelope:`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/init(inputmetaparameterdefinition:envelope:)). Then, access the instance of this class using the mapped parameter’s [`inputMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition) property.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A metaparameter that has a numeric value
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition?language=objc)
     #[unsafe(super(PHASEMetaParameterDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -150,13 +172,24 @@ impl PHASENumberMetaParameterDefinition {
 }
 
 extern_class!(
+    /// A specification for a metaparameter defined by text.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to spawn discrete instances of [`PHASENumberMetaParameter`](https://developer.apple.com/documentation/phase/phasenumbermetaparameter), for example, a “player speed” metaparameter that the app changes gradually from `0.0` to `1.0`.
+    ///
+    /// To use a number metaparameter, create an instance of this class and:
+    ///
+    /// - Register it with the engine by calling [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)), then access the instance of this class in the engine’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary.
+    ///
+    /// - Pass it to the [`PHASEBlendNodeDefinition`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition) initializer, [`initWithBlendMetaParameterDefinition:identifier:`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition/init(blendmetaparameterdefinition:identifier:)), and then access the instance of this class in a sound event’s [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) dictionary.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A Metaparameter that has a string value
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasestringmetaparameterdefinition?language=objc)
     #[unsafe(super(PHASEMetaParameterDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -206,13 +239,20 @@ impl PHASEStringMetaParameterDefinition {
 }
 
 extern_class!(
+    /// A metaparameter that graphs an input value on a set of mathematical curves.
+    ///
+    /// ## Overview
+    ///
+    /// This class takes a metaparameter as input and plots its value on a curve defined by the [`envelope`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope) property.
+    ///
+    /// Whereas the envelope’s function in [`PHASEBlendNodeDefinition`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition) and [`PHASEEnvelopeDistanceModelParameters`](https://developer.apple.com/documentation/phase/phaseenvelopedistancemodelparameters) takes time because the relevant audio starts as its input parameter, in the case of the envelope property for this class, the app has full control over the input metaparameter’s value.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object to define a Mapped Metaparameter when building an sound event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition?language=objc)
     #[unsafe(super(
         PHASENumberMetaParameterDefinition,
         PHASEMetaParameterDefinition,
@@ -330,13 +370,24 @@ impl PHASEMappedMetaParameterDefinition {
 }
 
 extern_class!(
+    /// A named parameter with a value that the app can change over time.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class provide an app with dynamic control of a sound’s properties. A metaparameter takes a single value as input and may operate on one or more audio characteristics.
+    ///
+    /// To change the value of a metaparameter at runtime:
+    ///
+    /// - Assign a string to a textual metaparameter’s [`value`](https://developer.apple.com/documentation/phase/phasemetaparameter/value).
+    ///
+    /// - Adjust the value of a number or mapped metaparameter gradually over a duration by calling [`fadeToValue:duration:`](https://developer.apple.com/documentation/phase/phasenumbermetaparameter/fade(value:duration:)).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A generic object that represents an active metaparameter in the system
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemetaparameter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEMetaParameter;
@@ -378,13 +429,26 @@ impl PHASEMetaParameter {
 }
 
 extern_class!(
+    /// A metaparameter defined by a number that can change over time.
+    ///
+    /// ## Overview
+    ///
+    /// This class contains a number that updates, like a “player speed” metaparameter that the app changes gradually from `0.0` to `1.0`.
+    ///
+    /// To create an instance of this class, first create a [`PHASENumberMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasenumbermetaparameterdefinition), and either:
+    ///
+    /// - Register it with the engine by calling [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)), then access the instance of this class in the engine’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary.
+    ///
+    /// - Pass it to the [`PHASEBlendNodeDefinition`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition) initializer, [`initWithBlendMetaParameterDefinition:identifier:`](https://developer.apple.com/documentation/phase/phaseblendnodedefinition/init(blendmetaparameterdefinition:identifier:)), and then access the instance of this class in a sound event’s [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) dictionary.
+    ///
+    /// - Use it as the input value for a [`PHASEMappedMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition) by passing it into the [`initWithInputMetaParameterDefinition:envelope:`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/init(inputmetaparameterdefinition:envelope:)) initializer. Then, access the instance of this class using the mapped parameter’s [`inputMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition) property.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object that represents an active numeric metaparameter in the system
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasenumbermetaparameter?language=objc)
     #[unsafe(super(PHASEMetaParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASENumberMetaParameter;
@@ -426,13 +490,24 @@ impl PHASENumberMetaParameter {
 }
 
 extern_class!(
+    /// A metaparameter with a text definition that can change over time.
+    ///
+    /// ## Overview
+    ///
+    /// This class contains text that updates, like a “weather” metaparameter that the app changes from “rainy” to “sunny.”
+    ///
+    /// To create an instance of this class, first create a [`PHASEStringMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasestringmetaparameterdefinition), and either:
+    ///
+    /// - Register it with the engine by calling [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)), then access the instance of this class in the engine’s [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary.
+    ///
+    /// - Pass it to the [`PHASESwitchNodeDefinition`](https://developer.apple.com/documentation/phase/phaseswitchnodedefinition) initializer, [`initWithSwitchMetaParameterDefinition:`](https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/init(switchmetaparameterdefinition:)), and then access the instance of this class in a sound event’s [`metaParameters`](https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters) dictionary.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object that represents an active string metaparameter in the system
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasestringmetaparameter?language=objc)
     #[unsafe(super(PHASEMetaParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEStringMetaParameter;

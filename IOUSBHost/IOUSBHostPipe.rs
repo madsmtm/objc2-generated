@@ -9,11 +9,16 @@ use objc2_io_kit::*;
 use crate::*;
 
 extern_class!(
+    /// The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.
+    ///
+    /// ## Overview
+    ///
+    /// The client creates pipe objects using [`copyPipeWithAddress:error:`](https://developer.apple.com/documentation/iousbhost/iousbhostinterface/copypipe(withaddress:)).
+    ///
+    ///
     /// The IOUSBHostIOSource representing a USB endpoint
     ///
     /// This class provides functionality to transfer data across USB.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostpipe?language=objc)
     #[unsafe(super(IOUSBHostIOSource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOUSBHostIOSource")]

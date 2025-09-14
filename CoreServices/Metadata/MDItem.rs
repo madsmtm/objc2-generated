@@ -29,7 +29,13 @@ cf_objc2_type!(
 unsafe impl ConcreteType for MDItem {
     /// Returns the type identifier of all MDItem instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427168-mditemgettypeid?language=objc)
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The type identifier for the `MDItem` opaque type.
+    ///
+    ///
+    /// Returns the type identifier of all MDItem instances.
     #[doc(alias = "MDItemGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -41,6 +47,33 @@ unsafe impl ConcreteType for MDItem {
 }
 
 impl MDItem {
+    /// Creates an MDItem object for a file at the specified path.
+    ///
+    /// Parameters:
+    /// - allocator: The `CFAllocator` object to be used to allocate memory for the new object. Pass `NULL` or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - path: A path to the file from which to create the `MDItem`. The path must exist.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An `MDItem` object or `NULL` if there was a problem creating the object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns a metadata item for the given URL.
+    ///
+    /// <a id="1675358"></a>
+    /// ### Special Considerations
+    ///
+    /// In macOS 10.5 and later MDItemRefs may or may not be uniqued. You should always use `CFEqual` for comparison.
+    ///
+    /// Prior to OS X v 10.5 items were guaranteed to be unique and == could or `CFEqual` could be used for the comparison.
+    ///
+    ///
     /// Returns an metadata item for the given path.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -58,8 +91,6 @@ impl MDItem {
     ///
     /// - `allocator` might not allow `None`.
     /// - `path` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1426917-mditemcreate?language=objc)
     #[doc(alias = "MDItemCreate")]
     #[inline]
     pub unsafe fn new(
@@ -76,6 +107,33 @@ impl MDItem {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an MDItem object for a file at the specified file URL.
+    ///
+    /// Parameters:
+    /// - allocator: The `CFAllocator` object to be used to allocate memory for the new object. Pass `NULL` or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - url: A file URL to the file from which to create the `MDItem`. The file must exist.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An `MDItem` object or `NULL` if there was a problem creating the object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns a metadata item for the given URL.
+    ///
+    /// <a id="1675371"></a>
+    /// ### Special Considerations
+    ///
+    /// In macOS 10.5 and later MDItemRefs may or may not be uniqued. You should always use `CFEqual` for comparison.
+    ///
+    /// Prior to OS X v 10.5 items were guaranteed to be unique and == could or `CFEqual` could be used for the comparison.
+    ///
+    ///
     /// Returns an metadata item for the given path.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -93,8 +151,6 @@ impl MDItem {
     ///
     /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427034-mditemcreatewithurl?language=objc)
     #[doc(alias = "MDItemCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -127,8 +183,6 @@ impl MDItem {
 /// - `allocator` might not allow `None`.
 /// - `urls` generic must be of the correct type.
 /// - `urls` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427086-mditemscreatewithurls?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDItemsCreateWithURLs(
     allocator: Option<&CFAllocator>,
@@ -145,6 +199,20 @@ pub unsafe extern "C-unwind" fn MDItemsCreateWithURLs(
 }
 
 impl MDItem {
+    /// Returns the value of the specified attribute in the metadata item.
+    ///
+    /// Parameters:
+    /// - item: The item to be queried.
+    ///
+    /// - name: The name of the requested attribute.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeRef, or `NULL` if there was a failure reading the attribute or the attribute does not exist.
+    ///
+    ///
     /// Returns the value of the given attribute for the item.
     ///
     /// Parameter `item`: The item to be interrogated.
@@ -157,8 +225,6 @@ impl MDItem {
     /// # Safety
     ///
     /// `name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427080-mditemcopyattribute?language=objc)
     #[doc(alias = "MDItemCopyAttribute")]
     #[inline]
     pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
@@ -172,6 +238,20 @@ impl MDItem {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the values of the specified attributes in the metadata item.
+    ///
+    /// Parameters:
+    /// - item: The item to be queried.
+    ///
+    /// - names: A CFArray containing the names of the requested attributes.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFDictionary containing keys for the requested attribute names, and the corresponding values. If an attribute does not exist, or the attribute is unreadable, there will be no key-value pair for it in the dictionary. Returns `NULL` on failure.
+    ///
+    ///
     /// Returns the values of the given attributes for the item.
     ///
     /// Parameter `item`: The item to be interrogated.
@@ -188,8 +268,6 @@ impl MDItem {
     ///
     /// - `names` generic must be of the correct type.
     /// - `names` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1426980-mditemcopyattributes?language=objc)
     #[doc(alias = "MDItemCopyAttributes")]
     #[inline]
     pub unsafe fn attributes(&self, names: Option<&CFArray>) -> Option<CFRetained<CFDictionary>> {
@@ -203,14 +281,24 @@ impl MDItem {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns an array containing the attribute names existing in the metadata item.
+    ///
+    /// Parameters:
+    /// - item: The item to be queried.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArray of CFString attribute names, or `NULL` on failure.
+    ///
+    ///
     /// Returns an array of the attribute names existing in the item.
     ///
     /// Parameter `item`: The item to be interrogated.
     ///
     /// Returns: A CFArray of CFString attribute names, or NULL on
     /// failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1427066-mditemcopyattributenames?language=objc)
     #[doc(alias = "MDItemCopyAttributeNames")]
     #[inline]
     pub unsafe fn attribute_names(&self) -> Option<CFRetained<CFArray>> {
@@ -239,8 +327,6 @@ impl MDItem {
 /// - `items` might not allow `None`.
 /// - `names` generic must be of the correct type.
 /// - `names` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1426975-mditemscopyattributes?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
     items: Option<&CFArray>,
@@ -257,8 +343,6 @@ pub unsafe extern "C-unwind" fn MDItemsCopyAttributes(
 }
 
 impl MDItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/4485578-mditemgetcachefiledescriptors?language=objc)
-    ///
     /// # Safety
     ///
     /// - `items` generic must be of the correct type.
@@ -282,6 +366,7 @@ impl MDItem {
 }
 
 extern "C" {
+    /// The date and time of the last change made to a metadata attribute. A CFDate.
     /// This is the date that the last metadata attribute was changed.
     ///
     ///
@@ -565,442 +650,473 @@ extern "C" {
     ///
     /// The name of the location or point of interest associated with the item.
     /// The name may be user provided.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemattributechangedate?language=objc)
     pub static kMDItemAttributeChangeDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontenttype?language=objc)
+    /// The UTI pedigree of a file. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    ///  For example, a jpeg image file will have a value of public.jpeg/public.image/public.data. The value of this attribute is set by the MDImporter. Changes to this value are lost when the file attributes are next imported.
+    ///
+    ///
     pub static kMDItemContentType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontenttypetree?language=objc)
     pub static kMDItemContentTypeTree: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemkeywords?language=objc)
+    /// Keywords associated with this file. For example, “Birthday”, “Important”, etc. An CFArray of CFStrings.
     pub static kMDItemKeywords: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtitle?language=objc)
+    /// The title of the file. For example, this could be the title of a document, the name of a song, or the subject of an email message. A `CFString`.
     pub static kMDItemTitle: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemauthors?language=objc)
+    /// The author, or authors, of the contents of the file. A CFArray of CFStrings.
+    ///
+    /// ## Discussion
+    ///
+    /// The order of the authors is preserved, but does not represent the main author or relative importance of the authors.
+    ///
+    ///
     pub static kMDItemAuthors: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemeditors?language=objc)
     pub static kMDItemEditors: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemparticipants?language=objc)
+    /// The list of people who are visible in an image or movie or written about in a document. A CFArray of CFStrings.
     pub static kMDItemParticipants: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemprojects?language=objc)
+    /// The list of projects that this file is part of. For example, if you were working on a movie all of the files could be marked as belonging to the project “My Movie”. A CFArray of CFStrings.
     pub static kMDItemProjects: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdownloadeddate?language=objc)
     pub static kMDItemDownloadedDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemwherefroms?language=objc)
+    /// Describes where the file was obtained from. A CFArray of CFStrings.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, a downloaded file may refer to the URL, files received by email may indicate the sender’s email address, message subject, etc.
+    ///
+    ///
     pub static kMDItemWhereFroms: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcomment?language=objc)
+    /// A comment related to the file. This differs from the Finder comment, `kMDItemFinderComment`. A CFString.
     pub static kMDItemComment: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcopyright?language=objc)
+    /// The copyright owner of the file contents. A CFString.
     pub static kMDItemCopyright: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlastuseddate?language=objc)
+    /// The date and time that the file was last used. This value is updated automatically by LaunchServices everytime a file is opened by double clicking, or by asking LaunchServices to open a file. A CFDate.
     pub static kMDItemLastUsedDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontentcreationdate?language=objc)
+    /// The creation date of an edited or optimized version of the song or composition.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is supplementary to [`kMDItemRecordingDate`](https://developer.apple.com/documentation/coreservices/kmditemrecordingdate), which indicates the original recording date of the song or composition.
+    ///
+    ///
     pub static kMDItemContentCreationDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontentmodificationdate?language=objc)
+    /// The date and time that the contents of the file were last modified. A CFDate.
+    ///
+    /// ## Discussion
+    ///
+    ///  This is not necessarily the file modification date.
+    ///
+    ///
     pub static kMDItemContentModificationDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdateadded?language=objc)
     pub static kMDItemDateAdded: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdurationseconds?language=objc)
+    /// The duration, in seconds, of the content of file. A value of 10.5 represents media that is 10 and 1/2 seconds long. A CFNumber.
     pub static kMDItemDurationSeconds: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontactkeywords?language=objc)
+    /// A list of contacts that are associated with this document, not including the authors. A CFArray of CFStrings.
     pub static kMDItemContactKeywords: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemversion?language=objc)
+    /// The version number of this file. A CFString
     pub static kMDItemVersion: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempixelheight?language=objc)
+    /// The height, in pixels, of the contents. For example, the image height or the video frame height. A CFNumber.
     pub static kMDItemPixelHeight: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemxmpcredit?language=objc)
     pub static kMDItemXMPCredit: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemxmpdigitalsourcetype?language=objc)
     pub static kMDItemXMPDigitalSourceType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempixelwidth?language=objc)
+    /// The width, in pixels, of the contents. For example, the image width or the video frame width. A CFNumber.
     pub static kMDItemPixelWidth: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempixelcount?language=objc)
+    /// The total number of pixels in the contents. Same as [`kMDItemPixelWidth`](https://developer.apple.com/documentation/coreservices/kmditempixelwidth) x [`kMDItemPixelHeight`](https://developer.apple.com/documentation/coreservices/kmditempixelheight). A CFNumber.
     pub static kMDItemPixelCount: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcolorspace?language=objc)
+    /// The color space model used by the document contents. For example, “RGB”, “CMYK”, “YUV”, or “YCbCr”. A CFString.
     pub static kMDItemColorSpace: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditembitspersample?language=objc)
+    /// The number of bits per sample. For example, the bit depth of an image (8-bit, 16-bit etc...) or the bit depth per audio sample of uncompressed audio data (8, 16, 24, 32, 64, etc..). A CFNumber.
     pub static kMDItemBitsPerSample: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemflashonoff?language=objc)
+    /// Indicates if a camera flash was used. A CFNumber.
     pub static kMDItemFlashOnOff: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfocallength?language=objc)
+    /// The actual focal length of the lens, in millimeters.  A CFNumber.
     pub static kMDItemFocalLength: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemacquisitionmake?language=objc)
+    /// The manufacturer of the device used to aquire the document contents. A CFString.
     pub static kMDItemAcquisitionMake: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemacquisitionmodel?language=objc)
+    /// The model of the device used to aquire the document contents. For example, 100, 200, 400, etc. A CFString.
     pub static kMDItemAcquisitionModel: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisospeed?language=objc)
+    /// The ISO speed used to acquire the document contents. A CFNumber.
     pub static kMDItemISOSpeed: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemorientation?language=objc)
+    /// The orientation of the document contents. Possible values are 0 (landscape) and 1 (portrait). A CFNumber.
     pub static kMDItemOrientation: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlayernames?language=objc)
+    /// The names of the layers in the file. A CFArray of CFStrings.
     pub static kMDItemLayerNames: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemwhitebalance?language=objc)
+    /// The white balance setting used to acquire the document contents. Possible values are 0 (auto white balance) and 1 (manual). A CFNumber.
     pub static kMDItemWhiteBalance: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaperture?language=objc)
+    /// The aperture setting used to acquire the document contents. This unit is the APEX value. A CFNumber.
     pub static kMDItemAperture: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemprofilename?language=objc)
+    /// The name of the color profile used by the document contents. A CFString.
     pub static kMDItemProfileName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemresolutionwidthdpi?language=objc)
+    /// Resolution width, in DPI, of this image. A CFNumber.
     pub static kMDItemResolutionWidthDPI: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemresolutionheightdpi?language=objc)
+    /// Resolution height, in DPI, of this image. A CFNumber.
     pub static kMDItemResolutionHeightDPI: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposuremode?language=objc)
+    /// The exposure mode used to acquire the document contents. A CFNumber.
+    ///
+    /// ## Discussion
+    ///
+    /// Possible values are 0 (auto exposure), 1 (manual exposure) and 2 (auto bracket).
+    ///
+    ///
     pub static kMDItemExposureMode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposuretimeseconds?language=objc)
+    /// The exposure time, in seconds, used to acquire the document contents. A CFNumber.
     pub static kMDItemExposureTimeSeconds: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexifversion?language=objc)
+    /// The version of the EXIF header used to generate the metadata. A CFString.
     pub static kMDItemEXIFVersion: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcameraowner?language=objc)
     pub static kMDItemCameraOwner: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfocallength35mm?language=objc)
     pub static kMDItemFocalLength35mm: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlensmodel?language=objc)
     pub static kMDItemLensModel: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexifgpsversion?language=objc)
+    ///  The version of GPSInfoIFD in EXIF used to generate the metadata. A CFString.
     pub static kMDItemEXIFGPSVersion: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaltitude?language=objc)
+    ///  The altitude of the item in meters above sea level, expressed using the WGS84 datum.  Negative values lie below sea level. A CFString.
     pub static kMDItemAltitude: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlatitude?language=objc)
+    ///  The latitude of the item in degrees north of the equator, expressed using the WGS84 datum.  Negative values lie south of the equator. A CFString.
     pub static kMDItemLatitude: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlongitude?language=objc)
+    ///  The longitude of the item in degrees east of the prime meridian,  expressed using the WGS84 datum.  Negative values lie west of the prime meridian. A CFString.
     pub static kMDItemLongitude: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemspeed?language=objc)
+    ///  The speed of the item, in kilometers per hour. A CFString.
     pub static kMDItemSpeed: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtimestamp?language=objc)
+    ///  The timestamp on the item.  This generally is used to indicate the time at which the event captured by the item took place. A CFString.
     pub static kMDItemTimestamp: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpstrack?language=objc)
+    ///  The direction of travel of the item, in degrees from true north. A CFString.
     pub static kMDItemGPSTrack: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemimagedirection?language=objc)
+    ///  The direction of the item's image, in degrees from true north. A CFString.
     pub static kMDItemImageDirection: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemnamedlocation?language=objc)
+    ///  The name of the location or point of interest associated with the item. The name may be user provided. A CFString.
     pub static kMDItemNamedLocation: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsstatus?language=objc)
     pub static kMDItemGPSStatus: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsmeasuremode?language=objc)
     pub static kMDItemGPSMeasureMode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdop?language=objc)
     pub static kMDItemGPSDOP: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsmapdatum?language=objc)
     pub static kMDItemGPSMapDatum: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestlatitude?language=objc)
     pub static kMDItemGPSDestLatitude: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestlongitude?language=objc)
     pub static kMDItemGPSDestLongitude: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestbearing?language=objc)
     pub static kMDItemGPSDestBearing: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdestdistance?language=objc)
     pub static kMDItemGPSDestDistance: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsprocessingmethod?language=objc)
     pub static kMDItemGPSProcessingMethod: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsareainformation?language=objc)
     pub static kMDItemGPSAreaInformation: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdatestamp?language=objc)
     pub static kMDItemGPSDateStamp: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgpsdifferental?language=objc)
     pub static kMDItemGPSDifferental: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmediaextensions?language=objc)
     pub static kMDItemMediaExtensions: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcodecs?language=objc)
+    /// The codecs used to encode/decode the media. A CFArray of CFStrings.
     pub static kMDItemCodecs: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmediatypes?language=objc)
+    /// The media types present in the content. A CFArray of CFStrings.
     pub static kMDItemMediaTypes: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemstreamable?language=objc)
+    /// Whether the content is prepared for streaming. A CFBoolean.
     pub static kMDItemStreamable: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtotalbitrate?language=objc)
+    /// The total bit rate, audio and video combined, of the media. A CFNumber.
     pub static kMDItemTotalBitRate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemvideobitrate?language=objc)
+    /// The video bit rate. A CFNumber.
     pub static kMDItemVideoBitRate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiobitrate?language=objc)
+    /// The audio bit rate. A CFNumber.
     pub static kMDItemAudioBitRate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdeliverytype?language=objc)
+    /// The delivery type. Values are “Fast start” or “RTSP”. A CFString.
     pub static kMDItemDeliveryType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemalbum?language=objc)
+    /// The title for a collection of media. This is analagous to a record album, or photo album. A CFString.
     pub static kMDItemAlbum: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemhasalphachannel?language=objc)
+    /// Indicates if this image file has an alpha channel.  A CFBoolean.
     pub static kMDItemHasAlphaChannel: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemredeyeonoff?language=objc)
+    /// Indicates if red-eye reduction was used to take the picture. A CFBoolean.
+    ///
+    /// ## Discussion
+    ///
+    /// Possible values are 0 (no red-eye reduction mode or unknown) and 1 (red-eye reduction used).
+    ///
+    ///
     pub static kMDItemRedEyeOnOff: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmeteringmode?language=objc)
+    /// The metering mode used to take the image. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// Possible values are: Unknown, Average, CenterWeightedAverage, Spot, MultiSpot, Pattern, and Partial.
+    ///
+    ///
     pub static kMDItemMeteringMode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmaxaperture?language=objc)
+    /// The smallest f-number of the lens. Ordinarily it is given in the range of 00.00 to 99.99. A CFNumber.
     pub static kMDItemMaxAperture: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfnumber?language=objc)
+    /// The diameter of the diaphragm aperture in terms of the effective focal length of the lens.
     pub static kMDItemFNumber: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposureprogram?language=objc)
+    /// The class of the exposure program used by the camera to set exposure when the image is taken. Possible values include: Manual, Normal, and Aperture priority. A CFString.
     pub static kMDItemExposureProgram: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexposuretimestring?language=objc)
+    /// The time of the exposure. A CFString.
     pub static kMDItemExposureTimeString: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemheadline?language=objc)
+    /// A publishable entry providing a synopsis of the contents of the file. For example, "Apple Introduces the iPod Photo". A CFString.
     pub static kMDItemHeadline: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditeminstructions?language=objc)
+    /// Editorial instructions concerning the use of the item, such as embargoes and warnings. For example, "Second of four stories". A CFString.
     pub static kMDItemInstructions: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcity?language=objc)
+    /// Identifies city of origin according to guidelines established by the provider. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, "New York", "Cupertino", or "Toronto".
+    ///
+    ///
     pub static kMDItemCity: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemstateorprovince?language=objc)
+    /// Identifies the province or state of origin according to guidelines established by the provider. For example, "CA", "Ontario", or "Sussex". A CFString.
     pub static kMDItemStateOrProvince: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcountry?language=objc)
+    /// The full, publishable name of the country or region where the intellectual property of the item was created, according to guidelines of the provider.
     pub static kMDItemCountry: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// The file name of the item. A CFString.
     /// Contains the HTML content of the document. Type is a CFString.
     /// This field is only used by Spotlight importers to return HTML contents of a file.  Except in special cases,
     /// this field is not a replacement for kMDItemTextContent which should still be returned.
@@ -1062,105 +1178,115 @@ extern "C" {
     ///
     ///
     /// Number indicating which finder label is in use (0-7). Type is a CFNumber.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsname?language=objc)
     pub static kMDItemFSName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdisplayname?language=objc)
+    /// The localized version of the file name.  A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the localized version of the LaunchServices call [`LSCopyDisplayNameForURL`](https://developer.apple.com/documentation/coreservices/1446850-lscopydisplaynameforurl)/[`LSCopyDisplayNameForRef`](https://developer.apple.com/documentation/coreservices/1442576-lscopydisplaynameforref).
+    ///
+    ///
     pub static kMDItemDisplayName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempath?language=objc)
+    /// The complete path to the file. A CFString.
     pub static kMDItemPath: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfssize?language=objc)
+    /// The size, in bytes, of the file on disk. A CFNumber.
     pub static kMDItemFSSize: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfscreationdate?language=objc)
+    /// The date and time that the file was created. A CFDate.
     pub static kMDItemFSCreationDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfscontentchangedate?language=objc)
+    /// The date the file contents last changed. A CFDate.
     pub static kMDItemFSContentChangeDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsowneruserid?language=objc)
+    /// The user ID of the owner of the file. A CFNumber.
     pub static kMDItemFSOwnerUserID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsownergroupid?language=objc)
+    /// The group ID of the owner of the file. A CFNumber.
     pub static kMDItemFSOwnerGroupID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsexists?language=objc)
+    /// This attribute is deprecated and was never implemented.
     #[deprecated = "No longer supported"]
     pub static kMDItemFSExists: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisreadable?language=objc)
+    /// This attribute is deprecated and was never implemented.
     #[deprecated = "No longer supported"]
     pub static kMDItemFSIsReadable: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsiswriteable?language=objc)
+    /// This attribute is deprecated and was never implemented.
     #[deprecated = "No longer supported"]
     pub static kMDItemFSIsWriteable: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfshascustomicon?language=objc)
+    /// Boolean indicating if this file has a custom icon. Type is a CFBoolean.
     pub static kMDItemFSHasCustomIcon: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisextensionhidden?language=objc)
+    /// Indicates whether the file extension of the file is hidden. A CFBoolean.
     pub static kMDItemFSIsExtensionHidden: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsisstationery?language=objc)
+    /// Boolean indicating if this file is stationery. Type is a CFBoolean.
     pub static kMDItemFSIsStationery: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsinvisible?language=objc)
+    /// Indicates whether the file is invisible. A CFBoolean.
     pub static kMDItemFSInvisible: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfslabel?language=objc)
+    /// Index of the Finder label of the file. Possible values are 0 through 7. A CFNumber.
     pub static kMDItemFSLabel: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfsnodecount?language=objc)
+    /// Number of files in a directory. A CFNumber.
     pub static kMDItemFSNodeCount: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemhtmlcontent?language=objc)
     pub static kMDItemHTMLContent: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtextcontent?language=objc)
+    /// Contains a text representation of the content of the document. Data in multiple fields should be combined using a whitespace character as a separator. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// An application's Spotlight importer provides the content of this attribute. Applications can search for values in this attribute, but are not able to read the content of this attribute directly.
+    ///
+    ///
     pub static kMDItemTextContent: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Sample rate of the audio data contained in the file. The sample rate is a float value representing hz (audio_frames/second). For example: 44100.0, 22254.54. A CFNumber.
     /// The sample rate of the audio data contained in the file. The sample rate is a
     /// float value representing hz (audio_frames/second). For example: 44100.0, 22254.54.
     /// Type is a CFNumber (float).
@@ -1217,72 +1343,87 @@ extern "C" {
     ///
     /// This attribute indicates what year the item was recorded on.
     /// Type is a CFNumber
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiosamplerate?language=objc)
     pub static kMDItemAudioSampleRate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiochannelcount?language=objc)
+    /// Number of channels in the audio data contained in the file. A CFNumber.
+    ///
+    /// ## Discussion
+    ///
+    /// This integer value only represents the number of discreet channels of audio data found in the file. It does not indicate any configuration of the data in regards to a user's speaker setup.
+    ///
+    ///
     pub static kMDItemAudioChannelCount: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtempo?language=objc)
+    /// A float value that specifies the beats per minute of the music contained in the audio file. A CFNumber.
     pub static kMDItemTempo: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemkeysignature?language=objc)
+    /// The key of the music contained in the audio file. For example: C, Dm, F#m, Bb. A CFString.
     pub static kMDItemKeySignature: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtimesignature?language=objc)
+    /// The time signature of the musical composition contained in the audio/MIDI file. For example: "4/4", "7/8". A CFString.
     pub static kMDItemTimeSignature: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudioencodingapplication?language=objc)
+    /// The name of the application that encoded the data contained in the audio file. A CFString.
     pub static kMDItemAudioEncodingApplication: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcomposer?language=objc)
+    /// The composer of the music contained in the audio file. A CFString.
     pub static kMDItemComposer: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlyricist?language=objc)
+    /// The lyricist, or text writer, of the music contained in the audio file. A CFString.
     pub static kMDItemLyricist: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiotracknumber?language=objc)
+    /// The track number of a song or composition when it is part of an album. A CFNumber (integer).
     pub static kMDItemAudioTrackNumber: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecordingdate?language=objc)
+    /// The recording date of the song or composition.
+    ///
+    /// ## Discussion
+    ///
+    /// This value contains the original recording date of the song or composition and is supplementary to [`kMDItemContentCreationDate`](https://developer.apple.com/documentation/coreservices/kmditemcontentcreationdate), which indicates the date of an edited or optimized version.
+    ///
+    ///
+    ///
+    ///
+    ///
+    ///
     pub static kMDItemRecordingDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmusicalgenre?language=objc)
+    /// The musical genre of the song or composition contained in the audio file. For example: Jazz, Pop, Rock, Classical. A CFString.
     pub static kMDItemMusicalGenre: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisgeneralmidisequence?language=objc)
+    /// Indicates whether the MIDI sequence contained in the file is setup for use with a General MIDI device. A CFBoolean.
     pub static kMDItemIsGeneralMIDISequence: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecordingyear?language=objc)
+    /// Indicates the year the item was recorded. For example, 1964, 2003, etc. A CFNumber.
     pub static kMDItemRecordingYear: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// The company or organization that created the document. A CFArray of CFStrings.
     /// Used to indicate company/Organization that created the document.
     /// Type is a CFArray of CFStrings.
     ///
@@ -1348,62 +1489,83 @@ extern "C" {
     /// A class of entity for whom the resource is intended or useful. A
     /// class of entity may be determined by the creator or the publisher
     /// or by a third party. Type is a  CFArray of CFString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemorganizations?language=objc)
     pub static kMDItemOrganizations: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlanguages?language=objc)
+    /// Indicates the languages of the intellectual content of the resource. Recommended best practice for the values of the Language element is defined by RFC 3066. A CFArray of CFStrings.
     pub static kMDItemLanguages: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrights?language=objc)
+    /// Provides a link to information about rights held in and over the resource. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// Contains a rights management statement for the resource, or reference a service providing such information. Rights information often encompasses Intellectual Property Rights (IPR), Copyright, and various Property Rights.
+    ///
+    /// If this attribute is absent, no assumptions can be made about the status of these and other rights with respect to the resource.
+    ///
+    ///
     pub static kMDItemRights: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempublishers?language=objc)
+    /// The entity responsible for making the resource available. For example, a person, an organization, or a service. Typically, the name of a publisher should be used to indicate the entity. A CFArray of CFStrings.
     pub static kMDItemPublishers: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcontributors?language=objc)
+    /// The entities responsible for making contributions to the content of the resource. A CFArray of CFStrings.
+    ///
+    /// ## Discussion
+    ///
+    /// Examples of a contributor include a person, an organization or a service.
+    ///
+    ///
     pub static kMDItemContributors: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcoverage?language=objc)
+    /// The extent or scope of the content of the resource. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// Coverage will typically include spatial location (a place name or geographic co-ordinates), temporal period (a period label, date, or date range) or jurisdiction (such as a named administrative entity).
+    ///
+    /// Recommended best practice is to select a value from a controlled vocabulary, and that, where appropriate, named places or time periods be used in preference to numeric identifiers such as sets of co-ordinates or date ranges.
+    ///
+    ///
     pub static kMDItemCoverage: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsubject?language=objc)
+    /// Subject of the this item. Type is a CFString.
     pub static kMDItemSubject: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemtheme?language=objc)
+    /// Theme of the this item. A CFString.
     pub static kMDItemTheme: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdescription?language=objc)
+    /// A description of the content of the resource. The description may include an abstract, table of contents, reference to a graphical representation of content or a free-text account of the content. A CFString.
     pub static kMDItemDescription: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemidentifier?language=objc)
+    /// A formal identifier used to reference the resource within a given context. A CFString.
     pub static kMDItemIdentifier: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemaudiences?language=objc)
+    /// The audience for which the file is intended. The audience may be determined by the creator or the publisher or by a third party. A CFArray of CFStrings.
     pub static kMDItemAudiences: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Number of pages in the document. A CFNumber.
     /// Number of pages in the item. Type is a CFNumberRef
     ///
     ///
@@ -1456,82 +1618,81 @@ extern "C" {
     /// Array of font names used in the item. Attribute would store the Fonts
     /// full name, the postscript name or the font family name based on whats available.
     /// Type is an Array of CFStrings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemnumberofpages?language=objc)
     pub static kMDItemNumberOfPages: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempagewidth?language=objc)
+    /// Width of the document page, in points (72 points per inch). For PDF files this indicates the width of the first page only. A CFNumber.
     pub static kMDItemPageWidth: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditempageheight?language=objc)
+    /// Height of the document page, in points (72 points per inch). For PDF files this indicates the height of the first page only. A CFNumber.
     pub static kMDItemPageHeight: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsecuritymethod?language=objc)
+    /// The security or encryption method used for the file. A CFNumber.
     pub static kMDItemSecurityMethod: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcreator?language=objc)
+    /// Application used to create the document content (for example “Word”, “Pages”, and so on). A CFString.
     pub static kMDItemCreator: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemencodingapplications?language=objc)
+    /// Application used to convert the original content into it's current form.  For example, a PDF file might have an encoding application set to "Distiller". A CFArray of CFStrings.
     pub static kMDItemEncodingApplications: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemduedate?language=objc)
+    /// Date this item is due. A CFDate.
     pub static kMDItemDueDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemstarrating?language=objc)
+    /// User rating of this item. For example, the stars rating of an iTunes track. A CFNumber.
     pub static kMDItemStarRating: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemphonenumbers?language=objc)
+    /// Phone numbers related to this item. A CFArray of CFStrings.
     pub static kMDItemPhoneNumbers: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditememailaddresses?language=objc)
+    /// Email addresses related to this item. A CFArray of CFStrings.
     pub static kMDItemEmailAddresses: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditeminstantmessageaddresses?language=objc)
+    /// Instant message addresses related to this item. A CFArray of CFStrings.
     pub static kMDItemInstantMessageAddresses: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemkind?language=objc)
+    /// A description of the kind of item this file represents. A CFString.
     pub static kMDItemKind: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecipients?language=objc)
+    /// Recipients of this item. A CFArray of CFStrings.
     pub static kMDItemRecipients: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfindercomment?language=objc)
+    /// Finder comments for this file. A CFString.
     pub static kMDItemFinderComment: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemfonts?language=objc)
+    /// Fonts used in this item. You should store the font's full name, the postscript name, or the font family name, based on the available information. A CFArray of CFStrings.
     pub static kMDItemFonts: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Specifies the loop's original key. The key is the root note or tonic for the loop, and does not include the scale type. A CFString.
     /// Meta data attribute that stores the root note or tonic for the
     /// loop, and does not include the scale type. The root key is
     /// represented as follows: "C" "C#/Db" "D" "D#/Eb" "E" "F"
@@ -1583,48 +1744,77 @@ extern "C" {
     ///
     ///
     /// If this item is a bundle, then this is the CFBundleIdentifier
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopsrootkey?language=objc)
     pub static kMDItemAppleLoopsRootKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopskeyfiltertype?language=objc)
+    /// Specifies key filtering information about a loop. Loops are matched against projects that often in a major or minor key. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// To assist users in identifying loops that will "fit" with their compositions, loops can be tagged with one of the following key filters: "AnyKey" "Minor" "Major" "NeitherKey" "BothKeys". "AnyKey" means that it fits with anything (whether in a major key, minor key or neither). "Minor" fits with compositions in a minor key. "NeitherKey" doesn't work well with compositions that are in major or minor key. "BothKeys" means it fits with major or minor key.
+    ///
+    ///
     pub static kMDItemAppleLoopsKeyFilterType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopsloopmode?language=objc)
+    /// Specifies how a file should be played. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// Tagged files can either be loops or non-loops (e.g., a cymbal crash). "Looping" indicates if the file should be treated as a loop. "Non-looping" indicates the file should not be treated as a loop.
+    ///
+    ///
     pub static kMDItemAppleLoopsLoopMode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemappleloopdescriptors?language=objc)
+    /// Specifies multiple pieces of descriptive information about a loop. A CFArray of CFStrings.
+    ///
+    /// ## Discussion
+    ///
+    /// Besides genre and instrument, files can contain descriptive information that help users in refining searches.
+    ///
+    ///
     pub static kMDItemAppleLoopDescriptors: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmusicalinstrumentcategory?language=objc)
+    /// Specifies the category of an instrument. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// Files should have an instrument associated with them ("Other Instrument" is provided as a catch-all). For some categories, such as "Keyboards", there are instrument names which provide a more detailed instrument definition, for example "Piano" or "Organ".
+    ///
+    ///
     pub static kMDItemMusicalInstrumentCategory: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemmusicalinstrumentname?language=objc)
+    /// Specifies the name of instrument relative to the instrument category. A CFString.
+    ///
+    /// ## Discussion
+    ///
+    /// Files can have an instrument name associated with them if they have certain instrument categories. For example, the "Percussion" category has multiple instruments, including "Conga" and "Bongo".
+    ///
+    ///
     pub static kMDItemMusicalInstrumentName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemcfbundleidentifier?language=objc)
+    /// If this item is a bundle, then this is the CFBundleIdentifier. A CFString.
     pub static kMDItemCFBundleIdentifier: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemsupportfiletype?language=objc)
+    /// A CFArray of CFStrings.
     #[deprecated = "No longer supported"]
     pub static kMDItemSupportFileType: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Information about the item. A CFString.
     /// Information about the item
     ///
     ///
@@ -1673,112 +1863,101 @@ extern "C" {
     ///
     ///
     /// Array of categories the item application is a member of.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditeminformation?language=objc)
     pub static kMDItemInformation: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemdirector?language=objc)
+    /// Directory of the movie. A CFString.
     pub static kMDItemDirector: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemproducer?language=objc)
+    /// Producer of the content. A CFString.
     pub static kMDItemProducer: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemgenre?language=objc)
+    /// Genre of the movie. A CFString.
     pub static kMDItemGenre: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemperformers?language=objc)
+    /// Performers in the movie. A CFArray of CFStrings.
     pub static kMDItemPerformers: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemoriginalformat?language=objc)
+    /// Original format of the movie. A CFString.
     pub static kMDItemOriginalFormat: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemoriginalsource?language=objc)
+    /// Original source of the movie. A CFString.
     pub static kMDItemOriginalSource: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemauthoremailaddresses?language=objc)
+    /// This attribute indicates the author of the emails message addresses. (This is always the email address, and not the human readable version). A CFArray of CFStrings.
     pub static kMDItemAuthorEmailAddresses: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecipientemailaddresses?language=objc)
+    /// This attribute indicates the recipients email addresses. (This is always the email address, and not the human readable version). A CFArray of CFStrings.
     pub static kMDItemRecipientEmailAddresses: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemauthoraddresses?language=objc)
+    /// This attribute indicates the author addresses of the document. A CFArray of CFStrings.
     pub static kMDItemAuthorAddresses: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemrecipientaddresses?language=objc)
+    /// This attribute indicates the recipient addresses of the document. A CFArray of CFStrings.
     pub static kMDItemRecipientAddresses: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemurl?language=objc)
+    /// Url of the item. A CFString.
     pub static kMDItemURL: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelicon?language=objc)
     #[deprecated = "No longer supported"]
     pub static kMDItemLabelIcon: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelid?language=objc)
     #[deprecated = "No longer supported"]
     pub static kMDItemLabelID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabelkind?language=objc)
     #[deprecated = "No longer supported"]
     pub static kMDItemLabelKind: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemlabeluuid?language=objc)
     #[deprecated = "No longer supported"]
     pub static kMDItemLabelUUID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemislikelyjunk?language=objc)
     pub static kMDItemIsLikelyJunk: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexecutablearchitectures?language=objc)
     pub static kMDItemExecutableArchitectures: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemexecutableplatform?language=objc)
     pub static kMDItemExecutablePlatform: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemapplicationcategories?language=objc)
     pub static kMDItemApplicationCategories: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmditemisapplicationmanaged?language=objc)
     pub static kMDItemIsApplicationManaged: Option<&'static CFString>;
 }
 

@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents information about a passkey credential request.
+    ///
+    /// ## Overview
+    ///
+    /// The system creates instances of this class to handle active passkey requests, and passes them to your extension by calling [`prepareCredentialListForServiceIdentifiers:requestParameters:`](https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/preparecredentiallist(for:requestparameters:)). Use the properties of the given request parameters object, along with the passkey credential that the person chooses, to construct a passkey credential response that you return to the system using [`completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:`](https://developer.apple.com/documentation/authenticationservices/ascredentialproviderextensioncontext/completeassertionrequest(using:completionhandler:)).
+    ///
+    ///
     /// A class that holds various parameters related to a passkey credential request.
     /// This class is provided by the system to the credential provider extension when there is an active passkey request as part of
     /// -[ASCredentialProviderViewController prepareCredentialListForServiceIdentifiers:requestParameters:] and should be used
     /// to construct a passkey credential response using the item selected by the user from the extension's UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialrequestparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyCredentialRequestParameters;

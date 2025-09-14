@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisiblefunctiontabledescriptor?language=objc)
+    /// A specification of how to create a visible function table.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVisibleFunctionTableDescriptor;
@@ -70,7 +70,7 @@ impl DefaultRetained for MTLVisibleFunctionTableDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisiblefunctiontable?language=objc)
+    /// A table of shader functions visible to your app that you can pass into compute commands to customize the behavior of a shader.
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLVisibleFunctionTable: MTLResource {
         #[cfg(feature = "MTLTypes")]

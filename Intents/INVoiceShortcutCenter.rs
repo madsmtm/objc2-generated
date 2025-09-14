@@ -8,11 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Retrieve the user’s shortcuts and make shortcut suggestions.
+    ///
+    /// ## Overview
+    ///
+    /// With Shortcut Center, your app can:
+    ///
+    /// - Retrieve shortcuts associated with your app that the user added to Siri.
+    ///
+    /// - Suggest shortcuts the user may want to add to Siri.
+    ///
+    /// Before you can retrieve or suggest shortcuts, get a reference to the Shortcut Center from the [`sharedCenter`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter/shared) class property.
+    ///
+    /// To retrieve all shortcuts associated with your app, call [`getAllVoiceShortcutsWithCompletion:`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter/getallvoiceshortcuts(completion:)). To retrieve a particular shortcut, use the [`getVoiceShortcutWithIdentifier:completion:`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter/getvoiceshortcut(with:completion:)) method, passing in the shortcut’s identifier. These methods return shortcuts associated with your app that the user added to Siri using your app or the Settings app.
+    ///
+    /// To suggest shortcuts for actions that the user hasn’t performed in your app but may want to add to Siri, call [`setShortcutSuggestions:`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter/setshortcutsuggestions(_:)), passing in a list of suggested shortcuts. The user views the suggestions in the Gallery of the Shortcuts app. For more information, see [Offering Actions in the Shortcuts App](https://developer.apple.com/documentation/sirikit/offering-actions-in-the-shortcuts-app).
+    ///
+    ///
     /// Lets you access shortcuts that have been added to Siri
     ///
     /// See also: INVoiceShortcut
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invoiceshortcutcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INVoiceShortcutCenter;

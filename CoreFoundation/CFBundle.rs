@@ -9,7 +9,32 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundle?language=objc)
+///
+/// ## Overview
+///
+/// CFBundle allows you to use a folder hierarchy called a bundle to organize and locate many types of application resources including images, sounds, localized strings, and executable code. In macOS, bundles can also be used by CFM applications to load and execute functions from Mach-O frameworks. You can use bundles to support multiple languages or execute your application on multiple operating environments.
+///
+/// You create a bundle object using one of the `CFBundleCreate...` functions. CFBundle provides several functions for finding resources within a bundle. The [`CFBundleCopyResourceURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurl(_:_:_:_:)) function returns the location of a resource of the specified name and type, and in the specified subdirectory. Use [`CFBundleCopyResourceURLForLocalization`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlforlocalization(_:_:_:_:_:)) to restrict the search to a specific localization name. Use [`CFBundleCopyResourceURLsOfType`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftype(_:_:_:)) to get the locations of all resources of a specified type.
+///
+/// CFBundle provides functions for getting bundle information, such as its identifier and information dictionary. Use the [`CFBundleGetIdentifier`](https://developer.apple.com/documentation/corefoundation/cfbundlegetidentifier(_:)) function to get the identifier of a bundle, and the [`CFBundleGetInfoDictionary`](https://developer.apple.com/documentation/corefoundation/cfbundlegetinfodictionary(_:)) function to get its information dictionary. The principal intended purpose for locating bundles by identifier is so that code (in frameworks, plugins, etc.) can find its own bundle.
+///
+/// You can also obtain locations of subdirectories in a bundle represented as CFURL objects. The [`CFBundleCopyExecutableURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutableurl(_:)) function returns the location of the application’s executable. The functions [`CFBundleCopyResourceURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurl(_:_:_:_:)), [`CFBundleCopySharedFrameworksURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopysharedframeworksurl(_:)), [`CFBundleCopyPrivateFrameworksURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyprivateframeworksurl(_:)), [`CFBundleCopySharedSupportURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopysharedsupporturl(_:)), and [`CFBundleCopyBuiltInPlugInsURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopybuiltinpluginsurl(_:)) return the location of a bundle’s subdirectory containing resources, shared frameworks, private frameworks, shared support files, and plug-ins respectively.
+///
+/// Other functions are used to manage localizations. The [`CFBundleCopyLocalizedString`](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizedstring(_:_:_:_:)) and [`CFBundleCopyLocalizationsForURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforurl(_:)) functions return a localized string from a bundle’s strings file. The [`CFBundleCopyLocalizationsForPreferences`](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforpreferences(_:_:)) function returns the localizations that CFBundle would prefer, given the specified bundle and user preference localizations.
+///
+/// Unlike some other Core Foundation opaque types with similar Cocoa Foundation names (such as CFString and `NSString`), [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) objects cannot be cast (“toll-free bridged”) to CFBundle objects.
+///
+/// Unlike `NSBundle`, which does not support unloading (because the Objective C runtime does not support the unloading of Objective C code), you can unload CFBundle objects.
+///
+/// [`CFBundleGetFunctionPointerForName`](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointerforname(_:_:)) and related calls automatically load a bundle if it is not already loaded. When the last reference to the CFBundle object is released and it is finally deallocated, then the code will be unloaded if it is still loaded and if the executable is of a type that supports unloading. If you keep this in mind, and if you make sure that everything that uses the bundle keeps a retain on the CFBundle object, then you can just use the bundle naturally and never have to worry about when it is loaded and unloaded.
+///
+/// On the other hand, if you want to manually manage when the bundle is loaded and unloaded, then you can use [`CFBundleLoadExecutable`](https://developer.apple.com/documentation/corefoundation/cfbundleloadexecutable(_:)) and [`CFBundleUnloadExecutable`](https://developer.apple.com/documentation/corefoundation/cfbundleunloadexecutable(_:))—although this technique is not recommended. These functions force immediate loading and unloading of the executable (if it has not already been loaded/unloaded, and in the case of unloading if the executable is of a type that supports unloading). If you do this, then the code calling `CFBundleUnloadExecutable` is responsible for making sure that there are no remaining references to anything in the bundle’s code before it is unloaded. In the previous approach, by contrast, this responsibility can be distributed to the individual code sections that use the bundle, by making sure that each one keeps its own retain on the CFBundle object.
+///
+/// One further point about CFBundle reference counting: if you are taking the first approach, but do not actually wish the bundle’s code to be unloaded (as is often the case), or if you are taking the second approach of manually managing the unloading yourself, then in many cases you do not actually have to worry about releasing a CFBundle object. CFBundle instances are uniqued, so there is only one CFBundle object for a given bundle, and rarely are there so many bundles being considered at once that the memory usage for CFBundle objects would be significant. There are cases in which a process could create CFBundle objects for potentially an unlimited number of bundles, and such processes would wish to balance retains and releases carefully, but such cases are likely to be rare.
+///
+/// Note that it is best to compile any unloadable bundles with the flag `-fno-constant-cfstrings`—see [Bundle Programming Guide](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i) for more details.
+///
+///
 #[doc(alias = "CFBundleRef")]
 #[repr(C)]
 pub struct CFBundle {
@@ -25,7 +50,12 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFBundle"> for CFBundle {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugin?language=objc)
+///
+/// ## Overview
+///
+/// `CFPlugIn` provides a standard architecture for application extensions. With `CFPlugIn`, you can design your application as a host framework that uses a set of executable code modules called plug-ins to provide certain well-defined areas of functionality. This approach allows third-party developers to add features to your application without requiring access to your source code. You can also bundle together plug-ins for multiple platforms and let `CFPlugIn` transparently load the appropriate plug-in at runtime. You can use `CFPlugIn` to add plug-in capability to, or write a plug-in for, your application.
+///
+///
 #[doc(alias = "CFPlugInRef")]
 #[repr(C)]
 pub struct CFPlugIn {
@@ -42,42 +72,68 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleinfodictionaryversionkey?language=objc)
+    /// The version of the information property list format.
     pub static kCFBundleInfoDictionaryVersionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablekey?language=objc)
+    /// The name of the executable in this bundle (if any).
     pub static kCFBundleExecutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleidentifierkey?language=objc)
+    /// The bundle identifier.
     pub static kCFBundleIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleversionkey?language=objc)
+    /// The version number of the bundle.
     pub static kCFBundleVersionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundledevelopmentregionkey?language=objc)
+    /// The name of the development language of the bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// When CFBundle looks for resources, the fallback is to look in the lproj whose name is given by the `kCFBundleDevelopmentRegionKey` in the `Info.plist` file. You must, therefore, ensure that a bundle contains an lproj with that exact name containing a copy of every localized resource, otherwise CFBundle cannot guarantee the fallback mechanism will work.
+    ///
+    ///
     pub static kCFBundleDevelopmentRegionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlenamekey?language=objc)
+    /// The human-readable name of the bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is often found in the `InfoPlist.strings` since it is usually localized.
+    ///
+    ///
     pub static kCFBundleNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlelocalizationskey?language=objc)
+    /// Allows an unbundled application that handles localization itself to specify which localizations it has available.
     pub static kCFBundleLocalizationsKey: Option<&'static CFString>;
 }
 
 impl CFBundle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetmainbundle()?language=objc)
+    /// Returns an application’s main bundle.
+    ///
+    /// ## Return Value
+    ///
+    /// A CFBundle object representing the application’s main bundle, or `NULL` if it is not possible to create a bundle. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFBundle creates a main bundle whenever it possibly can, even for unbundled apps. There are a few situations in which it is not possible, so you should check the return value against `NULL`, but this happens only in exceptional circumstances.
+    ///
+    /// For an explanation of the main bundle, see [Locating and Opening Bundles](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/AccessingaBundlesContents/AccessingaBundlesContents.html#//apple_ref/doc/uid/10000123i-CH104-SW6) in [Bundle Programming Guide](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i).
+    ///
+    ///
     #[doc(alias = "CFBundleGetMainBundle")]
     #[inline]
     pub fn main_bundle() -> Option<CFRetained<CFBundle>> {
@@ -88,7 +144,31 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetbundlewithidentifier(_:)?language=objc)
+    /// Locate a bundle given its program-defined identifier.
+    ///
+    /// Parameters:
+    /// - bundleID: The identifier of the bundle to locate. Note that identifier names are case-sensitive.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFBundle object, or `NULL` if the bundle was not found. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a bundle to be located using its identifier, the bundle must already have been loaded. The principal purpose for locating bundles by identifier is for code in frameworks or plugins to find its own bundle.
+    ///
+    /// Bundle identifiers are created by entering a value for the key `CFBundleIdentifier` in the bundle’s `Info.plist` file.
+    ///
+    /// To ensure uniqueness, you should create bundle identifiers with the form of reverse-DNS naming style package names, such as `com.MyCompany.MyApp.bundleName`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// If a bundle object is created and the bundle file structure later deleted from the filesystem, this function will still return the original bundle object.
+    ///
+    ///
     #[doc(alias = "CFBundleGetBundleWithIdentifier")]
     #[inline]
     pub fn bundle_with_identifier(bundle_id: Option<&CFString>) -> Option<CFRetained<CFBundle>> {
@@ -101,7 +181,19 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetallbundles()?language=objc)
+    /// Returns an array containing all of the bundles currently open in the application.
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object containing CFBundle objects for each open bundle in the application. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is potentially expensive and not thread-safe. It’s best used for debugging or other diagnostics purposes rather than as part of the main execution path of production code.
+    ///
+    ///
     #[doc(alias = "CFBundleGetAllBundles")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -115,7 +207,13 @@ impl CFBundle {
 }
 
 unsafe impl ConcreteType for CFBundle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegettypeid()?language=objc)
+    /// Returns the type identifier for the CFBundle opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFBundle opaque type.
+    ///
+    ///
     #[doc(alias = "CFBundleGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -127,7 +225,29 @@ unsafe impl ConcreteType for CFBundle {
 }
 
 impl CFBundle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecreate(_:_:)?language=objc)
+    /// Creates a CFBundle object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - bundleURL: The location of the bundle for which to create a CFBundle object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFBundle object created from the bundle at `bundleURL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns `NULL` if there was a memory allocation problem. May return an existing CFBundle object with the reference count incremented. May return `NULL` if the bundle doesn’t exist at `bundleURL` (see Discussion).
+    ///
+    /// ## Discussion
+    ///
+    /// Once a bundle has been created, it is cached; the bundle cache is flushed only periodically. `CFBundleCreate` does not check that a cached bundle still exists in the filesystem. If a bundle is deleted from the filesystem, it is therefore possible for `CFBundleCreate` to return a cached bundle that has actually been deleted.
+    ///
+    ///
     #[doc(alias = "CFBundleCreate")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -145,7 +265,31 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecreatebundlesfromdirectory(_:_:_:)?language=objc)
+    /// Searches a directory and constructs an array of CFBundle objects from all valid bundles in the specified directory.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - directoryURL: The location of the directory to search for valid bundles.
+    ///
+    /// - bundleType: The abstract type of the bundles to locate and create. The type is expressed as a filename extension, such as `bundle`. Pass `NULL` to create CFBundle objects for bundles of any type.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object containing CFBundle objects created from the contents of the specified directory. Returns an empty array if no bundles exist at `directoryURL`, and `NULL` if there was a memory allocation problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The array returned by this function will not contain stale CFBundle references.
+    ///
+    /// ### Special Considerations
+    ///
+    /// The [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) applies both to the array returned and to the bundles in the array. In order to properly dispose of the returned value, you must release the array _and_ any bundles returned in the array.
+    ///
+    ///
     #[doc(alias = "CFBundleCreateBundlesFromDirectory")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -166,7 +310,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundleurl(_:)?language=objc)
+    /// Returns the location of a bundle.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of `bundle`, or `NULL` if the specified bundle does not exist. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopyBundleURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -178,7 +332,25 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetvalueforinfodictionarykey(_:_:)?language=objc)
+    /// Returns a value (localized if possible) from a bundle’s information dictionary.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - key: The key for the value to return.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value corresponding to `key` in `bundle`’s information dictionary. If available, a localized value is returned, otherwise the global value is returned. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should use this function rather than retrieving values directly from the info dictionary (`Info.plist`) because `CFBundleGetValueForInfoDictionaryKey` returns localized values if any are available (from the `InfoPlist.strings` file for the current locale).
+    ///
+    ///
     #[doc(alias = "CFBundleGetValueForInfoDictionaryKey")]
     #[inline]
     pub fn value_for_info_dictionary_key(
@@ -195,7 +367,25 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetinfodictionary(_:)?language=objc)
+    /// Returns a bundle’s information dictionary.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFDictionary object containing the data stored in the bundle’s information property list (the `Info.plist` file). This is a global information dictionary. CFBundle may add extra keys to this dictionary for its own use. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should typically use [`CFBundleGetValueForInfoDictionaryKey`](https://developer.apple.com/documentation/corefoundation/cfbundlegetvalueforinfodictionarykey(_:_:)) rather than retrieving values directly from the info dictionary because the function will return localized values if any are available. Use `CFBundleGetInfoDictionary` only if you know that the key you are interested in will not be localized.
+    ///
+    /// To retrieve an info dictionary without creating a CFBundle object, see [`CFBundleCopyInfoDictionaryInDirectory`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryindirectory(_:)) and [`CFBundleCopyInfoDictionaryForURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryforurl(_:)).
+    ///
+    ///
     #[doc(alias = "CFBundleGetInfoDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -207,7 +397,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetlocalinfodictionary(_:)?language=objc)
+    /// Returns a bundle’s localized information dictionary.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the key-value pairs in `bundle`’s localized information dictionary (from the `InfoPlist.strings` file for the current locale). Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFBundleGetLocalInfoDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -219,7 +419,15 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetpackageinfo(_:_:_:)?language=objc)
+    /// Returns a bundle’s package type and creator.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - packageType: On return, the four-letter type code for the bundle. This is `APPL` for applications, `FMWK` for frameworks, and `BNDL` for generic bundles. Or a more specific type code for generic bundles.
+    ///
+    /// - packageCreator: On return, the four-letter “creator” code for the bundle.
+    ///
     ///
     /// # Safety
     ///
@@ -238,7 +446,17 @@ impl CFBundle {
         unsafe { CFBundleGetPackageInfo(self, package_type, package_creator) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetidentifier(_:)?language=objc)
+    /// Returns the bundle identifier from a bundle’s information property list.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object containing the bundle’s identifier, or `NULL` if none was specified in the information property list. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFBundleGetIdentifier")]
     #[inline]
     pub fn identifier(&self) -> Option<CFRetained<CFString>> {
@@ -249,7 +467,25 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetversionnumber(_:)?language=objc)
+    /// Returns a bundle’s version number.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine. The bundle’s version number can be number or a string of the standard form “2.5.3d5”.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `vers` resource style version number. If it is a string, it is automatically converted to the numeric representation, where the major version number is restricted to 2 BCD digits (in other words, it must be in the range 0-99) and the minor and bug fix version numbers are each restricted to a single BCD digit (0-9).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is only supported for the `vers` resource style version numbers. Where other version number styles—namely X, or X.Y, or X.Y.Z—are used, you can use [`CFBundleGetValueForInfoDictionaryKey`](https://developer.apple.com/documentation/corefoundation/cfbundlegetvalueforinfodictionarykey(_:_:)) with the key `kCFBundleVersionKey` to extract the version number as a string from the bundle’s information dictionary.
+    ///
+    /// Some version numbers of the form X, X.Y, and X.Y.Z may work with this function, if X <= 99, Y <= 9, and Z <= 9. Thus a version number 76.5.4 will work, but 76.12 will not work.
+    ///
+    ///
     #[doc(alias = "CFBundleGetVersionNumber")]
     #[inline]
     pub fn version_number(&self) -> u32 {
@@ -259,7 +495,17 @@ impl CFBundle {
         unsafe { CFBundleGetVersionNumber(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetdevelopmentregion(_:)?language=objc)
+    /// Returns the bundle’s development region from the bundle’s information property list.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object containing the name of the bundle’s development region. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFBundleGetDevelopmentRegion")]
     #[inline]
     pub fn development_region(&self) -> Option<CFRetained<CFString>> {
@@ -270,7 +516,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopysupportfilesdirectoryurl(_:)?language=objc)
+    /// Returns the location of the bundle’s support files directory.
+    ///
+    /// Parameters:
+    /// - bundle: The CFBundle object whose support files directory you want to locate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of the bundle’s support files directory, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In general, you should never need to use this function. Use [`CFBundleCopyResourceURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurl(_:_:_:_:)) and similar functions instead.
+    ///
+    ///
     #[doc(alias = "CFBundleCopySupportFilesDirectoryURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -282,7 +544,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourcesdirectoryurl(_:)?language=objc)
+    /// Returns the location of a bundle’s Resources directory.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of `bundle`’s resources directory, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In general, you should never need to use this function. Use [`CFBundleCopyResourceURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurl(_:_:_:_:)) and similar functions instead.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourcesDirectoryURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -294,7 +572,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyprivateframeworksurl(_:)?language=objc)
+    /// Returns the location of a bundle’s private Frameworks directory.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of `bundle`’s private frameworks directory, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopyPrivateFrameworksURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -306,7 +594,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopysharedframeworksurl(_:)?language=objc)
+    /// Returns the location of a bundle’s shared frameworks directory.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object containing the location of `bundle`’s shared frameworks directory, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopySharedFrameworksURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -318,7 +616,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopysharedsupporturl(_:)?language=objc)
+    /// Returns the location of a bundle’s shared support files directory.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object containing the location of `bundle`’s shared support files directory, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopySharedSupportURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -330,7 +638,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopybuiltinpluginsurl(_:)?language=objc)
+    /// Returns the location of a bundle’s built in plug-in.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of `bundle`’s built in plug-ins, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopyBuiltInPlugInsURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -342,7 +660,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryindirectory(_:)?language=objc)
+    /// Returns a bundle’s information dictionary.
+    ///
+    /// Parameters:
+    /// - bundleURL: A CFURL object describing the location of a bundle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFDictionary object containing the information dictionary for a bundle located at `bundleURL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a means to obtain an information dictionary for a bundle without first creating a CFBundle object.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyInfoDictionaryInDirectory")]
     #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
     #[inline]
@@ -358,7 +692,21 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetpackageinfoindirectory(_:_:_:)?language=objc)
+    /// Returns a bundle’s package type and creator without having to create a CFBundle object.
+    ///
+    /// Parameters:
+    /// - url: The location of a bundle.
+    ///
+    /// - packageType: On return, the four-letter type code for the bundle. This is `APPL` for applications, `FMWK` for frameworks, and `BNDL` for generic bundles. Or a more specific type code for generic bundles.
+    ///
+    /// - packageCreator: On return, the four-letter “creator” code for the bundle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the package type and creator were found, otherwise `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -384,7 +732,33 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurl(_:_:_:_:)?language=objc)
+    /// Returns the location of a resource contained in the specified bundle.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - resourceName: The name of the requested resource.
+    ///
+    /// - resourceType: The abstract type of the requested resource. The type is expressed as a filename extension, such as `jpg`. Pass `NULL` if `resourceName` is the complete name of the file you’re looking for, including any extension.
+    ///
+    /// - subDirName: The name of the subdirectory of the bundle’s resources directory to search. Pass `NULL` to search the standard CFBundle resource locations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of the requested resource, or `NULL` if the resource cannot be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For example, if a bundle contains a subdirectory `WaterSounds` that includes a file `Water1.aiff`, you can retrieve the URL for the file using:
+    ///
+    /// ```objc
+    /// CFBundleCopyResourceURL(bundle, CFSTR("Water1"), CFSTR("aiff"), CFSTR("WaterSounds"));
+    /// ```
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourceURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -407,7 +781,27 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftype(_:_:_:)?language=objc)
+    /// Assembles an array of URLs specifying all of the resources of the specified type found in a bundle.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - resourceType: The abstract type of the resources to locate. The type is expressed as a filename extension, such as `jpg`.
+    ///
+    /// - subDirName: The name of the subdirectory of the bundle’s resources directory to search. Pass `NULL` to search the standard CFBundle resource locations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object containing CFURL objects of the requested resources. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that searches are case-sensitive, even on file systems (such as HFS+) that are not case sensitive with regards to file names.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourceURLsOfType")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -427,7 +821,29 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizedstring(_:_:_:_:)?language=objc)
+    /// Returns a localized string from a bundle’s strings file.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - key: The key for the localized string to retrieve. This key will be used to look up the localized string in the strings file. Typically the key is identical to the value of the localized string in the development language.
+    ///
+    /// - value: A default value to return if no value exists for `key`.
+    ///
+    /// - tableName: The name of the strings file to search. The name should not include the `strings` filename extension. The case of the string must match that of the file name, even on file systems (such as HFS+) that are not case sensitive with regards to file names
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object that contains the localized string. If no value exists for `key`, returns `value` unless `value` is `NULL` or an empty string, in which case `key` is returned instead. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is the base function from which the other localized string macros are derived. In general you should not use this function because the `genstrings` development tool only recognizes the macro version of this call when generating strings files. See [`CFCopyLocalizedString`](https://developer.apple.com/documentation/corefoundation/cfcopylocalizedstring) for details on how to use these macros.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyLocalizedString")]
     #[inline]
     pub fn localized_string(
@@ -448,6 +864,31 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a localized string from a bundle’s strings file.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - key: The key for the localized string to retrieve. This key will be used to look up the localized string in the strings file. Typically the key is identical to the value of the localized string in the development language.
+    ///
+    /// - value: A default value to return if no value exists for `key`.
+    ///
+    /// - tableName: The name of the strings file to search. The name should not include the `strings` filename extension. The case of the string must match that of the file name, even on file systems (such as HFS+) that are not case sensitive with regards to file names
+    ///
+    /// - localizations: An array of BCP 47 language codes corresponding to available localizations. Bundle compares the array against its available localizations, and uses the best result to retrieve the localized string. If empty, we treat it as no localization is available, and may return a fallback.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFString object that contains the localized string. If no value exists for `key`, returns `value` unless `value` is `NULL` or an empty string, in which case `key` is returned instead. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns a localized string given a list of possible localizations. The one most suitable to use with the given `bundle` is returned.
+    ///
+    ///
     /// Returns a localized string given a list of possible localizations. The one most suitable to use with the given ``bundle`` is returned.
     /// - Parameters:
     /// - bundle: The bundle to examine.
@@ -464,8 +905,6 @@ impl CFBundle {
     /// - `table_name` might not allow `None`.
     /// - `localizations` generic must be of the correct type.
     /// - `localizations` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizedstringforlocalizations(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFBundleCopyLocalizedStringForLocalizations")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -491,7 +930,31 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlindirectory(_:_:_:_:)?language=objc)
+    /// Returns the location of a resource contained in the specified bundle directory without requiring the creation of a CFBundle object.
+    ///
+    /// Parameters:
+    /// - bundleURL: The bundle to examine.
+    ///
+    /// - resourceName: The name of the requested resource.
+    ///
+    /// - resourceType: The abstract type of the requested resource. The type is expressed as a filename extension, such as `jpg`. Pass `NULL` if you don’t need to search by type.
+    ///
+    /// - subDirName: The name of the subdirectory of the bundle’s resources directory  to search. Pass `NULL` to search the standard CFBundle resource locations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of the requested resource, or `NULL` if the resource cannot be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a means to obtain package information for a bundle without first creating a bundle. However, since CFBundle objects cache search results, it is faster to create a CFBundle object if you need to repeatedly access resources.
+    ///
+    /// Note that searches are case-sensitive, even on file systems (such as HFS+) that are not case sensitive with regards to file names.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourceURLInDirectory")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -520,7 +983,29 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftypeindirectory(_:_:_:)?language=objc)
+    /// Returns an array of CFURL objects describing the locations of all resources in a bundle of the specified type without needing to create a CFBundle object.
+    ///
+    /// Parameters:
+    /// - bundleURL: The location of a bundle to examine.
+    ///
+    /// - resourceType: The abstract type of the resources to locate. The type is expressed as a filename extension, such as `jpg`.
+    ///
+    /// - subDirName: The name of the subdirectory of the bundle’s resources directory to search. Pass `NULL` to search the standard CFBundle resource locations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object containing the CFURL objects of the requested resources. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a means to obtain an array containing the locations of all of the requested resources without first creating a CFBundle object. However, since CFBundle objects cache search results, it is faster to create a CFBundle object if you need to repeatedly access resources.
+    ///
+    /// Note that file names are case-sensitive, even on file systems (such as HFS+) that are not case sensitive with regards to file names.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourceURLsOfTypeInDirectory")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -542,7 +1027,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)?language=objc)
+    /// Returns an array containing a bundle’s localizations.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing `bundle`’s localizations. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The array returned by this function is typically passed as a parameter to either the [`CFBundleCopyPreferredLocalizationsFromArray`](https://developer.apple.com/documentation/corefoundation/cfbundlecopypreferredlocalizationsfromarray(_:)) or [`CFBundleCopyLocalizationsForPreferences`](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforpreferences(_:_:)) function.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyBundleLocalizations")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -554,7 +1055,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopypreferredlocalizationsfromarray(_:)?language=objc)
+    /// Given an array of possible localizations, returns the one or more of them that CFBundle would use in the current application context.
+    ///
+    /// Parameters:
+    /// - locArray: An array of possible localizations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A subset of `locArray` that CFBundle would use in the current application context. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can obtain `locArray` using the [`CFBundleCopyBundleLocalizations`](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -575,7 +1092,25 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforpreferences(_:_:)?language=objc)
+    /// Given an array of possible localizations and preferred locations, returns the one or more of them that CFBundle would use, without reference to the current application context.
+    ///
+    /// Parameters:
+    /// - locArray: An array of possible localizations to search.
+    ///
+    /// - prefArray: An array of preferred localizations. If `NULL`, the user’s actual preferred localizations will be used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing the localizations that CFBundle would use. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is not the same as [`CFBundleCopyPreferredLocalizationsFromArray`](https://developer.apple.com/documentation/corefoundation/cfbundlecopypreferredlocalizationsfromarray(_:)), because that function takes the current application context into account. To determine the localizations that another application would use, apply this function to the result of [`CFBundleCopyBundleLocalizations`](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -600,7 +1135,33 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlforlocalization(_:_:_:_:_:)?language=objc)
+    /// Returns the location of a localized resource in a bundle.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - resourceName: The name of the requested resource.
+    ///
+    /// - resourceType: The abstract type of the resource to locate. The type is expressed as a filename extension, such as `jpg`.
+    ///
+    /// - subDirName: The name of the subdirectory of the bundle’s resources directory to search. Pass `NULL` to search the standard CFBundle resource locations.
+    ///
+    /// - localizationName: The name of the localization. This value should correspond to the name of one of the bundle’s language-specific resource directories without the `.lproj` extension. (This parameter is treated literally: If you pass `"de"`, the function will not match resources in a `German.lproj` directory in the bundle.)
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The location of a localized resource in `bundle`, or `NULL` if the resource could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that file names are case-sensitive, even on file systems (such as HFS+) that are not case sensitive with regards to file names.
+    ///
+    /// You should typically have little reason to use this function (see Getting the Current Language and Locale)—CFBundle’s interfaces automatically apply the user’s preferences to determine which localized resource files to return in response to a programmatic request. See also [`CFBundleCopyBundleLocalizations`](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)) for how to determine what localizations are available
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourceURLForLocalization")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -632,7 +1193,31 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyresourceurlsoftypeforlocalization(_:_:_:_:)?language=objc)
+    /// Returns an array containing copies of the URL locations for a specified bundle, resource, and localization name.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - resourceType: The abstract type of the resources to locate. The type is expressed as a filename extension, such as `jpg`.
+    ///
+    /// - subDirName: The name of the subdirectory of the bundle’s Resources directory to search. Pass `NULL` to search the standard CFBundle resource locations.
+    ///
+    /// - localizationName: The name of the localization. This value should correspond to the name of one of the bundle’s language-specific resource directories without the `.lproj` extension. (This parameter is treated literally: If you pass `"de"`, the function will not match resources in a `German.lproj` directory in the bundle.)
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object containing copies of the requested locations. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that file names are case-sensitive, even on file systems (such as HFS+) that are not case sensitive with regards to file names.
+    ///
+    /// You should typically have little reason to use this function (see Getting the Current Language and Locale)—CFBundle’s interfaces automatically apply the user’s preferences to determine which localized resource files to return in response to a programmatic request. See also [`CFBundleCopyBundleLocalizations`](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)) for how to determine what localizations are available
+    ///
+    ///
     #[doc(alias = "CFBundleCopyResourceURLsOfTypeForLocalization")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -661,7 +1246,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryforurl(_:)?language=objc)
+    /// Returns the information dictionary for a given URL location.
+    ///
+    /// Parameters:
+    /// - url: A CFURL object describing the location of a file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFDictionary object containing `url`’s information dictionary. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a directory URL, this is equivalent to [`CFBundleCopyInfoDictionaryInDirectory`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryindirectory(_:)). For a plain file URL representing an unbundled application, this function will attempt to read an information dictionary either from the `(__TEXT, __info_plist)` section of the file (for a Mach-O file) or from a `plst` resource.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyInfoDictionaryForURL")]
     #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
     #[inline]
@@ -675,7 +1276,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopylocalizationsforurl(_:)?language=objc)
+    /// Returns an array containing the localizations for a bundle or executable at a particular location.
+    ///
+    /// Parameters:
+    /// - url: The location of a bundle’s localizations.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing the localizations available at `url`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a directory URL, this is equivalent to calling the [`CFBundleCopyBundleLocalizations`](https://developer.apple.com/documentation/corefoundation/cfbundlecopybundlelocalizations(_:)) function on the corresponding bundle. For a plain file URL representing an unbundled application, this will attempt to determine its localizations using the [`kCFBundleLocalizationsKey`](https://developer.apple.com/documentation/corefoundation/kcfbundlelocalizationskey) and [`kCFBundleDevelopmentRegionKey`](https://developer.apple.com/documentation/corefoundation/kcfbundledevelopmentregionkey) keys in the dictionary returned by [`CFBundleCopyInfoDictionaryForURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryforurl(_:)), or a `vers` resource if those are not present.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyLocalizationsForURL")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -687,7 +1304,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutablearchitecturesforurl(_:)?language=objc)
+    /// Returns an array of CFNumbers representing the architectures a given URL provides.
+    ///
+    /// Parameters:
+    /// - url: The URL to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// For a directory URL, if the bundle’s executable exists and is a Mach-O file, returns an array of CFNumbers whose values are integers representing the architectures the URL provides. For a plain file URL representing an unbundled executable, returns the architectures it provides if it is a Mach-O file. Possible values are listed in [Architecture Types](https://developer.apple.com/documentation/corefoundation/1537096-architecture-types). If there is no bundle executable or if the executable is not a Mach-O file, returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a directory URL, this is equivalent to calling [`CFBundleCopyExecutableArchitectures`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutablearchitectures(_:)) on the corresponding bundle.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyExecutableArchitecturesForURL")]
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
     #[inline]
@@ -701,7 +1334,17 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutableurl(_:)?language=objc)
+    /// Returns the location of a bundle’s main executable code.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFURL object describing the location of `bundle`’s executable code, or `NULL` if none is found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopyExecutableURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -714,19 +1357,28 @@ impl CFBundle {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablearchitecturei386?language=objc)
+/// Specifies the 32-bit Intel architecture.
 pub const kCFBundleExecutableArchitectureI386: c_uint = 0x00000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablearchitectureppc?language=objc)
+/// Specifies the 32-bit PowerPC architecture.
 pub const kCFBundleExecutableArchitecturePPC: c_uint = 0x00000012;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablearchitecturex86_64?language=objc)
+/// Specifies the 64-bit Intel architecture.
 pub const kCFBundleExecutableArchitectureX86_64: c_uint = 0x01000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablearchitectureppc64?language=objc)
+/// Specifies the 64-bit PowerPC architecture.
 pub const kCFBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablearchitecturearm64?language=objc)
 pub const kCFBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 impl CFBundle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyexecutablearchitectures(_:)?language=objc)
+    /// Returns an array of CFNumbers representing the architectures a given bundle provides.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If the bundle’s executable exists and is a Mach-O file, returns an array of CFNumbers whose values are integers representing the architectures the file provides. Possible values are listed in [Architecture Types](https://developer.apple.com/documentation/corefoundation/1537096-architecture-types). If the executable is not a Mach-O file, returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFBundleCopyExecutableArchitectures")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -738,7 +1390,25 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlepreflightexecutable(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a given bundle is loaded or appears to be loadable.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - error: Upon return, if an error occurs contains a CFError that describes the problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `bundle` is loaded or upon inspection appears to be loadable, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function returns true, this does not mean that the bundle is definitively loadable, since it may fail to load due to link errors or other problems not readily detectable.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -754,7 +1424,19 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleloadexecutableandreturnerror(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a given bundle is loaded, attempting to load it if necessary.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - error: Upon return, if an error occurs contains a CFError that describes the problem. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `bundle` is already loaded, returns `true`. If `bundle` is not already loaded, attempts to load `bundle`; if that attempt succeeds returns `true`, otherwise returns `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -773,7 +1455,23 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleloadexecutable(_:)?language=objc)
+    /// Loads a bundle’s main executable code into memory and dynamically links it into the running application.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle whose main executable you want to load.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the executable was successfully loaded, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should typically try to avoid using this function, but instead use [`CFBundleGetFunctionPointerForName`](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointerforname(_:_:)) and related functions since these make memory management of the bundle easier.
+    ///
+    ///
     #[doc(alias = "CFBundleLoadExecutable")]
     #[inline]
     pub unsafe fn load_executable(&self) -> bool {
@@ -784,7 +1482,17 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisexecutableloaded(_:)?language=objc)
+    /// Obtains information about the load status for a bundle’s main executable.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `bundle`’s main executable has been loaded, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFBundleIsExecutableLoaded")]
     #[inline]
     pub fn is_executable_loaded(&self) -> bool {
@@ -795,7 +1503,17 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleunloadexecutable(_:)?language=objc)
+    /// Unloads the main executable for the specified bundle.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle whose main executable you want to unload.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should typically try to avoid using this function, but instead use [`CFBundleGetFunctionPointerForName`](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointerforname(_:_:)) and related functions since these make management of the bundle easier (when the last reference to the CFBundle object is released, and it is finally deallocated, then the code will be unloaded if it is still loaded, and if the executable is of a type that supports unloading).
+    ///
+    ///
     #[doc(alias = "CFBundleUnloadExecutable")]
     #[inline]
     pub unsafe fn unload_executable(&self) {
@@ -805,7 +1523,25 @@ impl CFBundle {
         unsafe { CFBundleUnloadExecutable(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointerforname(_:_:)?language=objc)
+    /// Returns a pointer to a function in a bundle’s executable code using the function name as the search key.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - functionName: The name of the function to locate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to a function in a `bundle`’s executable code, or `NULL` if `functionName` cannot be found. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function will cause the bundle’s code to be loaded if necessary.
+    ///
+    ///
     #[doc(alias = "CFBundleGetFunctionPointerForName")]
     #[inline]
     pub fn function_pointer_for_name(&self, function_name: Option<&CFString>) -> *mut c_void {
@@ -818,7 +1554,21 @@ impl CFBundle {
         unsafe { CFBundleGetFunctionPointerForName(self, function_name) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetfunctionpointersfornames(_:_:_:)?language=objc)
+    /// Constructs a function table containing pointers to all of the functions found in a bundle’s main executable code.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - functionNames: A CFArray object containing a list of the function names to locate.
+    ///
+    /// - ftbl: A C array into which this function stores the function pointers for the symbols specified in `functionNames`. The array contains `NULL` for any names in `functionNames` that cannot be found.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function causes the bundle’s code to be loaded if necessary.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -843,7 +1593,19 @@ impl CFBundle {
         unsafe { CFBundleGetFunctionPointersForNames(self, function_names, ftbl) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetdatapointerforname(_:_:)?language=objc)
+    /// Returns a data pointer to a symbol of the given name.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - symbolName: The name of the symbol you are searching for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A data pointer to a symbol named `symbolName` in `bundle`, or `NULL` if `symbolName` cannot be found. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFBundleGetDataPointerForName")]
     #[inline]
     pub fn data_pointer_for_name(&self, symbol_name: Option<&CFString>) -> *mut c_void {
@@ -856,7 +1618,15 @@ impl CFBundle {
         unsafe { CFBundleGetDataPointerForName(self, symbol_name) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetdatapointersfornames(_:_:_:)?language=objc)
+    /// Returns a C array of data pointer to symbols of the given names.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - symbolNames: A CFArray object containing CFString objects representing the symbol names to search for.
+    ///
+    /// - stbl: A C array into which this function stores the data pointers for the symbols specified in `symbolNames`. The array contains `NULL` for any names in `symbolNames` that cannot be found.
+    ///
     ///
     /// # Safety
     ///
@@ -881,7 +1651,25 @@ impl CFBundle {
         unsafe { CFBundleGetDataPointersForNames(self, symbol_names, stbl) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlecopyauxiliaryexecutableurl(_:_:)?language=objc)
+    /// Returns the location of a bundle’s auxiliary executable code.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    /// - executableName: The name of `bundle`’s auxiliary executable code.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The URL location of the specified bundle’s auxiliary executable code, or `NULL` if it could not be found. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to find executables other than your main executable. This is useful, for instance, for applications that have some command line tool that is packaged with and used by the application. The tool can be packaged in the various platform executable directories in the bundle and can be located with this function. This allows an application to ship versions of the tool for each platform as it does for the main application executable.
+    ///
+    ///
     #[doc(alias = "CFBundleCopyAuxiliaryExecutableURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -899,7 +1687,6 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisexecutableloadable(_:)?language=objc)
     #[doc(alias = "CFBundleIsExecutableLoadable")]
     #[inline]
     pub fn is_executable_loadable(&self) -> bool {
@@ -910,7 +1697,6 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisexecutableloadableforurl(_:)?language=objc)
     #[doc(alias = "CFBundleIsExecutableLoadableForURL")]
     #[cfg(feature = "CFURL")]
     #[inline]
@@ -922,7 +1708,6 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleisarchitectureloadable(_:)?language=objc)
     #[doc(alias = "CFBundleIsArchitectureLoadable")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -934,7 +1719,17 @@ impl CFBundle {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundlegetplugin(_:)?language=objc)
+    /// Returns a bundle’s plug-in.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The plug-in for `bundle`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFBundleGetPlugIn")]
     #[inline]
     pub fn plug_in(&self) -> Option<CFRetained<CFPlugIn>> {
@@ -945,7 +1740,23 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleopenbundleresourcemap(_:)?language=objc)
+    /// Opens the non-localized and localized resource files (if any) for a bundle in a single resource map.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle whose resource map you want to open.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A distinct reference number for the resource map.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates and makes current a single read-only resource map containing the non-localized and localized resource files. If this function is called multiple times, it opens the files multiple times and returns distinct reference numbers for each. Use [`CFBundleCloseBundleResourceMap`](https://developer.apple.com/documentation/corefoundation/cfbundleclosebundleresourcemap(_:_:)) to close a resource map.
+    ///
+    ///
     #[doc(alias = "CFBundleOpenBundleResourceMap")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]
@@ -956,7 +1767,21 @@ impl CFBundle {
         unsafe { CFBundleOpenBundleResourceMap(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleopenbundleresourcefiles(_:_:_:)?language=objc)
+    /// Opens the non-localized and localized resource files (if any) for a bundle in separate resource maps.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle whose resource map you want to open.
+    ///
+    /// - refNum: On return, the reference number of the non-localized resource map.
+    ///
+    /// - localizedRefNum: On return, the reference number of the localized resource map.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code. The function returns `0` (`noErr`) if successful. If the bundle contains more than one resource file, the function returns an error code only if none was opened. The most common error is `resFNotFound`, but the function may also pass through other errors returned from the Resource Manager.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -980,7 +1805,19 @@ impl CFBundle {
         unsafe { CFBundleOpenBundleResourceFiles(self, ref_num, localized_ref_num) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleclosebundleresourcemap(_:_:)?language=objc)
+    /// Closes an open resource map for a bundle.
+    ///
+    /// Parameters:
+    /// - bundle: The bundle whose resource map is referenced by `refNum`.
+    ///
+    /// - refNum: The reference number for a resource map to close.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You open a resource map using either [`CFBundleOpenBundleResourceFiles`](https://developer.apple.com/documentation/corefoundation/cfbundleopenbundleresourcefiles(_:_:_:)) or [`CFBundleOpenBundleResourceMap`](https://developer.apple.com/documentation/corefoundation/cfbundleopenbundleresourcemap(_:)).
+    ///
+    ///
     #[doc(alias = "CFBundleCloseBundleResourceMap")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]

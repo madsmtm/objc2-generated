@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// Constraint of a state feature value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlstateconstraint?language=objc)
+    /// Constraint of a state feature value.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLStateConstraint;

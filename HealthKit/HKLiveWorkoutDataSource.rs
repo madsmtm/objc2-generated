@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A data source that automatically provides live data from an active workout session.
     /// An HKLiveWorkoutDataSource is to be used with an HKWorkoutBuilder to automatically collect samples
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkliveworkoutdatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKLiveWorkoutDataSource;

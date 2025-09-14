@@ -7,10 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages the list of previously loaded webpages, which the web view uses for forward and backward navigation.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`WKBackForwardList`](https://developer.apple.com/documentation/webkit/wkbackforwardlist) object to retrieve a web view’s previously loaded pages. Typically, you don’t create [`WKBackForwardList`](https://developer.apple.com/documentation/webkit/wkbackforwardlist) objects directly. Each web view creates one automatically and uses it to store the history of all loaded pages. Fetch this object from your web view’s [`backForwardList`](https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist) property and use its contents to facilitate programmatic navigation.
+    ///
+    ///
     /// A WKBackForwardList object is a list of webpages previously
     /// visited in a web view that can be reached by going back or forward.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkbackforwardlist?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

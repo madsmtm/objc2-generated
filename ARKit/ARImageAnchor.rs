@@ -12,9 +12,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An anchor representing an image in the world.
+    /// An anchor for a known image that ARKit detects in the physical environment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arimageanchor?language=objc)
+    /// ## Overview
+    ///
+    /// When you run a world-tracking AR session and specify [`ARReferenceImage`](https://developer.apple.com/documentation/arkit/arreferenceimage) objects for the session configuration’s [`detectionImages`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/detectionimages) property, ARKit searches for those images in the real-world environment. When the session recognizes an image, it automatically adds an [`ARImageAnchor`](https://developer.apple.com/documentation/arkit/arimageanchor) for each detected image to its list of anchors.
+    ///
+    /// To find the extent of a recognized image in the scene, use the inherited [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) property together with the [`physicalSize`](https://developer.apple.com/documentation/arkit/arreferenceimage/physicalsize) of the anchor’s [`referenceImage`](https://developer.apple.com/documentation/arkit/arimageanchor/referenceimage).
+    ///
+    ///
+    /// An anchor representing an image in the world.
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

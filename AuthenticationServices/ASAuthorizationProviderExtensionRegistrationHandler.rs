@@ -9,19 +9,18 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod?language=objc)
+/// The platform single sign-on method for the user.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionAuthenticationMethod(pub NSInteger);
 impl ASAuthorizationProviderExtensionAuthenticationMethod {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod/password?language=objc)
+    /// Password authentication.
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodPassword")]
     pub const Password: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod/usersecureenclavekey?language=objc)
+    /// Secure Enclave key authentication.
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodUserSecureEnclaveKey")]
     pub const UserSecureEnclaveKey: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthenticationmethod/smartcard?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionAuthenticationMethodSmartCard")]
     pub const SmartCard: Self = Self(3);
 }
@@ -34,35 +33,30 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionAuthenticationMethod {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions?language=objc)
+/// The options for the extension to obtain the status of the registration.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionRequestOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/asauthorizationproviderextensionrequestoptionsnone?language=objc)
+/// Options aren’t available.
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/userinteractionenabled?language=objc)
+/// Indicates that the user interface is in an enabled state.
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserInteractionEnabled")]
         const UserInteractionEnabled = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/registrationrepair?language=objc)
+/// Indicates that the registration is undergoing repair.
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationRepair")]
         const RegistrationRepair = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/registrationshareddevicekeys?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationSharedDeviceKeys")]
         const RegistrationSharedDeviceKeys = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/registrationdevicekeymigration?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsRegistrationDeviceKeyMigration")]
         const RegistrationDeviceKeyMigration = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/strongerkeyavailable?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsStrongerKeyAvailable")]
         const StrongerKeyAvailable = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/userkeyinvalid?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsUserKeyInvalid")]
         const UserKeyInvalid = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions/setupassistant?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionRequestOptionsSetupAssistant")]
         const SetupAssistant = 1<<6;
     }
@@ -76,22 +70,28 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRequestOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult?language=objc)
+/// The registration result.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionRegistrationResult(pub NSInteger);
 impl ASAuthorizationProviderExtensionRegistrationResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/success?language=objc)
+    /// The registration succeeds.
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/failed?language=objc)
+    /// The registration fails to complete and the system retries later.
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailed")]
     pub const Failed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/userinterfacerequired?language=objc)
+    /// The user interface is required to complete registration.
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultUserInterfaceRequired")]
     pub const UserInterfaceRequired: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult/failednoretry?language=objc)
+    /// The registration fails to complete and the system doesn’t retry later.
+    ///
+    /// ## Discussion
+    ///
+    /// The system attemps to reregister when the mobile device management (MDM) profile changes, or the extension updates.
+    ///
+    ///
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultFailedNoRetry")]
     pub const FailedNoRetry: Self = Self(3);
 }
@@ -104,26 +104,20 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRegistrationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionSupportedGrantTypes(pub NSInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionSupportedGrantTypes: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/asauthorizationproviderextensionsupportedgranttypesnone?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/password?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesPassword")]
         const Password = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/jwtbearer?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesJWTBearer")]
         const JWTBearer = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/saml1_1?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML1_1")]
         const SAML1_1 = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes/saml2_0?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionSupportedGrantTypesSAML2_0")]
         const SAML2_0 = 1<<3;
     }
@@ -137,16 +131,13 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionSupportedGrantTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionPlatformSSOProtocolVersion(pub NSInteger);
 impl ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion/version1_0?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0")]
     pub const Version1_0: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion/version2_0?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0")]
     pub const Version2_0: Self = Self(1);
 }
@@ -160,7 +151,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionPlatformSSOProtocolVer
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationhandler?language=objc)
+    /// An interface through which a single sign-on (SSO) authentication provider extension registers users and devices for platform SSO.
     pub unsafe trait ASAuthorizationProviderExtensionRegistrationHandler:
         NSObjectProtocol
     {

@@ -8,7 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmsensordatalist?language=objc)
+    /// A list of the accelerometer data recorded by the system.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class directly. Instead, you receive one as the result of a query for accelerometer data from a [`CMSensorRecorder`](https://developer.apple.com/documentation/coremotion/cmsensorrecorder) object.
+    ///
+    /// You use a sensor data list object to enumerate over the accelerometer data as shown in the following example:
+    ///
+    /// ```objc
+    /// -(void)processSamplesFromDate:(NSDate*)start toDate:(NSDate)end {
+    ///    CMSensorRecorder* recorder = [[CMSensorRecorder alloc] init];
+    ///    CMSensorDataList* list = [recorder accelerometerDataFrom:start to:end];
+    ///  
+    ///    for (CMRecordedAccelerometerData* data in list) {
+    ///       // Process the data.
+    ///       NSLog(@"Sample: (%f, %f, %f)", data.acceleration.x,
+    ///               data.acceleration.y, data.acceleration.z);
+    ///    }
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMSensorDataList;
@@ -40,7 +61,24 @@ impl CMSensorDataList {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmsensorrecorder?language=objc)
+    /// An object that gathers and retrieves accelerometer data from a device.
+    ///
+    /// ## Overview
+    ///
+    /// Use a sensor recorder to initiate the gathering of accelerometer data. Later, use the sensor recorder to fetch the recorded data so you can analyze it. You might use the recorded data to assess specific types of motion and incorporate the results into your app.
+    ///
+    /// To use a sensor recorder, create an instance of this class and call the [`recordAccelerometerForDuration:`](https://developer.apple.com/documentation/coremotion/cmsensorrecorder/recordaccelerometer(forduration:)) method to begin recording data. You do not need to stop the recording process explicitly. The system stops recording automatically when the specified time expires and no other apps extend the recording time. The following example shows how to record 20 minutes worth of accelerometer data:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["if CMSensorRecorder.isAccelerometerRecordingAvailable() {", "    let recorder = CMSensorRecorder()", "    recorder.recordAccelerometerForDuration(20 * 60)  // Record for 20 minutes", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["if ([CMSensorRecorder isAccelerometerRecordingAvailable]) {", "   CMSensorRecorder* recorder = [[CMSensorRecorder alloc] init];", "   [recorder recordAccelerometerForDuration:(20 * 60)]; // Record for 20 minutes", "}"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use this API, you must include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file and provide a usage description string for this key. The usage description appears in the prompt that the user must accept the first time the system asks the user to access motion data for your app. If you don’t include a usage description string, your app crashes when you call this API.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMSensorRecorder;

@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableheaderview?language=objc)
+    /// An object that draws headers over a table view’s columns and handles mouse events in those headers.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTableHeaderView`](https://developer.apple.com/documentation/appkit/nstableheaderview) uses [`NSTableHeaderCell`](https://developer.apple.com/documentation/appkit/nstableheadercell) to implement its user interface.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

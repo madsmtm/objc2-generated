@@ -7,6 +7,7 @@ use crate::*;
 
 extern_class!(
     /// A Virtio graphics device.
+    /// A Virtio graphics device.
     ///
     /// The VZVirtioGraphicsDevice is the runtime counterpart of VZVirtioGraphicsDeviceConfiguration.
     ///
@@ -19,8 +20,6 @@ extern_class!(
     /// See: VZVirtioGraphicsDeviceConfiguration
     ///
     /// See: VZGraphicsDevice.displays
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdevice?language=objc)
     #[unsafe(super(VZGraphicsDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDevice")]

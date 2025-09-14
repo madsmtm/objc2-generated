@@ -15,6 +15,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A mathematical shape that can be stroked or filled.
+    ///
+    /// ## Overview
+    ///
+    /// `SKShapeNode` allows you to create onscreen graphical elements from mathematical points, lines, and curves. The advantage this has over rasterized graphics, such as those displayed by textures, is that shapes are rasterized dynamically at runtime to produce crisp detail and smoother edges.
+    ///
+    ///
     /// A SpriteKit Node used to stroke or fill a shape. CGPaths are used to supply the path.
     ///
     /// See CGPath
@@ -22,8 +29,6 @@ extern_class!(
     /// reference pages
     /// </a>
     /// for details on how to construct a CGPath.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skshapenode?language=objc)
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

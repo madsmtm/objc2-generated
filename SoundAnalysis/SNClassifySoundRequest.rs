@@ -12,11 +12,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that classifies sound using a Core ML model.
+    ///
+    /// ## Overview
+    ///
+    /// An `SNClassifySoundRequest` represents a specific sound classification model. Analyze audio data with a sound classification model by:
+    ///
+    /// 1. Creating an `SNClassifySoundRequest`, either with the Sound Analysis model, or by providing your custom Core ML model.
+    ///
+    /// 2. Adding the sound request to an [`SNAudioFileAnalyzer`](https://developer.apple.com/documentation/soundanalysis/snaudiofileanalyzer) or [`SNAudioStreamAnalyzer`](https://developer.apple.com/documentation/soundanalysis/snaudiostreamanalyzer) to process an audio file or stream, respectively.
+    ///
+    /// ```swift
+    /// func makeRequest(_ customModel: MLModel? = nil) throws -> SNClassifySoundRequest {
+    ///     // If applicable, create a request with a custom sound classification model.
+    ///     if let model = customModel {
+    ///         let customRequest = try SNClassifySoundRequest(mlModel: model)
+    ///         return customRequest
+    ///     }
+    ///
+    ///     // Create a request with the Sound Analysis model.
+    ///     let version1 = SNClassifierIdentifier.version1
+    ///     let request = try SNClassifySoundRequest(classifierIdentifier: version1)
+    ///
+    ///     return request
+    /// }
+    ///
+    /// let classifySoundRequest = try makeRequest()
+    ///
+    /// // Prints every label in the request's sound classification model.
+    /// print(classifySoundRequest.knownClassifications)
+    /// ```
+    ///
+    /// For more information about creating and using classify sound requests, see:
+    ///
+    /// - [Classifying Sounds in an Audio File](https://developer.apple.com/documentation/soundanalysis/classifying-sounds-in-an-audio-file)
+    ///
+    /// - [Classifying Sounds in an Audio Stream](https://developer.apple.com/documentation/soundanalysis/classifying-sounds-in-an-audio-stream)
+    ///
+    ///
     /// Configure an analyzer to perform sound classification using the provided MLModel.
     ///
     /// When a new classification result is produced, the results observer will be called with an SNClassificationResult. Audio buffers provided to SNAudioStreamAnalyzer may vary in size, and the analyzer will reblock the audio data to the block size expected by the MLModel. By default, analysis will occur on the first audio channel in the audio stream, and the analyzer will apply sample rate conversion if the provided audio does not match the sample rate required by the MLModel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassifySoundRequest;

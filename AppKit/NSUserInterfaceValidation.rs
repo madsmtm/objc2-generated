@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvalidateduserinterfaceitem?language=objc)
+    /// A protocol that a custom class can adopt to manage the automatic enablement of a UI control.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSValidatedUserInterfaceItem`](https://developer.apple.com/documentation/appkit/nsvalidateduserinterfaceitem) protocol works with the [`NSUserInterfaceValidations`](https://developer.apple.com/documentation/appkit/nsuserinterfacevalidations) protocol to enable or disable a control automatically, depending on whether any responder in the responder chain can handle the control’s action method. The [`NSMenuItem`](https://developer.apple.com/documentation/appkit/nsmenuitem) and [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/nstoolbaritem) classes implement this protocol.
+    ///
+    /// By conforming to this protocol, your control can participate in this validation mechanism. To validate a control, the application calls [`validateUserInterfaceItem:`](https://developer.apple.com/documentation/appkit/nsuserinterfacevalidations/validateuserinterfaceitem(_:)) for each item in the responder chain, starting with the first responder. If no responder returns [`true`](https://developer.apple.com/documentation/swift/true), the item is disabled. For example, a menu item that sends the `copy:` action message would disable itself if no responder in the responder chain can be copied.
+    ///
+    ///
     pub unsafe trait NSValidatedUserInterfaceItem: MainThreadOnly {
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
@@ -19,7 +27,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacevalidations?language=objc)
+    /// A protocol that a custom class can adopt to manage the enabled state of a UI element.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSUserInterfaceValidations`](https://developer.apple.com/documentation/appkit/nsuserinterfacevalidations) protocol works with the [`NSValidatedUserInterfaceItem`](https://developer.apple.com/documentation/appkit/nsvalidateduserinterfaceitem) protocol to allow the target of a user interface element such as a menu item or a toolbar item to decide whether or not the user interface element should be enabled.
+    ///
+    /// Your custom classes should adopt this protocol if an instance may be the target of a user interface element and need to conditionally enable or disable the element based on the current state of the instance. For more details, read [User Interface Validation](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UIValidation/UIValidation.html#//apple_ref/doc/uid/10000040i).
+    ///
+    ///
     pub unsafe trait NSUserInterfaceValidations: MainThreadOnly {
         #[unsafe(method(validateUserInterfaceItem:))]
         #[unsafe(method_family = none)]

@@ -11,7 +11,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcbrowserviewcontroller?language=objc)
+    /// The `MCBrowserViewController` class presents nearby devices to the user and enables the user to invite nearby devices to a session. To use this class in iOS or tvOS, call methods from the underlying `UIViewController` class ([`prepareForSegue:sender:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/prepare(for:sender:)) and [`performSegueWithIdentifier:sender:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/performsegue(withidentifier:sender:)) for storyboards or [`presentViewController:animated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/present(_:animated:completion:)) and [`dismissViewControllerAnimated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)) for nib-based views) to present and dismiss the view controller. In macOS, use the comparable `NSViewController` methods [`presentViewControllerAsSheet:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/presentassheet(_:)) and [`dismissViewController:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/dismiss(_:)-91my5) instead.
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -171,7 +171,13 @@ impl MCBrowserViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcbrowserviewcontrollerdelegate?language=objc)
+    /// The `MCBrowserViewControllerDelegate` protocol defines the methods that your delegate object can implement to handle events related to the `MCBrowserViewController` class.
+    ///
+    /// ## Overview
+    ///
+    /// No assumption should be made about which queue the delegate methods are called on. It is the receiver’s responsibility to ensure that any UIKit-related updates are called on the main thread.
+    ///
+    ///
     pub unsafe trait MCBrowserViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

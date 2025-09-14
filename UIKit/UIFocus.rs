@@ -9,38 +9,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading?language=objc)
+/// The general type of an event.
+///
+/// ## Overview
+///
+/// You obtain the direction of the focus from the [`focusHeading`](https://developer.apple.com/documentation/uikit/uifocusupdatecontext/focusheading) property.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFocusHeading(pub NSUInteger);
 bitflags::bitflags! {
     impl UIFocusHeading: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/uifocusheadingnone?language=objc)
+/// No focus update heading.
         #[doc(alias = "UIFocusHeadingNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/up?language=objc)
+/// The focus update is heading in the up direction.
         #[doc(alias = "UIFocusHeadingUp")]
         const Up = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/down?language=objc)
+/// The focus update is heading in the down direction.
         #[doc(alias = "UIFocusHeadingDown")]
         const Down = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/left?language=objc)
+/// The focus update is heading in the left direction.
         #[doc(alias = "UIFocusHeadingLeft")]
         const Left = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/right?language=objc)
+/// The focus update is heading in the right direction.
         #[doc(alias = "UIFocusHeadingRight")]
         const Right = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/next?language=objc)
+/// The focus update is heading to the next item.
         #[doc(alias = "UIFocusHeadingNext")]
         const Next = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/previous?language=objc)
+/// The focus update is heading to the previous item.
         #[doc(alias = "UIFocusHeadingPrevious")]
         const Previous = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/first?language=objc)
+/// The focus update is heading to the first item.
         #[doc(alias = "UIFocusHeadingFirst")]
         const First = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading/last?language=objc)
+/// The focus update is heading to the last item.
         #[doc(alias = "UIFocusHeadingLast")]
         const Last = 1<<9;
     }
@@ -54,29 +60,25 @@ unsafe impl RefEncode for UIFocusHeading {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFocusItemDeferralMode(pub NSInteger);
 impl UIFocusItemDeferralMode {
     /// Use the system default behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode/automatic?language=objc)
+    /// Use the system default behavior.
     #[doc(alias = "UIFocusItemDeferralModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Always defer focus for this item, even if deferral is disabled right now. This means a programmatic update to this item would result in focus disappearing until the user interacts with the focus engine again.
     /// Always defer focus for this item, even if deferral is disabled right now.
     /// This means a programmatic update to this item would result in focus
     /// disappearing until the user interacts with the focus engine again.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode/always?language=objc)
     #[doc(alias = "UIFocusItemDeferralModeAlways")]
     pub const Always: Self = Self(1);
+    /// Never defer focus for this item. When a programmatic focus update lands on this item, it will always be and appear focused even if focus deferral is currently enabled.
     /// Never defer focus for this item. When a programmatic focus update
     /// lands on this item, it will always be and appear focused even if focus
     /// deferral is currently enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode/never?language=objc)
     #[doc(alias = "UIFocusItemDeferralModeNever")]
     pub const Never: Self = Self(2);
 }
@@ -89,33 +91,43 @@ unsafe impl RefEncode for UIFocusItemDeferralMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifier?language=objc)
+/// An identifier for a focus-related sound.
+///
+/// ## Overview
+///
+/// To assign an identifier to a custom sound file, call the [`registerURL:forSoundIdentifier:`](https://developer.apple.com/documentation/uikit/uifocussystem/register(_:forsoundidentifier:)) method of [`UIFocusSystem`](https://developer.apple.com/documentation/uikit/uifocussystem).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFocusSoundIdentifier = NSString;
 
+/// The importance of an item within a focus group, used by the focus system to determine the group’s primary item.
 /// These are focus group priorities that the system uses and that clients can use to make an item
 /// more or less important than these system states. Any priority below 0 will be ignored.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFocusGroupPriority = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/ignored?language=objc)
+/// The lowest focus group priority, assigned by default.
 pub static UIFocusGroupPriorityIgnored: UIFocusGroupPriority = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/previouslyfocused?language=objc)
+/// The focus group priority of a previously focused item.
 pub static UIFocusGroupPriorityPreviouslyFocused: UIFocusGroupPriority = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/prioritized?language=objc)
+/// The focus group priority that indicates an item is more important than others.
 pub static UIFocusGroupPriorityPrioritized: UIFocusGroupPriority = 2000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/currentlyfocused?language=objc)
+/// The focus group priority of the currently focused item, the highest possible priority.
 pub static UIFocusGroupPriorityCurrentlyFocused: UIFocusGroupPriority = NSIntegerMax as _;
 
 extern_protocol!(
-    /// Objects conforming to UIFocusEnvironment influence and respond to focus behavior within a specific area of the screen that they control.
+    /// A set of methods that define the focus behavior for a branch of the view hierarchy.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusenvironment?language=objc)
+    /// ## Overview
+    ///
+    /// The [`UIFocusEnvironment`](https://developer.apple.com/documentation/uikit/uifocusenvironment) protocol provides a common interface for specifying and reacting to focus behavior throughout your app. Classes in UIKit that conform to this protocol include [`UIView`](https://developer.apple.com/documentation/uikit/uiview), [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller), [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow), and [`UIPresentationController`](https://developer.apple.com/documentation/uikit/uipresentationcontroller) — in other words, classes that are either directly or indirectly in control of views on the screen.
+    ///
+    ///
+    /// Objects conforming to UIFocusEnvironment influence and respond to focus behavior within a specific area of the screen that they control.
     pub unsafe trait UIFocusEnvironment: NSObjectProtocol + MainThreadOnly {
         /// The preferred focus environments define where to search for the default focused item in an environment, such as when focus updates programmatically.
         /// Starting from the target environment, each preferred focus environment is recursively searched in the order of the array until an eligible, focusable item is found.
@@ -194,9 +206,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Objects conforming to UIFocusItem are considered capable of participating in focus. Only UIFocusItems can ever be focused.
+    /// An object that can become focused.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitem?language=objc)
+    /// ## Overview
+    ///
+    /// An object that conforms to the [`UIFocusItem`](https://developer.apple.com/documentation/uikit/uifocusitem) protocol is capable of participating in the focus system; further, only [`UIFocusItem`](https://developer.apple.com/documentation/uikit/uifocusitem) objects can be focused.
+    ///
+    /// Even when an object that conforms to [`UIFocusItem`](https://developer.apple.com/documentation/uikit/uifocusitem) isn’t currently focusable, it may still have an effect on the focus system. For example, items that aren’t focusable, but that completely obscure other items, may prevent those other items from being focusable, because they aren’t visible to the user. Also, because [`UIFocusItem`](https://developer.apple.com/documentation/uikit/uifocusitem) conforms to [`UIFocusEnvironment`](https://developer.apple.com/documentation/uikit/uifocusenvironment), items that aren’t focusable may still affect the focus behavior of items they contain, or react to focus updates.
+    ///
+    ///
+    /// Objects conforming to UIFocusItem are considered capable of participating in focus. Only UIFocusItems can ever be focused.
     pub unsafe trait UIFocusItem: UIFocusEnvironment + MainThreadOnly {
         /// Indicates whether or not this item is currently allowed to become focused.
         /// Returning NO restricts the item from being focusable, even if it is visible in the user interface. For example, UIControls return NO if they are disabled.
@@ -253,10 +272,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The container responsible for providing geometric context to focus items within a given focus environment.
+    ///
+    /// ## Overview
+    ///
+    /// Focus item containers are used by the focus engine to find focus items for a focus environment in specific geometric regions.
+    ///
+    ///
     /// Objects conforming to UIFocusItemContainer are responsible for providing which focus items they
     /// contain and where they are.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemcontainer?language=objc)
     pub unsafe trait UIFocusItemContainer: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIView")]
         /// The coordinate space of the focus items contained in this container. The focus items returned by focusItemsInRect: should report their frames in this coordinate space.
@@ -282,10 +306,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A type of focus item container that supports automatic scrolling of focusable content.
+    ///
+    /// ## Overview
+    ///
+    /// The focus engine scrolls the container to keep items onscreen as they become focused. This is done by repeatedly setting [`contentOffset`](https://developer.apple.com/documentation/uikit/uifocusitemscrollablecontainer/contentoffset).
+    ///
+    ///
     /// Objects conforming to UIFocusItemScrollableContainer are updated accordingly to ensure the
     /// focused item remains visible on the screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemscrollablecontainer?language=objc)
     pub unsafe trait UIFocusItemScrollableContainer:
         UIFocusItemContainer + MainThreadOnly
     {
@@ -317,9 +346,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// UIFocusUpdateContexts provide information relevant to a specific focus update from one view to another. They are ephemeral objects that are usually discarded after the update is finished.
+    /// An object that provides information relevant to a specific focus update from one view to another.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusupdatecontext?language=objc)
+    /// ## Overview
+    ///
+    /// Focus update context objects are ephemeral and are usually discarded after the update is finished. The `UIFocus` APIs create a single high-level software interface for controlling focus in apps that use focus-based input.
+    ///
+    ///
+    /// UIFocusUpdateContexts provide information relevant to a specific focus update from one view to another. They are ephemeral objects that are usually discarded after the update is finished.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -363,35 +397,33 @@ impl UIFocusUpdateContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/didupdatenotification?language=objc)
+    /// The focus for the UI has been updated.
     pub static UIFocusDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/movementdidfailnotification?language=objc)
+    /// The focus failed to move to another item.
     pub static UIFocusMovementDidFailNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/focusupdatecontextuserinfokey?language=objc)
+    /// Updates the context key.
     pub static UIFocusUpdateContextKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/animationcoordinatoruserinfokey?language=objc)
+    /// Updates the animation coordinator.
     pub static UIFocusUpdateAnimationCoordinatorKey: &'static NSString;
 }
 
 extern "C" {
+    /// The identifier for disabling sound during a focus update.
     /// Sound identifier for disabling sound during a focus update.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifier/none?language=objc)
     pub static UIFocusSoundIdentifierNone: &'static UIFocusSoundIdentifier;
 }
 
 extern "C" {
+    /// The identifier for the default system sound to play during focus updates.
     /// Sound identifier for playing the default sound during a focus update.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifier/default?language=objc)
     pub static UIFocusSoundIdentifierDefault: &'static UIFocusSoundIdentifier;
 }

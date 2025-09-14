@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// An object that manages playback routing preferences.
     ///
-    /// This object manages instances of ``AVRoutingPlaybackParticipant`` for arbitration of media playback routing priorities and preferences on restricted playback interfaces. The playback routing arbiter is responsible for collecting and applying preferences, such as priorities in non-mixable audio routes and external playback states where the number of allowed players is limited.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter?language=objc)
+    /// This object manages instances of [`AVRoutingPlaybackParticipant`](https://developer.apple.com/documentation/avrouting/avroutingplaybackparticipant) for arbitration of media playback routing priorities and preferences on restricted playback interfaces. The playback routing arbiter is responsible for collecting and applying preferences, such as priorities in non-mixable audio routes and external playback states where the number of allowed players is limited.
+    ///
+    ///
+    /// An object that manages playback routing preferences.
+    ///
+    /// This object manages instances of ``AVRoutingPlaybackParticipant`` for arbitration of media playback routing priorities and preferences on restricted playback interfaces. The playback routing arbiter is responsible for collecting and applying preferences, such as priorities in non-mixable audio routes and external playback states where the number of allowed players is limited.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVRoutingPlaybackArbiter;
@@ -87,8 +92,13 @@ impl AVRoutingPlaybackArbiter {
 extern_protocol!(
     /// A protocol for objects that participate in playback routing arbitration.
     ///
+    /// ## Overview
+    ///
     /// Classes conform to this protocol if they participate in media playback routing arbitration for managing preferences such as priority on restricted playback routes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avroutingplaybackparticipant?language=objc)
+    ///
+    /// A protocol for objects that participate in playback routing arbitration.
+    ///
+    /// Classes conform to this protocol if they participate in media playback routing arbitration for managing preferences such as priority on restricted playback routes.
     pub unsafe trait AVRoutingPlaybackParticipant {}
 );

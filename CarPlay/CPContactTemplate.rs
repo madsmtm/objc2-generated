@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontacttemplate?language=objc)
+    /// A template that displays information about a person or a business.
+    ///
+    /// ## Overview
+    ///
+    /// The contact template can provide up to four contextual actions a user can invoke. For example, you might have an action that provides directions to the contact’s address.
+    ///
+    /// When creating a contact template, you provide an instance of [`CPContact`](https://developer.apple.com/documentation/carplay/cpcontact) that contains a contact’s name and image, and optional subtitle. The object also contains any actions relevant to the contact. CarPlay provides specialized buttons for common actions, such as [`CPContactCallButton`](https://developer.apple.com/documentation/carplay/cpcontactcallbutton) or [`CPContactMessageButton`](https://developer.apple.com/documentation/carplay/cpcontactmessagebutton).
+    ///
+    /// To display a contact template, call your interface controller’s [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)) method to push it onto the navigation hierarchy, or [`presentTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/presenttemplate(_:animated:completion:)) to present it modally.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `CPContactTemplate` is only available in apps that have the communication or navigation entitlements.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

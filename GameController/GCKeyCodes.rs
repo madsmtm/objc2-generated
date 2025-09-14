@@ -5,817 +5,846 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The key codes for keys on a keyboard.
 /// A set of low level key codes that can be used to access keyboard buttons
 ///
 ///
 ///
 /// See: GCKeyboardInput.h
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type GCKeyCode = CFIndex;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keya?language=objc)
+    /// The keyboard code for the a or A character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyA: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyb?language=objc)
+    /// The keyboard code for the b or B character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyB: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyc?language=objc)
+    /// The keyboard code for the c or C character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyC: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyd?language=objc)
+    /// The keyboard code for the d or D character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyD: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keye?language=objc)
+    /// The keyboard code for the e or E character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyE: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyf?language=objc)
+    /// The keyboard code for the f or F character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyF: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyg?language=objc)
+    /// The keyboard code for the g or G character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyG: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyh?language=objc)
+    /// The keyboard code for the h or H character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyH: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyi?language=objc)
+    /// The keyboard code for the i or I character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyI: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyj?language=objc)
+    /// The keyboard code for the j or J character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyJ: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyk?language=objc)
+    /// The keyboard code for the k or K character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyK: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyl?language=objc)
+    /// The keyboard code for the l or L character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyL: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keym?language=objc)
+    /// The keyboard code for the m or M character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyM: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyn?language=objc)
+    /// The keyboard code for the n or N character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyN: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyo?language=objc)
+    /// The keyboard code for the o or O character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyO: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyp?language=objc)
+    /// The keyboard code for the p or P character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyP: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyq?language=objc)
+    /// The keyboard code for the q or Q character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyQ: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyr?language=objc)
+    /// The keyboard code for the r or R character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyR: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keys?language=objc)
+    /// The keyboard code for the s or S character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyS: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyt?language=objc)
+    /// The keyboard code for the t or T character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyT: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyu?language=objc)
+    /// The keyboard code for the u or U character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyU: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyv?language=objc)
+    /// The keyboard code for the v or V character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyV: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyw?language=objc)
+    /// The keyboard code for the w or W character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyW: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyx?language=objc)
+    /// The keyboard code for the x or X character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyX: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyy?language=objc)
+    /// The keyboard code for the y or Y character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyY: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyz?language=objc)
+    /// The keyboard code for the z or Z character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyZ: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/one?language=objc)
+    /// The keyboard code for the 1 or ! character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeOne: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/two?language=objc)
+    /// The keyboard code for the 2 or @ character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeTwo: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/three?language=objc)
+    /// The keyboard code for the 3 or # character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeThree: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/four?language=objc)
+    /// The keyboard code for the 4 or $ character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeFour: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/five?language=objc)
+    /// The keyboard code for the 5 or % character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeFive: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/six?language=objc)
+    /// The keyboard code for the 6 or ^ character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSix: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/seven?language=objc)
+    /// The keyboard code for the 7 or & character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSeven: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/eight?language=objc)
+    /// The keyboard code for the 8 or * character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEight: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/nine?language=objc)
+    /// The keyboard code for the 9 or ( character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeNine: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/zero?language=objc)
+    /// The keyboard code for the 0 or ) character.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeZero: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/returnorenter?language=objc)
+    /// The keyboard code for the Return or Enter key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeReturnOrEnter: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/escape?language=objc)
+    /// The keyboard code for the Escape key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEscape: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/deleteorbackspace?language=objc)
+    /// The keyboard code for the Delete or Backspace key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeDeleteOrBackspace: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/tab?language=objc)
+    /// The keyboard code for the Tab key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeTab: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/spacebar?language=objc)
+    /// The keyboard code for the Space Bar key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSpacebar: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/hyphen?language=objc)
+    /// The keyboard code for the - or _ key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeHyphen: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/equalsign?language=objc)
+    /// The keyboard code for the = or + key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEqualSign: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/openbracket?language=objc)
+    /// The keyboard code for the [ or { key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeOpenBracket: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/closebracket?language=objc)
+    /// The keyboard code for the ] or } key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeCloseBracket: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/backslash?language=objc)
+    /// The keyboard code for the \ or | key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeBackslash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/nonuspound?language=objc)
+    /// The keyboard code for the non-US Pound or _ key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeNonUSPound: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/semicolon?language=objc)
+    /// The keyboard code for the ; or : key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSemicolon: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/quote?language=objc)
+    /// The keyboard code for the ’ or “ key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeQuote: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/graveaccentandtilde?language=objc)
+    /// The keyboard code for the Grave Accent or Tilde key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeGraveAccentAndTilde: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/comma?language=objc)
+    /// The keyboard code for the Comma or < key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeComma: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/period?language=objc)
+    /// The keyboard code for the Period or > key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePeriod: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/slash?language=objc)
+    /// The keyboard code for the / or ? key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSlash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/capslock?language=objc)
+    /// The keyboard code for the Caps Lock key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeCapsLock: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f1?language=objc)
+    /// The keyboard code for the F1 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f2?language=objc)
+    /// The keyboard code for the F2 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f3?language=objc)
+    /// The keyboard code for the F3 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f4?language=objc)
+    /// The keyboard code for the F4 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f5?language=objc)
+    /// The keyboard code for the F5 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f6?language=objc)
+    /// The keyboard code for the F6 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f7?language=objc)
+    /// The keyboard code for the F7 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f8?language=objc)
+    /// The keyboard code for the F8 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f9?language=objc)
+    /// The keyboard code for the F9 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f10?language=objc)
+    /// The keyboard code for the F10 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF10: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f11?language=objc)
+    /// The keyboard code for the F11 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF11: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f12?language=objc)
+    /// The keyboard code for the F12 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF12: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f13?language=objc)
+    /// The keyboard code for the F13 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF13: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f14?language=objc)
+    /// The keyboard code for the F14 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF14: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f15?language=objc)
+    /// The keyboard code for the F15 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF15: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f16?language=objc)
+    /// The keyboard code for the F16 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF16: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f17?language=objc)
+    /// The keyboard code for the F17 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF17: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f18?language=objc)
+    /// The keyboard code for the F18 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF18: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f19?language=objc)
+    /// The keyboard code for the F19 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF19: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f20?language=objc)
+    /// The keyboard code for the F20 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF20: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/printscreen?language=objc)
+    /// The keyboard code for the Print Screen key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePrintScreen: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/scrolllock?language=objc)
+    /// The keyboard code for the Scroll Lock key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeScrollLock: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/pause?language=objc)
+    /// The keyboard code for the Pause key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePause: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/insert?language=objc)
+    /// The keyboard code for the Insert key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInsert: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/home?language=objc)
+    /// The keyboard code for the Home key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeHome: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/pageup?language=objc)
+    /// The keyboard code for the Page Up key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePageUp: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/deleteforward?language=objc)
+    /// The keyboard code for the Delete-Forward key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeDeleteForward: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/end?language=objc)
+    /// The keyboard code for the End key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEnd: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/pagedown?language=objc)
+    /// The keyboard code for the Page Down key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePageDown: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightarrow?language=objc)
+    /// The keyboard code for the Right Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftarrow?language=objc)
+    /// The keyboard code for the Left Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/downarrow?language=objc)
+    /// The keyboard code for the Down Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeDownArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/uparrow?language=objc)
+    /// The keyboard code for the Up Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeUpArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadnumlock?language=objc)
+    /// The keyboard code for the keypad Num Lock or Clear key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadNumLock: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadslash?language=objc)
+    /// The keyboard code for the keypad / key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadSlash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadasterisk?language=objc)
+    /// The keyboard code for the keypad * key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadAsterisk: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadhyphen?language=objc)
+    /// The keyboard code for the keypad - key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadHyphen: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadplus?language=objc)
+    /// The keyboard code for the keypad + key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadPlus: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadenter?language=objc)
+    /// The keyboard code for the keypad Enter key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadEnter: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad1?language=objc)
+    /// The keyboard code for the keypad 1 or End key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad2?language=objc)
+    /// The keyboard code for the keypad 2 or Down Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad3?language=objc)
+    /// The keyboard code for the keypad 3 or Page Down key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad4?language=objc)
+    /// The keyboard code for the keypad 4 or Left Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad5?language=objc)
+    /// The keyboard code for the keypad 5 key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad6?language=objc)
+    /// The keyboard code for the keypad 6 or Right Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad7?language=objc)
+    /// The keyboard code for the keypad 7 or Home key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad8?language=objc)
+    /// The keyboard code for the keypad 8 or Up Arrow key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad9?language=objc)
+    /// The keyboard code for the keypad 9 or Page Up key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad0?language=objc)
+    /// The keyboard code for the keypad 0 or Insert key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad0: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadperiod?language=objc)
+    /// The keyboard code for the keypad Period or Delete key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadPeriod: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadequalsign?language=objc)
+    /// The keyboard code for the keypad = key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadEqualSign: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/nonusbackslash?language=objc)
+    /// The keyboard code for the non-US Slash or | key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeNonUSBackslash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/application?language=objc)
+    /// The keyboard code for the Application key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeApplication: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/power?language=objc)
+    /// The keyboard code for the Power key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePower: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international1?language=objc)
+    /// The keyboard code for the first international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international2?language=objc)
+    /// The keyboard code for the second international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international3?language=objc)
+    /// The keyboard code for the third international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international4?language=objc)
+    /// The keyboard code for the fourth international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international5?language=objc)
+    /// The keyboard code for the fifth international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international6?language=objc)
+    /// The keyboard code for the sixth international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international7?language=objc)
+    /// The keyboard code for the seventh international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international8?language=objc)
+    /// The keyboard code for the eighth international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international9?language=objc)
+    /// The keyboard code for the ninth international key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang1?language=objc)
+    /// The keyboard code for the first language key.
+    ///
+    /// ## Discussion
+    ///
+    /// For Japanese, this is the code for the Kana switch (かな) key on the Apple keyboard. On Korean keyboards, this is the code for the Hangul to English toggle key.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang2?language=objc)
+    /// The keyboard code for the second language key.
+    ///
+    /// ## Discussion
+    ///
+    /// For Japanese, this is the code for the alphanumeric (英数) key on Apple keyboards. On Korean keyboards, this is the code for the Hanja conversion key.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang3?language=objc)
+    /// The keyboard code for the third language key.
+    ///
+    /// ## Discussion
+    ///
+    /// For Japanese USB word-processing keyboards, this is the code for the Katakana key.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang4?language=objc)
+    /// The keyboard code for the fourth language key.
+    ///
+    /// ## Discussion
+    ///
+    /// For Japanese USB word-processing keyboards, this is the code for the Hiragana key.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang5?language=objc)
+    /// The keyboard code for the fifth language key.
+    ///
+    /// ## Discussion
+    ///
+    /// For Japanese USB word-processing keyboards, this is the code for the Zenkaku/Hankaku key.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang6?language=objc)
+    /// The keyboard code for the sixth language key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang7?language=objc)
+    /// The keyboard code for the seventh language key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang8?language=objc)
+    /// The keyboard code for the eighth language key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang9?language=objc)
+    /// The keyboard code for the ninth language key.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftcontrol?language=objc)
+    /// The keyboard code for the Control key on the left side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftControl: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftshift?language=objc)
+    /// The keyboard code for the Shift key on the left side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftShift: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftalt?language=objc)
+    /// The keyboard code for the Option or Alt key on the left side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftAlt: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftgui?language=objc)
+    /// The keyboard code for the Command key on the left side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftGUI: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightcontrol?language=objc)
+    /// The keyboard code for the Control key on the right side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightControl: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightshift?language=objc)
+    /// The keyboard code for the Shift key on the right side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightShift: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightalt?language=objc)
+    /// The keyboard code for the Option or Alt key on the right side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightAlt: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightgui?language=objc)
+    /// The keyboard code for the Command key on the right side of the keyboard.
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightGUI: GCKeyCode;
 }

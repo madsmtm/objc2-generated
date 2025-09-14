@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksuicapassproperties?language=objc)
+    /// The properties of a pass used as a ticket for the Suica transportation system.
+    ///
+    /// ## Overview
+    ///
+    /// The Suica pass is a card used for transportation in Japan.
+    ///
+    ///
     #[unsafe(super(PKTransitPassProperties, PKStoredValuePassProperties, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -10,19 +10,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFSelectionGranularity(pub NSUInteger);
 impl PDFSelectionGranularity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity/character?language=objc)
     #[doc(alias = "PDFSelectionGranularityCharacter")]
     pub const Character: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity/word?language=objc)
     #[doc(alias = "PDFSelectionGranularityWord")]
     pub const Word: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity/line?language=objc)
     #[doc(alias = "PDFSelectionGranularityLine")]
     pub const Line: Self = Self(2);
 }
@@ -36,7 +32,7 @@ unsafe impl RefEncode for PDFSelectionGranularity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselection?language=objc)
+    /// A `PDFSelection` object identifies a contiguous or noncontiguous selection of text in a PDF document.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFSelection;

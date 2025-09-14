@@ -9,11 +9,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey?language=objc)
 // NS_TYPED_ENUM
 pub type CFDateFormatterKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatter?language=objc)
+///
+/// ## Overview
+///
+/// CFDateFormatter objects format the textual representations of CFDate and CFAbsoluteTime objects, and convert textual representations of dates and times into CFDate and CFAbsoluteTime objects. You can express the representation of dates and times very flexibly, for example “Thu 22 Dec 1994” is just as acceptable as “12/22/94.” You specify how strings are formatted and parsed by setting a format string and other properties of a CFDateFomatter object.
+///
+/// The format of the format string itself is defined by Unicode Technical Standard #35; the version of the standard used varies with release of the operating system, and is described in [Introduction to Data Formatting Programming Guide For Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029).
+///
+/// <div class="warning">
+///
+/// ### Note
+///  CFDateFormatter is not thread safe, so you must not mutate a given date formatter simultaneously from multiple threads.
+///
+///
+///
+/// </div>
+///
 #[doc(alias = "CFDateFormatterRef")]
 #[repr(C)]
 pub struct CFDateFormatter {
@@ -30,7 +44,49 @@ cf_objc2_type!(
 );
 
 impl CFDateFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatedateformatfromtemplate(_:_:_:_:)?language=objc)
+    /// Returns a localized date format string representing the given date format components arranged appropriately for the specified locale.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - tmplate: A string containing date format patterns (such as “MM” or “h”). For full details, see [Unicode Technical Standard #35](http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns).
+    ///
+    /// - options: No options are currently defined—pass `0`.
+    ///
+    /// - locale: The locale for which the template is required.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A localized date format string representing the date format components given in `template`, arranged appropriately for the locale specified by `locale`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned string may not contain exactly those components given in `template`, but may—for example—have locale-specific adjustments applied.
+    ///
+    /// ## Discussion
+    ///
+    /// Different locales have different conventions for the ordering of date components. You use this method to get an appropriate format string for a given set of components for a specified locale (typically you use the current locale—see [`CFLocaleCopyCurrent`](https://developer.apple.com/documentation/corefoundation/cflocalecopycurrent())).
+    ///
+    /// The following example shows the difference between the date formats for British and American English:
+    ///
+    /// ```objc
+    /// CFStringRef dateComponents = CFSTR("yMMMMd");
+    ///  
+    /// CFLocaleRef usLocale = CFLocaleCreate(NULL, CFSTR("en_US"));
+    /// CFStringRef usDateFormatString =
+    ///     CFDateFormatterCreateDateFormatFromTemplate(NULL, dateComponents, 0, usLocale);
+    /// // Date format for English (United States): MMMM d, y
+    ///  
+    /// CFLocaleRef gbLocale = CFLocaleCreate(NULL, CFSTR("en_GB"));
+    /// CFStringRef gbDateFormatString =
+    ///     CFDateFormatterCreateDateFormatFromTemplate(NULL, dateComponents, 0, gbLocale);
+    /// // Date format for English (United Kingdom): d MMMM y
+    /// ```
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -62,7 +118,13 @@ impl CFDateFormatter {
 }
 
 unsafe impl ConcreteType for CFDateFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergettypeid()?language=objc)
+    /// Returns the type identifier for CFDateFormatter.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFDateFormatter opaque type.
+    ///
+    ///
     #[doc(alias = "CFDateFormatterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -73,25 +135,37 @@ unsafe impl ConcreteType for CFDateFormatter {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle?language=objc)
+/// Data type for predefined date and time format styles.
+///
+/// ## Overview
+///
+/// For possible values, see [Date Formatter Styles](https://developer.apple.com/documentation/corefoundation/date_formatter_styles)
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFDateFormatterStyle(pub CFIndex);
 impl CFDateFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/nostyle?language=objc)
+    /// Specifies no output.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this constant to suppress output for the date or time (see [`CFDateFormatterCreate`](https://developer.apple.com/documentation/corefoundation/cfdateformattercreate(_:_:_:_:)) for more details).
+    ///
+    ///
     #[doc(alias = "kCFDateFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/shortstyle?language=objc)
+    /// Specifies a short style, typically numeric only, such as “11/23/37” or “3:30pm”.
     #[doc(alias = "kCFDateFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/mediumstyle?language=objc)
+    /// Specifies a medium style, typically with abbreviated text, such as “Nov 23, 1937”.
     #[doc(alias = "kCFDateFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/longstyle?language=objc)
+    /// Specifies a long style, typically with full text, such as “November 23, 1937” or “3:30:32pm”.
     #[doc(alias = "kCFDateFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle/fullstyle?language=objc)
+    /// Specifies a full style with complete details, such as “Tuesday, April 12, 1952 AD” or “3:30:42pm PST”.
     #[doc(alias = "kCFDateFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }
@@ -106,53 +180,38 @@ unsafe impl RefEncode for CFDateFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFISO8601DateFormatOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFISO8601DateFormatOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withyear?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithYear")]
         const WithYear = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withmonth?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithMonth")]
         const WithMonth = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withweekofyear?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithWeekOfYear")]
         const WithWeekOfYear = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withday?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithDay")]
         const WithDay = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withtime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithTime")]
         const WithTime = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withtimezone?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithTimeZone")]
         const WithTimeZone = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withspacebetweendateandtime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithSpaceBetweenDateAndTime")]
         const WithSpaceBetweenDateAndTime = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withdashseparatorindate?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithDashSeparatorInDate")]
         const WithDashSeparatorInDate = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withcolonseparatorintime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithColonSeparatorInTime")]
         const WithColonSeparatorInTime = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withcolonseparatorintimezone?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithColonSeparatorInTimeZone")]
         const WithColonSeparatorInTimeZone = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withfractionalseconds?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithFractionalSeconds")]
         const WithFractionalSeconds = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withfulldate?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithFullDate")]
         const WithFullDate = CFISO8601DateFormatOptions::WithYear.0|CFISO8601DateFormatOptions::WithMonth.0|CFISO8601DateFormatOptions::WithDay.0|CFISO8601DateFormatOptions::WithDashSeparatorInDate.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withfulltime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithFullTime")]
         const WithFullTime = CFISO8601DateFormatOptions::WithTime.0|CFISO8601DateFormatOptions::WithColonSeparatorInTime.0|CFISO8601DateFormatOptions::WithTimeZone.0|CFISO8601DateFormatOptions::WithColonSeparatorInTimeZone.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfiso8601dateformatoptions/withinternetdatetime?language=objc)
         #[doc(alias = "kCFISO8601DateFormatWithInternetDateTime")]
         const WithInternetDateTime = CFISO8601DateFormatOptions::WithFullDate.0|CFISO8601DateFormatOptions::WithFullTime.0;
     }
@@ -169,8 +228,6 @@ unsafe impl RefEncode for CFISO8601DateFormatOptions {
 }
 
 impl CFDateFormatter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreateiso8601formatter(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -190,7 +247,43 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreate(_:_:_:_:)?language=objc)
+    /// Creates a new CFDateFormatter object, localized to the given locale, which will format dates to the given date and time styles.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - locale: The locale to use for localization. If `NULL` uses the default system local. Use [`CFLocaleCopyCurrent`](https://developer.apple.com/documentation/corefoundation/cflocalecopycurrent()) to specify the locale of the current user.
+    ///
+    /// - dateStyle: The date style to use when formatting dates. See [Date Formatter Styles](https://developer.apple.com/documentation/corefoundation/date_formatter_styles) for possible values.
+    ///
+    /// - timeStyle: The time style to use when formatting times. See [Date Formatter Styles](https://developer.apple.com/documentation/corefoundation/date_formatter_styles) for possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new date formatter, localized to the given locale, which will format dates to the given date and time styles. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use `kCFDateFormatterNoStyle` to suppress output for the date or time. The following code fragment illustrates the creation and use of a date formatter that only outputs the date information (memory management is omitted for clarity).
+    ///
+    /// ```objc
+    /// CFLocaleRef locale = CFLocaleCreate(kCFAllocatorDefault, CFSTR("en_GB"));
+    ///  
+    /// CFDateFormatterRef formatter = CFDateFormatterCreate(
+    ///         kCFAllocatorDefault, locale, kCFDateFormatterMediumStyle, kCFDateFormatterNoStyle);
+    ///  
+    /// CFDateRef date = CFDateCreate(kCFAllocatorDefault, 123456);
+    /// CFStringRef dateAsString = CFDateFormatterCreateStringWithDate (
+    ///         kCFAllocatorDefault, formatter, date);
+    ///  
+    /// CFShow(dateAsString);
+    /// // outputs "2 Jan 2001"
+    /// ```
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -217,7 +310,17 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetlocale(_:)?language=objc)
+    /// Returns the locale object used to create the given date formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The locale object used to create `formatter`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFDateFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -229,7 +332,17 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetdatestyle(_:)?language=objc)
+    /// Returns the date style used to create the given date formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The date style used to create `formatter`.
+    ///
+    ///
     #[doc(alias = "CFDateFormatterGetDateStyle")]
     #[inline]
     pub fn date_style(&self) -> CFDateFormatterStyle {
@@ -239,7 +352,17 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterGetDateStyle(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergettimestyle(_:)?language=objc)
+    /// Returns the time style used to create the given date formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The time style used to create `formatter`.
+    ///
+    ///
     #[doc(alias = "CFDateFormatterGetTimeStyle")]
     #[inline]
     pub fn time_style(&self) -> CFDateFormatterStyle {
@@ -249,7 +372,17 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterGetTimeStyle(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetformat(_:)?language=objc)
+    /// Returns a format string for the given date formatter object.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The format string for `formatter` as was specified by calling the [`CFDateFormatterSetFormat`](https://developer.apple.com/documentation/corefoundation/cfdateformattersetformat(_:_:)) function, or derived from the date formatter’s date or time styles. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFDateFormatterGetFormat")]
     #[inline]
     pub fn format(&self) -> Option<CFRetained<CFString>> {
@@ -260,7 +393,19 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattersetformat(_:_:)?language=objc)
+    /// Sets the format string of the given date formatter to the specified value.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter to modify.
+    ///
+    /// - formatString: The format string for `formatter`. The syntax of this string is defined by [Unicode Technical Standard #35](http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_Patterns)..
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The format string may override other properties previously set using other functions. If this function is not called, the default value of the format string is derived from the date formatter’s date and time styles.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -277,7 +422,21 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterSetFormat(self, format_string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatestringwithdate(_:_:_:)?language=objc)
+    /// Returns a string representation of the given date using the specified date formatter.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - formatter: The date formatter object that specifies the format of the returned string.
+    ///
+    /// - date: The date object for which to create a string representation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new string that represents `date` in the specified format. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -303,7 +462,21 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatestringwithabsolutetime(_:_:_:)?language=objc)
+    /// Returns a string representation of the given absolute time using the specified date formatter.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - formatter: The date formatter object that specifies the format of the returned string.
+    ///
+    /// - at: The absolute time for which to generate a string representation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new string that represents `at` in the specified format. Returns `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -328,7 +501,23 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercreatedatefromstring(_:_:_:_:)?language=objc)
+    /// Returns a date object representing a given string.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - formatter: The date formatter object to use to parse `string`.
+    ///
+    /// - string: The string that contains the date.
+    ///
+    /// - rangep: A reference to the range within the string specifying the substring to be parsed. If `NULL`, the whole string is parsed. Upon return, contains the range that defines the extent of the parse (may be less than the given range).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new date that represents `string`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -358,7 +547,23 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattergetabsolutetimefromstring(_:_:_:_:)?language=objc)
+    /// Returns an absolute time object representing a given string.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter object to use to parse `string`.
+    ///
+    /// - string: The string that contains the time to be parsed.
+    ///
+    /// - rangep: Reference to the range within the string specifying the substring to be parsed. If `NULL`, the whole string is parsed. On return, the range that defines the extent of the parse (may be less than the given range).
+    ///
+    /// - atp: An absolute time value, returned by reference, that represents `string`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the string was parsed successfully, otherwise `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -386,7 +591,15 @@ impl CFDateFormatter {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattersetproperty(_:_:_:)?language=objc)
+    /// Sets a date formatter property using a key-value pair.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter to modify.
+    ///
+    /// - key: The name of the property to set. See [Date Formatter Property Keys](https://developer.apple.com/documentation/corefoundation/date-formatter-property-keys) for a description of possible values for this parameter.
+    ///
+    /// - value: The value for `key`. This should be a CFType object corresponding to the specified key.
+    ///
     ///
     /// # Safety
     ///
@@ -406,7 +619,19 @@ impl CFDateFormatter {
         unsafe { CFDateFormatterSetProperty(self, key, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformattercopyproperty(_:_:)?language=objc)
+    /// Returns a copy of a date formatter’s value for a given key.
+    ///
+    /// Parameters:
+    /// - formatter: The date formatter to examine.
+    ///
+    /// - key: The property key for the value to obtain. See [Date Formatter Property Keys](https://developer.apple.com/documentation/corefoundation/date-formatter-property-keys) for a description of possible values for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFType object that is a copy of the property value for `key`, or `NULL` if there is no value specified for `key`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -426,148 +651,172 @@ impl CFDateFormatter {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/islenient?language=objc)
+    /// Specifies the lenient property, a CFBoolean object where a true value indicates that the parsing of strings into date or absolute time values will be fuzzy.
+    ///
+    /// ## Discussion
+    ///
+    /// The formatter will use heuristics to guess at the date which is intended by the string. As with any guessing, it may get the result date wrong (that is, a date other than that which was intended).
+    ///
+    ///
     pub static kCFDateFormatterIsLenient: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/timezone?language=objc)
+    /// Specifies the time zone property, a CFTimeZone object.
     pub static kCFDateFormatterTimeZone: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/calendarname?language=objc)
+    /// Specifies the calendar name, a CFString object.
+    ///
+    /// ## Discussion
+    ///
+    /// With OS X version 10.3, [`kCFGregorianCalendar`](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier/gregoriancalendar) is the only possible value. With OS X version 10.4, `kCFGregorianCalendar` and other calendar names are specified by CFLocale.
+    ///
+    ///
     pub static kCFDateFormatterCalendarName: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/defaultformat?language=objc)
+    /// The original format string for the formatter (given the date & time style and locale specified at creation).
     pub static kCFDateFormatterDefaultFormat: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/twodigitstartdate?language=objc)
+    /// Specifies the property representing the date from which two-digit years start, a CFDate object.
     pub static kCFDateFormatterTwoDigitStartDate: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/defaultdate?language=objc)
+    /// Specifies the default date property, a CFDate object.
     pub static kCFDateFormatterDefaultDate: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/calendar?language=objc)
+    /// Specifies the calendar property, a CFCalendar object.
     pub static kCFDateFormatterCalendar: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/erasymbols?language=objc)
+    /// Specifies the era symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterEraSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/monthsymbols?language=objc)
+    /// Specifies the month symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/shortmonthsymbols?language=objc)
+    /// Specifies the short month symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterShortMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/weekdaysymbols?language=objc)
+    /// Specifies the weekday symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/shortweekdaysymbols?language=objc)
+    /// Specifies the short weekday symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterShortWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/amsymbol?language=objc)
+    /// Specifies the AM symbol property, a CFString object.
     pub static kCFDateFormatterAMSymbol: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/pmsymbol?language=objc)
+    /// Specifies the PM symbol property, a CFString object.
     pub static kCFDateFormatterPMSymbol: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/longerasymbols?language=objc)
+    /// Specifies the long era symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterLongEraSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/veryshortmonthsymbols?language=objc)
+    /// Specifies the very short month symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterVeryShortMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/standalonemonthsymbols?language=objc)
+    /// Specifies the standalone month symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/shortstandalonemonthsymbols?language=objc)
+    /// Specifies the short standalone month symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterShortStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/veryshortstandalonemonthsymbols?language=objc)
+    /// Specifies the very short standalone month symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterVeryShortStandaloneMonthSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/veryshortweekdaysymbols?language=objc)
+    /// Specifies the very short weekday symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterVeryShortWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/standaloneweekdaysymbols?language=objc)
+    /// Specifies the standalone weekday symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterStandaloneWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/shortstandaloneweekdaysymbols?language=objc)
+    /// Specifies the short standalone weekday symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterShortStandaloneWeekdaySymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/veryshortstandaloneweekdaysymbols?language=objc)
+    /// Specifies the very short standalone weekday symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterVeryShortStandaloneWeekdaySymbols:
         Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/quartersymbols?language=objc)
+    /// Specifies the quarter symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/shortquartersymbols?language=objc)
+    /// Specifies the short quarter symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterShortQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/standalonequartersymbols?language=objc)
+    /// Specifies the standalone quarter symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterStandaloneQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/shortstandalonequartersymbols?language=objc)
+    /// Specifies the short standalone quarter symbols property, a CFArray of CFString objects.
     pub static kCFDateFormatterShortStandaloneQuarterSymbols: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/gregorianstartdate?language=objc)
+    /// Specifies the Gregorian start date property, a CFDate object.
+    ///
+    /// ## Discussion
+    ///
+    /// This is used to specify the start date for the Gregorian calendar switch from the Julian calendar. Different locales switched at different times. Normally you should just accept the locale’s default date for the switch.
+    ///
+    ///
     pub static kCFDateFormatterGregorianStartDate: Option<&'static CFDateFormatterKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey/doesrelativedateformattingkey?language=objc)
+    /// Specifies the relative date formatting property, a CFBoolean object.
+    ///
+    /// ## Discussion
+    ///
+    /// This is used to specify whether the receiver uses phrases such as “today” and “tomorrow” for the date component.
+    ///
+    ///
     pub static kCFDateFormatterDoesRelativeDateFormattingKey: Option<&'static CFDateFormatterKey>;
 }
 

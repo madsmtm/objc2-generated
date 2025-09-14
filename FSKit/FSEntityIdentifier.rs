@@ -10,13 +10,26 @@ use crate::*;
 extern_class!(
     /// A base type that identifies containers and volumes.
     ///
+    /// ## Overview
+    ///
+    /// An [`FSEntityIdentifier`](https://developer.apple.com/documentation/fskit/fsentityidentifier) is a UUID to identify a container or volume, optionally with eight bytes of qualifying (differentiating) data. You use the qualifiers in cases in which a file server can receive multiple connections from the same client, which differ by user credentials. In this case, the identifier for each client is the server’s base UUID, and a unique qualifier that differs by client.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Don’t subclass this class.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A base type that identifies containers and volumes.
+    ///
     /// An ``FSEntityIdentifier`` is a UUID to identify a container or volume, optionally with eight bytes of qualifying (differentiating) data.
     /// You use the qualifiers in cases in which a file server can receive multiple connections from the same client, which differ by user credentials.
     /// In this case, the identifier for each client is the server's base UUID, and a unique qualifier that differs by client.
     ///
     /// > Important: Don't subclass this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsentityidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSEntityIdentifier;

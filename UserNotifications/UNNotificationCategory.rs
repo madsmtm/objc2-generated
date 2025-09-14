@@ -6,26 +6,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions?language=objc)
+/// Constants indicating how to handle notifications associated with this category.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationCategoryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationCategoryOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/customdismissaction?language=objc)
+/// Send dismiss actions to the `UNUserNotificationCenter` object’s delegate for handling.
         #[doc(alias = "UNNotificationCategoryOptionCustomDismissAction")]
         const CustomDismissAction = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/allowincarplay?language=objc)
+/// Allow CarPlay to display notifications of this type.
+///
+/// ## Discussion
+///
+/// Apps must be approved for CarPlay overall and then you must enable CarPlay for the notification types you want displayed. If a category doesn’t explicitly contain this option, notifications of that type aren’t displayed in a CarPlay environment.
+///
+///
         #[doc(alias = "UNNotificationCategoryOptionAllowInCarPlay")]
         const AllowInCarPlay = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/hiddenpreviewsshowtitle?language=objc)
+/// Show the notification’s title, even if the user has disabled notification previews for the app.
         #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowTitle")]
         const HiddenPreviewsShowTitle = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/hiddenpreviewsshowsubtitle?language=objc)
+/// Show the notification’s subtitle, even if the user has disabled notification previews for the app.
         #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowSubtitle")]
         const HiddenPreviewsShowSubtitle = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/allowannouncement?language=objc)
+/// An option that grants Siri permission to read incoming messages out loud when the user has a compatible audio output device connected.
+///
+/// ## Discussion
+///
+/// When Siri reads an incoming message to the user, Siri reads the message locally on the userʼs device. Siri doesn’t send the message’s contents or sender to Apple servers. For more information about Siri’s on-device processing, visit [Apple’s Privacy Page](https://www.apple.com/privacy/features/).
+///
+///
         #[doc(alias = "UNNotificationCategoryOptionAllowAnnouncement")]
 #[deprecated = "Announcement option is ignored"]
         const AllowAnnouncement = 1<<4;
@@ -40,12 +52,30 @@ unsafe impl RefEncode for UNNotificationCategoryOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptionnone?language=objc)
+/// No options.
 pub static UNNotificationCategoryOptionNone: UNNotificationCategoryOptions =
     UNNotificationCategoryOptions(0);
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcategory?language=objc)
+    /// A type of notification your app supports and the custom actions that the system displays.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UNNotificationCategory`](https://developer.apple.com/documentation/usernotifications/unnotificationcategory) object defines a type of notification that your executable can receive. You create category objects to define your app’s _actionable notifications_ — notifications that have action buttons the user can select in response to the notification. Each category object you create stores the actions and other behaviors associated with a specific type of notification. Register your category objects using the [`setNotificationCategories:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/setnotificationcategories(_:)) method of [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter). You can register as many category objects as you need.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When someone performs a Double Tap gesture while viewing a notification on Apple Watch Series 9 or Apple Watch Ultra 2, the system invokes the first nondestructive action. A nondestructive action doesn’t include the [`UNNotificationActionOptionDestructive`](https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions/destructive) option, and won’t delete user data or change the app irrevocably.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To apply category objects to your notifications, include the category’s identifier string in the payload of any notifications you create. For local notifications, put this string in the [`categoryIdentifier`](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/categoryidentifier) property of the [`UNMutableNotificationContent`](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent) object that you use to specify the notification’s content. For remote notifications, use this string as the value of the `category` key in the `aps` dictionary of your payload.
+    ///
+    /// Categories can have associated actions, which define custom buttons the system displays for notifications of that category. When the system has unlimited space, the system displays up to 10 actions. When the system has limited space, the system displays at most two actions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationCategory;

@@ -7,6 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that uniquely identifies media content in either a single piece or a collection.
+    ///
+    /// ## Overview
+    ///
+    /// Every content identifier is represented by two parts: a string identifier ([`identifier`](https://developer.apple.com/documentation/tvservices/tvcontentidentifier/identifier)) and a container identifier ([`container`](https://developer.apple.com/documentation/tvservices/tvcontentidentifier/container)). The container identifier may be `nil`, which indicates that the content lives at the top level of the container hierarchy. You are responsible for organizing your content into a hierarchy and creating identifiers that uniquely identify each piece of content.
+    ///
+    /// When designing your content identifiers, follow this guidance:
+    ///
+    /// - A given content identifier must be unique for a particular content item, across _all_ past, current, and future content items, even if the user no longer has access to that item.
+    ///
+    /// - The uniqueness of a content identifier comes from the uniqueness of its two parts. The [`identifier`](https://developer.apple.com/documentation/tvservices/tvcontentidentifier/identifier) property of a content identifier need not be universally unique across all of the app’s content identifiers, as long as items that share the same identifier string are contained in different containers.
+    ///
+    ///
     /// Represents unique identifiers for TVContentItems.
     ///
     /// A content identifier is represented by a string, with an optional
@@ -23,8 +36,6 @@ extern_class!(
     /// themselves unique. However, developers should then be careful to not
     /// be confused by equal identifier strings in content identifiers with
     /// different container hierarchies.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "TVContentIdentifier has been replaced by TVTopShelfContentProvider"]

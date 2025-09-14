@@ -9,6 +9,19 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A matrix multiplication kernel.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSMatrixMultiplication`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixmultiplication) object computes the following operation:
+    ///
+    /// _C = alpha * op(A) * op(B) + beta * C_
+    ///
+    /// Where _A_, _B__,_ and _C_ are matrices represented by [`MPSMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix) objects, and _alpha_ and _beta_ are scalar values of the same data type as the values of _C_. _A_ and _B_ may each have an optional transposition operation applied.
+    ///
+    /// Matrices _A_, _B_, and _C_ are also referred to as the left input matrix, the right input matrix, and the result matrix respectively.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -30,8 +43,6 @@ extern_class!(
     /// A MPSMatrixMultiplication object is initialized with the transpose
     /// operators to apply to A and B, sizes for the operation to perform,
     /// and the scalar values alpha and beta.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixmultiplication?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -333,6 +344,7 @@ impl MPSMatrixMultiplication {
 }
 
 extern_class!(
+    /// A matrix-vector multiplication kernel
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -351,8 +363,6 @@ extern_class!(
     /// A MPSMatrixVectorMultiplication object is initialized with the transpose
     /// operator to apply to A, sizes for the operation to perform,
     /// and the scalar values alpha and beta.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixvectormultiplication?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]

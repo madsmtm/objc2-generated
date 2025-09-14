@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem?language=objc)
+    /// A toolbar item that displays the macOS share sheet.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSSharingServicePickerToolbarItem`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem) object is a standard item you add to your window’s toolbar. When someone clicks it, the item displays the macOS share sheet. Use this item to share the selected or focal content from the current window. For example, you might share the photo someone is viewing, the currently selected text, or the window’s associated document.
+    ///
+    /// Provide the items to share using the associated [`delegate`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem/delegate) object. For an app built using Mac Catalyst, provide the items from the object in the [`activityItemsConfiguration`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem/activityitemsconfiguration) property.
+    ///
+    ///
     #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]
@@ -83,7 +91,13 @@ impl NSSharingServicePickerToolbarItem {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritemdelegate?language=objc)
+    /// An interface that provides the content to share from the macOS share sheet.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`NSSharingServicePickerToolbarItemDelegate`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritemdelegate) protocol in one of your app’s custom types and use it to provide shareable content. Assign your delegate object to an [`NSSharingServicePickerToolbarItem`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem) object you add to your window’s toolbar.
+    ///
+    ///
     #[cfg(feature = "NSSharingService")]
     pub unsafe trait NSSharingServicePickerToolbarItemDelegate:
         NSSharingServicePickerDelegate + MainThreadOnly

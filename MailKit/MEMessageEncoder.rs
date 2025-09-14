@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// An object that encrypts or digitally signs outgoing messages.
     /// Methods in this protocol can be used by a mail app extension to encode messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencoder?language=objc)
     pub unsafe trait MEMessageEncoder: NSObjectProtocol {
         #[cfg(all(
             feature = "MEComposeContext",

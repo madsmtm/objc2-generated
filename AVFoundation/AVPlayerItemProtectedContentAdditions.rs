@@ -7,6 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A value representing the status of a content authorization request.
+///
+/// ## Overview
+///
+/// Even if authorization is completed by the user, there is no guarantee that the content will then be authorized. You should re-check whether the content is authorized before proceeding.
+///
+///
 /// Possible status values resulting from a call to requestContentAuthorizationAsynchronouslyWithTimeoutInterval:CompletionHandler:.
 ///
 ///
@@ -18,32 +25,36 @@ use crate::*;
 ///
 /// Even if authorization is completed by the user, there is no guarantee that the content will then be authorized.  The caller should re-check
 /// whether the content is authorized before proceeding.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVContentAuthorizationStatus(pub NSInteger);
 impl AVContentAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/unknown?language=objc)
+    /// The content authorization content request hasn’t completed.
     #[doc(alias = "AVContentAuthorizationUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/completed?language=objc)
+    /// The last completed call to request content authorization completed.
     #[doc(alias = "AVContentAuthorizationCompleted")]
     pub const Completed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/cancelled?language=objc)
+    /// The last call to request content authorization was cancelled by the user.
     #[doc(alias = "AVContentAuthorizationCancelled")]
     pub const Cancelled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/timedout?language=objc)
+    /// The last call to request content authorization was cancelled because the timeout interval was reached.
     #[doc(alias = "AVContentAuthorizationTimedOut")]
     pub const TimedOut: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/busy?language=objc)
+    /// The last call to request content authorization couldn’t be completed because another asset is currently attempting authorization.
     #[doc(alias = "AVContentAuthorizationBusy")]
     pub const Busy: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/notavailable?language=objc)
+    /// The last call to request content authorization couldn’t be completed because there was no known mechanism by which to attempt authorization.
     #[doc(alias = "AVContentAuthorizationNotAvailable")]
     pub const NotAvailable: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentauthorizationstatus/notpossible?language=objc)
+    /// The last call to request content authorization couldn’t be completed in a non-recoverable way.
+    ///
+    /// ## Discussion
+    ///
+    /// This status is returned when the call can’t be completed, for example, a newer version of iTunes is required.
+    ///
+    ///
     #[doc(alias = "AVContentAuthorizationNotPossible")]
     pub const NotPossible: Self = Self(6);
 }

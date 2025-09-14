@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialregistration?language=objc)
+    /// A newly created security key credential that results from a credential registration request.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to verify a successful security key authorization request in [`authorizationController:didCompleteWithAuthorization:`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerdelegate/authorizationcontroller(controller:didcompletewithauthorization:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialRegistration;

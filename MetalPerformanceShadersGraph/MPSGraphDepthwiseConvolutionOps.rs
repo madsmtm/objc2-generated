@@ -12,13 +12,18 @@ use crate::*;
 extern_class!(
     /// A class that defines the parameters for  a 2D-depthwise convolution operation.
     ///
+    /// ## Overview
+    ///
+    /// An `MPSGraphDepthwiseConvolution2DOpDescriptor` defines constant parameters for 2D-depthwise convolutions. Use this class with [`depthwiseConvolution2DWithSourceTensor:weightsTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/depthwiseconvolution2d(_:weights:descriptor:name:)), [`depthwiseConvolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/depthwiseconvolution2ddatagradient(_:weights:outputshape:descriptor:name:)), and [`depthwiseConvolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/depthwiseconvolution2dweightsgradient(_:source:outputshape:descriptor:name:)) methods.
+    ///
+    ///
+    /// A class that defines the parameters for  a 2D-depthwise convolution operation.
+    ///
     /// An `MPSGraphDepthwiseConvolution2DOpDescriptor` defines constant parameters for 2D-depthwise convolutions.
     /// Use this class with ``MPSGraph/depthwiseConvolution2DWithSourceTensor:weightsTensor:descriptor:name:``,
     /// ``MPSGraph/depthwiseConvolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:``,
     /// and ``MPSGraph/depthwiseConvolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:``
     /// methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -257,13 +262,18 @@ impl MPSGraphDepthwiseConvolution2DOpDescriptor {
 extern_class!(
     /// The class that defines the parameters for a 3D-depthwise convolution operation.
     ///
+    /// ## Overview
+    ///
+    /// A `MPSGraphDepthwiseConvolution3DOpDescriptor` defines constant parameters for 3D depthwise convolutions. Use this class with [`depthwiseConvolution3DWithSourceTensor:weightsTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/depthwiseconvolution3d(_:weights:descriptor:name:)), [`depthwiseConvolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/depthwiseconvolution3ddatagradient(_:weights:outputshape:descriptor:name:)) and [`depthwiseConvolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/depthwiseconvolution3dweightsgradient(_:source:outputshape:descriptor:name:)) methods.
+    ///
+    ///
+    /// The class that defines the parameters for a 3D-depthwise convolution operation.
+    ///
     /// A `MPSGraphDepthwiseConvolution3DOpDescriptor` defines constant parameters for 3D depthwise convolutions.
     /// Use this class with ``MPSGraph/depthwiseConvolution3DWithSourceTensor:weightsTensor:descriptor:name:``,
     /// ``MPSGraph/depthwiseConvolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:``
     /// and ``MPSGraph/depthwiseConvolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:``
     /// methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

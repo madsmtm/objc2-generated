@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhost?language=objc)
+/// An opaque reference representing an CFHost object.
 #[doc(alias = "CFHostRef")]
 #[repr(C)]
 pub struct CFHost {
@@ -27,28 +27,28 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainnetdb?language=objc)
+    /// The error code is an error code defined in `netdb.h`.
     pub static kCFStreamErrorDomainNetDB: i32;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainsystemconfiguration?language=objc)
+    /// The error code is a system configuration error code as defined in `System/ConfigurationSystemConfiguration.h`.
     pub static kCFStreamErrorDomainSystemConfiguration: i32;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype?language=objc)
+/// Values indicating the type of data that is to be resolved or the type of data that was resolved.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFHostInfoType(pub c_int);
 impl CFHostInfoType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype/addresses?language=objc)
+    /// Specifies that addresses are to be resolved or that addresses were resolved.
     #[doc(alias = "kCFHostAddresses")]
     pub const Addresses: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype/names?language=objc)
+    /// Specifies that names are to be resolved or that names were resolved.
     #[doc(alias = "kCFHostNames")]
     pub const Names: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype/reachability?language=objc)
+    /// Specifies that reachability information is to be resolved or that reachability information was resolved.
     #[doc(alias = "kCFHostReachability")]
     pub const Reachability: Self = Self(2);
 }
@@ -63,7 +63,7 @@ unsafe impl RefEncode for CFHostInfoType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostclientcontext?language=objc)
+/// A structure containing user-defined data and callbacks for CFHost objects.
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -94,13 +94,45 @@ unsafe impl RefEncode for CFHostClientContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostclientcallback?language=objc)
+/// Defines a pointer to the callback function that is called when an asynchronous resolution of a CFHost completes or an error occurs for an asynchronous CFHost resolution.
+///
+/// Parameters:
+/// - theHost: The host for which an asynchronous resolution has been completed.
+///
+/// - typeInfo: Value of type `CFHostInfoType` representing the type of information (addresses, names, or reachability information) obtained by the completed resolution. See [`CFHostInfoType`](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype) for possible values.
+///
+/// - error: If the resolution failed, contains a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure whose `error` field contains an error code.
+///
+/// - info: User-defined context information. The value pointed to by `info` is the same as the value pointed to by the `info` field of the [`CFHostClientContext`](https://developer.apple.com/documentation/cfnetwork/cfhostclientcontext) structure that was provided when the host was associated with this callback function.
+///
+///
+/// ## Discussion
+///
+/// If you name your callback `MyHostClientCallBack`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// The callback function for a CFHost object is called one or more times when an asynchronous resolution completes for the specified host, when an asynchronous resolution is cancelled, or when an error occurs during an asynchronous resolution.
+///
+///
 pub type CFHostClientCallBack = Option<
     unsafe extern "C-unwind" fn(NonNull<CFHost>, CFHostInfoType, *const CFStreamError, *mut c_void),
 >;
 
 unsafe impl ConcreteType for CFHost {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgettypeid()?language=objc)
+    /// Gets the Core Foundation type identifier for the CFHost opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for the CFHost opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFHostGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -112,7 +144,27 @@ unsafe impl ConcreteType for CFHost {
 }
 
 impl CFHost {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcreatewithname(_:_:)?language=objc)
+    /// Uses a name to create an instance of a host object.
+    ///
+    /// Parameters:
+    /// - hostname: A string representing the name of the host. This value must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid CFHostRef object that can be resolved, or `NULL` if the host could not be created. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call [`CFHostStartInfoResolution`](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)) to resolve the object’s addresses and reachability information.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFHostCreateWithName")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -132,7 +184,27 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcreatewithaddress(_:_:)?language=objc)
+    /// Uses an address to create an instance of a host object.
+    ///
+    /// Parameters:
+    /// - addr: A CFDataRef object containing a `sockaddr` structure for the address of the host. This value must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid CFHostRef object that can be resolved, or `NULL` if the host could not be created. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call [`CFHostStartInfoResolution`](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)) to resolve the return object’s name and reachability information.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFHostCreateWithAddress")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -152,7 +224,23 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcreatecopy(_:_:)?language=objc)
+    /// Creates a new host object by copying.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid CFHost object or `NULL` if the copy could not be created. The new host contains a copy of all previously resolved data from the original host. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFHostCreateCopy")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -169,7 +257,33 @@ impl CFHost {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)?language=objc)
+    /// Starts resolution for a host object.
+    ///
+    /// Parameters:
+    /// - theHost: The host, obtained by previously calling [`CFHostCreateCopy`](https://developer.apple.com/documentation/cfnetwork/cfhostcreatecopy(_:_:)), [`CFHostCreateWithAddress`](https://developer.apple.com/documentation/cfnetwork/cfhostcreatewithaddress(_:_:)), or [`CFHostCreateWithName`](https://developer.apple.com/documentation/cfnetwork/cfhostcreatewithname(_:_:)), that is to be resolved. This value must not be `NULL`.
+    ///
+    /// - info: A value of type `CFHostInfoType` specifying the type of information that is to be retrieved. See [`CFHostInfoType`](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype) for possible values.
+    ///
+    /// - error: A pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure, that, if an error occurs, is set to the error and the error’s domain. In synchronous mode, the error indicates why resolution failed, and in asynchronous mode, the error indicates why resolution failed to start.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the resolution was started (asynchronous mode); `FALSE` if another resolution is already in progress for `theHost` or if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function retrieves the information specified by `info` and stores it in the host.
+    ///
+    /// In synchronous mode, this function blocks until the resolution has completed, in which case this function returns `TRUE`, until the resolution is stopped by calling [`CFHostCancelInfoResolution`](https://developer.apple.com/documentation/cfnetwork/cfhostcancelinforesolution(_:_:)) from another thread, in which case this function returns `FALSE`, or until an error occurs.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -193,7 +307,23 @@ impl CFHost {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgetaddressing(_:_:)?language=objc)
+    /// Gets the addresses from a host.
+    ///
+    /// Parameters:
+    /// - theHost: The CFHost whose addresses are to be obtained. This value must not be `NULL`.
+    ///
+    /// - hasBeenResolved: On return, a pointer to a Boolean that is `TRUE` if addresses were available and `FALSE` if addresses were not available. This parameter can be null.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the addresses from a CFHost. The CFHost must have been previously resolved. To resolve a CFHost, call [`CFHostStartInfoResolution`](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function gets the addresses in a thread-safe way, but the resulting data is not thread-safe. The data is returned as a “get” as opposed to a copy, so the data is not safe if the CFHost is altered from another thread.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -215,7 +345,25 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgetnames(_:_:)?language=objc)
+    /// Gets the names from a CFHost.
+    ///
+    /// Parameters:
+    /// - theHost: The host to examine. The host must have been previously resolved. (To resolve a host, call [`CFHostStartInfoResolution`](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)).) This value must not be `NULL`.
+    ///
+    /// - hasBeenResolved: On return, contains `TRUE` if names were available, otherwise `FALSE`. This value may be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing the of names of `theHost`, or `NULL` if no names were available.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets the names in a thread-safe way, but the resulting data is not thread-safe. The data is returned as a “get” as opposed to a copy, so the data is not safe if the CFHost is altered from another thread.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -234,7 +382,25 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostgetreachability(_:_:)?language=objc)
+    /// Gets reachability information from a host.
+    ///
+    /// Parameters:
+    /// - theHost: The host whose reachability is to be obtained. The host must have been previously resolved. (To resolve a host, call [`CFHostStartInfoResolution`](https://developer.apple.com/documentation/cfnetwork/cfhoststartinforesolution(_:_:_:)).) This value must not be `NULL`.
+    ///
+    /// - hasBeenResolved: On return, contains `TRUE` if the reachability was available, otherwise  `FALSE`. This value may be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFData object that wraps the reachability flags (`SCNetworkConnectionFlags`) defined in `SystemConfiguration/SCNetwork.h`, or `NULL` if reachability information was not available.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function gets reachability information in a thread-safe way, but the resulting data is not thread-safe. The data is returned as a “get” as opposed to a copy, so the data is not safe if the CFHost is altered from another thread.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -256,7 +422,23 @@ impl CFHost {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostcancelinforesolution(_:_:)?language=objc)
+    /// Cancels the resolution of a host.
+    ///
+    /// Parameters:
+    /// - theHost: The host for which a resolution is to be cancelled. This value must not be `NULL`.
+    ///
+    /// - info: A value of type `CFHostInfoType` specifying the type of resolution that is to be cancelled. See [`CFHostInfoType`](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype) for possible values.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function cancels the asynchronous or synchronous resolution specified by `info` for the host specified by `theHost`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     #[doc(alias = "CFHostCancelInfoResolution")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
@@ -267,7 +449,33 @@ impl CFHost {
         unsafe { CFHostCancelInfoResolution(self, info) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostsetclient(_:_:_:)?language=objc)
+    /// Associates a client context and a callback function with a CFHost object or disassociates a client context and callback function that were previously set.
+    ///
+    /// Parameters:
+    /// - theHost: The host to modify. The value must not be `NULL`.
+    ///
+    /// - clientCB: The callback function to associate with `theHost`. The callback function will be called when a resolution completes or is cancelled. If you are calling this function to disassociate a client context and callback from `theHost`, p`clientCB`ass `NULL`.
+    ///
+    /// - clientContext: A [`CFHostClientContext`](https://developer.apple.com/documentation/cfnetwork/cfhostclientcontext) structure whose `info` field will be passed to the callback function specified by `clientCB` when `clientCB` is called. This value must not be `NULL` when setting an association.
+    ///
+    /// Pass `NULL` when disassociating a client context and a callback from a host.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the association could be set or unset, otherwise `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The callback function specified by `clientCB` will be called when a resolution completes or is cancelled.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -292,7 +500,25 @@ impl CFHost {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostschedulewithrunloop(_:_:_:)?language=objc)
+    /// Schedules a CFHost on a run loop.
+    ///
+    /// Parameters:
+    /// - theHost: The host to be schedule on a run loop. This value must not be `NULL`.
+    ///
+    /// - runLoop: The run loop on which to schedule `theHost`. This value must not be `NULL`.
+    ///
+    /// - runLoopMode: The mode on which to schedule `theHost`. This value must not be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Schedules `theHost` on a run loop, which causes resolutions of the host to be performed asynchronously. The caller is responsible for ensuring that at least one of the run loops on which the host is scheduled is being run.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -311,7 +537,19 @@ impl CFHost {
         unsafe { CFHostScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostunschedulefromrunloop(_:_:_:)?language=objc)
+    /// Unschedules a CFHost from a run loop.
+    ///
+    /// Parameters:
+    /// - runLoop: The run loop. This value must not be `NULL`.
+    ///
+    /// - runLoopMode: The mode from which the service is to be unscheduled. This value must not be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///

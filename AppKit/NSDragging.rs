@@ -7,42 +7,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation?language=objc)
+/// A group of constants that represent which operations the dragging source can perform on dragging items.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDragOperation(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDragOperation: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/nsdragoperationnone?language=objc)
+/// A constant that indicates that the drag cannot perform any operations.
         #[doc(alias = "NSDragOperationNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/copy?language=objc)
+/// A constant that indicates the drag can copy the data that the image represents.
         #[doc(alias = "NSDragOperationCopy")]
         const Copy = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/link?language=objc)
+/// A constant that indicates the drag can share the data.
         #[doc(alias = "NSDragOperationLink")]
         const Link = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/generic?language=objc)
+/// A constant that indicates the destination can define the drag operation.
         #[doc(alias = "NSDragOperationGeneric")]
         const Generic = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/private?language=objc)
+/// A constant that indicates the source and destination negotiate the drag operation privately.
         #[doc(alias = "NSDragOperationPrivate")]
         const Private = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/move?language=objc)
+/// A constant that indicates the drag can move the data.
         #[doc(alias = "NSDragOperationMove")]
         const Move = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/delete?language=objc)
+/// A constant that indicates the drag can delete the data.
         #[doc(alias = "NSDragOperationDelete")]
         const Delete = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/every?language=objc)
+/// A constant that indicates that drag can perform all of the drag operations.
         #[doc(alias = "NSDragOperationEvery")]
         const Every = NSUIntegerMax as _;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/all_obsolete?language=objc)
+/// The `NSDragOperationAll` constant is deprecated. Use [`NSDragOperationEvery`](https://developer.apple.com/documentation/appkit/nsdragoperation/every) instead.
         #[doc(alias = "NSDragOperationAll_Obsolete")]
 #[deprecated]
         const All_Obsolete = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation/all?language=objc)
+/// Use [`NSDragOperationEvery`](https://developer.apple.com/documentation/appkit/nsdragoperation/every) instead.
         #[doc(alias = "NSDragOperationAll")]
 #[deprecated]
         const All = NSDragOperation::All_Obsolete.0;
@@ -57,25 +57,25 @@ unsafe impl RefEncode for NSDragOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation?language=objc)
+/// Constants that control the visual format of multiple dragging items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingFormation(pub NSInteger);
 impl NSDraggingFormation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/default?language=objc)
+    /// A constant that represents the system determined formation.
     #[doc(alias = "NSDraggingFormationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/none?language=objc)
+    /// A constant that represents no custom formation, so drag images maintain their set positions relative to each other.
     #[doc(alias = "NSDraggingFormationNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/pile?language=objc)
+    /// A constant that represents a pile formation, so drag images display on top of each other with random rotations.
     #[doc(alias = "NSDraggingFormationPile")]
     pub const Pile: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/list?language=objc)
+    /// A constant that represents a list formation, so drag images display vertically, non-overlapping with the left edges aligned.
     #[doc(alias = "NSDraggingFormationList")]
     pub const List: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation/stack?language=objc)
+    /// A constant that represents a stack formation, so drag images display overlapping diagonally.
     #[doc(alias = "NSDraggingFormationStack")]
     pub const Stack: Self = Self(4);
 }
@@ -88,16 +88,16 @@ unsafe impl RefEncode for NSDraggingFormation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext?language=objc)
+/// Constants that specify whether a drag terminates within or outside the application.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingContext(pub NSInteger);
 impl NSDraggingContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext/outsideapplication?language=objc)
+    /// A constant that indicates dragging terminates outside the application.
     #[doc(alias = "NSDraggingContextOutsideApplication")]
     pub const OutsideApplication: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext/withinapplication?language=objc)
+    /// A constant that indicates dragging terminates within the application.
     #[doc(alias = "NSDraggingContextWithinApplication")]
     pub const WithinApplication: Self = Self(1);
 }
@@ -110,17 +110,23 @@ unsafe impl RefEncode for NSDraggingContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions?language=objc)
+/// A group of constants that specify options to use when enumerating dragging items.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingItemEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDraggingItemEnumerationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions/concurrent?language=objc)
+/// A constant that indicates the enumeration processes dragging items concurrently.
         #[doc(alias = "NSDraggingItemEnumerationConcurrent")]
         const Concurrent = NSEnumerationOptions::Concurrent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions/clearnonenumeratedimages?language=objc)
+/// A constant that indicates the enumeration clears the image components provider for all dragging items that don’t meet the classes and search options criteria.
+///
+/// ## Discussion
+///
+/// Specify this option when you enumerate dragging items to hide the drag image for nonvalid items for this destination. The enumeration sets the [`imageComponentsProvider`](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentsprovider) to `nil` for all dragging items that don’t meet the classes and search options criteria.
+///
+///
         #[doc(alias = "NSDraggingItemEnumerationClearNonenumeratedImages")]
         const ClearNonenumeratedImages = 1<<16;
     }
@@ -134,19 +140,45 @@ unsafe impl RefEncode for NSDraggingItemEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight?language=objc)
+/// A group of constants that indicate a highlighting style for your app’s user interface to display during a spring-loading operation.
+///
+/// ## Overview
+///
+/// The [`springLoadingHighlight`](https://developer.apple.com/documentation/appkit/nsdragginginfo/springloadinghighlight) method provides one of these constant values.
+///
+/// Do not use highlighting as a means to determine whether spring-loading has actually been activated or deactivated. The [`springLoadingActivated:draggingInfo:`](https://developer.apple.com/documentation/appkit/nsspringloadingdestination/springloadingactivated(_:dragginginfo:)) method alerts your app when spring-loading activation occurs.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpringLoadingHighlight(pub NSInteger);
 impl NSSpringLoadingHighlight {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight/none?language=objc)
+    /// A constant that indicates no highlighting.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t apply any highlighting style to the destination’s user interface. The destination is probably not spring-loadable.
+    ///
+    ///
     #[doc(alias = "NSSpringLoadingHighlightNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight/standard?language=objc)
+    /// A constant that indicates standard highlighting to show the destination supports spring-loading.
+    ///
+    /// ## Discussion
+    ///
+    /// Apply light highlighting to the destination’s user interface. This highlighting style typically provides a subtle visual cue to the user that the destination supports spring-loading and that spring-loading is about to be fully engaged. A brief period of highlighting with this style provides the user with an opportunity to disengage and prevent the spring-loading from occurring.
+    ///
+    ///
     #[doc(alias = "NSSpringLoadingHighlightStandard")]
     pub const Standard: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight/emphasized?language=objc)
+    /// A constant that indicates emphasized highlighting to show active spring-loading on the destination.
+    ///
+    /// ## Discussion
+    ///
+    /// Apply highlighting to the destination’s user interface to visually indicate to the user that spring-loading is engaged on the destination.
+    ///
+    ///
     #[doc(alias = "NSSpringLoadingHighlightEmphasized")]
     pub const Emphasized: Self = Self(2);
 }
@@ -160,7 +192,13 @@ unsafe impl RefEncode for NSSpringLoadingHighlight {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragginginfo?language=objc)
+    /// A set of methods that supply information about a dragging session.
+    ///
+    /// ## Overview
+    ///
+    /// You invoke the [`NSDraggingInfo`](https://developer.apple.com/documentation/appkit/nsdragginginfo) protocol methods from within a class’s implementation of [`NSDraggingDestination`](https://developer.apple.com/documentation/appkit/nsdraggingdestination) methods. AppKit automatically passes an object that conforms to the [`NSDraggingInfo`](https://developer.apple.com/documentation/appkit/nsdragginginfo) protocol as the argument to each of the methods that [`NSDraggingDestination`](https://developer.apple.com/documentation/appkit/nsdraggingdestination) defines. Send [`NSDraggingInfo`](https://developer.apple.com/documentation/appkit/nsdragginginfo) messages to this object. You never need to create a class that implements the [`NSDraggingInfo`](https://developer.apple.com/documentation/appkit/nsdragginginfo) protocol.
+    ///
+    ///
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(draggingDestinationWindow))]
@@ -270,7 +308,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingdestination?language=objc)
+    /// A set of methods that the destination object (or recipient) of a dragged image must implement.
+    ///
+    /// ## Overview
+    ///
+    /// The destination automatically receives [`NSDraggingDestination`](https://developer.apple.com/documentation/appkit/nsdraggingdestination) messages for pasteboard data types it has registered for as an image enters, moves around inside, and then exits or is released within the destination’s boundaries.
+    ///
+    /// In macOS 10.7 and later [`NSDraggingDestination`](https://developer.apple.com/documentation/appkit/nsdraggingdestination) is a formal protocol with an updated interface. The OS X v10.6 behavior has been retained, but will be dropped in a future version of the operating system. The methods that are to be deprecated are marked as such.
+    ///
+    ///
     pub unsafe trait NSDraggingDestination: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(draggingEntered:))]
@@ -320,7 +366,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingsource?language=objc)
+    /// A set of methods that are implemented by the source object in a dragging session.
+    ///
+    /// ## Overview
+    ///
+    /// In macOS 10.7 and later `NSDraggingSource` is now a formal protocol and has an updated interface. The OS X v10.6 behavior has been retained, but will be dropped in a future version of the operating system. The methods that are to be deprecated are marked as such.
+    ///
+    ///
     pub unsafe trait NSDraggingSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSDraggingSession")]
         #[unsafe(method(draggingSession:sourceOperationMaskForDraggingContext:))]
@@ -366,23 +418,23 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions?language=objc)
+/// These constants denote the type of spring-loading behavior configured for the destination object.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpringLoadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSpringLoadingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/disabled?language=objc)
+/// Spring-loading on the destination object is disabled. No spring-loading operations can occur.
         #[doc(alias = "NSSpringLoadingDisabled")]
         const Disabled = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/enabled?language=objc)
+/// Spring-loading on the destination object is enabled. The user can drag an object over a destination object and hover or force click to initiate spring-loading and activate the destination object. When initiated by a force click, spring-loading is invoked once the force click is released.
         #[doc(alias = "NSSpringLoadingEnabled")]
         const Enabled = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/continuousactivation?language=objc)
+/// Spring-loading on the destination object is enabled. The user can drag an object over a destination object and hover or force click to initiate spring-loading and activate the destination object. When initiated by a force click, spring-loading is invoked once the force click begins and deactivated when the force click is released. When initiated by hovering, spring-loading is invoked at the hover timeout and deactivated when the drag exits the destination object. Use this constant sparingly.
         #[doc(alias = "NSSpringLoadingContinuousActivation")]
         const ContinuousActivation = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions/nohover?language=objc)
+/// Spring-loading on the destination object is enabled, but cannot be invoked by hovering. The user can drag an object over a destination object and force click to initiate spring-loading and activate the destination object. This option may be useful in situations where a long hover, such as dragging across a large destination object, initiates undesired spring-loading. Use this constant sparingly.
         #[doc(alias = "NSSpringLoadingNoHover")]
         const NoHover = 1<<3;
     }
@@ -397,7 +449,15 @@ unsafe impl RefEncode for NSSpringLoadingOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingdestination?language=objc)
+    /// A set of methods that the destination object (or recipient) of a dragged object can implement to support spring-loading.
+    ///
+    /// ## Overview
+    ///
+    /// Spring-loading is the act of dragging an object onto a destination object and hovering or force-clicking to activate the destination object A view can be configured as a drag-and-drop destination, a spring-loading destination, or both. If a view implements both drag-and-drop and spring-loading, then it will receive messages for both operations.
+    ///
+    /// Note that the view beneath the cursor during a drag receives priority. For example, if a parent view implements drag-and-drop and a subview implements spring-loading, then the parent view will not receive drag-and-drop messages while the cursor is over the subview.
+    ///
+    ///
     pub unsafe trait NSSpringLoadingDestination: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(springLoadingActivated:draggingInfo:))]
         #[unsafe(method_family = none)]

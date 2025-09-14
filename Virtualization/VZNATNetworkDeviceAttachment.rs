@@ -6,6 +6,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A device that routes network requests through the host computer and performs network address translation on the resulting packets.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZNATNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vznatnetworkdeviceattachment) works with the host computer to perform network address translation (NAT) on the guest system’s network packets, and then route those packets to outside networks. Use this attachment to give the guest system indirect access to external networks, instead of direct access through a shared physical network interface.
+    ///
+    /// To configure a network device with a NAT attachment:
+    ///
+    /// 1. Create the [`VZNATNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vznatnetworkdeviceattachment) object.
+    ///
+    /// 2. Assign the attachment object to the [`attachment`](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment) property of a [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object.
+    ///
+    /// 3. Add the [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object to the [`networkDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration).
+    ///
+    /// This attachment doesn’t require your app to have the [`com.apple.vm.networking`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.vm.networking) entitlement.
+    ///
+    ///
     /// Network device attachment using network address translation (NAT) with outside networks.
     ///
     /// Using the NAT attachment type, the host serves as router and performs network address translation for accesses to outside networks.
@@ -14,8 +31,6 @@ extern_class!(
     /// See: VZNetworkDeviceConfiguration
     ///
     /// See: VZVirtioNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznatnetworkdeviceattachment?language=objc)
     #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]

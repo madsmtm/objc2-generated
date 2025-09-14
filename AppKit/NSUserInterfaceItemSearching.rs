@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemsearching?language=objc)
+    /// A set of methods an app can implement to provide Spotlight for Help for its own custom help data.
+    ///
+    /// ## Overview
+    ///
+    /// In general, users find the Help search functionality very useful. However, many large apps don’t use Apple Help API because of cross platform requirements, which means that some important Help topics are not presented as part of the Help menu. This API allows developers to incorporate their own Help topics and take full advantage of the Help feature.
+    ///
+    /// In your app, you implement the [`NSUserInterfaceItemSearching`](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemsearching) protocol and then register your object with [`registerUserInterfaceItemSearchHandler:`](https://developer.apple.com/documentation/appkit/nsapplication/registeruserinterfaceitemsearchhandler(_:)).
+    ///
+    ///
     pub unsafe trait NSUserInterfaceItemSearching: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[unsafe(method(searchForItemsWithSearchString:resultLimit:matchedItemHandler:))]

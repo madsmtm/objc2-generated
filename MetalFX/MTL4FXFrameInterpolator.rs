@@ -8,7 +8,6 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtl4fxframeinterpolator?language=objc)
     #[cfg(feature = "MTLFXFrameInterpolator")]
     pub unsafe trait MTL4FXFrameInterpolator: MTLFXFrameInterpolatorBase {
         /// Encode this frame interpolator's work into a command buffer.

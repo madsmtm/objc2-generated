@@ -11,9 +11,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A SpriteKit node that masks child nodes using another node's alpha component
+    /// A node that masks pixels drawn by its children so that only some pixels are seen.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skcropnode?language=objc)
+    /// ## Overview
+    ///
+    /// `SKCropNode` is a container node that you use to crop other nodes in the scene. You add other nodes to a crop node and set the crop node’s [`maskNode`](https://developer.apple.com/documentation/spritekit/skcropnode/masknode) property. For example, here are some ways you might specify a mask:
+    ///
+    /// - An untextured sprite that limits content to a rectangular portion of the scene.
+    ///
+    /// - A textured sprite that works as a precise per-pixel mask.
+    ///
+    /// - A collection of child nodes that form a unique shape.
+    ///
+    /// You can animate the shape or contents of the mask to implement interesting effects such as hiding or revealing.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Use crop nodes sparingly. Because they require an additional offscreen memory buffer to perform the crop and add a rendering operation into the offscreen buffer, they add notably more overhead to the app.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A SpriteKit node that masks child nodes using another node's alpha component
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

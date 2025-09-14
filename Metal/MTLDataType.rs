@@ -4,497 +4,515 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The types of GPU functions, including shaders and compute kernels.
 /// An enumeration of the different data types in Metal.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDataType(pub NSUInteger);
 impl MTLDataType {
+    /// A placeholder that represents a GPU function parameter that doesn’t have a valid data type.
     /// Represents no data type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/none?language=objc)
     #[doc(alias = "MTLDataTypeNone")]
     pub const None: Self = Self(0);
+    /// A structure instance.
     /// Represents a struct data type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/struct?language=objc)
     #[doc(alias = "MTLDataTypeStruct")]
     pub const Struct: Self = Self(1);
+    /// An array instance.
     /// Represents an array data type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/array?language=objc)
     #[doc(alias = "MTLDataTypeArray")]
     pub const Array: Self = Self(2);
+    /// A 32-bit floating-point value.
     /// Represents a data type consisting of a single floating-point value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float?language=objc)
     #[doc(alias = "MTLDataTypeFloat")]
     pub const Float: Self = Self(3);
+    /// A two-component vector with 32-bit floating-point values.
     /// Represents a data type consisting of a vector of two floating-point values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float2?language=objc)
     #[doc(alias = "MTLDataTypeFloat2")]
     pub const Float2: Self = Self(4);
+    /// A three-component vector with 32-bit floating-point values.
     /// Represents a data type consisting of a vector of three floating-point values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float3?language=objc)
     #[doc(alias = "MTLDataTypeFloat3")]
     pub const Float3: Self = Self(5);
+    /// A four-component vector with 32-bit floating-point values.
     /// Represents a data type consisting of a vector of four floating-point values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float4?language=objc)
     #[doc(alias = "MTLDataTypeFloat4")]
     pub const Float4: Self = Self(6);
+    /// A 2x2 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 2x2 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float2x2?language=objc)
     #[doc(alias = "MTLDataTypeFloat2x2")]
     pub const Float2x2: Self = Self(7);
+    /// A 2x3 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 2x3 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float2x3?language=objc)
     #[doc(alias = "MTLDataTypeFloat2x3")]
     pub const Float2x3: Self = Self(8);
+    /// A 2x4 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 2x4 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float2x4?language=objc)
     #[doc(alias = "MTLDataTypeFloat2x4")]
     pub const Float2x4: Self = Self(9);
+    /// A 3x2 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 3x2 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float3x2?language=objc)
     #[doc(alias = "MTLDataTypeFloat3x2")]
     pub const Float3x2: Self = Self(10);
+    /// A 3x3 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 3x3 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float3x3?language=objc)
     #[doc(alias = "MTLDataTypeFloat3x3")]
     pub const Float3x3: Self = Self(11);
+    /// A 3x4 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 3x4 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float3x4?language=objc)
     #[doc(alias = "MTLDataTypeFloat3x4")]
     pub const Float3x4: Self = Self(12);
+    /// A 4x2 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 4x2 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float4x2?language=objc)
     #[doc(alias = "MTLDataTypeFloat4x2")]
     pub const Float4x2: Self = Self(13);
+    /// A 4x3 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 4x3 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float4x3?language=objc)
     #[doc(alias = "MTLDataTypeFloat4x3")]
     pub const Float4x3: Self = Self(14);
+    /// A 4x4 component matrix with 32-bit floating-point values.
     /// Represents a data type consisting of a 4x4 floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/float4x4?language=objc)
     #[doc(alias = "MTLDataTypeFloat4x4")]
     pub const Float4x4: Self = Self(15);
+    /// A 16-bit floating-point value.
     /// Represents a data type consisting of a half-precision floating-point value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half?language=objc)
     #[doc(alias = "MTLDataTypeHalf")]
     pub const Half: Self = Self(16);
+    /// A two-component vector with 16-bit floating-point values.
     /// Represents a data type consisting of a vector of two half-precision floating-point values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half2?language=objc)
     #[doc(alias = "MTLDataTypeHalf2")]
     pub const Half2: Self = Self(17);
+    /// A three-component vector with 16-bit floating-point values.
     /// Represents a data type consisting of a vector of three half-precision floating-point values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half3?language=objc)
     #[doc(alias = "MTLDataTypeHalf3")]
     pub const Half3: Self = Self(18);
+    /// A four-component vector with 16-bit floating-point values.
     /// Represents a data type consisting of a vector of four half-precision floating-point values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half4?language=objc)
     #[doc(alias = "MTLDataTypeHalf4")]
     pub const Half4: Self = Self(19);
+    /// A 2x2 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 2x2 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half2x2?language=objc)
     #[doc(alias = "MTLDataTypeHalf2x2")]
     pub const Half2x2: Self = Self(20);
+    /// A 2x3 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 2x3 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half2x3?language=objc)
     #[doc(alias = "MTLDataTypeHalf2x3")]
     pub const Half2x3: Self = Self(21);
+    /// A 2x4 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 2x4 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half2x4?language=objc)
     #[doc(alias = "MTLDataTypeHalf2x4")]
     pub const Half2x4: Self = Self(22);
+    /// A 3x2 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 3x2 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half3x2?language=objc)
     #[doc(alias = "MTLDataTypeHalf3x2")]
     pub const Half3x2: Self = Self(23);
+    /// A 3x3 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 3x3 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half3x3?language=objc)
     #[doc(alias = "MTLDataTypeHalf3x3")]
     pub const Half3x3: Self = Self(24);
+    /// A 3x4 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 3x4 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half3x4?language=objc)
     #[doc(alias = "MTLDataTypeHalf3x4")]
     pub const Half3x4: Self = Self(25);
+    /// A 4x2 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 4x2 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half4x2?language=objc)
     #[doc(alias = "MTLDataTypeHalf4x2")]
     pub const Half4x2: Self = Self(26);
+    /// A 4x3 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 4x3 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half4x3?language=objc)
     #[doc(alias = "MTLDataTypeHalf4x3")]
     pub const Half4x3: Self = Self(27);
+    /// A 4x4 component matrix with 16-bit floating-point values.
     /// Represents a data type consisting of a 4x4 half-precision floating-point matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/half4x4?language=objc)
     #[doc(alias = "MTLDataTypeHalf4x4")]
     pub const Half4x4: Self = Self(28);
+    /// A 32-bit, signed integer value.
     /// Represents a data type consisting of a single signed integer value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/int?language=objc)
     #[doc(alias = "MTLDataTypeInt")]
     pub const Int: Self = Self(29);
+    /// A two-component vector with 32-bit, signed integer values.
     /// Represents a data type consisting of a vector of two signed integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/int2?language=objc)
     #[doc(alias = "MTLDataTypeInt2")]
     pub const Int2: Self = Self(30);
+    /// A three-component vector with 32-bit, signed integer values.
     /// Represents a data type consisting of a vector of three signed integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/int3?language=objc)
     #[doc(alias = "MTLDataTypeInt3")]
     pub const Int3: Self = Self(31);
+    /// A four-component vector with 32-bit, signed integer values.
     /// Represents a data type consisting of a vector of four signed integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/int4?language=objc)
     #[doc(alias = "MTLDataTypeInt4")]
     pub const Int4: Self = Self(32);
+    /// A 32-bit, unsigned integer value.
     /// Represents a data type consisting of a single unsigned integer value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uint?language=objc)
     #[doc(alias = "MTLDataTypeUInt")]
     pub const UInt: Self = Self(33);
+    /// A two-component vector with 32-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of two unsigned integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uint2?language=objc)
     #[doc(alias = "MTLDataTypeUInt2")]
     pub const UInt2: Self = Self(34);
+    /// A three-component vector with 32-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of three unsigned integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uint3?language=objc)
     #[doc(alias = "MTLDataTypeUInt3")]
     pub const UInt3: Self = Self(35);
+    /// A four-component vector with 32-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of four unsigned integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uint4?language=objc)
     #[doc(alias = "MTLDataTypeUInt4")]
     pub const UInt4: Self = Self(36);
+    /// A 16-bit, signed integer value.
     /// Represents a data type consisting of a single 16-bit signed integer value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/short?language=objc)
     #[doc(alias = "MTLDataTypeShort")]
     pub const Short: Self = Self(37);
+    /// A two-component vector with 16-bit, signed integer values.
     /// Represents a data type consisting of a vector of two 16-bit signed integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/short2?language=objc)
     #[doc(alias = "MTLDataTypeShort2")]
     pub const Short2: Self = Self(38);
+    /// A three-component vector with 16-bit, signed integer values.
     /// Represents a data type consisting of a vector of three 16-bit signed integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/short3?language=objc)
     #[doc(alias = "MTLDataTypeShort3")]
     pub const Short3: Self = Self(39);
+    /// A four-component vector with 16-bit, signed integer values.
     /// Represents a data type consisting of a vector of three 16-bit signed integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/short4?language=objc)
     #[doc(alias = "MTLDataTypeShort4")]
     pub const Short4: Self = Self(40);
+    /// A 16-bit, unsigned integer value.
     /// Represents a data type consisting of a single 16-bit unsigned integer value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ushort?language=objc)
     #[doc(alias = "MTLDataTypeUShort")]
     pub const UShort: Self = Self(41);
+    /// A two-component vector with 16-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of two 16-bit unsigned integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ushort2?language=objc)
     #[doc(alias = "MTLDataTypeUShort2")]
     pub const UShort2: Self = Self(42);
+    /// A three-component vector with 16-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of three 16-bit unsigned integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ushort3?language=objc)
     #[doc(alias = "MTLDataTypeUShort3")]
     pub const UShort3: Self = Self(43);
+    /// A four-component vector with 16-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of four 16-bit unsigned integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ushort4?language=objc)
     #[doc(alias = "MTLDataTypeUShort4")]
     pub const UShort4: Self = Self(44);
+    /// An 8-bit, signed integer value.
     /// Represents a data type consisting of a single signed character value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/char?language=objc)
     #[doc(alias = "MTLDataTypeChar")]
     pub const Char: Self = Self(45);
+    /// A two-component vector with 8-bit, signed integer values.
     /// Represents a data type consisting of a vector of two signed character values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/char2?language=objc)
     #[doc(alias = "MTLDataTypeChar2")]
     pub const Char2: Self = Self(46);
+    /// A three-component vector with 8-bit, signed integer values.
     /// Represents a data type consisting of a vector of three signed character values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/char3?language=objc)
     #[doc(alias = "MTLDataTypeChar3")]
     pub const Char3: Self = Self(47);
+    /// A four-component vector with 8-bit, signed integer values.
     /// Represents a data type consisting of a vector of four signed character values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/char4?language=objc)
     #[doc(alias = "MTLDataTypeChar4")]
     pub const Char4: Self = Self(48);
+    /// An 8-bit, unsigned integer value.
     /// Represents a data type consisting of a single unsigned character value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uchar?language=objc)
     #[doc(alias = "MTLDataTypeUChar")]
     pub const UChar: Self = Self(49);
+    /// A two-component vector with 8-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of two unsigned character values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uchar2?language=objc)
     #[doc(alias = "MTLDataTypeUChar2")]
     pub const UChar2: Self = Self(50);
+    /// A three-component vector with 8-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of three unsigned character values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uchar3?language=objc)
     #[doc(alias = "MTLDataTypeUChar3")]
     pub const UChar3: Self = Self(51);
+    /// A four-component vector with 8-bit, unsigned integer values.
     /// Represents a data type consisting of a vector of four unsigned character values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/uchar4?language=objc)
     #[doc(alias = "MTLDataTypeUChar4")]
     pub const UChar4: Self = Self(52);
+    /// A Boolean value.
     /// Represents a data type consisting of a single boolean value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bool?language=objc)
     #[doc(alias = "MTLDataTypeBool")]
     pub const Bool: Self = Self(53);
+    /// A two-component Boolean vector.
     /// Represents a data type consisting of a vector of two boolean values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bool2?language=objc)
     #[doc(alias = "MTLDataTypeBool2")]
     pub const Bool2: Self = Self(54);
+    /// A three-component Boolean vector.
     /// Represents a data type consisting of a vector of three boolean values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bool3?language=objc)
     #[doc(alias = "MTLDataTypeBool3")]
     pub const Bool3: Self = Self(55);
+    /// A four-component Boolean vector.
     /// Represents a data type consisting of a vector of four boolean values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bool4?language=objc)
     #[doc(alias = "MTLDataTypeBool4")]
     pub const Bool4: Self = Self(56);
+    /// A Metal texture resource instance.
     /// Represents a data type corresponding to a texture object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/texture?language=objc)
     #[doc(alias = "MTLDataTypeTexture")]
     pub const Texture: Self = Self(58);
+    /// A Metal texture sampler instance.
     /// Represents a data type corresponding to a sampler state object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/sampler?language=objc)
     #[doc(alias = "MTLDataTypeSampler")]
     pub const Sampler: Self = Self(59);
+    /// A pointer.
     /// Represents a data type corresponding to a pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/pointer?language=objc)
     #[doc(alias = "MTLDataTypePointer")]
     pub const Pointer: Self = Self(60);
+    /// An ordinary pixel with one component that’s an 8-bit, normalized, unsigned integer value.
     /// Represents an image block data type consisting of an unsigned 8-bit red channel normalized to the [0-1] range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/r8unorm?language=objc)
     #[doc(alias = "MTLDataTypeR8Unorm")]
     pub const R8Unorm: Self = Self(62);
+    /// An ordinary pixel with one component that’s an 8-bit, normalized, signed integer value.
     /// Represents an image block data type consisting of an signed 8-bit red channel normalized to the [0-1] range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/r8snorm?language=objc)
     #[doc(alias = "MTLDataTypeR8Snorm")]
     pub const R8Snorm: Self = Self(63);
-    /// Represents an image block data type consisting of an unsigned 16-bit red channel normalized to the [0-1] range.
+    /// An ordinary pixel with one component that’s a 16-bit, normalized, unsigned integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/r16unorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The single color component is for red.
+    ///
+    ///
+    /// Represents an image block data type consisting of an unsigned 16-bit red channel normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeR16Unorm")]
     pub const R16Unorm: Self = Self(64);
-    /// Represents an image block data type consisting of a signed 16-bit red channel normalized to the [0-1] range.
+    /// An ordinary pixel with one component that’s a 16-bit, normalized, signed integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/r16snorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The single color component is for red.
+    ///
+    ///
+    /// Represents an image block data type consisting of a signed 16-bit red channel normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeR16Snorm")]
     pub const R16Snorm: Self = Self(65);
-    /// Represents an image block data type consisting of an unsigned 8-bit red channel and a unsigned 8-bit green channel, both normalized to the [0-1] range.
+    /// An ordinary pixel with two components, each of which is an 8-bit, normalized, unsigned integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rg8unorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RG order, which stands for red and green.
+    ///
+    ///
+    /// Represents an image block data type consisting of an unsigned 8-bit red channel and a unsigned 8-bit green channel, both normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRG8Unorm")]
     pub const RG8Unorm: Self = Self(66);
-    /// Represents an image block data type consisting of a signed 8-bit red channel and a signed 8-bit green channel, both normalized to the [0-1] range.
+    /// An ordinary pixel with two components, each of which is an 8-bit, normalized, signed integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rg8snorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RG order, which stands for red and green.
+    ///
+    ///
+    /// Represents an image block data type consisting of a signed 8-bit red channel and a signed 8-bit green channel, both normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRG8Snorm")]
     pub const RG8Snorm: Self = Self(67);
-    /// Represents an image block data type consisting of an unsigned 16-bit red channel and an unsigned 16-bit green channel, both normalized to the [0-1] range.
+    /// An ordinary pixel with two components, each of which is a 16-bit, normalized, unsigned integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rg16unorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RG order, which stands for red and green.
+    ///
+    ///
+    /// Represents an image block data type consisting of an unsigned 16-bit red channel and an unsigned 16-bit green channel, both normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRG16Unorm")]
     pub const RG16Unorm: Self = Self(68);
-    /// Represents an image block data type consisting of a signed 16-bit red channel and a signed 16-bit green channel, both normalized to the [0-1] range.
+    /// An ordinary pixel with two components, each of which is a 16-bit, normalized, signed integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rg16snorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RG order, which stands for red and green.
+    ///
+    ///
+    /// Represents an image block data type consisting of a signed 16-bit red channel and a signed 16-bit green channel, both normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRG16Snorm")]
     pub const RG16Snorm: Self = Self(69);
-    /// Represents an image block data type consisting of four unsigned 8-bit channels normalized to the [0-1] range.
+    /// An ordinary pixel with four components, each of which is an 8-bit, normalized, unsigned integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgba8unorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha.
+    ///
+    ///
+    /// Represents an image block data type consisting of four unsigned 8-bit channels normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRGBA8Unorm")]
     pub const RGBA8Unorm: Self = Self(70);
-    /// Represents an image block data type consisting of four unsigned 8-bit channels normalized to the [0-1] range and subject to gamma-correction.
+    /// An ordinary pixel with four components, each of which is an 8-bit, normalized, unsigned integer value in the sRGB color space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgba8unorm_srgb?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha.
+    ///
+    ///
+    /// Represents an image block data type consisting of four unsigned 8-bit channels normalized to the [0-1] range and subject to gamma-correction.
     #[doc(alias = "MTLDataTypeRGBA8Unorm_sRGB")]
     pub const RGBA8Unorm_sRGB: Self = Self(71);
-    /// Represents an image block data type consisting of four signed 8-bit channels normalized to the [0-1] range.
+    /// An ordinary pixel with four components, each of which is an 8-bit, normalized, signed integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgba8snorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha.
+    ///
+    ///
+    /// Represents an image block data type consisting of four signed 8-bit channels normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRGBA8Snorm")]
     pub const RGBA8Snorm: Self = Self(72);
-    /// Represents an image block data type consisting of four unsigned 16-bit channels normalized to the [0-1] range.
+    /// An ordinary pixel with four components, each of which is a 16-bit, normalized, unsigned integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgba16unorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha.
+    ///
+    ///
+    /// Represents an image block data type consisting of four unsigned 16-bit channels normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRGBA16Unorm")]
     pub const RGBA16Unorm: Self = Self(73);
-    /// Represents an image block data type consisting of four signed 16-bit channels normalized to the [0-1] range.
+    /// An ordinary pixel with four components, each of which is a 16-bit, normalized, signed integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgba16snorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha.
+    ///
+    ///
+    /// Represents an image block data type consisting of four signed 16-bit channels normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRGBA16Snorm")]
     pub const RGBA16Snorm: Self = Self(74);
-    /// Represents an image block data type consisting of three unsigned 10-bit channels and one 2-bit unsigned alpha channel, all normalized to the [0-1] range.
+    /// A packed 32-bit format with three color components, each of which is a 10-bit, normalized, unsigned integer value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgb10a2unorm?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha. The red, green, and blue components each have 10 bits, and the alpha component has 2 bits.
+    ///
+    ///
+    /// Represents an image block data type consisting of three unsigned 10-bit channels and one 2-bit unsigned alpha channel, all normalized to the [0-1] range.
     #[doc(alias = "MTLDataTypeRGB10A2Unorm")]
     pub const RGB10A2Unorm: Self = Self(75);
-    /// Represents an image block data type consisting of two 11-bit floating-point channels, and one 10-bit floating-point blue channel.
+    /// A packed 32-bit format with three floating-point color components, two of which are 11-bit values, and one is a 10-bit value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rg11b10float?language=objc)
+    /// ## Discussion
+    ///
+    /// The 11-bit components for red and green each store five exponent bits and six mantissa bits. The 10-bit blue component stores five exponent bits and five mantissa bits.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  None of the color components have a sign bit.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Represents an image block data type consisting of two 11-bit floating-point channels, and one 10-bit floating-point blue channel.
     #[doc(alias = "MTLDataTypeRG11B10Float")]
     pub const RG11B10Float: Self = Self(76);
-    /// Represents an image block data type consisting of three 9-bit floating-point channels, and one 5-bit floating-point exponent.
+    /// A packed 32-bit format with three color components, each of which is a 9-bit floating-point value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/rgb9e5float?language=objc)
+    /// ## Discussion
+    ///
+    /// The color components are in RGBA order, which stands for red, green, blue, and alpha. The red, green, and blue components each have 9 bits, and the alpha component has 5 bits.
+    ///
+    ///
+    /// Represents an image block data type consisting of three 9-bit floating-point channels, and one 5-bit floating-point exponent.
     #[doc(alias = "MTLDataTypeRGB9E5Float")]
     pub const RGB9E5Float: Self = Self(77);
+    /// A Metal render pipeline instance.
     /// Represents a data type corresponding to a render pipeline state object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/renderpipeline?language=objc)
     #[doc(alias = "MTLDataTypeRenderPipeline")]
     pub const RenderPipeline: Self = Self(78);
+    /// A Metal compute pipeline instance.
     /// Represents a data type corresponding to a compute pipeline state object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/computepipeline?language=objc)
     #[doc(alias = "MTLDataTypeComputePipeline")]
     pub const ComputePipeline: Self = Self(79);
+    /// An indirect command buffer resource instance.
     /// Represents a data type corresponding to an indirect command buffer object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/indirectcommandbuffer?language=objc)
     #[doc(alias = "MTLDataTypeIndirectCommandBuffer")]
     pub const IndirectCommandBuffer: Self = Self(80);
+    /// A 64-bit, signed integer value.
     /// Represents a data type consisting of a signed long integer value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/long?language=objc)
     #[doc(alias = "MTLDataTypeLong")]
     pub const Long: Self = Self(81);
+    /// A two-component vector with 64-bit, signed integer values.
     /// Represents a data type consisting of a vector of two signed long integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/long2?language=objc)
     #[doc(alias = "MTLDataTypeLong2")]
     pub const Long2: Self = Self(82);
+    /// A three-component vector with 64-bit, signed integer values.
     /// Represents a data type consisting of a vector of three signed long integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/long3?language=objc)
     #[doc(alias = "MTLDataTypeLong3")]
     pub const Long3: Self = Self(83);
+    /// A four-component vector with 64-bit, signed integer values.
     /// Represents a data type consisting of a vector of four signed long integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/long4?language=objc)
     #[doc(alias = "MTLDataTypeLong4")]
     pub const Long4: Self = Self(84);
+    /// A 64-bit, unsigned integer value.
     /// Represents a data type consisting of an unsigned long integer value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ulong?language=objc)
     #[doc(alias = "MTLDataTypeULong")]
     pub const ULong: Self = Self(85);
+    /// A two-component vector with 64-bit, unsigned integer values.
     /// Represents a data type consisting of a vector two unsigned long integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ulong2?language=objc)
     #[doc(alias = "MTLDataTypeULong2")]
     pub const ULong2: Self = Self(86);
+    /// A three-component vector with 64-bit, unsigned integer values.
     /// Represents a data type consisting of a vector three unsigned long integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ulong3?language=objc)
     #[doc(alias = "MTLDataTypeULong3")]
     pub const ULong3: Self = Self(87);
+    /// A four-component vector with 64-bit, unsigned integer values.
     /// Represents a data type consisting of a vector four unsigned long integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/ulong4?language=objc)
     #[doc(alias = "MTLDataTypeULong4")]
     pub const ULong4: Self = Self(88);
+    /// A table of visible functions that a render or compute pipeline can call.
     /// Represents a data type corresponding to a visible function table object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/visiblefunctiontable?language=objc)
     #[doc(alias = "MTLDataTypeVisibleFunctionTable")]
     pub const VisibleFunctionTable: Self = Self(115);
+    /// A table of intersection functions that a render or compute pipeline can call.
     /// Represents a data type corresponding to an intersection function table object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/intersectionfunctiontable?language=objc)
     #[doc(alias = "MTLDataTypeIntersectionFunctionTable")]
     pub const IntersectionFunctionTable: Self = Self(116);
+    /// A low-level ray-tracing acceleration structure for a set of primitives.
     /// Represents a data type corresponding to a primitive acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/primitiveaccelerationstructure?language=objc)
     #[doc(alias = "MTLDataTypePrimitiveAccelerationStructure")]
     pub const PrimitiveAccelerationStructure: Self = Self(117);
+    /// A high-level, ray-tracing acceleration structure for a set of low-level primitive instances.
     /// Represents a data type corresponding to an instance acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/instanceaccelerationstructure?language=objc)
     #[doc(alias = "MTLDataTypeInstanceAccelerationStructure")]
     pub const InstanceAccelerationStructure: Self = Self(118);
-    /// Represents a data type consisting of a single BFloat value.
+    /// A 16-bit, brain floating-point value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bfloat?language=objc)
+    /// ## Discussion
+    ///
+    /// The 16-bit value stores one sign bit, eight exponent bits, and seven mantissa bits.
+    ///
+    ///
+    /// Represents a data type consisting of a single BFloat value.
     #[doc(alias = "MTLDataTypeBFloat")]
     pub const BFloat: Self = Self(121);
-    /// Represents a data type consisting of a vector two BFloat values.
+    /// A two-component vector with 16-bit, brain floating-point values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bfloat2?language=objc)
+    /// ## Discussion
+    ///
+    /// Each 16-bit value stores one sign bit, eight exponent bits, and seven mantissa bits.
+    ///
+    ///
+    /// Represents a data type consisting of a vector two BFloat values.
     #[doc(alias = "MTLDataTypeBFloat2")]
     pub const BFloat2: Self = Self(122);
-    /// Represents a data type consisting of a vector three BFloat values.
+    /// A three-component vector with 16-bit, brain floating-point values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bfloat3?language=objc)
+    /// ## Discussion
+    ///
+    /// Each 16-bit value stores one sign bit, eight exponent bits, and seven mantissa bits.
+    ///
+    ///
+    /// Represents a data type consisting of a vector three BFloat values.
     #[doc(alias = "MTLDataTypeBFloat3")]
     pub const BFloat3: Self = Self(123);
-    /// Represents a data type consisting of a vector four BFloat values.
+    /// A four-component vector with 16-bit, brain floating-point values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/bfloat4?language=objc)
+    /// ## Discussion
+    ///
+    /// Each 16-bit value stores one sign bit, eight exponent bits, and seven mantissa bits.
+    ///
+    ///
+    /// Represents a data type consisting of a vector four BFloat values.
     #[doc(alias = "MTLDataTypeBFloat4")]
     pub const BFloat4: Self = Self(124);
     /// Represents a data type corresponding to a depth-stencil state object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/depthstencilstate?language=objc)
+    /// Represents a data type corresponding to a depth-stencil state object.
     #[doc(alias = "MTLDataTypeDepthStencilState")]
     pub const DepthStencilState: Self = Self(139);
     /// Represents a data type corresponding to a machine learning tensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldatatype/tensor?language=objc)
+    /// Represents a data type corresponding to a machine learning tensor.
     #[doc(alias = "MTLDataTypeTensor")]
     pub const Tensor: Self = Self(140);
 }

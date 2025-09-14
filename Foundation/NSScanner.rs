@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/scanner?language=objc)
+    /// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSScanner`](https://developer.apple.com/documentation/foundation/scanner) object interprets and converts the characters of a [`String`](https://developer.apple.com/documentation/swift/string) into number and string values. You assign the scanner’s string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items.
+    ///
+    /// Because of the nature of class clusters, a scanner object isn’t an actual instance of the [`NSScanner`](https://developer.apple.com/documentation/foundation/scanner) class, but is one of its private subclasses. Although a scanner object’s class is private, its interface is public, as declared by this abstract superclass, [`NSScanner`](https://developer.apple.com/documentation/foundation/scanner). The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners).
+    ///
+    /// To set a [`NSScanner`](https://developer.apple.com/documentation/foundation/scanner) object to ignore a set of characters as it scans the string, use the [`charactersToBeSkipped`](https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped) property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set.
+    ///
+    /// To retrieve the unscanned remainder of the string, use `scanner.string.substring(from: scanner.scanLocation)`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScanner;

@@ -28,6 +28,21 @@ use crate::*;
 
 /// The status values for app tracking authorization.
 ///
+/// ## Overview
+///
+/// After a device receives an authorization request to approve access to app-related data that can be used for tracking the user or the device, the returned value is either:
+///
+/// - [`ATTrackingManagerAuthorizationStatusAuthorized`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/authorized), or
+///
+/// - [`ATTrackingManagerAuthorizationStatusDenied`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/denied).
+///
+/// Before a device receives an authorization request to approve access to app-related data that can be used for tracking the user or the device, the returned value is: [`ATTrackingManagerAuthorizationStatusNotDetermined`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/notdetermined).
+///
+/// If authorization to use app tracking data is restricted, the value is: [`ATTrackingManagerAuthorizationStatusRestricted`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted).
+///
+///
+/// The status values for app tracking authorization.
+///
 /// After a device receives an authorization request to approve access to app-related
 /// data that can be used for tracking the user or the device, the returned value is
 /// either:
@@ -40,23 +55,39 @@ use crate::*;
 /// ``AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/notDetermined``.
 ///
 /// If authorization to use app tracking data is restricted, the value is: ``AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ATTrackingManagerAuthorizationStatus(pub NSUInteger);
 impl ATTrackingManagerAuthorizationStatus {
+    /// The value that returns when the app can’t determine the user’s authorization status for access to app-related data for tracking the user or the device.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// If you call `ATTrackingManager.trackingAuthorizationStatus` in macOS, the result is always `ATTrackingManager.AuthorizationStatus.notDetermined`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The value that returns when the app can’t determine the user’s
     /// authorization status for access to app-related data for tracking the
     /// user or the device.
     ///
     /// - Note: If you call `ATTrackingManager.trackingAuthorizationStatus` in
     /// macOS, the result is always `ATTrackingManager.AuthorizationStatus.notDetermined`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/notdetermined?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// The value that returns if authorization to access app-related data for tracking the user or the device has a restricted status.
+    ///
+    /// ## Discussion
+    ///
+    /// A restricted condition means the device does not prompt for tracking authorization when [`requestTrackingAuthorizationWithCompletionHandler:`](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/requesttrackingauthorization(completionhandler:)) is called, nor is it displayed when the [`NSUserTrackingUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsusertrackingusagedescription) is triggered. Also, on restricted devices, the Allow Apps To Request To Track setting is disabled and cannot be changed. This setting allows users to opt in or out of allowing apps to request user consent to access app-related data that can be used for tracking the user or the device.
+    ///
+    ///
     /// The value that returns if authorization to access app-related data for
     /// tracking the user or the device has a restricted status.
     ///
@@ -71,19 +102,29 @@ impl ATTrackingManagerAuthorizationStatus {
     /// users to opt in or out of allowing apps to request user consent to
     /// access app-related data that can be used for tracking the user or the
     /// device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// The value that returns if the user denies authorization to access app-related data for tracking the user or the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The end user has denied the authorization request to access app-related data that can be used for tracking the user or the device.
+    ///
+    ///
     /// The value that returns if the user denies authorization to access
     /// app-related data for tracking the user or the device.
     ///
     /// The end user has denied the authorization request to access app-related
     /// data that can be used for tracking the user or the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/denied?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
+    /// The value that returns if the user authorizes access to app-related data for tracking the user or the device.
+    ///
+    /// ## Discussion
+    ///
+    /// This setting allows users to opt in or out of allowing apps to request user consent to access app-related data for tracking the user or the device. End users can revoke permission at any time through the Allow Apps to Request to Track privacy setting on the device.
+    ///
+    ///
     /// The value that returns if the user authorizes access to app-related data for
     /// tracking the user or the device.
     ///
@@ -91,8 +132,6 @@ impl ATTrackingManagerAuthorizationStatus {
     /// consent to access app-related data for tracking the user or the device. End
     /// users can revoke permission at any time through the Allow Apps to Request to
     /// Track privacy setting on the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/authorized?language=objc)
     #[doc(alias = "ATTrackingManagerAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -106,10 +145,9 @@ unsafe impl RefEncode for ATTrackingManagerAuthorizationStatus {
 }
 
 extern_class!(
+    /// A class that provides a tracking authorization request and the tracking authorization status of the app.
     /// A class that provides a tracking authorization request and the tracking
     /// authorization status of the app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ATTrackingManager;
@@ -190,11 +228,9 @@ impl ATTrackingManager {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/apptrackingtransparencyversionnumber?language=objc)
     pub static AppTrackingTransparencyVersionNumber: c_double;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/apptrackingtransparencyversionstring?language=objc)
     pub static AppTrackingTransparencyVersionString: *mut c_uchar;
 }

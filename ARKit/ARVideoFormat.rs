@@ -14,7 +14,13 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/videoformat-swift.class?language=objc)
+    /// A video size and frame rate specification for use with an AR session.
+    ///
+    /// ## Overview
+    ///
+    /// This class is immutable; to set the frame rate and video resolution for an AR session, set your configuration’s [`videoFormat`](https://developer.apple.com/documentation/arkit/arconfiguration/videoformat-swift.property) property to one of the formats in the [`supportedVideoFormats`](https://developer.apple.com/documentation/arkit/arconfiguration/supportedvideoformats) array.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinib?language=objc)
+    /// An object that contains Interface Builder nib files.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UINib`](https://developer.apple.com/documentation/uikit/uinib) object caches the contents of a nib file in memory, ready for unarchiving and instantiation. When your app needs to instantiate the contents of the nib file, it can do so without having to load the data from the nib file first, which improves performance. The [`UINib`](https://developer.apple.com/documentation/uikit/uinib) object can automatically release this cached nib data to free up memory for your app under low-memory conditions, reloading that data the next time your app instantiates the nib.
+    ///
+    /// Your app should use [`UINib`](https://developer.apple.com/documentation/uikit/uinib) objects whenever it needs to repeatedly instantiate the same nib data. For example, if your table view uses a nib file to instantiate table view cells, caching the nib in a [`UINib`](https://developer.apple.com/documentation/uikit/uinib) object can improve performance.
+    ///
+    /// When you create a [`UINib`](https://developer.apple.com/documentation/uikit/uinib) object using the contents of a nib file, the object loads the object graph in the referenced nib file, but it doesn’t unarchive it yet. To unarchive all of the nib data and instantiate the nib, your app calls the [`instantiateWithOwner:options:`](https://developer.apple.com/documentation/uikit/uinib/instantiate(withowner:options:)) method. For more information about the steps that the [`UINib`](https://developer.apple.com/documentation/uikit/uinib) object follows to instantiate the nib’s object graph, see [Resource Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

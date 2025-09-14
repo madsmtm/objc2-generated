@@ -9,12 +9,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype?language=objc)
 // NS_TYPED_ENUM
 pub type CAGradientLayerType = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayer?language=objc)
+    /// A layer that draws a color gradient over its background color, filling the shape of the layer.
+    ///
+    /// ## Overview
+    ///
+    /// You use a gradient layer to create a color gradient containing an arbitrary number of colors. By default, the colors are spread uniformly across the layer, but you can optionally specify locations for control over the color positions through the gradient.
+    ///
+    /// The following code shows how to create a gradient layer containing four colors that are evenly distributed through the gradient. Rotating the layer by 90° (doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi `/ 2` radians) gives a horizontal gradient.
+    ///
+    /// ```objc
+    /// gradientLayer.colors = [UIColor.red.cgColor,
+    ///                         UIColor.yellow.cgColor,
+    ///                         UIColor.green.cgColor,
+    ///                         UIColor.blue.cgColor]
+    ///      
+    /// gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
+    /// ```
+    ///
+    /// The following figure shows the appearance of the gradient layer.
+    ///
+    ///
+    /// ![Color gradient layer](https://docs-assets.developer.apple.com/published/44142ddb755d778cdadae1874f04dc62/media-2825193%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -146,18 +168,15 @@ impl DefaultRetained for CAGradientLayer {
 }
 
 extern "C" {
+    /// An axial gradient (also called a linear gradient) varies along an axis between two defined end points. All points that lie on a line perpendicular to the axis have the same color value.
     /// `type' values. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype/axial?language=objc)
     pub static kCAGradientLayerAxial: &'static CAGradientLayerType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype/radial?language=objc)
     pub static kCAGradientLayerRadial: &'static CAGradientLayerType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype/conic?language=objc)
     pub static kCAGradientLayerConic: &'static CAGradientLayerType;
 }

@@ -8,9 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A node in a directed graph. Edges are directed and can have variable costs.
+    /// A single node in a navigation graph for use in pathfinding.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgraphnode?language=objc)
+    /// ## Overview
+    ///
+    /// A set of connected nodes form a graph that describes the navigability of a game world. Use graph nodes together with a [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph) object (or one of its subclasses) to perform actions that relate to the network of nodes as a whole, such as pathfinding to determine routes through the network.
+    ///
+    /// This class describes the general features of graph nodes, but does not contain geometry information that relates the graph to a game world. You can construct a graph with this class or any of its subclasses:
+    ///
+    /// - On its own, the [`GKGraphNode`](https://developer.apple.com/documentation/gameplaykit/gkgraphnode) class is useful for worlds such as board games, where the connections between nodes are important but their spatial position has no effect on gameplay.
+    ///
+    /// - Create [`GKGridGraphNode`](https://developer.apple.com/documentation/gameplaykit/gkgridgraphnode) objects (for use with the [`GKGridGraph`](https://developer.apple.com/documentation/gameplaykit/gkgridgraph) class) to model worlds where movement is constrained to a two-dimensional integer grid.
+    ///
+    /// - Create [`GKGraphNode2D`](https://developer.apple.com/documentation/gameplaykit/gkgraphnode2d) objects to model worlds that allow full freedom of movement in a two-dimensional plane. Use these nodes together with the [`GKObstacleGraph`](https://developer.apple.com/documentation/gameplaykit/gkobstaclegraph) or [`GKMeshGraph`](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph) class to create graphs that route around impassable obstacles.
+    ///
+    /// - Create [`GKGraphNode3D`](https://developer.apple.com/documentation/gameplaykit/gkgraphnode3d) objects to model worlds that allow full freedom of movement in three-dimensional space.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A node in a directed graph. Edges are directed and can have variable costs.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGraphNode;
@@ -113,9 +130,18 @@ impl GKGraphNode {
 }
 
 extern_class!(
-    /// GKGraphNode coupled with a 2D position
+    /// A node in a navigation graph, associated with a point in continuous 2D space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgraphnode2d?language=objc)
+    /// ## Overview
+    ///
+    /// Together, a network of nodes form a graph that describes the navigability of a game world. Use graph nodes with a [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph), [`GKObstacleGraph`](https://developer.apple.com/documentation/gameplaykit/gkobstaclegraph), or [`GKMeshGraph`](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph) object to perform actions that relate to the network of nodes as a whole, such as pathfinding to determine routes through the network.
+    ///
+    /// When you use the [`GKObstacleGraph`](https://developer.apple.com/documentation/gameplaykit/gkobstaclegraph) or [`GKMeshGraph`](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph) class to describe a game world in terms of open spaces interrupted by obstacles, GameplayKit automatically creates and manages [`GKGraphNode2D`](https://developer.apple.com/documentation/gameplaykit/gkgraphnode2d) instances that represent positions along possible paths that navigate around those obstacles.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// GKGraphNode coupled with a 2D position
     #[unsafe(super(GKGraphNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGraphNode2D;
@@ -151,9 +177,16 @@ impl GKGraphNode2D {
 }
 
 extern_class!(
-    /// GKGraphNode coupled with a 3D position
+    /// A node in a navigation graph, associated with a point in continuous 3D space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgraphnode3d?language=objc)
+    /// ## Overview
+    ///
+    /// Together, a network of nodes form a graph that describes the navigability of a game world. Use graph nodes with a [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph) object to perform actions that relate to the network of nodes as a whole, such as pathfinding to determine routes through the network.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// GKGraphNode coupled with a 3D position
     #[unsafe(super(GKGraphNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGraphNode3D;
@@ -189,9 +222,16 @@ impl GKGraphNode3D {
 }
 
 extern_class!(
-    /// GKGraphNode coupled with a position on a 2D grid
+    /// A node in a navigation graph, associated with a position on a discrete two-dimensional grid.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgridgraphnode?language=objc)
+    /// ## Overview
+    ///
+    /// Together, a network of nodes form a graph that describes the navigability of a game world. Use graph nodes with a [`GKGridGraph`](https://developer.apple.com/documentation/gameplaykit/gkgridgraph) object (and methods of its superclass [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph)) to perform actions that relate to the network of nodes as a whole, such as pathfinding to determine routes through the network.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// GKGraphNode coupled with a position on a 2D grid
     #[unsafe(super(GKGraphNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGridGraphNode;

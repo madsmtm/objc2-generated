@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility?language=objc)
+/// The visibility settings that determine if an in-app purchase is visible on a device.
 // NS_CLOSED_ENUM
 #[deprecated = "Use Product.PromotionInfo.Visibility"]
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKProductStorePromotionVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility/default?language=objc)
+    /// Indicates product visibility is the same as the default value set in App Store Connect.
     #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
     #[default]
     Default = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility/show?language=objc)
+    /// Indicates product is shown.
     #[doc(alias = "SKProductStorePromotionVisibilityShow")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
     Show = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility/hide?language=objc)
+    /// Indicates product is hidden.
     #[doc(alias = "SKProductStorePromotionVisibilityHide")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
     Hide = 2,
@@ -37,7 +37,21 @@ unsafe impl RefEncode for SKProductStorePromotionVisibility {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotioncontroller?language=objc)
+    /// A product promotion controller for customizing the order and visibility of In-App Purchases per device.
+    ///
+    /// ## Overview
+    ///
+    /// For information about promoting In-App Purchases, see [Promoting In-App Purchases](https://developer.apple.com/documentation/storekit/promoting-in-app-purchases).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`SKProductStorePromotionController`](https://developer.apple.com/documentation/storekit/skproductstorepromotioncontroller) and promoted In-App Purchases aren’t available to compatible iPad and iPhone apps running in visionOS.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.PromotionInfo"]

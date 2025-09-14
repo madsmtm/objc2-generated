@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialdescriptor?language=objc)
+    /// An object that holds the credential.
+    ///
+    /// ## Overview
+    ///
+    /// This class holds the platform credential identifier.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPlatformPublicKeyCredentialDescriptor;

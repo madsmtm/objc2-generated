@@ -10,9 +10,14 @@ use crate::*;
 extern_class!(
     /// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
     ///
+    /// ## Overview
+    ///
     /// A service attribute contains two components: an attribute ID and a data element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpserviceattribute?language=objc)
+    ///
+    /// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
+    ///
+    /// A service attribute contains two components: an attribute ID and a data element.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothSDPServiceAttribute;

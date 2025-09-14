@@ -7,28 +7,66 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetTaskAttributeIntentResponseCode(pub NSInteger);
 impl INSetTaskAttributeIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you have verified that you are able to modified the task. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode/inprogress?language=objc)
+    /// The modification of the task list is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you began adding modifying the task list but did not confirm that the process was complete. You might use this code when a server handles modifications and you have not yet received a confirmation from that server.
+    ///
+    /// When handling the intent, you might want to first configure a timer to fire if your server does not return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode/success?language=objc)
+    /// You successfully modified the task attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after modifying the task successfully. Your response should contain the details of the updated task information.
+    ///
+    ///
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode/failure?language=objc)
+    /// You were unable to modify the task attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from modifying the task.
+    ///
+    ///
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must modify tasks from within your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot modify task attributes from your Intents extension but the user can do so from your app. Do not use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSetTaskAttributeIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +80,15 @@ unsafe impl RefEncode for INSetTaskAttributeIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insettaskattributeintentresponse?language=objc)
+    /// Your response to a request to modify the attributes of an existing task.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSetTaskAttributeIntentResponse`](https://developer.apple.com/documentation/intents/insettaskattributeintentresponse) object to return information about your attempt to update an existing task. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INSetTaskAttributeIntentResponse`](https://developer.apple.com/documentation/intents/insettaskattributeintentresponse) object in the [`confirmSetTaskAttribute:completion:`](https://developer.apple.com/documentation/intents/insettaskattributeintenthandling/confirm(intent:completion:)) and [`handleSetTaskAttribute:completion:`](https://developer.apple.com/documentation/intents/insettaskattributeintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INSetTaskAttributeIntentHandling`](https://developer.apple.com/documentation/intents/insettaskattributeintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

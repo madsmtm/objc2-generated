@@ -7,10 +7,25 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface for receiving messages from JavaScript code running in a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`WKScriptMessageHandler`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler) protocol when your app needs a way to respond to JavaScript messages in the web view. When JavaScript code sends a message that specifically targets your message handler, WebKit calls your handler’s [`userContentController:didReceiveScriptMessage:`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler/usercontentcontroller(_:didreceive:)) method. Use that method to implement your response. For example, you might update other parts of your app in response to web content changes.
+    ///
+    /// To call your message handler from JavaScript, call the function `window.webkit.messageHandlers.<messageHandlerName>.postMessage(<messageBody>)` in your code. You specify the value of `<messageHandlerName>` when you install your message handler in a [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you want to provide a response back to JavaScript, implement your message handler using the [`WKScriptMessageHandlerWithReply`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandlerwithreply) protocol instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A class conforming to the WKScriptMessageHandler protocol provides a
     /// method for receiving messages from JavaScript running in a webpage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler?language=objc)
     pub unsafe trait WKScriptMessageHandler: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKScriptMessage", feature = "WKUserContentController"))]
         /// Invoked when a script message is received from a webpage.

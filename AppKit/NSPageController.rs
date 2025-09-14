@@ -7,22 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/objectidentifier?language=objc)
 pub type NSPageControllerObjectIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum?language=objc)
+/// These constants control the transition style of the page controller.
+///
+/// ## Overview
+///
+/// These transition styles are independent of the delegate’s specification of book or history mode. It is perfectly reasonable to create a history style user interface using the book mode delegate methods. Simply set the transition style appropriately.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPageControllerTransitionStyle(pub NSInteger);
 impl NSPageControllerTransitionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum/stackhistory?language=objc)
+    /// Pages are stacked on top of each other. Pages animate out to the right to reveal the previous page. Next pages animate in from the right.
     #[doc(alias = "NSPageControllerTransitionStyleStackHistory")]
     pub const StackHistory: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum/stackbook?language=objc)
+    /// Pages are stacked on top of each other. Pages animate out to the left to reveal the next page. Previous pages animate in from the left.
     #[doc(alias = "NSPageControllerTransitionStyleStackBook")]
     pub const StackBook: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller/transitionstyle-swift.enum/horizontalstrip?language=objc)
+    /// Each page is laid out next to each other in one long horizontal strip
     #[doc(alias = "NSPageControllerTransitionStyleHorizontalStrip")]
     pub const HorizontalStrip: Self = Self(2);
 }
@@ -36,7 +41,91 @@ unsafe impl RefEncode for NSPageControllerTransitionStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontroller?language=objc)
+    /// An object that controls swipe navigation and animations between views or view content.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSPageController`](https://developer.apple.com/documentation/appkit/nspagecontroller) is useful for user interfaces which control navigating multiple pages as in a book or a web browser history. Page controller inherits from the [`NSViewController`](https://developer.apple.com/documentation/appkit/nsviewcontroller) class . You must assign the `view` property to a view in your view hierarchy. The [`NSPageController`](https://developer.apple.com/documentation/appkit/nspagecontroller) class does not vend a view and does insert itself into the responder chain.
+    ///
+    /// Conceptually, the page controller manages swiping between an array of pages, the [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nspagecontroller/arrangedobjects). Using the [`selectedIndex`](https://developer.apple.com/documentation/appkit/nspagecontroller/selectedindex) property, you can determine how many pages forward or backward the user may navigate.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When using history mode, do not wire `pageController.view` to an [`NSSplitView`](https://developer.apple.com/documentation/appkit/nssplitview) subview. This will actually cause a 3rd split when the private transition view is put in the view hierarchy. You can work around this by using an empty [`NSView`](https://developer.apple.com/documentation/appkit/nsview) instance as the [`NSSplitView`](https://developer.apple.com/documentation/appkit/nssplitview) subview and placing the real contents in a subview of the empty view.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Page Controller Modes
+    ///
+    /// There are two modes that an `NSPageController` instance may operate in, history mode and book mode. The main difference between the two modes is that **History mode** expects `pageController.view` to be the content and **Book mode** expects `pageController.view` to be be a container for the content that you will supply by returning `viewControllers` in your delegate methods.
+    ///
+    /// #### History Mode
+    ///
+    /// History mode is designed to be the easiest way to create a history user interface. The page controller will manage the history (the `arrangedObjects` property), snapshots, and user navigation between pages in the history.
+    ///
+    /// As the user navigates to new content, add to the history by calling [`navigateForwardToObject:`](https://developer.apple.com/documentation/appkit/nspagecontroller/navigateforward(to:)). The page controller will remove any `arrangedObjects` after the [`selectedIndex`](https://developer.apple.com/documentation/appkit/nspagecontroller/selectedindex) and then add the object to the end of the `arrangedObjects` array and update the `selectedIndex` property. Just like navigating in a new direction in a web browser, all forward history is lost once the user starts navigating a new path. After returning from `navigateForwardToObject:` you are free to update the contents of `pageController.view`.
+    ///
+    /// ##### Delegate Method Invocation During History Mode Swiping
+    ///
+    /// During swiping, the following optional delegate methods are called in the specified order:
+    ///
+    /// The [`pageControllerWillStartLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerwillstartlivetransition(_:)) delegate method is invoked when the user starts a swipe action. This is the appropriate point at which to save information that you may need to restore, such as a page’s scrolled location.
+    ///
+    /// Upon returning from the this delegate method, `pageController.view` is hidden. In it’s place the page controller shows a private view hierarchy to animate previously taken snapshots of the page history. This allows the page controller to remain responsive to the user without any required action by your application.Next, if implemented, the [`pageController:didTransitionToObject:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:didtransitionto:)) delegate method is invoked. This delegate method is called after a physically successful swipe, but before the animation has completed. The supplied object is the page the user navigated to – the new `selectedIndex` object in `arrangedObjects`. If background loading tasks need to be initiated this is the appropriate time to do so. However, do not block the main thread or the animation will stutter or pause.
+    ///
+    /// Finally, the pageControllerDidEndLiveTransition: delegate method is invoked after the swipe and swipe animations are complete. You should any position settings or other display specific state stored in the [`pageControllerWillStartLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerwillstartlivetransition(_:)) implementation. The `pageController.view` is still hidden at this point and you must call [`completeTransition`](https://developer.apple.com/documentation/appkit/nspagecontroller/completetransition()) on the page controller instance to inform the instance to hide the private transition view and show `pageController.view`. Often you do this immediately, however, if your content is not ready you can call this at a later.
+    ///
+    /// #### Book Mode (View Controller Mode)
+    ///
+    /// Book mode is designed to give you more control over the swiping process and to facilitate more user interface designs than just history, although you can use book mode to create a history user interface.
+    ///
+    /// In this mode, `pageController.view` is a container view and the content views are vended by view controller instances supplied by the delegate object.
+    ///
+    /// To enable book mode, you must implement the following two methods in your delegate: [`pageController:identifierForObject:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:identifierfor:)) and [`pageController:viewControllerForIdentifier:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:viewcontrollerforidentifier:)).
+    ///
+    /// The page controller instance caches the view controllers supplied for each identifier and only asks it’s delegate to create more if one does not already exists in its cache. If you have different type of views you want to swipe in, then supply a different identifier for each type.
+    ///
+    /// When needed, you will be asked to prepare a view controller instance with a page via the optional delegate method [`pageController:prepareViewController:withObject:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:prepare:with:)). If you do not implement this method, then the `representedObject` of the view controller that would have been passed to this delegate method is set as the object.
+    ///
+    /// The delegate will be asked to prepare a view controller with a `nil` object for each unique identifier it encounters. The NSPageController instance will use this to generate a default snapshot for that identifier.
+    ///
+    /// When using the book mode, if `pageController.view` is layer backed, live layers are used during transition instead of snapshots.
+    ///
+    /// Generally, when using book mode, the set of pages are known and it is your responsibility to set the `arrangedObjects` array property and initially selected page using the `selectedIndex` property.
+    ///
+    /// ##### Delegate Method Invocation During Book Mode Swiping
+    ///
+    /// During swiping, the following optional delegate methods are called in the specified order:
+    ///
+    /// The delegate method [`pageControllerWillStartLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerwillstartlivetransition(_:)) is invoked when the user starts a swipe action. As in history mode, this is the appropriate point at which to save information that you may need to restore, such as a page’s scrolled location.
+    ///
+    /// After returning from the [`pageControllerWillStartLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerwillstartlivetransition(_:)) delegate method, the page controller takes a snapshot of the `view` in the specified [`selectedViewController`](https://developer.apple.com/documentation/appkit/nspagecontroller/selectedviewcontroller) and then removes it from `pageController.view`. The page controller replaces it with a private view hierarchy to animate previously taken snapshots. Unlike when building up a history, snapshots may not yet exist for the page being navigated to. In this case, a previously gathered default snapshot is used for that page’s identifier. Regardless, if using a default snapshot or a previously gathered snapshot of actual contents, a view controller is prepared for the page being navigated to, and passed to the delegate. This `viewController.view` is then asked to draw on a background thread while swiping continues. Note that at this point the view does not reside within a window. Once the background threaded drawing completes, the initial snapshot is replaced with the newly generated snapshot.
+    ///
+    /// Next the [`pageController:didTransitionToObject:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:didtransitionto:)) delegate method is invoked after a physically successful swipe, but before the animation has completed. The supplied object is the page the user navigated to - the new object in the [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nspagecontroller/arrangedobjects) array at the [`selectedIndex`](https://developer.apple.com/documentation/appkit/nspagecontroller/selectedindex). Note that the page controller’s [`selectedViewController`](https://developer.apple.com/documentation/appkit/nspagecontroller/selectedviewcontroller) has not been updated yet. If you need to start some background loading tasks, now is the time to do it. Do not block the main thread or the animation will stutter or pause.
+    ///
+    /// Finally the [`pageControllerDidEndLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerdidendlivetransition(_:)) method is invoked after the swipe and swipe animations are complete. The `selectedViewController.view` is still detached at this point and you must call [`completeTransition`](https://developer.apple.com/documentation/appkit/nspagecontroller/completetransition()) on the page controller to hide the private transition view and update the [`selectedViewController`](https://developer.apple.com/documentation/appkit/nspagecontroller/selectedviewcontroller). Often you do this immediately, however, if your content is not ready you can call this at a later.
+    ///
+    /// ### Completing the Page Controller Transition
+    ///
+    /// An `NSPageController` instance uses a private view hierarchy during swiping. To create a seamless transition to the new content, it is your responsibility to inform the page controller when you are ready to draw the new content. Ideally, the new content should match the snapshot so the user is none the wiser. You inform the page controller to complete the transition by calling [`completeTransition`](https://developer.apple.com/documentation/appkit/nspagecontroller/completetransition()). If needed, a view controller is prepared and then the content view is shown (or added) to the view hierarchy and the private transition view is hidden.
+    ///
+    /// During page controller initiated animations, [`pageControllerWillStartLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerwillstartlivetransition(_:)) and [`pageControllerDidEndLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerdidendlivetransition(_:)) are invoked on the delegate. Generally during [`pageControllerDidEndLiveTransition:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontrollerdidendlivetransition(_:)) you will call [`completeTransition`](https://developer.apple.com/documentation/appkit/nspagecontroller/completetransition()). Programatic animations via the animator proxy do not call the delegate methods and you are responsible for calling [`completeTransition`](https://developer.apple.com/documentation/appkit/nspagecontroller/completetransition()) when the animation completes.This is easily done via a completion handler on an [`NSAnimationContext`](https://developer.apple.com/documentation/appkit/nsanimationcontext) grouping. For example:
+    ///
+    /// ```objc
+    ///  //To instantly change the selectedIndex:
+    ///   pageController.selectedIndex = newIndex;
+    ///  
+    ///   //To animate a selectedIndex change:
+    ///   [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+    ///     [[pageController animator] setSelectedIndex:newIndex];
+    ///   } completionHandler:^{
+    ///     [pageController completeTransition];
+    ///   }];
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -220,7 +309,23 @@ impl NSPageController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate?language=objc)
+    /// The `NSPageControllerDelegate` protocol allows you to customize the behavior of instances of the NSPageController class.
+    ///
+    /// ## Overview
+    ///
+    /// See [`NSPageController`](https://developer.apple.com/documentation/appkit/nspagecontroller) for more information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your page controller is going to completely manage the page snapshots, then you should not implement the [`pageController:viewControllerForIdentifier:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:viewcontrollerforidentifier:)) or [`pageController:prepareViewController:withObject:`](https://developer.apple.com/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:prepare:with:)) methods.
+    ///
+    /// However, if you manually set the `NSPageController` instance’s [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nspagecontroller/arrangedobjects) property, you are required to implement the following those methods so that navigation can properly occur.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSPageControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// # Safety

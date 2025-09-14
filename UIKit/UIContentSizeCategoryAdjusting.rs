@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryadjusting?language=objc)
+    /// A collection of methods that give controls an easy way to adopt automatic adjustment to content category changes.
     pub unsafe trait UIContentSizeCategoryAdjusting:
         NSObjectProtocol + MainThreadOnly
     {

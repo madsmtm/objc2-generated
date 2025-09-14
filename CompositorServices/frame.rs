@@ -18,6 +18,17 @@ unsafe impl RefEncode for cp_frame {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_frame", &[]));
 }
 
+/// A type that provides access to the timing information and data types you need to render a single frame of content.
+///
+/// ## Discussion
+///
+/// A frame represents a snapshot of your app’s content at a single moment in time. In your rendering loop, you render your content into static images many times a second to create the illusion of animation. A [`cp_frame_t`](https://developer.apple.com/documentation/compositorservices/cp_frame_t) provides the Metal textures and information you need to render one of those images.
+///
+/// During each iteration of your app’s rendering loop, call `cp_layer_query_next_frame` to retrieve the next frame to render The system manages a finite number of frames and recycles them to maximize efficiency. You typically draw only one frame at a time, starting work on each new frame only after completing the previous frame.
+///
+/// Separate the work you do for each frame into two phases: the update phase and the encode phase. Use the update phase to perform tasks that don’t depend on the current device pose. For example, you might update your app’s data structures to reflect recent interactions with your content. Use the submission phase to retrieve the current pose and render the frame’s content using that information. Each frame provides a [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type with access to the specific textures and rendering details for that frame.
+///
+///
 /// An opaque type that provides access to the timing information and
 /// data types you need to render a single frame of content.
 ///
@@ -37,11 +48,26 @@ unsafe impl RefEncode for cp_frame {
 /// For example, surround update work with calls to the
 /// ``cp_frame_start_update`` and ``cp_frame_end_update``
 /// functions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_t?language=objc)
 pub type cp_frame_t = *mut cp_frame;
 
 impl cp_frame {
+    /// The sequential index number of a frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The sequential index of the frame, which is always a positive integer.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The layer assigns a unique index number to each frame, starting at the first frame and incrementing the index by `1` for each new frame.
+    ///
+    ///
     /// Returns the sequential index number of the specified frame.
     ///
     /// - Parameters:
@@ -55,8 +81,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/frameindex?language=objc)
     #[doc(alias = "cp_frame_get_frame_index")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -67,6 +91,25 @@ impl cp_frame {
         unsafe { cp_frame_get_frame_index(frame) }
     }
 
+    /// Computes and returns the predicted timing information for the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame you’re preparing to draw.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The predicted timing information for the specified frame, or `nil` if the layer is in the [`LayerRenderer.State.paused`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/paused) or [`LayerRenderer.State.invalidated`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/invalidated) state.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned type contains the timing information for the specified frame. Use related functions to retrieve specific values. For example, use the [`cp_frame_timing_get_optimal_input_time`](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_optimal_input_time) function to determine when to start the submission phase of your frame update. This function updates the frame-specific timing information with the latest data from Compositor Services before it returns it.
+    ///
+    /// Don’t call this function after you call [`cp_frame_query_drawable`](https://developer.apple.com/documentation/compositorservices/cp_frame_query_drawable) for the specified frame. After you retrieve the frame’s [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type, get the timing information from the drawable’s [`frameTiming`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming) function instead.
+    ///
+    ///
     /// Computes and returns the predicted timing information for the specified frame.
     ///
     /// - Parameters:
@@ -91,8 +134,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing?language=objc)
     #[doc(alias = "cp_frame_predict_timing")]
     #[cfg(feature = "frame_timing")]
     #[inline]
@@ -103,6 +144,23 @@ impl cp_frame {
         unsafe { cp_frame_predict_timing(frame) }
     }
 
+    /// Returns the drawable type you use to retrieve the textures and drawing environment for the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The drawable type, or `nil` if the layer is in the [`LayerRenderer.State.paused`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/paused) or [`LayerRenderer.State.invalidated`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/invalidated) state.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Fetch the drawable when you’re ready to encode the drawing commands for the frame. The [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type contains the textures and other information you need to set up your render descriptor in Metal.
+    ///
+    ///
     /// Returns the drawable type you use to retrieve the textures and
     /// drawing environment for the frame.
     ///
@@ -122,8 +180,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_query_drawable?language=objc)
     #[doc(alias = "cp_frame_query_drawable")]
     #[cfg(feature = "drawable")]
     #[deprecated = "Use cp_frame_query_drawables instead"]
@@ -135,6 +191,27 @@ impl cp_frame {
         unsafe { cp_frame_query_drawable(frame) }
     }
 
+    /// Returns the drawable array type you use to retrieve the drawables for drawing environment for the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The drawable array type, if the layer is in the `cp_layer_renderer/cp_layer_renderer_state_paused` or `cp_layer_renderer/cp_layer_renderer_state_invalidated` states the array will have a count of 0 and frame is invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function when you’re ready to encode the drawing commands for the frame. The [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type contains the textures and other information you need to set up your render descriptor in Metal. See [`target`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.property) for how each drawable will be used.
+    ///
+    /// If array count is 0, the frame has been cancelled as there are no drawables to draw to and the frame should be discarded and is invalid to access.
+    ///
+    /// Note: This function isn’t safe to be called concurrently. Always ensure a single thread call this function at a time.
+    ///
+    ///
     /// Returns the drawable array type you use to retrieve the drawables for
     /// drawing environment for the frame.
     ///
@@ -159,8 +236,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame_query_drawables?language=objc)
     #[doc(alias = "cp_frame_query_drawables")]
     #[cfg(feature = "drawable")]
     #[inline]
@@ -171,6 +246,19 @@ impl cp_frame {
         unsafe { cp_frame_query_drawables(frame) }
     }
 
+    /// Notifies Compositor Services that you started updating the app-specific content for the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame you’re ready to update.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function helps you optimize your app’s rendering efficiency. Before you render a frame, you might need to respond to interactions with your content and update your app’s data structures before you render items in your scene. Call this function immediately before you start that work, and call [`cp_frame_end_update`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endupdate())  as soon as you finish. Compositor Services uses the time difference to improve its predictions for when to start the frame encoding process.
+    ///
+    /// Move as much work as possible into the update phase to minimize encoding time. Don’t do any work that relies on the current pose information during the update phase. Instead, make any pose-related changes during the submission phase.
+    ///
+    ///
     /// Notifies the compositor that you started updating the app-specific
     /// content you need to render the frame.
     ///
@@ -193,8 +281,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startupdate()?language=objc)
     #[doc(alias = "cp_frame_start_update")]
     #[inline]
     pub unsafe fn start_update(frame: cp_frame_t) {
@@ -204,6 +290,19 @@ impl cp_frame {
         unsafe { cp_frame_start_update(frame) }
     }
 
+    /// Notifies Compositor Services that you finished updating the app-specific content you need to render the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame you finished updating.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function helps you optimize your app’s rendering efficiency. Before you render a frame, you might need to respond to interactions and update your app’s data structures before you render items in your scene. Call [`cp_frame_start_update`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startupdate()) immediately before you start that work, and call this function as soon as you finish. Compositor Services uses the frame update time to improve its predictions for when to start the frame encoding process.
+    ///
+    /// Move as much work as possible into the update phase to minimize encoding time. Don’t do any work that relies on the current pose information during the update phase. Instead, make any pose-related changes during the submission phase.
+    ///
+    ///
     /// Notifies the compositor that you finished updating the app-specific
     /// content you need to render the frame.
     ///
@@ -226,8 +325,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endupdate()?language=objc)
     #[doc(alias = "cp_frame_end_update")]
     #[inline]
     pub unsafe fn end_update(frame: cp_frame_t) {
@@ -237,6 +334,17 @@ impl cp_frame {
         unsafe { cp_frame_end_update(frame) }
     }
 
+    /// Notifies Compositor Services that you’re ready to generate the Metal commands to render the specified frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame you’re ready to encode and send to the GPU.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function helps you optimize your app’s rendering efficiency. Call it before you start any of the GPU work that depends on the device pose. Call [`cp_frame_end_submission`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endsubmission()) after you build your Metal command buffers and are ready to commit the frame to the GPU. Compositor Services uses the time difference to improve its predictions for when to start the frame submission process. Those predictions help you schedule the encoding process at a more optimal time for the system.
+    ///
+    ///
     /// Notifies the compositor that you're ready to generate the
     /// GPU commands to render the specified frame.
     ///
@@ -255,8 +363,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startsubmission()?language=objc)
     #[doc(alias = "cp_frame_start_submission")]
     #[inline]
     pub unsafe fn start_submission(frame: cp_frame_t) {
@@ -266,6 +372,17 @@ impl cp_frame {
         unsafe { cp_frame_start_submission(frame) }
     }
 
+    /// Notifies Compositor Services that you finished generating the GPU commands to render the specified frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame you encoded and are ready to send to the GPU.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function helps you optimize your app’s rendering efficiency. Call [`cp_frame_start_submission`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/startsubmission()) function before you start any of the GPU work that depends on the device pose. Call this function after you build your Metal command buffers and are ready to commit the frame to the GPU. Compositor Services uses the time difference to improve its predictions for when to start the frame submission process. Those predictions help you schedule the encoding process at a more optimal time for the system.
+    ///
+    ///
     /// Notifies the compositor that you finished generating the GPU
     /// commands to render the specified frame.
     ///
@@ -284,8 +401,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/endsubmission()?language=objc)
     #[doc(alias = "cp_frame_end_submission")]
     #[inline]
     pub unsafe fn end_submission(frame: cp_frame_t) {
@@ -295,6 +410,25 @@ impl cp_frame {
         unsafe { cp_frame_end_submission(frame) }
     }
 
+    /// Returns the number of view in the drawable target.
+    ///
+    /// Parameters:
+    /// - frame: Frame: The frame you finished preparing.
+    ///
+    /// - drawable_target: Whether this is intended for `built_in` or `recorder`drawable
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of views available for drawing. For example, a return value of `2` indicates there are two views for this target drawable in this frame. value of `0` indicates there is no view available for this target drawable in this frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned value as the maximum number of views to retrieve from the [`cp_frame_binocular_frustum_matrix_for_drawable_target`](https://developer.apple.com/documentation/compositorservices/cp_frame_binocular_frustum_matrix_for_drawable_target) or [`cp_frame_monocular_frustum_matrix_for_drawable_target`](https://developer.apple.com/documentation/compositorservices/cp_frame_monocular_frustum_matrix_for_drawable_target) functions.
+    ///
+    ///
     /// Returns the number of view in the drawable target.
     ///
     /// - Parameters:
@@ -311,8 +445,6 @@ impl cp_frame {
     /// # Safety
     ///
     /// `frame` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/drawabletargetviewcount(target:)?language=objc)
     #[doc(alias = "cp_frame_get_drawable_target_view_count")]
     #[cfg(feature = "drawable")]
     #[inline]

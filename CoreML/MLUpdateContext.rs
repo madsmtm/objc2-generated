@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The context an update task provides to your app’s completion and update progress handlers.
     /// Provides context for the update process when the progress or completion handlers are invoked.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdatecontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLUpdateContext;

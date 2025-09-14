@@ -12,19 +12,39 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum?language=objc)
+/// Constants that specify tab bar item positioning.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarItemPositioning(pub NSInteger);
 impl UITabBarItemPositioning {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/automatic?language=objc)
+    /// Specifies automatic tab bar item positioning according to the user interface idiom, as follows:
+    ///
+    /// ## Discussion
+    ///
+    /// - In a horizontally compact environment, the tab bar spreads items across the entire space, adjusting inter-item spacing as needed.
+    ///
+    /// - In a horizontally regular environment, the tab bar uses the [`itemWidth`](https://developer.apple.com/documentation/uikit/uitabbar/itemwidth) and [`itemSpacing`](https://developer.apple.com/documentation/uikit/uitabbar/itemspacing) properties to set the width of items and the spacing between items, positioning those items in the center of the available space. This configuration has the potential to leave space along the left and right edges of the tab bar.
+    ///
+    ///
     #[doc(alias = "UITabBarItemPositioningAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/fill?language=objc)
+    /// Distribute items across the entire width of the tab bar.
+    ///
+    /// ## Discussion
+    ///
+    /// When the [`UITabBarItemPositioningAutomatic`](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/automatic) option is selected, the tab bar uses this behavior in horizontally compact environments.
+    ///
+    ///
     #[doc(alias = "UITabBarItemPositioningFill")]
     pub const Fill: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/centered?language=objc)
+    /// Center items in the available space.
+    ///
+    /// ## Discussion
+    ///
+    /// With this option, the tab bar uses the [`itemWidth`](https://developer.apple.com/documentation/uikit/uitabbar/itemwidth) and [`itemSpacing`](https://developer.apple.com/documentation/uikit/uitabbar/itemspacing) properties to set the width of items and the spacing between items, positioning those items in the center of the available space. When the [`UITabBarItemPositioningAutomatic`](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.enum/automatic) option is selected, the tab bar uses this behavior in horizontally regular environments.
+    ///
+    ///
     #[doc(alias = "UITabBarItemPositioningCentered")]
     pub const Centered: Self = Self(2);
 }
@@ -38,7 +58,70 @@ unsafe impl RefEncode for UITabBarItemPositioning {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbar?language=objc)
+    /// A control that displays one or more buttons in a tab bar for selecting between different subtasks, views, or modes in an app.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, you use tab bars in conjunction with a [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object, but you can also use them as standalone controls in your app. Tab bars always appear across the bottom edge of the screen and display the contents of one or more [`UITabBarItem`](https://developer.apple.com/documentation/uikit/uitabbaritem) objects. A tab bar’s appearance can be customized with a background image or tint color to suit the needs of your interface. Tapping an item selects and highlights that item, and you use the selection of the item to enable the corresponding mode for your app.
+    ///
+    /// You can configure tab bars programmatically or in Interface Builder. A [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object provides its own tab bar object and you must configure the object provided to you. When creating a tab bar programmatically, use the [`initWithFrame:`](https://developer.apple.com/documentation/uikit/uiview/init(frame:)) method or another view initializer method to set its initial configuration. Use the methods of this class to configure the appearance of the tab bar. For tab bars you create yourself, you also use the methods of this class to specify the items displayed by the tab bar.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar) class and [`UIToolbar`](https://developer.apple.com/documentation/uikit/uitoolbar) classes have similar appearances but different purposes. Use tab bars to convey and change your app’s mode. Use toolbars to present the user with a set of actions that are relevant to the currently presented content.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A tab bar reports selections and user customizations to its delegate object. For tab bars you create yourself, use the delegate to respond to selections or to the addition, removal, or reordering of items in the tab bar. (A [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object acts as the delegate for the tab bar it manages.) For more information on implementing a tab bar delegate, see [`UITabBarDelegate`](https://developer.apple.com/documentation/uikit/uitabbardelegate).
+    ///
+    /// ### Configure the tab bar items
+    ///
+    /// You can configure tab bar items using Interface Builder or create and configure them programmatically in your code. Tab bars in Interface Builder come preconfigured with some initial items and you can add, remove, or reorder items as needed. How you configure items at design time depends on whether your tab bar is associated with a [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object:
+    ///
+    /// - Configuring your tab bar in Interface Builder:
+    ///
+    /// - When a [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object is present, add or remove view controllers to your scene and create relationship segues between the tab bar controller and each new view controller. Creating a relationship segue automatically adds a new item to the tab bar, and deleting an existing relationship segue removes the corresponding tab bar item.
+    ///
+    /// - When a tab bar controller isn’t present, drag tab bar items from the library onto your tab bar.
+    ///
+    /// - Configuring your tab bar programmatically:
+    ///
+    /// - To configure the tab bar associated with a [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object, configure the view controllers associated with the tab bar controller. The tab bar automatically obtains its items from the [`tabBarItem`](https://developer.apple.com/documentation/uikit/uiviewcontroller/tabbaritem) property of each view controller associated with the tab bar controller.
+    ///
+    /// - To configure tab bar items directly, use the [`setItems:animated:`](https://developer.apple.com/documentation/uikit/uitabbar/setitems(_:animated:)) method of the tab bar itself.
+    ///
+    /// A tab bar displays all of its tabs onscreen at once, using the [`itemPositioning`](https://developer.apple.com/documentation/uikit/uitabbar/itempositioning-swift.property) property to determine how to position items in the available space. If you have more items than can fit in the available space, display only a subset of them and let the user select which tabs are displayed. The [`beginCustomizingItems:`](https://developer.apple.com/documentation/uikit/uitabbar/begincustomizingitems(_:)) method displays an interface for selecting which tab bar items to display.
+    ///
+    /// The contents of each item are stored in a [`UITabBarItem`](https://developer.apple.com/documentation/uikit/uitabbaritem) object. Each item contains a title and an image to display in the tab. You can also use tab bar items to add a badge to the corresponding tab. For more information about creating and configuring items, see [`UITabBarItem`](https://developer.apple.com/documentation/uikit/uitabbaritem).
+    ///
+    /// ### Respond to tab selections
+    ///
+    /// For tab bars with an associated tab bar controller, the tab bar controller automatically manages selections and displays the appropriate view controller. The only time you have to manage selections yourself is when you create the tab bar without a tab bar controller. The tab bar reports selections to the [`tabBar:didSelectItem:`](https://developer.apple.com/documentation/uikit/uitabbardelegate/tabbar(_:didselect:)) method of its [`delegate`](https://developer.apple.com/documentation/uikit/uitabbar/delegate) object, which you can use to respond to selection changes. For more information about implementing the delegate object, see [`UITabBarDelegate`](https://developer.apple.com/documentation/uikit/uitabbardelegate).
+    ///
+    /// ### Configure a tab bar with Interface Builder
+    ///
+    /// The following table lists the attributes that you configure for tab bars in Interface Builder.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Discussion" }] }]], [[Paragraph { inline_content: [Text { text: "Background" }] }], [Paragraph { inline_content: [Text { text: "The background image to display for the bar. If you specify a stretchable image, the image is stretched to fit the available space; otherwise, the image is tiled. When you configure a background image, the tab bar ignores the tint color information. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/backgroundImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Shadow" }] }], [Paragraph { inline_content: [Text { text: "The custom shadow image for the tab bar. This attribute is ignored if the tab bar does not also have a custom background image. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/shadowImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Selection" }] }], [Paragraph { inline_content: [Text { text: "The image to use for the selected tab. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/selectionIndicatorImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Image Tint" }] }], [Paragraph { inline_content: [Text { text: "The tint color to apply to the selected item. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/tintColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Style" }] }], [Paragraph { inline_content: [Text { text: "The basic style to apply to the bar. You can configure a tab bar with a dark or light style and the bar can be opaque or translucent. To set the style programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/barStyle", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/isTranslucent", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " properties." }] }]], [[Paragraph { inline_content: [Text { text: "Bar Tint" }] }], [Paragraph { inline_content: [Text { text: "The tint color to apply to the bar. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/barTintColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Item Positioning" }] }], [Paragraph { inline_content: [Text { text: "The positioning scheme to apply to items. Use this attribute to configure how items are spaced across the length of the tab bar. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UITabBar/itemPositioning-swift.property", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// ### Internationalize a tab bar
+    ///
+    /// To internationalize a tab bar, you must provide localized strings for the tab bar item titles.
+    ///
+    /// For more information, see `Localization`.
+    ///
+    /// ### Make a tab bar accessible
+    ///
+    /// Tab bars are accessible by default.
+    ///
+    /// With VoiceOver enabled on an iOS device, when a user touches a tab in a tab bar, VoiceOver reads the title of the tab, its position in the bar, and whether it’s selected. For example in the iTunes app on iPad, you might hear “Selected, Audiobooks, four of seven” or “Genius, six of seven.”
+    ///
+    /// For general information about making your interface accessible, see [Accessibility for UIKit](https://developer.apple.com/documentation/uikit/accessibility-for-uikit).
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/components/navigation-and-search/tab-bars).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -388,7 +471,13 @@ impl UITabBar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbardelegate?language=objc)
+    /// The [`UITabBarDelegate`](https://developer.apple.com/documentation/uikit/uitabbardelegate) protocol defines optional methods for a delegate of a [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar) object. The [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar) class provides the ability for the user to reorder, remove, and add items to the tab bar; this process is referred to as customizing the tab bar. The tab bar delegate receives messages when customizing occurs.
+    ///
+    /// ## Overview
+    ///
+    /// Send [`beginCustomizingItems:`](https://developer.apple.com/documentation/uikit/uitabbar/begincustomizingitems(_:)) to a [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar) object to begin customizing. Implement the methods in Customizing tab bars to intervene while a user is customizing a tab bar. The customizing modal view is dismissed when the user taps the Done button on the modal view.
+    ///
+    ///
     pub unsafe trait UITabBarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIBarItem",

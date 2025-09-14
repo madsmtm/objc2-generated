@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager?language=objc)
+    /// A session manager that mediates sharing data between an app and a web browser.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create a session manager directly. Instead, use the [`sharedManager`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/shared) session manager to tell the system what instance within your web browser app handles authentication requests. Do this by assigning an instance of a class that adopts the [`ASWebAuthenticationSessionWebBrowserSessionHandling`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionhandling) protocol to the shared manager’s [`sessionHandler`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/sessionhandler) property.
+    ///
+    /// You can also use the shared managers [`wasLaunchedByAuthenticationServices`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager/waslaunchedbyauthenticationservices) property to determine if your web browser app was launched for the specific purpose of performing authentication.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSessionWebBrowserSessionManager;

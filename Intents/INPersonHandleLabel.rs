@@ -4,56 +4,55 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel?language=objc)
+/// Constants describing how the person handle relates to the user.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type INPersonHandleLabel = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/home?language=objc)
+    /// A constant indicating that the handle is associated with the user’s home.
     pub static INPersonHandleLabelHome: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/work?language=objc)
+    /// A constant indicating that the handle is associated with the user’s work.
     pub static INPersonHandleLabelWork: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/iphone?language=objc)
+    /// A constant indicating that the handle is associated with the user’s iPhone.
     pub static INPersonHandleLabeliPhone: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/mobile?language=objc)
+    /// A constant indicating that the handle is associated with a mobile device.
     pub static INPersonHandleLabelMobile: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/main?language=objc)
+    /// A constant indicating that the handle is the primary way to contact the user.
     pub static INPersonHandleLabelMain: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/homefax?language=objc)
+    /// A constant indicating that the handle represents a home fax number.
     pub static INPersonHandleLabelHomeFax: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/workfax?language=objc)
+    /// A constant indicating that the handle represents a work fax number.
     pub static INPersonHandleLabelWorkFax: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/pager?language=objc)
+    /// A constant indicating that the handle is associated with the user’s pager.
     pub static INPersonHandleLabelPager: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/other?language=objc)
+    /// A constant indicating that the handle is associated with a location or device not specified by any other constant.
     pub static INPersonHandleLabelOther: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/school?language=objc)
     pub static INPersonHandleLabelSchool: Option<&'static INPersonHandleLabel>;
 }

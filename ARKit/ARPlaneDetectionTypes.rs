@@ -5,9 +5,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Option set indicating the type of planes to detect.
+/// Options for whether and how the framework detects flat surfaces in captured images.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct?language=objc)
+/// ## Overview
+///
+/// By default, this configuration disables plane detection. If you enable horizontal or vertical plane detection, the session adds ARPlaneAnchor objects and notifies your ARSessionDelegate, ARSCNViewDelegate, or ARSKViewDelegate object when its analysis of captured video images detects an area that appears to be a flat surface.
+///
+/// Use an empty set literal `[]` to specify no plane detection.
+///
+///
+/// Option set indicating the type of planes to detect.
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -16,19 +23,16 @@ pub struct ARPlaneDetection(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl ARPlaneDetection: NSUInteger {
+/// Plane detection is disabled.
 /// No plane detection is run.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplanedetection/arplanedetectionnone?language=objc)
         #[doc(alias = "ARPlaneDetectionNone")]
         const None = 0;
+/// The session detects planar surfaces that are perpendicular to gravity.
 /// Plane detection determines horizontal planes in the scene.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct/horizontal?language=objc)
         #[doc(alias = "ARPlaneDetectionHorizontal")]
         const Horizontal = 1<<0;
+/// The session detects surfaces that are parallel to gravity, regardless of other orientation.
 /// Plane detection determines vertical planes in the scene.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct/vertical?language=objc)
         #[doc(alias = "ARPlaneDetectionVertical")]
         const Vertical = 1<<1;
     }

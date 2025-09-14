@@ -6,31 +6,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason?language=objc)
+/// Constants indicating the reason why a recipient is not supported.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSendMessageRecipientUnsupportedReason(pub NSInteger);
 impl INSendMessageRecipientUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/noaccount?language=objc)
+    /// A recipient without an account.
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonNoAccount")]
     pub const NoAccount: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/offline?language=objc)
+    /// An offline recipient.
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonOffline")]
     pub const Offline: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/messagingservicenotenabledforrecipient?language=objc)
+    /// A recipient for whom messaging is not enabled.
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonMessagingServiceNotEnabledForRecipient")]
     pub const MessagingServiceNotEnabledForRecipient: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/novalidhandle?language=objc)
+    /// A recipient for whom there is no valid handle.
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonNoValidHandle")]
     pub const NoValidHandle: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/requestedhandleinvalid?language=objc)
+    /// A recipient for whom the requested handle is invalid.
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonRequestedHandleInvalid")]
     pub const RequestedHandleInvalid: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/nohandleforlabel?language=objc)
+    /// A recipient for whom there is no handle for the provided label.
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonNoHandleForLabel")]
     pub const NoHandleForLabel: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientunsupportedreason/requiringinappauthentication?language=objc)
     #[doc(alias = "INSendMessageRecipientUnsupportedReasonRequiringInAppAuthentication")]
     pub const RequiringInAppAuthentication: Self = Self(7);
 }
@@ -44,7 +43,15 @@ unsafe impl RefEncode for INSendMessageRecipientUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessagerecipientresolutionresult?language=objc)
+    /// A resolution result for the recipient of a message.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSendMessageRecipientResolutionResult`](https://developer.apple.com/documentation/intents/insendmessagerecipientresolutionresult) object is what you return when resolving parameters containing an [`INPerson`](https://developer.apple.com/documentation/intents/inperson) object. Use the [`unsupportedForReason:`](https://developer.apple.com/documentation/intents/insendmessagerecipientresolutionresult/unsupported(forreason:)) method to provide additional context about why a recipient was invalid. Otherwise, use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INPersonResolutionResult`](https://developer.apple.com/documentation/intents/inpersonresolutionresult) and [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INPersonResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

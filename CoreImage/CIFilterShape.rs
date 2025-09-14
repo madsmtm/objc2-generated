@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifiltershape?language=objc)
+    /// A description of the bounding shape of a filter and the domain of definition for a filter operation.
+    ///
+    /// ## Overview
+    ///
+    /// You use `CIFilterShape` objects in conjunction with Core Image classes, such as [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class), [`CIKernel`](https://developer.apple.com/documentation/coreimage/cikernel), and [`CISampler`](https://developer.apple.com/documentation/coreimage/cisampler), to create custom filters.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilterShape;

@@ -5,17 +5,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinib/optionskey?language=objc)
+/// Options that specify how to unarchive and instantiate the nib.
 // NS_TYPED_ENUM
 pub type UINibOptionsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinib/optionskey/externalobjects?language=objc)
+    /// The replacements for any proxy objects in the nib file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object. The keys of the dictionary are the names of any proxy objects in the nib file, and the value for each key is the actual object to use in place of the proxy.
+    ///
+    ///
     pub static UINibExternalObjects: &'static UINibOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinibproxiedobjectskey?language=objc)
+    /// The runtime replacement objects for any proxy objects in the nib file.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 2, the value for this key is a dictionary that contains the runtime replacement objects for any proxy objects used in the nib file. In this dictionary, the keys are the names associated with the proxy objects and the values are the actual objects from your code that should be used in their place.
+    ///
+    ///
     #[deprecated]
     pub static UINibProxiedObjectsKey: &'static NSString;
 }

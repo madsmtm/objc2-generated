@@ -6,18 +6,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants for the times at which to inject script content into a webpage.
 /// when a user script should be injected into a webpage.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserScriptInjectionTime(pub NSInteger);
 impl WKUserScriptInjectionTime {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/atdocumentstart?language=objc)
+    /// A constant to inject the script after the creation of the webpage’s document element, but before loading any other content.
     #[doc(alias = "WKUserScriptInjectionTimeAtDocumentStart")]
     pub const AtDocumentStart: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscriptinjectiontime/atdocumentend?language=objc)
+    /// A constant to inject the script after the document finishes loading, but before loading any other subresources.
     #[doc(alias = "WKUserScriptInjectionTimeAtDocumentEnd")]
     pub const AtDocumentEnd: Self = Self(1);
 }
@@ -31,6 +30,13 @@ unsafe impl RefEncode for WKUserScriptInjectionTime {
 }
 
 extern_class!(
+    /// A script that the web view injects into a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`WKUserScript`](https://developer.apple.com/documentation/webkit/wkuserscript) object when you want to inject custom script code into the pages of your web view. Use this object to specify the JavaScript code to inject, and parameters relating to when and how to inject that code. Before you create the web view, add this object to the [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object associated with your web view’s configuration.
+    ///
+    ///
     /// A
     ///
     /// ```text
@@ -38,8 +44,6 @@ extern_class!(
     /// ```
     ///
     /// object represents a script that can be injected into webpages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserscript?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

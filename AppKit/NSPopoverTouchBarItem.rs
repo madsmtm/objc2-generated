@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopovertouchbaritem?language=objc)
+    /// A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]

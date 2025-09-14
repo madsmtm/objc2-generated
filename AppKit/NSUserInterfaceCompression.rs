@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions?language=objc)
+    /// An object that specifies how user interface elements resize themselves when space is constrained.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of [`NSUserInterfaceCompressionOptions`](https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions) contains zero or more options. Because a compression options object behaves like a set, you can use common operations like intersection, union and subtraction to interact with instances and their members.
+    ///
+    /// You can access system-defined options through the class methods detailed in Creating standard options, or you can create your own custom options with the [`initWithIdentifier:`](https://developer.apple.com/documentation/appkit/nsuserinterfacecompressionoptions/init(identifier:)) initializer.
+    ///
+    /// To compare two different compression options objects, use the methods described in the Comparing compression options section.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserInterfaceCompressionOptions;
@@ -119,7 +129,13 @@ impl DefaultRetained for NSUserInterfaceCompressionOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacecompression?language=objc)
+    /// A protocol that describes how a UI control should redisplay when space is restricted.
+    ///
+    /// ## Overview
+    ///
+    /// A control that adopts this protocol has the ability to resize itself when space is at a premium.
+    ///
+    ///
     pub unsafe trait NSUserInterfaceCompression {
         #[unsafe(method(compressWithPrioritizedCompressionOptions:))]
         #[unsafe(method_family = none)]

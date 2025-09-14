@@ -10,9 +10,58 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// Allows to formally participate in UI updates and influence UI update behavior.
+    /// An object you use to observe, participate in, and affect the UI update process.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiupdatelink?language=objc)
+    /// ## Overview
+    ///
+    /// With a _UI update link_, you can follow the progress of each UI update and express preferences about how those updates happen. Use a UI update link when you need precise and predictable control over the UI update process.
+    ///
+    /// There are multiple use cases for [`UIUpdateLink`](https://developer.apple.com/documentation/uikit/uiupdatelink), including:
+    ///
+    /// - To monitor when UI updates occur and synchronize your drawing code with each update, similar to how you might use [`CADisplayLink`](https://developer.apple.com/documentation/quartzcore/cadisplaylink).
+    ///
+    /// - To influence how UI updates occur by expressing preferences to the system, such as requesting continuous UI updates, immediate rendering of frames, and more.
+    ///
+    /// - To specify precisely at which point in the UI update process to perform certain actions.
+    ///
+    /// - To implement support for low-latency input, such as a custom low-latency drawing implementation for a pencil-drawing app.
+    ///
+    /// To create a UI update link, you associate it with a window or a view. The UI update link activates automatically when you add the view to a visible window, and deactivates when you remove the view from it. If the view moves from one display to another, [`UIUpdateLink`](https://developer.apple.com/documentation/uikit/uiupdatelink) adjusts to the timing of the new display automatically.
+    ///
+    /// ```swift
+    /// // Monitor UI updates for a specific view.
+    /// let updateLink = UIUpdateLink(view: view)
+    /// updateLink.isEnabled = true
+    ///
+    /// // Influence the UI update process by requesting continuous UI updates.
+    /// updateLink.requiresContinuousUpdates = true
+    ///
+    /// // Specify one or more actions to perform for each UI update.
+    /// // Add an action to the `.beforeCADisplayLinkDispatch` phase, by default.
+    /// updateLink.addAction() { link, info in
+    ///     // Code that runs each UI update, after processing input events,
+    ///     // but before `CADisplayLink` callbacks.
+    ///     self.view.center.y = sin(info.modelTime) * 100 + self.view.bounds.midY
+    /// }
+    ///
+    /// // Add an action to a specific UI update phase that you choose.
+    /// updateLink.addAction(to: .afterUpdateScheduled) { link, info in
+    ///     // Code that runs each UI update, after the system schedules the update,
+    ///     // but before processing input events.
+    ///     // ...
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Only use [`UIUpdateLink`](https://developer.apple.com/documentation/uikit/uiupdatelink) from the main thread.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Allows to formally participate in UI updates and influence UI update behavior.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

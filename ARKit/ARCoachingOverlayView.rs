@@ -15,9 +15,14 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// A value describing the context required for successful coaching
+/// The options that specify your app’s tracking requirements.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum?language=objc)
+/// ## Overview
+///
+/// This property contains the available options when you set a coaching overlay’s [`goal`](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.property). The coaching overlay adjusts its messaging to the user based on the value.
+///
+///
+/// A value describing the context required for successful coaching
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -25,29 +30,54 @@ use crate::*;
 pub struct ARCoachingGoal(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARCoachingGoal {
-    /// Session requires normal tracking
+    /// A goal that specifies your app requires basic world tracking.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/tracking?language=objc)
+    /// ## Discussion
+    ///
+    /// When you use this goal, coaching overlay won’t hide until the user has moved their device in a way that facilitates ARKit starting up a basic world tracking session.
+    ///
+    ///
+    /// Session requires normal tracking
     #[doc(alias = "ARCoachingGoalTracking")]
     pub const Tracking: Self = Self(0);
-    /// Session requires a horizontal plane
+    /// A goal that specifies your app requires a horizontal plane.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/horizontalplane?language=objc)
+    /// ## Discussion
+    ///
+    /// When you use this goal, coaching overlay won’t hide until the user has moved their device in a way that facilitates ARKit finding at least one horizontal surface.
+    ///
+    ///
+    /// Session requires a horizontal plane
     #[doc(alias = "ARCoachingGoalHorizontalPlane")]
     pub const HorizontalPlane: Self = Self(1);
-    /// Session requires a vertical plane
+    /// A goal that specifies your app requires a vertical plane.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/verticalplane?language=objc)
+    /// ## Discussion
+    ///
+    /// When you use this goal, coaching overlay won’t hide until the user has moved their device in a way that facilitates ARKit finding at least one vertical surface.
+    ///
+    ///
+    /// Session requires a vertical plane
     #[doc(alias = "ARCoachingGoalVerticalPlane")]
     pub const VerticalPlane: Self = Self(2);
-    /// Session requires one plane of any type
+    /// A goal that specifies your app requires a plane of any type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/anyplane?language=objc)
+    /// ## Discussion
+    ///
+    /// When you use this goal, coaching overlay won’t hide until the user has moved their device in a way that facilitates ARKit finding at least one surface. For the available surface types, see [`ARPlaneClassification`](https://developer.apple.com/documentation/arkit/arplaneclassification).
+    ///
+    ///
+    /// Session requires one plane of any type
     #[doc(alias = "ARCoachingGoalAnyPlane")]
     pub const AnyPlane: Self = Self(3);
-    /// Session requires geo tracking
+    /// A goal that specifies your app requires a precise geographic location.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum/geotracking?language=objc)
+    /// ## Discussion
+    ///
+    /// When you set this goal, the coaching overlay provides the user instructions when they start a geotracking session, or when they go off course during a session.
+    ///
+    ///
+    /// Session requires geo tracking
     #[doc(alias = "ARCoachingGoalGeoTracking")]
     pub const GeoTracking: Self = Self(4);
 }
@@ -64,12 +94,82 @@ unsafe impl RefEncode for ARCoachingGoal {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A view that displays standardized onboarding instructions to direct users toward a specific goal.
+    ///
+    /// ## Overview
+    ///
+    /// This view offers your users a standardized onboarding routine. You can configure this view to automatically display during session initialization and in limited tracking situations, while giving the user specific instructions that best facilitate ARKit’s world tracking.
+    ///
+    /// These illustrations show overlay views with horizontal- and vertical-plane goals, indicating that the user should begin moving the device:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/95e9c9b94a8387be085262b139dfc029/media-3403212~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/95e9c9b94a8387be085262b139dfc029/media-3403212%402x.png 2x" />
+    ///     <img alt="Illustration showing two overlay views. The view at the left shows a horizontal plane, and the view at the right shows a vertical plane. Both views indicate that the user should begin moving the device." src="https://docs-assets.developer.apple.com/published/95e9c9b94a8387be085262b139dfc029/media-3403212~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// These illustrations show overlay views indicating that the user should continue moving the phone or change the speed with which they move it:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/bcfcb498fb67e55f75f226cd04a0fbeb/media-3403211~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/bcfcb498fb67e55f75f226cd04a0fbeb/media-3403211%402x.png 2x" />
+    ///     <img alt="Illustration showing two overlay views. The view at the left indicates that the device is moving and the user should continue moving it. The view at the right indicates that the device is moving too fast and the user should move it more slowly." src="https://docs-assets.developer.apple.com/published/bcfcb498fb67e55f75f226cd04a0fbeb/media-3403211~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// When you start your app, the coaching overlay asks the user to move the device in ways that help ARKit establish tracking. When you choose a specific goal like finding a plane, the view tailors its instructions accordingly. After the coaching overlay determines the goal has been met and no further coaching is required, it hides from the user’s view.
+    ///
+    /// For an example app that uses the coaching overlay, see [Placing objects and handling 3D interaction](https://developer.apple.com/documentation/arkit/placing-objects-and-handling-3d-interaction).
+    ///
+    /// ### Supporting Automatic Coaching
+    ///
+    /// By default, [`activatesAutomatically`](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/activatesautomatically) is enabled and therefore you should override [`coachingOverlayViewWillActivate:`](https://developer.apple.com/documentation/arkit/arcoachingoverlayviewdelegate/coachingoverlayviewwillactivate(_:)) to determine whether coaching is in progress. Coordinate your actions to help the user focus on these instructions, for example, by hiding any UI that’s not necessary while the session reinitializes.
+    ///
+    /// ### Relocalizing After an Interruption
+    ///
+    /// If relocalization is enabled (see [`sessionShouldAttemptRelocalization:`](https://developer.apple.com/documentation/arkit/arsessionobserver/sessionshouldattemptrelocalization(_:))), ARKit attempts to restore your session if any interruptions degrade your app’s tracking state. In this event, the coaching overlay presents itself and gives the user instructions to assist ARKit with relocalizing.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3b7170e8a2334f3c3bee0ad82f7ba5e3/media-3394488~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3b7170e8a2334f3c3bee0ad82f7ba5e3/media-3394488%402x.png 2x" />
+    ///     <img alt="User instruction to return to the user’s previous location so ARKit can restore the session. " src="https://docs-assets.developer.apple.com/published/3b7170e8a2334f3c3bee0ad82f7ba5e3/media-3394488~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// During this time, the coaching overlay includes a button that lets the user indicate they’d like to start over rather than restore the session.
+    ///
+    ///
+    /// ![Button that enables the user to indicate they’d like to start over rather than restore the session.](https://docs-assets.developer.apple.com/published/ee357831490678aa747f7bcb084d2133/media-3394474%402x.png)
+    ///
+    ///
+    /// ARKit notifies you when the user presses Start Over by calling your delegate’s [`coachingOverlayViewDidRequestSessionReset:`](https://developer.apple.com/documentation/arkit/arcoachingoverlayviewdelegate/coachingoverlayviewdidrequestsessionreset(_:)) function. Implement this callback if your app requires any custom actions to restart the AR experience.
+    ///
+    /// ```swift
+    /// func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {    
+    ///
+    ///     // Reset the session.
+    ///     let configuration = ARWorldTrackingConfiguration()
+    ///     configuration.planeDetection = [.horizontal, .vertical]
+    ///     session.run(configuration, options: [.resetTracking])
+    ///
+    ///     // Custom actions to restart the AR experience.
+    ///     // ...
+    /// }
+    /// ```
+    ///
+    /// If you do not implement [`coachingOverlayViewDidRequestSessionReset:`](https://developer.apple.com/documentation/arkit/arcoachingoverlayviewdelegate/coachingoverlayviewdidrequestsessionreset(_:)), the coaching overlay responds to the Start Over button by resetting tracking, which also removes any existing anchors.
+    ///
+    /// For more information about relocalization, see [Managing Session Life Cycle and Tracking Quality](https://developer.apple.com/documentation/arkit/managing-session-life-cycle-and-tracking-quality).
+    ///
+    ///
     /// A view that guides users through session initialization
     ///
     ///
     /// The view will use context aware messaging and animations to instruct the user on gathering required info for the AR session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
@@ -291,7 +391,13 @@ impl ARCoachingOverlayView {
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayviewdelegate?language=objc)
+    /// A set of callbacks you implement to be notified of coaching events.
+    ///
+    /// ## Overview
+    ///
+    /// Implement a delegate to coordinate your app’s actions with coaching overlay. For example, when the coaching overlay determines the user needs guidance, you hide your app’s UI to allow the user to focus on the coaching experience. When the coaching overlay determines the [`goal`](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.property) is met, you show your app’s UI and begin your app’s AR experience.
+    ///
+    ///
     #[cfg(feature = "objc2")]
     pub unsafe trait ARCoachingOverlayViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]

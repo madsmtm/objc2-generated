@@ -10,12 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An interaction for using Scribble to enter text by writing on a view that isn’t formally a text input.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`UIIndirectScribbleInteraction`](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction-1nfjm) if your app has a view that looks to the user like a text input but doesn’t implement [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput). It makes the view act as a container of one or more virtual “text input elements”, each of which defines an area the user can write into without having to tap first.
+    ///
+    /// Some example uses of [`UIIndirectScribbleInteraction`](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction-1nfjm) include:
+    ///
+    /// - A view that looks like a search or text field that in reality is a button, but when tapped installs a real text field.
+    ///
+    /// - A view that contains multiple virtual text fields which the user can normally tap and type into, but aren’t full blown text fields all the time.
+    ///
+    ///
     /// An interaction that allows using Scribble to enter text by handwriting on a view that is not formally a text input. Use UIIndirectScribbleInteraction if your app has a view that looks to the user as a text input but does not implement UITextInput. It makes the view act as a container of one or more virtual "Text Input Elements", each of which defines an area the user can write into without having to tap first.
     /// Some examples of when UIIndirectScribbleInteraction can be used:
     /// - A view that looks like a search field or a text field that in reality is a button, but installs a real text field when tapped
     /// - A view that contains multiple virtual text fields which the user can normally tap and type into, but are not full blown text fields all the time
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction-2dap8?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -62,15 +73,13 @@ impl UIIndirectScribbleInteraction {
     );
 }
 
+/// The element’s unique identifier.
 /// Element identifiers are used to identify writable elements in the interaction's view, and will be supplied in every delegate callback. Any object that conforms to NSCopying and that can be compared for equality can be used. It is recommended to use simple immutable values, like NSString, NSNumber, or NSUUID.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleelementidentifier?language=objc)
 pub type UIScribbleElementIdentifier = AnyObject;
 
 extern_protocol!(
+    /// Methods that customize behavior on views that aren’t formally text input views.
     /// The protocol to be implemented by the delegate of UIIndirectScribbleInteraction. It will be responsible for supplying a list of writable elements, focusing them, and ultimately providing a real UITextInput that will handle text editing operations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteractiondelegate-3jmnk?language=objc)
     pub unsafe trait UIIndirectScribbleInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

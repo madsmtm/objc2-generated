@@ -6,23 +6,41 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions?language=objc)
+/// The values that can be returned in a change dictionary.
+///
+/// ## Overview
+///
+/// These constants are passed to [`addObserver:forKeyPath:options:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/addobserver(_:forkeypath:options:context:)) and determine the values that are returned as part of the change dictionary passed to an [`observeValueForKeyPath:ofObject:change:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/observevalue(forkeypath:of:change:context:)). You can pass `0` if you require no change dictionary values.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSKeyValueObservingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSKeyValueObservingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/new?language=objc)
+/// Indicates that the change dictionary should provide the new attribute value, if applicable.
         #[doc(alias = "NSKeyValueObservingOptionNew")]
         const New = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/old?language=objc)
+/// Indicates that the change dictionary should contain the old attribute value, if applicable.
         #[doc(alias = "NSKeyValueObservingOptionOld")]
         const Old = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/initial?language=objc)
+/// If specified, a notification should be sent to the observer immediately, before the observer registration method even returns.
+///
+/// ## Discussion
+///
+/// The change dictionary in the notification will always contain an [`NSKeyValueChangeNewKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/newkey) entry if [`NSKeyValueObservingOptionNew`](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/new) is also specified but will never contain an [`NSKeyValueChangeOldKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/oldkey) entry. (In an initial notification the current value of the observed property may be old, but it’s new to the observer.) You can use this option instead of explicitly invoking, at the same time, code that is also invoked by the observer’s [`observeValueForKeyPath:ofObject:change:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/observevalue(forkeypath:of:change:context:)) method. When this option is used with[`addObserver:forKeyPath:options:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/addobserver(_:forkeypath:options:context:)) a notification will be sent for each indexed object to which the observer is being added.
+///
+///
         #[doc(alias = "NSKeyValueObservingOptionInitial")]
         const Initial = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/prior?language=objc)
+/// Whether separate notifications should be sent to the observer before and after each change, instead of a single notification after the change.
+///
+/// ## Discussion
+///
+/// The change dictionary in a notification sent before a change always contains an [`NSKeyValueChangeNotificationIsPriorKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/notificationispriorkey) entry whose value is an `NSNumber` object that contains the Boolean value [`true`](https://developer.apple.com/documentation/swift/true), but never contains an [`NSKeyValueChangeNewKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/newkey) entry. When this option is specified the change dictionary in a notification sent after a change contains the same entries that it would contain if this option were not specified. You can use this option when the observer’s own key-value observing-compliance requires it to invoke one of the `-willChange...` methods for one of its own properties, and the value of that property depends on the value of the observed object’s property. (In that situation it’s too late to easily invoke `-willChange...` properly in response to receiving an [`observeValueForKeyPath:ofObject:change:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/observevalue(forkeypath:of:change:context:)) message after the change.)
+///
+///
         #[doc(alias = "NSKeyValueObservingOptionPrior")]
         const Prior = 0x08;
     }
@@ -36,22 +54,28 @@ unsafe impl RefEncode for NSKeyValueObservingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange?language=objc)
+/// The kinds of changes that can be observed.
+///
+/// ## Overview
+///
+/// These constants are returned as the value for a [`NSKeyValueChangeKindKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/kindkey) key in the change dictionary passed to [`observeValueForKeyPath:ofObject:change:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/observevalue(forkeypath:of:change:context:)) indicating the type of change made.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueChange(pub NSUInteger);
 impl NSKeyValueChange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/setting?language=objc)
+    /// Indicates that the value of the observed key path was set to a new value. This change can occur when observing an attribute of an object, as well as properties that specify to-one and to-many relationships.
     #[doc(alias = "NSKeyValueChangeSetting")]
     pub const Setting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/insertion?language=objc)
+    /// Indicates that an object has been inserted into the to-many relationship that is being observed.
     #[doc(alias = "NSKeyValueChangeInsertion")]
     pub const Insertion: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/removal?language=objc)
+    /// Indicates that an object has been removed from the to-many relationship that is being observed.
     #[doc(alias = "NSKeyValueChangeRemoval")]
     pub const Removal: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechange/replacement?language=objc)
+    /// Indicates that an object has been replaced in the to-many relationship that is being observed.
     #[doc(alias = "NSKeyValueChangeReplacement")]
     pub const Replacement: Self = Self(4);
 }
@@ -64,22 +88,17 @@ unsafe impl RefEncode for NSKeyValueChange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueSetMutationKind(pub NSUInteger);
 impl NSKeyValueSetMutationKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/union?language=objc)
     #[doc(alias = "NSKeyValueUnionSetMutation")]
     pub const UnionSetMutation: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/minus?language=objc)
     #[doc(alias = "NSKeyValueMinusSetMutation")]
     pub const MinusSetMutation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/intersect?language=objc)
     #[doc(alias = "NSKeyValueIntersectSetMutation")]
     pub const IntersectSetMutation: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesetmutationkind/set?language=objc)
     #[doc(alias = "NSKeyValueSetSetMutation")]
     pub const SetSetMutation: Self = Self(4);
 }
@@ -92,37 +111,71 @@ unsafe impl RefEncode for NSKeyValueSetMutationKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey?language=objc)
+/// The keys that can appear in the change dictionary.
+///
+/// ## Discussion
+///
+/// These constants are used as keys in the change dictionary passed to [`observeValueForKeyPath:ofObject:change:context:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/observevalue(forkeypath:of:change:context:)).
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSKeyValueChangeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/kindkey?language=objc)
+    /// An `NSNumber` object that contains a value corresponding to one of the [`NSKeyValueChange`](https://developer.apple.com/documentation/foundation/nskeyvaluechange) enums, indicating what sort of change has occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of [`NSKeyValueChangeSetting`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/setting) indicates that the observed object has received a [`setValue:forKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/setvalue(_:forkey:)) message, or that the key-value-coding-compliant set method for the key has been invoked, or that one of the [`willChangeValueForKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/willchangevalue(forkey:)) or [`didChangeValueForKey:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/didchangevalue(forkey:)) methods has otherwise been invoked.
+    ///
+    /// A value of [`NSKeyValueChangeInsertion`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/insertion), [`NSKeyValueChangeRemoval`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/removal), or [`NSKeyValueChangeReplacement`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/replacement) indicates that mutating messages have been sent a key-value observing compliant collection proxy, or that one of the key-value-coding-compliant collection mutation methods for the key has been invoked, or a collection will change or did change method has been otherwise been invoked.
+    ///
+    /// You can use the [`unsignedIntegerValue`](https://developer.apple.com/documentation/foundation/nsnumber/uintvalue) method on the `NSNumber` object to retrieve the value of the change kind.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/newkey?language=objc)
+    /// If the value of the [`NSKeyValueChangeKindKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/kindkey) entry is [`NSKeyValueChangeSetting`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/setting), and [`NSKeyValueObservingOptionNew`](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/new) was specified when the observer was registered, the value of this key is the new value for the attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// For [`NSKeyValueChangeInsertion`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/insertion) or [`NSKeyValueChangeReplacement`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/replacement), if [`NSKeyValueObservingOptionNew`](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/new) was specified when the observer was registered, the value for this key is an `NSArray` instance that contains the objects that have been inserted or replaced other objects, respectively.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNewKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/oldkey?language=objc)
+    /// If the value of the [`NSKeyValueChangeKindKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/kindkey) entry is [`NSKeyValueChangeSetting`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/setting), and [`NSKeyValueObservingOptionOld`](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/old) was specified when the observer was registered, the value of this key is the value before the attribute was changed.
+    ///
+    /// ## Discussion
+    ///
+    /// For [`NSKeyValueChangeRemoval`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/removal) or [`NSKeyValueChangeReplacement`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/replacement), if [`NSKeyValueObservingOptionOld`](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/old) was specified when the observer was registered, the value is an `NSArray` instance that contains the objects that have been removed or have been replaced by other objects, respectively.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeOldKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/indexeskey?language=objc)
+    /// If the value of the [`NSKeyValueChangeKindKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/kindkey) entry is [`NSKeyValueChangeInsertion`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/insertion), [`NSKeyValueChangeRemoval`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/removal), or [`NSKeyValueChangeReplacement`](https://developer.apple.com/documentation/foundation/nskeyvaluechange/replacement), the value of this key is an `NSIndexSet` object that contains the indexes of the inserted, removed, or replaced objects.
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeIndexesKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/notificationispriorkey?language=objc)
+    /// If the [`NSKeyValueObservingOptionPrior`](https://developer.apple.com/documentation/foundation/nskeyvalueobservingoptions/prior) option was specified when the observer was registered this notification is sent prior to a change.
+    ///
+    /// ## Discussion
+    ///
+    /// The change dictionary contains an [`NSKeyValueChangeNotificationIsPriorKey`](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/notificationispriorkey) entry whose value is an `NSNumber` object that contains the Boolean value [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey;
 }

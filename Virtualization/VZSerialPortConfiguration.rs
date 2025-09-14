@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The common configuration traits for serial port requests.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a [`VZSerialPortConfiguration`](https://developer.apple.com/documentation/virtualization/vzserialportconfiguration) object directly. Instead, instantiate a concrete instance of one of its subclasses, such as [`VZVirtioConsoleDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration). Use the [`attachment`](https://developer.apple.com/documentation/virtualization/vzserialportconfiguration/attachment) property of this class to configure the medium through which serial communication happens.
+    ///
+    ///
     /// Base class for a serial port configuration.
     ///
     /// VZSerialPortConfiguration should not be instantiated directly.
@@ -15,8 +22,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioConsoleDeviceSerialPortConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzserialportconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZSerialPortConfiguration;

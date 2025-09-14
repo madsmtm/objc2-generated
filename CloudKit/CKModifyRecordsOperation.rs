@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate which policy to apply when saving records.
 /// Locally edited keys are sent to the server, updating the record if the server record has not been modified. This is the default and recommended save policy for regular use.
 /// This policy compares the record change tag with the server record, and may return
 /// `CKErrorServerRecordChanged`if the server record has been modified, for example by another device.
@@ -41,22 +42,51 @@ use crate::*;
 /// `savePolicy`of the operation that modifies the share.
 /// For non-CKShare records, this policy does not compare the record change tag and therefore will not return
 /// `CKErrorServerRecordChanged`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKRecordSavePolicy(pub NSInteger);
 impl CKRecordSavePolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/ifserverrecordunchanged?language=objc)
+    /// A policy that instructs CloudKit to only proceed if the record’s change tag matches that of the server’s copy.
+    ///
+    /// ## Discussion
+    ///
+    /// The server maintains a change tag for each record automatically. When you fetch a record, that change tag accompanies the rest of the record’s data. If the change tag in your local record matches the change tag of the record on the server, the save operation proceeds normally. If the server record contains a newer change tag, CloudKit doesn’t save the record and reports a [`CKErrorServerRecordChanged`](https://developer.apple.com/documentation/cloudkit/ckerror/code/serverrecordchanged) error.
+    ///
+    ///
     #[doc(alias = "CKRecordSaveIfServerRecordUnchanged")]
     pub const IfServerRecordUnchanged: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/changedkeys?language=objc)
+    /// A policy that instructs CloudKit to save only the fields of a record that contain changes.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This policy doesn’t compare record change tags. To ensure that you only save changes to the most recent version of a record, use [`CKRecordSaveIfServerRecordUnchanged`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/ifserverrecordunchanged) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CKRecordSaveChangedKeys")]
     pub const ChangedKeys: Self = Self(1);
-    /// Does not compare record change tags
+    /// A policy that instructs CloudKit to save all keys of a record, even those without changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/allkeys?language=objc)
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This policy doesn’t compare record change tags. To ensure that you only save changes to the most recent version of a record, use [`CKRecordSaveIfServerRecordUnchanged`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/ifserverrecordunchanged) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This policy causes CloudKit to overwrite any existing values on the server. It’s possible for a server record to contain keys that aren’t present locally. Another client might add keys to the record after you fetch it. Also, if you use the [`desiredKeys`](https://developer.apple.com/documentation/cloudkit/ckfetchrecordsoperation/desiredkeys-34l1l) property to request a subset of keys during a fetch operation, saving that same record modifies only those keys that you include in the fetch and any keys you add to the record after that.
+    ///
+    ///
+    /// Does not compare record change tags
     #[doc(alias = "CKRecordSaveAllKeys")]
     pub const AllKeys: Self = Self(2);
 }
@@ -70,7 +100,29 @@ unsafe impl RefEncode for CKRecordSavePolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation?language=objc)
+    /// An operation that modifies one or more records.
+    ///
+    /// ## Overview
+    ///
+    /// After modifying the fields of a record, use this operation to save those changes to a database. You also use this operation to delete records permanently from a database.
+    ///
+    /// If you’re saving a record that contains a reference to another record, set the reference’s [`referenceAction`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference/action-swift.property) to indicate if the target record’s deletion should cascade to the saved record. This helps avoid orphaned records in explicit record hierarchies. When creating two new records that have a reference between them, use the same operation to save both records at the same time. During a save operation, CloudKit requires that the target record of the [`parent`](https://developer.apple.com/documentation/cloudkit/ckrecord/parent) reference, if set, exists in the database or is part of the same operation; all other reference fields are exempt from this requirement.
+    ///
+    /// When you save records, the value in the [`savePolicy`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/savepolicy) property determines how to proceed when CloudKit detects conflicts. Because records can change between the time you fetch them and the time you save them, the save policy determines whether new changes overwrite existing changes. By default, the operation reports an error when there’s a newer version on the server. You can change the default setting to permit your changes to overwrite the server values wholly or partially.
+    ///
+    /// The handlers you assign to monitor progress of the operation execute serially on an internal queue that the operation manages. Your handlers must be capable of executing on a background thread, so any tasks that require access to the main thread must redirect accordingly.
+    ///
+    /// If you assign a completion handler to the [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property of the operation, CloudKit calls it after the operation executes and returns the results. Use the completion handler to perform any housekeeping tasks for the operation, but don’t use it to process the results of the operation. The completion handler you provide should manage any failures of the operation, whether due to an error or an explicit cancellation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To ensure the speed of fetching and saving records, the server may reject large operations. When this occurs, a block reports the [`CKErrorLimitExceeded`](https://developer.apple.com/documentation/cloudkit/ckerror/code/limitexceeded) error. Your app should handle this error, and refactor the operation into multiple smaller batches.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

@@ -7,24 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Roles for a relevant shortcut.
 /// The role of the relevant shortcut.
 ///
 /// Provides a hint to Siri about the expected user experience.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRelevantShortcutRole(pub NSInteger);
 impl INRelevantShortcutRole {
-    /// The relevant shortcut represents an action that the user may want to perform using your app.
+    /// An action-based relevant shortcut.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutrole/action?language=objc)
+    /// ## Discussion
+    ///
+    /// Specify this role for relevant shortcuts that represent actions that the user may want to perform using your app, such as ordering tomato soup.
+    ///
+    ///
+    /// The relevant shortcut represents an action that the user may want to perform using your app.
     #[doc(alias = "INRelevantShortcutRoleAction")]
     pub const Action: Self = Self(0);
-    /// The relevant shortcut represents information that the user may want to glance at.
+    /// An informational-based relevant shortcut.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutrole/information?language=objc)
+    /// ## Discussion
+    ///
+    /// Specify this role for relevant shortcuts that represent information that the user may want to glance at, such as the current weather conditions.
+    ///
+    ///
+    /// The relevant shortcut represents information that the user may want to glance at.
     #[doc(alias = "INRelevantShortcutRoleInformation")]
     pub const Information: Self = Self(1);
 }
@@ -38,11 +47,10 @@ unsafe impl RefEncode for INRelevantShortcutRole {
 }
 
 extern_class!(
+    /// An object that defines a shortcut and its relevance to the user.
     /// Lets you provide relevant shortcut to Siri, for display on the Siri Watch Face.
     ///
     /// Including relevance information allows Siri to make suggestions for shortcuts that the user might be interested in but has not previously performed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcut?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRelevantShortcut;

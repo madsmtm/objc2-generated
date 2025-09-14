@@ -8,257 +8,466 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqlitestoretype?language=objc)
+    /// The SQLite database store type.
     pub static NSSQLiteStoreType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsxmlstoretype?language=objc)
+    /// The XML store type.
     pub static NSXMLStoreType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinarystoretype?language=objc)
+    /// The binary store type.
     pub static NSBinaryStoreType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinmemorystoretype?language=objc)
+    /// The in-memory store type.
     pub static NSInMemoryStoreType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoretypekey?language=objc)
+    /// A key that identifies the store type.
     pub static NSStoreTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoreuuidkey?language=objc)
+    /// A key that provides the store’s UUID.
+    ///
+    /// ## Discussion
+    ///
+    /// The store UUID is useful to identify stores through URI representations, but it is _not_ guaranteed to be unique. The UUID generated for new stores is unique—users can freely copy files and thus the UUID stored inside—so if you track or reference stores explicitly you need to be aware of duplicate UUIDs and potentially override the UUID when a new store is added to the list of known stores in your application.
+    ///
+    ///
     pub static NSStoreUUIDKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorstoreswillchangenotification?language=objc)
+    /// A notification that posts before a coordinator changes its registered stores.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification’s `object` is the store coordinator that’s about to change. The framework posts the notification to an internal thread. Move to a known thread before peforming any work.
+    ///
+    /// The `userInfo` dictionary contains information about the added and removed persistent stores, which you access with the [`NSAddedPersistentStoresKey`](https://developer.apple.com/documentation/coredata/nsaddedpersistentstoreskey) and [`NSRemovedPersistentStoresKey`](https://developer.apple.com/documentation/coredata/nsremovedpersistentstoreskey) keys. Don’t capture the dictionary’s contents.
+    ///
+    ///
     pub static NSPersistentStoreCoordinatorStoresWillChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorstoresdidchangenotification?language=objc)
+    /// A notification that the coordinator posts after its registered stores change.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification’s `object` is the changed store coordinator. The framework posts the notification to an internal thread. Move to a known thread before peforming any work.
+    ///
+    /// The `userInfo` dictionary contains information about the added, updated, and removed persistent stores, which you access with the [`NSAddedPersistentStoresKey`](https://developer.apple.com/documentation/coredata/nsaddedpersistentstoreskey), [`NSUUIDChangedPersistentStoresKey`](https://developer.apple.com/documentation/coredata/nsuuidchangedpersistentstoreskey), and [`NSRemovedPersistentStoresKey`](https://developer.apple.com/documentation/coredata/nsremovedpersistentstoreskey) keys. Don’t capture the dictionary’s contents.
+    ///
+    ///
     pub static NSPersistentStoreCoordinatorStoresDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorwillremovestorenotification?language=objc)
+    /// A notification that posts before a coordinator removes a store.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification’s `object` is the changed store coordinator. The framework posts the notification to an internal thread. Don’t peform any asynchronous work or block the calling thread.
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     pub static NSPersistentStoreCoordinatorWillRemoveStoreNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsaddedpersistentstoreskey?language=objc)
+    /// Key for the array of stores that were added.
     pub static NSAddedPersistentStoresKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsremovedpersistentstoreskey?language=objc)
+    /// Key for the array of stores that were removed.
     pub static NSRemovedPersistentStoresKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsuuidchangedpersistentstoreskey?language=objc)
+    /// Key for an array containing the old and new stores.
+    ///
+    /// ## Discussion
+    ///
+    /// The object at index `0` is the old store instance, and the object at index `1` the new. When migration happens, the array contains a third object (at index `2`) that is an array containing the new objectIDs for all the migrated objects.
+    ///
+    ///
     pub static NSUUIDChangedPersistentStoresKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsreadonlypersistentstoreoption?language=objc)
+    /// A flag that indicates whether a store is treated as read-only or not.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static NSReadOnlyPersistentStoreOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsvalidatexmlstoreoption?language=objc)
+    /// A flag that indicates whether an XML file should be validated with the DTD while opening.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static NSValidateXMLStoreOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoretimeoutoption?language=objc)
+    /// Options key that specifies the connection timeout for Core Data stores.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSNumber` object that represents the duration in seconds that Core Data will wait while attempting to create a connection to a persistent store. If a connection is cannot be made within that timeframe, the operation is aborted and an error is returned.
+    ///
+    ///
     pub static NSPersistentStoreTimeoutOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqlitepragmasoption?language=objc)
+    /// Options key for a dictionary of SQLite pragma settings with pragma values indexed by pragma names as keys.
+    ///
+    /// ## Discussion
+    ///
+    /// All pragma values must be specified as `NSString` objects. The `fullfsync` and `synchronous` pragmas control the tradeoff between write performance (write to disk speed & cache utilization) and durability (data loss/corruption sensitivity to power interruption). For more information on pragma settings, see [http://sqlite.org/pragma.html](http://sqlite.org/pragma.html).
+    ///
+    ///
     pub static NSSQLitePragmasOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqliteanalyzeoption?language=objc)
+    /// Option key to run an analysis of the store data to optimize indices based on statistical information when the store is added to the coordinator.
+    ///
+    /// ## Discussion
+    ///
+    /// This invokes SQLite’s `ANALYZE` command. It is ignored by stores other than the SQLite store.
+    ///
+    ///
     pub static NSSQLiteAnalyzeOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nssqlitemanualvacuumoption?language=objc)
+    /// Option key to rebuild the store file, forcing a database wide defragmentation when the store is added to the coordinator.
+    ///
+    /// ## Discussion
+    ///
+    /// This invokes SQLite’s `VACUUM` command. It is ignored by stores other than the SQLite store.
+    ///
+    ///
     pub static NSSQLiteManualVacuumOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsignorepersistentstoreversioningoption?language=objc)
+    /// Key to ignore the built-in versioning provided by Core Data.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSNumber` object. If the [`boolValue`](https://developer.apple.com/documentation/foundation/nsnumber/boolvalue) of the number is [`true`](https://developer.apple.com/documentation/swift/true), Core Data will not compare the version hashes between the managed object model in the coordinator and the metadata for the loaded store. (It will, however, continue to update the version hash information in the metadata.) This key and corresponding value of [`true`](https://developer.apple.com/documentation/swift/true) is specified by default for all applications linked on or before OS X v10.4.
+    ///
+    ///
     pub static NSIgnorePersistentStoreVersioningOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigratepersistentstoresautomaticallyoption?language=objc)
+    /// Key to automatically attempt to migrate versioned stores.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSNumber` object. If the [`boolValue`](https://developer.apple.com/documentation/foundation/nsnumber/boolvalue) of the number is [`true`](https://developer.apple.com/documentation/swift/true) and if the version hash information for the added store is determined to be incompatible with the model for the coordinator, Core Data will attempt to locate the source and mapping models in the application bundles, and perform a migration.
+    ///
+    ///
     pub static NSMigratePersistentStoresAutomaticallyOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinfermappingmodelautomaticallyoption?language=objc)
+    /// Key to attempt to create the mapping model automatically.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSNumber` object. If the [`boolValue`](https://developer.apple.com/documentation/foundation/nsnumber/boolvalue) of the number is [`true`](https://developer.apple.com/documentation/swift/true) and the value of the `NSMigratePersistentStoresAutomaticallyOption` is [`true`](https://developer.apple.com/documentation/swift/true), the coordinator will attempt to infer a mapping model if none can be found.
+    ///
+    ///
     pub static NSInferMappingModelAutomaticallyOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoremodelversionhasheskey?language=objc)
+    /// Key to represent the version hash information for the model used to create the store.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is used in the metadata for a persistent store.
+    ///
+    ///
     pub static NSStoreModelVersionHashesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoremodelversionidentifierskey?language=objc)
+    /// Key to represent the version identifiers for the model used to create the store.
+    ///
+    /// ## Discussion
+    ///
+    /// If you add your own annotations to a model’s version identifier (see [`versionIdentifiers`](https://developer.apple.com/documentation/coredata/nsmanagedobjectmodel/versionidentifiers)), they are stored in the persistent store’s metadata. You can use this key to retrieve the identifiers from the metadata dictionaries available from `NSPersistentStore` ([`metadata`](https://developer.apple.com/documentation/coredata/nspersistentstore/metadata)) and `NSPersistentStoreCoordinator` ([`metadataForPersistentStore:`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator/metadata(for:)) and related methods). The corresponding value is a Foundation collection (an `NSArray` or `NSSet` object).
+    ///
+    ///
     pub static NSStoreModelVersionIdentifiersKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreoscompatibility?language=objc)
+    /// Key to represent the earliest version of the operation system that the persistent store supports.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an `NSNumber` object that takes the form of the constants defined by the availability macros defined in `/usr/include/AvailabilityMacros.h`; for example `1040` represents OS X version 10.4.0.
+    ///
+    /// Backward compatibility may preclude some features.
+    ///
+    ///
     pub static NSPersistentStoreOSCompatibility: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreconnectionpoolmaxsizekey?language=objc)
+    /// The maximum connection pool size to use on a store that supports concurrent request handling.
+    ///
+    /// ## Discussion
+    ///
+    /// Values that you specify for this key are of type [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The connection pool size determines the number of requests a store can handle concurrently, and is a function of how many contexts attempt to access store data at any time. Generally, you don’t set this, and use the default value instead.
+    ///
+    /// The default connection pool size is implementation-dependent and may vary by store type or platform.
+    ///
+    ///
     pub static NSPersistentStoreConnectionPoolMaxSizeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredatacorespotlightexporter?language=objc)
+    /// The key you use to specify your Core Spotlight delegate.
     pub static NSCoreDataCoreSpotlightExporter: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorestagedmigrationmanageroptionkey?language=objc)
+    /// The key for specifying your staged migration manager.
     pub static NSPersistentStoreStagedMigrationManagerOptionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsxmlexternalrecordtype?language=objc)
+    /// Specifies an XML file format.
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSXMLExternalRecordType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinaryexternalrecordtype?language=objc)
+    /// Specifies a binary file format
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSBinaryExternalRecordType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordsfileformatoption?language=objc)
+    /// Option to specify the file format of a Spotlight external records.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see `Format Options for Spotlight External Record Files`.
+    ///
+    ///
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSExternalRecordsFileFormatOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordsdirectoryoption?language=objc)
+    /// Option indicating the directory where Spotlight external record files should be written to.
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSExternalRecordsDirectoryOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsexternalrecordextensionoption?language=objc)
+    /// Option indicating the file extension to use for Spotlight external record files.
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSExternalRecordExtensionOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitynameinpathkey?language=objc)
+    /// Dictionary key for the entity name extracted from an external record file.
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSEntityNameInPathKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstoreuuidinpathkey?language=objc)
+    /// Dictionary key for the store UUID extracted from an external record file.
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSStoreUUIDInPathKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsstorepathkey?language=objc)
+    /// Dictionary key for the store path (an instance of `NSURL`) extracted from an external record file.
+    ///
+    /// ## Discussion
+    ///
+    /// This is resolved to the store-file path contained in the an external record file directory.
+    ///
+    ///
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSStorePathKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmodelpathkey?language=objc)
+    /// Dictionary key for the managed object model path (an instance of `NSURL`) extracted from an external record file.
+    ///
+    /// ## Discussion
+    ///
+    /// This is resolved to the `model.mom` path contained in the external record file directory.
+    ///
+    ///
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSModelPathKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsobjecturikey?language=objc)
+    /// Dictionary key for the object URI extracted from an external record file.
     #[deprecated = "Spotlight integration is deprecated. Use CoreSpotlight integration instead."]
     pub static NSObjectURIKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreforcedestroyoption?language=objc)
+    /// A flag that indicates the coordinator destroys the store file even if the operation might be unsafe, overriding locks, if necessary.
     pub static NSPersistentStoreForceDestroyOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorefileprotectionkey?language=objc)
+    /// Key to represent the protection class for the persistent store.
+    ///
+    /// ## Discussion
+    ///
+    /// Backward compatibility may preclude some features. The acceptable values are those defined for the [`NSFileProtectionKey`](https://developer.apple.com/documentation/foundation/fileattributekey/protectionkey). The default value is [`NSFileProtectionCompleteUntilFirstUserAuthentication`](https://developer.apple.com/documentation/foundation/fileprotectiontype/completeuntilfirstuserauthentication) for all applications built on or after iOS v5.0. The default value for all older applications is [`NSFileProtectionNone`](https://developer.apple.com/documentation/foundation/fileprotectiontype/none).
+    ///
+    ///
     pub static NSPersistentStoreFileProtectionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorytrackingkey?language=objc)
+    /// The key you use to enable persistent history tracking.
+    ///
+    /// ## Discussion
+    ///
+    /// Persistent history tracking is off by default.
+    ///
+    ///
     pub static NSPersistentHistoryTrackingKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinarystoresecuredecodingclasses?language=objc)
+    /// An additional set of classes to use while decoding a binary store.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is preferable to using [`NSBinaryStoreInsecureDecodingCompatibilityOption`](https://developer.apple.com/documentation/coredata/nsbinarystoreinsecuredecodingcompatibilityoption).
+    ///
+    ///
     pub static NSBinaryStoreSecureDecodingClasses: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbinarystoreinsecuredecodingcompatibilityoption?language=objc)
+    /// A flag that indicates Core Data decodes the binary store insecurely.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`NSBinaryStoreSecureDecodingClasses`](https://developer.apple.com/documentation/coredata/nsbinarystoresecuredecodingclasses) option instead, if possible, to allow Core Data to securely decode the binary store.
+    ///
+    /// If a store has metadata or transformable properties that contain nonstandard classes, this option may be appropriate. Apps linked before the availability date default to using this option.
+    ///
+    ///
     pub static NSBinaryStoreInsecureDecodingCompatibilityOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremotechangenotificationpostoptionkey?language=objc)
+    /// A key that indicates a persistent store posts a remote change notification for every write to the store, including writes by other processes.
     pub static NSPersistentStoreRemoteChangeNotificationPostOptionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremotechangenotification?language=objc)
     pub static NSPersistentStoreRemoteChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreurlkey?language=objc)
+    /// A user info key to identify the store URL in persistent store remote change notifications.
     pub static NSPersistentStoreURLKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorytokenkey?language=objc)
+    /// A user info key to identify the history token in persistent store remote change notifications.
     pub static NSPersistentHistoryTokenKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoredeferredlightweightmigrationoptionkey?language=objc)
+    /// The key for enabling deferred lightweight migrations.
+    ///
+    /// ## Discussion
+    ///
+    /// As your managed object model changes, Core Data can use lightweight migrations to synchronize the underlying store data with those evolving entity definitions. These migrations happen at runtime, so they need to be fast or they can lead to a poor experience, because a migration must complete before your app can continue. Reduce the impact of migrations by deferring expensive cleanup tasks — such as dropping a table — until a more opportune time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This key is dual-purpose. When adding a persistent store to the coordinator, you use it to enable deferred lightweight migrations for that store. Afterward, Core Data uses it to indicate whether there are deferred cleanup tasks to run. Therefore, don’t use this key to later determine whether you enabled deferred lightweight migrations on a specific store.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Deferred lightweight migrations are off by default. To enable them, add [`NSPersistentStoreDeferredLightweightMigrationOptionKey`](https://developer.apple.com/documentation/coredata/nspersistentstoredeferredlightweightmigrationoptionkey), with a value of [`true`](https://developer.apple.com/documentation/swift/true), to the options dictionary you provide when adding a persistent store to the coordinator.
+    ///
+    /// ```swift
+    /// let options = [
+    ///     // Enable deferred lightweight migrations.
+    ///     NSPersistentStoreDeferredLightweightMigrationOptionKey: true,
+    ///     // Enable lightweight migrations.
+    ///     NSMigratePersistentStoresAutomaticallyOption: true,
+    ///     NSInferMappingModelAutomaticallyOption: true
+    /// ]
+    ///         
+    /// let store = coordinator.addPersistentStore(
+    ///     type: .sqlite,
+    ///     at: storeURL,
+    ///     options: options
+    /// )
+    /// ```
+    ///
+    /// After you enable deferred lightweight migrations, Core Data continues to perform your lightweight migrations as usual, but defers any time-consuming cleanup tasks that don’t impact the execution of your app. Those tasks still need to run, but you choose when to run them. To determine whether there are deferred tasks to finish, query the store’s metadata with [`NSPersistentStoreDeferredLightweightMigrationOptionKey`](https://developer.apple.com/documentation/coredata/nspersistentstoredeferredlightweightmigrationoptionkey). If the returned value is [`true`](https://developer.apple.com/documentation/swift/true), execute those tasks using the coordinator. A single migration may defer several distinct tasks and you can execute them all at once using [`finishDeferredLightweightMigration:`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator/finishdeferredlightweightmigration()), or individually using [`finishDeferredLightweightMigrationTask:`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator/finishdeferredlightweightmigrationtask()).
+    ///
+    /// ```swift
+    /// let key = NSPersistentStoreDeferredLightweightMigrationOptionKey
+    /// if let hasMigration = store.metadata[key], hasMigration == true {
+    ///     coordinator.finishDeferredLightweightMigration()
+    /// }
+    /// ```
+    ///
+    ///
     pub static NSPersistentStoreDeferredLightweightMigrationOptionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoremodelversionchecksumkey?language=objc)
     pub static NSPersistentStoreModelVersionChecksumKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinator?language=objc)
+    /// An object that enables an app’s contexts and the underlying persistent stores to work together.
+    ///
+    /// ## Overview
+    ///
+    /// A managed object context uses a coordinator to facilitate the persistence of its entities in the coordinator’s registered stores. A context can’t function without a coordinator because it relies on the coordinator’s access to the managed object model. The coordinator presents its registered stores as an aggregate, allowing a context to operate on the union of those stores instead of on each individually. A coordinator performs its work on a private queue and executes that work serially. You can use multiple coordinators if the work requires separate queues.
+    ///
+    /// Use a coordinator to add or remove persistent stores, change the type or location on-disk of those stores, query the metadata of a specific store, defer a store’s migrations, determine whether two objects originate from the same store, and so on.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStoreCoordinator;
@@ -619,26 +828,44 @@ impl NSPersistentStoreCoordinator {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype?language=objc)
+/// These constants are used as the value corresponding to the [`NSPersistentStoreUbiquitousTransitionTypeKey`](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontypekey) in the user info dictionary of [`NSPersistentStoreCoordinatorStoresWillChangeNotification`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorstoreswillchangenotification) and [`NSPersistentStoreCoordinatorStoresDidChangeNotification`](https://developer.apple.com/documentation/coredata/nspersistentstorecoordinatorstoresdidchangenotification) notifications to identify the type of event leading to a change.
 // NS_ENUM
 #[deprecated = "Please see the release notes and Core Data documentation."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentStoreUbiquitousTransitionType(pub NSUInteger);
 impl NSPersistentStoreUbiquitousTransitionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/accountadded?language=objc)
+    /// This value indicates that a new iCloud account is available, and the persistent store in use will or did transition to the new account.
+    ///
+    /// ## Discussion
+    ///
+    /// It is only possible to discern this state when the application is running, and therefore this transition type will only be posted if the account changes while the application is running or in the background.
+    ///
+    ///
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountAdded")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const AccountAdded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/accountremoved?language=objc)
+    /// This value indicates that no iCloud account is available, and the persistent store in use will or did transition to the “local” store.
+    ///
+    /// ## Discussion
+    ///
+    /// It is only possible to discern this state when the application is running, and therefore this transition type will only be posted if the account is removed while the application is running or in the background.
+    ///
+    ///
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeAccountRemoved")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const AccountRemoved: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/contentremoved?language=objc)
+    /// This value indicates that the user has wiped the contents of the iCloud account, usually using Delete All from Documents & Data in Settings.
+    ///
+    /// ## Discussion
+    ///
+    /// The Core Data integration will transition to an empty store file as a result of this event.
+    ///
+    ///
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeContentRemoved")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const ContentRemoved: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype/initialimportcompleted?language=objc)
+    /// This value indicates that the Core Data integration has finished building a store file that is consistent with the contents of the iCloud account, and is ready to replace the fallback store with that file.
     #[doc(alias = "NSPersistentStoreUbiquitousTransitionTypeInitialImportCompleted")]
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub const InitialImportCompleted: Self = Self(4);
@@ -653,49 +880,78 @@ unsafe impl RefEncode for NSPersistentStoreUbiquitousTransitionType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontentnamekey?language=objc)
+    /// Option to specify that a persistent store has a given name in ubiquity.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is required for ubiquitous content to function.
+    ///
+    ///
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousContentNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontenturlkey?language=objc)
+    /// Option to specify the log path to use for ubiquitous content logs.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 6 and OS X 10.8 and below, this option is required for ubiquitous content to function. In iOS 7 and macOS 10.9 and later, it is optional.
+    ///
+    ///
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousContentURLKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoredidimportubiquitouscontentchangesnotification?language=objc)
+    /// Posted after records are imported from the ubiquitous content store.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s `object` is set to the `NSPersistentStoreCoordinator` instance which registered the store. The notification’s `userInfo` dictionary contains the same keys as the [`NSManagedObjectContextObjectsDidChangeNotification`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextobjectsdidchangenotification) notification ([`NSInsertedObjectsKey`](https://developer.apple.com/documentation/coredata/nsinsertedobjectskey), [`NSUpdatedObjectsKey`](https://developer.apple.com/documentation/coredata/nsupdatedobjectskey), [`NSDeletedObjectsKey`](https://developer.apple.com/documentation/coredata/nsdeletedobjectskey)), however the values are sets of [`NSManagedObjectID`](https://developer.apple.com/documentation/coredata/nsmanagedobjectid) objects rather than sets of [`NSManagedObject`](https://developer.apple.com/documentation/coredata/nsmanagedobject) objects.
+    ///
+    ///
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreDidImportUbiquitousContentChangesNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontypekey?language=objc)
+    ///
+    /// ## Description
+    ///
+    /// In the [`NSPersistentStoreCoordinatorStoresWillChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nspersistentstorecoordinatorstoreswillchange) and [`NSPersistentStoreCoordinatorStoresDidChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nspersistentstorecoordinatorstoresdidchange) userInfo dictionaries, this identifies the type of event. The corresponding value is one of the [`NSPersistentStoreUbiquitousTransitionType`](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitoustransitiontype) enum values as an `NSNumber` object.
+    ///
+    ///
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousTransitionTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouspeertokenoption?language=objc)
+    /// The corresponding value is an optionally specified string which will be mixed in to Core Data’s identifier for each iCloud peer. The value must be an alphanumeric string without any special characters, whitespace or punctuation. The primary use for this option is to allow multiple applications on the same peer (device) to share a Core Data store integrated with iCloud. Each application will require its own store file.
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousPeerTokenOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreremoveubiquitousmetadataoption?language=objc)
+    /// The corresponding value is an `NSNumber` object representing a boolean that indicates whether the receiver should remove all associated ubiquity metadata from a persistent store. You typically use this option during migration or copying to disassociate a persistent store file from an iCloud account.
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreRemoveUbiquitousMetadataOption: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreubiquitouscontaineridentifierkey?language=objc)
+    /// The a string specifying the iCloud container identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// Core Data passes the persistent identifer to [`URLForUbiquityContainerIdentifier:`](https://developer.apple.com/documentation/foundation/filemanager/url(forubiquitycontaineridentifier:)).
+    ///
+    ///
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreUbiquitousContainerIdentifierKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstorerebuildfromubiquitouscontentoption?language=objc)
+    /// The corresponding value is an `NSNumber` object representing a boolean that indicates whether the receiver should erase the local store file and rebuild it from the iCloud data in Mobile Documents.
     #[deprecated = "Please see the release notes and Core Data documentation."]
     pub static NSPersistentStoreRebuildFromUbiquitousContentOption: &'static NSString;
 }

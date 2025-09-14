@@ -11,26 +11,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle?language=objc)
+/// Constants that describe the style of the device’s status bar.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStatusBarStyle(pub NSInteger);
 impl UIStatusBarStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/default?language=objc)
+    /// A style that automatically selects an appearance for the status bar and updates it dynamically to maintain contrast with the content below it.
     #[doc(alias = "UIStatusBarStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/lightcontent?language=objc)
+    /// A light status bar, intended for use on dark backgrounds.
     #[doc(alias = "UIStatusBarStyleLightContent")]
     pub const LightContent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/darkcontent?language=objc)
+    /// A dark status bar, intended for use on light backgrounds.
     #[doc(alias = "UIStatusBarStyleDarkContent")]
     pub const DarkContent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/uistatusbarstyleblacktranslucent?language=objc)
+    /// A transparent black style.
     #[doc(alias = "UIStatusBarStyleBlackTranslucent")]
     #[deprecated]
     pub const BlackTranslucent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle/uistatusbarstyleblackopaque?language=objc)
+    /// An opaque black style.
     #[doc(alias = "UIStatusBarStyleBlackOpaque")]
     #[deprecated]
     pub const BlackOpaque: Self = Self(2);
@@ -44,19 +44,25 @@ unsafe impl RefEncode for UIStatusBarStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation?language=objc)
+/// Constants that specify the animation of the status bar as it’s hidden or made visible.
+///
+/// ## Overview
+///
+/// Constants of the [`UIStatusBarAnimation`](https://developer.apple.com/documentation/uikit/uistatusbaranimation) type are arguments of the [`setStatusBarHidden:withAnimation:`](https://developer.apple.com/documentation/uikit/uiapplication/setstatusbarhidden(_:with:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStatusBarAnimation(pub NSInteger);
 impl UIStatusBarAnimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation/none?language=objc)
+    /// No animation is applied to the status bar as it is shown or hidden.
     #[doc(alias = "UIStatusBarAnimationNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation/fade?language=objc)
+    /// The status bar fades in and out as it is shown or hidden, respectively.
     #[doc(alias = "UIStatusBarAnimationFade")]
     pub const Fade: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation/slide?language=objc)
+    /// The status bar slides in or out as it is shown or hidden, respectively.
     #[doc(alias = "UIStatusBarAnimationSlide")]
     pub const Slide: Self = Self(2);
 }
@@ -70,11 +76,23 @@ unsafe impl RefEncode for UIStatusBarAnimation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/invalidinterfaceorientationexception?language=objc)
+    /// An exception that’s thrown if a view controller or the app returns an invalid set of supported interface orientations.
+    ///
+    /// ## Discussion
+    ///
+    /// This exception is thrown if a view controller or the app returns `0` instead of a valid set of supported interface orientation values. It is also thrown if the orientation returned by a view controller’s [`preferredInterfaceOrientationForPresentation`](https://developer.apple.com/documentation/uikit/uiviewcontroller/preferredinterfaceorientationforpresentation) method does not match one of the view controller’s supported orientations.
+    ///
+    ///
     pub static UIApplicationInvalidInterfaceOrientationException: &'static NSExceptionName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype?language=objc)
+/// Constants indicating the types of notifications the app may display to the user.
+///
+/// ## Overview
+///
+/// One or more of the values in the `UIRemoteNotificationType` bit mask are passed to iOS as the argument of the [`registerForRemoteNotificationTypes:`](https://developer.apple.com/documentation/uikit/uiapplication/registerforremotenotifications(matching:)) method. Thereafter, iOS filters notifications for the app based on these values. You can always get the current notification types by calling the [`enabledRemoteNotificationTypes`](https://developer.apple.com/documentation/uikit/uiapplication/enabledremotenotificationtypes()) method.
+///
+///
 // NS_OPTIONS
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
 #[repr(transparent)]
@@ -82,23 +100,23 @@ extern "C" {
 pub struct UIRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRemoteNotificationType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/uiremotenotificationtypenone?language=objc)
+/// The app accepts no notifications.
         #[doc(alias = "UIRemoteNotificationTypeNone")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/badge?language=objc)
+/// The app accepts notifications that badge the app icon.
         #[doc(alias = "UIRemoteNotificationTypeBadge")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Badge = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/sound?language=objc)
+/// The app accepts alert sounds as notifications.
         #[doc(alias = "UIRemoteNotificationTypeSound")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Sound = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/alert?language=objc)
+/// The app accepts alert messages as notifications.
         #[doc(alias = "UIRemoteNotificationTypeAlert")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const Alert = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiremotenotificationtype/newsstandcontentavailability?language=objc)
+/// The app accepts notifications that start the downloading of issue assets for Newsstand apps.
         #[doc(alias = "UIRemoteNotificationTypeNewsstandContentAvailability")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
         const NewsstandContentAvailability = 1<<3;
@@ -113,19 +131,19 @@ unsafe impl RefEncode for UIRemoteNotificationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult?language=objc)
+/// Constants that indicate the result of a background fetch operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBackgroundFetchResult(pub NSUInteger);
 impl UIBackgroundFetchResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult/newdata?language=objc)
+    /// New data was successfully downloaded.
     #[doc(alias = "UIBackgroundFetchResultNewData")]
     pub const NewData: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult/nodata?language=objc)
+    /// There was no new data to download.
     #[doc(alias = "UIBackgroundFetchResultNoData")]
     pub const NoData: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult/failed?language=objc)
+    /// An attempt to download data was made but that attempt failed.
     #[doc(alias = "UIBackgroundFetchResultFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -138,19 +156,25 @@ unsafe impl RefEncode for UIBackgroundFetchResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus?language=objc)
+/// Constants that indicate whether background execution is enabled for the app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBackgroundRefreshStatus(pub NSInteger);
 impl UIBackgroundRefreshStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/restricted?language=objc)
+    /// Background updates are unavailable and the user cannot enable them again.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, this status can occur when parental controls are in effect for the current user.
+    ///
+    ///
     #[doc(alias = "UIBackgroundRefreshStatusRestricted")]
     pub const Restricted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/denied?language=objc)
+    /// The user explicitly disabled background behavior for this app or for the whole system.
     #[doc(alias = "UIBackgroundRefreshStatusDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus/available?language=objc)
+    /// Background updates are available for the app.
     #[doc(alias = "UIBackgroundRefreshStatusAvailable")]
     pub const Available: Self = Self(2);
 }
@@ -163,19 +187,25 @@ unsafe impl RefEncode for UIBackgroundRefreshStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state?language=objc)
+/// Constants that indicate the running states of an app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIApplicationState(pub NSInteger);
 impl UIApplicationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state/active?language=objc)
+    /// The app is running in the foreground and currently receiving events.
     #[doc(alias = "UIApplicationStateActive")]
     pub const Active: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state/inactive?language=objc)
+    /// The app is running in the foreground but isn’t receiving events.
+    ///
+    /// ## Discussion
+    ///
+    /// This might happen as a result of an interruption or because the app is transitioning to or from the background.
+    ///
+    ///
     #[doc(alias = "UIApplicationStateInactive")]
     pub const Inactive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state/background?language=objc)
+    /// The app is running in the background.
     #[doc(alias = "UIApplicationStateBackground")]
     pub const Background: Self = Self(2);
 }
@@ -188,37 +218,85 @@ unsafe impl RefEncode for UIApplicationState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundtaskidentifier?language=objc)
+/// A unique token that identifies a request to run in the background.
 // NS_TYPED_ENUM
 pub type UIBackgroundTaskIdentifier = NSUInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundtaskidentifier/invalid?language=objc)
+    /// A token that indicates an invalid task request.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to initialize variables or to check for errors.
+    ///
+    ///
     pub static UIBackgroundTaskInvalid: UIBackgroundTaskIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiminimumkeepalivetimeout?language=objc)
+    /// The minimum amount of time (measured in seconds) an app may run a critical background task in the background.
     #[deprecated = "Please use PushKit for VoIP applications."]
     pub static UIMinimumKeepAliveTimeout: NSTimeInterval;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/backgroundfetchintervalminimum?language=objc)
+    /// The smallest fetch interval supported by the system.
     pub static UIApplicationBackgroundFetchIntervalMinimum: NSTimeInterval;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/backgroundfetchintervalnever?language=objc)
+    /// A fetch interval large enough to prevent fetch operations from occurring.
     pub static UIApplicationBackgroundFetchIntervalNever: NSTimeInterval;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey?language=objc)
+/// Options for opening a URL.
 // NS_TYPED_ENUM
 pub type UIApplicationOpenExternalURLOptionsKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication?language=objc)
+    /// The centralized point of control and coordination for apps running in iOS.
+    ///
+    /// ## Overview
+    ///
+    /// Every iOS app has exactly one instance of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) (or, very rarely, a subclass of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication)). When an app launches, the system calls the [`UIApplicationMain`](https://developer.apple.com/documentation/uikit/uiapplicationmain(_:_:_:_:)-1yub7) function. Among its other tasks, this function creates a singleton [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object that you access using [`sharedApplication`](https://developer.apple.com/documentation/uikit/uiapplication/shared).
+    ///
+    /// Your app’s application object handles the initial routing of incoming user events. It dispatches action messages forwarded to it by control objects (instances of the [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) class) to appropriate target objects. The application object maintains a list of open windows ([`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow) objects), which it can use to retrieve any of the app’s [`UIView`](https://developer.apple.com/documentation/uikit/uiview) objects.
+    ///
+    /// The [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) class defines a delegate that conforms to the [`UIApplicationDelegate`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate) protocol and must implement some of the protocol’s methods. The application object informs the delegate of significant runtime events—for example, app launch, low-memory warnings, and app termination—giving it an opportunity to respond appropriately.
+    ///
+    /// Apps can cooperatively handle a resource, such as an email or an image file, through the [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) method. For example, an app that calls this method with an email URL causes the Mail app to launch and display the message.
+    ///
+    /// The APIs in this class allow you to manage device-specific behavior. Use your [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object to do the following:
+    ///
+    /// - Temporarily suspend incoming touch events ([`beginIgnoringInteractionEvents`](https://developer.apple.com/documentation/uikit/uiapplication/beginignoringinteractionevents()))
+    ///
+    /// - Register for remote notifications ([`registerForRemoteNotifications`](https://developer.apple.com/documentation/uikit/uiapplication/registerforremotenotifications()))
+    ///
+    /// - Trigger the undo-redo UI ([`applicationSupportsShakeToEdit`](https://developer.apple.com/documentation/uikit/uiapplication/applicationsupportsshaketoedit))
+    ///
+    /// - Determine whether there is an installed app registered to handle a URL scheme ([`canOpenURL:`](https://developer.apple.com/documentation/uikit/uiapplication/canopenurl(_:)))
+    ///
+    /// - Extend the execution of the app so that it can finish a task in the background ([`beginBackgroundTaskWithExpirationHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/beginbackgroundtask(expirationhandler:)) and [`beginBackgroundTaskWithName:expirationHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/beginbackgroundtask(withname:expirationhandler:)))
+    ///
+    /// - Schedule and cancel local notifications ([`scheduleLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplication/schedulelocalnotification(_:)) and [`cancelLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplication/cancellocalnotification(_:)))
+    ///
+    /// - Coordinate the reception of remote-control events ([`beginReceivingRemoteControlEvents`](https://developer.apple.com/documentation/uikit/uiapplication/beginreceivingremotecontrolevents()) and [`endReceivingRemoteControlEvents`](https://developer.apple.com/documentation/uikit/uiapplication/endreceivingremotecontrolevents()))
+    ///
+    /// - Perform app-level state restoration tasks (methods in the [Managing state restoration](https://developer.apple.com/documentation/uikit/uiapplication#managing-state-restoration) task group)
+    ///
+    /// ### Subclassing notes
+    ///
+    /// Most apps don’t need to subclass [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). Instead, use an app delegate to manage interactions between the system and the app.
+    ///
+    /// If your app must handle incoming events before the system does—a very rare situation—you can implement a custom event or action dispatching mechanism. To do this, subclass [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) and override the [`sendEvent:`](https://developer.apple.com/documentation/uikit/uiapplication/sendevent(_:)) and/or the [`sendAction:to:from:forEvent:`](https://developer.apple.com/documentation/uikit/uiapplication/sendaction(_:to:from:for:)) methods. For every event you intercept, after you handle the event, dispatch it back to the system by calling:
+    ///
+    /// ```swift
+    /// super.sendEvent(event)
+    /// ```
+    ///
+    /// Intercepting events is only rarely required and you should avoid it if possible.
+    ///
+    ///
     #[unsafe(super(UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -730,13 +808,19 @@ impl UIApplication {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/category?language=objc)
+/// Constants that describe the types of apps in the system.
+///
+/// ## Overview
+///
+/// Use the values in this enumeration with [`isDefault(_:)`](https://developer.apple.com/documentation/uikit/uiapplication/isdefault(_:)) (or, in Objective-C, [`defaultStatusForCategory:error:`](https://developer.apple.com/documentation/uikit/uiapplication/defaultstatusforcategory:error:)) to find if your app is the person’s default for a category.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIApplicationCategory(pub NSInteger);
 impl UIApplicationCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/category/webbrowser?language=objc)
+    /// The app is a web browser.
     #[doc(alias = "UIApplicationCategoryWebBrowser")]
     pub const WebBrowser: Self = Self(1);
 }
@@ -750,26 +834,22 @@ unsafe impl RefEncode for UIApplicationCategory {
 }
 
 /// The default status of an application for some category.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus?language=objc)
+/// The default status of an application for some category.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIApplicationCategoryDefaultStatus(pub NSInteger);
 impl UIApplicationCategoryDefaultStatus {
     /// The status was not available. This is an error condition and the returned error object has more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus/uiapplicationcategorydefaultstatusunavailable?language=objc)
+    /// The status was not available. This is an error condition and the returned error object has more information.
     #[doc(alias = "UIApplicationCategoryDefaultStatusUnavailable")]
     pub const Unavailable: Self = Self(0);
     /// The application is the default for the category.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus/uiapplicationcategorydefaultstatusisdefault?language=objc)
+    /// The application is the default for the category.
     #[doc(alias = "UIApplicationCategoryDefaultStatusIsDefault")]
     pub const IsDefault: Self = Self(1);
     /// The application is not the default for the category.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus/uiapplicationcategorydefaultstatusnotdefault?language=objc)
+    /// The application is not the default for the category.
     #[doc(alias = "UIApplicationCategoryDefaultStatusNotDefault")]
     pub const NotDefault: Self = Self(2);
 }
@@ -783,19 +863,28 @@ unsafe impl RefEncode for UIApplicationCategoryDefaultStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaulterrordomain?language=objc)
+    /// A string that identifies errors the system encounters when it determines if your app is the default in a category.
     pub static UIApplicationCategoryDefaultErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/categorydefaulterror/code?language=objc)
+/// An enumeration of reasons an error happens when the system discovers whether your app is the default in a category.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIApplicationCategoryDefaultErrorCode(pub NSInteger);
 impl UIApplicationCategoryDefaultErrorCode {
-    /// The application is rate-limited.
+    /// The system didn’t determine if your app is the default in a category because the app made the request too many times.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/categorydefaulterror/code/ratelimited?language=objc)
+    /// ## Discussion
+    ///
+    /// When you receive an error with this code, the error’s user info dictionary contains these keys:
+    ///
+    /// - [`statusLastProvidedDateErrorKey`](https://developer.apple.com/documentation/uikit/uiapplication/categorydefaulterror/statuslastprovideddateerrorkey): The date at which the app most recently received a result indicating whether it’s the default app in a category.
+    ///
+    /// - [`retryAvailableDateErrorKey`](https://developer.apple.com/documentation/uikit/uiapplication/categorydefaulterror/retryavailabledateerrorkey): The date at which the app can next request an updated response.
+    ///
+    ///
+    /// The application is rate-limited.
     #[doc(alias = "UIApplicationCategoryDefaultErrorRateLimited")]
     pub const RateLimited: Self = Self(1);
 }
@@ -809,19 +898,17 @@ unsafe impl RefEncode for UIApplicationCategoryDefaultErrorCode {
 }
 
 extern "C" {
+    /// A dictionary key, with a value that’s the date your app last received a successful result.
     /// Supplied in userInfo when the application is rate-limited: the last date on which data was
     /// retrieved.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatuslastprovideddateerrorkey?language=objc)
     pub static UIApplicationCategoryDefaultStatusLastProvidedDateErrorKey:
         &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
+    /// A dictionary key, with a value that’s a date when a result is next available.
     /// Supplied in userInfo when the application is rate-limited: the date after which the app will no
     /// longer be rate-limited
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultretryavailabilitydateerrorkey?language=objc)
     pub static UIApplicationCategoryDefaultRetryAvailabilityDateErrorKey:
         &'static NSErrorUserInfoKey;
 }
@@ -832,21 +919,63 @@ impl UIApplication {
     extern_methods!();
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey?language=objc)
+/// The keys you use to access values in the launch options dictionary that the system passes to your app at initialization.
+///
+/// ## Overview
+///
+/// These keys are passed to the options dictionary that’s passed to the [`application:willFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:willfinishlaunchingwithoptions:)) and [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)) methods of the app delegate.
+///
+///
 // NS_TYPED_ENUM
 pub type UIApplicationLaunchOptionsKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey?language=objc)
+/// Keys you use to access values in the options dictionary when opening a URL.
+///
+/// ## Overview
+///
+/// Use these keys to retrieve options in the [`application:openURL:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:open:options:)) method of your app delegate.
+///
+///
 #[deprecated = "Use UIScene lifecycle and equivalent properties on UISceneOpenURLOptions from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
 // NS_TYPED_ENUM
 pub type UIApplicationOpenURLOptionsKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/extensionpointidentifier?language=objc)
+/// A structure that identifies types of extensions.
 // NS_TYPED_ENUM
 pub type UIApplicationExtensionPointIdentifier = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate?language=objc)
+    /// A set of methods to manage shared behaviors for your app.
+    ///
+    /// ## Overview
+    ///
+    /// Your app delegate object manages your app’s shared behaviors. The app delegate is effectively the root object of your app, and it works in conjunction with [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) to manage some interactions with the system. Like the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object, UIKit creates your app delegate object early in your app’s launch cycle so it’s always present.
+    ///
+    /// Use your app delegate object to handle the following tasks:
+    ///
+    /// - Initializing your app’s central data structures
+    ///
+    /// - Configuring your app’s scenes
+    ///
+    /// - Responding to notifications originating from outside the app, such as low-memory warnings, download completion notifications, and more
+    ///
+    /// - Responding to events that target the app itself, and aren’t specific to your app’s scenes, views, or view controllers
+    ///
+    /// - Registering for any required services at launch time, such as Apple Push Notification service
+    ///
+    /// For more information about how you use the app delegate object to initialize your app at launch time, see [Responding to the launch of your app](https://developer.apple.com/documentation/uikit/responding-to-the-launch-of-your-app).
+    ///
+    /// ### Life-cycle management in iOS 12 and earlier
+    ///
+    /// In iOS 12 and earlier, you use your app delegate to manage major life cycle events in your app. Specifically, you use methods of the app delegate to update the state of your app when it enters the foreground or moves to the background.
+    ///
+    /// - For information on what to do when your app enters the foreground, see [Preparing your UI to run in the foreground](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-foreground).
+    ///
+    /// - For information on what to do when your app enters the background, see [Preparing your UI to run in the background](https://developer.apple.com/documentation/uikit/preparing-your-ui-to-run-in-the-background).
+    ///
+    /// - For general information about the life cycle of your app, see [Managing your app’s life cycle](https://developer.apple.com/documentation/uikit/managing-your-app-s-life-cycle).
+    ///
+    ///
     pub unsafe trait UIApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIResponder")]
         #[optional]
@@ -1570,7 +1699,31 @@ impl UIApplication {
 
 #[cfg(feature = "UIResponder")]
 impl UIApplication {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationmain(_:_:_:_:)-1yub7?language=objc)
+    /// Creates the application object and the application delegate and sets up the event cycle.
+    ///
+    /// Parameters:
+    /// - argc: The count of arguments in `argv`; this usually is the corresponding parameter to `main`.
+    ///
+    /// - argv: A variable list of arguments; this usually is the corresponding parameter to `main`.
+    ///
+    /// - principalClassName: The name of the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) class or subclass. If you specify `nil`, `UIApplication` is assumed.
+    ///
+    /// - delegateClassName: The name of the class from which the application delegate is instantiated. If `principalClassName` designates a subclass of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication), you may designate the subclass as the delegate; the subclass instance receives the application-delegate messages. Specify `nil` if you load the delegate object from your application’s main nib file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Even though an integer return type is specified, this function never returns. When users exits an iOS app by pressing the Home button, the application moves to the background.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function instantiates the application object from the principal class and instantiates the delegate (if any) from the given class and sets the delegate for the application. It also sets up the main event loop, including the application’s run loop, and begins processing events. If the application’s `Info.plist` file specifies a main nib file to be loaded, by including the [`NSMainNibFile`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmainnibfile) key and a valid nib file name for the value, this function loads that nib file.
+    ///
+    /// Despite the declared return type, this function never returns.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1596,297 +1749,543 @@ impl UIApplication {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrackingrunloopmode?language=objc)
+    /// The mode set while tracking in controls takes place.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this mode to add timers that fire during tracking.
+    ///
+    ///
     pub static UITrackingRunLoopMode: &'static NSRunLoopMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didenterbackgroundnotification?language=objc)
+    /// A notification that posts when the app enters the background.
+    ///
+    /// ## Discussion
+    ///
+    /// The `object` of the notification is the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object. There is no `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willenterforegroundnotification?language=objc)
+    /// A notification that posts shortly before an app leaves the background state on its way to becoming the active app.
+    ///
+    /// ## Discussion
+    ///
+    /// The `object` of the notification is the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object. There is no `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didfinishlaunchingnotification?language=objc)
+    /// A notification that posts immediately after the app finishes launching.
+    ///
+    /// ## Discussion
+    ///
+    /// If the app was launched as a result of in remote notification targeted at it or because another app opened a URL resource claimed the posting app (the notification `object`), this notification contains a `userInfo` dictionary. You can access the contents of the dictionary using the [`UIApplicationLaunchOptionsURLKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/url) and [`UIApplicationLaunchOptionsSourceApplicationKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/sourceapplication) constants (for URLs), the [`UIApplicationLaunchOptionsRemoteNotificationKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/remotenotification) constant (for remote notifications), and the [`UIApplicationLaunchOptionsLocalNotificationKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/localnotification) constant (for local notifications). If the notification was posted for a normal app launch, there is no `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didbecomeactivenotification?language=objc)
+    /// A notification that posts when the app becomes active.
+    ///
+    /// ## Discussion
+    ///
+    /// An app is active when it is receiving events. An active app can be said to have focus. It gains focus after being launched, loses focus when an overlay window pops up or when the device is locked, and gains focus when the device is unlocked.
+    ///
+    ///
     pub static UIApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willresignactivenotification?language=objc)
+    /// A notification that posts when the app is no longer active and loses focus.
+    ///
+    /// ## Discussion
+    ///
+    /// An app is active when it is receiving events. An active app can be said to have focus. It gains focus after being launched, loses focus when an overlay window pops up or when the device is locked, and gains focus when the device is unlocked.
+    ///
+    ///
     pub static UIApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didreceivememorywarningnotification?language=objc)
+    /// A notification that posts when the app receives a warning from the operating system about low memory availability.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationDidReceiveMemoryWarningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willterminatenotification?language=objc)
+    /// A notification that posts when the app is about to terminate.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is associated with the delegate [`applicationWillTerminate:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillterminate(_:)) method. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationWillTerminateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/significanttimechangenotification?language=objc)
+    /// A notification that posts when there’s a significant change in time.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification when, for example, there’s a change to a new day (midnight), a carrier time update, or a change to, or from, daylight savings time. The notification doesn’t contain a user info dictionary.
+    ///
+    ///
     pub static UIApplicationSignificantTimeChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willchangestatusbarorientationnotification?language=objc)
+    /// Posted when the app is about to change the orientation of its interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The userInfo dictionary contains an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that encapsulates a `UIInterfaceOrientation` value (see [`UIInterfaceOrientation`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation)). Use [`UIApplicationStatusBarOrientationUserInfoKey`](https://developer.apple.com/documentation/uikit/uiapplication/statusbarorientationuserinfokey) to access this value.
+    ///
+    ///
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationWillChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didchangestatusbarorientationnotification?language=objc)
+    /// Posted when the orientation of the app’s user interface changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The `userInfo` dictionary contains an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that encapsulates a `UIInterfaceOrientation` value (see [`UIInterfaceOrientation`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation)). Use [`UIApplicationStatusBarOrientationUserInfoKey`](https://developer.apple.com/documentation/uikit/uiapplication/statusbarorientationuserinfokey) to access this value
+    ///
+    ///
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationDidChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/statusbarorientationuserinfokey?language=objc)
+    /// A key whose value indicates the current interface orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// The key’s value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that encapsulates a [`UIInterfaceOrientation`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation) value indicating the current orientation.  This key is used with [`UIApplicationDidChangeStatusBarOrientationNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didchangestatusbarorientationnotification) and [`UIApplicationWillChangeStatusBarOrientationNotification`](https://developer.apple.com/documentation/uikit/uiapplication/willchangestatusbarorientationnotification) notifications.
+    ///
+    ///
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationStatusBarOrientationUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willchangestatusbarframenotification?language=objc)
+    /// Posted when the app is about to change the frame of the status bar.
+    ///
+    /// ## Discussion
+    ///
+    /// The `userInfo` dictionary contains an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that encapsulates a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure expressing the location and size of the new status bar frame. Use [`UIApplicationStatusBarFrameUserInfoKey`](https://developer.apple.com/documentation/uikit/uiapplication/statusbarframeuserinfokey) to access this value.
+    ///
+    ///
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationWillChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didchangestatusbarframenotification?language=objc)
+    /// Posted when the frame of the status bar changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The `userInfo` dictionary contains an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that encapsulates a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure expressing the location and size of the new status bar frame. Use [`UIApplicationStatusBarFrameUserInfoKey`](https://developer.apple.com/documentation/uikit/uiapplication/statusbarframeuserinfokey) to access this value.
+    ///
+    ///
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationDidChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/statusbarframeuserinfokey?language=objc)
+    /// A key whose value indicates the new status bar frame.
+    ///
+    /// ## Discussion
+    ///
+    /// The key’s value is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that encapsulates a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure expressing the location and size of the new status bar frame. This key is used with [`UIApplicationDidChangeStatusBarFrameNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didchangestatusbarframenotification) and [`UIApplicationWillChangeStatusBarFrameNotification`](https://developer.apple.com/documentation/uikit/uiapplication/willchangestatusbarframenotification) notifications.
+    ///
+    ///
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationStatusBarFrameUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/backgroundrefreshstatusdidchangenotification?language=objc)
+    /// A notification that posts when the app’s status for downloading content in the background changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The system sends this notification when the [`backgroundRefreshStatus`](https://developer.apple.com/documentation/uikit/uiapplication/backgroundrefreshstatus) property of the app object changes. That property can change in response to the user disabling multitasking support for the app. The `object` of the notification is the `UIApplication` object. There is no `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationBackgroundRefreshStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/protecteddatawillbecomeunavailablenotification?language=objc)
+    /// A notification that posts shortly before protected files are locked down and become inaccessible.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon receiving this notification, clients should release any references to protected files. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationProtectedDataWillBecomeUnavailable: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/protecteddatadidbecomeavailablenotification?language=objc)
+    /// A notification that posts when the protected files become available for your code to access.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static UIApplicationProtectedDataDidBecomeAvailable: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// UserInfo contains a ``NSURL`` with launch URL to open
+    /// A key indicating that the app was launched so that it could open the specified URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/url?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object containing the URL to open. This key is also used to access the same value in the `userInfo` dictionary of the notification named [`UIApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didfinishlaunchingnotification).
+    ///
+    ///
+    /// UserInfo contains a ``NSURL`` with launch URL to open
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationLaunchOptionsURLKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains a ``NSString`` with the bundle ID of the originating application; non-nil if the originating application and this application share the same team identifier
+    /// A key indicating that another app requested the launch of your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/sourceapplication?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing the bundle ID of the app that made the request. If the request originated from another app belonging to your team, UIKit sets the value of this key to the ID of that app. If the team identifier of the originating app is different than the team identifier of the current app, the value of the key is `nil`.
+    ///
+    /// This key is also used to access the same value in the `userInfo` dictionary of the notification named  [`UIApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didfinishlaunchingnotification).
+    ///
+    ///
+    /// UserInfo contains a ``NSString`` with the bundle ID of the originating application; non-nil if the originating application and this application share the same team identifier
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.sourceApplication instead."]
     pub static UIApplicationLaunchOptionsSourceApplicationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains a ``NSDictionary`` notification payload with property-list objects plus ``NSNull``
+    /// A key indicating that a remote notification is available for the app to process.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/remotenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) containing the payload of the remote notification. See the description of [`application:didReceiveRemoteNotification:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didreceiveremotenotification:)) for further information about handling remote notifications.
+    ///
+    /// This key is also used to access the same value in the `userInfo` dictionary of the notification named [`UIApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didfinishlaunchingnotification).
+    ///
+    ///
+    /// UserInfo contains a ``NSDictionary`` notification payload with property-list objects plus ``NSNull``
     #[deprecated = "Continue using UIApplicationDelegate's application(_:didReceiveRemoteNotification:fetchCompletionHandler:) to process silent remote notifications after scene connection."]
     pub static UIApplicationLaunchOptionsRemoteNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains a ``UILocalNotification``
+    /// A key indicating that the app was launched to handle a local notification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/localnotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is the [`UILocalNotification`](https://developer.apple.com/documentation/uikit/uilocalnotification) object that was triggered. For additional information about handling local notifications, see the [`application:didReceiveLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didreceive:)) method.
+    ///
+    /// This key is also used to access the same value in the `userInfo` dictionary of the notification named [`UIApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didfinishlaunchingnotification).
+    ///
+    ///
+    /// UserInfo contains a ``UILocalNotification``
     #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
     pub static UIApplicationLaunchOptionsLocalNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains a property list annotation object
+    /// A key indicating that the URL passed to your app contained custom annotation data from the source app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/annotation?language=objc)
+    /// ## Discussion
+    ///
+    /// The presence of this key indicates that custom data was provided by the app that requested the opening of the URL. The value of this key is a property-list object containing the custom data. The same object is also passed to the annotation parameter of the  [`application:openURL:sourceApplication:annotation:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:open:sourceapplication:annotation:)) method. The contents of this property-list object are specific to the app that made the request.
+    ///
+    ///
+    /// UserInfo contains a property list annotation object
     #[deprecated = "This dictionary key is no longer used."]
     pub static UIApplicationLaunchOptionsAnnotationKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// The app was launched in response to a CoreLocation event
+    /// A key indicating that the app was launched to handle an incoming location event.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/location?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. You should use the presence of this key as a signal to create a [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object and start location services again. Location data is delivered only to the location manager delegate and not using this key.
+    ///
+    ///
+    /// The app was launched in response to a CoreLocation event
     #[deprecated = "Adopt CLLocationUpdate or CLMonitor, or use CLLocationManagerDelegate from CoreLocation to handle expected location events after scene connection."]
     pub static UIApplicationLaunchOptionsLocationKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains an ``NSArray`` of ``NKAssetDownload`` identifiers
+    /// A key indicating that the app was launched to process newly downloaded Newsstand assets.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/newsstanddownloads?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an array of string identifiers that identify the `NKAssetDownload` objects corresponding to the assets. Although you can use the identifiers for cross-checking purposes, you should obtain the definitive array of `NKAssetDownload` objects (representing asset downloads in progress or in error) through the `downloadingAssets` property of the `NKLibrary` object representing the Newsstand app’s library.
+    ///
+    ///
+    /// UserInfo contains an ``NSArray`` of ``NKAssetDownload`` identifiers
     #[deprecated = "This dictionary key is no longer used."]
     pub static UIApplicationLaunchOptionsNewsstandDownloadsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains an ``NSArray`` of ``CBCentralManager`` restore identifiers
+    /// A key indicating that the app was relaunched to handle Bluetooth-related events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/bluetoothcentrals?language=objc)
+    /// ## Discussion
+    ///
+    /// The presence of this key indicates that the app previously had one or more [`CBCentralManager`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager) objects and was relaunched by the Bluetooth system to continue actions associated with those objects. The value of this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object containing one or more [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects.
+    ///
+    /// Each string in the array represents the restoration identifier for a central manager object. This is the same string you assigned to the [`CBCentralManagerOptionRestoreIdentifierKey`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptionrestoreidentifierkey) key when you initialized the central manager object previously. The system provides the restoration identifiers only for central managers that had active or pending peripheral connections or were scanning for peripherals.
+    ///
+    ///
+    /// UserInfo contains an ``NSArray`` of ``CBCentralManager`` restore identifiers
     #[deprecated = "Store restoration identifiers and reinstantiate central managers with those identifiers on app launch to resume previous functionality."]
     pub static UIApplicationLaunchOptionsBluetoothCentralsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains an ``NSArray`` of ``CBPeripheralManager`` restore identifiers
+    /// A key indicating that the app should continue actions associated with its Bluetooth peripheral objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/bluetoothperipherals?language=objc)
+    /// ## Discussion
+    ///
+    /// The presence of this key indicates that the app previously had one or more [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) objects and was relaunched by the Bluetooth system to continue actions associated with those objects. The value of this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object containing one or more [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects.
+    ///
+    /// Each string in the array represents the restoration identifier for a peripheral manager object. This is the same string you assigned to the [`CBPeripheralManagerOptionRestoreIdentifierKey`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanageroptionrestoreidentifierkey) key when you initialized the peripheral manager object previously. The system provides the restoration identifiers only for peripheral managers that had published or advertised services.
+    ///
+    ///
+    /// UserInfo contains an ``NSArray`` of ``CBPeripheralManager`` restore identifiers
     #[deprecated = "Store restoration identifiers and reinstantiate peripheral managers with those identifiers on app launch to resume previous functionality."]
     pub static UIApplicationLaunchOptionsBluetoothPeripheralsKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// UserInfo contains the ``UIApplicationShortcutItem`` used to launch the app
+    /// A key indicating that the app was launched in response to the user selecting a Home screen quick action.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/shortcutitem?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is the [`UIApplicationShortcutItem`](https://developer.apple.com/documentation/uikit/uiapplicationshortcutitem) object representing the action that the user selected.
+    ///
+    ///
+    /// UserInfo contains the ``UIApplicationShortcutItem`` used to launch the app
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.shortcutItem instead."]
     pub static UIApplicationLaunchOptionsShortcutItemKey: &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
     /// UserInfo contains a ``UIEventAttribution`` to go along with a URL open on launch
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/eventattribution?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.eventAttribution instead."]
     pub static UIApplicationLaunchOptionsEventAttributionKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
+    /// A key indicating a dictionary associated with an activity that the user wants to continue.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object containing the key [`UIApplicationLaunchOptionsUserActivityTypeKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/useractivitytype), whose value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object identifying the activity type.
+    ///
+    ///
     /// Key in options dictionary passed to `application(_:willFinishLaunchingWithOptions:)` and `application(_:didFinishLaunchingWithOptions:)`
     /// and info for `UIApplication.didFinishLaunchingNotification`. Sub-Dictionary present in launch options when user activity is present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/useractivitydictionary?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.userActivities instead."]
     pub static UIApplicationLaunchOptionsUserActivityDictionaryKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// Key in user activity dictionary for the activity type
+    /// A key indicating the type of user activity that the user wants to continue.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/useractivitytype?language=objc)
+    /// ## Discussion
+    ///
+    /// This key is used in the subdictionary which is the value of [`UIApplicationLaunchOptionsShortcutItemKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/shortcutitem). The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object identifying the activity type.
+    ///
+    ///
+    /// Key in user activity dictionary for the activity type
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.handoffUserActivityType instead."]
     pub static UIApplicationLaunchOptionsUserActivityTypeKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// The presence of this key indicates that the app was launched in order to handle a CloudKit sharing invitation. The value of this key is a ``CKShareMetadata`` object.
+    /// A key indicating that the app received a CloudKit share invitation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/cloudkitsharemetadata?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CKShareMetadata`](https://developer.apple.com/documentation/cloudkit/ckshare/metadata) object. Schedule a [`CKAcceptSharesOperation`](https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation) task with the provided metadata object.
+    ///
+    ///
+    /// The presence of this key indicates that the app was launched in order to handle a CloudKit sharing invitation. The value of this key is a ``CKShareMetadata`` object.
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.cloudKitShareMetadata instead."]
     pub static UIApplicationLaunchOptionsCloudKitShareMetadataKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/opensettingsurlstring?language=objc)
+    /// The URL string you use to deep link to your app’s custom settings in the Settings app.
+    ///
+    /// ## Discussion
+    ///
+    /// Create a URL from this value and pass it to the [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) method to launch the Settings app and display your app’s custom settings, if it has any.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create the URL that deep links to your app's custom settings.", "if let url = URL(string: UIApplication.openSettingsURLString) {", "    // Ask the system to open that URL.", "    await UIApplication.shared.open(url)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create the URL that deep links to your app's custom settings.", "NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenSettingsURLString];", "// Ask the system to open that URL.", "[[UIApplication sharedApplication] openURL:url", "                                   options:@{}", "                         completionHandler:nil];"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/settings/).
+    ///
+    ///
     pub static UIApplicationOpenSettingsURLString: &'static NSString;
 }
 
 extern "C" {
-    /// The URL string you use to deep link to settings for default app selection in the Settings app.
+    /// The URL string used to select a default app in the Settings app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/opendefaultapplicationssettingsurlstring?language=objc)
+    /// ## Discussion
+    ///
+    /// Create a URL from this value and pass it to the [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) method to launch the Settings app and display your app’s custom settings, if it has any:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create the URL that links to the Settings app for default app selection.", "if let url = URL(string: UIApplication.openDefaultApplicationsSettingsURLString) {", "    // Ask the system to open that URL.", "    await UIApplication.shared.open(url)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create the URL that links to the Settings app for default app selection.", "NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenDefaultApplicationsSettingsURLString];", "// Ask the system to open that URL.", "[[UIApplication sharedApplication] openURL:url", "                                   options:@{}", "                         completionHandler:nil];"], metadata: None }] }] })
+    /// For design guidance, see Human Interface Guidelines > [Settings](https://developer.apple.com/design/human-interface-guidelines/).
+    ///
+    ///
+    /// The URL string you use to deep link to settings for default app selection in the Settings app.
     pub static UIApplicationOpenDefaultApplicationsSettingsURLString: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopennotificationsettingsurlstring?language=objc)
+    /// A constant that provides the URL string you use to deep link to your app’s notification settings in the Settings app.
+    ///
+    /// ## Discussion
+    ///
+    /// Create a URL from this value and pass it to the [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) method to launch the Settings app and display your app’s notification settings, if it has any.
+    ///
+    /// ```objc
+    /// // Create the URL that deep links to your app's notification settings.
+    /// NSURL *url = [[NSURL alloc] initWithString:UIApplicationOpenNotificationSettingsURLString];
+    /// // Ask the system to open that URL.
+    /// [[UIApplication sharedApplication] openURL:url
+    ///                                    options:@{}
+    ///                          completionHandler:nil];
+    /// ```
+    ///
+    ///
     pub static UIApplicationOpenNotificationSettingsURLString: &'static NSString;
 }
 
 extern "C" {
+    /// A key containing the bundle ID of the app that sent the open-URL request to your app.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing the bundle ID of the app that made the request. If the request originated from another app belonging to your team, UIKit sets the value of this key to the ID of that app. If the team identifier of the originating app is different than the team identifier of the current app, the value of the key is `nil`.
+    ///
+    ///
     /// An options key for `application(_:open:options:)`. The value is an ``NSString`` containing the bundle ID of the originating application; non-nil if the originating
     /// application and this application share the same team identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/sourceapplication?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.sourceApplication from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsSourceApplicationKey:
         &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
+    /// A key containing the information passed to a document interaction controller object’s annotation property.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a property list-typed object.
+    ///
+    ///
     /// An options key for `application(_:open:options:)`. The value is a property-list typed object corresponding to what the originating application passed in
     /// `UIDocumentInteractionController`'s annotation property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/annotation?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.annotation from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsAnnotationKey: &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
-    /// An options key for `application(_:open:options:)`. The value is a bool `NSNumber`. Copy the file before use if this value is NO, or is not present.
+    /// A key containing a flag that indicates whether a document must be copied before you use it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/openinplace?language=objc)
+    /// ## Discussion
+    ///
+    /// When the value of this property is [`false`](https://developer.apple.com/documentation/swift/false), you must copy the document to maintain access to it. If the flag is not set, you also must copy the document before you can use it.
+    ///
+    /// If the document does not need to be copied, you can open it in place in your implementation of the [`application:openURL:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:open:options:)) method. For information about declaring whether your app wants the ability to open iCloud Drive documents in place, see the description of the [LSSupportsOpeningDocumentsInPlace](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW13) information property list key. For an example of an app that opens iCloud Drive documents in place, see [ShapeEdit: Building a Simple iCloud Document App](https://developer.apple.com/library/archive/samplecode/ShapeEdit/Introduction/Intro.html#//apple_ref/doc/uid/TP40016100).
+    ///
+    ///
+    /// An options key for `application(_:open:options:)`. The value is a bool `NSNumber`. Copy the file before use if this value is NO, or is not present.
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.openInPlace from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsOpenInPlaceKey: &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
     /// An options key for `application(_:open:options:)`. The value is a `UIEventAttribution` to go along with the URL to open.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/eventattribution?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.eventAttribution from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsEventAttributionKey:
         &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/userdidtakescreenshotnotification?language=objc)
+    /// A notification that posts when a person takes a screenshot on the device.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t contain a `userInfo` dictionary. This notification posts after the screenshot is taken.
+    ///
+    ///
     pub static UIApplicationUserDidTakeScreenshotNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/extensionpointidentifier/keyboard?language=objc)
+    /// The identifier for custom keyboards.
+    ///
+    /// ## Discussion
+    ///
+    /// To reject the use of custom keyboards in your app, specify this constant in your implementation of the [`application:shouldAllowExtensionPointIdentifier:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:shouldallowextensionpointidentifier:)) delegate method.
+    ///
+    ///
     pub static UIApplicationKeyboardExtensionPointIdentifier:
         &'static UIApplicationExtensionPointIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey/universallinksonly?language=objc)
+    /// URLs must be universal links and have an app configured to open them.
+    ///
+    /// ## Discussion
+    ///
+    /// When you include this key in the options dictionary of the [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) method, the method opens the URL only if the URL is a valid universal link and there is an installed app capable of opening that URL. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value.
+    ///
+    ///
     pub static UIApplicationOpenURLOptionUniversalLinksOnly:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey/eventattribution?language=objc)
+    /// An object you use to send tap event attribution data to the browser for Private Click Measurement.
     pub static UIApplicationOpenExternalURLOptionsEventAttributionKey:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }

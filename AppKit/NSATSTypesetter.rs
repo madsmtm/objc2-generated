@@ -10,7 +10,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsatstypesetter?language=objc)
+    /// A concrete typesetter object that places glyphs during the text layout process.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSATSTypesetter`](https://developer.apple.com/documentation/appkit/nsatstypesetter) object creates line fragment rectangles, positions glyphs within the line fragments, determines line breaks by word wrapping and hyphenation, and handles tab positioning. This object encapsulates the advanced typesetting capabilities of Core Text. [`NSATSTypesetter`](https://developer.apple.com/documentation/appkit/nsatstypesetter) provides line and character spacing accuracy and supports many languages, including bidirectional languages.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Use this class with [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) in macOS11 and earlier. In macOS12 and later, consider using [`NSTextLayoutManager`](https://developer.apple.com/documentation/appkit/nstextlayoutmanager) which provides improved support for international scripts.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSTypesetter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTypesetter")]

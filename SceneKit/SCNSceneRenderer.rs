@@ -16,27 +16,38 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// Modes for antialiased rendering of the view’s scene, used by the [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) property.
 /// antialiasing modes for scene renderers
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNAntialiasingMode(pub NSUInteger);
 impl SCNAntialiasingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/none?language=objc)
+    /// Disables antialiased rendering.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default antialiasing mode on iOS.
+    ///
+    ///
     #[doc(alias = "SCNAntialiasingModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling2x?language=objc)
+    /// Enables multisample antialiasing, with two samples per screen pixel.
     #[doc(alias = "SCNAntialiasingModeMultisampling2X")]
     pub const Multisampling2X: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling4x?language=objc)
+    /// Enables multisample antialiasing, with four samples per screen pixel.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default antialiasing mode in macOS.
+    ///
+    ///
     #[doc(alias = "SCNAntialiasingModeMultisampling4X")]
     pub const Multisampling4X: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling8x?language=objc)
+    /// Enables multisample antialiasing, with eight samples per screen pixel.
     #[doc(alias = "SCNAntialiasingModeMultisampling8X")]
     pub const Multisampling8X: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode/multisampling16x?language=objc)
+    /// Enables multisample antialiasing, with sixteen samples per screen pixel.
     #[doc(alias = "SCNAntialiasingModeMultisampling16X")]
     pub const Multisampling16X: Self = Self(4);
 }
@@ -49,27 +60,38 @@ unsafe impl RefEncode for SCNAntialiasingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for choosing the graphics technology for an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object (or other SceneKit renderer) to use for drawing its contents. Used by the [`renderingAPI`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/renderingapi) property and the [`SCNPreferredRenderingAPIKey`](https://developer.apple.com/documentation/scenekit/scnview/option/preferredrenderingapi) option when initializing an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object.
 /// rendering API used by SCNView and SCNRenderer.
 ///
 /// Default preferred API is SCNRenderingAPIMetal on iOS and it depends on the configuration on macOS.
 /// If Metal is requested but not available then it fallbacks to SCNRenderingAPIOpenGLES2 on iOS and to SCNRenderingAPIOpenGLLegacy on macOS.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNRenderingAPI(pub NSUInteger);
 impl SCNRenderingAPI {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/metal?language=objc)
+    /// Use the Metal framework for SceneKit rendering.
+    ///
+    /// ## Discussion
+    ///
+    /// Metal provides improved graphics performance on supported devices, allows you to integrate GPU-compute tasks into a rendering workflow, and provides the same API in both iOS and macOS.
+    ///
+    ///
     #[doc(alias = "SCNRenderingAPIMetal")]
     pub const Metal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/opengllegacy?language=objc)
+    /// Use the Legacy OpenGL API for SceneKit rendering in macOS.
+    ///
+    /// ## Discussion
+    ///
+    /// This option is available on all macOS systems supporting SceneKit. If you request the Metal rendering API for an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object on a system that does not support Metal, SceneKit falls back to the Legacy OpenGL API.
+    ///
+    ///
     #[doc(alias = "SCNRenderingAPIOpenGLLegacy")]
     pub const OpenGLLegacy: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/openglcore32?language=objc)
+    /// Use the OpenGL 3.2 Core Profile API for SceneKit rendering in macOS.
     #[doc(alias = "SCNRenderingAPIOpenGLCore32")]
     pub const OpenGLCore32: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi/openglcore41?language=objc)
+    /// Use the OpenGL 4.1 Core Profile API for SceneKit rendering in macOS.
     #[doc(alias = "SCNRenderingAPIOpenGLCore41")]
     pub const OpenGLCore41: Self = Self(3);
 }
@@ -82,49 +104,72 @@ unsafe impl RefEncode for SCNRenderingAPI {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Debug options.
+/// Options for drawing overlays with SceneKit content that can aid in debugging, used with the [`debugOptions`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/debugoptions) property.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions?language=objc)
+/// ## Overview
+///
+/// Debug options are bit mask patterns. To display multiple debugging overlays, combine options using the bitwise OR operator.
+///
+///
+/// Debug options.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNDebugOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNDebugOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/scndebugoptionnone?language=objc)
+/// Disable all debugging overlays.
         #[doc(alias = "SCNDebugOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showphysicsshapes?language=objc)
+/// Display the physics shapes for any nodes with attached [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) objects.
         #[doc(alias = "SCNDebugOptionShowPhysicsShapes")]
         const ShowPhysicsShapes = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showboundingboxes?language=objc)
+/// Display the bounding boxes for any nodes with content.
         #[doc(alias = "SCNDebugOptionShowBoundingBoxes")]
         const ShowBoundingBoxes = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showlightinfluences?language=objc)
+/// Display the locations of each [`SCNLight`](https://developer.apple.com/documentation/scenekit/scnlight) object in the scene.
         #[doc(alias = "SCNDebugOptionShowLightInfluences")]
         const ShowLightInfluences = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showlightextents?language=objc)
+/// Display the regions affected by each [`SCNLight`](https://developer.apple.com/documentation/scenekit/scnlight) object in the scene.
+///
+/// ## Discussion
+///
+/// Only lights whose type is [`SCNLightTypeOmni`](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/omni) or [`SCNLightTypeSpot`](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/spot) have an area of effect; directional and ambient lights affect the entire scene.
+///
+///
         #[doc(alias = "SCNDebugOptionShowLightExtents")]
         const ShowLightExtents = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showphysicsfields?language=objc)
+/// Display the regions affected by each [`SCNPhysicsField`](https://developer.apple.com/documentation/scenekit/scnphysicsfield) object in the scene.
         #[doc(alias = "SCNDebugOptionShowPhysicsFields")]
         const ShowPhysicsFields = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showwireframe?language=objc)
+/// Display geometries in the scene with wireframe rendering.
+///
+/// ## Discussion
+///
+/// When this option is enabled, SceneKit still renders scene geometry with all associated materials, then overlays a wireframe rendering of the same geometry. You can use this option, for example, to debug material rendering issues.
+///
+///
         #[doc(alias = "SCNDebugOptionShowWireframe")]
         const ShowWireframe = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/renderaswireframe?language=objc)
+/// Display only wireframe placeholders for geometries in the scene.
+///
+/// ## Discussion
+///
+/// Unlike the [`SCNDebugOptionShowWireframe`](https://developer.apple.com/documentation/scenekit/scndebugoptions/showwireframe) option, this option disables normal surface rendering, displaying only the wireframe for each geometry.
+///
+///
         #[doc(alias = "SCNDebugOptionRenderAsWireframe")]
         const RenderAsWireframe = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showskeletons?language=objc)
+/// Display visualizations of the skeletal animation parameters for relevant geometries.
         #[doc(alias = "SCNDebugOptionShowSkeletons")]
         const ShowSkeletons = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showcreases?language=objc)
+/// Display nonsmoothed crease regions for geometries affected by surface subdivision.
         #[doc(alias = "SCNDebugOptionShowCreases")]
         const ShowCreases = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showconstraints?language=objc)
+/// Display visualizations of the constraint objects acting on nodes in the scene.
         #[doc(alias = "SCNDebugOptionShowConstraints")]
         const ShowConstraints = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions/showcameras?language=objc)
+/// Display visualizations for nodes in the scene with attached cameras and their fields of view.
         #[doc(alias = "SCNDebugOptionShowCameras")]
         const ShowCameras = 1<<10;
     }
@@ -139,9 +184,18 @@ unsafe impl RefEncode for SCNDebugOptions {
 }
 
 extern_protocol!(
-    /// Protocol adopted by the various renderers (SCNView, SCNLayer, SCNRenderer)
+    /// Methods and properties common to the [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview), [`SCNLayer`](https://developer.apple.com/documentation/scenekit/scnlayer), and [`SCNRenderer`](https://developer.apple.com/documentation/scenekit/scnrenderer) classes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenerenderer?language=objc)
+    /// ## Overview
+    ///
+    /// You use an instance of one of these classes to display a scene and manage SceneKit’s rendering and animation of the scene’s contents.
+    ///
+    /// Typically, you use the [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) class to display a scene in a window (or full screen). You can create and configure a SceneKit view programmatically or in Interface Builder. The other renderer classes render SceneKit content in more specialized situations. If your app has a user interface composed of Core Animation layers, you can use the [`SCNLayer`](https://developer.apple.com/documentation/scenekit/scnlayer) class to render a scene into a layer. If your app uses Metal or OpenGL for other rendering, you can use the [`SCNRenderer`](https://developer.apple.com/documentation/scenekit/scnrenderer) class to render SceneKit content with the same Metal device or OpenGL context.
+    ///
+    /// Use the [`scene`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/scene) property of the view, layer, or renderer to specify the scene to display.
+    ///
+    ///
+    /// Protocol adopted by the various renderers (SCNView, SCNLayer, SCNRenderer)
     pub unsafe trait SCNSceneRenderer: NSObjectProtocol {
         #[cfg(feature = "SCNScene")]
         /// Specifies the scene of the receiver.
@@ -514,9 +568,48 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Implement this protocol to perform operations at various times during the rendering
+    /// Methods your app can implement to participate in SceneKit’s animation loop or perform additional rendering.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// To build an app or game with SceneKit, you use an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object (or other object conforming the [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer) protocol) to display your scene. Then, to add per-frame game logic, or to perform custom Metal or OpenGL rendering before or after SceneKit renders the scene, specify your own custom object that implements the [`SCNSceneRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate) protocol for the view’s [`delegate`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/delegate) property.
+    ///
+    /// When rendering your scene, an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object (or other SceneKit renderer) runs a rendering loop that processes and then draws the scene. [`SCNSceneRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate) shows the steps in this loop.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/3f3d7914795ccd9d65d70c7d530f2083/media-2929793%402x.png)
+    ///
+    ///
+    /// Each time through the rendering loop, a SceneKit view (or renderer) executes the following actions in order:
+    ///
+    /// 1. The view calls its delegate’s [`renderer:updateAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:updateattime:)) method.
+    ///
+    /// 2. SceneKit executes actions and performs animations attached to the scene graph. (See the [`SCNAction`](https://developer.apple.com/documentation/scenekit/scnaction) class and [`SCNAnimatable`](https://developer.apple.com/documentation/scenekit/scnanimatable) protocol.)
+    ///
+    /// 3. The view calls its delegate’s [`renderer:didApplyAnimationsAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:didapplyanimationsattime:)) method.
+    ///
+    /// 4. SceneKit applies its physics simulation to any physics bodies in the scene. (See [`SCNPhysicsWorld`](https://developer.apple.com/documentation/scenekit/scnphysicsworld), [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody), and related classes.)
+    ///
+    /// 5. The view calls its delegate’s [`renderer:didSimulatePhysicsAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:didsimulatephysicsattime:)) method.
+    ///
+    /// 6. The view calls its delegate’s [`renderer:willRenderScene:atTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:willrenderscene:attime:)) method.
+    ///
+    /// 7. SceneKit renders the scene graph in the view.
+    ///
+    /// 8. The view calls its delegate’s [`renderer:didRenderScene:atTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:didrenderscene:attime:)) method.
+    ///
+    /// ### Working With the Rendering Loop
+    ///
+    /// When building a game, you typically need to run logic relating to gameplay before each frame of animation. Game logic may include input handling, artificial intelligence, game scripting, or other tasks. Often, the results of this logic involve making changes to nodes or running actions on nodes.
+    ///
+    /// The methods listed in [`SCNSceneRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate) provide places to implement your game logic. Which of these methods you implement for which tasks depends on your game design. For example, if your game uses physics, you might implement the [`renderer:didSimulatePhysicsAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:didsimulatephysicsattime:)) method to decide whether the player has won the game based on the state of physics bodies in the scene. If your gameplay isn’t based on the physics simulation, you might make such decisions in the [`renderer:updateAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:updateattime:)) method instead.
+    ///
+    /// ### Custom Rendering
+    ///
+    /// If you want to perform custom rendering before or after SceneKit renders the contents of the scene, implement one or both methods listed in [`SCNSceneRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate). These methods are appropriate for custom Metal or OpenGL drawing that does not depend on the structure or content of the scene graph. If you instead want to render a special effect that is attached to a specific location in the scene, see [`SCNNodeRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnnoderendererdelegate). Or if you want to use GPU shader programs to customize SceneKit’s rendering of scene content, see [`SCNShadable`](https://developer.apple.com/documentation/scenekit/scnshadable).
+    ///
+    ///
+    /// Implement this protocol to perform operations at various times during the rendering
     pub unsafe trait SCNSceneRendererDelegate: NSObjectProtocol {
         /// Implement this to perform per-frame game logic. Called exactly once per frame before any animation and actions are evaluated and any physics are simulated.
         ///

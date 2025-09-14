@@ -6,6 +6,21 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Signature for the block executed if any element in the gamepad profile changes value.
+///
+/// ## Discussion
+///
+/// The block parameters are defined as follows:
+///
+/// - `gamepad`: The profile object whose value changed.
+///
+/// - `element`: The element whose value changed.
+///
+/// If multiple elements change values at the same time, the block is called once for each element that changed. The block is called only for the elements directly attached to the profile object; if a child element of one of those elements changes values, the block is called for the parent.
+///
+/// This block type is used by the [`valueChangedHandler`](https://developer.apple.com/documentation/gamecontroller/gcgamepad/valuechangedhandler) property.
+///
+///
 /// Set this block if you want to be notified when a value on a element changed. If multiple elements have changed this block will be called
 /// for each element that changed. As elements in a collection, such as the axis in a dpad, tend to change at the same time and thus
 /// will only call this once with the collection as the element.
@@ -14,8 +29,6 @@ use crate::*;
 /// Parameter `gamepad`: this gamepad that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
 ///
 /// Parameter `element`: the element that has been modified.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -25,7 +38,23 @@ pub type GCGamepadValueChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepad?language=objc)
+    /// The standard set of gamepad controls.
+    ///
+    /// ## Overview
+    ///
+    /// The controls associated with the gamepad profile include the following:
+    ///
+    /// - Two shoulder buttons.
+    ///
+    /// - Four face buttons arranged in a diamond pattern.
+    ///
+    /// - One directional pad (D-pad).
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/57237c8130783a4f106842ba76f1ac3b/media-2556316%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

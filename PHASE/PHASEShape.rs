@@ -10,13 +10,20 @@ use objc2_model_io::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes the characteristics of a physical surface.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines the material that makes up a [`PHASEShape`](https://developer.apple.com/documentation/phase/phaseshape) object.
+    ///
+    /// You don’t instantiate instances of this class yourself; the framework creates an instance of this class for every material you pass into the [`initWithEngine:mesh:materials:`](https://developer.apple.com/documentation/phase/phaseshape/init(engine:mesh:materials:)) initializer. The shape’s [`elements`](https://developer.apple.com/documentation/phase/phaseshape/elements) array provides read-only access to the instances.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A single element within a shape. The attached material defines its acoustical properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseshape/element?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEShapeElement;
@@ -51,13 +58,22 @@ impl PHASEShapeElement {
 }
 
 extern_class!(
+    /// A collection of points that connect to form a 3D volume.
+    ///
+    /// ## Overview
+    ///
+    /// To define your scene’s important 3D volumes, create one or more of the following surfaces and add them to your scene’s [`shapes`](https://developer.apple.com/documentation/phase/phasesource/shapes) array:
+    ///
+    /// - The audio-emitting surface of a volumetric [`PHASESource`](https://developer.apple.com/documentation/phase/phasesource)
+    ///
+    /// - The audio-deflecting surface and texture of a [`PHASEOccluder`](https://developer.apple.com/documentation/phase/phaseoccluder)
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// The physical representation of an object within the simulated acoustic scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseshape?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEShape;

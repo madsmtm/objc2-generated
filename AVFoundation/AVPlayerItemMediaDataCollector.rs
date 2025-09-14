@@ -10,6 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract base for media data collectors.
     /// AVPlayerItemMediaDataCollector is an abstract class encapsulating the common API for all AVPlayerItemMediaDataCollector subclasses.
     ///
     /// Instances of AVPlayerItemMediaDataCollector permit the collection of media data from an AVAsset during playback by an AVPlayer. As opposed to AVPlayerItemOutputs, AVPlayerItemMediaDataCollectors collect all media data across an AVPlayerItem's timebase, relevant to the specific collector being used. Attaching an AVPlayerItemMediaDataCollector may incur additional I/O accordingly.
@@ -20,8 +21,6 @@ extern_class!(
     /// • removeMediaDataCollector:
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmediadatacollector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMediaDataCollector;
@@ -53,13 +52,21 @@ impl AVPlayerItemMediaDataCollector {
 }
 
 extern_class!(
+    /// An object used to capture the date range metadata defined for an HTTP Live Streaming asset.
+    ///
+    /// ## Overview
+    ///
+    /// You can use the HLS `#EXT-X-DATERANGE` tag to define date range metadata in a media playlist. This tag is useful for defining timed metadata for interstitial regions such as advertisements, but can be used to define any timed metadata needed by your stream. To access this metadata when the stream is played using an [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer), you create an instance of `AVPlayerItemMetadataCollector`, configure its delegate object (see [`AVPlayerItemMetadataCollectorPushDelegate`](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollectorpushdelegate)), and add it as a media data collector to the [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) (see example).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["class PlaybackController: NSObject, AVPlayerItemMetadataCollectorPushDelegate {", "    ", "    let player = AVPlayer()", "    var playerItem: AVPlayerItem!", "    var metadataCollector: AVPlayerItemMetadataCollector!", "    ", "    func prepareToPlay(url: URL) {", "        metadataCollector = AVPlayerItemMetadataCollector()", "        metadataCollector.setDelegate(self, queue: DispatchQueue.main)", "        ", "        playerItem = AVPlayerItem(url: url)", "        playerItem.add(metadataCollector)", "        ", "        player.replaceCurrentItem(with: playerItem)", "    }", "    ", "    func metadataCollector(_ metadataCollector: AVPlayerItemMetadataCollector,", "                           didCollect metadataGroups: [AVDateRangeMetadataGroup],", "                           indexesOfNewGroups: IndexSet,", "                           indexesOfModifiedGroups: IndexSet) {", "        // Process metadata", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Adopts AVPlayerItemMetadataCollectorPushDelegate", "@implementation PlaybackController", " ", "- (void)prepareToPlay:(NSURL *)url {", "    self.metadataCollector = [[AVPlayerItemMetadataCollector alloc] init];", "    [self.metadataCollector setDelegate:self queue:dispatch_get_main_queue()];", " ", "    self.playerItem = [AVPlayerItem playerItemWithURL:url];", "    [self.playerItem addMediaDataCollector:self.metadataCollector];", " ", "    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];", "}", " ", "- (void)metadataCollector:(AVPlayerItemMetadataCollector *)metadataCollector", "didCollectDateRangeMetadataGroups:(NSArray<AVDateRangeMetadataGroup *> *)metadataGroups", "       indexesOfNewGroups:(NSIndexSet *)indexesOfNewGroups", "  indexesOfModifiedGroups:(NSIndexSet *)indexesOfModifiedGroups {", "    // Process metadata", "}", " ", "@end"], metadata: None }] }] })
+    /// Creating an `AVPlayerItemMetadataCollector` as shown in the example, will capture all `#EXT-X-DATERANGE` metadata defined in your stream. If you would like to filter the output to only the metadata of interest, you can create an instance to filter by identifier and/or classifying labels using the [`initWithIdentifiers:classifyingLabels:`](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollector/init(identifiers:classifyinglabels:)) initializer.
+    ///
+    ///
     /// A subclass of AVPlayerItemMediaDataCollector that provides AVMetadataGroups for an AVPlayerItem.
     ///
     /// This class can be used to inform clients of the current set of AVMetadataGroups on an AVPlayerItem, and when new AVMetadataGroups become available - e.g. in a Live HLS stream.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollector?language=objc)
     #[unsafe(super(AVPlayerItemMediaDataCollector, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMetadataCollector;
@@ -156,7 +163,7 @@ impl AVPlayerItemMetadataCollector {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadatacollectorpushdelegate?language=objc)
+    /// A protocol you implement to receive metadata callbacks from a player item metadata collector.
     pub unsafe trait AVPlayerItemMetadataCollectorPushDelegate:
         NSObjectProtocol + Send + Sync
     {

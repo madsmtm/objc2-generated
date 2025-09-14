@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// A protocol that allows a user to provide an input collection of VNFaceObservations as part of a request. The protocol can be adopted by request objects that request additional information about detected faces, such as facial landmarks.
+    /// An image analysis request that operates on face observations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservationaccepting?language=objc)
+    /// ## Overview
+    ///
+    /// This protocol allows you to provide an input collection of [`VNFaceObservation`](https://developer.apple.com/documentation/vision/vnfaceobservation) objects as part of a request. Request objects adopt this protocol to request additional information about detected faces, such as facial landmarks.
+    ///
+    ///
+    /// A protocol that allows a user to provide an input collection of VNFaceObservations as part of a request. The protocol can be adopted by request objects that request additional information about detected faces, such as facial landmarks.
     pub unsafe trait VNFaceObservationAccepting: NSObjectProtocol {
         #[cfg(feature = "VNObservation")]
         /// The VNFaceObservation objects to be processed as part of the request.

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssteppertouchbaritem?language=objc)
+    /// A bar item that provides a stepper control for incrementing or decrementing a value.
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]

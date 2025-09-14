@@ -8,98 +8,88 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the Scan button on the device was pressed.
     /// ICButtonTypeScan
     ///
     /// Indicates that the "Scan" button on the device was pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icbuttontypescan?language=objc)
     pub static ICButtonTypeScan: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the Mail button on the device was pressed.
     /// ICButtonTypeMail
     ///
     /// Indicates that the "Mail" button on the device was pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icbuttontypemail?language=objc)
     pub static ICButtonTypeMail: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the Copy button on the device was pressed.
     /// ICButtonTypeCopy
     ///
     /// Indicates that the "Copy" button on the device was pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icbuttontypecopy?language=objc)
     pub static ICButtonTypeCopy: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the Web button on the device was pressed.
     /// ICButtonTypeWeb
     ///
     /// Indicates that the "Web" button on the device was pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icbuttontypeweb?language=objc)
     pub static ICButtonTypeWeb: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the Print button on the device was pressed.
     /// ICButtonTypePrint
     ///
     /// Indicates that the "Print" button on the device was pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icbuttontypeprint?language=objc)
     pub static ICButtonTypePrint: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the Transfer button on the device was pressed.
     /// ICButtonTypeTransfer
     ///
     /// Indicates that the "Transfer" button on the device was pressed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icbuttontypetransfer?language=objc)
     pub static ICButtonTypeTransfer: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the scanner is warming up.
     /// ICScannerStatusWarmingUp
     ///
     /// A non-localized notification string to indicate that the scanner is warming up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerstatuswarmingup?language=objc)
     pub static ICScannerStatusWarmingUp: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the scanner has warmed up.
     /// ICScannerStatusWarmUpDone
     ///
     /// A non-localized notification string to indicate that the scanner has warmed up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerstatuswarmupdone?language=objc)
     pub static ICScannerStatusWarmUpDone: &'static NSString;
 }
 
 extern "C" {
+    /// A nonlocalized notification string to indicate that the scanner is requesting an overview scan.
     /// ICScannerStatusRequestsOverviewScan
     ///
     /// A non-localized notification string to indicate that the scanner is requesting an overview scan to be performed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerstatusrequestsoverviewscan?language=objc)
     pub static ICScannerStatusRequestsOverviewScan: &'static NSString;
 }
 
+/// The modes for transferring scan data from the scanner functional unit.
 /// Transfer mode to be used when transferring scan data from the scanner functional unit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannertransfermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerTransferMode(pub NSUInteger);
 impl ICScannerTransferMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannertransfermode/filebased?language=objc)
+    /// The mode for transferring the scan as a file.
     #[doc(alias = "ICScannerTransferModeFileBased")]
     pub const FileBased: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannertransfermode/memorybased?language=objc)
+    /// The mode for transferring the scan as data.
     #[doc(alias = "ICScannerTransferModeMemoryBased")]
     pub const MemoryBased: Self = Self(1);
 }
@@ -113,11 +103,10 @@ unsafe impl RefEncode for ICScannerTransferMode {
 }
 
 extern_protocol!(
+    /// Methods for determining availability, selecting a functional unit, and performing scans on connected scanners.
     /// A delegate of ICScannerDevice must conform to ICScannerDeviceDelegate protocol.
     ///
     /// The ICScannerDeviceDelegate protocol inherits from the ICDeviceDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdevicedelegate?language=objc)
     #[cfg(feature = "ICDevice")]
     pub unsafe trait ICScannerDeviceDelegate: ICDeviceDelegate {
         /// This message is sent when another client closes an open session on the scanner.
@@ -204,11 +193,16 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that represents a scanner.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of ICScannerDevice class is intended to be used by the ICScannerDeviceView object. The ICScannerDeviceView class encapsulates the complexities of setting scan parameters, performing scans and saving the result. The developer should consider using ICScannerDeviceView instead of building their own views using the ICScannerDevice object.
+    ///
+    ///
     /// ICScannerDevice is a concrete subclass of ICDevice class. ICDeviceBrowser creates instances of this class.
     ///
     /// In this release, an instance of ICScannerDevice class is intended to be used by the ICScannerDeviceView object. The ICScannerDeviceView class encapsulates the complexities of setting scan parameters, performing scans and saving the result. The developer should consider using ICScannerDeviceView instead of building their own views using the ICScannerDevice object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdevice?language=objc)
     #[unsafe(super(ICDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ICDevice")]

@@ -6,19 +6,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype?language=objc)
+/// Constants indicating how to display the person’s identity.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPersonSuggestionType(pub NSInteger);
 impl INPersonSuggestionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype/none?language=objc)
+    /// No contact information to donate.
     #[doc(alias = "INPersonSuggestionTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype/socialprofile?language=objc)
+    /// A social media account.
+    ///
+    /// ## Discussion
+    ///
+    /// When specified, interaction objects become populated with the person’s social media account name instead of their actual name.
+    ///
+    ///
     #[doc(alias = "INPersonSuggestionTypeSocialProfile")]
     pub const SocialProfile: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonsuggestiontype/instantmessageaddress?language=objc)
+    /// An instant messaging address.
+    ///
+    /// ## Discussion
+    ///
+    /// When specified, interactions become populated with the person’s instant message address instead of their actual name.
+    ///
+    ///
     #[doc(alias = "INPersonSuggestionTypeInstantMessageAddress")]
     pub const InstantMessageAddress: Self = Self(2);
 }
@@ -32,7 +44,25 @@ unsafe impl RefEncode for INPersonSuggestionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inperson?language=objc)
+    /// Information about a person participating in a SiriKit interaction.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit uses [`INPerson`](https://developer.apple.com/documentation/intents/inperson) objects to represent people with many different roles, including the sender or recipient of calls and messages, the payer or payee of a financial transaction, or the driver of a vehicle. You also use person objects to identify the corresponding contact in your app and to communicate information about that contact back to SiriKit.
+    ///
+    /// When resolving the parameters of an intent, use any provided [`INPerson`](https://developer.apple.com/documentation/intents/inperson) objects to identify the corresponding contacts in your app. A person object contains information provided by the initial request, which could be as little as a single name spoken by the person interacting with Siri. After identifying the contact, create a new [`INPerson`](https://developer.apple.com/documentation/intents/inperson) object and fill it with the information that you need to identify that contact again later. For example, you might specify a value for [`personHandle`](https://developer.apple.com/documentation/intents/inperson/personhandle) property that contains the information about how your app identifies that contact.
+    ///
+    /// When resolving the identities of contacts, SiriKit leverages the information in the device owner’s contacts database when that information is available. If the owner denies your app access to their contacts, SiriKit can’t use that information, which might cause many properties of a person object to be `nil`. Because the [`INPerson`](https://developer.apple.com/documentation/intents/inperson) class conforms to the [`INSpeakable`](https://developer.apple.com/documentation/intents/inspeakable) protocol, though, SiriKit still populates the [`spokenPhrase`](https://developer.apple.com/documentation/intents/inspeakable/spokenphrase) property with what the person interacting with Siri said, and you can use that information to try to identify the contact. For more information about that protocol, see [`INSpeakable`](https://developer.apple.com/documentation/intents/inspeakable).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To provide the best experience, especially when donating instances of [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent) and [`INStartCallIntent`](https://developer.apple.com/documentation/intents/instartcallintent), assign a value to a person’s [`contactIdentifier`](https://developer.apple.com/documentation/intents/inperson/contactidentifier) if they exist in the device owner’s contacts database. Otherwise, assign a value to the [`customIdentifier`](https://developer.apple.com/documentation/intents/inperson/customidentifier) property that identifies the person in your app. When attempting to resolve a message recipient or call contact, prefer to use the people Siri adds to the [`siriMatches`](https://developer.apple.com/documentation/intents/inperson/sirimatches) property.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPerson;

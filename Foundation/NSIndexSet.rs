@@ -7,7 +7,33 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexset?language=objc)
+    /// An immutable collection of unique integer values that represent indexes in another collection.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this type bridges to [`IndexSet`](https://developer.apple.com/documentation/foundation/indexset); use [`NSIndexSet`](https://developer.apple.com/documentation/foundation/nsindexset) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The `NSIndexSet` class represents an immutable collection of unique unsigned integers, known as **indexes** because of the way they are used. This collection is referred to as an **index set**. Indexes must be in the range `0 .. NSNotFound - 1`.
+    ///
+    /// You use index sets in your code to store indexes into some other data structure. For example, given an `NSArray` object, you could use an index set to identify a subset of objects in that array.
+    ///
+    /// You should not use index sets to store an arbitrary collection of integer values because index sets store indexes as sorted ranges. This makes them more efficient than storing a collection of individual integers. It also means that each index value can only appear once in the index set.
+    ///
+    /// The designated initializers of the `NSIndexSet` class are: [`initWithIndex:`](https://developer.apple.com/documentation/foundation/nsindexset/init(index:)), [`initWithIndexesInRange:`](https://developer.apple.com/documentation/foundation/nsindexset/init(indexesin:)), and [`initWithIndexSet:`](https://developer.apple.com/documentation/foundation/nsindexset/init(indexset:)).
+    ///
+    /// You must not subclass the `NSIndexSet` class.
+    ///
+    /// The mutable subclass of `NSIndexSet` is [`NSMutableIndexSet`](https://developer.apple.com/documentation/foundation/nsmutableindexset).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`IndexSet`](https://developer.apple.com/documentation/foundation/indexset) structure, which bridges to the [`NSIndexSet`](https://developer.apple.com/documentation/foundation/nsindexset) class and its mutable subclass, [`NSMutableIndexSet`](https://developer.apple.com/documentation/foundation/nsmutableindexset). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSet;
@@ -275,7 +301,27 @@ impl DefaultRetained for NSIndexSet {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableindexset?language=objc)
+    /// A mutable collection of unique integer values that represent indexes in another collection.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this type bridges to [`IndexSet`](https://developer.apple.com/documentation/foundation/indexset); use [`NSMutableIndexSet`](https://developer.apple.com/documentation/foundation/nsmutableindexset) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The [`NSMutableIndexSet`](https://developer.apple.com/documentation/foundation/nsmutableindexset) class represents a mutable collection of unique unsigned integers, known as _indexes_ because of the way they are used. This collection is referred to as a _mutable index set_. The inclusive range of valid indexes is `0...(NSNotFound - 1)`; trying to use indexes outside this range is invalid.
+    ///
+    /// The values in a mutable index set are always sorted, so the order in which values are added is irrelevant.
+    ///
+    /// Do not subclass the [`NSMutableIndexSet`](https://developer.apple.com/documentation/foundation/nsmutableindexset) class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`IndexSet`](https://developer.apple.com/documentation/foundation/indexset) structure, which bridges to the [`NSMutableIndexSet`](https://developer.apple.com/documentation/foundation/nsmutableindexset) class and its immutable superclass, [`NSIndexSet`](https://developer.apple.com/documentation/foundation/nsindexset). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSIndexSet, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableIndexSet;

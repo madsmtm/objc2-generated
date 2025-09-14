@@ -8,104 +8,155 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextwillsavenotification?language=objc)
+    /// A notification that posts before a context writes unsaved changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification’s `object` is the context that’s about to save. Only use the notification to operate on the in-process save operation. For example, to insert additional managed objects. Don’t peform any asynchronous work or block the calling thread. [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) posts notifications to the same thread that creates it.
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     pub static NSManagedObjectContextWillSaveNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidsavenotification?language=objc)
+    /// A notification that posts after a context finishes writing unsaved changes.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Use [`NSManagedObjectContextDidSaveObjectIDsNotification`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidsaveobjectidsnotification) instead of this notification.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This notification’s `object` is the saved context. Don’t peform any asynchronous work or block the calling thread. [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) posts notifications to the same thread that creates it.
+    ///
+    /// The `userInfo` dictionary contains the inserted, updated, and deleted managed objects of the completed save. For the keys to access those objects, see [`NSManagedObjectContext.NotificationKey`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/notificationkey). Don’t capture the dictionary’s contents.
+    ///
+    /// To safely use the provided managed objects on the current thread, create a new context and use its [`mergeChanges(fromContextDidSave:)`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/mergechanges(fromcontextdidsave:)) method to merge in the notification’s changes.
+    ///
+    ///
     pub static NSManagedObjectContextDidSaveNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextobjectsdidchangenotification?language=objc)
+    /// A notification that posts when there are changes to context’s registered managed objects.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This notification posts only when there are changes to the context’s registered managed objects. It doesn’t post when a fetch adds managed objects to the context.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This notification’s `object` property is the changed managed object context. Don’t peform any asynchronous work or block the calling thread. [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) posts notifications to the same thread that creates it.
+    ///
+    /// The `userInfo` dictionary contains the inserted, updated, deleted, and invalidated managed objects. For the keys to access those objects, see [`NSManagedObjectContext.NotificationKey`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/notificationkey). Don’t capture the dictionary’s contents.
+    ///
+    ///
     pub static NSManagedObjectContextObjectsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidsaveobjectidsnotification?language=objc)
+    /// A notification that posts after a context finishes writing changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification’s `object` is the saved context. Don’t peform any asynchronous work or block the calling thread. [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) posts notifications to the same thread that creates it.
+    ///
+    /// The `userInfo` dictionary contains the identifiers of the inserted, updated, deleted, and invalidated managed objects. For the keys to access those objects, see [`NSManagedObjectContext.NotificationKey`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/notificationkey). It’s safe to capture the dictionary’s contents.
+    ///
+    /// Use this notification instead of [`NSManagedObjectContextDidSaveNotification`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidsavenotification) if you intend to process the changed managed object on a different thread. It’s safe to pass instances of [`NSManagedObjectID`](https://developer.apple.com/documentation/coredata/nsmanagedobjectid) across thread boundaries.
+    ///
+    ///
     pub static NSManagedObjectContextDidSaveObjectIDsNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextdidmergechangesobjectidsnotification?language=objc)
     pub static NSManagedObjectContextDidMergeChangesObjectIDsNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinsertedobjectskey?language=objc)
+    /// A key for the set of objects that were inserted into the context.
     pub static NSInsertedObjectsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsupdatedobjectskey?language=objc)
+    /// A key for the set of objects that were updated.
     pub static NSUpdatedObjectsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeletedobjectskey?language=objc)
+    /// A key for the set of objects that were marked for deletion during the previous event.
     pub static NSDeletedObjectsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsrefreshedobjectskey?language=objc)
+    /// A key for the set of objects that were refreshed but were not dirtied in the scope of this context.
     pub static NSRefreshedObjectsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinvalidatedobjectskey?language=objc)
+    /// A key for the set of objects that were invalidated.
     pub static NSInvalidatedObjectsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextquerygenerationkey?language=objc)
+    /// Constant used to reference the query generation token.
     pub static NSManagedObjectContextQueryGenerationKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinvalidatedallobjectskey?language=objc)
+    /// A key that specifies that all objects in the context have been invalidated.
     pub static NSInvalidatedAllObjectsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinsertedobjectidskey?language=objc)
+    /// A user info key to identify inserted object identifiers in notifications after saving a managed object context.
     pub static NSInsertedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsupdatedobjectidskey?language=objc)
+    /// A user info key to identify updated object identifiers in notifications after saving a managed object context.
     pub static NSUpdatedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsdeletedobjectidskey?language=objc)
+    /// A user info key to identify deleted object identifiers in notifications after saving a managed object context.
     pub static NSDeletedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsrefreshedobjectidskey?language=objc)
+    /// A user info key to identify refreshed object identifiers in notifications after saving a managed object context.
     pub static NSRefreshedObjectIDsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsinvalidatedobjectidskey?language=objc)
+    /// A user info key to identify invalidated object identifiers in notifications after saving a managed object context.
     pub static NSInvalidatedObjectIDsKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype?language=objc)
+/// The concurrency types you can use with a managed object context.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSManagedObjectContextConcurrencyType(pub NSUInteger);
 impl NSManagedObjectContextConcurrencyType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype/confinementconcurrencytype?language=objc)
+    /// Specifies that the context will use the thread confinement pattern.
     #[doc(alias = "NSConfinementConcurrencyType")]
     #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
     pub const ConfinementConcurrencyType: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype/privatequeueconcurrencytype?language=objc)
+    /// Specifies that the context will be associated with a private dispatch queue.
     #[doc(alias = "NSPrivateQueueConcurrencyType")]
     pub const PrivateQueueConcurrencyType: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontextconcurrencytype/mainqueueconcurrencytype?language=objc)
+    /// Specifies that the context will be associated with the main queue.
     #[doc(alias = "NSMainQueueConcurrencyType")]
     pub const MainQueueConcurrencyType: Self = Self(0x02);
 }
@@ -119,7 +170,70 @@ unsafe impl RefEncode for NSManagedObjectContextConcurrencyType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext?language=objc)
+    /// An object space to manipulate and track changes to managed objects.
+    ///
+    /// ## Overview
+    ///
+    /// A context consists of a group of related model objects that represent an internally consistent view of one or more persistent stores. Changes to managed objects remain in memory in the associated context until Core Data saves that context to one or more persistent stores. A single managed object instance exists in one and only one context, but multiple copies of an object can exist in different contexts. Therefore, an object is unique to a particular context.
+    ///
+    /// ### Life cycle management
+    ///
+    /// The context is a powerful object with a central role in the life cycle of managed objects, with responsibilities from life cycle management (including faulting) to validation, inverse relationship handling, and undo/redo. Through a context you can retrieve or “fetch” objects from a persistent store, make changes to those objects, and then either discard the changes or—again through the context—commit them back to the persistent store. The context is responsible for watching for changes in its objects and maintains an undo manager so you can have finer-grained control over undo and redo. You can insert new objects and delete ones you have fetched, and commit these modifications to the persistent store.
+    ///
+    /// All objects fetched from an external store are registered in a context together with a global identifier (an instance of `NSManagedObjectID`) that’s used to uniquely identify each object to the external store.
+    ///
+    /// ### Parent store
+    ///
+    /// Managed object contexts have a parent store from which they retrieve data representing managed objects and through which they commit changes to managed objects.
+    ///
+    /// Prior to OS X v10.7 and iOS v5.0, the parent store is always a persistent store coordinator. In macOS 10.7 and later and iOS v5.0 and later, the parent store may be another managed object context. Ultimately the root of a context’s ancestry must be a persistent store coordinator. The coordinator provides the managed object model and dispatches requests to the various persistent stores containing the data.
+    ///
+    /// If a context’s parent store is another managed object context, fetch and save operations are mediated by the parent context instead of a coordinator. This pattern has a number of usage scenarios, including:
+    ///
+    /// - Performing background operations on a second thread or queue.
+    ///
+    /// - Managing discardable edits, such as in an inspector window or view.
+    ///
+    /// As the first scenario implies, a parent context can service requests from children on different threads. You cannot, therefore, use parent contexts created with the thread confinement type (see [Concurrency](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext#concurrency)).
+    ///
+    /// When you save changes in a context, the changes are only committed “one store up.” If you save a child context, changes are pushed to its parent. Changes are not saved to the persistent store until the root context is saved. (A root managed object context is one whose parent context is `nil`.) In addition, a parent does not pull changes from children before it saves. You must save a child context if you want ultimately to commit the changes.
+    ///
+    /// ### Notifications
+    ///
+    /// A context posts notifications at various points—see [`NSManagedObjectContextObjectsDidChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmanagedobjectcontextobjectsdidchange) for example. Typically, you should register to receive these notifications only from known contexts:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["NotificationCenter.default.addObserver(self,", "                                       selector: #selector(<#methodToCall#>),", "                                       name: .NSManagedObjectContextDidSave,", "                                       object: <#managedObjectContext#>)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[[NSNotificationCenter defaultCenter] addObserver:self", "                                      selector:@selector(<#Selector name#>)", "                                      name:NSManagedObjectContextDidSaveNotification", "                                      object:<#A managed object context#>];"], metadata: None }] }] })
+    /// Several system frameworks use Core Data internally. If you register to receive these notifications from all contexts (by passing `nil` as the object parameter to a method such as [`addObserver:selector:name:object:`](https://developer.apple.com/documentation/foundation/notificationcenter/addobserver(_:selector:name:object:))), then you may receive unexpected notifications that are difficult to handle.
+    ///
+    /// ### Concurrency
+    ///
+    /// Core Data uses thread (or serialized queue) confinement to protect managed objects and managed object contexts (see [Core Data Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/index.html#//apple_ref/doc/uid/TP40001075)). A consequence of this is that a context assumes the default owner is the thread or queue that creates it. Don’t, therefore, initialize a context on one thread then pass it to another. Instead, pass a reference to a persistent store coordinator and have the receiving thread or queue create a new context using that. If you use [`NSOperation`](https://developer.apple.com/documentation/foundation/operation), you must create the context in [`main`](https://developer.apple.com/documentation/foundation/operation/main()) (for a serial queue) or [`start`](https://developer.apple.com/documentation/foundation/operation/start()) (for a concurrent queue).
+    ///
+    /// When you create a context you specify the concurrency type with which you’ll use it. When you create a managed object context, you have two options for its thread (queue) association:
+    ///
+    /// - Private: The context creates and manages a private queue.
+    ///
+    /// - Main: The context associates with the main queue and is dependent on the application’s event loop; otherwise, it’s similar to a private context. Use this type for contexts that update view controllers and other user interface elements.
+    ///
+    /// You use contexts using the queue-based concurrency types in conjunction with [`performBlock:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/perform(_:)) and [`performBlockAndWait:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/performandwait(_:)-ypye). You group “standard” messages to send to the context within a block to pass to one of these methods. There are two exceptions:
+    ///
+    /// - Setter methods on queue-based managed object contexts are thread-safe. You can invoke these methods directly on any thread.
+    ///
+    /// - If your code executes on the main thread, you can invoke methods on the main queue style contexts directly instead of using the block based API.
+    ///
+    /// [`performBlock:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/perform(_:)) and [`performBlockAndWait:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/performandwait(_:)-ypye) ensure the block operations execute on the correct queue for the context. The [`performBlock:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/perform(_:)) method returns immediately and the context executes the block methods on its own thread. With the [`performBlockAndWait:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/performandwait(_:)-ypye) method, the context still executes the block methods on its own thread, but the method doesn’t return until the block completes.
+    ///
+    /// It’s important to appreciate that blocks execute as a distinct body of work. As soon as your block ends, anyone else can enqueue another block, undo changes, reset the context, and so on. Thus blocks may be quite large, and typically end by invoking [`save:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/save()).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var savedOK = false", "managedObjectContext.performAndWait() {", "", "    // Perform operations with the context.", "", "    do {", "        try managedObjectContext.save()", "        savedOK = true", "    } catch {", "        print(\"Error saving context: \\(error)\")", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["__block BOOL savedOK = NO;", "[managedObjectContext performBlockAndWait:^{", "", "    // Perform operations with the context.", "", "    NSError *error = nil;", "    if ([managedObjectContext save:&error]) {", "        savedOK = YES;", "    } else {", "        NSLog(@\"Error saving: %@\", error);", "    }", "}];"], metadata: None }] }] })
+    /// You can also perform other operations, such as:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let fetchRequest: NSFetchRequest<Entity> = NSFetchRequest(entityName: \"Entity\")", "var count = 0", "", "managedObjectContext.performAndWait() {", "    do {", "        count = try managedObjectContext.count(for: fetchRequest)", "    } catch {", "        print(\"Error counting objects: \\(error)\")", "    }", "}", "", "print(\"The fetch request would return \\(count) objects\")"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@\"Entity\"];", "__block NSUInteger count = 0;", "", "[managedObjectContext performBlockAndWait:^() {", "    NSError *error;", "    count = [managedObjectContext countForFetchRequest:fetchRequest error:&error];", "    if (count == NSNotFound) {", "        NSLog(@\"Error counting objects: %@\", error);", "    }", "}];", "", "NSLog(@\"The fetch request would return %lu objects\", count);"], metadata: None }] }] })
+    /// ### Subclassing notes
+    ///
+    /// You are strongly discouraged from subclassing `NSManagedObjectContext`. The change tracking and undo management mechanisms are highly optimized and hence intricate and delicate. Interposing your own additional logic that might impact [`processPendingChanges`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/processpendingchanges()) can have unforeseen consequences. In situations such as store migration, Core Data will create instances of `NSManagedObjectContext` for its own use. Under these circumstances, you cannot rely on any features of your custom subclass. Any `NSManagedObject` subclass must always be fully compatible with `NSManagedObjectContext` (that is, it cannot rely on features of a subclass of `NSManagedObjectContext`).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSManagedObjectContext;

@@ -12,31 +12,33 @@ use crate::*;
 
 /// The state of ownership for the drawable.
 ///
+/// ## Overview
+///
+/// Use these constants to determine whether the drawable is ready for you to use. When the drawable is in the [`cp_drawable_state_rendering`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/rendering)  state, you can begin drawing. Other states indicate the drawable is either busy or not assigned to a frame.
+///
+///
+/// The state of ownership for the drawable.
+///
 /// Use these constants to determine whether the drawable is ready
 /// for you to use. When the drawable is in the ``cp_drawable_state_rendering``
 /// state, you can begin drawing. Other states indicate the
 /// drawable is either busy or not assigned to a frame.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_drawable_state(pub u32);
 impl cp_drawable_state {
+    /// A drawable that’s not in use and ready for assignment to a frame.
     /// A drawable that is not in use and ready for assignment to a frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/available?language=objc)
     #[doc(alias = "cp_drawable_state_available")]
     pub const available: Self = Self(0);
+    /// A drawable that’s assigned to a frame and ready to accept your drawing commands.
     /// A drawable that is assigned to a frame and ready to accept
     /// your drawing commands.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/rendering?language=objc)
     #[doc(alias = "cp_drawable_state_rendering")]
     pub const rendering: Self = Self(1);
+    /// A drawable that the compositor is currently displaying.
     /// A drawable that the compositor is currently displaying onscreen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/presenting?language=objc)
     #[doc(alias = "cp_drawable_state_presenting")]
     pub const presenting: Self = Self(2);
 }
@@ -51,26 +53,29 @@ unsafe impl RefEncode for cp_drawable_state {
 
 /// The target where the drawable will be displayed/used.
 ///
+/// ## Overview
+///
+/// Use these constants to determine whether content should be drawn for certain targets.
+///
+///
+/// The target where the drawable will be displayed/used.
+///
 /// Use these constants to determine whether content should
 /// be drawn for certain targets.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_drawable_target(pub u32);
 impl cp_drawable_target {
+    /// A drawable that is targeting the built-in display, this is what a user will see in the device.
     /// A drawable that is targeting the built-in display,
     /// this is what a user will see in the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum/builtin?language=objc)
     #[doc(alias = "cp_drawable_target_built_in")]
     pub const built_in: Self = Self(0);
+    /// A drawable that will be used for capture purposes, this could be used for video or AirPlay streaming and will be visible to users outside of the device.
     /// A drawable that will be used for capture purposes,
     /// this could be used for video or AirPlay streaming and
     /// will be visible to users outside of the device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum/capture?language=objc)
     #[doc(alias = "cp_drawable_target_capture")]
     pub const capture: Self = Self(1);
 }
@@ -94,6 +99,15 @@ unsafe impl RefEncode for cp_drawable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_drawable", &[]));
 }
 
+/// A type that provides the textures and information you need to draw a frame of content.
+///
+/// ## Discussion
+///
+/// When you draw a frame of content, the frame’s  [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type provides the actual textures and rendering information you need. Do as much work as possible in advance to prepare for rendering, and retrieve the [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) only when you’re ready to start encoding commands into your Metal command buffers. The system recycles frames and their drawables for efficiency, so if you retrieve the drawable too early, it might not be ready to use.
+///
+/// Use the drawable’s [`LayerRenderer.Drawable.View`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view) instances to determine where to draw your content in the provided textures. After you finish encoding your content, call [`encodePresent(commandBuffer:)`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/encodepresent(commandbuffer:)) to add a presentation notification to your command buffer. This command tells Compositor Services when to display the frame, and is essential for displaying your frame on time.
+///
+///
 /// An opaque type that contains the textures and other information
 /// you need to set up your render pipeline.
 ///
@@ -103,11 +117,26 @@ unsafe impl RefEncode for cp_drawable {
 /// function. The layer manages a limited number of reusable drawable types
 /// and recycles them after each use. Draw only one frame at a time to ensure
 /// each new frame’s drawable type is ready in time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_t?language=objc)
 pub type cp_drawable_t = *mut cp_drawable;
 
 impl cp_drawable {
+    /// Returns the number of color and depth textures available in the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of textures available for drawing. For example, a return value of `2` indicates there are two color textures and two depth textures available.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned value as the maximum number of textures to retrieve from the [`cp_drawable_get_color_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_color_texture) or [`cp_drawable_get_depth_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_depth_texture) functions.
+    ///
+    ///
     /// Returns the number of color and depth textures available in the drawable.
     ///
     /// - Parameters:
@@ -123,8 +152,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_texture_count?language=objc)
     #[doc(alias = "cp_drawable_get_texture_count")]
     #[inline]
     pub unsafe fn texture_count(drawable: cp_drawable_t) -> usize {
@@ -134,6 +161,23 @@ impl cp_drawable {
         unsafe { cp_drawable_get_texture_count(drawable) }
     }
 
+    /// Returns the number of tracking areas textures available in the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of textures available for drawing. For example, a return value of `2` indicates there are two tracking areas textures available.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned value as the maximum number of textures to retrieve from the [`cp_drawable_get_tracking_areas_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture)function. This will be equal to [`cp_drawable_get_texture_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_texture_count) when tracking areas textures are enabled through the configuration otherwise will be 0.
+    ///
+    ///
     /// Returns the number of tracking areas textures available in the drawable.
     ///
     /// - Parameters:
@@ -149,8 +193,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture_count?language=objc)
     #[doc(alias = "cp_drawable_get_tracking_areas_texture_count")]
     #[inline]
     pub unsafe fn tracking_areas_texture_count(drawable: cp_drawable_t) -> usize {
@@ -160,6 +202,25 @@ impl cp_drawable {
         unsafe { cp_drawable_get_tracking_areas_texture_count(drawable) }
     }
 
+    /// Returns the depth texture at the specified index in the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - index: The index of the depth texture you want. The index must be greater than or equal to `0` and less than the value that [`cp_drawable_get_texture_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_texture_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Metal depth texture at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned texture in your render pipeline as the depth texture for your content. The layer’s texture topology determines the layout and content for each texture. The drawable’s views contain information about how those views map to the textures.
+    ///
+    ///
     /// Returns the depth texture at the specified index in the drawable.
     ///
     /// - Parameters:
@@ -177,8 +238,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_depth_texture?language=objc)
     #[doc(alias = "cp_drawable_get_depth_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -199,6 +258,25 @@ impl cp_drawable {
 
     /// Returns the color texture at the specified index in the drawable.
     ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - index: The index of the color texture you want. The index must be greater than or equal to `0` and less than the value that [`cp_drawable_get_texture_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_texture_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Metal color texture at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned texture in your render pipeline to store the pixels you want to appear. The layer’s texture topology determines the total number of textures, and the layout and content for each texture. Use the drawable’s views to map your content into specific portions of the textures.
+    ///
+    ///
+    /// Returns the color texture at the specified index in the drawable.
+    ///
     /// - Parameters:
     /// - drawable: The drawable for a frame.
     /// - index: The index of the color texture you want. The index must
@@ -214,8 +292,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_color_texture?language=objc)
     #[doc(alias = "cp_drawable_get_color_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -236,6 +312,25 @@ impl cp_drawable {
 
     /// Returns the tracking areas texture at the specified index in the drawable.
     ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - index: The index of the texture you want. The index must be greater than or equal to `0` and less than the value that [`cp_drawable_get_tracking_areas_texture_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Metal object index texture at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned texture in your render pipeline to store the tracking areas ID used for hover effects and indirect gestures. The layer’s texture topology determines the layout and content for each texture. The drawable’s views contain information about how those views map to the textures.
+    ///
+    ///
+    /// Returns the tracking areas texture at the specified index in the drawable.
+    ///
     /// - Parameters:
     /// - drawable: The drawable for a frame.
     /// - index: The index of the texture you want. The index must
@@ -251,8 +346,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_tracking_areas_texture?language=objc)
     #[doc(alias = "cp_drawable_get_tracking_areas_texture")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -271,6 +364,25 @@ impl cp_drawable {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Returns a tracking area which is create on the drawable’s list of tracking areas.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - identifier: The unique identifier for the tracking area.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A tracking area that was created.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A tracking area describes a region of a view that interacts with the gaze/cursor. Cannot use [`cp_tracking_area_identifier_invalid`](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_identifier_invalid) as an identifier.
+    ///
+    ///
     /// Returns a tracking area which is create on the drawable's list of tracking areas.
     ///
     /// - Parameters:
@@ -286,8 +398,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addtrackingarea(identifier:)?language=objc)
     #[doc(alias = "cp_drawable_add_tracking_area")]
     #[cfg(feature = "tracking_area")]
     #[inline]
@@ -304,6 +414,23 @@ impl cp_drawable {
         unsafe { cp_drawable_add_tracking_area(drawable, identifier) }
     }
 
+    /// Returns the number of rasterization rate maps associated with the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of rasterization rate maps available for drawing.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned value as the maximum number of rate maps to retrieve from the [`cp_drawable_get_rasterization_rate_map`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map) function.
+    ///
+    ///
     /// Returns the number of rasterization rate maps associated with the
     /// drawable.
     ///
@@ -317,8 +444,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map_count?language=objc)
     #[doc(alias = "cp_drawable_get_rasterization_rate_map_count")]
     #[inline]
     pub unsafe fn rasterization_rate_map_count(drawable: cp_drawable_t) -> usize {
@@ -328,6 +453,25 @@ impl cp_drawable {
         unsafe { cp_drawable_get_rasterization_rate_map_count(drawable) }
     }
 
+    /// Returns the rasterization rate map at the specified index in the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - index: The index of the rasterization rate map you want. The index must be greater than or equal to `0` and less than the value that [`cp_drawable_get_rasterization_rate_map_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rasterization rate map at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Apply the rasterization rate map to your render descriptor when you set up your drawing environment. A rate map defines how the GPU scales different parts of the texture to fill the display. You use these rate maps to save time and render less important parts of your scene at lower resolutions. For example, when foveation is enabled, the drawable includes a rasterization rate map to render the portions of the texture in someone’s peripheral vision at a lower resolution.
+    ///
+    ///
     /// Returns the rasterization rate map at the specified index in the drawable.
     ///
     /// - Parameters:
@@ -348,8 +492,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map?language=objc)
     #[doc(alias = "cp_drawable_get_rasterization_rate_map")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -368,6 +510,25 @@ impl cp_drawable {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Returns the flipped rasterization rate map at the specified index in the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - index: The index of the flipped rasterization rate map you want. The index must be greater than or equal to `0` and less than the value that [`cp_drawable_get_rasterization_rate_map_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_rasterization_rate_map_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The flipped rasterization rate map at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to retrieve a rasterization rate map flipped around the y-axis. Apply a flipped rasterization rate map to your render descriptor when you set up your drawing environment. Rasterization rate maps define how the GPU scales different parts of the texture to fill the display. You use them to save time and render less important parts of your scene at lower resolutions. For example, the drawable includes a rasterization rate map to render the portions of the texture in someone’s peripheral vision at a lower resolution. Flipped rasterization rate maps are available only when foveation is enabled and the [`cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps) function of your layer configuration returns `true`.
+    ///
+    ///
     /// Returns the Y flipped rasterization rate map at the specified index in the drawable.
     ///
     /// - Parameters:
@@ -395,8 +556,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_flipped_rasterization_rate_map?language=objc)
     #[doc(alias = "cp_drawable_get_flipped_rasterization_rate_map")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -417,6 +576,25 @@ impl cp_drawable {
 
     /// Returns the number of separate views to draw for the frame.
     ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of separate views to draw.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The number of views corresponds to the number of separate versions of your scene you create for the frame. For a device with stereoscopic video, you render two views — one for each eye. The actual number of views can vary based on the drawing environment or your app’s configuration. For example, you typically render only one view in Simulator.
+    ///
+    /// Fetch the actual views using the [`cp_drawable_get_view`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_view) function.
+    ///
+    ///
+    /// Returns the number of separate views to draw for the frame.
+    ///
     /// - Parameters:
     /// - drawable: The drawable for a frame.
     /// - Returns: The number of separate views to draw.
@@ -433,8 +611,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_view_count?language=objc)
     #[doc(alias = "cp_drawable_get_view_count")]
     #[inline]
     pub unsafe fn view_count(drawable: cp_drawable_t) -> usize {
@@ -444,6 +620,25 @@ impl cp_drawable {
         unsafe { cp_drawable_get_view_count(drawable) }
     }
 
+    /// Returns the specified view from the drawable.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - index: The zero-based index of the view you want. The index must be greater than or equal to 0 and less than the value that [`cp_drawable_get_view_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_view_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The view at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The drawable provides one view for each distinct image you need to render. For example, a stereoscopic display contains a separate view for each eye.
+    ///
+    ///
     /// Returns the specified view from the drawable.
     ///
     /// - Parameters:
@@ -459,8 +654,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_view?language=objc)
     #[doc(alias = "cp_drawable_get_view")]
     #[cfg(feature = "view")]
     #[inline]
@@ -471,6 +664,19 @@ impl cp_drawable {
         unsafe { cp_drawable_get_view(drawable, index) }
     }
 
+    /// Encodes a notification event to the specified command buffer to present the drawable’s content onscreen.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    /// - command_buffer: The command buffer you used to encode your frame’s content. If the command buffer is already committed, this function aborts your app with an error.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function as the last step before committing the specified command buffer. Specifically, call it after you finish encoding all the work required to render the frame, and immediately before you call the command buffer’s [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()) method. The function adds a presentation event to the buffer that causes the compositor to display your frame.
+    ///
+    ///
     /// Encodes a notification event to the specified command buffer to present
     /// the drawable’s content onscreen.
     ///
@@ -494,8 +700,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/encodepresent(commandbuffer:)?language=objc)
     #[doc(alias = "cp_drawable_encode_present")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -512,6 +716,25 @@ impl cp_drawable {
         unsafe { cp_drawable_encode_present(drawable, command_buffer) }
     }
 
+    /// Encodes a notification event to the specified command buffer to present the drawable’s content onscreen.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Commit the command buffer to the layer queue before calling present.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Call this function as the last step before committing the specified command buffer. Specifically, call it after you finish encoding all the work required to render the frame, and immediately before you call the command buffer’s [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()) method. The function adds a presentation event to the buffer that causes the compositor to display your frame.
+    ///
+    ///
     /// Encodes a notification event to the specified command buffer to present
     /// the drawable’s content onscreen.
     ///
@@ -532,8 +755,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/encodepresent()?language=objc)
     #[doc(alias = "cp_drawable_mtl4_encode_present")]
     #[inline]
     pub unsafe fn mtl4_encode_present(drawable: cp_drawable_t) {
@@ -543,6 +764,25 @@ impl cp_drawable {
         unsafe { cp_drawable_mtl4_encode_present(drawable) }
     }
 
+    /// The current operational state of a drawable instance.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`cp_drawable_state`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum) instance that represents the drawable’s state.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A state value of [`cp_drawable_state_rendering`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/rendering) indicates the drawable type is ready for you to draw your content. Other values indicate that Compositor Services currently owns the drawable.
+    ///
+    /// Compositor Services reuses the underlying data structures associated with drawable types. The drawable’s state indicates whether it’s ready for you to draw to it. Run your drawing operations only when the drawable’s state is equal to [`cp_drawable_state_rendering`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum/rendering).
+    ///
+    ///
     /// Returns a value that indicates the current operational state
     /// of the drawable type.
     ///
@@ -559,8 +799,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.property?language=objc)
     #[doc(alias = "cp_drawable_get_state")]
     #[inline]
     pub unsafe fn state(drawable: cp_drawable_t) -> cp_drawable_state {
@@ -570,6 +808,19 @@ impl cp_drawable {
         unsafe { cp_drawable_get_state(drawable) }
     }
 
+    /// Returns a value that indicates the target of the drawable type.
+    ///
+    /// ## Return Value
+    ///
+    /// [`cp_drawable_target_built_in`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum/builtin) if the drawable will be displayed for the user in the device, or any other value if the drawable maybe used for other purposes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When drawing for the drawable this can be used to alter what is rendered for different targets. Renderer should always prioritize [`cp_drawable_target_built_in`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum/builtin) target type.
+    ///
+    ///
     /// Returns a value that indicates the target of the drawable type.
     ///
     /// - Parameters: The drawable to check.
@@ -585,8 +836,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.property?language=objc)
     #[doc(alias = "cp_drawable_get_target")]
     #[inline]
     pub unsafe fn target(drawable: cp_drawable_t) -> cp_drawable_target {
@@ -596,6 +845,23 @@ impl cp_drawable {
         unsafe { cp_drawable_get_target(drawable) }
     }
 
+    /// The sequential index of a drawable’s frame.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The presentation index of the frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your immersive space becomes visible, you start drawing frames of content. Compositor Services assigns a sequential index to each frame to indicate its position in the final output. You can use these indexes to differentiate frames during drawing or predict future frame indexes. For example, you might start playback of an audio file when a specific frame appears.
+    ///
+    ///
     /// Returns the index of the frame of content for you to produce.
     ///
     /// - Parameters:
@@ -612,8 +878,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/presentationframeindex?language=objc)
     #[doc(alias = "cp_drawable_get_presentation_frame_index")]
     #[cfg(feature = "cp_types")]
     #[inline]
@@ -626,6 +890,25 @@ impl cp_drawable {
         unsafe { cp_drawable_get_presentation_frame_index(drawable) }
     }
 
+    /// The timing information for the drawable’s frame.
+    ///
+    /// Parameters:
+    /// - drawable: A drawable that represents a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`cp_frame_timing_t`](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_t) instance for the drawable’s frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This retrieves a frame’s timing information from a drawable instance that represents that frame. For Swift, it’s an alternative to calling a frame’s [`predictTiming()`](https://developer.apple.com/documentation/compositorservices/layerrenderer/frame/predicttiming()) method. For ObjectiveC, it’s an alternative to calling the [`cp_frame_predict_timing`](https://developer.apple.com/documentation/compositorservices/cp_frame_predict_timing) function.
+    ///
+    /// In ObjectiveC, you can determine when to start updating your data structures by passing a [`cp_frame_timing_t`](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_t) instance to the [`cp_frame_timing_get_optimal_input_time`](https://developer.apple.com/documentation/compositorservices/cp_frame_timing_get_optimal_input_time) function.
+    ///
+    ///
     /// Returns the timing information for the frame of the specified drawable.
     ///
     /// - Parameters:
@@ -639,8 +922,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/frametiming?language=objc)
     #[doc(alias = "cp_drawable_get_frame_timing")]
     #[cfg(feature = "frame_timing")]
     #[inline]
@@ -651,6 +932,23 @@ impl cp_drawable {
         unsafe { cp_drawable_get_frame_timing(drawable) }
     }
 
+    /// Returns whether content capture is protected and it is safe to draw content that should be protected from capture.
+    ///
+    /// Parameters:
+    /// - drawable: The drawable for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Whether it is safe to draw content that is for built-in display only. When this value is true, any capture of content being displayed on the built-in display will be obscured by the system. If false, it cannot be assumed that content will not be seen by users outside of the device, both live and recorded.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to ensure that drawing that is only meant for eyes in the device is not drawn when false. Only adopt if app has adopted SwiftUI `activatesContentCaptureProtected` scene modifier and drawing will have content that is not desired to meant to be captured. For `cp_drawable_target_capture` this will always return false as it is upto the renderer to handle drawing content that will be captured beyond the built-in displays.
+    ///
+    ///
     /// Returns whether content capture is protected and it is safe to
     /// draw content that should be protected from capture.
     ///
@@ -674,8 +972,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/iscontentcaptureprotected?language=objc)
     #[doc(alias = "cp_drawable_is_content_capture_protected")]
     #[inline]
     pub unsafe fn is_content_capture_protected(drawable: cp_drawable_t) -> bool {
@@ -685,6 +981,13 @@ impl cp_drawable {
         unsafe { cp_drawable_is_content_capture_protected(drawable) }
     }
 
+    /// Adds and returns a render context to a `LayerRenderer.Drawable` providing a metal command buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// This object draws any content that the compositor needs to render in the app. The [`LayerRenderer.Drawable.RenderContext`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext) can only be used when the layer renderer is using layered layout or on platforms that only render one view, such as the Simulator. The `RenderContext` makes use of the [`deviceAnchor`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/deviceanchor) set in [`cp_drawable_set_device_anchor`](https://developer.apple.com/documentation/compositorservices/cp_drawable_set_device_anchor). Only use the `deviceAnchor` in the layer renderer drawable before calling [`cp_drawable_add_render_context`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addrendercontext(commandbuffer:)).
+    ///
+    ///
     /// Adds a render context to a drawable.
     /// This object will draw any content that the compositor needs to render
     /// in the application.
@@ -698,8 +1001,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addrendercontext(commandbuffer:)?language=objc)
     #[doc(alias = "cp_drawable_add_render_context")]
     #[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
     #[inline]
@@ -716,6 +1017,13 @@ impl cp_drawable {
         unsafe { cp_drawable_add_render_context(drawable, cmd_buffer) }
     }
 
+    /// Adds and returns a render context to a `LayerRenderer.Drawable` that draws any content required by the compositor.
+    ///
+    /// ## Discussion
+    ///
+    /// Call `renderContext.drawMaskOnStencilAttachment(self:commandEncoder:value:)` on the returned [`LayerRenderer.Drawable.RenderContext`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext) to render only the necessary pixels. You can only use the [`LayerRenderer.Drawable.RenderContext`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/rendercontext) API in the context of layered layout rendering or on platforms that only render one view, such as the Simulator. The `RenderContext` uses the [`deviceAnchor`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/deviceanchor) set in [`cp_drawable_set_device_anchor`](https://developer.apple.com/documentation/compositorservices/cp_drawable_set_device_anchor). Set the `deviceAnchor` in the layer renderer drawable before calling [`cp_drawable_add_render_context`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addrendercontext(commandbuffer:)).
+    ///
+    ///
     /// Adds a render context to a drawable.
     /// This object will draw any content that the compositor needs to render
     /// in the application.
@@ -729,8 +1037,6 @@ impl cp_drawable {
     /// # Safety
     ///
     /// `drawable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/addrendercontext()?language=objc)
     #[doc(alias = "cp_drawable_add_mtl4_render_context")]
     #[cfg(feature = "drawable_render_context")]
     #[inline]
@@ -755,15 +1061,39 @@ unsafe impl RefEncode for cp_drawable_array {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_drawable_array", &[]));
 }
 
+/// An opaque type that contains the drawable types and other information you need to set up your render pipeline.
+///
+/// ## Discussion
+///
+/// See [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) for more information about drawables.
+///
+///
 /// An opaque type that contains the drawable types and other information
 /// you need to set up your render pipeline.
 ///
 /// See ``cp_drawable_t`` for more information about drawables.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_t?language=objc)
 pub type cp_drawable_array_t = *mut cp_drawable_array;
 
 impl cp_drawable_array {
+    /// Returns the drawable at the specified index in the array.
+    ///
+    /// Parameters:
+    /// - drawable_array: The drawable array for a frame.
+    ///
+    /// - index: The index of the drawable you want. The index must be greater than or equal to `0` and less than the value that [`cp_drawable_array_get_count`](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_get_count) returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The drawable available for drawing at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`cp_drawable_t`](https://developer.apple.com/documentation/compositorservices/cp_drawable_t) type contains the textures and other information you need to set up your render descriptor in Metal.
+    ///
+    ///
     /// Returns the drawable at the specified index in the array.
     ///
     /// - Parameters:
@@ -779,8 +1109,6 @@ impl cp_drawable_array {
     /// # Safety
     ///
     /// `drawable_array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_get_drawable?language=objc)
     #[doc(alias = "cp_drawable_array_get_drawable")]
     #[inline]
     pub unsafe fn drawable(drawable_array: cp_drawable_array_t, index: usize) -> cp_drawable_t {
@@ -795,6 +1123,23 @@ impl cp_drawable_array {
 
     /// Returns the number of drawables in the array.
     ///
+    /// Parameters:
+    /// - drawable_array: The drawable array for a frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of drawables available for drawing. For example, a return value of `2` indicates there are two drawables for this frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned value as the maximum number of textures to retrieve from the [`cp_drawable_array_get_drawable`](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_get_drawable) functions.
+    ///
+    ///
+    /// Returns the number of drawables in the array.
+    ///
     /// - Parameters:
     /// - drawable_array: The drawable array for a frame.
     /// - Returns: The number of drawables available for drawing. For example, a return
@@ -806,8 +1151,6 @@ impl cp_drawable_array {
     /// # Safety
     ///
     /// `drawable_array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array_get_count?language=objc)
     #[doc(alias = "cp_drawable_array_get_count")]
     #[inline]
     pub unsafe fn count(drawable_array: cp_drawable_array_t) -> usize {

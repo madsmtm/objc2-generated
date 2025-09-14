@@ -10,7 +10,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlevent?language=objc)
+    /// A simple semaphore to synchronize access to Metal resources.
+    ///
+    /// ## Overview
+    ///
+    /// You can only get an [`MTLEvent`](https://developer.apple.com/documentation/metal/mtlevent) using the [`newEvent`](https://developer.apple.com/documentation/metal/mtldevice/makeevent()) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance. Events allow you to synchronize commands executing on a single Metal device.
+    ///
+    /// An event is an unsigned 64-bit integer, starting with an initial value of `0` and can only increase in value afterwards. You signal an event change by calling an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance’s [`encodeSignalEvent:value:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/encodesignalevent(_:value:)) method. The command buffer signals the event after the GPU completes running all previous commands, and updates its value if necessary.
+    ///
+    /// To wait for an event signal, call [`encodeWaitForEvent:value:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/encodewaitforevent(_:value:)) on a command buffer, passing in the value to wait for. When the device executes the command buffer and reaches this wait command, it compares the event’s current value to the provided value. The device only starts new commands when the event reaches a value equal to or greater than the requested value.
+    ///
+    /// You can encode signaling and waiting on events into different command buffers, even command buffers executing on two different command queues for the same device. You can also encode these commands independently of each other, meaning, for example, that you can wait on signals you haven’t encoded yet.
+    ///
+    /// For more information, see [Synchronizing events within a single device](https://developer.apple.com/documentation/metal/synchronizing-events-within-a-single-device).
+    ///
+    ///
     pub unsafe trait MTLEvent: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         /// The device this event can be used with. Will be nil when the event is shared across devices (i.e. MTLSharedEvent).
@@ -33,9 +47,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A listener for shareable event notifications.
     /// This class provides a simple interface for handling the dispatching of MTLSharedEvent notifications from Metal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventlistener?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventListener;
@@ -93,13 +106,25 @@ impl DefaultRetained for MTLSharedEventListener {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventnotificationblock?language=objc)
+/// A block of code invoked after a shareable event’s signal value equals or exceeds a given value.
 #[cfg(feature = "block2")]
 pub type MTLSharedEventNotificationBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLSharedEvent>>, u64)>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedevent?language=objc)
+    /// An instance you use to synchronize access to Metal resources across multiple CPUs, GPUs, and processes.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MTLSharedEvent`](https://developer.apple.com/documentation/metal/mtlsharedevent) protocol inherits from and adds additional behaviors to [`MTLEvent`](https://developer.apple.com/documentation/metal/mtlevent). Use shared events only when you need to synchronize changes to resources across multiple Metal device instances, across processes, or between a device instance and CPU access to resources. Otherwise, use nonshared events.
+    ///
+    /// Don’t implement this protocol yourself; instead, to create an [`MTLSharedEvent`](https://developer.apple.com/documentation/metal/mtlsharedevent) instance, call the [`newSharedEvent`](https://developer.apple.com/documentation/metal/mtldevice/makesharedevent()) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+    ///
+    /// To pass this event to another process, first create a handle to the shared event by calling its [`newSharedEventHandle`](https://developer.apple.com/documentation/metal/mtlsharedevent/makesharedeventhandle()) method. Then, transfer the handle to another process with XPC, and from that process, call the [`newSharedEventWithHandle:`](https://developer.apple.com/documentation/metal/mtldevice/makesharedevent(handle:)) of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+    ///
+    /// For more information, see [Synchronizing events across multiple devices or processes](https://developer.apple.com/documentation/metal/synchronizing-events-across-multiple-devices-or-processes) and [Synchronizing events between a GPU and the CPU](https://developer.apple.com/documentation/metal/synchronizing-events-between-a-gpu-and-the-cpu).
+    ///
+    ///
     pub unsafe trait MTLSharedEvent: MTLEvent {
         #[cfg(feature = "block2")]
         /// # Safety
@@ -134,7 +159,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsharedeventhandle?language=objc)
+    /// An instance you use to recreate a shareable event.
+    ///
+    /// ## Overview
+    ///
+    /// To create a `MTLSharedEventHandle` instance, call the [`newSharedEventHandle`](https://developer.apple.com/documentation/metal/mtlsharedevent/makesharedeventhandle()) method on an [`MTLSharedEvent`](https://developer.apple.com/documentation/metal/mtlsharedevent) instance. Use an XPC conection to pass a `MTLSharedEventHandle` instance to another process. To recreate the event, call the [`newSharedEventWithHandle:`](https://developer.apple.com/documentation/metal/mtldevice/makesharedevent(handle:)) on an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSharedEventHandle;

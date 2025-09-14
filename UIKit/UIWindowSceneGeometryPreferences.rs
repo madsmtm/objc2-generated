@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences?language=objc)
+    /// An abstract superclass for representing window scene geometry preferences.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowSceneGeometryPreferences;

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonesoperation?language=objc)
+    /// An operation for retrieving record zones from a database.
+    ///
+    /// ## Overview
+    ///
+    /// Use this operation object to fetch record zones so that you can ascertain their capabilities.
+    ///
+    /// If you assign a handler to the [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property of the operation, CloudKit calls it after the operation executes and returns its results. You can use the handler to perform any housekeeping tasks that relate to the operation, but don’t use it to process the results of the operation. The handler you specify should manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    ///
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

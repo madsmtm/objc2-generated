@@ -10,7 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitem?language=objc)
+    /// A point of interest on the map.
+    ///
+    /// ## Overview
+    ///
+    /// A map item includes a geographic location and any interesting data that might apply to that location, such as the address at that location and the name of a business at that address. You can also create a special `MKMapItem` object representing the user’s location.
+    ///
+    /// Use this class to do the following:
+    ///
+    /// - Share map-related data with the Maps app.
+    ///
+    /// - Handle requests for directions that originate from the Maps app.
+    ///
+    /// To display information in the Maps app, create an `MKMapItem` object with the information you want to display and call the [`openMapsWithItems:launchOptions:`](https://developer.apple.com/documentation/mapkit/mkmapitem/openmaps(with:launchoptions:)) method. The Maps app displays that location on the map and shows the information you provide.
+    ///
+    /// If you implement a routing app, the Maps app provides two `MKMapItem` objects representing the start and end points. Use the information in those two objects to plot the route and generate directions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItem;
@@ -198,57 +214,107 @@ impl MKMapItem {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodekey?language=objc)
+    /// The mode of transportation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) corresponding to one of the values described in [Directions mode values](https://developer.apple.com/documentation/mapkit/directions-mode-values). You specify this key to tell the Maps app which mode of transport to use when generating directions.
+    ///
+    ///
     pub static MKLaunchOptionsDirectionsModeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsmaptypekey?language=objc)
+    /// The type of map (standard, satellite, or hybrid) to display.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object whose value is an integer corresponding to an [`MKMapType`](https://developer.apple.com/documentation/mapkit/mkmaptype) value.
+    ///
+    ///
     pub static MKLaunchOptionsMapTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsshowstraffickey?language=objc)
+    /// A Boolean value that indicates whether to display traffic information.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a Boolean value. If you don’t specify this key, the Maps app uses its current settings to determine whether to display traffic.
+    ///
+    ///
     pub static MKLaunchOptionsShowsTrafficKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedefault?language=objc)
+    /// Directions that match the user’s preferred transportation type.
     pub static MKLaunchOptionsDirectionsModeDefault: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodedriving?language=objc)
+    /// Driving directions between the specified start and end points.
     pub static MKLaunchOptionsDirectionsModeDriving: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodewalking?language=objc)
+    /// Walking directions between the specified start and end points.
     pub static MKLaunchOptionsDirectionsModeWalking: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodetransit?language=objc)
+    /// Public transit directions between the specified start and end points.
     pub static MKLaunchOptionsDirectionsModeTransit: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsdirectionsmodecycling?language=objc)
+    /// Cycling directions between the specified start and end points.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this launch options key to open the Maps app directly in the mode that enables route planning that returns cycling directions, as shown in this example.
+    ///
+    /// ```swift
+    ///     Button("Cycling Directions") {
+    ///         selectedItem.openInMaps(
+    ///             launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeCycling]
+    ///         )
+    ///     }
+    /// ```
+    ///
+    ///
     pub static MKLaunchOptionsDirectionsModeCycling: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsmapcenterkey?language=objc)
+    /// The coordinate value on which to center the map.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains an encoded [`CLLocationCoordinate2D`](https://developer.apple.com/documentation/corelocation/cllocationcoordinate2d) structure.
+    ///
+    ///
     pub static MKLaunchOptionsMapCenterKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionsmapspankey?language=objc)
+    /// The amount of the map to display.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains an encoded [`MKCoordinateSpan`](https://developer.apple.com/documentation/mapkit/mkcoordinatespan) structure.
+    ///
+    ///
     pub static MKLaunchOptionsMapSpanKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklaunchoptionscamerakey?language=objc)
+    /// The virtual camera to use for viewing the map.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`MKMapCamera`](https://developer.apple.com/documentation/mapkit/mkmapcamera) object that describes a virtual camera that can specify a 3D perspective for the map. If you don’t specify this key, the Maps app uses its current settings to define the appearance of the map.
+    ///
+    ///
     pub static MKLaunchOptionsCameraKey: &'static NSString;
 }
 
@@ -262,6 +328,6 @@ extern_conformance!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemtypeidentifier?language=objc)
+    /// A constant that indicates the type of a serialized map item.
     pub static MKMapItemTypeIdentifier: &'static NSString;
 }

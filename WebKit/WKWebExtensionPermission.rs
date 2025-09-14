@@ -4,123 +4,106 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants for specifying permission in a [`WKWebExtensionContext`](https://developer.apple.com/documentation/webkit/wkwebextensioncontext).
 /// Constants for specifying permission in a ``WKWebExtensionContext``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type WKWebExtensionPermission = NSString;
 
 extern "C" {
+    /// A request indicating that when a person interacts with the extension, the system grants extra permissions for the active tab only.
     /// The `activeTab` permission requests that when the user interacts with the extension, the extension is granted extra permissions for the active tab only.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/activetab?language=objc)
     pub static WKWebExtensionPermissionActiveTab: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.alarms` APIs.
     /// The `alarms` permission requests access to the `browser.alarms` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/alarms?language=objc)
     pub static WKWebExtensionPermissionAlarms: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to write to the clipboard.
     /// The `clipboardWrite` permission requests access to write to the clipboard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/clipboardwrite?language=objc)
     pub static WKWebExtensionPermissionClipboardWrite: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.contextMenus` APIs.
     /// The `contextMenus` permission requests access to the `browser.contextMenus` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/contextmenus?language=objc)
     pub static WKWebExtensionPermissionContextMenus: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.cookies` APIs.
     /// The `cookies` permission requests access to the `browser.cookies` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/cookies?language=objc)
     pub static WKWebExtensionPermissionCookies: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.declarativeNetRequest` APIs.
     /// The `declarativeNetRequest` permission requests access to the `browser.declarativeNetRequest` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/declarativenetrequest?language=objc)
     pub static WKWebExtensionPermissionDeclarativeNetRequest:
         Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.declarativeNetRequest` APIs with extra information on matched rules.
     /// The `declarativeNetRequestFeedback` permission requests access to the `browser.declarativeNetRequest` APIs with extra information on matched rules.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/declarativenetrequestfeedback?language=objc)
     pub static WKWebExtensionPermissionDeclarativeNetRequestFeedback:
         Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.declarativeNetRequest` APIs with the ability to modify or redirect requests.
     /// The `declarativeNetRequestWithHostAccess` permission requests access to the `browser.declarativeNetRequest` APIs with the ability to modify or redirect requests.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/declarativenetrequestwithhostaccess?language=objc)
     pub static WKWebExtensionPermissionDeclarativeNetRequestWithHostAccess:
         Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.menus` APIs.
     /// The `menus` permission requests access to the `browser.menus` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/menus?language=objc)
     pub static WKWebExtensionPermissionMenus: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to send messages to the app extension bundle.
     /// The `nativeMessaging` permission requests access to send messages to the App Extension bundle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/nativemessaging?language=objc)
     pub static WKWebExtensionPermissionNativeMessaging: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.scripting` APIs.
     /// The `scripting` permission requests access to the `browser.scripting` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/scripting?language=objc)
     pub static WKWebExtensionPermissionScripting: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.storage` APIs.
     /// The `storage` permission requests access to the `browser.storage` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/storage?language=objc)
     pub static WKWebExtensionPermissionStorage: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to extra information on the `browser.tabs` APIs.
     /// The `tabs` permission requests access extra information on the `browser.tabs` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/tabs?language=objc)
     pub static WKWebExtensionPermissionTabs: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to an unlimited quota on the `browser.storage.local` APIs.
     /// The `unlimitedStorage` permission requests access to an unlimited quota on the `browser.storage.local` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/unlimitedstorage?language=objc)
     pub static WKWebExtensionPermissionUnlimitedStorage: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.webNavigation` APIs.
     /// The `webNavigation` permission requests access to the `browser.webNavigation` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/webnavigation?language=objc)
     pub static WKWebExtensionPermissionWebNavigation: Option<&'static WKWebExtensionPermission>;
 }
 
 extern "C" {
+    /// A request for access to the `browser.webRequest` APIs.
     /// The `webRequest` permission requests access to the `browser.webRequest` APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/permission/webrequest?language=objc)
     pub static WKWebExtensionPermissionWebRequest: Option<&'static WKWebExtensionPermission>;
 }

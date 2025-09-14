@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialregistrationrequest?language=objc)
+    /// An interface you use to respond to passkey-creation challenges in a web browser.
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
         #[unsafe(method(clientData))]

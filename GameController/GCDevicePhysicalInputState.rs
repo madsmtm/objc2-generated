@@ -7,14 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties for physical devices with elements.
+    ///
+    /// ## Overview
+    ///
+    /// It’s safe to call any property and method implementation of this protocol from any thread, as long as you don’t do so from multiple threads concurrently.
+    ///
+    ///
     /// An object conforming to
     /// `GCDevicePhysicalInputState`contains the state of
     /// a device's physical inputs.  This may be either the "live" physical input
     /// state if the same object also conforms to
     /// `GCDevicePhysicalInput,`or a
     /// snapshot of the physical input state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputstate?language=objc)
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[cfg(feature = "GCDevice")]
         /// The device that this profile is mapping input from.

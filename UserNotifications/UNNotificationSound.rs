@@ -7,12 +7,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsoundname?language=objc)
+/// A string providing the name of a sound file.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UNNotificationSoundName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsound?language=objc)
+    /// The sound played upon delivery of a notification.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UNNotificationSound`](https://developer.apple.com/documentation/usernotifications/unnotificationsound) object when you want the system to play a specific sound when it delivers with your notification. To play the default system sound, create your sound object using the [`defaultSound`](https://developer.apple.com/documentation/usernotifications/unnotificationsound/default) method. If you want to play a custom sound, create a new sound object and specify the name of the audio file that you want to play.
+    ///
+    /// For local notifications, assign the sound object to the [`sound`](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent/sound) property of your [`UNMutableNotificationContent`](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent) object. For a remote notification, assign the name of your sound file to the `sound` key in the `aps` dictionary. You can also use a notification service app extension to add a sound file to a notification shortly before delivery. In your extension, create a [`UNNotificationSound`](https://developer.apple.com/documentation/usernotifications/unnotificationsound) object and add it to your notification content in the same way that you’d for a local notification.
+    ///
+    /// Audio files must already be on the user’s device before the system can play them. If you use a predefined set of sounds for your notifications, include the audio files in your app’s bundle. For all other sounds, the [`UNNotificationSound`](https://developer.apple.com/documentation/usernotifications/unnotificationsound) object looks only in the following locations:
+    ///
+    /// - The `/Library/Sounds` directory of the app’s container directory.
+    ///
+    /// - The `/Library/Sounds` directory of one of the app’s shared group container directories.
+    ///
+    /// - The main bundle of the current executable.
+    ///
+    /// ### Prepare Sound Resources
+    ///
+    /// The system sound facility plays custom alert sounds, so they must be in one of the following audio data formats:
+    ///
+    /// - Linear PCM
+    ///
+    /// - MA4 (IMA/ADPCM)
+    ///
+    /// - µLaw
+    ///
+    /// - aLaw
+    ///
+    /// You can package the audio data in an `aiff`, `wav`, or `caf` file. Sound files must be less than 30 seconds in length. If the sound file is longer than 30 seconds, the system plays the default sound instead.
+    ///
+    /// You can use the `afconvert` command-line tool to convert sounds. For example, to convert the system sound `Submarine.aiff` to IMA4 audio in a CAF file, use the following command in Terminal:
+    ///
+    /// `afconvert /System/Library/Sounds/Submarine.aiff ~/Desktop/sub.caf -d ima4 -f caff -v`
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationSound;

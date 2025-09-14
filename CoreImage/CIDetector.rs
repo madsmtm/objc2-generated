@@ -7,11 +7,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image processor that identifies notable features, such as faces and barcodes, in a still image or video.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In macOS 10.13, iOS 11, and tvOS 11 or later, the [`Vision`](https://developer.apple.com/documentation/vision) framework replaces these classes for identifying and analyzing image features. See [`VNRequest`](https://developer.apple.com/documentation/vision/vnrequest).
+    ///
+    ///
+    ///
+    /// </div>
+    /// A `CIDetector` object uses image processing to search for and identify notable features (faces, rectangles, and barcodes) in a still image or video. Detected features are represented by [`CIFeature`](https://developer.apple.com/documentation/coreimage/cifeature) objects that provide more information about each feature.
+    ///
+    /// This class can maintain many state variables that can impact performance. So for best performance, reuse `CIDetector` instances instead of creating new ones.
+    ///
+    ///
     /// Detects features in images.
     ///
     /// This class potentially holds onto a lot of state. Hence it may be beneficial from a performance perspective to re-use the same CIDetector instance. Specifying a CIContext when creating a detector may have an impact on performance since this context may be used when analyzing an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIDetector;
@@ -87,61 +102,112 @@ impl CIDetector {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypeface?language=objc)
+    /// A detector that searches for faces in a still image or video, returning [`CIFaceFeature`](https://developer.apple.com/documentation/coreimage/cifacefeature) objects that provide information about detected faces.
+    ///
+    /// ## Discussion
+    ///
+    /// For better accuracy and performance in face detection, use the [`CIDetectorImageOrientation`](https://developer.apple.com/documentation/coreimage/cidetectorimageorientation) key to specify the image orientation when using the [`featuresInImage:options:`](https://developer.apple.com/documentation/coreimage/cidetector/features(in:options:)) method.
+    ///
+    ///
     pub static CIDetectorTypeFace: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortyperectangle?language=objc)
+    /// A detector that searches for rectangular areas in a still image or video, returning [`CIRectangleFeature`](https://developer.apple.com/documentation/coreimage/cirectanglefeature) objects that provide information about detected regions.
+    ///
+    /// ## Discussion
+    ///
+    /// The rectangle detector finds areas that are likely to represent rectangular objects that appear in perspective in the image, such as papers or books seen on a desktop.
+    ///
+    ///
     pub static CIDetectorTypeRectangle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode?language=objc)
+    /// A detector that searches for Quick Response codes (a type of 2D barcode) in a still image or video, returning [`CIQRCodeFeature`](https://developer.apple.com/documentation/coreimage/ciqrcodefeature) objects that provide information about detected barcodes.
     pub static CIDetectorTypeQRCode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortypetext?language=objc)
+    /// A detector that searches for text in a still image or video, returning [`CITextFeature`](https://developer.apple.com/documentation/coreimage/citextfeature) objects that provide information about detected regions.
+    ///
+    /// ## Discussion
+    ///
+    /// The text detector finds areas that are likely to contain upright text, but does not perform optical character recognition.
+    ///
+    ///
     pub static CIDetectorTypeText: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraccuracy?language=objc)
+    /// A key used to specify the desired accuracy for the detector.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with the key should be one of the values found in [Detector Accuracy Options](https://developer.apple.com/documentation/coreimage/detector-accuracy-options).
+    ///
+    ///
     pub static CIDetectorAccuracy: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraccuracylow?language=objc)
+    /// Indicates that the detector should choose techniques that are lower in accuracy, but can be processed more quickly.
     pub static CIDetectorAccuracyLow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraccuracyhigh?language=objc)
+    /// Indicates that the detector should choose techniques that are higher in accuracy, even if it requires more processing time.
     pub static CIDetectorAccuracyHigh: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectortracking?language=objc)
+    /// A key used to enable or disable face tracking for the detector. Use this option when you want to track faces across frames in a video.
     pub static CIDetectorTracking: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorminfeaturesize?language=objc)
+    /// A key used to specify the minimum size that the detector will recognize as a feature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an `NSNumber` object ranging from 0.0 through 1.0 that represents a fraction of the minor dimension of the image.
+    ///
+    ///
     pub static CIDetectorMinFeatureSize: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectormaxfeaturecount?language=objc)
+    /// The key to the configuration dictionary whose value represents the maximum number of features the detector should return.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is 1.  Valid values fall between 1 and 256 inclusive.
+    ///
+    ///
     pub static CIDetectorMaxFeatureCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectornumberofangles?language=objc)
+    /// The number of perspectives to use for detecting a face in video input.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an `NSNumber` object containing the number 1, 3, 5, 7, 9, or 11. At higher numbers of angles, face detection in video becomes more accurate, but at a higher computational cost.
+    ///
+    ///
     pub static CIDetectorNumberOfAngles: &'static NSString;
 }
 
 extern "C" {
+    /// An option for the display orientation of the image whose features you want to detect.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object whose value is an integer between `1` and `8`. The TIFF and EXIF specifications define these values to indicate where the pixel coordinate origin (0,0) of the image should appear when it is displayed. The default value is `1`, indicating that the origin is in the top left corner of the image. For further details, see [`kCGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/kcgimagepropertyorientation).
+    ///
+    /// Core Image detects only faces whose orientation matches that of the image. You should provide a value for this key if you want to detect faces in a different orientation.
+    ///
+    ///
     /// A dictionary key that configures a Core Image feature detection operation
     /// to account for the orientation the image.
     ///
@@ -155,12 +221,11 @@ extern "C" {
     ///
     /// Regardless of the orientation values the ``/CIFeature/bounds-property`` which is always measured in
     /// the cartesean coordinates system of the image that you pass to the detector.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorimageorientation?language=objc)
     pub static CIDetectorImageOrientation: &'static NSString;
 }
 
 extern "C" {
+    /// An option for whether Core Image will perform additional processing to recognize closed eyes in detected faces.
     /// A dictionary key that configures a Core Image face feature detection operation
     /// to perform additional processing to recognize closed eyes in detected faces.
     ///
@@ -168,12 +233,11 @@ extern "C" {
     ///
     /// If the value of the key is true, then facial expressions such as blinking and smiles are extracted.
     /// This is needed for the ``/CIFaceFeature/leftEyeClosed-property`` and ``/CIFaceFeature/rightEyeClosed-property`` to function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoreyeblink?language=objc)
     pub static CIDetectorEyeBlink: &'static NSString;
 }
 
 extern "C" {
+    /// An option for whether Core Image will perform additional processing to recognize smiles in detected faces.
     /// A dictionary key that configures a Core Image face feature detection operation
     /// to perform additional processing to recognize smiles in detected faces.
     ///
@@ -181,12 +245,35 @@ extern "C" {
     ///
     /// If the value of the key is true, then facial expressions such as blinking and smiles eyes are extracted.
     /// This is needed for the ``/CIFaceFeature/hasSmile-property`` to function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorsmile?language=objc)
     pub static CIDetectorSmile: &'static NSString;
 }
 
 extern "C" {
+    /// An option identifying the focal length in pixels used in capturing images to be processed by the detector.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object whose value is a floating-point number. Use this option with the [`CIDetectorTypeRectangle`](https://developer.apple.com/documentation/coreimage/cidetectortyperectangle) detector type to control the effect of the [`CIDetectorAspectRatio`](https://developer.apple.com/documentation/coreimage/cidetectoraspectratio) option on feature detection.
+    ///
+    /// This option’s value can be `0.0`, `-1.0`, or any positive value:
+    ///
+    /// - The special value of `-1.0` (the default) disables the aspect ratio test for the returned rectangle.
+    ///
+    /// - The special value of `0.0` enables a less precise test of aspect ratio that approximates an orthographic (non-perspective) projection. Use this value if you want to specify the aspect ratio of the rectangle via the [`CIDetectorAspectRatio`](https://developer.apple.com/documentation/coreimage/cidetectoraspectratio) option, but have no means of determining the value for the focal length in pixels. See below for a method to compute an approximate value for the focal length in pixels.
+    ///
+    /// - Any other value specifies the camera focal length, in pixels, allowing the aspect ratio specification to account for perspective distortion of rectangles in the input image.
+    ///
+    /// If you know the diagonal field of view of the camera (the scene angle subtended by the diagonal corners of an image), you can use the following formula to compute an approximate focal length in pixels:
+    ///
+    /// `focal_length_pixels = (image_diagonal_pixels/2)/tan(FOV/2)`
+    ///
+    /// In this formula, `image_diagonal_pixels` is the length (in pixels) of the image diagonal of the maximum resolution of the camera sensor. (For example, this value is 4080 pixels for a 3264 x 2448 (8 megapixel) sensor, and 5000 pixels for a 4096x3024 (12 megapixel) sensor.)
+    ///
+    /// To measure diagonal field of view, put the camera on a tripod so that it is perpendicular to a surface and the center of the image is oriented on a mark on the surface. Measure the distance from the mark to one of the corner points of the image (`Y`). Measure the distance from the camera to the surface (`Z`).  The field of view is then `2*arctan(Y/Z)`.
+    ///
+    /// You must specify this value in terms of the maximum sensor resolution. If the supplied [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) has been scaled relative relative to the maximum sensor resolution, the supplied focal length must also be similarly scaled.
+    ///
+    ///
     /// A dictionary key that configures a Core Image rectangle feature detection operation
     /// to account for the focal length of the camera used for the image.
     ///
@@ -219,12 +306,17 @@ extern "C" {
     ///
     /// You must specify this value in terms of the maximum sensor resolution. If the supplied CIImage has been scaled relative relative to the
     /// maximum sensor resolution, the supplied focal length must also be similarly scaled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorfocallength?language=objc)
     pub static CIDetectorFocalLength: &'static NSString;
 }
 
 extern "C" {
+    /// An option specifying the aspect ratio (width divided by height) of rectangles to search for.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object whose value is a positive floating-point number. Use this option with the [`CIDetectorTypeRectangle`](https://developer.apple.com/documentation/coreimage/cidetectortyperectangle) detector type to fine-tune the accuracy of the detector. For example, to more accurately find a business card (3.5 x 2 inches) in an image, specify an aspect ratio of `1.75` (3.5 / 2).
+    ///
+    ///
     /// A dictionary key that configures a Core Image rectangle feature detection operation
     /// to search for a rectangle of a desired aspect ratio (width divided by height).
     ///
@@ -236,12 +328,17 @@ extern "C" {
     /// For example, to more accurately find a business card (3.5 x 2 inches) in an image, specify an aspect ratio of 1.75.
     ///
     /// If this key is not specified, the a default value of 1.6 is used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectoraspectratio?language=objc)
     pub static CIDetectorAspectRatio: &'static NSString;
 }
 
 extern "C" {
+    /// An option specifying whether to return feature information for components of detected features.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object with a Boolean value. Use this option with the [`CIDetectorTypeText`](https://developer.apple.com/documentation/coreimage/cidetectortypetext) detector type to choose whether to detect only regions likely to contain text ([`false`](https://developer.apple.com/documentation/swift/false), the default) or to also identify sub-regions likely to contain individual characters of text ([`true`](https://developer.apple.com/documentation/swift/true)).
+    ///
+    ///
     /// A dictionary key that configures a Core Image text feature detection operation
     /// to return feature information for components of detected features.
     ///
@@ -252,7 +349,5 @@ extern "C" {
     /// * True: detect in regions likely to contain individual characters.
     ///
     /// If this key is not specified, the a default is False.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidetectorreturnsubfeatures?language=objc)
     pub static CIDetectorReturnSubFeatures: &'static NSString;
 }

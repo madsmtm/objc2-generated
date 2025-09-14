@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccounttype?language=objc)
+/// Constants that represent whether a user has access to paid content.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSUserAccountType(pub NSInteger);
 impl VSUserAccountType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccounttype/vsuseraccounttypefree?language=objc)
+    /// A constant that indicates a user has access to free content.
     #[doc(alias = "VSUserAccountTypeFree")]
     pub const Free: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccounttype/vsuseraccounttypepaid?language=objc)
+    /// A constant that indicates a user has access to paid content.
     #[doc(alias = "VSUserAccountTypePaid")]
     pub const Paid: Self = Self(1);
 }
@@ -29,16 +29,22 @@ unsafe impl RefEncode for VSUserAccountType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsoriginatingdevicecategory?language=objc)
+/// Constants that represent whether the device from which the user originally registered is mobile.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSOriginatingDeviceCategory(pub NSInteger);
 impl VSOriginatingDeviceCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsoriginatingdevicecategory/vsoriginatingdevicecategorymobile?language=objc)
+    /// A constant that indicates the original registering device is mobile.
     #[doc(alias = "VSOriginatingDeviceCategoryMobile")]
     pub const Mobile: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsoriginatingdevicecategory/vsoriginatingdevicecategoryother?language=objc)
+    /// A constant that indicates the original registering device is not mobile.
+    ///
+    /// ## Discussion
+    ///
+    /// Non-mobile devices include desktop computers and set-top TV devices.
+    ///
+    ///
     #[doc(alias = "VSOriginatingDeviceCategoryOther")]
     pub const Other: Self = Self(1);
 }
@@ -52,7 +58,17 @@ unsafe impl RefEncode for VSOriginatingDeviceCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccount-c.class?language=objc)
+    /// An object that represents a user’s account with a TV provider.
+    ///
+    /// ## Overview
+    ///
+    /// There are two sources for a `VSUserAccount` instance:
+    ///
+    /// - You create an instance when a person registers a new account or signs into an existing account in your app, and you call [`updateUserAccount:completion:`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/updateuseraccount:completion:) on [`VSUserAccountManager`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager) with the instance.
+    ///
+    /// - - You fetch user accounts by calling [`queryUserAccountsWithOptions:completion:`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/queryuseraccountswithoptions:completion:), which can return user accounts created on the current device, or user accounts registered on all the devices signed into the person’s iCloud account.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSUserAccount;

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A tensor parameter object.  This is used to describe input tensors that are updated by the optimizer during training.
+    /// A tensor parameter object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensorparameter?language=objc)
+    /// ## Overview
+    ///
+    /// Use a tensor parameter to describe input tensors that the optimizer updates during training.
+    ///
+    ///
+    /// A tensor parameter object.  This is used to describe input tensors that are updated by the optimizer during training.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

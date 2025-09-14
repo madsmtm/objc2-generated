@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for unary reduction filters.
     /// The MPSNNReduce performs a reduction operation
     /// The reduction operations supported are:
     /// - Reduce row min
@@ -23,8 +24,6 @@ extern_class!(
     /// - Reduce row sum
     /// - Reduce column sum
     /// - Reduce feature channels sum
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreduceunary?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -169,9 +168,8 @@ impl MPSNNReduceUnary {
 }
 
 extern_class!(
+    /// A reduction filter that returns the minimum value for each row in an image.
     /// The MPSNNReduceRowMin performs a reduction operation returning the mininmum value for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -281,9 +279,8 @@ impl MPSNNReduceRowMin {
 }
 
 extern_class!(
+    /// A reduction filter that returns the minimum value for each column in an image.
     /// The MPSNNReduceColumnMin performs a reduction operation returning the mininmum value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -393,9 +390,8 @@ impl MPSNNReduceColumnMin {
 }
 
 extern_class!(
+    /// A reduction filter that returns the minimum value for each feature channel in an image.
     /// The MPSNNReduceFeatureChannelsMin performs a reduction operation returning the mininmum value for feature channels of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -505,10 +501,9 @@ impl MPSNNReduceFeatureChannelsMin {
 }
 
 extern_class!(
+    /// A reduction filter that returns the index of the location of the minimum value for each feature channel in an image.
     /// The MPSNNReduceFeatureChannelsArgumentMin returns the argument index that is the
     /// location of the minimum value for feature channels of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -618,9 +613,8 @@ impl MPSNNReduceFeatureChannelsArgumentMin {
 }
 
 extern_class!(
+    /// A reduction filter that returns the maximum value for each row in an image.
     /// The MPSNNReduceRowMax performs a reduction operation returning the maximum value for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -730,9 +724,8 @@ impl MPSNNReduceRowMax {
 }
 
 extern_class!(
+    /// A reduction filter that returns the maximum value for each column in an image.
     /// The MPSNNReduceColumnMax performs a reduction operation returning the maximum value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -842,9 +835,8 @@ impl MPSNNReduceColumnMax {
 }
 
 extern_class!(
+    /// A reduction filter that returns the maximum value for each feature channel in an image.
     /// The MPSNNReduceFeatureChannelsMax performs a reduction operation returning the maximum value for feature channels of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -954,10 +946,9 @@ impl MPSNNReduceFeatureChannelsMax {
 }
 
 extern_class!(
+    /// A reduction filter that returns the index of the location of the maximum value for each feature channel in an image.
     /// The MPSNNReduceFeatureChannelsArgumentMax performs returns the argument index that is the
     /// location of the maximum value for feature channels of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1067,9 +1058,8 @@ impl MPSNNReduceFeatureChannelsArgumentMax {
 }
 
 extern_class!(
+    /// A reduction filter that returns the mean value for each row in an image.
     /// The MPSNNReduceRowMean performs a reduction operation returning the mean value for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowmean?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1179,9 +1169,8 @@ impl MPSNNReduceRowMean {
 }
 
 extern_class!(
+    /// A reduction filter that returns the mean value for each column in an image.
     /// The MPSNNReduceColumnMean performs a reduction operation returning the mean value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnmean?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1291,9 +1280,8 @@ impl MPSNNReduceColumnMean {
 }
 
 extern_class!(
+    /// A reduction filter that returns the mean value for each feature channel in an image.
     /// The MPSNNReduceFeatureChannelsMean performs a reduction operation returning the mean value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1403,9 +1391,8 @@ impl MPSNNReduceFeatureChannelsMean {
 }
 
 extern_class!(
+    /// A reduction filter that returns the sum of all values for each row in an image.
     /// The MPSNNReduceRowSum performs a reduction operation returning the sum for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducerowsum?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1515,9 +1502,8 @@ impl MPSNNReduceRowSum {
 }
 
 extern_class!(
+    /// A reduction filter that returns the sum of all values for each column in an image.
     /// The MPSNNReduceColumnSum performs a reduction operation returning the sum for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducecolumnsum?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1627,9 +1613,8 @@ impl MPSNNReduceColumnSum {
 }
 
 extern_class!(
+    /// A reduction filter that returns the sum of all values for each feature channel in an image.
     /// The MPSNNReduceFeatureChannelsSum performs a reduction operation returning the sum for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum?language=objc)
     #[unsafe(super(MPSNNReduceUnary, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1752,11 +1737,10 @@ impl MPSNNReduceFeatureChannelsSum {
 }
 
 extern_class!(
+    /// The base class for binary reduction filters.
     /// The MPSNNReduce performs a reduction operation
     /// The reduction operations supported are:
     /// - Reduce feature channels mean
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducebinary?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1937,7 +1921,7 @@ impl MPSNNReduceBinary {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightsmean?language=objc)
+    /// A reduction filter that returns the weighted sum for each feature channel in an image.
     #[unsafe(super(MPSNNReduceBinary, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2047,7 +2031,7 @@ impl MPSNNReduceFeatureChannelsAndWeightsMean {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum?language=objc)
+    /// A reduction filter that returns the weighted sum of all values for each feature channel in an image.
     #[unsafe(super(MPSNNReduceBinary, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2194,8 +2178,6 @@ extern_class!(
     /// f(m, n) = n * (2*windowInY + 1) + m,
     /// M = {-windowInX*strideInX, (-windowInX + 1)*strideInX,  ... 0 ... , (windowInX - 1)*strideInX, windowInX*strideInX},
     /// N = {-windowInY*strideInY, (-windowInY + 1)*strideInY,  ... 0 ... , (windowInY - 1)*strideInY, windowInX*strideInY}
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlocalcorrelation?language=objc)
     #[unsafe(super(MPSNNReduceBinary, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

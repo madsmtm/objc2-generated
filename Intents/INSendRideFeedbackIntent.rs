@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintent?language=objc)
+    /// An intent indicating that the user provided feedback for a completed ride.
+    ///
+    /// ## Overview
+    ///
+    /// When the user provides feedback for a completed ride, SiriKit sends an [`INSendRideFeedbackIntent`](https://developer.apple.com/documentation/intents/insendridefeedbackintent) object to your handler. SiriKit populates this intent object with the ride identifier and the feedback, including a possible driver rating and tip. Upon receiving this intent, validate the provided information and forward it along to your service. SiriKit guarantees that it provides at least one piece of feedback.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSendRideFeedbackIntentHandling`](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling) protocol. Your handler should confirm the request and create an [`INSendRideFeedbackIntentResponse`](https://developer.apple.com/documentation/intents/insendridefeedbackintentresponse) object with the status of the task.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -95,11 +108,18 @@ impl INSendRideFeedbackIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for sending ride feedback to your service.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSendRideFeedbackIntentHandling`](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling) protocol to confirm and handle requests to send feedback about a ride to your service. Adopt this protocol in an object of your Intents extension that is capable of conveying the feedback to your service.
+    ///
+    /// To initiate the delivery of an [`INSendRideFeedbackIntent`](https://developer.apple.com/documentation/intents/insendridefeedbackintent), the user must have previously completed a ride in Maps or Siri and asked the user to provide feedback. Specifically, the [`INRideCompletionStatus`](https://developer.apple.com/documentation/intents/inridecompletionstatus) object that you created must indicate that it requires feedback before beginning a new ride. (Maps also gives the user a chance to provide feedback proactively). After the user provides feedback, Siri delivers the feedback intent to your Intents extension.
+    ///
+    ///
     /// Protocol to declare support for handling an INSendRideFeedbackIntent. By implementing this protocol, a class can provide logic for confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The handling method is always called last, after confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling?language=objc)
     pub unsafe trait INSendRideFeedbackIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

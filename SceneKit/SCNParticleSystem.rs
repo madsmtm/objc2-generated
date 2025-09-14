@@ -15,90 +15,261 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty?language=objc)
+/// Keys identifying properties of individual particles, used by the [`propertyControllers`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/propertycontrollers) dictionary and the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) and [`addModifierForProperties:atStage:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/addmodifier(forproperties:at:modifier:)) methods.
 // NS_TYPED_ENUM
 pub type SCNParticleProperty = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/position?language=objc)
+    /// The particle’s position vector in scene coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a three-component vector (an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`SCNVector3`](https://developer.apple.com/documentation/scenekit/scnvector3) value for particle property controllers, or an array of three `float` values for particle event or modifier blocks).
+    ///
+    ///
     pub static SCNParticlePropertyPosition: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/angle?language=objc)
+    /// The rotation angle, in radians, of the particle about its axis.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`particleAngle`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleangle) and [`particleAngleVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleanglevariation) properties determine the initial rotation for each particle. The [`SCNParticlePropertyRotationAxis`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/rotationaxis) property defines the particle’s rotation axis.
+    ///
+    ///
     pub static SCNParticlePropertyAngle: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/rotationaxis?language=objc)
+    /// The particle’s axis of rotation, expressed as a vector in the particle’s local coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a three-component vector (an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`SCNVector3`](https://developer.apple.com/documentation/scenekit/scnvector3) value for particle property controllers, or an array of three `float` values for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`orientationMode`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/orientationmode) determines the initial rotation axis for each particle. The [`SCNParticlePropertyAngle`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/angle) property defines the particle’s rotation about this axis.
+    ///
+    ///
     pub static SCNParticlePropertyRotationAxis: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/velocity?language=objc)
+    /// The particle’s velocity vector in units (of scene coordinate space) per second.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a three-component vector (an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`SCNVector3`](https://developer.apple.com/documentation/scenekit/scnvector3) value for particle property controllers, or an array of three `float` values for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`particleVelocity`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlevelocity) and [`particleVelocityVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlevelocityvariation) properties determine the initial speed of each particle.
+    ///
+    ///
     pub static SCNParticlePropertyVelocity: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/angularvelocity?language=objc)
+    /// The particle’s angular velocity (or rate of spin), in radians per second.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`particleAngularVelocity`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleangularvelocity) and [`particleAngularVelocityVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleangularvelocityvariation) properties determine the initial rate of spin for each particle. The [`SCNParticlePropertyRotationAxis`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/rotationaxis) property defines the particle’s rotation axis.
+    ///
+    ///
     pub static SCNParticlePropertyAngularVelocity: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/life?language=objc)
+    /// The remaining time in the particle’s life span, in seconds.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks).
+    ///
+    /// SceneKit initializes this value using the particle system’s [`particleLifeSpan`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlelifespan) and [`particleLifeSpanVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlelifespanvariation) properties, then decreases the value when rendering each frame. When the life value reaches `0.0`, the particle dies (that is, SceneKit no longer simulates or renders it). Particle property controllers can use this property’s value as an input, but not change it.
+    ///
+    ///
     pub static SCNParticlePropertyLife: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/color?language=objc)
+    /// The particle’s tint color, as a vector of red, green, blue, and alpha component values.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a four-component vector (an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`SCNVector4`](https://developer.apple.com/documentation/scenekit/scnvector4) value for particle property controllers, or an array of four `float` values for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`particleColor`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecolor) and [`particleColorVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecolorvariation) properties determine the initial color for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyColor: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/opacity?language=objc)
+    /// The particle’s opacity (or alpha value).
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks).
+    ///
+    /// This property controls the same alpha value as the [`SCNParticlePropertyColor`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/color) property. Use this property when you want to modify particle opacity without modifying color, or when you want to use opacity as the input for a [`SCNParticlePropertyController`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller) object.
+    ///
+    /// The particle system’s [`particleColor`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecolor) and [`particleColorVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecolorvariation) properties determine the initial alpha value for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyOpacity: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/size?language=objc)
+    /// The width and height of the rendered particle image, in units of scene coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks). SceneKit renders particle images as square, so this value applies to both width and height.
+    ///
+    /// The particle system’s [`particleSize`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlesize) and [`particleSizeVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlesizevariation) properties determine the initial size for each particle.
+    ///
+    ///
     pub static SCNParticlePropertySize: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/frame?language=objc)
+    /// The current frame index of the particle’s image animation.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks). For details on particle image animation, see the [`particleImage`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleimage) property.
+    ///
+    /// The particle system’s [`imageSequenceInitialFrame`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/imagesequenceinitialframe) and [`imageSequenceInitialFrameVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/imagesequenceinitialframevariation) properties determine the initial frame for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyFrame: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/framerate?language=objc)
+    /// The rate, in frames per second, of the particle’s image animation.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks). For details on particle image animation, see the [`particleImage`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleimage) property.
+    ///
+    /// The particle system’s [`imageSequenceFrameRate`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/imagesequenceframerate) and [`imageSequenceFrameRateVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/imagesequenceframeratevariation) properties determine the initial animation speed for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyFrameRate: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/bounce?language=objc)
+    /// The particle’s restitution coefficient.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`particleBounce`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlebounce) and [`particleBounceVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlebouncevariation) properties determine the initial restitution coefficient for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyBounce: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/charge?language=objc)
+    /// The particle’s electric charge, in coulombs.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks). A particle’s charge determines its behavior when affected by an electric or magnetic field created with the [`SCNPhysicsField`](https://developer.apple.com/documentation/scenekit/scnphysicsfield) class.
+    ///
+    /// The particle system’s [`particleCharge`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecharge) and [`particleChargeVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlechargevariation) properties determine the initial charge for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyCharge: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/friction?language=objc)
+    /// The particle’s friction coefficient.
+    ///
+    /// ## Discussion
+    ///
+    /// This property’s value is a floating-point scalar (an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object for particle property controllers, or a single `float` value for particle event or modifier blocks).
+    ///
+    /// The particle system’s [`particleFriction`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlefriction) and [`particleFrictionVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlefrictionvariation) properties determine the initial friction coefficient for each particle.
+    ///
+    ///
     pub static SCNParticlePropertyFriction: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/contactpoint?language=objc)
+    /// The location, in scene coordinate space, of a collision between a particle and a geometry in the scene.
+    ///
+    /// ## Discussion
+    ///
+    /// The contact point property only applies to collision handler blocks (see the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method and [`SCNParticleEventCollision`](https://developer.apple.com/documentation/scenekit/scnparticleevent/collision) constant). Its value is a three-component vector (an array of three `float` values).
+    ///
+    ///
     pub static SCNParticlePropertyContactPoint: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/contactnormal?language=objc)
+    /// The normal vector, in scene coordinate space, of a collision between a particle and a geometry in the scene.
+    ///
+    /// ## Discussion
+    ///
+    /// The contact normal property only applies to collision handler blocks (see the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method and [`SCNParticleEventCollision`](https://developer.apple.com/documentation/scenekit/scnparticleevent/collision) constant). Its value is a three-component vector (an array of three `float` values).
+    ///
+    ///
     pub static SCNParticlePropertyContactNormal: &'static SCNParticleProperty;
 }
 
+/// The signature for blocks called by SceneKit in response to significant events during particle simulation, used by the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - data: An array of floating-point values containing stripes of property data for the system’s particles. The width and format of each data stripe depend on the properties you specify when calling the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method.
+///
+/// - dataStride: An array identifying the offset, in bytes, of each property’s value in the data stripe for each particle. The order of offsets in this array corresponds to the order of the `properties` array you specify when calling the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method.
+///
+/// - indices: An array in which each element is an index that identifies (in the `data` array) the data stripe for each particle affected by the event that caused SceneKit to call the handler block.
+///
+/// When SceneKit calls your handler block for the [`SCNParticleEventBirth`](https://developer.apple.com/documentation/scenekit/scnparticleevent/birth) event, you need not use this parameter—at that time, the affected particles are indexed from `0` to the `count` parameter’s value.
+///
+/// - count: The number of particles affected by the current event.
+///
+/// Use this block to change properties of individual particles when they are spawned, when they collide with scene geometry, or when they die (that is, reach the end of their life spans and are removed from the scene).
+///
+/// The following example illustrates setting up a handler block for particle collision events:
+///
+/// ```objc
+/// [system handleEvent:SCNParticleEventCollision
+///       forProperties:@[SCNParticlePropertyAngle,
+///                       SCNParticlePropertyRotationAxis,
+///                       SCNParticlePropertyContactNormal]
+///           withBlock:^(void **data, size_t *dataStride, uint32_t *indices, NSInteger count) {
+///               // For each particle affected by the collision event,
+///               // calculate pointers in the data to each property's value.
+///               for (NSInteger i = 0; i < count; ++i) {
+///                   // SCNParticlePropertyAngle (float)
+///                   float *angle = (float *)((char *)data[0] + dataStride[0] * indices[i]);
+///                   // angle[0] is the particle's rotation angle in radians.
+///  
+///                   // SCNParticlePropertyRotationAxis (float3)
+///                   float *axis = (float *)((char *)data[1] + dataStride[1] * indices[i]);
+///                   // axis[0..2] are the xyz components of the particle's rotation axis.
+///  
+///                   // SCNParticlePropertyContactNormal (float3)
+///                   float *norm = (float *)((char *)data[2] + dataStride[2] * indices[i]);
+///                   // norm[0..2] are the xyz components of the contact normal vector.
+///  
+///                   // Now, use the norm vector to rotate the particle's axis/angle (not shown).
+///               }
+///           }];
+/// ```
+///
+///
 /// Parameter `data`: array of particle properties data stripes, ordered by the given NSArray of properties name in [- handleEvent:forProperties:withBlock:]
 ///
 /// Parameter `dataStride`: array of particle properties data stripes stride, with the same ordering than data.
@@ -125,12 +296,60 @@ extern "C" {
 /// // ...
 /// }
 /// }];
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleeventblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNParticleEventBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, *mut u32, NSInteger)>;
 
+/// The signature for blocks called by SceneKit to modify particle properties on each frame of simulation, used by the [`addModifierForProperties:atStage:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/addmodifier(forproperties:at:modifier:)) method.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - data: An array of floating-point values containing stripes of property data for the system’s particles. The width and format of each data stripe depend on the properties you specify when calling the [`addModifierForProperties:atStage:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/addmodifier(forproperties:at:modifier:)) method.
+///
+/// - dataStride: An array identifying the offset, in bytes, of each property’s value in the data stripe for each particle. The order of offsets in this array corresponds to the order of the `properties` array you specify when calling the [`addModifierForProperties:atStage:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/addmodifier(forproperties:at:modifier:)) method.
+///
+/// - start: The index of the first particle’s data stripe in the `data` array.
+///
+/// - end: The index of the last particle’s data stripe in the `data` array.
+///
+/// - deltaTime: The elapsed time, in seconds, since the last frame of simulation.
+///
+/// Use this block to change properties of individual particles on each frame of simulation.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Running your own code to update particle properties every frame can have a severe impact on rendering performance. If the behavior over time that you want for your particle system can be described more declaratively, use the [`propertyControllers`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/propertycontrollers) property and [`SCNParticlePropertyController`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller) class instead. If you need to change particle properties only at certain times (rather than continuously), add a handler block for an event using the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method.
+///
+///
+///
+/// </div>
+/// The following example illustrates setting up a modifier block that alters particle’s position and velocity:
+///
+/// ```objc
+/// [system addModifierForProperties:@[SCNParticlePropertyPosition,
+///                                    SCNParticlePropertyVelocity]
+///                          atStage:SCNParticleModifierStagePostDynamics
+///                        withBlock:^(void **data, size_t *dataStride, NSInteger start, NSInteger end, float deltaTime) {
+///                            // For each particle to be processed,
+///                            // calculate pointers in the data to each property's value:
+///                            for (NSInteger i = start; i < end; ++i) {
+///                                // SCNParticlePropertyPosition (float3)
+///                                float *pos = (float *)((char *)data[0] + dataStride[0] * i);
+///                                // pos[0..2] are the xyz components of the particle's position.
+///  
+///                                // SCNParticlePropertyVelocity (float3)
+///                                float *vel = (float *)((char *)data[1] + dataStride[1] * i);
+///                                // vel[0..2] are the xyz components of the particle's position.
+///  
+///                                // Now, compute a new position and velocity (not shown).
+///                            }
+///                        }];
+/// ```
+///
+///
 /// Parameter `data`: array of particle properties data stripes, ordered by the given NSArray of properties name in [- handleEvent:forProperties:withBlock:]
 ///
 /// Parameter `dataStride`: array of particle properties data stripes stride, with the same ordering than data.
@@ -157,32 +376,42 @@ pub type SCNParticleEventBlock =
 /// // ...
 /// }
 /// }];
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNParticleModifierBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, NSInteger, NSInteger, c_float),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode?language=objc)
+/// Options for the rendering order of particles, used by the [`sortingMode`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/sortingmode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleSortingMode(pub NSInteger);
 impl SCNParticleSortingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/none?language=objc)
+    /// Particles are not sorted; they may be rendered in any order.
     #[doc(alias = "SCNParticleSortingModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/projecteddepth?language=objc)
+    /// Particles farther from the point of view (as measured using projected depth) are rendered before closer particles.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically you use this sorting mode in conjunction with the [`SCNParticleOrientationModeBillboardScreenAligned`](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardscreenaligned) orientation mode.
+    ///
+    ///
     #[doc(alias = "SCNParticleSortingModeProjectedDepth")]
     pub const ProjectedDepth: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/distance?language=objc)
+    /// Particles farther from the point of view (as measured using distance from the camera in scene space) are rendered before closer particles.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically you use this sorting mode in conjunction with the [`SCNParticleOrientationModeBillboardViewAligned`](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardviewaligned) orientation mode.
+    ///
+    ///
     #[doc(alias = "SCNParticleSortingModeDistance")]
     pub const Distance: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/oldestfirst?language=objc)
+    /// Particles emitted earlier are rendered before particles emitted more recently.
     #[doc(alias = "SCNParticleSortingModeOldestFirst")]
     pub const OldestFirst: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode/youngestfirst?language=objc)
+    /// Particles emitted more recently are rendered before particles emitted earlier.
     #[doc(alias = "SCNParticleSortingModeYoungestFirst")]
     pub const YoungestFirst: Self = Self(4);
 }
@@ -195,28 +424,28 @@ unsafe impl RefEncode for SCNParticleSortingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode?language=objc)
+/// Options for combining source and destination pixel colors when compositing particles during rendering, used by the [`blendMode`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/blendmode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBlendMode(pub NSInteger);
 impl SCNParticleBlendMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/additive?language=objc)
+    /// The source and destination colors are added together.
     #[doc(alias = "SCNParticleBlendModeAdditive")]
     pub const Additive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/subtract?language=objc)
+    /// The source color is subtracted from the destination color.
     #[doc(alias = "SCNParticleBlendModeSubtract")]
     pub const Subtract: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/multiply?language=objc)
+    /// The source color is multiplied by the destination color.
     #[doc(alias = "SCNParticleBlendModeMultiply")]
     pub const Multiply: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/screen?language=objc)
+    /// The source color is added to the destination color times the inverted source color.
     #[doc(alias = "SCNParticleBlendModeScreen")]
     pub const Screen: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/alpha?language=objc)
+    /// The source and destination colors are blended by multiplying the source alpha value.
     #[doc(alias = "SCNParticleBlendModeAlpha")]
     pub const Alpha: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode/replace?language=objc)
+    /// The source color replaces the destination color.
     #[doc(alias = "SCNParticleBlendModeReplace")]
     pub const Replace: Self = Self(5);
 }
@@ -229,22 +458,46 @@ unsafe impl RefEncode for SCNParticleBlendMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode?language=objc)
+/// Options for restricting the orientation of particles, used by the [`orientationMode`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/orientationmode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleOrientationMode(pub NSInteger);
 impl SCNParticleOrientationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardscreenaligned?language=objc)
+    /// Each particle’s orientation is always fixed with respect to the point of view camera.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this mode for simple particle images whose individual appearance has no relation to scene space, such as spheres, circles, and “sparkle” artwork.
+    ///
+    ///
     #[doc(alias = "SCNParticleOrientationModeBillboardScreenAligned")]
     pub const BillboardScreenAligned: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardviewaligned?language=objc)
+    /// Each particle always faces the point of view camera (but may rotate about an axis parallel to the view direction).
+    ///
+    /// ## Discussion
+    ///
+    /// Use this mode for particle images whose individual appearance depends on a location and orientation in scene space, such as “impostor” images representing trees or clouds in a scene.
+    ///
+    ///
     #[doc(alias = "SCNParticleOrientationModeBillboardViewAligned")]
     pub const BillboardViewAligned: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/free?language=objc)
+    /// Particle orientations are not restricted; they may rotate freely in all axes.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this mode, you can modify the rotation axis of each particle with the [`SCNParticlePropertyRotationAxis`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/rotationaxis) key.
+    ///
+    ///
     #[doc(alias = "SCNParticleOrientationModeFree")]
     pub const Free: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode/billboardyaligned?language=objc)
+    /// The y-axis direction of each particle is always fixed with respect to the point of view camera.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this mode to allow each particle to rotate freely about its y-axis (as determined by the [`particleAngle`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleangle) and [`particleAngularVelocity`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleangularvelocity) properties or the [`SCNParticlePropertyAngle`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/angle) key), but prevent it from rotating around any other axis.
+    ///
+    ///
     #[doc(alias = "SCNParticleOrientationModeBillboardYAligned")]
     pub const BillboardYAligned: Self = Self(3);
 }
@@ -257,19 +510,33 @@ unsafe impl RefEncode for SCNParticleOrientationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation?language=objc)
+/// Options for the initial location of each emitted particle, used by the [`birthLocation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/birthlocation) property.
+///
+/// ## Overview
+///
+/// The [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) property determines the shape of the space in which new particles can be emitted, and the [`birthLocation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/birthlocation) property determines the locations of new particles relative to this shape.
+///
+/// To make a system’s particles emit from a single point, set the [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) property to `nil` (the default). In this case, SceneKit ignores the [`birthLocation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/birthlocation) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBirthLocation(pub NSInteger);
 impl SCNParticleBirthLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation/surface?language=objc)
+    /// New particles can be created at any location on the surface of the emitter shape.
     #[doc(alias = "SCNParticleBirthLocationSurface")]
     pub const Surface: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation/volume?language=objc)
+    /// New particles can be created at any location within the volume of the emitter shape.
+    ///
+    /// ## Discussion
+    ///
+    /// This value applies only when the [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) property specifies one of SceneKit’s built-in basic geometries ([`SCNPlane`](https://developer.apple.com/documentation/scenekit/scnplane), [`SCNBox`](https://developer.apple.com/documentation/scenekit/scnbox), [`SCNSphere`](https://developer.apple.com/documentation/scenekit/scnsphere), [`SCNPyramid`](https://developer.apple.com/documentation/scenekit/scnpyramid), [`SCNCone`](https://developer.apple.com/documentation/scenekit/scncone), [`SCNCylinder`](https://developer.apple.com/documentation/scenekit/scncylinder), [`SCNCapsule`](https://developer.apple.com/documentation/scenekit/scncapsule), [`SCNTube`](https://developer.apple.com/documentation/scenekit/scntube), and [`SCNTorus`](https://developer.apple.com/documentation/scenekit/scntorus)).
+    ///
+    ///
     #[doc(alias = "SCNParticleBirthLocationVolume")]
     pub const Volume: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation/vertex?language=objc)
+    /// New particles can be created at only at the locations of the vertices in the emitter shape.
     #[doc(alias = "SCNParticleBirthLocationVertex")]
     pub const Vertex: Self = Self(2);
 }
@@ -282,19 +549,33 @@ unsafe impl RefEncode for SCNParticleBirthLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection?language=objc)
+/// Options for the initial direction of each emitted particle, used by the [`birthDirection`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/birthdirection) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBirthDirection(pub NSInteger);
 impl SCNParticleBirthDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection/constant?language=objc)
+    /// The emitting direction is the same for all particles.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this mode, the [`emittingDirection`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittingdirection) property determines the base direction for all particles, and the [`spreadingAngle`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/spreadingangle) property adds random variation to this direction.
+    ///
+    ///
     #[doc(alias = "SCNParticleBirthDirectionConstant")]
     pub const Constant: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection/surfacenormal?language=objc)
+    /// The emitting direction for each particle is along the surface normal vector at the point where the particle is emitted.
+    ///
+    /// ## Discussion
+    ///
+    /// The particle system creates new particles at points in space defined by the [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) geometry. When a new particle is emitted, the geometry’s surface normal vector at the point nearest the particle determines the particle’s initial direction. (Note that the [`birthLocation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/birthlocation) property defines where particles may be created relative to the [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) geometry.)
+    ///
+    /// This value has no effect if the [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) property value is `nil`.
+    ///
+    ///
     #[doc(alias = "SCNParticleBirthDirectionSurfaceNormal")]
     pub const SurfaceNormal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection/random?language=objc)
+    /// SceneKit randomizes the emitting direction for each particle.
     #[doc(alias = "SCNParticleBirthDirectionRandom")]
     pub const Random: Self = Self(2);
 }
@@ -307,19 +588,25 @@ unsafe impl RefEncode for SCNParticleBirthDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode?language=objc)
+/// Options for animating each particle with a sequence of images, used by the [`imageSequenceAnimationMode`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/imagesequenceanimationmode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleImageSequenceAnimationMode(pub NSInteger);
 impl SCNParticleImageSequenceAnimationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode/repeat?language=objc)
+    /// The animation loops after displaying all of its images.
     #[doc(alias = "SCNParticleImageSequenceAnimationModeRepeat")]
     pub const Repeat: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode/clamp?language=objc)
+    /// The animation stops after displaying all of its images.
+    ///
+    /// ## Discussion
+    ///
+    /// After animation ends, the particle continues to display the last image of the sequence. (Or the first, if the animation is playing in reverse.)
+    ///
+    ///
     #[doc(alias = "SCNParticleImageSequenceAnimationModeClamp")]
     pub const Clamp: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode/autoreverse?language=objc)
+    /// After the animation displays all of its images, it plays again in reverse order.
     #[doc(alias = "SCNParticleImageSequenceAnimationModeAutoReverse")]
     pub const AutoReverse: Self = Self(2);
 }
@@ -332,19 +619,31 @@ unsafe impl RefEncode for SCNParticleImageSequenceAnimationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode?language=objc)
+/// Options for the input value of the property controller’s animation, used by the [`inputMode`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputmode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleInputMode(pub NSInteger);
 impl SCNParticleInputMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode/overlife?language=objc)
+    /// The controller’s effect on a particle property is a function of the time since the particle’s birth.
     #[doc(alias = "SCNParticleInputModeOverLife")]
     pub const OverLife: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode/overdistance?language=objc)
+    /// The controller’s effect on a particle property is a function of the particle’s distance from the position of a specified node.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`inputOrigin`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputorigin) property to specify the node to measure distance from, and the [`inputBias`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputbias) and [`inputScale`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputscale) properties to refine the relationship between a range of distances into a range of input values for the controller’s animation.
+    ///
+    ///
     #[doc(alias = "SCNParticleInputModeOverDistance")]
     pub const OverDistance: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode/overotherproperty?language=objc)
+    /// The controller’s effect on a particle property is a function of another of the particle’s properties.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`inputProperty`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputproperty) property to specify the input property, and the [`inputBias`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputbias) and [`inputScale`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputscale) properties to refine the relationship between a range of property values into a range of input values for the controller’s animation.
+    ///
+    ///
     #[doc(alias = "SCNParticleInputModeOverOtherProperty")]
     pub const OverOtherProperty: Self = Self(2);
 }
@@ -357,22 +656,46 @@ unsafe impl RefEncode for SCNParticleInputMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage?language=objc)
+/// Stages of SceneKit’s particle simulation process into which you can insert modifier blocks, used by the [`addModifierForProperties:atStage:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/addmodifier(forproperties:at:modifier:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleModifierStage(pub NSInteger);
 impl SCNParticleModifierStage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/predynamics?language=objc)
+    /// The stage before SceneKit simulates the motion of particles.
+    ///
+    /// ## Discussion
+    ///
+    /// Insert a modifier block at this stage to alter the inputs to the dynamics simulation. For example, if you modify the velocities of particles during this stage, SceneKit computes new positions for each particle based on its modified velocity.
+    ///
+    ///
     #[doc(alias = "SCNParticleModifierStagePreDynamics")]
     pub const PreDynamics: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/postdynamics?language=objc)
+    /// The stage after SceneKit simulates the motion of particles.
+    ///
+    /// ## Discussion
+    ///
+    /// Insert a modifier block at this stage to alter the output of the dynamics simulation. For example, if you modify the positions of particles during this stage, the modified positions override those determined by SceneKit’s simulation.
+    ///
+    ///
     #[doc(alias = "SCNParticleModifierStagePostDynamics")]
     pub const PostDynamics: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/precollision?language=objc)
+    /// The stage before SceneKit simulates the results of collisions between particles and scene geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// Insert a modifier block at this stage to alter the inputs to collision resolution. For example, if you modify the bounce factors of particles during this stage, SceneKit uses the modified factors to compute the bounce velocity of each particle.
+    ///
+    ///
     #[doc(alias = "SCNParticleModifierStagePreCollision")]
     pub const PreCollision: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage/postcollision?language=objc)
+    /// The stage after SceneKit simulates the results of collisions between particles and scene geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// Insert a modifier block at this stage to alter the output of collision resolution. For example, if you modify the velocities of particles during this stage, the modified velocities override the bounce velocity determined by SceneKit’s simulation.
+    ///
+    ///
     #[doc(alias = "SCNParticleModifierStagePostCollision")]
     pub const PostCollision: Self = Self(3);
 }
@@ -385,19 +708,37 @@ unsafe impl RefEncode for SCNParticleModifierStage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent?language=objc)
+/// Significant events in the life spans of simulate particles, used by the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleEvent(pub NSInteger);
 impl SCNParticleEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent/birth?language=objc)
+    /// Occurs when new particles spawn.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a handler for this event to override the initial properties of each particle.
+    ///
+    ///
     #[doc(alias = "SCNParticleEventBirth")]
     pub const Birth: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent/death?language=objc)
+    /// Occurs when particles reach the end of their life span.
+    ///
+    /// ## Discussion
+    ///
+    /// SceneKit calls your event handler block immediately before removing dead particles from the scene.
+    ///
+    ///
     #[doc(alias = "SCNParticleEventDeath")]
     pub const Death: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent/collision?language=objc)
+    /// Occurs when particles collide with scene geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// SceneKit calls your event handler block immediately after resolving the collision.
+    ///
+    ///
     #[doc(alias = "SCNParticleEventCollision")]
     pub const Collision: Self = Self(2);
 }
@@ -411,9 +752,20 @@ unsafe impl RefEncode for SCNParticleEvent {
 }
 
 extern_class!(
-    /// The SCNParticlePropertyController class controls the variation over time or over distance of a particle property.
+    /// An animation for a single property of the individual particles rendered by a particle system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller?language=objc)
+    /// ## Overview
+    ///
+    /// Use particle property controllers to change the properties of individual particles in an [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem) object over time, with Core Animation semantics. For example, by associating a keyframe animation with a particle system’s [`SCNParticlePropertyColor`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/color) property, you can create a flame effect with particles that change from blue to white to orange as they rise.
+    ///
+    /// A particle property controller animates a property of individual particles rendered by the particle system. By comparison, implicitly or explicitly animating properties of a [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem) object affects the system as a whole. Consider the keyframe animation of colors described above—if you apply this animation directly to a particle system instead of using a property controller, all particles rendered by the system change color together instead of each one changing color as it rises.
+    ///
+    /// Core Animation animations in SceneKit typically animate a change to a property as a function of time. By default, property controllers animate a particle property this way. However, by changing the [`inputMode`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller/inputmode) property you can also create animations that animate a particle property as a function of distance from a specified node or of the value of another particle property. For example, you can use this option to make particles change color as they speed up and slow down.
+    ///
+    /// For more details about particle systems and particle properties, see [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem).
+    ///
+    ///
+    /// The SCNParticlePropertyController class controls the variation over time or over distance of a particle property.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNParticlePropertyController;
@@ -531,9 +883,62 @@ impl SCNParticlePropertyController {
 }
 
 extern_class!(
-    /// The SCNParticleSystem class represents a system of particles.
+    /// An object that animates and renders a system of small image sprites using a high-level simulation whose general behavior you specify.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem?language=objc)
+    /// ## Overview
+    ///
+    /// Use particle systems to create effects such as smoke, rain, confetti, and fireworks.
+    ///
+    /// ### How Particle Systems Work
+    ///
+    /// Unlike SceneKit nodes and geometries, individual particles are not objects in a scene graph. Because a particle system can involve dozens or hundreds of particles, SceneKit uses a more efficient internal representation that stores and processes the data for all of a system’s particles in bulk.
+    ///
+    /// Instead of accessing each particle to control its behavior or to make it interact with other scene content, you typically use properties of a particle system to control the aggregate behavior of particles. These properties cover several key aspects of the system’s behavior, as summarized below.
+    ///
+    /// - Appearance. SceneKit renders a texture image for each particle. Define the appearance of the particle system by specifying an image, its tint color, and rendering parameters such as blending mode. You can even specify an animated image sequence, creating effects like swarms of insects or multi-stage explosions.
+    ///
+    /// - Life span. SceneKit creates each particle at a location in the scene (also called an _emitter_), varies its position and appearance over a specified life span, then removes it from the scene. (Particle creation is also called _birth_ or _spawning_, and particle removal is also called _death_.) The total count of particles on screen at any time is the product of the system’s [`birthRate`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/birthrate) and [`particleLifeSpan`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlelifespan) properties. Larger numbers of particles have a greater cost to rendering performance and power usage.
+    ///
+    /// - Emitter behavior. Use the [`emitterShape`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emittershape) property to specify whether particles spawn from a single point in space or in the region defined by an [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) object. Use the [`emissionDuration`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/emissionduration) property and related properties to vary particle birth over time, so that the system alternates between periods of spawning particles and periods of idle time.
+    ///
+    /// - Variation. Particle systems simulate realistic effects by randomly varying particle properties both at birth and over the lifetime of a particle. You can also add random variation to the life span of particles. Several particle system properties have an associated variation property that controls this randomization. For example, the [`particleSizeVariation`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlesizevariation) property defines the width of an interval for randomizing the [`particleSize`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlesize) property.
+    ///
+    /// - Movement. Particles move according to a simple physics simulation—each has an initial direction, speed, angular velocity and acceleration, which SceneKit uses to animate the particle until it dies. You can create many realistic effects using these attributes alone. You can also add more complex behaviors by allowing particles to interact with scene geometry ([`colliderNodes`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/collidernodes)), the scene’s [`physicsWorld`](https://developer.apple.com/documentation/scenekit/scnscene/physicsworld) simulation, or [`SCNPhysicsField`](https://developer.apple.com/documentation/scenekit/scnphysicsfield) objects.
+    ///
+    /// In addition, you can also use the following features to add dynamic behaviors to a particle system, changing its appearance over time or making it interact with its environment.
+    ///
+    /// - Animations and property controllers. Like many SceneKit objects, the [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem) class conforms to the [`SCNAnimatable`](https://developer.apple.com/documentation/scenekit/scnanimatable) protocol, so you can implicitly or explicitly animate changes to its properties. (For general background on animation, see [Animating SceneKit Content](https://developer.apple.com/documentation/scenekit/animating-scenekit-content).) When you animate changes to a particle system’s properties, these changes affect all particles in the system simultaneously.
+    ///
+    /// To apply animations independently for individual particles, use an [`SCNParticlePropertyController`](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontroller) object, which associates a [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation) object with a particle system property. With a property controller, you can use features of the Core Animation framework to create time-varying effects that apply to each particle in the system. Typically a Core Animation object varies a property with respect to time, but with a property controller you can also create animations that vary a property based on other input values, such as a particle’s distance from its initial location.
+    ///
+    /// For example, consider a [`CAKeyframeAnimation`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation) object that animates a series of colors from white to yellow to red, and a particle system that simulates a flame. If you attach this animation to a particle system’s [`particleColor`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particlecolor) property, the resulting flame effect has a single color at any given moment, but that color changes over time. If you instead attach a property controller for the [`SCNParticlePropertyColor`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/color) property, the flame varies in color from its base to its tip—each particle starts out white, then fades to yellow and red as it rises.
+    ///
+    /// - Spawned particle systems. When you assign another [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem) instance to one of the properties listed in Spawning Additional Particle Systems, SceneKit adds more particle systems to the scene based on the behavior of the original particle system. For example, if you have a particle system that simulates falling rain, you can use the [`systemSpawnedOnCollision`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/systemspawnedoncollision) property to add splashes where each raindrop strikes a surface.
+    ///
+    /// - Event handlers and particle modifiers. Because they specify behavior declaratively, animations, property controllers, and spawned systems provide easy configuration and high performance for most dynamic behaviors. To create behaviors not possible with these features, you can register event handler or particle modifier blocks that work directly with the bulk particle data SceneKit uses to animate a particle system.
+    ///
+    /// Use the [`handleEvent:forProperties:withBlock:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/handle(_:forproperties:handler:)) method to modify particle data in response to an event—particle birth, death, or collision. For example, you can use this option to make particles that change color after colliding with another object in the scene.
+    ///
+    /// Use the methods listed in Modifying Particles Over Time to manage blocks that SceneKit calls for every rendered frame. Your block can modify particle properties in bulk, allowing you to change particle behavior precisely, but at a high risk to rendering performance.
+    ///
+    /// ### Use the Xcode Particle System Editor to Experiment with Particle Systems
+    ///
+    /// In most cases, you don’t need to configure a particle system directly in your app or game. Instead, you use Xcode to configure a particle system’s properties. As you change the behavior of the particle system, Xcode immediately provides an updated visual effect. When complete, Xcode archives the configured system into a file, which you can then include with your project’s bundle resources. Then, at runtime, your game uses this archive to instantiate a new particle system.
+    ///
+    /// Using Xcode to create your particle systems has a few important advantages:
+    ///
+    /// - You can easily learn the capabilities of the particle system class.
+    ///
+    /// - You can experiment quickly with new particle effects and see the results immediately.
+    ///
+    /// - You separate the task of designing a particle effect from the programming task of using it. Your artists can work on new particle effects independent of your game code.
+    ///
+    /// - You can attach a particle system to a node in the Xcode scene editor to preview the particle system in your scene.
+    ///
+    /// To load a particle system from a file you created with Xcode, use the [`particleSystemNamed:inDirectory:`](https://developer.apple.com/documentation/scenekit/scnparticlesystem/init(named:indirectory:)) method.
+    ///
+    ///
+    /// The SCNParticleSystem class represents a system of particles.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNParticleSystem;

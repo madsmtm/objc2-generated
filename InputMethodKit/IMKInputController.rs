@@ -10,22 +10,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Used to look up the `NSMenuItem` object that is passed to menu item actions.
+    ///
+    ///
     /// An NSMenuItem in the infoDictionary passed to menu item actions.
     ///
     ///
     /// Use as a key to find the NSMenuItem in the infoDictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkcommandmenuitemname?language=objc)
     pub static kIMKCommandMenuItemName: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Used to look up the client object; the client conforms to the IMKInputText and NSObject protocols.
+    ///
+    ///
     /// A client object that conforms to the IMKInputText and NSObject protocols.
     ///
     ///
     /// Use as a key to find the client in the infoDictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkcommandclientname?language=objc)
     pub static kIMKCommandClientName: &'static NSString;
 }
 
@@ -187,9 +195,8 @@ impl private_NSObjectIMKServerInput::Sealed for NSObject {}
 unsafe impl NSObjectIMKServerInput for NSObject {}
 
 extern_protocol!(
+    /// The `IMKStateSetting` protocol defines methods for setting or accessing values that indicate the state of an input method.
     /// This protocol sets or accesses values that indicate the state of an input method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkstatesetting?language=objc)
     pub unsafe trait IMKStateSetting {
         /// Activates the input method.
         ///
@@ -283,9 +290,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The `IMKMouseHandling` protocol defines methods that your input method can implement to handle mouse events.
     /// This protocol receives mouse events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkmousehandling?language=objc)
     pub unsafe trait IMKMouseHandling {
         /// Sends a mouseDown to an input method.
         ///
@@ -346,13 +352,18 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The `IMKInputController` class provides a base class for custom input controller classes. The [`IMKServer`](https://developer.apple.com/documentation/inputmethodkit/imkserver)  class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding `IMKInputController` object.
+    ///
+    /// ## Overview
+    ///
+    /// An `IMKInputController` object controls text input on the input method side. It manages events and text from the applications and converted text from the input method engine. `IMKInputController` implements fully the [`IMKStateSetting`](https://developer.apple.com/documentation/inputmethodkit/imkstatesetting) and [`IMKMouseHandling`](https://developer.apple.com/documentation/inputmethodkit/imkmousehandling) protocols.  Typically you do not need to override this class, but you do need to provide  a delegate object that implements the methods that your are interested in.  The `IMKInputController` versions of the protocol methods check whether the delegate object implements a method, and  calls the delegate version if it exists.
+    ///
+    ///
     /// The basic class that controls input on the input method side.
     ///
     /// IMKInputController implements fully implements the protocols defined above.  Typically a developer does not override this class, but provides a delegate object that implements the methods that developer is interested in.  The IMKInputController versions of the protocol methods check if the delegate object implements a method, and  call the delegate version if it exists.
     ///
     /// The IMKServer class which is allocated in an input method's main function creates a controller class for each input session created by a client application. Therefore for every input session there is a corresponding IMKInputController.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkinputcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IMKInputController;

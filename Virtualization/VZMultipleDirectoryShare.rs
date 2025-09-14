@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes a directory share for multiple directories.
+    ///
+    /// ## Overview
+    ///
+    /// This directory share exposes multiple directories from the host file system to the guest VM.
+    ///
+    ///
     /// Directory share for multiple directories.
     ///
     /// This directory share exposes multiple directories from the host file system to the guest.
@@ -14,8 +21,6 @@ extern_class!(
     /// See: VZDirectorySharingDeviceConfiguration
     ///
     /// See: VZSharedDirectory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmultipledirectoryshare?language=objc)
     #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]

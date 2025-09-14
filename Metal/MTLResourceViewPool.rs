@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Provides parameters for creating a resource view pool.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceviewpooldescriptor?language=objc)
+    /// Provides parameters for creating a resource view pool.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceViewPoolDescriptor;
@@ -80,8 +79,7 @@ impl DefaultRetained for MTLResourceViewPoolDescriptor {
 
 extern_protocol!(
     /// Contains views over resources of a specific type, and allows you to manage those views.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceviewpool?language=objc)
+    /// Contains views over resources of a specific type, and allows you to manage those views.
     pub unsafe trait MTLResourceViewPool: NSObjectProtocol {
         #[cfg(feature = "MTLTypes")]
         /// Obtains the resource ID corresponding to the resource view at index 0 in this resource view pool.

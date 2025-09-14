@@ -10,9 +10,8 @@ use objc2_shared_with_you_core::*;
 use crate::*;
 
 extern_protocol!(
+    /// The protocol you use to notify the delegate when the list or rank order of surfaced highlights changes.
     /// The delegate is notified when there are changes to the list of surfaced highlights, or when the enablement settings change.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcenterdelegate?language=objc)
     pub unsafe trait SWHighlightCenterDelegate: NSObjectProtocol {
         /// Notifies the delegate that the list, or rank order of surfaced highlights has changed.
         ///
@@ -24,11 +23,16 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that contains a priority-ordered list of universal links to share with the current user.
+    ///
+    /// ## Overview
+    ///
+    /// The system determines which links it surfaces. The app is responsible for updating its UI to reflect the latest highlights list that the system provides.
+    ///
+    ///
     /// Provides the application with a priority-ordered list of universal links which have been shared with the current user.
     ///
     /// The system decides which links should be surfaced. The app is responsible for updating its UI to reflect the latest provided list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWHighlightCenter;

@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The general interface for classes that manage local coordinate space transforms for 3D objects
+    ///
+    /// ## Overview
+    ///
+    /// Transform information—that is, the combination of an object’s position, orientation, shear, and scale—can be static, or in the case of resources that describe animations, time-based. By default, the [`MDLTransform`](https://developer.apple.com/documentation/modelio/mdltransform) class manages transform information for objects loaded from a [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) instance. By providing your own class that adopts this protocol, you can support other ways to associate transform information with objects—for example, when defining a custom asset file format.
+    ///
+    ///
     /// MDLTransformComponent
     /// a container for a time sampled local transformation
     ///
     ///
     /// Accessors to get the local transform and the global transform
     /// for a particular MDLObject are provided.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransformcomponent?language=objc)
     #[cfg(feature = "MDLTypes")]
     pub unsafe trait MDLTransformComponent: MDLComponent {
         /// if YES, this transform is intended to be in global space, not parent space
@@ -46,6 +51,13 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A description of the local coordinate space transformations for a 3D object.
+    ///
+    /// ## Overview
+    ///
+    /// Transform information can be static, or in the case of resources that describe animations, time based. You use transform objects to position, orient, shear, and scale the meshes, cameras, lights, and container objects in an asset using their [`transform`](https://developer.apple.com/documentation/modelio/mdlobject/transform) property.
+    ///
+    ///
     /// Concrete implementation of
     /// <MDLTransformComponent
     /// >.
@@ -56,8 +68,6 @@ extern_class!(
     ///
     /// Setting any of scale, translation, or rotation individually will
     /// set the matrix property, and clear any timing information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltransform?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTransform;

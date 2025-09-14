@@ -6,7 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedraginteraction?language=objc)
+    /// An interaction you add to a view that enables pan gestures to change the containing window scene’s position.
+    ///
+    /// ## Overview
+    ///
+    /// Create and add this interaction to a view that you want to drag to adjust the position of your app’s window. [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) handles this automatically, so you only need to add this interaction to views in other parts of your window that you want to be draggable.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var windowDragInteraction = UIWindowSceneDragInteraction()", "draggableView.addInteraction(windowDragInteraction)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UIWindowSceneDragInteraction *windowDragInteraction = [[UIWindowSceneDragInteraction alloc] init];", "[self.draggableView addInteraction:windowDragInteraction];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

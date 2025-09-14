@@ -10,9 +10,14 @@ use crate::*;
 extern_class!(
     /// MLOptimizationHints
     ///
+    /// ## Overview
+    ///
     /// An object to hold hints that CoreML could use for further optimization
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mloptimizationhints-c.class?language=objc)
+    ///
+    /// MLOptimizationHints
+    ///
+    /// An object to hold hints that CoreML could use for further optimization
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLOptimizationHints;

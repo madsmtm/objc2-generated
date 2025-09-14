@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phpersistentchange?language=objc)
+    /// An object that represents a change in the Photos library, and allows for requesting local identifiers that identify the changes for a library object.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPersistentChange;

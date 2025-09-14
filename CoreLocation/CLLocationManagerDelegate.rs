@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate?language=objc)
+    /// The methods you use to receive events from an associated location-manager object.
+    ///
+    /// ## Overview
+    ///
+    /// The location manager calls its delegate’s methods to report location-related events to your app. Implement this protocol in an app-specific object and use the methods to update your app. For example, you might use the current location to update the user’s position on a map or you might return search results relevant only to the user’s current location.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Always implement the methods for handling any potential failures in addition to the methods for receiving location-related data.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Assign your delegate object to the [`delegate`](https://developer.apple.com/documentation/corelocation/cllocationmanager/delegate) property of the [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object before starting any services. Core Location may report a cached value to your delegate immediately after you start the service, followed by a more current value later. Check the time stamp of any data objects you receive before using them.
+    ///
+    /// Core Location calls the methods of your delegate object on the runloop from the thread on which you initialized [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager). That thread must itself have an active run loop, like the one found in your app’s main thread.
+    ///
+    ///
     pub unsafe trait CLLocationManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CLLocation", feature = "CLLocationManager"))]
         #[deprecated = "Implement -locationManager:didUpdateLocations: instead"]

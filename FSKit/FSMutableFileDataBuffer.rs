@@ -9,11 +9,16 @@ use crate::*;
 extern_class!(
     /// A wrapper object for a data buffer.
     ///
+    /// ## Overview
+    ///
+    /// This object provides a “zero-copy” buffer, for use when reading data from files. By not requiring additional buffer copying, this object reduces the extension’s memory footprint and improves performance. The `FSMutableFileDataBuffer` behaves similarly to a `uio` in the kernel.
+    ///
+    ///
+    /// A wrapper object for a data buffer.
+    ///
     /// This object provides a "zero-copy" buffer, for use when reading data from files.
     /// By not requiring additional buffer copying, this object reduces the extension's memory footprint and improves performance.
     /// The `FSMutableFileDataBuffer` behaves similarly to a `uio` in the kernel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSMutableFileDataBuffer;

@@ -9,11 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachment/character?language=objc)
+/// Specifies a character that denotes an attachment.
 pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentlayout?language=objc)
+    /// A set of methods that defines the interface to attachment objects from a text layout manager.
+    ///
+    /// ## Overview
+    ///
+    /// `The NSTextAttachmentLayout` protocol is the interface for working with attachment objects with an [`NSTextAttachmentViewProvider`](https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider) using a [`NSTextLayoutManager`](https://developer.apple.com/documentation/appkit/nstextlayoutmanager) in macOS 12 and iOS 15 and later.
+    ///
+    ///
     pub unsafe trait NSTextAttachmentLayout: NSObjectProtocol {
         #[cfg(all(
             feature = "NSImage",
@@ -71,7 +77,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachment?language=objc)
+    /// The values for the attachment characteristics of attributed strings and related objects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) class uses text attachment objects as the values for attachment attributes (stored in the attributed string under the [`attachment`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/attachment) key).
+    ///
+    /// A text attachment object contains either an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object or an [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) object, which in turn holds the contents of the attached file. The properties of this class configure the appearance of the text attachment in your interface. In macOS, the text attachment also uses a cell object that conforms to the [`NSTextAttachmentCell`](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol) protocol to draw the image that represents the text and handles mouse events. For more information about text attachments, see the [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) and [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview).
+    ///
+    /// In macOS 12 and iOS 15 and later, [`NSTextAttachmentViewProvider`](https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider) and [`NSTextAttachmentLayout`](https://developer.apple.com/documentation/appkit/nstextattachmentlayout) provide additional capabilities to represent document locations in terms of an [`NSTextLocation`](https://developer.apple.com/documentation/appkit/nstextlocation) or an [`NSTextRange`](https://developer.apple.com/documentation/appkit/nstextrange), and provide support for view-based text attachments.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachment;
@@ -276,7 +292,13 @@ impl private_NSAttributedStringAttachmentConveniences::Sealed for NSAttributedSt
 unsafe impl NSAttributedStringAttachmentConveniences for NSAttributedString {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentviewprovider?language=objc)
+    /// A container object that associates a text attachment at a particular document location with a view object.
+    ///
+    /// ## Overview
+    ///
+    /// Use `NSTextAttachmentViewProvider` when you need to represent document locations in terms of an [`NSTextLocation`](https://developer.apple.com/documentation/appkit/nstextlocation) or an [`NSTextRange`](https://developer.apple.com/documentation/appkit/nstextrange) or you want to support view-based text attachments. The view provider controls the view placement and layout without requiring view classes to be aware of the text attachment coordination using a [`NSTextLayoutManager`](https://developer.apple.com/documentation/appkit/nstextlayoutmanager) in macOS 12 or iOS 15 and later.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextAttachmentViewProvider;
@@ -390,7 +412,7 @@ impl private_NSMutableAttributedStringAttachmentConveniences::Sealed for NSMutab
 unsafe impl NSMutableAttributedStringAttachmentConveniences for NSMutableAttributedString {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcontainer?language=objc)
+    /// A set of methods that defines the interface to text attachment objects from a layout manager.
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
         #[cfg(all(
             feature = "NSImage",

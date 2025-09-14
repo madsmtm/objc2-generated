@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A Smart Card PIN authentication operation.
     /// Context of a SmartCard PIN authentication operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokensmartcardpinauthoperation?language=objc)
     #[unsafe(super(TKTokenAuthOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TKToken")]
@@ -112,11 +111,16 @@ impl TKTokenSmartCardPINAuthOperation {
 }
 
 extern_class!(
+    /// A token session that is based on a smart card token.
+    ///
+    /// ## Overview
+    ///
+    /// You can use the [`smartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtokensession/smartcard) property to access and send APDUs to the underlying smart card.
+    ///
+    ///
     /// TKSmartCardTokenSession represents token session based on SmartCard token.
     ///
     /// When implementing SmartCard token extension, subclass TKSmartCardTokenSession and implement TKTokenSessionDelegate on it.  Use #token property to get access and send APDUs to the underlying SmartCard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtokensession?language=objc)
     #[unsafe(super(TKTokenSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TKToken")]
@@ -183,11 +187,10 @@ impl TKSmartCardTokenSession {
 }
 
 extern_class!(
+    /// A representation of a smart card based cryptographic token.
     /// TKSmartCardToken base class for implementing SmartCard based token.
     ///
     /// When implementing SmartCard token extension, subclass TKSmartCardToken and implement TKTokenDelegate on it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtoken?language=objc)
     #[unsafe(super(TKToken, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TKToken")]
@@ -260,9 +263,8 @@ impl TKSmartCardToken {
 }
 
 extern_class!(
+    /// The driver that acts as an entry point for smart card app extensions.
     /// TKSmartCardTokenDriver represents driver for specific SmartCard type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtokendriver?language=objc)
     #[unsafe(super(TKTokenDriver, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TKToken")]
@@ -294,9 +296,8 @@ impl TKSmartCardTokenDriver {
 }
 
 extern_protocol!(
+    /// The interface that a smart card token driver delegate implements to respond to token creation events.
     /// TKSmartCardTokenDriverDelegate is used to implement creation of new token instance according to the SmartCard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtokendriverdelegate?language=objc)
     #[cfg(feature = "TKToken")]
     pub unsafe trait TKSmartCardTokenDriverDelegate: TKTokenDriverDelegate {
         #[cfg(feature = "TKSmartCard")]

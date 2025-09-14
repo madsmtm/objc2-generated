@@ -12,12 +12,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A capture output that records video and provides access to video frames for processing.
+    ///
+    /// ## Overview
+    ///
+    /// Use this output to process compressed or uncompressed frames from the captured video. You can access the frames with the [`captureOutput:didOutputSampleBuffer:fromConnection:`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutputsamplebufferdelegate/captureoutput(_:didoutput:from:)) delegate method.
+    ///
+    /// This object supports compressed video data output for macOS only. It can output pixel buffers in several pixel formats. Consider the usability and performance characteristics of these formats and choose the best format for your app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Avoid defaulting to a BGRA format, because BGRA formats aren’t native and require conversion. Additionally, BGRA formats requires significantly more memory than many of the native formats. For more information, see [TN3121: Selecting a pixel format for an AVCaptureVideoDataOutput](https://developer.apple.com/documentation/technotes/tn3121-selecting-a-pixel-format-for-an-avcapturevideodataoutput).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// AVCaptureVideoDataOutput is a concrete subclass of AVCaptureOutput that can be used to process uncompressed or compressed frames from the video being captured.
     ///
     ///
     /// Instances of AVCaptureVideoDataOutput produce video frames suitable for processing using other media APIs. Applications can access the frames with the captureOutput:didOutputSampleBuffer:fromConnection: delegate method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -376,9 +391,16 @@ impl AVCaptureVideoDataOutput {
 }
 
 extern_protocol!(
-    /// Defines an interface for delegates of AVCaptureVideoDataOutput to receive captured video sample buffers and be notified of late sample buffers that were dropped.
+    /// Methods for receiving sample buffers from, and monitoring the status of, a video data output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutputsamplebufferdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// This protocol defines an interface for delegates of an [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput) object to receive captured video sample buffers and be notified of late sample buffers that were dropped.
+    ///
+    /// The delegate of an [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput) object must adopt the `AVCaptureVideoDataOutputSampleBufferDelegate` protocol. The methods in this protocol are optional.
+    ///
+    ///
+    /// Defines an interface for delegates of AVCaptureVideoDataOutput to receive captured video sample buffers and be notified of late sample buffers that were dropped.
     pub unsafe trait AVCaptureVideoDataOutputSampleBufferDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",

@@ -8,6 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A network device that transmits raw network packets and frames using a datagram socket.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZFileHandleNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment) object maps a network interface to a connected datagram socket. This attachment transmits data at the data link layer. You configure and manage the socket in your app, and manage the corresponding data transfers.
+    ///
+    /// To configure a network device with a socket-based file handle:
+    ///
+    /// 1. Create a socket with the `SOCK_DGRAM` type in your app.
+    ///
+    /// 2. Create a [`NSFileHandle`](https://developer.apple.com/documentation/foundation/filehandle) from the socket’s file descriptor.
+    ///
+    /// 3. Create the [`VZFileHandleNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment) object using the file handle.
+    ///
+    /// 4. Assign the attachment object to the [`attachment`](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment) property of a [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object.
+    ///
+    /// 5. Add the [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object to the [`networkDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration).
+    ///
+    /// This attachment doesn’t require your app to have the [`com.apple.vm.networking`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.vm.networking) entitlement.
+    ///
+    ///
     /// Network device attachment sending raw network packets over a file handle.
     ///
     /// The file handle attachment transmits the raw packets/frames between the virtual network interface and a file handle.
@@ -19,8 +40,6 @@ extern_class!(
     /// See: VZNetworkDeviceConfiguration
     ///
     /// See: VZVirtioNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment?language=objc)
     #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]

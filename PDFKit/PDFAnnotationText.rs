@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtext?language=objc)
+    /// A `PDFAnnotationText` object displays as an icon (such as a “sticky note”) attached to a specified point in the PDF document.
+    ///
+    /// ## Overview
+    ///
+    /// Each `PDFAnnotationText` object has a `PDFAnnotationPopup` object associated with it. In its closed state, the annotation appears as an icon. In its open state, it displays as a pop-up window containing the text of the note. Note that your application must do the work to put up a window containing the text in response to a [`PDFViewAnnotationHitNotification`](https://developer.apple.com/documentation/pdfkit/pdfviewannotationhitnotification). Currently, text annotations do not scale and rotate with the page.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

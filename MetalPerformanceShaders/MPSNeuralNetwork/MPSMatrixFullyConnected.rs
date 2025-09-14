@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A kernel for applying a fully connected neural network layer.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -27,8 +28,6 @@ extern_class!(
     /// of the product.  alpha is a scale factor applied to the product.
     ///
     /// neuron() is a pointwise function applied to the intermediate result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnected?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -370,6 +369,7 @@ impl MPSMatrixFullyConnected {
 }
 
 extern_class!(
+    /// A kernel for applying a fully gradient connected neural network layer.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -385,8 +385,6 @@ extern_class!(
     /// activation function which may have been applied in the forward
     /// kernel.  Such a kernel must be expressed using both MPSMatrixFullyConnected
     /// and MPSMatrixNeuron if a gradient is to be computed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnectedgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

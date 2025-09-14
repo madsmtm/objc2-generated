@@ -10,9 +10,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A SCNConstraint is an abstract class that represents a single constraint that can be applied to a node.
+    /// The abstract superclass for objects that automatically adjust the position, rotation, or scale of a node based on specified rules.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconstraint?language=objc)
+    /// ## Overview
+    ///
+    /// To control the transform (position, rotation, and scale) of one or more [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) objects with constraints, create and configure instances of the [`SCNConstraint`](https://developer.apple.com/documentation/scenekit/scnconstraint) subclass that provides the behavior you want, then add those constraint objects to each node’s [`constraints`](https://developer.apple.com/documentation/scenekit/scnnode/constraints) array.
+    ///
+    /// When SceneKit prepares to render a scene, it examines the list of constraints attached to each node to determine the transform for that node, then applies the new transformation before displaying the scene.
+    ///
+    ///
+    /// A SCNConstraint is an abstract class that represents a single constraint that can be applied to a node.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNConstraint;
@@ -93,9 +100,16 @@ impl SCNConstraint {
 }
 
 extern_class!(
-    /// A SCNLookAtConstraint applies on a node's orientation so that it always look at another node.
+    /// A constraint that orients a node to always point toward a specified other node.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlookatconstraint?language=objc)
+    /// ## Overview
+    ///
+    /// For example, you can use a look-at constraint to ensure that a camera or spotlight always follows the movement of a game character. To attach constraints to an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object, use its [`constraints`](https://developer.apple.com/documentation/scenekit/scnnode/constraints) property.
+    ///
+    /// A node points in the direction of the negative z-axis of its local coordinate system. This axis defines the view direction for nodes containing cameras and the lighting direction for nodes containing spotlights or directional lights, as well as the orientation of the node’s geometry and child nodes. When Scene Kit evaluates a look-at constraint, it updates the constrained node’s [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) property so that the node’s negative z-axis points toward the constraint’s target node.
+    ///
+    ///
+    /// A SCNLookAtConstraint applies on a node's orientation so that it always look at another node.
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNLookAtConstraint;
@@ -211,23 +225,39 @@ impl SCNLookAtConstraint {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis?language=objc)
+/// Options for locking the orientation of nodes affected by a billboard constraint.
+///
+/// ## Overview
+///
+/// The figure below shows the effects of constraining various axes.
+///
+///
+/// ![](https://docs-assets.developer.apple.com/published/31307ee6cbcf77d7cd5b4367045d24bc/media-2929767%402x.png)
+///
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBillboardAxis(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNBillboardAxis: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/x?language=objc)
+/// Align an affected node such that its x-axis is always parallel to that of the view, leaving it free to rotate otherwise.
         #[doc(alias = "SCNBillboardAxisX")]
         const X = 0x1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/y?language=objc)
+/// Align an affected node such that its y-axis is always parallel to that of the view, leaving it free to rotate otherwise.
         #[doc(alias = "SCNBillboardAxisY")]
         const Y = 0x1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/z?language=objc)
+/// Align an affected node such that its z-axis is always perpendicular to the viewing plane, leaving it free to rotate otherwise.
         #[doc(alias = "SCNBillboardAxisZ")]
         const Z = 0x1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardaxis/all?language=objc)
+/// Align an affected node such that its orientation always matches that of the view.
+///
+/// ## Discussion
+///
+/// This is the default option for newly created billboard constraints.
+///
+///
         #[doc(alias = "SCNBillboardAxisAll")]
         const All = SCNBillboardAxis::X.0|SCNBillboardAxis::Y.0|SCNBillboardAxis::Z.0;
     }
@@ -242,7 +272,13 @@ unsafe impl RefEncode for SCNBillboardAxis {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbillboardconstraint?language=objc)
+    /// A constraint that orients a node to always point toward the current camera.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SCNBillboardConstraint`](https://developer.apple.com/documentation/scenekit/scnbillboardconstraint) object automatically adjusts a node’s orientation so that its local z-axis always points toward the [`pointOfView`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/pointofview) node currently being used to render the scene. For example, you can use a billboard constraint to efficiently render parts of a scene using two-dimensional sprite images instead of three-dimensional geometry—by mapping sprites onto planes affected by a billboard constraint, the sprites maintain their orientation with respect to the viewer. To attach constraints to an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object, use its [`constraints`](https://developer.apple.com/documentation/scenekit/scnnode/constraints) property.
+    ///
+    ///
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNBillboardConstraint;
@@ -308,9 +344,16 @@ impl SCNBillboardConstraint {
 }
 
 extern_class!(
-    /// A SCNTransformConstraint applies on the transform of a node via a custom block.
+    /// A constraint that runs a specified closure, block in Objective-C, to compute a new transform (position, rotation, and scale) for each node that the constraint affects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransformconstraint?language=objc)
+    /// ## Overview
+    ///
+    /// To attach constraints to an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object, use its [`constraints`](https://developer.apple.com/documentation/scenekit/scnnode/constraints) property.
+    ///
+    /// When Scene Kit prepares to render a scene, it evaluates the list of constraints attached to each node to determine the transformation for that node, then applies the new transformation before rendering. To evaluate a transform constraint, Scene Kit runs the block you provided when creating the constraint. In this block, your app computes a new transformation to be applied to the node. Optionally, your app may reference the node’s current transformation in computing the new transformation.
+    ///
+    ///
+    /// A SCNTransformConstraint applies on the transform of a node via a custom block.
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNTransformConstraint;
@@ -420,9 +463,36 @@ impl SCNTransformConstraint {
 }
 
 extern_class!(
-    /// A SCNIKConstraint applies an inverse kinematics constraint
+    /// A constraint that applies inverse kinematics to make a chain of nodes “reach” toward a target point.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnikconstraint?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/f14b291f2a571339e348a8f37f83105e/media-2929777%402x.png)
+    ///
+    ///
+    /// _Inverse kinematics (IK)_ is an iterative process that finds positions for the joints connecting a chain of rigid bodies in order to move the body at the end of that chain as close as possible to a desired point in space. For example, a chain of bodies might model a robot arm, and the node at the end of the chain—called an _end effector_—might model the hand or tool at the end of the arm. To create IK-based behavior in a SceneKit app or game, follow these steps:
+    ///
+    /// 1. Build a hierarchy of nodes whose [`position`](https://developer.apple.com/documentation/scenekit/scnnode/position) and [`pivot`](https://developer.apple.com/documentation/scenekit/scnnode/pivot) properties describe the joints between them. For example, the node representing a robot’s lower arm should be a child of its upper arm node, and the lower arm node’s [`pivot`](https://developer.apple.com/documentation/scenekit/scnnode/pivot) property should be placed so that adjusting its [`rotation`](https://developer.apple.com/documentation/scenekit/scnnode/rotation) property appears to bend the arm at an elbow joint. The robot’s hand should in turn be a child node of the lower arm node.
+    ///
+    /// 2. Create an [`SCNIKConstraint`](https://developer.apple.com/documentation/scenekit/scnikconstraint) object whose [`chainRootNode`](https://developer.apple.com/documentation/scenekit/scnikconstraint/chainrootnode) property refers to the highest node in the hierarchy whose orientation should be adjusted by the constraint. Continuing the previous example, the root of the chain should be the node containing the upper arm (not the robot’s body, whose orientation remains fixed).
+    ///
+    /// 3. Apply the IK constraint to the end effector node of the chain with that node’s [`constraints`](https://developer.apple.com/documentation/scenekit/scnnode/constraints) property. In the robot arm example, the end effector is the hand or tool at the end of the arm.
+    ///
+    /// 4. (Optional) Limit the range of motion of one or more joints in the chain with the [`setMaxAllowedRotationAngle:forJoint:`](https://developer.apple.com/documentation/scenekit/scnikconstraint/setmaxallowedrotationangle(_:forjoint:)) method.
+    ///
+    /// 5. To set the constrained nodes in motion, provide a target position for the constraint with its [`targetPosition`](https://developer.apple.com/documentation/scenekit/scnikconstraint/targetposition) property. You can animate a change to this property
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  SceneKit’s physics and inverse kinematics simulations are separate. When SceneKit prepares to render a scene, it processes the physics simulation before applying constraints (including IK constraints). As a result, the effects of an IK constraint override the results of the physics simulation. To use physics with a node also affected by constraints, the node’s [`physicsBody`](https://developer.apple.com/documentation/scenekit/scnnode/physicsbody) object must be a kinematic physics body.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A SCNIKConstraint applies an inverse kinematics constraint
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNIKConstraint;
@@ -526,8 +596,6 @@ impl SCNIKConstraint {
 
 extern_class!(
     /// A SCNDistanceConstraint ensure a minimum/maximum distance with a target node.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndistanceconstraint?language=objc)
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNDistanceConstraint;
@@ -619,8 +687,6 @@ impl SCNDistanceConstraint {
 
 extern_class!(
     /// A SCNReplicatorConstraint replicates the position/orientation/scale of a target node
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreplicatorconstraint?language=objc)
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNReplicatorConstraint;
@@ -754,8 +820,6 @@ impl SCNReplicatorConstraint {
 
 extern_class!(
     /// A SCNAccelerationConstraint caps the acceleration and velocity of a node
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnaccelerationconstraint?language=objc)
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAccelerationConstraint;
@@ -862,8 +926,6 @@ impl SCNAccelerationConstraint {
 
 extern_class!(
     /// A SCNSliderConstraint constraint makes a node to collide and slide against a category of nodes
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsliderconstraint?language=objc)
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNSliderConstraint;
@@ -951,7 +1013,6 @@ impl SCNSliderConstraint {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnavoidoccluderconstraintdelegate?language=objc)
     pub unsafe trait SCNAvoidOccluderConstraintDelegate: NSObjectProtocol {
         #[cfg(feature = "SCNNode")]
         #[optional]
@@ -981,8 +1042,6 @@ extern_class!(
     /// A SCNAvoidOccluderConstraint constraints place the receiver at a position that prevent nodes with the specified category to occlude the target.
     ///
     /// The target node and it's children are ignored as potential occluders.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnavoidoccluderconstraint?language=objc)
     #[unsafe(super(SCNConstraint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAvoidOccluderConstraint;

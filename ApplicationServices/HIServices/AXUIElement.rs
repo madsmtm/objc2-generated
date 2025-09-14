@@ -14,9 +14,15 @@ use crate::*;
 
 /// Returns whether the accessibility API is enabled.
 ///
-/// Returns: Returns TRUE if the accessibility API is currently enabled, otherwise FALSE.
+/// <a id="return_value"></a>
+/// ## Return Value
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462072-axapienabled?language=objc)
+/// Returns TRUE if the accessibility API is currently enabled, otherwise FALSE.
+///
+///
+/// Returns whether the accessibility API is enabled.
+///
+/// Returns: Returns TRUE if the accessibility API is currently enabled, otherwise FALSE.
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
@@ -27,6 +33,20 @@ pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
     ret != 0
 }
 
+/// Returns whether the current process is a trusted accessibility client.
+///
+/// Parameters:
+/// - options: A dictionary of options, or NULL to specify no options. The following options are available:
+///
+/// KEY: kAXTrustedCheckOptionPrompt VALUE: ACFBooleanRef indicating whether the user will be informed if the current process is untrusted. This could be used, for example, on application startup to always warn a user if accessibility is not enabled for the current process. Prompting occurs asynchronously and does not affect the return value.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns TRUE if the current process is a trusted accessibility client, FALSE if it is not.
+///
+///
 /// Returns whether the current process is a trusted accessibility client.
 ///
 /// Parameter `options`: A dictionary of options, or NULL to specify no options. The following options are available:
@@ -41,8 +61,6 @@ pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
 ///
 /// - `options` generic must be of the correct type.
 /// - `options` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459186-axisprocesstrustedwithoptions?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXIsProcessTrustedWithOptions(
     options: Option<&CFDictionary>,
@@ -55,16 +73,21 @@ pub unsafe extern "C-unwind" fn AXIsProcessTrustedWithOptions(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxtrustedcheckoptionprompt?language=objc)
     pub static kAXTrustedCheckOptionPrompt: &'static CFString;
 }
 
 /// Returns whether the current process is a trusted accessibility client.
 ///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns TRUE if the current process is a trusted accessibility client, FALSE if it is not.
+///
+///
+/// Returns whether the current process is a trusted accessibility client.
+///
 ///
 /// Returns: Returns TRUE if the current process is a trusted accessibility client, FALSE if it is not.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460720-axisprocesstrusted?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AXIsProcessTrusted() -> bool {
     extern "C-unwind" {
@@ -75,6 +98,24 @@ pub unsafe extern "C-unwind" fn AXIsProcessTrusted() -> bool {
 }
 
 extern "C-unwind" {
+    /// Attempts to make the process represented by the specified path a trusted accessibility client.
+    ///
+    /// Parameters:
+    /// - executablePath: The path to the executable of the process to make trusted.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An AXError that indicates success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to make a process a trusted accessibility client. Note: The caller must be running as `root` to successfully call this function. In addition, the caller should relaunch the process after this function returns successfully for the trusted status to take effect.
+    ///
+    ///
     /// Attempts to make the process represented by the specified path a trusted accessibility client.
     ///
     ///
@@ -89,8 +130,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An AXError that indicates success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462083-axmakeprocesstrusted?language=objc)
     #[cfg(feature = "AXError")]
     #[deprecated]
     pub fn AXMakeProcessTrusted(executable_path: &CFString) -> AXError;
@@ -125,15 +164,12 @@ cf_objc2_type!(
 ///
 /// to force the function
 /// to stop when it gets an error.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axcopymultipleattributeoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXCopyMultipleAttributeOptions(pub u32);
 bitflags::bitflags! {
     impl AXCopyMultipleAttributeOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axcopymultipleattributeoptions/kaxcopymultipleattributeoptionstoponerror?language=objc)
         #[doc(alias = "kAXCopyMultipleAttributeOptionStopOnError")]
         const StopOnError = 0x1;
     }
@@ -152,10 +188,16 @@ unsafe impl RefEncode for AXCopyMultipleAttributeOptions {
 unsafe impl ConcreteType for AXUIElement {
     /// Returns the unique type identifier for the AXUIElementRef type.
     ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a CFTypeID representing the AXUIElementRef type.
+    ///
+    ///
+    /// Returns the unique type identifier for the AXUIElementRef type.
+    ///
     ///
     /// Returns: Returns a CFTypeID representing the AXUIElementRef type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460085-axuielementgettypeid?language=objc)
     #[doc(alias = "AXUIElementGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -167,6 +209,32 @@ unsafe impl ConcreteType for AXUIElement {
 }
 
 impl AXUIElement {
+    /// Returns a list of all the attributes supported by the specified accessibility object.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - names: On return, an array containing the accessibility object's attribute names.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyAttributeNames` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorAttributeUnsupported`: The specified AXUIElementRef does not support the specified attribute.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or both of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorFailure`: There was a system memory failure.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns a list of all the attributes supported by the specified accessibility object.
     ///
     ///
@@ -234,8 +302,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `names` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459475-axuielementcopyattributenames?language=objc)
     #[doc(alias = "AXUIElementCopyAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -249,6 +315,34 @@ impl AXUIElement {
         unsafe { AXUIElementCopyAttributeNames(self, names) }
     }
 
+    /// Returns the value of an accessibility object's attribute.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - attribute: The attribute name.
+    ///
+    /// - value: On return, the value associated with the specified attribute.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyAttributeValue` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorAttributeUnsupported`: The specified AXUIElementRef does not support the specified attribute.
+    ///
+    /// - `kAXErrorNoValue`: The specified attribute does not have a value.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns the value of an accessibility object's attribute.
     ///
     ///
@@ -318,8 +412,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462085-axuielementcopyattributevalue?language=objc)
     #[doc(alias = "AXUIElementCopyAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -338,6 +430,32 @@ impl AXUIElement {
         unsafe { AXUIElementCopyAttributeValue(self, attribute, value) }
     }
 
+    /// Returns the count of the array of an accessibility object's attribute value.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - attribute: The attribute name.
+    ///
+    /// - count: On return, the size of the array that is the attribute's value.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementGetAttributeValueCount` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: The attribute's value is not an array or one of the other arguments is an illegal value.
+    ///
+    /// - `kAXErrorAttributeUnsupported`: The specified AXUIElementRef does not support the specified attribute.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns the count of the array of an accessibility object's attribute value.
     ///
     ///
@@ -399,8 +517,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `count` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459066-axuielementgetattributevaluecoun?language=objc)
     #[doc(alias = "AXUIElementGetAttributeValueCount")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -419,6 +535,42 @@ impl AXUIElement {
         unsafe { AXUIElementGetAttributeValueCount(self, attribute, count) }
     }
 
+    /// Returns an array of attribute values for the accessibility object's attribute, starting at the specified index.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - attribute: The attribute name.
+    ///
+    /// - index: The index into the array.
+    ///
+    /// - maxValues: The maximum number of values you want (this may be more or less than the number of values associated with the attribute).
+    ///
+    /// - values: On return, the attribute values you requested. If `maxValues` is greater than the number of values associated with the attribute, the `values` array will contain values found between `index` and the end of the attribute's array, inclusive.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyAttributeValues` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: The attribute's value is not array, the `index` or `maxValues` arguments are outside the array's range, or one of the other arguments is an illegal value.
+    ///
+    /// - `kAXErrorNoValue`: The specified attribute does not have a value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is useful for dealing with large arrays, for example, a table view with a large number of children.
+    ///
+    ///
     /// Returns an array of attribute values for the accessibility object's attribute, starting at the specified index.
     ///
     /// This function is useful for dealing with large arrays, for example, a table view with a large number of children.
@@ -506,8 +658,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462060-axuielementcopyattributevalues?language=objc)
     #[doc(alias = "AXUIElementCopyAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -530,6 +680,40 @@ impl AXUIElement {
         unsafe { AXUIElementCopyAttributeValues(self, attribute, index, max_values, values) }
     }
 
+    /// Returns whether the specified accessibility object's attribute can be modified.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - attribute: The attribute name.
+    ///
+    /// - settable: On return, a Boolean value indicating whether the attribute is settable.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementIsAttributeSettable` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way (often due to a timeout).
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorAttributeUnsupported`: The specified AXUIElementRef does not support the specified attribute.
+    ///
+    /// - `kAXErrorNoValue`: The specified attribute does not have a value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you receive a `kAXErrorCannotComplete` error from this function, you might want to repeat the request or change the timeout value.
+    ///
+    ///
     /// Returns whether the specified accessibility object's attribute can be modified.
     ///
     /// If you receive a
@@ -605,8 +789,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `settable` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459972-axuielementisattributesettable?language=objc)
     #[doc(alias = "AXUIElementIsAttributeSettable")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -625,6 +807,38 @@ impl AXUIElement {
         unsafe { AXUIElementIsAttributeSettable(self, attribute, settable) }
     }
 
+    /// Sets the accessibility object's attribute to the specified value.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - attribute: The attribute name.
+    ///
+    /// - value: The new value for the attribute.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementSetAttributeValue` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: The value is not recognized by the accessible application or one of the other arguments is an illegal value.
+    ///
+    /// - `kAXErrorAttributeUnsupported`: The specified AXUIElementRef does not support the specified attribute.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can send and receive many different CFTypeRefs using the accessibility API. These include all CFPropertyListRef types, AXUIElementRef, AXValueRef, AXTextMarkerRef, AXTextMarkerRangeRef, CFNullRef, CFAttributedStringRef, and CRURLRef.
+    ///
+    ///
     /// Sets the accessibility object's attribute to the specified value.
     ///
     /// You can send and receive many different CFTypeRefs using the accessibility API.
@@ -689,8 +903,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460434-axuielementsetattributevalue?language=objc)
     #[doc(alias = "AXUIElementSetAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -705,6 +917,38 @@ impl AXUIElement {
         unsafe { AXUIElementSetAttributeValue(self, attribute, value) }
     }
 
+    /// Returns the values of multiple attributes in the accessibility object.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - attributes: An array of attribute names.
+    ///
+    /// - options: A value that tells `AXUIElementCopyMultipleAttributeValues` how to handle errors.
+    ///
+    /// - values: On return, an array in which each position contains the value of the attribute that is in the corresponding position in the passed-in `attributes` array (or CFNull). If `options` = 0, the `values` array can contain an AXValueRef of type `kAXValueAXErrorType` in the corresponding position. If `options` = `kAXCopyMultipleAttributeOptionStopOnError`, this function will return immediately when it gets an error.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyMultipleAttributeValues` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the specified AXUIElementRef does not support an attribute passed in the `attributes` array, the returned array can contain an error or CFNull at the corresponding position.
+    ///
+    ///
     /// Returns the values of multiple attributes in the accessibility object.
     ///
     /// If the specified AXUIElementRef does not support an attribute passed in the
@@ -798,8 +1042,6 @@ impl AXUIElement {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462051-axuielementcopymultipleattribute?language=objc)
     #[doc(alias = "AXUIElementCopyMultipleAttributeValues")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -820,6 +1062,32 @@ impl AXUIElement {
         unsafe { AXUIElementCopyMultipleAttributeValues(self, attributes, options, values) }
     }
 
+    /// Returns a list of all the parameterized attributes supported by the specified accessibility object.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - names: On return, an array containing the accessibility object's parameterized attribute names.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyParameterizedAttributeNames` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorAttributeUnsupported` or `kAXErrorParameterizedAttributeUnsupported`: The specified AXUIElementRef does not support the specified parameterized attribute.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or both of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorFailure`: There was some sort of system memory failure.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns a list of all the parameterized attributes supported by the specified accessibility object.
     ///
     ///
@@ -891,8 +1159,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `names` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458783-axuielementcopyparameterizedattr?language=objc)
     #[doc(alias = "AXUIElementCopyParameterizedAttributeNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -909,6 +1175,36 @@ impl AXUIElement {
         unsafe { AXUIElementCopyParameterizedAttributeNames(self, names) }
     }
 
+    /// Returns the value of an accessibility object's parameterized attribute.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - parameterizedAttribute: The parameterized attribute.
+    ///
+    /// - parameter: The parameter.
+    ///
+    /// - result: On return, the value of the parameterized attribute.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyParameterizedAttributeValue` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorAttributeUnsupported` or `kAXErrorParameterizedAttributeUnsupported`: The specified AXUIElementRef does not support the specified parameterized attribute.
+    ///
+    /// - `kAXErrorNoValue`: The specified parameterized attribute does not have a value.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns the value of an accessibility object's parameterized attribute.
     ///
     ///
@@ -985,8 +1281,6 @@ impl AXUIElement {
     ///
     /// - `parameter` should be of the correct type.
     /// - `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461203-axuielementcopyparameterizedattr?language=objc)
     #[doc(alias = "AXUIElementCopyParameterizedAttributeValue")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1014,6 +1308,30 @@ impl AXUIElement {
         }
     }
 
+    /// Returns a list of all the actions the specified accessibility object can perform.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - names: On return, an array of actions the accessibility object can perform (empty if the accessibility object supports no actions).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyActionNames` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One or both of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorFailure`: There was some sort of system memory failure.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns a list of all the actions the specified accessibility object can perform.
     ///
     /// Parameter `element`: The AXUIElementRef representing the accessibility object.
@@ -1072,8 +1390,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `names` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462053-axuielementcopyactionnames?language=objc)
     #[doc(alias = "AXUIElementCopyActionNames")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1087,6 +1403,32 @@ impl AXUIElement {
         unsafe { AXUIElementCopyActionNames(self, names) }
     }
 
+    /// Returns a localized description of the specified accessibility object's action.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - action: The action to be described.
+    ///
+    /// - description: On return, a string containing the description of the action.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyActionDescription` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorActionUnsupported`: The specified AXUIElementRef does not support the specified action (you will also receive this error if you pass in the system-wide accessibility object).
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
     /// Returns a localized description of the specified accessibility object's action.
     ///
     ///
@@ -1148,8 +1490,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `description` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462075-axuielementcopyactiondescription?language=objc)
     #[doc(alias = "AXUIElementCopyActionDescription")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1168,6 +1508,36 @@ impl AXUIElement {
         unsafe { AXUIElementCopyActionDescription(self, action, description) }
     }
 
+    /// Requests that the specified accessibility object perform the specified action.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing the accessibility object.
+    ///
+    /// - action: The action to be performed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementPerformAction` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorActionUnsupported`: The specified AXUIElementRef does not support the specified action (you will also receive this error if you pass in the system-wide accessibility object).
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way or the application has not yet responded.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// It is possible to receive the `kAXErrorCannotComplete` error code from this function because accessible applications often need to perform some sort of modal processing inside their action callbacks and they may not return within the timeout value set by the accessibility API. This does not necessarily mean that the function has failed, however. If appropriate, your assistive application can try to call this function again. Also, you may be able to increase the timeout value (see [`AXUIElementSetMessagingTimeout`](https://developer.apple.com/documentation/applicationservices/1459345-axuielementsetmessagingtimeout)).
+    ///
+    ///
     /// Requests that the specified accessibility object perform the specified action.
     ///
     /// It is possible to receive the
@@ -1237,8 +1607,6 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462091-axuielementperformaction?language=objc)
     #[doc(alias = "AXUIElementPerformAction")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1249,6 +1617,40 @@ impl AXUIElement {
         unsafe { AXUIElementPerformAction(self, action) }
     }
 
+    /// Returns the accessibility object at the specified position in top-left relative screen coordinates.
+    ///
+    /// Parameters:
+    /// - application: The AXUIElementRef representing the application that contains the screen coordinates (or the system-wide accessibility object).
+    ///
+    /// - x: The horizontal position.
+    ///
+    /// - y: The vertical position.
+    ///
+    /// - element: On return, the accessibility object at the position specified by x and y.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementCopyElementAtPosition` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorNoValue`: There is no accessibility object at the specified position.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does hit-testing based on window z-order (that is, layering). If one window is on top of another window, the returned accessibility object comes from whichever window is topmost at the specified location. Note that if the system-wide accessibility object is passed in the `application` parameter, the position test is not restricted to a particular application.
+    ///
+    ///
     /// Returns the accessibility object at the specified position in top-left relative screen coordinates.
     ///
     ///
@@ -1321,8 +1723,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `element` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462077-axuielementcopyelementatposition?language=objc)
     #[doc(alias = "AXUIElementCopyElementAtPosition")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1345,12 +1745,22 @@ impl AXUIElement {
 
     /// Creates and returns the top-level accessibility object for the application with the specified process ID.
     ///
+    /// Parameters:
+    /// - pid: The process ID of an application.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The AXUIElementRef representing the top-level accessibility object for the application with the specified process ID.
+    ///
+    ///
+    /// Creates and returns the top-level accessibility object for the application with the specified process ID.
+    ///
     ///
     /// Parameter `pid`: The process ID of an application.
     ///
     /// Returns: The AXUIElementRef representing the top-level accessibility object for the application with the specified process ID.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459374-axuielementcreateapplication?language=objc)
     #[doc(alias = "AXUIElementCreateApplication")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -1366,12 +1776,24 @@ impl AXUIElement {
 
     /// Returns an accessibility object that provides access to system attributes.
     ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The AXUIElementRef representing the system-wide accessibility object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is useful for things like finding the focused accessibility object regardless of which application is currently active.
+    ///
+    ///
+    /// Returns an accessibility object that provides access to system attributes.
+    ///
     /// This is useful for things like finding the focused accessibility object regardless of which application is currently active.
     ///
     ///
     /// Returns: The AXUIElementRef representing the system-wide accessibility object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462095-axuielementcreatesystemwide?language=objc)
     #[doc(alias = "AXUIElementCreateSystemWide")]
     #[inline]
     pub unsafe fn new_system_wide() -> CFRetained<AXUIElement> {
@@ -1384,6 +1806,24 @@ impl AXUIElement {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Returns the process ID associated with the specified accessibility object.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing an accessibility object.
+    ///
+    /// - pid: On return, the process ID associated with the specified accessibility object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementGetPid` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    ///
     /// Returns the process ID associated with the specified accessibility object.
     ///
     ///
@@ -1419,8 +1859,6 @@ impl AXUIElement {
     /// # Safety
     ///
     /// `pid` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460337-axuielementgetpid?language=objc)
     #[doc(alias = "AXUIElementGetPid")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -1431,6 +1869,32 @@ impl AXUIElement {
         unsafe { AXUIElementGetPid(self, pid) }
     }
 
+    /// Sets the timeout value used in the accessibility API.
+    ///
+    /// Parameters:
+    /// - element: The AXUIElementRef representing an accessibility object.
+    ///
+    /// - timeoutInSeconds: The number of seconds for the new timeout value.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementSetMessagingTimeout` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value (timeout values must be positive).
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Pass the system-wide accessibility object (see [`AXUIElementCreateSystemWide`](https://developer.apple.com/documentation/applicationservices/1462095-axuielementcreatesystemwide)) if you want to set the timeout globally for this process. Setting the timeout on another accessibility object sets it only for that object, not for other accessibility objects that are equal to it.
+    ///
+    /// Setting `timeoutInSeconds` to 0 for the system-wide accessibility object resets the global timeout to its default value. Setting `timeoutInSeconds` to 0 for any other accessibility object makes that element use the current global timeout value.
+    ///
+    ///
     /// Sets the timeout value used in the accessibility API.
     ///
     /// Pass the system-wide accessibility object (see
@@ -1481,8 +1945,6 @@ impl AXUIElement {
     /// The AXUIElementRef is invalid.
     /// </dd>
     /// </dl>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459345-axuielementsetmessagingtimeout?language=objc)
     #[doc(alias = "AXUIElementSetMessagingTimeout")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -1496,6 +1958,36 @@ impl AXUIElement {
         unsafe { AXUIElementSetMessagingTimeout(self, timeout_in_seconds) }
     }
 
+    /// Posts keys to the specified application.
+    ///
+    /// Parameters:
+    /// - application: The AXUIElementRef representing the application (or the system-wide accessibility object).
+    ///
+    /// - keyChar: - virtualKey: - keyDown:
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXUIElementPostKeyboardEvent` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorInvalidUIElement`: The AXUIElementRef is invalid.
+    ///
+    /// - `kAXErrorFailure`: There is some sort of system memory failure.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorNotImplemented`: The process does not fully support the accessibility API.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is similar to [`CGPostKeyboardEvent(_:_:_:)`](https://developer.apple.com/documentation/coregraphics/cgpostkeyboardevent(_:_:_:)) (which synthesizes a low-level keyboard event on the local machine), but it allows you to specify the target application as opposed to always sending the events to the active application. If the system-wide accessibility object is passed in the `application` parameter, the event is sent to the active application.
+    ///
+    /// You can only pass in the system-wide or application AXUIElementRef.
+    ///
+    ///
     /// Posts keys to the specified application.
     ///
     ///
@@ -1568,8 +2060,6 @@ impl AXUIElement {
     /// The process does not fully support the accessibility API.
     /// </dd>
     /// </dl>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462057-axuielementpostkeyboardevent?language=objc)
     #[doc(alias = "AXUIElementPostKeyboardEvent")]
     #[cfg(all(feature = "AXError", feature = "objc2-core-graphics"))]
     #[deprecated]
@@ -1625,8 +2115,6 @@ unsafe impl ConcreteType for AXTextMarker {
     ///
     ///
     /// Returns: Returns the CFTypeID of the AXTextMarkerRef type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882826-axtextmarkergettypeid?language=objc)
     #[doc(alias = "AXTextMarkerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1648,8 +2136,6 @@ impl AXTextMarker {
     /// # Safety
     ///
     /// `bytes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882823-axtextmarkercreate?language=objc)
     #[doc(alias = "AXTextMarkerCreate")]
     #[inline]
     pub unsafe fn new(
@@ -1677,8 +2163,6 @@ impl AXTextMarker {
     ///
     ///
     /// Returns: The length of the data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882825-axtextmarkergetlength?language=objc)
     #[doc(alias = "AXTextMarkerGetLength")]
     #[inline]
     pub unsafe fn length(&self) -> CFIndex {
@@ -1695,8 +2179,6 @@ impl AXTextMarker {
     ///
     ///
     /// Returns: a pointer to the byte data used to identify this location in text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882824-axtextmarkergetbyteptr?language=objc)
     #[doc(alias = "AXTextMarkerGetBytePtr")]
     #[inline]
     pub unsafe fn byte_ptr(&self) -> NonNull<u8> {
@@ -1741,8 +2223,6 @@ unsafe impl ConcreteType for AXTextMarkerRange {
     ///
     ///
     /// Returns: Returns the CFTypeID of the AXTextMarkerRangeRef type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882831-axtextmarkerrangegettypeid?language=objc)
     #[doc(alias = "AXTextMarkerRangeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1763,8 +2243,6 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The text marker range object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882829-axtextmarkerrangecreate?language=objc)
     #[doc(alias = "AXTextMarkerRangeCreate")]
     #[inline]
     pub unsafe fn new(
@@ -1803,8 +2281,6 @@ impl AXTextMarkerRange {
     ///
     /// - `start_marker_bytes` must be a valid pointer.
     /// - `end_marker_bytes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882830-axtextmarkerrangecreatewithbytes?language=objc)
     #[doc(alias = "AXTextMarkerRangeCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -1844,8 +2320,6 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The start text marker object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882828-axtextmarkerrangecopystartmarker?language=objc)
     #[doc(alias = "AXTextMarkerRangeCopyStartMarker")]
     #[inline]
     pub unsafe fn start_marker(&self) -> CFRetained<AXTextMarker> {
@@ -1867,8 +2341,6 @@ impl AXTextMarkerRange {
     ///
     ///
     /// Returns: The end text marker object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/3882827-axtextmarkerrangecopyendmarker?language=objc)
     #[doc(alias = "AXTextMarkerRangeCopyEndMarker")]
     #[inline]
     pub unsafe fn end_marker(&self) -> CFRetained<AXTextMarker> {
@@ -1912,6 +2384,16 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__AXObserver"> for AXObserver {}
 );
 
+///
+/// Parameters:
+/// - observer: An AXObserverRef object to observe the notifications.
+///
+/// - element: The accessibility object.
+///
+/// - notification: The name of the notification to observe.
+///
+/// - refcon: Application-defined data specified when registering the observer for notification
+///
 /// Parameter `observer`: An AXObserverRef object to observe the notifications.
 ///
 /// Parameter `element`: The accessibility object.
@@ -1919,8 +2401,6 @@ cf_objc2_type!(
 /// Parameter `notification`: The name of the notification to observe.
 ///
 /// Parameter `refcon`: Application-defined data specified when registering the observer for notification
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axobservercallback?language=objc)
 pub type AXObserverCallback = Option<
     unsafe extern "C-unwind" fn(
         NonNull<AXObserver>,
@@ -1930,6 +2410,18 @@ pub type AXObserverCallback = Option<
     ),
 >;
 
+///
+/// Parameters:
+/// - observer: An AXObserverRef object to observe the notifications.
+///
+/// - element: The accessibility object.
+///
+/// - notification: The name of the notification to observe.
+///
+/// - info: The coresponding notification information.
+///
+/// - refcon: Application-defined data specified when registering the observer for notification
+///
 /// Parameter `observer`: An AXObserverRef object to observe the notifications.
 ///
 /// Parameter `element`: The accessibility object.
@@ -1939,8 +2431,6 @@ pub type AXObserverCallback = Option<
 /// Parameter `info`: The coresponding notification information.
 ///
 /// Parameter `refcon`: Application-defined data specified when registering the observer for notification
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axobservercallbackwithinfo?language=objc)
 pub type AXObserverCallbackWithInfo = Option<
     unsafe extern "C-unwind" fn(
         NonNull<AXObserver>,
@@ -1954,10 +2444,16 @@ pub type AXObserverCallbackWithInfo = Option<
 unsafe impl ConcreteType for AXObserver {
     /// Returns the unique type identifier for the AXObserverRef type.
     ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the CFTypeID of the AXObserverRef type.
+    ///
+    ///
+    /// Returns the unique type identifier for the AXObserverRef type.
+    ///
     ///
     /// Returns: Returns the CFTypeID of the AXObserverRef type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461244-axobservergettypeid?language=objc)
     #[doc(alias = "AXObserverGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -1969,6 +2465,32 @@ unsafe impl ConcreteType for AXObserver {
 }
 
 impl AXObserver {
+    /// Creates a new observer that can receive notifications from the specified application.
+    ///
+    /// Parameters:
+    /// - application: The process ID of the application.
+    ///
+    /// - callback: The callback function.
+    ///
+    /// - outObserver: On return, an AXObserverRef representing the observer object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXObserverCreate` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorFailure`: There is some sort of system memory failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When an observed notification is received, it is passed to [`AXObserverCallback`](https://developer.apple.com/documentation/applicationservices/axobservercallback).
+    ///
+    ///
     /// Creates a new observer that can receive notifications from the specified application.
     ///
     /// When an observed notification is received, it is passed to
@@ -2015,8 +2537,6 @@ impl AXObserver {
     ///
     /// - `callback` must be implemented correctly.
     /// - `out_observer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460133-axobservercreate?language=objc)
     #[doc(alias = "AXObserverCreate")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -2035,6 +2555,32 @@ impl AXObserver {
         unsafe { AXObserverCreate(application, callback, out_observer) }
     }
 
+    /// Creates a new observer that can receive notifications with an information dictionary from the specified application.
+    ///
+    /// Parameters:
+    /// - application: The process ID of the application.
+    ///
+    /// - callback: The callback function.
+    ///
+    /// - outObserver: On return, an AXObserverRef representing the observer object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXObserverCreateWithInfoCallback` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value.
+    ///
+    /// - `kAXErrorFailure`: There is some sort of system memory failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When an observed notification is received, it is passed to [`AXObserverCallbackWithInfo`](https://developer.apple.com/documentation/applicationservices/axobservercallbackwithinfo).
+    ///
+    ///
     /// Creates a new observer that can receive notifications with an information dictionary from the specified application.
     ///
     /// When an observed notification is received, it is passed to
@@ -2081,8 +2627,6 @@ impl AXObserver {
     ///
     /// - `callback` must be implemented correctly.
     /// - `out_observer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460610-axobservercreatewithinfocallback?language=objc)
     #[doc(alias = "AXObserverCreateWithInfoCallback")]
     #[cfg(all(feature = "AXError", feature = "libc"))]
     #[inline]
@@ -2101,6 +2645,36 @@ impl AXObserver {
         unsafe { AXObserverCreateWithInfoCallback(application, callback, out_observer) }
     }
 
+    /// Registers the specified observer to receive notifications from the specified accessibility object.
+    ///
+    /// Parameters:
+    /// - observer: The observer object created from a call to [`AXObserverCreate`](https://developer.apple.com/documentation/applicationservices/1460133-axobservercreate).
+    ///
+    /// - element: The accessibility object for which to observe notifications.
+    ///
+    /// - notification: The name of the notification to observe.
+    ///
+    /// - refcon: Application-defined data passed to the callback when it is called.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXObserverAddNotification` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorInvalidUIElementObserver`: The observer is not a valid AXObserverRef type.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value or the length of the notification name is greater than 1024.
+    ///
+    /// - `kAXErrorNotificationUnsupported`: The accessibility object does not support notifications (note that the system-wide accessibility object does not support notifications).
+    ///
+    /// - `kAXErrorNotificationAlreadyRegistered`: The notification has already been registered.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorFailure`: There is some sort of system memory failure.
+    ///
+    ///
     /// Registers the specified observer to receive notifications from the specified accessibility object.
     ///
     ///
@@ -2178,8 +2752,6 @@ impl AXObserver {
     /// # Safety
     ///
     /// `refcon` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462089-axobserveraddnotification?language=objc)
     #[doc(alias = "AXObserverAddNotification")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -2200,6 +2772,34 @@ impl AXObserver {
         unsafe { AXObserverAddNotification(self, element, notification, refcon) }
     }
 
+    /// Removes the specified notification from the list of notifications the observer wants to receive from the accessibility object.
+    ///
+    /// Parameters:
+    /// - observer: The observer object created from a call to [`AXObserverCreate`](https://developer.apple.com/documentation/applicationservices/1460133-axobservercreate).
+    ///
+    /// - element: The accessibility object for which this observer observes notifications.
+    ///
+    /// - notification: The name of the notification to remove from the list of observed notifications.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// If unsuccessful, `AXObserverRemoveNotification` may return one of the following error codes, among others:
+    ///
+    /// - `kAXErrorInvalidUIElementObserver`: The observer is not a valid AXObserverRef type.
+    ///
+    /// - `kAXErrorIllegalArgument`: One or more of the arguments is an illegal value or the length of the notification name is greater than 1024.
+    ///
+    /// - `kAXErrorNotificationUnsupported`: The accessibility object does not support notifications (note that the system-wide accessibility object does not support notifications).
+    ///
+    /// - `kAXErrorNotificationNotRegistered`: This observer has not registered for any notifications.
+    ///
+    /// - `kAXErrorCannotComplete`: The function cannot complete because messaging has failed in some way.
+    ///
+    /// - `kAXErrorFailure`: There is some sort of system memory failure.
+    ///
+    ///
     /// Removes the specified notification from the list of notifications the observer wants to receive from the accessibility object.
     ///
     ///
@@ -2271,8 +2871,6 @@ impl AXObserver {
     /// There is some sort of system memory failure.
     /// </dd>
     /// </dl>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462066-axobserverremovenotification?language=objc)
     #[doc(alias = "AXObserverRemoveNotification")]
     #[cfg(feature = "AXError")]
     #[inline]
@@ -2291,6 +2889,32 @@ impl AXObserver {
         unsafe { AXObserverRemoveNotification(self, element, notification) }
     }
 
+    /// Returns the observer's run loop source.
+    ///
+    /// Parameters:
+    /// - observer: The observer object (created from a call to [`AXObserverCreate`](https://developer.apple.com/documentation/applicationservices/1460133-axobservercreate)) for which to get the run loop source.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns the CFRunLoopSourceRef of the observer; NIL if you pass NIL in `observer`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The observer must be added to a run loop before it can receive notifications. Note that releasing the AXObserverRef automatically removes the run loop source from the run loop (you can also do this explicitly by calling [`CFRunLoopRemoveSource(_:_:_:)`](https://developer.apple.com/documentation/corefoundation/cfrunloopremovesource(_:_:_:))).
+    ///
+    /// `AXObserverGetRunLoopSource` might be used in code in this way:
+    ///
+    /// ```occ
+    ///  
+    ///  CFRunLoopAddSource(CFRunLoopGetCurrent(), AXObserverGetRunLoopSource(observer), kCFRunLoopDefaultMode);
+    ///  
+    /// ```
+    ///
+    ///
     /// Returns the observer's run loop source.
     ///
     /// The observer must be added to a run loop before it can receive notifications. Note that releasing the AXObserverRef automatically
@@ -2325,8 +2949,6 @@ impl AXObserver {
     /// observer
     /// </code>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459139-axobservergetrunloopsource?language=objc)
     #[doc(alias = "AXObserverGetRunLoopSource")]
     #[inline]
     pub unsafe fn run_loop_source(&self) -> CFRetained<CFRunLoopSource> {

@@ -9,19 +9,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype?language=objc)
+/// Constants that determine how a physics body interacts with forces and other bodies, used by the [`type`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/type) property and when creating a physics body.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsBodyType(pub NSInteger);
 impl SCNPhysicsBodyType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/static?language=objc)
+    /// A physics body that is unaffected by forces or collisions and cannot move.
+    ///
+    /// ## Discussion
+    ///
+    /// Use static bodies to construct fixtures in your scene that other bodies need to collide with but that do not themselves move, such as floors, walls, and terrain.
+    ///
+    ///
     #[doc(alias = "SCNPhysicsBodyTypeStatic")]
     pub const Static: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/dynamic?language=objc)
+    /// A physics body that can be affected by forces and collisions.
+    ///
+    /// ## Discussion
+    ///
+    /// Use dynamic bodies for the elements of your scene that are moved by the physics simulation.
+    ///
+    ///
     #[doc(alias = "SCNPhysicsBodyTypeDynamic")]
     pub const Dynamic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/kinematic?language=objc)
+    /// A physics body that is unaffected by forces or collisions but that can cause collisions affecting other bodies when moved.
+    ///
+    /// ## Discussion
+    ///
+    /// Use kinematic bodies for scene elements that you want to control directly directly but whose movement manipulates other elements. For example, to allow the user to push objects around with a finger, you might create a kinematic body and attach it to an invisible node that you move to follow touch events. (In macOS, use the same technique to allow the user to move objects with the mouse pointer.)
+    ///
+    ///
     #[doc(alias = "SCNPhysicsBodyTypeKinematic")]
     pub const Kinematic: Self = Self(2);
 }
@@ -34,20 +52,34 @@ unsafe impl RefEncode for SCNPhysicsBodyType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory?language=objc)
+/// Default values for a physics body’s [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) and [`collisionBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/collisionbitmask) properties.
+///
+/// ## Overview
+///
+/// You specify contact and collision behaviors by defining your own categories for the kinds of bodies your app simulates and setting the [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) and [`collisionBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/collisionbitmask) properties for each body to determine which kinds of bodies it collides with. Additionally, you can use the [`contactDelegate`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/contactdelegate) property of the physics world to be notified of collisions between bodies.
+///
+/// For more details and example usage, see [Defining a Body’s Category and Collisions](https://developer.apple.com/documentation/scenekit/scnphysicsbody#defining-a-bodys-category-and-collisions) in the class overview.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsCollisionCategory(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNPhysicsCollisionCategory: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/default?language=objc)
+/// The default [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) value for dynamic and kinematic bodies.
         #[doc(alias = "SCNPhysicsCollisionCategoryDefault")]
         const Default = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/static?language=objc)
+/// The default [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) value for static bodies.
         #[doc(alias = "SCNPhysicsCollisionCategoryStatic")]
         const Static = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/all?language=objc)
+/// This is the default value for a physics body’s [`collisionBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/collisionbitmask) property.
+///
+/// ## Discussion
+///
+/// With this collision mask, a physics body can collide with all other physics bodies.
+///
+///
         #[doc(alias = "SCNPhysicsCollisionCategoryAll")]
         const All = !0;
     }
@@ -62,9 +94,53 @@ unsafe impl RefEncode for SCNPhysicsCollisionCategory {
 }
 
 extern_class!(
-    /// The SCNPhysicsBody class describes the physics properties (such as mass, friction...) of a node.
+    /// The physics simulation attributes attached to a scene graph node.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbody?language=objc)
+    /// ## Overview
+    ///
+    /// When SceneKit prepares to render a new frame, it performs physics calculations on physics bodies attached to nodes in the scene. These calculations include gravity, friction, and collisions with other bodies. You can also apply your own forces and impulses to a body. After SceneKit completes these calculations, it updates the positions and orientations of the node objects before rendering the frame.
+    ///
+    /// To add physics to a node, create and configure an [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) object and then assign it to the [`physicsBody`](https://developer.apple.com/documentation/scenekit/scnnode/physicsbody) property of the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object. A physics body must be associated with a node object before you apply forces or impulses to it.
+    ///
+    /// ### A Body’s Physical Characteristics
+    ///
+    /// The [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) class defines the physical characteristics for the body when it is simulated by the scene. Three properties are most important for physics simulation:
+    ///
+    /// - The [`type`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/type) property, which determines how the body interacts with forces and other bodies in the simulation. _Static_ bodies are unaffected by forces and collisions and cannot move. _Dynamic_ bodies are affected by forces and collisions with other body types. _Kinematic_ bodies are not affected by forces or collisions, but by moving them directly you can cause collisions that affect dynamic bodies.
+    ///
+    /// - The [`physicsShape`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/physicsshape) property, which defines the three-dimensional form of the body for collision detection purposes. Physics simulations run faster when using simple shapes instead of the fine detail of a node’s visible geometry. Typically, you set a body’s physics shape to a bounding box, sphere, or primitive shape that roughly matches its node’s visible content. For details on creating physics shapes, see [`SCNPhysicsShape`](https://developer.apple.com/documentation/scenekit/scnphysicsshape).
+    ///
+    /// - The [`kinematicBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/kinematic()) property. Applying a force or torque to a dynamic body results in an acceleration (or angular acceleration) proportional to its mass.
+    ///
+    /// All values in SceneKit’s physics simulation use the International System of Units (SI): The unit of mass is the kilogram; the units of force, impulse, and torque are the newton, newton-second, and newton-meter; and the unit of distance for node positions and sizes is the meter. Note that you need not attempt to provide realistic values for physical quantities—use whatever values produce the behavior or gameplay you’re looking for.
+    ///
+    /// For a dynamic body, you can control how the body is affected by forces or collisions. See Defining How Forces Affect a Physics Body.
+    ///
+    /// ### Defining a Body’s Category and Collisions
+    ///
+    /// When you design a game that uses physics, you define the different categories of physics objects that appear in the scene. You define different categories of physics bodies for the behaviors your want for your app. A body can be assigned to as many of these categories as you want. In addition to declaring its own categories, a physics body also declares which categories of bodies it interacts with.
+    ///
+    /// Use the [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) and [`collisionBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/collisionbitmask) properties to define an object’s collision behavior. The constants listed in [`SCNPhysicsCollisionCategory`](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory) provide default values for these properties. In addition, with the [`contactTestBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/contacttestbitmask) property you can define interactions where a pair of bodies generates contact messages (see the [`SCNPhysicsContactDelegate`](https://developer.apple.com/documentation/scenekit/scnphysicscontactdelegate) protocol) without the bodies being affected by the collision.
+    ///
+    /// ### Related Physics Classes
+    ///
+    /// Physics fields create forces that affect all bodies in an area, such as vortices and gravitational attraction. For details and a list of available field types, see [`SCNPhysicsField`](https://developer.apple.com/documentation/scenekit/scnphysicsfield).
+    ///
+    /// You can add higher-level behaviors that control interactions between multiple bodies, such as joints and wheeled vehicles. For details and a list of available behaviors, see [`SCNPhysicsBehavior`](https://developer.apple.com/documentation/scenekit/scnphysicsbehavior).
+    ///
+    /// A scene’s [`physicsWorld`](https://developer.apple.com/documentation/scenekit/scnscene/physicsworld) property holds an [`SCNPhysicsWorld`](https://developer.apple.com/documentation/scenekit/scnphysicsworld) object that manages physics characteristics that affect the entire scene.
+    ///
+    /// ### Physics and the Rendering Loop
+    ///
+    /// SceneKit evaluates its physics simulation as part of the rendering loop described in [`SCNSceneRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate). On each pass through this loop, SceneKit determines the state of all nodes with attached physics bodies, and simulates the effects of physics on those bodies for one time step—for example, by updating the position or rotation of a body based on its velocity and angular velocity. After simulating physics, SceneKit applies the results of the physics simulation to the scene for display.
+    ///
+    /// Because you can animate SceneKit content not only through physics, but also through actions and implicitly and explicitly defined animations, SceneKit applies the results of physics simulation not to the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) objects in your scene, but to each node’s [`presentationNode`](https://developer.apple.com/documentation/scenekit/scnnode/presentation) object that represents its currently displayed state. As such, changing properties of a node that are affected by physics  requires special consideration.
+    ///
+    /// If you change the [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) value—or any of the other properties that are components of the transform, such as [`position`](https://developer.apple.com/documentation/scenekit/scnnode/position) and [`rotation`](https://developer.apple.com/documentation/scenekit/scnnode/rotation)—of a node affected by physics, SceneKit resets the physics simulation for that node. If you want to change only one component of the transform, while leaving the others at their physics-simulated values, copy the presentation node’s transform before making changes, as shown below:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Copy the presentation node's transform to the model node.", "node.transform = node.presentationNode.transform", "// Change one component of the new transform", "node.eulerAngles.z = newRollValue"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Copy the presentation node's transform to the model node.", "node.transform = node.presentationNode.transform;", "// Change one component of the new transform", "node.eulerAngles = SCNVector3Make(node.eulerAngles.x, node.eulerAngles.y, newRollValue);"], metadata: None }] }] })
+    ///
+    /// The SCNPhysicsBody class describes the physics properties (such as mass, friction...) of a node.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsBody;

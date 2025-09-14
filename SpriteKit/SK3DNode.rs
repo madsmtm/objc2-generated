@@ -13,7 +13,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sk3dnode?language=objc)
+    /// 3D SceneKit content drawn as a flattened sprite.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`SK3DNode`](https://developer.apple.com/documentation/spritekit/sk3dnode) objects to incorporate 3D SceneKit content into a SpriteKit-based game. When SpriteKit renders the node, the SceneKit scene is animated and rendered first. Then this rendered image is composited into the SpriteKit scene. Use the [`scnScene`](https://developer.apple.com/documentation/spritekit/sk3dnode/scnscene) property to specify the SceneKit scene to be rendered.
+    ///
+    ///
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

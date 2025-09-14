@@ -12,9 +12,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
     /// The data model value representing a stroke in a `PKDrawing`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokereference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStroke;

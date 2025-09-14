@@ -6,7 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityisvoiceoverrunning()?language=objc)
+/// Returns a Boolean value indicating whether VoiceOver is running.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if VoiceOver is currently running or [`false`](https://developer.apple.com/documentation/swift/false) if it is not.
+///
+///
+///
+/// ## Discussion
+///
+/// You can use this function to customize your application’s UI specifically for VoiceOver users. For example, you might want UI elements that usually disappear quickly to persist onscreen for VoiceOver users. Note that you can also listen for the [`WKAccessibilityVoiceOverStatusChanged`](https://developer.apple.com/documentation/watchkit/wkaccessibilityvoiceoverstatuschanged) notification to find out when VoiceOver starts and stops.
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn WKAccessibilityIsVoiceOverRunning() -> bool {
     extern "C-unwind" {
@@ -16,11 +28,25 @@ pub unsafe extern "C-unwind" fn WKAccessibilityIsVoiceOverRunning() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityvoiceoverstatuschanged?language=objc)
+    /// Tells the interface controller that the VoiceOver status has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to customize your application’s user interface for VoiceOver users. You can also use the [`UIAccessibilityIsVoiceOverRunning`](https://developer.apple.com/documentation/uikit/uiaccessibility/isvoiceoverrunning) function to determine whether VoiceOver is currently running.
+    ///
+    /// Observe this notification using the default notification center. This notification doesn’t include a parameter.
+    ///
+    ///
     pub static WKAccessibilityVoiceOverStatusChanged: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityisreducemotionenabled()?language=objc)
+/// Returns a Boolean value indicating whether reduced motion is enabled.
+///
+/// ## Discussion
+///
+/// You can use this function to customize your application’s UI when reduced motion is enabled. Note that you can also listen for the [`WKAccessibilityReduceMotionStatusDidChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/wkaccessibilityreducemotionstatusdidchange) (Swift) or [`WKAccessibilityReduceMotionStatusDidChangeNotification`](https://developer.apple.com/documentation/watchkit/wkaccessibilityreducemotionstatusdidchangenotification) (Objective-C) notification to find out when VoiceOver starts and stops.
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn WKAccessibilityIsReduceMotionEnabled() -> bool {
     extern "C-unwind" {
@@ -30,6 +56,14 @@ pub unsafe extern "C-unwind" fn WKAccessibilityIsReduceMotionEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaccessibilityreducemotionstatusdidchangenotification?language=objc)
+    /// Tells the interface controller that the reduce motion status has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this notification to customize your application’s user interface for when reduced motion is enabled. You can also use the [`WKAccessibilityIsReduceMotionEnabled()`](https://developer.apple.com/documentation/watchkit/wkaccessibilityisreducemotionenabled()) function to determine whether reduced motion is enabled.
+    ///
+    /// Observe this notification using the default notification center. This notification doesn’t include a parameter.
+    ///
+    ///
     pub static WKAccessibilityReduceMotionStatusDidChangeNotification: &'static NSString;
 }

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuleaf?language=objc)
+    /// An interface for an object that represents a menu element without child elements.
+    ///
+    /// ## Overview
+    ///
+    /// `UIMenuLeaf` defines the behavior shared by menu elements that don’t have child elements. Don’t implement the `UIMenuLeaf` protocol in your object directly. Instead, create an appropriate object that implements this protocol, such as [`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) or [`UICommand`](https://developer.apple.com/documentation/uikit/uicommand).
+    ///
+    ///
     pub unsafe trait UIMenuLeaf: NSObjectProtocol + MainThreadOnly {
         /// Short display title.
         #[unsafe(method(title))]

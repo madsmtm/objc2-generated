@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A base class for common types of data that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns results in objects that are subclasses of `DDMatch`, which are specific to the type of matching data. Each object contains the matched string.
+    ///
+    ///
     /// A base class for common types of data that the data detection system
     /// matches.
     ///
     /// The DataDetection framework returns results in objects that are subclasses
     /// of `DDMatch`, which are specific to the type of matching data. Each object
     /// contains the matched string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatch;
@@ -54,13 +59,18 @@ impl DDMatch {
 extern_class!(
     /// An object that contains a web link that the data detection system matches.
     ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a link match in a `DDMatchLink` object, which contains a [`URL`](https://developer.apple.com/documentation/foundation/url).
+    ///
+    ///
+    /// An object that contains a web link that the data detection system matches.
+    ///
     /// The DataDetection framework returns a link match in a `DDMatchLink` object, which contains a
     /// <doc
     /// ://com.apple.documentation/documentation/foundation/url> (Swift) or
     /// <doc
     /// ://com.apple.documentation/documentation/foundation/nsurl> (Objective-C).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchlink?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchLink;
@@ -98,14 +108,19 @@ impl DDMatchLink {
 }
 
 extern_class!(
+    /// An object that contains a phone number that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a phone number match in a `DDMatchPhoneNumber` object, which contains a phone number, and optionally a label that categorizes the phone number.
+    ///
+    ///
     /// An object that contains a phone number that the data detection system
     /// matches.
     ///
     /// The DataDetection framework returns a phone number match in a
     /// `DDMatchPhoneNumber` object, which contains a phone number, and optionally a
     /// label that categorizes the phone number.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchphonenumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPhoneNumber;
@@ -148,14 +163,19 @@ impl DDMatchPhoneNumber {
 }
 
 extern_class!(
+    /// An object that contains an email address that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns an email match in a `DDMatchEmailAddress` object, which includes an email address, and optionally a label that categorizes the email address.
+    ///
+    ///
     /// An object that contains an email address that the data detection system
     /// matches.
     ///
     /// The DataDetection framework returns an email match in a
     /// `DDMatchEmailAddress` object, which includes an email address, and
     /// optionally a label that categorizes the email address.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchemailaddress?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchEmailAddress;
@@ -198,14 +218,19 @@ impl DDMatchEmailAddress {
 }
 
 extern_class!(
+    /// An object that contains a postal address that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a postal address match in a `DDMatchPostalAddress` object, which optionally contains the matching parts of a postal address: street, city, state, postal code, and country.
+    ///
+    ///
     /// An object that contains a postal address that the data detection system
     /// matches.
     ///
     /// The DataDetection framework returns a postal address match in a
     /// `DDMatchPostalAddress` object, which optionally contains the matching parts
     /// of a postal address: street, city, state, postal code, and country.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchpostaladdress?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchPostalAddress;
@@ -263,14 +288,19 @@ impl DDMatchPostalAddress {
 }
 
 extern_class!(
+    /// An object that represents a calendar date or date range that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a calendar event match in a `DDMatchCalendarEvent` object, which has only a beginning date, only an end date, or both a beginning date and an end date.
+    ///
+    ///
     /// An object that represents a calendar date or date range that the data
     /// detection system matches.
     ///
     /// The DataDetection framework returns a calendar event match in a
     /// `DDMatchCalendarEvent` object, which has only a beginning date, only an end
     /// date, or both a beginning date and an end date.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchCalendarEvent;
@@ -328,14 +358,19 @@ impl DDMatchCalendarEvent {
 }
 
 extern_class!(
+    /// An object that contains parcel tracking information that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a shipment tracking number match in a `DDMatchShipmentTrackingNumber` object, which contains a carrier name and tracking identifier.
+    ///
+    ///
     /// An object that contains parcel tracking information that the data detection
     /// system matches.
     ///
     /// The DataDetection framework returns a shipment tracking number match in a
     /// `DDMatchShipmentTrackingNumber` object, which contains a carrier name and
     /// tracking identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchshipmenttrackingnumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchShipmentTrackingNumber;
@@ -378,14 +413,19 @@ impl DDMatchShipmentTrackingNumber {
 }
 
 extern_class!(
+    /// An object that contains a flight number that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a flight number match in a `DDMatchFlightNumber` object, which contains an airline name and flight number.
+    ///
+    ///
     /// An object that contains a flight number that the data detection system
     /// matches.
     ///
     /// The DataDetection framework returns a flight number match in a
     /// `DDMatchFlightNumber` object, which contains an airline name and flight
     /// number.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchflightnumber?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchFlightNumber;
@@ -428,14 +468,19 @@ impl DDMatchFlightNumber {
 }
 
 extern_class!(
+    /// An object that contains an amount of money that the data detection system matches.
+    ///
+    /// ## Overview
+    ///
+    /// The DataDetection framework returns a match for an amount of money in a `DDMatchMoneyAmount` object, which contains an amount of money and an ISO currency code.
+    ///
+    ///
     /// An object that contains an amount of money that the data detection system
     /// matches.
     ///
     /// The DataDetection framework returns a match for an amount of money in a
     /// `DDMatchMoneyAmount` object, which contains an amount of money and an ISO
     /// currency code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/datadetection/ddmatchmoneyamount?language=objc)
     #[unsafe(super(DDMatch, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDMatchMoneyAmount;

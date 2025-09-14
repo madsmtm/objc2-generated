@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The value limitations of a number.
     /// Allows enforcement of constraints on the values of update parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlnumericconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLNumericConstraint;

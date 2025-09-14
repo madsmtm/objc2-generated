@@ -8,46 +8,118 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapteridkey?language=objc)
+/// This key refers to the attached external AC power adapter's ID. The value associated with this key is a CFNumberRef kCFNumberIntType integer.
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterwattskey?language=objc)
+/// This key refers to the wattage of the external AC power adapter attached to a portable. The value associated with this key is a CFNumberRef kCFNumberIntType integer value, in units of watts.
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterWattsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Watts\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterrevisionkey?language=objc)
+/// The power adapter's revision. The value associated with this key is a CFNumberRef kCFNumberIntType integer value
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterRevisionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterRevision\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterserialnumberkey?language=objc)
+/// The power adapter's serial number. The value associated with this key is a CFNumberRef kCFNumberIntType integer value
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SerialNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterfamilykey?language=objc)
+/// The power adapter's family code. The value associated with this key is a CFNumberRef kCFNumberIntType integer value
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterFamilyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"FamilyCode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradaptercurrentkey?language=objc)
+/// This key refers to the current of the external AC power adapter attached to a portable. The value associated with this key is a CFNumberRef kCFNumberIntType integer value, in units of mAmps.
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterCurrentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradaptersourcekey?language=objc)
+/// This key refers to the source of the power. The value associated with this key is a CFNumberRef kCFNumberIntType integer value.
+///
+/// ## Discussion
+///
+/// This key may be present in the dictionary returned from [`IOPSCopyExternalPowerAdapterDetails`](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta) This key might not be defined in the adapter details dictionary.
+///
+///
 pub const kIOPSPowerAdapterSourceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Source\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsupsmanagementclaimed?language=objc)
+/// Claims UPS management for a third-party driver.
+///
+/// ## Discussion
+///
+/// kIOPSUPSManagementClaimed is obsolete. Do not use.
+///
+///
 pub const kIOPSUPSManagementClaimed: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/IOKit/UPSPowerManagementClaimed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopslowwarnlevelkey?language=objc)
+/// Key for the "Warning" UPS low power trigger-level. Default is 50%.
 pub const kIOPSLowWarnLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Low Warn Level\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsdeadwarnlevelkey?language=objc)
+/// Key for the "Shutdown System" low power trigger-level. Default is 20%.
 pub const kIOPSDeadWarnLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Shutdown Level\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsdynamicstorepath?language=objc)
+/// This is only used for internal bookkeeping, and should be ignored.
 pub const kIOPSDynamicStorePath: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/IOKit/PowerSources\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommanddelayedremovepowerkey?language=objc)
+/// Command to give a UPS when it should remove power from its AC plugs in a specified amount of time
+///
+/// ## Discussion
+///
+/// - The matching argument should be a CFNumber of kCFNumberIntType specifying when the UPS should
+///
+/// - remove power from its AC power ports.
+///
+///
 pub const kIOPSCommandDelayedRemovePowerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Delayed Remove Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandenableaudiblealarmkey?language=objc)
+/// Command to give a UPS when it should either enable or disable the audible alarm.
+///
+/// ## Discussion
+///
+/// - The matching argument should be a CFBooleanRef where kCFBooleanTrue enables the alarm and
+///
+/// - kCFBooleanFalse diables the alarm
+///
+///
 pub const kIOPSCommandEnableAudibleAlarmKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Enable Audible Alarm\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandstartupdelaykey?language=objc)
+/// Tell UPS how long it should wait for
+///
+/// ## Discussion
+///
+/// - The matching argument should be a CFNumber of kCFNumberIntType specifying when the UPS should
+///
+/// - remove power from its AC power ports.
+///
+///
 pub const kIOPSCommandStartupDelayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Startup Delay\0") };
 pub const kIOPSCommandSetCurrentLimitKey: &CStr =
@@ -58,162 +130,476 @@ pub const kIOPSCommandSendCurrentStateOfCharge: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Send Current State of Charge\0") };
 pub const kIOPSCommandSendCurrentTemperature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Send Current Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspowersourceidkey?language=objc)
+/// CFNumber key uniquely identifying a UPS attached to the system.
+///
+/// ## Discussion
+///
+/// - Apple UPS power sources will publish this key.
+///
+/// - Callers should not set this key; macOS power management will publish this key for UPS's.
+///
+/// - Type CFNumber, kCFNumberIntType, uniquely identifying an attached UPS.
+///
+///
 pub const kIOPSPowerSourceIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Power Source ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspowersourcestatekey?language=objc)
+/// CFDictionary key for the current source of power.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - [`kIOPSBatteryPowerValue`](https://developer.apple.com/documentation/iokit/kiopsbatterypowervalue) indicates power source is drawing internal power; [`kIOPSACPowerValue`](https://developer.apple.com/documentation/iokit/kiopsacpowervalue) indicates power source is connected to an external power source.
+///
+/// - Type CFString, value is [`kIOPSACPowerValue`](https://developer.apple.com/documentation/iokit/kiopsacpowervalue), [`kIOPSBatteryPowerValue`](https://developer.apple.com/documentation/iokit/kiopsbatterypowervalue), or [`kIOPSOffLineValue`](https://developer.apple.com/documentation/iokit/kiopsofflinevalue).
+///
+///
 pub const kIOPSPowerSourceStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Power Source State\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscurrentcapacitykey?language=objc)
+/// CFDictionary key for the current power source's capacity.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key in units of percent.
+///
+/// - The power source's software may specify the units for this key. The units must be consistent for all capacities reported by this power source. The power source will usually define this number in units of percent, or mAh.
+///
+/// - Clients may derive a percentage of power source battery remaining by dividing "Current Capacity" by "Max Capacity"
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer)
+///
+///
 pub const kIOPSCurrentCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Current Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsmaxcapacitykey?language=objc)
+/// CFDictionary key for the current power source's maximum or "Full Charge Capacity"
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key in units of percent. The value is usually 100%.
+///
+/// - The power source's software may specify the units for this key. The units must be consistent for all capacities reported by this power source.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer)
+///
+///
 pub const kIOPSMaxCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Max Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsdesigncapacitykey?language=objc)
+/// CFDictionary key for the current power source's design capacity
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources might not publish this key.
+///
+/// - The power source's software may specify the units for this key. The units must be consistent for all capacities reported by this power source.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer)
+///
+///
 pub const kIOPSDesignCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DesignCapacity\0") };
 pub const kIOPSNominalCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Nominal Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimetoemptykey?language=objc)
+/// CFDictionary key for the current power source's time remaining until empty.
+///
+/// ## Discussion
+///
+/// Only valid if the power source is running off its own power. That's when the [`kIOPSPowerSourceStateKey`](https://developer.apple.com/documentation/iokit/kiopspowersourcestatekey) has value [`kIOPSBatteryPowerValue`](https://developer.apple.com/documentation/iokit/kiopsbatterypowervalue) and the value of [`kIOPSIsChargingKey`](https://developer.apple.com/documentation/iokit/kiopsischargingkey) is kCFBooleanFalse.
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer), units are minutes
+///
+/// - A value of -1 indicates "Still Calculating the Time", otherwise estimated minutes left on the battery.
+///
+///
 pub const kIOPSTimeToEmptyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Time to Empty\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimetofullchargekey?language=objc)
+/// CFDictionary key for the current power source's time remaining until empty.
+///
+/// ## Discussion
+///
+/// Only valid if the value of [`kIOPSIsChargingKey`](https://developer.apple.com/documentation/iokit/kiopsischargingkey) is kCFBooleanTrue.
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer), units are minutes
+///
+/// - A value of -1 indicates "Still Calculating the Time", otherwise estimated minutes until fully charged.
+///
+///
 pub const kIOPSTimeToFullChargeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Time to Full Charge\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsischargingkey?language=objc)
+/// CFDictionary key for the current power source's charging state
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFBoolean - kCFBooleanTrue or kCFBooleanFalse
+///
+///
 pub const kIOPSIsChargingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Charging\0") };
 pub const kIOPSInternalFailureKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Internal Failure\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsispresentkey?language=objc)
+/// CFDictionary key for the current power source's presence.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For instance, a portable with the capacity for two batteries but with only one present would show two power source dictionaries, but kIOPSIsPresentKey would have the value kCFBooleanFalse in one of them.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFBoolean - kCFBooleanTrue or kCFBooleanFalse
+///
+///
 pub const kIOPSIsPresentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Present\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsvoltagekey?language=objc)
+/// CFDictionary key for the current power source's electrical voltage.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer) - units are mV
+///
+///
 pub const kIOPSVoltageKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscurrentkey?language=objc)
+/// CFDictionary key for the current power source's electrical current.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFNumber kCFNumberIntType (signed integer) - units are mA
+///
+///
 pub const kIOPSCurrentKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Current\0") };
 pub const kIOPSTemperatureKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnamekey?language=objc)
+/// CFDictionary key for the current power source's name.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFStringRef
+///
+///
 pub const kIOPSNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstypekey?language=objc)
+/// CFDictionary key for the type of the power source
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFStringRef. Valid transport types are kIOPSUPSType or kIOPSInternalBatteryType.
+///
+///
 pub const kIOPSTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstransporttypekey?language=objc)
+/// CFDictionary key for the current power source's data transport type (e.g. the means that the power source conveys power source data to the macOS machine).
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - A value of [`kIOPSInternalType`](https://developer.apple.com/documentation/iokit/kiopsinternaltype) describes an internal power source.
+///
+/// - [`kIOPSUSBTransportType`](https://developer.apple.com/documentation/iokit/kiopsusbtransporttype), [`kIOPSNetworkTransportType`](https://developer.apple.com/documentation/iokit/kiopsnetworktransporttype), and [`kIOPSSerialTransportType`](https://developer.apple.com/documentation/iokit/kiopsserialtransporttype) usually describe UPS's.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFStringRef. Valid transport types are kIOPSSerialTransportType, kIOPSUSBTransportType, kIOPSNetworkTransportType, kIOPSInternalType
+///
+///
 pub const kIOPSTransportTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Transport Type\0") };
 pub const kIOPSVendorIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Vendor ID\0") };
 pub const kIOPSProductIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Product ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsvendordatakey?language=objc)
+/// CFDictionary key for arbitrary vendor data.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources are not required to publish this key.
+///
+/// - For power source creators: Providing this key is OPTIONAL.
+///
+/// - CFDictionary; contents determined by the power source software. macOS will not look at this data.
+///
+///
 pub const kIOPSVendorDataKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Vendor Specific Data\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthkey?language=objc)
+/// CFDictionary key for the current power source's "health" estimate.
+///
+/// ## Discussion
+///
+/// - Apple-defined battery power sources will publish this key.
+///
+/// - Use value [`kIOPSGoodValue`](https://developer.apple.com/documentation/iokit/kiopsgoodvalue) to describe a well-performing power source,
+///
+/// - Use [`kIOPSFairValue`](https://developer.apple.com/documentation/iokit/kiopsfairvalue) to describe a functional power source with limited capacity
+///
+/// - And use [`kIOPSPoorValue`](https://developer.apple.com/documentation/iokit/kiopspoorvalue) to describe a power source that's not capable of Providing power.
+///
+/// - For power source creators: Providing this key is OPTIONAL.
+///
+/// - Type CFStringRef
+///
+///
 pub const kIOPSBatteryHealthKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryHealth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthconditionkey?language=objc)
+/// kIOPSBatteryHealthConditionKey broadly describes the battery's health.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - Value is one of the "Battery Health Condition Values" strings described in this file.
+///
+/// - For power source creators: Providing this key is OPTIONAL - these keys have values only used by Apple power sources.
+///
+/// - Type CFStringRef
+///
+///
 pub const kIOPSBatteryHealthConditionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryHealthCondition\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey?language=objc)
+/// Enumerates a battery's failures and error conditions.
+///
+/// ## Discussion
+///
+/// Various battery failures will be listed here. A battery may suffer from more than one type of failure simultaneously, so this key has a CFArray value.
+///
+/// If BatteryFailureModesKey is not defined (or is set to an empty dictionary), then the battery has no detectable failures.
+///
+/// Each entry in the array should be a short descriptive string describing the error.
+///
+/// - Apple-defined power sources will publish this key if any battery errors exist.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFArrayRef
+///
+///
 pub const kIOPSBatteryFailureModesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryFailureModes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopshealthconfidencekey?language=objc)
+/// CFDictionary key for our confidence in the accuracy of our power source's "health" estimate.
+///
+/// ## Discussion
+///
+/// - Apple-defined power sources will no longer publish this key.
+///
+/// - Power source creators should not publish this key.
+///
+/// - For power source creators: This key is DEPRECATED, do not implement it.
+///
+/// - Type CFStringRef
+///
+///
 pub const kIOPSHealthConfidenceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HealthConfidence\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsmaxerrkey?language=objc)
+/// CFDictionary key for the current power source's percentage error in capacity reporting.
+///
+/// ## Discussion
+///
+/// In internal batteries, this refers to the battery pack's estimated percentage error.
+///
+/// - Apple-defined battery power sources will publish this key, but only if it's defined for the battery.
+///
+/// - For power source creators: Providing this key is OPTIONAL.
+///
+/// - Type CFNumberRef kCFNumberIntType, non-negative integer
+///
+///
 pub const kIOPSMaxErrKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxErr\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsischargedkey?language=objc)
+/// CFDictionary key indicates whether the battery is charged.
+///
+/// ## Discussion
+///
+/// A battery must be plugged in to an external power source in order to be fully charged. Note that a battery may validly be plugged in, not charging, and <100% charge. e.g. A battery with capacity >= 95% and not charging, is defined as charged.
+///
+/// - Apple-defined power sources will publish this key.
+///
+/// - For power source creators: Providing this key is REQUIRED.
+///
+/// - Type CFBoolean - kCFBooleanTrue or kCFBooleanFalse
+///
+///
 pub const kIOPSIsChargedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Charged\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsisfinishingchargekey?language=objc)
+/// CFDictionary key indicates whether the battery is finishing off its charge.
+///
+/// ## Discussion
+///
+/// When this is true, the system UI should indicate that the battery is "Finishing Charge." Some batteries may continue charging after they report 100% capacity.
+///
+/// - Apple-defined battery power sources will publish this key.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFBoolean - kCFBooleanTrue or kCFBooleanFalse
+///
+///
 pub const kIOPSIsFinishingChargeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Finishing Charge\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopshardwareserialnumberkey?language=objc)
+/// A unique serial number that identifies the power source.
+///
+/// ## Discussion
+///
+/// For Apple-manufactured batteries, this is an alphanumeric string generated during the battery manufacturing process.
+///
+/// - Apple-defined power sources will publish this key if the hardware provides the serial number.
+///
+/// - For power source creators: Providing this key is RECOMMENDED.
+///
+/// - Type CFStringRef
+///
+///
 pub const kIOPSHardwareSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Hardware Serial Number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsserialtransporttype?language=objc)
+/// Value for key [`kIOPSTransportTypeKey`](https://developer.apple.com/documentation/iokit/kiopstransporttypekey).
+///
+/// ## Discussion
+///
+/// Indicates the power source is a UPS attached over a serial connection.
+///
+///
 pub const kIOPSSerialTransportType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Serial\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsusbtransporttype?language=objc)
+/// Value for key [`kIOPSTransportTypeKey`](https://developer.apple.com/documentation/iokit/kiopstransporttypekey).
+///
+/// ## Discussion
+///
+/// Indicates the power source is a UPS attached over a USB connection.
+///
+///
 pub const kIOPSUSBTransportType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"USB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnetworktransporttype?language=objc)
+/// Value for key [`kIOPSTransportTypeKey`](https://developer.apple.com/documentation/iokit/kiopstransporttypekey).
+///
+/// ## Discussion
+///
+/// Indicates the power source is a UPS attached over a network connection (and it may be managing several computers).
+///
+///
 pub const kIOPSNetworkTransportType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Ethernet\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsinternaltype?language=objc)
+/// Value for key [`kIOPSTransportTypeKey`](https://developer.apple.com/documentation/iokit/kiopstransporttypekey). Indicates the power source is an internal battery.
 pub const kIOPSInternalType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Internal\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsinternalbatterytype?language=objc)
+/// Represents a battery residing inside a Mac.
 pub const kIOPSInternalBatteryType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InternalBattery\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsupstype?language=objc)
+/// Represents an external attached UPS.
 pub const kIOPSUPSType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UPS\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsofflinevalue?language=objc)
+/// Value for key kIOPSPowerSourceStateKey. Power source is off-line or no longer connected.
 pub const kIOPSOffLineValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Off Line\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsacpowervalue?language=objc)
+/// Value for key kIOPSPowerSourceStateKey. Power source is connected to external or AC power, and is not draining the internal battery.
 pub const kIOPSACPowerValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"AC Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatterypowervalue?language=objc)
+/// Value for key kIOPSPowerSourceStateKey. Power source is currently using the internal battery.
 pub const kIOPSBatteryPowerValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Battery Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoorvalue?language=objc)
+/// Value for key [`kIOPSBatteryHealthKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthkey).
 pub const kIOPSPoorValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Poor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfairvalue?language=objc)
+/// Value for key [`kIOPSBatteryHealthKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthkey).
 pub const kIOPSFairValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Fair\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsgoodvalue?language=objc)
+/// Value for key [`kIOPSBatteryHealthKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthkey).
 pub const kIOPSGoodValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Good\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscheckbatteryvalue?language=objc)
+/// Value for key [`kIOPSBatteryHealthConditionKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthconditionkey)
+///
+/// ## Discussion
+///
+/// This value indicates that the battery should be checked out by a licensed Mac repair service.
+///
+///
 pub const kIOPSCheckBatteryValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Check Battery\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspermanentfailurevalue?language=objc)
+/// Value for key [`kIOPSBatteryHealthConditionKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthconditionkey)
+///
+/// ## Discussion
+///
+/// Indicates the battery needs replacement.
+///
+///
 pub const kIOPSPermanentFailureValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Permanent Battery Failure\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureexternalinput?language=objc)
+/// Value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureExternalInput: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Externally Indicated Failure\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuresafetyovervoltage?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureSafetyOverVoltage: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Safety Over-Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurechargeovertemp?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureChargeOverTemp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Charge Over-Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredischargeovertemp?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureDischargeOverTemp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Discharge Over-Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurecellimbalance?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureCellImbalance: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Cell Imbalance\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurechargefet?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureChargeFET: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Charge FET\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredischargefet?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureDischargeFET: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Discharge FET\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredataflushfault?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureDataFlushFault: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Data Flush Fault\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurepermanentafecomms?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailurePermanentAFEComms: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Permanent AFE Comms\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureperiodicafecomms?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailurePeriodicAFEComms: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Periodic AFE Comms\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurechargeovercurrent?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureChargeOverCurrent: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Charge Over-Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredischargeovercurrent?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureDischargeOverCurrent: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Discharge Over-Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureopenthermistor?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureOpenThermistor: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Open Thermistor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurefuseblown?language=objc)
+/// Potential value for key [`kIOPSBatteryFailureModesKey`](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey)
 pub const kIOPSFailureFuseBlown: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Fuse Blown\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifylowbattery?language=objc)
+/// Notify(3) key. The system delivers notifications on this key when the battery time remaining drops into a warnable level.
 pub const kIOPSNotifyLowBattery: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.lowbattery\0") };
 pub const kIOPSNotifyTimeRemaining: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.timeremaining\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimeremainingnotificationkey?language=objc)
+/// C-string key for a notification that fires when the power source(s) time remaining changes.
+///
+/// ## Discussion
+///
+/// Use notify(3) API to register for notifications.
+///
+///
 pub const kIOPSTimeRemainingNotificationKey: &CStr = kIOPSNotifyTimeRemaining;
 pub const kIOPSNotifyPowerSource: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.source\0") };
@@ -221,14 +607,33 @@ pub const kIOPSNotifyAttach: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.attach\0") };
 pub const kIOPSNotifyAnyPowerSource: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimeremainingunknown?language=objc)
+/// Possible return value from [`IOPSGetTimeRemainingEstimate`](https://developer.apple.com/documentation/iokit/1523835-iopsgettimeremainingestimate)
+///
+/// ## Discussion
+///
+/// Indicates the system is connected to a limited power source, but the system is still calculating a time remaining estimate. Check for a valid estimate again when the notification kIOPSPowerSourcesNotificationKey fires.
+///
+///
 pub const kIOPSTimeRemainingUnknown: CFTimeInterval = -1.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimeremainingunlimited?language=objc)
+/// Possible return value from [`IOPSGetTimeRemainingEstimate`](https://developer.apple.com/documentation/iokit/1523835-iopsgettimeremainingestimate)
+///
+/// ## Discussion
+///
+/// Indicates the system is connected to an external power source, without a time limit.
+///
+///
 pub const kIOPSTimeRemainingUnlimited: CFTimeInterval = -2.0;
 pub const kIOPMUPSPowerKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UPS Power\0") };
 pub const kIOPMBatteryPowerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Battery Power\0") };
 pub const kIOPMACPowerKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"AC Power\0") };
+/// The battery can provide no more than 10 minutes of runtime.
+///
+/// ## Overview
+///
+/// macOS makes no guarantees that the system shall remain in Final Warning for 10 minutes. Batteries are frequently calibrated differently and may provide runtime for more, or less, than the estimated 10 minutes.
+///
+///
 /// Possible return values from
 /// <code>
 ///
@@ -237,8 +642,6 @@ pub const kIOPMACPowerKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(
 /// ```
 ///
 /// </code>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopslowbatterywarninglevel?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOPSLowBatteryWarningLevel(pub c_uint);
@@ -248,8 +651,6 @@ impl IOPSLowBatteryWarningLevel {
     ///
     /// The system displays no low power warnings; neither should application clients of this
     /// API.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopslowbatterywarninglevel/kiopslowbatterywarningnone?language=objc)
     #[doc(alias = "kIOPSLowBatteryWarningNone")]
     pub const None: Self = Self(1);
     /// The battery can provide no more than 20 minutes of runtime.
@@ -260,8 +661,6 @@ impl IOPSLowBatteryWarningLevel {
     /// for more, or less, than the estimated 20 minutes.
     /// OS X alerts the user by changing the color of BatteryMonitor to red.
     /// Warning the user is optional for full screen apps.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopslowbatterywarninglevel/kiopslowbatterywarningearly?language=objc)
     #[doc(alias = "kIOPSLowBatteryWarningEarly")]
     pub const Early: Self = Self(2);
     /// The battery can provide no more than 10 minutes of runtime.
@@ -270,8 +669,6 @@ impl IOPSLowBatteryWarningLevel {
     /// OS X makes no guarantees that the system shall remain in Final Warning for 10 minutes.
     /// Batteries are frequently calibrated differently and may provide runtime
     /// for more, or less, than the estimated 10 minutes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopslowbatterywarninglevel/kiopslowbatterywarningfinal?language=objc)
     #[doc(alias = "kIOPSLowBatteryWarningFinal")]
     pub const Final: Self = Self(3);
 }
@@ -288,12 +685,17 @@ unsafe impl RefEncode for IOPSLowBatteryWarningLevel {
 
 /// Indicates whether the system is at a low battery warning level.
 ///
+/// ## Discussion
+///
+/// If your app runs in full screen mode and occludes macOS's battery monitor's low battery warnings, you should alert the user at least when the system is in kIOPSLowBatteryWarnFinal.
+///
+///
+/// Indicates whether the system is at a low battery warning level.
+///
 ///
 /// If your app runs in full screen mode and occludes OS X's battery monitor's low
 /// battery warnings, you should alert the user at least when the system
 /// is in kIOPSLowBatteryWarnFinal.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523851-iopsgetbatterywarninglevel?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel {
     extern "C-unwind" {
@@ -302,6 +704,30 @@ pub extern "C-unwind" fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLe
     unsafe { IOPSGetBatteryWarningLevel() }
 }
 
+/// Returns the estimated minutes remaining until all power sources (battery and/or UPS's) are empty, or returns [`kIOPSTimeRemainingUnlimited`](https://developer.apple.com/documentation/iokit/kiopstimeremainingunlimited) if attached to an unlimited power source.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns [`kIOPSTimeRemainingUnknown`](https://developer.apple.com/documentation/iokit/kiopstimeremainingunknown) if the OS cannot determine the time remaining.
+///
+/// Returns [`kIOPSTimeRemainingUnlimited`](https://developer.apple.com/documentation/iokit/kiopstimeremainingunlimited) if the system has an unlimited power source.
+///
+/// Otherwise returns a positive number of type CFTimeInterval, indicating the time remaining in seconds until all power sources are depleted.
+///
+///
+///
+/// ## Discussion
+///
+/// If attached to an "Unlimited" power source, like AC power or any external source, the return value is [`kIOPSTimeRemainingUnlimited`](https://developer.apple.com/documentation/iokit/kiopstimeremainingunlimited)
+///
+/// If the system is on "Limited" power, like a battery or UPS, but is still calculating the time remaining, which may take several seconds after each system power event (e.g. waking from sleep, or unplugging AC Power), the return value is [`kIOPSTimeRemainingUnknown`](https://developer.apple.com/documentation/iokit/kiopstimeremainingunknown)
+///
+/// Otherwise, if the system is on "Limited" power and the system has an accurate time remaining estimate, the system returns a CFTimeInterval estimate of the time remaining until the system is out of battery power.
+///
+/// If you require more detailed battery information, use [`IOPSCopyPowerSourcesInfo`](https://developer.apple.com/documentation/iokit/1523839-iopscopypowersourcesinfo)> and [`IOPSGetPowerSourceDescription`](https://developer.apple.com/documentation/iokit/1523867-iopsgetpowersourcedescription)>.
+///
+///
 /// Returns the estimated minutes remaining until all power sources
 /// (battery and/or UPS's) are empty, or returns
 /// <code>
@@ -385,8 +811,6 @@ pub extern "C-unwind" fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLe
 ///
 /// Otherwise returns a positive number of type CFTimeInterval, indicating the time
 /// remaining in seconds until all power sources are depleted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523835-iopsgettimeremainingestimate?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
     extern "C-unwind" {
@@ -395,9 +819,22 @@ pub extern "C-unwind" fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
     unsafe { IOPSGetTimeRemainingEstimate() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowersourcecallbacktype?language=objc)
 pub type IOPowerSourceCallbackType = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
+/// Returns a blob of Power Source information in an opaque CFTypeRef.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// NULL if errors were encountered, a CFTypeRef otherwise. Caller must CFRelease() the return value when done accessing it.
+///
+///
+///
+/// ## Discussion
+///
+/// Clients should not directly access data in the returned CFTypeRef - they should use the accessor functions IOPSCopyPowerSourcesList and IOPSGetPowerSourceDescription, instead.
+///
+///
 /// Returns a blob of Power Source information in an opaque CFTypeRef.
 ///
 ///
@@ -408,8 +845,6 @@ pub type IOPowerSourceCallbackType = Option<unsafe extern "C-unwind" fn(*mut c_v
 ///
 /// Returns: NULL if errors were encountered, a CFTypeRef otherwise.
 /// Caller must CFRelease() the return value when done accessing it.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523839-iopscopypowersourcesinfo?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
@@ -419,6 +854,24 @@ pub extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns a CFArray of Power Source handles, each of type CFTypeRef.
+///
+/// Parameters:
+/// - blob: Takes the CFTypeRef returned by IOPSCopyPowerSourcesInfo()
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns NULL if errors were encountered, otherwise a CFArray of CFTypeRefs. Caller must CFRelease() the returned CFArrayRef.
+///
+///
+///
+/// ## Discussion
+///
+/// The caller shouldn't directly access the CFTypeRefs, but should use IOPSGetPowerSourceDescription on each member of the CFArrayRef.
+///
+///
 /// Returns a CFArray of Power Source handles, each of type CFTypeRef.
 ///
 ///
@@ -436,8 +889,6 @@ pub extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>
 ///
 /// - `blob` should be of the correct type.
 /// - `blob` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523856-iopscopypowersourceslist?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
     blob: Option<&CFType>,
@@ -449,6 +900,26 @@ pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns a CFDictionary with readable information about the specific power source.
+///
+/// Parameters:
+/// - blob: The CFTypeRef returned by IOPSCopyPowerSourcesInfo()
+///
+/// - ps: One of the CFTypeRefs in the CFArray returned by IOPSCopyPowerSourcesList()
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns NULL if an error was encountered, otherwise a CFDictionary. Caller should NOT release the returned CFDictionary - it will be released as part of the CFTypeRef returned by IOPSCopyPowerSourcesInfo().
+///
+///
+///
+/// ## Discussion
+///
+/// See the C-strings defined in IOPSKeys.h for specific keys into the dictionary. Don't expect all keys to be present in any dictionary. Some power sources, for example, may not support the "Time Remaining To Empty" key and it will not be present in their dictionaries.
+///
+///
 /// Returns a CFDictionary with readable information about the specific power source.
 ///
 ///
@@ -473,8 +944,6 @@ pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesList(
 /// - `blob` might not allow `None`.
 /// - `ps` should be of the correct type.
 /// - `ps` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523867-iopsgetpowersourcedescription?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSGetPowerSourceDescription(
     blob: Option<&CFType>,
@@ -505,8 +974,6 @@ pub unsafe extern "C-unwind" fn IOPSGetPowerSourceDescription(
 ///
 /// - `snapshot` should be of the correct type.
 /// - `snapshot` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523858-iopsgetprovidingpowersourcetype?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
     snapshot: Option<&CFType>,
@@ -518,6 +985,26 @@ pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns a CFRunLoopSourceRef that notifies the caller when power source information changes.
+///
+/// Parameters:
+/// - callback: A function to be called whenever any power source is added, removed, or changes.
+///
+/// - context: Any user-defined pointer, passed to the IOPowerSource callback.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns NULL if an error was encountered, otherwise a CFRunLoopSource. Caller must release the CFRunLoopSource.
+///
+///
+///
+/// ## Discussion
+///
+/// Returns a CFRunLoopSourceRef for scheduling with your CFRunLoop. If your project does not use a CFRunLoop, you can alternatively receive notifications via mach port, dispatch, or signal, via `notify.h` using the name [`kIOPSTimeRemainingNotificationKey`](https://developer.apple.com/documentation/iokit/kiopstimeremainingnotificationkey)
+///
+///
 /// Returns a CFRunLoopSourceRef that notifies the caller when power source
 /// information changes.
 ///
@@ -565,8 +1052,6 @@ pub unsafe extern "C-unwind" fn IOPSGetProvidingPowerSourceType(
 ///
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523868-iopsnotificationcreaterunloopsou?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSNotificationCreateRunLoopSource(
     callback: IOPowerSourceCallbackType,
@@ -616,8 +1101,6 @@ pub unsafe extern "C-unwind" fn IOPSNotificationCreateRunLoopSource(
 ///
 /// - `callback` must be implemented correctly.
 /// - `context` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523865-iopscreatelimitedpowernotificati?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
     callback: IOPowerSourceCallbackType,
@@ -633,6 +1116,20 @@ pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Returns a CFDictionary that describes the attached (AC) external power adapter (if any external power adapter is attached.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns a CFDictionary on success. Caller must release the returned dictionary. If no adapter is attached, or if there's an error, returns NULL.
+///
+///
+///
+/// ## Discussion
+///
+/// Use the kIOPSPowerAdapter... keys described in IOPSKeys.h to interpret the returned CFDictionary.
+///
+///
 /// Returns a CFDictionary that describes the attached (AC) external
 /// power adapter (if any external power adapter is attached.
 ///
@@ -643,8 +1140,6 @@ pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
 ///
 /// Returns: Returns a CFDictionary on success. Caller must release the returned
 /// dictionary. If no adapter is attached, or if there's an error,  returns NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1523866-iopscopyexternalpoweradapterdeta?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -654,6 +1149,24 @@ pub extern "C-unwind" fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetai
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+///
+/// Parameters:
+/// - target: void * pointer to your data, often a pointer to an object.
+///
+/// - result: Completion result of desired operation.
+///
+/// - refcon: void * pointer to more data.
+///
+/// - sender: Interface instance sending the completion routine.
+///
+/// - event: CFDictionaryRef containing event data.
+///
+///
+/// ## Discussion
+///
+/// Type and arguments of callout C function that is used when a completion routine is called. This function pointer is set via setEventCallback and is called when an event is available from the UPS.
+///
+///
 /// Type and arguments of callout C function that is used when a
 /// completion routine is called.  This function pointer is set
 /// via setEventCallback and is called when an event is available
@@ -668,8 +1181,6 @@ pub extern "C-unwind" fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetai
 /// Parameter `sender`: Interface instance sending the completion routine.
 ///
 /// Parameter `event`: CFDictionaryRef containing event data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupseventcallbackfunction?language=objc)
 pub type IOUPSEventCallbackFunction = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -680,7 +1191,7 @@ pub type IOUPSEventCallbackFunction = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface?language=objc)
+/// Represents and provides management functions for a UPS device.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -728,7 +1239,6 @@ unsafe impl RefEncode for IOUPSPlugInInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioupsplugininterface_v140?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]

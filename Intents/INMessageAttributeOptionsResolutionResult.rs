@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattributeoptionsresolutionresult?language=objc)
+    /// A resolution result for a search parameter that filters by message status.
+    ///
+    /// ## Overview
+    ///
+    /// You create [`INMessageAttributeOptionsResolutionResult`](https://developer.apple.com/documentation/intents/inmessageattributeoptionsresolutionresult) objects when resolving intent parameters containing a value of type [`INMessageAttributeOptions`](https://developer.apple.com/documentation/intents/inmessageattributeoptions). Use the creation method that best reflects your ability to resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

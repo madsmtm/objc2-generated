@@ -12,9 +12,37 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// The MPSImageConversion filter performs a conversion from source to destination
+    /// A filter that performs a conversion of color space, alpha, or pixel format.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion?language=objc)
+    /// ## Overview
+    ///
+    /// An [`MPSImageConversion`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion) filter allows you to change the alpha encoding or color space of an image. For example, you can convert an image with a premultiplied alpha to non-premultiplied, or change the color space from one variant to another.
+    ///
+    /// As with all Metal Performance Shaders filters, the conversion filter allows for source and destination textures with different pixel formats and, in that case, will convert the source texture’s format to the destination texture’s format. See [Supported Pixel Formats for Image Kernels](https://developer.apple.com/documentation/metalperformanceshaders/image-filters#supported-pixel-formats-for-image-kernels) for a list of supported pixel formats.
+    ///
+    /// The following listing shows how you can create an image conversion filter to map the color intensity from the sRGB color space to a linear gamma curve.
+    ///
+    /// Listing 1. Mapping color intensity from the sRGB color space to a linear gamma curve.
+    ///
+    /// ```swift
+    /// guard let srcColorSpace = CGColorSpace(name: CGColorSpace.sRGB),
+    ///     let dstColorSpace = CGColorSpace(name: CGColorSpace.linearSRGB),
+    ///     let device = MTLCreateSystemDefaultDevice() else {
+    ///         return
+    /// }
+    ///      
+    /// let conversionInfo = CGColorConversionInfo(src: srcColorSpace,
+    ///                                            dst: dstColorSpace)
+    ///      
+    /// let conversion = MPSImageConversion(device: device,
+    ///                                     srcAlpha: .alphaIsOne,
+    ///                                     destAlpha: .alphaIsOne,
+    ///                                     backgroundColor: nil,
+    ///                                     conversionInfo: conversionInfo)
+    /// ```
+    ///
+    ///
+    /// The MPSImageConversion filter performs a conversion from source to destination
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

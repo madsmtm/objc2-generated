@@ -22,6 +22,13 @@ unsafe impl RefEncode for cp_texture_topology {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_texture_topology", &[]));
 }
 
+/// A type that specifies the organization of one of the drawable’s textures.
+///
+/// ## Discussion
+///
+/// Metal supports multiple organizations for the textures you use for drawing. Use this type to identify one of the organizations available to use in your app.
+///
+///
 /// An opaque type that specifies the configuration of one of the layer’s
 /// drawable textures.
 ///
@@ -32,11 +39,26 @@ unsafe impl RefEncode for cp_texture_topology {
 /// each display, or it can combine the images from multiple displays into
 /// a single texture. A texture topology type contains the details of one
 /// of the textures Compositor creates for your app.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_texture_topology_t?language=objc)
 pub type cp_texture_topology_t = *mut cp_texture_topology;
 
 impl cp_texture_topology {
+    /// The number of items in the texture array.
+    ///
+    /// Parameters:
+    /// - texture_topology: A texture configuration you obtained from the layer’s properties. Fetch this value using the [`cp_layer_renderer_properties_get_texture_topology`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of separate items in the texture array.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Array-based texture types such as [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray) manage one or more images of the same size. The array length represents the number of separate images the texture manages. Other array types store only one image.
+    ///
+    ///
     /// Returns the number of items in the texture array.
     ///
     /// - Parameters:
@@ -55,8 +77,6 @@ impl cp_texture_topology {
     /// # Safety
     ///
     /// `texture_topology` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/texturetopology/arraylength?language=objc)
     #[doc(alias = "cp_texture_topology_get_array_length")]
     #[inline]
     pub unsafe fn array_length(texture_topology: cp_texture_topology_t) -> u64 {
@@ -67,6 +87,23 @@ impl cp_texture_topology {
         unsafe { cp_texture_topology_get_array_length(texture_topology) }
     }
 
+    /// The texture type value that specifies how the underlying texture organizes its views.
+    ///
+    /// Parameters:
+    /// - texture_topology: A texture configuration you obtain from the layer’s properties. Fetch this value using the [`cp_layer_renderer_properties_get_texture_topology`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value that indicates the arrangement of views within the texture.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A texture might store the content of one view or multiple views. For example, a single texture might store one or both views for the left and right eyes of a head-mounted display. The texture type indicates this content organization strategy.
+    ///
+    ///
     /// Returns the type value that specifies how the underlying texture
     /// organizes its views.
     ///
@@ -85,8 +122,6 @@ impl cp_texture_topology {
     /// # Safety
     ///
     /// `texture_topology` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/texturetopology/texturetype?language=objc)
     #[doc(alias = "cp_texture_topology_get_texture_type")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -111,8 +146,6 @@ extern_class!(
     /// You can obtain layer properties directly from your layer. If you don't
     /// yet have the layer type, you can create an equivalent set of properties
     /// using the ``cp_layer_renderer_properties_create_using_configuration`` function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_properties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer_properties;
@@ -134,6 +167,15 @@ impl CP_OBJECT_cp_layer_renderer_properties {
     );
 }
 
+/// A type that describes the organization of the layer’s textures and the relationships between those textures and the views you use for drawing.
+///
+/// ## Discussion
+///
+/// Use the layer’s properties to configure other parts of your app. For example, use them to configure your app’s render pipeline.
+///
+/// You can obtain layer properties directly from your layer. If you don’t yet have the [`LayerRenderer`](https://developer.apple.com/documentation/compositorservices/layerrenderer) type, you can create an equivalent set of properties using the initializer for this type.
+///
+///
 /// An opaque type that describes the organization of the layer's textures
 /// and the relationships between those textures and the views you use
 /// for drawing.
@@ -144,10 +186,27 @@ impl CP_OBJECT_cp_layer_renderer_properties {
 /// You can obtain layer properties directly from your layer. If you don't
 /// yet have the layer type, you can create an equivalent set of properties
 /// using the ``cp_layer_renderer_properties_create_using_configuration`` function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_t?language=objc)
 pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties;
 
+/// Creates a new opaque type to store layer-related properties.
+///
+/// Parameters:
+/// - configuration: The configuration details for your layer. Compositor Services uses this information to configure the properties an equivalent layer would use.
+///
+/// - error: A pointer to an error object. On success, the function sets this value to `nil`. If an error occurs, the function sets the value of the pointer to an error object with details about what happened.
+///
+///
+/// ## Return Value
+///
+/// A new layer properties type with details about how the layer configures its topologies and texture maps. The function returns `nil` if an error occurs.
+///
+///
+///
+/// ## Discussion
+///
+/// Call this function to create a set of layer properties when you don’t yet have a [`LayerRenderer`](https://developer.apple.com/documentation/compositorservices/layerrenderer) type. This function generates an equivalent set of properties for the configuration you provide. You can use those properties to configure other parts of your app before the layer becomes available. For example, you might use the information to configure portions of your app’s render pipeline.
+///
+///
 /// Creates a new opaque type to store layer-related properties.
 ///
 /// - Parameters:
@@ -172,8 +231,6 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_create_using_configuration?language=objc)
 #[cfg(all(
     feature = "layer_renderer_configuration",
     feature = "objc2-core-foundation"
@@ -197,6 +254,23 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_properties_create_using_config
 extern "C-unwind" {
     /// Returns the number of texture topologies available for you to inspect.
     ///
+    /// Parameters:
+    /// - layer_properties: The layer properties to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of texture topologies the layer supports.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The layer’s configuration determines the total number of available topologies, and each topology contains details about one texture you use for rendering. Fetch the topology details using the [`cp_layer_renderer_properties_get_texture_topology`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology) function.
+    ///
+    ///
+    /// Returns the number of texture topologies available for you to inspect.
+    ///
     /// - Parameters:
     /// - layer_properties: The layer properties to query.
     /// - Returns: The number of texture topologies present in the layer.
@@ -205,14 +279,31 @@ extern "C-unwind" {
     /// topologies, and each topology contains details about one texture you
     /// use for rendering. Fetch the topology details using the
     /// ``cp_layer_renderer_properties_get_texture_topology`` function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology_count?language=objc)
     pub fn cp_layer_renderer_properties_get_texture_topology_count(
         layer_properties: &cp_layer_renderer_properties_t,
     ) -> usize;
 }
 
 extern "C-unwind" {
+    /// Retrieves the texture topology at the specified index in the layer’s properties.
+    ///
+    /// Parameters:
+    /// - layer_properties: The layer properties to query.
+    ///
+    /// - index: A zero-based index into the list of supported texture topologies. This index must be less than the value returned by the [`cp_layer_renderer_properties_get_texture_topology_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology_count) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The texture topology at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Retrieve the topology type and use accessor functions to get details of that topology, including its type and array length. Use that information to allocate the resources you need to manage your Metal data structures.
+    ///
+    ///
     /// Retrieves the texture topology at the specified index in the
     /// layer's properties.
     ///
@@ -228,8 +319,6 @@ extern "C-unwind" {
     /// of that topology, including its type and array length.
     /// Use that information to allocate the resources you need to manage
     /// your content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_texture_topology?language=objc)
     pub fn cp_layer_renderer_properties_get_texture_topology(
         layer_properties: &cp_layer_renderer_properties_t,
         index: usize,
@@ -237,6 +326,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the number of views that you must fill with content.
+    ///
+    /// Parameters:
+    /// - layer_properties: The layer properties to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of views to fill with content. Fetch the views from the drawable of each frame.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method tells you how many views you’re responsible for filling with your content. For example, this function returns `1` for a monoscopic display and `2` for a stereoscopic display.
+    ///
+    ///
     /// Returns the number of views that will need to be rendered.
     ///
     /// - Parameters:
@@ -249,14 +355,25 @@ extern "C-unwind" {
     ///
     /// Should use ``cp_drawable_get_view_count`` when drawing to
     /// determine how many views the specific frame has.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_view_count?language=objc)
     pub fn cp_layer_renderer_properties_get_view_count(
         layer_properties: &cp_layer_renderer_properties_t,
     ) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the max render value for tracking areas’ render values.
+    ///
+    /// ## Return Value
+    ///
+    /// The max render value for the tracking areas render values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The layer’s configuration determines the total number of available tracking areas. This will be the max render value available, based on [`cp_layer_renderer_configuration_get_tracking_areas_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_tracking_areas_format) function.
+    ///
+    ///
     /// Returns the max render value for tracking areas' render values.
     ///
     /// - Parameters:
@@ -266,8 +383,6 @@ extern "C-unwind" {
     /// The layer’s configuration determines the total number of available
     /// tracking areas. This will be the max render value available, based on
     /// ``cp_layer_renderer_configuration_get_tracking_areas_format`` function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_properties_get_tracking_areas_max_value?language=objc)
     #[cfg(feature = "tracking_area")]
     pub fn cp_layer_renderer_properties_get_tracking_areas_max_value(
         properties: &cp_layer_renderer_properties_t,

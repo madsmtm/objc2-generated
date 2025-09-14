@@ -7,57 +7,63 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid?language=objc)
+/// Used as a function result to identify an encoding that is not supported or recognized by CFString.
 pub const kCFStringEncodingInvalidId: c_uint = 0xffffffff;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringencoding?language=objc)
+/// An integer type for constants used to specify supported string encodings in various CFString functions.
+///
+/// ## Discussion
+///
+/// This type is used to define the constants for the built-in encodings (see [`CFStringBuiltInEncodings`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings) for a list) and for platform-dependent encodings (see [External String Encodings](https://developer.apple.com/documentation/corefoundation/external-string-encodings)). If CFString does not recognize or support the string encoding of a particular string, CFString functions will identify the string’s encoding as [`kCFStringEncodingInvalidId`](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid).
+///
+///
 pub type CFStringEncoding = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings?language=objc)
+/// Encodings that are built-in on all platforms on which macOS runs.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringBuiltInEncodings(pub CFStringEncoding);
 impl CFStringBuiltInEncodings {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/macroman?language=objc)
+    /// An encoding constant that identifies the Mac Roman encoding.
     #[doc(alias = "kCFStringEncodingMacRoman")]
     pub const EncodingMacRoman: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/windowslatin1?language=objc)
+    /// An encoding constant that identifies the Windows Latin 1 encoding (ANSI codepage 1252).
     #[doc(alias = "kCFStringEncodingWindowsLatin1")]
     pub const EncodingWindowsLatin1: Self = Self(0x0500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/isolatin1?language=objc)
+    /// An encoding constant that identifies the ISO Latin 1 encoding (ISO 8859-1)
     #[doc(alias = "kCFStringEncodingISOLatin1")]
     pub const EncodingISOLatin1: Self = Self(0x0201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/nextsteplatin?language=objc)
+    /// An encoding constant that identifies the NextStep/OpenStep encoding.
     #[doc(alias = "kCFStringEncodingNextStepLatin")]
     pub const EncodingNextStepLatin: Self = Self(0x0B01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/ascii?language=objc)
+    /// An encoding constant that identifies the ASCII encoding (decimal values 0 through 127).
     #[doc(alias = "kCFStringEncodingASCII")]
     pub const EncodingASCII: Self = Self(0x0600);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/unicode?language=objc)
+    /// An encoding constant that identifies the Unicode encoding.
     #[doc(alias = "kCFStringEncodingUnicode")]
     pub const EncodingUnicode: Self = Self(0x0100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8?language=objc)
+    /// An encoding constant that identifies the UTF 8 encoding.
     #[doc(alias = "kCFStringEncodingUTF8")]
     pub const EncodingUTF8: Self = Self(0x08000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/nonlossyascii?language=objc)
+    /// An encoding constant that identifies non-lossy ASCII encoding.
     #[doc(alias = "kCFStringEncodingNonLossyASCII")]
     pub const EncodingNonLossyASCII: Self = Self(0x0BFF);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf16?language=objc)
+    /// An encoding constant that identifies kTextEncodingUnicodeDefault + kUnicodeUTF16Format encoding (alias of kCFStringEncodingUnicode).
     #[doc(alias = "kCFStringEncodingUTF16")]
     pub const EncodingUTF16: Self = Self(0x0100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf16be?language=objc)
+    /// An encoding constant that identifies kTextEncodingUnicodeDefault + kUnicodeUTF16BEFormat encoding. This constant specifies big-endian byte order.
     #[doc(alias = "kCFStringEncodingUTF16BE")]
     pub const EncodingUTF16BE: Self = Self(0x10000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf16le?language=objc)
+    /// An encoding constant that identifies kTextEncodingUnicodeDefault + kUnicodeUTF16LEFormat encoding. This constant specifies little-endian byte order.
     #[doc(alias = "kCFStringEncodingUTF16LE")]
     pub const EncodingUTF16LE: Self = Self(0x14000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf32?language=objc)
+    /// An encoding constant that identifies kTextEncodingUnicodeDefault + kUnicodeUTF32Format encoding.
     #[doc(alias = "kCFStringEncodingUTF32")]
     pub const EncodingUTF32: Self = Self(0x0c000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf32be?language=objc)
+    /// An encoding constant that identifies kTextEncodingUnicodeDefault + kUnicodeUTF32BEFormat encoding. This constant specifies big-endian byte order.
     #[doc(alias = "kCFStringEncodingUTF32BE")]
     pub const EncodingUTF32BE: Self = Self(0x18000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf32le?language=objc)
+    /// An encoding constant that identifies kTextEncodingUnicodeDefault + kUnicodeUTF32LEFormat encoding. This constant specifies little-endian byte order.
     #[doc(alias = "kCFStringEncodingUTF32LE")]
     pub const EncodingUTF32LE: Self = Self(0x1c000100);
 }
@@ -73,7 +79,19 @@ unsafe impl RefEncode for CFStringBuiltInEncodings {
 }
 
 unsafe impl ConcreteType for CFString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgettypeid()?language=objc)
+    /// Returns the type identifier for the CFString opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFString opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableString objects have the same type identifier as CFString objects.
+    ///
+    ///
     #[doc(alias = "CFStringGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -85,14 +103,33 @@ unsafe impl ConcreteType for CFString {
 }
 
 impl CFString {
+    /// Creates an immutable CFString object from a Pascal string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - pStr: The Pascal string to be used to create the string.
+    ///
+    /// - encoding: The encoding of the characters in the Pascal string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing `pStr`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable CFString objects from the character contents of a Pascal string (after stripping off the initial length byte).
+    ///
+    ///
     /// * Immutable string creation functions **
     ///
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
     /// - `p_str` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithpascalstring(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateWithPascalString")]
     #[inline]
     pub unsafe fn with_pascal_string(
@@ -111,7 +148,27 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcstring(_:_:_:)?language=objc)
+    /// Creates an immutable string from a C string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - cStr: The `NULL`-terminated C string to be used to create the CFString object. The string must use an 8-bit encoding.
+    ///
+    /// - encoding: The encoding of the characters in the C string. The encoding must specify an 8-bit encoding.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing `cStr` (after stripping off the `NULL` terminating character), or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A C string is a string of 8-bit characters terminated with an 8-bit `NULL`. Unichar and Unichar32 are not considered C strings.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -135,7 +192,31 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithbytes(_:_:_:_:_:)?language=objc)
+    /// Creates a string from a buffer containing characters in a specified encoding.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - bytes: A buffer containing characters in the encoding specified by `encoding`. The buffer must _not_ contain a length byte (as in Pascal buffers) or any terminating `NULL` character (as in C buffers).
+    ///
+    /// - numBytes: The number of bytes in `bytes`.
+    ///
+    /// - encoding: The string encoding of the characters in the buffer.
+    ///
+    /// - isExternalRepresentation: `true` if the characters in the byte buffer are in an “external representation” format—that is, whether the buffer contains a BOM (byte order marker). This is usually the case for bytes that are read in from a text file or received over the network. Otherwise, pass `false`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function handles character data in an “external representation” format by interpreting any BOM (byte order marker) character and performing any necessary byte swapping.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -171,7 +252,29 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcharacters(_:_:_:)?language=objc)
+    /// Creates a string from a buffer of Unicode characters.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - chars: The buffer of Unicode characters to copy into the new string.
+    ///
+    /// - numChars: The number of characters in the buffer pointed to by `chars`. Only this number of characters will be copied to internal storage.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing `chars`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable string from a client-supplied Unicode buffer. You must supply a count of the characters in the buffer. This function always copies the characters in the provided buffer into internal storage.
+    ///
+    /// To save memory, this function might choose to store the characters internally in a 8-bit backing store. That is, just because a buffer of `UniChar` characters was used to initialize the object does not mean you will get back a non-`NULL` result from [`CFStringGetCharactersPtr`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharactersptr(_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -195,7 +298,39 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithpascalstringnocopy(_:_:_:_:)?language=objc)
+    /// Creates a CFString object from an external Pascal string buffer that might serve as the backing store for the object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - pStr: The Pascal string to be used to create the string.
+    ///
+    /// - encoding: The encoding of the characters in the Pascal string.
+    ///
+    /// - contentsDeallocator: The CFAllocator object to use to deallocate the external string buffer when it is no longer needed. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to request the default allocator for this purpose. If the buffer does not need to be deallocated, or if you want to assume responsibility for deallocating the buffer (and not have the string deallocate it), pass [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing `pStr`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable CFString objects from the character contents of a Pascal string (after stripping off the initial length byte).
+    ///
+    /// Unless the situation warrants otherwise, the created object does not copy the external buffer to internal storage but instead uses the buffer as its backing store. However, you should never assume that the object is using the external buffer since the object might copy the buffer to internal storage or even dump the buffer altogether and store the characters in another way.
+    ///
+    /// The function includes a `contentsDeallocator` parameter with which to specify an allocator to use for deallocating the external buffer when the string is deallocated. If you want to assume responsibility for deallocating this memory, specify [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull) for this parameter.
+    ///
+    /// If at creation time the string decides it can’t use the buffer, and there is an allocator specified in the `contentsDeallocator` parameter, it will use this allocator to free the buffer at that time.
+    ///
+    /// ### Special Considerations
+    ///
+    /// If an error occurs during the creation of the string, then `pStr` is not deallocated. In this case, the caller is responsible for freeing the buffer. This allows the caller to continue trying to create a string with the buffer, without having the buffer deallocated.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -224,7 +359,39 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcstringnocopy(_:_:_:_:)?language=objc)
+    /// Creates a CFString object from an external C string buffer that might serve as the backing store for the object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - cStr: The `NULL`-terminated C string to be used to create the CFString object.  The string must use an 8-bit encoding.
+    ///
+    /// - encoding: The encoding of the characters in the C string. The encoding must specify an 8-bit encoding.
+    ///
+    /// - contentsDeallocator: The CFAllocator object to use to deallocate the external string buffer when it is no longer needed. You can pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to request the default allocator for this purpose. If the buffer does not need to be deallocated, or if you want to assume responsibility for deallocating the buffer (and not have the CFString object deallocate it), pass [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing `cStr` (after stripping off the `NULL` terminating character), or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A C string is a string of 8-bit characters terminated with an 8-bit `NULL`. Unichar and Unichar32 are not considered C strings.
+    ///
+    /// Unless the situation warrants otherwise, the created object does not copy the external buffer to internal storage but instead uses the buffer as its backing store. However, you should never assume that the object is using the external buffer since the object might copy the buffer to internal storage or even dump the buffer altogether and store the characters in another way.
+    ///
+    /// The function includes a `contentsDeallocator` parameter with which to specify an allocator to use for deallocating the external buffer when the CFString object is deallocated. If you want to assume responsibility for deallocating this memory, specify [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull) for this parameter.
+    ///
+    /// If at creation time the CFString object decides it can’t use the buffer, and the function specifies a `contentsDeallocator` allocator, it will use this allocator to free the buffer at that time.
+    ///
+    /// ### Special Considerations
+    ///
+    /// If an error occurs during the creation of the string, then `cStr` is not deallocated. In this case, the caller is responsible for freeing the buffer. This allows the caller to continue trying to create a string with the buffer, without having the buffer deallocated.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -253,7 +420,37 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithbytesnocopy(_:_:_:_:_:_:)?language=objc)
+    /// Creates a string from a buffer, containing characters in a specified encoding, that might serve as the backing store for the new string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFString object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - bytes: A buffer containing characters in the encoding specified by `encoding`. The buffer must _not_ contain a length byte (as in Pascal buffers) or any terminating `NULL` character (as in C buffers).
+    ///
+    /// - numBytes: The number of bytes in `bytes`.
+    ///
+    /// - encoding: The character encoding of `bytes`.
+    ///
+    /// - isExternalRepresentation: `true` if the characters in the byte buffer are in an “external representation” format—that is, whether the buffer contains a BOM (byte order marker). This is usually the case for bytes that are read in from a text file or received over the network. Otherwise, pass `false`.
+    ///
+    /// - contentsDeallocator: The allocator to use to deallocate `bytes` when it is no longer needed. You can pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to request the default allocator for this purpose. If the buffer does not need to be deallocated, or if you want to assume responsibility for deallocating the buffer (and not have the string deallocate it), pass [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new string whose contents are `bytes`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function takes an explicit length, and allows you to specify whether the data is an external format—that is, whether to pay attention to the BOM character (if any) and do byte swapping if necessary
+    ///
+    /// ### Special Considerations
+    ///
+    /// If an error occurs during the creation of the string, then `bytes` is not deallocated. In this case, the caller is responsible for freeing the buffer. This allows the caller to continue trying to create a string with the buffer, without having the buffer deallocated.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -293,7 +490,37 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcharactersnocopy(_:_:_:_:)?language=objc)
+    /// Creates a string from a buffer of Unicode characters that might serve as the backing store for the object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - chars: The Unicode buffer that has been allocated and initialized with Unicode characters.
+    ///
+    /// - numChars: The number of characters in the buffer pointed to by `chars`. Only this number of characters will be copied to internal storage.
+    ///
+    /// - contentsDeallocator: The allocator to use to deallocate the external buffer when it is no longer needed. You can pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to request the default allocator for this purpose. If the buffer does not need to be deallocated, or if you want to assume responsibility for deallocating the buffer (and not have the string deallocate it), pass [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing `chars`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unless the situation warrants otherwise, the returned object does not copy the external buffer to internal storage but instead uses the buffer as its backing store. However, you should never count on the object using the external buffer since it could copy the buffer to internal storage or might even dump the buffer altogether and use alternative means for storing the characters.
+    ///
+    /// The function includes a `contentsDeallocator` parameter with which to specify an allocator to use for deallocating the external buffer when the string is deallocated. If you want to assume responsibility for deallocating this memory, specify [`kCFAllocatorNull`](https://developer.apple.com/documentation/corefoundation/kcfallocatornull) for this parameter.
+    ///
+    /// If at creation time CFString decides it can’t use the buffer, and there is a `contentsDeallocator`, it will use this allocator to free the buffer at that time.
+    ///
+    /// ### Special Considerations
+    ///
+    /// If an error occurs during the creation of the string, then `chars` is not deallocated. In this case, the caller is responsible for freeing the buffer. This allows the caller to continue trying to create a string with the buffer, without having the buffer deallocated.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -322,7 +549,21 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithsubstring(_:_:_:)?language=objc)
+    /// Creates an immutable string from a segment (substring) of an existing string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - str: The string from which to create the new string.
+    ///
+    /// - range: The range of characters in `str` to copy. The specified range must not exceed the length of the string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -346,7 +587,27 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatecopy(_:_:)?language=objc)
+    /// Creates an immutable copy of a string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theString: The string to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string whose contents are identical to `theString`. Returns `NULL` if there was a problem copying the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting object has the same Unicode contents as the original object, but it is always immutable. It might also have different storage characteristics, and hence might reply differently to functions such as [`CFStringGetCStringPtr`](https://developer.apple.com/documentation/corefoundation/cfstringgetcstringptr(_:_:)). Also, if the specified allocator and the allocator of the original object are the same, and the string is already immutable, this function may simply increment the retention count without making a true copy. However, the resulting object is a true immutable copy, except the operation was a lot more efficient.
+    ///
+    /// You should use this function in situations where a string is or could be mutable, and you need to take a snapshot of its current value. For example, you might decide to pass a copy of a string to a function that stores its current value in a list for later use.
+    ///
+    ///
     #[doc(alias = "CFStringCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -365,7 +626,25 @@ impl CFString {
 }
 
 impl CFMutableString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutable(_:_:)?language=objc)
+    /// Creates an empty CFMutableString object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - maxLength: The maximum number of Unicode characters that can be stored by the returned string. Pass `0` if there should be no character limit. Note that initially the string still has a length of `0`; this parameter simply specifies what the maximum size is. CFMutableString might try to optimize its internal storage by paying attention to this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new empty CFMutableString object or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an empty (that is, content-less) CFMutableString object. You can add character data to this object with any of the `CFStringAppend...` functions, and thereafter you can insert, delete, replace, pad, and trim characters with the appropriate CFString functions. If the `maxLength` parameter is greater than `0`, any attempt to add characters beyond this limit results in a run-time error.
+    ///
+    ///
     #[doc(alias = "CFStringCreateMutable")]
     #[inline]
     pub fn new(
@@ -382,7 +661,27 @@ impl CFMutableString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutablecopy(_:_:_:)?language=objc)
+    /// Creates a mutable copy of a string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - maxLength: The maximum number of Unicode characters that can be stored by the returned object. Pass `0` if there should be no character limit. Note that initially the returned object still has the same length as the string argument; this parameter simply specifies what the maximum size is. CFString might try to optimize its internal storage by paying attention to this value.
+    ///
+    /// - theString: A string to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string that has the same contents as `theString`. Returns `NULL` if there was a problem copying the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned mutable string is identical to the original string except for (perhaps) the mutability attribute. You can add character data to the returned string with any of the `CFStringAppend...` functions, and you can insert, delete, replace, pad, and trim characters with the appropriate CFString functions. If the `maxLength` parameter is greater than `0`, any attempt to add characters beyond this limit results in a run-time error.
+    ///
+    ///
     #[doc(alias = "CFStringCreateMutableCopy")]
     #[inline]
     pub fn new_copy(
@@ -401,7 +700,43 @@ impl CFMutableString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutablewithexternalcharactersnocopy(_:_:_:_:_:)?language=objc)
+    /// Creates a CFMutableString object whose Unicode character buffer is controlled externally.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the string. Pass `NULL` or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - chars: The Unicode character buffer for the new `CFMutableString`. Before calling, create this buffer on the stack or heap and optionally initialize it with Unicode character data. Upon return, the created `CFString` object keeps its own copy of the pointer to this buffer. You may pass in `NULL` if there is no initial buffer being provided.
+    ///
+    /// - numChars: The number of characters initially in the Unicode buffer pointed to by `chars`.
+    ///
+    /// - capacity: The capacity of the external buffer (`chars`); that is, the maximum number of Unicode characters that can be stored. This value should be `0` if no initial buffer is provided.
+    ///
+    /// - externalCharactersAllocator: The allocator to use to reallocate the external buffer when editing takes place and for deallocating the buffer when string is deallocated. If the default allocator is suitable for these purposes, pass `NULL`.  To manage the buffer yourself, pass
+    ///
+    /// `kCFAllocatorNull`
+    ///
+    /// .
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable string, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function permits you to create a `CFMutableString` object whose backing store is an external Unicode character buffer—that is, a buffer that you control (or can control) entirely. This function allows you to take advantage of the features of `CFString`, particularly the `CFMutableString` functions that add and modify character data. But at the same time you can directly add, delete, modify, and examine the characters in the buffer. You can even replace the buffer entirely. If, however, you directly modify or replace the character buffer, you should inform the `CFString` object of this change with the [`CFStringSetExternalCharactersNoCopy`](https://developer.apple.com/documentation/corefoundation/cfstringsetexternalcharactersnocopy(_:_:_:_:)) function.
+    ///
+    /// If you mutate the character contents with the `CFString` functions, and the buffer needs to be enlarged, the `CFString` object calls the allocation callbacks specified for the allocator `externalCharactersAllocator`,  or
+    ///
+    /// the default allocator
+    ///
+    /// if `kCFAllocatorNull` is specified.
+    ///
+    /// This function should be used in special circumstances where you want to create a `CFString` wrapper around an existing, potentially large `UniChar` buffer you own. Using this function causes the `CFString` object to forgo some of its internal optimizations, so it should be avoided in general use. That is, if you want to create a `CFString` object from a small `UniChar` buffer, and you don’t need to continue owning the buffer, use one of the other creation functions (for instance [`CFStringCreateWithCharacters`](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithcharacters(_:_:_:))) instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -440,9 +775,18 @@ impl CFMutableString {
 }
 
 impl CFString {
-    /// * Basic accessors for the contents **
+    /// Returns the number (in terms of UTF-16 code pairs) of Unicode characters in a string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetlength(_:)?language=objc)
+    /// Parameters:
+    /// - theString: The string to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number (in terms of UTF-16 code pairs) of characters stored in `theString`.
+    ///
+    ///
+    /// * Basic accessors for the contents **
     #[doc(alias = "CFStringGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -452,7 +796,25 @@ impl CFString {
         unsafe { CFStringGetLength(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacteratindex(_:_:)?language=objc)
+    /// Returns the Unicode character at a specified location in a string.
+    ///
+    /// Parameters:
+    /// - theString: The string from which the Unicode character is obtained.
+    ///
+    /// - idx: The position of the Unicode character in the CFString.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Unicode character.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically called in a loop to fetch the Unicode characters of a string in sequence or to fetch a character at a known position (first or last, for example). Using it in a loop can be inefficient, especially with longer strings, so consider the [`CFStringGetCharacters`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacters(_:_:_:)) function or the in-line buffer functions ([`CFStringInitInlineBuffer`](https://developer.apple.com/documentation/corefoundation/cfstringinitinlinebuffer(_:_:_:)) and [`CFStringGetCharacterFromInlineBuffer`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacterfrominlinebuffer(_:_:))) as alternatives.
+    ///
+    ///
     #[doc(alias = "CFStringGetCharacterAtIndex")]
     #[inline]
     pub unsafe fn character_at_index(&self, idx: CFIndex) -> UniChar {
@@ -462,7 +824,21 @@ impl CFString {
         unsafe { CFStringGetCharacterAtIndex(self, idx) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacters(_:_:_:)?language=objc)
+    /// Copies a range of the Unicode characters from a string to a user-provided buffer.
+    ///
+    /// Parameters:
+    /// - theString: The string from which the characters are to be obtained.
+    ///
+    /// - range: The range of characters to copy. The specified range must not exceed the length of the string.
+    ///
+    /// - buffer: The `UniChar` buffer of length `range.length` that you have allocated on the stack or heap. On return, the buffer contains the requested Unicode characters.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to obtain some or all of the Unicode characters represented by a CFString object. If this operation involves a large number of characters, the function call can be expensive in terms of memory. Instead you might want to consider using the in-line buffer functions [`CFStringInitInlineBuffer`](https://developer.apple.com/documentation/corefoundation/cfstringinitinlinebuffer(_:_:_:)) and [`CFStringGetCharacterFromInlineBuffer`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacterfrominlinebuffer(_:_:)) to extract the characters incrementally.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -476,7 +852,29 @@ impl CFString {
         unsafe { CFStringGetCharacters(self, range, buffer) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetpascalstring(_:_:_:_:)?language=objc)
+    /// Copies the character contents of a CFString object to a local Pascal string buffer after converting the characters to a requested encoding.
+    ///
+    /// Parameters:
+    /// - theString: The string to examine.
+    ///
+    /// - buffer: The Pascal string buffer into which to copy the `theString`. The buffer must be at least `bufferSize` bytes in length. On return, contains the converted characters. If there is an error in conversion, the buffer contains only partial results.
+    ///
+    /// - bufferSize: The length of the local `buffer` in bytes (accounting for the length byte).
+    ///
+    /// - encoding: The string encoding to which the character contents of `theString` should be converted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the operation succeeds or `false` if the conversion fails or the provided buffer is too small.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is useful when you need your own copy of a CFString object’s character data as a Pascal string. You can also call it as a “backup” operation when a prior call to the [`CFStringGetPascalStringPtr`](https://developer.apple.com/documentation/corefoundation/cfstringgetpascalstringptr(_:_:)) function fails.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -501,7 +899,31 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcstring(_:_:_:_:)?language=objc)
+    /// Copies the character contents of a string to a local C string buffer after converting the characters to a given encoding.
+    ///
+    /// Parameters:
+    /// - theString: The string whose contents you wish to access.
+    ///
+    /// - buffer: The C string buffer into which to copy the string. On return, the buffer contains the converted characters. If there is an error in conversion, the buffer contains only partial results.
+    ///
+    /// The buffer must be large enough to contain the converted characters and a `NUL` terminator. For example, if the string is `Toby`, the buffer must be at least 5 bytes long.
+    ///
+    /// - bufferSize: The length of `buffer` in bytes.
+    ///
+    /// - encoding: The string encoding to which the character contents of `theString` should be converted. The encoding must specify an 8-bit encoding.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` upon success or `false` if the conversion fails or the provided buffer is too small.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is useful when you need your own copy of a string’s character data as a C string. You also typically call it as a “backup” when a prior call to the [`CFStringGetCStringPtr`](https://developer.apple.com/documentation/corefoundation/cfstringgetcstringptr(_:_:)) function fails.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -526,7 +948,27 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetpascalstringptr(_:_:)?language=objc)
+    /// Quickly obtains a pointer to a Pascal buffer containing the characters of a string in a given encoding.
+    ///
+    /// Parameters:
+    /// - theString: The string to examine.
+    ///
+    /// - encoding: The string encoding to which the character contents of `theString` should be converted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to a Pascal string buffer or `NULL` if the internal storage of theString does not allow this to be returned efficiently.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function either returns the requested pointer immediately, with no memory allocations and no copying, in constant time, or returns `NULL`. If the latter is returned, call an alternative function such as the [`CFStringGetPascalString`](https://developer.apple.com/documentation/corefoundation/cfstringgetpascalstring(_:_:_:_:)) function to extract the characters.
+    ///
+    /// Whether or not this function returns a valid pointer or `NULL` depends on many factors, all of which depend on how the string was created and its properties. In addition, the function result might change between different releases and on different platforms. So do not count on receiving a non-`NULL` result from this function under any circumstances.
+    ///
+    ///
     #[doc(alias = "CFStringGetPascalStringPtr")]
     #[inline]
     pub fn pascal_string_ptr(&self, encoding: CFStringEncoding) -> ConstStringPtr {
@@ -539,7 +981,27 @@ impl CFString {
         unsafe { CFStringGetPascalStringPtr(self, encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcstringptr(_:_:)?language=objc)
+    /// Quickly obtains a pointer to a C-string buffer containing the characters of a string in a given encoding.
+    ///
+    /// Parameters:
+    /// - theString: The string whose contents you wish to access.
+    ///
+    /// - encoding: The string encoding to which the character contents of `theString` should be converted. The encoding must specify an 8-bit encoding.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to a C string or `NULL` if the internal storage of `theString` does not allow this to be returned efficiently.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function either returns the requested pointer immediately, with no memory allocations and no copying, in constant time, or returns `NULL`. If the latter is the result, call an alternative function such as the [`CFStringGetCString`](https://developer.apple.com/documentation/corefoundation/cfstringgetcstring(_:_:_:_:)) function to extract the characters.
+    ///
+    /// Whether or not this function returns a valid pointer or `NULL` depends on many factors, all of which depend on how the string was created and its properties. In addition, the function result might change between different releases and on different platforms. So do not count on receiving a non-`NULL` result from this function under any circumstances.
+    ///
+    ///
     #[doc(alias = "CFStringGetCStringPtr")]
     #[inline]
     pub fn c_string_ptr(&self, encoding: CFStringEncoding) -> *const c_char {
@@ -552,7 +1014,25 @@ impl CFString {
         unsafe { CFStringGetCStringPtr(self, encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetcharactersptr(_:)?language=objc)
+    /// Quickly obtains a pointer to the contents of a string as a buffer of Unicode characters.
+    ///
+    /// Parameters:
+    /// - theString: The string whose contents you wish to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to a buffer of Unicode character, or `NULL` if the internal storage of `theString` does not allow this to be returned efficiently.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function either returns the requested pointer immediately, with no memory allocations and no copying, or it returns `NULL`. If the latter is the result, call an alternative function such as [`CFStringGetCharacters`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacters(_:_:_:)) function to extract the characters.
+    ///
+    /// Whether or not this function returns a valid pointer or `NULL` depends on many factors, all of which depend on how the string was created and its properties. In addition, the function result might change between different releases and on different platforms. So do not count on receiving a non-`NULL` result from this function under any circumstances (except when the object is created with [`CFStringCreateMutableWithExternalCharactersNoCopy`](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutablewithexternalcharactersnocopy(_:_:_:_:_:))).
+    ///
+    ///
     #[doc(alias = "CFStringGetCharactersPtr")]
     #[inline]
     pub fn characters_ptr(&self) -> *const UniChar {
@@ -562,7 +1042,43 @@ impl CFString {
         unsafe { CFStringGetCharactersPtr(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetbytes(_:_:_:_:_:_:_:_:)?language=objc)
+    /// Fetches a range of the characters from a string into a byte buffer after converting the characters to a specified encoding.
+    ///
+    /// Parameters:
+    /// - theString: The string upon which to operate.
+    ///
+    /// - range: The range of characters in `theString` to process. The specified range must not exceed the length of the string.
+    ///
+    /// - encoding: The string encoding of the characters to copy to the byte buffer. 8, 16, and 32-bit encodings are supported.
+    ///
+    /// - lossByte: A character (for example, ‘?’) that should be substituted for characters that cannot be converted to the specified encoding. Pass `0` if you do not want lossy conversion to occur.
+    ///
+    /// - isExternalRepresentation: `true` if you want the result to be in an “external representation” format, otherwise `false`. In an “external representation” format, the result may contain a byte order marker (BOM) specifying endianness and this function might have to perform byte swapping.
+    ///
+    /// - buffer: The byte buffer into which the converted characters are written. The buffer can be allocated on the heap or stack. Pass `NULL` if you do not want conversion to take place but instead want to know if conversion will succeed (the function result is greater than `0`) and, if so, how many bytes are required (`usedBufLen`).
+    ///
+    /// - maxBufLen: The size of `buffer` and the maximum number of bytes that can be written to it.
+    ///
+    /// - usedBufLen: On return, the number of converted bytes actually in `buffer`. You may pass `NULL` if you are not interested in this information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of characters converted.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the basic encoding-conversion function for CFString objects. As with the other functions that get the character contents of CFString objects, it allows conversion to a supported 8-bit encoding. Unlike most of those other functions, it also allows “lossy conversion.” The function permits the specification of a “loss byte” in a parameter; if a character cannot be converted this character is substituted and conversion proceeds. (With the other functions, conversion stops at the first error and the operation fails.)
+    ///
+    /// Because this function takes a range and returns the number of characters converted, it can be called repeatedly with a small fixed size buffer and different ranges of the string to do the conversion incrementally.
+    ///
+    /// This function also handles any necessary manipulation of character data in an “external representation” format. This format makes the data portable and persistent (disk-writable); in Unicode it often includes a BOM (byte order marker) that specifies the endianness of the data.
+    ///
+    /// The [`CFStringCreateExternalRepresentation`](https://developer.apple.com/documentation/corefoundation/cfstringcreateexternalrepresentation(_:_:_:_:)) function also handles external representations and performs lossy conversions. The complementary function [`CFStringCreateWithBytes`](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithbytes(_:_:_:_:_:)) creates a string from the characters in a byte buffer.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -606,7 +1122,29 @@ impl CFString {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatefromexternalrepresentation(_:_:_:)?language=objc)
+    /// Creates a string from its “external representation.”
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - data: The CFData object containing bytes that hold the characters in the specified encoding.
+    ///
+    /// - encoding: The encoding to use when interpreting the bytes in the data argument.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable string containing the characters from `data`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In the CFData object form, the string can be written to disk as a file or be sent out over a network. If the encoding of the characters in the data object is Unicode, the function reads any BOM (byte order marker) and properly resolves endianness.
+    ///
+    /// The [`CFStringCreateExternalRepresentation`](https://developer.apple.com/documentation/corefoundation/cfstringcreateexternalrepresentation(_:_:_:_:)) function complements this function by creating an “external representation” CFData object from a string.
+    ///
+    ///
     #[doc(alias = "CFStringCreateFromExternalRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -626,7 +1164,35 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreateexternalrepresentation(_:_:_:_:)?language=objc)
+    /// Creates an “external representation” of a CFString object, that is, a CFData object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFData object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theString: The string to convert to an external representation.
+    ///
+    /// - encoding: The string encoding to use for the external representation.
+    ///
+    /// - lossByte: The character value to assign to characters that cannot be converted to the requested encoding. Pass `0` if you want conversion to stop at the first such error; if this happens, the function returns `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFData object that stores the characters of the CFString object as an “external representation.” Returns `NULL` if no loss byte was specified and the function could not convert the characters to the specified encoding. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In the CFData object form, the string can be written to disk as a file or be sent out over a network. If the encoding of the characters in the data object is Unicode, the function may insert a BOM (byte-order marker) to indicate endianness. However, representations created with encoding constants `kCFStringEncodingUTF16BE`, `kCFStringEncodingUTF16LE`, `kCFStringEncodingUTF32BE`, and `kCFStringEncodingUTF32LE` do not include a BOM because the byte order is explicitly indicated by the letters “BE” (big-endian) and “LE” (little-endian).
+    ///
+    /// This function allows the specification of a “loss byte” to represent characters that cannot be converted to the requested encoding.
+    ///
+    /// When you create an external representation from a CFMutableString object, it loses this mutability characteristic when it is converted back to a CFString object.
+    ///
+    /// The [`CFStringCreateFromExternalRepresentation`](https://developer.apple.com/documentation/corefoundation/cfstringcreatefromexternalrepresentation(_:_:_:)) function complements this function by creating a CFString object from an “external representation” CFData object.
+    ///
+    ///
     #[doc(alias = "CFStringCreateExternalRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -649,7 +1215,23 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetsmallestencoding(_:)?language=objc)
+    /// Returns the smallest encoding on the current system for the character contents of a string.
+    ///
+    /// Parameters:
+    /// - theString: The string for which to find the smallest encoding.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The string encoding that has the smallest representation of `theString`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the supported encoding that requires the least space (in terms of bytes needed to represent one character) to represent the character contents of a string. This information is not always immediately available, so this function might need to compute it.
+    ///
+    ///
     #[doc(alias = "CFStringGetSmallestEncoding")]
     #[inline]
     pub fn smallest_encoding(&self) -> CFStringEncoding {
@@ -659,7 +1241,17 @@ impl CFString {
         unsafe { CFStringGetSmallestEncoding(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetfastestencoding(_:)?language=objc)
+    /// Returns for a CFString object the character encoding that requires the least conversion time.
+    ///
+    /// Parameters:
+    /// - theString: The string for which to determine the fastest encoding.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The string encoding to which `theString` can be converted the fastest.
+    ///
+    ///
     #[doc(alias = "CFStringGetFastestEncoding")]
     #[inline]
     pub fn fastest_encoding(&self) -> CFStringEncoding {
@@ -669,7 +1261,23 @@ impl CFString {
         unsafe { CFStringGetFastestEncoding(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetsystemencoding()?language=objc)
+    /// Returns the default encoding used by the operating system when it creates strings.
+    ///
+    /// ## Return Value
+    ///
+    /// The default string encoding.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the default text encoding used by the OS when it creates strings. In macOS, this encoding is determined by the user’s preferred language setting. The preferred language is the first language listed in the International pane of the System Preferences.
+    ///
+    /// In most situations you will not want to use this function, however, because your primary interest will be your application’s default text encoding. The application encoding is required when you create a CFStringRef from strings stored in Resource Manager resources, which typically use one of the Mac encodings such as MacRoman or MacJapanese.
+    ///
+    /// To get your application’s default text encoding, call the `GetApplicationTextEncoding` Carbon function.
+    ///
+    ///
     #[doc(alias = "CFStringGetSystemEncoding")]
     #[inline]
     pub fn system_encoding() -> CFStringEncoding {
@@ -679,7 +1287,25 @@ impl CFString {
         unsafe { CFStringGetSystemEncoding() }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetmaximumsizeforencoding(_:_:)?language=objc)
+    /// Returns the maximum number of bytes a string of a specified length (in Unicode characters) will take up if encoded in a specified encoding.
+    ///
+    /// Parameters:
+    /// - length: The number of Unicode characters to evaluate.
+    ///
+    /// - encoding: The string encoding for the number of characters specified by `length`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The maximum number of bytes that could be needed to represent `length` number of Unicode characters with the string encoding `encoding`, or [`kCFNotFound`](https://developer.apple.com/documentation/corefoundation/kcfnotfound) if the number exceeds `LONG_MAX`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The number of bytes that the encoding actually ends up requiring when converting any particular string could be less than the returned value, but never more.
+    ///
+    ///
     #[doc(alias = "CFStringGetMaximumSizeForEncoding")]
     #[inline]
     pub fn maximum_size_for_encoding(length: CFIndex, encoding: CFStringEncoding) -> CFIndex {
@@ -692,13 +1318,32 @@ impl CFString {
         unsafe { CFStringGetMaximumSizeForEncoding(length, encoding) }
     }
 
+    /// Extracts the contents of a string as a `NULL`-terminated 8-bit string appropriate for passing to POSIX APIs.
+    ///
+    /// Parameters:
+    /// - string: The string to convert.
+    ///
+    /// - buffer: The C string buffer into which to copy the string. The buffer must be at least `maxBufLen` bytes in length. On return, the buffer contains the converted characters.
+    ///
+    /// - maxBufLen: The maximum length of the buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the string is correctly converted; `false` if the conversion fails, or the results don’t fit into the buffer.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use [`CFStringGetMaximumSizeOfFileSystemRepresentation`](https://developer.apple.com/documentation/corefoundation/cfstringgetmaximumsizeoffilesystemrepresentation(_:)) if you want to make sure the buffer is of sufficient length.
+    ///
+    ///
     /// * FileSystem path conversion functions **
     ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetfilesystemrepresentation(_:_:_:)?language=objc)
     #[doc(alias = "CFStringGetFileSystemRepresentation")]
     #[inline]
     pub unsafe fn file_system_representation(
@@ -717,7 +1362,23 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetmaximumsizeoffilesystemrepresentation(_:)?language=objc)
+    /// Determines the upper bound on the number of bytes required to hold the file system representation of the string.
+    ///
+    /// Parameters:
+    /// - string: The string to convert.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The upper bound on the number of bytes required to hold the file system representation of the string.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The result is returned quickly as a rough approximation, and could be much larger than the actual space required. The result includes space for the zero termination. If you are allocating a buffer for long-term storage, you should reallocate it to be the right size after calling [`CFStringGetFileSystemRepresentation`](https://developer.apple.com/documentation/corefoundation/cfstringgetfilesystemrepresentation(_:_:_:)).
+    ///
+    ///
     #[doc(alias = "CFStringGetMaximumSizeOfFileSystemRepresentation")]
     #[inline]
     pub fn maximum_size_of_file_system_representation(&self) -> CFIndex {
@@ -727,7 +1388,19 @@ impl CFString {
         unsafe { CFStringGetMaximumSizeOfFileSystemRepresentation(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatewithfilesystemrepresentation(_:_:)?language=objc)
+    /// Creates a CFString from a zero-terminated POSIX file system representation.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - buffer: The C string that you want to convert.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string that represents `buffer`. The result is `NULL` if there was a problem in creating the string (possible if the conversion fails due to bytes in the buffer not being a valid sequence of bytes for the appropriate character encoding). Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -750,38 +1423,84 @@ impl CFString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags?language=objc)
+/// A [`CFOptionFlags`](https://developer.apple.com/documentation/corefoundation/cfoptionflags) type for specifying options for string comparison .
+///
+/// ## Overview
+///
+/// See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for values.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringCompareFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStringCompareFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparecaseinsensitive?language=objc)
+/// Specifies that the comparison should ignore differences in case between alphabetical characters.
         #[doc(alias = "kCFCompareCaseInsensitive")]
         const CompareCaseInsensitive = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparebackwards?language=objc)
+/// Specifies that the comparison should start at the last elements of the entities being compared (for example, strings or arrays).
         #[doc(alias = "kCFCompareBackwards")]
         const CompareBackwards = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareanchored?language=objc)
+/// Performs searching only on characters at the beginning or end of the range.
+///
+/// ## Discussion
+///
+/// No match at the beginning or end means nothing is found, even if a matching sequence of characters occurs elsewhere in the string.
+///
+///
         #[doc(alias = "kCFCompareAnchored")]
         const CompareAnchored = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenonliteral?language=objc)
+/// Specifies that loose equivalence is acceptable, especially as pertains to diacritical marks.
+///
+/// ## Discussion
+///
+/// For example, “ö” represented as two distinct characters (“o” and “umlaut”) is equivalent to “ö” represented by a single character (“o-umlaut”). Note that this is not the same as diacritic insensitivity.
+///
+///
         #[doc(alias = "kCFCompareNonliteral")]
         const CompareNonliteral = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparelocalized?language=objc)
+/// Specifies that the comparison should take into account differences related to locale, such as the thousands separator character.
         #[doc(alias = "kCFCompareLocalized")]
         const CompareLocalized = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenumerically?language=objc)
+/// Specifies that represented numeric values should be used as the basis for comparison and not the actual character values.
+///
+/// ## Discussion
+///
+/// For example, “version 2” is less than “version 10”.
+///
+/// This comparison does not work if `kCFCompareLocalized` is specified on systems before OS X v10.3.
+///
+///
         #[doc(alias = "kCFCompareNumerically")]
         const CompareNumerically = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparediacriticinsensitive?language=objc)
+/// Specifies that the comparison should ignore diacritic markers.
+///
+/// ## Discussion
+///
+/// For example, “ö” (“o-umlaut”) is equivalent to “o”.
+///
+/// Diacritic markers are designated as all non-spacing marks below `U+0510`.
+///
+///
         #[doc(alias = "kCFCompareDiacriticInsensitive")]
         const CompareDiacriticInsensitive = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparewidthinsensitive?language=objc)
+/// Specifies that the comparison should ignore width differences.
+///
+/// ## Discussion
+///
+/// For example, “a”  is equivalent to `UFF41`.
+///
+///
         #[doc(alias = "kCFCompareWidthInsensitive")]
         const CompareWidthInsensitive = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareforcedordering?language=objc)
+/// Specifies that the comparison is forced to return either `kCFCompareLessThan` or `kCFCompareGreaterThan` if the strings are equivalent but not strictly equal.
+///
+/// ## Discussion
+///
+/// You use this option for stability when sorting (for example, with `kCFCompareCaseInsensitive` specified “aaa” is greater than “AAA”).
+///
+///
         #[doc(alias = "kCFCompareForcedOrdering")]
         const CompareForcedOrdering = 512;
     }
@@ -798,7 +1517,31 @@ unsafe impl RefEncode for CFStringCompareFlags {
 }
 
 impl CFString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcomparewithoptionsandlocale(_:_:_:_:_:)?language=objc)
+    /// Compares a range of the characters in one string with another string using a given locale.
+    ///
+    /// Parameters:
+    /// - theString1: The first string to use in the comparison.
+    ///
+    /// - theString2: The second string to use in the comparison. The full range of this string is used.
+    ///
+    /// - rangeToCompare: The range of characters in `theString1` to be used in the comparison to `theString2`. To use the whole string, pass the range `CFRangeMake(0, CFStringGetLength(theString1))`. The specified range must not exceed the bounds of the string.
+    ///
+    /// - compareOptions: Flags that select different types of comparisons, such as case-insensitive comparison and non-literal comparison. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for the available flags.
+    ///
+    /// Specifying the `kCFCompareBackwards` or `kCFCompareAnchored` option has no effect.
+    ///
+    /// Specifying the `kCFCompareLocalized` option and passing `NULL` for `locale` causes the current locale (the return value of [`CFLocaleCopyCurrent`](https://developer.apple.com/documentation/corefoundation/cflocalecopycurrent())) to be used.
+    ///
+    /// - locale: The locale to use for the comparison, which affects both equality and ordering algorithms. For example, in some locales, accented characters are ordered immediately after the base; other locales order them after “z”.
+    ///
+    /// If `NULL` and the `kCFCompareLocalized` option is not specified for `compareOptions`, the comparison is nonlocalized.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFComparisonResult`](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult) value that indicates whether `theString1` is equal to, less than, or greater than `theString2`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -834,7 +1577,31 @@ impl CFString {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcomparewithoptions(_:_:_:_:)?language=objc)
+    /// Compares a range of the characters in one string with that of another string.
+    ///
+    /// Parameters:
+    /// - theString1: The first string to use in the comparison.
+    ///
+    /// - theString2: The second string to use in the comparison.
+    ///
+    /// - rangeToCompare: The range of characters in `theString1` to be used in the comparison to `theString2`. To use the whole string, pass the range `CFRangeMake(0, CFStringGetLength(theString1))` or use [`CFStringCompare`](https://developer.apple.com/documentation/corefoundation/cfstringcompare(_:_:_:)). The specified range must not exceed the length of the string.
+    ///
+    /// - compareOptions: Flags that select different types of comparisons, such as localized comparison, case-insensitive comparison, and non-literal comparison. If you want the default comparison behavior, pass `0`. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for the available flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFComparisonResult`](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult) value that indicates whether `theString1` is equal to, less than, or greater than `theString2`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can affect how the comparison proceeds by specifying one or more option flags in `compareOptions`.
+    ///
+    /// If you want to compare one entire string with another string, use the [`CFStringCompare`](https://developer.apple.com/documentation/corefoundation/cfstringcompare(_:_:_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -858,7 +1625,27 @@ impl CFString {
         unsafe { CFStringCompareWithOptions(self, the_string2, range_to_compare, compare_options) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompare(_:_:_:)?language=objc)
+    /// Compares one string with another string.
+    ///
+    /// Parameters:
+    /// - theString1: The first string to use in the comparison.
+    ///
+    /// - theString2: The second string to use in the comparison.
+    ///
+    /// - compareOptions: Flags that select different types of comparisons, such as localized comparison, case-insensitive comparison, and non-literal comparison. If you want the default comparison behavior, pass `0`. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for the available flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFComparisonResult`](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult) value that indicates whether `theString1` is equal to, less than, or greater than `theString2`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can affect how the comparison proceeds by specifying one or more option flags in `compareOptions`. Not all comparison options are currently implemented.
+    ///
+    ///
     #[doc(alias = "CFStringCompare")]
     #[inline]
     pub fn compare(
@@ -876,7 +1663,35 @@ impl CFString {
         unsafe { CFStringCompare(self, the_string2, compare_options) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindwithoptionsandlocale(_:_:_:_:_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a given string was found in a given source string.
+    ///
+    /// Parameters:
+    /// - theString: The string in which to to search for `stringToFind`.
+    ///
+    /// - stringToFind: The substring to search for in `theString`.
+    ///
+    /// - rangeToSearch: A range of the characters to search in `theString`. The specified range must not exceed the length of the string.
+    ///
+    /// - searchOptions: The option flags to control the search behavior. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for possible values. The flags [`kCFCompareNumerically`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenumerically) and [`kCFCompareForcedOrdering`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareforcedordering) are ignored.
+    ///
+    /// - locale: The locale to use for the search comparison. `NULL` specifies the canonical locale (the return value from [`CFLocaleGetSystem`](https://developer.apple.com/documentation/corefoundation/cflocalegetsystem())).
+    ///
+    /// The locale argument affects the equality checking algorithm. For example, for the Turkish locale, case-insensitive compare matches “I” to “ı” (Unicode code point U+0131, Latin Small Dotless I), not the normal “i” character.
+    ///
+    /// - result: On return, if the function result is `true` contains the starting location and length of the found substring. You may pass `NULL` if you only want to know if the `theString` contains `stringToFind`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the substring was found, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `stringToFind` is the empty string (zero length), nothing is found.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -917,7 +1732,33 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindwithoptions(_:_:_:_:_:)?language=objc)
+    /// Searches for a substring within a range of the characters represented by a string and, if the substring is found, returns its range within the object’s characters.
+    ///
+    /// Parameters:
+    /// - theString: The string in which to to search for `stringToFind`.
+    ///
+    /// - stringToFind: The substring to search for in `theString`.
+    ///
+    /// - rangeToSearch: A range of the characters to search in `theString`. The specified range must not exceed the length of the string.
+    ///
+    /// - searchOptions: The option flags to control the search behavior. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for possible values. The flags [`kCFCompareNumerically`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenumerically) and [`kCFCompareForcedOrdering`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareforcedordering) are ignored.
+    ///
+    /// - result: On return, if the function result is `true`, contains the starting location and length of the found substring. You may pass `NULL` if you only want to know if the substring exists in the larger string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the substring was found, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allows you to search only part of the characters of a string for a substring. It returns the found range indirectly, in the final `result` parameter. If you want to know if the entire range of characters represented by a string contains a particular substring, you can use the convenience function [`CFStringFind`](https://developer.apple.com/documentation/corefoundation/cfstringfind(_:_:_:)). Both of these functions return upon finding the first occurrence of the substring, so if you want to find out about multiple occurrences, call the [`CFStringCreateArrayWithFindResults`](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraywithfindresults(_:_:_:_:_:)) function.
+    ///
+    /// Depending on the comparison-option flags specified, the length of the resulting range might be different than the length of the search string.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -953,7 +1794,25 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraywithfindresults(_:_:_:_:_:)?language=objc)
+    /// Searches a string for multiple occurrences of a substring and creates an array of ranges identifying the locations of these substrings within the target string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFArray object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theString: The string in which to search for `stringToFind`.
+    ///
+    /// - stringToFind: The string to search for in `theString`.
+    ///
+    /// - rangeToSearch: The range of characters within `theString` to be searched. The specified range must not exceed the length of the string.
+    ///
+    /// - compareOptions: Flags that select different types of comparisons, such as localized comparison, case-insensitive comparison, and non-literal comparison. If you want the default comparison behavior, pass `0`. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for the available flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array that contains pointers to [`CFRange`](https://developer.apple.com/documentation/corefoundation/cfrange) structures identifying the character locations of `stringToFind` in `theString`. Returns `NULL`, if no matching substring is found in the source object, or if there was a problem creating the array. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -991,7 +1850,29 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfind(_:_:_:)?language=objc)
+    /// Searches for a substring within a string and, if it is found, yields the range of the substring within the object’s characters.
+    ///
+    /// Parameters:
+    /// - theString: The string in which to search for `stringToFind`.
+    ///
+    /// - stringToFind: The string to search for in `theString`.
+    ///
+    /// - compareOptions: Flags that select different types of comparisons, such as localized comparison, case-insensitive comparison, and non-literal comparison. If you want the default comparison behavior, pass `0`. See [String Comparison Flags](https://developer.apple.com/documentation/corefoundation/string-comparison-flags) for the available flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The range of the located substring within `theString`. If a match is not located, the returned [`CFRange`](https://developer.apple.com/documentation/corefoundation/cfrange) structure will have a location of [`kCFNotFound`](https://developer.apple.com/documentation/corefoundation/kcfnotfound) and a length of `0` (either of which is enough to indicate failure).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is a convenience when you want to know if the entire range of characters represented by a string contains a particular substring. If you want to search only part of the characters of a string, use the [`CFStringFindWithOptions`](https://developer.apple.com/documentation/corefoundation/cfstringfindwithoptions(_:_:_:_:_:)) function. Both of these functions return upon finding the first occurrence of the substring, so if you want to find out about multiple occurrences, call the [`CFStringCreateArrayWithFindResults`](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraywithfindresults(_:_:_:_:_:)) function.
+    ///
+    /// Depending on the comparison-option flags specified, the length of the resulting range might be different than the length of the search string.
+    ///
+    ///
     #[doc(alias = "CFStringFind")]
     #[inline]
     pub fn find(
@@ -1009,7 +1890,19 @@ impl CFString {
         unsafe { CFStringFind(self, string_to_find, compare_options) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringhasprefix(_:_:)?language=objc)
+    /// Determines if the character data of a string begin with a specified sequence of characters.
+    ///
+    /// Parameters:
+    /// - theString: The string to search.
+    ///
+    /// - prefix: The prefix to search for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `theString` begins with `prefix`, `false` if otherwise.
+    ///
+    ///
     #[doc(alias = "CFStringHasPrefix")]
     #[inline]
     pub fn has_prefix(&self, prefix: Option<&CFString>) -> bool {
@@ -1020,7 +1913,19 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringhassuffix(_:_:)?language=objc)
+    /// Determines if a string ends with a specified sequence of characters.
+    ///
+    /// Parameters:
+    /// - theString: The string to be evaluated.
+    ///
+    /// - suffix: The suffix to search for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `theString` ends with `suffix`, `false` otherwise.
+    ///
+    ///
     #[doc(alias = "CFStringHasSuffix")]
     #[inline]
     pub fn has_suffix(&self, suffix: Option<&CFString>) -> bool {
@@ -1031,6 +1936,25 @@ impl CFString {
         ret != 0
     }
 
+    /// Returns the range of the composed character sequence at a specified index.
+    ///
+    /// Parameters:
+    /// - theString: The string to examine.
+    ///
+    /// - theIndex: The index of the character contained in the composed character sequence. If the index is outside the range of the string (`0` to `N-1` inclusive, where `N` is the length of the string), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The range of the composed character sequence.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A composed character sequence is a series of one or more characters where each is a combining character, zero-width joiner or non-joiner, voiced mark, or enclosing mark, optionally including a base character.
+    ///
+    ///
     /// Returns the range of the composed character sequence at the specified index.
     ///
     /// Parameter `theString`: The CFString which is to be searched.  If this
@@ -1044,8 +1968,6 @@ impl CFString {
     /// undefined.
     ///
     /// Returns: The range of the composed character sequence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetrangeofcomposedcharactersatindex(_:_:)?language=objc)
     #[doc(alias = "CFStringGetRangeOfComposedCharactersAtIndex")]
     #[inline]
     pub unsafe fn range_of_composed_characters_at_index(&self, the_index: CFIndex) -> CFRange {
@@ -1058,6 +1980,27 @@ impl CFString {
         unsafe { CFStringGetRangeOfComposedCharactersAtIndex(self, the_index) }
     }
 
+    /// Query the range of the first character contained in the specified character set.
+    ///
+    /// Parameters:
+    /// - theString: The string to search.
+    ///
+    /// - theSet: The character set against which the membership of characters is checked.
+    ///
+    /// - rangeToSearch: The range of characters within `theString` to search. If the range location or end point (defined by the location plus length minus `1`) are outside the index space of the string (`0` to `N-1` inclusive, where `N` is the length of the string), the behavior is undefined. The specified range must not exceed the length of the string. If the range length is negative, the behavior is undefined. The range may be empty (length `0`), in which case no search is performed.
+    ///
+    /// - searchOptions: The option flags to control the search behavior. The supported options are [`kCFCompareBackwards`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparebackwards) and [`kCFCompareAnchored`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareanchored). If other option flags are specified, the behavior is undefined.
+    ///
+    /// - result: On return, a pointer to a CFRange structure (supplied by the caller) in which the search result is stored. Note that the length of this range could be more than `1` (if the character in question is a multi-byte character).
+    ///
+    /// You may pass `NULL` if you don’t need this result.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if a character in the character set is found and `result` is filled, `false` otherwise.
+    ///
+    ///
     /// Query the range of the first character contained in the specified character set.
     ///
     /// Parameter `theString`: The CFString which is to be searched.  If this
@@ -1095,8 +2038,6 @@ impl CFString {
     ///
     /// - `the_set` might not allow `None`.
     /// - `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindcharacterfromset(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringFindCharacterFromSet")]
     #[cfg(feature = "CFCharacterSet")]
     #[inline]
@@ -1122,7 +2063,33 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetlinebounds(_:_:_:_:_:)?language=objc)
+    /// Given a range of characters in a string, obtains the line bounds—that is, the indexes of the first character and the final characters of the lines containing the range.
+    ///
+    /// Parameters:
+    /// - theString: The string containing the specified range of characters.
+    ///
+    /// - range: The range of characters to consider. The specified range must not exceed the length of the string.
+    ///
+    /// - lineBeginIndex: On return, the index of the first character of the containing line. Pass `NULL` if you do not want this result.
+    ///
+    /// - lineEndIndex: On return, the index of the first character of the line after the specified range. Pass `NULL` if you do not want this result.
+    ///
+    /// - contentsEndIndex: On return, the index of the last character of the containing line, excluding any line-separator characters. Pass `NULL` if you are not interested in this result.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is a convenience function for determining the beginning and ending indexes of one or more lines in the given range of a string. It is useful, for example, when each line represents a “record” of some sort; you might search for some substring, but want to extract the record of which the substring is a part.
+    ///
+    /// To determine line separation, the function looks for the standard line-separator characters: carriage returns (CR and CRLF), linefeeds (LF), and Unicode line and paragraph separators. The three final parameters of the function indirectly return, in order, the index of the first character that starts the line, the index of the first character of the next line (including end-of-line characters), and the index of the last character of the line (excluding end-of-line characters). Pass `NULL` for any of these parameters if you aren’t interested in the result.
+    ///
+    /// To determine the number of characters in the line:
+    ///
+    /// - Subtract `lineBeginIndex` from `lineEndIndex` to find the number of characters in the line, including the line separators.
+    ///
+    /// - Subtract `lineBeginIndex` from `contentsEndIndex` to find the number of characters in the line, excluding the line separators.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1158,7 +2125,35 @@ impl CFString {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetparagraphbounds(_:_:_:_:_:)?language=objc)
+    /// Given a range of characters in a string, obtains the paragraph bounds—that is, the indexes of the first character and the final characters of the paragraph(s) containing the range.
+    ///
+    /// Parameters:
+    /// - string: The string containing the specified range of characters.
+    ///
+    /// - range: The range of characters to consider. The specified range must not exceed the length of the string.
+    ///
+    /// - parBeginIndex: On return, the index of the first character of the containing paragraph. Pass `NULL` if you do not want this result.
+    ///
+    /// - parEndIndex: On return, the index of the first character of the paragraph after the specified range. Pass `NULL` if you do not want this result.
+    ///
+    /// - contentsEndIndex: On return, the index of the last character of the containing paragraph, excluding any paragraph-separator characters. Pass `NULL` if you are not interested in this result.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the same as [`CFStringGetLineBounds`](https://developer.apple.com/documentation/corefoundation/cfstringgetlinebounds(_:_:_:_:_:))(), however it only looks for paragraphs (that is, it does not stop at Unicode NextLine or LineSeparator characters).
+    ///
+    /// This function is a convenience function for determining the beginning and ending indexes of one or more paragraph in the given range of a string. It is useful, for example, when each line represents a “record” of some sort; you might search for some substring, but want to extract the record of which the substring is a part.
+    ///
+    /// To determine line separation, the function looks for the standard paragraph-separator characters: carriage returns (CR and CRLF), linefeeds (LF), and Unicode paragraph separators. The three final parameters of the function indirectly return, in order, the index of the first character that starts the line, the index of the first character of the next line (including end-of-line characters), and the index of the last character of the line (excluding end-of-line characters). Pass `NULL` for any of these parameters if you aren’t interested in the result.
+    ///
+    /// To determine the number of characters in the paragraph:
+    ///
+    /// - Subtract `parBeginIndex` from `parEndIndex` to find the number of characters in the paragraph, including the paragraph separators.
+    ///
+    /// - Subtract `parBeginIndex` from `contentsEndIndex` to find the number of characters in the paragraph, excluding the paragraph separators.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1196,6 +2191,27 @@ impl CFString {
 
     /// Retrieve the first potential hyphenation location found before the specified location.
     ///
+    /// Parameters:
+    /// - string: The string to be hyphenated. If this parameter is not a valid CFString object, the behavior is undefined.
+    ///
+    /// - location: An index in the string. If a valid hyphen index is returned, it will be before this index.
+    ///
+    /// - limitRange: The range of characters within the string to search. If the range location or end point (defined by the location plus length minus 1) are outside the index space of the string (0 to N-1 inclusive, where N is the length of the string), the behavior is undefined. If the range length is negative, the behavior is undefined. The range may be empty (length 0), in which case no hyphen location is generated.
+    ///
+    /// - options: Reserved for future use.
+    ///
+    /// - locale: A valid locale that specifies which language’s hyphenation conventions to use. Hyphenation data is not available for all locales. You can use [`CFStringIsHyphenationAvailableForLocale`](https://developer.apple.com/documentation/corefoundation/cfstringishyphenationavailableforlocale(_:)) to test for availability of hyphenation data.
+    ///
+    /// - character: The suggested hyphen character to insert. Pass `NULL` if you do not need this information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An index in the string where it is appropriate to insert a hyphen, if one exists; otherwise, `kCFNotFound`.
+    ///
+    ///
+    /// Retrieve the first potential hyphenation location found before the specified location.
+    ///
     /// Parameter `string`: The CFString which is to be hyphenated.  If this
     /// parameter is not a valid CFString, the behavior is
     /// undefined.
@@ -1228,8 +2244,6 @@ impl CFString {
     ///
     /// - `locale` might not allow `None`.
     /// - `character` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgethyphenationlocationbeforeindex(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFStringGetHyphenationLocationBeforeIndex")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1263,7 +2277,11 @@ impl CFString {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringishyphenationavailableforlocale(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether hyphenation data is available.
+    ///
+    /// Parameters:
+    /// - locale: A valid locale that specifies which language’s hyphenation conventions to use. Hyphenation data is not available for all locales.
+    ///
     #[doc(alias = "CFStringIsHyphenationAvailableForLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1275,6 +2293,31 @@ impl CFString {
         ret != 0
     }
 
+    /// Creates a single string from the individual CFString objects that comprise the elements of an array.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new string. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theArray: An array of CFString objects to concatenate.  This value should not be `NULL`.
+    ///
+    /// - separatorString: The string to insert between the substrings in the returned string. This value is commonly a whitespace character such as a tab or a newline (carriage return). If this value is not a valid CFString object, an assertion is raised.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string that contains a concatenation of the strings in `theArray` separated by `separatorString`. The order of the substrings in the string is identical to the order of the elements in `theArray`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `theArray` is empty, returns an empty CFString object; if `theArray` contains one CFString object, that object is returned (without the separator string). Returns `NULL` if there was a problem in creating the string. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// ## Discussion
+    ///
+    /// See also [`CFStringCreateArrayBySeparatingStrings`](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraybyseparatingstrings(_:_:_:)).
+    ///
+    ///
     /// * Exploding and joining strings with a separator string **
     ///
     /// # Safety
@@ -1283,8 +2326,6 @@ impl CFString {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `separator_string` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatebycombiningstrings(_:_:_:)?language=objc)
     #[doc(alias = "CFStringCreateByCombiningStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -1304,7 +2345,31 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcreatearraybyseparatingstrings(_:_:_:)?language=objc)
+    /// Creates an array of CFString objects from a single CFString object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new CFArray object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theString: The string to be divided into substrings. The substrings should be separated by `separatorString`.
+    ///
+    /// - separatorString: The string used to separate the substrings in `theString`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new array that contains CFString objects that represent substrings of `theString`, or `NULL` if there was a problem creating the object. The order of elements in the array is identical to the order of the substrings in `theString`. If `separatorString` does not occur in `theString`, the result is an array containing `theString`. If `separatorString` is equal to `theString`, then the result is an array containing two empty strings. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a convenient way to convert units of data captured in a single string to a form (an array) suitable for iterative processing. One or more delimiter characters (or “separator string”) separates the substrings in the source string—these characters are frequently whitespace characters such as tabs and newlines (carriage returns). For example, you might have a file containing a localized list of place names with each name separated by a tab character. You could create a CFString object from this file and call this function on the string to obtain a CFArray object whose elements are these place names.
+    ///
+    /// `separatorString` is treated as a complete unit. If you specify `XYZ` as the separator string, then if `theString` is `aXbYZcXYZe`, then the returned array contains `aXbYZc` and `e`.
+    ///
+    /// See also [`CFStringCreateByCombiningStrings`](https://developer.apple.com/documentation/corefoundation/cfstringcreatebycombiningstrings(_:_:_:)).
+    ///
+    ///
     #[doc(alias = "CFStringCreateArrayBySeparatingStrings")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -1325,9 +2390,30 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// * Parsing non-localized numbers from strings **
+    /// Returns the integer value represented by a string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetintvalue(_:)?language=objc)
+    /// Parameters:
+    /// - str: A string that represents a signed integer value. The only allowed characters are the ASCII digit characters (ASCII `0x30` - `0x39`), the plus sign (ASCII `0x2B`), the minus sign (ASCII `0x2D`), and the period character (ASCII `0x2E`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The signed integer value represented by `str`. The result is `0` if there is a scanning error (if the string contains disallowed characters or does not represent an integer value) or `INT_MAX` or `INT_MIN` if there is an overflow error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Consider the following example:
+    ///
+    /// ```objc
+    /// SInt32 val = CFStringGetIntValue(CFSTR("-123"));
+    /// ```
+    ///
+    /// The variable `val` in this example would contain the value `-123` after the function is called.
+    ///
+    ///
+    /// * Parsing non-localized numbers from strings **
     #[doc(alias = "CFStringGetIntValue")]
     #[inline]
     pub fn int_value(&self) -> i32 {
@@ -1337,7 +2423,29 @@ impl CFString {
         unsafe { CFStringGetIntValue(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetdoublevalue(_:)?language=objc)
+    /// Returns the primary `double` value represented by a string.
+    ///
+    /// Parameters:
+    /// - str: A string that represents a double value. The only allowed characters are the ASCII digit characters (ASCII `0x30` - `0x39`), the plus sign (ASCII `0x2B`), the minus sign (ASCII `0x2D`), and the period character (ASCII `0x2E`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The `double` value represented by `str`, or `0.0` if there is a scanning error (if the string contains disallowed characters or does not represent a double value).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Consider the following example:
+    ///
+    /// ```objc
+    /// double val = CFStringGetDoubleValue(CFSTR("0.123"));
+    /// ```
+    ///
+    /// The variable `val` in this example would contain the value `0.123` after the function is called.
+    ///
+    ///
     #[doc(alias = "CFStringGetDoubleValue")]
     #[inline]
     pub fn double_value(&self) -> c_double {
@@ -1349,9 +2457,20 @@ impl CFString {
 }
 
 impl CFMutableString {
-    /// * MutableString functions **
+    /// Appends the characters of a string to those of a CFMutableString object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappend(_:_:)?language=objc)
+    /// Parameters:
+    /// - theString: The string to which `appendedString` is appended. If `theString` is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - appendedString: The string to append.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function reallocates the backing store of `theString` to accommodate the new length.
+    ///
+    ///
+    /// * MutableString functions **
     #[doc(alias = "CFStringAppend")]
     #[inline]
     pub fn append(the_string: Option<&CFMutableString>, appended_string: Option<&CFString>) {
@@ -1364,7 +2483,15 @@ impl CFMutableString {
         unsafe { CFStringAppend(the_string, appended_string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappendcharacters(_:_:_:)?language=objc)
+    /// Appends a buffer of Unicode characters to the character contents of a CFMutableString object.
+    ///
+    /// Parameters:
+    /// - theString: The string to which the characters in `chars` are appended.
+    ///
+    /// - chars: A pointer to a buffer of Unicode characters.
+    ///
+    /// - numChars: The number of Unicode characters in `chars`.
+    ///
     ///
     /// # Safety
     ///
@@ -1387,7 +2514,15 @@ impl CFMutableString {
         unsafe { CFStringAppendCharacters(the_string, chars, num_chars) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappendpascalstring(_:_:_:)?language=objc)
+    /// Appends a Pascal string to the character contents of a CFMutableString object.
+    ///
+    /// Parameters:
+    /// - theString: The string to which the characters in `pStr` are appended. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - pStr: A Pascal string buffer.
+    ///
+    /// - encoding: The string encoding of the characters in `pStr`.
+    ///
     ///
     /// # Safety
     ///
@@ -1410,7 +2545,15 @@ impl CFMutableString {
         unsafe { CFStringAppendPascalString(the_string, p_str, encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringappendcstring(_:_:_:)?language=objc)
+    /// Appends a C string to the character contents of a CFMutableString object.
+    ///
+    /// Parameters:
+    /// - theString: The string to which the characters from `cStr` are appended. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - cStr: A pointer to a C string buffer.
+    ///
+    /// - encoding: The encoding of the characters in `cStr`.
+    ///
     ///
     /// # Safety
     ///
@@ -1433,7 +2576,21 @@ impl CFMutableString {
         unsafe { CFStringAppendCString(the_string, c_str, encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringinsert(_:_:_:)?language=objc)
+    /// Inserts a string at a specified location in the character buffer of a CFMutableString object.
+    ///
+    /// Parameters:
+    /// - str: The string to be modified. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - idx: The index of the character in `str` after which the new characters are to be inserted. If the index is out of bounds, an assertion is raised.
+    ///
+    /// - insertedStr: The string to insert into `str`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To accommodate the new characters, this function moves any existing characters to the right of the inserted characters the appropriate number of positions.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1456,7 +2613,19 @@ impl CFMutableString {
         unsafe { CFStringInsert(str, idx, inserted_str) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringdelete(_:_:)?language=objc)
+    /// Deletes a range of characters in a string.
+    ///
+    /// Parameters:
+    /// - theString: A string from which characters are to be deleted.
+    ///
+    /// - range: The range of characters in `theString` to delete.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The characters after the deleted range are adjusted to “fill in” the gap.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1470,7 +2639,21 @@ impl CFMutableString {
         unsafe { CFStringDelete(the_string, range) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringreplace(_:_:_:)?language=objc)
+    /// Replaces part of the character contents of a CFMutableString object with another string.
+    ///
+    /// Parameters:
+    /// - theString: The string to modify. The characters are adjusted left or right (depending on the length of the substituted string) and the character buffer of the object is resized accordingly. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - range: The range of characters in `theString` to replace.
+    ///
+    /// - replacement: The replacement string to put into `theString`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Although you can use this function to replace all characters in a CFMutableString object (by specifying a range of `(0, CFStringGetLength(theString))` ), it is more convenient to use the [`CFStringReplaceAll`](https://developer.apple.com/documentation/corefoundation/cfstringreplaceall(_:_:)) function for that purpose.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1493,7 +2676,19 @@ impl CFMutableString {
         unsafe { CFStringReplace(the_string, range, replacement) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringreplaceall(_:_:)?language=objc)
+    /// Replaces all characters of a CFMutableString object with other characters.
+    ///
+    /// Parameters:
+    /// - theString: The string to modify. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - replacement: The replacement string to put into `theString`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The character buffer of `theString` is resized according to the length of the new characters.
+    ///
+    ///
     #[doc(alias = "CFStringReplaceAll")]
     #[inline]
     pub fn replace_all(the_string: Option<&CFMutableString>, replacement: Option<&CFString>) {
@@ -1506,7 +2701,35 @@ impl CFMutableString {
         unsafe { CFStringReplaceAll(the_string, replacement) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfindandreplace(_:_:_:_:_:)?language=objc)
+    /// Replaces all occurrences of a substring within a given range.
+    ///
+    /// Parameters:
+    /// - theString: The string to modify.
+    ///
+    /// - stringToFind: The substring to search for in `theString`.
+    ///
+    /// - replacementString: The replacement string for `stringToFind`.
+    ///
+    /// - rangeToSearch: The range within which to search in `theString`.
+    ///
+    /// - compareOptions: Flags that select different types of comparisons, such as localized comparison, case-insensitive comparison, and non-literal comparison. If you want the default comparison behavior, pass `0`. See [`CFStringCompareFlags`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags) for the available flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of instances of `stringToFind` that were replaced.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The possible values of `compareOptions` are combinations of the [`kCFCompareCaseInsensitive`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparecaseinsensitive), [`kCFCompareBackwards`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparebackwards), [`kCFCompareNonliteral`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/comparenonliteral), and [`kCFCompareAnchored`](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags/compareanchored) constants.
+    ///
+    /// The `kCFCompareBackwards` option can be used to replace a substring starting from the end, which could produce different results. For example, if the parameter `theString` is “AAAAA”, `stringToFind` is “AA”, and `replacementString` is “B”, then the result is normally “BBA”. However, if the `kCFCompareBackwards` constant is used, the result is “ABB.”
+    ///
+    /// The `kCFCompareAnchored` option assures that only anchored but multiple instances are found (the instances must be consecutive at start or end). For example, if the parameter `theString` is “AAXAA”, `stringToFind` is “A”, and `replacementString` is “B”, then the result is normally “BBXBB.” However, if the `kCFCompareAnchored` constant is used, the result is “BBXAA.”
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1542,7 +2765,23 @@ impl CFMutableString {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringsetexternalcharactersnocopy(_:_:_:_:)?language=objc)
+    /// Notifies a CFMutableString object that its external backing store of Unicode characters has changed.
+    ///
+    /// Parameters:
+    /// - theString: The string to act as a “wrapper” for the external backing store (`chars`). If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - chars: The external (client-owned) Unicode buffer acting as the backing store for `theString`.
+    ///
+    /// - length: The current length of the contents of `chars` (in Unicode characters).
+    ///
+    /// - capacity: The capacity of the Unicode buffer—that is, the total number of Unicode characters that can be stored in it before the buffer has to be grown.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to reallocate memory for a string, if necessary, and change its references to the data in the buffer. The object must have been created with the [`CFStringCreateMutableWithExternalCharactersNoCopy`](https://developer.apple.com/documentation/corefoundation/cfstringcreatemutablewithexternalcharactersnocopy(_:_:_:_:_:)) function; see the discussion of this function for more information.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1567,7 +2806,37 @@ impl CFMutableString {
         unsafe { CFStringSetExternalCharactersNoCopy(the_string, chars, length, capacity) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringpad(_:_:_:_:)?language=objc)
+    /// Enlarges a string, padding it with specified characters, or truncates the string.
+    ///
+    /// Parameters:
+    /// - theString: The string to modify.
+    ///
+    /// - padString: A string containing the characters with which to fill the extended character buffer. Pass `NULL` to truncate the string.
+    ///
+    /// - length: The new length of `theString`. If this length is greater than the current length, padding takes place; if it is less, truncation takes place.
+    ///
+    /// - indexIntoPad: The index of the character in `padString` with which to begin padding. If you are truncating the string represented by the object, this parameter is ignored.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function has two purposes. It either enlarges the character buffer of a CFMutableString object to a given length, padding the added length with a given character or characters, or it truncates the character buffer to a smaller size. The key parameter for this behavior is `length`; if it is greater than the current length of the represented string, padding takes place, and if it less than the current length, truncation occurs.
+    ///
+    /// For example, say you have a string, `aMutStr`, containing the characters “abcdef”. The call
+    ///
+    /// ```objc
+    /// CFStringPad(aMutStr, CFSTR("123"), 9, 1);
+    /// ```
+    ///
+    /// results in `aMutStr` containing “abcdef231”. However, the following call
+    ///
+    /// ```objc
+    /// CFStringPad(aMutStr, NULL, 3, 0);
+    /// ```
+    ///
+    /// results in `aMutStr` containing “abc”.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1592,7 +2861,13 @@ impl CFMutableString {
         unsafe { CFStringPad(the_string, pad_string, length, index_into_pad) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtrim(_:_:)?language=objc)
+    /// Trims a specified substring from the beginning and end of a CFMutableString object.
+    ///
+    /// Parameters:
+    /// - theString: The string to trim. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - trimString: The string to trim from `theString`. The characters of the trim string are treated as a substring and not individually; for example, if the mutable characters are “abc X” and the trim string is “XY”, the mutable characters are not affected.
+    ///
     #[doc(alias = "CFStringTrim")]
     #[inline]
     pub fn trim(the_string: Option<&CFMutableString>, trim_string: Option<&CFString>) {
@@ -1602,7 +2877,17 @@ impl CFMutableString {
         unsafe { CFStringTrim(the_string, trim_string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtrimwhitespace(_:)?language=objc)
+    /// Trims whitespace from the beginning and end of a CFMutableString object.
+    ///
+    /// Parameters:
+    /// - theString: The string to trim. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Whitespace for this function includes space characters, tabs, newlines, carriage returns, and any similar characters that do not have a visible representation.
+    ///
+    ///
     #[doc(alias = "CFStringTrimWhitespace")]
     #[inline]
     pub fn trim_whitespace(the_string: Option<&CFMutableString>) {
@@ -1612,7 +2897,21 @@ impl CFMutableString {
         unsafe { CFStringTrimWhitespace(the_string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringlowercase(_:_:)?language=objc)
+    /// Changes all uppercase alphabetical characters in a CFMutableString to lowercase.
+    ///
+    /// Parameters:
+    /// - theString: The string to be lowercased. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - locale: The locale to use when the lowercasing operation is performed. Prior to OS X v10.3 this parameter was an untyped pointer and not used.
+    ///
+    /// The locale argument affects the case mapping algorithm. For example, for the Turkish locale, case-insensitive compare matches “I” to “ı” (Unicode code point U+0131, Latin Small Dotless I), not the normal “i” character.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `locale` parameter type changed from void * to CFLocaleRef in OS X v10.3.
+    ///
+    ///
     #[doc(alias = "CFStringLowercase")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1623,7 +2922,15 @@ impl CFMutableString {
         unsafe { CFStringLowercase(the_string, locale) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringuppercase(_:_:)?language=objc)
+    /// Changes all lowercase alphabetical characters in a CFMutableString object to uppercase.
+    ///
+    /// Parameters:
+    /// - theString: The string to uppercase. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - locale: A CFLocale object that specifies a particular language or region. Prior to OS X v10.3, this parameter was an untyped pointer and not used.
+    ///
+    /// The locale argument affects the case mapping algorithm. For example, for the Turkish locale, case-insensitive compare matches “I” to “ı” (Unicode code point U+0131, Latin Small Dotless I), not the normal “i” character.
+    ///
     #[doc(alias = "CFStringUppercase")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1634,7 +2941,13 @@ impl CFMutableString {
         unsafe { CFStringUppercase(the_string, locale) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcapitalize(_:_:)?language=objc)
+    /// Changes the first character in each word of a string to uppercase (if it is a lowercase alphabetical character).
+    ///
+    /// Parameters:
+    /// - theString: The string to be capitalized. If this value is not a CFMutableString object, an assertion is raised.
+    ///
+    /// - locale: A locale that specifies a particular language or region. Prior to OS X v10.3, this parameter was an untyped pointer and not used.
+    ///
     #[doc(alias = "CFStringCapitalize")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1646,26 +2959,25 @@ impl CFMutableString {
     }
 }
 
+/// Unicode normalization forms as described in Unicode Technical Report #15.
 /// This is the type of Unicode normalization forms as described in
 /// Unicode Technical Report #15. To normalize for use with file
 /// system calls, use CFStringGetFileSystemRepresentation().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringNormalizationForm(pub CFIndex);
 impl CFStringNormalizationForm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/d?language=objc)
+    /// Canonical decomposition.
     #[doc(alias = "kCFStringNormalizationFormD")]
     pub const D: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/kd?language=objc)
+    /// Compatibility decomposition.
     #[doc(alias = "kCFStringNormalizationFormKD")]
     pub const KD: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/c?language=objc)
+    /// Canonical decomposition followed by canonical composition.
     #[doc(alias = "kCFStringNormalizationFormC")]
     pub const C: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform/kc?language=objc)
+    /// Compatibility decomposition followed by canonical composition.
     #[doc(alias = "kCFStringNormalizationFormKC")]
     pub const KC: Self = Self(3);
 }
@@ -1681,6 +2993,13 @@ unsafe impl RefEncode for CFStringNormalizationForm {
 }
 
 impl CFMutableString {
+    /// Normalizes the string into the specified form as described in Unicode Technical Report #15.
+    ///
+    /// Parameters:
+    /// - theString: The string to be normalized.
+    ///
+    /// - theForm: The form to normalize `theString`.
+    ///
     /// Normalizes the string into the specified form as described in
     /// Unicode Technical Report #15.
     ///
@@ -1695,8 +3014,6 @@ impl CFMutableString {
     /// # Safety
     ///
     /// `the_string` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalize(_:_:)?language=objc)
     #[doc(alias = "CFStringNormalize")]
     #[inline]
     pub unsafe fn normalize(
@@ -1712,6 +3029,27 @@ impl CFMutableString {
         unsafe { CFStringNormalize(the_string, the_form) }
     }
 
+    /// Folds a given string into the form specified by optional flags.
+    ///
+    /// Parameters:
+    /// - theString: The string which is to be folded.  If this parameter is not a valid mutable CFString, the behavior is undefined.
+    ///
+    /// - theFlags: The equivalency flags which describes the character folding form. See “String Comparison Flags” in [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) for possible values. Only those flags containing the word “insensitive” are recognized; other flags are ignored.
+    ///
+    /// Folding with `kCFCompareCaseInsensitive` removes case distinctions in accordance with the mapping specified by [ftp://ftp.unicode.org/Public/UNIDATA/CaseFolding.txt](ftp://ftp.unicode.org/Public/UNIDATA/CaseFolding.txt).  Folding with `kCFCompareDiacriticInsensitive` removes distinctions of accents and other diacritics.  Folding with `kCFCompareWidthInsensitive` removes character width distinctions by mapping characters in the range `U+FF00-U+FFEF` to their ordinary equivalents.
+    ///
+    /// - theLocale: The locale to use for the operation. `NULL` specifies the canonical locale (the return value from [`CFLocaleGetSystem`](https://developer.apple.com/documentation/corefoundation/cflocalegetsystem())).
+    ///
+    /// The locale argument affects the case mapping algorithm. For example, for the Turkish locale, case-insensitive compare matches “I” to “ı” (Unicode code point U+0131, Latin Small Dotless I), not the normal “i” character.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Character foldings are operations that convert any of a set of characters sharing similar semantics into a single representative from that set.
+    ///
+    /// You can use this function to preprocess strings that are to be compared, searched, or indexed. Note that folding does not include normalization, so you must use [`CFStringNormalize`](https://developer.apple.com/documentation/corefoundation/cfstringnormalize(_:_:)) in addition to CFStringFold in order to obtain the effect of `kCFCompareNonliteral`.
+    ///
+    ///
     /// Folds the string into the form specified by the flags.
     /// Character foldings are operations that convert any of a set of characters
     /// sharing similar semantics into a single representative from that set.
@@ -1735,8 +3073,6 @@ impl CFMutableString {
     /// Parameter `theLocale`: The locale tailoring the character folding behavior. If NULL,
     /// it's considered to be the system locale returned from CFLocaleGetSystem().
     /// If non-NULL and not a valid CFLocale object, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringfold(_:_:_:)?language=objc)
     #[doc(alias = "CFStringFold")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1755,7 +3091,29 @@ impl CFMutableString {
         unsafe { CFStringFold(the_string, the_flags, the_locale) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtransform(_:_:_:_:)?language=objc)
+    /// Perform in-place transliteration on a mutable string.
+    ///
+    /// Parameters:
+    /// - string: The string to transform.
+    ///
+    /// - range: A pointer to the range over which the transformation is applied. `NULL` causes the whole string to be transformed. On return, `range` is modified to reflect the new range corresponding to the original range.
+    ///
+    /// - transform: A CFString object that identifies the transformation to apply. For a list of valid values, see [Transform Identifiers for CFStringTransform](https://developer.apple.com/documentation/corefoundation/transform-identifiers-for-cfstringtransform). In macOS 10.4 and later, you can also use any valid ICU transform ID defined in the [ICU User Guide for Transforms](http://icu.sourceforge.net/userguide/Transform.html).
+    ///
+    /// - reverse: A Boolean that, if `true`, specifies that the inverse transform should be used (if it exists).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the transform is successful; otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The transformation represented by `transform` is applied to the given range of `string`, modifying it in place. Only the specified range is modified, but the transform may look at portions of the string outside that range for context. Reasons that the transform may be unsuccessful include an invalid transform identifier, and attempting to reverse an irreversible transform.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1784,89 +3142,112 @@ impl CFMutableString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformstripcombiningmarks?language=objc)
+    /// The identifier of a transform to strip combining marks (accents or diacritics).
     pub static kCFStringTransformStripCombiningMarks: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtolatin?language=objc)
+    /// The identifier of a transform to transliterate all text possible to Latin script. Ideographs are transliterated as Mandarin Chinese.
     pub static kCFStringTransformToLatin: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformfullwidthhalfwidth?language=objc)
+    /// The identifier of a reversible transform to convert full-width characters to their half-width equivalents.
     pub static kCFStringTransformFullwidthHalfwidth: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinkatakana?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Katakana from Latin.
     pub static kCFStringTransformLatinKatakana: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhiragana?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Hiragana from Latin.
     pub static kCFStringTransformLatinHiragana: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformhiraganakatakana?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Katakana from Hiragana.
     pub static kCFStringTransformHiraganaKatakana: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformmandarinlatin?language=objc)
+    /// The identifier of a transform to transliterate text to Latin from ideographs interpreted as Mandarin Chinese. This transform is not reversible.
     pub static kCFStringTransformMandarinLatin: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhangul?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Hangul from Latin.
     pub static kCFStringTransformLatinHangul: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinarabic?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Arabic from Latin.
     pub static kCFStringTransformLatinArabic: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhebrew?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Hebrew from Latin.
     pub static kCFStringTransformLatinHebrew: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinthai?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Thai from Latin.
     pub static kCFStringTransformLatinThai: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatincyrillic?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Cyrillic from Latin.
     pub static kCFStringTransformLatinCyrillic: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatingreek?language=objc)
+    /// The identifier of a reversible transform to transliterate text to Greek from Latin.
     pub static kCFStringTransformLatinGreek: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtoxmlhex?language=objc)
+    /// The identifier of a reversible transform to transliterate characters other than printable ASCII to XML/HTML numeric entities.
     pub static kCFStringTransformToXMLHex: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtounicodename?language=objc)
+    /// The identifier of a reversible transform to transliterate characters other than printable ASCII to their Unicode character name in braces.
+    ///
+    /// ## Discussion
+    ///
+    /// Examples include `"\N{AIRPLANE}"` for “✈” and `"\N{GREEK CAPITAL LETTER PSI}"` for “Ψ”.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The result of a forward transformation delimits each Unicode name with enclosing curly braces and the leading character sequence `"\N"`. In some programming languages, `"\N{...}"` is used as an escape sequence for Unicode characters in strings and regular expressions; this isn’t supported in Swift or Objective-C. To perform the reverse transform of a string literal in Swift or Objective-C, escape the leading backslash (`"\\N{...}"`) for each Unicode name.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kCFStringTransformToUnicodeName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringtransformstripdiacritics?language=objc)
+    /// The identifier of a transform to remove diacritic markings.
     pub static kCFStringTransformStripDiacritics: Option<&'static CFString>;
 }
 
 impl CFString {
-    /// * General encoding related functionality **
+    /// Determines whether a given Core Foundation string encoding is available on the current system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringisencodingavailable(_:)?language=objc)
+    /// Parameters:
+    /// - encoding: The Core Foundation string encoding to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the encoding is available, otherwise `false`.
+    ///
+    ///
+    /// * General encoding related functionality **
     #[doc(alias = "CFStringIsEncodingAvailable")]
     #[inline]
     pub fn is_encoding_available(encoding: CFStringEncoding) -> bool {
@@ -1877,7 +3258,13 @@ impl CFString {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetlistofavailableencodings()?language=objc)
+    /// Returns a pointer to a list of string encodings supported by the current system.
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to a [`kCFStringEncodingInvalidId`](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid)-terminated list of `enum` constants, each of type [`CFStringEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringencoding).
+    ///
+    ///
     #[doc(alias = "CFStringGetListOfAvailableEncodings")]
     #[inline]
     pub fn list_of_available_encodings() -> *const CFStringEncoding {
@@ -1887,7 +3274,23 @@ impl CFString {
         unsafe { CFStringGetListOfAvailableEncodings() }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetnameofencoding(_:)?language=objc)
+    /// Returns the canonical name of a specified string encoding.
+    ///
+    /// Parameters:
+    /// - encoding: The string encoding to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Name of `encoding`; non-localized. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the “canonical” name of the string encoding because the return value has to be the same no matter what localization is chosen. In other words, it can’t change based on the International Preferences language panel setting. The canonical name is usually expressed in English.
+    ///
+    ///
     #[doc(alias = "CFStringGetNameOfEncoding")]
     #[inline]
     pub fn name_of_encoding(encoding: CFStringEncoding) -> Option<CFRetained<CFString>> {
@@ -1898,7 +3301,23 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtonsstringencoding(_:)?language=objc)
+    /// Returns the Cocoa encoding constant that maps most closely to a given Core Foundation encoding constant.
+    ///
+    /// Parameters:
+    /// - encoding: The Core Foundation string encoding to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Cocoa encoding (of type [`NSStringEncoding`](https://developer.apple.com/documentation/foundation/nsstringencoding)) that is closest to the Core Foundation encoding `encoding`. The behavior is undefined if an invalid string encoding is passed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`CFStringConvertNSStringEncodingToEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringconvertnsstringencodingtoencoding(_:)) function is complementary to this function.
+    ///
+    ///
     #[doc(alias = "CFStringConvertEncodingToNSStringEncoding")]
     #[inline]
     pub fn convert_encoding_to_ns_string_encoding(encoding: CFStringEncoding) -> c_ulong {
@@ -1908,7 +3327,23 @@ impl CFString {
         unsafe { CFStringConvertEncodingToNSStringEncoding(encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertnsstringencodingtoencoding(_:)?language=objc)
+    /// Returns the Core Foundation encoding constant that is the closest mapping to a given Cocoa encoding.
+    ///
+    /// Parameters:
+    /// - encoding: The Cocoa string encoding (of type [`NSStringEncoding`](https://developer.apple.com/documentation/foundation/nsstringencoding)) to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation string encoding that is closest to the Cocoa string encoding `encoding`. Returns the [`kCFStringEncodingInvalidId`](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid) constant if the mapping is not known.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`CFStringConvertEncodingToNSStringEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtonsstringencoding(_:)) function is complementary to this function.
+    ///
+    ///
     #[doc(alias = "CFStringConvertNSStringEncodingToEncoding")]
     #[inline]
     pub fn convert_ns_string_encoding_to_encoding(encoding: c_ulong) -> CFStringEncoding {
@@ -1918,7 +3353,23 @@ impl CFString {
         unsafe { CFStringConvertNSStringEncodingToEncoding(encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtowindowscodepage(_:)?language=objc)
+    /// Returns the Windows codepage identifier that maps most closely to a given Core Foundation encoding constant.
+    ///
+    /// Parameters:
+    /// - encoding: The Core Foundation string encoding to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Windows codepage value that is closest to the Core Foundation encoding `encoding`. The behavior is undefined if an invalid string encoding is passed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`CFStringConvertWindowsCodepageToEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringconvertwindowscodepagetoencoding(_:)) function is complementary to this function.
+    ///
+    ///
     #[doc(alias = "CFStringConvertEncodingToWindowsCodepage")]
     #[inline]
     pub fn convert_encoding_to_windows_codepage(encoding: CFStringEncoding) -> u32 {
@@ -1928,7 +3379,23 @@ impl CFString {
         unsafe { CFStringConvertEncodingToWindowsCodepage(encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertwindowscodepagetoencoding(_:)?language=objc)
+    /// Returns the Core Foundation encoding constant that is the closest mapping to a given Windows codepage identifier.
+    ///
+    /// Parameters:
+    /// - codepage: The Windows codepage identifier to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation string encoding that is closest to the Windows codepage identifier `codepage`. Returns the [`kCFStringEncodingInvalidId`](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid) constant if the mapping is not known.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`CFStringConvertEncodingToWindowsCodepage`](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtowindowscodepage(_:)) function is complementary to this function.
+    ///
+    ///
     #[doc(alias = "CFStringConvertWindowsCodepageToEncoding")]
     #[inline]
     pub fn convert_windows_codepage_to_encoding(codepage: u32) -> CFStringEncoding {
@@ -1938,7 +3405,23 @@ impl CFString {
         unsafe { CFStringConvertWindowsCodepageToEncoding(codepage) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertianacharsetnametoencoding(_:)?language=objc)
+    /// Returns the Core Foundation encoding constant that is the closest mapping to a given IANA registry “charset” name.
+    ///
+    /// Parameters:
+    /// - theString: The IANA “charset” name to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation string encoding that is closest to the IANA “charset” `IANAName`. Returns the [`kCFStringEncodingInvalidId`](https://developer.apple.com/documentation/corefoundation/kcfstringencodinginvalidid) constant if the name is not recognized.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`CFStringConvertEncodingToIANACharSetName`](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtoianacharsetname(_:)) function is complementary to this function.
+    ///
+    ///
     #[doc(alias = "CFStringConvertIANACharSetNameToEncoding")]
     #[inline]
     pub fn convert_iana_char_set_name_to_encoding(&self) -> CFStringEncoding {
@@ -1948,7 +3431,23 @@ impl CFString {
         unsafe { CFStringConvertIANACharSetNameToEncoding(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtoianacharsetname(_:)?language=objc)
+    /// Returns the name of the IANA registry “charset” that is the closest mapping to a specified string encoding.
+    ///
+    /// Parameters:
+    /// - encoding: The Core Foundation string encoding to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The name of the IANA “charset” that is the closest mapping to `encoding`. Returns `NULL` if the encoding is not recognized.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`CFStringConvertIANACharSetNameToEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringconvertianacharsetnametoencoding(_:)) function is complementary to this function.
+    ///
+    ///
     #[doc(alias = "CFStringConvertEncodingToIANACharSetName")]
     #[inline]
     pub fn convert_encoding_to_iana_char_set_name(
@@ -1963,7 +3462,17 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringgetmostcompatiblemacstringencoding(_:)?language=objc)
+    /// Returns the most compatible Mac OS script value for the given input encoding.
+    ///
+    /// Parameters:
+    /// - encoding: The encoding for which you wish to find a compatible Mac OS script value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The most compatible Mac OS script value for `encoding`.
+    ///
+    ///
     #[doc(alias = "CFStringGetMostCompatibleMacStringEncoding")]
     #[inline]
     pub fn most_compatible_mac_string_encoding(encoding: CFStringEncoding) -> CFStringEncoding {
@@ -1976,7 +3485,15 @@ impl CFString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringinlinebuffer?language=objc)
+/// Defines the buffer and related fields used for in-line buffer access of characters in CFString objects.
+///
+/// ## Overview
+///
+/// This structure is used for in-line buffer access of characters contained by a CFString object. Use the [`CFStringInitInlineBuffer`](https://developer.apple.com/documentation/corefoundation/cfstringinitinlinebuffer(_:_:_:)) function for initializing the fields of this structure; do not do it manually. Once the buffer is initialized, use the [`CFStringGetCharacterFromInlineBuffer`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharacterfrominlinebuffer(_:_:)) function to access characters from the buffer. Do not access the fields directly as they might change between releases.
+///
+/// The only reason this structure is not opaque is to allow the in-line functions to access its fields.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFStringInlineBuffer {
@@ -2024,7 +3541,30 @@ impl CFString {
     // TODO: pub fn CFStringGetSurrogatePairForLongCharacter(character: UTF32Char,surrogates: *mut UniChar,) -> Boolean;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfshow(_:)?language=objc)
+/// Prints a description of a Core Foundation object to stderr.
+///
+/// Parameters:
+/// - obj: A Core Foundation object derived from CFType. If `obj` is not a Core Foundation object, an assertion is raised.
+///
+///
+/// ## Discussion
+///
+/// The output is printed to the standard I/O standard error (stderr).
+///
+/// This function is useful as a debugging aid for Core Foundation objects. Because these objects are based on opaque types, it is difficult to examine their contents directly. However, the opaque types implement `description` function callbacks that return descriptions of their objects. This function invokes these callbacks.
+///
+/// ### Special Considerations
+///
+/// You can use `CFShow` in one of two general ways. If your debugger supports function calls (such as `gdb` does), call `CFShow` in the debugger:
+///
+/// ```objc
+/// (gdb) call (void) CFShow(string)
+/// Hello World
+/// ```
+///
+/// You can also incorporate calls to `CFShow` in a test version of your code to print out “snapshots” of Core Foundation objects to the console.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
     extern "C-unwind" {
@@ -2033,7 +3573,47 @@ pub extern "C-unwind" fn CFShow(obj: Option<&CFType>) {
     unsafe { CFShow(obj) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfshowstr(_:)?language=objc)
+/// Prints the attributes of a string during debugging.
+///
+/// Parameters:
+/// - str: The string whose attributes you want to print.
+///
+///
+/// ## Discussion
+///
+/// Use this function to learn about specific attributes of a CFString object during debugging. These attributes include the following:
+///
+/// - Length (in Unicode characters)
+///
+/// - Whether originally it was an 8-bit string and, if so, whether it was a C (`HasNullByte`) or Pascal (`HasLengthByte`) string
+///
+/// - Whether it is a mutable or an immutable object
+///
+/// - The allocator used to create it
+///
+/// - The memory address of the character contents and whether those contents are in-line
+///
+/// The information provided by this function is for debugging purposes only. The values of any of these attributes might change between different releases and on different platforms. Note in particular that this function does not show the contents of the string. If you want to display the contents of the string, use [`CFShow`](https://developer.apple.com/documentation/corefoundation/cfshow(_:)).
+///
+/// ### Special Considerations
+///
+/// You can use `CFShowStr` in one of two general ways. If your debugger supports function calls (such as `gdb` does), call `CFShowStr` in the debugger:
+///
+/// ```objc
+/// (gdb) call (void) CFShowStr(string)
+/// Length 11
+/// IsEightBit 1
+/// HasLengthByte 1
+/// HasNullByte 1
+/// InlineContents 1
+/// Allocator SystemDefault
+/// Mutable 0
+/// Contents 0x4e7c0
+/// ```
+///
+/// You can also incorporate calls to `CFShowStr` in a test version of your code to print descriptions of CFString objects to the console.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFShowStr(str: Option<&CFString>) {
     extern "C-unwind" {

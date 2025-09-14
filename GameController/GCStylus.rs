@@ -9,6 +9,17 @@ use crate::*;
 extern "C" {
     /// A notification that posts after a stylus accessory connects to the device.
     ///
+    /// ## Discussion
+    ///
+    /// Use this constant with `NSNotificationCenter` to listen for stylus connection events.
+    ///
+    /// Connections of stylus accessories will be reflected in the `styli` array of the `GCStylus` class when the notification posts.
+    ///
+    /// The `object` property of the notification will contain the `GCStylus` that was connected.
+    ///
+    ///
+    /// A notification that posts after a stylus accessory connects to the device.
+    ///
     /// Use this constant with `NSNotificationCenter` to listen for stylus
     /// connection events.
     ///
@@ -17,12 +28,19 @@ extern "C" {
     ///
     /// The `object` property of the notification will contain the `GCStylus` that
     /// was connected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcstylusdidconnectnotification?language=objc)
     pub static GCStylusDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
+    /// A notification that posts after a stylus accessory disconnects from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant with `NSNotificationCenter` to listen for stylus disconnection events.
+    ///
+    /// The `object` property of the notification will contain the `GCStylus` that was disconnected.
+    ///
+    ///
     /// A notification that posts after a stylus accessory disconnects from the
     /// device.
     ///
@@ -31,12 +49,70 @@ extern "C" {
     ///
     /// The `object` property of the notification will contain the `GCStylus` that
     /// was disconnected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcstylusdiddisconnectnotification?language=objc)
     pub static GCStylusDidDisconnectNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object that represents a physical stylus connected to the device.
+    ///
+    /// ## Overview
+    ///
+    /// Use the `styli` property to get the currently connect stylus accessories when your application starts.  Register for `GCStylusDidConnectNotification` and `GCStylusDidDisconnectNotification` to get notified when a stylus connects of disconnects while your application is running.
+    ///
+    /// ```text
+    /// // Register for notifications
+    /// NotificationCenter.default.addObserver(self, selector: #selector(stylus(didConnect:)), name: NSNotification.Name.GCStylusDidConnect, object: nil)
+    /// NotificationCenter.default.addObserver(self, selector: #selector(stylus(didDisconnect:)), name: NSNotification.Name.GCStylusDidConnect, object: nil)
+    ///
+    /// // Query current stylus devices
+    /// for stylus in GCStylus.styluses {
+    ///     ...
+    /// }
+    ///
+    /// // Later, handle connection
+    /// @objc func stylus(didConnect notification: Notification) {
+    ///     guard let stylus = notification.object as? GCStylus else { return }
+    ///     ...
+    /// }
+    /// ```
+    ///
+    /// Check the `productCategory` to determine the type of stylus.  A spatial stylus - capable of 6DoF tracking by Apple Vision Pro - has a `GCProductCategorySpatialStylus` category.
+    ///
+    /// Use the `input` property to get the input profile of the stylus.  A spatial stylus includes a pressure sensitive tip and an input cluster composed of two buttons.
+    ///
+    /// - The primary button (`GCInputStylusPrimaryButton`) is the front button (closest to the stylus tip) in the input cluster of the stylus.  This button is frequently used grab virtual objects.
+    ///
+    /// - The secondary button (`GCInputStylusSecondaryButton`) is the middle button in the input cluster.  It can measures pressure/force levels. It’s intended to be used for controlling in-air drawing, selection, and generic interactions.
+    ///
+    /// - The tip is also represented as a button (`GCInputStylusTip`).
+    ///
+    /// ```text
+    /// guard let input = stylus.input else { return }
+    /// input.inputStateQueueDepth = 20
+    /// input.inputStateAvailableHandler = { input in
+    ///     // This block will be enqueued for execution when the state of
+    ///     // any stylus input changes.
+    ///
+    ///     // Iterate through all input state changes since last execution of
+    ///     // the block.
+    ///     while let nextState = input.nextInputState() {
+    ///         // Use the value of `pressedInput.isPressed` for binary
+    ///         // interactions, such as object selection.
+    ///         let primaryButtonPressed = nextState.buttons[.stylusPrimaryButton]?.pressedInput.isPressed
+    ///         let secondaryButtonPressed = nextState.buttons[.stylusSecondaryButton]?.pressedInput.isPressed
+    ///         // Use the normalized press value for analog actions such as
+    ///         // controlling virtual ink flow.
+    ///         let secondaryButtonPressure = nextState.buttons[.stylusSecondaryButton]?.pressedInput.value
+    ///         let tipPressure = nextState.buttons[.stylusTip]?.pressedInput.value
+    ///
+    ///         ...
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// Use the `haptics` property to get the haptics profile of the stylus.  A spatial stylus may optionally support haptic feedback to a single locality - `GCHapticsLocalityDefault`.
+    ///
+    ///
     /// An object that represents a physical stylus connected to the device.
     ///
     /// Use the `styli` property to get the currently connect stylus accessories
@@ -107,8 +183,6 @@ extern_class!(
     /// Use the `haptics` property to get the haptics profile of the stylus.  A
     /// spatial stylus may optionally support haptic feedback to a single
     /// locality - `GCHapticsLocalityDefault`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcstylus?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCStylus;

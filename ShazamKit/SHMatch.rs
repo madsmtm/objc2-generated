@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// An object that represents the catalog media items that match a query.
     ///
+    /// ## Overview
+    ///
     /// A single query signature may match more than one reference signature. In addition, one reference signature may map to many media items.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmatch?language=objc)
+    ///
+    /// An object that represents the catalog media items that match a query.
+    ///
+    /// A single query signature may match more than one reference signature. In addition, one reference signature may map to many media items.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHMatch;

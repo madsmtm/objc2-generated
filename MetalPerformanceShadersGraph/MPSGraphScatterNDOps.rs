@@ -9,46 +9,38 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 /// The scatter mode.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode?language=objc)
+/// The scatter mode.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphScatterMode(pub NSInteger);
 impl MPSGraphScatterMode {
     /// Add
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/add?language=objc)
+    /// Add
     #[doc(alias = "MPSGraphScatterModeAdd")]
     pub const Add: Self = Self(0);
     /// Sub
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/sub?language=objc)
+    /// Sub
     #[doc(alias = "MPSGraphScatterModeSub")]
     pub const Sub: Self = Self(1);
     /// Multiply
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/mul?language=objc)
+    /// Multiply
     #[doc(alias = "MPSGraphScatterModeMul")]
     pub const Mul: Self = Self(2);
     /// Divide
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/div?language=objc)
+    /// Divide
     #[doc(alias = "MPSGraphScatterModeDiv")]
     pub const Div: Self = Self(3);
     /// Minimum
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/min?language=objc)
+    /// Minimum
     #[doc(alias = "MPSGraphScatterModeMin")]
     pub const Min: Self = Self(4);
     /// Maximum
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/max?language=objc)
+    /// Maximum
     #[doc(alias = "MPSGraphScatterModeMax")]
     pub const Max: Self = Self(5);
     /// Set
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphscattermode/set?language=objc)
+    /// Set
     #[doc(alias = "MPSGraphScatterModeSet")]
     pub const Set: Self = Self(6);
 }

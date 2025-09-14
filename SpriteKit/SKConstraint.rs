@@ -10,9 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// SKRange object used to define a range of allowable values
+    /// A definition of a range of floating-point values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skrange?language=objc)
+    /// ## Overview
+    ///
+    /// You typically use a [`SKRange`](https://developer.apple.com/documentation/spritekit/skrange) to clamp a value so that it is within the specified range.
+    ///
+    ///
+    /// SKRange object used to define a range of allowable values
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKRange;
@@ -119,10 +124,27 @@ impl SKRange {
 }
 
 extern_class!(
+    /// A specification for constraining a node’s position or rotation.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKConstraint`](https://developer.apple.com/documentation/spritekit/skconstraint) object describes a mathematical constraint on a node’s position or orientation. You attach constraints to nodes; after a scene processes any actions and physics interactions, it applies constraints attached to nodes in its node tree. Use constraints to ensure that certain relationships are true before the system renders a scene. For example, you might use a constraint to:
+    ///
+    /// - Change a node’s [`zRotation`](https://developer.apple.com/documentation/spritekit/sknode/zrotation) property so that it always points at another node or a position in the scene.
+    ///
+    /// - Keep a node within a specified distance of another node or a point in the scene.
+    ///
+    /// - Keep a node inside a specified rectangle.
+    ///
+    /// - Restrict the [`zRotation`](https://developer.apple.com/documentation/spritekit/sknode/zrotation) property of a node so that it has a more limited rotation range of motion.
+    ///
+    /// To use constraints, create an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object that contains one or more constraint objects and assign the array to a node’s [`constraints`](https://developer.apple.com/documentation/spritekit/sknode/constraints) property. When the system evaluates a scene, it executes the constraints on a node in the order they appear in the [`constraints`](https://developer.apple.com/documentation/spritekit/sknode/constraints) array.
+    ///
+    /// You can’t change a constraint after you create it. However, you can selectively disable or enable a constraint by setting its [`enabled`](https://developer.apple.com/documentation/spritekit/skconstraint/enabled) property. You can also use the [`referenceNode`](https://developer.apple.com/documentation/spritekit/skconstraint/referencenode) property to convert positions to the referenced coordinate system before applying the constraint.
+    ///
+    ///
     /// SKConstraints are evaluated each frame after actions and physics.
     /// The node's transform will be changed to staisfy the constarint
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKConstraint;

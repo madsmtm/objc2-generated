@@ -4,71 +4,71 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship?language=objc)
+/// Constants indicating the relationship between the person using the device and another person.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type INPersonRelationship = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/father?language=objc)
+    /// The person is the father of the current user.
     pub static INPersonRelationshipFather: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/mother?language=objc)
+    /// The person is the mother of the current user.
     pub static INPersonRelationshipMother: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/parent?language=objc)
+    /// The person is a parent of the current user.
     pub static INPersonRelationshipParent: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/brother?language=objc)
+    /// The person is the brother of the current user.
     pub static INPersonRelationshipBrother: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/sister?language=objc)
+    /// The person is the sister of the current user.
     pub static INPersonRelationshipSister: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/child?language=objc)
+    /// The person is a child of the current user.
     pub static INPersonRelationshipChild: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/friend?language=objc)
+    /// The person is a friend of the current user.
     pub static INPersonRelationshipFriend: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/spouse?language=objc)
+    /// The person is the spouse of the current user.
     pub static INPersonRelationshipSpouse: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/partner?language=objc)
+    /// The person is the partner of the current user.
     pub static INPersonRelationshipPartner: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/assistant?language=objc)
+    /// The person is an assistant to the current user.
     pub static INPersonRelationshipAssistant: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/manager?language=objc)
+    /// The person is the manager of the current user.
     pub static INPersonRelationshipManager: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/son?language=objc)
+    /// The person is the son of the current user.
     pub static INPersonRelationshipSon: Option<&'static INPersonRelationship>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonrelationship/daughter?language=objc)
+    /// The person is the daughter of the current user.
     pub static INPersonRelationshipDaughter: Option<&'static INPersonRelationship>;
 }

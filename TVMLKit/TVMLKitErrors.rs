@@ -7,31 +7,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterrordomain?language=objc)
+    /// An error occurred in TVMLKit.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMLKitErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterror?language=objc)
+/// Error codes for the TVMLKit error domain.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVMLKitError(pub NSInteger);
 impl TVMLKitError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterror/unknown?language=objc)
+    /// Unable to determine the cause of the error.
     #[doc(alias = "TVMLKitErrorUnknown")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterror/internetunavailable?language=objc)
+    /// No connection to the Internet is available.
     #[doc(alias = "TVMLKitErrorInternetUnavailable")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const InternetUnavailable: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterror/failedtolaunch?language=objc)
+    /// The app failed to launch.
     #[doc(alias = "TVMLKitErrorFailedToLaunch")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const FailedToLaunch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmlkiterror/last?language=objc)
+    /// Reserved.
     #[doc(alias = "TVMLKitErrorLast")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Last: Self = Self(4);

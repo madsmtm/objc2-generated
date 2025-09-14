@@ -9,7 +9,6 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationinstrumentclusterscenedelegate?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
     pub unsafe trait CPTemplateApplicationInstrumentClusterSceneDelegate:
         UISceneDelegate + MainThreadOnly
@@ -45,7 +44,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationinstrumentclusterscene?language=objc)
     #[unsafe(super(UIScene, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -119,7 +117,6 @@ impl CPTemplateApplicationInstrumentClusterScene {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationinstrumentclusterscenesessionroleapplication?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
     pub static CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication:
         &'static UISceneSessionRole;

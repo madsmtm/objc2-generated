@@ -13,6 +13,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image or solid color.
+    ///
+    /// ## Overview
+    ///
+    /// `SKSpriteNode` is an onscreen graphical element that can be initialized from an image or a solid color. SpriteKit adds functionality to its ability to display images using the functions discussed below.
+    ///
+    ///
     /// A Sprite is a textured 2D node. It can be placed, rotated, scaled and animated like any other node except it draws a textured rectangle specified by the bounds and anchor point.
     ///
     /// Sprites are used to define quad primitives with color and/or textures applied to them.
@@ -21,8 +28,6 @@ extern_class!(
     /// wiki
     /// </a>
     /// for a definition of a Sprite.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skspritenode?language=objc)
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

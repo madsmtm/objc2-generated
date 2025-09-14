@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextiteminteraction?language=objc)
+/// Constants that indicate the type of interaction the user expects to have with a URL or text attachment.
 // NS_ENUM
 #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextItemInteraction(pub NSInteger);
 impl UITextItemInteraction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextiteminteraction/invokedefaultaction?language=objc)
+    /// The user wants to perform the default action on the text item; for example, opening a URL.
     #[doc(alias = "UITextItemInteractionInvokeDefaultAction")]
     #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     pub const InvokeDefaultAction: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextiteminteraction/presentactions?language=objc)
+    /// The user wants to be presented with a list of actions that can be taken on the text item, such as opening the link in a different way or downloading content from the link.
     #[doc(alias = "UITextItemInteractionPresentActions")]
     #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     pub const PresentActions: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextiteminteraction/preview?language=objc)
+    /// The user wants to get a preview of the content represented by the text item, such as by initiating a peek and pop on a link.
     #[doc(alias = "UITextItemInteractionPreview")]
     #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
     pub const Preview: Self = Self(2);

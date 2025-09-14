@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsmigrationstage?language=objc)
+    /// An abstract base class for describing an individual stage of a migration.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t create instances of [`NSMigrationStage`](https://developer.apple.com/documentation/coredata/nsmigrationstage). Instead, use a concrete subclass, such as [`NSLightweightMigrationStage`](https://developer.apple.com/documentation/coredata/nslightweightmigrationstage) or [`NSCustomMigrationStage`](https://developer.apple.com/documentation/coredata/nscustommigrationstage).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMigrationStage;

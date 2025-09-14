@@ -6,13 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer for selecting elements from two tensors.
+    ///
+    /// ## Overview
+    ///
+    /// A selection layer takes a condition tensor that acts as a mask. It determines whether the corresponding element or row in the output comes from tensor `X` (if the element in the condition is `true`) or tensor `Y` (if `false`).
+    ///
+    ///
     /// Selection layer is used to select elements from two tensors
     ///
     /// The selection layer takes a condition tensor which acts as a mask that chooses whether the corresponding element / row
     /// in the output should be taken from tensor x (if the element in condition is true) or tensor y (if it is false).
     /// The order of source tensors of the layer must be condition tensor, tensor x, and tensor y.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcselectionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

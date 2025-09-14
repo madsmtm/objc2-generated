@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Manages a color sampling interface to allow the user to select a color from their screen.
+    /// An object that displays the system’s color-sampling interface and returns the selected color to your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorsampler?language=objc)
+    /// ## Overview
+    ///
+    /// Create an [`NSColorSampler`](https://developer.apple.com/documentation/appkit/nscolorsampler) object when you want the user to select a color based on existing onscreen colors. When you call the [`showSamplerWithSelectionHandler:`](https://developer.apple.com/documentation/appkit/nscolorsampler/show(selectionhandler:)) method, AppKit shows the system’s color sampler interface and reports the selected color back to the provided block.
+    ///
+    ///
+    /// Manages a color sampling interface to allow the user to select a color from their screen.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorSampler;

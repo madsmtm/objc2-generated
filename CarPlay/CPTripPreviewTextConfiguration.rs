@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptrippreviewtextconfiguration?language=objc)
+    /// A configuration object for changing the button titles on a trip preview.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPTripPreviewTextConfiguration;

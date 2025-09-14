@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent?language=objc)
+    /// A request to change the climate settings in a CarPlay-enabled vehicle.
+    ///
+    /// ## Overview
+    ///
+    /// Automotive vendors can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change a setting related to the vehicle’s climate control, Siri creates an [`INSetClimateSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent) object and delivers it to the app’s Intents extension. You use the intent to identify which setting the user wants to change.
+    ///
+    /// This class contains properties for multiple types of climate settings, but a given instance of this class contains changes for only one system at a time. When resolving and confirming the parameters of this intent, use the specified properties to modify your vehicle’s settings. Assume no changes for other settings. If your vehicle doesn’t support a particular setting, offer a reasonable fallback setting and ask the user for confirmation.
+    ///
+    /// The object that handles this intent must adopt the [`INSetClimateSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling) protocol. Use this intent object to identify which setting changed and to create an [`INSetClimateSettingsInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentresponse) object indicating the results of changing the climate settings.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents (in conjunction with CarPlay)" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to change the climate settings in a vehicle in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Turn on the AC" }] }], [Paragraph { inline_content: [Text { text: "Turn the fan to max" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "打开空调" }] }], [Paragraph { inline_content: [Text { text: "空调调到最高" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "打開空調" }] }], [Paragraph { inline_content: [Text { text: "空調較到最大" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "打開空調" }] }], [Paragraph { inline_content: [Text { text: "空調調到最強" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "打开空调" }] }], [Paragraph { inline_content: [Text { text: "空调较到最大" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "شغل تكييف الهواء" }] }], [Paragraph { inline_content: [Text { text: "أطفأ التحكم بالمناخ" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "tænd for klimaanlægget" }] }], [Paragraph { inline_content: [Text { text: "Skru blæseren op på max" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Klimaanlage einschalten" }] }], [Paragraph { inline_content: [Text { text: "Schalte Klimaanlage ein" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Prende el aire acondicionado" }] }], [Paragraph { inline_content: [Text { text: "Pon el climatizador a 20 grados" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Laita ilmastointi päälle" }] }], [Paragraph { inline_content: [Text { text: "Laita tuuletin täysille" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Allume le chauffage" }] }], [Paragraph { inline_content: [Text { text: "Branche le chauffage" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תרימי את הבקרת אקלים" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Accendi l’aria condizionata" }] }], [Paragraph { inline_content: [Text { text: "Metti la ventola al massimo" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "エアコンをオンにして" }] }], [Paragraph { inline_content: [Text { text: "ファンを最大にして" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "에어콘 켜줘" }] }], [Paragraph { inline_content: [Text { text: "팬을 최대로 틀어줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Hidupkan pendingin hawa" }] }], [Paragraph { inline_content: [Text { text: "Setkan kipas ke posisi maksimum" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Skru på klimaanlegget" }] }], [Paragraph { inline_content: [Text { text: "Skru viften opp til maks" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Zet de airconditioning aan" }] }], [Paragraph { inline_content: [Text { text: "Zet de ventilator op het maximum" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Ligar o ar condicionado" }] }], [Paragraph { inline_content: [Text { text: "Coloque o ventilador no máximo" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Включи кондиционер" }] }], [Paragraph { inline_content: [Text { text: "Сделай обдув на максимум" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "ändra klimatkontrollen till auto" }] }], [Paragraph { inline_content: [Text { text: "byt klimat till automatiskt" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "เป\u{e34}ดแอร\u{e4c}" }] }], [Paragraph { inline_content: [Text { text: "เป\u{e34}ดพ\u{e31}ดลมระด\u{e31}บส\u{e39}งส\u{e38}ด" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Klimayı aç" }] }], [Paragraph { inline_content: [Text { text: "Fanı sonuna kadar aç" }] }]]], alignments: None, metadata: None })
+    /// When managing CarPlay features, users don’t need to include the name of the app in the phrases that they speak. Siri knows automatically when CarPlay is active and routes CarPlay-related intents to the app of the corresponding automotive vendor.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -149,11 +171,18 @@ impl INSetClimateSettingsInCarIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for changing a vehicle’s climate control settings.
+    ///
+    /// ## Overview
+    ///
+    /// Automotive vendors can support the [`INSetClimateSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling) protocol in an Intents extension that they ship with their automotive apps. Use the methods of this protocol to resolve, confirm, and handle requests to change the vehicle’s current climate control settings. Your extension should be able to communicate with the vehicle and make the necessary changes.
+    ///
+    /// Siri delivers an [`INSetClimateSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent) object to your handler when the user asks to change any climate settings. The provided intent object contains information that you use to determine which settings changed and what the new settings should be.
+    ///
+    ///
     /// Protocol to declare support for handling an INSetClimateSettingsInCarIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling?language=objc)
     #[deprecated = "INSetClimateSettingsInCarIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSetClimateSettingsInCarIntentHandling: NSObjectProtocol {
         #[cfg(all(

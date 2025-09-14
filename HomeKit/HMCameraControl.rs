@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract class that represents a camera control.
     /// Represents a generic camera control.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameracontrol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMCameraControl;

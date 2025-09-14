@@ -11,18 +11,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitemchangednotification?language=objc)
+    /// Posted by a WebHistoryItem object when the value of the history item’s title, alternate title, URL strings, or last visited interval changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebHistoryItemChangedNotification: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// WebHistoryItem objects encapsulate information about visiting a page so that users can return to that page. WebHistory and WebBackForwardList objects manage lists of WebHistoryItem objects. WebHistoryItem objects are created and added to these lists automatically when loading pages, so you do not need to create WebHistoryItem objects directly.
     /// WebHistoryItems are created by WebKit to represent pages visited.
     /// The WebBackForwardList and WebHistory classes both use WebHistoryItems to represent
     /// pages visited.  With the exception of the displayTitle, the properties of
     /// WebHistoryItems are set by WebKit.  WebHistoryItems are normally never created directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webhistoryitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

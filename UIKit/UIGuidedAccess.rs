@@ -8,20 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserrordomain?language=objc)
+    /// A string that identifies the Guided Access error domain.
     pub static UIGuidedAccessErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserror/code?language=objc)
+/// Error codes for Guided Access.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessErrorCode(pub NSInteger);
 impl UIGuidedAccessErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserror/code/permissiondenied?language=objc)
+    /// An error that indicates the app isn’t authorized to perform the requested action.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, this error might indicate that your app is requesting a configuration change but isn’t locked into Single App Mode through a configuration profile.
+    ///
+    ///
     #[doc(alias = "UIGuidedAccessErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserror/code/failed?language=objc)
+    /// An error that indicates a failure for an unspecified reason.
     #[doc(alias = "UIGuidedAccessErrorFailed")]
     pub const Failed: Self = Self(NSIntegerMax as _);
 }
@@ -34,16 +40,16 @@ unsafe impl RefEncode for UIGuidedAccessErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate?language=objc)
+/// Constants that describe the state of a restriction, either allow or deny.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessRestrictionState(pub NSInteger);
 impl UIGuidedAccessRestrictionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate/allow?language=objc)
+    /// The app should allow the user to perform the action controlled by the restriction.
     #[doc(alias = "UIGuidedAccessRestrictionStateAllow")]
     pub const Allow: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate/deny?language=objc)
+    /// The app should deny the user from performing the action controlled by the restriction.
     #[doc(alias = "UIGuidedAccessRestrictionStateDeny")]
     pub const Deny: Self = Self(1);
 }
@@ -57,7 +63,19 @@ unsafe impl RefEncode for UIGuidedAccessRestrictionState {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate?language=objc)
+    /// A set of methods you use to add custom restrictions for the Guided Access feature in iOS.
+    ///
+    /// ## Overview
+    ///
+    /// Custom restrictions are represented by string identifiers provided by the developer in the [`guidedAccessRestrictionIdentifiers`](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate/guidedaccessrestrictionidentifiers) method. Each identifier represents an operation in the app that the developer wishes to allow users to restrict using Guided Access. The default for all operations is allow. Users can deny operations using the normal Guided Access user interface. See [http://support.apple.com/kb/HT5509](http://support.apple.com/kb/HT5509) for a description of how to enable and configure Guided Access on iOS.
+    ///
+    /// Apps describe their custom restrictions by implementing the [`textForGuidedAccessRestrictionWithIdentifier:`](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate/textforguidedaccessrestriction(withidentifier:)) and [`detailTextForGuidedAccessRestrictionWithIdentifier:`](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate/detailtextforguidedaccessrestriction(withidentifier:)) methods to return appropriate localized, human-readable strings.
+    ///
+    /// For example, a photo editing app might allow users to disable deleting photos. The app would return an identifier representing this restriction in its [`guidedAccessRestrictionIdentifiers`](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate/guidedaccessrestrictionidentifiers) method. It would also implement [`textForGuidedAccessRestrictionWithIdentifier:`](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate/textforguidedaccessrestriction(withidentifier:)) to provide a human-readable description of the restriction. Finally, the app would implement [`guidedAccessRestrictionWithIdentifier:didChangeState:`](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictiondelegate/guidedaccessrestriction(withidentifier:didchange:)) to notice when a user indicates that they want to enable the restriction. When the app sees the state change to “deny”, it would configure itself to prevent the deletion of photos by any means. Similarly, when the app sees the state change to “allow”, it would configure itself to allow photo deletion.
+    ///
+    /// Apps can use the [`UIGuidedAccessRestrictionStateForIdentifier`](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate(foridentifier:)) function to check the state of a restriction at any time.
+    ///
+    ///
     pub unsafe trait UIGuidedAccessRestrictionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -91,7 +109,17 @@ extern_protocol!(
 );
 
 impl UIGuidedAccessRestrictionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate(foridentifier:)?language=objc)
+    /// Returns the restriction state for the specified guided access restriction.
+    ///
+    /// Parameters:
+    /// - restrictionIdentifier: The string that uniquely identifies the guided access restriction.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current state of the guided access restriction. The initial state of all restrictions is [`UIGuidedAccessRestrictionStateAllow`](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate/allow).
+    ///
+    ///
     #[doc(alias = "UIGuidedAccessRestrictionStateForIdentifier")]
     #[inline]
     pub fn for_identifier(restriction_identifier: &NSString) -> UIGuidedAccessRestrictionState {
@@ -104,26 +132,26 @@ impl UIGuidedAccessRestrictionState {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature?language=objc)
+/// Constants that describe accessibility features for Guided Access.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessAccessibilityFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl UIGuidedAccessAccessibilityFeature: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/voiceover?language=objc)
+/// The VoiceOver assistive app.
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureVoiceOver")]
         const VoiceOver = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/zoom?language=objc)
+/// The Zoom accessibility feature.
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureZoom")]
         const Zoom = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/assistivetouch?language=objc)
+/// The AssistiveTouch accessibility feature.
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureAssistiveTouch")]
         const AssistiveTouch = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/invertcolors?language=objc)
+/// The Smart Invert accessibility feature.
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureInvertColors")]
         const InvertColors = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature/grayscaledisplay?language=objc)
+/// The Grayscale accessibility feature.
         #[doc(alias = "UIGuidedAccessAccessibilityFeatureGrayscaleDisplay")]
         const GrayscaleDisplay = 1<<4;
     }
@@ -137,7 +165,7 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/configureforguidedaccess(features:enabled:completionhandler:)?language=objc)
+/// Enables or disables the specified accessibility features while using Guided Access.
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(

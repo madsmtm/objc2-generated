@@ -7,82 +7,82 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrordomain?language=objc)
+    /// The error domain for the Accounts framework.
     pub static ACErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcode?language=objc)
+/// Codes for errors that may occur.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ACErrorCode(pub c_uint);
 impl ACErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorunknown?language=objc)
+    /// Error code that indicates an unknown error occurred.
     #[doc(alias = "ACErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccountmissingrequiredproperty?language=objc)
+    /// Error code that indicates an account wasn’t saved because a required property is missing.
     #[doc(alias = "ACErrorAccountMissingRequiredProperty")]
     pub const AccountMissingRequiredProperty: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccountauthenticationfailed?language=objc)
+    /// Error code that indicates an account wasn’t saved because authentication of its credential failed.
     #[doc(alias = "ACErrorAccountAuthenticationFailed")]
     pub const AccountAuthenticationFailed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccounttypeinvalid?language=objc)
+    /// Error code that indicates an account wasn’t saved because its account type is invalid.
     #[doc(alias = "ACErrorAccountTypeInvalid")]
     pub const AccountTypeInvalid: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccountalreadyexists?language=objc)
+    /// Error code that indicates an account wasn’t added because it already exists.
     #[doc(alias = "ACErrorAccountAlreadyExists")]
     pub const AccountAlreadyExists: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccountnotfound?language=objc)
+    /// Error code that indicates an account wasn’t deleted because it couldn’t be found.
     #[doc(alias = "ACErrorAccountNotFound")]
     pub const AccountNotFound: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorpermissiondenied?language=objc)
+    /// Error code that indicates the operation failed because the application doesn’t have permission to perform the operation.
     #[doc(alias = "ACErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccessinfoinvalid?language=objc)
+    /// Error code that indicates the client’s access info dictionary has incorrect or missing values.
     #[doc(alias = "ACErrorAccessInfoInvalid")]
     pub const AccessInfoInvalid: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorclientpermissiondenied?language=objc)
+    /// Error code that indicates the client doesn’t have access to the requested data.
     #[doc(alias = "ACErrorClientPermissionDenied")]
     pub const ClientPermissionDenied: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerroraccessdeniedbyprotectionpolicy?language=objc)
+    /// Error code that indicates due to the current protection policy, the credentials couldn’t be fetched.
     #[doc(alias = "ACErrorAccessDeniedByProtectionPolicy")]
     pub const AccessDeniedByProtectionPolicy: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcredentialnotfound?language=objc)
+    /// Error code that indicates no credentials were found.
     #[doc(alias = "ACErrorCredentialNotFound")]
     pub const CredentialNotFound: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorfetchcredentialfailed?language=objc)
+    /// Error code that indicates the credentials couldn’t be fetched from Keychain.
     #[doc(alias = "ACErrorFetchCredentialFailed")]
     pub const FetchCredentialFailed: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorstorecredentialfailed?language=objc)
+    /// Error code that indicates the credentials couldn’t be stored in Keychain.
     #[doc(alias = "ACErrorStoreCredentialFailed")]
     pub const StoreCredentialFailed: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorremovecredentialfailed?language=objc)
+    /// Error code that indicates the credentials couldn’t be removed from Keychain.
     #[doc(alias = "ACErrorRemoveCredentialFailed")]
     pub const RemoveCredentialFailed: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorupdatingnonexistentaccount?language=objc)
+    /// Error code that indicates an account save failed because the account being updated has been removed.
     #[doc(alias = "ACErrorUpdatingNonexistentAccount")]
     pub const UpdatingNonexistentAccount: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorinvalidclientbundleid?language=objc)
+    /// Error code that indicates the client making the request doesn’t have a valid bundle ID.
     #[doc(alias = "ACErrorInvalidClientBundleID")]
     pub const InvalidClientBundleID: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrordeniedbyplugin?language=objc)
+    /// Error code that indicates a plugin prevented the expected action from occurring.
     #[doc(alias = "ACErrorDeniedByPlugin")]
     pub const DeniedByPlugin: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcoredatasavefailed?language=objc)
+    /// Error code that indicates an error occurred while trying to save to a Core Data store.
     #[doc(alias = "ACErrorCoreDataSaveFailed")]
     pub const CoreDataSaveFailed: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorfailedserializingaccountinfo?language=objc)
+    /// Error code that indicates an account’s information couldn’t be serialized.
     #[doc(alias = "ACErrorFailedSerializingAccountInfo")]
     pub const FailedSerializingAccountInfo: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorinvalidcommand?language=objc)
+    /// Error code that indicates an invalid command was attempted.
     #[doc(alias = "ACErrorInvalidCommand")]
     pub const InvalidCommand: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrormissingtransportmessageid?language=objc)
+    /// Error code that indicates an expected message identifier wasn’t found while performing a command.
     #[doc(alias = "ACErrorMissingTransportMessageID")]
     pub const MissingTransportMessageID: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcredentialitemnotfound?language=objc)
+    /// Error code that indicates a credential item wasn’t saved because it couldn’t be found.
     #[doc(alias = "ACErrorCredentialItemNotFound")]
     pub const CredentialItemNotFound: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acerrorcredentialitemnotexpired?language=objc)
+    /// Error code that indicates a credential item wasn’t removed because it hasn’t yet expired.
     #[doc(alias = "ACErrorCredentialItemNotExpired")]
     pub const CredentialItemNotExpired: Self = Self(23);
 }

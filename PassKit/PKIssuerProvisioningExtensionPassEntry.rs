@@ -9,7 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionpassentry?language=objc)
+    /// An object that represents an item available to add to as a Wallet pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIssuerProvisioningExtensionPassEntry;

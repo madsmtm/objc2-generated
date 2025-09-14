@@ -8,12 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages a set of loaded extension contexts.
+    ///
+    /// ## Overview
+    ///
+    /// You can have one or more extension controller instances, allowing different parts of the app to use different sets of extensions.
+    ///
+    /// You can associate a controller with [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) using the [`webExtensionController`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller) property on [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration).
+    ///
+    ///
     /// A ``WKWebExtensionController`` object manages a set of loaded extension contexts.
     ///
     /// You can have one or more extension controller instances, allowing different parts of the app to use different sets of extensions.
     /// A controller is associated with ``WKWebView`` via the ``webExtensionController`` property on ``WKWebViewConfiguration``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

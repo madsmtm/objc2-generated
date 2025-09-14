@@ -16,8 +16,6 @@ extern_class!(
     /// be created by using the forward kernel's methods.  This will
     /// ensure that the state captures all information necessary to
     /// execute the corresponding gradient pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -191,7 +189,6 @@ impl MPSCNNGroupNormalizationGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstatebatch?language=objc)
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSNNGradientState",
@@ -204,8 +201,6 @@ extern_protocol!(
     /// The MPSCNNGroupNormalizationDataSource protocol declares the methods that an
     /// group of MPSCNNGroupNormalization uses to initialize the
     /// scale factors (gamma) and bias terms (beta).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationdatasource?language=objc)
     pub unsafe trait MPSCNNGroupNormalizationDataSource:
         NSObjectProtocol + NSCopying
     {
@@ -377,8 +372,6 @@ extern_class!(
     /// y = (x - mean) * gamma / sqrt(variance + epsilon) + beta;
     ///
     /// The mean and variance are computed per group of channels, as given by the dataSource.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -576,8 +569,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework
     ///
     /// This kernel executes a gradient pass corresponding to MPSCNNGroupNormalization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

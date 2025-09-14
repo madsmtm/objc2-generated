@@ -13,7 +13,13 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverbackgroundviewmethods?language=objc)
+    /// A set of methods that popover background view subclasses must implement.
+    ///
+    /// ## Overview
+    ///
+    /// The methods in this protocol are called only once when the popover is presented. All methods of this protocol are required.
+    ///
+    ///
     pub unsafe trait UIPopoverBackgroundViewMethods {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(arrowBase))]
@@ -33,7 +39,31 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverbackgroundview?language=objc)
+    /// The background appearance for a popover.
+    ///
+    /// ## Overview
+    ///
+    /// This class must be subclassed before it can be used. The implementation of your subclass is responsible for providing the border decoration and arrow for the popover. Subclasses must override all declared properties and methods to provide information about where to lay out the corresponding popover content and arrow. Subclasses must also provide implementations for all methods of the [`UIPopoverBackgroundViewMethods`](https://developer.apple.com/documentation/uikit/uipopoverbackgroundviewmethods) protocol.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// Your subclass is responsible for providing the background visual styling of the popover, which includes the arrow and appropriately styled border. The popover controller places the actual popover content on top of your background view to finish the popover’s presentation.
+    ///
+    /// The background contents of your view should be based on stretchable images. Because the popover is animated into place (and may require animated transitions), using images is the only way to ensure that the animations are smooth and not jittery. By creating images that can be stretched at appropriate places, your popover can still be resized and adjusted as needed. You can then incorporate those images using [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) subviews or Core Animation layers. When the size of the popover changes (perhaps to accommodate the keyboard), all you have to do is adjust the frame rectangles of your embedded image views.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The images you use for your popover background view shouldn’t contain any shadow effects. The popover controller adds a shadow to the popover for you.
+    ///
+    ///
+    ///
+    /// </div>
+    /// In addition to providing the background content, your subclass must implement the [`arrowOffset`](https://developer.apple.com/documentation/uikit/uipopoverbackgroundview/arrowoffset) and [`arrowDirection`](https://developer.apple.com/documentation/uikit/uipopoverbackgroundview/arrowdirection) properties and the methods in the [`UIPopoverBackgroundViewMethods`](https://developer.apple.com/documentation/uikit/uipopoverbackgroundviewmethods) protocol. The popover controller uses these methods and properties to get and set information related to your background view. The protocol methods are called once and the values you return should never change. However, the values in the [`arrowOffset`](https://developer.apple.com/documentation/uikit/uipopoverbackgroundview/arrowoffset) and [`arrowDirection`](https://developer.apple.com/documentation/uikit/uipopoverbackgroundview/arrowdirection) properties can change while your popover is on the screen, so your setter methods should call [`setNeedsLayout`](https://developer.apple.com/documentation/uikit/uiview/setneedslayout()) when that happens to update the background image views or layers.
+    ///
+    /// To create a stretchable image, use the [`resizableImageWithCapInsets:`](https://developer.apple.com/documentation/uikit/uiimage/resizableimage(withcapinsets:)) method of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]

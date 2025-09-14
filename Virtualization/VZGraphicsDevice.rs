@@ -7,6 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a graphics device in a VM.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t instantiate a `VZGraphicsDevice` directly. Graphics devices are first configured on the [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) through a subclass of [`VZGraphicsDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzgraphicsdeviceconfiguration).
+    ///
+    /// When the framework creates a [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) from the configuration, the graphics devices are available through the [`graphicsDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/graphicsdevices) property.
+    ///
+    /// The real type of [`VZGraphicsDevice`](https://developer.apple.com/documentation/virtualization/vzgraphicsdevice) corresponds to the type used by the configuration.
+    ///
+    /// For example, a [`VZVirtioGraphicsDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration) leads to a device of type [`VZVirtioGraphicsDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdevice) and a [`VZMacGraphicsDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdeviceconfiguration) leads to a device of type [`VZMacGraphicsDevice`](https://developer.apple.com/documentation/virtualization/vzmacgraphicsdevice).
+    ///
+    ///
     /// Class representing a graphics device in a virtual machine.
     ///
     /// VZGraphicsDevice should not be instantiated directly.
@@ -19,8 +32,6 @@ extern_class!(
     /// And a VZMacGraphicsDeviceConfiguration leads to a device of type VZMacGraphicsDevice.
     ///
     /// See: VZGraphicsDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGraphicsDevice;

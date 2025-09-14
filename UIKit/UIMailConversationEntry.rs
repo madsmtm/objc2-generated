@@ -8,41 +8,34 @@ use objc2_foundation::*;
 use crate::*;
 
 /// A set of categories for an email.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum?language=objc)
+/// A set of categories for an email.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMailConversationEntryKind(pub NSInteger);
 impl UIMailConversationEntryKind {
     /// The email does not fit in a specific category.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/none?language=objc)
+    /// The email does not fit in a specific category.
     #[doc(alias = "UIMailConversationEntryKindNone")]
     pub const None: Self = Self(0);
     /// The email is personal correspondence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/personal?language=objc)
+    /// The email is personal correspondence.
     #[doc(alias = "UIMailConversationEntryKindPersonal")]
     pub const Personal: Self = Self(1);
     /// The email contains a promotional offer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/promotion?language=objc)
+    /// The email contains a promotional offer.
     #[doc(alias = "UIMailConversationEntryKindPromotion")]
     pub const Promotion: Self = Self(2);
     /// The email is related to social media.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/social?language=objc)
+    /// The email is related to social media.
     #[doc(alias = "UIMailConversationEntryKindSocial")]
     pub const Social: Self = Self(3);
     /// The email is related to a purchase or transaction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/transaction?language=objc)
+    /// The email is related to a purchase or transaction.
     #[doc(alias = "UIMailConversationEntryKindTransaction")]
     pub const Transaction: Self = Self(4);
     /// The email is related to news or current events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum/news?language=objc)
+    /// The email is related to news or current events.
     #[doc(alias = "UIMailConversationEntryKindNews")]
     pub const News: Self = Self(5);
 }
@@ -57,8 +50,7 @@ unsafe impl RefEncode for UIMailConversationEntryKind {
 
 extern_class!(
     /// A class that represents a specific email in an email thread.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry?language=objc)
+    /// A class that represents a specific email in an email thread.
     #[unsafe(super(UIConversationEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIConversationEntry")]

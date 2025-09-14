@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfcontentblockermanager?language=objc)
+    /// A class that your app uses to interact with a content blocker extension.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to determine the state of your content blocker and reload the content-blocking rules used by Safari.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFContentBlockerManager;

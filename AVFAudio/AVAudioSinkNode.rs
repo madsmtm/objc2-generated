@@ -7,6 +7,21 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
+/// A block that receives audio data from an audio sink node.
+///
+/// Parameters:
+/// - timestamp: The time the input data renders.
+///
+/// - frameCount: The number of sample frames of input the engine provides.
+///
+/// - inputData: The input audio data.
+///
+///
+/// ## Return Value
+///
+/// An `OSStatus` result code. When an error occurs, consider the audio data invalid.
+///
+///
 /// Block to receive audio data from AVAudioSinkNode
 ///
 /// Parameter `timestamp`: The time at which the input data will be rendered.
@@ -22,8 +37,6 @@ use crate::*;
 ///
 /// Returns: An OSStatus result code. If an error is returned, the input data should be assumed to be
 /// invalid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknodereceiverblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -34,6 +47,19 @@ pub type AVAudioSinkNodeReceiverBlock = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    /// An object that receives audio data.
+    ///
+    /// ## Overview
+    ///
+    /// You use an `AVAudioSinkNode` to receive audio data through [`AVAudioSinkNodeReceiverBlock`](https://developer.apple.com/documentation/avfaudio/avaudiosinknodereceiverblock). You only use it in the input chain.
+    ///
+    /// An audio sink node doesn’t support format conversion. When connecting, use the output format of the input for the format for the connection. The format should match the hardware input sample rate.
+    ///
+    /// The voice processing I/O unit is an exception to the above because it supports sample rate conversion. The input scope format (hardware format) and output scope format (client format) of the input node can differ in that case.
+    ///
+    /// An audio sink node doesn’t support manual rendering mode, and doesn’t have an output bus, so you can’t install a tap on it.
+    ///
+    ///
     /// AVAudioSinkNode wraps a client provided block to receive input audio on the audio IO thread.
     ///
     /// AVAudioSinkNode is restricted to be used in the input chain and does not support format
@@ -49,8 +75,6 @@ extern_class!(
     /// manual rendering mode.
     ///
     /// AVAudioSinkNode does not have an output bus and therefore it does not support tapping.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosinknode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

@@ -4,31 +4,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype?language=objc)
+/// Constants indicating an account-specific amount to apply to a payment.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAmountType(pub NSInteger);
 impl INAmountType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/unknown?language=objc)
+    /// An unknown amount.
     #[doc(alias = "INAmountTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/minimumdue?language=objc)
+    /// The minimum amount the user must apply to the bill.
     #[doc(alias = "INAmountTypeMinimumDue")]
     pub const MinimumDue: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/amountdue?language=objc)
+    /// The amount due for the bill.
     #[doc(alias = "INAmountTypeAmountDue")]
     pub const AmountDue: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/currentbalance?language=objc)
+    /// The current account balance.
     #[doc(alias = "INAmountTypeCurrentBalance")]
     pub const CurrentBalance: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/maximumtransferamount?language=objc)
+    /// The maximum amount the user can transfer.
     #[doc(alias = "INAmountTypeMaximumTransferAmount")]
     pub const MaximumTransferAmount: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/minimumtransferamount?language=objc)
+    /// The minimum amount the user can transfer.
     #[doc(alias = "INAmountTypeMinimumTransferAmount")]
     pub const MinimumTransferAmount: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inamounttype/statementbalance?language=objc)
+    /// The statement balance.
     #[doc(alias = "INAmountTypeStatementBalance")]
     pub const StatementBalance: Self = Self(6);
 }

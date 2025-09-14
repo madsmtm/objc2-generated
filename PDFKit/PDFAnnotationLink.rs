@@ -8,7 +8,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlink?language=objc)
+    ///
+    /// ## Overview
+    ///
+    /// A PDFAnnotationLink object represents either a hypertext link to another location in the document (specified as a PDFDestination object) or a URL.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

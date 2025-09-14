@@ -15,9 +15,14 @@ use crate::*;
 
 /// Options for the different types of analyzed video streams.
 ///
-/// Pass this enum into the ``SCVideoStreamAnalyzer/init(participantUUID:streamDirection:)`` initializer when creating an ``SCVideoStreamAnalyzer`` to analyze video streams.
+/// ## Overview
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/streamdirection?language=objc)
+/// Pass this enum into the [`initWithParticipantUUID:streamDirection:error:`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/init(participantuuid:streamdirection:)) initializer when creating an [`SCVideoStreamAnalyzer`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer) to analyze video streams.
+///
+///
+/// Options for the different types of analyzed video streams.
+///
+/// Pass this enum into the ``SCVideoStreamAnalyzer/init(participantUUID:streamDirection:)`` initializer when creating an ``SCVideoStreamAnalyzer`` to analyze video streams.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -25,16 +30,26 @@ pub struct SCVideoStreamAnalyzerStreamDirection(pub NSInteger);
 impl SCVideoStreamAnalyzerStreamDirection {
     /// An option that refers to a video stream sent to another device.
     ///
-    /// This option refers to the stream that originates from the device's camera.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/streamdirection/outgoing?language=objc)
+    /// This option refers to the stream that originates from the device’s camera.
+    ///
+    ///
+    /// An option that refers to a video stream sent to another device.
+    ///
+    /// This option refers to the stream that originates from the device's camera.
     #[doc(alias = "SCVideoStreamAnalyzerStreamDirectionOutgoing")]
     pub const Outgoing: Self = Self(1);
+    /// An option that refers to a video stream from another device.
+    ///
+    /// ## Discussion
+    ///
+    /// This option refers to a video stream that the device receives over the network from another device’s camera.
+    ///
+    ///
     /// An option that indicates a video stream from another device.
     ///
     /// This option refers to a video stream that the device receives over the network from another device's camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/streamdirection/incoming?language=objc)
     #[doc(alias = "SCVideoStreamAnalyzerStreamDirectionIncoming")]
     pub const Incoming: Self = Self(2);
 }
@@ -47,6 +62,30 @@ unsafe impl RefEncode for SCVideoStreamAnalyzerStreamDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A handler your app provides to receive video-stream analysis results.
+///
+/// ## Discussion
+///
+/// Your app implements this handler and the framework calls it when the analyzer’s video stream detects sensitive content, or when the analyzer encounters an error providing analysis or an error in input parameters.
+///
+/// This handler receives an instance of [`SCSensitivityAnalysis`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis), and an [`Error`](https://developer.apple.com/documentation/swift/error), as in the following example:
+///
+/// ```swift
+/// analyzer.analysisChangedHandler = { analysis, error in
+///     self.analysis = analysis
+///     if analysis.shouldInterruptVideo {
+///         // ...
+///     }
+///     if analysis.shouldIndicateSensitivity {
+///         // ...
+///     }
+///     if analysis.shouldMuteAudio {
+///         // ...
+///     }
+/// }
+/// ```
+///
+///
 /// A handler your app provides to receive video-stream analysis results.
 ///
 /// Your app implements this handler and the framework calls it when the analyzer's video stream detects sensitive content, or an error providing corresponding analysis, or error as input parameters.
@@ -69,13 +108,52 @@ unsafe impl RefEncode for SCVideoStreamAnalyzerStreamDirection {
 /// }
 /// }
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalysischangehandler?language=objc)
 #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
 pub type SCVideoStreamAnalysisChangeHandler =
     *mut block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>;
 
 extern_class!(
+    /// An object that monitors a stream of video by analyzing frames for sensitive content.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to detect senstive content in a video stream, such as on a conference call that your app implements. The class detects senstive content in the video stream from either the device’s camera or the remote devices signed into the call, depending on how you configure the analyzer.
+    ///
+    /// Create an instance of this class for each video stream in the call.
+    ///
+    /// To begin analyzing the stream, pass it to either [`beginAnalysisOfCaptureDeviceInput:error:`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/beginanalysis(of:)-78qm) ([`AVCaptureDeviceInput`](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput)) or [`beginAnalysisOfDecompressionSession:error:`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/beginanalysis(of:)-9ehkx) ([`VTDecompressionSessionRef`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsession)), depending on your video playback implementation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class works only when the Communication Safety parental control in Screen Time is enabled, or when the Sensitive Content Warnings setting is turned on. The initializers of this class throw an error if both settings are off.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### React to sensitive content
+    ///
+    /// When the framework detects sensitive content in the stream, it calls [`analysisChangedHandler`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/analysischangedhandler) immediately with an [`SCSensitivityAnalysis`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis) object that includes information about the detection.
+    ///
+    /// You implement the [`analysisChangedHandler`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/analysischangedhandler) callback to inspect the detection results, which includes confirmation that content is sensitve as well as guidance on next steps your app can take. The framework offers your app suggestions in the handler, which include:
+    ///
+    /// - Alerting the person to the presence of sensitive content ([`shouldIndicateSensitivity`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis/shouldindicatesensitivity))
+    ///
+    /// - Interrupting video playback ([`shouldInterruptVideo`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis/shouldinterruptvideo))
+    ///
+    /// - Muting audio ([`shouldMuteAudio`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis/shouldmuteaudio))
+    ///
+    /// To stop analyzing the stream, call [`endAnalysis`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/endanalysis()). If your app implements a custom stream decoder, you can analyze individual frames by passing pixel buffers to [`analyzePixelBuffer:`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/analyze(_:)).
+    ///
+    /// In the event of an error during analysis, the handler receives an error object that details what went wrong. For more information, see: [`SCVideoStreamAnalysisChangeHandler`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalysischangehandler).
+    ///
+    /// ### Add the app entitlement
+    ///
+    /// To use this class, the system requires the [`com.apple.developer.sensitivecontentanalysis.client`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.sensitivecontentanalysis.client) entitlement in your app’s code signature. Calls to the framework fail to return positive results without it. You can can add this entitlement to your app by enabling the Sensitive Content Analysis capability in Xcode; see [Adding capabilities to your app](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app).
+    ///
+    /// For more information, see [Detecting nudity in media and providing intervention options](https://developer.apple.com/documentation/sensitivecontentanalysis/detecting-nudity-in-media-and-providing-intervention-options).
+    ///
+    ///
     /// Monitors a stream of video by analyzing frames for sensitive content.
     ///
     /// Use this class to detect senstive content in a video stream, such as on a conference call that your app implements. The class detects senstive content in the video stream from either the device's camera or the remote device(s) signed into the call, depending on how you configure the analyzer.
@@ -115,8 +193,6 @@ extern_class!(
     /// For more information, see
     /// <doc
     /// :detecting-nudity-in-media-and-providing-intervention-options>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCVideoStreamAnalyzer;

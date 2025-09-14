@@ -10,7 +10,6 @@ use crate::*;
 
 #[cfg(feature = "CSIdentity")]
 unsafe impl ConcreteType for CSIdentityQuery {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429012-csidentityquerygettypeid?language=objc)
     #[doc(alias = "CSIdentityQueryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -21,26 +20,18 @@ unsafe impl ConcreteType for CSIdentityQuery {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428995-anonymous/kcsidentityquerygenerateupdateevents?language=objc)
 pub const kCSIdentityQueryGenerateUpdateEvents: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428995-anonymous/kcsidentityqueryincludehiddenidentities?language=objc)
 pub const kCSIdentityQueryIncludeHiddenIdentities: c_uint = 0x0002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryflags?language=objc)
 pub type CSIdentityQueryFlags = CFOptionFlags;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429043-anonymous/kcsidentityquerystringequals?language=objc)
 pub const kCSIdentityQueryStringEquals: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429043-anonymous/kcsidentityquerystringbeginswith?language=objc)
 pub const kCSIdentityQueryStringBeginsWith: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityquerystringcomparisonmethod?language=objc)
 pub type CSIdentityQueryStringComparisonMethod = CFIndex;
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429003-csidentityquerycreate?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -64,8 +55,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428997-csidentityquerycreateforname?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -102,8 +91,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429007-csidentityquerycreateforuuid?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -128,8 +115,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428990-csidentityquerycreateforposixid?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -161,8 +146,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428991-csidentityquerycreateforpersiste?language=objc)
-    ///
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -184,8 +167,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429037-csidentityquerycreateforcurrentu?language=objc)
-    ///
     /// # Safety
     ///
     /// `allocator` might not allow `None`.
@@ -204,7 +185,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429035-csidentityquerycopyresults?language=objc)
     #[doc(alias = "CSIdentityQueryCopyResults")]
     #[cfg(feature = "CSIdentity")]
     #[inline]
@@ -216,8 +196,6 @@ impl CSIdentityQuery {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429041-csidentityqueryexecute?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer.
@@ -237,21 +215,14 @@ impl CSIdentityQuery {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventsearchphasefinished?language=objc)
 pub const kCSIdentityQueryEventSearchPhaseFinished: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventresultsadded?language=objc)
 pub const kCSIdentityQueryEventResultsAdded: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventresultschanged?language=objc)
 pub const kCSIdentityQueryEventResultsChanged: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventresultsremoved?language=objc)
 pub const kCSIdentityQueryEventResultsRemoved: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventerroroccurred?language=objc)
 pub const kCSIdentityQueryEventErrorOccurred: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryevent?language=objc)
 pub type CSIdentityQueryEvent = CFIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryreceiveeventcallback?language=objc)
 #[cfg(feature = "CSIdentity")]
 pub type CSIdentityQueryReceiveEventCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -263,7 +234,6 @@ pub type CSIdentityQueryReceiveEventCallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryclientcontext?language=objc)
 #[cfg(feature = "CSIdentity")]
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -299,8 +269,6 @@ unsafe impl RefEncode for CSIdentityQueryClientContext {
 
 #[cfg(feature = "CSIdentity")]
 impl CSIdentityQuery {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429011-csidentityqueryexecuteasynchrono?language=objc)
-    ///
     /// # Safety
     ///
     /// - `client_context` must be a valid pointer.
@@ -338,7 +306,6 @@ impl CSIdentityQuery {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429047-csidentityquerystop?language=objc)
     #[doc(alias = "CSIdentityQueryStop")]
     #[cfg(feature = "CSIdentity")]
     #[inline]

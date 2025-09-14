@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that pads a tensor with the padding sizes you specify.
     /// A padding layer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

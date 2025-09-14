@@ -11,6 +11,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The format options that describe common audio formats.
 /// A format other than one of the common ones below.
 ///
 /// Native-endian floats (this is the standard format).
@@ -20,26 +21,24 @@ use crate::*;
 /// Signed 16-bit native-endian integers.
 ///
 /// Signed 32-bit native-endian integers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioCommonFormat(pub NSUInteger);
 impl AVAudioCommonFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/otherformat?language=objc)
+    /// A format other than one the enumeration specifies.
     #[doc(alias = "AVAudioOtherFormat")]
     pub const OtherFormat: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatfloat32?language=objc)
+    /// A format that represents the standard format as native-endian floats.
     #[doc(alias = "AVAudioPCMFormatFloat32")]
     pub const PCMFormatFloat32: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatfloat64?language=objc)
+    /// A format that represents native-endian doubles.
     #[doc(alias = "AVAudioPCMFormatFloat64")]
     pub const PCMFormatFloat64: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatint16?language=objc)
+    /// A format that represents signed 16-bit native-endian integers.
     #[doc(alias = "AVAudioPCMFormatInt16")]
     pub const PCMFormatInt16: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocommonformat/pcmformatint32?language=objc)
+    /// A format that represents signed 32-bit native-endian integers.
     #[doc(alias = "AVAudioPCMFormatInt32")]
     pub const PCMFormatInt32: Self = Self(4);
 }
@@ -53,6 +52,15 @@ unsafe impl RefEncode for AVAudioCommonFormat {
 }
 
 extern_class!(
+    /// An object that describes the representation of an audio format.
+    ///
+    /// ## Overview
+    ///
+    /// The [`AVAudioFormat`](https://developer.apple.com/documentation/avfaudio/avaudioformat) class wraps Core Audio’s [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription), and includes convenience initializers and accessors for common formats, including Core Audio’s standard deinterleaved 32-bit floating point format.
+    ///
+    /// Instances of this class are immutable.
+    ///
+    ///
     /// A representation of an audio format.
     ///
     /// AVAudioFormat wraps a Core Audio AudioStreamBasicDescription struct, with convenience
@@ -60,8 +68,6 @@ extern_class!(
     /// 32-bit floating point.
     ///
     /// Instances of this class are immutable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioformat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioFormat;

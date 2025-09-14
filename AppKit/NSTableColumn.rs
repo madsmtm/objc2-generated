@@ -9,20 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumn/resizingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableColumnResizingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableColumnResizingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumnresizingoptions/nstablecolumnnoresizing?language=objc)
+/// Prevents the table column from resizing.
         #[doc(alias = "NSTableColumnNoResizing")]
         const NoResizing = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumn/resizingoptions/autoresizingmask?language=objc)
+/// Allows the table column to resize automatically in response to resizing the table view. The resizing behavior for the table view is set using the `NSTableView` method [`columnAutoresizingStyle`](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.property).
         #[doc(alias = "NSTableColumnAutoresizingMask")]
         const AutoresizingMask = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumn/resizingoptions/userresizingmask?language=objc)
+/// Allows the table column to be resized by the user.
         #[doc(alias = "NSTableColumnUserResizingMask")]
         const UserResizingMask = 1<<1;
     }
@@ -37,7 +36,13 @@ unsafe impl RefEncode for NSTableColumnResizingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecolumn?language=objc)
+    /// The display characteristics and identifier for a column in a table view.
+    ///
+    /// ## Overview
+    ///
+    /// A table column object determines the width (including the maximum and minimum widths) of its column in the table view and specifies the column’s  resizing and editing behavior. A table column stores two cell objects: the header cell, which is used to draw the column header, and the data cell, which is used to draw the values for each row. In a cell-based table, you can control the display of the column by specifying subclasses of `NSCell` to use and by setting the font and other display characteristics for these cells. For example, you can use an [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) to display string values or substitute an [`NSImageCell`](https://developer.apple.com/documentation/appkit/nsimagecell) to display pictures.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

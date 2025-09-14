@@ -9,9 +9,73 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// An HKAttachment represents a file attachment stored in the HealthKit database.
+    /// A file that is attached to a sample in the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkattachment?language=objc)
+    /// ## Overview
+    ///
+    /// To access the attachment’s data, get a data reader from the attachment store for each attachment.
+    ///
+    /// ```swift
+    /// let attachmentStore = HKAttachmentStore(healthStore: store)
+    ///
+    /// let attachments: [HKAttachment]
+    /// do {
+    ///     attachments = try await attachmentStore.attachments(for: prescription)
+    /// } catch {
+    ///     // Handle the error here.
+    ///     fatalError("*** An error occurred while accessing the attachments for a prescription: \(error.localizedDescription) ***")
+    /// }
+    ///
+    /// // Use the attachments here.
+    /// print("*** \(attachments.count) attachments found ***")
+    ///
+    /// for attachment in attachments {
+    ///
+    ///     // Get a data reader for the attachment.
+    ///     let dataReader = attachmentStore.dataReader(for:   attachment)
+    ///
+    ///     // Read the data here.
+    /// }
+    /// ```
+    ///
+    /// You can then asynchronously access the whole data object.
+    ///
+    /// ```swift
+    /// let data: Data
+    /// do {
+    ///     data = try await dataReader.data
+    /// } catch {
+    ///     // Handle the error here.
+    ///     fatalError("*** An error occurred while accessing the attachment's data. \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    /// Alternatively, you can access the file’s contents as an asynchronous sequence of bytes.
+    ///
+    /// ```swift
+    /// // Asynchronously access the attachment's bytes.
+    /// var data = Data()
+    /// do {
+    ///     for try await byte in dataReader.bytes {
+    ///         // Use the bytes here.
+    ///         data.append(byte)
+    ///     }
+    /// } catch {
+    ///     // Handle the error here.
+    ///     fatalError("*** An error occurred while reading the attachment's data: \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can only add attachments to [`HKVisionPrescription`](https://developer.apple.com/documentation/healthkit/hkvisionprescription), [`HKGlassesPrescription`](https://developer.apple.com/documentation/healthkit/hkglassesprescription), and [`HKContactsPrescription`](https://developer.apple.com/documentation/healthkit/hkcontactsprescription) samples. You can also read attachments from [`HKClinicalTypeIdentifierClinicalNoteRecord`](https://developer.apple.com/documentation/healthkit/hkclinicaltypeidentifier/clinicalnoterecord) samples.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An HKAttachment represents a file attachment stored in the HealthKit database.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAttachment;

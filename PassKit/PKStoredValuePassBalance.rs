@@ -6,22 +6,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct?language=objc)
+/// The type of value that the balance represents, such as money or points.
 // NS_TYPED_ENUM
 pub type PKStoredValuePassBalanceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct/cash?language=objc)
+    /// An identifier indicating a balance that represents money.
     pub static PKStoredValuePassBalanceTypeCash: &'static PKStoredValuePassBalanceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct/loyaltypoints?language=objc)
+    /// An identifier indicating a balance that represents points.
     pub static PKStoredValuePassBalanceTypeLoyaltyPoints: &'static PKStoredValuePassBalanceType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance?language=objc)
+    /// An object that represents a balance that’s available for transactions, such as points or money.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A stored balance of type of [`PKStoredValuePassBalanceTypeCash`](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct/cash) requires a valid currency code.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStoredValuePassBalance;

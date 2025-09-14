@@ -16,7 +16,66 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkitui/hkactivityringview?language=objc)
+    /// A view that uses the Move, Exercise, and Stand activity rings to display data from a HealthKit activity summary object.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`HKActivityRingView`](https://developer.apple.com/documentation/healthkitui/hkactivityringview) to display data from an [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) object. For example, the following image shows how the rings can display a summary view of a person’s activity.
+    ///
+    ///
+    /// ![Two partially filled and one completely filled colored concentric rings on a black background.](https://docs-assets.developer.apple.com/published/60e9379d733139d73231b39c9f0d2f7a/media-1965751%402x.png)
+    ///
+    ///
+    /// To display activity summary data from the HealthKit store, use an [`HKActivitySummaryQuery`](https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery) object. You can also instantiate and display your own [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects, as needed.
+    ///
+    /// The activity ring view always appears as a black rectangle with colored concentric rings. The rings are centered in the view and are sized to fit the available space.
+    ///
+    ///
+    /// ![Two partially filled and one completely filled colored concentric rings centered on a black rectangle background.](https://docs-assets.developer.apple.com/published/97cdf7aa33990bed4580712ac373b83d/media-1965753%402x.png)
+    ///
+    ///
+    /// The activity ring view displays different rings depending on the properties defined in the ring view’s [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) property. When the view’s [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) has [`activityMoveMode`](https://developer.apple.com/documentation/healthkit/hkactivitymovemodeobject/activitymovemode) set to [`appleMoveTime`](https://developer.apple.com/documentation/healthkit/hkactivitysummary/applemovetime) and `nil` values for [`appleExerciseTimeGoal`](https://developer.apple.com/documentation/healthkit/hkactivitysummary/appleexercisetimegoal) and [`appleStandHoursGoal`](https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhoursgoal) the ring only displays the red Move ring. Otherwise, it displays the Move, Exercise, and Stand activity as red, green, and blue concentric rings. Summary data from the HealthKit store only displays the Move ring when the person hasn’t paired an Apple Watch.
+    ///
+    /// The rings can display as either empty or with a dot at the top of the ring to display a lack of data. Empty rings indicate that the activity summary is missing, and a dot at the top indicates that the activity summary’s values are set to zero.
+    ///
+    /// If the ring has a `nil`-valued `activitySummary` quantity properties, the rings appear empty. Use this to indicate that there is no summary data available for the specified day. For example, dates in the future.
+    ///
+    ///
+    /// ![Three dimly colored concentric rings.](https://docs-assets.developer.apple.com/published/ebb6a23c57b8cda0d1d936cd20f1f006/media-2556410%402x.png)
+    ///
+    ///
+    /// If the summary has zero-valued quantities set for its value properties, the ring displays a dot at the top of the ring. Use this to indicate that the person hasn’t burned any active calories, exercised, or earned any stand hours for the specified day.
+    ///
+    ///
+    /// ![Three dimly colored concentric rings with a bright dot at the top of each ring.](https://docs-assets.developer.apple.com/published/b5a03572b8c7cd65ea885c5b60a61cd1/media-2556419%402x.png)
+    ///
+    ///
+    /// To display data for a ring, the [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) object must have a non-`nil` quantity for both the corresponding value property and the goal property.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Ring" }] }], [Paragraph { inline_content: [Text { text: "Value property" }] }], [Paragraph { inline_content: [Text { text: "Goal property" }] }]], [[Paragraph { inline_content: [Text { text: "Move" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/activeEnergyBurned", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Exercise" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/appleExerciseTime", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/appleExerciseTimeGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Stand" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/appleStandHours", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/appleStandHoursGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// Move only ring properties:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Ring" }] }], [Paragraph { inline_content: [Text { text: "Value property" }] }], [Paragraph { inline_content: [Text { text: "Goal property" }] }]], [[Paragraph { inline_content: [Text { text: "Move" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/appleMoveTime", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " | " }, Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/activeEnergyBurned", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/appleMoveTimeGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " | " }, Reference { identifier: "doc://com.apple.healthkit/documentation/HealthKit/HKActivitySummary/activeEnergyBurnedGoal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// The activity ring view colors a percentage of each ring based on these properties, as shown here:
+    ///
+    /// ```objc
+    /// ring percent = value property quantity / goal property quantity
+    /// ```
+    ///
+    ///
+    /// ![One partially filled colored concentric ring on a black background.](https://docs-assets.developer.apple.com/published/a0b84a8048ef6af95783cc6d2bc113a8/single-ring%402x.png)
+    ///
+    ///
+    /// The following code snippet shows how to manually display only the Move ring:
+    ///
+    /// ```swift
+    /// let moveOnlySummary = HKActivitySummary()
+    /// moveOnlySummary.activityMoveMode = .appleMoveTime
+    /// moveOnlySummary.appleMoveTime = HKQuantity(unit: .minute(), doubleValue: 60.0)
+    /// moveOnlySummary.appleMoveTimeGoal = HKQuantity(unit: .minute(), doubleValue: 90.0)
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivityRingView;

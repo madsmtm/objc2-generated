@@ -10,6 +10,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Filter types available to use with the filter type property.
 /// Filter types available to use with AVAudioUnitEQ.
 ///
 /// Depending on the filter type, a combination of one or all of the filter parameters defined
@@ -58,44 +59,108 @@ use crate::*;
 /// AVAudioUnitEQFilterTypeResonantHighShelf
 /// High shelf filter with resonance support (via bandwidth parameter)
 /// Required parameters: frequency (center), bandwidth, gain
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioUnitEQFilterType(pub NSInteger);
 impl AVAudioUnitEQFilterType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/parametric?language=objc)
+    /// A type that represents a parametric filter that derives from a Butterworth analog prototype.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center), [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth), and [`gain`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/gain).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeParametric")]
     pub const Parametric: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/lowpass?language=objc)
+    /// A type that represents a simple Butterworth second-order low-pass filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameter for this type is [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (`-3 dB` cutoff at specified frequency).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeLowPass")]
     pub const LowPass: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/highpass?language=objc)
+    /// A type that represents a simple Butterworth second-order high-pass filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type is [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (`-3 dB` cutoff at specified frequency).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeHighPass")]
     pub const HighPass: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonantlowpass?language=objc)
+    /// A type that represents a low-pass filter with resonance support using the bandwidth parameter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (`-3 dB` cutoff at specified frequency) and [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantLowPass")]
     pub const ResonantLowPass: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonanthighpass?language=objc)
+    /// A type that represents a high-pass filter with resonance support using the bandwidth parameter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (`-3 dB` cutoff at specified frequency) and [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantHighPass")]
     pub const ResonantHighPass: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/bandpass?language=objc)
+    /// A type that represents a bandpass filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center) and [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeBandPass")]
     pub const BandPass: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/bandstop?language=objc)
+    /// A type that represents a band-stop filter, also known as a notch filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center) and [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeBandStop")]
     pub const BandStop: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/lowshelf?language=objc)
+    /// A type that represents a low-shelf filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center) and [`gain`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/gain).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeLowShelf")]
     pub const LowShelf: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/highshelf?language=objc)
+    /// A type that represents a high-shelf filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center) and [`gain`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/gain).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeHighShelf")]
     pub const HighShelf: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonantlowshelf?language=objc)
+    /// A type that represents a low-shelf filter with resonance support using the bandwidth parameter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center), [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth), and [`gain`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/gain).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantLowShelf")]
     pub const ResonantLowShelf: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfiltertype/resonanthighshelf?language=objc)
+    /// A type that represents a high-shelf filter with resonance support using the bandwidth parameter.
+    ///
+    /// ## Discussion
+    ///
+    /// The necessary parameters for this type are [`frequency`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/frequency) (center), [`bandwidth`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/bandwidth), and [`gain`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters/gain).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitEQFilterTypeResonantHighShelf")]
     pub const ResonantHighShelf: Self = Self(10);
 }
@@ -109,12 +174,23 @@ unsafe impl RefEncode for AVAudioUnitEQFilterType {
 }
 
 extern_class!(
+    /// An object that encapsulates the parameters that the equalizer uses.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Don’t create an instance of the `AVAudioUnitEQFilterParameters` class directly. Use the array that returns from the [`bands`](https://developer.apple.com/documentation/avfaudio/avaudiouniteq/bands) property of [`AVAudioUnitEQ`](https://developer.apple.com/documentation/avfaudio/avaudiouniteq).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Filter parameters used by AVAudioUnitEQ.
     ///
     /// A standalone instance of AVAudioUnitEQFilterParameters cannot be created. Only an instance
     /// vended out by a source object (e.g. AVAudioUnitEQ) can be used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioUnitEQFilterParameters;
@@ -206,9 +282,14 @@ impl AVAudioUnitEQFilterParameters {
 }
 
 extern_class!(
-    /// An AVAudioUnitEffect that implements a Multi-Band Equalizer.
+    /// An object that implements a multiband equalizer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteq?language=objc)
+    /// ## Overview
+    ///
+    /// The [`AVAudioUnitEQFilterParameters`](https://developer.apple.com/documentation/avfaudio/avaudiouniteqfilterparameters) class encapsulates the filter parameters that the [`bands`](https://developer.apple.com/documentation/avfaudio/avaudiouniteq/bands) property array returns.
+    ///
+    ///
+    /// An AVAudioUnitEffect that implements a Multi-Band Equalizer.
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

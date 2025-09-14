@@ -9,40 +9,156 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype?language=objc)
+/// Button types that you can specify using [`setButtonType:`](https://developer.apple.com/documentation/appkit/nsbuttoncell/setbuttontype(_:)).
+///
+/// ## Overview
+///
+/// For examples of how these types behave, see [Button Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Button/Button.html#//apple_ref/doc/uid/10000019i).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSButtonType(pub NSUInteger);
 impl NSButtonType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/momentarylight?language=objc)
+    /// A button that displays a highlight when the user clicks it and returns to its normal state when the user releases it.
+    ///
+    /// ## Discussion
+    ///
+    /// When the value of [`highlighted`](https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted) is [`true`](https://developer.apple.com/documentation/swift/true), the button provides a visual indication of the highlight in its drawing. It might accomplish this indication by modifying the appearance of its content, its bezel, or both.
+    ///
+    /// This type of button is best for triggering actions because it doesn’t show its [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state); it always displays its normal image or title.
+    ///
+    /// This option corresponds to the Momentary Light type in Interface Builder’s Attributes inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeMomentaryLight")]
     pub const MomentaryLight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/pushonpushoff?language=objc)
+    /// A button that switches between on and off states with each click.
+    ///
+    /// ## Discussion
+    ///
+    /// When [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state) is [`NSControlStateValueOn`](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/on), the button appears illuminated. If the button has borders, it may also appear recessed. A second click returns the button’s [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state) to [`NSControlStateValueOff`](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/off).
+    ///
+    /// This option corresponds to the Push On Push Off type in Interface Builder’s Attributes Inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypePushOnPushOff")]
     pub const PushOnPushOff: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/toggle?language=objc)
+    /// A button that switches between its normal and alternate content on each click.
+    ///
+    /// ## Discussion
+    ///
+    /// When the value of [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state) is [`NSControlStateValueOff`](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/off), the button displays its normal content, such as its [`image`](https://developer.apple.com/documentation/appkit/nsbutton/image) or [`title`](https://developer.apple.com/documentation/appkit/nsbutton/title). When [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state) has any other value, the button displays its alternate content, such as its [`alternateImage`](https://developer.apple.com/documentation/appkit/nsbuttoncell/alternateimage) or [`alternateTitle`](https://developer.apple.com/documentation/appkit/nsbutton/alternatetitle) instead. If the button has no alternate content to display, it may instead draw its normal content using an illuminated effect.
+    ///
+    /// This type of button is best for controlling a Boolean state within your application, while also providing a visual indication of that state.
+    ///
+    /// This option corresponds to the Toggle type in Interface Builder’s Attributes Inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeToggle")]
     pub const Toggle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/switch?language=objc)
+    /// A standard checkbox button.
+    ///
+    /// ## Discussion
+    ///
+    /// A switch button provides the same toggling behavior as a [`NSButtonTypeToggle`](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/toggle) button. In addition to configuring that behavior, this button type configures [`bordered`](https://developer.apple.com/documentation/appkit/nsbutton/isbordered) to [`false`](https://developer.apple.com/documentation/swift/false) and provides a standard checkbox image.
+    ///
+    /// Checkboxes are ideal for controlling a Boolean state within your application. The mixed state of a checkbox, enabled through the [`allowsMixedState`](https://developer.apple.com/documentation/appkit/nsbutton/allowsmixedstate) property, is useful for summarizing multiple Boolean states of varying values.
+    ///
+    /// This option corresponds to the Switch type in Interface Builder’s Attributes inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeSwitch")]
     pub const Switch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/radio?language=objc)
+    /// A button that displays a single selected value from group of possible choices.
+    ///
+    /// ## Discussion
+    ///
+    /// A radio button is similar to a [`NSButtonTypeSwitch`](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/switch) button, but it constrains the selection to a single button within a group.
+    ///
+    /// Radio buttons are ideal for choosing one value from a small number of options.
+    ///
+    /// This option corresponds to the Radio type in Interface Builder’s Attributes Inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeRadio")]
     pub const Radio: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/momentarychange?language=objc)
+    /// A button that displays its alternate content when clicked and returns to its normal content when the user releases it.
+    ///
+    /// ## Discussion
+    ///
+    /// When the value of [`highlighted`](https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted) is [`true`](https://developer.apple.com/documentation/swift/true), the button displays its alternate content (for example, its [`alternateImage`](https://developer.apple.com/documentation/appkit/nsbutton/alternateimage) or [`alternateTitle`](https://developer.apple.com/documentation/appkit/nsbutton/alternatetitle)). If the button has no alternate content to display, it may instead draw its normal content using an illuminated effect. When [`highlighted`](https://developer.apple.com/documentation/appkit/nscontrol/ishighlighted) is [`false`](https://developer.apple.com/documentation/swift/false), the button displays its normal content (for example, its [`image`](https://developer.apple.com/documentation/appkit/nsbutton/image) or [`title`](https://developer.apple.com/documentation/appkit/nsbutton/title)).
+    ///
+    /// This option corresponds to the Momentary Change type in Interface Builder’s Attributes inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeMomentaryChange")]
     pub const MomentaryChange: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/onoff?language=objc)
+    /// A button that switches between a normal and emphasized bezel on each click.
+    ///
+    /// ## Discussion
+    ///
+    /// When the value of [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state) is [`NSControlStateValueOff`](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/off), the button displays its normal bezel. When [`state`](https://developer.apple.com/documentation/appkit/nsbutton/state) has any other value, the button displays an emphasized variant of its bezel. Buttons of this type never display alternate content.
+    ///
+    /// This option corresponds to the On Off type in Interface Builder’s Attributes Inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeOnOff")]
     pub const OnOff: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/momentarypushin?language=objc)
+    /// A button that illuminates when the user clicks it.
+    ///
+    /// ## Discussion
+    ///
+    /// This button type is the default.
+    ///
+    /// This type of button is best for simply triggering actions, as it doesn’t show its state; it always displays its normal image or title.
+    ///
+    /// Most buttons in macOS, such as the Cancel button in many dialogs, are momentary light buttons. If a user clicks one, it highlights briefly, triggers an action, and returns to its original state.
+    ///
+    /// This option corresponds to the Momentary Push In type in Interface Builder’s Attributes Inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeMomentaryPushIn")]
     pub const MomentaryPushIn: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/accelerator?language=objc)
+    /// A button that sends repeating actions as pressure changes occur.
+    ///
+    /// ## Discussion
+    ///
+    /// A media player app, for example, might implement an accelerator button to allow a user to adjust the speed of fast forward or rewind with variable pressure. In this case, the button sends actions to the app to indicate when pressure on the button changes. The app then determines the amount of current pressure, and adjusts the playback speed accordingly.
+    ///
+    /// An accelerator button sends an action when the user first clicks the button and continues sending actions until the user releases pressure on the button.
+    ///
+    /// For accelerator buttons with [`continuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous) set to [`true`](https://developer.apple.com/documentation/swift/true), the interval between repeating actions automatically adjusts to match the pressure the user applies. Use [`setPeriodicDelay:interval:`](https://developer.apple.com/documentation/appkit/nsbutton/setperiodicdelay(_:interval:)) to configure the interval. As the user presses harder, the button sends actions more rapidly. As the user reduces pressure on the button, actions slow down. As such, the user has direct control over how fast the button sends actions. Typically, you use continuous accelerator buttons for continuously advancing through a series of discrete objects, such as photos in an album or pages in a book.
+    ///
+    /// Noncontinuous accelerator buttons send actions whenever a change in force occurs. Typically, you use noncontinuous accelerator buttons to adjust the speed of navigation based on pressure, such as playback speed in a media player. After the user releases the button, the button sends a final action.
+    ///
+    /// For buttons that aren’t accelerator buttons, the value of the button matches its state. For accelerator buttons, the value of the button is distinct from its state and indicates pressure level. When the user force clicks the button, [`doubleValue`](https://developer.apple.com/documentation/appkit/nscontrol/doublevalue) is a measurement of pressure between `1.0` and approaching `2.0`. When the user releases the button, `doubleValue` is `0.0`.
+    ///
+    /// An accelerator button appears like any other button and doesn’t provide any visual indication that it supports variable pressure. To provide this type of visual indication, you can apply a custom [`image`](https://developer.apple.com/documentation/appkit/nsbutton/image) to the button.
+    ///
+    /// On a system that doesn’t support pressure sensitivity, an accelerator button behaves like a button of type [`NSMomentaryLightButton`](https://developer.apple.com/documentation/appkit/nsmomentarylightbutton).
+    ///
+    /// This option corresponds to the Accelerator type in Interface Builder’s Attributes inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeAccelerator")]
     pub const Accelerator: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/multilevelaccelerator?language=objc)
+    /// A button that allows for a configurable number of stepped pressure levels and provides tactile feedback as the user reaches each step.
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`maxAcceleratorLevel`](https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel) to configure the number of pressure levels. For other types of buttons, this property value defaults to `1`. For multilevel accelerator buttons, this property value defaults to `2`, and you can set it to a value between `1` and `5`.
+    ///
+    /// Like a normal accelerator button, the button sends an action when the user first clicks it. If [`continuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous) is [`true`](https://developer.apple.com/documentation/swift/true), while the user clicks the button, it then sends actions at repeating intervals that are based on pressure. If [`continuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous) is [`false`](https://developer.apple.com/documentation/swift/false), the button sends actions as the user presses harder and reaches different levels of pressure. The button sends a final action when the user releases the button.
+    ///
+    /// The value of a multilevel accelerator button is distinct from its state. The [`integerValue`](https://developer.apple.com/documentation/appkit/nscontrol/integervalue) of a multilevel button is `0` when the user doesn’t click it or `1` through `5` when the user clicks it, depending on the level of pressure. If you set the value of a multilevel accelerator button explicitly, the button doesn’t send an action until pressure reaches the level you specify.
+    ///
+    /// On a system that doesn’t support pressure sensitivity, a multilevel accelerator button’s value is always `1` when the user clicks it.
+    ///
+    /// This option corresponds to the Multi Level Accelerator type in Interface Builder’s Attributes inspector.
+    ///
+    ///
     #[doc(alias = "NSButtonTypeMultiLevelAccelerator")]
     pub const MultiLevelAccelerator: Self = Self(9);
 }
@@ -55,128 +171,292 @@ unsafe impl RefEncode for NSButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum?language=objc)
+/// The set of bezel styles to style buttons in your app.
+///
+/// ## Overview
+///
+/// For design guidance on buttons, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBezelStyle(pub NSUInteger);
 impl NSBezelStyle {
-    /// The appearance of this bezel style is automatically determined based on the button's contents and position within the window. This bezel style is the default for all button initializers.
+    /// The default button style based on the button’s contents and position within the window.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/automatic?language=objc)
+    /// ## Discussion
+    ///
+    /// The system picks which style of button to display automatically based on context and content. This ensures the button displays correctly in toolbars, forms, and touch bar.
+    ///
+    /// In a normal window context, the system picks the [`NSBezelStylePush`](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/push) button style. If the system detects that the button has a title that spans multiple lines, or the image content is too tall, it uses [`NSBezelStyleFlexiblePush`](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/flexiblepush).
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// The appearance of this bezel style is automatically determined based on the button's contents and position within the window. This bezel style is the default for all button initializers.
     #[doc(alias = "NSBezelStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// The standard system push button style.
+    /// A standard push style button.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/push?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style when you want the default button style.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create a push style button.", "let cancelButton = NSButton()", "cancelButton.title = \"Cancel\"", "cancelButton.bezelStyle = .push", "", "// Create a push style button.", "let saveButton = NSButton()", "saveButton.title = \"Save\"", "saveButton.bezelStyle = .push", "// Make this the default button.", "saveButton.keyEquivalent = \"\\r\""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create a push style button.", "NSButton *cancelButton = [[NSButton alloc] init];", "cancelButton.title = @\"Cancel\";", "cancelButton.bezelStyle = NSBezelStylePush;", "", "// Create a push style button.", "NSButton *saveButton = [[NSButton alloc] init];", "saveButton.title = @\"Save\";", "saveButton.bezelStyle = NSBezelStylePush;", "// Make this the default button.", "saveButton.keyEquivalent = @\"/r\";"], metadata: None }] }] })
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/9e1df515214c8ba2decdb203dd76777b/media-4307817~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/aeee3b3a22ac4d4c8885a95f8826a6d5/media-4307817%402x.png 2x" />
+    ///     <img alt="A screenshot of two push buttons side-by-side. The  button on the left is titled cancel. The  button on the right is active and is titled save." src="https://docs-assets.developer.apple.com/published/aeee3b3a22ac4d4c8885a95f8826a6d5/media-4307817%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// The standard system push button style.
     #[doc(alias = "NSBezelStylePush")]
     pub const Push: Self = Self(1);
-    /// A flexible-height variant of NSBezelStylePush.
+    /// A push button with a flexible height to accommodate longer text labels or an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/flexiblepush?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style of button when you need to accommodate tall or variable height content.
+    ///
+    /// Tall or variable height content includes text with newlines (`n`) as well as buttons you constrain the width of through Auto Layout. This style automatically wraps text based on button width and available space.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"Flexible\\n push\"", "button.bezelStyle = .flexiblePush"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"Flexible\\n push\";", "button.bezelStyle = NSBezelStyleFlexiblePush;"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A flexible-height variant of NSBezelStylePush.
     #[doc(alias = "NSBezelStyleFlexiblePush")]
     pub const FlexiblePush: Self = Self(2);
-    /// An unbezeled button with a disclosure triangle.
+    /// A bezel style button for use with a disclosure triangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/disclosure?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style of button when you want to reveal more information. When you use this bezel style along with the [`NSButtonTypePushOnPushOff`](https://developer.apple.com/documentation/appkit/nsbutton/buttontype/pushonpushoff) button type, the button points it’s disclosure triangle to the right representing a closed state. When someone clicks the button the triangle animates down representing an open state.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"\"", "button.setButtonType(.pushOnPushOff)", "button.bezelStyle = .disclosure"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"\";", "button.bezelStyle = NSBezelStyleDisclosure;", "[button setButtonType:NSButtonTypePushOnPushOff];"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// An unbezeled button with a disclosure triangle.
     #[doc(alias = "NSBezelStyleDisclosure")]
     pub const Disclosure: Self = Self(5);
-    /// A button with a circular bezel suitable for a small icon or single character.
+    /// A round button that can contain either a single character or an icon.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/circular?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this button type to display either a single character:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"C\"", "button.bezelStyle = .circular"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"C\";", "button.bezelStyle = NSBezelStyleCircular;"], metadata: None }] }] })
+    /// Or a small icon.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.image = NSImage(systemSymbolName: \"star\", accessibilityDescription: \"\")", "button.bezelStyle = .circular"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.image = [NSImage imageWithSystemSymbolName:@\"star\" accessibilityDescription:nil];", "button.bezelStyle = NSBezelStyleCircular;"], metadata: None }] }] })
+    /// Use system images such as [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols) for best results as they automatically scale to fit the button. Large images don’t clip when they display with this style. Instead, they shrink to fit the button’s bounds.
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A button with a circular bezel suitable for a small icon or single character.
     #[doc(alias = "NSBezelStyleCircular")]
     pub const Circular: Self = Self(7);
-    /// A circular button with a question mark providing the standard Help button appearance.
+    /// A round button with a question mark, providing the standard help button look.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/helpbutton?language=objc)
+    /// ## Discussion
+    ///
+    /// A help button appears within a view and opens app-specific help documentation.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/387a91780bed251250055ed55071c0e6/media-4306763~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/9a92b8ea6d213e3336ff2b162b87043e/media-4306763%402x.png 2x" />
+    ///     <img alt="A screenshot displaying a voice over dialog. The main content of the dialog explains what voice over is. In the lower right corner of the dialog there is a help button." src="https://docs-assets.developer.apple.com/published/9a92b8ea6d213e3336ff2b162b87043e/media-4306763%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// These are circular, consistently sized buttons that contain a question mark.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"\"", "button.bezelStyle = .helpButton"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"\";", "button.bezelStyle = NSBezelStyleHelpButton;"], metadata: None }] }] })
+    /// Use the system-provided help button to display your help documentation. People are familiar with the appearance of the standard help button and know that choosing it opens help content.
+    ///
+    /// Include no more than one help button per window. Multiple help buttons in the same context make it hard for people to predict the result of clicking one.
+    ///
+    /// Avoid displaying text that introduces a help button. People know what a help button does, so they don’t need additional descriptive text.
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A circular button with a question mark providing the standard Help button appearance.
     #[doc(alias = "NSBezelStyleHelpButton")]
     pub const HelpButton: Self = Self(9);
-    /// A button with squared edges and flexible height.
+    /// A simple square bezel style that can scale to any size.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/smallsquare?language=objc)
+    /// ## Discussion
+    ///
+    /// A square style button (sometimes referred to as a “gradient button”) initiates an action related to a view, like adding or removing rows in a table.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e4166bc736dd8a307a1e7e1255d034b9/media-4306762~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/ed7bd2e3f2f8b65aac8412180d3abf0b/media-4306762%402x.png 2x" />
+    ///     <img alt="A screenshot of the open at login dialog. The dialog contains a title and message at the top, with a table underneath, and two square bezel style buttons in the lower left hand corner or a plus and minus sign beside each other." src="https://docs-assets.developer.apple.com/published/ed7bd2e3f2f8b65aac8412180d3abf0b/media-4306762%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// These small square buttons contain symbols or interface icons — not text — and you can configure them to behave like push buttons, toggles, or pop-up buttons. The buttons appear near their associated view — usually within or beneath it — so people know which view the buttons affect.
+    ///
+    /// Prefer using a symbol in a gradient button. [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols) provides a wide range of symbols that automatically receive appropriate coloring in their default state and in response to user interaction.
+    ///
+    /// Avoid using labels to introduce gradient buttons. Because gradient buttons are closely connected with a specific view, their purpose is generally clear without the need for descriptive text.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.image = NSImage(systemSymbolName: \"plus\", accessibilityDescription: \"\")", "button.bezelStyle = .smallSquare"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.image = [NSImage imageWithSystemSymbolName:@\"plus\" accessibilityDescription:nil];", "button.bezelStyle = NSBezelStyleSmallSquare;"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A button with squared edges and flexible height.
     #[doc(alias = "NSBezelStyleSmallSquare")]
     pub const SmallSquare: Self = Self(10);
-    /// A button style that is appropriate for use in a toolbar item.
+    /// A button style that’s appropriate for a toolbar item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/toolbar?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this case for displaying a button in an [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"Toolbar\"", "button.bezelStyle = .toolbar"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"Toolbar\";", "button.bezelStyle = NSBezelStyleToolbar;"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A button style that is appropriate for use in a toolbar item.
     #[doc(alias = "NSBezelStyleToolbar")]
     pub const Toolbar: Self = Self(11);
-    /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons that perform an action or for pop-up buttons.
+    /// A button style that you use for extra actions in an accessory toolbar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/accessorybaraction?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style when you need to perform an action on a button that appears in an accessory or scope bar.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"Accessory bar action\"", "button.bezelStyle = .accessoryBarAction"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"Accessory bar action\";", "button.bezelStyle = NSBezelStyleAccessoryBarAction;"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons that perform an action or for pop-up buttons.
     #[doc(alias = "NSBezelStyleAccessoryBarAction")]
     pub const AccessoryBarAction: Self = Self(12);
-    /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons with togglable state.
+    /// A button style that’s typically used in the context of an accessory toolbar for buttons that narrow the focus of a search or other operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/accessorybar?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style of button to display some kind of toggle or selection state, like a favorites bar or search scope.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create an accessory bar style button.", "let rankButton = NSButton()", "rankButton.title = \"Search Rank\"", "rankButton.bezelStyle = .accessoryBar", "rankButton.setButtonType(.pushOnPushOff)", "", "// Create an accessory bar style button.", "let orderButton = NSButton()", "orderButton.title = \"Page Order\"", "orderButton.bezelStyle = .accessoryBar", "orderButton.setButtonType(.pushOnPushOff)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create an accessory bar style button.", "NSButton *rankButton = [[NSButton alloc] init];", "rankButton.title = @\"Search Rank\";", "rankButton.bezelStyle = NSBezelStyleAccessoryBar;", "[rankButton setButtonType:NSButtonTypePushOnPushOff];", "", "// Create an accessory bar style button.", "NSButton *orderButton = [[NSButton alloc] init];", "orderButton.title = @\"Page Order\";", "orderButton.bezelStyle = NSBezelStyleAccessoryBar;", "[orderButton setButtonType:NSButtonTypePushOnPushOff];"], metadata: None }] }] })
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/45dcea3534d5f22b69e05ba5fa023b96/media-4307818~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/2b28d4da50ab26b6830f3428ceb3c898/media-4307818%402x.png 2x" />
+    ///     <img alt="A screenshot of a label, and two accessory bar buttons that display side-by-side. The label on the left says sort by. The buttons that follow on the right side say search rank and page order." src="https://docs-assets.developer.apple.com/published/45dcea3534d5f22b69e05ba5fa023b96/media-4307818~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A bezel style that is suitable for accessory and scope bars. This style is typically used for buttons with togglable state.
     #[doc(alias = "NSBezelStyleAccessoryBar")]
     pub const AccessoryBar: Self = Self(13);
-    /// A bezeled variant of NSBezelStyleDisclosure.
+    /// A bezel style push button with a disclosure triangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/pushdisclosure?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style of button when you want your button to look like a disclosure button, commonly seen in toolbars on macOS.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"\"", "button.bezelStyle = .pushDisclosure"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"\";", "button.bezelStyle = NSBezelStylePushDisclosure;"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A bezeled variant of NSBezelStyleDisclosure.
     #[doc(alias = "NSBezelStylePushDisclosure")]
     pub const PushDisclosure: Self = Self(14);
-    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
+    /// A button style suitable for displaying additional information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/badge?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style of button when you need to provide additional information about something. For example, the count of an item.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let button = NSButton()", "button.title = \"Badge\"", "button.bezelStyle = .badge"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSButton *button = [[NSButton alloc] init];", "button.title = @\"Badge\";", "button.bezelStyle = NSBezelStyleBadge;"], metadata: None }] }] })
+    /// For design guidance, see [Human Interface Guidelines > Buttons](https://developer.apple.com/design/human-interface-guidelines/buttons).
+    ///
+    ///
+    /// A bezel style that is typically used in table rows to display information about the row, such as a count.
     #[doc(alias = "NSBezelStyleBadge")]
     pub const Badge: Self = Self(15);
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/glass?language=objc)
+    /// A bezel style with a glass effect
     #[doc(alias = "NSBezelStyleGlass")]
     pub const Glass: Self = Self(16);
+    /// A rectangular button with no shadow, so it can abut the cells without overlapping shadows.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/shadowlesssquare?language=objc)
     #[doc(alias = "NSBezelStyleShadowlessSquare")]
     #[deprecated]
     pub const ShadowlessSquare: Self = Self(6);
+    /// A bezel style appropriate for use with textured (metal) windows.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/texturedsquare?language=objc)
     #[doc(alias = "NSBezelStyleTexturedSquare")]
     #[deprecated]
     pub const TexturedSquare: Self = Self(8);
-    /// A bezel style with a glass effect
+    /// A rounded rectangle button, designed for text.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/rounded?language=objc)
+    /// ## Discussion
+    ///
+    /// Rounded buttons are common within the body of a window or alert. To configure a button as the default button, set the [`keyEquivalent`](https://developer.apple.com/documentation/appkit/nsbutton/keyequivalent) property to the carriage return character (`\r`, ASCII `0xd`). The system draws the default button prominently using the accent color to indicate that the user can press the return key to invoke the button’s action.
+    ///
+    ///
+    /// A bezel style with a glass effect
     #[doc(alias = "NSBezelStyleRounded")]
     #[deprecated]
     pub const Rounded: Self = Self(NSBezelStyle::Push.0);
+    /// A rectangular button with a two-point border, designed for icons.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/regularsquare?language=objc)
     #[doc(alias = "NSBezelStyleRegularSquare")]
     #[deprecated]
     pub const RegularSquare: Self = Self(NSBezelStyle::FlexiblePush.0);
+    /// A bezel style appropriate for use in the toolbar or title bar regions of a window.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/texturedrounded?language=objc)
     #[doc(alias = "NSBezelStyleTexturedRounded")]
     #[deprecated]
     pub const TexturedRounded: Self = Self(NSBezelStyle::Toolbar.0);
+    /// A bezel style appropriate for use as an action or auxiliary button in scope bars and title bar accessories.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/roundrect?language=objc)
     #[doc(alias = "NSBezelStyleRoundRect")]
     #[deprecated]
     pub const RoundRect: Self = Self(NSBezelStyle::AccessoryBarAction.0);
+    /// A bezel style appropriate for use in scope bars and title bar accessories, similar to the bookmarks bar in Safari.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/recessed?language=objc)
     #[doc(alias = "NSBezelStyleRecessed")]
     #[deprecated]
     pub const Recessed: Self = Self(NSBezelStyle::AccessoryBar.0);
+    /// A bezel style for use with a vertically expanding and collapsing disclosure button.
     /// A bezel style with a glass effect
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/roundeddisclosure?language=objc)
     #[doc(alias = "NSBezelStyleRoundedDisclosure")]
     #[deprecated]
     pub const RoundedDisclosure: Self = Self(NSBezelStyle::PushDisclosure.0);
-    /// A bezel style with a glass effect
+    /// A button that has a solid round-rectangle border background.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum/inline?language=objc)
+    /// ## Discussion
+    ///
+    /// Common uses of this button style include:
+    ///
+    /// - An inline button in a table view, such as a stop progress button in a download panel
+    ///
+    /// - An “unread” indicator in an outline view
+    ///
+    /// Use text for an unread indicator and a template image for other buttons.
+    ///
+    ///
+    /// A bezel style with a glass effect
     #[doc(alias = "NSBezelStyleInline")]
     #[deprecated]
     pub const Inline: Self = Self(NSBezelStyle::Badge.0);
@@ -191,7 +471,23 @@ unsafe impl RefEncode for NSBezelStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttoncell?language=objc)
+    /// An object that defines the user interface of a button or other clickable region of a view.
+    ///
+    /// ## Overview
+    ///
+    /// Setting the integer, float, double, or object value of an `NSButtonCell` object results in a call to [`state`](https://developer.apple.com/documentation/appkit/nscell/state) with the value converted to integer. In the case of [`objectValue`](https://developer.apple.com/documentation/appkit/nscell/objectvalue), `nil` is equivalent to `0`, and a non-`nil` object that doesn’t respond to [`intValue`](https://developer.apple.com/documentation/appkit/nscell/intvalue) sets the state to `1`. Otherwise, the state is set to the object’s [`intValue`](https://developer.apple.com/documentation/appkit/nscell/intvalue). Similarly, for most button types, querying the integer, float, double, or object value of an `NSButtonCell` returns the current state in the requested representation. In the case of [`objectValue`](https://developer.apple.com/documentation/appkit/nscell/objectvalue), this is an `NSNumber` containing [`true`](https://developer.apple.com/documentation/swift/true) for on, [`false`](https://developer.apple.com/documentation/swift/false) for off, and integer value `-1` for the mixed state. For accelerator buttons (type [`NSAcceleratorButton`](https://developer.apple.com/documentation/appkit/nsacceleratorbutton) or [`NSMultiLevelAcceleratorButton`](https://developer.apple.com/documentation/appkit/nsmultilevelacceleratorbutton)) on systems that support pressure sensitivity, querying [`doubleValue`](https://developer.apple.com/documentation/appkit/nscontrol/doublevalue) returns the amount of pressure applied while pressing the button.
+    ///
+    /// The configuration of an [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell) object controls how the button object appears and behaves, but it’s [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton) that sends a message when the control is clicked. For more information on the behavior of [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell), see the [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton) and [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) class specifications, and [Button Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Button/Button.html#//apple_ref/doc/uid/10000019i).
+    ///
+    /// ### Exceptions
+    ///
+    /// In its implementation of the [`compare:`](https://developer.apple.com/documentation/appkit/nscell/compare(_:)) method (declared in `NSCell`), `NSButtonCell` raises an `NSBadComparisonException` if the `otherCell` argument is not of the `NSButtonCell` class.
+    ///
+    /// ### Fonts
+    ///
+    /// Setting the [`font`](https://developer.apple.com/documentation/appkit/nscell/font) property does nothing if the button has no title or alternate title. If the button cell has a key equivalent, its font is not changed, but the key equivalent’s font size is changed to match the new title font.
+    ///
+    ///
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -531,30 +827,30 @@ impl NSButtonCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype?language=objc)
+/// Specify the gradients used by the [`gradientType`](https://developer.apple.com/documentation/appkit/nsbuttoncell/gradienttype) property.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGradientType(pub NSUInteger);
 impl NSGradientType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/none?language=objc)
+    /// There is no gradient, so the button looks flat.
     #[doc(alias = "NSGradientNone")]
     #[deprecated]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/concaveweak?language=objc)
+    /// The top-left corner is light gray, and the bottom-right corner is dark gray, so the button appears to be pushed in.
     #[doc(alias = "NSGradientConcaveWeak")]
     #[deprecated]
     pub const ConcaveWeak: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/concavestrong?language=objc)
+    /// As with `NSGradientConcaveWeak`, the top-left corner is light gray, and the bottom-right corner is dark gray, but the difference between the grays is greater, so the appearance of being pushed in is stronger.
     #[doc(alias = "NSGradientConcaveStrong")]
     #[deprecated]
     pub const ConcaveStrong: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/convexweak?language=objc)
+    /// The top-left corner is dark gray, and the bottom-right corner is light gray, so the button appears to be sticking out.
     #[doc(alias = "NSGradientConvexWeak")]
     #[deprecated]
     pub const ConvexWeak: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype/convexstrong?language=objc)
+    /// As with `NSGradientConvexWeak`, the top-left corner is dark gray, and the bottom-right corner is light gray, but the difference between the grays is greater, so the appearance of sticking out is stronger.
     #[doc(alias = "NSGradientConvexStrong")]
     #[deprecated]
     pub const ConvexStrong: Self = Self(4);
@@ -568,118 +864,221 @@ unsafe impl RefEncode for NSGradientType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarylightbutton?language=objc)
+/// When the button is clicked (on state), it appears illuminated. If the button has borders, it may also appear recessed. When the button is released, it returns to its normal (off) state.
+///
+/// ## Discussion
+///
+/// This type of button is best for simply triggering actions because it doesn’t show its state; it always displays its normal image or title. This option is called Momentary Light in Interface Builder’s Button inspector.
+///
+///
 #[deprecated]
 pub static NSMomentaryLightButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspushonpushoffbutton?language=objc)
+/// When the button is clicked (on state), it appears illuminated. If the button has borders, it may also appear recessed. A second click returns it to its normal (off) state.
+///
+/// ## Discussion
+///
+/// This option is called Push On Push Off in Interface Builder’s Button inspector.
+///
+///
 #[deprecated]
 pub static NSPushOnPushOffButton: NSButtonType = NSButtonType(NSButtonType::PushOnPushOff.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstogglebutton?language=objc)
+/// After the first click, the button displays its alternate image or title (on state); a second click returns the button to its normal (off) state.
+///
+/// ## Discussion
+///
+/// This option is called Toggle in Interface Builder’s Button inspector.
+///
+///
 #[deprecated]
 pub static NSToggleButton: NSButtonType = NSButtonType(NSButtonType::Toggle.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsswitchbutton?language=objc)
+/// This style is a variant of `NSToggleButton` that has no border and is typically used to represent a checkbox.
+///
+/// ## Discussion
+///
+/// A checkbox button type is available as an Object Library item in Interface Builder.
+///
+///
 #[deprecated]
 pub static NSSwitchButton: NSButtonType = NSButtonType(NSButtonType::Switch.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsradiobutton?language=objc)
+/// This style is similar to `NSSwitchButton`, but it is used to constrain a selection to a single element from several elements.
+///
+/// ## Discussion
+///
+/// You typically use this type of button in a group formed by an instance of [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix). In Interface Builder, a matrix of this type of button is available as a separate Library item.
+///
+///
 #[deprecated]
 pub static NSRadioButton: NSButtonType = NSButtonType(NSButtonType::Radio.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarychangebutton?language=objc)
+/// When the button is clicked, the alternate (on state) image and alternate title are displayed.
+///
+/// ## Discussion
+///
+/// Otherwise, the normal (off state) image and title are displayed. This option is called Momentary Change in Interface Builder’s Button inspector.
+///
+///
 #[deprecated]
 pub static NSMomentaryChangeButton: NSButtonType = NSButtonType(NSButtonType::MomentaryChange.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonoffbutton?language=objc)
+/// The first click highlights the button; a second click returns it to the normal (unhighlighted) state.
+///
+/// ## Discussion
+///
+/// This option is called On Off in Interface Builder’s Button inspector.
+///
+///
 #[deprecated]
 pub static NSOnOffButton: NSButtonType = NSButtonType(NSButtonType::OnOff.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarypushinbutton?language=objc)
+/// When the user clicks the button (on state), the button appears illuminated.
+///
+/// ## Discussion
+///
+/// This type of button is best for simply triggering actions, as it doesn’t show its state; it always displays its normal image or title. This option is called Momentary Push In in Interface Builder’s Button inspector.
+///
+/// Most buttons in macOS, such as Cancel button in many dialogs, are momentary light buttons. If you click one, it highlights briefly, triggers an action, and returns to its original state.
+///
+/// This button type is the default.
+///
+///
 #[deprecated]
 pub static NSMomentaryPushInButton: NSButtonType = NSButtonType(NSButtonType::MomentaryPushIn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsacceleratorbutton?language=objc)
+/// A button that sends an action when the user first clicks the button and continues sending actions until the user releases pressure entirely.
+///
+/// ## Discussion
+///
+/// On pressure-sensitive systems, such as systems with the Force Touch trackpad, an accelerator button sends repeating actions as pressure changes occur. It stops sending actions when the user releases pressure entirely. A media player app, for example, might implement an accelerator button in order to allow a user to adjust the speed of fast forward or rewind with variable pressure. In this case, the button sends actions to the app to indicate when the user changes pressure on the button. The app then determines the amount of pressure the user is currently applying and adjusts playback speed accordingly.
+///
+/// For continuous accelerator buttons (see [`isContinuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous)), the interval between repeating actions (a rate typically specified with [`setPeriodicDelay(_:interval:)`](https://developer.apple.com/documentation/appkit/nsbutton/setperiodicdelay(_:interval:))) automatically adjusts to match the applied pressure. As the user force clicks (presses harder), the button sends actions more rapidly. As the user reduces pressure on the button, actions slow down. As such, the user has direct control over how fast the button sends actions. Continuous accelerator buttons are intended for continuously advancing through a series of discrete objects, such as photos in an album or pages in a book.
+///
+/// For noncontinuous accelerator buttons, they send actions whenever a change in force occurs. Noncontinuous accelerator buttons are for adjusting the speed of navigation, such as playback speed in a media player, based on pressure. After the user releases the button, the button sends a final action.
+///
+/// For buttons that aren’t accelerator buttons, the value of the button matches its state. For accelerator buttons, the value of the button is distinct from its state and indicates pressure level. While the user force clicks the button, [`doubleValue`](https://developer.apple.com/documentation/appkit/nscontrol/doublevalue) is a measurement of pressure between `1.0` and approaching `2.0`. When the user releases the button, `doubleValue` is `0.0`.
+///
+/// An accelerator button appears like any other button and doesn’t provide any visual indication that it supports variable pressure. To provide this type of visual indication, you can apply a custom [`image`](https://developer.apple.com/documentation/appkit/nsbutton/image) to the button.
+///
+/// On a system that doesn’t support pressure sensitivity, an accelerator button behaves like a button of type [`NSMomentaryLightButton`](https://developer.apple.com/documentation/appkit/nsmomentarylightbutton).
+///
+///
 #[deprecated]
 pub static NSAcceleratorButton: NSButtonType = NSButtonType(NSButtonType::Accelerator.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultilevelacceleratorbutton?language=objc)
+/// A multilevel accelerator button is a variation of a normal accelerator button that allows for a configurable number of stepped pressure levels. As each one is reached, the user receives light tactile feedback and an action is sent.
+///
+/// ## Discussion
+///
+/// The number of pressure levels for a multilevel accelerator button is configured by adjusting the value of the [`maxAcceleratorLevel`](https://developer.apple.com/documentation/appkit/nsbutton/maxacceleratorlevel) property of [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton). For other types of buttons, this property value defaults to `1`. For multilevel accelerator buttons, this property value defaults to `2`, and may be set to a value between `1` and `5`.
+///
+/// Like a normal accelerator button, the button sends an action when the user first clicks it. If configured as continuous (see [`isContinuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous)), while pressed, it then sends actions at repeating intervals that are based on pressure. If not configured as continuous, actions are sent as the user force clicks (presses harder) and reaches different levels of pressure. Once released, a final action is sent.
+///
+/// The value of a multilevel accelerator button is distinct from its state. The [`integerValue`](https://developer.apple.com/documentation/appkit/nscontrol/integervalue) of a multilevel button is `0` when not clicked, or `1` through `5` when clicked, depending on the level of pressure. If the value of a multilevel accelerator button is explicitly set, actions are not sent until pressure reaches the specified level.
+///
+/// On a system that doesn’t support pressure sensitivity, a multilevel accelerator button always has a value of `1` when the user clicks it.
+///
+///
 #[deprecated]
 pub static NSMultiLevelAcceleratorButton: NSButtonType =
     NSButtonType(NSButtonType::MultiLevelAccelerator.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarypushbutton?language=objc)
+/// When the button is clicked (on state), it appears illuminated. If the button has a bordered, it may also appear recessed. When the button is released, it returns to its normal (off) state.
 #[deprecated = "This constant is misnamed and has the same effect as NSButtonTypeMomentaryLight. Use that name instead, or switch to NSButtonTypeMomentaryPushIn."]
 pub static NSMomentaryPushButton: NSButtonType = NSButtonType(NSButtonType::MomentaryLight.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmomentarylight?language=objc)
+/// When the button is clicked (on state), it appears illuminated.
 #[deprecated = "This constant is misnamed and has the same effect as NSButtonTypeMomentaryPushIn. Use that name instead, or switch to NSButtonTypeMomentaryLight."]
 pub static NSMomentaryLight: NSButtonType = NSButtonType(NSButtonType::MomentaryPushIn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundedbezelstyle?language=objc)
+/// A rounded rectangle button, designed for text.
 #[deprecated]
 pub static NSRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Push.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregularsquarebezelstyle?language=objc)
+/// A rectangular button with a two-point border, designed for icons.
 #[deprecated]
 pub static NSRegularSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::FlexiblePush.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisclosurebezelstyle?language=objc)
+/// A bezel style for use with a disclosure triangle.
+///
+/// ## Discussion
+///
+/// To create the disclosure triangle, set the button bezel style to `NSDisclosureBezelStyle` and the button type to `NSOnOffButton`.
+///
+///
 #[deprecated]
 pub static NSDisclosureBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Disclosure.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshadowlesssquarebezelstyle?language=objc)
+/// Similar to `NSRegularSquareBezelStyle`, but has no shadow, so you can abut the cells without overlapping shadows.
+///
+/// ## Discussion
+///
+/// This style would be used in a tool palette, for example.
+///
+///
 #[deprecated]
 pub static NSShadowlessSquareBezelStyle: NSBezelStyle =
     NSBezelStyle(NSBezelStyle::ShadowlessSquare.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscircularbezelstyle?language=objc)
+/// A round button with room for a small icon or a single character.
+///
+/// ## Discussion
+///
+/// This style has both regular and small variants, but the large variant is available only in gray at this time.
+///
+///
 #[deprecated]
 pub static NSCircularBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Circular.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedsquarebezelstyle?language=objc)
+/// A bezel style appropriate for use with textured (metal) windows.
 #[deprecated]
 pub static NSTexturedSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::TexturedSquare.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpbuttonbezelstyle?language=objc)
+/// A round button with a question mark providing the standard help button look.
 #[deprecated]
 pub static NSHelpButtonBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::HelpButton.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmallsquarebezelstyle?language=objc)
+/// A simple square bezel style. Buttons using this style can be scaled to any size.
 #[deprecated]
 pub static NSSmallSquareBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::SmallSquare.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexturedroundedbezelstyle?language=objc)
+/// A textured (metal) bezel style similar in appearance to the Finder’s action (gear) button.
+///
+/// ## Discussion
+///
+/// The height of this button is fixed.
+///
+///
 #[deprecated]
 pub static NSTexturedRoundedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Toolbar.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundrectbezelstyle?language=objc)
+/// A bezel style that matches the search buttons in Finder and Mail.
 #[deprecated]
 pub static NSRoundRectBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::AccessoryBarAction.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrecessedbezelstyle?language=objc)
+/// A bezel style that matches the recessed buttons in Mail, Finder and Safari.
 #[deprecated]
 pub static NSRecessedBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::AccessoryBar.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundeddisclosurebezelstyle?language=objc)
 #[deprecated]
 pub static NSRoundedDisclosureBezelStyle: NSBezelStyle =
     NSBezelStyle(NSBezelStyle::PushDisclosure.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinlinebezelstyle?language=objc)
+/// The inline bezel style contains a solid round-rect border background. It can be used to create an “unread” indicator in an outline view, or another inline button in a tableview, such as a stop progress button in a download panel. Use text for an unread indicator, and a template image for other buttons.
 #[deprecated]
 pub static NSInlineBezelStyle: NSBezelStyle = NSBezelStyle(NSBezelStyle::Badge.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmalliconbuttonbezelstyle?language=objc)
+/// This bezel style is obsolete and should not be used.
 #[deprecated = "This bezel style is obsolete and should not be used."]
 pub static NSSmallIconButtonBezelStyle: NSBezelStyle = NSBezelStyle(2);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthicksquarebezelstyle?language=objc)
+/// A rectangular button with a three-point border, designed for icons.
 #[deprecated]
 pub static NSThickSquareBezelStyle: NSBezelStyle = NSBezelStyle(3);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsthickersquarebezelstyle?language=objc)
+/// A rectangular button with a four-point border, designed for icons.
 #[deprecated]
 pub static NSThickerSquareBezelStyle: NSBezelStyle = NSBezelStyle(4);
 

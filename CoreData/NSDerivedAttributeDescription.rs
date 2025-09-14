@@ -8,7 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsderivedattributedescription?language=objc)
+    /// A description of an attribute that derives its value by performing a calculation on a related attribute.
+    ///
+    /// ## Overview
+    ///
+    /// Use derived attributes to optimize fetch performance; for example:
+    ///
+    /// - Create a derived `searchName` attribute to reflect a `name` attribute with case and diacritics removed for more efficient comparison.
+    ///
+    /// - Create a derived `relationshipCount` attribute to reflect the number of objects in a relationship and avoid having to do a join.
+    ///
+    /// Derived attributes support the following expressions:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Strong { inline_content: [Text { text: "Expression" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Description" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Example" }] }] }]], [[Paragraph { inline_content: [Text { text: "to-one keypath" }] }], [Paragraph { inline_content: [Text { text: "A single value to replicate." }] }], [Paragraph { inline_content: [CodeVoice { code: "name" }, Text { text: " or " }, CodeVoice { code: "author.name" }] }]], [[Paragraph { inline_content: [Text { text: "to-one keypath with a function" }] }], [Paragraph { inline_content: [Text { text: "The result of calling a function on a single value. " }, Image { identifier: "spacer", metadata: None }, Text { text: " Supported functions include " }, CodeVoice { code: "canonical:" }, Text { text: ", " }, CodeVoice { code: "uppercase:" }, Text { text: ", and " }, CodeVoice { code: "lowercase:" }, Text { text: ". " }, Image { identifier: "spacer", metadata: None }, Text { text: " The " }, CodeVoice { code: "canonical:" }, Text { text: " function returns a case- and diacritic-insensitive String value." }] }], [Paragraph { inline_content: [CodeVoice { code: "canonical:(name)" }] }]], [[Paragraph { inline_content: [Text { text: "to-many keypath with a function" }] }], [Paragraph { inline_content: [Text { text: "The result of calling an aggregate function on a set of values. " }, Image { identifier: "spacer", metadata: None }, Text { text: " Supported functions include " }, CodeVoice { code: "@count" }, Text { text: " and " }, CodeVoice { code: "@sum" }, Text { text: "." }] }], [Paragraph { inline_content: [CodeVoice { code: "friends.@count" }] }]], [[Paragraph { inline_content: [Text { text: "time" }] }], [Paragraph { inline_content: [Text { text: "The current time." }] }], [Paragraph { inline_content: [CodeVoice { code: "now()" }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Data recomputes derived attributes when you save a context. A managed object’s property does not reflect unsaved changes until you save the context and refresh the object.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSAttributeDescription, NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]

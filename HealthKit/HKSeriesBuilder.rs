@@ -7,10 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract base class for building series samples.
+    ///
+    /// ## Overview
+    ///
+    /// Never instantiate [`HKSeriesBuilder`](https://developer.apple.com/documentation/healthkit/hkseriesbuilder) objects directly. Instead, user one of the concrete subclasses (for example, the [`HKWorkoutRouteBuilder`](https://developer.apple.com/documentation/healthkit/hkworkoutroutebuilder) class).
+    ///
+    ///
     /// An HKSeriesBuilder is an abstract class for generating HKSeriesSample objects.
     /// Concrete subclasses generate the actual HKSeriesSample objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriesbuilder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSeriesBuilder;

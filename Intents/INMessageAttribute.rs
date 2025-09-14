@@ -4,28 +4,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute?language=objc)
+/// Constants that indicate an attribute of a message.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMessageAttribute(pub NSInteger);
 impl INMessageAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/unknown?language=objc)
+    /// No known attribute.
     #[doc(alias = "INMessageAttributeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/read?language=objc)
+    /// The message is marked as read.
     #[doc(alias = "INMessageAttributeRead")]
     pub const Read: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/unread?language=objc)
+    /// The message is marked as unread.
     #[doc(alias = "INMessageAttributeUnread")]
     pub const Unread: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/flagged?language=objc)
+    /// The message has been flagged.
     #[doc(alias = "INMessageAttributeFlagged")]
     pub const Flagged: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/unflagged?language=objc)
+    /// The message has not been flagged.
     #[doc(alias = "INMessageAttributeUnflagged")]
     pub const Unflagged: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessageattribute/played?language=objc)
+    /// The message has been played.
     #[doc(alias = "INMessageAttributePlayed")]
     pub const Played: Self = Self(5);
 }

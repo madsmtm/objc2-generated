@@ -9,20 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffect/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGlassEffectStyle(pub NSInteger);
 impl UIGlassEffectStyle {
     /// Standard glass effect style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffect/style/regular?language=objc)
+    /// Standard glass effect style.
     #[doc(alias = "UIGlassEffectStyleRegular")]
     pub const Regular: Self = Self(0);
     /// Clear glass effect style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffect/style/clear?language=objc)
+    /// Clear glass effect style.
     #[doc(alias = "UIGlassEffectStyleClear")]
     pub const Clear: Self = Self(1);
 }
@@ -37,8 +34,7 @@ unsafe impl RefEncode for UIGlassEffectStyle {
 
 extern_class!(
     /// A visual effect that renders a glass material.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasseffect?language=objc)
+    /// A visual effect that renders a glass material.
     #[unsafe(super(UIVisualEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -125,12 +121,17 @@ impl UIGlassEffect {
 extern_class!(
     /// A `UIGlassContainerEffect` renders multiple glass elements into a combined effect.
     ///
+    /// ## Overview
+    ///
+    /// When using `UIGlassContainerEffect` with a `UIVisualEffectView` you can add individual glass elements to the visual effect view’s contentView by nesting `UIVisualEffectView`‘s configured with `UIGlassEffect`. In that configuration, the glass container will render all glass elements in one combined view, behind the visual effect view’s `contentView`.
+    ///
+    ///
+    /// A `UIGlassContainerEffect` renders multiple glass elements into a combined effect.
+    ///
     /// When using `UIGlassContainerEffect` with a `UIVisualEffectView` you can
     /// add individual glass elements to the visual effect view's contentView by nesting `UIVisualEffectView`'s
     /// configured with `UIGlassEffect`. In that configuration, the glass container will render all glass elements
     /// in one combined view, behind the visual effect view's `contentView`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiglasscontainereffect?language=objc)
     #[unsafe(super(UIVisualEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

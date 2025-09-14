@@ -9,147 +9,188 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype?language=objc)
+/// Constants that specify a text field’s semantic meaning.
 // NS_TYPED_ENUM
 pub type WKTextContentType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/name?language=objc)
+    /// A full name.
     pub static WKTextContentTypeName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/nameprefix?language=objc)
+    /// A title or prefix for a name.
     pub static WKTextContentTypeNamePrefix: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/givenname?language=objc)
+    /// A given name.
     pub static WKTextContentTypeGivenName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/middlename?language=objc)
+    /// A middle name.
     pub static WKTextContentTypeMiddleName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/familyname?language=objc)
+    /// A last name.
     pub static WKTextContentTypeFamilyName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/namesuffix?language=objc)
+    /// A suffix for a name.
     pub static WKTextContentTypeNameSuffix: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/nickname?language=objc)
+    /// A nickname.
     pub static WKTextContentTypeNickname: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/jobtitle?language=objc)
+    /// A job title.
     pub static WKTextContentTypeJobTitle: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/organizationname?language=objc)
+    /// An organization’s name.
     pub static WKTextContentTypeOrganizationName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/location?language=objc)
+    /// A point of interest, address, or other identifiable location.
     pub static WKTextContentTypeLocation: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/fullstreetaddress?language=objc)
+    /// The full street address for a location, including the unit or suite number.
     pub static WKTextContentTypeFullStreetAddress: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/streetaddressline1?language=objc)
+    /// The first line of a street address.
     pub static WKTextContentTypeStreetAddressLine1: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/streetaddressline2?language=objc)
+    /// The second line of a street address.
     pub static WKTextContentTypeStreetAddressLine2: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/addresscity?language=objc)
+    /// The name of a city.
     pub static WKTextContentTypeAddressCity: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/addressstate?language=objc)
+    /// The name of a state.
     pub static WKTextContentTypeAddressState: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/addresscityandstate?language=objc)
+    /// The name of a city and state.
     pub static WKTextContentTypeAddressCityAndState: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/sublocality?language=objc)
+    /// The sublocality.
     pub static WKTextContentTypeSublocality: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/countryname?language=objc)
+    /// The name of a country or region.
     pub static WKTextContentTypeCountryName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/postalcode?language=objc)
+    /// A postal code.
     pub static WKTextContentTypePostalCode: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/telephonenumber?language=objc)
+    /// A telephone number.
     pub static WKTextContentTypeTelephoneNumber: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/emailaddress?language=objc)
+    /// An email address.
     pub static WKTextContentTypeEmailAddress: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/url?language=objc)
+    /// A URL.
     pub static WKTextContentTypeURL: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/creditcardnumber?language=objc)
+    /// A credit card number.
     pub static WKTextContentTypeCreditCardNumber: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/username?language=objc)
+    /// An account or login name.
     pub static WKTextContentTypeUsername: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/password?language=objc)
+    /// An existing password.
     pub static WKTextContentTypePassword: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/newpassword?language=objc)
+    /// A new password.
     pub static WKTextContentTypeNewPassword: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/onetimecode?language=objc)
+    /// A one-time code.
     pub static WKTextContentTypeOneTimeCode: &'static WKTextContentType;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacetextfield?language=objc)
+    /// An interface element that displays an editable text area.
+    ///
+    /// ## Overview
+    ///
+    /// Text fields gather text-based input from the user. The text field defines an area of editable text within your user interface, letting you create forms with multiple input fields.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/684cea39263d88ab95e57029984c52c7/media-3222854~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/684cea39263d88ab95e57029984c52c7/media-3222854%402x.png 2x" />
+    ///     <img alt="A screenshot of a sample sign in screen." src="https://docs-assets.developer.apple.com/published/684cea39263d88ab95e57029984c52c7/media-3222854~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// When the user taps the text field, WatchKit displays the text input controller. Users can enter text by selecting one of the suggestions, or using dictation or Scribble. Users can also launch the Apple Continuity Keyboard, entering text from a nearby iOS device logged into the same iCloud account.
+    ///
+    /// Use text fields to gather short, specific pieces of information such as the user’s name, address, password, or credit card number. Identify the type of data using the text field’s content type, which allows the system to optimize the behavior of the text input controller and the Apple Continuity Keyboard. For more information, see `Authenticating Users on Apple Watch`.
+    ///
+    /// You can also describe the expected content to the user in the text field’s placeholder. Effective placeholders let you build a form that is both compact and easy to use.
+    ///
+    /// For general text input, consider using [`presentTextInputControllerWithSuggestions:allowedInputMode:completion:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/presenttextinputcontroller(withsuggestions:allowedinputmode:completion:)) or [`presentTextInputControllerWithSuggestionsForLanguage:allowedInputMode:completion:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/presenttextinputcontrollerwithsuggestions(forlanguage:allowedinputmode:completion:)) instead. Call these methods to display the text input controller with the suggestions that you provide. Keep in mind that the system doesn’t provide the text input controller with a content type, so the system cannot optimize its behavior.
+    ///
+    /// ### Configure the Text Field
+    ///
+    /// As with other WatchKit interface objects, you should not subclass or create instances of this class. Instead, add a text field to your WatchKit App’s storyboard. The system then creates the text field when it loads the storyboard.
+    ///
+    /// Xcode also lets you configure the text field directly in the storyboard. The following table lists the attributes and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Text" }] }], [Paragraph { inline_content: [Text { text: "The initial text displayed by the text field. Specify a plain string or an attributed string. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setText(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setAttributedText(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " methods." }] }]], [[Paragraph { inline_content: [Text { text: "Placeholder" }] }], [Paragraph { inline_content: [Text { text: "The placeholder text displayed by the text field. When the text field’s value is empty, the text field displays the placeholder, formatting it to make it clear that it’s not an actual text entry. Typing any text into the text field hides this string. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setPlaceholder(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setAttributedPlaceholder(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " methods." }] }]], [[Paragraph { inline_content: [Text { text: "Text Color" }] }], [Paragraph { inline_content: [Text { text: "The color of the text. The system applies this color to the entire string. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setTextColor(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Content Type" }] }], [Paragraph { inline_content: [Text { text: "The text field’s expected content, such as a username, password, or address. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setTextContentType(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Secure Text Entry" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the text field hides the text that the user entered, keeping passwords and other secure data private. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setSecureTextEntry(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Enabled" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the text field  is enabled and responds when tapped. You can configure this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTextField/setEnabled(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]]], alignments: None, metadata: None })
+    /// To dynamically modify a text field at runtime, define an outlet in your interface controller and connect it to the corresponding text field in your storyboard. For example, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceTextField* myTextField;"], metadata: None }] }, TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myTextField: WKInterfaceTextField!"], metadata: None }] }] })
+    /// During your interface controller’s initialization, WatchKit creates a new instance of the [`WKInterfaceTextField`](https://developer.apple.com/documentation/watchkit/wkinterfacetextfield) class and assigns it to your outlet. At that point, you can use the object in your outlet to manage the text field.
+    ///
+    /// ### Receive Text Input
+    ///
+    /// To receive the text entered by the user, connect the text field in the storyboard to an action method defined in your interface controller.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func textFieldAction(_ value: NSString?)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)textFieldAction:(NSString*) value"], metadata: None }] }] })
+    /// WatchKit calls the action method after the user dismisses the text input controller. The `value` parameter contains the string entered by the user. If the user cancels the text input controller, the value is `nil`.
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

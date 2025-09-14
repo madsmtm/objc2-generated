@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incurrencyamount?language=objc)
+    /// An amount of money to transfer during a financial transaction.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INCurrencyAmount`](https://developer.apple.com/documentation/intents/incurrencyamount) object encapsulates a monetary value and the currency used to express that value. You use these objects to specify payment amounts when handling intents that involve the transfer of money.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INCurrencyAmount;

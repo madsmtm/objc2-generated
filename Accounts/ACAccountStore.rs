@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult?language=objc)
+/// Status codes of credential renewal requests.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ACAccountCredentialRenewResult(pub NSInteger);
 impl ACAccountCredentialRenewResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult/renewed?language=objc)
+    /// The account’s credentials have been renewed and are now associated with the account.
     #[doc(alias = "ACAccountCredentialRenewResultRenewed")]
     pub const Renewed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult/rejected?language=objc)
+    /// Renewal failed because the user revoked your access to their account.
     #[doc(alias = "ACAccountCredentialRenewResultRejected")]
     pub const Rejected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredentialrenewresult/failed?language=objc)
+    /// A non-user-initiated cancel of the prompt.
     #[doc(alias = "ACAccountCredentialRenewResultFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -32,26 +32,72 @@ unsafe impl RefEncode for ACAccountCredentialRenewResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoresavecompletionhandler?language=objc)
+/// Specifies a handler to call when an Accounts database operation is complete.
+///
+/// ## Discussion
+///
+/// The completion handler parameters are:
+///
+/// - `success`: A Boolean value indicating whether the operation is successful. [`true`](https://developer.apple.com/documentation/swift/true) if the operation is successful; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+/// - `error`: An error, if one occurred.
+///
+///
 #[cfg(feature = "block2")]
 pub type ACAccountStoreSaveCompletionHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoreremovecompletionhandler?language=objc)
+/// Specifies a handler to call when an account is removed from the store.
+///
+/// ## Discussion
+///
+/// The completion handler parameters are:
+///
+/// - `success`: A Boolean value indicating whether the operation was successful. [`true`](https://developer.apple.com/documentation/swift/true) if successful, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+/// - `error`: An error, if one occurred.
+///
+///
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRemoveCompletionHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorerequestaccesscompletionhandler?language=objc)
+/// Specifies a handler to call when access is granted or denied.
+///
+/// ## Discussion
+///
+/// The completion handler parameters are:
+///
+/// - `granted`: A Boolean value indicating whether access is granted. [`true`](https://developer.apple.com/documentation/swift/true) if access is granted; otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+/// - `error`: An error, if one occurred.
+///
+///
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRequestAccessCompletionHandler =
     *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorecredentialrenewalhandler?language=objc)
+/// Specifies a handler to call when credentials are renewed.
+///
+/// ## Discussion
+///
+/// The renewal handler parameters are:
+///
+/// - `renewResult`: The result of the renewal request.
+///
+/// - `error`: An error, if one occurred.
+///
+///
 #[cfg(feature = "block2")]
 pub type ACAccountStoreCredentialRenewalHandler =
     *mut block2::DynBlock<dyn Fn(ACAccountCredentialRenewResult, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstore?language=objc)
+    /// The object you use to request, manage, and store the user’s account information.
+    ///
+    /// ## Overview
+    ///
+    /// The [`ACAccountStore`](https://developer.apple.com/documentation/accounts/acaccountstore) class provides an interface for accessing, managing, and storing accounts. To create and retrieve accounts from the Accounts database, you must create an [`ACAccountStore`](https://developer.apple.com/documentation/accounts/acaccountstore) object. Each [`ACAccount`](https://developer.apple.com/documentation/accounts/acaccount) object belongs to a single account store object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
@@ -194,7 +240,15 @@ impl ACAccountStore {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoredidchangenotification?language=objc)
+    /// Posted when the accounts managed by this account store changed in the database.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification sent if an account is saved or removed locally or externally. If you receive this notification, you should refetch all account objects.
+    ///
+    /// There’s no `userInfo` dictionary associated with this notification.
+    ///
+    ///
     #[deprecated = "Public notification deprecated. Internal clients, see private header for replacement"]
     pub static ACAccountStoreDidChangeNotification: Option<&'static NSString>;
 }

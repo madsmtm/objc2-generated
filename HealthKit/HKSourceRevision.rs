@@ -7,9 +7,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a specific revision of an HKSource.
+    /// An object indicating the source of a HealthKit sample.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevision?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKSourceRevision`](https://developer.apple.com/documentation/healthkit/hksourcerevision) class acts as a wrapper for the [`HKSource`](https://developer.apple.com/documentation/healthkit/hksource) class, adding information about the source’s version, operating system, and product type.
+    ///
+    /// Source revision objects are immutable: you set the source revision’s properties when you create the object, and they cannot change.
+    ///
+    /// When an [`HKObject`](https://developer.apple.com/documentation/healthkit/hkobject) instance is created, its [`sourceRevision`](https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision) property is set to `nil`. When the object is saved to the HealthKit store, HealthKit assigns a new source revision to the object’s [`sourceRevision`](https://developer.apple.com/documentation/healthkit/hkobject/sourcerevision) property. The source revision can be accessed only on objects retrieved from the HealthKit store.
+    ///
+    /// ### Subclassing Source Revisions
+    ///
+    /// Like many HealthKit classes, the [`HKSourceRevision`](https://developer.apple.com/documentation/healthkit/hksourcerevision) class is not extensible and should not be subclassed.
+    ///
+    ///
+    /// Represents a specific revision of an HKSource.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSourceRevision;
@@ -108,16 +121,34 @@ impl HKSourceRevision {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyversion?language=objc)
+    /// A constant that matches any version.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating a predicate, use this constant to create a source revision object that matches all possible versions of the specified source.
+    ///
+    ///
     pub static HKSourceRevisionAnyVersion: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyproducttype?language=objc)
+    /// A constant that matches any product type.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating a predicate, use this constant to create a source revision object that matches all product types.
+    ///
+    ///
     pub static HKSourceRevisionAnyProductType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcerevisionanyoperatingsystem?language=objc)
+    /// A constant that matches any operating system.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating a predicate, use this constant to create a source revision object that matches all operating systems.
+    ///
+    ///
     pub static HKSourceRevisionAnyOperatingSystem: NSOperatingSystemVersion;
 }

@@ -6,13 +6,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypeidentifier?language=objc)
+/// The type for a room type identifier.
 pub type EKVirtualConferenceRoomTypeIdentifier = NSString;
 
 extern_class!(
-    /// Describes a virtual conference room type.
+    /// Details about a room where virtual conferences take place.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceroomtypedescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// To present a list of rooms where a virtual conference takes place, your virtual conference provider creates one or more room type descriptors. Each descriptor contains a user-visible title and an identifier of your choosing. When users create events using one of the rooms you provide, EventKit calls [`fetchVirtualConferenceForIdentifier:completionHandler:`](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceprovider/fetchvirtualconference(identifier:completionhandler:)) and passes the room’s identifier.
+    ///
+    ///
+    /// Describes a virtual conference room type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceRoomTypeDescriptor;
@@ -61,9 +66,14 @@ impl EKVirtualConferenceRoomTypeDescriptor {
 }
 
 extern_class!(
-    /// Describes a URL that can be used to join a virtual conference.
+    /// Details about how users join a virtual conference, including a title and URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferenceurldescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// To let users join a virtual conference, you provide one or more URL descriptor objects in the [`EKVirtualConferenceDescriptor`](https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor) for the conference. Calendar uses the first URL descriptor as the preferred way for users to join a virtual conference and displays any additional links you provide in the virtual conference details.
+    ///
+    ///
+    /// Describes a URL that can be used to join a virtual conference.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceURLDescriptor;
@@ -112,9 +122,30 @@ impl EKVirtualConferenceURLDescriptor {
 }
 
 extern_class!(
-    /// Describes a virtual conference.
+    /// Details about a virtual conference that uses a custom room type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekvirtualconferencedescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// When users add events to their calendars and use one of the room types that your provider defines, EventKit requests a virtual conference descriptor from your provider. Each virtual conference descriptor contains:
+    ///
+    /// - A user-visible name for the virtual conference
+    ///
+    /// - One or more URLs that the users open to join the virtual conference
+    ///
+    /// - Optional details about the conference that may be helpful to users
+    ///
+    /// Calendar uses the first URL that you provide as the preferred way for users to join a virtual conference and displays additional URLs as links in the virtual conference details.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Events that use your virtual conference descriptors may sync to other devices where your app isn’t installed. To support links to your virtual conference regardless of whether your app is installed, adopt universal links in your app. Universal links let you specify HTTP URLs that open your app if it’s installed or open a corresponding web page if it’s not. For more information about adopting universal links in your app, see [Supporting universal links in your app](https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Describes a virtual conference.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKVirtualConferenceDescriptor;

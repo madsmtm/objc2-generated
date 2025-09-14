@@ -14,6 +14,23 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    /// An object that models timed audiovisual media.
+    ///
+    /// ## Overview
+    ///
+    /// An asset models file-based media like a QuickTime movie or an MP3 audio file, and also media streamed using HTTP Live Streaming (HLS). An asset is a container object for one or more instances of [`AVAssetTrack`](https://developer.apple.com/documentation/avfoundation/avassettrack) that model the uniformly typed tracks of media. The most commonly used track types are audio and video, but assets may also contain supplementary tracks, like closed captions, subtitles, and timed metadata.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/a2b1f03c61c8f739eb0a539810310a94/media-3845943~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a01a16315e681312a0596a223db5b961/media-3845943%402x.png 2x" />
+    ///     <img alt="A diagram of four rectangular items. The rectangle on the left represents AVAsset. A line connects it to three stacked rectangles on the right that represent AVAssetTrack (Video), AVAssetTrack (Audio), and AVAssetTrack (Subtitles) from top to bottom." src="https://docs-assets.developer.apple.com/published/a2b1f03c61c8f739eb0a539810310a94/media-3845943~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// You load the tracks for an asset by asynchronously loading its [`tracks`](https://developer.apple.com/documentation/avfoundation/avpartialasyncproperty/tracks-48zyw) property. In some cases, you may want to perform operations on a subset of an asset’s tracks rather than on its complete collection. For those situations, an asset provides methods to retrieve subsets of tracks according to particular criteria, such as identifier, media type, or characteristic.
+    ///
+    ///
     /// An AVAsset is an abstract class that defines AVFoundation's model for timed audiovisual media.
     ///
     /// Each asset contains a collection of tracks that are intended to be presented or processed together, each of a uniform media type, including but not limited to audio, video, text, closed captions, and subtitles.
@@ -33,8 +50,6 @@ extern_class!(
     /// To play an instance of AVAsset, initialize an instance of AVPlayerItem with it, use the AVPlayerItem to set up its presentation state (such as whether only a limited timeRange of the asset should be played, etc.), and provide the AVPlayerItem to an AVPlayer according to whether the items is to be played by itself or together with a collection of other items. Full details available in AVPlayerItem.h and AVPlayer.h.
     ///
     /// AVAssets can also be inserted into AVMutableCompositions in order to assemble audiovisual constructs from one or more source assets.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAsset;
@@ -147,48 +162,46 @@ impl AVAsset {
     );
 }
 
+/// Restrictions to use when resolving references to external media data.
 /// These constants can be passed in to AVURLAssetReferenceRestrictionsKey to control the resolution of references to external media data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetReferenceRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetReferenceRestrictions: NSUInteger {
+/// The asset should follow all media references.
 /// Indicates that all types of references should be followed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/avassetreferencerestrictionforbidnone?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidNone")]
         const ForbidNone = 0;
+/// A remote asset shouldn’t follow references to local media.
 /// Indicates that references from a remote asset (e.g. referenced via http URL) to local media data (e.g. stored in a local file) should not be followed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidremotereferencetolocal?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidRemoteReferenceToLocal")]
         const ForbidRemoteReferenceToLocal = 1<<0;
+/// A local asset shouldn’t follow references to remote media.
 /// Indicates that references from a local asset to remote media data should not be followed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidlocalreferencetoremote?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidLocalReferenceToRemote")]
         const ForbidLocalReferenceToRemote = 1<<1;
+/// A remote asset shouldn’t follow references to remote media data stored at a different host.
 /// Indicates that references from a remote asset to remote media data stored at a different site should not be followed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidcrosssitereference?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidCrossSiteReference")]
         const ForbidCrossSiteReference = 1<<2;
+/// A local asset shouldn’t follow references to local media data stored outside its container file.
 /// Indicates that references from a local asset to local media data stored outside the asset's container file should not be followed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidlocalreferencetolocal?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidLocalReferenceToLocal")]
         const ForbidLocalReferenceToLocal = 1<<3;
+/// The asset can only reference media stored within its container file.
 /// Indicates that only references to media data stored within the asset's container file should be allowed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidall?language=objc)
         #[doc(alias = "AVAssetReferenceRestrictionForbidAll")]
         const ForbidAll = 0xFFFF;
-/// Indicates that only references to media data stored within the asset's container file should be allowed.
+/// The asset should use the default reference restrictions policy.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/defaultpolicy?language=objc)
+/// ## Discussion
+///
+/// The default policy is [`AVAssetReferenceRestrictionForbidLocalReferenceToRemote`](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions/forbidlocalreferencetoremote).
+///
+///
+/// Indicates that only references to media data stored within the asset's container file should be allowed.
         #[doc(alias = "AVAssetReferenceRestrictionDefaultPolicy")]
         const DefaultPolicy = AVAssetReferenceRestrictions::ForbidLocalReferenceToRemote.0;
     }
@@ -692,6 +705,15 @@ impl AVAsset {
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the asset should provide accurate duration and precise random access by time.
+    ///
+    /// ## Discussion
+    ///
+    /// Setting a value of [`true`](https://developer.apple.com/documentation/swift/true) indicates longer loading times are acceptable in cases where you require precise timing. Container formats like QuickTime and MPEG-4 provide sufficient timing information and don’t require additional parsing to retrieve it. Other formats don’t provide sufficient summary information, and the system can’t accurately calculate the resource’s duration and timing without examining the media content.
+    ///
+    /// If you only intend to play the asset, the default value of [`false`](https://developer.apple.com/documentation/swift/false) is sufficient because [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) supports approximate random access by time when full precision isn’t available. If you intend to insert the asset into [`AVMutableComposition`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition) or [`AVMutableMovie`](https://developer.apple.com/documentation/avfoundation/avmutablemovie), precise random access is typically desirable, and you should set this option to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// Indicates whether the asset should be prepared to indicate a precise duration and provide precise random access by time.
     ///
     /// The value for this key is a boolean NSNumber.
@@ -703,30 +725,49 @@ extern "C" {
     /// "
     /// duration" from the array of AVAsset keys you pass to -[AVPlayerItem initWithAsset:automaticallyLoadedAssetKeys:] in order to prevent AVPlayerItem from automatically loading the value of duration while the item becomes ready to play.
     /// If precise duration and timing is not possible for the timed media resource referenced by the asset's URL, AVAsset.providesPreciseDurationAndTiming will be NO even if precise timing is requested via the use of this key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetpreferprecisedurationandtimingkey?language=objc)
     pub static AVURLAssetPreferPreciseDurationAndTimingKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that specifies the MIME type to use to identify the format of a media resource.
+    ///
+    /// ## Discussion
+    ///
+    /// If you specify a value for this key, the system uses it to determine how to handle or parse the media resource, and ignores any other information that may be available, such as the URL path extension or a server-provided MIME type.
+    ///
+    ///
     /// Indicates the MIME type that should be used to identify the format of the media resource.
     ///
     /// When a value for this key is provided, only the specified MIME type is considered in determining how to handle or parse the media resource. Any other information that may be available, such as the URL path extension or a server-provided MIME type, is ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetoverridemimetypekey?language=objc)
     pub static AVURLAssetOverrideMIMETypeKey: &'static NSString;
 }
 
 extern "C" {
+    /// A value that represents the restrictions used by the asset when resolving references to external media data.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that wraps an [`AVAssetReferenceRestrictions`](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions) enum value, or the logical combination of multiple enum values, that indicate the restrictions the asset uses when resolving references to external media data.
+    ///
+    /// Some assets can contain references to media data stored outside the asset’s container file, for example in another file. Use this key to specify the policy to use when the asset encounters these references. If an asset contains one or more references to a type forbidden by the reference restriction, loading of asset properties fails, and you can’t use this asset with other AVFoundation objects, such as [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) or [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession).
+    ///
+    ///
     /// Indicates the restrictions used by the asset when resolving references to external media data. The value of this key is an NSNumber wrapping an AVAssetReferenceRestrictions enum value or the logical combination of multiple such values.
     ///
     /// Some assets can contain references to media data stored outside the asset's container file, for example in another file. This key can be used to specify a policy to use when these references are encountered. If an asset contains one or more references of a type that is forbidden by the reference restrictions, loading of asset properties will fail. In addition, such an asset cannot be used with other AVFoundation modules, such as AVPlayerItem or AVAssetExportSession.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetreferencerestrictionskey?language=objc)
     pub static AVURLAssetReferenceRestrictionsKey: &'static NSString;
 }
 
 extern "C" {
+    /// The HTTP cookies that a URL asset may send with HTTP requests.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) only has access to cookies in the client’s default cookie storage that apply to the asset’s URL. You can supplement the cookies available to the asset by setting this initialization option.
+    ///
+    /// Cookies don’t apply to non-HTTP(S) URLs. In HTTP Live Streaming, the system may issue many HTTP requests (for example, media, crypt key, variant index) to different paths or hosts. In these cases, HTTP requests won’t contain any cookies that don’t apply to the [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) URL.
+    ///
+    ///
     /// HTTP cookies that the AVURLAsset may send with HTTP requests
     ///
     /// Standard cross-site policy still applies: cookies will only be sent to domains to which they apply.
@@ -739,39 +780,61 @@ extern "C" {
     /// In HLS, many HTTP requests (e.g., media, crypt key, variant index) might be issued to different paths or hosts.
     /// In both of these cases, HTTP requests will be missing any cookies that do not apply to the AVURLAsset's URL.
     /// This init option allows the AVURLAsset to use additional HTTP cookies for those HTTP(S) requests.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassethttpcookieskey?language=objc)
     pub static AVURLAssetHTTPCookiesKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the system can make network requests on behalf of the asset when connected to a cellular network.
+    ///
+    /// ## Discussion
+    ///
+    /// The default behavior of [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) allows requests over cellular networks. Set this value to [`false`](https://developer.apple.com/documentation/swift/false) at initialization time to restrict the default behavior.
+    ///
+    ///
     /// Indicates whether network requests on behalf of this asset are allowed to use the cellular interface.
     ///
     /// Default is YES.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowscellularaccesskey?language=objc)
     pub static AVURLAssetAllowsCellularAccessKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the system allows network requests on behalf of this asset to use the expensive interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value for this key is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// Indicates whether network requests on behalf of this asset are allowed to use the expensive interface (e.g. cellular, tethered, constrained).
     ///
     /// Default is YES.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowsexpensivenetworkaccesskey?language=objc)
     pub static AVURLAssetAllowsExpensiveNetworkAccessKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the system allows network requests on behalf of this asset to use the constrained interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value for this key is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// Indicates whether network requests on behalf of this asset are allowed to use the constrained interface (e.g. interfaces marked as being in data saver mode).
     ///
     /// Default is YES.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetallowsconstrainednetworkaccesskey?language=objc)
     pub static AVURLAssetAllowsConstrainedNetworkAccessKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the system parses and resolves alias data references in the asset.
+    ///
+    /// ## Discussion
+    ///
+    /// Most QuickTime movie files contain all of the media data they require, but some contain references to media in other files. While AVFoundation and CoreMedia typically employ a URL reference for this purpose, older implementations commonly use a Macintosh alias instead, as the QuickTime File Format specification documents. Specify this option if your app must work with legacy QuickTime movie files that contain alias-based references to media data in other files.
+    ///
+    /// If you provide a value for [`AVURLAssetReferenceRestrictionsKey`](https://developer.apple.com/documentation/avfoundation/avurlassetreferencerestrictionskey), the system observes restrictions for resolved alias references like it does for URL references.
+    ///
+    ///
     /// Indicates whether alias data references in the asset should be parsed and resolved.
     ///
     /// Default is NO. Although the majority of QuickTime movie files contain all of the media data they require, some contain references to media stored in other files. While AVFoundation and CoreMedia typically employ a URL reference for this purpose, older implementations such as QuickTime 7 have commonly employed a Macintosh alias instead, as documented in the QuickTime File Format specification. If your application must work with legacy QuickTime movie files containing alias-based references to media data stored in other files, the use of this AVURLAsset initialization option is appropriate.
@@ -779,52 +842,94 @@ extern "C" {
     /// If you provide a value for AVURLAssetReferenceRestrictionsKey, restrictions will be observed for resolved alias references just as they are for URL references.
     ///
     /// For more details about alias resolution, consult documentation of the bookmark-related interfaces of NSURL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetshouldsupportaliasdatareferenceskey?language=objc)
     pub static AVURLAssetShouldSupportAliasDataReferencesKey: &'static NSString;
 }
 
 extern "C" {
+    /// A value that specifies the attribution of the URLs that this asset requests.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a number that represents an [`NSURLRequestAttribution`](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum). URL requests that the system issues on behalf of the asset attribute this value and follow the App Privacy Policy accordingly.
+    ///
+    /// The default value is [`NSURLRequestAttributionDeveloper`](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/developer).
+    ///
+    ///
     /// Specifies the attribution of the URLs requested by this asset.
     ///
     /// Value is an NSNumber whose value is an NSURLRequestAttribution (see NSURLRequest.h).
     /// Default value is NSURLRequestAttributionDeveloper.
     /// All NSURLRequests issed on behalf of this AVURLAsset will be attributed with this value and follow the App Privacy Policy accordingly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlasseturlrequestattributionkey?language=objc)
     pub static AVURLAssetURLRequestAttributionKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that specifies the user agent of requests that an asset makes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key to set a custom `User-Agent` header on requests that this asset makes. The system uses its default user agent if you don’t specify a value.
+    ///
+    ///
     /// Specifies the value of the User-Agent header to add to HTTP requests made by this asset.
     ///
     /// Value is an NSString
     /// Default value is the systems's default User-Agent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassethttpuseragentkey?language=objc)
     pub static AVURLAssetHTTPUserAgentKey: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies a UUID to set as the session identifier for HTTP requests that the asset makes.
+    ///
+    /// ## Discussion
+    ///
+    /// The asset appends value as the value of the `_HLS_primary_id` query parameter. Only HTTP Live Streaming assets support this option.
+    ///
+    ///
     /// Specifies a UUID to append as the value of the query parameter "_HLS_primary_id" to selected HTTP requests issued on behalf of the asset. Supported for HLS assets only.
     ///
     /// Value is an NSUUID. Its UUID string value will be used as the query parameter.
     /// If you create AVURLAssets for the templateItems of AVPlayerInterstitialEvents and you want the instances of AVURLAsset that you create to be used during interstitial playback rather than equivalent AVURLAssets with the same URL, you must provide a value for this key that's equal to the httpSessionIdentifier of the primary AVPlayerItem's asset. See AVPlayerInterstitialEventController.h. This is especially useful if you require the use of a custom AVAssetResourceLoader delegate for interstitial assets.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetprimarysessionidentifierkey?language=objc)
     pub static AVURLAssetPrimarySessionIdentifierKey: &'static NSString;
 }
 
 extern "C" {
     /// Indicates whether additional projected media signaling in the asset should be parsed and resolved as format description extensions.
     ///
+    /// ## Discussion
+    ///
     /// Default is NO.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlassetshouldparseexternalsphericaltagskey?language=objc)
+    ///
+    /// Indicates whether additional projected media signaling in the asset should be parsed and resolved as format description extensions.
+    ///
+    /// Default is NO.
     pub static AVURLAssetShouldParseExternalSphericalTagsKey: &'static NSString;
 }
 
 extern_class!(
+    /// An asset that represents media at a local or remote URL.
+    ///
+    /// ## Overview
+    ///
+    /// This class is a concrete subclass of [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset). When you create an asset as shown below, the system creates and returns an instance of [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset).
+    ///
+    /// ```swift
+    /// // A local or remote asset URL.
+    /// guard let url: URL = Bundle.main.url(forResource: "Image",
+    ///                                      withExtension: "png") else { return }
+    /// let asset = AVAsset(url: url)
+    /// ```
+    ///
+    /// In many cases, this is an appropriate way to create asset instances, but you can also directly instantiate an [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) when you need more fine-grained control over its initialization. The initializer for [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) accepts an options dictionary, which you use to customize the asset’s initialization for your particular purpose. For example, if you’re creating an asset for an HLS stream, you may want to prevent it from retrieving its media when it connects over a cellular network. You can do this by providing the initialization option and value as shown below.
+    ///
+    /// ```swift
+    /// let url: URL = // A remote asset URL.
+    /// let options = [AVURLAssetAllowsCellularAccessKey: false]
+    /// let asset = AVURLAsset(url: url, options: options)
+    /// ```
+    ///
+    ///
     /// AVURLAsset provides access to the AVAsset model for timed audiovisual media referenced by URL.
     ///
     /// Note that although instances of AVURLAsset are immutable, values for its keys may not be immediately available without blocking. See the discussion of the class AVAsset above regarding the availability of values for keys and the use of AVAsynchronousKeyValueLoading.
@@ -834,8 +939,6 @@ extern_class!(
     /// AVURLAssets can be initialized with NSURLs that refer to audiovisual media resources, such as streams (including HTTP live streams), QuickTime movie files, MP3 files, and files of other types.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avurlasset?language=objc)
     #[unsafe(super(AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVURLAsset;
@@ -1107,12 +1210,11 @@ extern_conformance!(
 );
 
 extern_class!(
+    /// An object that describes a Media Extension.
     /// A class incorporating properties for a MediaExtension
     ///
     /// AVMediaExtensionProperties objects are returned from property queries on AVAsset, AVPlayerItemTrack, AVSampleBufferDisplayLayer, or AVSampleBufferVideoRenderer.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaextensionproperties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaExtensionProperties;
@@ -1241,54 +1343,69 @@ impl AVURLAsset {
 }
 
 extern "C" {
+    /// A notification the system posts when a fragmented asset minder observes a change to a fragmented asset’s duration.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification only for changes that occur after an asset’s [`duration`](https://developer.apple.com/documentation/avfoundation/avasset/duration) property reaches a [`AVKeyValueStatus.loaded`](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/loaded) status.
+    ///
+    ///
     /// Posted when the duration of an AVFragmentedAsset changes while it's being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
     /// "
     /// duration" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdurationdidchangenotification?language=objc)
     pub static AVAssetDurationDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// A notification the system posts when an asset’s fragments change.
+    ///
+    /// ## Discussion
+    ///
+    /// You can receive notifications of changes to an asset’s fragments after the system loads the value of an asset’s [`containsFragments`](https://developer.apple.com/documentation/avfoundation/avasset/containsfragments) property, and you’ve added the asset to an instance of [`AVFragmentedAssetMinder`](https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder).
+    ///
+    ///
     /// Posted after the value of
     /// "
     /// containsFragments" has already been loaded and the AVFragmentedAsset is added to an AVFragmentedAssetMinder, either when 1) fragments are detected in the asset on disk after it had previously contained none or when 2) no fragments are detected in the asset on disk after it had previously contained one or more.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetcontainsfragmentsdidchangenotification?language=objc)
     pub static AVAssetContainsFragmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// A notification the system posts when a fragmented asset minder observes that the system defragments the asset on disk.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification only for changes that occur after an asset’s [`canContainFragments`](https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments) property reaches a [`AVKeyValueStatus.loaded`](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/loaded) status.
+    ///
+    /// After the system posts this notification, the value of the asset’s [`canContainFragments`](https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments) and [`containsFragments`](https://developer.apple.com/documentation/avfoundation/avasset/containsfragments) properties is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Posted when the asset on disk is defragmented while an AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only if the defragmentation occurs after the status of the value of
     /// "
     /// canContainFragments" has reached AVKeyValueStatusLoaded.
     ///
     /// After this notification is posted, the value of the asset properties canContainFragments and containsFragments will both be NO.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwasdefragmentednotification?language=objc)
     pub static AVAssetWasDefragmentedNotification: &'static NSString;
 }
 
 extern "C" {
+    /// Posted when the collection of arrays of timed metadata groups representing chapters of an AVAsset change and when any of the contents of the timed metadata groups change, but only for changes that occur after the status of the value of @“availableChapterLocales” has reached AVKeyValueStatusLoaded.
     /// Posted when the collection of arrays of timed metadata groups representing chapters of an AVAsset change and when any of the contents of the timed metadata groups change, but only for changes that occur after the status of the value of
     /// "
     /// availableChapterLocales" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetchaptermetadatagroupsdidchangenotification?language=objc)
     pub static AVAssetChapterMetadataGroupsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// Posted when the collection of media selection groups provided by an AVAsset changes and when any of the contents of its media selection groups change, but only for changes that occur after the status of the value of @“availableMediaCharacteristicsWithMediaSelectionOptions” has reached AVKeyValueStatusLoaded.
     /// Posted when the collection of media selection groups provided by an AVAsset changes and when any of the contents of its media selection groups change, but only for changes that occur after the status of the value of
     /// "
     /// availableMediaCharacteristicsWithMediaSelectionOptions" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetmediaselectiongroupsdidchangenotification?language=objc)
     pub static AVAssetMediaSelectionGroupsDidChangeNotification: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentminding?language=objc)
+    /// A protocol that defines whether an asset supports fragment minding.
     pub unsafe trait AVFragmentMinding {
         /// Indicates whether an AVAsset that supports fragment minding is currently associated with a fragment minder, e.g. an instance of AVFragmentedAssetMinder.
         ///
@@ -1300,6 +1417,15 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An asset with a duration that the system can extend without modifying its existing media data.
+    ///
+    /// ## Overview
+    ///
+    /// By using an `mvex` box in their `moov` box, QuickTime movie files and MPEG-4 files can indicate that they accommodate additional fragments. To determine whether a fragmented asset can monitor the addition of fragments, check the value of its [`canContainFragments`](https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments) property.
+    ///
+    /// Associate a fragmented asset with an instance of [`AVFragmentedAssetMinder`](https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder) to know when the system appends new fragments. When it has an associated asset minder, [`AVFragmentedAssetTrack`](https://developer.apple.com/documentation/avfoundation/avfragmentedassettrack) posts [`AVAssetDurationDidChangeNotification`](https://developer.apple.com/documentation/avfoundation/avassetdurationdidchangenotification) notifications whenever it detects new fragments. It may also post [`AVAssetContainsFragmentsDidChangeNotification`](https://developer.apple.com/documentation/avfoundation/avassetcontainsfragmentsdidchangenotification) and [`AVAssetWasDefragmentedNotification`](https://developer.apple.com/documentation/avfoundation/avassetwasdefragmentednotification), as the documentation of those notifications explains.
+    ///
+    ///
     /// A subclass of AVURLAsset that represents media resources that can be extended in total duration without modifying previously existing data structures.
     ///
     /// Such media resources include QuickTime movie files and MPEG-4 files that indicate, via an 'mvex' box in their 'moov' box, that they accommodate additional fragments. Media resources of other types may also be supported. To check whether a given instance of AVFragmentedAsset can be used to monitor the addition of fragments, check the value of the AVURLAsset property canContainFragments.
@@ -1308,8 +1434,6 @@ extern_class!(
     ///
     /// While associated with an AVFragmentedAssetMinder, AVFragmentedAsset posts AVAssetDurationDidChangeNotification whenever new fragments are detected, as appropriate. It may also post AVAssetContainsFragmentsDidChangeNotification and AVAssetWasDefragmentedNotification, as discussed in documentation of those notifications.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedasset?language=objc)
     #[unsafe(super(AVURLAsset, AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVFragmentedAsset;
@@ -1568,9 +1692,8 @@ impl AVFragmentedAsset {
 }
 
 extern_class!(
+    /// An object that periodically checks whether the system adds new fragments to a fragmented asset.
     /// A class that periodically checks whether additional fragments have been appended to fragmented assets.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVFragmentedAssetMinder;

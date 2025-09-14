@@ -8,30 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Memory consistency options for synchronization commands.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions?language=objc)
+/// Memory consistency options for synchronization commands.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4VisibilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4VisibilityOptions: NSUInteger {
+/// Don’t flush caches. When you use this option on a barrier, it turns it into an execution barrier.
 /// Don't flush caches. When you use this option on a barrier, it turns it into an execution barrier.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions/mtl4visibilityoptionnone?language=objc)
         #[doc(alias = "MTL4VisibilityOptionNone")]
         const None = 0;
 /// Flushes caches to the GPU (device) memory coherence point.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions/device?language=objc)
+/// Flushes caches to the GPU (device) memory coherence point.
         #[doc(alias = "MTL4VisibilityOptionDevice")]
         const Device = 1<<0;
 /// Flushes caches to ensure that aliased virtual addresses are memory consistent.
 ///
+/// ## Discussion
+///
+/// On some systems this may be the GPU+CPU (system) memory coherence point and on other systems it may be the GPU (device) memory coherence point.
+///
+///
+/// Flushes caches to ensure that aliased virtual addresses are memory consistent.
+///
 /// On some systems this may be the GPU+CPU (system) memory coherence point
 /// and on other systems it may be the GPU (device) memory coherence point.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4visibilityoptions/resourcealias?language=objc)
         #[doc(alias = "MTL4VisibilityOptionResourceAlias")]
         const ResourceAlias = 1<<1;
     }
@@ -47,8 +49,7 @@ unsafe impl RefEncode for MTL4VisibilityOptions {
 
 extern_protocol!(
     /// An encoder that writes GPU commands into a command buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandencoder?language=objc)
+    /// An encoder that writes GPU commands into a command buffer.
     pub unsafe trait MTL4CommandEncoder: NSObjectProtocol {
         /// Provides an optional label to assign to the command encoder for debug purposes.
         #[unsafe(method(label))]

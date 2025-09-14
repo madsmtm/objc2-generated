@@ -7,18 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that identify the performance and accuracy of the text recognition.
 /// Text recognition level options to favor speed over recognition accuracy. The VNRequestTextRecognitionLevelAccurate is the default option used by VNRecognizeTextRequest.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNRequestTextRecognitionLevel(pub NSInteger);
 impl VNRequestTextRecognitionLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel/accurate?language=objc)
+    /// Accurate text recognition takes more time to produce a more comprehensive result.
     #[doc(alias = "VNRequestTextRecognitionLevelAccurate")]
     pub const Accurate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequesttextrecognitionlevel/fast?language=objc)
+    /// Fast text recognition returns results more quickly at the expense of accuracy.
     #[doc(alias = "VNRequestTextRecognitionLevelFast")]
     pub const Fast: Self = Self(1);
 }
@@ -32,12 +31,17 @@ unsafe impl RefEncode for VNRequestTextRecognitionLevel {
 }
 
 extern_class!(
+    /// An image-analysis request that finds and recognizes text in an image.
+    ///
+    /// ## Overview
+    ///
+    /// By default, a text recognition request first locates all possible glyphs or characters in the input image, and then analyzes each string. To specify or limit the languages to find in the request, set the [`recognitionLanguages`](https://developer.apple.com/documentation/vision/vnrecognizetextrequest/recognitionlanguages) property to an array that contains the names of the languages of text you want to recognize. Vision returns the result of this request in a [`VNRecognizedTextObservation`](https://developer.apple.com/documentation/vision/vnrecognizedtextobservation) object.
+    ///
+    ///
     /// A request that will detect regions of text and recognize the containing text in an image.
     ///
     ///
     /// This request will generate VNRecognizedTextObservation objects describing the locations of text and the actual text recognized.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -208,13 +212,13 @@ impl DefaultRetained for VNRecognizeTextRequest {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the text recognition request.
 #[deprecated]
 pub static VNRecognizeTextRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision2?language=objc)
+/// A constant for specifying revision 2 of the text recognition request.
 #[deprecated]
 pub static VNRecognizeTextRequestRevision2: NSUInteger = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizetextrequestrevision3?language=objc)
+/// A constant for specifying revision 3 of the text recognition request.
 pub static VNRecognizeTextRequestRevision3: NSUInteger = 3;

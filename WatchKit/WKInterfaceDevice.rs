@@ -9,52 +9,98 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype?language=objc)
+/// Constant indicating the style of feedback to deliver using haptics.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKHapticType(pub NSInteger);
 impl WKHapticType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/notification?language=objc)
+    /// Alerts the user to an arrived notification when the Watch app is not running in the foreground.
     #[doc(alias = "WKHapticTypeNotification")]
     pub const Notification: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/directionup?language=objc)
+    /// Indicates an increase in a specific value or when a value has gone above a certain threshold.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, you could use this feedback when adjusting the value of a thermostat.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeDirectionUp")]
     pub const DirectionUp: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/directiondown?language=objc)
+    /// Indicates a decrease in a specific value or when a value has gone below a certain threshold.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, you could use this feedback when adjusting the value of a thermostat.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeDirectionDown")]
     pub const DirectionDown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/success?language=objc)
+    /// Indicates the successful completion of a task or the answering of a question.
     #[doc(alias = "WKHapticTypeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/failure?language=objc)
+    /// Indicates the failed completion of a task or answering of a question.
     #[doc(alias = "WKHapticTypeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/retry?language=objc)
+    /// Indicates that the user should retry a task that temporarily failed.
     #[doc(alias = "WKHapticTypeRetry")]
     pub const Retry: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/start?language=objc)
+    /// Indicates the beginning of an action.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, a stopwatch app uses this haptic when the user starts the stopwatch.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeStart")]
     pub const Start: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/stop?language=objc)
+    /// Indicates the end of an action.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, a stopwatch app uses this haptic when the user stops the stopwatch.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeStop")]
     pub const Stop: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/click?language=objc)
+    /// Indicates a simple click type of feedback.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this haptic to mark fixed points along a path. Space out the intervals at which you play the haptic rather than playing it several times in quick succession.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeClick")]
     pub const Click: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/navigationleftturn?language=objc)
+    /// Indicates that the user should turn left.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this haptic type when your app is running a continuous background location session.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeNavigationLeftTurn")]
     pub const NavigationLeftTurn: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/navigationrightturn?language=objc)
+    /// Indicates that the user should turn right.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this haptic type when your app is running a continuous background location session.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeNavigationRightTurn")]
     pub const NavigationRightTurn: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/navigationgenericmaneuver?language=objc)
+    /// Indicates a new navigation step.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only use this haptic type when your app is running a continuous background location session.
+    ///
+    ///
     #[doc(alias = "WKHapticTypeNavigationGenericManeuver")]
     pub const NavigationGenericManeuver: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/underwaterdepthprompt?language=objc)
     #[doc(alias = "WKHapticTypeUnderwaterDepthPrompt")]
     pub const UnderwaterDepthPrompt: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype/underwaterdepthcriticalprompt?language=objc)
     #[doc(alias = "WKHapticTypeUnderwaterDepthCriticalPrompt")]
     pub const UnderwaterDepthCriticalPrompt: Self = Self(13);
 }
@@ -67,16 +113,16 @@ unsafe impl RefEncode for WKHapticType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacelayoutdirection?language=objc)
+/// Specifies the directional flow of the user interface.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceLayoutDirection(pub NSInteger);
 impl WKInterfaceLayoutDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacelayoutdirection/lefttoright?language=objc)
+    /// The layout direction is left-to-right.
     #[doc(alias = "WKInterfaceLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacelayoutdirection/righttoleft?language=objc)
+    /// The layout direction right-to-left. This value is appropriate when your app is running with localizations such as Arabic or Hebrew that should have the user interface layout origin on the right edge of the coordinate system.
     #[doc(alias = "WKInterfaceLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -89,25 +135,25 @@ unsafe impl RefEncode for WKInterfaceLayoutDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute?language=objc)
+/// A semantic description of the view’s contents, used to determine whether the view should be flipped when switching between left-to-right and right-to-left layouts.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceSemanticContentAttribute(pub NSInteger);
 impl WKInterfaceSemanticContentAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/unspecified?language=objc)
+    /// The default value for views. The view is flipped when switching between left-to-right and right-to-left layouts.
     #[doc(alias = "WKInterfaceSemanticContentAttributeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/playback?language=objc)
+    /// A view representing the playback controls, such as Play, Rewind, or Fast Forward buttons or playhead scrubbers. These views are not flipped when switching between left-to-right and right-to-left layouts.
     #[doc(alias = "WKInterfaceSemanticContentAttributePlayback")]
     pub const Playback: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/spatial?language=objc)
+    /// A view representing a directional control, for example a segment control for text alignment, or a D-pad control for a game. These views are not flipped when switching between left-to-right and right-to-left layouts.
     #[doc(alias = "WKInterfaceSemanticContentAttributeSpatial")]
     pub const Spatial: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/forcelefttoright?language=objc)
+    /// A view that is always displayed using a left-to-right layout.
     #[doc(alias = "WKInterfaceSemanticContentAttributeForceLeftToRight")]
     pub const ForceLeftToRight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute/forcerighttoleft?language=objc)
+    /// A view that is always displayed using a left-to-right layout.
     #[doc(alias = "WKInterfaceSemanticContentAttributeForceRightToLeft")]
     pub const ForceRightToLeft: Self = Self(4);
 }
@@ -120,16 +166,16 @@ unsafe impl RefEncode for WKInterfaceSemanticContentAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicewristlocation?language=objc)
+/// Constants indicating the wrist on which the user wears the Apple Watch.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceWristLocation(pub NSInteger);
 impl WKInterfaceDeviceWristLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicewristlocation/left?language=objc)
+    /// The user’s left wrist.
     #[doc(alias = "WKInterfaceDeviceWristLocationLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicewristlocation/right?language=objc)
+    /// The user’s right wrist.
     #[doc(alias = "WKInterfaceDeviceWristLocationRight")]
     pub const Right: Self = Self(1);
 }
@@ -142,16 +188,16 @@ unsafe impl RefEncode for WKInterfaceDeviceWristLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicecrownorientation?language=objc)
+/// Constants indicating the crown orientation from the user’s perspective.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceCrownOrientation(pub NSInteger);
 impl WKInterfaceDeviceCrownOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicecrownorientation/left?language=objc)
+    /// The left side of the device.
     #[doc(alias = "WKInterfaceDeviceCrownOrientationLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicecrownorientation/right?language=objc)
+    /// The right side of the device.
     #[doc(alias = "WKInterfaceDeviceCrownOrientationRight")]
     pub const Right: Self = Self(1);
 }
@@ -164,19 +210,30 @@ unsafe impl RefEncode for WKInterfaceDeviceCrownOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating?language=objc)
+/// Values indicating the water-resistance rating.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWaterResistanceRating(pub NSInteger);
 impl WKWaterResistanceRating {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating/ipx7?language=objc)
+    /// A water-resistance rating of IPX7.
+    ///
+    /// ## Discussion
+    ///
+    /// This rating indicates a water resistance of IPX7 under IEC standard 60529. Apple Watch is splash and water resistant, but submerging the watch is not recommended.
+    ///
+    ///
     #[doc(alias = "WKWaterResistanceRatingIPX7")]
     pub const IPX7: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating/wr50?language=objc)
+    /// A water-resistance rating of 50 meters.
+    ///
+    /// ## Discussion
+    ///
+    /// This rating indicates a water resistance of 50 meters under ISO standard 22810:2010. Apple Watch may be used for shallow-water activities like swimming in a pool or an ocean. It is also safe to wear Apple Watch while showering or in a hot tub. However, the watch should not be used for scuba diving, waterskiing, or other activities involving high-velocity water or submersion below shallow depth.
+    ///
+    ///
     #[doc(alias = "WKWaterResistanceRatingWR50")]
     pub const WR50: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating/wr100?language=objc)
     #[doc(alias = "WKWaterResistanceRatingWR100")]
     pub const WR100: Self = Self(2);
 }
@@ -189,22 +246,28 @@ unsafe impl RefEncode for WKWaterResistanceRating {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate?language=objc)
+/// The battery’s charging state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceBatteryState(pub NSInteger);
 impl WKInterfaceDeviceBatteryState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/unknown?language=objc)
+    /// An unknown battery-charging state.
+    ///
+    /// ## Discussion
+    ///
+    /// When the device’s [`batteryMonitoringEnabled`](https://developer.apple.com/documentation/watchkit/wkinterfacedevice/isbatterymonitoringenabled) property is set to [`false`](https://developer.apple.com/documentation/swift/false), its [`batteryState`](https://developer.apple.com/documentation/watchkit/wkinterfacedevice/batterystate) property is set to [`WKInterfaceDeviceBatteryStateUnknown`](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/unknown).
+    ///
+    ///
     #[doc(alias = "WKInterfaceDeviceBatteryStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/unplugged?language=objc)
+    /// The device is not connected to a charger and is running on battery power.
     #[doc(alias = "WKInterfaceDeviceBatteryStateUnplugged")]
     pub const Unplugged: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/charging?language=objc)
+    /// The device is connected to a charger, but its battery charge is under 100%.
     #[doc(alias = "WKInterfaceDeviceBatteryStateCharging")]
     pub const Charging: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate/full?language=objc)
+    /// The device is connected to a charger, and its battery is charged to 100%.
     #[doc(alias = "WKInterfaceDeviceBatteryStateFull")]
     pub const Full: Self = Self(3);
 }
@@ -218,7 +281,15 @@ unsafe impl RefEncode for WKInterfaceDeviceBatteryState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevice?language=objc)
+    /// An object that provides information about the user’s Apple Watch.
+    ///
+    /// ## Overview
+    ///
+    /// You can use the information from [`WKInterfaceDevice`](https://developer.apple.com/documentation/watchkit/wkinterfacedevice)  to make decisions about the content you display in your app. You can also use this object to play haptic feedback when your app is active.
+    ///
+    /// Do not subclass or create instances of this class yourself. Always call the [`currentDevice`](https://developer.apple.com/documentation/watchkit/wkinterfacedevice/current()) class method to get the shared device object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKInterfaceDevice;

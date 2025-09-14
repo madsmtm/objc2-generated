@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkclusterannotation?language=objc)
+    /// An annotation that groups two or more distinct annotations into a single entity.
+    ///
+    /// ## Overview
+    ///
+    /// A cluster annotation object stands in for the group of annotations. Cluster views promote legibility of the underlying annotations by displaying a single annotation that takes it’s title from one annotation and includes a subtitle that indicates how many additional annotations belong to the group.
+    ///
+    /// MapKit automatically creates cluster annotations when two or more annotation views group too closely together on the map surface. To customize the cluster annotations that display on your map, implement the [`mapView:clusterAnnotationForMemberAnnotations:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:clusterannotationformemberannotations:)) method in your map’s delegate.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKClusterAnnotation;

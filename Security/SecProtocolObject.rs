@@ -9,8 +9,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_retain(_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
@@ -18,8 +16,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_release(_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `obj` must be a valid pointer.
@@ -40,6 +36,5 @@ unsafe impl RefEncode for sec_object {
 }
 
 /// A `sec_object` is a generic, ARC-able type wrapper for common CoreFoundation Security types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_object_t?language=objc)
+/// A `sec_object` is a generic, ARC-able type wrapper for common CoreFoundation Security types.
 pub type sec_object_t = *mut sec_object;

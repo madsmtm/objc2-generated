@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstyle?language=objc)
+/// Paragraph or ruler attributes in an attributed string.
+///
+/// ## Overview
+///
+/// A paragraph style object represents a complex attribute value in an attributed string, storing a number of subattributes that affect paragraph layout for the characters of the string. Among these subattributes are alignment, tab stops, writing direction, line-breaking mode, and indentation settings.
+///
+///
 #[doc(alias = "CTParagraphStyleRef")]
 #[repr(C)]
 pub struct CTParagraphStyle {
@@ -27,9 +33,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTParagraphStyle {
+    /// Returns the Core Foundation type identifier of the paragraph style object.
     /// Returns the CFType of the paragraph style object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylegettypeid()?language=objc)
     #[doc(alias = "CTParagraphStyleGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -40,6 +45,7 @@ unsafe impl ConcreteType for CTParagraphStyle {
     }
 }
 
+/// Constants that specify text alignment.
 /// These constants specify text alignment.
 ///
 ///
@@ -57,41 +63,51 @@ unsafe impl ConcreteType for CTParagraphStyle {
 ///
 ///
 /// Use the natural alignment of the text's script.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTTextAlignment(pub u8);
 impl CTTextAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/left?language=objc)
+    /// Text is visually left-aligned.
     #[doc(alias = "kCTTextAlignmentLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/right?language=objc)
+    /// Text is visually right-aligned.
     #[doc(alias = "kCTTextAlignmentRight")]
     pub const Right: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/center?language=objc)
+    /// Text is visually center-aligned.
     #[doc(alias = "kCTTextAlignmentCenter")]
     pub const Center: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/justified?language=objc)
+    /// Text is fully justified.
+    ///
+    /// ## Discussion
+    ///
+    /// The last line in a paragraph is naturally aligned.
+    ///
+    ///
     #[doc(alias = "kCTTextAlignmentJustified")]
     pub const Justified: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/natural?language=objc)
+    /// Text uses the natural alignment of the text’s script.
     #[doc(alias = "kCTTextAlignmentNatural")]
     pub const Natural: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctlefttextalignment?language=objc)
+    /// Text is visually left-aligned.
     #[deprecated = "Deprecated"]
     pub const kCTLeftTextAlignment: Self = Self(CTTextAlignment::Left.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctrighttextalignment?language=objc)
+    /// Text is visually right-aligned.
     #[deprecated = "Deprecated"]
     pub const kCTRightTextAlignment: Self = Self(CTTextAlignment::Right.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctcentertextalignment?language=objc)
+    /// Text is visually center-aligned.
     #[deprecated = "Deprecated"]
     pub const kCTCenterTextAlignment: Self = Self(CTTextAlignment::Center.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctjustifiedtextalignment?language=objc)
+    /// Text is fully justified.
+    ///
+    /// ## Discussion
+    ///
+    /// The last line in a paragraph is naturally aligned.
+    ///
+    ///
     #[deprecated = "Deprecated"]
     pub const kCTJustifiedTextAlignment: Self = Self(CTTextAlignment::Justified.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment/kctnaturaltextalignment?language=objc)
+    /// Text uses the natural alignment of the text’s script.
     #[deprecated = "Deprecated"]
     pub const kCTNaturalTextAlignment: Self = Self(CTTextAlignment::Natural.0);
 }
@@ -106,6 +122,7 @@ unsafe impl RefEncode for CTTextAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// These constants specify what happens when a line is too long for its frame.
 /// These constants specify what happens when a line is too long for
 /// its frame.
 ///
@@ -132,29 +149,57 @@ unsafe impl RefEncode for CTTextAlignment {
 /// Each line is displayed so that the beginning and end fit in the
 /// container and the missing text is indicated by some kind of
 /// ellipsis glyph in the middle.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineBreakMode(pub u8);
 impl CTLineBreakMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bywordwrapping?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Wrapping occurs at word boundaries unless the word itself doesn’t fit on a single line.
+    ///
+    ///
     #[doc(alias = "kCTLineBreakByWordWrapping")]
     pub const ByWordWrapping: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bycharwrapping?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Wrapping occurs before the first character that doesn’t fit.
+    ///
+    ///
     #[doc(alias = "kCTLineBreakByCharWrapping")]
     pub const ByCharWrapping: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/byclipping?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Lines are simply not drawn past the edge of the frame.
+    ///
+    ///
     #[doc(alias = "kCTLineBreakByClipping")]
     pub const ByClipping: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bytruncatinghead?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Each line is displayed so that the end fits in the frame and the missing text is indicated by an ellipsis glyph.
+    ///
+    ///
     #[doc(alias = "kCTLineBreakByTruncatingHead")]
     pub const ByTruncatingHead: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bytruncatingtail?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Each line is displayed so that the beginning fits in the container and the missing text is indicated by an ellipsis glyph.
+    ///
+    ///
     #[doc(alias = "kCTLineBreakByTruncatingTail")]
     pub const ByTruncatingTail: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bytruncatingmiddle?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Each line is displayed so that the beginning and end fit in the container and the missing text is indicated by an ellipsis glyph in the middle.
+    ///
+    ///
     #[doc(alias = "kCTLineBreakByTruncatingMiddle")]
     pub const ByTruncatingMiddle: Self = Self(5);
 }
@@ -169,6 +214,7 @@ unsafe impl RefEncode for CTLineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// These constants specify the writing direction.
 /// These constants specify the writing direction
 ///
 ///
@@ -180,20 +226,33 @@ unsafe impl RefEncode for CTLineBreakMode {
 ///
 ///
 /// The writing direction is right to left.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTWritingDirection(pub i8);
 impl CTWritingDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection/natural?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The writing direction is algorithmically determined using the Unicode Bidirectional Algorithm rules P2 and P3.
+    ///
+    ///
     #[doc(alias = "kCTWritingDirectionNatural")]
     pub const Natural: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection/lefttoright?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The writing direction is left to right.
+    ///
+    ///
     #[doc(alias = "kCTWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection/righttoleft?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The writing direction is right to left.
+    ///
+    ///
     #[doc(alias = "kCTWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -208,6 +267,13 @@ unsafe impl RefEncode for CTWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants used to query and modify a paragraph style object.
+///
+/// ## Overview
+///
+/// Each specifier has a type and a default value associated with it. The type must always be observed when setting or fetching the value from the `CTParagraphStyle` object. In addition, some specifiers affect the behavior of both the framesetter and the typesetter, and others affect the behavior of only the framesetter, as noted in the constant descriptions.
+///
+///
 /// These constants are used to query and modify the CTParagraphStyle
 /// object.
 ///
@@ -374,69 +440,181 @@ unsafe impl RefEncode for CTWritingDirection {
 /// Type: CTLineBoundsOptions
 /// Default: 0 (no options)
 /// Application: CTTypesetter
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTParagraphStyleSpecifier(pub u32);
 impl CTParagraphStyleSpecifier {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/alignment?language=objc)
+    /// The text alignment.
+    ///
+    /// ## Discussion
+    ///
+    /// Natural text alignment is realized as left or right alignment, depending on the line sweep direction of the first script contained in the paragraph. Type: [`CTTextAlignment`](https://developer.apple.com/documentation/coretext/cttextalignment). Default value: [`kCTNaturalTextAlignment`](https://developer.apple.com/documentation/coretext/cttextalignment/kctnaturaltextalignment). Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierAlignment")]
     pub const Alignment: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/firstlineheadindent?language=objc)
+    /// The distance, in points, from the leading margin of a frame to the beginning of the paragraph’s first line.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is always nonnegative. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierFirstLineHeadIndent")]
     pub const FirstLineHeadIndent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/headindent?language=objc)
+    /// The distance, in points, from the leading margin of a text container to the beginning of lines other than the first.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is always nonnegative. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierHeadIndent")]
     pub const HeadIndent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/tailindent?language=objc)
+    /// The distance, in points, from the margin of a frame to the end of lines.
+    ///
+    /// ## Discussion
+    ///
+    /// If positive, this value is the distance from the leading margin (for example, the left margin in left-to-right text). If `0` or negative, it’s the distance from the trailing margin. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierTailIndent")]
     pub const TailIndent: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/tabstops?language=objc)
+    /// The text tab objects, sorted by location, that define the tab stops for the paragraph style.
+    ///
+    /// ## Discussion
+    ///
+    /// Type: An array of [`CTTextTabRef`](https://developer.apple.com/documentation/coretext/cttexttab) objects. Default value: 12 left-aligned tabs, spaced by `28.0` points. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter) and [`CTTypesetterRef`](https://developer.apple.com/documentation/coretext/cttypesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierTabStops")]
     pub const TabStops: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/defaulttabinterval?language=objc)
+    /// The document-wide default tab interval.
+    ///
+    /// ## Discussion
+    ///
+    /// Tabs after the last specified by `kCTParagraphStyleSpecifierTabStops` are placed at integer multiples of this distance (if positive). Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter) and [`CTTypesetterRef`](https://developer.apple.com/documentation/coretext/cttypesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierDefaultTabInterval")]
     pub const DefaultTabInterval: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linebreakmode?language=objc)
+    /// The mode that should be used to break lines when laying out the paragraph’s text.
+    ///
+    /// ## Discussion
+    ///
+    /// Type: [`CTLineBreakMode`](https://developer.apple.com/documentation/coretext/ctlinebreakmode). Default value: [`kCTLineBreakByWordWrapping`](https://developer.apple.com/documentation/coretext/ctlinebreakmode/bywordwrapping). Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierLineBreakMode")]
     pub const LineBreakMode: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/lineheightmultiple?language=objc)
+    /// The line height multiple.
+    ///
+    /// ## Discussion
+    ///
+    /// The natural line height of the receiver is multiplied by this factor (if positive) before being constrained by minimum and maximum line height. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierLineHeightMultiple")]
     pub const LineHeightMultiple: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/maximumlineheight?language=objc)
+    /// The maximum height that any line in the frame will occupy, regardless of the font size or size of any attached graphic.
+    ///
+    /// ## Discussion
+    ///
+    /// Glyphs and graphics exceeding this height overlap neighboring lines. A maximum height of `0` implies no line height limit. This value is always nonnegative. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierMaximumLineHeight")]
     pub const MaximumLineHeight: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/minimumlineheight?language=objc)
+    /// The minimum height that any line in the frame will occupy, regardless of the font size or size of any attached graphic.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is always nonnegative. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineHeight")]
     pub const MinimumLineHeight: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linespacing?language=objc)
+    /// The space in points added between lines within the paragraph (commonly known as leading).
+    ///
+    /// ## Discussion
+    ///
+    /// Instead, use [`kCTParagraphStyleSpecifierMaximumLineSpacing`](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/maximumlinespacing), [`kCTParagraphStyleSpecifierMinimumLineSpacing`](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/minimumlinespacing), and [`kCTParagraphStyleSpecifierLineSpacingAdjustment`](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linespacingadjustment) to control space between lines. This value is always nonnegative. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierLineSpacing")]
     #[deprecated = "See documentation for replacements"]
     pub const LineSpacing: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/paragraphspacing?language=objc)
+    /// The space added at the end of the paragraph to separate it from the following paragraph.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is always nonnegative and is determined by adding the previous paragraph’s [`kCTParagraphStyleSpecifierParagraphSpacing`](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/paragraphspacing) setting and the current paragraph’s [`kCTParagraphStyleSpecifierParagraphSpacingBefore`](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/paragraphspacingbefore) setting. Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacing")]
     pub const ParagraphSpacing: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/paragraphspacingbefore?language=objc)
+    /// The distance between the paragraph’s top and the beginning of its text content.
+    ///
+    /// ## Discussion
+    ///
+    /// Type: [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacingBefore")]
     pub const ParagraphSpacingBefore: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/basewritingdirection?language=objc)
+    /// The base writing direction of the lines.
+    ///
+    /// ## Discussion
+    ///
+    /// Type: [`CTWritingDirection`](https://developer.apple.com/documentation/coretext/ctwritingdirection). Default value: [`kCTWritingDirectionNatural`](https://developer.apple.com/documentation/coretext/ctwritingdirection/natural). Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter) and [`CTTypesetterRef`](https://developer.apple.com/documentation/coretext/cttypesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierBaseWritingDirection")]
     pub const BaseWritingDirection: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/maximumlinespacing?language=objc)
+    /// The maximum space in points between lines within the paragraph (commonly known as leading).
+    ///
+    /// ## Discussion
+    ///
+    /// This value is always nonnegative. Type: [CGFloat](https://developer.apple.com/library/archive/releasenotes/Foundation/RN-FoundationOlderNotes/index.html#//apple_ref/doc/uid/TP40008080-TRANSLATED_CHAPTER_965-TRANSLATED_DEST_121). Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierMaximumLineSpacing")]
     pub const MaximumLineSpacing: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/minimumlinespacing?language=objc)
+    /// The minimum space in points between lines within the paragraph (commonly known as leading).
+    ///
+    /// ## Discussion
+    ///
+    /// This value is always nonnegative. Type: [CGFloat](https://developer.apple.com/library/archive/releasenotes/Foundation/RN-FoundationOlderNotes/index.html#//apple_ref/doc/uid/TP40008080-TRANSLATED_CHAPTER_965-TRANSLATED_DEST_121). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineSpacing")]
     pub const MinimumLineSpacing: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/linespacingadjustment?language=objc)
+    /// The space in points added between lines within the paragraph (commonly known as leading).
+    ///
+    /// ## Discussion
+    ///
+    /// Type: [CGFloat](https://developer.apple.com/library/archive/releasenotes/Foundation/RN-FoundationOlderNotes/index.html#//apple_ref/doc/uid/TP40008080-TRANSLATED_CHAPTER_965-TRANSLATED_DEST_121). Default value: `0.0`. Affects: [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierLineSpacingAdjustment")]
     pub const LineSpacingAdjustment: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/lineboundsoptions?language=objc)
+    /// Options that control the alignment of the line edges with the leading and trailing margins.
+    ///
+    /// ## Discussion
+    ///
+    /// Type: [`CTLineBoundsOptions`](https://developer.apple.com/documentation/coretext/ctlineboundsoptions). Default value `0` (that is, no options). Affects: [`CTTypesetterRef`](https://developer.apple.com/documentation/coretext/cttypesetter).
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierLineBoundsOptions")]
     pub const LineBoundsOptions: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier/count?language=objc)
+    /// The number of style specifiers.
+    ///
+    /// ## Discussion
+    ///
+    /// The purpose is to simplify the validation of style specifiers.
+    ///
+    ///
     #[doc(alias = "kCTParagraphStyleSpecifierCount")]
     pub const Count: Self = Self(18);
 }
@@ -452,6 +630,7 @@ unsafe impl RefEncode for CTParagraphStyleSpecifier {
 }
 
 /// This structure is used to alter the paragraph style.
+/// This structure is used to alter the paragraph style.
 ///
 /// Field: spec
 /// The specifier of the setting.
@@ -465,8 +644,6 @@ unsafe impl RefEncode for CTParagraphStyleSpecifier {
 /// A reference to the value of the setting specified by the
 /// "spec" field. The value must be in the proper range for the
 /// spec value. The value must also be at least valueSize.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylesetting?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CTParagraphStyleSetting {
@@ -493,6 +670,25 @@ unsafe impl RefEncode for CTParagraphStyleSetting {
 }
 
 impl CTParagraphStyle {
+    /// Creates an immutable paragraph style.
+    ///
+    /// Parameters:
+    /// - settings: The settings with which to preload the paragraph style. If you want to specify the default set of settings, set this parameter to `NULL`.
+    ///
+    /// - settingCount: The number of settings that you have specified in the `settings` parameter. This must be greater than or equal to `0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid reference to an immutable CTParagraphStyle object, If the paragraph style creation was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Using this function is the easiest and most efficient way to create a paragraph style. Paragraph styles should be kept immutable for totally lock-free operation. If an invalid paragraph style setting specifier is passed into the `settings` parameter, nothing bad will happen, but you will be unable to query for this value. The reason is to allow backward compatibility with style setting specifiers that may be introduced in future versions.
+    ///
+    ///
     /// Creates an immutable paragraph style.
     ///
     ///
@@ -524,8 +720,6 @@ impl CTParagraphStyle {
     /// # Safety
     ///
     /// `settings` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylecreate(_:_:)?language=objc)
     #[doc(alias = "CTParagraphStyleCreate")]
     #[inline]
     pub unsafe fn new(
@@ -546,6 +740,17 @@ impl CTParagraphStyle {
 
     /// Creates an immutable copy of a paragraph style.
     ///
+    /// Parameters:
+    /// - paragraphStyle: The style to copy. This parameter may not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid reference to an immutable CTParagraphStyle object that is a copy of the one passed into `paragraphStyle`, If the `paragraphStyle` reference is valid; otherwise `NULL`, if any error occurred, including being supplied with an invalid reference.
+    ///
+    ///
+    /// Creates an immutable copy of a paragraph style.
+    ///
     ///
     /// Parameter `paragraphStyle`: The style that you wish to copy.
     ///
@@ -554,8 +759,6 @@ impl CTParagraphStyle {
     /// function will return valid reference to an immutable
     /// CTParagraphStyle object that is a copy of the one passed into
     /// "paragraphStyle".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylecreatecopy(_:)?language=objc)
     #[doc(alias = "CTParagraphStyleCreateCopy")]
     #[inline]
     pub fn copy(&self) -> CFRetained<CTParagraphStyle> {
@@ -570,6 +773,29 @@ impl CTParagraphStyle {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Obtains the current value for a single setting specifier.
+    ///
+    /// Parameters:
+    /// - paragraphStyle: The paragraph style from which to get the value. This parameter may not be `NULL`.
+    ///
+    /// - spec: The setting specifier for which to get the value.
+    ///
+    /// - valueBufferSize: The size of the buffer pointed to by the `valueBuffer` parameter. This value must be at least as large as the size the required by the [`CTParagraphStyleSpecifier`](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier) value set in the `spec` parameter.
+    ///
+    /// - valueBuffer: On output, the requested setting value. The buffer’s size needs to be at least as large as the value passed into `valueBufferSize`. This parameter is required and may not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `True` if `valueBuffer` was successfully filled; otherwise, `False`, indicating that one or more of the parameters are not valid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the current value of the specifier whether or not the user actually set it. If the user did not set the specifier, this function returns the default value. If an invalid paragraph style setting specifier is passed into the `spec` parameter, nothing bad happens, and the buffer value is simply zeroed out. The reason is to allow backward compatibility with style setting specifiers that may be introduced in future versions.
+    ///
+    ///
     /// Obtains the current value for a single setting specifier.
     ///
     ///
@@ -607,8 +833,6 @@ impl CTParagraphStyle {
     /// # Safety
     ///
     /// `value_buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylegetvalueforspecifier(_:_:_:_:)?language=objc)
     #[doc(alias = "CTParagraphStyleGetValueForSpecifier")]
     #[inline]
     pub unsafe fn value_for_specifier(

@@ -10,134 +10,169 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the sharing services that macOS supports.
 /// Built-in sharing services
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSSharingServiceName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/composeemail?language=objc)
+    /// A service that uses an item provider’s contents to compose an email.
     pub static NSSharingServiceNameComposeEmail: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/composemessage?language=objc)
+    /// A service that uses an item provider’s contents to compose a message.
     pub static NSSharingServiceNameComposeMessage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/sendviaairdrop?language=objc)
+    /// A service that sends an item provider’s contents to another device using AirDrop.
     pub static NSSharingServiceNameSendViaAirDrop: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/addtosafarireadinglist?language=objc)
+    /// A service that shares an item provider’s contents with Safari’s Reading List.
     pub static NSSharingServiceNameAddToSafariReadingList: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/addtoiphoto?language=objc)
+    /// A service that shares an item provider’s contents with iPhoto.
     pub static NSSharingServiceNameAddToIPhoto: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/addtoaperture?language=objc)
+    /// A service that shares an item provider’s contents with Aperture.
     pub static NSSharingServiceNameAddToAperture: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useasdesktoppicture?language=objc)
+    /// A service that sets the item provider’s contents as the current user’s desktop picture.
     pub static NSSharingServiceNameUseAsDesktopPicture: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postonfacebook?language=objc)
+    /// Posts the content on Facebook.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postontwitter?language=objc)
+    /// Posts the content on Twitter.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postonsinaweibo?language=objc)
+    /// Posts the content on a Sina Weibo, Chinese microblogging (weibo) website. Akin to a hybrid of Twitter and Facebook.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postontencentweibo?language=objc)
+    /// Posts the content on a Tencent Weibo, Chinese microblogging (weibo) website.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postonlinkedin?language=objc)
+    /// Posts the content on LinkedIn.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useastwitterprofileimage?language=objc)
+    /// Replaces the user’s Twitter profile image with the provided image.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useasfacebookprofileimage?language=objc)
+    /// Replaces the user’s Facebook profile image with the provided image.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useaslinkedinprofileimage?language=objc)
+    /// Replaces the user’s LinkedIn profile image with the provided image.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postimageonflickr?language=objc)
+    /// Posts the image on Flickr.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postvideoonvimeo?language=objc)
+    /// Posts the video on the video sharing service Vimeo.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postvideoonyouku?language=objc)
+    /// Posts the video on the video sharing service Youku, based in the People’s Republic of China.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postvideoontudou?language=objc)
+    /// Posts the video on the video sharing service Tudou, based in the People’s Republic of China.
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName;
 }
 
 extern "C" {
+    /// A service that shares an item provider’s contents with other iCloud users.
+    ///
+    /// ## Discussion
+    ///
+    /// The behavior of the cloud-sharing service is different from other services. It creates a persistent sharing session between two or more iCloud users, and provides access to the original items, rather than sending copies. For more information about CloudKit Sharing, see [Shared Records](https://developer.apple.com/documentation/cloudkit/shared-records).
+    ///
+    ///
     /// This service differs from other NSSharingServices in that it allows the user to establish a persistent sharing session for the specified items with potentially many participants, instead of sending a copy of the items. You can invoke this service with an NSItemProvider that has registered a CKShare
     /// &
     /// CKContainer via either -registerCloudKitShare:container: or -registerCloudKitShareWithPreparationHandler:. (Registering other types on the same provider to enable other sharing services is allowed.)
     ///
     /// When performed, this service gives the user the opportunity to invite participants and start sharing. If the content is already shared, the service instead allows the user to view or modify participation or stop sharing. To detect changes the service makes to the CKShare, implement -sharingService:didSaveShare: and -sharingService:didStopSharing:.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/cloudsharing?language=objc)
     pub static NSSharingServiceNameCloudSharing: &'static NSSharingServiceName;
 }
 
 extern_class!(
-    /// NSSharingService can be used to share items to different kinds of local and remote services. Items are objects which respond to the NSPasteboardWriting protocol, like NSURL, NSImage or NSString. If an NSURL is a file URL (point to a video for example), then the content of the file will be shared. If the URL is remote, then the URL itself will be shared.
+    /// An object that facilitates the sharing of content with social media services, or with apps like Mail or Safari.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice?language=objc)
+    /// ## Overview
+    ///
+    /// An [`NSSharingService`](https://developer.apple.com/documentation/appkit/nssharingservice) object provides a consistent user experience for sharing items—[`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects, [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects, [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) objects, video (through file URLs), of any object that implements the [`NSPasteboardWriting`](https://developer.apple.com/documentation/appkit/nspasteboardwriting) protocol—in macOS.
+    ///
+    /// For any item or group of items, the [`NSSharingService`](https://developer.apple.com/documentation/appkit/nssharingservice) displays a sheet with the content to share. A sharing service can create a post on a social network like Twitter or Facebook, send a message by email or iMessage, upload videos to viewing services, or send a file using AirDrop.
+    ///
+    /// You can use [`NSSharingService`](https://developer.apple.com/documentation/appkit/nssharingservice) objects directly in your app. The following example shows how to create a button that shares content directly to a social media service.
+    ///
+    /// ```objc
+    /// - (void)awakeFromNib
+    /// {
+    ///     NSSharingService * service = [NSSharingService sharingServiceNamed:NSSharingServiceNamePostOnTwitter];
+    ///     [myShareOnTwitterButton setTitle:service.title];
+    ///     [myShareOnTwitterButton setEnabled:[service canPerformWithItems:nil]];
+    /// }
+    ///  
+    ///  
+    /// - (IBAction)shareOnTwitter:(id)sender
+    /// {
+    ///     // Items to share
+    ///     NSAttributedString *text = [self.textView attributedString];
+    ///     NSImage *image = [self.imageView image];
+    ///     NSArray * shareItems = [NSArray arrayWithObjects:text, image, nil];
+    ///  
+    ///     NSSharingService *service = [NSSharingService sharingServiceNamed:NSSharingServiceNamePostOnTwitter];
+    ///     service.delegate = self;
+    ///     [service performWithItems:shareItems];
+    /// }
+    /// ```
+    ///
+    ///
+    /// NSSharingService can be used to share items to different kinds of local and remote services. Items are objects which respond to the NSPasteboardWriting protocol, like NSURL, NSImage or NSString. If an NSURL is a file URL (point to a video for example), then the content of the file will be shared. If the URL is remote, then the URL itself will be shared.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingService;
@@ -308,29 +343,25 @@ impl NSSharingService {
     );
 }
 
+/// The sharing scope constants specify the nature of the things you are sharing.
 /// Use the sharing scope to specify the nature of the things you are sharing.
 ///
 /// The sharing scope can be modified from the default value of NSSharingContentScopeItem by setting a different value in the out parameter in sharingService:sourceWindowForShareItems:sharingContentScope:.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSharingContentScope(pub NSInteger);
 impl NSSharingContentScope {
+    /// Used when sharing a clearly identified item, for example, a file represented by its icon.
     /// NSSharingContentScopeItem: use when sharing a clearly identified item, e.g. a file represented by its icon.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope/item?language=objc)
     #[doc(alias = "NSSharingContentScopeItem")]
     pub const Item: Self = Self(0);
+    /// Used when sharing a portion of a more global content, for example, part of a webpage.
     /// NSSharingContentScopePartial: use when sharing a portion of a more global content, e.g. part of a webpage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope/partial?language=objc)
     #[doc(alias = "NSSharingContentScopePartial")]
     pub const Partial: Self = Self(1);
+    /// Used when sharing the whole content of the current document, for example, the URL of the webpage.
     /// NSSharingContentScopeFull: use when sharing the whole content of the current document, e.g. the url of the webpage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope/full?language=objc)
     #[doc(alias = "NSSharingContentScopeFull")]
     pub const Full: Self = Self(2);
 }
@@ -344,7 +375,13 @@ unsafe impl RefEncode for NSSharingContentScope {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicedelegate?language=objc)
+    /// A set of methods that you use to customize the position and animation of a share sheet, and to be notified whether the item is successfully shared.
+    ///
+    /// ## Overview
+    ///
+    /// See [`NSSharingService`](https://developer.apple.com/documentation/appkit/nssharingservice) for more information.
+    ///
+    ///
     pub unsafe trait NSSharingServiceDelegate: NSObjectProtocol + MainThreadOnly {
         /// # Safety
         ///
@@ -448,36 +485,31 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions?language=objc)
+/// Constants that describe how a participant can configure a CloudKit share.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCloudKitSharingServiceOptions: NSUInteger {
+/// An option that allows the participant to configure the share with a standard set of options.
 /// Allow the user to configure the share with the standard set of options.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/standard?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceStandard")]
         const Standard = 0;
+/// An option that allows the participant to publicly distribute the share to other iCloud users.
 /// The user is allowed to share publicly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowpublic?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowPublic")]
         const AllowPublic = 1<<0;
+/// An option that allows the participant to privately distribute the share to other iCloud users.
 /// The user is allowed to share privately.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowprivate?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowPrivate")]
         const AllowPrivate = 1<<1;
+/// An option that allows the participant to grant other participants read-only permissions.
 /// The user is allowed to grant participants read-only permissions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowreadonly?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowReadOnly")]
         const AllowReadOnly = 1<<4;
+/// An option that allows the participant to grant other participants read-write permissions.
 /// The user is allowed to grant participants read/write permissions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions/allowreadwrite?language=objc)
         #[doc(alias = "NSCloudKitSharingServiceAllowReadWrite")]
         const AllowReadWrite = 1<<5;
     }
@@ -492,7 +524,17 @@ unsafe impl RefEncode for NSCloudKitSharingServiceOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudsharingservicedelegate?language=objc)
+    /// A set of methods for responding to the life cycle events of the cloud-sharing service.
+    ///
+    /// ## Overview
+    ///
+    /// CloudKit allows a user to share a hierarchy of records with other iCloud users. In macOS, you use [`NSItemProvider`](https://developer.apple.com/documentation/foundation/nsitemprovider) and [`NSSharingService`](https://developer.apple.com/documentation/appkit/nssharingservice) to facilitate sharing. Register an instance of [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare) with an item provider, and then use a sharing service to present it to the user. You must initialize the service with the [`NSSharingServiceNameCloudSharing`](https://developer.apple.com/documentation/appkit/nssharingservice/name/cloudsharing) service name. If the share is new, the user can configure the share and invite other iCloud users to participate. Otherwise, they can use the service to manage the share’s participants and their permissions.
+    ///
+    /// This protocol defines methods that the sharing service calls when it saves changes to a share, or deletes it. The service also asks its delegate to provide the preferred sharing options when creating a new share. Set the service’s [`delegate`](https://developer.apple.com/documentation/appkit/nssharingservice/delegate) property to an object that implements this protocol. Use your implementation to provide any appropriate behavior, such as deleting a share you cache locally when the service deletes it from the server.
+    ///
+    /// For more information about CloudKit sharing, see [Shared Records](https://developer.apple.com/documentation/cloudkit/shared-records).
+    ///
+    ///
     pub unsafe trait NSCloudSharingServiceDelegate: NSSharingServiceDelegate {
         /// When an NSSharingServiceNameCloudSharing sharing service is dismissed it will invoke this method on the delegate, with an error if there was any. If the delegate implements this method, NSSharingServiceNameCloudSharing will not send -sharingService:didFailToShareItems:error: or -sharingService:didShareItems:.
         ///
@@ -584,7 +626,15 @@ impl private_NSItemProviderNSCloudKitSharing::Sealed for NSItemProvider {}
 unsafe impl NSItemProviderNSCloudKitSharing for NSItemProvider {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepicker?language=objc)
+    /// A list of sharing services that the user can choose from.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSSharingServicePicker`](https://developer.apple.com/documentation/appkit/nssharingservicepicker) object presents an interface for sharing one or more items using a specific service. In macOS 12 and earlier, this picker displays a menu with a list of services that someone can use to share the item. In macOS 13 and later, the picker displays a popover with a preview of the item and the list of services. When someone chooses a service, the picker automatically shares the proposed item with that service.
+    ///
+    /// Create a sharing service picker and configure it with a delegate object to monitor interactions. Your delegate must conform to the [`NSSharingServicePickerDelegate`](https://developer.apple.com/documentation/appkit/nssharingservicepickerdelegate) protocol. Present the picker from your interface using the [`showRelativeToRect:ofView:preferredEdge:`](https://developer.apple.com/documentation/appkit/nssharingservicepicker/show(relativeto:of:preferrededge:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingServicePicker;
@@ -662,7 +712,15 @@ impl NSSharingServicePicker {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickerdelegate?language=objc)
+    /// An interface for managing content for the macOS share sheet.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`NSSharingServicePickerDelegate`](https://developer.apple.com/documentation/appkit/nssharingservicepickerdelegate) protocol in one of your app’s types, and use it to manage interactions with an [`NSSharingServicePicker`](https://developer.apple.com/documentation/appkit/nssharingservicepicker) object. Use your delegate object to customize the services for the proposed items and respond to the selection of a shared service.
+    ///
+    /// For information about how to display the share sheet and configure your delegate, see [`NSSharingServicePicker`](https://developer.apple.com/documentation/appkit/nssharingservicepicker).
+    ///
+    ///
     pub unsafe trait NSSharingServicePickerDelegate: NSObjectProtocol {
         /// Allows the delegate to customize exactly what appears in the sharing service picker by reordering or removing the services before the picker is presented. It's possible to add custom services by mutating the proposedSharingServices array and adding new NSSharingService instances:
         ///

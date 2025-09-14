@@ -6,211 +6,122 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesmptimeout?language=objc)
 pub const kBluetoothLESMPTimeout: c_uint = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesmpminencryptionkeysize?language=objc)
 pub const kBluetoothLESMPMinEncryptionKeySize: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesmpmaxencryptionkeysize?language=objc)
 pub const kBluetoothLESMPMaxEncryptionKeySize: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kinfostringmaxlength?language=objc)
 pub const kInfoStringMaxLength: c_uint = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquiryresultsmaxresults?language=objc)
 pub const kBluetoothHCIInquiryResultsMaxResults: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kmaxchannelidperside?language=objc)
 pub const kMaxChannelIDPerSide: c_uint = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothconnectionhandle?language=objc)
 pub type BluetoothConnectionHandle = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlmphandle?language=objc)
 pub type BluetoothLMPHandle = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothconnectionhandleserialdevicereserved?language=objc)
 pub const kBluetoothConnectionHandleSerialDeviceReserved: c_uint = 0x0fff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothconnectionhandlenone?language=objc)
 pub const kBluetoothConnectionHandleNone: c_uint = 0xffff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothreasoncode?language=objc)
 pub type BluetoothReasonCode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothencryptionenable?language=objc)
 pub type BluetoothEncryptionEnable = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothencryptionenableoff?language=objc)
 pub const kBluetoothEncryptionEnableOff: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothencryptionenableon?language=objc)
 pub const kBluetoothEncryptionEnableOn: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothencryptionenablebredre0?language=objc)
 pub const kBluetoothEncryptionEnableBREDRE0: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothencryptionenableleaesccm?language=objc)
 pub const kBluetoothEncryptionEnableLEAESCCM: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothencryptionenablebredraesccm?language=objc)
 pub const kBluetoothEncryptionEnableBREDRAESCCM: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkeyflag?language=objc)
 pub type BluetoothKeyFlag = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeyflagsemipermanent?language=objc)
 pub const kBluetoothKeyFlagSemiPermanent: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeyflagtemporary?language=objc)
 pub const kBluetoothKeyFlagTemporary: c_uint = 0x01;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkeytype?language=objc)
 pub type BluetoothKeyType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypecombination?language=objc)
 pub const kBluetoothKeyTypeCombination: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypelocalunit?language=objc)
 pub const kBluetoothKeyTypeLocalUnit: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytyperemoteunit?language=objc)
 pub const kBluetoothKeyTypeRemoteUnit: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypedebugcombination?language=objc)
 pub const kBluetoothKeyTypeDebugCombination: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypeunauthenticatedcombination?language=objc)
 pub const kBluetoothKeyTypeUnauthenticatedCombination: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypeauthenticatedcombination?language=objc)
 pub const kBluetoothKeyTypeAuthenticatedCombination: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypechangedcombination?language=objc)
 pub const kBluetoothKeyTypeChangedCombination: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypeunauthenticatedcombinationp256?language=objc)
 pub const kBluetoothKeyTypeUnauthenticatedCombinationP256: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeytypeauthenticatedcombinationp256?language=objc)
 pub const kBluetoothKeyTypeAuthenticatedCombinationP256: c_uint = 0x08;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpackettype?language=objc)
 pub type BluetoothPacketType = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypereserved1?language=objc)
 pub const kBluetoothPacketTypeReserved1: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettype2dh1omit?language=objc)
 pub const kBluetoothPacketType2DH1Omit: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettype3dh1omit?language=objc)
 pub const kBluetoothPacketType3DH1Omit: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedm1?language=objc)
 pub const kBluetoothPacketTypeDM1: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedh1?language=objc)
 pub const kBluetoothPacketTypeDH1: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypehv1?language=objc)
 pub const kBluetoothPacketTypeHV1: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypehv2?language=objc)
 pub const kBluetoothPacketTypeHV2: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypehv3?language=objc)
 pub const kBluetoothPacketTypeHV3: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedv?language=objc)
 pub const kBluetoothPacketTypeDV: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettype2dh3omit?language=objc)
 pub const kBluetoothPacketType2DH3Omit: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettype3dh3omit?language=objc)
 pub const kBluetoothPacketType3DH3Omit: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypeaux?language=objc)
 pub const kBluetoothPacketTypeAUX: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedm3?language=objc)
 pub const kBluetoothPacketTypeDM3: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedh3?language=objc)
 pub const kBluetoothPacketTypeDH3: c_uint = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettype2dh5omit?language=objc)
 pub const kBluetoothPacketType2DH5Omit: c_uint = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettype3dm5omit?language=objc)
 pub const kBluetoothPacketType3DM5Omit: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedm5?language=objc)
 pub const kBluetoothPacketTypeDM5: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypedh5?language=objc)
 pub const kBluetoothPacketTypeDH5: c_uint = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpackettypeend?language=objc)
 pub const kBluetoothPacketTypeEnd: c_uint = 32769;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypenone?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeNone: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypehv1?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeHV1: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypehv2?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeHV2: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypehv3?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeHV3: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypeev3?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeEV3: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypeev4?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeEV4: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypeev5?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeEV5: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettype2ev3omit?language=objc)
 pub const kBluetoothSynchronousConnectionPacketType2EV3Omit: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettype3ev3omit?language=objc)
 pub const kBluetoothSynchronousConnectionPacketType3EV3Omit: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettype2ev5omit?language=objc)
 pub const kBluetoothSynchronousConnectionPacketType2EV5Omit: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettype3ev5omit?language=objc)
 pub const kBluetoothSynchronousConnectionPacketType3EV5Omit: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypefutureuse?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeFutureUse: c_uint = 0xFC00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypeall?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeAll: c_uint = 0xFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsynchronousconnectionpackettypeend?language=objc)
 pub const kBluetoothSynchronousConnectionPacketTypeEnd: c_uint = 65536;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlap?language=objc)
 pub type BluetoothLAP = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothgeneralinquiryaccesscodeindex?language=objc)
 pub const kBluetoothGeneralInquiryAccessCodeIndex: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothgeneralinquiryaccesscodelapvalue?language=objc)
 pub const kBluetoothGeneralInquiryAccessCodeLAPValue: c_uint = 0x9E8B33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlimitedinquiryaccesscodeindex?language=objc)
 pub const kBluetoothLimitedInquiryAccessCodeIndex: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlimitedinquiryaccesscodelapvalue?language=objc)
 pub const kBluetoothLimitedInquiryAccessCodeLAPValue: c_uint = 0x9E8B00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlimitedinquiryaccesscodeend?language=objc)
 pub const kBluetoothLimitedInquiryAccessCodeEnd: c_uint = 10390273;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpagescanrepetitionmode?language=objc)
 pub type BluetoothPageScanRepetitionMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanrepetitionmoder0?language=objc)
 pub const kBluetoothPageScanRepetitionModeR0: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanrepetitionmoder1?language=objc)
 pub const kBluetoothPageScanRepetitionModeR1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanrepetitionmoder2?language=objc)
 pub const kBluetoothPageScanRepetitionModeR2: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpagescanperiodmode?language=objc)
 pub type BluetoothPageScanPeriodMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanperiodmodep0?language=objc)
 pub const kBluetoothPageScanPeriodModeP0: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanperiodmodep1?language=objc)
 pub const kBluetoothPageScanPeriodModeP1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanperiodmodep2?language=objc)
 pub const kBluetoothPageScanPeriodModeP2: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpagescanmode?language=objc)
 pub type BluetoothPageScanMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanmodemandatory?language=objc)
 pub const kBluetoothPageScanModeMandatory: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanmodeoptional1?language=objc)
 pub const kBluetoothPageScanModeOptional1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanmodeoptional2?language=objc)
 pub const kBluetoothPageScanModeOptional2: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothpagescanmodeoptional3?language=objc)
 pub const kBluetoothPageScanModeOptional3: c_uint = 0x03;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescantype?language=objc)
 pub type BluetoothHCIPageScanType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescantypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIPageScanTypes(pub c_uint);
 impl BluetoothHCIPageScanTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipagescantypestandard?language=objc)
     #[doc(alias = "kBluetoothHCIPageScanTypeStandard")]
     pub const Standard: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipagescantypeinterlaced?language=objc)
     #[doc(alias = "kBluetoothHCIPageScanTypeInterlaced")]
     pub const Interlaced: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipagescantypereservedstart?language=objc)
     #[doc(alias = "kBluetoothHCIPageScanTypeReservedStart")]
     pub const ReservedStart: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipagescantypereservedend?language=objc)
     #[doc(alias = "kBluetoothHCIPageScanTypeReservedEnd")]
     pub const ReservedEnd: Self = Self(0xFF);
 }
@@ -225,19 +136,13 @@ unsafe impl RefEncode for BluetoothHCIPageScanTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcierroneousdatareporting?language=objc)
 pub type BluetoothHCIErroneousDataReporting = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierroneousdatareportingdisabled?language=objc)
 pub const kBluetoothHCIErroneousDataReportingDisabled: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierroneousdatareportingenabled?language=objc)
 pub const kBluetoothHCIErroneousDataReportingEnabled: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierroneousdatareportingreservedstart?language=objc)
 pub const kBluetoothHCIErroneousDataReportingReservedStart: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierroneousdatareportingreservedend?language=objc)
 pub const kBluetoothHCIErroneousDataReportingReservedEnd: c_uint = 0xFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothdeviceaddress?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothDeviceAddress {
@@ -254,7 +159,6 @@ unsafe impl RefEncode for BluetoothDeviceAddress {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkey?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothKey {
@@ -271,7 +175,6 @@ unsafe impl RefEncode for BluetoothKey {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothirk?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothIRK {
@@ -288,7 +191,6 @@ unsafe impl RefEncode for BluetoothIRK {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpincode?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothPINCode {
@@ -305,56 +207,37 @@ unsafe impl RefEncode for BluetoothPINCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothclassofdevice?language=objc)
 pub type BluetoothClassOfDevice = u32;
 
 /// Major Service Classes (11-bit value - bits 13-23 of Device/Service field)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothserviceclassmajor?language=objc)
 pub type BluetoothServiceClassMajor = u32;
 
 /// Major Device Classes (5-bit value - bits 8-12 of Device/Service field)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothdeviceclassmajor?language=objc)
 pub type BluetoothDeviceClassMajor = u32;
 
 /// Minor Device Classes (6-bit value - bits 2-7 of Device/Service field)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothdeviceclassminor?language=objc)
 pub type BluetoothDeviceClassMinor = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothdevicenamemaxlength?language=objc)
 pub const kBluetoothDeviceNameMaxLength: c_uint = 248;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothdevicename?language=objc)
 pub type BluetoothDeviceName = [u8; 248];
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothclockoffset?language=objc)
 pub type BluetoothClockOffset = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrole?language=objc)
 pub type BluetoothRole = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothallowroleswitch?language=objc)
 pub type BluetoothAllowRoleSwitch = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothdontallowroleswitch?language=objc)
 pub const kBluetoothDontAllowRoleSwitch: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothallowroleswitch?language=objc)
 pub const kBluetoothAllowRoleSwitch: c_uint = 0x01;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrolebecomecentral?language=objc)
 pub const kBluetoothRoleBecomeCentral: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothroleremainperipheral?language=objc)
 pub const kBluetoothRoleRemainPeripheral: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrolebecomemaster?language=objc)
 #[deprecated]
 pub const kBluetoothRoleBecomeMaster: c_uint = kBluetoothRoleBecomeCentral;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothroleremainslave?language=objc)
 #[deprecated]
 pub const kBluetoothRoleRemainSlave: c_uint = kBluetoothRoleRemainPeripheral;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothseteventmask?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothSetEventMask {
@@ -371,138 +254,87 @@ unsafe impl RefEncode for BluetoothSetEventMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpintype?language=objc)
 pub type BluetoothPINType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmaxpacketsize?language=objc)
 pub const kBluetoothL2CAPMaxPacketSize: c_uint = 65535;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothacllogicalchannelreserved?language=objc)
 pub const kBluetoothACLLogicalChannelReserved: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothacllogicalchannell2capcontinue?language=objc)
 pub const kBluetoothACLLogicalChannelL2CAPContinue: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothacllogicalchannell2capstart?language=objc)
 pub const kBluetoothACLLogicalChannelL2CAPStart: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothacllogicalchannellmp?language=objc)
 pub const kBluetoothACLLogicalChannelLMP: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capchannelid?language=objc)
 pub type BluetoothL2CAPChannelID = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelnull?language=objc)
 pub const kBluetoothL2CAPChannelNull: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelsignalling?language=objc)
 pub const kBluetoothL2CAPChannelSignalling: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelconnectionlessdata?language=objc)
 pub const kBluetoothL2CAPChannelConnectionLessData: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelampmanagerprotocol?language=objc)
 pub const kBluetoothL2CAPChannelAMPManagerProtocol: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelattributeprotocol?language=objc)
 pub const kBluetoothL2CAPChannelAttributeProtocol: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannellesignalling?language=objc)
 pub const kBluetoothL2CAPChannelLESignalling: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelsecuritymanager?language=objc)
 pub const kBluetoothL2CAPChannelSecurityManager: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelbredrsecuritymanager?language=objc)
 pub const kBluetoothL2CAPChannelBREDRSecurityManager: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelreservedstart?language=objc)
 pub const kBluetoothL2CAPChannelReservedStart: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelleap?language=objc)
 pub const kBluetoothL2CAPChannelLEAP: c_uint = 0x002A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelleas?language=objc)
 pub const kBluetoothL2CAPChannelLEAS: c_uint = 0x002B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelmagicpairing?language=objc)
 pub const kBluetoothL2CAPChannelMagicPairing: c_uint = 0x0030;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelmagnet?language=objc)
 pub const kBluetoothL2CAPChannelMagnet: c_uint = 0x003A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelreservedend?language=objc)
 pub const kBluetoothL2CAPChannelReservedEnd: c_uint = 0x003E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelamptestmanager?language=objc)
 pub const kBluetoothL2CAPChannelAMPTestManager: c_uint = 0x003F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchanneldynamicstart?language=objc)
 pub const kBluetoothL2CAPChannelDynamicStart: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchanneldynamicend?language=objc)
 pub const kBluetoothL2CAPChannelDynamicEnd: c_uint = 0xffff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capchannelend?language=objc)
 pub const kBluetoothL2CAPChannelEnd: c_uint = 0xffff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capgroupid?language=objc)
 pub type BluetoothL2CAPGroupID = BluetoothL2CAPChannelID;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2cappsm?language=objc)
 pub type BluetoothL2CAPPSM = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capcommandcode?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPCommandCode(pub c_uint);
 impl BluetoothL2CAPCommandCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodereserved?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeReserved")]
     pub const Reserved: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodecommandreject?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeCommandReject")]
     pub const CommandReject: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeconnectionrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeConnectionRequest")]
     pub const ConnectionRequest: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeconnectionresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeConnectionResponse")]
     pub const ConnectionResponse: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeconfigurerequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeConfigureRequest")]
     pub const ConfigureRequest: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeconfigureresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeConfigureResponse")]
     pub const ConfigureResponse: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodedisconnectionrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeDisconnectionRequest")]
     pub const DisconnectionRequest: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodedisconnectionresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeDisconnectionResponse")]
     pub const DisconnectionResponse: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeechorequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeEchoRequest")]
     pub const EchoRequest: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeechoresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeEchoResponse")]
     pub const EchoResponse: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeinformationrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeInformationRequest")]
     pub const InformationRequest: Self = Self(0x0A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeinformationresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeInformationResponse")]
     pub const InformationResponse: Self = Self(0x0B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodecreatechannelrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeCreateChannelRequest")]
     pub const CreateChannelRequest: Self = Self(0x0C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodecreatechannelresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeCreateChannelResponse")]
     pub const CreateChannelResponse: Self = Self(0x0D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodemovechannelrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeMoveChannelRequest")]
     pub const MoveChannelRequest: Self = Self(0x0E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodemovechannelresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeMoveChannelResponse")]
     pub const MoveChannelResponse: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodemovechannelconfirmation?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeMoveChannelConfirmation")]
     pub const MoveChannelConfirmation: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodemovechannelconfirmationresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeMoveChannelConfirmationResponse")]
     pub const MoveChannelConfirmationResponse: Self = Self(0x11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeconnectionparameterupdaterequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeConnectionParameterUpdateRequest")]
     pub const ConnectionParameterUpdateRequest: Self = Self(0x12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeconnectionparameterupdateresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeConnectionParameterUpdateResponse")]
     pub const ConnectionParameterUpdateResponse: Self = Self(0x13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodelecreditbasedconnectionrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeLECreditBasedConnectionRequest")]
     pub const LECreditBasedConnectionRequest: Self = Self(0x14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodelecreditbasedconnectionresponse?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeLECreditBasedConnectionResponse")]
     pub const LECreditBasedConnectionResponse: Self = Self(0x15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandcodeleflowcontrolcredit?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandCodeLEFlowControlCredit")]
     pub const LEFlowControlCredit: Self = Self(0x16);
 }
@@ -517,18 +349,14 @@ unsafe impl RefEncode for BluetoothL2CAPCommandCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capcommandrejectreason?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPCommandRejectReason(pub c_uint);
 impl BluetoothL2CAPCommandRejectReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandrejectreasoncommandnotunderstood?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandRejectReasonCommandNotUnderstood")]
     pub const CommandNotUnderstood: Self = Self(0x0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandrejectreasonsignallingmtuexceeded?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandRejectReasonSignallingMTUExceeded")]
     pub const SignallingMTUExceeded: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capcommandrejectreasoninvalidcidinrequest?language=objc)
     #[doc(alias = "kBluetoothL2CAPCommandRejectReasonInvalidCIDInRequest")]
     pub const InvalidCIDInRequest: Self = Self(0x0002);
 }
@@ -543,25 +371,17 @@ unsafe impl RefEncode for BluetoothL2CAPCommandRejectReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capmtu?language=objc)
 pub type BluetoothL2CAPMTU = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2caplinktimeout?language=objc)
 pub type BluetoothL2CAPLinkTimeout = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capflushtimeout?language=objc)
 pub type BluetoothL2CAPFlushTimeout = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capflushtimeoutuseexisting?language=objc)
 pub const kBluetoothL2CAPFlushTimeoutUseExisting: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capflushtimeoutimmediate?language=objc)
 pub const kBluetoothL2CAPFlushTimeoutImmediate: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capflushtimeoutforever?language=objc)
 pub const kBluetoothL2CAPFlushTimeoutForever: c_uint = 0xFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capflushtimeoutend?language=objc)
 pub const kBluetoothL2CAPFlushTimeoutEnd: c_uint = 65536;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capqualityofserviceoptions?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothL2CAPQualityOfServiceOptions {
@@ -595,7 +415,6 @@ unsafe impl RefEncode for BluetoothL2CAPQualityOfServiceOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capretransmissionandflowcontroloptions?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothL2CAPRetransmissionAndFlowControlOptions {
@@ -627,21 +446,16 @@ unsafe impl RefEncode for BluetoothL2CAPRetransmissionAndFlowControlOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capsegmentationandreassembly?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPSegmentationAndReassembly(pub c_uint);
 impl BluetoothL2CAPSegmentationAndReassembly {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsegmentationandreassemblyunsegmentedsdu?language=objc)
     #[doc(alias = "kBluetoothL2CAPSegmentationAndReassemblyUnsegmentedSDU")]
     pub const UnsegmentedSDU: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsegmentationandreassemblystartofsdu?language=objc)
     #[doc(alias = "kBluetoothL2CAPSegmentationAndReassemblyStartOfSDU")]
     pub const StartOfSDU: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsegmentationandreassemblyendofsdu?language=objc)
     #[doc(alias = "kBluetoothL2CAPSegmentationAndReassemblyEndOfSDU")]
     pub const EndOfSDU: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsegmentationandreassemblycontinuationofsdu?language=objc)
     #[doc(alias = "kBluetoothL2CAPSegmentationAndReassemblyContinuationOfSDU")]
     pub const ContinuationOfSDU: Self = Self(0x03);
 }
@@ -656,48 +470,34 @@ unsafe impl RefEncode for BluetoothL2CAPSegmentationAndReassembly {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinfotypemaxconnectionlessmtusize?language=objc)
 pub const kBluetoothL2CAPInfoTypeMaxConnectionlessMTUSize: c_uint = 0x0001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2cappacketheadersize?language=objc)
 pub const kBluetoothL2CAPPacketHeaderSize: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capbytecount?language=objc)
 pub type BluetoothL2CAPByteCount = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capcommandid?language=objc)
 pub type BluetoothL2CAPCommandID = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capcommandbytecount?language=objc)
 pub type BluetoothL2CAPCommandByteCount = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capconnectionresult?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPConnectionResult(pub c_uint);
 impl BluetoothL2CAPConnectionResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultsuccessful?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultSuccessful")]
     pub const Successful: Self = Self(0x0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultpending?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultPending")]
     pub const Pending: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultrefusedpsmnotsupported?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultRefusedPSMNotSupported")]
     pub const RefusedPSMNotSupported: Self = Self(0x0002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultrefusedsecurityblock?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultRefusedSecurityBlock")]
     pub const RefusedSecurityBlock: Self = Self(0x0003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultrefusednoresources?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultRefusedNoResources")]
     pub const RefusedNoResources: Self = Self(0x0004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultrefusedreserved?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultRefusedReserved")]
     pub const RefusedReserved: Self = Self(0x0005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultrefusedinvalidsourcecid?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultRefusedInvalidSourceCID")]
     pub const RefusedInvalidSourceCID: Self = Self(0x0006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionresultrefusedsourcecidalreadyallocated?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionResultRefusedSourceCIDAlreadyAllocated")]
     pub const RefusedSourceCIDAlreadyAllocated: Self = Self(0x0007);
 }
@@ -712,18 +512,14 @@ unsafe impl RefEncode for BluetoothL2CAPConnectionResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capconnectionstatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPConnectionStatus(pub c_uint);
 impl BluetoothL2CAPConnectionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionstatusnoinfoavailable?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionStatusNoInfoAvailable")]
     pub const NoInfoAvailable: Self = Self(0x0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionstatusauthenticationpending?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionStatusAuthenticationPending")]
     pub const AuthenticationPending: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconnectionstatusauthorizationpending?language=objc)
     #[doc(alias = "kBluetoothL2CAPConnectionStatusAuthorizationPending")]
     pub const AuthorizationPending: Self = Self(0x0002);
 }
@@ -738,21 +534,16 @@ unsafe impl RefEncode for BluetoothL2CAPConnectionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capconfigurationresult?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPConfigurationResult(pub c_uint);
 impl BluetoothL2CAPConfigurationResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationresultsuccess?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationResultSuccess")]
     pub const Success: Self = Self(0x0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationresultunacceptableparams?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationResultUnacceptableParams")]
     pub const UnacceptableParams: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationresultrejected?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationResultRejected")]
     pub const Rejected: Self = Self(0x0002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationresultunknownoptions?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationResultUnknownOptions")]
     pub const UnknownOptions: Self = Self(0x0003);
 }
@@ -767,30 +558,22 @@ unsafe impl RefEncode for BluetoothL2CAPConfigurationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capconfigurationoption?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothL2CAPConfigurationOption(pub c_uint);
 impl BluetoothL2CAPConfigurationOption {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionmtu?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionMTU")]
     pub const MTU: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionflushtimeout?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionFlushTimeout")]
     pub const FlushTimeout: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionqos?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionQoS")]
     pub const QoS: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionretransmissionandflowcontrol?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionRetransmissionAndFlowControl")]
     pub const RetransmissionAndFlowControl: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionframechecksequence?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionFrameCheckSequence")]
     pub const FrameCheckSequence: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionextendedflowspecification?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionExtendedFlowSpecification")]
     pub const ExtendedFlowSpecification: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionextendedwindowsize?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationOptionExtendedWindowSize")]
     pub const ExtendedWindowSize: Self = Self(0x07);
 }
@@ -805,33 +588,23 @@ unsafe impl RefEncode for BluetoothL2CAPConfigurationOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionmtulength?language=objc)
 pub const kBluetoothL2CAPConfigurationOptionMTULength: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionflushtimeoutlength?language=objc)
 pub const kBluetoothL2CAPConfigurationOptionFlushTimeoutLength: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionqoslength?language=objc)
 pub const kBluetoothL2CAPConfigurationOptionQoSLength: c_uint = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationoptionretransmissionandflowcontrollength?language=objc)
 pub const kBluetoothL2CAPConfigurationOptionRetransmissionAndFlowControlLength: c_uint = 9;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capconfigurationretransmissionandflowcontrolflags?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPConfigurationRetransmissionAndFlowControlFlags(pub c_uint);
 impl BluetoothL2CAPConfigurationRetransmissionAndFlowControlFlags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationbasicl2capmodeflag?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationBasicL2CAPModeFlag")]
     pub const BasicL2CAPModeFlag: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationretransmissionmodeflag?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationRetransmissionModeFlag")]
     pub const RetransmissionModeFlag: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationflowcontrolmodeflag?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationFlowControlModeFlag")]
     pub const FlowControlModeFlag: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationenhancedretransmissionmode?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationEnhancedRetransmissionMode")]
     pub const EnhancedRetransmissionMode: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capconfigurationstreamingmode?language=objc)
     #[doc(alias = "kBluetoothL2CAPConfigurationStreamingMode")]
     pub const StreamingMode: Self = Self(0x04);
 }
@@ -846,18 +619,14 @@ unsafe impl RefEncode for BluetoothL2CAPConfigurationRetransmissionAndFlowContro
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capinformationtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothL2CAPInformationType(pub c_uint);
 impl BluetoothL2CAPInformationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationtypeconnectionlessmtu?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationTypeConnectionlessMTU")]
     pub const ConnectionlessMTU: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationtypeextendedfeatures?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationTypeExtendedFeatures")]
     pub const ExtendedFeatures: Self = Self(0x0002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationtypefixedchannelssupported?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationTypeFixedChannelsSupported")]
     pub const FixedChannelsSupported: Self = Self(0x0003);
 }
@@ -872,15 +641,12 @@ unsafe impl RefEncode for BluetoothL2CAPInformationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capinformationresult?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPInformationResult(pub c_uint);
 impl BluetoothL2CAPInformationResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationresultsuccess?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationResultSuccess")]
     pub const Success: Self = Self(0x0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationresultnotsupported?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationResultNotSupported")]
     pub const NotSupported: Self = Self(0x0001);
 }
@@ -895,42 +661,30 @@ unsafe impl RefEncode for BluetoothL2CAPInformationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capinformationextendedfeaturesmask?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPInformationExtendedFeaturesMask(pub c_uint);
 impl BluetoothL2CAPInformationExtendedFeaturesMask {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationnoextendedfeatures?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationNoExtendedFeatures")]
     pub const InformationNoExtendedFeatures: Self = Self(0x00000000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationflowcontrolmode?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationFlowControlMode")]
     pub const InformationFlowControlMode: Self = Self(0x00000001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationretransmissionmode?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationRetransmissionMode")]
     pub const InformationRetransmissionMode: Self = Self(0x00000002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationbidirectionalqos?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationBidirectionalQoS")]
     pub const InformationBidirectionalQoS: Self = Self(0x00000004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationenhancedretransmissionmode?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationEnhancedRetransmissionMode")]
     pub const InformationEnhancedRetransmissionMode: Self = Self(0x00000008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationstreamingmode?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationStreamingMode")]
     pub const InformationStreamingMode: Self = Self(0x00000010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationfcsoption?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationFCSOption")]
     pub const InformationFCSOption: Self = Self(0x00000020);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationextendedflowspecification?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationExtendedFlowSpecification")]
     pub const InformationExtendedFlowSpecification: Self = Self(0x00000040);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationfixedchannels?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationFixedChannels")]
     pub const InformationFixedChannels: Self = Self(0x00000080);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capinformationextendedwindowsize?language=objc)
     #[doc(alias = "kBluetoothL2CAPInformationExtendedWindowSize")]
     pub const InformationExtendedWindowSize: Self = Self(0x00000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capunicastconnectionlessdatareception?language=objc)
     #[doc(alias = "kBluetoothL2CAPUnicastConnectionlessDataReception")]
     pub const UnicastConnectionlessDataReception: Self = Self(0x00000200);
 }
@@ -945,18 +699,14 @@ unsafe impl RefEncode for BluetoothL2CAPInformationExtendedFeaturesMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capqostype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPQoSType(pub c_uint);
 impl BluetoothL2CAPQoSType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqostypenotraffic?language=objc)
     #[doc(alias = "kBluetoothL2CAPQoSTypeNoTraffic")]
     pub const NoTraffic: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqostypebesteffort?language=objc)
     #[doc(alias = "kBluetoothL2CAPQoSTypeBestEffort")]
     pub const BestEffort: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqostypeguaranteed?language=objc)
     #[doc(alias = "kBluetoothL2CAPQoSTypeGuaranteed")]
     pub const Guaranteed: Self = Self(0x02);
 }
@@ -971,21 +721,16 @@ unsafe impl RefEncode for BluetoothL2CAPQoSType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capsupervisoryfuctiontype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothL2CAPSupervisoryFuctionType(pub c_uint);
 impl BluetoothL2CAPSupervisoryFuctionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsupervisoryfuctiontypereceiverready?language=objc)
     #[doc(alias = "kBluetoothL2CAPSupervisoryFuctionTypeReceiverReady")]
     pub const ReceiverReady: Self = Self(0x0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsupervisoryfuctiontypereject?language=objc)
     #[doc(alias = "kBluetoothL2CAPSupervisoryFuctionTypeReject")]
     pub const Reject: Self = Self(0x1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsupervisoryfuctiontypereceivernotready?language=objc)
     #[doc(alias = "kBluetoothL2CAPSupervisoryFuctionTypeReceiverNotReady")]
     pub const ReceiverNotReady: Self = Self(0x2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capsupervisoryfuctiontypeselectivereject?language=objc)
     #[doc(alias = "kBluetoothL2CAPSupervisoryFuctionTypeSelectiveReject")]
     pub const SelectiveReject: Self = Self(0x3);
 }
@@ -1000,78 +745,46 @@ unsafe impl RefEncode for BluetoothL2CAPSupervisoryFuctionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothletxtimemin?language=objc)
 pub const kBluetoothLETXTimeMin: c_uint = 0x0148;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothletxtimedefault?language=objc)
 pub const kBluetoothLETXTimeDefault: c_uint = 0x0148;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothletxtimemax?language=objc)
 pub const kBluetoothLETXTimeMax: c_uint = 0x0848;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothletxoctetsmin?language=objc)
 pub const kBluetoothLETXOctetsMin: c_uint = 0x001b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothletxoctetsdefault?language=objc)
 pub const kBluetoothLETXOctetsDefault: c_uint = 0x001b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothletxoctetsmax?language=objc)
 pub const kBluetoothLETXOctetsMax: c_uint = 0x00fb;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtulowenergydefault?language=objc)
 pub const kBluetoothL2CAPMTULowEnergyDefault: c_uint = kBluetoothLETXOctetsMin;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtulowenergymax?language=objc)
 pub const kBluetoothL2CAPMTULowEnergyMax: c_uint = kBluetoothLETXOctetsMax;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtuminimum?language=objc)
 pub const kBluetoothL2CAPMTUMinimum: c_uint = 0x0030;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtudefault?language=objc)
 pub const kBluetoothL2CAPMTUDefault: c_uint = 0x03F9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtumaximum?language=objc)
 pub const kBluetoothL2CAPMTUMaximum: c_uint = 0xffff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtustart?language=objc)
 pub const kBluetoothL2CAPMTUStart: c_uint = 0x7fff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capmtusig?language=objc)
 pub const kBluetoothL2CAPMTUSIG: c_uint = 0x0030;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capflushtimeoutdefault?language=objc)
 pub const kBluetoothL2CAPFlushTimeoutDefault: c_uint = kBluetoothL2CAPFlushTimeoutForever;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqosflagsdefault?language=objc)
 pub const kBluetoothL2CAPQoSFlagsDefault: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqostypedefault?language=objc)
 pub const kBluetoothL2CAPQoSTypeDefault: c_uint = BluetoothL2CAPQoSType::BestEffort.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqostokenratedefault?language=objc)
 pub const kBluetoothL2CAPQoSTokenRateDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqostokenbucketsizedefault?language=objc)
 pub const kBluetoothL2CAPQoSTokenBucketSizeDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqospeakbandwidthdefault?language=objc)
 pub const kBluetoothL2CAPQoSPeakBandwidthDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqoslatencydefault?language=objc)
 pub const kBluetoothL2CAPQoSLatencyDefault: c_uint = 0xffffffff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2capqosdelayvariationdefault?language=objc)
 pub const kBluetoothL2CAPQoSDelayVariationDefault: c_uint = 0xffffffff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlemaxtxtimemin?language=objc)
 pub const kBluetoothLEMaxTXTimeMin: c_uint = 0x0148;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlemaxtxtimedefault?language=objc)
 pub const kBluetoothLEMaxTXTimeDefault: c_uint = kBluetoothL2CAPMTULowEnergyDefault;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlemaxtxtimemax?language=objc)
 pub const kBluetoothLEMaxTXTimeMax: c_uint = 0x0848;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlemaxtxoctetsmin?language=objc)
 pub const kBluetoothLEMaxTXOctetsMin: c_uint = 0x001b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlemaxtxoctetsdefault?language=objc)
 pub const kBluetoothLEMaxTXOctetsDefault: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlemaxtxoctetsmax?language=objc)
 pub const kBluetoothLEMaxTXOctetsMax: c_uint = 0x00fb;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanagerkeydistributionformat?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothLESecurityManagerKeyDistributionFormat(pub c_uint);
 impl BluetoothLESecurityManagerKeyDistributionFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerencryptionkey?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerEncryptionKey")]
     pub const EncryptionKey: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageridkey?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIDKey")]
     pub const IDKey: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagersignkey?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerSignKey")]
     pub const SignKey: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerlinkkey?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerLinkKey")]
     pub const LinkKey: Self = Self(1 << 3);
 }
@@ -1086,60 +799,42 @@ unsafe impl RefEncode for BluetoothLESecurityManagerKeyDistributionFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanagercommandcode?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLESecurityManagerCommandCode(pub c_uint);
 impl BluetoothLESecurityManagerCommandCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodereserved?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeReserved")]
     pub const Reserved: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingrequest?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingRequest")]
     pub const PairingRequest: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingresponse?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingResponse")]
     pub const PairingResponse: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingconfirm?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingConfirm")]
     pub const PairingConfirm: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingrandom?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingRandom")]
     pub const PairingRandom: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingfailed?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingFailed")]
     pub const PairingFailed: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodeencryptioninfo?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeEncryptionInfo")]
     pub const EncryptionInfo: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodemasteridentification?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeMasterIdentification")]
     pub const MasterIdentification: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodeidentityinfo?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeIdentityInfo")]
     pub const IdentityInfo: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodeidentityaddressinfo?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeIdentityAddressInfo")]
     pub const IdentityAddressInfo: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodesigninginfo?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeSigningInfo")]
     pub const SigningInfo: Self = Self(0x0A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodesecurityrequest?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeSecurityRequest")]
     pub const SecurityRequest: Self = Self(0x0B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingpublickey?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingPublicKey")]
     pub const PairingPublicKey: Self = Self(0x0C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingdhkeycheck?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingDHKeyCheck")]
     pub const PairingDHKeyCheck: Self = Self(0x0D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodepairingkeypressnotification?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodePairingKeypressNotification")]
     pub const PairingKeypressNotification: Self = Self(0x0E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodereservedstart?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeReservedStart")]
     pub const ReservedStart: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagercommandcodereservedend?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerCommandCodeReservedEnd")]
     pub const ReservedEnd: Self = Self(0xFF);
 }
@@ -1154,18 +849,14 @@ unsafe impl RefEncode for BluetoothLESecurityManagerCommandCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanageruserinputcapability?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothLESecurityManagerUserInputCapability(pub c_uint);
 impl BluetoothLESecurityManagerUserInputCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageruserinputcapabilitynoinput?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerUserInputCapabilityNoInput")]
     pub const NoInput: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageruserinputcapabilityyesno?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerUserInputCapabilityYesNo")]
     pub const YesNo: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageruserinputcapabilitykeyboard?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerUserInputCapabilityKeyboard")]
     pub const Keyboard: Self = Self(0x03);
 }
@@ -1180,15 +871,12 @@ unsafe impl RefEncode for BluetoothLESecurityManagerUserInputCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanageruseroutputcapability?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothLESecurityManagerUserOutputCapability(pub c_uint);
 impl BluetoothLESecurityManagerUserOutputCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageruseroutputcapabilitynooutput?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerUserOutputCapabilityNoOutput")]
     pub const NoOutput: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageruseroutputcapabilitynumericoutput?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerUserOutputCapabilityNumericOutput")]
     pub const NumericOutput: Self = Self(0x02);
 }
@@ -1203,30 +891,22 @@ unsafe impl RefEncode for BluetoothLESecurityManagerUserOutputCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanageriocapability?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLESecurityManagerIOCapability(pub c_uint);
 impl BluetoothLESecurityManagerIOCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilitydisplayonly?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityDisplayOnly")]
     pub const DisplayOnly: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilitydisplayyesno?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityDisplayYesNo")]
     pub const DisplayYesNo: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilitykeyboardonly?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityKeyboardOnly")]
     pub const KeyboardOnly: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilitynoinputnooutput?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityNoInputNoOutput")]
     pub const NoInputNoOutput: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilitykeyboarddisplay?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityKeyboardDisplay")]
     pub const KeyboardDisplay: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilityreservedstart?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityReservedStart")]
     pub const ReservedStart: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageriocapabilityreservedend?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerIOCapabilityReservedEnd")]
     pub const ReservedEnd: Self = Self(0xFF);
 }
@@ -1241,21 +921,16 @@ unsafe impl RefEncode for BluetoothLESecurityManagerIOCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanageroobdata?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLESecurityManagerOOBData(pub c_uint);
 impl BluetoothLESecurityManagerOOBData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageroobauthenticationdatanotpresent?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerOOBAuthenticationDataNotPresent")]
     pub const AuthenticationDataNotPresent: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageroobauthenticationdatapresent?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerOOBAuthenticationDataPresent")]
     pub const AuthenticationDataPresent: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageroobdatareservedstart?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerOOBDataReservedStart")]
     pub const DataReservedStart: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanageroobdatareservedend?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerOOBDataReservedEnd")]
     pub const DataReservedEnd: Self = Self(0xFF);
 }
@@ -1270,71 +945,49 @@ unsafe impl RefEncode for BluetoothLESecurityManagerOOBData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernobonding?language=objc)
 pub const kBluetoothLESecurityManagerNoBonding: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerbonding?language=objc)
 pub const kBluetoothLESecurityManagerBonding: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreservedstart?language=objc)
 pub const kBluetoothLESecurityManagerReservedStart: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreservedend?language=objc)
 pub const kBluetoothLESecurityManagerReservedEnd: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanagerpairingfailedreasoncode?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLESecurityManagerPairingFailedReasonCode(pub c_uint);
 impl BluetoothLESecurityManagerPairingFailedReasonCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodereserved?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeReserved")]
     pub const ReasonCodeReserved: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodepasskeyentryfailed?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodePasskeyEntryFailed")]
     pub const ReasonCodePasskeyEntryFailed: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodeoobnotavailbale?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeOOBNotAvailbale")]
     pub const ReasonCodeOOBNotAvailbale: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodeauthenticationrequirements?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeAuthenticationRequirements")]
     pub const ReasonCodeAuthenticationRequirements: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodeconfirmvaluefailed?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeConfirmValueFailed")]
     pub const ReasonCodeConfirmValueFailed: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodepairingnotsupported?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodePairingNotSupported")]
     pub const ReasonCodePairingNotSupported: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodeencryptionkeysize?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeEncryptionKeySize")]
     pub const ReasonCodeEncryptionKeySize: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodecommandnotsupported?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeCommandNotSupported")]
     pub const ReasonCodeCommandNotSupported: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodeunspecifiedreason?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeUnspecifiedReason")]
     pub const ReasonCodeUnspecifiedReason: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncoderepeatedattempts?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeRepeatedAttempts")]
     pub const ReasonCodeRepeatedAttempts: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodeinvalidparameters?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeInvalidParameters")]
     pub const ReasonCodeInvalidParameters: Self = Self(0x0A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodedhkeycheckfailed?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeDHKeyCheckFailed")]
     pub const ReasonCodeDHKeyCheckFailed: Self = Self(0x0B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodenumericcomparisonfailed?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeNumericComparisonFailed")]
     pub const ReasonCodeNumericComparisonFailed: Self = Self(0x0C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodebredrpairinginprogress?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeBREDRPairingInProgress")]
     pub const ReasonCodeBREDRPairingInProgress: Self = Self(0x0D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodecrosstransportkeyderivationgenerationnotallowed?language=objc)
     #[doc(
         alias = "kBluetoothLESecurityManagerReasonCodeCrossTransportKeyDerivationGenerationNotAllowed"
     )]
     pub const ReasonCodeCrossTransportKeyDerivationGenerationNotAllowed: Self = Self(0x0E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodereservedstart?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeReservedStart")]
     pub const ReasonCodeReservedStart: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagerreasoncodereservedend?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerReasonCodeReservedEnd")]
     pub const ReasonCodeReservedEnd: Self = Self(0xFF);
 }
@@ -1349,30 +1002,22 @@ unsafe impl RefEncode for BluetoothLESecurityManagerPairingFailedReasonCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlesecuritymanagerkeypressnotificationtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLESecurityManagerKeypressNotificationType(pub c_uint);
 impl BluetoothLESecurityManagerKeypressNotificationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypepasskeyentrystarted?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypePasskeyEntryStarted")]
     pub const NotificationTypePasskeyEntryStarted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypepasskeydigitentered?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypePasskeyDigitEntered")]
     pub const NotificationTypePasskeyDigitEntered: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypepasskeydigiterased?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypePasskeyDigitErased")]
     pub const NotificationTypePasskeyDigitErased: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypepasskeycleared?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypePasskeyCleared")]
     pub const NotificationTypePasskeyCleared: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypepasskeyentrycompleted?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypePasskeyEntryCompleted")]
     pub const NotificationTypePasskeyEntryCompleted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypereservedstart?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypeReservedStart")]
     pub const NotificationTypeReservedStart: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesecuritymanagernotificationtypereservedend?language=objc)
     #[doc(alias = "kBluetoothLESecurityManagerNotificationTypeReservedEnd")]
     pub const NotificationTypeReservedEnd: Self = Self(255);
 }
@@ -1387,51 +1032,36 @@ unsafe impl RefEncode for BluetoothLESecurityManagerKeypressNotificationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampmanagercode?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPManagerCode(pub c_uint);
 impl BluetoothAMPManagerCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodereserved?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeReserved")]
     pub const Reserved: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampcommandreject?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPCommandReject")]
     pub const AMPCommandReject: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampdiscoverrequest?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPDiscoverRequest")]
     pub const AMPDiscoverRequest: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampdiscoverresponse?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPDiscoverResponse")]
     pub const AMPDiscoverResponse: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampchangenotify?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPChangeNotify")]
     pub const AMPChangeNotify: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampchangeresponse?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPChangeResponse")]
     pub const AMPChangeResponse: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampgetinforequest?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPGetInfoRequest")]
     pub const AMPGetInfoRequest: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampgetinforesponse?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPGetInfoResponse")]
     pub const AMPGetInfoResponse: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampgetassocrequest?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPGetAssocRequest")]
     pub const AMPGetAssocRequest: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampgetassocresponse?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPGetAssocResponse")]
     pub const AMPGetAssocResponse: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampcreatephysicallinkrequest?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPCreatePhysicalLinkRequest")]
     pub const AMPCreatePhysicalLinkRequest: Self = Self(0x0A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampcreatephysicallinkresponse?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPCreatePhysicalLinkResponse")]
     pub const AMPCreatePhysicalLinkResponse: Self = Self(0x0B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampdisconnectphysicallinkrequest?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPDisconnectPhysicalLinkRequest")]
     pub const AMPDisconnectPhysicalLinkRequest: Self = Self(0x0C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercodeampdisconnectphysicallinkresponse?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCodeAMPDisconnectPhysicalLinkResponse")]
     pub const AMPDisconnectPhysicalLinkResponse: Self = Self(0x0D);
 }
@@ -1446,12 +1076,10 @@ unsafe impl RefEncode for BluetoothAMPManagerCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampcommandrejectreason?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPCommandRejectReason(pub c_uint);
 impl BluetoothAMPCommandRejectReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercommandrejectreasoncommandnotrecognized?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCommandRejectReasonCommandNotRecognized")]
     pub const ManagerCommandRejectReasonCommandNotRecognized: Self = Self(0x0000);
 }
@@ -1466,30 +1094,22 @@ unsafe impl RefEncode for BluetoothAMPCommandRejectReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampdiscoverresponsecontrollerstatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPDiscoverResponseControllerStatus(pub c_uint);
 impl BluetoothAMPDiscoverResponseControllerStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatuspowereddown?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusPoweredDown")]
     pub const ManagerDiscoverResponseControllerStatusPoweredDown: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatusbluetoothonly?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusBluetoothOnly")]
     pub const ManagerDiscoverResponseControllerStatusBluetoothOnly: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatusnocapacity?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusNoCapacity")]
     pub const ManagerDiscoverResponseControllerStatusNoCapacity: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatuslowcapacity?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusLowCapacity")]
     pub const ManagerDiscoverResponseControllerStatusLowCapacity: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatusmediumcapacity?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusMediumCapacity")]
     pub const ManagerDiscoverResponseControllerStatusMediumCapacity: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatushighcapacity?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusHighCapacity")]
     pub const ManagerDiscoverResponseControllerStatusHighCapacity: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdiscoverresponsecontrollerstatusfullcapacity?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDiscoverResponseControllerStatusFullCapacity")]
     pub const ManagerDiscoverResponseControllerStatusFullCapacity: Self = Self(0x06);
 }
@@ -1504,15 +1124,12 @@ unsafe impl RefEncode for BluetoothAMPDiscoverResponseControllerStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampgetinforesponsestatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPGetInfoResponseStatus(pub c_uint);
 impl BluetoothAMPGetInfoResponseStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagergetinforesponsesuccess?language=objc)
     #[doc(alias = "kBluetoothAMPManagerGetInfoResponseSuccess")]
     pub const ManagerGetInfoResponseSuccess: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagergetinforesponseinvalidcontrollerid?language=objc)
     #[doc(alias = "kBluetoothAMPManagerGetInfoResponseInvalidControllerID")]
     pub const ManagerGetInfoResponseInvalidControllerID: Self = Self(0x01);
 }
@@ -1527,15 +1144,12 @@ unsafe impl RefEncode for BluetoothAMPGetInfoResponseStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampgetassocresponsestatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPGetAssocResponseStatus(pub c_uint);
 impl BluetoothAMPGetAssocResponseStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagergetassocresponsesuccess?language=objc)
     #[doc(alias = "kBluetoothAMPManagerGetAssocResponseSuccess")]
     pub const ManagerGetAssocResponseSuccess: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagergetassocresponseinvalidcontrollerid?language=objc)
     #[doc(alias = "kBluetoothAMPManagerGetAssocResponseInvalidControllerID")]
     pub const ManagerGetAssocResponseInvalidControllerID: Self = Self(0x01);
 }
@@ -1550,33 +1164,25 @@ unsafe impl RefEncode for BluetoothAMPGetAssocResponseStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampcreatephysicallinkresponsestatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPCreatePhysicalLinkResponseStatus(pub c_uint);
 impl BluetoothAMPCreatePhysicalLinkResponseStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponsesuccess?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCreatePhysicalLinkResponseSuccess")]
     pub const ManagerCreatePhysicalLinkResponseSuccess: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponseinvalidcontrollerid?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCreatePhysicalLinkResponseInvalidControllerID")]
     pub const ManagerCreatePhysicalLinkResponseInvalidControllerID: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponseunabletostartlinkcreation?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCreatePhysicalLinkResponseUnableToStartLinkCreation")]
     pub const ManagerCreatePhysicalLinkResponseUnableToStartLinkCreation: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponsecollisionoccurred?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCreatePhysicalLinkResponseCollisionOccurred")]
     pub const ManagerCreatePhysicalLinkResponseCollisionOccurred: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponseampdisconnectedphysicallinkrequestreceived?language=objc)
     #[doc(
         alias = "kBluetoothAMPManagerCreatePhysicalLinkResponseAMPDisconnectedPhysicalLinkRequestReceived"
     )]
     pub const ManagerCreatePhysicalLinkResponseAMPDisconnectedPhysicalLinkRequestReceived: Self =
         Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponsephysicallinkalreadyexists?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCreatePhysicalLinkResponsePhysicalLinkAlreadyExists")]
     pub const ManagerCreatePhysicalLinkResponsePhysicalLinkAlreadyExists: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagercreatephysicallinkresponsesecurityviolation?language=objc)
     #[doc(alias = "kBluetoothAMPManagerCreatePhysicalLinkResponseSecurityViolation")]
     pub const ManagerCreatePhysicalLinkResponseSecurityViolation: Self = Self(0x06);
 }
@@ -1591,18 +1197,14 @@ unsafe impl RefEncode for BluetoothAMPCreatePhysicalLinkResponseStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothampdisconnectphysicallinkresponsestatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAMPDisconnectPhysicalLinkResponseStatus(pub c_uint);
 impl BluetoothAMPDisconnectPhysicalLinkResponseStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdisconnectphysicallinkresponsesuccess?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDisconnectPhysicalLinkResponseSuccess")]
     pub const ManagerDisconnectPhysicalLinkResponseSuccess: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdisconnectphysicallinkresponseinvalidcontrollerid?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDisconnectPhysicalLinkResponseInvalidControllerID")]
     pub const ManagerDisconnectPhysicalLinkResponseInvalidControllerID: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothampmanagerdisconnectphysicallinkresponsenophysicallink?language=objc)
     #[doc(alias = "kBluetoothAMPManagerDisconnectPhysicalLinkResponseNoPhysicalLink")]
     pub const ManagerDisconnectPhysicalLinkResponseNoPhysicalLink: Self = Self(0x02);
 }
@@ -1617,669 +1219,354 @@ unsafe impl RefEncode for BluetoothAMPDisconnectPhysicalLinkResponseStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicommandopcodegroup?language=objc)
 pub type BluetoothHCICommandOpCodeGroup = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicommandopcodecommand?language=objc)
 pub type BluetoothHCICommandOpCodeCommand = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicommandopcode?language=objc)
 pub type BluetoothHCICommandOpCode = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcivendorcommandselector?language=objc)
 pub type BluetoothHCIVendorCommandSelector = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciopcodenoop?language=objc)
 pub const kBluetoothHCIOpCodeNoOp: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgroupnoop?language=objc)
 pub const kBluetoothHCICommandGroupNoOp: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandnoop?language=objc)
 pub const kBluetoothHCICommandNoOp: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouplinkcontrol?language=objc)
 pub const kBluetoothHCICommandGroupLinkControl: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandinquiry?language=objc)
 pub const kBluetoothHCICommandInquiry: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandinquirycancel?language=objc)
 pub const kBluetoothHCICommandInquiryCancel: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandperiodicinquirymode?language=objc)
 pub const kBluetoothHCICommandPeriodicInquiryMode: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandexitperiodicinquirymode?language=objc)
 pub const kBluetoothHCICommandExitPeriodicInquiryMode: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandcreateconnection?language=objc)
 pub const kBluetoothHCICommandCreateConnection: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanddisconnect?language=objc)
 pub const kBluetoothHCICommandDisconnect: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandaddscoconnection?language=objc)
 pub const kBluetoothHCICommandAddSCOConnection: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandcreateconnectioncancel?language=objc)
 pub const kBluetoothHCICommandCreateConnectionCancel: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandacceptconnectionrequest?language=objc)
 pub const kBluetoothHCICommandAcceptConnectionRequest: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandrejectconnectionrequest?language=objc)
 pub const kBluetoothHCICommandRejectConnectionRequest: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlinkkeyrequestreply?language=objc)
 pub const kBluetoothHCICommandLinkKeyRequestReply: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlinkkeyrequestnegativereply?language=objc)
 pub const kBluetoothHCICommandLinkKeyRequestNegativeReply: c_uint = 0x000C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandpincoderequestreply?language=objc)
 pub const kBluetoothHCICommandPINCodeRequestReply: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandpincoderequestnegativereply?language=objc)
 pub const kBluetoothHCICommandPINCodeRequestNegativeReply: c_uint = 0x000E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandchangeconnectionpackettype?language=objc)
 pub const kBluetoothHCICommandChangeConnectionPacketType: c_uint = 0x000F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandauthenticationrequested?language=objc)
 pub const kBluetoothHCICommandAuthenticationRequested: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionencryption?language=objc)
 pub const kBluetoothHCICommandSetConnectionEncryption: c_uint = 0x0013;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandchangeconnectionlinkkey?language=objc)
 pub const kBluetoothHCICommandChangeConnectionLinkKey: c_uint = 0x0015;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandmasterlinkkey?language=objc)
 pub const kBluetoothHCICommandMasterLinkKey: c_uint = 0x0017;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandremotenamerequest?language=objc)
 pub const kBluetoothHCICommandRemoteNameRequest: c_uint = 0x0019;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadremotesupportedfeatures?language=objc)
 pub const kBluetoothHCICommandReadRemoteSupportedFeatures: c_uint = 0x001B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadremoteextendedfeatures?language=objc)
 pub const kBluetoothHCICommandReadRemoteExtendedFeatures: c_uint = 0x001C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadremoteversioninformation?language=objc)
 pub const kBluetoothHCICommandReadRemoteVersionInformation: c_uint = 0x001D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadclockoffset?language=objc)
 pub const kBluetoothHCICommandReadClockOffset: c_uint = 0x001F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandremotenamerequestcancel?language=objc)
 pub const kBluetoothHCICommandRemoteNameRequestCancel: c_uint = 0x001A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlmphandle?language=objc)
 pub const kBluetoothHCICommandReadLMPHandle: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetupsynchronousconnection?language=objc)
 pub const kBluetoothHCICommandSetupSynchronousConnection: c_uint = 0x0028;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandacceptsynchronousconnectionrequest?language=objc)
 pub const kBluetoothHCICommandAcceptSynchronousConnectionRequest: c_uint = 0x0029;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandrejectsynchronousconnectionrequest?language=objc)
 pub const kBluetoothHCICommandRejectSynchronousConnectionRequest: c_uint = 0x002A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandiocapabilityrequestreply?language=objc)
 pub const kBluetoothHCICommandIOCapabilityRequestReply: c_uint = 0x002B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanduserconfirmationrequestreply?language=objc)
 pub const kBluetoothHCICommandUserConfirmationRequestReply: c_uint = 0x002C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanduserconfirmationrequestnegativereply?language=objc)
 pub const kBluetoothHCICommandUserConfirmationRequestNegativeReply: c_uint = 0x002D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanduserpasskeyrequestreply?language=objc)
 pub const kBluetoothHCICommandUserPasskeyRequestReply: c_uint = 0x002E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanduserpasskeyrequestnegativereply?language=objc)
 pub const kBluetoothHCICommandUserPasskeyRequestNegativeReply: c_uint = 0x002F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandremoteoobdatarequestreply?language=objc)
 pub const kBluetoothHCICommandRemoteOOBDataRequestReply: c_uint = 0x0030;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandremoteoobdatarequestnegativereply?language=objc)
 pub const kBluetoothHCICommandRemoteOOBDataRequestNegativeReply: c_uint = 0x0033;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandiocapabilityrequestnegativereply?language=objc)
 pub const kBluetoothHCICommandIOCapabilityRequestNegativeReply: c_uint = 0x0034;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandenhancedsetupsynchronousconnection?language=objc)
 pub const kBluetoothHCICommandEnhancedSetupSynchronousConnection: c_uint = 0x003D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandenhancedacceptsynchronousconnectionrequest?language=objc)
 pub const kBluetoothHCICommandEnhancedAcceptSynchronousConnectionRequest: c_uint = 0x003E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandtruncatedpage?language=objc)
 pub const kBluetoothHCICommandTruncatedPage: c_uint = 0x003F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandtruncatedpagecancel?language=objc)
 pub const kBluetoothHCICommandTruncatedPageCancel: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessperipheralbroadcast?language=objc)
 pub const kBluetoothHCICommandSetConnectionlessPeripheralBroadcast: c_uint = 0x0041;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessperipheralbroadcastreceive?language=objc)
 pub const kBluetoothHCICommandSetConnectionlessPeripheralBroadcastReceive: c_uint = 0x0042;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandstartsynchronizationtrain?language=objc)
 pub const kBluetoothHCICommandStartSynchronizationTrain: c_uint = 0x0043;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreceivesynchronizationtrain?language=objc)
 pub const kBluetoothHCICommandReceiveSynchronizationTrain: c_uint = 0x0044;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandremoteoobextendeddatarequestreply?language=objc)
 pub const kBluetoothHCICommandRemoteOOBExtendedDataRequestReply: c_uint = 0x0045;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessslavebroadcast?language=objc)
 #[deprecated]
 pub const kBluetoothHCICommandSetConnectionlessSlaveBroadcast: c_uint =
     kBluetoothHCICommandSetConnectionlessPeripheralBroadcast;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessslavebroadcastreceive?language=objc)
 #[deprecated]
 pub const kBluetoothHCICommandSetConnectionlessSlaveBroadcastReceive: c_uint =
     kBluetoothHCICommandSetConnectionlessPeripheralBroadcastReceive;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouplinkpolicy?language=objc)
 pub const kBluetoothHCICommandGroupLinkPolicy: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandholdmode?language=objc)
 pub const kBluetoothHCICommandHoldMode: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsniffmode?language=objc)
 pub const kBluetoothHCICommandSniffMode: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandexitsniffmode?language=objc)
 pub const kBluetoothHCICommandExitSniffMode: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandparkmode?language=objc)
 pub const kBluetoothHCICommandParkMode: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandexitparkmode?language=objc)
 pub const kBluetoothHCICommandExitParkMode: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandqossetup?language=objc)
 pub const kBluetoothHCICommandQoSSetup: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandrolediscovery?language=objc)
 pub const kBluetoothHCICommandRoleDiscovery: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandswitchrole?language=objc)
 pub const kBluetoothHCICommandSwitchRole: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlinkpolicysettings?language=objc)
 pub const kBluetoothHCICommandReadLinkPolicySettings: c_uint = 0x000C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritelinkpolicysettings?language=objc)
 pub const kBluetoothHCICommandWriteLinkPolicySettings: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreaddefaultlinkpolicysettings?language=objc)
 pub const kBluetoothHCICommandReadDefaultLinkPolicySettings: c_uint = 0x000E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritedefaultlinkpolicysettings?language=objc)
 pub const kBluetoothHCICommandWriteDefaultLinkPolicySettings: c_uint = 0x000F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandflowspecification?language=objc)
 pub const kBluetoothHCICommandFlowSpecification: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsniffsubrating?language=objc)
 pub const kBluetoothHCICommandSniffSubrating: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandacceptsniffrequest?language=objc)
 pub const kBluetoothHCICommandAcceptSniffRequest: c_uint = 0x0031;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandrejectsniffrequest?language=objc)
 pub const kBluetoothHCICommandRejectSniffRequest: c_uint = 0x0032;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouphostcontroller?language=objc)
 pub const kBluetoothHCICommandGroupHostController: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandseteventmask?language=objc)
 pub const kBluetoothHCICommandSetEventMask: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreset?language=objc)
 pub const kBluetoothHCICommandReset: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandseteventfilter?language=objc)
 pub const kBluetoothHCICommandSetEventFilter: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandflush?language=objc)
 pub const kBluetoothHCICommandFlush: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadpintype?language=objc)
 pub const kBluetoothHCICommandReadPINType: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritepintype?language=objc)
 pub const kBluetoothHCICommandWritePINType: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandcreatenewunitkey?language=objc)
 pub const kBluetoothHCICommandCreateNewUnitKey: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadstoredlinkkey?language=objc)
 pub const kBluetoothHCICommandReadStoredLinkKey: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritestoredlinkkey?language=objc)
 pub const kBluetoothHCICommandWriteStoredLinkKey: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanddeletestoredlinkkey?language=objc)
 pub const kBluetoothHCICommandDeleteStoredLinkKey: c_uint = 0x0012;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandchangelocalname?language=objc)
 pub const kBluetoothHCICommandChangeLocalName: c_uint = 0x0013;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalname?language=objc)
 pub const kBluetoothHCICommandReadLocalName: c_uint = 0x0014;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadconnectionaccepttimeout?language=objc)
 pub const kBluetoothHCICommandReadConnectionAcceptTimeout: c_uint = 0x0015;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteconnectionaccepttimeout?language=objc)
 pub const kBluetoothHCICommandWriteConnectionAcceptTimeout: c_uint = 0x0016;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadpagetimeout?language=objc)
 pub const kBluetoothHCICommandReadPageTimeout: c_uint = 0x0017;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritepagetimeout?language=objc)
 pub const kBluetoothHCICommandWritePageTimeout: c_uint = 0x0018;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadscanenable?language=objc)
 pub const kBluetoothHCICommandReadScanEnable: c_uint = 0x0019;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritescanenable?language=objc)
 pub const kBluetoothHCICommandWriteScanEnable: c_uint = 0x001A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadpagescanactivity?language=objc)
 pub const kBluetoothHCICommandReadPageScanActivity: c_uint = 0x001B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritepagescanactivity?language=objc)
 pub const kBluetoothHCICommandWritePageScanActivity: c_uint = 0x001C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadinquiryscanactivity?language=objc)
 pub const kBluetoothHCICommandReadInquiryScanActivity: c_uint = 0x001D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteinquiryscanactivity?language=objc)
 pub const kBluetoothHCICommandWriteInquiryScanActivity: c_uint = 0x001E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadauthenticationenable?language=objc)
 pub const kBluetoothHCICommandReadAuthenticationEnable: c_uint = 0x001F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteauthenticationenable?language=objc)
 pub const kBluetoothHCICommandWriteAuthenticationEnable: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadencryptionmode?language=objc)
 pub const kBluetoothHCICommandReadEncryptionMode: c_uint = 0x0021;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteencryptionmode?language=objc)
 pub const kBluetoothHCICommandWriteEncryptionMode: c_uint = 0x0022;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadclassofdevice?language=objc)
 pub const kBluetoothHCICommandReadClassOfDevice: c_uint = 0x0023;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteclassofdevice?language=objc)
 pub const kBluetoothHCICommandWriteClassOfDevice: c_uint = 0x0024;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadvoicesetting?language=objc)
 pub const kBluetoothHCICommandReadVoiceSetting: c_uint = 0x0025;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritevoicesetting?language=objc)
 pub const kBluetoothHCICommandWriteVoiceSetting: c_uint = 0x0026;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadautomaticflushtimeout?language=objc)
 pub const kBluetoothHCICommandReadAutomaticFlushTimeout: c_uint = 0x0027;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteautomaticflushtimeout?language=objc)
 pub const kBluetoothHCICommandWriteAutomaticFlushTimeout: c_uint = 0x0028;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadnumberofbroadcastretransmissions?language=objc)
 pub const kBluetoothHCICommandReadNumberOfBroadcastRetransmissions: c_uint = 0x0029;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritenumberofbroadcastretransmissions?language=objc)
 pub const kBluetoothHCICommandWriteNumberOfBroadcastRetransmissions: c_uint = 0x002A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadholdmodeactivity?language=objc)
 pub const kBluetoothHCICommandReadHoldModeActivity: c_uint = 0x002B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteholdmodeactivity?language=objc)
 pub const kBluetoothHCICommandWriteHoldModeActivity: c_uint = 0x002C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadtransmitpowerlevel?language=objc)
 pub const kBluetoothHCICommandReadTransmitPowerLevel: c_uint = 0x002D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadscoflowcontrolenable?language=objc)
 pub const kBluetoothHCICommandReadSCOFlowControlEnable: c_uint = 0x002E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritescoflowcontrolenable?language=objc)
 pub const kBluetoothHCICommandWriteSCOFlowControlEnable: c_uint = 0x002F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsethostcontrollertohostflowcontrol?language=objc)
 pub const kBluetoothHCICommandSetHostControllerToHostFlowControl: c_uint = 0x0031;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandhostbuffersize?language=objc)
 pub const kBluetoothHCICommandHostBufferSize: c_uint = 0x0033;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandhostnumberofcompletedpackets?language=objc)
 pub const kBluetoothHCICommandHostNumberOfCompletedPackets: c_uint = 0x0035;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlinksupervisiontimeout?language=objc)
 pub const kBluetoothHCICommandReadLinkSupervisionTimeout: c_uint = 0x0036;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritelinksupervisiontimeout?language=objc)
 pub const kBluetoothHCICommandWriteLinkSupervisionTimeout: c_uint = 0x0037;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadnumberofsupportediac?language=objc)
 pub const kBluetoothHCICommandReadNumberOfSupportedIAC: c_uint = 0x0038;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadcurrentiaclap?language=objc)
 pub const kBluetoothHCICommandReadCurrentIACLAP: c_uint = 0x0039;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritecurrentiaclap?language=objc)
 pub const kBluetoothHCICommandWriteCurrentIACLAP: c_uint = 0x003A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadpagescanperiodmode?language=objc)
 pub const kBluetoothHCICommandReadPageScanPeriodMode: c_uint = 0x003B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritepagescanperiodmode?language=objc)
 pub const kBluetoothHCICommandWritePageScanPeriodMode: c_uint = 0x003C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadpagescanmode?language=objc)
 pub const kBluetoothHCICommandReadPageScanMode: c_uint = 0x003D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritepagescanmode?language=objc)
 pub const kBluetoothHCICommandWritePageScanMode: c_uint = 0x003E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetafhclassification?language=objc)
 pub const kBluetoothHCICommandSetAFHClassification: c_uint = 0x003F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadinquiryscantype?language=objc)
 pub const kBluetoothHCICommandReadInquiryScanType: c_uint = 0x0042;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteinquiryscantype?language=objc)
 pub const kBluetoothHCICommandWriteInquiryScanType: c_uint = 0x0043;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadinquirymode?language=objc)
 pub const kBluetoothHCICommandReadInquiryMode: c_uint = 0x0044;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteinquirymode?language=objc)
 pub const kBluetoothHCICommandWriteInquiryMode: c_uint = 0x0045;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadpagescantype?language=objc)
 pub const kBluetoothHCICommandReadPageScanType: c_uint = 0x0046;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritepagescantype?language=objc)
 pub const kBluetoothHCICommandWritePageScanType: c_uint = 0x0047;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadafhchannelassessmentmode?language=objc)
 pub const kBluetoothHCICommandReadAFHChannelAssessmentMode: c_uint = 0x0048;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteafhchannelassessmentmode?language=objc)
 pub const kBluetoothHCICommandWriteAFHChannelAssessmentMode: c_uint = 0x0049;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadextendedinquiryresponse?language=objc)
 pub const kBluetoothHCICommandReadExtendedInquiryResponse: c_uint = 0x0051;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteextendedinquiryresponse?language=objc)
 pub const kBluetoothHCICommandWriteExtendedInquiryResponse: c_uint = 0x0052;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandrefreshencryptionkey?language=objc)
 pub const kBluetoothHCICommandRefreshEncryptionKey: c_uint = 0x0053;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadsimplepairingmode?language=objc)
 pub const kBluetoothHCICommandReadSimplePairingMode: c_uint = 0x0055;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritesimplepairingmode?language=objc)
 pub const kBluetoothHCICommandWriteSimplePairingMode: c_uint = 0x0056;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocaloobdata?language=objc)
 pub const kBluetoothHCICommandReadLocalOOBData: c_uint = 0x0057;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadinquiryresponsetransmitpower?language=objc)
 pub const kBluetoothHCICommandReadInquiryResponseTransmitPower: c_uint = 0x0058;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteinquiryresponsetransmitpower?language=objc)
 pub const kBluetoothHCICommandWriteInquiryResponseTransmitPower: c_uint = 0x0059;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsendkeypressnotification?language=objc)
 pub const kBluetoothHCICommandSendKeypressNotification: c_uint = 0x0060;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreaddefaulterroneousdatareporting?language=objc)
 pub const kBluetoothHCICommandReadDefaultErroneousDataReporting: c_uint = 0x005A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritedefaulterroneousdatareporting?language=objc)
 pub const kBluetoothHCICommandWriteDefaultErroneousDataReporting: c_uint = 0x005B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandenhancedflush?language=objc)
 pub const kBluetoothHCICommandEnhancedFlush: c_uint = 0x005F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlogicallinkaccepttimeout?language=objc)
 pub const kBluetoothHCICommandReadLogicalLinkAcceptTimeout: c_uint = 0x0061;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritelogicallinkaccepttimeout?language=objc)
 pub const kBluetoothHCICommandWriteLogicalLinkAcceptTimeout: c_uint = 0x0062;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandseteventmaskpagetwo?language=objc)
 pub const kBluetoothHCICommandSetEventMaskPageTwo: c_uint = 0x0063;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocationdata?language=objc)
 pub const kBluetoothHCICommandReadLocationData: c_uint = 0x0064;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritelocationdata?language=objc)
 pub const kBluetoothHCICommandWriteLocationData: c_uint = 0x0065;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadflowcontrolmode?language=objc)
 pub const kBluetoothHCICommandReadFlowControlMode: c_uint = 0x0066;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteflowcontrolmode?language=objc)
 pub const kBluetoothHCICommandWriteFlowControlMode: c_uint = 0x0067;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadenhancedtransmitpowerlevel?language=objc)
 pub const kBluetoothHCICommandReadEnhancedTransmitPowerLevel: c_uint = 0x0068;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadbesteffortflushtimeout?language=objc)
 pub const kBluetoothHCICommandReadBestEffortFlushTimeout: c_uint = 0x0069;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritebesteffortflushtimeout?language=objc)
 pub const kBluetoothHCICommandWriteBestEffortFlushTimeout: c_uint = 0x006A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandshortrangemode?language=objc)
 pub const kBluetoothHCICommandShortRangeMode: c_uint = 0x006B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlehostsupported?language=objc)
 pub const kBluetoothHCICommandReadLEHostSupported: c_uint = 0x006C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritelehostsupported?language=objc)
 pub const kBluetoothHCICommandWriteLEHostSupported: c_uint = 0x006D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetmwschannelparameters?language=objc)
 pub const kBluetoothHCICommandSetMWSChannelParameters: c_uint = 0x006E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetexternalframeconfiguration?language=objc)
 pub const kBluetoothHCICommandSetExternalFrameConfiguration: c_uint = 0x006F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetmwssignaling?language=objc)
 pub const kBluetoothHCICommandSetMWSSignaling: c_uint = 0x0070;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetmwstransportlayer?language=objc)
 pub const kBluetoothHCICommandSetMWSTransportLayer: c_uint = 0x0071;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetmwsscanfrequencytable?language=objc)
 pub const kBluetoothHCICommandSetMWSScanFrequencyTable: c_uint = 0x0072;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetmwspatternconfiguration?language=objc)
 pub const kBluetoothHCICommandSetMWSPATTERNConfiguration: c_uint = 0x0073;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetreservedltaddr?language=objc)
 pub const kBluetoothHCICommandSetReservedLTADDR: c_uint = 0x0074;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommanddeletereservedltaddr?language=objc)
 pub const kBluetoothHCICommandDeleteReservedLTADDR: c_uint = 0x0075;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessperipheralbroadcastdata?language=objc)
 pub const kBluetoothHCICommandSetConnectionlessPeripheralBroadcastData: c_uint = 0x0076;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadsynchronizationtrainparameters?language=objc)
 pub const kBluetoothHCICommandReadSynchronizationTrainParameters: c_uint = 0x0077;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritesynchronizationtrainparameters?language=objc)
 pub const kBluetoothHCICommandWriteSynchronizationTrainParameters: c_uint = 0x0078;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadsecureconnectionshostsupport?language=objc)
 pub const kBluetoothHCICommandReadSecureConnectionsHostSupport: c_uint = 0x0079;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritesecureconnectionshostsupport?language=objc)
 pub const kBluetoothHCICommandWriteSecureConnectionsHostSupport: c_uint = 0x007A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadauthenticatedpayloadtimeout?language=objc)
 pub const kBluetoothHCICommandReadAuthenticatedPayloadTimeout: c_uint = 0x007B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteauthenticatedpayloadtimeout?language=objc)
 pub const kBluetoothHCICommandWriteAuthenticatedPayloadTimeout: c_uint = 0x007C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocaloobextendeddata?language=objc)
 pub const kBluetoothHCICommandReadLocalOOBExtendedData: c_uint = 0x007D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadextendedpagetimeout?language=objc)
 pub const kBluetoothHCICommandReadExtendedPageTimeout: c_uint = 0x007E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteextendedpagetimeout?language=objc)
 pub const kBluetoothHCICommandWriteExtendedPageTimeout: c_uint = 0x007F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadextendedinquirylength?language=objc)
 pub const kBluetoothHCICommandReadExtendedInquiryLength: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteextendedinquirylength?language=objc)
 pub const kBluetoothHCICommandWriteExtendedInquiryLength: c_uint = 0x0081;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsetconnectionlessslavebroadcastdata?language=objc)
 #[deprecated]
 pub const kBluetoothHCICommandSetConnectionlessSlaveBroadcastData: c_uint =
     kBluetoothHCICommandSetConnectionlessPeripheralBroadcastData;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgroupinformational?language=objc)
 pub const kBluetoothHCICommandGroupInformational: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalversioninformation?language=objc)
 pub const kBluetoothHCICommandReadLocalVersionInformation: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalsupportedcommands?language=objc)
 pub const kBluetoothHCICommandReadLocalSupportedCommands: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalsupportedfeatures?language=objc)
 pub const kBluetoothHCICommandReadLocalSupportedFeatures: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalextendedfeatures?language=objc)
 pub const kBluetoothHCICommandReadLocalExtendedFeatures: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadbuffersize?language=objc)
 pub const kBluetoothHCICommandReadBufferSize: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadcountrycode?language=objc)
 pub const kBluetoothHCICommandReadCountryCode: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreaddeviceaddress?language=objc)
 pub const kBluetoothHCICommandReadDeviceAddress: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreaddatablocksize?language=objc)
 pub const kBluetoothHCICommandReadDataBlockSize: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalsupportedcodecs?language=objc)
 pub const kBluetoothHCICommandReadLocalSupportedCodecs: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgroupstatus?language=objc)
 pub const kBluetoothHCICommandGroupStatus: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadfailedcontactcounter?language=objc)
 pub const kBluetoothHCICommandReadFailedContactCounter: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandresetfailedcontactcounter?language=objc)
 pub const kBluetoothHCICommandResetFailedContactCounter: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgetlinkquality?language=objc)
 pub const kBluetoothHCICommandGetLinkQuality: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadrssi?language=objc)
 pub const kBluetoothHCICommandReadRSSI: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadafhmappings?language=objc)
 pub const kBluetoothHCICommandReadAFHMappings: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadclock?language=objc)
 pub const kBluetoothHCICommandReadClock: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadencryptionkeysize?language=objc)
 pub const kBluetoothHCICommandReadEncryptionKeySize: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalampinfo?language=objc)
 pub const kBluetoothHCICommandReadLocalAMPInfo: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadlocalampassoc?language=objc)
 pub const kBluetoothHCICommandReadLocalAMPASSOC: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteremoteampassoc?language=objc)
 pub const kBluetoothHCICommandWriteRemoteAMPASSOC: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgetmwstransportlayerconfiguration?language=objc)
 pub const kBluetoothHCICommandGetMWSTransportLayerConfiguration: c_uint = 0x000C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandsettriggeredclockcapture?language=objc)
 pub const kBluetoothHCICommandSetTriggeredClockCapture: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouptesting?language=objc)
 pub const kBluetoothHCICommandGroupTesting: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandreadloopbackmode?language=objc)
 pub const kBluetoothHCICommandReadLoopbackMode: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwriteloopbackmode?language=objc)
 pub const kBluetoothHCICommandWriteLoopbackMode: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandenabledeviceundertestmode?language=objc)
 pub const kBluetoothHCICommandEnableDeviceUnderTestMode: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandwritesimplepairingdebugmode?language=objc)
 pub const kBluetoothHCICommandWriteSimplePairingDebugMode: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandenableampreceiverreports?language=objc)
 pub const kBluetoothHCICommandEnableAMPReceiverReports: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandamptestend?language=objc)
 pub const kBluetoothHCICommandAMPTestEnd: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandamptest?language=objc)
 pub const kBluetoothHCICommandAMPTest: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouplowenergy?language=objc)
 pub const kBluetoothHCICommandGroupLowEnergy: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleseteventmask?language=objc)
 pub const kBluetoothHCICommandLESetEventMask: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadbuffersize?language=objc)
 pub const kBluetoothHCICommandLEReadBufferSize: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadlocalsupportedfeatures?language=objc)
 pub const kBluetoothHCICommandLEReadLocalSupportedFeatures: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetrandomaddress?language=objc)
 pub const kBluetoothHCICommandLESetRandomAddress: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetadvertisingparameters?language=objc)
 pub const kBluetoothHCICommandLESetAdvertisingParameters: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadadvertisingchanneltxpower?language=objc)
 pub const kBluetoothHCICommandLEReadAdvertisingChannelTxPower: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetadvertisingdata?language=objc)
 pub const kBluetoothHCICommandLESetAdvertisingData: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetscanresponsedata?language=objc)
 pub const kBluetoothHCICommandLESetScanResponseData: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetadvertiseenable?language=objc)
 pub const kBluetoothHCICommandLESetAdvertiseEnable: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetscanparameters?language=objc)
 pub const kBluetoothHCICommandLESetScanParameters: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetscanenable?language=objc)
 pub const kBluetoothHCICommandLESetScanEnable: c_uint = 0x000C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlecreateconnection?language=objc)
 pub const kBluetoothHCICommandLECreateConnection: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlecreateconnectioncancel?language=objc)
 pub const kBluetoothHCICommandLECreateConnectionCancel: c_uint = 0x000E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadwhitelistsize?language=objc)
 pub const kBluetoothHCICommandLEReadWhiteListSize: c_uint = 0x000F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleclearwhitelist?language=objc)
 pub const kBluetoothHCICommandLEClearWhiteList: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleadddevicetowhitelist?language=objc)
 pub const kBluetoothHCICommandLEAddDeviceToWhiteList: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleremovedevicefromwhitelist?language=objc)
 pub const kBluetoothHCICommandLERemoveDeviceFromWhiteList: c_uint = 0x0012;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleconnectionupdate?language=objc)
 pub const kBluetoothHCICommandLEConnectionUpdate: c_uint = 0x0013;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesethostchannelclassification?language=objc)
 pub const kBluetoothHCICommandLESetHostChannelClassification: c_uint = 0x0014;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadchannelmap?language=objc)
 pub const kBluetoothHCICommandLEReadChannelMap: c_uint = 0x0015;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadremoteusedfeatures?language=objc)
 pub const kBluetoothHCICommandLEReadRemoteUsedFeatures: c_uint = 0x0016;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleencrypt?language=objc)
 pub const kBluetoothHCICommandLEEncrypt: c_uint = 0x0017;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlerand?language=objc)
 pub const kBluetoothHCICommandLERand: c_uint = 0x0018;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlestartencryption?language=objc)
 pub const kBluetoothHCICommandLEStartEncryption: c_uint = 0x0019;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlelongtermkeyrequestreply?language=objc)
 pub const kBluetoothHCICommandLELongTermKeyRequestReply: c_uint = 0x001A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlelongtermkeyrequestnegativereply?language=objc)
 pub const kBluetoothHCICommandLELongTermKeyRequestNegativeReply: c_uint = 0x001B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadsupportedstates?language=objc)
 pub const kBluetoothHCICommandLEReadSupportedStates: c_uint = 0x001C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereceivertest?language=objc)
 pub const kBluetoothHCICommandLEReceiverTest: c_uint = 0x001D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandletransmittertest?language=objc)
 pub const kBluetoothHCICommandLETransmitterTest: c_uint = 0x001E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandletestend?language=objc)
 pub const kBluetoothHCICommandLETestEnd: c_uint = 0x001F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleremoteconnectionparameterrequestreply?language=objc)
 pub const kBluetoothHCICommandLERemoteConnectionParameterRequestReply: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleremoteconnectionparameterrequestnegativereply?language=objc)
 pub const kBluetoothHCICommandLERemoteConnectionParameterRequestNegativeReply: c_uint = 0x0021;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetdatalength?language=objc)
 pub const kBluetoothHCICommandLESetDataLength: c_uint = 0x0022;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadsuggesteddefaultdatalength?language=objc)
 pub const kBluetoothHCICommandLEReadSuggestedDefaultDataLength: c_uint = 0x0023;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlewritesuggesteddefaultdatalength?language=objc)
 pub const kBluetoothHCICommandLEWriteSuggestedDefaultDataLength: c_uint = 0x0024;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadlocalp256publickey?language=objc)
 pub const kBluetoothHCICommandLEReadLocalP256PublicKey: c_uint = 0x0025;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlegeneratedhkey?language=objc)
 pub const kBluetoothHCICommandLEGenerateDHKey: c_uint = 0x0026;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleadddevicetoresolvinglist?language=objc)
 pub const kBluetoothHCICommandLEAddDeviceToResolvingList: c_uint = 0x0027;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleremovedevicefromresolvinglist?language=objc)
 pub const kBluetoothHCICommandLERemoveDeviceFromResolvingList: c_uint = 0x0028;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleclearresolvinglist?language=objc)
 pub const kBluetoothHCICommandLEClearResolvingList: c_uint = 0x0029;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadresolvinglistsize?language=objc)
 pub const kBluetoothHCICommandLEReadResolvingListSize: c_uint = 0x002A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadpeerresolvableaddress?language=objc)
 pub const kBluetoothHCICommandLEReadPeerResolvableAddress: c_uint = 0x002B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadlocalresolvableaddress?language=objc)
 pub const kBluetoothHCICommandLEReadLocalResolvableAddress: c_uint = 0x002C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetaddressresolutionenable?language=objc)
 pub const kBluetoothHCICommandLESetAddressResolutionEnable: c_uint = 0x002D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetresolvableprivateaddresstimeout?language=objc)
 pub const kBluetoothHCICommandLESetResolvablePrivateAddressTimeout: c_uint = 0x002E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadmaximumdatalength?language=objc)
 pub const kBluetoothHCICommandLEReadMaximumDataLength: c_uint = 0x002F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadphy?language=objc)
 pub const kBluetoothHCICommandLEReadPhy: c_uint = 0x0030;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetdefaultphy?language=objc)
 pub const kBluetoothHCICommandLESetDefaultPhy: c_uint = 0x0031;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetphy?language=objc)
 pub const kBluetoothHCICommandLESetPhy: c_uint = 0x0032;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleenhancedreceivertest?language=objc)
 pub const kBluetoothHCICommandLEEnhancedReceiverTest: c_uint = 0x0033;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleenhancedtransmittertest?language=objc)
 pub const kBluetoothHCICommandLEEnhancedTransmitterTest: c_uint = 0x0034;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetadvertisingsetrandomaddress?language=objc)
 pub const kBluetoothHCICommandLESetAdvertisingSetRandomAddress: c_uint = 0x0035;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetextendedadvertisingparameters?language=objc)
 pub const kBluetoothHCICommandLESetExtendedAdvertisingParameters: c_uint = 0x0036;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetextendedadvertisingdata?language=objc)
 pub const kBluetoothHCICommandLESetExtendedAdvertisingData: c_uint = 0x0037;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetextendedscanresponsedata?language=objc)
 pub const kBluetoothHCICommandLESetExtendedScanResponseData: c_uint = 0x0038;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetextendedadvertisingenablecommand?language=objc)
 pub const kBluetoothHCICommandLESetExtendedAdvertisingEnableCommand: c_uint = 0x0039;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadmaximumadvertisingdatalength?language=objc)
 pub const kBluetoothHCICommandLEReadMaximumAdvertisingDataLength: c_uint = 0x003A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadnumberofsupportedadvertisingsets?language=objc)
 pub const kBluetoothHCICommandLEReadNumberofSupportedAdvertisingSets: c_uint = 0x003B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleremoveadvertisingset?language=objc)
 pub const kBluetoothHCICommandLERemoveAdvertisingSet: c_uint = 0x003C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleclearadvertisingsets?language=objc)
 pub const kBluetoothHCICommandLEClearAdvertisingSets: c_uint = 0x003D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetperiodicadvertisingparameters?language=objc)
 pub const kBluetoothHCICommandLESetPeriodicAdvertisingParameters: c_uint = 0x003E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetperiodicadvertisingdata?language=objc)
 pub const kBluetoothHCICommandLESetPeriodicAdvertisingData: c_uint = 0x003F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetperiodicadvertisingenable?language=objc)
 pub const kBluetoothHCICommandLESetPeriodicAdvertisingEnable: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetextendedscanparameters?language=objc)
 pub const kBluetoothHCICommandLESetExtendedScanParameters: c_uint = 0x0041;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetextendedscanenable?language=objc)
 pub const kBluetoothHCICommandLESetExtendedScanEnable: c_uint = 0x0042;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleextendedcreateconnection?language=objc)
 pub const kBluetoothHCICommandLEExtendedCreateConnection: c_uint = 0x0043;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleperiodicadvertisingcreatesync?language=objc)
 pub const kBluetoothHCICommandLEPeriodicAdvertisingCreateSync: c_uint = 0x0044;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleperiodicadvertisingcreatesynccancel?language=objc)
 pub const kBluetoothHCICommandLEPeriodicAdvertisingCreateSyncCancel: c_uint = 0x0045;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleperiodicadvertisingterminatesync?language=objc)
 pub const kBluetoothHCICommandLEPeriodicAdvertisingTerminateSync: c_uint = 0x0046;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleadddevicetoperiodicadvertiserlist?language=objc)
 pub const kBluetoothHCICommandLEAddDeviceToPeriodicAdvertiserList: c_uint = 0x0047;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleremovedevicefromperiodicadvertiserlist?language=objc)
 pub const kBluetoothHCICommandLERemoveDeviceFromPeriodicAdvertiserList: c_uint = 0x0048;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandleclearperiodicadvertiserlist?language=objc)
 pub const kBluetoothHCICommandLEClearPeriodicAdvertiserList: c_uint = 0x0049;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadperiodicadvertiserlistsize?language=objc)
 pub const kBluetoothHCICommandLEReadPeriodicAdvertiserListSize: c_uint = 0x004A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadtransmitpower?language=objc)
 pub const kBluetoothHCICommandLEReadTransmitPower: c_uint = 0x004B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlereadrfpathcompensation?language=objc)
 pub const kBluetoothHCICommandLEReadRFPathCompensation: c_uint = 0x004C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlewriterfpathcompensation?language=objc)
 pub const kBluetoothHCICommandLEWriteRFPathCompensation: c_uint = 0x004D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandlesetprivacymode?language=objc)
 pub const kBluetoothHCICommandLESetPrivacyMode: c_uint = 0x004E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgrouplogotesting?language=objc)
 pub const kBluetoothHCICommandGroupLogoTesting: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgroupvendorspecific?language=objc)
 pub const kBluetoothHCICommandGroupVendorSpecific: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandgroupmax?language=objc)
 pub const kBluetoothHCICommandGroupMax: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandmax?language=objc)
 pub const kBluetoothHCICommandMax: c_uint = 0x03FF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciqosflags?language=objc)
 pub type BluetoothHCIQoSFlags = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciparambytecount?language=objc)
 pub type BluetoothHCIParamByteCount = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciacldatabytecount?language=objc)
 pub type BluetoothHCIACLDataByteCount = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciscodatabytecount?language=objc)
 pub type BluetoothHCISCODataByteCount = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirylength?language=objc)
 pub type BluetoothHCIInquiryLength = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciresponsecount?language=objc)
 pub type BluetoothHCIResponseCount = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicountrycode?language=objc)
 pub type BluetoothHCICountryCode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcimodeinterval?language=objc)
 pub type BluetoothHCIModeInterval = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisniffattemptcount?language=objc)
 pub type BluetoothHCISniffAttemptCount = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisnifftimeout?language=objc)
 pub type BluetoothHCISniffTimeout = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciparkmodebeaconinterval?language=objc)
 pub type BluetoothHCIParkModeBeaconInterval = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothmaxslots?language=objc)
 pub type BluetoothMaxSlots = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothmanufacturername?language=objc)
 pub type BluetoothManufacturerName = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlmpversion?language=objc)
 pub type BluetoothLMPVersion = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlmpsubversion?language=objc)
 pub type BluetoothLMPSubversion = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciconnectionmode?language=objc)
 pub type BluetoothHCIConnectionMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciconnectionmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIConnectionModes(pub c_uint);
 impl BluetoothHCIConnectionModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kconnectionactivemode?language=objc)
     #[doc(alias = "kConnectionActiveMode")]
     pub const ConnectionActiveMode: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kconnectionholdmode?language=objc)
     #[doc(alias = "kConnectionHoldMode")]
     pub const ConnectionHoldMode: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kconnectionsniffmode?language=objc)
     #[doc(alias = "kConnectionSniffMode")]
     pub const ConnectionSniffMode: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kconnectionparkmode?language=objc)
     #[doc(alias = "kConnectionParkMode")]
     pub const ConnectionParkMode: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kconnectionmodereservedforfutureuse?language=objc)
     #[doc(alias = "kConnectionModeReservedForFutureUse")]
     pub const ConnectionModeReservedForFutureUse: Self = Self(4);
 }
@@ -2294,7 +1581,6 @@ unsafe impl RefEncode for BluetoothHCIConnectionModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisupportedcommands?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCISupportedCommands {
@@ -2312,7 +1598,6 @@ unsafe impl RefEncode for BluetoothHCISupportedCommands {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisupportedfeatures?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCISupportedFeatures {
@@ -2330,16 +1615,12 @@ unsafe impl RefEncode for BluetoothHCISupportedFeatures {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilesupportedfeatures?language=objc)
 pub type BluetoothHCILESupportedFeatures = BluetoothHCISupportedFeatures;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcileusedfeatures?language=objc)
 pub type BluetoothHCILEUsedFeatures = BluetoothHCISupportedFeatures;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagenumber?language=objc)
 pub type BluetoothHCIPageNumber = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciextendedfeaturesinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIExtendedFeaturesInfo {
@@ -2365,36 +1646,26 @@ unsafe impl RefEncode for BluetoothHCIExtendedFeaturesInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlefeaturebits?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothLEFeatureBits(pub c_uint);
 impl BluetoothLEFeatureBits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureleencryption?language=objc)
     #[doc(alias = "kBluetoothLEFeatureLEEncryption")]
     pub const LEEncryption: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureconnectionparamsrequestprocedure?language=objc)
     #[doc(alias = "kBluetoothLEFeatureConnectionParamsRequestProcedure")]
     pub const ConnectionParamsRequestProcedure: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureextendedrejectindication?language=objc)
     #[doc(alias = "kBluetoothLEFeatureExtendedRejectIndication")]
     pub const ExtendedRejectIndication: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureperipheralinitiatedfeaturesexchange?language=objc)
     #[doc(alias = "kBluetoothLEFeaturePeripheralInitiatedFeaturesExchange")]
     pub const PeripheralInitiatedFeaturesExchange: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureleping?language=objc)
     #[doc(alias = "kBluetoothLEFeatureLEPing")]
     pub const LEPing: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureledatapacketlengthextension?language=objc)
     #[doc(alias = "kBluetoothLEFeatureLEDataPacketLengthExtension")]
     pub const LEDataPacketLengthExtension: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeaturellprivacy?language=objc)
     #[doc(alias = "kBluetoothLEFeatureLLPrivacy")]
     pub const LLPrivacy: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureextendedscannerfilterpolicies?language=objc)
     #[doc(alias = "kBluetoothLEFeatureExtendedScannerFilterPolicies")]
     pub const ExtendedScannerFilterPolicies: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlefeatureslaveinitiatedfeaturesexchange?language=objc)
     #[doc(alias = "kBluetoothLEFeatureSlaveInitiatedFeaturesExchange")]
     #[deprecated]
     pub const SlaveInitiatedFeaturesExchange: Self =
@@ -2411,150 +1682,81 @@ unsafe impl RefEncode for BluetoothLEFeatureBits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothfeaturebits?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothFeatureBits(pub c_uint);
 impl BluetoothFeatureBits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturethreeslotpackets?language=objc)
     pub const kBluetoothFeatureThreeSlotPackets: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturefiveslotpackets?language=objc)
     pub const kBluetoothFeatureFiveSlotPackets: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureencryption?language=objc)
     pub const kBluetoothFeatureEncryption: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureslotoffset?language=objc)
     pub const kBluetoothFeatureSlotOffset: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturetimingaccuracy?language=objc)
     pub const kBluetoothFeatureTimingAccuracy: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureswitchroles?language=objc)
     pub const kBluetoothFeatureSwitchRoles: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureholdmode?language=objc)
     pub const kBluetoothFeatureHoldMode: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturesniffmode?language=objc)
     pub const kBluetoothFeatureSniffMode: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureparkmode?language=objc)
     pub const kBluetoothFeatureParkMode: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturerssi?language=objc)
     pub const kBluetoothFeatureRSSI: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturepowercontrolrequests?language=objc)
     pub const kBluetoothFeaturePowerControlRequests: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturechannelquality?language=objc)
     pub const kBluetoothFeatureChannelQuality: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturescolink?language=objc)
     pub const kBluetoothFeatureSCOLink: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturehv2packets?language=objc)
     pub const kBluetoothFeatureHV2Packets: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturehv3packets?language=objc)
     pub const kBluetoothFeatureHV3Packets: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureulawlog?language=objc)
     pub const kBluetoothFeatureULawLog: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturealawlog?language=objc)
     pub const kBluetoothFeatureALawLog: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturecvsd?language=objc)
     pub const kBluetoothFeatureCVSD: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturepagingscheme?language=objc)
     pub const kBluetoothFeaturePagingScheme: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturepowercontrol?language=objc)
     pub const kBluetoothFeaturePowerControl: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturetransparentscodata?language=objc)
     pub const kBluetoothFeatureTransparentSCOData: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureflowcontrollagbit0?language=objc)
     pub const kBluetoothFeatureFlowControlLagBit0: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureflowcontrollagbit1?language=objc)
     pub const kBluetoothFeatureFlowControlLagBit1: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureflowcontrollagbit2?language=objc)
     pub const kBluetoothFeatureFlowControlLagBit2: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturebroadcastencryption?language=objc)
     pub const kBluetoothFeatureBroadcastEncryption: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturescattermode?language=objc)
     pub const kBluetoothFeatureScatterMode: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureenhanceddatarateacl2mbpsmode?language=objc)
     pub const kBluetoothFeatureEnhancedDataRateACL2MbpsMode: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureenhanceddatarateacl3mbpsmode?language=objc)
     pub const kBluetoothFeatureEnhancedDataRateACL3MbpsMode: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureenhancedinquiryscan?language=objc)
     pub const kBluetoothFeatureEnhancedInquiryScan: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureinterlacedinquiryscan?language=objc)
     pub const kBluetoothFeatureInterlacedInquiryScan: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureinterlacedpagescan?language=objc)
     pub const kBluetoothFeatureInterlacedPageScan: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturerssiwithinquiryresult?language=objc)
     pub const kBluetoothFeatureRSSIWithInquiryResult: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureextendedscolink?language=objc)
     pub const kBluetoothFeatureExtendedSCOLink: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureev4packets?language=objc)
     pub const kBluetoothFeatureEV4Packets: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureev5packets?language=objc)
     pub const kBluetoothFeatureEV5Packets: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureabsencemasks?language=objc)
     pub const kBluetoothFeatureAbsenceMasks: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureafhcapableperipheral?language=objc)
     pub const kBluetoothFeatureAFHCapablePeripheral: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureafhclassificationperipheral?language=objc)
     pub const kBluetoothFeatureAFHClassificationPeripheral: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturealiasauhentication?language=objc)
     pub const kBluetoothFeatureAliasAuhentication: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturelesupportedcontroller?language=objc)
     pub const kBluetoothFeatureLESupportedController: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeature3slotenhanceddatarateaclpackets?language=objc)
     pub const kBluetoothFeature3SlotEnhancedDataRateACLPackets: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureafhcapableslave?language=objc)
     #[deprecated]
     pub const kBluetoothFeatureAFHCapableSlave: Self =
         Self(BluetoothFeatureBits::kBluetoothFeatureAFHCapablePeripheral.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureafhclassificationslave?language=objc)
     #[deprecated]
     pub const kBluetoothFeatureAFHClassificationSlave: Self =
         Self(BluetoothFeatureBits::kBluetoothFeatureAFHClassificationPeripheral.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeature5slotenhanceddatarateaclpackets?language=objc)
     pub const kBluetoothFeature5SlotEnhancedDataRateACLPackets: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturesniffsubrating?language=objc)
     pub const kBluetoothFeatureSniffSubrating: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturepauseencryption?language=objc)
     pub const kBluetoothFeaturePauseEncryption: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureafhcapablemaster?language=objc)
     pub const kBluetoothFeatureAFHCapableMaster: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureafhclassificationmaster?language=objc)
     pub const kBluetoothFeatureAFHClassificationMaster: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureenhanceddatarateesco2mbpsmode?language=objc)
     pub const kBluetoothFeatureEnhancedDataRateeSCO2MbpsMode: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureenhanceddatarateesco3mbpsmode?language=objc)
     pub const kBluetoothFeatureEnhancedDataRateeSCO3MbpsMode: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeature3slotenhanceddatarateescopackets?language=objc)
     pub const kBluetoothFeature3SlotEnhancedDataRateeSCOPackets: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureextendedinquiryresponse?language=objc)
     pub const kBluetoothFeatureExtendedInquiryResponse: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturesecuresimplepairing?language=objc)
     pub const kBluetoothFeatureSecureSimplePairing: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureencapsulatedpdu?language=objc)
     pub const kBluetoothFeatureEncapsulatedPDU: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureerroneousdatareporting?language=objc)
     pub const kBluetoothFeatureErroneousDataReporting: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturenonflushablepacketboundaryflag?language=objc)
     pub const kBluetoothFeatureNonFlushablePacketBoundaryFlag: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeaturelinksupervisiontimeoutchangedevent?language=objc)
     pub const kBluetoothFeatureLinkSupervisionTimeoutChangedEvent: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureinquirytransmissionpowerlevel?language=objc)
     pub const kBluetoothFeatureInquiryTransmissionPowerLevel: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothfeatureextendedfeatures?language=objc)
     pub const kBluetoothFeatureExtendedFeatures: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeaturesimplesecurepairinghostmode?language=objc)
     pub const kBluetoothExtendedFeatureSimpleSecurePairingHostMode: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeaturelesupportedhostmode?language=objc)
     pub const kBluetoothExtendedFeatureLESupportedHostMode: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeatureleandbredrtosamedevicehostmode?language=objc)
     pub const kBluetoothExtendedFeatureLEAndBREDRToSameDeviceHostMode: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeaturesecureconnectionshostmode?language=objc)
     pub const KBluetoothExtendedFeatureSecureConnectionsHostMode: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeaturesecureconnectionscontrollersupport?language=objc)
     pub const kBluetoothExtendedFeatureSecureConnectionsControllerSupport: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeatureping?language=objc)
     pub const kBluetoothExtendedFeaturePing: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeaturereserved?language=objc)
     pub const kBluetoothExtendedFeatureReserved: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeaturetrainnudging?language=objc)
     pub const kBluetoothExtendedFeatureTrainNudging: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothextendedfeatureslotavailabilitymask?language=objc)
     pub const kBluetoothExtendedFeatureSlotAvailabilityMask: Self = Self(1 << 4);
 }
 
@@ -2568,7 +1770,6 @@ unsafe impl RefEncode for BluetoothFeatureBits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetootheventfiltercondition?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothEventFilterCondition {
@@ -2586,10 +1787,8 @@ unsafe impl RefEncode for BluetoothEventFilterCondition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcifailedcontactcount?language=objc)
 pub type BluetoothHCIFailedContactCount = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcifailedcontactinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIFailedContactInfo {
@@ -2613,10 +1812,8 @@ unsafe impl RefEncode for BluetoothHCIFailedContactInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirssivalue?language=objc)
 pub type BluetoothHCIRSSIValue = i8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirssiinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIRSSIInfo {
@@ -2640,10 +1837,8 @@ unsafe impl RefEncode for BluetoothHCIRSSIInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkquality?language=objc)
 pub type BluetoothHCILinkQuality = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkqualityinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILinkQualityInfo {
@@ -2667,10 +1862,8 @@ unsafe impl RefEncode for BluetoothHCILinkQualityInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciencryptionkeysize?language=objc)
 pub type BluetoothHCIEncryptionKeySize = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciencryptionkeysizeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEncryptionKeySizeInfo {
@@ -2694,10 +1887,8 @@ unsafe impl RefEncode for BluetoothHCIEncryptionKeySizeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirole?language=objc)
 pub type BluetoothHCIRole = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciroleinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIRoleInfo {
@@ -2718,22 +1909,17 @@ unsafe impl RefEncode for BluetoothHCIRoleInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciroles?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIRoles(pub c_uint);
 impl BluetoothHCIRoles {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicentralrole?language=objc)
     #[doc(alias = "kBluetoothHCICentralRole")]
     pub const CentralRole: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciperipheralrole?language=objc)
     #[doc(alias = "kBluetoothHCIPeripheralRole")]
     pub const PeripheralRole: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcimasterrole?language=objc)
     #[doc(alias = "kBluetoothHCIMasterRole")]
     #[deprecated]
     pub const MasterRole: Self = Self(BluetoothHCIRoles::CentralRole.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcislaverole?language=objc)
     #[doc(alias = "kBluetoothHCISlaveRole")]
     #[deprecated]
     pub const SlaveRole: Self = Self(BluetoothHCIRoles::PeripheralRole.0);
@@ -2749,33 +1935,24 @@ unsafe impl RefEncode for BluetoothHCIRoles {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkpolicysettings?language=objc)
 pub type BluetoothHCILinkPolicySettings = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkpolicysettingsvalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCILinkPolicySettingsValues(pub c_uint);
 impl BluetoothHCILinkPolicySettingsValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kdisablealllmmodes?language=objc)
     #[doc(alias = "kDisableAllLMModes")]
     pub const DisableAllLMModes: Self = Self(0x0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kenablecentralperipheralswitch?language=objc)
     #[doc(alias = "kEnableCentralPeripheralSwitch")]
     pub const EnableCentralPeripheralSwitch: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kenableholdmode?language=objc)
     #[doc(alias = "kEnableHoldMode")]
     pub const EnableHoldMode: Self = Self(0x0002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kenablesniffmode?language=objc)
     #[doc(alias = "kEnableSniffMode")]
     pub const EnableSniffMode: Self = Self(0x0004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kenableparkmode?language=objc)
     #[doc(alias = "kEnableParkMode")]
     pub const EnableParkMode: Self = Self(0x0008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kreservedforfutureuse?language=objc)
     #[doc(alias = "kReservedForFutureUse")]
     pub const ReservedForFutureUse: Self = Self(0x0010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kenablemasterslaveswitch?language=objc)
     #[doc(alias = "kEnableMasterSlaveSwitch")]
     #[deprecated]
     pub const EnableMasterSlaveSwitch: Self =
@@ -2792,7 +1969,6 @@ unsafe impl RefEncode for BluetoothHCILinkPolicySettingsValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkpolicysettingsinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILinkPolicySettingsInfo {
@@ -2816,7 +1992,6 @@ unsafe impl RefEncode for BluetoothHCILinkPolicySettingsInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciqualityofservicesetupparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIQualityOfServiceSetupParams {
@@ -2848,7 +2023,6 @@ unsafe impl RefEncode for BluetoothHCIQualityOfServiceSetupParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisetupsynchronousconnectionparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCISetupSynchronousConnectionParams {
@@ -2880,7 +2054,6 @@ unsafe impl RefEncode for BluetoothHCISetupSynchronousConnectionParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciacceptsynchronousconnectionrequestparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIAcceptSynchronousConnectionRequestParams {
@@ -2912,7 +2085,6 @@ unsafe impl RefEncode for BluetoothHCIAcceptSynchronousConnectionRequestParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcienhancedsetupsynchronousconnectionparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEnhancedSetupSynchronousConnectionParams {
@@ -2978,7 +2150,6 @@ unsafe impl RefEncode for BluetoothHCIEnhancedSetupSynchronousConnectionParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcienhancedacceptsynchronousconnectionrequestparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams {
@@ -3044,17 +2215,12 @@ unsafe impl RefEncode for BluetoothHCIEnhancedAcceptSynchronousConnectionRequest
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciloopbackmode?language=objc)
 pub type BluetoothHCILoopbackMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciloopbackmodeoff?language=objc)
 pub const kBluetoothHCILoopbackModeOff: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciloopbackmodelocal?language=objc)
 pub const kBluetoothHCILoopbackModeLocal: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciloopbackmoderemote?language=objc)
 pub const kBluetoothHCILoopbackModeRemote: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothreadclockinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothReadClockInfo {
@@ -3080,7 +2246,6 @@ unsafe impl RefEncode for BluetoothReadClockInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventflowspecificationdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventFlowSpecificationData {
@@ -3116,28 +2281,20 @@ unsafe impl RefEncode for BluetoothHCIEventFlowSpecificationData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioperationid?language=objc)
 pub type BluetoothHCIOperationID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventid?language=objc)
 pub type BluetoothHCIEventID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcidataid?language=objc)
 pub type BluetoothHCIDataID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisignalid?language=objc)
 pub type BluetoothHCISignalID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransportid?language=objc)
 pub type BluetoothHCITransportID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransportcommandid?language=objc)
 pub type BluetoothHCITransportCommandID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirequestid?language=objc)
 pub type BluetoothHCIRequestID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciversioninfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIVersionInfo {
@@ -3167,7 +2324,6 @@ unsafe impl RefEncode for BluetoothHCIVersionInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcibuffersize?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIBufferSize {
@@ -3195,7 +2351,6 @@ unsafe impl RefEncode for BluetoothHCIBufferSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilebuffersize?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILEBufferSize {
@@ -3216,18 +2371,14 @@ unsafe impl RefEncode for BluetoothHCILEBufferSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciconnectionaccepttimeout?language=objc)
 pub type BluetoothHCIConnectionAcceptTimeout = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagetimeout?language=objc)
 pub type BluetoothHCIPageTimeout = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitimeoutvalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothHCITimeoutValues(pub c_uint);
 impl BluetoothHCITimeoutValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kdefaultpagetimeout?language=objc)
     #[doc(alias = "kDefaultPageTimeout")]
     pub const DefaultPageTimeout: Self = Self(0x2710);
 }
@@ -3242,24 +2393,18 @@ unsafe impl RefEncode for BluetoothHCITimeoutValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcinumlinkkeysdeleted?language=objc)
 pub type BluetoothHCINumLinkKeysDeleted = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcinumlinkkeystowrite?language=objc)
 pub type BluetoothHCINumLinkKeysToWrite = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcideletestoredlinkkeyflag?language=objc)
 pub type BluetoothHCIDeleteStoredLinkKeyFlag = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcideletestoredlinkkeyflags?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIDeleteStoredLinkKeyFlags(pub c_uint);
 impl BluetoothHCIDeleteStoredLinkKeyFlags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kdeletekeyforspecifieddeviceonly?language=objc)
     #[doc(alias = "kDeleteKeyForSpecifiedDeviceOnly")]
     pub const DeleteKeyForSpecifiedDeviceOnly: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kdeleteallstoredlinkkeys?language=objc)
     #[doc(alias = "kDeleteAllStoredLinkKeys")]
     pub const DeleteAllStoredLinkKeys: Self = Self(0x01);
 }
@@ -3274,18 +2419,14 @@ unsafe impl RefEncode for BluetoothHCIDeleteStoredLinkKeyFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadstoredlinkkeysflag?language=objc)
 pub type BluetoothHCIReadStoredLinkKeysFlag = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadstoredlinkkeysflags?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIReadStoredLinkKeysFlags(pub c_uint);
 impl BluetoothHCIReadStoredLinkKeysFlags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kreturnlinkkeyforspecifieddeviceonly?language=objc)
     #[doc(alias = "kReturnLinkKeyForSpecifiedDeviceOnly")]
     pub const ReturnLinkKeyForSpecifiedDeviceOnly: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kreadallstoredlinkkeys?language=objc)
     #[doc(alias = "kReadAllStoredLinkKeys")]
     pub const ReadAllStoredLinkKeys: Self = Self(0x01);
 }
@@ -3300,7 +2441,6 @@ unsafe impl RefEncode for BluetoothHCIReadStoredLinkKeysFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcistoredlinkkeysinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIStoredLinkKeysInfo {
@@ -3321,24 +2461,18 @@ unsafe impl RefEncode for BluetoothHCIStoredLinkKeysInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescanmode?language=objc)
 pub type BluetoothHCIPageScanMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescanmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIPageScanModes(pub c_uint);
 impl BluetoothHCIPageScanModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kmandatorypagescanmode?language=objc)
     #[doc(alias = "kMandatoryPageScanMode")]
     pub const MandatoryPageScanMode: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/koptionalpagescanmode1?language=objc)
     #[doc(alias = "kOptionalPageScanMode1")]
     pub const OptionalPageScanMode1: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/koptionalpagescanmode2?language=objc)
     #[doc(alias = "kOptionalPageScanMode2")]
     pub const OptionalPageScanMode2: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/koptionalpagescanmode3?language=objc)
     #[doc(alias = "kOptionalPageScanMode3")]
     pub const OptionalPageScanMode3: Self = Self(0x03);
 }
@@ -3353,21 +2487,16 @@ unsafe impl RefEncode for BluetoothHCIPageScanModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescanperiodmode?language=objc)
 pub type BluetoothHCIPageScanPeriodMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescanperiodmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIPageScanPeriodModes(pub c_uint);
 impl BluetoothHCIPageScanPeriodModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kp0mode?language=objc)
     #[doc(alias = "kP0Mode")]
     pub const P0Mode: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kp1mode?language=objc)
     #[doc(alias = "kP1Mode")]
     pub const P1Mode: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kp2mode?language=objc)
     #[doc(alias = "kP2Mode")]
     pub const P2Mode: Self = Self(0x02);
 }
@@ -3382,24 +2511,18 @@ unsafe impl RefEncode for BluetoothHCIPageScanPeriodModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescanenablestate?language=objc)
 pub type BluetoothHCIPageScanEnableState = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipagescanenablestates?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIPageScanEnableStates(pub c_uint);
 impl BluetoothHCIPageScanEnableStates {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/knoscansenabled?language=objc)
     #[doc(alias = "kNoScansEnabled")]
     pub const NoScansEnabled: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kinquiryscanenabledpagescandisabled?language=objc)
     #[doc(alias = "kInquiryScanEnabledPageScanDisabled")]
     pub const InquiryScanEnabledPageScanDisabled: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kinquiryscandisabledpagescanenabled?language=objc)
     #[doc(alias = "kInquiryScanDisabledPageScanEnabled")]
     pub const InquiryScanDisabledPageScanEnabled: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kinquiryscanenabledpagescanenabled?language=objc)
     #[doc(alias = "kInquiryScanEnabledPageScanEnabled")]
     pub const InquiryScanEnabledPageScanEnabled: Self = Self(0x03);
 }
@@ -3414,7 +2537,6 @@ unsafe impl RefEncode for BluetoothHCIPageScanEnableStates {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciscanactivity?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIScanActivity {
@@ -3435,7 +2557,6 @@ unsafe impl RefEncode for BluetoothHCIScanActivity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryaccesscode?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIInquiryAccessCode {
@@ -3453,10 +2574,8 @@ unsafe impl RefEncode for BluetoothHCIInquiryAccessCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryaccesscodecount?language=objc)
 pub type BluetoothHCIInquiryAccessCodeCount = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicurrentinquiryaccesscodes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCICurrentInquiryAccessCodes {
@@ -3480,10 +2599,8 @@ unsafe impl RefEncode for BluetoothHCICurrentInquiryAccessCodes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kmaximumnumberofinquiryaccesscodes?language=objc)
 pub const kMaximumNumberOfInquiryAccessCodes: c_uint = 0x40;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicurrentinquiryaccesscodesforwrite?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCICurrentInquiryAccessCodesForWrite {
@@ -3507,7 +2624,6 @@ unsafe impl RefEncode for BluetoothHCICurrentInquiryAccessCodesForWrite {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinksupervisiontimeout?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILinkSupervisionTimeout {
@@ -3528,18 +2644,14 @@ unsafe impl RefEncode for BluetoothHCILinkSupervisionTimeout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciflowcontrolstate?language=objc)
 pub type BluetoothHCIFlowControlState = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciscoflowcontrolstates?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCISCOFlowControlStates(pub c_uint);
 impl BluetoothHCISCOFlowControlStates {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kscoflowcontroldisabled?language=objc)
     #[doc(alias = "kSCOFlowControlDisabled")]
     pub const SCOFlowControlDisabled: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kscoflowcontrolenabled?language=objc)
     #[doc(alias = "kSCOFlowControlEnabled")]
     pub const SCOFlowControlEnabled: Self = Self(0x01);
 }
@@ -3554,21 +2666,16 @@ unsafe impl RefEncode for BluetoothHCISCOFlowControlStates {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcigeneralflowcontrolstates?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIGeneralFlowControlStates(pub c_uint);
 impl BluetoothHCIGeneralFlowControlStates {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khostcontrollertohostflowcontroloff?language=objc)
     #[doc(alias = "kHostControllerToHostFlowControlOff")]
     pub const HostControllerToHostFlowControlOff: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciacldatapacketsonhciscodatapacketsoff?language=objc)
     #[doc(alias = "kHCIACLDataPacketsOnHCISCODataPacketsOff")]
     pub const HCIACLDataPacketsOnHCISCODataPacketsOff: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciacldatapacketsoffhciscodatapacketson?language=objc)
     #[doc(alias = "kHCIACLDataPacketsOffHCISCODataPacketsOn")]
     pub const HCIACLDataPacketsOffHCISCODataPacketsOn: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciacldatapacketsonhciscodatapacketson?language=objc)
     #[doc(alias = "kHCIACLDataPacketsOnHCISCODataPacketsOn")]
     pub const HCIACLDataPacketsOnHCISCODataPacketsOn: Self = Self(0x03);
 }
@@ -3583,21 +2690,16 @@ unsafe impl RefEncode for BluetoothHCIGeneralFlowControlStates {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitpowerlevel?language=objc)
 pub type BluetoothHCITransmitPowerLevel = i8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitpowerleveltype?language=objc)
 pub type BluetoothHCITransmitPowerLevelType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitreadpowerleveltypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCITransmitReadPowerLevelTypes(pub c_uint);
 impl BluetoothHCITransmitReadPowerLevelTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kreadcurrenttransmitpowerlevel?language=objc)
     #[doc(alias = "kReadCurrentTransmitPowerLevel")]
     pub const ReadCurrentTransmitPowerLevel: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kreadmaximumtransmitpowerlevel?language=objc)
     #[doc(alias = "kReadMaximumTransmitPowerLevel")]
     pub const ReadMaximumTransmitPowerLevel: Self = Self(0x01);
 }
@@ -3612,18 +2714,14 @@ unsafe impl RefEncode for BluetoothHCITransmitReadPowerLevelTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciafhchannelassessmentmode?language=objc)
 pub type BluetoothHCIAFHChannelAssessmentMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciafhchannelassessmentmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIAFHChannelAssessmentModes(pub c_uint);
 impl BluetoothHCIAFHChannelAssessmentModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kafhchannelassessmentmodedisabled?language=objc)
     #[doc(alias = "kAFHChannelAssessmentModeDisabled")]
     pub const AFHChannelAssessmentModeDisabled: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kafhchannelassessmentmodeenabled?language=objc)
     #[doc(alias = "kAFHChannelAssessmentModeEnabled")]
     pub const AFHChannelAssessmentModeEnabled: Self = Self(0x01);
 }
@@ -3638,7 +2736,6 @@ unsafe impl RefEncode for BluetoothHCIAFHChannelAssessmentModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitpowerlevelinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCITransmitPowerLevelInfo {
@@ -3662,27 +2759,20 @@ unsafe impl RefEncode for BluetoothHCITransmitPowerLevelInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcinumbroadcastretransmissions?language=objc)
 pub type BluetoothHCINumBroadcastRetransmissions = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciholdmodeactivity?language=objc)
 pub type BluetoothHCIHoldModeActivity = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciholdmodeactivitystates?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIHoldModeActivityStates(pub c_uint);
 impl BluetoothHCIHoldModeActivityStates {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kmaintaincurrentpowerstate?language=objc)
     #[doc(alias = "kMaintainCurrentPowerState")]
     pub const MaintainCurrentPowerState: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksuspendpagescan?language=objc)
     #[doc(alias = "kSuspendPageScan")]
     pub const SuspendPageScan: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksuspendinquiryscan?language=objc)
     #[doc(alias = "kSuspendInquiryScan")]
     pub const SuspendInquiryScan: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksuspendperiodicinquiries?language=objc)
     #[doc(alias = "kSuspendPeriodicInquiries")]
     pub const SuspendPeriodicInquiries: Self = Self(0x03);
 }
@@ -3697,18 +2787,14 @@ unsafe impl RefEncode for BluetoothHCIHoldModeActivityStates {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciauthenticationenable?language=objc)
 pub type BluetoothHCIAuthenticationEnable = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciauthentionenablemodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIAuthentionEnableModes(pub c_uint);
 impl BluetoothHCIAuthentionEnableModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kauthenticationdisabled?language=objc)
     #[doc(alias = "kAuthenticationDisabled")]
     pub const AuthenticationDisabled: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kauthenticationenabled?language=objc)
     #[doc(alias = "kAuthenticationEnabled")]
     pub const AuthenticationEnabled: Self = Self(0x01);
 }
@@ -3723,21 +2809,16 @@ unsafe impl RefEncode for BluetoothHCIAuthentionEnableModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciencryptionmode?language=objc)
 pub type BluetoothHCIEncryptionMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciencryptionmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIEncryptionModes(pub c_uint);
 impl BluetoothHCIEncryptionModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencryptiondisabled?language=objc)
     #[doc(alias = "kEncryptionDisabled")]
     pub const EncryptionDisabled: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencryptiononlyforpointtopointpackets?language=objc)
     #[doc(alias = "kEncryptionOnlyForPointToPointPackets")]
     pub const EncryptionOnlyForPointToPointPackets: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencryptionforbothpointtopointandbroadcastpackets?language=objc)
     #[doc(alias = "kEncryptionForBothPointToPointAndBroadcastPackets")]
     pub const EncryptionForBothPointToPointAndBroadcastPackets: Self = Self(0x02);
 }
@@ -3752,10 +2833,8 @@ unsafe impl RefEncode for BluetoothHCIEncryptionModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciautomaticflushtimeout?language=objc)
 pub type BluetoothHCIAutomaticFlushTimeout = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciautomaticflushtimeoutinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIAutomaticFlushTimeoutInfo {
@@ -3779,10 +2858,8 @@ unsafe impl RefEncode for BluetoothHCIAutomaticFlushTimeoutInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothtransportinfoptr?language=objc)
 pub type BluetoothTransportInfoPtr = *mut BluetoothTransportInfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothtransportinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothTransportInfo {
@@ -3820,24 +2897,18 @@ unsafe impl RefEncode for BluetoothTransportInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothtransporttypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothTransportTypes(pub c_uint);
 impl BluetoothTransportTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothtransporttypeusb?language=objc)
     #[doc(alias = "kBluetoothTransportTypeUSB")]
     pub const USB: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothtransporttypepccard?language=objc)
     #[doc(alias = "kBluetoothTransportTypePCCard")]
     pub const PCCard: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothtransporttypepcicard?language=objc)
     #[doc(alias = "kBluetoothTransportTypePCICard")]
     pub const PCICard: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothtransporttypeuart?language=objc)
     #[doc(alias = "kBluetoothTransportTypeUART")]
     pub const UART: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothtransporttypepcie?language=objc)
     #[doc(alias = "kBluetoothTransportTypePCIe")]
     pub const PCIe: Self = Self(0x05);
 }
@@ -3852,7 +2923,6 @@ unsafe impl RefEncode for BluetoothTransportTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryresult?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIInquiryResult {
@@ -3884,7 +2954,6 @@ unsafe impl RefEncode for BluetoothHCIInquiryResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIInquiryResults {
@@ -3908,7 +2977,6 @@ unsafe impl RefEncode for BluetoothHCIInquiryResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirywithrssiresult?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIInquiryWithRSSIResult {
@@ -3940,7 +3008,6 @@ unsafe impl RefEncode for BluetoothHCIInquiryWithRSSIResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirywithrssiresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIInquiryWithRSSIResults {
@@ -3964,18 +3031,14 @@ unsafe impl RefEncode for BluetoothHCIInquiryWithRSSIResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcifecrequired?language=objc)
 pub type BluetoothHCIFECRequired = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcifecrequiredvalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIFECRequiredValues(pub c_uint);
 impl BluetoothHCIFECRequiredValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcifecrequired?language=objc)
     #[doc(alias = "kBluetoothHCIFECRequired")]
     pub const Required: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcifecnotrequired?language=objc)
     #[doc(alias = "kBluetoothHCIFECNotRequired")]
     pub const NotRequired: Self = Self(0x01);
 }
@@ -3990,21 +3053,16 @@ unsafe impl RefEncode for BluetoothHCIFECRequiredValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirymode?language=objc)
 pub type BluetoothHCIInquiryMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirymodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIInquiryModes(pub c_uint);
 impl BluetoothHCIInquiryModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquirymoderesultformatstandard?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryModeResultFormatStandard")]
     pub const ResultFormatStandard: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquirymoderesultformatwithrssi?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryModeResultFormatWithRSSI")]
     pub const ResultFormatWithRSSI: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquirymoderesultformatwithrssiorextendedinquiryresultformat?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryModeResultFormatWithRSSIOrExtendedInquiryResultFormat")]
     pub const ResultFormatWithRSSIOrExtendedInquiryResultFormat: Self = Self(0x02);
 }
@@ -4019,24 +3077,18 @@ unsafe impl RefEncode for BluetoothHCIInquiryModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryscantype?language=objc)
 pub type BluetoothHCIInquiryScanType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryscantypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIInquiryScanTypes(pub c_uint);
 impl BluetoothHCIInquiryScanTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquiryscantypestandard?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryScanTypeStandard")]
     pub const Standard: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquiryscantypeinterlaced?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryScanTypeInterlaced")]
     pub const Interlaced: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquiryscantypereservedstart?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryScanTypeReservedStart")]
     pub const ReservedStart: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquiryscantypereservedend?language=objc)
     #[doc(alias = "kBluetoothHCIInquiryScanTypeReservedEnd")]
     pub const ReservedEnd: Self = Self(0xFF);
 }
@@ -4051,10 +3103,8 @@ unsafe impl RefEncode for BluetoothHCIInquiryScanTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciextendedinquiryresponsedatatype?language=objc)
 pub type BluetoothHCIExtendedInquiryResponseDataType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciextendedinquiryresponse?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIExtendedInquiryResponse {
@@ -4074,7 +3124,6 @@ unsafe impl RefEncode for BluetoothHCIExtendedInquiryResponse {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadextendedinquiryresponseresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIReadExtendedInquiryResponseResults {
@@ -4098,7 +3147,6 @@ unsafe impl RefEncode for BluetoothHCIReadExtendedInquiryResponseResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciextendedinquiryresult?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIExtendedInquiryResult {
@@ -4134,7 +3182,6 @@ unsafe impl RefEncode for BluetoothHCIExtendedInquiryResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadlmphandleresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIReadLMPHandleResults {
@@ -4160,18 +3207,14 @@ unsafe impl RefEncode for BluetoothHCIReadLMPHandleResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisimplepairingmode?language=objc)
 pub type BluetoothHCISimplePairingMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisimplepairingmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCISimplePairingModes(pub c_uint);
 impl BluetoothHCISimplePairingModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisimplepairingmodenotset?language=objc)
     #[doc(alias = "kBluetoothHCISimplePairingModeNotSet")]
     pub const NotSet: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisimplepairingmodeenabled?language=objc)
     #[doc(alias = "kBluetoothHCISimplePairingModeEnabled")]
     pub const Enabled: Self = Self(0x01);
 }
@@ -4186,18 +3229,14 @@ unsafe impl RefEncode for BluetoothHCISimplePairingModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsimplepairingdebugmode?language=objc)
 pub type BluetoothSimplePairingDebugMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsimplepairingdebugmodes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothSimplePairingDebugModes(pub c_uint);
 impl BluetoothSimplePairingDebugModes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisimplepairingdebugmodedisabled?language=objc)
     #[doc(alias = "kBluetoothHCISimplePairingDebugModeDisabled")]
     pub const HCISimplePairingDebugModeDisabled: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisimplepairingdebugmodeenabled?language=objc)
     #[doc(alias = "kBluetoothHCISimplePairingDebugModeEnabled")]
     pub const HCISimplePairingDebugModeEnabled: Self = Self(0x01);
 }
@@ -4212,7 +3251,6 @@ unsafe impl RefEncode for BluetoothSimplePairingDebugModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisimplepairingoobdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCISimplePairingOOBData {
@@ -4230,7 +3268,6 @@ unsafe impl RefEncode for BluetoothHCISimplePairingOOBData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadlocaloobdataresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIReadLocalOOBDataResults {
@@ -4254,24 +3291,18 @@ unsafe impl RefEncode for BluetoothHCIReadLocalOOBDataResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothiocapability?language=objc)
 pub type BluetoothIOCapability = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothiocapabilities?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothIOCapabilities(pub c_uint);
 impl BluetoothIOCapabilities {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothcapabilitytypedisplayonly?language=objc)
     #[doc(alias = "kBluetoothCapabilityTypeDisplayOnly")]
     pub const CapabilityTypeDisplayOnly: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothcapabilitytypedisplayyesno?language=objc)
     #[doc(alias = "kBluetoothCapabilityTypeDisplayYesNo")]
     pub const CapabilityTypeDisplayYesNo: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothcapabilitytypekeyboardonly?language=objc)
     #[doc(alias = "kBluetoothCapabilityTypeKeyboardOnly")]
     pub const CapabilityTypeKeyboardOnly: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothcapabilitytypenoinputnooutput?language=objc)
     #[doc(alias = "kBluetoothCapabilityTypeNoInputNoOutput")]
     pub const CapabilityTypeNoInputNoOutput: Self = Self(0x03);
 }
@@ -4286,18 +3317,14 @@ unsafe impl RefEncode for BluetoothIOCapabilities {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothoobdatapresence?language=objc)
 pub type BluetoothOOBDataPresence = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothoobdatapresencevalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothOOBDataPresenceValues(pub c_uint);
 impl BluetoothOOBDataPresenceValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothoobauthenticationdatanotpresent?language=objc)
     #[doc(alias = "kBluetoothOOBAuthenticationDataNotPresent")]
     pub const AuthenticationDataNotPresent: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothoobauthenticationdatafromremotedevicepresent?language=objc)
     #[doc(alias = "kBluetoothOOBAuthenticationDataFromRemoteDevicePresent")]
     pub const AuthenticationDataFromRemoteDevicePresent: Self = Self(0x01);
 }
@@ -4312,36 +3339,26 @@ unsafe impl RefEncode for BluetoothOOBDataPresenceValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothauthenticationrequirements?language=objc)
 pub type BluetoothAuthenticationRequirements = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothauthenticationrequirementsvalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothAuthenticationRequirementsValues(pub c_uint);
 impl BluetoothAuthenticationRequirementsValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionnotrequired?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionNotRequired")]
     pub const MITMProtectionNotRequired: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionrequired?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionRequired")]
     pub const MITMProtectionRequired: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionnotrequirednobonding?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionNotRequiredNoBonding")]
     pub const MITMProtectionNotRequiredNoBonding: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionrequirednobonding?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionRequiredNoBonding")]
     pub const MITMProtectionRequiredNoBonding: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionnotrequireddedicatedbonding?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionNotRequiredDedicatedBonding")]
     pub const MITMProtectionNotRequiredDedicatedBonding: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionrequireddedicatedbonding?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionRequiredDedicatedBonding")]
     pub const MITMProtectionRequiredDedicatedBonding: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionnotrequiredgeneralbonding?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionNotRequiredGeneralBonding")]
     pub const MITMProtectionNotRequiredGeneralBonding: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothauthenticationrequirementsmitmprotectionrequiredgeneralbonding?language=objc)
     #[doc(alias = "kBluetoothAuthenticationRequirementsMITMProtectionRequiredGeneralBonding")]
     pub const MITMProtectionRequiredGeneralBonding: Self = Self(0x05);
 }
@@ -4356,7 +3373,6 @@ unsafe impl RefEncode for BluetoothAuthenticationRequirementsValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothiocapabilityresponse?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothIOCapabilityResponse {
@@ -4384,10 +3400,8 @@ unsafe impl RefEncode for BluetoothIOCapabilityResponse {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpasskey?language=objc)
 pub type BluetoothPasskey = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothuserpasskeynotification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothUserPasskeyNotification {
@@ -4411,27 +3425,20 @@ unsafe impl RefEncode for BluetoothUserPasskeyNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkeypressnotificationtype?language=objc)
 pub type BluetoothKeypressNotificationType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkeypressnotificationtypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothKeypressNotificationTypes(pub c_uint);
 impl BluetoothKeypressNotificationTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeypressnotificationtypepasskeyentrystarted?language=objc)
     #[doc(alias = "kBluetoothKeypressNotificationTypePasskeyEntryStarted")]
     pub const PasskeyEntryStarted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeypressnotificationtypepasskeydigitentered?language=objc)
     #[doc(alias = "kBluetoothKeypressNotificationTypePasskeyDigitEntered")]
     pub const PasskeyDigitEntered: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeypressnotificationtypepasskeydigiterased?language=objc)
     #[doc(alias = "kBluetoothKeypressNotificationTypePasskeyDigitErased")]
     pub const PasskeyDigitErased: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeypressnotificationtypepasskeycleared?language=objc)
     #[doc(alias = "kBluetoothKeypressNotificationTypePasskeyCleared")]
     pub const PasskeyCleared: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothkeypressnotificationtypepasskeyentrycompleted?language=objc)
     #[doc(alias = "kBluetoothKeypressNotificationTypePasskeyEntryCompleted")]
     pub const PasskeyEntryCompleted: Self = Self(4);
 }
@@ -4446,7 +3453,6 @@ unsafe impl RefEncode for BluetoothKeypressNotificationTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkeypressnotification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothKeypressNotification {
@@ -4470,7 +3476,6 @@ unsafe impl RefEncode for BluetoothKeypressNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothremotehostsupportedfeaturesnotification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothRemoteHostSupportedFeaturesNotification {
@@ -4494,10 +3499,8 @@ unsafe impl RefEncode for BluetoothRemoteHostSupportedFeaturesNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/transmissionpower?language=objc)
 pub type TransmissionPower = i8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothafhhostchannelclassification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothAFHHostChannelClassification {
@@ -4517,10 +3520,8 @@ unsafe impl RefEncode for BluetoothAFHHostChannelClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothafhmode?language=objc)
 pub type BluetoothAFHMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothafhresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothAFHResults {
@@ -4546,10 +3547,8 @@ unsafe impl RefEncode for BluetoothAFHResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothnumericvalue?language=objc)
 pub type BluetoothNumericValue = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothuserconfirmationrequest?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothUserConfirmationRequest {
@@ -4573,7 +3572,6 @@ unsafe impl RefEncode for BluetoothUserConfirmationRequest {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsimplepairingcompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSimplePairingCompleteResults {
@@ -4593,49 +3591,33 @@ unsafe impl RefEncode for BluetoothHCIEventSimplePairingCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandpacketheadersize?language=objc)
 pub const kBluetoothHCICommandPacketHeaderSize: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcicommandpacketmaxdatasize?language=objc)
 pub const kBluetoothHCICommandPacketMaxDataSize: c_uint = 255;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcimaxcommandpacketsize?language=objc)
 pub const kBluetoothHCIMaxCommandPacketSize: c_uint =
     kBluetoothHCICommandPacketHeaderSize + kBluetoothHCICommandPacketMaxDataSize;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventpacketheadersize?language=objc)
 pub const kBluetoothHCIEventPacketHeaderSize: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventpacketmaxdatasize?language=objc)
 pub const kBluetoothHCIEventPacketMaxDataSize: c_uint = 255;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcimaxeventpacketsize?language=objc)
 pub const kBluetoothHCIMaxEventPacketSize: c_uint =
     kBluetoothHCIEventPacketHeaderSize + kBluetoothHCIEventPacketMaxDataSize;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcidatapacketheadersize?language=objc)
 pub const kBluetoothHCIDataPacketHeaderSize: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcidatapacketmaxdatasize?language=objc)
 pub const kBluetoothHCIDataPacketMaxDataSize: c_uint = 65535;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcimaxdatapacketsize?language=objc)
 pub const kBluetoothHCIMaxDataPacketSize: c_uint =
     kBluetoothHCIDataPacketHeaderSize + kBluetoothHCIDataPacketMaxDataSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventcode?language=objc)
 pub type BluetoothHCIEventCode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlinktype?language=objc)
 pub type BluetoothLinkType = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlinktypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLinkTypes(pub c_uint);
 impl BluetoothLinkTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothscoconnection?language=objc)
     #[doc(alias = "kBluetoothSCOConnection")]
     pub const SCOConnection: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothaclconnection?language=objc)
     #[doc(alias = "kBluetoothACLConnection")]
     pub const ACLConnection: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothescoconnection?language=objc)
     #[doc(alias = "kBluetoothESCOConnection")]
     pub const ESCOConnection: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlinktypenone?language=objc)
     #[doc(alias = "kBluetoothLinkTypeNone")]
     pub const LinkTypeNone: Self = Self(0xff);
 }
@@ -4650,137 +3632,89 @@ unsafe impl RefEncode for BluetoothLinkTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcicontentformat?language=objc)
 pub type BluetoothHCIContentFormat = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcivoicesetting?language=objc)
 pub type BluetoothHCIVoiceSetting = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputcodingmask?language=objc)
 pub const kBluetoothVoiceSettingInputCodingMask: c_uint = 0x300;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputcodinglinearinputcoding?language=objc)
 pub const kBluetoothVoiceSettingInputCodingLinearInputCoding: c_uint = 0x000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputcodingulawinputcoding?language=objc)
 pub const kBluetoothVoiceSettingInputCodingULawInputCoding: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputcodingalawinputcoding?language=objc)
 pub const kBluetoothVoiceSettingInputCodingALawInputCoding: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputdataformatmask?language=objc)
 pub const kBluetoothVoiceSettingInputDataFormatMask: c_uint = 0x0C0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputdataformat1scomplement?language=objc)
 pub const kBluetoothVoiceSettingInputDataFormat1sComplement: c_uint = 0x000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputdataformat2scomplement?language=objc)
 pub const kBluetoothVoiceSettingInputDataFormat2sComplement: c_uint = 0x040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputdataformatsignmagnitude?language=objc)
 pub const kBluetoothVoiceSettingInputDataFormatSignMagnitude: c_uint = 0x080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputdataformatunsigned?language=objc)
 pub const kBluetoothVoiceSettingInputDataFormatUnsigned: c_uint = 0x0C0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputsamplesizemask?language=objc)
 pub const kBluetoothVoiceSettingInputSampleSizeMask: c_uint = 0x020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputsamplesize8bit?language=objc)
 pub const kBluetoothVoiceSettingInputSampleSize8Bit: c_uint = 0x000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettinginputsamplesize16bit?language=objc)
 pub const kBluetoothVoiceSettingInputSampleSize16Bit: c_uint = 0x020;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettingpcmbitpositionmask?language=objc)
 pub const kBluetoothVoiceSettingPCMBitPositionMask: c_uint = 0x01C;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettingaircodingformatmask?language=objc)
 pub const kBluetoothVoiceSettingAirCodingFormatMask: c_uint = 0x003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettingaircodingformatcvsd?language=objc)
 pub const kBluetoothVoiceSettingAirCodingFormatCVSD: c_uint = 0x000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettingaircodingformatulaw?language=objc)
 pub const kBluetoothVoiceSettingAirCodingFormatULaw: c_uint = 0x001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettingaircodingformatalaw?language=objc)
 pub const kBluetoothVoiceSettingAirCodingFormatALaw: c_uint = 0x002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothvoicesettingaircodingformattransparentdata?language=objc)
 pub const kBluetoothVoiceSettingAirCodingFormatTransparentData: c_uint = 0x003;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisupportediac?language=objc)
 pub type BluetoothHCISupportedIAC = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitbandwidth?language=objc)
 pub type BluetoothHCITransmitBandwidth = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireceivebandwidth?language=objc)
 pub type BluetoothHCIReceiveBandwidth = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitcodingformat?language=objc)
 pub type BluetoothHCITransmitCodingFormat = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireceivecodingformat?language=objc)
 pub type BluetoothHCIReceiveCodingFormat = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitcodecframesize?language=objc)
 pub type BluetoothHCITransmitCodecFrameSize = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireceivecodecframesize?language=objc)
 pub type BluetoothHCIReceiveCodecFrameSize = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputbandwidth?language=objc)
 pub type BluetoothHCIInputBandwidth = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputbandwidth?language=objc)
 pub type BluetoothHCIOutputBandwidth = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputcodingformat?language=objc)
 pub type BluetoothHCIInputCodingFormat = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputcodingformat?language=objc)
 pub type BluetoothHCIOutputCodingFormat = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputcodeddatasize?language=objc)
 pub type BluetoothHCIInputCodedDataSize = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputcodeddatasize?language=objc)
 pub type BluetoothHCIOutputCodedDataSize = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputpcmdataformat?language=objc)
 pub type BluetoothHCIInputPCMDataFormat = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputpcmdataformat?language=objc)
 pub type BluetoothHCIOutputPCMDataFormat = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputpcmsamplepayloadmsbposition?language=objc)
 pub type BluetoothHCIInputPCMSamplePayloadMSBPosition = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputpcmsamplepayloadmsbposition?language=objc)
 pub type BluetoothHCIOutputPCMSamplePayloadMSBPosition = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputdatapath?language=objc)
 pub type BluetoothHCIInputDataPath = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputdatapath?language=objc)
 pub type BluetoothHCIOutputDataPath = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinputtransportunitsize?language=objc)
 pub type BluetoothHCIInputTransportUnitSize = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcioutputtransportunitsize?language=objc)
 pub type BluetoothHCIOutputTransportUnitSize = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcimaxlatency?language=objc)
 pub type BluetoothHCIMaxLatency = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciretransmissioneffort?language=objc)
 pub type BluetoothHCIRetransmissionEffort = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciretransmissionefforttypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIRetransmissionEffortTypes(pub c_uint);
 impl BluetoothHCIRetransmissionEffortTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciretransmissionefforttypenone?language=objc)
     #[doc(alias = "kHCIRetransmissionEffortTypeNone")]
     pub const HCIRetransmissionEffortTypeNone: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciretransmissionefforttypeatleastoneandoptimizeforpower?language=objc)
     #[doc(alias = "kHCIRetransmissionEffortTypeAtLeastOneAndOptimizeForPower")]
     pub const HCIRetransmissionEffortTypeAtLeastOneAndOptimizeForPower: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciretransmissionefforttypeatleastoneandoptimizelinkquality?language=objc)
     #[doc(alias = "kHCIRetransmissionEffortTypeAtLeastOneAndOptimizeLinkQuality")]
     pub const HCIRetransmissionEffortTypeAtLeastOneAndOptimizeLinkQuality: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/khciretransmissionefforttypedontcare?language=objc)
     #[doc(alias = "kHCIRetransmissionEffortTypeDontCare")]
     pub const HCIRetransmissionEffortTypeDontCare: Self = Self(0xFF);
 }
@@ -4795,19 +3729,13 @@ unsafe impl RefEncode for BluetoothHCIRetransmissionEffortTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothairmode?language=objc)
 pub type BluetoothAirMode = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothairmodeulawlog?language=objc)
 pub const kBluetoothAirModeULawLog: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothairmodealawlog?language=objc)
 pub const kBluetoothAirModeALawLog: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothairmodecvsd?language=objc)
 pub const kBluetoothAirModeCVSD: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothairmodetransparentdata?language=objc)
 pub const kBluetoothAirModeTransparentData: c_uint = 0x03;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsynchronousconnectioninfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothSynchronousConnectionInfo {
@@ -4839,7 +3767,6 @@ unsafe impl RefEncode for BluetoothSynchronousConnectionInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothenhancedsynchronousconnectioninfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothEnhancedSynchronousConnectionInfo {
@@ -4907,7 +3834,6 @@ unsafe impl RefEncode for BluetoothEnhancedSynchronousConnectionInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsynchronousconnectioncompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSynchronousConnectionCompleteResults {
@@ -4943,7 +3869,6 @@ unsafe impl RefEncode for BluetoothHCIEventSynchronousConnectionCompleteResults 
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsynchronousconnectionchangedresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSynchronousConnectionChangedResults {
@@ -4973,264 +3898,137 @@ unsafe impl RefEncode for BluetoothHCIEventSynchronousConnectionChangedResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcistatus?language=objc)
 pub type BluetoothHCIStatus = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventstatus?language=objc)
 pub type BluetoothHCIEventStatus = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventinquirycomplete?language=objc)
 pub const kBluetoothHCIEventInquiryComplete: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventinquiryresult?language=objc)
 pub const kBluetoothHCIEventInquiryResult: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventconnectioncomplete?language=objc)
 pub const kBluetoothHCIEventConnectionComplete: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventconnectionrequest?language=objc)
 pub const kBluetoothHCIEventConnectionRequest: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventdisconnectioncomplete?language=objc)
 pub const kBluetoothHCIEventDisconnectionComplete: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventauthenticationcomplete?language=objc)
 pub const kBluetoothHCIEventAuthenticationComplete: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventremotenamerequestcomplete?language=objc)
 pub const kBluetoothHCIEventRemoteNameRequestComplete: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventencryptionchange?language=objc)
 pub const kBluetoothHCIEventEncryptionChange: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventchangeconnectionlinkkeycomplete?language=objc)
 pub const kBluetoothHCIEventChangeConnectionLinkKeyComplete: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmasterlinkkeycomplete?language=objc)
 pub const kBluetoothHCIEventMasterLinkKeyComplete: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventreadremotesupportedfeaturescomplete?language=objc)
 pub const kBluetoothHCIEventReadRemoteSupportedFeaturesComplete: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventreadremoteversioninformationcomplete?language=objc)
 pub const kBluetoothHCIEventReadRemoteVersionInformationComplete: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventqossetupcomplete?language=objc)
 pub const kBluetoothHCIEventQoSSetupComplete: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventcommandcomplete?language=objc)
 pub const kBluetoothHCIEventCommandComplete: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventcommandstatus?language=objc)
 pub const kBluetoothHCIEventCommandStatus: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventhardwareerror?language=objc)
 pub const kBluetoothHCIEventHardwareError: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventflushoccurred?language=objc)
 pub const kBluetoothHCIEventFlushOccurred: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventrolechange?language=objc)
 pub const kBluetoothHCIEventRoleChange: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventnumberofcompletedpackets?language=objc)
 pub const kBluetoothHCIEventNumberOfCompletedPackets: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmodechange?language=objc)
 pub const kBluetoothHCIEventModeChange: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventreturnlinkkeys?language=objc)
 pub const kBluetoothHCIEventReturnLinkKeys: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventpincoderequest?language=objc)
 pub const kBluetoothHCIEventPINCodeRequest: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventlinkkeyrequest?language=objc)
 pub const kBluetoothHCIEventLinkKeyRequest: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventlinkkeynotification?language=objc)
 pub const kBluetoothHCIEventLinkKeyNotification: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventloopbackcommand?language=objc)
 pub const kBluetoothHCIEventLoopbackCommand: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventdatabufferoverflow?language=objc)
 pub const kBluetoothHCIEventDataBufferOverflow: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaxslotschange?language=objc)
 pub const kBluetoothHCIEventMaxSlotsChange: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventreadclockoffsetcomplete?language=objc)
 pub const kBluetoothHCIEventReadClockOffsetComplete: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventconnectionpackettype?language=objc)
 pub const kBluetoothHCIEventConnectionPacketType: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventqosviolation?language=objc)
 pub const kBluetoothHCIEventQoSViolation: c_uint = 0x1E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventpagescanmodechange?language=objc)
 pub const kBluetoothHCIEventPageScanModeChange: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventpagescanrepetitionmodechange?language=objc)
 pub const kBluetoothHCIEventPageScanRepetitionModeChange: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventflowspecificationcomplete?language=objc)
 pub const kBluetoothHCIEventFlowSpecificationComplete: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventinquiryresultwithrssi?language=objc)
 pub const kBluetoothHCIEventInquiryResultWithRSSI: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventreadremoteextendedfeaturescomplete?language=objc)
 pub const kBluetoothHCIEventReadRemoteExtendedFeaturesComplete: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventsynchronousconnectioncomplete?language=objc)
 pub const kBluetoothHCIEventSynchronousConnectionComplete: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventsynchronousconnectionchanged?language=objc)
 pub const kBluetoothHCIEventSynchronousConnectionChanged: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventsniffsubrating?language=objc)
 pub const kBluetoothHCIEventSniffSubrating: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventextendedinquiryresult?language=objc)
 pub const kBluetoothHCIEventExtendedInquiryResult: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventencryptionkeyrefreshcomplete?language=objc)
 pub const kBluetoothHCIEventEncryptionKeyRefreshComplete: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventiocapabilityrequest?language=objc)
 pub const kBluetoothHCIEventIOCapabilityRequest: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventiocapabilityresponse?language=objc)
 pub const kBluetoothHCIEventIOCapabilityResponse: c_uint = 0x32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventuserconfirmationrequest?language=objc)
 pub const kBluetoothHCIEventUserConfirmationRequest: c_uint = 0x33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventuserpasskeyrequest?language=objc)
 pub const kBluetoothHCIEventUserPasskeyRequest: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventremoteoobdatarequest?language=objc)
 pub const kBluetoothHCIEventRemoteOOBDataRequest: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventsimplepairingcomplete?language=objc)
 pub const kBluetoothHCIEventSimplePairingComplete: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventlinksupervisiontimeoutchanged?language=objc)
 pub const kBluetoothHCIEventLinkSupervisionTimeoutChanged: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventenhancedflushcomplete?language=objc)
 pub const kBluetoothHCIEventEnhancedFlushComplete: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventuserpasskeynotification?language=objc)
 pub const kBluetoothHCIEventUserPasskeyNotification: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventkeypressnotification?language=objc)
 pub const kBluetoothHCIEventKeypressNotification: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventremotehostsupportedfeaturesnotification?language=objc)
 pub const kBluetoothHCIEventRemoteHostSupportedFeaturesNotification: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventlemetaevent?language=objc)
 pub const kBluetoothHCIEventLEMetaEvent: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleconnectioncomplete?language=objc)
 pub const kBluetoothHCISubEventLEConnectionComplete: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleadvertisingreport?language=objc)
 pub const kBluetoothHCISubEventLEAdvertisingReport: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleconnectionupdatecomplete?language=objc)
 pub const kBluetoothHCISubEventLEConnectionUpdateComplete: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlereadremoteusedfeaturescomplete?language=objc)
 pub const kBluetoothHCISubEventLEReadRemoteUsedFeaturesComplete: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlelongtermkeyrequest?language=objc)
 pub const kBluetoothHCISubEventLELongTermKeyRequest: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleremoteconnectionparameterrequest?language=objc)
 pub const kBluetoothHCISubEventLERemoteConnectionParameterRequest: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventledatalengthchange?language=objc)
 pub const kBluetoothHCISubEventLEDataLengthChange: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlereadlocalp256publickeycomplete?language=objc)
 pub const kBluetoothHCISubEventLEReadLocalP256PublicKeyComplete: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlegeneratedhkeycomplete?language=objc)
 pub const kBluetoothHCISubEventLEGenerateDHKeyComplete: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleenhancedconnectioncomplete?language=objc)
 pub const kBluetoothHCISubEventLEEnhancedConnectionComplete: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventledirectadvertisingreport?language=objc)
 pub const kBluetoothHCISubEventLEDirectAdvertisingReport: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlephyupdatecomplete?language=objc)
 pub const kBluetoothHCISubEventLEPhyUpdateComplete: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleextendedadvertising?language=objc)
 pub const kBluetoothHCISubEventLEExtendedAdvertising: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleperiodicadvertisingsyncestablished?language=objc)
 pub const kBluetoothHCISubEventLEPeriodicAdvertisingSyncEstablished: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleperiodicadvertisingreport?language=objc)
 pub const kBluetoothHCISubEventLEPeriodicAdvertisingReport: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleperiodicadvertisingsynclost?language=objc)
 pub const kBluetoothHCISubEventLEPeriodicAdvertisingSyncLost: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlescantimeout?language=objc)
 pub const kBluetoothHCISubEventLEScanTimeout: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventleadvertisingsetterminated?language=objc)
 pub const kBluetoothHCISubEventLEAdvertisingSetTerminated: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlescanrequestreceived?language=objc)
 pub const kBluetoothHCISubEventLEScanRequestReceived: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcisubeventlechannelselectionalgorithm?language=objc)
 pub const kBluetoothHCISubEventLEChannelSelectionAlgorithm: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventphysicallinkcomplete?language=objc)
 pub const kBluetoothHCIEventPhysicalLinkComplete: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventchannelselected?language=objc)
 pub const kBluetoothHCIEventChannelSelected: c_uint = 0x41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventdisconnectionphysicallinkcomplete?language=objc)
 pub const kBluetoothHCIEventDisconnectionPhysicalLinkComplete: c_uint = 0x42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventphysicallinklossearlywarning?language=objc)
 pub const kBluetoothHCIEventPhysicalLinkLossEarlyWarning: c_uint = 0x43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventphysicallinkrecovery?language=objc)
 pub const kBluetoothHCIEventPhysicalLinkRecovery: c_uint = 0x44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventlogicallinkcomplete?language=objc)
 pub const kBluetoothHCIEventLogicalLinkComplete: c_uint = 0x45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventdisconnectionlogicallinkcomplete?language=objc)
 pub const kBluetoothHCIEventDisconnectionLogicalLinkComplete: c_uint = 0x46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventflowspecmodifycomplete?language=objc)
 pub const kBluetoothHCIEventFlowSpecModifyComplete: c_uint = 0x47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventnumberofcompleteddatablocks?language=objc)
 pub const kBluetoothHCIEventNumberOfCompletedDataBlocks: c_uint = 0x48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventshortrangemodechangecomplete?language=objc)
 pub const kBluetoothHCIEventShortRangeModeChangeComplete: c_uint = 0x4C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventampstatuschange?language=objc)
 pub const kBluetoothHCIEventAMPStatusChange: c_uint = 0x4D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventampstarttest?language=objc)
 pub const kBluetoothHCIEventAMPStartTest: c_uint = 0x49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventamptestend?language=objc)
 pub const kBluetoothHCIEventAMPTestEnd: c_uint = 0x4A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventampreceiverreport?language=objc)
 pub const kBluetoothHCIEventAMPReceiverReport: c_uint = 0x4B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventlogotesting?language=objc)
 pub const kBluetoothHCIEventLogoTesting: c_uint = 0xFE;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventvendorspecific?language=objc)
 pub const kBluetoothHCIEventVendorSpecific: c_uint = 0xFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmask?language=objc)
 pub type BluetoothHCIEventMask = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmasknone?language=objc)
 pub const kBluetoothHCIEventMaskNone: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskinquirycomplete?language=objc)
 pub const kBluetoothHCIEventMaskInquiryComplete: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskinquiryresult?language=objc)
 pub const kBluetoothHCIEventMaskInquiryResult: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskconnectioncomplete?language=objc)
 pub const kBluetoothHCIEventMaskConnectionComplete: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskconnectionrequest?language=objc)
 pub const kBluetoothHCIEventMaskConnectionRequest: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskdisconnectioncomplete?language=objc)
 pub const kBluetoothHCIEventMaskDisconnectionComplete: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskauthenticationcomplete?language=objc)
 pub const kBluetoothHCIEventMaskAuthenticationComplete: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskremotenamerequestcomplete?language=objc)
 pub const kBluetoothHCIEventMaskRemoteNameRequestComplete: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskencryptionchange?language=objc)
 pub const kBluetoothHCIEventMaskEncryptionChange: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskchangeconnectionlinkkeycomplete?language=objc)
 pub const kBluetoothHCIEventMaskChangeConnectionLinkKeyComplete: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskmasterlinkkeycomplete?language=objc)
 pub const kBluetoothHCIEventMaskMasterLinkKeyComplete: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskreadremotesupportedfeaturescomplete?language=objc)
 pub const kBluetoothHCIEventMaskReadRemoteSupportedFeaturesComplete: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskreadremoteversioninformationcomplete?language=objc)
 pub const kBluetoothHCIEventMaskReadRemoteVersionInformationComplete: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskqossetupcomplete?language=objc)
 pub const kBluetoothHCIEventMaskQoSSetupComplete: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskcommandcomplete?language=objc)
 pub const kBluetoothHCIEventMaskCommandComplete: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskcommandstatus?language=objc)
 pub const kBluetoothHCIEventMaskCommandStatus: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskhardwareerror?language=objc)
 pub const kBluetoothHCIEventMaskHardwareError: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskflushoccurred?language=objc)
 pub const kBluetoothHCIEventMaskFlushOccurred: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskrolechange?language=objc)
 pub const kBluetoothHCIEventMaskRoleChange: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmasknumberofcompletedpackets?language=objc)
 pub const kBluetoothHCIEventMaskNumberOfCompletedPackets: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskmodechange?language=objc)
 pub const kBluetoothHCIEventMaskModeChange: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskreturnlinkkeys?language=objc)
 pub const kBluetoothHCIEventMaskReturnLinkKeys: c_uint = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskpincoderequest?language=objc)
 pub const kBluetoothHCIEventMaskPINCodeRequest: c_uint = 0x00200000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmasklinkkeyrequest?language=objc)
 pub const kBluetoothHCIEventMaskLinkKeyRequest: c_uint = 0x00400000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmasklinkkeynotification?language=objc)
 pub const kBluetoothHCIEventMaskLinkKeyNotification: c_uint = 0x00800000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskloopbackcommand?language=objc)
 pub const kBluetoothHCIEventMaskLoopbackCommand: c_uint = 0x01000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskdatabufferoverflow?language=objc)
 pub const kBluetoothHCIEventMaskDataBufferOverflow: c_uint = 0x02000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskmaxslotschange?language=objc)
 pub const kBluetoothHCIEventMaskMaxSlotsChange: c_uint = 0x04000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskreadclockoffsetcomplete?language=objc)
 pub const kBluetoothHCIEventMaskReadClockOffsetComplete: c_uint = 0x08000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskconnectionpackettypechanged?language=objc)
 pub const kBluetoothHCIEventMaskConnectionPacketTypeChanged: c_uint = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskqosviolation?language=objc)
 pub const kBluetoothHCIEventMaskQoSViolation: c_uint = 0x20000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskpagescanmodechange?language=objc)
 pub const kBluetoothHCIEventMaskPageScanModeChange: c_uint = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskpagescanrepetitionmodechange?language=objc)
 pub const kBluetoothHCIEventMaskPageScanRepetitionModeChange: c_uint = 0x80000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskall?language=objc)
 pub const kBluetoothHCIEventMaskAll: c_uint = 0xFFFFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcieventmaskdefault?language=objc)
 pub const kBluetoothHCIEventMaskDefault: c_uint = kBluetoothHCIEventMaskAll;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventconnectioncompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventConnectionCompleteResults {
@@ -5258,7 +4056,6 @@ unsafe impl RefEncode for BluetoothHCIEventConnectionCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventleconnectioncompleteresults?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEConnectionCompleteResults {
@@ -5294,7 +4091,6 @@ unsafe impl RefEncode for BluetoothHCIEventLEConnectionCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventleenhancedconnectioncompleteresults?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEEnhancedConnectionCompleteResults {
@@ -5334,7 +4130,6 @@ unsafe impl RefEncode for BluetoothHCIEventLEEnhancedConnectionCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventleconnectionupdatecompleteresults?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEConnectionUpdateCompleteResults {
@@ -5362,7 +4157,6 @@ unsafe impl RefEncode for BluetoothHCIEventLEConnectionUpdateCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlereadremoteusedfeaturescompleteresults?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults {
@@ -5386,7 +4180,6 @@ unsafe impl RefEncode for BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResul
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventdisconnectioncompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventDisconnectionCompleteResults {
@@ -5410,7 +4203,6 @@ unsafe impl RefEncode for BluetoothHCIEventDisconnectionCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadsupportedfeaturesresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadSupportedFeaturesResults {
@@ -5434,7 +4226,6 @@ unsafe impl RefEncode for BluetoothHCIEventReadSupportedFeaturesResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadextendedfeaturesresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadExtendedFeaturesResults {
@@ -5458,7 +4249,6 @@ unsafe impl RefEncode for BluetoothHCIEventReadExtendedFeaturesResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadremoteversioninforesults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadRemoteVersionInfoResults {
@@ -5486,7 +4276,6 @@ unsafe impl RefEncode for BluetoothHCIEventReadRemoteVersionInfoResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventremotenamerequestresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIEventRemoteNameRequestResults {
@@ -5510,7 +4299,6 @@ unsafe impl RefEncode for BluetoothHCIEventRemoteNameRequestResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadclockoffsetresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadClockOffsetResults {
@@ -5534,7 +4322,6 @@ unsafe impl RefEncode for BluetoothHCIEventReadClockOffsetResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventconnectionrequestresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventConnectionRequestResults {
@@ -5560,7 +4347,6 @@ unsafe impl RefEncode for BluetoothHCIEventConnectionRequestResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlinkkeynotificationresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLinkKeyNotificationResults {
@@ -5586,7 +4372,6 @@ unsafe impl RefEncode for BluetoothHCIEventLinkKeyNotificationResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmaxslotschangeresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventMaxSlotsChangeResults {
@@ -5610,7 +4395,6 @@ unsafe impl RefEncode for BluetoothHCIEventMaxSlotsChangeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmodechangeresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventModeChangeResults {
@@ -5656,7 +4440,6 @@ unsafe impl RefEncode for BluetoothHCIEventReturnLinkKeysResults_linkKeys {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreturnlinkkeysresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReturnLinkKeysResults {
@@ -5680,7 +4463,6 @@ unsafe impl RefEncode for BluetoothHCIEventReturnLinkKeysResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventauthenticationcompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventAuthenticationCompleteResults {
@@ -5700,7 +4482,6 @@ unsafe impl RefEncode for BluetoothHCIEventAuthenticationCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventencryptionchangeresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventEncryptionChangeResults {
@@ -5724,7 +4505,6 @@ unsafe impl RefEncode for BluetoothHCIEventEncryptionChangeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventchangeconnectionlinkkeycompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventChangeConnectionLinkKeyCompleteResults {
@@ -5744,7 +4524,6 @@ unsafe impl RefEncode for BluetoothHCIEventChangeConnectionLinkKeyCompleteResult
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmasterlinkkeycompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventMasterLinkKeyCompleteResults {
@@ -5768,7 +4547,6 @@ unsafe impl RefEncode for BluetoothHCIEventMasterLinkKeyCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventqossetupcompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventQoSSetupCompleteResults {
@@ -5792,7 +4570,6 @@ unsafe impl RefEncode for BluetoothHCIEventQoSSetupCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventhardwareerrorresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventHardwareErrorResults {
@@ -5812,7 +4589,6 @@ unsafe impl RefEncode for BluetoothHCIEventHardwareErrorResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventflushoccurredresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventFlushOccurredResults {
@@ -5832,7 +4608,6 @@ unsafe impl RefEncode for BluetoothHCIEventFlushOccurredResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventrolechangeresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventRoleChangeResults {
@@ -5858,7 +4633,6 @@ unsafe impl RefEncode for BluetoothHCIEventRoleChangeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventdatabufferoverflowresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventDataBufferOverflowResults {
@@ -5878,7 +4652,6 @@ unsafe impl RefEncode for BluetoothHCIEventDataBufferOverflowResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventconnectionpackettyperesults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventConnectionPacketTypeResults {
@@ -5902,7 +4675,6 @@ unsafe impl RefEncode for BluetoothHCIEventConnectionPacketTypeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadremotesupportedfeaturesresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadRemoteSupportedFeaturesResults {
@@ -5928,7 +4700,6 @@ unsafe impl RefEncode for BluetoothHCIEventReadRemoteSupportedFeaturesResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadremoteextendedfeaturesresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadRemoteExtendedFeaturesResults {
@@ -5958,7 +4729,6 @@ unsafe impl RefEncode for BluetoothHCIEventReadRemoteExtendedFeaturesResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventqosviolationresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventQoSViolationResults {
@@ -5978,7 +4748,6 @@ unsafe impl RefEncode for BluetoothHCIEventQoSViolationResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventpagescanmodechangeresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventPageScanModeChangeResults {
@@ -6002,7 +4771,6 @@ unsafe impl RefEncode for BluetoothHCIEventPageScanModeChangeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventpagescanrepetitionmodechangeresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventPageScanRepetitionModeChangeResults {
@@ -6026,7 +4794,6 @@ unsafe impl RefEncode for BluetoothHCIEventPageScanRepetitionModeChangeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventvendorspecificresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIEventVendorSpecificResults {
@@ -6047,7 +4814,6 @@ unsafe impl RefEncode for BluetoothHCIEventVendorSpecificResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventencryptionkeyrefreshcompleteresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventEncryptionKeyRefreshCompleteResults {
@@ -6067,7 +4833,6 @@ unsafe impl RefEncode for BluetoothHCIEventEncryptionKeyRefreshCompleteResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsniffsubratingresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSniffSubratingResults {
@@ -6097,7 +4862,6 @@ unsafe impl RefEncode for BluetoothHCIEventSniffSubratingResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlemetaresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct BluetoothHCIEventLEMetaResults {
@@ -6118,7 +4882,6 @@ unsafe impl RefEncode for BluetoothHCIEventLEMetaResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlelongtermkeyrequestresults?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLELongTermKeyRequestResults {
@@ -6144,7 +4907,6 @@ unsafe impl RefEncode for BluetoothHCIEventLELongTermKeyRequestResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirequestcallbackinfo?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -6175,147 +4937,79 @@ unsafe impl RefEncode for BluetoothHCIRequestCallbackInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorsuccess?language=objc)
 pub const kBluetoothHCIErrorSuccess: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunknownhcicommand?language=objc)
 pub const kBluetoothHCIErrorUnknownHCICommand: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrornoconnection?language=objc)
 pub const kBluetoothHCIErrorNoConnection: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhardwarefailure?language=objc)
 pub const kBluetoothHCIErrorHardwareFailure: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorpagetimeout?language=objc)
 pub const kBluetoothHCIErrorPageTimeout: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorauthenticationfailure?language=objc)
 pub const kBluetoothHCIErrorAuthenticationFailure: c_uint = 0x05;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorkeymissing?language=objc)
 pub const kBluetoothHCIErrorKeyMissing: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrormemoryfull?language=objc)
 pub const kBluetoothHCIErrorMemoryFull: c_uint = 0x07;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorconnectiontimeout?language=objc)
 pub const kBluetoothHCIErrorConnectionTimeout: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrormaxnumberofconnections?language=objc)
 pub const kBluetoothHCIErrorMaxNumberOfConnections: c_uint = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrormaxnumberofscoconnectionstoadevice?language=objc)
 pub const kBluetoothHCIErrorMaxNumberOfSCOConnectionsToADevice: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierroraclconnectionalreadyexists?language=objc)
 pub const kBluetoothHCIErrorACLConnectionAlreadyExists: c_uint = 0x0B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorcommanddisallowed?language=objc)
 pub const kBluetoothHCIErrorCommandDisallowed: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhostrejectedlimitedresources?language=objc)
 pub const kBluetoothHCIErrorHostRejectedLimitedResources: c_uint = 0x0D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhostrejectedsecurityreasons?language=objc)
 pub const kBluetoothHCIErrorHostRejectedSecurityReasons: c_uint = 0x0E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhostrejectedremotedeviceispersonal?language=objc)
 pub const kBluetoothHCIErrorHostRejectedRemoteDeviceIsPersonal: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhosttimeout?language=objc)
 pub const kBluetoothHCIErrorHostTimeout: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunsupportedfeatureorparametervalue?language=objc)
 pub const kBluetoothHCIErrorUnsupportedFeatureOrParameterValue: c_uint = 0x11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorinvalidhcicommandparameters?language=objc)
 pub const kBluetoothHCIErrorInvalidHCICommandParameters: c_uint = 0x12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorotherendterminatedconnectionuserended?language=objc)
 pub const kBluetoothHCIErrorOtherEndTerminatedConnectionUserEnded: c_uint = 0x13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorotherendterminatedconnectionlowresources?language=objc)
 pub const kBluetoothHCIErrorOtherEndTerminatedConnectionLowResources: c_uint = 0x14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorotherendterminatedconnectionabouttopoweroff?language=objc)
 pub const kBluetoothHCIErrorOtherEndTerminatedConnectionAboutToPowerOff: c_uint = 0x15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorconnectionterminatedbylocalhost?language=objc)
 pub const kBluetoothHCIErrorConnectionTerminatedByLocalHost: c_uint = 0x16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorrepeatedattempts?language=objc)
 pub const kBluetoothHCIErrorRepeatedAttempts: c_uint = 0x17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorpairingnotallowed?language=objc)
 pub const kBluetoothHCIErrorPairingNotAllowed: c_uint = 0x18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunknownlmppdu?language=objc)
 pub const kBluetoothHCIErrorUnknownLMPPDU: c_uint = 0x19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunsupportedremotefeature?language=objc)
 pub const kBluetoothHCIErrorUnsupportedRemoteFeature: c_uint = 0x1A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorscooffsetrejected?language=objc)
 pub const kBluetoothHCIErrorSCOOffsetRejected: c_uint = 0x1B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorscointervalrejected?language=objc)
 pub const kBluetoothHCIErrorSCOIntervalRejected: c_uint = 0x1C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorscoairmoderejected?language=objc)
 pub const kBluetoothHCIErrorSCOAirModeRejected: c_uint = 0x1D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorinvalidlmpparameters?language=objc)
 pub const kBluetoothHCIErrorInvalidLMPParameters: c_uint = 0x1E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunspecifiederror?language=objc)
 pub const kBluetoothHCIErrorUnspecifiedError: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunsupportedlmpparametervalue?language=objc)
 pub const kBluetoothHCIErrorUnsupportedLMPParameterValue: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorrolechangenotallowed?language=objc)
 pub const kBluetoothHCIErrorRoleChangeNotAllowed: c_uint = 0x21;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorlmpresponsetimeout?language=objc)
 pub const kBluetoothHCIErrorLMPResponseTimeout: c_uint = 0x22;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorlmperrortransactioncollision?language=objc)
 pub const kBluetoothHCIErrorLMPErrorTransactionCollision: c_uint = 0x23;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorlmppdunotallowed?language=objc)
 pub const kBluetoothHCIErrorLMPPDUNotAllowed: c_uint = 0x24;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorencryptionmodenotacceptable?language=objc)
 pub const kBluetoothHCIErrorEncryptionModeNotAcceptable: c_uint = 0x25;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunitkeyused?language=objc)
 pub const kBluetoothHCIErrorUnitKeyUsed: c_uint = 0x26;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorqosnotsupported?language=objc)
 pub const kBluetoothHCIErrorQoSNotSupported: c_uint = 0x27;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorinstantpassed?language=objc)
 pub const kBluetoothHCIErrorInstantPassed: c_uint = 0x28;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorpairingwithunitkeynotsupported?language=objc)
 pub const kBluetoothHCIErrorPairingWithUnitKeyNotSupported: c_uint = 0x29;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhostrejectedunacceptabledeviceaddress?language=objc)
 pub const kBluetoothHCIErrorHostRejectedUnacceptableDeviceAddress: c_uint = 0x0F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrordifferenttransactioncollision?language=objc)
 pub const kBluetoothHCIErrorDifferentTransactionCollision: c_uint = 0x2A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorqosunacceptableparameter?language=objc)
 pub const kBluetoothHCIErrorQoSUnacceptableParameter: c_uint = 0x2C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorqosrejected?language=objc)
 pub const kBluetoothHCIErrorQoSRejected: c_uint = 0x2D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorchannelclassificationnotsupported?language=objc)
 pub const kBluetoothHCIErrorChannelClassificationNotSupported: c_uint = 0x2E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorinsufficientsecurity?language=objc)
 pub const kBluetoothHCIErrorInsufficientSecurity: c_uint = 0x2F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorparameteroutofmandatoryrange?language=objc)
 pub const kBluetoothHCIErrorParameterOutOfMandatoryRange: c_uint = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorroleswitchpending?language=objc)
 pub const kBluetoothHCIErrorRoleSwitchPending: c_uint = 0x31;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorreservedslotviolation?language=objc)
 pub const kBluetoothHCIErrorReservedSlotViolation: c_uint = 0x34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorroleswitchfailed?language=objc)
 pub const kBluetoothHCIErrorRoleSwitchFailed: c_uint = 0x35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorextendedinquiryresponsetoolarge?language=objc)
 pub const kBluetoothHCIErrorExtendedInquiryResponseTooLarge: c_uint = 0x36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorsecuresimplepairingnotsupportedbyhost?language=objc)
 pub const kBluetoothHCIErrorSecureSimplePairingNotSupportedByHost: c_uint = 0x37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorhostbusypairing?language=objc)
 pub const kBluetoothHCIErrorHostBusyPairing: c_uint = 0x38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorconnectionrejectedduetonosuitablechannelfound?language=objc)
 pub const kBluetoothHCIErrorConnectionRejectedDueToNoSuitableChannelFound: c_uint = 0x39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorcontrollerbusy?language=objc)
 pub const kBluetoothHCIErrorControllerBusy: c_uint = 0x3A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorunacceptableconnectioninterval?language=objc)
 pub const kBluetoothHCIErrorUnacceptableConnectionInterval: c_uint = 0x3B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrordirectedadvertisingtimeout?language=objc)
 pub const kBluetoothHCIErrorDirectedAdvertisingTimeout: c_uint = 0x3C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorconnectionterminatedduetomicfailure?language=objc)
 pub const kBluetoothHCIErrorConnectionTerminatedDueToMICFailure: c_uint = 0x3D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorconnectionfailedtobeestablished?language=objc)
 pub const kBluetoothHCIErrorConnectionFailedToBeEstablished: c_uint = 0x3E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrormacconnectionfailed?language=objc)
 pub const kBluetoothHCIErrorMACConnectionFailed: c_uint = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorcoarseclockadjustmentrejected?language=objc)
 pub const kBluetoothHCIErrorCoarseClockAdjustmentRejected: c_uint = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrormax?language=objc)
 pub const kBluetoothHCIErrorMax: c_uint = 0x40;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcipowerstate?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIPowerState(pub c_uint);
 impl BluetoothHCIPowerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipowerstateon?language=objc)
     #[doc(alias = "kBluetoothHCIPowerStateON")]
     pub const ON: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipowerstateoff?language=objc)
     #[doc(alias = "kBluetoothHCIPowerStateOFF")]
     pub const OFF: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcipowerstateunintialized?language=objc)
     #[doc(alias = "kBluetoothHCIPowerStateUnintialized")]
     pub const Unintialized: Self = Self(0xFF);
 }
@@ -6330,91 +5024,72 @@ unsafe impl RefEncode for BluetoothHCIPowerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcierrorpowerisoff?language=objc)
 pub const kBluetoothHCIErrorPowerIsOFF: c_uint = kBluetoothHCIErrorMax + 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbclasscode?language=objc)
+///
+/// ## Discussion
+///
+/// Wireless Controller
+///
+///
 pub const kBluetoothHCITransportUSBClassCode: c_uint = 0xE0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbsubclasscode?language=objc)
+///
+/// ## Discussion
+///
+/// RF Controller
+///
+///
 pub const kBluetoothHCITransportUSBSubClassCode: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhcitransportusbprotocolcode?language=objc)
+///
+/// ## Discussion
+///
+/// Bluetooth Programming
+///
+///
 pub const kBluetoothHCITransportUSBProtocolCode: c_uint = 0x01;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidreserved?language=objc)
 pub const kBluetoothL2CAPTCIEventIDReserved: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidl2ca_connectind?language=objc)
 pub const kBluetoothL2CAPTCIEventIDL2CA_ConnectInd: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidl2ca_configind?language=objc)
 pub const kBluetoothL2CAPTCIEventIDL2CA_ConfigInd: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidl2ca_disconnectind?language=objc)
 pub const kBluetoothL2CAPTCIEventIDL2CA_DisconnectInd: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidl2ca_qosviolationind?language=objc)
 pub const kBluetoothL2CAPTCIEventIDL2CA_QoSViolationInd: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcieventidl2ca_timeoutind?language=objc)
 pub const kBluetoothL2CAPTCIEventIDL2CA_TimeOutInd: c_uint = 0x05;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandreserved?language=objc)
 pub const kBluetoothL2CAPTCICommandReserved: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_connectreq?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_ConnectReq: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_disconnectreq?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_DisconnectReq: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_configreq?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_ConfigReq: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_disableclt?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_DisableCLT: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_enableclt?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_EnableCLT: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_groupcreate?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_GroupCreate: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_groupclose?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_GroupClose: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_groupaddmember?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_GroupAddMember: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_groupremovemember?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_GroupRemoveMember: c_uint = 0x0009;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_groupmembership?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_GroupMembership: c_uint = 0x000A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_writedata?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_WriteData: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_readdata?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_ReadData: c_uint = 0x000C;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_ping?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_Ping: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_getinfo?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_GetInfo: c_uint = 0x000E;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_reserved1?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_Reserved1: c_uint = 0x000F;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_reserved2?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_Reserved2: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_connectresp?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_ConnectResp: c_uint = 0x0011;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_disconnectresp?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_DisconnectResp: c_uint = 0x0012;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothl2captcicommandl2ca_configresp?language=objc)
 pub const kBluetoothL2CAPTCICommandL2CA_ConfigResp: c_uint = 0x0013;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommchannelid?language=objc)
 pub type BluetoothRFCOMMChannelID = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommmtu?language=objc)
 pub type BluetoothRFCOMMMTU = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommparitytype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothRFCOMMParityType(pub c_uint);
 impl BluetoothRFCOMMParityType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrfcommparitytypenoparity?language=objc)
     #[doc(alias = "kBluetoothRFCOMMParityTypeNoParity")]
     pub const NoParity: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrfcommparitytypeoddparity?language=objc)
     #[doc(alias = "kBluetoothRFCOMMParityTypeOddParity")]
     pub const OddParity: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrfcommparitytypeevenparity?language=objc)
     #[doc(alias = "kBluetoothRFCOMMParityTypeEvenParity")]
     pub const EvenParity: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothrfcommparitytypemaxparity?language=objc)
     #[doc(alias = "kBluetoothRFCOMMParityTypeMaxParity")]
     pub const MaxParity: Self = Self(3);
 }
@@ -6429,21 +5104,16 @@ unsafe impl RefEncode for BluetoothRFCOMMParityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommlinestatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothRFCOMMLineStatus(pub c_uint);
 impl BluetoothRFCOMMLineStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommlinestatusnoerror?language=objc)
     #[doc(alias = "BluetoothRFCOMMLineStatusNoError")]
     pub const NoError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommlinestatusoverrunerror?language=objc)
     #[doc(alias = "BluetoothRFCOMMLineStatusOverrunError")]
     pub const OverrunError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommlinestatusparityerror?language=objc)
     #[doc(alias = "BluetoothRFCOMMLineStatusParityError")]
     pub const ParityError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothrfcommlinestatusframingerror?language=objc)
     #[doc(alias = "BluetoothRFCOMMLineStatusFramingError")]
     pub const FramingError: Self = Self(3);
 }
@@ -6458,103 +5128,62 @@ unsafe impl RefEncode for BluetoothRFCOMMLineStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdppduid?language=objc)
 pub type BluetoothSDPPDUID = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidreserved?language=objc)
 pub const kBluetoothSDPPDUIDReserved: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduiderrorresponse?language=objc)
 pub const kBluetoothSDPPDUIDErrorResponse: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidservicesearchrequest?language=objc)
 pub const kBluetoothSDPPDUIDServiceSearchRequest: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidservicesearchresponse?language=objc)
 pub const kBluetoothSDPPDUIDServiceSearchResponse: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidserviceattributerequest?language=objc)
 pub const kBluetoothSDPPDUIDServiceAttributeRequest: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidserviceattributeresponse?language=objc)
 pub const kBluetoothSDPPDUIDServiceAttributeResponse: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidservicesearchattributerequest?language=objc)
 pub const kBluetoothSDPPDUIDServiceSearchAttributeRequest: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdppduidservicesearchattributeresponse?language=objc)
 pub const kBluetoothSDPPDUIDServiceSearchAttributeResponse: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdperrorcode?language=objc)
 pub type BluetoothSDPErrorCode = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodesuccess?language=objc)
 pub const kBluetoothSDPErrorCodeSuccess: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodereserved?language=objc)
 pub const kBluetoothSDPErrorCodeReserved: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodeinvalidsdpversion?language=objc)
 pub const kBluetoothSDPErrorCodeInvalidSDPVersion: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodeinvalidservicerecordhandle?language=objc)
 pub const kBluetoothSDPErrorCodeInvalidServiceRecordHandle: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodeinvalidrequestsyntax?language=objc)
 pub const kBluetoothSDPErrorCodeInvalidRequestSyntax: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodeinvalidpdusize?language=objc)
 pub const kBluetoothSDPErrorCodeInvalidPDUSize: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodeinvalidcontinuationstate?language=objc)
 pub const kBluetoothSDPErrorCodeInvalidContinuationState: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodeinsufficientresources?language=objc)
 pub const kBluetoothSDPErrorCodeInsufficientResources: c_uint = 0x0006;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodereservedstart?language=objc)
 pub const kBluetoothSDPErrorCodeReservedStart: c_uint = 0x0007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdperrorcodereservedend?language=objc)
 pub const kBluetoothSDPErrorCodeReservedEnd: c_uint = 0xFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdptransactionid?language=objc)
 pub type BluetoothSDPTransactionID = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdpservicerecordhandle?language=objc)
 pub type BluetoothSDPServiceRecordHandle = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypenil?language=objc)
 pub const kBluetoothSDPDataElementTypeNil: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypeunsignedint?language=objc)
 pub const kBluetoothSDPDataElementTypeUnsignedInt: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypesignedint?language=objc)
 pub const kBluetoothSDPDataElementTypeSignedInt: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypeuuid?language=objc)
 pub const kBluetoothSDPDataElementTypeUUID: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypestring?language=objc)
 pub const kBluetoothSDPDataElementTypeString: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypeboolean?language=objc)
 pub const kBluetoothSDPDataElementTypeBoolean: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypedataelementsequence?language=objc)
 pub const kBluetoothSDPDataElementTypeDataElementSequence: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypedataelementalternative?language=objc)
 pub const kBluetoothSDPDataElementTypeDataElementAlternative: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypeurl?language=objc)
 pub const kBluetoothSDPDataElementTypeURL: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypereservedstart?language=objc)
 pub const kBluetoothSDPDataElementTypeReservedStart: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothsdpdataelementtypereservedend?language=objc)
 pub const kBluetoothSDPDataElementTypeReservedEnd: c_uint = 31;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdpuuid16?language=objc)
 pub type BluetoothSDPUUID16 = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdpuuid32?language=objc)
 pub type BluetoothSDPUUID32 = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdpdataelementtypedescriptor?language=objc)
 pub type BluetoothSDPDataElementTypeDescriptor = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdpdataelementsizedescriptor?language=objc)
 pub type BluetoothSDPDataElementSizeDescriptor = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsdpserviceattributeid?language=objc)
 pub type BluetoothSDPServiceAttributeID = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescantype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLEScanType(pub c_uint);
 impl BluetoothLEScanType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescantypepassive?language=objc)
     #[doc(alias = "BluetoothLEScanTypePassive")]
     pub const Passive: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescantypeactive?language=objc)
     #[doc(alias = "BluetoothLEScanTypeActive")]
     pub const Active: Self = Self(0x01);
 }
@@ -6569,15 +5198,12 @@ unsafe impl RefEncode for BluetoothLEScanType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleaddresstype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLEAddressType(pub c_uint);
 impl BluetoothLEAddressType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleaddresstypepublic?language=objc)
     #[doc(alias = "BluetoothLEAddressTypePublic")]
     pub const Public: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleaddresstyperandom?language=objc)
     #[doc(alias = "BluetoothLEAddressTypeRandom")]
     pub const Random: Self = Self(0x01);
 }
@@ -6592,18 +5218,14 @@ unsafe impl RefEncode for BluetoothLEAddressType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanfilter?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLEScanFilter(pub c_uint);
 impl BluetoothLEScanFilter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanfilternone?language=objc)
     #[doc(alias = "BluetoothLEScanFilterNone")]
     pub const None: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanfiltersafelist?language=objc)
     #[doc(alias = "BluetoothLEScanFilterSafelist")]
     pub const Safelist: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanfilterwhitelist?language=objc)
     #[doc(alias = "BluetoothLEScanFilterWhitelist")]
     #[deprecated]
     pub const Whitelist: Self = Self(BluetoothLEScanFilter::Safelist.0);
@@ -6619,15 +5241,12 @@ unsafe impl RefEncode for BluetoothLEScanFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescan?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLEScan(pub c_uint);
 impl BluetoothLEScan {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescandisable?language=objc)
     #[doc(alias = "BluetoothLEScanDisable")]
     pub const Disable: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanenable?language=objc)
     #[doc(alias = "BluetoothLEScanEnable")]
     pub const Enable: Self = Self(0x01);
 }
@@ -6642,15 +5261,12 @@ unsafe impl RefEncode for BluetoothLEScan {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleconnectioninterval?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BluetoothLEConnectionInterval(pub c_uint);
 impl BluetoothLEConnectionInterval {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleconnectionintervalmin?language=objc)
     #[doc(alias = "BluetoothLEConnectionIntervalMin")]
     pub const Min: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleconnectionintervalmax?language=objc)
     #[doc(alias = "BluetoothLEConnectionIntervalMax")]
     pub const Max: Self = Self(0x0C80);
 }
@@ -6665,15 +5281,12 @@ unsafe impl RefEncode for BluetoothLEConnectionInterval {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanduplicatefilter?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLEScanDuplicateFilter(pub c_uint);
 impl BluetoothLEScanDuplicateFilter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanduplicatefilterdisable?language=objc)
     #[doc(alias = "BluetoothLEScanDuplicateFilterDisable")]
     pub const Disable: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlescanduplicatefilterenable?language=objc)
     #[doc(alias = "BluetoothLEScanDuplicateFilterEnable")]
     pub const Enable: Self = Self(0x01);
 }
@@ -6688,24 +5301,18 @@ unsafe impl RefEncode for BluetoothLEScanDuplicateFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleadvertisingtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLEAdvertisingType(pub c_uint);
 impl BluetoothLEAdvertisingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleadvertisingtypeconnectableundirected?language=objc)
     #[doc(alias = "BluetoothLEAdvertisingTypeConnectableUndirected")]
     pub const ConnectableUndirected: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleadvertisingtypeconnectabledirected?language=objc)
     #[doc(alias = "BluetoothLEAdvertisingTypeConnectableDirected")]
     pub const ConnectableDirected: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleadvertisingtypediscoverableundirected?language=objc)
     #[doc(alias = "BluetoothLEAdvertisingTypeDiscoverableUndirected")]
     pub const DiscoverableUndirected: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleadvertisingtypenonconnectableundirected?language=objc)
     #[doc(alias = "BluetoothLEAdvertisingTypeNonConnectableUndirected")]
     pub const NonConnectableUndirected: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothleadvertisingtypescanresponse?language=objc)
     #[doc(alias = "BluetoothLEAdvertisingTypeScanResponse")]
     pub const ScanResponse: Self = Self(0x04);
 }

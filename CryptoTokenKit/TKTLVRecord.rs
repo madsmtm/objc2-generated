@@ -6,20 +6,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type used to identify TLV format tags.
+///
+/// ## Discussion
+///
+/// Although some encodings tags do not have any size restrictions, the CryptoTokenKit framework supports tag lengths only up to 64-bits.
+///
+///
 /// Type used for identifying TLV format tags.
 /// Although for some encodings tags can have theoretically any length,
 /// this implementation supports tag length only up to 64bits.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktlvtag?language=objc)
 pub type TKTLVTag = u64;
 
 extern_class!(
+    /// The base class encapsulating a Tag-Length-Value record.
+    ///
+    /// ## Overview
+    ///
+    /// The CryptoTokenKit framework provides the following concrete subclasses for various TLV record encodings:
+    ///
+    /// - [`TKBERTLVRecord`](https://developer.apple.com/documentation/cryptotokenkit/tkbertlvrecord) for BER-TLV encoding rules
+    ///
+    /// - [`TKSimpleTLVRecord`](https://developer.apple.com/documentation/cryptotokenkit/tksimpletlvrecord) for Simple-TLV encoding according to ISO 7816-4
+    ///
+    /// - [`TKCompactTLVRecord`](https://developer.apple.com/documentation/cryptotokenkit/tkcompacttlvrecord) for Compact-TLV encoding according to ISO 7816-4
+    ///
+    ///
     /// Base class representing Tag-Length-Value record.
     /// Every record has its tag and binary value represented as NSData instance.  Allows retrieving record's tag,
     /// value (as NSData object) and binary representation of the record. Existing subclasses implement assorted
     /// encodings - TKBERTLVRecord, TKSimpleTLVRecord and TKCompactTLVRecord.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktlvrecord?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTLVRecord;
@@ -83,11 +99,10 @@ impl TKTLVRecord {
 }
 
 extern_class!(
+    /// An object that parses BER-encoded data and produces DER-encoded data for TLV records.
     /// TKBERTLVRecord implements encoding using BER-TLV encoding rules.
     /// It is able to parse BER-encoded data and always produces DER-encoded data.
     /// No interpretation of tag values is made, all values are treated only as NSData irrespective of the tag.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkbertlvrecord?language=objc)
     #[unsafe(super(TKTLVRecord, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKBERTLVRecord;
@@ -168,13 +183,12 @@ impl TKBERTLVRecord {
 }
 
 extern_class!(
+    /// An object that implements encoding using Simple-TLV encoding according to ISO 7816-4.
     /// TKSimpleTLVRecord implements Simple-TLV encoding according to ISO7816-4.
     /// Tag is number in range
     /// <
     /// 1..254> encoded as single byte, length is either single byte specifying length 0-254
     /// or 3 bytes encoded as 0xff followed by 2 bytes of big-endian encoded number.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksimpletlvrecord?language=objc)
     #[unsafe(super(TKTLVRecord, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSimpleTLVRecord;
@@ -231,6 +245,7 @@ impl TKSimpleTLVRecord {
 }
 
 extern_class!(
+    /// An object that implements encoding using Compact-TLV encoding according to ISO 7816-4.
     /// TKCompactTLVRecord implements Compact-TLV encoding according to ISO7816-4
     /// Tag is number in range
     /// <
@@ -238,8 +253,6 @@ extern_class!(
     /// <
     /// 0..15>
     /// encoded as low 4 bits of initial byte.  Value immediatelly follows leading byte.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkcompacttlvrecord?language=objc)
     #[unsafe(super(TKTLVRecord, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKCompactTLVRecord;

@@ -10,11 +10,10 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
+    /// An object that provides a good-quality playback rate and pitch shifting independently of each other.
     /// an AVAudioUnitTimeEffect that provides good quality time stretching and pitch shifting
     ///
     /// In this time effect, the playback rate and pitch parameters function independently of each other
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittimepitch?language=objc)
     #[unsafe(super(AVAudioUnitTimeEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

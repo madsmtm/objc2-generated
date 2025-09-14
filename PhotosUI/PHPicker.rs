@@ -13,28 +13,24 @@ use objc2_photos::*;
 
 use crate::*;
 
+/// Constants identifying the mode the system uses when many representations exist for an asset.
 /// A mode that determines which representation
 /// `PHPickerViewController`should provide for an asset given a type identifier, if multiple representations are available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerConfigurationAssetRepresentationMode(pub NSInteger);
 impl PHPickerConfigurationAssetRepresentationMode {
+    /// A mode that indicates that the system chooses the appropriate asset representation.
     /// Uses the best representation determined by the system. This may change in future releases.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode/automatic?language=objc)
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A mode that uses the current representation to avoid transcoding, if possible.
     /// Uses the current representation to avoid transcoding if possible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode/current?language=objc)
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeCurrent")]
     pub const Current: Self = Self(1);
+    /// A mode that uses the most compatible asset representation.
     /// Uses the most compatible representation if possible, even if transcoding is required.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode/compatible?language=objc)
     #[doc(alias = "PHPickerConfigurationAssetRepresentationModeCompatible")]
     pub const Compatible: Self = Self(2);
 }
@@ -51,33 +47,56 @@ unsafe impl Send for PHPickerConfigurationAssetRepresentationMode {}
 
 unsafe impl Sync for PHPickerConfigurationAssetRepresentationMode {}
 
+/// Options that represent differing selection behavior.
+///
+/// ## Overview
+///
+/// This enumeration defines the possible values of the photo picker configuration ([`PHPickerConfiguration`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-swift.struct)) property [`selection`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-swift.struct/selection-swift.property).
+///
+///
 /// An enum that determines how
 /// `PHPickerViewController`handles user selection.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerConfigurationSelection(pub NSInteger);
 impl PHPickerConfigurationSelection {
+    /// An option that provides selected photos to the app in the default order after the user confirms the selection.
     /// Uses the default selection behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/default?language=objc)
     #[doc(alias = "PHPickerConfigurationSelectionDefault")]
     pub const Default: Self = Self(0);
-    /// Uses the selection order made by the user. Selected assets are numbered.
+    /// An option that provides selected photos to the app in the chosen order after the user confirms the selection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/ordered?language=objc)
+    /// ## Discussion
+    ///
+    /// This option notifies the app of photo selections when a person taps the Add button.
+    ///
+    /// In addition, selected photos display a numbered badge that represents the order in which someone taps the photo.
+    ///
+    ///
+    /// Uses the selection order made by the user. Selected assets are numbered.
     #[doc(alias = "PHPickerConfigurationSelectionOrdered")]
     pub const Ordered: Self = Self(1);
-    /// Selection can be delivered continuously.
+    /// An option that provides the app a person’s selection immediately.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/continuous?language=objc)
+    /// ## Discussion
+    ///
+    /// This option notifies the app of photo selections dynamically, as someone taps the photo picker.
+    ///
+    ///
+    /// Selection can be delivered continuously.
     #[doc(alias = "PHPickerConfigurationSelectionContinuous")]
     pub const Continuous: Self = Self(2);
-    /// Selection can be delivered continuously and uses the selection order made by the user. Selected assets are numbered.
+    /// An option that provides the app a person’s selection immediately and displays selected photos with a numbered badge.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection/continuousandordered?language=objc)
+    /// ## Discussion
+    ///
+    /// This option notifies the app of photo selections dynamically, as someone taps the photo picker.
+    ///
+    /// In addition, selected photos display a numbered badge that represents the order in which someone taps the photo.
+    ///
+    ///
+    /// Selection can be delivered continuously and uses the selection order made by the user. Selected assets are numbered.
     #[doc(alias = "PHPickerConfigurationSelectionContinuousAndOrdered")]
     pub const ContinuousAndOrdered: Self = Self(3);
 }
@@ -94,23 +113,26 @@ unsafe impl Send for PHPickerConfigurationSelection {}
 
 unsafe impl Sync for PHPickerConfigurationSelection {}
 
+/// Layout options that determine how the picker orders photos visually.
+///
+/// ## Overview
+///
+/// This structure defines the possible options for the photos picker configuration ([`PHPickerConfiguration`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-c.class)) property [`mode`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-swift.struct/mode). The option you choose determines the direction that its assets scroll in the view. In addition, the linear scrolling behavior of [`compact`](https://developer.apple.com/documentation/photosui/phpickermode-swift.struct/compact) mode offers the best user experience in a space-constrained layout.
+///
+///
 /// An enum that determines the mode of
 /// `PHPickerViewController.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode-c.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerMode(pub NSInteger);
 impl PHPickerMode {
+    /// A grid-based layout that’s conducive to a larger area onscreen.
     /// Default picker mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode-c.enum/phpickermodedefault?language=objc)
     #[doc(alias = "PHPickerModeDefault")]
     pub const Default: Self = Self(0);
+    /// A linear layout that’s conducive to a smaller area onscreen.
     /// Compact picker mode (single row).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode-c.enum/phpickermodecompact?language=objc)
     #[doc(alias = "PHPickerModeCompact")]
     pub const Compact: Self = Self(1);
 }
@@ -123,44 +145,49 @@ unsafe impl RefEncode for PHPickerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options that customize the look and behavior of the photos picker.
+///
+/// ## Overview
+///
+/// This enumeration defines the possible values for the photo picker configuration ([`PHPickerConfiguration`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-swift.struct)) property [`disabledCapabilities`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-swift.struct/disabledcapabilities).
+///
+///
 /// Constants that specify one or a set of
 /// `PHPickerViewController`capabilities.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl PHPickerCapabilities: NSUInteger {
+/// An option that represents no capabilities.
 /// No specified capabilities.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/phpickercapabilitiesnone?language=objc)
         #[doc(alias = "PHPickerCapabilitiesNone")]
         const None = 0;
+/// A capability that corresponds to the search bar.
 /// The search bar.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/search?language=objc)
         #[doc(alias = "PHPickerCapabilitiesSearch")]
         const Search = 1<<0;
+/// A capability that corresponds to an area in which the selected photos display.
 /// The staging area.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/stagingarea?language=objc)
         #[doc(alias = "PHPickerCapabilitiesStagingArea")]
         const StagingArea = 1<<1;
+/// A capability that corresponds to a sidebar or the Albums tab.
 /// The sidebar or the albums tab.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/collectionnavigation?language=objc)
         #[doc(alias = "PHPickerCapabilitiesCollectionNavigation")]
         const CollectionNavigation = 1<<2;
+/// A cabability that represents the Cancel and Add buttons.
 /// The "Cancel" and the "Add" (if possible) button.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/selectionactions?language=objc)
         #[doc(alias = "PHPickerCapabilitiesSelectionActions")]
         const SelectionActions = 1<<3;
-/// Show intervention UI explaining potential risks for kids or teens if a sensitive asset is selected. Analysis and intervention will only be performed if "Communication Safety" is enabled in ScreenTime.
+/// A capability that prompts for confirmation if a person selects a photo that contains nudity.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities/sensitivityanalysisintervention?language=objc)
+/// ## Discussion
+///
+/// When either the Sensitive Content Warning setting or Communication Safety parental control in Screen Time are active in iOS 17 or later, the photos picker checks whether a selected asset contains nudity. If so, the photo picker presents a model view that warns the person before giving the app access to the photo. The intervention UI requires a person to confirm that they really intend to interact with the sensitive asset in the photo library before proceeding. For more information on nudity detection in iOS 17 and later, see [`SensitiveContentAnalysis`](https://developer.apple.com/documentation/sensitivecontentanalysis).
+///
+///
+/// Show intervention UI explaining potential risks for kids or teens if a sensitive asset is selected. Analysis and intervention will only be performed if "Communication Safety" is enabled in ScreenTime.
         #[doc(alias = "PHPickerCapabilitiesSensitivityAnalysisIntervention")]
         const SensitivityAnalysisIntervention = 1<<4;
     }
@@ -175,10 +202,9 @@ unsafe impl RefEncode for PHPickerCapabilities {
 }
 
 extern_class!(
+    /// A type that defines the filter to apply to the photo library.
     /// A filter that restricts which types of assets
     /// `PHPickerViewController`can show.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerfilter-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerFilter;
@@ -297,10 +323,15 @@ impl PHPickerFilter {
 }
 
 extern_class!(
+    /// An object that defines the aspects of a photo picker’s appearance that can change while it’s presented.
+    ///
+    /// ## Overview
+    ///
+    /// While a photos picker is visible, you can use an instance of this object to change its [`edgesWithoutContentMargins`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-c.class/edgeswithoutcontentmargins) or [`selectionLimit`](https://developer.apple.com/documentation/photosui/phpickerconfiguration-swift.struct/selectionlimit) properties. To do that, create and configure an instance of this object and pass it to the [`PHPickerViewController`](https://developer.apple.com/documentation/photosui/phpickerviewcontroller) method [`updatePickerUsingConfiguration:`](https://developer.apple.com/documentation/photosui/phpickerviewcontroller/updatepickerusingconfiguration:).
+    ///
+    ///
     /// An update configuration for
     /// `PHPickerViewController.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerupdateconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerUpdateConfiguration;
@@ -363,10 +394,9 @@ impl PHPickerUpdateConfiguration {
 }
 
 extern_class!(
+    /// An object that contains information about how to configure a picker view controller.
     /// A configuration for
     /// `PHPickerViewController.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerConfiguration;
@@ -532,10 +562,9 @@ impl PHPickerConfiguration {
 }
 
 extern_class!(
+    /// Types that represent a selected asset from the user’s photo library.
     /// A user selected asset from
     /// `PHPickerViewController.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerresult-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerResult;
@@ -568,10 +597,9 @@ impl PHPickerResult {
 }
 
 extern_protocol!(
+    /// A protocol the picker uses to communicate user selections.
     /// A set of methods that the delegate must implement to respond to
     /// `PHPickerViewController`user events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontrollerdelegate-9y5xc?language=objc)
     pub unsafe trait PHPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -592,7 +620,33 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontroller?language=objc)
+    /// A view controller that provides the user interface for choosing assets from the photo library.
+    ///
+    /// ## Overview
+    ///
+    /// The `PHPickerViewController` class is an alternative to [`UIImagePickerController`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller). `PHPickerViewController` improves stability and reliability, and includes several benefits to developers and users, such as the following:
+    ///
+    /// - Deferred image loading and recovery UI
+    ///
+    /// - Reliable handling of large and complex assets, like RAW and panoramic images
+    ///
+    /// - User-selectable assets that aren’t available for [`UIImagePickerController`](https://developer.apple.com/documentation/uikit/uiimagepickercontroller)
+    ///
+    /// - Configuration of the picker to display only Live Photos
+    ///
+    /// - Availability of [`PHLivePhoto`](https://developer.apple.com/documentation/photos/phlivephoto) objects without library access
+    ///
+    /// - Stricter validations against invalid inputs
+    ///
+    /// ### Observe required viewing standards
+    ///
+    /// As a view controller that the system renders on top of your app, the picker controller requires certain prerequisites for operation that your app needs to observe:
+    ///
+    /// - The picker controller disables user interaction if an app alters its visibility, such as by adjusting the [`opacity`](https://developer.apple.com/documentation/quartzcore/calayer/opacity) of its view’s layer. In iOS 17 and later, the picker controller ignores touch events while its opacity is anything other than fully opaque.
+    ///
+    /// - As a system-rendered UI, you can’t subclass [`PHPickerViewController`](https://developer.apple.com/documentation/photosui/phpickerviewcontroller). Its view hierarchy belongs to the system and therefore, the framework provides no access.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

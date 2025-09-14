@@ -9,7 +9,6 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingmode?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -53,10 +52,9 @@ impl CPNowPlayingMode {
 }
 
 extern_class!(
+    /// The sports mode represents a layout for now playing suited to live-streaming or recorded playback of a sporting event that features exactly two teams.
     /// The sports mode represents a layout for now playing suited to live-streaming or
     /// recorded playback of a sporting event that features exactly two teams.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingmodesports?language=objc)
     #[unsafe(super(CPNowPlayingMode, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -158,10 +156,9 @@ impl CPNowPlayingModeSports {
 }
 
 extern_class!(
+    /// A representation of a sports team for the now playing screen, in sports that have exactly two teams.
     /// A representation of a sports team for the now playing screen,
     /// in sports that have exactly two teams.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportsteam?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -266,8 +263,7 @@ impl CPNowPlayingSportsTeam {
 
 extern_class!(
     /// A representation of the status of a sporting event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportseventstatus?language=objc)
+    /// A representation of the status of a sporting event.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -358,14 +354,19 @@ impl CPNowPlayingSportsEventStatus {
 }
 
 extern_class!(
+    /// A representation of the amount of time elapsed so far in this event, for events where the clock counts UP.
+    ///
+    /// ## Overview
+    ///
+    /// Or, a representation of the amount of time remaining in the event, or a section of the event (period/quarter/etc.) for events where the clock counts DOWN.
+    ///
+    ///
     /// A representation of the amount of time elapsed so far in this event,
     /// for events where the clock counts UP.
     ///
     /// Or, a representation of the amount of time remaining in the event,
     /// or a section of the event (period/quarter/etc.) for events where the
     /// clock counts DOWN.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportsclock?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -442,10 +443,9 @@ impl CPNowPlayingSportsClock {
 }
 
 extern_class!(
+    /// A logo image or, if no image is available, an abbreviation or initialism for this team.
     /// A logo image or, if no image is available, an abbreviation
     /// or initialism for this team.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportsteamlogo?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

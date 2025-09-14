@@ -12,19 +12,43 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum?language=objc)
+/// Defines constants that represent the styles of the scroll indicators.
+///
+/// ## Overview
+///
+/// You use these constants to set the value of the [`indicatorStyle`](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.property) style.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewIndicatorStyle(pub NSInteger);
 impl UIScrollViewIndicatorStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum/default?language=objc)
+    /// The default style of scroll indicator, which is black with a white border.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is good against any content background.
+    ///
+    ///
     #[doc(alias = "UIScrollViewIndicatorStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum/black?language=objc)
+    /// A style of indicator which is black and smaller than the default style.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is good against a white content background.
+    ///
+    ///
     #[doc(alias = "UIScrollViewIndicatorStyleBlack")]
     pub const Black: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum/white?language=objc)
+    /// A style of indicator is white and smaller than the default style.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is good against a black content background.
+    ///
+    ///
     #[doc(alias = "UIScrollViewIndicatorStyleWhite")]
     pub const White: Self = Self(2);
 }
@@ -37,25 +61,31 @@ unsafe impl RefEncode for UIScrollViewIndicatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum?language=objc)
+/// Constants that determine how the system dismisses the keyboard when a drag begins in the scroll view.
+///
+/// ## Overview
+///
+/// You use these constants to set the value of the [`keyboardDismissMode`](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewKeyboardDismissMode(pub NSInteger);
 impl UIScrollViewKeyboardDismissMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/none?language=objc)
+    /// A mode in which a drag doesn’t dismiss the keyboard.
     #[doc(alias = "UIScrollViewKeyboardDismissModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/ondrag?language=objc)
+    /// A mode in which the keyboard dismisses when a drag begins.
     #[doc(alias = "UIScrollViewKeyboardDismissModeOnDrag")]
     pub const OnDrag: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/interactive?language=objc)
+    /// A mode in which the keyboard follows the dragging touch offscreen, and can be pulled upward again to cancel the dismiss.
     #[doc(alias = "UIScrollViewKeyboardDismissModeInteractive")]
     pub const Interactive: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/ondragwithaccessory?language=objc)
+    /// A mode in which the keyboard and accessory view dismiss together when a drag begins.
     #[doc(alias = "UIScrollViewKeyboardDismissModeOnDragWithAccessory")]
     pub const OnDragWithAccessory: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum/interactivewithaccessory?language=objc)
+    /// A mode in which the keyboard and accessory view both follow the dragging touch offscreen, and can be pulled upward again to cancel the dismiss.
     #[doc(alias = "UIScrollViewKeyboardDismissModeInteractiveWithAccessory")]
     pub const InteractiveWithAccessory: Self = Self(4);
 }
@@ -68,16 +98,16 @@ unsafe impl RefEncode for UIScrollViewKeyboardDismissMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indexdisplaymode-swift.enum?language=objc)
+/// Defines constants that represent how the index appears while the user is scrolling.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewIndexDisplayMode(pub NSInteger);
 impl UIScrollViewIndexDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indexdisplaymode-swift.enum/automatic?language=objc)
+    /// The index is displayed or hidden automatically.
     #[doc(alias = "UIScrollViewIndexDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indexdisplaymode-swift.enum/alwayshidden?language=objc)
+    /// The index is never displayed.
     #[doc(alias = "UIScrollViewIndexDisplayModeAlwaysHidden")]
     pub const AlwaysHidden: Self = Self(1);
 }
@@ -90,22 +120,34 @@ unsafe impl RefEncode for UIScrollViewIndexDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum?language=objc)
+/// Constants indicating how safe area insets are added to the adjusted content inset.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewContentInsetAdjustmentBehavior(pub NSInteger);
 impl UIScrollViewContentInsetAdjustmentBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/automatic?language=objc)
+    /// Automatically adjust the scroll view insets.
+    ///
+    /// ## Discussion
+    ///
+    /// Content is always adjusted vertically when the scroll view is the content view of a view controller that is currently displayed by a navigation or tab bar controller. If the scroll view is horizontally scrollable, the horizontal content offset is also adjusted when there are nonzero safe area insets.
+    ///
+    ///
     #[doc(alias = "UIScrollViewContentInsetAdjustmentAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/scrollableaxes?language=objc)
+    /// Adjust the insets only in the scrollable directions.
+    ///
+    /// ## Discussion
+    ///
+    /// The top and bottom insets include the safe area inset values when the vertical content size is greater than the height of the scroll view itself. The top and bottom insets are also adjusted when the [`alwaysBounceVertical`](https://developer.apple.com/documentation/uikit/uiscrollview/alwaysbouncevertical) property is [`true`](https://developer.apple.com/documentation/swift/true). Similarly, the left and right insets include the safe area insets when the horizontal content size is greater than the width of the scroll view.
+    ///
+    ///
     #[doc(alias = "UIScrollViewContentInsetAdjustmentScrollableAxes")]
     pub const ScrollableAxes: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/never?language=objc)
+    /// Do not adjust the scroll view insets.
     #[doc(alias = "UIScrollViewContentInsetAdjustmentNever")]
     pub const Never: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum/always?language=objc)
+    /// Always include the safe area insets in the content adjustment.
     #[doc(alias = "UIScrollViewContentInsetAdjustmentAlways")]
     pub const Always: Self = Self(3);
 }
@@ -118,27 +160,32 @@ unsafe impl RefEncode for UIScrollViewContentInsetAdjustmentBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.struct?language=objc)
+/// Deceleration rates for the scroll view.
+///
+/// ## Overview
+///
+/// You use these constants to set the value of the [`decelerationRate`](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.property) property.
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIScrollViewDecelerationRate = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.struct/normal?language=objc)
+    /// The default deceleration rate for a scroll view.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIScrollViewDecelerationRateNormal: UIScrollViewDecelerationRate;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.struct/fast?language=objc)
+    /// A fast deceleration rate for a scroll view.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIScrollViewDecelerationRateFast: UIScrollViewDecelerationRate;
 }
 
 extern_class!(
+    /// Styles for a scroll view’s edge effect.
     /// Styles for a scroll view's edge effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeeffect/style-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -178,8 +225,7 @@ impl UIScrollEdgeEffectStyle {
 
 extern_class!(
     /// Properties of the effect on a particular edge of the scroll view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeeffect?language=objc)
+    /// Properties of the effect on a particular edge of the scroll view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -224,7 +270,27 @@ impl UIScrollEdgeEffect {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview?language=objc)
+    /// A view that allows the scrolling and zooming of its contained views.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIScrollView`](https://developer.apple.com/documentation/uikit/uiscrollview) is the superclass of several UIKit classes, including [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) and [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview).
+    ///
+    /// A scroll view is a view with an origin that’s adjustable over the content view. It clips the content to its frame, which generally (but not necessarily) coincides with that of the app’s main window. A scroll view tracks the movements of fingers, and adjusts the origin accordingly. The view that shows its content through the scroll view draws that portion of itself according to the new origin, which is pinned to an offset in the content view. The scroll view itself does no drawing except for displaying vertical and horizontal scroll indicators. The scroll view must know the size of the content view so it knows when to stop scrolling. By default, it _bounces_ back when scrolling exceeds the bounds of the content.
+    ///
+    /// The object that manages the drawing of content that displays in a scroll view needs to tile the content’s subviews so that no view exceeds the size of the screen. As users scroll in the scroll view, this object adds and removes subviews as necessary.
+    ///
+    /// Because a scroll view has no scroll bars, it must know whether a touch signals an intent to scroll versus an intent to track a subview in the content. To make this determination, it temporarily intercepts a touch-down event by starting a timer and, before the timer fires, seeing if the touching finger makes any movement. If the timer fires without a significant change in position, the scroll view sends tracking events to the touched subview of the content view. If the user then drags their finger far enough before the timer elapses, the scroll view cancels any tracking in the subview and performs the scrolling itself. Subclasses can override the [`touchesShouldBegin:withEvent:inContentView:`](https://developer.apple.com/documentation/uikit/uiscrollview/touchesshouldbegin(_:with:in:)), [`pagingEnabled`](https://developer.apple.com/documentation/uikit/uiscrollview/ispagingenabled), and [`touchesShouldCancelInContentView:`](https://developer.apple.com/documentation/uikit/uiscrollview/touchesshouldcancel(in:)) methods (which the scroll view calls) to affect how the scroll view handles scrolling gestures.
+    ///
+    /// A scroll view also handles zooming and panning of content. As the user makes a pinch-in or pinch-out gesture, the scroll view adjusts the offset and the scale of the content. When the gesture ends, the object managing the content view updates subviews of the content as necessary. (Note that the gesture can end and a finger might still be down.) While the gesture is in progress, the scroll view doesn’t send any tracking calls to the subview.
+    ///
+    /// The [`UIScrollView`](https://developer.apple.com/documentation/uikit/uiscrollview) class can have a delegate that must adopt the [`UIScrollViewDelegate`](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate) protocol. For zooming and panning to work, the delegate must implement both [`viewForZoomingInScrollView:`](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate/viewforzooming(in:)) and [`scrollViewDidEndZooming:withView:atScale:`](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate/scrollviewdidendzooming(_:with:atscale:)). In addition, the [`maximumZoomScale`](https://developer.apple.com/documentation/uikit/uiscrollview/maximumzoomscale) and [`minimumZoomScale`](https://developer.apple.com/documentation/uikit/uiscrollview/minimumzoomscale) zoom scales must be different.
+    ///
+    /// ### State preservation
+    ///
+    /// If you assign a value to this view’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, it attempts to preserve its scrolling-related information between app launches. Specifically, the values of the [`zoomScale`](https://developer.apple.com/documentation/uikit/uiscrollview/zoomscale), [`contentInset`](https://developer.apple.com/documentation/uikit/uiscrollview/contentinset), and [`contentOffset`](https://developer.apple.com/documentation/uikit/uiscrollview/contentoffset) properties are preserved. During restoration, the scroll view restores these values so that the content appears scrolled to the same position as before. For more information about how state preservation and restoration works, see [App Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -864,7 +930,13 @@ impl UIScrollView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate?language=objc)
+    /// The interface for the delegate of a scroll view.
+    ///
+    /// ## Overview
+    ///
+    /// The methods that the [`UIScrollViewDelegate`](https://developer.apple.com/documentation/uikit/uiscrollviewdelegate) protocol declares allow the adopting delegate to respond to messages from the [`UIScrollView`](https://developer.apple.com/documentation/uikit/uiscrollview) class. The delegate responds to and affects operations like scrolling, zooming, deceleration of scrolled content, and scrolling animations.
+    ///
+    ///
     pub unsafe trait UIScrollViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]

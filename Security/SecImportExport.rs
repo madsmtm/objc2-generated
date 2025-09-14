@@ -8,57 +8,68 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_key_import_export_params_version?language=objc)
+/// The import/export parameter structure version.
+///
+/// ## Discussion
+///
+/// Use this constant to set the [`version`](https://developer.apple.com/documentation/security/seckeyimportexportparameters/version) property of an instance of the [`SecItemImportExportKeyParameters`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters) structure.
+///
+///
 pub const SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat?language=objc)
+/// The external format of a keychain item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecExternalFormat(pub u32);
 impl SecExternalFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatunknown?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// When importing, indicates the format is unknown. When exporting, use the default format for the item. For asymmetric keys, the default is `kSecFormatOpenSSL`. For symmetric keys, the default is `kSecFormatRawKey`. For certificates, the default is `kSecFormatX509Cert`. For multiple items, the default is `kSecFormatPEMSequence`.
+    ///
+    ///
     #[doc(alias = "kSecFormatUnknown")]
     pub const FormatUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatopenssl?language=objc)
+    /// Format for asymmetric (public/private) keys. OpenSSL is an open source toolkit for Secure Sockets Layer (SSL) and Transport Layer Security (TLS). Also known as X.509 for public keys.
     #[doc(alias = "kSecFormatOpenSSL")]
     pub const FormatOpenSSL: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatssh?language=objc)
+    /// OpenSSH 1 format for asymmetric (public/private) keys. OpenSSH is an OpenBSD implementation of the Secure Shell (SSH) protocol.
     #[doc(alias = "kSecFormatSSH")]
     pub const FormatSSH: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatbsafe?language=objc)
+    /// Format for asymmetric keys. BSAFE is a standard from RSA Security for encryption, digital signatures, and privacy.
     #[doc(alias = "kSecFormatBSAFE")]
     pub const FormatBSAFE: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatrawkey?language=objc)
+    /// Format for symmetric keys. Raw, unformatted key bits. This is the default for symmetric keys.
     #[doc(alias = "kSecFormatRawKey")]
     pub const FormatRawKey: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedpkcs8?language=objc)
+    /// Format for wrapped symmetric and private keys. PKCS8 is the Private-Key Information Syntax Standard from RSA Security.
     #[doc(alias = "kSecFormatWrappedPKCS8")]
     pub const FormatWrappedPKCS8: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedopenssl?language=objc)
+    /// Format for wrapped symmetric and private keys. OpenSSL is an open-source toolkit for Secure Sockets Layer (SSL) and Transport Layer Security (TLS).
     #[doc(alias = "kSecFormatWrappedOpenSSL")]
     pub const FormatWrappedOpenSSL: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedssh?language=objc)
+    /// OpenSSH 1 format for wrapped symmetric and private keys.  OpenSSH is an OpenBSD implementation of the Secure Shell (SSH) protocol.
     #[doc(alias = "kSecFormatWrappedSSH")]
     pub const FormatWrappedSSH: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatwrappedlsh?language=objc)
+    /// Not supported.
     #[doc(alias = "kSecFormatWrappedLSH")]
     pub const FormatWrappedLSH: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatx509cert?language=objc)
+    /// Format for certificates. DER (distinguished encoding rules) encoded. X.509 is a standard for digital certificates from the International Telecommunication Union (ITU). This is the default for certificates.
     #[doc(alias = "kSecFormatX509Cert")]
     pub const FormatX509Cert: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatpemsequence?language=objc)
+    /// Sequence of certificates and keys with PEM armor. PEM armor refers to a way of expressing binary data as an ASCII string so that it can be transferred over text-only channels such as email. This is the default format for multiple items.
     #[doc(alias = "kSecFormatPEMSequence")]
     pub const FormatPEMSequence: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatpkcs7?language=objc)
+    /// Sequence of certificates, no PEM armor. PKCS7 is the Cryptographic Message Syntax Standard from RSA Security, Inc.
     #[doc(alias = "kSecFormatPKCS7")]
     pub const FormatPKCS7: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatpkcs12?language=objc)
+    /// Set of certificates and private keys. PKCS12 is the Personal Information Exchange Syntax from RSA Security, Inc.
     #[doc(alias = "kSecFormatPKCS12")]
     pub const FormatPKCS12: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatnetscapecertsequence?language=objc)
+    /// Set of certificates in the Netscape Certificate Sequence format.
     #[doc(alias = "kSecFormatNetscapeCertSequence")]
     pub const FormatNetscapeCertSequence: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat/formatsshv2?language=objc)
+    /// OpenSSH 2 format for public keys. OpenSSH version 2 private keys are in format `kSecFormatOpenSSL` or `kSecFormatWrappedOpenSSL`. OpenSSH is an OpenBSD implementation of the Secure Shell (SSH) protocol.
     #[doc(alias = "kSecFormatSSHv2")]
     pub const FormatSSHv2: Self = Self(14);
 }
@@ -73,28 +84,34 @@ unsafe impl RefEncode for SecExternalFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype?language=objc)
+/// The import item type.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecExternalItemType(pub u32);
 impl SecExternalItemType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeunknown?language=objc)
+    /// Indicates that the caller does not know the type of information being imported or exported.
     #[doc(alias = "kSecItemTypeUnknown")]
     pub const ItemTypeUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeprivatekey?language=objc)
+    /// Indicates a private key.
     #[doc(alias = "kSecItemTypePrivateKey")]
     pub const ItemTypePrivateKey: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypepublickey?language=objc)
+    /// Indicates a public key.
     #[doc(alias = "kSecItemTypePublicKey")]
     pub const ItemTypePublicKey: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypesessionkey?language=objc)
+    /// Indicates a session key.
     #[doc(alias = "kSecItemTypeSessionKey")]
     pub const ItemTypeSessionKey: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypecertificate?language=objc)
+    /// Indicates a certificate.
     #[doc(alias = "kSecItemTypeCertificate")]
     pub const ItemTypeCertificate: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeaggregate?language=objc)
+    /// Indicates a set of certificates or certificates and private keys.
+    ///
+    /// ## Discussion
+    ///
+    /// Possible values include [`kSecFormatPKCS7`](https://developer.apple.com/documentation/security/secexternalformat/formatpkcs7), [`kSecFormatPKCS12`](https://developer.apple.com/documentation/security/secexternalformat/formatpkcs12), or [`kSecFormatPEMSequence`](https://developer.apple.com/documentation/security/secexternalformat/formatpemsequence) formats (see [`SecExternalFormat`](https://developer.apple.com/documentation/security/secexternalformat)).
+    ///
+    ///
     #[doc(alias = "kSecItemTypeAggregate")]
     pub const ItemTypeAggregate: Self = Self(5);
 }
@@ -109,14 +126,26 @@ unsafe impl RefEncode for SecExternalItemType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimportexportflags?language=objc)
+/// The import and export function flags.
+///
+/// ## Overview
+///
+/// Use an instance of this structure a the flags input to the [`SecItemImport`](https://developer.apple.com/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)) and [`SecItemExport`](https://developer.apple.com/documentation/security/secitemexport(_:_:_:_:_:)) functions.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecItemImportExportFlags(pub u32);
 bitflags::bitflags! {
     impl SecItemImportExportFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimportexportflags/pemarmour?language=objc)
+/// A flag that indicates the exported data should have PEM armor.
+///
+/// ## Discussion
+///
+/// PEM armor refers to a way of expressing binary data as an ASCII string so that it can be transferred over text-only channels such as email. (PEM stands for an Internet standard, Privacy Enhanced Mail.)
+///
+///
         #[doc(alias = "kSecItemPemArmour")]
         const PemArmour = 0x00000001;
     }
@@ -132,20 +161,44 @@ unsafe impl RefEncode for SecItemImportExportFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags?language=objc)
+/// The import/export parameter structure flags.
+///
+/// ## Overview
+///
+/// Use an instance of this structure to set the [`flags`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters/flags) property in the [`SecItemImportExportKeyParameters`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters) import/export structure.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyImportExportFlags(pub u32);
 bitflags::bitflags! {
     impl SecKeyImportExportFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags/importonlyone?language=objc)
+/// A flag that you set to prevent importing more than one private key.
+///
+/// ## Discussion
+///
+/// Prevents the importing of more than one private key by the [`SecKeychainItemImport`](https://developer.apple.com/documentation/security/seckeychainitemimport) function. If the `importKeychain` parameter is `NULL`, this bit is ignored. Otherwise, if this bit is set and there is more than one key in the incoming external representation, no items are imported to the specified keychain and the error `errSecMultipleKeys` is returned.
+///
+///
         #[doc(alias = "kSecKeyImportOnlyOne")]
         const ImportOnlyOne = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags/securepassphrase?language=objc)
+/// A flag that indicates the user should be prompted for a passphrase on import or export.
+///
+/// ## Discussion
+///
+/// When set, the password for import or export is obtained by user prompt. (A password is sometimes referred to as a passphrase to emphasize the fact that a longer string that includes non-letter characters, such as numbers, punctuation, and spaces, is more secure than a simple word.) Otherwise, you must provide the password in the [`passphrase`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters/passphrase) field of the [`SecItemImportExportKeyParameters`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters) structure. A user-supplied password is preferred, because it avoids having the cleartext password appear in the application’s address space at any time.
+///
+///
         #[doc(alias = "kSecKeySecurePassphrase")]
         const SecurePassphrase = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags/noaccesscontrol?language=objc)
+/// A flag that indicates imported private keys have no access object attached to them.
+///
+/// ## Discussion
+///
+/// In the absence of both this bit and the [`accessRef`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters/accessref) field in the [`SecItemImportExportKeyParameters`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters) structure, imported private keys receive default access controls.
+///
+///
         #[doc(alias = "kSecKeyNoAccessControl")]
         const NoAccessControl = 0x00000004;
     }
@@ -161,7 +214,13 @@ unsafe impl RefEncode for SecKeyImportExportFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportparameters?language=objc)
+/// The legacy import/export parameter structure.
+///
+/// ## Overview
+///
+/// PKCS12 is an abbreviation for Public-Key Cryptography Standard # 12. This standard, by RSA Security, provides a format for external representation of keys and certificates and is described in _PKCS 12 v1.0: Personal Information Exchange Syntax_.
+///
+///
 #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -208,7 +267,13 @@ unsafe impl RefEncode for SecKeyImportExportParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters?language=objc)
+/// The import/export parameter structure.
+///
+/// ## Overview
+///
+/// Use this structure as the `keyParams` input parameter to the [`SecItemExport`](https://developer.apple.com/documentation/security/secitemexport(_:_:_:_:_:)) and the [`SecItemImport`](https://developer.apple.com/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)) functions.
+///
+///
 #[cfg(feature = "SecBase")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -247,7 +312,35 @@ unsafe impl RefEncode for SecItemImportExportKeyParameters {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemexport?language=objc)
+    /// Exports one or more certificates, keys, or identities.
+    ///
+    /// Parameters:
+    /// - keychainItemOrArray: The keychain item or items to export. You can export only the following types of keychain items: `SecCertificateRef`, `SecKeyRef`, and `SecIdentityRef`. If you are exporting exactly one item, you can specify a `SecKeychainItemRef` object. Otherwise this parameter is a `CFArrayRef` object containing a number of items of type `SecKeychainItemRef`.
+    ///
+    /// - outputFormat: The format of the desired external representation for the item. Set this parameter to `kSecFormatUnknown` to use the default for that item type. Possible values for this parameter and default values are enumerated in [`SecExternalFormat`](https://developer.apple.com/documentation/security/secexternalformat).
+    ///
+    /// - flags: A flag indicating whether the exported item should have PEM armor. PEM armor refers to a way of expressing binary data as an ASCII string so that it can be transferred over text-only channels such as email. Set this flag to `kSecItemPemArmour` if you want PEM armoring.
+    ///
+    /// - keyParams: A pointer to a structure containing a set of input parameters for the function. If no key items are being exported, these parameters are optional and you can set the `keyParams` parameter to `NULL`.
+    ///
+    /// - exportedData: On return, points to the external representation of the keychain item or items.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function works only with keys, certificates, and identities. An identity is the combination of a certificate and its associated private key. Although public keys are commonly stored in certificates, they can be stored separately in the keychain as well; for example, when you call the [`SecKeyCreatePair`](https://developer.apple.com/documentation/security/seckeycreatepair) function to create a key pair, both the public and private keys are stored in the keychain. Use the [`SecKeychainSearchCopyNext`](https://developer.apple.com/documentation/security/seckeychainsearchcopynext) function to find a key or certificate. Use the [`SecIdentitySearchCopyNext`](https://developer.apple.com/documentation/security/secidentitysearchcopynext) function in the Certificate, Key, and Trust API to find an identity.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecItemExport(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secitemexport(_:_:_:_:_:)) instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -287,7 +380,31 @@ impl SecKeychainItem {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemexport(_:_:_:_:_:)?language=objc)
+    /// Exports one or more certificates, keys, or identities.
+    ///
+    /// Parameters:
+    /// - secItemOrArray: The keychain item or items to export. You can export only the following types of keychain items: [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), and [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity). If you are exporting exactly one item, you can specify a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) object. Otherwise this parameter is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing a number of items of type [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem).
+    ///
+    /// - outputFormat: The format of the desired external representation for the item. Set this parameter to [`kSecFormatUnknown`](https://developer.apple.com/documentation/security/secexternalformat/formatunknown) to use the default for that item type. Possible values for this parameter and default values are enumerated in [`SecExternalFormat`](https://developer.apple.com/documentation/security/secexternalformat).
+    ///
+    /// - flags: A flag field indicating whether the exported item should have PEM armor. PEM armor refers to a way of expressing binary data as an ASCII string so that it can be transferred over text-only channels such as email. Set this flag to [`kSecItemPemArmour`](https://developer.apple.com/documentation/security/secitemimportexportflags/pemarmour) if you want PEM armoring.
+    ///
+    /// - keyParams: A pointer to a structure containing a set of input parameters for the function. If no key items are being exported, these parameters are optional and you can set the `keyParams` parameter to `NULL`. For more information, see [`SecItemImportExportKeyParameters`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters).
+    ///
+    /// - exportedData: On return, the variable referenced by this argument is overwritten with a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object containing the external representation of the keychain item or items. You are responsible for releasing this object by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function works only with keys, certificates, and identities. An identity is the combination of a certificate and its associated private key. Although public keys are commonly stored in certificates, they can be stored separately in the keychain as well; for example, when you call the [`SecKeyCreatePair`](https://developer.apple.com/documentation/security/seckeycreatepair) function to create a key pair, both the public and private keys are stored in the keychain. Use the [`SecKeychainSearchCopyNext`](https://developer.apple.com/documentation/security/seckeychainsearchcopynext) function to find a key or certificate. Use the [`SecIdentitySearchCopyNext`](https://developer.apple.com/documentation/security/secidentitysearchcopynext) function in the Certificate, Key, and Trust API to find an identity.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -306,7 +423,56 @@ extern "C-unwind" {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitemimport?language=objc)
+    /// Imports one or more certificates, keys, or identities and adds them to a keychain.
+    ///
+    /// Parameters:
+    /// - importedData: The external representation of the items to import.
+    ///
+    /// - fileNameOrExtension: The name or extension of the file from which the external representation was obtained. Pass `NULL` if you don’t know the name or extension.
+    ///
+    /// - inputFormat: On entry, points to the format of the external representation. Pass `kSecFormatUnknown` if you do not know the exact format. On return, points to the format that the function has determined the external representation to be in. Pass `NULL` if you don’t know the format and don’t want the format returned to you. For a list of formats, see [`SecExternalFormat`](https://developer.apple.com/documentation/security/secexternalformat).
+    ///
+    /// - itemType: On entry, points to the item type of the item or items contained in the external representation. Pass [`SecExternalItemType.itemTypeUnknown`](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeunknown) if you do not know the item type. On return, points to the item type that the function has determined the external representation to contain. Pass `NULL` if you don’t know the item type and don’t want the type returned to you.
+    ///
+    /// - flags: Unused; pass in `0`.
+    ///
+    /// - keyParams: A pointer to a structure containing a set of input parameters for the function. If no key items are being imported, these parameters are optional and you can set the `keyParams` parameter to `NULL`. If you pass `NULL` for the `importKeychain` parameter, the `kSecKeyImportOnlyOne` bit in the `flags` field of the [`SecKeyImportExportParameters`](https://developer.apple.com/documentation/security/seckeyimportexportparameters) structure is ignored. Otherwise, if the `kSecKeyImportOnlyOne` bit is set and there is more than one private key in the incoming external representation, no items are imported to the specified keychain and the error `errSecMultiplePrivKeys` is returned. The possible values for the `flags` field are described in [`SecKeyImportExportFlags`](https://developer.apple.com/documentation/security/seckeyimportexportflags).
+    ///
+    /// - importKeychain: A keychain object indicating the keychain to which the key or certificate should be imported. If you pass `NULL`, the item is not imported. Use the [`SecKeychainCopyDefault(_:)`](https://developer.apple.com/documentation/security/seckeychaincopydefault(_:)) function to get a reference to the default keychain.
+    ///
+    /// - outItems: On return, points to an array of `SecKeychainItemRef` objects for the imported items. You must provide a valid pointer to a `CFArrayRef` object to receive this information. If you pass `NULL` for this parameter, the function does not return the imported items. You must call the `CFRelease` function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you pass this function a `CFDataRef` object containing the external representation of one or more keys, certificates, or identities, [`SecKeychainItemImport`](https://developer.apple.com/documentation/security/seckeychainitemimport) attempts to determine the format and contents of the data. To ensure that this process is successful, you should specify values for one or more of the parameters `fileNameOrExtension`, `inputFormat`, and `itemType`. To have the function add the imported items to a keychain, specify a non-`NULL` value for the `importKeychain` parameter. To have the function return `SecKeychainItemRef` objects for the imported items, specify a non-`NULL` value for the `outItems` parameter.
+    ///
+    /// Because the [`SecKeychainItemImport`](https://developer.apple.com/documentation/security/seckeychainitemimport) function determines whether the item is PEM armored by inspecting the data, the `flags` parameter is not used in calling this function.
+    ///
+    /// After the function returns, you can determine the nature of the keychain items from the values returned in the `inputFormat` and `itemType` parameters. Depending on the nature of each item, once it is imported to a keychain you can safely cast the `SecKeychainItemRef` object to a `SecKeyRef`, `SecCertificateRef`, or `SecIdentityRef` object.
+    ///
+    /// Note that when you import data in PKCS12 format, typically one `SecIdentityRef` object is returned in the `outItems` parameter. The data might also include one or more `SecCertificateRef` objects. The output data will not include any `SecKeyRef` objects unless the incoming data includes a key with no matching certificate.
+    ///
+    /// When the output item type is `kSecItemTypeAggregate`, you can use the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function to determine the Core Foundation type of each item and the functions in `Getting Information About Keychain Services and Types` to determine the keychain item type of each item. For example, the following code determines whether the item is a certificate:
+    ///
+    /// ```objc
+    /// CFTypeID theID = CFGetTypeID(theItem);
+    /// if (SecCertificateGetTypeID() == theID)
+    /// ```
+    ///
+    /// You can pass in `NULL` for both `outItems` and `importKeychain` to determine what is inside a given external data representation. When you do, the function returns the input format and the item type without modifying the data in any way.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecItemImport(_:_:_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)) instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -356,7 +522,70 @@ impl SecKeychainItem {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)?language=objc)
+    /// Imports one or more certificates, keys, or identities and optionally adds them to a keychain.
+    ///
+    /// Parameters:
+    /// - importedData: A [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object containing the data to import.
+    ///
+    /// - fileNameOrExtension: Optional. The name of the file from which the external representation was previously read, or if that is unknown, then the file extension (`.p7r`, for example). This serves as a hint for the key format and key type detection code.
+    ///
+    /// - inputFormat: Optional. The address of a [`SecExternalFormat`](https://developer.apple.com/documentation/security/secexternalformat) variable.
+    ///
+    /// If you know what format the external representation is in, set the initial value of this variable to an appropriate format constant to eliminate the need to detect the format. If not, set it to [`kSecFormatUnknown`](https://developer.apple.com/documentation/security/secexternalformat/formatunknown).
+    ///
+    /// On return, the variable referenced by this argument is set to the format that the function actually detected.
+    ///
+    /// Pass `NULL` if you don’t know or don’t care what format the external representation is in.
+    ///
+    /// - itemType: Optional. The address of a [`SecExternalItemType`](https://developer.apple.com/documentation/security/secexternalitemtype) variable.
+    ///
+    /// Before calling this function, if you know what type of key the external representation contains, set the variable to an appropriate type constant to eliminate the need to detect the key type. If not, set it to [`kSecItemTypeUnknown`](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeunknown).
+    ///
+    /// On return, the variable referenced by this argument is set to the type of key that the function actually detected.
+    ///
+    /// Pass `NULL` if you don’t know or don’t care what key type the external representation contains.
+    ///
+    /// - flags: A set of import flags. See [`SecItemImportExportFlags`](https://developer.apple.com/documentation/security/secitemimportexportflags) for valid values.
+    ///
+    /// Note that PEM formatting is determined internally via inspection of the incoming data, so the [`kSecItemPemArmour`](https://developer.apple.com/documentation/security/secitemimportexportflags/pemarmour) flag  is ignored.
+    ///
+    /// - keyParams: A pointer to a structure containing a set of input parameters for the function. See [`SecItemImportExportKeyParameters`](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters).
+    ///
+    /// - importKeychain: Optional. The keychain into which the item should be imported. Pass `NULL` if you do not want to import the item into a keychain.
+    ///
+    /// - outItems: Optional. The address of a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) variable that, upon return, will contain a list of keychain items. Pass `NULL` if you do not want a copy of these items.
+    ///
+    /// Upon return, the referenced variable is overwritten by a new [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) array that contains [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) objects, each of which may be a [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate), [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey), or [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity) object. The caller is responsible for releasing this [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When importing a PKCS12 blob, typically one [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity) object and zero or more additional [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) objects are returned in `outItems`. No [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) objects are returned unless a key is found in the incoming blob that does not have a matching certificate.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses the `fileNameOrExtension`, `inputFormat`, and `itemType` parameters to help it interpret the incoming data. In most cases, [`SecItemImport`](https://developer.apple.com/documentation/security/secitemimport(_:_:_:_:_:_:_:_:)) can correctly interpret an external item if none of these are specified, but it is safer for you not to count on that ability.
+    ///
+    /// When the output item type is [`kSecItemTypeAggregate`](https://developer.apple.com/documentation/security/secexternalitemtype/itemtypeaggregate), you can use the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function to determine the Core Foundation type of each item and the functions in `Getting Information About Keychain Services and Types` to determine the keychain item type of each item. For example, the following code determines whether the item is a certificate:
+    ///
+    /// ```objc
+    /// CFTypeID theID = CFGetTypeID(theItem);
+    /// if (SecCertificateGetTypeID() == theID)
+    /// ```
+    ///
+    /// You can pass in `NULL` for both `outItems` and `importKeychain` to determine what is inside a given external data representation. When you do, the function returns the input format and the item type without modifying the data in any way.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -378,28 +607,33 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// A passphrase (represented by a `CFStringRef` object) to be used when exporting to or importing from PKCS#12 format.
     /// Predefined key constants used when passing dictionary-based arguments to import/export functions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportexportpassphrase?language=objc)
     pub static kSecImportExportPassphrase: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportexportkeychain?language=objc)
+    /// A keychain represented by a SecKeychainRef to be used as the target when importing or exporting.
     pub static kSecImportExportKeychain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportexportaccess?language=objc)
+    /// An initial access control list represented by a [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess) object.
     pub static kSecImportExportAccess: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimporttomemoryonly?language=objc)
     pub static kSecImportToMemoryOnly: &'static CFString;
 }
 
 extern "C" {
+    /// Item label.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type `CFStringRef`. The format of the string is implementation specific.
+    ///
+    ///
     /// Predefined key constants used to pass back a CFArray with a
     /// CFDictionary per item.
     ///
@@ -413,32 +647,75 @@ extern "C" {
     /// certificates.  Not guaranteed to successfully evaluate.
     ///
     /// certificates for this item's identity
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportitemlabel?language=objc)
     pub static kSecImportItemLabel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportitemkeyid?language=objc)
+    /// Key ID.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type `CFDataRef`. This unique ID is often the SHA-1 digest of the public encryption key.
+    ///
+    ///
     pub static kSecImportItemKeyID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportitemtrust?language=objc)
+    /// Trust management object.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type `SecTrustRef`. The trust reference returned by the [`SecPKCS12Import`](https://developer.apple.com/documentation/security/secpkcs12import(_:_:_:)) function has been evaluated against the basic X.509 policy and includes as complete a certificate chain as could be constructed from the certificates in the PKCS #12 blob, certificates on the keychain, and any other certificates available to the system. You can use the [`SecTrustEvaluate`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) function if you want to know whether the certificate chain is complete and valid (according to the basic X.509 policy). There is no guarantee that the evaluation will succeed.
+    ///
+    ///
     pub static kSecImportItemTrust: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportitemcertchain?language=objc)
+    /// Certificate list.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type `CFArrayRef`. The array consists of `SecCertificateRef` objects for all the certificates in the PKCS #12 blob. This list might differ from that in the trust management object if there is more than one identity in the blob or if the blob contains extra certificates (for example, an intermediate certificate that is not yet valid but might be needed to establish validity in the near future).
+    ///
+    ///
     pub static kSecImportItemCertChain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecimportitemidentity?language=objc)
+    /// Identity object.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is of type `SecIdentityRef` and represents one identity contained in the PKCS #12 blob.
+    ///
+    ///
     pub static kSecImportItemIdentity: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Returns the identities and certificates in a PKCS #12-formatted blob.
+    ///
+    /// Parameters:
+    /// - pkcs12_data: The PKCS #12 data you wish to decode.
+    ///
+    /// - options: A dictionary of key-value pairs specifying options for the function. See [Keychain Import and Export Options](https://developer.apple.com/documentation/security/keychain-import-and-export-options) for a list of valid keys.
+    ///
+    /// - items: On return, an array of `CFDictionary` key-value dictionaries. The function returns one dictionary for each item (identity or certificate) in the PKCS #12 blob. For a list of dictionary keys, see [PKCS #12 Import Item Keys](https://developer.apple.com/documentation/security/pkcs-12-import-item-keys).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). The function returns [`errSecSuccess`](https://developer.apple.com/documentation/security/errsecsuccess) if there were no errors, [`errSecDecode`](https://developer.apple.com/documentation/security/errsecdecode) if the blob can’t be read or is malformed, and [`errSecAuthFailed`](https://developer.apple.com/documentation/security/errsecauthfailed) if the password was not correct or data in the blob was damaged.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application can import a PKCS #12–formatted blob (a file with extension `.p12`) containing certificates and identities, where an identity is a digital certificate together with its associated private key. You can use the `SecPKCS12Import` function to obtain `SecIdentityRef` objects (including `SecCertificateRef` and `SecKeyRef` objects) for the identities in the blob, together with `SecCertificateRef` objects for the certificates in the blob needed to validate the identity, and `SecTrustRef` trust management objects needed to evaluate trust for the identities. You can then use the Keychain Services API (see [Keychain services](https://developer.apple.com/documentation/security/keychain-services)) to put the identities and associated certificates in the keychain.
+    ///
+    ///
     /// Imports the contents of a PKCS12 formatted blob.
     ///
     /// Parameter `pkcs12_data`: The PKCS#12 formatted data to be imported.
@@ -471,8 +748,6 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `items` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpkcs12import(_:_:_:)?language=objc)
     pub fn SecPKCS12Import(
         pkcs12_data: &CFData,
         options: &CFDictionary,

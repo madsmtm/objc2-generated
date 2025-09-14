@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest?language=objc)
+    /// A class that defines the assertion request type for security key credentials.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to sign in with an existing credential on a security key.
+    ///
+    ///
     #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]

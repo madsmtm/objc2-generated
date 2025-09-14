@@ -7,6 +7,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A group of acceleration structures.
     /// A group of acceleration structures which may be used together in an instance acceleration
     /// structure.
     ///
@@ -17,8 +18,6 @@ extern_class!(
     /// the total number and size of acceleration structures that can be created with the same group is
     /// limited by the Metal device's buffer size limits. Therefore, do not group acceleration
     /// structures unless they are likely to be used in the same instance acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructuregroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

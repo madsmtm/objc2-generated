@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Filtering options for determining which pixel value is returned within a mipmap level.
 /// Options for filtering texels within a mip level.
 ///
 ///
@@ -14,17 +15,25 @@ use crate::*;
 ///
 ///
 /// Select two texels in each dimension, and interpolate linearly between them.  Not all devices support linear filtering for all formats.  Integer textures can not use linear filtering on any device, and only some devices support linear filtering of Float textures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMinMagFilter(pub NSUInteger);
 impl MTLSamplerMinMagFilter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter/nearest?language=objc)
+    /// Select the single pixel nearest to the sample point.
     #[doc(alias = "MTLSamplerMinMagFilterNearest")]
     pub const Nearest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter/linear?language=objc)
+    /// Select two pixels in each dimension and interpolate linearly between them.
+    ///
+    /// ## Discussion
+    ///
+    /// Support for linear filtering varies by GPU and the format of the texture being sampled. For example, you can’t use linear filtering on textures with an integer format, and only some device objects support linear filtering for textures with a floating-point format. To determine whether linear filtering is available for a specific texture format, see:
+    ///
+    /// - [Metal feature set tables (PDF)](https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf)
+    ///
+    /// - [Metal feature set tables (Numbers)](https://developer.apple.com/metal/metal-feature-set-tables.zip)
+    ///
+    ///
     #[doc(alias = "MTLSamplerMinMagFilterLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -37,21 +46,30 @@ unsafe impl RefEncode for MTLSamplerMinMagFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Filtering options for determining what pixel value is returned with multiple mipmap levels.
 /// Options for selecting and filtering between mipmap levels
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMipFilter(pub NSUInteger);
 impl MTLSamplerMipFilter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter/notmipmapped?language=objc)
+    /// The texture is sampled from mipmap level `0`, and other mipmap levels are ignored.
     #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
     pub const NotMipmapped: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter/nearest?language=objc)
+    /// The nearest mipmap level is selected.
     #[doc(alias = "MTLSamplerMipFilterNearest")]
     pub const Nearest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter/linear?language=objc)
+    /// If the filter falls between mipmap levels, both levels are sampled and the results are determined by linear interpolation between levels.
+    ///
+    /// ## Discussion
+    ///
+    /// Support for linear filtering between mipmaps varies by GPU and the format of the texture being sampled. For example, you can’t use linear filtering on textures with an integer format, and only some device objects support linear filtering for textures with a floating-point format. To determine whether linear filtering is available for a specific texture format, see:
+    ///
+    /// - [Metal feature set tables (PDF)](https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf)
+    ///
+    /// - [Metal feature set tables (Numbers)](https://developer.apple.com/metal/metal-feature-set-tables.zip)
+    ///
+    ///
     #[doc(alias = "MTLSamplerMipFilterLinear")]
     pub const Linear: Self = Self(2);
 }
@@ -64,6 +82,7 @@ unsafe impl RefEncode for MTLSamplerMipFilter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Modes that determine the texture coordinate at each pixel when a fetch falls outside the bounds of a texture.
 /// Options for what value is returned when a fetch falls outside the bounds of a texture.
 ///
 ///
@@ -83,29 +102,27 @@ unsafe impl RefEncode for MTLSamplerMipFilter {
 ///
 ///
 /// Clamp to border color returns the value specified by the borderColor variable of the MTLSamplerDesc.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerAddressMode(pub NSUInteger);
 impl MTLSamplerAddressMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptoedge?language=objc)
+    /// Texture coordinates are clamped between `0.0` and `1.0`, inclusive.
     #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
     pub const ClampToEdge: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/mirrorclamptoedge?language=objc)
+    /// Between `-1.0` and `1.0`, the texture coordinates are mirrored across the axis; outside `-1.0` and `1.0`, texture coordinates are clamped.
     #[doc(alias = "MTLSamplerAddressModeMirrorClampToEdge")]
     pub const MirrorClampToEdge: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/repeat?language=objc)
+    /// Texture coordinates wrap to the other side of the texture, effectively keeping only the fractional part of the texture coordinate.
     #[doc(alias = "MTLSamplerAddressModeRepeat")]
     pub const Repeat: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/mirrorrepeat?language=objc)
+    /// Between `-1.0` and `1.0`, the texture coordinates are mirrored across the axis; outside `-1.0` and `1.0`, the image is repeated.
     #[doc(alias = "MTLSamplerAddressModeMirrorRepeat")]
     pub const MirrorRepeat: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptozero?language=objc)
+    /// Out-of-range texture coordinates return transparent zero `(0,0,0,0)` for images with an alpha channel and return opaque zero `(0,0,0,1)` for images without an alpha channel.
     #[doc(alias = "MTLSamplerAddressModeClampToZero")]
     pub const ClampToZero: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptobordercolor?language=objc)
+    /// Out-of-range texture coordinates return the value specified by the [`borderColor`](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/bordercolor) property.
     #[doc(alias = "MTLSamplerAddressModeClampToBorderColor")]
     pub const ClampToBorderColor: Self = Self(5);
 }
@@ -118,6 +135,7 @@ unsafe impl RefEncode for MTLSamplerAddressMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values that determine the border color for clamped texture values when the sampler address mode is [`MTLSamplerAddressModeClampToBorderColor`](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptobordercolor).
 /// Specify the color value that will be clamped to when the sampler address mode is MTLSamplerAddressModeClampToBorderColor.
 ///
 ///
@@ -128,20 +146,18 @@ unsafe impl RefEncode for MTLSamplerAddressMode {
 ///
 ///
 /// OpaqueWhite returns {1,1,1,1} for clamped texture values.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerBorderColor(pub NSUInteger);
 impl MTLSamplerBorderColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor/transparentblack?language=objc)
+    /// A transparent black color `(0,0,0,0)` for texture values outside the border.
     #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
     pub const TransparentBlack: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor/opaqueblack?language=objc)
+    /// An opaque black color `(0,0,0,1)` for texture values outside the border
     #[doc(alias = "MTLSamplerBorderColorOpaqueBlack")]
     pub const OpaqueBlack: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor/opaquewhite?language=objc)
+    /// An opaque white color `(1,1,1,1)` for texture values outside the border.
     #[doc(alias = "MTLSamplerBorderColorOpaqueWhite")]
     pub const OpaqueWhite: Self = Self(2);
 }
@@ -155,26 +171,22 @@ unsafe impl RefEncode for MTLSamplerBorderColor {
 }
 
 /// Configures how the sampler aggregates contributing samples to a final value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode?language=objc)
+/// Configures how the sampler aggregates contributing samples to a final value.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerReductionMode(pub NSUInteger);
 impl MTLSamplerReductionMode {
     /// A reduction mode that adds together the product of each contributing sample value by its weight.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode/weightedaverage?language=objc)
+    /// A reduction mode that adds together the product of each contributing sample value by its weight.
     #[doc(alias = "MTLSamplerReductionModeWeightedAverage")]
     pub const WeightedAverage: Self = Self(0);
     /// A reduction mode that finds the minimum contributing sample value by separately evaluating each channel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode/minimum?language=objc)
+    /// A reduction mode that finds the minimum contributing sample value by separately evaluating each channel.
     #[doc(alias = "MTLSamplerReductionModeMinimum")]
     pub const Minimum: Self = Self(1);
     /// A reduction mode that finds the maximum contributing sample value by separately evaluating each channel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode/maximum?language=objc)
+    /// A reduction mode that finds the maximum contributing sample value by separately evaluating each channel.
     #[doc(alias = "MTLSamplerReductionModeMaximum")]
     pub const Maximum: Self = Self(2);
 }
@@ -188,9 +200,14 @@ unsafe impl RefEncode for MTLSamplerReductionMode {
 }
 
 extern_class!(
-    /// A mutable descriptor used to configure a sampler.  When complete, this can be used to create an immutable MTLSamplerState.
+    /// An object that you use to configure a texture sampler.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// To make a sampler, create and configure an [`MTLSamplerDescriptor`](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor) instance and then call an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`newSamplerStateWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makesamplerstate(descriptor:)) method. After you create the sampler, you can release the descriptor or reconfigure its properties to create other samplers.
+    ///
+    ///
+    /// A mutable descriptor used to configure a sampler.  When complete, this can be used to create an immutable MTLSamplerState.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLSamplerDescriptor;
@@ -433,9 +450,24 @@ impl DefaultRetained for MTLSamplerDescriptor {
 }
 
 extern_protocol!(
-    /// An immutable collection of sampler state compiled for a single device.
+    /// An instance that defines how a texture should be sampled.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerstate?language=objc)
+    /// ## Overview
+    ///
+    /// The [`MTLSamplerState`](https://developer.apple.com/documentation/metal/mtlsamplerstate) protocol defines the interface for a lightweight instance used to encode how a shader or compute kernel should sample a texture. To create a sampler state instance:
+    ///
+    /// 1. Create an [`MTLSamplerDescriptor`](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor) instance.
+    ///
+    /// 2. Set the desired properties of the sampler descriptor, including filtering options, addressing modes, maximum anisotropy, and level-of-detail parameters.
+    ///
+    /// 3. Call the [`newSamplerStateWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makesamplerstate(descriptor:)) method of the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+    ///
+    /// (Your app does not define a class that implements the [`MTLSamplerState`](https://developer.apple.com/documentation/metal/mtlsamplerstate) protocol.)
+    ///
+    /// You can either release the [`MTLSamplerDescriptor`](https://developer.apple.com/documentation/metal/mtlsamplerdescriptor) instance or modify its property values and reuse it to create more [`MTLSamplerState`](https://developer.apple.com/documentation/metal/mtlsamplerstate) instances. The descriptor’s properties are only used during instance creation; once created the behavior of a sampler state instance is fixed and cannot be changed.
+    ///
+    ///
+    /// An immutable collection of sampler state compiled for a single device.
     pub unsafe trait MTLSamplerState: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]

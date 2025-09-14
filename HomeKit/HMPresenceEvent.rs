@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An event that triggers based on the presence of users in the home.
     /// This class is used to represent the presence of users in a home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresenceevent?language=objc)
     #[unsafe(super(HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]
@@ -112,9 +111,8 @@ impl HMPresenceEvent {
 }
 
 extern_class!(
+    /// A mutable event that triggers based on the presence of users in the home.
     /// This class is used to represent the presence of users in a home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutablepresenceevent?language=objc)
     #[unsafe(super(HMPresenceEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]

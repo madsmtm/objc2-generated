@@ -7,23 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder?language=objc)
+/// Constants that define the ordering strategy for menu elements in a context menu.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuConfigurationElementOrder(pub NSInteger);
 impl UIContextMenuConfigurationElementOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder/automatic?language=objc)
+    /// A constant that allows the system to choose an ordering strategy according to the current context.
     #[doc(alias = "UIContextMenuConfigurationElementOrderAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// Allows the system to choose the appropriate ordering strategy for the current context.
+    /// A constant that displays menu elements according to their priority.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder/priority?language=objc)
+    /// ## Discussion
+    ///
+    /// This ordering strategy displays the first menu element in the [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) closest to the location of the user interaction.
+    ///
+    ///
+    /// Allows the system to choose the appropriate ordering strategy for the current context.
     #[doc(alias = "UIContextMenuConfigurationElementOrderPriority")]
     pub const Priority: Self = Self(1);
-    /// Order menu elements according to priority. Keeping the first element in the UIMenu closest to user's interaction point.
+    /// A constant that displays menu elements in a fixed order.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration/elementorder/fixed?language=objc)
+    /// ## Discussion
+    ///
+    /// This ordering strategy displays the menu elements in the order they appear in the [`children`](https://developer.apple.com/documentation/uikit/uimenu/children) array of the [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu).
+    ///
+    ///
+    /// Order menu elements according to priority. Keeping the first element in the UIMenu closest to user's interaction point.
     #[doc(alias = "UIContextMenuConfigurationElementOrderFixed")]
     pub const Fixed: Self = Self(2);
 }
@@ -36,20 +46,46 @@ unsafe impl RefEncode for UIContextMenuConfigurationElementOrder {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns an action-based contextual menu, optionally incorporating the system-suggested actions.
+///
+/// Parameters:
+/// - suggestedActions: Suggested actions for you to include in your menu. UIKit collects these actions from responders in the current responder chain. You are not required to include the actions in your menu.
+///
+///
+/// ## Return Value
+///
+/// The menu object containing the actions for the user to select.
+///
+///
+///
+/// ## Discussion
+///
+/// Use this handler to create [`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) objects representing the actions the user may choose from your menu. To organize groups of actions hierarchically, create a [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) object to represent a submenu and add nested actions to it. Finally, build your top-level [`UIMenu`](https://developer.apple.com/documentation/uikit/uimenu) object from the actions and submenus you created, and return that menu object from your handler.
+///
+///
 /// Return a UIAction-based UIMenu describing the desired action hierarchy.
 ///
 ///
 /// Parameter `suggestedActions`: An array of suggested actions gathered from the UIResponder chain. You may choose to include
 /// some of these actions in the hierarchy returned from this block to display them in the resulting menu.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuactionprovider?language=objc)
 #[cfg(all(feature = "UIMenu", feature = "UIMenuElement", feature = "block2"))]
 pub type UIContextMenuActionProvider =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UIMenuElement>>) -> *mut UIMenu>;
 
-/// Return a UIViewController to be displayed as this menu's preview component.
+/// Returns the custom view controller to use when previewing your content.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenucontentpreviewprovider?language=objc)
+/// ## Return Value
+///
+/// The view controller to display in place of the system’s standard view controller. If you want UIKit to present your content using a default view controller, return `nil`.
+///
+///
+///
+/// ## Discussion
+///
+/// Use this handler to load or create your custom view controller, configure it with your content, and return it to UIKit.
+///
+///
+/// Return a UIViewController to be displayed as this menu's preview component.
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIViewController",
@@ -59,7 +95,19 @@ pub type UIContextMenuContentPreviewProvider =
     *mut block2::DynBlock<dyn Fn() -> *mut UIViewController>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration?language=objc)
+    /// An object containing the configuration details for the contextual menu.
+    ///
+    /// ## Overview
+    ///
+    /// Before displaying a contextual menu, the system asks your [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate) to provide a [`UIContextMenuConfiguration`](https://developer.apple.com/documentation/uikit/uicontextmenuconfiguration) object with details about that menu. In your [`contextMenuInteraction:configurationForMenuAtLocation:`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/contextmenuinteraction(_:configurationformenuatlocation:)) method, use the location parameter to determine where the interaction occurred, and use the content at that location to configure your contextual menu and view controller. Provide custom blocks to generate:
+    ///
+    /// - The contextual menu with the actions for your content.
+    ///
+    /// - An optional view controller to use when displaying your content.
+    ///
+    /// If you specify a default object without any custom handler blocks, the system displays a default preview interface with no menu.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,62 +8,64 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// NSError domain for DeviceAccess errors.
+    /// A unique error domain for the framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// For more information, see [Error domains](https://developer.apple.com/documentation/corefoundation/error-domains).
+    ///
+    ///
+    /// NSError domain for DeviceAccess errors.
     pub static DDErrorDomain: &'static NSString;
 }
 
+/// Codes that identify errors that can occur during the framework’s use.
+///
+/// ## Overview
+///
+/// The system returns one of these codes to describe a completed operation by invoking a [`DDErrorHandler`](https://developer.apple.com/documentation/devicediscoveryextension/dderrorhandler) that the client provides.
+///
+///
 /// Error codes used with DDErrorDomain.
 /// DeviceDiscoveryExtension error code range: 350000-350999.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDErrorCode(pub NSInteger);
 impl DDErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/success?language=objc)
+    /// An error that indicates an operation succeeds.
     #[doc(alias = "DDErrorCodeSuccess")]
     pub const Success: Self = Self(0);
+    /// An error that indicates an uncategorized problem.
     /// Success.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/unknown?language=objc)
     #[doc(alias = "DDErrorCodeUnknown")]
     pub const Unknown: Self = Self(350000);
+    /// An error that indicates the framework doesn’t support a parameter that the extension provides.
     /// Underlying failure with an unknown cause.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/badparameter?language=objc)
     #[doc(alias = "DDErrorCodeBadParameter")]
     pub const BadParameter: Self = Self(350001);
+    /// An error that indicates an unsupported configuration.
     /// Bad parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/unsupported?language=objc)
     #[doc(alias = "DDErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(350002);
+    /// An error that indicates a timeout occurs.
     /// Unsupported value, operation, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/timeout?language=objc)
     #[doc(alias = "DDErrorCodeTimeout")]
     pub const Timeout: Self = Self(350003);
+    /// An error that indicates a problem of internal origin.
     /// Session or operation timed out.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/internal?language=objc)
     #[doc(alias = "DDErrorCodeInternal")]
     pub const Internal: Self = Self(350004);
+    /// An error that indicates that the app extension lacks a required entitlement.
     /// Internal problem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/missingentitlement?language=objc)
     #[doc(alias = "DDErrorCodeMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(350005);
+    /// An error that indicates the app extension lacks necessary permissions.
     /// Missing entitlement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/permission?language=objc)
     #[doc(alias = "DDErrorCodePermission")]
     pub const Permission: Self = Self(350006);
+    /// An error the framework reserves for future use.
     /// Lacks permission to perform the operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/next?language=objc)
     #[doc(alias = "DDErrorCodeNext")]
     pub const Next: Self = Self(350007);
 }
@@ -76,15 +78,17 @@ unsafe impl RefEncode for DDErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type for framework functions that return error references.
 /// Type for returning NSError's from functions. Avoids long and repetitious method signatures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderrorouttype?language=objc)
 pub type DDErrorOutType = *mut *mut NSError;
 
+/// A function that executes code you provide when an operation returns an error or completes successfully.
+///
+/// Parameters:
+/// - inError: A reference that the framework assigns an error object when the operation fails. When the operation succeeds, the value may be `nil` or [`DDErrorCodeSuccess`](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code/success).
+///
 /// Invoked when a fail-able operation completes or an error occurs.
 ///
 /// Parameter `inError`: nil if successful. non-nil if an error occurred.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderrorhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type DDErrorHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;

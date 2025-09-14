@@ -9,9 +9,8 @@ use objc2_shared_with_you_core::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents mention activity for a highlight.
     /// A model object representing a mention event that has happened on some content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmentionevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWHighlightMentionEvent;

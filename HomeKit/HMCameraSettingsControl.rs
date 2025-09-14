@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the ability to control a camera’s settings.
     /// This class can be used to control the settings on a camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerasettingscontrol?language=objc)
     #[unsafe(super(HMCameraControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMCameraControl")]

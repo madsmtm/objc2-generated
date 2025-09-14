@@ -13,7 +13,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinfo?language=objc)
+    /// A glyph attribute in an attributed string.
+    ///
+    /// ## Overview
+    ///
+    /// Glyphs are the graphic representations of characters, stored in a font, that the text system draws on a display or printed page. Before text can be laid out, the layout manager (<[`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager)) generates a stream of glyphs, using the character and font information specified by the attributed string and contained in the font file. [`NSGlyphInfo`](https://developer.apple.com/documentation/appkit/nsglyphinfo) represents a glyph attribute value ([`NSGlyphInfoAttributeName`](https://developer.apple.com/documentation/appkit/nsglyphinfoattributename)) in an attributed string ([`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring)) and provides a means to override the standard glyph generation process and substitute a specified glyph over the attribute’s range.
+    ///
+    /// Glyph attributes are integer values that the layout manager uses to denote special handling for particular glyphs during rendering. [`NSGlyphInfo`](https://developer.apple.com/documentation/appkit/nsglyphinfo) enables you to override a font’s built-in mapping from a Unicode character code to a corresponding glyph ID. Overriding the mapping allows you to specify a variant glyph for a given character if the font contains multiple variations for that character or to specify a glyph that doesn’t have a standard mapping (such as some ligature glyphs).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGlyphInfo;
@@ -101,28 +109,28 @@ impl DefaultRetained for NSGlyphInfo {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection?language=objc)
+/// Values that map character identifiers to glyphs.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCharacterCollection(pub NSUInteger);
 impl NSCharacterCollection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/identitymappingcharactercollection?language=objc)
+    /// Indicates that the character identifier is equal to the glyph index.
     #[doc(alias = "NSIdentityMappingCharacterCollection")]
     pub const IdentityMappingCharacterCollection: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobecns1charactercollection?language=objc)
+    /// Indicates the Adobe-CNS1 mapping.
     #[doc(alias = "NSAdobeCNS1CharacterCollection")]
     pub const AdobeCNS1CharacterCollection: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobegb1charactercollection?language=objc)
+    /// Indicates the Adobe-GB1 mapping.
     #[doc(alias = "NSAdobeGB1CharacterCollection")]
     pub const AdobeGB1CharacterCollection: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobejapan1charactercollection?language=objc)
+    /// Indicates the Adobe-Japan1 mapping.
     #[doc(alias = "NSAdobeJapan1CharacterCollection")]
     pub const AdobeJapan1CharacterCollection: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobejapan2charactercollection?language=objc)
+    /// Indicates the Adobe-Japan2 mapping.
     #[doc(alias = "NSAdobeJapan2CharacterCollection")]
     pub const AdobeJapan2CharacterCollection: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscharactercollection/adobekorea1charactercollection?language=objc)
+    /// Indicates the Adobe-Korea1 mapping.
     #[doc(alias = "NSAdobeKorea1CharacterCollection")]
     pub const AdobeKorea1CharacterCollection: Self = Self(5);
 }

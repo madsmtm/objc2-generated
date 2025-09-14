@@ -15,8 +15,6 @@ extern_class!(
     /// for the device.  The IOUSBHostCIDeviceStateMachine should be destroyed in response to an IOUSBHostCIMessageTypeDeviceDestroy command.
     ///
     /// IOUSBHostCIDeviceStateMachine does not provide any concurrency protection, the client is responsible for necessary serialization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOUSBHostCIDeviceStateMachine;

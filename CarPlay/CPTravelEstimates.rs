@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes the time and distance remaining for a maneuver in a navigation session.
     /// `CPTravelEstimates`describes the time and distance remaining for the active navigation session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptravelestimates?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPTravelEstimates;

@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintent?language=objc)
+    /// An intent requesting the cancellation of a previously booked ride.
+    ///
+    /// ## Overview
+    ///
+    /// When the user cancels a ride that was previously booked through Siri or Maps, SiriKit sends an [`INCancelRideIntent`](https://developer.apple.com/documentation/intents/incancelrideintent) object to your handler. SiriKit populates this intent object with the ride identifier that you provided when originally booking the ride. Upon receiving this intent, verify the ride information and cancel the ride accordingly.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INCancelRideIntentHandling`](https://developer.apple.com/documentation/intents/incancelrideintenthandling) protocol. Your handler should confirm the request and create an [`INCancelRideIntentResponse`](https://developer.apple.com/documentation/intents/incancelrideintentresponse) object with the status of the ride.
+    ///
+    /// SiriKit prefers sending this intent object to your extension over canceling a ride by other means. So when responding to an [`INRequestRideIntent`](https://developer.apple.com/documentation/intents/inrequestrideintent) object, you can continue to set the [`userActivityForCancelingInApplication`](https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication) property of your response’s [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object to allow cancellation of the ride in your app. SiriKit uses that [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object only on systems where this intent is unavailable or not supported by your extension.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -71,11 +86,20 @@ impl INCancelRideIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for canceling a previously booked ride.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INCancelRideIntentHandling`](https://developer.apple.com/documentation/intents/incancelrideintenthandling) protocol to confirm and handle requests to cancel the user’s currently active ride. Adopt this protocol in an object of your Intents extension that is capable of canceling the ride with your service.
+    ///
+    /// Users may cancel rides from Siri or Maps. When the user requests to cancel a booked ride, SiriKit may send an [`INGetRideStatusIntent`](https://developer.apple.com/documentation/intents/ingetridestatusintent) object to your extension first to verify that a ride is still active and to retrieve the associated ride identifier. It includes that ride identifier in the [`INCancelRideIntent`](https://developer.apple.com/documentation/intents/incancelrideintent) object that it sends to your Intents extension.
+    ///
+    /// SiriKit prefers sending an [`INCancelRideIntent`](https://developer.apple.com/documentation/intents/incancelrideintent) object to your extension over canceling a ride by other means. So when responding to an [`INRequestRideIntent`](https://developer.apple.com/documentation/intents/inrequestrideintent) object, you can continue to set the [`userActivityForCancelingInApplication`](https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication) property of your response’s [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object to allow cancellation of the ride in your app. SiriKit uses that [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object only on systems where the cancellation intent is unavailable or not supported by your extension.
+    ///
+    ///
     /// Protocol to declare support for handling an INCancelRideIntent. By implementing this protocol, a class can provide logic for confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to confirm and handle the intent. The handling method is always called last, after confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintenthandling?language=objc)
     pub unsafe trait INCancelRideIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INCancelRideIntentResponse",

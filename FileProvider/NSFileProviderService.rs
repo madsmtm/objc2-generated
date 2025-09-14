@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderservicesource?language=objc)
+    /// A service that provides a custom communication channel between the host app and the File Provider extension.
+    ///
+    /// ## Overview
+    ///
+    /// To implement a File Provider service, the [`NSFileProviderExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension) subclass must override the [`supportedServiceSourcesForItemIdentifier:error:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/supportedservicesources(for:)) method and return the supported services.
+    ///
+    /// For more information about creating services, see   [`NSFileProviderService`](https://developer.apple.com/documentation/foundation/nsfileproviderservice).
+    ///
+    ///
     pub unsafe trait NSFileProviderServiceSource {
         /// The service name that uniquely identifies the service (using reverse domain
         /// name notation for you service name is recommended).

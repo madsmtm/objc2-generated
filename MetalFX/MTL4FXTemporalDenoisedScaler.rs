@@ -8,7 +8,6 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtl4fxtemporaldenoisedscaler?language=objc)
     #[cfg(all(
         feature = "MTLFXTemporalDenoisedScaler",
         feature = "MTLFXTemporalScaler"

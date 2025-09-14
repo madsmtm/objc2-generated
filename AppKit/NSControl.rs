@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol?language=objc)
+    /// A specialized view, such as a button or text field, that notifies your app of relevant events using the target-action design pattern.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol) class is abstract and must be subclassed to be used. Although you can subclass it yourself, more often you use one of the subclasses already defined by AppKit. A control draws content on the screen, automatically handles user interactions with that content, and calls the action method of its target object for any significant user interactions.
+    ///
+    /// ### About delegate methods
+    ///
+    /// The `NSControl` class provides several delegate methods for its subclasses that allow text editing, such as `NSTextField` and `NSMatrix`. These include: [`controlTextDidBeginEditing:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1428934-controltextdidbeginediting), [`controlTextDidChange:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1428982-controltextdidchange), and [`controlTextDidEndEditing:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1428847-controltextdidendediting).
+    ///
+    /// Note that although `NSControl` defines delegate methods, it doesn’t itself have a delegate. Any subclass that uses these methods must have a delegate and the methods to get and set it. In addition, a formal delegate protocol [`NSControlTextEditingDelegate`](https://developer.apple.com/documentation/appkit/nscontroltexteditingdelegate) also defines delegate methods used by control delegates.
+    ///
+    /// ### Responding to mouse events
+    ///
+    /// When the mouse button is pressed while the cursor is within the bounds of the receiver, the system calls [`mouseDown:`](https://developer.apple.com/documentation/appkit/nsresponder/mousedown(with:)). This method highlights the receiver’s cell and sends it a [`trackMouse:inRect:ofView:untilMouseUp:`](https://developer.apple.com/documentation/appkit/nscell/trackmouse(with:in:of:untilmouseup:)) message. Whenever the cell finishes tracking the mouse (for example, because the cursor has left the cell’s bounds), the cell is unhighlighted. If the mouse button is still down and the cursor reenters the bounds, the cell is again highlighted and a new [`trackMouse:inRect:ofView:untilMouseUp:`](https://developer.apple.com/documentation/appkit/nscell/trackmouse(with:in:of:untilmouseup:)) message is sent. This behavior repeats until the mouse button goes up. If it goes up with the cursor in the control, the state of the control is changed, and the action message is sent to the target. If the mouse button goes up when the cursor is outside the control, no action message is sent.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -478,7 +494,7 @@ impl NSControl {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltexteditingdelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol) subclasses to respond to editing actions.
     pub unsafe trait NSControlTextEditingDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -591,17 +607,44 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/textdidbegineditingnotification?language=objc)
+    /// Sent when a control with editable cells begins an edit session.
+    ///
+    /// ## Discussion
+    ///
+    /// The field editor of the edited cell originally sends an [`NSTextDidBeginEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didbegineditingnotification) to the control, which passes it on in this form to its delegate. The notification object is the `NSControl` object posting the notification. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "“NSFieldEditor”" }] }], [Paragraph { inline_content: [Text { text: "The edited cell’s field editor" }] }]]], alignments: None, metadata: None })
+    /// See the [`controlTextDidEndEditing:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1428847-controltextdidendediting) method for details. The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSControlTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/textdidendeditingnotification?language=objc)
+    /// Sent when a control with editable cells ends an editing session.
+    ///
+    /// ## Discussion
+    ///
+    /// The field editor of the edited cell originally sends an [`NSControlTextDidEndEditingNotification`](https://developer.apple.com/documentation/appkit/nscontrol/textdidendeditingnotification) to the control, which passes it on in this form to its delegate. The notification object is the `NSControl` object posting the notification. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "“NSFieldEditor”" }] }], [Paragraph { inline_content: [Text { text: "The edited cell’s field editor" }] }]]], alignments: None, metadata: None })
+    /// See the [`controlTextDidEndEditing:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1428847-controltextdidendediting) method for details. The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSControlTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/textdidchangenotification?language=objc)
+    /// Sent when the text in the receiving control changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The field editor of the edited cell originally sends an [`NSTextDidChangeNotification`](https://developer.apple.com/documentation/appkit/nstext/didchangenotification) to the control, which passes it on in this form to its delegate. The notification object is the `NSControl` object posting the notification. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "“NSFieldEditor”" }] }], [Paragraph { inline_content: [Text { text: "The edited cell’s field editor" }] }]]], alignments: None, metadata: None })
+    /// See the [`controlTextDidChange:`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1428982-controltextdidchange) method for details. The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSControlTextDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -689,30 +732,25 @@ impl NSControl {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlBorderShape(pub NSInteger);
 impl NSControlBorderShape {
     /// The control will resolve this to an appropriate shape for the given control size and context
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/automatic?language=objc)
+    /// The control will resolve this to an appropriate shape for the given control size and context
     #[doc(alias = "NSControlBorderShapeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// The control will resolve this to an appropriate shape for the given control size and context
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/capsule?language=objc)
+    /// The control will resolve this to an appropriate shape for the given control size and context
     #[doc(alias = "NSControlBorderShapeCapsule")]
     pub const Capsule: Self = Self(1);
     /// The control will resolve this to an appropriate shape for the given control size and context
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/roundedrectangle?language=objc)
+    /// The control will resolve this to an appropriate shape for the given control size and context
     #[doc(alias = "NSControlBorderShapeRoundedRectangle")]
     pub const RoundedRectangle: Self = Self(2);
     /// The control will resolve this to an appropriate shape for the given control size and context
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape/circle?language=objc)
+    /// The control will resolve this to an appropriate shape for the given control size and context
     #[doc(alias = "NSControlBorderShapeCircle")]
     pub const Circle: Self = Self(3);
 }

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentrecord?language=objc)
+    /// Detailed information about a financial transaction made between two users.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPaymentRecord`](https://developer.apple.com/documentation/intents/inpaymentrecord) object contains the details of a financial transaction that your app is facilitating. You create instances of this class when handling payment-related intents. The payment record contains the users involved in the transaction, the amount of money to transfer, and the current state of the transaction. Siri conveys this detailed information to the user at appropriate times.
+    ///
+    /// When creating payment records, specify as many details as possible. Siri always asks the user to confirm payments before asking your Intents extension to process them. During confirmation, Siri displays the information from this object in the confirmation interface. Omitting important pieces of information, such as the recipient or currency amount, might cause the user to cancel the transaction.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPaymentRecord;

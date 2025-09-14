@@ -9,19 +9,49 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop/mode/default?language=objc)
+    /// The mode set to handle input sources other than connection objects.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the most commonly used run-loop mode.
+    ///
+    ///
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDefaultRunLoopMode: &'static NSRunLoopMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop/mode/common?language=objc)
+    /// A pseudo-mode that includes one or more other run loop modes.
+    ///
+    /// ## Discussion
+    ///
+    /// When you add an object to a run loop using this mode, the runloop monitors the object when running in any of the common modes. For details about adding a runloop mode to the set of common modes, see [`CFRunLoopAddCommonMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddcommonmode(_:_:)).
+    ///
+    ///
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSRunLoopCommonModes: &'static NSRunLoopMode;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop?language=objc)
+    /// The programmatic interface to objects that manage input sources.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) object processes input for sources, such as mouse and keyboard events from the window system and [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects. A [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) object also processes [`NSTimer`](https://developer.apple.com/documentation/foundation/timer) events.
+    ///
+    /// Your application neither creates nor explicitly manages [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) objects. The system creates a [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) object as needed for each [`NSThread`](https://developer.apple.com/documentation/foundation/thread) object, including the application’s main thread. If you need to access the current thread’s run loop, use the class method [`currentRunLoop`](https://developer.apple.com/documentation/foundation/runloop/current).
+    ///
+    /// Note that from the perspective of [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop), [`NSTimer`](https://developer.apple.com/documentation/foundation/timer) objects aren’t “input”—they’re a special type, and they don’t cause the run loop to return when they fire.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  The [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) class is generally not thread-safe, and you must call its methods only within the context of the current thread. Don’t call the methods of a [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) object running in a different thread, which might cause unexpected results.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRunLoop;

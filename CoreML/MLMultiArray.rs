@@ -9,33 +9,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// The data type of scalars in the multi-array.
+/// Constants that define the underlying element types a multiarray can store.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype?language=objc)
+/// ## Overview
+///
+/// All elements of an [`MLMultiArray`](https://developer.apple.com/documentation/coreml/mlmultiarray) instance must be of the same type and must be defined in [`MLMultiArrayDataType`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype).
+///
+///
+/// The data type of scalars in the multi-array.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLMultiArrayDataType(pub NSInteger);
 impl MLMultiArrayDataType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/double?language=objc)
+    /// Designates the multiarray’s elements as doubles.
     #[doc(alias = "MLMultiArrayDataTypeDouble")]
     pub const Double: Self = Self(0x10000 | 64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float64?language=objc)
+    /// Designates the multiarray’s elements as 64-bit floats.
     #[doc(alias = "MLMultiArrayDataTypeFloat64")]
     pub const Float64: Self = Self(0x10000 | 64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float32?language=objc)
+    /// Designates the multiarray’s elements as 32-bit floats.
     #[doc(alias = "MLMultiArrayDataTypeFloat32")]
     pub const Float32: Self = Self(0x10000 | 32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float16?language=objc)
+    /// Designates the multiarray’s elements as 16-bit floats.
     #[doc(alias = "MLMultiArrayDataTypeFloat16")]
     pub const Float16: Self = Self(0x10000 | 16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float?language=objc)
+    /// Designates the multiarray’s elements as floats.
     #[doc(alias = "MLMultiArrayDataTypeFloat")]
     pub const Float: Self = Self(0x10000 | 32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/int32?language=objc)
+    /// Designates the multiarray’s elements as 32-bit integers.
     #[doc(alias = "MLMultiArrayDataTypeInt32")]
     pub const Int32: Self = Self(0x20000 | 32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/int8?language=objc)
     #[doc(alias = "MLMultiArrayDataTypeInt8")]
     pub const Int8: Self = Self(0x20000 | 8);
 }
@@ -49,6 +53,41 @@ unsafe impl RefEncode for MLMultiArrayDataType {
 }
 
 extern_class!(
+    /// A machine learning collection type that stores numeric values in an array with multiple dimensions.
+    ///
+    /// ## Overview
+    ///
+    /// A multidimensional array, or _multiarray_, is one of the underlying types of an `MLFeatureValue` that stores numeric values in multiple dimensions. All elements in an [`MLMultiArray`](https://developer.apple.com/documentation/coreml/mlmultiarray) instance are one of the same type, and one of the types that [`MLMultiArrayDataType`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype) defines:
+    ///
+    /// - [`MLMultiArrayDataTypeInt32`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/int32): 32-bit integer
+    ///
+    /// - [`MLMultiArrayDataTypeFloat16`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float16): 16-bit floating point number
+    ///
+    /// - [`MLMultiArrayDataTypeFloat32`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float32): 32-bit floating point number (also known as [`MLMultiArrayDataTypeFloat`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float))
+    ///
+    /// - [`MLMultiArrayDataTypeFloat64`](https://developer.apple.com/documentation/coreml/mlmultiarraydatatype/float64): 64-bit floating point number (also known as `double` in Swift or `MLMultiArrayDataTypeDouble` in Objective-C)
+    ///
+    /// Each dimension in a multiarray is typically significant or meaningful. For example, a model could have an input that accepts images as a multiarray of pixels with three dimensions, C x H x W. The first dimension, _C_,_ _represents the number of color channels, and the second and third dimensions, _H_ and _W_, represent the image’s height and width, respectively. The number of dimensions and size of each dimension define the multiarray’s _shape_.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Some models use a one-dimensional multiarray for an input or output. This type of multiarray is conceptually identical to a conventional array.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`shape`](https://developer.apple.com/documentation/coreml/mlmultiarray/shape) property is an integer array that has an element for each dimension in the multiarray. Each element in [`shape`](https://developer.apple.com/documentation/coreml/mlmultiarray/shape) defines the size of the corresponding dimension. To inspect the shape and constraints of a model’s multiarray input or output feature:
+    ///
+    /// 1. Access the model’s [`modelDescription`](https://developer.apple.com/documentation/coreml/mlmodel/modeldescription) property.
+    ///
+    /// 2. Find the multiarray input or output feature in the model description’s [`inputDescriptionsByName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname) or [`outputDescriptionsByName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname) property, respectively.
+    ///
+    /// 3. Access the feature description’s [`multiArrayConstraint`](https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint) property.
+    ///
+    /// 4. Inspect the multiarray constraint’s [`shape`](https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shape) and [`shapeConstraint`](https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint).
+    ///
+    ///
     /// Use `MLMultiArray` to store a multi-dimensional value.
     ///
     /// Unlike `MLShapedArray` or `MLTensor`, `MLMultiArray` can be used in Obj-C code. Unlike `MLTensor`, `MLMultiArray` is
@@ -72,8 +111,6 @@ extern_class!(
     ///
     /// The backing storage can be a heap allocated buffer or CVPixelBuffer. Though CVPixelBuffer backing supports limited
     /// data types, `MLModel` could share the storage with backend hardware such as Apple Neural Engine without copy.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLMultiArray;

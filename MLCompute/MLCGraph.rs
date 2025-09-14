@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A graph of layers you use to build a training or inference graph.
     /// A graph of layers that can be used to build a training or inference graph
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraph?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

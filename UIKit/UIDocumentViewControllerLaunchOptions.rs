@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentviewcontroller/launchoptions-swift.class?language=objc)
+    /// Options for customizing the document launch view.
+    ///
+    /// ## Overview
+    ///
+    /// When your app launches, the document view controller displays a view that contains a title and buttons to create new documents. It also displays the document browser as a sheet over the title view. For more information, see [Customizing a document-based app’s launch experience](https://developer.apple.com/documentation/uikit/customizing-a-document-based-app-s-launch-experience).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

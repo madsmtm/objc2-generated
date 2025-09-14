@@ -12,8 +12,6 @@ use crate::*;
 /// CMIOStream is the base class for all objects that represent a stream of data on a CMIO device.
 ///
 /// CMIOStream is a subclass of CMIOObject and can contain CMIOControls.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamid?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIOStreamID = CMIOObjectID;
 
@@ -25,8 +23,6 @@ pub type CMIOStreamID = CMIOObjectID;
 /// Parameter `token`: The token which was inserted / removed
 ///
 /// Parameter `refCon`: A pointer to client data established when the proc was registered via CMIOStreamCopyBufferQueue().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiodevicestreamqueuealteredproc?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIODeviceStreamQueueAlteredProc =
     Option<unsafe extern "C-unwind" fn(CMIOStreamID, *mut c_void, *mut c_void)>;
@@ -38,8 +34,6 @@ pub type CMIODeviceStreamQueueAlteredProc =
 /// If kCMIODeckStatusOpcode == mStatus, this can be used to determine more specific status. The values are CMIO Deck State constants.
 /// Field: mState2
 /// if kCMIODeckStatusOpcode == mStatus, this can be used to determine more specific status. The values are device specific.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeck?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMIOStreamDeck {
@@ -59,155 +53,83 @@ unsafe impl RefEncode for CMIOStreamDeck {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreamclassid?language=objc)
 pub const kCMIOStreamClassID: c_uint = 0x61737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreamunknown?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub const kCMIOStreamUnknown: c_uint = kCMIOObjectUnknown;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusbusy?language=objc)
 pub const kCMIODeckStatusBusy: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatuslocal?language=objc)
 pub const kCMIODeckStatusLocal: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusnotthreaded?language=objc)
 pub const kCMIODeckStatusNotThreaded: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatustapeinserted?language=objc)
 pub const kCMIODeckStatusTapeInserted: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusopcode?language=objc)
 pub const kCMIODeckStatusOpcode: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatussearchingfordevice?language=objc)
 pub const kCMIODeckStatusSearchingForDevice: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatusnodevice?language=objc)
 pub const kCMIODeckStatusNoDevice: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatestop?language=objc)
 pub const kCMIODeckStateStop: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplay?language=objc)
 pub const kCMIODeckStatePlay: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatepause?language=objc)
 pub const kCMIODeckStatePause: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplayslow?language=objc)
 pub const kCMIODeckStatePlaySlow: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatereverseslow?language=objc)
 pub const kCMIODeckStateReverseSlow: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstateplayreverse?language=objc)
 pub const kCMIODeckStatePlayReverse: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatefastforward?language=objc)
 pub const kCMIODeckStateFastForward: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckstatefastrewind?language=objc)
 pub const kCMIODeckStateFastRewind: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversehighspeed?language=objc)
 pub const kCMIODeckShuttleReverseHighSpeed: c_int = -10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefastest?language=objc)
 pub const kCMIODeckShuttleReverseFastest: c_int = -9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefaster?language=objc)
 pub const kCMIODeckShuttleReverseFaster: c_int = -8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereversefast?language=objc)
 pub const kCMIODeckShuttleReverseFast: c_int = -7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverse1x?language=objc)
 pub const kCMIODeckShuttleReverse1x: c_int = -6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow3?language=objc)
 pub const kCMIODeckShuttleReverseSlow3: c_int = -5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow2?language=objc)
 pub const kCMIODeckShuttleReverseSlow2: c_int = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslow1?language=objc)
 pub const kCMIODeckShuttleReverseSlow1: c_int = -3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlereverseslowest?language=objc)
 pub const kCMIODeckShuttleReverseSlowest: c_int = -2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplaypreviousframe?language=objc)
 pub const kCMIODeckShuttlePlayPreviousFrame: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttlepause?language=objc)
 pub const kCMIODeckShuttlePause: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplaynextframe?language=objc)
 pub const kCMIODeckShuttlePlayNextFrame: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslowest?language=objc)
 pub const kCMIODeckShuttlePlaySlowest: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow1?language=objc)
 pub const kCMIODeckShuttlePlaySlow1: c_int = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow2?language=objc)
 pub const kCMIODeckShuttlePlaySlow2: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayslow3?language=objc)
 pub const kCMIODeckShuttlePlaySlow3: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplay1x?language=objc)
 pub const kCMIODeckShuttlePlay1x: c_int = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfast?language=objc)
 pub const kCMIODeckShuttlePlayFast: c_int = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfaster?language=objc)
 pub const kCMIODeckShuttlePlayFaster: c_int = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayfastest?language=objc)
 pub const kCMIODeckShuttlePlayFastest: c_int = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiodeckshuttleplayhighspeed?language=objc)
 pub const kCMIODeckShuttlePlayHighSpeed: c_int = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydirection?language=objc)
 pub const kCMIOStreamPropertyDirection: c_uint = 0x73646972;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyterminaltype?language=objc)
 pub const kCMIOStreamPropertyTerminalType: c_uint = 0x7465726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystartingchannel?language=objc)
 pub const kCMIOStreamPropertyStartingChannel: c_uint = 0x7363686e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertylatency?language=objc)
 pub const kCMIOStreamPropertyLatency: c_uint = 0x6c746e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyformatdescription?language=objc)
 pub const kCMIOStreamPropertyFormatDescription: c_uint = 0x70667420;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyformatdescriptions?language=objc)
 pub const kCMIOStreamPropertyFormatDescriptions: c_uint = 0x70667461;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystillimage?language=objc)
 pub const kCMIOStreamPropertyStillImage: c_uint = 0x73746d67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertystillimageformatdescriptions?language=objc)
 pub const kCMIOStreamPropertyStillImageFormatDescriptions: c_uint = 0x73746674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerate?language=objc)
 pub const kCMIOStreamPropertyFrameRate: c_uint = 0x6e667274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyminimumframerate?language=objc)
 pub const kCMIOStreamPropertyMinimumFrameRate: c_uint = 0x6d667274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerates?language=objc)
 pub const kCMIOStreamPropertyFrameRates: c_uint = 0x6e667223;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyframerateranges?language=objc)
 pub const kCMIOStreamPropertyFrameRateRanges: c_uint = 0x66727267;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertynodatatimeoutinmsec?language=objc)
 pub const kCMIOStreamPropertyNoDataTimeoutInMSec: c_uint = 0x706d6e31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydevicesynctimeoutinmsec?language=objc)
 pub const kCMIOStreamPropertyDeviceSyncTimeoutInMSec: c_uint = 0x706d6e32;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertynodataeventcount?language=objc)
 pub const kCMIOStreamPropertyNoDataEventCount: c_uint = 0x706d6e33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferunderruncount?language=objc)
 pub const kCMIOStreamPropertyOutputBufferUnderrunCount: c_uint = 0x706d6f75;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferrepeatcount?language=objc)
 pub const kCMIOStreamPropertyOutputBufferRepeatCount: c_uint = 0x706d6f72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferqueuesize?language=objc)
 pub const kCMIOStreamPropertyOutputBufferQueueSize: c_uint = 0x706d6f71;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersrequiredforstartup?language=objc)
 pub const kCMIOStreamPropertyOutputBuffersRequiredForStartup: c_uint = 0x706d6f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersneededforthrottledplayback?language=objc)
 pub const kCMIOStreamPropertyOutputBuffersNeededForThrottledPlayback: c_uint = 0x6d696666;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyfirstoutputpresentationtimestamp?language=objc)
 pub const kCMIOStreamPropertyFirstOutputPresentationTimeStamp: c_uint = 0x706f7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyendofdata?language=objc)
 pub const kCMIOStreamPropertyEndOfData: c_uint = 0x706d6564;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyclock?language=objc)
 pub const kCMIOStreamPropertyClock: c_uint = 0x706d636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertycanprocessdeckcommand?language=objc)
 pub const kCMIOStreamPropertyCanProcessDeckCommand: c_uint = 0x70646364;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeck?language=objc)
 pub const kCMIOStreamPropertyDeck: c_uint = 0x6465636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckframenumber?language=objc)
 pub const kCMIOStreamPropertyDeckFrameNumber: c_uint = 0x74636f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckdropness?language=objc)
 pub const kCMIOStreamPropertyDeckDropness: c_uint = 0x64726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckthreaded?language=objc)
 pub const kCMIOStreamPropertyDeckThreaded: c_uint = 0x74687264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydecklocal?language=objc)
 pub const kCMIOStreamPropertyDeckLocal: c_uint = 0x6c6f636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertydeckcueing?language=objc)
 pub const kCMIOStreamPropertyDeckCueing: c_uint = 0x63756563;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyinitialpresentationtimestampforlinkedandsyncedaudio?language=objc)
 pub const kCMIOStreamPropertyInitialPresentationTimeStampForLinkedAndSyncedAudio: c_uint =
     0x69706c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyscheduledoutputnotificationproc?language=objc)
 pub const kCMIOStreamPropertyScheduledOutputNotificationProc: c_uint = 0x736f6e70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredformatdescription?language=objc)
 pub const kCMIOStreamPropertyPreferredFormatDescription: c_uint = 0x70726664;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertypreferredframerate?language=objc)
 pub const kCMIOStreamPropertyPreferredFrameRate: c_uint = 0x70726672;
 
 extern "C-unwind" {
@@ -231,8 +153,6 @@ extern "C-unwind" {
     /// - `queue_altered_proc` must be implemented correctly.
     /// - `queue_altered_ref_con` must be a valid pointer.
     /// - `queue` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamcopybufferqueue(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "CMIOHardwareObject", feature = "objc2-core-media"))]
     pub fn CMIOStreamCopyBufferQueue(
         stream_id: CMIOStreamID,
@@ -248,8 +168,6 @@ impl CMIOStreamDeck {
     /// Parameter `streamID`: The CMIOStream whose deck controls are being manipulated.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckplay(_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckPlay")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -265,8 +183,6 @@ impl CMIOStreamDeck {
     /// Parameter `streamID`: The CMIOStream whose deck controls are being manipulated.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckstop(_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckStop")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -284,8 +200,6 @@ impl CMIOStreamDeck {
     /// Parameter `speed`: One of the CMIO Deck Shuttle Speed constants to specify the speed of movement of the associated deck.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckjog(_:_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckJog")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -305,8 +219,6 @@ impl CMIOStreamDeck {
     /// Parameter `playOnCue`: An indicator that the deck should start playing when the cue-to point is reached.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamdeckcueto(_:_:_:)?language=objc)
     #[doc(alias = "CMIOStreamDeckCueTo")]
     #[cfg(feature = "CMIOHardwareObject")]
     #[inline]
@@ -353,8 +265,6 @@ extern "C-unwind" {
     /// - `clock_name` might not allow `None`.
     /// - `source_identifier` must be a valid pointer.
     /// - `clock` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockcreate(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOStreamClockCreate(
         allocator: Option<&CFAllocator>,
@@ -387,8 +297,6 @@ extern "C-unwind" {
 ///
 /// - `clock` should be of the correct type.
 /// - `clock` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockposttimingevent(_:_:_:_:)?language=objc)
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CMIOStreamClockPostTimingEvent(
@@ -423,8 +331,6 @@ extern "C-unwind" {
     ///
     /// - `clock` should be of the correct type.
     /// - `clock` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockinvalidate(_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CMIOStreamClockInvalidate(clock: Option<&CFType>) -> OSStatus;
 }
@@ -442,8 +348,6 @@ extern "C-unwind" {
     ///
     /// - `clock` should be of the correct type.
     /// - `clock` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamclockconverthosttimetodevicetime(_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOStreamClockConvertHostTimeToDeviceTime(
         host_time: u64,
@@ -463,8 +367,6 @@ extern "C-unwind" {
 /// Parameter `outputHostTime`: The host time that buffer was output
 ///
 /// Parameter `scheduledOutputNotificationRefCon`: A pointer to client data, established when the proc was registered using kCMIOStreamPropertyScheduledOutputNotificationProc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamscheduledoutputnotificationproc?language=objc)
 pub type CMIOStreamScheduledOutputNotificationProc =
     Option<unsafe extern "C-unwind" fn(u64, u64, *mut c_void)>;
 
@@ -473,8 +375,6 @@ pub type CMIOStreamScheduledOutputNotificationProc =
 /// The procedure to call when a buffer was output
 /// Field: scheduledOutputNotificationRefCon
 /// A pointer to client data that will be passed to the scheduledOutputNotificationProc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiostreamscheduledoutputnotificationprocandrefcon?language=objc)
 #[repr(C, packed(4))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]

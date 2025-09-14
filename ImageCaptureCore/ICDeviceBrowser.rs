@@ -7,34 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus?language=objc)
 // NS_TYPED_ENUM
 pub type ICAuthorizationStatus = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/notdetermined?language=objc)
     pub static ICAuthorizationStatusNotDetermined: &'static ICAuthorizationStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/restricted?language=objc)
     pub static ICAuthorizationStatusRestricted: &'static ICAuthorizationStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/denied?language=objc)
     pub static ICAuthorizationStatusDenied: &'static ICAuthorizationStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/authorized?language=objc)
     pub static ICAuthorizationStatusAuthorized: &'static ICAuthorizationStatus;
 }
 
 extern_protocol!(
+    /// Methods for managing the addition and removal of devices and responding to device changes.
     /// A delegate of ICDeviceBrowser must conform to ICDeviceBrowserDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicebrowserdelegate?language=objc)
     pub unsafe trait ICDeviceBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "ICDevice")]
         /// This message is sent to the delegate to inform that a device has been added.
@@ -149,9 +143,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object for finding digital cameras and scanners.
     /// The ICDeviceBrowser object is used to find devices such as digital cameras and scanners that are supported by Image Capture. These device may be directly attached to the USB or FireWire bus on the host computer, or available over a TCP/IP network. This object communicates with an Image Capture agent process asynchronously to accomplish this.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ICDeviceBrowser;

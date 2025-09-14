@@ -6,140 +6,155 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccessownertype?language=objc)
+/// A type for flags that enable you to configure ACL ownership.
+///
+/// ## Discussion
+///
+/// See [SecAccessOwnerType Values](https://developer.apple.com/documentation/security/secaccessownertype-values) for the list of possible values.
+///
+///
 pub type SecAccessOwnerType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseonlyuid?language=objc)
+/// The access control list should be owned by the user matching the specified user ID parameter.
 pub const kSecUseOnlyUID: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecuseonlygid?language=objc)
+/// The access control list should be owned by users that are members of a group matching the specified group ID parameter.
 pub const kSecUseOnlyGID: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksechonorroot?language=objc)
+/// The access control list should treat the root user as a typical user for ownership purposes.
 pub const kSecHonorRoot: c_uint = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksecmatchbits?language=objc)
+/// The access control list should be owned by users whose ID matches the specified user ID or who are members of a group whose ID matches the specified group ID parameter.
 pub const kSecMatchBits: c_uint = 3;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationany?language=objc)
+    /// No restrictions. This ACL entry applies to all operations available to the caller.
     pub static kSecACLAuthorizationAny: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationlogin?language=objc)
+    /// Use for a CSP (smart card) login.
     pub static kSecACLAuthorizationLogin: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationgenkey?language=objc)
+    /// Generate a key.
     pub static kSecACLAuthorizationGenKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationdelete?language=objc)
+    /// Delete this item.
     pub static kSecACLAuthorizationDelete: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationexportwrapped?language=objc)
+    /// Export a wrapped (that is, encrypted) key. This tag is checked on the key being exported; in addition, the `CSSM_ACL_AUTHORIZATION_ENCRYPT` tag is checked for any key used in the wrapping operation.
     pub static kSecACLAuthorizationExportWrapped: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationexportclear?language=objc)
+    /// Export an unencrypted key.
     pub static kSecACLAuthorizationExportClear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationimportwrapped?language=objc)
+    /// Import an encrypted key. This tag is checked on the key being imported; in addition, the `CSSM_ACL_AUTHORIZATION_DECRYPT` tag is checked for any key used in the unwrapping operation.
     pub static kSecACLAuthorizationImportWrapped: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationimportclear?language=objc)
+    /// Import an unencrypted key.
     pub static kSecACLAuthorizationImportClear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationsign?language=objc)
+    /// Digitally sign data.
     pub static kSecACLAuthorizationSign: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationencrypt?language=objc)
+    /// Encrypt data.
     pub static kSecACLAuthorizationEncrypt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationdecrypt?language=objc)
+    /// Decrypt data.
     pub static kSecACLAuthorizationDecrypt: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationmac?language=objc)
+    /// Create or verify a message authentication code.
     pub static kSecACLAuthorizationMAC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationderive?language=objc)
+    /// Derive a new key from another key.
     pub static kSecACLAuthorizationDerive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationkeychaincreate?language=objc)
+    /// Create a new keychain.
     pub static kSecACLAuthorizationKeychainCreate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationkeychaindelete?language=objc)
+    /// Delete a keychain.
     pub static kSecACLAuthorizationKeychainDelete: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationkeychainitemread?language=objc)
+    /// Read an item from a keychain.
     pub static kSecACLAuthorizationKeychainItemRead: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationkeychainiteminsert?language=objc)
+    /// Insert an item into a keychain.
     pub static kSecACLAuthorizationKeychainItemInsert: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationkeychainitemmodify?language=objc)
+    /// Modify an item in a keychain.
     pub static kSecACLAuthorizationKeychainItemModify: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationkeychainitemdelete?language=objc)
+    /// Delete an item from a keychain.
     pub static kSecACLAuthorizationKeychainItemDelete: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationchangeacl?language=objc)
+    /// Change an access control list entry.
     pub static kSecACLAuthorizationChangeACL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationchangeowner?language=objc)
+    /// For internal system use only. Use the `CSSM_ACL_AUTHORIZATION_CHANGE_ACL` tag for changes to owner ACL entries.
     pub static kSecACLAuthorizationChangeOwner: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationpartitionid?language=objc)
     pub static kSecACLAuthorizationPartitionID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecaclauthorizationintegrity?language=objc)
     pub static kSecACLAuthorizationIntegrity: &'static CFString;
 }
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecAccess {
+    /// Returns the unique identifier of the opaque type to which an access instance belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess) instance.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method returns a value that uniquely identifies the opaque type of a [`SecAccessRef`](https://developer.apple.com/documentation/security/secaccess) instance. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) method on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecAccess instances.
     ///
     /// Returns: The CFTypeID of SecAccess instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccessgettypeid()?language=objc)
     #[doc(alias = "SecAccessGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -152,6 +167,51 @@ unsafe impl ConcreteType for SecAccess {
 
 #[cfg(feature = "SecBase")]
 impl SecAccess {
+    /// Creates a new access instance associated with a given protected keychain item.
+    ///
+    /// Parameters:
+    /// - descriptor: The name of the keychain item as it should appear in security dialogs, such as when an untrusted app tries to gain access to the item and the system prompts the user for permission. Use a name that gives users enough information to make a decision about this item. If you only store one item, a simple description like “Server password” might be sufficient. If you store many similar items, you might need to be more specific.
+    ///
+    /// This isn’t necessarily the name that appears in the Keychain Access app.
+    ///
+    /// - trustedlist: An array of [`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication) instances specifying which apps should be allowed to access the item for restricted operations without triggering confirmation dialogs.
+    ///
+    /// Use `nil` to trust only the calling app. Use an empty array to indicate no apps are trusted.
+    ///
+    /// - accessRef: On return, points to the new access instance. In Objective-C, call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release this instance when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`errSecSuccess`](https://developer.apple.com/documentation/security/errsecsuccess) on success, or another status result on failure. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes) for all possible status results.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to create a default access instance containing three ACL entries. If you don’t explicitly create and set an access instance when you create a protected keychain item, keychain services uses a default access like this one.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7bb43362f99e782e9a44a92221966583/media-2983147~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7bb43362f99e782e9a44a92221966583/media-2983147%402x.png 2x" />
+    ///     <img alt="Diagram showing the contents of the default access instance, including three entries, each with specific operations and trusted apps." src="https://docs-assets.developer.apple.com/published/7bb43362f99e782e9a44a92221966583/media-2983147~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// - **Owner entry.** Determines who can modify the access instance, because it contains the [`kSecACLAuthorizationChangeACL`](https://developer.apple.com/documentation/security/ksecaclauthorizationchangeacl) authorization. The owner entry’s list of trusted apps is empty, so the user is always prompted for permission if someone tries to change the access instance. All access instances must have exactly one owner entry, so this item can’t be removed, although you can modify it.
+    ///
+    /// - **Safe entry.** Applies to operations not considered secure, namely encrypting data. This ACL entry trusts all apps by default, because its array of trusted apps is set to `nil`.
+    ///
+    /// - **Restricted entry.** Applies to operations that are considered sensitive, such as decrypting, signing, deriving keys, and exporting keys. The method applies the list of apps given in the `trustedlist` parameter to this entry. If you set `trustedlist` to `nil`, the list of trusted apps contains only the calling app.
+    ///
+    /// ### Retrieving and Modifying ACL Entries
+    ///
+    /// After you (or keychain services) create the access instance, you can retrieve all its ACL entries using the [`SecAccessCopyACLList`](https://developer.apple.com/documentation/security/secaccesscopyacllist(_:_:)) method. You can then modify any of these entries using the [`SecACLSetContents`](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)) method, or modify the operations for which an ACL entry is used using the [`SecACLUpdateAuthorizations`](https://developer.apple.com/documentation/security/secaclupdateauthorizations(_:_:)) method. You can also create additional ACL entries using the [`SecACLCreateWithSimpleContents`](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)) method. Because an ACL is always associated with an access instance, when you modify an entry or create a new one, you’re implicitly modifying the access instance as well.
+    ///
+    /// You then apply the fully configured access instance to a keychain item by setting it as the item’s [`kSecAttrAccess`](https://developer.apple.com/documentation/security/ksecattraccess) attribute. See [Keychain items](https://developer.apple.com/documentation/security/keychain-items) for details about creating and modifying keychain items.
+    ///
+    ///
     /// Creates a new SecAccessRef that is set to the currently designated system default
     /// configuration of a (newly created) security object. Note that the precise nature of
     /// this default may change between releases.
@@ -171,8 +231,6 @@ impl SecAccess {
     ///
     /// - `trustedlist` generic must be of the correct type.
     /// - `access_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)?language=objc)
     #[doc(alias = "SecAccessCreate")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -192,6 +250,41 @@ impl SecAccess {
         unsafe { SecAccessCreate(descriptor, trustedlist, access_ref) }
     }
 
+    /// Creates a new access object using the owner and access control list you provide.
+    ///
+    /// Parameters:
+    /// - owner: A pointer to a CSSM access control list owner.
+    ///
+    /// - aclCount: An unsigned 32-bit integer representing the number of items in the access control list.
+    ///
+    /// - acls: A pointer to the CSSM access control list.
+    ///
+    /// - accessRef: On return, points to the new access object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secaccesscreatewithownerandacl(_:_:_:_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This function creates an access object from CSSM structures. You can use this function to create an access object for use with other Certificate, Key, and Trust API functions if you want to use CSSM to create the access control list. CSSM allows more complex access controls than you can construct with the Certificate, Key, and Trust API. For more information about the CSSM API, see _Common Security: CDSA and CSSM, version 2 (with corrigenda)_ from The Open Group ([http://www.opengroup.org/security/cdsa.htm](http://www.opengroup.org/security/cdsa.htm)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecAccessCreateWithOwnerAndACL(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secaccesscreatewithownerandacl(_:_:_:_:_:)) instead.
+    ///
+    ///
     /// Creates a new SecAccessRef using the owner and access control list you provide.
     ///
     /// Parameter `owner`: A pointer to a CSSM access control list owner.
@@ -211,8 +304,6 @@ impl SecAccess {
     /// - `owner` must be a valid pointer.
     /// - `acls` must be a valid pointer.
     /// - `access_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscreatefromownerandacl?language=objc)
     #[doc(alias = "SecAccessCreateFromOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -239,6 +330,31 @@ impl SecAccess {
         unsafe { SecAccessCreateFromOwnerAndACL(owner, acl_count, acls, access_ref) }
     }
 
+    /// Creates a new access instance using the owner and ACL entries you provide.
+    ///
+    /// Parameters:
+    /// - userId: The user ID that owns this ACL.
+    ///
+    /// - groupId: The group ID that owns this ACL.
+    ///
+    /// - ownerType: Flags that control whether the specified user ID or group ID owns the resulting ACL. See [`SecAccessOwnerType`](https://developer.apple.com/documentation/security/secaccessownertype) for details.
+    ///
+    /// - acls: An array of ACL entries to associate with the access instance.
+    ///
+    /// - error: The address of an error instance. On error, the return value is `nil`, and the variable referenced by this parameter is overwritten with a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) instance that provides more information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new access instance. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release it when you are finished using it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to create a customized access instance from [`SecACLRef`](https://developer.apple.com/documentation/security/secacl) instances that you’ve created with the [`SecACLCreateWithSimpleContents`](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)) method. If you want a default access instance, use the [`SecAccessCreate`](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)) method instead.
+    ///
+    ///
     /// Creates a new SecAccessRef using either for a user or a group with a list of ACLs
     ///
     /// Parameter `userId`: An user id that specifies the user to associate with this SecAccessRef.
@@ -257,8 +373,6 @@ impl SecAccess {
     ///
     /// - `acls` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscreatewithownerandacl(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecAccessCreateWithOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -284,6 +398,41 @@ impl SecAccess {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves the owner and the access control list of a given access object.
+    ///
+    /// Parameters:
+    /// - accessRef: An access object from which to retrieve the owner and access control list.
+    ///
+    /// - owner: On return, a pointer to a CSSM access control list owner.
+    ///
+    /// - aclCount: On return, a pointer to an unsigned 32-bit integer representing the number of items in the access control list.
+    ///
+    /// - acls: On return, a pointer to the CSSM access control list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecAccessCopyOwnerAndACL(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secaccesscopyownerandacl(_:_:_:_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This function returns CSSM structures for use with CSSM API functions.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later. Use [`SecAccessCopyOwnerAndACL(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secaccesscopyownerandacl(_:_:_:_:_:)) instead.
+    ///
+    ///
     /// Retrieves the owner and the access control list of a given access.
     ///
     /// Parameter `accessRef`: A reference to the access from which to retrieve the information.
@@ -303,8 +452,6 @@ impl SecAccess {
     /// - `owner` must be a valid pointer.
     /// - `acl_count` must be a valid pointer.
     /// - `acls` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccessgetownerandacl?language=objc)
     #[doc(alias = "SecAccessGetOwnerAndACL")]
     #[cfg(all(
         feature = "SecAsn1Types",
@@ -331,6 +478,25 @@ impl SecAccess {
         unsafe { SecAccessGetOwnerAndACL(self, owner, acl_count, acls) }
     }
 
+    /// Retrieves the owner and the ACL entries of a given access instance.
+    ///
+    /// Parameters:
+    /// - accessRef: An access instance from which to retrieve the owner and ACL entries.
+    ///
+    /// - userId: On return, the user ID that owns the access instance.
+    ///
+    /// - groupId: On return, the group ID that owns the access instance.
+    ///
+    /// - ownerType: On return, flags that indicate whether the specified user ID or group ID owns the resulting ACL entries. See [`SecAccessOwnerType`](https://developer.apple.com/documentation/security/secaccessownertype) for details.
+    ///
+    /// - aclList: On return, an array of [`SecACLRef`](https://developer.apple.com/documentation/security/secacl) instances associated with the access instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     /// Retrieves the owner and the access control list of a given access.
     ///
     /// Parameter `accessRef`: A reference to the access from which to retrieve the information.
@@ -351,8 +517,6 @@ impl SecAccess {
     /// - `group_id` must be a valid pointer or null.
     /// - `owner_type` must be a valid pointer or null.
     /// - `acl_list` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopyownerandacl(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecAccessCopyOwnerAndACL")]
     #[cfg(all(feature = "SecBase", feature = "libc"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -376,6 +540,25 @@ impl SecAccess {
         unsafe { SecAccessCopyOwnerAndACL(self, user_id, group_id, owner_type, acl_list) }
     }
 
+    /// Retrieves all the ACL entries of a given access instance.
+    ///
+    /// Parameters:
+    /// - accessRef: The access instance from which to retrieve the information.
+    ///
+    /// - aclList: A pointer the method uses to return an array of [`SecACLRef`](https://developer.apple.com/documentation/security/secacl) instances. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release the array when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An access instance can have any number of ACL entries for specific operations or sets of operations. Use this method to get an array of all the ACL entries of a particular access instance. To retrieve entries corresponding to specific operations, use the [`SecAccessCopyMatchingACLList`](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)) method instead.
+    ///
+    ///
     /// Copies all the access control lists of a given access.
     ///
     /// Parameter `accessRef`: A reference to the access from which to retrieve the information.
@@ -387,8 +570,6 @@ impl SecAccess {
     /// # Safety
     ///
     /// `acl_list` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopyacllist(_:_:)?language=objc)
     #[doc(alias = "SecAccessCopyACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -403,6 +584,39 @@ impl SecAccess {
         unsafe { SecAccessCopyACLList(self, acl_list) }
     }
 
+    /// Retrieves selected access control lists from a given access object.
+    ///
+    /// Parameters:
+    /// - accessRef: The access object from which to retrieve the information.
+    ///
+    /// - action: An access control list authorization tag; the function returns only those access control list entries that apply to the operation indicated by this tag.
+    ///
+    /// - aclList: On return, a pointer to the selected access control lists. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecAccessCopyMatchingACLList(_:_:)`](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An access object can have any number of access control list (ACL) entries for specific operations or sets of operations. To retrieve all the ACL entries for an access object, use the [`SecAccessCopyACLList(_:_:)`](https://developer.apple.com/documentation/security/secaccesscopyacllist(_:_:)) function.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecAccessCopyMatchingACLList(_:_:)`](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)) instead.
+    ///
+    ///
     /// Copies selected access control lists from a given access.
     ///
     /// Parameter `accessRef`: A reference to the access from which to retrieve the information.
@@ -418,8 +632,6 @@ impl SecAccess {
     /// # Safety
     ///
     /// `acl_list` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopyselectedacllist?language=objc)
     #[doc(alias = "SecAccessCopySelectedACLList")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -439,6 +651,25 @@ impl SecAccess {
         unsafe { SecAccessCopySelectedACLList(self, action, acl_list) }
     }
 
+    /// Retrieves selected ACL entries from a given access instance.
+    ///
+    /// Parameters:
+    /// - accessRef: The access instance from which to retrieve the information.
+    ///
+    /// - authorizationTag: An access control list authorization tag. See [ACL Authorization Keys](https://developer.apple.com/documentation/security/acl-authorization-keys) for a list of possible values. The method returns only those ACL entries that apply to the operation indicated by this tag.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing the selected access control list entries. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method to release the array when you are finished using it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An access instance can have any number of ACL entries for specific operations or sets of operations. This method returns the ACL entries that apply to the given operation. To retrieve all the ACL entries for an access instance, use the [`SecAccessCopyACLList`](https://developer.apple.com/documentation/security/secaccesscopyacllist(_:_:)) method instead.
+    ///
+    ///
     /// Copies selected access control lists from a given access.
     ///
     /// Parameter `accessRef`: A reference to the access from which to retrieve the information.
@@ -450,8 +681,6 @@ impl SecAccess {
     /// # Safety
     ///
     /// `authorization_tag` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)?language=objc)
     #[doc(alias = "SecAccessCopyMatchingACLList")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

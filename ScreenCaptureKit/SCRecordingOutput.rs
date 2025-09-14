@@ -15,8 +15,6 @@ extern_class!(
     /// SCRecordingOutputConfiguration
     ///
     /// SCRecordingOutputConfiguration is an object that encapsulates the configuration for recording.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutputConfiguration;
@@ -98,8 +96,6 @@ impl SCRecordingOutputConfiguration {
 
 extern_protocol!(
     /// Defines an interface for delegates of SCRecordingOutput to respond to events that occur in the process of recording to file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutputdelegate?language=objc)
     pub unsafe trait SCRecordingOutputDelegate: NSObjectProtocol {
         /// recordingOutputDidStartRecording:
         ///
@@ -138,7 +134,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/screcordingoutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRecordingOutput;

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/headunit-swift.class?language=objc)
+    /// An object that contains the Bluetooth and iAP2 identifiers of the vehicle’s physical head unit.
+    ///
+    /// ## Overview
+    ///
+    /// When the system connects to a vehicle’s physical head unit through CarPlay, it uses the head unit’s Bluetooth identifier to find the corresponding vehicle in the user’s My Vehicles collection by matching on the `bluetoothIdentifier` property of this object.
+    ///
+    /// You create instances of this class when handling [`INListCarsIntent`](https://developer.apple.com/documentation/intents/inlistcarsintent) requests. For more information on handling the intent, see [`INListCarsIntentHandling`](https://developer.apple.com/documentation/intents/inlistcarsintenthandling).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INCarHeadUnit;

@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The configuration object that requests the creation of a virtual storage device in the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtioBlockDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration) object to create an emulated storage device in your virtual machine. When you add this object to your virtual machine configuration, the virtual machine creates an emulated disk for the guest operating system to use to read and write files. The emulated storage device conforms to the Virtio Block Device specification.
+    ///
+    /// When you create a [`VZVirtioBlockDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration) object, specify the attachment object that implements the underlying storage. For example, specify a [`VZDiskImageStorageDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment) object to configure the storage device using a disk image in the local file system. Assign your configuration object to the [`storageDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/storagedevices) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object before creating your virtual machine.
+    ///
+    ///
     /// Configuration of a paravirtualized storage device of type Virtio Block Device.
     ///
     /// This device configuration creates a storage device using paravirtualization.
@@ -15,8 +24,6 @@ extern_class!(
     ///
     /// The host implementation of the device is done through an attachment subclassing VZStorageDeviceAttachment
     /// like VZDiskImageStorageDeviceAttachment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration?language=objc)
     #[unsafe(super(VZStorageDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceConfiguration")]

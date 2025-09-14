@@ -13,9 +13,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A controller object that presents the macOS broadcast picker.
     /// Controller object that allows clients to present the macOS broadcast picker and returns the RPBroadcastController object that controls broadcast functionality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastactivitycontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct RPBroadcastActivityController;
@@ -84,9 +83,8 @@ impl RPBroadcastActivityController {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to implement to respond to selection events from a broadcast activity controller.
     /// RPBroadcastActivityControllerDelegate is used to notify the caller when the user has finshed with the RPBroadcastActivityController's picker.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastactivitycontrollerdelegate?language=objc)
     pub unsafe trait RPBroadcastActivityControllerDelegate: NSObjectProtocol {
         #[unsafe(method(broadcastActivityController:didFinishWithBroadcastController:error:))]
         #[unsafe(method_family = none)]
@@ -100,9 +98,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object containing methods for starting and controlling a broadcast.
     /// Available once a user has successfully initiated a broadcast using an RPBroadcastActivityViewController. Can be used to start, pause and stop a broadcast.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct RPBroadcastController;
@@ -191,7 +188,7 @@ impl RPBroadcastController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastcontrollerdelegate?language=objc)
+    /// The protocol you implement to respond to changes in a live broadcast.
     pub unsafe trait RPBroadcastControllerDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(broadcastController:didFinishWithError:))]

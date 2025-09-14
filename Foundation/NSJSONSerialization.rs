@@ -5,29 +5,77 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions?language=objc)
+/// Options used when creating Foundation objects from JSON data.
+///
+/// ## Overview
+///
+/// Use these options when parsing JSON with [`JSONObjectWithData:options:error:`](https://developer.apple.com/documentation/foundation/jsonserialization/jsonobject(with:options:)-8demi) and [`JSONObjectWithStream:options:error:`](https://developer.apple.com/documentation/foundation/jsonserialization/jsonobject(with:options:)-3afap).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSJSONReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONReadingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/mutablecontainers?language=objc)
+/// Specifies that arrays and dictionaries in the returned object are mutable.
         #[doc(alias = "NSJSONReadingMutableContainers")]
         const MutableContainers = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/mutableleaves?language=objc)
+/// Specifies that leaf strings in the JSON object graph are mutable.
         #[doc(alias = "NSJSONReadingMutableLeaves")]
         const MutableLeaves = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/fragmentsallowed?language=objc)
+/// Specifies that the parser allows top-level objects that aren’t arrays or dictionaries.
         #[doc(alias = "NSJSONReadingFragmentsAllowed")]
         const FragmentsAllowed = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/json5allowed?language=objc)
+/// Specifies that reading serialized JSON data supports the JSON5 syntax.
+///
+/// ## Discussion
+///
+/// The JSON5 Data Interchange Format is a superset of JSON that enhances human-readability of the JSON syntax. The JSON5 standard allows the following:
+///
+/// - Single- or double-quoted strings.
+///
+/// - Strings that span multiple lines.
+///
+/// - Single- and multiline comments, using `//` and `/* … */` syntax.
+///
+/// - Enhanced number formatting support, including hexidecimal, leading or trailing decimal point, explicit plus sign, and IEEE 754 positive infinity, negative infinity, and `NaN`.
+///
+/// ### Using JSON5 in Attributed Strings
+///
+/// The Markdown syntax supported by [`AttributedString`](https://developer.apple.com/documentation/foundation/attributedstring) uses JSON5 to support an extended attribute syntax. Automatic grammar agreement uses this syntax for its `inflect` attribute, as do custom attributes defined by third-party frameworks. Use the syntax `^[text](attribute: value)` to mark ranges of text decorated with a custom attribute, like this:
+///
+/// ```other
+/// This is a [Markdown](https://commonmark.org) string with a ^[custom attribute](factor: 10).
+/// ```
+///
+/// This example applies a custom attribute called `factor` with a value of `10` to the text “custom attribute” in the resulting attributed string. The portion inside the parentheses is JSON5. [`AttributedString`](https://developer.apple.com/documentation/foundation/attributedstring) also uses the [`NSJSONReadingTopLevelDictionaryAssumed`](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/topleveldictionaryassumed) option; without it, the Markdown string would have to wrap everything inside the parentheses with braces.
+///
+///
         #[doc(alias = "NSJSONReadingJSON5Allowed")]
         const JSON5Allowed = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/topleveldictionaryassumed?language=objc)
+/// Specifies that the parser assumes the top level of the JSON data is a dictionary, even if it doesn’t begin and end with curly braces.
+///
+/// ## Discussion
+///
+/// This is an extension to JSON5 that isn’t part of the specification. [`AttributedString`](https://developer.apple.com/documentation/foundation/attributedstring) uses this option, along with [`NSJSONReadingJSON5Allowed`](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/json5allowed), to support the use of JSON5 inside Markdown strings that use multiple custom attributes. Using [`NSJSONReadingTopLevelDictionaryAssumed`](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/topleveldictionaryassumed) allows for the following syntax in the parentheses of the custom attribute markup:
+///
+/// ```other
+/// This is a [Markdown](https://commonmark.org) string with a ^[custom attribute](factor: 10, other: true).
+/// ```
+///
+/// Without [`NSJSONReadingTopLevelDictionaryAssumed`](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/topleveldictionaryassumed), the markup would have to use explicit enclosing braces to declare the contents of the parentheses to be a dictionary:
+///
+/// ```other
+/// This is a [Markdown](https://commonmark.org) string with a ^[custom attribute]({factor: 10, other: true}).
+/// ```
+///
+/// When you use braces, you must use matched pairs. This means that with [`NSJSONReadingTopLevelDictionaryAssumed`](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/topleveldictionaryassumed) set, the syntax `({…})` and `(…)` are both legal, but `({…)` and `(…})` are not.
+///
+///
         #[doc(alias = "NSJSONReadingTopLevelDictionaryAssumed")]
         const TopLevelDictionaryAssumed = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/readingoptions/allowfragments?language=objc)
+/// A deprecated option that specifies that the parser should allow top-level objects that aren’t arrays or dictionaries.
         #[doc(alias = "NSJSONReadingAllowFragments")]
 #[deprecated]
         const AllowFragments = NSJSONReadingOptions::FragmentsAllowed.0;
@@ -42,23 +90,29 @@ unsafe impl RefEncode for NSJSONReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions?language=objc)
+/// Options for writing JSON data.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSJSONWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONWritingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/prettyprinted?language=objc)
+/// Specifies that the output uses white space and indentation to make the resulting data more readable.
+///
+/// ## Discussion
+///
+/// If this option isn’t set, the serialization generates the most compact possible JSON representation.
+///
+///
         #[doc(alias = "NSJSONWritingPrettyPrinted")]
         const PrettyPrinted = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/sortedkeys?language=objc)
+/// Specifies that the output sorts keys in lexicographic order.
         #[doc(alias = "NSJSONWritingSortedKeys")]
         const SortedKeys = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/fragmentsallowed?language=objc)
+/// Specifies that the parser should allow top-level objects that aren’t arrays or dictionaries.
         #[doc(alias = "NSJSONWritingFragmentsAllowed")]
         const FragmentsAllowed = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/withoutescapingslashes?language=objc)
+/// Specifies that the output doesn’t prefix slash characters with escape characters.
         #[doc(alias = "NSJSONWritingWithoutEscapingSlashes")]
         const WithoutEscapingSlashes = 1<<3;
     }
@@ -73,7 +127,33 @@ unsafe impl RefEncode for NSJSONWritingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/jsonserialization?language=objc)
+    /// An object that converts between JSON and the equivalent Foundation objects.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`NSJSONSerialization`](https://developer.apple.com/documentation/foundation/jsonserialization) class to convert JSON to Foundation objects and convert Foundation objects to JSON.
+    ///
+    /// To convert a Foundation object to JSON, the object must have the following properties:
+    ///
+    /// - The top level object is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) or [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary), unless you set the [`NSJSONWritingFragmentsAllowed`](https://developer.apple.com/documentation/foundation/jsonserialization/writingoptions/fragmentsallowed) option.
+    ///
+    /// - All objects are instances of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber), [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary), or [`NSNull`](https://developer.apple.com/documentation/foundation/nsnull).
+    ///
+    /// - All dictionary keys are instances of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    /// - Numbers are neither `NaN` nor infinity.
+    ///
+    /// Other rules may apply. Calling [`isValidJSONObject:`](https://developer.apple.com/documentation/foundation/jsonserialization/isvalidjsonobject(_:)) or attempting a conversion are the definitive ways to tell if the [`NSJSONSerialization`](https://developer.apple.com/documentation/foundation/jsonserialization) class can convert given object to JSON data.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  On iOS 7 and later and macOS 10.9 and later, [`NSJSONSerialization`](https://developer.apple.com/documentation/foundation/jsonserialization) is thread safe.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSJSONSerialization;

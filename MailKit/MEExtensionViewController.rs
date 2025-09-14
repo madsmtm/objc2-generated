@@ -9,7 +9,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meextensionviewcontroller?language=objc)
+    /// An object that manages a view for compose session and message security handlers.
+    ///
+    /// ## Overview
+    ///
+    /// Create a custom subclass of [`MEExtensionViewController`](https://developer.apple.com/documentation/mailkit/meextensionviewcontroller) to provide MailKit with a view that displays:
+    ///
+    /// - Additional configuration options in a Mail compose window
+    ///
+    /// - Details about the user who signed a digitally signed email message
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

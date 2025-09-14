@@ -8,8 +8,6 @@ use crate::*;
 
 extern_class!(
     /// Contain information about an email address. This can include both valid and invalid email addresses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meemailaddress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEEmailAddress;

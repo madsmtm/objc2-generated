@@ -11,7 +11,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skreferencenode?language=objc)
+    /// A node that’s defined in an archived `.sks` file.
+    ///
+    /// ## Overview
+    ///
+    /// `SKReferenceNode` is used within an archived `.sks` file to refer to node defined in another `.sks` file without duplicating its definition. This way, a change to the referenced node propagates to all the references in other files.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `SKReferenceNode` is mostly used in conjunction with Xcode’s SpriteKit Scene editor, but it’s possible to instantiate it yourself and use the [`resolveReferenceNode`](https://developer.apple.com/documentation/spritekit/skreferencenode/resolve()) function as a handy way to restore a node’s appearance.
+    ///
+    ///
+    ///
+    /// </div>
+    /// As an example, you might want to share an enemy ship across two different levels, Scene1.sks and Scene2.sks, in a level-based game. Reference nodes allow you to do that without creating copies of the shared node and its properties.
+    ///
+    /// To use a reference node:
+    ///
+    /// - Create the shared content in a separate archive
+    ///
+    /// - Add references to the shared archive within your scene archives
+    ///
+    /// When each scene is loaded, the reference nodes are resolved dynamically, and therefore you only need to configure a shared object in one place.
+    ///
+    ///
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

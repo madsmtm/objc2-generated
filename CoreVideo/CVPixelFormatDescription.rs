@@ -9,166 +9,196 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatname?language=objc)
+    /// The name of the pixel format (type `CFString`). This should be the same as the codec name you would use in QuickTime.
     pub static kCVPixelFormatName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatconstant?language=objc)
+    /// The pixel format constant for QuickTime.
     pub static kCVPixelFormatConstant: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcodectype?language=objc)
+    /// The codec type (type `CFString`). For example, `'2vuy'` or `k422YpCbCr8CodecType`.
     pub static kCVPixelFormatCodecType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatfourcc?language=objc)
+    /// The Microsoft FourCC equivalent code for this pixel format (type `CFString`).
     pub static kCVPixelFormatFourCC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsalpha?language=objc)
+    /// A Boolean value where [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) indicates that the format contains alpha and some images may be considered transparent; [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) indicates that there is no alpha and images are always opaque.
     pub static kCVPixelFormatContainsAlpha: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsycbcr?language=objc)
     pub static kCVPixelFormatContainsYCbCr: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsrgb?language=objc)
     pub static kCVPixelFormatContainsRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsgrayscale?language=objc)
     pub static kCVPixelFormatContainsGrayscale: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainssenselarray?language=objc)
     pub static kCVPixelFormatContainsSenselArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange?language=objc)
     pub static kCVPixelFormatComponentRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange_videorange?language=objc)
     pub static kCVPixelFormatComponentRange_VideoRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange_fullrange?language=objc)
     pub static kCVPixelFormatComponentRange_FullRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange_widerange?language=objc)
     pub static kCVPixelFormatComponentRange_WideRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatplanes?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The number of image planes associated with this format (type `CFNumber`). Each plane may contain a single component or an interleaved set of components. Note that if your pixel format is not planar, you can put the required format keys at the top-level dictionary.
+    ///
+    ///
     pub static kCVPixelFormatPlanes: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockwidth?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The width, in pixels, of the smallest byte-addressable group of pixels (type `CFNumber`). Used to assist with allocating memory for pixel formats that don’t have an integer value for bytes per pixel. Assumed to be 1 if this key is not present. Here are some examples of block widths for standard pixel formats:
+    ///
+    /// - 8-bit luminance only, block width is 1, the bits per block value is 8.
+    ///
+    /// - 16-bit 1555 RGB, block width is 1, the bits per block value is 16.
+    ///
+    /// - 32-bit 8888 ARGB, block width is 1, the bits per block value is 32.
+    ///
+    /// - 2vuy (CbYCrY), block width is 2, the bits per block value is 32.
+    ///
+    /// - 1-bit bitmap, block width is 8, the bits per block value is 8.
+    ///
+    /// - v210, block width is 6, the bits per block value is 128 .
+    ///
+    ///
     pub static kCVPixelFormatBlockWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockheight?language=objc)
+    /// The height, in pixels, of the smallest byte-addressable group of pixels (type `CFNumber`). Assumed to be 1 if this key is not present.
     pub static kCVPixelFormatBlockHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatbitsperblock?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The number of bits per block. For simple pixel formats, this value is the same as the traditional bits-per-pixel value. This key is mandatory in pixel format descriptions. See the description for `kCVPixelFormatBlockWidth` for examples of bits-per-block values.
+    ///
+    ///
     pub static kCVPixelFormatBitsPerBlock: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatbitspercomponent?language=objc)
     pub static kCVPixelFormatBitsPerComponent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockhorizontalalignment?language=objc)
+    /// The horizontal alignment requirements of this format (type `CFNumber`). For example,the alignment for v210 would be 8 here for the horizontal case to match the standard v210 row alignment value of 48. Assumed to be 1 if this key is not present.
     pub static kCVPixelFormatBlockHorizontalAlignment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockverticalalignment?language=objc)
+    /// The vertical alignment requirements of this format (type `CFNumber`). Assumed to be 1 if this key is not present.
     pub static kCVPixelFormatBlockVerticalAlignment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblackblock?language=objc)
+    /// The bit pattern for a block of black pixels (type `CFData`. If this key is absent, black is assumed to be all zeros. If present, this should be `bitsPerPixel` bits long; if `bitsPerPixel` is less than a byte, repeat the bit pattern for the full byte.
     pub static kCVPixelFormatBlackBlock: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformathorizontalsubsampling?language=objc)
+    /// Horizontal subsampling information for this plane (type `CFNumber`). Assumed to be 1 if this key is not present.
     pub static kCVPixelFormatHorizontalSubsampling: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatverticalsubsampling?language=objc)
+    /// Vertical subsampling information for this plane (type `CFNumber`). Assumed to be 1 if this key is not present.
     pub static kCVPixelFormatVerticalSubsampling: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglformat?language=objc)
+    /// The OpenGL format used to describe this image plane (if applicable). See the [OpenGL specification](http://www.opengl.org/documentation/) for possible values.
     pub static kCVPixelFormatOpenGLFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopengltype?language=objc)
+    /// The OpenGL type to describe this image plane (if applicable). See the [OpenGL specification](http://www.opengl.org/documentation/) for possible values.
     pub static kCVPixelFormatOpenGLType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglinternalformat?language=objc)
+    /// The OpenGL internal format for this pixel format (if applicable). See the [OpenGL specification](http://www.opengl.org/documentation/) for possible values.
     pub static kCVPixelFormatOpenGLInternalFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcgbitmapinfo?language=objc)
+    /// The Core Graphics bitmap information for this pixel format (if applicable).
     pub static kCVPixelFormatCGBitmapInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatqdcompatibility?language=objc)
+    /// If true, this format is compatible with QuickDraw (type `CFBoolean`).
     pub static kCVPixelFormatQDCompatibility: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcgbitmapcontextcompatibility?language=objc)
+    /// If true, this format is compatible with Core Graphics bitmap contexts(type `CFBoolean`).
     pub static kCVPixelFormatCGBitmapContextCompatibility: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcgimagecompatibility?language=objc)
+    /// If true, this format is compatible with the `CGImage` type (type `CFBoolean`).
     pub static kCVPixelFormatCGImageCompatibility: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglcompatibility?language=objc)
+    /// If true, this format is compatible with OpenGL (type `CFBoolean`).
     pub static kCVPixelFormatOpenGLCompatibility: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglescompatibility?language=objc)
+    /// If true, this format is compatible with OpenGLES (type `CFBoolean`).
     pub static kCVPixelFormatOpenGLESCompatibility: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallback?language=objc)
+/// Defines a pointer to a custom extended pixel-fill function, which is called whenever the system needs to pad a buffer holding your custom pixel format.
+///
+/// Parameters:
+/// - pixelBuffer: The pixel buffer to be padded.
+///
+/// - refCon: A pointer to application-defined data. This is the same value you stored in the [`CVFillExtendedPixelsCallBackData`](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallbackdata) structure.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the padding was successful; otherwise, `false`.
+///
+///
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -177,7 +207,15 @@ extern "C" {
 pub type CVFillExtendedPixelsCallBack =
     Option<unsafe extern "C-unwind" fn(NonNull<CVPixelBuffer>, *mut c_void) -> Boolean>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallbackdata?language=objc)
+/// A structure for holding information that describes a custom extended pixel fill algorithm.
+///
+/// ## Overview
+///
+/// You must fill out this structure and store it as part of your pixel format description Core Foundation dictionary (key: `kCVPixelFormatFillExtendedPixelsCallback`, type: `CFData`). However, if your custom pixel format never needs the functionality of [`CVPixelBufferFillExtendedPixels`](https://developer.apple.com/documentation/corevideo/cvpixelbufferfillextendedpixels(_:)), you don’t need to add this key or implement the associated callback.
+///
+/// For more information about defining a custom pixel format, see [Pixel Format Description Keys](https://developer.apple.com/documentation/corevideo/pixel-format-description-keys).
+///
+///
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -220,11 +258,23 @@ unsafe impl RefEncode for CVFillExtendedPixelsCallBackData {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatfillextendedpixelscallback?language=objc)
+    /// A custom extended pixel fill algorithm (type `CFData`). See [`CVFillExtendedPixelsCallBack`](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallback) and [`CVFillExtendedPixelsCallBackData`](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallbackdata) for more information.
     pub static kCVPixelFormatFillExtendedPixelsCallback: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformatdescriptioncreatewithpixelformattype(_:_:)?language=objc)
+/// Creates a pixel format description from a given `OSType` identifier.
+///
+/// Parameters:
+/// - allocator: The allocator to use when creating the description. Pass `NULL` to specify the default allocator.
+///
+/// - pixelFormat: A four-character code that identifies the pixel format you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// A Core Foundation dictionary containing the pixel format description. See [Pixel Format Description Keys](https://developer.apple.com/documentation/corevideo/pixel-format-description-keys) for a list of keys relevant to the format description.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     allocator: Option<&CFAllocator>,
@@ -240,7 +290,17 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformatdescriptionarraycreatewithallpixelformattypes(_:)?language=objc)
+/// Returns all the pixel format descriptions known to Core Video.
+///
+/// Parameters:
+/// - allocator: The allocator to use when creating the description. Pass `NULL` to specify the default allocator.
+///
+///
+/// ## Return Value
+///
+/// An array of Core Foundation dictionaries, each containing a pixel format description. See [Pixel Format Description Keys](https://developer.apple.com/documentation/corevideo/pixel-format-description-keys) for a list of keys relevant to the format description.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
     allocator: Option<&CFAllocator>,
@@ -255,7 +315,19 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTy
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformatdescriptionregisterdescriptionwithpixelformattype(_:_:)?language=objc)
+    /// Registers a pixel format description with Core Video.
+    ///
+    /// Parameters:
+    /// - description: A Core Foundation dictionary containing the pixel format description. See [Pixel Format Description Keys](https://developer.apple.com/documentation/corevideo/pixel-format-description-keys) for a list of required and optional keys.
+    ///
+    /// - pixelFormat: The four-character code (type `OSType`) identifier for this pixel format.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you are using a custom pixel format, you must register the format with Core Video using this function. See [Technical Q&A 1401: Registering Custom Pixel Formats with QuickTime and Core Video](http://developer.apple.com/qa/qa2005/qa1401.html) for more details.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -267,13 +339,27 @@ extern "C-unwind" {
     );
 }
 
+///
+/// Parameters:
+/// - pixelFormat: The pixel format to convert
+///
+///
+/// ## Return Value
+///
+/// A string with a user displayable conversion of a pixel format.
+///
+///
+///
+/// ## Discussion
+///
+/// Creates a string with a formatted representation of a pixel format
+///
+///
 /// Creates a string with a formatted representation of a pixel format
 ///
 /// Parameter `pixelFormat`: The pixel format to convert
 ///
 /// Returns: A string with a user displayable conversion of a pixel format.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelformattypecopyfourcharcodestring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
     pixel_format: OSType,
@@ -293,8 +379,6 @@ pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
 /// Parameter `pixelFormatType`: compressed pixel format.
 ///
 /// Returns: True if pixel format is supported on the current platform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cviscompressedpixelformatavailable(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> bool {
     extern "C-unwind" {

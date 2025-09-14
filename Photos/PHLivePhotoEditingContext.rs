@@ -15,20 +15,69 @@ use objc2_image_io::*;
 
 use crate::*;
 
-/// A block callback for processing frames of a live photo, including the still image
+/// The signature for a block Photos calls to process Live Photo frames.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframeprocessingblock?language=objc)
+/// ## Discussion
+///
+/// To apply edits to a Live Photo, define a block with this signature and assign it to the [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) property of a Live Photo editing context. Then call the [`initWithLivePhotoEditingInput:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/init(livephotoeditinginput:)) to prepare a preview-quality version of your edits for display, or the [`saveLivePhotoToOutput:options:completionHandler:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/savelivephoto(to:options:completionhandler:)) method to produce full-quality final output. When you call one of those methods, Photos calls your frame processor block repeatedly—processing each frame of the Live Photo’s video content as well as its still photo content—to render the output.
+///
+/// This block takes the following parameters:
+///
+/// - frame: A [`PHLivePhotoFrame`](https://developer.apple.com/documentation/photos/phlivephotoframe) object describing the frame image to be processed.
+///
+/// - error: If your block cannot successfully process the frame, set this pointer to an error object describing the failure.
+///
+/// Your block should return a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object representing the result of your edits, or `nil` to indicate that your image processing has failed and the Live Photo edit should be aborted. Use the `frame` parameter’s [`image`](https://developer.apple.com/documentation/photos/phlivephotoframe/image) property to access the image to be edited.
+///
+///
+/// A block callback for processing frames of a live photo, including the still image
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
 pub type PHLivePhotoFrameProcessingBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingoption?language=objc)
+/// Keys for the `options` dictionary used with the methods listed in Processing an Editing Context’s Live Photo.
 // NS_TYPED_ENUM
 pub type PHLivePhotoEditingOption = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext?language=objc)
+    /// An editing session for modifying the photo, video, and audio content of a Live Photo.
+    ///
+    /// ## Overview
+    ///
+    /// A Live Photo is a picture, captured by a supported iOS device, that includes motion and sound from the moments just before and after it was taken. Editing the content of a Live Photo works much like editing other asset types:
+    ///
+    /// 1. In an app using the Photos framework, fetch a [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) object that represents the Live Photo to edit, and use that object’s [`requestContentEditingInputWithOptions:completionHandler:`](https://developer.apple.com/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)) method to retrieve a [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object.
+    ///
+    /// In a photo editing extension that runs within the Photos app, your extension’s main view controller (which adopts the [`PHContentEditingController`](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller) protocol) receives a [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object when the user chooses to edit a Live Photo with your extension. 2. Create a Live Photo editing context with the [`initWithLivePhotoEditingInput:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/init(livephotoeditinginput:)) initializer.
+    ///
+    /// You can create a Live Photo editing context only from [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object that represents a Live Photo. Use the [`livePhoto`](https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto) property of the editing input to verify that it has live Photo content. 3. Use the [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) property to define a block to be used in processing the Live Photo’s visual content. Photos will call this block repeatedly to process each frame of the Live Photo’s video and still photo content. 4. Create a [`PHContentEditingOutput`](https://developer.apple.com/documentation/photos/phcontenteditingoutput) object to store the results of your edit, then call the [`saveLivePhotoToOutput:options:completionHandler:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/savelivephoto(to:options:completionhandler:)) to process the Live Photo and save it to your editing output object. This method applies your [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) to each frame.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can also use the [`prepareLivePhotoForPlaybackWithTargetSize:options:completionHandler:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/preparelivephotoforplayback(withtargetsize:options:completionhandler:)) method to process a preview-quality version of the Live Photo to display in your app’s UI during editing.
+    ///
+    ///
+    ///
+    /// </div>
+    /// 5. To allow a user to continue working with the edit later (for example, to adjust the parameters of a filter), create a [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object describing your changes, and store it in the [`adjustmentData`](https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata) property of your editing output.
+    ///
+    /// 6. In an app using the Photos framework, use a photo library change block to commit the edit. (For details, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).) In the block, create a [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) object and set its [`contentEditingOutput`](https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput) property to the editing output that you created.
+    ///
+    /// In a photo editing extension, provide the [`PHContentEditingOutput`](https://developer.apple.com/documentation/photos/phcontenteditingoutput) object that you created in your main view controller’s [`finishContentEditingWithCompletionHandler:`](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller/finishcontentediting(completionhandler:)) method.
+    ///
+    /// When you use either of the methods listed in Processing an Editing Context’s Live Photo, Photos calls your [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) block repeatedly to process each frame of the Live Photo’s video and still photo content. In that block, a [`PHLivePhotoFrame`](https://developer.apple.com/documentation/photos/phlivephotoframe) object provides the Live Photo’s existing content as a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object. You use Core Image to modify the image, then provide the result of your edits by returning a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object representing the result of processing the input image.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Core Image provides several ways to process the Live Photo’s visual content. You can use the built-in filters listed in [Core Image Filter Reference](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346) or create [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) subclasses using custom graphics kernel code. Or, to use other image processing technologies, you can directly access and modify image content in pixel buffers, Metal textures, or `IOSurfaceRef` objects with a custom [`CIImageProcessorKernel`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel) subclass.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhotoEditingContext;
@@ -167,22 +216,19 @@ impl PHLivePhotoEditingContext {
     );
 }
 
+/// Identifiers for the type of frame image to be processed. Used with the [`type`](https://developer.apple.com/documentation/photos/phlivephotoframe/type) property.
 /// The type of frame in the Live Photo
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoFrameType(pub NSInteger);
 impl PHLivePhotoFrameType {
+    /// The image is a still photo.
     /// Indicates the still image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype/photo?language=objc)
     #[doc(alias = "PHLivePhotoFrameTypePhoto")]
     pub const Photo: Self = Self(0);
+    /// The image is a single frame from the Live Photo’s video content.
     /// Indicates a video frame
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype/video?language=objc)
     #[doc(alias = "PHLivePhotoFrameTypeVideo")]
     pub const Video: Self = Self(1);
 }
@@ -196,9 +242,14 @@ unsafe impl RefEncode for PHLivePhotoFrameType {
 }
 
 extern_protocol!(
-    /// Protocol that describes a single frame of a live photo
+    /// A container that provides image content for a single frame of a Live Photo in an editing context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframe?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create classes that implement this protocol. Instead, you provide a [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) block when editing a Live Photo with the [`PHLivePhotoEditingContext`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext) class. When you process your edits for output or display, Photos calls your block repeatedly to process each frame of the Live Photo’s video and still photo content. On each call, Photos provides the frame’s image content and associated information in an object that adopts this protocol. In that block, you use that object’s [`image`](https://developer.apple.com/documentation/photos/phlivephotoframe/image) property to access the image to be edited, then perform your edits and return another [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object representing the result of processing the input image.
+    ///
+    ///
+    /// Protocol that describes a single frame of a live photo
     pub unsafe trait PHLivePhotoFrame {
         #[cfg(feature = "objc2-core-image")]
         /// Input image for the frame
@@ -226,36 +277,55 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// Specifies whether processing should occur during or before playback.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an NSNumber object with a Boolean value. With the default value of `false`, Photos always renders your edits immediately when you call the [`initWithLivePhotoEditingInput:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/init(livephotoeditinginput:)) method, calling your [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) block for each frame in the Live Photo’s video and still photo content.
+    ///
+    /// When you specify a value of `true`, Photos can defer rendering until playback time, calling your [`frameProcessor`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/frameprocessor) block only for photo and video frames that need to be displayed. However, in this case Photos may still choose to pre-render your edits if needed.
+    ///
+    /// This option does not apply when rendering for output with the [`saveLivePhotoToOutput:options:completionHandler:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/savelivephoto(to:options:completionhandler:)) method.
+    ///
+    ///
     /// Indicates whether processing should happen at playback time
     /// If set to NO (the default) the live photo will always be rendered before playback
     /// If set to YES, the editing context might still choose to render first for performance reasons
     /// This option is ignored by the saveLivePhotoToOutput method
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingoption/shouldrenderatplaybacktime?language=objc)
     pub static PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption;
 }
 
 extern "C" {
-    /// The error domain for all Live Photo Editing errors (Deprecated).
+    /// The domain value for error objects produced by a Live Photo editing context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// This domain appears for errors in the completion handlers of the [`initWithLivePhotoEditingInput:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/init(livephotoeditinginput:)) and [`saveLivePhotoToOutput:options:completionHandler:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/savelivephoto(to:options:completionhandler:)) methods.
+    ///
+    ///
+    /// The error domain for all Live Photo Editing errors (Deprecated).
     #[deprecated]
     pub static PHLivePhotoEditingErrorDomain: &'static NSString;
 }
 
-/// Error code for Live Photo Editing errors (Deprecated)
+/// Error codes for Live Photo editing errors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode?language=objc)
+/// ## Overview
+///
+/// These error codes appear for errors in the completion handlers of the [`initWithLivePhotoEditingInput:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/init(livephotoeditinginput:)) and [`saveLivePhotoToOutput:options:completionHandler:`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext/savelivephoto(to:options:completionhandler:)) methods.
+///
+///
+/// Error code for Live Photo Editing errors (Deprecated)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoEditingErrorCode(pub NSInteger);
 impl PHLivePhotoEditingErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode/unknown?language=objc)
+    /// No further information is available about the cause of the error.
     #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]
     #[deprecated]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode/aborted?language=objc)
+    /// Live Photo processing was canceled by the Processing an Editing Context’s Live Photo method.
     #[doc(alias = "PHLivePhotoEditingErrorCodeAborted")]
     #[deprecated]
     pub const Aborted: Self = Self(1);

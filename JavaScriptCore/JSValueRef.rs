@@ -6,35 +6,45 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that identify the type of a JavaScript value.
 /// A constant identifying the type of a JSValue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSType(pub c_uint);
 impl JSType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypeundefined?language=objc)
+    /// The unique undefined value.
     #[doc(alias = "kJSTypeUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypenull?language=objc)
+    /// The unique null value.
     #[doc(alias = "kJSTypeNull")]
     pub const Null: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypeboolean?language=objc)
+    /// A primitive Boolean value.
+    ///
+    /// ## Discussion
+    ///
+    /// This value can be [`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "kJSTypeBoolean")]
     pub const Boolean: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypenumber?language=objc)
+    /// A primitive number value.
     #[doc(alias = "kJSTypeNumber")]
     pub const Number: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypestring?language=objc)
+    /// A primitive string value.
     #[doc(alias = "kJSTypeString")]
     pub const String: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypeobject?language=objc)
+    /// An object value.
+    ///
+    /// ## Discussion
+    ///
+    /// This [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) represents a [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref).
+    ///
+    ///
     #[doc(alias = "kJSTypeObject")]
     pub const Object: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypesymbol?language=objc)
+    /// A primitive symbol value.
     #[doc(alias = "kJSTypeSymbol")]
     pub const Symbol: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypebigint?language=objc)
     #[doc(alias = "kJSTypeBigInt")]
     pub const BigInt: Self = Self(7);
 }
@@ -49,50 +59,47 @@ unsafe impl RefEncode for JSType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The type of a JavaScript typed array object.
 /// A constant identifying the Typed Array type of a JSObjectRef.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstypedarraytype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSTypedArrayType(pub c_uint);
 impl JSTypedArrayType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeint8array?language=objc)
+    /// An 8-bit integer array type.
     #[doc(alias = "kJSTypedArrayTypeInt8Array")]
     pub const Int8Array: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeint16array?language=objc)
+    /// A 16-bit integer array type.
     #[doc(alias = "kJSTypedArrayTypeInt16Array")]
     pub const Int16Array: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeint32array?language=objc)
+    /// A 32-bit integer array type.
     #[doc(alias = "kJSTypedArrayTypeInt32Array")]
     pub const Int32Array: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint8array?language=objc)
+    /// An 8-bit unsigned integer array type.
     #[doc(alias = "kJSTypedArrayTypeUint8Array")]
     pub const Uint8Array: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint8clampedarray?language=objc)
+    /// An 8-bit unsigned integer clamped array type.
     #[doc(alias = "kJSTypedArrayTypeUint8ClampedArray")]
     pub const Uint8ClampedArray: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint16array?language=objc)
+    /// A 16-bit unsigned integer array type.
     #[doc(alias = "kJSTypedArrayTypeUint16Array")]
     pub const Uint16Array: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypeuint32array?language=objc)
+    /// A 32-bit unsigned integer array type.
     #[doc(alias = "kJSTypedArrayTypeUint32Array")]
     pub const Uint32Array: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypefloat32array?language=objc)
+    /// A 32-bit floating point array type.
     #[doc(alias = "kJSTypedArrayTypeFloat32Array")]
     pub const Float32Array: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypefloat64array?language=objc)
+    /// A 64-bit floating point array type.
     #[doc(alias = "kJSTypedArrayTypeFloat64Array")]
     pub const Float64Array: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypearraybuffer?language=objc)
+    /// An array buffer type.
     #[doc(alias = "kJSTypedArrayTypeArrayBuffer")]
     pub const ArrayBuffer: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone?language=objc)
+    /// Not a typed array.
     #[doc(alias = "kJSTypedArrayTypeNone")]
     pub const None: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypebigint64array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeBigInt64Array")]
     pub const BigInt64Array: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypebiguint64array?language=objc)
     #[doc(alias = "kJSTypedArrayTypeBigUint64Array")]
     pub const BigUint64Array: Self = Self(12);
 }
@@ -107,32 +114,52 @@ unsafe impl RefEncode for JSTypedArrayType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
 /// A constant identifying the type of JavaScript relation condition.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition?language=objc)
+///
+/// A constant identifying the type of JavaScript relation condition.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSRelationCondition(pub u32);
 impl JSRelationCondition {
+    ///
+    /// ## Discussion
+    ///
     /// A constant identifying the type of JavaScript relation condition.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/undefined?language=objc)
+    ///
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionUndefined")]
     pub const Undefined: Self = Self(0);
+    ///
+    /// ## Discussion
+    ///
     /// A constant identifying the type of JavaScript relation condition.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/equal?language=objc)
+    ///
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionEqual")]
     pub const Equal: Self = Self(1);
+    ///
+    /// ## Discussion
+    ///
     /// A constant identifying the type of JavaScript relation condition.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/greaterthan?language=objc)
+    ///
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionGreaterThan")]
     pub const GreaterThan: Self = Self(2);
+    ///
+    /// ## Discussion
+    ///
     /// A constant identifying the type of JavaScript relation condition.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition/lessthan?language=objc)
+    ///
+    /// A constant identifying the type of JavaScript relation condition.
     #[doc(alias = "kJSRelationConditionLessThan")]
     pub const LessThan: Self = Self(3);
 }
@@ -149,6 +176,19 @@ unsafe impl RefEncode for JSRelationCondition {
 
 #[cfg(all(feature = "JSValue", feature = "objc2"))]
 impl JSValue {
+    /// Returns a JavaScript value’s type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) with the type you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSType`](https://developer.apple.com/documentation/javascriptcore/jstype) value that identifies the value’s type.
+    ///
+    ///
     /// Returns a JavaScript value's type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -161,8 +201,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluegettype(_:_:)?language=objc)
     #[doc(alias = "JSValueGetType")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -173,6 +211,19 @@ impl JSValue {
         unsafe { JSValueGetType(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value’s type is the undefined type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the type of `value` is the undefined type; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the undefined type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -185,8 +236,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisundefined(_:_:)?language=objc)
     #[doc(alias = "JSValueIsUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -197,6 +246,19 @@ impl JSValue {
         unsafe { JSValueIsUndefined(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value’s type is the null type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the type of `value` is the null type; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the null type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -209,8 +271,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisnull(_:_:)?language=objc)
     #[doc(alias = "JSValueIsNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -221,6 +281,19 @@ impl JSValue {
         unsafe { JSValueIsNull(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value is Boolean.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `value` is a Boolean; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the boolean type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -233,8 +306,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisboolean(_:_:)?language=objc)
     #[doc(alias = "JSValueIsBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -245,6 +316,19 @@ impl JSValue {
         unsafe { JSValueIsBoolean(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value’s type is the number type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the type of `value` is the number type; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the number type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -257,8 +341,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisnumber(_:_:)?language=objc)
     #[doc(alias = "JSValueIsNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -269,6 +351,19 @@ impl JSValue {
         unsafe { JSValueIsNumber(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value’s type is the string type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the type of `value` is the string type; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the string type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -281,8 +376,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisstring(_:_:)?language=objc)
     #[doc(alias = "JSValueIsString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -293,6 +386,19 @@ impl JSValue {
         unsafe { JSValueIsString(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value’s type is the symbol type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the type of `value` is the symbol type; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the symbol type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -305,8 +411,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueissymbol(_:_:)?language=objc)
     #[doc(alias = "JSValueIsSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -317,6 +421,24 @@ impl JSValue {
         unsafe { JSValueIsSymbol(ctx, value) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The JSValue to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// True if value’s type is the BigInt type, otherwise false.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Tests whether a JavaScript value’s type is the BigInt type.
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the BigInt type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -329,8 +451,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisbigint(_:_:)?language=objc)
     #[doc(alias = "JSValueIsBigInt")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -341,6 +461,19 @@ impl JSValue {
         unsafe { JSValueIsBigInt(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value’s type is the object type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the type of `value` is the object type; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value's type is the object type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -353,8 +486,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisobject(_:_:)?language=objc)
     #[doc(alias = "JSValueIsObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -365,6 +496,21 @@ impl JSValue {
         unsafe { JSValueIsObject(ctx, value) }
     }
 
+    /// Tests whether a JavaScript value is an object with a specified class in its class chain.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    /// - jsClass: The [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) to test against.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `value` is an object and has `jsClass` in its class chain; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value is an object with a given class in its class chain.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -380,8 +526,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `js_class` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisobjectofclass(_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsObjectOfClass")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -402,6 +546,19 @@ impl JSValue {
 
     /// Tests whether a JavaScript value is an array.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `value` is an array; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    /// Tests whether a JavaScript value is an array.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Parameter `value`: The JSValue to test.
@@ -412,8 +569,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisarray(_:_:)?language=objc)
     #[doc(alias = "JSValueIsArray")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -426,6 +581,19 @@ impl JSValue {
 
     /// Tests whether a JavaScript value is a date.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `value` is a date; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    /// Tests whether a JavaScript value is a date.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Parameter `value`: The JSValue to test.
@@ -436,8 +604,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisdate(_:_:)?language=objc)
     #[doc(alias = "JSValueIsDate")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -448,6 +614,21 @@ impl JSValue {
         unsafe { JSValueIsDate(ctx, value) }
     }
 
+    /// Returns a JavaScript value’s typed array type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) with the typed array type to return.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value of type [`JSTypedArrayType`](https://developer.apple.com/documentation/javascriptcore/jstypedarraytype) that identifies the typed array type of `value`, or [`kJSTypedArrayTypeNone`](https://developer.apple.com/documentation/javascriptcore/kjstypedarraytypenone) if `value` isn’t a typed array object.
+    ///
+    ///
     /// Returns a JavaScript value's Typed Array type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -463,8 +644,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluegettypedarraytype(_:_:_:)?language=objc)
     #[doc(alias = "JSValueGetTypedArrayType")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -483,6 +662,23 @@ impl JSValue {
         unsafe { JSValueGetTypedArrayType(ctx, value, exception) }
     }
 
+    /// Tests whether two JavaScript values are equal.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - a: The first value to test.
+    ///
+    /// - b: The second value to test.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the two values are equal according to the JavaScript `==` operator; [`false`](https://developer.apple.com/documentation/swift/false) if they’re unequal or the system throws an exception.
+    ///
+    ///
     /// Tests whether two JavaScript values are equal, as compared by the JS == operator.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -501,8 +697,6 @@ impl JSValue {
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisequal(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -523,6 +717,21 @@ impl JSValue {
         unsafe { JSValueIsEqual(ctx, a, b, exception) }
     }
 
+    /// Tests whether two JavaScript values are strict equal.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - a: The first value to test.
+    ///
+    /// - b: The second value to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the two values are strict equal according to the JavaScript `===` operator; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether two JavaScript values are strict equal, as compared by the JS === operator.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -538,8 +747,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisstrictequal(_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsStrictEqual")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -550,6 +757,23 @@ impl JSValue {
         unsafe { JSValueIsStrictEqual(ctx, a, b) }
     }
 
+    /// Tests whether a JavaScript value is an object that the specified constructor creates.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test.
+    ///
+    /// - constructor: The constructor to test against.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the value is an object that `constructor` creates, according to the JavaScript `instanceof` operator; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript value is an object constructed by a given constructor, as compared by the JS instanceof operator.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -568,8 +792,6 @@ impl JSValue {
     /// - `value` must be a valid pointer.
     /// - `constructor` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueisinstanceofconstructor(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueIsInstanceOfConstructor")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -590,6 +812,30 @@ impl JSValue {
         unsafe { JSValueIsInstanceOfConstructor(ctx, value, constructor, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - left: The JSValue as the left operand.
+    ///
+    /// - right: The JSValue as the right operand.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compares two JSValues.
+    ///
+    /// The result is computed by comparing the results of JavaScript’s `==`, `<`, and `>` operators. If either `left` or `right` is (or would coerce to) `NaN` in JavaScript, then the result is kJSRelationConditionUndefined.
+    ///
+    ///
     /// Compares two JSValues.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -612,8 +858,6 @@ impl JSValue {
     /// - `left` must be a valid pointer.
     /// - `right` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecompare(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompare")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -634,6 +878,30 @@ impl JSValue {
         unsafe { JSValueCompare(ctx, left, right, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - left: The JSValue as the left operand.
+    ///
+    /// - right: The int64_t as the right operand.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compares a JSValue with a signed 64-bit integer.
+    ///
+    /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
+    ///
+    ///
     /// Compares a JSValue with a signed 64-bit integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -653,8 +921,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `left` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecompareint64(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompareInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -675,6 +941,30 @@ impl JSValue {
         unsafe { JSValueCompareInt64(ctx, left, right, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - left: The JSValue as the left operand.
+    ///
+    /// - right: The uint64_t as the right operand.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compares a JSValue with an unsigned 64-bit integer.
+    ///
+    /// `left` is converted to an integer according to the rules specified by the JavaScript language then compared with `right`.
+    ///
+    ///
     /// Compares a JSValue with an unsigned 64-bit integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -694,8 +984,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `left` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecompareuint64(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompareUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -716,6 +1004,30 @@ impl JSValue {
         unsafe { JSValueCompareUInt64(ctx, left, right, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - left: The JSValue as the left operand.
+    ///
+    /// - right: The double as the right operand.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value of JSRelationCondition, a kJSRelationConditionUndefined is returned if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compares a JSValue with a double.
+    ///
+    /// `left` is converted to a double according to the rules specified by the JavaScript language then compared with `right`.
+    ///
+    ///
     /// Compares a JSValue with a double.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -735,8 +1047,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `left` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecomparedouble(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCompareDouble")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -759,6 +1069,17 @@ impl JSValue {
 
     /// Creates a JavaScript value of the undefined type.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The unique undefined value.
+    ///
+    ///
+    /// Creates a JavaScript value of the undefined type.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique undefined value.
@@ -766,8 +1087,6 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakeundefined(_:)?language=objc)
     #[doc(alias = "JSValueMakeUndefined")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -780,6 +1099,17 @@ impl JSValue {
 
     /// Creates a JavaScript value of the null type.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The unique null value.
+    ///
+    ///
+    /// Creates a JavaScript value of the null type.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Returns: The unique null value.
@@ -787,8 +1117,6 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakenull(_:)?language=objc)
     #[doc(alias = "JSValueMakeNull")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -799,6 +1127,19 @@ impl JSValue {
         unsafe { JSValueMakeNull(ctx) }
     }
 
+    /// Creates a JavaScript Boolean value.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - boolean: The Boolean value to assign to the newly created [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) of the Boolean type that represents the value of `boolean`.
+    ///
+    ///
     /// Creates a JavaScript value of the boolean type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -810,8 +1151,6 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakeboolean(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -824,6 +1163,19 @@ impl JSValue {
 
     /// Creates a JavaScript value of the number type.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - number: The double to assign to the newly created [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) of the number type that represents the value of `number`.
+    ///
+    ///
+    /// Creates a JavaScript value of the number type.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Parameter `number`: The double to assign to the newly created JSValue.
@@ -833,8 +1185,6 @@ impl JSValue {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakenumber(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -845,6 +1195,19 @@ impl JSValue {
         unsafe { JSValueMakeNumber(ctx, number) }
     }
 
+    /// Creates a JavaScript value of the string type.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to assign to the newly created [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref). The newly created [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) retains `string`, and releases it upon garbage collection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) of the string type that represents the value of `string`.
+    ///
+    ///
     /// Creates a JavaScript value of the string type.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -858,8 +1221,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakestring(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -872,6 +1233,19 @@ impl JSValue {
 
     /// Creates a JavaScript value of the symbol type.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - description: A description of the newly created symbol value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A unique [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) of the symbol type with a description that matches `description`.
+    ///
+    ///
+    /// Creates a JavaScript value of the symbol type.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Parameter `description`: A description of the newly created symbol value.
@@ -882,8 +1256,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `description` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakesymbol(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeSymbol")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -896,6 +1268,28 @@ impl JSValue {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The value to copy into the new BigInt JSValue.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A BigInt JSValue of the value, or NULL if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a JavaScript BigInt with a double.
+    ///
+    /// If the value is not an integer, an exception is thrown.
+    ///
+    ///
     /// Creates a JavaScript BigInt with a double.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -912,8 +1306,6 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithdouble(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithDouble(
         ctx: JSContextRef,
@@ -923,6 +1315,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - integer: The 64-bit signed integer to copy into the new BigInt JSValue.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A BigInt JSValue of the integer, or NULL if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a JavaScript BigInt with a 64-bit signed integer.
+    ///
+    ///
     /// Creates a JavaScript BigInt with a 64-bit signed integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -937,8 +1349,6 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithint64(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithInt64(
         ctx: JSContextRef,
@@ -948,6 +1358,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - integer: The 64-bit unsigned integer to copy into the new BigInt JSValue.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A BigInt JSValue of the integer, or NULL if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a JavaScript BigInt with a 64-bit unsigned integer.
+    ///
+    ///
     /// Creates a JavaScript BigInt with a 64-bit unsigned integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -962,8 +1392,6 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithuint64(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithUInt64(
         ctx: JSContextRef,
@@ -973,6 +1401,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - string: The JSStringRef representation of an integer.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A BigInt JSValue of the string, or NULL if an exception is thrown.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a JavaScript BigInt with an integer represented in string.
+    ///
+    /// This is equivalent to calling the `BigInt` constructor from JavaScript with a string argument.
+    ///
+    ///
     /// Creates a JavaScript BigInt with an integer represented in string.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -990,8 +1440,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `string` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsbigintcreatewithstring(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSBigIntCreateWithString(
         ctx: JSContextRef,
@@ -1002,6 +1450,19 @@ extern "C-unwind" {
 
 #[cfg(all(feature = "JSValue", feature = "objc2"))]
 impl JSValue {
+    /// Creates a JavaScript value from a JSON-formatted string.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the JSON string to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that contains the parsed value, or `NULL` if the input is invalid.
+    ///
+    ///
     /// Creates a JavaScript value from a JSON formatted string.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1014,8 +1475,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluemakefromjsonstring(_:_:)?language=objc)
     #[doc(alias = "JSValueMakeFromJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1026,6 +1485,23 @@ impl JSValue {
         unsafe { JSValueMakeFromJSONString(ctx, string) }
     }
 
+    /// Creates a JavaScript string that contains the JSON-serialized representation of a JavaScript value.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The value to serialize.
+    ///
+    /// - indent: The number of spaces to indent when nesting. If `0`, the resulting JSON string doesn’t contain new lines. The size of the indent clamps to 10 spaces.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) with the result of serialization, or `NULL` if the system throws an exception.
+    ///
+    ///
     /// Creates a JavaScript string containing the JSON serialized representation of a JS value.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1043,8 +1519,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluecreatejsonstring(_:_:_:_:)?language=objc)
     #[doc(alias = "JSValueCreateJSONString")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1065,6 +1539,19 @@ impl JSValue {
         unsafe { JSValueCreateJSONString(ctx, value, indent, exception) }
     }
 
+    /// Converts a JavaScript value to a Boolean and returns the resulting Boolean.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to convert.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Boolean result of conversion.
+    ///
+    ///
     /// Converts a JavaScript value to boolean and returns the resulting boolean.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1077,8 +1564,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoboolean(_:_:)?language=objc)
     #[doc(alias = "JSValueToBoolean")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1089,6 +1574,21 @@ impl JSValue {
         unsafe { JSValueToBoolean(ctx, value) }
     }
 
+    /// Converts a JavaScript value to a number and returns the resulting number.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to convert.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The numeric result of conversion, or `NaN` if the system throws an exception.
+    ///
+    ///
     /// Converts a JavaScript value to number and returns the resulting number.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1106,8 +1606,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetonumber(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToNumber")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1126,6 +1624,28 @@ impl JSValue {
         unsafe { JSValueToNumber(ctx, value, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The JSValue to convert.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An int32_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Converts a JSValue to a singed 32-bit integer and returns the resulting integer.
+    ///
+    /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int32_t.
+    ///
+    ///
     /// Converts a JSValue to a singed 32-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1143,8 +1663,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoint32(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1163,6 +1681,28 @@ impl JSValue {
         unsafe { JSValueToInt32(ctx, value, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The JSValue to convert.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A uint32_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Converts a JSValue to an unsigned 32-bit integer and returns the resulting integer.
+    ///
+    /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint32_t.
+    ///
+    ///
     /// Converts a JSValue to an unsigned 32-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1180,8 +1720,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetouint32(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToUInt32")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1200,6 +1738,28 @@ impl JSValue {
         unsafe { JSValueToUInt32(ctx, value, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The JSValue to convert.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An int64_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Converts a JSValue to a singed 64-bit integer and returns the resulting integer.
+    ///
+    /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to an int64_t.
+    ///
+    ///
     /// Converts a JSValue to a singed 64-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1217,8 +1777,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoint64(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1237,6 +1795,28 @@ impl JSValue {
         unsafe { JSValueToInt64(ctx, value, exception) }
     }
 
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The JSValue to convert.
+    ///
+    /// - exception: A pointer to a JSValueRef in which to store an exception, if any. To reliable detect exception, initialize this to null before the call. Pass NULL if you do not care to store an exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A uint64_t with the result of conversion, or 0 if an exception is thrown. Since 0 is valid value, `exception` must be checked after the call.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Converts a JSValue to an unsigned 64-bit integer and returns the resulting integer.
+    ///
+    /// The JSValue is converted to an integer according to the rules specified by the JavaScript language. If the value is a BigInt, then the JSValue is truncated to a uint64_t.
+    ///
+    ///
     /// Converts a JSValue to an unsigned 64-bit integer and returns the resulting integer.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1254,8 +1834,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetouint64(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToUInt64")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1274,6 +1852,21 @@ impl JSValue {
         unsafe { JSValueToUInt64(ctx, value, exception) }
     }
 
+    /// Converts a JavaScript value to a string and copies the result into a JavaScript string.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to convert.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) with the result of conversion, or `NULL` if the system throws an exception. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Converts a JavaScript value to string and copies the result into a JavaScript string.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1289,8 +1882,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetostringcopy(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToStringCopy")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1309,6 +1900,21 @@ impl JSValue {
         unsafe { JSValueToStringCopy(ctx, value, exception) }
     }
 
+    /// Converts a JavaScript value to an object and returns the resulting object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to convert.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) result of conversion, or `NULL` if the system throws an exception.
+    ///
+    ///
     /// Converts a JavaScript value to object and returns the resulting object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1324,8 +1930,6 @@ impl JSValue {
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvaluetoobject(_:_:_:)?language=objc)
     #[doc(alias = "JSValueToObject")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1346,6 +1950,21 @@ impl JSValue {
 
     /// Protects a JavaScript value from garbage collection.
     ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to protect.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method when you want to store a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) in a global or on the heap, where the garbage collector can’t discover your reference to it.
+    ///
+    /// You can protect a value multiple times and must unprotect it an equal number of times before it becomes eligible for garbage collection.
+    ///
+    ///
+    /// Protects a JavaScript value from garbage collection.
+    ///
     /// Parameter `ctx`: The execution context to use.
     ///
     /// Parameter `value`: The JSValue to protect.
@@ -1358,8 +1977,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueprotect(_:_:)?language=objc)
     #[doc(alias = "JSValueProtect")]
     #[cfg(feature = "JSBase")]
     #[inline]
@@ -1370,6 +1987,19 @@ impl JSValue {
         unsafe { JSValueProtect(ctx, value) }
     }
 
+    /// Unprotects a JavaScript value from garbage collection.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - value: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to unprotect.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can protect a value multiple times and must unprotect it an equal number of times before it becomes eligible for garbage collection.
+    ///
+    ///
     /// Unprotects a JavaScript value from garbage collection.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1383,8 +2013,6 @@ impl JSValue {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueunprotect(_:_:)?language=objc)
     #[doc(alias = "JSValueUnprotect")]
     #[cfg(feature = "JSBase")]
     #[inline]

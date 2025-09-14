@@ -7,32 +7,74 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterrordomain?language=objc)
+    /// The domain for WatchKit errors.
+    ///
+    /// ## Discussion
+    ///
+    /// The system uses this value in the [`NSError`](https://developer.apple.com/documentation/foundation/nserror) class.
+    ///
+    ///
     pub static WatchKitErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code?language=objc)
+/// Error codes reported by WatchKit.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WatchKitErrorCode(pub NSInteger);
 impl WatchKitErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/unknown?language=objc)
+    /// An unknown error.
+    ///
+    /// ## Discussion
+    ///
+    /// WatchKit reports this error when it can’t determine the precise reason for the failure.
+    ///
+    ///
     #[doc(alias = "WatchKitUnknownError")]
     pub const UnknownError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/applicationdelegatewatchkitrequestreplynotcalled?language=objc)
+    /// An unresponsive delegate error.
+    ///
+    /// ## Discussion
+    ///
+    /// WatchKit no longer uses this error code.
+    ///
+    ///
     #[doc(alias = "WatchKitApplicationDelegateWatchKitRequestReplyNotCalledError")]
     pub const ApplicationDelegateWatchKitRequestReplyNotCalledError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/invalidargument?language=objc)
+    /// An invalid argument error.
+    ///
+    /// ## Discussion
+    ///
+    /// WatchKit reports this error when you specify invalid settings for one of the system supplied interfaces.
+    ///
+    ///
     #[doc(alias = "WatchKitInvalidArgumentError")]
     pub const InvalidArgumentError: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/mediaplayerfailed?language=objc)
+    /// A media player error.
+    ///
+    /// ## Discussion
+    ///
+    /// WatchKit reports this error when it’s unable to play a media file.
+    ///
+    ///
     #[doc(alias = "WatchKitMediaPlayerError")]
     pub const MediaPlayerError: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/downloadfailed?language=objc)
+    /// A download error.
+    ///
+    /// ## Discussion
+    ///
+    /// WatchKit reports this error when it can’t download a media file.
+    ///
+    ///
     #[doc(alias = "WatchKitDownloadError")]
     pub const DownloadError: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/watchkiterror/code/recordingfailed?language=objc)
+    /// An audio recording error.
+    ///
+    /// ## Discussion
+    ///
+    /// WatchKit reports this error when it’s unable to record audio using the audio recording interface.
+    ///
+    ///
     #[doc(alias = "WatchKitRecordingFailedError")]
     pub const RecordingFailedError: Self = Self(6);
 }

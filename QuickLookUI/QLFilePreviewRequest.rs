@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class contains information about the preview that should be provided.
+    /// A Quick Look preview request that indicates the content to preview.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlfilepreviewrequest?language=objc)
+    /// ## Overview
+    ///
+    /// The system provides a [`QLFilePreviewRequest`](https://developer.apple.com/documentation/quicklookui/qlfilepreviewrequest) to the [`providePreviewForFileRequest:completionHandler:`](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller/providepreview(for:completionhandler:)) method of your data-based Quick Look extension.
+    ///
+    ///
+    /// This class contains information about the preview that should be provided.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLFilePreviewRequest;

@@ -9,7 +9,24 @@ use objc2_core_graphics::*;
 use crate::*;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460190-pmretain?language=objc)
+    /// Retains a printing object by incrementing its reference count.
+    ///
+    /// Parameters:
+    /// - object: The printing object you want to retain.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should retain a printing object when you receive it from elsewhere (that is, you did not create or copy it) and you want it to persist. If you retain a printing object, you are responsible for releasing it. (See `PMRelease`.) You can use the function `PMRetain` to increment a printing object’s reference count so that multiple threads or routines can use the object without the risk of another thread or routine deallocating the object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -19,7 +36,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease?language=objc)
+    /// Releases a printing object by decrementing its reference count.
+    ///
+    /// Parameters:
+    /// - object: The printing object you want to release.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application should use the `PMRelease` function to release any printing objects it creates or retains. When an object’s reference count reaches 0, the object is deallocated.
+    ///
+    /// For example, to terminate a printing session created with the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession), pass the associated [`PMPrintSession`](https://developer.apple.com/documentation/applicationservices/pmprintsession) object to `PMRelease`. To release printing objects created with the functions [`PMCreatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459485-pmcreatepageformat) and [`PMCreatePrintSettings`](https://developer.apple.com/documentation/applicationservices/1463239-pmcreateprintsettings), pass the associated `PMPageFormat` and `PMPrintSettings` objects to `PMRelease`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -29,7 +65,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession?language=objc)
+    /// Creates and initializes a printing session object and creates a context for printing operations.
+    ///
+    /// Parameters:
+    /// - printSession: A pointer to your [`PMPrintSession`](https://developer.apple.com/documentation/applicationservices/pmprintsession) variable. On return, the variable refers to a new printing session object. You are responsible for releasing the printing session object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allocates memory for a new printing session object in your application’s memory space and sets its reference count to 1. The new printing session object is initialized with information that the printing system uses for a print job.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -39,7 +92,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460003-pmsessionerror?language=objc)
+    /// Obtains the result code for any error returned by the printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session whose last error you want to obtain.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }. The constant `kPMCancel` indicates the user canceled the current print job.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// The `PMSessionError` function returns the last printing session error, not the last error from a printing function (`PMxxx`). Because most printing functions return a result code, the `PMSessionError` function is not required for general error checking. However, you can use `PMSessionError` in your print loop to determine if the user cancels the current print job or if any other errors occur during printing that are not explicitly returned by one of the other calls. For example, if the user clicks the Cancel button in the status dialog or presses Command-period on the keyboard, this function returns the constant `kPMCancel`. If this or any other error is encountered during the print loop, your application should call the appropriate functions (for example, `PMSessionEndPage` and `PMSessionEndDocument`) to exit the print loop before your application reports the error.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -49,7 +121,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460216-pmsessionseterror?language=objc)
+    /// Sets the value of the current result code for the specified printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session whose result code you want to set.
+    ///
+    /// - printError: The result code you want to set. This result code is returned by the `PMSessionError` function.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// You can use this function to terminate a printing session if your application encounters any errors inside the print loop. Typically, this function is used by an application’s idle function. The idle function isn’t called in macOS, so this usage is not available.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -59,7 +152,38 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog?language=objc)
+    /// Begins a print job that draws into a Quartz graphics context and suppresses the printing status dialog.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the new print job.
+    ///
+    /// - printSettings: The print settings to use for the new print job.
+    ///
+    /// - pageFormat: The page format to use for the new print job.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function starts a print job that draws directly into a Quartz graphics context and should be called within your application’s print loop. This function is similar to the function `PMSessionBeginCGDocument` except that the printing status dialog is suppressed.
+    ///
+    /// You must call `PMSessionBeginCGDocumentNoDialog` between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession). If you present a printing dialog before you call `PMSessionBeginCGDocumentNoDialog`, when calling this function you should use the same [`PMPrintSession`](https://developer.apple.com/documentation/applicationservices/pmprintsession) object you used to present the dialog.
+    ///
+    /// Before you call `PMSessionBeginCGDocumentNoDialog`, you should call [`PMSessionValidatePrintSettings`](https://developer.apple.com/documentation/applicationservices/1458994-pmsessionvalidateprintsettings) and [`PMSessionValidatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat) to make sure the specified print settings and page format objects are updated and valid. After you call `PMSessionBeginCGDocumentNoDialog`, if you call a function that changes the specified print settings or page format object, the change is ignored for the current print job.
+    ///
+    /// During the print job, the caller cannot obtain a Quickdraw graphics port for the printing session but can only obtain a Quartz graphics context. As a result, this function should be used in conjunction with [`PMSessionGetCGGraphicsContext`](https://developer.apple.com/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext) instead of [`PMSessionGetGraphicsContext`](https://developer.apple.com/documentation/applicationservices/core_printing/1805529-pmsessiongetgraphicscontext).
+    ///
+    /// This function must be called before its corresponding `End` function ([`PMSessionEndDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1464527-pmsessionenddocumentnodialog)). If the function `PMSessionBeginCGDocumentNoDialog` returns `noErr`, you must later call the `End` function, even if errors occur within the scope of the `Begin` and `End` functions.
+    ///
+    /// The printing system automatically handles printing multiple copies. Your application does not need to perform any tasks other than specifying the number of copies in the printing session.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -75,7 +199,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464527-pmsessionenddocumentnodialog?language=objc)
+    /// Ends a print job started by calling the function [`PMSessionBeginCGDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog) or [`PMSessionBeginDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog).
+    ///
+    /// Parameters:
+    /// - printSession: The current printing session. On return, the printing session is no longer valid; however, you must still call the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease) to release the object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is similar to the function `PMSessionEndDocument` except that the printing status dialog is suppressed.
+    ///
+    /// This function is used to end a print job, and it should be called within your application’s print loop after the call to the function `PMSessionEndPageNoDialog` and before releasing the printing session. The same printing session that is created by the function `PMCreateSession` for the Print dialog should be used for the print loop.
+    ///
+    /// The function `PMSessionEndDocumentNoDialog` must be called after its corresponding `Begin` function ([`PMSessionBeginCGDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog) or [`PMSessionBeginDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog)). If the `Begin` function returns `noErr`, the function `PMSessionEndDocument` must be called, even if errors occur within the scope of the `Begin` and `End` functions. You should not call `PMSessionEndDocumentNoDialog` if the `Begin` function returns an error.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -85,7 +230,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463416-pmsessionbeginpagenodialog?language=objc)
+    /// Starts a new page for printing in the specified printing session and suppresses the printing status dialog.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job.
+    ///
+    /// - pageFormat: The page format for the new page. If you pass `NULL`, the printing system uses the page format you passed to [`PMSessionBeginCGDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog).
+    ///
+    /// - pageFrame: You should pass `NULL`, as this parameter is currently unsupported.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. If the user cancels the print job, this function returns `kPMCancel`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is similar to the function `PMSessionBeginPage` except that the function `PMSessionBeginPageNoDialog` suppresses the printing status dialog. You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession). You must call the functions `PMSessionBeginPageNoDialog` and [`PMSessionEndPageNoDialog`](https://developer.apple.com/documentation/applicationservices/1462014-pmsessionendpagenodialog) within the scope of calls to the `Begin` print job function ([`PMSessionBeginCGDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog)) and the `End` print job function ([`PMSessionEndDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1464527-pmsessionenddocumentnodialog)).
+    ///
+    /// You should call the function [`PMSessionError`](https://developer.apple.com/documentation/applicationservices/1460003-pmsessionerror) immediately before you call `PMSessionBeginPageNoDialog`. If `PMSessionError` returns an error, then you should not call the function `PMSessionBeginPageNoDialog`. Because `PMSessionBeginPage` also initializes the printing graphics context, your application should not make assumptions about the state of the context (for example, the current font) between successive pages. After each call to `PMSessionBeginPageNoDialog`, your application should call [`PMSessionGetCGGraphicsContext`](https://developer.apple.com/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext) to obtain the current printing context.
+    ///
+    /// If the function `PMSessionBeginPageNoDialog` returns `noErr`, you must later call the function `PMSessionEndPageNoDialog`, even if errors occur within the scope of `PMSessionBeginPageNoDialog` and `PMSessionEndPageNoDialog`.
+    ///
+    /// The printing system automatically handles printing multiple copies. Your application does not need to perform any tasks other than specifying the number of copies in the printing session.
+    ///
+    /// <a id="1771101"></a>
+    /// ### Special Considerations
+    ///
+    /// Prior to OS X v10.5, the `pageFormat` parameter is ignored. In macOS 10.5 and later, the printing system supports multiple orientations within a print job. When you call this function and supply a page format, the orientation specified in the page format is used for the current page. Other settings in the page format, such as paper size or scaling, are ignored.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -101,7 +278,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462014-pmsessionendpagenodialog?language=objc)
+    /// Indicates the end of drawing the current page for the specified printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is similar to the function `PMSessionEndPage` except that the printing status dialog is suppressed.
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession). You must call the functions `PMSessionBeginPageNoDialog` and `PMSessionEndPageNoDialog` within the scope of calls to the `Begin` print job function ([`PMSessionBeginCGDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog)) and the `End` print job function ([`PMSessionEndDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1464527-pmsessionenddocumentnodialog)).
+    ///
+    /// If the function `PMSessionBeginPageNoDialog` returns `noErr`, you must later call the function `PMSessionEndPageNoDialog`, even if errors occur within the scope of `PMSessionBeginPageNoDialog` and `PMSessionEndPageNoDialog`. You should not call `PMSessionEndPageNoDialog` if `PMSessionBeginPageNoDialog` returns an error.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -111,7 +309,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461952-pmsessiongetcggraphicscontext?language=objc)
+    /// Obtains the Quartz graphics context for the current page in a printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session whose Quartz graphics context you want to obtain.
+    ///
+    /// - context: A pointer to your [`CGContext`](https://developer.apple.com/documentation/coregraphics/cgcontext) variable. On return, the variable refers to the Quartz graphics context for the current page in the specified printing session. The context’s origin is at the lower-left corner of the sheet of paper, not the imageable area. You should not release the context without first retaining it. The context is valid only for the current page; you should not retain it beyond the end of the page.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you’re using Quartz 2D to draw the content for a print job, after each call to `PMSessionBeginPage` you should call `PMSessionGetCGGraphicsContext` to obtain the Quartz graphics context for the current page. Note that before you can use the function `PMSessionGetCGGraphicsContext`, you must have called `PMSessionBeginCGDocument` or [`PMSessionBeginCGDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog) instead of PMSessionBeginDocument or [`PMSessionBeginDocumentNoDialog`](https://developer.apple.com/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -125,7 +342,42 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461071-pmsessiongetdestinationtype?language=objc)
+    /// Obtains the output destination for a print job.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job. This must be the same printing session used for the Print dialog. The printing session contains the preview setting, which can override the destination type in the print settings.
+    ///
+    /// - printSettings: The print settings for the print job whose destination you want to obtain.
+    ///
+    /// - destTypeP: A pointer to your `PMDestinationType` variable. On return, the variable contains the destination type for the specified print job. Possible values include:
+    ///
+    /// - `kPMDestinationPrinter` (output to a printer)
+    ///
+    /// - `kPMDestinationFile` (output to a file)
+    ///
+    /// - `kPMDestinationFax` (output to a fax)
+    ///
+    /// - `kPMDestinationPreview` (output to print preview)
+    ///
+    /// - `kPMDestinationProcessPDF` (output to a PDF workflow option)
+    ///
+    /// See [`PMDestinationType`](https://developer.apple.com/documentation/applicationservices/pmdestinationtype) for a complete description of the destination type constants.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// All of the destination types are stored in the print settings object except for `kPMDestinationPreview`, which is stored in the printing session object. If the destination type is set as preview, the preview setting overrides the destination set in the print settings object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -141,7 +393,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464266-pmsessioncopydestinationformat?language=objc)
+    /// Obtains the destination format for a print job.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job.
+    ///
+    /// - printSettings: The print settings object for the print job whose destination format you want to obtain.
+    ///
+    /// - destFormatP: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string that contains the destination format for the print job. You are responsible for releasing the string. Currently, there are two possible values: `kPMDocumentFormatPDF` or `kPMDocumentFormatPostScript`.
+    ///
+    /// If an error occurs, the variable is set to `NULL`. If the function executes without error  and the variable is set to `NULL`, the print job is set to use the default destination format.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -157,7 +432,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462967-pmsessioncopydestinationlocation?language=objc)
+    /// Obtains a destination location for a print job.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job.
+    ///
+    /// - printSettings: The print settings for the print job whose destination location you want to obtain.
+    ///
+    /// - destLocationP: A pointer to your [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) variable. On return, the variable refers to a Core Foundation URL that specifies the destination location of the print job. You are responsible for releasing the URL. If `NULL` is returned and the function executes without error (result code is `noErr`), the print job uses the default destination location for the current destination type. If an error occurs, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// Some destination types define a specific kind of destination location for a print job. For example, the destination type `kPMDestinationFile` uses a file system URL to specify where a new file should be created for the print job’s output.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -173,7 +471,44 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459855-pmsessionsetdestination?language=objc)
+    /// Sets the destination location, format, and type for a print job.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job.
+    ///
+    /// - printSettings: The print settings for the print job whose destination you want to set.
+    ///
+    /// - destType: The destination type for the print job associated with the specified printing session and print settings. Possible values include:
+    ///
+    /// - `kPMDestinationPrinter` (output to a printer)
+    ///
+    /// - `kPMDestinationFile` (output to a file)
+    ///
+    /// - `kPMDestinationFax` (output to a fax)
+    ///
+    /// - `kPMDestinationPreview` (output to print preview)
+    ///
+    /// - `kPMDestinationProcessPDF` (output to a PDF workflow option)
+    ///
+    /// See [`PMDestinationType`](https://developer.apple.com/documentation/applicationservices/pmdestinationtype) for a complete description of destination types you can specify.
+    ///
+    /// - destFormat: The MIME type to be generated for the specified destination type. Pass `NULL` if you want to use the default format for the specified destination type. To obtain a list of valid formats for a given destination type, use the function [`PMSessionCopyOutputFormatList`](https://developer.apple.com/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist).
+    ///
+    /// - destLocation: A reference to a Core Foundation URL that specifies a destination location. You can provide this if the destination type supports a destination location. Otherwise, pass `NULL`. For example, if the destination type is a file (`kPMDestinationFile`) you can supply a file system URL to specify where the file resides.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the function `PMSessionSetDestination` when you want to send print output to a file without requiring user interaction. You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -190,7 +525,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461332-pmsessioncopyoutputformatlist?language=objc)
+    /// Obtains an array of destination formats supported by the current print destination.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session that provides a context for the print job. The printer associated with this session is queried for the MIME types it supports.
+    ///
+    /// - destType: A destination type that specifies the destination for which you want to obtain valid destination formats. See [`PMDestinationType`](https://developer.apple.com/documentation/applicationservices/pmdestinationtype) for a list of the possible destination types a print job can have.
+    ///
+    /// - documentFormatP: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array that contains a list of destination formats that can be generated for the current print destination. See [`Document Format Strings`](https://developer.apple.com/documentation/applicationservices/core_printing/document_format_strings) for a list of some of the output formats that can be returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -205,7 +561,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463985-pmsessioncreatepageformatlist?language=objc)
+    /// Obtains a list of page format objects, each of which describes a paper size available on the specified printer.
+    ///
+    /// Parameters:
+    /// - printSession: The current printing session.
+    ///
+    /// - printer: The printer whose list of page sizes you want to enumerate.
+    ///
+    /// - pageFormatList: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array that contains the page format (`PMPageFormat`) objects associated with the specified printer. You are responsible for releasing the array. Each page format object describes a paper size available for the specified printer. If the function fails, then on return the array is `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// You can use this function to find the available sheet sizes (and the imageable area for them) for a given printer. After you obtain the page format list, you can call the function [`PMGetUnadjustedPaperRect`](https://developer.apple.com/documentation/applicationservices/1462939-pmgetunadjustedpaperrect) for each page format object in the list to obtain the sheet rectangle size. Once you find the paper size you want, call [`PMGetUnadjustedPageRect`](https://developer.apple.com/documentation/applicationservices/1462944-pmgetunadjustedpagerect) to obtain the imageable area for that paper size.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -221,7 +600,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460119-pmsessioncreateprinterlist?language=objc)
+    /// Creates a list of printers available in the specified printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session whose printer list you want to obtain.
+    ///
+    /// - printerList: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array containing a list of printers available in the specified printing session. Each element in the array is a Core Foundation string that contains a printer’s name as shown in the user interface. You are responsible for releasing the array.
+    ///
+    /// - currentIndex: A pointer to your [`CFIndex`](https://developer.apple.com/documentation/corefoundation/cfindex) variable. On return, the variable contains a value specifying where the current printer is in the printer list.
+    ///
+    /// - currentPrinter: A pointer to your [`PMPrinter`](https://developer.apple.com/documentation/applicationservices/pmprinter) variable. On return, the variable refers to a printer object that represents the current printer. You should not release the printer object without first retaining it. If the printer is the generic printer, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// You can call the function `PMSessionCreatePrinterList` to obtain a valid printer name to pass to the function `PMSessionSetCurrentPrinter`.
+    ///
+    /// <a id="1771103"></a>
+    /// ### Special Considerations
+    ///
+    /// In macOS 10.2 and later, Apple recommends using the function [`PMServerCreatePrinterList`](https://developer.apple.com/documentation/applicationservices/1459953-pmservercreateprinterlist) instead. `PMServerCreatePrinterList` doesn’t require a `PMSession` object; it can be called at any time. It also works directly with `PMPrinter` objects.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -239,7 +648,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458998-pmsessiongetcurrentprinter?language=objc)
+    /// Obtains the current printer associated with a printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session whose printer you want to obtain.
+    ///
+    /// - currentPrinter: A pointer to your [`PMPrinter`](https://developer.apple.com/documentation/applicationservices/pmprinter) variable. On return, the variable refers to the printer associated with the specified printing session. The printer object is valid as long as the printing session is valid or the current printer hasn’t changed. You should not release this object without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -253,7 +681,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461096-pmsessionsetcurrentpmprinter?language=objc)
+    /// Changes the current printer for a printing session.
+    ///
+    /// Parameters:
+    /// - session: The printing session whose printer you want to change.
+    ///
+    /// - printer: The new printer for the printing session.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -264,7 +711,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462964-pmsessiongetdatafromsession?language=objc)
+    /// Obtains application-specific data previously stored in a printing session object.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session whose data you want to obtain.
+    ///
+    /// - key: The key that uniquely identifies the data to be retrieved. You specify this key when you store the data using the function [`PMSessionSetDataInSession`](https://developer.apple.com/documentation/applicationservices/1461902-pmsessionsetdatainsession).
+    ///
+    /// - data: A pointer to your [`CFTypeRef`](https://developer.apple.com/documentation/corefoundation/cftyperef) variable. On return, the variable refers to the data retrieved from the printing session.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -279,7 +747,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461902-pmsessionsetdatainsession?language=objc)
+    /// Stores your application-specific data in a printing session object.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session in which you want to store application-specific data.
+    ///
+    /// - key: A key that uniquely identifies the data being added. This key is required to retrieve the data using the function [`PMSessionGetDataFromSession`](https://developer.apple.com/documentation/applicationservices/1462964-pmsessiongetdatafromsession).
+    ///
+    /// - data: The data to be stored in the printing session.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -294,7 +783,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459485-pmcreatepageformat?language=objc)
+    /// Creates a new page format object.
+    ///
+    /// Parameters:
+    /// - pageFormat: A pointer to your [`PMPageFormat`](https://developer.apple.com/documentation/applicationservices/pmpageformat) variable. On return, the variable refers to a new page format object. You are responsible for releasing the page format object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allocates memory for a new page format object in your application’s memory space and sets its reference count to 1. The new page format object is empty and unusable until you call [`PMSessionDefaultPageFormat`](https://developer.apple.com/documentation/applicationservices/1462217-pmsessiondefaultpageformat) or [`PMCopyPageFormat`](https://developer.apple.com/documentation/applicationservices/1464669-pmcopypageformat).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -304,7 +810,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462217-pmsessiondefaultpageformat?language=objc)
+    /// Assigns default parameter values to a page format object used in the specified printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session for the specified page format object.
+    ///
+    /// - pageFormat: The page format object to which you want to assign default values.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call the function `PMSessionDefaultPageFormat` between the creation and release of the printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -318,7 +843,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat?language=objc)
+    /// Updates the values in a page format object and validates them against the current formatting printer.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session for the specified page format object.
+    ///
+    /// - pageFormat: The page format object to validate.
+    ///
+    /// - result: A pointer to your Boolean variable. On return, `true` if the function set the page format object to default values; otherwise, `false`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of the printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    /// The function `PMSessionValidatePageFormat` validates the page format object against the current formatting printer. The formatting printer is displayed in the Format for pop-up menu in the Page Setup dialog. The default formatting printer is the generic Any Printer. If the page format object contains values that are not valid for the formatting printer, the page format object is set to default values and the `result` parameter is set to `true`.
+    ///
+    /// Validating a page format object also causes calculated fields (such as the adjusted paper and page rectangles) to be updated based on the changed settings (such as resolution, scaling, and page orientation). If the page format object contains values that are valid for the formatting printer but need to be updated, the `result` parameter is set to `false`.
+    ///
+    /// After you call any function that makes changes to a page format object (such as `PMSetOrientation`), you should call the function `PMSessionValidatePageFormat` to validate the page format object before using that object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -334,7 +886,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464669-pmcopypageformat?language=objc)
+    /// Copies the settings from one page format object into another.
+    ///
+    /// Parameters:
+    /// - formatSrc: The page format object to duplicate.
+    ///
+    /// - formatDest: The page format object to receive the copied settings. On return, this object contains the same settings as the `formatSrc` object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -345,7 +910,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459274-pmcreatepageformatwithpmpaper?language=objc)
+    /// Creates a page format object with a specified paper.
+    ///
+    /// Parameters:
+    /// - pageFormat: A pointer to your [`PMPageFormat`](https://developer.apple.com/documentation/applicationservices/pmpageformat) variable. On return, the variable refers to a new page format object that represents the specified paper. You are responsible for releasing the page format object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    /// - paper: The type of paper for the new page format object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -359,7 +937,38 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta?language=objc)
+    /// Creates a data representation of a page format object.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object to convert.
+    ///
+    /// - data: A pointer to your [`CFData`](https://developer.apple.com/documentation/corefoundation/cfdata) variable. On return, the variable refers to a new Core Foundation data object that contains a representation of the specified page format object in the specified data format. You are responsible for releasing the data object.
+    ///
+    /// - format: A constant that specifies the format of the data representation.  Supported values are:
+    ///
+    /// - `kPMDataFormatXMLDefault` (compatible with all macOS versions)
+    ///
+    /// - `kPMDataFormatXMLMinimal` (approximately 3-5 times smaller; compatible with macOS 10.5 and later)
+    ///
+    /// - `kPMDataFormatXMLCompressed` (approximately 20 times smaller; compatible with macOS 10.5 and later)
+    ///
+    /// See [`PMDataFormat`](https://developer.apple.com/documentation/applicationservices/pmdataformat) for a full description of these formats.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to convert a page format object into a data representation suitable for storage in a user document. For information about using a Core Foundation data object, see `CFData`.
+    ///
+    /// Before calling this function, you should call the function [`PMSessionValidatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat) to make sure the page format object contains valid values.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -374,7 +983,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462876-pmpageformatcreatewithdatarepres?language=objc)
+    /// Creates a page format object from a data representation.
+    ///
+    /// Parameters:
+    /// - data: The data representation of a page format object. The data representation must have been previously created with the function [`PMPageFormatCreateDataRepresentation`](https://developer.apple.com/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta).
+    ///
+    /// - pageFormat: A pointer to your [`PMPageFormat`](https://developer.apple.com/documentation/applicationservices/pmpageformat) variable. On return, the variable refers to a new page format object that contains the information stored in the specified data object. You are responsible for releasing the page format object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to convert a data representation stored in a user document back into a page format object. For information about creating a Core Foundation data object from raw data, see `CFData`.
+    ///
+    /// After calling this function, you should call the function [`PMSessionValidatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat) to make sure the page format object contains valid values.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -387,7 +1017,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461543-pmgetadjustedpagerect?language=objc)
+    /// Obtains the imageable area or page rectangle, taking into account orientation, application drawing resolution, and scaling settings.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose adjusted page rectangle you want to obtain.
+    ///
+    /// - pageRect: A pointer to your [`PMRect`](https://developer.apple.com/documentation/applicationservices/core_printing/pmrect) structure. On return, the structure contains the current imageable area, in points, taking into account scaling, rotation, and application resolution settings. The page rectangle is the area of the page to which an application can draw. The coordinates for the upper-left corner of the page rectangle are (0,0). See Supporting Printing in Your Carbon Application for more information on page and paper rectangles.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before using this function, you must call [`PMSessionValidatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat) to ensure that the values for the adjusted page rectangle correctly account for scaling, rotation, and application resolution settings.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -399,7 +1048,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459167-pmgetadjustedpaperrect?language=objc)
+    /// Obtains the rectangle defining the paper size, taking into account orientation, application drawing resolution, and scaling settings.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose adjusted paper rectangle you want to obtain.
+    ///
+    /// - paperRect: A pointer to your [`PMRect`](https://developer.apple.com/documentation/applicationservices/core_printing/pmrect) structure. On return, the structure describes the current paper size, in points, taking into account scaling, rotation, and application resolution settings. The coordinates of the upper-left corner of the paper rectangle are specified relative to the page rectangle. The coordinates of the upper-left corner of the page rectangle are always (0,0), which means the coordinates of the upper-left corner of the paper rectangle are always negative or (0,0). See Supporting Printing in Your Carbon Application for more information on page and paper rectangles.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before using this function, you must call the function [`PMSessionValidatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat) to ensure that the values for the adjusted paper rectangle correctly account for scaling, rotation, and application resolution settings.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -413,7 +1081,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459144-pmgetorientation?language=objc)
+    /// Obtains the current setting for page orientation.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose orientation you want to obtain.
+    ///
+    /// - orientation: A pointer to your `PMOrientation` variable. On return, the variable contains a constant value indicating the page orientation. Supported values are:
+    ///
+    /// - `kPMPortrait`
+    ///
+    /// - `kPMLandscape`
+    ///
+    /// - `kPMReversePortrait` (supported in macOS 10.5 and later)
+    ///
+    /// - `kPMReverseLandscape`
+    ///
+    /// See [`PMOrientation`](https://developer.apple.com/documentation/applicationservices/pmorientation) for a complete description of the page orientation constants.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -427,7 +1118,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464455-pmgetpageformatextendeddata?language=objc)
+    /// Obtains extended page format data previously stored by your application.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object that contains your extended data.
+    ///
+    /// - dataID: A 4-character code that identifies your data. This is typically your application’s creator code. If your creator code is outside the ASCII 7-bit character range 0x20–0x7F, you need to use a different 4-character code.
+    ///
+    /// - size: A pointer to a value that specifies the size of the buffer you have allocated for the extended page format data. On return, this variable contains the number of bytes read into the buffer or the size of the extended data. You can pass the constant `kPMDontWantSize` if you do not need this information. (See [`Data Not Wanted Constants`](https://developer.apple.com/documentation/applicationservices/core_printing/data_not_wanted_constants) for more information.)
+    ///
+    /// - extendedData: A pointer to a buffer to receive the extended data. Pass the constant `kPMDontWantData` if you do not want to read the data. (See [`Data Not Wanted Constants`](https://developer.apple.com/documentation/applicationservices/core_printing/data_not_wanted_constants) for more information.)
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application typically needs to call the function `PMGetPageFormatExtendedData` two times in order to retrieve the extended page format data. The first time, pass the constant `kPMDontWantData` in the parameter `extendedData` to obtain the buffer size required for the extended data. Then allocate the buffer and call the function a second time to read the extended data into your buffer.
+    ///
+    /// If you write a printing dialog extension for your application that stores data in the page format object, you use the function `PMGetPageFormatExtendedData` to retrieve the data associated with it.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -444,7 +1160,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462961-pmpageformatgetprinterid?language=objc)
+    /// Obtains the identifier of the formatting printer for a page format object.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose printer identifier you want to obtain.
+    ///
+    /// - printerID: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string that contains the identifier of the formatting printer for the specified page format object. If the page format object does not have that information, the variable is set to `NULL`. You should not release the string without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Page format objects can be created a number of different ways and some of them do not require a specific printer. If the printer ID is known, the printer is displayed in the Page Setup dialog’s Format for pop-up menu. If the printer ID is not known, the default formatting printer is the generic Any Printer. The printing system provides default page and paper sizes for the generic printer.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -458,7 +1193,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458796-pmgetscale?language=objc)
+    /// Obtains the scaling factor currently applied to the page and paper rectangles.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose scaling factor you want to obtain.
+    ///
+    /// - scale: A pointer to your double-precision variable. On return, the variable contains the scaling factor expressed as a percentage. For example, a value of 100.0 means 100 percent (that is, no scaling); a value of 50.0 means 50 percent scaling.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -469,7 +1217,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462944-pmgetunadjustedpagerect?language=objc)
+    /// Obtains the imageable area or page rectangle, unaffected by orientation, resolution, or scaling.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose unadjusted page rectangle you want to obtain.
+    ///
+    /// - pageRect: A pointer to your [`PMRect`](https://developer.apple.com/documentation/applicationservices/core_printing/pmrect) data structure. On return, the structure contains the size of the page rectangle, in points. The page rectangle is the area of the page to which an application can draw. The coordinates for the upper-left corner of the page rectangle are (0,0). See Supporting Printing in Your Carbon Application for more information on page and paper rectangles.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -483,7 +1244,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462939-pmgetunadjustedpaperrect?language=objc)
+    /// Obtains the paper rectangle, unaffected by rotation, resolution, or scaling.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose unadjusted paper rectangle you want to obtain.
+    ///
+    /// - paperRect: A pointer to your [`PMRect`](https://developer.apple.com/documentation/applicationservices/core_printing/pmrect) data structure. On return, the structure contains the physical size of the paper, in points. The coordinates of the upper-left corner of the paper rectangle are specified relative to the page rectangle. The coordinates of the upper-left corner of the page rectangle are always (0,0), which means the coordinates of the upper-left corner of the paper rectangle are always negative or (0,0). See Supporting Printing in Your Carbon Application for more information on page and paper rectangles.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -496,13 +1270,43 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Sets the page orientation for printing.
+///
+/// Parameters:
+/// - pageFormat: The page format object whose page orientation you want to set.
+///
+/// - orientation: A constant specifying the desired page orientation. Supported values are:
+///
+/// - `kPMPortrait`
+///
+/// - `kPMLandscape`
+///
+/// - `kPMReversePortrait` (macOS 10.5 and later)
+///
+/// - `kPMReverseLandscape`
+///
+/// See [`PMOrientation`](https://developer.apple.com/documentation/applicationservices/pmorientation) for a full description of the values you can use to specify page orientation.
+///
+/// - lock: The lock state of the setting. You should pass `kPMUnlocked`. Locking is not supported at this time.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// In OS X v10.4 and earlier, if you want to set the page orientation you need to call this function before initiating the print job (for example, by calling `PMSessionBeginCGDocument`). The page orientation you set applies to the entire print job. In macOS 10.5 and later, you can use this function to change the orientation of an individual page in a print job by passing the updated page format to `PMSessionBeginPage` or `PMSessionBeginPageNoDialog`.
+///
+///
 /// *********************
 ///
 /// # Safety
 ///
 /// `page_format` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459016-pmsetorientation?language=objc)
 #[cfg(feature = "PMDefinitions")]
 #[inline]
 pub unsafe extern "C-unwind" fn PMSetOrientation(
@@ -521,7 +1325,30 @@ pub unsafe extern "C-unwind" fn PMSetOrientation(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463464-pmsetpageformatextendeddata?language=objc)
+    /// Stores your application-specific data in a page format object.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object in which to store your extended data.
+    ///
+    /// - dataID: A 4-character code that identifies your data. This is typically your application’s creator code. If your creator code is outside the ASCII 7-bit character range 0x20–0x7F, you need to use a different 4-character code.
+    ///
+    /// - size: The size, in bytes, of the data to be stored in the page format object.
+    ///
+    /// - extendedData: A pointer to the application-specific data you want to store in the page format object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can retrieve the data you store with the function `PMSetPageFormatExtendedData` by calling the function `PMGetPageFormatExtendedData`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -537,7 +1364,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463343-pmsetscale?language=objc)
+    /// Sets the scaling factor for the page and paper rectangles.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose scaling factor you want to set.
+    ///
+    /// - scale: The desired scaling factor expressed as a percentage. For example, for 50 percent scaling, pass a value of 50.0; for no scaling, pass 100.0.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can call the function `PMSetScale` to change the scaling factor that appears when your application invokes the Page Setup dialog.
+    ///
+    /// If you call `PMSetScale` after calling `PMSessionPageSetupDialog`, make sure you call [`PMSessionValidatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459090-pmsessionvalidatepageformat) before you call `PMSessionBeginCGDocument` or PMSessionBeginDocument.
+    ///
+    /// If you call this function after initiating a print job, the change is ignored for the current job.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -547,7 +1397,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463239-pmcreateprintsettings?language=objc)
+    /// Creates a new print settings object.
+    ///
+    /// Parameters:
+    /// - printSettings: A pointer to your [`PMPrintSettings`](https://developer.apple.com/documentation/applicationservices/pmprintsettings) variable. On return, the variable refers to a new print settings object. You are responsible for releasing the print settings object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allocates memory for a new print settings object in your application’s memory space and sets its reference count to 1. The new print settings object is empty and unusable until you call [`PMSessionDefaultPrintSettings`](https://developer.apple.com/documentation/applicationservices/1460138-pmsessiondefaultprintsettings) or [`PMCopyPrintSettings`](https://developer.apple.com/documentation/applicationservices/1462491-pmcopyprintsettings).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -557,7 +1424,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460138-pmsessiondefaultprintsettings?language=objc)
+    /// Assigns default parameter values to a print settings object for the specified printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session for the specified print settings object.
+    ///
+    /// - printSettings: The print settings object to which you want to assign default values.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call the function `PMSessionDefaultPrintSettings` between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -571,7 +1457,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458994-pmsessionvalidateprintsettings?language=objc)
+    /// Validates a print settings object within the context of the specified printing session.
+    ///
+    /// Parameters:
+    /// - printSession: The printing session for the specified print settings object.
+    ///
+    /// - printSettings: The print settings object to validate.
+    ///
+    /// - result: A pointer to your Boolean variable. On return, `true` if any parameters changed, or `false` if no parameters changed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. See the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -587,7 +1494,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462491-pmcopyprintsettings?language=objc)
+    /// Copies the settings from one print settings object into another.
+    ///
+    /// Parameters:
+    /// - settingSrc: The print settings object to duplicate.
+    ///
+    /// - settingDest: The print settings object to receive the copied settings. On return, this object contains the same settings as the `settingSrc` object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -601,7 +1521,40 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese?language=objc)
+    /// Creates a data representation of a print settings object.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object to convert.
+    ///
+    /// - data: A pointer to your [`CFData`](https://developer.apple.com/documentation/corefoundation/cfdata) variable. On return, the variable refers to a new Core Foundation data object that contains a representation of the specified print settings object in the specified data format. You are responsible for releasing the data object.
+    ///
+    /// - format: A constant that specifies the format of the data representation.  Supported values are:
+    ///
+    /// - `kPMDataFormatXMLDefault` (compatible with all macOS versions)
+    ///
+    /// - `kPMDataFormatXMLMinimal` (approximately 3-5 times smaller; compatible with macOS 10.5 and later)
+    ///
+    /// - `kPMDataFormatXMLCompressed` (approximately 20 times smaller; compatible with macOS 10.5 and later)
+    ///
+    /// See [`PMDataFormat`](https://developer.apple.com/documentation/applicationservices/pmdataformat) for a full description of these formats.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to convert a print settings object into a data representation suitable for storage in a user document. For information about using a Core Foundation data object, see `CFData`.
+    ///
+    /// Before calling this function, you should call the function [`PMSessionValidatePrintSettings`](https://developer.apple.com/documentation/applicationservices/1458994-pmsessionvalidateprintsettings) to make sure the print settings object contains valid values.
+    ///
+    /// Apple recommends that you do not reuse the print settings information if the user prints the document again. The information supplied by the user in the Print dialog should pertain to the document only while the document prints, so there is no need to save the print settings object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -616,7 +1569,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462203-pmprintsettingscreatewithdatarep?language=objc)
+    /// Creates a print settings object from a data representation.
+    ///
+    /// Parameters:
+    /// - data: The data representation of a print settings object. The data representation must have been previously created with the function [`PMPrintSettingsCreateDataRepresentation`](https://developer.apple.com/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese).
+    ///
+    /// - printSettings: A pointer to your [`PMPrintSettings`](https://developer.apple.com/documentation/applicationservices/pmprintsettings) variable. On return, the variable refers to a new print settings object that contains the printing information stored in the specified data object. You are responsible for releasing the print settings object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to convert a data representation stored in a user document back into a print settings object. For information about creating a Core Foundation data object from raw data, see `CFData`.
+    ///
+    /// After calling this function, you should call the function [`PMSessionValidatePrintSettings`](https://developer.apple.com/documentation/applicationservices/1458994-pmsessionvalidateprintsettings) to make sure the print settings object contains valid values.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -629,7 +1603,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464492-pmgetcollate?language=objc)
+    /// Obtains a Boolean value that indicates whether the job collate option is selected.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object you’re querying to determine whether the job collate option is selected.
+    ///
+    /// - collate: A pointer to your Boolean variable. On return, `true` if the job collate option is selected; otherwise, `false`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The Collated checkbox is displayed in the Copies & Pages pane of the Print dialog. This option determines how printed material is organized. For example, if you have a document that is three pages long and you are printing multiple copies with the Collated option selected, the job prints pages 1, 2, and 3 in that order and then repeats. However, if the Collated option is not selected and you’re printing multiple copies of those same three pages, the job prints copies of page 1, then copies of page 2, and finally copies of page 3.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -640,7 +1633,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464480-pmgetcopies?language=objc)
+    /// Obtains the number of copies that the user requests to be printed.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose number of copies you want to obtain.
+    ///
+    /// - copies: A pointer to your `UInt32` variable. On return, the variable contains the number of copies requested by the user.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -651,7 +1657,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458921-pmgetduplex?language=objc)
+    /// Obtains the selected duplex mode.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose duplex mode you want to obtain.
+    ///
+    /// - duplexSetting: A pointer to your `PMDuplexMode` variable. On return, the variable contains the duplex mode setting in the current print job. Possible values include:
+    ///
+    /// - `kPMDuplexNone` (one-sided printing)
+    ///
+    /// - `kPMDuplexNoTumble` (two-sided printing)
+    ///
+    /// - `kPMDuplexTumble` (two-sided printing with tumbling)
+    ///
+    /// See [`PMDuplexMode`](https://developer.apple.com/documentation/applicationservices/pmduplexmode) for a full description of the duplex mode constants.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Duplex printing is a print job that prints on both sides of the paper. The Two-Sided printing control is displayed in the Layout pane of the Print dialog.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -665,7 +1698,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460271-pmgetfirstpage?language=objc)
+    /// Obtains the number of the first page to be printed.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose first page number you want to obtain.
+    ///
+    /// - first: A pointer to your `UInt32` variable. On return, the variable contains the page number of the first page to print. The default first page number is 1.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to obtain the page number entered by the user in the From field of the Print dialog. If the user selects the All button, the function returns a value of 1. If the user did not enter a value, the function returns the value of the previous call to `PMSetFirstPage`, if any, or the default value of 1.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -676,7 +1728,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462747-pmgetlastpage?language=objc)
+    /// Obtains the number of the last page to be printed.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose last page number you want to obtain.
+    ///
+    /// - last: A pointer to your `UInt32` variable. On return, the variable contains the page number of the last page to print.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to obtain the page number entered by the user in the To field of the Print dialog. If the user did not enter a value, the function returns the value of the previous call to `PMSetLastPage`, if any, or a default value.
+    ///
+    /// You should not look for the constant `kPMPrintAllPages`. That constant is used only with the `PMSetLastPage` and `PMSetPageRange` functions to specify a last page. It is not returned by the `PMGetLastPage` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -687,7 +1760,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459324-pmgetpagerange?language=objc)
+    /// Obtains the valid range of pages that can be printed.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose page range you want to obtain.
+    ///
+    /// - minPage: A pointer to your `UInt32` variable. On return, the variable contains the minimum page number allowed.
+    ///
+    /// - maxPage: A pointer to your `UInt32` variable. On return, the variable contains the maximum page number allowed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The page range returned by the function `PMGetPageRange` is independent of the first and last page values returned by [`PMGetFirstPage`](https://developer.apple.com/documentation/applicationservices/1460271-pmgetfirstpage) and [`PMGetLastPage`](https://developer.apple.com/documentation/applicationservices/1462747-pmgetlastpage). See `PMSetPageRange` for more information.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -703,7 +1797,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459233-pmprintsettingsgetjobname?language=objc)
+    /// Obtains the name of a print job.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings for the current print job.
+    ///
+    /// - name: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string containing the name of the print job. This is the same job name you set using the function [`PMPrintSettingsSetJobName`](https://developer.apple.com/documentation/applicationservices/1460149-pmprintsettingssetjobname). You should not release the string without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -717,7 +1824,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460602-pmprintsettingsgetvalue?language=objc)
+    /// Obtains the value of a setting in a print settings object.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object you want to access.
+    ///
+    /// - key: A string constant that specifies the key for the desired setting. Some keys are currently defined in `PMTicket.h`; other keys are user-defined.
+    ///
+    /// - value: A pointer to your Core Foundation variable. On return, the variable refers to a Core Foundation object that corresponds to the specified key. If no corresponding object exists, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function, together with the function `PMPrintSettingsSetValue`, makes it possible to access print settings directly.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -731,7 +1859,28 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463223-pmsetcollate?language=objc)
+/// Specifies whether the job collate option is selected.
+///
+/// Parameters:
+/// - printSettings: The print settings object whose job collate option you want to set.
+///
+/// - collate: If `true`, the job collate option is selected; if `false` the option is not selected.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// The Collated checkbox is displayed in the Copies & Pages pane of the Print dialog. This option determines how printed material is organized. For example, if you have a document that is three pages long and you are printing multiple copies with the Collated option selected, the job prints pages 1, 2, and 3 in that order and then repeats. However, if the Collated option is not selected and you’re printing multiple copies of those same three pages, the job prints copies of page 1, then copies of page 2, and finally copies of page 3.
+///
+/// If you call this function after initiating a print job, the change is ignored for the current job.
+///
+///
 ///
 /// # Safety
 ///
@@ -748,7 +1897,28 @@ pub unsafe extern "C-unwind" fn PMSetCollate(
     unsafe { PMSetCollate(print_settings, collate as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463804-pmsetcopies?language=objc)
+/// Sets the initial value for the number of copies to be printed.
+///
+/// Parameters:
+/// - printSettings: The print settings object you want to initialize.
+///
+/// - copies: The initial value of the number of copies to print.
+///
+/// - lock: The lock state of the setting. Locking is not supported at this time.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// If you call this function after initiating a print job, the change is ignored for the current job.
+///
+///
 ///
 /// # Safety
 ///
@@ -767,7 +1937,44 @@ pub unsafe extern "C-unwind" fn PMSetCopies(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462000-pmsetduplex?language=objc)
+    /// Sets the duplex mode.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose duplex mode you want to set.
+    ///
+    /// - duplexSetting: The new duplex mode setting. Possible values include:
+    ///
+    /// - `kPMDuplexNone` (one-sided printing)
+    ///
+    /// - `kPMDuplexNoTumble` (two-sided printing)
+    ///
+    /// - `kPMDuplexTumble` (two-sided printing with tumbling)
+    ///
+    /// See [`PMDuplexMode`](https://developer.apple.com/documentation/applicationservices/pmduplexmode) for a full description of the constants you can use to specify the new setting.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Duplex printing is a print job that prints on both sides of the paper. Two-Sided printing controls are displayed in the Layout pane of the Print dialog. This function allows you to specify whether the document should be printed single-sided, double-sided with short-edge binding, or double-sided with long-edge binding.  
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Not all printers support duplex printing. This function specifies a setting that might not be available on a given destination.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If you call this function after initiating a print job, the change is ignored for the current job.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -776,7 +1983,30 @@ extern "C-unwind" {
     pub fn PMSetDuplex(print_settings: PMPrintSettings, duplex_setting: PMDuplexMode) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461519-pmsetfirstpage?language=objc)
+/// Sets the default page number of the first page to be printed.
+///
+/// Parameters:
+/// - printSettings: The print settings object whose first page number you want to set.
+///
+/// - first: The page number of the first page to print. This value appears in the From field of the Print dialog.
+///
+/// - lock: The lock state of the setting. Locking is not supported at this time.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// Typically, this function isn’t used. In macOS, if you call the function [`PMSetPageRange`](https://developer.apple.com/documentation/applicationservices/1462294-pmsetpagerange) and then call `PMSetFirstPage` or `PMSetLastPage` using the same page range you specified for `PMSetPageRange`, then the Print dialog shows the From button selected. If you use the constant `kPMPrintAllPages` to set the page range with the function `PMSetPageRange`, then the Print dialog opens with the All button selected regardless of whether you also call `PMSetFirstPage` or `PMSetLastPage`.
+///
+/// If you call this function after initiating a print job, the change is ignored for the current job.
+///
+///
 ///
 /// # Safety
 ///
@@ -794,7 +2024,32 @@ pub unsafe extern "C-unwind" fn PMSetFirstPage(
     unsafe { PMSetFirstPage(print_settings, first, lock as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463595-pmsetlastpage?language=objc)
+/// Sets the page number of the last page to be printed.
+///
+/// Parameters:
+/// - printSettings: The print settings object whose last page number you want to set.
+///
+/// - last: The page number of the last page to print. This value appears in the To field of the Print dialog. Pass the constant `kPMPrintAllPages` to print the entire document.
+///
+/// - lock: The lock state of the setting. Locking is not supported at this time.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// Typically, you call this function after the Print dialog is displayed to indicate the number of the last page number to be printed. In macOS, setting the last page provides information used by the progress dialog that is shown during printing.
+///
+/// If you call the function [`PMSetPageRange`](https://developer.apple.com/documentation/applicationservices/1462294-pmsetpagerange) and then call `PMSetFirstPage` or `PMSetLastPage` using the same page range you specified for `PMSetPageRange`, then the Print dialog shows the From button selected. If you use the constant `kPMPrintAllPages` to set the page range with the function `PMSetPageRange`, then the Print dialog opens with the All button selected regardless of whether you also call `PMSetFirstPage` or `PMSetLastPage`.
+///
+/// If you call this function after initiating a print job, the change is ignored for the current job.
+///
+///
 ///
 /// # Safety
 ///
@@ -813,7 +2068,34 @@ pub unsafe extern "C-unwind" fn PMSetLastPage(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462294-pmsetpagerange?language=objc)
+    /// Sets the valid range of pages that can be printed.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose page range you want to set.
+    ///
+    /// - minPage: The minimum page number allowed. This value appears as the default in the From field of the Print dialog.
+    ///
+    /// - maxPage: The maximum page number allowed. This value appears as the default in the To field of the Print dialog. Pass the constant `kPMPrintAllPages` to allow the user to print the entire document. If the first page is set to 1, then passing `kPMPrintAllPages` as the maximum page number causes the All button to be selected.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function `PMSetPageRange` allows applications to set the minimum and maximum page numbers that can be printed for a document. If the user enters a value outside of this range in the Print dialog, the value is set to the closest allowed value. You can use the [`PMGetFirstPage`](https://developer.apple.com/documentation/applicationservices/1460271-pmgetfirstpage) and [`PMGetLastPage`](https://developer.apple.com/documentation/applicationservices/1462747-pmgetlastpage) functions to obtain the values entered by the user in the Print dialog.)
+    ///
+    /// If you call the function `PMSetPageRange` to set the maximum page to a value other than the constant `kPMPrintAllPages`, the function `PMSetPageRange` causes the page range in the Print dialog to be properly restricted to the specified range. If you call the function `PMSetPageRange` without also calling the functions `PMSetFirstPage` or `PMSetLastPage`, then the Print dialog shows the specified page range in the From and To fields but with the All button selected. If you call the function `PMSetPageRange` and then call `PMSetFirstPage` or `PMSetLastPage` using the same page range you specified for `PMSetPageRange`, then the Print dialog shows the From button selected.
+    ///
+    /// In all cases, if your application sets a range with `PMSetPageRange` and subsequently calls [`PMSetFirstPage`](https://developer.apple.com/documentation/applicationservices/1461519-pmsetfirstpage) or [`PMSetLastPage`](https://developer.apple.com/documentation/applicationservices/1463595-pmsetlastpage) with values outside of the specified range, Core Printing returns a result code of `kPMValueOutOfRange`. Conversely, if your application calls `PMSetPageRange` after calling `PMSetFirstPage` or `PMSetLastPage` (or after displaying the Print dialog), the page range specified by `PMSetPageRange` takes precedence, and the first and last page values are adjusted accordingly.
+    ///
+    /// If you call this function after initiating a print job, the change is ignored for the current job.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -827,7 +2109,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460149-pmprintsettingssetjobname?language=objc)
+    /// Specifies the name of a print job.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object whose job name you want to set.
+    ///
+    /// - name: The new name for the print job.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you’re using the Print dialog, you should call this function before presenting the dialog. You are strongly encouraged to create a print job name that’s meaningful to the user and use this function to set the name; this produces the best user experience. If you do not specify the print job name, the printing system creates an appropriate job name for you.
+    ///
+    /// If you call this function after initiating a print job, the change is ignored for the current job.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -836,7 +2139,34 @@ extern "C-unwind" {
     pub fn PMPrintSettingsSetJobName(print_settings: PMPrintSettings, name: &CFString) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461697-pmprintsettingssetvalue?language=objc)
+/// Stores the value of a setting in a print settings object.
+///
+/// Parameters:
+/// - printSettings: The print settings object you want to update.
+///
+/// - key: A string constant that specifies the key for the desired setting. Some keys are currently defined in `PMTicket.h`; other keys are user-defined.
+///
+/// - value: A Core Foundation object that corresponds to the specified key. If you pass `NULL`, any existing setting for the specified key is removed.
+///
+/// - locked: If `true`, the item being set should be locked; otherwise, `false`. Currently, you should always pass `false`.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// This function makes it possible to add, change, or remove print settings directly. Print settings are stored as key-value pairs. The keys are Core Foundation strings and the corresponding values are Core Foundation objects.
+///
+/// You can use this function to store user-defined data in a print settings object. You should make sure that the custom keys you define for your private data do not conflict with any other keys in the object. Each data item you store needs to be a Core Foundation object. You can use the function `PMPrintSettingsGetValue` to retrieve your private data.
+///
+/// If you call this function after initiating a print job (for example, by calling `PMSessionBeginCGDocument`), the change is ignored for the current job.
+///
+///
 ///
 /// # Safety
 ///
@@ -862,7 +2192,26 @@ pub unsafe extern "C-unwind" fn PMPrintSettingsSetValue(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary?language=objc)
+    /// Creates a dictionary that contains the settings in a print settings object.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object with the desired settings.
+    ///
+    /// - settingsDictionary: A pointer to your [`CFDictionary`](https://developer.apple.com/documentation/corefoundation/cfdictionary) variable. On return, the variable refers to a Core Foundation dictionary that contains the settings in the specified print settings object. Some of the keys in this dictionary are currently defined in `PMTicket.h`; other keys are user-defined. You are responsible for releasing the dictionary. If an error occurs, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Most developers have no need to use this function. However, one way this function might be useful would be to enumerate all the entries in a print settings object for inspection.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -876,7 +2225,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462730-pmprintsettingscopykeys?language=objc)
+    /// Obtains the keys for items in a print settings object.
+    ///
+    /// Parameters:
+    /// - printSettings: The print settings object with the desired keys.
+    ///
+    /// - settingsKeys: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array that contains the keys for items in the specified print settings object. Each of these keys may be passed to the function `PMPrintSettingsGetValue` to obtain a value. You are responsible for releasing the array. If an error occurs, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides an array of the keys in a print settings object. You could get the values for the keys in the array with [`PMPrintSettingsGetValue`](https://developer.apple.com/documentation/applicationservices/1460602-pmprintsettingsgetvalue), or use the keys to look up the values in the dictionary returned by [`PMPrintSettingsCopyAsDictionary`](https://developer.apple.com/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -890,6 +2258,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a generic printer object.
+    ///
+    /// Parameters:
+    /// - printer: A pointer to your [`PMPrinter`](https://developer.apple.com/documentation/applicationservices/pmprinter) variable. On return, the variable refers to a new printer object that represents the generic formatting printer. You are responsible for releasing the printer object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a way to create a `PMPrinter` object that represents the generic formatting printer.
+    ///
+    ///
     /// PMCreateGenericPrinter
     /// Summary:
     /// Creates a generic PMPrinter
@@ -909,14 +2295,25 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `printer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461960-pmcreategenericprinter?language=objc)
     #[cfg(feature = "PMDefinitions")]
     pub fn PMCreateGenericPrinter(printer: NonNull<PMPrinter>) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459953-pmservercreateprinterlist?language=objc)
+    /// Creates a list of printers available to a print server.
+    ///
+    /// Parameters:
+    /// - server: The print server whose printers you want to obtain. To specify the local print server, pass the constant `kPMServerLocal`. Currently, you may specify only the local print server.
+    ///
+    /// - printerList: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array containing the printers available to the specified print server. Each element in the array is a `PMPrinter` object. You are responsible for releasing the array.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -930,7 +2327,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460175-pmserverlaunchprinterbrowser?language=objc)
+    /// Launches the printer browser to browse the printers available for a print server.
+    ///
+    /// Parameters:
+    /// - server: The print server to browse. Pass `kPMServerLocal` to specify the local print server. Currently, you may specify only the local print server.
+    ///
+    /// - options: This parameter is reserved for future use. At the present time, pass `NULL`. Passing `NULL` presents the printer browser in the default fashion.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.  If you specify a server whose printers cannot be browsed, this function returns the error code `kPMInvalidParameter`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function displays the standard printer browser to allow the user to create a new print queue.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -945,13 +2361,51 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461363-pmprintercreatefromprinterid?language=objc)
+    /// Creates a printer object from a print queue identifier.
+    ///
+    /// Parameters:
+    /// - printerID: The unique identifier of a print queue.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A new printer object, or `NULL` if no print queue is available with the specified identifier. You are responsible for releasing the printer object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to re-create a printer object using the print queue ID obtained by a call to `PMPrinterGetID` at an earlier time. If the print queue is deleted after obtaining the ID, this function returns `NULL` for that ID.
+    ///
+    ///
     #[cfg(feature = "PMDefinitions")]
     pub fn PMPrinterCreateFromPrinterID(printer_id: &CFString) -> PMPrinter;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459187-pmprintercopydescriptionurl?language=objc)
+    /// Obtains the URL of the description file for a given printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose description file you want to obtain.
+    ///
+    /// - descriptionType: A constant that specifies the desired printer description file type. Currently, you must pass the constant `kPMPPDDescriptionType`.
+    ///
+    /// - fileURL: A pointer to your [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) variable. On return, the variable refers to a Core Foundation URL that specifies the location of the file that contains a description of the specified printer. You are responsible for releasing the URL. If an error occurs, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to locate the PostScript printer description (PPD) file for a printer.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -966,7 +2420,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460543-pmprintercopydeviceuri?language=objc)
+    /// Obtains the device URI of a given printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose device URI you want to obtain.
+    ///
+    /// - deviceURI: A pointer to your [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) variable. On return, the variable refers to a Core Foundation URL that specifies the printer's device URI. You are responsible for releasing the URL. If an error occurs, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The device URI of a printer describes how to communicate with the device. For some devices, it also includes a unique identifier for the device.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -980,7 +2453,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462076-pmprintercopyhostname?language=objc)
+    /// Obtains the name of the server hosting the print queue for a given printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose print queue host name you want to obtain.
+    ///
+    /// - hostNameP: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string containing the name of the specified printer’s server. You are responsible for releasing the string.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to obtain the name of the computer that hosts a shared printer, possibly for display in a user interface. In macOS 10.5 and later, the typical way that users browse and communicate with a shared printer creates a local print queue and `PMPrinterCopyHostName` for such a print queue will return the name of the local host.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -994,7 +2486,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459117-pmprintercopypresets?language=objc)
+    /// Obtains a list of print settings presets for a printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose presets you want to obtain.
+    ///
+    /// - presetList: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array containing the presets for the specified printer. Each element in the array is an object of type [`PMPreset`](https://developer.apple.com/documentation/applicationservices/pmpreset). You are responsible for releasing the array.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A printer may have associated with it a list of preset settings. Each setting is optimized for a particular printing situation. This function returns all of the presets for a given printer. To obtain more information about a particular preset, you can use the function [`PMPresetGetAttributes`](https://developer.apple.com/documentation/applicationservices/1459042-pmpresetgetattributes). To create a print settings object that contains the settings of a preset, call [`PMPresetCreatePrintSettings`](https://developer.apple.com/documentation/applicationservices/1463414-pmpresetcreateprintsettings).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1008,7 +2519,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461069-pmprintergetcomminfo?language=objc)
+    /// Obtains information about the communication channel for a printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose information you want to obtain.
+    ///
+    /// - supportsTransparentP: A pointer to your Boolean variable. On return, `true` indicates that the communication channel to the specified printer supports bytes in the range 0x0–0x1F; otherwise, `false`.
+    ///
+    /// - supportsEightBitP: A pointer to your Boolean variable. On return, `true` indicates that the communication channel to the specified printer supports bytes in the range 0x80–0xFF; otherwise, `false`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically relevant only to PostScript printers. All PostScript printers, regardless of what communications channel is used to send data to them, support data in the range 0x20–0x7F. Many communications channels can support data outside this range. You can use this function to determine whether the communications channel to the specified printer also supports bytes in the ranges 0x0–0x1F and 0x80–0xFF.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1023,7 +2555,24 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459606-pmprintergetid?language=objc)
+/// Returns the unique identifier of a printer.
+///
+/// Parameters:
+/// - printer: The printer whose identifier you want to obtain.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The identifier of the specified printer. You should not release the string without first retaining it. If the specified printer is not valid, this function returns `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// You can use the function `PMPrinterGetID` to capture information about a printer for later use. To create a printer object from a printer ID returned by this function, use the function [`PMPrinterCreateFromPrinterID`](https://developer.apple.com/documentation/applicationservices/1461363-pmprintercreatefromprinterid).
+///
+///
 ///
 /// # Safety
 ///
@@ -1038,7 +2587,24 @@ pub unsafe extern "C-unwind" fn PMPrinterGetID(printer: PMPrinter) -> Option<CFR
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461467-pmprintergetlocation?language=objc)
+/// Returns the location of a printer.
+///
+/// Parameters:
+/// - printer: The printer whose location you want to obtain.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The location of the specified printer. You should not release the string without first retaining it. If the printer is not valid, this function returns `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// The location of a printer is specified when a user creates a print queue for the printer. In some cases, the printing system automatically determines the location. For example, the location may be set to “Local Zone”. The user creating the print queue can also set the location.
+///
+///
 ///
 /// # Safety
 ///
@@ -1056,7 +2622,26 @@ pub unsafe extern "C-unwind" fn PMPrinterGetLocation(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459107-pmprintergetdrivercreator?language=objc)
+    /// Obtains the creator of the driver associated with the specified printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose driver creator you want to obtain.
+    ///
+    /// - creator: On return, the 4-byte creator code of the driver (for example, `'APPL'` for an Apple printer driver).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is not recommended because it makes your application driver-dependent.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1067,7 +2652,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou?language=objc)
+    /// Obtains the number of resolution settings supported by the specified printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose number of resolution settings you want to obtain.
+    ///
+    /// - count: A pointer to your `UInt32` variable. On return, the variable contains the number of resolutions that are supported for the specified printer.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. The result code `kPMNotImplemented` indicates that the printer driver does not support multiple resolution settings.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1081,7 +2679,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464490-pmprintergetindexedprinterresolu?language=objc)
+    /// Obtains a resolution setting based on an index into the range of settings supported by the specified printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose resolution you want to obtain.
+    ///
+    /// - index: An index into the range of resolution settings supported by the specified printer. Index values begin at 1.
+    ///
+    /// - res: A pointer to your [`PMResolution`](https://developer.apple.com/documentation/applicationservices/core_printing/pmresolution) data structure. On return, the structure contains the printer resolution setting associated with the index value.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function between the creation and release of a printing session. Before you call this function, you must call the function [`PMPrinterGetPrinterResolutionCount`](https://developer.apple.com/documentation/applicationservices/1462004-pmprintergetprinterresolutioncou) to obtain the number of resolution settings supported by the specified printer.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1096,7 +2715,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459076-pmprintergetoutputresolution?language=objc)
+    /// Obtains the printer hardware output resolution for the specified print settings.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose output resolution you want to obtain.
+    ///
+    /// - printSettings: The print settings you want to use.
+    ///
+    /// - resolutionP: A pointer to your [`PMResolution`](https://developer.apple.com/documentation/applicationservices/core_printing/pmresolution) structure. On return, the structure contains the output resolution of the specified printer in pixels per inch.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. If the resolution cannot be reliably determined, this function returns an error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some printers allow programmatic control of their hardware output resolution on a print job basis. The hardware resolution is determined by the combination of printer and print settings used for the print job. This function returns the best guess as to what printer resolution setting will be used for the destination print job.
+    ///
+    /// Most applications do not need to use this function because they draw the same content regardless of the destination device. For those few applications that do adjust their drawing based on the output device, they should only do so when the print job destination is `kPMDestinationPrinter` or `kPMDestinationFax`. You can use the function `PMSessionGetDestinationType` to determine the destination for a print job.
+    ///
+    /// This function should be used after displaying the Print dialog to the user so that it correctly reflects changes in print settings performed prior to printing.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1112,7 +2756,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459931-pmprintersetoutputresolution?language=objc)
+    /// Sets the print settings to reflect the specified printer hardware output resolution.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose output resolution you want to change.
+    ///
+    /// - printSettings: The print settings object used for the print job.
+    ///
+    /// - resolutionP: A pointer to a [`PMResolution`](https://developer.apple.com/documentation/applicationservices/core_printing/pmresolution) structure that specifies the desired resolution in pixels per inch.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some printers allow programmatic control of their hardware output resolution on a print job basis. The hardware resolution is determined by the combination of printer and print settings used for the print job. This function configures the print settings to the closest resolution setting that can be used for the destination print job. Note that not all printers allow control of their resolution setting.
+    ///
+    /// This function is rarely used. Most applications do not set the output resolution but instead use the setting supplied by the user in the Print dialog.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1128,7 +2795,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458956-pmprintergetlanguageinfo?language=objc)
+    /// Obtains information about the imaging language for the specified printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose imaging language information you want to obtain.
+    ///
+    /// - info: A pointer to your [`PMLanguageInfo`](https://developer.apple.com/documentation/applicationservices/core_printing/pmlanguageinfo) data structure. On return, the structure contains the printer’s language level, version, and release information. The format of the returned data uses the syntax of the PostScript language.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function `PMPrinterGetLanguageInfo` is useful only for PostScript printers. You must call this function between the creation and release of a printing session.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1139,7 +2825,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463347-pmprintergetmakeandmodelname?language=objc)
+    /// Obtains the manufacturer and model name of the specified printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose manufacturer and model name you want to obtain.
+    ///
+    /// - makeAndModel: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string containing the manufacturer and model name of the specified printer. You should not release the string without first retaining it. If an error occurs, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1153,7 +2852,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes?language=objc)
+    /// Obtains a list of MIME content types supported by a printer using the specified print settings.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose supported MIME types you want to obtain.
+    ///
+    /// - settings: The print settings for the print job. The print settings object contains the job destination, which affects the available types. This parameter may be `NULL`.
+    ///
+    /// - mimeTypes: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array containing the MIME types supported by the specified printer. Each element in the array is a Core Foundation string. You should not release the array without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function retrieves the types of data that can be submitted to a printer with the specified print settings; for example, `application/pdf`. This function is typically used in conjunction with the function [`PMPrinterPrintWithFile`](https://developer.apple.com/documentation/applicationservices/1464600-pmprinterprintwithfile).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1168,7 +2888,18 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459018-pmprintergetname?language=objc)
+/// Returns the human-readable name of a printer.
+///
+/// Parameters:
+/// - printer: The printer whose name you want to obtain.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The name of the specified printer. This name identifies the printer in the user interface. You should not release the string without first retaining it.
+///
+///
 ///
 /// # Safety
 ///
@@ -1186,7 +2917,26 @@ pub unsafe extern "C-unwind" fn PMPrinterGetName(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460088-pmprintergetpaperlist?language=objc)
+    /// Obtains the list of papers available for a printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose paper list you want to obtain.
+    ///
+    /// - paperList: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array containing the paper list for the specified printer. Each element in the array is an object of type [`PMPaper`](https://developer.apple.com/documentation/applicationservices/pmpaper). You should not release the array without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function obtains a list of the papers that a given printer claims to support. The paper list does not include any custom paper sizes that may be available.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1200,7 +2950,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462954-pmprintergetstate?language=objc)
+    /// Obtains the current state of the print queue for a printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer whose queue state you want to obtain.
+    ///
+    /// - state: A pointer to your `PMPrinterState` variable. On return, the variable contains a constant that indicates the current state of the print queue for the specified printer. Supported values are:
+    ///
+    /// - `kPMPrinterIdle` (queue is idle)
+    ///
+    /// - `kPMPrinterProcessing` (queue is processing a job)
+    ///
+    /// - `kPMPrinterStopped` (queue is stopped)
+    ///
+    /// See [`PMPrinterState`](https://developer.apple.com/documentation/applicationservices/pmprinterstate) for a complete description of these constants.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1210,7 +2981,24 @@ extern "C-unwind" {
     pub fn PMPrinterGetState(printer: PMPrinter, state: NonNull<PMPrinterState>) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459030-pmprinterisdefault?language=objc)
+/// Returns a Boolean value indicating whether a printer is the default printer for the current user.
+///
+/// Parameters:
+/// - printer: The printer you’re querying to determine whether it is the default printer.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If `true`, the specified printer is the default printer for the current user; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// The default printer is the printer selected by default in the Print dialog.
+///
+///
 ///
 /// # Safety
 ///
@@ -1225,7 +3013,18 @@ pub unsafe extern "C-unwind" fn PMPrinterIsDefault(printer: PMPrinter) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462074-pmprinterisfavorite?language=objc)
+/// Returns a Boolean value indicating whether a printer is in the user’s list of favorite printers.
+///
+/// Parameters:
+/// - printer: The printer you’re looking for in the favorite printer list.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If `true`, the specified printer is in the user’s list of favorite printers; otherwise, `false`.
+///
+///
 ///
 /// # Safety
 ///
@@ -1240,7 +3039,24 @@ pub unsafe extern "C-unwind" fn PMPrinterIsFavorite(printer: PMPrinter) -> bool 
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464168-pmprinterispostscriptcapable?language=objc)
+/// Returns a Boolean value indicating whether a printer is PostScript capable.
+///
+/// Parameters:
+/// - printer: The printer you’re querying to determine whether it’s PostScript capable.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If `true`, the specified printer is a PostScript capable printer; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// A printer that is PostScript capable is not necessarily a PostScript printer. The macOS printing system can render PostScript content on non-PostScript printers.
+///
+///
 ///
 /// # Safety
 ///
@@ -1256,6 +3072,26 @@ pub unsafe extern "C-unwind" fn PMPrinterIsPostScriptCapable(printer: PMPrinter)
 }
 
 extern "C-unwind" {
+    /// Determines whether a printer is a PostScript printer.
+    ///
+    /// Parameters:
+    /// - printer: The printer you’re querying to determine whether it’s a PostScript printer.
+    ///
+    /// - isPSPrinter: A pointer to your Boolean variable. On return, `true` indicates that the specified printer is a PostScript printer; otherwise, `false`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A printer is a PostScript printer if the printer driver takes PostScript directly.
+    ///
+    ///
     /// Set *isPSPrinter true if the printer is a PostScript printer.
     ///
     ///
@@ -1273,8 +3109,6 @@ extern "C-unwind" {
     ///
     /// - `printer` must be a valid pointer.
     /// - `is_ps_printer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462257-pmprinterispostscriptprinter?language=objc)
     #[cfg(feature = "PMDefinitions")]
     pub fn PMPrinterIsPostScriptPrinter(
         printer: PMPrinter,
@@ -1283,7 +3117,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461377-pmprinterisremote?language=objc)
+    /// Indicates whether a printer is hosted by a remote print server.
+    ///
+    /// Parameters:
+    /// - printer: The printer you’re querying to determine whether it is hosted by a remote print server.
+    ///
+    /// - isRemoteP: A pointer to your Boolean variable. On return, `true` indicates that the printer is hosted by a remote print server; otherwise, `false`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function returns `true`, the printer is hosted by a remote print server and the printer can be considered a shared printer.
+    ///
+    /// In macOS, the typical way that users create a print queue for a shared printer is by browsing. Print queues for shared printers that are created by browsing are marked as remote queues, and `PMPrinterIsRemote` returns `true` for such printers. However, expert users can create a local queue for a remote printer manually, and such a printer does not appear to be remote printer.
+    ///
+    /// Whether a printer is remote is derived from the CUPS printer-type attribute for the print queue.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1294,7 +3151,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461118-pmprintersetdefault?language=objc)
+    /// Sets the default printer for the current user.
+    ///
+    /// Parameters:
+    /// - printer: The printer to set as the default printer.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default printer is the printer selected by default in the Print dialog.
+    ///
+    /// This function is rarely used. Most applications do not set the default printer directly, but instead let the user choose the default printer in the Print & Fax preference pane of System Preferences.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1304,7 +3180,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460343-pmpresetcopyname?language=objc)
+    /// Obtains the localized name for a preset.
+    ///
+    /// Parameters:
+    /// - preset: The preset object whose localized name you want to obtain. You can use the function [`PMPrinterCopyPresets`](https://developer.apple.com/documentation/applicationservices/1459117-pmprintercopypresets) to obtain the presets for a given printer.
+    ///
+    /// - paperID: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string containing the localized name of the specified preset. You are responsible for releasing the string.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1315,7 +3204,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463414-pmpresetcreateprintsettings?language=objc)
+    /// Creates a print settings object with settings that correspond to a preset.
+    ///
+    /// Parameters:
+    /// - preset: The preset whose settings you want to obtain. You can use the function [`PMPrinterCopyPresets`](https://developer.apple.com/documentation/applicationservices/1459117-pmprintercopypresets) to obtain the presets for a given printer.
+    ///
+    /// - session: The session you use to present the Print dialog.
+    ///
+    /// - printSettings: A pointer to your [`PMPrintSettings`](https://developer.apple.com/documentation/applicationservices/pmprintsettings) variable. On return, the variable refers to a print settings object with settings that correspond to the specified preset. You are responsible for releasing the print settings object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1331,7 +3235,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459042-pmpresetgetattributes?language=objc)
+    /// Obtains the attributes of a preset.
+    ///
+    /// Parameters:
+    /// - preset: The preset whose attributes you want to obtain. You can use the function [`PMPrinterCopyPresets`](https://developer.apple.com/documentation/applicationservices/1459117-pmprintercopypresets) to obtain the presets for a given printer.
+    ///
+    /// - attributes: A pointer to your [`CFDictionary`](https://developer.apple.com/documentation/corefoundation/cfdictionary) variable. On return, the variable refers to a Core Foundation dictionary containing the attributes of the specified preset, or `NULL` if the attributes could not be obtained. For more information about these attributes, see the Discussion. You should not release this dictionary without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A preset has associated with it a dictionary containing the preset identifier, the localized name, and a description of the environment for which the preset is intended. In addition to these standard attributes, the preset you specify may contain additional attributes that reflect custom print settings.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1345,7 +3268,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461319-pmgetpageformatpaper?language=objc)
+    /// Obtains the paper associated with a page format object.
+    ///
+    /// Parameters:
+    /// - pageFormat: The page format object whose paper you want to obtain.
+    ///
+    /// - paper: A pointer to your [`PMPaper`](https://developer.apple.com/documentation/applicationservices/pmpaper) variable. On return, the variable refers to a paper object that represents the paper associated with the specified page format. You should not release the paper object without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1356,7 +3292,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459322-pmpapercreatecustom?language=objc)
+    /// Creates a custom paper object.
+    ///
+    /// Parameters:
+    /// - printer: A printer for which the specified paper size is appropriate.
+    ///
+    /// - id: A unique identifier for this custom paper. For example, you could create a UUID string and use it as the unique identifier.
+    ///
+    /// - name: The name to display to the user for this custom paper.
+    ///
+    /// - width: The width of the paper, in points.
+    ///
+    /// - height: The height of the paper, in points.
+    ///
+    /// - margins: A pointer to a [`PMPaperMargins`](https://developer.apple.com/documentation/applicationservices/pmpapermargins) structure that specifies the unprintable margins of the paper, in points. The four values in the structure specify the top, left, bottom, and right imageable area margins of the paper.
+    ///
+    /// - paperP: A pointer to your [`PMPaper`](https://developer.apple.com/documentation/applicationservices/pmpaper) variable. On return, the variable refers to a new custom paper object. You are responsible for releasing the paper object with the function [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a custom paper object appropriate for the specified printer. Custom papers are treated differently than built-in papers by the printing system. To obtain one of the available built-in papers for a given printer, you can use the function [`PMPrinterGetPaperList`](https://developer.apple.com/documentation/applicationservices/1460088-pmprintergetpaperlist).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1376,7 +3341,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459209-pmpapergetwidth?language=objc)
+    /// Obtains the width of the sheet of paper represented by a paper object.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose width you want to obtain.
+    ///
+    /// - paperWidth: A pointer to your double-precision variable. On return, the variable contains the width of the specified paper, in points.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1387,7 +3365,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460389-pmpapergetheight?language=objc)
+    /// Obtains the height of the sheet of paper represented by a paper object.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose height you want to obtain.
+    ///
+    /// - paperHeight: A pointer to your double-precision variable. On return, the variable contains the height of the specified paper, in points.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1398,7 +3389,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461994-pmpapergetmargins?language=objc)
+    /// Obtains the margins describing the unprintable area of the sheet represented by a paper object.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose margins you want to obtain.
+    ///
+    /// - paperMargins: A pointer to your [`PMPaperMargins`](https://developer.apple.com/documentation/applicationservices/pmpapermargins) structure. On return, the structure contains the unprintable margins of the specified paper, in points. The four values in the structure specify the top, left, bottom, and right imageable area margins of the paper.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1409,7 +3413,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462910-pmpapergetid?language=objc)
+    /// Obtains the identifier of a paper object.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose identifier you want to obtain.
+    ///
+    /// - paperID: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string containing the unique identifier for this paper. You should not release the string without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1420,7 +3437,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461039-pmpapergetppdpapername?language=objc)
+    /// Obtains the PPD paper name for a given paper.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose PPD paper name you want to obtain.
+    ///
+    /// - paperName: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string that contains the PPD paper name for the specified paper. If an error occurs, the variable is set to `NULL`. You should not release the string without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The macOS printing system uses a PostScript Printer Description (PPD) file to describe a given printer and print queue for that printer. The PPD paper name is the name that uniquely identifies a given paper for the printer to which the paper corresponds. To obtain a list of papers for a given printer, use the function [`PMPrinterGetPaperList`](https://developer.apple.com/documentation/applicationservices/1460088-pmprintergetpaperlist).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1432,7 +3468,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460981-pmpapercreatelocalizedname?language=objc)
+    /// Obtains the localized name for a given paper.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose localized name you want to obtain.
+    ///
+    /// - printer: The printer for which the localization should be performed.
+    ///
+    /// - paperName: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string that contains the localized name of the paper. This name is appropriate to display in the user interface. If an error occurs, the variable is set to `NULL`. You are responsible for releasing the string.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Not all printers have the same way of referring to a given paper. Generally, if you want to obtain the name of a paper, you want to localize the paper name for a particular printer. For example, if you were displaying a list of papers for a given printer, you would want the paper names to be localized for that printer.
+    ///
+    /// <a id="1771098"></a>
+    /// ### Special Considerations
+    ///
+    /// In macOS 10.5 and later, Apple recommends using this function instead of [`PMPaperGetName`](https://developer.apple.com/documentation/applicationservices/core_printing/1805534-pmpapergetname).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1448,7 +3510,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461737-pmpapergetprinterid?language=objc)
+    /// Obtains the printer ID of the printer to which a given paper corresponds.
+    ///
+    /// Parameters:
+    /// - paper: The paper whose printer ID you want to obtain.
+    ///
+    /// - printerID: A pointer to your [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) variable. On return, the variable refers to a Core Foundation string that contains the printer ID for the specified paper. If an error occurs, the variable is set to `NULL`. You should not release the string without first retaining it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Not all papers have a printer ID associated with them. If the printer ID is known, the printer is displayed in the Page Setup dialog’s Format for pop-up menu. If the printer ID is not known, the default formatting printer is the generic Any Printer. The printing system provides default paper sizes for the generic printer.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1458,7 +3539,24 @@ extern "C-unwind" {
     pub fn PMPaperGetPrinterID(paper: PMPaper, printer_id: NonNull<*const CFString>) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459526-pmpaperiscustom?language=objc)
+/// Returns a Boolean value indicating whether a specified paper is a custom paper.
+///
+/// Parameters:
+/// - paper: The paper you’re querying to determine whether it’s a custom paper.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If `true`, the specified paper is a custom paper; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// You can create a custom paper with the function [`PMPaperCreateCustom`](https://developer.apple.com/documentation/applicationservices/1459322-pmpapercreatecustom).
+///
+///
 ///
 /// # Safety
 ///
@@ -1474,7 +3572,18 @@ pub unsafe extern "C-unwind" fn PMPaperIsCustom(paper: PMPaper) -> bool {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459914-pmworkflowcopyitems?language=objc)
+    /// Obtains an array of the available PDF workflow items.
+    ///
+    /// Parameters:
+    /// - workflowItems: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to an Core Foundation array. Each element in the array is a dictionary that describes either a PDF workflow item or a folder containing a set of PDF workflow items. For a list of possible keys, see [PDF Workflow Dictionary Keys](https://developer.apple.com/documentation/applicationservices/core_printing/pdf_workflow_dictionary_keys). You are responsible for releasing the array.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1483,7 +3592,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions?language=objc)
+    /// Submits a PDF file for workflow processing using the specified CUPS options string.
+    ///
+    /// Parameters:
+    /// - workflowItem: A file system URL pointing to the workflow item that will handle the PDF file. See [`PMWorkflowCopyItems`](https://developer.apple.com/documentation/applicationservices/1459914-pmworkflowcopyitems). The following table describes the different types of workflow items for this function.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Workflow item" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Automator action" }] }], [Paragraph { inline_content: [Text { text: "The action is executed for the PDF file. Available in macOS 10.4 and later." }] }]], [[Paragraph { inline_content: [Text { text: "Folder alias" }] }], [Paragraph { inline_content: [Text { text: "The PDF file is moved to the resolved folder." }] }]], [[Paragraph { inline_content: [Text { text: "Application or application alias" }] }], [Paragraph { inline_content: [Text { text: "The application is sent an open event along with a reference to the PDF file." }] }]], [[Paragraph { inline_content: [Text { text: "Compiled AppleScript" }] }], [Paragraph { inline_content: [Text { text: "The script is run with an open event along with a reference to the PDF file." }] }]], [[Paragraph { inline_content: [Text { text: "Executable tool" }] }], [Paragraph { inline_content: [Text { text: "The tool is run with the following parameters: " }, CodeVoice { code: "title" }, Text { text: ", " }, CodeVoice { code: "options" }, Text { text: ", and " }, CodeVoice { code: "pdfFile" }, Text { text: "." }] }]]], alignments: None, metadata: Some(ContentMetadata { abstract_: None, device_frame: None, anchor: Some("1965921"), title: Some("Table 1") }) })
+    /// - title: The user-displayable name of the PDF document.
+    ///
+    /// - options: A string of CUPS-style key-value pairs that may be passed to the PDF workflow item. This parameter can be `NULL` in which case an empty string of options is used.
+    ///
+    /// - pdfFile: A file system URL pointing to the PDF file to be processed by the workflow item.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The printing system uses this function in conjunction with the function [`PMWorkflowCopyItems`](https://developer.apple.com/documentation/applicationservices/1459914-pmworkflowcopyitems) to implement the PDF workflow button in the Print dialog.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1497,7 +3630,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458874-pmworkflowsubmitpdfwithsettings?language=objc)
+    /// Submits a PDF file for workflow processing using the specified print settings.
+    ///
+    /// Parameters:
+    /// - workflowItem: A file system URL pointing to the workflow item that will handle the PDF file. See [`PMWorkflowCopyItems`](https://developer.apple.com/documentation/applicationservices/1459914-pmworkflowcopyitems). The following table describes the different types of workflow items for this function.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Workflow item" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Automator action" }] }], [Paragraph { inline_content: [Text { text: "The action is executed for the PDF file. Available in macOS 10.4 and later." }] }]], [[Paragraph { inline_content: [Text { text: "Folder alias" }] }], [Paragraph { inline_content: [Text { text: "The PDF file is moved to the resolved folder." }] }]], [[Paragraph { inline_content: [Text { text: "Application or application alias" }] }], [Paragraph { inline_content: [Text { text: "The application is sent an open event along with a reference to the PDF file." }] }]], [[Paragraph { inline_content: [Text { text: "Compiled AppleScript" }] }], [Paragraph { inline_content: [Text { text: "The script is run with an open event along with a reference to the PDF file." }] }]], [[Paragraph { inline_content: [Text { text: "Executable tool" }] }], [Paragraph { inline_content: [Text { text: "The tool is run with the specified settings and PDF file. This function converts these parameters into a CUPS options string and passes the options string to the tool." }] }]]], alignments: None, metadata: Some(ContentMetadata { abstract_: None, device_frame: None, anchor: Some("1965923"), title: Some("Table 1") }) })
+    /// - settings: The print settings to apply to the PDF document. These settings are passed to the workflow item as a CUPS options string.
+    ///
+    /// - pdfFile: A file system URL pointing to the PDF file to be processed by the workflow item.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The printing system uses this function in conjunction with the function [`PMWorkflowCopyItems`](https://developer.apple.com/documentation/applicationservices/1459914-pmworkflowcopyitems) to implement the PDF workflow button in the Print dialog.
+    ///
+    /// <a id="1771115"></a>
+    /// ### Special Considerations
+    ///
+    /// In OS X v10.4 and earlier, this function is not implemented and returns an error. You can use the function [`PMWorkflowSubmitPDFWithOptions`](https://developer.apple.com/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions) together with the function [`PMPrintSettingsToOptions`](https://developer.apple.com/documentation/applicationservices/1459069-pmprintsettingstooptions) instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1511,7 +3671,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461110-pmprinterprintwithprovider?language=objc)
+    /// Submits a print job to a specified printer using a Quartz data provider to obtain the print data.
+    ///
+    /// Parameters:
+    /// - printer: The destination printer.
+    ///
+    /// - settings: The print settings for the print job.
+    ///
+    /// - format: The physical page size and orientation with which the document should be printed. This parameter can be `NULL`.
+    ///
+    /// - mimeType: The MIME type of the data to be printed. This parameter cannot be `NULL`. If you want automatic typing, use the function [`PMPrinterPrintWithFile`](https://developer.apple.com/documentation/applicationservices/1464600-pmprinterprintwithfile) instead. You can obtain a list of the MIME types supported by a given printer using the function [`PMPrinterGetMimeTypes`](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes).
+    ///
+    /// - provider: The data provider that supplies the print data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can fail if the specified printer cannot handle the data provider’s MIME type. Use the function [`PMPrinterGetMimeTypes`](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes) to check whether a MIME type is supported.
+    ///
+    /// <a id="1771107"></a>
+    /// ### Special Considerations
+    ///
+    /// In OS X v10.4 and earlier, this function is not implemented and returns the error code –1 when called. You can write your print data to a file and use `PMPrinterPrintWithFile` instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1529,7 +3719,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464600-pmprinterprintwithfile?language=objc)
+    /// Submits a print job to a specified printer using a file that contains print data.
+    ///
+    /// Parameters:
+    /// - printer: The destination printer.
+    ///
+    /// - settings: The print settings for the print job.
+    ///
+    /// - format: The physical page size and orientation with which the document should be printed. This parameter can be `NULL`.
+    ///
+    /// - mimeType: The MIME type of the data to be printed. If this parameter is `NULL`, the MIME type will be determined automatically. You can obtain a list of the MIME types supported by a given printer using the function [`PMPrinterGetMimeTypes`](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes).
+    ///
+    /// - fileURL: The URL of the file that supplies the print data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }. If the specified printer cannot handle the file's MIME type, a non-zero error code is returned.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can fail if the specified printer cannot handle the file’s MIME type. Use the function [`PMPrinterGetMimeTypes`](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes) to check whether a MIME type is supported.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1547,7 +3762,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459729-pmprinterwritepostscripttourl?language=objc)
+    /// Converts an input file of the specified MIME type to printer-ready PostScript for a destination printer.
+    ///
+    /// Parameters:
+    /// - printer: The destination printer for which printer-ready PostScript will be generated.
+    ///
+    /// - settings: The print settings for the print job.
+    ///
+    /// - format: The page format specifying the physical page size and orientation on which the document should be printed.
+    ///
+    /// - mimeType: The MIME type of the file to be printed. If you pass `NULL`, the file is typed automatically. You can obtain a list of the MIME types supported by a given printer using the function [`PMPrinterGetMimeTypes`](https://developer.apple.com/documentation/applicationservices/1460125-pmprintergetmimetypes).
+    ///
+    /// - sourceFileURL: A URL specifying the input file to be converted to printer-ready PostScript data. Only file-based URLs are supported.
+    ///
+    /// - destinationFileURL: A URL specifying the destination file to be created. If the file already exists, it will be overwritten. Only file-based URLs are supported.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. If the printing system cannot convert the input MIME type to PostScript, this function fails and returns an error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is synchronous; the conversion of the input file to PostScript is performed before the function returns. This can take a significant amount of time for longer documents. You may want to perform this operation on a thread other than the main application thread or fork a separate process for this purpose.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1566,7 +3808,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459069-pmprintsettingstooptions?language=objc)
+    /// Converts print settings into a CUPS options string.
+    ///
+    /// Parameters:
+    /// - settings: The print settings to convert.
+    ///
+    /// - options: A pointer to a C string. On return, a CUPS options string describing the print settings, or `NULL` if the print settings could not be converted. The function allocates storage for the string. You are responsible for freeing the storage.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a CUPS options string that captures the data in the specified print settings object. In macOS 10.5 and later, Apple recommends that you use the [`PMPrintSettingsToOptionsWithPrinterAndPageFormat`](https://developer.apple.com/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin) function instead.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1580,7 +3841,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459435-pmprintsettingstooptionswithprin?language=objc)
+    /// Converts print settings and page format data into a CUPS options string for a specified printer.
+    ///
+    /// Parameters:
+    /// - settings: The print settings to convert.
+    ///
+    /// - printer: The printer to use for converting the print settings. This parameter must not be `NULL`.
+    ///
+    /// - pageFormat: The page format to convert, or `NULL` to specify default page format data.
+    ///
+    /// - options: A pointer to a C string. On return, a CUPS option string with the specified print settings and page format data, or `NULL` if the data could not be converted. The function allocates storage for the string. You are responsible for freeing the storage.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a CUPS options string for the destination printer that captures the data in the specified print settings and page format objects. For example, you could pass this string to the function [`PMWorkflowSubmitPDFWithOptions`](https://developer.apple.com/documentation/applicationservices/1463747-pmworkflowsubmitpdfwithoptions) to submit a PDF file for workflow processing. You could also use the options string to run a CUPS filter directly.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1598,8 +3882,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463872-pmprintersendcommand?language=objc)
-    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1615,8 +3897,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460381-pmprintercopystate?language=objc)
-    ///
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
@@ -1629,7 +3909,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464170-pmcopyavailableppds?language=objc)
+    /// Obtains the list of PostScript printer description (PPD) files in a PPD domain.
+    ///
+    /// Parameters:
+    /// - domain: The PPD domain to search. See [`PMPPDDomain`](https://developer.apple.com/documentation/applicationservices/pmppddomain) for a description of the constants you can use to specify the domain.
+    ///
+    /// - ppds: A pointer to your [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) variable. On return, the variable refers to a Core Foundation array of PPD files in the specified domain. Each element in the array is a Core Foundation URL object that specifies the location of a PPD file or a compressed PPD file. You are responsible for releasing the array. If the specified domain is not valid, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1639,7 +3932,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459690-pmcopylocalizedppd?language=objc)
+    /// Obtains a localized PostScript printer description (PPD) file.
+    ///
+    /// Parameters:
+    /// - ppd: A Core Foundation URL object for a PPD file. You can obtain a PPD URL using the function [`PMCopyAvailablePPDs`](https://developer.apple.com/documentation/applicationservices/1464170-pmcopyavailableppds).
+    ///
+    /// - localizedPPD: A pointer to your [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) variable. On return, the variable refers to a Core Foundation URL object. The URL specifies the location of a PPD file or a compressed PPD file that has been localized for the current user's language preference. You are responsible for releasing the URL. If the `ppd` parameter is not valid, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To access the data in the PPD file, you can use the function [`PMCopyPPDData`](https://developer.apple.com/documentation/applicationservices/1460345-pmcopyppddata).
+    ///
+    /// <a id="1771109"></a>
+    /// ### Special Considerations
+    ///
+    /// In macOS 10.5 and later, the printing system supports globalized PPD files as defined in CUPS version 1.2 and later. A globalized PPD file contains multiple localizations within a single file. If a globalized PPD file exists, this function returns the URL to this file and it is up to the application to obtain the correct localized data. For more information, see [CUPS PPD Extensions](https://developer.apple.comhttp://www.cups.org/documentation.php/spec-ppd.html).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1648,7 +3965,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460345-pmcopyppddata?language=objc)
+    /// Obtains the uncompressed PPD data for a PostScript printer description (PPD) file.
+    ///
+    /// Parameters:
+    /// - ppd: A URL for a PPD or compressed PPD file. You can obtain a PPD URL using the function [`PMCopyAvailablePPDs`](https://developer.apple.com/documentation/applicationservices/1464170-pmcopyavailableppds) or [`PMCopyLocalizedPPD`](https://developer.apple.com/documentation/applicationservices/1459690-pmcopylocalizedppd).
+    ///
+    /// - data: A pointer to your [`CFData`](https://developer.apple.com/documentation/corefoundation/cfdata) variable. On return, the variable refers to a Core Foundation data object containing the uncompressed PPD data from the specified PPD file. You are responsible for releasing the data object. If the `ppd` parameter does not reference a PPD file, the variable is set to `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/core_printing#1670007", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1656,7 +3986,28 @@ extern "C-unwind" {
     pub fn PMCopyPPDData(ppd: &CFURL, data: NonNull<*const CFData>) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462361-pmcgimagecreatewithepsdataprovid?language=objc)
+/// Creates an image that references both the PostScript contents of EPS data and a preview (proxy) image for the data.
+///
+/// Parameters:
+/// - epsDataProvider: A Quartz data provider that supplies the PostScript contents of the EPS file. The EPS data must begin with the EPSF required header and bounding box DSC (Document Structuring Conventions) comments.
+///
+/// - epsPreview: A Quartz image that serves as the proxy image for the EPS file. When the image returned by this function is rendered onscreen or sent to a printer that cannot render PostScript, this proxy image is drawn instead.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// An image capable of rendering either the EPS content or the proxy image, depending upon the capabilities of the destination printer.
+///
+///
+///
+/// ## Discussion
+///
+/// It is likely that data will not be read from the EPS data provider until after this function returns. You should be careful not to free the underlying EPS data until the data provider's release function is invoked. Similarly, do not free the preview image data until the image data provider's release function is invoked. You are responsible for releasing the data providers for the EPS image and the EPS preview image.
+///
+/// Note that in macOS 10.3 and later, Quartz can convert EPS data into PDF data. Using this feature and then using Quartz to draw the resulting PDF data may produce superior results for your application. See `CGPSConverter` for details.
+///
+///
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn PMCGImageCreateWithEPSDataProvider(

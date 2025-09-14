@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents the day of the week.
+    ///
+    /// ## Overview
+    ///
+    /// The `EKRecurrenceDayOfWeek` class represents a day of the week for use with an [`EKRecurrenceRule`](https://developer.apple.com/documentation/eventkit/ekrecurrencerule) object.
+    ///
+    /// A day of the week can optionally have a week number, indicating a specific day in the recurrence rule’s frequency. For example, a day of the week with a day value of Tuesday and a week number of 2 would represent the second Tuesday of every month in a monthly recurrence rule, and the second Tuesday of every year in a yearly recurrence rule. A day of the week with a week number of 0 ignores its week number.
+    ///
+    ///
     /// Class which represents a day of the week this recurrence will occur.
     ///
     /// EKRecurrenceDayOfWeek specifies either a simple day of the week, or the nth instance
@@ -26,8 +35,6 @@ extern_class!(
     /// result in an exception when trying to initialize the recurrence. In particular,
     /// weekNumber must be zero when passing EKRecurrenceDayOfWeek objects to initialize a weekly
     /// recurrence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencedayofweek?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKRecurrenceDayOfWeek;

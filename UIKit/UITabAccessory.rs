@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -41,34 +40,37 @@ impl UITabAccessory {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory/environment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabAccessoryEnvironment(pub NSInteger);
 impl UITabAccessoryEnvironment {
+    /// Indicates the absence of any information about whether or not the trait collection is from a view that is in a tab accessory.
     /// Indicates the absence of any information about whether or not the trait collection is
     /// from a view that is in a tab accessory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory/environment/unspecified?language=objc)
     #[doc(alias = "UITabAccessoryEnvironmentUnspecified")]
     pub const Unspecified: Self = Self(0);
     /// The trait collection is from a view that is not in an active tab accessory environment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory/environment/none?language=objc)
+    /// The trait collection is from a view that is not in an active tab accessory environment.
     #[doc(alias = "UITabAccessoryEnvironmentNone")]
     pub const None: Self = Self(1);
     /// The environment for when the accessory is laid out either:
+    ///
+    /// ## Discussion
+    ///
+    /// - above the bottom tab bar when it is visible; or,
+    ///
+    /// - at the bottom of the UITabBarController’s view.
+    ///
+    ///
+    /// The environment for when the accessory is laid out either:
     /// - above the bottom tab bar when it is visible; or,
     /// - at the bottom of the UITabBarController's view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory/environment/regular?language=objc)
     #[doc(alias = "UITabAccessoryEnvironmentRegular")]
     pub const Regular: Self = Self(2);
+    /// The environment for when the accessory is laid out inline with the collapsed bottom tab bar.
     /// The environment for when the accessory is laid out inline with
     /// the collapsed bottom tab bar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory/environment/inline?language=objc)
     #[doc(alias = "UITabAccessoryEnvironmentInline")]
     pub const Inline: Self = Self(3);
 }
@@ -82,10 +84,9 @@ unsafe impl RefEncode for UITabAccessoryEnvironment {
 }
 
 extern_class!(
+    /// A trait that specifies the UITabAccessoryEnvironment, if any, that a view is in. It is set on views inside UITabBarController.bottomAccessory. Defaults to UITabAccessoryEnvironmentUnspecified.
     /// A trait that specifies the UITabAccessoryEnvironment, if any, that a view is in. It is set on views inside
     /// UITabBarController.bottomAccessory. Defaults to UITabAccessoryEnvironmentUnspecified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittabaccessoryenvironment-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

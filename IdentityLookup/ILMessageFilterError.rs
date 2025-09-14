@@ -7,38 +7,39 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererrordomain?language=objc)
+    /// The error domain for errors associated with the IdentityLookup APIs.
     pub static ILMessageFilterErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code?language=objc)
+/// IdentityLookup error codes.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ILMessageFilterError(pub NSInteger);
 impl ILMessageFilterError {
     /// An unspecified system error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/system?language=objc)
+    /// An unspecified system error occurred.
     #[doc(alias = "ILMessageFilterErrorSystem")]
     pub const System: Self = Self(1);
+    /// The network request URL given by the `ILMessageFilterExtensionNetworkURL` key in the app extension’s `Info.plist` file is either missing or invalid.
     /// The network request URL included in the extension's Info.plist was either missing or invalid. See documentation for network request URL requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/invalidnetworkurl?language=objc)
     #[doc(alias = "ILMessageFilterErrorInvalidNetworkURL")]
     pub const InvalidNetworkURL: Self = Self(2);
+    /// The app extension’s containing app isn’t authorized to allow the app extension to defer network requests to the host specified in its `Info.plist` file.
     /// Extension's containing app is not authorized to allow extension to defer network requests to the host specified in the URL of the extension's Info.plist.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/networkurlunauthorized?language=objc)
     #[doc(alias = "ILMessageFilterErrorNetworkURLUnauthorized")]
     pub const NetworkURLUnauthorized: Self = Self(3);
-    /// Network request was attempted but failed. See `NSUnderlyingErrorKey` in `userInfo` dictionary for details.
+    /// The network request failed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/networkrequestfailed?language=objc)
+    /// ## Discussion
+    ///
+    /// The network request failed (the `NSUnderlyingErrorKey` in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary of the [`ILMessageFilterError`](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct) may have additional details).
+    ///
+    ///
+    /// Network request was attempted but failed. See `NSUnderlyingErrorKey` in `userInfo` dictionary for details.
     #[doc(alias = "ILMessageFilterErrorNetworkRequestFailed")]
     pub const NetworkRequestFailed: Self = Self(4);
+    /// The app extension tried to defer a request to its network service more than once, which isn’t allowed.
     /// Extension requested to defer a request to its network service more than once. Requests may be deferred to the network at most once.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code/redundantnetworkdeferral?language=objc)
     #[doc(alias = "ILMessageFilterErrorRedundantNetworkDeferral")]
     pub const RedundantNetworkDeferral: Self = Self(5);
 }

@@ -9,13 +9,31 @@ use crate::*;
 
 /// An identifier representing a web history profile.
 ///
+/// ## Overview
+///
 /// Profiles allow you to keep your web history separate for topics like work, personal, or school.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stwebhistory/profileidentifier?language=objc)
+///
+/// An identifier representing a web history profile.
+///
+/// Profiles allow you to keep your web history separate for topics like work, personal, or school.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type STWebHistoryProfileIdentifier = NSString;
 
 extern_class!(
+    /// The object you use to delete web-usage data.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides an easy way for you to delete web history, including:
+    ///
+    /// - All history
+    ///
+    /// - History associated to a specific URL
+    ///
+    /// - History during a specific time interval
+    ///
+    ///
     /// The object you use to delete web-usage data.
     ///
     /// This class provides an easy way for you to delete web history, including:
@@ -23,8 +41,6 @@ extern_class!(
     /// - All history
     /// - History associated to a specific URL
     /// - History during a specific time interval
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stwebhistory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct STWebHistory;

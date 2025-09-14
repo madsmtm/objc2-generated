@@ -8,19 +8,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype?language=objc)
+/// The type of notification that a notification feedback generator object generates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINotificationFeedbackType(pub NSInteger);
 impl UINotificationFeedbackType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype/success?language=objc)
+    /// A notification feedback type that indicates a task has completed successfully.
     #[doc(alias = "UINotificationFeedbackTypeSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype/warning?language=objc)
+    /// A notification feedback type that indicates a task has produced a warning.
     #[doc(alias = "UINotificationFeedbackTypeWarning")]
     pub const Warning: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype/error?language=objc)
+    /// A notification feedback type that indicates a task has failed.
     #[doc(alias = "UINotificationFeedbackTypeError")]
     pub const Error: Self = Self(2);
 }
@@ -34,7 +34,15 @@ unsafe impl RefEncode for UINotificationFeedbackType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator?language=objc)
+    /// A concrete feedback generator subclass that creates haptics to communicate successes, failures, and warnings.
+    ///
+    /// ## Overview
+    ///
+    /// Use notification feedback to communicate that a task or action succeeded, failed, or produced a warning of some kind.
+    ///
+    /// For more information, read [Playing haptic feedback in your app](https://developer.apple.com/documentation/applepencil/playing-haptic-feedback-in-your-app).
+    ///
+    ///
     #[unsafe(super(UIFeedbackGenerator, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

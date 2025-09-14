@@ -8,6 +8,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages the synchronization of local and remote record data.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`CKSyncEngine`](https://developer.apple.com/documentation/cloudkit/cksyncengine-5sie5) to handle your app’s CloudKit sync operations and benefit from the performance and reliability it provides. To use the class, create an instance early in your app’s launch process and specify a database to sync. Thereafter, and depending on good system conditions, the sync engine will periodically push and pull database and record zone changes on the app’s behalf. To participate in those sync operations and to provide the engine with the changes to send, create an object that conforms to [`CKSyncEngineDelegate`](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-1q7g8) and assign an instance of it to the engine’s configuration. You can have multiple instances of [`CKSyncEngine`](https://developer.apple.com/documentation/cloudkit/cksyncengine-5sie5) in a single process, each targeting a different database. For example, you may have one syncing a person’s private database and another syncing their shared database.
+    ///
+    /// Because periodic sync relies on good system conditions — adequate battery charge, an active network connection, a signed-in iCloud account, and so on — the engine’s sync schedule is indeterminate; if you need to sync immediately, like when you need to ensure your app has the most recent changes before continuing, use the [`fetchChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:) and [`sendChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:) methods.
+    ///
+    /// The sync engine uses an opaque type to track its internal state, and it’s your responsibility to persist that state to disk and make it available across app launches so the engine can function properly. For more information, see [`syncEngine:handleEvent:`](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:handleevent:) and [`CKSyncEngineStateUpdateEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginestateupdateevent).
+    ///
+    /// [`CKSyncEngine`](https://developer.apple.com/documentation/cloudkit/cksyncengine-5sie5) requires the CloudKit and Remote notifications entitlements. For more information, see [Configuring iCloud services](https://developer.apple.com/documentation/xcode/configuring-icloud-services) and [Configuring background execution modes](https://developer.apple.com/documentation/xcode/configuring-background-execution-modes).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t use [`CKSyncEngine`](https://developer.apple.com/documentation/cloudkit/cksyncengine-5sie5) to sync your app’s public database.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Send changes to iCloud
+    ///
+    /// A sync engine requires you to tell it about any changes to send, which you do by invoking the [`addPendingDatabaseChanges:`](https://developer.apple.com/documentation/cloudkit/cksyncenginestate/addpendingdatabasechanges:) and [`addPendingRecordZoneChanges:`](https://developer.apple.com/documentation/cloudkit/cksyncenginestate/addpendingrecordzonechanges:) methods on the engine’s state property. If there are no scheduled sync operations when you invoke these methods, the engine automatically schedules one. Database changes don’t require any additional input, but the sync engine does expect you to provide the individual record zone changes — in batches — and return them from your delegate’s implementation of [`syncEngine:nextRecordZoneChangeBatchForContext:`](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:nextrecordzonechangebatchforcontext:). After the engine sends the changes, it notifies your delegate about their success (or failure) by dispatching events of type [`CKSyncEngineSentDatabaseChangesEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginesentdatabasechangesevent) and [`CKSyncEngineSentRecordZoneChangesEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginesentrecordzonechangesevent).
+    ///
+    /// ### Fetch changes from iCloud
+    ///
+    /// By default, a sync engine attempts to discover an existing [`CKDatabaseSubscription`](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription) for the associated database and uses that to receive silent notifications about remote record changes. If the engine doesn’t find a subscription, it automatically creates one to use. On receipt of a notification, the engine schedules a sync operation to fetch the related changes. When that operation runs, the engine dispatches an instance of [`CKSyncEngineWillFetchChangesEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginewillfetchchangesevent) to your delegate. As it receives fetched changes, the engine dispatches [`CKSyncEngineFetchedDatabaseChangesEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginefetcheddatabasechangesevent) and [`CKSyncEngineFetchedRecordZoneChangesEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedrecordzonechangesevent), accordingly. After the operation finishes, the sync engine notifies your delegate by dispatching an instance of [`CKSyncEngineDidFetchChangesEvent`](https://developer.apple.com/documentation/cloudkit/cksyncenginedidfetchchangesevent). You handle all dispatched events in your delegate’s implementation of [`syncEngine:handleEvent:`](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:handleevent:).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  A sample code project for [`CKSyncEngine`](https://developer.apple.com/documentation/cloudkit/cksyncengine-5sie5) is available on GitHub here: [CloudKit Samples: CKSyncEngine](https://github.com/apple/sample-cloudkit-sync-engine).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// `CKSyncEngine` encapsulates the logic of syncing data with a CloudKit database.
     ///
     /// Syncing with CloudKit involves many moving pieces.
@@ -120,8 +157,6 @@ extern_class!(
     /// It will also listen for when the user signs in or out of their account.
     /// When it notices an account change, it will send an ``CKSyncEngine/Event/accountChange(_:)`` to your delegate.
     /// It's your responsibility to react appropriately to this change and update your local persistence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngine;
@@ -258,9 +293,20 @@ impl CKSyncEngine {
 }
 
 extern_protocol!(
-    /// An interface by which `CKSyncEngine` communicates with your application.
+    /// An interface for providing record data to a sync engine and customizing that engine’s behavior.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-3c38p?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`CKSyncEngine`](https://developer.apple.com/documentation/cloudkit/cksyncengine-5sie5) delivers events serially, which means the delegate doesn’t receive the next event until it finishes handling the current one. To maintain this ordering, don’t call sync engine methods from your delegate that may cause the engine to generate additional events. For example, don’t invoke [`fetchChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:) or [`sendChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:) from within [`syncEngine:handleEvent:`](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-3c38p/syncengine:handleevent:).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An interface by which `CKSyncEngine` communicates with your application.
     pub unsafe trait CKSyncEngineDelegate: NSObjectProtocol {
         #[cfg(feature = "CKSyncEngineEvent")]
         /// Called when an event occurs during the sync engine's operation.
@@ -387,9 +433,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A set of options to use with a fetch operation.
     /// A set of options to use when fetching changes from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchchangesoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchChangesOptions;
@@ -487,8 +532,6 @@ impl CKSyncEngineFetchChangesOptions {
 
 extern_class!(
     /// A scope in which the sync engine will fetch changes from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchchangesscope?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchChangesScope;
@@ -567,9 +610,8 @@ impl CKSyncEngineFetchChangesScope {
 }
 
 extern_class!(
+    /// A set of options to use with a send operation.
     /// A set of options to use when sending changes to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesendchangesoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSendChangesOptions;
@@ -646,8 +688,6 @@ impl CKSyncEngineSendChangesOptions {
 
 extern_class!(
     /// A scope in which the sync engine will send changes to  the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesendchangesscope?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSendChangesScope;
@@ -759,20 +799,24 @@ impl CKSyncEngineSendChangesScope {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason?language=objc)
+/// Describes the reason for a sync operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineSyncReason(pub NSInteger);
 impl CKSyncEngineSyncReason {
+    /// A scheduled sync operation.
     /// This sync was scheduled automatically by the sync engine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason/scheduled?language=objc)
     #[doc(alias = "CKSyncEngineSyncReasonScheduled")]
     pub const Scheduled: Self = Self(0);
-    /// This sync was requested manually by calling ``CKSyncEngine/fetchChanges(_:)`` or ``CKSyncEngine/sendChanges(_:)``.
+    /// A manual sync operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason/manual?language=objc)
+    /// ## Discussion
+    ///
+    /// The sync engine uses this reason only when your app invokes the [`fetchChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/fetchchangeswithcompletionhandler:) and [`sendChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:) methods and their variants.
+    ///
+    ///
+    /// This sync was requested manually by calling ``CKSyncEngine/fetchChanges(_:)`` or ``CKSyncEngine/sendChanges(_:)``.
     #[doc(alias = "CKSyncEngineSyncReasonManual")]
     pub const Manual: Self = Self(1);
 }
@@ -792,8 +836,6 @@ extern_class!(
     /// For example, if you call ``CKSyncEngine/fetchChanges(_:)``, it'll try to fetch changes immediately.
     /// Or if it receives a push notification, it'll schedule a sync and fetch changes when the scheduler task runs.
     /// This object represents one of those attempts to fetch changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchchangescontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchChangesContext;
@@ -830,14 +872,19 @@ impl CKSyncEngineFetchChangesContext {
 }
 
 extern_class!(
+    /// An object that describes a single attempt to send changes to the iCloud servers.
+    ///
+    /// ## Overview
+    ///
+    /// A sync engine has two ways to send changes to iCloud — periodically, in cooperation with the system scheduler, and manually, whenever your app invokes the [`sendChangesWithCompletionHandler:`](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9/sendchangeswithcompletionhandler:) method. This object provides information about a single attempt to send changes that includes both the reason for the attempt and any additional options in use by the attempt.
+    ///
+    ///
     /// The context of an attempt to send changes to the server.
     ///
     /// The sync engine might attempt to send changes to the server for many reasons.
     /// For example, if you call ``CKSyncEngine/sendChanges(_:)``, it'll try to send changes immediately.
     /// Or if you add pending changes to the state, it'll schedule a sync and send changes when the scheduler task runs.
     /// This object represents one of those attempts to send changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesendchangescontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSendChangesContext;

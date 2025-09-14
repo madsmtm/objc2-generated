@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator?language=objc)
+/// Constants indicating how search attributes are interpreted.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INConditionalOperator(pub NSInteger);
 impl INConditionalOperator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator/all?language=objc)
+    /// All relevant attributes must be present for the search to yield a match. This is equivalent to an AND operator.
     #[doc(alias = "INConditionalOperatorAll")]
     pub const All: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator/any?language=objc)
+    /// One or more of the relevant attributes must be present for the search to yield a match. This is equivalent to an OR operator.
     #[doc(alias = "INConditionalOperatorAny")]
     pub const Any: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inconditionaloperator/none?language=objc)
+    /// None of the specified attributes must be present for the search to yield a match.
     #[doc(alias = "INConditionalOperatorNone")]
     pub const None: Self = Self(2);
 }

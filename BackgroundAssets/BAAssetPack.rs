@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// An archive of assets that the system downloads together.
     ///
+    /// ## Overview
+    ///
     /// An instance of this class can be invalidated when the asset pack that it represents is updated on the server.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpack?language=objc)
+    ///
+    /// An archive of assets that the system downloads together.
+    ///
+    /// An instance of this class can be invalidated when the asset pack that it represents is updated on the server.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BAAssetPack;

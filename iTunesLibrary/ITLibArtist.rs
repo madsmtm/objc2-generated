@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// This class represents an artist, such as the performer of a song.
     /// The ITLibArtist class represents an artist, such as the performer of a song.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibartist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ITLibArtist;

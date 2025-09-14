@@ -8,9 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A `GKLeaderboardScore` object represents a score on a leaderboard for scores you report for challenges or turn-based games.
+    /// Information about a player’s score on a leaderboard.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardscore?language=objc)
+    /// ## Overview
+    ///
+    /// A [`GKLeaderboardScore`](https://developer.apple.com/documentation/gamekit/gkleaderboardscore) object represents a score on a leaderboard for scores you report for challenges or turn-based games.
+    ///
+    /// When you create a [`GKLeaderboardScore`](https://developer.apple.com/documentation/gamekit/gkleaderboardscore) object, set the `leaderboardID` property to the associated leaderboard, the `player` property to the player who earns the score, and the `value` property to the score. Make sure the score is compatible with the score format that you configure in App Store Connect.
+    ///
+    /// Then use either the [`reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkscore/report(_:witheligiblechallenges:withcompletionhandler:)-2tycl) or [`endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/endmatchinturn(withmatch:leaderboardscores:achievements:completionhandler:)) `GKTurnBasedMatch` method to report one or more scores.
+    ///
+    /// For details about the score format, see [Configure leaderboards](https://developer.apple.com/help/app-store-connect/configure-game-center/configure-leaderboards) in App Store Connect Help.
+    ///
+    ///
+    /// A `GKLeaderboardScore` object represents a score on a leaderboard for scores you report for challenges or turn-based games.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboardScore;

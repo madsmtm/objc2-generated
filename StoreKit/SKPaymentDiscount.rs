@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymentdiscount?language=objc)
+    /// The signed discount to apply to a payment.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SKPaymentDiscount`](https://developer.apple.com/documentation/storekit/skpaymentdiscount) contains the details of a promotional offer discount that you want to apply to a [`SKMutablePayment`](https://developer.apple.com/documentation/storekit/skmutablepayment).
+    ///
+    /// Include the signature that you generated in this object. For guidance, see [Generating a signature for promotional offers](https://developer.apple.com/documentation/storekit/generating-a-signature-for-promotional-offers). The App Store uses this signature and the parameters to validate the promotional offer. Keep in mind that the signature must correspond to the parameters in the payment for a transaction to be successful.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]

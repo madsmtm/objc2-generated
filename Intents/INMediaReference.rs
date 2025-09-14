@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference?language=objc)
+/// Constants that describe a reference for a media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaReference(pub NSInteger);
 impl INMediaReference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference/unknown?language=objc)
+    /// Indicates that the media item is unknown.
     #[doc(alias = "INMediaReferenceUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference/currentlyplaying?language=objc)
+    /// Indicates that the user is referring to the media item which is currently playing.
     #[doc(alias = "INMediaReferenceCurrentlyPlaying")]
     pub const CurrentlyPlaying: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediareference/my?language=objc)
+    /// Indicates that the specified content belongs to the user.
     #[doc(alias = "INMediaReferenceMy")]
     pub const My: Self = Self(2);
 }

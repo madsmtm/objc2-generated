@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrotationratedata?language=objc)
+    /// A data object that contains a single rotation-rate measurement.
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]
@@ -64,7 +64,7 @@ impl CMRotationRateData {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrecordedrotationratedata?language=objc)
+    /// A data object that contains a single rotation-rate measurement at a specific time.
     #[unsafe(super(CMRotationRateData, CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

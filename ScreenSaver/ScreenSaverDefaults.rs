@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that defines a set of methods for saving and restoring user defaults for screen savers.
+    ///
+    /// ## Overview
+    ///
+    /// [`ScreenSaverDefaults`](https://developer.apple.com/documentation/screensaver/screensaverdefaults) gives you access to preference values you need to configure your screen saver. Because multiple apps can load a screen saver, you can’t use the standard [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) object to store preferences. Instead, instantiate this class using the [`defaultsForModuleWithName:`](https://developer.apple.com/documentation/screensaver/screensaverdefaults/init(formodulewithname:)) method, which takes your screen saver’s bundle identifier as a parameter. The resulting object gives you a way to store your preference values and associate them only with your screen saver. Use the inherited [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults) methods to load, store, or modify values.
+    ///
+    ///
     /// A class that defines a set of methods for saving and restoring user defaults
     /// for screen savers.
     ///
@@ -23,8 +30,6 @@ extern_class!(
     /// <doc
     /// ://com.apple.documentation/documentation/foundation/nsuserdefaults>
     /// methods to load, store, or modify values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screensaver/screensaverdefaults?language=objc)
     #[unsafe(super(NSUserDefaults, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ScreenSaverDefaults;

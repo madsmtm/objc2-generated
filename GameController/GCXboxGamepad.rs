@@ -6,12 +6,25 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A controller profile that supports the Xbox controller.
+    ///
+    /// ## Overview
+    ///
+    /// The Xbox controller profile is similar to an extended game pad ([`GCExtendedGamepad`](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad)), but has four paddle button elements.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d961116a5ae877c0fc340e831745834c/media-3830808~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3ccf0bede2983f79a0c53d026b50ebc8/media-3830808%402x.png 2x" />
+    ///     <img alt="An illustration of an Xbox controller with callouts for the four paddle buttons." src="https://docs-assets.developer.apple.com/published/d961116a5ae877c0fc340e831745834c/media-3830808~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// The GCXboxGamepad profile represents any supported Xbox controller.
     ///
     ///
     /// See: GCExtendedGamepad
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcxboxgamepad?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]

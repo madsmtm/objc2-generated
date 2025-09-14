@@ -8,25 +8,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale?language=objc)
+/// Constants that indicate which scale variant of a symbol image to use.
+///
+/// ## Overview
+///
+/// The definition of a symbol image includes multiple scale and weight variants. Scale variants offer a way to define the size of the image relative to layout guides in the symbol image’s definition file. The system chooses the appropriate size variant based on the available space and configuration options.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolScale(pub NSInteger);
 impl UIImageSymbolScale {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/default?language=objc)
+    /// The default scale variant that matches the system usage.
+    ///
+    /// ## Discussion
+    ///
+    /// UIKit chooses the same scale used for similar content in other parts of the system.
+    ///
+    ///
     #[doc(alias = "UIImageSymbolScaleDefault")]
     pub const Default: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/unspecified?language=objc)
+    /// An unspecified scale.
+    ///
+    /// ## Discussion
+    ///
+    /// When you specify this value, the image inherits the scale value from its current environment.
+    ///
+    ///
     #[doc(alias = "UIImageSymbolScaleUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/small?language=objc)
+    /// The small variant of the symbol image.
     #[doc(alias = "UIImageSymbolScaleSmall")]
     pub const Small: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/medium?language=objc)
+    /// The medium variant of the symbol image
     #[doc(alias = "UIImageSymbolScaleMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale/large?language=objc)
+    /// The large variant of the symbol image.
     #[doc(alias = "UIImageSymbolScaleLarge")]
     pub const Large: Self = Self(3);
 }
@@ -39,40 +57,46 @@ unsafe impl RefEncode for UIImageSymbolScale {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight?language=objc)
+/// Constants that indicate which weight variant of a symbol image to use.
+///
+/// ## Overview
+///
+/// The definition of a symbol image includes multiple scale and weight variants. The weight variants offer a way to progressively thicken some or all of the image’s lines. Weights do not correspond to a specific line thickness.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolWeight(pub NSInteger);
 impl UIImageSymbolWeight {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/unspecified?language=objc)
+    /// An unspecified symbol image weight.
     #[doc(alias = "UIImageSymbolWeightUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/ultralight?language=objc)
+    /// An ultralight weight.
     #[doc(alias = "UIImageSymbolWeightUltraLight")]
     pub const UltraLight: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/thin?language=objc)
+    /// A thin weight
     #[doc(alias = "UIImageSymbolWeightThin")]
     pub const Thin: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/light?language=objc)
+    /// A light weight.
     #[doc(alias = "UIImageSymbolWeightLight")]
     pub const Light: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/regular?language=objc)
+    /// A regular weight.
     #[doc(alias = "UIImageSymbolWeightRegular")]
     pub const Regular: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/medium?language=objc)
+    /// A medium weight.
     #[doc(alias = "UIImageSymbolWeightMedium")]
     pub const Medium: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/semibold?language=objc)
+    /// A semibold weight.
     #[doc(alias = "UIImageSymbolWeightSemibold")]
     pub const Semibold: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/bold?language=objc)
+    /// A bold weight.
     #[doc(alias = "UIImageSymbolWeightBold")]
     pub const Bold: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/heavy?language=objc)
+    /// A heavy weight.
     #[doc(alias = "UIImageSymbolWeightHeavy")]
     pub const Heavy: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/black?language=objc)
+    /// An ultra-heavy weight.
     #[doc(alias = "UIImageSymbolWeightBlack")]
     pub const Black: Self = Self(9);
 }
@@ -85,27 +109,23 @@ unsafe impl RefEncode for UIImageSymbolWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolVariableValueMode(pub NSInteger);
 impl UIImageSymbolVariableValueMode {
     /// Automatically selects an appropriate variable value mode for the symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode/automatic?language=objc)
+    /// Automatically selects an appropriate variable value mode for the symbol.
     #[doc(alias = "UIImageSymbolVariableValueModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The “color” variable value mode. Sets the opacity of each variable layer to either on or off depending on how its threshold compared to the current value.
     /// The "color" variable value mode. Sets the opacity of each variable layer to
     /// either on or off depending on how its threshold compared to the current value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode/color?language=objc)
     #[doc(alias = "UIImageSymbolVariableValueModeColor")]
     pub const Color: Self = Self(1);
+    /// The “draw” variable value mode. Changes the drawn length of each variable layer to either based on how its range relates to the current value.
     /// The "draw" variable value mode. Changes the drawn length of each variable layer
     /// to either based on how its range relates to the current value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode/draw?language=objc)
     #[doc(alias = "UIImageSymbolVariableValueModeDraw")]
     pub const Draw: Self = Self(2);
 }
@@ -122,25 +142,21 @@ unsafe impl Send for UIImageSymbolVariableValueMode {}
 
 unsafe impl Sync for UIImageSymbolVariableValueMode {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolColorRenderingMode(pub NSInteger);
 impl UIImageSymbolColorRenderingMode {
     /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode/automatic?language=objc)
+    /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
     #[doc(alias = "UIImageSymbolColorRenderingModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Renders the symbol’s color layers using flat colors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode/flat?language=objc)
+    /// Renders the symbol’s color layers using flat colors.
     #[doc(alias = "UIImageSymbolColorRenderingModeFlat")]
     pub const Flat: Self = Self(1);
     /// Renders the symbol’s color layers using gradients.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode/gradient?language=objc)
+    /// Renders the symbol’s color layers using gradients.
     #[doc(alias = "UIImageSymbolColorRenderingModeGradient")]
     pub const Gradient: Self = Self(2);
 }
@@ -157,7 +173,17 @@ unsafe impl Send for UIImageSymbolColorRenderingMode {}
 
 unsafe impl Sync for UIImageSymbolColorRenderingMode {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/fontweight()?language=objc)
+/// The font weight for the specified symbol weight.
+///
+/// Parameters:
+/// - symbolWeight: The symbol weight whose font weight you want.
+///
+///
+/// ## Return Value
+///
+/// The [`UIFontWeight`](https://developer.apple.com/documentation/uikit/uifont/weight) value that matches the specified symbol weight.
+///
+///
 #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn UIFontWeightForImageSymbolWeight(
@@ -170,7 +196,23 @@ pub extern "C-unwind" fn UIFontWeightForImageSymbolWeight(
 }
 
 impl UIImageSymbolWeight {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/symbolweight()?language=objc)
+    /// Provides the corresponding symbol weight for this font weight.
+    ///
+    /// Parameters:
+    /// - fontWeight: The font weight of the text.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The [`UIImageSymbolWeight`](https://developer.apple.com/documentation/uikit/uiimage/symbolweight) that most closely coordinates with the provided font weight.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When placing symbols adjacent to text, use this method to find the appropriate symbol weight to match the weight of the text. Similarly, if you want to display a symbol with a particular weight, you can use [`UIFontWeightForImageSymbolWeight`](https://developer.apple.com/documentation/uikit/uiimage/symbolweight/fontweight()) to look up the matching font weight for adjacent text.
+    ///
+    ///
     #[doc(alias = "UIImageSymbolWeightForFontWeight")]
     #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
     #[inline]
@@ -183,7 +225,15 @@ impl UIImageSymbolWeight {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolconfiguration-swift.class?language=objc)
+    /// An object that contains the specific font, size, style, and weight attributes to apply to a symbol image.
+    ///
+    /// ## Overview
+    ///
+    /// Symbol image configuration objects include details such as the point size, scale, text style, weight, and font to apply to your symbol image. The system uses these details to determine which variant of the image to use and how to scale or style the image.
+    ///
+    /// [`UIImageSymbolConfiguration`](https://developer.apple.com/documentation/uikit/uiimage/symbolconfiguration-swift.class) objects are immutable after you create them. If you use the [`configurationByApplyingConfiguration:`](https://developer.apple.com/documentation/uikit/uiimage/configuration-swift.class/applying(_:)) method on the object, the new image attributes replace any previous attributes you supplied. After creating a symbol configuration object, assign it to the [`preferredSymbolConfiguration`](https://developer.apple.com/documentation/uikit/uiimageview/preferredsymbolconfiguration) property of the [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) object you use to display the image. If you draw the image directly, use the [`imageWithConfiguration:`](https://developer.apple.com/documentation/uikit/uiimage/withconfiguration(_:)) method to create a new image that contains the new attributes.
+    ///
+    ///
     #[unsafe(super(UIImageConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIImageConfiguration")]

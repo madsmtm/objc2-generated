@@ -20,9 +20,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// VNObservation describes the results of performing a VNRequest. The result has a confidence score. The different types of requests will create different subclasses of VNObservation to return their results in properties of those subclasses.
+    /// The abstract superclass for analysis results.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnobservation?language=objc)
+    /// ## Overview
+    ///
+    /// Observations resulting from Vision image analysis requests inherit from this abstract base class. Don’t use this abstract superclass directly.
+    ///
+    ///
+    /// VNObservation describes the results of performing a VNRequest. The result has a confidence score. The different types of requests will create different subclasses of VNObservation to return their results in properties of those subclasses.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNObservation;
@@ -92,11 +97,16 @@ impl VNObservation {
 }
 
 extern_class!(
+    /// An observation that provides the position and extent of an image feature that an image- analysis request detects.
+    ///
+    /// ## Overview
+    ///
+    /// This class is the observation type that [`VNTrackObjectRequest`](https://developer.apple.com/documentation/vision/vntrackobjectrequest) generates. It represents an object that the Vision request detects and tracks.
+    ///
+    ///
     /// VNDetectedObjectObservation is VNObservation in an image that has a location and/or dimension. Further attributes depend on the specific detected object.
     ///
     /// All result objects (faces, scene objects, shapes etc) must extend from this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectedobjectobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNDetectedObjectObservation;
@@ -170,11 +180,16 @@ impl VNDetectedObjectObservation {
 }
 
 extern_class!(
+    /// Face or facial-feature information that an image analysis request detects.
+    ///
+    /// ## Overview
+    ///
+    /// This type of observation results from a [`VNDetectFaceRectanglesRequest`](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest). It contains information about facial landmarks and regions it finds in the image.
+    ///
+    ///
     /// VNFaceObservation is the result of a face detection request or derivatives like a face landmark request.
     ///
     /// The properties filled in this obervation depend on the request being performed. For instance, if just a VNDetectFaceRectanglesRequest was performed the landmarks will not be populated. VNFaceObservation are also used as inputs to other request as defined by the VNFaceObservationAccepting protocol. An example would be the VNDetectFaceLandmarksRequest. This can be helpful for instance if the face rectangles in an image are not derived from a VNDetectFaceRectanglesRequest but instead come from other sources like EXIF or other face detectors. In that case the client of the API creates a VNFaceObservation with the boundingBox (in normalized coordinates) that were based on those detected faces.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfaceobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceObservation;
@@ -299,11 +314,16 @@ impl VNFaceObservation {
 }
 
 extern_class!(
+    /// An object that represents classification information that an image-analysis request produces.
+    ///
+    /// ## Overview
+    ///
+    /// This type of observation results from performing a [`VNCoreMLRequest`](https://developer.apple.com/documentation/vision/vncoremlrequest) image analysis with a Core ML model whose role is classification (rather than prediction or image-to-image processing). Vision infers that an [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) object is a classifier model if that model predicts a single feature. That is, the model’s [`modelDescription`](https://developer.apple.com/documentation/coreml/mlmodel/modeldescription) object has a non-`nil` value for its [`predictedFeatureName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedfeaturename) property.
+    ///
+    ///
     /// VNClassificationObservation returns the classifcation in form of a string.
     ///
     /// VNClassificationObservation is the observation returned by VNCoreMLRequests that using a model that is a classifier. A classifier produces an arrary (this can be a single entry) of classifications which are labels (identifiers) and confidence scores.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnclassificationobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNClassificationObservation;
@@ -409,9 +429,14 @@ impl VNClassificationObservation {
 }
 
 extern_class!(
-    /// VNRecognizedObjectObservation is a VNDetectedObjectObservation with an array of classifications that classify the recognized object. The confidence of the classifications sum up to 1.0. It is common practice to multiply the classification confidence with the confidence of this observation.
+    /// A detected object observation with an array of classification labels that classify the recognized object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedobjectobservation?language=objc)
+    /// ## Overview
+    ///
+    /// The confidence of the classifications sum up to `1.0.` Multiply the classification confidence with the confidence of this observation.
+    ///
+    ///
+    /// VNRecognizedObjectObservation is a VNDetectedObjectObservation with an array of classifications that classify the recognized object. The confidence of the classifications sum up to 1.0. It is common practice to multiply the classification confidence with the confidence of this observation.
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedObjectObservation;
@@ -483,11 +508,18 @@ impl VNRecognizedObjectObservation {
 }
 
 extern_class!(
+    /// An object that represents a collection of key-value information that a Core ML image-analysis request produces.
+    ///
+    /// ## Overview
+    ///
+    /// This type of observation results from performing a [`VNCoreMLRequest`](https://developer.apple.com/documentation/vision/vncoremlrequest) image analysis with a Core ML model whose role is prediction rather than classification or image-to-image processing.
+    ///
+    /// Vision infers that an [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) object is a predictor model if that model predicts multiple features. You can tell that a model predicts multiple features when its [`modelDescription`](https://developer.apple.com/documentation/coreml/mlmodel/modeldescription) object has a `nil` value for its [`predictedFeatureName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedfeaturename) property, or when it inserts its output in an [`outputDescriptionsByName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname) dictionary.
+    ///
+    ///
     /// VNCoreMLFeatureValueObservation returns the prediction of a model as an MLFeatureValue.
     ///
     /// This is the returned observations for models that are not classifiers and that do not return an image as a prediction. The confidence for these observations is always 1.0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCoreMLFeatureValueObservation;
@@ -547,11 +579,18 @@ impl VNCoreMLFeatureValueObservation {
 }
 
 extern_class!(
+    /// An object that represents an image that an image-analysis request produces.
+    ///
+    /// ## Overview
+    ///
+    /// This type of observation results from performing a [`VNCoreMLRequest`](https://developer.apple.com/documentation/vision/vncoremlrequest) image analysis with a Core ML model that has an image-to-image processing role. For example, this observation might result from a model that analyzes the style of one image and then transfers that style to a different image.
+    ///
+    /// Vision infers that an [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) object is an image-to-image model if that model includes an image. Its [`modelDescription`](https://developer.apple.com/documentation/coreml/mlmodel/modeldescription) object includes an image-typed feature description in its [`outputDescriptionsByName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname) dictionary.
+    ///
+    ///
     /// VNPixelBufferObservation returns the prediction of a model as a CVPixelBufferRef.
     ///
     /// This is the returned observations for models that are not classifiers and return an image as a prediction. The confidence for these observations is always 1.0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnpixelbufferobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPixelBufferObservation;
@@ -611,11 +650,10 @@ impl VNPixelBufferObservation {
 }
 
 extern_class!(
+    /// An object that represents the four vertices of a detected rectangle.
     /// VNRectangleObservation is the result of a rectangle detector
     ///
     /// The VNRectangleObservation has a bounding box that encompasses the rectangle found in the image. The rectangle itself is defined by the four corner point properties. The rectangle can be rotated in or even out of plane. A common use case is to use the CIPerspectiveTransform filter to correct a detected rectangle to its 'flat upright' representation. All coordinates are normalized and the coordinates can be outside the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrectangleobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRectangleObservation;
@@ -752,9 +790,8 @@ impl VNRectangleObservation {
 }
 
 extern_class!(
+    /// An observation that describes a detected trajectory.
     /// The VNTrajectoryObservation describes a detected trajectory with the points on the trajectory and the equation describing the trajectory. The observation also reprorts the duration describing when the trajectory was first detected (which will be in the past).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrajectoryobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNTrajectoryObservation;
@@ -827,9 +864,14 @@ impl VNTrajectoryObservation {
 }
 
 extern_class!(
-    /// VNTextObservation Describes a text area detected by the VNRequestNameDetectTextRectangles request.
+    /// Information about regions of text that an image-analysis request detects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntextobservation?language=objc)
+    /// ## Overview
+    ///
+    /// This type of observation results from a [`VNDetectTextRectanglesRequest`](https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest). It expresses the location of each detected character by its bounding box.
+    ///
+    ///
+    /// VNTextObservation Describes a text area detected by the VNRequestNameDetectTextRectangles request.
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -964,9 +1006,14 @@ impl VNTextObservation {
 }
 
 extern_class!(
-    /// VNRecognizedText A block of recognized text. There can be multiple VNRecognizedText objects returned in a VNRecognizedTextObservation - one for each candidate.
+    /// Text recognized in an image through a text recognition request.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtext?language=objc)
+    /// ## Overview
+    ///
+    /// A single [`VNRecognizedTextObservation`](https://developer.apple.com/documentation/vision/vnrecognizedtextobservation) can contain multiple recognized text objects—one for each candidate.
+    ///
+    ///
+    /// VNRecognizedText A block of recognized text. There can be multiple VNRecognizedText objects returned in a VNRecognizedTextObservation - one for each candidate.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedText;
@@ -1028,9 +1075,14 @@ impl VNRecognizedText {
 }
 
 extern_class!(
-    /// VNRecognizedTextObservation Describes a text area detected and recognized by the VNRecognizeTextRequest request.
+    /// A request that detects and recognizes regions of text in an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedtextobservation?language=objc)
+    /// ## Overview
+    ///
+    /// This type of observation results from a [`VNRecognizeTextRequest`](https://developer.apple.com/documentation/vision/vnrecognizetextrequest). It contains information about both the location and content of text and glyphs that Vision recognized in the input image.
+    ///
+    ///
+    /// VNRecognizedTextObservation Describes a text area detected and recognized by the VNRecognizeTextRequest request.
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -1167,9 +1219,14 @@ impl VNRecognizedTextObservation {
 }
 
 extern_class!(
-    /// VNBarcodeObservation Describes an area containing a barcode detected by the VNRequestNameDetectBarcodes request.
+    /// An object that represents barcode information that an image analysis request detects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodeobservation?language=objc)
+    /// ## Overview
+    ///
+    /// This type of observation results from a [`VNDetectBarcodesRequest`](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest). It contains information about the detected barcode, including parsed payload data for supported symbologies.
+    ///
+    ///
+    /// VNBarcodeObservation Describes an area containing a barcode detected by the VNRequestNameDetectBarcodes request.
     #[unsafe(super(
         VNRectangleObservation,
         VNDetectedObjectObservation,
@@ -1347,11 +1404,16 @@ impl VNBarcodeObservation {
 }
 
 extern_class!(
+    /// The horizon angle information that an image-analysis request detects.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class result from invoking a [`VNDetectHorizonRequest`](https://developer.apple.com/documentation/vision/vndetecthorizonrequest), and report the [`angle`](https://developer.apple.com/documentation/vision/vnhorizonobservation/angle) and [`transform`](https://developer.apple.com/documentation/vision/vnhorizonobservation/transform) of the horizon in an image.
+    ///
+    ///
     /// VNHorizonObservation is the result of a VNDetectHorizonRequest
     ///
     /// Use the transform or angle to upright the image and make the detected horizon level.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhorizonobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHorizonObservation;
@@ -1424,9 +1486,14 @@ impl VNHorizonObservation {
 }
 
 extern_class!(
-    /// VNImageAlignmentObservation is generated from an image registration. This is an abstract base class. The type of registration request used defines which subclass describes the result.
+    /// The abstract superclass for image-analysis results that describe the relative alignment of two images.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagealignmentobservation?language=objc)
+    /// ## Overview
+    ///
+    /// This abstract superclass forms the basis of image alignment or registration output. You receive its subclasses, such as [`VNImageTranslationAlignmentObservation`](https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation) and [`VNImageHomographicAlignmentObservation`](https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation), by performing specific registration requests. Don’t create one of these classes yourself.
+    ///
+    ///
+    /// VNImageAlignmentObservation is generated from an image registration. This is an abstract base class. The type of registration request used defines which subclass describes the result.
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAlignmentObservation;
@@ -1475,9 +1542,14 @@ impl VNImageAlignmentObservation {
 }
 
 extern_class!(
-    /// An observation describing the results of performing a translational image alignment.
+    /// Affine transform information that an image-alignment request produces.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation?language=objc)
+    /// ## Overview
+    ///
+    /// This type of observation results from a [`VNTranslationalImageRegistrationRequest`](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest), informing the [`alignmentTransform`](https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform) performed to align the input images.
+    ///
+    ///
+    /// An observation describing the results of performing a translational image alignment.
     #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageTranslationAlignmentObservation;
@@ -1531,9 +1603,14 @@ impl VNImageTranslationAlignmentObservation {
 }
 
 extern_class!(
-    /// An observation describing the results of performing a homographic image alignment.
+    /// An object that represents a perspective warp transformation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation?language=objc)
+    /// ## Overview
+    ///
+    /// This type of observation results from a [`VNHomographicImageRegistrationRequest`](https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest), informing the [`warpTransform`](https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation/warptransform) performed to align the input images.
+    ///
+    ///
+    /// An observation describing the results of performing a homographic image alignment.
     #[unsafe(super(VNImageAlignmentObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageHomographicAlignmentObservation;
@@ -1582,11 +1659,16 @@ impl VNImageHomographicAlignmentObservation {
 }
 
 extern_class!(
+    /// An observation that contains a grayscale heat map of important areas across an image.
+    ///
+    /// ## Overview
+    ///
+    /// The heat map is a [`CVPixelBufferRef`](https://developer.apple.com/documentation/corevideo/cvpixelbuffer) in a one-component floating-point pixel format. Its dimensions are 64 x 64 when fetched in real time, or 68 x 68 when requested in its deferred form.
+    ///
+    ///
     /// VNSaliencyImageObservation provides a grayscale "heat" map of important areas of an image.
     ///
     /// In the revision1, the "heat" map is a OneComponent32Float pixel format CVPixelBuffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnsaliencyimageobservation?language=objc)
     #[unsafe(super(VNPixelBufferObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNSaliencyImageObservation;
@@ -1640,7 +1722,7 @@ impl VNSaliencyImageObservation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnfeatureprintobservation?language=objc)
+    /// An observation that provides the recognized feature print.
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFeaturePrintObservation;
@@ -1720,7 +1802,7 @@ impl VNFeaturePrintObservation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vncontoursobservation?language=objc)
+    /// An object that represents the detected contours in an image.
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNContoursObservation;
@@ -1829,15 +1911,14 @@ impl VNContoursObservation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkey/all?language=objc)
+    /// A group key identifying all landmarks.
     #[cfg(feature = "VNTypes")]
     pub static VNRecognizedPointGroupKeyAll: &'static VNRecognizedPointGroupKey;
 }
 
 extern_class!(
+    /// An observation that provides the points the analysis recognized.
     /// VNRecognizedPointsObservation is a request result detailing points in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPointsObservation;
@@ -1959,9 +2040,8 @@ impl VNRecognizedPointsObservation {
 }
 
 extern_class!(
+    /// An object that represents a person that the request detects.
     /// VNHumanObservation is the result of a Human rectangles detection request
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanobservation?language=objc)
     #[unsafe(super(VNDetectedObjectObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanObservation;
@@ -2034,9 +2114,8 @@ impl VNHumanObservation {
 }
 
 extern_class!(
+    /// An observation that contains an instance mask that labels instances in the mask.
     /// An observation resulting from an instance mask generation request. It contains an instance mask that labels instances in the mask that labels per pixel an instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vninstancemaskobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNInstanceMaskObservation;
@@ -2146,7 +2225,7 @@ impl VNInstanceMaskObservation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation?language=objc)
+    /// An observation that provides the animal body points the analysis recognizes.
     #[unsafe(super(VNRecognizedPointsObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNAnimalBodyPoseObservation;
@@ -2257,17 +2336,16 @@ impl VNAnimalBodyPoseObservation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkey/point3dgroupkeyall?language=objc)
+    /// A group key identifying all three-dimensional landmarks.
     #[cfg(feature = "VNTypes")]
     pub static VNRecognizedPoint3DGroupKeyAll: &'static VNRecognizedPointGroupKey;
 }
 
 extern_class!(
+    /// An observation that provides the 3D points for a request.
     /// Observation
     ///
     /// VNRecognizedPointsObservation is a request result detailing points in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRecognizedPoints3DObservation;
@@ -2365,22 +2443,27 @@ impl VNRecognizedPoints3DObservation {
     );
 }
 
+/// Constants that identify body height estimation techniques.
 /// Height estimation technique used in observation based on available metadata
 /// VNHumanBodyPose3DObservationHeightEstimationReference is the default if no LiDAR depth is present
 ///
 /// reference -   Since no depth was present, a reference height of 1.8 meters is used
 /// measured -   LiDAR depth was used to measure a more accurate `bodyHeight` in meters
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNHumanBodyPose3DObservationHeightEstimation(pub NSInteger);
 impl VNHumanBodyPose3DObservationHeightEstimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.enum/reference?language=objc)
+    /// A technique that uses a reference height.
+    ///
+    /// ## Discussion
+    ///
+    /// If there’s no depth data available, the framework uses a reference height of `1.8` meters.
+    ///
+    ///
     #[doc(alias = "VNHumanBodyPose3DObservationHeightEstimationReference")]
     pub const Reference: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.enum/measured?language=objc)
+    /// A technique that uses LiDAR depth data to measure body height, in meters.
     #[doc(alias = "VNHumanBodyPose3DObservationHeightEstimationMeasured")]
     pub const Measured: Self = Self(1);
 }
@@ -2394,7 +2477,7 @@ unsafe impl RefEncode for VNHumanBodyPose3DObservationHeightEstimation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation?language=objc)
+    /// An observation that provides the 3D body points the request recognizes.
     #[unsafe(super(VNRecognizedPoints3DObservation, VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNHumanBodyPose3DObservation;
@@ -2548,9 +2631,8 @@ impl VNHumanBodyPose3DObservation {
 }
 
 extern_class!(
+    /// An object that represents the overall score of aesthetic attributes for an image.
     /// VNImageAestheticsScoresObservation provides an overall score of aesthetic attributes for an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageaestheticsscoresobservation?language=objc)
     #[unsafe(super(VNObservation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageAestheticsScoresObservation;

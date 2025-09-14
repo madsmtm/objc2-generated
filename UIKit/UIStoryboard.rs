@@ -6,7 +6,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardviewcontrollercreator?language=objc)
+/// A handler block that contains the custom initialization code for a view controller you instantiate from a storyboard.
+///
+/// Parameters:
+/// - coder: The coder object containing the storyboard data to use when configuring the view controller. Pass this coder object to any methods you use to restore the state of the view controller and its views. For example, you might pass it to the view controller’s [`init(coder:)`](https://developer.apple.com/documentation/uikit/uiviewcontroller/init(coder:)) method before initializing any other custom properties.
+///
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIViewController",
@@ -16,7 +20,17 @@ pub type UIStoryboardViewControllerCreator =
     *mut block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut UIViewController>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboard?language=objc)
+    /// An encapsulation of the design-time view controller graph represented in an Interface Builder storyboard resource file.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIStoryboard`](https://developer.apple.com/documentation/uikit/uistoryboard) object manages archived versions of your app’s view controllers. At design time, you configure the content of your view controllers visually, and Xcode saves the data needed to recreate that interface in a storyboard file in your app’s bundle. When you want to create a new view controller programmatically, first create a [`UIStoryboard`](https://developer.apple.com/documentation/uikit/uistoryboard) object and specify the appropriate name and bundle information. Then use that object to instantiate the specific view controller that you want.
+    ///
+    /// During the instantiation process, [`UIStoryboard`](https://developer.apple.com/documentation/uikit/uistoryboard) creates your view controller programmatically using its [`initWithCoder:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/init(coder:)) method. The storyboard passes the view controller’s data archive to that method, which then uses the data to recreate the state of the view controller and its views. If you have a custom initialization method for your view controller, you can ask the storyboard to instantiate your view controller using a block you provide. You can use this block to call your custom initialization method, passing any extra data your view controller needs.
+    ///
+    /// For visionOS apps, you can load existing storyboards, but you can’t add content specific to the platform. Migrate your interface code to SwiftUI as soon as possible.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

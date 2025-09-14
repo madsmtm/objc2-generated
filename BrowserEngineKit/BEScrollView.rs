@@ -13,7 +13,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewdelegate?language=objc)
+    /// The protocol that browser scroll view delegates conform to.
     pub unsafe trait BEScrollViewDelegate: UIScrollViewDelegate + MainThreadOnly {
         #[cfg(feature = "block2")]
         #[optional]
@@ -37,7 +37,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollview?language=objc)
+    /// A scroll view that works with its delegate to handle nesting, and customize scroll interactions.
+    ///
+    /// ## Overview
+    ///
+    /// Use `BEScrollView` instead of [`UIScrollView`](https://developer.apple.com/documentation/uikit/uiscrollview) in situations where you need to:
+    ///
+    /// - Handle scroll updates programmatically, potentially overriding the default scroll view behavior.
+    ///
+    /// - Have scroll views that are siblings in the view hierarchy but nested in the browser Document Object Model (DOM).
+    ///
+    /// If either of these is true, replace your use of `UIScrollView` with `BEScrollView` and set the scroll view’s [`delegate`](https://developer.apple.com/documentation/browserenginekit/bescrollview/delegate) to an object that implements the [`BEScrollViewDelegate`](https://developer.apple.com/documentation/browserenginekit/bescrollviewdelegate) methods.
+    ///
+    ///
     #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -149,22 +161,22 @@ impl BEScrollView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum?language=objc)
+/// The phase of a scroll update in a scroll gesture’s lifecycle.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEScrollViewScrollUpdatePhase(pub NSInteger);
 impl BEScrollViewScrollUpdatePhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/began?language=objc)
+    /// The scroll gesture began.
     #[doc(alias = "BEScrollViewScrollUpdatePhaseBegan")]
     pub const Began: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/changed?language=objc)
+    /// The scroll gesture changed the scroll location.
     #[doc(alias = "BEScrollViewScrollUpdatePhaseChanged")]
     pub const Changed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/ended?language=objc)
+    /// The scroll gesture came to an end.
     #[doc(alias = "BEScrollViewScrollUpdatePhaseEnded")]
     pub const Ended: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum/cancelled?language=objc)
+    /// The operating system detected an event that caused it to stop tracking the scroll gesture.
     #[doc(alias = "BEScrollViewScrollUpdatePhaseCancelled")]
     pub const Cancelled: Self = Self(3);
 }
@@ -178,7 +190,23 @@ unsafe impl RefEncode for BEScrollViewScrollUpdatePhase {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate?language=objc)
+    /// An object that represents a change in a scroll view’s scroll state.
+    ///
+    /// ## Overview
+    ///
+    /// When a person scrolls a [`BEScrollView`](https://developer.apple.com/documentation/browserenginekit/bescrollview), the view’s delegate receives the [`scrollView:handleScrollUpdate:completion:`](https://developer.apple.com/documentation/browserenginekit/bescrollviewdelegate/scrollview(_:handle:completion:)) method. The `handle` parameter is an instance of `BEScrollViewScrollUpdate` that describes the scroll activity.
+    ///
+    /// Your app can continue to receive `BEScrollViewScrollUpdate` objects after the person completes their scroll gesture, as the scrolling decelerates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `BEScrollViewScrollUpdate` isn’t thread-safe, and the system uses the same object for multiple scroll updates. When you receive a scroll update, immediately get the information you need on the main queue before any other processing.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

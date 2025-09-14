@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that estimates the inaccuracies of the model to reduce the loss on the next evaluation.
     /// A loss layer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclosslayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

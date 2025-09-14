@@ -9,7 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkissuerprovisioningextensionpaymentpassentry?language=objc)
+    /// An object that represents a payment card available to add as a payment pass.
     #[unsafe(super(PKIssuerProvisioningExtensionPassEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKIssuerProvisioningExtensionPassEntry")]

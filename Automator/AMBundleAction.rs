@@ -10,7 +10,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/ambundleaction?language=objc)
+    /// An object that represents an Automator action that’s a loadable bundle.
+    ///
+    /// ## Overview
+    ///
+    /// Automator loads action bundles from standard locations in the file system: `/System/Library/Automator`, `/Library/Automator`, and `~/Library/Automator`.
+    ///
+    /// [`AMBundleAction`](https://developer.apple.com/documentation/automator/ambundleaction) objects have several important properties:
+    ///
+    /// - The [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) object associated with the action’s physical bundle
+    ///
+    /// - The action’s view, which holds its user interface
+    ///
+    /// - A parameters dictionary that reflects the settings in the user interface
+    ///
+    /// When you create a Cocoa Automator Action project in Xcode, the project template includes a custom subclass of [`AMBundleAction`](https://developer.apple.com/documentation/automator/ambundleaction). This custom class uses the name of the project.
+    ///
+    /// You must provide an implementation of [`runWithInput:error:`](https://developer.apple.com/documentation/automator/amaction/run(withinput:)), which is declared by the superclass [`AMAction`](https://developer.apple.com/documentation/automator/amaction). If you add any instance variables, you must override the [`initWithDefinition:fromArchive:`](https://developer.apple.com/documentation/automator/amaction/init(definition:fromarchive:)) method and the [`writeToDictionary:`](https://developer.apple.com/documentation/automator/amaction/write(to:)) method of [`AMAction`](https://developer.apple.com/documentation/automator/amaction) to work with them.
+    ///
+    ///
     #[unsafe(super(AMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AMAction")]

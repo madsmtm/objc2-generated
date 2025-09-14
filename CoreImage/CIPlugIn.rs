@@ -8,14 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The mechanism for loading image units in macOS.
+    ///
+    /// ## Overview
+    ///
+    /// An image unit is an image processing bundle that contains one or more Core Image filters. Th`e.plugin` extension indicates one or more filters packaged as an image unit.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Starting in macOS 10.15, loading executable CIFilter plugins is deprecated.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The CIPlugIn class is responsible for loading Image Units.
     ///
     /// The implementation of the CIPlugIn objects is private.
     /// An application can, however, call the 2 public class method to load plug-ins.
     ///
     /// Loading executable CIFilter plugins is deprecated starting in macOS 10.15.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciplugin?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIPlugIn;

@@ -6,6 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a directory share.
+    ///
+    /// ## Overview
+    ///
+    /// A directory share defines how the system exposes host directories to a guest VM.
+    ///
+    /// Don’t instantiate `VZDirectoryShare` directly, use one of its subclasses such as [`VZSingleDirectoryShare`](https://developer.apple.com/documentation/virtualization/vzsingledirectoryshare) or [`VZMultipleDirectoryShare`](https://developer.apple.com/documentation/virtualization/vzmultipledirectoryshare) instead.
+    ///
+    ///
     /// Base class for a directory share.
     ///
     /// A directory share defines how host directories get exposed to a virtual machine guest.
@@ -17,8 +26,6 @@ extern_class!(
     /// See: VZSingleDirectoryShare
     ///
     /// See: VZMultipleDirectoryShare
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdirectoryshare?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZDirectoryShare;

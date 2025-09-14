@@ -6,27 +6,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifier?language=objc)
+/// An animal identifier string.
 // NS_TYPED_ENUM
 pub type VNAnimalIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifier/dog?language=objc)
+    /// An animal identifier for dogs.
     pub static VNAnimalIdentifierDog: &'static VNAnimalIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifier/cat?language=objc)
+    /// An animal identifier for cats.
     pub static VNAnimalIdentifierCat: &'static VNAnimalIdentifier;
 }
 
 extern_class!(
+    /// A request that recognizes animals in an image.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`knownAnimalIdentifiersForRevision:error:`](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/knownanimalidentifiers(forrevision:)) method to determine which animals the request supports.
+    ///
+    ///
     /// A request that will recognize various animals in an image. The list of animals supported by the recognition algorithm can be queried by  -supportedIdentifiersAndReturnError:
     ///
     ///
     /// This request will generate VNRecognizedObjectObservation objects with a defined boundingBox, label and confidence level.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -122,8 +127,8 @@ impl VNRecognizeAnimalsRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the animal recognition request.
 pub static VNRecognizeAnimalsRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequestrevision2?language=objc)
+/// A constant for specifying revision 2 of the animal recognition request.
 pub static VNRecognizeAnimalsRequestRevision2: NSUInteger = 2;

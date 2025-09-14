@@ -17,16 +17,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktexturefilteringmode?language=objc)
+/// Texture filtering modes to use when the texture is drawn in a size other than its native size.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTextureFilteringMode(pub NSInteger);
 impl SKTextureFilteringMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktexturefilteringmode/nearest?language=objc)
+    /// Each pixel is drawn using the nearest point in the texture. This mode is faster, but the results are often pixelated.
     #[doc(alias = "SKTextureFilteringNearest")]
     pub const Nearest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktexturefilteringmode/linear?language=objc)
+    /// Each pixel is drawn by using a linear filter of multiple texels in the texture. This mode produces higher quality results but may be slower.
     #[doc(alias = "SKTextureFilteringLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -40,9 +40,24 @@ unsafe impl RefEncode for SKTextureFilteringMode {
 }
 
 extern_class!(
-    /// A texture to be mapped onto SKSpriteNode instances.
+    /// An image, decoded on the GPU, that can be used to render various SpriteKit objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktexture?language=objc)
+    /// ## Overview
+    ///
+    /// An [`SKTexture`](https://developer.apple.com/documentation/spritekit/sktexture) object is an image that can be applied to [`SKSpriteNode`](https://developer.apple.com/documentation/spritekit/skspritenode) and [`SKShapeNode`](https://developer.apple.com/documentation/spritekit/skshapenode) objects, particles created by an [`SKEmitterNode`](https://developer.apple.com/documentation/spritekit/skemitternode) object, or tiles used in an [`SKTileMapNode`](https://developer.apple.com/documentation/spritekit/sktilemapnode). A texture object manages the texture data and graphics resources that are needed to render the image. Most texture objects are created from source images stored in your app bundle—your game’s artwork. Once created, a texture object’s contents are immutable. Multiple sprites can share the same texture object, sharing a single resource.
+    ///
+    /// ### Deallocating a Texture
+    ///
+    /// After a texture is loaded into the graphics hardware memory, it stays in memory until the referencing [`SKTexture`](https://developer.apple.com/documentation/spritekit/sktexture) object is deleted. This means that between levels (or in a dynamic game), you may need to make sure a texture object is deleted. Delete a [`SKTexture`](https://developer.apple.com/documentation/spritekit/sktexture) object by removing any strong references to it, including:
+    ///
+    /// - All texture references from [`SKSpriteNode`](https://developer.apple.com/documentation/spritekit/skspritenode) and [`SKEffectNode`](https://developer.apple.com/documentation/spritekit/skeffectnode) objects in your game
+    ///
+    /// - Any strong references to the texture in your own code
+    ///
+    /// - An [`SKTextureAtlas`](https://developer.apple.com/documentation/spritekit/sktextureatlas) object that was used to create the texture object
+    ///
+    ///
+    /// A texture to be mapped onto SKSpriteNode instances.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTexture;

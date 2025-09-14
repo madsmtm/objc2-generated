@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A kernel for computing the top-K values and their corresponding indices in a matrix.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -19,8 +20,6 @@ extern_class!(
     /// a row of a matrix and returns the value found and the index of the entry
     /// in the source matrix. This operation is performed independently on the
     /// rows and matrices in batch of the source matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfindtopk?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]

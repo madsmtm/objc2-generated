@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension?language=objc)
+    /// The principal class for the nonreplicated File Provider extension.
+    ///
+    /// ## Overview
+    ///
+    /// To create a nonreplicated File Provider extension, start by creating a subclass of the [`NSFileProviderExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension) class. When implementing your [`NSFileProviderExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension) subclass, remember:
+    ///
+    /// - Override all of the extension’s methods (except the deprecated methods), even if your implementation is only an empty method.
+    ///
+    /// - Use your method implementations to provide access to the documents and folders managed by your file provider.
+    ///
+    /// - Don’t call `super` in your method implementations.
+    ///
+    /// Don’t use the [`NSFileProviderExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension) class in macOS. Instead, create an [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) subclass that adopts the [`NSFileProviderReplicatedExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension) and [`NSFileProviderEnumerating`](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerating) protocols. For more information, see [Replicated File Provider extension](https://developer.apple.com/documentation/fileprovider/replicated-file-provider-extension).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderExtension;
@@ -157,27 +171,24 @@ impl NSFileProviderExtension {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode?language=objc)
+/// A mode indicating how the system handles user data when removing a domain.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderDomainRemovalMode(pub NSInteger);
 impl NSFileProviderDomainRemovalMode {
+    /// Deletes all items in the domain.
     /// Don't keep any files that are current in the domain
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode/removeall?language=objc)
     #[doc(alias = "NSFileProviderDomainRemovalModeRemoveAll")]
     pub const RemoveAll: Self = Self(0);
+    /// Deletes the domain but keeps any items with unsynced, local changes.
     /// Delete the domain from the system but keeps the at least all the
     /// dirty corresponding user data around.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode/preservedirtyuserdata?language=objc)
     #[doc(alias = "NSFileProviderDomainRemovalModePreserveDirtyUserData")]
     pub const PreserveDirtyUserData: Self = Self(1);
+    /// Deletes the domain, but keeps the downloaded user data.
     /// Delete the domain from the system but keeps all the downloaded
     /// corresponding user data around.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode/preservedownloadeduserdata?language=objc)
     #[doc(alias = "NSFileProviderDomainRemovalModePreserveDownloadedUserData")]
     pub const PreserveDownloadedUserData: Self = Self(2);
 }
@@ -191,6 +202,7 @@ unsafe impl RefEncode for NSFileProviderDomainRemovalMode {
 }
 
 extern_class!(
+    /// A manager object that you use to communicate with the file provider from either your app or your File Provider extension.
     /// The file provider manager allows you to communicate with the file provider
     /// framework from both the extension and related processes.
     ///
@@ -210,8 +222,6 @@ extern_class!(
     ///
     /// The class also provides methods to manage provider domains. Each domain has a
     /// corresponding manager.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderManager;
@@ -533,13 +543,12 @@ impl NSFileProviderManager {
 }
 
 extern "C" {
+    /// A notification that the system posts when the set of materialized items changes for your file provider extension.
     /// Posted when the materialized set has changed.
     ///
     /// Interested clients can then use the materialized set enumerator returned by -enumeratorForMaterializedItems to enumerate changes on the materialized set.
     ///
     /// Note, this notification starts to be posted only after `+[NSFileProviderManager getDomainsWithCompletionHandler:]` is called.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializedsetdidchange?language=objc)
     pub static NSFileProviderMaterializedSetDidChange: &'static NSNotificationName;
 }
 
@@ -569,18 +578,43 @@ impl NSFileProviderManager {
 }
 
 extern "C" {
+    /// A notification that the system posts when the set of pending items changes for your file provider extension.
     /// Posted when the pending set has changed.
     ///
     /// Interested clients can then use the pending set enumerator returned by -enumeratorForPendingItems to enumerate changes on the pending set.
     ///
     /// Note, this notification starts to be posted only after `+[NSFileProviderManager getDomainsWithCompletionHandler:]` is called.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpendingsetdidchange?language=objc)
     pub static NSFileProviderPendingSetDidChange: &'static NSNotificationName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpendingsetenumerator?language=objc)
+    /// A protocol for enumerating pending items.
+    ///
+    /// ## Overview
+    ///
+    /// Items are pending when they’ve changed but the File Provider extension hasn’t yet synced the changes. Examples include local changes that the extension hasn’t uploaded to its remote storage and items that the extension has marked as changed in the working set but hasn’t yet downloaded. The system calls [`pendingItemsDidChangeWithCompletionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/pendingitemsdidchange(completionhandler:)) and posts a [`NSFileProviderPendingSetDidChange`](https://developer.apple.com/documentation/fileprovider/nsfileproviderpendingsetdidchange) notification whenever the set of pending items changes.
+    ///
+    /// To enumerate items in the pending set, call the [`enumeratorForPendingItems`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/enumeratorforpendingitems()) method, which returns an object that adopts the [`NSFileProviderPendingSetEnumerator`](https://developer.apple.com/documentation/fileprovider/nsfileproviderpendingsetenumerator) protocol.
+    ///
+    /// The pending enumerator lists the items that meet all of the following criteria:
+    ///
+    /// - The system observed a change, either on disk or in the working set.
+    ///
+    /// - The change occurred more than one second ago.
+    ///
+    /// - The File Provider extension hasn’t yet synced the change with its remote storage.
+    ///
+    /// An item can appear in the pending set for many different reasons, including:
+    ///
+    /// - The system is under load and can’t process all the events in a timely manner.
+    ///
+    /// - The system is performing a long-running operation on the item, such as downloading or uploading new content.
+    ///
+    /// - Pending changes to the item have raised an error.
+    ///
+    /// The pending set only contains items that are already known to the File Provider extension and that remain queued for change longer than the system’s refresh interval. A new file in the local storage won’t appear in the pending set, even if the upload to the remote storage takes several minutes to complete.
+    ///
+    ///
     #[cfg(feature = "NSFileProviderEnumerating")]
     pub unsafe trait NSFileProviderPendingSetEnumerator: NSFileProviderEnumerator {
         #[cfg(feature = "NSFileProviderDomain")]
@@ -813,14 +847,26 @@ impl NSFileProviderManager {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/disconnectionoptions?language=objc)
+/// Options for disconnecting a domain from the extension.
+///
+/// ## Overview
+///
+/// Use an empty set to indicate that the disconnection isn’t temporary, such as when the user logs out.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderManagerDisconnectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderManagerDisconnectionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/disconnectionoptions/temporary?language=objc)
+/// A temporary disconnection.
+///
+/// ## Discussion
+///
+/// Include the [`NSFileProviderManagerDisconnectionOptionsTemporary`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/disconnectionoptions/temporary) value when the disconnection is temporary, such as when updating the domain. Exclude this value when the disconnection isn’t temporary, like when the user logs out.
+///
+///
         #[doc(alias = "NSFileProviderManagerDisconnectionOptionsTemporary")]
         const Temporary = 1<<0;
     }
@@ -917,32 +963,25 @@ impl NSFileProviderManager {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason?language=objc)
+/// Constants that describe why an external volume might not be eligible for storing a domain.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderVolumeUnsupportedReason(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderVolumeUnsupportedReason: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/nsfileprovidervolumeunsupportedreasonnone?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/unknown?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonUnknown")]
         const Unknown = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/nonapfs?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNonAPFS")]
         const NonAPFS = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/nonencrypted?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNonEncrypted")]
         const NonEncrypted = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/readonly?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonReadOnly")]
         const ReadOnly = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/network?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonNetwork")]
         const Network = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason/quarantined?language=objc)
         #[doc(alias = "NSFileProviderVolumeUnsupportedReasonQuarantined")]
         const Quarantined = 1<<5;
     }

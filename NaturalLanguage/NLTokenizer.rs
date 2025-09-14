@@ -7,22 +7,109 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit?language=objc)
+/// Constants representing linguistic units.
+///
+/// ## Overview
+///
+/// You use these constants with these methods:
+///
+/// - [`availableTagSchemesForUnit:language:`](https://developer.apple.com/documentation/naturallanguage/nltagger/availabletagschemes(for:language:))
+///
+/// - [`tagsInRange:unit:scheme:options:tokenRanges:`](https://developer.apple.com/documentation/naturallanguage/nltagger/tagsinrange:unit:scheme:options:tokenranges:)
+///
+/// - [`enumerateTagsInRange:unit:scheme:options:usingBlock:`](https://developer.apple.com/documentation/naturallanguage/nltagger/enumeratetagsinrange:unit:scheme:options:usingblock:)
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTokenUnit(pub NSInteger);
 impl NLTokenUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/word?language=objc)
+    /// An individual word.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this linguistic unit to tokenize text into individual words, like in the following example:
+    ///
+    /// ```swift
+    /// let text = "This is a sentence containing several words. 😀"
+    ///
+    /// let tokenizer = NLTokenizer(unit: .word)
+    /// tokenizer.string = text
+    ///
+    /// let range = text.startIndex..<text.endIndex
+    ///
+    /// let tokenArray = tokenizer.tokens(for: range)
+    /// print("Number of tokens: \(tokenArray.count)")
+    ///
+    /// tokenizer.enumerateTokens(in: range) { tokenRange, _ in
+    ///     print(text[tokenRange])
+    ///     return true
+    /// }
+    /// ```
+    ///
+    /// For more information, see [Tokenizing natural language text](https://developer.apple.com/documentation/naturallanguage/tokenizing-natural-language-text).
+    ///
+    ///
     #[doc(alias = "NLTokenUnitWord")]
     pub const Word: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/sentence?language=objc)
+    /// An individual sentence.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this linguistic unit to tokenize text into sentences, like in the following example:
+    ///
+    /// ```swift
+    /// let text = "This is a sentence. This is another sentence."
+    ///     
+    /// let tokenizer = NLTokenizer(unit: .sentence)
+    /// tokenizer.string = text
+    ///     
+    /// let range = text.startIndex..<text.endIndex
+    ///     
+    /// let tokenArray = tokenizer.tokens(for: range)
+    /// print("Number of tokens: \(tokenArray.count)")
+    ///     
+    /// tokenizer.enumerateTokens(in: range) { tokenRange, _ in
+    ///     print(text[tokenRange])
+    ///     return true
+    /// }
+    /// ```
+    ///
+    /// For more information, see [Tokenizing natural language text](https://developer.apple.com/documentation/naturallanguage/tokenizing-natural-language-text).
+    ///
+    ///
     #[doc(alias = "NLTokenUnitSentence")]
     pub const Sentence: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/paragraph?language=objc)
+    /// An individual paragraph.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this linguistic unit to tokenize text into paragraphs, like in the following example:
+    ///
+    /// ```swift
+    /// let text = "This is a sentence. This is another sentence.\nThis is a second paragraph."
+    ///
+    /// let tokenizer = NLTokenizer(unit: .paragraph)
+    /// tokenizer.string = text
+    ///
+    /// let range = text.startIndex..<text.endIndex
+    ///
+    /// let tokenArray = tokenizer.tokens(for: range)
+    /// print("Number of tokens: \(tokenArray.count)")
+    ///
+    /// tokenizer.enumerateTokens(in: range) { tokenRange, _ in
+    ///     print(text[tokenRange])
+    ///     return true
+    /// }
+    /// ```
+    ///
+    /// For more information, see [Tokenizing natural language text](https://developer.apple.com/documentation/naturallanguage/tokenizing-natural-language-text).
+    ///
+    ///
     #[doc(alias = "NLTokenUnitParagraph")]
     pub const Paragraph: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit/document?language=objc)
+    /// The document in its entirety.
     #[doc(alias = "NLTokenUnitDocument")]
     pub const Document: Self = Self(3);
 }
@@ -35,20 +122,20 @@ unsafe impl RefEncode for NLTokenUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes?language=objc)
+/// Hints about the contents of the string for the tokenizer.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTokenizerAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTokenizerAttributes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes/numeric?language=objc)
+/// The string contains numbers.
         #[doc(alias = "NLTokenizerAttributeNumeric")]
         const Numeric = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes/symbolic?language=objc)
+/// The string contains symbols.
         #[doc(alias = "NLTokenizerAttributeSymbolic")]
         const Symbolic = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer/attributes/emoji?language=objc)
+/// The string contains emoji.
         #[doc(alias = "NLTokenizerAttributeEmoji")]
         const Emoji = 1<<2;
     }
@@ -63,7 +150,23 @@ unsafe impl RefEncode for NLTokenizerAttributes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizer?language=objc)
+    /// A tokenizer that segments natural language text into semantic units.
+    ///
+    /// ## Overview
+    ///
+    /// [`NLTokenizer`](https://developer.apple.com/documentation/naturallanguage/nltokenizer) creates individual units from natural language text. Define the desired unit (word, sentence, paragraph, or document as declared in the [`NLTokenUnit`](https://developer.apple.com/documentation/naturallanguage/nltokenunit)) for tokenization, and then assign a string to tokenize. The [`enumerateTokensInRange:usingBlock:`](https://developer.apple.com/documentation/naturallanguage/nltokenizer/enumeratetokensinrange:usingblock:) method provides the ranges of the tokens in the string based on the tokenization unit.
+    ///
+    /// For more information, see [Tokenizing natural language text](https://developer.apple.com/documentation/naturallanguage/tokenizing-natural-language-text).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Use an [`NLTokenizer`](https://developer.apple.com/documentation/naturallanguage/nltokenizer) instance on one thread or one dispatch queue at a time. You do this by either serializing method calls to the tokenizer, or by creating a separate tokenizer instance for each thread and dispatch queue.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLTokenizer;

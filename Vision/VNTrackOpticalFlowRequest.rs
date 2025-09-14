@@ -9,24 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Computational accuracy options.
 /// The level of optical flow computational accuracy.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNTrackOpticalFlowRequestComputationAccuracy(pub NSUInteger);
 impl VNTrackOpticalFlowRequestComputationAccuracy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/low?language=objc)
+    /// An option that indicates a low level of computational accuracy.
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/medium?language=objc)
+    /// An option that indicates a moderate level of computational accuracy.
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/high?language=objc)
+    /// An option that indicates a high level of computational accuracy.
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyHigh")]
     pub const High: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum/veryhigh?language=objc)
+    /// An option that indicates a very high level of computational accuracy.
     #[doc(alias = "VNTrackOpticalFlowRequestComputationAccuracyVeryHigh")]
     pub const VeryHigh: Self = Self(3);
 }
@@ -40,6 +39,23 @@ unsafe impl RefEncode for VNTrackOpticalFlowRequestComputationAccuracy {
 }
 
 extern_class!(
+    /// An object that determines the direction change of vectors for each pixel from a previous to current image.
+    ///
+    /// ## Overview
+    ///
+    /// This request works at the pixel level, so both images must have the same dimensions to successfully perform the request.
+    ///
+    /// Setting a region of interest isolates where to perform the change determination.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Optical flow requests are very resource intensive, so perform only one request at a time. Release memory immediately after generating an optical flow.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// `VNTrackOpticalFlowRequest` will determine directional change vectors for each pixel from a previous to current image, reporting this result with a single `VNPixelBufferObservation`.
     ///
     ///
@@ -80,8 +96,6 @@ extern_class!(
     ///
     /// return [[request results] firstObject];
     /// }
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -202,5 +216,5 @@ impl VNTrackOpticalFlowRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestrevision1?language=objc)
+/// A value that indicates the first revision for an optial-flow request.
 pub static VNTrackOpticalFlowRequestRevision1: NSUInteger = 1;

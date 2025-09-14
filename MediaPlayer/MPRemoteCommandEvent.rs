@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandevent?language=objc)
+    /// A description of a command sent by an external media player.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRemoteCommandEvent;
@@ -47,7 +47,7 @@ impl MPRemoteCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommandevent?language=objc)
+    /// An event requesting a change in the current skip interval.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSkipIntervalCommandEvent;
@@ -79,16 +79,16 @@ impl MPSkipIntervalCommandEvent {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandeventtype?language=objc)
+/// Defines the beginning and ending of seek events.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSeekCommandEventType(pub NSUInteger);
 impl MPSeekCommandEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandeventtype/beginseeking?language=objc)
+    /// Indicates the external media player began seeking.
     #[doc(alias = "MPSeekCommandEventTypeBeginSeeking")]
     pub const BeginSeeking: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandeventtype/endseeking?language=objc)
+    /// Indicates the external media player stopped seeking.
     #[doc(alias = "MPSeekCommandEventTypeEndSeeking")]
     pub const EndSeeking: Self = Self(1);
 }
@@ -102,7 +102,7 @@ unsafe impl RefEncode for MPSeekCommandEventType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpseekcommandevent?language=objc)
+    /// An event requesting that the player seek to a new position.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSeekCommandEvent;
@@ -136,7 +136,7 @@ impl MPSeekCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpratingcommandevent?language=objc)
+    /// An event requesting a change in the rating.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRatingCommandEvent;
@@ -170,7 +170,7 @@ impl MPRatingCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent?language=objc)
+    /// An event requesting a change in the playback rate.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackRateCommandEvent;
@@ -205,7 +205,7 @@ impl MPChangePlaybackRateCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent?language=objc)
+    /// An event requesting a change in the feedback setting.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPFeedbackCommandEvent;
@@ -245,7 +245,7 @@ impl MPFeedbackCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent?language=objc)
+    /// An event requesting a change in the language option.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeLanguageOptionCommandEvent;
@@ -288,7 +288,7 @@ impl MPChangeLanguageOptionCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackpositioncommandevent?language=objc)
+    /// An event requesting a change in the playback position.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackPositionCommandEvent;
@@ -321,7 +321,7 @@ impl MPChangePlaybackPositionCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent?language=objc)
+    /// An event requesting a change in the shuffle mode.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeShuffleModeCommandEvent;
@@ -360,7 +360,7 @@ impl MPChangeShuffleModeCommandEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent?language=objc)
+    /// An event requesting a change in the repeat mode.
     #[unsafe(super(MPRemoteCommandEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeRepeatModeCommandEvent;

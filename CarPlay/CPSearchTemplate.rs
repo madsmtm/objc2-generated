@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsearchtemplate?language=objc)
+    /// A template that provides the ability to search for a destination and see a list of search results.
+    ///
+    /// ## Overview
+    ///
+    /// Use this template to provide the ability to search for a destination. When CarPlay displays the template, the user sees a search field, a Cancel button, and a localized keyboard. The template also shows the list of search results after your app completes the search request.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Some vehicles may limit the display of the keyboard. Check the [`limitedUserInterfaces`](https://developer.apple.com/documentation/carplay/cpsessionconfiguration/limiteduserinterfaces) property to determine whether there are limits.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To use a search template, create an instance of [`CPSearchTemplate`](https://developer.apple.com/documentation/carplay/cpsearchtemplate) and set its [`delegate`](https://developer.apple.com/documentation/carplay/cpsearchtemplate/delegate) to an object that conforms to the [`CPSearchTemplateDelegate`](https://developer.apple.com/documentation/carplay/cpsearchtemplatedelegate) protocol. Push the template onto the navigation hierarchy by calling [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)) on the interface controller. This presents the search template to the user.
+    ///
+    /// As the user enters text into the search field, the system calls the delegate method [`searchTemplate:updatedSearchText:completionHandler:`](https://developer.apple.com/documentation/carplay/cpsearchtemplatedelegate/searchtemplate(_:updatedsearchtext:completionhandler:)), indicating that your app should retrieve the search result. After retrieving the results, call `completionHandler` to return an array of [`CPListItem`](https://developer.apple.com/documentation/carplay/cplistitem) objects—one list item for each search result item.
+    ///
+    /// When the user selects an item from the search result, the system calls the [`searchTemplate:selectedResult:completionHandler:`](https://developer.apple.com/documentation/carplay/cpsearchtemplatedelegate/searchtemplate(_:selectedresult:completionhandler:)) method on the delegate object. The delegate performs any necessary operations to process the selected item, then calls the completion handler to let the system know it can continue.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -67,7 +87,7 @@ impl CPSearchTemplate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsearchtemplatedelegate?language=objc)
+    /// The interface for an object that serves as the search template’s delegate.
     pub unsafe trait CPSearchTemplateDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "CPListItem", feature = "CPTemplate", feature = "block2"))]
         /// The user has entered characters in the search text field.

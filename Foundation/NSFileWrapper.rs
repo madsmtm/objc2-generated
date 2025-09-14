@@ -6,17 +6,41 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions?language=objc)
+/// Reading options that can be set by the [`initWithURL:options:error:`](https://developer.apple.com/documentation/foundation/filewrapper/init(url:options:)) and [`readFromURL:options:error:`](https://developer.apple.com/documentation/foundation/filewrapper/read(from:options:)) methods.
+///
+/// ## Overview
+///
+/// You can use the `NSFileWrapperReadingImmediate` and `NSFileWrapperReadingWithoutMapping` reading options together to take an exact snapshot of a file-system hierarchy that is safe from all errors (including the ones mentioned above) once reading has succeeded. If reading with both options succeeds, then subsequent invocations of the methods listed in the comment for the `NSFileWrapperReadingImmediate` reading option to the receiver and all its descendant file wrappers will never fail. However, note that reading with both options together is expensive in terms of both I/O and memory for large files, or directories containing large files, or even directories containing many small files.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileWrapperReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileWrapperReadingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions/immediate?language=objc)
+/// The option to read files immediately after creating a file wrapper.
+///
+/// ## Discussion
+///
+/// When you create a file wrapper and pass the [`NSFileWrapperReadingImmediate`](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions/immediate) reading option, the content of the file is read immediately. Otherwise, file content is read only when requested, such as by accessing the [`regularFileContents`](https://developer.apple.com/documentation/foundation/filewrapper/regularfilecontents), [`fileWrappers`](https://developer.apple.com/documentation/foundation/filewrapper/filewrappers), [`serializedRepresentation`](https://developer.apple.com/documentation/foundation/filewrapper/serializedrepresentation), or [`symbolicLinkDestinationURL`](https://developer.apple.com/documentation/foundation/filewrapper/symboliclinkdestinationurl) properties.
+///
+/// Reading a file immediately rather than lazily can help mitigate against reading errors caused by the user moving or deleting the file after a file wrapper is created. However, passing this option can result in unnecessary disk or network access—particularly when opening a document file package, which causes all of its directory contents to be enumerated and read preemptively.
+///
+/// Even when [`NSFileWrapperReadingImmediate`](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions/immediate) is specified, [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) may not read the contents of some file packages immediately. For example, because the contents of bundles are immutable to the user, [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) may read the children of such a directory lazily as a performance optimization.
+///
+/// You can use this option to take a snapshot of a file or folder for writing later. For example, an application like TextEdit can use this option when creating new file wrappers to represent attachments that the user creates by copying and pasting or dragging and dropping from the Finder to a TextEdit document.
+///
+///
         #[doc(alias = "NSFileWrapperReadingImmediate")]
         const Immediate = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions/withoutmapping?language=objc)
+/// Whether file mapping for regular file wrappers is disallowed.
+///
+/// ## Discussion
+///
+/// You can use this option to keep `NSFileWrapper` from memory-mapping files. This is useful if you want to make sure your application doesn’t hold files open (mapped files are open files), therefore preventing the user from ejecting DVDs, unmounting disk partitions, or unmounting disk images. In macOS 10.6 and later, `NSFileWrapper` memory-maps files that are on internal drives only. It never memory-maps files on external drives or network volumes, regardless of whether this option is used.
+///
+///
         #[doc(alias = "NSFileWrapperReadingWithoutMapping")]
         const WithoutMapping = 1<<1;
     }
@@ -30,17 +54,29 @@ unsafe impl RefEncode for NSFileWrapperReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/writingoptions?language=objc)
+/// Writing options that can be set by the [`writeToURL:options:originalContentsURL:error:`](https://developer.apple.com/documentation/foundation/filewrapper/write(to:options:originalcontentsurl:)) method.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileWrapperWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileWrapperWritingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/writingoptions/atomic?language=objc)
+/// Whether writing is done atomically.
+///
+/// ## Discussion
+///
+/// You can use this option to ensure that, when overwriting a file package, the overwriting either completely succeeds or completely fails, with no possibility of leaving the file package in an inconsistent state. Because this option causes additional I/O, you shouldn’t use it unnecessarily. For example, don’t use this option in an override of `-[NSDocument` [`writeToURL:ofType:error:`](https://developer.apple.com/documentation/appkit/nsdocument/write(to:oftype:))`]`, because `NSDocument` safe-saving is already done atomically.
+///
+///
         #[doc(alias = "NSFileWrapperWritingAtomic")]
         const Atomic = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/writingoptions/withnameupdating?language=objc)
+/// Whether descendant file wrappers’[`filename`](https://developer.apple.com/documentation/foundation/filewrapper/filename) properties are set if the writing succeeds.
+///
+/// ## Discussion
+///
+/// This option is necessary when your application passes a URL in the `originalContentsURL` parameter to the [`writeToURL:options:originalContentsURL:error:`](https://developer.apple.com/documentation/foundation/filewrapper/write(to:options:originalcontentsurl:)) method. Without using this option (and reusing child file wrappers properly), subsequent invocations of [`writeToURL:options:originalContentsURL:error:`](https://developer.apple.com/documentation/foundation/filewrapper/write(to:options:originalcontentsurl:)) would not be able to reliably create hard links in a new file package, because the record of names in the old file package would be out of date.
+///
+///
         #[doc(alias = "NSFileWrapperWritingWithNameUpdating")]
         const WithNameUpdating = 1<<1;
     }
@@ -55,7 +91,43 @@ unsafe impl RefEncode for NSFileWrapperWritingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper?language=objc)
+    /// A representation of a node (a file, directory, or symbolic link) in the file system.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) class provides access to the attributes and contents of file system nodes. A file system node is a file, directory, or symbolic link. Instances of this class are known as file wrappers.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Starting in macOS 10.7, [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) moved from Application Kit to Foundation. As a result of this the `icon`, and `setIcon:` methods have moved to a new category of [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) that remains in Application Kit.
+    ///
+    ///
+    ///
+    /// </div>
+    /// File wrappers represent a file system node as an object that can be displayed as an image (and possibly edited in place), saved to the file system, or transmitted to another application.
+    ///
+    /// There are three types of file wrappers:
+    ///
+    /// - Regular-file file wrapper: Represents a regular file.
+    ///
+    /// - Directory file wrapper: Represents a directory.
+    ///
+    /// - Symbolic-link file wrapper: Represents a symbolic link.
+    ///
+    /// A file wrapper has these attributes:
+    ///
+    /// - Filename. Name of the file system node the file wrapper represents.
+    ///
+    /// - file-system attributes. See [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) for information on the contents of the `attributes` dictionary.
+    ///
+    /// - Regular-file contents. Applicable only to regular-file file wrappers.
+    ///
+    /// - File wrappers. Applicable only to directory file wrappers.
+    ///
+    /// - Destination node. Applicable only to symbolic-link file wrappers.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileWrapper;

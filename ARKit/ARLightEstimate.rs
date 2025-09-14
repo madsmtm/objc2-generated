@@ -12,9 +12,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A light estimate representing the light in the scene.
+    /// Estimated scene lighting information associated with a captured video frame in an AR session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arlightestimate?language=objc)
+    /// ## Overview
+    ///
+    /// If you enable the [`lightEstimationEnabled`](https://developer.apple.com/documentation/arkit/arconfiguration/islightestimationenabled) setting, ARKit provides light estimates in the [`lightEstimate`](https://developer.apple.com/documentation/arkit/arframe/lightestimate) property of each [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) it delivers.
+    ///
+    /// If you render your own overlay graphics for the AR scene, you can use this information in shading algorithms to help make those graphics match the real-world lighting conditions of the scene captured by the camera. The [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) class automatically uses this information to configure SceneKit lighting.
+    ///
+    ///
+    /// A light estimate representing the light in the scene.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -78,9 +85,16 @@ impl ARLightEstimate {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A directional light estimate representing the light intensity and direction in the scene.
+    /// Estimated environmental lighting information associated with a captured video frame in a face-tracking AR session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/ardirectionallightestimate?language=objc)
+    /// ## Overview
+    ///
+    /// When you run a face tracking AR session (see [`ARFaceTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arfacetrackingconfiguration)) with the [`lightEstimationEnabled`](https://developer.apple.com/documentation/arkit/arconfiguration/islightestimationenabled) property set to [`true`](https://developer.apple.com/documentation/swift/true), ARKit uses the detected face as a light probe to estimate the directional lighting environment in the scene. The [`lightEstimate`](https://developer.apple.com/documentation/arkit/arframe/lightestimate) property of each frame vended by the session contains an [`ARDirectionalLightEstimate`](https://developer.apple.com/documentation/arkit/ardirectionallightestimate) instance containing this information.
+    ///
+    /// If you render your own overlay graphics for the AR scene, you can use this information in shading algorithms to help make those graphics match the real-world lighting conditions of the scene captured by the camera. (The [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) class automatically uses this information to configure SceneKit lighting.)
+    ///
+    ///
+    /// A directional light estimate representing the light intensity and direction in the scene.
     #[unsafe(super(ARLightEstimate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

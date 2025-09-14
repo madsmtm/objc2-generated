@@ -7,20 +7,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype?language=objc)
+/// Options that indicate types of search results.
+///
+/// ## Overview
+///
+/// These options configure the types of search results you want to receive from [`MKLocalSearchRequest`](https://developer.apple.com/documentation/mapkit/mklocalsearch/request), including points of interest and addresses.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLocalSearchResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKLocalSearchResultType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype/address?language=objc)
+/// A value that indicates that search results include addresses.
         #[doc(alias = "MKLocalSearchResultTypeAddress")]
         const Address = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype/pointofinterest?language=objc)
+/// A value that indicates that search results include points of interest.
         #[doc(alias = "MKLocalSearchResultTypePointOfInterest")]
         const PointOfInterest = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/resulttype/physicalfeature?language=objc)
+/// A value that indicates that search results include physical features.
         #[doc(alias = "MKLocalSearchResultTypePhysicalFeature")]
         const PhysicalFeature = 1<<2;
     }
@@ -35,7 +41,18 @@ unsafe impl RefEncode for MKLocalSearchResultType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/request?language=objc)
+    /// The parameters to use when searching for points of interest on the map.
+    ///
+    /// ## Overview
+    ///
+    /// You create an [`MKLocalSearchRequest`](https://developer.apple.com/documentation/mapkit/mklocalsearch/request) object when you want to search for map locations based on a natural language string. For example, if your interface allows the user to type in addresses, place the typed text in this object and pass it to an [`MKLocalSearch`](https://developer.apple.com/documentation/mapkit/mklocalsearch) object to begin the search process. When specifying your search strings, include a map region to narrow the search results to the specified geographical area.
+    ///
+    /// When creating an MKLocalSearch.Request object yourself, set the [`naturalLanguageQuery`](https://developer.apple.com/documentation/mapkit/mklocalsearch/request/naturallanguagequery) property to an appropriate search string, as in the following example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let searchRequest = MKLocalSearch.Request()", "searchRequest.naturalLanguageQuery = \"coffee\"", "", "// Set the region to an associated map view's region.", "searchRequest.region = myMapView.region", "", "let search = MKLocalSearch(request: searchRequest)", "search.start { (response, error) in", "    guard let response = response else {", "        // Handle the error.", "    }", "    ", "    for item in response.mapItems {", "        if let name = item.name,", "            let location = item.placemark.location {", "            print(\"\\(name): \\(location.coordinate.latitude),\\(location.coordinate.longitude)\")", "        }", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["MKLocalSearchRequest *searchRequest = [[MKLocalSearchRequest alloc] init];", "searchRequest.naturalLanguageQuery = @\"coffee\";", "", "// Set the region to an associated map view's region.", "searchRequest.region = self.myMapView.region;", "", "MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:searchRequest];", "[search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {", "    if (response) {", "        for (MKMapItem *item in response.mapItems) {", "            CLLocationCoordinate2D coordinate = item.placemark.coordinate;", "            NSLog(@\"%@: %f,%f\", item.name, coordinate.latitude, coordinate.longitude);", "        }", "    } else if (error) {", "        // Handle the error.", "    }", "}];"], metadata: None }] }] })
+    /// If your app uses an [`MKLocalSearchCompleter`](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter) object to implement autocomplete support for user-supplied search strings, initialize your search request using the search completion that the user selects. In that case, use the [`initWithCompletion:`](https://developer.apple.com/documentation/mapkit/mklocalsearch/request/init(completion:)) method instead of the [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method to initialize your search request object. The completion object automatically provides the value for the [`naturalLanguageQuery`](https://developer.apple.com/documentation/mapkit/mklocalsearch/request/naturallanguagequery) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchRequest;

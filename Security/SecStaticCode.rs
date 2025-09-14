@@ -7,9 +7,20 @@ use crate::*;
 
 #[cfg(feature = "CSCommon")]
 unsafe impl ConcreteType for SecStaticCode {
-    /// Returns the type identifier of all SecStaticCode instances.
+    /// Returns the unique identifier of the opaque type to which a static code object belongs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodegettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecStaticCodeRef`](https://developer.apple.com/documentation/security/secstaticcode) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can compare the value returned by this function to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
+    /// Returns the type identifier of all SecStaticCode instances.
     #[doc(alias = "SecStaticCodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -22,6 +33,29 @@ unsafe impl ConcreteType for SecStaticCode {
 
 #[cfg(feature = "CSCommon")]
 impl SecStaticCode {
+    /// Creates a static code object representing the code at a specified file system path.
+    ///
+    /// Parameters:
+    /// - path: A URL identifying the location on disk of the code for which you want a static code object. For bundles, pass a URL to the root directory of the bundle. For single files, pass a URL to the file. If you pass a URL to the main executable of a bundle, the bundle as a whole is generally recognized. Only absolute paths should be used.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - staticCode: On return, the static code object representing the code you specified in the `path` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A static code object is not inherently linked to running code in the system.
+    ///
+    /// It is possible to create a static code object from unsigned code. Although most uses of such an object cause the function to fail and return the result code `errSecCSUnsigned` error, you can call the [`SecCodeCopyPath`](https://developer.apple.com/documentation/security/seccodecopypath(_:_:_:)) and [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) functions for such objects.
+    ///
+    ///
     /// Given a path to a file system object, create a SecStaticCode object representing
     /// the code at that location, if possible. Such a SecStaticCode is not inherently
     /// linked to running code in the system.
@@ -50,8 +84,6 @@ impl SecStaticCode {
     /// # Safety
     ///
     /// `static_code` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecreatewithpath(_:_:_:)?language=objc)
     #[doc(alias = "SecStaticCodeCreateWithPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -72,27 +104,52 @@ impl SecStaticCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeattributearchitecture?language=objc)
+    /// A key whose value is a string that indicates an architecture, such as `i386` or `x86_64`.
     pub static kSecCodeAttributeArchitecture: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeattributesubarchitecture?language=objc)
+    /// A key whose value is a string indicating a specific processor type, such as `i686` or `core2`.
     pub static kSecCodeAttributeSubarchitecture: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeattributeuniversalfileoffset?language=objc)
+    /// A key whose value indicates the offset of a Mach-O specific slice of a universal Mach-O file.
     pub static kSecCodeAttributeUniversalFileOffset: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeattributebundleversion?language=objc)
+    /// A key whose value indicates the bundle version.
     pub static kSecCodeAttributeBundleVersion: &'static CFString;
 }
 
 #[cfg(feature = "CSCommon")]
 impl SecStaticCode {
+    /// Creates a static code object representing the code at a specified file system path using an attributes dictionary.
+    ///
+    /// Parameters:
+    /// - path: A URL identifying the location on disk of the code for which you want a static code object. For bundles, pass a URL to the root directory of the bundle. For single files, pass a URL to the file. If you pass a URL to the main executable of a bundle, the bundle as a whole is generally recognized. Only absolute paths should be used.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - attributes: A [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) containing additional attributes of the requested code. Possible values are defined in [Code Attributes](https://developer.apple.com/documentation/security/code-attributes).
+    ///
+    /// - staticCode: On return, the static code object representing the code you specified in the `path` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A static code object is not inherently linked to running code in the system.
+    ///
+    /// It is possible to create a static code object from unsigned code. Although most uses of such an object cause the function to fail and return the result code [`errSecCSUnsigned`](https://developer.apple.com/documentation/security/errseccsunsigned) error, you can call the [`SecCodeCopyPath`](https://developer.apple.com/documentation/security/seccodecopypath(_:_:_:)) and [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) functions for such objects.
+    ///
+    ///
     /// Given a path to a file system object, create a SecStaticCode object representing
     /// the code at that location, if possible. Such a SecStaticCode is not inherently
     /// linked to running code in the system.
@@ -138,8 +195,6 @@ impl SecStaticCode {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `static_code` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecreatewithpathandattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -161,42 +216,94 @@ impl SecStaticCode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccscheckallarchitectures?language=objc)
+/// For multi-architecture (universal) Mach-O programs, validate all architectures included.
+///
+/// ## Discussion
+///
+/// By default, only the native architecture is validated.
+///
+///
 pub const kSecCSCheckAllArchitectures: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdonotvalidateexecutable?language=objc)
+/// Do not validate the contents of the main executable.
+///
+/// ## Discussion
+///
+/// The contents of the main executable are normally validated.
+///
+///
 pub const kSecCSDoNotValidateExecutable: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdonotvalidateresources?language=objc)
+/// Do not validate the presence and contents of all bundle resources (if any).
+///
+/// ## Discussion
+///
+/// By default, a mismatch in any bundle resource causes validation to fail.
+///
+///
 pub const kSecCSDoNotValidateResources: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsbasicvalidateonly?language=objc)
+/// Do not validate either the main executable or the bundle resources, if any.
+///
+/// ## Discussion
+///
+/// This flag is the bitwise OR of the [`kSecCSDoNotValidateExecutable`](https://developer.apple.com/documentation/security/kseccsdonotvalidateexecutable) and [`kSecCSDoNotValidateResources`](https://developer.apple.com/documentation/security/kseccsdonotvalidateresources) flags.
+///
+///
 pub const kSecCSBasicValidateOnly: u32 = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccschecknestedcode?language=objc)
+/// For code in bundle form, locate and recursively check embedded code.
+///
+/// ## Discussion
+///
+/// Only code in standard locations is considered.
+///
+///
 pub const kSecCSCheckNestedCode: u32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsstrictvalidate?language=objc)
+/// Perform additional checks to ensure the validity of code in bundle form.
+///
+/// ## Discussion
+///
+/// For code in bundle form, perform additional checks to verify that the bundle is not structured in a way that would allow tampering, and reject any resource envelope that introduces weaknesses into the signature.
+///
+///
 pub const kSecCSStrictValidate: u32 = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsfullreport?language=objc)
 pub const kSecCSFullReport: u32 = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccscheckgatekeeperarchitectures?language=objc)
 pub const kSecCSCheckGatekeeperArchitectures: u32 = 65;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsrestrictsymlinks?language=objc)
 pub const kSecCSRestrictSymlinks: u32 = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsrestricttoapplike?language=objc)
 pub const kSecCSRestrictToAppLike: u32 = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsrestrictsidebanddata?language=objc)
 pub const kSecCSRestrictSidebandData: u32 = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsusesoftwaresigningcert?language=objc)
 pub const kSecCSUseSoftwareSigningCert: u32 = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsvalidatepeh?language=objc)
 pub const kSecCSValidatePEH: u32 = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccssinglethreaded?language=objc)
 pub const kSecCSSingleThreaded: u32 = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsallownetworkaccess?language=objc)
 pub const kSecCSAllowNetworkAccess: u32 = 65536;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsfastexecutablevalidation?language=objc)
 pub const kSecCSFastExecutableValidation: u32 = 131072;
 
 #[cfg(feature = "CSCommon")]
 impl SecStaticCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecheckvalidity(_:_:_:)?language=objc)
+    /// Validates a static code object.
+    ///
+    /// Parameters:
+    /// - staticCode: The static code object to be validated.
+    ///
+    /// - flags: Optional flags; see [Static Code Validation Flags](https://developer.apple.com/documentation/security/static-code-validation-flags) for possible values. Use [`kSecCSCheckAllArchitectures`](https://developer.apple.com/documentation/security/kseccscheckallarchitectures) to validate all slices of a universal binary.
+    ///
+    /// - requirement: A code requirement specifying additional conditions the code must satisfy to be considered valid. Specify `NULL` if you don’t want to impose any additional requirements. Use the [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) or [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function to create a code requirement object. See [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929) for a discussion of code requirements.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function obtains and verifies the signature on the code specified by the code object. It checks the validity of all sealed components, including resources (if any). It validates the code against a code requirement if one is specified. The call succeeds if all these conditions are satisfactory.
+    ///
+    /// This call is only secure if the code is not subject to concurrent modification, and the outcome is only valid as long as the code remains unmodified. If the underlying file system has dynamic characteristics, such as a network file system, union mount, or FUSE, you must consider how secure the code is from modification after validation.
+    ///
+    /// When checking a universal binary, include the [`kSecCSCheckAllArchitectures`](https://developer.apple.com/documentation/security/kseccscheckallarchitectures) flag. Otherwise the method verifies only one slice of the binary, potentially indicating success without testing all the slices. Be aware that the slices of a universal binary don’t have to be signed by the same signer for the test to pass. One slice might be ad hoc signed, for example. But the validity check doesn’t know which slice you are going to run. For example, the user might use the arch(1) command line utility to pick a 32-bit architecture even though a 64-bit architecture is available.
+    ///
+    /// If you want to be sure to test a particular slice, create the static code object with the [`SecStaticCodeCreateWithPathAndAttributes`](https://developer.apple.com/documentation/security/secstaticcodecreatewithpathandattributes(_:_:_:_:)) method using the [`kSecCodeAttributeArchitecture`](https://developer.apple.com/documentation/security/kseccodeattributearchitecture) and [`kSecCodeAttributeSubarchitecture`](https://developer.apple.com/documentation/security/kseccodeattributesubarchitecture) attributes (if you know the architecture) or the [`kSecCodeAttributeUniversalFileOffset`](https://developer.apple.com/documentation/security/kseccodeattributeuniversalfileoffset) attribute (if you know the offset into the universal binary).
+    ///
+    ///
     #[doc(alias = "SecStaticCodeCheckValidity")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -215,7 +322,35 @@ impl SecStaticCode {
         unsafe { SecStaticCodeCheckValidity(self, flags, requirement) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secstaticcodecheckvaliditywitherrors(_:_:_:_:)?language=objc)
+    /// Performs static validation of static signed code and returns detailed error information in the case of failure.
+    ///
+    /// Parameters:
+    /// - staticCode: The code object to be validated.
+    ///
+    /// - flags: Optional flags; see [Static Code Validation Flags](https://developer.apple.com/documentation/security/static-code-validation-flags) for possible values. Use [`kSecCSCheckAllArchitectures`](https://developer.apple.com/documentation/security/kseccscheckallarchitectures) to validate all slices of a universal binary.
+    ///
+    /// - requirement: A code requirement specifying additional conditions the code must satisfy to be considered valid. Specify `NULL` if you don’t want to impose any additional requirements. Use the [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) or [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function to create a code requirement object. See [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929) for a discussion of code requirements.
+    ///
+    /// - errors: On return, if the function call fails and returns a result code other than `errSecSuccess`, points to an error object further describing the nature and circumstances of the failure. Use the [`CFErrorCopyUserInfo`](https://developer.apple.com/documentation/corefoundation/cferrorcopyuserinfo(_:)) function to retrieve the user info dictionary from the error object. See [User Info Dictionary Error Keys](https://developer.apple.com/documentation/security/user-info-dictionary-error-keys) for possible values. Pass `NULL` if you do not want this information. Call the `CFRelease` function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function obtains and verifies the signature on the code specified by the code object. It checks the validity of all sealed components, including resources (if any). It validates the code against a code requirement if one is specified. The call succeeds if all these conditions are satisfactory.
+    ///
+    /// This call is only secure if the code is not subject to concurrent modification, and the outcome is only valid as long as the code remains unmodified. If the underlying file system has dynamic characteristics, such as a network file system, union mount, or FUSE, you must consider how secure the code is from modification after validation.
+    ///
+    /// When checking a universal binary, include the [`kSecCSCheckAllArchitectures`](https://developer.apple.com/documentation/security/kseccscheckallarchitectures) flag. Otherwise the method verifies only one slice of the binary, potentially indicating success without testing all the slices. Be aware that the slices of a universal binary don’t have to be signed by the same signer for the test to pass. One slice might be ad hoc signed, for example. But the validity check doesn’t know which slice you are going to run. For example, the user might use the arch(1) command line utility to pick a 32-bit architecture even though a 64-bit architecture is available.
+    ///
+    /// If you want to be sure to test a particular slice, create the static code object with the [`SecStaticCodeCreateWithPathAndAttributes`](https://developer.apple.com/documentation/security/secstaticcodecreatewithpathandattributes(_:_:_:_:)) method using the [`kSecCodeAttributeArchitecture`](https://developer.apple.com/documentation/security/kseccodeattributearchitecture) and [`kSecCodeAttributeSubarchitecture`](https://developer.apple.com/documentation/security/kseccodeattributesubarchitecture) attributes (if you know the architecture) or the [`kSecCodeAttributeUniversalFileOffset`](https://developer.apple.com/documentation/security/kseccodeattributeuniversalfileoffset) attribute (if you know the offset into the universal binary).
+    ///
+    ///
     ///
     /// # Safety
     ///

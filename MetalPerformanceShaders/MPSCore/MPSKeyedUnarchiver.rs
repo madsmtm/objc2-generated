@@ -8,9 +8,8 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A keyed archiver that supports Metal Performance Shaders kernel decoding.
     /// A NSKeyedArchiver that supports the MPSDeviceProvider protocol for MPSKernel decoding
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskeyedunarchiver?language=objc)
     #[unsafe(super(NSKeyedUnarchiver, NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSKeyedUnarchiver;

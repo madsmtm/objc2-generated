@@ -8,7 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintent?language=objc)
+    /// A request to list the messages that match the specified criteria.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) objects when the user asks to see sent or received messages. You must implement this intent to support the reading of messages by Siri. This intent object contains the values for you to match when searching the user’s messages. Users can search for messages involving a specific person, messages with specific sent or received dates, or messages containing specific terms. When performing the search, use only the provided parameters, and ignore any that have no values.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSearchForMessagesIntentHandling`](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling) protocol. Your handler confirms the request and creates an [`INSearchForMessagesIntentResponse`](https://developer.apple.com/documentation/intents/insearchformessagesintentresponse) object with the results of the search. For successful searches, Siri offers the user a way to launch your app and see the results.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To implement support for this intent fully, you must also implement support for the [`INSetMessageAttributeIntent`](https://developer.apple.com/documentation/intents/insetmessageattributeintent) class. After reading messages that your search returns, Siri marks them as read by modifying the attributes of the messages using that intent class. For more information about supporting the set message attribute intent, see [`INSetMessageAttributeIntent`](https://developer.apple.com/documentation/intents/insetmessageattributeintent).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To allow a user wearing AirPods to automatically hear messages, you must implement both [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) and [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent). Add [`UNAuthorizationOptionAnnouncement`](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/announcement) to the options when calling [`requestAuthorizationWithOptions:completionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/requestauthorization(options:completionhandler:)). Finally, add [`UNNotificationCategoryOptionAllowAnnouncement`](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/allowannouncement) to the category option and [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) to the category intent identifier.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// Additional attributes of this intent object include the following:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes, unless Show Previews is in an enabled state on the user’s device." }] }]]], alignments: None, metadata: None })
+    /// Apps can optionally ask the user to unlock the device before handling this intent. To require unlocking of the device, include the name of this class in the `IntentsRestrictedWhileLocked` key of your Intents extension’s `Info.plist` file.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -157,11 +182,18 @@ impl INSearchForMessagesIntent {
 }
 
 extern_protocol!(
+    /// An interface that handles requests to search the current user’s messages.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSearchForMessagesIntentHandling`](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling) protocol to resolve, confirm, and handle requests to search the current user’s messages. Adopt this protocol in an object of your Intents extension capable of searching your app’s messages.
+    ///
+    /// Siri delivers an [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) object to your handler when the user asks to search their messages. The provided intent object contains the search parameters to use when matching messages. Use the methods of this protocol to resolve the search parameters, to perform the search, and to return the results.
+    ///
+    ///
     /// Protocol to declare support for handling an INSearchForMessagesIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling?language=objc)
     pub unsafe trait INSearchForMessagesIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

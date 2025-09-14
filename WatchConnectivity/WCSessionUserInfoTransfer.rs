@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Used to track a user info dictionary being transferred.
+    /// Information about in-progress data transfers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcsessionuserinfotransfer?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class yourself. When you begin a data transfer, the system creates a new instance of this class for you. Use the created object to monitor or cancel the transfer as needed.
+    ///
+    /// To initiate a file transfer operation, call the [`transferUserInfo:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transferuserinfo(_:)) or [`transferCurrentComplicationUserInfo:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transfercurrentcomplicationuserinfo(_:)) method of your app’s [`WCSession`](https://developer.apple.com/documentation/watchconnectivity/wcsession) object.
+    ///
+    ///
+    /// Used to track a user info dictionary being transferred.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WCSessionUserInfoTransfer;

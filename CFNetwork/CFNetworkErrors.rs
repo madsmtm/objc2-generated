@@ -9,271 +9,373 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcferrordomaincfnetwork?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Error domain that returns error codes specific to the CFNetwork stack.
+    ///
+    ///
     pub static kCFErrorDomainCFNetwork: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcferrordomainwinsock?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Error domain that returns error codes specific to the underlying network layer when running CFNetwork code on Windows.
+    ///
+    ///
     pub static kCFErrorDomainWinSock: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors?language=objc)
+/// This enumeration contains error codes returned under the error domain [`kCFErrorDomainCFNetwork`](https://developer.apple.com/documentation/cfnetwork/kcferrordomaincfnetwork).
+///
+/// ## Overview
+///
+/// To determine the source of an error, examine the `userInfo` dictionary included in the `CFError` object returned by a function call or call [`CFErrorGetDomain`](https://developer.apple.com/documentation/corefoundation/cferrorgetdomain(_:)) and pass in the `CFError` object and the domain whose value you want to read. These errors are all part of the `kCFErrorDomainCFNetwork` domain.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNetworkErrors(pub c_int);
 impl CFNetworkErrors {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfhosterrorhostnotfound?language=objc)
+    /// The specified host wasn’t found.
+    ///
+    /// ## Discussion
+    ///
+    /// Indicates that the DNS lookup failed.
+    ///
+    /// For more information, see [CFNetwork Programming Guide](https://developer.apple.com/library/archive/documentation/Networking/Conceptual/CFNetwork/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001132).
+    ///
+    ///
     #[doc(alias = "kCFHostErrorHostNotFound")]
     pub const CFHostErrorHostNotFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfhosterrorunknown?language=objc)
+    /// An unknown error.
+    ///
+    /// ## Discussion
+    ///
+    /// An unknown error (for example, a name server failure) occurred. For additional information, you can query the `kCFGetAddrInfoFailureKey` key to obtain the value returned by `getaddrinfo(_:_:_:_:)` and look up the value in `/usr/include/netdb.h`.
+    ///
+    ///
     #[doc(alias = "kCFHostErrorUnknown")]
     pub const CFHostErrorUnknown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsockserrorunknownclientversion?language=objc)
+    /// The SOCKS server rejected access because it doesn’t support connections with the requested SOCKS version.
+    ///
+    /// ## Discussion
+    ///
+    /// Query the `kCFSOCKSVersionKey` key to find out what version the server requested.
+    ///
+    ///
     #[doc(alias = "kCFSOCKSErrorUnknownClientVersion")]
     pub const CFSOCKSErrorUnknownClientVersion: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsockserrorunsupportedserverversion?language=objc)
+    /// The SOCKS server doesn’t support the requested version.
+    ///
+    /// ## Discussion
+    ///
+    /// Query the `kCFSOCKSVersionKey` key to find out what version the server requested.
+    ///
+    ///
     #[doc(alias = "kCFSOCKSErrorUnsupportedServerVersion")]
     pub const CFSOCKSErrorUnsupportedServerVersion: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks4errorrequestfailed?language=objc)
+    /// The server rejected the request, or the request failed.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is specific to SOCKS4.
+    ///
+    ///
     #[doc(alias = "kCFSOCKS4ErrorRequestFailed")]
     pub const CFSOCKS4ErrorRequestFailed: Self = Self(110);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks4erroridentdfailed?language=objc)
+    /// The server couldn’t connect to the `identd` daemon on the client and rejected the request.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is specific to SOCKS4.
+    ///
+    ///
     #[doc(alias = "kCFSOCKS4ErrorIdentdFailed")]
     pub const CFSOCKS4ErrorIdentdFailed: Self = Self(111);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks4erroridconflict?language=objc)
+    /// The server rejected the request because the client program and the `identd` daemon reported different user IDs.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is specific to SOCKS4.
+    ///
+    ///
     #[doc(alias = "kCFSOCKS4ErrorIdConflict")]
     pub const CFSOCKS4ErrorIdConflict: Self = Self(112);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks4errorunknownstatuscode?language=objc)
+    /// The server returned an unknown status code.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is specific to SOCKS4.
+    ///
+    ///
     #[doc(alias = "kCFSOCKS4ErrorUnknownStatusCode")]
     pub const CFSOCKS4ErrorUnknownStatusCode: Self = Self(113);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks5errorbadstate?language=objc)
+    /// The stream isn’t in a state that allows the requested operation.
     #[doc(alias = "kCFSOCKS5ErrorBadState")]
     pub const CFSOCKS5ErrorBadState: Self = Self(120);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks5errorbadresponseaddr?language=objc)
+    /// The address type returned isn’t supported.
     #[doc(alias = "kCFSOCKS5ErrorBadResponseAddr")]
     pub const CFSOCKS5ErrorBadResponseAddr: Self = Self(121);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks5errorbadcredentials?language=objc)
+    /// The SOCKS server refused the client connection because of bad login credentials.
     #[doc(alias = "kCFSOCKS5ErrorBadCredentials")]
     pub const CFSOCKS5ErrorBadCredentials: Self = Self(122);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks5errorunsupportednegotiationmethod?language=objc)
+    /// The requested method isn’t supported.
+    ///
+    /// ## Discussion
+    ///
+    /// Query the `kCFSOCKSNegotiationMethodKey` key to find out which method the server requested.
+    ///
+    ///
     #[doc(alias = "kCFSOCKS5ErrorUnsupportedNegotiationMethod")]
     pub const CFSOCKS5ErrorUnsupportedNegotiationMethod: Self = Self(123);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfsocks5errornoacceptablemethod?language=objc)
+    /// The client and server couldn’t find a mutually agreeable authentication method.
     #[doc(alias = "kCFSOCKS5ErrorNoAcceptableMethod")]
     pub const CFSOCKS5ErrorNoAcceptableMethod: Self = Self(124);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfftperrorunexpectedstatuscode?language=objc)
+    /// The server returned an unexpected status code.
     #[doc(alias = "kCFFTPErrorUnexpectedStatusCode")]
     pub const CFFTPErrorUnexpectedStatusCode: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpauthenticationtypeunsupported?language=objc)
+    /// The client and server couldn’t agree on a supported authentication type.
     #[doc(alias = "kCFErrorHTTPAuthenticationTypeUnsupported")]
     pub const CFErrorHTTPAuthenticationTypeUnsupported: Self = Self(300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpbadcredentials?language=objc)
+    /// The server rejected the credentials provided for an authenticated connection.
     #[doc(alias = "kCFErrorHTTPBadCredentials")]
     pub const CFErrorHTTPBadCredentials: Self = Self(301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpconnectionlost?language=objc)
+    /// The connection to the server was dropped.
+    ///
+    /// ## Discussion
+    ///
+    /// This usually indicates a highly overloaded server.
+    ///
+    ///
     #[doc(alias = "kCFErrorHTTPConnectionLost")]
     pub const CFErrorHTTPConnectionLost: Self = Self(302);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpparsefailure?language=objc)
+    /// The HTTP server response couldn’t be parsed.
     #[doc(alias = "kCFErrorHTTPParseFailure")]
     pub const CFErrorHTTPParseFailure: Self = Self(303);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpredirectionloopdetected?language=objc)
+    /// Too many HTTP redirects occurred before reaching a page that didn’t redirect the client to another page.
+    ///
+    /// ## Discussion
+    ///
+    /// This usually indicates a redirect loop.
+    ///
+    ///
     #[doc(alias = "kCFErrorHTTPRedirectionLoopDetected")]
     pub const CFErrorHTTPRedirectionLoopDetected: Self = Self(304);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpbadurl?language=objc)
+    /// The requested URL couldn’t be retrieved.
     #[doc(alias = "kCFErrorHTTPBadURL")]
     pub const CFErrorHTTPBadURL: Self = Self(305);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpproxyconnectionfailure?language=objc)
+    /// A connection to the HTTPS proxy couldn’t be established.
     #[doc(alias = "kCFErrorHTTPProxyConnectionFailure")]
     pub const CFErrorHTTPProxyConnectionFailure: Self = Self(306);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpbadproxycredentials?language=objc)
+    /// The proxy rejected the authentication credentials provided for logging in.
     #[doc(alias = "kCFErrorHTTPBadProxyCredentials")]
     pub const CFErrorHTTPBadProxyCredentials: Self = Self(307);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorpacfileerror?language=objc)
+    /// An error occurred with the proxy autoconfiguration file.
     #[doc(alias = "kCFErrorPACFileError")]
     pub const CFErrorPACFileError: Self = Self(308);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorpacfileauth?language=objc)
+    /// The authentication credentials provided by the proxy autoconfiguration file were rejected.
     #[doc(alias = "kCFErrorPACFileAuth")]
     pub const CFErrorPACFileAuth: Self = Self(309);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cferrorhttpsproxyconnectionfailure?language=objc)
+    /// A connection couldn’t be established to the HTTPS proxy.
     #[doc(alias = "kCFErrorHTTPSProxyConnectionFailure")]
     pub const CFErrorHTTPSProxyConnectionFailure: Self = Self(310);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfstreamerrorhttpsproxyfailureunexpectedresponsetoconnectmethod?language=objc)
+    /// The HTTPS proxy returned an unexpected status code, such as a `3xx` redirect.
     #[doc(alias = "kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod")]
     pub const CFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod: Self = Self(311);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorbackgroundsessioninusebyanotherprocess?language=objc)
+    /// The background session failed because it was in use by another process.
     #[doc(alias = "kCFURLErrorBackgroundSessionInUseByAnotherProcess")]
     pub const CFURLErrorBackgroundSessionInUseByAnotherProcess: Self = Self(-996);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorbackgroundsessionwasdisconnected?language=objc)
+    /// The background session failed because it was disconnected.
     #[doc(alias = "kCFURLErrorBackgroundSessionWasDisconnected")]
     pub const CFURLErrorBackgroundSessionWasDisconnected: Self = Self(-997);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorunknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "kCFURLErrorUnknown")]
     pub const CFURLErrorUnknown: Self = Self(-998);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcancelled?language=objc)
+    /// The connection was cancelled.
     #[doc(alias = "kCFURLErrorCancelled")]
     pub const CFURLErrorCancelled: Self = Self(-999);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorbadurl?language=objc)
+    /// The connection failed due to a malformed URL.
     #[doc(alias = "kCFURLErrorBadURL")]
     pub const CFURLErrorBadURL: Self = Self(-1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrortimedout?language=objc)
+    /// The connection timed out.
     #[doc(alias = "kCFURLErrorTimedOut")]
     pub const CFURLErrorTimedOut: Self = Self(-1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorunsupportedurl?language=objc)
+    /// The connection failed due to an unsupported URL scheme.
     #[doc(alias = "kCFURLErrorUnsupportedURL")]
     pub const CFURLErrorUnsupportedURL: Self = Self(-1002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotfindhost?language=objc)
+    /// The connection failed because the host couldn’t be found.
     #[doc(alias = "kCFURLErrorCannotFindHost")]
     pub const CFURLErrorCannotFindHost: Self = Self(-1003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotconnecttohost?language=objc)
+    /// The connection failed because a connection can’t be made to the host.
     #[doc(alias = "kCFURLErrorCannotConnectToHost")]
     pub const CFURLErrorCannotConnectToHost: Self = Self(-1004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrornetworkconnectionlost?language=objc)
+    /// The connection failed because the network connection was lost.
     #[doc(alias = "kCFURLErrorNetworkConnectionLost")]
     pub const CFURLErrorNetworkConnectionLost: Self = Self(-1005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrordnslookupfailed?language=objc)
+    /// The connection failed because the DNS lookup failed.
     #[doc(alias = "kCFURLErrorDNSLookupFailed")]
     pub const CFURLErrorDNSLookupFailed: Self = Self(-1006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorhttptoomanyredirects?language=objc)
+    /// The HTTP connection failed due to too many redirects.
     #[doc(alias = "kCFURLErrorHTTPTooManyRedirects")]
     pub const CFURLErrorHTTPTooManyRedirects: Self = Self(-1007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorresourceunavailable?language=objc)
+    /// The connection’s resource is unavailable.
     #[doc(alias = "kCFURLErrorResourceUnavailable")]
     pub const CFURLErrorResourceUnavailable: Self = Self(-1008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrornotconnectedtointernet?language=objc)
+    /// The connection failed because the device isn’t connected to the internet.
     #[doc(alias = "kCFURLErrorNotConnectedToInternet")]
     pub const CFURLErrorNotConnectedToInternet: Self = Self(-1009);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorredirecttononexistentlocation?language=objc)
+    /// The connection was redirected to a nonexistent location.
     #[doc(alias = "kCFURLErrorRedirectToNonExistentLocation")]
     pub const CFURLErrorRedirectToNonExistentLocation: Self = Self(-1010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorbadserverresponse?language=objc)
+    /// The connection received an invalid server response.
     #[doc(alias = "kCFURLErrorBadServerResponse")]
     pub const CFURLErrorBadServerResponse: Self = Self(-1011);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorusercancelledauthentication?language=objc)
+    /// The connection failed because the user cancelled required authentication.
     #[doc(alias = "kCFURLErrorUserCancelledAuthentication")]
     pub const CFURLErrorUserCancelledAuthentication: Self = Self(-1012);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerroruserauthenticationrequired?language=objc)
+    /// The connection failed because it requires authentication.
     #[doc(alias = "kCFURLErrorUserAuthenticationRequired")]
     pub const CFURLErrorUserAuthenticationRequired: Self = Self(-1013);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorzerobyteresource?language=objc)
+    /// The resource retrieved by the connection is zero bytes.
     #[doc(alias = "kCFURLErrorZeroByteResource")]
     pub const CFURLErrorZeroByteResource: Self = Self(-1014);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotdecoderawdata?language=objc)
+    /// The connection can’t decode data encoded with a known content encoding.
     #[doc(alias = "kCFURLErrorCannotDecodeRawData")]
     pub const CFURLErrorCannotDecodeRawData: Self = Self(-1015);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotdecodecontentdata?language=objc)
+    /// The connection can’t decode data encoded with an unknown content encoding.
     #[doc(alias = "kCFURLErrorCannotDecodeContentData")]
     pub const CFURLErrorCannotDecodeContentData: Self = Self(-1016);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotparseresponse?language=objc)
+    /// The connection can’t parse the server’s response.
     #[doc(alias = "kCFURLErrorCannotParseResponse")]
     pub const CFURLErrorCannotParseResponse: Self = Self(-1017);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorinternationalroamingoff?language=objc)
+    /// The connection failed because international roaming is disabled on the device.
     #[doc(alias = "kCFURLErrorInternationalRoamingOff")]
     pub const CFURLErrorInternationalRoamingOff: Self = Self(-1018);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcallisactive?language=objc)
+    /// The connection failed because a call is active.
     #[doc(alias = "kCFURLErrorCallIsActive")]
     pub const CFURLErrorCallIsActive: Self = Self(-1019);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrordatanotallowed?language=objc)
+    /// The connection failed because data use isn’t currently allowed on the device.
     #[doc(alias = "kCFURLErrorDataNotAllowed")]
     pub const CFURLErrorDataNotAllowed: Self = Self(-1020);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorrequestbodystreamexhausted?language=objc)
+    /// The connection failed because the request’s body stream was exhausted.
     #[doc(alias = "kCFURLErrorRequestBodyStreamExhausted")]
     pub const CFURLErrorRequestBodyStreamExhausted: Self = Self(-1021);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorapptransportsecurityrequiressecureconnection?language=objc)
+    /// The connection failed because the App Transport Security configuration requires a secure connection.
     #[doc(alias = "kCFURLErrorAppTransportSecurityRequiresSecureConnection")]
     pub const CFURLErrorAppTransportSecurityRequiresSecureConnection: Self = Self(-1022);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorfiledoesnotexist?language=objc)
+    /// The file operation failed because the file doesn’t exist.
     #[doc(alias = "kCFURLErrorFileDoesNotExist")]
     pub const CFURLErrorFileDoesNotExist: Self = Self(-1100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorfileisdirectory?language=objc)
+    /// The file operation failed because the file is a directory.
     #[doc(alias = "kCFURLErrorFileIsDirectory")]
     pub const CFURLErrorFileIsDirectory: Self = Self(-1101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrornopermissionstoreadfile?language=objc)
+    /// The file operation failed because it doesn’t have permission to read the file.
     #[doc(alias = "kCFURLErrorNoPermissionsToReadFile")]
     pub const CFURLErrorNoPermissionsToReadFile: Self = Self(-1102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrordatalengthexceedsmaximum?language=objc)
+    /// The file operation failed because the file is too large.
     #[doc(alias = "kCFURLErrorDataLengthExceedsMaximum")]
     pub const CFURLErrorDataLengthExceedsMaximum: Self = Self(-1103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorfileoutsidesafearea?language=objc)
+    /// The file is outside of the safe area.
     #[doc(alias = "kCFURLErrorFileOutsideSafeArea")]
     pub const CFURLErrorFileOutsideSafeArea: Self = Self(-1104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorsecureconnectionfailed?language=objc)
+    /// The secure connection failed for an unknown reason.
     #[doc(alias = "kCFURLErrorSecureConnectionFailed")]
     pub const CFURLErrorSecureConnectionFailed: Self = Self(-1200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorservercertificatehasbaddate?language=objc)
+    /// The secure connection failed because the server’s certificate has an invalid date.
     #[doc(alias = "kCFURLErrorServerCertificateHasBadDate")]
     pub const CFURLErrorServerCertificateHasBadDate: Self = Self(-1201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorservercertificateuntrusted?language=objc)
+    /// The secure connection failed because the server’s certificate isn’t trusted.
     #[doc(alias = "kCFURLErrorServerCertificateUntrusted")]
     pub const CFURLErrorServerCertificateUntrusted: Self = Self(-1202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorservercertificatehasunknownroot?language=objc)
+    /// The secure connection failed because the server’s certificate has an unknown root.
     #[doc(alias = "kCFURLErrorServerCertificateHasUnknownRoot")]
     pub const CFURLErrorServerCertificateHasUnknownRoot: Self = Self(-1203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorservercertificatenotyetvalid?language=objc)
+    /// The secure connection failed because the server’s certificate isn’t valid yet.
     #[doc(alias = "kCFURLErrorServerCertificateNotYetValid")]
     pub const CFURLErrorServerCertificateNotYetValid: Self = Self(-1204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorclientcertificaterejected?language=objc)
+    /// The secure connection failed because the client’s certificate was rejected.
     #[doc(alias = "kCFURLErrorClientCertificateRejected")]
     pub const CFURLErrorClientCertificateRejected: Self = Self(-1205);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorclientcertificaterequired?language=objc)
+    /// The secure connection failed because the server requires a client certificate.
     #[doc(alias = "kCFURLErrorClientCertificateRequired")]
     pub const CFURLErrorClientCertificateRequired: Self = Self(-1206);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotloadfromnetwork?language=objc)
+    /// The connection failed because it’s being required to return a cached resource, but one isn’t available.
     #[doc(alias = "kCFURLErrorCannotLoadFromNetwork")]
     pub const CFURLErrorCannotLoadFromNetwork: Self = Self(-2000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotcreatefile?language=objc)
+    /// The file can’t be created.
     #[doc(alias = "kCFURLErrorCannotCreateFile")]
     pub const CFURLErrorCannotCreateFile: Self = Self(-3000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotopenfile?language=objc)
+    /// The file can’t be opened.
     #[doc(alias = "kCFURLErrorCannotOpenFile")]
     pub const CFURLErrorCannotOpenFile: Self = Self(-3001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotclosefile?language=objc)
+    /// The file can’t be closed.
     #[doc(alias = "kCFURLErrorCannotCloseFile")]
     pub const CFURLErrorCannotCloseFile: Self = Self(-3002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotwritetofile?language=objc)
+    /// The file can’t be written.
     #[doc(alias = "kCFURLErrorCannotWriteToFile")]
     pub const CFURLErrorCannotWriteToFile: Self = Self(-3003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotremovefile?language=objc)
+    /// The file can’t be removed.
     #[doc(alias = "kCFURLErrorCannotRemoveFile")]
     pub const CFURLErrorCannotRemoveFile: Self = Self(-3004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrorcannotmovefile?language=objc)
+    /// The file can’t be moved.
     #[doc(alias = "kCFURLErrorCannotMoveFile")]
     pub const CFURLErrorCannotMoveFile: Self = Self(-3005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrordownloaddecodingfailedmidstream?language=objc)
+    /// The download failed because decoding of the downloaded data failed midstream.
     #[doc(alias = "kCFURLErrorDownloadDecodingFailedMidStream")]
     pub const CFURLErrorDownloadDecodingFailedMidStream: Self = Self(-3006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfurlerrordownloaddecodingfailedtocomplete?language=objc)
+    /// The download failed because decoding of the downloaded data failed to complete.
     #[doc(alias = "kCFURLErrorDownloadDecodingFailedToComplete")]
     pub const CFURLErrorDownloadDecodingFailedToComplete: Self = Self(-3007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfhttpcookiecannotparsecookiefile?language=objc)
+    /// The cookie file can’t be parsed.
     #[doc(alias = "kCFHTTPCookieCannotParseCookieFile")]
     pub const CFHTTPCookieCannotParseCookieFile: Self = Self(-4000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrorunknown?language=objc)
+    /// An error of unknown type has occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// An unknown error occurred.
+    ///
+    ///
     #[doc(alias = "kCFNetServiceErrorUnknown")]
     pub const CFNetServiceErrorUnknown: Self = Self(-72000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrorcollision?language=objc)
+    /// An attempt was made to use a name that’s already in use.
     #[doc(alias = "kCFNetServiceErrorCollision")]
     pub const CFNetServiceErrorCollision: Self = Self(-72001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrornotfound?language=objc)
+    /// This error isn’t used.
+    ///
+    /// ## Discussion
+    ///
+    /// Not used.
+    ///
+    ///
     #[doc(alias = "kCFNetServiceErrorNotFound")]
     pub const CFNetServiceErrorNotFound: Self = Self(-72002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrorinprogress?language=objc)
+    /// A new search couldn’t be started because a search is already in progress.
     #[doc(alias = "kCFNetServiceErrorInProgress")]
     pub const CFNetServiceErrorInProgress: Self = Self(-72003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrorbadargument?language=objc)
+    /// A required argument either wasn’t provided or wasn’t valid.
     #[doc(alias = "kCFNetServiceErrorBadArgument")]
     pub const CFNetServiceErrorBadArgument: Self = Self(-72004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrorcancel?language=objc)
+    /// The search or service was canceled.
     #[doc(alias = "kCFNetServiceErrorCancel")]
     pub const CFNetServiceErrorCancel: Self = Self(-72005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrorinvalid?language=objc)
+    /// Invalid data was passed to a CFNetServices function.
     #[doc(alias = "kCFNetServiceErrorInvalid")]
     pub const CFNetServiceErrorInvalid: Self = Self(-72006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrortimeout?language=objc)
+    /// Resolution failed because the timeout was reached.
     #[doc(alias = "kCFNetServiceErrorTimeout")]
     pub const CFNetServiceErrorTimeout: Self = Self(-72007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkerrors/cfnetserviceerrordnsservicefailure?language=objc)
+    /// The DNS service discovery returned an error.
+    ///
+    /// ## Discussion
+    ///
+    /// Query the `kCFDNSServiceFailureKey` key to find out the error returned by DNS service discovery and look up the code in `/usr/include/dns_sd.h` or [DNS Service Discovery C](https://developer.apple.com/documentation/dnssd/dns-service-discovery-c).
+    ///
+    ///
     #[doc(alias = "kCFNetServiceErrorDNSServiceFailure")]
     pub const CFNetServiceErrorDNSServiceFailure: Self = Self(-73000);
 }
@@ -289,41 +391,71 @@ unsafe impl RefEncode for CFNetworkErrors {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfurlerrorfailingurlerrorkey?language=objc)
+    /// The URL that caused the load to fail as a `CFURLRef` object.
     pub static kCFURLErrorFailingURLErrorKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfurlerrorfailingurlstringerrorkey?language=objc)
+    /// The URL that caused the load to fail as a `CFStringRef` object.
     pub static kCFURLErrorFailingURLStringErrorKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfgetaddrinfofailurekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// If an error of type `kCFHostErrorUnknown` is returned, this key returns the last error code returned by getaddrinfo in response to a DNS lookup. To interpret the results, look up the error code in `/usr/include/netdb.h`.
+    ///
+    ///
     pub static kCFGetAddrInfoFailureKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfsocksstatuscodekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// When a SOCKS error occurs, querying this key returns the last status code sent by the SOCKS server in response to the previous operation.
+    ///
+    ///
     pub static kCFSOCKSStatusCodeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfsocksversionkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// If an error of type `kCFSOCKSErrorUnsupportedServerVersion` is returned, querying this key returns the SOCKS version in use by the current connection.
+    ///
+    ///
     pub static kCFSOCKSVersionKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfsocksnegotiationmethodkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// If an error of type `kCFSOCKS5ErrorUnsupportedNegotiationMethod` is returned, querying this key returns the negotiation method requested by the SOCKS server.
+    ///
+    ///
     pub static kCFSOCKSNegotiationMethodKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfdnsservicefailurekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// If an error of type `kCFNetServicesErrorDNSServiceFailure` is returned, querying this key returns the last error returned by the DNS resolver libraries in response to the previous operation. To interpret the results, look up the error codes in `/usr/include/dns_sd.h` or [DNS Service Discovery C](https://developer.apple.com/documentation/dnssd/dns-service-discovery-c).
+    ///
+    ///
     pub static kCFDNSServiceFailureKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpstatuscodekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// If an error of type `kCFFTPErrorUnexpectedStatusCode` is returned, querying this key returns the last status code sent by the FTP server in response to the previous operation.
+    ///
+    ///
     pub static kCFFTPStatusCodeKey: &'static CFString;
 }

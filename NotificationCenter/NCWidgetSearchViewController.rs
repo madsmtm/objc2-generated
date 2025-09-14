@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewcontroller?language=objc)
+    /// An object that provides a default search view within a macOS Today widget.
+    ///
+    /// ## Overview
+    ///
+    /// The `NCWidgetSearchViewController` class provides a default search view within a Today widget. A search view controller works together with its delegate to perform searches on the user’s input and display results from which a user can choose. To learn about the search view controller delegate methods, see [`NCWidgetSearchViewDelegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewdelegate).
+    ///
+    /// When a widget is in editing mode, it can enable search for new content by instantiating an `NCWidgetSearchViewController` object and presenting it using [`presentViewControllerInWidget:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/present(inwidget:)). The search view controller displays the default search field and a list of results. It uses its [`delegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewcontroller/delegate) to perform the search itself.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -171,7 +179,15 @@ impl NCWidgetSearchViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewdelegate?language=objc)
+    /// The interface for enabling user searches in the search view controller of a macOS Today widget.
+    ///
+    /// ## Overview
+    ///
+    /// The `NCWidgetSearchViewDelegate` protocol defines methods that enable user searches in the search view controller of a Today widget. The [`delegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewcontroller/delegate) of an [`NCWidgetSearchViewController`](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewcontroller) must adopt the [`NCWidgetSearchViewDelegate`](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewdelegate) protocol.
+    ///
+    /// The search view controller tells its delegate to perform a search on a user’s input and the delegate returns the results by setting the controller’s [`searchResults`](https://developer.apple.com/documentation/notificationcenter/ncwidgetsearchviewcontroller/searchresults) property. The search view controller also tells its delegate when a user clears the search field or chooses a search result, so that the delegate can prepare for a new search or dismissal.
+    ///
+    ///
     #[deprecated = "Use WidgetKit instead. Today View extensions have been deprecated."]
     pub unsafe trait NCWidgetSearchViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]

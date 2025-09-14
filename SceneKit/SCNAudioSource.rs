@@ -10,9 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The SCNAudioSource class represents an audio source that can be added to a SCNNode.
+    /// A simple, reusable audio source—music or sound effects loaded from a file—for use in positional audio playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnaudiosource?language=objc)
+    /// ## Overview
+    ///
+    /// To create positional audio effects, create an [`SCNAudioPlayer`](https://developer.apple.com/documentation/scenekit/scnaudioplayer) object from the audio source to control playback, and add that player object to an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object in your scene. SceneKit then automatically spatializes 3D audio effects based on the position of that node relative to the scene’s [`audioListener`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/audiolistener) node.
+    ///
+    ///
+    /// The SCNAudioSource class represents an audio source that can be added to a SCNNode.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAudioSource;
@@ -145,7 +150,13 @@ impl SCNAudioSource {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnaudioplayer?language=objc)
+    /// A controller for playback of a positional audio source in a SceneKit scene.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SCNAudioPlayer`](https://developer.apple.com/documentation/scenekit/scnaudioplayer) object controls playback of a positional audio source in a SceneKit scene. To use positional audio, first create a reusable [`SCNAudioSource`](https://developer.apple.com/documentation/scenekit/scnaudiosource) or [`AVAudioNode`](https://developer.apple.com/documentation/avfaudio/avaudionode) object to provide an audio stream. Then, create an audio player to control the playback of that audio source. Finally, attach the audio player to an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object for spatialized 3D audio playback based on the position of that node relative to the scene’s [`audioListener`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/audiolistener) node.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAudioPlayer;

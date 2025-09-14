@@ -8,12 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that provides metrics related to video playback quality.
     /// [SPI] An instance of AVVideoPerformanceMetrics provides current performance metrics.
     ///
     /// An instance of AVVideoPerformanceMetrics provides named properties for accessing the video playback quality metrics.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoperformancemetrics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoPerformanceMetrics;

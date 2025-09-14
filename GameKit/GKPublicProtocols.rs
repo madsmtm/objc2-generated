@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An object implements the [`GKSessionDelegate`](https://developer.apple.com/documentation/gamekit/gksessiondelegate) protocol to control the behavior of a [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) object. The delegate is called when other visible peers change their state relative to the session. It is also called to determine whether another peer is allowed to connect to the session.
     /// Callbacks to the GKSession delegate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessiondelegate?language=objc)
     #[deprecated]
     pub unsafe trait GKSessionDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKPublicConstants", feature = "GKSession"))]
@@ -64,7 +63,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatclient?language=objc)
+    /// The [`GKVoiceChatClient`](https://developer.apple.com/documentation/gamekit/gkvoicechatclient) protocol is implemented to control the behavior of the [`GKVoiceChatService`](https://developer.apple.com/documentation/gamekit/gkvoicechatservice) object. The voice chat client has a number of responsibilities:
+    ///
+    /// ## Overview
+    ///
+    /// - Provides a network connection that the voice chat service uses to send and receive configuration data with other participants. If this network connection is shared with other application data, the client must also disambiguate between chat configuration data and application data.
+    ///
+    /// - Provides a participant ID that identifies the user to remote participants in the chat.
+    ///
+    /// - Defines how a remote user’s participant ID translates into a network connection to that user.
+    ///
+    /// - Accepts or rejects requests from remote participants to join the voice chat.
+    ///
+    ///
     #[deprecated]
     pub unsafe trait GKVoiceChatClient: NSObjectProtocol {
         #[cfg(feature = "GKVoiceChatService")]

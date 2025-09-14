@@ -7,6 +7,61 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that enables you to start and stop URL requests.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API is considered legacy. Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An `NSURLConnection` object lets you load the contents of a URL by providing a URL request object. The interface for `NSURLConnection` is sparse, providing only the controls to start and cancel asynchronous loads of a URL request. You perform most of your configuration on the URL request object itself.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although instances of this class are commonly called “connections”, there is not a 1:1 correlation between these objects and the underlying network connections.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The `NSURLConnection` class provides convenience class methods to load URL requests both asynchronously using a callback block and synchronously.
+    ///
+    /// For greater control, you can create a URL connection object with a delegate object that conforms to the [`NSURLConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate) and [`NSURLConnectionDataDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate) protocols. The connection calls methods on that delegate to provide you with progress and status as the URL request is loaded asynchronously. The connection also calls delegate methods to let you override the connection’s default behavior (for example, specifying how a particular redirect should be handled). These delegate methods are called on the thread that initiated the asynchronous load operation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  During a request, the connection maintains a strong reference to its delegate. It releases that strong reference when the connection finishes loading, fails, or is canceled.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information about errors, see the `NSURLError.h` header, [Foundation Constants](https://developer.apple.com/documentation/foundation/foundation-constants), and URL Loading System Error Codes in [Error Handling Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorHandling/ErrorHandling.html#//apple_ref/doc/uid/TP40001806).
+    ///
+    /// ### NSURLConnection Protocols
+    ///
+    /// The `NSURLConnection` class works in tandem with three formal protocols: [`NSURLConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate), [`NSURLConnectionDataDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate), and [`NSURLConnectionDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate). To use these protocols, you write a class that conforms to them and implement any methods that are appropriate, then provide an instance of that class as the delegate when you create a connection object.
+    ///
+    /// The [`NSURLConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate) protocol is primarily used for credential handling, but also handles connection completion. Because it handles connection failure during data transfers, all connection delegates must typically implement this protocol.
+    ///
+    /// In addition, unless you’re using Newsstand Kit, your delegate must also conform to the [`NSURLConnectionDataDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate) protocol, because this protocol provides methods that the `NSURLConnection` class calls with progress information during an upload, with fragments of the response data during a download, and to provide a new upload body stream if the server’s response necessitates a second connection attempt—for example, if `NSURLConnection` must retry the request with different credentials.
+    ///
+    /// Finally, if you’re using Newsstand Kit, your delegate can conform to the [`NSURLConnectionDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate) protocol. This protocol provides support for continuing interrupted file downloads and receiving a notification whenever a download finishes. This protocol is solely for use with `NSURLConnection` objects created using Newsstand Kit’s `download(with:)` method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Some methods in these protocols were previously part of other formal protocols or were previously part of an informal protocol on `NSObject`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An NSURLConnection object provides support to perform
     /// asynchronous loads of a URL request, providing data to a
     /// client supplied delegate.
@@ -90,8 +145,6 @@ extern_class!(
     /// customization of resource load, and do not allow the caller to
     /// respond to, e.g., authentication challenges.
     /// <p>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLConnection;
@@ -241,6 +294,21 @@ impl DefaultRetained for NSURLConnection {
 }
 
 extern_protocol!(
+    /// A protocol that delegates of a URL connection implement to receive status about and provide feedback to the connection object.
+    ///
+    /// ## Overview
+    ///
+    /// Delegates of [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) objects should implement either the [`NSURLConnectionDataDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate) or [`NSURLConnectionDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate) protocol in addition to the [`NSURLConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate) protocol. Specifically:
+    ///
+    /// - If you are using [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) in conjunction with Newsstand Kit’s `download(with:)` method, the delegate class should implement the [`NSURLConnectionDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate) protocol.
+    ///
+    /// - Otherwise, the delegate class should implement the [`NSURLConnectionDataDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate) protocol.
+    ///
+    /// Delegates that wish to perform custom authentication handling should implement the [`connection:willSendRequestForAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:willsendrequestfor:)) method, which is the preferred mechanism for responding to authentication challenges. (See [`NSURLAuthenticationChallenge`](https://developer.apple.com/documentation/foundation/urlauthenticationchallenge) for more information on authentication challenges.) If [`connection:willSendRequestForAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:willsendrequestfor:)) is not implemented, the older, deprecated methods [`connection:canAuthenticateAgainstProtectionSpace:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:canauthenticateagainstprotectionspace:)), [`connection:didReceiveAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:didreceive:)), and [`connection:didCancelAuthenticationChallenge:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:didcancel:)) are called instead.
+    ///
+    /// The [`connection:didFailWithError:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connection(_:didfailwitherror:)) method is called at most once if an error occurs during the loading of a resource. The [`connectionShouldUseCredentialStorage:`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate/connectionshouldusecredentialstorage(_:)) method is called once, just before the loading of a resource begins.
+    ///
+    ///
     /// Delegate methods that are common to all forms of
     /// NSURLConnection.  These are all optional.  This
     /// protocol should be considered a base class for the
@@ -280,8 +348,6 @@ extern_protocol!(
     /// The older delegates will still be called for
     /// compatibility, but incur more latency in dealing
     /// with the authentication challenge.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate?language=objc)
     pub unsafe trait NSURLConnectionDelegate: NSObjectProtocol {
         #[cfg(feature = "NSError")]
         #[optional]
@@ -340,6 +406,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that most delegates of a URL connection implement to receive data associated with the connection.
+    ///
+    /// ## Overview
+    ///
+    /// The `NSURLConnectionDataDelegate` protocol describes methods that should be implemented by the delegate for an instance of the [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) class. Many methods in this protocol existed as part of an informal protocol in previous versions of macOS and iOS.
+    ///
+    /// In addition to the methods described in this protocol, an `NSURLConnection` delegate should also implement the methods described in the [`NSURLConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate) protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you are using `NSURLConnection` as part of Newsstand Kit on iOS, you should also implement the methods in the [`NSURLConnectionDownloadDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate) protocol.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Delegate methods used for loading data to memory.
     /// These delegate methods are all optional.
     ///
@@ -419,8 +502,6 @@ extern_protocol!(
     /// before the delegate is released by the
     /// connection.
     /// <p>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate?language=objc)
     pub unsafe trait NSURLConnectionDataDelegate: NSURLConnectionDelegate {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         #[optional]
@@ -488,6 +569,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that delegates of a URL connection created with Newsstand Kit implement to receive data associated with a download.
+    ///
+    /// ## Overview
+    ///
+    /// The `NSURLConnectionDownloadDelegate` protocol describes methods that should be implemented by the delegate of instances of `NSURLConnection` created using Newsstand Kit’s `download(with:)` method. The methods in this protocol provide progress information about the download of a URL asset and, when downloading concludes, provide a file URL where the downloaded file can be accessed.
+    ///
+    /// In addition to the methods described in this protocol, an `NSURLConnection` delegate should also implement the methods described in the [`NSURLConnectionDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondelegate) protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you are using `NSURLConnection` directly, your delegate class should instead implement the methods defined in the [`NSURLConnectionDataDelegate`](https://developer.apple.com/documentation/foundation/nsurlconnectiondatadelegate) protocol.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Delegate methods used to perform resource
     /// downloads directly to a disk file.  All the
     /// methods are optional with the exception of
@@ -519,8 +617,6 @@ extern_protocol!(
     /// implication is that the delegate should copy or
     /// move the download to a more persistent location if
     /// desired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlconnectiondownloaddelegate?language=objc)
     pub unsafe trait NSURLConnectionDownloadDelegate: NSURLConnectionDelegate {
         #[optional]
         #[unsafe(method(connection:didWriteData:totalBytesWritten:expectedTotalBytes:))]

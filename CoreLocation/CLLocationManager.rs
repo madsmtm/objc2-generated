@@ -7,31 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation?language=objc)
+/// Constants indicating the physical orientation of the device.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLDeviceOrientation(pub c_int);
 impl CLDeviceOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/unknown?language=objc)
+    /// The orientation is currently not known.
     #[doc(alias = "CLDeviceOrientationUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/portrait?language=objc)
+    /// The device is in portrait mode, with the device held upright and the home button at the bottom.
     #[doc(alias = "CLDeviceOrientationPortrait")]
     pub const Portrait: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/portraitupsidedown?language=objc)
+    /// The device is in portrait mode but upside down, with the device held upright and the home button at the top.
     #[doc(alias = "CLDeviceOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/landscapeleft?language=objc)
+    /// The device is in landscape mode, with the device held upright and the home button on the right side.
     #[doc(alias = "CLDeviceOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/landscaperight?language=objc)
+    /// The device is in landscape mode, with the device held upright and the home button on the left side.
     #[doc(alias = "CLDeviceOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/faceup?language=objc)
+    /// The device is held parallel to the ground with the screen facing upwards.
     #[doc(alias = "CLDeviceOrientationFaceUp")]
     pub const FaceUp: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation/facedown?language=objc)
+    /// The device is held parallel to the ground with the screen facing downwards.
     #[doc(alias = "CLDeviceOrientationFaceDown")]
     pub const FaceDown: Self = Self(6);
 }
@@ -44,28 +44,74 @@ unsafe impl RefEncode for CLDeviceOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus?language=objc)
+/// Constants that indicate the app’s authorization to use location services.
+///
+/// ## Overview
+///
+/// Handle changes to authorization status in your location manager’s delegate method, [`locationManager:didChangeAuthorizationStatus:`](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didchangeauthorization:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLAuthorizationStatus(pub c_int);
 impl CLAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/notdetermined?language=objc)
+    /// The user has not chosen whether the app can use location services.
+    ///
+    /// ## Discussion
+    ///
+    /// When the authorization status is Not Determined, request authorization causes the location manager to prompt the user for permission if the app is in the foreground. See [`requestWhenInUseAuthorization`](https://developer.apple.com/documentation/corelocation/cllocationmanager/requestwheninuseauthorization()) and [`requestAlwaysAuthorization`](https://developer.apple.com/documentation/corelocation/cllocationmanager/requestalwaysauthorization()) for more information.
+    ///
+    ///
     #[doc(alias = "kCLAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/restricted?language=objc)
+    /// The app is not authorized to use location services.
+    ///
+    /// ## Discussion
+    ///
+    /// The user cannot change this app’s status, possibly due to active restrictions such as parental controls being in place.
+    ///
+    ///
     #[doc(alias = "kCLAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/denied?language=objc)
+    /// The user denied the use of location services for the app or they are disabled globally in Settings.
+    ///
+    /// ## Discussion
+    ///
+    /// When the authorization status is denied, your app can’t use location services. The status can be denied when:
+    ///
+    /// - The user denied location permissions for your app.
+    ///
+    /// - The user turned off location services for the device in Settings.
+    ///
+    /// - Location services are unavailable because the device is in Airplane mode.
+    ///
+    /// If the user re-enables location services in Settings, your app’s authorization returns to its previous state. The status change is reported to your delegate’s [`locationManager:didChangeAuthorizationStatus:`](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/locationmanager(_:didchangeauthorization:)) method.
+    ///
+    /// You may call [`locationServicesEnabled`](https://developer.apple.com/documentation/corelocation/cllocationmanager/locationservicesenabled()) if you wish to determine whether location services are available globally on the device.
+    ///
+    ///
     #[doc(alias = "kCLAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorizedalways?language=objc)
+    /// The user authorized the app to start location services at any time.
+    ///
+    /// ## Discussion
+    ///
+    /// This authorization allows you to use all location services and receive location events whether or not your app is in use.
+    ///
+    ///
     #[doc(alias = "kCLAuthorizationStatusAuthorizedAlways")]
     pub const AuthorizedAlways: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorizedwheninuse?language=objc)
+    /// The user authorized the app to start location services while it is in use.
+    ///
+    /// ## Discussion
+    ///
+    /// This authorization allows you to use all location services and receive location events only when your app is in use. To continue using location services in the background, enable Continuous Background Location Updates and start the services while the app is in use.
+    ///
+    ///
     #[doc(alias = "kCLAuthorizationStatusAuthorizedWhenInUse")]
     pub const AuthorizedWhenInUse: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus/authorized?language=objc)
+    /// The user authorized the app to use location services.
     #[doc(alias = "kCLAuthorizationStatusAuthorized")]
     #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
     pub const Authorized: Self = Self(CLAuthorizationStatus::AuthorizedAlways.0);
@@ -79,16 +125,16 @@ unsafe impl RefEncode for CLAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/claccuracyauthorization?language=objc)
+/// Constants that indicate the level of location accuracy the app has authorization to use.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLAccuracyAuthorization(pub NSInteger);
 impl CLAccuracyAuthorization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/claccuracyauthorization/fullaccuracy?language=objc)
+    /// The user authorized the app to access location data with full accuracy.
     #[doc(alias = "CLAccuracyAuthorizationFullAccuracy")]
     pub const FullAccuracy: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/claccuracyauthorization/reducedaccuracy?language=objc)
+    /// The user authorized the app to access location data with reduced accuracy.
     #[doc(alias = "CLAccuracyAuthorizationReducedAccuracy")]
     pub const ReducedAccuracy: Self = Self(1);
 }
@@ -101,25 +147,61 @@ unsafe impl RefEncode for CLAccuracyAuthorization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype?language=objc)
+/// Constants that indicate the type of activity associated with location updates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLActivityType(pub NSInteger);
 impl CLActivityType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/other?language=objc)
+    /// The value that indicates the app is using location manager for an unspecified activity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this activity type to describe positioning in activities that aren’t covered by one of the other activity types. This includes activities without a specific user intention, for example, positioning while a user sits on a bench interacting with a device.
+    ///
+    ///
     #[doc(alias = "CLActivityTypeOther")]
     pub const Other: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/automotivenavigation?language=objc)
+    /// The value that indicates positioning in an automobile following a road network.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this activity type when your app is using the location manager specifically during a vehicular positioning session to track location changes to the automobile.
+    ///
+    /// This activity might cause the system to pause location updates when the vehicle doesn’t move for an extended period of time.
+    ///
+    ///
     #[doc(alias = "CLActivityTypeAutomotiveNavigation")]
     pub const AutomotiveNavigation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/fitness?language=objc)
+    /// The value that indicates positioning during dedicated fitness sessions, such as walking workouts, running workouts, cycling workouts, and so on.
+    ///
+    /// ## Discussion
+    ///
+    /// For other positioning sessions that aren’t workouts, use [`CLActivityTypeOtherNavigation`](https://developer.apple.com/documentation/corelocation/clactivitytype/othernavigation) or [`CLActivityTypeOther`](https://developer.apple.com/documentation/corelocation/clactivitytype/other). This activity might cause the system to pause location updates when the user doesn’t move a significant distance over a period of time.
+    ///
+    /// When [`activityType`](https://developer.apple.com/documentation/corelocation/cllocationmanager/activitytype) is [`CLActivityTypeFitness`](https://developer.apple.com/documentation/corelocation/clactivitytype/fitness), the system disables indoor positioning.
+    ///
+    ///
     #[doc(alias = "CLActivityTypeFitness")]
     pub const Fitness: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/othernavigation?language=objc)
+    /// The value that indicates positioning for activities that don’t or may not adhere to roads such as cycling, scooters, trains, boats and off-road vehicles.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this activity type to track a positioning session such as by boat, train, or for pedestrian navigation tracking that’s not tied to a road network, paths, or trails. You can also use it for positioning activities indoors and outdoors, such as walking, that isn’t tied to a dedicated fitness session.
+    ///
+    /// This activity might cause the system to pause location updates when the vehicle doesn’t move a significant distance over a period of time.
+    ///
+    ///
     #[doc(alias = "CLActivityTypeOtherNavigation")]
     pub const OtherNavigation: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clactivitytype/airborne?language=objc)
+    /// The value that indicates activities in the air.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this activity type for activities such as flying in an airplane or helicopter, paragliding, flying on a drone, skydiving, and so on. This activity also includes runway taxiing.
+    ///
+    ///
     #[doc(alias = "CLActivityTypeAirborne")]
     pub const Airborne: Self = Self(5);
 }
@@ -133,7 +215,27 @@ unsafe impl RefEncode for CLActivityType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationmanager?language=objc)
+    /// The object you use to start and stop the delivery of location-related events to your app.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object is the central place to manage your app’s location-related behaviors. Use a location-manager object to configure, start, and stop location services. You might use these services to:
+    ///
+    /// - Track large or small changes in the user’s current location with a configurable degree of accuracy.
+    ///
+    /// - Report heading changes from the onboard compass.
+    ///
+    /// - Monitor geographical regions of interest and generate events when someone enters or leaves those regions.
+    ///
+    /// - Report the range to nearby Bluetooth beacons.
+    ///
+    /// Create one or more location-manager objects in your app and use them where you need location data. After you create a location-manager object, configure it so that Core Location knows how often to report location changes. In particular, configure the [`distanceFilter`](https://developer.apple.com/documentation/corelocation/cllocationmanager/distancefilter) and [`desiredAccuracy`](https://developer.apple.com/documentation/corelocation/cllocationmanager/desiredaccuracy) properties with values that reflect your app’s needs.
+    ///
+    /// A [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object reports all location-related updates to its [`delegate`](https://developer.apple.com/documentation/corelocation/cllocationmanager/delegate) object, which is an object that conforms to the [`CLLocationManagerDelegate`](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate) protocol. Assign the delegate immediately when you configure your location manager, because the system reports the app’s authorization status to the delegate’s [`locationManagerDidChangeAuthorization:`](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/locationmanagerdidchangeauthorization(_:)) method after the location manager finishes initializing itself.  Core Location calls the methods of your delegate object using the [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) of the thread on which you initialized the [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object. That thread must itself have an active [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop), like the one found in your app’s main thread.
+    ///
+    /// For more information, see [Configuring your app to use location services](https://developer.apple.com/documentation/corelocation/configuring-your-app-to-use-location-services).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLLocationManager;

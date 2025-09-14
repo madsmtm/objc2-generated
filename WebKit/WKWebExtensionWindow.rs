@@ -9,18 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants used by [`WKWebExtensionWindow`](https://developer.apple.com/documentation/webkit/wkwebextensionwindow) to indicate the type of a window.
 /// Constants used by ``WKWebExtensionWindow`` to indicate the type of a window.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowType(pub NSInteger);
 impl WKWebExtensionWindowType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowtype/normal?language=objc)
+    /// Indicates a normal window.
     #[doc(alias = "WKWebExtensionWindowTypeNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowtype/popup?language=objc)
+    /// Indicates a pop-up window.
     #[doc(alias = "WKWebExtensionWindowTypePopup")]
     pub const Popup: Self = Self(1);
 }
@@ -33,24 +32,23 @@ unsafe impl RefEncode for WKWebExtensionWindowType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants used by [`WKWebExtensionWindow`](https://developer.apple.com/documentation/webkit/wkwebextensionwindow) to indicate possible states of a window.
 /// Constants used by ``WKWebExtensionWindow`` to indicate possible states of a window.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowState(pub NSInteger);
 impl WKWebExtensionWindowState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/normal?language=objc)
+    /// Indicates a window is in its normal state.
     #[doc(alias = "WKWebExtensionWindowStateNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/minimized?language=objc)
+    /// Indicates a window is minimized.
     #[doc(alias = "WKWebExtensionWindowStateMinimized")]
     pub const Minimized: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/maximized?language=objc)
+    /// Indicates a window is maximized.
     #[doc(alias = "WKWebExtensionWindowStateMaximized")]
     pub const Maximized: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate/fullscreen?language=objc)
+    /// Indicates a window is in full-screen mode.
     #[doc(alias = "WKWebExtensionWindowStateFullscreen")]
     pub const Fullscreen: Self = Self(3);
 }
@@ -64,9 +62,8 @@ unsafe impl RefEncode for WKWebExtensionWindowState {
 }
 
 extern_protocol!(
+    /// A protocol with methods that represent a window to web extensions.
     /// A class conforming to the ``WKWebExtensionWindow`` protocol represents a window to web extensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionwindow?language=objc)
     pub unsafe trait WKWebExtensionWindow: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKWebExtensionContext", feature = "WKWebExtensionTab"))]
         /// Called when the tabs are needed for the window.

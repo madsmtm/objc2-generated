@@ -8,7 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintent?language=objc)
+    /// A request to transfer money from the current user’s account to a different user’s account.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INSendPaymentIntent`](https://developer.apple.com/documentation/intents/insendpaymentintent) object when the current user asks to transfer money to another user. A send payment intent object includes the payment amount and the recipient of the payment. Use that information to validate the transaction and transfer the funds.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSendPaymentIntentHandling`](https://developer.apple.com/documentation/intents/insendpaymentintenthandling) protocol. Your handler should confirm the request and create an [`INSendPaymentIntentResponse`](https://developer.apple.com/documentation/intents/insendpaymentintentresponse) object with the result of sending the money to the specified user.
+    ///
+    /// This intent object represents a financial transaction between two users.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions, Shortcuts App" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// When performing a search, Siri automatically asks the user to unlock a currently locked device. You don’t need to explicitly ask to unlock the device. In addition, Siri always prompts the user to confirm the payment before asking your Intents extension to handle the transaction.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -84,11 +101,18 @@ impl INSendPaymentIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for transferring money from the current user’s account to a different user’s account.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSendPaymentIntentHandling`](https://developer.apple.com/documentation/intents/insendpaymentintenthandling) protocol to resolve, confirm, and handle requests to send money to another user of your app. Adopt this protocol in an object of your Intents extension that is capable of performing the financial transaction.
+    ///
+    /// Siri delivers an [`INSendPaymentIntent`](https://developer.apple.com/documentation/intents/insendpaymentintent) object to your handler when the user asks to send a payment using your app. The provided intent object contains the details of the payment, including the recipient, the amount to transfer, and any memos associated with the payment. Use the methods of this protocol to resolve the payment parameters and to validate that the payment is possible.
+    ///
+    ///
     /// Protocol to declare support for handling an INSendPaymentIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintenthandling?language=objc)
     pub unsafe trait INSendPaymentIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

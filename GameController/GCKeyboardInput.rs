@@ -6,6 +6,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The signature for the block that the keyboard input profile calls when a key value changes.
+///
+/// Parameters:
+/// - keyboard: The keyboard controller profile for the physical keyboard.
+///
+/// - key: The element for the key that changes.
+///
+/// - keyCode: The code for the key that changes.
+///
+/// - pressed: [`true`](https://developer.apple.com/documentation/swift/true) if the user presses the key at the time the change occurs; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
 /// Set this block if you want to be notified when a value of a key changed. If multiple keys have changed this block will be called
 /// cd  for each key that changed.
 ///
@@ -15,8 +26,6 @@ use crate::*;
 /// Parameter `key`: the key that has been modified
 ///
 /// Parameter `pressed`: the state of the key at the moment of block calling
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerButtonInput",
     feature = "GCControllerElement",
@@ -30,11 +39,16 @@ pub type GCKeyboardValueChangedHandler = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    /// A controller profile that uses the keyboard as the input device.
+    ///
+    /// ## Overview
+    ///
+    /// Use this profile to get the state of the keyboard buttons that the [`GCKeyCode`](https://developer.apple.com/documentation/gamecontroller/gckeycode) structure defines.
+    ///
+    ///
     /// Keyboard profile. Contains the current state of buttons specified in GCKeyCodes.h.
     ///
     /// GCKeyboardInput is designed primarly for input polling. For the best text input experience, UIKit/AppKit usage is recommended.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboardinput?language=objc)
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

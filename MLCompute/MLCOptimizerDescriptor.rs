@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration object you use to create an optimizer.
     /// The MLCOptimizerDescriptor specifies an optimizer descriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcoptimizerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -7,6 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract base class for controls that interact with the camera system.
+    ///
+    /// ## Overview
+    ///
+    /// Capture controls provide the interface for interacting with the camera system from the Camera Control button on iPhone 16 devices. The framework provides several concrete subclasses of this class that allow apps to access built-in functionality and define custom controls.
+    ///
+    ///
     /// AVCaptureControl is an abstract class that defines an interface for a unique type of control which allows deep integration with the camera system through AVCaptureSession.
     ///
     ///
@@ -15,8 +22,6 @@ extern_class!(
     /// Controls may be added to an `AVCaptureSession` using `-[AVCaptureSession addControl:]`.
     ///
     /// For controls that use symbols to represent them, only SF Symbols may be used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecontrol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureControl;

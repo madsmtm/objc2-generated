@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationmarkup?language=objc)
+    /// A `PDFAnnotationMarkup` object appears as highlighting, underlining, or a strikethrough style applied to the text of a document.
+    ///
+    /// ## Overview
+    ///
+    /// The [`lineWidth`](https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth) and [`style`](https://developer.apple.com/documentation/pdfkit/pdfborder/style) properties of the annotation’s associated `PDFBorder` object determines the stroke thickness and style. The [`color`](https://developer.apple.com/documentation/pdfkit/pdfannotation/color) property of the `PDFAnnotation` class determines the stroke color.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

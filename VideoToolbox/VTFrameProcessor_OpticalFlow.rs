@@ -8,9 +8,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Configuration value you set to prioritize quality or performance.
+/// Values that specify whether to prioritize quality or performance.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/qualityprioritization-swift.enum?language=objc)
+/// ## Overview
+///
+/// See VEFrameRateConversionConfigurationQualityPrioritization for more info.
+///
+///
+/// Configuration value you set to prioritize quality or performance.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -18,10 +23,10 @@ use crate::*;
 pub struct VTOpticalFlowConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowConfigurationQualityPrioritization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/qualityprioritization-swift.enum/normal?language=objc)
+    /// A normal quality prioritization level.
     #[doc(alias = "VTOpticalFlowConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/qualityprioritization-swift.enum/quality?language=objc)
+    /// A quality prioritization level.
     #[doc(alias = "VTOpticalFlowConfigurationQualityPrioritizationQuality")]
     pub const Quality: Self = Self(2);
 }
@@ -36,12 +41,11 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationQualityPrioritization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The specific algorithm or configuration revision that is to be used to perform the request.
 /// Available algorithm revisions.
 ///
 /// A new enum case with higher revision number is added when the processing algorithm is updated.
 /// The ``VTOpticalFlowConfiguration/defaultRevision`` property provides the default algorithm revision.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -49,7 +53,7 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationQualityPrioritization {
 pub struct VTOpticalFlowConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowConfigurationRevision {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration/revision-swift.enum/revision1?language=objc)
+    /// An algorithm or implementation that represents the first revision.
     #[doc(alias = "VTOpticalFlowConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -64,6 +68,7 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value describing the processing request in a parameters submission object.
 /// Indicates the order of input frames.
 ///
 /// When submitting ``VTOpticalFlowParameters`` to the processor, you need to provide one of these values based on how
@@ -76,8 +81,6 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationRevision {
 /// Use ``VTOpticalFlowParametersSubmissionModeRandom`` to indicate that the current submission has no relation to the
 /// previous submission. Typically, this indicates a jump or a skip in the frame sequence. The processor clears internal
 /// caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -85,10 +88,22 @@ unsafe impl RefEncode for VTOpticalFlowConfigurationRevision {
 pub struct VTOpticalFlowParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTOpticalFlowParametersSubmissionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters/submissionmode-swift.enum/random?language=objc)
+    /// A submission follow presentation time order with a jump or skip in a frame sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// If this value is set, the internal cache will be cleared during the processWithParameters call.
+    ///
+    ///
     #[doc(alias = "VTOpticalFlowParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters/submissionmode-swift.enum/sequential?language=objc)
+    /// A submission follow presentation time order without a jump or skip when compared to a previous submission.
+    ///
+    /// ## Discussion
+    ///
+    /// This submission mode will yield a better performance.
+    ///
+    ///
     #[doc(alias = "VTOpticalFlowParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
 }
@@ -105,11 +120,10 @@ unsafe impl RefEncode for VTOpticalFlowParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration object that enables optical flow on a frame processing session.
     /// Configuration that you use to set up an optical flow processor
     ///
     /// This configuration enables the optical flow on a `VTFrameProcessor` session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -282,13 +296,12 @@ impl VTOpticalFlowConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that describes frame-level optical flow parameters.
     /// An object that contains both input and output parameters the frame processor needs to generate optical flow between two frames.
     ///
     /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class. The output parameter for this class is `destinationOpticalFlow` where the processor returns the output flow (as mutable `VTFrameProcessorOpticalFlow`) back to you once the `processWithParameters` completes.
     ///
     /// `VTOpticalFlowParameters` are frame-level parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtopticalflowparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

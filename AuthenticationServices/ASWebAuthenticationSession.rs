@@ -8,10 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrordomain?language=objc)
+    /// The error domain for a web authentication session.
     pub static ASWebAuthenticationSessionErrorDomain: &'static NSErrorDomain;
 }
 
+/// The error code for a web authentication session error.
 /// Error code of the NSError object passed in by ASWebAuthenticationSessionCompletionHandler.
 ///
 /// alert asking for permission to log in to this app, or by dismissing the view controller for loading the
@@ -20,20 +21,18 @@ extern "C" {
 /// was not found when -start was called. Ensure this property was not nil when -start was called.
 ///
 /// was not elligible to show the authentication UI. For iOS, validate that the UIWindow is in a foreground scene.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASWebAuthenticationSessionErrorCode(pub NSInteger);
 impl ASWebAuthenticationSessionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code/canceledlogin?language=objc)
+    /// The login has been canceled.
     #[doc(alias = "ASWebAuthenticationSessionErrorCodeCanceledLogin")]
     pub const CanceledLogin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code/presentationcontextnotprovided?language=objc)
+    /// A context wasn’t provided.
     #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextNotProvided")]
     pub const PresentationContextNotProvided: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code/presentationcontextinvalid?language=objc)
+    /// The context was invalid.
     #[doc(alias = "ASWebAuthenticationSessionErrorCodePresentationContextInvalid")]
     pub const PresentationContextInvalid: Self = Self(3);
 }
@@ -46,12 +45,23 @@ unsafe impl RefEncode for ASWebAuthenticationSessionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/completionhandler?language=objc)
+/// A completion handler for the web authentication session.
 #[cfg(feature = "block2")]
 pub type ASWebAuthenticationSessionCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>;
 
 extern_class!(
+    /// A session that an app uses to authenticate a user through a web service.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`ASWebAuthenticationSession`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession) instance to authenticate a user through a web service, including one run by a third party. Initialize the session with a URL that points to the authentication webpage. When the user starts the authentication session, the operating system shows a modal view telling them which domain the app is authenticating with and asking whether to proceed. If the user proceeds with the authentication attempt, a browser loads and displays the page, from which the user can authenticate. In iOS, the browser is a secure, embedded web view. In macOS, the system opens the user’s default browser if it supports web authentication sessions, or Safari otherwise.
+    ///
+    /// On completion, the service sends a callback URL to the session with an authentication token. The session passes this URL back to the app through a completion handler. [`ASWebAuthenticationSession`](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession) ensures that only the calling app’s session receives the authentication callback, even when more than one app registers the same callback URL scheme.
+    ///
+    /// For more details, see [Authenticating a User Through a Web Service](https://developer.apple.com/documentation/authenticationservices/authenticating-a-user-through-a-web-service).
+    ///
+    ///
     /// An ASWebAuthenticationSession object can be used to authenticate a user with a web service, even if the web service is run
     /// by a third party. ASWebAuthenticationSession puts the user in control of whether they want to use their existing logged-in
     /// session from Safari. The app provides a URL that points to the authentication webpage. The page will be loaded in a secure
@@ -72,8 +82,6 @@ extern_class!(
     ///
     /// The app can cancel the session by calling -[ASWebAuthenticationSession cancel]. This will also dismiss the view controller that
     /// is showing the web service's login page.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSession;
@@ -207,9 +215,8 @@ impl ASWebAuthenticationSession {
 }
 
 extern_protocol!(
+    /// An interface the session uses to ask a delegate for a presentation context.
     /// Provides context to target where in an application's UI the authorization view should be shown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationpresentationcontextproviding?language=objc)
     pub unsafe trait ASWebAuthenticationPresentationContextProviding:
         NSObjectProtocol + MainThreadOnly
     {

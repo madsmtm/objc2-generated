@@ -9,12 +9,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An instance of this class represents an RFCOMM channel as defined by the Bluetooth SDP spec..
+    ///
+    /// ## Overview
+    ///
+    /// An RFCOMM channel object can be obtained by opening an RFCOMM channel in a device, or by requesting a notification when a channel is created (this is commonly used to provide services).
+    ///
+    ///
     /// An instance of this class represents an rfcomm channel as defined by the Bluetooth SDP spec..
     ///
     /// An RFCOMM channel object can be obtained by opening an rfcomm channel in a device, or
     /// by requesting a notification when a channel is created (this is commonly used to provide services).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchannel?language=objc)
     #[unsafe(super(IOBluetoothObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOBluetoothObject")]
@@ -460,7 +465,6 @@ impl IOBluetoothRFCOMMChannel {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchanneldelegate?language=objc)
     pub unsafe trait IOBluetoothRFCOMMChannelDelegate {
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety

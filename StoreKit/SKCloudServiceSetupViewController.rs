@@ -10,20 +10,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey?language=objc)
+/// Keys to specify the types of setup options for a cloud service.
 // NS_TYPED_ENUM
 pub type SKCloudServiceSetupOptionsKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupaction?language=objc)
+/// A string used to specify the type of setup action to offer for a cloud service.
 // NS_TYPED_ENUM
 pub type SKCloudServiceSetupAction = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier?language=objc)
+/// Identifiers for the available messages the setup view can present to the user.
 // NS_TYPED_ENUM
 pub type SKCloudServiceSetupMessageIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupviewcontroller?language=objc)
+    /// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
+    ///
+    /// ## Overview
+    ///
+    /// Use the view that this view controller presents to allow customers to set up cloud services that are associated with their iTunes Store account, like an Apple Music subscription.
+    ///
+    /// To enable the Apple Music subscriber setup flow in particular, you first request the current set of capabilities from [`SKCloudServiceController`](https://developer.apple.com/documentation/storekit/skcloudservicecontroller). Then, present the setup view controller only when the [`SKCloudServiceCapabilityMusicCatalogSubscriptionEligible`](https://developer.apple.com/documentation/storekit/skcloudservicecapability/musiccatalogsubscriptioneligible) capability is enabled and the [`SKCloudServiceCapabilityMusicCatalogPlayback`](https://developer.apple.com/documentation/storekit/skcloudservicecapability/musiccatalogplayback) capability is disabled.
+    ///
+    /// For information about other capabilities that you can enable by using this view controller, see [`SKCloudServiceCapability`](https://developer.apple.com/documentation/storekit/skcloudservicecapability).
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -151,7 +161,7 @@ impl SKCloudServiceSetupViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupviewcontrollerdelegate?language=objc)
+    /// A protocol that defines the methods a cloud service setup view controller can use to get the status of the view, including when it is dismissed.
     #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
     pub unsafe trait SKCloudServiceSetupViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
@@ -169,77 +179,84 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// A key that specifies the action for a setup entry point.
     /// Action for setup entry point (of type SKCloudServiceSetupAction).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey/action?language=objc)
     #[deprecated = "Use the action property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
-    /// Identifier of the iTunes Store item the user is trying to access which requires cloud service setup (NSNumber).
+    /// A key that specifies the iTunes Store item that the user is trying to access through the service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey/itunesitemidentifier?language=objc)
+    /// ## Discussion
+    ///
+    /// The only iTunes Store items that are supported are song, video, playlist, and album.
+    ///
+    ///
+    /// Identifier of the iTunes Store item the user is trying to access which requires cloud service setup (NSNumber).
     #[deprecated = "Use the itemID property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsITunesItemIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// A key that specifies the iTunes Store affiliate token.
     /// iTunes Store affiliate token (NSString).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey/affiliatetoken?language=objc)
     #[deprecated = "Use the affiliateToken property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// A key that specifies the iTunes Store affiliate campaign token.
     /// iTunes Store affiliate campaign token (NSString).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey/campaigntoken?language=objc)
     #[deprecated = "Use the campaignToken property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
+    /// A key that is used to select the main message presented to the user for this setup view.
+    ///
+    /// ## Discussion
+    ///
+    /// If this key is missing, the setup view is configured as if it is using the [`SKCloudServiceSetupMessageIdentifierJoin`](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier/join) key by default.
+    ///
+    ///
     /// Identifier used to select the main message presented to the user for this setup view (SKCloudServiceSetupMessageIdentifier).
     /// When missing, the setup view will be configured in a way that is equivalent to using SKCloudServiceSetupMessageIdentifierJoin.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionskey/messageidentifier?language=objc)
     #[deprecated = "Use the messageIdentifier property of MusicSubscriptionOffer.Options from MusicKit"]
     pub static SKCloudServiceSetupOptionsMessageIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupaction/subscribe?language=objc)
+    /// A subscribe action in a cloud service setup view, such as an offer to subscribe to Apple Music.
     #[deprecated = "Use MusicSubscriptionOffer.Action.subscribe from MusicKit"]
     pub static SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier/join?language=objc)
+    /// Message identifier for joining.
     #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.join from MusicKit"]
     pub static SKCloudServiceSetupMessageIdentifierJoin:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier/connect?language=objc)
+    /// Message identifier for connecting.
     #[deprecated = "No longer supported"]
     pub static SKCloudServiceSetupMessageIdentifierConnect:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier/addmusic?language=objc)
+    /// Message identifier for adding music.
     #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.addMusic from MusicKit"]
     pub static SKCloudServiceSetupMessageIdentifierAddMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifier/playmusic?language=objc)
+    /// Message identifier for playing music.
     #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.playMusic from MusicKit"]
     pub static SKCloudServiceSetupMessageIdentifierPlayMusic:
         &'static SKCloudServiceSetupMessageIdentifier;

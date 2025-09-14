@@ -7,15 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The type used to identify a Bluetooth accessory provider.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asbluetoothcompanyidentifier?language=objc)
+/// The type used to identify a Bluetooth accessory provider.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASBluetoothCompanyIdentifier = u16;
 
 extern_class!(
     /// A type that specifies how to filter a property against a given string and comparison options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspropertycomparestring?language=objc)
+    /// A type that specifies how to filter a property against a given string and comparison options.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPropertyCompareString;

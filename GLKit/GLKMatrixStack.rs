@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstack?language=objc)
+/// An opaque type that represents a stack of 4 x 4 matrices, providing support for hierarchical transform modeling and similar tasks.
 #[doc(alias = "GLKMatrixStackRef")]
 #[repr(C)]
 pub struct GLKMatrixStack {
@@ -27,7 +27,25 @@ cf_objc2_type!(
 );
 
 impl GLKMatrixStack {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackcreate(_:)?language=objc)
+    /// Allocates and returns a new matrix stack.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate the matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new matrix stack, or `NULL` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A matrix stack is a Core Foundation type. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    /// A matrix stack is initialized with a single identity matrix on the top of the stack.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -43,7 +61,13 @@ impl GLKMatrixStack {
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for GLKMatrixStack {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgettypeid()?language=objc)
+    /// Returns the Core Foundation type for a matrix stack.
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Foundation Type.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -55,7 +79,11 @@ unsafe impl ConcreteType for GLKMatrixStack {
 }
 
 impl GLKMatrixStack {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackpush(_:)?language=objc)
+    /// Push a copy of the topmost matrix onto the top of the stack.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
     #[doc(alias = "GLKMatrixStackPush")]
     #[inline]
     pub unsafe fn push(&self) {
@@ -65,7 +93,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackPush(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackpop(_:)?language=objc)
+    /// Removes the topmost entry from the stack.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does nothing if the stack is already empty.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackPop")]
     #[inline]
     pub unsafe fn pop(&self) {
@@ -75,7 +113,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackPop(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacksize(_:)?language=objc)
+    /// Returns the number of matrices present on the matrix stack.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of matrices stored on the stack.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackSize")]
     #[inline]
     pub unsafe fn size(&self) -> c_int {
@@ -85,7 +133,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackSize(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackloadmatrix4(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a new matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - matrix: The matrix whose contents should be loaded onto the stack.
+    ///
     #[doc(alias = "GLKMatrixStackLoadMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -96,7 +150,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackLoadMatrix4(self, matrix) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix4(_:)?language=objc)
+    /// Returns a copy of the top matrix on the stack.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The top matrix.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -107,7 +171,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix4(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix3(_:)?language=objc)
+    /// Returns the top-left `3x3` corner of the top matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `3x3` matrix created by taking the top left corner of the top matrix.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -118,7 +192,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix3(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix2(_:)?language=objc)
+    /// Returns the top-left `2x2` corner of the top matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `2x2` matrix created by taking the top-left corner of the top matrix.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix2")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -129,7 +213,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix2(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix4inverse(_:)?language=objc)
+    /// Returns the inverse of the top matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The top matrix’s inverse.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix4Inverse")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -140,7 +234,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix4Inverse(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix4inversetranspose(_:)?language=objc)
+    /// Returns the inverse transpose of the top matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The top matrix’s inverse transpose.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix4InverseTranspose")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -151,7 +255,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix4InverseTranspose(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix3inverse(_:)?language=objc)
+    /// Fetches the top-left `3x3` corner of the top matrix and returns its inverse.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `3x3` matrix created by taking the top left corner of the top matrix and returning its inverse.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix3Inverse")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -162,7 +276,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix3Inverse(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackgetmatrix3inversetranspose(_:)?language=objc)
+    /// Fetches the top-left `3x3` corner of the top matrix and returns its inverse transpose.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `3x3` matrix created by taking the top-left corner of the top matrix and returning its inverse transpose.
+    ///
+    ///
     #[doc(alias = "GLKMatrixStackGetMatrix3InverseTranspose")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -173,7 +297,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackGetMatrix3InverseTranspose(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackmultiplymatrix4(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by multiplying the contents of the top matrix by another matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - matrix: The matrix multiplicand.
+    ///
     #[doc(alias = "GLKMatrixStackMultiplyMatrix4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -184,7 +314,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackMultiplyMatrix4(self, matrix) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackmultiplymatrixstack(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by multiplying the contents of the top matrix by the top matrix of another matrix stack.
+    ///
+    /// Parameters:
+    /// - stackLeft: A matrix stack to modify.
+    ///
+    /// - stackRight: A matrix stack whose top matrix is to be used as the multiplicand.
+    ///
     #[doc(alias = "GLKMatrixStackMultiplyMatrixStack")]
     #[inline]
     pub unsafe fn multiply_matrix_stack(&self, stack_right: &GLKMatrixStack) {
@@ -197,7 +333,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackMultiplyMatrixStack(self, stack_right) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacktranslate(_:_:_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a translation operation.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - tx: The amount to translate the position along the `x`-axis.
+    ///
+    /// - ty: The amount to translate the position along the `y`-axis.
+    ///
+    /// - tz: The amount to translate the position along the `z`-axis.
+    ///
     #[doc(alias = "GLKMatrixStackTranslate")]
     #[inline]
     pub unsafe fn translate(&self, tx: c_float, ty: c_float, tz: c_float) {
@@ -212,7 +358,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackTranslate(self, tx, ty, tz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacktranslatewithvector3(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a translation defined by a vector.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - translationVector: A vector whose `x`,`y` and `z` components are used to translate the matrix.
+    ///
     #[doc(alias = "GLKMatrixStackTranslateWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -226,7 +378,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackTranslateWithVector3(self, translation_vector) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstacktranslatewithvector4(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a translation defined by a vector.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - translationVector: A vector whose `x`,`y` and `z` components are used to translate the matrix.
+    ///
     #[doc(alias = "GLKMatrixStackTranslateWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -240,7 +398,17 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackTranslateWithVector4(self, translation_vector) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackscale(_:_:_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by scaling the contents of the top matrix.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - sx: The scaling factor used to modify the `x` components.
+    ///
+    /// - sy: The scaling factor used to modify the `y` components.
+    ///
+    /// - sz: The scaling factor used to modify the `z` components.
+    ///
     #[doc(alias = "GLKMatrixStackScale")]
     #[inline]
     pub unsafe fn scale(&self, sx: c_float, sy: c_float, sz: c_float) {
@@ -250,7 +418,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackScale(self, sx, sy, sz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackscalewithvector3(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a scaling operation.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - scaleVector: A vector whose `x`,`y` and `z` components are used to scale the matrix.
+    ///
     #[doc(alias = "GLKMatrixStackScaleWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -261,7 +435,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackScaleWithVector3(self, scale_vector) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackscalewithvector4(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a scaling operation defined by a vector.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - scaleVector: A vector whose `x`,`y` and `z` components are used to scale the matrix.
+    ///
     #[doc(alias = "GLKMatrixStackScaleWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -272,7 +452,19 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackScaleWithVector4(self, scale_vector) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotate(_:_:_:_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around an arbitrary axis.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - radians: The angle of the rotation (a positive angle is counterclockwise).
+    ///
+    /// - x: The `x` coordinate of the rotation axis.
+    ///
+    /// - y: The `y` coordinate of the rotation axis.
+    ///
+    /// - z: The `z` coordinate of the rotation axis.
+    ///
     #[doc(alias = "GLKMatrixStackRotate")]
     #[inline]
     pub unsafe fn rotate(&self, radians: c_float, x: c_float, y: c_float, z: c_float) {
@@ -288,7 +480,15 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotate(self, radians, x, y, z) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatewithvector3(_:_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around an arbitrary axis.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - radians: The angle of the rotation (a positive angle is counterclockwise).
+    ///
+    /// - axisVector: A vector whose `x`,`y` and `z` coordinates are used as the axis of rotation.
+    ///
     #[doc(alias = "GLKMatrixStackRotateWithVector3")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -303,7 +503,15 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateWithVector3(self, radians, axis_vector) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatewithvector4(_:_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around an arbitrary axis.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - radians: The angle of the rotation (a positive angle is counterclockwise).
+    ///
+    /// - axisVector: A vector whose `x`,`y` and `z` coordinates are used as the axis of rotation.
+    ///
     #[doc(alias = "GLKMatrixStackRotateWithVector4")]
     #[cfg(feature = "GLKMathTypes")]
     #[inline]
@@ -318,7 +526,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateWithVector4(self, radians, axis_vector) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatex(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around the positive-x axis.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - radians: The angle of the rotation (a positive angle is counterclockwise).
+    ///
     #[doc(alias = "GLKMatrixStackRotateX")]
     #[inline]
     pub unsafe fn rotate_x(&self, radians: c_float) {
@@ -328,7 +542,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateX(self, radians) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatey(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around the positive-y axis.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - radians: The angle of the rotation (a positive angle is counterclockwise).
+    ///
     #[doc(alias = "GLKMatrixStackRotateY")]
     #[inline]
     pub unsafe fn rotate_y(&self, radians: c_float) {
@@ -338,7 +558,13 @@ impl GLKMatrixStack {
         unsafe { GLKMatrixStackRotateY(self, radians) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrixstackrotatez(_:_:)?language=objc)
+    /// Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around the positive-z axis.
+    ///
+    /// Parameters:
+    /// - stack: A matrix stack.
+    ///
+    /// - radians: The angle of the rotation (a positive angle is counterclockwise).
+    ///
     #[doc(alias = "GLKMatrixStackRotateZ")]
     #[inline]
     pub unsafe fn rotate_z(&self, radians: c_float) {

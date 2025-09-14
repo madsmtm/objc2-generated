@@ -10,7 +10,52 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundconfiguration-c.class?language=objc)
+    /// A configuration that describes a specific background appearance.
+    ///
+    /// ## Overview
+    ///
+    /// Background configurations provide a lightweight way for you to create backgrounds for your views. Using a background configuration, you can obtain system default background styling for a variety of different view states. You apply background configurations directly to [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton) or to cells, headers, and footers in [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) and [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview).
+    ///
+    /// To use a background configuration:
+    ///
+    /// 1. Create a background configuration with one of the default system styles.
+    ///
+    /// 2. Modify the configuration to match your view’s style if you need additional customization.
+    ///
+    /// 3. Set the view’s current background configuration to your configuration.
+    ///
+    /// ```objc
+    /// UIBackgroundConfiguration *backgroundConfig = [UIBackgroundConfiguration listPlainCellConfiguration];
+    ///
+    /// // Set a nil background color to use the view's tint color.
+    /// [backgroundConfig setBackgroundColor:nil];
+    ///
+    /// [cell setBackgroundConfiguration:backgroundConfig];
+    /// ```
+    ///
+    /// You can also start by creating an empty background configuration using `clearConfiguration`, which produces a transparent background.
+    ///
+    /// Each of the system background styles provides system default values for different configuration states ([`UIConfigurationState`](https://developer.apple.com/documentation/uikit/uiconfigurationstate-8d7pd)). If you apply a background configuration to a view whose [`automaticallyUpdatesBackgroundConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/automaticallyupdatesbackgroundconfiguration) property is [`true`](https://developer.apple.com/documentation/swift/true), the system automatically updates the background configuration when the view’s state changes.
+    ///
+    /// If you want additional customization beyond the system default values, you can choose to manually update the background configuration by overriding the view’s `updateConfigurationUsingState` method.
+    ///
+    /// ```objc
+    /// - (void)updateConfigurationUsingState:(UICellConfigurationState *)state {
+    ///     // Get the system default background configuration for a plain style list cell in the current state.
+    ///     UIBackgroundConfiguration *backgroundConfig = [[UIBackgroundConfiguration listPlainCellConfiguration] updatedConfigurationForState:state];
+    ///     
+    ///     if (state.isHighlighted || state.isSelected) {
+    ///         [backgroundConfig setBackgroundColor:nil];
+    ///     }
+    ///     
+    ///     // Apply the background configuration to the cell.
+    ///     [self setBackgroundConfiguration:backgroundConfig];
+    /// }
+    /// ```
+    ///
+    /// When you apply a configuration to a view, UIKit performs the actual drawing and rendering of the background. When you use background configurations instead of rendering your own backgrounds, the system provides automatic view hierarchy management, support for interactive and interruptible animations and transitions, and performance optimizations.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

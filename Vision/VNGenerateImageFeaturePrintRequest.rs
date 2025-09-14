@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-based request to generate feature prints from an image.
+    ///
+    /// ## Overview
+    ///
+    /// This request returns the feature print data it generates as an array of [`VNFeaturePrintObservation`](https://developer.apple.com/documentation/vision/vnfeatureprintobservation) objects.
+    ///
+    ///
     /// A request for generating a feature print of an image.
     ///
     ///
     /// This request will produce a `VNFeaturePrintObservation` object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -101,12 +106,24 @@ impl VNGenerateImageFeaturePrintRequest {
     );
 }
 
-/// The feature print produced by the `VNClassifyImageRequestRevision1` classifier.
+/// A constant for specifying the first revision of the feature-print request.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision1?language=objc)
+/// ## Discussion
+///
+/// The revision number is a constant that you pass on a per-request basis to indicate to the Vision framework which version of the feature print algorithm to use for that request. Each OS release in which the framework improves aspects of the algorithm (recognition speed, accuracy, number of languages supported, and so forth), the revision number increments by 1.
+///
+/// By default, recognition requests use the latest—the highest—revision number for the SDK that your app links against. If you don’t recompile your app against a newer SDK, your app binary uses the revision that was the default at the time you last compiled it. If you do recompile, your app uses the default of the new SDK.
+///
+/// If your app must support users on older OS versions that don’t have access to the latest Vision framework, you may want to specify an earlier revision. For example, your algorithm may depend on specific behavior from a Vision request, such as writing your image processing algorithm to assume the size or aspect ratio of bounding boxes from an older revision of the face detector. In such a scenario, you can support earlier versions of the algorithm by specifying lower numbers:
+///
+/// ```swift
+/// visionRequest.revision = VNGenerateImageFeaturePrintRequestRevision1
+/// ```
+///
+///
+/// The feature print produced by the `VNClassifyImageRequestRevision1` classifier.
 pub static VNGenerateImageFeaturePrintRequestRevision1: NSUInteger = 1;
 
+/// A value that indicates the second revision for a feature-print request.
 /// The feature print produced by the `VNClassifyImageRequestRevision2` classifier.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequestrevision2?language=objc)
 pub static VNGenerateImageFeaturePrintRequestRevision2: NSUInteger = 2;

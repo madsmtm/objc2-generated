@@ -8,20 +8,16 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSMatrixRandomDistribution(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSMatrixRandomDistribution: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/default?language=objc)
         #[doc(alias = "MPSMatrixRandomDistributionDefault")]
         const Default = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/uniform?language=objc)
         #[doc(alias = "MPSMatrixRandomDistributionUniform")]
         const Uniform = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistribution/normal?language=objc)
         #[doc(alias = "MPSMatrixRandomDistributionNormal")]
         const Normal = 3;
     }
@@ -39,8 +35,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework
     ///
     /// Decribes properties of a distribution of random values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomdistributiondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSMatrixRandomDistributionDescriptor;
@@ -184,8 +178,6 @@ impl MPSMatrixRandomDistributionDescriptor {
 
 extern_class!(
     /// Kernels that implement random number generation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandom?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -362,8 +354,6 @@ extern_class!(
     /// suitable for GPU execution.  It uses a period of 2**11214.
     /// For further details see:
     /// Mutsuo Saito. A Variant of Mersenne Twister Suitable for Graphic Processors. arXiv:1005.4973
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandommtgp32?language=objc)
     #[unsafe(super(MPSMatrixRandom, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -512,8 +502,6 @@ extern_class!(
     /// Generates random numbers using a counter based algorithm.
     /// For further details see:
     /// John K. Salmon, Mark A. Moraes, Ron O. Dror, and David E. Shaw. Parallel Random Numbers: As Easy as 1, 2, 3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixrandomphilox?language=objc)
     #[unsafe(super(MPSMatrixRandom, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailablealignment?language=objc)
+/// Defines the alignment of views in a content-unavailable view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContentUnavailableAlignment(pub NSInteger);
 impl UIContentUnavailableAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailablealignment/uicontentunavailablealignmentcenter?language=objc)
+    /// Views with centered alignment.
     #[doc(alias = "UIContentUnavailableAlignmentCenter")]
     pub const Center: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailablealignment/uicontentunavailablealignmentnatural?language=objc)
+    /// The default alignment for the current locale.
     #[doc(alias = "UIContentUnavailableAlignmentNatural")]
     pub const Natural: Self = Self(1);
 }
@@ -32,7 +32,23 @@ unsafe impl RefEncode for UIContentUnavailableAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration-c.class?language=objc)
+    /// A content configuration for a content-unavailable view.
+    ///
+    /// ## Overview
+    ///
+    /// A content-unavailable configuration is a composable description of a view that indicates that your app can’t display content. Using a content-unavailable configuration, you can obtain system default styling for a variety of different empty states. Fill the configuration with placeholder content, and then assign it to a view controller’s [`contentUnavailableConfiguration`](https://developer.apple.com/documentation/uikit/uiviewcontroller/contentunavailableconfiguration-6kqfk), or to a [`UIContentUnavailableView`](https://developer.apple.com/documentation/uikit/uicontentunavailableview).
+    ///
+    /// The following screenshot shows an example of a content-unavailable view configured by setting the [`image`](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration-c.class/image), [`text`](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration-c.class/text), and [`secondaryText`](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration-c.class/secondarytext) properties.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0a22c2dcb912b85f8354246901bd39f0/uicontentunavailableconfiguration~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e180a04649bca008fc44d2d51fe69894/uicontentunavailableconfiguration%402x.png 2x" />
+    ///     <img alt="A screenshot of a content-unavailable view indicating that there are no reminders in the Work folder." src="https://docs-assets.developer.apple.com/published/e180a04649bca008fc44d2d51fe69894/uicontentunavailableconfiguration%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract base class for the principal class of a Message Filter app extension.
     /// Parent class for a MessageFilter extension's principal class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilterextension?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterExtension;

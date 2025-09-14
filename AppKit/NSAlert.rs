@@ -7,32 +7,60 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// The alert styles used by the `alertStyle` property on instances of `NSAlert`.
+/// The set of alert styles to style alerts in your app.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style?language=objc)
+/// ## Overview
+///
+/// Currently, there’s no visual difference between informational and warning alerts. You should only use the critical (or “caution”) alert style if warranted. For design guidance on alert styles, see [Human Interface Guidelines > Alerts](https://developer.apple.com/design/human-interface-guidelines/alerts#macOS). The default alert style is [`NSAlertStyleWarning`](https://developer.apple.com/documentation/appkit/nsalert/style/warning).
+///
+///
+/// The alert styles used by the `alertStyle` property on instances of `NSAlert`.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAlertStyle(pub NSUInteger);
 impl NSAlertStyle {
+    /// An alert style to warn someone about a current or impending event.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style of alert when the alert’s content is more severe than [`NSAlertStyleInformational`](https://developer.apple.com/documentation/appkit/nsalert/style/informational) but less severe than [`NSAlertStyleCritical`](https://developer.apple.com/documentation/appkit/nsalert/style/critical). This is the default alert style.
+    ///
+    ///
     /// An alert style to be used to warn the user about a current or impending event.
     /// This style should be used when the alert’s content is more severe than `NSAlertStyleInformational` but less than `NSAlertStyleCritical`.
     /// This is the default alert style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style/warning?language=objc)
     #[doc(alias = "NSAlertStyleWarning")]
     pub const Warning: Self = Self(0);
+    /// An alert style to inform someone about a current or impending event.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style of alert when the alert’s content is less severe than [`NSAlertStyleWarning`](https://developer.apple.com/documentation/appkit/nsalert/style/warning).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This alert style has the same visual appearance as [`NSAlertStyleWarning`](https://developer.apple.com/documentation/appkit/nsalert/style/warning).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An alert style to be used to inform the user about a current or impending event.
     /// - Note: Currently, there is no visual difference between informational and warning alerts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style/informational?language=objc)
     #[doc(alias = "NSAlertStyleInformational")]
     pub const Informational: Self = Self(1);
+    /// An alert style to inform someone about a critical event.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this alert style sparingly and only when extra attention is really needed (for example when confirming an action that may result in the unexpected loss of data).
+    ///
+    ///
     /// An alert style to be used to inform the user about a critical event.
     /// Causes the alert’s icon to be badged with a caution icon.
     /// The critical (or “caution”) style should be used sparingly. Using it too frequently diminishes its significance. Use the symbol only when extra attention is really needed, as when confirming an action that might result in unexpected loss of data. Don’t use the symbol for tasks whose only purpose is to overwrite or remove data, such as a save or empty trash.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style/critical?language=objc)
     #[doc(alias = "NSAlertStyleCritical")]
     pub const Critical: Self = Self(2);
 }
@@ -45,23 +73,60 @@ unsafe impl RefEncode for NSAlertStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/alertfirstbuttonreturn?language=objc)
+/// The user clicked the first (rightmost) button on the dialog or sheet.
 #[cfg(feature = "NSApplication")]
 pub static NSAlertFirstButtonReturn: NSModalResponse = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/alertsecondbuttonreturn?language=objc)
+/// The user clicked the second button from the right edge of the dialog or sheet.
 #[cfg(feature = "NSApplication")]
 pub static NSAlertSecondButtonReturn: NSModalResponse = 1001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/alertthirdbuttonreturn?language=objc)
+/// The user clicked the third button from the right edge of the dialog or sheet.
 #[cfg(feature = "NSApplication")]
 pub static NSAlertThirdButtonReturn: NSModalResponse = 1002;
 
 extern_class!(
     /// A modal dialog or sheet attached to a document window.
+    ///
+    /// ## Overview
+    ///
+    /// The methods of the [`NSAlert`](https://developer.apple.com/documentation/appkit/nsalert) class allow you to specify alert level, alert text, button titles, and a custom icon should you require it. The class also lets your alerts display a help button and provides ways for apps to offer help specific to an alert.
+    ///
+    /// To display an alert as a sheet, call the [`beginSheetModalForWindow:completionHandler:`](https://developer.apple.com/documentation/appkit/nsalert/beginsheetmodal(for:completionhandler:)) method; to display one as an app-modal dialog, use the [`runModal`](https://developer.apple.com/documentation/appkit/nsalert/runmodal()) method.
+    ///
+    /// By design, an [`NSAlert`](https://developer.apple.com/documentation/appkit/nsalert) object is intended for a single alert—that is, an alert with a unique combination of title, buttons, and so on—that is displayed upon a particular condition. You should create an [`NSAlert`](https://developer.apple.com/documentation/appkit/nsalert) object for each alert dialog, creating it only  when you need to display an alert, and release it when you are done. If you have a particular alert dialog that you need to show repeatedly, you can retain and reuse an instance of [`NSAlert`](https://developer.apple.com/documentation/appkit/nsalert) for this dialog.
+    ///
+    /// After creating an alert using one of the alert creation methods, you can customize it further prior to displaying it by customizing its attributes. See [Instance Attributes](https://developer.apple.com/documentation/appkit/nsalert#instance-attributes).
+    ///
+    /// Unless you must maintain compatibility with existing alert-processing code that uses the function-based API, you should allocate (`alloc`) and initialize (`init`) the alert object, and then set its attributes using the appropriate methods of the `NSAlert` class.
+    ///
+    /// ### Instance Attributes
+    ///
+    /// [`NSAlert`](https://developer.apple.com/documentation/appkit/nsalert) objects have the following attributes:
+    ///
+    /// - Type An alert’s type helps convey the importance or gravity of its message to the user. Specified with the [`alertStyle`](https://developer.apple.com/documentation/appkit/nsalert/alertstyle) property.
+    ///
+    /// - Message text The main message of the alert. Specified with [`messageText`](https://developer.apple.com/documentation/appkit/nsalert/messagetext).
+    ///
+    /// - Informative text Additional information about the alert. Specified with [`informativeText`](https://developer.apple.com/documentation/appkit/nsalert/informativetext).
+    ///
+    /// - Icon An optional, custom icon to display in the alert, which is used instead of the default app icon. Specified with [`icon`](https://developer.apple.com/documentation/appkit/nsalert/icon).
+    ///
+    /// - Help Alerts can let the user get help about them. Use [`helpAnchor`](https://developer.apple.com/documentation/appkit/nsalert/helpanchor) and [`showsHelp`](https://developer.apple.com/documentation/appkit/nsalert/showshelp).
+    ///
+    /// - Response buttons By default an alert has one response button: the OK button. You can add more response buttons using the [`addButtonWithTitle:`](https://developer.apple.com/documentation/appkit/nsalert/addbutton(withtitle:)) method.
+    ///
+    /// - Suppression checkbox A suppression checkbox allows the user to suppress the display of a particular alert in subsequent occurrences of the event that triggers it. Use [`showsSuppressionButton`](https://developer.apple.com/documentation/appkit/nsalert/showssuppressionbutton).
+    ///
+    /// - Accessory view An accessory view lets you add additional information to an alert; for example, a text field with contact information. Use [`accessoryView`](https://developer.apple.com/documentation/appkit/nsalert/accessoryview), [`layout`](https://developer.apple.com/documentation/appkit/nsalert/layout()).
+    ///
+    /// ### Subclassing Notes
+    ///
     /// The `NSAlert` class is not designed for subclassing.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert?language=objc)
+    ///
+    /// A modal dialog or sheet attached to a document window.
+    /// The `NSAlert` class is not designed for subclassing.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -314,9 +379,8 @@ impl NSAlert {
 }
 
 extern_protocol!(
+    /// A set of optional methods implemented by the delegate of an [`NSAlert`](https://developer.apple.com/documentation/appkit/nsalert) object to respond to a user’s request for help.
     /// A set of optional methods implemented by the delegate of an `NSAlert` object to respond to a user’s request for help.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertdelegate?language=objc)
     pub unsafe trait NSAlertDelegate: NSObjectProtocol + MainThreadOnly {
         /// Sent to the delegate when the user clicks the alert’s help button. The delegate causes help to be displayed for an alert, directly or indirectly.
         /// - Returns: `YES` when the delegate displayed help directly, `NO` otherwise. When `NO` and the alert has a help anchor (`helpAnchor`), the application’s help manager displays help using the help anchor.
@@ -350,14 +414,19 @@ impl NSAlert {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswarningalertstyle?language=objc)
+/// An alert used to warn the user about a current or impending event. The purpose is more than informational but not critical. This is the default alert style.
 #[deprecated]
 pub static NSWarningAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Warning.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinformationalalertstyle?language=objc)
+/// An alert used to inform the user about a current or impending event.
 #[deprecated]
 pub static NSInformationalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Informational.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscriticalalertstyle?language=objc)
+///
+/// ## Discussion
+///
+/// Reserved for critical alerts, such as when severe consequences might result from certain user responses (for example, a “clean install” will erase all data on a volume). This style includes a caution icon badged with the app icon.
+///
+///
 #[deprecated]
 pub static NSCriticalAlertStyle: NSAlertStyle = NSAlertStyle(NSAlertStyle::Critical.0);

@@ -10,7 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitemcell?language=objc)
+    /// An object that handles the measurement and display of a single menu item in its encompassing frame.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `NSMenuItemCell` is no longer used to draw menus. Using it does not affect the appearance of your menus.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSButtonCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSButtonCell", feature = "NSCell"))]

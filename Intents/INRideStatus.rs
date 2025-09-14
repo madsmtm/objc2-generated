@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridestatus?language=objc)
+    /// The status of a ride booked through a ride-booking service.
+    ///
+    /// ## Overview
+    ///
+    /// When the user books a ride or requests the status of a ride, you create an [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object as part of your response and fill it with the relevant information. A ride status object conveys information about the current status of a ride, such as whether the ride is ongoing, completed, or has yet to occur. This object also contains details about the ride such as the pickup location, drop-off location, and information about the driver and vehicle. Siri and Maps display the information in this object to the user at appropriate times.
+    ///
+    /// When configuring ride status objects, always provide values for as many properties as possible. Siri and Maps display almost all of the information that you provide to the user, so it is good to offer as many details as you can.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRideStatus;

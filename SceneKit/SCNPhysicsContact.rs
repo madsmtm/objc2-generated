@@ -8,9 +8,16 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// SCNPhysicsContact contains information about a physics contact.
+    /// Detailed information about a contact between two physics bodies in a scene’s physics simulation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscontact?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create  [`SCNPhysicsContact`](https://developer.apple.com/documentation/scenekit/scnphysicscontact) instances directly; SceneKit automatically creates these objects whenever contacts occur.
+    ///
+    /// To receive contact messages, assign your custom class implementing the [`SCNPhysicsContactDelegate`](https://developer.apple.com/documentation/scenekit/scnphysicscontactdelegate) protocol to the [`contactDelegate`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/contactdelegate) property of your scene’s [`SCNPhysicsWorld`](https://developer.apple.com/documentation/scenekit/scnphysicsworld) obejct. Next, for each physics body in your scene, set the [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) and [`collisionBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/collisionbitmask) properties to define which interactions should generate contact messages.
+    ///
+    ///
+    /// SCNPhysicsContact contains information about a physics contact.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsContact;

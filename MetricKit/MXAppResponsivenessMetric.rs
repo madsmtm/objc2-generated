@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about the responsiveness of the app to user interaction.
     /// An MXMetric subclass that encapsulates app responsiveness metrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappresponsivenessmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

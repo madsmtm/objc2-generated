@@ -9,37 +9,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum?language=objc)
+/// A type defined for the `enum` constants specifying color panel modes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorPanelMode(pub NSInteger);
 impl NSColorPanelMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/none?language=objc)
+    /// No color panel mode.
     #[doc(alias = "NSColorPanelModeNone")]
     pub const None: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/gray?language=objc)
+    /// The grayscale-alpha color mode.
     #[doc(alias = "NSColorPanelModeGray")]
     pub const Gray: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/rgb?language=objc)
+    /// The red-green-blue color mode.
     #[doc(alias = "NSColorPanelModeRGB")]
     pub const RGB: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/cmyk?language=objc)
+    /// The cyan-magenta-yellow-black color mode.
     #[doc(alias = "NSColorPanelModeCMYK")]
     pub const CMYK: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/hsb?language=objc)
+    /// The hue-saturation-brightness color mode.
     #[doc(alias = "NSColorPanelModeHSB")]
     pub const HSB: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/custompalette?language=objc)
+    /// The custom palette color mode.
     #[doc(alias = "NSColorPanelModeCustomPalette")]
     pub const CustomPalette: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/colorlist?language=objc)
+    /// The custom color list mode.
     #[doc(alias = "NSColorPanelModeColorList")]
     pub const ColorList: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/wheel?language=objc)
+    /// The color wheel mode.
     #[doc(alias = "NSColorPanelModeWheel")]
     pub const Wheel: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.enum/crayon?language=objc)
+    /// The crayon picker mode.
     #[doc(alias = "NSColorPanelModeCrayon")]
     pub const Crayon: Self = Self(7);
 }
@@ -52,38 +52,92 @@ unsafe impl RefEncode for NSColorPanelMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options?language=objc)
+/// The color modes that are enabled for a color panel.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSColorPanelOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/graymodemask?language=objc)
+/// The grayscale-alpha color mode.
+///
+/// ## Discussion
+///
+/// Grayscale-alpha.
+///
+///
         #[doc(alias = "NSColorPanelGrayModeMask")]
         const GrayModeMask = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/rgbmodemask?language=objc)
+/// The red-green-blue color mode.
+///
+/// ## Discussion
+///
+/// Red-green-blue.
+///
+///
         #[doc(alias = "NSColorPanelRGBModeMask")]
         const RGBModeMask = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/cmykmodemask?language=objc)
+/// The cyan-magenta-yellow-black color mode.
+///
+/// ## Discussion
+///
+/// Cyan-yellow-magenta-black.
+///
+///
         #[doc(alias = "NSColorPanelCMYKModeMask")]
         const CMYKModeMask = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/hsbmodemask?language=objc)
+/// The hue-saturation-brightness color mode.
+///
+/// ## Discussion
+///
+/// Hue-saturation-brightness.
+///
+///
         #[doc(alias = "NSColorPanelHSBModeMask")]
         const HSBModeMask = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/custompalettemodemask?language=objc)
+/// The custom palette color mode.
+///
+/// ## Discussion
+///
+/// Custom palette.
+///
+///
         #[doc(alias = "NSColorPanelCustomPaletteModeMask")]
         const CustomPaletteModeMask = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/colorlistmodemask?language=objc)
+/// The custom color list mode.
+///
+/// ## Discussion
+///
+/// Custom color list.
+///
+///
         #[doc(alias = "NSColorPanelColorListModeMask")]
         const ColorListModeMask = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/wheelmodemask?language=objc)
+/// The color wheel mode.
+///
+/// ## Discussion
+///
+/// Color wheel.
+///
+///
         #[doc(alias = "NSColorPanelWheelModeMask")]
         const WheelModeMask = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/crayonmodemask?language=objc)
+/// The crayon color mode.
+///
+/// ## Discussion
+///
+/// Crayons.
+///
+///
         #[doc(alias = "NSColorPanelCrayonModeMask")]
         const CrayonModeMask = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/options/allmodesmask?language=objc)
+/// All color modes.
+///
+/// ## Discussion
+///
+/// All of the above.
+///
+///
         #[doc(alias = "NSColorPanelAllModesMask")]
         const AllModesMask = 0x0000ffff;
     }
@@ -98,7 +152,13 @@ unsafe impl RefEncode for NSColorPanelOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel?language=objc)
+    /// A standard user interface for selecting color in an app.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel) provides a number of standard color selection modes and, with the [`NSColorPickingDefault`](https://developer.apple.com/documentation/appkit/nscolorpickingdefault) and [`NSColorPickingCustom`](https://developer.apple.com/documentation/appkit/nscolorpickingcustom) protocols, allows an app to add its own color selection modes. It also allows the user to save swatches containing frequently used colors.
+    ///
+    ///
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
@@ -385,7 +445,12 @@ impl NSApplication {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorchanging?language=objc)
+    ///
+    /// ## Overview
+    ///
+    /// When the user selects a color in an [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel) object, the panel tries to call this method on the first responder. You can override this method in any responder that needs to respond to a color change.
+    ///
+    ///
     pub unsafe trait NSColorChanging: NSObjectProtocol {
         #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
         #[unsafe(method(changeColor:))]
@@ -395,44 +460,90 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanel/colordidchangenotification?language=objc)
+    /// Posted when the color of the `NSColorPanel` is set, as when [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel) is invoked.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the notifying `NSColorPanel`. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSColorPanelColorDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnomodecolorpanel?language=objc)
+/// Indicates no color panel mode.
 #[deprecated]
 pub static NSNoModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::None.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraymodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Grayscale-alpha
+///
+///
 #[deprecated]
 pub static NSGrayModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Gray.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrgbmodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Red-green-blue
+///
+///
 #[deprecated]
 pub static NSRGBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::RGB.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscmykmodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Cyan-yellow-magenta-black
+///
+///
 #[deprecated]
 pub static NSCMYKModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::CMYK.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshsbmodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Hue-saturation-brightness
+///
+///
 #[deprecated]
 pub static NSHSBModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::HSB.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscustompalettemodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Custom palette
+///
+///
 #[deprecated]
 pub static NSCustomPaletteModeColorPanel: NSColorPanelMode =
     NSColorPanelMode(NSColorPanelMode::CustomPalette.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistmodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Custom color list
+///
+///
 #[deprecated]
 pub static NSColorListModeColorPanel: NSColorPanelMode =
     NSColorPanelMode(NSColorPanelMode::ColorList.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswheelmodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Color wheel
+///
+///
 #[deprecated]
 pub static NSWheelModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Wheel.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscrayonmodecolorpanel?language=objc)
+///
+/// ## Discussion
+///
+/// Crayons.
+///
+///
 #[deprecated]
 pub static NSCrayonModeColorPanel: NSColorPanelMode = NSColorPanelMode(NSColorPanelMode::Crayon.0);

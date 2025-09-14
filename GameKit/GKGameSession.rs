@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkconnectionstate?language=objc)
+/// Possible connection states for a player
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKConnectionState(pub NSInteger);
 impl GKConnectionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkconnectionstate/notconnected?language=objc)
+    /// The player is not connected to the game session.
     #[doc(alias = "GKConnectionStateNotConnected")]
     pub const NotConnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkconnectionstate/connected?language=objc)
+    /// The player is connected to the game session.
     #[doc(alias = "GKConnectionStateConnected")]
     pub const Connected: Self = Self(1);
 }
@@ -29,16 +29,28 @@ unsafe impl RefEncode for GKConnectionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gktransporttype?language=objc)
+/// The mechanism used to send messages to other players in a game session.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTransportType(pub NSInteger);
 impl GKTransportType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gktransporttype/unreliable?language=objc)
+    /// The data is sent once and is not sent again if a transmission error occurs.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this for small packets of data that must arrive quickly to be useful to the recipient.
+    ///
+    ///
     #[doc(alias = "GKTransportTypeUnreliable")]
     pub const Unreliable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gktransporttype/reliable?language=objc)
+    /// The data is sent continuously until it is successfully received by the intended recipients or the connection times out.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this when you need to guarantee delivery and speed is not critical.
+    ///
+    ///
     #[doc(alias = "GKTransportTypeReliable")]
     pub const Reliable: Self = Self(1);
 }
@@ -52,7 +64,17 @@ unsafe impl RefEncode for GKTransportType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesession?language=objc)
+    /// A game session you can use to save game data, invite other players, and create turn-based and real-time game apps.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `GKGameSession` object to play turn-based and real-time games in iCloud. Every instance of a game session resides inside of an iCloud container. You can create multiple sessions for a single app, allowing players to play several games at once. All of the information for a game session is saved in the owner’s iCloud.
+    ///
+    /// Each session can contain a maximum of 100 players. Inside of a session, up to 16 of those players can be connected to each other in real-time. The 16 connected players can be selected from any of the 100 players in the session. You can change a connected player with another player in the session at any time.
+    ///
+    /// After a game session is created, you can save game data in iCloud. Each game session can save a maximum of 512KB data. This prevents games from using a large about of space in a user’s iCloud account. This data can be loaded, edited, and saved by anyone in the game session, providing your app provides this behavior. You must ensure that you delete a game session from a user’s iCloud after a game is over, otherwise the session will stay in the user’s iCloud forever. Game sessions are not automatically removed after a set amount of time. They can only be actively removed.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]

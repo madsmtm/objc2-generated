@@ -7,23 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants describing the image format.
 /// A set of traits that allows the system to request variants of an image.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/imagetraits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVTopShelfItemImageTraits(pub NSUInteger);
 bitflags::bitflags! {
     impl TVTopShelfItemImageTraits: NSUInteger {
+/// An image to display on devices running in a 1x resolution mode.
 /// Variant used when the device is running in 1x.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/imagetraits/screenscale1x?language=objc)
         #[doc(alias = "TVTopShelfItemImageTraitScreenScale1x")]
         const ScreenScale1x = 1<<0;
+/// A high-resolution image to display on devices running in a 2x resolution mode.
 /// Variant used when the device is running in 2x.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/imagetraits/screenscale2x?language=objc)
         #[doc(alias = "TVTopShelfItemImageTraitScreenScale2x")]
         const ScreenScale2x = 2<<0;
     }
@@ -38,9 +35,18 @@ unsafe impl RefEncode for TVTopShelfItemImageTraits {
 }
 
 extern_class!(
-    /// The base class for describing Top Shelf content to the system.
+    /// An item that uses an image to represent a movie, show, or other content in the top shelf.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem?language=objc)
+    /// ## Overview
+    ///
+    /// A [`TVTopShelfItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem) object manages basic traits for all items, including the images they display and the actions they trigger. Typically, you create [`TVTopShelfCarouselItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem) or [`TVTopShelfSectionedItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem) objects for your interface. For inset interfaces, you can also create [`TVTopShelfItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem) objects directly.
+    ///
+    /// After creating an item object, assign an image and one or more actions to it, and update any other relevant properties. Return the item object as part of the content for your interface.
+    ///
+    /// Each unique item in your app must have a correspondingly unique identifier, and the identifier for each item must remain stable throughout the life of your app. Do not assign a different unique identifier for the same underlying item each time you create a [`TVTopShelfItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem) object for it.
+    ///
+    ///
+    /// The base class for describing Top Shelf content to the system.
     #[unsafe(super(TVTopShelfObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVTopShelfObject")]

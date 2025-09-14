@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer?language=objc)
+    /// The language of a body of text.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NLLanguageRecognizer`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer) object automatically detects the language of a piece of text. It performs language identification by:
+    ///
+    /// 1. Identifying the dominant script of a piece of text. Some languages have a unique script (like Greek), but others share the same script (like English, French, and German, which all share the Latin script).
+    ///
+    /// 2. Identifying the language itself.
+    ///
+    /// The identification obtained from an [`NLLanguageRecognizer`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer) object can be either a single most likely language, access through [`dominantLanguage`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer/dominantlanguage), or a set of language candidates with probabilities, using [`languageHypothesesWithMaximum:`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer/languagehypotheseswithmaximum:). You can reset the recognizer to its initial state, to be reused for new analysis.
+    ///
+    /// Use the convenience method, [`dominantLanguageForString:`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer/dominantlanguage(for:)), to get the most likely language without creating an [`NLLanguageRecognizer`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t use an instance of [`NLLanguageRecognizer`](https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer) from more than one thread simultaneously.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLLanguageRecognizer;

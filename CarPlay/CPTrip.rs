@@ -10,10 +10,9 @@ use objc2_map_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A possible route for a trip.
     /// `CPRouteChoice`describes a possible route for a
     /// `CPTrip.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cproutechoice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPRouteChoice;
@@ -98,9 +97,18 @@ impl CPRouteChoice {
 }
 
 extern_class!(
-    /// `CPTrip`represents an origin and destination with route choices.
+    /// An object that represents a journey between an origin and a destination.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cptrip?language=objc)
+    /// ## Overview
+    ///
+    /// A trip represents a journey consisting of an origin, a destination, and up to three route choices. Use [`CPRouteChoice`](https://developer.apple.com/documentation/carplay/cproutechoice) to define each possible route choice.
+    ///
+    /// You create trips after the user has selected a destination, and present up to twelve trip previews by calling [`showTripPreviews:textConfiguration:`](https://developer.apple.com/documentation/carplay/cpmaptemplate/showtrippreviews(_:textconfiguration:)) on the map template.
+    ///
+    /// You provide estimates for each trip using the map template’s [`updateTravelEstimates:forTrip:`](https://developer.apple.com/documentation/carplay/cpmaptemplate/updateestimates(_:for:)) method, and must update these estimates if the remaining time or distance changes.
+    ///
+    ///
+    /// `CPTrip`represents an origin and destination with route choices.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPTrip;

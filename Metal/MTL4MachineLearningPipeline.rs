@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Description for a machine learning pipeline state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinedescriptor?language=objc)
+    /// Description for a machine learning pipeline state.
     #[unsafe(super(MTL4PipelineDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4PipelineState")]
@@ -154,8 +153,7 @@ impl DefaultRetained for MTL4MachineLearningPipelineDescriptor {
 
 extern_class!(
     /// Represents reflection information for a machine learning pipeline state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinereflection?language=objc)
+    /// Represents reflection information for a machine learning pipeline state.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4MachineLearningPipelineReflection;
@@ -202,9 +200,14 @@ impl DefaultRetained for MTL4MachineLearningPipelineReflection {
 extern_protocol!(
     /// A pipeline state that you can use with machine-learning encoder instances.
     ///
-    /// See ``MTL4MachineLearningCommandEncoder`` for more information.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4machinelearningpipelinestate?language=objc)
+    /// See [`MTL4MachineLearningCommandEncoder`](https://developer.apple.com/documentation/metal/mtl4machinelearningcommandencoder) for more information.
+    ///
+    ///
+    /// A pipeline state that you can use with machine-learning encoder instances.
+    ///
+    /// See ``MTL4MachineLearningCommandEncoder`` for more information.
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTL4MachineLearningPipelineState:
         MTLAllocation + NSObjectProtocol + Send + Sync

@@ -10,9 +10,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Manages accessories.
+    /// A class to coordinate accessory discovery.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession?language=objc)
+    /// ## Overview
+    ///
+    /// Use an instance of `ASAccessorySession` to interact with the AccessorySetupKit framework.
+    ///
+    /// Start the session by calling [`activateWithQueue:eventHandler:`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession/activate(on:eventhandler:)), and pass in a dispatch queue and an event-handling closure. AccessorySetupKit calls back to your event handler as the discovery session processes events.
+    ///
+    /// With your event-handler prepared, create an array of [`ASPickerDisplayItem`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem) instances to describe accessories your app can set up. Pass this array to the session’s [`showPickerForDisplayItems:completionHandler:`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession/showpicker(for:completionhandler:)) method to allow someone using your app to choose a discovered accessory to set up. Your event handler receives events as the picker appears and dismisses, as well as when the person using the app adds an accessory.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Starting in iOS 18.4, apps can use AccessorySetupKit for discovery and setup of Bluetooth LE devices that conform to the Human Interface Device (HID) service, such as keyboard and mouse accessories. The HID accessory needs to advertise a custom service besides the HID service. Add the [`ASAccessorySupportBluetoothHID`](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions/bluetoothhid) option to the [`supportedOptions`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/supportedoptions) and configure the [`ASDiscoveryDescriptor`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor) to discover the custom service instead of the HID service.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Manages accessories.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccessorySession;

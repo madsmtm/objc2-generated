@@ -9,28 +9,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values representing the current authorization state of the peripheral manager.
 /// Represents the current state of a CBPeripheralManager.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerAuthorization instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerAuthorizationStatus(pub NSInteger);
 impl CBPeripheralManagerAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/notdetermined?language=objc)
+    /// An authorization status that indicates the user hasn’t indicated whether this app can share data using Bluetooth while in the background.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusNotDetermined")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/restricted?language=objc)
+    /// An authorization status that indicates this app isn’t authorized to share data using Bluetooth while in the background.
+    ///
+    /// ## Discussion
+    ///
+    /// The user can’t change this app’s status, possibly due to active restrictions such as parental controls being in place.
+    ///
+    ///
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusRestricted")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/denied?language=objc)
+    /// An authorization status that indicates the user explicitly denied this app from sharing data using Bluetooth while in the background.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusDenied")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus/authorized?language=objc)
+    /// An authorization status that indicates the user authorized this app to share data using Bluetooth while in the background.
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusAuthorized")]
     #[deprecated = "Use CBManagerAuthorization instead"]
     pub const Authorized: Self = Self(3);
@@ -44,41 +49,52 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values that represent the current state of the peripheral manager.
 /// Represents the current state of a CBPeripheralManager.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate?language=objc)
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerState(pub NSInteger);
 impl CBPeripheralManagerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/unknown?language=objc)
+    /// A manager state that indicates the current state of the peripheral manager is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// When the manager is in this state, an update is imminent.
+    ///
+    ///
     #[doc(alias = "CBPeripheralManagerStateUnknown")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unknown: Self = Self(CBManagerState::Unknown.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/resetting?language=objc)
+    /// A manager state that indicates the connection with the system service was momentarily lost.
+    ///
+    /// ## Discussion
+    ///
+    /// When the manager is in this state, an update is imminent.
+    ///
+    ///
     #[doc(alias = "CBPeripheralManagerStateResetting")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Resetting: Self = Self(CBManagerState::Resetting.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/unsupported?language=objc)
+    /// A manager state that indicates the platform doesn’t support the Bluetooth low energy peripheral/server role.
     #[doc(alias = "CBPeripheralManagerStateUnsupported")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unsupported: Self = Self(CBManagerState::Unsupported.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/unauthorized?language=objc)
+    /// A manager state that indicates the app isn’t authorized to use the Bluetooth low energy peripheral/server role.
     #[doc(alias = "CBPeripheralManagerStateUnauthorized")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const Unauthorized: Self = Self(CBManagerState::Unauthorized.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/poweredoff?language=objc)
+    /// A manager state that indicates Bluetooth is currently powered off.
     #[doc(alias = "CBPeripheralManagerStatePoweredOff")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
     pub const PoweredOff: Self = Self(CBManagerState::PoweredOff.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/poweredon?language=objc)
+    /// A manager state that indicates Bluetooth is currently powered on and is available to use.
     #[doc(alias = "CBPeripheralManagerStatePoweredOn")]
     #[cfg(feature = "CBManager")]
     #[deprecated = "Use CBManagerState instead"]
@@ -93,21 +109,20 @@ unsafe impl RefEncode for CBPeripheralManagerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values representing the connection latency of the peripheral manager.
 /// The latency of a peripheral-central connection controls how frequently messages can be exchanged.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerConnectionLatency(pub NSInteger);
 impl CBPeripheralManagerConnectionLatency {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency/low?language=objc)
+    /// A latency setting indicating that prioritizes rapid communication over battery life.
     #[doc(alias = "CBPeripheralManagerConnectionLatencyLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency/medium?language=objc)
+    /// A latency setting that balances communication frequency and battery life.
     #[doc(alias = "CBPeripheralManagerConnectionLatencyMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency/high?language=objc)
+    /// A latency setting that prioritizes extending battery life over rapid communication.
     #[doc(alias = "CBPeripheralManagerConnectionLatencyHigh")]
     pub const High: Self = Self(2);
 }
@@ -121,6 +136,17 @@ unsafe impl RefEncode for CBPeripheralManagerConnectionLatency {
 }
 
 extern_class!(
+    /// An object that manages and advertises peripheral services exposed by this app.
+    ///
+    /// ## Overview
+    ///
+    /// Core Bluetooth uses [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) objects to manage published services within the local peripheral’s Generic Attribute Profile (GATT) database and to advertise these services to central devices (represented by [`CBCentral`](https://developer.apple.com/documentation/corebluetooth/cbcentral) objects). While a service is in the database, any connected central can see and connect to it. That said, if your app hasn’t specified the `bluetooth-peripheral` background mode, the contents of its services become disabled when it’s in the background or in a suspended state. In this scenario, any remote central trying to access the service’s characteristic value or characteristic descriptors receives an error.
+    ///
+    /// Before you call [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) methods, the peripheral manager object must be in the powered-on state, as indicated by the [`CBPeripheralManagerStatePoweredOn`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerstate/poweredon). This state indicates that the device (your iPhone or iPad, for instance) supports Bluetooth low energy and that its Bluetooth is on and available for use.
+    ///
+    /// In watchOS, tvOS, and visionOS, you can’t advertise services using a [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) object because support for doing so is unavailable.
+    ///
+    ///
     /// The
     /// <code>
     /// CBPeripheralManager
@@ -143,8 +169,6 @@ extern_class!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager?language=objc)
     #[unsafe(super(CBManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBManager")]
@@ -497,6 +521,15 @@ impl CBPeripheralManager {
 }
 
 extern_protocol!(
+    /// A protocol that provides updates for local peripheral state and interactions with remote central devices.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate of a [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) object must adopt the [`CBPeripheralManagerDelegate`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerdelegate) protocol, which consists of numerous optional methods and one required method. The delegate uses the protocol’s optional methods to verify publishing and advertising, and to monitor read, write, and subscription requests from remote central devices.
+    ///
+    /// The protocol’s required one method, [`peripheralManagerDidUpdateState:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerdelegate/peripheralmanagerdidupdatestate(_:)), which Core Bluetooth calls whenever the peripheral manager’s state updates to indicate whether the peripheral manager is available.
+    ///
+    ///
     /// The delegate of a
     ///
     /// ```text
@@ -510,8 +543,6 @@ extern_protocol!(
     /// protocol. The
     /// single required method indicates the availability of the peripheral manager, while the optional methods provide information about
     /// centrals, which can connect and access the local database.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerdelegate?language=objc)
     pub unsafe trait CBPeripheralManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CBManager")]
         /// Parameter `peripheral`: The peripheral manager whose state has changed.

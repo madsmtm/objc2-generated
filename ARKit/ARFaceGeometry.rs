@@ -10,12 +10,31 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A 3D mesh describing face topology for use in face-tracking AR sessions.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides a general model for the detailed topology of a face, in the form of a 3D mesh appropriate for use with various rendering technologies or for exporting 3D assets. (For a quick way to visualize a face geometry using SceneKit, see the [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry) class.)
+    ///
+    /// When you obtain a face geometry from an [`ARFaceAnchor`](https://developer.apple.com/documentation/arkit/arfaceanchor) object in a face-tracking AR session, the model conforms to match the dimensions, shape, and current expression of the detected face. You can also create a face mesh using a dictionary of named blend shape coefficients, which provides a detailed, but more efficient, description of the face’s current expression.
+    ///
+    /// In an AR session, you can use this model as the basis for overlaying content that follows the shape of the user’s face—for example, to apply virtual makeup or tattoos. You can also use this model to create occlusion geometry, which hides other virtual content behind the 3D shape of the detected face in the camera image.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Face mesh topology is constant across [`ARFaceGeometry`](https://developer.apple.com/documentation/arkit/arfacegeometry) instances. That is, the values of the [`vertexCount`](https://developer.apple.com/documentation/arkit/arfacegeometry/vertexcount), [`textureCoordinateCount`](https://developer.apple.com/documentation/arkit/arfacegeometry/texturecoordinatecount), and [`triangleCount`](https://developer.apple.com/documentation/arkit/arfacegeometry/trianglecount) properties never change, the [`triangleIndices`](https://developer.apple.com/documentation/arkit/arfacegeometry/triangleindices-3tb1o) buffer always describes the same arrangement of vertices, and the [`textureCoordinates`](https://developer.apple.com/documentation/arkit/arfacegeometry/texturecoordinates-8ahq1) buffer always maps the same vertex indices to the same texture coordinates.
+    ///
+    /// Only the [`vertices`](https://developer.apple.com/documentation/arkit/arfacegeometry/vertices-fhdb) buffer changes between face meshes provided by an AR session, indicating the change in vertex positions as ARKit adapts the mesh to the shape and expression of the user’s face.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An object representing the geometry of a face.
     ///
     /// The face geometry will have a constant number of triangles
     /// and vertices, updating only the vertex positions from frame to frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arfacegeometry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheelinputstate?language=objc)
+    /// The input for the wheel of a racing wheel controller.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheelInputState;
@@ -74,7 +74,7 @@ impl GCRacingWheelInputState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcracingwheelinput?language=objc)
+    /// A controller profile that supports a racing wheel.
     #[unsafe(super(GCRacingWheelInputState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCRacingWheelInput;

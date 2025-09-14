@@ -53,9 +53,8 @@ impl private_NSExtensionContextRPBroadcastExtension::Sealed for NSExtensionConte
 unsafe impl NSExtensionContextRPBroadcastExtension for NSExtensionContext {}
 
 extern_class!(
+    /// An object that sends messages to the broadcasting app.
     /// Base class for extensions that are responsible for handling video and audio data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcasthandler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct RPBroadcastHandler;
@@ -104,19 +103,19 @@ impl RPBroadcastHandler {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype?language=objc)
+/// The type of media clip sample being buffered.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct RPSampleBufferType(pub NSInteger);
 impl RPSampleBufferType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype/video?language=objc)
+    /// The sample that contains a video clip.
     #[doc(alias = "RPSampleBufferTypeVideo")]
     pub const Video: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype/audioapp?language=objc)
+    /// The sample audio that originates from the app.
     #[doc(alias = "RPSampleBufferTypeAudioApp")]
     pub const AudioApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpsamplebuffertype/audiomic?language=objc)
+    /// The sample audio that originates from the microphone.
     #[doc(alias = "RPSampleBufferTypeAudioMic")]
     pub const AudioMic: Self = Self(3);
 }
@@ -130,27 +129,34 @@ unsafe impl RefEncode for RPSampleBufferType {
 }
 
 extern "C" {
+    /// The sample attachment key that describes the video orientation.
     /// RPVideoSampleOrientationKey
     ///
     /// Use this key in conjunction with CMGetAttachment on CMSampleBufferRef to get the orientation for the sample. The orientation will follow the enum CGImagePropertyOrientation
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpvideosampleorientationkey?language=objc)
     pub static RPVideoSampleOrientationKey: &'static NSString;
 }
 
 extern "C" {
+    /// The key to retrieve the app’s bundle identifier from the user-information dictionary.
     /// RPApplicationInfoBundleIdentifierKey
     ///
     /// Use this key to retrieve bundle identifier from dictionary provided by broadcastAnnotatedWithApplicationInfo
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpapplicationinfobundleidentifierkey?language=objc)
     pub static RPApplicationInfoBundleIdentifierKey: &'static NSString;
 }
 
 extern_class!(
-    /// Subclass this class to handle CMSampleBuffer objects as they are captured by ReplayKit. To enable this mode of handling, set the RPBroadcastProcessMode in the extension's info.plist to RPBroadcastProcessModeSampleBuffer.
+    /// An object that processes buffer objects as received from ReplayKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler?language=objc)
+    /// ## Overview
+    ///
+    /// To handle [`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) objects as captured by ReplayKit, you subclass `RPBroadcastSampleHandler`. You enable this mode of handling by setting `RPBroadcastProcessMode` in the extension’s `Info.plist` file to `RPBroadcastProcessModeSampleBuffer`.
+    ///
+    /// In your subclass, implement the [`processSampleBuffer:withType:`](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/processsamplebuffer(_:with:)) method to handle video and audio buffers, as well as the [`broadcastStartedWithSetupInfo:`](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/broadcaststarted(withsetupinfo:)), [`broadcastFinished`](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/broadcastfinished()), [`broadcastPaused`](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/broadcastpaused()), and [`broadcastResumed`](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/broadcastresumed()) methods to handle starting and stopping the broadcast.
+    ///
+    /// ReplayKit invokes methods in your `RPBroadcastSampleHandler` subclass in a serial fashion. After invoking one method, ReplayKit won’t invoke another method until the first method returns. That means it’s safe for your implementations to update their stored state without the use of locks or synchronization to provide thread safety.
+    ///
+    ///
+    /// Subclass this class to handle CMSampleBuffer objects as they are captured by ReplayKit. To enable this mode of handling, set the RPBroadcastProcessMode in the extension's info.plist to RPBroadcastProcessModeSampleBuffer.
     #[unsafe(super(RPBroadcastHandler, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct RPBroadcastSampleHandler;

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clcircularregion?language=objc)
+    /// A circular geographic region that a center point and radius deine.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CLCircularRegion`](https://developer.apple.com/documentation/corelocation/clcircularregion) class defines the location and boundaries for a circular geographic region. You can use instances of this class to define geofences for a specific location. The crossing of a geofence’s boundary causes the location manager to notify its delegate.
+    ///
+    ///
     #[unsafe(super(CLRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLRegion")]

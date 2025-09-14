@@ -5,272 +5,326 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkencryptionscheme?language=objc)
+/// Encryption schemes.
 // NS_TYPED_ENUM
 pub type PKEncryptionScheme = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkencryptionscheme/ecc_v2?language=objc)
+    /// The elliptic curve cryptography (ECC) scheme.
     pub static PKEncryptionSchemeECC_V2: Option<&'static PKEncryptionScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkencryptionscheme/rsa_v2?language=objc)
+    /// The RSA v2 scheme.
     pub static PKEncryptionSchemeRSA_V2: Option<&'static PKEncryptionScheme>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork?language=objc)
+/// A type that represents a payment method.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PKPaymentNetwork = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/amex?language=objc)
+    /// An American Express payment card.
     pub static PKPaymentNetworkAmex: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/bancomat?language=objc)
+    /// A Bancomat payment card.
     #[deprecated = "Use PKPaymentNetworkPagoBancomat instead."]
     pub static PKPaymentNetworkBancomat: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/pagobancomat?language=objc)
     pub static PKPaymentNetworkPagoBancomat: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/bancontact?language=objc)
+    /// A Bancontact payment card.
     pub static PKPaymentNetworkBancontact: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/cartebancaire?language=objc)
     #[deprecated = "Use PKPaymentNetworkCartesBancaires instead."]
     pub static PKPaymentNetworkCarteBancaire: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/cartebancaires?language=objc)
+    /// A Cartes Bancaires payment card.
     #[deprecated = "Use PKPaymentNetworkCartesBancaires instead."]
     pub static PKPaymentNetworkCarteBancaires: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/cartesbancaires?language=objc)
+    /// A Cartes Bancaires payment card.
     pub static PKPaymentNetworkCartesBancaires: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/chinaunionpay?language=objc)
+    /// A China Union Pay payment card.
     pub static PKPaymentNetworkChinaUnionPay: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/dankort?language=objc)
+    /// The Dankort payment card.
     pub static PKPaymentNetworkDankort: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/discover?language=objc)
+    /// A Discover payment card.
     pub static PKPaymentNetworkDiscover: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/eftpos?language=objc)
+    /// The electronic funds transfer at point of sale (EFTPOS) payment method.
     pub static PKPaymentNetworkEftpos: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/electron?language=objc)
+    /// An Electron debit card.
     pub static PKPaymentNetworkElectron: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/elo?language=objc)
+    /// The Elo payment card.
     pub static PKPaymentNetworkElo: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/idcredit?language=objc)
+    /// An iD payment card.
     pub static PKPaymentNetworkIDCredit: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/interac?language=objc)
+    /// The Interac payment method.
     pub static PKPaymentNetworkInterac: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/jcb?language=objc)
+    /// A JCB payment card.
     pub static PKPaymentNetworkJCB: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/mada?language=objc)
+    /// A mada payment card.
     pub static PKPaymentNetworkMada: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/maestro?language=objc)
+    /// A Maestro payment card.
     pub static PKPaymentNetworkMaestro: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/mastercard?language=objc)
+    /// A Mastercard payment card.
     pub static PKPaymentNetworkMasterCard: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/mir?language=objc)
+    /// A Mir payment card.
     pub static PKPaymentNetworkMir: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/privatelabel?language=objc)
+    /// Store credit and debit cards.
     pub static PKPaymentNetworkPrivateLabel: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/quicpay?language=objc)
+    /// A QUICPay payment card.
     pub static PKPaymentNetworkQuicPay: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/suica?language=objc)
+    /// A Suica payment card.
     pub static PKPaymentNetworkSuica: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/visa?language=objc)
+    /// A Visa payment card.
     pub static PKPaymentNetworkVisa: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/vpay?language=objc)
+    /// A Visa V Pay payment card.
     pub static PKPaymentNetworkVPay: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/barcode?language=objc)
+    /// A QR code to use for payment.
     pub static PKPaymentNetworkBarcode: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/girocard?language=objc)
+    /// A Girocard payment method.
     pub static PKPaymentNetworkGirocard: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/waon?language=objc)
+    /// A WAON payment card.
     pub static PKPaymentNetworkWaon: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/nanaco?language=objc)
+    /// A Nanaco payment card.
     pub static PKPaymentNetworkNanaco: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/postfinance?language=objc)
+    /// A PostFinance AG payment card.
     pub static PKPaymentNetworkPostFinance: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/tmoney?language=objc)
+    /// The TMoney card.
     pub static PKPaymentNetworkTmoney: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/meeza?language=objc)
     pub static PKPaymentNetworkMeeza: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/napas?language=objc)
     pub static PKPaymentNetworkNAPAS: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/bankaxept?language=objc)
     pub static PKPaymentNetworkBankAxept: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/himyan?language=objc)
     pub static PKPaymentNetworkHimyan: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/jaywan?language=objc)
     pub static PKPaymentNetworkJaywan: Option<&'static PKPaymentNetwork>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentnetwork/mydebit?language=objc)
     pub static PKPaymentNetworkMyDebit: Option<&'static PKPaymentNetwork>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield?language=objc)
+/// The fields that describe a contact.
+///
+/// ## Discussion
+///
+/// Use [`PKContactField`](https://developer.apple.com/documentation/passkit/pkcontactfield) field types to indicate which contact fields you require for a billing or shipping contact in order to complete the transaction.
+///
+///
 // NS_TYPED_ENUM
 pub type PKContactField = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield/postaladdress?language=objc)
+    /// A constant that indicates a contact’s postal address.
     pub static PKContactFieldPostalAddress: Option<&'static PKContactField>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield/emailaddress?language=objc)
+    /// A constant that indicates a contact’s email address.
     pub static PKContactFieldEmailAddress: Option<&'static PKContactField>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield/phonenumber?language=objc)
+    /// A constant that indicates a contact’s telephone number.
     pub static PKContactFieldPhoneNumber: Option<&'static PKContactField>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield/name?language=objc)
+    /// A constant that indicates a contact’s name.
     pub static PKContactFieldName: Option<&'static PKContactField>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkcontactfield/phoneticname?language=objc)
+    /// A constant that indicates a contact’s phonetic name.
     pub static PKContactFieldPhoneticName: Option<&'static PKContactField>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus?language=objc)
+/// General success and failure status for payment authorization.
+///
+/// ## Overview
+///
+/// You pass the payment authorization status along with related [`errors`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationresult/errors), if any,  to the completion block in [`PKPaymentAuthorizationResult`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationresult).
+///
+/// Use the PIN status constants only when working in a region that requires 6-digit PIN numbers. To authorize a payment, follow this workflow:
+///
+/// 1. The app sets up the payment request and displays the authorization view controller.
+///
+/// 2. The user authorizes the payment.
+///
+/// 3. If the purchase amount exceeds the user’s PIN limit or if the purchase uses a currency code other than the one expected by the bank, Apple Pay prompts the user for their PIN.
+///
+/// 4. The user enters their PIN.
+///
+/// 5. Apple Pay calls the delegate’s [`paymentAuthorizationViewController:didAuthorizePayment:completion:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didauthorizepayment:completion:)) method.
+///
+/// 6. The app either processes the payment or uses a third-party SDK to process the payment. During this step, the PIN number is passed to the bank as part of the [`PKPaymentToken`](https://developer.apple.com/documentation/passkit/pkpaymenttoken) object.
+///
+/// 7. As soon as the payment is processed, the app calls the completion block, passing the appropriate [`PKPaymentAuthorizationStatus`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus) constant. If the bank reports a problem with the PIN, use the corresponding PIN status constant.
+///
+/// For more information on PIN requirements, check with your payment processor.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentAuthorizationStatus(pub NSInteger);
 impl PKPaymentAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/success?language=objc)
+    /// Merchant successfully authorized the transaction, or the transaction is expected to succeed.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value when the transaction is successful and no errors exist on the payment sheet.
+    ///
+    ///
     #[doc(alias = "PKPaymentAuthorizationStatusSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/failure?language=objc)
+    /// Merchant failed to authorize the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value for all failures other than PIN-related failures (which have their own status constants), such as for an invalid address, contact, or unknown error.
+    ///
+    /// List the specific errors in the [`errors`](https://developer.apple.com/documentation/passkit/pkpaymentrequestshippingcontactupdate/errors) array.
+    ///
+    ///
     #[doc(alias = "PKPaymentAuthorizationStatusFailure")]
     pub const Failure: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/invalidbillingpostaladdress?language=objc)
+    /// Invalid or unusable billing address.
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidBillingPostalAddress")]
     #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentBillingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     pub const InvalidBillingPostalAddress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/invalidshippingpostaladdress?language=objc)
+    /// Invalid or unusable shipping address.
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidShippingPostalAddress")]
     #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentShippingAddressInvalidErrorWithKey:localizedDescription: in the errors array."]
     pub const InvalidShippingPostalAddress: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/invalidshippingcontact?language=objc)
+    /// Invalid or incomplete shipping contact.
     #[doc(alias = "PKPaymentAuthorizationStatusInvalidShippingContact")]
     #[deprecated = "Use PKPaymentAuthorizationResult with PKPaymentAuthorizationStatusFailure and include the result of -paymentContactInvalidErrorWithContactField:localizedDescription: in the errors array."]
     pub const InvalidShippingContact: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/pinrequired?language=objc)
+    /// Transaction requires PIN entry.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass this constant to the completion block when the payment requires a PIN but the token did not include one—for example, when the bank’s and app’s PIN limits are out of sync. Apple Pay automatically prompts the user to enter their PIN.
+    ///
+    ///
     #[doc(alias = "PKPaymentAuthorizationStatusPINRequired")]
     pub const PINRequired: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/pinincorrect?language=objc)
+    /// Incorrect PIN entered.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass this constant to the completion block when the payment token includes an invalid PIN number. Apple Pay automatically prompts the user to reenter their PIN.
+    ///
+    ///
     #[doc(alias = "PKPaymentAuthorizationStatusPINIncorrect")]
     pub const PINIncorrect: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/pinlockout?language=objc)
+    /// PIN retry limit exceeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass this constant to the completion block when the bank informs you that the user has exceeded the allowed number of attempts to enter their PIN.
+    ///
+    ///
     #[doc(alias = "PKPaymentAuthorizationStatusPINLockout")]
     pub const PINLockout: Self = Self(7);
 }
@@ -283,22 +337,50 @@ unsafe impl RefEncode for PKPaymentAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle?language=objc)
+/// A type that indicates the available appearances for an Apple Pay button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentButtonStyle(pub NSInteger);
 impl PKPaymentButtonStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/white?language=objc)
+    /// A white button with black lettering.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the white button on backgrounds with colors that provide sufficient contrast. For white or light backgrounds, use either the white button with an outline or the black button.
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonStyleWhite")]
     pub const White: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/whiteoutline?language=objc)
+    /// A white button with black lettering and a black outline.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the white button with black outline on white or very light backgrounds that don’t provide sufficient contrast for a plain white button. Don’t place this button on dark or saturated color backgrounds. Use the white button instead.
+    ///
+    /// In many cases, you can choose either the white button with black outline or the black button. Select the button that works best with your user interface. Always use a single style throughout your app.
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonStyleWhiteOutline")]
     pub const WhiteOutline: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/black?language=objc)
+    /// A black button with white lettering.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the black button on white or light backgrounds that provide sufficient contrast. Don’t place this button on dark or saturated color backgrounds. Use the white button instead.
+    ///
+    /// In many cases, you can choose either the white button with black outline or the black button. Select the button that works best with your user interface. Always use a single style throughout your app.
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonStyleBlack")]
     pub const Black: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/automatic?language=objc)
+    /// A button that automatically changes its appearance when the user switches between Light Mode and Dark Mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The button uses the [`PKPaymentButtonStyleWhite`](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/white) style in Dark Mode and the [`PKPaymentButtonStyleBlack`](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle/black) style in Light Mode.
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonStyleAutomatic")]
     pub const Automatic: Self = Self(3);
 }
@@ -311,61 +393,281 @@ unsafe impl RefEncode for PKPaymentButtonStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype?language=objc)
+/// The Apple Pay button types you can display to initiate Apple Pay transactions.
+///
+/// ## Overview
+///
+/// The button type you use for payments made with Apple Pay can affect the purchasing experience. Choose a button type that best fits with the terminology and flow of your purchase or payment experience. For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+///
+/// Before using a specific button type, check that it’s available to the iOS version that your app is running on. Create buttons using the [`buttonWithType:style:`](https://developer.apple.com/documentation/passkit/pkpaymentbutton/buttonwithtype:style:) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentButtonType(pub NSInteger);
 impl PKPaymentButtonType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/plain?language=objc)
+    /// An Apple Pay button with the Apple Pay logo only, useful when an additional call to action isn’t needed.
+    ///
+    /// ## Discussion
+    ///
+    /// This plain button style can have a smaller minimum width than Apple Pay buttons with text. This button looks like:
+    ///
+    ///
+    /// ![A button with the Apple Pay logo.](https://docs-assets.developer.apple.com/published/39cff1de97dce9c4d9ed453857613b69/media-2903828%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypePlain")]
     pub const Plain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/buy?language=objc)
+    /// An Apple Pay button useful for product purchases.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Buy with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/51ff1b7edb5942a063524de776f1c671/media-2903829%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeBuy")]
     pub const Buy: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/setup?language=objc)
+    /// An Apple Pay button useful for prompting the user to set up a card.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Set up” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/6544130e750603ee9597665cf7b5eecf/media-2903982%402x.png)
+    ///
+    ///
+    /// You can display this button when the device and parental controls support Apple Pay but the user has not yet added a card. Use the [`PKPaymentAuthorizationViewController`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller) class’s [`canMakePayments`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller/canmakepayments()) method to determine whether the device supports Apple Pay. If [`canMakePayments`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller/canmakepayments()) returns [`true`](https://developer.apple.com/documentation/swift/true), call [`canMakePaymentsUsingNetworks:capabilities:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller/canmakepayments(usingnetworks:capabilities:)) to determine whether the user has added any cards.
+    ///
+    /// As soon as the user taps this button, initiate the process of setting up a new card (for example, by calling the [`openPaymentSetup`](https://developer.apple.com/documentation/passkit/pkpasslibrary/openpaymentsetup()) method).
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeSetUp")]
     pub const SetUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/instore?language=objc)
+    /// An Apple Pay button useful for paying bills or invoices.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Pay with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/19a92c91dae22ac56f214b6a337c66af/media-2903983%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeInStore")]
     pub const InStore: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/donate?language=objc)
+    /// An Apple Pay button used by approved nonprofit organization that lets people make donations.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Donate with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/900a2f9be8fa72f34e26f4152219c12e/media-2903984%402x.png)
+    ///
+    ///
+    /// Approved nonprofits can use this button to accept donations. For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeDonate")]
     pub const Donate: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/checkout?language=objc)
+    /// An Apple Pay button useful for purchase experiences that include other payment buttons that start with “Check out”.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Check out with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/e84ea1731cf2a59d10aa8b42dc107277/media-3026883%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeCheckout")]
     pub const Checkout: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/book?language=objc)
+    /// An Apple Pay button useful for booking trips, flights, or other experiences.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Book with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/f13a047622a9aa025dc7aa3de25ca959/media-3026882%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeBook")]
     pub const Book: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/subscribe?language=objc)
+    /// An Apple Pay button useful for purchasing a subscription such as a gym membership or meal-kit delivery service.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Subscribe with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/12d7e5126ecccefac7306b655862fdff/media-3026881%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeSubscribe")]
     pub const Subscribe: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/reload?language=objc)
+    /// An Apple Pay button useful for adding money to a card, account, or payment system.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Reload with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/98baff5273816b9fd3e132c7db9c6ee7/media-3667472%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeReload")]
     pub const Reload: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/addmoney?language=objc)
+    /// An Apple Pay button useful for adding money to a card, account, or payment system.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Add Money with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/0a996f92f72f6590efd25f9223f41459/media-3667465%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeAddMoney")]
     pub const AddMoney: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/topup?language=objc)
+    /// An Apple Pay button useful for adding money to a card, account, or payment system.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Top Up with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/b72dab2098d8e9931f18d896f3ff8d9b/media-3667470%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeTopUp")]
     pub const TopUp: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/order?language=objc)
+    /// An Apple Pay button useful for placing orders for such as like meals or flowers.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Order with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/79c15551c4c872fe4f0b4c4996fd38ca/media-3667467%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeOrder")]
     pub const Order: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/rent?language=objc)
+    /// An Apple Pay button useful for renting items such as cars or scooters.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Rent with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/76031f404448d513815d6f552533b812/media-3667468%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeRent")]
     pub const Rent: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/support?language=objc)
+    /// An Apple Pay button useful supporting people give money to projects, causes, organizations, and other entities.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Support with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/a9d97ab253a46f465ed4c9a82800a043/media-3667469%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeSupport")]
     pub const Support: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/contribute?language=objc)
+    /// An Apple Pay button useful to help people contribute money to projects, causes, organizations, and other entities.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Contribute with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/170b97ca59ca3780cb065722fd7d4cd9/media-3667466%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeContribute")]
     pub const Contribute: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/tip?language=objc)
+    /// An Apple Pay button useful useful for letting people tip for goods or services.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// ![A button with the text “Tip with” and the Apple Pay logo.](https://docs-assets.developer.apple.com/published/9f1d50576721f30734b7bc4f1b33e30a/media-3667471%402x.png)
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeTip")]
     pub const Tip: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype/continue?language=objc)
+    /// An Apple Pay button useful for general purchases.
+    ///
+    /// ## Discussion
+    ///
+    /// This button looks like:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f769a07c1b89c7f4ad515f5c21375d3d/media-3787541~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f769a07c1b89c7f4ad515f5c21375d3d/media-3787541%402x.png 2x" />
+    ///     <img alt="A button with the text “Continue with” and the Apple Pay logo." src="https://docs-assets.developer.apple.com/published/f769a07c1b89c7f4ad515f5c21375d3d/media-3787541~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Apple Pay > Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/).
+    ///
+    ///
     #[doc(alias = "PKPaymentButtonTypeContinue")]
     pub const Continue: Self = Self(16);
 }
@@ -378,20 +680,20 @@ unsafe impl RefEncode for PKPaymentButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology?language=objc)
+/// Constants that describe the type of wireless radio technology that a pass uses.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKRadioTechnology(pub NSUInteger);
 bitflags::bitflags! {
     impl PKRadioTechnology: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology/pkradiotechnologynone?language=objc)
+/// An identifier that indicates the pass doesn’t use radio frequency communication.
         #[doc(alias = "PKRadioTechnologyNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology/nfc?language=objc)
+/// An identifier that indicates the near field communication (NFC) radio frequency communication technology.
         #[doc(alias = "PKRadioTechnologyNFC")]
         const NFC = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology/bluetooth?language=objc)
+/// An identifier that indicates the Bluetooth radio frequency communication technology.
         #[doc(alias = "PKRadioTechnologyBluetooth")]
         const Bluetooth = 1<<1;
     }

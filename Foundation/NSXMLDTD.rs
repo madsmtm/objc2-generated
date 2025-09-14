@@ -7,9 +7,26 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Defines the order, repetition, and allowable values for a document
+    /// A representation of a Document Type Definition.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtd?language=objc)
+    /// ## Overview
+    ///
+    /// An instance of the [`NSXMLDTD`](https://developer.apple.com/documentation/foundation/xmldtd) class is held as a property of an [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) instance, accessed through the [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) property [`DTD`](https://developer.apple.com/documentation/foundation/xmldocument/dtd).
+    ///
+    /// In the data model, an [`NSXMLDTD`](https://developer.apple.com/documentation/foundation/xmldtd) object is conceptually similar to namespace and attribute nodes: it is not considered to be a child of the [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) object although it is closely associated with it. It is at the “root” of a shallow tree consisting primarily of nodes representing DTD declarations. Acceptable child nodes are instances of the [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode) class as well as [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) objects representing comment nodes and processing-instruction nodes.
+    ///
+    /// You create an `NSXMLDTD` object in one of three ways:
+    ///
+    /// - By processing an XML document with its own internal (in-line) DTD
+    ///
+    /// - By process a standalone (external) DTD
+    ///
+    /// - Programmatically
+    ///
+    /// Once an [`NSXMLDTD`](https://developer.apple.com/documentation/foundation/xmldtd) instance is in place, you can add, remove, and change the [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode) objects representing various DTD declarations. When you write the document out as XML, the new or modified internal DTD is included (assuming you set the DTD in the [`NSXMLDocument`](https://developer.apple.com/documentation/foundation/xmldocument) instance). You may also programmatically create an external DTD and write that out to its own file.
+    ///
+    ///
+    /// Defines the order, repetition, and allowable values for a document
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

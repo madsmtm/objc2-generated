@@ -4,20 +4,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascosealgorithmidentifier?language=objc)
+/// An identifier for the algorithm that a credential’s key pair uses.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASCOSEAlgorithmIdentifier = NSInteger;
 
+/// The ES256 algorithm.
 /// The COSE algorithm identifier representing ECDSA with SHA-256.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascosealgorithmidentifier/es256?language=objc)
 pub static ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifier?language=objc)
+/// A structure that contains the elliptic curve identifier.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASCOSEEllipticCurveIdentifier = NSInteger;
 
+/// The 256-bit elliptic curve identifier.
 /// The COSE curve identifier representing the P-256 elliptic curve.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifier/p256?language=objc)
 pub static ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1;

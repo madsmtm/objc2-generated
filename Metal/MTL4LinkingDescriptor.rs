@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Groups together properties to drive a static linking process.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4staticlinkingdescriptor?language=objc)
+    /// Groups together properties to drive a static linking process.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4StaticLinkingDescriptor;
@@ -114,8 +113,7 @@ impl DefaultRetained for MTL4StaticLinkingDescriptor {
 
 extern_class!(
     /// Groups together properties to drive the dynamic linking process of a pipeline stage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4pipelinestagedynamiclinkingdescriptor?language=objc)
+    /// Groups together properties to drive the dynamic linking process of a pipeline stage.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4PipelineStageDynamicLinkingDescriptor;
@@ -210,8 +208,7 @@ impl DefaultRetained for MTL4PipelineStageDynamicLinkingDescriptor {
 
 extern_class!(
     /// Groups together properties that provide linking properties for render pipelines.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4renderpipelinedynamiclinkingdescriptor?language=objc)
+    /// Groups together properties that provide linking properties for render pipelines.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4RenderPipelineDynamicLinkingDescriptor;

@@ -9,21 +9,16 @@ use crate::*;
 
 extern "C" {
     /// Error domain and codes for extensions to report errors before message is delivered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerrordomain?language=objc)
     pub static MEMessageSecurityErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageSecurityErrorCode(pub NSInteger);
 impl MEMessageSecurityErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerror/code/encodingerror?language=objc)
     #[doc(alias = "MEMessageSecurityEncodingError")]
     pub const EncodingError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityerror/code/decodingerror?language=objc)
     #[doc(alias = "MEMessageSecurityDecodingError")]
     pub const DecodingError: Self = Self(1);
 }
@@ -37,7 +32,43 @@ unsafe impl RefEncode for MEMessageSecurityErrorCode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityhandler?language=objc)
+    /// An object that digitally signs or encrypts messages the user sends and receives.
+    ///
+    /// ## Overview
+    ///
+    /// When users enable an extension that implements a message security handler, Mail passes incoming and outgoing message content to the extension for encryption and digital signing.
+    ///
+    /// To encompass the symmetrical halves for encoding and decoding, MailKit defines two protocols that [`MEMessageSecurityHandler`](https://developer.apple.com/documentation/mailkit/memessagesecurityhandler) conforms to:
+    ///
+    /// - [`MEMessageEncoder`](https://developer.apple.com/documentation/mailkit/memessageencoder): Methods that encrypt and digitally sign an email message.
+    ///
+    /// - [`MEMessageDecoder`](https://developer.apple.com/documentation/mailkit/memessagedecoder): Methods that decrypt email messages and verify digital signatures.
+    ///
+    /// As the user composes a mail message, MailKit calls [`getEncodingStatusForMessage:composeContext:completionHandler:`](https://developer.apple.com/documentation/mailkit/memessageencoder/getencodingstatus(for:composecontext:completionhandler:)) to determine if the handler can sign or encrypt the message. The handler indicates the capabilities by providing an instance of [`MEOutgoingMessageEncodingStatus`](https://developer.apple.com/documentation/mailkit/meoutgoingmessageencodingstatus). Mail reflects this status in the compose window by enabling the appropriate buttons to let the user choose how to encode the message. When the user sends the message, MailKit invokes the [`encodeMessage:composeContext:completionHandler:`](https://developer.apple.com/documentation/mailkit/memessageencoder/encode(_:composecontext:completionhandler:)) method, and indicates whether the user chose to encrypt or sign the message.
+    ///
+    /// When MailKit needs the original message content, it invokes the handler’s [`decodedMessageForMessageData:`](https://developer.apple.com/documentation/mailkit/memessagedecoder/decodedmessage(formessagedata:)) method. This method creates an instance of [`MEDecodedMessage`](https://developer.apple.com/documentation/mailkit/medecodedmessage) that includes the raw decoded message data and the details of who signed the message in an instance of [`MEMessageSecurityInformation`](https://developer.apple.com/documentation/mailkit/memessagesecurityinformation).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  MailKit stores the encrypted and signed message content. Therefore, MailKit may ask a message security handler to decode the same message repeatedly over time when it needs the decoded original message content.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To indicate that your extension contains a message security handler, add `MEMessageSecurityHandler` to the [`MEExtensionCapabilities`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/meextensioncapabilities) array in the extension’s `Info.plist` file:
+    ///
+    /// ```plist
+    /// <key>NSExtensionAttributes</key>
+    /// <dict>
+    ///     <key>MEExtensionCapabilities</key>
+    ///     <array>
+    ///         <string>MEMessageSecurityHandler</string>
+    ///     </array>
+    /// </dict>
+    /// ```
+    ///
+    ///
     #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
     pub unsafe trait MEMessageSecurityHandler:
         MEMessageEncoder + MEMessageDecoder + MainThreadOnly

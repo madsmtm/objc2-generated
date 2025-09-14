@@ -22,11 +22,21 @@ unsafe impl RefEncode for CGPDFString {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFString", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringref?language=objc)
+/// A data type that represents a string in a PDF document.
 pub type CGPDFStringRef = *mut CGPDFString;
 
 impl CGPDFString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringgetlength(_:)?language=objc)
+    /// Returns the number of bytes in a PDF string.
+    ///
+    /// Parameters:
+    /// - string: A PDF string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the number of bytes referenced by the string, or `0` if the string is `NULL`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -40,7 +50,17 @@ impl CGPDFString {
         unsafe { CGPDFStringGetLength(string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringgetbyteptr(_:)?language=objc)
+    /// Returns a pointer to the bytes of a PDF string.
+    ///
+    /// Parameters:
+    /// - string: A PDF string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a pointer to the bytes of the specified string. If the string is `NULL`, the function returns `NULL`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -54,7 +74,17 @@ impl CGPDFString {
         unsafe { CGPDFStringGetBytePtr(string) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringcopytextstring(_:)?language=objc)
+    /// Returns a CFString object that represents a PDF string as a text string.
+    ///
+    /// Parameters:
+    /// - string: A PDF string. If this value is `NULL`, it will cause an error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a CFString object that represents the specified PDF string as a text string. You are responsible for releasing this object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -69,7 +99,23 @@ impl CGPDFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfstringcopydate(_:)?language=objc)
+    /// Converts a string to a date.
+    ///
+    /// Parameters:
+    /// - string: The string to convert to a date.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFDate object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The PDF specification defines a specific format for strings that represent dates. This function converts strings in that form to CFDate objects.
+    ///
+    ///
     ///
     /// # Safety
     ///

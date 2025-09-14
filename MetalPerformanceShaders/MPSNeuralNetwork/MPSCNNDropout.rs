@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A class that stores the mask used by dropout and gradient dropout filters.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNDropoutGradientState is used to hold the mask used by both
@@ -19,8 +20,6 @@ extern_class!(
     ///
     /// While the mask is stored internally, the mask data is accessible by the
     /// user for debugging purposes via an accessor method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradientstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -197,7 +196,7 @@ impl MPSCNNDropoutGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradientstatebatch?language=objc)
+/// A batch of dropout gradient state instances.
 #[cfg(all(
     feature = "MPSCore",
     feature = "MPSNNGradientState",
@@ -206,6 +205,7 @@ impl MPSCNNDropoutGradientState {
 pub type MPSCNNDropoutGradientStateBatch = NSArray<MPSCNNDropoutGradientState>;
 
 extern_class!(
+    /// A dropout filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// Dropout is a regularization technique used to prevent neural networks from
@@ -213,8 +213,6 @@ extern_class!(
     /// outputs the input element scaled by 1 / keepProbability. Otherwise, it
     /// outputs 0. Each input element is kept or dropped independently. The scaling
     /// is performed to keep the energy of the output unchanged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropout?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -419,6 +417,7 @@ impl MPSCNNDropout {
 }
 
 extern_class!(
+    /// A gradient dropout filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This filter is the backward filter for the MPSCNNDropout forward filter.
@@ -427,8 +426,6 @@ extern_class!(
     /// a MPSCNNDropoutGradientState object.
     ///
     /// In this kernel, use the secondaryOffset to apply an offset to the mask data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

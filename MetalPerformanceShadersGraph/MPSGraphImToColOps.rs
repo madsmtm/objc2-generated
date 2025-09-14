@@ -12,11 +12,20 @@ use crate::*;
 extern_class!(
     /// The class that defines the parameters for an image to column or column to image operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following [`MPSGraph`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph) methods:
+    ///
+    /// - [`imToColWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/imtocol(_:descriptor:name:))
+    ///
+    /// - [`colToImWithSourceTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/coltoim(_:outputshape:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for an image to column or column to image operation.
+    ///
     /// Use this descriptor with the following ``MPSGraph`` methods:
     /// - ``MPSGraph/imToColWithSourceTensor:descriptor:name:``
     /// - ``MPSGraph/colToImWithSourceTensor:outputShape:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

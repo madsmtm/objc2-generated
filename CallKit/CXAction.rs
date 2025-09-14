@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxaction?language=objc)
+    /// An abstract class that declares a programmatic interface for objects that represent a telephony action.
+    ///
+    /// ## Overview
+    ///
+    /// Each instance of [`CXAction`](https://developer.apple.com/documentation/callkit/cxaction) is uniquely identified by a [`UUID`](https://developer.apple.com/documentation/callkit/cxaction/uuid), which is generated on initialization. An action also tracks whether it has been completed or not.
+    ///
+    /// To perform one or more actions, you add them to a new [`CXTransaction`](https://developer.apple.com/documentation/callkit/cxtransaction) object and pass the transaction to an instance of [`CXCallController`](https://developer.apple.com/documentation/callkit/cxcallcontroller) using the [`requestTransaction:completion:`](https://developer.apple.com/documentation/callkit/cxcallcontroller/request(_:completion:)) method. After each action is performed by the telephony provider, the provider’s delegate calls either the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method, indicating that the action was successfully performed, or the [`fail`](https://developer.apple.com/documentation/callkit/cxaction/fail()) method, to indicate that an error occurred; both of these methods set the [`complete`](https://developer.apple.com/documentation/callkit/cxaction/iscomplete) property of the action to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction) subclass is an abstract class that represents an action associated with a [`CXCall`](https://developer.apple.com/documentation/callkit/cxcall) object. The CallKit framework provides several concrete [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction) subclasses to represent actions such as answering a call and putting a call on hold.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXAction;

@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class?language=objc)
+    /// The basic infrastructure necessary for interacting with an assistive app.
+    ///
+    /// ## Overview
+    ///
+    /// Create subclasses of the [`NSAccessibilityElement`](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class) class to represent any of your user interface elements that don’t inherit from [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or from one of the standard AppKit controls. This class represents your user interface element in the accessibility hierarchy and manages the details necessary for working with assistive apps.
+    ///
+    /// To support accessibility features for a custom user interface element:
+    ///
+    /// 1. Create your [`NSAccessibilityElement`](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class) subclass by using [`accessibilityElementWithRole:frame:label:parent:`](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class/element(withrole:frame:label:parent:)). You can also set these values using [`setAccessibilityRole(_:)`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol/setaccessibilityrole(_:)), [`setAccessibilityLabel(_:)`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol/setaccessibilitylabel(_:)) and [`setAccessibilityParent(_:)`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol/setaccessibilityparent(_:)).
+    ///
+    /// 2. Call the parent’s [`accessibilityAddChildElement:`](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class/accessibilityaddchildelement(_:)) method to add your subclass. You can also add the subclass to its parent’s [`accessibilityChildren`](https://developer.apple.com/documentation/appkit/nsaccessibility-c.protocol/accessibilitychildren) array using [`setAccessibilityChildren(_:)`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol/setaccessibilitychildren(_:)).
+    ///
+    /// 3. In your subclass, call [`setAccessibilityFrameInParentSpace(_:)`](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class/setaccessibilityframeinparentspace(_:)). This ensures that your control moves with its superview.
+    ///
+    /// 4. In your subclass, adopt a role-specific protocol, customize the role, and post notifications just as you would handle any other accessible control. See [Custom Controls](https://developer.apple.com/documentation/appkit/custom-controls).
+    ///
+    /// 5. In your subclass, implement any additional properties and methods you may need to use to further customize your user interface element’s accessibility behavior. See [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityElement;

@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The appearance and behavior of an item in the systemwide menu bar.
     /// Status bar buttons are the visual representation of `NSStatusItem`s, and are primarily displayed on the right side of the menu bar.
     /// When a template image is set as the `image` property of the status bar button, it is rendered with the correct menu bar style. This guarantees that the button will look correct in various button states and appearances (such as dark menu bar).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusbarbutton?language=objc)
     #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

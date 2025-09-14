@@ -11,7 +11,63 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspersistentdocument?language=objc)
+    /// A document object that can integrate with Core Data.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSPersistentDocument`](https://developer.apple.com/documentation/appkit/nspersistentdocument) class is a subclass of [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) that is designed to easily integrate into the Core Data framework. It provides methods to access a document-wide [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) object, and provides default implementations of methods to read and write files using the persistence framework. In a persistent document, the undo manager functionality is taken over by managed object context.
+    ///
+    /// Standard document behavior is implemented as follows:
+    ///
+    /// - Opening a document invokes [`configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:`](https://developer.apple.com/documentation/appkit/nspersistentdocument/configurepersistentstorecoordinator(for:oftype:modelconfiguration:storeoptions:)) with the new URL, and adds a store of the default type (XML). Objects are loaded from the persistent store on demand through the document’s context.
+    ///
+    /// - Saving a new document adds a store of the default type with the chosen URL and invokes save: on the context. For an existing document, a save just invokes [`save:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/save()) on the context.
+    ///
+    /// - Save As for a new document simply invokes save. For an opened document, it migrates the persistent store to the new URL and invokes [`save:`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext/save()) on the context.
+    ///
+    /// - Revert resets the document’s managed object context. Objects are subsequently loaded from the persistent store on demand, as with opening a new document.
+    ///
+    /// By default an [`NSPersistentDocument`](https://developer.apple.com/documentation/appkit/nspersistentdocument) instance creates its own ready-to-use persistence stack including managed object context, persistent object store coordinator and persistent store. There is a one-to-one mapping between the document and the backing object store.
+    ///
+    /// You can customize the architecture of the persistence stack by overriding the [`managedObjectModel`](https://developer.apple.com/documentation/appkit/nspersistentdocument/managedobjectmodel) property and [`configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:`](https://developer.apple.com/documentation/appkit/nspersistentdocument/configurepersistentstorecoordinator(for:oftype:modelconfiguration:storeoptions:)) method. You might wish to do this, for example, to specify a particular managed object model.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`NSPersistentDocument`](https://developer.apple.com/documentation/appkit/nspersistentdocument) does not support some document behaviors:
+    ///
+    /// - File wrappers.
+    ///
+    /// - [`NSSaveToOperation`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/savetooperation) operation type.
+    ///
+    /// Core Data does not support saving changes to a new document while maintaining the unsaved state in the current document.
+    ///
+    /// - Asynchronous saving.
+    ///
+    /// [`NSPersistentDocument`](https://developer.apple.com/documentation/appkit/nspersistentdocument) does not support the asynchronous saving API of [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) because that API requires accessing the document’s state on multiple threads and that violates the requirements of the [`NSManagedObjectContext`](https://developer.apple.com/documentation/coredata/nsmanagedobjectcontext) class. Do not override [`canAsynchronouslyWriteToURL:ofType:forSaveOperation:`](https://developer.apple.com/documentation/appkit/nsdocument/canasynchronouslywrite(to:oftype:for:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Undo Support
+    ///
+    /// The persistent document uses the managed object context’s undo manager.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Do not override the following properties, their getters, or their setters:
+    ///
+    /// - [`hasUndoManager`](https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager)
+    ///
+    /// - [`undoManager`](https://developer.apple.com/documentation/appkit/nsdocument/undomanager)
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`documentEdited`](https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited) method returns [`true`](https://developer.apple.com/documentation/swift/true) if the persistent document’s managed object context, or editors registered with the context, have uncommitted changes, otherwise it returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[unsafe(super(NSDocument, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSDocument")]

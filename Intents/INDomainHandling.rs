@@ -5,7 +5,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallsdomainhandling?language=objc)
+    /// Provides a convenient way to adopt all of the protocols in the VoIP calling domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INCallsDomainHandling`](https://developer.apple.com/documentation/intents/incallsdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle call-related intents. When your app adopts all of the protocols associated with call handling, you can adopt this one protocol instead of adopting the [`INStartAudioCallIntentHandling`](https://developer.apple.com/documentation/intents/instartaudiocallintenthandling), [`INStartVideoCallIntentHandling`](https://developer.apple.com/documentation/intents/instartvideocallintenthandling), and [`INSearchCallHistoryIntentHandling`](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INSearchCallHistoryIntent`](https://developer.apple.com/documentation/intents/insearchcallhistoryintent), a request to search for an entry in the app’s call logs.
+    ///
+    /// - [`INStartAudioCallIntent`](https://developer.apple.com/documentation/intents/instartaudiocallintent), a request to start an audio-only call.
+    ///
+    /// - [`INStartVideoCallIntent`](https://developer.apple.com/documentation/intents/instartvideocallintent),  a request to start a video call.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INSearchCallHistoryIntent",
         feature = "INStartAudioCallIntent",
@@ -21,7 +37,25 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarcommandsdomainhandling?language=objc)
+    /// An interface for adopting all the handling protocols in the car commands domain.
+    ///
+    /// ## Overview
+    ///
+    /// The `INCarCommandsDomainHandling` protocol adopts all of the protocols used to handle car command intents. You can adopt this one protocol instead of adopting the [`INActivateCarSignalIntentHandling`](https://developer.apple.com/documentation/intents/inactivatecarsignalintenthandling), [`INGetCarPowerLevelStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling), [`INGetCarLockStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintenthandling), and [`INSetCarLockStatusIntentHandling`](https://developer.apple.com/documentation/intents/insetcarlockstatusintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must respond to the following intents:
+    ///
+    /// - [`INActivateCarSignalIntent`](https://developer.apple.com/documentation/intents/inactivatecarsignalintent), a request to activate an audible or visual signal from the car.
+    ///
+    /// - [`INGetCarPowerLevelStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent), a request for the current charge percentage remaining (for electric cars), fuel percentage remaining (for fuel-driven cars), or distance remaining given the car’s current charge or fuel.
+    ///
+    /// - [`INGetCarLockStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintent), a request for the current status of the car’s locks (locked or unlocked).
+    ///
+    /// - [`INSetCarLockStatusIntent`](https://developer.apple.com/documentation/intents/insetcarlockstatusintent), a request to lock or unlock the car.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INActivateCarSignalIntent",
         feature = "INGetCarLockStatusIntent",
@@ -39,7 +73,29 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarplaydomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the CarPlay domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INCarPlayDomainHandling`](https://developer.apple.com/documentation/intents/incarplaydomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle CarPlay-related intents. When your app adopts all of the protocols associated with CarPlay, you can adopt this one protocol instead of adopting the [`INSetAudioSourceInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintenthandling), [`INSetClimateSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintenthandling), [`INSetDefrosterSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling), [`INSetSeatSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetseatsettingsincarintenthandling), [`INSetProfileInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetprofileincarintenthandling), and [`INSaveProfileInCarIntentHandling`](https://developer.apple.com/documentation/intents/insaveprofileincarintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INSetAudioSourceInCarIntent`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintent), a request to change the audio source.
+    ///
+    /// - [`INSetClimateSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent), a request to change the climate control settings.
+    ///
+    /// - [`INSetDefrosterSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent), a request to change the defroster settings.
+    ///
+    /// - [`INSetSeatSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetseatsettingsincarintent), a request to change the seat temperature settings.
+    ///
+    /// - [`INSetProfileInCarIntent`](https://developer.apple.com/documentation/intents/insetprofileincarintent), a request to configure the car with the specified profile information.
+    ///
+    /// - [`INSaveProfileInCarIntent`](https://developer.apple.com/documentation/intents/insaveprofileincarintent), a request to save the current settings to a designated profile.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INSaveProfileInCarIntent",
         feature = "INSetAudioSourceInCarIntent",
@@ -61,7 +117,27 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutsdomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the workouts domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INWorkoutsDomainHandling`](https://developer.apple.com/documentation/intents/inworkoutsdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle workout-related intents. When your app adopts all of the protocols associated with workouts, you can adopt this one protocol instead of adopting the [`INStartWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/instartworkoutintenthandling), [`INPauseWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling), [`INResumeWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling), [`INCancelWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling), and [`INEndWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inendworkoutintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INStartWorkoutIntent`](https://developer.apple.com/documentation/intents/instartworkoutintent), a request to start a new workout.
+    ///
+    /// - [`INPauseWorkoutIntent`](https://developer.apple.com/documentation/intents/inpauseworkoutintent), a request to pause the current workout.
+    ///
+    /// - [`INResumeWorkoutIntent`](https://developer.apple.com/documentation/intents/inresumeworkoutintent), a request to resume a paused workout.
+    ///
+    /// - [`INEndWorkoutIntent`](https://developer.apple.com/documentation/intents/inendworkoutintent), a request to end the active workout and save the results.
+    ///
+    /// - [`INCancelWorkoutIntent`](https://developer.apple.com/documentation/intents/incancelworkoutintent), a request to cancel the active workout without saving the results.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INCancelWorkoutIntent",
         feature = "INEndWorkoutIntent",
@@ -81,14 +157,42 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inradiodomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the radio domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INRadioDomainHandling`](https://developer.apple.com/documentation/intents/inradiodomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle radio-related intents in a CarPlay environment. You can adopt this protocol instead of adopting the [`INSetRadioStationIntentHandling`](https://developer.apple.com/documentation/intents/insetradiostationintenthandling) protocol.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intent:
+    ///
+    /// - [`INSetRadioStationIntent`](https://developer.apple.com/documentation/intents/insetradiostationintent), a request to change the audio source.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with this intent and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(feature = "INSetRadioStationIntent")]
     #[deprecated = "Please conform to INSetRadioStationIntentHandling instead"]
     pub unsafe trait INRadioDomainHandling: INSetRadioStationIntentHandling {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagesdomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the messages domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INMessagesDomainHandling`](https://developer.apple.com/documentation/intents/inmessagesdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle message-related intents. When your app adopts all of the protocols associated with messages, you can adopt this one protocol instead of adopting the [`INSendMessageIntentHandling`](https://developer.apple.com/documentation/intents/insendmessageintenthandling), [`INSearchForMessagesIntentHandling`](https://developer.apple.com/documentation/intents/insearchformessagesintenthandling), and [`INSetMessageAttributeIntent`](https://developer.apple.com/documentation/intents/insetmessageattributeintent) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent), a request to compose and send a message to one or more recipients.
+    ///
+    /// - [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent), a request to search for specific messages based on a set of query parameters.
+    ///
+    /// - [`INSetMessageAttributeIntent`](https://developer.apple.com/documentation/intents/insetmessageattributeintent), a request to modify a message, such as mark it as read.
+    ///
+    /// You must prepare your handler object to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INSearchForMessagesIntent",
         feature = "INSendMessageIntent",
@@ -104,7 +208,29 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentsdomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the payments domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INPaymentsDomainHandling`](https://developer.apple.com/documentation/intents/inpaymentsdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle payment-related intents. When your app adopts all of the protocols associated with payments, you can adopt this one protocol instead of adopting the [`INSendPaymentIntentHandling`](https://developer.apple.com/documentation/intents/insendpaymentintenthandling), [`INRequestPaymentIntentHandling`](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling), [`INPayBillIntentHandling`](https://developer.apple.com/documentation/intents/inpaybillintenthandling), [`INSearchForBillsIntentHandling`](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling), [`INSearchForAccountsIntentHandling`](https://developer.apple.com/documentation/intents/insearchforaccountsintenthandling), and [`INTransferMoneyIntentHandling`](https://developer.apple.com/documentation/intents/intransfermoneyintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INRequestPaymentIntent`](https://developer.apple.com/documentation/intents/inrequestpaymentintent), a request for a payment from another user.
+    ///
+    /// - [`INSendPaymentIntent`](https://developer.apple.com/documentation/intents/insendpaymentintent), a request to send a payment to another user.
+    ///
+    /// - [`INPayBillIntent`](https://developer.apple.com/documentation/intents/inpaybillintent), a request to pay a bill.
+    ///
+    /// - [`INSearchForBillsIntent`](https://developer.apple.com/documentation/intents/insearchforbillsintent), a request to search for bills to pay.
+    ///
+    /// - [`INSearchForAccountsIntent`](https://developer.apple.com/documentation/intents/insearchforaccountsintent), a request to provide a list of the user’s accounts.
+    ///
+    /// - [`INTransferMoneyIntent`](https://developer.apple.com/documentation/intents/intransfermoneyintent), a request to transfer money between the designated accounts.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INPayBillIntent",
         feature = "INRequestPaymentIntent",
@@ -126,7 +252,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotosdomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the photos domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INPhotosDomainHandling`](https://developer.apple.com/documentation/intents/inphotosdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle photo-related intents. When your app adopts all of the protocols associated with photos, you can adopt this one protocol instead of adopting the [`INSearchForPhotosIntentHandling`](https://developer.apple.com/documentation/intents/insearchforphotosintenthandling) and [`INStartPhotoPlaybackIntentHandling`](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent), a request to search for a specific photo.
+    ///
+    /// - [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent), a request to begin a slideshow of the specified photos.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INSearchForPhotosIntent",
         feature = "INStartPhotoPlaybackIntent"
@@ -139,7 +279,27 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridesharingdomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the ride-booking domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INRidesharingDomainHandling`](https://developer.apple.com/documentation/intents/inridesharingdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle ride sharing-related intents. When your app adopts all of the protocols associated with ride sharing, you can adopt this one protocol instead of adopting the [`INListRideOptionsIntentHandling`](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling), [`INRequestRideIntentHandling`](https://developer.apple.com/documentation/intents/inrequestrideintenthandling), [`INGetRideStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling), [`INCancelRideIntentHandling`](https://developer.apple.com/documentation/intents/incancelrideintenthandling), and [`INSendRideFeedbackIntentHandling`](https://developer.apple.com/documentation/intents/insendridefeedbackintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INListRideOptionsIntent`](https://developer.apple.com/documentation/intents/inlistrideoptionsintent), a request to view the available vehicles and prices.
+    ///
+    /// - [`INRequestRideIntent`](https://developer.apple.com/documentation/intents/inrequestrideintent), a request to book a ride.
+    ///
+    /// - [`INGetRideStatusIntent`](https://developer.apple.com/documentation/intents/ingetridestatusintent), a request to get the status of a previously booked ride.
+    ///
+    /// - [`INCancelRideIntent`](https://developer.apple.com/documentation/intents/incancelrideintent), a request to cancel the currently active ride.
+    ///
+    /// - [`INSendRideFeedbackIntent`](https://developer.apple.com/documentation/intents/insendridefeedbackintent), a request to record feedback for the just-completed ride.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INCancelRideIntent",
         feature = "INGetRideStatusIntent",
@@ -159,7 +319,29 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookdomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the lists and notes domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INNotebookDomainHandling`](https://developer.apple.com/documentation/intents/innotebookdomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle list, note, and reminder-related intents. When your app adopts all of the protocols associated with notes and reminders, you can adopt this one protocol instead of adopting the [`INCreateNoteIntentHandling`](https://developer.apple.com/documentation/intents/increatenoteintenthandling), [`INAppendToNoteIntentHandling`](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling), [`INSearchForNotebookItemsIntentHandling`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintenthandling), [`INCreateTaskListIntentHandling`](https://developer.apple.com/documentation/intents/increatetasklistintenthandling), [`INAddTasksIntentHandling`](https://developer.apple.com/documentation/intents/inaddtasksintenthandling), and [`INSetTaskAttributeIntentHandling`](https://developer.apple.com/documentation/intents/insettaskattributeintenthandling) protocols separately.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intents:
+    ///
+    /// - [`INCreateNoteIntent`](https://developer.apple.com/documentation/intents/increatenoteintent), a request to create a new note.
+    ///
+    /// - [`INAppendToNoteIntent`](https://developer.apple.com/documentation/intents/inappendtonoteintent), a request to modify an existing note.
+    ///
+    /// - [`INSearchForNotebookItemsIntent`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent), a request to search for existing notes.
+    ///
+    /// - [`INCreateTaskListIntent`](https://developer.apple.com/documentation/intents/increatetasklistintent), a request to create a new list of tasks or reminders.
+    ///
+    /// - [`INAddTasksIntent`](https://developer.apple.com/documentation/intents/inaddtasksintent), a request to add tasks to an existing task list.
+    ///
+    /// - [`INSetTaskAttributeIntent`](https://developer.apple.com/documentation/intents/insettaskattributeintent), a request to modify a task.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with these intents and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(all(
         feature = "INAddTasksIntent",
         feature = "INAppendToNoteIntent",
@@ -181,7 +363,19 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodedomainhandling?language=objc)
+    /// An interface for adopting all of the protocols in the visual codes domain.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INVisualCodeDomainHandling`](https://developer.apple.com/documentation/intents/invisualcodedomainhandling) protocol is a convenience protocol that adopts all of the protocols used to handle QR codes and other visual codes. You can adopt this protocol instead of adopting the [`INGetVisualCodeIntentHandling`](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling) protocol.
+    ///
+    /// An object that adopts this protocol must be able to respond to the following intent:
+    ///
+    /// - An [`INGetVisualCodeIntent`](https://developer.apple.com/documentation/intents/ingetvisualcodeintent) object is a request for your app to provide a visual code.
+    ///
+    /// Your handler object must be prepared to resolve any parameters associated with this intent and to confirm and handle the requests. When confirming and handling a request, you provide the response object that matches the specified intent.
+    ///
+    ///
     #[cfg(feature = "INGetVisualCodeIntent")]
     #[deprecated = "Please conform to INGetVisualCodeIntentHandling instead"]
     pub unsafe trait INVisualCodeDomainHandling: INGetVisualCodeIntentHandling {}

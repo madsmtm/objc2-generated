@@ -26,6 +26,42 @@ cf_objc2_type!(
 );
 
 extern "C-unwind" {
+    /// Determines the range of the longest word or phrase with respect to an offset.
+    ///
+    /// Parameters:
+    /// - dictionary: This parameter is reserved for future use, so pass `NULL`. Dictionary Services searches in all active dictionaries.
+    ///
+    /// - textString: Text that contains the word or phrase to look up.
+    ///
+    /// - offset: A character offset in the `textString` parameter.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The range that specifies the location, around the specified offset, of the word or phrase , or the constant `kCFNotFound`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to determine the range of text that contains a word or phrase. After you determine the range, you can pass the result to the  functions [`DCSCopyTextDefinition`](https://developer.apple.com/documentation/coreservices/1446842-dcscopytextdefinition) and `HIDictionaryWindowShow`.
+    ///
+    /// To see how this works, follow these steps:
+    ///
+    /// 1. In macOS 10.5 or later, open Text Edit.
+    ///
+    /// 2. Type `It is a foggy day in San Francisco, California.`
+    ///
+    /// 3. Control-click `Francisco` (don’t select it). Then, choose “Lookup in Dictionary”.
+    ///
+    /// Note that the Dictionary window appears with a definition of San Francisco. The function  `DCSGetTermRangeInString` automatically detected the range of the phrase San Francisco, using `Francisco` as the text string to search for and a character offset in this string. The function expanded the range until it found a possible match.
+    ///
+    /// You can also point the cursor at the word `Francisco` and, without making a selection or clicking, type Command-Control-D.  `DCSGetTermRangeInString` detects the range.
+    ///
+    /// The function `DCSGetTermRangeInString` only returns the range. You must call [`DCSCopyTextDefinition`](https://developer.apple.com/documentation/coreservices/1446842-dcscopytextdefinition) to copy the definition and `HIDictionaryWindowShow` to display the definition in a Dictionary window.
+    ///
+    ///
     /// Look for a word or a phrase that contains the specified offset in dictionaries
     /// activated in Dictionary.app preference
     ///
@@ -39,8 +75,6 @@ extern "C-unwind" {
     /// or (kCFNotFound, 0) is returned if any term is not found in active dictionaries.
     /// The result range can be used as an input parameter of DCSCopyTextDefinition()
     /// and HIDictionaryWindowShow() in Carbon framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450556-dcsgettermrangeinstring?language=objc)
     pub fn DCSGetTermRangeInString(
         dictionary: Option<&DCSDictionary>,
         text_string: &CFString,
@@ -48,6 +82,30 @@ extern "C-unwind" {
     ) -> CFRange;
 }
 
+/// Returns the definition associated with the provided text range.
+///
+/// Parameters:
+/// - dictionary: This parameter is reserved for future use, so pass `NULL`. Dictionary Services searches in all active dictionaries.
+///
+/// - textString: Text that contains the word or phrase to look up.
+///
+/// - range: A range that specifies the location of the word or phrase in the `textString` parameter. If text string exactly specifies the word or phrase that you want to look up, you can pass the range of the text string. For example, for the word `make`, you would pass (`0`,`4`) to specify the range.
+///
+/// If the `textString` parameter contains the word or phrase, but does not specify it exactly, then pass the range returned by the function [`DCSGetTermRangeInString`](https://developer.apple.com/documentation/coreservices/1450556-dcsgettermrangeinstring).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The definition of the word or phrase, as plain text. The returned text does not contain any elements that are marked with a `priority` attribute whose value is `2`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns the description of the first matching record found in the active dictionaries. It searches first in the default word definition dictionary which, in the English environment, is the Oxford dictionary.
+///
+///
 /// Copies definition for a specified range of text
 ///
 /// Parameter `dictionary`: This parameter is not supported for Leopard. You should always pass NULL.
@@ -57,8 +115,6 @@ extern "C-unwind" {
 /// Parameter `range`: Range of the target word or phrase in textString
 ///
 /// Returns: Returns a definition of the specified term in range in plain text
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446842-dcscopytextdefinition?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DCSCopyTextDefinition(
     dictionary: Option<&DCSDictionary>,

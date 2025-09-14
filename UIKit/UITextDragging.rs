@@ -7,17 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragoptions?language=objc)
+/// A set of options that determine the behavior of a draggable text view.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDragOptions(pub NSInteger);
 bitflags::bitflags! {
     impl UITextDragOptions: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragoptions/uitextdragoptionsnone?language=objc)
+/// Indicates no text drag options.
         #[doc(alias = "UITextDragOptionsNone")]
         const OptionsNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragoptions/striptextcolorfrompreviews?language=objc)
+/// Strips the foreground and background colors for a system-provided text drag preview.
+///
+/// ## Discussion
+///
+/// When the system creates a preview for a text drag operation, the preview keeps the foreground and background text colors. Using the [`UITextDragOptionStripTextColorFromPreviews`](https://developer.apple.com/documentation/uikit/uitextdragoptions/striptextcolorfrompreviews) option strips away those colors, leaving the preview with black text on a clear background. This option changes only the preview, not the view used to create the preview. Also, this option doesn’t affect any images included in the preview.
+///
+///
         #[doc(alias = "UITextDragOptionStripTextColorFromPreviews")]
         const OptionStripTextColorFromPreviews = 1<<0;
     }
@@ -32,7 +38,7 @@ unsafe impl RefEncode for UITextDragOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdraggable?language=objc)
+    /// The interface that determines if a text view is a drag source.
     #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
     pub unsafe trait UITextDraggable: UITextInput + MainThreadOnly {
         #[unsafe(method(textDragDelegate))]
@@ -70,7 +76,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragdelegate?language=objc)
+    /// The interface for customizing the behavior of a drag activity for a text view.
     pub unsafe trait UITextDragDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDragItem",
@@ -178,7 +184,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragrequest?language=objc)
+    /// The interface for describing the attributes of a drag activity originating in a text view.
     pub unsafe trait UITextDragRequest: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         #[unsafe(method(dragRange))]

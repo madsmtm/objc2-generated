@@ -8,10 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An action in an action set that writes a value to a characteristic.
+    ///
+    /// ## Overview
+    ///
+    /// Action sets are instances of [`HMActionSet`](https://developer.apple.com/documentation/homekit/hmactionset).
+    ///
+    ///
     /// This class is used to represent an entry in an action set that writes a specific
     /// value to a characteristic.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicwriteaction?language=objc)
     #[unsafe(super(HMAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMAction")]

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inurlresolutionresult?language=objc)
+    /// A resolution result for the types media destinations.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INURLResolutionResult`](https://developer.apple.com/documentation/intents/inurlresolutionresult) object when resolving parameters containing an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

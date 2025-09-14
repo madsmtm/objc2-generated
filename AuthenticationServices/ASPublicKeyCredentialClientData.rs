@@ -7,19 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdatacrossoriginvalue?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASPublicKeyCredentialClientDataCrossOriginValue(pub NSInteger);
 impl ASPublicKeyCredentialClientDataCrossOriginValue {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdatacrossoriginvalue/notset?language=objc)
     #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdatacrossoriginvalue/crossorigin?language=objc)
     #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueCrossOrigin")]
     pub const CrossOrigin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdatacrossoriginvalue/sameoriginwithancestors?language=objc)
     #[doc(alias = "ASPublicKeyCredentialClientDataCrossOriginValueSameOriginWithAncestors")]
     pub const SameOriginWithAncestors: Self = Self(2);
 }
@@ -34,8 +30,7 @@ unsafe impl RefEncode for ASPublicKeyCredentialClientDataCrossOriginValue {
 
 extern_class!(
     /// This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdata-c.class?language=objc)
+    /// This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPublicKeyCredentialClientData;

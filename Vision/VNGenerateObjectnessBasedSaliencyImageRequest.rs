@@ -7,10 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that generates a heat map that identifies the parts of an image most likely to represent objects.
+    ///
+    /// ## Overview
+    ///
+    /// The resulting observation, [`VNSaliencyImageObservation`](https://developer.apple.com/documentation/vision/vnsaliencyimageobservation), encodes this data as a heat map, which you can use to highlight regions of interest.
+    ///
+    ///
     /// Generates an image that identifies which part(s) of a given image are most likely to be objects (i.e. something that a human is likely to see as an object).
     /// The resulting observation, VNSaliencyImageObservation, encodes this data as a heat map which can be used highlight regions of interest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -80,10 +85,9 @@ impl VNGenerateObjectnessBasedSaliencyImageRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the image saliency request.
 pub static VNGenerateObjectnessBasedSaliencyImageRequestRevision1: NSUInteger = 1;
 
+/// A value that indicates the second revision for an image-classification request.
 /// Improved accuracy, reduced latency and memory utilization.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequestrevision2?language=objc)
 pub static VNGenerateObjectnessBasedSaliencyImageRequestRevision2: NSUInteger = 2;

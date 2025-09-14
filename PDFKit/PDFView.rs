@@ -14,22 +14,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode?language=objc)
+/// A wrapper for the chosen display mode constant.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayMode(pub NSInteger);
 impl PDFDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/singlepage?language=objc)
+    /// A display mode where the document displays one page at a time horizontally and vertically.
+    ///
+    /// ## Discussion
+    ///
+    /// Vertical and horizontal scrolling apply only to the current page.
+    ///
+    ///
     #[doc(alias = "kPDFDisplaySinglePage")]
     pub const SinglePage: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/singlepagecontinuous?language=objc)
+    /// A display mode where the document displays in continuous mode vertically, with single-page width horizontally.
+    ///
+    /// ## Discussion
+    ///
+    /// Vertical scrolling applies to the entire document.
+    ///
+    ///
     #[doc(alias = "kPDFDisplaySinglePageContinuous")]
     pub const SinglePageContinuous: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/twoup?language=objc)
+    /// A display mode where the document displays two pages side-by-side.
+    ///
+    /// ## Discussion
+    ///
+    /// Vertical and horizontal scrolling apply only to the pair of displayed pages.
+    ///
+    ///
     #[doc(alias = "kPDFDisplayTwoUp")]
     pub const TwoUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/twoupcontinuous?language=objc)
+    /// A display mode where the document displays in continuous mode vertically and displays two pages side-by-side horizontally.
+    ///
+    /// ## Discussion
+    ///
+    /// Vertical scrolling applies to the entire document.
+    ///
+    ///
     #[doc(alias = "kPDFDisplayTwoUpContinuous")]
     pub const TwoUpContinuous: Self = Self(3);
 }
@@ -42,16 +66,13 @@ unsafe impl RefEncode for PDFDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaydirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayDirection(pub NSInteger);
 impl PDFDisplayDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaydirection/vertical?language=objc)
     #[doc(alias = "kPDFDisplayDirectionVertical")]
     pub const Vertical: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaydirection/horizontal?language=objc)
     #[doc(alias = "kPDFDisplayDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }
@@ -64,19 +85,19 @@ unsafe impl RefEncode for PDFDisplayDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality?language=objc)
+/// A wrapper for the specified interpolation quality.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFInterpolationQuality(pub NSInteger);
 impl PDFInterpolationQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality/none?language=objc)
+    /// The case where no interpolation quality is specified.
     #[doc(alias = "kPDFInterpolationQualityNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality/low?language=objc)
+    /// The case specifying low interpolation quality.
     #[doc(alias = "kPDFInterpolationQualityLow")]
     pub const Low: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality/high?language=objc)
+    /// The case specifying high interpolation quality.
     #[doc(alias = "kPDFInterpolationQualityHigh")]
     pub const High: Self = Self(2);
 }
@@ -90,67 +111,145 @@ unsafe impl RefEncode for PDFInterpolationQuality {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewdocumentchangednotification?language=objc)
+    /// A notification posted when a new document is associated with the view.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewDocumentChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewchangedhistorynotification?language=objc)
+    /// A notification posted when the page history changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewChangedHistoryNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewpagechangednotification?language=objc)
+    /// A notification posted when a new page becomes the current page.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewPageChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewscalechangednotification?language=objc)
+    /// A notification posted when the scale factor changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewScaleChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewannotationhitnotification?language=objc)
+    /// A notification posted when the user clicks on an annotation.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    /// Use the `@”PDFAnnotationHit”` key to obtain userinfo of type `PDFAnnotation *`.
+    ///
+    ///
     pub static PDFViewAnnotationHitNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewcopypermissionnotification?language=objc)
+    /// A notification posted when the user attempts to copy to the pasteboard without the appropriate permissions.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewCopyPermissionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewprintpermissionnotification?language=objc)
+    /// A notification posted when the user attempts to print without the appropriate permissions.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewPrintPermissionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewannotationwillhitnotification?language=objc)
+    /// A notification posted before the user clicks an annotation.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewAnnotationWillHitNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewselectionchangednotification?language=objc)
+    /// A notification posted when the current selection has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewSelectionChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewdisplaymodechangednotification?language=objc)
+    /// A notification posted when the display mode has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewDisplayModeChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewdisplayboxchangednotification?language=objc)
+    /// A notification posted when the display box has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `PDFView` object itself.
+    ///
+    ///
     pub static PDFViewDisplayBoxChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewvisiblepageschangednotification?language=objc)
+    /// A notification posted when the visible pages have changed.
     pub static PDFViewVisiblePagesChangedNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfview?language=objc)
+    /// An object that encapsulates the functionality of PDF Kit into a single widget that you can add to your application using Interface Builder.
+    ///
+    /// ## Overview
+    ///
+    /// `PDFView` may be the only class you need to deal with for adding PDF functionality to your application. It lets you display PDF data and allows users to select content, navigate through a document, set zoom level, and copy textual content to the Pasteboard. `PDFView` also keeps track of page history.
+    ///
+    /// You can subclass `PDFView` to create a custom PDF viewer.
+    ///
+    /// You can also create a custom PDF viewer by using the PDF Kit utility classes directly and not using `PDFView` at all.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -754,7 +853,7 @@ impl PDFView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfviewdelegate?language=objc)
+    /// The delegate for the `PDFView` object.
     pub unsafe trait PDFViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

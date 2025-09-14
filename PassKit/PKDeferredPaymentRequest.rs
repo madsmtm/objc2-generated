@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdeferredpaymentrequest?language=objc)
+    /// An object that represents a request to set up a deferred payment, such as a hotel booking or a pre-order.
+    ///
+    /// ## Overview
+    ///
+    /// This request receives a merchant-specific payment token, if the payment network supports merchant-specific payment tokens.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must set the [`deferredPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/deferredpaymentrequest) property on a [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) object to use the `PKDeferredPaymentRequest` class and set up a deferred payment.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use a `PKDeferredPaymentRequest` object to provide the user with payment details and a way to manage payment methods for a deferred payment. You can optionally display a billing agreement and set up merchant token life cycle notifications for the request.
+    ///
+    /// For more information about the merchant token life cycle notifications, see [`Apple Pay Merchant Token Management API`](https://developer.apple.com/documentation/merchanttokennotificationservices).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKDeferredPaymentRequest;

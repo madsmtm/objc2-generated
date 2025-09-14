@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenttoken?language=objc)
+    /// Contains the user’s payment credentials.
+    ///
+    /// ## Overview
+    ///
+    /// You access the payment token for an authorized payment request using the [`token`](https://developer.apple.com/documentation/passkit/pkpayment/token) property of [`PKPayment`](https://developer.apple.com/documentation/passkit/pkpayment).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentToken;

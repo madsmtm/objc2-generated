@@ -7,31 +7,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct?language=objc)
+/// The capabilities that a record zone supports.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKRecordZoneCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl CKRecordZoneCapabilities: NSUInteger {
-/// This zone supports `CKFetchRecordZoneChangesOperation`
+/// A capability for fetching only the changed records from a zone.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/fetchchanges?language=objc)
+/// ## Discussion
+///
+/// This capability makes the creation of offline caches more efficient. Instead of fetching the entire record every time, use [`CKFetchRecordZoneChangesOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation) to fetch only the changed values, and use the data it returns to update your cache. This minimizes the amount of data you receive from the server.
+///
+///
+/// This zone supports `CKFetchRecordZoneChangesOperation`
         #[doc(alias = "CKRecordZoneCapabilityFetchChanges")]
         const FetchChanges = 1<<0;
-/// Batched changes to this zone happen atomically
+/// A capability that allows atomic changes of multiple records.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/atomic?language=objc)
+/// ## Discussion
+///
+/// When you use a [`CKModifyRecordsOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation) object to save records, if the server is unable to save the changes for one record, it doesn’t save the changes for any of the records. Combining this capability with the [`CKRecordSaveIfServerRecordUnchanged`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy/ifserverrecordunchanged) policy of the operation object prevents your app from overwriting changes to a group of records if one or more of the records on the server has recent changes.
+///
+///
+/// Batched changes to this zone happen atomically
         #[doc(alias = "CKRecordZoneCapabilityAtomic")]
         const Atomic = 1<<1;
-/// Records in this zone can be shared
+/// A capability for sharing a specific hierarchy of records.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/sharing?language=objc)
+/// ## Discussion
+///
+/// CloudKit allows you to share record hierarchies from custom record zones that you create in the user’s private database. For more information, see [Shared Records](https://developer.apple.com/documentation/cloudkit/shared-records).
+///
+///
+/// Records in this zone can be shared
         #[doc(alias = "CKRecordZoneCapabilitySharing")]
         const Sharing = 1<<2;
-/// This zone supports a single `CKShare` record that shares all records in the zone
+/// A capability for sharing the entire contents of a record zone.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct/zonewidesharing?language=objc)
+/// ## Discussion
+///
+/// CloudKit allows you to share custom record zones that you create in the user’s private database. For more information, see [Shared Records](https://developer.apple.com/documentation/cloudkit/shared-records).
+///
+///
+/// This zone supports a single `CKShare` record that shares all records in the zone
         #[doc(alias = "CKRecordZoneCapabilityZoneWideSharing")]
         const ZoneWideSharing = 1<<3;
     }
@@ -45,7 +65,6 @@ unsafe impl RefEncode for CKRecordZoneCapabilities {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/encryptionscope-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -53,11 +72,33 @@ pub struct CKRecordZoneEncryptionScope(pub NSInteger);
 impl CKRecordZoneEncryptionScope {
     /// Zone uses per-record encryption keys for any encrypted values on a record or share.
     ///
+    /// ## Discussion
+    ///
     /// This is the default encryption scope for a record zone.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/encryptionscope-swift.enum/perrecord?language=objc)
+    ///
+    /// Zone uses per-record encryption keys for any encrypted values on a record or share.
+    ///
+    /// This is the default encryption scope for a record zone.
     #[doc(alias = "CKRecordZoneEncryptionScopePerRecord")]
     pub const PerRecord: Self = Self(0);
+    /// Zone uses per-zone encryption keys for encrypted values across all records and the zone-wide share, if present.
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional optimization that can reduce the overall storage used by encryption keys in a zone. Note that:
+    ///
+    /// - Record zones using per-zone encryption only support zone-wide sharing.
+    ///
+    /// - Encryption scope can only be assigned at zone creation and cannot be changed for the lifetime of the zone.
+    ///
+    /// - The server will not return zones using per-zone encryption to device OS versions older than the corresponding API availability version.
+    ///
+    /// - An older OS trying to overwrite an existing zone using per-zone encryption due to a naming collision will result in a `.serverRejectedRequest` error.
+    ///
+    /// - On device OS upgrade, your application is responsible for fetching database changes via `CKFetchDatabaseChangesOperation` with a nil sync token to ensure it has received all the zones available to it from the server.
+    ///
+    ///
     /// Zone uses per-zone encryption keys for encrypted values across all records and the zone-wide share, if present.
     ///
     /// This is an optional optimization that can reduce the overall storage used by encryption keys in a zone.
@@ -68,8 +109,6 @@ impl CKRecordZoneEncryptionScope {
     /// - An older OS trying to overwrite an existing zone using per-zone encryption due to a naming collision will result in a `.serverRejectedRequest` error.
     /// - On device OS upgrade, your application is responsible for fetching database changes via `CKFetchDatabaseChangesOperation` with a nil sync token to ensure it has
     /// received all the zones available to it from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/encryptionscope-swift.enum/perzone?language=objc)
     #[doc(alias = "CKRecordZoneEncryptionScopePerZone")]
     pub const PerZone: Self = Self(1);
 }
@@ -83,12 +122,36 @@ unsafe impl RefEncode for CKRecordZoneEncryptionScope {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonedefaultname-8mfij?language=objc)
+    /// The default record zone’s name.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value when you need to refer to the default zone by name, such as when creating a zone ID. The default zone has no special capabilities.
+    ///
+    ///
     pub static CKRecordZoneDefaultName: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone?language=objc)
+    /// A database partition that contains related records.
+    ///
+    /// ## Overview
+    ///
+    /// Zones are an important part of how you organize your data. The public and private databases each have a single default zone. In the private database, you can use [`CKRecordZone`](https://developer.apple.com/documentation/cloudkit/ckrecordzone) objects to create additional custom zones as necessary. Use custom zones to arrange and encapsulate groups of related records in the private database. Custom zones support other capabilities too, such as the ability to write multiple records as a single atomic transaction.
+    ///
+    /// Treat each custom zone as a single unit of data that is separate from every other zone in the database. Inside the zone, you add records as you would anywhere else. You can also create links between the records inside a zone by using the [`CKReference`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference) class. However, the [`CKReference`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference) class doesn’t support cross-zone linking, so each reference object must point to a record in the same zone as the current record.
+    ///
+    /// Use the [`CKRecordZone`](https://developer.apple.com/documentation/cloudkit/ckrecordzone) class as-is and don’t subclass it.
+    ///
+    /// ### Creating a Custom Record Zone
+    ///
+    /// Generally, you use instances of this class to create and manage custom zones. Although you can use this class to retrieve a database’s default zone, most operations act on records in the default zone by default, so you rarely need to specify it explicitly.
+    ///
+    /// To create a custom zone, use [`CKRecordZone`](https://developer.apple.com/documentation/cloudkit/ckrecordzone) to create the zone object, and then save that zone to the user’s private database using a [`CKModifyRecordZonesOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordzonesoperation) object. You can’t save any records in the zone until you save it to the database. When creating records, explicitly specify the zone ID if you want the records to reside in a specific zone; otherwise, they save to the default zone. You can’t create custom zones in a public database.
+    ///
+    /// After creating a `CKRecordZone` object and saving it to the database, you don’t interact with the object much. Instead, most interactions occur with its corresponding [`CKRecordZoneID`](https://developer.apple.com/documentation/cloudkit/ckrecordzone/id) object, which you use to refer to the zone when creating records.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZone;

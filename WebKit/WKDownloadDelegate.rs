@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/redirectpolicy?language=objc)
+/// An enumeration with cases that indicate whether to proceed with a redirect.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKDownloadRedirectPolicy(pub NSInteger);
 impl WKDownloadRedirectPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/redirectpolicy/cancel?language=objc)
+    /// Cancel the redirect action.
     #[doc(alias = "WKDownloadRedirectPolicyCancel")]
     pub const Cancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/redirectpolicy/allow?language=objc)
+    /// Allow a redirect to proceed.
     #[doc(alias = "WKDownloadRedirectPolicyAllow")]
     pub const Allow: Self = Self(1);
 }
@@ -29,16 +29,13 @@ unsafe impl RefEncode for WKDownloadRedirectPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/placeholderpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKDownloadPlaceholderPolicy(pub NSInteger);
 impl WKDownloadPlaceholderPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/placeholderpolicy/disable?language=objc)
     #[doc(alias = "WKDownloadPlaceholderPolicyDisable")]
     pub const Disable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownload/placeholderpolicy/enable?language=objc)
     #[doc(alias = "WKDownloadPlaceholderPolicyEnable")]
     pub const Enable: Self = Self(1);
 }
@@ -52,7 +49,7 @@ unsafe impl RefEncode for WKDownloadPlaceholderPolicy {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownloaddelegate?language=objc)
+    /// A protocol you implement to track download progress and handle redirects, authentication challenges, and failures.
     pub unsafe trait WKDownloadDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "WKDownload", feature = "block2"))]
         #[unsafe(method(download:decideDestinationUsingResponse:suggestedFilename:completionHandler:))]

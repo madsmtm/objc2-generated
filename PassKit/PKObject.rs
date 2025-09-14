@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkobject?language=objc)
+    /// An opaque type that acts as the superclass for the pass object.
+    ///
+    /// ## Overview
+    ///
+    /// Never use this class directly. Use the [`PKPass`](https://developer.apple.com/documentation/passkit/pkpass) or [`PKPaymentPass`](https://developer.apple.com/documentation/passkit/pkpaymentpass) classes instead.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKObject;

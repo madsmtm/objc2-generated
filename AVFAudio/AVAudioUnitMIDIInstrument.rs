@@ -13,9 +13,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Base class for MIDI instruments.
+    /// An object that represents music devices or remote instruments.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitmidiinstrument?language=objc)
+    /// ## Overview
+    ///
+    /// Use an [`AVAudioUnitMIDIInstrument`](https://developer.apple.com/documentation/avfaudio/avaudiounitmidiinstrument) in a chain that processes real-time (live) input and has the general concept of music events; for example, notes.
+    ///
+    ///
+    /// Base class for MIDI instruments.
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]

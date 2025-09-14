@@ -7,7 +7,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpression?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpression;
@@ -39,7 +38,6 @@ impl AXMathExpression {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionnumber?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionNumber;
@@ -80,7 +78,6 @@ impl AXMathExpressionNumber {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionIdentifier;
@@ -121,7 +118,6 @@ impl AXMathExpressionIdentifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionoperator?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionOperator;
@@ -162,7 +158,6 @@ impl AXMathExpressionOperator {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressiontext?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionText;
@@ -203,7 +198,6 @@ impl AXMathExpressionText {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionfenced?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionFenced;
@@ -267,7 +261,6 @@ impl AXMathExpressionFenced {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionrow?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionRow;
@@ -311,7 +304,6 @@ impl AXMathExpressionRow {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressiontable?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionTable;
@@ -355,7 +347,6 @@ impl AXMathExpressionTable {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressiontablerow?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionTableRow;
@@ -399,7 +390,6 @@ impl AXMathExpressionTableRow {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressiontablecell?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionTableCell;
@@ -443,7 +433,6 @@ impl AXMathExpressionTableCell {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionunderover?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionUnderOver;
@@ -507,7 +496,6 @@ impl AXMathExpressionUnderOver {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionsubsuperscript?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionSubSuperscript;
@@ -571,7 +559,6 @@ impl AXMathExpressionSubSuperscript {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionfraction?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionFraction;
@@ -625,7 +612,6 @@ impl AXMathExpressionFraction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionmultiscript?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionMultiscript;
@@ -693,7 +679,6 @@ impl AXMathExpressionMultiscript {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionroot?language=objc)
     #[unsafe(super(AXMathExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXMathExpressionRoot;
@@ -747,7 +732,6 @@ impl AXMathExpressionRoot {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmathexpressionprovider?language=objc)
     pub unsafe trait AXMathExpressionProvider: NSObjectProtocol {
         #[unsafe(method(accessibilityMathExpression))]
         #[unsafe(method_family = none)]

@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Contains information about a decoded message
+    /// An object that contains the RFC 2822 data for a message, without encryption or digital signatures.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/medecodedmessage?language=objc)
+    /// ## Overview
+    ///
+    /// When MailKit invokes your message security handler’s [`decodedMessageForMessageData:`](https://developer.apple.com/documentation/mailkit/memessagedecoder/decodedmessage(formessagedata:)) method, you decode the message data and return an instance of [`MEDecodedMessage`](https://developer.apple.com/documentation/mailkit/medecodedmessage) that contains unencrypted MIME data.
+    ///
+    ///
+    /// Contains information about a decoded message
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEDecodedMessage;

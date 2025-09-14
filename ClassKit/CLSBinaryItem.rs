@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype?language=objc)
+/// The kinds of outcomes that a binary activity item can represent.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSBinaryValueType(pub NSInteger);
 impl CLSBinaryValueType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/truefalse?language=objc)
+    /// True or false.
     #[doc(alias = "CLSBinaryValueTypeTrueFalse")]
     pub const TrueFalse: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/passfail?language=objc)
+    /// Pass or fail.
     #[doc(alias = "CLSBinaryValueTypePassFail")]
     pub const PassFail: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/yesno?language=objc)
+    /// Yes or no.
     #[doc(alias = "CLSBinaryValueTypeYesNo")]
     pub const YesNo: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryvaluetype/correctincorrect?language=objc)
+    /// Correct or incorrect.
     #[doc(alias = "CLSBinaryValueTypeCorrectIncorrect")]
     pub const CorrectIncorrect: Self = Self(3);
 }
@@ -36,9 +36,14 @@ unsafe impl RefEncode for CLSBinaryValueType {
 }
 
 extern_class!(
-    /// CLSBinaryItem represents user generated information that is true or false, pass or fail, yes or no.
+    /// Activity information that is true or false, pass or fail, yes or no.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsbinaryitem?language=objc)
+    /// ## Overview
+    ///
+    /// Use an activity item of this type to indicate a binary condition, such as whether a student passed a test or failed it. Set the [`valueType`](https://developer.apple.com/documentation/classkit/clsbinaryitem/valuetype) property to specify how the binary condition should be reported to a teacher.
+    ///
+    ///
+    /// CLSBinaryItem represents user generated information that is true or false, pass or fail, yes or no.
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]

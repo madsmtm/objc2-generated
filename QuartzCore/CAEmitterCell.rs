@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemittercell?language=objc)
+    /// The definition of a particle emitted by a particle layer.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CAEmitterCell`](https://developer.apple.com/documentation/quartzcore/caemittercell) class represents one source of particles being emitted by a [`CAEmitterLayer`](https://developer.apple.com/documentation/quartzcore/caemitterlayer) object. An emitter cell defines the direction and properties of the emitted particles. Emitter cells can have an array of sub-cells, which lets the particles themselves emit particles.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAEmitterCell;

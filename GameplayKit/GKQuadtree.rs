@@ -6,10 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A helper class for managing the objects you organize in a quadtree.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly; instead, a [`GKQuadtree`](https://developer.apple.com/documentation/gameplaykit/gkquadtree) object provides you with a [`GKQuadtreeNode`](https://developer.apple.com/documentation/gameplaykit/gkquadtreenode) instance when you add an element to a tree. If you plan to remove elements from the tree, keep references to the corresponding nodes so you can use the [`removeElement:withNode:`](https://developer.apple.com/documentation/gameplaykit/gkquadtree/remove(_:using:)) method for better performance.
+    ///
+    /// For more information, see [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// The individual node(s) that make up a GKQuadtree.
     /// Used as a hint for faster removal via [GKQuadtree removeData:WithNode:]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkquadtreenode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKQuadtreeNode;
@@ -37,10 +44,31 @@ impl GKQuadtreeNode {
 }
 
 extern_class!(
+    /// A data structure for organizing objects based on their locations in a two-dimensional space.
+    ///
+    /// ## Overview
+    ///
+    /// A quadtree manages its structure to optimize for spatial searches—unlike a basic data structure such as an array or dictionary, a quadtree can find all elements occupying a specific position or region very quickly. The quadtree partitioning strategy divides space into four quadrants at each level, as illustrated in [Figure 1](/documentation/gameplaykit/gkquadtree#1965707). When a quadrant contains more than one object, the tree subdivides that region into four smaller quadrants, adding a level to the tree.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/43b632815a9aac05024873e4495e98c1/media-1965707%402x.png)
+    ///
+    ///
+    /// Quadtrees can be useful for many tasks in game design. For example:
+    ///
+    /// - Deciding which game characters are close enough to each other for interaction
+    ///
+    /// - Deciding which portions of a large game world need to be processed at a given time
+    ///
+    /// The [`GKQuadtree`](https://developer.apple.com/documentation/gameplaykit/gkquadtree) class is one of three spatial partitioning data structures that GameplayKit provides. See these other classes for other tasks:
+    ///
+    /// - The [`GKOctree`](https://developer.apple.com/documentation/gameplaykit/gkoctree) class provides the three-dimensional equivalent of a quadtree. Use an octree when you need to organize objects in 3D space.
+    ///
+    /// - The [`GKRTree`](https://developer.apple.com/documentation/gameplaykit/gkrtree) class provides a different algorithm for two-dimensional spatial indexing. Quadtrees and R-trees have different performance tradeoffs for different tasks: quadtrees can be faster when objects are more uniformly distributed in space or when their positions change frequently, and R-trees can be faster when searching for all objects in a given region.
+    ///
+    ///
     /// A tree data structure where each level has 4 children that subdivide a given space into the four quadrants.
     /// Stores arbitrary NSObject data via points and quads.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkquadtree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKQuadtree<ElementType: ?Sized = AnyObject>;

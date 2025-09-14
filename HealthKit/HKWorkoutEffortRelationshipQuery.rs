@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationship?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutEffortRelationship;
@@ -88,17 +87,13 @@ impl HKWorkoutEffortRelationship {
 }
 
 /// Option for specifying which workout effort relationship sample(s) to retrieve
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationshipqueryoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutEffortRelationshipQueryOptions(pub NSInteger);
 impl HKWorkoutEffortRelationshipQueryOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationshipqueryoptions/default?language=objc)
     #[doc(alias = "HKWorkoutEffortRelationshipQueryOptionsDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationshipqueryoptions/mostrelevant?language=objc)
     #[doc(alias = "HKWorkoutEffortRelationshipQueryOptionsMostRelevant")]
     pub const MostRelevant: Self = Self(1 << 0);
 }
@@ -113,8 +108,6 @@ unsafe impl RefEncode for HKWorkoutEffortRelationshipQueryOptions {
 
 extern_class!(
     /// A concrete subclass of HKQuery that provides an interface to observe associations with a workout sample.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteffortrelationshipquery?language=objc)
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

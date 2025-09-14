@@ -6,73 +6,73 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style?language=objc)
+/// Blur styles available for blur effect objects.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBlurEffectStyle(pub NSInteger);
 impl UIBlurEffectStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/extralight?language=objc)
+    /// The area of the view is lighter than the underlying view.
     #[doc(alias = "UIBlurEffectStyleExtraLight")]
     pub const ExtraLight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/light?language=objc)
+    /// The area of the view is the same approximate lightness of the underlying view.
     #[doc(alias = "UIBlurEffectStyleLight")]
     pub const Light: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/dark?language=objc)
+    /// The area of the view is darker than the underlying view.
     #[doc(alias = "UIBlurEffectStyleDark")]
     pub const Dark: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/extradark?language=objc)
+    /// The area of the view is even more dark than the underlying view.
     #[doc(alias = "UIBlurEffectStyleExtraDark")]
     pub const ExtraDark: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/regular?language=objc)
+    /// A regular blur style that adapts to the user interface style.
     #[doc(alias = "UIBlurEffectStyleRegular")]
     pub const Regular: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/prominent?language=objc)
+    /// A blur style for making content more prominent that adapts to the user interface style.
     #[doc(alias = "UIBlurEffectStyleProminent")]
     pub const Prominent: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemultrathinmaterial?language=objc)
+    /// An adaptable blur effect that creates the appearance of an ultra-thin material.
     #[doc(alias = "UIBlurEffectStyleSystemUltraThinMaterial")]
     pub const SystemUltraThinMaterial: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemthinmaterial?language=objc)
+    /// An adaptable blur effect that creates the appearance of a thin material.
     #[doc(alias = "UIBlurEffectStyleSystemThinMaterial")]
     pub const SystemThinMaterial: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemmaterial?language=objc)
+    /// An adaptable blur effect that creates the appearance of a material with normal thickness.
     #[doc(alias = "UIBlurEffectStyleSystemMaterial")]
     pub const SystemMaterial: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemthickmaterial?language=objc)
+    /// An adaptable blur effect that creates the appearance of a material that’s thicker than normal.
     #[doc(alias = "UIBlurEffectStyleSystemThickMaterial")]
     pub const SystemThickMaterial: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemchromematerial?language=objc)
+    /// An adaptable blur effect that creates the appearance of the system chrome.
     #[doc(alias = "UIBlurEffectStyleSystemChromeMaterial")]
     pub const SystemChromeMaterial: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemultrathinmateriallight?language=objc)
+    /// A blur effect that creates the appearance of an ultra-thin material and is always light.
     #[doc(alias = "UIBlurEffectStyleSystemUltraThinMaterialLight")]
     pub const SystemUltraThinMaterialLight: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemthinmateriallight?language=objc)
+    /// A blur effect that creates the appearance of a thin material and is always light.
     #[doc(alias = "UIBlurEffectStyleSystemThinMaterialLight")]
     pub const SystemThinMaterialLight: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemmateriallight?language=objc)
+    /// A blur effect that creates the appearance of a material with normal thickness and is always light.
     #[doc(alias = "UIBlurEffectStyleSystemMaterialLight")]
     pub const SystemMaterialLight: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemthickmateriallight?language=objc)
+    /// A blur effect that creates the appearance of a material that’s thicker than normal and is always light.
     #[doc(alias = "UIBlurEffectStyleSystemThickMaterialLight")]
     pub const SystemThickMaterialLight: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemchromemateriallight?language=objc)
+    /// A blur effect that creates the appearance of the system chrome and is always light.
     #[doc(alias = "UIBlurEffectStyleSystemChromeMaterialLight")]
     pub const SystemChromeMaterialLight: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemultrathinmaterialdark?language=objc)
+    /// A blur effect that creates the appearance of an ultra-thin material and is always dark.
     #[doc(alias = "UIBlurEffectStyleSystemUltraThinMaterialDark")]
     pub const SystemUltraThinMaterialDark: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemthinmaterialdark?language=objc)
+    /// A blur effect that creates the appearance of a thin material and is always dark.
     #[doc(alias = "UIBlurEffectStyleSystemThinMaterialDark")]
     pub const SystemThinMaterialDark: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemmaterialdark?language=objc)
+    /// A blur effect that creates the appearance of a material with normal thickness and is always dark.
     #[doc(alias = "UIBlurEffectStyleSystemMaterialDark")]
     pub const SystemMaterialDark: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemthickmaterialdark?language=objc)
+    /// A blur effect that creates the appearance of a material that’s thicker than normal and is always dark.
     #[doc(alias = "UIBlurEffectStyleSystemThickMaterialDark")]
     pub const SystemThickMaterialDark: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect/style/systemchromematerialdark?language=objc)
+    /// A blur effect that creates the appearance of the system chrome and is always dark.
     #[doc(alias = "UIBlurEffectStyleSystemChromeMaterialDark")]
     pub const SystemChromeMaterialDark: Self = Self(20);
 }
@@ -86,7 +86,13 @@ unsafe impl RefEncode for UIBlurEffectStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiblureffect?language=objc)
+    /// An object that applies a blurring effect to the content layered behind a visual effect view.
+    ///
+    /// ## Overview
+    ///
+    /// Views that you add to the [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview) of a visual effect view aren’t affected by the blur effect.
+    ///
+    ///
     #[unsafe(super(UIVisualEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

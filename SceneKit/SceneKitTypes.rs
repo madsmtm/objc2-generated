@@ -15,24 +15,23 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// Constants affecting the animation curve of an action, used by the [`timingMode`](https://developer.apple.com/documentation/scenekit/scnaction/timingmode) property.
 /// The modes that an action can use to adjust the apparent timing of the action.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNActionTimingMode(pub NSInteger);
 impl SCNActionTimingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/linear?language=objc)
+    /// Linear pacing. The animation progresses evenly throughout its duration.
     #[doc(alias = "SCNActionTimingModeLinear")]
     pub const Linear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/easein?language=objc)
+    /// Ease-in pacing. The animation begins slowly, and then speeds up as it progresses.
     #[doc(alias = "SCNActionTimingModeEaseIn")]
     pub const EaseIn: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/easeout?language=objc)
+    /// Ease-out pacing. The animation begins quickly, and then slows as it completes.
     #[doc(alias = "SCNActionTimingModeEaseOut")]
     pub const EaseOut: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode/easeineaseout?language=objc)
+    /// Ease-in ease-out pacing. The animation begins slowly, accelerates through the middle of its duration, and then slows again before completing.
     #[doc(alias = "SCNActionTimingModeEaseInEaseOut")]
     pub const EaseInEaseOut: Self = Self(3);
 }
@@ -46,30 +45,22 @@ unsafe impl RefEncode for SCNActionTimingMode {
 }
 
 /// Color components
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNColorMask(pub NSInteger);
 bitflags::bitflags! {
     impl SCNColorMask: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/scncolormasknone?language=objc)
         #[doc(alias = "SCNColorMaskNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/red?language=objc)
         #[doc(alias = "SCNColorMaskRed")]
         const Red = 0x1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/green?language=objc)
         #[doc(alias = "SCNColorMaskGreen")]
         const Green = 0x1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/blue?language=objc)
         #[doc(alias = "SCNColorMaskBlue")]
         const Blue = 0x1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/alpha?language=objc)
         #[doc(alias = "SCNColorMaskAlpha")]
         const Alpha = 0x1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask/all?language=objc)
         #[doc(alias = "SCNColorMaskAll")]
         const All = 0xf;
     }
@@ -83,7 +74,21 @@ unsafe impl RefEncode for SCNColorMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector3?language=objc)
+/// A representation of a three-component vector.
+///
+/// ## Overview
+///
+/// SceneKit uses three-component vectors for a variety of purposes, such as describing node or vertex positions, surface normals, and scale or translation transforms. The different vector components should be interpreted based on the context in which the vector is being used.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  In macOS, the `x`, `y`, and `z` fields in this structure are [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct) values. In iOS, tvOS, and watchOS, these fields are `float` values.
+///
+///
+///
+/// </div>
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -110,7 +115,25 @@ unsafe impl RefEncode for SCNVector3 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector4?language=objc)
+/// A representation of a four-component vector.
+///
+/// ## Overview
+///
+/// SceneKit uses four-component vectors to represent multiple kinds of data:
+///
+/// - Axis-angle rotation or torque. The `x`, `y`, and `z` fields contain the normalized x-, y-, and z-components of the rotation axis, and the `w` field contains the rotation angle, in radians, or torque magnitude, in newton-meters.
+///
+/// - Color value (or range). The `x`, `y`, `z`, and `w` fields contain the red, green, blue, and alpha components of the color, or the width of the color variation range in each component.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  In macOS, the `x`, `y`, `z` and `w` fields in this structure are [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct) values. In iOS, tvOS, and watchOS, these fields are `float` values.
+///
+///
+///
+/// </div>
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -140,20 +163,38 @@ unsafe impl RefEncode for SCNVector4 {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector3zero?language=objc)
+    /// The three-component vector whose every component is `0.0`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static SCNVector3Zero: SCNVector3;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector4zero?language=objc)
+    /// The four-component vector whose every component is `0.0`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static SCNVector4Zero: SCNVector4;
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 impl SCNVector3 {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector3equaltovector3(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the corresponding components of two vectors are equal.
+    ///
+    /// Parameters:
+    /// - a: The first vector.
+    ///
+    /// - b: The second vector.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// True if each component of `a` is exactly equal to `b`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function performs a numeric (not bitwise) comparison of each pair of component values.
+    ///
+    ///
     #[doc(alias = "SCNVector3EqualToVector3")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -167,7 +208,25 @@ impl SCNVector3 {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl SCNVector4 {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector4equaltovector4(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the corresponding components of two vectors are equal.
+    ///
+    /// Parameters:
+    /// - a: The first vector.
+    ///
+    /// - b: The second vector.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// True if each component of `a` is exactly equal to `b`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function performs a numeric (not bitwise) comparison of each pair of component values.
+    ///
+    ///
     #[doc(alias = "SCNVector4EqualToVector4")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -189,31 +248,87 @@ impl SCNVector4 {
     // TODO: pub fn SCNVector4Make(x: CGFloat,y: CGFloat,z: CGFloat,w: CGFloat,) -> SCNVector4;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnquaternion?language=objc)
+/// A representation of a quaternion.
+///
+/// ## Discussion
+///
+/// A quaternion is a mathematical construct useful for describing rotations in three-dimensional space. Although its implementation differs from that of a 4-component vector, you specify a quaternion value using the same fields as an `SCNVector4` structure.
+///
+/// SceneKit uses unit quaternions (those whose components satisfy the equation `x*x + y*y + z*z + w*w == 1`) for the [`orientation`](https://developer.apple.com/documentation/scenekit/scnnode/orientation) property of nodes.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 pub type SCNQuaternion = SCNVector4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4-swift.typealias?language=objc)
+/// A representation of a 4 x 4 matrix.
+///
+/// ## Discussion
+///
+/// SceneKit uses matrices to represent coordinate space transformations, which in turn can represent the combined position, rotation or orientation, and scale of an object in three-dimensional space.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  In macOS, the fields in this structure are [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct) values. In iOS, tvOS, and watchOS, these fields are `float` values.
+///
+///
+///
+/// </div>
+///
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 pub type SCNMatrix4 = CATransform3D;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4identity?language=objc)
+    /// The 4 x 4 identity matrix.
+    ///
+    /// ## Discussion
+    ///
+    /// Elements on the diagonal of this matrix are `1.0`; all other elements are `0.0`. Multiplying another matrix by the identity matrix or multiplying the identity matrix by another matrix yields the other matrix.
+    ///
+    ///
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub static SCNMatrix4Identity: SCNMatrix4;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4isidentity(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the specified matrix is equal to the identity matrix.
+    ///
+    /// Parameters:
+    /// - m: The matrix to be tested.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// True if the elements on the matrix’s diagonal are `1.0` and all other elements are `0.0`.
+    ///
+    ///
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4equaltomatrix4(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the corresponding elements of two matrices are equal.
+    ///
+    /// Parameters:
+    /// - a: The first matrix to be compared.
+    ///
+    /// - b: The first matrix to be compared.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// True if each element in `matA` is exactly equal to the corresponding element in `b`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function performs a numeric (not bitwise) comparison of each pair of elements.
+    ///
+    ///
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool;
@@ -224,7 +339,23 @@ extern "C-unwind" {
 // TODO: pub fn SCNMatrix4MakeScale(sx: CGFloat,sy: CGFloat,sz: CGFloat,) -> SCNMatrix4;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4makerotation(_:_:_:_:)?language=objc)
+    /// Returns a matrix describing a rotation transformation.
+    ///
+    /// Parameters:
+    /// - angle: The amount of rotation, in radians, measured counterclockwise around the rotation axis.
+    ///
+    /// - x: The x-component of the rotation axis.
+    ///
+    /// - y: The y-component of the rotation axis.
+    ///
+    /// - z: The z-component of the rotation axis.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new rotation matrix.
+    ///
+    ///
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4MakeRotation(angle: CGFloat, x: CGFloat, y: CGFloat, z: CGFloat)
@@ -234,14 +365,60 @@ extern "C-unwind" {
 // TODO: pub fn SCNMatrix4Translate(m: SCNMatrix4,tx: CGFloat,ty: CGFloat,tz: CGFloat,) -> SCNMatrix4;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4scale(_:_:_:_:)?language=objc)
+    /// Returns a new matrix created by concatenating the specified matrix with a scale transformation.
+    ///
+    /// Parameters:
+    /// - m: The matrix to be combined with a translation.
+    ///
+    /// - sx: The scale factor in the x-axis direction.
+    ///
+    /// - sy: The scale factor in the y-axis direction.
+    ///
+    /// - sz: The scale factor in the z-axis direction.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new matrix.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting transformation consists of the specified scale followed by the transformation represented by the `mat` parameter.
+    ///
+    ///
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Scale(m: SCNMatrix4, sx: CGFloat, sy: CGFloat, sz: CGFloat) -> SCNMatrix4;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4rotate(_:_:_:_:_:)?language=objc)
+    /// Returns a new matrix created by concatenating the specified matrix with a rotation transformation.
+    ///
+    /// Parameters:
+    /// - m: The matrix to be combined with a rotation.
+    ///
+    /// - angle: The amount of rotation, in radians, measured counterclockwise around the rotation axis.
+    ///
+    /// - x: The x-component of the rotation axis.
+    ///
+    /// - y: The y-component of the rotation axis.
+    ///
+    /// - z: The z-component of the rotation axis.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new matrix.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting transformation consists of the specified rotation followed by the transformation represented by the `mat` parameter.
+    ///
+    ///
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Rotate(
@@ -254,14 +431,42 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4invert(_:)?language=objc)
+    /// Returns the inverse of the specified matrix.
+    ///
+    /// Parameters:
+    /// - m: The matrix to be inverted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The inverse matrix of the specified matrix, or the original matrix if it is not invertible.
+    ///
+    ///
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4mult(_:_:)?language=objc)
+    /// Returns the product of two matrices.
+    ///
+    /// Parameters:
+    /// - a: The multiplicand, or left operand of matrix multiplication.
+    ///
+    /// - b: The multiplier, or right operand of matrix multiplication.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The matrix product of the `matA` and `matB` parameters.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Matrix multiplication is not commutative. As a transformation, the result of multiplying a matrix `A` by a matrix `B` is the transformation represented by `B` followed by the transformation represented by `A`.
+    ///
+    ///
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
@@ -282,7 +487,17 @@ impl SCNVector4 {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4toglkmatrix4(_:)?language=objc)
+    /// Returns a GLKit matrix corresponding to a SceneKit matrix.
+    ///
+    /// Parameters:
+    /// - mat: A SceneKit matrix.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A GLKit matrix representing the same 3D transformation.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -293,7 +508,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4fromglkmatrix4(_:)?language=objc)
+    /// Returns a SceneKit matrix corresponding to a GLKit matrix.
+    ///
+    /// Parameters:
+    /// - mat: A GLKit matrix.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A SceneKit matrix representing the same 3D transformation.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -353,11 +578,11 @@ impl private_NSValueSceneKitAdditions::Sealed for NSValue {}
 unsafe impl NSValueSceneKitAdditions for NSValue {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnerrordomain?language=objc)
+    /// Identifies an error type defined by the SceneKit framework.
     pub static SCNErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprogramcompilationerror?language=objc)
+/// An error in compiling GLSL shader source code for use with the [`SCNProgram`](https://developer.apple.com/documentation/scenekit/scnprogram) class.
 pub const SCNProgramCompilationError: c_uint = 1;
 
 extern "C-unwind" {

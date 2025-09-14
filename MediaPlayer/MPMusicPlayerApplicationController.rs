@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerqueue?language=objc)
+    /// An immutable queue containing the media items to play.
+    ///
+    /// ## Overview
+    ///
+    /// An `MPMusicPlayerControllerQueue` object contains the current queue for an application queue music player. To add or remove media items from a playing queue, use [`performQueueTransaction:completionHandler:`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerapplicationcontroller/perform(queuetransaction:completionhandler:)). The results of the method is an `MPMusicPlayerControllerQueue` object that updates the playing queue. You don’t create your own instance of this class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerControllerQueue;
@@ -36,7 +42,7 @@ impl MPMusicPlayerControllerQueue {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollermutablequeue?language=objc)
+    /// A mutable queue containing the media items to play.
     #[unsafe(super(MPMusicPlayerControllerQueue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerControllerMutableQueue;
@@ -82,7 +88,7 @@ impl MPMusicPlayerControllerMutableQueue {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerapplicationcontroller?language=objc)
+    /// A media player object that you use to revise the queue that’s currently playing.
     #[unsafe(super(MPMusicPlayerController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMusicPlayerController")]
@@ -132,6 +138,6 @@ impl MPMusicPlayerApplicationController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerqueuedidchangenotification?language=objc)
+    /// Indicates the music player’s queue changed.
     pub static MPMusicPlayerControllerQueueDidChangeNotification: &'static NSString;
 }

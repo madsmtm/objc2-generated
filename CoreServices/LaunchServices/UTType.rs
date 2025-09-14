@@ -61,7 +61,32 @@ extern "C" {
     pub static kUTTagClassOSType: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448939-uttypecreatepreferredidentifierf?language=objc)
+/// Creates a uniform type identifier for the type indicated by the specified tag.
+///
+/// Parameters:
+/// - inTagClass: The class of the `inTag` parameter. For more information, see `Type Tag Classes`.
+///
+/// - inTag: The tag to translate into a uniform type identifier.
+///
+/// - inConformingToUTI: If not `NULL`, the returned uniform type identifier must conform to this parameter.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A new CFStringRef containing a uniform type identifier, or `NULL` if inTagClass is not a known tag class
+///
+///
+///
+/// ## Discussion
+///
+/// This function is used to translate a type declared using another declaration mechanism (for example, MIME types) into a uniform type identifier. This function searches all UTI declarations for a matching translation. If a conforming parameter is assigned, the search is reduced to the subset of type identifiers that conform to that type.
+///
+/// If there is more than one possible UTI for the specified tag, the UTI that will be returned is undefined. See [`UTTypeCreateAllIdentifiersForTag`](https://developer.apple.com/documentation/coreservices/1447261-uttypecreateallidentifiersfortag) if you need to see all search results.
+///
+/// If no result is found, this function creates a dynamic type beginning with the `dyn` prefix. This allows you to pass the UTI around and convert it back to the original tag.
+///
+///
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCreatePreferredIdentifierForTag(
@@ -82,7 +107,30 @@ pub unsafe extern "C-unwind" fn UTTypeCreatePreferredIdentifierForTag(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447261-uttypecreateallidentifiersfortag?language=objc)
+/// Creates an array of all uniform type identifiers for the type indicated by the specified tag.
+///
+/// Parameters:
+/// - inTagClass: The class of the `inTag` parameter. For more information, see `Type Tag Classes`.
+///
+/// - inTag: The tag to translate into a uniform type identifier.
+///
+/// - inConformingToUTI: If not `nil`, all returned uniform type identifiers must conform to this parameter.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// An array of uniform type identifiers, or `NULL` if inTagClass is not a known tag class
+///
+///
+///
+/// ## Discussion
+///
+/// This function is used to translate a type declared using another declaration mechanism (for example, MIME types) into a uniform type identifier. This function searches all UTI declarations for a matching translation and returns all possible results. If a conforming parameter is assigned, the search is reduced to the subset of type identifiers that conform to that type.
+///
+/// If no result is found, this function creates a dynamic type beginning with the `dyn` prefix.
+///
+///
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCreateAllIdentifiersForTag(
@@ -102,7 +150,26 @@ pub unsafe extern "C-unwind" fn UTTypeCreateAllIdentifiersForTag(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442744-uttypecopypreferredtagwithclass?language=objc)
+/// Translates a uniform type identifier to a list of tags in a different type classification method.
+///
+/// Parameters:
+/// - inUTI: The uniform type identifier to convert.
+///
+/// - inTagClass: The class of the tags you want to return. For more information, see `Type Tag Classes`.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// An array of tags (as CFStrings), or `NULL` if there was no translation available to convert the uniform type identifier to the specified class.
+///
+///
+///
+/// ## Discussion
+///
+/// If the type declaration included more than one tag with the specified class, the first tag in the declared tag array is the preferred tag.
+///
+///
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyPreferredTagWithClass(
@@ -119,7 +186,6 @@ pub unsafe extern "C-unwind" fn UTTypeCopyPreferredTagWithClass(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448473-uttypecopyalltagswithclass?language=objc)
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyAllTagsWithClass(
@@ -136,7 +202,20 @@ pub unsafe extern "C-unwind" fn UTTypeCopyAllTagsWithClass(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447783-uttypeequal?language=objc)
+/// Returns whether two uniform type identifiers are equal.
+///
+/// Parameters:
+/// - inUTI1: A uniform type identifier.
+///
+/// - inUTI2: The uniform type identifier to compare it to.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns `true` if the two uniform type identifiers are equivalent.
+///
+///
 #[deprecated = "Use -[UTType isEqual:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFString) -> bool {
@@ -147,7 +226,20 @@ pub unsafe extern "C-unwind" fn UTTypeEqual(in_uti1: &CFString, in_uti2: &CFStri
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444079-uttypeconformsto?language=objc)
+/// Returns whether a uniform type identifier conforms to another uniform type identifier.
+///
+/// Parameters:
+/// - inUTI: A uniform type identifier to compare.
+///
+/// - inConformsToUTI: The uniform type identifier to compare it to.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns `true` if the uniform type identifier is equal to or conforms to the second type.
+///
+///
 #[deprecated = "Use -[UTType conformsToType:] instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeConformsTo(
@@ -161,7 +253,24 @@ pub unsafe extern "C-unwind" fn UTTypeConformsTo(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448514-uttypecopydescription?language=objc)
+/// Returns the localized, user-readable type description string associated with a uniform type identifier.
+///
+/// Parameters:
+/// - inUTI: A uniform type identifier.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A localized string describing the type, or `NULL` if no type description is available.
+///
+///
+///
+/// ## Discussion
+///
+/// The localized string that describes the uniform type is found in the type’s declaration.
+///
+///
 #[deprecated = "Use UTType.localizedDescription instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyDescription(
@@ -174,7 +283,6 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDescription(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450352-uttypeisdeclared?language=objc)
 #[deprecated = "Use UTType.declared instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
@@ -185,7 +293,6 @@ pub unsafe extern "C-unwind" fn UTTypeIsDeclared(in_uti: &CFString) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442980-uttypeisdynamic?language=objc)
 #[deprecated = "Use UTType.dynamic instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
@@ -196,7 +303,24 @@ pub unsafe extern "C-unwind" fn UTTypeIsDynamic(in_uti: &CFString) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442505-uttypecopydeclaration?language=objc)
+/// Returns a uniform type’s declaration.
+///
+/// Parameters:
+/// - inUTI: A uniform type identifier.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A dictionary that contains the uniform type’s declaration, or `NULL` if no declaration for that type can be found.
+///
+///
+///
+/// ## Discussion
+///
+/// A uniform type identifier is declared in a bundle’s information [Property list](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/PropertyList.html#//apple_ref/doc/uid/TP40008195-CH44) (`info.plist`). This function extracts and returns a dictionary that contains the complete declaration of the uniform type identifier. This is useful when your application needs to access properties that does not have a built-in accessor function. For more information on the dictionary format, see [Uniform Type Identifiers Overview](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_intro/understand_utis_intro.html#//apple_ref/doc/uid/TP40001319).
+///
+///
 #[deprecated = "Use the UTType class instead."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyDeclaration(
@@ -209,7 +333,18 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDeclaration(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447781-uttypecopydeclaringbundleurl?language=objc)
+/// Returns the location of a bundle containing the declaration for a type.
+///
+/// Parameters:
+/// - inUTI: A uniform type identifier.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A URL that points to the bundle that holds the uniform type identifier’s declaration, or `NULL` if a bundle that holds the declaration cannot be located.
+///
+///
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn UTTypeCopyDeclaringBundleURL(
@@ -222,7 +357,24 @@ pub unsafe extern "C-unwind" fn UTTypeCopyDeclaringBundleURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442804-utcreatestringforostype?language=objc)
+/// Encodes an `OSType` into a string suitable for use as a tag argument.
+///
+/// Parameters:
+/// - inOSType: The `OSType` to convert.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A string that encodes the OSType.
+///
+///
+///
+/// ## Discussion
+///
+/// The UTI functions assume that all alternate identifier tags can be represented as Core Foundation strings. OSTypes are integer-based rather than string-based, so to pass an OSType into a UTI function, you must call this function to convert it to a string.
+///
+///
 #[deprecated = "HFS type codes are obsolete."]
 #[inline]
 pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
@@ -237,7 +389,24 @@ pub unsafe extern "C-unwind" fn UTCreateStringForOSType(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450472-utgetostypefromstring?language=objc)
+    /// Decodes a tag string into an OSType.
+    ///
+    /// Parameters:
+    /// - inString: A string that encodes an OSType.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The OSType that was encoded in the string.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You call this function to convert an OSType string returned by a UTI function back into the integer-based OSType.
+    ///
+    ///
     #[deprecated = "HFS type codes are obsolete."]
     pub fn UTGetOSTypeFromString(in_string: &CFString) -> OSType;
 }

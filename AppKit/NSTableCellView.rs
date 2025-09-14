@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablecellview?language=objc)
+    /// A reusable container view shown for a particular cell in a table view that uses rows for content.
+    ///
+    /// ## Overview
+    ///
+    /// The [`imageView`](https://developer.apple.com/documentation/appkit/nstablecellview/imageview) and [`textField`](https://developer.apple.com/documentation/appkit/nstablecellview/textfield) properties are connected in Interface Builder. Additional properties can be added by subclassing [`NSTableCellView`](https://developer.apple.com/documentation/appkit/nstablecellview) and adding the required properties and connecting them programmatically or in Interface Builder.
+    ///
+    /// The `objectValue` is used when setting the value of the view cell by the [`tableView:objectValueForTableColumn:row:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:objectvaluefor:row:)) method in the [`NSTableViewDataSource`](https://developer.apple.com/documentation/appkit/nstableviewdatasource). If you use your own custom view cells that are not based on [`NSTableCellView`](https://developer.apple.com/documentation/appkit/nstablecellview) you should implement this property in order to be able to receive changes to cell values.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

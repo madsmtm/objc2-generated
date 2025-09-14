@@ -10,8 +10,7 @@ use crate::*;
 
 extern_class!(
     /// The configuration for this device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stscreentimeconfiguration?language=objc)
+    /// The configuration for this device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct STScreenTimeConfiguration;
@@ -42,12 +41,17 @@ impl STScreenTimeConfiguration {
 extern_class!(
     /// The object you use to observe changes to the current configuration.
     ///
+    /// ## Overview
+    ///
+    /// Use this class to start and stop observing the current configuration. For example, you can opt to disable private browsing in your web browser’s view controller when [`enforcesChildRestrictions`](https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions) is `true`.
+    ///
+    ///
+    /// The object you use to observe changes to the current configuration.
+    ///
     /// Use this class to start and stop observing the current configuration. For
     /// example, you can opt to disable private browsing in your web browser’s view
     /// controller when ``STScreenTimeConfiguration/enforcesChildRestrictions`` is
     /// `true`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stscreentimeconfigurationobserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct STScreenTimeConfigurationObserver;

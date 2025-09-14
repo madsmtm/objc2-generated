@@ -12,18 +12,18 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellstate?language=objc)
+/// The possible states for the browser cell. These values are used by the [`cellState`](https://developer.apple.com/documentation/quartz/ikimagebrowsercell/cellstate()) method.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IKImageBrowserCellState(pub c_uint);
 impl IKImageBrowserCellState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagestatenoimage?language=objc)
+    /// Returned until a thumbnail has been created from the represented object.
     #[doc(alias = "IKImageStateNoImage")]
     pub const StateNoImage: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagestateinvalid?language=objc)
+    /// The thumbnail is invalid. For example, an unsupported image is provided.
     #[doc(alias = "IKImageStateInvalid")]
     pub const StateInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagestateready?language=objc)
+    /// The receiver’s represented object has been set and the cell is ready to display.
     #[doc(alias = "IKImageStateReady")]
     pub const StateReady: Self = Self(2);
 }
@@ -37,27 +37,33 @@ unsafe impl RefEncode for IKImageBrowserCellState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellbackgroundlayer?language=objc)
+    /// Layer displayed in the background.
     pub static IKImageBrowserCellBackgroundLayer: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellforegroundlayer?language=objc)
+    /// Layer displayed in the foreground.
     pub static IKImageBrowserCellForegroundLayer: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellselectionlayer?language=objc)
+    /// Layer displayed as the selection.
     pub static IKImageBrowserCellSelectionLayer: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellplaceholderlayer?language=objc)
+    /// Layer displayed as a placeholder when an image is not yet available.
     pub static IKImageBrowserCellPlaceHolderLayer: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercell?language=objc)
+    /// A class used to display a cell.
+    ///
+    /// ## Overview
+    ///
+    /// `A` class that is used to display a cell conforming to the [IKImageBrowserItem Protocol](https://developer.apple.com/documentation/quartz/ikimagebrowseritem-protocol) in an [`IKImageBrowserView`](https://developer.apple.com/documentation/quartz/ikimagebrowserview).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKImageBrowserCell;

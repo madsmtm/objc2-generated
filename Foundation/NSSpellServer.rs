@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserver?language=objc)
+    /// A server that your app uses to provide a spell checker service to other apps running in the system.
+    ///
+    /// ## Overview
+    ///
+    /// A **service provider** is an application that declares its availability in a standard way, so that any other applications that wish to use it can do so. If you build a spelling checker that makes use of the [`NSSpellServer`](https://developer.apple.com/documentation/foundation/nsspellserver) class and list it as an available service, then users of any application that makes use of [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker) or includes a Services menu will see your spelling checker as one of the available dictionaries.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpellServer;
@@ -81,25 +87,25 @@ impl DefaultRetained for NSSpellServer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarrange?language=objc)
+    /// The value for the `NSGrammarRange` dictionary key should be an `NSValue` containing an `NSRange`, a subrange of the sentence range used as the return value, whose location should be an offset from the beginning of the sentence–so, for example, an `NSGrammarRange` for the first four characters of the overall sentence range should be `{0, 4}`. If the `NSGrammarRange` key is not present in the dictionary it is assumed to be equal to the overall sentence range.
     #[cfg(feature = "NSString")]
     pub static NSGrammarRange: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaruserdescription?language=objc)
+    /// The value for the `NSGrammarUserDescription` dictionary key should be an `NSString` containing descriptive text about that range, to be presented directly to the user; it is intended that the user description should provide enough information to allow the user to correct the problem. It is recommended that `NSGrammarUserDescription` be supplied in all cases, however, `NSGrammarUserDescription` or `NSGrammarCorrections` must be supplied in order for correction guidance to be presented to the user.
     #[cfg(feature = "NSString")]
     pub static NSGrammarUserDescription: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammarcorrections?language=objc)
+    /// The value for the `NSGrammarCorrections` key should be an `NSArray` of `NSStrings` representing potential substitutions to correct the problem, but it is expected that this may not be available in all cases. `NSGrammarUserDescription` or `NSGrammarCorrections` must be supplied in order for correction guidance to be presented to the user.
     #[cfg(feature = "NSString")]
     pub static NSGrammarCorrections: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserverdelegate?language=objc)
+    /// The optional methods implemented by the delegate of a spell server.
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
         /// # Safety

@@ -13,9 +13,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A user interface for an inking tool item in PKToolPicker.
+    /// An item that represents an inking tool in the tool picker.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pktoolpickerinkingitem?language=objc)
+    /// ## Overview
+    ///
+    /// An inking item represents a [`PKInkingTool`](https://developer.apple.com/documentation/pencilkit/pkinkingtool-swift.struct) — a tool for drawing marks in a canvas view — in a [`PKToolPicker`](https://developer.apple.com/documentation/pencilkit/pktoolpicker).
+    ///
+    ///
+    /// A user interface for an inking tool item in PKToolPicker.
     #[unsafe(super(PKToolPickerItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKToolPickerItem")]

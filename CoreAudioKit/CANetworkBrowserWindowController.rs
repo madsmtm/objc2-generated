@@ -10,12 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A window controller that displays available network audio devices.
     /// A window controller object that can present a window that displays available network audio devices (including AVB). The user can connect to one or more of those devices to use exclusively with his mac.
     ///
     ///
     /// To use this class, create an instance of the CANetworkBrowserWindowController, initialize it, and call showWindow: to display the UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/canetworkbrowserwindowcontroller?language=objc)
     #[unsafe(super(NSWindowController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

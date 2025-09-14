@@ -17,22 +17,18 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality?language=objc)
+/// The rendering quality, such as thumbnail, preview, export and so on.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNRenderingQuality(pub NSInteger);
 impl CNRenderingQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/thumbnail?language=objc)
     #[doc(alias = "CNRenderingQualityThumbnail")]
     pub const Thumbnail: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/preview?language=objc)
     #[doc(alias = "CNRenderingQualityPreview")]
     pub const Preview: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/export?language=objc)
     #[doc(alias = "CNRenderingQualityExport")]
     pub const Export: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingquality/exporthigh?language=objc)
     #[doc(alias = "CNRenderingQualityExportHigh")]
     pub const ExportHigh: Self = Self(3);
 }
@@ -46,9 +42,14 @@ unsafe impl RefEncode for CNRenderingQuality {
 }
 
 extern_class!(
-    /// Movie-wide information required by the rendering session.
+    /// A structure for movie-wide attributes required for proper rendering.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingsessionattributes?language=objc)
+    /// ## Overview
+    ///
+    /// The attributes include camera intrinsics from the camera on which the video was originally recorded.
+    ///
+    ///
+    /// Movie-wide information required by the rendering session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNRenderingSessionAttributes;
@@ -87,9 +88,14 @@ impl CNRenderingSessionAttributes {
 }
 
 extern_class!(
-    /// Frame-specific information required to render a frame in a rendering session.
+    /// Creates an object with the per frame attributes that control the appearance of a single frame of the Cinematic movie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingsessionframeattributes?language=objc)
+    /// ## Overview
+    ///
+    /// The object exposes properties such as focus disparity and f-stop. It initializes these to the values that the original recorded movie used for that frame. However, you can change them before rendering to adjust focus and aperture.
+    ///
+    ///
+    /// Frame-specific information required to render a frame in a rendering session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNRenderingSessionFrameAttributes;
@@ -171,7 +177,7 @@ impl CNRenderingSessionFrameAttributes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingsession-8yghc?language=objc)
+    /// An object representing the context in which rendering occurs.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNRenderingSession;

@@ -7,6 +7,23 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Creates a JavaScript string from a Core Foundation string.
+    ///
+    /// Parameters:
+    /// - string: The [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) to copy into the new [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains `string`. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system optimizes this function to take advantage of cases when [`CFStringGetCharactersPtr`](https://developer.apple.com/documentation/corefoundation/cfstringgetcharactersptr(_:)) returns a valid pointer.
+    ///
+    ///
     /// Creates a JavaScript string from a CFString.
     ///
     /// This function is optimized to take advantage of cases when
@@ -15,12 +32,23 @@ extern "C-unwind" {
     /// Parameter `string`: The CFString to copy into the new JSString.
     ///
     /// Returns: A JSString containing string. Ownership follows the Create Rule.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcreatewithcfstring(_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
     pub fn JSStringCreateWithCFString(string: &CFString) -> JSStringRef;
 }
 
+/// Creates a Core Foundation string from a JavaScript string.
+///
+/// Parameters:
+/// - alloc: The `alloc` parameter to pass to `CFStringCreate`.
+///
+/// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to copy into the new [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring).
+///
+///
+/// ## Return Value
+///
+/// A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) that contains `string`. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 /// Creates a CFString from a JavaScript string.
 ///
 /// Parameter `alloc`: The alloc parameter to pass to CFStringCreate.
@@ -33,8 +61,6 @@ extern "C-unwind" {
 ///
 /// - `alloc` might not allow `None`.
 /// - `string` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcopycfstring(_:_:)?language=objc)
 #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn JSStringCopyCFString(

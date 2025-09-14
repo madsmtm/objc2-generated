@@ -9,25 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum?language=objc)
+/// Values that describe the different granularities available to make a selection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionGranularity(pub NSInteger);
 impl NSTextSelectionGranularity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/character?language=objc)
+    /// A value that represents selection by character.
     #[doc(alias = "NSTextSelectionGranularityCharacter")]
     pub const Character: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/word?language=objc)
+    /// A value that represents selection by word.
     #[doc(alias = "NSTextSelectionGranularityWord")]
     pub const Word: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/paragraph?language=objc)
+    /// A value that represents selection by paragraph.
     #[doc(alias = "NSTextSelectionGranularityParagraph")]
     pub const Paragraph: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/line?language=objc)
+    /// A value that represents selection by line.
     #[doc(alias = "NSTextSelectionGranularityLine")]
     pub const Line: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/granularity-swift.enum/sentence?language=objc)
+    /// A value that represents selection by sentence.
     #[doc(alias = "NSTextSelectionGranularitySentence")]
     pub const Sentence: Self = Self(4);
 }
@@ -40,16 +40,16 @@ unsafe impl RefEncode for NSTextSelectionGranularity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/affinity-swift.enum?language=objc)
+/// Values that describe the visual location of the text cursor, or the direction of the non-anchored edge of the selection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionAffinity(pub NSInteger);
 impl NSTextSelectionAffinity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/affinity-swift.enum/upstream?language=objc)
+    /// The value that defines the visual location of the text cursor to the tail of the previous line.
     #[doc(alias = "NSTextSelectionAffinityUpstream")]
     pub const Upstream: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection/affinity-swift.enum/downstream?language=objc)
+    /// The value that defines the visual location of the text cursor between the head of line that contains the selection location.
     #[doc(alias = "NSTextSelectionAffinityDownstream")]
     pub const Downstream: Self = Self(1);
 }
@@ -63,7 +63,7 @@ unsafe impl RefEncode for NSTextSelectionAffinity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselection?language=objc)
+    /// A class that represents a single logical selection context that corresponds to an insertion point.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextSelection;

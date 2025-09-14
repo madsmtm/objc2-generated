@@ -6,24 +6,64 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundoclosegroupingrunloopordering?language=objc)
+/// A priority to use when using a run loop to close an undo group.
+///
+/// ## Discussion
+///
+/// Use this value as the `order` parameter if you call [`performSelector:target:argument:order:modes:`](https://developer.apple.com/documentation/foundation/runloop/perform(_:target:argument:order:modes:)) to have a [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) perform a selector that closes an undo group.
+///
+///
 pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 
-/// A key used to set and get user info for undo and redo actions
+/// An extensible namespace for undo and redo user info keys.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/undomanager/userinfokey?language=objc)
+/// ## Discussion
+///
+/// Extend this type with the names of user info keys you want to associate with undo actions, like this:
+///
+/// ```swift
+/// extension UndoManager.UserInfoKey {
+///     static let icon: UndoManager.UserInfoKey = "icon"
+/// }
+/// ```
+///
+/// You then use this key when you set and get undo user info values.
+///
+/// ```swift
+/// self.undoManager.setActionUserInfoValue(Image(named: "new_layer"), forKey: .icon)
+///
+/// ```
+///
+///
+/// A key used to set and get user info for undo and redo actions
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSUndoManagerUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagergroupisdiscardablekey?language=objc)
+    /// A key, used in a notification’s user info, that indicates the undo group contains only discardable actions.
+    ///
+    /// ## Discussion
+    ///
+    /// The key has a corresponding value of [`true`](https://developer.apple.com/documentation/swift/true), wrapped as a Boolean [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object, if the undo group as a whole is discardable.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSUndoManagerGroupIsDiscardableKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/undomanager?language=objc)
+    /// A general-purpose recorder of operations that enables undo and redo.
+    ///
+    /// ## Overview
+    ///
+    /// You register an undo operation by calling one of the methods described in Registering undo operations. You specify the name of the object that’s changing (or the owner of that object) and provide a closure, method, or invocation to revert its state.
+    ///
+    /// After you register an undo operation, you can call [`undo`](https://developer.apple.com/documentation/foundation/undomanager/undo()) on the undo manager to revert to the state of the last undo operation. When undoing an action, [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) saves the operations you revert to so that you can call [`redo`](https://developer.apple.com/documentation/foundation/undomanager/redo()) automatically.
+    ///
+    /// Typically, apps with UI interactions work with [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager). For example, UIKit implements undo and redo in its text view object, making it easy for you to undo and redo actions in objects along the responder chain. [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) also serves as a general-purpose state manager, which you can use to undo and redo many kinds of actions. For example, an interactive command-line utility can use this class to undo the last command run, or a networking library can undo a request by sending another request that invalidates the previous one.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -410,49 +450,119 @@ impl NSUndoManager {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagercheckpoint?language=objc)
+    /// Posted whenever an undo manager opens or closes an undo group (except when it opens a top-level group) and when checking the redo stack.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSUndoManager` object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`beginUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/beginundogrouping()), [`endUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/endundogrouping()), or [`canRedo`](https://developer.apple.com/documentation/foundation/undomanager/canredo).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerCheckpointNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillundochange?language=objc)
+    /// Posted just before an undo manager performs an undo operation.
+    ///
+    /// ## Discussion
+    ///
+    /// If you invoke [`undo`](https://developer.apple.com/documentation/foundation/undomanager/undo()) or [`undoNestedGroup`](https://developer.apple.com/documentation/foundation/undomanager/undonestedgroup()), this notification is posted. The notification object is the [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`undo`](https://developer.apple.com/documentation/foundation/undomanager/undo()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillredochange?language=objc)
+    /// Posted just before an undo manager performs a redo operation.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`redo`](https://developer.apple.com/documentation/foundation/undomanager/redo()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidundochange?language=objc)
+    /// Posted just after an undo manager performs an undo operation.
+    ///
+    /// ## Discussion
+    ///
+    /// If you invoke [`undo`](https://developer.apple.com/documentation/foundation/undomanager/undo()) or [`undoNestedGroup`](https://developer.apple.com/documentation/foundation/undomanager/undonestedgroup()), this notification is posted. The notification object is the [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`undo`](https://developer.apple.com/documentation/foundation/undomanager/undo()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidredochange?language=objc)
+    /// Posted just after an undo manager performs a redo operation.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`redo`](https://developer.apple.com/documentation/foundation/undomanager/redo()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidopenundogroup?language=objc)
+    /// Posted whenever an undo manager opens an undo group.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification originates in the implementation of the [`beginUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/beginundogrouping()) method.
+    ///
+    /// The notification object is the `NSUndoManager` object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`beginUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/beginundogrouping()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillcloseundogroup?language=objc)
+    /// Posted before an undo manager closes an undo group.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification originates in the implementation of the [`endUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/endundogrouping()) method.
+    ///
+    /// The notification object is the [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) object. Prior to OS X v10.7 this notification didn’t contain a `userInfo` dictionary. In macOS 10.7 and later the userInfo dictionary may contain the [`NSUndoManagerWillCloseUndoGroupNotification`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillcloseundogroup) key, with a `NSNumber` Boolean value of YES, if the undo group as a whole is discardable.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`endUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/endundogrouping()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidcloseundogroup?language=objc)
+    /// Posted after an undo manager closes an undo group.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification originates in the implementation of the [`endUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/endundogrouping()) method.
+    ///
+    /// The notification object is the `NSUndoManager` object. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the actor, thread, or dispatch queue that calls [`endUndoGrouping`](https://developer.apple.com/documentation/foundation/undomanager/endundogrouping()).
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName;
 }

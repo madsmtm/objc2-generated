@@ -15,7 +15,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer?language=objc)
+    /// The visual representation of a path-based overlay.
+    ///
+    /// ## Overview
+    ///
+    /// Use this renderer when a [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath) object defines your overlay’s shape. By default, this renderer fills the overlay’s shape and represents the strokes of the path using its current attributes.
+    ///
+    /// You can use this class as-is or subclass it to define additional drawing behaviors. If you subclass it, override the [`createPath`](https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/createpath()) method and use that method to build the appropriate path object. To change the path, invalidate it and recreate the path using the new data your subclass obtains.
+    ///
+    ///
     #[unsafe(super(MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKOverlayRenderer")]

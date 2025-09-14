@@ -7,13 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing counts for the different types of foreground app exits.
     /// A class that encapsulates cumulative application exit metrics when the application is on screen.
     ///
     /// Foreground exits are user visible terminations that, when unexpected, interrupt usage.
     ///
     /// Not all foreground exits are unexpected. See the documentation for each exit reason for more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxforegroundexitdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXForegroundExitData;
@@ -85,13 +84,12 @@ impl MXForegroundExitData {
 }
 
 extern_class!(
+    /// An object representing counts for the different types of background app exits.
     /// A class that encapsulates cumulative application exit metrics when the application is off screen.
     ///
     /// Background exits are terminations that, when unexpected, can impact performance metrics, such as launch time.
     ///
     /// Not all background exits are unexpected. See the documentation for each exit reason for more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXBackgroundExitData;
@@ -187,13 +185,12 @@ impl MXBackgroundExitData {
 }
 
 extern_class!(
+    /// An object representing metrics about the types of foreground and background app exits.
     /// A class that encapsulates application exit metrics for both on screen and off screen exits.
     ///
     /// Application exits can be expected, such as when the application is killed in the app switcher by the user, or unexpected, such as when a runtime error occurs.
     ///
     /// Minimizing unexpected exits and maximizing expected exits can improve performance and reliability of your application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxappexitmetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

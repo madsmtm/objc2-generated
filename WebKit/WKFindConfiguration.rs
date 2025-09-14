@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkfindconfiguration?language=objc)
+    /// The configuration parameters to use when searching the contents of the web view.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`WKFindConfiguration`](https://developer.apple.com/documentation/webkit/wkfindconfiguration) object and configure its attributes to specify how to perform searches within the web view’s contents. To initiate a search, call the appropriate method of [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) and pass this object along with the search string.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

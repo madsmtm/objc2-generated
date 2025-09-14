@@ -11,24 +11,23 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// The action taken by the user after editing an event.
 /// Represents actions that should cause the edit view controller to be dismissed
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventEditViewAction(pub NSInteger);
 impl EKEventEditViewAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/canceled?language=objc)
+    /// The user canceled changes made to the event.
     #[doc(alias = "EKEventEditViewActionCanceled")]
     pub const Canceled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/saved?language=objc)
+    /// The user saved changes made to the event.
     #[doc(alias = "EKEventEditViewActionSaved")]
     pub const Saved: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/deleted?language=objc)
+    /// The user deleted the event.
     #[doc(alias = "EKEventEditViewActionDeleted")]
     pub const Deleted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewaction/cancelled?language=objc)
+    /// A static variable used to cancel changes made to the event.
     #[doc(alias = "EKEventEditViewActionCancelled")]
     pub const Cancelled: Self = Self(EKEventEditViewAction::Canceled.0);
 }
@@ -42,7 +41,15 @@ unsafe impl RefEncode for EKEventEditViewAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewcontroller?language=objc)
+    /// A view controller for creating, editing, and deleting calendar events.
+    ///
+    /// ## Overview
+    ///
+    /// Presented modally, the event edit view controller provides a way for users to add new events, as well as edit or delete events from their calendar. New events are added to the user’s default calendar unless they choose another calendar in the UI.
+    ///
+    /// The controller includes delegates to receive a notification when the user saves an edit or deletes an event, or cancels from an edit session. The delegate must conform to [`EKEventEditViewDelegate`](https://developer.apple.com/documentation/eventkitui/ekeventeditviewdelegate).
+    ///
+    ///
     #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -207,14 +214,19 @@ impl EKEventEditViewController {
 }
 
 extern_protocol!(
+    /// A notification sent to the delegate when the user finishes editing an event.
+    ///
+    /// ## Overview
+    ///
+    /// Delegates of an [`EKEventEditViewController`](https://developer.apple.com/documentation/eventkitui/ekeventeditviewcontroller) object conform to this protocol. Use `EKEventEditViewController` to allow the user to either create an event or edit an existing event. To be notified when the user finishes editing the event, set the delegate to an object conforming to this protocol.
+    ///
+    ///
     /// View controller to create/edit events.
     ///
     /// You can present this view controller to create a new event or edit an existing
     /// event. You should present it modally. To create a new event, you can either pass
     /// nil for the event parameter or pass a partially constructed event. If the event
     /// you pass has no calendar set, the default calendar as set in Settings will be used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventeditviewdelegate?language=objc)
     pub unsafe trait EKEventEditViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         /// Called to let delegate know the controller is done editing.

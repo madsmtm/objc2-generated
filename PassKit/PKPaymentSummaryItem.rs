@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitemtype?language=objc)
+/// Constants that describe the type of the payment summary item, such as final or pending.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentSummaryItemType(pub NSUInteger);
 impl PKPaymentSummaryItemType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitemtype/final?language=objc)
+    /// A summary item that represents a known, final cost.
     #[doc(alias = "PKPaymentSummaryItemTypeFinal")]
     pub const Final: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitemtype/pending?language=objc)
+    /// A summary item that represents an estimated or unknown cost.
     #[doc(alias = "PKPaymentSummaryItemTypePending")]
     pub const Pending: Self = Self(1);
 }
@@ -30,7 +30,13 @@ unsafe impl RefEncode for PKPaymentSummaryItemType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem?language=objc)
+    /// An object that defines a summary item in a payment request, taxes, discounts, shipping, a grand total, and the like.
+    ///
+    /// ## Overview
+    ///
+    /// For shipping cost, use the [`PKShippingMethod`](https://developer.apple.com/documentation/passkit/pkshippingmethod) subclass.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentSummaryItem;

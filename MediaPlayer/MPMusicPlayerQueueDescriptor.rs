@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerqueuedescriptor?language=objc)
+    /// The abstract base class for audio media item and store queue descriptors.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerQueueDescriptor;
@@ -31,7 +31,13 @@ impl MPMusicPlayerQueueDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayermediaitemqueuedescriptor?language=objc)
+    /// A set of properties and methods for modifying audio media items in the player’s media queue.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to modify the player queue created by a query before the queue begins to play. You can modify when individual items start and stop playing, along with setting the first item to play.
+    ///
+    ///
     #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerMediaItemQueueDescriptor;
@@ -107,7 +113,13 @@ impl MPMusicPlayerMediaItemQueueDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerstorequeuedescriptor?language=objc)
+    /// A set of properties and methods for modifying items, based on their store identifier, in the player’s queue.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to modify the player queue created by a query before the queue begins to play. You can modify when individual items start and stop playing, along with setting the first item to play.
+    ///
+    ///
     #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerStoreQueueDescriptor;
@@ -180,7 +192,7 @@ impl MPMusicPlayerStoreQueueDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters?language=objc)
+    /// The MusicKit parameters that describe items to play.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerPlayParameters;
@@ -222,7 +234,13 @@ impl MPMusicPlayerPlayParameters {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparametersqueuedescriptor?language=objc)
+    /// A set of properties and methods for modifying how to play items, based on play parameters the framework returns.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to modify the player queue created by a query before the queue begins to play. You can modify when individual items start and stop playing, along with setting the first item for playing.
+    ///
+    ///
     #[unsafe(super(MPMusicPlayerQueueDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerPlayParametersQueueDescriptor;

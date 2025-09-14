@@ -8,117 +8,141 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Constants for the media item property names.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty?language=objc)
+/// Constants for the media item property names.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type SHMediaItemProperty = NSString;
 
 extern "C" {
+    /// The key to access the Shazam ID property of a media item.
     /// The Shazam media ID
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/shazamid?language=objc)
     pub static SHMediaItemShazamID: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the title property of a media item.
     /// Title
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/title?language=objc)
     pub static SHMediaItemTitle: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the subtitle property of a media item.
     /// Subtitle
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/subtitle?language=objc)
     pub static SHMediaItemSubtitle: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the artist property of a media item.
     /// Artist
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/artist?language=objc)
     pub static SHMediaItemArtist: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the web URL property of a media item.
     /// A web URL representing this result
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/weburl?language=objc)
     pub static SHMediaItemWebURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the Apple Music ID of a media item.
     /// The AppleMusic ID
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/applemusicid?language=objc)
     pub static SHMediaItemAppleMusicID: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the Apple Music URL property of a media item.
     /// A link to this media on Apple Music
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/applemusicurl?language=objc)
     pub static SHMediaItemAppleMusicURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the artwork URL property of a media item.
     /// A URL to the artwork
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/artworkurl?language=objc)
     pub static SHMediaItemArtworkURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the video URL property of a media item.
     /// A URL for a Video associated with the media
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/videourl?language=objc)
     pub static SHMediaItemVideoURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the explicit content property of a media item.
     /// Is this content explicit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/explicitcontent?language=objc)
     pub static SHMediaItemExplicitContent: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the genres property of a media item.
     /// An array of strings representing the genres of the media item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/genres?language=objc)
     pub static SHMediaItemGenres: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The key to access the International Standard Recording Code (ISRC) property of a media item.
     /// The International Standard Recording Code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/isrc?language=objc)
     pub static SHMediaItemISRC: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// The key to access the time ranges property of a media item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemtimeranges?language=objc)
+    /// The key to access the time ranges property of a media item.
     pub static SHMediaItemTimeRanges: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// The key to access the frequency skew ranges property of a media item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemfrequencyskewranges?language=objc)
+    /// The key to access the frequency skew ranges property of a media item.
     pub static SHMediaItemFrequencySkewRanges: &'static SHMediaItemProperty;
 }
 
 extern "C" {
+    /// The date the media item was created.
     /// The date when the media item was created
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/creationdate?language=objc)
     pub static SHMediaItemCreationDate: &'static SHMediaItemProperty;
 }
 
 extern_class!(
+    /// An object that represents the metadata for a reference signature.
+    ///
+    /// ## Overview
+    ///
+    /// This class uses subscripting for the data elements of a custom media item that an existing property doesn’t already represent.
+    ///
+    /// Add a readable custom property by extending [`SHMediaItemProperty`](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty) with a key for that property, and by extending this class with a property that uses the key. The following code shows the extensions for an episode number:
+    ///
+    /// ```swift
+    /// // Add an episode number to the list of properties.
+    /// extension SHMediaItemProperty {
+    ///     static let episode = SHMediaItemProperty("Episode")
+    /// }
+    ///
+    /// // Add a property for returning the episode number using a subscript.
+    /// extension SHMediaItem {
+    ///     var episode: Int? {
+    ///         return self[.episode] as? Int
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// Add your custom property when you create the media item as the following code shows:
+    ///
+    /// ```swift
+    /// // Create a new media item and set the title, subtitle, and episode properties.
+    /// let mediaItem = SHMediaItem(properties: [.episode: 42,
+    ///                                          .title: "Question",
+    ///                                          .subtitle: "The Answer"])
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The class of the object that represents a custom object must be one of: `Dictionary`, `Array`, `URL`, `Number`, `String`, `Date`, or `Data`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An object that represents the metadata for a reference signature.
     ///
     /// This class uses subscripting for the data elements of a custom media item that an existing property doesn't already represent.
@@ -150,8 +174,6 @@ extern_class!(
     ///
     /// > Note:
     /// > The class of the object that represents a custom object must be one of: `Dictionary`, `Array`, `URL`, `Number`, `String`, `Date`, or `Data`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHMediaItem;

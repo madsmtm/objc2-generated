@@ -20,28 +20,28 @@ unsafe impl RefEncode for OpaquePrivOBEXSessionData {
         Encoding::Pointer(&Encoding::Struct("OpaquePrivOBEXSessionData", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/privobexsessiondataref?language=objc)
 pub type PrivOBEXSessionDataRef = *mut OpaquePrivOBEXSessionData;
 
+///
+/// ## Discussion
+///
+/// Pass these types in the OBEXTransportEvent, and then pass the struct on to the session object once you have filled it out. This is how you can communicate with the session when events happen - if data is received, the type will be ‘kOBEXTransportEventTypeDataReceived’. if an error has occurred on your transport, like the remote target died, you can send a status event with a non-zero value. Since session objects will receive this status code on their event handlers, you should try to pass a useful status/error code, such as an IOReturn value.
+///
+///
 /// Pass these types in the OBEXTransportEvent, and then pass the struct on to the session object once you
 /// have filled it out. This is how you can communicate with the session when events happen - if data is
 /// received, the type will be 'kOBEXTransportEventTypeDataReceived'. if an error has occurred on your transport,
 /// like the remote target died, you can send a status event with a non-zero value. Since session objects will
 /// receive this status code on their event handlers, you should try to pass a useful status/error code, such as
 /// an IOReturn value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obextransporteventtype?language=objc)
 pub type OBEXTransportEventType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obextransporteventtypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OBEXTransportEventTypes(pub c_uint);
 impl OBEXTransportEventTypes {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobextransporteventtypedatareceived?language=objc)
     #[doc(alias = "kOBEXTransportEventTypeDataReceived")]
     pub const DataReceived: Self = Self(0x44617441);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kobextransporteventtypestatus?language=objc)
     #[doc(alias = "kOBEXTransportEventTypeStatus")]
     pub const Status: Self = Self(0x53746154);
 }
@@ -54,7 +54,12 @@ unsafe impl RefEncode for OBEXTransportEventTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obextransportevent?language=objc)
+///
+/// ## Overview
+///
+/// You will need to construcy these when data is received, and then pass a pointer to it to one of the incoming data methods defined below. Pass 0 as your status if data was received OK. Otherwise, you can put your own error code in there. For the transport type, be sure to use one of the defined types above.
+///
+///
 #[cfg(feature = "OBEX")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -84,7 +89,21 @@ unsafe impl RefEncode for OBEXTransportEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsession?language=objc)
+    /// Object representing an OBEX connection to a remote target.
+    ///
+    /// ## Overview
+    ///
+    /// You will have no need for a obtaining/using a raw OBEXSession, since it requires an underlying transport to do anything useful. However, once you have an object that is a subclass of this class, you can use the functions herein to manipulate that OBEXSession. First off, you will want to use OBEXConnect (if you are a client session) to actually cause the transport to open a connection to a remote target and establish an OBEX connection over it. From there you can issue more commands based on the responses from a server.
+    ///
+    /// If you are a server session, the first thing you should receive is an OBEXConnect command packet, and you will want to issue an OBEXConnectResponse packet, with your reesponse to that command (success, denied, bad request, etc.).
+    ///
+    /// You can use the session accessors to access certain information, such as the negotiated max packet length.
+    ///
+    /// If you wish to implement your own OBEXSession over a transport such as ethernet, you will need to see the end of the file to determine which functions to override, and what to pass to those functions.
+    ///
+    /// No timeout mechanism has been implemented so far for an OBEXSessions. If you need timeouts, you will need to implement them yourself. This is being explored for a future revision. However, be aware that the OBEX Specification does not explicitly require timeouts, so be sure you allow ample time for commands to complete, as some devices may be slow when sending large amounts of data.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OBEXSession;

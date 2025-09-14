@@ -10,6 +10,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The location of one or more haptics actuators on a game controller.
+///
+/// ## Discussion
+///
+/// Use this symbol to specify the location of the actuators when creating a haptic engine.
+///
+///
 /// A GCHapticsLocality represents the locations of haptic actuators on a controller. You can create a haptic engine with a given
 /// GCHapticsLocality, and any patterns you send to that engine will play on all specified actuators.
 ///
@@ -19,58 +26,88 @@ use crate::*;
 ///
 ///
 /// See: GCDeviceHaptics
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality?language=objc)
 // NS_TYPED_ENUM
 pub type GCHapticsLocality = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/default?language=objc)
+    /// The default location of a haptics actuator on a game controller.
+    ///
+    /// ## Discussion
+    ///
+    /// Controllers must support this location, and it can be the same as [`GCHapticsLocalityAll`](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/all).
+    ///
+    ///
     pub static GCHapticsLocalityDefault: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/all?language=objc)
+    /// All locations of haptics actuators on a game controller.
+    ///
+    /// ## Discussion
+    ///
+    /// Controllers must support this location, and it can be the same as [`GCHapticsLocalityDefault`](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/default).
+    ///
+    ///
     pub static GCHapticsLocalityAll: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/handles?language=objc)
+    /// All handles on a game controller.
     pub static GCHapticsLocalityHandles: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/lefthandle?language=objc)
+    /// The left handle on a game controller.
     pub static GCHapticsLocalityLeftHandle: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/righthandle?language=objc)
+    /// The right handle on a game controller.
     pub static GCHapticsLocalityRightHandle: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/triggers?language=objc)
+    /// All triggers on a game controller.
     pub static GCHapticsLocalityTriggers: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/lefttrigger?language=objc)
+    /// The left trigger on a game controller.
     pub static GCHapticsLocalityLeftTrigger: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticslocality/righttrigger?language=objc)
+    /// The right trigger on a game controller.
     pub static GCHapticsLocalityRightTrigger: &'static GCHapticsLocality;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gchapticdurationinfinite?language=objc)
+    /// An infinite duration for a haptics event.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to create a [`CHHapticEvent`](https://developer.apple.com/documentation/corehaptics/chhapticevent) object with an infinite duration. For example, create an infinite haptic event that you update in a loop to adjust a controller’s motor intensity.
+    ///
+    ///
     pub static GCHapticDurationInfinite: c_float;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicehaptics?language=objc)
+    /// The locations of haptic actuators on a game controller.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to create a haptic engine with a specified locality. Any patterns you send to that engine play on the specified actuators.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`supportsHaptics`](https://developer.apple.com/documentation/corehaptics/chhapticdevicecapability/supportshaptics) property of the engine that returns from the [`createEngineWithLocality:`](https://developer.apple.com/documentation/gamecontroller/gcdevicehaptics/createengine(withlocality:)) method applies to the device, not the game controller. Use the [`supportedLocalities`](https://developer.apple.com/documentation/gamecontroller/gcdevicehaptics/supportedlocalities) method in this class to determine whether a game controller supports haptics.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCDeviceHaptics;

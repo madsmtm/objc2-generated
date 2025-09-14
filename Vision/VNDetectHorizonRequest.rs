@@ -7,12 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-analysis request that determines the horizon angle in an image.
     /// Determine what the horizon tilt of an image is.
     ///
     ///
     /// If the horizon tilt is detected in an image, the request will provide a VNHorizonObservation in the results which describe how to transform the image so that the horizon line becomes level.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthorizonrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -82,5 +81,5 @@ impl VNDetectHorizonRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthorizonrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the horizon detection request.
 pub static VNDetectHorizonRequestRevision1: NSUInteger = 1;

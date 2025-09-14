@@ -6,22 +6,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants indicating how you want items to appear in the top shelf interface.
 /// The style of the carousel content.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVTopShelfCarouselContentStyle(pub NSInteger);
 impl TVTopShelfCarouselContentStyle {
-    /// Carousel content that shows action buttons.
+    /// An interface that focuses on the actions you want the user to perform.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum/actions?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style when you want the user to focus on the play and display action buttons. This style minimizes other information or does not display it at all.
+    ///
+    ///
+    /// Carousel content that shows action buttons.
     #[doc(alias = "TVTopShelfCarouselContentStyleActions")]
     pub const Actions: Self = Self(0);
-    /// Carousel content that shows action buttons and details about the item.
+    /// An interface that displays detailed information about the item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum/details?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style to display a detailed interface that focuses on the item’s details. For example, this interface displays the item’s summary prominently. This interface also displays action buttons off to the side.
+    ///
+    ///
+    /// Carousel content that shows action buttons and details about the item.
     #[doc(alias = "TVTopShelfCarouselContentStyleDetails")]
     pub const Details: Self = Self(1);
 }
@@ -35,9 +44,8 @@ unsafe impl RefEncode for TVTopShelfCarouselContentStyle {
 }
 
 extern_class!(
+    /// A set of items you present using a carousel-style interface in the top shelf.
     /// An object that represents carousel content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVTopShelfCarouselContent;

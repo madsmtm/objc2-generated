@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate?language=objc)
+/// The state of a message: sent, unsent, or received.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageState(pub NSInteger);
 impl MEMessageState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate/received?language=objc)
+    /// A state that indicates the system has received and stored the message.
     #[doc(alias = "MEMessageStateReceived")]
     pub const Received: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate/draft?language=objc)
+    /// A state that indicates the user is composing the message, and hasn’t sent it yet.
     #[doc(alias = "MEMessageStateDraft")]
     pub const Draft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate/sending?language=objc)
+    /// A state that indicates the system is in the process of sending the message.
     #[doc(alias = "MEMessageStateSending")]
     pub const Sending: Self = Self(2);
 }
@@ -31,19 +31,15 @@ unsafe impl RefEncode for MEMessageState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageEncryptionState(pub NSInteger);
 impl MEMessageEncryptionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate/unknown?language=objc)
     #[doc(alias = "MEMessageEncryptionStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate/notencrypted?language=objc)
     #[doc(alias = "MEMessageEncryptionStateNotEncrypted")]
     pub const NotEncrypted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate/encrypted?language=objc)
     #[doc(alias = "MEMessageEncryptionStateEncrypted")]
     pub const Encrypted: Self = Self(2);
 }
@@ -57,9 +53,8 @@ unsafe impl RefEncode for MEMessageEncryptionState {
 }
 
 extern_class!(
+    /// An object that contains information about a mail message, such as the subject, addressees, date sent, and the message contents.
     /// Contains information about a mail message on which actions can be performed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessage;

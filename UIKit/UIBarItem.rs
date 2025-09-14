@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaritem?language=objc)
+    /// An abstract superclass for items that you can add to a bar that appears at the bottom of the screen.
+    ///
+    /// ## Overview
+    ///
+    /// Items on a bar behave in a way similar to buttons (instances of [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton)). They have a title, image, action, and target. You can also enable and disable an item on a bar.
+    ///
+    /// ### Customize appearance
+    ///
+    /// You can customize the image to represent the item, and the position of the image, using [`image`](https://developer.apple.com/documentation/uikit/uibaritem/image) and [`imageInsets`](https://developer.apple.com/documentation/uikit/uibaritem/imageinsets) respectively.
+    ///
+    /// You can also specify a custom image and position to use in landscape orientation when using the iPhone appearance idiom using [`landscapeImagePhone`](https://developer.apple.com/documentation/uikit/uibaritem/landscapeimagephone) and [`landscapeImagePhoneInsets`](https://developer.apple.com/documentation/uikit/uibaritem/landscapeimagephoneinsets) respectively. In addition, you can customize the title’s text attributes using [`setTitleTextAttributes:forState:`](https://developer.apple.com/documentation/uikit/uibaritem/settitletextattributes(_:for:)), either for a single item, or for all items by using the appearance proxy (for example, `[UIBarItem appearance]`).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

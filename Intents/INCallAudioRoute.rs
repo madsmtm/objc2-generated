@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute?language=objc)
+/// Constants that describe the audio route for the call.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallAudioRoute(pub NSInteger);
 impl INCallAudioRoute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute/unknown?language=objc)
+    /// An unknown audio route.
     #[doc(alias = "INCallAudioRouteUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute/speakerphoneaudioroute?language=objc)
+    /// The device’s speakerphone mode.
     #[doc(alias = "INCallAudioRouteSpeakerphoneAudioRoute")]
     pub const SpeakerphoneAudioRoute: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallaudioroute/bluetoothaudioroute?language=objc)
+    /// A connected Bluetooth device.
     #[doc(alias = "INCallAudioRouteBluetoothAudioRoute")]
     pub const BluetoothAudioRoute: Self = Self(2);
 }

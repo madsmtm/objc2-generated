@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloadmanagerdelegate?language=objc)
+    /// An interface for reacting to asset download events and processing concluded downloads.
     pub unsafe trait BADownloadManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "BADownload")]
         /// A download has started.
@@ -76,7 +76,51 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloadmanager?language=objc)
+    /// An object that manages the queue of scheduled asset downloads.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`BADownloadManager`](https://developer.apple.com/documentation/backgroundassets/badownloadmanager) to schedule and cancel asset downloads, monitor their progress, and access the queue of pending downloads. You don’t create instances of this class directly; instead, use the [`sharedManager`](https://developer.apple.com/documentation/backgroundassets/badownloadmanager/shared) property to access the framework’s singleton that it shares between your app and the app’s extension. Because the download manager is a shared resource, prevent race conditions by using the [`performWithExclusiveControl:`](https://developer.apple.com/documentation/backgroundassets/badownloadmanager/withexclusivecontrol(_:)) and [`performWithExclusiveControlBeforeDate:performHandler:`](https://developer.apple.com/documentation/backgroundassets/badownloadmanager/withexclusivecontrol(beforedate:perform:)) methods to assume absolute control of the manager before you schedule asset downloads or manipulate those already in the manager’s queue. To respond to asset download events and process concluded downloads, create a type that conforms to the [`BADownloadManagerDelegate`](https://developer.apple.com/documentation/backgroundassets/badownloadmanagerdelegate) protocol and assign an instance of it to the download manager’s [`delegate`](https://developer.apple.com/documentation/backgroundassets/badownloadmanager/delegate) property.
+    ///
+    /// The following example shows how to create an asset download, acquire exclusive control of the shared download manager, and then use the manager to schedule the download:
+    ///
+    /// ```swift
+    /// let url = URL(string: "https://cdn.example.com/level-resources.zip")!
+    /// let request = URLRequest(url: url)
+    /// let identifier = "group.com.example.my-game"
+    ///
+    /// // Create an asset download.
+    /// let download = BAURLDownload(identifier: "level-resources",
+    ///                              request: request,
+    ///                              applicationGroupIdentifier: identifier)
+    ///
+    /// // Access the shared download manager.
+    /// let manager = BADownloadManager.shared
+    ///
+    /// // Assign the manager's delegate so the framework can notify
+    /// // the app of asset download events.
+    /// manager.delegate = self
+    ///
+    /// do {
+    ///     // Attempt to acquire exclusive control of the manager.
+    ///     manager.withExclusiveControl { error in
+    ///         // Return immediately if that attempt fails.
+    ///         if let error {
+    ///             print(error.localizedDescription)
+    ///             return
+    ///         }
+    ///         
+    ///         // Use the manager to schedule the asset download.
+    ///         try manager.schedule(download)
+    ///     }
+    /// } catch {
+    ///     // Handle the error.
+    ///     print(error.localizedDescription)
+    /// }
+    ///
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BADownloadManager;

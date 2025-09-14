@@ -11,9 +11,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// GKAchievementDescription is a full description of the achievement as defined before app submission in App Store Connect.
+    /// An object containing the text and artwork used to present an achievement to a player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievementdescription?language=objc)
+    /// ## Overview
+    ///
+    /// To present an achievement to the player in your interface, you can download the localized text and artwork for the achievements that you enter in App Store Connect. To get the localized text, use the [`loadAchievementDescriptionsWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkachievementdescription/loadachievementdescriptions(completionhandler:)) class method. GameKit passes an array of [`GKAchievementDescription`](https://developer.apple.com/documentation/gamekit/gkachievementdescription) objects to the completion handler that contains the text. To get the artwork for an achievement, use the [`loadImageWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkachievementdescription/loadimage(completionhandler:)) method.
+    ///
+    /// To get standard images your game can use to present achievement progress to the player, use the [`incompleteAchievementImage`](https://developer.apple.com/documentation/gamekit/gkachievementdescription/incompleteachievementimage()) and [`placeholderCompletedAchievementImage`](https://developer.apple.com/documentation/gamekit/gkachievementdescription/placeholdercompletedachievementimage())) class methods.
+    ///
+    /// Alternatively, either add the access point or display the dashboard so that the player can view achievements and navigate to their other Game Center data.
+    ///
+    ///
+    /// GKAchievementDescription is a full description of the achievement as defined before app submission in App Store Connect.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAchievementDescription;

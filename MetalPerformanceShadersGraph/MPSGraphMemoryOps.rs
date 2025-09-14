@@ -11,8 +11,7 @@ use crate::*;
 
 extern_class!(
     /// The class that defines the parameters for a variable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphvariableop?language=objc)
+    /// The class that defines the parameters for a variable.
     #[unsafe(super(MPSGraphOperation, MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]

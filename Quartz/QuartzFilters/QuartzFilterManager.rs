@@ -9,12 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/globalupdateok?language=objc)
     pub static globalUpdateOK: Boolean;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/quartzfilterview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QuartzFilterView;
@@ -98,7 +96,6 @@ impl QuartzFilterView {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/quartzfiltermanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QuartzFilterManager;
@@ -253,36 +250,29 @@ impl private_NSObjectQuartzFilterManagerDelegate::Sealed for NSObject {}
 unsafe impl NSObjectQuartzFilterManagerDelegate for NSObject {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfilterapplicationdomain?language=objc)
     pub static kQuartzFilterApplicationDomain: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfilterpdfworkflowdomain?language=objc)
     pub static kQuartzFilterPDFWorkflowDomain: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfilterprintingdomain?language=objc)
     pub static kQuartzFilterPrintingDomain: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidaddfilternotification?language=objc)
     pub static kQuartzFilterManagerDidAddFilterNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidremovefilternotification?language=objc)
     pub static kQuartzFilterManagerDidRemoveFilterNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidmodifyfilternotification?language=objc)
     pub static kQuartzFilterManagerDidModifyFilterNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/kquartzfiltermanagerdidselectfilternotification?language=objc)
     pub static kQuartzFilterManagerDidSelectFilterNotification: Option<&'static NSString>;
 }

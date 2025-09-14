@@ -7,23 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct?language=objc)
+/// The direction of the swipe.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISwipeGestureRecognizerDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl UISwipeGestureRecognizerDirection: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/right?language=objc)
+/// The touch or touches swipe to the right.
+///
+/// ## Discussion
+///
+/// This direction is the default.
+///
+///
         #[doc(alias = "UISwipeGestureRecognizerDirectionRight")]
         const Right = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/left?language=objc)
+/// The touch or touches swipe to the left.
         #[doc(alias = "UISwipeGestureRecognizerDirectionLeft")]
         const Left = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/up?language=objc)
+/// The touch or touches swipe upward.
         #[doc(alias = "UISwipeGestureRecognizerDirectionUp")]
         const Up = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.struct/down?language=objc)
+/// The touch or touches swipe downward.
         #[doc(alias = "UISwipeGestureRecognizerDirectionDown")]
         const Down = 1<<3;
     }
@@ -38,7 +44,17 @@ unsafe impl RefEncode for UISwipeGestureRecognizerDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer?language=objc)
+    /// A discrete gesture recognizer that interprets swiping gestures in one or more directions.
+    ///
+    /// ## Overview
+    ///
+    /// [`UISwipeGestureRecognizer`](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer) is a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).` `
+    ///
+    /// [`UISwipeGestureRecognizer`](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer) recognizes a swipe when the user moves the specified number of touches ([`numberOfTouchesRequired`](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/numberoftouchesrequired)) in an allowable direction ([`direction`](https://developer.apple.com/documentation/uikit/uiswipegesturerecognizer/direction-swift.property)) far enough to create a swipe. Swipes can be slow or fast. A slow swipe requires high directional precision but a small distance; a fast swipe requires low directional precision but a large distance. Because a swipe is a discrete gesture, the system sends the associated action message just once per gesture.
+    ///
+    /// You can determine the location where a swipe begins by calling the [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer) methods [`locationInView:`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/location(in:)) and [`locationOfTouch:inView:`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/location(oftouch:in:)). The former method provides the centroid if the gesture contains more than one touch; the latter provides the location of a particular touch.
+    ///
+    ///
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

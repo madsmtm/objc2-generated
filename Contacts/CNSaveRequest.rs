@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that collects the changes you want to save to the user’s contacts database.
+    ///
+    /// ## Overview
+    ///
+    /// Create a new `CNSaveRequest` object for each save operation you want to make. You can batch multiple changes into one save request (note that these changes only apply to objects). In the case of overlapping changes in multiple or concurrent save requests, the last change wins.
+    ///
+    /// If you try to add an object (that is, a contact or a group) that already exists in the contact store, you receive the [`CNErrorCodeInsertedRecordAlreadyExists`](https://developer.apple.com/documentation/contacts/cnerror/code/insertedrecordalreadyexists) error and the [`CNErrorUserInfoAffectedRecordsKey`](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey) array is updated to contain the object you tried to add. If you try to update or delete an object that is not present in the contact store, the save request does not perform the update or deletion, the [`CNErrorCodeRecordDoesNotExist`](https://developer.apple.com/documentation/contacts/cnerror/code/recorddoesnotexist) error occurs, and the [`CNErrorUserInfoAffectedRecordsKey`](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey) array is updated to contain the object you tried to update or delete. Do not access objects in the save request while that request is executing.
+    ///
+    ///
     /// Specifies the changes to save.
     ///
     ///
@@ -16,8 +25,6 @@ extern_class!(
     /// If adding an object (contact, group, container) and it is already in the contact store then the executing save request will fail to add that object and will return the error CNErrorCodeInsertedRecordAlreadyExists with CNErrorUserInfoAffectedRecordsKey value as an array containing that object.
     ///
     /// If updating/deleting an object (contact, group, container) and it is not in the contact store then the executing save request will fail to update/delete that object and will return the error CNErrorCodeRecordDoesNotExist with CNErrorUserInfoAffectedRecordsKey value as an array containing that object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsaverequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNSaveRequest;

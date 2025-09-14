@@ -7,12 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname?language=objc)
 // NS_TYPED_ENUM
 pub type CAMediaTimingFunctionName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunction?language=objc)
+    /// A function that defines the pacing of an animation as a timing curve.
+    ///
+    /// ## Overview
+    ///
+    /// `CAMediaTimingFunction` represents one segment of a function that defines the pacing of an animation as a timing curve. The function maps an input time normalized to the range `[0,1]` to an output time also in the range `[0,1]`.
+    ///
+    /// You can create a media timing function by supplying your own cubic Bézier curve control points using the [`initWithControlPoints::::`](https://developer.apple.com/documentation/quartzcore/camediatimingfunction/init(controlpoints:_:_:_:)) method or by using one of the predefined timing functions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAMediaTimingFunction;
@@ -82,28 +89,132 @@ impl DefaultRetained for CAMediaTimingFunction {
 }
 
 extern "C" {
-    /// Timing function names. *
+    /// Linear pacing, which causes an animation to occur evenly over its duration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/linear?language=objc)
+    /// ## Discussion
+    ///
+    /// This is a Bézier timing function with the control points (0.0,0.0) and (1.0,1.0).
+    ///
+    /// The following code shows how to create a basic animation object using linear interpolation.
+    ///
+    /// ```swift
+    ///  let verticalAnimation = CABasicAnimation(keyPath: "position.y")
+    ///  verticalAnimation.fromValue = 310
+    ///  verticalAnimation.toValue = 10
+    ///  verticalAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+    /// ```
+    ///
+    /// A layer animated with the animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Path taken using linear timing function](https://docs-assets.developer.apple.com/published/df8dce2b4ae224c6fa30b1be18ae35ff/media-2776812%402x.png)
+    ///
+    ///
+    ///
+    /// Timing function names. *
     pub static kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/easein?language=objc)
+    /// Ease-in pacing, which causes an animation to begin slowly and then speed up as it progresses.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a Bézier timing function with the control points (0.42,0.0) and (1.0,1.0).
+    ///
+    /// The following code shows how to create a basic animation object using ease-in interpolation.
+    ///
+    /// ```swift
+    ///  let verticalAnimation = CABasicAnimation(keyPath: "position.y")
+    ///  verticalAnimation.fromValue = 310
+    ///  verticalAnimation.toValue = 10
+    ///  verticalAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+    /// ```
+    ///
+    /// A layer animated with the animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Path taken using ease-in timing function](https://docs-assets.developer.apple.com/published/b82af6bc9071639def1b44f0e86d73b1/media-2776814%402x.png)
+    ///
+    ///
+    ///
     pub static kCAMediaTimingFunctionEaseIn: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/easeout?language=objc)
+    /// Ease-out pacing, which causes an animation to begin quickly and then slow as it progresses.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a Bézier timing function with the control points (0.0,0.0) and (0.58,1.0).
+    ///
+    /// The following code shows how to create a basic animation object using ease-out interpolation.
+    ///
+    /// ```swift
+    ///  let verticalAnimation = CABasicAnimation(keyPath: "position.y")
+    ///  verticalAnimation.fromValue = 310
+    ///  verticalAnimation.toValue = 10
+    ///  verticalAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+    /// ```
+    ///
+    /// A layer animated with the animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Path taken using ease-out timing function](https://docs-assets.developer.apple.com/published/1cb9ba607128569e97eec61fabb339fd/media-2776816%402x.png)
+    ///
+    ///
+    ///
     pub static kCAMediaTimingFunctionEaseOut: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/easeineaseout?language=objc)
+    /// Ease-in-ease-out pacing, which causes an animation to begin slowly, accelerate through the middle of its duration, and then slow again before completing.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a Bézier timing function with the control points (0.42,0.0) and (0.58,1.0).
+    ///
+    /// The following code shows how to create a basic animation object using ease-in-ease-out interpolation.
+    ///
+    /// ```swift
+    /// let verticalAnimation = CABasicAnimation(keyPath: "position.y")  
+    /// verticalAnimation.fromValue = 310  
+    /// verticalAnimation.toValue = 10  
+    /// verticalAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+    /// ```
+    ///
+    /// A layer animated with the animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Path taken using ease-in-ease-out timing function](https://docs-assets.developer.apple.com/published/8503fdf3db9809be5465103752d0914b/media-2776818%402x.png)
+    ///
+    ///
+    ///
     pub static kCAMediaTimingFunctionEaseInEaseOut: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/default?language=objc)
+    /// The system default timing function. Use this function to ensure that the timing of your animations matches that of most system animations.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a Bézier timing function with the control points (0.25,0.1) and (0.25,1.0).
+    ///
+    /// The following code shows how to create a basic animation object using default interpolation:
+    ///
+    /// ```swift
+    ///  let verticalAnimation = CABasicAnimation(keyPath: "position.y")
+    ///  verticalAnimation.fromValue = 310
+    ///  verticalAnimation.toValue = 10
+    ///  verticalAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+    /// ```
+    ///
+    /// A layer animated with the animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Path taken using default timing function](https://docs-assets.developer.apple.com/published/6d2d45f802f21dfcfe8293fa2a57596f/media-2776820%402x.png)
+    ///
+    ///
+    ///
     pub static kCAMediaTimingFunctionDefault: &'static CAMediaTimingFunctionName;
 }

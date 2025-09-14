@@ -11,9 +11,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `IKImageEditPanelDataSource` protocol describes the methods that an [`IKImageEditPanel`](https://developer.apple.com/documentation/quartz/ikimageeditpanel) object uses to access the contents of its data source object.
     /// The data source of IKImageEditPanel must conform to IKImageEditPanelDataSource protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimageeditpaneldatasource?language=objc)
     pub unsafe trait IKImageEditPanelDataSource {
         #[cfg(feature = "objc2-core-graphics")]
         /// Returns an image.
@@ -71,9 +70,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The `IKImageEditPanel` class provides a panel, that is, a utility window that floats on top of document windows, optimized for image editing.
     /// The IKImageEditPanel class provides a panel, that is, a utility window that floats on top of document windows, optimized for image editing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimageeditpanel?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKImageEditPanel;

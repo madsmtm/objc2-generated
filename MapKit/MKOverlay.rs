@@ -7,7 +7,15 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlay?language=objc)
+    /// An interface for associating content with a specific map region.
+    ///
+    /// ## Overview
+    ///
+    /// _Overlay objects_ are data objects that define the geographic data to cover. MapKit defines several concrete classes that adopt this protocol and define standard shapes like rectangles, circles, and polygons. You might use overlays to define the geographic boundaries of a national park or trace a bus route along city streets. You add an overlay to your map view by calling its [`addOverlay:`](https://developer.apple.com/documentation/mapkit/mkmapview/addoverlay(_:)) method or any other map view method for adding overlays to the map. When the overlay’s region intersects the visible portion of the map, the map view calls the [`mapView:rendererForOverlay:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:rendererfor:)) method of its delegate to obtain the renderer object responsible for drawing the overlay.
+    ///
+    /// If you add an overlay to a map view as an annotation, instead of adding it as an overlay, the map view treats your overlay as an annotation. Specifically, it displays your overlay only when its [`coordinate`](https://developer.apple.com/documentation/mapkit/mkoverlay/coordinate) is in the visible map region, rather than displaying the overlay when any portion of its covered area is visible.
+    ///
+    ///
     #[cfg(feature = "MKAnnotation")]
     pub unsafe trait MKOverlay: MKAnnotation {
         #[cfg(feature = "objc2-core-location")]

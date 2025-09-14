@@ -8,112 +8,110 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The attribute data describes the degree to which a surface’s appearance changes in appearance when rotated about its normal vector.
     /// The attribute data describes the degree to which a surface’s appearance
     /// changes in appearance when rotated about its normal vector.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributeanisotropy?language=objc)
     pub static MDLVertexAttributeAnisotropy: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes surface binormal vectors.
     /// The normal to a curve at a vertex position
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributebinormal?language=objc)
     pub static MDLVertexAttributeBinormal: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes surface bitangent vectors.
     /// The vector completing a tangent basis at a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributebitangent?language=objc)
     pub static MDLVertexAttributeBitangent: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes vertex colors.
     /// Color of a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributecolor?language=objc)
     pub static MDLVertexAttributeColor: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes edges that should be left unmodified by surface subdivision operations.
     /// A crease value along an edge to be applied during subdivision.
     /// A zero value indicates an edge is smooth, one is sharply creased.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributeedgecrease?language=objc)
     pub static MDLVertexAttributeEdgeCrease: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes the indices of bones or joints in a skeletal animation rig.
     /// Indices of joints in an animation rig corresponding to weighting information
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributejointindices?language=objc)
     pub static MDLVertexAttributeJointIndices: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes the influence factors of bones or joints on a vertex’s position for use in skeletal animation.
     /// Weights corresponding to joints for the purpose of blending animation
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributejointweights?language=objc)
     pub static MDLVertexAttributeJointWeights: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes surface normal vectors.
     /// The direction of a normal at a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributenormal?language=objc)
     pub static MDLVertexAttributeNormal: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes per-vertex ambient occlusion values.
     /// A value indicating the degree to which a vertex is occluded by surrounding geometry
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributeocclusionvalue?language=objc)
     pub static MDLVertexAttributeOcclusionValue: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes vertex positions.
     /// The position of a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributeposition?language=objc)
     pub static MDLVertexAttributePosition: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes the U component of a vector basis for use in shading.
     /// The u direction of a shading basis at a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributeshadingbasisu?language=objc)
     pub static MDLVertexAttributeShadingBasisU: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes the V component of a vector basis for use in shading.
     /// The v direction of a shading basis at a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributeshadingbasisv?language=objc)
     pub static MDLVertexAttributeShadingBasisV: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes which neighboring vertices influence the effect of surface subdivision on the area around a vertex.
     /// Stencil values for subdivision at a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributesubdivisionstencil?language=objc)
     pub static MDLVertexAttributeSubdivisionStencil: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes surface tangent vectors.
     /// A vector tangent to a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributetangent?language=objc)
     pub static MDLVertexAttributeTangent: &'static NSString;
 }
 
 extern "C" {
+    /// The attribute data describes texture coordinates.
     /// Texture coordinate mapping at a vertex
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributetexturecoordinate?language=objc)
     pub static MDLVertexAttributeTextureCoordinate: &'static NSString;
 }
 
+/// Descriptions of the data size and layout for a vertex attribute, used by the [`format`](https://developer.apple.com/documentation/modelio/mdlvertexattribute/format) property.
+///
+/// ## Overview
+///
+/// The values for vertex formats are constructed such that you can use bit masks to infer useful information about a format:
+///
+/// - The lowest order byte contains the number of vector components in a vertex format. For example, the raw value for the [`MDLVertexFormatChar3`](https://developer.apple.com/documentation/modelio/mdlvertexformat/char3) format is the bitwise OR of the 3 (the number of components) with the [`MDLVertexFormatCharBits`](https://developer.apple.com/documentation/modelio/mdlvertexformat/charbits) value.
+///
+/// - Special packed formats such as [`MDLVertexFormatInt1010102Normalized`](https://developer.apple.com/documentation/modelio/mdlvertexformat/int1010102normalized) have values less than `0x10000`.
+///
+/// - For unpacked formats, masking away the lower four bytes leaves information about the data type for scalars or vector components.
+///
+///
 /// Describes the format of a an attribute in a vertex buffer
 ///
 /// Designed to be very similar to MTLVertexDescriptor to ease the
@@ -121,204 +119,208 @@ extern "C" {
 /// packed types would all be less than 0x1000 and the bottom 5 bits
 /// can be used to determine the number of channels/components in the
 /// format.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLVertexFormat(pub NSUInteger);
 impl MDLVertexFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/invalid?language=objc)
+    /// The vertex attribute has just been initialized or its format is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default format value for newly created [`MDLVertexAttribute`](https://developer.apple.com/documentation/modelio/mdlvertexattribute) objects. If a vertex attribute of invalid format is included in a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object, Model I/O  ignores the other properties of that attribute.
+    ///
+    ///
     #[doc(alias = "MDLVertexFormatInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/packedbit?language=objc)
+    /// A bit mask for vertex attributes in packed vector formats.
     #[doc(alias = "MDLVertexFormatPackedBit")]
     pub const PackedBit: Self = Self(0x1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ucharbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 8-bit unsigned integer format.
     #[doc(alias = "MDLVertexFormatUCharBits")]
     pub const UCharBits: Self = Self(0x10000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/charbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 8-bit signed integer format.
     #[doc(alias = "MDLVertexFormatCharBits")]
     pub const CharBits: Self = Self(0x20000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ucharnormalizedbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 8-bit unsigned normalized integer format.
     #[doc(alias = "MDLVertexFormatUCharNormalizedBits")]
     pub const UCharNormalizedBits: Self = Self(0x30000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/charnormalizedbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 8-bit signed normalized integer format.
     #[doc(alias = "MDLVertexFormatCharNormalizedBits")]
     pub const CharNormalizedBits: Self = Self(0x40000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushortbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 16-bit unsigned integer format.
     #[doc(alias = "MDLVertexFormatUShortBits")]
     pub const UShortBits: Self = Self(0x50000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/shortbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 16-bit signed integer format.
     #[doc(alias = "MDLVertexFormatShortBits")]
     pub const ShortBits: Self = Self(0x60000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushortnormalizedbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 16-bit unsigned normalized integer format.
     #[doc(alias = "MDLVertexFormatUShortNormalizedBits")]
     pub const UShortNormalizedBits: Self = Self(0x70000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/shortnormalizedbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 16-bit signed normalized integer format.
     #[doc(alias = "MDLVertexFormatShortNormalizedBits")]
     pub const ShortNormalizedBits: Self = Self(0x80000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uintbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 32-bit unsigned integer format.
     #[doc(alias = "MDLVertexFormatUIntBits")]
     pub const UIntBits: Self = Self(0x90000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/intbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 32-bit signed integer format.
     #[doc(alias = "MDLVertexFormatIntBits")]
     pub const IntBits: Self = Self(0xA0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/halfbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 16-bit floating-point format.
     #[doc(alias = "MDLVertexFormatHalfBits")]
     pub const HalfBits: Self = Self(0xB0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/floatbits?language=objc)
+    /// A bit mask for vertex attributes whose components are in 32-bit floating-point format.
     #[doc(alias = "MDLVertexFormatFloatBits")]
     pub const FloatBits: Self = Self(0xC0000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar?language=objc)
+    /// The attribute value for each vertex is a scalar of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar")]
     pub const UChar: Self = Self(MDLVertexFormat::UCharBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar2")]
     pub const UChar2: Self = Self(MDLVertexFormat::UCharBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar3")]
     pub const UChar3: Self = Self(MDLVertexFormat::UCharBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar4")]
     pub const UChar4: Self = Self(MDLVertexFormat::UCharBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char?language=objc)
+    /// The attribute value for each vertex is a scalar of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar")]
     pub const Char: Self = Self(MDLVertexFormat::CharBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar2")]
     pub const Char2: Self = Self(MDLVertexFormat::CharBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar3")]
     pub const Char3: Self = Self(MDLVertexFormat::CharBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar4")]
     pub const Char4: Self = Self(MDLVertexFormat::CharBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ucharnormalized?language=objc)
+    /// The attribute value for each vertex is a normalized scalar of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUCharNormalized")]
     pub const UCharNormalized: Self = Self(MDLVertexFormat::UCharNormalizedBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar2normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each with a normalized value of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar2Normalized")]
     pub const UChar2Normalized: Self = Self(MDLVertexFormat::UCharNormalizedBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar3normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each with a normalized value of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar3Normalized")]
     pub const UChar3Normalized: Self = Self(MDLVertexFormat::UCharNormalizedBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uchar4normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each with a normalized value of unsigned 8-bit integer type.
     #[doc(alias = "MDLVertexFormatUChar4Normalized")]
     pub const UChar4Normalized: Self = Self(MDLVertexFormat::UCharNormalizedBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/charnormalized?language=objc)
+    /// The attribute value for each vertex is a normalized scalar of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatCharNormalized")]
     pub const CharNormalized: Self = Self(MDLVertexFormat::CharNormalizedBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char2normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each with a normalized value of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar2Normalized")]
     pub const Char2Normalized: Self = Self(MDLVertexFormat::CharNormalizedBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char3normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each with a normalized value of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar3Normalized")]
     pub const Char3Normalized: Self = Self(MDLVertexFormat::CharNormalizedBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/char4normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each with a normalized value of signed 8-bit integer type.
     #[doc(alias = "MDLVertexFormatChar4Normalized")]
     pub const Char4Normalized: Self = Self(MDLVertexFormat::CharNormalizedBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort?language=objc)
+    /// The attribute value for each vertex is a scalar of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort")]
     pub const UShort: Self = Self(MDLVertexFormat::UShortBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort2")]
     pub const UShort2: Self = Self(MDLVertexFormat::UShortBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort3")]
     pub const UShort3: Self = Self(MDLVertexFormat::UShortBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort4")]
     pub const UShort4: Self = Self(MDLVertexFormat::UShortBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short?language=objc)
+    /// The attribute value for each vertex is a scalar of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort")]
     pub const Short: Self = Self(MDLVertexFormat::ShortBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort2")]
     pub const Short2: Self = Self(MDLVertexFormat::ShortBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort3")]
     pub const Short3: Self = Self(MDLVertexFormat::ShortBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort4")]
     pub const Short4: Self = Self(MDLVertexFormat::ShortBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushortnormalized?language=objc)
+    /// The attribute value for each vertex is a normalized scalar of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShortNormalized")]
     pub const UShortNormalized: Self = Self(MDLVertexFormat::UShortNormalizedBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort2normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each with a normalized value of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort2Normalized")]
     pub const UShort2Normalized: Self = Self(MDLVertexFormat::UShortNormalizedBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort3normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each with a normalized value of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort3Normalized")]
     pub const UShort3Normalized: Self = Self(MDLVertexFormat::UShortNormalizedBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/ushort4normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each with a normalized value of unsigned 16-bit integer type.
     #[doc(alias = "MDLVertexFormatUShort4Normalized")]
     pub const UShort4Normalized: Self = Self(MDLVertexFormat::UShortNormalizedBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/shortnormalized?language=objc)
+    /// The attribute value for each vertex is a normalized scalar of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShortNormalized")]
     pub const ShortNormalized: Self = Self(MDLVertexFormat::ShortNormalizedBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short2normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each with a normalized value of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort2Normalized")]
     pub const Short2Normalized: Self = Self(MDLVertexFormat::ShortNormalizedBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short3normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each with a normalized value of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort3Normalized")]
     pub const Short3Normalized: Self = Self(MDLVertexFormat::ShortNormalizedBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/short4normalized?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each with a normalized value of signed 16-bit integer type.
     #[doc(alias = "MDLVertexFormatShort4Normalized")]
     pub const Short4Normalized: Self = Self(MDLVertexFormat::ShortNormalizedBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uint?language=objc)
+    /// The attribute value for each vertex is a scalar of unsigned 32-bit integer type.
     #[doc(alias = "MDLVertexFormatUInt")]
     pub const UInt: Self = Self(MDLVertexFormat::UIntBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uint2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of unsigned 32-bit integer type.
     #[doc(alias = "MDLVertexFormatUInt2")]
     pub const UInt2: Self = Self(MDLVertexFormat::UIntBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uint3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of unsigned 32-bit integer type.
     #[doc(alias = "MDLVertexFormatUInt3")]
     pub const UInt3: Self = Self(MDLVertexFormat::UIntBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uint4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of unsigned 32-bit integer type.
     #[doc(alias = "MDLVertexFormatUInt4")]
     pub const UInt4: Self = Self(MDLVertexFormat::UIntBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/int?language=objc)
+    /// The attribute value for each vertex is a scalar of signed 32-bit integer type.
     #[doc(alias = "MDLVertexFormatInt")]
     pub const Int: Self = Self(MDLVertexFormat::IntBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/int2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of signed 32-bit integer type.
     #[doc(alias = "MDLVertexFormatInt2")]
     pub const Int2: Self = Self(MDLVertexFormat::IntBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/int3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of signed 32-bit integer type.
     #[doc(alias = "MDLVertexFormatInt3")]
     pub const Int3: Self = Self(MDLVertexFormat::IntBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/int4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of signed 32-bit integer type.
     #[doc(alias = "MDLVertexFormatInt4")]
     pub const Int4: Self = Self(MDLVertexFormat::IntBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/half?language=objc)
+    /// The attribute value for each vertex is a scalar of 16-bit floating-point type.
     #[doc(alias = "MDLVertexFormatHalf")]
     pub const Half: Self = Self(MDLVertexFormat::HalfBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/half2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of 16-bit floating-point type.
     #[doc(alias = "MDLVertexFormatHalf2")]
     pub const Half2: Self = Self(MDLVertexFormat::HalfBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/half3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of 16-bit floating-point type.
     #[doc(alias = "MDLVertexFormatHalf3")]
     pub const Half3: Self = Self(MDLVertexFormat::HalfBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/half4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of 16-bit floating-point type.
     #[doc(alias = "MDLVertexFormatHalf4")]
     pub const Half4: Self = Self(MDLVertexFormat::HalfBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/float?language=objc)
+    /// The attribute value for each vertex is a scalar of 32-bit floating-point type.
     #[doc(alias = "MDLVertexFormatFloat")]
     pub const Float: Self = Self(MDLVertexFormat::FloatBits.0 | 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/float2?language=objc)
+    /// The attribute value for each vertex is a vector with 2 components, each of 32-bit floating-point type.
     #[doc(alias = "MDLVertexFormatFloat2")]
     pub const Float2: Self = Self(MDLVertexFormat::FloatBits.0 | 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/float3?language=objc)
+    /// The attribute value for each vertex is a vector with 3 components, each of 32-bit floating-point type.
     #[doc(alias = "MDLVertexFormatFloat3")]
     pub const Float3: Self = Self(MDLVertexFormat::FloatBits.0 | 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/float4?language=objc)
+    /// The attribute value for each vertex is a vector with 4 components, each of 32-bit floating-point type.
     #[doc(alias = "MDLVertexFormatFloat4")]
     pub const Float4: Self = Self(MDLVertexFormat::FloatBits.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/int1010102normalized?language=objc)
+    /// The attribute value for each vertex is a packed vector with 4 components of signed integer type. The first three components are 10 bits each, and the fourth component is 2 bits.
     #[doc(alias = "MDLVertexFormatInt1010102Normalized")]
     pub const Int1010102Normalized: Self =
         Self(MDLVertexFormat::IntBits.0 | MDLVertexFormat::PackedBit.0 | 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexformat/uint1010102normalized?language=objc)
+    /// The attribute value for each vertex is a packed vector with 4 components of unsigned integer type. The first three components are 10 bits each, and the fourth component is 2 bits.
     #[doc(alias = "MDLVertexFormatUInt1010102Normalized")]
     pub const UInt1010102Normalized: Self =
         Self(MDLVertexFormat::UIntBits.0 | MDLVertexFormat::PackedBit.0 | 4);
@@ -333,9 +335,26 @@ unsafe impl RefEncode for MDLVertexFormat {
 }
 
 extern_class!(
-    /// Describes a vertex buffer's layout
+    /// A [`MDLVertexBufferLayout`](https://developer.apple.com/documentation/modelio/mdlvertexbufferlayout) object describes layout information for a vertex buffer in a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object. A collection of vertex layer objects, vertex attribute objects, and additional information forms a [`MDLVertexDescriptor`](https://developer.apple.com/documentation/modelio/mdlvertexdescriptor) object, which completely describes the layout of vertex buffers for a mesh.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexbufferlayout?language=objc)
+    /// ## Overview
+    ///
+    /// A collection of vertex layout objects, vertex attribute objects, and additional information forms a [`MDLVertexDescriptor`](https://developer.apple.com/documentation/modelio/mdlvertexdescriptor) object, which completely describes the layout of vertex buffers for a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object.
+    ///
+    /// A mesh may store vertex data in either a structure of arrays model, where data for each vertex attribute (such as vertex position or surface normal) lies in a separate vertex buffer, or in an array of structures model, where multiple vertex attributes share the same buffer.
+    ///
+    /// - In a structure of arrays, the mesh’s [`vertexBuffers`](https://developer.apple.com/documentation/modelio/mdlmesh/vertexbuffers) array contains several [`MDLMeshBuffer`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer) objects, and the mesh’s [`vertexDescriptor`](https://developer.apple.com/documentation/modelio/mdlmesh/vertexdescriptor) object contains a separate [`MDLVertexBufferLayout`](https://developer.apple.com/documentation/modelio/mdlvertexbufferlayout) object for each buffer.
+    ///
+    /// - In an array of structures, the mesh contains a single vertex buffer, and its descriptor contains a single vertex buffer layout object. To identify which bytes in the buffer refer to which vertices and vertex attributes, use the layout’s [`stride`](https://developer.apple.com/documentation/modelio/mdlvertexbufferlayout/stride) together with the [`format`](https://developer.apple.com/documentation/modelio/mdlvertexattribute/format) and [`offset`](https://developer.apple.com/documentation/modelio/mdlvertexattribute/offset) properties of the descriptor’s vertex attributes.
+    ///
+    /// Because there is only one stride per buffer:
+    ///
+    /// - If a buffer uses interleaved layout, it can contain attributes of different sizes, and the stride is the sum of their sizes (plus padding).
+    ///
+    /// - If a buffer uses non-interleaved layout (that is, it stores all the data for one attribute, then all the data for another, and so on), each attribute in the buffer must have the same size as the others.
+    ///
+    ///
+    /// Describes a vertex buffer's layout
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLVertexBufferLayout;
@@ -391,9 +410,14 @@ impl MDLVertexBufferLayout {
 }
 
 extern_class!(
-    /// Structure with properties of a vertex attribute
+    /// A description of the format of per-vertex data for a single vertex attribute in a mesh object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattribute?language=objc)
+    /// ## Overview
+    ///
+    /// The vertex buffers of a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object store vertex attributes—such as vertex position, surface normal vector, or texture coordinates—that define its 3D shape and other data for use in rendering. Attribute information describes the structure and layout of that data. A collection of vertex attribute objects and additional information forms a [`MDLVertexDescriptor`](https://developer.apple.com/documentation/modelio/mdlvertexdescriptor) object, which completely describes the layout of vertex buffers for a mesh.
+    ///
+    ///
+    /// Structure with properties of a vertex attribute
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLVertexAttribute;
@@ -500,6 +524,13 @@ impl MDLVertexAttribute {
 }
 
 extern_class!(
+    /// A description of the structure, format, and layout for vertex data buffers associated with a mesh.
+    ///
+    /// ## Overview
+    ///
+    /// A [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object contains arrays of data for separate attributes of each vertex, such as position, color, surface normal vector, or texture coordinates. The vertex data for various attributes can be contained in one or more buffers and may be laid out in various contiguous or interleaved formats. You use a mesh’s [`vertexDescriptor`](https://developer.apple.com/documentation/modelio/mdlmesh/vertexdescriptor) property to determine the structure of vertex data for a mesh loaded from an asset file for use in rendering or processing a mesh. You also use vertex descriptors to describe the structure of existing vertex data when creating a new mesh.
+    ///
+    ///
     /// Describes the layout of vertex buffers in MDLMesh objects
     ///
     /// This object is a property of MDLMesh describing the current state of
@@ -509,8 +540,6 @@ extern_class!(
     ///
     /// Designed to be very similar to MTLVertexDescriptor to ease creation of one from
     /// the other
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLVertexDescriptor;

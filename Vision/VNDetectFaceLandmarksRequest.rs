@@ -7,21 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An enumeration of face landmarks in a constellation object.
 /// Constellation type defines how many landmark points are used to map a face. Revisions 1, 2, and 3 support 65 points, where Rev3 also supports 76 points.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNRequestFaceLandmarksConstellation(pub NSUInteger);
 impl VNRequestFaceLandmarksConstellation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation/constellationnotdefined?language=objc)
+    /// An undefined constellation.
     #[doc(alias = "VNRequestFaceLandmarksConstellationNotDefined")]
     pub const ConstellationNotDefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation/constellation65points?language=objc)
+    /// A constellation with 65 points.
     #[doc(alias = "VNRequestFaceLandmarksConstellation65Points")]
     pub const Constellation65Points: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestfacelandmarksconstellation/constellation76points?language=objc)
+    /// A constellation with 76 points.
     #[doc(alias = "VNRequestFaceLandmarksConstellation76Points")]
     pub const Constellation76Points: Self = Self(2);
 }
@@ -35,12 +34,19 @@ unsafe impl RefEncode for VNRequestFaceLandmarksConstellation {
 }
 
 extern_class!(
+    /// An image-analysis request that finds facial features like eyes and mouth in an image.
+    ///
+    /// ## Overview
+    ///
+    /// By default, a face landmarks request first locates all faces in the input image, then analyzes each to detect facial features.
+    ///
+    /// If you’ve already located all the faces in an image, or want to detect landmarks in only a subset of the faces in the image, set the [`inputFaceObservations`](https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations) property to an array of [`VNFaceObservation`](https://developer.apple.com/documentation/vision/vnfaceobservation) objects representing the faces you want to analyze. You can either use face observations output by a [`VNDetectFaceRectanglesRequest`](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest) or manually create [`VNFaceObservation`](https://developer.apple.com/documentation/vision/vnfaceobservation) instances with the bounding boxes of the faces you want to analyze.
+    ///
+    ///
     /// A request that will produce face landmark information.
     ///
     ///
     /// This request will generate VNFaceObservation objects with the landmarks property populated with information describing face landmarks. If VNFaceObservations are provided via the VNFaceObservationAccepting protocol without the landmarks property populated, new observations will be created as copies of the input VNFaceObservations with the landmarks property populated. If the landmarks property has already been populated, the original VNFaceObservations will be returned. If no VNFaceObservations are provided, face detection will be run first.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -132,12 +138,12 @@ impl VNDetectFaceLandmarksRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the face landmarks detection request.
 #[deprecated]
 pub static VNDetectFaceLandmarksRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision2?language=objc)
+/// A constant for specifying revision 2 of the face landmarks detection request.
 pub static VNDetectFaceLandmarksRequestRevision2: NSUInteger = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequestrevision3?language=objc)
+/// A constant for specifying revision 3 of the face landmarks detection request.
 pub static VNDetectFaceLandmarksRequestRevision3: NSUInteger = 3;

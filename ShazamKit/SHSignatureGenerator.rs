@@ -14,9 +14,14 @@ use crate::*;
 extern_class!(
     /// An object for converting audio data into a signature.
     ///
+    /// ## Overview
+    ///
     /// Create both reference and query signatures using this class.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shsignaturegenerator?language=objc)
+    ///
+    /// An object for converting audio data into a signature.
+    ///
+    /// Create both reference and query signatures using this class.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHSignatureGenerator;

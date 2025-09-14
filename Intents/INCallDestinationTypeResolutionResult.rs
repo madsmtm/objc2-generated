@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtyperesolutionresult?language=objc)
+    /// A resolution result for the destination type of a call.
+    ///
+    /// ## Overview
+    ///
+    /// You return an `INCallDestinationTypeResolutionResult` object when resolving parameters containing an [`INCallDestinationType`](https://developer.apple.com/documentation/intents/incalldestinationtype) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

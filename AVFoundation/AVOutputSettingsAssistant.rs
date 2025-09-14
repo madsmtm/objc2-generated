@@ -9,86 +9,92 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset?language=objc)
+/// A structure that defines preset configurations for an output settings assistant.
 // NS_TYPED_ENUM
 pub type AVOutputSettingsPreset = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset640x480?language=objc)
+    /// A preset for H.264 video at 640 by 480 pixels.
     pub static AVOutputSettingsPreset640x480: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset960x540?language=objc)
+    /// A preset for H.264 video at 960 by 540 pixels.
     pub static AVOutputSettingsPreset960x540: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset1280x720?language=objc)
+    /// A preset for H.264 video at 1280 by 720 pixels.
     pub static AVOutputSettingsPreset1280x720: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset1920x1080?language=objc)
+    /// A preset for H.264 video at 1920 by 1080 pixels.
     pub static AVOutputSettingsPreset1920x1080: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset3840x2160?language=objc)
+    /// A preset for H.264 video at 3840 by 2160 pixels.
     pub static AVOutputSettingsPreset3840x2160: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc1920x1080?language=objc)
+    /// A preset for HEVC video at 1920 by 1080 pixels.
     pub static AVOutputSettingsPresetHEVC1920x1080: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc1920x1080withalpha?language=objc)
+    /// A preset for HEVC with Alpha video at 1920 by 1080 pixels.
     pub static AVOutputSettingsPresetHEVC1920x1080WithAlpha: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc3840x2160?language=objc)
+    /// A preset for HEVC video at 3840 by 2160 pixels.
     pub static AVOutputSettingsPresetHEVC3840x2160: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc3840x2160withalpha?language=objc)
+    /// A preset for HEVC with Alpha video at 3840 by 2160 pixels.
     pub static AVOutputSettingsPresetHEVC3840x2160WithAlpha: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc4320x2160?language=objc)
     pub static AVOutputSettingsPresetHEVC4320x2160: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc7680x4320?language=objc)
+    /// A preset for HEVC video at 7680 by 4320 pixels.
     pub static AVOutputSettingsPresetHEVC7680x4320: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc960x960?language=objc)
+    /// A preset for MV-HEVC video at 960 by 960 pixels.
     pub static AVOutputSettingsPresetMVHEVC960x960: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc1440x1440?language=objc)
+    /// A preset for MV-HEVC video at 1440 by 1440 pixels.
     pub static AVOutputSettingsPresetMVHEVC1440x1440: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc4320x4320?language=objc)
     pub static AVOutputSettingsPresetMVHEVC4320x4320: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc7680x7680?language=objc)
     pub static AVOutputSettingsPresetMVHEVC7680x7680: &'static AVOutputSettingsPreset;
 }
 
 extern_class!(
+    /// An object that builds audio and video output settings dictionaries.
+    ///
+    /// ## Overview
+    ///
+    /// Use an output settings assistant to create the audio and video settings that you use to configure instances of [`AVAssetWriter`](https://developer.apple.com/documentation/avfoundation/avassetwriter) and [`AVAssetWriterInput`](https://developer.apple.com/documentation/avfoundation/avassetwriterinput). You create an assistant with a specific preset configuration, such as [`AVOutputSettingsPresetHEVC3840x2160WithAlpha`](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc3840x2160withalpha) or [`AVOutputSettingsPreset1920x1080`](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset1920x1080). You can accept the settings dictionaries as is to generate a file that conforms to the criteria that the preset implies. You may also use the dictionaries it generates as a base configuration that you can customize as you require.
+    ///
+    /// Providing the assistant additional details about your source media helps it generate more complete results. For example, setting a value for its [`sourceVideoFormat`](https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant/sourcevideoformat) property ensures that the assistant generates settings that don’t scale up video frames from a smaller size.
+    ///
+    ///
     /// A class, each instance of which specifies a set of parameters for configuring objects that use output settings dictionaries, for example AVAssetWriter
     /// &
     /// AVAssetWriterInput, so that the resulting media file conforms to some specific criteria
@@ -96,8 +102,6 @@ extern_class!(
     /// Instances of AVOutputSettingsAssistant are typically created using a string constant representing a specific preset configuration, such as AVOutputSettingsPreset1280x720.  Once you have an instance, its properties can be used as a guide for creating and configuring an AVAssetWriter object and one or more AVAssetWriterInput objects.  If all the suggested properties are respected, the resulting media file will conform to the criteria implied by the preset.  Alternatively, the properties of an instance can be used as a "base" configuration which can be customized to suit your individual needs.
     ///
     /// The recommendations made by an instance get better as you tell it more about the format of your source data.  For example, if you set the sourceVideoFormat property, the recommendation made by the videoSettings property will ensure that your video frames are not scaled up from a smaller size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingsassistant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVOutputSettingsAssistant;

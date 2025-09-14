@@ -10,12 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A window controller that displays nearby Bluetooth-based MIDI peripherals.
     /// A window controller object that can present a window that displays nearby Bluetooth-based MIDI peripherals. The user can select one of those peripherals and pair it with their mac. Additionally, the user can advertise the mac as a Bluetooth-based MIDI peripheral.
     ///
     ///
     /// To use this class, create an instance of the CABTLEMIDIWindowController, initialize it, and call showWindow: to display the UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/cabtlemidiwindowcontroller?language=objc)
     #[unsafe(super(NSWindowController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

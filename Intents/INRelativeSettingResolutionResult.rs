@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesettingresolutionresult?language=objc)
+    /// A resolution result for whether you can select the minimum, current, or maximum value.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRelativeSettingResolutionResult`](https://developer.apple.com/documentation/intents/inrelativesettingresolutionresult) object is what you return when resolving parameters containing a [`INRelativeSetting`](https://developer.apple.com/documentation/intents/inrelativesetting) value. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

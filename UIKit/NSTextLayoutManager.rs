@@ -9,19 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmenttype?language=objc)
+/// Values that describe the rendering of selection boundaries.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutManagerSegmentType(pub NSInteger);
 impl NSTextLayoutManagerSegmentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmenttype/standard?language=objc)
+    /// The standard segment, matching the typographic bounds of the range.
     #[doc(alias = "NSTextLayoutManagerSegmentTypeStandard")]
     pub const Standard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmenttype/selection?language=objc)
+    /// The segment behavior suitable for selection rendering.
+    ///
+    /// ## Discussion
+    ///
+    /// This segment type extends the last segment in a line fragment to the trailing edge if continuing to the next line.
+    ///
+    ///
     #[doc(alias = "NSTextLayoutManagerSegmentTypeSelection")]
     pub const Selection: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmenttype/highlight?language=objc)
+    /// The segment behavior suitable for highlighting.
     #[doc(alias = "NSTextLayoutManagerSegmentTypeHighlight")]
     pub const Highlight: Self = Self(2);
 }
@@ -34,29 +40,29 @@ unsafe impl RefEncode for NSTextLayoutManagerSegmentType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions?language=objc)
+/// Values that describe where and how the framework extends segments of a selection.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutManagerSegmentOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutManagerSegmentOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanagersegmentoptions/nstextlayoutmanagersegmentoptionsnone?language=objc)
+/// The value that represents the empty options set.
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions/rangenotrequired?language=objc)
+/// Returns the value that causes the framework enumerate text segment rectangles, but avoids preparing a range object.
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsRangeNotRequired")]
         const RangeNotRequired = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions/middlefragmentsexcluded?language=objc)
+/// Returns the value that causes the framework to enumerate segments in only the first and last line fragments.
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded")]
         const MiddleFragmentsExcluded = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions/headsegmentextended?language=objc)
+/// Returns the value that causes the framework to extend the segment to the tail edge.
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsHeadSegmentExtended")]
         const HeadSegmentExtended = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions/tailsegmentextended?language=objc)
+/// Returns the value that causes the framework to extend the segment to the tail edge.
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsTailSegmentExtended")]
         const TailSegmentExtended = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions/upstreamaffinity?language=objc)
+/// Returns the value that causes the framework to the place the segment based on the upstream affinity for an empty range.
         #[doc(alias = "NSTextLayoutManagerSegmentOptionsUpstreamAffinity")]
         const UpstreamAffinity = 1<<4;
     }
@@ -71,7 +77,13 @@ unsafe impl RefEncode for NSTextLayoutManagerSegmentOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager?language=objc)
+    /// The primary class that you use to manage text layout and presentation for custom text displays.
+    ///
+    /// ## Overview
+    ///
+    /// `NSTextLayoutManager` is the centerpiece of the TextKit object network that maintains the layout geometry through an array of [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) objects. It lays out results using [`NSTextLayoutFragment`](https://developer.apple.com/documentation/uikit/nstextlayoutfragment) and [`NSTextElement`](https://developer.apple.com/documentation/uikit/nstextelement) objects vended from a [`NSTextContentManager`](https://developer.apple.com/documentation/uikit/nstextcontentmanager) that participates in the content layout process.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextLayoutManager;
@@ -440,7 +452,7 @@ impl DefaultRetained for NSTextLayoutManager {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanagerdelegate?language=objc)
+    /// Optional methods that delegates implement to respond to layout changes.
     pub unsafe trait NSTextLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "NSTextElement",

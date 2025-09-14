@@ -10,14 +10,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamusichapticsmanager/activestatusdidchangenotification?language=objc)
+    /// A notification that posts when the value of the Music Haptics system setting changes.
     #[cfg(feature = "objc2-foundation")]
     pub static MAMusicHapticsManagerActiveStatusDidChangeNotification: &'static NSNotificationName;
 }
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamusichapticsmanager?language=objc)
+    /// A class that reports information about the Music Haptics feature.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`sharedManager`](https://developer.apple.com/documentation/mediaaccessibility/mamusichapticsmanager/shared) instance of `MAMusicHapticsManager` to check information about the Music Haptics feature so you can respond accordingly in your app. For example, you can check whether Music Haptics is on, get a notification when it turns on or off, or check whether a haptic track is currently playing along with the Now Playing item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

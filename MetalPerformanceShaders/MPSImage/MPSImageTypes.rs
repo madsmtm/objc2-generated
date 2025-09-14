@@ -4,19 +4,46 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype?language=objc)
+/// Premultiplication description for the color channels of an image.
+///
+/// ## Overview
+///
+/// Some image data is premultiplied. That is to say that the color channels are stored instead as `color*alpha`. This is an optimization for image compositing (alpha blending), but it can get in the way of most other image filters, especially those that apply non-linear effects like the color conversion filters and functions like convolution or resampling filters that look at adjacent pixels, where the alpha may not be the same. The following are some basic conversion cases:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Source" }] }], [Paragraph { inline_content: [Text { text: "Destination" }] }], [Paragraph { inline_content: [Text { text: "Operation" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NonPremultiplied" }] }], [Paragraph { inline_content: [CodeVoice { code: "NonPremultiplied" }] }], [Paragraph { inline_content: [Text { text: "None." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NonPremultiplied" }] }], [Paragraph { inline_content: [CodeVoice { code: "AlphaIsOne" }] }], [Paragraph { inline_content: [Text { text: "Composite with opaque background color." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NonPremultiplied" }] }], [Paragraph { inline_content: [CodeVoice { code: "Premultiplied" }] }], [Paragraph { inline_content: [Text { text: "Multiply color channels by alpha." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "AlphaIsOne" }] }], [Paragraph { inline_content: [CodeVoice { code: "NonPremultiplied" }] }], [Paragraph { inline_content: [Text { text: "Set alpha to 1." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "AlphaIsOne" }] }], [Paragraph { inline_content: [CodeVoice { code: "AlphaIsOne" }] }], [Paragraph { inline_content: [Text { text: "Set alpha to 1." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "AlphaIsOne" }] }], [Paragraph { inline_content: [CodeVoice { code: "Premultiplied" }] }], [Paragraph { inline_content: [Text { text: "Set alpha to 1." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Premultiplied" }] }], [Paragraph { inline_content: [CodeVoice { code: "NonPremultiplied" }] }], [Paragraph { inline_content: [Text { text: "Divide color channels by alpha." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Premultiplied" }] }], [Paragraph { inline_content: [CodeVoice { code: "AlphaIsOne" }] }], [Paragraph { inline_content: [Text { text: "Composite with opaque background color." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Premultiplied" }] }], [Paragraph { inline_content: [CodeVoice { code: "Premultiplied" }] }], [Paragraph { inline_content: [Text { text: "None." }] }]]], alignments: None, metadata: None })
+/// Most [`MPSKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel) objects require non-premultiplied or completely opaque colors to work correctly. They implictly assume that alpha is equal to 1 and do not provide functions for the user to specify alpha channel types. Currently, the only filters that can handle premultiplied data are the color conversion filters provided by [`MPSImageConversion`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion) kernels and they insert extra operations to ensure a correct conversion. Fully opaque images should use `MPSAlphaTypeAlphaIsOne`
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSAlphaType(pub NSUInteger);
 impl MPSAlphaType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype/nonpremultiplied?language=objc)
+    /// The image is not premultiplied by alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// The image uses non-premultiplied alpha. Alpha is not guaranteed to be 1.
+    ///
+    ///
     #[doc(alias = "MPSAlphaTypeNonPremultiplied")]
     pub const NonPremultiplied: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype/alphaisone?language=objc)
+    /// Alpha is guaranteed to be 1.
+    ///
+    /// ## Overview
+    ///
+    /// The alpha value is guaranteed to be `1` even if it is not encoded as `1` or even not encoded at all.
+    ///
+    ///
     #[doc(alias = "MPSAlphaTypeAlphaIsOne")]
     pub const AlphaIsOne: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsalphatype/premultiplied?language=objc)
+    /// The image is premultiplied by alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// The image uses premultiplied alpha. Alpha is not guaranteed to be 1.
+    ///
+    ///
     #[doc(alias = "MPSAlphaTypePremultiplied")]
     pub const Premultiplied: Self = Self(2);
 }

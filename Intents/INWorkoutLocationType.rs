@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutlocationtype?language=objc)
+/// Describes the location of a workout.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INWorkoutLocationType(pub NSInteger);
 impl INWorkoutLocationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutlocationtype/unknown?language=objc)
+    /// An unknown workout location.
     #[doc(alias = "INWorkoutLocationTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutlocationtype/outdoor?language=objc)
+    /// An outdoor workout location.
     #[doc(alias = "INWorkoutLocationTypeOutdoor")]
     pub const Outdoor: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutlocationtype/indoor?language=objc)
+    /// An indoor workout location.
     #[doc(alias = "INWorkoutLocationTypeIndoor")]
     pub const Indoor: Self = Self(2);
 }

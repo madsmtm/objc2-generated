@@ -7,6 +7,25 @@ use crate::*;
 
 #[cfg(feature = "SCDynamicStore")]
 impl SCDynamicStore {
+    /// Returns the DHCP information for the specified service.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session that should be used for communication with the server. If this is `NULL`, a temporary session is used.
+    ///
+    /// - serviceID: The service ID. Pass `NULL` to retrieve information for the primary service.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing DHCP information if successful, or `NULL` if unsuccessful. You must use the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release return values other than `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`DHCPInfoGetOptionData`](https://developer.apple.com/documentation/systemconfiguration/dhcpinfogetoptiondata) to extract individual options from the dictionary returned by this function.
+    ///
+    ///
     /// Copies the DHCP information for the requested serviceID,
     /// or the primary service if serviceID == NULL.
     ///
@@ -23,8 +42,6 @@ impl SCDynamicStore {
     /// individual options from the returned dictionary.
     ///
     /// A non-NULL return value must be released using CFRelease().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopydhcpinfo?language=objc)
     #[doc(alias = "SCDynamicStoreCopyDHCPInfo")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -43,6 +60,19 @@ impl SCDynamicStore {
     }
 }
 
+/// Returns DHCP option data, if present.
+///
+/// Parameters:
+/// - info: The DHCP information dictionary returned by [`SCDynamicStoreCopyDHCPInfo`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopydhcpinfo). Do not pass in a `NULL` dictionary.
+///
+/// - code: The DHCP option code to get data for. (See RFC 2132 for more information on this code.)
+///
+///
+/// ## Return Value
+///
+/// The DHCP option data if present, or `NULL` if the data is not present. You must not release the return value.
+///
+///
 /// Returns a non-NULL CFDataRef containing the DHCP
 /// option data, if present.
 ///
@@ -61,8 +91,6 @@ impl SCDynamicStore {
 ///
 /// - `info` generic must be of the correct type.
 /// - `info` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpinfogetoptiondata?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
     info: &CFDictionary,
@@ -75,6 +103,17 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns the lease start time data.
+///
+/// Parameters:
+/// - info: The DHCP information dictionary returned by [`SCDynamicStoreCopyDHCPInfo`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopydhcpinfo). Do not pass in a `NULL` dictionary.
+///
+///
+/// ## Return Value
+///
+/// Data that corresponds to the lease start time, if this information is present, or `NULL` if the information is not present or if the configuration method is not DHCP.
+///
+///
 /// Returns a CFDateRef corresponding to the lease start time,
 /// if present.
 ///
@@ -91,8 +130,6 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
 ///
 /// - `info` generic must be of the correct type.
 /// - `info` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpinfogetleasestarttime?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
     info: &CFDictionary,
@@ -104,6 +141,7 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns the lease expiration time data.
 /// Returns a CFDateRef corresponding to the lease expiration time,
 /// if present.
 ///
@@ -121,8 +159,6 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
 ///
 /// - `info` generic must be of the correct type.
 /// - `info` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpinfogetleaseexpirationtime?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
     info: &CFDictionary,

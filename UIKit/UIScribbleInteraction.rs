@@ -9,11 +9,20 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An interaction for customizing the behavior of Scribble on text input views, or for suppressing it entirely in specific cases.
+    ///
+    /// ## Overview
+    ///
+    /// By default, Scribble lets users enter text by writing directly into any editable view that implements [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput).
+    ///
+    /// In apps with customized text fields, you can use the [`UIScribbleInteractionDelegate`](https://developer.apple.com/documentation/uikit/uiscribbleinteractiondelegate) callbacks to optimize the UI for a better writing experience. For example, you can hide custom placeholders when the user starts writing, or delay focusing on the field if it moves while gaining focus.
+    ///
+    /// With text views that support drawing with Apple Pencil, you’ll need to suppress Scribble on nearby text fields to keep them from taking over the Pencil events for writing.
+    ///
+    ///
     /// An interaction that allows customizing the behavior of Scribble on text input views, or suppress it entirely in specific cases.
     /// By default, Scribble allows the user to enter text by handwriting directly into any view that implements UITextInput and is editable. In apps with customized text fields, you can use UIScribbleInteraction's delegate callbacks to optimize the UI for a better writing experience. For example, you might want to hide custom placeholders when writing begins, or request delaying focusing the field if it moves when gaining focus.
     /// In some cases it is necessary to suppress Scribble, for example if a text view also supports drawing with Apple Pencil. You may also need to suppress Scribble in views that handle Pencil events directly, like a drawing canvas, since nearby text fields could take over the Pencil events for writing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -66,7 +75,19 @@ impl UIScribbleInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscribbleinteractiondelegate?language=objc)
+    /// Methods for customizing or suppressing Scribble behavior within text input views.
+    ///
+    /// ## Overview
+    ///
+    /// By default, Scribble let users enter text by writing directly into any editable view that implement [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput). In apps with customized text fields, you can use the [`UIScribbleInteractionDelegate`](https://developer.apple.com/documentation/uikit/uiscribbleinteractiondelegate) callbacks to optimize the UI for a better writing experience, including:
+    ///
+    /// - Opting individual text fields in or out of Scribble interactions.
+    ///
+    /// - Controlling how quickly a given text field responds to input, giving the view an opportunity to change its configuration, if necessary.
+    ///
+    /// - Receiving notifications when the user writing begins and ends.
+    ///
+    ///
     pub unsafe trait UIScribbleInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

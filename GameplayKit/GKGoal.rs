@@ -8,10 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An influence that motivates the movement of one or more agents.
+    ///
+    /// ## Overview
+    ///
+    /// Goals can motivate agents ([`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) objects) to actions such as moving toward a target, following a path, or staying aligned with a group of other agents. To give an agent one or more goals, combine those goals in a [`GKBehavior`](https://developer.apple.com/documentation/gameplaykit/gkbehavior) object (which includes weights for the relative influence of each goal) and assign that object to the agent’s [`behavior`](https://developer.apple.com/documentation/gameplaykit/gkagent/behavior) property.
+    ///
+    /// Each time an agent’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method runs, the agent evaluates each goal in its behavior to find the change in direction and speed necessary to move toward fulfilling that goal (within the limits of the time delta and the agent’s maximum speed and turn rate). It then combines the effects from all the goals in its behavior, using the weights in the behavior to modulate the influence of each goal, to produce a total change in its direction and speed.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// Defines a spatial directive.
     /// The various goals cause force to be applied to agents to try to achieve said goal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgoal?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGoal;

@@ -7,6 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Types of distance attenuation models.
+///
+/// ## Overview
+///
+/// Distance attenuation is the natural attenuation of sound when traveling from the source to the listener. The different attenuation models describe the drop-off in gain as the source moves away from the listener.
+///
+///
 /// Types of distance attenuation models
 ///
 /// Distance attenuation is the natural attenuation of sound when traveling from the source to
@@ -30,20 +37,36 @@ use crate::*;
 /// there is no attenuation for that source.
 ///
 /// All the values for distance are specified in meters.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioEnvironmentDistanceAttenuationModel(pub NSInteger);
 impl AVAudioEnvironmentDistanceAttenuationModel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel/exponential?language=objc)
+    /// An exponential model that describes the drop-off in gain as the source moves away from the listener.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework calculates this value as `distanceGain = (distance / referenceDistance) ^ (-rolloffFactor)`.
+    ///
+    ///
     #[doc(alias = "AVAudioEnvironmentDistanceAttenuationModelExponential")]
     pub const Exponential: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel/inverse?language=objc)
+    /// An inverse model that describes the drop-off in gain as the source moves away from the listener.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework calculates this value as `distanceGain = referenceDistance / (referenceDistance + rolloffFactor * (distance – referenceDistance))`.
+    ///
+    ///
     #[doc(alias = "AVAudioEnvironmentDistanceAttenuationModelInverse")]
     pub const Inverse: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationmodel/linear?language=objc)
+    /// A linear model that describes the drop-off in gain as the source moves away from the listener.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework calculates this value as `distanceGain = (1 – rolloffFactor * (distance – referenceDistance) / (maximumDistance – referenceDistance))`.
+    ///
+    ///
     #[doc(alias = "AVAudioEnvironmentDistanceAttenuationModelLinear")]
     pub const Linear: Self = Self(3);
 }
@@ -57,12 +80,23 @@ unsafe impl RefEncode for AVAudioEnvironmentDistanceAttenuationModel {
 }
 
 extern_class!(
+    /// An object that specifies the amount of attenuation distance, the gradual loss in audio intensity, and other characteristics.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A source object (for example, [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode)) provides an instance to this object. You can’t create standalone instances.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Parameters specifying the amount of distance attenuation
     ///
     /// A standalone instance of AVAudioEnvironmentDistanceAttenuationParameters cannot be created.
     /// Only an instance vended out by a source object (e.g. AVAudioEnvironmentNode) can be used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentdistanceattenuationparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioEnvironmentDistanceAttenuationParameters;
@@ -150,6 +184,17 @@ impl AVAudioEnvironmentDistanceAttenuationParameters {
 }
 
 extern_class!(
+    /// A class that encapsulates the parameters that you use to control the reverb of the environment node class.
+    ///
+    /// ## Overview
+    ///
+    /// Use reverberation to simulate the acoustic characteristics of an environment. The [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode) class has a built-in reverb that describe the space that the listener is in.
+    ///
+    /// The reverb has a single filter that sits at the end of the chain. You use this filter to shape the overall sound of the reverb. For instance, select one of the reverb presets to simulate the general space, and then use the filter to brighten or darken the overall sound.
+    ///
+    /// You can’t create a standalone instance of [`AVAudioEnvironmentReverbParameters`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters). Only an instance vended by a source object is valid, such as an [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode) instance.
+    ///
+    ///
     /// Parameters used to control the reverb in AVAudioEnvironmentNode
     ///
     /// Reverberation can be used to simulate the acoustic characteristics of an environment.
@@ -163,8 +208,6 @@ extern_class!(
     ///
     /// A standalone instance of AVAudioEnvironmentReverbParameters cannot be created.
     /// Only an instance vended out by a source object (e.g. AVAudioEnvironmentNode) can be used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentreverbparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioEnvironmentReverbParameters;
@@ -233,6 +276,13 @@ impl AVAudioEnvironmentReverbParameters {
     );
 }
 
+/// The output types for using with the automatic 3D mixing rendering algorithm.
+///
+/// ## Overview
+///
+/// The output type determines the rendering method for any input bus using [`AVAudio3DMixingRenderingAlgorithmAuto`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm/auto). To configure the output type, set [`outputType`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype) on [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode).
+///
+///
 /// Types of output for AVAudio3DMixingRenderingAlgorithmAuto
 ///
 /// The output type determines the rendering method for any input bus using
@@ -254,23 +304,35 @@ impl AVAudioEnvironmentReverbParameters {
 ///
 /// AVAudioEnvironmentOutputTypeExternalSpeakers
 /// Render for external speakers based on the environment node's output channel layout.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEnvironmentOutputType(pub NSInteger);
 impl AVAudioEnvironmentOutputType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/auto?language=objc)
+    /// Automatically detects the playback route and picks the correct output.
+    ///
+    /// ## Discussion
+    ///
+    /// When using the automatic output type, wired output defaults to [`AVAudioEnvironmentOutputTypeHeadphones`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/headphones), and manual rendering with a two-channel output layout defaults to [`AVAudioEnvironmentOutputTypeExternalSpeakers`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/externalspeakers).
+    ///
+    ///
     #[doc(alias = "AVAudioEnvironmentOutputTypeAuto")]
     pub const Auto: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/headphones?language=objc)
+    /// Renders the audio output for headphones.
     #[doc(alias = "AVAudioEnvironmentOutputTypeHeadphones")]
     pub const Headphones: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/builtinspeakers?language=objc)
+    /// Renders the audio output for built-in speakers on the current hardware.
+    ///
+    /// ## Discussion
+    ///
+    /// The output isn’t suitable for playback on other hardware.
+    ///
+    /// In iOS devices, the rendering can be specific to device orientation. Manual rendering modes may not provide the rendering you expect if the device orientation changes between rendering the audio and playing it back.
+    ///
+    ///
     #[doc(alias = "AVAudioEnvironmentOutputTypeBuiltInSpeakers")]
     pub const BuiltInSpeakers: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentoutputtype/externalspeakers?language=objc)
+    /// Renders the audio output for external speakers according to the audio environment node’s output channel layout.
     #[doc(alias = "AVAudioEnvironmentOutputTypeExternalSpeakers")]
     pub const ExternalSpeakers: Self = Self(3);
 }
@@ -284,6 +346,33 @@ unsafe impl RefEncode for AVAudioEnvironmentOutputType {
 }
 
 extern_class!(
+    /// An object that simulates a 3D audio environment.
+    ///
+    /// ## Overview
+    ///
+    /// The `AVAudioEnvironmentNode` class is a mixer node that simulates a 3D audio environment. Any node that conforms to [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) can act as a source node, such as [`AVAudioPlayerNode`](https://developer.apple.com/documentation/avfaudio/avaudioplayernode).
+    ///
+    /// The environment node has an implicit listener. You set the listener’s position and orientation, and the system then controls the way the user experiences the virtual world.
+    ///
+    /// To help characterize the environment, this class defines properties for distance attenuation and reverberation.
+    ///
+    /// [`AVAudio3DMixingSourceMode`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode) affects how inputs with different channel configurations render. Spatialization applies only to inputs with a mono channel connection format. This class doesn’t spatialize stereo inputs or support inputs with connection formats of more than two channels.
+    ///
+    /// To set the node’s output to a multichannel format, use an [`AVAudioFormat`](https://developer.apple.com/documentation/avfaudio/avaudioformat) that has one of the following [Audio Channel Layout Tags](https://developer.apple.com/documentation/coreaudiotypes/audio-channel-layout-tags):
+    ///
+    /// - [`kAudioChannelLayoutTag_AudioUnit_4`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_4)
+    ///
+    /// - [`kAudioChannelLayoutTag_AudioUnit_5_0`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_5_0)
+    ///
+    /// - [`kAudioChannelLayoutTag_AudioUnit_6_0`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_6_0)
+    ///
+    /// - [`kAudioChannelLayoutTag_AudioUnit_7_0`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_7_0)
+    ///
+    /// - [`kAudioChannelLayoutTag_AudioUnit_7_0_Front`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_7_0_front)
+    ///
+    /// - [`kAudioChannelLayoutTag_AudioUnit_8`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_8)
+    ///
+    ///
     /// Mixer node that simulates a 3D environment
     ///
     /// AVAudioEnvironmentNode is a mixer node that simulates a 3D audio environment. Any node that
@@ -300,8 +389,6 @@ extern_class!(
     ///
     /// In order to set the environment node’s output to a multichannel format, use an AVAudioFormat
     /// with a desired AudioChannelLayout.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

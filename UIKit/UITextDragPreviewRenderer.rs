@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdragpreviewrenderer?language=objc)
+    /// Renders previews of text dragged by the user.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to provide custom previews of dragged text that follows user interface guidelines and handles right-to-left text. You provide the layout manager and the range to render the preview.
+    ///
+    /// Subclasses may override the [`adjustFirstLineRect:bodyRect:lastLineRect:textOrigin:`](https://developer.apple.com/documentation/uikit/uitextdragpreviewrenderer/adjust(firstlinerect:bodyrect:lastlinerect:textorigin:)) method to modify the detected rectangles as needed during the drag operation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitoolbarappearance?language=objc)
+    /// An object for customizing the appearance of a toolbar.
+    ///
+    /// ## Overview
+    ///
+    /// After creating a [`UIToolbarAppearance`](https://developer.apple.com/documentation/uikit/uitoolbarappearance) object, use the methods and properties of this class to specify the appearance of items in the toolbar. Use the inherited properties from [`UIBarAppearance`](https://developer.apple.com/documentation/uikit/uibarappearance) to configure the background and shadow attributes of the toolbar itself.
+    ///
+    ///
     #[unsafe(super(UIBarAppearance, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

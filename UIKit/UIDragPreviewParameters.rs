@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragpreviewparameters?language=objc)
+    /// A set of parameters for adjusting the appearance of a drag item preview or a targeted drag item preview.
+    ///
+    /// ## Overview
+    ///
+    /// You can refine the appearance of a preview by providing additional parameters when creating a [`UIDragPreview`](https://developer.apple.com/documentation/uikit/uidragpreview) or [`UITargetedDragPreview`](https://developer.apple.com/documentation/uikit/uitargeteddragpreview) object. The parameters specify different visual aspects of the preview, including the background color and the visible area of the view associated with the preview.
+    ///
+    ///
     #[unsafe(super(UIPreviewParameters, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

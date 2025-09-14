@@ -7,16 +7,14 @@ use objc2_metal::*;
 use crate::*;
 
 /// The device type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevicetype?language=objc)
+/// The device type.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphDeviceType(pub u32);
 impl MPSGraphDeviceType {
     /// Device of type Metal
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevicetype/metal?language=objc)
+    /// Device of type Metal
     #[doc(alias = "MPSGraphDeviceTypeMetal")]
     pub const Metal: Self = Self(0);
 }
@@ -31,8 +29,7 @@ unsafe impl RefEncode for MPSGraphDeviceType {
 
 extern_class!(
     /// A class that describes the compute device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdevice?language=objc)
+    /// A class that describes the compute device.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

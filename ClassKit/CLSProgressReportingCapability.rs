@@ -6,25 +6,61 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum?language=objc)
+/// The available kinds of progress reporting that a context can perform.
+///
+/// ## Overview
+///
+/// Use one of these values to set the [`kind`](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.property) property in each [`CLSProgressReportingCapability`](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability) instance when constructing a set of capabilities used to configure a context. Each kind corresponds to a different metric that you provide, like a score or a progress indication.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSProgressReportingCapabilityKind(pub NSInteger);
 impl CLSProgressReportingCapabilityKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/duration?language=objc)
+    /// Time spent performing the task.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework automatically measures the time that a student spends working on a task, so all contexts have a [`CLSProgressReportingCapabilityKindDuration`](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/duration) capability by default. You can replace the default one with a new one if you want to customize the [`details`](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/details) string.
+    ///
+    ///
     #[doc(alias = "CLSProgressReportingCapabilityKindDuration")]
     pub const Duration: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/percent?language=objc)
+    /// The percentage of the total task that has been completed.
+    ///
+    /// ## Discussion
+    ///
+    /// Add this capability to indicate that a context reports a task’s percentage completion on a periodic basis by setting the associated activity’s [`progress`](https://developer.apple.com/documentation/classkit/clsactivity/progress) property, or by calling the activity’s [`addProgressRangeFromStart:toEnd:`](https://developer.apple.com/documentation/classkit/clsactivity/addprogressrange(fromstart:toend:)) method.
+    ///
+    ///
     #[doc(alias = "CLSProgressReportingCapabilityKindPercent")]
     pub const Percent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/binary?language=objc)
+    /// A binary outcome for the task, like true or false.
+    ///
+    /// ## Discussion
+    ///
+    /// Add this capability to indicate that a context reports a binary condition at the end of a task, like pass or fail, using a [`CLSBinaryItem`](https://developer.apple.com/documentation/classkit/clsbinaryitem) instance.
+    ///
+    ///
     #[doc(alias = "CLSProgressReportingCapabilityKindBinary")]
     pub const Binary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/quantity?language=objc)
+    /// A discrete value.
+    ///
+    /// ## Discussion
+    ///
+    /// Add this capability to indicate that a context reports an arbitrary numerical result at the end of a task using a [`CLSQuantityItem`](https://developer.apple.com/documentation/classkit/clsquantityitem) instance.
+    ///
+    ///
     #[doc(alias = "CLSProgressReportingCapabilityKindQuantity")]
     pub const Quantity: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/kind-swift.enum/score?language=objc)
+    /// A score.
+    ///
+    /// ## Discussion
+    ///
+    /// Add this capability to indicate that a context reports a score at the end of a task using a [`CLSScoreItem`](https://developer.apple.com/documentation/classkit/clsscoreitem) instance.
+    ///
+    ///
     #[doc(alias = "CLSProgressReportingCapabilityKindScore")]
     pub const Score: Self = Self(4);
 }
@@ -38,9 +74,18 @@ unsafe impl RefEncode for CLSProgressReportingCapabilityKind {
 }
 
 extern_class!(
-    /// This class specifies progress reporting capability of a ClassKit client app
+    /// A progress reporting capability supported by a context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability?language=objc)
+    /// ## Overview
+    ///
+    /// You use activities to report metrics about a student’s progress through the task associated with a context. Every activity automatically measures time spent performing the task, but you can provide additional information, like the percentage completion, or a final score.
+    ///
+    /// To help teachers understand what to expect from a context, create a set of [`CLSProgressReportingCapability`](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability) instances — one for each kind of metric the context reports. Add the complete set to the context by calling the [`addProgressReportingCapabilities:`](https://developer.apple.com/documentation/classkit/clscontext/addprogressreportingcapabilities(_:)) method.
+    ///
+    /// When you create a reporting capability, include a brief description of the capability as a localized string in the [`details`](https://developer.apple.com/documentation/classkit/clsprogressreportingcapability/details) property. Schoolwork presents this to teachers to provide additional information about the metric.
+    ///
+    ///
+    /// This class specifies progress reporting capability of a ClassKit client app
     #[unsafe(super(CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLSObject")]

@@ -9,12 +9,17 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A description of the attributes used to create an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage).
+    ///
+    /// ## Overview
+    ///
+    /// You use an [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) to describe and create the properties of an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) such as its size, pixel format and CPU cache mode.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// A MPSImageDescriptor object describes a attributes of MPSImage and is used to
     /// create one (see MPSImage discussion below)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSImageDescriptor;
@@ -181,6 +186,7 @@ impl MPSImageDescriptor {
 }
 
 impl MPSImage {
+    /// Increments or decrements the read count of an image batch by a specified amount.
     /// raise or lower the readcount of a batch by a set amount
     ///
     /// In some circumstances, a MPSImage may appear in a MPSImageBatch
@@ -209,8 +215,6 @@ impl MPSImage {
     /// Parameter `amount`: The value to add to the read count for each unique image in the batch
     ///
     /// Returns: The number of different images in the batch
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchincrementreadcount(_:_:)?language=objc)
     #[doc(alias = "MPSImageBatchIncrementReadCount")]
     #[inline]
     pub unsafe fn batch_increment_read_count(
@@ -226,9 +230,8 @@ impl MPSImage {
         unsafe { MPSImageBatchIncrementReadCount(batch, amount) }
     }
 
+    /// Removes any copy of the specified image batch from the device’s caches, and, if needed, invalidates any CPU caches.
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchsynchronize(_:_:)?language=objc)
     #[doc(alias = "MPSImageBatchSynchronize")]
     #[inline]
     pub unsafe fn batch_synchronize(
@@ -244,9 +247,8 @@ impl MPSImage {
         unsafe { MPSImageBatchSynchronize(batch, cmd_buf) }
     }
 
+    /// Returns the number of bytes used to allocate the specified image batch.
     /// Call [MTLBlitEncoder resourceSize] on unique resources and return sum
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchresourcesize(_:)?language=objc)
     #[doc(alias = "MPSImageBatchResourceSize")]
     #[inline]
     pub unsafe fn batch_resource_size(batch: &MPSImageBatch) -> NSUInteger {
@@ -256,6 +258,7 @@ impl MPSImage {
         unsafe { MPSImageBatchResourceSize(batch) }
     }
 
+    /// Executes a callback block once for each unique image in a batch.
     /// Iterate over unique images in the batch
     ///
     /// This function looks only at image address to determine uniqueness.
@@ -270,8 +273,6 @@ impl MPSImage {
     /// Behavior is undefined if MPSImageBatchIterate is called recursively on the same images.
     ///
     /// Returns: The value returned by the iterator block for the last image on which it ran
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebatchiterate(_:_:)?language=objc)
     #[doc(alias = "MPSImageBatchIterate")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -360,8 +361,6 @@ extern_protocol!(
     /// does not change filter properties but only adjusts the result image (e.g. adjust result
     /// feature channel format) then MPSNNPaddingMethodCustomAllowForNodeFusion may be
     /// used to signal that node fusion is acceptable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageallocator?language=objc)
     pub unsafe trait MPSImageAllocator: NSObjectProtocol + NSSecureCoding {
         #[cfg(feature = "MPSKernel")]
         /// Create a new MPSImage
@@ -421,25 +420,49 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate?language=objc)
+/// The purgeable state of an image’s underlying texture.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSPurgeableState(pub NSUInteger);
 impl MPSPurgeableState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/allocationdeferred?language=objc)
+    /// The image’s underlying texture hasn’t been allocated yet. Attempts to set another purgeable state using the [`setPurgeableState:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/setpurgeablestate(_:)) method will be ignored.
     #[doc(alias = "MPSPurgeableStateAllocationDeferred")]
     pub const AllocationDeferred: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/keepcurrent?language=objc)
+    /// The current state is queried but doesn’t change.
+    ///
+    /// ## Discussion
+    ///
+    /// Using this option keeps the current state unchanged. It is equivalent to [`MTLPurgeableStateKeepCurrent`](https://developer.apple.com/documentation/metal/mtlpurgeablestate/keepcurrent).
+    ///
+    ///
     #[doc(alias = "MPSPurgeableStateKeepCurrent")]
     pub const KeepCurrent: Self = Self(MTLPurgeableState::KeepCurrent.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/nonvolatile?language=objc)
+    /// The contents of the resource aren’t allowed to be discarded.
+    ///
+    /// ## Overview
+    ///
+    /// Use this option to mark the resource as non-volatile so the system doesn’t discard it. This is equivalent to [`MTLPurgeableStateNonVolatile`](https://developer.apple.com/documentation/metal/mtlpurgeablestate/nonvolatile).
+    ///
+    ///
     #[doc(alias = "MPSPurgeableStateNonVolatile")]
     pub const NonVolatile: Self = Self(MTLPurgeableState::NonVolatile.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/volatile?language=objc)
+    /// The system is allowed to discard the resource to free up memory.
+    ///
+    /// ## Overview
+    ///
+    /// Use this value to indicate that a resource is volatile and, therefore, the system may purge the data if it needs to make more memory available. This value is equivalent to [`MTLPurgeableStateVolatile`](https://developer.apple.com/documentation/metal/mtlpurgeablestate/volatile).
+    ///
+    ///
     #[doc(alias = "MPSPurgeableStateVolatile")]
     pub const Volatile: Self = Self(MTLPurgeableState::Volatile.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate/empty?language=objc)
+    /// The contents of the resource are or will be discarded.
+    ///
+    /// ## Overview
+    ///
+    /// The contents of the resource are discarded. This is equivalent to using [`MTLPurgeableStateEmpty`](https://developer.apple.com/documentation/metal/mtlpurgeablestate/empty).
+    ///
+    ///
     #[doc(alias = "MPSPurgeableStateEmpty")]
     pub const Empty: Self = Self(MTLPurgeableState::Empty.0);
 }
@@ -452,16 +475,14 @@ unsafe impl RefEncode for MPSPurgeableState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatalayout?language=objc)
+/// Options that define how buffer data is arranged.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDataLayout(pub NSUInteger);
 impl MPSDataLayout {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatalayout/heightxwidthxfeaturechannels?language=objc)
     #[doc(alias = "MPSDataLayoutHeightxWidthxFeatureChannels")]
     pub const HeightxWidthxFeatureChannels: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatalayout/featurechannelsxheightxwidth?language=objc)
     #[doc(alias = "MPSDataLayoutFeatureChannelsxHeightxWidth")]
     pub const FeatureChannelsxHeightxWidth: Self = Self(1);
 }
@@ -474,9 +495,8 @@ unsafe impl RefEncode for MPSDataLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Parameters that control reading and writing of a particular set of feature channels.
 /// these parameters are passed in to allow user to read/write to a particular set of featureChannels in an MPSImage
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereadwriteparams?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSImageReadWriteParams {
@@ -496,6 +516,52 @@ unsafe impl RefEncode for MPSImageReadWriteParams {
 }
 
 extern_class!(
+    /// A texture that may have more than four channels for use in convolutional neural networks.
+    ///
+    /// ## Overview
+    ///
+    /// Some image types, such as those found in convolutional neural networks (CNN), differ from a standard texture in that they may have more than 4 channels per pixel. While the channels could hold RGBA data, they will more commonly hold a number of structural permutations upon an RGBA image as the neural network progresses. It is not uncommon for each pixel to have 32 or 64 channels in it.
+    ///
+    /// Since a standard [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object cannot have more than 4 channels, the additional channels are stored in slices of a 2D texture array (i.e. a texture of type [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray)) such that 4 consecutive channels are stored in each slice of this array. If the number of feature channels is `N`, the number of array slices needed is `(N+3)/4`. For example, a 9-channel CNN image with a width of 3 and a height of 2 will be stored as follows:
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/534b0df23931364d166bf346b71c9cc2/media-2556907%402x.png)
+    ///
+    ///
+    /// Thus, the width and height of the underlying 2D texture array is the same as the width and height of the [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object and the array length is equal to  `(` [`featureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor/featurechannels) `+3)/4`. (Channels marked with a `?` are just for padding and should not contain `NaN` or `INF` values.)
+    ///
+    /// An [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object can contain multiple CNN images for batch processing. In order to create an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object that contains `N` images, create an [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) object with the [`numberOfImages`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor/numberofimages) property set to `N`. The length of the 2D texture array (i.e. the number of slices) will be equal to `((` [`featureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor/featurechannels) `+3)/4)*` [`numberOfImages`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor/numberofimages), where consecutive `(featureChannels+3)/4` slices of this array represent one image.
+    ///
+    /// Although an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object can contain more than one image, the actual number of images among these processed by an [MPSCNNKernel](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel) object is controlled by the `z` dimension of the [clipRect](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel/1648911-cliprect) property. (A kernel processes `n=clipRect.size.depth` images from this collection.)
+    ///
+    /// The starting index of the image to process from the source [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object is given by `offset.z`. The starting index of the image in the destination [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object where this processed image is written to is given by `clipRect.origin.z`. Thus, an [MPSCNNKernel](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel) object takes the `n=clipRect.size.depth` image from the source at indices `[offset.z, offset.z+n]`, processes each independently, and stores the result in the destination at indices `[clipRect.origin.z, clipRect.origin.z+n]` respectively. Thus, `offset.z+n` should be `<=[source numberOfImages]`, `clipRect.origin.z+n` should be `<=[destination numberOfImages]`, and `offset.z` must be `>=0`.
+    ///
+    /// For example, suppose an [MPSCNNConvolution](https://developer.apple.com/reference/metalperformanceshaders/mpscnnconvolution) object takes an input image with 16 channels and outputs an image with 32 channels. The number of slices needed in the source 2D texture array is 4 and the number of slices needed in the destination 2D texture array is 8. Suppose the source batch size is 5 and the destination batch size is 4. Thus, the number of source slices will be `4*5=20` and the number of destination slices will be `8*4=32`. If you want to process image 2 and 3 of the source and store the result at index 1 and 2 in the destination, you can achieve this by setting `offset.z=2`, `clipRect.origin.z=1`, and `clipRect.size.depth=2`. The [MPSCNNConvolution](https://developer.apple.com/reference/metalperformanceshaders/mpscnnconvolution) object will take, in this case, slices 4 and 5 of the source and produce slices 4 to 7 of the destination. Similarly, slices 6 and 7 will be used to produce slices 8 to 11 of the destination.
+    ///
+    /// All [MPSCNNKernel](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel) objects process images in the batch independently. That is, calling a [MPSCNNKernel](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel) object on a batch is formally the same as calling it on each image in the batch sequentially. Computational and GPU work submission overhead will be amortized over more work if batch processing is used. This is especially important for better performance on small images.
+    ///
+    /// If `featureChannels<=4` and `numberOfImages=1` (i.e. only one slice is needed to represent the image), the underlying metal texture type is chosen to be [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d) rather than [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray) as explained above.
+    ///
+    /// The framework also provides [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects, intended for very short-lived image data that is produced and consumed immediately in the same [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object. They are a useful way to minimize CPU-side texture allocation costs and greatly reduce the amount of memory used by your image pipeline.
+    ///
+    /// Creation of the underlying texture may occur lazily in some cases. In general, you should avoid calling the [`texture`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texture) property to avoid materializing memory for longer than necessary. When possible, use the other [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) properties to get information about the object instead.
+    ///
+    /// ### The MPSImage Class
+    ///
+    /// [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) and [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects are commonly used in Metal apps and are used directly by the Metal Performance Shaders framework when possible. In apps that use CNN, kernels may need more than the four data channels that a [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object can provide. In these cases, an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object is used instead as an abstraction layer on top of a [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object. When more than 4 channels are needed, additional textures in the 2D texture array are added to hold additional channels in sets of four. An [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object tracks this information as the number of _feature channels_ in an image.
+    ///
+    /// ### CNN Images
+    ///
+    /// [MPSCNNKernel](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel) objects operate on [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects. [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects are at their core [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects; however, whereas [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects commonly represent image or texel data, an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object is a more abstract representation of image features. The channels within an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) do not necessarily correspond to colors in a color space (although they can, if necessary). As a result, there can be many more than four of them. Having 32 or 64 channels per pixel is not uncommon in CNN. This is achieved on the [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object abstraction by inserting extra RGBA pixels to handle the additional feature channels (if any) beyond 4. These extra pixels are stored as multiple slices of a 2D image array. Thus, each CNN pixel in a 32-channel image is represented as 8 array slices, with 4-channels stored per-pixel in each slice. The width and height of the [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object is the same as the width and height of the [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) object. The number of slices in the [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object is given by the number of feature channels rounded up to a multiple of 4.
+    ///
+    /// [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects can be created from existing [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects. They may also be created anew from an [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) and backed with either standard texture memory, or as [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects using memory drawn from the framework’s internal cached texture backing store. [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects can provide great memory usage and CPU time savings, but come with significant restrictions that should be understood before using them. For example, their contents are only valid during the GPU-side execution of a single [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object and can not be read from or written to by the CPU. They are provided as an efficient way to hold CNN computations that are used immediately within the scope of the same [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object and then discarded. Concatenation is also supported by allowing you to define from which destination feature channel to start writing the output of the current layer. In this way, your app can make a large [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) or [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) object and fill in parts of it with multiple layers (as long as the destination feature channel offset is a multiple of 4).
+    ///
+    /// ### Supported Pixel Formats
+    ///
+    /// The following table shows pixel formats supported by [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/r8Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rg8Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba8Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/bgra8Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/r8Unorm_srgb", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rg8Unorm_srgb", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba8Unorm_srgb", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/bgra8Unorm_srgb", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/r16Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rg16Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba16Unorm", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/r16Float", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rg16Float", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba16Float", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/r32Float", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rg32Float", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Metal/MTLPixelFormat/rgba32Float", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [] }]]], alignments: None, metadata: None })
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// A MPSImage object describes a MTLTexture that may have more than 4 channels.
@@ -571,8 +637,6 @@ extern_class!(
     ///
     /// Most MPSImages of 4 or fewer feature channels can generate quicklooks output in
     /// Xcode for easy visualization of image data in the object. MPSTemporaryImages can not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSImage;
@@ -1161,6 +1225,37 @@ impl MPSImage {
 }
 
 extern_class!(
+    /// A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.
+    ///
+    /// ## Overview
+    ///
+    /// [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects can provide a profound reduction in the aggregate texture memory and associated CPU-side allocation cost in your app. Metal Performance Shaders achieves this by automatically identifying [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects that do not overlap in time over the course of a [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object’s lifetime and can therefore reuse the same memory. [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects leverage an internal cache of preallocated reusable memory to hold pixel data to avoid typical memory allocation performance penalties common to ordinary [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) and [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects.
+    ///
+    /// To avoid data corruption due to aliasing, [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects impose some important restrictions:
+    ///
+    /// - The underlying texture storage mode is [`MTLStorageModePrivate`](https://developer.apple.com/documentation/metal/mtlstoragemode/private). You cannot, for example, use the [`getBytes:bytesPerRow:fromRegion:mipmapLevel:`](https://developer.apple.com/documentation/metal/mtltexture/getbytes(_:bytesperrow:from:mipmaplevel:)) or [`replaceRegion:mipmapLevel:withBytes:bytesPerRow:`](https://developer.apple.com/documentation/metal/mtltexture/replace(region:mipmaplevel:withbytes:bytesperrow:)) methods with them. Temporary images are strictly read and written by the GPU.
+    ///
+    /// - The temporary image may be used only on a single [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object. This limits the chronology to a single linear time stream.
+    ///
+    /// - The [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage/readcount) property must be managed correctly.
+    ///
+    /// - Temporary images must also adhere to the general pixel format restrictions for [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects.
+    ///
+    /// Since temporary images can only be used with a single command buffer, and can not be used off the GPU, they generally should not be kept around past the completion of their associated command buffer. The lifetime of a temporary image is typically expected to be extremely short, perhaps spanning only a few lines of code.
+    ///
+    /// To keep the lifetime of the underlying texture allocation as short as possible, the texture is not allocated until the first time the [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) object is used by an [MPSCNNKernel](https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel) object or until the first time the [`texture`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texture) property is read. The [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage/readcount) property serves to limit the lifetime of the texture on deallocation.
+    ///
+    /// You may use the [`texture`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texture) property with the `encode` methods of an [`MPSUnaryImageKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel) subclass, if `featureChannels<=4` and the texture conforms to the requirements of the given kernel. In such cases, the [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage/readcount) property is not modified, since the enclosing object is not available. There is no locking mechanism provided to prevent a [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object returned from the [`texture`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/texture) property from becoming invalid when the value of the [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage/readcount) property reaches 0.
+    ///
+    /// [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects can otherwise be used wherever [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects are used.
+    ///
+    /// ### The MPSTemporaryImage Class
+    ///
+    /// The [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) class extends the [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) class to provide advanced caching of unused memory, in order to increase performance and reduce memory footprint. [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects are intended as fast GPU-only storage for intermediate image data needed only transiently within a single [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object. They accelerate the common case of image data which is created only to be consumed and destroyed immediately by the next operation(s) encoded in a command buffer. [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects provide a convenient and simple way to save memory by automatically aliasing other [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) objects in the same command buffer. Because they alias (i.e., share texel storage with) other textures in the same command buffer, the valid lifetime of the data in an [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) object is extremely short, limited to a portion of a the command buffer itself.
+    ///
+    /// You can not read or write data to an [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) using the CPU, or use the data in other [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) objects. Use regular [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) objects for more persistent storage.
+    ///
+    ///
     /// Dependencies: MPSImage
     ///
     /// MPSTemporaryImages are for MPSImages with short lifetimes.
@@ -1259,8 +1354,6 @@ extern_class!(
     /// MPSTemporaryImages live in GPU private memory and can not be read by the CPU.
     ///
     /// MPSTemporaryImages can otherwise be used wherever MPSImages are used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage?language=objc)
     #[unsafe(super(MPSImage, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSTemporaryImage;

@@ -9,14 +9,19 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a running browser rendering extension process.
+    ///
+    /// ## Overview
+    ///
+    /// Your browser app may have one or more rendering extensions, which each need a separate bundle identifier. Your browser can launch one instance of each of its rendering extensions.
+    ///
+    ///
     /// An object that represents a running GPU extension process.
     ///
     /// The system guarantees that the extension process has launched by the time the initializer methods return.
     /// If the extension process exits, the system calls ``interruptionHandler``. There can only be one extension process per
     /// host browser. The first time this type is initialized, a  process will be launched. If a extension process is all ready
     /// running, the returned object will represent the already running process.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/berenderingprocess?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BERenderingProcess;

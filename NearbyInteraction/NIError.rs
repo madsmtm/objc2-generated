@@ -7,66 +7,119 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierrordomain?language=objc)
+    /// A unique error domain for Nearby Interaction.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on Core Foundation error domains, see [Error domains](https://developer.apple.com/documentation/corefoundation/error-domains).
+    ///
+    ///
     pub static NIErrorDomain: &'static NSErrorDomain;
 }
 
-/// Error codes for nearby interaction session failures.
+/// Codes that identify errors in Nearby Interaction.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code?language=objc)
+/// ## Overview
+///
+/// This enumeration uses [`session:didInvalidateWithError:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didinvalidatewith:)) to collect the errors the framework provides to the delegate.
+///
+///
+/// Error codes for nearby interaction session failures.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NIErrorCode(pub NSInteger);
 impl NIErrorCode {
-    /// The platform does not support this operation
+    /// An error code that indicates that the framework doesn’t support the device platform.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/unsupportedplatform?language=objc)
+    /// ## Discussion
+    ///
+    /// Before running an interaction session, call [`supported`](https://developer.apple.com/documentation/nearbyinteraction/nisession/issupported) to ensure that Nearby Interaction supports the device’s platform.
+    ///
+    ///
+    /// The platform does not support this operation
     #[doc(alias = "NIErrorCodeUnsupportedPlatform")]
     pub const UnsupportedPlatform: Self = Self(-5889);
-    /// Configuration is unsupported
+    /// An error code that indicates that the nearby-interaction configuration isn’t valid.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/invalidconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework invalidates a session with this error code if the app provides an invalid discovery token to the [`initWithPeerToken:`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/init(peertoken:)) initializer.
+    ///
+    ///
+    /// Configuration is unsupported
     #[doc(alias = "NIErrorCodeInvalidConfiguration")]
     pub const InvalidConfiguration: Self = Self(-5888);
-    /// The session has failed and cannot be restarted
+    /// An error code that indicates that the session failed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/sessionfailed?language=objc)
+    /// ## Discussion
+    ///
+    /// To continue interaction with the peer of a failed session, an app must begin a new session.
+    ///
+    ///
+    /// The session has failed and cannot be restarted
     #[doc(alias = "NIErrorCodeSessionFailed")]
     pub const SessionFailed: Self = Self(-5887);
-    /// The session has been active for over the allowed period
+    /// An error code that indicates that the framework timed out the session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/resourceusagetimeout?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework times out a session in some cases to preserve resources, such as battery life. An app needs to watch for timed-out peers. If the app wishes to continue interaction with a timed-out peer device, the app needs to begin a new nearby-interaction session.
+    ///
+    ///
+    /// The session has been active for over the allowed period
     #[doc(alias = "NIErrorCodeResourceUsageTimeout")]
     pub const ResourceUsageTimeout: Self = Self(-5886);
-    /// The maximum number of active sessions was exceeded
+    /// An error code that indicates that the app reached the maximum number of sessions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/activesessionslimitexceeded?language=objc)
+    /// ## Discussion
+    ///
+    /// The maximum number of concurrent Nearby Interaction sessions varies across device type and platform.
+    ///
+    ///
+    /// The maximum number of active sessions was exceeded
     #[doc(alias = "NIErrorCodeActiveSessionsLimitExceeded")]
     pub const ActiveSessionsLimitExceeded: Self = Self(-5885);
-    /// The user did not authorize the session
+    /// An error code that indicates that the user declined the request to share their relative position with nearby devices.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/userdidnotallow?language=objc)
+    /// ## Discussion
+    ///
+    /// In this case, the user needs to enable Nearby Interaction in Settings. For more information, see [Initiating and maintaining a session](https://developer.apple.com/documentation/nearbyinteraction/initiating-and-maintaining-a-session).
+    ///
+    ///
+    /// The user did not authorize the session
     #[doc(alias = "NIErrorCodeUserDidNotAllow")]
     pub const UserDidNotAllow: Self = Self(-5884);
-    /// ARSession Configuration provided is not compatible or the platform does not support camera assistance.
+    /// An error that indicates the framework can’t begin Camera Assistance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/invalidarconfiguration?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework invalidates a Nearby Interaction session when the app requests Camera Assistance ([`cameraAssistanceEnabled`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled)) and either of the following are true:
+    ///
+    /// - The device doesn’t support Camera Assistance.
+    ///
+    /// - The app’s AR session doesn’t meet the required criteria as defined in [`setARSession:`](https://developer.apple.com/documentation/nearbyinteraction/nisession/setarsession(_:)).
+    ///
+    ///
+    /// ARSession Configuration provided is not compatible or the platform does not support camera assistance.
     #[doc(alias = "NIErrorCodeInvalidARConfiguration")]
     pub const InvalidARConfiguration: Self = Self(-5883);
-    /// A Nearby Accessory session has been associated with a peer device (such as a Bluetooth peer) that is not available
+    /// An error that indicates the peer Bluetooth accessory isn’t connected or paired.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/accessorypeerdeviceunavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// For more on the backgrounding requirements of accessory interaction, see [`NINearbyAccessoryConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyaccessoryconfiguration).
+    ///
+    ///
+    /// A Nearby Accessory session has been associated with a peer device (such as a Bluetooth peer) that is not available
     #[doc(alias = "NIErrorCodeAccessoryPeerDeviceUnavailable")]
     pub const AccessoryPeerDeviceUnavailable: Self = Self(-5882);
+    /// An error that indicates the peer device isn’t compatible with this Nearby Interaction session instance.
     /// The NINearbyPeerConfiguration provided is not compatible with the capabilities of the peer device
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/incompatiblepeerdevice?language=objc)
     #[doc(alias = "NIErrorCodeIncompatiblePeerDevice")]
     pub const IncompatiblePeerDevice: Self = Self(-5881);
+    /// An error that indicates the device exceeds the available number of active extended distance sessions.
     /// The maximum number of active extended distance measurement sessions was exceeded
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code/activeextendeddistancesessionslimitexceeded?language=objc)
     #[doc(alias = "NIErrorCodeActiveExtendedDistanceSessionsLimitExceeded")]
     pub const ActiveExtendedDistanceSessionsLimitExceeded: Self = Self(-5880);
 }

@@ -7,12 +7,50 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccelerationvalue?language=objc)
+/// The amount of acceleration in a single linear direction.
+///
+/// ## Discussion
+///
+/// This type is used to store acceleration values, which are specified as g-force values, where the value 1.0 corresponds to the normal acceleration caused by gravity at the Earth’s surface.
+///
+///
 #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
 pub type UIAccelerationValue = c_double;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiacceleration?language=objc)
+    /// An acceleration event that represents immediate, three-dimensional acceleration data.
+    ///
+    /// ## Overview
+    ///
+    /// To receive accelerometer events, register an application object as a delegate of the shared [`UIAccelerometer`](https://developer.apple.com/documentation/uikit/uiaccelerometer) object, as described in [`UIAccelerometer`](https://developer.apple.com/documentation/uikit/uiaccelerometer).
+    ///
+    /// Each acceleration event includes simultaneous acceleration readings along the three axes of the device, as shown in the following image.
+    ///
+    ///
+    /// ![Orientation of the device axes](https://docs-assets.developer.apple.com/published/614980e5d60f5c9a782ec7014d8f522f/media-1965794.jpg)
+    ///
+    ///
+    /// The device accelerometer reports values for each axis in units of g-force, where a value of `1.0` represents acceleration of about +1 g along a given axis. When a device is laying still with its back on a horizontal surface, each acceleration event has approximately the following values:
+    ///
+    /// ```objc
+    /// x: 0
+    /// y: 0
+    /// z: -1
+    /// ```
+    ///
+    /// Individual acceleration values are of type [`UIAccelerationValue`](https://developer.apple.com/documentation/uikit/uiaccelerationvalue), equivalent to a `double`. Values can range over the accelerations found in normal use of a device.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Acceleration event values are approximate—don’t attempt to use them to make precise measurements. Apple recommends that you average accelerometer values over time to derive usable data.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If you want to detect specific types of motion as gestures—specifically, shaking motions—use the [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) class and its [`UIEvent.EventType.motion`](https://developer.apple.com/documentation/uikit/uievent/eventtype/motion) event type. For details, see [Handling Tap and Long-Press Gestures](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/HandlingTapandLongPressGestures.html#//apple_ref/doc/uid/TP40009541-CH4) in [Event Handling Guide for UIKit Apps](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -62,7 +100,19 @@ impl UIAcceleration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccelerometer?language=objc)
+    /// An object that lets you register to receive acceleration-related data from the onboard hardware.
+    ///
+    /// ## Overview
+    ///
+    /// As a device moves, its hardware reports linear acceleration changes along the primary axes in three-dimensional space. You can use this data to detect both the current orientation of the device (relative to the ground) and any instantaneous changes to that orientation. You might use instantaneous changes as input to a game or to initiate some action in your application.
+    ///
+    /// You don’t create accelerometer objects directly. Instead, you use the shared `UIAccelerometer` object to specify the interval at which you want to receive events and then set its [`delegate`](https://developer.apple.com/documentation/uikit/uiaccelerometer/delegate) property. Upon assigning your delegate object, the accelerometer object begins delivering acceleration events to your delegate immediately at the specified interval. Events are always delivered on the main thread of your application.
+    ///
+    /// The maximum frequency for accelerometer updates is based on the available hardware. You can request updates less frequently but can’t request them more frequently than the hardware maximum. Once you assign your delegate, however, updates are delivered regularly at the frequency you requested, whether or not the acceleration data actually changed. Your delegate is responsible for filtering out any unwanted updates and for ensuring that the amount of change is significant enough to warrant taking action.
+    ///
+    /// For more information about the data delivered to your observer, see [`UIAcceleration`](https://developer.apple.com/documentation/uikit/uiacceleration). For information about implementing your delegate object, see [`UIAccelerometerDelegate`](https://developer.apple.com/documentation/uikit/uiaccelerometerdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -121,7 +171,7 @@ impl UIAccelerometer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccelerometerdelegate?language=objc)
+    /// The interface for receiving acceleration-related data from the system.
     #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
     pub unsafe trait UIAccelerometerDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated]

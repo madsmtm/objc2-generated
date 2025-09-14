@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An optimizer that represents the stochastic gradient decent algorithm.
     /// The MLCSGDOptimizer specifies a stochastic gradient descent optimizer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsgdoptimizer?language=objc)
     #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]

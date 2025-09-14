@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmlogitem?language=objc)
+    /// The base class for all motion-related data objects.
+    ///
+    /// ## Overview
+    ///
+    /// The `CMLogItem` class defines a read-only [`timestamp`](https://developer.apple.com/documentation/coremotion/cmlogitem/timestamp) property that records the time a motion-event measurement was taken.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMLogItem;

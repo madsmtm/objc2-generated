@@ -10,7 +10,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domrgbcolor?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

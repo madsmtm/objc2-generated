@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing metrics about network transfers.
     /// An MXMetric subclass that encapsulates network transfer metrics
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxnetworktransfermetric?language=objc)
     #[unsafe(super(MXMetric, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXMetric")]

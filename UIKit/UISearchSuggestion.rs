@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchsuggestion?language=objc)
+    /// A set of attributes that a selectable search suggestion must provide.
+    ///
+    /// ## Overview
+    ///
+    /// Provide common or predicted search queries to save the user the time of typing their entire query in a [`UISearchController`](https://developer.apple.com/documentation/uikit/uisearchcontroller) field. [`UISearchSuggestionItem`](https://developer.apple.com/documentation/uikit/uisearchsuggestionitem) provides a simple implementation of this protocol. You may also define and use your own type that conforms to [`UISearchSuggestion`](https://developer.apple.com/documentation/uikit/uisearchsuggestion).
+    ///
+    ///
     pub unsafe trait UISearchSuggestion: NSObjectProtocol + MainThreadOnly {
         /// The localized suggestion that will be displayed as the search string
         #[unsafe(method(localizedSuggestion))]
@@ -50,9 +56,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A concrete container for search suggestion string and optional image and associated information for providing shortcuts in search experience on tvOS.
+    /// A selectable search parameter.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchsuggestionitem?language=objc)
+    /// ## Overview
+    ///
+    /// This class provides a basic implementation of the [`UISearchSuggestion`](https://developer.apple.com/documentation/uikit/uisearchsuggestion) protocol.
+    ///
+    ///
+    /// A concrete container for search suggestion string and optional image and associated information for providing shortcuts in search experience on tvOS.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

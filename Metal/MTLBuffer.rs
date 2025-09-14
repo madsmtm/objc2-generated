@@ -8,6 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A resource that stores data in a format defined by your app.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instance can be used only with the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) that created it. Don’t implement this protocol yourself; instead, use the following [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) methods to create `MTLBuffer` instances:
+    ///
+    /// - [`newBufferWithLength:options:`](https://developer.apple.com/documentation/metal/mtldevice/makebuffer(length:options:)) creates a `MTLBuffer` instance with a new storage allocation.
+    ///
+    /// - [`newBufferWithBytes:length:options:`](https://developer.apple.com/documentation/metal/mtldevice/makebuffer(bytes:length:options:)) creates a `MTLBuffer` instance by copying data from an existing storage allocation into a new allocation.
+    ///
+    /// - [`newBufferWithBytesNoCopy:length:options:deallocator:`](https://developer.apple.com/documentation/metal/mtldevice/makebuffer(bytesnocopy:length:options:deallocator:)) creates a `MTLBuffer` instance that reuses an existing storage allocation and does not allocate any new storage.
+    ///
+    /// The Metal framework doesn’t know anything about the contents of an [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer), just its size. You define the format of the data in the buffer and ensure that your app and your shaders know how to read and write the data. For example, you might create a struct in your shader that defines the data you want to store in the buffer and its memory layout.
+    ///
+    /// If you create a buffer with a managed resource storage mode ([`MTLStorageModeManaged`](https://developer.apple.com/documentation/metal/mtlstoragemode/managed)), you must call [`didModifyRange:`](https://developer.apple.com/documentation/metal/mtlbuffer/didmodifyrange:) to tell Metal to copy any changes to the GPU.
+    ///
+    ///
     /// A typeless allocation accessible by both the CPU and the GPU (MTLDevice) or by only the GPU when the storage mode is
     /// MTLResourceStorageModePrivate.
     ///
@@ -17,8 +34,6 @@ extern_protocol!(
     ///
     /// The contents become undefined if both the CPU and GPU write to the same buffer without a synchronizing action between those writes.
     /// This is true even when the regions written do not overlap.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffer?language=objc)
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLBuffer: MTLResource {
         /// The length of the buffer in bytes.

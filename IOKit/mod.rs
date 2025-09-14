@@ -8833,574 +8833,360 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_common?language=objc)
 pub const sub_iokit_common: c_uint = err_sub!(0);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_usb?language=objc)
 pub const sub_iokit_usb: c_uint = err_sub!(1);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_firewire?language=objc)
 pub const sub_iokit_firewire: c_uint = err_sub!(2);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_block_storage?language=objc)
 pub const sub_iokit_block_storage: c_uint = err_sub!(4);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_graphics?language=objc)
 pub const sub_iokit_graphics: c_uint = err_sub!(5);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_networking?language=objc)
 pub const sub_iokit_networking: c_uint = err_sub!(6);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_bluetooth?language=objc)
 pub const sub_iokit_bluetooth: c_uint = err_sub!(8);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_pmu?language=objc)
 pub const sub_iokit_pmu: c_uint = err_sub!(9);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_acpi?language=objc)
 pub const sub_iokit_acpi: c_uint = err_sub!(10);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_smbus?language=objc)
 pub const sub_iokit_smbus: c_uint = err_sub!(11);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_ahci?language=objc)
 pub const sub_iokit_ahci: c_uint = err_sub!(12);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_powermanagement?language=objc)
 pub const sub_iokit_powermanagement: c_uint = err_sub!(13);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_hidsystem?language=objc)
 pub const sub_iokit_hidsystem: c_uint = err_sub!(14);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_scsi?language=objc)
 pub const sub_iokit_scsi: c_uint = err_sub!(16);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_usbaudio?language=objc)
 pub const sub_iokit_usbaudio: c_uint = err_sub!(17);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_wirelesscharging?language=objc)
 pub const sub_iokit_wirelesscharging: c_uint = err_sub!(18);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_graphics_acceleration?language=objc)
 pub const sub_iokit_graphics_acceleration: c_uint = err_sub!(30);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_keystore?language=objc)
 pub const sub_iokit_keystore: c_uint = err_sub!(31);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_apfs?language=objc)
 pub const sub_iokit_apfs: c_uint = err_sub!(33);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_acpiec?language=objc)
 pub const sub_iokit_acpiec: c_uint = err_sub!(34);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/sub_iokit_timesync_avb?language=objc)
 pub const sub_iokit_timesync_avb: c_uint = err_sub!(35);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnerror?language=objc)
 pub const kIOReturnError: c_uint = iokit_common_err!(0x2bc);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnomemory?language=objc)
 pub const kIOReturnNoMemory: c_uint = iokit_common_err!(0x2bd);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnoresources?language=objc)
 pub const kIOReturnNoResources: c_uint = iokit_common_err!(0x2be);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnipcerror?language=objc)
 pub const kIOReturnIPCError: c_uint = iokit_common_err!(0x2bf);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnodevice?language=objc)
 pub const kIOReturnNoDevice: c_uint = iokit_common_err!(0x2c0);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotprivileged?language=objc)
 pub const kIOReturnNotPrivileged: c_uint = iokit_common_err!(0x2c1);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnbadargument?language=objc)
 pub const kIOReturnBadArgument: c_uint = iokit_common_err!(0x2c2);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnlockedread?language=objc)
 pub const kIOReturnLockedRead: c_uint = iokit_common_err!(0x2c3);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnlockedwrite?language=objc)
 pub const kIOReturnLockedWrite: c_uint = iokit_common_err!(0x2c4);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnexclusiveaccess?language=objc)
 pub const kIOReturnExclusiveAccess: c_uint = iokit_common_err!(0x2c5);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnbadmessageid?language=objc)
 pub const kIOReturnBadMessageID: c_uint = iokit_common_err!(0x2c6);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnunsupported?language=objc)
 pub const kIOReturnUnsupported: c_uint = iokit_common_err!(0x2c7);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnvmerror?language=objc)
 pub const kIOReturnVMError: c_uint = iokit_common_err!(0x2c8);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturninternalerror?language=objc)
 pub const kIOReturnInternalError: c_uint = iokit_common_err!(0x2c9);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnioerror?language=objc)
 pub const kIOReturnIOError: c_uint = iokit_common_err!(0x2ca);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturncannotlock?language=objc)
 pub const kIOReturnCannotLock: c_uint = iokit_common_err!(0x2cc);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotopen?language=objc)
 pub const kIOReturnNotOpen: c_uint = iokit_common_err!(0x2cd);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotreadable?language=objc)
 pub const kIOReturnNotReadable: c_uint = iokit_common_err!(0x2ce);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotwritable?language=objc)
 pub const kIOReturnNotWritable: c_uint = iokit_common_err!(0x2cf);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotaligned?language=objc)
 pub const kIOReturnNotAligned: c_uint = iokit_common_err!(0x2d0);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnbadmedia?language=objc)
 pub const kIOReturnBadMedia: c_uint = iokit_common_err!(0x2d1);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnstillopen?language=objc)
 pub const kIOReturnStillOpen: c_uint = iokit_common_err!(0x2d2);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnrlderror?language=objc)
 pub const kIOReturnRLDError: c_uint = iokit_common_err!(0x2d3);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturndmaerror?language=objc)
 pub const kIOReturnDMAError: c_uint = iokit_common_err!(0x2d4);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnbusy?language=objc)
 pub const kIOReturnBusy: c_uint = iokit_common_err!(0x2d5);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturntimeout?language=objc)
 pub const kIOReturnTimeout: c_uint = iokit_common_err!(0x2d6);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnoffline?language=objc)
 pub const kIOReturnOffline: c_uint = iokit_common_err!(0x2d7);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotready?language=objc)
 pub const kIOReturnNotReady: c_uint = iokit_common_err!(0x2d8);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotattached?language=objc)
 pub const kIOReturnNotAttached: c_uint = iokit_common_err!(0x2d9);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnochannels?language=objc)
 pub const kIOReturnNoChannels: c_uint = iokit_common_err!(0x2da);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnospace?language=objc)
 pub const kIOReturnNoSpace: c_uint = iokit_common_err!(0x2db);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnportexists?language=objc)
 pub const kIOReturnPortExists: c_uint = iokit_common_err!(0x2dd);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturncannotwire?language=objc)
 pub const kIOReturnCannotWire: c_uint = iokit_common_err!(0x2de);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnointerrupt?language=objc)
 pub const kIOReturnNoInterrupt: c_uint = iokit_common_err!(0x2df);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnoframes?language=objc)
 pub const kIOReturnNoFrames: c_uint = iokit_common_err!(0x2e0);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnmessagetoolarge?language=objc)
 pub const kIOReturnMessageTooLarge: c_uint = iokit_common_err!(0x2e1);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotpermitted?language=objc)
 pub const kIOReturnNotPermitted: c_uint = iokit_common_err!(0x2e2);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnopower?language=objc)
 pub const kIOReturnNoPower: c_uint = iokit_common_err!(0x2e3);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnomedia?language=objc)
 pub const kIOReturnNoMedia: c_uint = iokit_common_err!(0x2e4);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnunformattedmedia?language=objc)
 pub const kIOReturnUnformattedMedia: c_uint = iokit_common_err!(0x2e5);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnunsupportedmode?language=objc)
 pub const kIOReturnUnsupportedMode: c_uint = iokit_common_err!(0x2e6);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnunderrun?language=objc)
 pub const kIOReturnUnderrun: c_uint = iokit_common_err!(0x2e7);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnoverrun?language=objc)
 pub const kIOReturnOverrun: c_uint = iokit_common_err!(0x2e8);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturndeviceerror?language=objc)
 pub const kIOReturnDeviceError: c_uint = iokit_common_err!(0x2e9);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnocompletion?language=objc)
 pub const kIOReturnNoCompletion: c_uint = iokit_common_err!(0x2ea);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnaborted?language=objc)
 pub const kIOReturnAborted: c_uint = iokit_common_err!(0x2eb);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnobandwidth?language=objc)
 pub const kIOReturnNoBandwidth: c_uint = iokit_common_err!(0x2ec);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotresponding?language=objc)
 pub const kIOReturnNotResponding: c_uint = iokit_common_err!(0x2ed);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnisotooold?language=objc)
 pub const kIOReturnIsoTooOld: c_uint = iokit_common_err!(0x2ee);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnisotoonew?language=objc)
 pub const kIOReturnIsoTooNew: c_uint = iokit_common_err!(0x2ef);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturnnotfound?language=objc)
 pub const kIOReturnNotFound: c_uint = iokit_common_err!(0x2f0);
-/// [Apple's documentation](https://developer.apple.com/documentation/driverkit/kioreturninvalid?language=objc)
 pub const kIOReturnInvalid: c_uint = iokit_common_err!(0x1);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiokitbuildversionkey?language=objc)
 pub const kIOKitBuildVersionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOKitBuildVersion\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiokitdiagnosticskey?language=objc)
 pub const kIOKitDiagnosticsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOKitDiagnostics\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryplaneskey?language=objc)
 pub const kIORegistryPlanesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryPlanes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocataloguekey?language=objc)
 pub const kIOCatalogueKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCatalogue\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioserviceplane?language=objc)
 pub const kIOServicePlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOService\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopowerplane?language=objc)
 pub const kIOPowerPlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPower\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodevicetreeplane?language=objc)
 pub const kIODeviceTreePlane: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODeviceTree\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioaudioplane?language=objc)
 pub const kIOAudioPlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAudio\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofirewireplane?language=objc)
 pub const kIOFireWirePlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFireWire\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbplane?language=objc)
 pub const kIOUSBPlane: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentryidkey?language=objc)
 pub const kIORegistryEntryIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentrypropertykeyskey?language=objc)
 pub const kIORegistryEntryPropertyKeysKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryPropertyKeys\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentryallowablesetpropertieskey?language=objc)
 pub const kIORegistryEntryAllowableSetPropertiesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryAllowableSetProperties\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioregistryentrydefaultlockingsetpropertieskey?language=objc)
 pub const kIORegistryEntryDefaultLockingSetPropertiesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORegistryEntryDefaultLockingSetProperties\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioserviceclass?language=objc)
 pub const kIOServiceClass: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOService\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcesclass?language=objc)
 pub const kIOResourcesClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOResources\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioclasskey?language=objc)
 pub const kIOClassKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOClass\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioprobescorekey?language=objc)
 pub const kIOProbeScoreKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOProbeScore\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiokitdebugkey?language=objc)
 pub const kIOKitDebugKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOKitDebug\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclasskey?language=objc)
 pub const kIOUserClassKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClass\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclasseskey?language=objc)
 pub const kIOUserClassesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClasses\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosupportedpropertieskey?language=objc)
 pub const kIOSupportedPropertiesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOSupportedProperties\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserservicepropertieskey?language=objc)
 pub const kIOUserServicePropertiesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServiceProperties\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioproviderclasskey?language=objc)
 pub const kIOProviderClassKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOProviderClass\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionamematchkey?language=objc)
 pub const kIONameMatchKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IONameMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopropertymatchkey?language=objc)
 pub const kIOPropertyMatchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPropertyMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopropertyexistsmatchkey?language=objc)
 pub const kIOPropertyExistsMatchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPropertyExistsMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopathmatchkey?language=objc)
 pub const kIOPathMatchKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPathMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiolocationmatchkey?language=objc)
 pub const kIOLocationMatchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLocationMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioparentmatchkey?language=objc)
 pub const kIOParentMatchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOParentMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcematchkey?language=objc)
 pub const kIOResourceMatchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOResourceMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcematchedkey?language=objc)
 pub const kIOResourceMatchedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOResourceMatched\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchedservicecountkey?language=objc)
 pub const kIOMatchedServiceCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchedServiceCountMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionamematchedkey?language=objc)
 pub const kIONameMatchedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONameMatched\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchcategorykey?language=objc)
 pub const kIOMatchCategoryKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchCategory\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodefaultmatchcategorykey?language=objc)
 pub const kIODefaultMatchCategoryKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODefaultMatchCategory\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchedpersonalitykey?language=objc)
 pub const kIOMatchedPersonalityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchedPersonality\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorematchpersonalitykey?language=objc)
 pub const kIORematchPersonalityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORematchPersonality\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorematchcountkey?language=objc)
 pub const kIORematchCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORematchCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodextmatchcountkey?language=objc)
 pub const kIODEXTMatchCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODEXTMatchCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousercliententitlementskey?language=objc)
 pub const kIOUserClientEntitlementsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientEntitlements\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioservicedextentitlementskey?language=objc)
 pub const kIOServiceDEXTEntitlementsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceDEXTEntitlements\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitentitlementkey?language=objc)
 pub const kIODriverKitEntitlementKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementskey?language=objc)
 pub const kIODriverKitUserClientEntitlementsKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.userclient-access\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitrequiredentitlementskey?language=objc)
 pub const kIODriverKitRequiredEntitlementsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.driverkit.driver-access\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkittestdriverentitlementkey?language=objc)
 pub const kIODriverKitTestDriverEntitlementKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.driverkit.test-driver\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementallowanykey?language=objc)
 pub const kIODriverKitUserClientEntitlementAllowAnyKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(
         b"com.apple.developer.driverkit.allow-any-userclient-access\0",
     )
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementadministratorkey?language=objc)
 pub const kIODriverKitUserClientEntitlementAdministratorKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.administrator\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementcommunicateswithdriverskey?language=objc)
 pub const kIODriverKitUserClientEntitlementCommunicatesWithDriversKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(
         b"com.apple.developer.driverkit.communicates-with-drivers\0",
     )
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusercliententitlementallowthirdpartyuserclientskey?language=objc)
 pub const kIODriverKitUserClientEntitlementAllowThirdPartyUserClientsKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(
         b"com.apple.developer.driverkit.allow-third-party-userclients\0",
     )
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkitusbtransportentitlementkey?language=objc)
 pub const kIODriverKitUSBTransportEntitlementKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.transport.usb\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkithidtransportentitlementkey?language=objc)
 pub const kIODriverKitHIDTransportEntitlementKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.transport.hid\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkithidfamilydeviceentitlementkey?language=objc)
 pub const kIODriverKitHIDFamilyDeviceEntitlementKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.family.hid.device\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkithidfamilyeventserviceentitlementkey?language=objc)
 pub const kIODriverKitHIDFamilyEventServiceEntitlementKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.family.hid.eventservice\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverkittransportbuiltinentitlementkey?language=objc)
 pub const kIODriverKitTransportBuiltinEntitlementKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.driverkit.builtin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramreadaccesskey?language=objc)
 pub const kIONVRAMReadAccessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.nvram-read-access\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramwriteaccesskey?language=objc)
 pub const kIONVRAMWriteAccessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.nvram-write-access\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioresourcessetpropertykey?language=objc)
 pub const kIOResourcesSetPropertyKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.ioresources.setproperty\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramsystemallowkey?language=objc)
 pub const kIONVRAMSystemAllowKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.private.iokit.system-nvram-allow\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchdeferkey?language=objc)
 pub const kIOMatchDeferKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMatchDefer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioallcpuinitializedkey?language=objc)
 pub const kIOAllCPUInitializedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAllCPUInitialized\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientclasskey?language=objc)
 pub const kIOUserClientClassKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientClass\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomapperidkey?language=objc)
 pub const kIOMapperIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMapperID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientcrossendiankey?language=objc)
 pub const kIOUserClientCrossEndianKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientCrossEndian\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientcrossendiancompatiblekey?language=objc)
 pub const kIOUserClientCrossEndianCompatibleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientCrossEndianCompatible\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientsharedinstancekey?language=objc)
 pub const kIOUserClientSharedInstanceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientSharedInstance\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientdefaultlockingkey?language=objc)
 pub const kIOUserClientDefaultLockingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientDefaultLocking\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientdefaultlockingsetpropertieskey?language=objc)
 pub const kIOUserClientDefaultLockingSetPropertiesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientDefaultLockingSetProperties\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientdefaultlockingsinglethreadexternalmethodkey?language=objc)
 pub const kIOUserClientDefaultLockingSingleThreadExternalMethodKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"IOUserClientDefaultLockingSingleThreadExternalMethod\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserclientcreatorkey?language=objc)
 pub const kIOUserClientCreatorKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserClientCreator\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouseruserclientkey?language=objc)
 pub const kIOUserUserClientKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserUserClient\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserveroneprocesskey?language=objc)
 pub const kIOUserServerOneProcessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerOneProcess\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserverpreserveuserspacerebootkey?language=objc)
 pub const kIOUserServerPreserveUserspaceRebootKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerPreserveUserspaceReboot\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopublishnotification?language=objc)
 pub const kIOPublishNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServicePublish\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofirstpublishnotification?language=objc)
 pub const kIOFirstPublishNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceFirstPublish\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomatchednotification?language=objc)
 pub const kIOMatchedNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceMatched\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofirstmatchnotification?language=objc)
 pub const kIOFirstMatchNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceFirstMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioterminatednotification?language=objc)
 pub const kIOTerminatedNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceTerminate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowillterminatenotification?language=objc)
 pub const kIOWillTerminateNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOServiceWillTerminate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiogeneralinterest?language=objc)
 pub const kIOGeneralInterest: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOGeneralInterest\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobusyinterest?language=objc)
 pub const kIOBusyInterest: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBusyInterest\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioapppowerstateinterest?language=objc)
 pub const kIOAppPowerStateInterest: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAppPowerStateInterest\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioprioritypowerstateinterest?language=objc)
 pub const kIOPriorityPowerStateInterest: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPriorityPowerStateInterest\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioplatformdevicemessagekey?language=objc)
 pub const kIOPlatformDeviceMessageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPlatformDeviceMessage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocfplugintypeskey?language=objc)
 pub const kIOCFPlugInTypesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCFPlugInTypes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocompatibilitymatchkey?language=objc)
 pub const kIOCompatibilityMatchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCompatibilityMatch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocompatibilitypropertieskey?language=objc)
 pub const kIOCompatibilityPropertiesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCompatibilityProperties\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopathkey?language=objc)
 pub const kIOPathKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPath\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocommandpoolsizekey?language=objc)
 pub const kIOCommandPoolSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCommandPoolSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumprioritycountkey?language=objc)
 pub const kIOMaximumPriorityCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumPriorityCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumblockcountreadkey?language=objc)
 pub const kIOMaximumBlockCountReadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumBlockCountRead\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumblockcountwritekey?language=objc)
 pub const kIOMaximumBlockCountWriteKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumBlockCountWrite\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumbytecountreadkey?language=objc)
 pub const kIOMaximumByteCountReadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumByteCountRead\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumbytecountwritekey?language=objc)
 pub const kIOMaximumByteCountWriteKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumByteCountWrite\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentcountreadkey?language=objc)
 pub const kIOMaximumSegmentCountReadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentCountRead\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentcountwritekey?language=objc)
 pub const kIOMaximumSegmentCountWriteKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentCountWrite\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentbytecountreadkey?language=objc)
 pub const kIOMaximumSegmentByteCountReadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentByteCountRead\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentbytecountwritekey?language=objc)
 pub const kIOMaximumSegmentByteCountWriteKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentByteCountWrite\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiominimumsegmentalignmentbytecountkey?language=objc)
 pub const kIOMinimumSegmentAlignmentByteCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMinimumSegmentAlignmentByteCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumsegmentaddressablebitcountkey?language=objc)
 pub const kIOMaximumSegmentAddressableBitCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSegmentAddressableBitCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiominimumsaturationbytecountkey?language=objc)
 pub const kIOMinimumSaturationByteCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMinimumSaturationByteCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaximumswapwritekey?language=objc)
 pub const kIOMaximumSwapWriteKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaximumSwapWrite\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioiconkey?language=objc)
 pub const kIOIconKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOIcon\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobundleresourcefilekey?language=objc)
 pub const kIOBundleResourceFileKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBundleResourceFile\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobusbadgekey?language=objc)
 pub const kIOBusBadgeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBusBadge\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodeviceiconkey?language=objc)
 pub const kIODeviceIconKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODeviceIcon\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioplatformserialnumberkey?language=objc)
 pub const kIOPlatformSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPlatformSerialNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioplatformuuidkey?language=objc)
 pub const kIOPlatformUUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPlatformUUID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvrambootargskey?language=objc)
 pub const kIONVRAMBootArgsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"boot-args\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramdeletepropertykey?language=objc)
 pub const kIONVRAMDeletePropertyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-DELETE-PROPERTY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramsyncnowpropertykey?language=objc)
 pub const kIONVRAMSyncNowPropertyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-SYNCNOW-PROPERTY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramactivatecsrconfigpropertykey?language=objc)
 pub const kIONVRAMActivateCSRConfigPropertyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-ARMCSR-PROPERTY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodtnvrampanicinfokey?language=objc)
 pub const kIODTNVRAMPanicInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"aapl,panic-info\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionvramdeletepropertykeywret?language=objc)
 pub const kIONVRAMDeletePropertyKeyWRet: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONVRAM-DELETEWRET-PROPERTY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobootdevicekey?language=objc)
 pub const kIOBootDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBootDevice\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobootdevicepathkey?language=objc)
 pub const kIOBootDevicePathKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBootDevicePath\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobootdevicesizekey?language=objc)
 pub const kIOBootDeviceSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBootDeviceSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kosbuildversionkey?language=objc)
 pub const kOSBuildVersionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OS Build Version\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationitemcreatekey?language=objc)
 pub const kIOStateNotificationItemCreateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.create\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationitemsetkey?language=objc)
 pub const kIOStateNotificationItemSetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.set\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationitemcopykey?language=objc)
 pub const kIOStateNotificationItemCopyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.copy\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationnamekey?language=objc)
 pub const kIOStateNotificationNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationentitlementsetkey?language=objc)
 pub const kIOStateNotificationEntitlementSetKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.entitlement-set\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiostatenotificationentitlementgetkey?language=objc)
 pub const kIOStateNotificationEntitlementGetKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.statenotification.entitlement-get\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstateclamshellkey?language=objc)
 pub const kIOSystemStateClamshellKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.clamshell\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatesleepdescriptionkey?language=objc)
 pub const kIOSystemStateSleepDescriptionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.sleepdescription\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatesleepdescriptionreasonkey?language=objc)
 pub const kIOSystemStateSleepDescriptionReasonKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.sleepreason\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatesleepdescriptionhibernatestatekey?language=objc)
 pub const kIOSystemStateSleepDescriptionHibernateStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.hibernatestate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatewakedescriptionkey?language=objc)
 pub const kIOSystemStateWakeDescriptionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.wakedescription\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatewakedescriptionwakereasonkey?language=objc)
 pub const kIOSystemStateWakeDescriptionWakeReasonKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.wakereason\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatewakedescriptioncontinuoustimeoffsetkey?language=objc)
 pub const kIOSystemStateWakeDescriptionContinuousTimeOffsetKey: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(
         b"com.apple.iokit.pm.wakedescription.continuous-time-offset\0",
     )
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatehaltdescriptionkey?language=objc)
 pub const kIOSystemStateHaltDescriptionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.haltdescription\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatehaltdescriptionhaltstatekey?language=objc)
 pub const kIOSystemStateHaltDescriptionHaltStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.haltstate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatepowersourcedescriptionkey?language=objc)
 pub const kIOSystemStatePowerSourceDescriptionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.powersourcedescription\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemstatepowersourcedescriptionacattachedkey?language=objc)
 pub const kIOSystemStatePowerSourceDescriptionACAttachedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.iokit.pm.acattached\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdkey?language=objc)
 pub const kIOBSDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBSD\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdnamekey?language=objc)
 pub const kIOBSDNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdnameskey?language=objc)
 pub const kIOBSDNamesKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Names\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdmajorkey?language=objc)
 pub const kIOBSDMajorKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Major\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdminorkey?language=objc)
 pub const kIOBSDMinorKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Minor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobsdunitkey?language=objc)
 pub const kIOBSDUnitKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"BSD Unit\0") };
 pub const kIOMessageServiceIsTerminated: c_uint = iokit_common_msg!(0x010);
 pub const kIOMessageServiceIsSuspended: c_uint = iokit_common_msg!(0x020);
@@ -9414,169 +9200,183 @@ pub const kIOMessageServicePropertyChange: c_uint = iokit_common_msg!(0x130);
 pub const kIOMessageCopyClientID: c_uint = iokit_common_msg!(0x330);
 pub const kIOMessageSystemCapabilityChange: c_uint = iokit_common_msg!(0x340);
 pub const kIOMessageDeviceSignaledWakeup: c_uint = iokit_common_msg!(0x350);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicewillpoweroff?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the device is about to move to a lower power state. Sent to IOKit interest notification clients of type `kIOAppPowerStateInterest` and `kIOGeneralInterest`.
+///
+///
 pub const kIOMessageDeviceWillPowerOff: c_uint = iokit_common_msg!(0x210);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicehaspoweredon?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the device has just moved to a higher power state. Sent to IOKit interest notification clients of type `kIOAppPowerStateInterest` and `kIOGeneralInterest`.
+///
+///
 pub const kIOMessageDeviceHasPoweredOn: c_uint = iokit_common_msg!(0x230);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillpoweroff?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates an imminent system shutdown. Recipients have a limited amount of time to respond, otherwise the system will timeout and shutdown even without a response. Delivered to in-kernel IOKit drivers via `IOService::systemWillShutdown()`, and to clients of `registerPrioritySleepWakeInterest()`. Never delivered to user space notification clients.
+///
+///
 pub const kIOMessageSystemWillPowerOff: c_uint = iokit_common_msg!(0x250);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillrestart?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates an imminent system restart. Recipients have a limited amount of time to respond, otherwise the system will timeout and restart even without a response. Delivered to in-kernel IOKit drivers via `IOService::systemWillShutdown()`, and to clients of `registerPrioritySleepWakeInterest()`. Never delivered to user space notification clients.
+///
+///
 pub const kIOMessageSystemWillRestart: c_uint = iokit_common_msg!(0x310);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystempagingoff?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates an imminent system shutdown, paging device now unavailable. Recipients have a limited amount of time to respond, otherwise the system will timeout and shutdown even without a response. Delivered to clients of `registerPrioritySleepWakeInterest()`. Never delivered to user space notification clients.
+///
+///
 pub const kIOMessageSystemPagingOff: c_uint = iokit_common_msg!(0x255);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecansystemsleep?language=objc)
+///
+/// ## Discussion
+///
+/// Announces/Requests permission to proceed to system sleep. Delivered to in-kernel IOKit drivers via `kIOGeneralInterest` and `kIOPriorityPowerStateInterest`. Delivered to user clients of `IORegisterForSystemPower`.
+///
+///
 pub const kIOMessageCanSystemSleep: c_uint = iokit_common_msg!(0x270);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillnotsleep?language=objc)
+///
+/// ## Discussion
+///
+/// Announces that the system has retracted a previous attempt to sleep; it follows `kIOMessageCanSystemSleep`. Delivered to in-kernel IOKit drivers via `kIOGeneralInterest` and `kIOPriorityPowerStateInterest`. Delivered to user clients of `IORegisterForSystemPower`.
+///
+///
 pub const kIOMessageSystemWillNotSleep: c_uint = iokit_common_msg!(0x290);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillsleep?language=objc)
+///
+/// ## Discussion
+///
+/// Announces that sleep is beginning. Delivered to in-kernel IOKit drivers via `kIOGeneralInterest` and `kIOPriorityPowerStateInterest`. Delivered to user clients of `IORegisterForSystemPower`.
+///
+///
 pub const kIOMessageSystemWillSleep: c_uint = iokit_common_msg!(0x280);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillpoweron?language=objc)
+///
+/// ## Discussion
+///
+/// Announces that the system is beginning to power the device tree; most devices are unavailable at this point.. Delivered to in-kernel IOKit drivers via `kIOGeneralInterest` and `kIOPriorityPowerStateInterest`. Delivered to user clients of `IORegisterForSystemPower`.
+///
+///
 pub const kIOMessageSystemWillPowerOn: c_uint = iokit_common_msg!(0x320);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemhaspoweredon?language=objc)
+///
+/// ## Discussion
+///
+/// Announces that the system and its devices have woken up. Delivered to in-kernel IOKit drivers via `kIOGeneralInterest` and `kIOPriorityPowerStateInterest`. Delivered to user clients of `IORegisterForSystemPower`.
+///
+///
 pub const kIOMessageSystemHasPoweredOn: c_uint = iokit_common_msg!(0x300);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecandevicepoweroff?language=objc)
+///
+/// ## Discussion
+///
+/// Delivered to `kIOAppPowerStateInterest` clients of devices that implement their own idle timeouts. This message type is almost never used.
+///
+///
 pub const kIOMessageCanDevicePowerOff: c_uint = iokit_common_msg!(0x200);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicewillnotpoweroff?language=objc)
+///
+/// ## Discussion
+///
+/// This IOKit interest notification is largely unused; it's not very interesting.
+///
+///
 pub const kIOMessageDeviceWillNotPowerOff: c_uint = iokit_common_msg!(0x220);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagesystemwillnotpoweroff?language=objc)
 pub const kIOMessageSystemWillNotPowerOff: c_uint = iokit_common_msg!(0x260);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagecansystempoweroff?language=objc)
 pub const kIOMessageCanSystemPowerOff: c_uint = iokit_common_msg!(0x240);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicewillpoweron?language=objc)
+///
+/// ## Discussion
+///
+/// IOService power mgt does not send kIOMessageDeviceWillPowerOn.
+///
+///
 pub const kIOMessageDeviceWillPowerOn: c_uint = iokit_common_msg!(0x215);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomessagedevicehaspoweredoff?language=objc)
+///
+/// ## Discussion
+///
+/// IOService power mgt does not send kIOMessageDeviceHasPoweredOff.
+///
+///
 pub const kIOMessageDeviceHasPoweredOff: c_uint = iokit_common_msg!(0x225);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserserverclasskey?language=objc)
 pub const kIOUserServerClassKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserservernamekey?language=objc)
 pub const kIOUserServerNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerName\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouserservertagkey?language=objc)
 pub const kIOUserServerTagKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUserServerTag\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553160-anonymous/kiodefaultmemorytype?language=objc)
 pub const kIODefaultMemoryType: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiodefaultcache?language=objc)
 pub const kIODefaultCache: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kioinhibitcache?language=objc)
 pub const kIOInhibitCache: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiowritethrucache?language=objc)
 pub const kIOWriteThruCache: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiocopybackcache?language=objc)
 pub const kIOCopybackCache: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiowritecombinecache?language=objc)
 pub const kIOWriteCombineCache: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiocopybackinnercache?language=objc)
 pub const kIOCopybackInnerCache: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiopostedwrite?language=objc)
 pub const kIOPostedWrite: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiorealtimecache?language=objc)
 pub const kIORealTimeCache: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiopostedreordered?language=objc)
 pub const kIOPostedReordered: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553159-anonymous/kiopostedcombinedreordered?language=objc)
 pub const kIOPostedCombinedReordered: c_uint = 9;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapanywhere?language=objc)
 pub const kIOMapAnywhere: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapcachemask?language=objc)
 pub const kIOMapCacheMask: c_uint = 0x00000f00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapcacheshift?language=objc)
 pub const kIOMapCacheShift: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapdefaultcache?language=objc)
 pub const kIOMapDefaultCache: c_uint = kIODefaultCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapinhibitcache?language=objc)
 pub const kIOMapInhibitCache: c_uint = kIOInhibitCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapwritethrucache?language=objc)
 pub const kIOMapWriteThruCache: c_uint = kIOWriteThruCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapcopybackcache?language=objc)
 pub const kIOMapCopybackCache: c_uint = kIOCopybackCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapwritecombinecache?language=objc)
 pub const kIOMapWriteCombineCache: c_uint = kIOWriteCombineCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapcopybackinnercache?language=objc)
 pub const kIOMapCopybackInnerCache: c_uint = kIOCopybackInnerCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomappostedwrite?language=objc)
 pub const kIOMapPostedWrite: c_uint = kIOPostedWrite << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomaprealtimecache?language=objc)
 pub const kIOMapRealTimeCache: c_uint = kIORealTimeCache << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomappostedreordered?language=objc)
 pub const kIOMapPostedReordered: c_uint = kIOPostedReordered << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomappostedcombinedreordered?language=objc)
 pub const kIOMapPostedCombinedReordered: c_uint = kIOPostedCombinedReordered << kIOMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapuseroptionsmask?language=objc)
 pub const kIOMapUserOptionsMask: c_uint = 0x00000fff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapreadonly?language=objc)
 pub const kIOMapReadOnly: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapstatic?language=objc)
 pub const kIOMapStatic: c_uint = 0x01000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapreference?language=objc)
 pub const kIOMapReference: c_uint = 0x02000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapunique?language=objc)
 pub const kIOMapUnique: c_uint = 0x04000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapprefault?language=objc)
 pub const kIOMapPrefault: c_uint = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapoverwrite?language=objc)
 pub const kIOMapOverwrite: c_uint = 0x20000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapguardedmask?language=objc)
 pub const kIOMapGuardedMask: c_uint = 0xC0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapguardedsmall?language=objc)
 pub const kIOMapGuardedSmall: c_uint = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553157-anonymous/kiomapguardedlarge?language=objc)
 pub const kIOMapGuardedLarge: c_uint = 0x80000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iooptionbits?language=objc)
 pub type IOOptionBits = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofixed?language=objc)
 pub type IOFixed = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioversion?language=objc)
 pub type IOVersion = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioitemcount?language=objc)
 pub type IOItemCount = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iocachemode?language=objc)
 pub type IOCacheMode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iobytecount32?language=objc)
 pub type IOByteCount32 = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iobytecount64?language=objc)
 pub type IOByteCount64 = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicaladdress32?language=objc)
 pub type IOPhysicalAddress32 = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicaladdress64?language=objc)
 pub type IOPhysicalAddress64 = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicallength32?language=objc)
 pub type IOPhysicalLength32 = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicallength64?language=objc)
 pub type IOPhysicalLength64 = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iovirtualaddress?language=objc)
 #[cfg(feature = "libc")]
 pub type IOVirtualAddress = libc::mach_vm_address_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iobytecount?language=objc)
 pub type IOByteCount = IOByteCount64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iologicaladdress?language=objc)
 #[cfg(feature = "libc")]
 pub type IOLogicalAddress = IOVirtualAddress;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicaladdress?language=objc)
 pub type IOPhysicalAddress = IOPhysicalAddress64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicallength?language=objc)
 pub type IOPhysicalLength = IOPhysicalLength64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicalrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOPhysicalRange {
@@ -9597,7 +9397,6 @@ unsafe impl RefEncode for IOPhysicalRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iovirtualrange?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -9619,11 +9418,9 @@ unsafe impl RefEncode for IOVirtualRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaddressrange?language=objc)
 #[cfg(feature = "libc")]
 pub type IOAddressRange = IOVirtualRange;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ionamedvalue?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IONamedValue {
@@ -9642,139 +9439,115 @@ unsafe impl RefEncode for IONamedValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioalignment?language=objc)
 pub type IOAlignment = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_object_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_object_t = libc::mach_port_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_connect_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_connect_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_enumerator_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_enumerator_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_ident_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_ident_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_iterator_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_iterator_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_registry_entry_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_registry_entry_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_service_t?language=objc)
 #[cfg(feature = "libc")]
 pub type io_service_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/uext_object_t?language=objc)
 #[cfg(feature = "libc")]
 pub type uext_object_t = io_object_t;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553154-scale_factors/knanosecondscale?language=objc)
+///
+/// ## Discussion
+///
+/// Scale factor for nanosecond based times.
+///
+///
 pub const kNanosecondScale: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553154-scale_factors/kmicrosecondscale?language=objc)
+///
+/// ## Discussion
+///
+/// Scale factor for microsecond based times.
+///
+///
 pub const kMicrosecondScale: c_uint = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553154-scale_factors/kmillisecondscale?language=objc)
+///
+/// ## Discussion
+///
+/// Scale factor for millisecond based times.
+///
+///
 pub const kMillisecondScale: c_uint = 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553154-scale_factors/ksecondscale?language=objc)
+///
+/// ## Discussion
+///
+/// Scale factor for second based times.
+///
+///
 pub const kSecondScale: c_uint = 1000 * 1000 * 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553154-scale_factors/ktickscale?language=objc)
+///
+/// ## Discussion
+///
+/// Scale factor for the standard (100Hz) tick.
+///
+///
 pub const kTickScale: c_uint = kSecondScale / 100;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553153-anonymous/kioconnectmethodvaroutputsize?language=objc)
 pub const kIOConnectMethodVarOutputSize: c_int = -3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iodevicenumber?language=objc)
 pub type IODeviceNumber = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstall40usec?language=objc)
 pub const kIOMaxBusStall40usec: c_uint = 40000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstall30usec?language=objc)
 pub const kIOMaxBusStall30usec: c_uint = 30000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstall25usec?language=objc)
 pub const kIOMaxBusStall25usec: c_uint = 25000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstall20usec?language=objc)
 pub const kIOMaxBusStall20usec: c_uint = 20000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstall10usec?language=objc)
 pub const kIOMaxBusStall10usec: c_uint = 10000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstall5usec?language=objc)
 pub const kIOMaxBusStall5usec: c_uint = 5000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3689522-anonymous/kiomaxbusstallnone?language=objc)
 pub const kIOMaxBusStallNone: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359589-anonymous/kiosystemstatesleepdescriptionhibernatestateinactive?language=objc)
 pub const kIOSystemStateSleepDescriptionHibernateStateInactive: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359589-anonymous/kiosystemstatesleepdescriptionhibernatestatehibernating?language=objc)
 pub const kIOSystemStateSleepDescriptionHibernateStateHibernating: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/4359589-anonymous/kiosystemstatesleepdescriptionhibernatestatewakingfromhibernate?language=objc)
 pub const kIOSystemStateSleepDescriptionHibernateStateWakingFromHibernate: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kfirstiokitnotificationtype?language=objc)
 pub const kFirstIOKitNotificationType: c_uint = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kioservicepublishnotificationtype?language=objc)
 pub const kIOServicePublishNotificationType: c_uint = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kioservicematchednotificationtype?language=objc)
 pub const kIOServiceMatchedNotificationType: c_uint = 101;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kioserviceterminatednotificationtype?language=objc)
 pub const kIOServiceTerminatedNotificationType: c_uint = 102;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kioasynccompletionnotificationtype?language=objc)
 pub const kIOAsyncCompletionNotificationType: c_uint = 150;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kioservicemessagenotificationtype?language=objc)
 pub const kIOServiceMessageNotificationType: c_uint = 160;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/klastiokitnotificationtype?language=objc)
 pub const kLastIOKitNotificationType: c_uint = 199;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kiokitnoticationtypemask?language=objc)
 pub const kIOKitNoticationTypeMask: c_uint = 0x00000FFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kiokitnoticationtypesizeadjshift?language=objc)
 pub const kIOKitNoticationTypeSizeAdjShift: c_uint = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455534-anonymous/kiokitnoticationmsgsizemask?language=objc)
 pub const kIOKitNoticationMsgSizeMask: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455590-anonymous/kosnotificationmessageid?language=objc)
 pub const kOSNotificationMessageID: c_uint = 53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455590-anonymous/kosasynccompletemessageid?language=objc)
 pub const kOSAsyncCompleteMessageID: c_uint = 57;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455590-anonymous/kmaxasyncargs?language=objc)
 pub const kMaxAsyncArgs: c_uint = 16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kioasyncreservedindex?language=objc)
 pub const kIOAsyncReservedIndex: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kioasyncreservedcount?language=objc)
 pub const kIOAsyncReservedCount: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kioasynccalloutfuncindex?language=objc)
 pub const kIOAsyncCalloutFuncIndex: c_uint = kIOAsyncReservedCount;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kioasynccalloutrefconindex?language=objc)
 pub const kIOAsyncCalloutRefconIndex: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kioasynccalloutcount?language=objc)
 pub const kIOAsyncCalloutCount: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiomatchingcalloutfuncindex?language=objc)
 pub const kIOMatchingCalloutFuncIndex: c_uint = kIOAsyncReservedCount;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiomatchingcalloutrefconindex?language=objc)
 pub const kIOMatchingCalloutRefconIndex: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiomatchingcalloutcount?language=objc)
 pub const kIOMatchingCalloutCount: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiointerestcalloutfuncindex?language=objc)
 pub const kIOInterestCalloutFuncIndex: c_uint = kIOAsyncReservedCount;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiointerestcalloutrefconindex?language=objc)
 pub const kIOInterestCalloutRefconIndex: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiointerestcalloutserviceindex?language=objc)
 pub const kIOInterestCalloutServiceIndex: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455563-anonymous/kiointerestcalloutcount?language=objc)
 pub const kIOInterestCalloutCount: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455541-anonymous/kosasyncrefcount?language=objc)
 pub const kOSAsyncRefCount: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1455541-anonymous/kosasyncrefsize?language=objc)
 pub const kOSAsyncRefSize: c_uint = 32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcontent-ieh?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -9796,7 +9569,6 @@ unsafe impl RefEncode for IOServiceInterestContent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccompletioncontent-ieg?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOAsyncCompletionContent {
@@ -9836,21 +9608,35 @@ unsafe impl RefEncode for IONotificationPort {
 /// &
 /// io_connect_t. Function names usually begin with the type of object they are compatible with - eg. IOObjectRelease can be used with any io_object_t. Inside the kernel, the c++ class hierarchy allows the subclasses of each object type to receive the same requests from user level clients, for example in the kernel, IOService is a subclass of IORegistryEntry, which means any of the IORegistryEntryXXX functions in IOKitLib may be used with io_service_t's as well as io_registry_t's. There are functions available to introspect the class of the kernel object which any io_object_t et al. represents.
 /// IOKit objects returned by all functions should be released with IOObjectRelease.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ionotificationportref?language=objc)
 pub type IONotificationPortRef = *mut IONotificationPort;
 
+/// Callback function to be notified of IOService publication.
+///
+/// Parameters:
+/// - refcon: The refcon passed when the notification was installed.
+///
+/// - iterator: The notification iterator which now has new objects.
+///
 /// Callback function to be notified of IOService publication.
 ///
 /// Parameter `refcon`: The refcon passed when the notification was installed.
 ///
 /// Parameter `iterator`: The notification iterator which now has new objects.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioservicematchingcallback?language=objc)
 #[cfg(feature = "libc")]
 pub type IOServiceMatchingCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, io_iterator_t)>;
 
+/// Callback function to be notified of changes in state of an IOService.
+///
+/// Parameters:
+/// - refcon: The refcon passed when the notification was installed.
+///
+/// - service: The IOService whose state has changed.
+///
+/// - messageType: A messageType enum, defined by IOKit/IOMessage.h or by the IOService's family.
+///
+/// - messageArgument: An argument for the message, dependent on the messageType. If the message data is larger than sizeof(void*), then messageArgument contains a pointer to the message data; otherwise, messageArgument contains the message data.
+///
 /// Callback function to be notified of changes in state of an IOService.
 ///
 /// Parameter `refcon`: The refcon passed when the notification was installed.
@@ -9860,8 +9646,6 @@ pub type IOServiceMatchingCallback =
 /// Parameter `messageType`: A messageType enum, defined by IOKit/IOMessage.h or by the IOService's family.
 ///
 /// Parameter `messageArgument`: An argument for the message, dependent on the messageType.  If the message data is larger than sizeof(void*), then messageArgument contains a pointer to the message data; otherwise, messageArgument contains the message data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioserviceinterestcallback?language=objc)
 #[cfg(feature = "libc")]
 pub type IOServiceInterestCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, io_service_t, u32, *mut c_void)>;
@@ -9870,8 +9654,6 @@ extern "C" {
     /// The default mach port used to initiate communication with IOKit.
     ///
     /// When specifying a main port to IOKit functions, the NULL argument indicates "use the default". This is a synonym for NULL, if you'd rather use a named constant.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomainportdefault?language=objc)
     #[cfg(feature = "libc")]
     pub static kIOMainPortDefault: libc::mach_port_t;
 }
@@ -9890,8 +9672,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `main_port` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/3753260-iomainport?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOMainPort(
         bootstrap_port: libc::mach_port_t,
@@ -9900,22 +9680,45 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// Deprecated name for kIOMainPortDefault.
+    /// The default mach port used to initiate communication with IOKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomasterportdefault?language=objc)
+    /// ## Discussion
+    ///
+    /// When specifying a primary port to IOKit functions, the NULL argument indicates "use the default". This is a synonym for NULL, if you'd rather use a named constant.
+    ///
+    ///
+    /// Deprecated name for kIOMainPortDefault.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub static kIOMasterPortDefault: libc::mach_port_t;
 }
 
 extern "C-unwind" {
+    /// Returns the mach port used to initiate communication with IOKit.
+    ///
+    /// Parameters:
+    /// - bootstrapPort: Pass MACH_PORT_NULL for the default.
+    ///
+    /// - masterPort: The primary port is returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Functions that don't specify an existing object require the IOKit primary port to be passed. This function obtains that port.
+    ///
+    ///
     /// Deprecated name for IOMainPort().
     ///
     /// # Safety
     ///
     /// `main_port` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514652-iomasterport?language=objc)
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOMasterPort(
@@ -9927,13 +9730,29 @@ extern "C-unwind" {
 impl IONotificationPort {
     /// Creates and returns a notification object for receiving IOKit notifications of new devices or state changes.
     ///
+    /// Parameters:
+    /// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass [`kIOMasterPortDefault`](https://developer.apple.com/documentation/iokit/kiomasterportdefault) to look up the default primary port.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A reference to the notification object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates the notification object to receive notifications from IOKit of new device arrivals or state changes. The notification object can be supply a CFRunLoopSource, or mach_port_t to be used to listen for events.
+    ///
+    ///
+    /// Creates and returns a notification object for receiving IOKit notifications of new devices or state changes.
+    ///
     /// Creates the notification object to receive notifications from IOKit of new device arrivals or state changes. The notification object can be supply a CFRunLoopSource, or mach_port_t to be used to listen for events.
     ///
     /// Parameter `mainPort`: The main port obtained from IOMainPort(). Pass kIOMainPortDefault to look up the default main port.
     ///
     /// Returns: A reference to the notification object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514480-ionotificationportcreate?language=objc)
     #[doc(alias = "IONotificationPortCreate")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -9944,6 +9763,11 @@ impl IONotificationPort {
         unsafe { IONotificationPortCreate(main_port) }
     }
 
+    /// Destroys a notification object created with IONotificationPortCreate. Also destroys any mach_port's or CFRunLoopSources obatined from [`IONotificationPortGetRunLoopSource`](https://developer.apple.com/documentation/iokit/1514599-ionotificationportgetrunloopsour) or [`IONotificationPortGetMachPort`](https://developer.apple.com/documentation/iokit/1514875-ionotificationportgetmachport)
+    ///
+    /// Parameters:
+    /// - notify: A reference to the notification object.
+    ///
     /// Destroys a notification object created with IONotificationPortCreate.
     /// Also destroys any mach_port's or CFRunLoopSources obtained from
     /// <code>
@@ -9967,8 +9791,6 @@ impl IONotificationPort {
     /// # Safety
     ///
     /// `notify` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514751-ionotificationportdestroy?language=objc)
     #[doc(alias = "IONotificationPortDestroy")]
     #[inline]
     pub unsafe fn destroy(notify: IONotificationPortRef) {
@@ -9978,6 +9800,26 @@ impl IONotificationPort {
         unsafe { IONotificationPortDestroy(notify) }
     }
 
+    /// Returns a CFRunLoopSource to be used to listen for notifications.
+    ///
+    /// Parameters:
+    /// - notify: The notification object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFRunLoopSourceRef for the notification object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A notification object may deliver notifications to a CFRunLoop by adding the run loop source returned by this function to the run loop.
+    ///
+    /// The caller should not release this CFRunLoopSource. Just call [`IONotificationPortDestroy`](https://developer.apple.com/documentation/iokit/1514751-ionotificationportdestroy) to dispose of the IONotificationPortRef and the CFRunLoopSource when done.
+    ///
+    ///
     /// Returns a CFRunLoopSource to be used to listen for notifications.
     ///
     /// A notification object may deliver notifications to a CFRunLoop
@@ -10001,8 +9843,6 @@ impl IONotificationPort {
     /// # Safety
     ///
     /// `notify` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514599-ionotificationportgetrunloopsour?language=objc)
     #[doc(alias = "IONotificationPortGetRunLoopSource")]
     #[inline]
     pub unsafe fn run_loop_source(
@@ -10017,6 +9857,26 @@ impl IONotificationPort {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns a mach_port to be used to listen for notifications.
+    ///
+    /// Parameters:
+    /// - notify: The notification object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A mach_port for the notification object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A notification object may deliver notifications to a mach messaging client if they listen for messages on the port obtained from this function. Callbacks associated with the notifications may be delivered by calling IODispatchCalloutFromMessage with messages received.
+    ///
+    /// The caller should not release this mach_port_t. Just call [`IONotificationPortDestroy`](https://developer.apple.com/documentation/iokit/1514751-ionotificationportdestroy) to dispose of the mach_port_t and IONotificationPortRef when done.
+    ///
+    ///
     /// Returns a mach_port to be used to listen for notifications.
     ///
     /// A notification object may deliver notifications to a mach messaging client
@@ -10042,8 +9902,6 @@ impl IONotificationPort {
     /// # Safety
     ///
     /// `notify` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514875-ionotificationportgetmachport?language=objc)
     #[doc(alias = "IONotificationPortGetMachPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -10068,8 +9926,6 @@ impl IONotificationPort {
     /// # Safety
     ///
     /// `notify` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2870065-ionotificationportsetimportancer?language=objc)
     #[doc(alias = "IONotificationPortSetImportanceReceiver")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -10084,6 +9940,19 @@ impl IONotificationPort {
 
     /// Sets a dispatch queue to be used to listen for notifications.
     ///
+    /// Parameters:
+    /// - notify: The notification object.
+    ///
+    /// - queue: A dispatch queue.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A notification object may deliver notifications to a dispatch client.
+    ///
+    ///
+    /// Sets a dispatch queue to be used to listen for notifications.
+    ///
     /// A notification object may deliver notifications to a dispatch client.
     ///
     /// Parameter `notify`: The notification object.
@@ -10095,8 +9964,6 @@ impl IONotificationPort {
     /// - `notify` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514596-ionotificationportsetdispatchque?language=objc)
     #[doc(alias = "IONotificationPortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -10114,6 +9981,26 @@ impl IONotificationPort {
 extern "C-unwind" {
     /// Creates and returns a mach port suitable for receiving IOKit messages of the specified type.
     ///
+    /// Parameters:
+    /// - msgType: Type of message to be sent to this port (kOSNotificationMessageID or kOSAsyncCompleteMessageID)
+    ///
+    /// - recvPort: The created port is returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In the future IOKit may use specialized messages and ports instead of the standard ports created by mach_port_allocate(). Use this function instead of mach_port_allocate() to ensure compatibility with future revisions of IOKit.
+    ///
+    ///
+    /// Creates and returns a mach port suitable for receiving IOKit messages of the specified type.
+    ///
     /// In the future IOKit may use specialized messages and ports
     /// instead of the standard ports created by mach_port_allocate(). Use this
     /// function instead of mach_port_allocate() to ensure compatibility with future
@@ -10129,8 +10016,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `recv_port` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514698-iocreatereceiveport?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOCreateReceivePort(
         msg_type: u32,
@@ -10140,13 +10025,29 @@ extern "C-unwind" {
 
 /// Releases an object handle previously returned by IOKitLib.
 ///
+/// Parameters:
+/// - object: The IOKit object to release.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code.
+///
+///
+///
+/// ## Discussion
+///
+/// All objects returned by IOKitLib should be released with this function when access to them is no longer needed. Using the object after it has been released may or may not return an error, depending on how many references the task has to the same object in the kernel.
+///
+///
+/// Releases an object handle previously returned by IOKitLib.
+///
 /// All objects returned by IOKitLib should be released with this function when access to them is no longer needed. Using the object after it has been released may or may not return an error, depending on how many references the task has to the same object in the kernel.
 ///
 /// Parameter `object`: The IOKit object to release.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514627-ioobjectrelease?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t {
@@ -10158,13 +10059,29 @@ pub extern "C-unwind" fn IOObjectRelease(object: io_object_t) -> libc::kern_retu
 
 /// Retains an object handle previously returned by IOKitLib.
 ///
+/// Parameters:
+/// - object: The IOKit object to retain.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code.
+///
+///
+///
+/// ## Discussion
+///
+/// Gives the caller an additional reference to an existing object handle previously returned by IOKitLib.
+///
+///
+/// Retains an object handle previously returned by IOKitLib.
+///
 /// Gives the caller an additional reference to an existing object handle previously returned by IOKitLib.
 ///
 /// Parameter `object`: The IOKit object to retain.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514769-ioobjectretain?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t {
@@ -10175,6 +10092,26 @@ pub extern "C-unwind" fn IOObjectRetain(object: io_object_t) -> libc::kern_retur
 }
 
 extern "C-unwind" {
+    /// Return the class name of an IOKit object.
+    ///
+    /// Parameters:
+    /// - object: The IOKit object.
+    ///
+    /// - className: Caller allocated buffer to receive the name string.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses the OSMetaClass system in the kernel to derive the name of the class the object is an instance of.
+    ///
+    ///
     /// Return the class name of an IOKit object.
     ///
     /// This function uses the OSMetaClass system in the kernel to derive the name of the class the object is an instance of.
@@ -10188,8 +10125,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `class_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514756-ioobjectgetclass?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOObjectGetClass(object: io_object_t, class_name: *mut io_name_t)
         -> libc::kern_return_t;
@@ -10197,13 +10132,29 @@ extern "C-unwind" {
 
 /// Return the class name of an IOKit object.
 ///
+/// Parameters:
+/// - object: The IOKit object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The resulting CFStringRef. This should be released by the caller. If a valid object is not passed in, then NULL is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This function does the same thing as IOObjectGetClass, but returns the result as a CFStringRef.
+///
+///
+/// Return the class name of an IOKit object.
+///
 /// This function does the same thing as IOObjectGetClass, but returns the result as a CFStringRef.
 ///
 /// Parameter `object`: The IOKit object.
 ///
 /// Returns: The resulting CFStringRef. This should be released by the caller. If a valid object is not passed in, then NULL is returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514781-ioobjectcopyclass?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectCopyClass(object: io_object_t) -> Option<CFRetained<CFString>> {
@@ -10216,6 +10167,24 @@ pub extern "C-unwind" fn IOObjectCopyClass(object: io_object_t) -> Option<CFReta
 
 /// Return the superclass name of the given class.
 ///
+/// Parameters:
+/// - classname: The name of the class as a CFString.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The resulting CFStringRef. This should be released by the caller. If there is no superclass, or a valid class name is not passed in, then NULL is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses the OSMetaClass system in the kernel to derive the name of the superclass of the class.
+///
+///
+/// Return the superclass name of the given class.
+///
 /// This function uses the OSMetaClass system in the kernel to derive the name of the superclass of the class.
 ///
 /// Parameter `classname`: The name of the class as a CFString.
@@ -10225,8 +10194,6 @@ pub extern "C-unwind" fn IOObjectCopyClass(object: io_object_t) -> Option<CFReta
 /// # Safety
 ///
 /// `classname` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514635-ioobjectcopysuperclassforclass?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
     classname: Option<&CFString>,
@@ -10242,6 +10209,24 @@ pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
 
 /// Return the bundle identifier of the given class.
 ///
+/// Parameters:
+/// - classname: The name of the class as a CFString.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The resulting CFStringRef. This should be released by the caller. If a valid class name is not passed in, then NULL is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses the OSMetaClass system in the kernel to derive the name of the kmod, which is the same as the bundle identifier.
+///
+///
+/// Return the bundle identifier of the given class.
+///
 /// This function uses the OSMetaClass system in the kernel to derive the name of the kmod, which is the same as the bundle identifier.
 ///
 /// Parameter `classname`: The name of the class as a CFString.
@@ -10251,8 +10236,6 @@ pub unsafe extern "C-unwind" fn IOObjectCopySuperclassForClass(
 /// # Safety
 ///
 /// `classname` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514375-ioobjectcopybundleidentifierforc?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
     classname: Option<&CFString>,
@@ -10268,6 +10251,26 @@ pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
 
 /// Performs an OSDynamicCast operation on an IOKit object.
 ///
+/// Parameters:
+/// - object: An IOKit object.
+///
+/// - className: The name of the class, as a C-string.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If the object handle is valid, and represents an object in the kernel that dynamic casts to the class true is returned, otherwise false.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses the OSMetaClass system in the kernel to determine if the object will dynamic cast to a class, specified as a C-string. In other words, if the object is of that class or a subclass.
+///
+///
+/// Performs an OSDynamicCast operation on an IOKit object.
+///
 /// This function uses the OSMetaClass system in the kernel to determine if the object will dynamic cast to a class, specified as a C-string. In other words, if the object is of that class or a subclass.
 ///
 /// Parameter `object`: An IOKit object.
@@ -10279,8 +10282,6 @@ pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
 /// # Safety
 ///
 /// `class_name` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514505-ioobjectconformsto?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectConformsTo(
@@ -10296,6 +10297,26 @@ pub unsafe extern "C-unwind" fn IOObjectConformsTo(
 
 /// Checks two object handles to see if they represent the same kernel object.
 ///
+/// Parameters:
+/// - object: An IOKit object.
+///
+/// - anObject: Another IOKit object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If both object handles are valid, and represent the same object in the kernel true is returned, otherwise false.
+///
+///
+///
+/// ## Discussion
+///
+/// If two object handles are returned by IOKitLib functions, this function will compare them to see if they represent the same kernel object.
+///
+///
+/// Checks two object handles to see if they represent the same kernel object.
+///
 /// If two object handles are returned by IOKitLib functions, this function will compare them to see if they represent the same kernel object.
 ///
 /// Parameter `object`: An IOKit object.
@@ -10303,8 +10324,6 @@ pub unsafe extern "C-unwind" fn IOObjectConformsTo(
 /// Parameter `anObject`: Another IOKit object.
 ///
 /// Returns: If both object handles are valid, and represent the same object in the kernel true is returned, otherwise false.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514563-ioobjectisequalto?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectIsEqualTo(object: io_object_t, an_object: io_object_t) -> bool {
@@ -10317,13 +10336,29 @@ pub extern "C-unwind" fn IOObjectIsEqualTo(object: io_object_t, an_object: io_ob
 
 /// Returns kernel retain count of an IOKit object.
 ///
+/// Parameters:
+/// - object: An IOKit object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
+///
+///
+/// Returns kernel retain count of an IOKit object.
+///
 /// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
 ///
 /// Parameter `object`: An IOKit object.
 ///
 /// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514325-ioobjectgetkernelretaincount?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32 {
@@ -10335,13 +10370,29 @@ pub extern "C-unwind" fn IOObjectGetKernelRetainCount(object: io_object_t) -> u3
 
 /// Returns the retain count for the current process of an IOKit object.
 ///
+/// Parameters:
+/// - object: An IOKit object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If the object handle is valid, the objects user retain count is returned, otherwise zero is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This function may be used in diagnostics to determine the current retain count for the calling process of the kernel object.
+///
+///
+/// Returns the retain count for the current process of an IOKit object.
+///
 /// This function may be used in diagnostics to determine the current retain count for the calling process of the kernel object.
 ///
 /// Parameter `object`: An IOKit object.
 ///
 /// Returns: If the object handle is valid, the objects user retain count is returned, otherwise zero is returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514464-ioobjectgetuserretaincount?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectGetUserRetainCount(object: io_object_t) -> u32 {
@@ -10353,13 +10404,29 @@ pub extern "C-unwind" fn IOObjectGetUserRetainCount(object: io_object_t) -> u32 
 
 /// Returns kernel retain count of an IOKit object. Identical to IOObjectGetKernelRetainCount() but available prior to Mac OS 10.6.
 ///
+/// Parameters:
+/// - object: An IOKit object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
+///
+///
+/// Returns kernel retain count of an IOKit object. Identical to IOObjectGetKernelRetainCount() but available prior to Mac OS 10.6.
+///
 /// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
 ///
 /// Parameter `object`: An IOKit object.
 ///
 /// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514824-ioobjectgetretaincount?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOObjectGetRetainCount(object: io_object_t) -> u32 {
@@ -10371,13 +10438,29 @@ pub extern "C-unwind" fn IOObjectGetRetainCount(object: io_object_t) -> u32 {
 
 /// Returns the next object in an iteration.
 ///
+/// Parameters:
+/// - iterator: An IOKit iterator handle.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If the iterator handle is valid, the next element in the iteration is returned, otherwise zero is returned. The element should be released by the caller when it is finished.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns the next object in an iteration, or zero if no more remain or the iterator is invalid.
+///
+///
+/// Returns the next object in an iteration.
+///
 /// This function returns the next object in an iteration, or zero if no more remain or the iterator is invalid.
 ///
 /// Parameter `iterator`: An IOKit iterator handle.
 ///
 /// Returns: If the iterator handle is valid, the next element in the iteration is returned, otherwise zero is returned. The element should be released by the caller when it is finished.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514741-ioiteratornext?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t {
@@ -10389,11 +10472,20 @@ pub extern "C-unwind" fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t 
 
 /// Resets an iteration back to the beginning.
 ///
+/// Parameters:
+/// - iterator: An IOKit iterator handle.
+///
+///
+/// ## Discussion
+///
+/// If an iterator is invalid, or if the caller wants to start over, IOIteratorReset will set the iteration back to the beginning.
+///
+///
+/// Resets an iteration back to the beginning.
+///
 /// If an iterator is invalid, or if the caller wants to start over, IOIteratorReset will set the iteration back to the beginning.
 ///
 /// Parameter `iterator`: An IOKit iterator handle.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514379-ioiteratorreset?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOIteratorReset(iterator: io_iterator_t) {
@@ -10405,13 +10497,29 @@ pub extern "C-unwind" fn IOIteratorReset(iterator: io_iterator_t) {
 
 /// Checks an iterator is still valid.
 ///
+/// Parameters:
+/// - iterator: An IOKit iterator handle.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// True if the iterator handle is valid, otherwise false is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// Some iterators will be made invalid if changes are made to the structure they are iterating over. This function checks the iterator is still valid and should be called when IOIteratorNext returns zero. An invalid iterator can be reset and the iteration restarted.
+///
+///
+/// Checks an iterator is still valid.
+///
 /// Some iterators will be made invalid if changes are made to the structure they are iterating over. This function checks the iterator is still valid and should be called when IOIteratorNext returns zero. An invalid iterator can be reset and the iteration restarted.
 ///
 /// Parameter `iterator`: An IOKit iterator handle.
 ///
 /// Returns: True if the iterator handle is valid, otherwise false is returned.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514556-ioiteratorisvalid?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
@@ -10423,8 +10531,6 @@ pub extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514382-ioserviceaddnotification?language=objc)
-    ///
     /// # Safety
     ///
     /// - `notification_type` must be a valid pointer.
@@ -10445,6 +10551,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Register for notification of state changes in an IOService.
+    ///
+    /// Parameters:
+    /// - notifyPort: A IONotificationPortRef object that controls how messages will be sent when the notification is fired. See IONotificationPortCreate.
+    ///
+    /// - interestType: A notification type from IOKitKeys.h
+    ///
+    /// kIOGeneralInterest General state changes delivered via the IOService::message API.
+    ///
+    /// kIOBusyInterest Delivered when the IOService changes its busy state to or from zero. The message argument contains the new busy state causing the notification.
+    ///
+    /// - callback: A callback function called when the notification fires, with messageType and messageArgument for the state change.
+    ///
+    /// - refCon: A reference constant for the callbacks use.
+    ///
+    /// - notification: An object handle is returned on success, and should be released by the caller when the notification is to be destroyed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// IOService objects deliver notifications of their state changes to their clients via the IOService::message API, and to other interested parties including callers of this function. Message type s are defined IOKit/IOMessage.h.
+    ///
+    ///
     /// Register for notification of state changes in an IOService.
     ///
     /// IOService objects deliver notifications of their state changes to their clients via the IOService::messageClients API, and to other interested parties including callers of this function. Message types are defined IOKit/IOMessage.h.
@@ -10472,8 +10608,6 @@ extern "C-unwind" {
     /// - `callback` must be implemented correctly.
     /// - `ref_con` must be a valid pointer.
     /// - `notification` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514866-ioserviceaddinterestnotification?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOServiceAddInterestNotification(
         notify_port: IONotificationPortRef,
@@ -10486,6 +10620,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Match an IOService objects with matching dictionary.
+    ///
+    /// Parameters:
+    /// - service: The IOService object to match.
+    ///
+    /// - matching: A CF dictionary containing matching information. IOKitLib can construct matching dictionaries for common criteria with helper functions such as IOServiceMatching, IOServiceNameMatching, IOBSDNameMatching.
+    ///
+    /// - matches: The boolean result is returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function calls the matching method of an IOService object and returns the boolean result.
+    ///
+    ///
     /// Match an IOService objects with matching dictionary.
     ///
     /// This function calls the matching method of an IOService object and returns the boolean result.
@@ -10504,8 +10660,6 @@ extern "C-unwind" {
     /// - `matching` generic must be of the correct type.
     /// - `matching` might not allow `None`.
     /// - `matches` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514685-ioservicematchpropertytable?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOServiceMatchPropertyTable(
         service: io_service_t,
@@ -10515,6 +10669,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the busyState of an IOService.
+    ///
+    /// Parameters:
+    /// - service: The IOService whose busyState to return.
+    ///
+    /// - busyState: The busyState count is returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Many activities in IOService are asynchronous. When registration, matching, or termination is in progress on an IOService, its busyState is increased by one. Change in busyState to or from zero also changes the IOService's provider's busyState by one, which means that an IOService is marked busy when any of the above activities is ocurring on it or any of its clients.
+    ///
+    ///
     /// Returns the busyState of an IOService.
     ///
     /// Many activities in IOService are asynchronous. When registration, matching, or termination is in progress on an IOService, its busyState is increased by one. Change in busyState to or from zero also changes the IOService's provider's busyState by one, which means that an IOService is marked busy when any of the above activities is occurring on it or any of its clients.
@@ -10528,8 +10702,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `busy_state` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514607-ioservicegetbusystate?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOServiceGetBusyState(
         service: io_service_t,
@@ -10538,6 +10710,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the busyState of all IOServices.
+    ///
+    /// Parameters:
+    /// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass [`kIOMasterPortDefault`](https://developer.apple.com/documentation/iokit/kiomasterportdefault) to look up the default primary port.
+    ///
+    /// - busyState: The busyState count is returned.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Many activities in IOService are asynchronous. When registration, matching, or termination is in progress on an IOService, its busyState is increased by one. Change in busyState to or from zero also changes the IOService's provider's busyState by one, which means that an IOService is marked busy when any of the above activities is ocurring on it or any of its clients. IOKitGetBusyState returns the busy state of the root of the service plane which reflects the busy state of all IOServices.
+    ///
+    ///
     /// Returns the busyState of all IOServices.
     ///
     /// Many activities in IOService are asynchronous. When registration, matching, or termination is in progress on an IOService, its busyState is increased by one. Change in busyState to or from zero also changes the IOService's provider's busyState by one, which means that an IOService is marked busy when any of the above activities is occurring on it or any of its clients. IOKitGetBusyState returns the busy state of the root of the service plane which reflects the busy state of all IOServices.
@@ -10551,8 +10743,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `busy_state` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514460-iokitgetbusystate?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOKitGetBusyState(
         main_port: libc::mach_port_t,
@@ -10561,6 +10751,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// A request to create a connection to an IOService.
+    ///
+    /// Parameters:
+    /// - service: The IOService object to open a connection to, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
+    ///
+    /// - owningTask: The mach task requesting the connection.
+    ///
+    /// - type: A constant specifying the type of connection to be created, interpreted only by the IOService's family.
+    ///
+    /// - connect: An io_connect_t handle is returned on success, to be used with the IOConnectXXX APIs. It should be destroyed with IOServiceClose().
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A return code generated by IOService::newUserClient.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A non kernel client may request a connection be opened via the IOServiceOpen() library function, which will call IOService::newUserClient in the kernel. The rules & capabilities of user level clients are family dependent, the default IOService implementation returns kIOReturnUnsupported.
+    ///
+    ///
     /// A request to create a connection to an IOService.
     ///
     /// A non kernel client may request a connection be opened via the IOServiceOpen() library function, which will call IOService::newUserClient in the kernel. The rules
@@ -10580,8 +10794,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `connect` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514515-ioserviceopen?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOServiceOpen(
         service: io_service_t,
@@ -10593,6 +10805,26 @@ extern "C-unwind" {
 
 /// A request to rescan a bus for device changes.
 ///
+/// Parameters:
+/// - service: The IOService object to request a rescan, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
+///
+/// - options: An options mask, interpreted only by the IOService's family.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A return code generated by IOService::requestProbe.
+///
+///
+///
+/// ## Discussion
+///
+/// A non kernel client may request a bus or controller rescan for added or removed devices, if the bus family does automatically notice such changes. For example, SCSI bus controllers do not notice device changes. The implementation of this routine is family dependent, and the default IOService implementation returns kIOReturnUnsupported.
+///
+///
+/// A request to rescan a bus for device changes.
+///
 /// A non kernel client may request a bus or controller rescan for added or removed devices, if the bus family does automatically notice such changes. For example, SCSI bus controllers do not notice device changes. The implementation of this routine is family dependent, and the default IOService implementation returns kIOReturnUnsupported.
 ///
 /// Parameter `service`: The IOService object to request a rescan, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
@@ -10600,8 +10832,6 @@ extern "C-unwind" {
 /// Parameter `options`: An options mask, interpreted only by the IOService's family.
 ///
 /// Returns: A return code generated by IOService::requestProbe.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514364-ioservicerequestprobe?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOServiceRequestProbe(
@@ -10614,7 +10844,6 @@ pub extern "C-unwind" fn IOServiceRequestProbe(
     unsafe { IOServiceRequestProbe(service, options) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1550764-anonymous/kioserviceinteractionallowed?language=objc)
 pub const kIOServiceInteractionAllowed: c_uint = 0x00000001;
 
 /// Authorize access to an IOService.
@@ -10626,8 +10855,6 @@ pub const kIOServiceInteractionAllowed: c_uint = 0x00000001;
 /// Parameter `options`: kIOServiceInteractionAllowed may be set to permit user interaction, if required.
 ///
 /// Returns: kIOReturnSuccess if the IOService is authorized, kIOReturnNotPermitted if the IOService is not authorized.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514533-ioserviceauthorize?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOServiceAuthorize(
@@ -10640,7 +10867,6 @@ pub extern "C-unwind" fn IOServiceAuthorize(
     unsafe { IOServiceAuthorize(service, options) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514879-ioserviceopenasfiledescriptor?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOServiceOpenAsFileDescriptor(
@@ -10655,13 +10881,29 @@ pub extern "C-unwind" fn IOServiceOpenAsFileDescriptor(
 
 /// Close a connection to an IOService and destroy the connect handle.
 ///
+/// Parameters:
+/// - connect: The connect handle created by IOServiceOpen. It will be destroyed by this function, and should not be released with IOObjectRelease.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code.
+///
+///
+///
+/// ## Discussion
+///
+/// A connection created with the IOServiceOpen should be closed when the connection is no longer to be used with IOServiceClose.
+///
+///
+/// Close a connection to an IOService and destroy the connect handle.
+///
 /// A connection created with the IOServiceOpen should be closed when the connection is no longer to be used with IOServiceClose.
 ///
 /// Parameter `connect`: The connect handle created by IOServiceOpen. It will be destroyed by this function, and should not be released with IOObjectRelease.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514646-ioserviceclose?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t {
@@ -10673,13 +10915,29 @@ pub extern "C-unwind" fn IOServiceClose(connect: io_connect_t) -> libc::kern_ret
 
 /// Adds a reference to the connect handle.
 ///
+/// Parameters:
+/// - connect: The connect handle created by IOServiceOpen.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code.
+///
+///
+///
+/// ## Discussion
+///
+/// Adds a reference to the connect handle.
+///
+///
+/// Adds a reference to the connect handle.
+///
 /// Adds a reference to the connect handle.
 ///
 /// Parameter `connect`: The connect handle created by IOServiceOpen.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514739-ioconnectaddref?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t {
@@ -10691,13 +10949,29 @@ pub extern "C-unwind" fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_re
 
 /// Remove a reference to the connect handle.
 ///
+/// Parameters:
+/// - connect: The connect handle created by IOServiceOpen.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code.
+///
+///
+///
+/// ## Discussion
+///
+/// Removes a reference to the connect handle. If the last reference is removed an implicit IOServiceClose is performed.
+///
+///
+/// Remove a reference to the connect handle.
+///
 /// Removes a reference to the connect handle.  If the last reference is removed an implicit IOServiceClose is performed.
 ///
 /// Parameter `connect`: The connect handle created by IOServiceOpen.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514511-ioconnectrelease?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t {
@@ -10708,6 +10982,26 @@ pub extern "C-unwind" fn IOConnectRelease(connect: io_connect_t) -> libc::kern_r
 }
 
 extern "C-unwind" {
+    /// Returns the IOService a connect handle was opened on.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - service: On succes, the service handle the connection was opened on, which should be released with IOObjectRelease.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Finds the service object a connection was opened on.
+    ///
+    ///
     /// Returns the IOService a connect handle was opened on.
     ///
     /// Finds the service object a connection was opened on.
@@ -10721,8 +11015,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `service` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514438-ioconnectgetservice?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOConnectGetService(
         connect: io_connect_t,
@@ -10730,6 +11022,30 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// Set a port to receive family specific notifications.
+///
+/// Parameters:
+/// - connect: The connect handle created by [`IOServiceOpen`](https://developer.apple.com/documentation/iokit/1514515-ioserviceopen).
+///
+/// - type: The type of notification requested, not interpreted by IOKit and family defined.
+///
+/// - port: The port to which to send notifications.
+///
+/// - reference: Some families may support passing a reference parameter for the callers use with the notification.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A `kern_return_t` error code.
+///
+///
+///
+/// ## Discussion
+///
+/// This is a generic method to pass a Mach port send right to be used by family specific notifications.
+///
+///
 /// Set a port to receive family specific notifications.
 ///
 /// This is a generic method to pass a mach port send right to be be used by family specific notifications.
@@ -10743,8 +11059,6 @@ extern "C-unwind" {
 /// Parameter `reference`: Some families may support passing a reference parameter for the callers use with the notification.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514541-ioconnectsetnotificationport?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectSetNotificationPort(
@@ -10765,7 +11079,32 @@ pub extern "C-unwind" fn IOConnectSetNotificationPort(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514377-ioconnectmapmemory?language=objc)
+    /// Map hardware or shared memory into the caller's task.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - memoryType: What is being requested to be mapped, not interpreted by IOKit and family defined. The family may support physical hardware or shared memory mappings.
+    ///
+    /// - intoTask: The task port for the task in which to create the mapping. This may be different to the task which the opened the connection.
+    ///
+    /// - atAddress: An in/out parameter - if the kIOMapAnywhere option is not set, the caller should pass the address where it requests the mapping be created, otherwise nothing need to set on input. The address of the mapping created is passed back on sucess.
+    ///
+    /// - ofSize: The size of the mapping created is passed back on success.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to create a mapping in the callers task. The family will interpret the type parameter to determine what sort of mapping is being requested. Cache modes and placed mappings may be requested by the caller.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -10783,6 +11122,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Map hardware or shared memory into the caller's task.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - memoryType: What is being requested to be mapped, not interpreted by IOKit and family defined. The family may support physical hardware or shared memory mappings.
+    ///
+    /// - intoTask: The task port for the task in which to create the mapping. This may be different to the task which the opened the connection.
+    ///
+    /// - atAddress: An in/out parameter - if the kIOMapAnywhere option is not set, the caller should pass the address where it requests the mapping be created, otherwise nothing need to set on input. The address of the mapping created is passed back on sucess.
+    ///
+    /// - ofSize: The size of the mapping created is passed back on success.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to create a mapping in the callers task. The family will interpret the type parameter to determine what sort of mapping is being requested. Cache modes and placed mappings may be requested by the caller.
+    ///
+    ///
     /// Map hardware or shared memory into the caller's task.
     ///
     /// This is a generic method to create a mapping in the callers task. The family will interpret the type parameter to determine what sort of mapping is being requested. Cache modes and placed mappings may be requested by the caller.
@@ -10803,8 +11168,6 @@ extern "C-unwind" {
     ///
     /// - `at_address` must be a valid pointer.
     /// - `of_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514862-ioconnectmapmemory64?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOConnectMapMemory64(
         connect: io_connect_t,
@@ -10817,7 +11180,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514527-ioconnectunmapmemory?language=objc)
+    /// Remove a mapping made with IOConnectMapMemory.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - memoryType: The memory type originally requested in IOConnectMapMemory.
+    ///
+    /// - fromTask: The task port for the task in which to remove the mapping. This may be different to the task which the opened the connection.
+    ///
+    /// - atAddress: The address of the mapping to be removed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to remove a mapping in the callers task.
+    ///
+    ///
     #[cfg(feature = "libc")]
     pub fn IOConnectUnmapMemory(
         connect: io_connect_t,
@@ -10828,6 +11214,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Remove a mapping made with IOConnectMapMemory64.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - memoryType: The memory type originally requested in IOConnectMapMemory.
+    ///
+    /// - fromTask: The task port for the task in which to remove the mapping. This may be different to the task which the opened the connection.
+    ///
+    /// - atAddress: The address of the mapping to be removed.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to remove a mapping in the callers task.
+    ///
+    ///
     /// Remove a mapping made with IOConnectMapMemory64.
     ///
     /// This is a generic method to remove a mapping in the callers task.
@@ -10841,8 +11251,6 @@ extern "C-unwind" {
     /// Parameter `atAddress`: The address of the mapping to be removed.
     ///
     /// Returns: A kern_return_t error code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514760-ioconnectunmapmemory64?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOConnectUnmapMemory64(
         connect: io_connect_t,
@@ -10853,6 +11261,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set CF container based properties on a connection.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - properties: A CF container - commonly a CFDictionary but this is not enforced. The container should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code returned by the family.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to pass a CF container of properties to the connection. The properties are interpreted by the family and commonly represent configuration settings, but may be interpreted as anything.
+    ///
+    ///
     /// Set CF container based properties on a connection.
     ///
     /// This is a generic method to pass a CF container of properties to the connection. The properties are interpreted by the family and commonly represent configuration settings, but may be interpreted as anything.
@@ -10867,8 +11295,6 @@ extern "C-unwind" {
     ///
     /// - `properties` should be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514713-ioconnectsetcfproperties?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOConnectSetCFProperties(
         connect: io_connect_t,
@@ -10877,6 +11303,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set a CF container based property on a connection.
+    ///
+    /// Parameters:
+    /// - connect: The connect handle created by IOServiceOpen.
+    ///
+    /// - propertyName: The name of the property as a CFString.
+    ///
+    /// - property: A CF container - should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code returned by the object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to pass a CF property to the connection. The property is interpreted by the family and commonly represent configuration settings, but may be interpreted as anything.
+    ///
+    ///
     /// Set a CF container based property on a connection.
     ///
     /// This is a generic method to pass a CF property to the connection. The property is interpreted by the family and commonly represent configuration settings, but may be interpreted as anything.
@@ -10894,8 +11342,6 @@ extern "C-unwind" {
     /// - `property_name` might not allow `None`.
     /// - `property` should be of the correct type.
     /// - `property` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514796-ioconnectsetcfproperty?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOConnectSetCFProperty(
         connect: io_connect_t,
@@ -10905,8 +11351,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514240-ioconnectcallmethod?language=objc)
-    ///
     /// # Safety
     ///
     /// - `input` must be a valid pointer.
@@ -10931,8 +11375,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514418-ioconnectcallasyncmethod?language=objc)
-    ///
     /// # Safety
     ///
     /// - `reference` must be a valid pointer.
@@ -10961,8 +11403,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514274-ioconnectcallstructmethod?language=objc)
-    ///
     /// # Safety
     ///
     /// - `input_struct` must be a valid pointer.
@@ -10980,8 +11420,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514403-ioconnectcallasyncstructmethod?language=objc)
-    ///
     /// # Safety
     ///
     /// - `reference` must be a valid pointer.
@@ -11003,8 +11441,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514793-ioconnectcallscalarmethod?language=objc)
-    ///
     /// # Safety
     ///
     /// - `input` must be a valid pointer.
@@ -11022,8 +11458,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514884-ioconnectcallasyncscalarmethod?language=objc)
-    ///
     /// # Safety
     ///
     /// - `reference` must be a valid pointer.
@@ -11044,7 +11478,6 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514674-ioconnecttrap0?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t {
@@ -11054,7 +11487,6 @@ pub extern "C-unwind" fn IOConnectTrap0(connect: io_connect_t, index: u32) -> li
     unsafe { IOConnectTrap0(connect, index) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514816-ioconnecttrap1?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap1(
@@ -11068,7 +11500,6 @@ pub extern "C-unwind" fn IOConnectTrap1(
     unsafe { IOConnectTrap1(connect, index, p1) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514354-ioconnecttrap2?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap2(
@@ -11088,7 +11519,6 @@ pub extern "C-unwind" fn IOConnectTrap2(
     unsafe { IOConnectTrap2(connect, index, p1, p2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514833-ioconnecttrap3?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap3(
@@ -11110,7 +11540,6 @@ pub extern "C-unwind" fn IOConnectTrap3(
     unsafe { IOConnectTrap3(connect, index, p1, p2, p3) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514410-ioconnecttrap4?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap4(
@@ -11134,7 +11563,6 @@ pub extern "C-unwind" fn IOConnectTrap4(
     unsafe { IOConnectTrap4(connect, index, p1, p2, p3, p4) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514346-ioconnecttrap5?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap5(
@@ -11160,7 +11588,6 @@ pub extern "C-unwind" fn IOConnectTrap5(
     unsafe { IOConnectTrap5(connect, index, p1, p2, p3, p4, p5) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514493-ioconnecttrap6?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectTrap6(
@@ -11190,6 +11617,26 @@ pub extern "C-unwind" fn IOConnectTrap6(
 
 /// Inform a connection of a second connection.
 ///
+/// Parameters:
+/// - connect: The connect handle created by IOServiceOpen.
+///
+/// - client: Another connect handle created by IOServiceOpen.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code returned by the family.
+///
+///
+///
+/// ## Discussion
+///
+/// This is a generic method to inform a family connection of a second connection, and is rarely used.
+///
+///
+/// Inform a connection of a second connection.
+///
 /// This is a generic method to inform a family connection of a second connection, and is rarely used.
 ///
 /// Parameter `connect`: The connect handle created by IOServiceOpen.
@@ -11197,8 +11644,6 @@ pub extern "C-unwind" fn IOConnectTrap6(
 /// Parameter `client`: Another connect handle created by IOServiceOpen.
 ///
 /// Returns: A kern_return_t error code returned by the family.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514609-ioconnectaddclient?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOConnectAddClient(
@@ -11213,13 +11658,29 @@ pub extern "C-unwind" fn IOConnectAddClient(
 
 /// Return a handle to the registry root.
 ///
+/// Parameters:
+/// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass [`kIOMasterPortDefault`](https://developer.apple.com/documentation/iokit/kiomasterportdefault) to look up the default primary port.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A handle to the IORegistryEntry root instance, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
+///
+///
+///
+/// ## Discussion
+///
+/// This method provides an accessor to the root of the registry for the machine. The root may be passed to a registry iterator when iterating a plane, and contains properties that describe the available planes, and diagnostic information for IOKit.
+///
+///
+/// Return a handle to the registry root.
+///
 /// This method provides an accessor to the root of the registry for the machine. The root may be passed to a registry iterator when iterating a plane, and contains properties that describe the available planes, and diagnostic information for IOKit.
 ///
 /// Parameter `mainPort`: The main port obtained from IOMainPort(). Pass kIOMainPortDefault to look up the default main port.
 ///
 /// Returns: A handle to the IORegistryEntry root instance, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514878-ioregistrygetrootentry?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IORegistryGetRootEntry(
@@ -11232,6 +11693,26 @@ pub extern "C-unwind" fn IORegistryGetRootEntry(
 }
 
 extern "C-unwind" {
+    /// Looks up a registry entry by path.
+    ///
+    /// Parameters:
+    /// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass [`kIOMasterPortDefault`](https://developer.apple.com/documentation/iokit/kiomasterportdefault) to look up the default primary port.
+    ///
+    /// - path: A C-string path.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A handle to the IORegistryEntry witch was found with the path, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function parses paths to lookup registry entries. The path should begin with '<plane name>:' If there are characters remaining unparsed after an entry has been looked up, this is considered an invalid lookup. Paths are further documented in IORegistryEntry.h
+    ///
+    ///
     /// Looks up a registry entry by path.
     ///
     /// This function parses paths to lookup registry entries. The path should begin with '
@@ -11247,8 +11728,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `path` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514802-ioregistryentryfrompath?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryFromPath(
         main_port: libc::mach_port_t,
@@ -11272,8 +11751,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `path` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514248-ioregistryentrycopyfrompath?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCopyFromPath(
         main_port: libc::mach_port_t,
@@ -11281,12 +11758,34 @@ extern "C-unwind" {
     ) -> io_registry_entry_t;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1550765-anonymous/kioregistryiteraterecursively?language=objc)
 pub const kIORegistryIterateRecursively: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1550765-anonymous/kioregistryiterateparents?language=objc)
 pub const kIORegistryIterateParents: c_uint = 0x00000002;
 
 extern "C-unwind" {
+    /// Create an iterator rooted at the registry root.
+    ///
+    /// Parameters:
+    /// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass [`kIOMasterPortDefault`](https://developer.apple.com/documentation/iokit/kiomasterportdefault) to look up the default primary port.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - options: kIORegistryIterateRecursively may be set to recurse automatically into each entry as it is returned from IOIteratorNext calls on the registry iterator.
+    ///
+    /// - iterator: A created iterator handle, to be released by the caller when it has finished with it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method creates an IORegistryIterator in the kernel that is set up with options to iterate children of the registry root entry, and to recurse automatically into entries as they are returned, or only when instructed with calls to IORegistryIteratorEnterEntry. The iterator object keeps track of entries that have been recursed into previously to avoid loops.
+    ///
+    ///
     /// Create an iterator rooted at the registry root.
     ///
     /// This method creates an IORegistryIterator in the kernel that is set up with options to iterate children of the registry root entry, and to recurse automatically into entries as they are returned, or only when instructed with calls to IORegistryIteratorEnterEntry. The iterator object keeps track of entries that have been recursed into previously to avoid loops.
@@ -11305,8 +11804,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514238-ioregistrycreateiterator?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryCreateIterator(
         main_port: libc::mach_port_t,
@@ -11317,6 +11814,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Create an iterator rooted at a given registry entry.
+    ///
+    /// Parameters:
+    /// - entry: The root entry to begin the iteration at.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - options: kIORegistryIterateRecursively may be set to recurse automatically into each entry as it is returned from IOIteratorNext calls on the registry iterator. kIORegistryIterateParents may be set to iterate the parents of each entry, by default the children are iterated.
+    ///
+    /// - iterator: A created iterator handle, to be released by the caller when it has finished with it.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method creates an IORegistryIterator in the kernel that is set up with options to iterate children or parents of a root entry, and to recurse automatically into entries as they are returned, or only when instructed with calls to IORegistryIteratorEnterEntry. The iterator object keeps track of entries that have been recursed into previously to avoid loops.
+    ///
+    ///
     /// Create an iterator rooted at a given registry entry.
     ///
     /// This method creates an IORegistryIterator in the kernel that is set up with options to iterate children or parents of a root entry, and to recurse automatically into entries as they are returned, or only when instructed with calls to IORegistryIteratorEnterEntry. The iterator object keeps track of entries that have been recursed into previously to avoid loops.
@@ -11335,8 +11856,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514318-ioregistryentrycreateiterator?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCreateIterator(
         entry: io_registry_entry_t,
@@ -11348,11 +11867,23 @@ extern "C-unwind" {
 
 /// Recurse into the current entry in the registry iteration.
 ///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A kern_return_t error code.
+///
+///
+///
+/// ## Discussion
+///
+/// This method makes the current entry, ie. the last entry returned by IOIteratorNext, the root in a new level of recursion.
+///
+///
+/// Recurse into the current entry in the registry iteration.
+///
 /// This method makes the current entry, ie. the last entry returned by IOIteratorNext, the root in a new level of recursion.
 ///
 /// Returns: A kern_return_t error code.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514822-ioregistryiteratorenterentry?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IORegistryIteratorEnterEntry(
@@ -11366,11 +11897,23 @@ pub extern "C-unwind" fn IORegistryIteratorEnterEntry(
 
 /// Exits a level of recursion, restoring the current entry.
 ///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// kIOReturnSuccess if a level of recursion was undone, kIOReturnNoDevice if no recursive levels are left in the iteration.
+///
+///
+///
+/// ## Discussion
+///
+/// This method undoes an IORegistryIteratorEnterEntry, restoring the current entry. If there are no more levels of recursion to exit false is returned, otherwise true is returned.
+///
+///
+/// Exits a level of recursion, restoring the current entry.
+///
 /// This method undoes an IORegistryIteratorEnterEntry, restoring the current entry. If there are no more levels of recursion to exit false is returned, otherwise true is returned.
 ///
 /// Returns: kIOReturnSuccess if a level of recursion was undone, kIOReturnNoDevice if no recursive levels are left in the iteration.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514334-ioregistryiteratorexitentry?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IORegistryIteratorExitEntry(
@@ -11385,6 +11928,26 @@ pub extern "C-unwind" fn IORegistryIteratorExitEntry(
 extern "C-unwind" {
     /// Returns a C-string name assigned to a registry entry.
     ///
+    /// Parameters:
+    /// - entry: The registry entry handle whose name to look up.
+    ///
+    /// - name: The caller's buffer to receive the name.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Registry entries can be named in a particular plane, or globally. This function returns the entry's global name. The global name defaults to the entry's meta class name if it has not been named.
+    ///
+    ///
+    /// Returns a C-string name assigned to a registry entry.
+    ///
     /// Registry entries can be named in a particular plane, or globally. This function returns the entry's global name. The global name defaults to the entry's meta class name if it has not been named.
     ///
     /// Parameter `entry`: The registry entry handle whose name to look up.
@@ -11396,8 +11959,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514323-ioregistryentrygetname?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetName(
         entry: io_registry_entry_t,
@@ -11406,6 +11967,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a C-string name assigned to a registry entry, in a specified plane.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry handle whose name to look up.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - name: The caller's buffer to receive the name.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Registry entries can be named in a particular plane, or globally. This function returns the entry's name in the specified plane or global name if it has not been named in that plane. The global name defaults to the entry's meta class name if it has not been named.
+    ///
+    ///
     /// Returns a C-string name assigned to a registry entry, in a specified plane.
     ///
     /// Registry entries can be named in a particular plane, or globally. This function returns the entry's name in the specified plane or global name if it has not been named in that plane. The global name defaults to the entry's meta class name if it has not been named.
@@ -11422,8 +12005,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514475-ioregistryentrygetnameinplane?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetNameInPlane(
         entry: io_registry_entry_t,
@@ -11433,6 +12014,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a C-string location assigned to a registry entry, in a specified plane.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry handle whose name to look up.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - location: The caller's buffer to receive the location string.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Registry entries can given a location string in a particular plane, or globally. If the entry has had a location set in the specified plane that location string will be returned, otherwise the global location string is returned. If no global location string has been set, an error is returned.
+    ///
+    ///
     /// Returns a C-string location assigned to a registry entry, in a specified plane.
     ///
     /// Registry entries can given a location string in a particular plane, or globally. If the entry has had a location set in the specified plane that location string will be returned, otherwise the global location string is returned. If no global location string has been set, an error is returned.
@@ -11449,8 +12052,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `location` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514340-ioregistryentrygetlocationinplan?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetLocationInPlane(
         entry: io_registry_entry_t,
@@ -11460,6 +12061,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Create a path for a registry entry.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry handle whose path to look up.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - path: A char buffer allocated by the caller.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// IORegistryEntryGetPath will fail if the entry is not attached in the plane, or if the buffer is not large enough to contain the path.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The path for a registry entry is copied to the caller's buffer. The path describes the entry's attachment in a particular plane, which must be specified. The path begins with the plane name followed by a colon, and then followed by '/' separated path components for each of the entries between the root and the registry entry. An alias may also exist for the entry, and will be returned if available.
+    ///
+    ///
     /// Create a path for a registry entry.
     ///
     /// The path for a registry entry is copied to the caller's buffer. The path describes the entry's attachment in a particular plane, which must be specified. The path begins with the plane name followed by a colon, and then followed by '/' separated path components for each of the entries between the root and the registry entry. An alias may also exist for the entry, and will be returned if available.
@@ -11476,8 +12099,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `path` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514229-ioregistryentrygetpath?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetPath(
         entry: io_registry_entry_t,
@@ -11499,8 +12120,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `plane` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514853-ioregistryentrycopypath?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryCopyPath(
@@ -11520,6 +12139,26 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCopyPath(
 extern "C-unwind" {
     /// Returns an ID for the registry entry that is global to all tasks.
     ///
+    /// Parameters:
+    /// - entry: The registry entry handle whose ID to look up.
+    ///
+    /// - entryID: The resulting ID.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The entry ID returned by IORegistryEntryGetRegistryEntryID can be used to identify a registry entry across all tasks. A registry entry may be looked up by its entryID by creating a matching dictionary with IORegistryEntryIDMatching() to be used with the IOKit matching functions. The ID is valid only until the machine reboots.
+    ///
+    ///
+    /// Returns an ID for the registry entry that is global to all tasks.
+    ///
     /// The entry ID returned by IORegistryEntryGetRegistryEntryID can be used to identify a registry entry across all tasks. A registry entry may be looked up by its entryID by creating a matching dictionary with IORegistryEntryIDMatching() to be used with the IOKit matching functions. The ID is valid only until the machine reboots.
     ///
     /// Parameter `entry`: The registry entry handle whose ID to look up.
@@ -11531,8 +12170,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `entry_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514719-ioregistryentrygetregistryentryi?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetRegistryEntryID(
         entry: io_registry_entry_t,
@@ -11541,6 +12178,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Create a CF dictionary representation of a registry entry's property table.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry handle whose property table to copy.
+    ///
+    /// - properties: A CFDictionary is created and returned the caller on success. The caller should release with CFRelease.
+    ///
+    /// - allocator: The CF allocator to use when creating the CF containers.
+    ///
+    /// - options: No options are currently defined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an instantaneous snapshot of a registry entry's property table, creating a CFDictionary analogue in the caller's task. Not every object available in the kernel is represented as a CF container; currently OSDictionary, OSArray, OSSet, OSSymbol, OSString, OSData, OSNumber, OSBoolean are created as their CF counterparts.
+    ///
+    ///
     /// Create a CF dictionary representation of a registry entry's property table.
     ///
     /// This function creates an instantaneous snapshot of a registry entry's property table, creating a CFDictionary analogue in the caller's task. Not every object available in the kernel is represented as a CF container; currently OSDictionary, OSArray, OSSet, OSSymbol, OSString, OSData, OSNumber, OSBoolean are created as their CF counterparts.
@@ -11559,8 +12220,6 @@ extern "C-unwind" {
     ///
     /// - `properties` must be a valid pointer.
     /// - `allocator` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514310-ioregistryentrycreatecfpropertie?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCreateCFProperties(
         entry: io_registry_entry_t,
@@ -11570,6 +12229,30 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// Create a CF representation of a registry entry's property.
+///
+/// Parameters:
+/// - entry: The registry entry handle whose property to copy.
+///
+/// - key: A CFString specifying the property name.
+///
+/// - allocator: The CF allocator to use when creating the CF container.
+///
+/// - options: No options are currently defined.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A CF container is created and returned the caller on success. The caller should release with CFRelease.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates an instantaneous snapshot of a registry entry property, creating a CF container analogue in the caller's task. Not every object available in the kernel is represented as a CF container; currently OSDictionary, OSArray, OSSet, OSSymbol, OSString, OSData, OSNumber, OSBoolean are created as their CF counterparts.
+///
+///
 /// Create a CF representation of a registry entry's property.
 ///
 /// This function creates an instantaneous snapshot of a registry entry property, creating a CF container analogue in the caller's task. Not every object available in the kernel is represented as a CF container; currently OSDictionary, OSArray, OSSet, OSSymbol, OSString, OSData, OSNumber, OSBoolean are created as their CF counterparts.
@@ -11588,8 +12271,6 @@ extern "C-unwind" {
 ///
 /// - `key` might not allow `None`.
 /// - `allocator` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514293-ioregistryentrycreatecfproperty?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
@@ -11612,6 +12293,32 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
 
 /// Create a CF representation of a registry entry's property.
 ///
+/// Parameters:
+/// - entry: The registry entry at which to start the search.
+///
+/// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+///
+/// - key: A CFString specifying the property name.
+///
+/// - allocator: The CF allocator to use when creating the CF container.
+///
+/// - options: kIORegistryIterateRecursively may be set to recurse automatically into the registry hierarchy. Without this option, this method degenerates into the standard IORegistryEntryCreateCFProperty() call. kIORegistryIterateParents may be set to iterate the parents of the entry, in place of the children.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A CF container is created and returned the caller on success. The caller should release with CFRelease.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates an instantaneous snapshot of a registry entry property, creating a CF container analogue in the caller's task. Not every object available in the kernel is represented as a CF container; currently OSDictionary, OSArray, OSSet, OSSymbol, OSString, OSData, OSNumber, OSBoolean are created as their CF counterparts. This function will search for a property, starting first with specified registry entry's property table, then iterating recusively through either the parent registry entries or the child registry entries of this entry. Once the first occurrence is found, it will lookup and return the value of the property, using the same semantics as IORegistryEntryCreateCFProperty. The iteration keeps track of entries that have been recursed into previously to avoid loops.
+///
+///
+/// Create a CF representation of a registry entry's property.
+///
 /// This function creates an instantaneous snapshot of a registry entry property, creating a CF container analogue in the caller's task. Not every object available in the kernel is represented as a CF container; currently OSDictionary, OSArray, OSSet, OSSymbol, OSString, OSData, OSNumber, OSBoolean are created as their CF counterparts.
 /// This function will search for a property, starting first with specified registry entry's property table, then iterating recusively through either the parent registry entries or the child registry entries of this entry. Once the first occurrence is found, it will lookup and return the value of the property, using the same semantics as IORegistryEntryCreateCFProperty. The iteration keeps track of entries that have been recursed into previously to avoid loops.
 ///
@@ -11632,8 +12339,6 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
 /// - `plane` must be a valid pointer.
 /// - `key` might not allow `None`.
 /// - `allocator` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514537-ioregistryentrysearchcfproperty?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
@@ -11657,8 +12362,6 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514254-ioregistryentrygetproperty?language=objc)
-    ///
     /// # Safety
     ///
     /// - `property_name` must be a valid pointer.
@@ -11676,6 +12379,26 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Set CF container based properties in a registry entry.
     ///
+    /// Parameters:
+    /// - entry: The registry entry whose properties to set.
+    ///
+    /// - properties: A CF container - commonly a CFDictionary but this is not enforced. The container should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code returned by the object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to pass a CF container of properties to an object in the registry. Setting properties in a registry entry is not generally supported, it is more common to support IOConnectSetCFProperties for connection based property setting. The properties are interpreted by the object.
+    ///
+    ///
+    /// Set CF container based properties in a registry entry.
+    ///
     /// This is a generic method to pass a CF container of properties to an object in the registry. Setting properties in a registry entry is not generally supported, it is more common to support IOConnectSetCFProperties for connection based property setting. The properties are interpreted by the object.
     ///
     /// Parameter `entry`: The registry entry whose properties to set.
@@ -11688,8 +12411,6 @@ extern "C-unwind" {
     ///
     /// - `properties` should be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514414-ioregistryentrysetcfproperties?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntrySetCFProperties(
         entry: io_registry_entry_t,
@@ -11698,6 +12419,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set a CF container based property in a registry entry.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry whose property to set.
+    ///
+    /// - propertyName: The name of the property as a CFString.
+    ///
+    /// - property: A CF container - should consist of objects which are understood by IOKit - these are currently : CFDictionary, CFArray, CFSet, CFString, CFData, CFNumber, CFBoolean, and are passed in the kernel as the corresponding OSDictionary etc. objects.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code returned by the object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a generic method to pass a CF container as a property to an object in the registry. Setting properties in a registry entry is not generally supported, it is more common to support IOConnectSetCFProperty for connection based property setting. The property is interpreted by the object.
+    ///
+    ///
     /// Set a CF container based property in a registry entry.
     ///
     /// This is a generic method to pass a CF container as a property to an object in the registry. Setting properties in a registry entry is not generally supported, it is more common to support IOConnectSetCFProperty for connection based property setting. The property is interpreted by the object.
@@ -11715,8 +12458,6 @@ extern "C-unwind" {
     /// - `property_name` might not allow `None`.
     /// - `property` should be of the correct type.
     /// - `property` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514882-ioregistryentrysetcfproperty?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntrySetCFProperty(
         entry: io_registry_entry_t,
@@ -11726,6 +12467,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an iterator over a registry entry’s child entries in a plane.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry whose children to iterate over.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, for example, [`kIOServicePlane`](https://developer.apple.com/documentation/iokit/kioserviceplane).
+    ///
+    /// - iterator: The created iterator over the children of the entry, on success. The iterator must be released when the iteration is finished.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `kern_return_t` error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method creates an iterator which will return each of a registry entry's child entries in a specified plane.
+    ///
+    ///
     /// Returns an iterator over an registry entry's child entries in a plane.
     ///
     /// This method creates an iterator which will return each of a registry entry's child entries in a specified plane.
@@ -11742,8 +12505,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514703-ioregistryentrygetchilditerator?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetChildIterator(
         entry: io_registry_entry_t,
@@ -11753,6 +12514,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the first child of a registry entry in a plane.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry whose child to look up.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - child: The first child of the registry entry, on success. The child must be released by the caller.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function will return the child which first attached to a registry entry in a plane.
+    ///
+    ///
     /// Returns the first child of a registry entry in a plane.
     ///
     /// This function will return the child which first attached to a registry entry in a plane.
@@ -11769,8 +12552,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `child` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514496-ioregistryentrygetchildentry?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetChildEntry(
         entry: io_registry_entry_t,
@@ -11780,6 +12561,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns an iterator over a registry entry’s parent entries in a plane.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry whose parents to iterate over.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, for example, [`kIOServicePlane`](https://developer.apple.com/documentation/iokit/kioserviceplane).
+    ///
+    /// - iterator: The created iterator over the parents of the entry, on success. The iterator must be released when the iteration is finished.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `kern_return_t` error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method creates an iterator which will return each of a registry entry's parent entries in a specified plane.
+    ///
+    ///
     /// Returns an iterator over an registry entry's parent entries in a plane.
     ///
     /// This method creates an iterator which will return each of a registry entry's parent entries in a specified plane.
@@ -11796,8 +12599,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `iterator` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514366-ioregistryentrygetparentiterator?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetParentIterator(
         entry: io_registry_entry_t,
@@ -11807,6 +12608,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the first parent of a registry entry in a plane.
+    ///
+    /// Parameters:
+    /// - entry: The registry entry whose parent to look up.
+    ///
+    /// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+    ///
+    /// - parent: The first parent of the registry entry, on success. The parent must be released by the caller.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A kern_return_t error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function will return the parent to which the registry entry was first attached in a plane.
+    ///
+    ///
     /// Returns the first parent of a registry entry in a plane.
     ///
     /// This function will return the parent to which the registry entry was first attached in a plane.
@@ -11823,8 +12646,6 @@ extern "C-unwind" {
     ///
     /// - `plane` must be a valid pointer.
     /// - `parent` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514454-ioregistryentrygetparententry?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetParentEntry(
         entry: io_registry_entry_t,
@@ -11833,6 +12654,26 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// Determines if the registry entry is attached in a plane.
+///
+/// Parameters:
+/// - entry: The registry entry.
+///
+/// - plane: The name of an existing registry plane. Plane names are defined in IOKitKeys.h, eg. kIOServicePlane.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// If the entry has a parent in the plane, true is returned, otherwise false is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// This method determines if the entry is attached in a plane to any other entry.
+///
+///
 /// Determines if the registry entry is attached in a plane.
 ///
 /// This method determines if the entry is attached in a plane to any other entry.
@@ -11846,8 +12687,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `plane` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514668-ioregistryentryinplane?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
@@ -11866,6 +12705,24 @@ pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
 
 /// Create a matching dictionary that specifies an IOService class match.
 ///
+/// Parameters:
+/// - name: The class name, as a const C-string. Class matching is successful on IOService's of this class or any subclass.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+///
+///
+/// ## Discussion
+///
+/// A very common matching criteria for IOService is based on its class. IOServiceMatching will create a matching dictionary that specifies any IOService of a class, or its subclasses. The class is specified by C-string name.
+///
+///
+/// Create a matching dictionary that specifies an IOService class match.
+///
 /// A very common matching criteria for IOService is based on its class. IOServiceMatching will create a matching dictionary that specifies any IOService of a class, or its subclasses. The class is specified by C-string name.
 ///
 /// Parameter `name`: The class name, as a const C-string. Class matching is successful on IOService's of this class or any subclass.
@@ -11877,8 +12734,6 @@ pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
 /// - `name` must be a valid pointer.
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514687-ioservicematching?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceMatching(
     name: *const c_char,
@@ -11892,6 +12747,24 @@ pub unsafe extern "C-unwind" fn IOServiceMatching(
 
 /// Create a matching dictionary that specifies an IOService name match.
 ///
+/// Parameters:
+/// - name: The IOService name, as a const C-string.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+///
+///
+/// ## Discussion
+///
+/// A common matching criteria for IOService is based on its name. IOServiceNameMatching will create a matching dictionary that specifies an IOService with a given name. Some IOServices created from the device tree will perform name matching on the standard compatible, name, model properties.
+///
+///
+/// Create a matching dictionary that specifies an IOService name match.
+///
 /// A common matching criteria for IOService is based on its name. IOServiceNameMatching will create a matching dictionary that specifies an IOService with a given name. Some IOServices created from the device tree will perform name matching on the standard compatible, name, model properties.
 ///
 /// Parameter `name`: The IOService name, as a const C-string.
@@ -11903,8 +12776,6 @@ pub unsafe extern "C-unwind" fn IOServiceMatching(
 /// - `name` must be a valid pointer.
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514416-ioservicenamematching?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceNameMatching(
     name: *const c_char,
@@ -11916,6 +12787,28 @@ pub unsafe extern "C-unwind" fn IOServiceNameMatching(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Create a matching dictionary that specifies an IOService match based on BSD device name.
+///
+/// Parameters:
+/// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass [`kIOMasterPortDefault`](https://developer.apple.com/documentation/iokit/kiomasterportdefault) to look up the default primary port.
+///
+/// - options: No options are currently defined.
+///
+/// - bsdName: The BSD name, as a const char *.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+///
+///
+/// ## Discussion
+///
+/// IOServices that represent BSD devices have an associated BSD name. This function creates a matching dictionary that will match IOService's with a given BSD name.
+///
+///
 /// Create a matching dictionary that specifies an IOService match based on BSD device name.
 ///
 /// IOServices that represent BSD devices have an associated BSD name. This function creates a matching dictionary that will match IOService's with a given BSD name.
@@ -11933,8 +12826,6 @@ pub unsafe extern "C-unwind" fn IOServiceNameMatching(
 /// - `bsd_name` must be a valid pointer.
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514486-iobsdnamematching?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBSDNameMatching(
@@ -11953,8 +12844,6 @@ pub unsafe extern "C-unwind" fn IOBSDNameMatching(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514715-ioopenfirmwarepathmatching?language=objc)
-///
 /// # Safety
 ///
 /// - `path` must be a valid pointer.
@@ -11981,6 +12870,24 @@ pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
 
 /// Create a matching dictionary that specifies an IOService match based on a registry entry ID.
 ///
+/// Parameters:
+/// - entryID: The registry entry ID to be found.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// The matching dictionary created, is returned on success, or zero on failure. The dictionary is commonly passed to IOServiceGetMatchingServices or IOServiceAddNotification which will consume a reference, otherwise it should be released with CFRelease by the caller.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a matching dictionary that will match a registered, active IOService found with the given registry entry ID. The entry ID for a registry entry is returned by IORegistryEntryGetRegistryEntryID().
+///
+///
+/// Create a matching dictionary that specifies an IOService match based on a registry entry ID.
+///
 /// This function creates a matching dictionary that will match a registered, active IOService found with the given registry entry ID. The entry ID for a registry entry is returned by IORegistryEntryGetRegistryEntryID().
 ///
 /// Parameter `entryID`: The registry entry ID to be found.
@@ -11991,8 +12898,6 @@ pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
 ///
 /// - The returned generic must be of the correct type.
 /// - The returned generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514880-ioregistryentryidmatching?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
     entry_id: u64,
@@ -12005,8 +12910,6 @@ pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514661-ioserviceofpathtobsdname?language=objc)
-    ///
     /// # Safety
     ///
     /// - `open_firmware_path` must be a valid pointer.
@@ -12020,16 +12923,30 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
+/// standard callback function for asynchronous I/O requests with no extra arguments beyond a refcon and result code.
+///
+/// Parameters:
+/// - refcon: The refcon passed into the original I/O request
+///
+/// - result: The result of the I/O operation
+///
 /// standard callback function for asynchronous I/O requests with
 /// no extra arguments beyond a refcon and result code.
 ///
 /// Parameter `refcon`: The refcon passed into the original I/O request
 ///
 /// Parameter `result`: The result of the I/O operation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback0?language=objc)
 pub type IOAsyncCallback0 = Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn)>;
 
+/// standard callback function for asynchronous I/O requests with one extra argument beyond a refcon and result code. This is often a count of the number of bytes transferred
+///
+/// Parameters:
+/// - refcon: The refcon passed into the original I/O request
+///
+/// - result: The result of the I/O operation
+///
+/// - arg0: Extra argument
+///
 /// standard callback function for asynchronous I/O requests with
 /// one extra argument beyond a refcon and result code.
 /// This is often a count of the number of bytes transferred
@@ -12039,10 +12956,19 @@ pub type IOAsyncCallback0 = Option<unsafe extern "C-unwind" fn(*mut c_void, IORe
 /// Parameter `result`: The result of the I/O operation
 ///
 /// Parameter `arg0`: Extra argument
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback1?language=objc)
 pub type IOAsyncCallback1 = Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void)>;
 
+/// standard callback function for asynchronous I/O requests with two extra arguments beyond a refcon and result code.
+///
+/// Parameters:
+/// - refcon: The refcon passed into the original I/O request
+///
+/// - result: The result of the I/O operation
+///
+/// - arg0: Extra argument
+///
+/// - arg1: Extra argument
+///
 /// standard callback function for asynchronous I/O requests with
 /// two extra arguments beyond a refcon and result code.
 ///
@@ -12053,11 +12979,20 @@ pub type IOAsyncCallback1 = Option<unsafe extern "C-unwind" fn(*mut c_void, IORe
 /// Parameter `arg0`: Extra argument
 ///
 /// Parameter `arg1`: Extra argument
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback2?language=objc)
 pub type IOAsyncCallback2 =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut c_void, *mut c_void)>;
 
+/// standard callback function for asynchronous I/O requests with lots of extra arguments beyond a refcon and result code.
+///
+/// Parameters:
+/// - refcon: The refcon passed into the original I/O request
+///
+/// - result: The result of the I/O operation
+///
+/// - args: Array of extra arguments
+///
+/// - numArgs: Number of extra arguments
+///
 /// standard callback function for asynchronous I/O requests with
 /// lots of extra arguments beyond a refcon and result code.
 ///
@@ -12068,14 +13003,10 @@ pub type IOAsyncCallback2 =
 /// Parameter `args`: Array of extra arguments
 ///
 /// Parameter `numArgs`: Number of extra arguments
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioasynccallback?language=objc)
 pub type IOAsyncCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, IOReturn, *mut *mut c_void, u32)>;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514405-iocataloguesenddata?language=objc)
-    ///
     /// # Safety
     ///
     /// `buffer` must be a valid pointer.
@@ -12089,8 +13020,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514665-iocatalogueterminate?language=objc)
-    ///
     /// # Safety
     ///
     /// `description` must be a valid pointer.
@@ -12103,8 +13032,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514233-iocataloguegetdata?language=objc)
-    ///
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
@@ -12119,8 +13046,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514886-iocataloguemoduleloaded?language=objc)
-    ///
     /// # Safety
     ///
     /// `name` must be a valid pointer.
@@ -12131,7 +13056,6 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514702-iocataloguereset?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOCatalogueReset(
@@ -12201,6 +13125,18 @@ unsafe impl RefEncode for IODataQueueMemory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Used to determine if more data is avilable on the queue.
+///
+/// Parameters:
+/// - dataQueue: The IODataQueueMemory region mapped from the kenel.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns true if data is available and false if not.
+///
+///
 /// Used to determine if more data is available on the queue.
 ///
 /// Parameter `dataQueue`: The IODataQueueMemory region mapped from the kernel.
@@ -12210,8 +13146,6 @@ unsafe impl RefEncode for IODataQueueMemory {
 /// # Safety
 ///
 /// `data_queue` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514386-iodataqueuedataavailable?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn IODataQueueDataAvailable(
     data_queue: *mut IODataQueueMemory,
@@ -12226,6 +13160,24 @@ pub unsafe extern "C-unwind" fn IODataQueueDataAvailable(
 extern "C-unwind" {
     /// Used to peek at the next entry on the queue.
     ///
+    /// Parameters:
+    /// - dataQueue: The IODataQueueMemory region mapped from the kernel.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a pointer to the next IODataQueueEntry if one is available. Zero is returned if the queue is empty.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to look at the next entry which allows the entry to be received without having to copy it with IODataQueueDequeue. In order to do this, call IODataQueuePeek to get the entry. Then call IODataQueueDequeue with a NULL data pointer. That will cause the head to be moved to the next entry, but no memory to be copied.
+    ///
+    ///
+    /// Used to peek at the next entry on the queue.
+    ///
     /// This function can be used to look at the next entry which allows the entry to be received without having to copy it with IODataQueueDequeue.  In order to do this, call IODataQueuePeek to get the entry.  Then call IODataQueueDequeue with a NULL data pointer.  That will cause the head to be moved to the next entry, but no memory to be copied.
     ///
     /// Parameter `dataQueue`: The IODataQueueMemory region mapped from the kernel.
@@ -12235,12 +13187,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `data_queue` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514649-iodataqueuepeek?language=objc)
     pub fn IODataQueuePeek(data_queue: *mut IODataQueueMemory) -> *mut IODataQueueEntry;
 }
 
 extern "C-unwind" {
+    /// Dequeues the next available entry on the queue and copies it into the given data pointer.
+    ///
+    /// Parameters:
+    /// - dataQueue: The IODataQueueMemory region mapped from the kernel.
+    ///
+    /// - data: A pointer to the data memory region in which to copy the next entry data on the queue. If this parameter is 0 (NULL), it will simply move to the next entry.
+    ///
+    /// - dataSize: A pointer to the size of the data parameter. On return, this contains the size of the actual entry data - even if the original size was not large enough.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success. Other return values possible are: kIOReturnUnderrun - queue is empty, kIOReturnBadArgument - no dataQueue or no dataSize, kIOReturnNoSpace - dataSize is too small for entry.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function will dequeue the next available entry on the queue. If a data pointer is provided, it will copy the data into the memory region if there is enough space available as specified in the dataSize parameter. If no data pointer is provided, it will simply move the head value past the current entry.
+    ///
+    ///
     /// Dequeues the next available entry on the queue and copies it into the given data pointer.
     ///
     /// This function will dequeue the next available entry on the queue.  If a data pointer is provided, it will copy the data into the memory region if there is enough space available as specified in the dataSize parameter.  If no data pointer is provided, it will simply move the head value past the current entry.
@@ -12258,8 +13230,6 @@ extern "C-unwind" {
     /// - `data_queue` must be a valid pointer.
     /// - `data` must be a valid pointer.
     /// - `data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514287-iodataqueuedequeue?language=objc)
     pub fn IODataQueueDequeue(
         data_queue: *mut IODataQueueMemory,
         data: *mut c_void,
@@ -12268,6 +13238,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Wait for an incoming dataAvailable message on the given notifyPort.
+    ///
+    /// Parameters:
+    /// - dataQueue: The IODataQueueMemory region mapped from the kernel.
+    ///
+    /// - notifyPort: Mach port on which to listen for incoming messages.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success. Returns kIOReturnBadArgument if either dataQueue is 0 (NULL) or notiryPort is MACH_PORT_NULL. Returns the result of the mach_msg() listen call on the given port.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method will simply wait for an incoming message on the given notifyPort. Once it is received, the return from mach_msg() is returned.
+    ///
+    ///
     /// Wait for an incoming dataAvailable message on the given notifyPort.
     ///
     /// This method will simply wait for an incoming message on the given notifyPort.  Once it is received, the return from mach_msg() is returned.
@@ -12281,8 +13271,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `data_queue` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514696-iodataqueuewaitforavailabledata?language=objc)
     #[cfg(feature = "libc")]
     pub fn IODataQueueWaitForAvailableData(
         data_queue: *mut IODataQueueMemory,
@@ -12292,11 +13280,23 @@ extern "C-unwind" {
 
 /// Allocates and returns a new mach port able to receive data available notifications from an IODataQueue.
 ///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns a newly allocated mach port on success. On failure, it returns MACH_PORT_NULL.
+///
+///
+///
+/// ## Discussion
+///
+/// This port is intended to be passed down into the kernel and into an IODataQueue to allow it to send the appropriate notification. The returned mach port is allocated with a queue limit of one message. This allows only one mach message to be queued up at a time. The IODataQueue code is written with the restriction in mind and will only queue up a message if no messages alread have been sent.
+///
+///
+/// Allocates and returns a new mach port able to receive data available notifications from an IODataQueue.
+///
 /// This port is intended to be passed down into the kernel and into an IODataQueue to allow it to send the appropriate notification.  The returned mach port is allocated with a queue limit of one message.  This allows only one mach message to be queued up at a time.  The IODataQueue code is written with the restriction in mind and will only queue up a message if no messages alread have been sent.
 ///
 /// Returns: Returns a newly allocated mach port on success.  On failure, it returns MACH_PORT_NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514495-iodataqueueallocatenotificationp?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t {
@@ -12307,6 +13307,32 @@ pub extern "C-unwind" fn IODataQueueAllocateNotificationPort() -> libc::mach_por
 }
 
 extern "C-unwind" {
+    /// Enqueues a new entry on the queue.
+    ///
+    /// Parameters:
+    /// - dataQueue: The IODataQueueMemory region mapped from the kernel created from an IOSharedDataQueue.
+    ///
+    /// - data: Pointer to the data to be added to the queue.
+    ///
+    /// - dataSize: Size of the data pointed to by data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success. Other return values possible are: kIOReturnOverrun - queue is full.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method adds a new data entry of dataSize to the queue. It sets the size parameter of the entry pointed to by the tail value and copies the memory pointed to by the data parameter in place in the queue. Once that is done, it moves the tail to the next available location. When attempting to add a new entry towards the end of the queue and there isn't enough space at the end, it wraps back to the beginning.
+    ///
+    /// If the queue is empty when a new entry is added, the port specified in IODataQueueSetNotificationPort will be used to send a message to the client process that data is now available.
+    ///
+    /// **Please note that using this method without mapped memory create from an IOSharedDataQueue will result in undefined behavior. **
+    ///
+    ///
     /// Enqueues a new entry on the queue.
     ///
     /// This method adds a new data entry of dataSize to the queue.  It sets the size parameter of the entry pointed to by the tail value and copies the memory pointed to by the data parameter in place in the queue.  Once that is done, it moves the tail to the next available location.  When attempting to add a new entry towards the end of the queue and there isn't enough space at the end, it wraps back to the beginning.
@@ -12329,8 +13355,6 @@ extern "C-unwind" {
     ///
     /// - `data_queue` must be a valid pointer.
     /// - `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514482-iodataqueueenqueue?language=objc)
     pub fn IODataQueueEnqueue(
         data_queue: *mut IODataQueueMemory,
         data: *mut c_void,
@@ -12339,6 +13363,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a simple mach message targeting the mach port specified in port.
+    ///
+    /// Parameters:
+    /// - dataQueue: The IODataQueueMemory region mapped from the kernel created from an IOSharedDataQueue.
+    ///
+    /// - notifyPort: The mach port to target with the notification message.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success. Returns kIOReturnBadArgument if either dataQueue is 0 (NULL).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This message is sent when data is added to an empty queue. It is to notify another user process that new data has become available. **Please note that using this method without mapped memory create from an IOSharedDataQueue will result in undefined behavior. **
+    ///
+    ///
     /// Creates a simple mach message targeting the mach port specified in port.
     ///
     /// This message is sent when data is added to an empty queue.  It is to notify another user process that new data has become available.
@@ -12355,8 +13399,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `data_queue` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1514301-iodataqueuesetnotificationport?language=objc)
     #[cfg(feature = "libc")]
     pub fn IODataQueueSetNotificationPort(
         data_queue: *mut IODataQueueMemory,
@@ -12414,8 +13456,6 @@ unsafe impl RefEncode for IOCFPlugInInterfaceStruct {
 pub type IOCFPlugInInterface = IOCFPlugInInterfaceStruct;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1412429-iocreateplugininterfaceforservic?language=objc)
-    ///
     /// # Safety
     ///
     /// - `plugin_type` might not allow `None`.
@@ -12433,8 +13473,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/1412425-iodestroyplugininterface?language=objc)
-    ///
     /// # Safety
     ///
     /// `interface` must be a valid pointer.
@@ -12444,11 +13482,8 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1403330-anonymous/kiocfserializetobinary?language=objc)
 pub const kIOCFSerializeToBinary: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1403329-iocfserialize?language=objc)
-///
 /// # Safety
 ///
 /// - `object` should be of the correct type.
@@ -12468,8 +13503,6 @@ pub unsafe extern "C-unwind" fn IOCFSerialize(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1390322-iourlcreatepropertyfromresource?language=objc)
-///
 /// # Safety
 ///
 /// - `alloc` might not allow `None`.
@@ -12495,8 +13528,6 @@ pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1390335-iourlcreatedataandpropertiesfrom?language=objc)
-///
 /// # Safety
 ///
 /// - `alloc` might not allow `None`.
@@ -12538,8 +13569,6 @@ pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1390337-iourlwritedataandpropertiestores?language=objc)
-///
 /// # Safety
 ///
 /// - `url` might not allow `None`.
@@ -12569,36 +13598,26 @@ pub unsafe extern "C-unwind" fn IOURLWriteDataAndPropertiesToResource(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOURLError(pub c_int);
 impl IOURLError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlunknownerror?language=objc)
     #[doc(alias = "kIOURLUnknownError")]
     pub const UnknownError: Self = Self(-10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlunknownschemeerror?language=objc)
     #[doc(alias = "kIOURLUnknownSchemeError")]
     pub const UnknownSchemeError: Self = Self(-11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlresourcenotfounderror?language=objc)
     #[doc(alias = "kIOURLResourceNotFoundError")]
     pub const ResourceNotFoundError: Self = Self(-12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlresourceaccessviolationerror?language=objc)
     #[doc(alias = "kIOURLResourceAccessViolationError")]
     pub const ResourceAccessViolationError: Self = Self(-13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlremotehostunavailableerror?language=objc)
     #[doc(alias = "kIOURLRemoteHostUnavailableError")]
     pub const RemoteHostUnavailableError: Self = Self(-14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlimproperargumentserror?language=objc)
     #[doc(alias = "kIOURLImproperArgumentsError")]
     pub const ImproperArgumentsError: Self = Self(-15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlunknownpropertykeyerror?language=objc)
     #[doc(alias = "kIOURLUnknownPropertyKeyError")]
     pub const UnknownPropertyKeyError: Self = Self(-16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourlpropertykeyunavailableerror?language=objc)
     #[doc(alias = "kIOURLPropertyKeyUnavailableError")]
     pub const PropertyKeyUnavailableError: Self = Self(-17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iourlerror/kiourltimeouterror?language=objc)
     #[doc(alias = "kIOURLTimeoutError")]
     pub const TimeoutError: Self = Self(-18);
 }
@@ -12613,48 +13632,106 @@ unsafe impl RefEncode for IOURLError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogadddrivers?language=objc)
+///
+/// ## Discussion
+///
+/// Signals a call to the addDrivers function in IOCatalogue.
+///
+///
 pub const kIOCatalogAddDrivers: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogadddriversnomatch?language=objc)
+///
+/// ## Discussion
+///
+/// Signals a call to the addDrivers function in IOCatalogue but does not start a matching thread.
+///
+///
 pub const kIOCatalogAddDriversNoMatch: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogremovedrivers?language=objc)
+///
+/// ## Discussion
+///
+/// Signals a call to the removeDrivers function in IOCatalogue.
+///
+///
 pub const kIOCatalogRemoveDrivers: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogremovedriversnomatch?language=objc)
+///
+/// ## Discussion
+///
+/// Signals a call to the removedrivers function in IOCatalogue but does not start a matching thread.
+///
+///
 pub const kIOCatalogRemoveDriversNoMatch: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogstartmatching_removed?language=objc)
 pub const kIOCatalogStartMatching__Removed: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogremovekernellinker_removed?language=objc)
 pub const kIOCatalogRemoveKernelLinker__Removed: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogkextdactive?language=objc)
+///
+/// ## Discussion
+///
+/// Signals the kernel that kextd is running.
+///
+///
 pub const kIOCatalogKextdActive: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogkextdfinishedlaunching?language=objc)
+///
+/// ## Discussion
+///
+/// Signals the IOCatalogue that kextd has finished sending it information at startup.
+///
+///
 pub const kIOCatalogKextdFinishedLaunching: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogresetdrivers?language=objc)
+///
+/// ## Discussion
+///
+/// Resets the IOCatalogue with a new set of personalities.
+///
+///
 pub const kIOCatalogResetDrivers: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574381-iocataloguesenddata/kiocatalogresetdriversnomatch?language=objc)
+///
+/// ## Discussion
+///
+/// Resets the IOCatalogue with a new set of personalities but does not start a matching thread.
+///
+///
 pub const kIOCatalogResetDriversNoMatch: c_uint = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574380-iocataloguegetdata/kiocataloggetcontents?language=objc)
+///
+/// ## Discussion
+///
+/// Returns a snapshot of the database to the caller.
+///
+///
 pub const kIOCatalogGetContents: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574380-iocataloguegetdata/kiocataloggetmoduledemandlist?language=objc)
 pub const kIOCatalogGetModuleDemandList: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574380-iocataloguegetdata/kiocataloggetcachemisslist?language=objc)
 pub const kIOCatalogGetCacheMissList: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574380-iocataloguegetdata/kiocataloggetrommkextlist?language=objc)
 pub const kIOCatalogGetROMMkextList: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574379-iocataloguereset/kiocatalogresetdefault?language=objc)
+///
+/// ## Discussion
+///
+/// Removes all entries from IOCatalogue except those used for booting the system.
+///
+///
 pub const kIOCatalogResetDefault: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574378-iocatalogueterminate/kiocatalogmoduleunload?language=objc)
+///
+/// ## Discussion
+///
+/// Terminates all services which depend on a particular module and unloads the module.
+///
+///
 pub const kIOCatalogModuleUnload: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574378-iocatalogueterminate/kiocatalogmoduleterminate?language=objc)
+///
+/// ## Discussion
+///
+/// Terminates all services which depend on a particular module but does not unload the module.
+///
+///
 pub const kIOCatalogModuleTerminate: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574378-iocatalogueterminate/kiocatalogserviceterminate?language=objc)
+///
+/// ## Discussion
+///
+/// Terminates a particular service by name.
+///
+///
 pub const kIOCatalogServiceTerminate: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514265-iocfunserialize?language=objc)
-///
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
@@ -12679,8 +13756,6 @@ pub unsafe extern "C-unwind" fn IOCFUnserialize(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514876-iocfunserializebinary?language=objc)
-///
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
@@ -12708,8 +13783,6 @@ pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514745-iocfunserializewithsize?language=objc)
-///
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
@@ -12740,36 +13813,22 @@ pub unsafe extern "C-unwind" fn IOCFUnserializeWithSize(
 /// IOMessage.h
 ///
 /// Defines message type constants for several IOKit messaging API's.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iomessage?language=objc)
 pub type IOMessage = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/osobjectref?language=objc)
 pub type OSObjectRef = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3353072-anonymous/kiorpcversion190615?language=objc)
 pub const kIORPCVersion190615: c_uint = 0x4da2b68c;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3353072-anonymous/kiorpcversion190615reply?language=objc)
 pub const kIORPCVersion190615Reply: c_uint = 0x4da2b68d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessageremote?language=objc)
 pub const kIORPCMessageRemote: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessagelocalhost?language=objc)
 pub const kIORPCMessageLocalHost: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessagekernel?language=objc)
 pub const kIORPCMessageKernel: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessageoneway?language=objc)
 pub const kIORPCMessageOneway: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessageobjectrefs?language=objc)
 pub const kIORPCMessageObjectRefs: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessageonqueue?language=objc)
 pub const kIORPCMessageOnqueue: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessageerror?language=objc)
 pub const kIORPCMessageError: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074863-anonymous/kiorpcmessagesimplereply?language=objc)
 pub const kIORPCMessageSimpleReply: c_uint = 0x00000080;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessage?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IORPCMessage {
@@ -12797,7 +13856,6 @@ unsafe impl RefEncode for IORPCMessage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessageerrorreturncontent?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -12824,10 +13882,8 @@ unsafe impl RefEncode for IORPCMessageErrorReturnContent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3074864-anonymous/kosclasscanremote?language=objc)
 pub const kOSClassCanRemote: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/osclassdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct OSClassDescription {

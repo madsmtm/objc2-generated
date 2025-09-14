@@ -8,14 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A container that shares audio parameters with a collection of sounds.
+    ///
+    /// ## Overview
+    ///
+    /// With all the sounds it contains, a group shares settings like gain, playback rate, mute, and solo. Groups are nonhierarchical and don’t overlap — that is, each sound event associates with only one group.
+    ///
+    /// ### Apply Group Settings to Sounds
+    ///
+    /// You can apply settings to the sounds a group contains. For instance, an app can share volume settings with various sound effects and dialogue audio groups. The following example creates a group for background audio, such as environmental sound layers played with ambient music. By interpolating the group’s gain setting, the audio fade applies to every sound in the group.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Allocate an engine and stereo mixer.", "let stereoLayout = AVAudioChannelLayout(layoutTag: kAudioChannelLayoutTag_Stereo)!", "let myEngine = PHASEEngine(updateMode: .automatic)", "let stereoMixer = PHASEChannelMixerDefinition(channelLayout:stereoLayout)", "", "// Create a group object.", "let bgmGroup = PHASEGroup(identifier:\"backgroundMusicGroup\")", "bgmGroup.register(engine: myEngine)", "", "// Create a sound event node definition for background music.", "let backgroundMusicSampler = PHASESamplerNodeDefinition(soundAssetIdentifier: \"backgroundMusic\", mixerDefinition: stereoMixer)", "        ", "// Add the sound node to the group.", "backgroundMusicSampler.group = myEngine.groups[\"backgroundMusicGroup\"]", "        ", "// Set group gain to zero.", "bgmGroup.gain = 0", "        ", "// Create a sound event to play the music.", "var bgmEvent: PHASESoundEvent?", "do {", "    try bgmEvent = PHASESoundEvent(engine: myEngine, assetIdentifier: \"backgroundMusicEventAsset\")", "} catch {", "    fatalError(\"Error occurred: \\(error.localizedDescription)\")", "}", "        ", "// Queue the background music to play.", "bgmEvent?.start() { reason in", "    print(\"Started. Status: \\(reason)\")", "}", "        ", "// Fade in the music over two seconds.", "bgmGroup.fadeGain(gain: 1.0, duration: 2.0, curveType: .linear)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create a group object.", "PHASEGroup* bgmGroup = [[PHASEGroup alloc] initWithEngine:myEngine uid@\"backgroundMusicGroup\"];", "", "// Create a sound event node definition for background music. ", "PHASESamplerNodeDefinition* backgroundMusicSampler = [[PHASESamplerNodeDefinition alloc] initWithSoundAssetUID:@\"backgroundMusic\" mixerDefinition:mixer];", "", "// Add the sound node to the group.", "backgroundMusicSampler.group = myPHASEEngine.activeGroups[@\"backgroundMusicGroup\"];", "", "// Set group gain to zero. ", "bgmGroup.gain = 0;", "", "// Create a sound event to play the music.", "PHASESoundEvent* bgmEvent = [[PHASESoundEvent alloc] initWithEngine:_objects->mEngine", "    registeredSoundEventNodeAssetUID:@\"backgroundMusicEventAsset\" outError:nil];", "", "// Queue the background music to play.", "NSError* myError = nil;", "[bgmEvent startAndReturnError:&myError];", " ", "// Fade in the music over two seconds.", "[bgmGroup fadeGain:1.0 duration:2.0 curveType:PHASECurveTypeLinear];"], metadata: None }] }] })
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEGroup allows clients to group generator nodes for shared processing.
     /// Clients can set the gain and playback rate, as well as mute and solo the generator nodes in a group.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasegroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEGroup;

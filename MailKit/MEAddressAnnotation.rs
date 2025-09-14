@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An instance of this class can be used to change the visual style of recipeint email address token when user in composing a mail message.
+    /// An object that indicates the validity of an email address.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/meaddressannotation?language=objc)
+    /// ## Overview
+    ///
+    /// Mail displays the status of an annotation as part of the address tokens in the To, Cc, and Bcc fields using a status icon and color.
+    ///
+    ///
+    /// An instance of this class can be used to change the visual style of recipeint email address token when user in composing a mail message.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEAddressAnnotation;

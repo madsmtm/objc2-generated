@@ -4,7 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions?language=objc)
+/// Constants indicating attributes of a photo.
 // NS_OPTIONS
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
 #[repr(transparent)]
@@ -12,115 +12,115 @@ use crate::*;
 pub struct INPhotoAttributeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INPhotoAttributeOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/photo?language=objc)
+/// A still image.
         #[doc(alias = "INPhotoAttributeOptionPhoto")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const Photo = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/video?language=objc)
+/// A video.
         #[doc(alias = "INPhotoAttributeOptionVideo")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const Video = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/gif?language=objc)
+/// A Graphics Interchange Format image.
         #[doc(alias = "INPhotoAttributeOptionGIF")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const GIF = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/flash?language=objc)
+/// A photo taken with a flash.
         #[doc(alias = "INPhotoAttributeOptionFlash")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const Flash = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/landscapeorientation?language=objc)
+/// A landscape aspect ratio.
         #[doc(alias = "INPhotoAttributeOptionLandscapeOrientation")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const LandscapeOrientation = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/portraitorientation?language=objc)
+/// A portrait aspect ratio.
         #[doc(alias = "INPhotoAttributeOptionPortraitOrientation")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const PortraitOrientation = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/favorite?language=objc)
+/// A favorite item.
         #[doc(alias = "INPhotoAttributeOptionFavorite")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const Favorite = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/selfie?language=objc)
+/// A selfie.
         #[doc(alias = "INPhotoAttributeOptionSelfie")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const Selfie = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/frontfacingcamera?language=objc)
+/// Taken using a front-facing camera.
         #[doc(alias = "INPhotoAttributeOptionFrontFacingCamera")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const FrontFacingCamera = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/screenshot?language=objc)
+/// A screenshot.
         #[doc(alias = "INPhotoAttributeOptionScreenshot")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const Screenshot = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/burstphoto?language=objc)
+/// A burst-mode photo.
         #[doc(alias = "INPhotoAttributeOptionBurstPhoto")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const BurstPhoto = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/hdrphoto?language=objc)
+/// An HDR photo.
         #[doc(alias = "INPhotoAttributeOptionHDRPhoto")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const HDRPhoto = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/squarephoto?language=objc)
+/// A square photo.
         #[doc(alias = "INPhotoAttributeOptionSquarePhoto")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const SquarePhoto = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/panoramaphoto?language=objc)
+/// A panorama photo.
         #[doc(alias = "INPhotoAttributeOptionPanoramaPhoto")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const PanoramaPhoto = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/timelapsevideo?language=objc)
+/// A time-lapse video.
         #[doc(alias = "INPhotoAttributeOptionTimeLapseVideo")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const TimeLapseVideo = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/slowmotionvideo?language=objc)
+/// A slow-motion video.
         #[doc(alias = "INPhotoAttributeOptionSlowMotionVideo")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const SlowMotionVideo = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/noirfilter?language=objc)
+/// A noir filter.
         #[doc(alias = "INPhotoAttributeOptionNoirFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const NoirFilter = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/chromefilter?language=objc)
+/// A chrome filter.
         #[doc(alias = "INPhotoAttributeOptionChromeFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const ChromeFilter = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/instantfilter?language=objc)
+/// An instant filter.
         #[doc(alias = "INPhotoAttributeOptionInstantFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const InstantFilter = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/tonalfilter?language=objc)
+/// A tonal filter.
         #[doc(alias = "INPhotoAttributeOptionTonalFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const TonalFilter = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/transferfilter?language=objc)
+/// A transfer filter.
         #[doc(alias = "INPhotoAttributeOptionTransferFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const TransferFilter = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/monofilter?language=objc)
+/// A mono filter.
         #[doc(alias = "INPhotoAttributeOptionMonoFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const MonoFilter = 1<<21;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/fadefilter?language=objc)
+/// A fade filter.
         #[doc(alias = "INPhotoAttributeOptionFadeFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const FadeFilter = 1<<22;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/processfilter?language=objc)
+/// A process filter.
         #[doc(alias = "INPhotoAttributeOptionProcessFilter")]
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
         const ProcessFilter = 1<<23;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/portraitphoto?language=objc)
+/// A portrait photo.
         #[doc(alias = "INPhotoAttributeOptionPortraitPhoto")]
         const PortraitPhoto = 1<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/livephoto?language=objc)
+/// A live photo.
         #[doc(alias = "INPhotoAttributeOptionLivePhoto")]
         const LivePhoto = 1<<25;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/loopphoto?language=objc)
+/// A live photo edited with the loop effect.
         #[doc(alias = "INPhotoAttributeOptionLoopPhoto")]
         const LoopPhoto = 1<<26;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/bouncephoto?language=objc)
+/// A live photo edited with the bounce effect.
         #[doc(alias = "INPhotoAttributeOptionBouncePhoto")]
         const BouncePhoto = 1<<27;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inphotoattributeoptions/longexposurephoto?language=objc)
+/// A live photo edited with the long exxposure effect.
         #[doc(alias = "INPhotoAttributeOptionLongExposurePhoto")]
         const LongExposurePhoto = 1<<28;
     }

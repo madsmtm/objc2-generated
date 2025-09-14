@@ -8,11 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A result object that contains data about the likely presence of dyskinetic symptoms during a one-minute interval.
+    ///
+    /// ## Overview
+    ///
+    /// Dyskinesias are uncontrolled, involuntary movements that occur as a side effect of taking Levadopa to control Parkinson’s disease. Dyskinesias can manifest in a single body part, such as the arm, leg, or head, or they can affect the entire body. Particular dyskinesias resemble actions like fidgeting, writhing, wriggling, head bobbing, or body swaying. These symptoms tend to occur during the drug’s peak dosage. Dyskinesias typically occur in patients with advanced Parkinson’s disease, who may require higher dosages of Levadopa.
+    ///
+    /// The following equation is always true: [`percentUnlikely`](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresult/percentunlikely) `+` [`percentLikely`](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresult/percentlikely) `= 1.0`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Gather and present data on dyskinetic symptom results only to users with choreiform dyskinesias, either self-reported or diagnosed by a clinician.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A CMDyskineticSymptomResult object describes the presence and prevalence of dyskinetic symptoms (specifically, choreiform movements) during a one minute result period when subjects wear the Apple Watch on their most affected arm.
     /// percentUnlikely + percentLikely = 1.0
     /// Please note dyskinetic symptom measurements are designed for subjects with known presence of chorea in the arm and should not be displayed to users who do not report episodes of dyskinetic symptoms.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMDyskineticSymptomResult;
@@ -76,10 +91,15 @@ impl CMDyskineticSymptomResult {
 }
 
 extern_class!(
+    /// A result object that contains data about the presence and strength of tremors during a one-minute interval.
+    ///
+    /// ## Overview
+    ///
+    /// The following equation is always true: [`percentUnknown`](https://developer.apple.com/documentation/coremotion/cmtremorresult/percentunknown) `+` [`percentNone`](https://developer.apple.com/documentation/coremotion/cmtremorresult/percentnone) `+` [`percentSlight`](https://developer.apple.com/documentation/coremotion/cmtremorresult/percentslight) `+` [`percentMild`](https://developer.apple.com/documentation/coremotion/cmtremorresult/percentmild) `+` [`percentModerate`](https://developer.apple.com/documentation/coremotion/cmtremorresult/percentmoderate) `+` [`percentStrong`](https://developer.apple.com/documentation/coremotion/cmtremorresult/percentstrong) `= 1.0`.
+    ///
+    ///
     /// A CMTremorResult object describes the presence and prevalence of tremor symptoms (specifically, resting tremor) during a one minute result period when subjects wear the Apple Watch on their most affected arm.
     /// percentUnknown + percentNoTremor + percentTremorSlight + percentTremorMild + percentTremorModerate + percentTremorStrong = 1.0
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMTremorResult;
@@ -165,24 +185,57 @@ impl CMTremorResult {
     );
 }
 
-/// Completion handler for CMDyskineticSymptomResult values.
+/// A completion handler for processing dyskinetic symptom results.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdyskineticsymptomresulthandler?language=objc)
+/// Parameters:
+/// - dyskineticSymptomResult: An array of dyskinetic symptom results found by the query.
+///
+/// - error: If an error occurred, this parameter contains information about the error; otherwise it is `nil`.
+///
+/// Completion handler for CMDyskineticSymptomResult values.
 #[cfg(feature = "block2")]
 pub type CMDyskineticSymptomResultHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<CMDyskineticSymptomResult>>, *mut NSError)>;
 
-/// Completion handler for CMTremorResult values.
+/// A completion handler for accessing and processing tremor results.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmtremorresulthandler?language=objc)
+/// Parameters:
+/// - tremorResult: An array of tremor results found by the query.
+///
+/// - error: If an error occurred, this parameter contains information about the error; otherwise it is `nil`.
+///
+/// Completion handler for CMTremorResult values.
 #[cfg(feature = "block2")]
 pub type CMTremorResultHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<CMTremorResult>>, *mut NSError)>;
 
 extern_class!(
-    /// A CMMovementDisorderManager object with methods for persistence and query of movement disorder results.
+    /// A manager for recording and querying movement disorder data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmovementdisordermanager?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Only collect data from patients clinically diagnosed with a movement disorder. This API is not designed to collect data from users who have not been diagnosed with a movement disorder. All medical decisions should be made through the guidance of a licensed clinician. For more information, see [Adhering to the movement disorder data collection requirements](https://developer.apple.com/documentation/coremotion/adhering-to-the-movement-disorder-data-collection-requirements).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use `CMMovementDisorderManager` to measure a resting Parkinsonian tremor in the 3-7 Hz range and choreiform dyskinetic symptoms. When collecting data, the user should wear Apple Watch on their most affected arm.
+    ///
+    /// `CMMovementDisorderManager` requires an entitlement from Apple. To apply for the entitlement, see [Movement Disorder Entitlement Request](https://developer.apple.com/contact/request/movement-disorder-api-entitlement/).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use this API, you must include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file and provide a usage description string for this key. The usage description appears in the prompt that the user must accept the first time the system asks the user to access motion data for your app. If you don’t include a usage description string, your app crashes when you call this API.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A CMMovementDisorderManager object with methods for persistence and query of movement disorder results.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMMovementDisorderManager;

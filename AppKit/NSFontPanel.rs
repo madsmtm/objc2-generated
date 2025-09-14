@@ -7,44 +7,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontPanelModeMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontPanelModeMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/face?language=objc)
         #[doc(alias = "NSFontPanelModeMaskFace")]
         const ModeMaskFace = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/size?language=objc)
         #[doc(alias = "NSFontPanelModeMaskSize")]
         const ModeMaskSize = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/collection?language=objc)
         #[doc(alias = "NSFontPanelModeMaskCollection")]
         const ModeMaskCollection = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/underlineeffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskUnderlineEffect")]
         const ModeMaskUnderlineEffect = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/strikethrougheffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskStrikethroughEffect")]
         const ModeMaskStrikethroughEffect = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/textcoloreffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskTextColorEffect")]
         const ModeMaskTextColorEffect = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/documentcoloreffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskDocumentColorEffect")]
         const ModeMaskDocumentColorEffect = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/shadoweffect?language=objc)
         #[doc(alias = "NSFontPanelModeMaskShadowEffect")]
         const ModeMaskShadowEffect = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/alleffects?language=objc)
         #[doc(alias = "NSFontPanelModeMaskAllEffects")]
         const ModeMaskAllEffects = 0xFFF00;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/standardmodes?language=objc)
         #[doc(alias = "NSFontPanelModesMaskStandardModes")]
         const ModesMaskStandardModes = 0xFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel/modemask/allmodes?language=objc)
         #[doc(alias = "NSFontPanelModesMaskAllModes")]
         const ModesMaskAllModes = 0xFFFFFFFF;
     }
@@ -59,7 +47,6 @@ unsafe impl RefEncode for NSFontPanelModeMask {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontchanging?language=objc)
     pub unsafe trait NSFontChanging: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSFontManager")]
         #[optional]
@@ -76,7 +63,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanel?language=objc)
+    /// The Font panel—a user interface object that displays a list of available fonts, letting the user preview them and change the font used to display text.
+    ///
+    /// ## Overview
+    ///
+    /// Actual changes to the font panel are made through conversion messages sent to the shared [`NSFontManager`](https://developer.apple.com/documentation/appkit/nsfontmanager) instance. There’s only one Font panel for each app.
+    ///
+    ///
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
@@ -283,47 +276,47 @@ impl NSFontPanel {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelfacemodemask?language=objc)
+/// Display the typeface column.
 pub const NSFontPanelFaceModeMask: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelsizemodemask?language=objc)
+/// Display the font size column.
 pub const NSFontPanelSizeModeMask: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelcollectionmodemask?language=objc)
+/// Display the font collections column.
 pub const NSFontPanelCollectionModeMask: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelunderlineeffectmodemask?language=objc)
+/// Display the underline popup menu.
 pub const NSFontPanelUnderlineEffectModeMask: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelstrikethrougheffectmodemask?language=objc)
+/// Display the strike-through popup menu.
 pub const NSFontPanelStrikethroughEffectModeMask: c_uint = 1 << 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpaneltextcoloreffectmodemask?language=objc)
+/// Display the text color button.
 pub const NSFontPanelTextColorEffectModeMask: c_uint = 1 << 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpaneldocumentcoloreffectmodemask?language=objc)
+/// Display the document color button.
 pub const NSFontPanelDocumentColorEffectModeMask: c_uint = 1 << 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelshadoweffectmodemask?language=objc)
+/// Display the shadow effects button.
 pub const NSFontPanelShadowEffectModeMask: c_uint = 1 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelalleffectsmodemask?language=objc)
+/// Display all the effects user interface items.
 pub const NSFontPanelAllEffectsModeMask: c_uint = 0xFFF00;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelstandardmodesmask?language=objc)
+/// Display the standard default font panel—that is, including the collections, typeface, and size columns.
 pub const NSFontPanelStandardModesMask: c_uint = 0xFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontpanelallmodesmask?language=objc)
+/// Display all the available adornments.
 pub const NSFontPanelAllModesMask: c_uint = 0xFFFFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfppreviewbutton?language=objc)
+/// Show the Preview button.
 #[deprecated]
 pub const NSFPPreviewButton: c_uint = 131;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfprevertbutton?language=objc)
+/// Show the Revert button.
 #[deprecated]
 pub const NSFPRevertButton: c_uint = 130;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsetbutton?language=objc)
+/// Show the Set button.
 #[deprecated]
 pub const NSFPSetButton: c_uint = 132;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfppreviewfield?language=objc)
+/// Show the Preview field.
 #[deprecated]
 pub const NSFPPreviewField: c_uint = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsizefield?language=objc)
+/// Show the Size field.
 #[deprecated]
 pub const NSFPSizeField: c_uint = 129;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpsizetitle?language=objc)
+/// Show the Size title.
 #[deprecated]
 pub const NSFPSizeTitle: c_uint = 133;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfpcurrentfield?language=objc)
+/// Show the Current field.
 #[deprecated]
 pub const NSFPCurrentField: c_uint = 134;

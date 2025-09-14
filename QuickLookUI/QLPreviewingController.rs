@@ -9,12 +9,24 @@ use crate::*;
 
 /// A type that defines a block used to load a Quick Look preview item.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewitemloadingblock?language=objc)
+/// ## Discussion
+///
+/// A type that defines a block used to load a Quick Look preview item.
+///
+///
+/// A type that defines a block used to load a Quick Look preview item.
 #[deprecated = "Use void (^)(NSError * _Nullable) instead"]
 #[cfg(feature = "block2")]
 pub type QLPreviewItemLoadingBlock = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_protocol!(
+    /// A protocol for implementing a custom controller to create previews of files.
+    ///
+    /// ## Overview
+    ///
+    /// A controller that implements the `QLPreviewingController` protocol must at least implement [`preparePreviewOfSearchableItemWithIdentifier:queryString:completionHandler:`](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller/preparepreviewofsearchableitem(identifier:querystring:completionhandler:)) or [`preparePreviewOfFileAtURL:completionHandler:`](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller/preparepreviewoffile(at:completionhandler:)).
+    ///
+    ///
     /// A protocol for implementing a custom controller to create previews of files.
     ///
     /// A controller that implements the
@@ -24,8 +36,6 @@ extern_protocol!(
     /// ://com.apple.documentation/documentation//quicklook/qlpreviewingcontroller/2882042-preparepreviewofsearchableitem> or
     /// <doc
     /// ://com.apple.documentation/documentation/quicklook/qlpreviewingcontroller/2867936-preparepreviewoffile>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewingcontroller?language=objc)
     pub unsafe trait QLPreviewingController: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Prepares the preview for a file by using the data from Spotlight’s searchable item.

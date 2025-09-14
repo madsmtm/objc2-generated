@@ -8,19 +8,17 @@ use objc2_symbols::*;
 
 use crate::*;
 
+/// A completion handler for adding and removing symbol effects and transitions.
 /// Completion handler for adding and removing symbol effects/content transitions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletion-6rxwa?language=objc)
 #[cfg(feature = "block2")]
 pub type UISymbolEffectCompletion =
     *mut block2::DynBlock<dyn Fn(NonNull<UISymbolEffectCompletionContext>)>;
 
 extern_class!(
+    /// Information about a symbol effect’s addition or removal.
     /// Represents information about a symbol effect's completion.
     /// You don't create one of these. Instead, UIKit creates one and passes it into the completion handler
     /// of a symbol effect or symbol content transition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymboleffectcompletioncontext-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

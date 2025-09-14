@@ -10,9 +10,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A structure used to pass data between the authorization engine and the plug-in mechanism.
 /// Auxiliary data is passed between the engine and the mechanism as AuthorizationValues
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationvalue?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationValue {
@@ -33,14 +32,13 @@ unsafe impl RefEncode for AuthorizationValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure used to pass arguments from the authorization policy database to the authorization mechanism.
 /// A vector of AuthorizationValues.  Used to communicate arguments passed from the
 /// configuration file
 /// <code>
 /// authorization(5)
 /// </code>
 /// .
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationvaluevector?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AuthorizationValueVector {
@@ -61,25 +59,30 @@ unsafe impl RefEncode for AuthorizationValueVector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The flags that specify whether authentication data should be made available to the authorization client.
 /// Data produced as context during the authorization evaluation is tagged.
 /// If data is set to be extractable (kAuthorizationContextFlagExtractable), it will be possible for the client of authorization to obtain the value of this attribute using AuthorizationCopyInfo().
 /// If data is marked as volatile (kAuthorizationContextFlagVolatile), this value will not be remembered in the AuthorizationRef.
 /// Sticky data (kAuthorizationContextFlagSticky) persists through a failed or interrupted evaluation. It can be used to propagate an error condition from a downstream plugin to an upstream one. It is not remembered in the AuthorizationRef.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AuthorizationContextFlags(pub u32);
 bitflags::bitflags! {
     impl AuthorizationContextFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags/kauthorizationcontextflagextractable?language=objc)
+/// It is possible for the authorization client to use the [`AuthorizationCopyInfo(_:_:_:)`](https://developer.apple.com/documentation/security/authorizationcopyinfo(_:_:_:)) function to obtain the value.
         #[doc(alias = "kAuthorizationContextFlagExtractable")]
         const Extractable = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags/kauthorizationcontextflagvolatile?language=objc)
+/// The value is not saved for the authorization client.
         #[doc(alias = "kAuthorizationContextFlagVolatile")]
         const Volatile = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags/kauthorizationcontextflagsticky?language=objc)
+/// This data persists through an interrupted or failed evaluation.
+///
+/// ## Discussion
+///
+/// This flag can be used to propagate an error condition from a downstream plug-in to an upstream one. It is not remembered in the authorization reference (see [Authorization Services](https://developer.apple.com/documentation/security/authorization-services)).
+///
+///
         #[doc(alias = "kAuthorizationContextFlagSticky")]
         const Sticky = 1<<2;
     }
@@ -95,26 +98,40 @@ unsafe impl RefEncode for AuthorizationContextFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The mechanism ID specified in the authorization policy database is passed to the plug-in to create the appropriate mechanism.
 /// The mechanism id specified in the configuration is passed to the plugin to create the appropriate mechanism.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmechanismid?language=objc)
 #[cfg(feature = "Authorization")]
 pub type AuthorizationMechanismId = AuthorizationString;
 
-/// Not used by plugin writers.  Loaded plugins are identified by their name.
+/// An unused identifier for a plug-in.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationpluginid?language=objc)
+/// ## Discussion
+///
+/// This identifier is not used by plugin writers. Loaded plugins are identified by their name instead.
+///
+///
+/// Not used by plugin writers.  Loaded plugins are identified by their name.
 #[cfg(feature = "Authorization")]
 pub type AuthorizationPluginId = AuthorizationString;
 
-/// Handle passed back by the plugin writer when creating a plugin.  Any pluginhost will only instantiate one instance.  The handle is used when creating mechanisms.
+/// A handle passed by the plug-in to the authorization engine when the plug-in is initiated.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationpluginref?language=objc)
+/// ## Discussion
+///
+/// Your [`AuthorizationPluginCreate`](https://developer.apple.com/documentation/security/authorizationplugincreate) function assigns this value and returns it to the authorization engine. The authorization engine passes this reference back to you in any subsequent calls to your [`MechanismCreate`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismcreate) and [`PluginDestroy`](https://developer.apple.com/documentation/security/authorizationplugininterface/plugindestroy) functions.
+///
+///
+/// Handle passed back by the plugin writer when creating a plugin.  Any pluginhost will only instantiate one instance.  The handle is used when creating mechanisms.
 pub type AuthorizationPluginRef = *mut c_void;
 
-/// Handle passed back by the plugin writer when creating an an instance of a mechanism in a plugin.  One instance will be created for any authorization.
+/// A handle passed by the plug-in to the authorization engine when creating an instance of a mechanism.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmechanismref?language=objc)
+/// ## Discussion
+///
+/// Your [`MechanismCreate`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismcreate) function assigns this value and returns it to the authorization engine. The authorization engine passes this reference back to you in any subsequent calls to your [`MechanismInvoke`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanisminvoke), [`MechanismDeactivate`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismdeactivate), and [`MechanismDestroy`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismdestroy) functions.
+///
+///
+/// Handle passed back by the plugin writer when creating an an instance of a mechanism in a plugin.  One instance will be created for any authorization.
 pub type AuthorizationMechanismRef = *mut c_void;
 
 #[repr(C)]
@@ -130,35 +147,44 @@ unsafe impl RefEncode for __OpaqueAuthorizationEngine {
         Encoding::Pointer(&Encoding::Struct("__OpaqueAuthorizationEngine", &[]));
 }
 
-/// Handle passed from the engine to an instance of a mechanism in a plugin (corresponds to a particular AuthorizationMechanismRef).
+/// Handle passed from the authorization engine to an instance of a mechanism in a plug-in.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationengineref?language=objc)
+/// ## Discussion
+///
+/// The authorization engine passes one of these opaque handles to your plug-in when it calls your [`MechanismCreate`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismcreate) function. Your mechanism must pass this handle back to the authorization engine when you call one of the engine’s callback functions, as defined in the [`AuthorizationCallbacks`](https://developer.apple.com/documentation/security/authorizationcallbacks) structure.
+///
+///
+/// Handle passed from the engine to an instance of a mechanism in a plugin (corresponds to a particular AuthorizationMechanismRef).
 pub type AuthorizationEngineRef = *mut __OpaqueAuthorizationEngine;
 
+/// A unique value for an authorization session, provided by the authorization engine.
+///
+/// ## Discussion
+///
+/// Use the [`GetSessionId`](https://developer.apple.com/documentation/security/authorizationcallbacks/getsessionid) function to retrieve the authorization session ID.
+///
+///
 /// A unique value for an AuthorizationSession being evaluated, provided by the authorization engine.
 /// A session is represented by a top level call to an Authorization API.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationsessionid?language=objc)
 pub type AuthorizationSessionId = *mut c_void;
 
+/// The permissible values for an authorization evaluation result.
 /// Possible values for SetResult() in AuthorizationCallbacks.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult?language=objc)
 // NS_CLOSED_ENUM
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum AuthorizationResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultallow?language=objc)
+    /// The authorization operation succeeded and authorization should be granted.
     #[doc(alias = "kAuthorizationResultAllow")]
     #[default]
     Allow = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultdeny?language=objc)
+    /// The authorization operation succeeded and authorization should be denied.
     #[doc(alias = "kAuthorizationResultDeny")]
     Deny = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultundefined?language=objc)
+    /// The authorization operation failed and should not be retried for this session.
     #[doc(alias = "kAuthorizationResultUndefined")]
     Undefined = 2,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult/kauthorizationresultusercanceled?language=objc)
+    /// The user has requested that the authorization evaluation be terminated.
     #[doc(alias = "kAuthorizationResultUserCanceled")]
     UserCanceled = 3,
 }
@@ -173,12 +199,17 @@ unsafe impl RefEncode for AuthorizationResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationplugininterfaceversion?language=objc)
 pub const kAuthorizationPluginInterfaceVersion: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationcallbacksversion?language=objc)
 pub const kAuthorizationCallbacksVersion: c_uint = 4;
 
+/// The interface implemented by the Security Server.
+///
+/// ## Overview
+///
+/// This structure declares the functions that your authorization plug-in uses to communicate with the authorization engine. These functions are passed to your plug-in through the [`AuthorizationPluginCreate`](https://developer.apple.com/documentation/security/authorizationplugincreate) function.
+///
+///
 /// Callback API provided by the AuthorizationEngine.
 ///
 /// Field: version      Engine callback version.
@@ -196,8 +227,6 @@ pub const kAuthorizationCallbacksVersion: c_uint = 4;
 /// Field: GetTKTokenWatcher    Returns TKTokenWatcher object. Caller owns returned context and is responsible for release.
 /// Field: RemoveContextValue   Removes value from context.
 /// Field: RemoveHintValue      Removes value from hints.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcallbacks?language=objc)
 #[cfg(feature = "Authorization")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -285,6 +314,13 @@ unsafe impl RefEncode for AuthorizationCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The interface that must be implemented by your plug-in.
+///
+/// ## Overview
+///
+/// Your plug-in passes this interface to the authorization engine through the [`AuthorizationPluginCreate`](https://developer.apple.com/documentation/security/authorizationplugincreate) function.
+///
+///
 /// Interface that must be implemented by each plugin.
 ///
 /// Field: version  Must be set to kAuthorizationPluginInterfaceVersion
@@ -293,8 +329,6 @@ unsafe impl RefEncode for AuthorizationCallbacks {
 /// Field: MechanismInvoke  Invoke an instance of a mechanism.  It should call SetResult during or after returning from this function.
 /// Field: MechanismDeactivate  Mechanism should respond with a DidDeactivate as soon as possible
 /// Field: MechanismDestroy Mechanism should clean up and release any resources it is holding
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationplugininterface?language=objc)
 #[cfg(feature = "Authorization")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -339,6 +373,37 @@ unsafe impl RefEncode for AuthorizationPluginInterface {
 }
 
 extern "C-unwind" {
+    /// Initializes the plug-in and exchanges interfaces with the authorization engine.
+    ///
+    /// Parameters:
+    /// - callbacks: A pointer to an [`AuthorizationCallbacks`](https://developer.apple.com/documentation/security/authorizationcallbacks) structure containing entry points to the Security Server.
+    ///
+    /// - outPlugin: On input, a pointer that you can assign, on output, to a reference value that you define. The authorization engine passes this reference back to you in any subsequent calls to your functions `outPluginInterface->MechanismCreate` ([`MechanismCreate`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismcreate)) and `outPluginInterface->PluginDestroy` ([`MechanismDestroy`](https://developer.apple.com/documentation/security/authorizationplugininterface/mechanismdestroy)) so that you can identify the instance of the plug-in affected.
+    ///
+    /// - outPluginInterface: On input, a pointer that you assign, on output, to a structure containing entry points in the plug-in. This structure remains valid until the authorization engine calls `outPluginInterface->PluginDestroy`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. Returns [`errAuthorizationSuccess`](https://developer.apple.com/documentation/security/errauthorizationsuccess) (no error) if the function completes successfully and [`errAuthorizationInternal`](https://developer.apple.com/documentation/security/errauthorizationinternal) (Security Server internal error) if any error occurs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the main entry point to the plug-in. The authorization engine calls this function only once. The plug-in receives an [`AuthorizationCallbacks`](https://developer.apple.com/documentation/security/authorizationcallbacks) structure containing the entry points to the Security Server’s functions and returns an [`AuthorizationPluginInterface`](https://developer.apple.com/documentation/security/authorizationplugininterface) structure containing the entry points to all of the plug-in’s routines. Both of these structures contain version numbers. The authorization engine matches the version of its interface to the version in your plug-in’s [`AuthorizationPluginInterface`](https://developer.apple.com/documentation/security/authorizationplugininterface) structure in order to ensure that older plug-ins will continue to function correctly after the Security Server is updated.
+    ///
+    /// If your plug-in is running in macOS 10.5 or later and displays a window before the user has logged in, ensure you set the [`canBecomeVisibleWithoutLogin`](https://developer.apple.com/documentation/appkit/nswindow/canbecomevisiblewithoutlogin) property of [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) to `true`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Authorization plug-ins that put up a GUI or otherwise connect to the window server cannot run as privileged. Note that running GUI code as root is a bad idea in general, because GUI code links in many libraries, any of which could contain security vulnerabilities.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Initialize a plugin after it gets loaded.  This is the main entry point to a plugin.  This function will only be called once.
     /// After all Mechanism instances have been destroyed outPluginInterface->PluginDestroy will be called.
     ///
@@ -354,8 +419,6 @@ extern "C-unwind" {
     /// - `callbacks` must be a valid pointer.
     /// - `out_plugin` must be a valid pointer.
     /// - `out_plugin_interface` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationplugincreate?language=objc)
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationPluginCreate(
         callbacks: NonNull<AuthorizationCallbacks>,

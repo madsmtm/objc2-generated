@@ -7,28 +7,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetCarLockStatusIntentResponseCode(pub NSInteger);
 impl INGetCarLockStatusIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/unspecified?language=objc)
+    /// A response code indicating that the status was not specified.
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/ready?language=objc)
+    /// A response code indicating that you are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/inprogress?language=objc)
+    /// A response code indicating that you are getting the car’s lock status but do not yet have the results.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if your request may take longer than a few seconds to complete.
+    ///
+    ///
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/success?language=objc)
+    /// A response code indicating that you have successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app has successfully received the car’s current lock status.
+    ///
+    ///
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/failure?language=objc)
+    /// An error code indicating that you were unable to get the car’s lock status.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that would prevent your app from getting the car’s lock status.
+    ///
+    ///
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// An error code indicating that the user must launch your app to get the car’s lock status.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user has not set up the car in your app. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INGetCarLockStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +72,15 @@ unsafe impl RefEncode for INGetCarLockStatusIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarlockstatusintentresponse?language=objc)
+    /// Your app’s response to a request to get the car’s lock status.
+    ///
+    /// ## Overview
+    ///
+    /// Use an `INGetCarLockStatusIntentResponse` object to specify the result of a request for a car’s current lock status. You create instances of this class when confirming or handling a get lock status intent. Use this object to confirm that the request is valid and communicate whether the app retrieved the lock status, or to report any errors that occur.
+    ///
+    /// You create an `INGetCarLockStatusIntentResponse` object in the [`confirmGetCarLockStatus:completion:`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintenthandling/confirm(intent:completion:)) and [`handleGetCarLockStatus:completion:`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INGetCarLockStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarlockstatusintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

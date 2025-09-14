@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint?language=objc)
+    /// A hearing sensitivity reading associated with a hearing test.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSensitivityPoint;

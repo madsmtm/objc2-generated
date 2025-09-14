@@ -36,8 +36,6 @@ extern_class!(
     /// - Note: Not all ``UIHoverStyle``s may be supported by
     /// ``UIHoverEffectLayer``. If the provided style is not supported, a fallback
     /// style will be selected instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffectlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

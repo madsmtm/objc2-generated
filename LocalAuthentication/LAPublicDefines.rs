@@ -5,92 +5,79 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthenticationwithbiometrics?language=objc)
+/// User authentication with biometry.
 pub const kLAPolicyDeviceOwnerAuthenticationWithBiometrics: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthentication?language=objc)
+/// User authentication with either biometry or the device passcode.
 pub const kLAPolicyDeviceOwnerAuthentication: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthenticationwithwatch?language=objc)
+/// User authentication with Apple Watch.
 pub const kLAPolicyDeviceOwnerAuthenticationWithWatch: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthenticationwithbiometricsorwatch?language=objc)
+/// User authentication with either biometry or Apple Watch.
 pub const kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthenticationwithwristdetection?language=objc)
+/// User authentication with wrist detection on watchOS.
 pub const kLAPolicyDeviceOwnerAuthenticationWithWristDetection: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthenticationwithcompanion?language=objc)
 pub const kLAPolicyDeviceOwnerAuthenticationWithCompanion: c_uint =
     kLAPolicyDeviceOwnerAuthenticationWithWatch;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klapolicydeviceownerauthenticationwithbiometricsorcompanion?language=objc)
 pub const kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion: c_uint =
     kLAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaaccesscontroloperationcreateitem?language=objc)
 pub const kLAAccessControlOperationCreateItem: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaaccesscontroloperationuseitem?language=objc)
 pub const kLAAccessControlOperationUseItem: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaaccesscontroloperationcreatekey?language=objc)
 pub const kLAAccessControlOperationCreateKey: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaaccesscontroloperationusekeysign?language=objc)
 pub const kLAAccessControlOperationUseKeySign: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaaccesscontroloperationusekeydecrypt?language=objc)
 pub const kLAAccessControlOperationUseKeyDecrypt: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaaccesscontroloperationusekeykeyexchange?language=objc)
 pub const kLAAccessControlOperationUseKeyKeyExchange: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klabiometrytypenone?language=objc)
 pub const kLABiometryTypeNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klabiometrytypetouchid?language=objc)
 pub const kLABiometryTypeTouchID: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klabiometrytypefaceid?language=objc)
 pub const kLABiometryTypeFaceID: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klabiometrytypeopticid?language=objc)
 pub const kLABiometryTypeOpticID: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacredentialtypeapplicationpassword?language=objc)
+/// Specifies that a password is provided by the application.
 pub const kLACredentialTypeApplicationPassword: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacredentialsmartcardpin?language=objc)
 pub const kLACredentialSmartCardPIN: c_int = -3;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorauthenticationfailed?language=objc)
+/// The user failed to provide valid credentials.
 pub const kLAErrorAuthenticationFailed: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorusercancel?language=objc)
+/// The user tapped the cancel button in the authentication dialog.
 pub const kLAErrorUserCancel: c_int = -2;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerroruserfallback?language=objc)
+/// The user tapped the fallback button in the authentication dialog, but no fallback is available for the authentication policy.
 pub const kLAErrorUserFallback: c_int = -3;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorsystemcancel?language=objc)
+/// The system canceled authentication.
 pub const kLAErrorSystemCancel: c_int = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorpasscodenotset?language=objc)
+/// A passcode isn’t set on the device.
 pub const kLAErrorPasscodeNotSet: c_int = -5;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrortouchidnotavailable?language=objc)
+/// Touch ID is not available on the device.
 pub const kLAErrorTouchIDNotAvailable: c_int = -6;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrortouchidnotenrolled?language=objc)
+/// The user has no enrolled Touch ID fingers.
 pub const kLAErrorTouchIDNotEnrolled: c_int = -7;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrortouchidlockout?language=objc)
+/// Touch ID is locked because there were too many failed attempts.
 pub const kLAErrorTouchIDLockout: c_int = -8;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorappcancel?language=objc)
+/// The app canceled authentication.
 pub const kLAErrorAppCancel: c_int = -9;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorinvalidcontext?language=objc)
+/// The context was previously invalidated.
 pub const kLAErrorInvalidContext: c_int = -10;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorwatchnotavailable?language=objc)
+/// An attempt to authenticate with Apple Watch failed.
+///
+/// ## Discussion
+///
+/// You receive this error when the system fails to locate a nearby, paired Apple Watch running watchOS 6 or later while trying to authenticate using one of the watch authentication policies like [`LAPolicyDeviceOwnerAuthenticationWithWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch).
+///
+///
 pub const kLAErrorWatchNotAvailable: c_int = -11;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrornotinteractive?language=objc)
+/// Displaying the required authentication user interface is forbidden.
 pub const kLAErrorNotInteractive: c_int = -1004;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorbiometrynotavailable?language=objc)
+/// Biometry is not available on the device.
 pub const kLAErrorBiometryNotAvailable: c_int = kLAErrorTouchIDNotAvailable;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorbiometrynotenrolled?language=objc)
+/// The user has no enrolled biometric identities.
 pub const kLAErrorBiometryNotEnrolled: c_int = kLAErrorTouchIDNotEnrolled;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorbiometrylockout?language=objc)
+/// Biometry is locked because there were too many failed attempts.
 pub const kLAErrorBiometryLockout: c_int = kLAErrorTouchIDLockout;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorbiometrynotpaired?language=objc)
+/// The device supports biometry only using a removable accessory, but no accessory is paired.
 pub const kLAErrorBiometryNotPaired: c_int = -12;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorbiometrydisconnected?language=objc)
+/// The device supports biometry only using a removable accessory, but the paired accessory isn’t connected.
 pub const kLAErrorBiometryDisconnected: c_int = -13;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorinvaliddimensions?language=objc)
 pub const kLAErrorInvalidDimensions: c_int = -14;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrorcompanionnotavailable?language=objc)
 pub const kLAErrorCompanionNotAvailable: c_int = kLAErrorWatchNotAvailable;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klaerrordomain?language=objc)
+/// The error domain used by LocalAuthentication.
 pub const kLAErrorDomain: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.LocalAuthentication\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypenone?language=objc)
 pub const kLACompanionTypeNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypewatch?language=objc)
 pub const kLACompanionTypeWatch: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypemac?language=objc)
 pub const kLACompanionTypeMac: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/klacompaniontypevision?language=objc)
 pub const kLACompanionTypeVision: c_uint = 1 << 2;

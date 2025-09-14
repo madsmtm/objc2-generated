@@ -9,7 +9,6 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbackgroundactivitysessiondiagnostic?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBackgroundActivitySessionDiagnostic;
@@ -61,7 +60,13 @@ impl CLBackgroundActivitySessionDiagnostic {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbackgroundactivitysession-4nl4y?language=objc)
+    /// An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
+    ///
+    /// ## Overview
+    ///
+    /// Use `CLBackgroundActivitySession` to start a background activity session that allows a when-in-use authorized app to receive location updates or monitoring events.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBackgroundActivitySession;

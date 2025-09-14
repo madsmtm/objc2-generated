@@ -8,10 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A training graph that you create from one or more graph objects plus additional layers you add directly to the training graph.
+    ///
+    /// ## Overview
+    ///
+    /// The framework provides a family of graph-execution methods to execute a full training iteration, and methods to execute the forward pass, the gradient pass, and optimizer update, individually.
+    ///
+    /// Use one of the `execute` methods to execute a full training iteration to accelerate an ML model represented as a single training graph.
+    ///
+    /// Use one of the `executeForward`, `executeGradient`, or `executeOptimizerUpdatemethods` to accelerate an ML library that separates the forward pass, gradient pass, and optimizer update as separate phases.
+    ///
+    ///
     /// A training graph created from one or more MLCGraph objects
     /// plus additional layers added directly to the training graph.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctraininggraph?language=objc)
     #[unsafe(super(MLCGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCGraph")]

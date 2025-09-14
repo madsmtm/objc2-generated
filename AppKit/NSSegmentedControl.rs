@@ -9,22 +9,54 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking?language=objc)
+/// The following constants specify the type of tracking behavior a segmented control exhibits. They are used by [`trackingMode`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentSwitchTracking(pub NSUInteger);
 impl NSSegmentSwitchTracking {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/selectone?language=objc)
+    /// Only one segment in the control can be selected at a time.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode functions as a radio button and is illustrated by the view selection control in Finder, which allows you to toggle between icon view, list view, column view, and Cover Flow.
+    ///
+    ///
     #[doc(alias = "NSSegmentSwitchTrackingSelectOne")]
     pub const SelectOne: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/selectany?language=objc)
+    /// One or more segment cells in the control can be selected at a time.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode functions as a set of checkboxes, where any combination of segments may be on or off, and is illustrated by the font format selection control in Pages, which allows you to apply bold, italics, and underline to the selected text.
+    ///
+    ///
     #[doc(alias = "NSSegmentSwitchTrackingSelectAny")]
     pub const SelectAny: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/momentary?language=objc)
+    /// A segment is selected only when the user is pressing the mouse down within the bounds of the segment. When the mouse is no longer down within the segment, the segment is automatically deselected. A momentary segmented control sends an action when the user clicks a segment, and another action when the user releases the segment. If configured as continuous (see [`continuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous)), the control also sends actions at repeating intervals until the user releases the segment, at which point the control sends its final action.
+    ///
+    /// ## Discussion
+    ///
+    /// When the user clicks a segment, the [`selectedSegment`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment) value is the index of the active segment. When the user releases the segment, the [`selectedSegment`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment) value is `-1`.
+    ///
+    /// This type of control is illustrated by the navigation segmented control in the Safari toolbar. When you click the back segment, for example, the previous webpage is displayed. This particular control is not configured as continuous. If it were, clicking and holding on the back segment would continue cycling through previous webpages until the segment is released.
+    ///
+    ///
     #[doc(alias = "NSSegmentSwitchTrackingMomentary")]
     pub const Momentary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/momentaryaccelerator?language=objc)
+    /// On pressure-sensitive systems, when the user force clicks a segment, a momentary accelerator segmented control sends repeating actions as pressure changes occur. The control stops sending actions when the user releases pressure. A document-based app, for example, might implement a momentary accelerator segmented control in order to allow a user to adjust the speed of paging by using variable pressure. In this example, actions are sent to the app to indicate when pressure on the control has changed. The app then determines the amount of pressure currently applied, and adjusts navigation speed accordingly.
+    ///
+    /// ## Discussion
+    ///
+    /// When the control is configured as continuous (see [`continuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous)), the interval between repeating actions automatically adjusts to match the applied pressure. As the user presses harder, actions are sent more rapidly. As the user reduces pressure, actions slow down. As such, the user has direct control over how fast actions are sent. Continuous momentary accelerator segmented controls are intended for continuously advancing through a series of discrete objects, such as photos in an album or pages in a book.
+    ///
+    /// When configured as noncontinuous, actions are sent whenever a change in pressure occurs. Noncontinuous momentary accelerator segmented controls are intended for adjusting the speed of navigation, such as playback speed in a media player, based on pressure. Once the control is released, a final action is sent.
+    ///
+    /// When the user force clicks a segment in the control, [`selectedSegment`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment) value is the index of the active segment, and [`doubleValueForSelectedSegment`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment) is a measurement of pressure between `1.0` and approaching `2.0`. When the user releases pressure, the [`selectedSegment`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment) value is `-1` and [`doubleValueForSelectedSegment`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment) is `0.0`.
+    ///
+    /// On a system that doesn’t support pressure sensitivity, a momentary accelerator segmented control behaves like a control of type [`NSSegmentSwitchTrackingMomentary`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking/momentary).
+    ///
+    ///
     #[doc(alias = "NSSegmentSwitchTrackingMomentaryAccelerator")]
     pub const MomentaryAccelerator: Self = Self(3);
 }
@@ -37,34 +69,34 @@ unsafe impl RefEncode for NSSegmentSwitchTracking {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style?language=objc)
+/// The following constants specify the visual style used to display the segmented control. They are used by [`segmentStyle`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentStyle(pub NSInteger);
 impl NSSegmentStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/automatic?language=objc)
+    /// The appearance of the segmented control is automatically determined based on the type of window in which the control is displayed and the position within the window.
     #[doc(alias = "NSSegmentStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/rounded?language=objc)
+    /// The control is displayed using the rounded style.
     #[doc(alias = "NSSegmentStyleRounded")]
     pub const Rounded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/roundrect?language=objc)
+    /// The control is displayed using the round rect style.
     #[doc(alias = "NSSegmentStyleRoundRect")]
     pub const RoundRect: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedsquare?language=objc)
+    /// The control is displayed using the textured square style.
     #[doc(alias = "NSSegmentStyleTexturedSquare")]
     pub const TexturedSquare: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/smallsquare?language=objc)
+    /// The control is displayed using the small square style.
     #[doc(alias = "NSSegmentStyleSmallSquare")]
     pub const SmallSquare: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/separated?language=objc)
+    /// The segments in the control are displayed very close to each other but not touching. For example, Safari in macOS 10.10 and later uses this style for the previous and next page segmented control.
     #[doc(alias = "NSSegmentStyleSeparated")]
     pub const Separated: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedrounded?language=objc)
+    /// The control is displayed using the textured rounded style. In macOS 10.7 and later, this style uses the artwork defined for [`NSSegmentStyleTexturedSquare`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedsquare), so you should specify [`NSSegmentStyleTexturedSquare`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedsquare) instead.
     #[doc(alias = "NSSegmentStyleTexturedRounded")]
     pub const TexturedRounded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/capsule?language=objc)
+    /// The control is displayed using the capsule style. In macOS 10.7 and later, this style uses the artwork defined for [`NSSegmentStyleTexturedSquare`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedsquare), so you should specify [`NSSegmentStyleTexturedSquare`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style/texturedsquare) instead.
     #[doc(alias = "NSSegmentStyleCapsule")]
     pub const Capsule: Self = Self(5);
 }
@@ -77,30 +109,21 @@ unsafe impl RefEncode for NSSegmentStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentDistribution(pub NSInteger);
 impl NSSegmentDistribution {
     /// Dynamically sized segments will be sized to fit their contents, any remaining space will be left blank. This style is equivalent to the way segments were distributed on older systems.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fit?language=objc)
     #[doc(alias = "NSSegmentDistributionFit")]
     pub const Fit: Self = Self(0);
     /// Dynamically sized segments will be sized to fill the available space, with extra space being distributed equally among them. Default value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fill?language=objc)
     #[doc(alias = "NSSegmentDistributionFill")]
     pub const Fill: Self = Self(1);
     /// Dynamically sized segments will be sized to fill the available space, and kept the same size as each other.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fillequally?language=objc)
     #[doc(alias = "NSSegmentDistributionFillEqually")]
     pub const FillEqually: Self = Self(2);
     /// Dynamically sized segments will be sized to fill the available space, and kept proportional to their fitting size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution/fillproportionally?language=objc)
     #[doc(alias = "NSSegmentDistributionFillProportionally")]
     pub const FillProportionally: Self = Self(3);
 }
@@ -114,7 +137,31 @@ unsafe impl RefEncode for NSSegmentDistribution {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol?language=objc)
+    /// Display one or more buttons in a single horizontal group.
+    ///
+    /// ## Overview
+    ///
+    /// The `NSSegmentedControl` class uses an [`NSSegmentedCell`](https://developer.apple.com/documentation/appkit/nssegmentedcell) class to implement much of the control’s functionality. Most methods in `NSSegmentedControl` are simply cover methods that call the corresponding method in [`NSSegmentedCell`](https://developer.apple.com/documentation/appkit/nssegmentedcell). The methods of [`NSSegmentedCell`](https://developer.apple.com/documentation/appkit/nssegmentedcell) that do not have covers relate to accessing and setting values for tags and tooltips, programatically setting the key segment, and establishing the mode of the control.
+    ///
+    /// The features of a segmented control include the following:
+    ///
+    /// - A segment can have an image, text (label), menu, tooltip, and tag.
+    ///
+    /// - A segmented control can contain images or text, but not both.
+    ///
+    /// - Either the control or individual segments can be enabled or disabled.
+    ///
+    /// - Segmented controls have four tracking modes, described in [`NSSegmentSwitchTracking`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking). You use these modes with the [`trackingMode`](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode) property.
+    ///
+    /// - Each segment can be either a fixed width or autosized to fit the contents.
+    ///
+    /// - If a segment has text and is marked as autosizing, then the text may be truncated so that the control completely fits.
+    ///
+    /// - If an image is too large to fit in a segment, it is clipped.
+    ///
+    /// - If Full Keyboard Access is enabled in System Preferences > Keyboard, the keyboard may be used to move between and select segments.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

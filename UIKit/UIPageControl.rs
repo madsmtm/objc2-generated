@@ -12,25 +12,22 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/interactionstate-swift.enum?language=objc)
+/// Constants that define the interaction states of the page control.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageControlInteractionState(pub NSInteger);
 impl UIPageControlInteractionState {
     /// The default interaction state, where no interaction has occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/interactionstate-swift.enum/none?language=objc)
+    /// The default interaction state, where no interaction has occurred.
     #[doc(alias = "UIPageControlInteractionStateNone")]
     pub const None: Self = Self(0);
+    /// The interaction state for which the page changes through a single, discrete interaction.
     /// The interaction state for which the page was changed via a single, discrete interaction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/interactionstate-swift.enum/discrete?language=objc)
     #[doc(alias = "UIPageControlInteractionStateDiscrete")]
     pub const Discrete: Self = Self(1);
+    /// The interaction state for which the page changes through a continuous interaction.
     /// The interaction state for which the page was changed via a continuous interaction.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/interactionstate-swift.enum/continuous?language=objc)
     #[doc(alias = "UIPageControlInteractionStateContinuous")]
     pub const Continuous: Self = Self(2);
 }
@@ -43,25 +40,22 @@ unsafe impl RefEncode for UIPageControlInteractionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/backgroundstyle-swift.enum?language=objc)
+/// Constants that define the background styles of the page control.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageControlBackgroundStyle(pub NSInteger);
 impl UIPageControlBackgroundStyle {
+    /// The default background style, which adapts in response to changes in the page control’s interaction state.
     /// The default background style that adapts based on the current interaction state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/backgroundstyle-swift.enum/automatic?language=objc)
     #[doc(alias = "UIPageControlBackgroundStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The background style that shows a full background regardless of the interaction.
     /// The background style that shows a full background regardless of the interaction
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/backgroundstyle-swift.enum/prominent?language=objc)
     #[doc(alias = "UIPageControlBackgroundStyleProminent")]
     pub const Prominent: Self = Self(1);
+    /// The background style that shows a minimal background regardless of the interaction.
     /// The background style that shows a minimal background regardless of the interaction
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/backgroundstyle-swift.enum/minimal?language=objc)
     #[doc(alias = "UIPageControlBackgroundStyleMinimal")]
     pub const Minimal: Self = Self(2);
 }
@@ -74,38 +68,39 @@ unsafe impl RefEncode for UIPageControlBackgroundStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum?language=objc)
+/// Decribes the layout direction of a page control’s indicators.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageControlDirection(pub NSInteger);
 impl UIPageControlDirection {
+    /// A direction that infers the lay out from the system’s locale.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this case to lay out the page control’s indicators in the natural direction of the system’s locale. By default, this means [`UIPageControlDirectionLeftToRight`](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/lefttoright) for left-to-right languages and [`UIPageControlDirectionRightToLeft`](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/righttoleft) for right-to-left languages.
+    ///
+    ///
     /// Page indicators are laid out in the natural direction of the system locale.
     /// By default, this is equivalent to
     /// `UIPageControlDirectionLeftToRight`on LTR locales, and
     /// `UIPageControlDirectionRightToLeft`on RTL locales.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/natural?language=objc)
     #[doc(alias = "UIPageControlDirectionNatural")]
     pub const Natural: Self = Self(0);
+    /// A direction that lays out the page indicators from left to right.
     /// Page indicators are laid out from left to right.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/lefttoright?language=objc)
     #[doc(alias = "UIPageControlDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(1);
+    /// A direction that lays out the page indicators from right to left.
     /// Page indicators are laid out from right to left.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/righttoleft?language=objc)
     #[doc(alias = "UIPageControlDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(2);
+    /// A direction that lays out the page indicators from top to bottom.
     /// Page indicators are laid out from top to bottom.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/toptobottom?language=objc)
     #[doc(alias = "UIPageControlDirectionTopToBottom")]
     pub const TopToBottom: Self = Self(3);
+    /// A direction that lays out the page indicators from bottom to top.
     /// Page indicators are laid out from bottom to top.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol/direction-swift.enum/bottomtotop?language=objc)
     #[doc(alias = "UIPageControlDirectionBottomToTop")]
     pub const BottomToTop: Self = Self(4);
 }
@@ -119,7 +114,15 @@ unsafe impl RefEncode for UIPageControlDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrol?language=objc)
+    /// A control that displays a horizontal series of dots, each of which corresponds to a page in the app’s document or other data-model entity.
+    ///
+    /// ## Overview
+    ///
+    /// For an example of a page control, see the Weather app when it’s configured to display information for more than one location.
+    ///
+    /// When a user taps a page control to move to the next or previous page, the control sends the [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) event for handling by the delegate. The delegate can then evaluate the [`currentPage`](https://developer.apple.com/documentation/uikit/uipagecontrol/currentpage) property to determine the page to display. The page control advances only one page in either direction. The currently viewed page is indicated by a white dot. Depending on the device, a certain number of dots are displayed on the screen before they’re clipped.
+    ///
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -10,7 +10,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient?language=objc)
+/// A definition for a smooth transition between colors for drawing radial and axial gradient fills.
+///
+/// ## Overview
+///
+/// A gradient defines a smooth transition between colors across an area. A `CGGradient` has a color space, two or more colors, and a location for each color. The color space cannot be a pattern or indexed color space, otherwise it can be any Core Graphics color space ([`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace)).
+///
+/// Colors can be provided as component values (such as red, green, blue) or as Core Graphics color objects ([`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor)). Component values can vary from 0.0 to 1.0, designating the proportion of the component present in the color.
+///
+/// A location is a normalized value. When it comes time to paint the gradient, Core Graphics maps the normalized location values to the points in coordinate space that you provide.
+///
+/// For more precise control over gradients, see [`CGShadingRef`](https://developer.apple.com/documentation/coregraphics/cgshading).
+///
+///
 #[doc(alias = "CGGradientRef")]
 #[repr(C)]
 pub struct CGGradient {
@@ -26,17 +38,17 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGGradient"> for CGGradient {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions?language=objc)
+/// Drawing locations for gradients.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGGradientDrawingOptions(pub u32);
 bitflags::bitflags! {
     impl CGGradientDrawingOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsbeforestartlocation?language=objc)
+/// The fill should extend beyond the starting location. The color that extends beyond the starting point is the solid color defined by the [`CGGradientRef`](https://developer.apple.com/documentation/coregraphics/cggradient) object to be at location 0.
         #[doc(alias = "kCGGradientDrawsBeforeStartLocation")]
         const DrawsBeforeStartLocation = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsafterendlocation?language=objc)
+/// The fill should extend beyond the ending location. The color that extends beyond the ending point is the solid color defined by the [`CGGradientRef`](https://developer.apple.com/documentation/coregraphics/cggradient) object to be at location 1.
         #[doc(alias = "kCGGradientDrawsAfterEndLocation")]
         const DrawsAfterEndLocation = 1<<1;
     }
@@ -53,7 +65,13 @@ unsafe impl RefEncode for CGGradientDrawingOptions {
 }
 
 unsafe impl ConcreteType for CGGradient {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for CGGradient objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation identifier for the opaque type `CGGradientRef`.
+    ///
+    ///
     #[doc(alias = "CGGradientGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -65,7 +83,27 @@ unsafe impl ConcreteType for CGGradient {
 }
 
 impl CGGradient {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/init(colorspace:colorcomponents:locations:count:)?language=objc)
+    /// Creates a CGGradient object from a color space and the provided color components and locations.
+    ///
+    /// Parameters:
+    /// - space: The color space to use for the gradient. You cannot use a pattern or indexed color space.
+    ///
+    /// - components: The color components for each color that defines the gradient. The components should be in the color space specified by `space`. If you are unsure of the number of components, you can call the function [`CGColorSpaceGetNumberOfComponents`](https://developer.apple.com/documentation/coregraphics/cgcolorspace/numberofcomponents).
+    ///
+    /// The number of items in this array should be the product of `count` and the number of components in the color space. For example, if the color space is an RGBA color space and you want to use two colors in the gradient (one for a starting location and another for an ending location), then you need to provide 8 values in `components`—red, green, blue, and alpha values for the first color, followed by red, green, blue, and alpha values for the second color.
+    ///
+    /// - locations: The location for each color provided in `components`. Each location must be a `CGFloat` value in the range of 0 to 1, inclusive. If 0 and 1 are not in the `locations` array, Quartz uses the colors provided that are closest to 0 and 1 for those locations.
+    ///
+    /// If `locations`  is `NULL`, the first color in `colors`  is assigned to location `0`, the last color in`colors`  is assigned to location `1`, and intervening colors are assigned locations that are at equal intervals in between.
+    ///
+    /// - count: The number of locations provided in the `locations` parameters.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CGGradient object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -93,8 +131,6 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/init(headroom:colorspace:colorcomponents:locations:count:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `components` must be a valid pointer or null.
@@ -124,7 +160,25 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/init(colorsspace:colors:locations:)?language=objc)
+    /// Creates a gradient object from a color space and the provided color objects and locations.
+    ///
+    /// Parameters:
+    /// - space: The color space to use for the gradient. You cannot use a pattern or indexed color space.
+    ///
+    /// - colors: A non-empty array of [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor) objects that should be in the color space specified by `space`. If `space` is not `NULL`, each color will be converted (if necessary) to that color space and the gradient will drawn in that color space. Otherwise, each color will be converted to and drawn in the GenericRGB color space.
+    ///
+    /// - locations: The location for each color provided in `colors`; each location must be a [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct) value in the range of `0` to `1`, inclusive. If `0` and `1` are not in the `locations` array, Quartz uses the colors provided that are closest to `0` and `1` for those locations.
+    ///
+    /// If `locations` is `NULL`, the first color in `colors` is assigned to location `0`, the last color in `colors` is assigned to location `1`, and intervening colors are assigned locations that are at equal intervals in between.
+    ///
+    /// The `locations` array should contain the same number of items as the `colors` array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CGGradientRef`](https://developer.apple.com/documentation/coregraphics/cggradient) object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -149,7 +203,6 @@ impl CGGradient {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient/contentheadroom?language=objc)
     #[doc(alias = "CGGradientGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(gradient: Option<&CGGradient>) -> c_float {

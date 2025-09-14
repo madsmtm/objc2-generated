@@ -6,6 +6,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The signature for the block that executes when a button’s state changes.
+///
+/// Parameters:
+/// - button: The button element whose state changed.
+///
+/// - value: A normalized number between `0.0` (minimum) and `1.0` (maximum) that represents the amount of physical or simulated pressure that the user applies to the button.
+///
+/// - pressed: A Boolean value that indicates whether the user is pressing the button. If [`true`](https://developer.apple.com/documentation/swift/true), the user is pressing the button and the `value` parameter contains the amount of pressure. If [`false`](https://developer.apple.com/documentation/swift/false), the user isn’t applying any pressure and the `value` parameter is `0.0`.
+///
 /// Set this block if you want to be notified when the value on this button changes.
 ///
 ///
@@ -18,12 +27,21 @@ use crate::*;
 /// See: value
 ///
 /// See: pressed
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttonvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonValueChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool)>;
 
+/// The signature for the block that executes when the user touches the button if the controller supports that feature.
+///
+/// Parameters:
+/// - button: The button element whose value changed.
+///
+/// - value: A normalized number between `0.0` (minimum) and `1.0` (maximum) that represents the amount of physical or simulated pressure that the user applies to the button.
+///
+/// - pressed: A Boolean value that indicates whether the user is pressing the button. If [`true`](https://developer.apple.com/documentation/swift/true), the user is pressing the button and the `value` parameter contains the amount of pressure. If [`false`](https://developer.apple.com/documentation/swift/false), the user isn’t applying any pressure and the `value` parameter is `0.0`.
+///
+/// - touched: A Boolean value that indicates whether the user is touching the button. If [`true`](https://developer.apple.com/documentation/swift/true), the user is touching the button; otherwise, the user isn’t.
+///
 /// Set this block if you want to be notified when the touched state on this button changes.
 ///
 ///
@@ -38,14 +56,18 @@ pub type GCControllerButtonValueChangedHandler =
 /// See: value
 ///
 /// See: pressed
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttontouchedchangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerButtonTouchedChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCControllerButtonInput>, c_float, Bool, Bool)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerbuttoninput?language=objc)
+    /// A control element that represents a button touch or press.
+    ///
+    /// ## Overview
+    ///
+    /// A `GCControllerButtonInput` object represents a button on a controller that can report either analog or digital values.
+    ///
+    ///
     #[unsafe(super(GCControllerElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCControllerElement")]

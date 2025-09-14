@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerdata?language=objc)
+    /// Information about the distance traveled by a user on foot.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class yourself. Instead, you use a [`CMPedometer`](https://developer.apple.com/documentation/coremotion/cmpedometer) object to request pedometer data from the system. The data for each request is packaged into an instance of this class and delivered to the handlers you registered with the pedometer object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometerData;
@@ -87,16 +93,16 @@ impl CMPedometerData {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype?language=objc)
+/// Constants indicating the change that occurred to the user’s pedestrian activity.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMPedometerEventType(pub NSInteger);
 impl CMPedometerEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype/pause?language=objc)
+    /// The user’s pedestrian activity stopped.
     #[doc(alias = "CMPedometerEventTypePause")]
     pub const Pause: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventtype/resume?language=objc)
+    /// The user’s pedestrian activity resumed.
     #[doc(alias = "CMPedometerEventTypeResume")]
     pub const Resume: Self = Self(1);
 }
@@ -110,7 +116,7 @@ unsafe impl RefEncode for CMPedometerEventType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerevent?language=objc)
+    /// A change in the user’s pedestrian activity.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometerEvent;
@@ -161,17 +167,57 @@ impl CMPedometerEvent {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerhandler?language=objc)
+/// A block for processing pedometer-related data.
+///
+/// ## Discussion
+///
+/// You provide a block of this type when requesting data from the `CMPedometer` object. When the data becomes available, the pedometer object delivers that data to your block for processing. If there was an error retrieving the data, the pedometer object provides an error object instead.
+///
+/// This block has no return value and takes the following parameters:
+///
+/// - `pedometerData`: A [`CMPedometerData`](https://developer.apple.com/documentation/coremotion/cmpedometerdata) object containing the available data. If there was an error retrieving the data, this parameter is `nil`.
+///
+/// - `error`: An [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object if there was a problem or `nil` if the pedometer data was retrieved successfully.
+///
+///
 #[cfg(feature = "block2")]
 pub type CMPedometerHandler = *mut block2::DynBlock<dyn Fn(*mut CMPedometerData, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventhandler?language=objc)
+/// A block for processing pedometer events.
+///
+/// ## Discussion
+///
+/// You provide a block of this type when requesting pedometer events from a [`CMPedometer`](https://developer.apple.com/documentation/coremotion/cmpedometer) object. When a new event becomes available, the pedometer object delivers that data to your block for processing. If there was an error retrieving the data, the pedometer object provides an error object instead.
+///
+/// This block has no return value and takes the following parameters.
+///
+/// - `pedometerEvent`: A [`CMPedometerEvent`](https://developer.apple.com/documentation/coremotion/cmpedometerevent) object containing the event information. If there was an error retrieving the data, this parameter is nil.
+///
+/// - `error`: An [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object if there was a problem or `nil` if the pedometer event was retrieved successfully.
+///
+///
 #[cfg(feature = "block2")]
 pub type CMPedometerEventHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMPedometerEvent, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometer?language=objc)
+    /// An object for fetching the system-generated live walking data.
+    ///
+    /// ## Overview
+    ///
+    /// You use a pedometer object to retrieve step counts and other information about the distance traveled and the number of floors ascended or descended. The pedometer object manages a cache of historic data that you can query or you can ask for live updates as the data is processed.
+    ///
+    /// To use a pedometer object, create an instance of this class and call the appropriate methods. Use the [`queryPedometerDataFromDate:toDate:withHandler:`](https://developer.apple.com/documentation/coremotion/cmpedometer/querypedometerdata(from:to:withhandler:)) method to retrieve data that has already been gathered. To get live updates, use the [`startPedometerUpdatesFromDate:withHandler:`](https://developer.apple.com/documentation/coremotion/cmpedometer/startupdates(from:withhandler:)) method to start the delivery of events to the handler you provide.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use this API, you must include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file and provide a usage description string for this key. The usage description appears in the prompt that the user must accept the first time the system asks the user to access motion data for your app. If you don’t include a usage description string, your app crashes when you call this API.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMPedometer;

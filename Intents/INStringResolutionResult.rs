@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instringresolutionresult?language=objc)
+    /// A resolution result for a string value associated with an intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INStringResolutionResult`](https://developer.apple.com/documentation/intents/instringresolutionresult) object is what you return when resolving parameters containing an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

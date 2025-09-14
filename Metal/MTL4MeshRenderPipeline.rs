@@ -10,10 +10,15 @@ use crate::*;
 extern_class!(
     /// Groups together properties you use to create a mesh render pipeline state object.
     ///
+    /// ## Overview
+    ///
+    /// Compared to [`MTLMeshRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor), this interface doesn’t offer a mechanism to hint to Metal mutability of object, mesh, or fragment buffers. Additionally, when you use this descriptor, you don’t specify binary archives.
+    ///
+    ///
+    /// Groups together properties you use to create a mesh render pipeline state object.
+    ///
     /// Compared to ``MTLMeshRenderPipelineDescriptor``, this interface doesn't offer a mechanism to hint to Metal mutability
     /// of object, mesh, or fragment buffers. Additionally, when you use this descriptor, you don't specify binary archives.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4meshrenderpipelinedescriptor?language=objc)
     #[unsafe(super(MTL4PipelineDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4PipelineState")]

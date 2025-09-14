@@ -12,37 +12,45 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// The HDR format type.
 /// Video Toolbox HDR Metadata Generation Session
 ///
 ///
 /// This file defines the public API for the VTHDRPerFrameMetadataGenerationSession.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationhdrformattype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type VTHDRPerFrameMetadataGenerationHDRFormatType = CFString;
 
 extern "C" {
     /// Specifies that DolbyVision data should be generated and attached for each pixel buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvthdrperframemetadatagenerationhdrformattype_dolbyvision?language=objc)
+    /// Specifies that DolbyVision data should be generated and attached for each pixel buffer.
     pub static kVTHDRPerFrameMetadataGenerationHDRFormatType_DolbyVision:
         &'static VTHDRPerFrameMetadataGenerationHDRFormatType;
 }
 
 extern "C" {
+    /// Specifies an array of HDR formats to generate.
+    ///
+    /// ## Discussion
+    ///
+    /// This key represents a CFArrayRef. Only a value of [`kVTHDRPerFrameMetadataGenerationHDRFormatType_DolbyVision`](https://developer.apple.com/documentation/videotoolbox/kvthdrperframemetadatagenerationhdrformattype_dolbyvision) is supported.
+    ///
+    ///
     /// Specifies an array of HDR formats that should be generated.
     ///
     /// This key represents a CFArrayRef. Only one key is supported ( kVTHDRPerFrameMetadataGenerationHDRFormatType_DolbyVision ).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvthdrperframemetadatagenerationoptionskey_hdrformats?language=objc)
     pub static kVTHDRPerFrameMetadataGenerationOptionsKey_HDRFormats: &'static CFString;
 }
 
+/// A mechanism for generating HDR Per Frame Metadata and attaching that metadata to a pixel buffer and the backing IOSurface.
+///
+/// ## Discussion
+///
+/// This object is a CF type, so call `CFRelease` to release your object reference.
+///
+///
 /// A mechanism for generating HDR Per Frame Metadata and attaching that metadata to a CVPixelBuffer and the backing IOSurface.
 ///
 /// VTHDRPerFrameMetadataGenerationSessionRef is a CF type, so call CFRelease to release your object reference.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessionref?language=objc)
 #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionRef")]
 #[repr(C)]
 pub struct VTHDRPerFrameMetadataGenerationSession {
@@ -62,7 +70,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for VTHDRPerFrameMetadataGenerationSession {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessiongettypeid?language=objc)
+    /// Retrieves the Core Foundation type identifier for the session.
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -74,6 +82,25 @@ unsafe impl ConcreteType for VTHDRPerFrameMetadataGenerationSession {
 }
 
 impl VTHDRPerFrameMetadataGenerationSession {
+    /// Creates a metadata generation session object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator.
+    ///
+    /// - framesPerSecond: Value must be greater than 0.0
+    ///
+    /// - options: `CFDictionary` may contain the key [`kVTHDRPerFrameMetadataGenerationOptionsKey_HDRFormats`](https://developer.apple.com/documentation/videotoolbox/kvthdrperframemetadatagenerationoptionskey_hdrformats).
+    ///
+    /// - hdrPerFrameMetadataGenerationSessionOut: A pointer to a variable to receive the new session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned session object may be used to perform HDR Per Frame Metadata Generation.
+    ///
+    /// Call CFRelease to release your object reference.
+    ///
+    ///
     /// Creates a VTHDRPerFrameMetadataGenerationSession object.
     ///
     /// The returned VTHDRPerFrameMetadataGenerationSession object may be used to perform HDR Per Frame Metadata Generation
@@ -88,8 +115,6 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `hdr_per_frame_metadata_generation_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessioncreate?language=objc)
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -120,6 +145,13 @@ impl VTHDRPerFrameMetadataGenerationSession {
         }
     }
 
+    /// Attaches per-frame metadata to the pixel buffer and the backing IOSurface.
+    ///
+    /// ## Discussion
+    ///
+    /// Call this to analyze and attach HDR Metadata. This call will change CVPixelBuffer attachments and backing IOSurface attachments.
+    ///
+    ///
     /// Attaches the Per Frame Metadata to the CVPixelBuffer and the backing IOSurface
     ///
     /// Call this to analyze and attach HDR Metadata. This call will change CVPixelBuffer attachments and backing IOSurface attachments.
@@ -128,8 +160,6 @@ impl VTHDRPerFrameMetadataGenerationSession {
     /// Parameter `pixelBuffer`:
     /// Parameter `sceneChange`: If this frame changes significantly in brightness from the previous frame, for example going from an indoor scene to an outdoor scene or
     /// from a night scene to a daytime scene, set this to true.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vthdrperframemetadatagenerationsessionattachmetadata?language=objc)
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionAttachMetadata")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]

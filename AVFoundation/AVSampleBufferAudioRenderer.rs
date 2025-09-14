@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer?language=objc)
+    /// An object used to decompress audio and play compressed or uncompressed audio.
+    ///
+    /// ## Overview
+    ///
+    /// You must add an instance of this class to an [`AVSampleBufferRenderSynchronizer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer) before queuing the first sample buffer.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferAudioRenderer;
@@ -143,6 +149,20 @@ impl AVSampleBufferAudioRenderer {
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// A notification that fires whenever the receiver’s enqueued media data has been flushed for a reason other than a call to the -flush method.
+    ///
+    /// The renderer may flush enqueued media data when the user routes playback to a new destination.  The renderer may also flush enqueued media data when the playback rate of the attached AVSampleBufferRenderSynchronizer is changed (e.g. 1.0 -> 2.0 or 1.0 -> 0.0 -> 2.0), however no flush will occur for normal pauses (non-zero -> 0.0) and resumes (0.0 -> same non-zero rate as before).
+    ///
+    /// ```text
+    /// When an automatic flush occurs, the attached render synchronizer's timebase will remain running at its current rate.  It is typically best to respond to this notification by enqueueing media data with timestamps starting at the timebase's current time.  To the listener, this will sound similar to muting the audio for a short period of time.  If it is more desirable to ensure that all audio is played than to keep the timeline moving, you may also stop the synchronizer, set the synchronizer's current time to the value of AVSampleBufferAudioRendererFlushTimeKey, start reenqueueing sample buffers with timestamps starting at that time, and restart the synchronizer.  To the listener, this will sound similar to pausing the audio for a short period of time.
+    ///
+    /// This notification is delivered on an arbitrary thread.  If sample buffers are being enqueued with the renderer concurrently with the receipt of this notification, it is possible that one or more sample buffers will remain enqueued in the renderer.  This is generally undesirable, because the sample buffers that remain will likely have timestamps far ahead of the timebase's current time and so won't be rendered for some time.  The best practice is to invoke the -flush method, in a manner that is serialized with enqueueing sample buffers, after receiving this notification and before resuming the enqueueing of sample buffers.
+    /// ```
+    ///
+    ///
     /// A notification that fires whenever the receiver's enqueued media data has been flushed for a reason other than a call to the -flush method.
     ///
     /// The renderer may flush enqueued media data when the user routes playback to a new destination.  The renderer may also flush enqueued media data when the playback rate of the attached AVSampleBufferRenderSynchronizer is changed (e.g. 1.0 -> 2.0 or 1.0 -> 0.0 -> 2.0), however no flush will occur for normal pauses (non-zero -> 0.0) and resumes (0.0 -> same non-zero rate as before).
@@ -150,28 +170,37 @@ extern "C" {
     /// When an automatic flush occurs, the attached render synchronizer's timebase will remain running at its current rate.  It is typically best to respond to this notification by enqueueing media data with timestamps starting at the timebase's current time.  To the listener, this will sound similar to muting the audio for a short period of time.  If it is more desirable to ensure that all audio is played than to keep the timeline moving, you may also stop the synchronizer, set the synchronizer's current time to the value of AVSampleBufferAudioRendererFlushTimeKey, start reenqueueing sample buffers with timestamps starting at that time, and restart the synchronizer.  To the listener, this will sound similar to pausing the audio for a short period of time.
     ///
     /// This notification is delivered on an arbitrary thread.  If sample buffers are being enqueued with the renderer concurrently with the receipt of this notification, it is possible that one or more sample buffers will remain enqueued in the renderer.  This is generally undesirable, because the sample buffers that remain will likely have timestamps far ahead of the timebase's current time and so won't be rendered for some time.  The best practice is to invoke the -flush method, in a manner that is serialized with enqueueing sample buffers, after receiving this notification and before resuming the enqueueing of sample buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererwasflushedautomaticallynotification?language=objc)
     pub static AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// A notification that indicates the hardware configuration does not match the enqueued data format.
     ///
     /// The output configuration of the playback hardware might change during the playback session if other clients play content with different format. In such cases, if the media content format does not match the hardware configuration it would produce suboptimal rendering of the enqueued media data. When the framework detects such mismatch it will issue this notification, so the client can flush the renderer and re-enqueue the sample buffers from the current media playhead, which will configure the hardware based on the format of newly enqueued sample buffers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendereroutputconfigurationdidchangenotification?language=objc)
+    ///
+    /// A notification that indicates the hardware configuration does not match the enqueued data format.
+    ///
+    /// The output configuration of the playback hardware might change during the playback session if other clients play content with different format. In such cases, if the media content format does not match the hardware configuration it would produce suboptimal rendering of the enqueued media data. When the framework detects such mismatch it will issue this notification, so the client can flush the renderer and re-enqueue the sample buffers from the current media playhead, which will configure the hardware based on the format of newly enqueued sample buffers.
     pub static AVSampleBufferAudioRendererOutputConfigurationDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// The key that indicates the presentation timestamp of the first queued sample that was flushed.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that wraps a [`CMTime`](https://developer.apple.com/documentation/coremedia/cmtime) value.
+    ///
+    ///
     /// The presentation timestamp of the first enqueued sample that was flushed.
     ///
     /// The value of this key is an NSValue wrapping a CMTime.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererflushtimekey?language=objc)
     pub static AVSampleBufferAudioRendererFlushTimeKey: &'static NSString;
 }
 

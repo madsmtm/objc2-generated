@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsswitch?language=objc)
+    /// A control that offers a binary choice.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSSwitch`](https://developer.apple.com/documentation/appkit/nsswitch) class provides a simple interface for displaying and toggling a Boolean state, such as on/off. A switch toggles its [`state`](https://developer.apple.com/documentation/appkit/nsswitch/state) and sends its [`action`](https://developer.apple.com/documentation/appkit/nscontrol/action) when clicked, activated through the keyboard, or tapped in the Touch Bar. [`NSSwitch`](https://developer.apple.com/documentation/appkit/nsswitch) also allows dragging between states, and if [`continuous`](https://developer.apple.com/documentation/appkit/nscontrol/iscontinuous) is [`true`](https://developer.apple.com/documentation/swift/true), the switch sends its [`action`](https://developer.apple.com/documentation/appkit/nscontrol/action) for each change in position during the drag.
+    ///
+    /// [`NSSwitch`](https://developer.apple.com/documentation/appkit/nsswitch) doesn’t use an instance of [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) to provide its functionality. The [`cellClass`](https://developer.apple.com/documentation/appkit/nscontrol/cellclass) class property and [`cell`](https://developer.apple.com/documentation/appkit/nscontrol/cell) instance property both return [`nil`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nil), and they ignore attempts to set a non-[`nil`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nil) value.
+    ///
+    /// For design guidance, see Human Interface Guidelines > [Toggles](https://developer.apple.comhttps://developer.apple.com/design/human-interface-guidelines/toggles).
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

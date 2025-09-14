@@ -10,14 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// `WebDownload` objects initiate download client requests on behalf of a delegate. A download request involves loading the data, decoding it (if necessary), and saving it to a file. Instances of this class behave similar to `NSURLDownload` except delegates of `WebDownload` may implement an additional delegate method. The method allows the delegate to specify the window to be used for authentication sheets. If the delegate does not implement this method, the `WebDownload` object will prompt the user for authentication using the standard WebKit authentication panel, as either a sheet or window. There are no additional methods defined in this class. See [`WebDownloadDelegate`](https://developer.apple.com/documentation/webkit/webdownloaddelegate) for the delegate method.
     /// A WebDownload works just like an NSURLDownload, with
     /// one extra feature: if you do not implement the
     /// authentication-related delegate methods, it will automatically
     /// prompt for authentication using the standard WebKit authentication
     /// panel, as either a sheet or window. It provides no extra methods,
     /// but does have one additional delegate method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownload?language=objc)
     #[unsafe(super(NSURLDownload, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -86,10 +85,9 @@ impl WebDownload {
 }
 
 extern_protocol!(
+    /// The `WebDownloadDelegate` protocol declares one additional method for delegates of [`WebDownload`](https://developer.apple.com/documentation/webkit/webdownload).
     /// The WebDownloadDelegate delegate has one extra method used to choose
     /// the right window when automatically prompting with a sheet.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdownloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebDownloadDelegate: NSURLDownloadDelegate {
         #[cfg(feature = "objc2-app-kit")]

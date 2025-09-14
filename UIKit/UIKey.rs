@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikey?language=objc)
+    /// An object that provides information about the state of a keyboard key.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIKey`](https://developer.apple.com/documentation/uikit/uikey) provides relevant information about the current state of a key on a keyboard as a user presses and releases the key. To learn more, see [Handling key presses made on a physical keyboard](https://developer.apple.com/documentation/uikit/handling-key-presses-made-on-a-physical-keyboard).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

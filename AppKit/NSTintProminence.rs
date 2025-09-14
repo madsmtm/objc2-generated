@@ -6,26 +6,27 @@ use crate::*;
 
 /// Controls how strongly the tint color applies in a view.
 ///
+/// ## Overview
+///
+/// A tint prominence of `primary` will use the app’s tint color with full saturation and brightness, while `secondary` will apply it more subtly. Using `none` gives an untinted appearance.
+///
+///
+/// Controls how strongly the tint color applies in a view.
+///
 /// A tint prominence of `primary` will use the app's tint color with full
 /// saturation and brightness, while `secondary` will apply it more subtly.
 /// Using `none` gives an untinted appearance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstintprominence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTintProminence(pub NSInteger);
 impl NSTintProminence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstintprominence/automatic?language=objc)
     #[doc(alias = "NSTintProminenceAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstintprominence/none?language=objc)
     #[doc(alias = "NSTintProminenceNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstintprominence/primary?language=objc)
     #[doc(alias = "NSTintProminencePrimary")]
     pub const Primary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstintprominence/secondary?language=objc)
     #[doc(alias = "NSTintProminenceSecondary")]
     pub const Secondary: Self = Self(3);
 }

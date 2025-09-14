@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringrecord?language=objc)
+    /// An object that represents a condition and its associated information that a location monitor is monitoring.
+    ///
+    /// ## Overview
+    ///
+    /// When handling a new [`CLMonitoringEvent`](https://developer.apple.com/documentation/corelocation/clmonitoringevent), the `CLMonitoringRecord` available for the indicated identifier from the [`CLMonitor`](https://developer.apple.com/documentation/corelocation/clmonitor-2r51v) contains the prior event. The `CLMonitoringRecord` updates with the new event when the handling is complete.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLMonitoringRecord;

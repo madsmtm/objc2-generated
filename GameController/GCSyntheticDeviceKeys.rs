@@ -5,6 +5,30 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/kiohidgcsyntheticdevicekey?language=objc)
+/// A key that specifies whether the device is a game controller synthetic HID device.
+///
+/// ## Discussion
+///
+/// This key is present with a Boolean value of `true` on all game controller synthetic HID devices that the Game Controller framework creates.
+///
+/// If your app needs to exclude these synthetic HID devices from discovery by [`IOHIDManagerRef`](https://developer.apple.com/documentation/iokit/iohidmanagerref), [`IOServiceGetMatchingServices`](https://developer.apple.com/documentation/iokit/1514494-ioservicegetmatchingservices), or [`IOServiceAddMatchingNotification`](https://developer.apple.com/documentation/iokit/1514362-ioserviceaddmatchingnotification), include the [`kIOHIDGCSyntheticDeviceKey`](https://developer.apple.com/documentation/gamecontroller/kiohidgcsyntheticdevicekey) with a value of `false` in the matching criteria.
+///
+/// ```objc
+/// IOHIDManagerRef manager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDManagerOptionNone);
+/// IOHIDManagerSetDeviceMatching(manager, (__bridge CFDictionaryRef)@{
+///     @kIOProviderClassKey: @kIOHIDDeviceKey,
+///     @kIOHIDGCSyntheticDeviceKey: @(NO)
+/// });
+/// ```
+///
+/// Your code can check whether an [`io_service_t`](https://developer.apple.com/documentation/iokit/io_service_t) or an [`IOHIDDeviceRef`](https://developer.apple.com/documentation/iokit/iohiddeviceref) refers to a game controller synthetic HID device by querying the value of the [`kIOHIDGCSyntheticDeviceKey`](https://developer.apple.com/documentation/gamecontroller/kiohidgcsyntheticdevicekey) property.
+///
+/// ```objc
+/// if ( IOHIDDeviceGetProperty(device, CFSTR(kIOHIDGCSyntheticDeviceKey)) == kCFBooleanTrue ) {
+///     // This is a synthetic HID device.
+/// }
+/// ```
+///
+///
 pub const kIOHIDGCSyntheticDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"GCSyntheticDevice\0") };

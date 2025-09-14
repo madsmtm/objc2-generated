@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/thread?language=objc)
+    /// A thread of execution.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class when you want to have an Objective-C method run in its own thread of execution. Threads are especially useful when you need to perform a lengthy task, but don’t want it to block the execution of the rest of the application. In particular, you can use threads to avoid blocking the main thread of the application, which handles user interface and event-related actions. Threads can also be used to divide a large job into several smaller jobs, which can lead to performance increases on multi-core computers.
+    ///
+    /// The [`NSThread`](https://developer.apple.com/documentation/foundation/thread) class supports semantics similar to those of [`NSOperation`](https://developer.apple.com/documentation/foundation/operation) for monitoring the runtime condition of a thread. You can use these semantics to cancel the execution of a thread or determine if the thread is still executing or has finished its task. Canceling a thread requires support from your thread code; see the description for [`cancel`](https://developer.apple.com/documentation/foundation/thread/cancel()) for more information.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You can subclass [`NSThread`](https://developer.apple.com/documentation/foundation/thread) and override the [`main`](https://developer.apple.com/documentation/foundation/thread/main()) method to implement your thread’s main entry point. If you override [`main`](https://developer.apple.com/documentation/foundation/thread/main()), you do not need to invoke the inherited behavior by calling `super`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSThread;
@@ -214,21 +226,33 @@ impl DefaultRetained for NSThread {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nswillbecomemultithreaded?language=objc)
+    /// Posted when the first thread is detached from the current thread. The `NSThread` class posts this notification at most once—the first time a thread is detached using [`detachNewThreadSelector:toTarget:withObject:`](https://developer.apple.com/documentation/foundation/thread/detachnewthreadselector(_:totarget:with:)) or the [`start`](https://developer.apple.com/documentation/foundation/thread/start()) method. Subsequent invocations of those methods do not post this notification. Observers of this notification have their notification method invoked in the main thread, not the new thread. The observer notification methods always execute before the new thread begins executing.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification does not contain a notification object or a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "This notification does not protect against data races"]
     pub static NSWillBecomeMultiThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsdidbecomesinglethreaded?language=objc)
+    /// Not implemented.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Programs no longer transition to single-threaded mode from threaded environments"]
     pub static NSDidBecomeSingleThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsthreadwillexit?language=objc)
+    /// An `NSThread` object posts this notification when it receives the [`exit`](https://developer.apple.com/documentation/foundation/thread/exit()) message, before the thread exits. Observer methods invoked to receive this notification execute in the exiting thread, before it exits.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the exiting `NSThread` object. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "This notification does not protect against data races"]
     pub static NSThreadWillExitNotification: &'static NSNotificationName;

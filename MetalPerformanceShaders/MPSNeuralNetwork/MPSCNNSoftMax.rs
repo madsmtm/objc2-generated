@@ -8,6 +8,21 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A neural transfer function that is useful for classification tasks.
+    ///
+    /// ## Overview
+    ///
+    /// The softmax filter is applied across feature channels in a convolutional manner at all spatial locations. The softmax filter can be seen as the combination of an activation function (exponential) and a normalization operator.
+    ///
+    /// For each feature channel per pixel in an image in a feature map, the softmax filter computes the following:
+    ///
+    ///
+    /// ![pixel = exp(pixel(x,y,k))/sum(exp(pixel(x,y,0)) … exp(pixel(x,y,N-1))](https://docs-assets.developer.apple.com/published/46f2f324f577960e552d1a59114e482d/media-2903559%402x.png)
+    ///
+    ///
+    /// Where `R` is the result channel in the pixel and `N` is the number of feature channels.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The softMax filter is a neural transfer function and is useful for classification tasks.
@@ -17,8 +32,6 @@ extern_class!(
     /// For each feature channel per pixel in an image in a feature map, the softMax filter computes the following:
     /// result channel in pixel = exp(pixel(x,y,k))/sum(exp(pixel(x,y,0)) ... exp(pixel(x,y,N-1))
     /// where N is the number of feature channels
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmax?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -140,6 +153,7 @@ impl MPSCNNSoftMax {
 }
 
 extern_class!(
+    /// A gradient softmax filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The softMax gradient filter calculates the gradient to be backpropagated.
@@ -154,8 +168,6 @@ extern_class!(
     ///
     /// The incoming gradient is the primary source.
     /// The original output of corresponding softMax is the secondary source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -270,6 +282,21 @@ impl MPSCNNSoftMaxGradient {
 }
 
 extern_class!(
+    /// A neural transfer function that  is useful for constructing a loss function to be minimized when training neural networks.
+    ///
+    /// ## Overview
+    ///
+    /// The logarithmic softmax filter is calculated by taking the natural logarithm of the result of a softmax filter.
+    ///
+    /// For each feature channel per pixel in an image in a feature map, the logarithmic softmax filter computes the following:
+    ///
+    ///
+    /// ![pixel = pixel(x,y,k)) - ln{sum(exp(pixel(x,y,0)) … exp(pixel(x,y,N-1))}](https://docs-assets.developer.apple.com/published/dcbad99ffb71ffef8fde766ddf9b3650/media-2903560%402x.png)
+    ///
+    ///
+    /// Where `R` is the result channel in the pixel, `N` is the number of feature channels, and `y=ln(x)` satisfies `e``ʸ``=x`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The logarithmic softMax filter can be achieved by taking the natural logarithm of the
@@ -279,8 +306,6 @@ extern_class!(
     /// computes the following:
     /// result channel in pixel = pixel(x,y,k)) - ln{sum(exp(pixel(x,y,0)) ... exp(pixel(x,y,N-1))}
     /// where N is the number of feature channels and y = ln{x} satisfies e^y = x.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmax?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -402,6 +427,7 @@ impl MPSCNNLogSoftMax {
 }
 
 extern_class!(
+    /// A gradient logarithmic softmax filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The logSoftMax gradient filter calculates the gradient to be backpropagated.
@@ -415,8 +441,6 @@ extern_class!(
     ///
     /// The incoming gradient is the primary source.
     /// The original output of corresponding logSoftMax is the secondary source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

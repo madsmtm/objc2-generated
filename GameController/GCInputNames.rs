@@ -6,156 +6,160 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelementname-c.protocol?language=objc)
+    /// The name of a physical input element.
     pub unsafe trait GCPhysicalInputElementName {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcbuttonelementname-c.protocol?language=objc)
+    /// The names of the button elements.
     pub unsafe trait GCButtonElementName: GCPhysicalInputElementName {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcaxiselementname-c.protocol?language=objc)
+    /// The names for the elements that provide values along an axis.
     pub unsafe trait GCAxisElementName: GCPhysicalInputElementName {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcswitchelementname-c.protocol?language=objc)
+    /// The name for an element that represents a switch.
     pub unsafe trait GCSwitchElementName: GCPhysicalInputElementName {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionpadelementname-c.protocol?language=objc)
+    /// The names for directional pad elements.
     pub unsafe trait GCDirectionPadElementName: GCPhysicalInputElementName {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputelementname?language=objc)
+/// The Objective-C type for an input element name.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type GCInputElementName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonname?language=objc)
+/// The Objective-C type for an input button name.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type GCInputButtonName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputaxisname?language=objc)
+/// The Objective-C type for an input axis name.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type GCInputAxisName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputswitchname?language=objc)
+/// The Objective-C type for an input switch name.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type GCInputSwitchName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionpadname?language=objc)
+/// The Objective-C type for the name of a directional pad.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type GCInputDirectionPadName = NSString;
 
 extern "C" {
+    /// The name for the controller’s A button.
     /// A set of commonly used strings that can be used to access controller buttons
     ///
     ///
     /// See: GCController.h
     ///
     /// See: GCPhysicalInputProfile.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttona-a2w2?language=objc)
     pub static GCInputButtonA: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonb-a2w1?language=objc)
+    /// The name for the controller’s B button.
     pub static GCInputButtonB: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonx-a2wr?language=objc)
+    /// The name for the controller’s X button.
     pub static GCInputButtonX: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttony-a2wq?language=objc)
+    /// The name for the controller’s Y button.
     pub static GCInputButtonY: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdirectionpad-8igy2?language=objc)
+    /// The name of the directional pad element.
     pub static GCInputDirectionPad: Option<&'static GCInputDirectionPadName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputthumbstick?language=objc)
     pub static GCInputThumbstick: Option<&'static GCInputDirectionPadName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftthumbstick-5tkci?language=objc)
+    /// The name of the left thumbstick element.
     pub static GCInputLeftThumbstick: Option<&'static GCInputDirectionPadName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightthumbstick-5o085?language=objc)
+    /// The name of the right thumbstick element.
     pub static GCInputRightThumbstick: Option<&'static GCInputDirectionPadName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputthumbstickbutton?language=objc)
     pub static GCInputThumbstickButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftthumbstickbutton-4oxvn?language=objc)
+    /// The name of the left thumbstick button element.
     pub static GCInputLeftThumbstickButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightthumbstickbutton-3k0ld?language=objc)
+    /// The name of the right thumbstick button element.
     pub static GCInputRightThumbstickButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputgripbutton?language=objc)
     pub static GCInputGripButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftshoulder-3i8m0?language=objc)
+    /// The name of the left shoulder button.
     pub static GCInputLeftShoulder: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightshoulder-513b5?language=objc)
+    /// The name of the right shoulder button.
     pub static GCInputRightShoulder: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
+    /// The name of the additional left shoulder button.
     /// Identifies the button element located at the top-left/right of a gamepad,
     /// between the left/right shoulder button and the gamepad's horizontal center.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftbumper?language=objc)
     pub static GCInputLeftBumper: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightbumper?language=objc)
+    /// The name of the additional right shoulder button.
     pub static GCInputRightBumper: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputtrigger?language=objc)
     pub static GCInputTrigger: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputlefttrigger-4gjmx?language=objc)
+    /// The name of the left trigger.
     pub static GCInputLeftTrigger: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrighttrigger-6hvns?language=objc)
+    /// The name of the right trigger.
     pub static GCInputRightTrigger: Option<&'static GCInputButtonName>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbackleftbutton?language=objc)
+/// Returns the name of the back left button at the specified location.
+///
+/// Parameters:
+/// - position: The relative position of the button to the other back left button. Pass `0` for the button nearest to the natural rest position of the person’s finger. Pass `1` for an additional button that requires the person to move their fingers to press if it exists.
+///
+///
+/// ## Return Value
+///
+/// The name of the back left button.
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
     position: NSInteger,
@@ -167,7 +171,17 @@ pub unsafe extern "C-unwind" fn GCInputBackLeftButton(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbackrightbutton?language=objc)
+/// Returns the name of the back right button at the specified location.
+///
+/// Parameters:
+/// - position: The relative position of the button to the other back right button. Pass `0` for the button nearest to the natural rest position of the person’s finger. Pass `1` for an additional button that requires the person to move their fingers to press if it exists.
+///
+///
+/// ## Return Value
+///
+/// The name of the back right button.
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputBackRightButton(
     position: NSInteger,
@@ -180,114 +194,122 @@ pub unsafe extern "C-unwind" fn GCInputBackRightButton(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonhome-8qxo4?language=objc)
+    /// The name of the home or logo button element.
     pub static GCInputButtonHome: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonmenu-83i52?language=objc)
+    /// The name of the primary menu button element.
     pub static GCInputButtonMenu: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonoptions-52c9a?language=objc)
+    /// The name of the secondary menu button.
     pub static GCInputButtonOptions: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputbuttonshare-2xxjg?language=objc)
+    /// The name of the share button.
     pub static GCInputButtonShare: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
+    /// The name for the controller’s P1 paddle button.
     /// A set of strings commonly used to access Xbox buttons
     ///
     ///
     /// See: GCController.h
     ///
     /// See: GCPhysicalInputProfile.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputxboxpaddleone-795e3?language=objc)
     pub static GCInputXboxPaddleOne: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputxboxpaddletwo-4vrw4?language=objc)
+    /// The name for the controller’s P2 paddle button.
     pub static GCInputXboxPaddleTwo: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputxboxpaddlethree-7u2xy?language=objc)
+    /// The name for the controller’s P3 paddle button.
     pub static GCInputXboxPaddleThree: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputxboxpaddlefour-4n8ze?language=objc)
+    /// The name for the controller’s P4 paddle button.
     pub static GCInputXboxPaddleFour: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
+    /// The name of the first finger element to touch down on the DualShock 4 touchpad.
     /// A set of strings commonly used to access DualShock buttons
     ///
     ///
     /// See: GCController.h
     ///
     /// See: GCPhysicalInputProfile.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdualshocktouchpadone-5u54s?language=objc)
     pub static GCInputDualShockTouchpadOne: Option<&'static GCInputDirectionPadName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdualshocktouchpadtwo-38d95?language=objc)
+    /// The name of the second finger element to touch down on the DualShock 4 touchpad.
     pub static GCInputDualShockTouchpadTwo: Option<&'static GCInputDirectionPadName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputdualshocktouchpadbutton-47b5w?language=objc)
+    /// The name of the button functionality of the DualShock 4 touchpad.
     pub static GCInputDualShockTouchpadButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
+    /// The name of the steering wheel element.
     /// A set of strings commonly used by racing wheels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputsteeringwheel-6eb58?language=objc)
     pub static GCInputSteeringWheel: Option<&'static GCInputAxisName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputshifter-2p2b7?language=objc)
+    /// The name of the shifter element.
     pub static GCInputShifter: Option<&'static GCInputElementName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputpedalaccelerator-6kjfe?language=objc)
+    /// The name of the accelerator element.
     pub static GCInputPedalAccelerator: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputpedalbrake-7jcp?language=objc)
+    /// The name of the brake element.
     pub static GCInputPedalBrake: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputpedalclutch-3cn3p?language=objc)
+    /// The name of the clutch element.
     pub static GCInputPedalClutch: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputleftpaddle-818ad?language=objc)
+    /// The name for the left paddle input.
     pub static GCInputLeftPaddle: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputrightpaddle-1p8hd?language=objc)
+    /// The name for the right paddle input.
     pub static GCInputRightPaddle: Option<&'static GCInputButtonName>;
 }
 
-/// Gets the name of an arcade button at a certain position.
+/// Returns the name of the arcade stick button at the specified location.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputarcadebuttonname?language=objc)
+/// Parameters:
+/// - row: The row on the arcade stick that the button appears in, where `0` is the bottom row.
+///
+/// - column: The column on the arcade stick that the button appears in, where `0` is the column nearest to the lever or direction buttons.
+///
+///
+/// ## Return Value
+///
+/// The name of an arcade stick button.
+///
+///
+/// Gets the name of an arcade button at a certain position.
 #[inline]
 pub unsafe extern "C-unwind" fn GCInputArcadeButtonName(
     row: NSInteger,
@@ -302,28 +324,37 @@ pub unsafe extern "C-unwind" fn GCInputArcadeButtonName(
 
 extern "C" {
     /// The stylus tip button used to detect contact with a surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-817rt?language=objc)
+    /// The stylus tip button used to detect contact with a surface.
     pub static GCInputStylusTip: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
     /// The stylus side button nearest the tip.
     ///
+    /// ## Discussion
+    ///
+    /// A spatial stylus has at least two buttons arranged vertically along the barrel.  The primary button is the button nearest the tip.
+    ///
+    ///
+    /// The stylus side button nearest the tip.
+    ///
     /// A spatial stylus has at least two buttons arranged vertically along the
     /// barrel.  The primary button is the button nearest the tip.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton-2dayc?language=objc)
     pub static GCInputStylusPrimaryButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
     /// The stylus side button above the primary button.
     ///
+    /// ## Discussion
+    ///
+    /// A spatial stylus has at least two buttons arranged vertically along the barrel.  The secondary button is located above the primary button when the stylus is held with the tip pointing down.
+    ///
+    ///
+    /// The stylus side button above the primary button.
+    ///
     /// A spatial stylus has at least two buttons arranged vertically along the
     /// barrel.  The secondary button is located above the primary button when
     /// the stylus is held with the tip pointing down.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton-a8q?language=objc)
     pub static GCInputStylusSecondaryButton: Option<&'static GCInputButtonName>;
 }

@@ -13,7 +13,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcollectionviewfullscreencell?language=objc)
+    /// A full-screen cell to use in full-screen display format.
+    ///
+    /// ## Overview
+    ///
+    /// Use `TVCollectionViewFullScreenCell` to populate the full-screen collection view with content.
+    ///
+    ///
     #[unsafe(super(
         UICollectionViewCell,
         UICollectionReusableView,

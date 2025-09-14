@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// Encapsulates access and mutation for a menu hierarchy.
+    /// An interface for adding and removing menus from a menu system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenubuilder?language=objc)
+    /// ## Overview
+    ///
+    /// You don’t create a menu builder object. Instead, you override [`buildMenuWithBuilder:`](https://developer.apple.com/documentation/uikit/uiresponder/buildmenu(with:)) in your app delegate or view controller to receive a builder object. Where you override this method determines the system that the builder updates. To add and remove menus from the menu bar using the [`mainSystem`](https://developer.apple.com/documentation/uikit/uimenusystem/main) menu system, override [`buildMenuWithBuilder:`](https://developer.apple.com/documentation/uikit/uiresponder/buildmenu(with:)) in your app delegate. To build a context menu using the [`contextSystem`](https://developer.apple.com/documentation/uikit/uimenusystem/context) system, override the method in your view controller.
+    ///
+    /// To see an example of how to use a menu builder object, see [Adding menus and shortcuts to the menu bar and user interface](https://developer.apple.com/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface).
+    ///
+    ///
+    /// Encapsulates access and mutation for a menu hierarchy.
     pub unsafe trait UIMenuBuilder: MainThreadOnly {
         #[cfg(feature = "UIMenuSystem")]
         /// Which system we are building for.

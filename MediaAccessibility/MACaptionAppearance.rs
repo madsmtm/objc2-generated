@@ -13,29 +13,27 @@ use objc2_core_text::*;
 use crate::*;
 
 extern "C" {
+    /// A notification that occurs when any user-defined caption settings change.
     /// CFNotification sent when any user-defined captioning settings are changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/kmacaptionappearancesettingschangednotification?language=objc)
     pub static kMACaptionAppearanceSettingsChangedNotification: &'static CFString;
 }
 
+/// A value that specifies which domain to retrieve a preference setting from.
 /// MACaptionAppearanceDomain is used to specify which domain of preferences to access.
 ///
 ///
 /// The user-defined preferences. This domain should be passed to retrieve settings that should be used to render captions.
 ///
 /// The system defaults which will not change during a user session. These settings should be used for comparison, not to render captions. For example, when rendering a glyph some caption render engines need to get the user-defined font and the system-defined font to determeine the final pixel size to render a glyph. Most render engines will never need to use this domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDomain(pub CFIndex);
 impl MACaptionAppearanceDomain {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/default?language=objc)
+    /// The system default value for the setting should be returned.
     #[doc(alias = "kMACaptionAppearanceDomainDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user?language=objc)
+    /// The user’s preferred value for the setting should be returned.
     #[doc(alias = "kMACaptionAppearanceDomainUser")]
     pub const User: Self = Self(1);
 }
@@ -50,6 +48,7 @@ unsafe impl RefEncode for MACaptionAppearanceDomain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that specifies the type of captions to display.
 /// MACaptionAppearanceDisplayType is used to specify the the type of captions that should be displayed
 ///
 ///
@@ -58,20 +57,18 @@ unsafe impl RefEncode for MACaptionAppearanceDomain {
 /// If the language of the audio track differs from the system locale then captions matching the system locale should be displayed (if available).
 ///
 /// The best available captioning track should always be displayed, whether it be CC, SDH, or subtitles.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDisplayType(pub CFIndex);
 impl MACaptionAppearanceDisplayType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype/forcedonly?language=objc)
+    /// Do not display captions unless they are forced for translation.
     #[doc(alias = "kMACaptionAppearanceDisplayTypeForcedOnly")]
     pub const ForcedOnly: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype/automatic?language=objc)
+    /// If the language of the audio track differs from the system locale, then captions matching the system locale should be displayed (if available). If the language of the audio and the language of the system locale match, no captions are shown.
     #[doc(alias = "kMACaptionAppearanceDisplayTypeAutomatic")]
     pub const Automatic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype/alwayson?language=objc)
+    /// The most robust available captioning track should always be displayed, whether subtitles, CC, or SDH. This option is selected by a switch labeled “Closed Captions + SDH” (on the Subtitles & Captioning page of iOS) and “Prefer Closed Captions and SDH” checkbox (on the Captions pane of the Accessibility options in macOS).
     #[doc(alias = "kMACaptionAppearanceDisplayTypeAlwaysOn")]
     pub const AlwaysOn: Self = Self(2);
 }
@@ -86,23 +83,22 @@ unsafe impl RefEncode for MACaptionAppearanceDisplayType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that indicates the preferred behavior for a preference setting.
 /// MACaptionAppearanceBehavior is used to determine how a preference value should be used.
 ///
 ///
 /// The value should override any content, application, or otherwise-defined values.
 ///
 /// Content, application, or otherwise-defined values should override the returned value. If no other value is defined, then the return value should be used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceBehavior(pub CFIndex);
 impl MACaptionAppearanceBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior/usevalue?language=objc)
+    /// The preference setting should always be used.
     #[doc(alias = "kMACaptionAppearanceBehaviorUseValue")]
     pub const UseValue: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior/usecontentifavailable?language=objc)
+    /// The preference setting should be used unless the content media being played has its own custom value for this setting.
     #[doc(alias = "kMACaptionAppearanceBehaviorUseContentIfAvailable")]
     pub const UseContentIfAvailable: Self = Self(1);
 }
@@ -117,6 +113,7 @@ unsafe impl RefEncode for MACaptionAppearanceBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that specifies a font style.
 /// MACaptionAppearanceFontStyle is used to specify a font style
 ///
 ///
@@ -135,35 +132,33 @@ unsafe impl RefEncode for MACaptionAppearanceBehavior {
 /// Font style for fonts similar to Coronet and Marigold.
 ///
 /// Font style for fonts similar to Engravers Gothic.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceFontStyle(pub CFIndex);
 impl MACaptionAppearanceFontStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/default?language=objc)
+    /// The default font style for all caption text.
     #[doc(alias = "kMACaptionAppearanceFontStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/monospacedwithserif?language=objc)
+    /// The font style preferred for the monospaced serif font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleMonospacedWithSerif")]
     pub const MonospacedWithSerif: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/proportionalwithserif?language=objc)
+    /// The font style preferred for the proportional serif font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleProportionalWithSerif")]
     pub const ProportionalWithSerif: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/monospacedwithoutserif?language=objc)
+    /// The font style preferred for the monospaced sans serif font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleMonospacedWithoutSerif")]
     pub const MonospacedWithoutSerif: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/proportionalwithoutserif?language=objc)
+    /// The font style preferred for the proportional sans serif font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleProportionalWithoutSerif")]
     pub const ProportionalWithoutSerif: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/casual?language=objc)
+    /// The font style preferred for the casual font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleCasual")]
     pub const Casual: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/cursive?language=objc)
+    /// The font style preferred for the cursive font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleCursive")]
     pub const Cursive: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle/smallcapital?language=objc)
+    /// The font style preferred for the small capital font style.
     #[doc(alias = "kMACaptionAppearanceFontStyleSmallCapital")]
     pub const SmallCapital: Self = Self(7);
 }
@@ -178,6 +173,7 @@ unsafe impl RefEncode for MACaptionAppearanceFontStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that specifies a style for the outside of the text.
 /// MACaptionAppearanceTextEdgeStyle is used to specify a text-edge style.
 ///
 ///
@@ -192,29 +188,27 @@ unsafe impl RefEncode for MACaptionAppearanceFontStyle {
 /// Uniform edge style.
 ///
 /// Shadow edge style.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceTextEdgeStyle(pub CFIndex);
 impl MACaptionAppearanceTextEdgeStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/undefined?language=objc)
+    /// An edge style has not been specified.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/none?language=objc)
+    /// The text should not have a styled edge.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/raised?language=objc)
+    /// An edge makes the text appear to rise above the background.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleRaised")]
     pub const Raised: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/depressed?language=objc)
+    /// An edge makes the text appear pushed in.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleDepressed")]
     pub const Depressed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/uniform?language=objc)
+    /// A thin outline lies along the edge of the text.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUniform")]
     pub const Uniform: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle/dropshadow?language=objc)
+    /// An edge makes the text appear to float above the background.
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleDropShadow")]
     pub const DropShadow: Self = Self(5);
 }
@@ -230,30 +224,29 @@ unsafe impl RefEncode for MACaptionAppearanceTextEdgeStyle {
 }
 
 extern "C" {
+    /// A media characteristic that indicates that a track includes legible content in the language of its specified locale that describes music and sound other than spoken dialog.
     /// A media characteristic that indicates that a track or media selection option includes legible content in the language of its specified locale that:
     /// - describes music and
     /// - describes sound other than spoken dialog, such as sound effects and significant silences, occurring in program audio.
     ///
     /// Legible tracks provided for accessibility purposes are typically tagged both with this characteristic as well as with MAMediaCharacteristicTranscribesSpokenDialogForAccessibility.
     /// A legible track provided for accessibility purposes that's associated with an audio track without music and without sound other than spoken dialog -- lacking even significant silences -- can be tagged with this characteristic, because it trivially meets these requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamediacharacteristicdescribesmusicandsoundforaccessibility?language=objc)
     pub static MAMediaCharacteristicDescribesMusicAndSoundForAccessibility: &'static CFString;
 }
 
 extern "C" {
+    /// A media characteristic that indicates that a track includes legible content in the language of its specified locale that transcribes spoken dialog and identifies the speakers.
     /// A media characteristic that indicates that a track or media selection option includes legible content in the language of its specified locale that:
     /// - transcribes spoken dialog and
     /// - identifies speakers whenever other visual cues are insufficient for a viewer to determine who is speaking.
     ///
     /// Legible tracks provided for accessibility purposes are typically tagged both with this characteristic as well as with MAMediaCharacteristicDescribesMusicAndSoundForAccessibility.
     /// A legible track provided for accessibility purposes that's associated with an audio track that has no spoken dialog can be tagged with this characteristic, because it trivially meets these requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamediacharacteristictranscribesspokendialogforaccessibility?language=objc)
     pub static MAMediaCharacteristicTranscribesSpokenDialogForAccessibility: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Informs accessibility clients when captions display onscreen.
     /// Called by clients to inform accessibility products that captions have been displayed onscreen.
     ///
     /// Parameter `strings`: An array of CFStringRef or CFAttributedStringRef objects that represent the text that is being displayed. An empty array is used to indicate that no captions are being displayed.
@@ -261,12 +254,35 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `strings` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancediddisplaycaptions(_:)?language=objc)
     pub fn MACaptionAppearanceDidDisplayCaptions(strings: &CFArray);
 }
 
 extern "C-unwind" {
+    /// Adds a preference for caption language to the stack of languages.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - language: A canonical language identifier (see doc://com.apple.documentation/documentation/corefoundation/cflocale-rsj) of the preferred caption language.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if addition was successful; `false` if an error occurred. Errors are most likely the result of invalid language codes.
+    ///
+    /// ## Discussion
+    ///
+    /// The added language will appear in the array returned by [`MACaptionAppearanceCopySelectedLanguages`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyselectedlanguages(_:)). Call the `MACaptionAppearanceAddSelectedLanguage` function anytime a user selects a specific captioning language from a pop-up menu or other UI affordance. For example, an AVFoundation client may execute the following code:
+    ///
+    /// ```objc
+    ///  // in response to a user selection, make the selection effective
+    /// -[AVPlayerItem selectMediaOption:legibleOption inMediaSelectionGroup:legibleGroup];
+    ///  
+    /// // now update system-wide captioning preferences by registering the added language
+    /// MACaptionAppearanceAddSelectedLanguage(kMACaptionAppearanceDomainUser, (CFStringRef)[[legibleOption locale] localeIdentifier]);
+    /// ```
+    ///
+    ///
     /// Adds a user's selected caption language to stack of languages.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -299,14 +315,27 @@ extern "C-unwind" {
     /// // now update system-wide captioning preferences by registering the language of the option selected by the user
     /// MACaptionAppearanceAddSelectedLanguage(kMACaptionAppearanceDomainUser, (CFStringRef)[[legibleOption locale] localeIdentifier]);
     /// </code>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceaddselectedlanguage(_:_:)?language=objc)
     pub fn MACaptionAppearanceAddSelectedLanguage(
         domain: MACaptionAppearanceDomain,
         language: &CFString,
     ) -> bool;
 }
 
+/// Returns the preferred caption languages.
+///
+/// Parameters:
+/// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+///
+///
+/// ## Return Value
+///
+/// An ordered array of preferred canonical language identifiers.
+///
+/// ## Discussion
+///
+/// Languages added using the [`MACaptionAppearanceAddSelectedLanguage`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceaddselectedlanguage(_:_:)) function are normalized. As a result, the contents of the returned array may have slightly different strings from those passed into [`MACaptionAppearanceAddSelectedLanguage`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceaddselectedlanguage(_:_:)).
+///
+///
 /// Copies the user's preferred caption languages.
 ///
 ///
@@ -323,8 +352,6 @@ extern "C-unwind" {
 ///
 ///
 /// Languages added using MACaptionAppearanceAddSelectedLanguage are normalized, and thus the contents of this array may have slightly different strings than those passed into MACaptionAppearanceAddSelectedLanguage.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyselectedlanguages(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopySelectedLanguages(
     domain: MACaptionAppearanceDomain,
@@ -340,6 +367,17 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopySelectedLanguages(
 }
 
 extern "C-unwind" {
+    /// Returns the preferred type of captions to display.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value representing options to use only forced captions, allow system locale to override the language of the audio track, or choose the best available captioning track from CC, SDH, or subtitles. See [`MACaptionAppearanceDisplayType`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype).
+    ///
+    ///
     /// User preference representing what type of captions should be displayed
     ///
     /// Parameter `domain`: Preference domain, see
@@ -357,14 +395,19 @@ extern "C-unwind" {
     /// ```
     ///
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetdisplaytype(_:)?language=objc)
     pub fn MACaptionAppearanceGetDisplayType(
         domain: MACaptionAppearanceDomain,
     ) -> MACaptionAppearanceDisplayType;
 }
 
 extern "C-unwind" {
+    /// Sets the preference for the type of caption.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - displayType: A value representing options to use only forced captions, to allow system locale to override the language of the audio track, or to choose the best available captioning track from CC, SDH, or subtitles. See [`MACaptionAppearanceDisplayType`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype).
+    ///
     /// User preference representing what type of captions should be displayed
     ///
     /// Parameter `domain`: Preference domain, see
@@ -382,14 +425,23 @@ extern "C-unwind" {
     /// ```
     ///
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancesetdisplaytype(_:_:)?language=objc)
     pub fn MACaptionAppearanceSetDisplayType(
         domain: MACaptionAppearanceDomain,
         display_type: MACaptionAppearanceDisplayType,
     );
 }
 
+/// Returns the preferences for captioning sounds.
+///
+/// Parameters:
+/// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+///
+///
+/// ## Return Value
+///
+/// An array containing the preferred media characteristics for captioning of music, sounds, and dialog. See [Captions](https://developer.apple.com/documentation/mediaaccessibility/captions).
+///
+///
 /// User preference for captioning media characteristic
 ///
 /// Parameter `domain`: Preference domain, see
@@ -401,8 +453,6 @@ extern "C-unwind" {
 /// .
 ///
 /// Returns: An array containing the preferred order of media characteristics for captions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopypreferredcaptioningmediacharacteristics(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics(
     domain: MACaptionAppearanceDomain,
@@ -418,6 +468,22 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyPreferredCaptioningMediaC
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - domain: Preference domain, see  @link MACaptionAppearanceDomain @/link.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A boolean indicating if the currently-active style has been customized by the user
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Provides a boolean indicating if the currently-active style has been customized by the user. This is useful for some clients who may need different fallback strategies for customized styles vs system-default styles.
+    ///
+    ///
     /// Provides a boolean indicating if the currently-active style has been customized by the user. This is useful for some clients who may need different fallback strategies for customized styles vs system-default styles.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -429,11 +495,22 @@ extern "C-unwind" {
     /// .
     ///
     /// Returns: A boolean indicating if the currently-active style has been customized by the user
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceiscustomized(_:)?language=objc)
     pub fn MACaptionAppearanceIsCustomized(domain: MACaptionAppearanceDomain) -> bool;
 }
 
+/// Returns the preference for text color.
+///
+/// Parameters:
+/// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+///
+/// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+///
+///
+/// ## Return Value
+///
+/// The preferred color for caption text.
+///
+///
 /// User preference for foreground/text color.
 ///
 /// Parameter `domain`: Preference domain, see
@@ -457,8 +534,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyforegroundcolor(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
@@ -476,6 +551,19 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns the preference for the text highlight color.
+///
+/// Parameters:
+/// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+///
+/// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+///
+///
+/// ## Return Value
+///
+/// The preferred color shown behind the text and above the window color.
+///
+///
 /// User preference for background color.
 ///
 /// The background color is the color behind each caption glyph.
@@ -501,8 +589,6 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyForegroundColor(
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopybackgroundcolor(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
@@ -520,6 +606,19 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns the preference for the caption window’s color.
+///
+/// Parameters:
+/// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+///
+/// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+///
+///
+/// ## Return Value
+///
+/// The preferred color displayed behind all other caption elements.
+///
+///
 /// User preference for window color.
 ///
 /// The window color is the color of a box behind all of the caption glyphs.
@@ -545,8 +644,6 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyBackgroundColor(
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopywindowcolor(_:_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
@@ -565,6 +662,19 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyWindowColor(
 }
 
 extern "C-unwind" {
+    /// Returns the preference for text opacity.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The float value, ranging from `0.0` to `1.0`, representing the opacity of the color for text opacity.
+    ///
+    ///
     /// User preference for foreground opacity.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -588,8 +698,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetforegroundopacity(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetForegroundOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -597,6 +705,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the preference for the text highlight opacity.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A float value, ranging from `0.0` to `1.0`, representing the opacity of the color behind the text and above the window color.
+    ///
+    ///
     /// User preference for background opacity.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -620,8 +741,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetbackgroundopacity(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetBackgroundOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -629,6 +748,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the preference for the overlay’s opacity.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The float value, ranging from `0.0` to `1.0`, representing the opacity of the color behind all other caption elements.
+    ///
+    ///
     /// User preference for window opacity.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -652,8 +784,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetwindowopacity(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetWindowOpacity(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -661,6 +791,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the radius of the caption window’s corners.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The system setting for the caption window’s corner radius.
+    ///
+    /// ## Discussion
+    ///
+    /// The rounded corners of the caption window are not customizable within the Accessibility preferences and do not change based on text size.
+    ///
+    ///
     /// User preference for caption-window corner radius.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -684,14 +831,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetwindowroundedcornerradius(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetWindowRoundedCornerRadius(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
     ) -> CGFloat;
 }
 
+/// Returns the preferred font for the specified style of type.
+///
+/// Parameters:
+/// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+///
+/// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+///
+/// - fontStyle: A font style, such as cursive or small caps, see [`MACaptionAppearanceFontStyle`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle).
+///
+///
+/// ## Return Value
+///
+/// The name of the preferred font for the specified style.
+///
+///
 /// User font preference for the specified style.
 ///
 /// Parameter `domain`: Preference domain, see
@@ -723,8 +883,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `behavior` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyfontdescriptorforstyle(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-text")]
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
@@ -746,6 +904,19 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyFontDescriptorForStyle(
 }
 
 extern "C-unwind" {
+    /// Returns the preference for font scaling.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font scaling preference, as a multiplier, for the specified style; ranging from `0.0` to `2.0`.
+    ///
+    ///
     /// User preference for font scaling.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -769,8 +940,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegetrelativecharactersize(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetRelativeCharacterSize(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
@@ -778,6 +947,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the preference for text edge style.
+    ///
+    /// Parameters:
+    /// - domain: The domain to retrieve the preference value from. See [`MACaptionAppearanceDomain`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain). Pass [`kMACaptionAppearanceDomainUser`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain/user) unless the system defaults are needed for comparison.
+    ///
+    /// - behavior: A pointer to memory. On return, this memory holds the caption appearance behavior for this preference setting. For possible values see [`MACaptionAppearanceBehavior`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior). Pass `NULL` when you do not need the behavior setting.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The preferred text edge style, such as Raised or Drop Shadow. See [`MACaptionAppearanceTextEdgeStyle`](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle).
+    ///
+    ///
     /// User preference for text edge style.
     ///
     /// Parameter `domain`: Preference domain, see
@@ -801,19 +983,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `behavior` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancegettextedgestyle(_:_:)?language=objc)
     pub fn MACaptionAppearanceGetTextEdgeStyle(
         domain: MACaptionAppearanceDomain,
         behavior: *mut MACaptionAppearanceBehavior,
     ) -> MACaptionAppearanceTextEdgeStyle;
 }
 
+///
+/// ## Return Value
+///
+/// An array of strings where each string represents a unique caption profile ID.
+///
+///
+///
+/// ## Discussion
+///
+/// Copies all system and user defined profiles, each represented by a CFString containing a non-human-readable ID
+///
+///
 /// Copies all system and user defined profiles, each represented by a CFString containing a non-human-readable ID
 ///
 /// Returns: An array of strings where each string represents a unique caption profile ID.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyprofileids()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -825,19 +1015,37 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileIDs() -> CFRetaine
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - profileID: The profileID to make active.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sets the currently-selected caption drawing profileID system wide. Behavior is undefined if NULL or an invalid profileID is provided
+    ///
+    ///
     /// Sets the currently-selected caption drawing profileID system wide. Behavior is undefined if NULL or an invalid profileID is provided
     ///
     /// Parameter `profileID`: The profileID to make active.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancesetactiveprofileid(_:)?language=objc)
     pub fn MACaptionAppearanceSetActiveProfileID(profile_id: &CFString);
 }
 
+///
+/// ## Return Value
+///
+/// The currently-selected profileID.
+///
+///
+///
+/// ## Discussion
+///
+/// Gets the currently-selected caption drawing profileID system wide.
+///
+///
 /// Gets the currently-selected caption drawing profileID system wide.
 ///
 /// Returns: The currently-selected profileID.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyactiveprofileid()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -848,13 +1056,27 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyActiveProfileID() -> CFRe
     unsafe { CFRetained::from_raw(ret) }
 }
 
+///
+/// Parameters:
+/// - profileID: The profileID to copy the name of
+///
+///
+/// ## Return Value
+///
+/// A human-readable name of the provided profileID
+///
+///
+///
+/// ## Discussion
+///
+/// Copies the human-readable name of a profileID
+///
+///
 /// Copies the human-readable name of a profileID
 ///
 /// Parameter `profileID`: The profileID to copy the name of
 ///
 /// Returns: A human-readable name of the provided profileID
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancecopyprofilename(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
     profile_id: &CFString,
@@ -868,13 +1090,23 @@ pub unsafe extern "C-unwind" fn MACaptionAppearanceCopyProfileName(
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - profileID: The profileID which will appear active when executing the block
+    ///
+    /// - aBlock: The block of code to execute
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Executes a block of code as if the provided profileID was active. This is used in cases such as a need to get the fonts and colors of a profileID without changing the currently selected profileID.
+    ///
+    ///
     /// Executes a block of code as if the provided profileID was active. This is used in cases such as a need to get the fonts and colors of a profileID without changing the currently selected profileID.
     ///
     /// Parameter `profileID`: The profileID which will appear active when executing the block
     ///
     /// Parameter `aBlock`: the block of code to execute
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearanceexecuteblockforprofileid(_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn MACaptionAppearanceExecuteBlockForProfileID(
         profile_id: &CFString,

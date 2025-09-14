@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// A three-dimensional acceleration vector.
 /// A 3 dimensional acceleration vector measured as scalar multiples of earth's gravitational acceleration, G.
 ///
 /// The azimuth direction is assumed to be (0, 0, 1), so a device held at rest with the z axis aligned with the azimuth
@@ -14,8 +15,6 @@ use crate::*;
 /// Field: x X-axis acceleration as a scalar multiple of earth's gravitational acceleration, G.
 /// Field: y Y-axis acceleration as a scalar multiple of earth's gravitational acceleration, G.
 /// Field: z Z-axis acceleration as a scalar multiple of earth's gravitational acceleration, G.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcacceleration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCAcceleration {
@@ -39,6 +38,7 @@ unsafe impl RefEncode for GCAcceleration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that represents rotation rates around the x, y, and z axes.
 /// A structure containing 3-axis rotation rate data.
 ///
 /// Field: x   X-axis rotation rate in radians/second. The sign follows the right hand
@@ -55,8 +55,6 @@ unsafe impl RefEncode for GCAcceleration {
 /// rule (i.e. if the right hand is wrapped around the Z axis such that the
 /// tip of the thumb points toward positive Z, a positive rotation is one
 /// toward the tips of the other 4 fingers).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcrotationrate?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCRotationRate {
@@ -80,6 +78,7 @@ unsafe impl RefEncode for GCRotationRate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that specifies the controller’s attitude as a series of rotations around the x, y, and z axes.
 /// A structure containing 3-axis rotation data. The angles are rotated in order or pitch then yaw then roll.
 ///
 /// Field: pitch X-axis rotation in radians. The sign follows the right hand
@@ -96,8 +95,6 @@ unsafe impl RefEncode for GCRotationRate {
 /// rule (i.e. if the right hand is wrapped around the Z axis such that the
 /// tip of the thumb points toward positive Z, a positive rotation is one
 /// toward the tips of the other 4 fingers).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gceulerangles?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCEulerAngles {
@@ -121,12 +118,11 @@ unsafe impl RefEncode for GCEulerAngles {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A quaternion that represents a controller’s measurement of attitude.
 /// Represents a quaternion (one way of parameterizing attitude).
 /// If q is an instance of GCQuaternion, mathematically it represents the following quaternion:
 ///
 /// q.x*i + q.y*j + q.z*k + q.w
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcquaternion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCQuaternion {
@@ -152,13 +148,33 @@ unsafe impl RefEncode for GCQuaternion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Called whenever a motion value changed.
+/// The signature for the block that the profile calls when an element’s value changes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmotionvaluechangedhandler?language=objc)
+/// Parameters:
+/// - motion: The profile with the element values that change.
+///
+/// Called whenever a motion value changed.
 #[cfg(feature = "block2")]
 pub type GCMotionValueChangedHandler = *mut block2::DynBlock<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
+    /// A controller profile that supports orientation and motion.
+    ///
+    /// ## Overview
+    ///
+    /// The motion controller profile provides attitude and rotation data, as well as acceleration and sensor information. Use this profile to get motion input from a controller that measures acceleration and rotation rate. If the controller’s [`motion`](https://developer.apple.com/documentation/gamecontroller/gccontroller/motion) property is a `GCMotion` object, the controller supports motion.
+    ///
+    /// This illustration shows the direction of the x, y, and z axes of an iPhone when held upright.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c8ae5da5406413176d4bcc9bebfc5928/media-2930224~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/bfa00799a86f2c65db1da8219375e6dd/media-2930224%402x.png 2x" />
+    ///     <img alt="An illustration of a vertical iPhone with the  x-axis passing through its center from side to side, the y-axis passing through its center from top to bottom, and the z-axis passing through its center from back to front." src="https://docs-assets.developer.apple.com/published/c8ae5da5406413176d4bcc9bebfc5928/media-2930224~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// A profile for getting motion input from a controller that has the ability to measure acceleration
     /// and rotation rate.
     ///
@@ -168,8 +184,6 @@ extern_class!(
     ///
     ///
     /// See: GCController.motion
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmotion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCMotion;

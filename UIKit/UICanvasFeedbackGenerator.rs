@@ -9,7 +9,62 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicanvasfeedbackgenerator?language=objc)
+    /// A concrete feedback generator subclass that creates haptics to indicate events on a drawing canvas.
+    ///
+    /// ## Overview
+    ///
+    /// Use canvas feedback to indicate when a drawing event occurs, such as an object snapping to a guide or ruler. When using Apple Pencil Pro with a compatible iPad, this type of feedback can provide a tactile response.
+    ///
+    /// The following code example shows how to use a pan gesture to drag a square, playing haptic feedback to indicate when the square aligns with a gridline on the canvas.
+    ///
+    /// ```swift
+    /// var gridlines: [Gridline] = []
+    /// var feedback = UICanvasFeedbackGenerator()
+    ///
+    /// override func viewDidLoad() {
+    ///     super.viewDidLoad()
+    ///     configureGridlines()
+    ///     
+    ///     // Create a canvas feedback object and associate it with the view.
+    ///     feedback = UICanvasFeedbackGenerator(view: view)
+    ///     
+    ///     // Draw a basic square and add it to the view hierarchy.
+    ///     let center = CGPoint(x: view.center.x - 50, y: view.center.y - 50)
+    ///     let square = UIView(frame: CGRect(origin: center,
+    ///                                      size: CGSize(width: 100, height: 100)))
+    ///     square.backgroundColor = .tintColor
+    ///     view.addSubview(square)
+    ///     
+    ///     // Add a pan gesture to allow dragging the square.
+    ///     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragSquare(_:)))
+    ///     square.isUserInteractionEnabled = true
+    ///     square.addGestureRecognizer(panGesture)
+    /// }
+    ///
+    /// @objc
+    /// private func dragSquare(_ sender: UIPanGestureRecognizer) {
+    ///     guard let square = sender.view else { return }
+    ///     
+    ///     if sender.state == .began {
+    ///         // Prepare the feedback object.
+    ///         feedback.prepare()
+    ///     }
+    ///
+    ///     // Move the square in response to a pan gesture.
+    ///     let distance = sender.translation(in: view)
+    ///     square.center = CGPoint(x: square.center.x + distance.x, y: square.center.y + distance.y)
+    ///     sender.setTranslation(CGPoint.zero, in: view)
+    ///     
+    ///     // Play canvas feedback if the square aligns with one of the gridlines.
+    ///     if square.aligned(gridlines: gridlines) {
+    ///         feedback.alignmentOccurred(at: sender.location(in: view))
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// For more information, read [Playing haptic feedback in your app](https://developer.apple.com/documentation/applepencil/playing-haptic-feedback-in-your-app).
+    ///
+    ///
     #[unsafe(super(UIFeedbackGenerator, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -12,34 +12,29 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// The directions that the caption button view can tilt in response to user interactions on the remote.
 /// Set of options for focus motion direction
 ///
 /// These options alter the motion axis of the floating view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVCaptionButtonViewMotionDirection(pub NSInteger);
 impl TVCaptionButtonViewMotionDirection {
+    /// The caption button view can’t tilt.
     /// The floating view will not have any motion. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/none?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionNone")]
     pub const None: Self = Self(0);
+    /// The caption button view can tilt in the horzontal direction.
     /// The floating view will slide horizontally. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/horizontal?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
+    /// The caption button view can tilt in the vertical direction.
     /// The floating view will slide vertically. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/vertical?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionVertical")]
     pub const Vertical: Self = Self(2);
+    /// The caption button view can tilt in all directions.
     /// The floating view will slide in both axes. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonviewmotiondirection/all?language=objc)
     #[doc(alias = "TVCaptionButtonViewMotionDirectionAll")]
     pub const All: Self = Self(3);
 }
@@ -53,11 +48,20 @@ unsafe impl RefEncode for TVCaptionButtonViewMotionDirection {
 }
 
 extern_class!(
+    /// A button-like view that responds to user interactions.
+    ///
+    /// ## Overview
+    ///
+    /// A caption button responds to user interactions and can contain an image or text. When the caption button comes into focus, the caption button expands in the [`leading`](https://developer.apple.com/documentation/appkit/nsdirectionaledgeinsets/leading), [`top`](https://developer.apple.com/documentation/appkit/nsdirectionaledgeinsets/top), and [`trailing`](https://developer.apple.com/documentation/appkit/nsdirectionaledgeinsets/trailing) directions. The user can click the caption button to select an option. As the user moves their finger on the Siri Remote up and down, or left and right, the caption button may limit the direction of the tilt based on the type set in [`motionDirection`](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonview/motiondirection).
+    ///
+    ///
+    /// ![A darkened figure with a highlighted button. The button contains a stylized TV icon with the word preview below the button.](https://docs-assets.developer.apple.com/published/c55bd30fa76dfaf03b308c89e32830f5/media-3016836%402x.png)
+    ///
+    ///
+    ///
     /// TVCaptionButtonView is a button-like lockup view with a caption (or a footer), which itself consists of a title and a subtitle.
     ///
     /// The caption button view can have either a content image or content text. The system adds it to a floating view with a knock-out effect. When in focus, the floating view will scale up in the .leading, .top., and .trailing directions by a fixed amount determined by the system. Overriding .focusSizeIncrease has no visible effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcaptionbuttonview?language=objc)
     #[unsafe(super(TVLockupView, UIControl, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVLockupView")]

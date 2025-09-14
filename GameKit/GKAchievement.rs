@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkachievement?language=objc)
+    /// An achievement you can award a player as they make progress toward and reach a goal in your game.
+    ///
+    /// ## Overview
+    ///
+    /// Before using this class, configure your game achievements in App Store Connect. Then the dashboard shows the achievements initially locked and you can access them in your code.
+    ///
+    /// Use the [`loadAchievementsWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkachievement/loadachievements(completionhandler:)) method to load all the achievements that the local player is progressing toward. If an achievement doesn’t load, then it’s the first time you’re reporting the player’s progress toward it, and you must create a [`GKAchievement`](https://developer.apple.com/documentation/gamekit/gkachievement) object to represent it. Next, set the percentage complete of the achievement using the [`percentComplete`](https://developer.apple.com/documentation/gamekit/gkachievement/percentcomplete) property.
+    ///
+    /// You can report the player’s progress for one or more achievements to Game Center using the [`reportAchievements:withCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkachievement/report(_:withcompletionhandler:)) method. The dashboard changes the appearance of the achievements to show the current percentages. If you set the percentage of an achievement to 100, the dashboard shows it as completed.
+    ///
+    /// To reset the player’s progress on all achievements, use the [`resetAchievementsWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkachievement/resetachievements(completionhandler:)) class method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAchievement;

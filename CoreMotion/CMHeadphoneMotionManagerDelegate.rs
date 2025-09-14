@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanagerdelegate?language=objc)
+    /// A set of methods that defines an interface for connecting and disconnecting headphones.
     pub unsafe trait CMHeadphoneMotionManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CMHeadphoneMotionManager")]
         #[optional]

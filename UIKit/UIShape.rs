@@ -9,26 +9,22 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The corner curve to apply to a view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve?language=objc)
+/// The corner curve to apply to a view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICornerCurve(pub NSInteger);
 impl UICornerCurve {
+    /// Selects the corner style automatically.
     /// Select the corner style automatically.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve/automatic?language=objc)
     #[doc(alias = "UICornerCurveAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Always uses a circular corner style.
     /// Always use a circular corner style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve/circular?language=objc)
     #[doc(alias = "UICornerCurveCircular")]
     pub const Circular: Self = Self(1);
+    /// Always uses a continuous corner style.
     /// Always use a continuous corner style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornercurve/continuous?language=objc)
     #[doc(alias = "UICornerCurveContinuous")]
     pub const Continuous: Self = Self(2);
 }
@@ -42,10 +38,9 @@ unsafe impl RefEncode for UICornerCurve {
 }
 
 extern_protocol!(
+    /// An interface for a type that provides a custom shape by resolving it dynamically based on a context.
     /// A type that can provide a custom `UIShape`, resolved dynamically based on
     /// context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishapeprovider-31jrf?language=objc)
     pub unsafe trait UIShapeProvider: NSObjectProtocol {
         /// Resolves this shape in the provided `context`.
         #[unsafe(method(resolvedShapeInContext:))]
@@ -60,6 +55,21 @@ extern_protocol!(
 extern_class!(
     /// An abstract representation of a shape.
     ///
+    /// ## Overview
+    ///
+    /// A [`UIShape`](https://developer.apple.com/documentation/uikit/uishape-swift.struct) can represent different types of shapes, including:
+    ///
+    /// - A simple shape like a rectangle or circle that resolves into a concrete shape according to context (like size and position)
+    ///
+    /// - A Bézier path
+    ///
+    /// - A dynamic shape that resolves using a custom closure
+    ///
+    /// You typically use a [`UIShape`](https://developer.apple.com/documentation/uikit/uishape-swift.struct) with APIs like [`UIHoverStyle`](https://developer.apple.com/documentation/uikit/uihoverstyle) to represent the shape of an effect.
+    ///
+    ///
+    /// An abstract representation of a shape.
+    ///
     /// A `UIShape` can represent a simple shape such as a rectangle or circle that
     /// are later "resolved" into a concrete shape based on context like a size and
     /// position for the shape. A `UIShape` can also represent more complex shapes
@@ -68,8 +78,6 @@ extern_class!(
     ///
     /// You typically use a `UIShape` with APIs like `UIHoverStyle` to represent the
     /// shape of an effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishape-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShape;
@@ -224,9 +232,8 @@ impl UIShape {
 }
 
 extern_class!(
+    /// A shape that has completely resolved based on a context.
     /// A shape that has been resolved based on a `ResolutionContext`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresolvedshape?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIResolvedShape;
@@ -300,9 +307,8 @@ impl UIResolvedShape {
 }
 
 extern_class!(
+    /// The context for resolving a dynamic shape.
     /// The context used for resolving a `dynamic` `UIShape`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishaperesolutioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShapeResolutionContext;

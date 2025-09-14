@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration object that requests the creation of a network device for the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object to configure one network interface of your virtual machine. After creating this object, assign an appropriate value to its inherited [`attachment`](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment) property to define the type of network interface you want. You can also assign a specific MAC address, or let the system generate a random address for you.
+    ///
+    /// After creating and configuring a [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration) object, assign it to the [`networkDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices) property of your virtual machine’s configuration.
+    ///
+    ///
     /// Configuration of a paravirtualized network device of type Virtio Network Device.
     ///
     /// The communication channel used on the host is defined through the attachment. It is set with the VZNetworkDeviceConfiguration.attachment property.
@@ -15,8 +24,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtualMachineConfiguration.networkDevices
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration?language=objc)
     #[unsafe(super(VZNetworkDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceConfiguration")]

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstreenode?language=objc)
+    /// A node in a tree of nodes.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTreeNode`](https://developer.apple.com/documentation/appkit/nstreenode) simplifies the creation and management of trees of objects. Each tree node represents a model object. A tree node with `nil` as its parent node is considered the root of the tree.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTreeNode;

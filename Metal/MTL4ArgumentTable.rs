@@ -10,9 +10,14 @@ use crate::*;
 extern_class!(
     /// Groups parameters for the creation of a Metal argument table.
     ///
+    /// ## Overview
+    ///
     /// Argument tables provide resource bindings to your Metal pipeline states.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4argumenttabledescriptor?language=objc)
+    ///
+    /// Groups parameters for the creation of a Metal argument table.
+    ///
+    /// Argument tables provide resource bindings to your Metal pipeline states.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4ArgumentTableDescriptor;
@@ -135,8 +140,7 @@ impl DefaultRetained for MTL4ArgumentTableDescriptor {
 
 extern_protocol!(
     /// Provides a mechanism to manage and provide resource bindings for buffers, textures, sampler states and other Metal resources.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4argumenttable?language=objc)
+    /// Provides a mechanism to manage and provide resource bindings for buffers, textures, sampler states and other Metal resources.
     pub unsafe trait MTL4ArgumentTable: NSObjectProtocol {
         #[cfg(feature = "MTLGPUAddress")]
         /// Binds a GPU address to a buffer binding slot.

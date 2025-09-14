@@ -5,8 +5,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// The absolute directions on the horizontal axis.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections?language=objc)
+/// The absolute directions on the horizontal axis.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -14,18 +13,15 @@ pub struct NSHorizontalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSHorizontalDirections: NSUInteger {
 /// The left direction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections/nshorizontaldirectionsleft?language=objc)
+/// The left direction.
         #[doc(alias = "NSHorizontalDirectionsLeft")]
         const Left = 1<<0;
 /// The right direction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections/nshorizontaldirectionsright?language=objc)
+/// The right direction.
         #[doc(alias = "NSHorizontalDirectionsRight")]
         const Right = 1<<1;
 /// All horizontal directions (left and right).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections/nshorizontaldirectionsall?language=objc)
+/// All horizontal directions (left and right).
         #[doc(alias = "NSHorizontalDirectionsAll")]
         const All = NSHorizontalDirections::Left.0|NSHorizontalDirections::Right.0;
     }
@@ -40,8 +36,7 @@ unsafe impl RefEncode for NSHorizontalDirections {
 }
 
 /// The directions on the vertical axis.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections?language=objc)
+/// The directions on the vertical axis.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -49,18 +44,15 @@ pub struct NSVerticalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVerticalDirections: NSUInteger {
 /// The upwards direction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections/nsverticaldirectionsup?language=objc)
+/// The upwards direction.
         #[doc(alias = "NSVerticalDirectionsUp")]
         const Up = 1<<0;
 /// The downward direction.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections/nsverticaldirectionsdown?language=objc)
+/// The downward direction.
         #[doc(alias = "NSVerticalDirectionsDown")]
         const Down = 1<<1;
 /// All vertical directions (up and down).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections/nsverticaldirectionsall?language=objc)
+/// All vertical directions (up and down).
         #[doc(alias = "NSVerticalDirectionsAll")]
         const All = NSVerticalDirections::Up.0|NSVerticalDirections::Down.0;
     }

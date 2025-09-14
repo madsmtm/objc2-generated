@@ -5,10 +5,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol that represents sound analysis requests.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create types that adopt `SNRequest`. Only Sound Analysis framework types adopt the protocol.
+    ///
+    ///
     /// The base protocol to which analysis requests conform
     ///
     /// An analysis request is a configuration that defines the analysis the client wishes to perform on the audio stream. Each request has a corresponding result type, which contains information describing the analysis results. This protocol is designed for all requests provided by the framework to conform to, and shouldn't be conformed to by client objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snrequest?language=objc)
     pub unsafe trait SNRequest: NSObjectProtocol {}
 );

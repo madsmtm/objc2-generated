@@ -9,19 +9,25 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier?language=objc)
+/// A unique identifier for an item managed by the File Provider extension.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderItemIdentifier = NSString;
 
 extern "C" {
+    /// The persistent identifier for the root directory of the file provider’s shared file hierarchy.
     /// The root of the hierarchical enumeration, i.e the container enumerated when the
     /// user starts browsing your file provider.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/rootcontainer?language=objc)
     pub static NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
 }
 
 extern "C" {
+    /// The persistent identifier representing the working set of documents and directories.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about the working set, see  [Create the Working Set and Enumerate its Content](https://developer.apple.com/documentation/fileprovider/defining-your-file-provider-s-content#create-the-working-set-and-enumerate-its-content).
+    ///
+    ///
     /// The item identifier of the working set, a synthetic container used by the
     /// extension to communicate changes to the system even when the parent directories
     /// of these items aren't actively being enumerated.  Items in this set should have
@@ -47,26 +53,35 @@ extern "C" {
     /// whether an item is in that set by checking whether its parentItemIdentifier
     /// is listed in the materialized containers, see the documentation on
     /// -materializedItemsDidChangeWithCompletionHandler:.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/workingset?language=objc)
     pub static NSFileProviderWorkingSetContainerItemIdentifier:
         &'static NSFileProviderItemIdentifier;
 }
 
 extern "C" {
+    /// The persistent identifier for the parent of all trashed items.
+    ///
+    /// ## Discussion
+    ///
+    /// When the user moves an item to the trash, the system sets its [`parentItemIdentifier`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol/parentitemidentifier) to [`NSFileProviderTrashContainerItemIdentifier`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/trashcontainer). Your extension must enumerate all trashed items on request.
+    ///
+    ///
     /// The container containing all the trashed items.
     ///
     /// When an item is trashed, its `parentItemIdentifier` becomes `NSFileProviderTrashContainerItemIdentifier`.
     ///
     /// Extension should be able to return all trashed items by supporting the creation of a NSFileProviderEnumerator
     /// for the trashed items.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/trashcontainer?language=objc)
     pub static NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemversion?language=objc)
+    /// The version of the item’s content and its metadata.
+    ///
+    /// ## Overview
+    ///
+    /// Each item has a separate version object for its metadata and its content. As a result, the file provider can update an item’s metadata without uploading or downloading a new copy of its content.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderItemVersion;
@@ -148,54 +163,48 @@ impl NSFileProviderItemVersion {
 }
 
 extern "C" {
+    /// A value that indicates that the item is not ranked.
     /// A special value for favorite ranks, to use when no rank was set when the item
     /// was favorited.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfavoriterankunranked?language=objc)
     pub static NSFileProviderFavoriteRankUnranked: c_ulonglong;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities?language=objc)
+/// An item’s capabilities, which define the actions that the user can perform in the document browser.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderItemCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderItemCapabilities: NSUInteger {
+/// A value indicating that the value can be read from.
 /// Indicates that the file can be opened for reading.  If set on a folder
 /// this is equivalent to
 /// `.allowsContentEnumerating.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsreading?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReading")]
         const AllowsReading = 1<<0;
+/// A value indicating that the item can be written to.
 /// Indicates that the file can be opened for writing. If set on a folder,
 /// this is equivalent to
 /// `.allowsAddingSubItems.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowswriting?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsWriting")]
         const AllowsWriting = 1<<1;
+/// A value indicating that the item can be moved.
 /// Indicates that the item can be moved to another folder
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsreparenting?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsReparenting")]
         const AllowsReparenting = 1<<2;
+/// A value indicating that the item can be renamed.
 /// Indicates that the item can be renamed
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsrenaming?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsRenaming")]
         const AllowsRenaming = 1<<3;
+/// A value indicating that the item can be moved to the trash.
 /// Indicates that the item can be moved to the trash
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowstrashing?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsTrashing")]
         const AllowsTrashing = 1<<4;
+/// A value indicating that the item can be deleted.
 /// Indicates that the item can be deleted
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsdeleting?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsDeleting")]
         const AllowsDeleting = 1<<5;
+/// A value indicating that the system can delete the local copy of the item.
 /// Indicates that the item can be evicted.
 ///
 /// If this capability is set on an item, the item will become evictable when the item is fully uploaded
@@ -208,40 +217,40 @@ bitflags::bitflags! {
 /// If the provider wishes to only suppress the user's ability to evict the item in the UI (but retain the ability
 /// of the OS or the provider's program to evict items), the provider can set the following key to false in
 /// their Info.plist, in the NSExtension section: NSExtensionFileProviderAllowsUserControlledEviction
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsevicting?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsEvicting")]
 #[deprecated = "use NSFileProviderContentPolicy instead"]
         const AllowsEvicting = 1<<6;
+/// A value indicating that the user can exclude the item from sync operations.
+///
+/// ## Discussion
+///
+/// The user can choose to exclude the item from syncs (for example, in Finder’s user interface). If the user excludes an item, the system stops monitoring changes for the item and its children, and removes the item from the file provider.
+///
+///
 /// Indicates that the item can be excluded from sync.
 ///
 /// The user can choose to exclude the item in the UI (Finder), in which case the system will stop
 /// monitoring changes for the item and its children and will remove the item from the provider.
 ///
 /// This capability can be used to allow an item to be excluded from sync.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsexcludingfromsync?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsExcludingFromSync")]
         const AllowsExcludingFromSync = 1<<7;
+/// A value indicating that the user can add subitems.
 /// Indicates that items can be imported to the folder. If set on a file,
 /// this is equivalent to
 /// `.allowsWriting.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsaddingsubitems?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAddingSubItems")]
         const AllowsAddingSubItems = NSFileProviderItemCapabilities::AllowsWriting.0;
+/// A value indicating that the item’s contents can be enumerated.
 /// Indicates that the folder can be enumerated. If set on a file, this is
 /// equivalent to
 /// `.allowsReading.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowscontentenumerating?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsContentEnumerating")]
         const AllowsContentEnumerating = NSFileProviderItemCapabilities::AllowsReading.0;
+/// A convenience value for enabling all capabilities.
 /// Indicates that the folder can be enumerated. If set on a file, this is
 /// equivalent to
 /// `.allowsReading.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities/allowsall?language=objc)
         #[doc(alias = "NSFileProviderItemCapabilitiesAllowsAll")]
 #[deprecated = "This capability is no longer supported, and does not contain all capabilities. Please migrate to directly specifying each of the individual capabilities that should be allowed for the item."]
         const AllowsAll = NSFileProviderItemCapabilities::AllowsReading.0|NSFileProviderItemCapabilities::AllowsWriting.0|NSFileProviderItemCapabilities::AllowsReparenting.0|NSFileProviderItemCapabilities::AllowsRenaming.0|NSFileProviderItemCapabilities::AllowsTrashing.0|NSFileProviderItemCapabilities::AllowsDeleting.0;
@@ -256,49 +265,68 @@ unsafe impl RefEncode for NSFileProviderItemCapabilities {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Fields that specify which of the item’s properties have changed.
+///
+/// ## Overview
+///
+/// Most of the fields correspond to properties in the [`NSFileProviderItem`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol) protocol.
+///
+///
 /// NSFileProviderItemContents corresponds to the item's contents.
 ///
 /// Each subsequent field corresponds to a property on NSFileProviderItem that can
 /// change.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderItemFields(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderItemFields: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/contents?language=objc)
+/// The item’s content.
+///
+/// ## Discussion
+///
+/// If the item is a directory, the content are the item’s children. If the item is a file, the content is the data saved on disk.
+///
+///
         #[doc(alias = "NSFileProviderItemContents")]
         const Contents = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/filename?language=objc)
+/// The item’s filename.
         #[doc(alias = "NSFileProviderItemFilename")]
         const Filename = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/parentitemidentifier?language=objc)
+/// The identity of the directory that contains the item.
         #[doc(alias = "NSFileProviderItemParentItemIdentifier")]
         const ParentItemIdentifier = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/lastuseddate?language=objc)
+/// The date the item was last used.
         #[doc(alias = "NSFileProviderItemLastUsedDate")]
         const LastUsedDate = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/tagdata?language=objc)
+/// The tags for the item.
         #[doc(alias = "NSFileProviderItemTagData")]
         const TagData = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/favoriterank?language=objc)
+/// The item’s favorite rank.
         #[doc(alias = "NSFileProviderItemFavoriteRank")]
         const FavoriteRank = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/creationdate?language=objc)
+/// The item’s creation date.
         #[doc(alias = "NSFileProviderItemCreationDate")]
         const CreationDate = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/contentmodificationdate?language=objc)
+/// The item’s modification date.
         #[doc(alias = "NSFileProviderItemContentModificationDate")]
         const ContentModificationDate = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/filesystemflags?language=objc)
+/// The flags describing the item’s on-disk representation.
         #[doc(alias = "NSFileProviderItemFileSystemFlags")]
         const FileSystemFlags = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/extendedattributes?language=objc)
+/// The item’s extended attributes.
         #[doc(alias = "NSFileProviderItemExtendedAttributes")]
         const ExtendedAttributes = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields/typeandcreator?language=objc)
+/// The file type and creator codes for the item.
+///
+/// ## Discussion
+///
+/// This property contains two values: the file type code and the creator code. The system synchronizes both codes at the same time, so define both, even if you’re just changing one.
+///
+/// If you modify this property, the system sets the [`NSFileProviderTypeAndCreator`](https://developer.apple.com/documentation/fileprovider/nsfileprovidertypeandcreator) value passed to the [`createItemBasedOnTemplate:fields:contents:options:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/createitem(basedon:fields:contents:options:request:completionhandler:)) or [`modifyItem:baseVersion:changedFields:contents:options:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/modifyitem(_:baseversion:changedfields:contents:options:request:completionhandler:)) methods. The system also writes the type and creator codes in the `FileInfo` structure, if relevant.
+///
+///
         #[doc(alias = "NSFileProviderItemTypeAndCreator")]
         const TypeAndCreator = 1<<10;
     }
@@ -312,40 +340,41 @@ unsafe impl RefEncode for NSFileProviderItemFields {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags?language=objc)
+/// Flags that define an item’s on-disk properties and its appearance in the user interface.
+///
+/// ## Overview
+///
+/// The flags define the on-disk properties of the item. The system modifies the item’s appearance based on these flags.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderFileSystemFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderFileSystemFlags: NSUInteger {
+/// The user can execute the item.
 /// Item has the POSIX user-executable (u+x) permission.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags/userexecutable?language=objc)
         #[doc(alias = "NSFileProviderFileSystemUserExecutable")]
         const UserExecutable = 1<<0;
+/// The user can read the item.
 /// Item has the POSIX user-readable (u+r) permission.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags/userreadable?language=objc)
         #[doc(alias = "NSFileProviderFileSystemUserReadable")]
         const UserReadable = 1<<1;
+/// The user can modify the item.
 /// Item has the POSIX user-writable (u+w) permission.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags/userwritable?language=objc)
         #[doc(alias = "NSFileProviderFileSystemUserWritable")]
         const UserWritable = 1<<2;
+/// By default, the system hides the item when the user views the file system.
 /// Item should not be presented in the file viewers.
 ///
 /// This includes both the UF_HIDDEN BSD flag and the Invisible bit from the
 /// FinderInfo. When syncing down, the system only sets the UF_HIDDEN
 /// flag.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags/hidden?language=objc)
         #[doc(alias = "NSFileProviderFileSystemHidden")]
         const Hidden = 1<<3;
+/// By default, the system hides the item’s extension when showing its filename.
 /// The extension of the item should not be presented in the file viewers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags/pathextensionhidden?language=objc)
         #[doc(alias = "NSFileProviderFileSystemPathExtensionHidden")]
         const PathExtensionHidden = 1<<4;
     }
@@ -359,7 +388,7 @@ unsafe impl RefEncode for NSFileProviderFileSystemFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertypeandcreator?language=objc)
+/// A structure that contains the file type and file creator codes for an item.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSFileProviderTypeAndCreator {
@@ -380,7 +409,6 @@ unsafe impl RefEncode for NSFileProviderTypeAndCreator {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -389,8 +417,6 @@ impl NSFileProviderContentPolicy {
     /// Inherit the content policy of the parent folder.
     ///
     /// This is the default policy on every item other than the root.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy/inherited?language=objc)
     #[doc(alias = "NSFileProviderContentPolicyInherited")]
     pub const Inherited: Self = Self(0);
     /// Download this item lazily (i.e when it is read) if it is dataless.
@@ -398,8 +424,6 @@ impl NSFileProviderContentPolicy {
     /// Allow eviction on low disk pressure and other triggers.
     ///
     /// This is the default policy on the root on macOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy/downloadlazily?language=objc)
     #[doc(alias = "NSFileProviderContentPolicyDownloadLazily")]
     pub const DownloadLazily: Self = Self(1);
     /// Download this item lazily (i.e when it is read.)
@@ -407,8 +431,6 @@ impl NSFileProviderContentPolicy {
     /// Also allow eviction on low disk pressure and other triggers.
     ///
     /// This is the default policy on the root on iOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy/downloadlazilyandevictonremoteupdate?language=objc)
     #[doc(alias = "NSFileProviderContentPolicyDownloadLazilyAndEvictOnRemoteUpdate")]
     pub const DownloadLazilyAndEvictOnRemoteUpdate: Self = Self(2);
     /// Download this item eagerly (i.e before it is read.)
@@ -417,8 +439,6 @@ impl NSFileProviderContentPolicy {
     ///
     /// When an item with the inherited policy is moved into a folder with
     /// this policy, the system will automatically schedule a download.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy/downloadeagerlyandkeepdownloaded?language=objc)
     #[doc(alias = "NSFileProviderContentPolicyDownloadEagerlyAndKeepDownloaded")]
     pub const DownloadEagerlyAndKeepDownloaded: Self = Self(3);
 }
@@ -432,7 +452,13 @@ unsafe impl RefEncode for NSFileProviderContentPolicy {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol?language=objc)
+    /// A protocol that defines the properties of an item managed by the File Provider extension.
+    ///
+    /// ## Overview
+    ///
+    /// Most of these properties are optional. A File Provider extension doesn’t need to implement all properties for all items.
+    ///
+    ///
     #[doc(alias = "NSFileProviderItem")]
     #[name = "NSFileProviderItem"]
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
@@ -1174,5 +1200,11 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritem-swift.typealias?language=objc)
+/// An item the File Provider extension manages.
+///
+/// ## Discussion
+///
+/// For a list of all the properties defined by [`NSFileProviderItem`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritem-swift.typealias), see [`NSFileProviderItem`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol).
+///
+///
 pub type NSFileProviderItem = ProtocolObject<dyn NSFileProviderItemProtocol>;

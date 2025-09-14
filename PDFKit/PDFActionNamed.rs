@@ -7,46 +7,45 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFActionNamedName(pub NSInteger);
 impl PDFActionNamedName {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/none?language=objc)
+    /// The action has no name.
     #[doc(alias = "kPDFActionNamedNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/nextpage?language=objc)
+    /// The Next Page action.
     #[doc(alias = "kPDFActionNamedNextPage")]
     pub const NextPage: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/previouspage?language=objc)
+    /// The Previous Page action.
     #[doc(alias = "kPDFActionNamedPreviousPage")]
     pub const PreviousPage: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/firstpage?language=objc)
+    /// The First Page action.
     #[doc(alias = "kPDFActionNamedFirstPage")]
     pub const FirstPage: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/lastpage?language=objc)
+    /// The Last Page action.
     #[doc(alias = "kPDFActionNamedLastPage")]
     pub const LastPage: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/goback?language=objc)
+    /// The Go Back action.
     #[doc(alias = "kPDFActionNamedGoBack")]
     pub const GoBack: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/goforward?language=objc)
+    /// The Go Forward action.
     #[doc(alias = "kPDFActionNamedGoForward")]
     pub const GoForward: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/gotopage?language=objc)
+    /// The Go to Page action.
     #[doc(alias = "kPDFActionNamedGoToPage")]
     pub const GoToPage: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/find?language=objc)
+    /// The Find action.
     #[doc(alias = "kPDFActionNamedFind")]
     pub const Find: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/print?language=objc)
+    /// The Print action.
     #[doc(alias = "kPDFActionNamedPrint")]
     pub const Print: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/zoomin?language=objc)
+    /// The Zoom In action.
     #[doc(alias = "kPDFActionNamedZoomIn")]
     pub const ZoomIn: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamedname/zoomout?language=objc)
+    /// The Zoom Out action.
     #[doc(alias = "kPDFActionNamedZoomOut")]
     pub const ZoomOut: Self = Self(11);
 }
@@ -60,7 +59,13 @@ unsafe impl RefEncode for PDFActionNamedName {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactionnamed?language=objc)
+    /// `PDFActionNamed` defines methods used to work with actions in PDF documents, some of which are named in the Adobe PDF Specification.
+    ///
+    /// ## Overview
+    ///
+    /// A `PDFActionNamed` object represents an action with a defined name, such as “Go back” or “Zoom in.”
+    ///
+    ///
     #[unsafe(super(PDFAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAction")]

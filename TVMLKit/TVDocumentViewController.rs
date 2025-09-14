@@ -10,23 +10,19 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenterrordomain?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenterror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVDocumentError(pub NSInteger);
 impl TVDocumentError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenterror-swift.struct/code/failed?language=objc)
     #[doc(alias = "TVDocumentErrorFailed")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Failed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenterror-swift.struct/code/cancelled?language=objc)
     #[doc(alias = "TVDocumentErrorCancelled")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Cancelled: Self = Self(1);
@@ -40,61 +36,61 @@ unsafe impl RefEncode for TVDocumentError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event?language=objc)
+/// Events that can be triggered on the document view controller.
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVDocumentEvent = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/play?language=objc)
+    /// An event that signals when the document is played.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventPlay: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/select?language=objc)
+    /// An event that signals when the document is selected.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventSelect: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/holdselect?language=objc)
+    /// An event that signals when the document is held down and selected.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventHoldSelect: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/highlight?language=objc)
+    /// An event that signals when the document is highlighted.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventHighlight: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/load?language=objc)
+    /// An event that signals when the document is loaded.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventLoad: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/unload?language=objc)
+    /// An event that signals when the document is unloaded.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventUnload: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/appear?language=objc)
+    /// An event that signals when the document appears.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventAppear: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/disappear?language=objc)
+    /// An event that signals when the document disappears.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventDisappear: &'static TVDocumentEvent;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontrollerdelegate?language=objc)
+    /// Methods to manage updates, events, and errors from the document view controller.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub unsafe trait TVDocumentViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
@@ -157,7 +153,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller?language=objc)
+    /// A view controller that represents a TVMLKit document.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class serve as bridges into `TVMLKit JS`’s document life cycle, and allow for native event handling with `TVMLKit`. This class also provides a way for native clients to communicate with `TVMLKit JS`.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

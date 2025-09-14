@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragpreview?language=objc)
+    /// A graphical preview for a single drag item, used by the system after a drag has started and when no related animation is running.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIDragPreview`](https://developer.apple.com/documentation/uikit/uidragpreview) object is a visual representation of the drag item. The preview is displayed while the user moves the item across the screen with their finger (after the lift animation completes). The preview disappears when the user lifts their finger, triggering the start of the drop or cancellation animation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

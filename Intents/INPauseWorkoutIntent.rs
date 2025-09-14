@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintent?language=objc)
+    /// A request to pause the current workout that also stops the gathering of workout data.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates an [`INPauseWorkoutIntent`](https://developer.apple.com/documentation/intents/inpauseworkoutintent) object when the user asks to pause a currently running workout. Pausing a workout stops the gathering of workout data without clearing the current workout progress information. Use this intent object to validate workout parameters.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INPauseWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling) protocol. Your handler should confirm the request and create an [`INPauseWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponse) object that indicates it’s possible to pause the workout. SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that your app must then use to pause the workout.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +86,18 @@ impl INPauseWorkoutIntent {
 }
 
 extern_protocol!(
+    /// An interface that handles requests to pause a workout.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INPauseWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling) protocol to resolve, confirm, and handle requests to pause a workout that’s using your app. Adopt this protocol in an object of your Intents extension that’s capable of validating the workout name.
+    ///
+    /// You don’t actually pause the workout from your Intents extension. When the [`handlePauseWorkout:completion:`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling/handle(intent:completion:)) returns, SiriKit launches your app and passes it to an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that contains the intent object and your response. Your app uses the information in those objects to pause the workout.
+    ///
+    ///
     /// Protocol to declare support for handling an INPauseWorkoutIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling?language=objc)
     pub unsafe trait INPauseWorkoutIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

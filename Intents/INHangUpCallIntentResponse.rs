@@ -6,31 +6,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INHangUpCallIntentResponseCode(pub NSInteger);
 impl INHangUpCallIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/ready?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/success?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/failure?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponsecode/failurenocalltohangup?language=objc)
     #[doc(alias = "INHangUpCallIntentResponseCodeFailureNoCallToHangUp")]
     pub const FailureNoCallToHangUp: Self = Self(6);
 }
@@ -44,7 +36,6 @@ unsafe impl RefEncode for INHangUpCallIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentresponse?language=objc)
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

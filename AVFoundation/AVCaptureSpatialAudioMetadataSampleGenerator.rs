@@ -10,8 +10,7 @@ use crate::*;
 
 extern_class!(
     /// An interface for generating a spatial audio timed metadata sample.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturespatialaudiometadatasamplegenerator?language=objc)
+    /// An interface for generating a spatial audio timed metadata sample.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSpatialAudioMetadataSampleGenerator;

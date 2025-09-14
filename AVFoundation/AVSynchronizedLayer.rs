@@ -11,7 +11,29 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsynchronizedlayer?language=objc)
+    /// A Core Animation layer that derives its timing from a player item so that you can synchronize layer animations with media playback.
+    ///
+    /// ## Overview
+    ///
+    /// You can create an arbitrary number of synchronized layers from the same `AVPlayerItem` object.
+    ///
+    /// A synchronized layer is similar to a [`CATransformLayer`](https://developer.apple.com/documentation/quartzcore/catransformlayer) object in that it doesn’t display anything itself, it just confers state upon its layer subtree. `AVSynchronizedLayer` confers its timing state, synchronizing the timing of layers in its subtree with that of a player item.
+    ///
+    /// Any `CoreAnimation` layer with animation property set that is added as a sublayer of `AVSynchronizedLayer` should set the animation’s [`beginTime`](https://developer.apple.com/documentation/quartzcore/camediatiming/begintime) property to a non-zero positive value so animations will be interpreted on the player item’s timeline. `CoreAnimation` replaces the default `beginTime` of 0.0 with [`CACurrentMediaTime`](https://developer.apple.com/documentation/quartzcore/cacurrentmediatime()). To start the animation from time 0, use a small positive value like [`AVCoreAnimationBeginTimeAtZero`](https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero).
+    ///
+    /// You might use a layer as shown in the following example:
+    ///
+    /// ```objc
+    /// AVPlayerItem *playerItem = <#Get a player item#>;
+    /// CALayer *superLayer =  <#Get a layer#>;
+    /// // Set up a synchronized layer to sync the layer timing of its subtree
+    /// // with the playback of the playerItem/
+    /// AVSynchronizedLayer *syncLayer = [AVSynchronizedLayer synchronizedLayerWithPlayerItem:playerItem];
+    /// [syncLayer addSublayer:<#Another layer#>];    // These sublayers will be synchronized.
+    /// [superLayer addSublayer:syncLayer];
+    /// ```
+    ///
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]

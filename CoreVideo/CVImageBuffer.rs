@@ -9,345 +9,560 @@ use objc2_core_graphics::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercgcolorspacekey?language=objc)
+    /// A key to the color space of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The color space value is of type [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace).
+    ///
+    ///
     pub static kCVImageBufferCGColorSpaceKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturekey?language=objc)
+    /// A key to the dictionary describing the clean aperture for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary is of type [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). See [Image Buffer Clean Aperture Keys](https://developer.apple.com/documentation/corevideo/image-buffer-clean-aperture-keys) for more information.
+    ///
+    ///
     pub static kCVImageBufferCleanApertureKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturewidthkey?language=objc)
+    /// A key to the clean aperture width of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The clean aperture width value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferCleanApertureWidthKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanapertureheightkey?language=objc)
+    /// A key to the clean aperture height of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The clean aperture height value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferCleanApertureHeightKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturehorizontaloffsetkey?language=objc)
+    /// A key to the clean aperture horizontal offset value from the center of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The horizontal offset value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferCleanApertureHorizontalOffsetKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanapertureverticaloffsetkey?language=objc)
+    /// A key to the clean aperture vertical offset value from the center of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The vertical offset value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferCleanApertureVerticalOffsetKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpreferredcleanaperturekey?language=objc)
+    /// A key to the dictionary describing the preferred clean aperture for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary is of type [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). See [Image Buffer Clean Aperture Keys](https://developer.apple.com/documentation/corevideo/image-buffer-clean-aperture-keys) for more information.
+    ///
+    ///
     pub static kCVImageBufferPreferredCleanApertureKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfieldcountkey?language=objc)
+    /// A key to the field count for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The field count value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferFieldCountKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailkey?language=objc)
+    /// A key to the field detail for an image buffer that indicates the order of interlaced video data in the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The field detail value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). See [Image Buffer Field Detail Constants](https://developer.apple.com/documentation/corevideo/image-buffer-field-detail-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferFieldDetailKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailtemporaltopfirst?language=objc)
+    /// A key to the temporal top first detail field of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The temporal top first detail field value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). The image buffer contains complete fields in alternating order. The top, odd-numbered, fields contain image data captured at an earlier time than bottom, even-numbered, fields.
+    ///
+    ///
     pub static kCVImageBufferFieldDetailTemporalTopFirst: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailtemporalbottomfirst?language=objc)
+    /// A key to the temporal bottom first detail field of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The temporal bottom first detail field value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). The image buffer contains complete fields in alternating order. The bottom, even-numbered, fields contain image data captured at an earlier time than top, odd-numbered, fields.
+    ///
+    ///
     pub static kCVImageBufferFieldDetailTemporalBottomFirst: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailspatialfirstlineearly?language=objc)
+    /// A key to the spatial first line early detail field of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The spatial first line early detail field value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). The image buffer contains interleaved fields. The first line of image data corresponds to the first top, odd-numbered, field.
+    ///
+    ///
     pub static kCVImageBufferFieldDetailSpatialFirstLineEarly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailspatialfirstlinelate?language=objc)
+    /// A key to the spatial first line late detail field of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The spatial first line early detail field value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). The image buffer contains interleaved fields. The first line of image data corresponds to the first bottom, even-numbered, field.
+    ///
+    ///
     pub static kCVImageBufferFieldDetailSpatialFirstLineLate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratiokey?language=objc)
+    /// A key to the dictionary describing the pixel aspect ratio for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary is of type [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). See [Image Buffer Display Dimensions Keys](https://developer.apple.com/documentation/corevideo/image-buffer-display-dimensions-keys) for more information.
+    ///
+    ///
     pub static kCVImageBufferPixelAspectRatioKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratiohorizontalspacingkey?language=objc)
+    /// A key to the horizontal component of the image buffer aspect ratio.
+    ///
+    /// ## Discussion
+    ///
+    /// The horizontal spacing value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferPixelAspectRatioHorizontalSpacingKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratioverticalspacingkey?language=objc)
+    /// A key to the vertical component of the image buffer aspect ratio.
+    ///
+    /// ## Discussion
+    ///
+    /// The vertical spacing value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferPixelAspectRatioVerticalSpacingKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaydimensionskey?language=objc)
+    /// A key to the dictionary describing the display dimensions for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary is of type [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary). See [Image Buffer Display Dimensions Keys](https://developer.apple.com/documentation/corevideo/image-buffer-display-dimensions-keys) for more information.
+    ///
+    ///
     pub static kCVImageBufferDisplayDimensionsKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaywidthkey?language=objc)
+    /// A key to the display width of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The display width value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferDisplayWidthKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplayheightkey?language=objc)
+    /// A key to the display height of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The display height value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferDisplayHeightKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffergammalevelkey?language=objc)
+    /// A key to the gamma level for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The gamma level value is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVImageBufferGammaLevelKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffericcprofilekey?language=objc)
+    /// A key to the ICC color profile for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The ICC color profile value is of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata).
+    ///
+    ///
     pub static kCVImageBufferICCProfileKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrixkey?language=objc)
+    /// A key to the YCbCr to RGB color conversion matrix for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The color matrix value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). It indicates the type of conversion matrix Core Video uses when it converts image buffer data from the YCbCr color space to the RGB color space. See [Image Buffer YCbCr Matrix Constants](https://developer.apple.com/documentation/corevideo/image-buffer-ycbcr-matrix-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferYCbCrMatrixKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_itu_r_709_2?language=objc)
+    /// A key to the conversion matrix for HDTV digital television images, that follows the ITU R 709 standard.
     pub static kCVImageBufferYCbCrMatrix_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_itu_r_601_4?language=objc)
+    /// A key to the conversion matrix for standard digital television images, that follows the ITU R 601 standard.
     pub static kCVImageBufferYCbCrMatrix_ITU_R_601_4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_smpte_240m_1995?language=objc)
+    /// A key to the conversion matrix for 1920 x 1135 HDTV images, that follows the SMPTE 240M 1995 standard.
     pub static kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_dci_p3?language=objc)
     #[deprecated = "kCVImageBufferYCbCrMatrix_DCI_P3 no longer supported."]
     pub static kCVImageBufferYCbCrMatrix_DCI_P3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_p3_d65?language=objc)
     #[deprecated = "kCVImageBufferYCbCrMatrix_P3_D65 no longer supported."]
     pub static kCVImageBufferYCbCrMatrix_P3_D65: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_itu_r_2020?language=objc)
     pub static kCVImageBufferYCbCrMatrix_ITU_R_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimarieskey?language=objc)
+    /// A key to the color primaries gamut for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The color primaries gamut value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). See [Image Buffer Color Primaries Constants](https://developer.apple.com/documentation/corevideo/image-buffer-color-primaries-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferColorPrimariesKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_itu_r_709_2?language=objc)
+    /// A key to the color primaries gamut for HD video.
     pub static kCVImageBufferColorPrimaries_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_ebu_3213?language=objc)
+    /// A key to the color primaries gamut for PAL video.
     pub static kCVImageBufferColorPrimaries_EBU_3213: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_smpte_c?language=objc)
+    /// A key to the color primaries gamut for standard-definition video.
     pub static kCVImageBufferColorPrimaries_SMPTE_C: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_p22?language=objc)
+    /// A key to the color primaries gamut for sRGB video.
     pub static kCVImageBufferColorPrimaries_P22: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_dci_p3?language=objc)
     pub static kCVImageBufferColorPrimaries_DCI_P3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_p3_d65?language=objc)
     pub static kCVImageBufferColorPrimaries_P3_D65: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_itu_r_2020?language=objc)
     pub static kCVImageBufferColorPrimaries_ITU_R_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunctionkey?language=objc)
+    /// A key to the transfer function for the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The transfer function value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). See [Image Buffer Transfer Function Constants](https://developer.apple.com/documentation/corevideo/image-buffer-transfer-function-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferTransferFunctionKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_709_2?language=objc)
+    /// A key to the transfer function for high-definition and standard-definition video.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Most apps should use this constant.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kCVImageBufferTransferFunction_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_240m_1995?language=objc)
+    /// A key to the transfer function for HDTV interim video.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Most apps shouldn’t use this constant.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kCVImageBufferTransferFunction_SMPTE_240M_1995: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_usegamma?language=objc)
+    /// A key to the transfer function that’s defined by the gamma level value of the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for the [`kCVImageBufferGammaLevelKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffergammalevelkey) key defines this transfer function.
+    ///
+    ///
     pub static kCVImageBufferTransferFunction_UseGamma: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_ebu_3213?language=objc)
+    /// A key to the transfer function that follows the EBU 3213 standard.
     #[deprecated]
     pub static kCVImageBufferTransferFunction_EBU_3213: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_c?language=objc)
+    /// A key to the transfer function for standard-definition video.
     #[deprecated]
     pub static kCVImageBufferTransferFunction_SMPTE_C: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_srgb?language=objc)
     pub static kCVImageBufferTransferFunction_sRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_2020?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The [`kCVImageBufferTransferFunction_ITU_R_709_2`](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_709_2) is equivalent and preferred.
+    ///
+    ///
     pub static kCVImageBufferTransferFunction_ITU_R_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_st_428_1?language=objc)
     pub static kCVImageBufferTransferFunction_SMPTE_ST_428_1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_st_2084_pq?language=objc)
     pub static kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_2100_hlg?language=objc)
     pub static kCVImageBufferTransferFunction_ITU_R_2100_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_linear?language=objc)
     pub static kCVImageBufferTransferFunction_Linear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocationtopfieldkey?language=objc)
+    /// A key to the location of chroma top field information in the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The chroma location value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). This key only applies to progressive-scan image data. See [Image Buffer Chroma Location Constants](https://developer.apple.com/documentation/corevideo/image-buffer-chroma-location-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferChromaLocationTopFieldKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocationbottomfieldkey?language=objc)
+    /// A key to the location of chroma bottom field information in the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The chroma location value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). This key only applies to interlaced image data. See [Image Buffer Chroma Location Constants](https://developer.apple.com/documentation/corevideo/image-buffer-chroma-location-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferChromaLocationBottomFieldKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_left?language=objc)
+    /// A key that indicates the chroma sample is horizontally co-sited with the left column of luma samples, but centered vertically.
     pub static kCVImageBufferChromaLocation_Left: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_center?language=objc)
+    /// A key that indicates the chroma sample is fully centered.
     pub static kCVImageBufferChromaLocation_Center: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_topleft?language=objc)
+    /// A key that indicates the chroma sample is co-sited with the top-left luma sample.
     pub static kCVImageBufferChromaLocation_TopLeft: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_top?language=objc)
+    /// A key that indicates the chroma sample is horizontally centered, but is co-sited with the top row of luma samples.
     pub static kCVImageBufferChromaLocation_Top: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_bottomleft?language=objc)
+    /// A key that indicates the chroma sample is co-sited with the bottom-left luma sample.
     pub static kCVImageBufferChromaLocation_BottomLeft: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_bottom?language=objc)
+    /// A key that indicates the chroma sample is horizontally centered, but is co-sited with the bottom row of luma samples.
     pub static kCVImageBufferChromaLocation_Bottom: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_dv420?language=objc)
+    /// A key that indicates the Cr and Cb samples are alternatingly co-sited with the left luma samples of the same field.
     pub static kCVImageBufferChromaLocation_DV420: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsamplingkey?language=objc)
+    /// A key to the original format of subsampled data in the image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The original format value is of type [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). See [Image Buffer Chroma Subsampling Constants](https://developer.apple.com/documentation/corevideo/image-buffer-chroma-subsampling-constants) for more information.
+    ///
+    ///
     pub static kCVImageBufferChromaSubsamplingKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsampling_420?language=objc)
+    /// A key that indicates the original chroma-subsampled data used 4:2:0 formatting.
+    ///
+    /// ## Discussion
+    ///
+    /// Each pixel has a `Y` value, and `U` and `V` values are shared within a square of 4 pixels.
+    ///
+    ///
     pub static kCVImageBufferChromaSubsampling_420: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsampling_422?language=objc)
+    /// A key that indicates the original chroma-subsampled data used 4:2:2 formatting.
+    ///
+    /// ## Discussion
+    ///
+    /// Each pixel has a `Y` value, and `U` and `V` values are shared horizontally between 2 neighboring pixels.
+    ///
+    ///
     pub static kCVImageBufferChromaSubsampling_422: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsampling_411?language=objc)
+    /// A key that indicates the original chroma-subsampled data used 4:1:1 formatting.
+    ///
+    /// ## Discussion
+    ///
+    /// Each pixel has a `Y` value, and `U` and `V` values are shared along a horizontal line of 4 pixels.
+    ///
+    ///
     pub static kCVImageBufferChromaSubsampling_411: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelisopaque?language=objc)
+    /// A key to indicate whether the alpha channel is fully opaque.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) to indicate that the alpha channel is fully opaque. This key isn’t used if the pixel format type has no alpha channel.
+    ///
+    ///
     pub static kCVImageBufferAlphaChannelIsOpaque: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelmodekey?language=objc)
     pub static kCVImageBufferAlphaChannelModeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelmode_straightalpha?language=objc)
     pub static kCVImageBufferAlphaChannelMode_StraightAlpha: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelmode_premultipliedalpha?language=objc)
     pub static kCVImageBufferAlphaChannelMode_PremultipliedAlpha: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingsequencemetadatakey?language=objc)
     pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingframemetadatakey?language=objc)
     pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvycbcrmatrixgetintegercodepointforstring(_:)?language=objc)
+/// Returns the standard integer code point corresponding to the Core Video YCbCr matrix string that you specify.
+///
+/// Parameters:
+/// - yCbCrMatrixString: A Core Video YCbCr matrix string. See [Image Buffer YCbCr Matrix Constants](https://developer.apple.com/documentation/corevideo/image-buffer-ycbcr-matrix-constants) for possible values.
+///
+///
+/// ## Return Value
+///
+/// The code point corresponding to the YCbCr matrix string, or `2` (unknown) if the string is [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) or the system doesn’t recognize it.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
     y_cb_cr_matrix_string: Option<&CFString>,
@@ -360,7 +575,17 @@ pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
     unsafe { CVYCbCrMatrixGetIntegerCodePointForString(y_cb_cr_matrix_string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvcolorprimariesgetintegercodepointforstring(_:)?language=objc)
+/// Returns the standard integer code point corresponding to the Core Video color primaries constant string that you specify.
+///
+/// Parameters:
+/// - colorPrimariesString: A Core Video color primaries string. See [Image Buffer Color Primaries Constants](https://developer.apple.com/documentation/corevideo/image-buffer-color-primaries-constants) for possible values.
+///
+///
+/// ## Return Value
+///
+/// The code point corresponding to the color primaries string, or `2` (unknown) if the string is [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) or the system doesn’t recognize it.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
     color_primaries_string: Option<&CFString>,
@@ -373,7 +598,17 @@ pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
     unsafe { CVColorPrimariesGetIntegerCodePointForString(color_primaries_string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtransferfunctiongetintegercodepointforstring(_:)?language=objc)
+/// Returns the standard integer code point corresponding to the Core Video transfer function string that you specify.
+///
+/// Parameters:
+/// - transferFunctionString: A Core Video transfer function string. See [Image Buffer Transfer Function Constants](https://developer.apple.com/documentation/corevideo/image-buffer-transfer-function-constants) for possible values.
+///
+///
+/// ## Return Value
+///
+/// The code point corresponding to the transfer function string, or `2` (unknown) if the string is [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) or the system doesn’t recognize it.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
     transfer_function_string: Option<&CFString>,
@@ -386,7 +621,17 @@ pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
     unsafe { CVTransferFunctionGetIntegerCodePointForString(transfer_function_string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvycbcrmatrixgetstringforintegercodepoint(_:)?language=objc)
+/// Returns the Core Video YCbCr matrix string corresponding to the standard integer code point that you specify.
+///
+/// Parameters:
+/// - yCbCrMatrixCodePoint: The standard integer code point.
+///
+///
+/// ## Return Value
+///
+/// The YCbCr matrix string corresponding to the code point (See [Image Buffer YCbCr Matrix Constants](https://developer.apple.com/documentation/corevideo/image-buffer-ycbcr-matrix-constants) for possible values.), or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the code point is `2` (unknown) or the system doesn’t recognize it.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     y_cb_cr_matrix_code_point: c_int,
@@ -400,7 +645,17 @@ pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvcolorprimariesgetstringforintegercodepoint(_:)?language=objc)
+/// Returns the Core Video color primaries string corresponding to the standard integer code point that you specify.
+///
+/// Parameters:
+/// - colorPrimariesCodePoint: The standard integer code point.
+///
+///
+/// ## Return Value
+///
+/// The color primaries string corresponding to the code point (See [Image Buffer Color Primaries Constants](https://developer.apple.com/documentation/corevideo/image-buffer-color-primaries-constants) for possible values.), or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the code point is `2` (unknown) or the system doesn’t recognize it.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
     color_primaries_code_point: c_int,
@@ -414,7 +669,17 @@ pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtransferfunctiongetstringforintegercodepoint(_:)?language=objc)
+/// Returns the Core Video transfer function string corresponding to the standard integer code point that you specify.
+///
+/// Parameters:
+/// - transferFunctionCodePoint: The standard integer code point.
+///
+///
+/// ## Return Value
+///
+/// The transfer function string corresponding to the code point (See [Image Buffer Transfer Function Constants](https://developer.apple.com/documentation/corevideo/image-buffer-transfer-function-constants) for possible values.), or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the code point is `2` (unknown) or the system doesn’t recognize it.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
     transfer_function_code_point: c_int,
@@ -429,21 +694,41 @@ pub extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// Base type for all CoreVideo image buffers
+/// A reference to a Core Video image buffer.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffer?language=objc)
+/// ## Discussion
+///
+/// An image buffer is an abstract type representing Core Video buffers that hold images. In Core Video, pixel buffers, OpenGL buffers, and OpenGL textures all derive from the image buffer type.
+///
+///
+/// Base type for all CoreVideo image buffers
 #[doc(alias = "CVImageBufferRef")]
 #[cfg(feature = "CVBuffer")]
 pub type CVImageBuffer = CVBuffer;
 
+/// Returns the full encoded dimensions of a Core Video image buffer.
+///
+/// Parameters:
+/// - imageBuffer: The image buffer containing the encoded size to retrieve.
+///
+///
+/// ## Return Value
+///
+/// A [`CGSize`](https://developer.apple.com/documentation/corefoundation/cgsize) structure defining the full encoded size of the image buffer. The size is zero if you pass a value for the image buffer that isn’t a [`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer) type.
+///
+///
+///
+/// ## Discussion
+///
+/// For example, for an NTSC DV frame, this function returns an encoded size of 720 x 480. When you create a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object from a Core Video image buffer, use this call to retrieve the image size.
+///
+///
 /// Returns the full encoded dimensions of a CVImageBuffer.  For example, for an NTSC DV frame this would be 720x480
 ///
 /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the encoded size from.
 ///
 /// Returns: A CGSize returning the full encoded size of the buffer
 /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetencodedsize(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffer) -> CGSize {
@@ -453,6 +738,23 @@ pub extern "C-unwind" fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffe
     unsafe { CVImageBufferGetEncodedSize(image_buffer) }
 }
 
+/// Returns the nominal output display size, in square pixels, of a Core Video image buffer.
+///
+/// Parameters:
+/// - imageBuffer: The image buffer containing the display size to retrieve.
+///
+///
+/// ## Return Value
+///
+/// A [`CGSize`](https://developer.apple.com/documentation/corefoundation/cgsize) structure defining the nominal display size of the image buffer. The size is zero if you pass a value for the image buffer that isn’t a [`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer) type.
+///
+///
+///
+/// ## Discussion
+///
+/// For example, for an NTSC DV frame, this function returns a size of 640 x 480.
+///
+///
 /// Returns the nominal output display size (in square pixels) of a CVImageBuffer.
 /// For example, for an NTSC DV frame this would be 640x480
 ///
@@ -460,8 +762,6 @@ pub extern "C-unwind" fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffe
 ///
 /// Returns: A CGSize returning the nominal display size of the buffer
 /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetdisplaysize(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffer) -> CGSize {
@@ -471,6 +771,31 @@ pub extern "C-unwind" fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffe
     unsafe { CVImageBufferGetDisplaySize(image_buffer) }
 }
 
+/// Returns the source rectangle of a Core Video image buffer that represents the clean aperture of the buffer in encoded pixels.
+///
+/// Parameters:
+/// - imageBuffer: The image buffer containing the clean aperture to retrieve.
+///
+///
+/// ## Return Value
+///
+/// A [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure returning the nominal display size of the image buffer. The size is zero if you pass a value for the image buffer that isn’t a [`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer) type.
+///
+///
+///
+/// ## Discussion
+///
+/// The clean aperture size is smaller than the full size of the image. For example, for an NTSC DV frame, this function returns a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) structure with an origin of `(8,0)` and a size of 704 x 480.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The origin of this rectangle is always in the lower-left corner. This is the same coordinate system as that used by Quartz and Core Image.
+///
+///
+///
+/// </div>
+///
 /// Returns the source rectangle of a CVImageBuffer that represents the clean aperture
 /// of the buffer in encoded pixels.    For example, an NTSC DV frame would return a CGRect with an
 /// origin of 8,0 and a size of 704,480.
@@ -481,8 +806,6 @@ pub extern "C-unwind" fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffe
 ///
 /// Returns: A CGSize returning the nominal display size of the buffer
 /// Returns zero rect if called with a non-CVImageBufferRef type or NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetcleanrect(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer) -> CGRect {
@@ -492,13 +815,22 @@ pub extern "C-unwind" fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer)
     unsafe { CVImageBufferGetCleanRect(image_buffer) }
 }
 
+/// Returns a Boolean value indicating whether the image is vertically flipped.
+///
+/// Parameters:
+/// - imageBuffer: An image buffer.
+///
+///
+/// ## Return Value
+///
+/// Returns [`true`](https://developer.apple.com/documentation/swift/true) if `{0,0}` represents the upper left of the image, or [`false`](https://developer.apple.com/documentation/swift/false) if `{0,0}` represents the lower left of the image.
+///
+///
 /// Returns whether the image is flipped vertically or not.
 ///
 /// Parameter `imageBuffer`: target
 ///
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebufferisflipped(_:)?language=objc)
 #[cfg(feature = "CVBuffer")]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> bool {
@@ -509,14 +841,23 @@ pub extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) ->
     ret != 0
 }
 
+/// Returns the color space of a Core Video image buffer.
+///
+/// Parameters:
+/// - imageBuffer: The image buffer containing the color space to retrieve.
+///
+///
+/// ## Return Value
+///
+/// The color space of the image buffer, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if you pass a value for the image buffer that isn’t a [`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer) type.
+///
+///
 /// Returns the color space of a CVImageBuffer.
 ///
 /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the color space from.
 ///
 /// Returns: A CGColorSpaceRef representing the color space of the buffer.
 /// Returns NULL if called with a non-CVImageBufferRef type or NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffergetcolorspace(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn CVImageBufferGetColorSpace(
@@ -531,6 +872,29 @@ pub extern "C-unwind" fn CVImageBufferGetColorSpace(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Attempts to create a Core Graphics color space from the image buffer’s attachments that you specify.
+///
+/// Parameters:
+/// - attachments: The dictionary of attachments for an image buffer, which you can obtain by calling [`CVBufferCopyAttachments`](https://developer.apple.com/documentation/corevideo/cvbuffercopyattachments(_:_:)) on the image buffer.
+///
+///
+/// ## Return Value
+///
+/// A [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) object that represents the color space of the image buffer, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the dictionary doesn’t contain the information required to create a [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) instance.
+///
+///
+///
+/// ## Discussion
+///
+/// To generate a [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) instance, the attachments dictionary needs to include values for either:
+///
+/// 1. [`kCVImageBufferICCProfileKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffericcprofilekey)
+///
+/// 2. [`kCVImageBufferColorPrimariesKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimarieskey), [`kCVImageBufferTransferFunctionKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunctionkey), [`kCVImageBufferYCbCrMatrixKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrixkey), and possibly [`kCVImageBufferGammaLevelKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffergammalevelkey)
+///
+/// Use [`CGColorSpaceRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/coregraphics/1408855-cgcolorspacerelease) to release the color space when you’re done with it.
+///
+///
 /// Attempts to synthesize a CGColorSpace from an image buffer's attachments.
 ///
 /// Parameter `attachments`: A CFDictionary of attachments for an image buffer, obtained using CVBufferCopyAttachments().
@@ -547,8 +911,6 @@ pub extern "C-unwind" fn CVImageBufferGetColorSpace(
 ///
 /// - `attachments` generic must be of the correct type.
 /// - `attachments` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvimagebuffercreatecolorspacefromattachments(_:)?language=objc)
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(
@@ -564,22 +926,32 @@ pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffermasteringdisplaycolorvolumekey?language=objc)
+    /// A key to the mastering display color volume.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is 44 bytes, of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). It contains big-endian data to match the payload of ISO/IEC 23008-2:2015(E), D.2.28 mastering display color volume in the supplemental enhancement information (SEI) message.
+    ///
+    ///
     pub static kCVImageBufferMasteringDisplayColorVolumeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercontentlightlevelinfokey?language=objc)
+    /// A key to the content light level information.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is 4 bytes, of type [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). It contains big-endian data to match the payload of the content light level information in the supplemental enhancement information (SEI) message.
+    ///
+    ///
     pub static kCVImageBufferContentLightLevelInfoKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferambientviewingenvironmentkey?language=objc)
     pub static kCVImageBufferAmbientViewingEnvironmentKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffersceneilluminationkey?language=objc)
     pub static kCVImageBufferSceneIlluminationKey: &'static CFString;
 }
 
@@ -587,8 +959,6 @@ extern "C" {
     /// Specifies region of interest that image statistics cover.
     ///
     /// This value should be a CGRect dictionary created by CGRectCreateDictionaryRepresentation(). The origin in the CGRect represents the x,y coordinate within the CVPixelBuffer where region of interest is located.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferregionofinterestkey?language=objc)
     pub static kCVImageBufferRegionOfInterestKey: &'static CFString;
 }
 
@@ -613,22 +983,39 @@ extern "C" {
     /// https://developer.apple.com/download/all/?q=Apple%20log%20profile
     ///
     /// You can download the Apple Log Profile White Paper from the Apple Developer Downloads website.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunctionkey?language=objc)
     pub static kCVImageBufferLogTransferFunctionKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunction_applelog?language=objc)
     pub static kCVImageBufferLogTransferFunction_AppleLog: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunction_applelog2?language=objc)
     pub static kCVImageBufferLogTransferFunction_AppleLog2: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies the rectangular display area within the image.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify the left, width, top, and height metrics relative to a reference raster width and height scaled to the image buffer dimensions.
+    ///
+    /// The value is a dictionary containing these keys for the raster rectangle:
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterwidthkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterheightkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleLeftKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleleftkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleWidthKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectanglewidthkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleTopKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangletopkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleHeightKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleheightkey)
+    ///
+    ///
     /// Specifies the rectangular display area within the image. The left, width, top and height are specified relative to a reference raster width and height that should be scaled to the image buffer dimensions.
     ///
     /// Value is a dictionary containing these keys for the raster rectangle:
@@ -638,54 +1025,107 @@ extern "C" {
     /// kCVImageBufferDisplayMaskRectangle_RectangleWidthKey
     /// kCVImageBufferDisplayMaskRectangle_RectangleTopKey
     /// kCVImageBufferDisplayMaskRectangle_RectangleHeightKey
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectanglekey?language=objc)
     pub static kCVImageBufferDisplayMaskRectangleKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies the width in pixels of the 2D coordinate system to define the rectangle. 0,0 origin is the top-left. The raster width value is a CFNumber of unsigned 16-bit integer. Usually matches the width of the video or the output device.
+    /// Specifies the width in pixels of the 2D coordinate system to define the rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterwidthkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The `0,0` origin is the top-left corner. The raster width value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of an unsigned 16-bit integer. The value usually matches the width of the video or the output device.
+    ///
+    ///
+    /// Specifies the width in pixels of the 2D coordinate system to define the rectangle. 0,0 origin is the top-left. The raster width value is a CFNumber of unsigned 16-bit integer. Usually matches the width of the video or the output device.
     pub static kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies the height in pixels of the 2D coordinate system to define the rectangle. 0,0 origin is the top-left. The raster height value is a CFNumber of unsigned 16-bit integer. Usually matches the height of the video or the output device.
+    /// Specifies the height in pixels of the 2D coordinate system to define the rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterheightkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The `0,0` origin is the top-left corner. The raster height value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of an unsigned 16-bit integer. The value usually matches the height of the video or the output device.
+    ///
+    ///
+    /// Specifies the height in pixels of the 2D coordinate system to define the rectangle. 0,0 origin is the top-left. The raster height value is a CFNumber of unsigned 16-bit integer. Usually matches the height of the video or the output device.
     pub static kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies the horizontal pixel offset of the rectangle from the left of the bounding raster. The left offset value is a CFNumber of unsigned 16-bit integer that is less than the reference raster width value.
+    /// Specifies the horizontal pixel offset of the rectangle from the left of the bounding raster.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleleftkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The left offset value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of an unsigned 16-bit integer that’s less than the reference raster width value.
+    ///
+    ///
+    /// Specifies the horizontal pixel offset of the rectangle from the left of the bounding raster. The left offset value is a CFNumber of unsigned 16-bit integer that is less than the reference raster width value.
     pub static kCVImageBufferDisplayMaskRectangle_RectangleLeftKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies the width of the rectangle starting at rectangle's left offset toward the rectangle's right edge. The width value is a CFNumber of unsigned 16-bit integer.
+    /// Specifies the width of the rectangle starting at the rectangle’s left offset toward the rectangle’s right edge.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectanglewidthkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The width value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of an unsigned 16-bit integer.
+    ///
+    ///
+    /// Specifies the width of the rectangle starting at rectangle's left offset toward the rectangle's right edge. The width value is a CFNumber of unsigned 16-bit integer.
     pub static kCVImageBufferDisplayMaskRectangle_RectangleWidthKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies the vertical pixel offset of the rectangle from the top of the bounding raster. The top offset value is a CFNumber of unsigned 16-bit integer that is less than the reference raster height value.
+    /// Specifies the vertical pixel offset of the rectangle from the top of the bounding raster.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangletopkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The top offset value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of an unsigned 16-bit integer that’s less than the reference raster height value.
+    ///
+    ///
+    /// Specifies the vertical pixel offset of the rectangle from the top of the bounding raster. The top offset value is a CFNumber of unsigned 16-bit integer that is less than the reference raster height value.
     pub static kCVImageBufferDisplayMaskRectangle_RectangleTopKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies the height of the rectangle starting at rectangle's top offset toward the rectangle's bottom edge. The height value is a CFNumber of unsigned 16-bit integer.
+    /// Specifies the height of the rectangle starting at the rectangle’s top offset toward the rectangle’s bottom edge.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleheightkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The height value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of an unsigned 16-bit integer.
+    ///
+    ///
+    /// Specifies the height of the rectangle starting at rectangle's top offset toward the rectangle's bottom edge. The height value is a CFNumber of unsigned 16-bit integer.
     pub static kCVImageBufferDisplayMaskRectangle_RectangleHeightKey: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies the rectangular display area within the left-eye view of stereo images, using the same keys as `kCVImageBufferDisplayMaskRectangleKey`.
+    ///
+    /// ## Discussion
+    ///
+    /// To address window violations in stereo video, the system supports points insetting the left and right edges of the rectangle through additional keys, allowing the description of the extended raster rectangle.
+    ///
+    /// Value is a dictionary containing these keys for the extended raster rectangle:
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterwidthkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterheightkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleLeftKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleleftkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleWidthKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectanglewidthkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleTopKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangletopkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleHeightKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleheightkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_leftedgepointskey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rightedgepointskey)
+    ///
+    ///
     /// Specifies the rectangular display area within the left eye view of stereo images, using the same keys as with kCVImageBufferDisplayMaskRectangleKey. To address window violations in stereo video, points insetting the left and right edges of the rectangle are supported through additional keys, allowing the description of the "extended raster rectangle".
     ///
     /// Value is a dictionary containing these keys for the extended raster rectangle:
@@ -697,12 +1137,35 @@ extern "C" {
     /// kCVImageBufferDisplayMaskRectangle_RectangleHeightKey
     /// kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey
     /// kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectanglestereoleftkey?language=objc)
     pub static kCVImageBufferDisplayMaskRectangleStereoLeftKey: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies the rectangular display area within the right-eye view of stereo images, using the same keys as `kCVImageBufferDisplayMaskRectangleKey`.
+    ///
+    /// ## Discussion
+    ///
+    /// To address window violations in stereo video, the system supports points insetting the left and right edges of the rectangle through additional keys, allowing the description of the extended raster rectangle.
+    ///
+    /// The value is a dictionary containing these keys for the extended raster rectangle:
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_ReferenceRasterWidthKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterwidthkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_ReferenceRasterHeightKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_referencerasterheightkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleLeftKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleleftkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleWidthKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectanglewidthkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleTopKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangletopkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RectangleHeightKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rectangleheightkey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_leftedgepointskey)
+    ///
+    /// - [`kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rightedgepointskey)
+    ///
+    ///
     /// Specifies the rectangular display area within the right eye view of stereo images, using the same keys as with kCVImageBufferDisplayMaskRectangleKey. To address window violations in stereo video, points insetting the left and right edges of the rectangle are supported through additional keys, allowing the description of the "extended raster rectangle".
     ///
     /// Value is a dictionary containing these keys for the extended raster rectangle:
@@ -714,21 +1177,29 @@ extern "C" {
     /// kCVImageBufferDisplayMaskRectangle_RectangleHeightKey
     /// kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey
     /// kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectanglestereorightkey?language=objc)
     pub static kCVImageBufferDisplayMaskRectangleStereoRightKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies inset points on the left vertical edge of the rectangle. The points are CFArray of unsigned 16-bit integer CFNumber pairs alternating between inset X and inset Y. Inset X is an unsigned offset from left edge (0) towards the right edge (width). Inset Y is an unsigned offset from top edge (0) towards the bottom edge (height)
+    /// Specifies inset points on the left vertical edge of the rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_leftedgepointskey?language=objc)
+    /// ## Discussion
+    ///
+    /// The points are [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) of unsigned 16-bit integer [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) pairs alternating between inset X and inset Y. Inset X is an unsigned offset from the left edge (`0`) toward the right edge (width). Inset Y is an unsigned offset from the top edge (`0`) toward the bottom edge (height).
+    ///
+    ///
+    /// Specifies inset points on the left vertical edge of the rectangle. The points are CFArray of unsigned 16-bit integer CFNumber pairs alternating between inset X and inset Y. Inset X is an unsigned offset from left edge (0) towards the right edge (width). Inset Y is an unsigned offset from top edge (0) towards the bottom edge (height)
     pub static kCVImageBufferDisplayMaskRectangle_LeftEdgePointsKey: &'static CFString;
 }
 
 extern "C" {
-    /// Specifies inset points on the right vertical edge of the rectangle. The points are CFArray of unsigned 16-bit integer CFNumber pairs alternating between inset X and inset Y. Inset X is an unsigned offset from right edge (0) towards the left edge (width). Inset Y is an unsigned offset from top edge (0) towards the bottom edge (height)
+    /// Specifies inset points on the right vertical edge of the rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaymaskrectangle_rightedgepointskey?language=objc)
+    /// ## Discussion
+    ///
+    /// The points are [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) of unsigned 16-bit integer [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) pairs alternating between inset X and inset Y. Inset X is an unsigned offset from the right edge (`0`) towards the left edge (width). Inset Y is an unsigned offset from the top edge (`0`) towards the bottom edge (height).
+    ///
+    ///
+    /// Specifies inset points on the right vertical edge of the rectangle. The points are CFArray of unsigned 16-bit integer CFNumber pairs alternating between inset X and inset Y. Inset X is an unsigned offset from right edge (0) towards the left edge (width). Inset Y is an unsigned offset from top edge (0) towards the bottom edge (height)
     pub static kCVImageBufferDisplayMaskRectangle_RightEdgePointsKey: &'static CFString;
 }

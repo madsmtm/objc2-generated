@@ -8,10 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// This class describes a media entity, which can be a media item, such as an audio track.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Entity properties are specific to each type of entity, and each specific entity class provides individual accessors for its properties.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Each media entity has a persistent unique ID and set of properties that iTunes assigns.
+    ///
+    /// The `ITLibMediaEntity` class serves as the abstract superclass for [`ITLibMediaItem`](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitem) and [`ITLibPlaylist`](https://developer.apple.com/documentation/ituneslibrary/itlibplaylist) instances.
+    ///
+    ///
     /// The ITLibMediaEntity class serves as the abstract superclass for ITLibMediaItem and ITLibPlaylist instances.
     /// As the superclass, ITLibMediaEntity defines methods used by those subclasses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ITLibMediaEntity;
@@ -96,6 +111,6 @@ impl ITLibMediaEntity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaentitypropertypersistentid?language=objc)
+    /// The unique identifier of the media entity.
     pub static ITLibMediaEntityPropertyPersistentID: &'static NSString;
 }

@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitem?language=objc)
+    /// An immutable collection of values representing different aspects of an item for an extension to act upon.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExtensionItem;
@@ -121,19 +121,19 @@ impl DefaultRetained for NSExtensionItem {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedtitlekey?language=objc)
+    /// An optional title of the extension item.
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattributedcontenttextkey?language=objc)
+    /// An optional string describing the extension item content.
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttributedContentTextKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionitemattachmentskey?language=objc)
+    /// An optional array of media data associated with the extension item.
     #[cfg(feature = "NSString")]
     pub static NSExtensionItemAttachmentsKey: Option<&'static NSString>;
 }

@@ -13,13 +13,51 @@ use objc2_intents::*;
 use crate::*;
 
 extern_class!(
+    /// A view controller that guides the user through the steps for adding a shortcut to Siri.
+    ///
+    /// ## Overview
+    ///
+    /// When the user performs an action such as placing an order for tomato soup, the app should provide the option to add the action to Siri as a shortcut. To present this option in your app, use [`INUIAddVoiceShortcutButton`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton) to display an _Add to Siri_ button. Using this button makes your app consistent with other apps that support Siri Shortcuts.
+    ///
+    /// After creating the button, assign its action to a method that displays [`INUIAddVoiceShortcutViewController`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontroller). This controller steps the user through the process of adding the shortcut to Siri.
+    ///
+    /// To receive notifications of events from the view controller, set the delegate to an object that conforms to the [`INUIAddVoiceShortcutViewControllerDelegate`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontrollerdelegate) protocol.
+    ///
+    /// The listing below adds an _Add to Siri_ button to a view and let the user record an invocation phrase.
+    ///
+    /// ```swift
+    /// // Add an "Add to Siri" button to a view.
+    /// func addSiriButton(to view: UIView) {
+    ///     let button = INUIAddVoiceShortcutButton(style: .blackOutline)
+    ///     button.translatesAutoresizingMaskIntoConstraints = false
+    ///
+    ///     view.addSubview(button)
+    ///     view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+    ///     view.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
+    ///
+    ///     button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
+    /// }
+    ///
+    /// // Present the Add Shortcut view controller after the
+    /// // user taps the "Add to Siri" button.
+    /// @objc
+    /// func addToSiri(_ sender: Any) {
+    ///     if let shortcut = INShortcut(intent: orderSoupOfTheDayIntent) {
+    ///         let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+    ///         viewController.modalPresentationStyle = .formSheet
+    ///         viewController.delegate = self // Object conforming to `INUIAddVoiceShortcutViewControllerDelegate`.
+    ///         present(viewController, animated: true, completion: nil)
+    ///     }
+    /// }
+    ///
+    /// ```
+    ///
+    ///
     /// A view controller that will take the user through the setup flow to add a shortcut to Siri.
     ///
     /// First create the
     /// `INShortcut`object that represents the shortcut the user wants to perform. Then create an
     /// `INUIAddVoiceShortcutViewController`object and set its delegate. Then, present the view controller modally from another view controller in your app. The delegate must dismiss the view controller when the user completes the set up.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -130,7 +168,7 @@ impl INUIAddVoiceShortcutViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontrollerdelegate?language=objc)
+    /// The protocol an object implements to receive notifications from the view controller adding a shortcut to Siri.
     pub unsafe trait INUIAddVoiceShortcutViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-intents"))]
         #[cfg(target_os = "macos")]

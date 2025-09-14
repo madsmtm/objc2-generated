@@ -6,7 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialregistration?language=objc)
+    /// An interface that credential registration requests adhere to.
     #[cfg(all(
         feature = "ASAuthorizationCredential",
         feature = "ASPublicKeyCredential"

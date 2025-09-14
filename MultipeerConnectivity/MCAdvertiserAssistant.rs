@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistant?language=objc)
+    /// The `MCAdvertiserAssistant` is a convenience class that handles advertising, presents incoming invitations to the user, and handles users’ responses. Use this class to provide a user interface for handling invitations when your app does not require programmatic control over the invitation process.
+    ///
+    /// ## Overview
+    ///
+    /// Before you can advertise a service, you must create an `MCPeerID` object that identifies your app and the user to nearby devices.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCAdvertiserAssistant;
@@ -83,7 +89,13 @@ impl MCAdvertiserAssistant {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistantdelegate?language=objc)
+    /// The `MCAdvertiserAssistantDelegate` protocol describes the methods that the delegate object for an `MCAdvertiserAssistant` instance can implement to handle advertising-related events.
+    ///
+    /// ## Overview
+    ///
+    /// No assumption should be made about which queue the delegate methods are called on. It is the delegate’s responsibility to ensure that any UIKit-related updates are called on the main thread.
+    ///
+    ///
     pub unsafe trait MCAdvertiserAssistantDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(advertiserAssistantWillPresentInvitation:))]

@@ -8,24 +8,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An enumeration that defines possible emergency responses to a Crash Detection event.
+///
+/// ## Overview
+///
+/// The Crash Detection event response indicates whether the system attempted to dial the Emergency SOS - Call After Severe Crash provider, depending on the setting in the Settings app.
+///
+///
 /// This enumeration defines possible emergency responses to a crash event
 ///
 /// See also: SACrashDetectionEventResponse
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SACrashDetectionEventResponse(pub NSInteger);
 impl SACrashDetectionEventResponse {
+    /// The system attempted to dial the Emergency SOS - Call After Severe Crash provider.
     /// Emergency SOS response for the crash event was attempted
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.enum/attempted?language=objc)
     #[doc(alias = "SACrashDetectionEventResponseAttempted")]
     pub const Attempted: Self = Self(0);
+    /// The system couldn’t contact the Emergency SOS - Call After Severe Crash provider because the feature is off in the Settings app.
     /// Emergency SOS response for crash events is disabled
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent/response-swift.enum/disabled?language=objc)
     #[doc(alias = "SACrashDetectionEventResponseDisabled")]
     pub const Disabled: Self = Self(1);
 }
@@ -39,11 +42,16 @@ unsafe impl RefEncode for SACrashDetectionEventResponse {
 }
 
 extern_class!(
+    /// Describes the information about a vehicular crash.
+    ///
+    /// ## Overview
+    ///
+    /// When a vehicular crash occurs, SafetyKit calls your delegate’s [`crashDetectionManager:didDetectEvent:`](https://developer.apple.com/documentation/safetykit/sacrashdetectiondelegate/crashdetectionmanager(_:diddetect:)) method with an [`SACrashDetectionEvent`](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent) object. Inspect this object to determine information about the crash, including the date and time, location, and if the system attempted to contact emergency services.
+    ///
+    ///
     /// This object describes a Crash Detection event and response to it.
     ///
     /// See also: SACrashDetectionEvent
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SACrashDetectionEvent;

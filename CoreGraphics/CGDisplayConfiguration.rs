@@ -22,11 +22,45 @@ unsafe impl RefEncode for _CGDisplayConfigRef {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_CGDisplayConfigRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayconfigref?language=objc)
+/// A reference to a display configuration transaction.
+///
+/// ## Discussion
+///
+/// This data type makes it possible to:
+///
+/// - Create a new display configuration transaction using the function [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:))
+///
+/// - Record a set of configuration changes, each bound to one or more displays
+///
+/// - Apply the changes in a single transaction using the function [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)), or discard the changes using the function [`CGCancelDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcanceldisplayconfiguration(_:))
+///
+/// There are no restrictions on the order in which you accumulate configuration changes in a transaction.
+///
+/// Configuration changes sometimes conflict with each other. For example, a new origin might be rendered invalid by a subsequent configuration change.
+///
+/// If possible, Quartz uses a “best fit” strategy to resolve conflicts between configuration changes. For example, when you change the resolution of a single display in a two-display system, Quartz automatically retiles the displays to prevent separation or overlap of the adjoining edges.
+///
+///
 pub type CGDisplayConfigRef = *mut _CGDisplayConfigRef;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)?language=objc)
+    /// Begins a new set of display configuration changes.
+    ///
+    /// Parameters:
+    /// - config: A pointer to storage you provide for a display configuration. On return, your storage contains a new display configuration.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the request to create a new display configuration is successful, the result is `kCGErrorSuccess`. For other possible values, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a display configuration object that provides a context for a set of display configuration changes. After you specify the desired changes, you use [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)) to apply them in a single transaction.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -36,7 +70,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplayorigin(_:_:_:_:)?language=objc)
+    /// Configures the origin of a display relative to the global display coordinate space.
+    ///
+    /// Parameters:
+    /// - config: A display configuration that you acquire by calling [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)).
+    ///
+    /// - display: The identifier of the display to configure.
+    ///
+    /// - x: The desired x-coordinate for the upper-left corner of the display.
+    ///
+    /// - y: The desired y-coordinate for the upper-left corner of the display.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the request to configure the origin of the display is successful, the result is `kCGErrorSuccess`. For other possible values, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In Quartz, the upper-left corner of a display is the origin. You specify the origin of a display in the global display coordinate space. The origin of the main or primary display is `(0,0)`.
+    ///
+    /// The placement of the new origin is as close as possible to the requested location, without overlapping or leaving a gap between displays.
+    ///
+    /// If you use this function to change the origin of a mirrored display, the mirrored set might not include the display.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -51,7 +111,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaywithdisplaymode(_:_:_:_:)?language=objc)
+    /// Configures the display mode of a display.
+    ///
+    /// Parameters:
+    /// - config: A display configuration you aquire by calling [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)).
+    ///
+    /// - display: The identifier of the display to configure.
+    ///
+    /// - mode: A display mode to configure.
+    ///
+    /// - options: Reserved for future expansion. Pass `NULL` for now.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the request to change modes is successful, the result is `kCGErrorSuccess`. For other possible values, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function allows you to specify a display mode with which to configure the display using a transaction. Before using this function, call [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)) to acquire the display configuration token for the desired display. Call [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)) to execute the transaction.
+    ///
+    /// Using this function to change the mode of a display in a mirroring set might cause Quartz to adjust settings of the other displays in the set. When necessary, Quartz adjusts the bounds, resolutions, and depth of the displays to a safe mode with matching depth and the smallest enclosing size.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -67,7 +151,31 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaystereooperation(_:_:_:_:)?language=objc)
+/// Enables or disables stereo operation for a display, as part of a display configuration.
+///
+/// Parameters:
+/// - config: A display configuration, acquired by calling [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)).
+///
+/// - display: The identifier of the display being configured.
+///
+/// - stereo: Pass `true` if you want to enable stereo operation. To disable it, pass `false`.
+///
+/// - forceBlueLine: When in stereo operation, a display may need to generate a special stereo sync signal as part of the video output.  The sync signal consists of a blue line which occupies the first 25% of the last scan line for the left eye view, and the first 75% of the last scan line for the right eye view. The remainder of the scan line is black. To force the display to generate this sync signal, pass `true`; otherwise, pass `false`.
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
+///
+/// ## Discussion
+///
+/// The system normally detects the presence of a stereo window and automatically switches a display containing a stereo window to stereo operation. This function provides a mechanism to force a display to stereo operation, and to set options (blue line sync signal) when in stereo operation.
+///
+/// On success, the display resolution, mirroring mode, and available display modes may change due to hardware-specific capabilities and limitations. You should check these settings to verify that they are appropriate for your application.
+///
+///
 ///
 /// # Safety
 ///
@@ -92,7 +200,41 @@ pub unsafe extern "C-unwind" fn CGConfigureDisplayStereoOperation(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymirrorofdisplay(_:_:_:)?language=objc)
+    /// Changes the configuration of a mirroring set.
+    ///
+    /// Parameters:
+    /// - config: A display configuration, acquired by calling [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)).
+    ///
+    /// - display: The identifier of the display to add to a mirroring set.
+    ///
+    /// - master: A display in a mirroring set, or `kCGNullDirectDisplay` to disable mirroring. To specify the main display, use [`CGMainDisplayID`](https://developer.apple.com/documentation/coregraphics/cgmaindisplayid()).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Display mirroring and display matte generation are implemented either in hardware (preferred) or software, at the discretion of the device driver.
+    ///
+    /// - Hardware mirroring
+    ///
+    /// With hardware mirroring enabled, all drawing is directed to the primary display—see [`CGDisplayPrimaryDisplay`](https://developer.apple.com/documentation/coregraphics/cgdisplayprimarydisplay(_:)).
+    ///
+    /// If the device driver selects hardware matte generation, the display bounds and row-bytes values are adjusted to reflect the active drawable area.
+    ///
+    /// - Software mirroring
+    ///
+    /// In this form of mirroring, identical content is drawn into each display in the mirroring set. Applications that use the window system need not be concerned about mirroring, as the window system takes care of all flushing of window content to the appropriate displays.
+    ///
+    /// Applications that draw directly to the display, as with display capture, must make sure to draw the same content to all mirrored displays in a software mirror set. When drawing to software mirrored displays using a full screen OpenGL context (not drawing through a window), you should create shared OpenGL contexts for each display and rerender for each display.
+    ///
+    /// You can use the function [`CGGetActiveDisplayList`](https://developer.apple.com/documentation/coregraphics/cggetactivedisplaylist(_:_:_:)) to determine which displays are active, or drawable. This automatically gives your application the correct view of the current displays.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -106,7 +248,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcanceldisplayconfiguration(_:)?language=objc)
+    /// Cancels a set of display configuration changes.
+    ///
+    /// Parameters:
+    /// - config: The display configuration to cancel. On return, the configuration is no longer valid.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the request to cancel a display configuration is successful, the result is `kCGErrorSuccess`. For other possible values, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function abandons a display configuration, causing the object to release.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -115,20 +273,31 @@ extern "C-unwind" {
     pub fn CGCancelDisplayConfiguration(config: CGDisplayConfigRef) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption?language=objc)
+/// The scope of the changes in a display configuration transaction.
+///
+/// ## Overview
+///
+/// For information about how these constants are used, see the function [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGConfigureOption(pub u32);
 bitflags::bitflags! {
     impl CGConfigureOption: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption/forapponly?language=objc)
+/// Changes persist for the lifetime of the current application. After the application terminates, the display configuration settings revert to the current login session.
         #[doc(alias = "kCGConfigureForAppOnly")]
         const ForAppOnly = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption/forsession?language=objc)
+/// Changes persist for the lifetime of the current login session. After the current session terminates, the displays revert to the last saved permanent configuration.
         #[doc(alias = "kCGConfigureForSession")]
         const ForSession = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption/permanently?language=objc)
+///
+/// ## Discussion
+///
+/// Changes persist in future login sessions by the same user. If the requested changes cannot be supported by the Aqua UI (resolution and pixel depth constraints apply), the settings for the current login session are used instead, and any changes have session scope.
+///
+///
         #[doc(alias = "kCGConfigurePermanently")]
         const Permanently = 2;
     }
@@ -145,7 +314,27 @@ unsafe impl RefEncode for CGConfigureOption {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)?language=objc)
+    /// Completes a set of display configuration changes.
+    ///
+    /// Parameters:
+    /// - config: The display configuration that contains the desired changes. On return, this configuration is no longer valid.
+    ///
+    /// - option: The scope of the display configuration changes. Pass one of the constants listed in [`CGConfigureOption`](https://developer.apple.com/documentation/coregraphics/cgconfigureoption).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. If the request to apply changes is successful, the result is `kCGErrorSuccess`. For other possible values, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function applies a set of display configuration changes as a single atomic transaction. The duration or scope of the changes depends on the value of the `option` parameter. For more information about possible scopes, see [`CGConfigureOption`](https://developer.apple.com/documentation/coregraphics/cgconfigureoption).
+    ///
+    /// A configuration change can fail if you request an unsupported display mode or if another application is running in full-screen mode.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -157,7 +346,15 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrestorepermanentdisplayconfiguration()?language=objc)
+/// Restores the permanent display configuration settings for the current user.
+///
+/// ## Discussion
+///
+/// This function provides a convenient way to restore the permanent display configuration.
+///
+/// Applications that temporarily change the display configuration—such as applications and games that switch to full-screen display mode—can use this function to undo the changes.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRestorePermanentDisplayConfiguration() {
     extern "C-unwind" {
@@ -166,44 +363,55 @@ pub extern "C-unwind" fn CGRestorePermanentDisplayConfiguration() {
     unsafe { CGRestorePermanentDisplayConfiguration() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags?language=objc)
+/// The configuration parameters that are passed to a display reconfiguration callback function.
+///
+/// ## Overview
+///
+/// For information about how these constants are used, see the callback [`CGDisplayReconfigurationCallBack`](https://developer.apple.com/documentation/coregraphics/cgdisplayreconfigurationcallback).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayChangeSummaryFlags(pub u32);
 bitflags::bitflags! {
     impl CGDisplayChangeSummaryFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/beginconfigurationflag?language=objc)
+/// The display configuration is about to change.
         #[doc(alias = "kCGDisplayBeginConfigurationFlag")]
         const BeginConfigurationFlag = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/movedflag?language=objc)
+/// The location of the upper-left corner of the display in the global display coordinate space has changed.
         #[doc(alias = "kCGDisplayMovedFlag")]
         const MovedFlag = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/setmainflag?language=objc)
+/// The display is now the main display.
         #[doc(alias = "kCGDisplaySetMainFlag")]
         const SetMainFlag = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/setmodeflag?language=objc)
+/// The display mode has changed.
         #[doc(alias = "kCGDisplaySetModeFlag")]
         const SetModeFlag = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/addflag?language=objc)
+/// The display has been added to the active display list.
         #[doc(alias = "kCGDisplayAddFlag")]
         const AddFlag = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/removeflag?language=objc)
+/// The display has been removed from the active display list.
         #[doc(alias = "kCGDisplayRemoveFlag")]
         const RemoveFlag = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/enabledflag?language=objc)
+/// The display has been enabled.
         #[doc(alias = "kCGDisplayEnabledFlag")]
         const EnabledFlag = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/disabledflag?language=objc)
+/// The display has been disabled.
         #[doc(alias = "kCGDisplayDisabledFlag")]
         const DisabledFlag = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/mirrorflag?language=objc)
+/// The display is now mirroring another display.
         #[doc(alias = "kCGDisplayMirrorFlag")]
         const MirrorFlag = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/unmirrorflag?language=objc)
+/// The display is no longer mirroring another display.
         #[doc(alias = "kCGDisplayUnMirrorFlag")]
         const UnMirrorFlag = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags/desktopshapechangedflag?language=objc)
+///
+/// ## Discussion
+///
+/// The shape of the desktop (the union of display areas) has changed.
+///
+///
         #[doc(alias = "kCGDisplayDesktopShapeChangedFlag")]
         const DesktopShapeChangedFlag = 1<<12;
     }
@@ -219,14 +427,75 @@ unsafe impl RefEncode for CGDisplayChangeSummaryFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayreconfigurationcallback?language=objc)
+/// A client-supplied callback function that’s invoked whenever the configuration of a local display is changed.
+///
+/// Parameters:
+/// - display: The display being reconfigured.
+///
+/// - flags: Flags that indicate which display configuration parameters are changing.
+///
+/// - userInfo: The `userInfo` argument passed to the function [`CGDisplayRegisterReconfigurationCallback`](https://developer.apple.com/documentation/coregraphics/cgdisplayregisterreconfigurationcallback(_:_:)) when the callback function is registered.
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyDisplayReconfigurationCallBack`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// To register a display reconfiguration callback function, you call the function [`CGDisplayRegisterReconfigurationCallback`](https://developer.apple.com/documentation/coregraphics/cgdisplayregisterreconfigurationcallback(_:_:)). Quartz invokes your callback function when:
+///
+/// - Your application calls a function to reconfigure a local display.
+///
+/// - Your application is listening for events in the event-processing thread, and another application calls a function to reconfigure a local display.
+///
+/// - The user changes the display hardware configuration—for example, by disconnecting a display or changing a system preferences setting.
+///
+/// Before display reconfiguration, Quartz invokes your callback function once for each online display to indicate a pending configuration change.  The `flags` argument is always set to `kCGDisplayBeginConfigurationFlag`. The only display-specific information contained by this callback is the display ID number.The reason is that details of how a reconfiguration affects a particular device rely on device-specific behaviors which may not be available to a device driver.
+///
+/// After display reconfiguration, Quartz  invokes your callback function once for each added, removed, and online display. At this time, all display state reported by Core Graphics and QuickDraw will be up to date. The `flags` argument indicates how the display configuration has changed. Note that in the case of removed displays, calls into Quartz with the removed display ID will fail.
+///
+/// The following code example illustrates how to test for specific conditions:
+///
+/// ```objc
+/// void MyDisplayReconfigurationCallBack (
+///    CGDirectDisplayID display,
+///    CGDisplayChangeSummaryFlags flags,
+///    void *userInfo)
+/// {
+///     if (flags & kCGDisplayAddFlag) {
+///         // display has been added
+///     }
+///     else if (flags & kCGDisplayRemoveFlag) {
+///         // display has been removed
+///     }
+/// }
+/// ```
+///
+/// Your callback function should avoid attempting to change display configurations and should not raise exceptions or perform a nonlocal return such as calling `longjmp`. When you are finished using a callback registration, you should call the function [`CGDisplayRemoveReconfigurationCallback`](https://developer.apple.com/documentation/coregraphics/cgdisplayremovereconfigurationcallback(_:_:)) to remove it.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 pub type CGDisplayReconfigurationCallBack = Option<
     unsafe extern "C-unwind" fn(CGDirectDisplayID, CGDisplayChangeSummaryFlags, *mut c_void),
 >;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayregisterreconfigurationcallback(_:_:)?language=objc)
+    /// Registers a callback function to be invoked whenever a local display is reconfigured.
+    ///
+    /// Parameters:
+    /// - callback: A pointer to the callback function to be registered.
+    ///
+    /// - userInfo: A pointer to user-defined data, or `NULL`. The `userInfo` argument is passed back to the callback function each time it’s invoked.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Whenever local displays are reconfigured, the callback function you register is invoked twice for each display that’s added, removed, or currently online—once before the reconfiguration, and once after the reconfiguration. For more information, see the callback type [`CGDisplayReconfigurationCallBack`](https://developer.apple.com/documentation/coregraphics/cgdisplayreconfigurationcallback).
+    ///
+    /// A callback function may be registered multiple times with different user-defined data pointers, resulting in multiple registration entries.  For each registration, when notification is no longer needed you should remove the registration by calling the function [`CGDisplayRemoveReconfigurationCallback`](https://developer.apple.com/documentation/coregraphics/cgdisplayremovereconfigurationcallback(_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -240,7 +509,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayremovereconfigurationcallback(_:_:)?language=objc)
+    /// Removes the registration of a callback function that’s invoked whenever a local display is reconfigured.
+    ///
+    /// Parameters:
+    /// - callback: A pointer to the callback function associated with the registration to be removed.
+    ///
+    /// - userInfo: A pointer to user-defined data associated with the registration to be removed, or `NULL`. This is the same pointer that’s passed to the function [`CGDisplayRegisterReconfigurationCallback`](https://developer.apple.com/documentation/coregraphics/cgdisplayregisterreconfigurationcallback(_:_:)) when registering the callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, the two arguments must match the registered entry to be removed.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -253,7 +534,31 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaysetstereooperation(_:_:_:_:)?language=objc)
+/// Immediately enables or disables stereo operation for a display.
+///
+/// Parameters:
+/// - display: The identifier of the display being configured.
+///
+/// - stereo: Pass `true` if you want to enable stereo operation. To disable it, pass `false`.
+///
+/// - forceBlueLine: When in stereo operation, a display may need to generate a special stereo sync signal as part of the video output.  The sync signal consists of a blue line that occupies the first 25% of the last scan line (for the left eye view), and the first 75% of the last scan line (for the right eye view). The remainder of the scan line is black. To force the display to generate this sync signal, pass `true`; otherwise pass `false`.
+///
+/// - option: A constant that specifies the scope of the display configuration changes. For more information, see `Display Configuration Scopes`.
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
+///
+/// ## Discussion
+///
+/// The system normally detects the presence of a stereo window and automatically switches a display containing a stereo window to stereo operation. This function forces a display to stereo operation immediately, and sets options (blue line sync signal) when in stereo operation.
+///
+/// On success, the display resolution, mirroring mode, and available display modes may change due to hardware-specific capabilities and limitations. You should check these settings to verify that they are appropriate for your application.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplaySetStereoOperation(
@@ -273,7 +578,23 @@ pub extern "C-unwind" fn CGDisplaySetStereoOperation(
     unsafe { CGDisplaySetStereoOperation(display, stereo as _, force_blue_line as _, option) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisactive(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is active.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is active; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// An active display is connected, awake, and available for drawing. In a hardware mirroring set, only the primary display is active.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
@@ -284,7 +605,23 @@ pub extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisasleep(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is sleeping (and is therefore not drawable).
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If [`true`](https://developer.apple.com/documentation/swift/true), the specified display is in sleep mode; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// A display is sleeping when its framebuffer and the attached monitor are in reduced power mode. A sleeping display is still considered to be a part of global display (desktop) space, but it is not drawable.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
@@ -295,7 +632,25 @@ pub extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisonline(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is connected or online.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is connected; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// A display is considered connected or online when the framebuffer hardware is connected to a monitor.
+///
+/// You can use this function to determine whether someone has plugged a display into the system while the main power was on. This hardware feature, called _hot-plugging_, may not be present on all displays.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
@@ -306,7 +661,23 @@ pub extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayismain(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is the main display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is currently the main display; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// For information about the characteristics of a main display, see [`CGMainDisplayID`](https://developer.apple.com/documentation/coregraphics/cgmaindisplayid()).
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
@@ -317,7 +688,25 @@ pub extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisbuiltin(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is built-in, such as the internal display in portable systems.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is considered to be a built-in display; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// Portable systems typically identify the internal LCD panel as a built-in display.
+///
+/// Note that it is possible and reasonable for a system to have no displays marked as built-in. For example, a portable system running with the lid closed may report no built-in displays.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool {
@@ -328,7 +717,23 @@ pub extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool 
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisinmirrorset(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is in a mirroring set.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is a member of a software or hardware mirroring set; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// For more information about display mirroring, see [`CGConfigureDisplayMirrorOfDisplay`](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymirrorofdisplay(_:_:_:)).
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> bool {
@@ -339,7 +744,23 @@ pub extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> b
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisalwaysinmirrorset(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is always in a mirroring set.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is in a mirroring set and cannot be removed from this set.
+///
+///
+///
+/// ## Discussion
+///
+/// Some hardware configurations support the connection of auxiliary displays that always mirror the main display and therefore cannot be removed from the mirroring set to which they belong.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> bool {
@@ -350,7 +771,25 @@ pub extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisinhwmirrorset(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is in a hardware mirroring set.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is a member of a hardware mirroring set; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// When hardware mirroring is enabled, the contents of a single framebuffer are rendered in all displays in the hardware mirroring set. All drawing operations are directed to the primary display in the set—see [`CGDisplayPrimaryDisplay`](https://developer.apple.com/documentation/coregraphics/cgdisplayprimarydisplay(_:)).
+///
+/// For more information about display mirroring, see [`CGConfigureDisplayMirrorOfDisplay`](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymirrorofdisplay(_:_:_:)).
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> bool {
@@ -361,7 +800,23 @@ pub extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) ->
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymirrorsdisplay(_:)?language=objc)
+/// For a secondary display in a mirroring set, returns the primary display.
+///
+/// Parameters:
+/// - display: The identifier of a secondary display in a mirroring set.
+///
+///
+/// ## Return Value
+///
+/// Returns the primary display in the mirroring set. Returns `kCGNullDirectDisplay` if the specified display is actually the primary display or is not in a mirroring set.
+///
+///
+///
+/// ## Discussion
+///
+/// For more information about display mirroring, see [`CGConfigureDisplayMirrorOfDisplay`](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymirrorofdisplay(_:_:_:)).
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID {
@@ -371,7 +826,25 @@ pub extern "C-unwind" fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> 
     unsafe { CGDisplayMirrorsDisplay(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayusesopenglacceleration(_:)?language=objc)
+/// Returns a Boolean value indicating whether Quartz is using OpenGL-based window acceleration (Quartz Extreme) to render in a display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, Quartz Extreme is used to render in the specified display; otherwise, `false`.
+///
+///
+///
+/// ## Discussion
+///
+/// Quartz Extreme is an OpenGL-based, hardware-accelerated window compositor available in macOS 10.2 and later. Quartz Extreme requires a minimum hardware configuration to operate.
+///
+/// The information this function provides is typically used to adjust the demands of drawing operations to the capabilities of the display hardware. For example, an application running on an unaccelerated system could disable live window-resizing.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDisplayID) -> bool {
@@ -382,7 +855,17 @@ pub extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDispla
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayisstereo(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is running in a stereo graphics mode.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is running in a stereo graphics mode; otherwise, `false`.
+///
+///
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
@@ -393,7 +876,25 @@ pub extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayprimarydisplay(_:)?language=objc)
+/// Returns the primary display in a hardware mirroring set.
+///
+/// Parameters:
+/// - display: The identifier of a display in a hardware mirror set.
+///
+///
+/// ## Return Value
+///
+/// The primary display in the mirror set. If `display` is not hardware-mirrored, this function simply returns `display`.
+///
+///
+///
+/// ## Discussion
+///
+/// In hardware mirroring, the contents of a single framebuffer are rendered in two or more displays simultaneously. The mirrored displays are said to be in a _hardware mirroring set_.
+///
+/// At the discretion of the device driver, one of the displays in a hardware mirroring set is designated as the _primary_ display. The device driver binds the drawing engine, hardware accelerator, and 3D engine to the primary display and directs all drawing operations to this display.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID {
@@ -403,7 +904,27 @@ pub extern "C-unwind" fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> 
     unsafe { CGDisplayPrimaryDisplay(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayunitnumber(_:)?language=objc)
+/// Returns the logical unit number of a display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A logical unit number for the specified display.
+///
+///
+///
+/// ## Discussion
+///
+/// The logical unit number represents a particular node in the I/O Kit device tree associated with the display’s framebuffer.
+///
+/// For a particular hardware configuration, this value will not change when the attached monitor is changed. The number will change, though, if the I/O Kit device tree changes, for example, when hardware is reconfigured, drivers are replaced, or significant changes occur to I/O Kit. Therefore keep in mind that this number may vary across login sessions.
+///
+/// For more information about I/O Kit, see [IOKit Fundamentals](https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/IOKitFundamentals/Introduction/Introduction.html#//apple_ref/doc/uid/TP0000011).
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32 {
@@ -413,7 +934,31 @@ pub extern "C-unwind" fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32 
     unsafe { CGDisplayUnitNumber(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayvendornumber(_:)?language=objc)
+/// Returns the vendor number of the specified display’s monitor.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A vendor number for the monitor associated with the specified display, or a constant to indicate an exception—see the discussion below.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses I/O Kit to identify the monitor associated with the specified display.
+///
+/// There are three cases:
+///
+/// - If I/O Kit can identify the monitor, the vendor ID is returned.
+///
+/// - If I/O Kit cannot identify the monitor, [`kDisplayVendorIDUnknown`](https://developer.apple.com/documentation/iokit/1505632-anonymous/kdisplayvendoridunknown) is returned.
+///
+/// - If there is no monitor associated with the display, `0xFFFFFFFF` is returned.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u32 {
@@ -423,7 +968,29 @@ pub extern "C-unwind" fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u3
     unsafe { CGDisplayVendorNumber(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymodelnumber(_:)?language=objc)
+/// Returns the model number of a display monitor.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A model number for the monitor associated with the specified display, or a constant to indicate an exception—see the discussion below.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses I/O Kit to identify the monitor associated with the specified display. The return value depends on the following:
+///
+/// - If I/O Kit can identify the monitor, the product ID code for the monitor is returned.
+///
+/// - If I/O Kit can’t identify the monitor, `kDisplayProductIDGeneric` is returned.
+///
+/// - If no monitor is connected, a value of `0xFFFFFFFF` is returned.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32 {
@@ -433,7 +1000,37 @@ pub extern "C-unwind" fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32
     unsafe { CGDisplayModelNumber(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayserialnumber(_:)?language=objc)
+/// Returns the serial number of a display monitor.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A serial number for the monitor associated with the specified display, or a constant to indicate an exception—see the discussion below.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses I/O Kit to identify the monitor associated with the specified display.
+///
+/// If I/O Kit can identify the monitor:
+///
+/// - If the manufacturer has encoded a serial number for the monitor, the number is returned.
+///
+/// - If there is no encoded serial number,  `0x00000000` is returned.
+///
+/// If I/O Kit cannot identify the monitor:
+///
+/// - If a monitor is connected to the display, `0x00000000` is returned.
+///
+/// - If no monitor is connected to the display hardware, `0xFFFFFFFF` is returned.
+///
+/// Note that a serial number is meaningful only in conjunction with a specific vendor and product or model.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u32 {
@@ -443,7 +1040,23 @@ pub extern "C-unwind" fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u3
     unsafe { CGDisplaySerialNumber(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayscreensize(_:)?language=objc)
+/// Returns the width and height of a display in millimeters.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The size of the specified display in millimeters, or 0 if the display is not valid.
+///
+///
+///
+/// ## Discussion
+///
+/// If Extended Display Identification Data (EDID) for the display device is not available, the size is estimated based on the device width and height in pixels from [`CGDisplayBounds`](https://developer.apple.com/documentation/coregraphics/cgdisplaybounds(_:)), with an assumed resolution of 2.835 pixels/mm or 72 dpi, a reasonable guess for displays predating EDID support.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSize {
@@ -453,7 +1066,23 @@ pub extern "C-unwind" fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSi
     unsafe { CGDisplayScreenSize(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayrotation(_:)?language=objc)
+/// Returns the rotation angle of a display in degrees.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The rotation angle of the display in degrees, or 0 if the display is not valid.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns the rotation angle of a display in a clockwise direction. For example, if the specified display is rotated clockwise 90 degrees, then this function returns 90.0. After a 90-degree clockwise rotation, the physical bottom of the display is on the left side and the physical top is on the right side.
+///
+///
 #[cfg(feature = "CGDirectDisplay")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayRotation(display: CGDirectDisplayID) -> c_double {
@@ -463,7 +1092,23 @@ pub extern "C-unwind" fn CGDisplayRotation(display: CGDirectDisplayID) -> c_doub
     unsafe { CGDisplayRotation(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycopycolorspace(_:)?language=objc)
+/// Returns the color space for a display.
+///
+/// Parameters:
+/// - display: The identifier of the display whose color space you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The current color space for the specified display. In Objective-C, you’re responsible for releasing the color space with the [`CGColorSpaceRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorspacerelease) function.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns a display-dependent ICC-based color space. You can use this function when rendering content for a specific display in order to produce color-matched output for that display.
+///
+///
 #[cfg(all(feature = "CGColorSpace", feature = "CGDirectDisplay"))]
 #[inline]
 pub extern "C-unwind" fn CGDisplayCopyColorSpace(
@@ -478,7 +1123,39 @@ pub extern "C-unwind" fn CGDisplayCopyColorSpace(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymode(_:_:_:)?language=objc)
+    /// Configures the display mode of a display.
+    ///
+    /// Parameters:
+    /// - config: A display configuration, acquired by calling [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)).
+    ///
+    /// - display: The identifier of the display being configured.
+    ///
+    /// - mode: A display mode dictionary (see the discussion below).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A display mode is a set of properties such as width, height, pixel depth, and refresh rate, and options such as stretched LCD panel filling.
+    ///
+    /// The display mode you provide must be one of the following:
+    ///
+    /// - A dictionary returned by one of the `CGDisplayBestMode` functions, such as [`CGDisplayBestModeForParameters`](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparameters(_:_:_:_:_:)).
+    ///
+    /// - A dictionary in the array returned by [`CGDisplayAvailableModes`](https://developer.apple.com/documentation/coregraphics/cgdisplayavailablemodes(_:)).
+    ///
+    /// If you use this function to change the mode of a display in a mirroring set, Quartz may adjust the bounds, resolutions, and depth of the other displays in the set to a safe mode, with matching depth and the smallest enclosing size.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This deprecated function takes as a parameter a display mode dictionary. Starting in OS X v10.6, display mode dictionaries have been replaced by the `CGDisplayMode` opaque type. For information on the `CGDisplayMode` opaque type, see [Getting Information About a Display Mode](https://developer.apple.com/documentation/coregraphics/quartz-display-services#getting-information-about-a-display-mode).
+    ///
+    ///
     ///
     /// # Safety
     ///

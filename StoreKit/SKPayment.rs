@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpayment?language=objc)
+    /// A request to the App Store to process payment for additional functionality that your app offers.
+    ///
+    /// ## Overview
+    ///
+    /// A payment object identifies a product and the quantity of those items the user would like to purchase.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.purchase(confirmIn:options:)"]
@@ -95,7 +101,15 @@ impl SKPayment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skmutablepayment?language=objc)
+    /// A mutable request to the App Store to process payment for additional functionality that your app offers.
+    ///
+    /// ## Overview
+    ///
+    /// A mutable payment object identifies a product and the quantity of that item the user would like to purchase.
+    ///
+    /// When a mutable payment is added to the payment queue, the payment queue copies the contents into an immutable request before queueing the request. Your app can safely change the contents of the mutable payment object.
+    ///
+    ///
     #[unsafe(super(SKPayment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Product.purchase(confirmIn:options:)"]

@@ -7,41 +7,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus?language=objc)
+/// Constants indicating the status of a command.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPRemoteCommandHandlerStatus(pub NSInteger);
 impl MPRemoteCommandHandlerStatus {
+    /// The requested command executed successfully.
     /// There was no error executing the requested command.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/success?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusSuccess")]
     pub const Success: Self = Self(0);
+    /// The requested command couldn’t execute because its required content isn’t available.
     /// The command could not be executed because the requested content does not
     /// exist in the current application state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/nosuchcontent?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusNoSuchContent")]
     pub const NoSuchContent: Self = Self(100);
+    /// The requested command couldn’t execute because no Now Playing item is available.
     /// The command could not be executed because there is no now playing item
     /// available that is required for this command. As an example, an
     /// application would return this error code if an "enable language option"
     /// command is received, but nothing is currently playing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/noactionablenowplayingitem?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusNoActionableNowPlayingItem")]
     pub const NoActionableNowPlayingItem: Self = Self(110);
+    /// The requested command couldn’t execute because a required device isn’t available.
+    ///
+    /// ## Discussion
+    ///
+    /// Commands that require a device to perform their action should return this status when the device is unavailable. For example, you’d return this status if your command requires headphones, but none are available.
+    ///
+    ///
     /// The command could not be executed because a device required
     /// is not available. For instance, if headphones are required, or if a watch
     /// app realizes that it needs the companion to fulfull a request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/devicenotfound?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusDeviceNotFound")]
     pub const DeviceNotFound: Self = Self(120);
+    /// The requested command failed to execute.
     /// The command could not be executed for another reason.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandhandlerstatus/commandfailed?language=objc)
     #[doc(alias = "MPRemoteCommandHandlerStatusCommandFailed")]
     pub const CommandFailed: Self = Self(200);
 }
@@ -55,7 +56,22 @@ unsafe impl RefEncode for MPRemoteCommandHandlerStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommand?language=objc)
+    /// An object that responds to remote command events.
+    ///
+    /// ## Overview
+    ///
+    /// The Media Player framework defines a standard set of remote command objects for handling media-related events. When an accessory or iOS user interface generates a remote control event, the system notifies the corresponding command object on the shared [`MPRemoteCommandCenter`](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter) instance. That command object executes any attached handlers.
+    ///
+    /// To respond to a particular event, register a handler with the appropriate [`MPRemoteCommand`](https://developer.apple.com/documentation/mediaplayer/mpremotecommand) object.
+    ///
+    /// Listing 1. Registering a remote control event handler
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Get the shared command center.", "let commandCenter = MPRemoteCommandCenter.shared()", "", "// Add a handler for the play command.", "commandCenter.playCommand.addTarget { [unowned self] event in", "    if self.player.rate == 0.0 {", "        self.player.play()", "        return .success", "    }", "    return .commandFailed", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Get the shared command center.", "MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];", "", "// Add a handler for the play command.", "[commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {", "    if (self.player.rate == 0.0) {", "        [self.player play];", "        return MPRemoteCommandHandlerStatusSuccess;", "    }", "    return MPRemoteCommandHandlerStatusCommandFailed;", "}];"], metadata: None }] }] })
+    /// If you explicitly don’t want to enable a given command, fetch the command object and set its enabled property to [`false`](https://developer.apple.com/documentation/swift/false). Disabling a remote command lets the system know that it shouldn’t display any related UI for that command when your app is the Now Playing app.
+    ///
+    /// The framework defines many subclasses to handle specific kinds of commands. Sometimes, these subclasses let you specify other information related to the command. For example, feedback commands let you specify a localized string that describes the meaning of the feedback. When supporting a particular command, be sure to look up the specific class used to handle those events.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRemoteCommand;
@@ -123,7 +139,13 @@ impl MPRemoteCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand?language=objc)
+    /// An object that defines the skip intervals for the player.
+    ///
+    /// ## Overview
+    ///
+    /// You use a skip interval to move the playback of a media item, forward or backward, the indicated number of seconds. For example, a forward skip interval of 30 seconds at 2 minutes and 30 seconds into a song would immediately jump to 3 minutes into the song and continue playing. The skipped content isn’t played.
+    ///
+    ///
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSkipIntervalCommand;
@@ -163,7 +185,15 @@ impl MPSkipIntervalCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand?language=objc)
+    /// An object that reflects the feedback state for the playing item.
+    ///
+    /// ## Overview
+    ///
+    /// The shared [`MPRemoteCommandCenter`](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter) object vends feedback objects for liking, disliking, and bookmarking media items. Use these objects to register handlers for the types of feedback your app supports and to perform the appropriate tasks when that feedback changes. When the currently playing item changes, you can also use this object to set the feedback state for the new item.
+    ///
+    /// When the state of a feedback item changes, the system delivers an appropriate event to registered handlers of this object. Your handler code must determine which media item receives the feedback and then apply the update the feedback state for that item. You might also perform other tasks related to receiving feedback. For example, if the user likes the currently playing song, you might update the appropriate UI in your app or use the information to recommend similar songs.
+    ///
+    ///
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPFeedbackCommand;
@@ -229,7 +259,7 @@ impl MPFeedbackCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpratingcommand?language=objc)
+    /// An object that provides a detailed rating for the playing item.
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRatingCommand;
@@ -277,7 +307,13 @@ impl MPRatingCommand {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommand?language=objc)
+    /// An object that responds to requests to change the playback rate of the playing item.
+    ///
+    /// ## Overview
+    ///
+    /// Apps can change the current playback rate of a media item to one of the supported rates defined by the [`supportedPlaybackRates`](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommand/supportedplaybackrates) property.
+    ///
+    ///
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackRateCommand;
@@ -321,10 +357,9 @@ impl MPChangePlaybackRateCommand {
 }
 
 extern_class!(
+    /// An object that responds to requests to change the current playback position of the playing item.
     /// Command for changing the current playback position in a now playing item.
     /// Sends out MPChangePlaybackPositionCommandEvents.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackpositioncommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangePlaybackPositionCommand;
@@ -352,12 +387,11 @@ impl MPChangePlaybackPositionCommand {
 }
 
 extern_class!(
+    /// An object that responds to requests to change the current shuffle mode used during playback.
     /// Command for changing the current shuffle mode to use during playback. To
     /// update the system's current representation of your app's shuffle mode, set
     /// the currentShuffleType property on this command to the proper shuffle type
     /// value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeShuffleModeCommand;
@@ -397,12 +431,11 @@ impl MPChangeShuffleModeCommand {
 }
 
 extern_class!(
+    /// An object that responds to requests to change the current repeat mode used during playback.
     /// Command for changing the current repeat mode to use during playback. To
     /// update the system's current representation of your app's repeat mode, set
     /// the currentRepeatType property on this command to the proper repeat type
     /// value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommand?language=objc)
     #[unsafe(super(MPRemoteCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPChangeRepeatModeCommand;

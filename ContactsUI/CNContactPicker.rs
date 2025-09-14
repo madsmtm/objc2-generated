@@ -11,9 +11,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// CNContactPicker is a popover-based contact picker for choosing a contact or a contact's value, such as a phone number or email address.
+    /// A popover-based interface for selecting a contact.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contactsui/cncontactpicker?language=objc)
+    /// ## Overview
+    ///
+    /// Before displaying the popover, configure the [`displayedKeys`](https://developer.apple.com/documentation/contactsui/cncontactpicker/displayedkeys) property with the information you want to display in the interface.
+    ///
+    ///
+    /// CNContactPicker is a popover-based contact picker for choosing a contact or a contact's value, such as a phone number or email address.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactPicker;

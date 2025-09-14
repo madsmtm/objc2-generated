@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that defines the end of a recurrence rule.
+    ///
+    /// ## Overview
+    ///
+    /// The `EKRecurrenceEnd` class defines the end of a recurrence rule defined by an [`EKRecurrenceRule`](https://developer.apple.com/documentation/eventkit/ekrecurrencerule) object. The recurrence end can be specified by a date (date-based) or by a maximum count of occurrences (count-based). An event that is intended to continue indefinitely should have its `EKRecurrenceEnd` set to `nil`.
+    ///
+    ///
     /// Class which represents when a recurrence should end.
     ///
     /// EKRecurrenceEnd is an attribute of EKRecurrenceRule that defines how long
@@ -23,8 +30,6 @@ extern_class!(
     ///
     /// A EKRecurrenceEnd initialized with an end date will return 0 for occurrenceCount.
     /// One initialized with a number of occurrences will return nil for its endDate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrenceend?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EKRecurrenceEnd;

@@ -10,19 +10,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum?language=objc)
+/// Specifies the time period for filtering data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardTimeScope(pub NSInteger);
 impl GKLeaderboardTimeScope {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum/today?language=objc)
+    /// Loads data for the past 24 hours.
     #[doc(alias = "GKLeaderboardTimeScopeToday")]
     pub const Today: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum/week?language=objc)
+    /// Loads data for the past week.
     #[doc(alias = "GKLeaderboardTimeScopeWeek")]
     pub const Week: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum/alltime?language=objc)
+    /// Loads a player’s best score.
     #[doc(alias = "GKLeaderboardTimeScopeAllTime")]
     pub const AllTime: Self = Self(2);
 }
@@ -35,16 +35,16 @@ unsafe impl RefEncode for GKLeaderboardTimeScope {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/playerscope-swift.enum?language=objc)
+/// Specifies the type of players for filtering data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardPlayerScope(pub NSInteger);
 impl GKLeaderboardPlayerScope {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/playerscope-swift.enum/global?language=objc)
+    /// Loads data for all players of the game.
     #[doc(alias = "GKLeaderboardPlayerScopeGlobal")]
     pub const Global: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/playerscope-swift.enum/friendsonly?language=objc)
+    /// Loads only data for friends of the local player.
     #[doc(alias = "GKLeaderboardPlayerScopeFriendsOnly")]
     pub const FriendsOnly: Self = Self(1);
 }
@@ -57,16 +57,16 @@ unsafe impl RefEncode for GKLeaderboardPlayerScope {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboardtype?language=objc)
+/// Specifies whether a leaderboard is recurring.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardType(pub NSInteger);
 impl GKLeaderboardType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboardtype/classic?language=objc)
+    /// A leaderboard that never expires, showing all-time rankings of all players.
     #[doc(alias = "GKLeaderboardTypeClassic")]
     pub const Classic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboardtype/recurring?language=objc)
+    /// A leaderboard that recurs, allowing players a fresh start to compete and earn higher ranks in each ocurrence.
     #[doc(alias = "GKLeaderboardTypeRecurring")]
     pub const Recurring: Self = Self(1);
 }
@@ -80,12 +80,25 @@ unsafe impl RefEncode for GKLeaderboardType {
 }
 
 extern_class!(
+    /// A leaderboard for a game that Game Center stores.
+    ///
+    /// ## Overview
+    ///
+    /// Leaderboards allow players to compare their scores against other players in your game. You configure a classic or recurring leaderboard in App Store Connect and then access the localized information for a leaderboard in your code using [`GKLeaderboard`](https://developer.apple.com/documentation/gamekit/gkleaderboard) objects.
+    ///
+    /// A _classic leaderboard_ is persistent, that is, the scores never reset unless you delete the leaderboard. A _recurring leaderboard_ contains scores for a period of time useful for competitions and encouraging players to try for higher scores. You configure the duration, frequency, and delay between occurrences that Game Center uses to automatically restart the leaderboard in App Store Connect.
+    ///
+    /// In your code, you use the identifier you set for the leaderboard in App Store Connect to submit scores or load leaderboards. Use the [`submitScore:context:player:leaderboardIDs:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/submitscore(_:context:player:leaderboardids:completionhandler:)) class method to submit a score to one or more leaderboards. Alternatively, load a recurring leaderboard using the [`loadLeaderboardsWithIDs:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/loadleaderboards(ids:completionhandler:)) class method and then submit a score using the [`submitScore:context:player:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/submitscore(_:context:player:completionhandler:)) method. To learn more about recurring leaderboards, see [Creating recurring leaderboards](https://developer.apple.com/documentation/gamekit/creating-recurring-leaderboards).
+    ///
+    /// To retrieve information about all leaderboards in your game, use the [`loadLeaderboardsWithIDs:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/loadleaderboards(ids:completionhandler:)) class method. To fetch the scores for a leaderboard, use the [`loadEntriesForPlayerScope:timeScope:range:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/loadentries(for:timescope:range:completionhandler:)) or [`loadEntriesForPlayers:timeScope:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/loadentries(for:timescope:completionhandler:)) method. Use the parameters of these methods to filter the scores to the player’s friends, a rank, and time period when the score occurs.
+    ///
+    /// You must create leaderboard objects using one of the load methods above. If the request is successful, GameKit passes corresponding [`GKLeaderboard`](https://developer.apple.com/documentation/gamekit/gkleaderboard) objects to the handler. GameKit doesn’t load the images you add to App Store Connect when it loads the leaderboards. Use the [`loadImageWithCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkleaderboard/loadimage(completionhandler:)) method to get the image for a leaderboard.
+    ///
+    ///
     /// GKLeaderboard represents a single instance of a leaderboard for the current game.
     /// Leaderboards can be of the following types:
     /// 1. Classic - Traditional, non-expiring leaderboards
     /// 2. Recurring - Periodic timed leaderboards that follow a recurrence rule defined in App Store Connect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboard;

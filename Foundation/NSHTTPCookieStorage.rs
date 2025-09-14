@@ -6,25 +6,30 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Cookie acceptance policies implemented by the [`NSHTTPCookieStorage`](https://developer.apple.com/documentation/foundation/httpcookiestorage) class.
 /// Values for the different cookie accept policies
 ///
 ///
 ///
 /// only from the main document domain
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHTTPCookieAcceptPolicy(pub NSUInteger);
 impl NSHTTPCookieAcceptPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy/always?language=objc)
+    /// Accept all cookies.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default cookie accept policy.
+    ///
+    ///
     #[doc(alias = "NSHTTPCookieAcceptPolicyAlways")]
     pub const Always: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy/never?language=objc)
+    /// Reject all cookies.
     #[doc(alias = "NSHTTPCookieAcceptPolicyNever")]
     pub const Never: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy/onlyfrommaindocumentdomain?language=objc)
+    /// Accept cookies only from the main document domain.
     #[doc(alias = "NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain")]
     pub const OnlyFromMainDocumentDomain: Self = Self(2);
 }
@@ -38,13 +43,52 @@ unsafe impl RefEncode for NSHTTPCookieAcceptPolicy {
 }
 
 extern_class!(
+    /// A container that manages the storage of cookies.
+    ///
+    /// ## Overview
+    ///
+    /// Each stored cookie is represented by an instance of the [`NSHTTPCookie`](https://developer.apple.com/documentation/foundation/httpcookie) class.
+    ///
+    /// ### Sharing cookie storage
+    ///
+    /// The persistent cookie storage returned by [`sharedHTTPCookieStorage`](https://developer.apple.com/documentation/foundation/httpcookiestorage/shared) may be available to app extensions or other apps, subject to the following guidelines:
+    ///
+    /// - iOS — Each app and app extension has a unique data container, meaning  they have separate cookie stores. You can obtain a common cookie storage by using the [`sharedCookieStorageForGroupContainerIdentifier:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/sharedcookiestorage(forgroupcontaineridentifier:)) method.
+    ///
+    /// - macOS (non-sandboxed) — As of macOS 10.11, each app has its own cookie storage. Prior to macOS 10.11, a common cookie store is shared among the user’s apps.
+    ///
+    /// - macOS (sandboxed) — Same as iOS.
+    ///
+    /// - [`UIWebView`](https://developer.apple.com/documentation/uikit/uiwebview) — `UIWebView` instances within an app inherit the parent app’s shared cookie storage.
+    ///
+    /// - [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) — Each `WKWebView` instance has its own cookie storage. See the [`WKHTTPCookieStore`](https://developer.apple.com/documentation/webkit/wkhttpcookiestore) class for more information.
+    ///
+    /// Session cookies (where the cookie object’s [`sessionOnly`](https://developer.apple.com/documentation/foundation/httpcookie/issessiononly) property is [`true`](https://developer.apple.com/documentation/swift/true)) are local to a single process and are not shared.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In cases where a cookie storage is shared between processes, changes made to the cookie accept policy affect all currently running apps using the cookie storage.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing notes
+    ///
+    /// The [`NSHTTPCookieStorage`](https://developer.apple.com/documentation/foundation/httpcookiestorage) class is usable as-is, but you can subclass it. For example, you can override the storage methods like [`storeCookies:forTask:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/storecookies(_:for:)), [`getCookiesForTask:completionHandler:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/getcookiesfor(_:completionhandler:)) to screen which cookies are stored, or reimplement the storage mechanism for security or other reasons.
+    ///
+    /// When overriding methods of this class, be aware that methods that take a `task` parameter are preferred by the system to equivalent methods that do not. Therefore, you should override the task-based methods when subclassing, as follows:
+    ///
+    /// - Retrieving cookies — Override [`getCookiesForTask:completionHandler:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/getcookiesfor(_:completionhandler:)), instead of or in addition to [`cookiesForURL:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies(for:)).
+    ///
+    /// - Adding cookies — Override [`storeCookies:forTask:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/storecookies(_:for:)), instead of or in addition to [`setCookies:forURL:mainDocumentURL:`](https://developer.apple.com/documentation/foundation/httpcookiestorage/setcookies(_:for:maindocumenturl:)).
+    ///
+    ///
     /// NSHTTPCookieStorage implements a singleton object (shared
     /// instance) which manages the shared cookie store.  It has methods
     /// to allow clients to set and remove cookies, and get the current
     /// set of cookies.  It also has convenience methods to parse and
     /// generate cookie-related HTTP header fields.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookieStorage;
@@ -253,20 +297,32 @@ impl NSHTTPCookieStorage {
 }
 
 extern "C" {
+    /// A notification posted when the acceptance policy of the cookie storage has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS, cookies are shared among applications, meaning this notification can be received as a result of another application’s actions. Cookies are not shared among applications in iOS.
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/notification/object) is the [`NSHTTPCookieStorage`](https://developer.apple.com/documentation/foundation/httpcookiestorage) instance. This notification does not contain a [`userInfo`](https://developer.apple.com/documentation/foundation/notification/userinfo) dictionary.
+    ///
+    ///
     /// Name of notification that should be posted to the
     /// distributed notification center whenever the accept cookies
     /// preference is changed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nshttpcookiemanageracceptpolicychanged?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// Notification sent when the set of cookies changes
+    /// A notification posted when the cookies stored in the cookie storage have changed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nshttpcookiemanagercookieschanged?language=objc)
+    /// ## Discussion
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/notification/object) is the [`NSHTTPCookieStorage`](https://developer.apple.com/documentation/foundation/httpcookiestorage) instance. This notification does not contain a [`userInfo`](https://developer.apple.com/documentation/foundation/notification/userinfo) dictionary.
+    ///
+    ///
+    /// Notification sent when the set of cookies changes
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName;
 }

@@ -5,7 +5,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/eventkituibundle()?language=objc)
+/// Use to access resources within the app bundle.
+///
+/// ## Discussion
+///
+/// A _bundle_ is a directory with a standardized hierarchical structure that holds executable code and the resources used by that code. Bundles organize their contained resources into well-defined subdirectories.
+///
+/// By using a bundle object, you can access a bundle’s resources without knowing the structure of the bundle. The bundle object provides a single interface for locating items, taking into account the bundle structure, user preferences, available localizations, and other relevant factors.
+///
+///
 #[inline]
 pub unsafe extern "C-unwind" fn EventKitUIBundle() -> Option<Retained<NSBundle>> {
     extern "C-unwind" {

@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkuserlocationview?language=objc)
+    /// A configurable annotation that shows the user’s location using the default MapKit style.
+    ///
+    /// ## Overview
+    ///
+    /// If you don’t need additional configuration, you can show an annotation with the user’s location by setting [`showsUserLocation`](https://developer.apple.com/documentation/mapkit/mkmapview/showsuserlocation) on the map to `true`.
+    ///
+    /// If you want to specify additional configuration, such as [`zPriority`](https://developer.apple.com/documentation/mapkit/mkannotationview/zpriority), create this annotation view directly. To display the annotation view, return the instance from [`mapView:viewForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz).
+    ///
+    /// The user location view provides the MapKit default style and behavior. The visual display varies with the level of authorization the user grants your app.
+    ///
+    ///
     #[unsafe(super(MKAnnotationView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

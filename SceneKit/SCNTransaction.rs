@@ -13,7 +13,35 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransaction?language=objc)
+    /// A mechanism for creating implicit animations and combining scene graph changes into atomic updates.
+    ///
+    /// ## Overview
+    ///
+    /// You use [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) class methods to control the animation that results from changing animatable properties in the scene graph and to combine sets of changes into nested transactions.
+    ///
+    /// ### Adding Animation with Automatic Transaction
+    ///
+    /// SceneKit creates a transaction automatically whenever you modify the objects in a scene graph. This transaction groups any additional changes you make from the same thread during the current iteration of that thread’s run loop. When the run loop next iterates, SceneKit automatically commits the transaction, atomically applying all changes made during the transaction to the presentation scene graph (that is, the, version of the scene graph currently being displayed).
+    ///
+    /// Because an automatic transaction has a default duration of zero, any changes it contains appear instantly when SceneKit automatically commits the transaction. By using the `setAnimationDuration(_:)` method in Swift, `setAnimationDuration:` in Objective-C, to change the duration, you _implicitly animate_ all changes made to animatable properties during the transaction. You can use implicit animation to add animation to a scene quickly and easily. For example, the code in Listing 1 fades out and moves one node, fades in another, moves and zooms the point of view camera, and focuses a spotlight, all in a single one-second animation.
+    ///
+    /// Listing 1. Implicitly animating several property changes
+    ///
+    /// ```objc
+    /// [SCNTransaction setAnimationDuration:1.0];    
+    /// _textNode.position = SCNVector3Make(0.0, -10.0, 0.0);
+    /// _textNode.opacity = 0.0;
+    /// _heroNode.opacity = 1.0;
+    /// view.pointOfView = _heroCamera;
+    /// _heroCamera.camera.yFov = 20.0;
+    /// _lightNode.light.spotInnerAngle = 30.0;
+    /// ```
+    ///
+    /// ### Creating Advanced Animations with Custom Transactions
+    ///
+    /// You can also use [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) class methods to create and manage a hierarchy of your own transactions. By nesting custom transactions, you can group sets of scene graph changes, applying different animation parameters to each group. Use the [`begin`](https://developer.apple.com/documentation/scenekit/scntransaction/begin()) method to create a custom transaction, nested within the current transaction if one exists. Use the [`commit`](https://developer.apple.com/documentation/scenekit/scntransaction/commit()) method to end a transaction, applying all scene graph changes made within.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNTransaction;

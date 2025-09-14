@@ -10,7 +10,28 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceswitch?language=objc)
+    /// An interface element that toggles between an On and Off state.
+    ///
+    /// ## Overview
+    ///
+    /// Switches are commonly used to indicate whether a feature is enabled or disabled. You set the initial value of the switch in your storyboard file, but you can modify that value at runtime using the methods of this class.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a switch object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var mySwitch: WKInterfaceSwitch!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceSwitch* mySwitch;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the onscreen switch.
+    ///
+    /// When the user changes the value of a switch, WatchKit delivers the new value to the slider’s action method. The format of a switch’s action method is as follows:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func switchAction(value: Bool)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)switchAction:(BOOL)on"], metadata: None }] }] })
+    /// Declare a method of this form in the interface controller class used to manage the switch. You can change the method name to anything you like. When configuring the switch in Xcode, connect its selector to your custom action method.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about switches in your storyboard file. The following table lists the attributes you can configure and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "State" }] }], [Paragraph { inline_content: [Text { text: "The initial state of the switch. The switch can be off or on. You can modify the state of the switch programmatically at runtime using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch/setOn(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Tint" }] }], [Paragraph { inline_content: [Text { text: "The color of the switch when it is in the on state." }] }]], [[Paragraph { inline_content: [Text { text: "Enabled" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the switch is enabled. An enabled switch calls its action method when the user changes the state of the switch. You can enable or disable a switch programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch/setEnabled(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Title" }] }], [Paragraph { inline_content: [Text { text: "The string to be displayed next to the switch. If specified, the title string is displayed next to the switch." }] }]], [[Paragraph { inline_content: [Text { text: "Color" }] }], [Paragraph { inline_content: [Text { text: "The text color for the switch’s title string. You can also set the switch color using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSwitch/setColor(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Font" }] }], [Paragraph { inline_content: [Text { text: "The font information to be applied to the title string. You can specify one of the predefined styles or provide custom style information." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

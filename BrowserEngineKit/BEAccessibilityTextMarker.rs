@@ -10,9 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Subclass BEAccessibilityTextMarker to encode information about text-based positioning information in browser engines within document models.
+    /// An abstract class that represents a location in an element’s accessibility text.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytextmarker?language=objc)
+    /// ## Overview
+    ///
+    /// Subclass `BEAccessibilityTextMarker` in your app to represent a location in the accessibility text of an element in the document object model (DOM). The system uses your implementation of [`BEAccessibilityTextMarkerSupport`](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytextmarkersupport) to convert between accessibility text markers and locations in your app’s views, and doesn’t create instances of your subclass or access their data.
+    ///
+    ///
+    /// Subclass BEAccessibilityTextMarker to encode information about text-based positioning information in browser engines within document models.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEAccessibilityTextMarker;
@@ -56,9 +61,8 @@ impl BEAccessibilityTextMarker {
 }
 
 extern_class!(
+    /// A class that represents a range in an element’s accessibility text.
     /// BEAccessibilityTextMarkerRange holds the start and end markers for a text range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytextmarker/range?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEAccessibilityTextMarkerRange;
@@ -120,9 +124,14 @@ impl BEAccessibilityTextMarkerRange {
 }
 
 extern_protocol!(
-    /// Implement BEAccessibilityTextMarkerSupport to support assistive technology features that rely on granular text offsets.
+    /// A set of methods that provide information about text offsets to support assistive features.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytextmarkersupport?language=objc)
+    /// ## Overview
+    ///
+    /// In your alternative browser engine, implement `BEAccessibilityTextMarkerSupport` on views that represent elements in the Document Object Model (DOM) to supply accessibility information about the element’s text to the system.
+    ///
+    ///
+    /// Implement BEAccessibilityTextMarkerSupport to support assistive technology features that rely on granular text offsets.
     pub unsafe trait BEAccessibilityTextMarkerSupport: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         /// The accessibility frame for a text range.

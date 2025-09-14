@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Common class for different kinds of mappings to Widget configurations.
+    /// An abstract class that specifies WidgetKit complications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// The [`CLKComplicationWidgetMigrationConfiguration`](https://developer.apple.com/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration) class is the basis for all classes that describe watchOS complications in WidgetKit. Because it’s an abstract class, you don’t instantiate it directly. Instead, create one of its concrete subclasses: [`CLKComplicationStaticWidgetMigrationConfiguration`](https://developer.apple.com/documentation/clockkit/clkcomplicationstaticwidgetmigrationconfiguration), [`CLKComplicationAppIntentWidgetMigrationConfiguration`](https://developer.apple.com/documentation/clockkit/clkcomplicationappintentwidgetmigrationconfiguration), or [`CLKComplicationIntentWidgetMigrationConfiguration`](https://developer.apple.com/documentation/clockkit/clkcomplicationintentwidgetmigrationconfiguration).
+    ///
+    ///
+    /// Common class for different kinds of mappings to Widget configurations.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLKComplicationWidgetMigrationConfiguration;

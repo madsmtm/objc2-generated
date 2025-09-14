@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession?language=objc)
+    /// An object that contains information about one of your app’s scenes.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UISceneSession`](https://developer.apple.com/documentation/uikit/uiscenesession) object manages a unique runtime instance of your scene. When the user adds a new scene to your app, or when you request one programmatically, the system creates a session object to track that scene. The session contains a unique identifier and the configuration details of the scene. UIKit maintains the session information for the lifetime of the scene itself, destroying the session in response to the user closing the scene in the app switcher.
+    ///
+    /// You don’t create session objects directly. UIKit creates sessions in response to user interactions with your app. You can also ask UIKit to create a new scene and session programmatically by calling the [`requestSceneSessionActivation:userActivity:options:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/requestscenesessionactivation(_:useractivity:options:errorhandler:)) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). UIKit initializes the session with default configuration data based on the contents of your app’s `Info.plist` file.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

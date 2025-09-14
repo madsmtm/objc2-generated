@@ -7,22 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for how to place graph nodes when generating the graph, used by the [`triangulationMode`](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph/triangulationmode) property.
 /// Adjusts how graph nodes are created when you triangulate a GKMeshGrapk
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMeshGraphTriangulationMode(pub NSUInteger);
 bitflags::bitflags! {
     impl GKMeshGraphTriangulationMode: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode/vertices?language=objc)
+/// An option to place graph nodes at each vertex in the generated mesh.
         #[doc(alias = "GKMeshGraphTriangulationModeVertices")]
         const Vertices = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode/centers?language=objc)
+/// An option to place graph nodes at the center of each polygon in the generated mesh.
         #[doc(alias = "GKMeshGraphTriangulationModeCenters")]
         const Centers = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraphtriangulationmode/edgemidpoints?language=objc)
+/// An option to place graph nodes at the midpoint of each in the generated mesh.
         #[doc(alias = "GKMeshGraphTriangulationModeEdgeMidpoints")]
         const EdgeMidpoints = 1<<2;
     }
@@ -37,9 +36,18 @@ unsafe impl RefEncode for GKMeshGraphTriangulationMode {
 }
 
 extern_class!(
-    /// A collection of GKGraphNodes that are governed by a mesh formed by the space between a set of GKPolygonObstacles
+    /// A navigation graph for 2D game worlds that creates a space-filling network for smooth pathfinding around obstacles.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkmeshgraph?language=objc)
+    /// ## Overview
+    ///
+    /// To use a mesh graph for pathfinding, add a collection of [`GKObstacle`](https://developer.apple.com/documentation/gameplaykit/gkobstacle) objects representing impassable areas and [`GKGraphNode2D`](https://developer.apple.com/documentation/gameplaykit/gkgraphnode2d) objects representing points of interest (such as the current position of a game character and the location it needs to find a route to). Then use methods of the superclass [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph) to find routes through the graph.
+    ///
+    /// Unlike the related [`GKObstacleGraph`](https://developer.apple.com/documentation/gameplaykit/gkobstaclegraph) class, a mesh graph creates a space-filling network of graph nodes, resulting in paths that are smooth but not the most efficient.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A collection of GKGraphNodes that are governed by a mesh formed by the space between a set of GKPolygonObstacles
     #[unsafe(super(GKGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]

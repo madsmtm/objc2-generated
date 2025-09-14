@@ -8,12 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A capture output that provides a preview of the captured audio.
     /// AVCaptureAudioPreviewOutput is a concrete subclass of AVCaptureOutput that can be used to preview the audio being captured.
     ///
     ///
     /// Instances of AVCaptureAudioPreviewOutput have an associated Core Audio output device that can be used to play audio being captured by the capture session. The unique ID of a Core Audio device can be obtained from its kAudioDevicePropertyDeviceUID property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiopreviewoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]

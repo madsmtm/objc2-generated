@@ -6,7 +6,17 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstart(_:)?language=objc)
+    /// Starts an I/O audio unit, which in turn starts the audio unit processing graph that it is connected to.
+    ///
+    /// Parameters:
+    /// - ci: The I/O audio unit to start.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -16,7 +26,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstop(_:)?language=objc)
+    /// Stops an I/O audio unit, which in turn stops the audio unit processing graph that it is connected to.
+    ///
+    /// Parameters:
+    /// - ci: The I/O audio unit to stop.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -25,16 +45,14 @@ extern "C-unwind" {
     pub fn AudioOutputUnitStop(ci: AudioUnit) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitrange?language=objc)
+/// The start of the numerical range for I/O audio unit function selectors.
 pub const kAudioOutputUnitRange: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitstartselect?language=objc)
+/// Used by the system to start an I/O audio unit when you call the [`AudioOutputUnitStart`](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstart(_:)) function.
 pub const kAudioOutputUnitStartSelect: c_uint = 0x0201;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiooutputunitstopselect?language=objc)
+/// Used by the system to stop an I/O audio unit when you call the [`AudioOutputUnitStop`](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstop(_:)) function.
 pub const kAudioOutputUnitStopSelect: c_uint = 0x0202;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstartproc?language=objc)
 pub type AudioOutputUnitStartProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstopproc?language=objc)
 pub type AudioOutputUnitStopProc = Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> OSStatus>;

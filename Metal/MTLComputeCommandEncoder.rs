@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchthreadgroupsindirectarguments?language=objc)
+/// The data layout required for arguments needed to specify the size of threadgroups.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDispatchThreadgroupsIndirectArguments {
@@ -22,7 +22,6 @@ unsafe impl RefEncode for MTLDispatchThreadgroupsIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchthreadsindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDispatchThreadsIndirectArguments {
@@ -38,7 +37,7 @@ unsafe impl RefEncode for MTLDispatchThreadsIndirectArguments {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstageinregionindirectarguments?language=objc)
+/// The data layout required for the arguments needed to specify the stage-in region.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLStageInRegionIndirectArguments {
@@ -55,9 +54,36 @@ unsafe impl RefEncode for MTLStageInRegionIndirectArguments {
 }
 
 extern_protocol!(
-    /// A command encoder that writes data parallel compute commands.
+    /// An interface for dispatching commands to encode in a compute pass.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder?language=objc)
+    /// ## Overview
+    ///
+    /// You create compute command encoders by calling the [`computeCommandEncoderWithDispatchType:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makecomputecommandencoder(dispatchtype:)) method of the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance you’re using to encode your compute pass. You can encode multiple commands to execute as part of a single pass of the encoder.
+    ///
+    /// To encode kernel function calls:
+    ///
+    /// 1. Configure an [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) instance with a kernel, using a method such as [`newComputePipelineStateWithFunction:error:`](https://developer.apple.com/documentation/metal/mtldevice/makecomputepipelinestate(function:)). See Creating Compute Pipeline States for all [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) methods that create a new pipeline state for your command encoder.
+    ///
+    /// 2. Set the pipeline state with the [`setComputePipelineState:`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder/setcomputepipelinestate(_:)) method on your command encoder.
+    ///
+    /// 3. Provide parameters for your compute kernel by binding information to kernel arguments._ _Examples of methods that bind data for access on the GPU are [`setBuffer:offset:atIndex:`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder/setbuffer(_:offset:index:)) and [`setTexture:atIndex:`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder/settexture(_:index:)).
+    ///
+    /// 4. Encode compute commands that call your kernel by either Dispatching Kernel Calls Directly or Dispatching from Indirect Command Buffers.
+    ///
+    /// 5. Call [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) to finish encoding the kernel call of the compute pass.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Call [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) on any existing compute command encoder before releasing it or creating one.
+    ///
+    ///
+    ///
+    /// </div>
+    /// After adding all commands to your compute command encoder, use the [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()) method to submit work to the GPU.
+    ///
+    ///
+    /// A command encoder that writes data parallel compute commands.
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLComputeCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLCommandBuffer")]

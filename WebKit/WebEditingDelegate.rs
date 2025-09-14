@@ -9,22 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction?language=objc)
+/// The type of user action that initiated a delegate message.
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebViewInsertAction(pub NSInteger);
 impl WebViewInsertAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction/typed?language=objc)
+    /// Indicates the user inserted content by typing.
     #[doc(alias = "WebViewInsertActionTyped")]
     #[deprecated]
     pub const Typed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction/pasted?language=objc)
+    /// Indicates the user inserted content by pasting.
     #[doc(alias = "WebViewInsertActionPasted")]
     #[deprecated]
     pub const Pasted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewinsertaction/dropped?language=objc)
+    /// Indicates the user inserted content by dropping.
     #[doc(alias = "WebViewInsertActionDropped")]
     #[deprecated]
     pub const Dropped: Self = Self(2);
@@ -39,7 +39,6 @@ unsafe impl RefEncode for WebViewInsertAction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webeditingdelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebEditingDelegate: NSObjectProtocol {
         #[cfg(all(

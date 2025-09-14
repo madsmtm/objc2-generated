@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skwarpable?language=objc)
+    /// A protocol for objects that can be warped and animated by an [`SKWarpGeometry`](https://developer.apple.com/documentation/spritekit/skwarpgeometry).
     pub unsafe trait SKWarpable: NSObjectProtocol {
         #[unsafe(method(warpGeometry))]
         #[unsafe(method_family = none)]
@@ -31,7 +31,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skwarpgeometry?language=objc)
+    /// A definition for a deformation of nodes that conform to [`SKWarpable`](https://developer.apple.com/documentation/spritekit/skwarpable).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKWarpGeometry;
@@ -75,7 +75,13 @@ impl SKWarpGeometry {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skwarpgeometrygrid?language=objc)
+    /// A definition for a grid-based deformation of nodes that conform to [`SKWarpable`](https://developer.apple.com/documentation/spritekit/skwarpable).
+    ///
+    /// ## Overview
+    ///
+    /// An `SKWarpGeometryGrid` exposes a 2D array of source positions, and set of destination positions with matching size, that allow you to define which sections of a node should be translated from the source positions to the destination positions. Conceptually, this forms two grids—a source grid and a destination grid—where the visual warping is accomplished by stretching or shrinking each section of the node as the source positions of the grid interpolate to their corresponding destination positions.
+    ///
+    ///
     #[unsafe(super(SKWarpGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKWarpGeometryGrid;

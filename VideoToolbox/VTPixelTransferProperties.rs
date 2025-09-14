@@ -6,6 +6,25 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Scaling mode for images during transfer between source and destination buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the scaling mode, scaling may take into account:
+    ///
+    /// - The full image buffer width and height of the source and destination
+    ///
+    /// - The clean aperture attachment ([`kCVImageBufferCleanApertureKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturekey)) on the source image buffer
+    ///
+    /// - The pixel aspect ratio attachment ([`kCVImageBufferPixelAspectRatioKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratiokey)) on the source image buffer
+    ///
+    /// - The destination clean aperture ([`kVTPixelTransferPropertyKey_DestinationCleanAperture`](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationcleanaperture))
+    ///
+    /// - The destination pixel aspect ratio ([`kVTPixelTransferPropertyKey_DestinationPixelAspectRatio`](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationpixelaspectratio))
+    ///
+    /// The destination image buffer’s clean aperture and pixel aspect ratio attachments are not taken into account, and are overwritten.
+    ///
+    ///
     /// Indicates how images should be scaled.
     ///
     /// Depending on the scaling mode, scaling may take into account:
@@ -16,44 +35,82 @@ extern "C" {
     /// the destination pixel aspect ratio (kVTPixelTransferPropertyKey_DestinationPixelAspectRatio).
     /// The destination image buffer's clean aperture and pixel aspect ratio attachments are not
     /// taken into account, and will be overwritten.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_scalingmode?language=objc)
     pub static kVTPixelTransferPropertyKey_ScalingMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_normal?language=objc)
+    /// The full width and height of the source image buffer is stretched to the full width and height of the destination image buffer.
+    ///
+    /// ## Discussion
+    ///
+    /// The source image buffer’s clean aperture and pixel aspect ratio attachments are stretched the same way as the image with the image, and attached to the destination image buffer.This is the default scaling mode.
+    ///
+    ///
     pub static kVTScalingMode_Normal: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_cropsourcetocleanaperture?language=objc)
+    /// The source image buffer’s clean aperture is scaled to the destination clean aperture.
+    ///
+    /// ## Discussion
+    ///
+    /// The destination pixel aspect ratio is set on the destination image buffer.
+    ///
+    ///
     pub static kVTScalingMode_CropSourceToCleanAperture: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_letterbox?language=objc)
+    /// The source image buffer’s clean aperture is scaled to a rectangle fitted inside the  destination clean aperture that preserves the source picture aspect ratio.
+    ///
+    /// ## Discussion
+    ///
+    /// The remainder of the destination image buffer is filled with black. If a destination pixel aspect ratio is not set, the source image’s pixel aspect ratio is used. The pixel aspect ratio used is set on the destination image buffer.
+    ///
+    ///
     pub static kVTScalingMode_Letterbox: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_trim?language=objc)
+    /// The source image buffer’s clean aperture is scaled to a rectangle that completely fills the destination clean aperture and preserves the source picture aspect ratio.
+    ///
+    /// ## Discussion
+    ///
+    /// If a destination pixel aspect ratio is not set, the source image’s pixel aspect ratio is used. The pixel aspect ratio used is set on the destination image buffer.
+    ///
+    ///
     pub static kVTScalingMode_Trim: &'static CFString;
 }
 
 extern "C" {
+    /// The clean aperture for destination image buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum object with same keys as used in the [`kCVImageBufferCleanApertureKey`](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturekey) dictionary.
+    ///
+    /// This property is ignored in [`kVTScalingMode_Normal`](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_normal).  This property defaults to `NULL`, meaning the clean aperture is the full width and height.
+    ///
+    ///
     /// Specifies the clean aperture for destination image buffers.
     ///
     /// The value of this property is a CFDictionary with same keys as used in the
     /// kCVImageBufferCleanApertureKey dictionary.
     /// This property is ignored in kVTScalingMode_Normal.
     /// This property defaults to NULL, meaning the clean aperture is the full width and height.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationcleanaperture?language=objc)
     pub static kVTPixelTransferPropertyKey_DestinationCleanAperture: &'static CFString;
 }
 
 extern "C" {
+    /// The pixel aspect ratio for destination image buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum object with same keys as used in the [`kCVImageBufferPixelAspectRatioKey`](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratiokey) dictionary.
+    ///
+    /// This property is ignored in [`kVTScalingMode_Normal`](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_normal).  This property defaults to `NULL`, meaning 1:1 (for [`kVTScalingMode_CropSourceToCleanAperture`](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_cropsourcetocleanaperture)) or no change in pixel aspect ratio (for [`kVTScalingMode_Letterbox`](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_letterbox) and [`kVTScalingMode_Trim`](https://developer.apple.com/documentation/videotoolbox/kvtscalingmode_trim)).
+    ///
+    ///
     /// Specifies the pixel aspect ratio for destination image buffers.
     ///
     /// The value of this property is a CFDictionary with same keys as used in the
@@ -61,72 +118,103 @@ extern "C" {
     /// This property is ignored in kVTScalingMode_Normal.
     /// This property defaults to NULL, meaning 1:1 (for kVTScalingMode_CropSourceToCleanAperture)
     /// or no change in pixel aspect ratio (for kVTScalingMode_Letterbox and kVTScalingMode_Trim).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationpixelaspectratio?language=objc)
     pub static kVTPixelTransferPropertyKey_DestinationPixelAspectRatio: &'static CFString;
 }
 
 extern "C" {
-    /// Requests a specific chroma downsampling technique be used.
+    /// The specific chroma downsampling technique to be used.
+    ///
+    /// ## Discussion
     ///
     /// This property is ignored if chroma downsampling is not performed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_downsamplingmode?language=objc)
+    ///
+    /// Requests a specific chroma downsampling technique be used.
+    ///
+    /// This property is ignored if chroma downsampling is not performed.
     pub static kVTPixelTransferPropertyKey_DownsamplingMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdownsamplingmode_decimate?language=objc)
+    /// Default, decimate extra samples.
     pub static kVTDownsamplingMode_Decimate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdownsamplingmode_average?language=objc)
+    /// Average missing samples (default center).
     pub static kVTDownsamplingMode_Average: &'static CFString;
 }
 
 extern "C" {
+    /// The color primaries to be used for destination image buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this value may lead to performance degradation, as a color matching operation may need to be performed between the source and the destination.
+    ///
+    /// See [`kCMFormatDescriptionExtension_ColorPrimaries`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_colorprimaries-swift.var) in `CMFormatDescription.h` for supported values.
+    ///
+    ///
     /// Specifies the color primaries to be used for destination image buffers.
     ///
     /// Specifying this value may lead to performance degradation, as a color
     /// matching operation may need to be performed between the source and
     /// the destination.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationcolorprimaries?language=objc)
     pub static kVTPixelTransferPropertyKey_DestinationColorPrimaries: &'static CFString;
 }
 
 extern "C" {
+    /// The color transfer function to be used for destination image buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this value may lead to performance degradation, as a color matching operation may need to be performed between the source and the destination.
+    ///
+    /// See [`kCMFormatDescriptionExtension_TransferFunction`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_transferfunction-swift.var) in `CMFormatDescription.h` for possible values.
+    ///
+    ///
     /// Specifies the color transfer function to be used for destination image buffers.
     ///
     /// Specifying this value may lead to performance degradation, as a color
     /// matching operation may need to be performed between the source and
     /// the destination.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationtransferfunction?language=objc)
     pub static kVTPixelTransferPropertyKey_DestinationTransferFunction: &'static CFString;
 }
 
 extern "C" {
+    /// The International Color Consortium (ICC) profile for destination image buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this value may lead to performance degradation, as a color matching operation may need to be performed between the source and the destination.
+    ///
+    /// See [`kCMFormatDescriptionExtension_ICCProfile`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_iccprofile) in `CMFormatDescription.h` for possible values.
+    ///
+    ///
     /// Specifies the ICC profile for destination image buffers.
     ///
     /// Specifying this value may lead to performance degradation, as a color
     /// matching operation may need to be performed between the source and
     /// the destination.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationiccprofile?language=objc)
     pub static kVTPixelTransferPropertyKey_DestinationICCProfile: &'static CFString;
 }
 
 extern "C" {
+    /// The color matrix to be used for YCbCr to RGB conversions involving the destination image buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this value may lead to performance degradation, as a color matching operation may need to be performed between the source and the destination.
+    ///
+    /// See [`kCMFormatDescriptionExtension_YCbCrMatrix`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_ycbcrmatrix-swift.var) in `CMFormatDescription.h` for possible values.
+    ///
+    ///
     /// Specifies the color matrix to be used for YCbCr->RGB conversions
     /// involving the destination image buffers.
     ///
     /// Specifying this value may lead to performance degradation, as a color
     /// matching operation may need to be performed between the source and
     /// the destination.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_destinationycbcrmatrix?language=objc)
     pub static kVTPixelTransferPropertyKey_DestinationYCbCrMatrix: &'static CFString;
 }
 
@@ -137,7 +225,5 @@ extern "C" {
     /// true, the VTPixelTransferSession may be given precedence over non-realtime tasks.  This can be set to false
     /// for transfers being performed as part of background operations.
     /// By default this value is NULL indicating that it is unspecified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpixeltransferpropertykey_realtime?language=objc)
     pub static kVTPixelTransferPropertyKey_RealTime: &'static CFString;
 }

@@ -8,10 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that specifies what subscriber account information your app retrieves.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `VSAccountMetadataRequest` object to indicate the specific information your app will obtain about a subscriber from their subscription provider. Also, use this object to provide information to the subscription provider that it needs to perform the request, such as a verification token, the authentication schemes your app supports, or your app’s identifier.
+    ///
+    ///
     /// Specifies which information the app wants to obtain about the subscriber's account.
     /// You should only request the information you need to fulfill your contractual obligations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmetadatarequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAccountMetadataRequest;

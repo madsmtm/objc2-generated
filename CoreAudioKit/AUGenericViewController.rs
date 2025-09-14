@@ -12,7 +12,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/auviewcolor?language=objc)
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 pub type AUViewColor = NSColor;

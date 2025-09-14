@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafaripage?language=objc)
+    /// A proxy for a Safari webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Use an `SFSafariPage` object in your Safari app extension to send messages to injected content scripts, access page properties, and reload the page.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSafariPage;

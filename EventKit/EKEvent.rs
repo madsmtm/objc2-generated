@@ -7,25 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability?language=objc)
+/// The event’s availability setting for scheduling purposes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventAvailability(pub NSInteger);
 impl EKEventAvailability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/notsupported?language=objc)
+    /// Availability settings are not supported by the event’s calendar.
     #[doc(alias = "EKEventAvailabilityNotSupported")]
     pub const NotSupported: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/busy?language=objc)
+    /// The event has a busy availability setting.
     #[doc(alias = "EKEventAvailabilityBusy")]
     pub const Busy: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/free?language=objc)
+    /// The event has a free availability setting.
     #[doc(alias = "EKEventAvailabilityFree")]
     pub const Free: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/tentative?language=objc)
+    /// The event has a tentative availability setting.
     #[doc(alias = "EKEventAvailabilityTentative")]
     pub const Tentative: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability/unavailable?language=objc)
+    /// The event has an unavailable availability setting.
     #[doc(alias = "EKEventAvailabilityUnavailable")]
     pub const Unavailable: Self = Self(3);
 }
@@ -38,22 +38,22 @@ unsafe impl RefEncode for EKEventAvailability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus?language=objc)
+/// The event’s status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventStatus(pub NSInteger);
 impl EKEventStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/none?language=objc)
+    /// The event has no status.
     #[doc(alias = "EKEventStatusNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/confirmed?language=objc)
+    /// The event is confirmed.
     #[doc(alias = "EKEventStatusConfirmed")]
     pub const Confirmed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/tentative?language=objc)
+    /// The event is tentative.
     #[doc(alias = "EKEventStatusTentative")]
     pub const Tentative: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus/canceled?language=objc)
+    /// The event is canceled.
     #[doc(alias = "EKEventStatusCanceled")]
     pub const Canceled: Self = Self(3);
 }
@@ -67,9 +67,14 @@ unsafe impl RefEncode for EKEventStatus {
 }
 
 extern_class!(
-    /// The EKEvent class represents an occurrence of an event.
+    /// A class that represents an event in a calendar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekevent?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`eventWithEventStore:`](https://developer.apple.com/documentation/eventkit/ekevent/init(eventstore:)) method to create a new event. Use the properties in the class to get and modify certain information about an event. Other properties, such as the event’s title and calendar, are inherited from the parent class [`EKCalendarItem`](https://developer.apple.com/documentation/eventkit/ekcalendaritem).
+    ///
+    ///
+    /// The EKEvent class represents an occurrence of an event.
     #[unsafe(super(EKCalendarItem, EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]

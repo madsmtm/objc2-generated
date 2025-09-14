@@ -22,12 +22,10 @@ unsafe impl RefEncode for OpaqueSecureDownload {
         Encoding::Pointer(&Encoding::Struct("OpaqueSecureDownload", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadref?language=objc)
+/// An opaque type representing a secure download object.
 pub type SecureDownloadRef = *mut OpaqueSecureDownload;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecuredownloadinvalidticket?language=objc)
 pub const errSecureDownloadInvalidTicket: c_int = -20052;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecuredownloadinvaliddownload?language=objc)
 pub const errSecureDownloadInvalidDownload: c_int = -20053;
 
 /// This type is used to indicate whether or not a
@@ -36,13 +34,10 @@ pub const errSecureDownloadInvalidDownload: c_int = -20053;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecureDownloadTrustCallbackResult(pub c_uint);
 impl SecureDownloadTrustCallbackResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult/ksecuredownloaddonotevaluatesigner?language=objc)
     #[doc(alias = "kSecureDownloadDoNotEvaluateSigner")]
     pub const DoNotEvaluateSigner: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult/ksecuredownloadevaluatesigner?language=objc)
     #[doc(alias = "kSecureDownloadEvaluateSigner")]
     pub const EvaluateSigner: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult/ksecuredownloadfailevaluation?language=objc)
     #[doc(alias = "kSecureDownloadFailEvaluation")]
     pub const FailEvaluation: Self = Self(2);
 }
@@ -57,6 +52,19 @@ unsafe impl RefEncode for SecureDownloadTrustCallbackResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Determines whether trust for a particular signer should be evaluated.
+///
+/// Parameters:
+/// - trustRef: The trust used for this evaluation.
+///
+/// - setupContext: An arbitrary value that you passed in as the `setupContext` parameter to the [`SecureDownloadCreateWithTicket`](https://developer.apple.com/documentation/security/securedownloadcreatewithticket) function.
+///
+///
+/// ## Return Value
+///
+/// A trust callback result that indicates whether or not a signer should be evaluated.
+///
+///
 /// This callback is used to determine whether trust for a particular
 /// signer should be evaluated.
 ///
@@ -65,14 +73,27 @@ unsafe impl RefEncode for SecureDownloadTrustCallbackResult {
 /// Parameter `setupContext`: user defined.
 ///
 /// Returns: A SecureDownloadTrustCallbackResult (see).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustsetupcallback?language=objc)
 #[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
 pub type SecureDownloadTrustSetupCallback = Option<
     unsafe extern "C-unwind" fn(*mut SecTrust, *mut c_void) -> SecureDownloadTrustCallbackResult,
 >;
 
+/// Optionally queries the user how to handle a failed trust evaluation.
+///
+/// Parameters:
+/// - trustRef: The trust used for this evaluation.
+///
+/// - result: The result of the trust evaluation.
+///
+/// - evaluateContext: An arbitrary value that you passed in as the `evaluateContext` parameter to the [`SecureDownloadCreateWithTicket`](https://developer.apple.com/documentation/security/securedownloadcreatewithticket) function.
+///
+///
+/// ## Return Value
+///
+/// A trust evaluation result.
+///
+///
 /// This callback is used called after trust has been evaluated.
 ///
 /// Parameter `trustRef`: The trustRef for this evaluation
@@ -83,8 +104,6 @@ pub type SecureDownloadTrustSetupCallback = Option<
 ///
 /// Returns: A SecTrustResultType.  Return the value passed in result if you
 /// do not want to change the evaluation result.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustevaluatecallback?language=objc)
 #[deprecated = "SecureDownload is not supported"]
 #[cfg(feature = "SecTrust")]
 pub type SecureDownloadTrustEvaluateCallback = Option<
@@ -96,6 +115,27 @@ pub type SecureDownloadTrustEvaluateCallback = Option<
 >;
 
 extern "C-unwind" {
+    /// Creates a secure download object for use during the download process.
+    ///
+    /// Parameters:
+    /// - ticket: The download ticket.
+    ///
+    /// - setup: A pointer to a function that Secure Download calls before trust is verified for each signer of the ticket. This allows you to modify the [`SecTrust`](https://developer.apple.com/documentation/security/sectrust) if needed.  The callback returns a [`SecureDownloadTrustCallbackResult`](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult).
+    ///
+    /// - setupContext: An arbitrary context passed to the `setup` callback.
+    ///
+    /// - evaluate: A pointer to a function that Secure Download calls after calling [`SecTrustEvaluate(_:_:)`](https://developer.apple.com/documentation/security/sectrustevaluate(_:_:)) for a signer if the result was not trusted. This allows you to query the user as to whether or not to trust the signer by returning a [`SecTrustResultType`](https://developer.apple.com/documentation/security/sectrustresulttype) value.
+    ///
+    /// - evaluateContext: An arbitrary context passed to the `evaluate` callback.
+    ///
+    /// - downloadRef: A pointer that is set to the new download reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
     /// Create a SecureDownloadRef for use during the Secure Download process.
     ///
     /// Parameter `ticket`: The download ticket.
@@ -127,8 +167,6 @@ extern "C-unwind" {
     /// - `evaluate` must be implemented correctly.
     /// - `evaluate_context` must be a valid pointer.
     /// - `download_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcreatewithticket?language=objc)
     #[cfg(feature = "SecTrust")]
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCreateWithTicket(
@@ -142,6 +180,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a list of URLs from which the data can be downloaded.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download object to query.
+    ///
+    /// - urls: A pointer to a [`CFArray`](https://developer.apple.com/documentation/corefoundation/cfarray) object that the function sets to point at a new array containing one or more [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) objects indicating the urls to download.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The first URL in the list is the preferred download location. The other URLs are backup locations in case earlier locations in the list can’t be accessed.
+    ///
+    ///
     /// Return a list of URL's from which the data can be downloaded.  The first
     /// URL in the list is the preferred download location.  The other URL's are
     /// backup locations in case earlier locations in the list could not be
@@ -157,8 +214,6 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `urls` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopyurls?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyURLs(
         download_ref: SecureDownloadRef,
@@ -167,6 +222,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the printable name of the download ticket.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download to query.
+    ///
+    /// - name: A pointer to a CFStringRef object that the function fills with the secure download’s name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
     /// Return the printable name of this download ticket.
     ///
     /// Parameter `downloadRef`: A SecureDownloadRef instance.
@@ -179,8 +247,6 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopyname?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyName(
         download_ref: SecureDownloadRef,
@@ -189,6 +255,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns download ticket’s creation date.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download to query.
+    ///
+    /// - date: A pointer to a [`CFDate`](https://developer.apple.com/documentation/corefoundation/cfdate) object that the function fills with the download’s creation date.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
     /// Return the date the downlooad ticket was created.
     ///
     /// Parameter `downloadRef`: A SecureDownloadRef instance.
@@ -199,8 +278,6 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `date` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopycreationdate?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyCreationDate(
         download_ref: SecureDownloadRef,
@@ -209,6 +286,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the size of the expected download.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download object to query.
+    ///
+    /// - downloadSize: A pointer that the function fills with the the download size.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
     /// Return the size of the expected download.
     ///
     /// Parameter `downloadRef`: A SecureDownloadRef instance.
@@ -221,8 +311,6 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `download_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadgetdownloadsize?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadGetDownloadSize(
         download_ref: SecureDownloadRef,
@@ -231,6 +319,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Checks data received during download for validity.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download object to query.
+    ///
+    /// - data: The data to check.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes). If the data is invalid, the result code is `enum (unnamed)-3yczz/errSecureDownloadInvalidDownload`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function each time data is received.
+    ///
+    ///
     /// Check data received during Secure Download for validity.
     /// Call this function each time data is received.
     ///
@@ -245,8 +352,6 @@ extern "C-unwind" {
     ///
     /// - `download_ref` must be a valid pointer.
     /// - `data` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadupdatewithdata?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadUpdateWithData(
         download_ref: SecureDownloadRef,
@@ -255,6 +360,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Concludes the secure download process.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download object to finish.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this after all data has been received.
+    ///
+    ///
     /// Concludes the secure download process.  Call this after all data has been received.
     ///
     /// Parameter `downloadRef`: A SecureDownloadRef instance.
@@ -265,13 +387,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `download_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadfinished?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadFinished(download_ref: SecureDownloadRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Releases the memory associated with a secure download object.
+    ///
+    /// Parameters:
+    /// - downloadRef: The secure download object to release.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
     /// Releases a SecureDownloadRef.
     ///
     /// Parameter `downloadRef`: The SecureDownloadRef to release.
@@ -281,13 +412,24 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `download_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadrelease?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadRelease(download_ref: SecureDownloadRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Copies the ticket location from a secure download URL.
+    ///
+    /// Parameters:
+    /// - url: A secure download URL.
+    ///
+    /// - ticketLocation: A pointer to a [`CFURL`](https://developer.apple.com/documentation/corefoundation/cfurl) object that the function fills with the URL of the ticket.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Download Result Codes](https://developer.apple.com/documentation/security/secure-download-result-codes).
+    ///
+    ///
     /// Copies the ticket location from an x-securedownload URL.
     ///
     /// Parameter `url`: The x-securedownload URL.
@@ -300,8 +442,6 @@ extern "C-unwind" {
     ///
     /// - `url` might not allow `None`.
     /// - `ticket_location` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadcopyticketlocation?language=objc)
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyTicketLocation(
         url: Option<&CFURL>,

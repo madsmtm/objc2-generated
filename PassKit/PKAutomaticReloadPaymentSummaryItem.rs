@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentsummaryitem?language=objc)
+    /// An object that defines a summary item for an automatic reload or refill payment, such as a store card top-up.
+    ///
+    /// ## Overview
+    ///
+    /// [`PKAutomaticReloadPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentsummaryitem) is a subclass of [`PKPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem) and inherits all properties of the parent class.
+    ///
+    /// Add a summary item of this type to the [`paymentSummaryItems`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentsummaryitems) property of a [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) object to display an automatic reload payment in the summary items on the payment sheet to the user.
+    ///
+    /// To describe an automatic reload payment, set the summary item values as follows:
+    ///
+    /// - Use the [`amount`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem/amount) property to specify the reload amount when the account balance reaches the threshold amount, [`thresholdAmount`](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentsummaryitem/thresholdamount).
+    ///
+    /// - Omit the [`type`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem/type) property. The summary item type is only relevant for the [`PKPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem) parent class.
+    ///
+    ///
     #[unsafe(super(PKPaymentSummaryItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKPaymentSummaryItem")]

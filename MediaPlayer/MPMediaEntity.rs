@@ -7,16 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaentitypersistentid?language=objc)
+/// Defines the type for storing a persistent identifier to a particular entity.
+///
+/// ## Discussion
+///
+/// The value persists across application launches and across syncs that don’t change the sync status of the media item. The value isn’t guaranteed to persist across a sync/unsync/sync cycle.
+///
+///
 pub type MPMediaEntityPersistentID = u64;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaentitypropertypersistentid?language=objc)
+    /// The persistent identifier for a media entity.
+    ///
+    /// ## Discussion
+    ///
+    /// This value contains a [`uint64_t`](https://developer.apple.com/documentation/kernel/uint64_t) (unsigned long long) which you can use to build a media property predicate, as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaEntityPropertyPersistentID: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaentity?language=objc)
+    /// The abstract superclass for media items, media item collections, and media playlist instances.
+    ///
+    /// ## Overview
+    ///
+    /// This is the superclass for [`MPMediaItem`](https://developer.apple.com/documentation/mediaplayer/mpmediaitem) and [`MPMediaItemCollection`](https://developer.apple.com/documentation/mediaplayer/mpmediaitemcollection) instances, and in turn for [`MPMediaPlaylist`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist) instances.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaEntity;

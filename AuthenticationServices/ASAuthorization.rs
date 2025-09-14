@@ -6,22 +6,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/scope?language=objc)
+/// The kinds of contact information that can be requested from the user.
+///
+/// ## Discussion
+///
+/// Use one or more of these values in the [`requestedScopes`](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidrequest/requestedscopes) array that you configure in an instance of either [`ASAuthorizationAppleIDRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest) or [`ASAuthorizationSingleSignOnRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest) to request certain contact information from the user.
+///
+/// Inspect the [`authorizedScopes`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes) array of an [`ASAuthorizationAppleIDCredential`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential) instance, or the (similarly named) [`authorizedScopes`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authorizedscopes) array of an [`ASAuthorizationSingleSignOnCredential`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential) instance, to see what scopes the user actually authorized. This might differ from the scopes you requested.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationScope = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/scope/fullname?language=objc)
+    /// A scope that includes the user’s full name.
     pub static ASAuthorizationScopeFullName: &'static ASAuthorizationScope;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/scope/email?language=objc)
+    /// A scope that includes the user’s email address.
     pub static ASAuthorizationScopeEmail: &'static ASAuthorizationScope;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization?language=objc)
+    /// The encapsulation of a successful authorization by a controller.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorization;

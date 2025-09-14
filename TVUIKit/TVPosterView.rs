@@ -13,11 +13,20 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// An optimized view for displaying an image, a header, and a footer.
+    ///
+    /// ## Overview
+    ///
+    /// The `TVPosterView` object is a specialized [`TVLockupView`](https://developer.apple.com/documentation/tvuikit/tvlockupview) used to display media items. The size of the poster view expands when it comes into focus.
+    ///
+    ///
+    /// ![A darkened image with a highlighted box in the bottom-left corner that shows a media item image and title.](https://docs-assets.developer.apple.com/published/7d8ecd26b7c4508b923d2464f359313f/media-3016829%402x.png)
+    ///
+    ///
+    ///
     /// TVPosterView is a lockup view specializing in presenting an image and optional title and subtitle labels.
     ///
     /// The framework provides system default appearance and behavior, including the optimal .focusSizeIncrease, which is calculated based on the .image. Overriding .focusSizeIncrease has no visible effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvposterview?language=objc)
     #[unsafe(super(TVLockupView, UIControl, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVLockupView")]

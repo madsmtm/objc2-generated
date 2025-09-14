@@ -6,16 +6,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/terminationreason-swift.enum?language=objc)
+/// Constants that specify the termination reason values that the system returns.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTaskTerminationReason(pub NSInteger);
 impl NSTaskTerminationReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/terminationreason-swift.enum/exit?language=objc)
+    /// The task exited normally.
     #[doc(alias = "NSTaskTerminationReasonExit")]
     pub const Exit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/terminationreason-swift.enum/uncaughtsignal?language=objc)
+    /// The task exited due to an uncaught signal.
     #[doc(alias = "NSTaskTerminationReasonUncaughtSignal")]
     pub const UncaughtSignal: Self = Self(2);
 }
@@ -29,7 +29,25 @@ unsafe impl RefEncode for NSTaskTerminationReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process?language=objc)
+    /// An object that represents a subprocess of the current process.
+    ///
+    /// ## Overview
+    ///
+    /// Using this class, your program can run another program as a subprocess and monitor that program’s execution. Unlike [`NSThread`](https://developer.apple.com/documentation/foundation/thread), it doesn’t share memory space with the process that creates it.
+    ///
+    /// A process operates within an environment defined by the current values for several items: the current directory, standard input, standard output, standard error, and the values of any environment variables, inheriting its environment from the process that launches it. If there are any environment variables that should be different for the subprocess (for example, if the current directory needs to change), change it in the instance after initialization, before your app launches it. Your app can’t change a process’s environment while it’s running.
+    ///
+    /// You can only run the subprocess once per instance. Subsequent attempts raise an error.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In a sandboxed app, child processes you create with this class inherit the sandbox of the parent app. Instead, write helper apps as XPC Services because it allows you to specify different sandbox entitlements for helper apps. For more information, see [Daemons and Services Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i) and [`XPC`](https://developer.apple.com/documentation/xpc).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTask;
@@ -320,7 +338,17 @@ impl NSTask {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/didterminatenotification?language=objc)
+    /// Posted when the task has stopped execution.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSTask` object that the system terminated. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification from the thread in which the `NSTask` object called [`launch`](https://developer.apple.com/documentation/foundation/process/launch()). When launching a task from a secondary thread or background queue, you can use the [`terminationHandler`](https://developer.apple.com/documentation/foundation/process/terminationhandler) property instead for greater control over the execution context of any operations to be performed after the task finishes.
+    ///
+    /// This notification can be posted either when the task has exited normally or as a result of [`terminate`](https://developer.apple.com/documentation/foundation/process/terminate()) being sent to the `NSTask` object. If the `NSTask` object gets released, however, this notification won’t get sent, as the port the message would have been sent on was released as part of the task release. The observer method can use [`terminationStatus`](https://developer.apple.com/documentation/foundation/process/terminationstatus) to determine why the task died.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSTaskDidTerminateNotification: &'static NSNotificationName;
 }

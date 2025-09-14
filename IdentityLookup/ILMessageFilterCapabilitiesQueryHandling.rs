@@ -7,11 +7,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// A set of methods implemented by a Message Filter app extension to handle capabilities query requests.
     /// Functionality related to MessageFilter extension capabilities query requests.
     ///
     /// Subclasses of ILMessageFilterExtension which support querying must conform to this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryhandling?language=objc)
     pub unsafe trait ILMessageFilterCapabilitiesQueryHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "ILMessageFilterCapabilitiesQueryRequest",

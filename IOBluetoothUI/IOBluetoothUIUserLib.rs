@@ -10,7 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothdeviceselectorcontrollerref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothDeviceSelectorControllerRef {
     inner: [u8; 0],
@@ -25,7 +24,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothDeviceSelectorControllerRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothpairingcontrollerref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothPairingControllerRef {
     inner: [u8; 0],
@@ -40,7 +38,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothPairingControllerRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothservicebrowsercontrollerref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothServiceBrowserControllerRef {
     inner: [u8; 0],
@@ -55,26 +52,41 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothServiceBrowserControllerRef {}
 );
 
+///
+/// ## Discussion
+///
 /// Option values to customize the behavior of an IOBluetoothServiceBrowserController object.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothservicebrowsercontrolleroptions?language=objc)
+///
+/// Option values to customize the behavior of an IOBluetoothServiceBrowserController object.
 pub type IOBluetoothServiceBrowserControllerOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kiobluetoothservicebrowsercontrolleroptionsnone?language=objc)
+///
+/// ## Discussion
+///
+/// - no options set.
+///
+///
 pub const kIOBluetoothServiceBrowserControllerOptionsNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kiobluetoothservicebrowsercontrolleroptionsautostartinquiry?language=objc)
+///
+/// ## Discussion
+///
+/// - automatically start an inquiry when the panel is displayed. This has been deprecated in 10.5
+///
+///
 pub const kIOBluetoothServiceBrowserControllerOptionsAutoStartInquiry: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kiobluetoothservicebrowsercontrolleroptionsdisconnectwhendone?language=objc)
+///
+/// ## Discussion
+///
+/// - disconnect from the device when UI operations are finished.
+///
+///
 pub const kIOBluetoothServiceBrowserControllerOptionsDisconnectWhenDone: c_uint = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kiobluetoothuisuccess?language=objc)
 pub const kIOBluetoothUISuccess: c_int = -1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kiobluetoothuiusercancelederr?language=objc)
 pub const kIOBluetoothUIUserCanceledErr: c_int = -1001;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothvalidatehardwarewithdescription(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `cancel_button_title` might not allow `None`.
@@ -86,7 +98,6 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothgetpairingcontroller()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothGetPairingController(
@@ -98,7 +109,6 @@ pub unsafe extern "C-unwind" fn IOBluetoothGetPairingController(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothgetdeviceselectorcontroller()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBluetoothGetDeviceSelectorController(

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitem?language=objc)
+    /// A command item in an app menu.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSMenuItem`](https://developer.apple.com/documentation/appkit/nsmenuitem) class includes some private functionality needed to maintain binary compatibility with other components of Cocoa. Because of this fact, you can’t replace the [`NSMenuItem`](https://developer.apple.com/documentation/appkit/nsmenuitem) class with a different class, but you can subclass it if necessary.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -476,7 +482,13 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitem/importfromdeviceidentifier?language=objc)
+    /// The identifier for a Continuity Camera menu item, which takes pictures or scans documents using an iOS device.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this string to locate the standard menu item that supports the Continuity Camera feature. The menu item stores this value in its [`identifier`](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemidentification/identifier) property.
+    ///
+    ///
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier;
 }

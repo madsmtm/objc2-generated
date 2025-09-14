@@ -6,14 +6,40 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A reference to a VideoToolbox compression session,  decompression session or pixel transfer session.
 /// A reference to either a Video Toolbox Decompression Session,
 /// Compression Session or Pixel Transfer Session.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsession?language=objc)
 #[doc(alias = "VTSessionRef")]
 pub type VTSession = CFType;
 
 extern "C-unwind" {
+    /// Retrieves a dictionary enumerating all the supported properties of a video toolbox session.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - supportedPropertyDictionaryOut: A pointer to a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The keys of the returned dictionary are the supported property keys.
+    ///
+    /// The values are themselves dictionaries, each containing the following optional fields:
+    ///
+    /// - The type of value ([`kVTPropertyTypeKey`](https://developer.apple.com/documentation/videotoolbox/kvtpropertytypekey))
+    ///
+    /// - The read/write status of the property ([`kVTPropertyReadWriteStatusKey`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadwritestatuskey))
+    ///
+    /// - Whether the property is suitable for serialization ([`kVTPropertyShouldBeSerializedKey`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyshouldbeserializedkey))
+    ///
+    /// - A range or list of the supported values, if appropriate
+    ///
+    /// - Developer-level documentation for the property ([`kVTPropertyDocumentationKey`](https://developer.apple.com/documentation/videotoolbox/kvtpropertydocumentationkey))
+    ///
+    /// The caller must release the returned dictionary.
+    ///
+    ///
     /// Returns a dictionary enumerating all the supported properties of a video toolbox session.
     ///
     /// The keys of the returned dictionary are the supported property keys.
@@ -38,8 +64,6 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `supported_property_dictionary_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessioncopysupportedpropertydictionary(_:supportedpropertydictionaryout:)?language=objc)
     pub fn VTSessionCopySupportedPropertyDictionary(
         session: &VTSession,
         supported_property_dictionary_out: NonNull<*const CFDictionary>,
@@ -47,66 +71,98 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertytypekey?language=objc)
+    /// Dictionary key used to access the property type.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value will be either [`kVTPropertyType_Boolean`](https://developer.apple.com/documentation/videotoolbox/kvtpropertytype_boolean), [`kVTPropertyType_Enumeration`](https://developer.apple.com/documentation/videotoolbox/kvtpropertytype_enumeration), or [`kVTPropertyType_Number`](https://developer.apple.com/documentation/videotoolbox/kvtpropertytype_number).
+    ///
+    ///
     pub static kVTPropertyTypeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertytype_enumeration?language=objc)
     pub static kVTPropertyType_Enumeration: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertytype_boolean?language=objc)
     pub static kVTPropertyType_Boolean: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertytype_number?language=objc)
     pub static kVTPropertyType_Number: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadwritestatuskey?language=objc)
+    /// Dictionary key to access the read/write status of a property.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value will be either [`kVTPropertyReadWriteStatus_ReadOnly`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadwritestatus_readonly) or  [`kVTPropertyReadWriteStatus_ReadWrite`](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadwritestatus_readwrite).
+    ///
+    ///
     pub static kVTPropertyReadWriteStatusKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadwritestatus_readonly?language=objc)
     pub static kVTPropertyReadWriteStatus_ReadOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertyreadwritestatus_readwrite?language=objc)
     pub static kVTPropertyReadWriteStatus_ReadWrite: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertyshouldbeserializedkey?language=objc)
+    /// Dictionary key to access the serializable status of a property.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p. The default value is `false`.
+    ///
+    ///
     pub static kVTPropertyShouldBeSerializedKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertysupportedvalueminimumkey?language=objc)
+    /// Dictionary key to access the minimum value of a property.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kVTPropertySupportedValueMinimumKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertysupportedvaluemaximumkey?language=objc)
+    /// Dictionary key to access the maximum value of a property.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kVTPropertySupportedValueMaximumKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertysupportedvaluelistkey?language=objc)
+    /// Dictionary key to access the array of of supported values.
     pub static kVTPropertySupportedValueListKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtpropertydocumentationkey?language=objc)
+    /// Dictionary key to access any documentation intended for developers only.
     pub static kVTPropertyDocumentationKey: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Sets a property on a VideoToolbox session.
+    ///
+    /// ## Discussion
+    ///
+    /// Setting a property value to `NULL` restores the default value.
+    ///
+    ///
     /// Sets a property on a video toolbox session.
     ///
     /// Setting a property value to NULL restores the default value.
@@ -115,8 +171,6 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `property_value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)?language=objc)
     pub fn VTSessionSetProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -125,6 +179,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieves a property on a Video Toolbox session.
+    ///
+    /// Parameters:
+    /// - session: A Video Toolbox session object.
+    ///
+    /// - propertyKey: The key for the property to retrieve.
+    ///
+    /// - allocator: An allocator suitable for use when copying property values.
+    ///
+    /// - propertyValueOut: Points to a variable to receive the property value, which must be a CF-registered type – the caller may call [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) on it to identify which specific type. The caller must release the this property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `noErr` if successful; [`kVTPropertyNotSupportedErr`](https://developer.apple.com/documentation/videotoolbox/kvtpropertynotsupportederr) for unrecognized or unsupported properties.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// For most types of properties, the returned values should be considered immutable. In particular, for CFPropertyList types, sharing of mutable property value objects between the client, session and codec should be avoided. However, some properties will be used for exchanging service objects that are inherently mutable (eg, CVPixelBufferPool).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Retrieves a property on a video toolbox session.
     ///
     /// The caller must release the retrieved property value.
@@ -150,8 +233,6 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `property_value_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyproperty(_:key:allocator:valueout:)?language=objc)
     pub fn VTSessionCopyProperty(
         session: &VTSession,
         property_key: &CFString,
@@ -163,6 +244,13 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Sets multiple properties at once.
     ///
+    /// ## Discussion
+    ///
+    /// Sets the properties specified by keys in `propertyDictionary` to the corresponding values.
+    ///
+    ///
+    /// Sets multiple properties at once.
+    ///
     /// Sets the properties specified by keys in propertyDictionary to the corresponding values.
     ///
     /// # Safety
@@ -170,8 +258,6 @@ extern "C-unwind" {
     /// - `session` should be of the correct type.
     /// - `property_dictionary` generic must be of the correct type.
     /// - `property_dictionary` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperties(_:propertydictionary:)?language=objc)
     pub fn VTSessionSetProperties(
         session: &VTSession,
         property_dictionary: &CFDictionary,
@@ -181,6 +267,21 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Retrieves the set of serializable property keys and their current values.
     ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - allocator: An allocator suitable for use when copying property values.
+    ///
+    /// - dictionaryOut: A pointer to the properties dictionary.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The serializable properties are those which can be saved and applied to a different session. The caller must release the returned dictionary.
+    ///
+    ///
+    /// Retrieves the set of serializable property keys and their current values.
+    ///
     /// The serializable properties are those which can be saved and applied to a different session.
     /// The caller must release the returned dictionary.
     ///
@@ -188,8 +289,6 @@ extern "C-unwind" {
     ///
     /// - `session` should be of the correct type.
     /// - `dictionary_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyserializableproperties(_:allocator:dictionaryout:)?language=objc)
     pub fn VTSessionCopySerializableProperties(
         session: &VTSession,
         allocator: Option<&CFAllocator>,

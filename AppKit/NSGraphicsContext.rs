@@ -13,54 +13,86 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey?language=objc)
+/// Constants that specify the dictionary keys for the attributes of the graphics context.
+///
+/// ## Discussion
+///
+/// You use these dictionary keys with [`graphicsContextWithAttributes:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(attributes:)) and [`attributes`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributes).
+///
+///
 // NS_TYPED_ENUM
 pub type NSGraphicsContextAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey/destination?language=objc)
+    /// Specifies the destination.
+    ///
+    /// ## Discussion
+    ///
+    /// This value can be an instance of [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) or [`NSBitmapImageRep`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep) when creating a graphics context.
+    ///
+    /// When determining the type of a graphics context, this value can be an [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata), [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), or [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object.
+    ///
+    ///
     pub static NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey/representationformat?language=objc)
+    /// Specifies the destination file format.
+    ///
+    /// ## Discussion
+    ///
+    /// This value should be retrieved only and not used to create a graphics context. For a list of possible values, see [`NSGraphicsContextRepresentationFormatName`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname).
+    ///
+    ///
     pub static NSGraphicsContextRepresentationFormatAttributeName:
         &'static NSGraphicsContextAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname?language=objc)
+/// Constants that specify values for the representation format name key in a graphic context’s attributes dictionary.
+///
+/// ## Discussion
+///
+/// You use these constants with the [`NSGraphicsContextRepresentationFormatAttributeName`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey/representationformat) key.
+///
+///
 // NS_TYPED_ENUM
 pub type NSGraphicsContextRepresentationFormatName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname/postscript?language=objc)
+    /// Destination file format is PostScript.
     pub static NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname/pdf?language=objc)
+    /// Destination file format is PDF.
     pub static NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation?language=objc)
+/// Constants that specify the interpolation, or image smoothing, behavior used by the image interpolation property.
+///
+/// ## Overview
+///
+/// Use these constants with the [`imageInterpolation`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/imageinterpolation) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageInterpolation(pub NSUInteger);
 impl NSImageInterpolation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/default?language=objc)
+    /// Use the context’s default interpolation.
     #[doc(alias = "NSImageInterpolationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/none?language=objc)
+    /// No interpolation.
     #[doc(alias = "NSImageInterpolationNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/low?language=objc)
+    /// Fast, low-quality interpolation.
     #[doc(alias = "NSImageInterpolationLow")]
     pub const Low: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/medium?language=objc)
+    /// Medium quality, slower than the low interpolation option.
     #[doc(alias = "NSImageInterpolationMedium")]
     pub const Medium: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterpolation/high?language=objc)
+    /// Highest quality, slower than the medium interpolation option.
     #[doc(alias = "NSImageInterpolationHigh")]
     pub const High: Self = Self(3);
 }
@@ -74,7 +106,19 @@ unsafe impl RefEncode for NSImageInterpolation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext?language=objc)
+    /// An object that represents a graphics context.
+    ///
+    /// ## Overview
+    ///
+    /// You can think of a graphics context as a destination to which drawing and graphics state operations are sent for execution. Each graphics context contains its own graphics environment and state.
+    ///
+    /// The [`NSGraphicsContext`](https://developer.apple.com/documentation/appkit/nsgraphicscontext) class is an abstract superclass for destination-specific graphics contexts. You obtain instances of concrete subclasses with the class methods [`currentContext`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/current), [`graphicsContextWithAttributes:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(attributes:)), [`graphicsContextWithBitmapImageRep:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(bitmapimagerep:)), [`graphicsContextWithCGContext:flipped:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(cgcontext:flipped:)), and [`graphicsContextWithWindow:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(window:)).
+    ///
+    /// At any time there is the notion of the current context. The current context for the current thread may be set using [`currentContext`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/current).
+    ///
+    /// Graphics contexts are maintained on a stack. You push a graphics context onto the stack by sending it a [`saveGraphicsState`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/savegraphicsstate()-swift.method) message, and pop it off the stack by sending it a [`restoreGraphicsState`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/restoregraphicsstate()-swift.method) message. By sending [`restoreGraphicsState`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/restoregraphicsstate()-swift.method) to a graphics context object you remove it from the stack, and the next graphics context on the stack becomes the current graphics context.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGraphicsContext;

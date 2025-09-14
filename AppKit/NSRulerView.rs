@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/orientation-swift.enum?language=objc)
+/// These constants are defined to specify a ruler’s orientation and are used by [`orientation`](https://developer.apple.com/documentation/appkit/nsrulerview/orientation-swift.property).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRulerOrientation(pub NSUInteger);
 impl NSRulerOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/orientation-swift.enum/horizontalruler?language=objc)
+    /// Ruler is oriented horizontally.
     #[doc(alias = "NSHorizontalRuler")]
     pub const HorizontalRuler: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/orientation-swift.enum/verticalruler?language=objc)
+    /// Ruler is oriented vertically.
     #[doc(alias = "NSVerticalRuler")]
     pub const VerticalRuler: Self = Self(1);
 }
@@ -31,32 +31,63 @@ unsafe impl RefEncode for NSRulerOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/unitname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSRulerViewUnitName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/unitname/inches?language=objc)
     pub static NSRulerViewUnitInches: &'static NSRulerViewUnitName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/unitname/centimeters?language=objc)
     pub static NSRulerViewUnitCentimeters: &'static NSRulerViewUnitName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/unitname/points?language=objc)
     pub static NSRulerViewUnitPoints: &'static NSRulerViewUnitName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview/unitname/picas?language=objc)
     pub static NSRulerViewUnitPicas: &'static NSRulerViewUnitName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrulerview?language=objc)
+    /// A ruler and the markers above or to the side of a scroll view’s document view.
+    ///
+    /// ## Overview
+    ///
+    /// Views within the scroll view can become clients of the ruler view, having it display markers for their elements, and receiving messages from the ruler view when the user manipulates the markers.
+    ///
+    /// ### Principal Attributes
+    ///
+    /// - Displays markers that represent elements of the client view.
+    ///
+    /// - Displays in arbitrary units.
+    ///
+    /// - Provides for an accessory view containing extra controls.
+    ///
+    /// ### Creation
+    ///
+    /// - [`hasHorizontalRuler`](https://developer.apple.com/documentation/appkit/nsscrollview/hashorizontalruler) (`NSScrollView`)
+    ///
+    /// - [`hasVerticalRuler`](https://developer.apple.com/documentation/appkit/nsscrollview/hasverticalruler) (`NSScrollView`)
+    ///
+    /// - [`initWithScrollView:orientation:`](https://developer.apple.com/documentation/appkit/nsrulerview/init(scrollview:orientation:)) Designated initializer.
+    ///
+    /// ### Commonly Used Methods
+    ///
+    /// - [`clientView`](https://developer.apple.com/documentation/appkit/nsrulerview/clientview): Changes the ruler’s client view.
+    ///
+    /// - [`markers`](https://developer.apple.com/documentation/appkit/nsrulerview/markers): Sets the markers displayed by the ruler view.
+    ///
+    /// - [`accessoryView`](https://developer.apple.com/documentation/appkit/nsrulerview/accessoryview): Sets the accessory view.
+    ///
+    /// - [`trackMarker:withMouseEvent:`](https://developer.apple.com/documentation/appkit/nsrulerview/trackmarker(_:withmouseevent:)): Allows the user to add a new marker.
+    ///
+    /// ### Overview
+    ///
+    /// See NSRulerMarkerClientViewDelegation for delegate methods that may be of interest.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

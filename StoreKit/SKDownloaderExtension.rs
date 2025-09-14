@@ -10,11 +10,16 @@ use crate::*;
 extern_protocol!(
     /// An application extension that uses the system implementation to schedule Apple-hosted asset-pack downloads automatically.
     ///
+    /// ## Overview
+    ///
+    /// You can optionally implement the inherited `BAManagedDownloaderExtension` requirements, but don’t implement any of the inherited `BADownloaderExtension` requirements. For more information, see [`Background Assets`](https://developer.apple.com/documentation/backgroundassets).
+    ///
+    ///
+    /// An application extension that uses the system implementation to schedule Apple-hosted asset-pack downloads automatically.
+    ///
     /// You can optionally implement the inherited `BAManagedDownloaderExtension` requirements, but don’t implement any of the inherited `BADownloaderExtension` requirements. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/backgroundassets>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloaderextension?language=objc)
     #[cfg(feature = "objc2-background-assets")]
     #[cfg(not(any(target_os = "tvos", target_os = "watchos")))]
     pub unsafe trait SKDownloaderExtension: BAManagedDownloaderExtension {}

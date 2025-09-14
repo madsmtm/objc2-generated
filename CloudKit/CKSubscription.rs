@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum?language=objc)
+/// Constants that identify a subscription’s behavior.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKSubscriptionType(pub NSInteger);
 impl CKSubscriptionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum/query?language=objc)
+    /// A constant that indicates the subscription is query-based.
     #[doc(alias = "CKSubscriptionTypeQuery")]
     pub const Query: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum/recordzone?language=objc)
+    /// A constant that indicates the subscription is zone-based.
     #[doc(alias = "CKSubscriptionTypeRecordZone")]
     pub const RecordZone: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum/database?language=objc)
+    /// A constant that indicates the subscription is database-based.
     #[doc(alias = "CKSubscriptionTypeDatabase")]
     pub const Database: Self = Self(3);
 }
@@ -32,11 +32,45 @@ unsafe impl RefEncode for CKSubscriptionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscriptionid?language=objc)
+/// A type that represents a subscription’s identifier.
 pub type CKSubscriptionID = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription?language=objc)
+    /// An abstract base class for subscriptions.
+    ///
+    /// ## Overview
+    ///
+    /// A subscription acts like a persistent query on the server that can track the creation, deletion, and modification of records. When changes occur, they trigger the delivery of push notifications so that your app can respond appropriately.
+    ///
+    /// Subscriptions don’t become active until you save them to the server and the server has time to index them. To save a subscription, use an instance of [`CKModifySubscriptionsOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation) or the [`saveSubscription:completionHandler:`](https://developer.apple.com/documentation/cloudkit/ckdatabase/save(_:completionhandler:)-9pona) method of [`CKDatabase`](https://developer.apple.com/documentation/cloudkit/ckdatabase). To cancel a subscription, delete the corresponding subscription from the server.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You don’t need to enable push notifications for the app’s explicit App ID in your developer account at [developer.apple.com](https://developer.apple.com) to receive subscription notifications. Xcode automatically adds the APNs entitlement to your entitlement file when you enable CloudKit. To learn about enabling CloudKit, see [Enabling CloudKit in Your App](https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitQuickStart/EnablingiCloudandConfiguringCloudKit/EnablingiCloudandConfiguringCloudKit.html#//apple_ref/doc/uid/TP40014987-CH2).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Most of a subscription’s configuration happens at initialization time. You must, however, specify how to deliver push notifications to the user’s device. Use the [`notificationInfo`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property) property to configure the delivery options. You must save the subscription before the changes take effect.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Create subscriptions in the development environment first and then promote them to production.  Attempting to create a subscription directly in the production environment results in an error.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Handling the Resulting Push Notifications
+    ///
+    /// When CloudKit modifies a record and triggers a subscription, the server sends push notifications to all devices with that subscription except for the one that makes the original changes. For subscription-based push notifications, the server can add data to the notification payload that indicates the condition that triggers the notification. In the [`application:didReceiveRemoteNotification:fetchCompletionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didreceiveremotenotification:fetchcompletionhandler:)) method of your app delegate, create a [`CKNotification`](https://developer.apple.com/documentation/cloudkit/cknotification) object from the provided `userInfo` dictionary. You can then query it for the information that’s relevant to the notification.
+    ///
+    /// In addition to sending a record ID with a push notification, you can ask the server to send a limited amount of data from the record that triggers the notification. Use the [`desiredKeys`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys) property of the object you assign to [`notificationInfo`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property) to specify the keys to include.
+    ///
+    /// APNs limits the size of a push notification’s payload and CloudKit may omit keys and other pieces of data to keep the payload’s size under that limit. If this happens, you can fetch the entire payload from the server using an instance of `CKFetchNotificationChangesOperation`. This operation provides instances of [`CKQueryNotification`](https://developer.apple.com/documentation/cloudkit/ckquerynotification) or [`CKRecordZoneNotification`](https://developer.apple.com/documentation/cloudkit/ckrecordzonenotification), which contain information about the push notifications that CloudKit delivers to your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSubscription;
@@ -98,23 +132,29 @@ impl CKSubscription {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options?language=objc)
+/// Configuration options for a query subscription.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKQuerySubscriptionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKQuerySubscriptionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonrecordcreation?language=objc)
+/// An option that instructs CloudKit to send a push notification when it creates a record that matches a subscription’s criteria.
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordCreation")]
         const FiresOnRecordCreation = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonrecordupdate?language=objc)
+/// An option that instructs CloudKit to send a push notification when it modifies a record that matches a subscription’s criteria.
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordUpdate")]
         const FiresOnRecordUpdate = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonrecorddeletion?language=objc)
+/// An option that instructs CloudKit to send a push notification when it deletes a record that matches a subscription’s criteria.
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnRecordDeletion")]
         const FiresOnRecordDeletion = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options/firesonce?language=objc)
+/// An option that instructs CloudKit to send a push notification only once.
+///
+/// ## Discussion
+///
+/// You combine this option with one or more of the other subscription options. This option applies only to query-based subscriptions. CloudKit deletes the subscription after it sends the push notification. If you want to generate subsequent push notifications using the same criteria, create and save a new subscription.
+///
+///
         #[doc(alias = "CKQuerySubscriptionOptionsFiresOnce")]
         const FiresOnce = 1<<3;
     }
@@ -129,13 +169,97 @@ unsafe impl RefEncode for CKQuerySubscriptionOptions {
 }
 
 extern_class!(
+    /// A subscription that generates push notifications when CloudKit modifies records that match a predicate.
+    ///
+    /// ## Overview
+    ///
+    /// Subscriptions track the creation, modification, and deletion of records in a database, and are fundamental in keeping data on the user’s device up to date. A subscription applies only to the user that creates it. When a subscription registers a change, such as CloudKit saving a new record, it sends push notifications to the user’s devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, the server excludes the device where the change originates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You don’t need to explicitly enable push notifications for your App ID to receive subscription notifications. Xcode automatically adds the entitlement when you enable the CloudKit capability. For more information, see [Enabling CloudKit in Your App](https://developer.apple.com/documentation/cloudkit/enabling-cloudkit-in-your-app). To use silent push notifications, add the Background Modes capability in your Xcode project and then select the “Background fetch” and “Remote notifications” options.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Query subscriptions execute whenever a change occurs in a database that matches the predicate and options you specify. You scope a query subscription to an individual record type that you provide during initialization. You can set the subscription’s [`zoneID`](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/zoneid) property to further specialize the subscription to a specific record zone in the database. This limits the scope of the subscription to only track changes in that record zone and reduces the number of notifications it generates. For more information about defining CloudKit-compatible predicates, see [`CKQuery`](https://developer.apple.com/documentation/cloudkit/ckquery).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only public and private databases support query subscriptions. If you attempt to save a database subscription in the shared database, CloudKit returns an error.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Create any subscriptions on your app’s first launch. After you initialize a subscription, save it to the server using [`CKModifySubscriptionsOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation). When the operation completes, record that state on-device (in [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults), for example). You can then check that state on subsequent launches to prevent unnecessary trips to the server.
+    ///
+    /// To configure the notification the subscription generates, set the subscription’s [`notificationInfo`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property) property. Because the system coalesces notifications, don’t rely on them for specific changes. CloudKit can omit data to keep the payload size under the APNs size limit. Consider notifications an indication of remote changes and use [`CKQueryOperation`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation) to fetch the changed records. Create the operation with an instance of [`CKQuery`](https://developer.apple.com/documentation/cloudkit/ckquery) that you configure with the same record type and predicate as the subscription. If you limit the subscription to a specific record zone, set the operation’s [`zoneID`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid) property to that record zone’s ID. Because [`CKQueryOperation`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation) doesn’t employ server change tokens, dispose of any records you cache on-device and use the query’s results instead.
+    ///
+    /// The example below shows how to create a query subscription in the user’s private database, configure the notifications it generates — in this case, silent push notifications — and then save that subscription to the server:
+    ///
+    /// ```swift
+    /// // Only proceed if the subscription doesn't already exist.
+    /// if([[NSUserDefaults standardUserDefaults]
+    ///     boolForKey:@"didCreateQuerySubscription"] == NO) {
+    ///         
+    /// // Define a predicate that matches records with a tags field
+    /// // that contains the word 'Swift'.
+    /// NSPredicate *predicate = [NSPredicate predicateWithFormat:
+    ///                           @"tags CONTAINS 'Swift'"];
+    ///         
+    /// // Create a subscription and scope it to the 'FeedItem' record type.
+    /// // Provide a unique identifier for the subscription and declare the
+    /// // circumstances for invoking it.
+    /// CKQuerySubscriptionOptions options =
+    ///     CKQuerySubscriptionOptionsFiresOnRecordCreation;
+    /// CKQuerySubscription *subscription = [[CKQuerySubscription alloc]
+    ///                                      initWithRecordType:@"FeedItem"
+    ///                                      predicate:predicate
+    ///                                      subscriptionID:@"tagged-feed-changes"
+    ///                                      options:options];
+    ///         
+    /// // Further specialize the subscription to only evaluate
+    /// // records in a specific record zone
+    /// subscription.zoneID = recordZone.zoneID;
+    ///         
+    /// // Configure the notification so that the system delivers it silently
+    /// // and, therefore, doesn't require permission from the user.
+    /// CKNotificationInfo *notificationInfo = [CKNotificationInfo new];
+    /// notificationInfo.shouldSendContentAvailable = YES;
+    /// subscription.notificationInfo = notificationInfo;
+    ///         
+    /// // Create an operation that saves the subscription to the server.
+    /// CKModifySubscriptionsOperation *operation =
+    ///     [[CKModifySubscriptionsOperation alloc]
+    ///      initWithSubscriptionsToSave:@[subscription]
+    ///      subscriptionIDsToDelete:NULL];
+    ///
+    /// operation.modifySubscriptionsCompletionBlock =
+    ///     ^(NSArray *subscriptions, NSArray *deleted, NSError *error) {
+    ///     if (error) {
+    ///         // Handle the error.
+    ///     } else {
+    ///         // Record that the system successfully creates the subscription
+    ///         // to prevent unnecessary trips to the server in later launches.
+    ///         [[NSUserDefaults standardUserDefaults]
+    ///          setBool:YES forKey:@"didCreateQuerySubscription"];
+    ///     }
+    /// };
+    ///         
+    /// // Set an appropriate QoS and add the operation to the private
+    /// // database's operation queue to execute it.
+    /// operation.qualityOfService = NSQualityOfServiceUtility;
+    /// [CKContainer.defaultContainer.privateCloudDatabase addOperation:operation];
+    /// ```
+    ///
+    ///
     /// A subscription that fires whenever a change matching the predicate occurs.
     ///
     ///
     /// `CKQuerySubscriptions`are not supported in a
     /// `sharedCloudDatabase`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQuerySubscription;
@@ -246,14 +370,90 @@ impl CKQuerySubscription {
 }
 
 extern_class!(
+    /// A subscription that generates push notifications when CloudKit modifies records in a specific record zone.
+    ///
+    /// ## Overview
+    ///
+    /// Subscriptions track the creation, modification, and deletion of records in a database, and are fundamental in keeping data on the user’s device up to date. A subscription applies only to the user that creates it. When a subscription registers a change, such as CloudKit saving a new record, it sends push notifications to the user’s devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, the server excludes the device where the change originates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You don’t need to explicitly enable push notifications for your App ID to receive subscription notifications. Xcode automatically adds the entitlement when you enable the CloudKit capability. For more information, see [Enabling CloudKit in Your App](https://developer.apple.com/documentation/cloudkit/enabling-cloudkit-in-your-app). To use silent push notifications, add the Background Modes capability in your Xcode project and then select the “Background fetch” and “Remote notifications” options.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Record zone subscriptions execute whenever a change happens in the record zone you specify when you create the subscription. You can further specialize the subscription by setting its [`recordType`](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription/recordtype-46v7a) property to a specific record type. This limits the scope of the subscription to only track changes to records of that type and reduces the number of notifications it generates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only the private database supports record zone subscriptions. If you attempt to save a record zone subscription in a public or shared database, CloudKit returns an error.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Create any subscriptions on your app’s first launch. After you initialize a subscription, save it to the server using [`CKModifySubscriptionsOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation). When the operation completes, record that state on-device (in [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults), for example). You can then check that state on subsequent launches to prevent unnecessary trips to the server.
+    ///
+    /// To configure the notification that the subscription generates, set the subscription’s [`notificationInfo`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property) property. Because the system coalesces notifications, don’t rely on them for specific changes. CloudKit can omit data to keep the payload size under the APNs size limit. Consider notifications an indication of remote changes and use [`CKFetchRecordZoneChangesOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation) to fetch the changed records. Server change tokens allow you to limit the fetch results to just the changes since your previous fetch.
+    ///
+    /// The example below shows how to create a record zone subscription in the user’s private database, configure the notifications it generates — in this case, silent push notifications — and then save that subscription to the server:
+    ///
+    /// ```swift
+    /// // Only proceed if the subscription doesn't already exist.
+    /// if([[NSUserDefaults standardUserDefaults]
+    ///     boolForKey:@"didCreateFeedSubscription"] == NO) {
+    ///         
+    ///     // Create a subscription that's scoped to a specific record zone. Provide
+    ///     // a subscription ID that's unique within the context of the user's
+    ///     // private database.
+    ///     CKRecordZoneSubscription *subscription =
+    ///     [[CKRecordZoneSubscription alloc]
+    ///      initWithZoneID:recordZone.zoneID
+    ///      subscriptionID:@"feed-changes"];
+    ///         
+    ///     // Scope the subscription to just the 'FeedItem' record type.
+    ///     subscription.recordType = @"FeedItem";
+    ///         
+    ///     // Configure the notification so that the system delivers it silently
+    ///     // and therefore doesn't require permission from the user.
+    ///     CKNotificationInfo *notificationInfo = [CKNotificationInfo new];
+    ///     notificationInfo.shouldSendContentAvailable = YES;
+    ///     subscription.notificationInfo = notificationInfo;
+    ///         
+    ///     // Create an operation that saves the subscription to the server.
+    ///     CKModifySubscriptionsOperation *operation =
+    ///         [[CKModifySubscriptionsOperation alloc]
+    ///          initWithSubscriptionsToSave:@[subscription]
+    ///          subscriptionIDsToDelete:NULL];
+    ///     
+    ///     operation.modifySubscriptionsCompletionBlock =
+    ///         ^(NSArray *subscriptions, NSArray *deleted, NSError *error) {
+    ///         if (error) {
+    ///             // Handle the error.
+    ///         } else {
+    ///             // Record that the system successfully creates the subscription
+    ///             // to prevent unnecessary trips to the server in later launches.
+    ///             [[NSUserDefaults standardUserDefaults]
+    ///              setBool:YES forKey:@"didCreateFeedSubscription"];
+    ///         }
+    ///     };
+    ///         
+    ///     // Set an appropriate QoS and add the operation to the private
+    ///     // database's operation queue to execute it.
+    ///     operation.qualityOfService = NSQualityOfServiceUtility;
+    ///     [CKContainer.defaultContainer.privateCloudDatabase addOperation:operation];
+    /// }
+    /// ```
+    ///
+    ///
     /// A subscription that fires whenever any change happens in the indicated Record Zone.
     ///
     ///
     /// The RecordZone must have the capability
     /// `CKRecordZoneCapabilityFetchChanges``CKRecordZoneSubscriptions`are not supported in a
     /// `sharedCloudDatabase`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonesubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecordZoneSubscription;
@@ -341,12 +541,88 @@ impl CKRecordZoneSubscription {
 }
 
 extern_class!(
+    /// A subscription that generates push notifications when CloudKit modifies records in a database.
+    ///
+    /// ## Overview
+    ///
+    /// Subscriptions track the creation, modification, and deletion of records in a database, and are fundamental in keeping data on the user’s device up to date. A subscription applies only to the user that creates it. When a subscription registers a change, such as CloudKit saving a new record, it sends push notifications to the user’s devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, the server excludes the device where the change originates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You don’t need to explicitly enable push notifications for your App ID to receive subscription notifications. Xcode automatically adds the entitlement when you enable the CloudKit capability. For more information, see [Enabling CloudKit in Your App](https://developer.apple.com/documentation/cloudkit/enabling-cloudkit-in-your-app). To use silent push notifications, add the Background Modes capability in your Xcode project and then select the “Background fetch” and “Remote notifications” options.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A database subscription executes whenever a change occurs in a custom record zone that resides in the database where you save the subscription. This is important for the shared database because you don’t know what record zones exist in advance. The only exception to this is the default record zone in the user’s private database, which doesn’t participate in database subscriptions.
+    ///
+    /// You can further specialize a database subscription by setting its [`recordType`](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription/recordtype-46v7a) property to a specific record type. This limits the scope of the subscription to only track changes to records of that type and reduces the number of notifications it generates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only private and shared databases support database subscriptions. If you attempt to save a database subscription in the public database, CloudKit returns an error.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Create any subscriptions on your app’s first launch. After you initialize a subscription, save it to the server using [`CKModifySubscriptionsOperation`](https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation). After the operation completes, record that state on-device (in [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults), for example). You can then check that state on subsequent launches to prevent unnecessary trips to the server.
+    ///
+    /// To configure the notification that the subscription generates, set the subscription’s [`notificationInfo`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property) property. Because the system coalesces notifications, don’t rely on them for specific changes. CloudKit can omit data to keep the payload size under the APNs size limit. Consider notifications an indication of remote changes, and use [`CKFetchDatabaseChangesOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchdatabasechangesoperation) to fetch the record zones that contain those changes. After you have the record zones, use [`CKFetchRecordZoneChangesOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation) to fetch the changed records in each zone. Server change tokens allow you to limit the fetch results to just the changes since your previous fetch.
+    ///
+    /// The example below shows how to create a database subscription in the user’s private database, configure the notifications it generates — in this case, silent push notifications — and then save that subscription to the server:
+    ///
+    /// ```swift
+    /// // Only proceed if the subscription doesn't already exist.
+    /// if([[NSUserDefaults standardUserDefaults]
+    ///     boolForKey:@"didCreateFeedSubscription"] == NO) {
+    ///         
+    ///     // Create a subscription with an ID that's unique within the scope of
+    ///     // the user's private database.
+    ///     CKDatabaseSubscription *subscription =
+    ///         [[CKDatabaseSubscription alloc]
+    ///          initWithSubscriptionID:@"feed-changes"];
+    ///         
+    ///     // Scope the subscription to just the 'FeedItem' record type.
+    ///     subscription.recordType = @"FeedItem";
+    ///         
+    ///     // Configure the notification so that the system delivers it silently
+    ///     // and, therefore, doesn't require permission from the user.
+    ///     CKNotificationInfo *notificationInfo = [CKNotificationInfo new];
+    ///     notificationInfo.shouldSendContentAvailable = YES;
+    ///     subscription.notificationInfo = notificationInfo;
+    ///         
+    ///     // Create an operation that saves the subscription to the server.
+    ///     CKModifySubscriptionsOperation *operation =
+    ///         [[CKModifySubscriptionsOperation alloc]
+    ///          initWithSubscriptionsToSave:@[subscription]
+    ///          subscriptionIDsToDelete:NULL];
+    ///     
+    ///     operation.modifySubscriptionsCompletionBlock =
+    ///         ^(NSArray *subscriptions, NSArray *deleted, NSError *error) {
+    ///         if (error) {
+    ///             // Handle the error.
+    ///         } else {
+    ///             // Record that the system successfully creates the subscription
+    ///             // to prevent unnecessary trips to the server in later launches.
+    ///             [[NSUserDefaults standardUserDefaults]
+    ///              setBool:YES forKey:@"didCreateFeedSubscription"];
+    ///         }
+    ///     };
+    ///         
+    ///     // Set an appropriate QoS and add the operation to the private
+    ///     // database's operation queue to execute it.
+    ///     operation.qualityOfService = NSQualityOfServiceUtility;
+    ///     [CKContainer.defaultContainer.privateCloudDatabase addOperation:operation];
+    /// }
+    /// ```
+    ///
+    ///
     /// A subscription fires whenever any change happens in the database that this subscription was saved in.
     ///
     ///
     /// `CKDatabaseSubscription`is only supported in the Private and Shared databases.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdatabasesubscription?language=objc)
     #[unsafe(super(CKSubscription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKDatabaseSubscription;
@@ -414,6 +690,25 @@ impl CKDatabaseSubscription {
 }
 
 extern_class!(
+    /// An object that describes the configuration of a subscription’s push notifications.
+    ///
+    /// ## Overview
+    ///
+    /// When configuring a subscription, use this class to specify the type of push notifications you want to generate when conditions meet the subscription’s trigger. You can provide content that the system displays to the user, describe the sounds to play, and indicate whether the app’s icon has a badge. You can request that the notification include information about the record that triggers it.
+    ///
+    /// When your app receives a push notification that a subscription generates, instantiate an instance of [`CKNotification`](https://developer.apple.com/documentation/cloudkit/cknotification) using the [`notificationFromRemoteNotificationDictionary:`](https://developer.apple.com/documentation/cloudkit/cknotification/init(fromremotenotificationdictionary:)) method and pass the notification’s payload. The object that the method returns contains the data you specify when configuring the subscription.
+    ///
+    /// For more information about push notification alerts and how they display to the user, see [Apple Push Notification Service](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100) in [Local and Remote Notification Programming Guide](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html#//apple_ref/doc/uid/TP40008194).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you don’t set any of the [`alertBody`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/alertbody), [`soundName`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/soundname), or [`shouldBadge`](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldbadge) properties, CloudKit sends the push notification using a lower priority and doesn’t display any content to the user.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The payload of a push notification delivered in the UIApplication
     /// `application:didReceiveRemoteNotification:`delegate method contains information about the firing subscription.
     ///
@@ -425,8 +720,6 @@ extern_class!(
     ///
     /// to parse that payload.
     /// On tvOS, alerts, badges, sounds, and categories are not handled in push notifications. However, CKSubscriptions remain available to help you avoid polling the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationInfo;

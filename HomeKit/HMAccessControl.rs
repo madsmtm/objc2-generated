@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// The HMAccessControl class represents a generic access control.
+    /// An abstract superclass for accessing user privileges.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccesscontrol?language=objc)
+    /// ## Overview
+    ///
+    /// Use a concrete subclass, like [`HMHomeAccessControl`](https://developer.apple.com/documentation/homekit/hmhomeaccesscontrol), instead.
+    ///
+    ///
+    /// The HMAccessControl class represents a generic access control.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessControl;

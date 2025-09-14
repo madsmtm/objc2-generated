@@ -8,26 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerrordomain?language=objc)
+    /// The error domain for search queries.
     pub static CSSearchQueryErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code?language=objc)
+/// Error codes that describe reasons a query might fail.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CSSearchQueryErrorCode(pub NSInteger);
 impl CSSearchQueryErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CSSearchQueryErrorCodeUnknown")]
     pub const Unknown: Self = Self(-2000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/indexunreachable?language=objc)
+    /// The index is unreachable.
     #[doc(alias = "CSSearchQueryErrorCodeIndexUnreachable")]
     pub const IndexUnreachable: Self = Self(-2001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/invalidquery?language=objc)
+    /// The query is syntactically invalid or specifies items that your app doesn’t have access to.
     #[doc(alias = "CSSearchQueryErrorCodeInvalidQuery")]
     pub const InvalidQuery: Self = Self(-2002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchqueryerror/code/cancelled?language=objc)
+    /// The query stopped because someone canceled it.
+    ///
+    /// ## Discussion
+    ///
+    /// The system reports this error if your code called the [`cancel`](https://developer.apple.com/documentation/corespotlight/csuserquery/cancel()) method.
+    ///
+    ///
     #[doc(alias = "CSSearchQueryErrorCodeCancelled")]
     pub const Cancelled: Self = Self(-2003);
 }
@@ -40,17 +46,17 @@ unsafe impl RefEncode for CSSearchQueryErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerycontext/sourceoptions-swift.struct?language=objc)
+/// The query source options to allow or deny Mail messages in the search.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CSSearchQuerySourceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl CSSearchQuerySourceOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerysourceoptions/cssearchquerysourceoptiondefault?language=objc)
+/// The query uses the default search option that excludes Mail messages.
         #[doc(alias = "CSSearchQuerySourceOptionDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerycontext/sourceoptions-swift.struct/allowmail?language=objc)
+/// The query allows Mail messages in the search.
         #[doc(alias = "CSSearchQuerySourceOptionAllowMail")]
         const AllowMail = 1<<0;
     }
@@ -65,7 +71,7 @@ unsafe impl RefEncode for CSSearchQuerySourceOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquerycontext?language=objc)
+    /// The behavior configuration to use for a search query.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSSearchQueryContext;
@@ -147,7 +153,23 @@ impl CSSearchQueryContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchquery?language=objc)
+    /// A type you use to programmatically search the indexed app content.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `CSSearchQuery` object to search your app’s indexed content using a formatted search string. To perform a search, build a predicate string to specify the indexed attributes you want to search and the value you want them to match. After you start the query, you receive batches of results in the handlers you provide.
+    ///
+    /// Each `CSSearchQuery` object you create performs a single search operation and delivers the results back to your code. Build each predicate with an attribute name, one or more values, and either a comparison operator or the `InRange` operator. Your predicate string takes one of the following forms:
+    ///
+    /// - `attributeName operator value[modifiers]`
+    ///
+    /// - `InRange(attributeName, minValue, maxValue)`
+    ///
+    /// Queries search all of your app’s indexes by default. If your app encrypts some of its indexed data, you can limit your search to one or more of the encrypted indexes by updating the query’s [`protectionClasses`](https://developer.apple.com/documentation/corespotlight/cssearchquery/protectionclasses) property.  The query must have access to the protected index to search it.
+    ///
+    /// For more information about how to construct predicate strings for your query, see [Searching for information in your app](https://developer.apple.com/documentation/corespotlight/searching-for-information-in-your-app).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSSearchQuery;

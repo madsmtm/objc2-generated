@@ -6,51 +6,95 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options?language=objc)
+/// Defines the memory and personality options for an `NSPointerFunctions` object.
+///
+/// ## Overview
+///
+/// When specifying a value, you can use only one of the options listed in Memory Options,  only one of the options listed in Personality Options, and any number of other options.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPointerFunctionsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPointerFunctionsOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/strongmemory?language=objc)
+/// Use strong write-barriers to backing store; use garbage-collected memory on copy-in.
+///
+/// ## Discussion
+///
+/// This is the default memory value.
+///
+/// As a special case, if you do not use garbage collection and specify this value in conjunction with [`NSPointerFunctionsObjectPersonality`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpersonality) or [`NSPointerFunctionsObjectPointerPersonality`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpointerpersonality) then the `NSPointerFunctions` object uses `retain` and `release`.
+///
+/// If you do not use garbage collection, and specify this value in conjunction with a valid non-object personality, it is the same as specifying [`NSPointerFunctionsMallocMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/mallocmemory).
+///
+///
         #[doc(alias = "NSPointerFunctionsStrongMemory")]
         const StrongMemory = 0<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctionsoptions/nspointerfunctionszeroingweakmemory?language=objc)
+/// Use weak read and write barriers; use garbage-collected memory on copyIn.
+///
+/// ## Discussion
+///
+/// If you do not use garbage collection, for object personalities, it will hold a non-retained object pointer.
+///
+///
         #[doc(alias = "NSPointerFunctionsZeroingWeakMemory")]
 #[deprecated = "GC no longer supported"]
         const ZeroingWeakMemory = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/opaquememory?language=objc)
+/// Take no action when pointers are deleted.
+///
+/// ## Discussion
+///
+/// This is usually the preferred memory option for holding arbitrary pointers.
+///
+/// This is essentially a no-op relinquish function; the acquire function is only used for copy-in operations.  This option is unlikely a to be a good choice for objects.
+///
+///
         #[doc(alias = "NSPointerFunctionsOpaqueMemory")]
         const OpaqueMemory = 2<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/mallocmemory?language=objc)
+/// Use `free()` on removal, `calloc()` on copy in.
         #[doc(alias = "NSPointerFunctionsMallocMemory")]
         const MallocMemory = 3<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/machvirtualmemory?language=objc)
+/// Use Mach memory.
         #[doc(alias = "NSPointerFunctionsMachVirtualMemory")]
         const MachVirtualMemory = 4<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/weakmemory?language=objc)
+/// Uses weak read and write barriers appropriate for ARC or GC. Using NSPointerFunctionsWeakMemory object references will turn to `NULL` on last release.
         #[doc(alias = "NSPointerFunctionsWeakMemory")]
         const WeakMemory = 5<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpersonality?language=objc)
+/// Use `hash` and `isEqual` methods for hashing and equality comparisons, use the `description` method for a description.
+///
+/// ## Discussion
+///
+/// This is the default personality value.
+///
+/// As a special case, if you do not use garbage collection and specify this value in conjunction with [`NSPointerFunctionsStrongMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/strongmemory) then the `NSPointerFunctions` object uses `retain` and `release`.
+///
+///
         #[doc(alias = "NSPointerFunctionsObjectPersonality")]
         const ObjectPersonality = 0<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/opaquepersonality?language=objc)
+/// Use shifted pointer for the hash value and direct comparison to determine equality.
         #[doc(alias = "NSPointerFunctionsOpaquePersonality")]
         const OpaquePersonality = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpointerpersonality?language=objc)
+/// Use shifted pointer for the hash value and direct comparison to determine equality; use the `description` method for a description.
+///
+/// ## Discussion
+///
+/// As a special case, if you do not use garbage collection and specify this value in conjunction with [`NSPointerFunctionsStrongMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/strongmemory) then the `NSPointerFunctions` object uses `retain` and `release`.
+///
+///
         #[doc(alias = "NSPointerFunctionsObjectPointerPersonality")]
         const ObjectPointerPersonality = 2<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/cstringpersonality?language=objc)
+/// Use a string hash and `strcmp`; C-string ‘`%s`’ style description.
         #[doc(alias = "NSPointerFunctionsCStringPersonality")]
         const CStringPersonality = 3<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/structpersonality?language=objc)
+/// Use a memory hash and `memcmp` (using a size function that you must set—see [`sizeFunction`](https://developer.apple.com/documentation/foundation/nspointerfunctions/sizefunction)).
         #[doc(alias = "NSPointerFunctionsStructPersonality")]
         const StructPersonality = 4<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/integerpersonality?language=objc)
+/// Use unshifted value as hash and equality.
         #[doc(alias = "NSPointerFunctionsIntegerPersonality")]
         const IntegerPersonality = 5<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/copyin?language=objc)
+/// Use the memory acquire function to allocate and copy items on input (see [`acquireFunction`](https://developer.apple.com/documentation/foundation/nspointerfunctions/acquirefunction)).
         #[doc(alias = "NSPointerFunctionsCopyIn")]
         const CopyIn = 1<<16;
     }
@@ -65,7 +109,19 @@ unsafe impl RefEncode for NSPointerFunctionsOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointerfunctions?language=objc)
+    /// An instance of `NSPointerFunctions` defines callout functions appropriate for managing a pointer reference held somewhere else.
+    ///
+    /// ## Overview
+    ///
+    /// The functions specified by an instance of `NSPointerFunctions` are separated into two clusters—those that define “personality” such as “object” or “C-string”, and those that describe memory management issues such as a memory deallocation function. There are constants for common personalities and memory manager selections (see `Memory and Personality Options`).
+    ///
+    /// [`NSHashTable`](https://developer.apple.com/documentation/foundation/nshashtable), [`NSMapTable`](https://developer.apple.com/documentation/foundation/nsmaptable), and [`NSPointerArray`](https://developer.apple.com/documentation/foundation/nspointerarray) use an `NSPointerFunctions` object to define the acquisition and retention behavior for the pointers they manage. Note, however, that not all combinations of personality and memory management behavior are valid for these collections. The pointer collection objects copy the `NSPointerFunctions` object on input and output, so you cannot usefully subclass `NSPointerFunctions`.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSPointerFunctions` is not suitable for subclassing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPointerFunctions;

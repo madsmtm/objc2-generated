@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent?language=objc)
+    /// A request to change the defroster settings in a CarPlay-enabled vehicle.
+    ///
+    /// ## Overview
+    ///
+    /// Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change the defroster settings for a vehicle, SiriKit creates an [`INSetDefrosterSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent) object and delivers it to the app’s Intents extension. You use the intent to identify which defroster the user wants to enable or disable and to communicate the changes directly to your vehicle’s systems.
+    ///
+    /// The object that handles this intent must adopt the [`INSetDefrosterSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling) protocol. Use this intent object to resolve the defroster details and to create an [`INSetDefrosterSettingsInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponse) object indicating whether you were able to make the change successfully.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents (in conjunction with CarPlay)" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to enable or disable the defrosters in a vehicle in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Turn on the rear defroster" }] }], [Paragraph { inline_content: [Text { text: "Turn off the front defroster" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "打开前窗除雾" }] }], [Paragraph { inline_content: [Text { text: "打开后窗除雾" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "打開前面車窗除霧" }] }], [Paragraph { inline_content: [Text { text: "打開後車窗嘅除霧" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "打開前窗除霧" }] }], [Paragraph { inline_content: [Text { text: "打開後窗除霧" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "打开前面车窗除雾" }] }], [Paragraph { inline_content: [Text { text: "打开后车窗嘅除雾" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "شغل مزيل الصقيع الخلفي" }] }], [Paragraph { inline_content: [Text { text: "شغل مزيل الصقيع الأمامي" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "afrimer på fuld styrke" }] }], [Paragraph { inline_content: [Text { text: "Sluk for afrimeren" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Heckscheibenheizung einschalten" }] }], [Paragraph { inline_content: [Text { text: "Schalte Heckscheibenheizung ein" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Enciende el desempañador" }] }], [Paragraph { inline_content: [Text { text: "Apaga el desempañador trasero" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Laita takaikkunan huurteenpoisto päälle" }] }], [Paragraph { inline_content: [Text { text: "Laita takaikkunan huurteenpoisto pois päältä" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Allume le dégivrage arrière" }] }], [Paragraph { inline_content: [Text { text: "Mets en marche le dégivrage arrière" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "שים את מפיג האדים בעוצמה הגבוהה ביותר" }] }], [Paragraph { inline_content: [Text { text: "שימי את המוריד אדים על הכי חזק" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Accendi lo sbrinatore posteriore" }] }], [Paragraph { inline_content: [Text { text: "Spegni lo sbrinatore del parabrezza" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "後部デフロスターをオンにして" }] }], [Paragraph { inline_content: [Text { text: "フロントデフロスターをオフにして" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "뒷 유리 서리 제거해" }] }], [Paragraph { inline_content: [Text { text: "앞 유리 서리 제거해" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Hidupkan penyahfros belakang" }] }], [Paragraph { inline_content: [Text { text: "Matikan penyahfros depan" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Skru på defrosteren bak" }] }], [Paragraph { inline_content: [Text { text: "Skru av defrosteren foran" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Zet de ontdooier achteraan aan" }] }], [Paragraph { inline_content: [Text { text: "Zet de ontwasemer van voor uit" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Ligue o desembaçador traseiro" }] }], [Paragraph { inline_content: [Text { text: "Desligar o desembaçador frontal" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Включи задний обогреватель стёкол" }] }], [Paragraph { inline_content: [Text { text: "Выключи передний подогрев стёкол" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "avfrostaren på full styrka" }] }], [Paragraph { inline_content: [Text { text: "avfrostaren på max" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "เป\u{e34}ดต\u{e31}วไล\u{e48}ฝ\u{e49}าด\u{e49}านหล\u{e31}ง" }] }], [Paragraph { inline_content: [Text { text: "ป\u{e34}ดท\u{e35}\u{e48}ไล\u{e48}ฝ\u{e49}าด\u{e49}านหน\u{e49}า" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Arka buz çözücüyü başlat" }] }], [Paragraph { inline_content: [Text { text: "Ön buz çözücüyü kapat" }] }]]], alignments: None, metadata: None })
+    /// When managing CarPlay features, users don’t need to include the name of the app in the phrases that they speak. Siri knows automatically when CarPlay is active and routes CarPlay-related intents to the app of the corresponding automotive vendor.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -87,11 +107,18 @@ impl INSetDefrosterSettingsInCarIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for changing a vehicle’s defroster settings.
+    ///
+    /// ## Overview
+    ///
+    /// Automotive vendors can support the [`INSetDefrosterSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling) protocol in an Intents extension that they ship with their automotive apps. Use the methods of this protocol to resolve, confirm, and handle requests to change the vehicle’s defroster settings. Your extension should be able to communicate with the vehicle and make the necessary climate control changes.
+    ///
+    /// Siri delivers an [`INSetDefrosterSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent) object to your handler when the user asks to change the defroster change. The intent object contains information that you use to determine the new defroster settings and to make the change.
+    ///
+    ///
     /// Protocol to declare support for handling an INSetDefrosterSettingsInCarIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling?language=objc)
     #[deprecated = "INSetDefrosterSettingsInCarIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSetDefrosterSettingsInCarIntentHandling: NSObjectProtocol {
         #[cfg(all(

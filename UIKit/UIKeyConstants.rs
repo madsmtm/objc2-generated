@@ -6,6 +6,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A set of HID usage codes that identify the keys of a USB keyboard.
 /// This file defines a table of standardized key codes, called "HID usages" used by USB keyboards to identify individual keys.
 ///
 /// A general note on Usages and languages: Due to the variation of keyboards from language to language, it is not feasible
@@ -17,8 +18,6 @@ use crate::*;
 /// changes to the electronics to accommodate other languages.
 ///
 /// The following constants are from the USB 'HID Usage Tables' specification, revision 1.1rc3.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(transparent)]
@@ -26,544 +25,574 @@ use crate::*;
 pub struct UIKeyboardHIDUsage(pub CFIndex);
 #[cfg(feature = "objc2-core-foundation")]
 impl UIKeyboardHIDUsage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarderrorrollover?language=objc)
+    /// The raw usage code 1 (decimal)/01 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardErrorRollOver")]
     pub const KeyboardErrorRollOver: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardpostfail?language=objc)
+    /// The raw usage code 2 (decimal)/02 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPOSTFail")]
     pub const KeyboardPOSTFail: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarderrorundefined?language=objc)
+    /// The raw usage code 3 (decimal)/03 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardErrorUndefined")]
     pub const KeyboardErrorUndefined: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarda?language=objc)
+    /// The raw usage code 4 (decimal)/04 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardA")]
     pub const KeyboardA: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardb?language=objc)
+    /// The raw usage code 5 (decimal)/05 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardB")]
     pub const KeyboardB: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardc?language=objc)
+    /// The raw usage code 6 (decimal)/06 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardC")]
     pub const KeyboardC: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardd?language=objc)
+    /// The raw usage code 7 (decimal)/07 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardD")]
     pub const KeyboardD: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarde?language=objc)
+    /// The raw usage code 8 (decimal)/08 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardE")]
     pub const KeyboardE: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf?language=objc)
+    /// The raw usage code 9 (decimal)/09 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF")]
     pub const KeyboardF: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardg?language=objc)
+    /// The raw usage code 10 (decimal)/0A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardG")]
     pub const KeyboardG: Self = Self(0x0A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardh?language=objc)
+    /// The raw usage code 11 (decimal)/0B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardH")]
     pub const KeyboardH: Self = Self(0x0B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardi?language=objc)
+    /// The raw usage code 12 (decimal)/0C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardI")]
     pub const KeyboardI: Self = Self(0x0C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardj?language=objc)
+    /// The raw usage code 13 (decimal)/0D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardJ")]
     pub const KeyboardJ: Self = Self(0x0D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardk?language=objc)
+    /// The raw usage code 14 (decimal)/0E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardK")]
     pub const KeyboardK: Self = Self(0x0E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardl?language=objc)
+    /// The raw usage code 15 (decimal)/0F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardL")]
     pub const KeyboardL: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardm?language=objc)
+    /// The raw usage code 16 (decimal)/10 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardM")]
     pub const KeyboardM: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardn?language=objc)
+    /// The raw usage code 17 (decimal)/11 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardN")]
     pub const KeyboardN: Self = Self(0x11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardo?language=objc)
+    /// The raw usage code 18 (decimal)/12 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardO")]
     pub const KeyboardO: Self = Self(0x12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardp?language=objc)
+    /// The raw usage code 19 (decimal)/13 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardP")]
     pub const KeyboardP: Self = Self(0x13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardq?language=objc)
+    /// The raw usage code 20 (decimal)/14 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardQ")]
     pub const KeyboardQ: Self = Self(0x14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardr?language=objc)
+    /// The raw usage code 21 (decimal)/15 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardR")]
     pub const KeyboardR: Self = Self(0x15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboards?language=objc)
+    /// The raw usage code 22 (decimal)/16 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardS")]
     pub const KeyboardS: Self = Self(0x16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardt?language=objc)
+    /// The raw usage code 23 (decimal)/17 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardT")]
     pub const KeyboardT: Self = Self(0x17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardu?language=objc)
+    /// The raw usage code 24 (decimal)/18 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardU")]
     pub const KeyboardU: Self = Self(0x18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardv?language=objc)
+    /// The raw usage code 25 (decimal)/19 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardV")]
     pub const KeyboardV: Self = Self(0x19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardw?language=objc)
+    /// The raw usage code 26 (decimal)/1A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardW")]
     pub const KeyboardW: Self = Self(0x1A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardx?language=objc)
+    /// The raw usage code 27 (decimal)/1B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardX")]
     pub const KeyboardX: Self = Self(0x1B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardy?language=objc)
+    /// The raw usage code 28 (decimal)/1C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardY")]
     pub const KeyboardY: Self = Self(0x1C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardz?language=objc)
+    /// The raw usage code 29 (decimal)/1D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardZ")]
     pub const KeyboardZ: Self = Self(0x1D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard1?language=objc)
+    /// The raw usage code 30 (decimal)/1E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard1")]
     pub const Keyboard1: Self = Self(0x1E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard2?language=objc)
+    /// The raw usage code 31 (decimal)/1F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard2")]
     pub const Keyboard2: Self = Self(0x1F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard3?language=objc)
+    /// The raw usage code 32 (decimal)/20 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard3")]
     pub const Keyboard3: Self = Self(0x20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard4?language=objc)
+    /// The raw usage code 33 (decimal)/21 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard4")]
     pub const Keyboard4: Self = Self(0x21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard5?language=objc)
+    /// The raw usage code 34 (decimal)/22 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard5")]
     pub const Keyboard5: Self = Self(0x22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard6?language=objc)
+    /// The raw usage code 35 (decimal)/23 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard6")]
     pub const Keyboard6: Self = Self(0x23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard7?language=objc)
+    /// The raw usage code 36 (decimal)/24 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard7")]
     pub const Keyboard7: Self = Self(0x24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard8?language=objc)
+    /// The raw usage code 37 (decimal)/25 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard8")]
     pub const Keyboard8: Self = Self(0x25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard9?language=objc)
+    /// The raw usage code 38 (decimal)/26 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard9")]
     pub const Keyboard9: Self = Self(0x26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard0?language=objc)
+    /// The raw usage code 39 (decimal)/27 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard0")]
     pub const Keyboard0: Self = Self(0x27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardreturnorenter?language=objc)
+    /// The raw usage code 40 (decimal)/28 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardReturnOrEnter")]
     pub const KeyboardReturnOrEnter: Self = Self(0x28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardescape?language=objc)
+    /// The raw usage code 41 (decimal)/29 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardEscape")]
     pub const KeyboardEscape: Self = Self(0x29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarddeleteorbackspace?language=objc)
+    /// The raw usage code 42 (decimal)/2A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardDeleteOrBackspace")]
     pub const KeyboardDeleteOrBackspace: Self = Self(0x2A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardtab?language=objc)
+    /// The raw usage code 43 (decimal)/2B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardTab")]
     pub const KeyboardTab: Self = Self(0x2B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardspacebar?language=objc)
+    /// The raw usage code 44 (decimal)/2C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardSpacebar")]
     pub const KeyboardSpacebar: Self = Self(0x2C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardhyphen?language=objc)
+    /// The raw usage code 45 (decimal)/2D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardHyphen")]
     pub const KeyboardHyphen: Self = Self(0x2D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardequalsign?language=objc)
+    /// The raw usage code 46 (decimal)/2E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardEqualSign")]
     pub const KeyboardEqualSign: Self = Self(0x2E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardopenbracket?language=objc)
+    /// The raw usage code 47 (decimal)/2F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardOpenBracket")]
     pub const KeyboardOpenBracket: Self = Self(0x2F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardclosebracket?language=objc)
+    /// The raw usage code 48 (decimal)/30 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardCloseBracket")]
     pub const KeyboardCloseBracket: Self = Self(0x30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardbackslash?language=objc)
+    /// The raw usage code 49 (decimal)/31 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardBackslash")]
     pub const KeyboardBackslash: Self = Self(0x31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardnonuspound?language=objc)
+    /// The raw usage code 50 (decimal)/32 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardNonUSPound")]
     pub const KeyboardNonUSPound: Self = Self(0x32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardsemicolon?language=objc)
+    /// The raw usage code 51 (decimal)/33 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardSemicolon")]
     pub const KeyboardSemicolon: Self = Self(0x33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardquote?language=objc)
+    /// The raw usage code 52 (decimal)/34 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardQuote")]
     pub const KeyboardQuote: Self = Self(0x34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardgraveaccentandtilde?language=objc)
+    /// The raw usage code 53 (decimal)/35 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardGraveAccentAndTilde")]
     pub const KeyboardGraveAccentAndTilde: Self = Self(0x35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardcomma?language=objc)
+    /// The raw usage code 54 (decimal)/36 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardComma")]
     pub const KeyboardComma: Self = Self(0x36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardperiod?language=objc)
+    /// The raw usage code 55 (decimal)/37 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPeriod")]
     pub const KeyboardPeriod: Self = Self(0x37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardslash?language=objc)
+    /// The raw usage code 56 (decimal)/38 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardSlash")]
     pub const KeyboardSlash: Self = Self(0x38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardcapslock?language=objc)
+    /// The raw usage code 57 (decimal)/39 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardCapsLock")]
     pub const KeyboardCapsLock: Self = Self(0x39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf1?language=objc)
+    /// The raw usage code 58 (decimal)/3A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF1")]
     pub const KeyboardF1: Self = Self(0x3A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf2?language=objc)
+    /// The raw usage code 59 (decimal)/3B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF2")]
     pub const KeyboardF2: Self = Self(0x3B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf3?language=objc)
+    /// The raw usage code 60 (decimal)/3C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF3")]
     pub const KeyboardF3: Self = Self(0x3C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf4?language=objc)
+    /// The raw usage code 61 (decimal)/3D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF4")]
     pub const KeyboardF4: Self = Self(0x3D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf5?language=objc)
+    /// The raw usage code 62 (decimal)/3E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF5")]
     pub const KeyboardF5: Self = Self(0x3E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf6?language=objc)
+    /// The raw usage code 63 (decimal)/3F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF6")]
     pub const KeyboardF6: Self = Self(0x3F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf7?language=objc)
+    /// The raw usage code 64 (decimal)/40 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF7")]
     pub const KeyboardF7: Self = Self(0x40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf8?language=objc)
+    /// The raw usage code 65 (decimal)/41 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF8")]
     pub const KeyboardF8: Self = Self(0x41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf9?language=objc)
+    /// The raw usage code 66 (decimal)/42 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF9")]
     pub const KeyboardF9: Self = Self(0x42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf10?language=objc)
+    /// The raw usage code 67 (decimal)/43 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF10")]
     pub const KeyboardF10: Self = Self(0x43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf11?language=objc)
+    /// The raw usage code 68 (decimal)/44 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF11")]
     pub const KeyboardF11: Self = Self(0x44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf12?language=objc)
+    /// The raw usage code 69 (decimal)/45 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF12")]
     pub const KeyboardF12: Self = Self(0x45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardprintscreen?language=objc)
+    /// The raw usage code 70 (decimal)/46 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPrintScreen")]
     pub const KeyboardPrintScreen: Self = Self(0x46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardscrolllock?language=objc)
+    /// The raw usage code 71 (decimal)/47 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardScrollLock")]
     pub const KeyboardScrollLock: Self = Self(0x47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardpause?language=objc)
+    /// The raw usage code 72 (decimal)/48 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPause")]
     pub const KeyboardPause: Self = Self(0x48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinsert?language=objc)
+    /// The raw usage code 73 (decimal)/49 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInsert")]
     pub const KeyboardInsert: Self = Self(0x49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardhome?language=objc)
+    /// The raw usage code 74 (decimal)/4A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardHome")]
     pub const KeyboardHome: Self = Self(0x4A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardpageup?language=objc)
+    /// The raw usage code 75 (decimal)/4B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPageUp")]
     pub const KeyboardPageUp: Self = Self(0x4B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarddeleteforward?language=objc)
+    /// The raw usage code 76 (decimal)/4C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardDeleteForward")]
     pub const KeyboardDeleteForward: Self = Self(0x4C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardend?language=objc)
+    /// The raw usage code 77 (decimal)/4D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardEnd")]
     pub const KeyboardEnd: Self = Self(0x4D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardpagedown?language=objc)
+    /// The raw usage code 78 (decimal)/4E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPageDown")]
     pub const KeyboardPageDown: Self = Self(0x4E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardrightarrow?language=objc)
+    /// The raw usage code 79 (decimal)/4F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardRightArrow")]
     pub const KeyboardRightArrow: Self = Self(0x4F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardleftarrow?language=objc)
+    /// The raw usage code 80 (decimal)/50 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLeftArrow")]
     pub const KeyboardLeftArrow: Self = Self(0x50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarddownarrow?language=objc)
+    /// The raw usage code 81 (decimal)/51 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardDownArrow")]
     pub const KeyboardDownArrow: Self = Self(0x51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboarduparrow?language=objc)
+    /// The raw usage code 82 (decimal)/52 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardUpArrow")]
     pub const KeyboardUpArrow: Self = Self(0x52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadnumlock?language=objc)
+    /// The raw usage code 83 (decimal)/53 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadNumLock")]
     pub const KeypadNumLock: Self = Self(0x53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadslash?language=objc)
+    /// The raw usage code 84 (decimal)/54 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadSlash")]
     pub const KeypadSlash: Self = Self(0x54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadasterisk?language=objc)
+    /// The raw usage code 85 (decimal)/55 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadAsterisk")]
     pub const KeypadAsterisk: Self = Self(0x55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadhyphen?language=objc)
+    /// The raw usage code 86 (decimal)/56 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadHyphen")]
     pub const KeypadHyphen: Self = Self(0x56);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadplus?language=objc)
+    /// The raw usage code 87 (decimal)/57 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadPlus")]
     pub const KeypadPlus: Self = Self(0x57);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadenter?language=objc)
+    /// The raw usage code 88 (decimal)/58 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadEnter")]
     pub const KeypadEnter: Self = Self(0x58);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad1?language=objc)
+    /// The raw usage code 89 (decimal)/59 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad1")]
     pub const Keypad1: Self = Self(0x59);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad2?language=objc)
+    /// The raw usage code 90 (decimal)/5A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad2")]
     pub const Keypad2: Self = Self(0x5A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad3?language=objc)
+    /// The raw usage code 91 (decimal)/5B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad3")]
     pub const Keypad3: Self = Self(0x5B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad4?language=objc)
+    /// The raw usage code 92 (decimal)/5C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad4")]
     pub const Keypad4: Self = Self(0x5C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad5?language=objc)
+    /// The raw usage code 93 (decimal)/5D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad5")]
     pub const Keypad5: Self = Self(0x5D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad6?language=objc)
+    /// The raw usage code 94 (decimal)/5E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad6")]
     pub const Keypad6: Self = Self(0x5E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad7?language=objc)
+    /// The raw usage code 95 (decimal)/5F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad7")]
     pub const Keypad7: Self = Self(0x5F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad8?language=objc)
+    /// The raw usage code 96 (decimal)/60 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad8")]
     pub const Keypad8: Self = Self(0x60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad9?language=objc)
+    /// The raw usage code 97 (decimal)/61 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad9")]
     pub const Keypad9: Self = Self(0x61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypad0?language=objc)
+    /// The raw usage code 98 (decimal)/62 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypad0")]
     pub const Keypad0: Self = Self(0x62);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadperiod?language=objc)
+    /// The raw usage code 99 (decimal)/63 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadPeriod")]
     pub const KeypadPeriod: Self = Self(0x63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardnonusbackslash?language=objc)
+    /// The raw usage code 100 (decimal)/64 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardNonUSBackslash")]
     pub const KeyboardNonUSBackslash: Self = Self(0x64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardapplication?language=objc)
+    /// The raw usage code 101 (decimal)/65 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardApplication")]
     pub const KeyboardApplication: Self = Self(0x65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardpower?language=objc)
+    /// The raw usage code 102 (decimal)/66 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPower")]
     pub const KeyboardPower: Self = Self(0x66);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadequalsign?language=objc)
+    /// The raw usage code 103 (decimal)/67 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadEqualSign")]
     pub const KeypadEqualSign: Self = Self(0x67);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf13?language=objc)
+    /// The raw usage code 104 (decimal)/68 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF13")]
     pub const KeyboardF13: Self = Self(0x68);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf14?language=objc)
+    /// The raw usage code 105 (decimal)/69 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF14")]
     pub const KeyboardF14: Self = Self(0x69);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf15?language=objc)
+    /// The raw usage code 106 (decimal)/6A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF15")]
     pub const KeyboardF15: Self = Self(0x6A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf16?language=objc)
+    /// The raw usage code 107 (decimal)/6B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF16")]
     pub const KeyboardF16: Self = Self(0x6B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf17?language=objc)
+    /// The raw usage code 108 (decimal)/6C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF17")]
     pub const KeyboardF17: Self = Self(0x6C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf18?language=objc)
+    /// The raw usage code 109 (decimal)/6D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF18")]
     pub const KeyboardF18: Self = Self(0x6D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf19?language=objc)
+    /// The raw usage code 110 (decimal)/6E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF19")]
     pub const KeyboardF19: Self = Self(0x6E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf20?language=objc)
+    /// The raw usage code 111 (decimal)/6F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF20")]
     pub const KeyboardF20: Self = Self(0x6F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf21?language=objc)
+    /// The raw usage code 112 (decimal)/70 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF21")]
     pub const KeyboardF21: Self = Self(0x70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf22?language=objc)
+    /// The raw usage code 113 (decimal)/71 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF22")]
     pub const KeyboardF22: Self = Self(0x71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf23?language=objc)
+    /// The raw usage code 114 (decimal)/72 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF23")]
     pub const KeyboardF23: Self = Self(0x72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardf24?language=objc)
+    /// The raw usage code 115 (decimal)/73 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardF24")]
     pub const KeyboardF24: Self = Self(0x73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardexecute?language=objc)
+    /// The raw usage code 116 (decimal)/74 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardExecute")]
     pub const KeyboardExecute: Self = Self(0x74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardhelp?language=objc)
+    /// The raw usage code 117 (decimal)/75 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardHelp")]
     pub const KeyboardHelp: Self = Self(0x75);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardmenu?language=objc)
+    /// The raw usage code 118 (decimal)/76 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardMenu")]
     pub const KeyboardMenu: Self = Self(0x76);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardselect?language=objc)
+    /// The raw usage code 119 (decimal)/77 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardSelect")]
     pub const KeyboardSelect: Self = Self(0x77);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardstop?language=objc)
+    /// The raw usage code 120 (decimal)/78 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardStop")]
     pub const KeyboardStop: Self = Self(0x78);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardagain?language=objc)
+    /// The raw usage code 121 (decimal)/79 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardAgain")]
     pub const KeyboardAgain: Self = Self(0x79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardundo?language=objc)
+    /// The raw usage code 122 (decimal)/7A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardUndo")]
     pub const KeyboardUndo: Self = Self(0x7A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardcut?language=objc)
+    /// The raw usage code 129 (decimal)/7B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardCut")]
     pub const KeyboardCut: Self = Self(0x7B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardcopy?language=objc)
+    /// The raw usage code 124 (decimal)/7C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardCopy")]
     pub const KeyboardCopy: Self = Self(0x7C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardpaste?language=objc)
+    /// The raw usage code 125 (decimal)/7D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPaste")]
     pub const KeyboardPaste: Self = Self(0x7D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardfind?language=objc)
+    /// The raw usage code 126 (decimal)/7E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardFind")]
     pub const KeyboardFind: Self = Self(0x7E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardmute?language=objc)
+    /// The raw usage code 127 (decimal)/7F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardMute")]
     pub const KeyboardMute: Self = Self(0x7F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardvolumeup?language=objc)
+    /// The raw usage code 128 (decimal)/80 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardVolumeUp")]
     pub const KeyboardVolumeUp: Self = Self(0x80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardvolumedown?language=objc)
+    /// The raw usage code 129 (decimal)/81 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardVolumeDown")]
     pub const KeyboardVolumeDown: Self = Self(0x81);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlockingcapslock?language=objc)
+    /// The raw usage code 130 (decimal)/82 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLockingCapsLock")]
     pub const KeyboardLockingCapsLock: Self = Self(0x82);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlockingnumlock?language=objc)
+    /// The raw usage code 131 (decimal)/83 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLockingNumLock")]
     pub const KeyboardLockingNumLock: Self = Self(0x83);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlockingscrolllock?language=objc)
+    /// The raw usage code 132 (decimal)/84 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLockingScrollLock")]
     pub const KeyboardLockingScrollLock: Self = Self(0x84);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadcomma?language=objc)
+    /// The raw usage code 133 (decimal)/85 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadComma")]
     pub const KeypadComma: Self = Self(0x85);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keypadequalsignas400?language=objc)
+    /// The raw usage code 134 (decimal)/86 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeypadEqualSignAS400")]
     pub const KeypadEqualSignAS400: Self = Self(0x86);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational1?language=objc)
+    /// The raw usage code 135 (decimal)/87 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational1")]
     pub const KeyboardInternational1: Self = Self(0x87);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational2?language=objc)
+    /// The raw usage code 136 (decimal)/88 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational2")]
     pub const KeyboardInternational2: Self = Self(0x88);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational3?language=objc)
+    /// The raw usage code 137 (decimal)/89 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational3")]
     pub const KeyboardInternational3: Self = Self(0x89);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational4?language=objc)
+    /// The raw usage code 138 (decimal)/8A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational4")]
     pub const KeyboardInternational4: Self = Self(0x8A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational5?language=objc)
+    /// The raw usage code 139 (decimal)/8B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational5")]
     pub const KeyboardInternational5: Self = Self(0x8B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational6?language=objc)
+    /// The raw usage code 140 (decimal)/8C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational6")]
     pub const KeyboardInternational6: Self = Self(0x8C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational7?language=objc)
+    /// The raw usage code 141 (decimal)/8D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational7")]
     pub const KeyboardInternational7: Self = Self(0x8D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational8?language=objc)
+    /// The raw usage code 142 (decimal)/8E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational8")]
     pub const KeyboardInternational8: Self = Self(0x8E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardinternational9?language=objc)
+    /// The raw usage code 143 (decimal)/8F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardInternational9")]
     pub const KeyboardInternational9: Self = Self(0x8F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang1?language=objc)
+    /// The raw usage code 144 (decimal)/90 (hexadecimal).
+    ///
+    /// ## Discussion
+    ///
+    /// On Japanese language keyboards from Apple, the [`UIKeyboardHIDUsageKeyboardLANG1`](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang1) key is the Kana switch (かな) key. On Korean language keyboards, it’s the Hangul/English toggle key.
+    ///
+    ///
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG1")]
     pub const KeyboardLANG1: Self = Self(0x90);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang2?language=objc)
+    /// The raw usage code 145 (decimal)/91 (hexadecimal).
+    ///
+    /// ## Discussion
+    ///
+    /// On Japanese language keyboards from Apple, the [`UIKeyboardHIDUsageKeyboardLANG2`](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang2) key is the alphanumeric (英数) key. On Korean language keyboards, it’s the Hanja conversion key.
+    ///
+    ///
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG2")]
     pub const KeyboardLANG2: Self = Self(0x91);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang3?language=objc)
+    /// The raw usage code 146 (decimal)/92 (hexadecimal).
+    ///
+    /// ## Discussion
+    ///
+    /// The [`UIKeyboardHIDUsageKeyboardLANG3`](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang3) key is the Katakana key on Japanese language keyboards.
+    ///
+    ///
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG3")]
     pub const KeyboardLANG3: Self = Self(0x92);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang4?language=objc)
+    /// The raw usage code 147 (decimal)/93 (hexadecimal).
+    ///
+    /// ## Discussion
+    ///
+    /// The [`UIKeyboardHIDUsageKeyboardLANG4`](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang4) key is the Hiragana key on Japanese language keyboards.
+    ///
+    ///
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG4")]
     pub const KeyboardLANG4: Self = Self(0x93);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang5?language=objc)
+    /// The raw usage code 148 (decimal)/94 (hexadecimal).
+    ///
+    /// ## Discussion
+    ///
+    /// The [`UIKeyboardHIDUsageKeyboardLANG5`](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang5) key is the Zenkaku/Hankaku key on Japanese language keyboards.
+    ///
+    ///
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG5")]
     pub const KeyboardLANG5: Self = Self(0x94);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang6?language=objc)
+    /// The raw usage code 149 (decimal)/95 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG6")]
     pub const KeyboardLANG6: Self = Self(0x95);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang7?language=objc)
+    /// The raw usage code 150 (decimal)/96 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG7")]
     pub const KeyboardLANG7: Self = Self(0x96);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang8?language=objc)
+    /// The raw usage code 151 (decimal)/97 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG8")]
     pub const KeyboardLANG8: Self = Self(0x97);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardlang9?language=objc)
+    /// The raw usage code 152 (decimal)/98 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLANG9")]
     pub const KeyboardLANG9: Self = Self(0x98);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardalternateerase?language=objc)
+    /// The raw usage code 153 (decimal)/99 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardAlternateErase")]
     pub const KeyboardAlternateErase: Self = Self(0x99);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardsysreqorattention?language=objc)
+    /// The raw usage code 154 (decimal)/9A (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardSysReqOrAttention")]
     pub const KeyboardSysReqOrAttention: Self = Self(0x9A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardcancel?language=objc)
+    /// The raw usage code 155 (decimal)/9B (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardCancel")]
     pub const KeyboardCancel: Self = Self(0x9B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardclear?language=objc)
+    /// The raw usage code 156 (decimal)/9C (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardClear")]
     pub const KeyboardClear: Self = Self(0x9C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardprior?language=objc)
+    /// The raw usage code 157 (decimal)/9D (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardPrior")]
     pub const KeyboardPrior: Self = Self(0x9D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardreturn?language=objc)
+    /// The raw usage code 158 (decimal)/9E (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardReturn")]
     pub const KeyboardReturn: Self = Self(0x9E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardseparator?language=objc)
+    /// The raw usage code 159 (decimal)/9F (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardSeparator")]
     pub const KeyboardSeparator: Self = Self(0x9F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardout?language=objc)
+    /// The raw usage code 160 (decimal)/A0 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardOut")]
     pub const KeyboardOut: Self = Self(0xA0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardoper?language=objc)
+    /// The raw usage code 161 (decimal)/A1 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardOper")]
     pub const KeyboardOper: Self = Self(0xA1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardclearoragain?language=objc)
+    /// The raw usage code 162 (decimal)/A2 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardClearOrAgain")]
     pub const KeyboardClearOrAgain: Self = Self(0xA2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardcrselorprops?language=objc)
+    /// The raw usage code 163 (decimal)/A3 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardCrSelOrProps")]
     pub const KeyboardCrSelOrProps: Self = Self(0xA3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardexsel?language=objc)
+    /// The raw usage code 164 (decimal)/A4 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardExSel")]
     pub const KeyboardExSel: Self = Self(0xA4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardleftcontrol?language=objc)
+    /// The raw usage code 224 (decimal)/E0 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLeftControl")]
     pub const KeyboardLeftControl: Self = Self(0xE0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardleftshift?language=objc)
+    /// The raw usage code 225 (decimal)/E1 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLeftShift")]
     pub const KeyboardLeftShift: Self = Self(0xE1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardleftalt?language=objc)
+    /// The raw usage code 226 (decimal)/E2 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLeftAlt")]
     pub const KeyboardLeftAlt: Self = Self(0xE2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardleftgui?language=objc)
+    /// The raw usage code 227 (decimal)/E3 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardLeftGUI")]
     pub const KeyboardLeftGUI: Self = Self(0xE3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardrightcontrol?language=objc)
+    /// The raw usage code 228 (decimal)/E4 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardRightControl")]
     pub const KeyboardRightControl: Self = Self(0xE4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardrightshift?language=objc)
+    /// The raw usage code 229 (decimal)/E5 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardRightShift")]
     pub const KeyboardRightShift: Self = Self(0xE5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardrightalt?language=objc)
+    /// The raw usage code 230 (decimal)/E6 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardRightAlt")]
     pub const KeyboardRightAlt: Self = Self(0xE6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardrightgui?language=objc)
+    /// The raw usage code 231 (decimal)/E7 (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboardRightGUI")]
     pub const KeyboardRightGUI: Self = Self(0xE7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboard_reserved?language=objc)
+    /// The raw usage code 65535 (decimal)/FFFF (hexadecimal).
     #[doc(alias = "UIKeyboardHIDUsageKeyboard_Reserved")]
     pub const Keyboard_Reserved: Self = Self(0xFFFF);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardhangul?language=objc)
+    /// An alias for the LANG1 key on Korean language keyboards.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardHangul")]
     pub const KeyboardHangul: Self = Self(UIKeyboardHIDUsage::KeyboardLANG1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardhanja?language=objc)
+    /// An alias for the LANG2 key on Korean language keyboards.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardHanja")]
     pub const KeyboardHanja: Self = Self(UIKeyboardHIDUsage::KeyboardLANG2.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardkanaswitch?language=objc)
+    /// An alias for the LANG1 key on Japanese language keyboards from Apple.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardKanaSwitch")]
     pub const KeyboardKanaSwitch: Self = Self(UIKeyboardHIDUsage::KeyboardLANG1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardalphanumericswitch?language=objc)
+    /// An alias for the LANG2 key on Japanese language keyboards from Apple.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardAlphanumericSwitch")]
     pub const KeyboardAlphanumericSwitch: Self = Self(UIKeyboardHIDUsage::KeyboardLANG2.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardkatakana?language=objc)
+    /// An alias for the LANG3 key on Japanese language keyboards.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardKatakana")]
     pub const KeyboardKatakana: Self = Self(UIKeyboardHIDUsage::KeyboardLANG3.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardhiragana?language=objc)
+    /// An alias for the LANG4 key on Japanese language keyboards.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardHiragana")]
     pub const KeyboardHiragana: Self = Self(UIKeyboardHIDUsage::KeyboardLANG4.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardhidusage/keyboardzenkakuhankakukanji?language=objc)
+    /// An alias for the LANG5 key on Japanese language keyboards.
     #[doc(alias = "UIKeyboardHIDUsageKeyboardZenkakuHankakuKanji")]
     pub const KeyboardZenkakuHankakuKanji: Self = Self(UIKeyboardHIDUsage::KeyboardLANG5.0);
 }

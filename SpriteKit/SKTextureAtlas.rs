@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktextureatlas?language=objc)
+    /// A collection of textures optimized for storage and drawing performance.
+    ///
+    /// ## Overview
+    ///
+    /// An `SKTextureAtlas` is a collection of textures that were either created from an `.atlas` folder in the app bundle, or created at runtime. Texture atlases improve memory usage and rendering performance by reducing draw calls. Whenever you have textures that are always used together, store them in an atlas for best results.
+    ///
+    /// SpriteKit implicitly loads an atlas when one of the atlas’s textures is accessed. Use [`textureNamed:`](https://developer.apple.com/documentation/spritekit/sktextureatlas/texturenamed(_:)) when you want to explicitly access a texture atlas’s contents.
+    ///
+    /// The preferred place to create a texture atlas is within an asset catalog (see [Creating a Sprite Atlas](https://developer.apple.com/documentation/spritekit/about-texture-atlases#creating-a-sprite-atlas)), but you can also put your source textures in an `.atlas` folder in the app bundle.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTextureAtlas;

@@ -7,12 +7,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiappearancecontainer?language=objc)
+    /// A protocol that a class must adopt to allow appearance customization using the [`UIAppearance`](https://developer.apple.com/documentation/uikit/uiappearance) API.
+    ///
+    /// ## Overview
+    ///
+    /// To participate in the appearance proxy API, tag appearance property accessor methods in your header with [`UI_APPEARANCE_SELECTOR`](https://developer.apple.com/documentation/uikit/ui_appearance_selector).
+    ///
+    /// Appearance property accessor methods must be of the form:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func propertyForAxis1(axis1: IntegerType, axis2: IntegerType, axisN: IntegerType) -> PropertyType", "func setProperty(property: PropertyType, forAxis1 axis1: IntegerType, axis2: IntegerType)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (PropertyType)propertyForAxis1:(IntegerType)axis1 axis2:(IntegerType)axis2 … axisN:(IntegerType)axisN;", "- (void)setProperty:(PropertyType)property forAxis1:(IntegerType)axis1 axis2:(IntegerType)axis2 … axisN:(IntegerType)axisN;"], metadata: None }] }] })
+    /// You may have no axes or as many as you like for any property.
+    ///
+    /// The property type may be any standard iOS type: `id`, [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger), [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger), [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct), [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint), [`CGSize`](https://developer.apple.com/documentation/corefoundation/cgsize), [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect), [`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets) or [`UIOffset`](https://developer.apple.com/documentation/uikit/uioffset). Axis parameter values must be either [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger) or [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger). UIKit throws an exception if other types are used in the axes.
+    ///
+    /// For example, [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem) defines these methods:
+    ///
+    /// - [`setTitlePositionAdjustment:forBarMetrics:`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/settitlepositionadjustment(_:for:))
+    ///
+    /// - [`backButtonBackgroundImageForState:barMetrics:`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/backbuttonbackgroundimage(for:barmetrics:))
+    ///
+    /// - [`setBackButtonBackgroundImage:forState:barMetrics:`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/setbackbuttonbackgroundimage(_:for:barmetrics:))
+    ///
+    ///
     pub unsafe trait UIAppearanceContainer: NSObjectProtocol + MainThreadOnly {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiappearance?language=objc)
+    /// A collection of methods that gives you access to the appearance proxy for a class.
+    ///
+    /// ## Overview
+    ///
+    /// You can customize the appearance of instances of a class by sending appearance-modification messages to the class’s appearance proxy.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  iOS applies appearance changes when a view enters a window, but it doesn’t change the appearance of a view that’s already in a window. To change the appearance of a view that’s currently in a window, remove the view from the view hierarchy and then put it back.
+    ///
+    ///
+    ///
+    /// </div>
+    /// There are two ways to customize appearance for objects: for all instances, and for instances contained within an instance of a container class.
+    ///
+    /// To customize the appearance of all instances of a class, use [`appearance`](https://developer.apple.com/documentation/uikit/uiappearance/appearance()) to get the appearance proxy for the class. For example, to modify the bar background tint color for all instances of [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar):
+    ///
+    /// ```swift
+    /// UINavigationBar.appearance().barTintColor = navBarTintColor
+    /// ```
+    ///
+    /// To customize the appearances for instances of a class when contained within an instance of a container class, or instances in a hierarchy, use [`appearanceWhenContainedIn:`](https://developer.apple.com/documentation/uikit/uiappearance/appearancewhencontainedin:) to get the appearance proxy for the class. For example, to modify the appearance of bar buttons, based on the object that contains the navigation bar:
+    ///
+    /// ```swift
+    /// let navigationBarAppearance =
+    /// UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+    /// navigationBarAppearance.setBackgroundImage(navBarBackgroundImage, for: .any, barMetrics: .default)
+    ///
+    /// let barButtonNavigationBarAppearance =
+    /// UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+    /// barButtonNavigationBarAppearance.setBackgroundImage(barButtonNavBarImage, for: .normal, barMetrics: .default)
+    ///
+    /// let barButtonToolbarAppearance =
+    /// UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self])
+    /// barButtonToolbarAppearance.setBackgroundImage(barButtonToolbarImage, for: .normal, barMetrics: .default)
+    /// ```
+    ///
+    /// In any given view hierarchy, the outermost appearance proxy wins. Specificity (depth of the chain) is the tie-breaker. In other words, the containment statement in [`appearanceWhenContainedIn:`](https://developer.apple.com/documentation/uikit/uiappearance/appearancewhencontainedin:) is treated as a partial ordering. Given a concrete ordering (actual subview hierarchy), UIKit selects the partial ordering that’s the first unique match when reading the actual hierarchy from the window down.
+    ///
+    /// You can further refine which instances of a class will have their appearance customized by specifying a trait collection. Use the [`appearanceForTraitCollection:`](https://developer.apple.com/documentation/uikit/uiappearance/appearance(for:)) and [`appearanceForTraitCollection:whenContainedIn:`](https://developer.apple.com/documentation/uikit/uiappearance/appearancefortraitcollection:whencontainedin:) methods to retrieve the proxy for a class with the specified trait collection.
+    ///
+    /// To support appearance customization, a class must conform to the [`UIAppearanceContainer`](https://developer.apple.com/documentation/uikit/uiappearancecontainer) protocol and relevant accessor methods must be marked with [`UI_APPEARANCE_SELECTOR`](https://developer.apple.com/documentation/uikit/ui_appearance_selector).
+    ///
+    ///
     pub unsafe trait UIAppearance: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]

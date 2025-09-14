@@ -6,19 +6,93 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturei386?language=objc)
+/// The 32-bit Intel architecture.
 pub const NSBundleExecutableArchitectureI386: c_uint = 0x00000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc?language=objc)
+/// The 32-bit PowerPC architecture.
 pub const NSBundleExecutableArchitecturePPC: c_uint = 0x00000012;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturex86_64?language=objc)
+/// The 64-bit Intel architecture.
 pub const NSBundleExecutableArchitectureX86_64: c_uint = 0x01000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitectureppc64?language=objc)
+/// The 64-bit PowerPC architecture.
 pub const NSBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleexecutablearchitecturearm64?language=objc)
+/// The 64-bit ARM architecture.
 pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bundle?language=objc)
+    /// A representation of the code and resources stored in a bundle directory on disk.
+    ///
+    /// ## Overview
+    ///
+    /// Apple uses bundles to represent apps, frameworks, plug-ins, and many other specific types of content. Bundles organize their contained resources into well-defined subdirectories, and bundle structures vary depending on the platform and the type of the bundle. By using a bundle object, you can access a bundle’s resources without knowing the structure of the bundle. The bundle object provides a single interface for locating items, taking into account the bundle structure, user preferences, available localizations, and other relevant factors.
+    ///
+    /// Any executable can use a bundle object to locate resources, either inside an app’s bundle or in a known bundle located elsewhere. You don’t use a bundle object to locate files in a container directory or in other parts of the file system.
+    ///
+    /// The general pattern for using a bundle object is as follows:
+    ///
+    /// 1. Create a bundle object for the intended bundle directory.
+    ///
+    /// 2. Use the methods of the bundle object to locate or load the needed resource.
+    ///
+    /// 3. Use other system APIs to interact with the resource.
+    ///
+    /// Some types of frequently used resources can be located and opened without a bundle. For example, when loading images, you store images in asset catalogs and load them using the [`imageNamed:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:)) methods of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) or [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage). Similarly, for string resources, you use [`NSLocalizedString`](https://developer.apple.com/documentation/foundation/nslocalizedstring) to load individual strings instead of loading the entire `.strings` file yourself.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Unlike some other Foundation classes with corresponding Core Foundation names (such as [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring)), [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) objects cannot be cast to [`CFBundleRef`](https://developer.apple.com/documentation/corefoundation/cfbundle) references. If you need functionality provided by [`CFBundleRef`](https://developer.apple.com/documentation/corefoundation/cfbundle), you can still create a [`CFBundleRef`](https://developer.apple.com/documentation/corefoundation/cfbundle) and use the [`CFBundleRef`](https://developer.apple.com/documentation/corefoundation/cfbundle) API. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Finding and Opening a Bundle
+    ///
+    /// Before you can locate a resource, you must first specify which bundle contains it. The [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) class has many constructors, but the one you use most often is [`mainBundle`](https://developer.apple.com/documentation/foundation/bundle/main). The main bundle represents the bundle directory that contains the currently executing code. So for an app, the main bundle object gives you access to the resources that shipped with your app.
+    ///
+    /// If your app interacts directly with plug-ins, frameworks, or other bundled content, you can use other methods of this class to create appropriate bundle objects. You can always create bundle objects from a known URL or path, but other methods make it easier to access bundles your app is already using. For example, if you link to a framework, you can use the [`bundleForClass:`](https://developer.apple.com/documentation/foundation/bundle/init(for:)) method to locate the framework bundle based on a class defined in that framework.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Get the app's main bundle", "let mainBundle = Bundle.main", "", "// Get the bundle containing the specified private class.", "let myBundle = Bundle(for: NSClassFromString(\"MyPrivateClass\")!)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Get the app's main bundle", "NSBundle *main = [NSBundle mainBundle];", "", "// Get the bundle containing the specified private class.", "NSBundle *myBundle = [NSBundle bundleForClass:[MyPrivateClass class]];"], metadata: None }] }] })
+    /// In Swift, use the [`bundle()`](https://developer.apple.com/documentation/foundation/bundle()) macro to insert a bundle instance appropriate to the current execution context, whether an app, app extension, framework, or Swift package.
+    ///
+    /// ### Locating Resources in a Bundle
+    ///
+    /// You use [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) objects to obtain the location of specific resources inside the bundle. When looking for resources, you provide the name of the resource and its type at a minimum. For resources in a specific subdirectory, you can also specify that directory. After locating the resource, the bundle routines return a path string or URL that you can use to open the file.
+    ///
+    /// Locating a single resource in a bundle
+    ///
+    /// ```objc
+    /// NSBundle *main = [NSBundle mainBundle];
+    /// NSString *resourcePath = [main pathForResource:@"Seagull" ofType:@"jpg"];
+    /// ```
+    ///
+    /// Bundle objects follow a specific search pattern when looking for resources on disk. Global resources—that is, resources not in a language-specific `.lproj` directory—are returned first, followed by region- and language-specific resources. This search pattern means that the bundle looks for resources in the following order:
+    ///
+    /// 1. Global (nonlocalized) resources
+    ///
+    /// 2. Region-specific localized resources (based on the user’s region preferences)
+    ///
+    /// 3. Language-specific localized resources (based on the user’s language preferences)
+    ///
+    /// 4. Development language resources (as specified by the [CFBundleDevelopmentRegion](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-130430) key in the bundle’s Info.plist file)
+    ///
+    /// Because global resources take precedence over language-specific resources, you should never include both a global and localized version of a given resource in your app. When a global version of a resource exists, language-specific versions are never returned. The reason for this precedence is performance. If localized resources were searched first, the bundle object might waste time searching for a nonexistent localized resource before returning the global resource.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Bundle objects always consider case when searching for resource files, even on file systems that support case-insensitive filenames. Always make sure that you specify filenames with case sensitivity in mind.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When locating resource files, the bundle object automatically considers many standard filename modifiers when determining which file to return. Resources may be tagged for a specific device (`~iphone`, `~ipad`) or for a specific screen resolution (`@2x`, `@3x`). Do not include these modifiers when specifying the name of the resource you want. The bundle object selects the file that is most appropriate for the underlying device. For more information, see [App Icons on iPhone, iPad and Apple Watch](https://developer.apple.com/library/archive/qa/qa1686/_index.html#//apple_ref/doc/uid/DTS40009882).
+    ///
+    /// ### Understanding Bundle Structures
+    ///
+    /// Bundle structures vary depending on the target platform and the type of bundle you are building. The [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) class hides this underlying structure in most (but not all) cases. Many of the methods you use to load resources from a bundle automatically locate the appropriate starting directory and look for resources in known places. You can also use the methods and properties of this class to get the location of known bundle directories and to retrieve resources specifically from those directories.
+    ///
+    /// For information about the bundle structure of iOS and macOS apps, see [Bundle Programming Guide](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i). For information about the structure of framework bundles, see [Framework Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html#//apple_ref/doc/uid/10000183i). For information about the structure of macOS plug-ins, see [Code Loading Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingCode/LoadingCode.html#//apple_ref/doc/uid/10000052i).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundle;
@@ -454,19 +528,57 @@ impl NSString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bundle/didloadnotification?language=objc)
+    /// A notification that lets observers know when classes are dynamically loaded.
+    ///
+    /// ## Discussion
+    ///
+    /// When a request is made to a bundle for a class ([`classNamed:`](https://developer.apple.com/documentation/foundation/bundle/classnamed(_:)) or [`principalClass`](https://developer.apple.com/documentation/foundation/bundle/principalclass)), the bundle dynamically loads the executable code file that contains the class implementation and all other class definitions contained in the file. After the module is loaded, the bundle posts the [`NSBundleDidLoadNotification`](https://developer.apple.com/documentation/foundation/bundle/didloadnotification).
+    ///
+    /// The notification object is the [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) instance that dynamically loads classes. The `userInfo` dictionary contains an [`NSLoadedClasses`](https://developer.apple.com/documentation/foundation/nsloadedclasses) key.
+    ///
+    /// In a typical use of this notification, an object might want to enumerate the `userInfo` array to check if each loaded class conformed to a certain protocol (say, an protocol for a plug-and-play tool set); if a class does conform, the object would create an instance of that class and add the instance to another [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleDidLoadNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsloadedclasses?language=objc)
+    /// A constant used as a key for the `userInfo` dictionary of a [`NSBundleDidLoadNotification`](https://developer.apple.com/documentation/foundation/bundle/didloadnotification) notification that corresponds to an array of names of each class that was loaded.
     #[cfg(feature = "NSString")]
     pub static NSLoadedClasses: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest?language=objc)
+    /// A resource manager you use to download content hosted on the App Store at the time your app needs it.
+    ///
+    /// ## Overview
+    ///
+    /// You identify on-demand resources during development by creating string identifiers known as tags and assigning one or more tags to each resource. An [`NSBundleResourceRequest`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest) object manages the resources marked by one or more tags.
+    ///
+    /// You use the resource request to inform the system when the managed tags are needed and when you have finished accessing them. The resource request manages the downloading of any resources marked with the managed tags that are not already on the device and informs your app when the resources are ready for use.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This class ignores calls from Mac apps built with Mac Catalyst.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system will not attempt to purge the resources marked with a tag from on-device storage as long as at least one [`NSBundleResourceRequest`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest) object is managing the tag. Apps can access resources after the completion handler of either [`beginAccessingResourcesWithCompletionHandler:`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/beginaccessingresources(completionhandler:)) or [`conditionallyBeginAccessingResourcesWithCompletionHandler:`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/conditionallybeginaccessingresources(completionhandler:)) is called successfully. Management ends after a call to [`endAccessingResources`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/endaccessingresources()) or after the resource request object is deallocated.
+    ///
+    /// Other properties and methods let you track the progress of a download, change the priority of a download, and check whether the resources marked by a set of tags are already on the device. Methods in [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) indicate to the system the relative importance of preserving a tag in memory after it is no longer in use. For more information, see [`setPreservationPriority:forTags:`](https://developer.apple.com/documentation/foundation/bundle/setpreservationpriority(_:fortags:)) and [`preservationPriorityForTag:`](https://developer.apple.com/documentation/foundation/bundle/preservationpriority(fortag:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An [`NSBundleResourceRequest`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest) object can only be used for one successful resource request.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundleResourceRequest;
@@ -577,12 +689,31 @@ impl NSBundle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsbundleresourcerequestlowdiskspace?language=objc)
+    /// Posted after the system detects that the amount of available disk space is getting low. The notification is posted to the default notification center.
+    ///
+    /// ## Discussion
+    ///
+    /// After receiving this notification, the app should release any on-demand resources that are not required. Call [`endAccessingResources`](https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/endaccessingresources()) to release the managed resources. If the app is in the background and the app does not free up enough space, it may be terminated.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This notification is generated independently of any other iOS notifications for low disk space.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestloadingpriorityurgent?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A special value for loading priority informing the system that the user cannot continue until the resources marked with the tags managed by the request are downloaded. The system will dedicate the maximum amount of capacity to completing the resource request.
+    ///
+    ///
     pub static NSBundleResourceRequestLoadingPriorityUrgent: c_double;
 }

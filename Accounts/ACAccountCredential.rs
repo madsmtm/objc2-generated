@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountcredential?language=objc)
+    /// A credential object that encapsulates the information needed to authenticate a user.
+    ///
+    /// ## Overview
+    ///
+    /// To create an account credential that uses the OAuth open authentication standard, use the [`initWithOAuthToken:tokenSecret:`](https://developer.apple.com/documentation/accounts/acaccountcredential/init(oauthtoken:tokensecret:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]

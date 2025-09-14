@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype?language=objc)
+/// The types of changes to managed objects reflected in persistent history.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentHistoryChangeType(pub NSInteger);
 impl NSPersistentHistoryChangeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype/insert?language=objc)
+    /// The insertion of a managed object into the persistent store.
     #[doc(alias = "NSPersistentHistoryChangeTypeInsert")]
     pub const Insert: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype/update?language=objc)
+    /// An update to a managed object’s properties in the persistent store.
     #[doc(alias = "NSPersistentHistoryChangeTypeUpdate")]
     pub const Update: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangetype/delete?language=objc)
+    /// The deletion of a managed object from the persistent store.
     #[doc(alias = "NSPersistentHistoryChangeTypeDelete")]
     pub const Delete: Self = Self(2);
 }
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSPersistentHistoryChangeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychange?language=objc)
+    /// A change representing the insertion, update, or deletion of a managed object in the persistent store.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentHistoryChange;

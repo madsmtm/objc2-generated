@@ -10,12 +10,50 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalignmentfeedbacktoken?language=objc)
     pub unsafe trait NSAlignmentFeedbackToken: NSObjectProtocol {}
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter?language=objc)
+    /// An object that can filter the movement of an object and provides haptic feedback when alignment occurs.
+    ///
+    /// ## Overview
+    ///
+    /// With a Force Touch trackpad, apps can produce tactile feedback to complement user actions. If your app implements alignment features, you can use the [`NSAlignmentFeedbackFilter`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter) class to filter object movements and provide haptic feedback to the user at appropriate times. As the user drags objects into alignment with a guide or another object, the user actually feels a physical bump as the object snaps into place.
+    ///
+    /// ### Implementing Alignment Feedback
+    ///
+    /// To implement alignment feedback in your custom alignment controller class, set up the class to receive events for tracking the movement of an object. These can be events matching the [`inputEventMask`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/inputeventmask) value of an `NSAlignmentFeedbackFilter` object, or events from a gesture recognizer ([`NSGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer)). For each event received:
+    ///
+    /// 1. Create an instance of an `NSAlignmentFeedbackFilter` object. For example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let self.feedbackFilter = NSAlignmentFeedbackFilter()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["self.feedbackFilter = [NSAlignmentFeedbackFilter new];"], metadata: None }] }] })
+    /// 2. Inform the alignment feedback filter object about the event. To do this, call one of the following methods:
+    ///
+    /// - [`updateWithEvent:`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/update(with:))
+    ///
+    /// - [`updateWithPanRecognizer:`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/update(withpanrecognizer:))
+    ///
+    /// 3. Store the location of the object before it moves in response to the event. This is considered the _previous_ location of the object.
+    ///
+    /// 4. Move the object to its new location in response to the event. This is the location where the object will reside if no alignment occurs.
+    ///
+    /// 5. Store the new location of the object. This is considered the _default_ location of the object.
+    ///
+    /// 6. Determine where the object will move to be aligned. This is considered the _aligned_ location of the object.
+    ///
+    /// 7. Request a feedback token based on the previous location, default location, and aligned location. To do this, call one of the following methods:
+    ///
+    /// - [`alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/alignmentfeedbacktokenformovement(in:previouspoint:alignedpoint:defaultpoint:)) - If the object will be moved both horizontally and vertically to become aligned.
+    ///
+    /// - [`alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/alignmentfeedbacktokenforhorizontalmovement(in:previousx:alignedx:defaultx:)) - If the object will be moved horizontally only to become aligned.
+    ///
+    /// - [`alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/alignmentfeedbacktokenforverticalmovement(in:previousy:alignedy:defaulty:)) - If the object will be moved vertically only to become aligned.
+    ///
+    /// 8. If a feedback token is successfully prepared, call [`performFeedback:performanceTime:`](https://developer.apple.com/documentation/appkit/nsalignmentfeedbackfilter/performfeedback(_:performancetime:)) to perform the haptic feedback. Then, move the object to the aligned location.
+    ///
+    /// If a value of `null` is returned, rather than a feedback token, then the system has determined that alignment and feedback are not appropriate. Perhaps the cursor is moving too fast or the distance to the aligned location is not significant enough to produce a visual snap. Move the object to its default location.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAlignmentFeedbackFilter;

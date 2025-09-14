@@ -7,47 +7,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement?language=objc)
+/// A tab’s placement when displayed in contexts that allow different placement.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabPlacement(pub NSInteger);
 impl UITabPlacement {
+    /// The system adds only top-level items to the tab bar, but people can add, remove, or move this item.
     /// Resolves to `.default` for root-level tabs, and `.optional` for all others.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/automatic?language=objc)
     #[doc(alias = "UITabPlacementAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The item appears in the tab bar, but people can move or remove it.
     /// The tab can be added or removed from the tab bar, and appears by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/default?language=objc)
     #[doc(alias = "UITabPlacementDefault")]
     pub const Default: Self = Self(1);
+    /// The item doesn’t appear in the tab bar, but people can add it and move it.
     /// The tab can be added or removed from the tab bar, but does NOT appear by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/optional?language=objc)
     #[doc(alias = "UITabPlacementOptional")]
     pub const Optional: Self = Self(2);
+    /// The item appears in the tab bar, people can move it but can’t remove it.
     /// The tab cannot be removed from the tab bar, but can be moved within.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/movable?language=objc)
     #[doc(alias = "UITabPlacementMovable")]
     pub const Movable: Self = Self(3);
+    /// The item appears as a pinned tab, on the trailing edge of the tab bar.
     /// The tab is always available and visible in the tab bar.
     /// Pinned items are placed at the trailing side of the bar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/pinned?language=objc)
     #[doc(alias = "UITabPlacementPinned")]
     pub const Pinned: Self = Self(4);
+    /// The item appears in the tab bar’s leading edge, and people can’t move or remove it.
     /// The tab cannot be moved or removed from the tab bar, and is displayed before
     /// all customizable tabs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/fixed?language=objc)
     #[doc(alias = "UITabPlacementFixed")]
     pub const Fixed: Self = Self(5);
+    /// The item only appears in the sidebar.
     /// The tab cannot be added to the tab bar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab/placement/sidebaronly?language=objc)
     #[doc(alias = "UITabPlacementSidebarOnly")]
     pub const SidebarOnly: Self = Self(6);
 }
@@ -61,7 +54,15 @@ unsafe impl RefEncode for UITabPlacement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitab?language=objc)
+    /// An object that manages a tab in a tab bar.
+    ///
+    /// ## Overview
+    ///
+    /// To create a tab, call [`initWithTitle:image:identifier:viewControllerProvider:`](https://developer.apple.com/documentation/uikit/uitab/init(title:image:identifier:viewcontrollerprovider:)). In the closure, return the view controller your app presents when someone selects the tab. Then pass an array of tabs to your [`UITabBarController`](https://developer.apple.com/documentation/uikit/uitabbarcontroller) object’s tabs property.
+    ///
+    /// For more information, see [Elevating your iPad app with a tab bar and sidebar](https://developer.apple.com/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

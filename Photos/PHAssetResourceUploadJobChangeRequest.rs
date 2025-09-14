@@ -8,13 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Used within an application's `com.apple.photos.background-upload` extension to create and manage `PHAssetResourceUploadJob` records
+    /// Used within an application’s `com.apple.photos.background-upload` extension to create and manage `PHAssetResourceUploadJob` records
+    ///
+    /// ## Overview
     ///
     /// When the extensions principal class receives a call to `process` background uploads, it can create new `PHAssetResourceUploadJob`s through calls to perform changes on a PHPhotoLibrary using `PHAssetResourceUploadJobChangeRequest` and any in-flight upload jobs can be handled by updating their state to mark them as acknowledged, or to be retried. The maximum number of jobs that can be in flight is limited to the `PHAssetResourceUploadJob.jobLimit`.
     ///
     /// `PHAssetResourceUploadJobChangeRequest` can only be created or used within a photo library change block. For details on change blocks, see `PHPhotoLibrary`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobchangerequest?language=objc)
+    ///
+    /// Used within an application's `com.apple.photos.background-upload` extension to create and manage `PHAssetResourceUploadJob` records
+    ///
+    /// When the extensions principal class receives a call to `process` background uploads, it can create new `PHAssetResourceUploadJob`s through calls to perform changes on a PHPhotoLibrary using `PHAssetResourceUploadJobChangeRequest` and any in-flight upload jobs can be handled by updating their state to mark them as acknowledged, or to be retried. The maximum number of jobs that can be in flight is limited to the `PHAssetResourceUploadJob.jobLimit`.
+    ///
+    /// `PHAssetResourceUploadJobChangeRequest` can only be created or used within a photo library change block. For details on change blocks, see `PHPhotoLibrary`.
     #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]

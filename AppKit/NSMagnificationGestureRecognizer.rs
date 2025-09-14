@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmagnificationgesturerecognizer?language=objc)
+    /// A continuous gesture recognizer that tracks a pinch gesture that magnifies content.
+    ///
+    /// ## Overview
+    ///
+    /// This object tracks pinch gestures on a track pad or other input device and stores the resulting magnification value for you to use in your code.
+    ///
+    /// This gesture recognizer automatically sets the value of the [`delaysMagnificationEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysmagnificationevents) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[unsafe(super(NSGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSGestureRecognizer")]

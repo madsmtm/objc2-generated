@@ -6,13 +6,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallrecordtocallbackunsupportedreason?language=objc)
+/// A reason why your app can’t use a record to call a person back.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartCallCallRecordToCallBackUnsupportedReason(pub NSInteger);
 impl INStartCallCallRecordToCallBackUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallrecordtocallbackunsupportedreason/nomatchingcall?language=objc)
+    /// A reason indicating that no call record matches the intent’s parameter.
     #[doc(alias = "INStartCallCallRecordToCallBackUnsupportedReasonNoMatchingCall")]
     pub const NoMatchingCall: Self = Self(1);
 }
@@ -26,7 +26,15 @@ unsafe impl RefEncode for INStartCallCallRecordToCallBackUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallrecordtocallbackresolutionresult?language=objc)
+    /// A resolution result for the redial capabilities of a missed call.
+    ///
+    /// ## Overview
+    ///
+    /// You return an `INStartCallCallRecordToCallBackResolutionResult` object when resolving parameters containing an [`INCallRecord`](https://developer.apple.com/documentation/intents/incallrecord) value. Use the creation method that best reflects your ability to resolve the parameter successfully. The resolved value can be different from the original [`INCallRecord`](https://developer.apple.com/documentation/intents/incallrecord). This flexibility allows app extensions to apply business logic constraints.
+    ///
+    /// Use [`notRequired`](https://developer.apple.com/documentation/intents/inintentresolutionresult/notrequired()) to continue with a `nil` value. For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INCallRecordResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

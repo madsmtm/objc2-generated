@@ -7,16 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetRestaurantGuestIntentResponseCode(pub NSInteger);
 impl INGetRestaurantGuestIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you are able to return the guest information successfully. After creating the response object, configure values for the [`guest`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse/guest) and [`guestDisplayPreferences`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse/guestdisplaypreferences) properties before returning your response.
+    ///
+    ///
     #[doc(alias = "INGetRestaurantGuestIntentResponseCodeSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponsecode/failure?language=objc)
+    /// You were unable to return information about the guest.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if you encounter any errors when trying to return the guest information.
+    ///
+    ///
     #[doc(alias = "INGetRestaurantGuestIntentResponseCodeFailure")]
     pub const Failure: Self = Self(1);
 }
@@ -30,7 +42,15 @@ unsafe impl RefEncode for INGetRestaurantGuestIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse?language=objc)
+    /// Your app’s response to a get restaurant guest intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetRestaurantGuestIntentResponse`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse) object contains the information about the current user along with preferences about whether to associate that user with any new reservations. You create this response when handling or confirming an [`INGetUserCurrentRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent) object. Your response should contain information about the current user and information about how to display that user’s information in the interface used to make reservations.
+    ///
+    /// You create an [`INGetRestaurantGuestIntentResponse`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse) object in the [`confirmGetRestaurantGuest:completion:`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintenthandling/confirm(getrestaurantguest:completion:)) and [`handleGetRestaurantGuest:completion:`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintenthandling/handle(getrestaurantguest:completion:)) methods of handler object. For more information about implementing your handler object, see [`INGetRestaurantGuestIntentHandling`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

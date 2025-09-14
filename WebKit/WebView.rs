@@ -11,91 +11,135 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementdomnodekey?language=objc)
+    /// The DOMNode for this element.
     #[deprecated]
     pub static WebElementDOMNodeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementframekey?language=objc)
+    /// The WebFrame object associated with this element.
     #[deprecated]
     pub static WebElementFrameKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagealtstringkey?language=objc)
+    /// An NSString of the ALT attribute of an image element.
     #[deprecated]
     pub static WebElementImageAltStringKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagekey?language=objc)
+    /// An NSImage representing an image element.
     #[deprecated]
     pub static WebElementImageKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimagerectkey?language=objc)
+    /// An NSValue containing an NSRect, the size of an image element.
     #[deprecated]
     pub static WebElementImageRectKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementimageurlkey?language=objc)
+    /// An NSURL containing the location of an image element.
     #[deprecated]
     pub static WebElementImageURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementisselectedkey?language=objc)
+    /// An NSNumber used as a BOOL value to indicate whether a text element is selected or not. Zero value indicates false, true otherwise.
     #[deprecated]
     pub static WebElementIsSelectedKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinkurlkey?language=objc)
+    /// An NSURL containing the location of a link if the element is within an anchor.
     #[deprecated]
     pub static WebElementLinkURLKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinktargetframekey?language=objc)
+    /// The WebFrame object associated with the target of the anchor.
     #[deprecated]
     pub static WebElementLinkTargetFrameKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinktitlekey?language=objc)
+    /// An NSString containing the title of an anchor.
     #[deprecated]
     pub static WebElementLinkTitleKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webelementlinklabelkey?language=objc)
+    /// An NSString containing the text within an anchor.
     #[deprecated]
     pub static WebElementLinkLabelKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressstartednotification?language=objc)
+    /// Posted by a WebView object when a load begins, including a load that is initiated in a subframe.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView that began loading. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewProgressStartedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressestimatechangednotification?language=objc)
+    /// Posted by a WebView object when the estimated progress value of a load changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification may be posted zero or more times after a [`WebViewProgressStartedNotification`](https://developer.apple.com/documentation/webkit/webviewprogressstartednotification) notification is posted. The notification object is the WebView for which the progress value has changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewProgressEstimateChangedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewprogressfinishednotification?language=objc)
+    /// Posted by a WebView object when the load has finished.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView that finished loading. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewProgressFinishedNotification: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webview-swift.class?language=objc)
+    /// `WebView` is the core view class in the WebKit framework that manages interactions between the `WebFrame` and `WebFrameView` classes. To embed web content in your application, you just create a `WebView` object, attach it to a window, and send a [`loadRequest:`](https://developer.apple.com/documentation/webkit/webframe/load(_:)-47p2s) message to its main frame.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In apps that run in OS X 10.10 and later, use the [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview) class instead of using [`WebView`](https://developer.apple.com/documentation/webkit/webview-swift.class).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Behind the scenes, `WebFrame` objects encapsulate the content contained in a single frame element. A hierarchy of `WebFrame` objects is used to model an entire webpage where the root is called the **main frame**. There is a `WebFrameView` object per `WebFrame` object used to display the frame content. Therefore, there is a parallel hierarchy of `WebFrameView` objects used to render an entire page. The `WebView` object is also the parent view of this hierarchy. You do not need to create `WebFrame` and `WebFrameView` objects directly. These objects are automatically created when the page loads, either programmatically or by the user clicking a link.
+    ///
+    /// You customize your embedded web content by implementing `WebView` delegates to handle certain aspects of the process. `WebView` objects have multiple delegates because the process of loading a webpage is asynchronous and complicated if errors occur. All the `WebView` delegates use informal protocols so you only need to implement only the delegates and methods that define the behavior you wish to change—default implementations are already provided.
+    ///
+    /// For example, you might want to implement the frame load and resource load delegates to monitor the load progress and display status messages. Applications that use multiple windows may want to implement a user interface delegate. See the individual informal delegate protocols for more details: `WebFrameLoadDelegate`, `WebPolicyDelegate`, [`WebResourceLoadDelegate`](https://developer.apple.com/documentation/webkit/webresourceloaddelegate), and [`WebUIDelegate`](https://developer.apple.com/documentation/webkit/webuidelegate).
+    ///
+    /// Another way to monitor load progress with less control is to observe the [`WebViewProgressEstimateChangedNotification`](https://developer.apple.com/documentation/webkit/webviewprogressestimatechangednotification), [`WebViewProgressFinishedNotification`](https://developer.apple.com/documentation/webkit/webviewprogressfinishednotification), and [`WebViewProgressStartedNotification`](https://developer.apple.com/documentation/webkit/webviewprogressstartednotification) notifications. For example, you could observe these notifications to implement a simple progress indicator in your application. You update the progress indicator by invoking the [`estimatedProgress`](https://developer.apple.com/documentation/webkit/webview-swift.class/estimatedprogress) method to get an estimate of the amount of content that is currently loaded.
+    ///
+    /// A `WebView` object is intended to support most features you would expect in a web browser except that it doesn’t implement the specific user interface for those features. You are responsible for implementing the user interface objects such as status bars, toolbars, buttons, and text fields. For example, a `WebView` object manages a back-forward list by default, and has [`goBack:`](https://developer.apple.com/documentation/webkit/webview-swift.class/goback(_:)) and [`goForward:`](https://developer.apple.com/documentation/webkit/webview-swift.class/goforward(_:)) action methods. It is your responsibility to create the buttons that would send theses action messages. Note, there is some overhead in maintaining a back-forward list and page cache, so you should disable it if your application doesn’t use it.
+    ///
+    /// You use a `WebPreferences` object to encapsulate the preferences of a `WebView` object, such as the font, text encoding, and image settings. You can modify the preferences for individual `WebView` objects or specify a shared `WebPreferences` object using the [`preferencesIdentifier`](https://developer.apple.com/documentation/webkit/webview-swift.class/preferencesidentifier) method. Use the [`autosaves`](https://developer.apple.com/documentation/webkit/webpreferences/autosaves)  `WebPreferences` method to specify whether the preferences should be automatically saved to the user defaults database.
+    ///
+    /// You can also extend WebKit by implementing your own document view and representation classes for specific MIME types. Use the [`registerViewClass:representationClass:forMIMEType:`](https://developer.apple.com/documentation/webkit/webview-swift.class/registerclass(_:representationclass:formimetype:)) class method to register your custom classes with a `WebView` object.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -1120,31 +1164,61 @@ extern_conformance!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidbegineditingnotification?language=objc)
+    /// Posted when a web view begins any operation that changes its contents in response to user editing.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView object that the user is editing. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewDidBeginEditingNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangenotification?language=objc)
+    /// Posted when a web view performs any operation that changes its contents in response to user editing.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView object that the user is editing. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewDidChangeNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidendeditingnotification?language=objc)
+    /// Posted when a web view ends any operation that changes its contents in response to user editing.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView that the user is editing. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewDidEndEditingNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangetypingstylenotification?language=objc)
+    /// Posted when a web view changes its typing style.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView that changed its typing style. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewDidChangeTypingStyleNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webviewdidchangeselectionnotification?language=objc)
+    /// Posted when a web view changes its typing selection.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebView that changed its typing selection. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebViewDidChangeSelectionNotification: Option<&'static NSString>;
 }

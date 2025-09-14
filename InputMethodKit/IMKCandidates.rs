@@ -9,36 +9,73 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglecolumnscrollingcandidatepanel?language=objc)
+///
+/// ## Discussion
+///
+/// A window that displays one column and can scroll if necessary.
+///
+///
 pub const kIMKSingleColumnScrollingCandidatePanel: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkscrollinggridcandidatepanel?language=objc)
+///
+/// ## Discussion
+///
+/// A window that displays a grid and can scroll if necessary.
+///
+///
 pub const kIMKScrollingGridCandidatePanel: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksinglerowsteppingcandidatepanel?language=objc)
+///
+/// ## Discussion
+///
+/// A window that displays a single row.
+///
+///
 pub const kIMKSingleRowSteppingCandidatePanel: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatepaneltype?language=objc)
+/// Types of candidates windows provide by the Input Method Kit.
 pub type IMKCandidatePanelType = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkmain?language=objc)
 pub const kIMKMain: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimkannotation?language=objc)
 pub const kIMKAnnotation: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimksublist?language=objc)
 pub const kIMKSubList: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkstyletype?language=objc)
 pub type IMKStyleType = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesabovehint?language=objc)
+///
+/// ## Discussion
+///
+/// Place the candidates window above the start of the current text selection.
+///
+///
 pub const kIMKLocateCandidatesAboveHint: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesbelowhint?language=objc)
+///
+/// ## Discussion
+///
+/// Place the candidates window below the start of the current text selection.
+///
+///
 pub const kIMKLocateCandidatesBelowHint: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidateslefthint?language=objc)
+///
+/// ## Discussion
+///
+/// Place the candidates window to the left of the current text selection.
+///
+///
 pub const kIMKLocateCandidatesLeftHint: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/kimklocatecandidatesrighthint?language=objc)
+///
+/// ## Discussion
+///
+/// Place the candidates window to the right of the current text selection.
+///
+///
 pub const kIMKLocateCandidatesRightHint: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidateslocationhint?language=objc)
+/// Hints that suggest where to place the candidates window.
+///
+/// ## Discussion
+///
+/// The Input Method Kit uses the hint to place the candidates window in a location that is in the vicinity of the hint location, but that also ensures that the candidates window is fully visible.
+///
+///
 pub type IMKCandidatesLocationHint = NSUInteger;
 
 extern "C" {
@@ -54,13 +91,17 @@ extern "C" {
     ///
     ///
     /// Value is a NSNumber with a boolean value of NO (key events are sent to the candidate window first) or YES (key events are sent to the IMKInputController first). Note that this is only applicable when a candidate window is displayed.  The default behavior is to send the key event to the candidate window first, and if it is not processed there, to send it on to the input controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatessendserverkeyeventfirst?language=objc)
     pub static IMKCandidatesSendServerKeyEventFirst: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidates?language=objc)
+    /// The `IMKCandidates` class presents candidates to users and notifies the appropriate [`IMKInputController`](https://developer.apple.com/documentation/inputmethodkit/imkinputcontroller) object when the user selects a candidate. **Candidates** are alternate characters for a given input sequence. The `IMKCandidates` class supports using a candidates window  in your input method; using `IMKCandidates` is optional. Not all input methods require them.
+    ///
+    /// ## Overview
+    ///
+    /// When you create an `IMKCandidates` object, you attach it to the `IMKServer` object for your input method.  You then need to override the `IMKInputController` methods `candidateSelectionChanged:` and `candidateSelected:` as well as implement a candidates method in your delegate object.  The `IMKInputController` subclass supplies candidates to the `IMKCandidates` object by implementing the candidates method. When you are ready to display a candidates window, call the candidates method to update candidates and to show the candidates window.
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

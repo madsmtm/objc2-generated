@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslcontext?language=objc)
+/// An opaque type that represents an SSL session context object.
+///
+/// ## Overview
+///
+/// The SSL session context object references the state associated with a session. You can’t reuse an SSL session context in multiple sessions.
+///
+///
 #[doc(alias = "SSLContextRef")]
 #[repr(C)]
 pub struct SSLContext {
@@ -26,52 +32,98 @@ cf_objc2_type!(
     unsafe impl RefEncode<"SSLContext"> for SSLContext {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectionref?language=objc)
+/// A pointer to an opaque I/O connection object.
+///
+/// ## Discussion
+///
+/// The I/O connection object refers to data that identifies a connection. The connection data is opaque to Secure Transport; you can set it to any value that your application can use in the callback functions [`SSLReadFunc`](https://developer.apple.com/documentation/security/sslreadfunc) and [`SSLWriteFunc`](https://developer.apple.com/documentation/security/sslwritefunc) to uniquely identify the connection, such as a socket or endpoint. Use the [`SSLSetConnection`](https://developer.apple.com/documentation/security/sslsetconnection(_:_:)) function to assign a value to the connection object.
+///
+///
 pub type SSLConnectionRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption?language=objc)
+/// The options that can be set for an SSL session.
+///
+/// ## Overview
+///
+/// Use these flags with calls to the [`SSLSetSessionOption`](https://developer.apple.com/documentation/security/sslsetsessionoption(_:_:_:)) function.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLSessionOption(pub c_int);
 impl SSLSessionOption {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakonserverauth?language=objc)
+    /// Enables returning from [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) (with a result of `errSSLServerAuthCompleted`) when the server authentication portion of the handshake is complete to allow your application to perform its own certificate verification.
+    ///
+    /// ## Discussion
+    ///
+    /// Note that in iOS (all versions) and macOS 10.8 and later, setting this option disables Secure Transport’s automatic verification of server certificates.
+    ///
+    /// If you set this option, your application should perform its own certificate verification when `errSSLServerAuthCompleted` is returned before continuing with the handshake.
+    ///
+    ///
     #[doc(alias = "kSSLSessionOptionBreakOnServerAuth")]
     #[deprecated]
     pub const BreakOnServerAuth: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakoncertrequested?language=objc)
+    /// Enables returning from [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) (with a result of `errSSLClientCertRequested`) when the server requests a client certificate.
     #[doc(alias = "kSSLSessionOptionBreakOnCertRequested")]
     #[deprecated]
     pub const BreakOnCertRequested: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakonclientauth?language=objc)
+    /// Enables returning from [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) (with a result of `errSSLClientAuthCompleted`) when the client authentication portion of the handshake is complete to allow your application to perform its own certificate verification.
+    ///
+    /// ## Discussion
+    ///
+    /// Note that in iOS (all versions) and macOS 10.8 and later, setting this option disables Secure Transport’s automatic verification of client certificates.
+    ///
+    /// If you set this option, your application should perform its own certificate verification when `errSSLClientAuthCompleted` is returned before continuing with the handshake.
+    ///
+    ///
     #[doc(alias = "kSSLSessionOptionBreakOnClientAuth")]
     #[deprecated]
     pub const BreakOnClientAuth: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/falsestart?language=objc)
+    /// When enabled, TLS False Start is used if an adequate cipher-suite is negotiated.
     #[doc(alias = "kSSLSessionOptionFalseStart")]
     #[deprecated]
     pub const FalseStart: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/sendonebyterecord?language=objc)
+    /// Enables `1/n-1` record splitting for BEAST attack mitigation.
+    ///
+    /// ## Discussion
+    ///
+    /// When enabled, record splitting is performed only for TLS 1.0 connections based on a block cipher.
+    ///
+    ///
     #[doc(alias = "kSSLSessionOptionSendOneByteRecord")]
     #[deprecated]
     pub const SendOneByteRecord: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/allowserveridentitychange?language=objc)
+    /// Allow server identity change on renegotiation.
+    ///
+    /// ## Discussion
+    ///
+    /// Disallow by default to avoid the Triple Handshake attack.
+    ///
+    ///
     #[doc(alias = "kSSLSessionOptionAllowServerIdentityChange")]
     #[deprecated]
     pub const AllowServerIdentityChange: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/fallback?language=objc)
+    /// Enable fallback countermeasures.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when retyring an SSL connection with a lower protocol version because of failure to connect.
+    ///
+    ///
     #[doc(alias = "kSSLSessionOptionFallback")]
     #[deprecated]
     pub const Fallback: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/breakonclienthello?language=objc)
+    /// Break from a client hello in order to check for SNI.
     #[doc(alias = "kSSLSessionOptionBreakOnClientHello")]
     #[deprecated]
     pub const BreakOnClientHello: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/allowrenegotiation?language=objc)
+    /// Allow renegotiation.
     #[doc(alias = "kSSLSessionOptionAllowRenegotiation")]
     #[deprecated]
     pub const AllowRenegotiation: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption/enablesessiontickets?language=objc)
+    /// Enable session tickets.
     #[doc(alias = "kSSLSessionOptionEnableSessionTickets")]
     #[deprecated]
     pub const EnableSessionTickets: Self = Self(9);
@@ -87,29 +139,29 @@ unsafe impl RefEncode for SSLSessionOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate?language=objc)
+/// The flags that represent the state of an SSL session.
 // NS_CLOSED_ENUM
 #[repr(i32)] // c_int
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SSLSessionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/idle?language=objc)
+    /// No I/O has been performed yet.
     #[doc(alias = "kSSLIdle")]
     #[deprecated]
     #[default]
     Idle = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/handshake?language=objc)
+    /// The SSL handshake is in progress.
     #[doc(alias = "kSSLHandshake")]
     #[deprecated]
     Handshake = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/connected?language=objc)
+    /// The SSL handshake is complete; the connection is ready for normal I/O.
     #[doc(alias = "kSSLConnected")]
     #[deprecated]
     Connected = 2,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/closed?language=objc)
+    /// The connection closed normally.
     #[doc(alias = "kSSLClosed")]
     #[deprecated]
     Closed = 3,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate/aborted?language=objc)
+    /// The connection aborted.
     #[doc(alias = "kSSLAborted")]
     #[deprecated]
     Aborted = 4,
@@ -125,25 +177,25 @@ unsafe impl RefEncode for SSLSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate?language=objc)
+/// An enumeration of the states of client certificate exchange.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLClientCertificateState(pub c_int);
 impl SSLClientCertificateState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certnone?language=objc)
+    /// Indicates that the server hasn’t asked for a certificate and that the client hasn’t sent one.
     #[doc(alias = "kSSLClientCertNone")]
     #[deprecated]
     pub const CertNone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certrequested?language=objc)
+    /// Indicates that the server has asked for a certificate, but the client has not sent it.
     #[doc(alias = "kSSLClientCertRequested")]
     #[deprecated]
     pub const CertRequested: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certsent?language=objc)
+    /// Indicates that the server asked for a certificate, the client sent one, and the server validated it. The application can inspect the certificate using the function `SSLGetPeerCertificates`.
     #[doc(alias = "kSSLClientCertSent")]
     #[deprecated]
     pub const CertSent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate/certrejected?language=objc)
+    /// Indicates that the client sent a certificate but the certificate failed validation. This value is seen only on the server side. The server application can inspect the certificate using the function `SSLGetPeerCertificates`.
     #[doc(alias = "kSSLClientCertRejected")]
     #[deprecated]
     pub const CertRejected: Self = Self(3);
@@ -159,27 +211,77 @@ unsafe impl RefEncode for SSLClientCertificateState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslreadfunc?language=objc)
+/// A pointer to a customized read function that secure transport calls to read data from the connection.
+///
+/// Parameters:
+/// - connection: A connection reference.
+///
+/// - data: On return, your callback should overwrite the memory at this location with the data read from the connection.
+///
+/// - dataLength: On input, a pointer to an integer representing the length of the data in bytes. On return, your callback should overwrite that integer with the number of bytes actually transferred.
+///
+///
+/// ## Return Value
+///
+/// Your callback must return an appropriate result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// Before using the secure transport API, you must create a read function (conforming to the [`SSLReadFunc`](https://developer.apple.com/documentation/security/sslreadfunc) prototype) and a write function (conforming to  the [`SSLWriteFunc`](https://developer.apple.com/documentation/security/sslwritefunc) prototype) and provide them to the library by calling the [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)) function.
+///
+/// You may configure the underlying connection to operate in a non-blocking manner; in that case, a read operation may well return [`errSSLWouldBlock`](https://developer.apple.com/documentation/security/errsslwouldblock), indicating less data than requested was transferred and nothing is wrong except that the requested I/O hasn’t completed. This result is returned to the caller from the functions [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)), [`SSLWrite`](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)), or [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)).
+///
+///
 pub type SSLReadFunc = Option<
     unsafe extern "C-unwind" fn(SSLConnectionRef, NonNull<c_void>, NonNull<usize>) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslwritefunc?language=objc)
+/// A pointer to a customized write function that secure transport calls to write data to the connection.
+///
+/// Parameters:
+/// - connection: The SSL session connection reference.
+///
+/// - data: A pointer to the data to write to the connection.You must allocate this memory before calling this function.
+///
+/// - dataLength: Before calling, an integer representing the length of the data in bytes. On return, this is the number of bytes actually transferred.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// Before using the secure transport API, you must write the functions [`SSLReadFunc`](https://developer.apple.com/documentation/security/sslreadfunc) and [`SSLWriteFunc`](https://developer.apple.com/documentation/security/sslwritefunc) and provide them to the library by calling the [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)) function.
+///
+/// You may configure the underlying connection to operate in a non-blocking manner. In that case, a write operation may well return [`errSSLWouldBlock`](https://developer.apple.com/documentation/security/errsslwouldblock), indicating less data than requested was transferred and nothing is wrong except that the requested I/O hasn’t completed. This result is returned to the caller from the functions [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)), [`SSLWrite`](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)), or [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)).
+///
+///
 pub type SSLWriteFunc = Option<
     unsafe extern "C-unwind" fn(SSLConnectionRef, NonNull<c_void>, NonNull<usize>) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside?language=objc)
+/// The flags that indicate whether a context is for the server or client side of a connection.
+///
+/// ## Overview
+///
+/// Use one of these flags with the [`SSLCreateContext`](https://developer.apple.com/documentation/security/sslcreatecontext(_:_:_:)) function to indicate whether the context is intended for the server side or client side of a connection.
+///
+///
 // NS_CLOSED_ENUM
 #[repr(i32)] // c_int
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SSLProtocolSide {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside/serverside?language=objc)
+    /// Server side.
     #[doc(alias = "kSSLServerSide")]
     #[deprecated]
     #[default]
     ServerSide = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside/clientside?language=objc)
+    /// Client side.
     #[doc(alias = "kSSLClientSide")]
     #[deprecated]
     ClientSide = 1,
@@ -195,17 +297,23 @@ unsafe impl RefEncode for SSLProtocolSide {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectiontype?language=objc)
+/// The flags that indicate whether a context is to be used for streaming or datagram-based communication.
+///
+/// ## Overview
+///
+/// Use one of these flags with the [`SSLCreateContext`](https://developer.apple.com/documentation/security/sslcreatecontext(_:_:_:)) function to indicate whether the context is intended for use in stream-based or datagram-based communication.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLConnectionType(pub c_int);
 impl SSLConnectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectiontype/streamtype?language=objc)
+    /// Stream-based communication (TCP).
     #[doc(alias = "kSSLStreamType")]
     #[deprecated]
     pub const StreamType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectiontype/datagramtype?language=objc)
+    /// Datagram-based communication (UDP).
     #[doc(alias = "kSSLDatagramType")]
     #[deprecated]
     pub const DatagramType: Self = Self(1);
@@ -222,79 +330,67 @@ unsafe impl RefEncode for SSLConnectionType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_default?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_default: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_atsv1?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_ATSv1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_atsv1_nopfs?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_ATSv1_noPFS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_standard?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_standard: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_rc4_fallback?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_RC4_fallback: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_tlsv1_fallback?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_TLSv1_fallback: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_tlsv1_rc4_fallback?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_TLSv1_RC4_fallback: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_legacy?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_legacy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_legacy_dhe?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_legacy_DHE: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_anonymous?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_anonymous: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_3des_fallback?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_3DES_fallback: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksslsessionconfig_tlsv1_3des_fallback?language=objc)
     #[deprecated = "No longer supported. Use Network.framework."]
     pub static kSSLSessionConfig_TLSv1_3DES_fallback: &'static CFString;
 }
 
 unsafe impl ConcreteType for SSLContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcontextgettypeid()?language=objc)
+    /// Returns the Core Foundation type ID for context objects.
     #[doc(alias = "SSLContextGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -305,7 +401,21 @@ unsafe impl ConcreteType for SSLContext {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslcreatecontext(_:_:_:)?language=objc)
+/// Allocates and returns a new context.
+///
+/// Parameters:
+/// - alloc: The allocator to use. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator.
+///
+/// - protocolSide: Either [`kSSLServerSide`](https://developer.apple.com/documentation/security/sslprotocolside/serverside) or [`kSSLClientSide`](https://developer.apple.com/documentation/security/sslprotocolside/clientside).
+///
+/// - connectionType: Either [`kSSLStreamType`](https://developer.apple.com/documentation/security/sslconnectiontype/streamtype) or [`kSSLDatagramType`](https://developer.apple.com/documentation/security/sslconnectiontype/datagramtype).
+///
+///
+/// ## Return Value
+///
+/// A new context. In Objective-C, use [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release this object’s memory when you are done with it.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLCreateContext(
@@ -324,7 +434,25 @@ pub unsafe extern "C-unwind" fn SSLCreateContext(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslnewcontext?language=objc)
+/// Creates a new Secure Sockets Layer (SSL) session context.
+///
+/// Parameters:
+/// - isServer: Set `true` if the calling process is a server.
+///
+/// - contextPtr: On return, points to a new SSL session context reference.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// The SSL session context is an opaque data structure that identifies a session and stores session information. You must pass this object to every other function in the Secure Transport API.
+///
+///
 ///
 /// # Safety
 ///
@@ -342,13 +470,41 @@ pub unsafe extern "C-unwind" fn SSLNewContext(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ssldisposecontext?language=objc)
+    /// Disposes of a Secure Sockets Layer (SSL) session context.
+    ///
+    /// Parameters:
+    /// - context: A reference to the SSL session context to dispose.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you are completely finished with a secure session, you should dispose of the SSL session context in order to release the memory associated with the session.
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLDisposeContext(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetsessionstate(_:_:)?language=objc)
+    /// Retrieves the state of an SSL session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - state: On return, points to a constant that indicates the state of the SSL session. See [`SSLSessionState`](https://developer.apple.com/documentation/security/sslsessionstate) for possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -357,7 +513,27 @@ extern "C-unwind" {
     pub fn SSLGetSessionState(context: &SSLContext, state: NonNull<SSLSessionState>) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetsessionoption(_:_:_:)?language=objc)
+/// Specifies options for a specific session.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - option: An SSL session option. Possible values are listed in [`SSLSessionOption`](https://developer.apple.com/documentation/security/sslsessionoption).
+///
+/// - value: Set to [`true`](https://developer.apple.com/documentation/swift/true) to enable the option, or [`false`](https://developer.apple.com/documentation/swift/false) to disable it.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// This function must be called prior to the [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) function; consequently, this function can be called only when no session is active.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetSessionOption(
@@ -376,7 +552,21 @@ pub unsafe extern "C-unwind" fn SSLSetSessionOption(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetsessionoption(_:_:_:)?language=objc)
+    /// Indicates the current setting of Secure Sockets Layer (SSL) session options.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - option: An SSL session option. Possible values are listed in [`SSLSessionOption`](https://developer.apple.com/documentation/security/sslsessionoption).
+    ///
+    /// - value: On return, `true` if the option is enabled, or `false` otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -390,7 +580,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)?language=objc)
+    /// Specifies callback functions that perform the network I/O operations.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - readFunc: A pointer to your read callback function. See [`SSLReadFunc`](https://developer.apple.com/documentation/security/sslreadfunc) for information on defining this function.
+    ///
+    /// - writeFunc: A pointer to your write callback function. See [`SSLWriteFunc`](https://developer.apple.com/documentation/security/sslwritefunc) for information on defining this function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Secure Transport calls your read and write callback functions to perform network I/O. You must define these functions before calling [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)).
+    ///
+    /// You must call [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)) prior to calling the [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) function. [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)) cannot be called while a session is active.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -405,20 +617,56 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetsessionconfig(_:_:)?language=objc)
+    /// Sets a predefined configuration for the Secure Sockets Layer (SSL) session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - config: The predefined configuration you want to apply to the SSL session. You can configure enabled protocol versions, enabled cipher suites, and the [`kSSLSessionOptionFallback`](https://developer.apple.com/documentation/security/sslsessionoption/fallback) session option.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetSessionConfig(context: &SSLContext, config: &CFString) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversionmin(_:_:)?language=objc)
+    /// Sets the minimum protocol version allowed by the application for a given SSL context.
+    ///
+    /// Parameters:
+    /// - context: The SSL context associated with the connection.
+    ///
+    /// - minVersion: The new minimum version ([`kTLSProtocol1`](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol1), for example). See [`SSLProtocol`](https://developer.apple.com/documentation/security/sslprotocol) for a complete list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetProtocolVersionMin(context: &SSLContext, min_version: SSLProtocol) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversionmin(_:_:)?language=objc)
+    /// Gets the minimum protocol version allowed by the application for a given SSL context.
+    ///
+    /// Parameters:
+    /// - context: The SSL context associated with the connection.
+    ///
+    /// - minVersion: The address of an [`SSLProtocol`](https://developer.apple.com/documentation/security/sslprotocol) integer where the minimum version should be stored. See [`SSLProtocol`](https://developer.apple.com/documentation/security/sslprotocol) for a list of possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -432,14 +680,38 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversionmax(_:_:)?language=objc)
+    /// Sets the maximum protocol version allowed by the application for a given SSL context.
+    ///
+    /// Parameters:
+    /// - context: The SSL context associated with the connection.
+    ///
+    /// - maxVersion: The new maximum version ([`kTLSProtocol1`](https://developer.apple.com/documentation/security/sslprotocol/tlsprotocol1), for example). See [`SSLProtocol`](https://developer.apple.com/documentation/security/sslprotocol) for a complete list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetProtocolVersionMax(context: &SSLContext, max_version: SSLProtocol) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversionmax(_:_:)?language=objc)
+    /// Gets the maximum protocol version allowed by the application for a given SSL context.
+    ///
+    /// Parameters:
+    /// - context: The SSL context associated with the connection.
+    ///
+    /// - maxVersion: The address of an [`SSLProtocol`](https://developer.apple.com/documentation/security/sslprotocol) integer where the maximum version should be stored. See [`SSLProtocol`](https://developer.apple.com/documentation/security/sslprotocol) for a list of possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -452,7 +724,37 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversionenabled?language=objc)
+/// Sets the allowed Secure Sockets Layer (SSL) protocol versions.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - protocol: The SSL protocol version to enable. Pass `kSSLProtocolAll` to enable all protocols.
+///
+/// - enable: A Boolean value indicating whether to enable or disable the specified protocol. Specify `true` to enable the protocol.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// Calling this function is optional. The default is that all supported protocols are enabled. When you call this function, only the specified protocol is affected. Therefore, if you call it once to disable SSL version 2 (for example), the other protocols all remain enabled. You may call this function as many times as you wish to enable and disable specific protocols. You can specify one of the following values for the `protocol` parameter:
+///
+/// - `kSSLProtocol2`
+///
+/// - `kSSLProtocol3`
+///
+/// - `kTLSProtocol1`
+///
+/// - `kSSLProtocolAll`
+///
+/// This function cannot be called when a session is active.
+///
+///
 #[cfg(feature = "SecProtocolTypes")]
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
@@ -472,7 +774,35 @@ pub unsafe extern "C-unwind" fn SSLSetProtocolVersionEnabled(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversionenabled?language=objc)
+    /// Retrieves the enabled status of a given protocol.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - protocol: A value of type `SSLProtocol` representing an SSL protocol version.
+    ///
+    /// - enable: On return, points to a Boolean value indicating whether the specified protocol version is enabled. If this value is `true`, the protocol is enabled.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can specify any one of the following values for the `protocol` parameter:
+    ///
+    /// - `kSSLProtocol2`
+    ///
+    /// - `kSSLProtocol3`
+    ///
+    /// - `kTLSProtocol1`
+    ///
+    /// - `kSSLProtocolAll` Specify this value to determine whether all protocols are enabled.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -487,14 +817,44 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetprotocolversion?language=objc)
+    /// Sets the SSL protocol version.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - version: The SSL protocol version to negotiate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function cannot be called when a session is active.
+    ///
+    ///
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetProtocolVersion(context: &SSLContext, version: SSLProtocol) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetprotocolversion?language=objc)
+    /// Gets the SSL protocol version.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - protocol: On return, a pointer to the SSL protocol version.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -505,7 +865,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetcertificate(_:_:)?language=objc)
+    /// Specifies this connection’s certificate or certificates.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - certRefs: The certificates to set. This array contains items of type `SecCertificateRef`, except for `certRefs[0]`, which is of type `SecIdentityRef`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Setting the certificate or certificates is mandatory for server connections, but is optional for clients. Specifying a certificate for a client enables SSL client-side authentication. You must place in `certRefs[0]` a `SecIdentityRef` object that identifies the leaf certificate and its corresponding private key. Specifying a root certificate is optional; if it’s not specified, the root certificate that verifies the certificate chain specified here must be present in the system wide set of trusted anchor certificates.
+    ///
+    /// This function must be called before calling [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)), or immediately after [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) has returned `errSSLClientCertRequested` (that is, before the handshake is resumed by calling [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) again).
+    ///
+    /// Secure Transport assumes the following:
+    ///
+    /// - The certificate references remain valid for the lifetime of the session.
+    ///
+    /// - The identity specified in `certRefs[0]` is capable of signing.
+    ///
+    /// The required capabilities of the identity specified in `certRefs[0]`—and of the optional certificate specified in the [`SSLSetEncryptionCertificate`](https://developer.apple.com/documentation/security/sslsetencryptioncertificate(_:_:)) function—are highly dependent on the application. For example, to work as a server with Netscape clients, the identity specified here must be capable of both signing and encrypting. Use the [`SSLCopyDistinguishedNames`](https://developer.apple.com/documentation/security/sslcopydistinguishednames(_:_:)) function to get a list of certificates acceptable to the server.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -515,7 +903,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetconnection(_:_:)?language=objc)
+    /// Specifies an I/O connection for a specific session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - connection: An SSL session connection reference. The connection data is opaque to Secure Transport; you can set it to any value that your application can use to uniquely identify the connection in the callback functions [`SSLReadFunc`](https://developer.apple.com/documentation/security/sslreadfunc) and [`SSLWriteFunc`](https://developer.apple.com/documentation/security/sslwritefunc).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must establish a connection before creating a secure session. After calling the [`SSLCreateContext`](https://developer.apple.com/documentation/security/sslcreatecontext(_:_:_:)) function to create an SSL session context, you call the [`SSLSetConnection`](https://developer.apple.com/documentation/security/sslsetconnection(_:_:)) function to specify the connection to which the context applies. You specify a value in the `connection` parameter that your callback routines can use to identify the connection. This value might be a pointer to a socket (if you are using the Sockets API) or an endpoint (if you are using Open Transport). For example, you might create a socket, start a connection on it, create a context reference, cast the socket to an [`SSLConnectionRef`](https://developer.apple.com/documentation/security/sslconnectionref), and then pass both the context reference and connection reference to the [`SSLSetConnection`](https://developer.apple.com/documentation/security/sslsetconnection(_:_:)) function.
+    ///
+    /// Note that the Sockets API is the preferred networking interface for new development.
+    ///
+    /// On the client side, it’s assumed that communication has been established with the desired server on this connection. On the server side, it’s assumed that a connection has been established in response to an incoming client request .
+    ///
+    /// This function must be called prior to the [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) function; consequently, this function can be called only when no session is active.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -525,7 +937,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetconnection(_:_:)?language=objc)
+    /// Retrieves an I/O connection—such as a socket or endpoint—for a specific session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - connection: On return, a pointer to a session connection reference. If no connection has been set using the [`SSLSetConnection`](https://developer.apple.com/documentation/security/sslsetconnection(_:_:)) function, then this parameter is `NULL` on return.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function on either the client or server to retrieve the connection associated with a secure session.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -538,7 +968,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetpeerdomainname(_:_:_:)?language=objc)
+    /// Specifies the fully qualified domain name of the peer.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - peerName: The fully qualified domain name of the peer—for example, `store.apple.com`. The name is in the form of a C string, except that `NULL` termination is optional.
+    ///
+    /// - peerNameLen: The number of bytes passed in the `peerName` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to verify the common name field in the peer’s certificate. If you call this function and the common name in the certificate does not match the value you specify in the `peerName` parameter, then handshake fails and returns `errSSLXCertChainInvalid`. Use of this function is optional.
+    ///
+    /// This function can be called only when no session is active.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -552,7 +1004,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetpeerdomainnamelength(_:_:)?language=objc)
+    /// Determines the length of a previously set peer domain name.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - peerNameLen: On return, points to the length of the peer domain name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you previously called the [`SSLSetPeerDomainName`](https://developer.apple.com/documentation/security/sslsetpeerdomainname(_:_:_:)) function to specify a fully qualified domain name for the peer certificate, you can use the [`SSLGetPeerDomainName`](https://developer.apple.com/documentation/security/sslgetpeerdomainname(_:_:_:)) function to retrieve the peer domain name. Before doing so, you must call the [`SSLGetPeerDomainNameLength`](https://developer.apple.com/documentation/security/sslgetpeerdomainnamelength(_:_:)) function to retrieve the buffer size needed for the domain name.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -565,7 +1035,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetpeerdomainname(_:_:_:)?language=objc)
+    /// Retrieves the peer domain name specified previously.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - peerName: On return, points to the peer domain name.
+    ///
+    /// - peerNameLen: A pointer to the length of the peer domain name. Before calling this function, retrieve the peer domain name length by calling the function [`SSLGetPeerDomainNameLength`](https://developer.apple.com/documentation/security/sslgetpeerdomainnamelength(_:_:)).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you previously called the [`SSLSetPeerDomainName`](https://developer.apple.com/documentation/security/sslsetpeerdomainname(_:_:_:)) function to specify a fully qualified domain name for the peer certificate, you can use the [`SSLGetPeerDomainName`](https://developer.apple.com/documentation/security/sslgetpeerdomainname(_:_:_:)) function to retrieve the domain name.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -580,7 +1070,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopyrequestedpeernamelength(_:_:)?language=objc)
+    /// Obtains the hostname specified by the client in the ServerName extension (SNI). Server only.
+    ///
+    /// Parameters:
+    /// - ctx: An SSL session context reference.
+    ///
+    /// - peerNameLen: The length of the peer name, as retrieved by calling the [`SSLCopyRequestedPeerName`](https://developer.apple.com/documentation/security/sslcopyrequestedpeername(_:_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -593,7 +1095,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopyrequestedpeername(_:_:_:)?language=objc)
+    /// Determines the buffer size needed for the peer domain name.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - peerName: The fully qualified domain name of the peer—for example, `store.apple.com`. The name is in the form of a C string, except that `NULL` termination is optional.
+    ///
+    /// - peerNameLen: On return, points to the length of the peer domain name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the `peerNameLen` returned by this function when calling the [`SSLCopyRequestedPeerNameLength`](https://developer.apple.com/documentation/security/sslcopyrequestedpeernamelength(_:_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -608,7 +1130,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetdatagramhellocookie(_:_:_:)?language=objc)
+    /// Sets the cookie value used in the Datagram Transport Layer Security (DTLS) hello message.
+    ///
+    /// Parameters:
+    /// - dtlsContext: The SSL context associated with the connection.
+    ///
+    /// - cookie: The cookie value.
+    ///
+    /// - cookieLen: The length of the cookie (up to 32 bytes).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function should be called only on the server side, and is optional. The default cookie is a zero-length cookie.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -622,13 +1164,53 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetmaxdatagramrecordsize(_:_:)?language=objc)
+    /// Sets the maximum datagram record size allowed by the application for a given context.
+    ///
+    /// Parameters:
+    /// - dtlsContext: The SSL context associated with the connection.
+    ///
+    /// - maxSize: The length value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The size you indicate includes all Datagram Transport Layer Security (DTLS) headers.
+    ///
+    /// You can specify a new value up to the maximum size of a UDP packet (which, in turn, is based on the underlying IP protocol).
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetMaxDatagramRecordSize(dtls_context: &SSLContext, max_size: usize) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetmaxdatagramrecordsize(_:_:)?language=objc)
+    /// Obtains the maximum datagram record size allowed by the application for a given context.
+    ///
+    /// Parameters:
+    /// - dtlsContext: The SSL context associated with the connection.
+    ///
+    /// - maxSize: The address of a `size_t` integer for storing the length.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned size includes all Datagram Transport Layer Security (DTLS) headers.
+    ///
+    /// You can specify a new size by calling [`SSLSetMaxDatagramRecordSize`](https://developer.apple.com/documentation/security/sslsetmaxdatagramrecordsize(_:_:)), up to the maximum size of a UDP packet (which, in turn, is based on the underlying IP protocol).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -641,7 +1223,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnegotiatedprotocolversion(_:_:)?language=objc)
+    /// Obtains the negotiated protocol version of the active session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - protocol: On return, points to the negotiated protocol version of the active session. The value is set to [`kSSLProtocolUnknown`](https://developer.apple.com/documentation/security/sslprotocol/sslprotocolunknown) if no SSL session is in progress.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function retrieves the version of the Secure Sockets Layer (SSL) or Transport Layer Security (TLS) protocol negotiated for the session. Note that the negotiated protocol may not be the same as your preferred protocol, depending on which protocol versions you enabled with the [`SSLSetProtocolVersionEnabled`](https://developer.apple.com/documentation/security/sslsetprotocolversionenabled) function. This function can return any of the following values:
+    ///
+    /// - `kSSLProtocol2`
+    ///
+    /// - `kSSLProtocol3`
+    ///
+    /// - `kTLSProtocol1`
+    ///
+    /// - `kSSLProtocolUnknown`
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -655,7 +1263,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnumbersupportedciphers(_:_:)?language=objc)
+    /// Determines the number of cipher suites supported.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - numCiphers: On return, points to the number of supported cipher suites.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use the number of enabled cipher suites returned by this function when you call the [`SSLGetNumberSupportedCiphers`](https://developer.apple.com/documentation/security/sslgetnumbersupportedciphers(_:_:)) function to retrieve the list of currently enabled cipher suites.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -668,7 +1294,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetsupportedciphers(_:_:_:)?language=objc)
+    /// Determines the values of the supported cipher suites.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - ciphers: On return, points to the values of the supported cipher suites. Before calling, you must allocate this buffer using the number of supported cipher suites retrieved from a call to the [`SSLGetNumberSupportedCiphers`](https://developer.apple.com/documentation/security/sslgetnumbersupportedciphers(_:_:)) function.
+    ///
+    /// - numCiphers: Points to the number of supported cipher suites that you want returned. Before calling, retrieve this value by calling the [`SSLGetNumberSupportedCiphers`](https://developer.apple.com/documentation/security/sslgetnumbersupportedciphers(_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes). If the supplied buffer is too small, [`errSSLBufferOverflow`](https://developer.apple.com/documentation/security/errsslbufferoverflow) is returned.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// All the supported cipher suites are enabled by default. Use the [`SSLSetEnabledCiphers`](https://developer.apple.com/documentation/security/sslsetenabledciphers(_:_:_:)) function to enable a subset of the supported cipher suites. Use the [`SSLGetEnabledCiphers`](https://developer.apple.com/documentation/security/sslgetenabledciphers(_:_:_:)) function to determine which cipher suites are currently enabled.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -684,7 +1330,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnumberenabledciphers(_:_:)?language=objc)
+    /// Determines the number of cipher suites currently enabled.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - numCiphers: On return, points to the number of enabled cipher suites.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use the number of enabled cipher suites returned by this function when you call the [`SSLGetEnabledCiphers`](https://developer.apple.com/documentation/security/sslgetenabledciphers(_:_:_:)) function to retrieve the list of currently enabled cipher suites.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -697,7 +1361,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetenabledciphers(_:_:_:)?language=objc)
+    /// Specifies a restricted set of SSL cipher suites to be enabled by the current SSL session context.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - ciphers: A pointer to the cipher suites to enable.
+    ///
+    /// - numCiphers: The number of cipher suites to enable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can call this function, for example, to limit cipher suites to those that use exportable key sizes or to those supported by a particular protocol version.
+    ///
+    /// This function can be called only when no session is active. The default set of enabled cipher suites is the complete set of supported cipher suites obtained by calling the [`SSLGetSupportedCiphers`](https://developer.apple.com/documentation/security/sslgetsupportedciphers(_:_:_:)) function.
+    ///
+    /// Call the [`SSLGetEnabledCiphers`](https://developer.apple.com/documentation/security/sslgetenabledciphers(_:_:_:)) function to determine which SSL cipher suites are currently enabled.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -712,7 +1400,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetenabledciphers(_:_:_:)?language=objc)
+    /// Determines which SSL cipher suites are currently enabled.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - ciphers: On return, points to the enabled cipher suites. Before calling, you must allocate this buffer using the number of enabled cipher suites retrieved from a call to the [`SSLGetNumberEnabledCiphers`](https://developer.apple.com/documentation/security/sslgetnumberenabledciphers(_:_:)) function.
+    ///
+    /// - numCiphers: Pointer to the number of enabled cipher suites. Before calling, retrieve this value by calling the [`SSLGetNumberEnabledCiphers`](https://developer.apple.com/documentation/security/sslgetnumberenabledciphers(_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes). If the supplied buffer is too small, [`errSSLBufferOverflow`](https://developer.apple.com/documentation/security/errsslbufferoverflow) is returned.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call the [`SSLSetEnabledCiphers`](https://developer.apple.com/documentation/security/sslsetenabledciphers(_:_:_:)) function to specify which SSL cipher suites are enabled.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -727,7 +1435,25 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetsessionticketsenabled(_:_:)?language=objc)
+/// Enables or disables session ticket resumption.
+///
+/// Parameters:
+/// - context: A session context.
+///
+/// - enabled: A Boolean set to [`true`](https://developer.apple.com/documentation/swift/true) to enable session ticket resumption, or [`false`](https://developer.apple.com/documentation/swift/false) to disable it.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// By default, session tickets are disabled.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetSessionTicketsEnabled(
@@ -740,7 +1466,27 @@ pub unsafe extern "C-unwind" fn SSLSetSessionTicketsEnabled(
     unsafe { SSLSetSessionTicketsEnabled(context, enabled as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetenablecertverify?language=objc)
+/// Enables or disables peer certificate chain validation.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - enableVerify: A Boolean value specifying whether peer certificate chain validation is enabled. Certificate chain validation is enabled by default. Specify `false` to disable validation.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// By default, Secure Transport attempts to verify the certificate chain during an exchange of peer certificates. If you disable peer certificate chain validation, it is your responsibility to call [`SSLCopyPeerCertificates`](https://developer.apple.com/documentation/security/sslcopypeercertificates) upon successful completion of the handshake and then to validate the peer certificate chain before transferring the data.
+///
+/// You can use the [`SSLGetEnableCertVerify`](https://developer.apple.com/documentation/security/sslgetenablecertverify) function to determine the current setting of the `enableVerify` flag.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetEnableCertVerify(
@@ -754,7 +1500,25 @@ pub unsafe extern "C-unwind" fn SSLSetEnableCertVerify(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetenablecertverify?language=objc)
+    /// Determines whether peer certificate chain validation is currently enabled.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - enableVerify: On return, a pointer to a Boolean value specifying whether peer certificate chain validation is enabled. If this value is `true`, then Secure Transport automatically attempts to verify the certificate chain during exchange of peer certificates.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`SSLSetEnableCertVerify`](https://developer.apple.com/documentation/security/sslsetenablecertverify) function to set the value of the `enableVerify` flag.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -766,7 +1530,27 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetallowsexpiredcerts?language=objc)
+/// Specifies whether certificate expiration times are ignored.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - allowsExpired: A Boolean flag representing whether the certificate expiration times are ignored. The default for this flag is `false`, meaning expired certificates result in an `errSSLCertExpired` result code.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// You can use this function to allow the handshake to succeed even if one or more certificates in the certificate chain have expired. You can use the [`SSLGetAllowsExpiredCerts`](https://developer.apple.com/documentation/security/sslgetallowsexpiredcerts) function to determine the current setting of the `allowsExpired` flag.
+///
+/// Use the [`SSLSetAllowsExpiredRoots`](https://developer.apple.com/documentation/security/sslsetallowsexpiredroots) function to set a flag specifying whether expired root certificates are allowed.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredCerts(
@@ -780,7 +1564,25 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredCerts(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetallowsexpiredcerts?language=objc)
+    /// Retrieves the value specifying whether expired certificates are allowed.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - allowsExpired: On return, this flag is set to the value of the Boolean flag that specifies whether expired certificates are ignored. If this value is `true`, then Secure Transport does not return an error if any certificates in the certificate chain are expired.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can set the `allowsExpired` flag to allow the handshake to succeed even if one or more certificates in the certificate chain have expired. This function returns the current setting of this flag. Use the [`SSLSetAllowsExpiredCerts`](https://developer.apple.com/documentation/security/sslsetallowsexpiredcerts) function to set the value of the `allowsExpired` flag.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -792,7 +1594,29 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetallowsexpiredroots?language=objc)
+/// Specifies whether expired root certificates are allowed.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - allowsExpired: A Boolean value indicating whether to allow expired root certificates. Pass `true` to allow expired roots.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// The default value for the `allowsExpired` flag is `false`. When this flag is `false`, Secure Transport returns an `errSSLCertExpired` result code during handshake if the root certificate is expired.
+///
+/// You can use the [`SSLGetAllowsExpiredRoots`](https://developer.apple.com/documentation/security/sslgetallowsexpiredroots) function to determine the current setting of the `allowsExpired` flag.
+///
+/// Use the [`SSLSetAllowsExpiredCerts`](https://developer.apple.com/documentation/security/sslsetallowsexpiredcerts) function to set a value that determines whether expired non-root certificates are allowed.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredRoots(
@@ -806,7 +1630,25 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsExpiredRoots(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetallowsexpiredroots?language=objc)
+    /// Retrieves the value indicating whether expired roots are allowed.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - allowsExpired: On return, points to a Boolean value indicating whether expired roots are allowed. If this value is `true`, no errors are returned if the certificate chain ends in an expired root.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`SSLSetAllowsExpiredRoots`](https://developer.apple.com/documentation/security/sslsetallowsexpiredroots) function to change the setting of the `allowsExpired` flag.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -818,7 +1660,33 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetallowsanyroot?language=objc)
+/// Specifies whether root certificates from unrecognized certification authorities are allowed.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - anyRoot: A Boolean flag specifying whether root certificates from unrecognized certification authorities (CAs) are allowed. The default for this flag is `false`, specifying that roots from unrecognized CAs are not allowed.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// The system maintains a set of root certificates signed by known, trusted root CAs. When the `anyRoot` flag is `true`, Secure Transport does not return an error if one of the following two conditions occurs:
+///
+/// - The peer returns a certificate chain with a root certificate, and the chain verifies to that root, but the CA for the root certificate is not one of the known, trusted root CAs. This results in an `errSSLUnknownRootCert` result code when the `anyRoot` flag is `false`.
+///
+/// - The peer returns a certificate chain that does not contain a root certificate, and the server can’t verify the chain to one of the trusted root certificates. This results in an `errSSLNoRootCert` result code when the `anyRoot` flag is `false`.
+///
+/// Both of these error conditions are ignored when the `anyRoot` flag is `true`, allowing connection to a peer for which trust could not be established.
+///
+/// If you use this function to allow an untrusted root to be used for validation of a certificate—for example, after prompting the user for permission to do so—remember to set the `anyRoot` Boolean value back to `false`. If you don’t, any random root certificate can be used for signing a certificate chain. To add a certificate to the list of trusted roots, use the [`SecTrustSetAnchorCertificates(_:_:)`](https://developer.apple.com/documentation/security/sectrustsetanchorcertificates(_:_:)) function.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetAllowsAnyRoot(
@@ -832,7 +1700,25 @@ pub unsafe extern "C-unwind" fn SSLSetAllowsAnyRoot(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetallowsanyroot?language=objc)
+    /// Obtains a value specifying whether an unknown root is allowed.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - anyRoot: On return, a Boolean indicating the current setting of the `anyRoot` flag.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`SSLSetAllowsAnyRoot`](https://developer.apple.com/documentation/security/sslsetallowsanyroot) function to set the value of the `anyRoot` flag. The effect and meaning of this flag is described in the discussion of the [`SSLSetAllowsAnyRoot`](https://developer.apple.com/documentation/security/sslsetallowsanyroot) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -841,7 +1727,27 @@ extern "C-unwind" {
     pub fn SSLGetAllowsAnyRoot(context: &SSLContext, any_root: NonNull<Boolean>) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsettrustedroots?language=objc)
+/// Augments or replaces the default set of trusted root certificates for this session.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - trustedRoots: A reference to an array of trusted root certificates of type `SecCertificateRef`.
+///
+/// - replaceExisting: A Boolean value indicating whether to replace or append the current trusted root certificate set. If this value is `true`, the specified root certificates become the only roots that are trusted during this session. If this value is `false`, the specified root certificates are added to the current set of trusted root certificates.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// Each successive call to this function with the `replaceExisting` parameter set to `false` results in accumulation of additional root certificates. To see the current set of trusted root certificates, call the [`SSLCopyTrustedRoots`](https://developer.apple.com/documentation/security/sslcopytrustedroots) function.
+///
+///
 ///
 /// # Safety
 ///
@@ -864,7 +1770,25 @@ pub unsafe extern "C-unwind" fn SSLSetTrustedRoots(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopytrustedroots?language=objc)
+    /// Retrieves the current list of trusted root certificates.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - trustedRoots: On return, a pointer to a value of type `CFArrayRef`. This array contains values of type `SecCertificateRef` representing the current set of trusted roots. You must call the `CFRelease` function to release this array when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the [`SSLSetTrustedRoots`](https://developer.apple.com/documentation/security/sslsettrustedroots) function to replace or add to the set of trusted root certificates. If [`SSLSetTrustedRoots`](https://developer.apple.com/documentation/security/sslsettrustedroots) has never been called for this session, the [`SSLCopyTrustedRoots`](https://developer.apple.com/documentation/security/sslcopytrustedroots) function returns the system’s default set of trusted root certificates.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -877,7 +1801,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopypeercertificates?language=objc)
+    /// Retrieves a peer certificate and its certificate chain.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - certs: On return, a pointer to an array of values of type `SecCertificateRef` representing the peer certificate and the certificate chain used to validate it. The certificate at index 0 of the returned array is the peer certificate (the subject of the function call—the end certificate in the chain); the root certificate (or the closest certificate to it) is at the end of the returned array. The entire array is created by the Secure Transport library; you must call the `CFRelease` function for this array when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is valid any time after a handshake attempt. You can use it to examine a peer certificate, to examine a certificate chain to determine why a handshake attempt failed, or to retrieve the certificate chain in order to validate the certificate yourself. (To disable validation so that you can validate the certificate yourself, use the [`SSLSetSessionOption(_:_:_:)`](https://developer.apple.com/documentation/security/sslsetsessionoption(_:_:_:)) function to set the session’s [`SSLSessionOption.breakOnServerAuth`](https://developer.apple.com/documentation/security/sslsessionoption/breakonserverauth) flag.)
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -890,7 +1832,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopypeertrust(_:_:)?language=objc)
+    /// Retrieves a trust management object for the certificate used by a session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - trust: On return, a trust management object you can use to evaluate trust for the certificate used by the session. A trust management object includes the certificate to be verified plus the policy or policies to be used in evaluating trust. See [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services) for functions to create and evaluate trust management objects. You must call the `CFRelease` function for this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is valid any time after a handshake attempt.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -901,7 +1861,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetpeerid(_:_:_:)?language=objc)
+    /// Specifies data that is sufficient to uniquely identify the peer of the current session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - peerID: A pointer to a buffer containing the peer ID data to set.
+    ///
+    /// - peerIDLen: The length of the peer ID data buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Secure Transport uses the peer ID to match the peer of an SSL session with the peer of a previous session in order to resume an interrupted session. If the peer IDs match, Secure Transport attempts to resume the session with the same parameters as used in the previous session with the same peer.
+    ///
+    /// The data you provide to this function is treated as an opaque blob by Secure Transport but is compared byte for byte with previous peer ID data values set by the current application. An example of peer ID data is an IP address and port, stored in some caller-private manner. Calling this function is optional but is required if you want the session to be resumable. If you do call this function, you must call it prior to the handshake for the current session.
+    ///
+    /// You can use the [`SSLGetPeerID`](https://developer.apple.com/documentation/security/sslgetpeerid(_:_:_:)) function to retrieve the peer ID data for the current session.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -915,7 +1899,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetpeerid(_:_:_:)?language=objc)
+    /// Retrieves the current peer ID data.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - peerID: On return, points to a buffer containing the peer ID data.
+    ///
+    /// - peerIDLen: On return, the length of the peer ID data buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the peer ID data for this context was not set by calling the [`SSLSetPeerID`](https://developer.apple.com/documentation/security/sslsetpeerid(_:_:_:)) function, this function returns a `NULL` pointer in the `peerID` parameter, and `0` in the `peerIDLen` parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -930,7 +1934,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetnegotiatedcipher(_:_:)?language=objc)
+    /// Retrieves the cipher suite negotiated for this session.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - cipherSuite: On return, points to the cipher suite that was negotiated for this session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should call this function only when a session is active.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -944,7 +1966,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetalpnprotocols(_:_:)?language=objc)
+    /// Sets the list of supported applicaiton layer protocols.
+    ///
+    /// Parameters:
+    /// - context: The session context.
+    ///
+    /// - protocols: An array of ASCII-encoded strings representing the supported protocols, such as `http/1.1`. See [RFC 7301](https://tools.ietf.org/html/rfc7301) for more details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -954,7 +1988,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopyalpnprotocols(_:_:)?language=objc)
+    /// Gets the list of supported application layer protocols.
+    ///
+    /// Parameters:
+    /// - context: The session context.
+    ///
+    /// - protocols: A pointer the function uses to return an array of ASCII-encoded strings representing the supported protocols, such as http/1.1. See [RFC 7301](https://tools.ietf.org/html/rfc7301) for more details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must set the `protocols` parameter to `NULL` on input, or the operation fails. If the function has data to provide, it allocates memory for an array and returns it using `protocols`. Otherwise, `protocols` remains `NULL` on output.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -967,13 +2019,57 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetocspresponse(_:_:)?language=objc)
+    /// Sets the OCSP response for the given SSL session.
+    ///
+    /// Parameters:
+    /// - context: A session context.
+    ///
+    /// - response: A non-`NULL` [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) instance containing the bytes of the OCSP response.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetOCSPResponse(context: &SSLContext, response: &CFData) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetencryptioncertificate(_:_:)?language=objc)
+    /// Specifies the encryption certificates used for this connection.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - certRefs: A value of type `CFArrayRef` referring to an array of certificate references. The references are type `SecCertificateRef`, except for `certRefs[0]`, which is of type `SecIdentityRef`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function in one of the following cases:
+    ///
+    /// - The leaf certificate specified in the [`SSLSetCertificate`](https://developer.apple.com/documentation/security/sslsetcertificate(_:_:)) function is not capable of encryption.
+    ///
+    /// - The leaf certificate specified in the [`SSLSetCertificate`](https://developer.apple.com/documentation/security/sslsetcertificate(_:_:)) function contains a key that is too large or strong for legal encryption in this session. In this case, a weaker certificate is specified here and is used for server-initiated key exchange.
+    ///
+    /// The following assumptions are made:
+    ///
+    /// - The `certRefs` parameter’s references remain valid for the lifetime of the connection.
+    ///
+    /// - The specified `certRefs[0]` value is capable of encryption.
+    ///
+    /// This function can be called only when no session is active.
+    ///
+    /// SSL servers that enforce the SSL3 or TLS1 specification to the letter do not accept encryption certificates with key sizes larger than 512 bits for exportable ciphers (that is, for SSL sessions with 40-bit session keys). Therefore, if you wish to support exportable ciphers and your certificate has a key larger than 512 bits, you must specify a separate encryption certificate.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -982,19 +2078,19 @@ extern "C-unwind" {
     pub fn SSLSetEncryptionCertificate(context: &SSLContext, cert_refs: &CFArray) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate?language=objc)
+/// The flags that represent the requirements for client-side authentication.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLAuthenticate(pub c_int);
 impl SSLAuthenticate {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate/neverauthenticate?language=objc)
+    /// Indicates that client-side authentication is not required. (Default.)
     #[doc(alias = "kNeverAuthenticate")]
     pub const NeverAuthenticate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate/alwaysauthenticate?language=objc)
+    /// Indicates that client-side authentication is required.
     #[doc(alias = "kAlwaysAuthenticate")]
     pub const AlwaysAuthenticate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate/tryauthenticate?language=objc)
+    /// Indicates that client-side authentication should be attempted. There is no error if the client doesn’t have a certificate.
     #[doc(alias = "kTryAuthenticate")]
     pub const TryAuthenticate: Self = Self(2);
 }
@@ -1010,13 +2106,45 @@ unsafe impl RefEncode for SSLAuthenticate {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetclientsideauthenticate(_:_:)?language=objc)
+    /// Specifies the requirements for client-side authentication.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - auth: A flag setting the requirements for client-side authentication. See [`SSLAuthenticate`](https://developer.apple.com/documentation/security/sslauthenticate) for possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be called only by servers. Use of this function is optional. The default authentication requirement is [`kNeverAuthenticate`](https://developer.apple.com/documentation/security/sslauthenticate/neverauthenticate). This function may be called only when no session is active.
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetClientSideAuthenticate(context: &SSLContext, auth: SSLAuthenticate) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ssladddistinguishedname(_:_:_:)?language=objc)
+    /// Adds a DER-encoded distinguished name to a list of acceptable names to be specified in requests for client certificates.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - derDN: A pointer to a buffer containing a DER-encoded distinguished name.
+    ///
+    /// - derDNLen: A value of type `size_t` representing the size of the buffer pointed to by the parameter `derDN`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1029,7 +2157,27 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetcertificateauthorities(_:_:_:)?language=objc)
+/// Adds one or more certificates to a server’s list of certification authorities (CAs) acceptable for client authentication.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - certificateOrArray: A value of type `SecCertificateRef`, or a value of type `CFArray` containing an array of `SecCertificateRef` values, representing one or more certificates to be added to the server’s list of acceptable certification authorities (CAs).
+///
+/// - replaceExisting: A Boolean value specifying whether to replace or append the current set of certification authorities. If this value is `true`, the specified certificates replace the existing list of acceptable CAs, if any. If `false`, the specified certificates are appended to the existing list of.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes). Returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if this function is called for a session that is configured as a client, or when a session is active.
+///
+///
+///
+/// ## Discussion
+///
+/// Each successive call to this function with the `replaceExisting` parameter set to [`false`](https://developer.apple.com/documentation/swift/false) results in accumulation of additional certification authorities. To see the current set of certification authorities, call the [`SSLCopyCertificateAuthorities`](https://developer.apple.com/documentation/security/sslcopycertificateauthorities(_:_:)) function.
+///
+///
 ///
 /// # Safety
 ///
@@ -1052,7 +2200,19 @@ pub unsafe extern "C-unwind" fn SSLSetCertificateAuthorities(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopycertificateauthorities(_:_:)?language=objc)
+    /// Retrieves the current list of certification authorities.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - certificates: On return, a pointer to a value of type `CFArrayRef`. This array contains values of type `SecCertificateRef` representing the current set of certification authorities (specified with the [`SSLSetCertificateAuthorities`](https://developer.apple.com/documentation/security/sslsetcertificateauthorities(_:_:_:)) function). Returns a `NULL` array if [`SSLSetCertificateAuthorities`](https://developer.apple.com/documentation/security/sslsetcertificateauthorities(_:_:_:)) has not been called. You must call the `CFRelease` function to release this array when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1065,7 +2225,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslcopydistinguishednames(_:_:)?language=objc)
+    /// Retrieves the distinguished names of acceptable certification authorities.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - names: On return, an array of `CFDataRef` objects, each representing one DER-encoded relative distinguished name of an acceptable certification authority. You must call the `CFRelease` function to release this array when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The list of distinguished names is provided by the server if the context reference represents a client; if the context reference represents a server, the list of distinguished names is specified with the [`SSLSetCertificateAuthorities`](https://developer.apple.com/documentation/security/sslsetcertificateauthorities(_:_:_:)) function.
+    ///
+    /// The array retrieved by this function is suitable for use in finding a client identity (that is, a certificate and associated private key) that matches a server’s requirements.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1078,7 +2258,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetclientcertificatestate(_:_:)?language=objc)
+    /// Retrieves the exchange status of the client certificate.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - clientState: On return, a pointer to a value indicating the state of the client certificate exchange. See [`SSLClientCertificateState`](https://developer.apple.com/documentation/security/sslclientcertificatestate) for a list of possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The value returned reflects the latest change in the state of the client certificate exchange. If either peer initiates a renegotiation attempt, Secure Transport resets the state to `kSSLClientCertNone`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1091,7 +2289,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetdiffiehellmanparams(_:_:_:)?language=objc)
+    /// Specifies Diffie-Hellman parameters for a given context.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - dhParams: A pointer to a buffer containing the Diffie-Hellman parameters in Open SSL DER format.
+    ///
+    /// - dhParamsLen: A value representing the size of the buffer pointed to by the `dhParams` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to specify a set of Diffie-Hellman parameters to be used by Secure Transport for a specific session. Use of this function is optional. If Diffie-Hellman ciphers are allowed, the server and client negotiate a Diffie-Hellman cipher, and this function has not been called, then secure transport calculates a set of process wide parameters. However, that process can take as long as 30 seconds. Diffie-Hellman ciphers are enabled by default. See [`SSLSetEnabledCiphers`](https://developer.apple.com/documentation/security/sslsetenabledciphers(_:_:_:)).
+    ///
+    /// In SSL/TLS, Diffie-Hellman parameters are always specified by the server. Therefore, this function can be called only by the server side of the connection.
+    ///
+    /// You can use the [`SSLGetDiffieHellmanParams`](https://developer.apple.com/documentation/security/sslgetdiffiehellmanparams(_:_:_:)) function to retrieve Diffie-Hellman parameters specified in an earlier call to [`SSLSetDiffieHellmanParams`](https://developer.apple.com/documentation/security/sslsetdiffiehellmanparams(_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1105,7 +2327,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetdiffiehellmanparams(_:_:_:)?language=objc)
+    /// Retrieves the Diffie-Hellman parameters for a given context.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - dhParams: On return, points to a buffer containing the Diffie-Hellman parameter block in Open SSL DER format.The returned data is not copied and belongs to the SSL session context reference; therefore, you cannot modify the data and it is released automatically when you dispose of the context.
+    ///
+    /// - dhParamsLen: On return, points to the length of the buffer pointed to by the `dhParams` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the parameter block specified in an earlier call to the [`SSLSetDiffieHellmanParams`](https://developer.apple.com/documentation/security/sslsetdiffiehellmanparams(_:_:_:)) function. If that function was never called, the `dhParams` parameter returns `NULL` and the `dhParamsLen` parameter returns `0`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1119,7 +2361,29 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslsetrsablinding?language=objc)
+/// Enables or disables RSA blinding.
+///
+/// Parameters:
+/// - context: An SSL session context reference.
+///
+/// - blinding: A Boolean value indicating whether to enable RSA blinding. Pass `true` to enable RSA blinding.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// This function is used only on the server side of a connection.
+///
+/// This feature thwarts a known attack to which RSA keys are vulnerable: It is possible to guess the RSA key by timing how long it takes the server to calculate the response to certain queries. RSA blinding adds a random calculation to each query response, thus making the attack impossible. Enabling RSA blinding is a trade-off between performance and security.
+///
+/// RSA blinding is enabled by default. Use the [`SSLGetRsaBlinding`](https://developer.apple.com/documentation/security/sslgetrsablinding) function to determine the current setting.
+///
+///
 #[deprecated = "No longer supported. Use Network.framework."]
 #[inline]
 pub unsafe extern "C-unwind" fn SSLSetRsaBlinding(
@@ -1133,7 +2397,27 @@ pub unsafe extern "C-unwind" fn SSLSetRsaBlinding(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetrsablinding?language=objc)
+    /// Obtains a value indicating whether RSA blinding is enabled.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - blinding: On return, a pointer to a Boolean value indicating whether RSA blinding is enabled.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used only on the server side of a connection.
+    ///
+    /// Call the [`SSLSetRsaBlinding`](https://developer.apple.com/documentation/security/sslsetrsablinding) function to enable or disable RSA blinding.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1143,19 +2427,91 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslhandshake(_:)?language=objc)
+    /// Performs the SSL handshake.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On successful return, the session is ready for normal secure communication using the functions [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)) and [`SSLWrite`](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)).
+    ///
+    /// If it finds any problems with the peer’s certificate chain, Secure Transport aborts the handshake. You can use the [`SSLCopyPeerCertificates`](https://developer.apple.com/documentation/security/sslcopypeercertificates) function to see the peer’s certificate chain. This function can return a wide variety of result codes, including the following:
+    ///
+    /// - `errSSLUnknownRootCert`—The peer has a valid certificate chain, but the root of the chain is not a known anchor certificate.
+    ///
+    /// - `errSSLNoRootCert`—The peer’s certificate chain was not verifiable to a root certificate.
+    ///
+    /// - `errSSLCertExpired`—The peer’s certificate chain has one or more expired certificates.
+    ///
+    /// - `errSSLXCertChainInvalid`—The peer has an invalid certificate chain; for example, signature verification within the chain failed, or no certificates were found.
+    ///
+    /// - `errSSLClientCertRequested`—The server has requested a client certificate. This result is returned only if you called the [`SSLSetSessionOption`](https://developer.apple.com/documentation/security/sslsetsessionoption(_:_:_:)) function to set the `kSSLSessionOptionBreakOnCertRequested` option. After receiving this result, you must call the [`SSLSetCertificate`](https://developer.apple.com/documentation/security/sslsetcertificate(_:_:)) function to return the client certificate, and then call [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) again to resume the handshake. Use the [`SSLCopyDistinguishedNames`](https://developer.apple.com/documentation/security/sslcopydistinguishednames(_:_:)) function to obtain a list of certificates acceptable to the server.
+    ///
+    /// - `errSSLServerAuthCompleted`—The server authentication portion of the handshake is complete. This result is returned only if you called the [`SSLSetSessionOption`](https://developer.apple.com/documentation/security/sslsetsessionoption(_:_:_:)) function to set the `kSSLSessionOptionBreakOnServerAuth` option, and provides an opportunity to perform application-specific server verification before calling [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) again to continue.
+    ///
+    /// Note that in macOS prior to version 10.8, you must also explicitly call [`SSLSetEnableCertVerify`](https://developer.apple.com/documentation/security/sslsetenablecertverify) to disable verification.
+    ///
+    /// A return value of `errSSLWouldBlock` indicates that the [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) function must be called again until a different result code is returned.
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLHandshake(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslrehandshake(_:)?language=objc)
+    /// Requests renegotiation of the SSL handshake. Server only.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// On success, call the [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) function or the [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)) function, or both, as appropriate, as you would for the original handshake.
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLReHandshake(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)?language=objc)
+    /// Performs a typical application-level write operation.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - data: A pointer to the buffer of data to write.
+    ///
+    /// - dataLength: The amount, in bytes, of data to write.
+    ///
+    /// - processed: On return, the length, in bytes, of the data actually written.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SSLWrite`](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)) function might call the [`SSLWriteFunc`](https://developer.apple.com/documentation/security/sslwritefunc) function that you provide (see [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:))). Because you may configure the underlying connection to operate in a no-blocking manner, a write operation might return `errSSLWouldBlock`, indicating that less data than requested was actually transferred. In this case, you should repeat the call to [`SSLWrite`](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)) until some other result is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1171,7 +2527,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)?language=objc)
+    /// Performs a normal application-level read operation.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - data: On return, points to the data read. You must allocate this buffer before calling the function. The size of this buffer must be equal to or greater than the value in the `dataLength` parameter.
+    ///
+    /// - dataLength: The amount of data you would like to read.
+    ///
+    /// - processed: On return, points to the number of bytes actually read.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)) function might call the [`SSLReadFunc`](https://developer.apple.com/documentation/security/sslreadfunc) function that you provide (see [`SSLSetIOFuncs`](https://developer.apple.com/documentation/security/sslsetiofuncs(_:_:_:)). Because you may configure the underlying connection to operate in a nonblocking manner, a read operation might return `errSSLWouldBlock`, indicating that less data than requested was actually transferred. In this case, you should repeat the call to [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)) until some other result is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1187,7 +2565,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetbufferedreadsize(_:_:)?language=objc)
+    /// Determines how much data is available to be read.
+    ///
+    /// Parameters:
+    /// - context: An SSL session context reference.
+    ///
+    /// - bufferSize: On return, the size of the data to be read.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function determines how much data you can be guaranteed to obtain in a call to the [`SSLRead`](https://developer.apple.com/documentation/security/sslread(_:_:_:_:)) function. This function does not block or cause any low-level read operations to occur.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1197,7 +2593,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslgetdatagramwritesize(_:_:)?language=objc)
+    /// Provides the largest packet that the OS guarantees it can send without fragmentation.
+    ///
+    /// Parameters:
+    /// - dtlsContext: The SSL context associated with the connection.
+    ///
+    /// - bufSize: The address of a `size_t` integer for storing the length.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Although any packet below this threshold size will not be fragmented by the OS when sent using [`SSLWrite`](https://developer.apple.com/documentation/security/sslwrite(_:_:_:_:)), this function provides no guarantees about whether the packet will be fragmented by routers en route. This size value is equal to the maximum Datagram Record size (set by calling [`SSLSetMaxDatagramRecordSize`](https://developer.apple.com/documentation/security/sslsetmaxdatagramrecordsize(_:_:))) minus the DTLS Record header size.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1208,13 +2622,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclose(_:)?language=objc)
+    /// Terminates the current SSL session.
+    ///
+    /// Parameters:
+    /// - context: The SSL session context reference of the session you want to terminate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLClose(context: &SSLContext) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sslseterror(_:_:)?language=objc)
+    /// Sets the status of a session context.
+    ///
+    /// Parameters:
+    /// - context: A session context.
+    ///
+    /// - status: A status result for the context, not to be confused with the return result of this function call. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code that represents the outcome of this function call, not to be confused with the `status` parameter. See [Secure Transport Result Codes](https://developer.apple.com/documentation/security/secure-transport-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function after handling the steps of an SSL handshake, such as server certificate validation.
+    ///
+    ///
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLSetError(context: &SSLContext, status: OSStatus) -> OSStatus;
 }

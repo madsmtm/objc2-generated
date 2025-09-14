@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlerproviding?language=objc)
+    /// The interface for dispatching intents to the custom objects that handle those intents.
+    ///
+    /// ## Overview
+    ///
+    /// The `INIntentHandlerProviding` protocol defines the method for routing SiriKit requests to the appropriate objects of your Intents extension. The method in this protocol acts as a dispatcher, returning an object capable of resolving, confirming, and handling a specific intent object. This protocol is adopted by the [`INExtension`](https://developer.apple.com/documentation/intents/inextension) class and you must provide a custom implementation.
+    ///
+    /// When you add an Intents extension to your project, Xcode automatically creates a default [`INExtension`](https://developer.apple.com/documentation/intents/inextension) subclass that adopts this protocol. Modify the [`handlerForIntent:`](https://developer.apple.com/documentation/intents/inintenthandlerproviding/handler(for:)) method in that subclass and use it to create your handler objects. You can use the same class to handle multiple intents or you can use different classes for each intent.
+    ///
+    ///
     pub unsafe trait INIntentHandlerProviding: NSObjectProtocol {
         #[cfg(feature = "INIntent")]
         #[unsafe(method(handlerForIntent:))]

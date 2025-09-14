@@ -7,6 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values that represent the possible properties of a characteristic.
+///
+/// ## Overview
+///
+/// Since you can combine characteristic properties, a characteristic may have multiple property values set.
+///
+///
 /// Characteristic properties determine how the characteristic value can be    used, or how the descriptor(s) can be accessed. Can be combined. Unless
 /// otherwise specified, properties are valid for local characteristics published via
 ///
@@ -15,42 +22,76 @@ use crate::*;
 /// ```
 ///
 /// .
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCharacteristicProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCharacteristicProperties: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/broadcast?language=objc)
+/// A property that indicates the characteristic can broadcast its value using a characteristic configuration descriptor.
+///
+/// ## Discussion
+///
+/// Don’t use this property for local characteristics published with the [`addService:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/add(_:)) method of the [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) class. You can’t use this property when you initialize a new [`CBMutableCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic) object with the [`initWithType:properties:value:permissions:`](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic/init(type:properties:value:permissions:)) method of the [`CBMutableCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic) class.
+///
+///
         #[doc(alias = "CBCharacteristicPropertyBroadcast")]
         const Broadcast = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/read?language=objc)
+/// A property that indicates a peripheral can read the characteristic’s value.
+///
+/// ## Discussion
+///
+/// Use the [`readValueForCharacteristic:`](https://developer.apple.com/documentation/corebluetooth/cbperipheral/readvalue(for:)-6u2kr) method of the [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) class to read the value of a characteristic.
+///
+///
         #[doc(alias = "CBCharacteristicPropertyRead")]
         const Read = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/writewithoutresponse?language=objc)
+/// A property that indicates a peripheral can write the characteristic’s value, without a response to indicate that the write succeeded.
+///
+/// ## Discussion
+///
+/// Use the [`writeValue:forCharacteristic:type:`](https://developer.apple.com/documentation/corebluetooth/cbperipheral/writevalue(_:for:type:)) method of the [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) class to write to a characteristic’s value, using the [`CBCharacteristicWriteWithoutResponse`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withoutresponse) constant as the parameter for `type`. If a characteristic has this property set, it doesn’t return an error to the central when it fails to write the characteristic’s value.
+///
+///
         #[doc(alias = "CBCharacteristicPropertyWriteWithoutResponse")]
         const WriteWithoutResponse = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/write?language=objc)
+/// A property that indicates a peripheral can write the characteristic’s value, with a response to indicate that the write succeeded.
+///
+/// ## Discussion
+///
+/// If a characteristic has this property set, it returns an error to the central when it fails to write the characteristic’s value. This property allows writing values characteristic that are longer than those permitted by the [`CBCharacteristicPropertyWriteWithoutResponse`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/writewithoutresponse) constant. Use the [`writeValue:forCharacteristic:type:`](https://developer.apple.com/documentation/corebluetooth/cbperipheral/writevalue(_:for:type:)) method of the [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) class to write to a characteristic’s value, using the [`CBCharacteristicWriteWithResponse`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype/withresponse) constant as the parameter for `type`.
+///
+///
         #[doc(alias = "CBCharacteristicPropertyWrite")]
         const Write = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/notify?language=objc)
+/// A property that indicates the peripheral permits notifications of the characteristic’s value, without a response from the central to indicate receipt of the notification.
         #[doc(alias = "CBCharacteristicPropertyNotify")]
         const Notify = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/indicate?language=objc)
+/// A property that indicates the peripheral permits notifications of the characteristic’s value, with a response from the central to indicate receipt of the notification.
         #[doc(alias = "CBCharacteristicPropertyIndicate")]
         const Indicate = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/authenticatedsignedwrites?language=objc)
+/// A property that indicates the perhipheral allows signed writes of the characteristic’s value, without a response to indicate the write succeeded.
+///
+/// ## Discussion
+///
+/// If a characteristic has this property set, it returns an error to the central when it fails to write the characteristic’s value.
+///
+///
         #[doc(alias = "CBCharacteristicPropertyAuthenticatedSignedWrites")]
         const AuthenticatedSignedWrites = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/extendedproperties?language=objc)
+/// A property that indicates the characteristic defines additional properties in the extended properties descriptor.
+///
+/// ## Discussion
+///
+/// This property is only available for a remote peripheral’s service’s characteristic. You can’t use this property with a local characteristic, that is, a [`CBMutableCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic) that you publish using the [`addService:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/add(_:)) method of the [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) class.
+///
+///
         #[doc(alias = "CBCharacteristicPropertyExtendedProperties")]
         const ExtendedProperties = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/notifyencryptionrequired?language=objc)
+/// A property that indicates that only trusted devices can enable notifications of the characteristic’s value.
         #[doc(alias = "CBCharacteristicPropertyNotifyEncryptionRequired")]
         const NotifyEncryptionRequired = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties/indicateencryptionrequired?language=objc)
+/// A property that indicates only trusted devices can enable indications of the characteristic’s value.
         #[doc(alias = "CBCharacteristicPropertyIndicateEncryptionRequired")]
         const IndicateEncryptionRequired = 0x200;
     }
@@ -65,9 +106,14 @@ unsafe impl RefEncode for CBCharacteristicProperties {
 }
 
 extern_class!(
-    /// Represents a service's characteristic.
+    /// A characteristic of a remote peripheral’s service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic?language=objc)
+    /// ## Overview
+    ///
+    /// [`CBCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic) and its subclass [`CBMutableCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic) represent further information about a peripheral’s service. In particular, [`CBCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic) objects represent the characteristics of a remote peripheral’s service. A characteristic contains a single value and any number of descriptors describing that value. The properties of a characteristic determine how you can use a characteristic’s value, and how you access the descriptors.
+    ///
+    ///
+    /// Represents a service's characteristic.
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -137,25 +183,32 @@ impl CBCharacteristic {
     );
 }
 
-/// Read, write, and encryption permissions for an ATT attribute. Can be combined.
+/// Values that represent the read, write, and encryption permissions for a characteristic’s value.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions?language=objc)
+/// ## Overview
+///
+/// When you initialize a new mutable characteristic, you set the read, write, and encryption permissions for the characteristic’s value. Setting the read and write _permissions_ for a characteristic’s value is different from specifying the read and write _properties_ for a characteristic’s value. When you specify the read and write properties, the client (a central) inspects the read and write permissions of the characteristic’s value. When you specify the read and write permissions for a characteristic’s value, you set the permissions for the server (the peripheral) to allow the type of read or write specified by the characteristic’s properties. Therefore, when you initialize a mutable characteristic, you need to specify read or write properties and their corresponding permissions.
+///
+/// If you want to enforce encryption requirements for reads and writes on a characteristic’s value, you must specify the relevant permission ([`CBAttributePermissionsReadEncryptionRequired`](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/readencryptionrequired) or [`CBAttributePermissionsWriteEncryptionRequired`](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/writeencryptionrequired)). You may set more than one permission for a characteristic’s value.
+///
+///
+/// Read, write, and encryption permissions for an ATT attribute. Can be combined.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBAttributePermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CBAttributePermissions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/readable?language=objc)
+/// A permission that indicates a peripheral can read the attribute’s value.
         #[doc(alias = "CBAttributePermissionsReadable")]
         const Readable = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/writeable?language=objc)
+/// A permission that indicates a peripheral can write the attribute’s value.
         #[doc(alias = "CBAttributePermissionsWriteable")]
         const Writeable = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/readencryptionrequired?language=objc)
+/// A permission that indicates only trusted devices can read the attribute’s value.
         #[doc(alias = "CBAttributePermissionsReadEncryptionRequired")]
         const ReadEncryptionRequired = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions/writeencryptionrequired?language=objc)
+/// A permission that indicates only trusted devices can write the attribute’s value.
         #[doc(alias = "CBAttributePermissionsWriteEncryptionRequired")]
         const WriteEncryptionRequired = 0x08;
     }
@@ -170,6 +223,15 @@ unsafe impl RefEncode for CBAttributePermissions {
 }
 
 extern_class!(
+    /// A characteristic of a local peripheral’s service.
+    ///
+    /// ## Overview
+    ///
+    /// [`CBMutableCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic) objects represent the characteristics of a local peripheral’s service. This class adds write access to many of the properties in the [`CBCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic) class, which it inherits from.
+    ///
+    /// You use this class to create a characteristic and to set its properties and permissions as desired. After you create and add a characteristic to a local service, you can publish it (and the service) to the peripheral’s local database with the [`addService:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/add(_:)) method of the [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) class. After you publish a characteristic, Core Bluetooth caches the characteristic and you can’t make changes to it.
+    ///
+    ///
     /// Used to create a local characteristic, which can be added to the local database via
     /// <code>
     /// CBPeripheralManager
@@ -198,8 +260,6 @@ extern_class!(
     /// nil
     /// </i>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutablecharacteristic?language=objc)
     #[unsafe(super(CBCharacteristic, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]

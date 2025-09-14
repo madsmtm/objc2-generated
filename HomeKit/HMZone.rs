@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A collection of rooms that users think of as a single area, like upstairs or downstairs.
+    ///
+    /// ## Overview
+    ///
+    /// An [`HMZone`](https://developer.apple.com/documentation/homekit/hmzone) instance is an optional grouping of rooms in a home, with names like “upstairs” and “downstairs”. Zones are optional—rooms don’t need to be in a zone. By adding rooms to a zone, the user can give commands to Siri like “Siri, turn on all of the lights downstairs.” A single room can be in multiple zones—for example, “kitchen” might be in both the “downstairs” and “entertainment area” zones.
+    ///
+    /// You create new zones using the [`addZoneWithName:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addzone(withname:completionhandler:)) method of [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome). A zone can’t span homes—that is, you can’t create a zone that includes rooms from more than one home.
+    ///
+    ///
     /// Used to describe a collection of HMRoom objects
     ///
     ///
@@ -15,8 +24,6 @@ extern_class!(
     /// This allows for association of a set of rooms into a group.
     /// Eg. "Living Room" and "Kitchen" rooms can be grouped together
     /// in the "Downstairs" zone.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmzone?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMZone;

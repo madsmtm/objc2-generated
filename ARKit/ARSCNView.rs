@@ -11,7 +11,15 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arscnviewdelegate?language=objc)
+    /// Methods you can implement to mediate the automatic synchronization of SceneKit content with an AR session.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol to provide SceneKit content corresponding to [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) objects tracked by the view’s AR session, or to manage the view’s automatic updating of such content.
+    ///
+    /// This protocol extends the [`ARSessionObserver`](https://developer.apple.com/documentation/arkit/arsessionobserver) protocol, so your session delegate can also implement those methods to respond to changes in session status.
+    ///
+    ///
     #[cfg(all(feature = "ARSession", feature = "objc2", feature = "objc2-scene-kit"))]
     pub unsafe trait ARSCNViewDelegate:
         SCNSceneRendererDelegate + ARSessionObserver
@@ -116,24 +124,39 @@ extern_protocol!(
     }
 );
 
-/// Extended debug options for an ARSCNView
+/// Options for drawing overlay content to aid debugging of AR tracking in a SceneKit view.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscndebugoptions?language=objc)
+/// ## Discussion
+///
+/// To use these debugging overlays, add them to the option set in the view’s [`debugOptions`](https://developer.apple.comhttps://developer.apple.com/documentation/scenekit/scnscenerenderer/1523281-debugoptions) property (inherited from the [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) class).
+///
+///
+/// Extended debug options for an ARSCNView
 #[cfg(feature = "objc2-scene-kit")]
 pub type ARSCNDebugOptions = SCNDebugOptions;
 
 extern "C" {
-    /// Show the world origin in the scene.
+    /// Display a coordinate axis visualization indicating the position and orientation of the AR world coordinate system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscndebugoptionshowworldorigin?language=objc)
+    /// ## Discussion
+    ///
+    /// This visualization is available to all session configurations and session [`worldAlignment`](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.property) options, but is most useful with a [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) session. For example, if you start running a session when this option is enabled, then take a step backward, the real-world position tracked by the AR world coordinate system should become visible on your device screen.
+    ///
+    ///
+    /// Show the world origin in the scene.
     #[cfg(feature = "objc2-scene-kit")]
     pub static ARSCNDebugOptionShowWorldOrigin: SCNDebugOptions;
 }
 
 extern "C" {
-    /// Show detected 3D feature points in the world.
+    /// Display a point cloud showing intermediate results of the scene analysis that ARKit uses to track device position.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscndebugoptionshowfeaturepoints?language=objc)
+    /// ## Discussion
+    ///
+    /// This option is available only when running a [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) session.
+    ///
+    ///
+    /// Show detected 3D feature points in the world.
     #[cfg(feature = "objc2-scene-kit")]
     pub static ARSCNDebugOptionShowFeaturePoints: SCNDebugOptions;
 }

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertionrequest?language=objc)
+    /// The concrete assertion request type for platform credentials.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to sign in with an existing credential that the system stores in iCloud Keychain.
+    ///
+    ///
     #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]

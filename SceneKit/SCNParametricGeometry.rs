@@ -13,9 +13,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// SCNPlane represents a rectangle with controllable width and height. The plane has one visible side.
+    /// A rectangular, one-sided plane geometry of specified width and height.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnplane?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/728b1f058100192814f51b3b907e28e7/media-2929811%402x.png)
+    ///
+    ///
+    /// A plane defines a flat surface in the x- and y-axis dimensions of its local coordinate space according to its [`width`](https://developer.apple.com/documentation/scenekit/scnplane/width) and [`height`](https://developer.apple.com/documentation/scenekit/scnplane/height) properties. To orient a plane differently, adjust the [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) property of the node containing the plane geometry. You can create a rounded rectangular plane using the [`cornerRadius`](https://developer.apple.com/documentation/scenekit/scnplane/cornerradius) property.
+    ///
+    /// The surface is one-sided. Its surface normal vectors point in the positive z-axis direction of its local coordinate space, so it is only visible from that direction by default. To render both sides of a plane, either set the [`doubleSided`](https://developer.apple.com/documentation/scenekit/scnmaterial/isdoublesided) property of its material to [`true`](https://developer.apple.com/documentation/swift/true) or create two plane geometries and orient them back to back.
+    ///
+    /// Control the level of detail with the [`widthSegmentCount`](https://developer.apple.com/documentation/scenekit/scnplane/widthsegmentcount), [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scnplane/heightsegmentcount), and [`cornerSegmentCount`](https://developer.apple.com/documentation/scenekit/scnplane/cornersegmentcount) properties. A higher segment count produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    ///
+    /// SCNPlane represents a rectangle with controllable width and height. The plane has one visible side.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -272,9 +285,22 @@ impl SCNPlane {
 }
 
 extern_class!(
-    /// SCNBox represents a box with rectangular sides and optional chamfers.
+    /// A six-sided polyhedron geometry whose faces are all rectangles, optionally with rounded edges and corners.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbox?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/2626bbf0d905da4f946e9f326170a985/media-2929807%402x.png)
+    ///
+    ///
+    /// Define the shape of the box in the x-, y-, and z-axis dimensions of its local coordinate space by setting its [`width`](https://developer.apple.com/documentation/scenekit/scnbox/width), [`height`](https://developer.apple.com/documentation/scenekit/scnbox/height), and [`length`](https://developer.apple.com/documentation/scenekit/scnbox/length) properties. Add rounded edges and corners to a box with its [`chamferRadius`](https://developer.apple.com/documentation/scenekit/scnbox/chamferradius) property. To position and orient a box in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    /// Control the level of detail with the [`widthSegmentCount`](https://developer.apple.com/documentation/scenekit/scnbox/widthsegmentcount), [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scnbox/heightsegmentcount), [`lengthSegmentCount`](https://developer.apple.com/documentation/scenekit/scnbox/lengthsegmentcount), and [`chamferSegmentCount`](https://developer.apple.com/documentation/scenekit/scnbox/chamfersegmentcount) properties. A higher segment count produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    /// You can assign up to six [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) instances to a box—one for each side—with its [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property. The [`SCNBox`](https://developer.apple.com/documentation/scenekit/scnbox) class automatically creates [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) objects as needed to handle the number of materials.
+    ///
+    ///
+    /// SCNBox represents a box with rectangular sides and optional chamfers.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -566,9 +592,22 @@ impl SCNBox {
 }
 
 extern_class!(
-    /// SCNPyramid represents a right pyramid with a rectangular base.
+    /// A right rectangular pyramid geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnpyramid?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/faa953ca36abc955499e04ebcf672469/media-2929810%402x.png)
+    ///
+    ///
+    /// A pyramid defines the surface of a solid whose base is a rectangle, and whose four triangular side faces converge at a point centered above its base. Define the shape of the pyramid’s base in the x- and z-axis dimensions of its local coordinate space with the [`width`](https://developer.apple.com/documentation/scenekit/scnpyramid/width) and [`length`](https://developer.apple.com/documentation/scenekit/scnpyramid/length) properties, and its extent in the y-axis dimension with the [`height`](https://developer.apple.com/documentation/scenekit/scnpyramid/height) property. To position and orient a pyramid in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    /// Control the level of detail with the [`widthSegmentCount`](https://developer.apple.com/documentation/scenekit/scnpyramid/widthsegmentcount), [`lengthSegmentCount`](https://developer.apple.com/documentation/scenekit/scnpyramid/lengthsegmentcount), and [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scnpyramid/heightsegmentcount) properties. A higher segment count produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    /// A pyramid contains five [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) objects, corresponding to its base and each of its four sides. SceneKit can render each element using a different material. For details, see the [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property in [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry).
+    ///
+    ///
+    /// SCNPyramid represents a right pyramid with a rectangular base.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -831,9 +870,28 @@ impl SCNPyramid {
 }
 
 extern_class!(
-    /// SCNSphere represents a sphere with controllable radius
+    /// A sphere (or ball or globe) geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsphere?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/58b68f8a9a752ea21d7306d6a820ad66/media-2929814%402x.png)
+    ///
+    ///
+    /// A sphere defines a surface whose every point is equidistant from its center, which is placed at the origin of its local coordinate space. You define the size of the sphere in all three dimensions using its [`radius`](https://developer.apple.com/documentation/scenekit/scnsphere/radius) property.
+    ///
+    /// SceneKit approximates the curved surface of a sphere using a mesh of polygons. There are two options for constructing the mesh:
+    ///
+    /// - By default, SceneKit constructs the sphere using a rectangular grid, like the lines of latitude and longitude on a globe of the Earth. The sphere has a vertex at each pole, and its [`segmentCount`](https://developer.apple.com/documentation/scenekit/scnsphere/segmentcount) property determines both the number of divisions along its surface from one pole to the other (or lines of latitude) and the number of divisions around its circumference in a horizontal plane (or lines of longitude).
+    ///
+    /// - If you set the sphere’s [`geodesic`](https://developer.apple.com/documentation/scenekit/scnsphere/isgeodesic) property to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit constructs the sphere by successively subdividing the triangular surfaces of a regular icosahedron. For a geodesic sphere, the [`SCNSphere`](https://developer.apple.com/documentation/scenekit/scnsphere) property scales logarithmically to determine the number of subdivisions, roughly approximating the number of vertices generated by a non-geodesic sphere of the same segment count.
+    ///
+    /// With either approximation, increasing the [`SCNSphere`](https://developer.apple.com/documentation/scenekit/scnsphere) property produces more vertices and a more smoothly curved surface, which can improve rendering quality at a cost to rendering performance.
+    ///
+    /// To position and orient a sphere in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    ///
+    /// SCNSphere represents a sphere with controllable radius
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -1048,9 +1106,22 @@ impl SCNSphere {
 }
 
 extern_class!(
-    /// SCNCylinder represents a cylinder with controllable height and radius.
+    /// A right circular cylinder geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncylinder?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/ac3acc88eb04c91eed6d3765814046e9/media-2929812%402x.png)
+    ///
+    ///
+    /// A cylinder defines the surface of a solid whose every cross section along a linear axis is a circle of equal size. Define the size of the cylinder’s cross section in the x- and z-axis dimensions of its local coordinate space with the [`radius`](https://developer.apple.com/documentation/scenekit/scncylinder/radius) property, and its extent in the y-axis dimension with the [`height`](https://developer.apple.com/documentation/scenekit/scncylinder/height) property. To position and orient a cylinder in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    /// Control the level of detail with the [`radialSegmentCount`](https://developer.apple.com/documentation/scenekit/scncylinder/radialsegmentcount) and [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scncylinder/heightsegmentcount) properties. A higher radial segment count creates a smoother curve for the cylinder’s circular sides. A higher segment count in either direction produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    /// A cylinder contains three [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) objects: one each for its base and top, and one that wraps around its sides. SceneKit can render each element using a different material. For details, see the [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property in [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry).
+    ///
+    ///
+    /// SCNCylinder represents a cylinder with controllable height and radius.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -1282,9 +1353,26 @@ impl SCNCylinder {
 }
 
 extern_class!(
-    /// SCNCone represents a cone with controllable height, top radius and bottom radius.
+    /// A right circular cone or frustum geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncone?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/c98604b0c5b0a6a33ac4e0c4c7d4e68a/media-2929809%402x.png)
+    ///
+    ///
+    /// A cone defines the surface of a solid whose base is a circle and whose side surface tapers to a point centered above its base. A frustum also has a circular base and tapered sides but has a circular top, similar to a cone cut off below its apex.
+    ///
+    /// Define the size of the cone’s base in the x- and z-axis dimensions of its local coordinate space with its [`bottomRadius`](https://developer.apple.com/documentation/scenekit/scncone/bottomradius) property, and its extent in the y-axis dimension with its [`height`](https://developer.apple.com/documentation/scenekit/scncone/height) property. Create a cone that tapers to a point by setting its [`topRadius`](https://developer.apple.com/documentation/scenekit/scncone/topradius) property to zero, or a frustum that tapers (or expands) to a circular top by setting the [`topRadius`](https://developer.apple.com/documentation/scenekit/scncone/topradius) property to a different value.
+    ///
+    /// To position and orient a cone in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    /// Control the level of detail with the [`radialSegmentCount`](https://developer.apple.com/documentation/scenekit/scncone/radialsegmentcount) and [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scncone/heightsegmentcount) properties. A higher radial segment count creates a smoother curve for the cone’s circular sides. A higher segment count in either direction produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    /// A cone geometry may contain two or three [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) objects, corresponding to its outer surface, its base and its top (or base only or top only, if the [`topRadius`](https://developer.apple.com/documentation/scenekit/scncone/topradius) or [`bottomRadius`](https://developer.apple.com/documentation/scenekit/scncone/bottomradius) property is zero). SceneKit can render each element using a different material. For details, see the [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property in [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry).
+    ///
+    ///
+    /// SCNCone represents a cone with controllable height, top radius and bottom radius.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -1535,9 +1623,22 @@ impl SCNCone {
 }
 
 extern_class!(
-    /// SCNTube represents a tube with controllable height, inner radius and outer radius.
+    /// A tube or pipe geometry—a right circular cylinder with a circular hole along its central axis.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntube?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/7b2f97f33326725d2645fdf61f1b5106/media-2929815%402x.png)
+    ///
+    ///
+    /// The outer surface of a tube is a cylinder. Define the size of the cylinder’s cross section in the x- and z-axis dimensions of its local coordinate space with the [`outerRadius`](https://developer.apple.com/documentation/scenekit/scntube/outerradius) property, and its extent in the y-axis dimension with the [`height`](https://developer.apple.com/documentation/scenekit/scntube/height) property. A cylinder becomes a tube through the subtraction of a cylindrical volume along its central axis. Define the size of this circular hole using the tube’s [`innerRadius`](https://developer.apple.com/documentation/scenekit/scntube/innerradius) property. To position and orient a tube in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    /// Control the level of detail with the [`radialSegmentCount`](https://developer.apple.com/documentation/scenekit/scntube/radialsegmentcount) and [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scntube/heightsegmentcount) properties. A higher radial segment count creates a smoother curve for the tube’s circular inner and outer surfaces. A higher segment count in either direction produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    /// A tube contains four [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) objects: one each for its base and top, one that wraps around its outer surface, and one that wraps around its inner surface. SceneKit can render each element using a different material. For details, see the [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property in [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry).
+    ///
+    ///
+    /// SCNTube represents a tube with controllable height, inner radius and outer radius.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -1788,9 +1889,20 @@ impl SCNTube {
 }
 
 extern_class!(
-    /// SCNCapsule represents a capsule with controllable height and cap radius.
+    /// A right circular cylinder geometry whose ends are capped with hemispheres.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncapsule?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/90b8dce3e43df2a5cac61f9bbb933d7a/media-2929808%402x.png)
+    ///
+    ///
+    /// Define the size of the two hemispheres forming the ends of a capsule with the [`capRadius`](https://developer.apple.com/documentation/scenekit/scncapsule/capradius) property. Because the cylindrical body of the capsule stretches between the its two hemispherical ends, its circular cross section in the x- and z-axis dimensions has the same radius. Define the capsule’s extent in the z-axis dimension of its local coordinate space with the [`height`](https://developer.apple.com/documentation/scenekit/scncapsule/height) property. To change the orientation of a capsule, adjust the [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) property of the node containing the capsule geometry.
+    ///
+    /// Control the level of detail with the [`heightSegmentCount`](https://developer.apple.com/documentation/scenekit/scncapsule/heightsegmentcount), [`capSegmentCount`](https://developer.apple.com/documentation/scenekit/scncapsule/capsegmentcount), and [`height`](https://developer.apple.com/documentation/scenekit/scncapsule/height) properties. Higher radial and cap segment counts create smoother curves for the cylinder’s circular sides and hemispherical ends. A higher segment count in any direction produces more vertices, which can improve rendering quality for certain lighting models or custom shader effects, but at a cost to rendering performance.
+    ///
+    ///
+    /// SCNCapsule represents a capsule with controllable height and cap radius.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -2036,9 +2148,20 @@ impl SCNCapsule {
 }
 
 extern_class!(
-    /// SCNTorus represents a torus with controllable ring radius and pipe radius.
+    /// A torus, or ring-shaped geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntorus?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/efa6172dd2b7015ddd7ccb23e381513b/media-2929816%402x.png)
+    ///
+    ///
+    /// A torus is mathematically defined as a surface of revolution formed by revolving a circle around a coplanar axis. It is the product of two circles: a large ring and a pipe that encircles the ring. SceneKit uses these terms to define the dimensions of a torus geometry in its local coordinate space. The torus’ [`ringRadius`](https://developer.apple.com/documentation/scenekit/scntorus/ringradius) property defines a circle in the x- and z-axis dimensions, centered at the origin, and its [`pipeRadius`](https://developer.apple.com/documentation/scenekit/scntorus/piperadius) property defines the width of the surface encircling the ring. To change the orientation of a torus, adjust the [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) property of the node containing the torus geometry.
+    ///
+    /// Control the level of detail with the [`ringSegmentCount`](https://developer.apple.com/documentation/scenekit/scntorus/ringsegmentcount) and [`pipeSegmentCount`](https://developer.apple.com/documentation/scenekit/scntorus/pipesegmentcount) properties. Higher segment counts produce more vertices and a more smoothly curved surface, which can improve rendering quality at a cost to rendering performance.
+    ///
+    ///
+    /// SCNTorus represents a torus with controllable ring radius and pipe radius.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -2272,9 +2395,20 @@ impl SCNTorus {
 }
 
 extern_class!(
-    /// SCNFloor represents an infinite plane geometry.
+    /// A plane that can optionally display a reflection of the scene above it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfloor?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/a6e68c528e0ad20b9b78fb21c14430d8/media-2929804%402x.png)
+    ///
+    ///
+    /// By default, a floor extends infinitely in the x- and z-axis dimensions of its local coordinate space, and is located in the plane whose y-coordinate is zero. To position and orient a floor in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object. Often, you use a floor to provide a background for a scene.
+    ///
+    /// If a floor’s [`reflectivity`](https://developer.apple.com/documentation/scenekit/scnfloor/reflectivity) property is greater than zero, SceneKit automatically renders reflections for all geometries above it. Optionally, you can add an opacity gradient so that reflections of scene contents closer to the floor appear more clearly than those of scene contents further from it. You control the floor’s reflectivity using the properties listed in Adding Reflections to a Floor.
+    ///
+    ///
+    /// SCNFloor represents an infinite plane geometry.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -2547,9 +2681,42 @@ impl SCNFloor {
 }
 
 extern_class!(
-    /// SCNText represents a block of text that has been extruded
+    /// A geometry based on a string of text, optionally extruded to create a three-dimensional object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntext?language=objc)
+    /// ## Overview
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/a6e68c528e0ad20b9b78fb21c14430d8/media-2929805%402x.png)
+    ///
+    ///
+    /// You provide text for the geometry using an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) or [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) object. In the former case, the properties of the [`SCNText`](https://developer.apple.com/documentation/scenekit/scntext) object determine the style and formatting of the entire body of text. When you create a text geometry from an attributed string, SceneKit styles the text according to the attributes in the string, and the properties of the [`SCNText`](https://developer.apple.com/documentation/scenekit/scntext) object determine the default style for portions of the string that have no style attributes. SceneKit can create text geometry using any font and style supported by the Core Text framework, with the exception of bitmap fonts (such as those that define color emoji characters).
+    ///
+    /// In the local coordinate system of the text geometry, the origin corresponds to the lower left corner of the text, with the text extending in the x- and y-axis dimensions. The geometry is centered along its z-axis. For example, if its [`extrusionDepth`](https://developer.apple.com/documentation/scenekit/scntext/extrusiondepth) property is `1.0`, the geometry extends from `-0.5` to `0.5` along the z-axis. An extrusion depth of zero creates a flat, one-sided shape—the geometry is confined to the plane whose z-coordinate is `0.0`, and viewable only from its front unless its material’s [`doubleSided`](https://developer.apple.com/documentation/scenekit/scnmaterial/isdoublesided) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// To position and orient a text geometry in a scene, attach it to the [`geometry`](https://developer.apple.com/documentation/scenekit/scnnode/geometry) property of an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  SceneKit creates geometry from text in a local coordinate system where one unit is one typographic point. For example, a text geometry whose font is Helvetica 36 (the default) may be up to 36 units tall. If your scene is arranged on a different scale, use the [`scale`](https://developer.apple.com/documentation/scenekit/scnnode/scale) property of the node containing the text geometry to make it fit within your scene.
+    ///
+    ///
+    ///
+    /// </div>
+    /// SceneKit can optionally _chamfer_ an extruded text geometry by applying a cross-sectional contour to its extruded depth. You use the [`chamferRadius`](https://developer.apple.com/documentation/scenekit/scntext/chamferradius) property to add a chamfer to the extruded text, and the [`chamferProfile`](https://developer.apple.com/documentation/scenekit/scntext/chamferprofile) property to control the shape of the chamfer.
+    ///
+    /// A text geometry may contain one, three, or five geometry elements:
+    ///
+    /// - If its [`extrusionDepth`](https://developer.apple.com/documentation/scenekit/scntext/extrusiondepth) property is `0.0`, the text geometry has one element corresponding to its one visible side.
+    ///
+    /// - If its extrusion depth is greater than zero and its [`chamferRadius`](https://developer.apple.com/documentation/scenekit/scntext/chamferradius) property is `0.0`, the text geometry has three elements, corresponding to its front, back, and extruded sides.
+    ///
+    /// - If both extrusion depth and chamfer radius are greater than zero, the text geometry has five elements, corresponding to its front, back, extruded sides, front chamfer, and back chamfer.
+    ///
+    /// SceneKit can render each element using a different material. For details, see the description of the [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property in [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry).
+    ///
+    ///
+    /// SCNText represents a block of text that has been extruded
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]
@@ -2906,19 +3073,27 @@ impl SCNText {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode?language=objc)
+/// Options for which edges of an extruded shape are chamfered, used by the [`chamferMode`](https://developer.apple.com/documentation/scenekit/scnshape/chamfermode) property.
+///
+/// ## Overview
+///
+///
+/// ![](https://docs-assets.developer.apple.com/published/1bd46a3942a3db81cff2295284beab48/media-2929773%402x.png)
+///
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNChamferMode(pub NSInteger);
 impl SCNChamferMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode/both?language=objc)
+    /// Apply a chamfer to both front and back edges of the extruded shape.
     #[doc(alias = "SCNChamferModeBoth")]
     pub const Both: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode/front?language=objc)
+    /// Apply a chamfer to only the front edge of the extruded shape.
     #[doc(alias = "SCNChamferModeFront")]
     pub const Front: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnchamfermode/back?language=objc)
+    /// Apply a chamfer to only the back edge of the extruded shape.
     #[doc(alias = "SCNChamferModeBack")]
     pub const Back: Self = Self(2);
 }
@@ -2932,9 +3107,24 @@ unsafe impl RefEncode for SCNChamferMode {
 }
 
 extern_class!(
-    /// SCNShape represents a 2D shape (cubic Bezier spline) than can be extruded.
+    /// A geometry based on a two-dimensional path, optionally extruded to create a three-dimensional object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshape?language=objc)
+    /// ## Overview
+    ///
+    /// SceneKit creates a three-dimensional geometry by extruding a Bézier path, which extends in the x- and y-axis directions of its local coordinate space, along the z-axis by a specified amount. For example, if you create a shape with an extrusion depth of `1.0`, it extends from `-0.5` to `0.5` along the z-axis. An extrusion depth of zero creates a flat, one-sided shape—the geometry is confined to the plane whose z-coordinate is `0.0`, and viewable only from its front unless its material’s [`doubleSided`](https://developer.apple.com/documentation/scenekit/scnmaterial/isdoublesided) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// A shape geometry may contain between one and five geometry elements:
+    ///
+    /// - If its [`extrusionDepth`](https://developer.apple.com/documentation/scenekit/scnshape/extrusiondepth) property is `0.0`, the shape geometry has one element corresponding to its one visible side.
+    ///
+    /// - If its extrusion depth is greater than zero and its [`chamferRadius`](https://developer.apple.com/documentation/scenekit/scnshape/chamferradius) property is `0.0`, the shape geometry has three elements, corresponding to its front, back, and extruded sides.
+    ///
+    /// - If both extrusion depth and chamfer radius are greater than zero, the text geometry can have four or five elements depending on its [`chamferMode`](https://developer.apple.com/documentation/scenekit/scnshape/chamfermode) property, corresponding to its front, back, extruded sides, front chamfer, and back chamfer.
+    ///
+    /// SceneKit can render each element using a different material. For details, see the description of the [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property in [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry).
+    ///
+    ///
+    /// SCNShape represents a 2D shape (cubic Bezier spline) than can be extruded.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNGeometry")]

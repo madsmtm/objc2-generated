@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/routepreference?language=objc)
+/// Options that modify how the framework selects routes when calculating directions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDirectionsRoutePreference(pub NSInteger);
 impl MKDirectionsRoutePreference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/routepreference/any?language=objc)
+    /// The option that specifies any available route.
     #[doc(alias = "MKDirectionsRoutePreferenceAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/routepreference/avoid?language=objc)
+    /// The option that requests the framework avoid certain routes.
     #[doc(alias = "MKDirectionsRoutePreferenceAvoid")]
     pub const Avoid: Self = Self(1);
 }
@@ -30,7 +30,23 @@ unsafe impl RefEncode for MKDirectionsRoutePreference {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/request?language=objc)
+    /// The start and end points of a route, along with the planned mode of transportation.
+    ///
+    /// ## Overview
+    ///
+    /// You use an [`MKDirectionsRequest`](https://developer.apple.com/documentation/mapkit/mkdirections/request) object when requesting or providing directions. If your app provides directions, use this class to decode the URL that the Maps app sends to you. If you need to request directions from Apple, pass an instance of this class to an [`MKDirections`](https://developer.apple.com/documentation/mapkit/mkdirections) object. For example, an app that provides subway directions might request walking directions to and from relevant subway stations.
+    ///
+    /// Prior to iOS 14, for apps that provide directions, you receive direction-related URLs in your app delegate’s [`application:openURL:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:open:options:))method. Upon receiving a URL, call the [`isDirectionsRequestURL:`](https://developer.apple.com/documentation/mapkit/mkdirections/request/isdirectionsrequest(_:)) method of this class to determine whether the URL relates to routing directions. If it does, create an instance of this class using the provided URL and extract the map items associated with the start and end points.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Prior to iOS 14, to provide routing directions, your app needs to include special keys in its `Info.plist` file and be able to handle URLs that the Maps app sends to it. These keys indicate a special URL type that you app needs to handle. For information about how to implement this support, see [Location and Maps Programming Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009497).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirectionsRequest;

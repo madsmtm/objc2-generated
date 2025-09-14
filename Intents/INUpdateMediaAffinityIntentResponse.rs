@@ -6,28 +6,52 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode?language=objc)
+/// Codes returned by an intents handler in response to an update media affinity request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INUpdateMediaAffinityIntentResponseCode(pub NSInteger);
 impl INUpdateMediaAffinityIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/unspecified?language=objc)
+    /// An unknown state.
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/ready?language=objc)
+    /// The app is ready.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/inprogress?language=objc)
+    /// The app is currently trying to process the update affinity request.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if it may take more than a few seconds to update the affinity for the media.
+    ///
+    ///
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/success?language=objc)
+    /// The app successfully updated the user’s affinity for the media.
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/failure?language=objc)
+    /// The app is unable to update the user’s affinity for the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from updating the user’s affinity for the media.
+    ///
+    ///
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user needs to launch the app to update the user’s affinity for the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INUpdateMediaAffinityIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -41,7 +65,15 @@ unsafe impl RefEncode for INUpdateMediaAffinityIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponse?language=objc)
+    /// An intents handler’s response to an update media affinity intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INUpdateMediaAffinityIntentResponse`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponse) object to specify the results from trying to update the user’s affinity for a media item. After performing the add action using the criteria specified in the [`INUpdateMediaAffinityIntent`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintent) object, create an instance of this class with the results of the action. Siri communicates the response status to the user at appropriate times.
+    ///
+    /// You create an [`INUpdateMediaAffinityIntentResponse`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintentresponse) object in the [`confirmUpdateMediaAffinity:completion:`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintenthandling/confirm(intent:completion:)) and [`handleUpdateMediaAffinity:completion:`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintenthandling/handle(intent:completion:)) methods of your add media handler object. For more information about implementing your handler object, see [`INUpdateMediaAffinityIntentHandling`](https://developer.apple.com/documentation/intents/inupdatemediaaffinityintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

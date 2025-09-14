@@ -9,7 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment?language=objc)
+    /// A track segment that maps a time from the source media track to the composition track.
+    ///
+    /// ## Overview
+    ///
+    /// You typically use this class to save a low-level representation of a composition.
+    ///
+    ///
     #[unsafe(super(AVAssetTrackSegment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAssetTrackSegment")]

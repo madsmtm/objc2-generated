@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pklabeledvalue?language=objc)
+    /// An object that can represent a detail about a payment card or other item.
+    ///
+    /// ## Overview
+    ///
+    /// See [`cardDetails`](https://developer.apple.com/documentation/passkit/pkaddpaymentpassrequestconfiguration/carddetails).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKLabeledValue;

@@ -11,9 +11,16 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// A SCNLayer is a layer that can display a SCNScene.
+    /// A Core Animation layer that renders a SceneKit scene as its content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlayer?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to integrate 3D content rendered by SceneKit into a user interface composed of Core Animation layers. To provide content for the layer, assign an [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object to its [`scene`](https://developer.apple.com/documentation/scenekit/scnlayer/scene) property.
+    ///
+    /// Most of the methods and properties you use for working with a SceneKit layer are defined by the [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer) protocol.
+    ///
+    ///
+    /// A SCNLayer is a layer that can display a SCNScene.
     #[unsafe(super(CAOpenGLLayer, CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]

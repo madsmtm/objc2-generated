@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintent?language=objc)
+    /// A request to end the current workout that also validates workout parameters and saves the results.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates an [`INEndWorkoutIntent`](https://developer.apple.com/documentation/intents/inendworkoutintent) object when the user asks to finish an in-progress workout. Finishing a workout stops it and records any progress made toward the workout’s goals. Use this intent object to validate the workout parameters.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INEndWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inendworkoutintenthandling) protocol. Your handler should confirm the request and create an [`INEndWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inendworkoutintentresponse) object that indicates it’s possible to end the workout. For the successful handling of the intent, SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object your app must then use to end the workout.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +86,18 @@ impl INEndWorkoutIntent {
 }
 
 extern_protocol!(
+    /// An interface that handles requests to complete a workout.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INEndWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inendworkoutintenthandling) protocol to resolve, confirm, and handle requests to end a workout using your app. Adopt this protocol in an object of your Intents extension capable of validating the workout name.
+    ///
+    /// You don’t actually end the workout from your Intents extension. When your [`handleEndWorkout:completion:`](https://developer.apple.com/documentation/intents/inendworkoutintenthandling/handle(intent:completion:)) returns, SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that contains the end workout intent object and your response. Your app uses the information in those objects to end the workout.
+    ///
+    ///
     /// Protocol to declare support for handling an INEndWorkoutIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintenthandling?language=objc)
     pub unsafe trait INEndWorkoutIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INEndWorkoutIntentResponse",

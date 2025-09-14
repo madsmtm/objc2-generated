@@ -19,50 +19,55 @@ use objc2_photos::*;
 
 use crate::*;
 
+/// Defines the source of a project extension.
+///
+/// ## Overview
+///
+/// Each source represents a file type from which users can create a project extension.
+///
+///
 /// PHProjectCreationSource is provided as a hint to project extensions of the user context at the time of project creation.
 /// For example, if a user is viewing a Memory in the Photos app and from that chooses the 'Create Project' option, the
 /// creationSource provided in PHProjectInfo will be PHProjectCreationSourceMemory.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectCreationSource(pub NSInteger);
 impl PHProjectCreationSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/undefined?language=objc)
+    /// An undefined project extension.
     #[doc(alias = "PHProjectCreationSourceUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/userselection?language=objc)
+    /// A project extension created from a user selection of photos.
     #[doc(alias = "PHProjectCreationSourceUserSelection")]
     pub const UserSelection: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/album?language=objc)
+    /// A project extension created from a photo album.
     #[doc(alias = "PHProjectCreationSourceAlbum")]
     pub const Album: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/memory?language=objc)
+    /// A project extension created from a memory.
     #[doc(alias = "PHProjectCreationSourceMemory")]
     pub const Memory: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/moment?language=objc)
+    /// A project extension created from a moment.
     #[doc(alias = "PHProjectCreationSourceMoment")]
     pub const Moment: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/project?language=objc)
+    /// A project extension created from an existing Photos project.
     #[doc(alias = "PHProjectCreationSourceProject")]
     pub const Project: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectbook?language=objc)
+    /// A project extension created from a Photos project book.
     #[doc(alias = "PHProjectCreationSourceProjectBook")]
     pub const ProjectBook: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectcalendar?language=objc)
+    /// A project extension created from a calendar.
     #[doc(alias = "PHProjectCreationSourceProjectCalendar")]
     pub const ProjectCalendar: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectcard?language=objc)
+    /// A project extension created from a card.
     #[doc(alias = "PHProjectCreationSourceProjectCard")]
     pub const ProjectCard: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectprintorder?language=objc)
+    /// A project extension created from a print order.
     #[doc(alias = "PHProjectCreationSourceProjectPrintOrder")]
     pub const ProjectPrintOrder: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectslideshow?language=objc)
+    /// A project slideshow extension.
     #[doc(alias = "PHProjectCreationSourceProjectSlideshow")]
     pub const ProjectSlideshow: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum/projectextension?language=objc)
+    /// A project extension created from another project extension.
     #[doc(alias = "PHProjectCreationSourceProjectExtension")]
     pub const ProjectExtension: Self = Self(26);
 }
@@ -76,12 +81,17 @@ unsafe impl RefEncode for PHProjectCreationSource {
 }
 
 extern_class!(
+    /// Information about the project extension.
+    ///
+    /// ## Overview
+    ///
+    /// macOS Photos automatically generates a [`PHProjectInfo`](https://developer.apple.com/documentation/photosui/phprojectinfo) object when creating a new project. Photos passes along the project information with a [`PHProjectExtensionContext`](https://developer.apple.com/documentation/photosui/phprojectextensioncontext) object. This object contains metadata about the project’s creation source, sections, product type, branding, and page numbers. Your extension leverages project information to influence project layout, autoflow, and theme selection. The properties of this class are immutable, and your extension can’t instantiate the object directly.
+    ///
+    ///
     /// A PHProjectInfo object is created by Photos and passed along with a PHProjectExtensionContext any time Photos
     /// creates a new project. It comprises the complete content description which a Photos Project Extension can
     /// leverage to influence things like project layout, auto-flow, or theme selection. The properties in this class
     /// are inmutable and the class cannot be instatiated by an extension directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectInfo;
@@ -196,29 +206,28 @@ impl PHProjectInfo {
     );
 }
 
+/// The intended usage of the section: cover, content, or auxiliary.
 /// Options for the sectionType property in PHProjectSection which provides a hint to a section's intended usage.
 ///
 /// - PHProjectSectionTypeUndefined: used when there is only one section and no suggested pagination or project construction
 /// - PHProjectSectionTypeCover: represents the cover or title section of a project
 /// - PHProjectSectionTypeContent: any section representing general content in a project
 /// - PHProjectSectionTypeAuxiliary: auxiliary content (for example, cover flap in a book)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectSectionType(pub NSInteger);
 impl PHProjectSectionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/undefined?language=objc)
+    /// A blank or undefined section.
     #[doc(alias = "PHProjectSectionTypeUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/cover?language=objc)
+    /// A cover section.
     #[doc(alias = "PHProjectSectionTypeCover")]
     pub const Cover: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/content?language=objc)
+    /// A content section.
     #[doc(alias = "PHProjectSectionTypeContent")]
     pub const Content: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum/auxiliary?language=objc)
+    /// An auxiliary section.
     #[doc(alias = "PHProjectSectionTypeAuxiliary")]
     pub const Auxiliary: Self = Self(3);
 }
@@ -236,6 +245,19 @@ unsafe impl Send for PHProjectSectionType {}
 unsafe impl Sync for PHProjectSectionType {}
 
 extern_class!(
+    /// A collection of content representing curated asset and text elements.
+    ///
+    /// ## Overview
+    ///
+    /// Each project section contains at least one [`PHProjectSectionContent`](https://developer.apple.com/documentation/photosui/phprojectsectioncontent) object, which represents a suggested curation of the content. The number of sections included in [`PHProjectInfo`](https://developer.apple.com/documentation/photosui/phprojectinfo) varies depending on the source used to initialize the project:
+    ///
+    /// - **A Memory.** There will be one cover section with a key asset element and title, as well as a section containing multiple levels of curation, mirroring the Show Summary and Show More options of the Memory in Photos.
+    ///
+    /// - **A single Album.** The number of sections depends on the Album size. A small Album yields a single section, but an Album with a large quantity of photos is broken down into sections based on Moments in the user’s Photo Library.
+    ///
+    /// - **An existing Apple Book, Card, or Calendar.** The sections will match the pagination in that project; for example, a book will break down into one section per page.
+    ///
+    ///
     /// A PHProjectSection object represents a collection of content for the project including asset elements and text elements.
     /// Each section contains one or more PHProjectSectionContent objects which provide suggested levels of "curation" for the
     /// content contained in the section. The number of sections included in PHProjectInfo will vary depending on the
@@ -243,8 +265,6 @@ extern_class!(
     /// - if user creates a project from a Memory, there will be one cover section with a key asset element and titling, plus one section containing multiple levels of curation that mirror the "Show Summary" and "Show More" options of the Memory
     /// - if user creates a project from a single Album, the project info may only contain one section unless the album contains a large quantity of photos in which case, Photos may suggest section breaks based on Moments in the user's library
     /// - if user creates a project from an existing Apple Book, Card, or Calendar, the sections provided in the project info will exactly match the pagination in that project (e.g., one section per page in a book).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSection;
@@ -314,11 +334,16 @@ impl PHProjectSection {
 }
 
 extern_class!(
+    /// An object containing section elements and layout information for a single level of curation.
+    ///
+    /// ## Overview
+    ///
+    /// A section content object contains suggested layout information for every element at a specific level of curation within a [`PHProjectSection`](https://developer.apple.com/documentation/photosui/phprojectsection). A single section can provide multiple content objects, but only one is used at a time, depending on the level of curation and the amount of content detail.
+    ///
+    ///
     /// A PHProjectSectionContent object contains all the elements and suggested layout information for a specific
     /// level of curation within a PHProjectSection. A section can provide multiple content objects, but
     /// only one is intended to be used in a project based on the amount of content detail desired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectioncontent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectSectionContent;
@@ -416,10 +441,15 @@ impl PHProjectSectionContent {
 }
 
 extern_class!(
+    /// The superclass for all element objects.
+    ///
+    /// ## Overview
+    ///
+    /// You should never use this class directly; opt instead for one of its subclasses. It defines the shared properties of any element in an instance of [`PHProjectSectionContent`](https://developer.apple.com/documentation/photosui/phprojectsectioncontent).
+    ///
+    ///
     /// PHProjectElement is the superclass for all element objects. It is never directly used, but defines the shared
     /// properties of any element in an instance of PHProjectSectionContent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectElement;
@@ -484,19 +514,24 @@ impl PHProjectElement {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterest/identifier-swift.struct?language=objc)
+/// A descriptor identifying a region of interest.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PHProjectRegionOfInterestIdentifier = NSString;
 
 extern_class!(
+    /// A representation of a region of interest in a photo asset.
+    ///
+    /// ## Overview
+    ///
+    /// A region of interest defines a rectangular portion of a photo corresponding to a face. Use a region of interest to determine where to focus, zoom, or crop your image in your project extension; for example, you can customize your slideshow’s transitions based on each photo’s highest-quality region of interest, as shown in [Creating a Slideshow Project Extension for Photos](https://developer.apple.com/documentation/photokit/creating-a-slideshow-project-extension-for-photos).
+    ///
+    ///
     /// In PHProjectAssetElement objects, an array of PHProjectRegionOfInterest objects may be provided.
     /// These regions represent specific areas in an asset that have signficant meaning. For example, faces
     /// that are relevant to the user (as opposed to faces in a crowd) will be highlighted in the asset
     /// to help with things like auto-pan, auto-zoom, or focusing on specific areas in the asset during animations or
     /// transitions. Regions representing the same person or object across multiple assets are cross-referenced through
     /// the use of the identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectRegionOfInterest;
@@ -557,11 +592,16 @@ impl PHProjectRegionOfInterest {
 }
 
 extern_class!(
+    /// An element that represents a media asset within project section content.
+    ///
+    /// ## Overview
+    ///
+    /// Access the underlying [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) by converting the provided [`cloudAssetIdentifiers`](https://developer.apple.com/documentation/photosui/phprojectsectioncontent/cloudassetidentifiers) to a [`assetLocalIdentifier`](https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier), then calling [`fetchAssetsWithLocalIdentifiers:options:`](https://developer.apple.com/documentation/photos/phasset/fetchassets(withlocalidentifiers:options:)).
+    ///
+    ///
     /// A PHProjectAssetElement object represents a media asset within a PHProjectSectionContent.
     /// The underlying PHAsset can be accessed by converting the provided cloudAssetIdentifier to a localIdentifier,
     /// then using the fetchAssetsWithLocalIdentifiers:options: class method defined in PHAsset.h.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectassetelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectAssetElement;
@@ -680,21 +720,20 @@ impl PHProjectAssetElement {
     );
 }
 
+/// An enumeration of the type of text element.
 /// Options for PHProjectTextElementType
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectTextElementType(pub NSInteger);
 impl PHProjectTextElementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype/body?language=objc)
+    /// An enumeration to denote body text.
     #[doc(alias = "PHProjectTextElementTypeBody")]
     pub const Body: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype/title?language=objc)
+    /// An enumeration to denote title text in the header view.
     #[doc(alias = "PHProjectTextElementTypeTitle")]
     pub const Title: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype/subtitle?language=objc)
+    /// An enumeration to denote subtitle text in the header view.
     #[doc(alias = "PHProjectTextElementTypeSubtitle")]
     pub const Subtitle: Self = Self(2);
 }
@@ -712,11 +751,10 @@ unsafe impl Send for PHProjectTextElementType {}
 unsafe impl Sync for PHProjectTextElementType {}
 
 extern_class!(
+    /// An element that represents text within project section content.
     /// A PHProjectTextElement object represents formatted, positioned text that should be considered
     /// for inclusion in a project. In this case of a Memory, this will always be the Title and Subtitle show in the
     /// Memory header view. For projects created from Apple Book, Card, and Calendar projects, text appearing on any page.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectTextElement;
@@ -783,11 +821,10 @@ impl PHProjectTextElement {
 }
 
 extern_class!(
+    /// An element that represents a journal entry within project section content.
     /// A PHProjectJournalEntryElement object represents auxilary, date specific information that may be interesting
     /// to include in a project. For example, callouts for specific birthdays or holidays. In general, these will only
     /// be included for projects created from existing Apple Calendar projects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectjournalentryelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectJournalEntryElement;
@@ -860,10 +897,9 @@ impl PHProjectJournalEntryElement {
 }
 
 extern_class!(
+    /// An element that represents a map within project section content.
     /// A PHProjectMapElement object representing a map with annotations.
     /// In general, these will only be included for projects created from existing Apple Print Product projects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectmapelement?language=objc)
     #[unsafe(super(PHProjectElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectMapElement;

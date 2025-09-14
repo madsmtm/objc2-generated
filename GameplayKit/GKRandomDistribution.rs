@@ -7,10 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A generator for random numbers that fall within a specific range and that exhibit a specific distribution over multiple samplings.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The randomization services provided in GameplayKit are suitable for reliably creating deterministic, pseudorandom gameplay mechanics, but are not cryptographically robust. For cryptography, obfuscation, or cipher uses, use the Security framework, described in [Cryptographic Services Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172).
+    ///
+    ///
+    ///
+    /// </div>
+    /// You choose the algorithm that randomizes source values for a distribution by initializing it with an instance of any class that implements the [`GKRandom`](https://developer.apple.com/documentation/gameplaykit/gkrandom) protocol, such as a basic random source (a subclass of [`GKRandomSource`](https://developer.apple.com/documentation/gameplaykit/gkrandomsource)) or another random distribution. The [`GKRandomDistribution`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution) class itself implements a uniform distribution—for more specialized distributions use one of the subclasses [`GKGaussianDistribution`](https://developer.apple.com/documentation/gameplaykit/gkgaussiandistribution) and [`GKShuffledDistribution`](https://developer.apple.com/documentation/gameplaykit/gkshuffleddistribution).
+    ///
+    /// In a _uniform_ distribution, the probability of generating any number in a specified range (between the values of the distribution’s [`lowestValue`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/lowestvalue) and [`highestValue`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/highestvalue) properties) is approximately equal. In other words, there is no bias toward any possible outcome. To generate random numbers in this range, use the methods from the [`GKRandom`](https://developer.apple.com/documentation/gameplaykit/gkrandom) protocol listed in Generating Random Numbers below.
+    ///
+    /// For more information on choosing and using randomizers in GameplayKit, read [Randomization](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A random distribution is a random source itself with a specific mapping from the input source to the output values.
     /// The distribution is uniform, meaning there is no bias towards any of the possible outcomes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKRandomDistribution;
@@ -139,6 +156,40 @@ impl GKRandomDistribution {
 }
 
 extern_class!(
+    /// A generator for random numbers that follow a _Gaussian distribution_ (also known as a _normal distribution_) across multiple samplings.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The randomization services provided in GameplayKit are suitable for reliably creating deterministic, pseudorandom gameplay mechanics, but are not cryptographically robust. For cryptography, obfuscation, or cipher uses, use the Security framework, described in [Cryptographic Services Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/e1590e1293678bcc5374644c27caba72/media-2133123%402x.png)
+    ///
+    ///
+    /// In a Gaussian distribution, random samplings are most likely to result in a value near the center of the distribution, and have reduced probability of producing higher or lower values. To generate random numbers with a Gaussian distribution, use the methods defined by its superclass [`GKRandomDistribution`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution).
+    ///
+    /// A Gaussian distribution is characterized by its [`mean`](https://developer.apple.com/documentation/gameplaykit/gkgaussiandistribution/mean) and [`deviation`](https://developer.apple.com/documentation/gameplaykit/gkgaussiandistribution/deviation) properties. The [`mean`](https://developer.apple.com/documentation/gameplaykit/gkgaussiandistribution/mean) value (also called the _median_ or _expected value_) is the value at the center of the distribution (halfway between its [`lowestValue`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/lowestvalue) and [`highestValue`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution/highestvalue) properties), and the most likely value to result from a random sampling. The farther any other value is from the mean, the less likely that value is to result from a random sampling. The [`deviation`](https://developer.apple.com/documentation/gameplaykit/gkgaussiandistribution/deviation) value (also called _standard deviation_ or _sigma_) characterizes those probabilities: 68.27% of values generated by the distribution are within one deviation of the mean, 95% of generated values are within two deviations, and 100% of generated values are within three deviations.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In the standard mathematical model of a Gaussian distribution, 99.7% of generated values are within three deviations of the mean and the distribution’s range is infinite. GameplayKit discards the extremely unlikely values more than three deviations from the mean in order to set finite limits on the distribution’s range.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Gaussian distributions appear in many natural phenomena that you might model in a game. For example, the following code creates a distribution whose random number generation is equivalent to rolling three six-sided dice (also called _3d6_) and summing the results.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let random = GKRandomSource()", "let dice3d6 = GKGaussianDistribution(randomSource: random, lowestValue: 3, highestValue: 18)", "// Roll the dice...", "let diceRoll = dice3d6.nextInt()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["GKRandomSource *random = [[GKRandomSource alloc] init];", "GKRandomDistribution *dice3d6;", "dice3d6 = [[GKGaussianDistribution alloc]", "              initWithRandomSource:random lowestValue:3 highestValue:18];", "// Roll the dice...", "int diceRoll = [dice3d6 nextInt];"], metadata: None }] }] })
+    /// For more information on choosing and using randomizers in GameplayKit, read [Randomization](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A gaussian distribution is biased towards the mean value, the possible outcomes are spread out from the mean
     /// with decreasing probability. Values within 1 deviation of the mean make up 68.27% of the distribution, values
     /// within 2 deviations make up 95% and values within 3 deviations make up 99.7%.
@@ -146,8 +197,6 @@ extern_class!(
     /// Note that a gaussian distribution's unbounded behavior beyond 3 deviations is undesired,
     /// thus this distribution deviates nominally by modifying the bounds to 3 deviations.
     /// Thus values within 3 deviations actually make up 100% of the distribution.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgaussiandistribution?language=objc)
     #[unsafe(super(GKRandomDistribution, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGaussianDistribution;
@@ -261,13 +310,33 @@ impl GKGaussianDistribution {
 }
 
 extern_class!(
+    /// A generator for random numbers that are uniformly distributed across many samplings, but where short sequences of similar values are unlikely.
+    ///
+    /// ## Overview
+    ///
+    /// The behavior of a shuffled distribution is sometimes called “fair” randomization, because true randomness in games can result in extended “lucky streaks” or “unlucky streaks” for players. To create a shuffled distribution and use it to generate random numbers, use the methods defined by its superclass [`GKRandomDistribution`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution).
+    ///
+    /// The [`GKShuffledDistribution`](https://developer.apple.com/documentation/gameplaykit/gkshuffleddistribution) class inherits its entire interface from its superclass—to initialize and use a shuffled distribution, use the methods listed in [`GKRandomDistribution`](https://developer.apple.com/documentation/gameplaykit/gkrandomdistribution). A shuffled distribution differs from its superclass in behavior only. Consider the code snippets below:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Uniform distribution", "let uniform = GKRandomDistribution.d6()", "for _ in 1...100 { print(uniform.nextInt()) }", " ", "// Shuffled distribution", "let shuffled = GKShuffledDistribution.d6()", "for _ in 1...100 { print(shuffled.nextInt()) }"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Uniform distribution", "GKRandomDistribution *uniform = [GKRandomDistribution d6];", "for (int i = 0; i < 100; i++) { NSLog(@\"%d\", [uniform nextInt]); }", " ", "// Shuffled distribution", "GKRandomDistribution *shuffled = [GKShuffledDistribution d6];", "for (int i = 0; i < 100; i++) { NSLog(@\"%d\", [shuffled nextInt]); }"], metadata: None }] }] })
+    /// In this example, each distribution generates 100 random integers from a simulated six-sided die. In both cases, the distribution of results is roughly uniform—that is, the number of occurrences of any specific value is about the same as that of any other value. However, the shuffled distribution makes sure not to repeat any one value until it has used all of its possible values. In this example, if the die rolls a 1, the shuffled distribution will not generate another 1 for at least five more rolls.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The randomization services provided in GameplayKit are suitable for reliably creating deterministic, pseudorandom gameplay mechanics, but are not cryptographically robust. For cryptography, obfuscation, or cipher uses, use the Security framework, described in [Cryptographic Services Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011172).
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information on choosing and using randomizers in GameplayKit, read [Randomization](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/RandomSources.html#//apple_ref/doc/uid/TP40015172-CH9) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A shuffled distribution tries to make sure individual samples are not clustered whilst retaining a uniform distribution of values
     /// over time. This is often referred to as fair or less random, as the predicatability of the outcomes in a series is vastly increased,
     /// yet the distribution of values is uniform.
     ///
     /// Do not use with distributions ranging more than 256 between lowest and highest as the shuffling seqeunce is stored internally in memory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkshuffleddistribution?language=objc)
     #[unsafe(super(GKRandomDistribution, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKShuffledDistribution;

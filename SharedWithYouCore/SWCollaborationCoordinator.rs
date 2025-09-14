@@ -7,7 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationcoordinator?language=objc)
+    /// An object that contains the shared collaboration coordinator.
+    ///
+    /// ## Overview
+    ///
+    /// `SWCollaborationCoordinator` is a singleton, meaning there’s a global shared instance. The singleton invokes its [`actionHandler`](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationcoordinator/actionhandler) delegate to coordinate new collaborations and updates to existing collaborations.
+    ///
+    /// Register the delegate soon after launch and handle actions immediately to avoid timeouts. Here’s how to set up the collaboration coordinator after your app finishes launching:
+    ///
+    /// 1. Access the singleton coordinator instance through the shared property.
+    ///
+    /// 2. Then, in the app delegate’s [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)) method, set the `actionHandler` property to an object that conforms to the [`SWCollaborationActionHandler`](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationactionhandler) protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC22
+    ///  Session 10093: [Integrate your custom collaboration app with Messages](https://developer.apple.com/videos/play/wwdc2022/10093/)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWCollaborationCoordinator;

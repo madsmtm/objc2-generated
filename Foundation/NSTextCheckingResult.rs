@@ -5,50 +5,50 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype?language=objc)
+/// These constants specify the type of checking the methods should do. They are returned by [`resultType`](https://developer.apple.com/documentation/foundation/nstextcheckingresult/resulttype).
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextCheckingType(pub u64);
 bitflags::bitflags! {
     impl NSTextCheckingType: u64 {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/orthography?language=objc)
+/// Attempts to identify the language
         #[doc(alias = "NSTextCheckingTypeOrthography")]
         const Orthography = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/spelling?language=objc)
+/// Checks spelling.
         #[doc(alias = "NSTextCheckingTypeSpelling")]
         const Spelling = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/grammar?language=objc)
+/// Checks grammar.
         #[doc(alias = "NSTextCheckingTypeGrammar")]
         const Grammar = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/date?language=objc)
+/// Attempts to locate dates.
         #[doc(alias = "NSTextCheckingTypeDate")]
         const Date = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/address?language=objc)
+/// Attempts to locate addresses.
         #[doc(alias = "NSTextCheckingTypeAddress")]
         const Address = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/link?language=objc)
+/// Attempts to locate URL links.
         #[doc(alias = "NSTextCheckingTypeLink")]
         const Link = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/quote?language=objc)
+/// Replaces quotes with smart quotes.
         #[doc(alias = "NSTextCheckingTypeQuote")]
         const Quote = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/dash?language=objc)
+/// Replaces dashes with em-dashes.
         #[doc(alias = "NSTextCheckingTypeDash")]
         const Dash = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/replacement?language=objc)
+/// Replaces characters such as (c) with the appropriate symbol (in this case ©).
         #[doc(alias = "NSTextCheckingTypeReplacement")]
         const Replacement = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/correction?language=objc)
+/// Performs autocorrection on misspelled words.
         #[doc(alias = "NSTextCheckingTypeCorrection")]
         const Correction = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/regularexpression?language=objc)
+/// Matches a regular expression.
         #[doc(alias = "NSTextCheckingTypeRegularExpression")]
         const RegularExpression = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/phonenumber?language=objc)
+/// Matches a phone number.
         #[doc(alias = "NSTextCheckingTypePhoneNumber")]
         const PhoneNumber = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype/transitinformation?language=objc)
+/// Matches a transit information, for example, flight information.
         #[doc(alias = "NSTextCheckingTypeTransitInformation")]
         const TransitInformation = 1<<12;
     }
@@ -62,24 +62,29 @@ unsafe impl RefEncode for NSTextCheckingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingtypes?language=objc)
+/// Defines the types of checking that are available. These values can be combined using the C-bitwise OR operator. The system supports its own internal types, and the user can extend those types by subclassing `NSTextCheckingResult` and adding their own custom types.
 pub type NSTextCheckingTypes = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingallsystemtypes?language=objc)
+/// Checking types supported by the system. The first 32 types are reserved.
 pub const NSTextCheckingAllSystemTypes: NSTextCheckingTypes = 0xffffffff;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingallcustomtypes?language=objc)
+/// Checking types that can be used by clients.
 pub const NSTextCheckingAllCustomTypes: NSTextCheckingTypes = 0xffffffff << 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingalltypes?language=objc)
+/// All possible checking types, both system- and user-supported.
 pub const NSTextCheckingAllTypes: NSTextCheckingTypes =
     NSTextCheckingAllSystemTypes | NSTextCheckingAllCustomTypes;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSTextCheckingKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult?language=objc)
+    /// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
+    ///
+    /// ## Overview
+    ///
+    /// On both iOS and macOS, instances of [`NSTextCheckingResult`](https://developer.apple.com/documentation/foundation/nstextcheckingresult) are returned by the [`NSRegularExpression`](https://developer.apple.com/documentation/foundation/nsregularexpression) class and the [`NSDataDetector`](https://developer.apple.com/documentation/foundation/nsdatadetector) class to indicate the discovery of content. In those cases, what is found may be a match for a regular expression or a date, address, phone number, and so on. In macOS, instances of `NSTextCheckingResult` are returned by the [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker) object to describe the results of spelling, grammar, or text-substitution actions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextCheckingResult;
@@ -233,67 +238,67 @@ impl NSTextCheckingResult {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/name?language=objc)
+    /// A key that corresponds to the name component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingNameKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/jobtitle?language=objc)
+    /// A key that corresponds to the job component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingJobTitleKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/organization?language=objc)
+    /// A key that corresponds to the organization component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingOrganizationKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/street?language=objc)
+    /// A key that corresponds to the street address component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingStreetKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/city?language=objc)
+    /// A key that corresponds to the city component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingCityKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/state?language=objc)
+    /// A key that corresponds to the state or province component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingStateKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/zip?language=objc)
+    /// A key that corresponds to the zip code or postal code component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingZIPKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/country?language=objc)
+    /// A key that corresponds to the country or region component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingCountryKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/phone?language=objc)
+    /// A key that corresponds to the phone number component of the address.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingPhoneKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/airline?language=objc)
+    /// A key that corresponds to the airline of a transit result.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingAirlineKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/flight?language=objc)
+    /// A key that corresponds to the flight component of a transit result.
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingFlightKey: &'static NSTextCheckingKey;
 }

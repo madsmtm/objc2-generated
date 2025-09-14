@@ -9,6 +9,7 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// Result codes returned when the mail composition interface is dismissed.
 /// Composition result sent to the delegate upon user completion.
 ///
 /// This result will inform of the user's choice in regards to email composition.  If the user
@@ -34,23 +35,33 @@ use crate::*;
 /// </p>
 /// Send may only be interpreted as a successful queueing of the message for later sending.
 /// The actual send will occur when the device is able to send.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeResult(pub NSInteger);
 impl MFMailComposeResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/cancelled?language=objc)
+    /// The user canceled the operation.
+    ///
+    /// ## Discussion
+    ///
+    /// No email message was queued.
+    ///
+    ///
     #[doc(alias = "MFMailComposeResultCancelled")]
     pub const Cancelled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/saved?language=objc)
+    /// The email message was saved in the user’s drafts folder.
     #[doc(alias = "MFMailComposeResultSaved")]
     pub const Saved: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/sent?language=objc)
+    /// The email message was queued in the user’s outbox.
+    ///
+    /// ## Discussion
+    ///
+    /// It is ready to send the next time the user connects to email.
+    ///
+    ///
     #[doc(alias = "MFMailComposeResultSent")]
     pub const Sent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeresult/failed?language=objc)
+    /// The email message was not saved or queued, possibly due to an error.
     #[doc(alias = "MFMailComposeResultFailed")]
     pub const Failed: Self = Self(3);
 }
@@ -64,6 +75,13 @@ unsafe impl RefEncode for MFMailComposeResult {
 }
 
 extern "C" {
+    /// The domain used for error objects that are associated with the mail composition interface.
+    ///
+    /// ## Discussion
+    ///
+    /// The error domain associated with [`NSError`](https://developer.apple.com/documentation/foundation/nserror) objects.
+    ///
+    ///
     /// Error domain for NSError values stemming from the MFMailCompose API.
     ///
     /// This error domain is used as the domain for all NSError instances stemmming from the
@@ -72,11 +90,10 @@ extern "C" {
     /// MFMailComposeErrorCode
     /// </tt>
     /// space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeerrordomain?language=objc)
     pub static MFMailComposeErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes for [`NSError`](https://developer.apple.com/documentation/foundation/nserror) objects that are associated with the mail composition interface.
 /// Error codes for NSError values stemming from the MFMailCompose API.
 ///
 /// These error codes are used as the codes for all NSError instances stemmming from the
@@ -85,17 +102,15 @@ extern "C" {
 /// MFMailComposeErrorDomain
 /// </tt>
 /// domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeErrorCode(pub NSInteger);
 impl MFMailComposeErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeerror/code/savefailed?language=objc)
+    /// An error occurred while trying to save the email message to the Drafts folder.
     #[doc(alias = "MFMailComposeErrorCodeSaveFailed")]
     pub const SaveFailed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeerror/code/sendfailed?language=objc)
+    /// An error occurred while trying to queue or send the email message.
     #[doc(alias = "MFMailComposeErrorCodeSendFailed")]
     pub const SendFailed: Self = Self(1);
 }
@@ -109,6 +124,58 @@ unsafe impl RefEncode for MFMailComposeErrorCode {
 }
 
 extern_class!(
+    /// A standard view controller, whose interface lets the user manage, edit, and send email messages.
+    ///
+    /// ## Overview
+    ///
+    /// Use this view controller to display a standard email interface inside your app. Before presenting the interface, populate the fields with initial values for the subject, email recipients, body text, and attachments of the email. After presenting the interface, the person can edit your initial values before sending the email.
+    ///
+    /// The composition interface doesn’t guarantee the delivery of your email message; it only lets you construct the initial message and present it for user approval. The person may opt to cancel the composition interface which discards the message and its contents. If the person opts to send the message, the message queues in the user’s Mail app outbox. The Mail app is ultimately responsible for sending the message.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f4f7dacf1c2f20acd5438f569e529b7c/media-4288076~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a4e2bdda7e18fb7a247132800fdb87e8/media-4288076%402x.png 2x" />
+    ///     <img alt="Screenshot of the email composition view in Mail, indicating the fields for recipients, subject, and body. " src="https://docs-assets.developer.apple.com/published/f4f7dacf1c2f20acd5438f569e529b7c/media-4288076~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must not modify the view hierarchy presented by this view controller. However, you can customize the appearance of the interface using the [`UIAppearance`](https://developer.apple.com/documentation/uikit/uiappearance) protocol.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An alternate way to compose emails is to create and open a URL that uses the `mailto` scheme. URLs of that type go directly to the built-in Mail app, which uses your URL to configure a message. For information about the structure of `mailto` URLs, see [Apple URL Scheme Reference](https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899).
+    ///
+    /// ### Checking the availability of the composition interface
+    ///
+    /// Before presenting the mail compose view controller, always call the [`canSendMail`](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontroller/cansendmail()) method to see if the person configured the current device to send email. If the person’s device isn’t set up for the delivery of email, you can notify the person or disable the email dispatch features in your application. You shouldn’t attempt to use this interface if the [`canSendMail`](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontroller/cansendmail()) method returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["if !MFMailComposeViewController.canSendMail() {", "    print(\"Mail services are not available\")", "    return", "}"], metadata: None }] }, TabItem { title: "Obj-C", content: [CodeListing { syntax: Some("objc"), code: ["if (![MFMailComposeViewController canSendMail]) {", "   NSLog(@\"Mail services are not available.\");", "   return;", "}"], metadata: None }] }] })
+    /// ### Configuring and displaying the composition interface
+    ///
+    /// After verifying that mail services are available, you can create and configure the mail composition view controller and then present it as any other view controller. Use the methods of this class to specify the subject, recipients, and message body of the email, including any attachments you want to send with the message. The sample code below shows how to configure the composition interface and present it modally. Always assign a delegate to the [`mailComposeDelegate`](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontroller/mailcomposedelegate) property, because the delegate is responsible for dismissing the composition interface later.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let composeVC = MFMailComposeViewController()", "composeVC.mailComposeDelegate = self", " ", "// Configure the fields of the interface.", "composeVC.setToRecipients([\"address@example.com\"])", "composeVC.setSubject(\"Hello!\")", "composeVC.setMessageBody(\"Hello from California!\", isHTML: false)", "// Present the view controller modally.", "self.present(composeVC, animated: true, completion: nil)"], metadata: None }] }, TabItem { title: "Obj-C", content: [CodeListing { syntax: Some("objc"), code: ["MFMailComposeViewController* composeVC = [[MFMailComposeViewController alloc] init];", "composeVC.mailComposeDelegate = self;", " ", "// Configure the fields of the interface.", "[composeVC setToRecipients:@[@\"address@example.com\"]];", "[composeVC setSubject:@\"Hello!\"];", "[composeVC setMessageBody:@\"Hello from California!\" isHTML:NO];", " ", "// Present the view controller modally.", "[self presentViewController:composeVC animated:YES completion:nil];", ""], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  After presenting a mail compose view controller, the system ignores any attempts to modify the email using the methods of this class. The user can still edit the content of the email, but your app can’t. Therefore, always configure the fields of your email _before_ presenting the view controller.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The mail compose view controller isn’t dismissed automatically. When the user taps the buttons to send the email or cancel the interface, the mail compose view controller calls the [`mailComposeController:didFinishWithResult:error:`](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontrollerdelegate/mailcomposecontroller(_:didfinishwith:error:)) method of its delegate. Your implementation of that method must dismiss the view controller explicitly, as shown in sample code below. You can also use this method to check the result of the operation.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func mailComposeController(controller: MFMailComposeViewController,", "                           didFinishWithResult result: MFMailComposeResult, error: NSError?) {", "    // Check the result or perform other tasks.", "    ", "    // Dismiss the mail compose view controller.", "    controller.dismiss(animated: true, completion: nil)", "}", ""], metadata: None }] }, TabItem { title: "Obj-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)mailComposeController:(MFMailComposeViewController *)controller", "          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {", "   // Check the result or perform other tasks.", " ", "   // Dismiss the mail compose view controller.", "   [self dismissViewControllerAnimated:YES completion:nil];", "}", ""], metadata: None }] }] })
+    /// The user can delete a queued message before it’s sent. Although the view controller reports the success or failure of the operation to its delegate, this class doesn’t provide a way for you to verify if the email sent.
+    ///
+    /// For more information on how to present and dismiss view controllers, see [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457).
+    ///
+    ///
     /// The MFMailComposeViewController class provides an interface for editing and sending email.
     ///
     /// The MFMailComposeViewController class manages all user interaction.  The client needs to set the recipient or
@@ -124,8 +191,6 @@ extern_class!(
     /// +[MFMailComposeViewController canSendMail]
     /// </tt>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontroller?language=objc)
     #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -403,12 +468,19 @@ impl MFMailComposeViewController {
 }
 
 extern_protocol!(
+    /// An interface for responding to user interactions with a mail compose view controller.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MFMailComposeViewControllerDelegate`](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontrollerdelegate) protocol defines the method that your delegate must implement to manage the mail composition interface. The method of this protocol notifies your delegate object when the user has finished with the interface and is ready to dismiss it.
+    ///
+    /// Your delegate object is responsible for dismissing the picker when the operation completes. You do this by using the [`dismissViewControllerAnimated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)) method of the parent view controller, which is responsible for displaying the [`MFMailComposeViewController`](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontroller) object’s interface.
+    ///
+    ///
     /// Protocol for delegate callbacks to MFMailComposeViewController instances.
     ///
     /// This protocol must be implemented for delegates of MFMailComposeViewController instances.  It will
     /// be called at various times while the user is composing, sending, saving, or canceling email composition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposeviewcontrollerdelegate?language=objc)
     pub unsafe trait MFMailComposeViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         /// Delegate callback which is called upon user's completion of email composition.

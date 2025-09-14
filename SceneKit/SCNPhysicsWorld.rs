@@ -9,48 +9,89 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption?language=objc)
+/// Keys in options dictionaries that affect how SceneKit searches for bodies in a collision, ray, or sweep test.
+///
+/// ## Discussion
+///
+/// Pass a dictionary containing one or more of these keys (with values as described above) for the `options` parameter when calling one of these methods:
+///
+/// - [`contactTestBetweenBody:andBody:options:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/contacttestbetween(_:_:options:))
+///
+/// - [`contactTestWithBody:options:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/contacttest(with:options:))
+///
+/// - [`rayTestWithSegmentFromPoint:toPoint:options:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/raytestwithsegment(from:to:options:))
+///
+/// - [`convexSweepTestWithShape:fromTransform:toTransform:options:`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/convexsweeptest(with:from:to:options:))
+///
+///
 // NS_TYPED_ENUM
 pub type SCNPhysicsTestOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/collisionbitmask?language=objc)
+    /// The key for selecting which categories of physics bodies that SceneKit should test for contacts.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) value. SceneKit tests for contacts only with physics bodies whose [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/categorybitmask) property overlaps with this bit mask. The default value is [`SCNPhysicsCollisionCategoryAll`](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory/all), specifying that searches should test all physics bodies regardless of their category.
+    ///
+    ///
     pub static SCNPhysicsTestCollisionBitMaskKey: &'static SCNPhysicsTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/searchmode?language=objc)
+    /// The key for selecting the number and order of contacts to be tested.
+    ///
+    /// ## Discussion
+    ///
+    /// See `Physics Test Search Modes` for possible values. The default value is [`SCNPhysicsTestSearchModeAny`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/any).
+    ///
+    /// This key applies only to ray and convex sweep tests.
+    ///
+    ///
     pub static SCNPhysicsTestSearchModeKey: &'static SCNPhysicsTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/backfaceculling?language=objc)
+    /// The key for choosing whether to ignore back-facing polygons in physics shapes when searching for contacts.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`true`](https://developer.apple.com/documentation/swift/true), specifying that the search should only return contacts with the exterior surfaces of any physics shapes. Change the value to [`false`](https://developer.apple.com/documentation/swift/false) to consider contacts with both interior and exterior surfaces.
+    ///
+    /// This key applies only to ray and convex sweep tests, and only to physics shapes created using the [`SCNPhysicsShapeTypeConcavePolyhedron`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/concavepolyhedron) option.
+    ///
+    ///
     pub static SCNPhysicsTestBackfaceCullingKey: &'static SCNPhysicsTestOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode?language=objc)
+/// Options affecting how SceneKit searches for bodies in a collision, ray, or sweep test, used with the [`SCNPhysicsTestSearchModeKey`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/searchmode) key.
 // NS_TYPED_ENUM
 pub type SCNPhysicsTestSearchMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/any?language=objc)
+    /// Searches should return only the first contact found regardless of its position relative to the search parameters.
     pub static SCNPhysicsTestSearchModeAny: &'static SCNPhysicsTestSearchMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/closest?language=objc)
+    /// Searches should return only the closest contact to the beginning of the search.
     pub static SCNPhysicsTestSearchModeClosest: &'static SCNPhysicsTestSearchMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/all?language=objc)
+    /// Searches should return all contacts matching the search parameters.
     pub static SCNPhysicsTestSearchModeAll: &'static SCNPhysicsTestSearchMode;
 }
 
 extern_protocol!(
-    /// The SCNPhysicsContactDelegate protocol is to be implemented by delegates that want to be notified when a contact occured.
+    /// Methods you can implement to respond when a contact or collision occurs between two physics bodies in a scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscontactdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// To receive contact messages, you set the [`contactDelegate`](https://developer.apple.com/documentation/scenekit/scnphysicsworld/contactdelegate) property of an [`SCNPhysicsWorld`](https://developer.apple.com/documentation/scenekit/scnphysicsworld) object. SceneKit calls your delegate methods when a contact begins, when information about the contact changes, and when the contact ends.
+    ///
+    ///
+    /// The SCNPhysicsContactDelegate protocol is to be implemented by delegates that want to be notified when a contact occured.
     pub unsafe trait SCNPhysicsContactDelegate: NSObjectProtocol {
         #[cfg(feature = "SCNPhysicsContact")]
         #[optional]
@@ -85,11 +126,24 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The global simulation of collisions, gravity, joints, and other physics effects in a scene.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create [`SCNPhysicsWorld`](https://developer.apple.com/documentation/scenekit/scnphysicsworld) objects directly; instead, read the [`physicsWorld`](https://developer.apple.com/documentation/scenekit/scnscene/physicsworld) property of an [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object. Use physics world object to perform the following tasks:
+    ///
+    /// - Manage global properties of the simulation, such as its speed and constant gravity. (For more precise control of gravity and similar effects, see the [`SCNPhysicsField`](https://developer.apple.com/documentation/scenekit/scnphysicsfield) class.)
+    ///
+    /// - Register behaviors that modify interactions between the scene’s physics bodies, such as joints and vehicles. For more details, see [`SCNPhysicsBehavior`](https://developer.apple.com/documentation/scenekit/scnphysicsbehavior).
+    ///
+    /// - Specify a delegate object to receive messages when two physics bodies contact each other
+    ///
+    /// - Perform specific contact tests, and search for physics bodies in the scene using ray and sweep tests.
+    ///
+    ///
     /// The SCNPhysicsWorld class describes and allows to control the physics simulation of a 3d scene.
     ///
     /// The SCNPhysicsWorld class should not be allocated directly but retrieved from the SCNScene class using the physicsWorld property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsWorld;

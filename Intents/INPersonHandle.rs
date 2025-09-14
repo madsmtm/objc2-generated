@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype?language=objc)
+/// Constants indicating the types of data that can be associated with a person handle.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPersonHandleType(pub NSInteger);
 impl INPersonHandleType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype/unknown?language=objc)
+    /// An unknown type of data. Use this type if the identifier data is unique to your app.
     #[doc(alias = "INPersonHandleTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype/emailaddress?language=objc)
+    /// An email address.
     #[doc(alias = "INPersonHandleTypeEmailAddress")]
     pub const EmailAddress: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandletype/phonenumber?language=objc)
+    /// A phone number.
     #[doc(alias = "INPersonHandleTypePhoneNumber")]
     pub const PhoneNumber: Self = Self(2);
 }
@@ -32,7 +32,13 @@ unsafe impl RefEncode for INPersonHandleType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandle?language=objc)
+    /// The identifying information for a user of your app.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPersonHandle`](https://developer.apple.com/documentation/intents/inpersonhandle) object contains information that you use to uniquely identify a user of your app. When resolving a person associated with an intent, you might create instances of this class and add them to an [`INPerson`](https://developer.apple.com/documentation/intents/inperson) object when resolving an intent involving that person. Handles contain unique information such as an email address or phone number.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPersonHandle;

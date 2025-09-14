@@ -6,87 +6,109 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserrordomain?language=objc)
+    /// A string representation of the error domain.
     pub static PHPhotosErrorDomain: Option<&'static NSErrorDomain>;
 }
 
 extern "C" {
-    /// Array of NSString values representing local identifiers related to the specific error
+    /// An error key that retrieves an array of string values representing local identifiers matched to a cloud identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this key with the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) property when encountering the [`multipleIdentifiersFound`](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/multipleidentifiersfound) error.
+    ///
+    ///
+    /// Array of NSString values representing local identifiers related to the specific error
     pub static PHLocalIdentifiersErrorKey: Option<&'static NSErrorUserInfoKey>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code?language=objc)
+/// Error codes for framework operations.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHPhotosError(pub NSInteger);
 impl PHPhotosError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/internalerror?language=objc)
+    /// An error that indicates an internal error occurs.
     #[doc(alias = "PHPhotosErrorInternalError")]
     pub const InternalError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/usercancelled?language=objc)
+    /// An error that indicates the user cancels the asset retrieval or editing request.
     #[doc(alias = "PHPhotosErrorUserCancelled")]
     pub const UserCancelled: Self = Self(3072);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/libraryvolumeoffline?language=objc)
+    /// An error that indicates the photo library isn’t available because the file system volume that stores it isn’t mounted.
     #[doc(alias = "PHPhotosErrorLibraryVolumeOffline")]
     pub const LibraryVolumeOffline: Self = Self(3114);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/relinquishinglibrarybundletowriter?language=objc)
+    /// An error that indicates the photo library isn’t available because the user moves, renames, or deletes the system’s photo library.
     #[doc(alias = "PHPhotosErrorRelinquishingLibraryBundleToWriter")]
     pub const RelinquishingLibraryBundleToWriter: Self = Self(3142);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/switchingsystemphotolibrary?language=objc)
+    /// An error that indicates the photo library isn’t available because the user switches the system’s photo library.
     #[doc(alias = "PHPhotosErrorSwitchingSystemPhotoLibrary")]
     pub const SwitchingSystemPhotoLibrary: Self = Self(3143);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/networkaccessrequired?language=objc)
+    /// An error that indicates the request for an asset resource fails because it requires network access.
+    ///
+    /// ## Discussion
+    ///
+    /// Set [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions/isnetworkaccessallowed) to `true` to enable network access.
+    ///
+    ///
     #[doc(alias = "PHPhotosErrorNetworkAccessRequired")]
     pub const NetworkAccessRequired: Self = Self(3164);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/networkerror?language=objc)
+    /// An error that indicates the request for an asset resource fails because of a network connection error.
     #[doc(alias = "PHPhotosErrorNetworkError")]
     pub const NetworkError: Self = Self(3169);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/identifiernotfound?language=objc)
+    /// An error that indicates an identifier doesn’t exist.
     #[doc(alias = "PHPhotosErrorIdentifierNotFound")]
     pub const IdentifierNotFound: Self = Self(3201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/multipleidentifiersfound?language=objc)
+    /// An error that indicates that more than one identifier exists.
+    ///
+    /// ## Discussion
+    ///
+    /// To retrieve a list of identifiers inspect [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) using the key [`PHLocalIdentifiersErrorKey`](https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey).
+    ///
+    ///
     #[doc(alias = "PHPhotosErrorMultipleIdentifiersFound")]
     pub const MultipleIdentifiersFound: Self = Self(3202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/changenotsupported?language=objc)
+    /// An error that indicates the system doesn’t support the change request configuration.
     #[doc(alias = "PHPhotosErrorChangeNotSupported")]
     pub const ChangeNotSupported: Self = Self(3300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/operationinterrupted?language=objc)
+    /// An error that indicates an interruption occurs and the operation can’t complete.
     #[doc(alias = "PHPhotosErrorOperationInterrupted")]
     pub const OperationInterrupted: Self = Self(3301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/invalidresource?language=objc)
+    /// An error that indicates the asset resource validation fails.
     #[doc(alias = "PHPhotosErrorInvalidResource")]
     pub const InvalidResource: Self = Self(3302);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/missingresource?language=objc)
+    /// An error that indicates a missing asset resource.
     #[doc(alias = "PHPhotosErrorMissingResource")]
     pub const MissingResource: Self = Self(3303);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/notenoughspace?language=objc)
+    /// An error that indicates there’s not enough space to perform the requested change.
     #[doc(alias = "PHPhotosErrorNotEnoughSpace")]
     pub const NotEnoughSpace: Self = Self(3305);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/requestnotsupportedforasset?language=objc)
+    /// An error that indicates the system doesn’t support the request for the specified asset.
     #[doc(alias = "PHPhotosErrorRequestNotSupportedForAsset")]
     pub const RequestNotSupportedForAsset: Self = Self(3306);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/limitexceeded?language=objc)
     #[doc(alias = "PHPhotosErrorLimitExceeded")]
     pub const LimitExceeded: Self = Self(3307);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/accessrestricted?language=objc)
+    /// An error that indicates the system configuration restricts access to the asset.
     #[doc(alias = "PHPhotosErrorAccessRestricted")]
     pub const AccessRestricted: Self = Self(3310);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/accessuserdenied?language=objc)
+    /// An error that indicates the user denies access.
     #[doc(alias = "PHPhotosErrorAccessUserDenied")]
     pub const AccessUserDenied: Self = Self(3311);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/libraryinfileprovidersyncroot?language=objc)
+    /// An error that indicates the Photos library bundle is in a file provider sync directory, and the framework doesn’t support it.
     #[doc(alias = "PHPhotosErrorLibraryInFileProviderSyncRoot")]
     pub const LibraryInFileProviderSyncRoot: Self = Self(5423);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/persistentchangetokenexpired?language=objc)
+    /// An error that indicates the library state is older than the available history of persistent changes.
     #[doc(alias = "PHPhotosErrorPersistentChangeTokenExpired")]
     pub const PersistentChangeTokenExpired: Self = Self(3105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-swift.struct/code/persistentchangedetailsunavailable?language=objc)
+    /// An error that indicates the change details aren’t available for the persistent change.
+    ///
+    /// ## Discussion
+    ///
+    /// If a change can’t provide change details, [`changeDetailsForObjectType:error:`](https://developer.apple.com/documentation/photos/phpersistentchange/changedetails(for:)) returns `nil` and an error that indicates the reason. This error indicates you can’t rely on the change to completely reconstruct the state changes that occur, so you need to determine it by using the current library state.
+    ///
+    ///
     #[doc(alias = "PHPhotosErrorPersistentChangeDetailsUnavailable")]
     pub const PersistentChangeDetailsUnavailable: Self = Self(3210);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phphotoserror-c.enum/phphotoserrorinvalid?language=objc)
+    /// An error that indicates the operation isn’t valid.
     #[doc(alias = "PHPhotosErrorInvalid")]
     #[deprecated]
     pub const Invalid: Self = Self(-1);

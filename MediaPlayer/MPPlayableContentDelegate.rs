@@ -8,14 +8,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The protocol used to let external media players send playback commands to an app.
+    ///
+    /// ## Overview
+    ///
+    /// After the media player determines that a media item should play, the app’s content delegate requests to initiate playback.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Some features of this protocol are specific to CarPlay, which requires a special entitlement issued by Apple. Apps without the correct entitlement won’t appear on the CarPlay home screen. See [http://www.apple.com/ios/carplay/](http://www.apple.com/ios/carplay/) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When creating your CarPlay app, keep the following in mind:
+    ///
+    /// - Transition to the Now Playing screen only when content is ready to play. Due to buffering and network conditions, it may take several seconds for audio to begin playing after a user selects it. The user’s selection remains highlighted, and the system displays a spinning activity indicator until your app informs the system that the audio is ready to play.
+    ///
+    /// - Start playback as soon as possible. Playback should begin as soon as audio has sufficiently loaded, even if descriptive information is still loading. Continue loading descriptive information in the background and show it once available.
+    ///
+    /// - Avoid beginning playback automatically. Unless your app’s purpose is to play a single source of audio, it shouldn’t begin playback until the user initiates it.
+    ///
+    ///
     /// The MPPlayableContentDelegate is a protocol that allows for external media
     /// players to send playback commands to an application. For instance,
     /// the user could browse the application's media content (provided by the
     /// MPPlayableContentDataSource) and selects a content item to play. If the media
     /// player decides that it wants to play the item, it will ask the application's
     /// content delegate to initiate playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentdelegate?language=objc)
     #[deprecated = "Use CarPlay framework"]
     pub unsafe trait MPPlayableContentDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MPPlayableContentManager", feature = "block2"))]

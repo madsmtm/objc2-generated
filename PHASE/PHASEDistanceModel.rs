@@ -7,13 +7,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A distance over which the framework fades out sound.
+    ///
+    /// ## Overview
+    ///
+    /// For spatial sound output, the framework stops playing a sound when its distance from the listener surpases [`cullDistance`](https://developer.apple.com/documentation/phase/phasedistancemodelfadeoutparameters/culldistance). The framework gradually fades out the sound’s volume as the distance between the source and listener approaches [`cullDistance`](https://developer.apple.com/documentation/phase/phasedistancemodelfadeoutparameters/culldistance). Likewise, the framework gradually fades in the sound as the distance between the source and listener approaches `0`. A [`PHASEDistanceModelParameters`](https://developer.apple.com/documentation/phase/phasedistancemodelparameters) object provides an instance of this class to a spatial mixer; for more information, see [`fadeOutParameters`](https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters).
+    ///
+    /// ### Specifying a Maximum Distance That Sound Reaches
+    ///
+    /// The following code demonstrates a spatial mixer’s additional fade out. By setting `fadeOutLength` to `1.0`, the framework begins to fade out a sound after its distance to the listener surpases `1.0`.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let fadeOut = PHASEDistanceModelFadeOutParameters(maximumDistance: 10.0,", " fadeOutLength: 1.0,", " curveType: PHASECurveType.linear)", "piecewiseModel.fadeOutParameters = fadeOut", "spatialMixer.distanceModelParameters = piecewiseModel"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["PHASEDistanceModelFadeOutParameters* fadeOut = ", "    [[PHASEDistanceModelFadeOutParameters alloc] ", "        initWithMaximumDistance:10.f ", "        fadeOutLength:1.f curveType:PHASECurveTypeLinear];", "piecewiseModel.fadeOutParameters = fadeOut;", "spatialMixer.distanceModelParameters = piecewiseModel;"], metadata: None }] }] })
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Distance model fade out parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasedistancemodelfadeoutparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEDistanceModelFadeOutParameters;
@@ -59,13 +69,18 @@ impl PHASEDistanceModelFadeOutParameters {
 }
 
 extern_class!(
+    /// A base class for a sound’s rate of change over distance.
+    ///
+    /// ## Overview
+    ///
+    /// When your app outputs sound with a 3D position and orientation, designate a subclass of this class to indicate the manner in which PHASE changes sound with distance. Assign an instance of either [`PHASEGeometricSpreadingDistanceModelParameters`](https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters) or [`PHASEEnvelopeDistanceModelParameters`](https://developer.apple.com/documentation/phase/phaseenvelopedistancemodelparameters), depending on your app’s needs, to the [`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition) class’s [`distanceModelParameters`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters) property.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Distance model parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasedistancemodelparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEDistanceModelParameters;
@@ -103,6 +118,20 @@ impl PHASEDistanceModelParameters {
 }
 
 extern_class!(
+    /// An object that dissipates sound frequencies over distance.
+    ///
+    /// ## Overview
+    ///
+    /// This class implements a _roll-off_ effect — a strategy that aims to model the real-world manner in which sound changes with distance. When the distance between a sound and listener changes, the roll-off effect dissipates certain audio frequencies more than others.
+    ///
+    /// ### Dissipate Sound by Choosing a Roll-Off Factor
+    ///
+    /// PHASE emphasizes or deemphasizes the volume loss of the mixer’s sound sources based on the [`rolloffFactor`](https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor) you choose. For example, a [`rolloffFactor`](https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor) of `1.0` reduces sound between the source and listener by 6 dB for every doubling of distance. At `2.0`, the loss doubles. At `0.5`, the loss halves.
+    ///
+    /// To add a geometric-spreading distance model to a spatial sounds, set the mixer’s [`distanceModelParameters`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters) property to an instance of this class. For example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let simpleModel = PHASEGeometricSpreadingDistanceModelParameters()", "simpleModel.rolloffFactor = 1.0", "spatialMixer.distanceModelParameters = simpleModel"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["PHASEGeometricSpreadingDistanceModelParameters* simpleModel = [[PHASEGeometricSpreadingDistanceModelParameters alloc] init];", "simpleModel.rolloffFactor = 1.f;", "spatialMixer.distanceModelParameters = simpleModel;"], metadata: None }] }] })
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -110,8 +139,6 @@ extern_class!(
     /// Geometric spreading distance model parameters.
     ///
     /// Standard geometric spreading loss as a function of geometry and distance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters?language=objc)
     #[unsafe(super(PHASEDistanceModelParameters, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEGeometricSpreadingDistanceModelParameters;
@@ -153,6 +180,18 @@ impl PHASEGeometricSpreadingDistanceModelParameters {
 }
 
 extern_class!(
+    /// A graph of points and curves that shapes the volume of a sound over distance.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides an envelope that the app configures to dissipate the volume of a source’s sound with distance. The envelope describes a graph that the app configures using points and curves, where the input value is the distance between a sound source and the listener, and the output value is the sound’s volume.
+    ///
+    /// ### Dissipate Sound by Using an Envelope
+    ///
+    /// The framework interprets this class’s envelope as a _gain curve_, which determines the sound’s volume over a distance. An envelope offers more precise control over sound dissipation than a geometric [`rolloffFactor`](https://developer.apple.com/documentation/phase/phasegeometricspreadingdistancemodelparameters/rollofffactor). For example, the following code defines slow sound dissipation followed by a sharp decrease:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var envelopeSegments : [PHASEEnvelopeSegment]!", "envelopeSegments.append(PHASEEnvelopeSegment(endPoint: simd_make_double2(6.0, 1.0),", " curveType: PHASECurveType.sigmoid))", "envelopeSegments.append(PHASEEnvelopeSegment(endPoint: simd_make_double2(9.0, 0.0),", " curveType:PHASECurveType.inverseCubed))", "let distanceModelEnvelope = PHASEEnvelope(startPoint: simd_make_double2(0.0, 0.125),", " segments:envelopeSegments)", "", "let piecewiseModel = PHASEEnvelopeDistanceModelParameters(envelope: distanceModelEnvelope!)", "", "spatialMixer.distanceModelParameters = piecewiseModel"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSMutableArray<PHASEEnvelopeSegment*>* envelopeSegments = [NSMutableArray new];", "[envelopeSegments addObject: [[PHASEEnvelopeSegment alloc] initWithEndPoint:simd_make_double2(6.0f, 1.0f) curveType:PHASECurveTypeSigmoid];", "[envelopeSegments addObject: [[PHASEEnvelopeSegment alloc] initWithEndPoint:simd_make_double2(9.0f, 0.0f) curveType:PHASECurveTypeInverseCubed];", "PHASEEnvelope* distanceModelEnvelope = [[PHASEEnvelope alloc] initWithStartPoint:simd_make_double2(0.0f, 0.125f) segments:envelopSegments];", "", "PHASEEnvelopeDistanceModelParameters* piecewiseModel = [[PHASEEnvelopeDistanceModelParameters alloc] initWithEnvelope:distanceModelEnvelope];", "", "spatialMixer.distanceModelParameters = piecewiseModel;"], metadata: None }] }] })
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -160,8 +199,6 @@ extern_class!(
     /// Envelope distance model parameters.
     ///
     /// Envelope-driven attenuation over distance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseenvelopedistancemodelparameters?language=objc)
     #[unsafe(super(PHASEDistanceModelParameters, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEEnvelopeDistanceModelParameters;

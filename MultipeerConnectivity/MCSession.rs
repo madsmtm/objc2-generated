@@ -7,16 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode?language=objc)
+/// Indicates whether delivery of data should be guaranteed.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionSendDataMode(pub NSInteger);
 impl MCSessionSendDataMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode/reliable?language=objc)
+    /// The framework should guarantee delivery of each message, enqueueing and retransmitting data as needed, and ensuring in-order delivery.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this message type for application-critical data.
+    ///
+    ///
     #[doc(alias = "MCSessionSendDataReliable")]
     pub const Reliable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode/unreliable?language=objc)
+    /// Messages to peers should be sent immediately without socket-level queueing. If a message cannot be sent immediately, it should be dropped. The order of messages is not guaranteed.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this message type for data that ceases to be relevant if delayed, such as real-time gaming data.
+    ///
+    ///
     #[doc(alias = "MCSessionSendDataUnreliable")]
     pub const Unreliable: Self = Self(1);
 }
@@ -29,19 +41,19 @@ unsafe impl RefEncode for MCSessionSendDataMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate?language=objc)
+/// Indicates the current state of a given peer within a session.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionState(pub NSInteger);
 impl MCSessionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/notconnected?language=objc)
+    /// The peer is not (or is no longer) in this session.
     #[doc(alias = "MCSessionStateNotConnected")]
     pub const NotConnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/connecting?language=objc)
+    /// A connection to the peer is currently being established.
     #[doc(alias = "MCSessionStateConnecting")]
     pub const Connecting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/connected?language=objc)
+    /// The peer is connected to this session.
     #[doc(alias = "MCSessionStateConnected")]
     pub const Connected: Self = Self(2);
 }
@@ -54,19 +66,19 @@ unsafe impl RefEncode for MCSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference?language=objc)
+/// Indicates whether a session should use encryption when communicating with nearby peers.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCEncryptionPreference(pub NSInteger);
 impl MCEncryptionPreference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/optional?language=objc)
+    /// The session prefers to use encryption, but accepts unencrypted connections. A connection uses encryption when all the peers choose either [`MCEncryptionOptional`](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/optional) or [`MCEncryptionRequired`](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/required). If some peers choose [`MCEncryptionNone`](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/none), then the session will not be encrypted. For this reason, if some peers running your app can be configured without encryption, you should always assume that the session is unencrypted.
     #[doc(alias = "MCEncryptionOptional")]
     pub const Optional: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/required?language=objc)
+    /// The session requires encryption.
     #[doc(alias = "MCEncryptionRequired")]
     pub const Required: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference/none?language=objc)
+    /// The session should not be encrypted.
     #[doc(alias = "MCEncryptionNone")]
     pub const None: Self = Self(2);
 }
@@ -80,17 +92,107 @@ unsafe impl RefEncode for MCEncryptionPreference {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/kmcsessionminimumnumberofpeers?language=objc)
+    /// The minimum number of peers that a session can support, including the local peer.
     pub static kMCSessionMinimumNumberOfPeers: NSUInteger;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/kmcsessionmaximumnumberofpeers?language=objc)
+    /// The maximum number of peers that a session can support, including the local peer.
     pub static kMCSessionMaximumNumberOfPeers: NSUInteger;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsession?language=objc)
+    /// An `MCSession` object enables and manages communication among all peers in a Multipeer Connectivity session.
+    ///
+    /// ### Initiating a Session
+    ///
+    /// To set up a session:
+    ///
+    /// 1. Use the [`initWithDisplayName:`](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid/init(displayname:)) method of the [`MCPeerID`](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid) to create a peer ID that represents the local peer, or retrieve a peer ID that you previously archived (to maintain a stable peer ID over time).
+    ///
+    /// 2. Use the peer ID with the method [`initWithPeer:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/init(peer:)) to initialize the session object.
+    ///
+    /// 3. Invite peers to join the session using an [`MCNearbyServiceBrowser`](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowser) object, an [`MCBrowserViewController`](https://developer.apple.com/documentation/multipeerconnectivity/mcbrowserviewcontroller) object, or your own peer discovery code. (Sessions currently support up to 8 peers, including the local peer.)
+    ///
+    /// 4. Set up an [`MCNearbyServiceAdvertiser`](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiser) object or [`MCAdvertiserAssistant`](https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistant) object to allow other devices to ask your app to join a session that they create.
+    ///
+    /// If you use one of the framework’s browser objects for peer discovery, when a peer accepts an invitation, the session calls its delegate object’s [`session:peer:didChangeState:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate/session(_:peer:didchange:)) method with [`MCSessionStateConnected`](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate/connected) as the new state, along with an object that tells you which peer became connected. See Creating a Session for related methods.
+    ///
+    /// If instead you write your own peer discovery code, you are responsible for managing the connection manually. See the [Managing Peers Manually](https://developer.apple.com/documentation/multipeerconnectivity/mcsession#managing-peers-manually) section for more information.
+    ///
+    /// ### Communicating with Peers
+    ///
+    /// Once you have set up the session, your app can send data to other peers by calling one of the following methods, found in Sending Data and Resources:
+    ///
+    /// - [`sendData:toPeers:withMode:error:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/send(_:topeers:with:)) sends an `NSData` object to the specified peers.
+    ///
+    ///   On each recipient device, the delegate object’s [`session:didReceiveData:fromPeer:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didreceive:frompeer:)) method is called with the data object when the data has been fully received.
+    ///
+    /// - [`sendResourceAtURL:withName:toPeer:withCompletionHandler:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/sendresource(at:withname:topeer:withcompletionhandler:)) sends the contents from an `NSURL` object to the specified peer. The URL can be either a local file URL or a web URL. The `completionHandler` block is called when the resource is fully received by the recipient peer or when an error occurs during transmission.
+    ///
+    ///   This method returns an `NSProgress` object that you can use to cancel the transfer or check the current status of the transfer.
+    ///
+    ///   On the recipient device, the session calls its delegate object’s [`session:didStartReceivingResourceWithName:fromPeer:withProgress:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didstartreceivingresourcewithname:frompeer:with:)) method when the device begins receiving the resource, and calls its [`session:didFinishReceivingResourceWithName:fromPeer:atURL:withError:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didfinishreceivingresourcewithname:frompeer:at:witherror:)) method when the resource has been fully received or when an error occurs.
+    ///
+    /// - [`startStreamWithName:toPeer:error:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/startstream(withname:topeer:)) creates a connected byte stream (`NSOutputStream`) that you can use to send data to the specified peer.
+    ///
+    ///   On the recipient device, the session calls its delegate object’s [`session:didReceiveStream:withName:fromPeer:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate/session(_:didreceive:withname:frompeer:)) method with an `NSInputStream` object that represents the other endpoint of communication.
+    ///
+    ///   On both sides, your code must set the stream’s delegate, schedule the stream on a run loop, and open the stream. Your code must also implement stream delegate methods to manage sending and receiving stream data.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Delegate calls occur on a private operation queue. If your app needs to perform an action on a particular run loop or operation queue, its delegate method should explicitly dispatch or schedule that work.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Managing Peers Manually
+    ///
+    /// If instead of using the framework’s browser and advertiser objects to perform peer discovery, you decide to write your own peer discovery code (with `NSNetService` or the Bonjour C API, for example), you can manually connect nearby peers into a session. To do this:
+    ///
+    /// 1. Establish a connection from your app to nearby peers, and exchange peer IDs with those peers.
+    ///
+    /// Each peer should serialize its own local `MCPeerID` object with `NSKeyedArchiver`, and the receiving peer should unserialize it with `NSKeyedUnarchiver`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Do not attempt to construct a peer ID object for a nonlocal peer using [`initWithDisplayName:`](https://developer.apple.com/documentation/multipeerconnectivity/mcpeerid/init(displayname:)). A peer ID object must be constructed _on the device that it represents_.
+    ///
+    ///
+    ///
+    /// </div>
+    /// 2. Exchange connection data. After you have obtained the nearby peer’s ID object, call [`nearbyConnectionDataForPeer:withCompletionHandler:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/nearbyconnectiondata(forpeer:withcompletionhandler:)) to obtain a connection data object specific to that nearby peer.
+    ///
+    /// When the completion handler block is called, send the resulting connection data object to that peer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Each device in the session must perform this step for each nonlocal peer in the session. So if there are four devices in the session, each device must generate a connection data object for each of the other three devices.
+    ///
+    ///
+    ///
+    /// </div>
+    /// 3. When your app receives connection data from another peer, it must call [`connectPeer:withNearbyConnectionData:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/connectpeer(_:withnearbyconnectiondata:)) to add that peer to the session.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Each of the nonlocal peers must also call [`connectPeer:withNearbyConnectionData:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/connectpeer(_:withnearbyconnectiondata:)) with the connection data that it received from your app and other nonlocal peers.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can also cancel an outstanding connection attempt by calling [`cancelConnectPeer:`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/cancelconnectpeer(_:)). These methods are described in the Managing Peers Manually group.
+    ///
+    /// ### Disconnecting
+    ///
+    /// To leave a session, your app must call [`disconnect`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession/disconnect()). For more details, see Leaving a Session.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCSession;
@@ -199,7 +301,13 @@ impl MCSession {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessiondelegate?language=objc)
+    /// The `MCSessionDelegate` protocol defines methods that a delegate of the `MCSession` class can implement to handle session-related events. For more information, see [`MCSession`](https://developer.apple.com/documentation/multipeerconnectivity/mcsession).
+    ///
+    /// ## Overview
+    ///
+    /// Delegate calls occur on a private serial queue. If your app needs to perform an action on a particular run loop or operation queue, its delegate method should explicitly dispatch or schedule that work.
+    ///
+    ///
     pub unsafe trait MCSessionDelegate: NSObjectProtocol {
         #[cfg(feature = "MCPeerID")]
         #[unsafe(method(session:peer:didChangeState:))]

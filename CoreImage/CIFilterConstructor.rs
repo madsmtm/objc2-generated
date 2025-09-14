@@ -7,7 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterconstructor?language=objc)
+    /// A general interface for objects that produce filters.
+    ///
+    /// ## Overview
+    ///
+    /// Objects implementing this protocol are called _filter constructors_—they produce new instances of [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) subclasses when filters are requested by name. You can create a filter constructor to provide new, custom filters that other Core Image clients can discover using the `CIFilter` class. Normally, you create and register custom filters by packaging them as Image Units (see [Packaging and Loading Image Units](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_image_units/ci_image_units.html#//apple_ref/doc/uid/TP30001185-CH7)), but you can use this protocol to provide new filters within your app that are compositions of existing filters.
+    ///
+    /// To provide custom filters using this protocol, you must:
+    ///
+    /// 1. Create your custom filters as `CIFilter` subclasses.
+    ///
+    /// 2. Create a class that implements this protocol to vend instances of the appropriate `CIFilter` subclasses when requested.
+    ///
+    /// 3. Call the `CIFilter` class method [`registerFilterName:constructor:classAttributes:`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class/registername(_:constructor:classattributes:)) for each custom filter, providing the filter’s name, an instance of your filter constructor class, and information about the filter’s attributes.
+    ///
+    ///
     pub unsafe trait CIFilterConstructor {
         #[cfg(feature = "CIFilter")]
         #[unsafe(method(filterWithName:))]

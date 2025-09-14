@@ -8,7 +8,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest?language=objc)
+    /// A request to the App Store to get the app receipt, which represents the customer’s transactions with your app.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The receipt isn’t necessary if you use [`AppTransaction`](https://developer.apple.com/documentation/storekit/apptransaction) to validate the app download, or [`Transaction`](https://developer.apple.com/documentation/storekit/transaction) to validate in-app purchases. Only use the receipt if your app uses the [Original API for In-App Purchase](https://developer.apple.com/documentation/storekit/original-api-for-in-app-purchase), or needs the receipt to validate the app download because it can’t use [`AppTransaction`](https://developer.apple.com/documentation/storekit/apptransaction).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use this API to request a new app receipt from the App Store if the receipt is invalid or missing from its expected location, [`appStoreReceiptURL`](https://developer.apple.com/documentation/foundation/bundle/appstorereceipturl). To request the receipt using the [`SKReceiptRefreshRequest`](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest) object, you initialize it, attach a [`delegate`](https://developer.apple.com/documentation/storekit/skrequest/delegate), and then call the request’s [`start`](https://developer.apple.com/documentation/storekit/skrequest/start()) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The receipt refresh request displays a system prompt that asks users to authenticate with their App Store credentials. For a better user experience, initiate the request after an explicit user action, like tapping or clicking a button.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When the request completes successfully, your delegate receives an [`SKReceiptRefreshRequest`](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest) object in its [`requestDidFinish:`](https://developer.apple.com/documentation/storekit/skrequestdelegate/requestdidfinish(_:)) method. Locate the app receipt using the [`appStoreReceiptURL`](https://developer.apple.com/documentation/foundation/bundle/appstorereceipturl) property. For information about validating the receipt, see [Choosing a receipt validation technique](https://developer.apple.com/documentation/storekit/choosing-a-receipt-validation-technique).
+    ///
+    /// If the request fails and calls your delegate’s [`request:didFailWithError:`](https://developer.apple.com/documentation/storekit/skrequestdelegate/request(_:didfailwitherror:)) method, your app needs to release the request and not attempt to call it a second time. Requests can fail when a user doesn’t authenticate or chooses to cancel the request. Without a validated receipt, assume the user doesn’t have access to premium content.
+    ///
+    /// In the sandbox environment, you can initialize a receipt with any combination of properties for testing when you call [`initWithReceiptProperties:`](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest/init(receiptproperties:)).
+    ///
+    /// ### Use alternative techniques
+    ///
+    /// There are times when using [`SKReceiptRefreshRequest`](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest) isn’t necessary, so avoid doing so, such as in the following scenarios:
+    ///
+    /// - If the receipt is valid, but may be missing transactions, use [`restoreCompletedTransactions`](https://developer.apple.com/documentation/storekit/skpaymentqueue/restorecompletedtransactions()) instead. For example, the receipt may be missing a transaction if a person purchases a new subscription on another device.
+    ///
+    /// - In the sandbox environment, before the tester completes their first in-app purchase. Receipts are initially absent in the sandbox environment for iOS and iPadOS apps. For more information, see [`appStoreReceiptURL`](https://developer.apple.com/documentation/foundation/bundle/appstorereceipturl).
+    ///
+    ///
     #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
@@ -59,24 +95,42 @@ impl SKReceiptRefreshRequest {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skterminateforinvalidreceipt()?language=objc)
+    /// Terminates an app if the license to use the app has expired.
     pub fn SKTerminateForInvalidReceipt();
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired?language=objc)
+    /// A key with a value that indicates whether the receipt is in an expired state.
+    ///
+    /// ## Discussion
+    ///
+    /// This key’s value is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that the system interprets as a Boolean value that indicates whether the receipt is in an expired state.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static SKReceiptPropertyIsExpired: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisrevoked?language=objc)
+    /// A key with a value that indicates whether the receipt is in a revoked state.
+    ///
+    /// ## Discussion
+    ///
+    /// This key’s value is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that the system interprets as a Boolean value that indicates whether the receipt is in a revoked state.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static SKReceiptPropertyIsRevoked: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase?language=objc)
+    /// A key with a value that indicates whether the receipt is a Volume Purchase Plan receipt.
+    ///
+    /// ## Discussion
+    ///
+    /// This key’s value is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that the system interprets as a Boolean value that indicates whether the receipt is a Volume Purchase Plan receipt.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static SKReceiptPropertyIsVolumePurchase: &'static NSString;
 }

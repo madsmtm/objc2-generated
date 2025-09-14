@@ -6,25 +6,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum?language=objc)
+/// The activation states of a Secure Element pass.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKSecureElementPassActivationState(pub NSInteger);
 impl PKSecureElementPassActivationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/activated?language=objc)
+    /// The pass is active and ready to use.
     #[doc(alias = "PKSecureElementPassActivationStateActivated")]
     pub const Activated: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/requiresactivation?language=objc)
+    /// The pass requires activation by the issuer.
     #[doc(alias = "PKSecureElementPassActivationStateRequiresActivation")]
     pub const RequiresActivation: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/activating?language=objc)
+    /// The pass isn’t ready to use, but activation is in progress
     #[doc(alias = "PKSecureElementPassActivationStateActivating")]
     pub const Activating: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/suspended?language=objc)
+    /// The user or the issuer has suspended the pass and it isn’t available to use.
     #[doc(alias = "PKSecureElementPassActivationStateSuspended")]
     pub const Suspended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass/passactivationstate-swift.enum/deactivated?language=objc)
+    /// The issuer has deactivated the pass.
+    ///
+    /// ## Discussion
+    ///
+    /// PassKit can’t reactivate a pass with this state.
+    ///
+    ///
     #[doc(alias = "PKSecureElementPassActivationStateDeactivated")]
     pub const Deactivated: Self = Self(4);
 }
@@ -38,7 +44,7 @@ unsafe impl RefEncode for PKSecureElementPassActivationState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksecureelementpass?language=objc)
+    /// A pass with a credential that the device stores in a certified payment information chip.
     #[unsafe(super(PKPass, PKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "PKObject", feature = "PKPass"))]

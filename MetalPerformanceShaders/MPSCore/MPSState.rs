@@ -9,7 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcelist?language=objc)
+    /// An interface for objects that define resources for Metal Performance Shaders state containers.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSStateResourceList;
@@ -52,7 +52,7 @@ impl MPSStateResourceList {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatetextureinfo?language=objc)
+/// An encapsulation of a texture’s dimensions, format, type, and usage.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSStateTextureInfo {
@@ -86,19 +86,16 @@ unsafe impl RefEncode for MPSStateTextureInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype?language=objc)
+/// Options for the underlying resource type for a state object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSStateResourceType(pub NSUInteger);
 impl MPSStateResourceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype/none?language=objc)
     #[doc(alias = "MPSStateResourceTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype/buffer?language=objc)
     #[doc(alias = "MPSStateResourceTypeBuffer")]
     pub const Buffer: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype/texture?language=objc)
     #[doc(alias = "MPSStateResourceTypeTexture")]
     pub const Texture: Self = Self(2);
 }
@@ -112,6 +109,19 @@ unsafe impl RefEncode for MPSStateResourceType {
 }
 
 extern_class!(
+    /// An opaque data container for large storage in MPS CNN filters.
+    ///
+    /// ## Overview
+    ///
+    /// Some MPS CNN kernels produce additional information beyond an [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage). These may be pooling indices where the result came from, convolution weights, or other information not contained in the usual [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) result from a [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel). An [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) object typically contains one or more expensive [`MTLResource`](https://developer.apple.com/documentation/metal/mtlresource) objects such as textures or buffers to store this information. It provides a base class with interfaces for managing this storage. Child classes may add additional functionality specific to their contents.
+    ///
+    /// Some [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) objects are temporary. Temporary state objects, for example, [`MPSTemporaryImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryimage) and [`MPSTemporaryMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporarymatrix), are for very short lived storage, perhaps just a few lines of code within the scope of a single [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer). They are very efficient for storage, as several temporary objects can share the same memory over the course of a command buffer. This can improve both memory usage and time spent in the kernel wiring down memory and such. You may find that some large CNN tasks can not be computed without them, as nontemporary storage would simply take up too much memory.
+    ///
+    /// In exchange, the lifetime of the underlying storage in temporary [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) objects needs to be carefully managed. ARC often waits until the end of scope to release objects. Temporary storage often needs to be released sooner than that. Consequently the lifetime of the data in the underlying Metal resources is managed by a [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount) property. Each time a [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel) reads a temporary [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) object the [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount) is automatically decremented. When it reaches 0, the underlying storage is recycled for use by other MPS temporary objects, and the data is becomes undefined. If you need to consume the data multiple times, you should set the [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount) to a larger number to prevent the data from becoming undefined. You may set the [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount) to 0 yourself to return the storage to MPS, if for any reason, you realize that the [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) object will no longer be used.
+    ///
+    /// The contents of a temporary [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) object are only valid from creation to the time the [`readCount`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate/readcount) reaches 0. The data is only valid for the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) on which it was created. Nontemporary [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) objects are valid on any [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) on the same device until they are released.
+    ///
+    ///
     /// Dependencies: This depends on Metal Framework
     ///
     /// A semi-opaque data container for large storage in MPS CNN filters
@@ -175,8 +185,6 @@ extern_class!(
     /// It is the blit encoder that is hopefully optional. Note: the most common use of a
     /// blit encoder, -synchronizeResource: can not encounter this problem because temporary
     /// images and states live in GPU private memory and can not be read by the CPU.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSState;
@@ -556,10 +564,11 @@ impl MPSState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatch?language=objc)
+/// A batch of Metal Performance Shader state instances.
 pub type MPSStateBatch = NSArray<MPSState>;
 
 impl MPSState {
+    /// Increments or decrements the read count of a state batch by a specified amount.
     /// raise or lower the readcount of a batch by a set amount
     ///
     /// In some circumstances, a MPSState may appear in a MPSStateBatch
@@ -578,8 +587,6 @@ impl MPSState {
     /// Parameter `amount`: The value to add to the read count for each unique state in the batch
     ///
     /// Returns: The number of different objects in the batch
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatchincrementreadcount(_:_:)?language=objc)
     #[doc(alias = "MPSStateBatchIncrementReadCount")]
     #[inline]
     pub unsafe fn batch_increment_read_count(
@@ -595,9 +602,8 @@ impl MPSState {
         unsafe { MPSStateBatchIncrementReadCount(batch, amount) }
     }
 
+    /// Removes any copy of the specified state batch from the device’s caches, and, if needed, invalidates any CPU caches.
     /// Call [MTLBlitEncoder synchronizeResource:] on unique resources
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatchsynchronize(_:_:)?language=objc)
     #[doc(alias = "MPSStateBatchSynchronize")]
     #[inline]
     pub unsafe fn batch_synchronize(
@@ -613,9 +619,8 @@ impl MPSState {
         unsafe { MPSStateBatchSynchronize(batch, cmd_buf) }
     }
 
+    /// Returns the number of bytes used to allocate the specified state batch.
     /// Call [MTLBlitEncoder resourceSize] on unique resources
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstatebatchresourcesize(_:)?language=objc)
     #[doc(alias = "MPSStateBatchResourceSize")]
     #[inline]
     pub unsafe fn batch_resource_size(batch: Option<&MPSStateBatch>) -> NSUInteger {

@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object containing system-level information about the device.
     /// A class that contains miscellaneous metadata about an associated payload.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxmetadata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXMetaData;

@@ -10,7 +10,15 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bedownloadmonitorlocation?language=objc)
+    /// A class that associates a URL with the bookmark you use to access that URL.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass the [`bookmarkData`](https://developer.apple.com/documentation/browserenginekit/bedownloadmonitorlocation/bookmarkdata) to your browser app to resolve the URL in the app. For information on using XPC to share data between your networking extension and browser app, see [Using XPC to communicate with browser extensions](https://developer.apple.com/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions).
+    ///
+    /// The URL bookmark in a `Location` isn’t suitable for storing on disk and resolving in subsequent launches of your app. To do this, create your own bookmark using [`bookmarkData(options:includingResourceValuesForKeys:relativeTo:)`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkdata(options:includingresourcevaluesforkeys:relativeto:)), passing the [`withSecurityScope`](https://developer.apple.com/documentation/foundation/nsurl/bookmarkcreationoptions/withsecurityscope) flag.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEDownloadMonitorLocation;
@@ -45,7 +53,13 @@ impl BEDownloadMonitorLocation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bedownloadmonitor-9y4hu?language=objc)
+    /// An object that reports the status of web downloads to the system.
+    ///
+    /// ## Overview
+    ///
+    /// When someone downloads a file in your web browser, create an instance of this class to report progress to the system, and optionally create a placeholder file in the person’s Downloads folder. For more information, see [Downloading files in a web browser with an alternative browser engine](https://developer.apple.com/documentation/browserenginekit/downloading-files-in-a-web-browser).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEDownloadMonitor;

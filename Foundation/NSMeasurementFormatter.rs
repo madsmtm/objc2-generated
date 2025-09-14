@@ -6,20 +6,35 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct?language=objc)
+/// Measurement formatter options.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMeasurementFormatterUnitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMeasurementFormatterUnitOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct/providedunit?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that the provided unit for the measurement should be used.
+///
+///
         #[doc(alias = "NSMeasurementFormatterUnitOptionsProvidedUnit")]
         const ProvidedUnit = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct/naturalscale?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that representations of measurements are reduced and converted into a more convenient unit, when possible. For example, a quantity of 12000 meters would be represented as `12 kilometers`.
+///
+///
         #[doc(alias = "NSMeasurementFormatterUnitOptionsNaturalScale")]
         const NaturalScale = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.struct/temperaturewithoutunit?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that representations of a measurement with the `NSTemperatureUnit` unit omit the letter denoting the temperature scale. For example, a temperature measurement with value equal to 72 using the [`degreeFahrenheitUnit`](https://developer.apple.com/documentation/healthkit/hkunit/degreefahrenheit()) would be represented as `72°` rather than `72°F`.
+///
+///
         #[doc(alias = "NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit")]
         const TemperatureWithoutUnit = 1<<2;
     }
@@ -34,7 +49,21 @@ unsafe impl RefEncode for NSMeasurementFormatterUnitOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/measurementformatter?language=objc)
+    /// A formatter that provides localized representations of units and measurements.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`stringFromMeasurement:`](https://developer.apple.com/documentation/foundation/measurementformatter/string(from:)-wt9y) method to create a localized representation of an [`NSMeasurement`](https://developer.apple.com/documentation/foundation/nsmeasurement) object, and you use the [`stringFromUnit:`](https://developer.apple.com/documentation/foundation/measurementformatter/string(from:)-4hwjz) method to create a localized representation of an [`NSUnit`](https://developer.apple.com/documentation/foundation/unit) object. The formatter takes into account the specified [`locale`](https://developer.apple.com/documentation/foundation/measurementformatter/locale), [`unitStyle`](https://developer.apple.com/documentation/foundation/measurementformatter/unitstyle), and [`unitOptions`](https://developer.apple.com/documentation/foundation/measurementformatter/unitoptions-swift.property) when producing string representations of units and measurements.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`Measurement.FormatStyle`](https://developer.apple.com/documentation/foundation/measurement/formatstyle) rather than [`NSMeasurementFormatter`](https://developer.apple.com/documentation/foundation/measurementformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

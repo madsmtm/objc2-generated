@@ -7,13 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An attachment point that writes data from the guest system to a file.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZFileSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzfileserialportattachment) object to configure a one-way serial port from the guest operating system to the virtual machine. When the guest sends data to the serial port, the virtual machine writes that data to the specified file. You can’t use this serial port to send data back to the guest.
+    ///
+    /// Create a [`VZSerialPortAttachment`](https://developer.apple.com/documentation/virtualization/vzserialportattachment) object and assign it to an appropriate subclass of [`VZSerialPortConfiguration`](https://developer.apple.com/documentation/virtualization/vzserialportconfiguration) object, such as [`VZVirtioConsoleDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration). The file you use to create this object must be writable.
+    ///
+    ///
     /// File serial port attachment.
     ///
     /// VZFileSerialPortAttachment defines a serial port attachment from a file.
     /// Any data sent by the guest on the serial interface is written to the file.
     /// No data is sent to the guest over serial with this attachment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzfileserialportattachment?language=objc)
     #[unsafe(super(VZSerialPortAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSerialPortAttachment")]

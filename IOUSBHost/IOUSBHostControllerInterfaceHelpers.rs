@@ -6,7 +6,6 @@ use crate::*;
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIMessageStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatustoioreturn(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusToIOReturn")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -17,7 +16,6 @@ impl IOUSBHostCIMessageStatus {
         unsafe { IOUSBHostCIMessageStatusToIOReturn(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatusfromioreturn(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusFromIOReturn")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -31,7 +29,6 @@ impl IOUSBHostCIMessageStatus {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCILinkState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstateenabled(_:)?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateEnabled")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -45,7 +42,6 @@ impl IOUSBHostCILinkState {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIMessageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetypetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIMessageTypeToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -59,7 +55,6 @@ impl IOUSBHostCIMessageType {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIMessageStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatustostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIMessageStatusToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -73,7 +68,6 @@ impl IOUSBHostCIMessageStatus {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCILinkState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstatetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCILinkStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -87,7 +81,6 @@ impl IOUSBHostCILinkState {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIDeviceSpeed {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeedtostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceSpeedToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -101,7 +94,6 @@ impl IOUSBHostCIDeviceSpeed {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIExceptionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontypetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIExceptionTypeToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -117,7 +109,6 @@ impl IOUSBHostCIExceptionType {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIControllerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIControllerStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -133,7 +124,6 @@ impl IOUSBHostCIControllerState {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIPortState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstatetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIPortStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -147,7 +137,6 @@ impl IOUSBHostCIPortState {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIDeviceState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIDeviceStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]
@@ -163,7 +152,6 @@ impl IOUSBHostCIDeviceState {
 
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 impl IOUSBHostCIEndpointState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstatetostring(_:)?language=objc)
     #[doc(alias = "IOUSBHostCIEndpointStateToString")]
     #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
     #[inline]

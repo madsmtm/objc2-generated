@@ -7,6 +7,23 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
+    ///
+    /// ## Overview
+    ///
+    /// The related [`NSHTTPURLResponse`](https://developer.apple.com/documentation/foundation/httpurlresponse) class is a commonly used subclass of [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) whose objects represent a response to an HTTP URL load request and store additional protocol-specific information such as the response headers. Whenever you make an HTTP request, the [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) object you get back is actually an instance of the [`NSHTTPURLResponse`](https://developer.apple.com/documentation/foundation/httpurlresponse) class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) objects don’t contain the actual bytes representing the content of a URL. Instead, the data is returned either a piece at a time through delegate calls or in its entirety when the request completes, depending on the method and class used to initiate the request.
+    ///
+    /// Read [Fetching website data into memory](https://developer.apple.com/documentation/foundation/fetching-website-data-into-memory) to learn various ways to receive the content data from a URL load.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An NSURLResponse object represents a URL load response in a
     /// manner independent of protocol and URL scheme.
     ///
@@ -16,8 +33,6 @@ extern_class!(
     /// the actual bytes representing the content of a URL. See
     /// NSURLConnection and NSURLConnectionDelegate for more information
     /// about receiving the content data for a URL load.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLResponse;
@@ -170,12 +185,17 @@ impl DefaultRetained for NSURLResponse {
 }
 
 extern_class!(
+    /// The metadata associated with the response to an HTTP protocol URL load request.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSHTTPURLResponse`](https://developer.apple.com/documentation/foundation/httpurlresponse) class is a subclass of [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) that provides methods for accessing information specific to HTTP protocol responses. Whenever you make HTTP URL load requests, any response objects you get back from the [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession), [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection), or [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) class are instances of the [`NSHTTPURLResponse`](https://developer.apple.com/documentation/foundation/httpurlresponse) class.
+    ///
+    ///
     /// An NSHTTPURLResponse object represents a response to an
     /// HTTP URL load. It is a specialization of NSURLResponse which
     /// provides conveniences for accessing information specific to HTTP
     /// protocol responses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpurlresponse?language=objc)
     #[unsafe(super(NSURLResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPURLResponse;

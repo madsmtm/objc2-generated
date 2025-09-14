@@ -13,78 +13,109 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define aperture modes to use when generating images.
 /// The type of an aperture mode.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetImageGeneratorApertureMode = NSString;
 
 extern "C" {
+    /// A mode that applies both pixel aspect ratio and clean aperture.
+    ///
+    /// ## Discussion
+    ///
+    /// An image’s clean aperture is a region of video free from transition artifacts caused by the encoding of the signal.
+    ///
+    ///
     /// Both pixel aspect ratio and clean aperture will be applied.
     ///
     /// An image's clean aperture is a region of video free from transition artifacts caused by the encoding of the signal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct/cleanaperture?language=objc)
     pub static AVAssetImageGeneratorApertureModeCleanAperture:
         &'static AVAssetImageGeneratorApertureMode;
 }
 
 extern "C" {
+    /// A mode that applies only pixel aspect ratio.
+    ///
+    /// ## Discussion
+    ///
+    /// The image isn’t cropped to the clean aperture region, but it’s scaled according to the pixel aspect ratio. Use this option when you want to see all the pixels in your video, including the edges.
+    ///
+    ///
     /// Only pixel aspect ratio will be applied.
     ///
     /// The image is not cropped to the clean aperture region, but it is scaled according to the pixel aspect ratio. Use this option when you want to see all the pixels in your video, including the edges.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct/productionaperture?language=objc)
     pub static AVAssetImageGeneratorApertureModeProductionAperture:
         &'static AVAssetImageGeneratorApertureMode;
 }
 
 extern "C" {
+    /// A mode that applies neither pixel aspect ratio nor clean aperture.
+    ///
+    /// ## Discussion
+    ///
+    /// The image isn’t cropped to the clean aperture region and isn’t scaled according to the pixel aspect ratio. It displays the image according to its encoded dimensions.
+    ///
+    ///
     /// Neither pixel aspect ratio nor clean aperture will be applied.
     ///
     /// The image is not cropped to the clean aperture region and is not scaled according to the pixel aspect ratio. The encoded dimensions of the image description are displayed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct/encodedpixels?language=objc)
     pub static AVAssetImageGeneratorApertureModeEncodedPixels:
         &'static AVAssetImageGeneratorApertureMode;
 }
 
+/// A type that specifies the dynamic range policy to apply when generating images.
 /// Configures the video dynamic range for the output CGImage
 ///
 /// Default.  Force standard dynamic range by converting PQ or HLG transfer functions to 709, while maintaining color primaries and matrix.
 ///
 /// SDR movies will vend SDR CGImages matching the source color parameters.  HDR movies will vend HDR CGImages matching the source color parameters.
 /// HTTP Live Streaming assets will currently vend only SDR CGImages.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/dynamicrangepolicy-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetImageGeneratorDynamicRangePolicy = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/dynamicrangepolicy-swift.struct/forcesdr?language=objc)
+    /// A policy that forces conversion to standard dynamic range.
+    ///
+    /// ## Discussion
+    ///
+    /// This policy converts PQ or HLG transfer functions to 709, while maintaining color primaries and matrix.
+    ///
+    ///
     pub static AVAssetImageGeneratorDynamicRangePolicyForceSDR:
         &'static AVAssetImageGeneratorDynamicRangePolicy;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/dynamicrangepolicy-swift.struct/matchsource?language=objc)
+    /// A policy that preserves the color parameters of the source media.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, an image generator converts images to standard dynamic range. When working with HDR video, use this policy to preserve HDR color in the resulting images.
+    ///
+    ///
     pub static AVAssetImageGeneratorDynamicRangePolicyMatchSource:
         &'static AVAssetImageGeneratorDynamicRangePolicy;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result?language=objc)
+/// Constants that indicate the result of an image generation request.
+///
+/// ## Overview
+///
+/// The constants used in the block completion handler for [`generateCGImagesAsynchronouslyForTimes:completionHandler:`](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/generatecgimagesasynchronously(fortimes:completionhandler:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetImageGeneratorResult(pub NSInteger);
 impl AVAssetImageGeneratorResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result/succeeded?language=objc)
+    /// A result that indicates that image generation succeeded.
     #[doc(alias = "AVAssetImageGeneratorSucceeded")]
     pub const Succeeded: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result/failed?language=objc)
+    /// A result that indicates that image generation failed.
     #[doc(alias = "AVAssetImageGeneratorFailed")]
     pub const Failed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result/cancelled?language=objc)
+    /// A result that indicates you canceled image generation.
     #[doc(alias = "AVAssetImageGeneratorCancelled")]
     pub const Cancelled: Self = Self(2);
 }
@@ -97,7 +128,19 @@ unsafe impl RefEncode for AVAssetImageGeneratorResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratorcompletionhandler?language=objc)
+/// A type alias for a closure that provides the result of an image generation request.
+///
+/// Parameters:
+/// - requestedTime: A time in the video timeline for which to generate an image.
+///
+/// - image: A generated image for the requested time.
+///
+/// - actualTime: The actual time in the video timeline at which it generated an image. The requested and actual times may differ depending on your image generator configuration including its time tolerance values.
+///
+/// - result: A value that indicates the result of the image generation request.
+///
+/// - error: An optional error. If an error occurs the system provides an error object that provides the details of the failure.
+///
 #[cfg(all(
     feature = "block2",
     feature = "objc2-core-graphics",
@@ -108,7 +151,13 @@ pub type AVAssetImageGeneratorCompletionHandler = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator?language=objc)
+    /// An object that generates images from a video asset.
+    ///
+    /// ## Overview
+    ///
+    /// Use an image generator to extract images from a video asset at particular times within its timeline.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetImageGenerator;

@@ -9,23 +9,23 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainhttp?language=objc)
+    /// The error code is an HTTP error code.
     pub static kCFStreamErrorDomainHTTP: i32;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp?language=objc)
+/// Error codes that a read stream for an HTTP request may return.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStreamErrorHTTP(pub c_int);
 impl CFStreamErrorHTTP {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp/parsefailure?language=objc)
+    /// A parsing error occurred while an incoming message was being deserialized and appended to a message object. The headers of the incoming message may be formatted improperly.
     #[doc(alias = "kCFStreamErrorHTTPParseFailure")]
     pub const ParseFailure: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp/redirectionloop?language=objc)
+    /// A redirection loop has been detected.
     #[doc(alias = "kCFStreamErrorHTTPRedirectionLoop")]
     pub const RedirectionLoop: Self = Self(-2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttp/badurl?language=objc)
+    /// The URL is not properly formatted.
     #[doc(alias = "kCFStreamErrorHTTPBadURL")]
     pub const BadURL: Self = Self(-3);
 }
@@ -41,72 +41,127 @@ unsafe impl RefEncode for CFStreamErrorHTTP {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpresponseheader?language=objc)
+    /// HTTP Response Header property. When copied by [`CFReadStreamCopyProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamcopyproperty(_:_:)), the header of an HTTP response message is returned.
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPResponseHeader: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpfinalurl?language=objc)
+    /// HTTP Final URL property. A value of type CFURL containing the final HTTP URL. This value differs from the URL in the original HTTP request if an autoredirection occurred. This property cannot be set.
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPFinalURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpfinalrequest?language=objc)
+    /// HTTP Final Request property. A value of type CFHTTPMessage containing the final message transmitted by the stream after all modifications (including authentication, connection policy, redirects, and so on) have been made. This property cannot be set.
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPFinalRequest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpproxy?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP Proxy property. To cause an HTTP CFStream to use an HTTP proxy, set the value of this property to a CFDictionary that includes at least one host/port pair described in “CFStream SOCKS Proxy Key Constants” in [CFStream](https://developer.apple.com/documentation/corefoundation/cfstream). SystemConfiguration returns a CFDictionary that is usable without modification.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpproxyhost?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP Proxy Host property. If an HTTP CFStream is using an HTTP proxy, the value of this property is a CFString containing the host name or IP number of the proxy server.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPProxyHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpproxyport?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP Proxy Host property. If an HTTP CFStream is using an HTTP proxy, the value of this property is a CFNumber containing the port number of the proxy server.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPProxyPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpsproxyhost?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTPS Proxy Host property. If a CFStream is using an HTTPS proxy, the value of this property is a CFString containing the host name or IP number of the proxy server.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPSProxyHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpsproxyport?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTPS Proxy Host property. If a CFStream is using an HTTPS proxy, the value of this property is a CFNumber containing the port number of the proxy server.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPSProxyPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpshouldautoredirect?language=objc)
+    /// HTTP Should Auto Redirect property. Set this property to `kCFBooleanTrue` to enable autoredirection; set this property to `kCFBooleanFalse` to disable autoredirection.
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPShouldAutoredirect: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttpattemptpersistentconnection?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP Attempt Persistent Connection property. The value of this property is a CFBoolean. If this property is set to `kCFBooleanTrue`, the HTTP stream looks for an appropriate existing persistent connection to use. If it cannot find one, the HTTP stream will try to create one.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPAttemptPersistentConnection: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyhttprequestbyteswrittencount?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// HTTP Request Bytes Written property. This property can only be retrieved; it cannot be set. The value of this property is a CFNumber containing the number of body bytes that have been written to the server thus far. HTTP header bytes are not included in the count. You can use this property to track the progress of HTTP uploads that take a substantial amount of time to complete.
+    ///
+    ///
     #[deprecated = "Use NSURLSession API for http requests"]
     pub static kCFStreamPropertyHTTPRequestBytesWrittenCount: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforhttprequest(_:_:)?language=objc)
+/// Creates a read stream for a CFHTTP request message.
+///
+/// Parameters:
+/// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - request: A CFHTTP request message whose body and headers have been set.
+///
+///
+/// ## Return Value
+///
+/// A new read stream, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a read stream and associates it with the specified request. Automatic redirection is disabled by default. After creating the read stream, you can call [`CFReadStreamGetError`](https://developer.apple.com/documentation/corefoundation/cfreadstreamgeterror(_:)) at any time to check the status of the stream. You may want to call `CFHTTPReadStreamSetRedirectsAutomatically` to enable automatic redirection, or `CFHTTPReadStreamSetProxy` to set the name and port number for a proxy. To serialize the request and send it, call [`CFReadStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)).
+///
+/// If the body of the request is too long to keep in memory, call [`CFReadStreamCreateForStreamedHTTPRequest`](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforstreamedhttprequest(_:_:_:)) instead of this function.
+///
+///
 #[cfg(feature = "CFHTTPMessage")]
 #[deprecated = "Use NSURLSession API for http requests"]
 #[inline]
@@ -125,7 +180,33 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateForHTTPRequest(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforstreamedhttprequest(_:_:_:)?language=objc)
+/// Creates a read stream for a CFHTTP request message object whose body is too long to keep in memory.
+///
+/// Parameters:
+/// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - requestHeaders: A CFHTTP request header.
+///
+/// - requestBody: Read stream reference for the request body.
+///
+///
+/// ## Return Value
+///
+/// A new read stream, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a read stream for the response to the `requestHeaders` plus `requestBody`. Call this function instead of [`CFReadStreamCreateForHTTPRequest`](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreateforhttprequest(_:_:)) when the body of the request is so long that you do not want it to be resident in memory.
+///
+/// Because streams cannot be reset, read streams created this way cannot be enabled for autoredirection.
+///
+/// If the Content-Length header is set in `requestHeaders`, it is assumed that the length is correct and that `requestBody` will report end-of-stream after precisely Content-Length bytes have been read from it. If the Content-Length header is not set, the chunked transfer-encoding will be added to `requestHeaders`, and bytes read from `requestBody` will be transmitted chunked. The body of `requestHeaders` is ignored.
+///
+/// After creating the read stream, you can call [`CFReadStreamGetError`](https://developer.apple.com/documentation/corefoundation/cfreadstreamgeterror(_:)) at any time to check the status of the stream. You may want to call `CFHTTPReadStreamSetProxy` to set the name and port number for a proxy. To serialize the request and send it, call [`CFReadStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)).
+///
+///
 #[cfg(feature = "CFHTTPMessage")]
 #[deprecated = "Use NSURLSession API for http requests"]
 #[inline]

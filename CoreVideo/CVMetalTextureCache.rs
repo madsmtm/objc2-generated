@@ -14,13 +14,18 @@ use objc2_metal::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltexturecachemaximumtextureagekey?language=objc)
+    /// The length of time, in seconds, before the cache is automatically evicted.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is `1`. To disable the age-out mechanism completely, set a maximum texture age of `0`. The cache can be manually evicted with [`CVMetalTextureCacheFlush`](https://developer.apple.com/documentation/corevideo/cvmetaltexturecacheflush(_:_:)).
+    ///
+    ///
     pub static kCVMetalTextureCacheMaximumTextureAgeKey: &'static CFString;
 }
 
+/// A reference to a Core Video Metal texture cache.
 /// CoreVideo Metal Texture Cache
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecache?language=objc)
 #[doc(alias = "CVMetalTextureCacheRef")]
 #[repr(C)]
 pub struct CVMetalTextureCache {
@@ -37,7 +42,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CVMetalTextureCache {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachegettypeid()?language=objc)
+    /// Returns the Core Foundation type identifier for a Core Video Metal texture cache.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for the `CVMetalTextureCacheRef` type.
+    ///
+    ///
     #[doc(alias = "CVMetalTextureCacheGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -49,6 +60,25 @@ unsafe impl ConcreteType for CVMetalTextureCache {
 }
 
 impl CVMetalTextureCache {
+    /// Creates a new texture cache.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator for the texture.
+    ///
+    /// - cacheAttributes: A dictionary specifying options for the cache’s behavior, or `NULL` to use default options. For applicable keys and values, see [Cache Attributes](https://developer.apple.com/documentation/corevideo/cvmetaltexturecache-cache-attributes).
+    ///
+    /// - metalDevice: The Metal device used to create texture objects.
+    ///
+    /// - textureAttributes: A dictionary specifying options for creating textures from the cache, or `NULL` to use default options.
+    ///
+    /// - cacheOut: Upon return, contains the newly created texture cache. When this value is `NULL`, an error occurred in texture creation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Upon successful creation of the texture cache, this function returns [`kCVReturnSuccess`](https://developer.apple.com/documentation/corevideo/kcvreturnsuccess).
+    ///
+    ///
     /// Creates a new Texture Cache.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the cache.  May be NULL.
@@ -70,8 +100,6 @@ impl CVMetalTextureCache {
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachecreate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
@@ -103,6 +131,65 @@ impl CVMetalTextureCache {
         }
     }
 
+    /// Creates a Core Video Metal texture buffer from an existing image buffer.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator for the texture.
+    ///
+    /// - textureCache: The texture cache used to create and manage the texture.
+    ///
+    /// - sourceImage: The Core Video image buffer from which to create a Metal texture.
+    ///
+    /// - textureAttributes: A dictionary specifying options for creating the texture from the cache, or `NULL` to use default options.
+    ///
+    /// - pixelFormat: The Metal pixel format constant describing the image buffer’s data.
+    ///
+    /// - width: The width, in pixels, of the texture image.
+    ///
+    /// - height: The height, in pixels, of the texture image.
+    ///
+    /// - planeIndex: If the image buffer is planar, the index of the plane from which to map texture data. Ignored for non-planar image buffers.
+    ///
+    /// - textureOut: Upon return, contains the newly created Metal texture buffer. When this value is `NULL`, an error occurred in texture creation.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Upon successful creation of the texture, this function returns [`kCVReturnSuccess`](https://developer.apple.com/documentation/corevideo/kcvreturnsuccess).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a cached Core Video Metal texture object mapped to an image buffer, and a live binding to the underlying [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You need to maintain a strong reference to `textureOut` until the GPU finishes execution of commands accessing the texture, because the system doesn’t automatically retain it. Developers typically release these references in a block passed to [`addCompletedHandler:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/addcompletedhandler(_:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Note that Core Video doesn’t explicitly declare any pixel format types as Metal compatible. Specify [`true`](https://developer.apple.com/documentation/swift/true) for the [`kCVPixelBufferMetalCompatibilityKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbuffermetalcompatibilitykey) option to create Metal-compatible buffers when creating or requesting Core Video pixel buffers. You’re responsible for ensuring the pixel format is appropriate to the buffer.
+    ///
+    /// The following code snippet demonstrates some example mappings:
+    ///
+    /// ```objc
+    /// // Mapping a BGRA buffer:
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatBGRA8Unorm, width, height, 0, &outTexture);
+    ///  
+    /// // Mapping the luma plane of a 420v buffer:
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatR8Unorm, width, height, 0, &outTexture);
+    ///  
+    /// // Mapping the chroma plane of a 420v buffer as a source texture:
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatRG8Unorm width/2, height/2, 1, &outTexture);
+    ///  
+    /// // Mapping a yuvs buffer as a source texture (note: yuvs/f and 2vuy are unpacked and resampled -- not colorspace converted)
+    /// CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, pixelBuffer, NULL, MTLPixelFormatGBGR422, width, height, 1, &outTexture);
+    /// ```
+    ///
+    ///
     /// Creates a CVMetalTexture object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVMetalTexture object.  May be NULL.
@@ -164,8 +251,6 @@ impl CVMetalTextureCache {
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachecreatetexturefromimage(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -215,6 +300,19 @@ impl CVMetalTextureCache {
         }
     }
 
+    /// Manually flushes the contents of the provided texture cache.
+    ///
+    /// Parameters:
+    /// - textureCache: The texture cache object to flush.
+    ///
+    /// - options: Options for the flush operation. This parameter is currently unused and should be `0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Texture caches automatically flush unused resources when you call the [`CVMetalTextureCacheCreateTextureFromImage`](https://developer.apple.com/documentation/corevideo/cvmetaltexturecachecreatetexturefromimage(_:_:_:_:_:_:_:_:_:)) function and on the time interval specified by [`kCVMetalTextureCacheMaximumTextureAgeKey`](https://developer.apple.com/documentation/corevideo/kcvmetaltexturecachemaximumtextureagekey). Use this method when you need fine-grained control over cache contents and memory.
+    ///
+    ///
     /// Performs internal housekeeping/recycling operations
     ///
     /// This call must be made periodically to give the texture cache a chance to do internal housekeeping operations.
@@ -222,8 +320,6 @@ impl CVMetalTextureCache {
     /// Parameter `textureCache`: The texture cache object to flush
     ///
     /// Parameter `options`: Currently unused, set to 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecacheflush(_:_:)?language=objc)
     #[doc(alias = "CVMetalTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]

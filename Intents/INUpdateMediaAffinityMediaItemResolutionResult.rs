@@ -6,34 +6,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason?language=objc)
+/// Reasons the app can’t update the user’s affinity for the media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INUpdateMediaAffinityMediaItemUnsupportedReason(pub NSInteger);
 impl INUpdateMediaAffinityMediaItemUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/loginrequired?language=objc)
+    /// The user must log in to the app.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonLoginRequired")]
     pub const LoginRequired: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/subscriptionrequired?language=objc)
+    /// The user must have a subscription to the app’s service.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonSubscriptionRequired")]
     pub const SubscriptionRequired: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/unsupportedmediatype?language=objc)
+    /// The media’s type is unsupported.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonUnsupportedMediaType")]
     pub const UnsupportedMediaType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/explicitcontentsettings?language=objc)
+    /// The explicit content settings don’t allow the user to update the media item’s affinity.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonExplicitContentSettings")]
     pub const ExplicitContentSettings: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/cellulardatasettings?language=objc)
+    /// The cellular data settings don’t allow the user to update the media item’s affinity.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonCellularDataSettings")]
     pub const CellularDataSettings: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/restrictedcontent?language=objc)
+    /// The media item is restricted content.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this reason for geographic region restrictions, or when none of the other, more specific reasons apply.
+    ///
+    ///
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonRestrictedContent")]
     pub const RestrictedContent: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/serviceunavailable?language=objc)
+    /// The app can’t update the user’s affinity because the media service is unavailable.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonServiceUnavailable")]
     pub const ServiceUnavailable: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemunsupportedreason/regionrestriction?language=objc)
+    /// The app can’t update the user’s affinity for the media because the media isn’t available in the user’s geographic location.
     #[doc(alias = "INUpdateMediaAffinityMediaItemUnsupportedReasonRegionRestriction")]
     pub const RegionRestriction: Self = Self(8);
 }
@@ -47,7 +53,15 @@ unsafe impl RefEncode for INUpdateMediaAffinityMediaItemUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemresolutionresult?language=objc)
+    /// A resolution result for updating the user’s affinity for a media item.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INUpdateMediaAffinityMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/inupdatemediaaffinitymediaitemresolutionresult) object when resolving parameters containing an [`INMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/inmediaitemresolutionresult) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INMediaItemResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

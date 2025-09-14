@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassstyle?language=objc)
+/// The type of payment pass.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddPaymentPassStyle(pub NSInteger);
 impl PKAddPaymentPassStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassstyle/payment?language=objc)
+    /// A pass used by a customer for purchasing.
     #[doc(alias = "PKAddPaymentPassStylePayment")]
     pub const Payment: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassstyle/access?language=objc)
+    /// A pass that authorizes the user to access a location or resource.
     #[doc(alias = "PKAddPaymentPassStyleAccess")]
     pub const Access: Self = Self(1);
 }
@@ -30,7 +30,21 @@ unsafe impl RefEncode for PKAddPaymentPassStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassrequestconfiguration?language=objc)
+    /// Contains the configuration data for a view controller that lets the user add a payment pass.
+    ///
+    /// ## Overview
+    ///
+    /// The encryption scheme, cardholder name, and primary account suffix are required for configuration. The configuration information is used for setup and display only. It should not contain any sensitive information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Adding payment passes requires a special entitlement issued by Apple. Your app must include this entitlement before you can use this class. For more information on requesting this entitlement, see the Card Issuers section at [developer.apple.com/apple-pay/](https://developer.apple.com/apple-pay/).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKAddPaymentPassRequestConfiguration;
@@ -173,7 +187,21 @@ impl PKAddPaymentPassRequestConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpassrequest?language=objc)
+    /// Contains the card data needed to add a card to Apple Pay.
+    ///
+    /// ## Overview
+    ///
+    /// All sensitive data must be encrypted before being assigned to this object. Because the encryption keys vary depending on the server, create [`PKAddPaymentPassRequest`](https://developer.apple.com/documentation/passkit/pkaddpaymentpassrequest) instances only when your [`PKAddPaymentPassViewControllerDelegate`](https://developer.apple.com/documentation/passkit/pkaddpaymentpassviewcontrollerdelegate) object’s [`addPaymentPassViewController:generateRequestWithCertificateChain:nonce:nonceSignature:completionHandler:`](https://developer.apple.com/documentation/passkit/pkaddpaymentpassviewcontrollerdelegate/addpaymentpassviewcontroller(_:generaterequestwithcertificatechain:nonce:noncesignature:completionhandler:)) method is called. The required server certificates are provided at that time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Adding payment passes requires a special entitlement issued by Apple. Your app must include this entitlement before you can use this class. For more information on requesting this entitlement, see the Card Issuers section at [developer.apple.com/apple-pay/](https://developer.apple.com/apple-pay/).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKAddPaymentPassRequest;

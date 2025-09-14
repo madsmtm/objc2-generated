@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediaaffinitytyperesolutionresult?language=objc)
+    /// A resolution result for the user’s affinity for a media item.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INMediaAffinityTypeResolutionResult`](https://developer.apple.com/documentation/intents/inmediaaffinitytyperesolutionresult) object when resolving parameters containing an [`INMediaAffinityType`](https://developer.apple.com/documentation/intents/inmediaaffinitytype) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

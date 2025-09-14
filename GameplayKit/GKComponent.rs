@@ -8,6 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract superclass for creating objects that add specific gameplay functionality to an entity.
+    ///
+    /// ## Overview
+    ///
+    /// [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent) is the abstract superclass for custom component classes you create when building a game with Entity-Component architecture. In this architecture, an _entity_ is an object relevant to the game, and a _component_ is an object that handles specific aspects of an entity’s behavior in a general way. Because a component’s scope of functionality is limited, you can reuse the same component class for many different kinds of entities.
+    ///
+    /// You create components by subclassing [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent) to implement reusable behavior. Then, you build game entities by creating [`GKEntity`](https://developer.apple.com/documentation/gameplaykit/gkentity) objects and using the [`addComponent:`](https://developer.apple.com/documentation/gameplaykit/gkentity/addcomponent(_:)) method to attach instances of your custom component classes.
+    ///
+    /// At runtime, a component-based game needs to dispatch periodic logic—from an update/render loop method such as [`update:`](https://developer.apple.com/documentation/spritekit/skscene/update(_:)) (SpriteKit) or [`renderer:updateAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:updateattime:)) (SceneKit), or a [`CADisplayLink`](https://developer.apple.com/documentation/quartzcore/cadisplaylink) (iOS) or [`CVDisplayLinkRef`](https://developer.apple.com/documentation/corevideo/cvdisplaylink) (macOS) timer in a custom rendering engine—to each of its components. GameplayKit provides two mechanisms for dispatching updates:
+    ///
+    /// - Per-entity. Call each entity’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkentity/update(deltatime:)) method, which will then forward to the [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method of each component. This option can be quickly implemented in games with a small number of entities and components.
+    ///
+    /// - Per-component. Use a [`GKComponentSystem`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem) object to handle all instances of a specific component class. When you call a component system’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem/update(deltatime:)) method, it forwards to the [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method of all the component objects it manages. Because a component system needs no knowledge of your game’s entity/component hierarchy, this option works well for games with complex object graphs.
+    ///
+    /// For more information on Entity-Component architecture, read [Entities and Components](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A component is the data and logic for one part of an object in an entity-component system.
     /// Entities have many components but components are associated with only a single entity.
     ///
@@ -16,8 +33,6 @@ extern_class!(
     ///
     ///
     /// See: GKComponentSystem
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkcomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKComponent;
@@ -83,10 +98,21 @@ impl GKComponent {
 }
 
 extern_class!(
+    /// Manages periodic update messages for all component objects of a specified class.
+    ///
+    /// ## Overview
+    ///
+    /// A [`GKComponentSystem`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem) object manages periodic update messages for components in a game that uses Entity-Component architecture. Use a component system to perform per-frame logic for all components of a specific class without traversing your game’s object hierarchy to dispatch update messages.
+    ///
+    /// Each [`GKComponentSystem`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem) object manages components of a specific [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent) subclass. You create a component system with the [`initWithComponentClass:`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem/init(componentclass:)) initializer, specifying the component class it will work with. Then, you register the components used by the entities in your game with the [`addComponent:`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem/addcomponent(_:)) or [`addComponentWithEntity:`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem/addcomponent(foundin:)) methods. The component system will then forward any component-specific messages it receives to all registered instances of its component class.
+    ///
+    /// The most important of the component-specific messages is the [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem/update(deltatime:)) method. Call this method from your game’s update/render loop—that is, from a method such as [`update:`](https://developer.apple.com/documentation/spritekit/skscene/update(_:)) (SpriteKit) or [`renderer:updateAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:updateattime:)) (SceneKit), or from a [`CADisplayLink`](https://developer.apple.com/documentation/quartzcore/cadisplaylink) (iOS) or [`CVDisplayLinkRef`](https://developer.apple.com/documentation/corevideo/cvdisplaylink) (macOS) timer in a custom rendering engine. The component system then forwards to the [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method of all the [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent) subclass instances it manages, allowing those objects to perform per-frame update logic.
+    ///
+    /// For more information on Entity-Component architecture, read [Entities and Components](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A component system is a homogeneous collection of components that are intended to be called at the same time.
     /// The system is homogeneous, meaning it only allows members of the same class into the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKComponentSystem<ComponentType: ?Sized = AnyObject>;

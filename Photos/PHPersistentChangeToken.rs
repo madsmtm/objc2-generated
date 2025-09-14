@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phpersistentchangetoken?language=objc)
+    /// An opaque object that tracks the state of the Photos library between runs, and that you can copy and serialize for future use.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPersistentChangeToken;

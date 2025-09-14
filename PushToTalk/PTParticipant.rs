@@ -9,7 +9,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptparticipant?language=objc)
+    /// An object that represents a participant.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`PTParticipant`](https://developer.apple.com/documentation/pushtotalk/ptparticipant) object with [`setActiveRemoteParticipant:forChannelUUID:completionHandler:`](https://developer.apple.com/documentation/pushtotalk/ptchannelmanager/setactiveremoteparticipant(_:channeluuid:completionhandler:)) to update the [`name`](https://developer.apple.com/documentation/pushtotalk/ptparticipant/name) and `imageFileURL` the system displays in the user interface.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PTParticipant;

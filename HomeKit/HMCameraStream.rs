@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a camera’s audiovisual stream.
     /// Represents a camera stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastream?language=objc)
     #[unsafe(super(HMCameraSource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMCameraSource")]

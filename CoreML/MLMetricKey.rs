@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A key for the metrics dictionary in an update context.
     /// A class to specify list of supported model update metrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmetrickey?language=objc)
     #[unsafe(super(MLKey, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLKey")]

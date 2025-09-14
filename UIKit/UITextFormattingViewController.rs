@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerdelegate?language=objc)
     pub unsafe trait UITextFormattingViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -89,8 +88,6 @@ extern_protocol!(
 
 extern_class!(
     /// A view controller that manages the interface for common text formatting options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,6 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Values that indicate the keyboard shortcut modifiers for a menu item (used with the kAXMenuItemCmdModifiersAttribute attribute).
 /// Values that indicate the keyboard shortcut modifiers for a menu item (used with the {
 ///
 /// ```text
@@ -12,27 +13,20 @@ use crate::*;
 ///  
 ///
 /// ```
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXMenuItemModifiers(pub u32);
 bitflags::bitflags! {
     impl AXMenuItemModifiers: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiernone?language=objc)
         #[doc(alias = "kAXMenuItemModifierNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiershift?language=objc)
         #[doc(alias = "kAXMenuItemModifierShift")]
         const Shift = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifieroption?language=objc)
         #[doc(alias = "kAXMenuItemModifierOption")]
         const Option = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiercontrol?language=objc)
         #[doc(alias = "kAXMenuItemModifierControl")]
         const Control = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axmenuitemmodifiers/kaxmenuitemmodifiernocommand?language=objc)
         #[doc(alias = "kAXMenuItemModifierNoCommand")]
         const NoCommand = 1<<3;
     }

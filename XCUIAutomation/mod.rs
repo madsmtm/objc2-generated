@@ -31,259 +31,259 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype?language=objc)
+/// The types of UI elements that you find, inspect, and interact with in a UI test.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIElementType(pub NSUInteger);
 impl XCUIElementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/any?language=objc)
+    /// A constant that represents an element type for any view or control.
     #[doc(alias = "XCUIElementTypeAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/other?language=objc)
+    /// A constant that represents an element type for other views or controls.
     #[doc(alias = "XCUIElementTypeOther")]
     pub const Other: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/application?language=objc)
+    /// A constant that represents an element type for an application.
     #[doc(alias = "XCUIElementTypeApplication")]
     pub const Application: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/group?language=objc)
+    /// A constant that represents an element type for groups.
     #[doc(alias = "XCUIElementTypeGroup")]
     pub const Group: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/window?language=objc)
+    /// A constant that represents an element type for windows.
     #[doc(alias = "XCUIElementTypeWindow")]
     pub const Window: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/sheet?language=objc)
+    /// A constant that represents an element type for sheets.
     #[doc(alias = "XCUIElementTypeSheet")]
     pub const Sheet: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/drawer?language=objc)
+    /// A constant that represents an element type for drawers.
     #[doc(alias = "XCUIElementTypeDrawer")]
     pub const Drawer: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/alert?language=objc)
+    /// A constant that represents an element type for alert views.
     #[doc(alias = "XCUIElementTypeAlert")]
     pub const Alert: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/dialog?language=objc)
+    /// A constant that represents an element type for dialog views.
     #[doc(alias = "XCUIElementTypeDialog")]
     pub const Dialog: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/button?language=objc)
+    /// A constant that represents an element type for button controls.
     #[doc(alias = "XCUIElementTypeButton")]
     pub const Button: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/radiobutton?language=objc)
+    /// A constant that represents radio-button controls.
     #[doc(alias = "XCUIElementTypeRadioButton")]
     pub const RadioButton: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/radiogroup?language=objc)
+    /// A constant that represents an element type for radio groups.
     #[doc(alias = "XCUIElementTypeRadioGroup")]
     pub const RadioGroup: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/checkbox?language=objc)
+    /// A constant that represents an element type for checkbox controls.
     #[doc(alias = "XCUIElementTypeCheckBox")]
     pub const CheckBox: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/disclosuretriangle?language=objc)
+    /// A constant that represents an element type for disclosure-triangle controls.
     #[doc(alias = "XCUIElementTypeDisclosureTriangle")]
     pub const DisclosureTriangle: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/popupbutton?language=objc)
+    /// A constant that represents an element type for popup button controls.
     #[doc(alias = "XCUIElementTypePopUpButton")]
     pub const PopUpButton: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/combobox?language=objc)
+    /// A constant that represents an element type for combo-box controls.
     #[doc(alias = "XCUIElementTypeComboBox")]
     pub const ComboBox: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/menubutton?language=objc)
+    /// A constant that represents an element type for menu buttons.
     #[doc(alias = "XCUIElementTypeMenuButton")]
     pub const MenuButton: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/toolbarbutton?language=objc)
+    /// A constant that represents an element type for toolbar buttons.
     #[doc(alias = "XCUIElementTypeToolbarButton")]
     pub const ToolbarButton: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/popover?language=objc)
+    /// A constant that represents an element type for popover views.
     #[doc(alias = "XCUIElementTypePopover")]
     pub const Popover: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/keyboard?language=objc)
+    /// A constant that represents an element type for keyboards.
     #[doc(alias = "XCUIElementTypeKeyboard")]
     pub const Keyboard: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/key?language=objc)
+    /// A constant that represents an element type for keys.
     #[doc(alias = "XCUIElementTypeKey")]
     pub const Key: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/navigationbar?language=objc)
+    /// A constant that represents an element type for navigation bars.
     #[doc(alias = "XCUIElementTypeNavigationBar")]
     pub const NavigationBar: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/tabbar?language=objc)
+    /// A constant that represents an element type for tab bars.
     #[doc(alias = "XCUIElementTypeTabBar")]
     pub const TabBar: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/tabgroup?language=objc)
+    /// A constant that represents an element type for tab groups.
     #[doc(alias = "XCUIElementTypeTabGroup")]
     pub const TabGroup: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/toolbar?language=objc)
+    /// A constant that represents an element type for toolbars.
     #[doc(alias = "XCUIElementTypeToolbar")]
     pub const Toolbar: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/statusbar?language=objc)
+    /// A constant that represents an element type for status bars.
     #[doc(alias = "XCUIElementTypeStatusBar")]
     pub const StatusBar: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/table?language=objc)
+    /// A constant that represents an element type for table views.
     #[doc(alias = "XCUIElementTypeTable")]
     pub const Table: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/tablerow?language=objc)
+    /// A constant that represents an element type for table rows.
     #[doc(alias = "XCUIElementTypeTableRow")]
     pub const TableRow: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/tablecolumn?language=objc)
+    /// A constant that represents an element type for table columns.
     #[doc(alias = "XCUIElementTypeTableColumn")]
     pub const TableColumn: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/outline?language=objc)
+    /// A constant that represents an element type for outline views.
     #[doc(alias = "XCUIElementTypeOutline")]
     pub const Outline: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/outlinerow?language=objc)
+    /// A constant that represents an element type for outline rows.
     #[doc(alias = "XCUIElementTypeOutlineRow")]
     pub const OutlineRow: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/browser?language=objc)
+    /// A constant that represents an element type for a browser.
     #[doc(alias = "XCUIElementTypeBrowser")]
     pub const Browser: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/collectionview?language=objc)
+    /// A constant that represents an element type for collection views.
     #[doc(alias = "XCUIElementTypeCollectionView")]
     pub const CollectionView: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/slider?language=objc)
+    /// A constant that represents an element type for slider controls.
     #[doc(alias = "XCUIElementTypeSlider")]
     pub const Slider: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/pageindicator?language=objc)
+    /// A constant that represents an element type for page-indicator controls.
     #[doc(alias = "XCUIElementTypePageIndicator")]
     pub const PageIndicator: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/progressindicator?language=objc)
+    /// A constant that represents an element type for progress-indicator controls.
     #[doc(alias = "XCUIElementTypeProgressIndicator")]
     pub const ProgressIndicator: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/activityindicator?language=objc)
+    /// A constant that represents an element type for activity indicator views.
     #[doc(alias = "XCUIElementTypeActivityIndicator")]
     pub const ActivityIndicator: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/segmentedcontrol?language=objc)
+    /// A constant that represents an element type for segmented controls.
     #[doc(alias = "XCUIElementTypeSegmentedControl")]
     pub const SegmentedControl: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/picker?language=objc)
+    /// A constant that represents an element type for picker controls.
     #[doc(alias = "XCUIElementTypePicker")]
     pub const Picker: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/pickerwheel?language=objc)
+    /// A constant that represents an element type for picker-wheel controls.
     #[doc(alias = "XCUIElementTypePickerWheel")]
     pub const PickerWheel: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/switch?language=objc)
+    /// A constant that represents an element type for switch controls.
     #[doc(alias = "XCUIElementTypeSwitch")]
     pub const Switch: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/toggle?language=objc)
+    /// A constant that represents an element type for toggle controls.
     #[doc(alias = "XCUIElementTypeToggle")]
     pub const Toggle: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/link?language=objc)
+    /// A constant that represents an element type for links.
     #[doc(alias = "XCUIElementTypeLink")]
     pub const Link: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/image?language=objc)
+    /// A constant that represents an element type for image views.
     #[doc(alias = "XCUIElementTypeImage")]
     pub const Image: Self = Self(43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/icon?language=objc)
+    /// A constant that represents an element type for icons.
     #[doc(alias = "XCUIElementTypeIcon")]
     pub const Icon: Self = Self(44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/searchfield?language=objc)
+    /// A constant that represents an element type for search fields.
     #[doc(alias = "XCUIElementTypeSearchField")]
     pub const SearchField: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/scrollview?language=objc)
+    /// A constant that represents an element type for scroll views.
     #[doc(alias = "XCUIElementTypeScrollView")]
     pub const ScrollView: Self = Self(46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/scrollbar?language=objc)
+    /// A constant that represents an element type for scroll bars.
     #[doc(alias = "XCUIElementTypeScrollBar")]
     pub const ScrollBar: Self = Self(47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/statictext?language=objc)
+    /// A constant that represents an element type for static text views.
     #[doc(alias = "XCUIElementTypeStaticText")]
     pub const StaticText: Self = Self(48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/textfield?language=objc)
+    /// A constant that represents an element type for text fields.
     #[doc(alias = "XCUIElementTypeTextField")]
     pub const TextField: Self = Self(49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/securetextfield?language=objc)
+    /// A constant that represents an element type for secure text fields.
     #[doc(alias = "XCUIElementTypeSecureTextField")]
     pub const SecureTextField: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/datepicker?language=objc)
+    /// A constant that represents an element type for date-picker controls.
     #[doc(alias = "XCUIElementTypeDatePicker")]
     pub const DatePicker: Self = Self(51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/textview?language=objc)
+    /// A constant that represents an element type for text views.
     #[doc(alias = "XCUIElementTypeTextView")]
     pub const TextView: Self = Self(52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/menu?language=objc)
+    /// A constant that represents an element type for menus.
     #[doc(alias = "XCUIElementTypeMenu")]
     pub const Menu: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/menuitem?language=objc)
+    /// A constant that represents an element type for menu items.
     #[doc(alias = "XCUIElementTypeMenuItem")]
     pub const MenuItem: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/menubar?language=objc)
+    /// A constant that represents an element type for menu bars.
     #[doc(alias = "XCUIElementTypeMenuBar")]
     pub const MenuBar: Self = Self(55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/menubaritem?language=objc)
+    /// A constant that represents an element type for menu bar items.
     #[doc(alias = "XCUIElementTypeMenuBarItem")]
     pub const MenuBarItem: Self = Self(56);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/map?language=objc)
+    /// A constant that represents an element type for map views.
     #[doc(alias = "XCUIElementTypeMap")]
     pub const Map: Self = Self(57);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/webview?language=objc)
+    /// A constant that represents an element type for web views.
     #[doc(alias = "XCUIElementTypeWebView")]
     pub const WebView: Self = Self(58);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/incrementarrow?language=objc)
+    /// A constant that represents an element type for increment arrow controls.
     #[doc(alias = "XCUIElementTypeIncrementArrow")]
     pub const IncrementArrow: Self = Self(59);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/decrementarrow?language=objc)
+    /// A constant that represents an element type for decrement arrow controls.
     #[doc(alias = "XCUIElementTypeDecrementArrow")]
     pub const DecrementArrow: Self = Self(60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/timeline?language=objc)
+    /// A constant that represents an element type for timeline views.
     #[doc(alias = "XCUIElementTypeTimeline")]
     pub const Timeline: Self = Self(61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/ratingindicator?language=objc)
+    /// A constant that represents an element type for rating-indicator views.
     #[doc(alias = "XCUIElementTypeRatingIndicator")]
     pub const RatingIndicator: Self = Self(62);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/valueindicator?language=objc)
+    /// A constant that represents an element type for value indicators.
     #[doc(alias = "XCUIElementTypeValueIndicator")]
     pub const ValueIndicator: Self = Self(63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/splitgroup?language=objc)
+    /// A constant that represents an element type for split groups.
     #[doc(alias = "XCUIElementTypeSplitGroup")]
     pub const SplitGroup: Self = Self(64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/splitter?language=objc)
+    /// A constant that represents an element type for splitters.
     #[doc(alias = "XCUIElementTypeSplitter")]
     pub const Splitter: Self = Self(65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/relevanceindicator?language=objc)
+    /// A constant that represents an element type for relevance-indicator views.
     #[doc(alias = "XCUIElementTypeRelevanceIndicator")]
     pub const RelevanceIndicator: Self = Self(66);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/colorwell?language=objc)
+    /// A constant that represents an element type for color-well controls.
     #[doc(alias = "XCUIElementTypeColorWell")]
     pub const ColorWell: Self = Self(67);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/helptag?language=objc)
+    /// A constant that represents an element type for help tags.
     #[doc(alias = "XCUIElementTypeHelpTag")]
     pub const HelpTag: Self = Self(68);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/matte?language=objc)
+    /// A constant that represents an element type for mattes.
     #[doc(alias = "XCUIElementTypeMatte")]
     pub const Matte: Self = Self(69);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/dockitem?language=objc)
+    /// A constant that represents an element type for dock item controls.
     #[doc(alias = "XCUIElementTypeDockItem")]
     pub const DockItem: Self = Self(70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/ruler?language=objc)
+    /// A constant that represents an element type for ruler views.
     #[doc(alias = "XCUIElementTypeRuler")]
     pub const Ruler: Self = Self(71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/rulermarker?language=objc)
+    /// A constant that represents an element type for ruler markers.
     #[doc(alias = "XCUIElementTypeRulerMarker")]
     pub const RulerMarker: Self = Self(72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/grid?language=objc)
+    /// A constant that represents an element type for grid views.
     #[doc(alias = "XCUIElementTypeGrid")]
     pub const Grid: Self = Self(73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/levelindicator?language=objc)
+    /// A constant that represents an element type for level indicators.
     #[doc(alias = "XCUIElementTypeLevelIndicator")]
     pub const LevelIndicator: Self = Self(74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/cell?language=objc)
+    /// A constant that represents an element type for cells.
     #[doc(alias = "XCUIElementTypeCell")]
     pub const Cell: Self = Self(75);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/layoutarea?language=objc)
+    /// A constant that represents an element type for layout areas.
     #[doc(alias = "XCUIElementTypeLayoutArea")]
     pub const LayoutArea: Self = Self(76);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/layoutitem?language=objc)
+    /// A constant that represents an element type for layout items.
     #[doc(alias = "XCUIElementTypeLayoutItem")]
     pub const LayoutItem: Self = Self(77);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/handle?language=objc)
+    /// A constant that represents an element type for handle controls.
     #[doc(alias = "XCUIElementTypeHandle")]
     pub const Handle: Self = Self(78);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/stepper?language=objc)
+    /// A constant that represents an element type for stepper controls.
     #[doc(alias = "XCUIElementTypeStepper")]
     pub const Stepper: Self = Self(79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/tab?language=objc)
+    /// A constant that represents an element type for tabs.
     #[doc(alias = "XCUIElementTypeTab")]
     pub const Tab: Self = Self(80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/touchbar?language=objc)
+    /// A constant that represents an element type for touch bars.
     #[doc(alias = "XCUIElementTypeTouchBar")]
     pub const TouchBar: Self = Self(81);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype/statusitem?language=objc)
+    /// A constant that represents an element type for status items.
     #[doc(alias = "XCUIElementTypeStatusItem")]
     pub const StatusItem: Self = Self(82);
 }
@@ -296,13 +296,13 @@ unsafe impl RefEncode for XCUIElementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/sizeclass?language=objc)
+/// The user interface size classes you can inspect in a UI test.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIUserInterfaceSizeClass(pub NSInteger);
 impl XCUIUserInterfaceSizeClass {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/sizeclass/unspecified?language=objc)
+    /// A constant that represents an element for the unspecified size class.
     #[doc(alias = "XCUIUserInterfaceSizeClassUnspecified")]
     pub const Unspecified: Self = Self(0);
 }
@@ -316,9 +316,22 @@ unsafe impl RefEncode for XCUIUserInterfaceSizeClass {
 }
 
 extern_protocol!(
-    /// Protocol describing the attributes exposed on user interface elements and available during query matching. These attributes represent data exposed to the Accessibility system.
+    /// Attributes exposed by UI elements.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributes?language=objc)
+    /// ## Overview
+    ///
+    /// The [`XCUIElementAttributes`](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributes) protocol adds attribute-related functionality to the [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) class. Access these properties on an instance of [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) to query the current state of the UI element’s attributes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The attributes provided by this protocol represent data exposed to the Accessibility system, and are available during query matching.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Protocol describing the attributes exposed on user interface elements and available during query matching. These attributes represent data exposed to the Accessibility system.
     pub unsafe trait XCUIElementAttributes: MainThreadOnly {
         /// The accessibility identifier.
         #[unsafe(method(identifier))]
@@ -378,105 +391,103 @@ extern_protocol!(
     }
 );
 
+/// A set of string constants that serve as keys for storing element attributes in a dictionary.
 /// such as the dictionaries returned by XCUIElement.dictionaryRepresentation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename?language=objc)
 // NS_TYPED_ENUM
 pub type XCUIElementAttributeName = NSString;
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s children.
     /// An array of the element's children.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/children?language=objc)
     pub static XCUIElementAttributeNameChildren: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s type.
     /// The element's type, an NSNumber-wrapped XCUIElementType.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/elementtype?language=objc)
     pub static XCUIElementAttributeNameElementType: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s identifier.
     /// The element's accessibility identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/identifier?language=objc)
     pub static XCUIElementAttributeNameIdentifier: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s value.
     /// The element's accessibility value, an NSString or NSNumber.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/value?language=objc)
     pub static XCUIElementAttributeNameValue: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s placeholder value.
     /// The element's placeholder value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/placeholdervalue?language=objc)
     pub static XCUIElementAttributeNamePlaceholderValue: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s title.
     /// The element's title.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/title?language=objc)
     pub static XCUIElementAttributeNameTitle: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s label.
     /// The element's label.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/label?language=objc)
     pub static XCUIElementAttributeNameLabel: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s frame.
     /// A dictionary representation of the element's frame, as returned by CGRectCreateDictionaryRepresentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/frame?language=objc)
     pub static XCUIElementAttributeNameFrame: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying whether an element is enabled.
     /// True if the element is enabled, false otherwise, an NSNumber-wrapped BOOL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/enabled?language=objc)
     pub static XCUIElementAttributeNameEnabled: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying whether an element is selected.
     /// True if the element is selected, false otherwise, an NSNumber-wrapped BOOL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/selected?language=objc)
     pub static XCUIElementAttributeNameSelected: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
-    /// True if the element is focused, false otherwise, an NSNumber-wrapped BOOL.
+    /// A string constant that serves as a dictionary key identifying whether an element has focus.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/hasfocus?language=objc)
+    /// ## Discussion
+    ///
+    /// This property is only available in tvOS.
+    ///
+    ///
+    /// True if the element is focused, false otherwise, an NSNumber-wrapped BOOL.
     pub static XCUIElementAttributeNameHasFocus: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s horizontal size class.
     /// The element's horizontal size class, an NSNumber-wrapped XCUIUserInterfaceSizeClass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/horizontalsizeclass?language=objc)
     pub static XCUIElementAttributeNameHorizontalSizeClass: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
+    /// A string constant that serves as a dictionary key identifying an element’s vertical size class.
     /// The element's vertical size class, an NSNumber-wrapped XCUIUserInterfaceSizeClass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/verticalsizeclass?language=objc)
     pub static XCUIElementAttributeNameVerticalSizeClass: &'static XCUIElementAttributeName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementtypequeryprovider?language=objc)
+    /// A type that provides ready-made queries for locating descendant UI elements.
+    ///
+    /// ## Overview
+    ///
+    /// Accessing the properties to get queries for descendant elements on an instance of a conforming class (such as an [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) or [`XCUIElementQuery`](https://developer.apple.com/documentation/xcuiautomation/xcuielementquery) instance) is equivalent to calling [`descendantsMatchingType:`](https://developer.apple.com/documentation/xcuiautomation/xcuielementquery/descendants(matching:)) for the corresponding element type.
+    ///
+    ///
     pub unsafe trait XCUIElementTypeQueryProvider: MainThreadOnly {
         #[unsafe(method(touchBars))]
         #[unsafe(method_family = none)]
@@ -817,246 +828,257 @@ extern_protocol!(
     }
 );
 
+/// Constants to represent keys that have no typewritten equivalent.
+///
+/// ## Discussion
+///
+/// These constants represent the set of modifier, navigation, function, and other keys on most keyboards.
+///
+///
 /// Constants for use with -[XCUIElement typeKey:modifierFlags:],
 /// representing keys that have no textual representation. These comprise
 /// the set of control, function, and modifier keys found on most keyboards.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type XCUIKeyboardKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/delete?language=objc)
+    /// A constant that represents the Delete key.
     pub static XCUIKeyboardKeyDelete: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/return?language=objc)
+    /// A constant that represents the Return key.
     pub static XCUIKeyboardKeyReturn: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/enter?language=objc)
+    /// A constant that represents the Enter key.
     pub static XCUIKeyboardKeyEnter: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/tab?language=objc)
+    /// A constant that represents the Tab key.
     pub static XCUIKeyboardKeyTab: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/space?language=objc)
+    /// A constant that represents the Space bar.
     pub static XCUIKeyboardKeySpace: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/escape?language=objc)
+    /// A constant that represents the Escape key.
     pub static XCUIKeyboardKeyEscape: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/uparrow?language=objc)
+    /// A constant that represents the Up Arrow key.
     pub static XCUIKeyboardKeyUpArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/downarrow?language=objc)
+    /// A constant that represents the Down Arrow key.
     pub static XCUIKeyboardKeyDownArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/leftarrow?language=objc)
+    /// A constant that represents the Left Arrow key.
     pub static XCUIKeyboardKeyLeftArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightarrow?language=objc)
+    /// A constant that represents the Right Arrow key.
     pub static XCUIKeyboardKeyRightArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f1?language=objc)
+    /// A constant that represents the F1 key.
     pub static XCUIKeyboardKeyF1: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f2?language=objc)
+    /// A constant that represents the F2 key.
     pub static XCUIKeyboardKeyF2: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f3?language=objc)
+    /// A constant that represents the F3 key.
     pub static XCUIKeyboardKeyF3: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f4?language=objc)
+    /// A constant that represents the F4 key.
     pub static XCUIKeyboardKeyF4: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f5?language=objc)
+    /// A constant that represents the F5 key.
     pub static XCUIKeyboardKeyF5: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f6?language=objc)
+    /// A constant that represents the F6 key.
     pub static XCUIKeyboardKeyF6: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f7?language=objc)
+    /// A constant that represents the F7 key.
     pub static XCUIKeyboardKeyF7: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f8?language=objc)
+    /// A constant that represents the F8 key.
     pub static XCUIKeyboardKeyF8: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f9?language=objc)
+    /// A constant that represents the F9 key.
     pub static XCUIKeyboardKeyF9: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f10?language=objc)
+    /// A constant that represents the F10 key.
     pub static XCUIKeyboardKeyF10: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f11?language=objc)
+    /// A constant that represents the F11 key.
     pub static XCUIKeyboardKeyF11: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f12?language=objc)
+    /// A constant that represents the F12 key.
     pub static XCUIKeyboardKeyF12: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f13?language=objc)
+    /// A constant that represents the F13 key.
     pub static XCUIKeyboardKeyF13: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f14?language=objc)
+    /// A constant that represents the F14 key.
     pub static XCUIKeyboardKeyF14: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f15?language=objc)
+    /// A constant that represents the F15 key.
     pub static XCUIKeyboardKeyF15: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f16?language=objc)
+    /// A constant that represents the F16 key.
     pub static XCUIKeyboardKeyF16: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f17?language=objc)
+    /// A constant that represents the F17 key.
     pub static XCUIKeyboardKeyF17: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f18?language=objc)
+    /// A constant that represents the F18 key.
     pub static XCUIKeyboardKeyF18: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f19?language=objc)
+    /// A constant that represents the F19 key.
     pub static XCUIKeyboardKeyF19: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/forwarddelete?language=objc)
+    /// A constant that represents the Forward Delete key.
     pub static XCUIKeyboardKeyForwardDelete: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/home?language=objc)
+    /// A constant that represents the Home key.
     pub static XCUIKeyboardKeyHome: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/end?language=objc)
+    /// A constant that represents the End key.
     pub static XCUIKeyboardKeyEnd: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/pageup?language=objc)
+    /// A constant that represents the Page Up key.
     pub static XCUIKeyboardKeyPageUp: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/pagedown?language=objc)
+    /// A constant that represents the Page Down key.
     pub static XCUIKeyboardKeyPageDown: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/clear?language=objc)
+    /// A constant that represents the Clear key.
     pub static XCUIKeyboardKeyClear: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/help?language=objc)
+    /// A constant that represents the Help key.
     pub static XCUIKeyboardKeyHelp: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/capslock?language=objc)
+    /// A constant that represents the Caps Lock key.
     pub static XCUIKeyboardKeyCapsLock: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/shift?language=objc)
+    /// A constant that represents the Shift key.
     pub static XCUIKeyboardKeyShift: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/control?language=objc)
+    /// A constant that represents the Control key.
     pub static XCUIKeyboardKeyControl: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/option?language=objc)
+    /// A constant that represents the Option key.
     pub static XCUIKeyboardKeyOption: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/command?language=objc)
+    /// A constant that represents the Command key.
     pub static XCUIKeyboardKeyCommand: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightshift?language=objc)
+    /// A constant that represents the right Shift key.
     pub static XCUIKeyboardKeyRightShift: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightcontrol?language=objc)
+    /// A constant that represents the right Control key.
     pub static XCUIKeyboardKeyRightControl: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightoption?language=objc)
+    /// A constant that represents the right Option key.
     pub static XCUIKeyboardKeyRightOption: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightcommand?language=objc)
+    /// A constant that represents the right Command key.
     pub static XCUIKeyboardKeyRightCommand: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/secondaryfn?language=objc)
+    /// A constant that represents the Function key.
     pub static XCUIKeyboardKeySecondaryFn: &'static XCUIKeyboardKey;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshotproviding?language=objc)
+    /// A type that can provide a screenshot of its current UI state.
+    ///
+    /// ## Overview
+    ///
+    /// Call this protocol’s [`screenshot`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshotproviding/screenshot()) method on an [`XCUIScreen`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreen) or [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) to capture a screenshot of its current UI state.
+    ///
+    ///
     pub unsafe trait XCUIScreenshotProviding: NSObjectProtocol + MainThreadOnly {
         /// Captures and returns a screenshot of the receiver.
         ///
@@ -1068,38 +1090,68 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags?language=objc)
+/// Flags for simulating combination keystrokes with keys, such as Control, Option, Shift, and Command.
+///
+/// ## Overview
+///
+/// Use these flags with the [`typeKey(_:modifierFlags:)`](https://developer.apple.com/documentation/xcuiautomation/xcuielement/typekey(_:modifierflags:)-6gaoi) and [`performWithKeyModifiers:block:`](https://developer.apple.com/documentation/xcuiautomation/xcuielement/perform(withkeymodifiers:block:)) methods to simulate combination keystrokes while an action occurs.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIKeyModifierFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl XCUIKeyModifierFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeymodifierflags/xcuikeymodifiernone?language=objc)
+/// Indicates no key modifier.
         #[doc(alias = "XCUIKeyModifierNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/capslock?language=objc)
+/// The Caps Lock key in a combination keystroke.
         #[doc(alias = "XCUIKeyModifierCapsLock")]
         const CapsLock = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/shift?language=objc)
+/// The Shift key in a combination keystroke.
         #[doc(alias = "XCUIKeyModifierShift")]
         const Shift = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/control?language=objc)
+/// The Control key in a combination keystroke.
         #[doc(alias = "XCUIKeyModifierControl")]
         const Control = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/option?language=objc)
+/// The Option key in a combination keystroke.
         #[doc(alias = "XCUIKeyModifierOption")]
         const Option = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/command?language=objc)
+/// The Command key in a combination keystroke.
         #[doc(alias = "XCUIKeyModifierCommand")]
         const Command = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/function?language=objc)
+/// The Function key in a combination keystroke.
         #[doc(alias = "XCUIKeyModifierFunction")]
         const Function = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/alphashift?language=objc)
+/// The Caps Lock key in a combination keystroke.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Use [`XCUIKeyModifierCapsLock`](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/capslock) instead.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "XCUIKeyModifierAlphaShift")]
         const AlphaShift = XCUIKeyModifierFlags::CapsLock.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/alternate?language=objc)
+/// The Option key in a combination keystroke.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Use [`XCUIKeyModifierOption`](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags/option) instead.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "XCUIKeyModifierAlternate")]
         const Alternate = XCUIKeyModifierFlags::Option.0;
     }
@@ -1113,34 +1165,47 @@ unsafe impl RefEncode for XCUIKeyModifierFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity?language=objc)
+/// A value that describes how fast a gesture moves across the screen, in pixels per second.
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type XCUIGestureVelocity = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity/default?language=objc)
+    /// A value representing a default gesture velocity.
     #[cfg(feature = "objc2-core-foundation")]
     pub static XCUIGestureVelocityDefault: XCUIGestureVelocity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity/slow?language=objc)
+    /// A value representing a slow gesture velocity.
     #[cfg(feature = "objc2-core-foundation")]
     pub static XCUIGestureVelocitySlow: XCUIGestureVelocity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity/fast?language=objc)
+    /// A value representing a fast gesture velocity.
     #[cfg(feature = "objc2-core-foundation")]
     pub static XCUIGestureVelocityFast: XCUIGestureVelocity;
 }
 
 extern_class!(
+    /// A UI element in an application.
+    ///
+    /// ## Overview
+    ///
+    /// In macOS and iPadOS 15 and later, [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) provides a way to test your app with keyboard and mouse interactions, such as typing, clicking, scrolling, and moving and pausing the pointer. In iOS, [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) provides a way to test your app with gestures, such as tapping, swiping, pinching, and rotating.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement) adopts the [`XCUIElementAttributes`](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributes) protocol, which provides additional properties for querying the current state of a UI element’s attributes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Elements are objects encapsulating the information needed to dynamically locate a user interface
     /// element in an application. Elements are described in terms of queries /seealso XCUIElementQuery.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1450,7 +1515,7 @@ impl XCUIElement {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementsnapshot?language=objc)
+    /// A set of attributes to express a snapshot of an element’s attributes and descendant user interface hierarchy.
     pub unsafe trait XCUIElementSnapshot: XCUIElementAttributes + MainThreadOnly {
         #[unsafe(method(children))]
         #[unsafe(method_family = none)]
@@ -1468,7 +1533,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementsnapshotproviding?language=objc)
+    /// A method to capture a snapshot of an element’s attributes and descendant user interface hierarchy.
     pub unsafe trait XCUIElementSnapshotProviding:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1490,58 +1555,58 @@ extern_conformance!(
     unsafe impl XCUIElementSnapshotProviding for XCUIElement {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource?language=objc)
+/// A system resource that requires user authorization to access.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct XCUIProtectedResource(pub NSInteger);
 impl XCUIProtectedResource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/contacts?language=objc)
+    /// The protected resource case for access to Contacts.
     #[doc(alias = "XCUIProtectedResourceContacts")]
     pub const Contacts: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/calendar?language=objc)
+    /// The protected resource case for acces to Calendar data.
     #[doc(alias = "XCUIProtectedResourceCalendar")]
     pub const Calendar: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/reminders?language=objc)
+    /// The protected resource case for access to Reminders data.
     #[doc(alias = "XCUIProtectedResourceReminders")]
     pub const Reminders: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/photos?language=objc)
+    /// The protected resource case for access to Photos.
     #[doc(alias = "XCUIProtectedResourcePhotos")]
     pub const Photos: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/microphone?language=objc)
+    /// The protected resource case for access to the microphone.
     #[doc(alias = "XCUIProtectedResourceMicrophone")]
     pub const Microphone: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/camera?language=objc)
+    /// The protected resource case for access to the camera.
     #[doc(alias = "XCUIProtectedResourceCamera")]
     pub const Camera: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/medialibrary?language=objc)
+    /// The protected resource case for access to the media library.
     #[doc(alias = "XCUIProtectedResourceMediaLibrary")]
     pub const MediaLibrary: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/homekit?language=objc)
+    /// The protected resource case for access to Home data.
     #[doc(alias = "XCUIProtectedResourceHomeKit")]
     pub const HomeKit: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/focus?language=objc)
+    /// The protected resource case to see and share Focus status.
     #[doc(alias = "XCUIProtectedResourceFocus")]
     pub const Focus: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/systemrootdirectory?language=objc)
+    /// The protected resource case for access to the system root directory.
     #[doc(alias = "XCUIProtectedResourceSystemRootDirectory")]
     pub const SystemRootDirectory: Self = Self(0x40000000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/userdesktopdirectory?language=objc)
+    /// The protected resource case for access to the Desktop directory.
     #[doc(alias = "XCUIProtectedResourceUserDesktopDirectory")]
     pub const UserDesktopDirectory: Self = Self(0x40000001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/userdownloadsdirectory?language=objc)
+    /// The protected resource case for access to the Downloads directory.
     #[doc(alias = "XCUIProtectedResourceUserDownloadsDirectory")]
     pub const UserDownloadsDirectory: Self = Self(0x40000002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/userdocumentsdirectory?language=objc)
+    /// The protected resource case for access to the Documents directory.
     #[doc(alias = "XCUIProtectedResourceUserDocumentsDirectory")]
     pub const UserDocumentsDirectory: Self = Self(0x40000003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/networkvolumes?language=objc)
+    /// The protected resource case for access to network volumes.
     #[doc(alias = "XCUIProtectedResourceNetworkVolumes")]
     pub const NetworkVolumes: Self = Self(0x40000004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/removablevolumes?language=objc)
+    /// The protected resource case for access to removable volumes.
     #[doc(alias = "XCUIProtectedResourceRemovableVolumes")]
     pub const RemovableVolumes: Self = Self(0x40000005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiprotectedresource/appleevents?language=objc)
+    /// The protected resource case for the use of Apple Events.
     #[doc(alias = "XCUIProtectedResourceAppleEvents")]
     pub const AppleEvents: Self = Self(0x40000006);
 }
@@ -1556,33 +1621,24 @@ unsafe impl RefEncode for XCUIProtectedResource {
 
 /// Bitmasks for use with [XCUIApplication performAccessibilityAuditWithAuditTypes:issueHandler:error:].
 /// These represent the types of audits that can be run, and they can be combined using bitwise OR.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIAccessibilityAuditType(pub u64);
 bitflags::bitflags! {
     impl XCUIAccessibilityAuditType: u64 {
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/contrast?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeContrast")]
         const Contrast = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/elementdetection?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeElementDetection")]
         const ElementDetection = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/hitregion?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeHitRegion")]
         const HitRegion = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/sufficientelementdescription?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeSufficientElementDescription")]
         const SufficientElementDescription = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/action?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeAction")]
         const Action = 1<<32;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/parentchild?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeParentChild")]
         const ParentChild = 1<<33;
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype/all?language=objc)
         #[doc(alias = "XCUIAccessibilityAuditTypeAll")]
         const All = !0;
     }
@@ -1600,8 +1656,6 @@ extern_class!(
     /// Represents an issue returned by an accessibility audit.
     ///
     /// See also: [XCUIApplication performAccessibilityAuditWithAuditTypes:issueHandler:error:]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityauditissue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCUIAccessibilityAuditIssue;
@@ -1643,22 +1697,22 @@ impl XCUIAccessibilityAuditIssue {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.enum?language=objc)
+/// The possible states of an application during UI testing.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIApplicationState(pub NSUInteger);
 impl XCUIApplicationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.enum/unknown?language=objc)
+    /// The application’s current state is unknown.
     #[doc(alias = "XCUIApplicationStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.enum/notrunning?language=objc)
+    /// The application isn’t running.
     #[doc(alias = "XCUIApplicationStateNotRunning")]
     pub const NotRunning: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.enum/runningbackground?language=objc)
+    /// The application is running in the background.
     #[doc(alias = "XCUIApplicationStateRunningBackground")]
     pub const RunningBackground: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.enum/runningforeground?language=objc)
+    /// The application is running in the foreground.
     #[doc(alias = "XCUIApplicationStateRunningForeground")]
     pub const RunningForeground: Self = Self(4);
 }
@@ -1672,9 +1726,14 @@ unsafe impl RefEncode for XCUIApplicationState {
 }
 
 extern_class!(
-    /// Proxy for an application that may or may not be running.
+    /// A proxy that can launch, monitor, and terminate a test application.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to launch, monitor, and terminate your app in a UI test. Use [`waitForState:timeout:`](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/wait(for:timeout:)) to launch your app and wait for it to reach an expected state before you check test conditions.
+    ///
+    ///
+    /// Proxy for an application that may or may not be running.
     #[unsafe(super(XCUIElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1853,9 +1912,14 @@ impl XCUIApplication {
 }
 
 extern_class!(
-    /// A coordinate represents a location on screen, relative to some element. Coordinates are dynamic, just like the elements to which they refer, and may compute different screen locations at different times, or be invalid if the referenced element does not exist.
+    /// A location on screen relative to a UI element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuicoordinate?language=objc)
+    /// ## Overview
+    ///
+    /// Coordinates are dynamic, like the elements to which they refer, and may compute different screen locations at different times, or be invalid if the element they reference doesn’t exist.
+    ///
+    ///
+    /// A coordinate represents a location on screen, relative to some element. Coordinates are dynamic, just like the elements to which they refer, and may compute different screen locations at different times, or be invalid if the referenced element does not exist.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2028,9 +2092,8 @@ impl XCUICoordinate {
 }
 
 extern_class!(
+    /// A proxy that simulates a device’s location in terms of its longitude, latitude, and course information.
     /// Represents a device's simulated location by wrapping a CLLocation object from Core Location
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuilocation?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2069,25 +2132,24 @@ impl XCUILocation {
     );
 }
 
+/// Constants that indicate an interface style.
 /// Represents the light or dark UI style of a device.
 ///
 ///
 /// Note: To maintain alignment with UIUserInterfaceStyle, we use `XCUIDeviceAppearanceUnspecified` to describe
 /// UI styles that are unset.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/appearance-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIDeviceAppearance(pub NSInteger);
 impl XCUIDeviceAppearance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/appearance-swift.enum/unspecified?language=objc)
+    /// An unspecified interface style.
     #[doc(alias = "XCUIDeviceAppearanceUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/appearance-swift.enum/light?language=objc)
+    /// The light interface style.
     #[doc(alias = "XCUIDeviceAppearanceLight")]
     pub const Light: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/appearance-swift.enum/dark?language=objc)
+    /// The dark interface style.
     #[doc(alias = "XCUIDeviceAppearanceDark")]
     pub const Dark: Self = Self(2);
 }
@@ -2101,9 +2163,41 @@ unsafe impl RefEncode for XCUIDeviceAppearance {
 }
 
 extern_class!(
-    /// Represents a device, providing an interface for simulating events involving physical buttons and device state.
+    /// A proxy that can simulate physical buttons, device orientation, and Siri interaction for an iOS, watchOS, or tvOS device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice?language=objc)
+    /// ## Overview
+    ///
+    /// Use the `XCUIDevice` [`sharedDevice`](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/shared) instance to perform the following interactions with a simulated iOS, watchOS, or tvOS device during a UI test:
+    ///
+    /// - Press the volume, home, camera, and action buttons.
+    ///
+    /// - Rotate the device.
+    ///
+    /// - Turn the Digital Crown on a watchOS device.
+    ///
+    /// - Determine whether the iOS device supports pointer interaction.
+    ///
+    /// - Activate Siri.
+    ///
+    /// This example shows a test that determines whether the action button is available on the shared device and, if it is, simulates pressing the button:
+    ///
+    /// ```swift
+    /// @MainActor
+    /// func testPressingActionButton() throws {
+    ///     let device = XCUIDevice.shared
+    ///     try XCTSkipUnless(device.hasHardwareButton(.action),
+    ///                   "The device doesn't have an action button.")
+    ///     let app = XCUIApplication()
+    ///     app.launch()
+    ///     device.press(.action)
+    ///     // Assert that your app responds correctly.
+    /// }
+    /// ```
+    ///
+    /// `XCUIDevice` is available in iOS, watchOS, and tvOS.
+    ///
+    ///
+    /// Represents a device, providing an interface for simulating events involving physical buttons and device state.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2158,29 +2252,47 @@ impl XCUIDevice {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiidentifierclosewindow?language=objc)
+    /// The identifier for a window’s close button.
     pub static XCUIIdentifierCloseWindow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiidentifierminimizewindow?language=objc)
+    /// The identifier for a window’s minimize button.
     pub static XCUIIdentifierMinimizeWindow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiidentifierzoomwindow?language=objc)
+    /// The identifier for a window’s zoom button.
     pub static XCUIIdentifierZoomWindow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiidentifierfullscreenwindow?language=objc)
+    /// The identifier for a window’s full-screen button.
     pub static XCUIIdentifierFullScreenWindow: &'static NSString;
 }
 
 extern_class!(
-    /// Object for locating elements that can be chained with other queries.
+    /// An object that defines the search criteria a test uses to identify UI elements.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementquery?language=objc)
+    /// ## Discussion
+    ///
+    /// Use element queries to find UI elements in your app that you interact with in the tests, to test for the presence of expected elements, or to discover elements to test their values.
+    ///
+    /// For example, this test uses an element query to find the “Add Book” button, and after clicking the button, checks that there’s one button in an outline view cell titled “Untitled Book”. If the test can’t find the “Add Book” button, or there isn’t one “Untitled Book” cell, then the test fails.
+    ///
+    /// ```swift
+    /// @MainActor
+    /// func testClickingAddCreatesAnUntitledBook() throws {
+    ///     let app = XCUIApplication()
+    ///     app.launch()
+    ///     let list = app.windows["Reading Journal"]
+    ///     list.toolbars.children(matching: .button)["Add Book"].click()
+    ///     XCTAssertEqual(list.outlines["Sidebar"].cells.containing(.button, identifier:"Untitled Book").count, 1)
+    /// }
+    /// ```
+    ///
+    ///
+    /// Object for locating elements that can be chained with other queries.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2316,53 +2428,52 @@ impl XCUIElementQuery {
 }
 
 /// A button on a physical remote control.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button?language=objc)
+/// A button on a physical remote control.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIRemoteButton(pub NSUInteger);
 impl XCUIRemoteButton {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/up?language=objc)
+    /// A constant that represents the up button on a remote.
     #[doc(alias = "XCUIRemoteButtonUp")]
     pub const Up: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/down?language=objc)
+    /// A constant that represents the down button on a remote.
     #[doc(alias = "XCUIRemoteButtonDown")]
     pub const Down: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/left?language=objc)
+    /// A constant that represents the left button on a remote.
     #[doc(alias = "XCUIRemoteButtonLeft")]
     pub const Left: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/right?language=objc)
+    /// A constant that represents the right button on a remote.
     #[doc(alias = "XCUIRemoteButtonRight")]
     pub const Right: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/select?language=objc)
+    /// A constant that represents the select button on a remote.
     #[doc(alias = "XCUIRemoteButtonSelect")]
     pub const Select: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/menu?language=objc)
+    /// A constant that represents the menu button on a remote.
     #[doc(alias = "XCUIRemoteButtonMenu")]
     pub const Menu: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/playpause?language=objc)
+    /// A constant that represents the play-and-pause button on a remote.
     #[doc(alias = "XCUIRemoteButtonPlayPause")]
     pub const PlayPause: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/home?language=objc)
+    /// A constant that represents the home button on a remote.
     #[doc(alias = "XCUIRemoteButtonHome")]
     pub const Home: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/pageup?language=objc)
+    /// A constant that represents the page up button on a remote.
     #[doc(alias = "XCUIRemoteButtonPageUp")]
     pub const PageUp: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/pagedown?language=objc)
+    /// A constant that represents the page down button on a remote.
     #[doc(alias = "XCUIRemoteButtonPageDown")]
     pub const PageDown: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/guide?language=objc)
+    /// A constant that represents the guide button on a remote.
     #[doc(alias = "XCUIRemoteButtonGuide")]
     pub const Guide: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/tvprovider?language=objc)
+    /// A constant that represents the TV provider button on a remote.
     #[doc(alias = "XCUIRemoteButtonTVProvider")]
     pub const TVProvider: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/onetwothree?language=objc)
+    /// A constant that represents the channel-tuning button on a remote.
     #[doc(alias = "XCUIRemoteButtonOneTwoThree")]
     pub const OneTwoThree: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button/fourcolors?language=objc)
+    /// A constant that represents the color functions button on a remote.
     #[doc(alias = "XCUIRemoteButtonFourColors")]
     pub const FourColors: Self = Self(14);
 }
@@ -2376,13 +2487,32 @@ unsafe impl RefEncode for XCUIRemoteButton {
 }
 
 extern_class!(
+    /// A physical screen attached to a device.
+    ///
+    /// ## Overview
+    ///
+    /// Call the [`screenshot`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshotproviding/screenshot()) method on an [`XCUIScreen`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreen) instance to capture a screenshot of its current UI state. The [`XCUIScreenshotProviding`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshotproviding) protocol adds this method to [`XCUIScreen`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreen).
+    ///
+    /// You can take a screenshot of the current device’s main screen using the following code:
+    ///
+    /// ```swift
+    /// let screenshot = XCUIScreen.main.screenshot()
+    /// ```
+    ///
+    /// You can take a screenshot of every screen on the current device using the following code:
+    ///
+    /// ```swift
+    /// let allScreenshots = XCUIScreen.screens.map { screen in
+    ///     return screen.screenshot()
+    /// }
+    /// ```
+    ///
+    ///
     /// Represents an active screen of a device. One screen of each device is designated
     /// as the "main" screen, on macOS that is the one owning the menu bar, on other platforms
     /// it is the primary screen of the device.
     ///
     /// A screen can be asked for a screenshot using the methods declared in XCUIScreenshotProviding.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiscreen?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2421,9 +2551,32 @@ impl XCUIScreen {
 }
 
 extern_class!(
-    /// Represents a captured screenshot.
+    /// A captured image of a screen, app, or UI element state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshot?language=objc)
+    /// ## Overview
+    ///
+    /// Screenshots capture the current UI state of classes that conform to the [`XCUIScreenshotProviding`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreenshotproviding) protocol, such as [`XCUIScreen`](https://developer.apple.com/documentation/xcuiautomation/xcuiscreen) and [`XCUIElement`](https://developer.apple.com/documentation/xcuiautomation/xcuielement). Each screenshot contains an image representation of the captured UI at the point the screenshot was taken.
+    ///
+    /// The following code demonstrates taking screenshots of a screen and a UI element:
+    ///
+    /// ```swift
+    /// func testTakeScreenshots() {
+    ///
+    ///     // Take a screenshot of the current device's main screen.
+    ///     let mainScreenScreenshot = XCUIScreen.main.screenshot()
+    ///     
+    ///     // Take a screenshot of an app's first window.
+    ///     let app = XCUIApplication()
+    ///     app.launch()
+    ///     let windowScreenshot = app.windows.firstMatch.screenshot()
+    ///
+    /// }
+    /// ```
+    ///
+    /// If you use [`XCTest`](https://developer.apple.com/documentation/xctest) for your UI automation tests, you can attach a screenshot of your app’s UI to a test or activity to store it for later analysis. Create an attachment for a screenshot by calling the [`XCTAttachment`](https://developer.apple.com/documentation/xctest/xctattachment) initializer [`attachmentWithScreenshot:`](https://developer.apple.com/documentation/xctest/xctattachment/init(screenshot:)) or [`attachmentWithScreenshot:quality:`](https://developer.apple.com/documentation/xctest/xctattachment/init(screenshot:quality:)). Add the attachment to a test or activity by calling the [`XCTActivity`](https://developer.apple.com/documentation/xctest/xctactivity) method [`addAttachment:`](https://developer.apple.com/documentation/xctest/xctactivity/add(_:)). For more information, see [Adding Attachments to Tests, Activities, and Issues](https://developer.apple.com/documentation/xctest/adding-attachments-to-tests-activities-and-issues).
+    ///
+    ///
+    /// Represents a captured screenshot.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2458,9 +2611,8 @@ impl XCUIScreenshot {
 }
 
 extern_class!(
+    /// A proxy that provides an interface to OS-specific properties and actions.
     /// Represents a device's base system, providing an interface for performing OS-specific actions like opening universal links.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuisystem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for all framework layers.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines a polymorphic interface for `MLCLayer` subclasses. There are subclasses for each supported neural network layer type. Use the appropriate subclass initializer to create a layer object.
+    ///
+    ///
     /// The base class for all MLCompute layers
     ///
     /// There are as many MLCLayer subclasses as there are MLCompute neural network layer objects. Make one of those.
     /// This class defines an polymorphic interface for them.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

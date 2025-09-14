@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointannotation?language=objc)
+    /// A string-based piece of location-specific data that you apply to a specific point on a map.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class, rather than define a custom annotation object, in situations where all you want to do is display a title string at the specified point on the map.
+    ///
+    ///
     #[unsafe(super(MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKShape")]

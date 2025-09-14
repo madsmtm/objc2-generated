@@ -7,10 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An inference graph created from one or more MLCGraph instances plus additional layers added directly to the inference graph.
     /// An inference graph created from one or more MLCGraph objects
     /// plus additional layers added directly to the inference graph.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcinferencegraph?language=objc)
     #[unsafe(super(MLCGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCGraph")]

@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `ODQueryDelegate` protocol defines methods for receiving results returned from an Open Directory query.
     /// The delegate method for receiving query results from the NSRunLoop-based queries
     ///
     /// The delegate method called as results are returned from an NSRunLoop-based query.  These results are only partial
@@ -15,8 +16,6 @@ extern_protocol!(
     /// array will be released by the NSRunLoop upon return.  Incoming results do not include previous results,
     /// only the most resent results are returned.  inResults can be nil if an error occurs or the query is complete.  If
     /// inResults and inError are nil then the query has completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerydelegate?language=objc)
     pub unsafe trait ODQueryDelegate: NSObjectProtocol {
         /// # Safety
         ///
@@ -36,11 +35,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An `ODQuery` object serves as a Cocoa wrapper for an Open Directory query.
     /// Class used for querying OpenDirectory.
     ///
     /// OpenDirectory queries may be used to search for different types of records, e.g. users, groups.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquery?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODQuery;

@@ -7,37 +7,82 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment?language=objc)
+/// Constants used by [`imageAlignment`](https://developer.apple.com/documentation/appkit/nsimagecell/imagealignment) that allow you to specify the location of the image in the frame.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageAlignment(pub NSUInteger);
 impl NSImageAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligncenter?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Center the image in the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignCenter")]
     pub const AlignCenter: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligntop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Position the image along the top edge of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignTop")]
     pub const AlignTop: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligntopleft?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Align the image with the top and left edges of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignTopLeft")]
     pub const AlignTopLeft: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/aligntopright?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Align the image with the top and right edges of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignTopRight")]
     pub const AlignTopRight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignleft?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Align the image with the left edge of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignLeft")]
     pub const AlignLeft: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignbottom?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Align the image with the bottom edge of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignBottom")]
     pub const AlignBottom: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignbottomleft?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Align the image with the bottom and left edges of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignBottomLeft")]
     pub const AlignBottomLeft: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignbottomright?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Align the image with the bottom and right edges of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignBottomRight")]
     pub const AlignBottomRight: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment/alignright?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Position the image along the right edge of the cell.
+    ///
+    ///
     #[doc(alias = "NSImageAlignRight")]
     pub const AlignRight: Self = Self(8);
 }
@@ -50,25 +95,31 @@ unsafe impl RefEncode for NSImageAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle?language=objc)
+/// Constants that allow you to specify the kind of frame bordering the image.
+///
+/// ## Overview
+///
+/// These constants are used by [`imageFrameStyle`](https://developer.apple.com/documentation/appkit/nsimagecell/imageframestyle). Note that some of these constants are stylistically obsolete and should be considered deprecated.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageFrameStyle(pub NSUInteger);
 impl NSImageFrameStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/none?language=objc)
+    /// An invisible frame
     #[doc(alias = "NSImageFrameNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/photo?language=objc)
+    /// A thin black outline and a dropped shadow.
     #[doc(alias = "NSImageFramePhoto")]
     pub const Photo: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/graybezel?language=objc)
+    /// A gray, concave bezel that makes the image look sunken.
     #[doc(alias = "NSImageFrameGrayBezel")]
     pub const GrayBezel: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/groove?language=objc)
+    /// A thin groove that looks etched around the image.
     #[doc(alias = "NSImageFrameGroove")]
     pub const Groove: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle/button?language=objc)
+    /// A convex bezel that makes the image stand out in relief, like a button.
     #[doc(alias = "NSImageFrameButton")]
     pub const Button: Self = Self(4);
 }
@@ -82,7 +133,19 @@ unsafe impl RefEncode for NSImageFrameStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecell?language=objc)
+    /// An `NSImageCell` object displays a single image (encapsulated in an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object) in a frame. This class provides methods for choosing the frame and for aligning and scaling the image to fit the frame.
+    ///
+    /// ## Overview
+    ///
+    /// The object value of an `NSImageCell` object must be an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object, so if you use the [`objectValue`](https://developer.apple.com/documentation/appkit/nscell/objectvalue) method of [`NSCell`](https://developer.apple.com/documentation/appkit/nscell), be sure to supply an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object as an argument. Because an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object does not need to be converted for display, do not use the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) methods relating to formatters.
+    ///
+    /// An `NSImageCell` object is usually associated with some kind of control object. For example, an [`NSMatrix`](https://developer.apple.com/documentation/appkit/nsmatrix) or an [`NSTableView`](https://developer.apple.com/documentation/appkit/nstableview).
+    ///
+    /// ### Designated Initializers
+    ///
+    /// When subclassing `NSImageCell` you must implement all of the designated initializers. Those methods are: init, [`initWithCoder:`](https://developer.apple.com/documentation/appkit/nscell/init(coder:)), [`initTextCell:`](https://developer.apple.com/documentation/appkit/nscell/init(textcell:)), and [`initImageCell:`](https://developer.apple.com/documentation/appkit/nscell/init(imagecell:)).
+    ///
+    ///
     #[unsafe(super(NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCell")]

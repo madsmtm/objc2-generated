@@ -6,9 +6,43 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// A type of right that, when authorized, grants access to a key and secret
+    /// A right that gates access to a key and a secret.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapersistedright?language=objc)
+    /// ## Overview
+    ///
+    /// An [`LAPersistedRight`](https://developer.apple.com/documentation/localauthentication/lapersistedright) is a right that’s backed by a unique key in the Secure Enclave with an access control list that matches the authorization requirements of the right. You can access the key that backs a right to perform cryptographic operations like encryption, decryption, signing, and verification.
+    ///
+    /// You can use the key that backs an [`LAPersistedRight`](https://developer.apple.com/documentation/localauthentication/lapersistedright) to perform both public key and private key operations, but private key operations — like decryption, signing, and key exchange — are only available after you authorize the right. Public key operations like encryption and verification are always available.
+    ///
+    /// The following generates a right with the default authorization requirements, stores it in the [`sharedStore`](https://developer.apple.com/documentation/localauthentication/larightstore/shared) [`LARightStore`](https://developer.apple.com/documentation/localauthentication/larightstore), and exports the public key so that you can use it to verify signatures that the corresponding private key produces:
+    ///
+    /// ```swift
+    /// func generateClientKeys() async throws -> Data {
+    ///     let right = LARight()
+    ///     let persistedRight = try await LARightStore.shared.saveRight(right, identifier: "server-access")
+    ///     return try await persistedRight.key.publicKey.bytes
+    /// }
+    /// ```
+    ///
+    /// The following uses the private key associated with the right from the previous example to sign a challenge issued by a server:
+    ///
+    /// ```swift
+    /// func signServerChallenge(nonce: Data) async throws -> Data {
+    ///     let persistedRight = try await LARightStore.shared.right(forIdentifier: "server-access")
+    ///     try await persistedRight.authorize(localizedReason: "Access the sandcastle competition server")
+    ///
+    ///     guard persistedRight.key.canSign(using: .ecdsaSignatureMessageX962SHA256) else {
+    ///         throw NSError(domain: "ExampleErrorDomain", code: -1, userInfo: [:])
+    ///     }
+    ///     
+    ///     return try await persistedRight.key.sign(nonce, algorithm: .ecdsaSignatureMessageX962SHA256)
+    /// }
+    /// ```
+    ///
+    /// The signature operation occurs after verifying that the user has the proper authorization and confirming that the private key supports the given signing algorithm.
+    ///
+    ///
+    /// A type of right that, when authorized, grants access to a key and secret
     #[unsafe(super(LARight, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LARight")]

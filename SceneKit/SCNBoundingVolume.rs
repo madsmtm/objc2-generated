@@ -8,11 +8,26 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// Methods common to the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) and [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) classes for measuring location and size.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol defines features adopted by both the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) and [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) classes.
+    ///
+    /// A bounding box is the smallest volume, in the shape of a rectangle aligned to the axes of the local coordinate space, that entirely contains an object. Scene Kit defines a bounding box using two points: a minimum and maximum corner. Similarly, a bounding sphere is the smallest sphere containing an object.
+    ///
+    /// By default, Scene Kit automatically determines the minimal bounding volumes for geometries based on their vertex positions in model space. The bounding volume of a node with an attached geometry is the bounding volume of the geometry, expressed in the node’s local space. The bounding volume of a node containing child nodes is the minimal volume that encloses the bounding volumes of the node’s children.
+    ///
+    /// Scene Kit uses the bounding volume of an object when determining how to render a scene. For example, an [`SCNCamera`](https://developer.apple.com/documentation/scenekit/scncamera) object uses the bounding boxes of visible elements in a scene to determine the its depth limits. You can override a bounding volume to change this behavior. For example, if a building model has a long, narrow antenna, the default bounding box includes that feature, so the default camera view for that model will be off-center with respect to the building itself. If you set a new bounding box that includes only the main part of the building, the default camera view will center on the building and ignore the antenna.
+    ///
+    /// ### Getting and Setting Bounding Volumes
+    ///
+    /// Read the [`boundingBox`](https://developer.apple.com/documentation/scenekit/scnboundingvolume/boundingbox) or [`boundingSphere`](https://developer.apple.com/documentation/scenekit/scnboundingvolume/boundingsphere) property, [`getBoundingBoxMin:max:`](https://developer.apple.com/documentation/scenekit/scnboundingvolume/getboundingboxmin:max:) or [`getBoundingSphereCenter:radius:`](https://developer.apple.com/documentation/scenekit/scnboundingvolume/getboundingspherecenter:radius:) methods in Objective-C, to retrieve information about an object’s bounding box or sphere. To override the automatically determined bounding volume of an object, set a new value for the [`boundingBox`](https://developer.apple.com/documentation/scenekit/scnboundingvolume/boundingbox) property, the [`setBoundingBoxMin:max:`](https://developer.apple.com/documentation/scenekit/scnboundingvolume/setboundingboxmin:max:) method in Objective-C.
+    ///
+    ///
     /// The SCNBoundingVolume protocol is implemented by objects which can compute their bounding boxes.
     ///
     /// You can currently use this protocol to get the bounding boxes of nodes and geometries.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnboundingvolume?language=objc)
     pub unsafe trait SCNBoundingVolume: NSObjectProtocol {
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
         /// Fill the min and max vectors with the min and max vertex of the bounding box.

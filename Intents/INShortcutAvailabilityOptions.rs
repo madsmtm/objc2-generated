@@ -4,32 +4,50 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions?language=objc)
+/// Defined contexts in which an intent or activity might be relevant to a user.
+///
+/// ## Overview
+///
+/// The system uses the set of availability options in a donated shortcut to provide the user with shortcuts relevant in a particular context or circumstance. For example, a meditation app could include an intent with [`INShortcutAvailabilityOptionSleepMindfulness`](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepmindfulness) in its [`shortcutAvailability`](https://developer.apple.com/documentation/foundation/nsuseractivity/shortcutavailability) options when calling [`setShortcutSuggestions:`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter/setshortcutsuggestions(_:)). Then the Wind Down configuration screen in the Health app includes that intent in the Mindfulness category when guiding the user to set up shortcuts.
+///
+/// Provide accurate availability options when you suggest shortcuts to [`INVoiceShortcutCenter`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter) with [`setShortcutSuggestions:`](https://developer.apple.com/documentation/intents/invoiceshortcutcenter/setshortcutsuggestions(_:)), and when you donate shortcuts based on user actions. If none of the options apply to an intent, provide an empty [`OptionSet`](https://developer.apple.com/documentation/swift/optionset).
+///
+/// <div class="warning">
+///
+/// ### Tip
+///  Most shortcuts should specify a single activity type, but you can use an option set with more than one category if a shortcut really doesn’t fit neatly into a single category.
+///
+///
+///
+/// </div>
+/// For more information on donating shortcuts effectively, see [Donating Shortcuts](https://developer.apple.com/documentation/sirikit/donating-shortcuts).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INShortcutAvailabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INShortcutAvailabilityOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepmindfulness?language=objc)
+/// Meditation and other activities intended to facilitate mindfulness.
         #[doc(alias = "INShortcutAvailabilityOptionSleepMindfulness")]
         const SleepMindfulness = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepjournaling?language=objc)
+/// Writing and other daily logging activities.
         #[doc(alias = "INShortcutAvailabilityOptionSleepJournaling")]
         const SleepJournaling = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepmusic?language=objc)
+/// Music suitable for falling asleep.
         #[doc(alias = "INShortcutAvailabilityOptionSleepMusic")]
         const SleepMusic = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleeppodcasts?language=objc)
+/// A podcast or other spoken audio.
         #[doc(alias = "INShortcutAvailabilityOptionSleepPodcasts")]
         const SleepPodcasts = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepreading?language=objc)
+/// A book or other reading material.
         #[doc(alias = "INShortcutAvailabilityOptionSleepReading")]
         const SleepReading = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepwrapupyourday?language=objc)
+/// An activity in preparation for sleep such as personal grooming or reviewing the next day’s agenda.
         #[doc(alias = "INShortcutAvailabilityOptionSleepWrapUpYourDay")]
         const SleepWrapUpYourDay = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutavailabilityoptions/sleepyogaandstretching?language=objc)
+/// Physical activity to prepare for sleep.
         #[doc(alias = "INShortcutAvailabilityOptionSleepYogaAndStretching")]
         const SleepYogaAndStretching = 1<<6;
     }

@@ -7,14 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Provides a centralized management system for registering and unregistering smartcards using their token IDs.
+    ///
+    /// ## Overview
+    ///
+    /// `Registered smartcard` keeps its itself accessible via Keychain and system will automatically invoke an NFC slot when a cryptographic operation is required and asks to provide the registered card.
+    ///
+    ///
     /// Provides a centralized management system for registering and unregistering smartcards
     /// using their token IDs.
     ///
     ///
     /// `Registered smartcard` keeps its itself accessible via Keychain and system will automatically
     /// invoke an NFC slot when a cryptographic operation is required and asks to provide the registered card.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardtokenregistrationmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardTokenRegistrationManager;

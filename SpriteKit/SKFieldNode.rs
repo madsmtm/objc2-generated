@@ -13,7 +13,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skfieldnode?language=objc)
+    /// A node that applies physics effects to nearby nodes.
+    ///
+    /// ## Overview
+    ///
+    /// There are many different kinds of field nodes that can be created, each with different effects. The [`SKFieldNode`](https://developer.apple.com/documentation/spritekit/skfieldnode) section lists the field types you can create using SpriteKit, including a type that allows you to apply custom forces to physics bodies. Instantiate the appropriate kind of field node and then add it to the scene’s node tree.
+    ///
+    /// When the scene simulates physics effects, a field node applies its effect to a physics body so long as the following are true:
+    ///
+    /// - The field node is in the scene’s node tree.
+    ///
+    /// - The field node’s [`enabled`](https://developer.apple.com/documentation/spritekit/skfieldnode/isenabled) property is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// - The physics body is attached to a node that is in the scene’s node tree.
+    ///
+    /// - The physics body is located inside the field node’s region (see [`region`](https://developer.apple.com/documentation/spritekit/skfieldnode/region)).
+    ///
+    /// - The physics body is not located inside the region of another field node whose [`exclusive`](https://developer.apple.com/documentation/spritekit/skfieldnode/isexclusive) property is set to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// - A logical AND operation between the field node’s [`categoryBitMask`](https://developer.apple.com/documentation/spritekit/skfieldnode/categorybitmask) property and the physics body’s [`fieldBitMask`](https://developer.apple.com/documentation/spritekit/skphysicsbody/fieldbitmask) property results in a nonzero value.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  While it is useful to know that SpriteKit measures items in the International System of Units, the precise numbers are not that important. It doesn’t matter much whether your rocket ship weights 1 kilogram or 1,000,000 kilograms, as long as the mass is consistent with other physics values used in the game. Often, proportions are more important than the actual values being used.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

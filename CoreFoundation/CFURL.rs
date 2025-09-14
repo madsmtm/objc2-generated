@@ -9,20 +9,20 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle?language=objc)
+/// Options you can use to determine how CFURL functions parse a file system path name.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLPathStyle(pub CFIndex);
 impl CFURLPathStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle/cfurlposixpathstyle?language=objc)
+    /// Indicates a POSIX style path name. Components are slash delimited. A leading slash indicates an absolute path; a trailing slash is not significant.
     #[doc(alias = "kCFURLPOSIXPathStyle")]
     pub const CFURLPOSIXPathStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle/cfurlhfspathstyle?language=objc)
+    /// Indicates a HFS style path name. Components are colon delimited. A leading colon indicates a relative path, otherwise the first path component denotes the volume.
     #[doc(alias = "kCFURLHFSPathStyle")]
     #[deprecated = "Carbon File Manager is deprecated, use kCFURLPOSIXPathStyle where possible"]
     pub const CFURLHFSPathStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle/cfurlwindowspathstyle?language=objc)
+    /// Indicates a Windows style path name.
     #[doc(alias = "kCFURLWindowsPathStyle")]
     pub const CFURLWindowsPathStyle: Self = Self(2);
 }
@@ -37,7 +37,42 @@ unsafe impl RefEncode for CFURLPathStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurl?language=objc)
+///
+/// ## Overview
+///
+/// The `CFURL` opaque type provides facilities for creating, parsing, and dereferencing URL strings. `CFURL` is useful to applications that need to use URLs to access resources, including local files.
+///
+/// A `CFURL` object is composed of two parts—a base URL, which can be `NULL`, and a string that is resolved relative to the base URL. A `CFURL` object whose string is fully resolved without a base URL is considered absolute; all others are considered relative.
+///
+/// `CFURL` is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. In other words, in a method where you see an `NSURL *` parameter, you can pass in a `CFURLRef`, and in a function where you see a `CFURLRef` parameter, you can pass in an `NSURL` instance. This also applies to concrete subclasses of `NSURL`. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+/// Starting in OS X v10.6, the `CFURL` opaque type provides a facility for creating and using bookmarks. A _bookmark_ provides a persistent reference to a file-system resource. When you resolve a bookmark, you obtain a URL to the resource’s current location. A bookmark’s association with a file-system resource (typically a file or folder) usually continues to work if the user moves or renames the resource, or if the user relaunches your app or restarts the system.
+///
+/// In a macOS app that adopts App Sandbox, to gain persistent access to a file-system resource you must use a _security-scoped bookmark_. Such a bookmark preserves, across app launches, a user’s intent to give your app access to a resource. For details on how this works, including information on the entitlements you need in your Xcode project, read [Security-Scoped Bookmarks and Persistent Resource Access](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW16) in [App Sandbox Design Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183).
+///
+/// When you resolve a security-scoped bookmark, you get a security-scoped URL. The file system resource that the URL points to is not available for use inside your app’s sandbox until you call the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) function (or its Cocoa equivalent, the [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource()) method) on the URL.
+///
+/// When you no longer need access to a resource that you obtained using security scope (typically, after you close the resource) you must call the [`CFURLStopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)) method (or its Cocoa equivalent, the [`stopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/stopaccessingsecurityscopedresource()) method) on the resource’s URL.
+///
+/// <div class="warning">
+///
+/// ### Warning
+///  You must balance every call to the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) method with a corresponding call to the [`CFURLStopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)) method. If you fail to relinquish your access when you no longer need a file-system resource, your app leaks kernel resources. If sufficient kernel resources are leaked, your app loses its ability to add file-system locations to its sandbox, such as via Powerbox or security-scoped bookmarks, until relaunched.
+///
+///
+///
+/// </div>
+/// The functions for using security-scoped bookmarks are described in this document in Working with Bookmark Data. For a general introduction to using bookmarks in macOS, read [Locating Files Using Bookmarks](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html#//apple_ref/doc/uid/TP40010672-CH3-SW10) in [File System Programming Guide](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672).
+///
+/// When you copy a security-scoped URL (as obtained from a security-scoped bookmark), the copy has the security scope of the original. You gain access to the file-system resource (that the URL points to) just as you would with the original URL: by calling the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) function (or its Cocoa equivalent).
+///
+/// If you need a security-scoped URL’s path as a string value (as provided by the [`CFURLGetString`](https://developer.apple.com/documentation/corefoundation/cfurlgetstring(_:)) function), such as to provide to an API that requires a string value, obtain the path from the URL as needed. Note, however, that a string-based path obtained from a security-scoped URL _does not_ have security scope and you cannot use that string to obtain access a security-scoped resource.
+///
+/// `CFURL` fails to create an object if the string passed is not well-formed (that is, if it does not comply with RFC 2396). Examples of cases that will not succeed are strings containing space characters and high-bit characters. If a function fails to create a `CFURL` object, it returns `NULL`, which you must be prepared to handle. If you create `CFURL` objects using file system paths, you should use the [`CFURLCreateFromFileSystemRepresentation`](https://developer.apple.com/documentation/corefoundation/cfurlcreatefromfilesystemrepresentation(_:_:_:_:)) and [`CFURLCreateFromFileSystemRepresentationRelativeToBase`](https://developer.apple.com/documentation/corefoundation/cfurlcreatefromfilesystemrepresentationrelativetobase(_:_:_:_:_:)) functions, which handle the subtle differences between URL paths and file system paths.
+///
+/// For functions that read and write data from a URL, see [Core Foundation URL Access Utilities](https://developer.apple.com/documentation/corefoundation/core-foundation-url-access-utilities)
+///
+///
 ///
 /// This is toll-free bridged with `NSURL`.
 #[doc(alias = "CFURLRef")]
@@ -56,7 +91,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFURL {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgettypeid()?language=objc)
+    /// Returns the type identifier for the `CFURL` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the `CFURL` opaque type.
+    ///
+    ///
     #[doc(alias = "CFURLGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -68,7 +109,39 @@ unsafe impl ConcreteType for CFURL {
 }
 
 impl CFURL {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithbytes(_:_:_:_:_:)?language=objc)
+    /// Creates a `CFURL` object using a given character bytes.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - URLBytes: The character bytes to convert into a `CFURL` object.
+    ///
+    /// - length: The number of bytes in `URLBytes`.
+    ///
+    /// - encoding: The string encoding of the `URLBytes` string. This encoding is also used to interpret percent escape sequences.
+    ///
+    /// - baseURL: The URL to which `URLBytes` is relative. Pass `NULL` if `URLBytes` contains an absolute URL or if you want to create a relative URL. If `URLBytes` contains an absolute URL, this parameter is ignored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The specified string encoding will be used both to interpret `URLBytes`, and to interpret any percent-escapes within the string.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This function does not support string encoding which isn’t a superset of ASCII encoding. Both [`CFURLGetBytes`](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)) and [`CFURLGetByteRangeForComponent`](https://developer.apple.com/documentation/corefoundation/cfurlgetbyterangeforcomponent(_:_:_:)) require 7-bit ASCII characters to be stored in a single 8-bit byte. The following [`CFStringEncodings`](https://developer.apple.com/documentation/corefoundation/cfstringencodings) can be used: [`kCFStringEncodingMacRoman`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/macroman), [`kCFStringEncodingWindowsLatin1`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/windowslatin1), [`kCFStringEncodingISOLatin1`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/isolatin1), [`kCFStringEncodingNextStepLatin`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/nextsteplatin), [`kCFStringEncodingASCII`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/ascii) and [`kCFStringEncodingUTF8`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -98,7 +171,29 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatedata(_:_:_:_:)?language=objc)
+    /// Creates a `CFData` object containing the content of a given URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFData` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The URL to convert into a `CFData` object.
+    ///
+    /// - encoding: The string encoding to use when converting `url` into a `CFData` object.
+    ///
+    /// - escapeWhitespace: `true` if you want to escape whitespace characters in the URL, `false` otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFData` object containing the content of `url`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function escapes any character that is not 7-bit ASCII with the byte-code for the given encoding. If `escapeWhitespace` is `true`, whitespace characters (’ ’, ‘\t’, ‘\r’, ‘\n’) will be escaped as well. This is desirable if you want to embed the URL into a larger text stream like HTML.
+    ///
+    ///
     #[doc(alias = "CFURLCreateData")]
     #[cfg(all(feature = "CFData", feature = "CFString"))]
     #[inline]
@@ -120,7 +215,27 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithstring(_:_:_:)?language=objc)
+    /// Creates a `CFURL` object using a given `CFString` object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - URLString: The `CFString` object containing the URL string.
+    ///
+    /// - baseURL: The URL to which `URLString` is relative. Pass `NULL` if `URLString` contains an absolute URL or if you want to create a relative URL. If `URLString` contains an absolute URL, `baseURL` is ignored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Any escape sequences in `URLString` will be interpreted using UTF-8.
+    ///
+    ///
     #[doc(alias = "CFURLCreateWithString")]
     #[inline]
     pub(crate) fn __from_string(
@@ -139,7 +254,41 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreateabsoluteurlwithbytes(_:_:_:_:_:_:)?language=objc)
+    /// Creates a new `CFURL` object by resolving the relative portion of a URL, specified as bytes, against its given base URL.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - relativeURLBytes: The character bytes that represent a relative URL to convert into a `CFURL` object.
+    ///
+    /// - length: The number of bytes in `relativeURLBytes`.
+    ///
+    /// - encoding: The string encoding of the `relativeURLBytes` string. This encoding is also used to interpret percent escape sequences.
+    ///
+    /// - baseURL: The URL to which `relativeURLBytes` is relative.
+    ///
+    /// - useCompatibilityMode: If `true`, the rules historically used on the web are used to resolve the string specified by the `relativeURLBytes` parameter against `baseURL`. These rules are generally listed in the RFC as optional or alternate interpretations. Otherwise, the strict rules from the RFC are used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object, or `NULL` if `relativeURLBytes` cannot be made absolute. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function interprets the provided bytes using the specified string encoding to create the relative portion of the URL’s address.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This function does not support string encoding which isn’t a superset of ASCII encoding. Both [`CFURLGetBytes`](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)) and [`CFURLGetByteRangeForComponent`](https://developer.apple.com/documentation/corefoundation/cfurlgetbyterangeforcomponent(_:_:_:)) require 7-bit ASCII characters to be stored in a single 8-bit byte. The following [`CFStringEncodings`](https://developer.apple.com/documentation/corefoundation/cfstringencodings) can be used: [`kCFStringEncodingMacRoman`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/macroman), [`kCFStringEncodingWindowsLatin1`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/windowslatin1), [`kCFStringEncodingISOLatin1`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/isolatin1), [`kCFStringEncodingNextStepLatin`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/nextsteplatin), [`kCFStringEncodingASCII`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/ascii) and [`kCFStringEncodingUTF8`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -180,7 +329,29 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithfilesystempath(_:_:_:_:)?language=objc)
+    /// Creates a `CFURL` object using a local file system path string.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - filePath: The path string to convert to a `CFURL` object.
+    ///
+    /// - pathStyle: The operating system path style used in `filePath`. See [`CFURLPathStyle`](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle) for a list of possible values.
+    ///
+    /// - isDirectory: A Boolean value that specifies whether `filePath` is treated as a directory path when resolving against relative path components. Pass `true` if the pathname indicates a directory, `false` otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `filePath` is not absolute, the resulting URL will be considered relative to the current working directory (evaluated when this function is being invoked).
+    ///
+    ///
     #[doc(alias = "CFURLCreateWithFileSystemPath")]
     #[inline]
     pub fn with_file_system_path(
@@ -203,7 +374,23 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefromfilesystemrepresentation(_:_:_:_:)?language=objc)
+    /// Creates a new `CFURL` object for a file system entity using the native representation.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - buffer: The character bytes to convert into a `CFURL` object. This should be the path as you would use in POSIX function calls.
+    ///
+    /// - bufLen: The number of character bytes in the buffer (usually the result of a call to `strlen`), not including any null termination.
+    ///
+    /// - isDirectory: A Boolean value that specifies whether the string is treated as a directory path when resolving against relative path components—`true` if the pathname indicates a directory, `false` otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -231,7 +418,31 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatewithfilesystempathrelativetobase(_:_:_:_:_:)?language=objc)
+    /// Creates a `CFURL` object using a local file system path string relative to a base URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - filePath: The path string to convert to a `CFURL` object.
+    ///
+    /// - pathStyle: The operating system path style used in the `filePath` string. See [`CFURLPathStyle`](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle) for a list of possible values.
+    ///
+    /// - isDirectory: A Boolean value that specifies whether `filePath` is treated as a directory path when resolving against relative path components. Pass `true` if the pathname indicates a directory, `false` otherwise.
+    ///
+    /// - baseURL: The base URL against which to resolve the `filePath`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function takes a path name in the form of a `CFString` object, resolves it against a base URL, and returns a new `CFURL` object containing the result.
+    ///
+    ///
     #[doc(alias = "CFURLCreateWithFileSystemPathRelativeToBase")]
     #[inline]
     pub fn with_file_system_path_relative_to_base(
@@ -262,7 +473,31 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefromfilesystemrepresentationrelativetobase(_:_:_:_:_:)?language=objc)
+    /// Creates a `CFURL` object from a native character string path relative to a base URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - buffer: The character bytes to convert into a `CFURL` object. This should be the path as you would use in POSIX function calls.
+    ///
+    /// - bufLen: The number of bytes in the buffer.
+    ///
+    /// - isDirectory: A Boolean value that specifies whether the string is treated as a directory path when resolving against relative path components. Pass `true` if the pathname indicates a directory, `false` otherwise.
+    ///
+    /// - baseURL: The URL against which to resolve the path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function takes a path name in the form of a native character string, resolves it against a base URL, and returns a new `CFURL` object containing the result.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -299,7 +534,29 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetfilesystemrepresentation(_:_:_:_:)?language=objc)
+    /// Fills a buffer with the file system’s native string representation of a given URL’s path.
+    ///
+    /// Parameters:
+    /// - url: The `CFURL` object whose native file system representation you want to obtain.
+    ///
+    /// - resolveAgainstBase: Pass `true` to return an absolute path name.
+    ///
+    /// - buffer: A pointer to a character buffer. On return, the buffer holds the native file system’s representation of `url`. The buffer is null-terminated. This parameter must be at least `maxBufLen` in size for the file system in question to avoid failures for insufficiently large buffers.
+    ///
+    /// - maxBufLen: The maximum number of characters that can be written to `buffer`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if successful, `false` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// No more than `maxBufLen` bytes are written to `buffer`. If `url` requires more than `maxBufLen` bytes to represent itself, including the terminating null byte, this function returns `false`. To avoid this possible failure, you should pass a buffer with size of at least the maximum path length for the file system in question.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -326,7 +583,17 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyabsoluteurl(_:)?language=objc)
+    /// Creates a new `CFURL` object by resolving the relative portion of a URL against its base.
+    ///
+    /// Parameters:
+    /// - relativeURL: The `CFURL` object to resolve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFURL` object, or `NULL` if `relativeURL` cannot be made absolute. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCopyAbsoluteURL")]
     #[inline]
     pub fn absolute_url(&self) -> Option<CFRetained<CFURL>> {
@@ -337,7 +604,17 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetstring(_:)?language=objc)
+    /// Returns the URL as a `CFString` object.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to convert into a `CFString` object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representation of `anURL`. Ownership follows the get rule. See [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFURLGetString")]
     #[inline]
     pub(crate) fn __string(&self) -> Option<CFRetained<CFString>> {
@@ -348,7 +625,17 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetbaseurl(_:)?language=objc)
+    /// Returns the base URL of a given URL if it exists.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFURL` object representing the base URL of `anURL`. Ownership follows the get rule. See [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFURLGetBaseURL")]
     #[inline]
     pub fn base_url(&self) -> Option<CFRetained<CFURL>> {
@@ -359,7 +646,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcanbedecomposed(_:)?language=objc)
+    /// Determines if the given URL conforms to RFC 1808 and therefore can be decomposed.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `anURL` conforms to RFC 1808, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a `CFURL` object can be decomposed, you can retrieve separately each of the four components (scheme, net location, path, and resource specifier), as well as the base URL.
+    ///
+    /// Relative URLs are permitted to have only paths (or a variety of other configurations); these are considered decomposable if their base URL is decomposable. If no base URL is present, they are considered decomposable.
+    ///
+    ///
     #[doc(alias = "CFURLCanBeDecomposed")]
     #[inline]
     pub fn can_be_decomposed(&self) -> bool {
@@ -370,7 +675,23 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyscheme(_:)?language=objc)
+    /// Returns the scheme portion of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The scheme of `anURL`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The URL scheme is the portion of the URL specifying the transport type. For example `http`, `ftp`, and `rtsp` are schemes. This function leaves any percent escape sequences intact.
+    ///
+    ///
     #[doc(alias = "CFURLCopyScheme")]
     #[inline]
     pub fn scheme(&self) -> Option<CFRetained<CFString>> {
@@ -381,7 +702,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopynetlocation(_:)?language=objc)
+    /// Returns the net location portion of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The net location of `anURL`, or `NULL` if the URL cannot be decomposed (doesn’t conform to RFC 1808). Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The URL net location is the portion of the URL that identifies the network address of the resource. It includes the optional username and password, as well as the target machine’s IP address or host name.
+    ///
+    /// This function leaves any percent escape sequences intact.
+    ///
+    ///
     #[doc(alias = "CFURLCopyNetLocation")]
     #[inline]
     pub fn net_location(&self) -> Option<CFRetained<CFString>> {
@@ -392,7 +731,23 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopypath(_:)?language=objc)
+    /// Returns the path portion of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The path of `anURL`, or `NULL` if the URL cannot be decomposed (doesn’t conform to RFC 1808). Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does not resolve the URL against its base, nor does it replace percent escape sequences. This function’s return value includes any leading slash (giving the path the normal POSIX appearance), if present. If this behavior is not appropriate, use [`CFURLCopyStrictPath`](https://developer.apple.com/documentation/corefoundation/cfurlcopystrictpath(_:_:)) whose return value omits any leading slash. You may also want to use the function [`CFURLCopyFileSystemPath`](https://developer.apple.com/documentation/corefoundation/cfurlcopyfilesystempath(_:_:)), which returns the URL’s path as a file system path for the given path style. If the path is to be passed to file system calls, you may also want to use the function [`CFURLGetFileSystemRepresentation`](https://developer.apple.com/documentation/corefoundation/cfurlgetfilesystemrepresentation(_:_:_:_:)), which returns a C string.
+    ///
+    ///
     #[doc(alias = "CFURLCopyPath")]
     #[inline]
     pub fn path(&self) -> Option<CFRetained<CFString>> {
@@ -403,7 +758,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopystrictpath(_:_:)?language=objc)
+    /// Returns the path portion of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    /// - isAbsolute: On return, indicates whether the path of `anURL` is absolute.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The path of `anURL`, or `NULL` if the URL cannot be decomposed (doesn’t conform to RFC 1808). Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does not resolve the URL against its base, nor does it replace percent escape sequences. This function’s return value does not include a leading slash and uses `isAbsolute` to report whether the URL’s path is absolute. If this behavior is not appropriate, use the [`CFURLCopyPath`](https://developer.apple.com/documentation/corefoundation/cfurlcopypath(_:)) function whose return value includes the leading slash (giving the path the normal POSIX appearance). You may also want to use the [`CFURLCopyFileSystemPath`](https://developer.apple.com/documentation/corefoundation/cfurlcopyfilesystempath(_:_:)) function, which returns the URL’s path as a file system path for the given path style. If the path is to be passed to file system calls, you may also want to use the function [`CFURLGetFileSystemRepresentation`](https://developer.apple.com/documentation/corefoundation/cfurlgetfilesystemrepresentation(_:_:_:_:)), which returns a C string.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -421,7 +794,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyfilesystempath(_:_:)?language=objc)
+    /// Returns the path portion of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object whose path you want to obtain.
+    ///
+    /// - pathStyle: The operating system path style to be used to create the path. See [`CFURLPathStyle`](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle) for a list of possible values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The URL’s path in the format specified by `pathStyle`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the URL’s path as a file system path for a given path style.
+    ///
+    ///
     #[doc(alias = "CFURLCopyFileSystemPath")]
     #[inline]
     pub fn file_system_path(&self, path_style: CFURLPathStyle) -> Option<CFRetained<CFString>> {
@@ -435,7 +826,17 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlhasdirectorypath(_:)?language=objc)
+    /// Determines if a given URL’s path represents a directory.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `anURL` represents a directory, `false` otherwise.
+    ///
+    ///
     #[doc(alias = "CFURLHasDirectoryPath")]
     #[inline]
     pub fn has_directory_path(&self) -> bool {
@@ -446,7 +847,23 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcespecifier(_:)?language=objc)
+    /// Returns any additional resource specifiers after the path.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The resource specifiers. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function leaves any percent escape sequences intact. For decomposable URLs, this function returns everything after the path. For URLs that cannot be decomposed, this function returns everything except the scheme itself.
+    ///
+    ///
     #[doc(alias = "CFURLCopyResourceSpecifier")]
     #[inline]
     pub fn resource_specifier(&self) -> Option<CFRetained<CFString>> {
@@ -457,7 +874,17 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyhostname(_:)?language=objc)
+    /// Returns the host name of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The host name of `anURL`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCopyHostName")]
     #[inline]
     pub fn host_name(&self) -> Option<CFRetained<CFString>> {
@@ -468,7 +895,17 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetportnumber(_:)?language=objc)
+    /// Returns the port number from a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The port number of `anURL`, or `-1` if no port number exists.
+    ///
+    ///
     #[doc(alias = "CFURLGetPortNumber")]
     #[inline]
     pub fn port_number(&self) -> i32 {
@@ -478,7 +915,17 @@ impl CFURL {
         unsafe { CFURLGetPortNumber(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyusername(_:)?language=objc)
+    /// Returns the user name from a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The user name, or `NULL` if no user name exists. In some cases, this function may also return the empty string (`CFSTR("")`) if no username exists. You should consider `NULL` and the empty string to be equivalent. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCopyUserName")]
     #[inline]
     pub fn user_name(&self) -> Option<CFRetained<CFString>> {
@@ -489,7 +936,17 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopypassword(_:)?language=objc)
+    /// Returns the password of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The password, or `NULL` if no password exists. In some cases, this function may also return the empty string (`CFSTR("")`) if no password exists. You should consider `NULL` and the empty string to be equivalent. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCopyPassword")]
     #[inline]
     pub fn password(&self) -> Option<CFRetained<CFString>> {
@@ -500,7 +957,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyparameterstring(_:_:)?language=objc)
+    /// Returns the parameter string from a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    /// - charactersToLeaveEscaped: Characters whose percent escape sequences, such as `%20` for a space character, you want to leave intact. Pass `NULL` to specify that no percent escapes be replaced, or the empty string (`CFSTR("")`) to specify that all be replaced.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The parameter string (as defined in RFC 1738), or `NULL` if no parameter string exists. For example, in the URL `myproto://www.example.com/;command=laugh`, the parameter string is `command=laugh`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function removes all percent escape sequences except those for characters specified in `charactersToLeaveEscaped`.
+    ///
+    ///
     #[doc(alias = "CFURLCopyParameterString")]
     #[deprecated = "The CFURLCopyParameterString function is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, CFURLCopyParameterString will always return NULL, and the CFURLCopyPath(), CFURLCopyStrictPath(), and CFURLCopyFileSystemPath() functions will return the complete path including the semicolon separator and params component if the URL string contains them."]
     #[inline]
@@ -518,7 +993,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyquerystring(_:_:)?language=objc)
+    /// Returns the query string of a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object to examine.
+    ///
+    /// - charactersToLeaveEscaped: Characters whose percent escape sequences, such as `%20` for a space character, you want to leave intact. Pass `NULL` to specify that no percent escapes be replaced, or the empty string (`CFSTR("")`) to specify that all be replaced.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The query string, or `NULL` if no parameter string exists. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function removes all percent escape sequences except those for characters specified in `charactersToLeaveEscaped`.
+    ///
+    ///
     #[doc(alias = "CFURLCopyQueryString")]
     #[inline]
     pub fn query_string(
@@ -535,7 +1028,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyfragment(_:_:)?language=objc)
+    /// Returns the fragment from a given URL.
+    ///
+    /// Parameters:
+    /// - anURL: The `CFURL` object whose fragment you want to obtain.
+    ///
+    /// - charactersToLeaveEscaped: Characters whose percent escape sequences, such as `%20` for a space character, you want to leave intact. Pass `NULL` to specify that no percent escapes be replaced, or the empty string (`CFSTR("")`) to specify that all be replaced.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The fragment, or `NULL` if no fragment exists. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A fragment is the text following a “#”. These are generally used to indicate locations within a single file. This function removes all percent escape sequences except those for characters specified in `charactersToLeaveEscaped`.
+    ///
+    ///
     #[doc(alias = "CFURLCopyFragment")]
     #[inline]
     pub fn fragment(
@@ -552,7 +1063,33 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopylastpathcomponent(_:)?language=objc)
+    /// Returns the last path component of a given URL.
+    ///
+    /// Parameters:
+    /// - url: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The last path component of `url`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that if there is no last path component, this function returns an empty string. In the code sample shown, `lastPathComponent` is an empty string.
+    ///
+    /// ```objc
+    /// CFStringRef urlString = CFSTR("http://www.apple.com");
+    /// CFURLRef url = CFURLCreateWithString(NULL, urlString, NULL);
+    /// CFStringRef lastPathComponent = CFURLCopyLastPathComponent (url);
+    /// ```
+    ///
+    /// If `urlString` were created with `CFSTR("http://www.apple.com/")`, then `lastPathComponent` would be a `CFString` object containing the character “`/`”.
+    ///
+    /// See also [`CFURLCopyPathExtension`](https://developer.apple.com/documentation/corefoundation/cfurlcopypathextension(_:)).
+    ///
+    ///
     #[doc(alias = "CFURLCopyLastPathComponent")]
     #[inline]
     pub fn last_path_component(&self) -> Option<CFRetained<CFString>> {
@@ -563,7 +1100,25 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopypathextension(_:)?language=objc)
+    /// Returns the path extension of a given URL.
+    ///
+    /// Parameters:
+    /// - url: The `CFURL` object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The path extension of `url`, or `NULL` if no extension exists. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The path extension is the portion of the last path component which follows the final period, if there is one. For example, for `http:/www.apple.com/developer/macosx.today.html`, the extension is `html`, and for `http:/www.apple.com/developer`, there is no path extension.
+    ///
+    /// See also [`CFURLCopyLastPathComponent`](https://developer.apple.com/documentation/corefoundation/cfurlcopylastpathcomponent(_:)).
+    ///
+    ///
     #[doc(alias = "CFURLCopyPathExtension")]
     #[inline]
     pub fn path_extension(&self) -> Option<CFRetained<CFString>> {
@@ -574,7 +1129,29 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopyappendingpathcomponent(_:_:_:_:)?language=objc)
+    /// Creates a copy of a given URL and appends a path component.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The `CFURL` object to which to append a path component.
+    ///
+    /// - pathComponent: The path component to append to `url`.
+    ///
+    /// - isDirectory: A Boolean value that specifies whether the string is treated as a directory path when resolving against relative path components. Pass `true` if the new component indicates a directory, `false` otherwise.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of `url` appended with `pathComponent`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `isDirectory` argument specifies whether or not the new path component points to a file or a to directory. Note that the URL syntax for a directory and for a file at otherwise the same location are slightly different—directory URLs must end in “/”. If you have the URL `http://www.apple.com/foo/` and you append the path component `bar`, then if `isDirectory` is [`true`](https://developer.apple.com/documentation/swift/true) then the resulting URL is `http://www.apple.com/foo/bar/`, whereas if `isDirectory` is [`false`](https://developer.apple.com/documentation/swift/false) then the resulting URL is `http://www.apple.com/foo/bar`. This difference is particularly important if you resolve another URL against this new URL. `file.html` relative to `http://www.apple.com/foo/bar` is `http://www.apple.com/foo/file.html`, whereas `file.html` relative to `http://www.apple.com/foo/bar/` is `http://www.apple.com/foo/bar/file.html`.
+    ///
+    ///
     #[doc(alias = "CFURLCreateCopyAppendingPathComponent")]
     #[inline]
     pub fn new_copy_appending_path_component(
@@ -597,7 +1174,19 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopydeletinglastpathcomponent(_:_:)?language=objc)
+    /// Creates a copy of a given URL with the last path component deleted.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The `CFURL` object whose last path component you want to delete.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of `url` with the last path component deleted. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCreateCopyDeletingLastPathComponent")]
     #[inline]
     pub fn new_copy_deleting_last_path_component(
@@ -614,7 +1203,21 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopyappendingpathextension(_:_:_:)?language=objc)
+    /// Creates a copy of a given URL and appends a path extension.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The `CFURL` object to which to append a path extension.
+    ///
+    /// - extension: The extension to append to `url`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of `url` appended with `extension`. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCreateCopyAppendingPathExtension")]
     #[inline]
     pub fn new_copy_appending_path_extension(
@@ -633,7 +1236,19 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatecopydeletingpathextension(_:_:)?language=objc)
+    /// Creates a copy of a given URL with its last path extension removed.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The `CFURL` object whose path extension you want to delete.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of `url` with its last path extension removed. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCreateCopyDeletingPathExtension")]
     #[inline]
     pub fn new_copy_deleting_path_extension(
@@ -650,7 +1265,21 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)?language=objc)
+    /// Returns by reference the byte representation of a URL object.
+    ///
+    /// Parameters:
+    /// - url: The URL object to convert to a byte representation.
+    ///
+    /// - buffer: The buffer where you want the bytes to be placed. If the buffer is of insufficient size, returns `-1` and no bytes are placed in buffer. If `NULL` the needed length is computed and returned. The returned bytes are the original bytes from which the URL was created (_not_ including the base URL). If the URL was created from a string, the bytes are the bytes of the string encoded via UTF-8.
+    ///
+    /// - bufferLength: The number of bytes in `buffer`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the number of bytes in `buffer` that were filled. If the buffer is of insufficient size, returns `-1`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -665,46 +1294,52 @@ impl CFURL {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype?language=objc)
+/// The types of components in a URL.
+///
+/// ## Overview
+///
+/// These constants are used by the [`CFURLGetByteRangeForComponent`](https://developer.apple.com/documentation/corefoundation/cfurlgetbyterangeforcomponent(_:_:_:)) function.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLComponentType(pub CFIndex);
 impl CFURLComponentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/scheme?language=objc)
+    /// The URL’s scheme.
     #[doc(alias = "kCFURLComponentScheme")]
     pub const Scheme: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/netlocation?language=objc)
+    /// The URL’s network location.
     #[doc(alias = "kCFURLComponentNetLocation")]
     pub const NetLocation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/path?language=objc)
+    /// The URL’s path component.
     #[doc(alias = "kCFURLComponentPath")]
     pub const Path: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/resourcespecifier?language=objc)
+    /// The URL’s resource specifier.
     #[doc(alias = "kCFURLComponentResourceSpecifier")]
     pub const ResourceSpecifier: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/user?language=objc)
+    /// The URL’s user.
     #[doc(alias = "kCFURLComponentUser")]
     pub const User: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/password?language=objc)
+    /// The user’s password.
     #[doc(alias = "kCFURLComponentPassword")]
     pub const Password: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/userinfo?language=objc)
+    /// The user’s information.
     #[doc(alias = "kCFURLComponentUserInfo")]
     pub const UserInfo: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/host?language=objc)
+    /// The URL’s host.
     #[doc(alias = "kCFURLComponentHost")]
     pub const Host: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/port?language=objc)
+    /// The URL’s port.
     #[doc(alias = "kCFURLComponentPort")]
     pub const Port: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/parameterstring?language=objc)
+    /// The URL’s parameter string.
     #[doc(alias = "kCFURLComponentParameterString")]
     pub const ParameterString: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/query?language=objc)
+    /// The URL’s query.
     #[doc(alias = "kCFURLComponentQuery")]
     pub const Query: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype/fragment?language=objc)
+    /// The URL’s fragment.
     #[doc(alias = "kCFURLComponentFragment")]
     pub const Fragment: Self = Self(12);
 }
@@ -720,7 +1355,27 @@ unsafe impl RefEncode for CFURLComponentType {
 }
 
 impl CFURL {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlgetbyterangeforcomponent(_:_:_:)?language=objc)
+    /// Returns the range of the specified component in the bytes of a URL.
+    ///
+    /// Parameters:
+    /// - url: The URL containing `component`.
+    ///
+    /// - component: The type of component in `anURL` whose range you want to obtain. See [`CFURLComponentType`](https://developer.apple.com/documentation/corefoundation/cfurlcomponenttype) for possible values.
+    ///
+    /// - rangeIncludingSeparators: Specifies the range of `component` including the sequences that separate component from the previous and next components. If there is no previous or next components, this function will match the range of the component itself. If `anURL` does not contain `component`, `rangeIncludingSeparators` is set to the location where the component would be inserted.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The range of bytes for `component` in the buffer returned by the [`CFURLGetBytes`](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)) function. If `anURL` does not contain `component`, the first part of the returned range is set to [`kCFNotFound`](https://developer.apple.com/documentation/corefoundation/kcfnotfound).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is intended to be used in conjunction with the [`CFURLGetBytes`](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)) function, since the range returned is only applicable to the bytes returned by [`CFURLGetBytes`](https://developer.apple.com/documentation/corefoundation/cfurlgetbytes(_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -742,7 +1397,21 @@ impl CFURL {
         unsafe { CFURLGetByteRangeForComponent(self, component, range_including_separators) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyreplacingpercentescapes(_:_:_:)?language=objc)
+    /// Creates a new string by replacing any percent escape sequences with their character equivalent.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFString` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - originalString: The `CFString` object to be copied and modified.
+    ///
+    /// - charactersToLeaveEscaped: Characters whose percent escape sequences, such as `%20` for a space character, you want to leave intact. Pass `NULL` to specify that no percent escapes be replaced, or the empty string (`CFSTR("")`) to specify that all be replaced.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFString` object, or `NULL` if the percent escapes cannot be converted to characters, assuming UTF-8 encoding. If no characters need to be replaced, this function returns the original string with its reference count incremented. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFURLCreateStringByReplacingPercentEscapes")]
     #[inline]
     pub fn new_string_by_replacing_percent_escapes(
@@ -767,7 +1436,23 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyreplacingpercentescapesusingencoding(_:_:_:_:)?language=objc)
+    /// Creates a new string by replacing any percent escape sequences with their character equivalent.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFString` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - origString: The `CFString` object to be copied and modified.
+    ///
+    /// - charsToLeaveEscaped: Characters whose percent escape sequences, such as `%20` for a space character, you want to leave intact. Pass `NULL` to specify that no percent escapes be replaced, or the empty string (`CFSTR("")`) to specify that all be replaced.
+    ///
+    /// - encoding: Specifies the encoding to use when interpreting percent escapes. If you are uncertain of the correct encoding, you should use UTF-8 ([`kCFStringEncodingUTF8`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8)), which is the encoding designated by RFC 3986 as the correct encoding for use in URLs.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFString` object, or `NULL` if the percent escapes cannot be converted to characters, assuming the encoding given by `encoding`. If no characters need to be replaced, this function returns the original string with its reference count incremented. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -803,7 +1488,42 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyaddingpercentescapes(_:_:_:_:_:)?language=objc)
+    /// Creates a copy of a string, replacing certain characters with the equivalent percent escape sequence based on the specified encoding.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFString` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - originalString: The `CFString` object to copy.
+    ///
+    /// - charactersToLeaveUnescaped: Characters whose percent escape sequences you want to leave intact. Pass `NULL` to specify that all illegal characters be escaped.
+    ///
+    /// - legalURLCharactersToBeEscaped: Legal characters to be escaped. Pass `NULL` to specify that no legal characters be replaced.
+    ///
+    /// - encoding: The encoding to use for the translation. If you are uncertain of the correct encoding, you should use UTF-8 ([`kCFStringEncodingUTF8`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8)), which is the encoding designated by RFC 2396 as the correct encoding for use in URLs.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of `originalString` replacing certain characters. If it does not need to be modified (no percent escape sequences are missing), this function may merely return `originalString` with its reference count incremented. Ownership follows the create rule. See [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The characters escaped are all characters that are not legal URL characters (based on RFC 2396), plus any characters in `legalURLCharactersToBeEscaped`, less any characters in `charactersToLeaveUnescaped`. To simply correct any non-URL characters in an otherwise correct URL string, pass `NULL` for the `allocator`, `charactersToLeaveEscaped`, and `legalURLCharactersToBeEscaped` parameters, and [`kCFStringEncodingUTF8`](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings/utf8) as the `encoding` parameter.
+    ///
+    /// It may be difficult to use this function to “clean up” unescaped or partially escaped URL strings where sequences are unpredictable and you cannot specify `charactersToLeaveUnescaped`. Instead, you can “pre-process” a URL string using [`CFURLCreateStringByReplacingPercentEscapesUsingEncoding`](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyreplacingpercentescapesusingencoding(_:_:_:_:)) then add the escape characters using [`CFURLCreateStringByAddingPercentEscapes`](https://developer.apple.com/documentation/corefoundation/cfurlcreatestringbyaddingpercentescapes(_:_:_:_:_:)), as shown in the following code fragment.
+    ///
+    /// ```objc
+    /// CFStringRef originalURLString = CFSTR("http://online.store.com/storefront/?request=get-document&doi=10.1175%2F1520-0426(2005)014%3C1157:DODADSS%3E2.0.CO%3B2");
+    /// CFStringRef preprocessedString =
+    ///     CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault, originalURLString, CFSTR(""), kCFStringEncodingUTF8);
+    /// CFStringRef urlString =
+    ///     CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, preprocessedString, NULL, NULL, kCFStringEncodingUTF8);
+    /// url = CFURLCreateWithString(kCFAllocatorDefault, urlString, NULL);
+    /// ```
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -843,7 +1563,6 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlisfilereferenceurl(_:)?language=objc)
     #[doc(alias = "CFURLIsFileReferenceURL")]
     #[inline]
     pub fn is_file_reference_url(&self) -> bool {
@@ -854,7 +1573,41 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefilereferenceurl(_:_:_:)?language=objc)
+    /// Returns a new file reference URL that points to the same resource as a specified URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The URL.
+    ///
+    /// - error: The error that occurred if the URL could not be created.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new file reference URL, or `NULL` if an error occurs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// File reference URLs use a URL path syntax that identifies a file system object by reference, not by path. This form of file URL remains valid when the file system path of the URL’s underlying resource changes.
+    ///
+    /// If the original URL is a file path URL, this function returns a copy of the URL converted into a file reference URL. If the original URL is a file reference URL, this function returns the original. If the original URL is not a file URL, this function returns `nil`.
+    ///
+    /// File reference URLs cannot be created to file system objects which do not exist or are not reachable. This function returns `nil` instead.
+    ///
+    /// In some areas of the file system hierarchy, file reference URLs cannot be generated to the leaf node of the URL path.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A file reference URL’s path should never be persistently stored, because it is not valid across system restarts or remounts of volumes. If you need to store a persistent reference to a file system object, use a bookmark instead. You can create a bookmark by calling [`CFURLCreateBookmarkData`](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdata(_:_:_:_:_:_:)).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -880,7 +1633,27 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatefilepathurl(_:_:_:)?language=objc)
+    /// Returns a new file path URL that refers to the same resource as a specified URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The URL.
+    ///
+    /// - error: The error that occurred if the URL could not be created.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new file path URL, or `NULL` if an error occurs
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the original URL is a file reference URL, this function returns a copy of the URL converted to a file path URL. If the original URL is a file path URL, this function returns the original URL. If the original URL is not a file URL, or if the resource is not reachable or no longer exists, this function returns `nil`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -906,7 +1679,43 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcepropertyforkey(_:_:_:_:)?language=objc)
+    /// Returns the value of a given resource property of a given URL.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    /// - key: The property value key for the requested value.
+    ///
+    /// - propertyValueTypeRefPtr: The output pointer that is populated with the result.
+    ///
+    /// - error: The error that occurred if the property’s value could not be obtained. This parameter is optional. If you are not interested in receiving error information, you can pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `propertyValueTypeRefPtr` is successfully populated; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function first checks if the URL object already caches the resource value. If so, it returns the cached resource value to the caller. If not, then this function synchronously obtains the resource value from the backing store, adds the resource value to the URL object’s cache, and returns the resource value to the caller.
+    ///
+    /// The type of the returned resource value varies by resource property; for details, see the documentation for the key you want to access.
+    ///
+    /// If this function returns [`true`](https://developer.apple.com/documentation/swift/true) and the propertyValueTypeRefPtr is populated with `nil`, it means that the resource property is not available for the specified resource, and that no errors occurred when determining that the resource property was unavailable.
+    ///
+    /// If this function returns [`false`](https://developer.apple.com/documentation/swift/false), an error occurred. the object pointer referenced by `error` is populated with additional information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This method applies only to URLs that represent file system resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -936,7 +1745,41 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcepropertiesforkeys(_:_:_:)?language=objc)
+    /// Returns the resource values for the properties identified by specified array of keys.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    /// - keys: An array of property keys for the desired resource properties.
+    ///
+    /// - error: The error that occurred if one or more resource values could not be retrieved.  This parameter is optional. If you are not interested in receiving error information, you can pass `nil`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary of resource values indexed by key, or `NULL` if an error occurs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function first checks if the URL object already caches the specified resource values. If so, it returns the cached resource values to the caller. If not, then this function synchronously obtains the resource values from the backing store, adds the resource values to the URL object’s cache, and returns the resource values to the caller.
+    ///
+    /// The type of the returned resource value varies by resource property; for details, see the documentation for the key you want to access.
+    ///
+    /// If the result dictionary does not contain a resource value for one or more of the requested resource keys, it means those resource properties are not available for the specified URL, and no errors occurred when determining those resource properties were not available.
+    ///
+    /// If an error occurs, this function returns `NULL` and populates the object pointer referenced by `error` with additional information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This method applies only to URLs that represent file system resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -962,7 +1805,39 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlsetresourcepropertyforkey(_:_:_:_:)?language=objc)
+    /// Sets the URL’s resource property for a given key to a given value.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    /// - key: The name of one of the URL’s resource properties.
+    ///
+    /// - propertyValue: The value for the resource property defined by `key`.
+    ///
+    /// - error: The error that occurred if the resource value could not be set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true`  if the resource property named `key` is successfully set to `value`; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function synchronously writes the new resource value out to disk. Attempts to set a read-only resource property or to set a resource property that is not supported by the resource are ignored and are not considered errors.
+    ///
+    /// If an error occurs, this method returns `false` and populates the object pointer referenced by `error` with additional information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This method applies only to URLs for file system resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -991,7 +1866,39 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlsetresourcepropertiesforkeys(_:_:_:)?language=objc)
+    /// Sets the URL’s resource properties for a given set of keys to a given set of values.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    /// - keyedPropertyValues: A dictionary of resource values to be set.
+    ///
+    /// - error: The error that occurred if one or more resource values could not be set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if all resource values in `keyedValues` are successfully set; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function synchronously writes the new resource value out to disk. If an error occurs after some resource properties have been successfully changed, the `userInfo` dictionary in the returned error object contains a `kCFURLKeysOfUnsetValuesKey` key whose value is an array of the resource values that were not successfully set.
+    ///
+    /// Attempts to set a read-only resource property or to set a resource property that is not supported by the resource are ignored and are not considered errors.
+    ///
+    /// The order in which the resource values are set is not defined. If you need to guarantee the order in which resource values are set, you should make multiple requests to this function or [`CFURLSetResourcePropertyForKey`](https://developer.apple.com/documentation/corefoundation/cfurlsetresourcepropertyforkey(_:_:_:_:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This method applies only to URLs for file system resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -1020,12 +1927,34 @@ impl CFURL {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlkeysofunsetvalueskey?language=objc)
+    /// Key for the resource properties that have not been set after the [`CFURLSetResourcePropertiesForKeys`](https://developer.apple.com/documentation/corefoundation/cfurlsetresourcepropertiesforkeys(_:_:_:)) function returns an error, returned as an array of `CFString` objects.
     pub static kCFURLKeysOfUnsetValuesKey: Option<&'static CFString>;
 }
 
 impl CFURL {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycacheforkey(_:_:)?language=objc)
+    /// Removes the cached resource value identified by a given key from the URL object.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    /// - key: The resource value key whose cached values you want to remove.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Removing a cached resource value may remove other cached resource values because some resource values are cached as a set of values, and because some resource values depend on other resource values. (Temporary resource values have no dependencies.)
+    ///
+    /// This method is currently applicable only to URLs for file system resources.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The caching behavior of the `NSURL` and `CFURL` APIs differ. For `NSURL`, all cached values (not temporary values) are automatically removed after each pass through the run loop. You only need to call the [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl) method when you want to clear the cache within a single execution of the run loop. The `CFURL` functions, on the other hand, do not automatically clear cached resource values. The client has complete control over the cache lifetimes, and you must use [`CFURLClearResourcePropertyCacheForKey`](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycacheforkey(_:_:)) or [`CFURLClearResourcePropertyCache`](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycache(_:)) to clear cached resource values.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CFURLClearResourcePropertyCacheForKey")]
     #[inline]
     pub fn clear_resource_property_cache_for_key(&self, key: Option<&CFString>) {
@@ -1035,7 +1964,25 @@ impl CFURL {
         unsafe { CFURLClearResourcePropertyCacheForKey(self, key) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycache(_:)?language=objc)
+    /// Removes all cached resource values and temporary resource values from the URL object.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method is applicable only to URLs that represent file system resources.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The caching behavior of the `NSURL` and `CFURL` APIs differ. For `NSURL`, all cached values (not temporary values) are automatically removed after each pass through the run loop. You only need to call the [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl) method when you want to clear the cache within a single execution of the run loop. The `CFURL` functions, on the other hand, do not automatically clear cached resource values. The client has complete control over the cache lifetimes, and you must use [`CFURLClearResourcePropertyCacheForKey`](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycacheforkey(_:_:)) or [`CFURLClearResourcePropertyCache`](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycache(_:)) to clear cached resource values.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CFURLClearResourcePropertyCache")]
     #[inline]
     pub fn clear_resource_property_cache(&self) {
@@ -1045,7 +1992,25 @@ impl CFURL {
         unsafe { CFURLClearResourcePropertyCache(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlsettemporaryresourcepropertyforkey(_:_:_:)?language=objc)
+    /// Sets a temporary resource value on the URL.
+    ///
+    /// Parameters:
+    /// - url: The URL.
+    ///
+    /// - key: The key where the value should be stored. This key must be unique and must not conflict with any system-defined keys. Reverse-domain-name notation is recommended.
+    ///
+    /// - propertyValue: The value to store.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your app can use a temporary resource value to temporarily store a value for an app-defined resource value key in memory without modifying the actual resource that the URL represents. Once set, you can copy the temporary resource value from the URL object just as you would copy system-defined keys—by calling [`CFURLCopyResourcePropertyForKey`](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcepropertyforkey(_:_:_:_:)) or [`CFURLCopyResourcePropertiesForKeys`](https://developer.apple.com/documentation/corefoundation/cfurlcopyresourcepropertiesforkeys(_:_:_:)).
+    ///
+    /// Your app can remove a temporary resource value from the URL object by calling [`CFURLClearResourcePropertyCacheForKey`](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycacheforkey(_:_:)) or [`CFURLClearResourcePropertyCache`](https://developer.apple.com/documentation/corefoundation/cfurlclearresourcepropertycache(_:)) (to remove all temporary values).
+    ///
+    /// This method is applicable only to URLs for file system resources.
+    ///
+    ///
     #[doc(alias = "CFURLSetTemporaryResourcePropertyForKey")]
     #[inline]
     pub fn set_temporary_resource_property_for_key(
@@ -1063,7 +2028,37 @@ impl CFURL {
         unsafe { CFURLSetTemporaryResourcePropertyForKey(self, key, property_value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlresourceisreachable(_:_:)?language=objc)
+    /// Returns whether the resource pointed to by a file URL can be reached.
+    ///
+    /// Parameters:
+    /// - url: The URL to check.
+    ///
+    /// - error: The error that occurred when the resource could not be reached.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the resource is reachable; otherwise,  `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function synchronously checks if the file at the provided URL is reachable. Checking reachability is appropriate when making decisions that do not require other immediate operations on the resource, such as periodic maintenance of user interface state that depends on the existence of a specific document. For example, you might remove an item from a download list if the user deletes the file.
+    ///
+    /// If your app must perform operations on the file, such as opening it or copying resource properties, it is more efficient to attempt the operation and handle any failure that may occur.
+    ///
+    /// If this function returns `false`, the object pointer referenced by `error` is populated with additional information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This method is currently applicable only to URLs for file system resources. For other URL types, this method always returns `false`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -1081,695 +2076,697 @@ impl CFURL {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlnamekey?language=objc)
+    /// Key for the resource’s name in the file system, returned as a `CFString` object.
     pub static kCFURLNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizednamekey?language=objc)
+    /// Key for the resource’s localized or extension-hidden name, retuned as a `CFString` object.
     pub static kCFURLLocalizedNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisregularfilekey?language=objc)
+    /// Key for determining whether the resource is a regular file, as opposed to a directory or a symbolic link. Returned as a `CFBoolean` object.
     pub static kCFURLIsRegularFileKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisdirectorykey?language=objc)
+    /// Key for determining whether the resource is a directory, returned as a `CFBoolean` object.
     pub static kCFURLIsDirectoryKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissymboliclinkkey?language=objc)
+    /// Key for determining whether the resource is a symbolic link, returned as a `CFBoolean` object.
     pub static kCFURLIsSymbolicLinkKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisvolumekey?language=objc)
+    /// Key for determining whether the resource is the root directory of a volume, returned as a `CFBoolean` object.
     pub static kCFURLIsVolumeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlispackagekey?language=objc)
+    /// Key for determining whether the resource is a packaged directory, returned as a `CFBoolean` object.
     pub static kCFURLIsPackageKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisapplicationkey?language=objc)
     pub static kCFURLIsApplicationKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlapplicationisscriptablekey?language=objc)
     pub static kCFURLApplicationIsScriptableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissystemimmutablekey?language=objc)
+    /// Key for determining whether the resource’s system immutable bit is set, returned as a `CFBoolean` object.
     pub static kCFURLIsSystemImmutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisuserimmutablekey?language=objc)
+    /// Key for determining whether the resource’s user immutable bit is set, returned as a `CFBoolean` object.
     pub static kCFURLIsUserImmutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlishiddenkey?language=objc)
+    /// Key for determining whether the resource is normally not displayed to users, returned as a `CFBoolean` object.
     pub static kCFURLIsHiddenKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhashiddenextensionkey?language=objc)
+    /// Key for determining whether the resource’s extension is normally removed from its localized name, returned as a `CFBoolean` object.
     pub static kCFURLHasHiddenExtensionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcreationdatekey?language=objc)
+    /// Key for the resource’s creation date, returned as a `CFDate` object if the volume supports creation dates, or `nil` if creation dates are unsupported.
     pub static kCFURLCreationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcontentaccessdatekey?language=objc)
+    /// Key for the last time the resource was accessed, returned as a `CFDate` object if the volume supports access dates, or `nil` if access dates are unsupported.
     pub static kCFURLContentAccessDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcontentmodificationdatekey?language=objc)
+    /// Key for the last time the resource was modified, returned as a `CFDate` object if the volume supports modification dates, or `nil` if modification dates are unsupported.
     pub static kCFURLContentModificationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlattributemodificationdatekey?language=objc)
+    /// Key for the last time the resource’s attributes were modified, returned as a `CFDate` object if the volume supports attribute modification dates, or `nil` if attribute modification dates are unsupported.
     pub static kCFURLAttributeModificationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileidentifierkey?language=objc)
     pub static kCFURLFileIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilecontentidentifierkey?language=objc)
     pub static kCFURLFileContentIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlmaysharefilecontentkey?language=objc)
     pub static kCFURLMayShareFileContentKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlmayhaveextendedattributeskey?language=objc)
     pub static kCFURLMayHaveExtendedAttributesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlispurgeablekey?language=objc)
     pub static kCFURLIsPurgeableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlissparsekey?language=objc)
     pub static kCFURLIsSparseKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllinkcountkey?language=objc)
+    /// Key for the number of hard links to the resource, returned as a `CFNumber` object.
     pub static kCFURLLinkCountKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlparentdirectoryurlkey?language=objc)
+    /// Key for the parent directory of the resource, returned as a `CFURL` object, or `nil` if the resource is the root directory of its volume.
     pub static kCFURLParentDirectoryURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeurlkey?language=objc)
+    /// Key for the root directory of the resource’s volume, returned as a `CFURL` object.
     pub static kCFURLVolumeURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltypeidentifierkey?language=objc)
+    /// Key for the resource’s uniform type identifier (UTI), returned as a `CFString` object.
     #[deprecated = "Use NSURLContentTypeKey instead"]
     pub static kCFURLTypeIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizedtypedescriptionkey?language=objc)
+    /// Key for the resource’s localized type description, returned as a `CFString` object.
     pub static kCFURLLocalizedTypeDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelnumberkey?language=objc)
+    /// Key for the resource’s label number, returned as a `CFNumber` object.
     pub static kCFURLLabelNumberKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllabelcolorkey?language=objc)
+    /// Key for the resource’s label color, returned as a `CFColorRef` object, or `NULL` if the resource has no label color.
     #[deprecated = "Use NSURLLabelColorKey"]
     pub static kCFURLLabelColorKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurllocalizedlabelkey?language=objc)
+    /// Key for the resource’s localized label text, returned as a `CFString` object, or `NULL` if the resource has no localized label text.
     pub static kCFURLLocalizedLabelKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurleffectiveiconkey?language=objc)
+    /// Key for the resource’s typical icon, returned as a `CGImageRef` object.
     #[deprecated = "Use NSURLEffectiveIconKey"]
     pub static kCFURLEffectiveIconKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcustomiconkey?language=objc)
+    /// Key for the icon stored with the resource, returned as a `CGImageRef` object, or `NULL` if the resource has no custom icon.
     #[deprecated = "Use NSURLCustomIconKey"]
     pub static kCFURLCustomIconKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourceidentifierkey?language=objc)
+    /// Key for the resource’s unique identifier, returned as a `CFType` object.
+    ///
+    /// ## Discussion
+    ///
+    /// This identifier can be used to determine equality between file system resources with the [`CFEqual`](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)) function. Two resources are equal if they have the same file-system path or if their paths link to the same inode on the same file system.
+    ///
+    /// The value of this identifier is not persistent across system restarts.
+    ///
+    ///
     pub static kCFURLFileResourceIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeidentifierkey?language=objc)
+    /// Key for the unique identifier of the resource’s volume, returned as a `CFType` object.
+    ///
+    /// ## Discussion
+    ///
+    /// This identifier can be used with the [`CFEqual`](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)) function to determine whether two file system resources are on the same volume.
+    ///
+    /// The value of this identifier is not persistent across system restarts.
+    ///
+    ///
     pub static kCFURLVolumeIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlpreferredioblocksizekey?language=objc)
+    /// Key for the optimal block size to use when reading or writing this file’s data, returned as a `CFNumber` object, or `NULL` if the preferred size is not available.
     pub static kCFURLPreferredIOBlockSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisreadablekey?language=objc)
+    /// Key for determining whether the current process (as determined by the EUID) can read the resource, returned as a `CFBoolean` object.
     pub static kCFURLIsReadableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurliswritablekey?language=objc)
+    /// Key for determining whether the current process (as determined by the EUID) can write to the resource, returned as a `CFBoolean` object.
     pub static kCFURLIsWritableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisexecutablekey?language=objc)
+    /// Key for determining whether the current process (as determined by the EUID) can execute the resource (if it is a file) or search the resource (if it is a directory), returned as a `CFBoolean` object.
     pub static kCFURLIsExecutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilesecuritykey?language=objc)
+    /// Key for the resource’s security information, returned as a `CFFileSecurity` object.
     pub static kCFURLFileSecurityKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisexcludedfrombackupkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Key for determining whether the resource is excluded from all backups of app data, returned as a `CFBoolean` object.
+    ///
+    ///
     pub static kCFURLIsExcludedFromBackupKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltagnameskey?language=objc)
     pub static kCFURLTagNamesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlpathkey?language=objc)
+    /// A `CFString` value containing the URL’s path as a file system path. (read-only)
     pub static kCFURLPathKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlcanonicalpathkey?language=objc)
     pub static kCFURLCanonicalPathKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlismounttriggerkey?language=objc)
+    /// Key for determining whether the URL is a file system trigger directory, returned as a `CFBoolean` object. Traversing or opening a file system trigger directory causes an attempt to mount a file system on the directory.
     pub static kCFURLIsMountTriggerKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlgenerationidentifierkey?language=objc)
     pub static kCFURLGenerationIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurldocumentidentifierkey?language=objc)
     pub static kCFURLDocumentIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurladdedtodirectorydatekey?language=objc)
     pub static kCFURLAddedToDirectoryDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlquarantinepropertieskey?language=objc)
     pub static kCFURLQuarantinePropertiesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypekey?language=objc)
+    /// Key for the resource’s object type, returned as a `CFString` object.
+    ///
+    /// ## Discussion
+    ///
+    /// See [File Resource Types](https://developer.apple.com/documentation/corefoundation/file-resource-types) for possible values.
+    ///
+    ///
     pub static kCFURLFileResourceTypeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypenamedpipe?language=objc)
+    /// The resource is a named pipe.
     pub static kCFURLFileResourceTypeNamedPipe: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypecharacterspecial?language=objc)
+    /// The resource is a character special file.
     pub static kCFURLFileResourceTypeCharacterSpecial: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypedirectory?language=objc)
+    /// The resource is a directory.
     pub static kCFURLFileResourceTypeDirectory: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypeblockspecial?language=objc)
+    /// The resource is a block special file.
     pub static kCFURLFileResourceTypeBlockSpecial: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetyperegular?language=objc)
+    /// The resource is a regular file.
     pub static kCFURLFileResourceTypeRegular: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypesymboliclink?language=objc)
+    /// The resource is a symbolic link.
     pub static kCFURLFileResourceTypeSymbolicLink: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypesocket?language=objc)
+    /// The resource is a socket.
     pub static kCFURLFileResourceTypeSocket: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileresourcetypeunknown?language=objc)
+    /// The resource’s type is unknown.
     pub static kCFURLFileResourceTypeUnknown: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilesizekey?language=objc)
+    /// Key for the file’s size in bytes, returned as a `CFNumber` object.
     pub static kCFURLFileSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileallocatedsizekey?language=objc)
+    /// Key for the total size allocated on disk for the file, returned as an `CFNumber` object.
     pub static kCFURLFileAllocatedSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltotalfilesizekey?language=objc)
+    /// Key for the total displayable size of the file in bytes, returned as a `CFNumber` object. This includes the size of any file metadata.
     pub static kCFURLTotalFileSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurltotalfileallocatedsizekey?language=objc)
+    /// Key for the total allocated size of the file in bytes, returned as a `CFNumber` object. This includes the size of any file metadata.
     pub static kCFURLTotalFileAllocatedSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisaliasfilekey?language=objc)
+    /// Key for determining whether the file is an alias, returned as a `CFBoolean` object.
     pub static kCFURLIsAliasFileKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectionkey?language=objc)
     pub static kCFURLFileProtectionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectionnone?language=objc)
     pub static kCFURLFileProtectionNone: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncomplete?language=objc)
     pub static kCFURLFileProtectionComplete: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompleteunlessopen?language=objc)
     pub static kCFURLFileProtectionCompleteUnlessOpen: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompleteuntilfirstuserauthentication?language=objc)
     pub static kCFURLFileProtectionCompleteUntilFirstUserAuthentication: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileprotectioncompletewhenuserinactive?language=objc)
     pub static kCFURLFileProtectionCompleteWhenUserInactive: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurldirectoryentrycountkey?language=objc)
     pub static kCFURLDirectoryEntryCountKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumelocalizedformatdescriptionkey?language=objc)
+    /// Key for the volume’s descriptive format name, returned as a `CFString` object.
     pub static kCFURLVolumeLocalizedFormatDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetotalcapacitykey?language=objc)
+    /// Key for the volume’s capacity in bytes, returned as a `CFNumber` object.
     pub static kCFURLVolumeTotalCapacityKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacitykey?language=objc)
+    /// Key for the volume’s available capacity in bytes, returned as a `CFNumber` object.
     pub static kCFURLVolumeAvailableCapacityKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacityforimportantusagekey?language=objc)
     pub static kCFURLVolumeAvailableCapacityForImportantUsageKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacityforopportunisticusagekey?language=objc)
     pub static kCFURLVolumeAvailableCapacityForOpportunisticUsageKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeresourcecountkey?language=objc)
+    /// Key for the total number of resources on the volume, returned as a `CFNumber` object.
     pub static kCFURLVolumeResourceCountKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportspersistentidskey?language=objc)
+    /// Key for determining whether the volume supports persistent IDs, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsPersistentIDsKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportssymboliclinkskey?language=objc)
+    /// Key for determining whether the volume supports symbolic links, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsSymbolicLinksKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportshardlinkskey?language=objc)
+    /// Key for determining whether the volume supports hard links, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsHardLinksKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsjournalingkey?language=objc)
+    /// Key for determining whether the volume supports journaling, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsJournalingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisjournalingkey?language=objc)
+    /// Key for determining whether the volume is currently journaling, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsJournalingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportssparsefileskey?language=objc)
+    /// Key for determining whether the volume supports sparse files, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsSparseFilesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportszerorunskey?language=objc)
+    /// Key for determining whether the volume supports zero runs, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsZeroRunsKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscasesensitivenameskey?language=objc)
+    /// Key for determining whether the volume supports case-sensitive names, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsCaseSensitiveNamesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscasepreservednameskey?language=objc)
+    /// Key for determining whether the volume supports case-preserved names, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsCasePreservedNamesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsrootdirectorydateskey?language=objc)
+    /// Key for determining whether the volume supports reliable storage of times for the root directory, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsRootDirectoryDatesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsvolumesizeskey?language=objc)
+    /// Key for determining whether the volume supports returning volume size information, returned as a `CFBoolean` object. If `true`, volume size information is available as values of the [`kCFURLVolumeTotalCapacityKey`](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetotalcapacitykey) and [`kCFURLVolumeAvailableCapacityKey`](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeavailablecapacitykey) keys.
     pub static kCFURLVolumeSupportsVolumeSizesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsrenamingkey?language=objc)
+    /// Key for determining whether the volume can be renamed, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsRenamingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsadvisoryfilelockingkey?language=objc)
+    /// Key for determining whether the volume implements whole-file advisory locks in the style of flock, along with the `O_EXLOCK` and `O_SHLOCK` flags of the open function, returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsAdvisoryFileLockingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsextendedsecuritykey?language=objc)
+    /// Key for determining whether the volume supports extended security (access control lists), returned as a `CFBoolean` object.
     pub static kCFURLVolumeSupportsExtendedSecurityKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisbrowsablekey?language=objc)
+    /// Key for determining whether the volume is visible in GUI-based file-browsing environments, such as the Desktop or the Finder application, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsBrowsableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumemaximumfilesizekey?language=objc)
+    /// Key for the largest file size supported by the volume in bytes, returned as a `CFNumber` object, or `NULL` if it cannot be determined.
     pub static kCFURLVolumeMaximumFileSizeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisejectablekey?language=objc)
+    /// Key for determining whether the volume is ejectable from the drive mechanism under software control, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsEjectableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisremovablekey?language=objc)
+    /// Key for determining whether the volume is removable from the drive mechanism, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsRemovableKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisinternalkey?language=objc)
+    /// Key for determining whether the volume is connected to an internal bus, returned as a `CFBoolean` object, or `NULL` if it cannot be determined.
     pub static kCFURLVolumeIsInternalKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisautomountedkey?language=objc)
+    /// Key for determining whether the volume is automounted, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsAutomountedKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeislocalkey?language=objc)
+    /// Key for determining whether the volume is stored on a local device, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsLocalKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisreadonlykey?language=objc)
+    /// Key for determining whether the volume is read-only, returned as a `CFBoolean` object.
     pub static kCFURLVolumeIsReadOnlyKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumecreationdatekey?language=objc)
+    /// Key for the volume’s creation date, returned as a `CFDate` object, or `NULL` if it cannot be determined.
     pub static kCFURLVolumeCreationDateKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeurlforremountingkey?language=objc)
+    /// Key for the URL needed to remount the network volume, returned as a `CFURL` object, or `NULL` if a URL is not available.
     pub static kCFURLVolumeURLForRemountingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeuuidstringkey?language=objc)
+    /// Key for the volume’s persistent UUID, returned as a `CFString` object, or `NULL` if a persistent UUID is not available.
     pub static kCFURLVolumeUUIDStringKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumenamekey?language=objc)
+    /// The name of the volume, returned as a `CFString` object.
     pub static kCFURLVolumeNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumelocalizednamekey?language=objc)
+    /// The user-presentable name of the volume, returned as a `CFString` object.
     pub static kCFURLVolumeLocalizedNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisencryptedkey?language=objc)
     pub static kCFURLVolumeIsEncryptedKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumeisrootfilesystemkey?language=objc)
     pub static kCFURLVolumeIsRootFileSystemKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportscompressionkey?language=objc)
     pub static kCFURLVolumeSupportsCompressionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsfilecloningkey?language=objc)
     pub static kCFURLVolumeSupportsFileCloningKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsswaprenamingkey?language=objc)
     pub static kCFURLVolumeSupportsSwapRenamingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsexclusiverenamingkey?language=objc)
     pub static kCFURLVolumeSupportsExclusiveRenamingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsimmutablefileskey?language=objc)
     pub static kCFURLVolumeSupportsImmutableFilesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsaccesspermissionskey?language=objc)
     pub static kCFURLVolumeSupportsAccessPermissionsKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesupportsfileprotectionkey?language=objc)
     pub static kCFURLVolumeSupportsFileProtectionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumetypenamekey?language=objc)
     pub static kCFURLVolumeTypeNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumesubtypekey?language=objc)
     pub static kCFURLVolumeSubtypeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlvolumemountfromlocationkey?language=objc)
     pub static kCFURLVolumeMountFromLocationKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlisubiquitousitemkey?language=objc)
+    /// A `CFBoolean` value that tells whether the item is synced to the cloud. (read-only)
     pub static kCFURLIsUbiquitousItemKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemhasunresolvedconflictskey?language=objc)
+    /// A `CFBoolean` value that tells whether the item has conflicts outstanding. (read-only)
     pub static kCFURLUbiquitousItemHasUnresolvedConflictsKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadedkey?language=objc)
+    /// A `CFBoolean` value that tells whether there is local data present for the item. (read-only)
     #[deprecated = "Use kCFURLUbiquitousItemDownloadingStatusKey instead"]
     pub static kCFURLUbiquitousItemIsDownloadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisdownloadingkey?language=objc)
+    /// A `CFBoolean` value that tells whether data for the item is being downloaded. (read-only)
     pub static kCFURLUbiquitousItemIsDownloadingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisuploadedkey?language=objc)
+    /// A `CFBoolean` value that tells whether there is data present in the cloud for this item. (read-only)
     pub static kCFURLUbiquitousItemIsUploadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisuploadingkey?language=objc)
+    /// A `CFBoolean` value that tells whether data for the item is being uploaded. (read-only)
     pub static kCFURLUbiquitousItemIsUploadingKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentdownloadedkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFNumber` value that provides the status of the download in progress.
+    ///
+    /// Deprecated. Use [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) and [`NSMetadataUbiquitousItemPercentDownloadedKey`](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentdownloadedkey) on [`NSMetadataItem`](https://developer.apple.com/documentation/foundation/nsmetadataitem) instead.
+    ///
+    ///
     #[deprecated = "Use NSMetadataQuery and NSMetadataUbiquitousItemPercentDownloadedKey on NSMetadataItem instead"]
     pub static kCFURLUbiquitousItemPercentDownloadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitempercentuploadedkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFNumber` value that provides the status of the upload in progress.
+    ///
+    /// Deprecated. Use [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) and [`NSMetadataUbiquitousItemPercentUploadedKey`](https://developer.apple.com/documentation/foundation/nsmetadataubiquitousitempercentuploadedkey) on [`NSMetadataItem`](https://developer.apple.com/documentation/foundation/nsmetadataitem) instead.
+    ///
+    ///
     #[deprecated = "Use NSMetadataQuery and NSMetadataUbiquitousItemPercentUploadedKey on NSMetadataItem instead"]
     pub static kCFURLUbiquitousItemPercentUploadedKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatuskey?language=objc)
     pub static kCFURLUbiquitousItemDownloadingStatusKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingerrorkey?language=objc)
     pub static kCFURLUbiquitousItemDownloadingErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemuploadingerrorkey?language=objc)
     pub static kCFURLUbiquitousItemUploadingErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemisexcludedfromsynckey?language=objc)
     pub static kCFURLUbiquitousItemIsExcludedFromSyncKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatusnotdownloaded?language=objc)
     pub static kCFURLUbiquitousItemDownloadingStatusNotDownloaded: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatusdownloaded?language=objc)
     pub static kCFURLUbiquitousItemDownloadingStatusDownloaded: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemdownloadingstatuscurrent?language=objc)
     pub static kCFURLUbiquitousItemDownloadingStatusCurrent: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemsupportedsynccontrolskey?language=objc)
     pub static kCFURLUbiquitousItemSupportedSyncControlsKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlubiquitousitemissyncpausedkey?language=objc)
     pub static kCFURLUbiquitousItemIsSyncPausedKey: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions?language=objc)
+/// Type for bookmark data creation options.
+///
+/// ## Overview
+///
+/// See [Bookmark Data Creation Options](https://developer.apple.com/documentation/corefoundation/bookmark-data-creation-options) for possible values.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLBookmarkCreationOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLBookmarkCreationOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/minimalbookmarkmask?language=objc)
+/// Specifies that an alias created with the bookmark data be created with minimal information, which may make it smaller but still able to resolve in certain ways.
         #[doc(alias = "kCFURLBookmarkCreationMinimalBookmarkMask")]
         const MinimalBookmarkMask = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/suitableforbookmarkfile?language=objc)
+/// Specifies that the bookmark data include properties required to create Finder alias files.
         #[doc(alias = "kCFURLBookmarkCreationSuitableForBookmarkFile")]
         const SuitableForBookmarkFile = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withsecurityscope?language=objc)
+/// Specifies that you want to create a security-scoped bookmark that, when resolved, provides a security-scoped URL allowing read/write access to a file-system resource; for use in an app that adopts App Sandbox.
         #[doc(alias = "kCFURLBookmarkCreationWithSecurityScope")]
         const WithSecurityScope = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/securityscopeallowonlyreadaccess?language=objc)
+/// When combined with the [`kCFURLBookmarkCreationWithSecurityScope`](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withsecurityscope) option, specifies that you want to create a security-scoped bookmark that, when resolved, provides a security-scoped URL allowing read-only access to a file-system resource; for use in an app that adopts App Sandbox.
         #[doc(alias = "kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess")]
         const SecurityScopeAllowOnlyReadAccess = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withoutimplicitsecurityscope?language=objc)
         #[doc(alias = "kCFURLBookmarkCreationWithoutImplicitSecurityScope")]
         const WithoutImplicitSecurityScope = 1<<29;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/preferfileidresolutionmask?language=objc)
+/// Specifies that an alias created with the bookmark data prefers resolving with its embedded file ID.
         #[doc(alias = "kCFURLBookmarkCreationPreferFileIDResolutionMask")]
 #[deprecated = "kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution"]
         const PreferFileIDResolutionMask = 1<<8;
@@ -1786,29 +2783,32 @@ unsafe impl RefEncode for CFURLBookmarkCreationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions?language=objc)
+/// Type for bookmark data resolution options.
+///
+/// ## Overview
+///
+/// See [Bookmark Data Resolution Options](https://developer.apple.com/documentation/corefoundation/bookmark-data-resolution-options) for possible values.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLBookmarkResolutionOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLBookmarkResolutionOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithoutuimask?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithoutUIMask")]
         const CFURLBookmarkResolutionWithoutUIMask = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithoutmountingmask?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithoutMountingMask")]
         const CFURLBookmarkResolutionWithoutMountingMask = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithsecurityscope?language=objc)
+/// Specifies that the security scope, applied to the bookmark when it was created, should be used during resolution of the bookmark data.
         #[doc(alias = "kCFURLBookmarkResolutionWithSecurityScope")]
         const CFURLBookmarkResolutionWithSecurityScope = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithoutimplicitstartaccessing?language=objc)
         #[doc(alias = "kCFURLBookmarkResolutionWithoutImplicitStartAccessing")]
         const CFURLBookmarkResolutionWithoutImplicitStartAccessing = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfbookmarkresolutionwithoutuimask?language=objc)
+/// Specifies that no UI feedback accompany resolution of the bookmark data.
         #[doc(alias = "kCFBookmarkResolutionWithoutUIMask")]
         const CFBookmarkResolutionWithoutUIMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutUIMask.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfbookmarkresolutionwithoutmountingmask?language=objc)
+/// Specifies that no volume should be mounted during resolution of the bookmark data.
         #[doc(alias = "kCFBookmarkResolutionWithoutMountingMask")]
         const CFBookmarkResolutionWithoutMountingMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutMountingMask.0;
     }
@@ -1824,11 +2824,83 @@ unsafe impl RefEncode for CFURLBookmarkResolutionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkfilecreationoptions?language=objc)
+/// Type for bookmark file creation options.
 pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 
 impl CFURL {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdata(_:_:_:_:_:_:)?language=objc)
+    /// Returns bookmark data for a URL, created with specified options and resource values.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - url: The URL that bookmark data is being created for.
+    ///
+    /// - options: Options taken into account when creating the bookmark data.
+    ///
+    /// To create a security-scoped bookmark to support App Sandbox, include (by way of bitwise `OR` operators with any other options in this parameter) the [`kCFURLBookmarkCreationWithSecurityScope`](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withsecurityscope) option.
+    ///
+    /// When you later resolve the bookmark, you can use the resulting security-scoped URL to obtain read/write access to the file-system resource pointed to by the URL.
+    ///
+    /// If you instead want to create a security-scoped bookmark that, when resolved, enables you to obtain read-only access to a file-system resource, bitwise `OR` this parameter’s value with both the [`kCFURLBookmarkCreationWithSecurityScope`](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/withsecurityscope) option and the [`kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess`](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions/securityscopeallowonlyreadaccess) option.
+    ///
+    /// - resourcePropertiesToInclude: An array of names of URL resource properties. The values of these properties must be of a type that the bookmark generation code can serialize. Specifically, the values can contain any of the following primitive types:
+    ///
+    /// - `NSString` or `CFString`
+    ///
+    /// - `NSData` or `CFData`
+    ///
+    /// - `NSDate` or `CFDate`
+    ///
+    /// - `NSNumber` or `CFNumber`
+    ///
+    /// - `CFBoolean`
+    ///
+    /// - `NSURL` or `CFURL`
+    ///
+    /// - `CFNull`
+    ///
+    /// - `CFUUID`
+    ///
+    /// In addition, the properties can contain the following collection classes:
+    ///
+    /// - `NSArray` or `CFArray` containing only the above primitive types
+    ///
+    /// - `NSDictionary` or `CFDictionary` with `NSString` or `CFString` keys, in which all values contain only the above primitive types
+    ///
+    /// - relativeToURL: The URL that the bookmark data is relative to.
+    ///
+    /// If you are creating a security-scoped bookmark to support App Sandbox, use this parameter as follows:
+    ///
+    /// - To create an app-scoped bookmark, use a value of `nil`.
+    ///
+    /// - To create a document-scoped bookmark, use the _absolute_ path (despite this parameter’s name) to the document file that is to own the new security-scoped bookmark.
+    ///
+    /// - error: The error that occurred in the case that the bookmark data cannot be created.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bookmark data for the URL.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To use this function to create a security-scoped bookmark to support App Sandbox, you must first have enabled the appropriate entitlements for your app, as described in [Enabling Security-Scoped Bookmark and URL Access](https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW18). In addition, be sure to understand the behavior of the `options` and `relativeToURL` parameters.
+    ///
+    /// For an app-scoped bookmark, no sandboxed app other than the one that created the bookmark can obtain access to the file-system resource that the URL (obtained from the bookmark) points to. Specifically, a bookmark created with security scope fails to resolve if the caller does not have the same code signing identity as the caller that created the bookmark.
+    ///
+    /// For a document-scoped bookmark, any sandboxed app that has access to the bookmark data itself, and has access to the document that owns the bookmark, can obtain access to the resource.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Version note
+    ///  Security-scoped bookmarks are not available in versions of macOS prior to OS X v10.7.3.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -1872,7 +2944,57 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebyresolvingbookmarkdata(_:_:_:_:_:_:_:)?language=objc)
+    /// Returns a new URL made by resolving bookmark data.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - bookmark: The bookmark data the URL is derived from.
+    ///
+    /// - options: Options taken into account when resolving the bookmark data.
+    ///
+    /// To resolve a security-scoped bookmark to support App Sandbox, you must include (by way of bitwise `OR` operators with any other options in this parameter) the [`kCFURLBookmarkResolutionWithSecurityScope`](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithsecurityscope) option.
+    ///
+    /// - relativeToURL: The base URL that the bookmark data is relative to. Can be `NULL`.
+    ///
+    /// If you are resolving a security-scoped bookmark to obtain a security-scoped URL, use this parameter as follows:
+    ///
+    /// - To resolve an app-scoped bookmark, use a value of `nil`.
+    ///
+    /// - To resolve a document-scoped bookmark, use the _absolute_ path (despite this parameter’s name) to the document from which you retrieved the bookmark.
+    ///
+    /// - resourcePropertiesToInclude: An array of resource properties to include when creating the URL. Can be `NULL`.
+    ///
+    /// - isStale: If [`true`](https://developer.apple.com/documentation/swift/true), the bookmark data is stale.
+    ///
+    /// - error: The error that occurred in the case that the URL cannot be created.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new URL made by resolving `bookmark`, or `NULL` if an error occurs.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To obtain a security-scoped URL from a security-scoped bookmark, call this method using the [`kCFURLBookmarkResolutionWithSecurityScope`](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions/cfurlbookmarkresolutionwithsecurityscope) option. In addition, to use security scope, you must first have enabled the appropriate entitlements for your app, as described in [Enabling Security-Scoped Bookmark and URL Access](https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/EntitlementKeyReference/Chapters/EnablingAppSandbox.html#//apple_ref/doc/uid/TP40011195-CH4-SW18).
+    ///
+    /// To then obtain access to the file-system resource pointed to by a security-scoped URL (in other words, to bring the resource into your app’s sandbox), call the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) function (or its Cocoa equivalent) on the URL.
+    ///
+    /// For an app-scoped bookmark, no sandboxed app other than the one that created the bookmark can obtain access to the file-system resource that the URL (obtained from the bookmark) points to.
+    ///
+    /// For a document-scoped bookmark, any sandboxed app that has access to the bookmark data itself, and has access to the document that owns the bookmark, can obtain access to the resource.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Version note
+    ///  Security-scoped bookmarks are not available in versions of macOS prior to OS X v10.7.3.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -1920,7 +3042,27 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreateresourcepropertiesforkeysfrombookmarkdata(_:_:_:)?language=objc)
+    /// Returns the resource values for properties identified by a specified array of keys contained in specified bookmark data.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - resourcePropertiesToReturn: An array of names of URL resource properties. See [Common File System Resource Keys](https://developer.apple.com/documentation/corefoundation/common-file-system-resource-keys) for a list of possible keys.
+    ///
+    /// - bookmark: The bookmark data the resource values are derived from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary of the requested resource values contained in `bookmarkData`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does not attempt to resolve the bookmark data or perform I/O.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1953,7 +3095,27 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreateresourcepropertyforkeyfrombookmarkdata(_:_:_:)?language=objc)
+    /// Returns the value of a resource property from specified bookmark data.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - resourcePropertyKey: The resource property key. See [Common File System Resource Keys](https://developer.apple.com/documentation/corefoundation/common-file-system-resource-keys) for a list of possible keys.
+    ///
+    /// - bookmark: The bookmark data the resource value is derived from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The resource property value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function does not attempt to resolve the bookmark data or perform I/O.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1985,7 +3147,21 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdatafromfile(_:_:_:)?language=objc)
+    /// Initializes and returns bookmark data derived from a file pointed to by a specified URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - fileURL: The file URL.
+    ///
+    /// - errorRef: The error that occurred in the case that the bookmark data cannot be created.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bookmark data for the file, or `NULL` if an error occurs.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2011,7 +3187,23 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlwritebookmarkdatatofile(_:_:_:_:)?language=objc)
+    /// Creates an alias file on disk at a specified location with specified bookmark data.
+    ///
+    /// Parameters:
+    /// - bookmarkRef: The bookmark data containing information for the alias file.
+    ///
+    /// - fileURL: The desired location of the alias file.
+    ///
+    /// - options: Options taken into account when creating the alias file.
+    ///
+    /// - errorRef: The error that occurred in the case that the alias file cannot be created.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the alias file is successfully created; otherwise, `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2040,7 +3232,19 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatebookmarkdatafromaliasrecord(_:_:)?language=objc)
+    /// Initializes and returns bookmark data derived from an alias record.
+    ///
+    /// Parameters:
+    /// - allocatorRef: The allocator to use to allocate memory for the new `CFURL` object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - aliasRecordDataRef: The alias record.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bookmark data for the alias record.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2065,7 +3269,41 @@ impl CFURL {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)?language=objc)
+    /// In an app that has adopted App Sandbox, makes the resource pointed to by a security-scoped URL available to the app.
+    ///
+    /// Parameters:
+    /// - url: The security-scoped URL that points to the file-system resource you want to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the request to access the resource succeeded; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you obtain a security-scoped URL, such as by resolving a security-scoped bookmark, you cannot immediately use the resource it points to. To make the resource available to your app, by way of adding its location to your app’s sandbox, call this function (or its Cocoa equivalent, [`startAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/startaccessingsecurityscopedresource())) on the security-scoped URL.
+    ///
+    /// Calls to the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) function (or its Cocoa equivalent) are nestable on a per-process basis. This means that if your app calls the `start` method on a URL twice, to fully relinquish access to the referenced resource you must call the corresponding `stop` method twice.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  You must balance every call to the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) method with a corresponding call to the [`CFURLStopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)) method. If you fail to relinquish your access when you no longer need a file-system resource, your app leaks kernel resources. If sufficient kernel resources are leaked, your app loses its ability to add file-system locations to its sandbox, such as via Powerbox or security-scoped bookmarks, until relaunched.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Version note
+    ///  Security-scoped bookmarks are not available in versions of macOS prior to OS X v10.7.3.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CFURLStartAccessingSecurityScopedResource")]
     #[inline]
     pub unsafe fn start_accessing_security_scoped_resource(&self) -> bool {
@@ -2076,7 +3314,33 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)?language=objc)
+    /// In an app that adopts App Sandbox, revokes access to the resource pointed to by a security-scoped URL.
+    ///
+    /// Parameters:
+    /// - url: The security-scoped URL that points to the file-system resource you want to stop accessing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you no longer need access to a file or directory pointed to by a security-scoped URL, such as one returned by resolving a security-scoped bookmark, call this function (or its Cocoa equivalent, [`stopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/foundation/nsurl/stopaccessingsecurityscopedresource())) on the URL.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  You must balance every call to the [`CFURLStartAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstartaccessingsecurityscopedresource(_:)) method with a corresponding call to the [`CFURLStopAccessingSecurityScopedResource`](https://developer.apple.com/documentation/corefoundation/cfurlstopaccessingsecurityscopedresource(_:)) method. If you fail to relinquish your access when you no longer need a file-system resource, your app leaks kernel resources. If sufficient kernel resources are leaked, your app loses its ability to add file-system locations to its sandbox, such as via Powerbox or security-scoped bookmarks, until relaunched.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Version note
+    ///  Security-scoped bookmarks are not available in versions of macOS prior to OS X v10.7.3.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CFURLStopAccessingSecurityScopedResource")]
     #[inline]
     pub unsafe fn stop_accessing_security_scoped_resource(&self) {

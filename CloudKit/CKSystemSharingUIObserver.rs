@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksystemsharinguiobserver?language=objc)
+    /// An object the system uses to monitor changes in sharing.
+    ///
+    /// ## Overview
+    ///
+    /// Initialize a `CKSystemSharingUIObserver` instance with your [`CKContainer`](https://developer.apple.com/documentation/cloudkit/ckcontainer) when preparing to share an item using the share sheet. Use your implementation to update the local state of a shared item when your app receives a [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare), or to delete a locally cached share when the system notifies your app about a share deletion.
+    ///
+    /// The system only propagates changes on the local device using `CKSystemSharingUIObserver`. The system doesn’t notify your app about any remote changes on the server. For more information about how to keep your local cache in sync with remote changes, see [Remote Records](https://developer.apple.com/documentation/cloudkit/remote-records).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSystemSharingUIObserver;

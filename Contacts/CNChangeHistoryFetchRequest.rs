@@ -8,14 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that specifies the criteria for fetching change history.
+    ///
+    /// ## Overview
+    ///
+    /// The system always returns changes to contacts. The system coalesces changes to remove redundant adds, updates, and deletes.
+    ///
+    /// Create and configure a fetch request, then call [`enumeratorForChangeHistoryFetchRequest:error:`](https://developer.apple.com/documentation/contacts/cncontactstore/enumeratorforchangehistoryfetchrequest:error:) to process changes.
+    ///
+    ///
     /// Specifies the criteria to fetch change history.
     ///
     ///
     /// Changes to contacts are always returned.
     /// All changes are coalesced to remove redundant adds, updates and deletes.
     /// This request is used with [CNContactStore enumeratorForChangeHistoryFetchRequest:error:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryfetchrequest?language=objc)
     #[unsafe(super(CNFetchRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNFetchRequest")]

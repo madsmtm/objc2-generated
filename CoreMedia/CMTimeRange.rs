@@ -8,9 +8,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A structure that represents a time range.
 /// A time range represented as two CMTime structures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -32,26 +31,37 @@ unsafe impl RefEncode for CMTimeRange {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange/zero?language=objc)
+    /// A constant for generating an empty time range at zero.
     #[cfg(feature = "CMTime")]
     pub static kCMTimeRangeZero: CMTimeRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange/invalid?language=objc)
+    /// A constant for generating an invalid time range.
     #[cfg(feature = "CMTime")]
     pub static kCMTimeRangeInvalid: CMTimeRange;
 }
 
 #[cfg(feature = "CMTime")]
 impl CMTimeRange {
+    /// Creates a valid time range with a start time and duration.
+    ///
+    /// Parameters:
+    /// - start: The start of the time range.
+    ///
+    /// - duration: The duration of the time range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid time range structure, or an invalid time range if the duration’s epoch isn’t `0`.
+    ///
+    ///
     /// Make a valid CMTimeRange with start and duration.
     ///
     /// Returns: The resulting CMTimeRange.
     ///
     /// The duration parameter must have an epoch of 0; otherwise an invalid time range will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangemake(start:duration:)?language=objc)
     #[doc(alias = "CMTimeRangeMake")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -62,6 +72,25 @@ impl CMTimeRange {
         unsafe { CMTimeRangeMake(start, duration) }
     }
 
+    /// Returns a new time range with the time elements of the input.
+    ///
+    /// Parameters:
+    /// - range: The first time range.
+    ///
+    /// - otherRange: The second time range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time range with the unique time elements of the input.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The return value contains the smallest range that includes all times that are in either range.
+    ///
+    ///
     /// Returns the union of two CMTimeRanges.
     ///
     /// This function returns a CMTimeRange structure that represents the union of the time ranges specified by the
@@ -76,8 +105,6 @@ impl CMTimeRange {
     /// This is the smallest range that includes all times that are in either range.
     ///
     /// Returns: The union of the two CMTimeRanges.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangegetunion(_:otherrange:)?language=objc)
     #[doc(alias = "CMTimeRangeGetUnion")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -88,6 +115,19 @@ impl CMTimeRange {
         unsafe { CMTimeRangeGetUnion(self, other_range) }
     }
 
+    /// Returns a new time range with the time elements that are common between the input.
+    ///
+    /// Parameters:
+    /// - range: The first time range to intersect.
+    ///
+    /// - otherRange: The second time range to intersect.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time range that represents the largest intersection of the input.
+    ///
+    ///
     /// Returns the intersection of two CMTimeRanges.
     ///
     /// This function returns a CMTimeRange structure that represents the intersection of the time ranges specified by the
@@ -102,8 +142,6 @@ impl CMTimeRange {
     /// This is the largest range that both ranges include.
     ///
     /// Returns: The intersection of the two CMTimeRanges.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangegetintersection(_:otherrange:)?language=objc)
     #[doc(alias = "CMTimeRangeGetIntersection")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -117,6 +155,19 @@ impl CMTimeRange {
         unsafe { CMTimeRangeGetIntersection(self, other_range) }
     }
 
+    /// Returns a Boolean value that indicates whether two time ranges are equal.
+    ///
+    /// Parameters:
+    /// - range1: The first time range to compare.
+    ///
+    /// - range2: The second time range to compare.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the two time ranges are equal; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
     ///
     /// This function returns a Boolean value that indicates whether the time ranges specified by the
@@ -130,8 +181,6 @@ impl CMTimeRange {
     /// parameters are identical.
     ///
     /// Returns: Returns true if the two time ranges are identical, false if they differ.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangeequal(_:_:)?language=objc)
     #[doc(alias = "CMTimeRangeEqual")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -143,6 +192,19 @@ impl CMTimeRange {
         ret != 0
     }
 
+    /// Returns a Boolean value that indicates whether a time range contains a time.
+    ///
+    /// Parameters:
+    /// - range: A time range.
+    ///
+    /// - time: A time value to test for in the time range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `range` contains the `time` value; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Indicates whether a time is contained within a time range.
     ///
     /// This function returns a Boolean value that indicates whether the time specified by the
@@ -157,8 +219,6 @@ impl CMTimeRange {
     /// parameter.
     ///
     /// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangecontainstime(_:time:)?language=objc)
     #[doc(alias = "CMTimeRangeContainsTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -170,6 +230,19 @@ impl CMTimeRange {
         ret != 0
     }
 
+    /// Returns a Boolean value that indicates whether a time range contains another time range.
+    ///
+    /// Parameters:
+    /// - range: The first time range to compare.
+    ///
+    /// - otherRange: The second time range to test for inclusion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `range1` contains `range2`; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Indicates whether a time range is contained within a time range.
     ///
     /// This function returns a Boolean value that indicates whether the time range specified by the
@@ -184,8 +257,6 @@ impl CMTimeRange {
     /// parameter.
     ///
     /// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangecontainstimerange(_:otherrange:)?language=objc)
     #[doc(alias = "CMTimeRangeContainsTimeRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -200,6 +271,17 @@ impl CMTimeRange {
         ret != 0
     }
 
+    /// Returns a time value that represents the end of a time range.
+    ///
+    /// Parameters:
+    /// - range: The time range from which to find the end of the time range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time structure.
+    ///
+    ///
     /// Returns a CMTime structure representing the end of a time range.
     ///
     /// Returns: A CMTime structure representing the end of the specified time range.
@@ -210,8 +292,6 @@ impl CMTimeRange {
     /// </i>
     /// parameter.
     /// CMTimeRangeContainsTime(range, CMTimeRangeGetEnd(range)) is always false.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangegetend(_:)?language=objc)
     #[doc(alias = "CMTimeRangeGetEnd")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -225,6 +305,33 @@ impl CMTimeRange {
 
 #[cfg(feature = "CMTime")]
 impl CMTime {
+    /// Translates a time through a mapping from two time ranges.
+    ///
+    /// Parameters:
+    /// - t: The time value to translate.
+    ///
+    /// - fromRange: The time range from which the function translates the time range.
+    ///
+    /// - toRange: The time range to which the function maps the time value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time structure that represents the translated time.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The start and end time of `fromRange` maps to the start and end time of `toRange` respectively. The function maps other times linearly using the formula:
+    ///
+    /// ```objc
+    /// result = (t-fromRange.start)*(toRange.duration/fromRange.duration)+toRange.start
+    /// ```
+    ///
+    /// If either `CMTimeRange` argument is empty, the function returns an invalid `CMTime`. If `t` doesn’t have the same epoch as `fromRange.start`, the function returns an invalid `CMTime`. If both `fromRange` and `toRange` have duration `kCMTimePositiveInfinity`, the function offsets `t` relative to the differences between their starts, but not scaled.
+    ///
+    ///
     /// Translates a time through a mapping from CMTimeRange to CMTimeRange.
     ///
     /// Returns: A CMTime structure representing the translated time.
@@ -236,8 +343,6 @@ impl CMTime {
     /// If t does not have the same epoch as fromRange.start, an invalid CMTime will be returned.
     /// If both fromRange and toRange have duration kCMTimePositiveInfinity,
     /// t will be offset relative to the differences between their starts, but not scaled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemaptimefromrangetorange(_:fromrange:torange:)?language=objc)
     #[doc(alias = "CMTimeMapTimeFromRangeToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -256,6 +361,25 @@ impl CMTime {
         unsafe { CMTimeMapTimeFromRangeToRange(self, from_range, to_range) }
     }
 
+    /// Returns the nearest time value inside the time range.
+    ///
+    /// Parameters:
+    /// - time: The time to clamp.
+    ///
+    /// - range: The time range to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time structure inside the time range.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function returns the times inside the range you specify unmodified. Times before the start and after the end time of the time range return the start and end time of the range. If the `CMTimeRange` argument is empty, this function returns an invalid `CMTime`. If the given `CMTime` is invalid, the function returns an invalid `CMTime`.
+    ///
+    ///
     /// For a given CMTime and CMTimeRange, returns the nearest CMTime inside that time range.
     ///
     /// Returns: A CMTime structure inside the given time range.
@@ -265,8 +389,6 @@ impl CMTime {
     /// the range respectively.
     /// If the CMTimeRange argument is empty, an invalid CMTime will be returned.
     /// If the given CMTime is invalid, the returned CMTime will be invalid,
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeclamptorange(_:range:)?language=objc)
     #[doc(alias = "CMTimeClampToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -277,6 +399,33 @@ impl CMTime {
         unsafe { CMTimeClampToRange(self, range) }
     }
 
+    /// Translates a duration through a mapping from two time ranges.
+    ///
+    /// Parameters:
+    /// - dur: The duration to translate.
+    ///
+    /// - fromRange: The time range from which the function translates the duration.
+    ///
+    /// - toRange: The time range to which the function maps the duration.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time structure that represents the translated duration.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function scales the duration in proportion to the ratio between the ranges’ durations:
+    ///
+    /// ```objc
+    /// result = dur*(toRange.duration/fromRange.duration)
+    /// ```
+    ///
+    /// If `dur` doesn’t have the epoch `0`, the function returns an invalid `CMTime`.
+    ///
+    ///
     /// Translates a duration through a mapping from CMTimeRange to CMTimeRange.
     ///
     /// Returns: A CMTime structure representing the translated duration.
@@ -284,8 +433,6 @@ impl CMTime {
     /// The duration will be scaled in proportion to the ratio between the ranges' durations:
     /// result = dur*(toRange.duration/fromRange.duration)
     /// If dur does not have the epoch zero, an invalid CMTime will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapdurationfromrangetorange(_:fromrange:torange:)?language=objc)
     #[doc(alias = "CMTimeMapDurationFromRangeToRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -304,14 +451,25 @@ impl CMTime {
         unsafe { CMTimeMapDurationFromRangeToRange(self, from_range, to_range) }
     }
 
+    /// Folds a time into a time range.
+    ///
+    /// Parameters:
+    /// - time: The time to fold.
+    ///
+    /// - foldRange: The time range into which to fold the time.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A time that represents the translated duration.
+    ///
+    ///
     /// Folds a time into the given range.  This can be used in looping time calculations.
     ///
     /// Returns: A CMTime structure representing the translated duration.
     ///
     /// Note that for certain types of looping, you may want to NOT fold times that are prior
     /// to the loop range.  That's up to the client.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimefoldintorange(_:foldrange:)?language=objc)
     #[doc(alias = "CMTimeFoldIntoRange")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -325,11 +483,22 @@ impl CMTime {
 
 #[cfg(feature = "CMTime")]
 impl CMTimeRange {
+    /// Creates a valid time range from a start and end time.
+    ///
+    /// Parameters:
+    /// - start: The start time of the range.
+    ///
+    /// - end: The end time of the range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid time range structure.
+    ///
+    ///
     /// Make a valid CMTimeRange with the given starting and ending times.
     ///
     /// Returns: The resulting CMTimeRange.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangefromtimetotime(start:end:)?language=objc)
     #[doc(alias = "CMTimeRangeFromTimeToTime")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -340,13 +509,32 @@ impl CMTimeRange {
         unsafe { CMTimeRangeFromTimeToTime(start, end) }
     }
 
+    /// Returns a dictionary representation of a time range.
+    ///
+    /// Parameters:
+    /// - range: The time range from which to create a dictionary.
+    ///
+    /// - allocator: The allocator with which to create a dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary that represents the time range.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is useful when putting `CMTimeRanges` in Core Foundation container types. Pass `kCFAllocatorDefault` to use the default allocator.
+    ///
+    /// For keys in the dictionary, see [Dictionary Keys](https://developer.apple.com/documentation/coremedia/cmtimerange-dictionary-keys).
+    ///
+    ///
     /// Returns a CFDictionary version of a CMTimeRange.
     ///
     /// This is useful when putting CMTimeRanges in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTimeRange.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangecopyasdictionary(_:allocator:)?language=objc)
     #[doc(alias = "CMTimeRangeCopyAsDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -364,6 +552,23 @@ impl CMTimeRange {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a time range from a dictionary representation of its fields.
+    ///
+    /// Parameters:
+    /// - dictionaryRepresentation: A dictionary from which to create the time range.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid time range structure, or an invalid time range if `dict` doesn’t have the necessary values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is useful when getting Core Media time ranges from Core Foundation container types. For keys in the dictionary, see [Dictionary Keys](https://developer.apple.com/documentation/coremedia/cmtimerange-dictionary-keys).
+    ///
+    ///
     /// Reconstitutes a CMTimeRange struct from a CFDictionary previously created by CMTimeRangeCopyAsDictionary.
     ///
     /// This is useful when getting CMTimeRanges from CF container types.  If the CFDictionary does not
@@ -375,8 +580,6 @@ impl CMTimeRange {
     ///
     /// - `dictionary_representation` generic must be of the correct type.
     /// - `dictionary_representation` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangemakefromdictionary(_:)?language=objc)
     #[doc(alias = "CMTimeRangeMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -391,29 +594,44 @@ impl CMTimeRange {
 }
 
 extern "C" {
+    /// The key for the start field of a time range.
     /// CFDictionary key for start field of a CMTimeRange (CMTime)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangestartkey?language=objc)
     pub static kCMTimeRangeStartKey: &'static CFString;
 }
 
 extern "C" {
+    /// The key for the timescale of a time range.
     /// CFDictionary key for timescale field of a CMTimeRange (CMTime)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangedurationkey?language=objc)
     pub static kCMTimeRangeDurationKey: &'static CFString;
 }
 
 #[cfg(feature = "CMTime")]
 impl CMTimeRange {
+    /// Returns a string with a description of a time range.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator the function uses when allocating memory for the description.
+    ///
+    /// - range: The time range to describe.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string description.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this from within `CFShow` on an object that contains `CMTimeRange` fields. It is also useful from other client debugging code.  The caller owns the `CFString` this function returns and is responsible for releasing it. Pass `kCFAllocatorDefault` to use the default allocator.
+    ///
+    ///
     /// Creates a CFString with a description of a CMTimeRange (just like CFCopyDescription).
     ///
     /// This is used from within CFShow on an object that contains CMTimeRange fields. It is
     /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangecopydescription(allocator:range:)?language=objc)
     #[doc(alias = "CMTimeRangeCopyDescription")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -431,11 +649,20 @@ impl CMTimeRange {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Prints a description of the time range to standard error.
+    ///
+    /// Parameters:
+    /// - range: The time range to print.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is most useful from within LLDB.
+    ///
+    ///
     /// Prints a description of the CMTimeRange (just like CFShow).
     ///
     /// This is most useful from within gdb.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerangeshow(_:)?language=objc)
     #[doc(alias = "CMTimeRangeShow")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -447,6 +674,7 @@ impl CMTimeRange {
     }
 }
 
+/// A structure that maps a segment of a source time range to a target time range.
 /// A CMTimeMapping specifies the mapping of a segment of one time line (called "source") into another time line (called "target").
 ///
 /// When used for movie edit lists, the source time line is the media and the target time line is the track/movie.
@@ -459,8 +687,6 @@ impl CMTimeRange {
 /// The time range on the target time line.
 /// If target.duration and source.duration are different, then the source segment should
 /// be played at rate source.duration/target.duration to fit.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapping?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -481,20 +707,37 @@ unsafe impl RefEncode for CMTimeMapping {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapping/invalid?language=objc)
+    /// An invalid time mapping.
     #[cfg(feature = "CMTime")]
     pub static kCMTimeMappingInvalid: CMTimeMapping;
 }
 
 #[cfg(feature = "CMTime")]
 impl CMTimeMapping {
+    /// Creates a time mapping with a source and target time range.
+    ///
+    /// Parameters:
+    /// - source: A time range on the source timeline.
+    ///
+    /// - target: A time range on the target timeline.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new time mapping.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The source and target parameters must have durations whose epoch is `0`, otherwise the system returns an invalid time mapping.
+    ///
+    ///
     /// Make a valid CMTimeMapping with source and target.
     ///
     /// Returns: The resulting CMTimeMapping.
     ///
     /// The source and target parameters must have durations whose epoch is 0; otherwise an invalid time mapping will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemappingmake(source:target:)?language=objc)
     #[doc(alias = "CMTimeMappingMake")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -505,13 +748,28 @@ impl CMTimeMapping {
         unsafe { CMTimeMappingMake(source, target) }
     }
 
+    /// Creates a valid time mapping with an empty source.
+    ///
+    /// Parameters:
+    /// - target: A time range on the target timeline.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new time mapping.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The target time range must have a duration whose epoch is `0`, otherwise the system returns an invalid time mapping.
+    ///
+    ///
     /// Make a valid CMTimeMapping with an empty source.
     ///
     /// Returns: The resulting CMTimeMapping.
     ///
     /// The target parameter must have a duration whose epoch is 0; otherwise an invalid time mapping will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemappingmakeempty(target:)?language=objc)
     #[doc(alias = "CMTimeMappingMakeEmpty")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -522,13 +780,24 @@ impl CMTimeMapping {
         unsafe { CMTimeMappingMakeEmpty(target) }
     }
 
+    /// Returns a dictionary representation of a time mapping.
+    ///
+    /// Parameters:
+    /// - mapping: The time mapping for which to create a dictionary representation.
+    ///
+    /// - allocator: An allocator to use to create a dictionary. Pass `kCFAllocatorDefault` to use the default allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary representation of a time mapping.
+    ///
+    ///
     /// Returns a CFDictionary version of a CMTimeMapping.
     ///
     /// This is useful when putting CMTimeMappings in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTimeMapping.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemappingcopyasdictionary(_:allocator:)?language=objc)
     #[doc(alias = "CMTimeMappingCopyAsDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -546,6 +815,23 @@ impl CMTimeMapping {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a time mapping from a dictionary representation.
+    ///
+    /// Parameters:
+    /// - dictionaryRepresentation: A dictionary representation of a time mapping that you previously created by calling the [`CMTimeMappingCopyAsDictionary`](https://developer.apple.com/documentation/coremedia/cmtimemappingcopyasdictionary(_:allocator:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new time mapping.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the dictionary you provide doesn’t have the requisite keyed values, the system returns an invalid time mapping.
+    ///
+    ///
     /// Reconstitutes a CMTimeMapping struct from a CFDictionary previously created by CMTimeMappingCopyAsDictionary.
     ///
     /// This is useful when getting CMTimeMappings from CF container types.  If the CFDictionary does not
@@ -557,8 +843,6 @@ impl CMTimeMapping {
     ///
     /// - `dictionary_representation` generic must be of the correct type.
     /// - `dictionary_representation` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemappingmakefromdictionary(_:)?language=objc)
     #[doc(alias = "CMTimeMappingMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -573,29 +857,38 @@ impl CMTimeMapping {
 }
 
 extern "C" {
+    /// A dictionary key for a source time range.
     /// CFDictionary key for source field of a CMTimeMapping (CMTimeRange)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingsourcekey?language=objc)
     pub static kCMTimeMappingSourceKey: &'static CFString;
 }
 
 extern "C" {
+    /// A dictionary key for a target time range.
     /// CFDictionary key for target field of a CMTimeMapping (CMTimeRange)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingtargetkey?language=objc)
     pub static kCMTimeMappingTargetKey: &'static CFString;
 }
 
 #[cfg(feature = "CMTime")]
 impl CMTimeMapping {
+    /// Copies a string description of a time mapping.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator to use to create a dictionary. Pass `kCFAllocatorDefault` to use the default allocator.
+    ///
+    /// - mapping: The time mapping from which to copy a description.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string description of a time mapping.
+    ///
+    ///
     /// Creates a CFString with a description of a CMTimeMapping (just like CFCopyDescription).
     ///
     /// This is used from within CFShow on an object that contains CMTimeMapping fields. It is
     /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemappingcopydescription(allocator:mapping:)?language=objc)
     #[doc(alias = "CMTimeMappingCopyDescription")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -613,11 +906,20 @@ impl CMTimeMapping {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Prints a description of a time mapping to standard output.
+    ///
+    /// Parameters:
+    /// - mapping: The time mapping to show.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You typically use this function for debugging purposes.
+    ///
+    ///
     /// Prints a description of a CMTimeMapping (just like CFShow).
     ///
     /// This is most useful from within gdb.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemappingshow(_:)?language=objc)
     #[doc(alias = "CMTimeMappingShow")]
     #[cfg(feature = "CMTime")]
     #[inline]

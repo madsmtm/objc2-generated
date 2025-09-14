@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmultipoint?language=objc)
+    /// An abstract class that defines the common behavior that open and closed polygon overlays share.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class directly. Instead, create instances of the [`MKPolygon`](https://developer.apple.com/documentation/mapkit/mkpolygon) or [`MKPolyline`](https://developer.apple.com/documentation/mapkit/mkpolyline) classes. However, you can use the methods and property of this class to access information about the specific points associated with the line or polygon.
+    ///
+    ///
     #[unsafe(super(MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKShape")]

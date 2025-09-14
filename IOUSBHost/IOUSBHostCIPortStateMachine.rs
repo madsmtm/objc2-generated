@@ -14,8 +14,6 @@ extern_class!(
     /// structures to update state and generate properly formatted command responses.
     ///
     /// IOUSBHostCIPortStateMachine does not provide any concurrency protection, the client is responsible for necessary serialization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOUSBHostCIPortStateMachine;

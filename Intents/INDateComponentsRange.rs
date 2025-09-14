@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indatecomponentsrange?language=objc)
+    /// A span of time.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INDateComponentsRange`](https://developer.apple.com/documentation/intents/indatecomponentsrange) object to specify date- or time-related information when responding to an intent. For example, a ride service might use this object to specify possible pickup times for the user.
+    ///
+    /// You create date components range objects when providing a response that includes a time span. Use this object to specify a range of times to include in the corresponding response. When displaying the date range information to the user, Siri or Maps formats the information appropriately.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INDateComponentsRange;

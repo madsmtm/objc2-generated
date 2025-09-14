@@ -8,12 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A builder object that incrementally constructs a workout.
+    ///
+    /// ## Overview
+    ///
+    /// Incrementally collect samples and events associated with a workout. When the workout ends, call [`finishWorkoutWithCompletion:`](https://developer.apple.com/documentation/healthkit/hkworkoutbuilder/finishworkout(completion:)) to create an [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) sample and save it to the HealthKit store.
+    ///
+    /// For watchOS, use an [`HKWorkoutSession`](https://developer.apple.com/documentation/healthkit/hkworkoutsession) and an [`HKLiveWorkoutBuilder`](https://developer.apple.com/documentation/healthkit/hkliveworkoutbuilder) instead.
+    ///
+    ///
     /// An HKWorkoutBuilder is used to incrementally create new workouts in the HealthKit database. Samples,
     /// events, and metadata may be added to a builder either during a live workout session or to create a
     /// workout that occurred in the past. Calling finishWorkoutWithCompletion: will create a new workout
     /// with samples, events, and metadata that have been provided.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutbuilder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutBuilder;

@@ -6,10 +6,9 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A set of requirements that protect a right.
     /// Builds requirements that can be used for protecting a
     /// `LARight`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laauthenticationrequirement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAAuthenticationRequirement;
@@ -84,9 +83,8 @@ impl LAAuthenticationRequirement {
 }
 
 extern_class!(
+    /// A set of requirements to fall back on if biometrics aren’t present.
     /// Builds authentication requirements that can be used as fallbacks for  biometric authentication
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometryfallbackrequirement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LABiometryFallbackRequirement;

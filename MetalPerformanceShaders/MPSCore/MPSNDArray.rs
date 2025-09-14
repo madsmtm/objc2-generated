@@ -13,8 +13,6 @@ extern_class!(
     ///
     /// A MPSNDArrayDescriptor object describes a attributes of MPSNDArray and is used to
     /// create one (see MPSNDArray discussion below)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraydescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArrayDescriptor;
@@ -265,7 +263,6 @@ impl MPSNDArrayDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayallocator?language=objc)
     pub unsafe trait MPSNDArrayAllocator:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
@@ -332,8 +329,6 @@ extern_class!(
     /// can handle 0th dimension transposes. Other filters may insert a physical repacking operation. If you wish
     /// to force a physical repacking use MPSAliasingStrategyShallNotAlias. To avoid confusion with aliased NDArrays
     /// the parent property is provided.  MPSNDArrays that alias share a common ancestor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNDArray;
@@ -786,8 +781,6 @@ extern_class!(
     /// are not read or written to by the CPU or needed in other command buffers should be
     /// MPSTemporaryNDArray. This will greatly reduce time spent allocating new memory, reduce memory usage
     /// and help improve memory locality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporaryndarray?language=objc)
     #[unsafe(super(MPSNDArray, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSTemporaryNDArray;

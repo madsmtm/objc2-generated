@@ -14,6 +14,13 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// A reference to a decompression session.
+///
+/// ## Overview
+///
+/// A decompression session supports the decompression of a sequence of video frames. The session is a reference-counted Core Foundation (CF) object.
+///
+///
 /// A reference to a Video Toolbox Decompression Session.
 ///
 /// A decompression session supports the decompression of a sequence of video frames.
@@ -23,8 +30,6 @@ use crate::*;
 /// then to decode frames, call VTDecompressionSessionDecodeFrame.
 /// When you are done with the session, you should call VTDecompressionSessionInvalidate
 /// to tear it down and CFRelease to release your object reference.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsession?language=objc)
 #[doc(alias = "VTDecompressionSessionRef")]
 #[repr(C)]
 pub struct VTDecompressionSession {
@@ -40,6 +45,43 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTDecompressionSession"> for VTDecompressionSession {}
 );
 
+/// The prototype for the callback invoked when frame decompression is complete.
+///
+/// Parameters:
+/// - decompressionOutputRefCon: The callback’s reference value, copied from the `decompressionOutputRefCon` field of the [`VTDecompressionOutputCallbackRecord`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputcallbackrecord) structure.
+///
+/// - sourceFrameRefCon: The frame’s reference value, copied from the `sourceFrameRefCon` argument to `VTDecompressionSessionDecodeFrame`.
+///
+/// - status: `noErr` if decompression was successful; an error code if decompression was not successful.
+///
+/// - infoFlags: Information about the decode operation.
+///
+/// The [`kVTDecodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous) bit may be set if the decode ran asynchronously.
+///
+/// The [`kVTDecodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped) bit may be set if the frame was dropped.
+///
+/// If the [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) bit is set, it is safe for the client to modify the imageBuffer.
+///
+/// - imageBuffer: The decompressed frame, if decompression was successful; otherwise, `NULL`.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The video decompressor may still be referencing the `imageBuffer` returned in this callback if the [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) flag is not set.  Unless this flag is set, it is not safe to modify the returned `imageBuffer`.
+///
+///
+///
+/// </div>
+/// - presentationTimeStamp: The frame’s presentation timestamp, which is determined by calling [`CMSampleBufferGetOutputPresentationTimeStamp`](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputpresentationtimestamp(_:)); otherwise, `kCMTimeInvalid` if the timestamp is not available.
+///
+/// - presentationDuration: The frame’s presentation duration, which is determined by calling [`CMSampleBufferGetOutputDuration`](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputduration(_:)); otherwise, `kCMTimeInvalid` if the timestamp is not available.
+///
+///
+/// ## Discussion
+///
+/// When you create a decompression session, you pass in a callback function to be called for decompressed frames.  This function is not necessarily called in display order.
+///
+///
 /// Prototype for callback invoked when frame decompression is complete.
 ///
 /// When you create a decompression session, you pass in a callback function to be called
@@ -68,8 +110,6 @@ cf_objc2_type!(
 ///
 /// Parameter `presentationDuration`: The frame's presentation duration, which will be determined by calling
 /// CMSampleBufferGetOutputDuration; kCMTimeInvalid if not available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputcallback?language=objc)
 #[cfg(all(
     feature = "VTErrors",
     feature = "objc2-core-media",
@@ -87,7 +127,6 @@ pub type VTDecompressionOutputCallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputcallbackrecord?language=objc)
 #[cfg(all(
     feature = "VTErrors",
     feature = "objc2-core-media",
@@ -130,6 +169,27 @@ unsafe impl RefEncode for VTDecompressionOutputCallbackRecord {
 impl VTDecompressionSession {
     /// Creates a session for decompressing video frames.
     ///
+    /// Parameters:
+    /// - allocator: An allocator for the session. Pass `NULL` to use the default allocator.
+    ///
+    /// - videoFormatDescription: The description of the source video frames.
+    ///
+    /// - videoDecoderSpecification: The particular video decoder that must be used. Pass `NULL` to let VideoToolbox choose a decoder.
+    ///
+    /// - destinationImageBufferAttributes: Requirements for the emitted pixel buffers. Pass `NULL` to set no requirements.
+    ///
+    /// - outputCallback: The callback to be called with decompressed frames. Pass `NULL` only if you’ll be calling [`VTDecompressionSessionDecodeFrameWithOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:infoflagsout:outputhandler:)) for decoding frames.
+    ///
+    /// - decompressionSessionOut: A pointer to a variable to receive the new decompression session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Decompressed frames are emitted through calls to `outputCallback`.
+    ///
+    ///
+    /// Creates a session for decompressing video frames.
+    ///
     /// Decompressed frames will be emitted through calls to outputCallback.
     ///
     /// Parameter `allocator`: An allocator for the session.  Pass NULL to use the default allocator.
@@ -155,8 +215,6 @@ impl VTDecompressionSession {
     /// - `destination_image_buffer_attributes` generic must be of the correct type.
     /// - `output_callback` must be a valid pointer or null.
     /// - `decompression_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncreate(allocator:formatdescription:decoderspecification:imagebufferattributes:outputcallback:decompressionsessionout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionCreate")]
     #[cfg(all(
         feature = "VTErrors",
@@ -196,13 +254,30 @@ impl VTDecompressionSession {
 
     /// Tears down a decompression session.
     ///
+    /// Parameters:
+    /// - session: The decompression session to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you finish with a decompression session you created, call this function to tear it down, and then [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release your object reference.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A decompression session is automatically invalidated when its retain count reaches zero, but because sessions may be retained by multiple parties, it can be hard to predict when this will happen. Calling `VTDecompressionSessionInvalidate` ensures a deterministic, orderly teardown.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Tears down a decompression session.
+    ///
     /// When you are done with a decompression session you created, call VTDecompressionSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
     /// When a decompression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTDecompressionSessionInvalidate ensures a deterministic, orderly teardown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTDecompressionSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -214,9 +289,14 @@ impl VTDecompressionSession {
 }
 
 unsafe impl ConcreteType for VTDecompressionSession {
-    /// Returns the CFTypeID for decompression sessions.
+    /// Returns the Core Foundation type identifier for the decompression session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiongettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The `CFTypeID` of the decompression session object.
+    ///
+    ///
+    /// Returns the CFTypeID for decompression sessions.
     #[doc(alias = "VTDecompressionSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -228,6 +308,37 @@ unsafe impl ConcreteType for VTDecompressionSession {
 }
 
 impl VTDecompressionSession {
+    /// Decompresses a video frame.
+    ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - sampleBuffer: A [`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) object containing one or more video frames.
+    ///
+    /// - decodeFlags: A bitfield of directives to the decompression session and decoder.
+    ///
+    /// The [`kVTDecodeFrame_EnableAsynchronousDecompression`](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enableasynchronousdecompression) bit indicates whether the video decoder may decompress the frame asynchronously.
+    ///
+    /// The [`kVTDecodeFrame_EnableTemporalProcessing`](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enabletemporalprocessing) bit indicates whether the decoder may delay calls to the output callback so as to enable processing in temporal (display) order.
+    ///
+    /// If both flags are clear, the decompression completes and your output callback function will be called before `VTDecompressionSessionDecodeFrame` returns. If either flag is set, `VTDecompressionSessionDecodeFrame` may return before the output callback function is called.
+    ///
+    /// - sourceFrameRefCon: Your reference value for the frame.  Note that if `sampleBuffer` contains multiple frames, the output callback function is called multiple times with this `sourceFrameRefCon` value.
+    ///
+    /// - infoFlagsOut: A [`VTEncodeInfoFlags`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags) pointer to receive information about the decode operation.
+    ///
+    /// The [`kVTDecodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous) bit may be set if the decode is (or was) running asynchronously.
+    ///
+    /// The [`kVTDecodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped) bit may be set if the frame was dropped (synchronously).
+    ///
+    /// Pass `NULL` if you do not want to receive this information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
     /// Decompresses a video frame.
     ///
     /// If an error is returned from this function, there will be no callback.  Otherwise
@@ -260,8 +371,6 @@ impl VTDecompressionSession {
     ///
     /// - `source_frame_ref_con` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:framerefcon:infoflagsout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -293,6 +402,39 @@ impl VTDecompressionSession {
     }
 }
 
+/// The prototype for the block invoked when frame decompression is complete.
+///
+/// Parameters:
+/// - status: `noErr` if decompression was successful; an error code if decompression was not successful.
+///
+/// - infoFlags: Information about the decode operation.
+///
+/// The [`kVTDecodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous) bit may be set if the decode ran asynchronously.
+///
+/// The [`kVTDecodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped) bit may be set if the frame was dropped.
+///
+/// If the [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) bit is set, it is safe for the client to modify the imageBuffer.
+///
+/// - imageBuffer: The decompressed frame, if decompression was successful; otherwise, `NULL`.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The video decompressor may still be referencing the `imageBuffer` returned in this callback if the [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) flag is not set.  Unless this flag is set, it is not safe to modify the returned `imageBuffer`.
+///
+///
+///
+/// </div>
+/// - presentationTimeStamp: The frame’s presentation timestamp; otherwise, `kCMTimeInvalid` if the timestamp is not available.
+///
+/// - presentationDuration: The frame’s presentation duration; kCMTimeInvalid if the timestamp is not available.
+///
+///
+/// ## Discussion
+///
+/// When you decode a frame, you pass in a callback block to be called for that decompressed frame.  This block is not necessarily called in display order.
+///
+///
 /// Prototype for block invoked when frame decompression is complete.
 ///
 /// When you decode a frame, you pass in a callback block to be called
@@ -315,8 +457,6 @@ impl VTDecompressionSession {
 /// Parameter `presentationTimeStamp`: The frame's presentation timestamp; kCMTimeInvalid if not available.
 ///
 /// Parameter `presentationDuration`: The frame's presentation duration; kCMTimeInvalid if not available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputhandler?language=objc)
 #[cfg(all(
     feature = "VTErrors",
     feature = "block2",
@@ -327,6 +467,43 @@ pub type VTDecompressionOutputHandler =
     *mut block2::DynBlock<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
 
 impl VTDecompressionSession {
+    /// Decompresses a video frame and invokes the output callback when the decompression completes.
+    ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - sampleBuffer: A [`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) object containing one or more video frames.
+    ///
+    /// - decodeFlags: A bitfield of directives to the decompression session and decoder.
+    ///
+    /// The [`kVTDecodeFrame_EnableAsynchronousDecompression`](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enableasynchronousdecompression) bit indicates whether the video decoder may decompress the frame asynchronously.
+    ///
+    /// The [`kVTDecodeFrame_EnableTemporalProcessing`](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enabletemporalprocessing) bit indicates whether the decoder may delay calls to the output callback so as to enable processing in temporal (display) order.
+    ///
+    /// If both flags are clear, the decompression shall complete and your output callback function will be called before `VTDecompressionSessionDecodeFrame` returns. If either flag is set, `VTDecompressionSessionDecodeFrame` may return before the output callback function is called.
+    ///
+    /// - infoFlagsOut: A [`VTEncodeInfoFlags`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags) pointer to receive information about the decode operation.
+    ///
+    /// The [`kVTDecodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous) bit may be set if the decode is (or was) running asynchronously.
+    ///
+    /// The [`kVTDecodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped) bit may be set if the frame was dropped (synchronously).
+    ///
+    /// Pass `NULL` if you do not want to receive this information.
+    ///
+    /// - outputHandler: The block to be called when decoding the frame is completed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function cannot be called with a session created with a [`VTDecompressionOutputCallbackRecord`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputcallbackrecord).
+    ///
+    ///
     /// Decompresses a video frame.
     ///
     /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord.
@@ -359,8 +536,6 @@ impl VTDecompressionSession {
     ///
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:infoflagsout:outputhandler:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -398,13 +573,36 @@ impl VTDecompressionSession {
 
     /// Directs the decompression session to emit all delayed frames.
     ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the decompression session may not delay frames indefinitely;  frames may only be indefinitely delayed if the client opts in via [`kVTDecodeFrame_EnableTemporalProcessing`](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enabletemporalprocessing).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function may return before all delayed frames are emitted.  To wait for them, call [`VTDecompressionSessionWaitForAsynchronousFrames`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionwaitforasynchronousframes(_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Directs the decompression session to emit all delayed frames.
+    ///
     /// By default, the decompression session may not delay frames indefinitely;
     /// frames may only be indefinitely delayed if the client opts in via
     /// kVTDecodeFrame_EnableTemporalProcessing.
     /// IMPORTANT NOTE: This function may return before all delayed frames are emitted.
     /// To wait for them, call VTDecompressionSessionWaitForAsynchronousFrames instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionfinishdelayedframes(_:)?language=objc)
     #[doc(alias = "VTDecompressionSessionFinishDelayedFrames")]
     #[inline]
     pub unsafe fn finish_delayed_frames(&self) -> OSStatus {
@@ -418,11 +616,28 @@ impl VTDecompressionSession {
 
     /// Indicates whether the session can decode frames with the given format description.
     ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - newFormatDesc: The [`CMFormatDescriptionRef`](https://developer.apple.com/documentation/coremedia/cmformatdescription) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the decompression session accepts the format description; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some video decoders can accommodate minor changes in format without needing to be completely reset in a new session.  Use this function to test whether a format change is sufficiently minor.
+    ///
+    ///
+    /// Indicates whether the session can decode frames with the given format description.
+    ///
     /// Some video decoders are able to accommodate minor changes in format without needing to be
     /// completely reset in a new session.  This function can be used to test whether a format change
     /// is sufficiently minor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncanacceptformatdescription(_:formatdescription:)?language=objc)
     #[doc(alias = "VTDecompressionSessionCanAcceptFormatDescription")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -443,10 +658,25 @@ impl VTDecompressionSession {
 
     /// Waits for any and all outstanding asynchronous and delayed frames to complete, then returns.
     ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function automatically calls [`VTDecompressionSessionFinishDelayedFrames`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionfinishdelayedframes(_:)),  so clients don’t have to call both.
+    ///
+    ///
+    /// Waits for any and all outstanding asynchronous and delayed frames to complete, then returns.
+    ///
     /// This function automatically calls VTDecompressionSessionFinishDelayedFrames,
     /// so clients don't have to call both.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionwaitforasynchronousframes(_:)?language=objc)
     #[doc(alias = "VTDecompressionSessionWaitForAsynchronousFrames")]
     #[inline]
     pub unsafe fn wait_for_asynchronous_frames(&self) -> OSStatus {
@@ -460,6 +690,25 @@ impl VTDecompressionSession {
 
     /// Copies a black pixel buffer from the decompression session.
     ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - pixelBufferOut: A pointer to receive the copied pixel buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The pixel buffer is in the same format as the decompression session.
+    ///
+    ///
+    /// Copies a black pixel buffer from the decompression session.
+    ///
     /// The pixel buffer is in the same format that the session is decompressing to.
     ///
     /// Parameter `session`: The decompression session.
@@ -469,8 +718,6 @@ impl VTDecompressionSession {
     /// # Safety
     ///
     /// `pixel_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncopyblackpixelbuffer(_:pixelbufferout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionCopyBlackPixelBuffer")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -488,6 +735,17 @@ impl VTDecompressionSession {
     }
 }
 
+/// Returns a Boolean value that indicates whether the current system supports hardware decode for the specified codec.
+///
+/// Parameters:
+/// - codecType: The codec for which to test for hardware decode support.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the current system supports hardware decode; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 /// Indicates whether the current system supports hardware decode for a given codec
 ///
 /// This routine reports whether the current system supports hardware decode.  Using
@@ -495,8 +753,6 @@ impl VTDecompressionSession {
 /// favoring alternate encodings when hardware decode is not supported.
 /// This call returning true does not guarantee that hardware decode resources will be
 /// available at all times.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtishardwaredecodesupported(_:)?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn VTIsHardwareDecodeSupported(codec_type: CMVideoCodecType) -> bool {
@@ -507,11 +763,22 @@ pub unsafe extern "C-unwind" fn VTIsHardwareDecodeSupported(codec_type: CMVideoC
     ret != 0
 }
 
+/// Returns a Boolean value that indicates whether the system supports MV-HEVC decoding.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the system supports MV-HEVC decoding; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// A return value of [`true`](https://developer.apple.com/documentation/swift/true) doesn’t guarantee that decoding resources are available at all times.
+///
+///
 /// Indicates whether the current system supports stereo MV-HEVC decode.
 ///
 /// This call returning true does not guarantee that decode resources will be available at all times.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtisstereomvhevcdecodesupported()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCDecodeSupported() -> bool {
     extern "C-unwind" {
@@ -521,6 +788,43 @@ pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCDecodeSupported() -> bool {
     ret != 0
 }
 
+/// A callback that the system invokes when multi-image frame decompression completes.
+///
+/// Parameters:
+/// - decompressionOutputMultiImageRefCon: The callback’s reference value, copied from the `outputMultiImageRefcon` argument passed to [`VTDecompressionSessionSetMultiImageCallback`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionsetmultiimagecallback).
+///
+/// - sourceFrameRefCon: The frame’s reference value, copied from the `sourceFrameRefCon` argument passed to [`VTDecompressionSessionDecodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:framerefcon:infoflagsout:)).
+///
+/// - status: A value of `noErr` if decompression succeeds or an error code if decompression fails.
+///
+/// - infoFlags: Contains information about the decode operation:
+///
+/// - An [`kVTDecodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous) flag indicates the decode ran asynchronously.
+///
+/// - A [`kVTDecodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped) flag indicates the session dropped a frame.
+///
+/// - An [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) flag indicates that you can safely modify the image buffer.
+///
+/// - taggedBufferGroup: Contains the decompressed frame’s multiple images, if decompression was successful; otherwise, `NULL`.
+///
+/// - presentationTimeStamp: The frame’s presentation timestamp, which the system determines by calling [`CMSampleBufferGetOutputPresentationTimeStamp`](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputpresentationtimestamp(_:)); otherwise, [`kCMTimeInvalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid) if the timestamp isn’t available.
+///
+/// - presentationDuration: The frame’s presentation duration, which the system determines by calling [`CMSampleBufferGetOutputDuration`](https://developer.apple.com/documentation/coremedia/cmsamplebuffergetoutputduration(_:)); otherwise, [`kCMTimeInvalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid) if the duration isn’t available.
+///
+///
+/// ## Discussion
+///
+/// The system doesn’t guarantee that it calls this function in display order.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The video decompressor may still reference the pixel buffers returned in this callback if the [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) flag isn’t set. It’s not safe to modify the image buffer in this state.
+///
+///
+///
+/// </div>
+///
 /// Prototype for callback invoked when multi-image frame decompression is complete.
 ///
 /// When you create a decompression session, you pass in a callback function to be called
@@ -549,8 +853,6 @@ pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCDecodeSupported() -> bool {
 ///
 /// Parameter `presentationDuration`: The frame's presentation duration, which will be determined by calling
 /// CMSampleBufferGetOutputDuration; kCMTimeInvalid if not available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionoutputmultiimagecallback?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
 pub type VTDecompressionOutputMultiImageCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -565,6 +867,29 @@ pub type VTDecompressionOutputMultiImageCallback = Option<
 >;
 
 impl VTDecompressionSession {
+    /// Provides a callback capable of receiving multiple images for individual frame decoding requests.
+    ///
+    /// Parameters:
+    /// - decompressionSession: The decompression session.
+    ///
+    /// - outputMultiImageCallback: A callback to handle multi-image output.
+    ///
+    /// - outputMultiImageRefcon: Your reference value for the session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In multi-image decompression, a single video sample contains a single frame (with one PTS) that the system decodes to produce multiple images.
+    ///
+    /// The system uses the multi-image callback when the video decoder outputs [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) objects, or when frame decoding fails and returns a nonzero status. The original single-image callback is only used in the case where the video decoder outputs a [`CVImageBuffer`](https://developer.apple.com/documentation/corevideo/cvimagebuffer) instead of a [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref).
+    ///
+    ///
     /// Provides a callback capable of receiving multiple images for individual DecodeFrame requests.
     ///
     /// The outputMultiImageCallback will be used when the video decoder outputs CMTaggedBufferGroups.
@@ -576,8 +901,6 @@ impl VTDecompressionSession {
     ///
     /// - `output_multi_image_callback` must be implemented correctly.
     /// - `output_multi_image_refcon` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionsetmultiimagecallback?language=objc)
     #[doc(alias = "VTDecompressionSessionSetMultiImageCallback")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -603,6 +926,41 @@ impl VTDecompressionSession {
     }
 }
 
+/// A type alias for callback that the system invokes when it finishes decompressing a frame.
+///
+/// Parameters:
+/// - status: A value of `noErr` if decompression succeeds; otherwise, an error code if decompression fails.
+///
+/// - infoFlags: A [`VTEncodeInfoFlags`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags) pointer to receive information about the decode operation.
+///
+/// The [`kVTDecodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/asynchronous) bit may be set if the decode is (or was) running asynchronously.
+///
+/// The [`kVTDecodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/framedropped) bit may be set if the frame was dropped (synchronously).
+///
+/// Pass `NULL` if you don’t want to receive this information.
+///
+/// - imageBuffer: The decompressed pixel buffer.
+///
+/// - taggedBufferGroup: A [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) that contains the multiple images for the decompressed frame, if the decompression succeeds; otherwise, `NULL`.
+///
+/// - presentationTimeStamp: The frame’s presentation timestamp; otherwise, [`kCMTimeInvalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid) if the value isn’t available.
+///
+/// - presentationDuration: The frame’s presentation duration; otherwise, [`kCMTimeInvalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid) if the value isn’t available.
+///
+///
+/// ## Discussion
+///
+/// Pass a callback of this type to [`VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframewithmultiimagecapableoutputhandler) to handle the decompressed frame output. The system doesn’t necessarily invoke the callback in display order. If the multi-image decompression call returns an error, the system doesn’t call this block.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The video decompressor may still reference the pixel buffers that this callback provides if the [`kVTDecodeInfo_ImageBufferModifiable`](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags/imagebuffermodifiable) flag isn’t set. It’s not safe to modify the returned pixel buffers in this state.
+///
+///
+///
+/// </div>
+///
 /// Prototype for block invoked when frame decompression is complete.
 ///
 /// When you decode a frame, you pass in a callback block to be called
@@ -632,8 +990,6 @@ impl VTDecompressionSession {
 /// Parameter `presentationTimeStamp`: The frame's presentation timestamp; kCMTimeInvalid if not available.
 ///
 /// Parameter `presentationDuration`: The frame's presentation duration; kCMTimeInvalid if not available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionmultiimagecapableoutputhandler?language=objc)
 #[cfg(all(
     feature = "VTErrors",
     feature = "block2",
@@ -652,6 +1008,19 @@ pub type VTDecompressionMultiImageCapableOutputHandler = *mut block2::DynBlock<
 >;
 
 impl VTDecompressionSession {
+    /// Decompresses a multi-image frame and calls the specified output handler upon completion.
+    ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - sampleBuffer: A CMSampleBuffer containing one or more video frames.
+    ///
+    /// - decodeFlags: A bitfield of directives to the decompression session and decoder. The kVTDecodeFrame_EnableAsynchronousDecompression bit indicates whether the video decoder may decompress the frame asynchronously. The kVTDecodeFrame_EnableTemporalProcessing bit indicates whether the decoder may delay calls to the output callback so as to enable processing in temporal (display) order. If both flags are clear, the decompression shall complete and your output callback function will be called before VTDecompressionSessionDecodeFrame returns. If either flag is set, VTDecompressionSessionDecodeFrame may return before the output callback function is called.
+    ///
+    /// - infoFlagsOut: Points to a VTDecodeInfoFlags to receive information about the decode operation. The kVTDecodeInfo_Asynchronous bit may be set if the decode is (or was) running asynchronously. The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously). Pass NULL if you do not want to receive this information.
+    ///
+    /// - multiImageCapableOutputHandler: A block for the system to call when it finished decoding the frame. If the [`VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframewithmultiimagecapableoutputhandler) call returns an error, the block isn’t called.
+    ///
     /// Decompresses a video frame.
     ///
     /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord.
@@ -685,8 +1054,6 @@ impl VTDecompressionSession {
     ///
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `multi_image_capable_output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframewithmultiimagecapableoutputhandler?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -722,6 +1089,28 @@ impl VTDecompressionSession {
         }
     }
 
+    ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - sampleBuffer: A CMSampleBuffer containing one or more video frames.
+    ///
+    /// - decodeFlags: A bitfield of directives to the decompression session and decoder. The kVTDecodeFrame_EnableAsynchronousDecompression bit indicates whether the video decoder may decompress the frame asynchronously. The kVTDecodeFrame_EnableTemporalProcessing bit indicates whether the decoder may delay calls to the output callback so as to enable processing in temporal (display) order. If both flags are clear, the decompression shall complete and your output callback function will be called before VTDecompressionSessionDecodeFrameWithOptions returns. If either flag is set, VTDecompressionSessionDecodeFrameWithOptions may return before the output callback function is called.
+    ///
+    /// - frameOptions: Contains key/value pairs specifying additional options for decoding this frame. Only keys with `kVTDecodeFrameOptionKey_` prefix should be used in this dictionary.
+    ///
+    /// - sourceFrameRefCon: Your reference value for the frame. Note that if sampleBuffer contains multiple frames, the output callback function will be called multiple times with this sourceFrameRefCon.
+    ///
+    /// - infoFlagsOut: Points to a VTDecodeInfoFlags to receive information about the decode operation. The kVTDecodeInfo_Asynchronous bit may be set if the decode is (or was) running asynchronously. The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously). Pass NULL if you do not want to receive this information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Decompresses a video frame.
+    ///
+    /// If an error is returned from this function, there will be no callback.  Otherwise the callback provided during VTDecompressionSessionCreate will be called.
+    ///
+    ///
     /// Decompresses a video frame.
     ///
     /// If an error is returned from this function, there will be no callback.  Otherwise
@@ -759,8 +1148,6 @@ impl VTDecompressionSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `source_frame_ref_con` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:frameoptions:framerefcon:infoflagsout:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptions")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -794,6 +1181,28 @@ impl VTDecompressionSession {
         }
     }
 
+    ///
+    /// Parameters:
+    /// - session: The decompression session.
+    ///
+    /// - sampleBuffer: A CMSampleBuffer containing one or more video frames.
+    ///
+    /// - decodeFlags: A bitfield of directives to the decompression session and decoder. The kVTDecodeFrame_EnableAsynchronousDecompression bit indicates whether the video decoder may decompress the frame asynchronously. The kVTDecodeFrame_EnableTemporalProcessing bit indicates whether the decoder may delay calls to the output callback so as to enable processing in temporal (display) order. If both flags are clear, the decompression shall complete and your output callback function will be called before VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler returns. If either flag is set, VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler may return before the output callback function is called.
+    ///
+    /// - frameOptions: Contains key/value pairs specifying additional options for decoding this frame. Only keys with `kVTDecodeFrameOptionKey_` prefix should be used in this dictionary.
+    ///
+    /// - infoFlagsOut: Points to a VTDecodeInfoFlags to receive information about the decode operation. The kVTDecodeInfo_Asynchronous bit may be set if the decode is (or was) running asynchronously. The kVTDecodeInfo_FrameDropped bit may be set if the frame was dropped (synchronously). Pass NULL if you do not want to receive this information.
+    ///
+    /// - outputHandler: The block to be called when decoding the frame is completed.  If the VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler call returns an error, the block will not be called.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Decompresses a video frame.
+    ///
+    /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord. If the VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler call returns an error, the block will not be called.
+    ///
+    ///
     /// Decompresses a video frame.
     ///
     /// Cannot be called with a session created with a VTDecompressionOutputCallbackRecord.
@@ -832,8 +1241,6 @@ impl VTDecompressionSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:frameoptions:infoflagsout:outputhandler:)?language=objc)
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/meencodedoutgoingmessage?language=objc)
+    /// An object that contains the signed or encrypted representation of a message’s RFC 2822 data.
+    ///
+    /// ## Overview
+    ///
+    /// When MailKit invokes your message security handler’s [`encodeMessage:composeContext:completionHandler:`](https://developer.apple.com/documentation/mailkit/memessageencoder/encode(_:composecontext:completionhandler:)) method, it digitally signs and encrypts the message. After encoding the message data, create an instance of [`MEEncodedOutgoingMessage`](https://developer.apple.com/documentation/mailkit/meencodedoutgoingmessage) to pass back to MailKit. Set the [`isSigned`](https://developer.apple.com/documentation/mailkit/meencodedoutgoingmessage/issigned) and [`isEncrypted`](https://developer.apple.com/documentation/mailkit/meencodedoutgoingmessage/isencrypted) values to indicate how you encoded the message.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEEncodedOutgoingMessage;

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationupgradepasswordtostrongpasswordrequest?language=objc)
+    /// A request to automatically upgrade from a weak password to a strong password.
+    ///
+    /// ## Overview
+    ///
+    /// Your app uses this class to initiate an upgrade from a weak password to a strong system-generated one. After creating the request, your app initiates the upgrade process by instantiating an [`ASAccountAuthenticationModificationController`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller) object and calling [`performRequest:`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/perform(_:)) on it. The system invokes your authentication modification extension to complete the upgrade.
+    ///
+    /// For details about how to enforce requirements on the password, such as minimum length or requiring both letters and numbers, see [`ASAccountAuthenticationModificationPasswordGenerationRequirements`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/asaccountauthenticationmodificationpasswordgenerationrequirements).
+    ///
+    ///
     #[unsafe(super(ASAccountAuthenticationModificationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAccountAuthenticationModificationRequest")]

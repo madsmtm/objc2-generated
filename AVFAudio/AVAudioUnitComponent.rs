@@ -11,65 +11,70 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypeoutput?language=objc)
+    /// An audio unit type that represents an output.
     pub static AVAudioUnitTypeOutput: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypemusicdevice?language=objc)
+    /// An audio unit type that represents a music device.
     pub static AVAudioUnitTypeMusicDevice: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypemusiceffect?language=objc)
+    /// An audio unit type that represents a music effect.
     pub static AVAudioUnitTypeMusicEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypeformatconverter?language=objc)
+    /// An audio unit type that represents a format converter.
     pub static AVAudioUnitTypeFormatConverter: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypeeffect?language=objc)
+    /// An audio unit type that represents an effect.
     pub static AVAudioUnitTypeEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypemixer?language=objc)
+    /// An audio unit type that represents a mixer.
     pub static AVAudioUnitTypeMixer: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypepanner?language=objc)
+    /// An audio unit type that represents a panner.
     pub static AVAudioUnitTypePanner: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypegenerator?language=objc)
+    /// An audio unit type that represents a generator.
     pub static AVAudioUnitTypeGenerator: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypeofflineeffect?language=objc)
+    /// An audio unit type that represents an offline effect.
     pub static AVAudioUnitTypeOfflineEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounittypemidiprocessor?language=objc)
+    /// An audio unit type that represents a MIDI processor.
     pub static AVAudioUnitTypeMIDIProcessor: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitmanufacturernameapple?language=objc)
+    /// The audio unit manufacturer is Apple.
     pub static AVAudioUnitManufacturerNameApple: &'static NSString;
 }
 
 extern_class!(
+    /// An object that provides details about an audio unit.
+    ///
+    /// ## Overview
+    ///
+    /// Details can include information such as type, subtype, manufacturer, and location. An `AVAudioUnitComponent` can include user tags, which you can query later for display.
+    ///
+    ///
     /// Provides details about an audio unit such as type, subtype, manufacturer, location etc. User
     /// tags can be added to the AVAudioUnitComponent which can be queried later for display.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioUnitComponent;
@@ -217,11 +222,34 @@ impl AVAudioUnitComponent {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponenttagsdidchangenotification?language=objc)
+    /// A notification that indicates when component tags change.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object contains the `AVAudioUnitComponent` object with the tags.
+    ///
+    ///
     pub static AVAudioUnitComponentTagsDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object that provides a way to search and query audio components that the system registers.
+    ///
+    /// ## Overview
+    ///
+    /// The component manager has methods to find various information about the audio components without opening them. Currently, you can only search audio components that are audio units.
+    ///
+    /// The class supports system tags and arbitrary user tags. You can tag each audio unit as part of its definition. Audio unit hosts, such as Logic or GarageBand, can present groupings of audio units according to the tags.
+    ///
+    /// You can search for audio units in the following ways:
+    ///
+    /// - Using a `NSPredicate` instance that contains search strings for tags or descriptions
+    ///
+    /// - Using a block to match on a custom criteria
+    ///
+    /// - Using an `AudioComponentDescription`
+    ///
+    ///
     /// A singleton object that provides an easy way to find audio components that are
     /// registered with the system.
     ///
@@ -238,8 +266,6 @@ extern_class!(
     /// - using a NSPredicate that contains search strings for tags or descriptions
     /// - using a block to match on custom criteria
     /// - using an AudioComponentDescription
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioUnitComponentManager;
@@ -322,6 +348,7 @@ impl AVAudioUnitComponentManager {
 }
 
 extern "C" {
+    /// A notification the component manager generates when it updates its list of components.
     /// A notification generated when AVAudioUnitComponentManager updates its list of components.
     ///
     /// Register for this notification on the shared AVAudioUnitComponentManager instance,
@@ -334,8 +361,6 @@ extern "C" {
     /// name:        AVAudioUnitComponentManagerRegistrationsChangedNotification
     /// object:      [AVAudioUnitComponentManager sharedAudioUnitComponentManager]];
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/registrationschangednotification?language=objc)
     pub static AVAudioUnitComponentManagerRegistrationsChangedNotification:
         &'static NSNotificationName;
 }

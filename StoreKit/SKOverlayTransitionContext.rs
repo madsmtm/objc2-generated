@@ -9,7 +9,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/transitioncontext?language=objc)
+    /// A context object you can use to animate UI changes while the platform presents or dismisses an overlay.
+    ///
+    /// ## Overview
+    ///
+    /// For more information on animating UI changes while the system presents or dismisses an overlay, see [`storeOverlay:willStartPresentation:`](https://developer.apple.com/documentation/storekit/skoverlaydelegate/storeoverlaywillstartpresentation(_:transitioncontext:)) and [`storeOverlay:willStartDismissal:`](https://developer.apple.com/documentation/storekit/skoverlaydelegate/storeoverlaywillstartdismissal(_:transitioncontext:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayTransitionContext;

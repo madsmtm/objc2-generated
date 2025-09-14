@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of elements that represent directional pads.
     /// An object conforming to
     /// `GCDirectionPadElement`represents a four-way
     /// directional control element.
@@ -14,8 +15,6 @@ extern_protocol!(
     /// also be interpreted as 2 sets of mutually exclusive button pairs. Only one
     /// button in each pair, {up, down} and {left, right}, can be pressed at any
     /// given time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionpadelement?language=objc)
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCDirectionPadElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxis2DInput")]

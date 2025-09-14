@@ -10,9 +10,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing a series of detections of the same subject over time.
     /// Abstract class representing a series of detections of the same subject over time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontrack-61x7g?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNDetectionTrack;
@@ -96,9 +95,8 @@ impl CNDetectionTrack {
 }
 
 extern_class!(
+    /// An object representing the fixed detection track.
     /// A continuous detection track representing focus at a fixed disparity.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnfixeddetectiontrack-5aei2?language=objc)
     #[unsafe(super(CNDetectionTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNFixedDetectionTrack;
@@ -166,9 +164,8 @@ impl CNFixedDetectionTrack {
 }
 
 extern_class!(
+    /// An object representing a discrete detection track composed of individual detections.
     /// A discrete detection track composed of individual detections.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncustomdetectiontrack-891hc?language=objc)
     #[unsafe(super(CNDetectionTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNCustomDetectionTrack;

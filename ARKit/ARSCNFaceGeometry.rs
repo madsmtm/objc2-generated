@@ -15,9 +15,26 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A SceneKit geometry representing a face.
+    /// A SceneKit representation of face topology for use with face information that an AR session provides.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscnfacegeometry?language=objc)
+    /// ## Overview
+    ///
+    /// This class is a subclass of [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) that wraps the mesh data provided by the [`ARFaceGeometry`](https://developer.apple.com/documentation/arkit/arfacegeometry) class. You can use [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry) to quickly and easily visualize face topology and facial expressions provided by ARKit in a SceneKit view.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry) is available only in SceneKit views or renderers that use Metal. This class is not supported for OpenGL-based SceneKit rendering.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Face mesh topology is constant for the lifetime of an [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry) object. That is, the geometry’s single [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) object always describes the same arrangement of vertices, and the [`SCNGeometrySourceSemanticTexcoord`](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/texcoord) geometry source always maps the same vertices to the same texture coordinates.
+    ///
+    /// When you modify the geometry with the [`updateFromFaceGeometry:`](https://developer.apple.com/documentation/arkit/arscnfacegeometry/update(from:)) method, only the contents of the [`SCNGeometrySourceSemanticVertex`](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertex) geometry source change, indicating the difference in vertex positions as ARKit adapts the mesh to the shape and expression of the user’s face.
+    ///
+    ///
+    /// A SceneKit geometry representing a face.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]

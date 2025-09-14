@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Contains file information, such as the file's location and optional user info
+    /// Information about a file currently being transferred between an iOS app and WatchKit extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcsessionfile?language=objc)
+    /// ## Overview
+    ///
+    /// You do not create instances of this class directly. When you initiate a file transfer using the [`transferFile:metadata:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transferfile(_:metadata:))  method of your app’s [`WCSession`](https://developer.apple.com/documentation/watchconnectivity/wcsession) object, the session creates an instance when it queues the file for transfer. You can get a list of in-progress transfers initiated by your app from the session’s [`outstandingFileTransfers`](https://developer.apple.com/documentation/watchconnectivity/wcsession/outstandingfiletransfers) property. When a file is received by your app, the corresponding file object is delivered directly to your session’s delegate.
+    ///
+    /// The file object includes the URL of the file on the local system and an optional dictionary of keys and values that accompany the file.
+    ///
+    ///
+    /// Contains file information, such as the file's location and optional user info
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WCSessionFile;
@@ -46,9 +53,16 @@ impl WCSessionFile {
 }
 
 extern_class!(
-    /// Used to track a file being transferred.
+    /// Information about in-progress file transfers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcsessionfiletransfer?language=objc)
+    /// ## Overview
+    ///
+    /// You do not create instances of this class yourself. When you initiate a file transfer, the system creates a new file transfer object to represent the transferred file. Use that object to get the file information or to cancel the transfer as needed.
+    ///
+    /// To initiate a file transfer operation, call the [`transferFile:metadata:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transferfile(_:metadata:)) method of your app’s [`WCSession`](https://developer.apple.com/documentation/watchconnectivity/wcsession) object.
+    ///
+    ///
+    /// Used to track a file being transferred.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WCSessionFileTransfer;

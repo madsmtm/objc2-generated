@@ -7,7 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbillpayee?language=objc)
+    /// The entity that receives the proceeds from a bill payment.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INBillPayee`](https://developer.apple.com/documentation/intents/inbillpayee) object describes an entity that receives payment for a bill. When the user asks Siri to pay a bill, use this information to identify the entity receiving the payment. For example, a payee might represent a utility for which the user has already registered a bill payment option. Users must configure payees in advance using your app. This object contains information that you use to identify one of those preconfigured accounts.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When configuring bill-pay options in your app, don’t include the user’s account number in the organization name and don’t let the user specify other sensitive personal information in account nicknames. Siri can display nicknames and organization names and these should never contain any sensitive personal information.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "INBillPayee is deprecated. There is no replacement."]

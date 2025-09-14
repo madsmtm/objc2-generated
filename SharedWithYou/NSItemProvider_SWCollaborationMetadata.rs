@@ -5,6 +5,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swcollaborationmetadatatypeidentifier?language=objc)
+    /// A string constant for the metadata type identifier.
     pub static SWCollaborationMetadataTypeIdentifier: Option<&'static NSString>;
 }

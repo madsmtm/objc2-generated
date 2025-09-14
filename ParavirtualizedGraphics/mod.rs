@@ -80,15 +80,13 @@ use core::ffi::*;
 use crate::*;
 
 extern "C" {
+    /// The framework’s current version number.
     /// Project version number for ParavirtualizedGraphics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionnumber?language=objc)
     pub static ParavirtualizedGraphicsVersionNumber: c_double;
 }
 
 extern "C" {
+    /// The framework’s version number expressed as a C string.
     /// Project version string for ParavirtualizedGraphics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/paravirtualizedgraphicsversionstring?language=objc)
     pub static ParavirtualizedGraphicsVersionString: *mut c_uchar;
 }

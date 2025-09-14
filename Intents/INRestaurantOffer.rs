@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurantoffer?language=objc)
+    /// Information about special offers made by a restaurant.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRestaurantOffer`](https://developer.apple.com/documentation/intents/inrestaurantoffer) object provides information about a special offer made by a restaurant. Restaurants might offer special pricing as part of a promotion or advertisement. This object captures the details of an offer, which the system then displays to the user during the reservation selection process. When booking the reservation, you include the offer selected by the user with the information you provide to the restaurant.
+    ///
+    /// When creating a response to a [`INGetAvailableRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent) intent, you create [`INRestaurantReservationBooking`](https://developer.apple.com/documentation/intents/inrestaurantreservationbooking) objects with information about the time slots available to the user. If a restaurant offers special deals in a given time slot, create one or more instances of this class, populate them with the details of the offers, and assign them to the corresponding [`INRestaurantReservationBooking`](https://developer.apple.com/documentation/intents/inrestaurantreservationbooking) objects.
+    ///
+    /// You are responsible for obtaining the information about special offers from the restaurants you support. Including special offers with reservations is not required.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRestaurantOffer;

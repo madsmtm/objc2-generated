@@ -11,22 +11,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that specify the type of segment.
 /// These constants specify the type of segment
 ///
 /// Indicates segment represent playback of a primary item.
 ///
 /// Indicates segment represents playback of an interstitial event.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment/segmenttype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerItemSegmentType(pub NSInteger);
 impl AVPlayerItemSegmentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment/segmenttype-swift.enum/primary?language=objc)
+    /// A segment that represents playback of a primary item.
     #[doc(alias = "AVPlayerItemSegmentTypePrimary")]
     pub const Primary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment/segmenttype-swift.enum/interstitial?language=objc)
+    /// A segment that represents playback of an interstitial event.
     #[doc(alias = "AVPlayerItemSegmentTypeInterstitial")]
     pub const Interstitial: Self = Self(1);
 }
@@ -40,11 +39,10 @@ unsafe impl RefEncode for AVPlayerItemSegmentType {
 }
 
 extern_class!(
+    /// An immutable object that represents a segment of time on the integrated timeline.
     /// Representing a segment of time on the integrated timeline. Segments are immutable objects.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemSegment;
@@ -130,13 +128,18 @@ impl AVPlayerItemSegment {
 }
 
 extern_class!(
+    /// An immutable representation of inspectable details of an integrated timeline object.
+    ///
+    /// ## Overview
+    ///
+    /// A snapshot doesn’t reflect the new timeline state as playback progresses. You can request a new snapshot instance from an [`AVPlayerItemIntegratedTimeline`](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline) that reflect the latest timeline state.
+    ///
+    ///
     /// AVPlayerItemIntegratedTimelineSnapshot provides an immutable representation of inspectable details from an AVPlayerItemIntegratedTimeline.
     ///
     /// An instance of AVPlayerItemIntegratedTimelineSnapshot is an immutable snapshot representation of inspectable details from an AVPlayerItemIntegratedTimeline. As playback progresses,
     /// AVPlayerItemIntegratedTimelineSnapshot will not reflect the new timeline state. One can request a new snapshot instance from an AVPlayerItemIntegratedTimeline to reflect the latest timeline state.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemIntegratedTimelineSnapshot;
@@ -226,12 +229,17 @@ impl AVPlayerItemIntegratedTimelineSnapshot {
 }
 
 extern_class!(
+    /// An object that models the timeline and playback sequence of a primary player item and scheduled interstitial events.
+    ///
+    /// ## Overview
+    ///
+    /// The timeline models all regions to traverse during playback. A player may not present portions of the primary item when exiting an interstitial event with a positive resumption offset.
+    ///
+    ///
     /// An AVPlayerItemIntegratedTimeline provides detailed timing information and control for the sequence of playback of a primary AVPlayerItem and scheduled AVPlayerInterstitialEvents.
     ///
     /// An object that models the timeline and sequence of playback of primary AVPlayerItem and scheduled AVPlayerInterstitialEvents. The timeline models all regions expected to be traversed during playback. Notably portions of the primary item may not be presented when exiting an interstitial event with a positive resumption offset.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemIntegratedTimeline;
@@ -329,9 +337,8 @@ impl AVPlayerItemIntegratedTimeline {
 }
 
 extern_protocol!(
+    /// A protocol for objects that perform timeline observations.
     /// Defines protocol for objects returned from timeline observer routines.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelineobserver?language=objc)
     pub unsafe trait AVPlayerItemIntegratedTimelineObserver: NSObjectProtocol {}
 );
 
@@ -408,38 +415,36 @@ impl AVPlayerItemIntegratedTimeline {
 }
 
 extern "C" {
+    /// A notification the system posts when the snapshot objects provided by this timeline become out of sync with the current timeline state.
     /// A notification which is posted when the snapshot objects provided by this timeline would be out of sync with the current timeline state. See keys below.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/snapshotsoutofsyncnotification?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A key to retrieve the reason for an out-of-sync state notification.
     /// Indicates the reason for the snapshot out of sync notification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/snapshotsoutofsyncreasonkey?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason?language=objc)
+/// Constants that represent the reason for an out-of-sync state.
 // NS_TYPED_ENUM
 pub type AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason/segmentschanged?language=objc)
+    /// The snapshot is out of sync due to a change of segments.
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonSegmentsChanged:
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason/currentsegmentchanged?language=objc)
+    /// The snapshot is out of sync due to a change of the current segment.
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonCurrentSegmentChanged:
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason/loadedtimerangeschanged?language=objc)
+    /// The snapshot is out of sync due to a change of the loaded time ranges.
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonLoadedTimeRangesChanged:
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }

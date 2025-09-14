@@ -10,7 +10,6 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bedirectionaltextrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BEDirectionalTextRange {
@@ -27,17 +26,14 @@ unsafe impl RefEncode for BEDirectionalTextRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextreplacementoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BETextReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl BETextReplacementOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextreplacementoptions/betextreplacementoptionsnone?language=objc)
         #[doc(alias = "BETextReplacementOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextreplacementoptions/addunderline?language=objc)
         #[doc(alias = "BETextReplacementOptionsAddUnderline")]
         const AddUnderline = 1<<0;
     }
@@ -51,19 +47,19 @@ unsafe impl RefEncode for BETextReplacementOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags?language=objc)
+/// An enumeration that records the state of the shift-modifier keys.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEKeyModifierFlags(pub NSInteger);
 impl BEKeyModifierFlags {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags/none?language=objc)
+    /// There aren’t any active key modifiers.
     #[doc(alias = "BEKeyModifierFlagNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags/shift?language=objc)
+    /// The shift key is pressed down.
     #[doc(alias = "BEKeyModifierFlagShift")]
     pub const Shift: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags/capslock?language=objc)
+    /// The caps lock is engaged.
     #[doc(alias = "BEKeyModifierFlagCapsLock")]
     pub const CapsLock: Self = Self(2);
 }
@@ -77,7 +73,13 @@ unsafe impl RefEncode for BEKeyModifierFlags {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/berespondereditactions?language=objc)
+    /// A set of methods that defines extended interactions in browser text views.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the methods in this protocol to support text interactions in your browser text view that conforms to [`BETextInput`](https://developer.apple.com/documentation/browserenginekit/betextinput). To get the operating system’s standard behavior for an interaction, call [`BETextInteraction`](https://developer.apple.com/documentation/browserenginekit/betextinteraction) methods in your implementation. For more information, see [Supporting extended text interactions](https://developer.apple.com/documentation/browserenginekit/support-extended-text-interactions).
+    ///
+    ///
     pub unsafe trait BEResponderEditActions: UIResponderStandardEditActions {
         /// Shares the selected content.
         /// See corresponding share methods in BETextInteraction.
@@ -170,7 +172,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextselectiondirectionnavigation?language=objc)
     pub unsafe trait BETextSelectionDirectionNavigation {
         /// Moves the cursor in the specified directions, such as in response to an arrow key press.
         #[unsafe(method(moveInLayoutDirection:))]
@@ -213,7 +214,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beextendedtextinputtraits?language=objc)
     pub unsafe trait BEExtendedTextInputTraits: UITextInputTraits {
         /// Represents whether the active web input field is a single line document
         #[optional]
@@ -248,7 +248,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextinput?language=objc)
+    /// A protocol to which text views conform to asynchronously integrate with the text system.
+    ///
+    /// ## Overview
+    ///
+    /// You adopt `BETextInput` in your text field when you need to perform asynchronous actions to provide information for the text system, for example, making an XPC request to a web content extension. For more information, see [Integrating custom browser text views with UIKit](https://developer.apple.com/documentation/browserenginekit/integrating-custom-browser-text-views-with-uikit).
+    ///
+    ///
     pub unsafe trait BETextInput:
         UIKeyInput + BETextSelectionDirectionNavigation + BEResponderEditActions
     {

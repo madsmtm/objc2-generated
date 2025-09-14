@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swupdatecollaborationparticipantsaction?language=objc)
+    /// An action that contains the cryptographic identities the system uses to add to or remove from an existing collaboration.
+    ///
+    /// ## Overview
+    ///
+    /// Look up the target collaboration using the provided [`SWCollaborationMetadata`](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationmetadata). Associate the added participants with the resource on your app’s servers, and remove any identities included in the [`removedIdentities`](https://developer.apple.com/documentation/sharedwithyoucore/swupdatecollaborationparticipantsaction/removedidentities) property.
+    ///
+    ///
     #[unsafe(super(SWAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SWAction")]

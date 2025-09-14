@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtab?language=objc)
+    /// A tab associated with a window that is part of a tabbing group.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSWindowTab`](https://developer.apple.com/documentation/appkit/nswindowtab) describes the way a window displays as part of a tabbed window group. The properties of [`NSWindowTab`](https://developer.apple.com/documentation/appkit/nswindowtab) are configurable at any time, but only take effect when the associated [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) displays in a tab.
+    ///
+    /// AppKit automatically creates an instance of [`NSWindowTab`](https://developer.apple.com/documentation/appkit/nswindowtab) for each [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow). You can access a window’s tab object using the [`tab`](https://developer.apple.com/documentation/appkit/nswindow/tab) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWindowTab;

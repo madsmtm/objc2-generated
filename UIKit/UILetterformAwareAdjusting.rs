@@ -5,6 +5,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that specify typographic bounds-sizing behavior to handle text in fonts with oversize characters.
+///
+/// ## Overview
+///
+/// For more information on typographic bounds sizing behavior, see [`UILetterformAwareAdjusting`](https://developer.apple.com/documentation/uikit/uiletterformawareadjusting).
+///
+///
 /// Background
 ///
 /// When fonts created with `+[UIFont preferredFontForTextStyle:]` are used, UILabel, UITextField, and nonscrollable
@@ -14,21 +21,17 @@ use crate::*;
 /// Even with this increase, there will be some extreme ascenders and descenders that extend beyond this height.
 ///
 /// Furthermore, this increase only occurs for the text-style fonts, so for non-text-style fonts such cases will be markedly more common.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILetterformAwareSizingRule(pub NSInteger);
 impl UILetterformAwareSizingRule {
+    /// Standard typographic bounds-sizing behavior, which may clip oversize characters.
     /// `UILetterformAwareSizingRuleTypographic`: `-sizeThatFits:` and `-intrinsicContentSize` results will work well for typographic alignment of edges and centers of the view frames, but extreme ascenders or descenders in tall scripts may not be accounted for
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule/typographic?language=objc)
     #[doc(alias = "UILetterformAwareSizingRuleTypographic")]
     pub const Typographic: Self = Self(0);
+    /// Bounds-sizing behavior that displays oversize characters fully but may negatively impact typographic alignment.
     /// `UILetterformAwareSizingRuleOversize`: `-sizeThatFits:` and `-intrinsicContentSize` results will account for extreme ascenders or descenders in tall scripts, but in such cases might not work well for typographic alignment of top and bottom edges and vertical centers of the view frames
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule/oversize?language=objc)
     #[doc(alias = "UILetterformAwareSizingRuleOversize")]
     pub const Oversize: Self = Self(1);
 }
@@ -42,7 +45,15 @@ unsafe impl RefEncode for UILetterformAwareSizingRule {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawareadjusting?language=objc)
+    /// The typographic bounds-sizing behavior to handle text with fonts that contain oversize characters.
+    ///
+    /// ## Overview
+    ///
+    /// In [`UILabel`](https://developer.apple.com/documentation/uikit/uilabel), [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield), or a nonscrollable [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview), [`sizeThatFits:`](https://developer.apple.com/documentation/uikit/uiview/sizethatfits(_:)) and [`intrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/intrinsiccontentsize) increase the height calculated for tall scripts when you present text that contains oversize characters in a font that you create with  [`preferredFontForTextStyle:`](https://developer.apple.com/documentation/uikit/uifont/preferredfont(fortextstyle:)). Even with the increase, some extreme ascenders and descenders may extend beyond the view’s bounds and appear to be clipped. For nontext-style fonts, [`sizeThatFits:`](https://developer.apple.com/documentation/uikit/uiview/sizethatfits(_:)) and [`intrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/intrinsiccontentsize) don’t increase the calculated height for oversize characters. This is the default, standard behavior. Set [`sizingRule`](https://developer.apple.com/documentation/uikit/uiletterformawareadjusting/sizingrule) to [`UILetterformAwareSizingRuleTypographic`](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule/typographic) to use this behavior explicitly.
+    ///
+    /// To adjust the boundary calculations in [`sizeThatFits:`](https://developer.apple.com/documentation/uikit/uiview/sizethatfits(_:)) and [`intrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/intrinsiccontentsize) to account for oversize characters, set [`sizingRule`](https://developer.apple.com/documentation/uikit/uiletterformawareadjusting/sizingrule) to [`UILetterformAwareSizingRuleOversize`](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule/oversize). Note that the larger bounds to accommodate oversize characters may negatively impact typographic alignment, such as vertical edge alignment, vertical edge-to-edge spacing, or vertical centering.
+    ///
+    ///
     pub unsafe trait UILetterformAwareAdjusting: NSObjectProtocol + MainThreadOnly {
         /// `sizingRule` defaults to `UILetterformAwareSizingRuleTypographic` and determines what rule is used during the calculation of `-sizeThatFits:` and `-intrinsicContentSize`
         #[unsafe(method(sizingRule))]

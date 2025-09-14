@@ -6,40 +6,46 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnospecifiererror?language=objc)
+/// No error encountered.
 pub const NSNoSpecifierError: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotoplevelcontainersspecifiererror?language=objc)
+/// Someone called `evaluate` with `nil`.
 pub const NSNoTopLevelContainersSpecifierError: NSInteger = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscontainerspecifiererror?language=objc)
+/// Error evaluating container specifier.
 pub const NSContainerSpecifierError: NSInteger = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunknownkeyspecifiererror?language=objc)
+/// Receivers do not understand the key.
 pub const NSUnknownKeySpecifierError: NSInteger = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidindexspecifiererror?language=objc)
+/// Index out of bounds.
 pub const NSInvalidIndexSpecifierError: NSInteger = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinternalspecifiererror?language=objc)
+/// Other internal error.
 pub const NSInternalSpecifierError: NSInteger = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationnotsupportedforkeyspecifiererror?language=objc)
+/// Attempt made to perform an unsupported operation on some key.
 pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition?language=objc)
+/// The following constants are defined by `NSPositionalSpecifier` to specify an insertion position.
+///
+/// ## Overview
+///
+/// These constants are described in [`NSPositionalSpecifier`](https://developer.apple.com/documentation/foundation/nspositionalspecifier).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSInsertionPosition(pub NSUInteger);
 impl NSInsertionPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/after?language=objc)
+    /// Specifies a position after another object.
     #[doc(alias = "NSPositionAfter")]
     pub const PositionAfter: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/before?language=objc)
+    /// Specifies a position before another object.
     #[doc(alias = "NSPositionBefore")]
     pub const PositionBefore: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/beginning?language=objc)
+    /// Specifies a position at the beginning of a collection.
     #[doc(alias = "NSPositionBeginning")]
     pub const PositionBeginning: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/end?language=objc)
+    /// Specifies a position at the end of a collection.
     #[doc(alias = "NSPositionEnd")]
     pub const PositionEnd: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionposition/replace?language=objc)
+    /// Specifies a position in the place of another object.
     #[doc(alias = "NSPositionReplace")]
     pub const PositionReplace: Self = Self(4);
 }
@@ -52,16 +58,16 @@ unsafe impl RefEncode for NSInsertionPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.enum?language=objc)
+/// These constants are used by [`relativePosition`](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property) and [`relativePosition`](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.property).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativePosition(pub NSUInteger);
 impl NSRelativePosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.enum/after?language=objc)
+    /// Specifies a position after another object.
     #[doc(alias = "NSRelativeAfter")]
     pub const After: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier/relativeposition-swift.enum/before?language=objc)
+    /// Specifies a position before another object.
     #[doc(alias = "NSRelativeBefore")]
     pub const Before: Self = Self(1);
 }
@@ -74,25 +80,31 @@ unsafe impl RefEncode for NSRelativePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier?language=objc)
+/// `NSWhoseSpecifier` uses these constants to specify sub-elements within the collection of objects being tested that pass the specifier’s test.
+///
+/// ## Overview
+///
+/// These constants are used by [`startSubelementIdentifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementidentifier), [`startSubelementIdentifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier/startsubelementidentifier), [`endSubelementIdentifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementidentifier), and [`endSubelementIdentifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier/endsubelementidentifier).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWhoseSubelementIdentifier(pub NSUInteger);
 impl NSWhoseSubelementIdentifier {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/indexsubelement?language=objc)
+    /// An element at a given index that meets the specifier test.
     #[doc(alias = "NSIndexSubelement")]
     pub const IndexSubelement: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/everysubelement?language=objc)
+    /// Every element that meets the specifier test.
     #[doc(alias = "NSEverySubelement")]
     pub const EverySubelement: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/middlesubelement?language=objc)
+    /// The middle element that meets the specifier test.
     #[doc(alias = "NSMiddleSubelement")]
     pub const MiddleSubelement: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/randomsubelement?language=objc)
+    /// Any element that meets the specifier test.
     #[doc(alias = "NSRandomSubelement")]
     pub const RandomSubelement: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier/subelementidentifier/nosubelement?language=objc)
+    /// No sub-element met the specifier test. Valid only for specifying the end sub-element.; that is, there is no end, so consider all elements.
     #[doc(alias = "NSNoSubelement")]
     pub const NoSubelement: Self = Self(4);
 }
@@ -106,7 +118,27 @@ unsafe impl RefEncode for NSWhoseSubelementIdentifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier?language=objc)
+    /// An abstract class used to represent natural language expressions.
+    ///
+    /// ## Overview
+    ///
+    /// `NSScriptObjectSpecifier` is the abstract superclass for classes that instantiate objects called “object specifiers.” An object specifier represents an AppleScript reference form, which is a natural-language expression such as `words 10 through 20` or `front document` or `words whose color is red`.
+    ///
+    /// The scripting system maps these words or phrases to attributes and relationships of scriptable objects. A reference form rarely occurs in isolation; usually a script statement consists of a series of reference forms preceded by a command and typically connected to each other by `of`, such as:
+    ///
+    /// ```objc
+    /// get words whose color is blue of paragraph 10 of front document
+    /// ```
+    ///
+    /// The expression `words whose color is blue of paragraph 10 of front document` specifies a location in the application’s AppleScript object model—the objects the application makes available to scripters. The classes of objects in the object model often closely match the classes of actual objects in the application, but they are not required to. An object specifier locates objects in the running application that correspond to the specified object model objects.
+    ///
+    /// Your application typically creates object specifiers when it implements the `objectSpecifier` method for its scriptable classes. That method is defined by the NSScriptObjectSpecifiers protocol.
+    ///
+    /// It is unlikely that you would ever need to create your own subclass of `NSScriptObjectSpecifier`; the set of valid AppleScript reference forms is determined by Apple Computer and object specifier classes are already implemented for this set. If for some reason you do need to create a subclass, you must override the primitive method [`indicesOfObjectsByEvaluatingWithContainer:count:`](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/indicesofobjectsbyevaluating(withcontainer:count:)) to return indices to the elements within the container whose values are matched with the child specifier’s key. In addition, you probably need to declare any special instance variables and implement an initializer that invokes super’s designated initializer, [`initWithContainerClassDescription:containerSpecifier:key:`](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/init(containerclassdescription:containerspecifier:key:)), and initializes these variables.
+    ///
+    /// For a comprehensive treatment of object specifiers, including sample code, see [Object Specifiers](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_object_specifiers/SAppsObjectSpecifiers.html#//apple_ref/doc/uid/TP40002164-CH3) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptObjectSpecifier;
@@ -333,7 +365,15 @@ impl private_NSObjectNSScriptObjectSpecifiers::Sealed for NSObject {}
 unsafe impl NSObjectNSScriptObjectSpecifiers for NSObject {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsindexspecifier?language=objc)
+    /// A specifier representing an object in a collection (or container) with an index number.
+    ///
+    /// ## Overview
+    ///
+    /// The script terms `first` and `front` specify the object with index `0`, while `last` specifies the object with index of `count-1`. A negative index indicates a location by counting backward from the last object in the collection.
+    ///
+    /// You don’t normally subclass `NSIndexSpecifier`.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSIndexSpecifier;
@@ -436,7 +476,13 @@ impl DefaultRetained for NSIndexSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmiddlespecifier?language=objc)
+    /// A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t typically subclass `NSMiddleSpecifier`.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMiddleSpecifier;
@@ -515,7 +561,29 @@ impl DefaultRetained for NSMiddleSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnamespecifier?language=objc)
+    /// A specifier for an object in a collection (or container) by name.
+    ///
+    /// ## Overview
+    ///
+    /// As an example, the following script specifies both an application and a window by name. In this script, the named window’s implicitly specified container is the Finder application’s list of open windows.
+    ///
+    /// ```objc
+    /// tell application "Finder" -- specifies an application  by name
+    ///     close window "Reports" -- specifies a window by name
+    /// end tell
+    /// ```
+    ///
+    /// This specifier works only for objects that have a name property. You don’t normally subclass `NSNameSpecifier`.
+    ///
+    /// The evaluation of an instance of `NSNameSpecifier` follows these steps until the specified object is found:
+    ///
+    /// 1. If the container implements a method whose selector matches the relevant `valueIn<Key>WithName:` pattern established by scripting key-value coding, the method is invoked. This method can potentially be very fast, and it may be relatively easy to implement.
+    ///
+    /// 2. As is the case when evaluating any script object specifier, the container of the specified object is given a chance to evaluate the object specifier. If the container class implements the `indicesOfObjectsByEvaluatingObjectSpecifier` method, the method is invoked. This method can potentially be very fast, but it is relatively difficult to implement.
+    ///
+    /// 3. An instance of  `NSWhoseSpecifier` that specifies the first object whose relevant `'pnam'` attribute matches the name is synthesized and evaluated. The instance of `NSWhoseSpecifier` must search through all of the keyed elements in the container, looking for a match. The search is potentially very slow.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNameSpecifier;
@@ -622,7 +690,17 @@ impl DefaultRetained for NSNameSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspositionalspecifier?language=objc)
+    /// A specifier for an insertion point in a container relative to another object in the container.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of `NSPositionalSpecifier` specify an insertion point in a container relative to another object in the container, for example, `before first word` or `after paragraph 4`. The container is specified by an instance of `NSScriptObjectSpecifier`. `NSPositionalSpecifier` objects commonly encapsulate object specifiers used as arguments to the `make` (`create`) and `move` commands and indicate where the created or moved object is to be inserted relative to the object represented by an object specifier.
+    ///
+    /// Invoking an accessor method to obtain information about an instance of `NSPositionalSpecifier`  causes the object to be evaluated if it hasn’t been already.
+    ///
+    /// You don’t normally subclass `NSPositionalSpecifier`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPositionalSpecifier;
@@ -699,7 +777,13 @@ impl DefaultRetained for NSPositionalSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertyspecifier?language=objc)
+    /// A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t typically subclass [`NSPropertySpecifier`](https://developer.apple.com/documentation/foundation/nspropertyspecifier).
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertySpecifier;
@@ -778,7 +862,7 @@ impl DefaultRetained for NSPropertySpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrandomspecifier?language=objc)
+    /// A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object.
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRandomSpecifier;
@@ -857,7 +941,15 @@ impl DefaultRetained for NSRandomSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrangespecifier?language=objc)
+    /// A specifier for a range of objects in a container.
+    ///
+    /// ## Overview
+    ///
+    /// An `NSRangeSpecifier` object specifies a range (that is, an uninterrupted series) of objects in a container through two delimiting objects. The range is represented by two object specifiers, a start specifier and an end specifier, which can be of any specifier type (such as [`NSIndexSpecifier`](https://developer.apple.com/documentation/foundation/nsindexspecifier) or [`NSWhoseSpecifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier) object). These specifiers are evaluated in the context of the same container object as the range specifier itself.
+    ///
+    /// You don’t normally subclass `NSRangeSpecifier`.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRangeSpecifier;
@@ -970,7 +1062,13 @@ impl DefaultRetained for NSRangeSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativespecifier?language=objc)
+    /// A specifier that indicates an object in a collection by its position relative to another object.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t normally subclass `NSRelativeSpecifier`.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRelativeSpecifier;
@@ -1083,7 +1181,25 @@ impl DefaultRetained for NSRelativeSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuniqueidspecifier?language=objc)
+    /// A specifier for an object in a collection (or container) by unique ID.
+    ///
+    /// ## Overview
+    ///
+    /// This specifier works only for objects that have an ID property. The unique ID object passed to an instance of  `NSUniqueIDSpecifier` must be either an `NSNumber` object or an `NSString` object. The exact type should match the scripting dictionary declaration of the ID attribute for the relevant scripting class.
+    ///
+    /// You can expect that the ID property will be _read only_ for any object that supports it. Therefore a scripter can obtain the unique ID for an object and refer to the object by the ID, but cannot set the unique ID.
+    ///
+    /// You don’t normally subclass `NSUniqueIDSpecifier`.
+    ///
+    /// The evaluation of `NSUniqueIDSpecifier` objects follows these steps until the specified object is found:
+    ///
+    /// 1. If the container implements a method whose selector matches the relevant `valueIn<Key>WithUniqueID:` pattern established by scripting key-value coding, the method is invoked. This method can potentially be very fast, and it may be relatively easy to implement.
+    ///
+    /// 2. As is the case when evaluating any script object specifier, the container of the specified object is given a chance to evaluate the object specifier. If the container class implements the [`indicesOfObjectsByEvaluatingObjectSpecifier:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/indicesofobjects(byevaluatingobjectspecifier:)) method, the method is invoked. This method can potentially be very fast, but it is relatively difficult to implement.
+    ///
+    /// 3. An [`NSWhoseSpecifier`](https://developer.apple.com/documentation/foundation/nswhosespecifier) object that specifies the first object whose relevant `'ID  '` attribute matches the ID is synthesized and evaluated. The `NSWhoseSpecifier` object must search through all of the keyed elements in the container, looking for a match. The search is potentially very slow.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUniqueIDSpecifier;
@@ -1195,7 +1311,17 @@ impl DefaultRetained for NSUniqueIDSpecifier {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosespecifier?language=objc)
+    /// A specifier that indicates every object in a collection matching a condition.
+    ///
+    /// ## Overview
+    ///
+    /// `NSWhoseSpecifier` specifies every object in a collection (or every element in a container) that matches the condition defined by a single Boolean expression or multiple Boolean expressions connected by logical operators. `NSWhoseSpecifier` is unique among object specifiers in that its top-level container is typically not the application object but an evaluated object specifier involved in the tested-for condition. An `NSWhoseSpecifier` object encapsulates a “test” object for defining this condition. A test object is instantiated from a subclass of the abstract [`NSScriptWhoseTest`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest) class, whose one declared method is [`isTrue`](https://developer.apple.com/documentation/foundation/nsscriptwhosetest/istrue()). See “Boolean Expressions and Logical Operations” in [`NSScriptObjectSpecifier`](https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier) and the descriptions in NSComparisonMethods and NSScriptingComparisonMethods for more information.
+    ///
+    /// The set of elements specified by an `NSWhoseSpecifier` object can be a subset of those that pass the `NSWhoseSpecifier` object’s test. This subset is specified by the various sub-element properties of the `NSWhoseSpecifier` object . Consider as an example the specifier `paragraphs where color of third word is blue`. This would be represented by an `NSWhoseSpecifier` object  that uses a test specifier and another object specifier to identify a subset of the objects with the specified property. That is, the specifier’s property is `paragraphs`; the test specifier is an index specifier with property `words` and `index 3`; and the qualifier is a key value qualifier for key `color` and value `[NSColor blueColor]`. The test object specifier (`word at index 3`) is evaluated for each object (paragraph) using that object as the container; the resulting objects (if any) are tested with the qualifier (`color blue`).
+    ///
+    /// `NSWhoseSpecifier` is part of Cocoa’s built-in script handling. You don’t normally subclass it.
+    ///
+    ///
     #[unsafe(super(NSScriptObjectSpecifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWhoseSpecifier;

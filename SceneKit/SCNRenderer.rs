@@ -19,9 +19,16 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern_class!(
-    /// SCNRenderer lets you use the SceneKit renderer in an OpenGL context or Metal render pass descriptor of your own.
+    /// A renderer for displaying a SceneKit scene in an existing Metal workflow or OpenGL context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderer?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class when you want to add content rendered by SceneKit to an app that already renders other content by using Metal, OpenGL, or OpenGL ES directly. To provide content for a SceneKit renderer, assign a [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object to its [`scene`](https://developer.apple.com/documentation/scenekit/scnrenderer/scene) property.
+    ///
+    /// For additional important methods and properties for working with SceneKit renderers, see [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer).
+    ///
+    ///
+    /// SCNRenderer lets you use the SceneKit renderer in an OpenGL context or Metal render pass descriptor of your own.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNRenderer;

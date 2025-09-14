@@ -8,25 +8,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum?language=objc)
+/// Constants that represent the phases of a button press.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPressPhase(pub NSInteger);
 impl UIPressPhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/began?language=objc)
+    /// A physical button was pressed.
     #[doc(alias = "UIPressPhaseBegan")]
     pub const Began: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/changed?language=objc)
+    /// A button moved, or the force property changed.
     #[doc(alias = "UIPressPhaseChanged")]
     pub const Changed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/stationary?language=objc)
+    /// A button was pressed but hasn’t moved since the previous event.
     #[doc(alias = "UIPressPhaseStationary")]
     pub const Stationary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/ended?language=objc)
+    /// A button was released.
     #[doc(alias = "UIPressPhaseEnded")]
     pub const Ended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/phase-swift.enum/cancelled?language=objc)
+    /// The system canceled tracking for the button.
     #[doc(alias = "UIPressPhaseCancelled")]
     pub const Cancelled: Self = Self(4);
 }
@@ -39,50 +39,68 @@ unsafe impl RefEncode for UIPressPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype?language=objc)
+/// Constants that represent buttons that a person can press.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPressType(pub NSInteger);
 impl UIPressType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/uparrow?language=objc)
+    /// A constant that represents the up arrow button.
     #[doc(alias = "UIPressTypeUpArrow")]
     pub const UpArrow: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/downarrow?language=objc)
+    /// A constant that represents the down arrow button.
     #[doc(alias = "UIPressTypeDownArrow")]
     pub const DownArrow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/leftarrow?language=objc)
+    /// A constant that represents the left arrow button.
     #[doc(alias = "UIPressTypeLeftArrow")]
     pub const LeftArrow: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/rightarrow?language=objc)
+    /// A constant that represents the right arrow button.
     #[doc(alias = "UIPressTypeRightArrow")]
     pub const RightArrow: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/select?language=objc)
+    /// A constant that represents the select button.
     #[doc(alias = "UIPressTypeSelect")]
     pub const Select: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/menu?language=objc)
+    /// A constant that represents the menu button.
     #[doc(alias = "UIPressTypeMenu")]
     pub const Menu: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/playpause?language=objc)
+    /// A constant that represents the play/pause button.
     #[doc(alias = "UIPressTypePlayPause")]
     pub const PlayPause: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup?language=objc)
+    /// A constant that represents the page up button.
+    ///
+    /// ## Discussion
+    ///
+    /// Add gesture recognizers for [`UIPressTypePageDown`](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown) and [`UIPressTypePageUp`](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup) to navigate content in your app.
+    ///
+    /// In an electronic program guide, select the item above the current one in response to [`UIPressTypeUpArrow`](https://developer.apple.com/documentation/uikit/uipress/presstype/uparrow), and display the previous screen of items in response to [`UIPressTypePageUp`](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup). While your content plays, change the channel when your app receives [`UIPressTypePageUp`](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup) or [`UIPressTypePageDown`](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown).
+    ///
+    /// For more details on browsing multichannel content, see [Providing Channel Navigation](https://developer.apple.com/documentation/tvservices/providing-channel-navigation).
+    ///
+    ///
     #[doc(alias = "UIPressTypePageUp")]
     pub const PageUp: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown?language=objc)
+    /// A constant that represents the page down button.
+    ///
+    /// ## Discussion
+    ///
+    /// Add gesture recognizers for [`UIPressTypePageDown`](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown) and [`UIPressTypePageUp`](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup) to navigate content in your app.
+    ///
+    /// In an electronic program guide, select the item below the current one in response to [`UIPressTypeDownArrow`](https://developer.apple.com/documentation/uikit/uipress/presstype/downarrow), and display the next screen of items in response to [`UIPressTypePageDown`](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown). While your content plays, change the channel when your app receives [`UIPressTypePageUp`](https://developer.apple.com/documentation/uikit/uipress/presstype/pageup) or [`UIPressTypePageDown`](https://developer.apple.com/documentation/uikit/uipress/presstype/pagedown).
+    ///
+    /// For more details on browsing multichannel content, see [Providing Channel Navigation](https://developer.apple.com/documentation/tvservices/providing-channel-navigation).
+    ///
+    ///
     #[doc(alias = "UIPressTypePageDown")]
     pub const PageDown: Self = Self(31);
+    /// Represents a button on a TV remote labeled with 123. When this button is pressed, an app should provide UI to enter a specific channel number if channel numbers are available. If no channel numbers exist the app should provide UI to toggle channel category filters, search for channels by name or search for currently airing shows.
     /// Represents a button on a TV remote labeled with 123. When this button is pressed, an app should provide UI to enter a specific channel number if channel
     /// numbers are available. If no channel numbers exist the app should provide UI to toggle channel category filters, search for channels by name or search for
     /// currently airing shows.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/tvremoteonetwothree?language=objc)
     #[doc(alias = "UIPressTypeTVRemoteOneTwoThree")]
     pub const TVRemoteOneTwoThree: Self = Self(32);
+    /// Represents a button on a TV remote labeled with four colors, analogous to the four separate color buttons found on some TV remotes. When this button is pressed, an app should perform the appropriate color action or if there are multiple color actions available provide UI to choose the specific color.
     /// Represents a button on a TV remote labeled with four colors, analogous to the four separate color buttons found on some TV remotes. When this button is
     /// pressed, an app should perform the appropriate color action or if there are multiple color actions available provide UI to choose the specific color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress/presstype/tvremotefourcolors?language=objc)
     #[doc(alias = "UIPressTypeTVRemoteFourColors")]
     pub const TVRemoteFourColors: Self = Self(33);
 }
@@ -96,7 +114,13 @@ unsafe impl RefEncode for UIPressType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipress?language=objc)
+    /// An object that represents the presence or movement of a button press on the screen for a particular event.
+    ///
+    /// ## Overview
+    ///
+    /// The press specifically encapsulates the pressing of some physically actuated button. All of the press types represent actual physical buttons on one of a variety of remotes. You access [`UIPress`](https://developer.apple.com/documentation/uikit/uipress) objects through [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) objects passed into responder objects for event handling. The [`gestureRecognizers`](https://developer.apple.com/documentation/uikit/uipress/gesturerecognizers) property returns the gesture recognizers — instances of a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer) — that are currently handling the given button press.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPress;

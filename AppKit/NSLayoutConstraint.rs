@@ -9,41 +9,77 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct?language=objc)
+/// Layout priority used to indicate the relative importance of constraints, allowing Auto Layout to make appropriate tradeoffs when satisfying the constraints of the system as a whole.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSLayoutPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/required?language=objc)
+/// A required constraint.
+///
+/// ## Discussion
+///
+/// Do not specify a layout constraint that exceeds this number.
+///
+///
 pub static NSLayoutPriorityRequired: NSLayoutPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/defaulthigh?language=objc)
+/// Priority level with which a button resists compressing its content.
+///
+/// ## Discussion
+///
+/// Note that the level is higher than [`NSLayoutPriorityWindowSizeStayPut`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/windowsizestayput). This means dragging to resize a window will not make buttons clip, rather the window frame is constrained.
+///
+///
 pub static NSLayoutPriorityDefaultHigh: NSLayoutPriority = 750 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/dragthatcanresizewindow?language=objc)
+/// Appropriate priority level for a drag that may end up resizing the window.
+///
+/// ## Discussion
+///
+/// This drag does not need to explicitly resize the window. The user might be dragging around window contents, and it might be desirable for the window get bigger to accommodate those contents.
+///
+///
 pub static NSLayoutPriorityDragThatCanResizeWindow: NSLayoutPriority = 510 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/windowsizestayput?language=objc)
+/// Priority level for the window’s current size.
+///
+/// ## Discussion
+///
+/// It’s generally not appropriate to make a constraint at exactly this priority. You want to be higher or lower. Constraints with higher priorities can adjust the window’s size. Constraints with lower priorities must be fulfilled using the current window size.
+///
+///
 pub static NSLayoutPriorityWindowSizeStayPut: NSLayoutPriority = 500 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/dragthatcannotresizewindow?language=objc)
+/// Priority level at which a split view divider, say, is dragged.
+///
+/// ## Discussion
+///
+/// A constraint with this priority cannot resize the window.
+///
+///
 pub static NSLayoutPriorityDragThatCannotResizeWindow: NSLayoutPriority = 490 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/defaultlow?language=objc)
+/// Priority level at which a button hugs its contents horizontally.
 pub static NSLayoutPriorityDefaultLow: NSLayoutPriority = 250 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/priority-swift.struct/fittingsizecompression?language=objc)
+/// When you send a [`fittingSize`](https://developer.apple.com/documentation/appkit/nsview/fittingsize) message to a view, the smallest size that is large enough for the view’s contents is computed.
+///
+/// ## Discussion
+///
+/// This is the priority level with which the view wants to be as small as possible in that computation. It’s quite low. It is generally not appropriate to make a constraint at exactly this priority. You want to be higher or lower.
+///
+///
 pub static NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/orientation?language=objc)
+/// The layout constraint orientation, either horizontal or vertical, that the constraint uses to enforce layout between objects.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutConstraintOrientation(pub NSInteger);
 impl NSLayoutConstraintOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/orientation/horizontal?language=objc)
+    /// The constraint orientation applied to laying out the horizontal relationship between objects.
     #[doc(alias = "NSLayoutConstraintOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/orientation/vertical?language=objc)
+    /// The constraint orientation applied to laying out the vertical relationship between objects.
     #[doc(alias = "NSLayoutConstraintOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -56,19 +92,19 @@ unsafe impl RefEncode for NSLayoutConstraintOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum?language=objc)
+/// The relation between the first attribute and the modified second attribute in a constraint.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutRelation(pub NSInteger);
 impl NSLayoutRelation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum/lessthanorequal?language=objc)
+    /// The constraint requires the first attribute to be less than or equal to the modified second attribute.
     #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
     pub const LessThanOrEqual: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum/equal?language=objc)
+    /// The constraint requires the first attribute to be exactly equal to the modified second attribute.
     #[doc(alias = "NSLayoutRelationEqual")]
     pub const Equal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/relation-swift.enum/greaterthanorequal?language=objc)
+    /// The constraint requires the first attribute to be greater than or equal to the modified second attribute.
     #[doc(alias = "NSLayoutRelationGreaterThanOrEqual")]
     pub const GreaterThanOrEqual: Self = Self(1);
 }
@@ -81,52 +117,69 @@ unsafe impl RefEncode for NSLayoutRelation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute?language=objc)
+/// The part of the object’s visual representation that should be used to get the value for the constraint.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutAttribute(pub NSInteger);
 impl NSLayoutAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/left?language=objc)
+    /// The left side of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeLeft")]
     pub const Left: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/right?language=objc)
+    /// The right side of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeRight")]
     pub const Right: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/top?language=objc)
+    /// The top of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeTop")]
     pub const Top: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/bottom?language=objc)
+    /// The bottom of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeBottom")]
     pub const Bottom: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/leading?language=objc)
+    /// The leading edge of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeLeading")]
     pub const Leading: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/trailing?language=objc)
+    /// The trailing edge of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeTrailing")]
     pub const Trailing: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/width?language=objc)
+    /// The width of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeWidth")]
     pub const Width: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/height?language=objc)
+    /// The height of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeHeight")]
     pub const Height: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/centerx?language=objc)
+    /// The center along the x-axis of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeCenterX")]
     pub const CenterX: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/centery?language=objc)
+    /// The center along the y-axis of the object’s alignment rectangle.
     #[doc(alias = "NSLayoutAttributeCenterY")]
     pub const CenterY: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/lastbaseline?language=objc)
+    /// The object’s baseline.
+    ///
+    /// ## Discussion
+    ///
+    /// For objects with more than one line of text, this is the baseline for the bottommost line of text.
+    ///
+    ///
     #[doc(alias = "NSLayoutAttributeLastBaseline")]
     pub const LastBaseline: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutattribute/nslayoutattributebaseline?language=objc)
     #[doc(alias = "NSLayoutAttributeBaseline")]
     pub const Baseline: Self = Self(NSLayoutAttribute::LastBaseline.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/firstbaseline?language=objc)
+    /// The object’s baseline.
+    ///
+    /// ## Discussion
+    ///
+    /// For objects with more than one line of text, this is the baseline for the topmost line of text.
+    ///
+    ///
     #[doc(alias = "NSLayoutAttributeFirstBaseline")]
     pub const FirstBaseline: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/notanattribute?language=objc)
+    /// A placeholder value for indicating that the constraint’s second item and second attribute aren’t used in any calculations.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value when creating a constraint that assigns a constant to an attribute. For example, `item1.height >= 40`. If a constraint only has one item, set the second item to `nil`, and set the second attribute to [`NSLayoutAttributeNotAnAttribute`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/notanattribute).
+    ///
+    ///
     #[doc(alias = "NSLayoutAttributeNotAnAttribute")]
     pub const NotAnAttribute: Self = Self(0);
 }
@@ -139,59 +192,58 @@ unsafe impl RefEncode for NSLayoutAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions?language=objc)
+/// A bit mask that specifies both a part of an interface element to align and a direction for the alignment between two interface elements.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLayoutFormatOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallleft?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeLeft`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/left) on each.
         #[doc(alias = "NSLayoutFormatAlignAllLeft")]
         const AlignAllLeft = 1<<NSLayoutAttribute::Left.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallright?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeRight`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/right) on each.
         #[doc(alias = "NSLayoutFormatAlignAllRight")]
         const AlignAllRight = 1<<NSLayoutAttribute::Right.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignalltop?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeTop`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/top) on each.
         #[doc(alias = "NSLayoutFormatAlignAllTop")]
         const AlignAllTop = 1<<NSLayoutAttribute::Top.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallbottom?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeBottom`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/bottom) on each.
         #[doc(alias = "NSLayoutFormatAlignAllBottom")]
         const AlignAllBottom = 1<<NSLayoutAttribute::Bottom.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallleading?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeLeading`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/leading) on each.
         #[doc(alias = "NSLayoutFormatAlignAllLeading")]
         const AlignAllLeading = 1<<NSLayoutAttribute::Leading.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignalltrailing?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeTrailing`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/trailing) on each.
         #[doc(alias = "NSLayoutFormatAlignAllTrailing")]
         const AlignAllTrailing = 1<<NSLayoutAttribute::Trailing.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallcenterx?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeCenterX`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/centerx) on each.
         #[doc(alias = "NSLayoutFormatAlignAllCenterX")]
         const AlignAllCenterX = 1<<NSLayoutAttribute::CenterX.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallcentery?language=objc)
+/// Align all specified interface elements using [`NSLayoutAttributeCenterY`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/attribute/centery) on each.
         #[doc(alias = "NSLayoutFormatAlignAllCenterY")]
         const AlignAllCenterY = 1<<NSLayoutAttribute::CenterY.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignalllastbaseline?language=objc)
+/// Align all specified interface elements using the last baseline of each one.
         #[doc(alias = "NSLayoutFormatAlignAllLastBaseline")]
         const AlignAllLastBaseline = 1<<NSLayoutAttribute::LastBaseline.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignallfirstbaseline?language=objc)
+/// Align all specified interface elements using the first baseline of each one.
         #[doc(alias = "NSLayoutFormatAlignAllFirstBaseline")]
         const AlignAllFirstBaseline = 1<<NSLayoutAttribute::FirstBaseline.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutformatoptions/nslayoutformatalignallbaseline?language=objc)
         #[doc(alias = "NSLayoutFormatAlignAllBaseline")]
         const AlignAllBaseline = NSLayoutFormatOptions::AlignAllLastBaseline.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/alignmentmask?language=objc)
+/// Bit mask that can be combined with an [`NSLayoutFormatOptions`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions) variable to yield only the alignment portion of the format options.
         #[doc(alias = "NSLayoutFormatAlignmentMask")]
         const AlignmentMask = 0xFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionleadingtotrailing?language=objc)
+/// Arrange objects in order based on the normal text flow for the current user interface language. In left-to-right languages (like English), this arrangement results in the first object being placed farthest to the left, the next one to its right, and so on. In right-to-left languages (like Arabic or Hebrew), the ordering is reversed.
         #[doc(alias = "NSLayoutFormatDirectionLeadingToTrailing")]
         const DirectionLeadingToTrailing = 0<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionlefttoright?language=objc)
+/// Arrange objects in order from left to right.
         #[doc(alias = "NSLayoutFormatDirectionLeftToRight")]
         const DirectionLeftToRight = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionrighttoleft?language=objc)
+/// Arrange objects in order from right to left.
         #[doc(alias = "NSLayoutFormatDirectionRightToLeft")]
         const DirectionRightToLeft = 2<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions/directionmask?language=objc)
+/// A bit mask that can be combined with an [`NSLayoutFormatOptions`](https://developer.apple.com/documentation/appkit/nslayoutconstraint/formatoptions) variable to yield only the direction portion of the format options.
         #[doc(alias = "NSLayoutFormatDirectionMask")]
         const DirectionMask = 0x3<<16;
     }
@@ -206,7 +258,42 @@ unsafe impl RefEncode for NSLayoutFormatOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraint?language=objc)
+    /// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
+    ///
+    /// ## Overview
+    ///
+    /// Each constraint is a linear equation with the following format:
+    ///
+    /// ```objc
+    /// item1.attribute1 = multiplier × item2.attribute2 + constant
+    /// ```
+    ///
+    /// In this equation, `attribute1` and `attribute2` are the variables that Auto Layout can adjust when solving these constraints. The other values are defined when you create the constraint. For example, If you’re defining the relative position of two buttons, you might say “the leading edge of the second button should be 8 points after the trailing edge of the first button.” The linear equation for this relationship is shown below:
+    ///
+    /// ```objc
+    /// // positive values move to the right in left-to-right languages like English.
+    /// button2.leading = 1.0 × button1.trailing + 8.0
+    /// ```
+    ///
+    /// Auto Layout then modifies the values of the specified leading and trailing edges until both sides of the equation are equal. Note that Auto Layout does not simply assign the value of the right side of this equation to the left side. Instead, the system can modify either attribute or both attributes as needed to solve for this constraint.
+    ///
+    /// The fact that constraints are equations (and not assignment operators) means that you can switch the order of the items in the equation as needed to more clearly express the desired relationship. However, if you switch the order, you must also invert the multiplier and constant. For example, the following two equations produce identical constraints:
+    ///
+    /// ```objc
+    /// // These equations produce identical constraints
+    /// button2.leading = 1.0 × button1.trailing + 8.0
+    /// button1.trailing = 1.0 × button2.leading - 8.0
+    /// ```
+    ///
+    /// A valid layout is defined as a set constraints with one and only one possible solution. Valid layouts are also referred to as a nonambiguous, nonconflicting layouts. Constraints with more than one solution are ambiguous. Constraints with no valid solutions are conflicting. For more information on resolving ambiguous and conflicting constraints, see [Types of Errors](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/TypesofErrors.html#//apple_ref/doc/uid/TP40010853-CH17) in [Auto Layout Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853).
+    ///
+    /// Additionally, constraints are not limited to equality relationships. They can also use greater than or equal to (>=) or less than or equal to (<=) to describe the relationship between the two attributes. Constraints also have priorities between 1 and 1,000. Constraints with a priority of 1,000 are required. All priorities less than 1,000 are optional. By default, all constraints are required (priority = 1,000).
+    ///
+    /// After solving for the required constraints, Auto Layout tries to solve all the optional constraints in priority order from highest to lowest. If it cannot solve for an optional constraint, it tries to come as close as possible to the desired result, and then moves on to the next constraint.
+    ///
+    /// This combination of inequalities, equalities, and priorities gives you a great amount of flexibility and power. By combining multiple constraints, you can define layouts that dynamically adapt as the size and location of the elements in your user interface change. For some example layouts, see [Stack Views](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/LayoutUsingStackViews.html#//apple_ref/doc/uid/TP40010853-CH11) in [Auto Layout Guide](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/index.html#//apple_ref/doc/uid/TP40010853).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutConstraint;
@@ -528,14 +615,20 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewnoinstrinsicmetric?language=objc)
+    /// Used to indicate that a view has no intrinsic metric for a given numeric property.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static NSViewNoInstrinsicMetric: CGFloat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/nointrinsicmetric?language=objc)
+    /// A value that tells the layout system to ignore the intrinsic size value for a given dimension.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify this value if a view doesn’t have an intrinsic height or width. For example, a horizontal slider has an intrinsic height but might have no intrinsic width.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSViewNoIntrinsicMetric: CGFloat;
 }

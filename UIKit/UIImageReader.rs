@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagereaderconfiguration?language=objc)
+    /// The properties that a reader uses to decode images.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageReaderConfiguration;
@@ -97,7 +97,6 @@ impl DefaultRetained for UIImageReaderConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagereader-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageReader;

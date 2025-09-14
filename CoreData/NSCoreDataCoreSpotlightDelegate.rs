@@ -11,13 +11,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegateindexdidupdatenotification?language=objc)
     pub static NSCoreDataCoreSpotlightDelegateIndexDidUpdateNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscoredatacorespotlightdelegate?language=objc)
+    /// A set of methods that enable integration with Core Spotlight.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Core Spotlight integration is only available for persistent stores that have a store type of [`sqlite`](https://developer.apple.com/documentation/coredata/nspersistentstore/storetype/sqlite), and which use persistent history tracking. For more information, see [Consuming relevant store changes](https://developer.apple.com/documentation/coredata/consuming-relevant-store-changes).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoreDataCoreSpotlightDelegate;

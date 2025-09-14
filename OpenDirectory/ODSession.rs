@@ -9,48 +9,43 @@ use objc2_security_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The address to connect to via proxy. The value is of type `NSString`.
     /// the address to connect to via proxy, used when making the options dictionary
     ///
     /// the address to connect to via proxy, used when making the options dictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyaddress?language=objc)
     pub static ODSessionProxyAddress: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The port to connect to via proxy. The value is of type `NSNumber`.
     /// the port to connect to via proxy, used when making the options dictionary
     ///
     /// the port to connect to via proxy, used when making the options dictionary.  This parameter
     /// is optional and should not be passed normally.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyport?language=objc)
     pub static ODSessionProxyPort: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The username to connect with via proxy. The value is of type `NSString`.
     /// the username to connect with via proxy, used when making the options dictionary
     ///
     /// the username to connect with via proxy, used when making the options dictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxyusername?language=objc)
     pub static ODSessionProxyUsername: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The password to connect with via proxy. The value is of type `NSString`.
     /// the password to connect with via proxy, used when making the options dictionary
     ///
     /// the password to connect with via proxy, used when making the options dictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionproxypassword?language=objc)
     pub static ODSessionProxyPassword: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// An `ODSession` object serves as a Cocoa wrapper for an Open Directory session.
     /// Class for working with OpenDirectory sessions.
     ///
     /// Class for working with OpenDirectory sessions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODSession;

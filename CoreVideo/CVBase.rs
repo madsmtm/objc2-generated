@@ -6,13 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The flags to be used for the display link output callback function.
+///
+/// ## Discussion
+///
+/// No flags are currently defined.
+///
+///
 /// Flags to be used for the display and render call back functions.
 ///
 /// ***Values to be defined***
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvoptionflags?language=objc)
 pub type CVOptionFlags = u64;
 
+/// A structure for holding an SMPTE time.
 /// A structure for holding a SMPTE time.
 /// Field: subframes
 /// The number of subframes in the full message.
@@ -32,8 +38,6 @@ pub type CVOptionFlags = u64;
 /// The number of seconds in the full message.
 /// Field: frames
 /// The number of frames in the full message.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVSMPTETime {
@@ -92,35 +96,33 @@ unsafe impl Sync for CVSMPTETime {}
 /// 60 Frame
 ///
 /// 59.94 Frame
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVSMPTETimeType(pub u32);
 impl CVSMPTETimeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type24?language=objc)
+    /// 24 frames per second (standard film).
     #[doc(alias = "kCVSMPTETimeType24")]
     pub const Type24: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type25?language=objc)
+    /// 25 frames per second (standard PAL).
     #[doc(alias = "kCVSMPTETimeType25")]
     pub const Type25: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type30drop?language=objc)
+    /// 30 drop frame.
     #[doc(alias = "kCVSMPTETimeType30Drop")]
     pub const Type30Drop: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type30?language=objc)
+    /// 30 frames per second.
     #[doc(alias = "kCVSMPTETimeType30")]
     pub const Type30: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type2997?language=objc)
+    /// 29.97 frames per second (standard NTSC).
     #[doc(alias = "kCVSMPTETimeType2997")]
     pub const Type2997: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type2997drop?language=objc)
+    /// 29.97 drop frame.
     #[doc(alias = "kCVSMPTETimeType2997Drop")]
     pub const Type2997Drop: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type60?language=objc)
+    /// 60 frames per second.
     #[doc(alias = "kCVSMPTETimeType60")]
     pub const Type60: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype/type5994?language=objc)
+    /// 59.94 frames per second.
     #[doc(alias = "kCVSMPTETimeType5994")]
     pub const Type5994: Self = Self(7);
 }
@@ -144,18 +146,16 @@ unsafe impl Sync for CVSMPTETimeType {}
 /// The full time is valid.
 ///
 /// Time is running.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVSMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl CVSMPTETimeFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags/valid?language=objc)
+/// The full time is valid.
         #[doc(alias = "kCVSMPTETimeValid")]
         const Valid = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags/running?language=objc)
+/// Time is running.
         #[doc(alias = "kCVSMPTETimeRunning")]
         const Running = 1<<1;
     }
@@ -175,14 +175,13 @@ unsafe impl Send for CVSMPTETimeFlags {}
 
 unsafe impl Sync for CVSMPTETimeFlags {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVTimeFlags(pub i32);
 bitflags::bitflags! {
     impl CVTimeFlags: i32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimeflags/isindefinite?language=objc)
+/// The time value is unknown.
         #[doc(alias = "kCVTimeIsIndefinite")]
         const IsIndefinite = 1<<0;
     }
@@ -202,7 +201,13 @@ unsafe impl Send for CVTimeFlags {}
 
 unsafe impl Sync for CVTimeFlags {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtime?language=objc)
+/// A structure for reporting Core Video time values.
+///
+/// ## Overview
+///
+/// This structure is equivalent to the QuickTime `QTTime` structure.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVTime {
@@ -223,15 +228,22 @@ unsafe impl RefEncode for CVTime {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvzerotime?language=objc)
+    /// Zero time or duration. For example, [`CVDisplayLinkGetOutputVideoLatency`](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetoutputvideolatency(_:)) returns `kCVZeroTime` for zero video latency.
     pub static kCVZeroTime: CVTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvindefinitetime?language=objc)
+    /// An unknown or indefinite time. For example, [`CVDisplayLinkGetNominalOutputVideoRefreshPeriod`](https://developer.apple.com/documentation/corevideo/cvdisplaylinkgetnominaloutputvideorefreshperiod(_:)) returns `kCVIndefiniteTime` if the display link specified is not valid.
     pub static kCVIndefiniteTime: CVTime;
 }
 
+/// A structure for defining a display timestamp.
+///
+/// ## Overview
+///
+/// This structure is designed to be very similar to the audio timestamp defined in the Core Audio framework except that, in CVTimeStamp, floating-point values are not used to represent the video equivalent of sample times.
+///
+///
 /// CoreVideo uses a CVTimeStamp structure to store video display time stamps.
 ///
 /// This structure is purposely very similar to AudioTimeStamp defined in the CoreAudio framework.
@@ -256,8 +268,6 @@ extern "C" {
 /// kCVTimeStampVideoHostTimeValid
 /// kCVTimeStampIsInterlaced
 /// Field: reserved Reserved. Do not use.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVTimeStamp {
@@ -295,38 +305,37 @@ unsafe impl RefEncode for CVTimeStamp {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVTimeStampFlags(pub u64);
 bitflags::bitflags! {
     impl CVTimeStampFlags: u64 {
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/videotimevalid?language=objc)
+/// The value in the video time field is valid.
         #[doc(alias = "kCVTimeStampVideoTimeValid")]
         const VideoTimeValid = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/hosttimevalid?language=objc)
+/// The value in the host time field is valid.
         #[doc(alias = "kCVTimeStampHostTimeValid")]
         const HostTimeValid = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/smptetimevalid?language=objc)
+/// The value in the SMPTE time field is valid.
         #[doc(alias = "kCVTimeStampSMPTETimeValid")]
         const SMPTETimeValid = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/videorefreshperiodvalid?language=objc)
+/// The value in the video refresh period field is valid.
         #[doc(alias = "kCVTimeStampVideoRefreshPeriodValid")]
         const VideoRefreshPeriodValid = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/ratescalarvalid?language=objc)
+/// The value in the rate scalar field is valid.
         #[doc(alias = "kCVTimeStampRateScalarValid")]
         const RateScalarValid = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/topfield?language=objc)
+/// The timestamp represents the top lines of an interlaced image.
         #[doc(alias = "kCVTimeStampTopField")]
         const TopField = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/bottomfield?language=objc)
+/// The timestamp represents the bottom lines of an interlaced image.
         #[doc(alias = "kCVTimeStampBottomField")]
         const BottomField = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/videohosttimevalid?language=objc)
+/// A convenience constant indicating that both the video time and host time fields are valid.
         #[doc(alias = "kCVTimeStampVideoHostTimeValid")]
         const VideoHostTimeValid = CVTimeStampFlags::VideoTimeValid.0|CVTimeStampFlags::HostTimeValid.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags/isinterlaced?language=objc)
+/// A convenience constant indicating that the timestamp is for an interlaced image.
         #[doc(alias = "kCVTimeStampIsInterlaced")]
         const IsInterlaced = CVTimeStampFlags::TopField.0|CVTimeStampFlags::BottomField.0;
     }

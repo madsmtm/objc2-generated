@@ -9,6 +9,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Callback function used to retain a program-defined information pointer.
+///
+/// Parameters:
+/// - info: The program-supplied information pointer provided in a [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure.
+///
+///
+/// ## Return Value
+///
+/// The value to use whenever the information pointer is retained, which is usually the `info` parameter passed to this callback, but may be a different value if a different value should be used.
+///
+///
 /// Type of the callback function used to add a retain to the user-specified
 /// info parameter.  This callback may returns the value to use whenever the
 /// info parameter is retained, which is usually the value parameter passed
@@ -18,29 +29,40 @@ use crate::*;
 /// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
 ///
 /// Returns: The retained info parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeretaincallback?language=objc)
 pub type CFTreeRetainCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
+/// Callback function used to release a previously retained program-defined information pointer.
+///
+/// Parameters:
+/// - info: The program-supplied information pointer provided in a [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure.
+///
 /// Type of the callback function used to remove a retain previously
 /// added to the user-specified info parameter.
 ///
 /// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreereleasecallback?language=objc)
 pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
+/// Callback function used to provide a description of the program-defined information pointer.
+///
+/// Parameters:
+/// - info: The program-supplied information pointer provided in a [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure.
+///
+///
+/// ## Return Value
+///
+/// A textual description of `info`. The caller is responsible for releasing this object.
+///
+///
 /// Type of the callback function used to provide a description of the
 /// user-specified info parameter.
 ///
 /// Parameter `info`: A user-supplied info parameter provided in a CFTreeContext.
 ///
 /// Returns: A description of the info parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
 pub type CFTreeCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
+/// Structure containing program-defined data and callbacks for a CFTree object.
 /// Structure containing user-specified data and callbacks for a CFTree.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFTree creation function.
@@ -55,8 +77,6 @@ pub type CFTreeCopyDescriptionCallBack =
 /// The value may be NULL.
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -87,6 +107,19 @@ unsafe impl RefEncode for CFTreeContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Type of the callback function used by the CFTree apply function.
+///
+/// Parameters:
+/// - value: The current child of a tree that is being iterated.
+///
+/// - context: The program-defined context parameter that was passed to the applier function.
+///
+///
+/// ## Discussion
+///
+/// This callback is used by the [`CFTreeApplyFunctionToChildren`](https://developer.apple.com/documentation/corefoundation/cftreeapplyfunctiontochildren(_:_:_:)) applier function.
+///
+///
 /// Type of the callback function used by the apply functions of
 /// CFTree.
 ///
@@ -94,13 +127,27 @@ unsafe impl RefEncode for CFTreeContext {
 ///
 /// Parameter `context`: The user-defined context parameter give to the apply
 /// function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplierfunction?language=objc)
 pub type CFTreeApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
-/// This is the type of a reference to CFTrees.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftree?language=objc)
+/// ## Overview
+///
+/// You use CFTree to create tree structures that represent hierarchical organizations of information. In such structures, each tree node has exactly one parent tree (except for the root tree, which has no parent) and can have multiple children. Each CFTree object in the structure has a context associated with it; this context includes some program-defined data as well as callbacks that operate on that data. The program-defined data is often used as the basis for determining where CFTree objects fit within the structure. All CFTree objects are mutable.
+///
+/// You create a CFTree object using the [`CFTreeCreate`](https://developer.apple.com/documentation/corefoundation/cftreecreate(_:_:)) function. This function takes an allocator and pointer to a [`CFTreeGetContext`](https://developer.apple.com/documentation/corefoundation/cftreegetcontext(_:_:)) structure as parameters. The [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure contains the program-defined data and callbacks needed to describe, retain, and release that data. If you do not implement these callbacks, your program-defined data will not be retained or released when trees are added and removed from a parent.
+///
+/// Each CFTree object has a parent and list of children, all of which may be `NULL`. CFTree provides functions for adding and removing tree objects from the tree structure. Use the [`CFTreeAppendChild`](https://developer.apple.com/documentation/corefoundation/cftreeappendchild(_:_:)), [`CFTreeInsertSibling`](https://developer.apple.com/documentation/corefoundation/cftreeinsertsibling(_:_:)), or [`CFTreePrependChild`](https://developer.apple.com/documentation/corefoundation/cftreeprependchild(_:_:)) functions to add trees to a tree structure, and the [`CFTreeRemove`](https://developer.apple.com/documentation/corefoundation/cftreeremove(_:)) or [`CFTreeRemoveAllChildren`](https://developer.apple.com/documentation/corefoundation/cftreeremoveallchildren(_:)) functions to remove trees.
+///
+/// For the purposes of memory management, CFTree can be thought of as a collection. Typically the only object that retains a child tree is its parent. Usually, therefore, when you remove a child tree from a tree, the child tree is destroyed. If you want to use a child tree after you remove it from its parent, you should retain the child tree first, prior to removing it.
+///
+/// Releasing a tree releases its child trees, and all of their child trees (recursively). Note also that the final release of a tree (when its retain count decreases to zero) causes all of its child trees, and all of their child trees (recursively), to be destroyed, regardless of their retain counts. Releasing a child that is still in a tree is therefore a programming error, and may cause your application to crash.
+///
+/// You can use any of the get functions (functions containing the word “Get”) to obtain the parent, children, or attributes of a tree. For example, use [`CFTreeGetChildAtIndex`](https://developer.apple.com/documentation/corefoundation/cftreegetchildatindex(_:_:)) to obtain a child of a tree at a specified location. In common with other Core Foundation “Get” functions, these functions do not retain the tree that is returned. If you are making other modifications to the tree, you should either retain or make a deep copy of the child tree returned.
+///
+/// You can apply a function to all children of a tree using the [`CFTreeApplyFunctionToChildren`](https://developer.apple.com/documentation/corefoundation/cftreeapplyfunctiontochildren(_:_:_:)) function, and sort children of a tree using the [`CFTreeSortChildren`](https://developer.apple.com/documentation/corefoundation/cftreesortchildren(_:_:_:)) function.
+///
+///
+/// This is the type of a reference to CFTrees.
 #[doc(alias = "CFTreeRef")]
 #[repr(C)]
 pub struct CFTree {
@@ -117,9 +164,14 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFTree {
-    /// Returns the type identifier of all CFTree instances.
+    /// Returns the type identifier of the CFTree opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of the CFTree opaque type.
+    ///
+    ///
+    /// Returns the type identifier of all CFTree instances.
     #[doc(alias = "CFTreeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -131,6 +183,19 @@ unsafe impl ConcreteType for CFTree {
 }
 
 impl CFTree {
+    /// Creates a new CFTree object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new tree. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - context: The [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure to be copied and used as the context of the new tree. The information pointer will be retained by the tree if a retain function is provided. If this value is not a valid C pointer to a [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure-sized block of storage, the result is undefined. If the version number of the storage is not a valid [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) version number, the result is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFTree object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable tree.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -153,8 +218,6 @@ impl CFTree {
     ///
     /// - `allocator` might not allow `None`.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecreate(_:_:)?language=objc)
     #[doc(alias = "CFTreeCreate")]
     #[inline]
     pub unsafe fn new(
@@ -171,14 +234,23 @@ impl CFTree {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the parent of a given tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The parent of `tree`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the parent of the specified tree.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The parent of the tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetparent(_:)?language=objc)
     #[doc(alias = "CFTreeGetParent")]
     #[inline]
     pub fn parent(&self) -> Option<CFRetained<CFTree>> {
@@ -189,14 +261,23 @@ impl CFTree {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the next sibling, adjacent to a given tree, in the parent’s children list.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The next sibling, adjacent to `tree`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the sibling after the specified tree in the parent tree's list.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The next sibling of the tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetnextsibling(_:)?language=objc)
     #[doc(alias = "CFTreeGetNextSibling")]
     #[inline]
     pub fn next_sibling(&self) -> Option<CFRetained<CFTree>> {
@@ -207,14 +288,23 @@ impl CFTree {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the first child of a tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The first child of `tree`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the first child of the tree.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The first child of the tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetfirstchild(_:)?language=objc)
     #[doc(alias = "CFTreeGetFirstChild")]
     #[inline]
     pub fn first_child(&self) -> Option<CFRetained<CFTree>> {
@@ -225,6 +315,13 @@ impl CFTree {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the context of the specified tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    /// - context: The [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure to be filled in with the context of the specified tree. This value must be a valid C pointer to a [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure-sized block of storage. If the version number of the storage is not a valid [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure version number, the result is undefined.
+    ///
     /// Returns the context of the specified tree.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
@@ -239,8 +336,6 @@ impl CFTree {
     /// # Safety
     ///
     /// `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetcontext(_:_:)?language=objc)
     #[doc(alias = "CFTreeGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: *mut CFTreeContext) {
@@ -250,14 +345,23 @@ impl CFTree {
         unsafe { CFTreeGetContext(self, context) }
     }
 
+    /// Returns the number of children in a tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of children in `tree`.
+    ///
+    ///
     /// Returns the number of children of the specified tree.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: The number of children.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetchildcount(_:)?language=objc)
     #[doc(alias = "CFTreeGetChildCount")]
     #[inline]
     pub fn child_count(&self) -> CFIndex {
@@ -267,6 +371,19 @@ impl CFTree {
         unsafe { CFTreeGetChildCount(self) }
     }
 
+    /// Returns the child of a tree at the specified index.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    /// - idx: The index of the child obtain. The value must be less than the number of children in `tree`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The child tree at `idx`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the nth child of the specified tree.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
@@ -277,8 +394,6 @@ impl CFTree {
     /// tree, the result is undefined.
     ///
     /// Returns: A reference to the specified child tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetchildatindex(_:_:)?language=objc)
     #[doc(alias = "CFTreeGetChildAtIndex")]
     #[inline]
     pub fn child_at_index(&self, idx: CFIndex) -> Option<CFRetained<CFTree>> {
@@ -289,6 +404,13 @@ impl CFTree {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Fills a buffer with children from the tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    /// - children: The C array of pointer-sized values to be filled with the children from `tree`. This value must be a valid pointer to a C array of at least the size of the number of children in `tree`. Use the [`CFTreeGetChildCount`](https://developer.apple.com/documentation/corefoundation/cftreegetchildcount(_:)) function to obtain the number of children in `tree`. You are responsible for retaining and releasing the returned objects as needed.
+    ///
     /// Fills the buffer with children from the tree.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
@@ -301,8 +423,6 @@ impl CFTree {
     /// # Safety
     ///
     /// `children` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreegetchildren(_:_:)?language=objc)
     #[doc(alias = "CFTreeGetChildren")]
     #[inline]
     pub unsafe fn children(&self, children: *mut *mut CFTree) {
@@ -312,6 +432,21 @@ impl CFTree {
         unsafe { CFTreeGetChildren(self, children) }
     }
 
+    /// Calls a function once for each immediate child of a tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to operate upon.
+    ///
+    /// - applier: The callback function to call once for each child in `tree`. The function must be able to apply to all the values in the tree.
+    ///
+    /// - context: A pointer-sized program-defined value that is passed to the applier function, but is otherwise unused by this function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that the applier only operates one level deep—it does not operate on descendants further removed than the immediate children of a tree. If the tree is mutable, it is unsafe for the applied function to change the contents of the tree.
+    ///
+    ///
     /// Calls a function once for each child of the tree.  Note that the applier
     /// only operates one level deep, and does not operate on descendents further
     /// removed than the immediate children of the tree.
@@ -335,8 +470,6 @@ impl CFTree {
     ///
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeapplyfunctiontochildren(_:_:_:)?language=objc)
     #[doc(alias = "CFTreeApplyFunctionToChildren")]
     #[inline]
     pub unsafe fn apply_function_to_children(
@@ -354,14 +487,23 @@ impl CFTree {
         unsafe { CFTreeApplyFunctionToChildren(self, applier, context) }
     }
 
+    /// Returns the root tree of a given tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The root of `tree` where root is defined as a tree without a parent. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the root tree of which the specified tree is a descendent.
     ///
     /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
     ///
     /// Returns: A reference to the root of the tree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreefindroot(_:)?language=objc)
     #[doc(alias = "CFTreeFindRoot")]
     #[inline]
     pub fn find_root(&self) -> Option<CFRetained<CFTree>> {
@@ -372,6 +514,13 @@ impl CFTree {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Replaces the context of a tree by releasing the old information pointer and retaining the new one.
+    ///
+    /// Parameters:
+    /// - tree: The tree to modify.
+    ///
+    /// - context: The [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure to be copied and used as the context of the new tree. The information pointer will be retained by the tree if a retain function is provided. If this value is not a valid C pointer to a [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) structure-sized block of storage, the result is undefined. If the version number of the storage is not a valid [`CFTreeContext`](https://developer.apple.com/documentation/corefoundation/cftreecontext) version number, the result is undefined.
+    ///
     /// Replaces the context of a tree.  The tree releases its retain on the
     /// info of the previous context, and retains the info of the new context.
     ///
@@ -389,8 +538,6 @@ impl CFTree {
     /// # Safety
     ///
     /// `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreesetcontext(_:_:)?language=objc)
     #[doc(alias = "CFTreeSetContext")]
     #[inline]
     pub unsafe fn set_context(&self, context: *const CFTreeContext) {
@@ -400,6 +547,19 @@ impl CFTree {
         unsafe { CFTreeSetContext(self, context) }
     }
 
+    /// Adds a new child to the specified tree as the first in its list of children.
+    ///
+    /// Parameters:
+    /// - tree: The tree to which to add `newChild`.
+    ///
+    /// - newChild: The child tree to add to `tree`. This value must not be a child of another tree.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When a child tree is added to another tree, the child tree is retained by its new parent.
+    ///
+    ///
     /// Adds the newChild to the specified tree as the first in its list of children.
     ///
     /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
@@ -413,8 +573,6 @@ impl CFTree {
     /// # Safety
     ///
     /// `new_child` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeprependchild(_:_:)?language=objc)
     #[doc(alias = "CFTreePrependChild")]
     #[inline]
     pub unsafe fn prepend_child(&self, new_child: Option<&CFTree>) {
@@ -424,6 +582,19 @@ impl CFTree {
         unsafe { CFTreePrependChild(self, new_child) }
     }
 
+    /// Adds a new child to a tree as the last in its list of children.
+    ///
+    /// Parameters:
+    /// - tree: The tree to which to add `newChild`.
+    ///
+    /// - newChild: The child tree to add to `tree`. If this parameter is a tree which is already a child of any other tree, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When a child tree is added to another tree, the child tree is retained by its new parent.
+    ///
+    ///
     /// Adds the newChild to the specified tree as the last in its list of children.
     ///
     /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
@@ -437,8 +608,6 @@ impl CFTree {
     /// # Safety
     ///
     /// `new_child` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeappendchild(_:_:)?language=objc)
     #[doc(alias = "CFTreeAppendChild")]
     #[inline]
     pub unsafe fn append_child(&self, new_child: Option<&CFTree>) {
@@ -448,6 +617,21 @@ impl CFTree {
         unsafe { CFTreeAppendChild(self, new_child) }
     }
 
+    /// Inserts a new sibling after a given tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree after which to insert `newSibling`. `tree` must have a parent.
+    ///
+    /// - newSibling: The sibling to add. `newSibling` must not have a parent.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When a child tree is added to another tree, the child tree is retained by its new parent.
+    ///
+    /// If you want to manipulate an existing tree structure, since `newSibling` must not have a parent you need to remove a tree from its parent in order to move it to a new position. If you do this, you should retain the tree before you actually remove it from its parent (see [`CFTreeRemove`](https://developer.apple.com/documentation/corefoundation/cftreeremove(_:))).
+    ///
+    ///
     /// Inserts newSibling into the the parent tree's linked list of children after
     /// tree.  The newSibling will have the same parent as tree.
     ///
@@ -463,8 +647,6 @@ impl CFTree {
     /// # Safety
     ///
     /// `new_sibling` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeinsertsibling(_:_:)?language=objc)
     #[doc(alias = "CFTreeInsertSibling")]
     #[inline]
     pub unsafe fn insert_sibling(&self, new_sibling: Option<&CFTree>) {
@@ -474,12 +656,21 @@ impl CFTree {
         unsafe { CFTreeInsertSibling(self, new_sibling) }
     }
 
+    /// Removes a tree from its parent.
+    ///
+    /// Parameters:
+    /// - tree: The tree to remove from its parent.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When a child tree is removed from its parent, the parent releases it. If you want to use the child after you have removed it, you should ensure you retain it before removing it from its parent.
+    ///
+    ///
     /// Removes the tree from its parent.
     ///
     /// Parameter `tree`: The tree to be removed.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeremove(_:)?language=objc)
     #[doc(alias = "CFTreeRemove")]
     #[inline]
     pub fn remove(&self) {
@@ -489,12 +680,15 @@ impl CFTree {
         unsafe { CFTreeRemove(self) }
     }
 
+    /// Removes all the children of a tree.
+    ///
+    /// Parameters:
+    /// - tree: The tree to modify.
+    ///
     /// Removes all the children of the tree.
     ///
     /// Parameter `tree`: The tree to remove all children from.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreeremoveallchildren(_:)?language=objc)
     #[doc(alias = "CFTreeRemoveAllChildren")]
     #[inline]
     pub fn remove_all_children(&self) {
@@ -504,6 +698,21 @@ impl CFTree {
         unsafe { CFTreeRemoveAllChildren(self) }
     }
 
+    /// Sorts the immediate children of a tree using a specified comparator function.
+    ///
+    /// Parameters:
+    /// - tree: The tree to sort.
+    ///
+    /// - comparator: The function with a comparator function type signature which is used in the sort operation to compare children of the tree. The children of the tree are sorted from least to greatest according to this function.
+    ///
+    /// - context: A pointer-sized program-defined value that is passed to the comparator function, but is otherwise unused by this function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that the comparator only operates one level deep and does not operate on descendants further removed than the immediate children of a tree node.
+    ///
+    ///
     /// Sorts the children of the specified tree using the specified comparator function.
     ///
     /// Parameter `tree`: The tree to be operated on.  If this parameter is not a valid
@@ -526,8 +735,6 @@ impl CFTree {
     ///
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreesortchildren(_:_:_:)?language=objc)
     #[doc(alias = "CFTreeSortChildren")]
     #[inline]
     pub unsafe fn sort_children(&self, comparator: CFComparatorFunction, context: *mut c_void) {

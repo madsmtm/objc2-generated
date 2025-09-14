@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype?language=objc)
+/// Constants that indicate the shape of the item’s collision bounds.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDynamicItemCollisionBoundsType(pub NSUInteger);
 impl UIDynamicItemCollisionBoundsType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype/rectangle?language=objc)
+    /// Rectangular collision bounds.
     #[doc(alias = "UIDynamicItemCollisionBoundsTypeRectangle")]
     pub const Rectangle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype/ellipse?language=objc)
+    /// Elliptical collision bounds. The shape of the ellipse is determined by the width and height of the item’s [`bounds`](https://developer.apple.com/documentation/uikit/uidynamicitem/bounds) property.
     #[doc(alias = "UIDynamicItemCollisionBoundsTypeEllipse")]
     pub const Ellipse: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemcollisionboundstype/path?language=objc)
+    /// Path-based collision bounds. For this type, the shape is a [`UIBezierPath`](https://developer.apple.com/documentation/uikit/uibezierpath) object stored in the item’s [`collisionBoundingPath`](https://developer.apple.com/documentation/uikit/uidynamicitem/collisionboundingpath) property. See the description of that property for information about how to configure the path itself.
     #[doc(alias = "UIDynamicItemCollisionBoundsTypePath")]
     pub const Path: Self = Self(2);
 }
@@ -35,7 +35,13 @@ unsafe impl RefEncode for UIDynamicItemCollisionBoundsType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitem?language=objc)
+    /// A set of methods that can make a custom object eligible to participate in UIKit Dynamics.
+    ///
+    /// ## Overview
+    ///
+    /// Starting in iOS 7, the [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol.
+    ///
+    ///
     pub unsafe trait UIDynamicItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(center))]
@@ -82,7 +88,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicitemgroup?language=objc)
+    /// A dynamic item that comprises multiple other dynamic items.
+    ///
+    /// ## Overview
+    ///
+    /// Use groups to manipulate a group of dynamic items together and treat them as a single unit for the purpose of collisions. The group can contain dynamic items but cannot contain other [`UIDynamicItemGroup`](https://developer.apple.com/documentation/uikit/uidynamicitemgroup) objects. You can add a group to any [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior) object.
+    ///
+    /// The attributes of the dynamic item group are derived from the items of the group itself. The group’s bounds rectangle is the rectangle that encloses all of the contained dynamic items, and the center point of the group is the center point of the bounds rectangle.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -126,7 +140,23 @@ impl UIDynamicItemGroup {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicbehavior?language=objc)
+    /// An object that confers a behavioral configuration on one or more dynamic items, for their participation in 2D animation.
+    ///
+    /// ## Overview
+    ///
+    /// A _dynamic item_ is any iOS or custom object that conforms to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol starting in iOS 7.0. You can implement this protocol to use a dynamic animator with custom objects for such purposes as reacting to rotation or position changes computed by an animator—an instance of the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) class.
+    ///
+    /// This parent class, [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior), is inherited by the primitive dynamic behavior classes [`UIAttachmentBehavior`](https://developer.apple.com/documentation/uikit/uiattachmentbehavior), [`UICollisionBehavior`](https://developer.apple.com/documentation/uikit/uicollisionbehavior), [`UIGravityBehavior`](https://developer.apple.com/documentation/uikit/uigravitybehavior), [`UIDynamicItemBehavior`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior), [`UIPushBehavior`](https://developer.apple.com/documentation/uikit/uipushbehavior), and [`UISnapBehavior`](https://developer.apple.com/documentation/uikit/uisnapbehavior).
+    ///
+    /// You can subclass [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior). By using the [`addChildBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)) method in an instance of this class or in a custom subclass, you can create composite behaviors of your own design.
+    ///
+    /// When you subclass [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior), you typically need to provide one or more initializers, along with other housekeeping methods such as those implemented in the iOS primitive dynamic behaviors.
+    ///
+    /// To perform per-step logic in a dynamic animation, provide a block object using the [`action`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/action) property.
+    ///
+    /// To access the dynamic animator that a dynamic behavior is associated with, use the [`dynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/dynamicanimator) property. To respond to a dynamic behavior being added to or removed from a dynamic animator, implement the [`willMoveToAnimator:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/willmove(to:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

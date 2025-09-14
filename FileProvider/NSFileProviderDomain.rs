@@ -7,18 +7,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainidentifier?language=objc)
+/// A unique identifier for a file provider’s domain.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderDomainIdentifier = NSString;
 
 extern_class!(
+    /// An opaque object that identifies a specific version of a domain.
+    ///
+    /// ## Overview
+    ///
+    /// The file provider extension is responsible for assigning and updating the domain version. To specify the domain version, adopt the [`NSFileProviderDomainState`](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate) protocol. The system then calls your extension’s [`domainVersion`](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion) method to read the current version.
+    ///
+    /// The system reads the domain version after you call:
+    ///
+    /// - The [`createItemBasedOnTemplate:fields:contents:options:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/createitem(basedon:fields:contents:options:request:completionhandler:)) completion handler
+    ///
+    /// - The [`modifyItem:baseVersion:changedFields:contents:options:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/modifyitem(_:baseversion:changedfields:contents:options:request:completionhandler:)) completion handler
+    ///
+    /// - The [`deleteItemWithIdentifier:baseVersion:options:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/deleteitem(identifier:baseversion:options:request:completionhandler:)) completion handler
+    ///
+    /// - The [`itemForIdentifier:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/item(for:request:completionhandler:)) completion handler
+    ///
+    /// - The [`finishEnumeratingUpToPage:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerationobserver/finishenumerating(upto:)) or [`finishEnumeratingWithError:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerationobserver/finishenumeratingwitherror(_:)) method when enumerating the materialized set.
+    ///
+    /// The system always reads the domain version on the same dispatch queue as the completion handler.
+    ///
+    /// Your extension defines when the domain version changes. When you update the version, call the [`signalEnumeratorForContainerItemIdentifier:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/signalenumerator(for:completionhandler:)) and passing the [`NSFileProviderWorkingSetContainerItemIdentifier`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/workingset) constant as the `containerItemIdentifier` property. This notifies the system of the update. The system ignores any lower versions.
+    ///
+    /// When the system discovers a change on disk, it associates that change with the current domain version. It then includes the version in the [`NSFileProviderRequest`](https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest) object passed to the file provider extension.
+    ///
+    /// Only file provider extensions based on the [`NSFileProviderReplicatedExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension) use instances of this class. Each version object is immutable. You can use them as keys in a dictionary.
+    ///
+    ///
     /// File provider domain version.
     ///
     /// This object can be used by the `NSFileProviderReplicatedExtension` to describe the
     /// current version of the domain. This object is immutable and can safely be used as
     /// a key in a dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainversion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomainVersion;
@@ -74,20 +99,47 @@ impl NSFileProviderDomainVersion {
     );
 }
 
+/// Modes that modify the system’s behavior while testing.
 /// Testing modes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderDomainTestingModes(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDomainTestingModes: NSUInteger {
-/// Enable the domain without any user action required.
+/// A testing mode that automatically enables the domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct/alwaysenabled?language=objc)
+/// ## Discussion
+///
+/// By default, the user must manually enable a domain in System Preferences > Extensions before the File Provider extension can access it. This testing mode bypasses that workflow and automatically enables the domain.
+///
+///
+/// Enable the domain without any user action required.
         #[doc(alias = "NSFileProviderDomainTestingModeAlwaysEnabled")]
         const AlwaysEnabled = 1<<0;
+/// A testing mode where the extension can deterministically test asynchronous operations.
+///
+/// ## Discussion
+///
+/// Disable the system’s automatic scheduling and execution of operations. Instead, the File Provider extension can manually determine the order of execution.
+///
+/// This testing mode enables the following synchronous methods:
+///
+/// - [`listAvailableTestingOperationsWithError:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/listavailabletestingoperations()): Lists all the operations that are ready for scheduling.
+///
+/// - [`runTestingOperations:error:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/run(_:)): Asks the system to schedule and execute the specified operations.
+///
+/// The [`NSFileProviderDomainTestingModeInteractive`](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct/interactive) testing mode expects the File Provider extension to repeat the following steps while running tests:
+///
+/// 1. Call [`listAvailableTestingOperationsWithError:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/listavailabletestingoperations())to get the list of outstanding operations.
+///
+/// 2. Select the next set of operations required by your test.
+///
+/// 3. Call [`runTestingOperations:error:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/run(_:))to execute those operations.
+///
+/// The `interactive` testing mode also disables some of the File Provider extension’s crash guarantees. For example, the system may lose any event that it hasn’t yet ingested.
+///
+///
 /// Enable interactive mode.
 ///
 /// Disable the automatic scheduling from the system and allow external tools to
@@ -100,8 +152,6 @@ bitflags::bitflags! {
 /// If that mode is enabled, some crash recovery guarantees are lost. For instance,
 /// the system may lose any event that hasn't been ingested. The system does not
 /// support removing this mode from a domain on which it has been enabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct/interactive?language=objc)
         #[doc(alias = "NSFileProviderDomainTestingModeInteractive")]
         const Interactive = 1<<1;
     }
@@ -115,19 +165,16 @@ unsafe impl RefEncode for NSFileProviderDomainTestingModes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that identify known folders.
 /// Specifying a list of known folders.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderKnownFolders(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderKnownFolders: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders/desktop?language=objc)
         #[doc(alias = "NSFileProviderDesktop")]
         const Desktop = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders/documents?language=objc)
         #[doc(alias = "NSFileProviderDocuments")]
         const Documents = 1<<1;
     }
@@ -142,6 +189,15 @@ unsafe impl RefEncode for NSFileProviderKnownFolders {
 }
 
 extern_class!(
+    /// A File Provider extension’s domain.
+    ///
+    /// ## Overview
+    ///
+    /// You can use domains to partition a file provider’s content. When you use domains, a single file provider can act as if multiple file providers were installed, and users can dynamically switch from one domain to another. You can use domains to represent different accounts or locations.
+    ///
+    /// By default, a File Provider extension has no domain. You can register domains by calling the [`NSFileProviderManager`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager) class’s [`addDomain:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/add(_:completionhandler:)) method. A new [`NSFileProviderExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension) instance is created for each domain that you register. The [`NSFileProviderExtension`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension) object’s [`domain`](https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain) property indicates which domain the file provider belongs to. Any items returned by that file provider also belong to the domain.
+    ///
+    ///
     /// File provider domain.
     ///
     /// A file provider domain can be used to represent accounts or different locations
@@ -161,8 +217,6 @@ extern_class!(
     /// All the files on disk belonging to the same domain must be grouped inside a
     /// common directory. That directory path is indicated by the
     /// `pathRelativeToDocumentStorage`property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderDomain;
@@ -449,6 +503,13 @@ impl NSFileProviderExtension {
 }
 
 extern "C" {
+    /// A notification that posts when a file provider’s domain changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The system only posts this notification after the first call to [`getDomainsWithCompletionHandler(_:)`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/getdomainswithcompletionhandler(_:)). After receiving this notification, call [`getDomainsWithCompletionHandler(_:)`](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/getdomainswithcompletionhandler(_:)) again to determine what the changes are.
+    ///
+    ///
     /// Posted when any domain changed.
     ///
     /// Interested client should then call `+[NSFileProviderManager getDomainsWithCompletionHandler:]` and see
@@ -456,16 +517,14 @@ extern "C" {
     ///
     /// Note, this notification starts to be posted only after `+[NSFileProviderManager getDomainsWithCompletionHandler:]` is
     /// called.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomaindidchange?language=objc)
     pub static NSFileProviderDomainDidChange: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderUserInfoKey = NSString;
 
 extern "C" {
+    /// System interpreted user info key When setting a value to that user info on a domain, the system will ingest this value. If user has given their consent for telemetry, this value will be used to decorate telemetry messages sent by the FileProvider subsystem. The telemetry messages can be then later on retrieved by developers along with the other metrics through the CloudKit console as detailed here: https://developer.apple.com/documentation/fileprovider/exporting-file-provider-metrics-data?language=objc This will help developers triaging data they receive from testing population compared to regular users The value must either be a NSNumber between [0 - 31]. If it’s not in that range, or if it is not a NSNumber, any call to addDomain with that invalid UserInfo dictionary will fail with a EINVAL POSIX NSError. To update this value, the provider must call addDomain with an updated userInfo dictionary
     /// System interpreted user info key
     /// When setting a value to that user info on a domain, the system will ingest this value.
     /// If user has given their consent for telemetry, this value will be used to decorate telemetry messages sent
@@ -476,7 +535,5 @@ extern "C" {
     /// The value must either be a NSNumber between [0 - 31]. If it's not in that range, or if it is not a NSNumber, any
     /// call to addDomain with that invalid UserInfo dictionary will fail with a EINVAL POSIX NSError.
     /// To update this value, the provider must call addDomain with an updated userInfo dictionary
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinfokey/experimentid?language=objc)
     pub static NSFileProviderUserInfoExperimentIDKey: &'static NSFileProviderUserInfoKey;
 }

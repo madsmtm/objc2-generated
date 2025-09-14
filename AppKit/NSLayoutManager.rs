@@ -12,16 +12,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation?language=objc)
+/// Constants that describe the text layout orientation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutOrientation(pub NSInteger);
 impl NSTextLayoutOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation/horizontal?language=objc)
+    /// Lines render horizontally, each line following the previous from top to bottom.
     #[doc(alias = "NSTextLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation/vertical?language=objc)
+    /// Lines render vertically, each line following the previous from right to left.
     #[doc(alias = "NSTextLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -34,23 +34,35 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty?language=objc)
+/// Glyph properties.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphProperty(pub NSInteger);
 bitflags::bitflags! {
     impl NSGlyphProperty: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/null?language=objc)
+/// The null glyph, which the layout manager ignores.
         #[doc(alias = "NSGlyphPropertyNull")]
         const Null = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/controlcharacter?language=objc)
+/// A glyph representing a control character.
+///
+/// ## Discussion
+///
+/// Control character such as tab, attachment, and so on, that has associated special behavior.
+///
+///
         #[doc(alias = "NSGlyphPropertyControlCharacter")]
         const ControlCharacter = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/elastic?language=objc)
+/// A glyph with a changeable width, such as a white space character.
         #[doc(alias = "NSGlyphPropertyElastic")]
         const Elastic = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty/nonbasecharacter?language=objc)
+/// A glyph that combines several properties.
+///
+/// ## Discussion
+///
+/// A glyph of this type typically represents characters in the Unicode Mn class.
+///
+///
         #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
         const NonBaseCharacter = 1<<3;
     }
@@ -64,29 +76,53 @@ unsafe impl RefEncode for NSGlyphProperty {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction?language=objc)
+/// Constants that describe actions for control characters.
+///
+/// ## Overview
+///
+/// These constants [`layoutManager:shouldUseAction:forControlCharacterAtIndex:`](https://developer.apple.com/documentation/appkit/nslayoutmanagerdelegate/layoutmanager(_:shoulduse:forcontrolcharacterat:)) delegate method uses.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlCharacterAction(pub NSInteger);
 bitflags::bitflags! {
     impl NSControlCharacterAction: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/zeroadvancement?language=objc)
+/// An action that removes the glyph from layout.
+///
+/// ## Discussion
+///
+/// Glyphs with this action are filtered out from layout ([`notShownAttributeForGlyphAtIndex:`](https://developer.apple.com/documentation/appkit/nslayoutmanager/notshownattribute(forglyphat:)) `== YES` for the glyph).
+///
+///
         #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
         const ZeroAdvancement = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/whitespace?language=objc)
+/// An action that adds whitespace.
+///
+/// ## Discussion
+///
+/// The width for a glyph with this action is determined by the delegate method [`layoutManager:shouldUseAction:forControlCharacterAtIndex:`](https://developer.apple.com/documentation/appkit/nslayoutmanagerdelegate/layoutmanager(_:shoulduse:forcontrolcharacterat:)) if the method is implemented; otherwise, same as `NSControlCharacterZeroAdvancementAction`.
+///
+///
         #[doc(alias = "NSControlCharacterActionWhitespace")]
         const Whitespace = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/horizontaltab?language=objc)
+/// An action that inserts a horizontal tab.
         #[doc(alias = "NSControlCharacterActionHorizontalTab")]
         const HorizontalTab = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/linebreak?language=objc)
+/// An action that causes a line break.
         #[doc(alias = "NSControlCharacterActionLineBreak")]
         const LineBreak = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/paragraphbreak?language=objc)
+/// An action that causes a paragraph break.
+///
+/// ## Discussion
+///
+/// The value in [`firstLineHeadIndent`](https://developer.apple.com/documentation/appkit/nsparagraphstyle/firstlineheadindent) is used for the following glyph.
+///
+///
         #[doc(alias = "NSControlCharacterActionParagraphBreak")]
         const ParagraphBreak = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction/containerbreak?language=objc)
+/// An action that triggers a break in layout for the current container.
         #[doc(alias = "NSControlCharacterActionContainerBreak")]
         const ContainerBreak = 1<<5;
     }
@@ -101,7 +137,13 @@ unsafe impl RefEncode for NSControlCharacterAction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutorientationprovider?language=objc)
+    /// A set of methods that define the orientation of text for an object.
+    ///
+    /// ## Overview
+    ///
+    /// In macOS, the [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) and [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) classes adopt this protocol; in iOS, only the [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) class implements it. An [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) object returns the value from its associated text view when present; otherwise, it returns [`NSTextLayoutOrientationHorizontal`](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation/horizontal) by default. If you define a custom [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) object, you can override this method and return [`NSTextLayoutOrientationVertical`](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation/vertical) to support laying out text vertically.
+    ///
+    ///
     pub unsafe trait NSTextLayoutOrientationProvider {
         #[unsafe(method(layoutOrientation))]
         #[unsafe(method_family = none)]
@@ -109,28 +151,52 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum?language=objc)
+/// Constants that determine the layout manager’s behavior during layout.
+///
+/// ## Overview
+///
+/// These constants define the behavior of `NSLayoutManager` and `NSTypesetter` when laying out lines. They are used by [`typesetterBehavior`](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.property) to control the compatibility level of the typesetter.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTypesetterBehavior(pub NSInteger);
 impl NSTypesetterBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/latestbehavior?language=objc)
+    /// The current typesetter behavior in the current operating system.
+    ///
+    /// ## Discussion
+    ///
+    /// For OS X v10.2, this behavior is identical to `NSTypesetterBehavior_10_2`. If you use this behavior setting, you cannot necessarily rely on line width and height metrics remaining the same across different versions of macOS.
+    ///
+    ///
     #[doc(alias = "NSTypesetterLatestBehavior")]
     pub const LatestBehavior: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/originalbehavior?language=objc)
+    /// The original typesetter behavior, as shipped with macOS 10.1 and earlier.
     #[doc(alias = "NSTypesetterOriginalBehavior")]
     pub const OriginalBehavior: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_2_withcompatibility?language=objc)
+    /// The macOS 10.2 typesetting behavior that is still compatible with the original typesetter behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// The typesetting behavior is the same as `NSTypesetterBehavior_10_2`, but using line widths and height metric calculations that are the same as with `NSTypesetterOriginalBehavior`.
+    ///
+    ///
     #[doc(alias = "NSTypesetterBehavior_10_2_WithCompatibility")]
     pub const Behavior_10_2_WithCompatibility: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_2?language=objc)
+    /// The typesetter behavior introduced in macOS 10.2.
+    ///
+    /// ## Discussion
+    ///
+    /// This typesetter behavior provides enhanced line and character spacing accuracy and supports more languages than the original typesetter behavior.
+    ///
+    ///
     #[doc(alias = "NSTypesetterBehavior_10_2")]
     pub const Behavior_10_2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_3?language=objc)
+    /// The typesetter behavior introduced in macOS 10.3.
     #[doc(alias = "NSTypesetterBehavior_10_3")]
     pub const Behavior_10_3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum/behavior_10_4?language=objc)
+    /// The typesetter behavior introduced in macOS 10.4.
     #[doc(alias = "NSTypesetterBehavior_10_4")]
     pub const Behavior_10_4: Self = Self(4);
 }
@@ -144,7 +210,31 @@ unsafe impl RefEncode for NSTypesetterBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager?language=objc)
+    /// An object that coordinates the layout and display of text characters.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) maps Unicode character codes to glyphs, sets the glyphs in a series of [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) objects, and displays them in a series of [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) objects. In addition to its core function of laying out text, a layout manager object coordinates its text view objects, provides services to those text views to support [`NSRulerView`](https://developer.apple.com/documentation/appkit/nsrulerview) instances for editing paragraph styles, and handles the layout and display of text attributes not inherent in glyphs (such as underline or strikethrough). You can create a subclass of [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) to handle additional text attributes, whether inherent or not.
+    ///
+    /// ### Text Antialiasing
+    ///
+    /// [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) provides the threshold for text antialiasing. It looks at the `AppleAntiAliasingThreshold` default value. If the font size is smaller than or equal to this threshold size, the text is rendered aliased by [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager). In macOS, you can change the threshold value from the Appearance pane of System Preferences.
+    ///
+    /// ### Thread Safety of NSLayoutManager
+    ///
+    /// Generally speaking, a specific layout manager (and associated objects) should not be used in more than one block, operation, or thread at a time. Most layout managers are used on the main thread, since it is the main thread on which their text views are displayed, and since background layout occurs on the main thread.
+    ///
+    /// If you want to use a layout manager on a background thread, first make sure that text views associated with that layout manager (if any) are not displayed while the layout manager is being used on the background thread, and, second, turn off background layout for that layout manager while it is being used on the background thread. The most effective way to ensure that no text view is displayed, without knowing deep implementation, is just not to connect a text view to the layout manager.
+    ///
+    /// ### Noncontiguous Layout
+    ///
+    /// Noncontiguous layout is an optional layout manager behavior. Previously, both glyph generation and layout were always performed, in order, from the beginning to the end of the document. When noncontiguous layout is turned on, however, the layout manager gains the option of performing glyph generation or layout for one portion of the document without having done so for previous sections. This can provide significant performance improvements for large documents.
+    ///
+    /// Noncontiguous layout is not turned on automatically because direct clients of `NSLayoutManager` typically have relied on the previous behavior—for example, by forcing layout for a specific glyph range, and then assuming that previous glyphs would therefore be laid out. Clients who use [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) only indirectly—for example, those who use [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) without directly calling the underlying layout manager—can usually turn on noncontiguous layout without difficulty. Clients using [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) directly need to examine their usage before turning on noncontiguous layout.
+    ///
+    /// Enable noncontiguous layout using the [`allowsNonContiguousLayout`](https://developer.apple.com/documentation/appkit/nslayoutmanager/allowsnoncontiguouslayout) property. In addition, see the other methods in [Causing glyph generation and layout](https://developer.apple.com/documentation/appkit/nslayoutmanager#causing-glyph-generation-and-layout), many of which enable you to ensure that glyph generation and layout are performed for specified portions of the text. The behavior of a number of other layout manager methods is affected by the state of noncontiguous layout, as noted in the discussion sections of those method descriptions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutManager;
@@ -1206,7 +1296,7 @@ impl NSLayoutManager {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanagerdelegate?language=objc)
+    /// A set of optional methods that delegates of layout manager objects implement.
     pub unsafe trait NSLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSFont", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
@@ -1371,43 +1461,57 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributesoft?language=objc)
+/// The glyph is soft.
 #[deprecated]
 pub const NSGlyphAttributeSoft: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributeelastic?language=objc)
+/// The glyph is elastic.
 #[deprecated]
 pub const NSGlyphAttributeElastic: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributebidilevel?language=objc)
+/// The bidirectional level of the glyph.
 #[deprecated]
 pub const NSGlyphAttributeBidiLevel: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributeinscribe?language=objc)
+/// The glyph inscription attribute.
+///
+/// ## Discussion
+///
+/// See [`NSGlyphInscription`](https://developer.apple.com/documentation/appkit/nsglyphinscription) for possible values.
+///
+///
 #[deprecated]
 pub const NSGlyphAttributeInscribe: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription?language=objc)
+/// Constants that specify how a glyph is laid out relative to the previous glyph.
+///
+/// ## Overview
+///
+/// The glyph inscription constants are possible values for the glyph attribute [`NSGlyphAttributeInscribe`](https://developer.apple.com/documentation/appkit/nsglyphattributeinscribe); glyph inscriptions are set during glyph generation. The only constants that the text system currently uses are `NSGlyphInscribeBase` (for most glyphs) and `NSGlyphInscribeOverstrike` (for nonbase glyphs). Nonbase glyphs occur when diacritical marks are applied to a base character, and the font does not have a single glyph to represent the combination.
+///
+/// For example, if a font did not contain a single glyph for ü, but did contain separate glyphs for u and ¨, then it could be rendered with a base glyph u followed by a nonbase glyph ¨. In that case the nonbase glyph would have the value `NSGlyphInscribeOverstrike` for the inscribe attribute.
+///
+///
 // NS_ENUM
 #[deprecated = "Use NSGlyphProperty instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphInscription(pub NSUInteger);
 impl NSGlyphInscription {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribebase?language=objc)
+    /// A base glyph; a character that the font can represent with a single glyph.
     #[doc(alias = "NSGlyphInscribeBase")]
     #[deprecated]
     pub const InscribeBase: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribebelow?language=objc)
+    /// A glyph is rendered below the previous glyph.
     #[doc(alias = "NSGlyphInscribeBelow")]
     #[deprecated]
     pub const InscribeBelow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribeabove?language=objc)
+    /// A glyph is rendered above the previous glyph.
     #[doc(alias = "NSGlyphInscribeAbove")]
     #[deprecated]
     pub const InscribeAbove: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribeoverstrike?language=objc)
+    /// A glyph is rendered on top of the previous glyph.
     #[doc(alias = "NSGlyphInscribeOverstrike")]
     #[deprecated]
     pub const InscribeOverstrike: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphinscription/nsglyphinscribeoverbelow?language=objc)
+    /// A glyph is rendered on top and below the previous glyph.
     #[doc(alias = "NSGlyphInscribeOverBelow")]
     #[deprecated]
     pub const InscribeOverBelow: Self = Self(4);

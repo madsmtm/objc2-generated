@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobject?language=objc)
+    /// A piece of data that can be stored inside the HealthKit store.
+    ///
+    /// ## Overview
+    ///
+    /// The `HKObject` class is an abstract class. You should never instantiate a `HKObject` object directly. Instead, always work with one of its concrete subclasses: [`HKCategorySample`](https://developer.apple.com/documentation/healthkit/hkcategorysample), [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample), [`HKCorrelation`](https://developer.apple.com/documentation/healthkit/hkcorrelation), or [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout).
+    ///
+    /// HealthKit objects are all immutable. With a few exceptions (such as the object’s source revision), the object’s properties are set when the object is first created and they cannot change.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKObject;
@@ -78,41 +86,40 @@ impl HKObject {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid?language=objc)
+    /// The key path for accessing the object’s UUID inside a predicate format string.
     pub static HKPredicateKeyPathUUID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsource?language=objc)
+    /// The key path for accessing the object’s source inside a predicate format string.
     pub static HKPredicateKeyPathSource: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata?language=objc)
+    /// The key path for accessing the object’s metadata dictionary inside a predicate format string.
     pub static HKPredicateKeyPathMetadata: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcorrelation?language=objc)
+    /// The key path for accessing the object’s correlation inside a predicate format string.
     pub static HKPredicateKeyPathCorrelation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkout?language=objc)
+    /// The key path for accessing the object’s workout inside a predicate format string.
     pub static HKPredicateKeyPathWorkout: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdevice?language=objc)
+    /// The key path for accessing the object’s device inside a predicate format string.
     pub static HKPredicateKeyPathDevice: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsourcerevision?language=objc)
+    /// The key path for accessing the object’s source revision inside a predicate format string.
     pub static HKPredicateKeyPathSourceRevision: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouteffortrelationship?language=objc)
     pub static HKPredicateKeyPathWorkoutEffortRelationship: &'static NSString;
 }

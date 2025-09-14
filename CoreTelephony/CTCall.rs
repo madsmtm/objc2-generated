@@ -7,27 +7,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcallstatedialing?language=objc)
+    /// The call state, before establishing the connection, when the user initiates the call.
     pub static CTCallStateDialing: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcallstateincoming?language=objc)
+    /// The call state, before establishing the connection, when a call is incoming but not yet answered by the user.
     pub static CTCallStateIncoming: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcallstateconnected?language=objc)
+    /// The call state when fully establishing the call for all parties involved.
     pub static CTCallStateConnected: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcallstatedisconnected?language=objc)
+    /// The call state upon call termination.
     pub static CTCallStateDisconnected: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcall?language=objc)
+    /// An object used to identify a cellular call and determine its state.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTCall;

@@ -6,7 +6,37 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkstrategist?language=objc)
+    /// A general interface for objects that provide artificial intelligence for use in turn-based (and similar) games.
+    ///
+    /// ## Overview
+    ///
+    /// GameplayKit provides two strategist classes, and you can also use this protocol to implement your own. You provide information about your game model to a strategist by implementing the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel), [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer), and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols in your custom classes, then use the strategist’s methods to find optimal moves.
+    ///
+    /// ### Choosing a Strategist
+    ///
+    /// GameplayKit provides two strategist classes:
+    ///
+    /// - The [`GKMinmaxStrategist`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist) class uses a numeric score for each possible game model state, and performs an exhaustive tree search to find moves that maximize the player’s score while minimizing opponent scores. This strategy can result in optimal gameplay, but requires a scoring method for game models and has a performance cost that increases greatly with game complexity.
+    ///
+    /// - The [`GKMonteCarloStrategist`](https://developer.apple.com/documentation/gameplaykit/gkmontecarlostrategist) class performs a randomized, probabilistic search for winning end states. This strategy doesn’t always choose the _best_ possible move, but is likely to choose _good_ moves, and has a low performance cost even for very complex games. In addition, the Monte Carlo strategy is concerned only with whether a game model state represents a win, so you don’t need to implement a scoring method.
+    ///
+    /// ### Using a Strategist
+    ///
+    /// Using a strategist in a game requires the following steps:
+    ///
+    /// 1. Create classes describing your gameplay model, adopting the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel), [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer), and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols.
+    ///
+    /// 2. Choose a strategist class (one that adopts the [`GKStrategist`](https://developer.apple.com/documentation/gameplaykit/gkstrategist) protocol), create an instance of that class, and configure its properties to determine its gameplay behavior.
+    ///
+    /// 3. Point the strategist’s [`gameModel`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/gamemodel) property at the instance of your game model class representing the current state of the game in play.
+    ///
+    /// 4. Use the [`bestMoveForActivePlayer`](https://developer.apple.com/documentation/gameplaykit/gkstrategist/bestmoveforactiveplayer()) method to select the best possible move for the current player. This method returns a move object (that is, an instance of the custom class you create to adopt the [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocol).
+    ///
+    /// 5. Examine the move object to make use of the move selected by the strategist. You created this instance in the [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method of your game model class to describe a possible move in your game, so examining the object gives you the information needed to perform that move.
+    ///
+    /// For more information about describing your gameplay model and using strategists, see [The Minmax Strategist](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     pub unsafe trait GKStrategist: NSObjectProtocol {
         #[cfg(feature = "GKGameModel")]
         /// The game model that we wish to select updates for.

@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract base class for a HomeKit event.
     /// This class is used to represent a generic HomeKit event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMEvent;

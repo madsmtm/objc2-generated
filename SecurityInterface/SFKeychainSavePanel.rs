@@ -11,9 +11,18 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// SFKeychainSavePanel is a panel and sheet interface used to create a keychain using the NSSavePanel UI.
+    /// A panel or sheet that allows the user to create a keychain.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfkeychainsavepanel?language=objc)
+    /// ## Overview
+    ///
+    /// The following figure shows an example of a keychain save panel.
+    ///
+    ///
+    /// ![Keychain save panel](https://docs-assets.developer.apple.com/published/b327febdaf39a8f65e881c53bb3df3ae/media-1965598.gif)
+    ///
+    ///
+    ///
+    /// SFKeychainSavePanel is a panel and sheet interface used to create a keychain using the NSSavePanel UI.
     #[unsafe(super(NSSavePanel, NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFKeychainSavePanel;

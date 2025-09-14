@@ -9,7 +9,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparser?language=objc)
+///
+/// ## Overview
+///
+/// CFXMLParser provides an XML parser you can use to find and extract data in XML documents. You can use a high-level interface to load an XML document into a Core Foundation collection object. A low-level callback-based interface allows you to perform any action you wish on an XML structured type when it is detected by the parser. This opaque type is relevant for applications that need information about an XML document’s structure or content.
+///
+///
 #[doc(alias = "CFXMLParserRef")]
 #[repr(C)]
 pub struct CFXMLParser {
@@ -25,35 +30,46 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFXMLParser"> for CFXMLParser {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions?language=objc)
+/// Options you can use to control the parser’s treatment of an XML document.
+///
+/// ## Overview
+///
+/// These are the various options you use to configure the parser. An option flag of 0 ([`kCFXMLParserNoOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/kcfxmlparsernooptions)) leaves the XML as “intact” as possible (reports all structures; performs no replacements). Hence, to make the parser do the most work, returning only the pure element tree, set the option flag to [`kCFXMLParserAllOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/alloptions).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLParserOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFXMLParserOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/validatedocument?language=objc)
+/// Validates the document against its grammar from the DTD, reporting any errors. Currently not supported.
         #[doc(alias = "kCFXMLParserValidateDocument")]
         const ValidateDocument = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/skipmetadata?language=objc)
+/// Silently skip over metadata constructs (the DTD and comments).
         #[doc(alias = "kCFXMLParserSkipMetaData")]
         const SkipMetaData = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/replacephysicalentities?language=objc)
+/// Replaces declared entities like `&lt`;. Note that other than the 5 predefined entities (`lt`, `gt`, `quot`, `amp`, `apos`), these must be defined in the DTD. Currently not supported.
         #[doc(alias = "kCFXMLParserReplacePhysicalEntities")]
         const ReplacePhysicalEntities = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/skipwhitespace?language=objc)
+///
+/// ## Discussion
+///
+/// Skip over all whitespace that does not abut non-whitespace character data. In other words, given “`<foo>  <bar> blah </bar></foo>`,” the whitespace between foo’s open tag and bar’s open tag would be suppressed, but the whitespace around `blah` would be preserved.
+///
+///
         #[doc(alias = "kCFXMLParserSkipWhitespace")]
         const SkipWhitespace = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/resolveexternalentities?language=objc)
+/// Resolves all external entities.
         #[doc(alias = "kCFXMLParserResolveExternalEntities")]
         const ResolveExternalEntities = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/addimpliedattributes?language=objc)
+/// Where the DTD specifies implied attribute-value pairs for a particular element, add those pairs to any occurrences of the element in the element tree. Currently not supported.
         #[doc(alias = "kCFXMLParserAddImpliedAttributes")]
         const AddImpliedAttributes = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/alloptions?language=objc)
+/// Makes the parser do the most work, returning only the pure elementtree.
         #[doc(alias = "kCFXMLParserAllOptions")]
         const AllOptions = 0x00FFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions/kcfxmlparsernooptions?language=objc)
+/// Leaves the XML as “intact” as possible (reports all structures; performs no replacements).
         #[doc(alias = "kCFXMLParserNoOptions")]
         const NoOptions = 0;
     }
@@ -69,65 +85,71 @@ unsafe impl RefEncode for CFXMLParserOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode?language=objc)
+/// The various status and error flags that can be returned by the parser.
+///
+/// ## Overview
+///
+/// Parser status is determined by calling the [`CFXMLParserGetStatusCode`](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetstatuscode) function. The parser reports errors to your application by invoking the [`CFXMLParserHandleErrorCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback) function.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLParserStatusCode(pub CFIndex);
 bitflags::bitflags! {
     impl CFXMLParserStatusCode: CFIndex {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/statusparsenotbegun?language=objc)
+/// Indicates the parser has not begun.
         #[doc(alias = "kCFXMLStatusParseNotBegun")]
         const StatusParseNotBegun = -2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/statusparseinprogress?language=objc)
+/// Indicates the parser is in progress.
         #[doc(alias = "kCFXMLStatusParseInProgress")]
         const StatusParseInProgress = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/kcfxmlstatusparsesuccessful?language=objc)
+/// Indicates the parser was successful.
         #[doc(alias = "kCFXMLStatusParseSuccessful")]
         const StatusParseSuccessful = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorunexpectedeof?language=objc)
+/// Indicates an unexpected EOF occurred.
         #[doc(alias = "kCFXMLErrorUnexpectedEOF")]
         const ErrorUnexpectedEOF = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorunknownencoding?language=objc)
+/// Indicates an unknown encoding error.
         #[doc(alias = "kCFXMLErrorUnknownEncoding")]
         const ErrorUnknownEncoding = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorencodingconversionfailure?language=objc)
+/// Indicates an encoding conversion error.
         #[doc(alias = "kCFXMLErrorEncodingConversionFailure")]
         const ErrorEncodingConversionFailure = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedprocessinginstruction?language=objc)
+/// Indicates a malformed processing instruction.
         #[doc(alias = "kCFXMLErrorMalformedProcessingInstruction")]
         const ErrorMalformedProcessingInstruction = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformeddtd?language=objc)
+/// Indicates a malformed DTD.
         #[doc(alias = "kCFXMLErrorMalformedDTD")]
         const ErrorMalformedDTD = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedname?language=objc)
+/// Indicates a malformed name.
         #[doc(alias = "kCFXMLErrorMalformedName")]
         const ErrorMalformedName = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedcdsect?language=objc)
+/// Indicates a malformed CDATA section.
         #[doc(alias = "kCFXMLErrorMalformedCDSect")]
         const ErrorMalformedCDSect = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedclosetag?language=objc)
+/// Indicates a malformed close tag.
         #[doc(alias = "kCFXMLErrorMalformedCloseTag")]
         const ErrorMalformedCloseTag = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedstarttag?language=objc)
+/// Indicates a malformed start tag.
         #[doc(alias = "kCFXMLErrorMalformedStartTag")]
         const ErrorMalformedStartTag = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformeddocument?language=objc)
+/// Indicates a malformed document.
         #[doc(alias = "kCFXMLErrorMalformedDocument")]
         const ErrorMalformedDocument = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errorelementlessdocument?language=objc)
+/// Indicates a document containing no elements.
         #[doc(alias = "kCFXMLErrorElementlessDocument")]
         const ErrorElementlessDocument = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedcomment?language=objc)
+/// Indicates a malformed comment.
         #[doc(alias = "kCFXMLErrorMalformedComment")]
         const ErrorMalformedComment = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedcharacterreference?language=objc)
+/// Indicates a malformed character reference.
         #[doc(alias = "kCFXMLErrorMalformedCharacterReference")]
         const ErrorMalformedCharacterReference = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errormalformedparsedcharacterdata?language=objc)
+/// Indicates malformed character data.
         #[doc(alias = "kCFXMLErrorMalformedParsedCharacterData")]
         const ErrorMalformedParsedCharacterData = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode/errornodata?language=objc)
+/// Indicates a no data error.
         #[doc(alias = "kCFXMLErrorNoData")]
         const ErrorNoData = 15;
     }
@@ -143,21 +165,91 @@ unsafe impl RefEncode for CFXMLParserStatusCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback?language=objc)
+/// Callback function invoked when the parser encounters an XML open tag.
+///
+/// Parameters:
+/// - parser: The CFXMLParser object making the callback.
+///
+/// - nodeDesc: The CFXMLNode object that represents the XML structure encountered.
+///
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
+///
+/// ## Return Value
+///
+/// A program-defined value representing the new XML element or `NULL` to indicate that the given structure should be skipped. This value is passed to the other callbacks.
+///
+///
+///
+/// ## Discussion
+///
+/// If NULL is returned for a given structure, only minimal parsing is done for that structure (enough to correctly determine its end, and to extract any data necessary for the remainder of the parse, such as Entity definitions). This callback (or any of the tree-creation callbacks) will not be called for any children of the skipped structure. The only exception is that the top-most element will always be reported even if NULL was returned for the document as a whole. For performance reasons, the node passed to this callback cannot be safely retained by the client; the node as a whole must be copied (using the [`CFXMLNodeCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfxmlnodecreatecopy) function), or its contents must be extracted and copied. You are required to implement this callback for the parser to operate.
+///
+///
 #[cfg(feature = "CFXMLNode")]
 pub type CFXMLParserCreateXMLStructureCallBack = Option<
     unsafe extern "C-unwind" fn(*mut CFXMLParser, *const CFXMLNode, *mut c_void) -> *mut c_void,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseraddchildcallback?language=objc)
+/// Callback function invoked by the parser to notify your application of parent/child relationships between XML structures.
+///
+/// Parameters:
+/// - parser: The CFXMLParser object making the callback.
+///
+/// - parent: The program-defined value representing the XML element to whom `child` is being added. This value was returned by the [`CFXMLParserCreateXMLStructureCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback) callback when this element’s open tag was detected.
+///
+/// - child: The program-defined value representing the XML element that is being added to `parent`. This value was returned by the [`CFXMLParserCreateXMLStructureCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback) callback when this element’s open tag was detected.
+///
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
+///
+/// ## Discussion
+///
+/// If the [`CFXMLParserCreateXMLStructureCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback) function returns NULL for a given structure, that structure is omitted entirely, and this callback will _not_ be called for either a NULL child or parent.
+///
+///
 pub type CFXMLParserAddChildCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut c_void, *mut c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserendxmlstructurecallback?language=objc)
+/// Callback function invoked by the parser to notify your application that an XML structure (and all its children) have been completely parsed.
+///
+/// Parameters:
+/// - parser: The CFXMLParser object making the callback.
+///
+/// - xmlType: The program-defined value representing the XML element whose end tag has been detected. This value was returned by the [`CFXMLParserCreateXMLStructureCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback) callback.
+///
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
+///
+/// ## Discussion
+///
+/// As elements are encountered, this callback is called first, then the [`CFXMLParserAddChildCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparseraddchildcallback) callback to add the new structure to its parent, then the [`CFXMLParserAddChildCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparseraddchildcallback) callback (potentially several times) to add the new structure’s children to it, and then finally the [`CFXMLParserEndXMLStructureCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparserendxmlstructurecallback) callback to show that the structure has been fully parsed.This callback is optional.
+///
+///
 pub type CFXMLParserEndXMLStructureCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserresolveexternalentitycallback?language=objc)
+/// Callback function invoked by the parser to notify your application that an external entity has been referenced.
+///
+/// Parameters:
+/// - parser: The CFXMLParser object making the callback.
+///
+/// - extID: The identifier for the external entity.
+///
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
+///
+/// ## Return Value
+///
+/// The external entity or `NULL` if it should not be resolved.
+///
+///
+///
+/// ## Discussion
+///
+/// If this callback is not defined, the parser uses its internal routines to try and resolve the entity. Otherwise, if this callback returns NULL, a place holder for the external entity is inserted into the tree. In this manner, the parser’s client can prevent any external network or file accesses. This callback is optional.
+///
+///
 #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 pub type CFXMLParserResolveExternalEntityCallBack = Option<
     unsafe extern "C-unwind" fn(
@@ -167,12 +259,38 @@ pub type CFXMLParserResolveExternalEntityCallBack = Option<
     ) -> *const CFData,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback?language=objc)
+/// Callback function invoked by the parser to notify your application that an error has occurred.
+///
+/// Parameters:
+/// - parser: A CFXMLParser object making the callback.
+///
+/// - error: A status code describing the error.
+///
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
+///
+/// ## Return Value
+///
+/// `true` if the parser should continue parsing the XML, `false` if the parser should stop.
+///
+///
+///
+/// ## Discussion
+///
+/// If this callback is not defined, the parser will silently attempt to recover. Otherwise, this callback may return false to force the parser to stop. If this callback returns true, the parser will attempt to recover (fatal errors will still cause the parse to abort immediately). This callback is optional.
+///
+///
 pub type CFXMLParserHandleErrorCallBack = Option<
     unsafe extern "C-unwind" fn(*mut CFXMLParser, CFXMLParserStatusCode, *mut c_void) -> Boolean,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks?language=objc)
+/// Contains version information and function pointers to callbacks needed when parsing XML.
+///
+/// ## Overview
+///
+/// This structure is passed to one of the `CFXMLParserCreate...` functions. Only the `createXMLStructure`, `addChild`, and `endXMLStructure` fields are required. Set the others to `NULL` if you don’t wish to implement them.
+///
+///
 #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -216,18 +334,42 @@ unsafe impl RefEncode for CFXMLParserCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserretaincallback?language=objc)
+/// Callback function invoked by the parser when it needs another reference to the information pointer.
+///
+/// Parameters:
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
 pub type CFXMLParserRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserreleasecallback?language=objc)
+/// Callback function invoked by the parser when it wants to release a reference to the information pointer.
+///
+/// Parameters:
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
 pub type CFXMLParserReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopydescriptioncallback?language=objc)
+/// Callback function invoked by the parser when handling the information pointer.
+///
+/// Parameters:
+/// - info: The program-defined context data you specified in the [`CFXMLParserContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext) structure when creating the parser.
+///
+///
+/// ## Return Value
+///
+/// A textual description of `info`. The caller is responsible for releasing this object.
+///
+///
 pub type CFXMLParserCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext?language=objc)
+/// Contains version information and function pointers to callbacks used when handling a program-defined context.
+///
+/// ## Overview
+///
+/// You can associate a context with a parser when the parser is created. The context can be anything you wish and will be passed as a parameter to all of the XML parser callbacks.
+///
+///
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -259,7 +401,13 @@ unsafe impl RefEncode for CFXMLParserContext {
 }
 
 unsafe impl ConcreteType for CFXMLParser {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergettypeid?language=objc)
+    /// Returns the type identifier for the CFXMLParser opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFXMLParser opaque type.
+    ///
+    ///
     #[doc(alias = "CFXMLParserGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -271,7 +419,29 @@ unsafe impl ConcreteType for CFXMLParser {
 }
 
 impl CFXMLParser {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreate?language=objc)
+    /// Creates a new XML parser for the specified XML data.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - xmlData: The XML data to parse. Do not pass `NULL`.
+    ///
+    /// - dataSource: The URL from which the XML data was obtained. The URL is used to resolve any relative references found in XML Data. Pass `NULL` if a valid URL is unavailable.
+    ///
+    /// - parseOptions: Flags which control how the XML data will be parsed. See [`CFXMLParserOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions) for the list of available options.
+    ///
+    /// - versionOfNodes: Determines which version of CFXMLNode objects are produced by the parser.
+    ///
+    /// - callBacks: Callbacks called by the parser as the XML is processed. The callbacks are called as each XML tag is encountered, when an external entity needs to be resolved, and when an error occurs. See [`CFXMLParserCallBacks`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks) and the individual callbacks for more details. Do not pass `NULL`.
+    ///
+    /// - context: Determines what, if any, information pointer is passed to the callbacks as the parse progresses; `context` may be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created parser. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -318,7 +488,27 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatewithdatafromurl?language=objc)
+    /// Creates a new XML parser for the specified XML data at the specified URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - dataSource: The URL from which to load the XML data. The URL is used to resolve any relative references found in XML Data. It must be a valid CFURL object; `NULL` is an unacceptable value.
+    ///
+    /// - parseOptions: Flags which control how the XML data will be parsed. See [`CFXMLParserOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions) for the list of available options.
+    ///
+    /// - versionOfNodes: Determines which version of CFXMLNode objects are produced by the parser.
+    ///
+    /// - callBacks: Callbacks called by the parser as the XML is processed. The callbacks are called as each XML tag is encountered, when an external entity needs to be resolved, and when an error occurs. See [`CFXMLParserCallBacks`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks) and the individual callbacks for more details. Do not pass `NULL`.
+    ///
+    /// - context: Determines what, if any, information pointer is passed to the callbacks as the parse progresses; may be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created parser. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -361,7 +551,19 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetcontext?language=objc)
+    /// Returns the context for an XML parser.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    /// - context: On return, a pointer to the context structure for `parser`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you set a context for the parser, it will be passed to you as a parameter in each of the parser callback functions. The context data structure is application defined and associated with a parser using one of the `CFXMLParserCreate...` functions.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -376,7 +578,13 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetcallbacks?language=objc)
+    /// Returns the callbacks associated with an XML parser when it was created.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    /// - callBacks: On return, contains the callbacks for `parser`.
+    ///
     ///
     /// # Safety
     ///
@@ -392,7 +600,17 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetCallBacks(self, call_backs) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetsourceurl?language=objc)
+    /// Returns the URL for the XML data being parsed.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The URL for the XML document being parsed. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFXMLParserGetSourceURL")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -405,7 +623,23 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetlocation?language=objc)
+    /// Returns the character index of the current parse location.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The character index of the current parse location.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used in conjunction with the [`CFXMLParserHandleErrorCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback) function so that error location information can be reported.
+    ///
+    ///
     #[doc(alias = "CFXMLParserGetLocation")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -416,7 +650,23 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetLocation(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetlinenumber?language=objc)
+    /// Returns the line number of the current parse location.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The line number of the current location.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used in conjunction with the [`CFXMLParserHandleErrorCallBack`](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback) function so that error location information can be reported.
+    ///
+    ///
     #[doc(alias = "CFXMLParserGetLineNumber")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -427,7 +677,17 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetLineNumber(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetdocument?language=objc)
+    /// Returns the top-most object returned by the create XML structure callback.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The top-most object returned by the `createXMLStructure` field in the [`CFXMLParserCallBacks`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercallbacks) structure. If the returned value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFXMLParserGetDocument")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -438,7 +698,23 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetDocument(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetstatuscode?language=objc)
+    /// Returns a numeric code indicating the current status of the parser.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A status code indicating the current parser. See [`CFXMLParserStatusCode`](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode) for a list of possible status codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If an error has occurred, the code for the last error is returned. If no error has occurred, a status code is returned.
+    ///
+    ///
     #[doc(alias = "CFXMLParserGetStatusCode")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -449,7 +725,17 @@ impl CFXMLParser {
         unsafe { CFXMLParserGetStatusCode(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopyerrordescription?language=objc)
+    /// Returns the user-readable description of the current error condition.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A user-readable description of the current error condition, or `NULL` if no error occurred. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFXMLParserCopyErrorDescription")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -461,7 +747,21 @@ impl CFXMLParser {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserabort?language=objc)
+    /// Causes a parser to abort with the given error code and description.
+    ///
+    /// Parameters:
+    /// - parser: The parser to abort.
+    ///
+    /// - errorCode: The error code to return to the parser.
+    ///
+    /// - errorDescription: The error description string to return to the parser. This value may not be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function cannot be called asynchronously. In other words, it must be called from within a parser callback function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -484,7 +784,23 @@ impl CFXMLParser {
         unsafe { CFXMLParserAbort(self, error_code, error_description) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserparse?language=objc)
+    /// Begins a parse of the XML data that was associated with the parser when it was created.
+    ///
+    /// Parameters:
+    /// - parser: The XML parser to start.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the parse was successful, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Upon success, use the [`CFXMLParserGetDocument`](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetdocument) function to get the product of the parse. Upon failure, use the [`CFXMLParserGetContext`](https://developer.apple.com/documentation/corefoundation/cfxmlparsergetcontext) or [`CFXMLParserCopyErrorDescription`](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopyerrordescription) functions to get information about the error. It is an error to call the [`CFXMLParserParse`](https://developer.apple.com/documentation/corefoundation/cfxmlparserparse) function while a parse is already underway.
+    ///
+    ///
     #[doc(alias = "CFXMLParserParse")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -497,7 +813,31 @@ impl CFXMLParser {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatefromdata?language=objc)
+/// Parses the given XML data and returns the resulting CFXMLTree object.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - xmlData: The XML data you wish to parse.
+///
+/// - dataSource: The URL from which the XML data was obtained. The URL is used to resolve any relative references found in `xmlData`. Pass `NULL` if a valid URL is unavailable.
+///
+/// - parseOptions: Flags which control how the XML data will be parsed. See [`CFXMLParserOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions) for the list of available options.
+///
+/// - versionOfNodes: Determines which version of CFXMLNode objects are produced by the parser.
+///
+///
+/// ## Return Value
+///
+/// A new CFXMLTree object containing the data from the specified XML document. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function represents the high-level interface to the XML parser. This single function creates a parser for the specified XML data using the specified options. The parser creates and returns a CFXMLTree object that you can examine and modify with the CFTree functions or obtain the node using the [`CFXMLTreeGetNode`](https://developer.apple.com/documentation/corefoundation/cfxmltreegetnode) function and examine its attributes using CFXMLNode functions.
+///
+///
 ///
 /// # Safety
 ///
@@ -540,7 +880,33 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatefromdatawitherror?language=objc)
+/// Parses the given XML data and returns the resulting CFXMLTree object and any error information.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - xmlData: The XML data you wish to parse.
+///
+/// - dataSource: The URL from which the XML data was obtained. The URL is used to resolve any relative references found in `xmlData`. Pass `NULL` if a valid URL is unavailable.
+///
+/// - parseOptions: Flags which control how the XML data will be parsed. See [`CFXMLParserOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions) for the list of available options.
+///
+/// - versionOfNodes: Determines which version of CFXMLNode objects are produced by the parser. The current version is 1.
+///
+/// - errorDict: Upon return, if an error occurs contains a CFDictionary object that describes the error. If no errors occur, this parameter is not changed. Pass `NULL` if you don’t want error information. See [Error Dictionary Keys](https://developer.apple.com/documentation/corefoundation/error-dictionary-keys) for a description of the key-value pairs in this dictionary. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+/// ## Return Value
+///
+/// A new CFXMLTree object containing the data from the specified XML document. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// Use this function instead of [`CFXMLTreeCreateFromData`](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatefromdata) if you need access to XML parsing errors.
+///
+///
 ///
 /// # Safety
 ///
@@ -588,7 +954,23 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatewithdatafromurl?language=objc)
+/// Creates a new CFXMLTree object by loading the data to be parsed directly from a data source.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - dataSource: The URL from which the XML data is obtained. The URL is used to resolve any relative references found in XML Data. Pass `NULL` if a valid URL is unavailable.
+///
+/// - parseOptions: Flags which control how the XML data will be parsed. See [`CFXMLParserOptions`](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions) for the list of available options.
+///
+/// - versionOfNodes: Determines which version of CFXMLNode objects are produced by the parser.
+///
+///
+/// ## Return Value
+///
+/// A new CFXMLTree object containing the data from the specified XML data source. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 ///
 /// # Safety
 ///
@@ -617,7 +999,25 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreecreatexmldata?language=objc)
+/// Generates an XML document from a CFXMLTree object which is ready to be written to permanent storage.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - xmlTree: The CFXMLTree object you wish to convert to an XML document.
+///
+///
+/// ## Return Value
+///
+/// The XML data. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function will _not_ regenerate entity references replaced at the parse time (except those required for syntactic correctness). If you need this you must manually walk the tree and re-insert any entity references that should appear in the final output file.
+///
+///
 ///
 /// # Safety
 ///
@@ -640,7 +1040,37 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlcreatestringbyescapingentities(_:_:_:)?language=objc)
+/// Given a CFString object containing XML source with unescaped entities, returns a string with specified XML entities escaped.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - string: Any CFString object that may contain XML source. This function translates any substring that is mapped to an entity in `entitiesDictionary` to the specified entity.
+///
+/// - entitiesDictionary: Specifies the entities to be replaced. Dictionary keys should be the entity names (for example, “para” for ¶), and the values should be CFString objects containing the expansion. Pass `NULL` to indicate no entities other than the standard five.
+///
+///
+/// ## Return Value
+///
+/// A CFString object derived from `string` with substrings identified in `entitiesDictionary` escaped to their corresponding entities. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// The standard five predefined entities are automatically supported.
+///
+/// As an example of using this function, say you apply this function to string “Refer to ¶ 5 of the contract” with a key of “para” mapped to “¶” in `entitiesDictionary`. The resulting string is “Refer to ¶ 5 of the contract”.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Currently, only the standard predefined entities are supported; passing `NULL` for `entitiesDictionary` is sufficient.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -668,7 +1098,37 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlcreatestringbyunescapingentities(_:_:_:)?language=objc)
+/// Given a CFString object containing XML source with escaped entities, returns a string with specified XML entities unescaped.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - string: Any CFString object that may contain XML source. This function translates any entity that is mapped to an substring in `entitiesDictionary` to the specified substring.
+///
+/// - entitiesDictionary: Specifies the entities to be replaced. Dictionary keys should be the entity names (for example, “para” for ¶), and the values should be CFString objects containing the expansion. Pass `NULL` to indicate no entities other than the standard five.
+///
+///
+/// ## Return Value
+///
+/// A CFString object derived from `string` with entities identified in `entitiesDictionary` unescaped to their corresponding substrings. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// The standard five predefined entities are automatically supported.
+///
+/// As an example of using this function, say you apply this function to string “Refer to ¶ 5 of the contract” with a key of “para” mapped to “¶” in `entitiesDictionary`. The resulting string is “Refer to ¶ 5 of the contract”.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Currently, only the standard predefined entities are supported; passing `NULL` for `entitiesDictionary` is sufficient.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -697,22 +1157,22 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrordescription?language=objc)
+    /// Dictionary key whose value is a CFString containing a readable description of the error.
     pub static kCFXMLTreeErrorDescription: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorlinenumber?language=objc)
+    /// Dictionary key whose value is a CFNumber containing the line number where the error was detected. This may not be the line number where the actual XML error is located.
     pub static kCFXMLTreeErrorLineNumber: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorlocation?language=objc)
+    /// Dictionary key whose value is a CFNumber containing the byte location where the error was detected.
     pub static kCFXMLTreeErrorLocation: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfxmltreeerrorstatuscode?language=objc)
+    /// Dictionary key whose value is a CFNumber containing the error status code. See [`CFXMLParserRef`](https://developer.apple.com/documentation/corefoundation/cfxmlparser) for possible status code values.
     pub static kCFXMLTreeErrorStatusCode: Option<&'static CFString>;
 }
 

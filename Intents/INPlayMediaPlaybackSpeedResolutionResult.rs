@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedunsupportedreason?language=objc)
+/// Constants that describe why the app can’t change the playback speed of the media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INPlayMediaPlaybackSpeedUnsupportedReason(pub NSInteger);
 impl INPlayMediaPlaybackSpeedUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedunsupportedreason/belowminimum?language=objc)
+    /// A reasson that indicates the requested playback speed is below the minimum supported playback speed.
     #[doc(alias = "INPlayMediaPlaybackSpeedUnsupportedReasonBelowMinimum")]
     pub const BelowMinimum: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedunsupportedreason/abovemaximum?language=objc)
+    /// A reason that indicates the requested playback speed is above the maximum supported playback speed.
     #[doc(alias = "INPlayMediaPlaybackSpeedUnsupportedReasonAboveMaximum")]
     pub const AboveMaximum: Self = Self(2);
 }
@@ -30,7 +30,15 @@ unsafe impl RefEncode for INPlayMediaPlaybackSpeedUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedresolutionresult?language=objc)
+    /// A resolution result that determines the playback speed of a media item.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INPlayMediaPlaybackSpeedResolutionResult`](https://developer.apple.com/documentation/intents/inplaymediaplaybackspeedresolutionresult) object when resolving parameters containing an [`INMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/inmediaitemresolutionresult) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INDoubleResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

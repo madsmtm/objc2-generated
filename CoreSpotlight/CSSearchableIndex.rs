@@ -10,38 +10,44 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerrordomain?language=objc)
+    /// The error domain for the index.
     pub static CSIndexErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code?language=objc)
+/// Error codes that describe indexing-specific errors.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CSIndexErrorCode(pub NSInteger);
 impl CSIndexErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/unknownerror?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CSIndexErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/indexunavailableerror?language=objc)
+    /// The indexer is unavailable.
     #[doc(alias = "CSIndexErrorCodeIndexUnavailableError")]
     pub const IndexUnavailableError: Self = Self(-1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/invaliditemerror?language=objc)
+    /// The searchable item object is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Verify the information in your [`CSSearchableItem`](https://developer.apple.com/documentation/corespotlight/cssearchableitem) object is correct.
+    ///
+    ///
     #[doc(alias = "CSIndexErrorCodeInvalidItemError")]
     pub const InvalidItemError: Self = Self(-1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/invalidclientstateerror?language=objc)
+    /// The provided client state data is invalid.
     #[doc(alias = "CSIndexErrorCodeInvalidClientStateError")]
     pub const InvalidClientStateError: Self = Self(-1002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/remoteconnectionerror?language=objc)
+    /// An error occurred while communicating with the remote process.
     #[doc(alias = "CSIndexErrorCodeRemoteConnectionError")]
     pub const RemoteConnectionError: Self = Self(-1003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/quotaexceeded?language=objc)
+    /// The quota for the bundle has been exceeded.
     #[doc(alias = "CSIndexErrorCodeQuotaExceeded")]
     pub const QuotaExceeded: Self = Self(-1004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/indexingunsupported?language=objc)
+    /// Indexing isn’t supported on the device.
     #[doc(alias = "CSIndexErrorCodeIndexingUnsupported")]
     pub const IndexingUnsupported: Self = Self(-1005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexerror/code/mismatchedclientstate?language=objc)
+    /// The provided client state did not match the information in the index.
     #[doc(alias = "CSIndexErrorCodeMismatchedClientState")]
     pub const MismatchedClientState: Self = Self(-1006);
 }
@@ -55,7 +61,27 @@ unsafe impl RefEncode for CSIndexErrorCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableindex?language=objc)
+    /// An on-device index for your app’s searchable content.
+    ///
+    /// ## Overview
+    ///
+    /// A `CSSearchableIndex` object manages an on-device index for your app’s searchable content. To make your app’s content searchable, package it in one or more [`CSSearchableItem`](https://developer.apple.com/documentation/corespotlight/cssearchableitem) objects and add them to the index. You can create as many searchable indexes as you need to manage your content, and you can apply different levels of encryption to protect the content in each index. When you execute a query, Core Spotlight searches your app’s indexes for the requested information and returns the results to your code.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// If your app creates [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) objects, set the [`eligibleForSearch`](https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch) property of those objects to `true` to ensure they appear in search results.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Put your content into a custom `CSSearchableIndex` that you create. Custom indexes support batch operations and additional levels of data protection. Place sensitive personal information in protected indexes to encrypt that content, and prevent its disclosure without proper authorization from the owner of the device. Although you can put content into the default index, you can’t encrypt the content in that index or perform batch operations to add content to it.
+    ///
+    /// When adding large amounts of data to the index, consider adding it in batches to minimize risk. Batch-based updates make it easier to handle errors that might occur during the indexing process. For each batch, you provide client-state information to identify the current batch. If your app or extension crashes while a batch operation is in progress, you can use that state information to determine where to start indexing again later.
+    ///
+    /// Modify custom `CSSearchableIndex` objects only on one thread or task at a time. It’s a programming error to access a custom index from multiple threads simultaneously. When performing batch updates on an index, start each new batch operation only after calling the [`endIndexBatchWithClientState:completionHandler:`](https://developer.apple.com/documentation/corespotlight/cssearchableindex/endbatch(withclientstate:completionhandler:)) or [`endIndexBatchWithExpectedClientState:newClientState:completionHandler:`](https://developer.apple.com/documentation/corespotlight/cssearchableindex/endindexbatch(expectedclientstate:newclientstate:completionhandler:)) method of the previous batch operation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSSearchableIndex;
@@ -211,7 +237,15 @@ impl CSSearchableIndex {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableindexdelegate?language=objc)
+    /// A protocol that defines methods a delegate object or app extension uses to handle communication from the on-device index.
+    ///
+    /// ## Overview
+    ///
+    /// The `CSSearchableIndexDelegate` protocol defines methods that a delegate object or an app extension can use to handle communication from the on-device index. Apps that are long-running or that perform batch updates to the index should implement the required methods of this protocol in either a delegate object or an app extension.
+    ///
+    /// The index delegate methods are called when there is an issue with the index and more information is needed from an app. For example, the methods can be called when the entire index is lost or there was a failure to process data for some identifiers.
+    ///
+    ///
     pub unsafe trait CSSearchableIndexDelegate: NSObjectProtocol {
         #[cfg(feature = "block2")]
         #[unsafe(method(searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:))]

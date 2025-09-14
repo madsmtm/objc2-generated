@@ -7,20 +7,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// Priority values used for kAXPriorityKey
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axpriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AXPriority(pub CFIndex);
 impl AXPriority {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axpriority/kaxprioritylow?language=objc)
     #[doc(alias = "kAXPriorityLow")]
     pub const Low: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axpriority/kaxprioritymedium?language=objc)
     #[doc(alias = "kAXPriorityMedium")]
     pub const Medium: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axpriority/kaxpriorityhigh?language=objc)
     #[doc(alias = "kAXPriorityHigh")]
     pub const High: Self = Self(90);
 }

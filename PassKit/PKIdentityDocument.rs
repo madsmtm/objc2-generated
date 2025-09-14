@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the response to a request.
     /// Represents the response of a request for an identity document.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentitydocument?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityDocument;

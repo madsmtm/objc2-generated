@@ -7,34 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartPhotoPlaybackIntentResponseCode(pub NSInteger);
 impl INStartPhotoPlaybackIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/unspecified?language=objc)
+    /// The status wasn’t specified.
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeUnspecified")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeReady")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/continueinapp?language=objc)
+    /// Your extension is ready to transfer control to the app so that the slideshow can begin.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, Siri launches your app and passes it the NSUserActivity object you provided at initialization time. (If you didn’t provide a user activity object, Siri creates one for you). Siri adds an INInteraction object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to start the slideshow.
+    ///
+    ///
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeContinueInApp")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/failure?language=objc)
+    /// You were unable to start the slideshow.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from searching the user’s photos or starting the slideshow.
+    ///
+    ///
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailure")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to start the slideshow.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// The user must perform additional configuration steps before playing slideshows is possible.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when your app isn’t configured to play slideshows. For example, you might return this code if the user hasn’t yet added any photos. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(5);
@@ -49,7 +79,15 @@ unsafe impl RefEncode for INStartPhotoPlaybackIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponse?language=objc)
+    /// Your app’s response to a start photo playback intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INStartPhotoPlaybackIntentResponse`](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponse) object to specify the status of searching the user’s photos and the readiness of your app to begin playing those photos in a slideshow. After performing a search using the criteria specified in the [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent) object, create an instance of this class with the results. Siri communicates the status from your response to the user at appropriate times.
+    ///
+    /// You create an [`INStartPhotoPlaybackIntentResponse`](https://developer.apple.com/documentation/intents/instartphotoplaybackintentresponse) object in the [`confirmStartPhotoPlayback:completion:`](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling/confirm(intent:completion:)) and [`handleStartPhotoPlayback:completion:`](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling/handle(intent:completion:)) methods of your start photo playback handler object. For more information about implementing your handler object, see [`INStartPhotoPlaybackIntentHandling`](https://developer.apple.com/documentation/intents/instartphotoplaybackintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

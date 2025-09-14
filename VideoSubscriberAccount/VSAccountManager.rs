@@ -11,28 +11,39 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsopentvprovidersettingsurlstring?language=objc)
+    /// A URL string you use to deep link to the system’s TV Provider settings.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass this URL to [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)) to open the Settings app and show the TV Provider settings.
+    ///
+    ///
     pub static VSOpenTVProviderSettingsURLString: &'static NSString;
 }
 
+/// Constants that represent your app’s access status to the user’s subscription information.
 /// Represents the current state of the application's access to the user's subscription information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSAccountAccessStatus(pub NSInteger);
 impl VSAccountAccessStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/notdetermined?language=objc)
+    /// The user hasn’t chosen whether to allow the app to access subscription information.
     #[doc(alias = "VSAccountAccessStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/restricted?language=objc)
+    /// The app isn’t allowed to access subscription information.
+    ///
+    /// ## Discussion
+    ///
+    /// This status can result if parental controls prohibit the user from allowing access.
+    ///
+    ///
     #[doc(alias = "VSAccountAccessStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/denied?language=objc)
+    /// The user denied the app access to subscription information.
     #[doc(alias = "VSAccountAccessStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountaccessstatus/granted?language=objc)
+    /// The user allowed the app to access subscription information.
     #[doc(alias = "VSAccountAccessStatusGranted")]
     pub const Granted: Self = Self(3);
 }
@@ -45,23 +56,26 @@ unsafe impl RefEncode for VSAccountAccessStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The options your app uses when checking access status.
 /// Options that may be provided when checking access status.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vscheckaccessoption?language=objc)
 // NS_TYPED_ENUM
 pub type VSCheckAccessOption = NSString;
 
 extern "C" {
+    /// A Boolean that indicates whether your app can prompt the user to grant access.
     /// A boolean indicating whether the user may be prompted to grant access.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vscheckaccessoption/prompt?language=objc)
     pub static VSCheckAccessOptionPrompt: &'static VSCheckAccessOption;
 }
 
 extern_class!(
-    /// A VSAccountManager instance coordinates access to a subscriber's account.
+    /// The object that coordinates your app’s authentication requests with a TV provider’s authentication service.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanager?language=objc)
+    /// ## Overview
+    ///
+    /// The `VSAccountManager` object allows your app to request access from the user to communicate with their TV provider to understand system-level authentication status, send authentication requests for your app, and deep link to the TV Provider system settings.
+    ///
+    ///
+    /// A VSAccountManager instance coordinates access to a subscriber's account.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAccountManager;
@@ -154,9 +168,16 @@ impl VSAccountManager {
 }
 
 extern_protocol!(
-    /// A VSAccountManager instance coordinates access to a subscriber's account.
+    /// The methods you use to respond to authentication view controller requests.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanagerdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`VSAccountManagerDelegate`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanagerdelegate) methods to aid in displaying and dismissing authentication view controllers.
+    ///
+    /// If the person isn’t authenticated when your app calls [`enqueueAccountMetadataRequest:completionHandler:`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanager/enqueue(_:completionhandler:)) with [`interruptionAllowed`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmetadatarequest/isinterruptionallowed) set to [`true`](https://developer.apple.com/documentation/swift/true), the system sends an authentication view controller to the delegate in the [`accountManager:presentViewController:`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanagerdelegate/accountmanager(_:present:)) method for your app to present to them.
+    ///
+    ///
+    /// A VSAccountManager instance coordinates access to a subscriber's account.
     pub unsafe trait VSAccountManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]

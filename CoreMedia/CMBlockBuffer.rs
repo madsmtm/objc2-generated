@@ -10,46 +10,44 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbuffernoerr?language=objc)
+/// A code that indicates the system successfully created a block buffer with no errors.
 pub const kCMBlockBufferNoErr: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferstructureallocationfailederr?language=objc)
+/// An error code that indicates the structure allocator failed to allocate a block buffer.
 pub const kCMBlockBufferStructureAllocationFailedErr: OSStatus = -12700;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferblockallocationfailederr?language=objc)
+/// An error code that indicates the block allocator failed to allocate a memory block.
 pub const kCMBlockBufferBlockAllocationFailedErr: OSStatus = -12701;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferbadcustomblocksourceerr?language=objc)
+/// An error code that indicates the custom block source is invalid.
 pub const kCMBlockBufferBadCustomBlockSourceErr: OSStatus = -12702;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferbadoffsetparametererr?language=objc)
+/// An error code that indicates the offset doesn’t point to the location of data in the memory block.
 pub const kCMBlockBufferBadOffsetParameterErr: OSStatus = -12703;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferbadlengthparametererr?language=objc)
+/// An error code that indicates the block length is zero or doesn’t equal the size of the memory block.
 pub const kCMBlockBufferBadLengthParameterErr: OSStatus = -12704;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferbadpointerparametererr?language=objc)
+/// An error code that indicates the block buffer reference is invalid.
 pub const kCMBlockBufferBadPointerParameterErr: OSStatus = -12705;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferemptybbuferr?language=objc)
+/// An error code that indicates the block buffer is empty.
 pub const kCMBlockBufferEmptyBBufErr: OSStatus = -12706;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferunallocatedblockerr?language=objc)
+/// An error code that indicates the system encountered an unallocated memory block.
 pub const kCMBlockBufferUnallocatedBlockErr: OSStatus = -12707;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferinsufficientspaceerr?language=objc)
+/// An error code that indicates the system failed to create a new buffer because of insufficient space at the buffer out location.
 pub const kCMBlockBufferInsufficientSpaceErr: OSStatus = -12708;
 
+/// A type for flags that control behaviors and features of block buffer APIs.
 /// Type used for parameters containing CMBlockBuffer feature and control flags
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferflags?language=objc)
 pub type CMBlockBufferFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferassurememorynowflag?language=objc)
+/// When passed to routines that accept block allocators, causes the memory block to be allocated immediately.
 pub const kCMBlockBufferAssureMemoryNowFlag: CMBlockBufferFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferalwayscopydataflag?language=objc)
+/// Used with [`CMBlockBufferRef`](https://developer.apple.com/documentation/coremedia/cmblockbuffer) to cause it to always produce an allocated copy of the desired data.
 pub const kCMBlockBufferAlwaysCopyDataFlag: CMBlockBufferFlags = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferdontoptimizedepthflag?language=objc)
+/// Passed to block buffers to suppress reference depth optimization.
 pub const kCMBlockBufferDontOptimizeDepthFlag: CMBlockBufferFlags = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbufferpermitemptyreferenceflag?language=objc)
+/// Passed to [`CMBlockBufferRef`](https://developer.apple.com/documentation/coremedia/cmblockbuffer) and [`CMBlockBufferRef`](https://developer.apple.com/documentation/coremedia/cmblockbuffer) to allow references into a `CMBlockBuffer` that may not yet be populated.
 pub const kCMBlockBufferPermitEmptyReferenceFlag: CMBlockBufferFlags = 1 << 3;
 
+/// A reference to a block buffer instance.
 /// A reference to a CMBlockBuffer, a CF object that adheres to retain/release semantics. When CFRelease() is performed
 /// on the last reference to the CMBlockBuffer, any referenced BlockBuffers are released and eligible memory blocks are
 /// deallocated. These operations are recursive, so one release could result in many follow on releses.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffer?language=objc)
 #[doc(alias = "CMBlockBufferRef")]
 #[repr(C)]
 pub struct CMBlockBuffer {
@@ -65,6 +63,13 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueCMBlockBuffer"> for CMBlockBuffer {}
 );
 
+/// A structure to support custom memory allocation and deallocation for a block used in a block buffer.
+///
+/// ## Overview
+///
+/// This structure allows a client to provide a custom facility for obtaining the memory block to be used in a `CMBlockBuffer`. You use this structure with functions that accept a memory block allocator.
+///
+///
 /// Used with functions that accept a memory block allocator, this structure allows a client to provide a custom facility for
 /// obtaining the memory block to be used in a CMBlockBuffer. The AllocateBlock function must be non-zero if the CMBlockBuffer code will
 /// need to call for allocation (not required if a previously-obtained memory block is provided to the CMBlockBuffer API). The
@@ -76,8 +81,6 @@ cf_objc2_type!(
 /// To avoid link-time issues, it is recommended that clients fill CMBlockBufferCustomBlockSource's function pointer fields
 /// by using assignment statements, rather than declaring them as global or static structs.
 /// The functions that accept CMBlockBufferCustomBlockSource pointers copy the fields and do not require the struct to stay valid after they return.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercustomblocksource?language=objc)
 #[repr(C, packed(4))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -106,10 +109,33 @@ unsafe impl RefEncode for CMBlockBufferCustomBlockSource {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmblockbuffercustomblocksourceversion?language=objc)
+/// The value is the block source version.
 pub const kCMBlockBufferCustomBlockSourceVersion: u32 = 0;
 
 impl CMBlockBuffer {
+    /// Creates an empty block buffer.
+    ///
+    /// Parameters:
+    /// - structureAllocator: Allocator to use for allocating the `CMBlockBuffer` object. `NULL` will cause the default allocator to be used.
+    ///
+    /// - subBlockCapacity: Number of sub-blocks the new `CMBlockBuffer` shall accommodate before expansion occurs. A value of zero means “do the reasonable default”.
+    ///
+    /// - flags: Feature and control flags.
+    ///
+    /// - blockBufferOut: Receives newly-created empty `CMBlockBuffer` object with retain count of 1. Must not be  `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates an empty `CMBlockBuffer`, i.e. one which has no memory block nor reference to a `CMBlockBuffer` supplying bytes to it. It is ready to be populated using `CMBlockBufferAppendMemoryBlock`()  and/or `CMBlockBufferAppendBufferReference`. `CMBlockBufferGetDataLength` will return zero for an empty `CMBlockBuffer` and `CMBlockBufferGetDataPointer` and `CMBlockBufferAssureBufferMemory` will fail.The memory for the `CMBlockBuffer` object will be allocated using the given allocator. If `NULL` is passed for the allocator, the default allocator is used.
+    ///
+    ///
     /// Creates an empty CMBlockBuffer
     ///
     /// Creates an empty CMBlockBuffer, i.e. one which has no memory block nor reference to a CMBlockBuffer
@@ -136,8 +162,6 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreateempty(allocator:capacity:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateEmpty")]
     #[inline]
     pub unsafe fn create_empty(
@@ -164,6 +188,39 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Creates a block buffer that’s backed by a memory block.
+    ///
+    /// Parameters:
+    /// - structureAllocator: Allocator to use for allocating the `CMBlockBuffer` object. Pass `NULL` to use the default allocator.
+    ///
+    /// - memoryBlock: Block of memory to hold buffered data. If `NULL`, a memory block will be allocated when needed (via a call to `CMBlockBufferAssureBlockMemory` using the provided `blockAllocator` or `customBlockSource`. If non-`NULL`, the block will be used and will be deallocated when the new `CMBlockBuffer` is finalized (i.e. released for the last time).
+    ///
+    /// - blockLength: Overall length of the memory block in bytes. Must not be zero. This is the size of the supplied memory block or the size to allocate if `memoryBlock` is `NULL`.
+    ///
+    /// - blockAllocator: Allocator to be used for allocating the `memoryBlock`, if `memoryBlock` is `NULL`. If `memoryBlock` is non-`NULL`, this allocator will be used to deallocate it if provided. Passing `NULL` will cause the default allocator (as set at the time of the call) to be used. Pass `kCFAllocatorNull` if no deallocation is desired.
+    ///
+    /// - customBlockSource: If non-`NULL`, it will be used for the allocation and freeing of the memory block (the `blockAllocator` parameter is ignored). If provided, and the `memoryBlock` parameter is `NULL`, its `AllocateBlock()` routine must be non-NULL. Allocate will be called once, if successful, when the `memoryBlock` is allocated. `FreeBlock()` will be called once when the `CMBlockBuffer` is disposed.
+    ///
+    /// - offsetToData: Offset within the `memoryBlock` at which the `CMBlockBuffer` should refer to data.
+    ///
+    /// - dataLength: Number of relevant data bytes, starting at `offsetToData`, within the memory block.
+    ///
+    /// - flags: Feature and control flags.
+    ///
+    /// - blockBufferOut: Receives newly-created `CMBlockBuffer` object with a retain count of 1. Must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a new `CMBlockBuffer` backed by a memory block. The memory block may be statically allocated, dynamically allocated using the given allocator (or `customBlockSource`) or not yet allocated. The returned `CMBlockBuffer` may be further expanded using `CMBlockBufferAppendMemoryBlock` and/or `CMBlockBufferAppendBufferReference`.
+    ///
+    ///
     /// Creates a new CMBlockBuffer backed by a memory block (or promise thereof).
     ///
     /// Creates a new CMBlockBuffer backed by a memory block. The memory block may be statically allocated, dynamically allocated
@@ -210,8 +267,6 @@ impl CMBlockBuffer {
     /// - `memory_block` must be a valid pointer or null.
     /// - `custom_block_source` must be a valid pointer or null.
     /// - `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreatewithmemoryblock(allocator:memoryblock:blocklength:blockallocator:customblocksource:offsettodata:datalength:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateWithMemoryBlock")]
     #[inline]
     pub unsafe fn create_with_memory_block(
@@ -253,6 +308,33 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Creates a block buffer that refers to another block buffer object.
+    ///
+    /// Parameters:
+    /// - structureAllocator: Allocator to use for allocating the `CMBlockBuffer` object. `NULL` will cause the default allocator to be used.
+    ///
+    /// - bufferReference: The target `CMBlockBuffer`. This parameter must not be `NULL`. Unless the `kCMBlockBufferPermitEmptyReferenceFlag` is passed, it must not be empty and it must have a data length at least large enough to supply the data subset specified (i.e. offsetToData+dataLength bytes).
+    ///
+    /// - offsetToData: Offset within the target `CMBlockBuffer` at which the new `CMBlockBuffer` should refer to data.
+    ///
+    /// - dataLength: Number of relevant data bytes, starting at `offsetToData`, within the target `CMBlockBuffer`.
+    ///
+    /// - flags: Feature and control flags.
+    ///
+    /// - blockBufferOut: Receives newly-created `CMBlockBuffer` object with a retain count of 1. Must not be  `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a new `CMBlockBuffer` that refers to (a possibly subset portion of) another `CMBlockBuffer`. The returned `CMBlockBuffer` may be further expanded using [`CMBlockBufferAppendMemoryBlock`](https://developer.apple.com/documentation/coremedia/cmblockbufferappendmemoryblock(_:memoryblock:length:blockallocator:customblocksource:offsettodata:datalength:flags:)) and/or [`CMBlockBufferAppendBufferReference`](https://developer.apple.com/documentation/coremedia/cmblockbufferappendbufferreference(_:targetbbuf:offsettodata:datalength:flags:)).
+    ///
+    ///
     /// Creates a new CMBlockBuffer that refers to another CMBlockBuffer.
     ///
     /// Creates a new CMBlockBuffer that refers to (a possibly subset portion of) another CMBlockBuffer.
@@ -280,8 +362,6 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreatewithbufferreference(allocator:referencebuffer:offsettodata:datalength:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
     #[inline]
     pub unsafe fn create_with_buffer_reference(
@@ -314,6 +394,37 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Creates a block buffer that contains a contiguous copy of, or reference to, the data specified by the parameters.
+    ///
+    /// Parameters:
+    /// - structureAllocator: Allocator to use for allocating the `CMBlockBuffer` object. `NULL` will cause the default allocator to be used.
+    ///
+    /// - sourceBuffer: `CMBlockBuffer` from which data will be copied or referenced. Must not be `NULL` or empty.
+    ///
+    /// - blockAllocator: Allocator to be used for allocating the memory block if a contiguous copy of the data is to be made. Passing `NULL` will cause the default allocator (as set at the time of the call) to be used.
+    ///
+    /// - customBlockSource: If non-`NULL`, it will be used for the allocation and freeing of the memory block (the `blockAllocator` parameter is ignored). If provided, and the parameter `kCMBlockBufferAlwaysCopyDataFlag` is set, `customBlockSource’s`  `AllocateBlock()` routine must be non-`NULL`. Allocate will be called once, if successful, when the memory block is allocated. [`FreeBlock`](https://developer.apple.com/documentation/coremedia/cmblockbuffercustomblocksource/freeblock) will be called once when the `CMBlockBuffer` is disposed.
+    ///
+    /// - offsetToData: Offset within the source `CMBlockBuffer` at which the new `CMBlockBuffer` should obtain data.
+    ///
+    /// - dataLength: Number of relevant data bytes, starting at `offsetToData`, within the source `CMBlockBuffer`. If zero, the target buffer’s total available `dataLength` (starting at offsetToData) will be referenced.
+    ///
+    /// - flags: Feature and control flags.
+    ///
+    /// - blockBufferOut: Receives newly-created `CMBlockBuffer` object with a retain count of 1. Must not be  `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Produces a `CMBlockBuffer` containing a contiguous copy of or reference to the data specified by the parameters. The resulting new `CMBlockBuffer` may contain an allocated copy of the data, or may contain a contiguous `CMBlockBuffer` reference. If the `kCMBlockBufferAlwaysCopyDataFlag` is set in the flags parameter, the resulting `CMBlockBuffer` will contain an allocated copy of the data rather than a reference to the `SourceBuffer`.
+    ///
+    ///
     /// Produces a CMBlockBuffer containing a contiguous copy of or reference to the data specified by the parameters.
     ///
     /// Produces a CMBlockBuffer containing a contiguous copy of or reference to the data specified by the parameters.
@@ -352,8 +463,6 @@ impl CMBlockBuffer {
     ///
     /// - `custom_block_source` must be a valid pointer or null.
     /// - `block_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercreatecontiguous(allocator:sourcebuffer:blockallocator:customblocksource:offsettodata:datalength:flags:blockbufferout:)?language=objc)
     #[doc(alias = "CMBlockBufferCreateContiguous")]
     #[inline]
     pub unsafe fn create_contiguous(
@@ -394,14 +503,25 @@ impl CMBlockBuffer {
 }
 
 unsafe impl ConcreteType for CMBlockBuffer {
+    /// Returns the type identifier for block buffer objects.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the `CFTypeID` corresponding to `CMBlockBuffer`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Obtains the CoreFoundation type ID for the `CMBlockBuffer` type.
+    ///
+    ///
     /// Obtains the CoreFoundation type ID for the CMBlockBuffer type.
     ///
     /// Obtains the CoreFoundation type ID for the CMBlockBuffer type.
     ///
     ///
     /// Returns: Returns the CFTypeID corresponding to CMBlockBuffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffergettypeid()?language=objc)
     #[doc(alias = "CMBlockBufferGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -413,6 +533,37 @@ unsafe impl ConcreteType for CMBlockBuffer {
 }
 
 impl CMBlockBuffer {
+    /// Adds a memory block to an existing block buffer.
+    ///
+    /// Parameters:
+    /// - theBuffer: The existing `CMBlockBuffer` to which the new `memoryBlock` will be added. Must not be `NULL`
+    ///
+    /// - memoryBlock: Block of memory to hold buffered data. If `NULL`, a memory block will be allocated when needed (via a call to `CMBlockBufferAssureBlockMemory`) using the provided `blockAllocator` or `customBlockSource`. If non-`NULL`, the block will be used and will be deallocated when the `CMBlockBuffer` is finalized (i.e. released for the last time).
+    ///
+    /// - blockLength: Overall length of the memory block in bytes. Must not be zero. This is the size of the supplied `memoryBlock` or the size to allocate if `memoryBlock` is `NULL`.
+    ///
+    /// - blockAllocator: Allocator to be used for allocating the `memoryBlock`, if `memoryBlock` is `NULL`. If `memoryBlock` is non-`NULL`, this allocator will be used to deallocate it, if provided. Passing `NULL` will cause the default allocator (as set at the time of the call) to be used. Pass `kCFAllocatorNull` if no deallocation is desired.
+    ///
+    /// - customBlockSource: If non-NULL, it will be used for the allocation and freeing of the memory block (the `blockAllocator` parameter is ignored). If provided, and the `memoryBlock` parameter is `NULL`, its `AllocateBlock())` routine must be non-`NULL`. Allocate will be called once, if successful, when the `memoryBlock` is allocated. `FreeBlock()` will be called once when the `CMBlockBuffer` is disposed.
+    ///
+    /// - offsetToData: The reference maintained by the existing `CMBlockBuffer` will begin after this offset within the `memoryBlock` .
+    ///
+    /// - dataLength: Number of relevant data bytes, starting at `offsetToData`, within the memory block.
+    ///
+    /// - flags: Feature and control flags
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Adds a `memoryBlock` to an existing `CMBlockBuffer`. The memory block may be statically allocated, dynamically allocated using the given allocator or not yet allocated. The `CMBlockBuffer's` total data length will be increased by the specified `dataLength`. If the `kCMBlockBufferAssureMemoryNowFlag` is set in the flags parameter, the memory block is allocated immediately using the `blockAllocator` or `customBlockSource`. Note that append operations are not thread safe, so care must be taken when appending to block buffers that are used by multiple threads.
+    ///
+    ///
     /// Adds a memoryBlock to an existing CMBlockBuffer.
     ///
     /// Adds a memoryBlock to an existing CMBlockBuffer. The memory block may be statically allocated,
@@ -457,8 +608,6 @@ impl CMBlockBuffer {
     ///
     /// - `memory_block` must be a valid pointer or null.
     /// - `custom_block_source` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferappendmemoryblock(_:memoryblock:length:blockallocator:customblocksource:offsettodata:datalength:flags:)?language=objc)
     #[doc(alias = "CMBlockBufferAppendMemoryBlock")]
     #[inline]
     pub unsafe fn append_memory_block(
@@ -497,6 +646,31 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Adds a reference to an existing block buffer.
+    ///
+    /// Parameters:
+    /// - theBuffer: The existing `CMBlockBuffer`.  The target `CMBlockBuffer` will be added to the memory being managed by `theBuffer` (the existing `CMBlockBuffer`). Must not be `NULL`.
+    ///
+    /// - targetBBuf: The target `CMBlockBuffer`. The target `CMBlockBuffer` will be added to the memory managed by the `theBuffer` (the existing`CMBlockBuffer`).This parameter must not be `NULL`. Unless the `kCMBlockBufferPermitEmptyReferenceFlag` is passed, the target `CMBlockBuffer` must not be empty and it must have a data length at least large enough to supply the data subset specified (i.e. `offsetToData` + `dataLength` bytes).
+    ///
+    /// - offsetToData: The reference maintained by the existing `CMBlockBuffer` will begin after this offset within the target `CMBlockBuffer`.
+    ///
+    /// - dataLength: Number of relevant data bytes, starting at `offsetToData`, within the target `CMBlockBuffer`. If zero, the target buffer’s total available `dataLength` (starting at offsetToData) will be referenced.
+    ///
+    /// - flags: Feature and control flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Adds a buffer reference of (a possibly subset portion of) another `CMBlockBuffer`, the target `CMBlockBuffer`, to an existing `CMBlockBuffer`. The existing `CMBlockBuffer's` total data length will be increased by the specified `dataLength`. Note that append operations are not thread safe, so care must be taken when appending to block buffers that are used by multiple threads.
+    ///
+    ///
     /// Adds a CMBlockBuffer reference to an existing CMBlockBuffer.
     ///
     /// Adds a buffer reference to (a possibly subset portion of) another CMBlockBuffer to an existing CMBlockBuffer.
@@ -519,8 +693,6 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferappendbufferreference(_:targetbbuf:offsettodata:datalength:flags:)?language=objc)
     #[doc(alias = "CMBlockBufferAppendBufferReference")]
     #[inline]
     pub unsafe fn append_buffer_reference(
@@ -550,6 +722,23 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Assures that the system allocates memory for all memory blocks in a block buffer.
+    ///
+    /// Parameters:
+    /// - theBuffer: `CMBlockBuffer` to operate on. Must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Traverses the possibly complex `CMBlockBuffer`, allocating the memory for any constituent memory blocks that are not yet allocated.
+    ///
+    ///
     /// Assures all memory blocks in a CMBlockBuffer are allocated.
     ///
     /// Traverses the possibly complex CMBlockBuffer, allocating the memory for any constituent
@@ -560,8 +749,6 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferassureblockmemory(_:)?language=objc)
     #[doc(alias = "CMBlockBufferAssureBlockMemory")]
     #[inline]
     pub unsafe fn assure_block_memory(&self) -> OSStatus {
@@ -571,6 +758,31 @@ impl CMBlockBuffer {
         unsafe { CMBlockBufferAssureBlockMemory(self) }
     }
 
+    /// Accesses potentially noncontiguous data in a block buffer.
+    ///
+    /// Parameters:
+    /// - theBuffer: `CMBlockBuffer` to operate on. Must not be `NULL`.
+    ///
+    /// - offset: Offset within the `CMBlockBuffer's` offset range.
+    ///
+    /// - length: Desired number of bytes to access at offset.
+    ///
+    /// - temporaryBlock: A piece of memory, assumed to be at least `length` bytes in size. Must not be `NULL`
+    ///
+    /// - returnedPointerOut: Receives `NULL` if the desired amount of data could not be accessed at the given offset. Receives non-`NULL` if it could. The value returned is either a direct pointer into the `CMBlockBuffer` or to the `temporaryBlock`. Must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if the desired amount of data could be accessed at the given offset.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This routine is use for accessing contiguous and noncontiguous data. If the data is contiguous, the routine will return a pointer to the given `CMBlockBuffer`.  If the data is not contiguous, the routine will copy the data into a temporary block and a pointer to this block will be returned.
+    ///
+    ///
     /// Accesses potentially noncontiguous data in a CMBlockBuffer.
     ///
     /// Used for accessing potentially noncontiguous data, this routine will return a pointer directly
@@ -597,8 +809,6 @@ impl CMBlockBuffer {
     ///
     /// - `temporary_block` must be a valid pointer.
     /// - `returned_pointer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferaccessdatabytes(_:atoffset:length:temporaryblock:returnedpointerout:)?language=objc)
     #[doc(alias = "CMBlockBufferAccessDataBytes")]
     #[inline]
     pub unsafe fn access_data_bytes(
@@ -628,6 +838,29 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Copies bytes from a block buffer into a provided memory area.
+    ///
+    /// Parameters:
+    /// - theSourceBuffer: The buffer from which data will be copied into the destination.
+    ///
+    /// - offsetToData: Offset within the source `CMBlockBuffer` at which the copy should begin.
+    ///
+    /// - dataLength: Number of bytes to copy, starting at `offsetToData`, within the source `CMBlockBuffer`. Must not be zero.
+    ///
+    /// - destination: Memory into which the data should be copied.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if the copy succeeded, returns an error otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used to copy bytes out of a `CMBlockBuffer` into a provided piece of memory. It deals with the possibility of the desired range of data being noncontiguous. The function assumes that the memory at the destination is sufficient to hold the data. If `dataLength` bytes of data are not available in the `CMBlockBuffer`, an error is returned and the contents of the destination are undefined.
+    ///
+    ///
     /// Copies bytes from a CMBlockBuffer into a provided memory area.
     ///
     /// This function is used to copy bytes out of a CMBlockBuffer into a provided piece of memory.
@@ -651,8 +884,6 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `destination` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercopydatabytes(_:atoffset:datalength:destination:)?language=objc)
     #[doc(alias = "CMBlockBufferCopyDataBytes")]
     #[inline]
     pub unsafe fn copy_data_bytes(
@@ -672,6 +903,29 @@ impl CMBlockBuffer {
         unsafe { CMBlockBufferCopyDataBytes(self, offset_to_data, data_length, destination) }
     }
 
+    /// Copies bytes from a given memory block into a block buffer replacing bytes in the underlying data blocks.
+    ///
+    /// Parameters:
+    /// - sourceBytes: Memory block from which bytes are copied into the destination `CMBlockBuffer`.
+    ///
+    /// - destinationBuffer: `CMBlockBuffer` whose range of bytes will be replaced by the `sourceBytes`.
+    ///
+    /// - offsetIntoDestination: Offset within the destination `CMBlockBuffer` at which replacement should begin.
+    ///
+    /// - dataLength: Number of bytes to be replaced, starting at `offsetIntoDestination`, in the `destinationBuffer`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if the replacement succeeded, returns an error otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used to replace bytes in a `CMBlockBuffer's` memory blocks with those from a provided piece of memory. It deals with the possibility of the destination range of data being noncontiguous. `CMBlockBufferAssureBlockMemory`() is called on the given `CMBlockBuffer`. If desired range is subsequently not accessible in the `CMBlockBuffer`, an error is returned and the contents of the `CMBlockBuffer` are untouched.
+    ///
+    ///
     /// Copies bytes from a given memory block into a CMBlockBuffer, replacing bytes in the underlying data blocks
     ///
     /// This function is used to replace bytes in a CMBlockBuffer's memory blocks with those from a provided piece of memory.
@@ -694,8 +948,6 @@ impl CMBlockBuffer {
     /// # Safety
     ///
     /// `source_bytes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferreplacedatabytes(with:blockbuffer:offsetintodestination:datalength:)?language=objc)
     #[doc(alias = "CMBlockBufferReplaceDataBytes")]
     #[inline]
     pub unsafe fn replace_data_bytes(
@@ -722,6 +974,23 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Fills the destination buffer with the specified data byte.
+    ///
+    /// Parameters:
+    /// - fillByte: The data byte with which to fill the destination buffer.
+    ///
+    /// - destinationBuffer: `CMBlockBuffer` into which the data bytes are filled.
+    ///
+    /// - offsetIntoDestination: Start of data area for the buffer.
+    ///
+    /// - dataLength: Length of the valid data area for the buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if successful.
+    ///
+    ///
     /// Fills a CMBlockBuffer with a given byte value, replacing bytes in the underlying data blocks
     ///
     /// This function is used to fill bytes in a CMBlockBuffer's memory blocks with a given byte value.
@@ -741,8 +1010,6 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if the fill succeeded, returns an error otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferfilldatabytes(with:blockbuffer:offsetintodestination:datalength:)?language=objc)
     #[doc(alias = "CMBlockBufferFillDataBytes")]
     #[inline]
     pub unsafe fn fill_data_bytes(
@@ -769,6 +1036,31 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Gains access to the data represented by a block buffer.
+    ///
+    /// Parameters:
+    /// - theBuffer: `CMBlockBuffer` to operate on. Must not be `NULL`
+    ///
+    /// - offset: Offset within the buffer’s offset range.
+    ///
+    /// - lengthAtOffsetOut: On return, contains the amount of data available at the specified offset. May be `NULL`.
+    ///
+    /// - totalLengthOut: On return, contains the block buffer’s total data length (from offset 0). May be `NULL`.
+    ///
+    /// - dataPointerOut: On return, contains a pointer to the data byte at the specified offset; `lengthAtOffset` bytes are available at this address. May be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `kCMBlockBufferNoErr` if data was accessible at the specified offset within the given `CMBlockBuffer`. Returns an error otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Gains access to the data represented by a [`CMBlockBufferRef`](https://developer.apple.com/documentation/coremedia/cmblockbuffer). A pointer into a memory block is returned which corresponds to the offset within the `CMBlockBuffer`.  If `lengthAtOffset` is non `NULL`, the number of bytes addressable at the pointer is returned. This length-at-offset may be smaller than the number of bytes actually available starting at the offset if the `dataLength` of the `CMBlockBuffer` is covered by multiple memory blocks (a noncontiguous `CMBlockBuffer`). The caller can compare (`offset`+`lengthAtOffset`) with `totalLength` to determine whether the entire `CMBlockBuffer` has been referenced and whether it is possible to access the `CMBlockBuffer`’s data with a contiguous reference. The data pointer returned will remain valid as long as the original `CMBlockBuffer` is referenced - once the `CMBlockBuffer` is released for the last time, any pointers                into it will be invalid.
+    ///
+    ///
     /// Gains access to the data represented by a CMBlockBuffer.
     ///
     /// Gains access to the data represented by a CMBlockBuffer. A pointer into a memory block is returned
@@ -802,8 +1094,6 @@ impl CMBlockBuffer {
     /// - `length_at_offset_out` must be a valid pointer or null.
     /// - `total_length_out` must be a valid pointer or null.
     /// - `data_pointer_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffergetdatapointer(_:atoffset:lengthatoffsetout:totallengthout:datapointerout:)?language=objc)
     #[doc(alias = "CMBlockBufferGetDataPointer")]
     #[inline]
     pub unsafe fn data_pointer(
@@ -833,6 +1123,23 @@ impl CMBlockBuffer {
         }
     }
 
+    /// Returns the total length of data that’s accessible by a block buffer.
+    ///
+    /// Parameters:
+    /// - theBuffer: `CMBlockBuffer` to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the total data length available via this `CMBlockBuffer`, or zero if it is empty, `NULL` if invalid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Obtains the total data length reachable via a `CMBlockBuffer`. This total is the sum of the `dataLengths` of the `CMBlockBuffer's` memoryBlocks and buffer references. Note that the `dataLengths` are the portions of those constituents that this `CMBlockBuffer` subscribes to. This `CMBlockBuffer` presents a contiguous range of offsets from zero to its `totalDataLength` as returned by this routine.
+    ///
+    ///
     /// Obtains the total data length reachable via a CMBlockBuffer.
     ///
     /// Obtains the total data length reachable via a CMBlockBuffer. This total is the sum of the dataLengths
@@ -845,8 +1152,6 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the total data length available via this CMBlockBuffer, or zero if it is empty, NULL, or somehow invalid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffergetdatalength(_:)?language=objc)
     #[doc(alias = "CMBlockBufferGetDataLength")]
     #[inline]
     pub unsafe fn data_length(&self) -> usize {
@@ -856,6 +1161,27 @@ impl CMBlockBuffer {
         unsafe { CMBlockBufferGetDataLength(self) }
     }
 
+    /// Returns a Boolean value that indicates whether the specified range within a block buffer is contiguous.
+    ///
+    /// Parameters:
+    /// - theBuffer: `CMBlockBuffer` to examine. Must not be `NULL`.
+    ///
+    /// - offset: Offset within the buffer’s offset range.
+    ///
+    /// - length: Desired number of bytes to access at offset. If zero, the number of bytes available at offset (dataLength – offset), contiguous or not, is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns true if the specified range is contiguous within the `CMBlockBuffer`, false otherwise. Also returns false if the `CMBlockBuffer` is `NULL` or empty.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Determines whether the specified range within the given `CMBlockBuffer` is contiguous. If `CMBlockBufferGetDataPointer`() were called with the same parameters, the returned pointer would address the desired number of bytes.
+    ///
+    ///
     /// Determines whether the specified range within the given CMBlockBuffer is contiguous.
     ///
     /// Determines whether the specified range within the given CMBlockBuffer is contiguous. if CMBlockBufferGetDataPointer()
@@ -872,8 +1198,6 @@ impl CMBlockBuffer {
     ///
     /// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
     /// CMBlockBuffer is NULL or empty.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferisrangecontiguous(_:atoffset:length:)?language=objc)
     #[doc(alias = "CMBlockBufferIsRangeContiguous")]
     #[inline]
     pub unsafe fn is_range_contiguous(&self, offset: usize, length: usize) -> bool {
@@ -888,6 +1212,23 @@ impl CMBlockBuffer {
         ret != 0
     }
 
+    /// Returns a Boolean value that indicates whether the buffer is empty.
+    ///
+    /// Parameters:
+    /// - theBuffer: `CMBlockBuffer` to examine. Must not be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// False if the `CMBlockBuffer` is `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Determines whether the given `CMBlockBuffer` is empty, i.e., devoid of any `memoryBlocks` or `CMBlockBuffer` references. Note that a `CMBlockBuffer` containing a not-yet allocated `memoryBlock` is not considered empty.
+    ///
+    ///
     /// Indicates whether the given CMBlockBuffer is empty.
     ///
     /// Indicates whether the given CMBlockBuffer is empty, i.e., devoid of any memoryBlocks or CMBlockBuffer references.
@@ -898,8 +1239,6 @@ impl CMBlockBuffer {
     ///
     ///
     /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbufferisempty(_:)?language=objc)
     #[doc(alias = "CMBlockBufferIsEmpty")]
     #[inline]
     pub unsafe fn is_empty(&self) -> bool {

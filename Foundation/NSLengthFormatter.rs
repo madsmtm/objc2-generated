@@ -6,34 +6,34 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit?language=objc)
+/// The units supported by the `NSLengthFormatter` class.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLengthFormatterUnit(pub NSInteger);
 impl NSLengthFormatterUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/millimeter?language=objc)
+    /// The millimeter unit.
     #[doc(alias = "NSLengthFormatterUnitMillimeter")]
     pub const Millimeter: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/centimeter?language=objc)
+    /// The centimeter unit.
     #[doc(alias = "NSLengthFormatterUnitCentimeter")]
     pub const Centimeter: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/meter?language=objc)
+    /// The meter unit.
     #[doc(alias = "NSLengthFormatterUnitMeter")]
     pub const Meter: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/kilometer?language=objc)
+    /// The kilometer unit.
     #[doc(alias = "NSLengthFormatterUnitKilometer")]
     pub const Kilometer: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/inch?language=objc)
+    /// The inch unit.
     #[doc(alias = "NSLengthFormatterUnitInch")]
     pub const Inch: Self = Self((5 << 8) + 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/foot?language=objc)
+    /// The foot unit.
     #[doc(alias = "NSLengthFormatterUnitFoot")]
     pub const Foot: Self = Self((5 << 8) + 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/yard?language=objc)
+    /// The yard unit.
     #[doc(alias = "NSLengthFormatterUnitYard")]
     pub const Yard: Self = Self((5 << 8) + 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter/unit/mile?language=objc)
+    /// The mile unit.
     #[doc(alias = "NSLengthFormatterUnitMile")]
     pub const Mile: Self = Self((5 << 8) + 4);
 }
@@ -47,7 +47,19 @@ unsafe impl RefEncode for NSLengthFormatterUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/lengthformatter?language=objc)
+    /// A formatter that provides localized descriptions of linear distances, such as length and height measurements.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  As of iOS 10, macOS 10.12, tvOS 10, and watchOS 3, Foundation provides the [`NSMeasurementFormatter`](https://developer.apple.com/documentation/foundation/measurementformatter) class, which can be used to represent quantities of [`NSUnitLength`](https://developer.apple.com/documentation/foundation/unitlength) to provide equivalent functionality to [`NSLengthFormatter`](https://developer.apple.com/documentation/foundation/lengthformatter). You are encouraged to transition to these new Foundation Units and Measurements APIs whenever possible.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

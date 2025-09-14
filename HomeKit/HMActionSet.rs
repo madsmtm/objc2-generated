@@ -8,10 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A collection of actions that you trigger as a group.
+    ///
+    /// ## Overview
+    ///
+    /// Action sets can be executed as a result of evaluating a trigger (instances of [`HMTrigger`](https://developer.apple.com/documentation/homekit/hmtrigger)) or manually with [`executeActionSet:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/executeactionset(_:completionhandler:)). Actions in an action set are performed in an unspecified order. You create new action sets using the [`addActionSetWithName:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addactionset(withname:completionhandler:)) method of [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome).
+    ///
+    ///
     /// This class represents a collection of action objects that can be executed.
     /// The order of execution of these actions is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMActionSet;
@@ -178,48 +183,48 @@ impl HMActionSet {
 }
 
 extern "C" {
+    /// Specifies the WakeUp built-in action set.
     /// Builtin action set type for WakeUp.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionsettypewakeup?language=objc)
     pub static HMActionSetTypeWakeUp: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies the Sleep built-in action set.
     /// Type for builtin action set Sleep.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionsettypesleep?language=objc)
     pub static HMActionSetTypeSleep: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies the HomeDeparture built-in action set.
     /// Type for builtin action set HomeDeparture.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionsettypehomedeparture?language=objc)
     pub static HMActionSetTypeHomeDeparture: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies the HomeArrival built-in action set.
     /// Type for builtin action set HomeArrival.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionsettypehomearrival?language=objc)
     pub static HMActionSetTypeHomeArrival: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies a user-defined action set.
     /// Type for user-defined action sets.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionsettypeuserdefined?language=objc)
     pub static HMActionSetTypeUserDefined: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies a trigger-owned action set.
+    ///
+    /// ## Discussion
+    ///
+    /// An action set of this type is owned by a trigger and is not listed as part of the home. An action set of this type cannot be executed, renamed, or associated with a different trigger.
+    ///
+    ///
     /// Type for trigger-owned action sets.
     ///
     ///
     /// An action set of this type is owned by a trigger and is not listed
     /// as part of the home. An action set of this type cannot be executed,
     /// renamed, or associated with a different trigger.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmactionsettypetriggerowned?language=objc)
     pub static HMActionSetTypeTriggerOwned: &'static NSString;
 }

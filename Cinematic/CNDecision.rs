@@ -9,11 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a decision to focus on a particular detection, or group of detections, at a particular time.
     /// Represents a decision to focus on a specific detectionID or detectionGroupID; optionally strong.
     ///
     /// A strong decision keeps focus for as long as possible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndecision-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNDecision;

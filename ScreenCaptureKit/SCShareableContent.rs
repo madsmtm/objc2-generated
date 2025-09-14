@@ -11,24 +11,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The style of content presented in a stream.
 /// Defines the type of content being shared
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCShareableContentStyle(pub NSInteger);
 impl SCShareableContentStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/none?language=objc)
+    /// The stream isn’t currently presenting any content.
     #[doc(alias = "SCShareableContentStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/window?language=objc)
+    /// The stream is currently presenting one or more windows.
     #[doc(alias = "SCShareableContentStyleWindow")]
     pub const Window: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/display?language=objc)
+    /// The stream is currently presenting a complete display.
     #[doc(alias = "SCShareableContentStyleDisplay")]
     pub const Display: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentstyle/application?language=objc)
+    /// The stream is currently presenting one or more applications.
     #[doc(alias = "SCShareableContentStyleApplication")]
     pub const Application: Self = Self(3);
 }
@@ -42,7 +41,13 @@ unsafe impl RefEncode for SCShareableContentStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scrunningapplication?language=objc)
+    /// An instance that represents an app running on a device.
+    ///
+    /// ## Overview
+    ///
+    /// Retrieve the available apps from an instance of [`SCShareableContent`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent). Select one or more apps to capture and use them to create an instance of [`SCContentFilter`](https://developer.apple.com/documentation/screencapturekit/sccontentfilter). Apply the filter to an instance of [`SCStream`](https://developer.apple.com/documentation/screencapturekit/scstream) to limit its output to content matching your criteria.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCRunningApplication;
@@ -81,7 +86,13 @@ impl SCRunningApplication {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scwindow?language=objc)
+    /// An instance that represents an onscreen window.
+    ///
+    /// ## Overview
+    ///
+    /// Retrieve the available windows from an instance of [`SCShareableContent`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent). Select one or more windows to capture and use them to create an instance of [`SCContentFilter`](https://developer.apple.com/documentation/screencapturekit/sccontentfilter). Apply the filter to an instance of [`SCStream`](https://developer.apple.com/documentation/screencapturekit/scstream) to limit its output to content matching your criteria.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCWindow;
@@ -141,7 +152,15 @@ impl SCWindow {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scdisplay?language=objc)
+    /// An instance that represents a display device.
+    ///
+    /// ## Overview
+    ///
+    /// A display object represents a physical display connected to a Mac. Query the display to retrieve its unique identifier and onscreen coordinates.
+    ///
+    /// Retrieve the available displays from an instance of [`SCShareableContent`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent). Select a display to capture and use it to create an instance of [`SCContentFilter`](https://developer.apple.com/documentation/screencapturekit/sccontentfilter). Apply the filter to an instance of [`SCStream`](https://developer.apple.com/documentation/screencapturekit/scstream) to limit its output to content matching your criteria.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCDisplay;
@@ -186,11 +205,10 @@ impl SCDisplay {
 }
 
 extern_class!(
+    /// An instance that provides information for the content in a given stream.
     /// SCShareableContentInfo
     ///
     /// SCShareableContentInformation is an object that has information about the content of the stream
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCShareableContentInfo;
@@ -234,7 +252,13 @@ impl SCShareableContentInfo {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scshareablecontent?language=objc)
+    /// An instance that represents a set of displays, apps, and windows that your app can capture.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`displays`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent/displays), [`windows`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent/windows), and [`applications`](https://developer.apple.com/documentation/screencapturekit/scshareablecontent/applications) properties to create a [`SCContentFilter`](https://developer.apple.com/documentation/screencapturekit/sccontentfilter) object that specifies what display content to capture. You apply the filter to an instance of [`SCStream`](https://developer.apple.com/documentation/screencapturekit/scstream) to limit its output to only the content matching your filter.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCShareableContent;

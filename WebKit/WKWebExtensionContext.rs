@@ -12,35 +12,32 @@ use crate::*;
 
 extern "C" {
     /// Indicates a ``WKWebExtensionContext`` error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/errordomain?language=objc)
     pub static WKWebExtensionContextErrorDomain: &'static NSErrorDomain;
 }
 
+/// Constants that indicate errors in the [`WKWebExtensionContext`](https://developer.apple.com/documentation/webkit/wkwebextensioncontext) domain.
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionContext`` domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionContextError(pub NSInteger);
 impl WKWebExtensionContextError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/unknown?language=objc)
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionContextErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/alreadyloaded?language=objc)
+    /// Indicates that the context is already loaded by a [`WKWebExtensionController`](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller).
     #[doc(alias = "WKWebExtensionContextErrorAlreadyLoaded")]
     pub const AlreadyLoaded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/notloaded?language=objc)
+    /// Indicates that the context is not loaded by a [`WKWebExtensionController`](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller).
     #[doc(alias = "WKWebExtensionContextErrorNotLoaded")]
     pub const NotLoaded: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/baseurlalreadyinuse?language=objc)
+    /// Indicates that another context is already using the specified base URL.
     #[doc(alias = "WKWebExtensionContextErrorBaseURLAlreadyInUse")]
     pub const BaseURLAlreadyInUse: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/nobackgroundcontent?language=objc)
+    /// Indicates that the extension does not have background content.
     #[doc(alias = "WKWebExtensionContextErrorNoBackgroundContent")]
     pub const NoBackgroundContent: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code/backgroundcontentfailedtoload?language=objc)
+    /// Indicates that an error occurred loading the background content.
     #[doc(alias = "WKWebExtensionContextErrorBackgroundContentFailedToLoad")]
     pub const BackgroundContentFailedToLoad: Self = Self(6);
 }
@@ -54,39 +51,37 @@ unsafe impl RefEncode for WKWebExtensionContextError {
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has new errors or errors were cleared.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has new errors or errors were cleared.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/errorsdidupdatenotification?language=objc)
     pub static WKWebExtensionContextErrorsDidUpdateNotification: &'static NSNotificationName;
 }
 
+/// Constants used to indicate permission status in web extension context.
 /// Constants used to indicate permission status in ``WKWebExtensionContext``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionContextPermissionStatus(pub NSInteger);
 impl WKWebExtensionContextPermissionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/deniedexplicitly?language=objc)
+    /// Indicates that the permission was explicitly denied.
     #[doc(alias = "WKWebExtensionContextPermissionStatusDeniedExplicitly")]
     pub const DeniedExplicitly: Self = Self(-3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/deniedimplicitly?language=objc)
+    /// Indicates that the permission was implicitly denied because of another explicitly denied permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusDeniedImplicitly")]
     pub const DeniedImplicitly: Self = Self(-2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/requestedimplicitly?language=objc)
+    /// Indicates that the permission was implicitly requested because of another explicitly requested permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusRequestedImplicitly")]
     pub const RequestedImplicitly: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/unknown?language=objc)
+    /// Indicates an unknown permission status.
     #[doc(alias = "WKWebExtensionContextPermissionStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/requestedexplicitly?language=objc)
+    /// Indicates that the permission was explicitly requested.
     #[doc(alias = "WKWebExtensionContextPermissionStatusRequestedExplicitly")]
     pub const RequestedExplicitly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/grantedimplicitly?language=objc)
+    /// Indicates that the permission was implicitly granted because of another explicitly granted permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusGrantedImplicitly")]
     pub const GrantedImplicitly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus/grantedexplicitly?language=objc)
+    /// Indicates that the permission was explicitly granted permission.
     #[doc(alias = "WKWebExtensionContextPermissionStatusGrantedExplicitly")]
     pub const GrantedExplicitly: Self = Self(3);
 }
@@ -100,96 +95,90 @@ unsafe impl RefEncode for WKWebExtensionContextPermissionStatus {
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has newly granted permissions.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly granted permissions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionsweregrantednotification?language=objc)
     pub static WKWebExtensionContextPermissionsWereGrantedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has newly denied permissions.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly denied permissions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionsweredeniednotification?language=objc)
     pub static WKWebExtensionContextPermissionsWereDeniedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has newly removed granted permissions.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed granted permissions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissionswereremovednotification?language=objc)
     pub static WKWebExtensionContextGrantedPermissionsWereRemovedNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification the system sends whenever a web extension context has newly removed denied permissions.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed denied permissions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissionswereremovednotification?language=objc)
     pub static WKWebExtensionContextDeniedPermissionsWereRemovedNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has newly granted permission match patterns.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly granted permission match patterns.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionmatchpatternsweregrantednotification?language=objc)
     pub static WKWebExtensionContextPermissionMatchPatternsWereGrantedNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has newly denied permission match patterns.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly denied permission match patterns.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionmatchpatternsweredeniednotification?language=objc)
     pub static WKWebExtensionContextPermissionMatchPatternsWereDeniedNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// This notification is sent whenever a web extension context has newly removed granted permission match patterns.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed granted permission match patterns.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissionmatchpatternswereremovednotification?language=objc)
     pub static WKWebExtensionContextGrantedPermissionMatchPatternsWereRemovedNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification the system sends whenever a web extension context has newly removed denied permission match patterns.
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed denied permission match patterns.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissionmatchpatternswereremovednotification?language=objc)
     pub static WKWebExtensionContextDeniedPermissionMatchPatternsWereRemovedNotification:
         &'static NSNotificationName;
 }
 
+/// Constants for specifying web extension context information in notifications.
 /// Constants for specifying ``WKWebExtensionContext`` information in notifications.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/notificationuserinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type WKWebExtensionContextNotificationUserInfoKey = NSString;
 
 extern "C" {
+    /// The corresponding value represents the affected permissions in [`WKWebExtensionContext`](https://developer.apple.com/documentation/webkit/wkwebextensioncontext) notifications.
     /// The corresponding value represents the affected permissions in ``WKWebExtensionContext`` notifications.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/notificationuserinfokey/permissions?language=objc)
     pub static WKWebExtensionContextNotificationUserInfoKeyPermissions:
         &'static WKWebExtensionContextNotificationUserInfoKey;
 }
 
 extern "C" {
+    /// The corresponding value represents the affected permission match patterns in [`WKWebExtensionContext`](https://developer.apple.com/documentation/webkit/wkwebextensioncontext) notifications.
     /// The corresponding value represents the affected permission match patterns in ``WKWebExtensionContext`` notifications.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/notificationuserinfokey/matchpatterns?language=objc)
     pub static WKWebExtensionContextNotificationUserInfoKeyMatchPatterns:
         &'static WKWebExtensionContextNotificationUserInfoKey;
 }
 
 extern_class!(
+    /// An object that represents the runtime environment for a web extension.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides methods for managing the extension’s permissions, allowing it to inject content, run background logic, show popovers, and display other web-based UI to the user.
+    ///
+    ///
     /// A ``WKWebExtensionContext`` object represents the runtime environment for a web extension.
     ///
     /// This class provides methods for managing the extension's permissions, allowing it to inject content, run
     /// background logic, show popovers, and display other web-based UI to the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -10,8 +10,6 @@ use crate::*;
 
 extern_class!(
     /// A component that encapsulates a SceneKit node.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkscnnodecomponent?language=objc)
     #[unsafe(super(GKComponent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKComponent")]

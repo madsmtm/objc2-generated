@@ -12,7 +12,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmovietrack?language=objc)
+    /// A track in a movie that conforms to the QuickTime or ISO base media file format.
     #[unsafe(super(AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAssetTrack")]
@@ -89,7 +89,7 @@ impl AVMovieTrack {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack?language=objc)
+    /// A mutable track that conforms to the QuickTime or ISO base media file format.
     #[unsafe(super(AVMovieTrack, AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAssetTrack")]
@@ -628,33 +628,45 @@ impl AVMutableMovieTrack {
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the timeRange of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of @“timeRange” has reached AVKeyValueStatusLoaded.
+    ///
+    ///
     /// Posted when the timeRange of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
     /// "
     /// timeRange" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktimerangedidchangenotification?language=objc)
     pub static AVFragmentedMovieTrackTimeRangeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the array of segments of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of @“segments” has reached AVKeyValueStatusLoaded.
+    ///
+    ///
     /// Posted when the array of segments of an AVFragmentedMovieTrack changes while the associated instance of AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
     /// "
     /// segments" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracksegmentsdidchangenotification?language=objc)
     pub static AVFragmentedMovieTrackSegmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
     /// This notification name has been deprecated. Use either AVFragmentedMovieTrackTimeRangeDidChangeNotification or AVFragmentedMovieTrackSegmentsDidChangeNotification instead; in either case, you can assume that timing changes to fragmented tracks result in changes to the total length of the sample data used by the track.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietracktotalsampledatalengthdidchangenotification?language=objc)
+    ///
+    /// This notification name has been deprecated. Use either AVFragmentedMovieTrackTimeRangeDidChangeNotification or AVFragmentedMovieTrackSegmentsDidChangeNotification instead; in either case, you can assume that timing changes to fragmented tracks result in changes to the total length of the sample data used by the track.
     #[deprecated = "Upon receipt of either AVFragmentedMovieTrackTimeRangeDidChangeNotification or AVFragmentedMovieTrackSegmentsDidChangeNotification, you can assume that the sender's totalSampleDataLength has changed."]
     pub static AVFragmentedMovieTrackTotalSampleDataLengthDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovietrack?language=objc)
+    /// An object that represents a track in a fragmented movie.
     #[unsafe(super(AVMovieTrack, AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAssetTrack")]

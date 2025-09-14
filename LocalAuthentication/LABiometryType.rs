@@ -4,35 +4,30 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype?language=objc)
+/// The set of available biometric authentication types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LABiometryType(pub NSInteger);
 impl LABiometryType {
+    /// No biometry type is supported.
     /// The device does not support biometry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/none?language=objc)
     #[doc(alias = "LABiometryTypeNone")]
     pub const None: Self = Self(0);
+    /// No biometry type is supported.
     /// The device does not support biometry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/labiometrynone?language=objc)
     #[deprecated]
     pub const LABiometryNone: Self = Self(LABiometryType::None.0);
     /// The device supports Touch ID.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/touchid?language=objc)
+    /// The device supports Touch ID.
     #[doc(alias = "LABiometryTypeTouchID")]
     pub const TouchID: Self = Self(1);
     /// The device supports Face ID.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/faceid?language=objc)
+    /// The device supports Face ID.
     #[doc(alias = "LABiometryTypeFaceID")]
     pub const FaceID: Self = Self(2);
+    /// The device supports Optic ID.
     /// The device supports Optic ID
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/labiometrytype/opticid?language=objc)
     #[doc(alias = "LABiometryTypeOpticID")]
     pub const OpticID: Self = Self(4);
 }

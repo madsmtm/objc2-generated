@@ -9,6 +9,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values that represent the possible states of an asset reader.
+///
+/// ## Overview
+///
+/// You determine an asset reader’s status using its [`status`](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.property) property.
+///
+///
 /// These constants are returned by the AVAssetReader status property to indicate whether it can successfully read samples from its asset.
 ///
 ///
@@ -21,26 +28,30 @@ use crate::*;
 /// Indicates that the asset reader can no longer read samples from its asset because of an error. The error is described by the value of the asset reader's error property.
 ///
 /// Indicates that the asset reader can no longer read samples because reading was canceled with the cancelReading method.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetReaderStatus(pub NSInteger);
 impl AVAssetReaderStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/unknown?language=objc)
+    /// The asset reader is in an unknown state.
     #[doc(alias = "AVAssetReaderStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/reading?language=objc)
+    /// The asset reader is successfully reading samples from its asset.
     #[doc(alias = "AVAssetReaderStatusReading")]
     pub const Reading: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/completed?language=objc)
+    /// The asset reader completes reading all samples within its specified time range.
     #[doc(alias = "AVAssetReaderStatusCompleted")]
     pub const Completed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/failed?language=objc)
+    /// The asset reader can no longer read samples from its asset because of an error.
+    ///
+    /// ## Discussion
+    ///
+    /// Query the asset reader’s [`error`](https://developer.apple.com/documentation/avfoundation/avassetreader/error) property to determine the reason for the failure.
+    ///
+    ///
     #[doc(alias = "AVAssetReaderStatusFailed")]
     pub const Failed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum/cancelled?language=objc)
+    /// The asset reader can no longer read samples because you canceled reading.
     #[doc(alias = "AVAssetReaderStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }
@@ -54,6 +65,13 @@ unsafe impl RefEncode for AVAssetReaderStatus {
 }
 
 extern_class!(
+    /// An object that reads media data from an asset.
+    ///
+    /// ## Overview
+    ///
+    /// Use an asset reader to read media data from instances of [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset). The assets you read may represent file-based media like QuickTime movies or MPEG-4 files, or media that you compose from multiple sources using [`AVComposition`](https://developer.apple.com/documentation/avfoundation/avcomposition).
+    ///
+    ///
     /// AVAssetReader provides services for obtaining media data from an asset.
     ///
     ///
@@ -64,8 +82,6 @@ extern_class!(
     /// AVAssetReaderTrackOutput, a concrete subclass of AVAssetReaderOutput, can either read the track's media samples in the format in which they are stored by the asset or convert the media samples to a different format.
     ///
     /// AVAssetReaderAudioMixOutput mixes multiple audio tracks of the asset after reading them, while AVAssetReaderVideoCompositionOutput composites multiple video tracks after reading them.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReader;

@@ -16,10 +16,8 @@ pub const kIOSerialBSDModemType: &CStr =
 pub const kIOSerialBSDRS232Type: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOSerialStream\0") };
 pub const kIOTTYDeviceKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYDevice\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/serialdriverkit/kiottybasenamekey?language=objc)
 pub const kIOTTYBaseNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYBaseName\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/serialdriverkit/kiottysuffixkey?language=objc)
 pub const kIOTTYSuffixKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYSuffix\0") };
 pub const kIOCalloutDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOCalloutDevice\0") };
@@ -27,14 +25,10 @@ pub const kIODialinDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODialinDevice\0") };
 pub const kIOTTYWaitForIdleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOTTYWaitForIdle\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/user_ul_t?language=objc)
 pub type user_ul_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/user_speed_t?language=objc)
 pub type user_speed_t = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/user_us_t?language=objc)
 pub type user_us_t = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/user_shspeed_t?language=objc)
 pub type user_shspeed_t = u32;

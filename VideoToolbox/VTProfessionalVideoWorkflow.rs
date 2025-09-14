@@ -5,17 +5,43 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Loads decoders appropriate for the client’s professional video workflows.
+    ///
+    /// ## Discussion
+    ///
+    /// This function loads the video decoders within the client’s `/Library/Video/Professional Video Workflow Plug-Ins/` directory, if any are present. Additionally, calling this function indicates to Video Toolbox that your app supports [`MediaExtension`](https://developer.apple.com/documentation/mediaextension) video decoders. Any associated video RAW Processors will also be supported as well.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// This functionality is only intended for apps that support professional video workflows. It isn’t recommended for network-facing applications such as web browsers, messaging clients, mail clients, and so on.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Apple Afterburner Acceleration
+    ///
+    /// Apple Afterburner is an accelerator card for the Mac Pro (2019), created to enhance Apple ProRes and ProRes RAW workflows for film and video professionals. Afterburner accelerates decoding and playback of multiple streams of ProRes and Pro Res RAW video files.
+    ///
+    /// You must call this function to load the ProRes and ProRes RAW decoders so the Afterburner card can accelerate ProRes and ProRes RAW decoding and playback.
+    ///
+    /// If the decoders aren’t loaded, the system performs nonaccelerated software playback and decoding of ProRes and ProRes RAW video files.
+    ///
+    ///
     /// Allows the client to use video decoders appropriate for professional video workflows.
     ///
     /// By calling this function, a client indicates to VideoToolbox that it wishes to support Media Extension video decoders. Any associated Video RAW Processors will also be supported as well. Note that this functionality is intended for applications supporting professional video workflows. It is not recommended for network-facing applications such as web browsers, messaging clients, mail clients, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtregisterprofessionalvideoworkflowvideodecoders()?language=objc)
     pub fn VTRegisterProfessionalVideoWorkflowVideoDecoders();
 }
 
 extern "C-unwind" {
-    /// Allows the client to use encoders appropriate for professional video workflows.
+    /// Loads encoders appropriate for the client’s professional video workflows.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtregisterprofessionalvideoworkflowvideoencoders()?language=objc)
+    /// ## Discussion
+    ///
+    /// Loads the video encoders within the client’s `/Library/Video/Professional Video Workflow Plug-Ins/` directory, if any are present.
+    ///
+    ///
+    /// Allows the client to use encoders appropriate for professional video workflows.
     pub fn VTRegisterProfessionalVideoWorkflowVideoEncoders();
 }

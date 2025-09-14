@@ -5,7 +5,20 @@ use core::ffi::*;
 use crate::*;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444957-createoffsetdescriptor?language=objc)
+    /// Creates an offset descriptor that specifies the position of an element in relation to the beginning or end of its container.
+    ///
+    /// Parameters:
+    /// - theOffset: A positive integer that specifies the offset from the beginning of the container (the first element has an offset of 1), or a negative integer that specifies the offset from the end (the last element has an offset of –1).
+    ///
+    /// - theDescriptor: A pointer to a descriptor. On successful return, the offset descriptor created by `CreateOffsetDescriptor`. On error, returns a null descriptor. Your application must dispose of the descriptor after it has finished using it. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -14,7 +27,30 @@ extern "C-unwind" {
     pub fn CreateOffsetDescriptor(the_offset: c_long, the_descriptor: *mut AEDesc) -> OSErr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449155-createcompdescriptor?language=objc)
+/// Creates a comparison descriptor that specifies how to compare one or more Apple event objects with either another Apple event object or a descriptor.
+///
+/// Parameters:
+/// - comparisonOperator: The comparison operator for comparing the descriptors in the `operand1` and `operand2` parameters. The standard comparison operators are defined in [`Comparison Operator Constants`](https://developer.apple.com/documentation/applicationservices/apple_event_manager/comparison_operator_constants).
+///
+/// The actual comparison of the two operands is performed by the object comparison function provided by the client application. The way a comparison operator is interpreted is up to each application.
+///
+/// See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - operand1: A pointer to an object specifier. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - operand2: A pointer to a descriptor (which can be an object specifier or any other descriptor) whose value is compared to the value of `operand1`. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - disposeInputs: A Boolean value. Pass `TRUE` if the function should automatically dispose of any descriptors you have provided in the `operand1` and `operand2` parameters to the function. Pass `FALSE` if your application will dispose of the descriptors itself. A value of `FALSE` may be more efficient for some applications because it allows them to reuse descriptors.
+///
+/// - theDescriptor: A pointer to a descriptor. On successful return, the comparison descriptor created by `CreateCompDescriptor`. Your application must dispose of this descriptor after it has finished using it. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
 ///
 /// # Safety
 ///
@@ -50,7 +86,30 @@ pub unsafe extern "C-unwind" fn CreateCompDescriptor(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445212-createlogicaldescriptor?language=objc)
+/// Creates a logical descriptor that specifies a logical operator and one or more logical terms for the Apple Event Manager to evaluate.
+///
+/// Parameters:
+/// - theLogicalTerms: A pointer to a list containing comparison descriptors (`typeLogicalDescriptor`), logical descriptors (`typeCompDescriptor`), or both. If the value of the parameter `theLogicOperator` is `kAEAND` or `kAEOR`, the list can contain any number of descriptors. If the value of the parameter `theLogicOperator` is `kAENOT`, logically this list should contain a single descriptor. However, the function will not return an error if the list contains more than one descriptor for a logical operator of `kAENOT`. See [`AEDescList`](https://developer.apple.com/documentation/coreservices/aedesclist).
+///
+/// - theLogicOperator: A logical operator represented by one of the constants described in [`Constants for Object Specifiers, Positions, and Logical and Comparison Operations`](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_). What you pass for this parameter helps determine what you pass for the `theLogicalTerms` parameter. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - disposeInputs: A Boolean value. Pass `TRUE` if the function should automatically dispose of the descriptors you have provided in the `theLogicalTerms` parameter or (`FALSE`) if your application will. A value of `FALSE` may be more efficient for some applications because it allows them to reuse descriptors.
+///
+/// - theDescriptor: A pointer to a descriptor. On successful return, the logical descriptor created by `CreateLogicalDescriptor`. Your application must dispose of this descriptor after it has finished using it. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// The `CreateLogicalDescriptor` function creates a logical descriptor, which specifies a logical operator and one or more logical terms for the Apple Event Manager to evaluate.
+///
+///
 ///
 /// # Safety
 ///
@@ -82,7 +141,28 @@ pub unsafe extern "C-unwind" fn CreateLogicalDescriptor(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450244-createobjspecifier?language=objc)
+/// Assembles an object specifier that identifies one or more Apple event objects, from other descriptors.
+///
+/// Parameters:
+/// - desiredClass: The object class of the desired Apple event objects. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+///
+/// - theContainer: A pointer to a descriptor that describes the container for the requested object, usually in the form of another object specifier. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - keyForm: The key form for the object specifier.
+///
+/// - keyData: A pointer to a descriptor that supplies the key data for the object specifier.
+///
+/// - disposeInputs: A Boolean value. Pass (`TRUE`) if the function should dispose of the descriptors for the `theContainer` and `keyData` parameters or (`FALSE`) if your application will. A value of `FALSE` may be more efficient for some applications because it allows them to reuse descriptors.
+///
+/// - objSpecifier: On successful return, a pointer to the object specifier created by the `CreateObjSpecifier` function. If the function returns successfully, your application should call the [`AEDisposeDesc`](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc) function to dispose of this descriptor after it has finished using it.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
 ///
 /// # Safety
 ///
@@ -121,7 +201,30 @@ pub unsafe extern "C-unwind" fn CreateObjSpecifier(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444087-createrangedescriptor?language=objc)
+/// Creates a range descriptor that specifies a series of consecutive elements in the same container.
+///
+/// Parameters:
+/// - rangeStart: A pointer to an object specifier that identifies the first Apple event object in the range. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - rangeStop: A pointer to an object specifier that identifies the last Apple event object in the range. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+/// - disposeInputs: A Boolean value. Pass (`TRUE`) if the function should dispose of the descriptors for the `rangeStart` and `rangeStop` parameters and set them to the null descriptor or (`FALSE`) if your application will. A value of `FALSE` may be more efficient for some applications because it allows them to reuse descriptors.
+///
+/// - theDescriptor: A pointer to a descriptor. On successful return, the range descriptor created by `CreateRangeDescriptor`. Your application must dispose of this descriptor after it has finished using it. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// Although the `rangeStart` and `rangeStop` parameters can be any object specifiers—including object specifiers that specify more than one Apple event object—most applications expect these parameters to specify single Apple event objects.
+///
+///
 ///
 /// # Safety
 ///

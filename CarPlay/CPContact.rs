@@ -10,7 +10,17 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontact?language=objc)
+    /// A data object that contains information about a contact.
+    ///
+    /// ## Overview
+    ///
+    /// `CPContact` is an object that represents information about a person or a business, and can include a set of contextually relevant actions that a user can perform when CarPlay displays the contact, such as getting directions to its location.
+    ///
+    /// You display a contact using [`CPContactTemplate`](https://developer.apple.com/documentation/carplay/cpcontacttemplate). The template manages the appearance of the contact, and can display up to four action buttons. After displaying it, you can update the buttons for the template by assigning a new array to the contact’s [`actions`](https://developer.apple.com/documentation/carplay/cpcontact/actions) property.
+    ///
+    /// The framework provides specialized buttons for common actions, such as [`CPContactCallButton`](https://developer.apple.com/documentation/carplay/cpcontactcallbutton) or [`CPContactMessageButton`](https://developer.apple.com/documentation/carplay/cpcontactmessagebutton).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPContact;
@@ -141,7 +151,15 @@ impl CPContact {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontactcallbutton?language=objc)
+    /// A button for calling the contact.
+    ///
+    /// ## Overview
+    ///
+    /// Use this button to call the template’s contact.
+    ///
+    /// If your app doesn’t provide VoIP functionality, use the `tel` URL scheme to start a phone call with the contact. Invoke your template application scene’s [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiscene/open(_:options:completionhandler:)) method and pass the URL. CarPlay provides this scene to your [`CPTemplateApplicationSceneDelegate`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate) when the scene connects.
+    ///
+    ///
     #[unsafe(super(CPButton, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPButton")]
@@ -194,7 +212,19 @@ impl CPContactCallButton {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontactmessagebutton?language=objc)
+    /// A button that activates Siri and initiates the compose message flow.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This subclass of [`CPButton`](https://developer.apple.com/documentation/carplay/cpbutton) doesn’t use a handler. Instead, tapping this button activates Siri and launches the compose message flow using the contact information in the [`phoneOrEmail`](https://developer.apple.com/documentation/carplay/cpcontactmessagebutton/phoneoremail) property.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CPButton, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPButton")]
@@ -274,7 +304,15 @@ impl CPContactMessageButton {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontactdirectionsbutton?language=objc)
+    /// A button for getting directions to the contact’s location.
+    ///
+    /// ## Overview
+    ///
+    /// Use this button to get directions to the location of the template’s contact.
+    ///
+    /// If your app doesn’t provide turn-by-turn navigation, use the `maps` URL scheme to launch the most recent navigation app. Call your template application scene’s [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiscene/open(_:options:completionhandler:)) method and pass a URL that embeds the contact’s location. CarPlay provides this scene to your [`CPTemplateApplicationSceneDelegate`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate) when the scene connects.
+    ///
+    ///
     #[unsafe(super(CPButton, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPButton")]

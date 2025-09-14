@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An NSUnit subclass representing the number of signal bars for signal strength.
+    /// A unit of measure for the number of bars of cellular network connectivity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxunitsignalbars?language=objc)
+    /// ## Overview
+    ///
+    /// Cellular connectivity measures the relative strength of the device’s signal reception in decibels, which usually falls in a range of 0 to -110.
+    ///
+    /// `MXUnitSignalBars` defines the base unit as bars corresponding to the bars in the cellular connection status icon at the top of a device screen.
+    ///
+    ///
+    /// An NSUnit subclass representing the number of signal bars for signal strength.
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXUnitSignalBars;
@@ -78,9 +85,16 @@ impl MXUnitSignalBars {
 }
 
 extern_class!(
-    /// An NSUnit subclass representing the linear space Display APL.
+    /// A unit of measure of pixel luminosity on an OLED display.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxunitaveragepixelluminance?language=objc)
+    /// ## Overview
+    ///
+    /// Luminosity represents the brightness of each red, green, and blue component pixel. Unlike LCD displays, each pixel requires power to display a color, and white draws the most power per pixel.
+    ///
+    /// `MXUnitAveragePixelLuminance` defines the base unit as the average luminance of all the pixels on the screen for some period of time. Reducing the average luminance of the display reduces the amount of power consumed by the app.
+    ///
+    ///
+    /// An NSUnit subclass representing the linear space Display APL.
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXUnitAveragePixelLuminance;

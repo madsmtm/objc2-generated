@@ -8,31 +8,39 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointpointer?language=objc)
+/// Type indicating a parameter is a pointer to an `NSPoint` structure.
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSPointPointer = *mut NSPoint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointarray?language=objc)
+/// Type indicating a parameter is array of `NSPoint` structures.
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSPointArray = *mut NSPoint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizepointer?language=objc)
+/// Type indicating parameter is a pointer to an `NSSize` structure.
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSSizePointer = *mut NSSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizearray?language=objc)
+/// Type indicating a parameter is an array of `NSSize` structures.
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSSizeArray = *mut NSSize;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectpointer?language=objc)
+/// Type indicating a parameter is a pointer to an `NSRect` structure.
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSRectPointer = *mut NSRect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectarray?language=objc)
+/// Type indicating a parameter is array of `NSRect` structures.
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSRectArray = *mut NSRect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsets?language=objc)
+/// A description of the distance between the edges of two rectangles.
+///
+/// ## Overview
+///
+/// Edge insets describe the distance between the edges of one rectangle to a related rectangle that can be described by measuring a constant but edge-specific distance from each edge.
+///
+/// A common use for this structure is to describe the relationship between a view’s frame and its alignment rectangle.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -67,77 +75,83 @@ unsafe impl Send for NSEdgeInsets {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for NSEdgeInsets {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions?language=objc)
+/// Values representing alignment operations.
+///
+/// ## Overview
+///
+/// These constants are used by the [`NSIntegralRectWithOptions`](https://developer.apple.com/documentation/foundation/nsintegralrectwithoptions(_:_:)) function and other related methods, such as [`backingAlignedRect:options:`](https://developer.apple.com/documentation/appkit/nsview/backingalignedrect(_:options:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAlignmentOptions(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSAlignmentOptions: c_ulonglong {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminxinward?language=objc)
+/// Specifies that alignment of the minimum X coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMinXInward")]
         const AlignMinXInward = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminyinward?language=objc)
+/// Specifies that alignment of the minimum Y coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMinYInward")]
         const AlignMinYInward = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxxinward?language=objc)
+/// Specifies that alignment of the maximum X coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMaxXInward")]
         const AlignMaxXInward = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxyinward?language=objc)
+/// Specifies that alignment of the maximum X coordinate should be to the nearest inward integral value.
         #[doc(alias = "NSAlignMaxYInward")]
         const AlignMaxYInward = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignwidthinward?language=objc)
+/// Specifies that alignment of the width should be to the nearest inward integral value.
         #[doc(alias = "NSAlignWidthInward")]
         const AlignWidthInward = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignheightinward?language=objc)
+/// Specifies that alignment of the height should be to the nearest inward integral value.
         #[doc(alias = "NSAlignHeightInward")]
         const AlignHeightInward = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminxoutward?language=objc)
+/// Specifies that alignment of the minimum X coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMinXOutward")]
         const AlignMinXOutward = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminyoutward?language=objc)
+/// Specifies that alignment of the minimum Y coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMinYOutward")]
         const AlignMinYOutward = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxxoutward?language=objc)
+/// Specifies that alignment of the maximum X coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMaxXOutward")]
         const AlignMaxXOutward = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxyoutward?language=objc)
+/// Specifies that alignment of the maximum Y coordinate should be to the nearest outward integral value.
         #[doc(alias = "NSAlignMaxYOutward")]
         const AlignMaxYOutward = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignwidthoutward?language=objc)
+/// Specifies that alignment of the width should be to the nearest outward integral value.
         #[doc(alias = "NSAlignWidthOutward")]
         const AlignWidthOutward = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignheightoutward?language=objc)
+/// Specifies that alignment of the height should be to the nearest outward integral value.
         #[doc(alias = "NSAlignHeightOutward")]
         const AlignHeightOutward = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminxnearest?language=objc)
+/// Specifies that alignment of the minimum X coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMinXNearest")]
         const AlignMinXNearest = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignminynearest?language=objc)
+/// Specifies that alignment of the minimum Y coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMinYNearest")]
         const AlignMinYNearest = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxxnearest?language=objc)
+/// Specifies that alignment of the maximum X coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMaxXNearest")]
         const AlignMaxXNearest = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignmaxynearest?language=objc)
+/// Specifies that alignment of the maximum Y coordinate should be to the nearest integral value.
         #[doc(alias = "NSAlignMaxYNearest")]
         const AlignMaxYNearest = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignwidthnearest?language=objc)
+/// Specifies that alignment of the width should be to the nearest integral value.
         #[doc(alias = "NSAlignWidthNearest")]
         const AlignWidthNearest = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignheightnearest?language=objc)
+/// Specifies that alignment of the height should be to the nearest integral value.
         #[doc(alias = "NSAlignHeightNearest")]
         const AlignHeightNearest = 1<<21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignrectflipped?language=objc)
+/// This option should be included  if the rectangle is in a flipped coordinate system. This allows 0.5 to be treated in a visually consistent way.
         #[doc(alias = "NSAlignRectFlipped")]
         const AlignRectFlipped = 1<<63;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignalledgesinward?language=objc)
+/// Aligns all edges inward. This is the same as `NSAlignMinXInward|NSAlignMaxXInward|NSAlignMinYInward|NSAlignMaxYInward`.
         #[doc(alias = "NSAlignAllEdgesInward")]
         const AlignAllEdgesInward = NSAlignmentOptions::AlignMinXInward.0|NSAlignmentOptions::AlignMaxXInward.0|NSAlignmentOptions::AlignMinYInward.0|NSAlignmentOptions::AlignMaxYInward.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignalledgesoutward?language=objc)
+/// Aligns all edges outwards. This is the same as `NSAlignMinXOutward|NSAlignMaxXOutward|NSAlignMinYOutward|NSAlignMaxYOutward`.
         #[doc(alias = "NSAlignAllEdgesOutward")]
         const AlignAllEdgesOutward = NSAlignmentOptions::AlignMinXOutward.0|NSAlignmentOptions::AlignMaxXOutward.0|NSAlignmentOptions::AlignMinYOutward.0|NSAlignmentOptions::AlignMaxYOutward.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions/alignalledgesnearest?language=objc)
+/// Aligns all edges to the nearest value. This is the same as `NSAlignMinXNearest|NSAlignMaxXNearest|NSAlignMinYNearest|NSAlignMaxYNearest`.
         #[doc(alias = "NSAlignAllEdgesNearest")]
         const AlignAllEdgesNearest = NSAlignmentOptions::AlignMinXNearest.0|NSAlignmentOptions::AlignMaxXNearest.0|NSAlignmentOptions::AlignMinYNearest.0|NSAlignmentOptions::AlignMaxYNearest.0;
     }
@@ -152,25 +166,25 @@ unsafe impl RefEncode for NSAlignmentOptions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszeropoint?language=objc)
+    /// An `NSPoint` structure with both x and y coordinates set to `0`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSZeroPoint: NSPoint;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerosize?language=objc)
+    /// An `NSSize` structure set to `0` in both dimensions.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSZeroSize: NSSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nszerorect?language=objc)
+    /// An `NSRect` structure set to `0` in width and height.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSZeroRect: NSRect;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsetszero?language=objc)
+    /// An edge insets structure with a zero inset on each edge.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSEdgeInsetsZero: NSEdgeInsets;
 }
@@ -214,7 +228,13 @@ impl NSEdgeInsets {
     // TODO: pub fn NSEdgeInsetsMake(top: CGFloat,left: CGFloat,bottom: CGFloat,right: CGFloat,) -> NSEdgeInsets;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsequalpoints(_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether two points are equal.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the two points `aPoint` and `bPoint` are identical, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bool {
@@ -224,7 +244,13 @@ pub extern "C-unwind" fn NSEqualPoints(a_point: NSPoint, b_point: NSPoint) -> bo
     unsafe { NSEqualPoints(a_point, b_point) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsequalsizes(_:_:)?language=objc)
+/// Returns a Boolean that indicates whether two size values are equal.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `aSize` and `bSize` are identical, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
@@ -234,7 +260,13 @@ pub extern "C-unwind" fn NSEqualSizes(a_size: NSSize, b_size: NSSize) -> bool {
     unsafe { NSEqualSizes(a_size, b_size) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsequalrects(_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether the two rectangles are equal.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `aRect` and `bRect` are identical, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -244,7 +276,13 @@ pub extern "C-unwind" fn NSEqualRects(a_rect: NSRect, b_rect: NSRect) -> bool {
     unsafe { NSEqualRects(a_rect, b_rect) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisemptyrect(_:)?language=objc)
+/// Returns a Boolean value that indicates whether a given rectangle is empty.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `aRect` encloses no area at all—that is, if its width or height is 0 or negative, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
@@ -256,7 +294,7 @@ pub extern "C-unwind" fn NSIsEmptyRect(a_rect: NSRect) -> bool {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSEdgeInsets {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsedgeinsetsequal(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether two edge insets structures are equal.
     #[doc(alias = "NSEdgeInsetsEqual")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -268,7 +306,13 @@ impl NSEdgeInsets {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinsetrect(_:_:_:)?language=objc)
+/// Insets a rectangle by a specified amount.
+///
+/// ## Return Value
+///
+/// A copy of `aRect`, altered by moving the two sides that are parallel to the y axis inward by `dX`, and the two sides parallel to the x axis inwards by `dY`.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
@@ -278,7 +322,13 @@ pub extern "C-unwind" fn NSInsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat)
     unsafe { NSInsetRect(a_rect, d_x, d_y) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegralrect(_:)?language=objc)
+/// Adjusts the sides of a rectangle to integer values.
+///
+/// ## Return Value
+///
+/// A copy of `aRect`, expanded outward just enough to ensure that none of its four defining values (x, y, width, and height) have fractional parts. If the width or height of `aRect` is `0` or negative, this function returns a rectangle with origin at (0.0, 0.0) and with zero width and height.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntegralRect(a_rect: NSRect) -> NSRect {
@@ -288,7 +338,13 @@ pub extern "C-unwind" fn NSIntegralRect(a_rect: NSRect) -> NSRect {
     unsafe { NSIntegralRect(a_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegralrectwithoptions(_:_:)?language=objc)
+/// Adjusts the sides of a rectangle to integral values using the specified options.
+///
+/// ## Return Value
+///
+/// A copy of `aRect`, modified based on the options. The options are defined in `NSAlignmentOptions`.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntegralRectWithOptions(
@@ -301,7 +357,13 @@ pub extern "C-unwind" fn NSIntegralRectWithOptions(
     unsafe { NSIntegralRectWithOptions(a_rect, opts) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunionrect(_:_:)?language=objc)
+/// Calculates the union of two rectangles.
+///
+/// ## Discussion
+///
+/// Returns the smallest rectangle that completely encloses both `aRect` and `bRect`. If one of the rectangles has 0 (or negative) width or height, a copy of the other rectangle is returned; but if both have 0 (or negative) width or height, the returned rectangle has its origin at (0.0, 0.0) and has 0 width and height.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
@@ -311,7 +373,13 @@ pub extern "C-unwind" fn NSUnionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
     unsafe { NSUnionRect(a_rect, b_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintersectionrect(_:_:)?language=objc)
+/// Calculates the intersection of two rectangles.
+///
+/// ## Return Value
+///
+/// The graphic intersection of `aRect` and `bRect`. If the two rectangles don’t overlap, the returned rectangle has its origin at (0.0, 0.0) and zero width and height (including situations where the intersection is a point or a line segment).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> NSRect {
@@ -321,7 +389,13 @@ pub extern "C-unwind" fn NSIntersectionRect(a_rect: NSRect, b_rect: NSRect) -> N
     unsafe { NSIntersectionRect(a_rect, b_rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoffsetrect(_:_:_:)?language=objc)
+/// Offsets the rectangle by the specified amount.
+///
+/// ## Return Value
+///
+/// A copy of `aRect`, with its location shifted by `dX` along the x axis and by `dY` along the y axis.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat) -> NSRect {
@@ -332,7 +406,17 @@ pub extern "C-unwind" fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdividerect(_:_:_:_:_:)?language=objc)
+    /// Divides a rectangle into two new rectangles.
+    ///
+    /// ## Discussion
+    ///
+    /// Creates two rectangles—`slice` and `rem`—from `inRect`, by dividing `inRect` with a line that’s parallel to the side of `inRect` specified by `edge`. The size of `slice` is determined by `amount`, which specifies the distance from `edge`.
+    ///
+    /// `slice` and `rem` must not be `NULL`.
+    ///
+    /// For more information, see [`NSRectEdge`](https://developer.apple.com/documentation/foundation/nsrectedge).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -348,7 +432,27 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointinrect(_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether a given point is in a given rectangle.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `aPoint` is located within the rectangle represented by `aRect`, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// Point-in-rectangle functions generally assume that the “upper” and “left” edges of a rectangle are inside  the rectangle boundaries, while the “lower” and “right” edges are outside the boundaries. This method treats the “upper” and “left” edges of the rectangle as the ones containing the origin of the rectangle.
+///
+/// ### Special Considerations
+///
+/// The meanings of “upper” and “lower” (and “left” and “right”) are relative to the current coordinate system and the location of the rectangle. For a rectangle of positive height located in positive x and y coordinates:
+///
+/// - In the default macOS desktop coordinate system—where the origin is at the bottom left—the rectangle edge closest to the bottom of the screen is the “upper” edge (and is considered inside the rectangle).
+///
+/// - On iOS and in a flipped coordinate system in macOS desktop—where the origin is at the top left—the rectangle edge closest to the bottom of the screen is the “lower” edge (and is considered outside the rectangle).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool {
@@ -358,7 +462,21 @@ pub extern "C-unwind" fn NSPointInRect(a_point: NSPoint, a_rect: NSRect) -> bool
     unsafe { NSPointInRect(a_point, a_rect) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmouseinrect(_:_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether the point is in the specified rectangle.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the hot spot of the cursor lies inside a given rectangle, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// This method assumes an unscaled and unrotated coordinate system. Specify [`true`](https://developer.apple.com/documentation/swift/true) for `flipped` if the underlying view uses a flipped coordinate system.
+///
+/// Point-in-rectangle functions generally assume that the bottom edge of a rectangle is outside of the rectangle boundaries, while the upper edge is inside the boundaries. This method views `aRect` from the point of view of the user—that is, this method always treats the bottom edge of the rectangle as the one closest to the bottom edge of the user’s screen. By making this adjustment, this function ensures consistent mouse-detection behavior from the user’s perspective.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped: bool) -> bool {
@@ -368,7 +486,13 @@ pub extern "C-unwind" fn NSMouseInRect(a_point: NSPoint, a_rect: NSRect, flipped
     unsafe { NSMouseInRect(a_point, a_rect, Bool::new(flipped)) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscontainsrect(_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether one rectangle completely encloses another.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `aRect` completely encloses `bRect`. For this condition to be true, `bRect` cannot be empty, and must not extend beyond `aRect` in any direction.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -378,7 +502,13 @@ pub extern "C-unwind" fn NSContainsRect(a_rect: NSRect, b_rect: NSRect) -> bool 
     unsafe { NSContainsRect(a_rect, b_rect) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintersectsrect(_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether two rectangles intersect.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `aRect` intersects `bRect`, otherwise [`false`](https://developer.apple.com/documentation/swift/false). Returns [`false`](https://developer.apple.com/documentation/swift/false) if either `aRect` or `bRect` has a width or height that is 0.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> bool {
@@ -390,7 +520,17 @@ pub extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect) -> boo
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfrompoint(_:)?language=objc)
+    /// Returns a string representation of a point.
+    ///
+    /// Parameters:
+    /// - aPoint: A point structure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string of the form “{a, b}”, where a and b are the x and y coordinates of `aPoint`.
+    ///
+    ///
     #[doc(alias = "NSStringFromPoint")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -403,7 +543,13 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromsize(_:)?language=objc)
+    /// Returns a string representation of a size.
+    ///
+    /// ## Return Value
+    ///
+    /// A string of the form “{a, b}”, where a and b are the width and height, respectively, of `aSize`.
+    ///
+    ///
     #[doc(alias = "NSStringFromSize")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -416,7 +562,13 @@ impl NSString {
             .expect("function was marked as returning non-null, but actually returned NULL")
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromrect(_:)?language=objc)
+    /// Returns a string representation of a rectangle.
+    ///
+    /// ## Discussion
+    ///
+    /// Returns a string of the form “{{a, b}, {c, d}}”, where a, b, c, and d are the x and y coordinates and the width and height, respectively, of `aRect`.
+    ///
+    ///
     #[doc(alias = "NSStringFromRect")]
     #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
     #[inline]
@@ -430,7 +582,23 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointfromstring(_:)?language=objc)
+/// Returns a point from a text-based representation.
+///
+/// Parameters:
+/// - aString: A string of the form “{x, y}”.
+///
+///
+/// ## Return Value
+///
+/// If `aString` is of the form “{x, y}” an `NSPoint` structure that uses x and y as the x and y coordinates, in that order.
+///
+///
+///
+/// ## Discussion
+///
+/// If `aString` only contains a single number, it is used as the x coordinate. If `aString` does not contain any numbers, returns an `NSPoint` object whose x and y coordinates are both 0.
+///
+///
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn NSPointFromString(a_string: &NSString) -> NSPoint {
@@ -440,7 +608,13 @@ pub extern "C-unwind" fn NSPointFromString(a_string: &NSString) -> NSPoint {
     unsafe { NSPointFromString(a_string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssizefromstring(_:)?language=objc)
+/// Returns an `NSSize` from a text-based representation.
+///
+/// ## Discussion
+///
+/// Scans `aString` for two numbers which are used as the width and height, in that order, to create an `NSSize` struct. If `aString` only contains a single number, it is used as the width. The `aString` argument should be formatted like the output of [`NSStringFromSize`](https://developer.apple.com/documentation/foundation/nsstringfromsize(_:)), for example, `@"{10,20}"`. If `aString` does not contain any numbers, this function returns an `NSSize` struct whose width and height are both `0`.
+///
+///
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn NSSizeFromString(a_string: &NSString) -> NSSize {
@@ -450,7 +624,13 @@ pub extern "C-unwind" fn NSSizeFromString(a_string: &NSString) -> NSSize {
     unsafe { NSSizeFromString(a_string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrectfromstring(_:)?language=objc)
+/// Returns a rectangle from a text-based representation.
+///
+/// ## Discussion
+///
+/// Scans `aString` for four numbers which are used as the x and y coordinates and the width and height, in that order, to create an NSPoint object. If `aString` does not contain four numbers, those numbers that were scanned are used, and 0 is used for the remaining values. If `aString` does not contain any numbers, this function returns an NSRect object with a rectangle whose origin is (0, 0) and width and height are both 0.
+///
+///
 #[cfg(all(feature = "NSString", feature = "objc2-core-foundation"))]
 #[inline]
 pub extern "C-unwind" fn NSRectFromString(a_string: &NSString) -> NSRect {

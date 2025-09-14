@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdaterequest?language=objc)
+    /// A request to Core Data to do a batch update of data in a persistent store without loading any data into memory.
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]

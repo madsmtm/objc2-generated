@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Specifies the parameters for MTLResidencySet creation.
+    /// A configuration that customizes the behavior for a residency set.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// Make an [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) by creating and configuring an [`MTLResidencySetDescriptor`](https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor) instance and pass it to the [`newResidencySetWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makeresidencyset(descriptor:)) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+    ///
+    /// See [Simplifying GPU resource management with residency sets](https://developer.apple.com/documentation/metal/simplifying-gpu-resource-management-with-residency-sets) for more information.
+    ///
+    ///
+    /// Specifies the parameters for MTLResidencySet creation.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResidencySetDescriptor;
@@ -79,12 +86,102 @@ impl DefaultRetained for MTLResidencySetDescriptor {
 }
 
 extern_protocol!(
+    /// A collection of resource allocations that can move in and out of resident memory.
+    ///
+    /// ## Overview
+    ///
+    /// Residency sets are a way you can tell Metal which resource allocations, such as buffers, textures, and heaps, to make _resident_, or GPU-accessible. Adding allocations to a residency set requires less overhead than the equivalent methods of a command encoder. Residency sets also give you more control when Metal makes their allocations resident, and for how long they remain resident. However, residency sets don’t track hazards, so you need to account for hazards with fences and events.
+    ///
+    /// You can change which [`MTLAllocation`](https://developer.apple.com/documentation/metal/mtlallocation) instances are in a residency set at any time by:
+    ///
+    /// 1. Staging additions and removals with the [`addAllocation:`](https://developer.apple.com/documentation/metal/mtlresidencyset/addallocation(_:)) and [`removeAllocation:`](https://developer.apple.com/documentation/metal/mtlresidencyset/removeallocation(_:)) methods, respectively, or with their sibling methods
+    ///
+    /// 2. Applying staged changes by calling the residency set’s [`commit`](https://developer.apple.com/documentation/metal/mtlresidencyset/commit()) method
+    ///
+    /// Metal doesn’t synchronize the state of the residency set between the CPU and the GPU. This means you can add resource allocations to the set while the GPU is actively running a command buffer that’s accessing them.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If there’s a resource in a residency set that the GPU no longer needs access to, you can remove that resource from the residency set, even while the GPU is actively accessing other resources from the same residency set.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Metal makes the union of all residency sets’ allocations resident. This means each resource allocation, such as a buffer, can have an entry in multiple residency sets at the same time. Removing an allocation from one residency set doesn’t affect its residency if it also has an entry in another residency set. So you can remove an entire residency set from a command queue and only remove the allocations from residency that are unique to that set. All other resource allocations remain in residency because at least one other residency set has an entry for each.
+    ///
+    /// Alternatively, render and compute command encoders have the following methods that make resource allocations resident:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResource(_:usage:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useResources(_:usage:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeap(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder/useHeaps(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// These command encoder methods:
+    ///
+    /// - Support hazard tracking to applicable resources (see [Resource fundamentals](https://developer.apple.com/documentation/metal/resource-fundamentals))
+    ///
+    /// - Require CPU overhead for each resource or heap, which scale up with each one you add
+    ///
+    /// - Apply to a single command encoder, which means you need to call the methods again for the same resources for each command encoder
+    ///
+    /// Residency sets, by contrast:
+    ///
+    /// - Don’t support hazard tracking, which means you need to account for hazards with [`MTLFence`](https://developer.apple.com/documentation/metal/mtlfence) and [`MTLEvent`](https://developer.apple.com/documentation/metal/mtlevent) instances
+    ///
+    /// - Require minimal CPU overhead by aggregating allocations at little to no cost for each resource or heap
+    ///
+    /// - Can attach to a command buffer with a single call, which makes residency set’s allocations available to all of that command buffer’s encoders
+    ///
+    /// - Can attach to a command queue with a single call
+    ///
+    /// Metal attaches all of a command queue’s residency sets to a command buffer from that queue when you call the command buffer’s [`commit`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/commit()) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Residency sets don’t support sparse heaps or sparse textures, and their methods aren’t thread-safe.
+    ///
+    ///
+    ///
+    /// </div>
+    /// See [Simplifying GPU resource management with residency sets](https://developer.apple.com/documentation/metal/simplifying-gpu-resource-management-with-residency-sets) for information about associating a residency set to command buffers and command queues.
+    ///
+    /// ### Create a residency set
+    ///
+    /// Make a residency set by configuring an [`MTLResidencySetDescriptor`](https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor) instance and passing it to the [`newResidencySetWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makeresidencyset(descriptor:)) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let setDescriptor = MTLResidencySetDescriptor()", "setDescriptor.label = \"Primary residency set\"", "setDescriptor.initialCapacity = 42", "", "let residencySet = try device.makeResidencySet(descriptor: setDescriptor)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objective-c"), code: ["MTLResidencySetDescriptor *setDescriptor;", "setDescriptor = [[MTLResidencySetDescriptor alloc] init];", "setDescriptor.label = @\"Primary residency set\";", "setDescriptor.initialCapacity = 42;", "", "NSError *error;", "id<MTLResidencySet> residencySet;", "residencySet = [device newResidencySetWithDescriptor:setDescriptor", "                                               error:&error];"], metadata: None }] }] })
+    /// ### Add allocations to a residency set
+    ///
+    /// Add individual resource allocations to a residency set by calling [`addAllocation:`](https://developer.apple.com/documentation/metal/mtlresidencyset/addallocation(_:)), or add multiple allocations with [`addAllocations(_:)`](https://developer.apple.com/documentation/metal/mtlresidencyset/addallocations(_:)).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let residencySet = try device.makeResidencySet(descriptor: setDescriptor)", "", "residencySet.addAllocation(buffer0)", "residencySet.addAllocation(buffer1)", "residencySet.addAllocation(texture0)", "residencySet.addAllocation(texture1)", "residencySet.addAllocation(heap)", "", "let allocations = [buffer2,", "                   texture2,", "                   argumentBufferHeap,", "                   textureHeap]", "", "residencySet.addAllocations(allocations)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objective-c"), code: ["[residencySet addAllocation:buffer0];", "[residencySet addAllocation:buffer1];", "[residencySet addAllocation:texture0];", "[residencySet addAllocation:texture1];", "[residencySet addAllocation:heap];", "", "id<MTLAllocation> allocations[] = {", "    buffer2,", "    texture2,", "    argumentBufferHeap,", "    textureHeap", "};", "", "[residencySet addAllocations:allocations", "                       count:4];"], metadata: None }] }] })
+    /// The residency set can handle redundant entries for the same allocation because it ignores duplicates that already have an entry in the set.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Adding a resource, such as a buffer or texture, that originates from a heap to a residency set makes its entire heap resident.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Remove allocations from a residency set
+    ///
+    /// Remove individual resource allocations from a residency set by calling [`removeAllocation:`](https://developer.apple.com/documentation/metal/mtlresidencyset/removeallocation(_:)), or remove multiple allocations with [`removeAllocations(_:)`](https://developer.apple.com/documentation/metal/mtlresidencyset/removeallocations(_:)).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["residencySet.removeAllocation(buffer1)", "residencySet.removeAllocations( [argumentBufferHeap, textureHeap] )"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objective-c"), code: ["[residencySet removeAllocation:buffer1];", "", "id<MTLAllocation> deallocations[] = {", "    argumentBufferHeap,", "    textureHeap", "};", "", "[residencySet removeAllocations: deallocations", "                          count:2];", "[residencySet commit];"], metadata: None }] }] })
+    /// Like the methods that add resource allocations to the set, these methods aggregate removals with little CPU overhead. So you can call the methods multiple times without adversely affecting runtime performance.
+    ///
+    /// ### Commit the changes to a residency set
+    ///
+    /// Apply the updates to a residency set by calling its [`commit`](https://developer.apple.com/documentation/metal/mtlresidencyset/commit()) method.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("objective-c"), code: ["residencySet.commit()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("swift"), code: ["[residencySet commit];"], metadata: None }] }] })
+    /// A residency set’s addition and removal methods don’t take effect until you call this method.
+    ///
+    ///
     /// A residency set is responsible for managing resource and heap residency and is referenced
     /// by a command buffer or command queue in order to ensure that resources and heaps are resident.
     /// Resources and heaps are added and removed uncommitted and a subsequent commit call applies all
     /// of the changes in bulk.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresidencyset?language=objc)
     pub unsafe trait MTLResidencySet: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device that created the residency set

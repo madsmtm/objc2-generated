@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputcontext?language=objc)
+    /// An object that reports the type of input your app receives.
+    ///
+    /// ## Overview
+    ///
+    /// Use the shared [`UITextInputContext`](https://developer.apple.com/documentation/uikit/uitextinputcontext) object to get information about the type of input your app receives. UIKit apps can receive text input from sources other than the software keyboard, including from dictation, Apple Pencil, and a connected keyboard. Use information about the likely input sources to adjust your UI to accommodate that input. For example, you might increase the size of text fields to accommodate handwriting input from Apple Pencil.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextInputContext;

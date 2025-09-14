@@ -6,18 +6,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Policies describing the action the coder should take when encountering decode failures.
 /// Describes the action an NSCoder should take when it encounters decode failures (e.g. corrupt data) for non-TopLevel decodes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder/decodingfailurepolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDecodingFailurePolicy(pub NSInteger);
 impl NSDecodingFailurePolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder/decodingfailurepolicy-swift.enum/raiseexception?language=objc)
+    /// A failure policy that directs the coder to raise an exception.
+    ///
+    /// ## Discussion
+    ///
+    /// With this policy, the [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) raises an exception internally to propagate failure messages (and unwind the stack). In Objective-C, this exception can be transformed into an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) via methods like [`decodeTopLevelObjectAndReturnError:`](https://developer.apple.com/documentation/foundation/nscoder/decodetoplevelobjectandreturnerror:)
+    ///
+    ///
     #[doc(alias = "NSDecodingFailurePolicyRaiseException")]
     pub const RaiseException: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder/decodingfailurepolicy-swift.enum/seterrorandreturn?language=objc)
+    /// A failure policy that directs the coder to capture the failure as an error object.
+    ///
+    /// ## Discussion
+    ///
+    /// On decode failure, the [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) will capture the failure as an [`NSError`](https://developer.apple.com/documentation/foundation/nserror), and prevent further decodes (by returning `0` / `nil` equivalent as appropriate).
+    ///
+    /// Use this policy if you know that all encoded objects use [`failWithError:`](https://developer.apple.com/documentation/foundation/nscoder/failwitherror(_:)) to communicate decode failures and don’t raise exceptions for error propagation.
+    ///
+    ///
     #[doc(alias = "NSDecodingFailurePolicySetErrorAndReturn")]
     pub const SetErrorAndReturn: Self = Self(1);
 }
@@ -31,7 +44,21 @@ unsafe impl RefEncode for NSDecodingFailurePolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder?language=objc)
+    /// An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) declares the interface used by concrete subclasses to transfer objects and other values between memory and some other format. This capability provides the basis for archiving (storing objects and data on disk) and distribution (copying objects and data items between different processes or threads). The concrete subclasses provided by Foundation for these purposes are [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver), [`NSUnarchiver`](https://developer.apple.com/documentation/foundation/nsunarchiver), [`NSKeyedArchiver`](https://developer.apple.com/documentation/foundation/nskeyedarchiver), [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver), and [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder). Concrete subclasses of [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) are “coder classes”, and instances of these classes are “coder objects” (or simply “coders”). A coder that can only encode values is an “encoder”, and one that can only decode values is a “decoder”.
+    ///
+    /// [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) operates on objects, scalars, C arrays, structures, strings, and on pointers to these types. It doesn’t handle types whose implementation varies across platforms, such as `union`, `void *`, function pointers, and long chains of pointers. A coder stores object type information along with the data, so an object decoded from a stream of bytes is normally of the same class as the object that was originally encoded into the stream. An object can change its class when encoded, however; this is described in [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    /// The AVFoundation framework adds methods to the [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) class to make it easier to create archives including Core Media time structures, and extract Core Media time structure from archives.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// For details of how to create a subclass of `NSCoder`, see [Subclassing NSCoder](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Articles/subclassing.html#//apple_ref/doc/uid/20000951) in [Archives and Serializations Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCoder;
@@ -606,7 +633,7 @@ impl NSCoder {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nxreadnsobjectfromcoder?language=objc)
+/// Returns the next object from the coder.
 ///
 /// # Safety
 ///

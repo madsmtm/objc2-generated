@@ -5,27 +5,55 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Behavioral Styles are values that determine how a class — such as a view or control — behaves. This includes how the control is drawn, and what behaviors it supports. For example, handling certain customizations in one style, but not another.
+/// Constants that indicate how a control behaves in apps built with Mac Catalyst.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle?language=objc)
+/// ## Overview
+///
+/// If you build your app with Mac Catalyst and use the Mac idiom, you can specify the preferred behavior style for a control to change its appearance and behavior. For instance, consider an iPad app that displays a slider with a custom thumb image. By default, the Mac version of the app, built with Mac Catalyst, displays a standard macOS slider when the user interface idiom of the app is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac).
+///
+/// To provide a consistent appearance of the slider in the iPad and Mac versions of the app, set the [`preferredBehavioralStyle`](https://developer.apple.com/documentation/uikit/uislider/preferredbehavioralstyle) of the slider to [`UIBehavioralStylePad`](https://developer.apple.com/documentation/uikit/uibehavioralstyle/pad). This behavioral style tells the slider to behave as if the user interface idiom is [`UIUserInterfaceIdiomPad`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/pad) even though the app uses the Mac idiom.
+///
+/// macOS doesn’t scale the interface of apps that use the Mac idiom, so you may need to update your app to accommodate size differences. For example, a slider with a custom thumb image may need a different image for the Mac app than the one used in the iPad app.
+///
+/// ```swift
+/// let slider = UISlider()
+/// slider.minimumValue = 0
+/// slider.maximumValue = 1
+/// slider.value = 0.5
+/// slider.preferredBehavioralStyle = .pad
+///
+/// if slider.traitCollection.userInterfaceIdiom == .mac {
+///     slider.setThumbImage(#imageLiteral(resourceName: "customSliderThumbMac")), for: .normal)
+/// } else {
+///     slider.setThumbImage(#imageLiteral(resourceName: "customSliderThumb")), for: .normal)
+/// }
+/// ```
+///
+/// To learn more about the Mac idiom, see [Choosing a user interface idiom for your Mac app](https://developer.apple.com/documentation/uikit/choosing-a-user-interface-idiom-for-your-mac-app).
+///
+///
+/// Behavioral Styles are values that determine how a class — such as a view or control — behaves. This includes how the control is drawn, and what behaviors it supports. For example, handling certain customizations in one style, but not another.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBehavioralStyle(pub NSUInteger);
 impl UIBehavioralStyle {
+    /// A style the system chooses based on the app’s targeted platform.
     /// The system will choose the most appropriate style for the targetted platform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle/automatic?language=objc)
     #[doc(alias = "UIBehavioralStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A style that indicates that a control appears and behaves as it does in iPadOS.
     /// A style and set of behaviors best for iOS/iPadOS applications
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle/pad?language=objc)
     #[doc(alias = "UIBehavioralStylePad")]
     pub const Pad: Self = Self(1);
-    /// A style and set of behaviors best for macOS applications
+    /// A style that indicates that a control appears and behaves as it does in macOS.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle/mac?language=objc)
+    /// ## Discussion
+    ///
+    /// This style effects a control’s behavior only when the app’s user interface idiom is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac).
+    ///
+    ///
+    /// A style and set of behaviors best for macOS applications
     #[doc(alias = "UIBehavioralStyleMac")]
     pub const Mac: Self = Self(2);
 }

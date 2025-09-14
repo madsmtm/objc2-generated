@@ -6,25 +6,41 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C-unwind" {
+    /// Prints the internal state of an object to `stdio`.
+    ///
+    /// Parameters:
+    /// - inObject: The Core Audio object whose internal state you want to print.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Print the internal state of an object to os_log.
     ///
     /// # Safety
     ///
     /// `in_object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cashow(_:)?language=objc)
     pub fn CAShow(in_object: NonNull<c_void>);
 }
 
 extern "C-unwind" {
+    /// Prints the internal state of an object to a file.
+    ///
+    /// Parameters:
+    /// - inObject: The Core Audio object whose internal state you want to print.
+    ///
+    /// - inFile: The file you want to print object state information to
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Print the internal state of an object to the supplied FILE*.
     ///
     /// # Safety
     ///
     /// - `in_object` must be a valid pointer.
     /// - `in_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cashowfile(_:_:)?language=objc)
     #[cfg(feature = "libc")]
     pub fn CAShowFile(in_object: NonNull<c_void>, in_file: NonNull<libc::FILE>);
 }

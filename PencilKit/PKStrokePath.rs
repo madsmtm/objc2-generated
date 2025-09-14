@@ -10,9 +10,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that captures the components of a stroke and provides methods to find and interpolate points along the stroke’s path.
     /// A uniform cubic B-spline representing the point data of a `PKStroke`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokepathreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStrokePath;

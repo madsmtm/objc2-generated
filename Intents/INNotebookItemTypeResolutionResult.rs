@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotebookitemtyperesolutionresult?language=objc)
+    /// A resolution result for the type of items to look for during a search of notes and tasks.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INNotebookItemTypeResolutionResult`](https://developer.apple.com/documentation/intents/innotebookitemtyperesolutionresult) object when resolving parameters containing an [`INNotebookItemType`](https://developer.apple.com/documentation/intents/innotebookitemtype) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

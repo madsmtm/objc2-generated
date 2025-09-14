@@ -12,12 +12,45 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An anchor that identifies a geographic location using latitude, longitude, and altitude data.
+    ///
+    /// ## Overview
+    ///
+    /// A _geographic anchor_ (also known as _location anchor_) identifies a specific area in the world that the app can refer to in an AR experience. As a user moves around the scene, the session updates a location anchor’s [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) based on the anchor’s [`coordinate`](https://developer.apple.com/documentation/arkit/argeoanchor/coordinate) and the device’s compass heading.
+    ///
+    /// ARKit aligns location anchors to an East-North-Up orientation, with its x- and z-axes matching the longitude and latitude directions. For more information, see [`ARWorldAlignmentGravityAndHeading`](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum/gravityandheading).
+    ///
+    /// ARKit sets the anchor’s vertical position to the altitude you pass in to [`initWithCoordinate:altitude:`](https://developer.apple.com/documentation/arkit/argeoanchor/initwithcoordinate:altitude:). If you initialize a location anchor using [`initWithCoordinate:`](https://developer.apple.com/documentation/arkit/argeoanchor/initwithcoordinate:) instead, ARKit sets the anchor’s altitude to ground level.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Location anchors are available only in geotracking sessions, and geotracking is available in specific areas; for more information, see [`ARGeoTrackingConfiguration`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Communicate Data Usage
+    ///
+    /// Location anchors consume data from Apple Maps called _localization imagery_ (for more information, see [`ARGeoTrackingConfiguration`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration)). As the user moves, the framework downloads localization imagery to refine the user’s precise geographic position. The amount of data the session requires depends on the user’s movement and distance they travel. To make the user aware of potential fees, you can notify the user of their data usage.
+    ///
+    /// ### Manage Location Anchor Availability
+    ///
+    /// When an app creates a location anchor, it’s invisible to the user until the framework _populates_ the anchor in the scene. When an anchor populates successfully, the session passes the anchor into the delegate’s [`session:didAddAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didadd:)) callback.
+    ///
+    /// If ARKit fails to populate a location anchor, the session calls [`session:didRemoveAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didremove:)) to notify your delegate. A location anchor may fail to populate when:
+    ///
+    /// - The network is unavailable. If you create a location anchor without providing an altitude, ARKit defaults the altitude to ground level, and may query the server to check the topography at the anchor’s geographic coordinate. If the network is unavailable, ask the user to restore a connection by disabling Airplane Mode, enabling WiFi, or moving to a location that provides service. If the network is available but slow, an altitude query response may be delayed. Consider pausing a navigation or presenting visual feedback for the anchor’s tentative placement, such as by displaying a status indicator.
+    ///
+    /// - The location anchor is too far from the user. If users can create location anchors in your app, let them know to position the coordinates of each anchor within 0.05 degrees (~5 kilometers) of themselves and their device.
+    ///
+    /// - The server prevents the location anchor’s position, such as in a large body of water.
+    ///
+    ///
     /// An anchor representing a geographical location in the world.
     ///
     /// The anchor's transform will be automatically updated by the session based on location and heading.
     /// The session needs to be configured with ARGeoTrackingConfiguration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor?language=objc)
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

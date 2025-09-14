@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest?language=objc)
+    /// A request to fetch or purge persistent history.
     #[unsafe(super(NSPersistentStoreRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStoreRequest")]

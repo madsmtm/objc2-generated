@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A simple model object that describes a profile within an app that has multiple user profiles.
+    /// A model object that you use to represent an app-specific profile.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvappprofiledescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// A [`TVAppProfileDescriptor`](https://developer.apple.com/documentation/tvservices/tvappprofiledescriptor) object represents a single user profile in your app. You create app profile descriptor objects yourself and manage them in your app’s data structures. The default object contains only the user-visible name for the profile, which must be a nonempty string. You can also subclass to add app-specific properties. For example, you might add an app-specific identifier for the profile. You might also store the identifiers for all Apple TV users that are configured to use this profile.
+    ///
+    /// For more information about mapping your app profiles to Apple TV accounts, see [`TVUserManager`](https://developer.apple.com/documentation/tvservices/tvusermanager).
+    ///
+    ///
+    /// A simple model object that describes a profile within an app that has multiple user profiles.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "User Management capability get-current-user is no longer supported. Please use runs-as-current-user-with-user-independent-keychain and kSecUseUserIndependentKeychain for sharing keychain items across users."]

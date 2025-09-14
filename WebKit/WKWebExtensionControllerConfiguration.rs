@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A [`WKWebExtensionControllerConfiguration`](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/configuration-swift.class) object with which to initialize a web extension controller.
+    ///
+    /// ## Overview
+    ///
+    /// Contains properties used to configure a [`WKWebExtensionController`](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller).
+    ///
+    ///
     /// A ``WKWebExtensionControllerConfiguration`` object with which to initialize a web extension controller.
     ///
     /// Contains properties used to configure a ``WKWebExtensionController``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

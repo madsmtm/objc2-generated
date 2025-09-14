@@ -6,18 +6,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type of vision prescription, for example a prescription for glasses or for contacts.
 /// Represents a vision prescription type
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKVisionPrescriptionType(pub NSUInteger);
 impl HKVisionPrescriptionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype/glasses?language=objc)
+    /// A prescription for glasses.
     #[doc(alias = "HKVisionPrescriptionTypeGlasses")]
     pub const Glasses: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontype/contacts?language=objc)
+    /// A prescription for contacts.
     #[doc(alias = "HKVisionPrescriptionTypeContacts")]
     pub const Contacts: Self = Self(2);
 }
@@ -31,9 +30,65 @@ unsafe impl RefEncode for HKVisionPrescriptionType {
 }
 
 extern_class!(
-    /// HKSample subclass representing a vision prescription
+    /// A sample that stores a vision prescription.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescription?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to create an image-only prescription. Here, you attach the prescription as an image or PDF to a simple sample. The sample contains only basic information about the prescription, such as the issue and expiration dates. To see the prescription data, people must view the attached image or PDF.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Some regions may require an image of the original prescription to validate the prescription record.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To create an image-only prescription, start by creating an [`HKVisionPrescription`](https://developer.apple.com/documentation/healthkit/hkvisionprescription) sample object.
+    ///
+    /// ```swift
+    /// // Create a minimal prescription sample that just holds an image attachment.
+    /// let prescription = HKVisionPrescription(type: .glasses,
+    ///                                         dateIssued: Date(),
+    ///                                         expirationDate: nil,
+    ///                                         device: HKDevice.local(),
+    ///                                         metadata: nil)
+    /// ```
+    ///
+    /// Next, save the sample to the HealthKit store.
+    ///
+    /// ```swift
+    /// // Save the sample to the HealthKit store.
+    /// do {
+    ///     try await store.save(prescription)
+    /// } catch {
+    ///     // Handle the error here.
+    ///     fatalError("*** An error occurred while saving the prescription sample to the HealthKit store \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    /// Then, you can attach the image or PDF to the sample.
+    ///
+    /// ```swift
+    /// // Get the attachment store.
+    /// let attachmentStore = HKAttachmentStore(healthStore: store)
+    ///
+    /// // Attach the image to the sample.
+    /// do {
+    ///     _ = try await attachmentStore.addAttachment(to: prescription,
+    ///                                                 name: "Glasses Prescription",
+    ///                                                 contentType: type,
+    ///                                                 url: url)
+    /// } catch {
+    ///     // Handle the error.
+    ///     fatalError("*** An error occurred while attaching the image: \(error.localizedDescription) ***")
+    /// }
+    /// ```
+    ///
+    /// For more information about adding images or pdfs as attachments, see [`HKAttachmentStore`](https://developer.apple.com/documentation/healthkit/hkattachmentstore). To create a vision prescription sample that contains the full data for the prescription, use [`HKGlassesPrescription`](https://developer.apple.com/documentation/healthkit/hkglassesprescription) or [`HKContactsPrescription`](https://developer.apple.com/documentation/healthkit/hkcontactsprescription) instead.
+    ///
+    ///
+    /// HKSample subclass representing a vision prescription
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

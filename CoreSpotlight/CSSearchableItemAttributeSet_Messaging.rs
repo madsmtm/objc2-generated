@@ -8,32 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csmailboxinbox?language=objc)
+    /// An inbox.
     pub static CSMailboxInbox: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csmailboxdrafts?language=objc)
+    /// A drafts mailbox.
     pub static CSMailboxDrafts: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csmailboxsent?language=objc)
+    /// A sent mailbox.
     pub static CSMailboxSent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csmailboxjunk?language=objc)
+    /// A junk mailbox.
     pub static CSMailboxJunk: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csmailboxtrash?language=objc)
+    /// A trash mailbox.
     pub static CSMailboxTrash: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csmailboxarchive?language=objc)
+    /// An archive mailbox.
     pub static CSMailboxArchive: &'static NSString;
 }
 

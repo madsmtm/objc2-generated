@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetyperesolutionresult?language=objc)
+    /// A resolution result for the type of visual code used to exchange information.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INVisualCodeTypeResolutionResult`](https://developer.apple.com/documentation/intents/invisualcodetyperesolutionresult) object is what you return when resolving parameters containing an [`INVisualCodeType`](https://developer.apple.com/documentation/intents/invisualcodetype) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

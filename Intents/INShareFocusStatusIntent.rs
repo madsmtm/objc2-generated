@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintent?language=objc)
+    /// An object that indicates the user’s focus status is changing.
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +73,10 @@ impl INShareFocusStatusIntent {
 }
 
 extern_protocol!(
+    /// A set of methods an object implements to process intents that share the user’s focus status.
     /// Protocol to declare support for handling an INShareFocusStatusIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintenthandling?language=objc)
     pub unsafe trait INShareFocusStatusIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

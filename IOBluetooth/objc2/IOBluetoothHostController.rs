@@ -9,13 +9,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).
+    ///
+    /// ## Overview
+    ///
+    /// This object can be used to ask a Bluetooth HCI for certain pieces of information, and be used to make it perform certain functions.
+    ///
+    ///
     /// This class is a representation of a Bluetooth Host Controller Interface that is present on the
     /// local computer (either plugged in externally or available internally).
     ///
     /// This object can be used to ask a Bluetooth HCI for certain pieces of information, and be used to make
     /// it perform certain functions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhostcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothHostController;
@@ -186,13 +191,11 @@ impl private_NSObjectIOBluetoothHostControllerDelegate::Sealed for NSObject {}
 unsafe impl NSObjectIOBluetoothHostControllerDelegate for NSObject {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhostcontrollerpoweredonnotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHostControllerPoweredOnNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhostcontrollerpoweredoffnotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothHostControllerPoweredOffNotification: Option<&'static NSString>;
 }

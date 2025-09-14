@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledate?language=objc)
+    /// An object that tracks a date the user selects from a calendar view.
     #[unsafe(super(UICalendarSelection, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -80,7 +80,7 @@ impl UICalendarSelectionSingleDate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledatedelegate?language=objc)
+    /// A set of methods you implement to provide selectable dates and handle changes to the selection of a single date.
     pub unsafe trait UICalendarSelectionSingleDateDelegate:
         NSObjectProtocol + MainThreadOnly
     {

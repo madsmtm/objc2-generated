@@ -6,14 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversion/addingoptions?language=objc)
+/// Options for adding a new file version.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileVersionAddingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileVersionAddingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversion/addingoptions/bymoving?language=objc)
+///
+/// ## Discussion
+///
+/// When adding a file, you can specify this option if you want to create the version by moving the source file to the specified location.
+///
+///
         #[doc(alias = "NSFileVersionAddingByMoving")]
         const ByMoving = 1<<0;
     }
@@ -27,14 +32,20 @@ unsafe impl RefEncode for NSFileVersionAddingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversion/replacingoptions?language=objc)
+/// Options for replacing a file version.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileVersionReplacingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileVersionReplacingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversion/replacingoptions/bymoving?language=objc)
+/// An option to perform replacing by moving a file.
+///
+/// ## Discussion
+///
+/// This option results in moving the old version of the file out of the version store instead of copying the new contents into the file’s version. Use this option in conjunction with a file coordinator to make sure the operation is coordinated with other clients of the file.
+///
+///
         #[doc(alias = "NSFileVersionReplacingByMoving")]
         const ByMoving = 1<<0;
     }
@@ -49,7 +60,19 @@ unsafe impl RefEncode for NSFileVersionReplacingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversion?language=objc)
+    /// A snapshot of a file at a specific point in time.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of this class to access, create, and manage file revisions in your app.
+    ///
+    /// Each file version instance contains metadata about a single revision, including the location of the associated file, the modification date of the revision, and whether the revision is discardable.
+    ///
+    /// In Mac apps, you can use file version objects to track changes to a local file over time and to prevent the loss of data during editing. When managing local versions, the document architecture creates versions at specific points in the lifetime of your application. Your application can also create versions explicitly at times that your application designates as appropriate.
+    ///
+    /// In addition to managing local files, the system also uses this class to manage cloud-based files. For files in the cloud, there is usually only one version of the file at any given time. However, additional file versions may be created in cases where two different computers attempt to save the file to the cloud at the same time. In that case, one file is chosen as the current version and any other versions are tagged as being in conflict with the original. Conflict versions are reported to the appropriate file presenter objects and should be resolved as soon as possible so that the corresponding files can be removed from the cloud.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileVersion;

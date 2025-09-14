@@ -12,16 +12,28 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprogressview/style?language=objc)
+/// The styles permitted for the progress bar.
+///
+/// ## Overview
+///
+/// You can set and retrieve the current style of progress view through the [`progressViewStyle`](https://developer.apple.com/documentation/uikit/uiprogressview/progressviewstyle) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIProgressViewStyle(pub NSInteger);
 impl UIProgressViewStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprogressview/style/default?language=objc)
+    /// The standard progress-view style.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is the default.
+    ///
+    ///
     #[doc(alias = "UIProgressViewStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprogressview/style/bar?language=objc)
+    /// The style of progress view that is used in a toolbar.
     #[doc(alias = "UIProgressViewStyleBar")]
     pub const Bar: Self = Self(1);
 }
@@ -35,7 +47,15 @@ unsafe impl RefEncode for UIProgressViewStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprogressview?language=objc)
+    /// A view that depicts the progress of a task over time.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UIProgressView`](https://developer.apple.com/documentation/uikit/uiprogressview) class provides properties for managing the style of the progress bar and for getting and setting values that are pinned to the progress of a task.
+    ///
+    /// For an indeterminate progress indicator — or a “spinner” — use an instance of the [`UIActivityIndicatorView`](https://developer.apple.com/documentation/uikit/uiactivityindicatorview) class.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

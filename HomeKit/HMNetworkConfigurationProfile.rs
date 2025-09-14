@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmnetworkconfigurationprofile?language=objc)
+    /// A profile that provides information about network protection for an accessory.
+    ///
+    /// ## Overview
+    ///
+    /// To increase security, HomeKit can restrict network access for specific accessories, including access to other accessories in the home, and to the internet. However, an accessory your app controls might need network access to carry out certain functions, like downloading new firmware.
+    ///
+    /// Check the [`networkAccessRestricted`](https://developer.apple.com/documentation/homekit/hmnetworkconfigurationprofile/isnetworkaccessrestricted) property of an accessory’s network configuration profile to find out if an accessory has restricted access. You can use this information to ask the user to relax network restrictions in the Home app.
+    ///
+    ///
     #[unsafe(super(HMAccessoryProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMAccessoryProfile")]
@@ -83,7 +91,7 @@ impl HMNetworkConfigurationProfile {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmnetworkconfigurationprofiledelegate?language=objc)
+    /// An interface that your app adopts to receive notifications about changes in the state of network access.
     pub unsafe trait HMNetworkConfigurationProfileDelegate: NSObjectProtocol {
         #[cfg(feature = "HMAccessoryProfile")]
         /// Informs the delegate that the network access mode has updated.

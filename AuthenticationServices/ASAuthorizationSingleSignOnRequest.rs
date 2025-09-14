@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonrequest?language=objc)
+    /// An OpenID authorization request that provides single sign-on (SSO) functionality.
     #[unsafe(super(ASAuthorizationOpenIDRequest, ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

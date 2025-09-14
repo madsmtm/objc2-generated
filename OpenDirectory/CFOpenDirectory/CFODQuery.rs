@@ -9,6 +9,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A callback function called as results from a scheduled query are returned.
+///
+/// ## Discussion
+///
+/// Results from this function must be retained or copied. The results from any given call are partial. If both `inResults` and `inError` are `NULL`, the query has completed.
+///
+///
 /// Is called as results are returned from a query.  The incoming result must be retained or copied.
 ///
 /// Is called as results are returned from an CFRunLoop-based query.  These results are only partial
@@ -16,21 +23,24 @@ use crate::*;
 /// array will be released by the CFRunLoop upon return.  Incoming results do not include previous results,
 /// only the most recent results are returned.  inResults can be NULL if an error occurs or the query is complete.  If
 /// inError and inResults are NULL then the query has completed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type ODQueryCallback =
     Option<unsafe extern "C-unwind" fn(*mut ODQueryRef, *const CFArray, *mut CFError, *mut c_void)>;
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODQueryRef {
+    /// Returns the type ID for an Open Directory query.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID for an Open Directory query.
+    ///
+    ///
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for the ODQuery object
     ///
     /// Returns: a valid CFTypeID for the ODQuery object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerygettypeid()?language=objc)
     #[doc(alias = "ODQueryGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,6 +52,33 @@ unsafe impl ConcreteType for ODQueryRef {
 }
 
 impl ODQueryRef {
+    /// Creates a query with a node using provided parameters.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - node: The node.
+    ///
+    /// - recordTypeOrList: The type or types of record to query. Can be a `CFString` object for a single type or a `CFArray` object containing `CFString` objects for multiple types.
+    ///
+    /// - attribute: The name of the attribute to query.
+    ///
+    /// - matchType: The type of query.
+    ///
+    /// - queryValueOrList: The value or values to query in the attribute. Can be a `CFString` object or a `CFData` object for a single value, or a `CFArray` containing `CFString` and `CFData` objects for multiple values.
+    ///
+    /// - returnAttributeOrList: The attribute or attributes to be returned from the query. Can be a `CFString` object for a single attribute or a `CFArray` object containing `CFString` objects for multiple attributes. Passing `NULL` is equivalent to passing `kODAttributeTypeStandardOnly`.
+    ///
+    /// - maxResults: The maximum number of values to be returned.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created query.
+    ///
+    ///
     /// Creates a query with the node using the parameters provided
     ///
     /// Creates a query with the node using the supplied query parameters.  Some parameters can either be CFString or
@@ -81,8 +118,6 @@ impl ODQueryRef {
     /// - `return_attribute_or_list` should be of the correct type.
     /// - `return_attribute_or_list` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycreatewithnode(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODQueryCreateWithNode")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -129,6 +164,33 @@ impl ODQueryRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a query for a particular node type using provided parameters.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - nodeType: The node type.
+    ///
+    /// - recordTypeOrList: The type or types of record to query. Can be a `CFString` object for a single type or a `CFArray` object containing `CFString` objects for multiple types.
+    ///
+    /// - attribute: The name of the attribute to query.
+    ///
+    /// - matchType: The type of query.
+    ///
+    /// - queryValueOrList: The value or values to query in the attribute. Can be a `CFString` object or a `CFData` object for a single value, or a `CFArray` containing `CFString` and `CFData` objects for multiple values.
+    ///
+    /// - returnAttributeOrList: The attribute or attributes to be returned from the query. Can be a `CFString` object for a single attribute or a `CFArray` object containing `CFString` objects for multiple attributes. Passing `NULL` is equivalent to passing `kODAttributeTypeStandardOnly`.
+    ///
+    /// - maxResults: The maximum number of values to be returned.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created query.
+    ///
+    ///
     /// Creates a query object that is initialized to a particular node type.
     ///
     /// Creates a query object that is initialized to a particular node type using the supplied
@@ -168,8 +230,6 @@ impl ODQueryRef {
     /// - `return_attribute_or_list` should be of the correct type.
     /// - `return_attribute_or_list` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycreatewithnodetype(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODQueryCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -216,6 +276,21 @@ impl ODQueryRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns results from a query synchronously.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - allowPartialResults: If `true`, only immediately available results are returned; otherwise, the function waits until all results are available.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The results of the query in an array of `ODRecord` objects.
+    ///
+    ///
     /// Returns results from a provided ODQueryRef synchronously
     ///
     /// Returns results from a provided ODQueryRef synchronously.  Passing false to inAllowPartialResults
@@ -236,8 +311,6 @@ impl ODQueryRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycopyresults(_:_:_:)?language=objc)
     #[doc(alias = "ODQueryCopyResults")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -257,6 +330,17 @@ impl ODQueryRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Restarts a query, disposing of any results it has obtained.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `inQuery` was originally scheduled in a run loop with [`ODQueryScheduleWithRunLoop`](https://developer.apple.com/documentation/opendirectory/odqueryschedulewithrunloop(_:_:_:)), the query’s callback function is called with `inResults` set to `NULL`, `inError.error` set to `kODErrorQuerySynchronize`, and `inError.domain` set to `kODErrorDomainFramework`.
+    ///
+    ///
     /// Will dispose of any results and restart the query.
     ///
     /// Will dispose of any results and restart the query for subsequent ODQueryCopyResults.  If the query
@@ -265,8 +349,6 @@ impl ODQueryRef {
     /// all existing results should be thrown away in preparation for new results.
     ///
     /// Parameter `query`: an ODQueryRef to use
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerysynchronize(_:)?language=objc)
     #[doc(alias = "ODQuerySynchronize")]
     #[inline]
     pub unsafe fn synchronize(&self) {
@@ -276,6 +358,15 @@ impl ODQueryRef {
         unsafe { ODQuerySynchronize(self) }
     }
 
+    /// Sets the callback for an asynchronous query.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - callback: The callback function.
+    ///
+    /// - userInfo: A user-defined pointer to be passed back to the callback function.
+    ///
     /// This call is used to set the callback function for an asynchronous query
     ///
     /// This call is used to set the callback function for an asynchronous query, using a
@@ -291,8 +382,6 @@ impl ODQueryRef {
     ///
     /// - `callback` must be implemented correctly.
     /// - `user_info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerysetcallback(_:_:_:)?language=objc)
     #[doc(alias = "ODQuerySetCallback")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -307,6 +396,21 @@ impl ODQueryRef {
         unsafe { ODQuerySetCallback(self, callback, user_info) }
     }
 
+    /// Retrieves results from a query asynchronously by scheduling the query in a run loop.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - runLoop: The run loop.
+    ///
+    /// - runLoopMode: The mode of the run loop.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function spawns a new thread to execute the query in `inRunLoop`. When the query is complete, the query’s callback function is called with both `inResults` and `inError` set to `NULL`. To remove an incomplete query from its run loop, call [`ODQueryUnscheduleFromRunLoop`](https://developer.apple.com/documentation/opendirectory/odqueryunschedulefromrunloop(_:_:_:)).
+    ///
+    ///
     /// Allows a query to run off of a runloop, though it will spawn a thread to handle the work
     ///
     /// Allows a query to run off of a runloop, though it will spawn a thread to handle the work.
@@ -325,8 +429,6 @@ impl ODQueryRef {
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "ODQueryScheduleWithRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -345,6 +447,15 @@ impl ODQueryRef {
         unsafe { ODQueryScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// Removes a query from a specified run loop.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - runLoop: The run loop.
+    ///
+    /// - runLoopMode: The mode to remove the query from.
+    ///
     /// Removes the ODQueryRef from the provided runloop
     ///
     /// Removes the ODQueryRef from the provided runloop
@@ -360,8 +471,6 @@ impl ODQueryRef {
     /// - `run_loop` possibly has additional threading requirements.
     /// - `run_loop` might not allow `None`.
     /// - `run_loop_mode` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "ODQueryUnscheduleFromRunLoop")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -380,6 +489,19 @@ impl ODQueryRef {
         unsafe { ODQueryUnscheduleFromRunLoop(self, run_loop, run_loop_mode) }
     }
 
+    /// Retrieves results from a query asynchronously by adding the query to a dispatch queue.
+    ///
+    /// Parameters:
+    /// - query: The query.
+    ///
+    /// - queue: The dispatch queue.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When the query is complete, the query’s callback function is called with both `inResults` and `inError` set to `NULL`.
+    ///
+    ///
     /// Performs the query and sends the results using the specified dispatch queue
     ///
     /// Schedule the query to run and deliver its results using the specified dispatch queue.
@@ -394,8 +516,6 @@ impl ODQueryRef {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerysetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "ODQuerySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
